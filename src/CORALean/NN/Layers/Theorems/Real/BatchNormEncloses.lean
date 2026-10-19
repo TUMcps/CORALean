@@ -35,7 +35,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.batchNorm_encloses (chan : Fin n → Fin c) (gamma beta mean var : Vec ℝ c)
-    (eps : ℝ) : -- --- STMT ---
+    (eps : ℝ) : -- --- CONCL ---
     (CORALean.Layer.batchNorm (S := S) chan (fun k => batchNormScale (gamma k) (var k) eps)
         fun k => batchNormShift (gamma k) (beta k) (mean k) (var k) eps).Encloses
       fun x i => gamma (chan i) * (x i - mean (chan i)) / Real.sqrt (var (chan i) + eps)

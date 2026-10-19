@@ -40,7 +40,7 @@ variable {n l : ℕ}
 
 theorem dotProduct_le_coeffNorm_mul_norm (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
     (H : Matrix (Fin n) (Fin l) ℝ) {x : Fin n → ℝ} (hx : ∃ β, H *ᵥ β = x)
-    (z : Fin n → ℝ) : -- --- STMT ---
+    (z : Fin n → ℝ) : -- --- CONCL ---
     z ⬝ᵥ x ≤ coeffNorm ((Matrix.mulVecLin H) ∘ₗ
       (WithLp.linearEquiv q ℝ (Fin l → ℝ)).toLinearMap) x *
         ‖WithLp.toLp q' (z ᵥ* H)‖ := by -- --- PROOF ---

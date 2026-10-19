@@ -42,7 +42,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.isequalNondeg_printed_counterexample : -- --- STMT ---
+theorem HPolytope.isequalNondeg_printed_counterexample : -- --- CONCL ---
     ∃ (A₁ : Mat ℝ 2 1) (b₁ : Vec ℝ 2) (A₂ : Mat ℝ 2 1) (b₂ : Vec ℝ 2),
       (∀ j, ‖A₁ j‖₂ = 1) ∧ (∀ k, ‖A₂ k‖₂ = 1) ∧
       (interior (HPolytope.ineqs A₁ b₁).construct).Nonempty ∧

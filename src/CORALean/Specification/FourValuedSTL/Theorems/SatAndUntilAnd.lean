@@ -36,7 +36,7 @@ open scoped NNReal
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FourValuedSTL.Formula.sat_and_until_and {X : Type} (φ₁ φ₂ : FourValuedSTL.Formula X)
-    (I : STLInterval) (ξ : ℝ≥0 → X) (t : ℝ≥0) : -- --- STMT ---
+    (I : STLInterval) (ξ : ℝ≥0 → X) (t : ℝ≥0) : -- --- CONCL ---
     (FourValuedSTL.Formula.and φ₁ (.until I φ₁ (.and φ₁ φ₂))).Sat ξ t ↔
       ∃ t' : ℝ≥0, (t' : ℝ) - t ∈ I.set ∧ φ₂.Sat ξ t' ∧
         ∀ t'' : ℝ≥0, t ≤ t'' → t'' ≤ t' → φ₁.Sat ξ t'' := by -- --- PROOF ---

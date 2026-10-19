@@ -51,7 +51,7 @@ theorem Conform.narx_window_step (np : ℕ) (A : ℕ → ℕ → Mat ℝ ny ny) 
     (hy : ∀ k, np ≤ k → y k = yb k
       + ∑ i ∈ Finset.range np, A k (i + 1) *ᵥ (y (k - (i + 1)) - yb (k - (i + 1)))
       + ∑ i ∈ Finset.range (np + 1), B k i *ᵥ (u (k - i) - ub (k - i)) + l k)
-    (k : ℕ) (hk : np ≤ k) : -- --- STMT ---
+    (k : ℕ) (hk : np ≤ k) : -- --- CONCL ---
     NonlinearARX.stack np y (k - np + 1) - NonlinearARX.stack np yb (k - np + 1)
       = Conform.narxAext np (A k) *ᵥ
           (NonlinearARX.stack np y (k - np) - NonlinearARX.stack np yb (k - np))

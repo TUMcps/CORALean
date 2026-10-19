@@ -42,7 +42,7 @@ namespace CORALean.Real
 `eDiff` there: every other factor is shared and stays in `[-1,1]`. -/
 theorem PolyZonotope.abs_sub_monomial_le {p h : ℕ} (E : Fin p → Fin h → ℕ)
     {a : Fin p → ℝ} (ha : ∀ k, |a k| ≤ 1) {i j : Fin h} {k₀ : Fin p}
-    (hsim : ∀ k, k ≠ k₀ → E k i = E k j) : -- --- STMT ---
+    (hsim : ∀ k, k ≠ k₀ → E k i = E k j) : -- --- CONCL ---
     |PolyZonotope.monomial E a i - PolyZonotope.monomial E a j|
       ≤ (PolyZonotope.eDiff (E k₀ i) (E k₀ j) : ℝ) := by -- --- PROOF ---
   have hsplit : ∀ l : Fin h, PolyZonotope.monomial E a l

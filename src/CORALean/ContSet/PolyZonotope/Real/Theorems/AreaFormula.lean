@@ -34,7 +34,8 @@ theorem PolyZonotope.area_formula {p : ℕ} (f : (Fin p → ℝ) → (Fin p → 
     (M : (Fin p → ℝ) → Matrix (Fin p) (Fin p) ℝ)
     (hf : ∀ a, HasFDerivAt f (LinearMap.toContinuousLinearMap (Matrix.toLin' (M a))) a)
     (hM : Continuous M)
-    (hdet : ∀ a ∈ Set.Icc (fun _ : Fin p => (-1 : ℝ)) (fun _ => 1), 0 ≤ (M a).det) : -- --- STMT ---
+    (hdet : ∀ a ∈ Set.Icc (fun _ : Fin p => (-1 : ℝ)) (fun _ => 1),
+      0 ≤ (M a).det) : -- --- CONCL ---
     MeasureTheory.volume (f '' Set.Icc (fun _ : Fin p => (-1 : ℝ)) (fun _ => 1))
         ≤ ENNReal.ofReal (∫ a in Set.Icc (fun _ : Fin p => (-1 : ℝ)) (fun _ => 1), (M a).det)
       ∧ (Set.InjOn f (Set.Icc (fun _ : Fin p => (-1 : ℝ)) (fun _ => 1)) →

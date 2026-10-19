@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.sqrtCoef_mem (q : ℕ) (c : 𝕋) (hc : 0 < toReal c) (k : ℕ) : -- --- STMT ---
+theorem Taylm.sqrtCoef_mem (q : ℕ) (c : 𝕋) (hc : 0 < toReal c) (k : ℕ) : -- --- CONCL ---
     toReal (Taylm.sqrtCoef q c k).inf ≤
         iteratedDeriv k Real.sqrt (toReal c) / (k.factorial : ℝ) ∧
       iteratedDeriv k Real.sqrt (toReal c) / (k.factorial : ℝ) ≤

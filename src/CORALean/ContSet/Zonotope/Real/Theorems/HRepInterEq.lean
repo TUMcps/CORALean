@@ -60,7 +60,7 @@ theorem aux_abs_add_sub (A H Δ : ℝ) :
 /-- [1, Lemma 2]: the intersection of the two translates, at the same `C` as
 [1, Thm. 2] and the offset lowered by `Δd_trans = |C h|`. -/
 theorem Zonotope.hRep_inter_eq {n : ℕ} (Z : Zonotope (Vec ℝ (n + 1))) (h : Vec ℝ (n + 1))
-    (hspan : Submodule.span ℝ (Set.range Z.G) = ⊤) : -- --- STMT ---
+    (hspan : Submodule.span ℝ (Set.range Z.G) = ⊤) : -- --- CONCL ---
     (Z.shift h).construct ∩ (Z.shift (-h)).construct
       = {x | ∀ S : Fin n → Fin Z.h, |Z.facetNormal S ⬝ᵥ (x - Z.c)|
           ≤ (∑ υ, |Z.facetNormal S ⬝ᵥ Z.G υ|) - |Z.facetNormal S ⬝ᵥ h|} := by -- --- PROOF ---

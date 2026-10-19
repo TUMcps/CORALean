@@ -32,7 +32,7 @@ namespace CORALean.Real
 
 theorem tendsto_samplingError {g g' : ℝ → ℝ} {M l u : ℝ}
     (hd : ∀ x, HasDerivAt g (g' x) x) (hM : ∀ x, l ≤ x → x ≤ u → |g' x| ≤ M)
-    (hlu : l ≤ u) : -- --- STMT ---
+    (hlu : l ≤ u) : -- --- CONCL ---
     Filter.Tendsto (fun N : ℕ => samplingError g M l u N) Filter.atTop
       (nhds (boxHalfRange g l u)) := by -- --- PROOF ---
   have hM0 : 0 ≤ M := le_trans (abs_nonneg _) (hM l le_rfl hlu)

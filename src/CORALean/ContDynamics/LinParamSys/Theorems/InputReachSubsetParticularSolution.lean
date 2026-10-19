@@ -55,7 +55,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes ℐ S]
 /-- The recursion encloses the member's propagation of the one-step set, window
 by window: `plus` absorbs one propagated copy at a time. -/
 theorem LinParamSys.aux_propagate_subset_particularSolution (sys : LinParamSys ℐ n)
-    (Δt : ℝ) (η : ℕ) (U : S n) {A : Mat ℝ n n} (hA : A ∈ construct sys.A) : -- --- STMT ---
+    (Δt : ℝ) (η : ℕ) (U : S n) {A : Mat ℝ n n} (hA : A ∈ construct sys.A) : -- --- CONCL ---
     ∀ k : ℕ,
     (LinearSys.canonical A : LinearSys ℝ n).propagateInputSolution Δt
         (construct (sys.inputSolution Δt η U)) (k + 1)
@@ -86,7 +86,7 @@ theorem LinParamSys.inputReach_subset_particularSolution
     (hε : ‖(Interval.smul Δt sys.A).absMax‖ / ((η : ℝ) + 2) < 1)
     {A : Mat ℝ n n} (hA : A ∈ construct sys.A) {U : S n}
     (h0 : (0 : Vec ℝ n) ∈ construct U) (k : ℕ) {t : ℝ} (ht0 : 0 ≤ t)
-    (htk : t ≤ ((k + 1 : ℕ) : ℝ) * Δt) : -- --- STMT ---
+    (htk : t ≤ ((k + 1 : ℕ) : ℝ) * Δt) : -- --- CONCL ---
     (LinearSys.canonical A : LinearSys ℝ n).inputReach U t
       ⊆ construct (sys.particularSolution Δt η U k) := by -- --- PROOF ---
   set L : LinearSys ℝ n := LinearSys.canonical A

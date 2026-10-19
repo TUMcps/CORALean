@@ -39,7 +39,7 @@ open Matrix Pointwise CORALean.Real
 
 /-- With the output offset `k = 1`, the initial state `x₀ = 0 ∈ R0` with noise `v₀ = 0 ∈ V` is not
 in `CZN-A`'s first set. -/
-theorem LinearSysDT.observeCznA_output_offset_counterexample : -- --- STMT ---
+theorem LinearSysDT.observeCznA_output_offset_counterexample : -- --- CONCL ---
     let C : Mat ℝ 1 1 := 1  -- `linsysDT.C`
     let kOut : Vec ℝ 1 := fun _ => 1  -- `linsysDT.k`
     let R₀ : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ _ => 1⟩  -- `params.X₀ = [-1, 1]`

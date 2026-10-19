@@ -86,7 +86,7 @@ theorem aux_seg_mem (c : ℝ) (hc : 0 ≤ c) (g : α) (s : ℝ) (hs : |s| ≤ c)
 /-- One step of [1, Thm. 1]'s recursion at an aligned generator: intersecting
 both translates along `μ • g` shortens the segment `g` spans to `(1 - μ) • g`. -/
 theorem aux_align_step (W : Set α) (hW : Convex ℝ W) (g : α) (μ : ℝ) (h0 : 0 ≤ μ)
-    (h1 : μ ≤ 1) : -- --- STMT ---
+    (h1 : μ ≤ 1) : -- --- CONCL ---
     ((W + {y : α | ∃ t : ℝ, |t| ≤ 1 ∧ y = t • g}) + ({μ • g} : Set α))
         ∩ ((W + {y : α | ∃ t : ℝ, |t| ≤ 1 ∧ y = t • g}) - ({μ • g} : Set α))
       = W + {y : α | ∃ t : ℝ, |t| ≤ 1 ∧ y = t • ((1 - μ) • g)} := by -- --- PROOF ---
@@ -163,7 +163,7 @@ theorem aux_construct_cons (n : ℕ) (g : Fin (n + 1) → α) :
 
 /-- The whole fold, at every convex starting set: aligned generators leave the
 closed form's shortened ones behind, one step at a time. -/
-theorem aux_fold_aligned (n : ℕ) : -- --- STMT ---
+theorem aux_fold_aligned (n : ℕ) : -- --- CONCL ---
     ∀ (W : Set α), Convex ℝ W → ∀ (g : Fin n → α) (μ : Fin n → ℝ),
       (∀ i, 0 ≤ μ i) → (∀ i, μ i ≤ 1) →
       Fin.foldl n (fun A i => (A + {μ i • g i}) ∩ (A - {μ i • g i}))
@@ -252,7 +252,7 @@ theorem aux_aligned_eq (n : ℕ) (c₁ c₂ : α) (G₁ : Fin n → α) (μ : Fi
 everything the difference holds, the closed form holds too. -/
 theorem Zonotope.minkDiffAligned_outer (Z₁ Z₂ : Zonotope α) (hh : Z₁.h = Z₂.h)
     (μ : Fin Z₁.h → ℝ) (hμ0 : ∀ i, 0 ≤ μ i) (hμ1 : ∀ i, μ i ≤ 1)
-    (hG : ∀ i, Z₂.G (Fin.cast hh i) = μ i • Z₁.G i) : -- --- STMT ---
+    (hG : ∀ i, Z₂.G (Fin.cast hh i) = μ i • Z₁.G i) : -- --- CONCL ---
     minkowskiDiff Z₁.construct Z₂.construct
       ⊆ (Z₁.minkDiffAligned Z₂ hh).construct := by -- --- PROOF ---
   rw [← Zonotope.minkDiffGenRec_exact]

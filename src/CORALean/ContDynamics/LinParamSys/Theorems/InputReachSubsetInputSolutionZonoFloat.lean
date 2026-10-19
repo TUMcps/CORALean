@@ -79,7 +79,7 @@ attribute [local instance] aux_zonoSetPlus aux_zonoSetMtimes aux_zonoSetMtimesIn
 theorem LinParamSys.aux_image_subset_mtimes {𝕄 : ℕ → ℕ → Type}
     [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)] [Mtimes 𝕄 𝒵[𝕋]]
     {M : Mat ℝ n n} {X : 𝕄 n n}
-    (hM : M ∈ construct X) (V : Zonotope (Vec 𝕋 n)) : -- --- STMT ---
+    (hM : M ∈ construct X) (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     (M *ᵥ ·) '' V.construct ⊆ construct (Mtimes.mtimes (S := 𝒵[𝕋]) X V) :=
   (Set.subset_biUnion_of_mem (u := fun A => (A *ᵥ ·) '' V.construct) hM).trans
     (Mtimes.mtimes_outer (S := 𝒵[𝕋]) X V)
@@ -88,7 +88,7 @@ theorem LinParamSys.aux_image_subset_mtimes {𝕄 : ℕ → ℕ → Type}
 `1` through the matrix zonotope, then the interval tail. -/
 theorem LinParamSys.aux_inputTaylorSum_subset_zono
     (sys : LinParamSys 𝕄𝒵[𝕋] n) {r : 𝕋} (hr : 0 ≤ toReal r)
-    {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) : -- --- STMT ---
+    {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     ∀ m, construct ((LinearSys.canonical A : LinearSys ℝ n).inputTaylorSum
       (S := 𝒮) (toReal r) V.construct (m + 2))
       ⊆ construct (Mtimes.mtimes (𝕄 := 𝕄𝒵[𝕋])
@@ -137,7 +137,7 @@ theorem LinParamSys.aux_inputRemainder_subset_zono
     (sys : LinParamSys 𝕄𝒵[𝕋] n) {r : 𝕋} (hr : 0 ≤ toReal r)
     {η : ℕ} (hη : (LinParamSys.canonical (𝕄 := ℐ[𝕋])
       sys.A.matInterval).OrderAdmissibleFloat r r η)
-    {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) : -- --- STMT ---
+    {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     construct (Mtimes.mtimes (𝕄 := ℐ)
       (S := 𝒮) (Real.MatExp.inputRemainder A (toReal r) η)
       (V.construct : Set (Vec ℝ n)))
@@ -161,7 +161,7 @@ theorem LinParamSys.inputReach_subset_inputSolutionZonoFloat
     (sys : LinParamSys 𝕄𝒵[𝕋] n) {Δt : 𝕋} {η : ℕ}
     (hΔt : 0 < toReal Δt) (hη : (LinParamSys.canonical (𝕄 := ℐ[𝕋])
       sys.A.matInterval).OrderAdmissibleFloat Δt Δt η)
-    {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) : -- --- STMT ---
+    {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒵[𝕋]) V (toReal Δt)
       ⊆ (sys.inputSolutionZonoFloat Δt η V).construct := by -- --- PROOF ---
   -- the float bound's condition is the exact one's, with room to spare

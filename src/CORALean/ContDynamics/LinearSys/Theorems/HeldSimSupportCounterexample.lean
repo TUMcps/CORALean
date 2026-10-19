@@ -68,7 +68,7 @@ theorem aux_supportLower_d (sys : LinearSys 𝕋 n) (Δt : ℝ)
 /-- Line 9 in closed form: `P_u(t_k) = ∑_{j<k} e^{AΔt j} T ũ`. -/
 theorem aux_supportLower_Pu (sys : LinearSys 𝕋 n) (Δt : ℝ)
     (ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n) (c : Vec ℝ n) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ)
-    (k : ℕ) : -- --- STMT ---
+    (k : ℕ) : -- --- CONCL ---
     (sys.supportLower Δt ν₀ νU c ℓ k).Pu
       = ∑ j ∈ Finset.range k, exp (Δt • toRealMat sys.A) ^ j *ᵥ
           (MatExp.expIntegral (toRealMat sys.A) Δt *ᵥ c) := by -- --- PROOF ---
@@ -85,7 +85,7 @@ theorem aux_supportLower_Pu (sys : LinearSys 𝕋 n) (Δt : ℝ)
 /-- Line 14 in closed form: `ρ(P̌_U(t_k), ℓ) = ∑_{j<k} ρ(T U₀, d_j)`. -/
 theorem aux_supportLower_ρP (sys : LinearSys 𝕋 n) (Δt : ℝ)
     (ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n) (c : Vec ℝ n) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ)
-    (k : ℕ) : -- --- STMT ---
+    (k : ℕ) : -- --- CONCL ---
     (sys.supportLower Δt ν₀ νU c ℓ k).ρP
       = ∑ j ∈ Finset.range k,
           (((ℓ.comp (mulVecLin (exp (Δt • toRealMat sys.A) ^ j))).comp
@@ -109,7 +109,7 @@ theorem aux_supportLower_ρP (sys : LinearSys 𝕋 n) (Δt : ℝ)
 /-- Lines 10 and 15 at any step, the first step included. -/
 theorem aux_supportLower_ρR (sys : LinearSys 𝕋 n) (Δt : ℝ)
     (ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n) (c : Vec ℝ n) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ)
-    (k : ℕ) : -- --- STMT ---
+    (k : ℕ) : -- --- CONCL ---
     (sys.supportLower Δt ν₀ νU c ℓ k).ρR
       = (sys.supportLower Δt ν₀ νU c ℓ k).d (ν₀ (sys.supportLower Δt ν₀ νU c ℓ k).d)
         + ℓ (sys.supportLower Δt ν₀ νU c ℓ k).Pu
@@ -127,7 +127,7 @@ theorem aux_supportLower_ρR (sys : LinearSys 𝕋 n) (Δt : ℝ)
 `supportCounterexample` has, along `ℓ`, exactly line 15's lower bound `ρ(Ř(t_k), ℓ)`. -/
 theorem LinearSys.heldSim_supportCounterexample (sys : LinearSys 𝕋 n) (Δt : ℝ)
     (ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n) (c : Vec ℝ n) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ)
-    (k : ℕ) : -- --- STMT ---
+    (k : ℕ) : -- --- CONCL ---
     ℓ (sys.heldSim Δt (sys.supportCounterexample Δt ν₀ νU ℓ k).1
         (sys.supportCounterexample Δt ν₀ νU ℓ k).2 k)
       = (sys.supportLower Δt ν₀ νU c ℓ k).ρR := by -- --- PROOF ---

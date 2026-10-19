@@ -56,7 +56,7 @@ theorem NeurNetContrSysDT.reach_outer (sys : NeurNetContrSysDT (LinearSysDT 𝕋
     {W : Set (Vec ℝ sys.plant.r)}
     (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0) {x : ℕ → Vec ℝ n} {v : ℕ → Vec ℝ sys.nExt}
     {w : ℕ → Vec ℝ sys.plant.r} (traj : sys.IsTrajectory π R₀ (construct U_ext) W x v w)
-    (k : ℕ) : -- --- STMT ---
+    (k : ℕ) : -- --- CONCL ---
     x k ∈ construct (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
   obtain ⟨hinit, hv, hstep⟩ := traj.linear hW
   induction k with

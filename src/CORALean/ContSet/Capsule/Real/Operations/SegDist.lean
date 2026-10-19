@@ -15,6 +15,13 @@ by `CORAquadprog` (a box-constrained quadratic programme in `(t₁, t₂)` with 
 vector. It passes `H = ½[g₁ᵀg₁ -g₁ᵀg₂; -g₁ᵀg₂ g₂ᵀg₂]` where the solvers' `½ tᵀHt` needs twice the
 bracket, so its minimiser can be wrong (`Capsule.isIntersecting_cora_counterexample`); this is the
 value it intends. Here the least value is an infimum, attained (`Capsule.segDist_mem`).
+
+## Inputs
+* `C₁` – first capsule
+* `C₂` – second capsule
+
+## Output
+* distance between the axis segments
 -/
 
 -- Authors:       Claude Opus 5.5

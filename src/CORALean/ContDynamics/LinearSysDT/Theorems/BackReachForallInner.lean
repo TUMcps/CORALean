@@ -45,7 +45,7 @@ theorem LinearSysDT.backReachForall_inner (sys : LinearSysDT 𝕋 n) {Ainv : Mat
     (hdiff : ∀ B V D, diff B V = some D →
       construct D ⊆ minkowskiDiff (construct B) (construct V))
     (hinv : ∀ s : S n, construct (mtimes Ainv s) ⊆ (toRealMat Ainv *ᵥ ·) '' construct s)
-    (T U : S n) : -- --- STMT ---
+    (T U : S n) : -- --- CONCL ---
     ∀ (k : ℕ) (R : S n), sys.backReachForall ⟨T, U, 0, k⟩ ⟨Ainv, diff⟩ = some R →
       construct R ⊆ sys.backReachSetForallExact T U k := by -- --- PROOF ---
   intro k

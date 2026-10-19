@@ -51,7 +51,7 @@ CORA's term is `0` and `[-1 - s, 3 + s]` misses `4 = f₂(0, 2)`; the output's o
 its interval holds `4`. -/
 theorem NonlinearReset.secondOrderBoundCora_counterexample (Habs : Fin 2 → Fin 3 → Fin 3 → ℝ)
     (dz : Fin 3 → ℝ) (hH : Habs = fun i a b => if i = 1 ∧ a = 1 ∧ b = 1 then 2 else 0)
-    (hz : dz = ![1, 1, 0]) : -- --- STMT ---
+    (hz : dz = ![1, 1, 0]) : -- --- CONCL ---
     NonlinearReset.secondOrderBoundCora Habs dz 1 = 0 ∧
       NonlinearReset.secondOrderBound Habs dz 1 = 1 ∧
       (4 : ℝ) ∈ Set.range (fun x : Set.Icc (0 : ℝ) 2 => (x : ℝ) ^ 2) ∧

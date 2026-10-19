@@ -47,7 +47,7 @@ variable {n m : ℕ} {𝓛 : Type}
 /-- [1, Alg. 1] line 15: `R̂(t_{k+1}) ⊆ R(Δt)` from `X = R̂(t_k)`, given `Prop. 1`'s hypotheses. -/
 theorem NonlinearSys.innerMinkDiffStep_subset_reachSetExact
     (ops : NonlinearSys.InnerMinkDiffOps n 𝓛) (sys : NonlinearSys n m) (u₀ : Vec ℝ m) {Δt : ℝ}
-    (hΔt : 0 ≤ Δt) (μ : ℝ) (fuel : ℕ) {X : Set (Vec ℝ n)} : -- --- STMT ---
+    (hΔt : 0 ≤ Δt) (μ : ℝ) (fuel : ℕ) {X : Set (Vec ℝ n)} : -- --- CONCL ---
     ∀ st ∈ NonlinearSys.innerMinkDiffStep ops (fun x => sys.f x u₀) Δt μ fuel X,
       NonlinearSys.IsInnerMinkDiffCert sys u₀ Δt X st →
       st.Rtk1 ⊆ sys.reachSetExact (S := 𝒮) (Icc 0 Δt) X {u₀}

@@ -33,7 +33,7 @@ variable {n m : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real
 /-- The `T.T` column `buildReach` sets sums to the sum of the weights used. -/
 theorem MarkovChain.buildReach_column_sum (M : MarkovChain n m)
     (R : List (MarkovChain.ReachEntry S n)) (iInput : Fin m)
-    {iState : Fin (M.field.nrOfCells + 1)} (hs : iState ≠ 0) (tranFrac : List ℝ) : -- --- STMT ---
+    {iState : Fin (M.field.nrOfCells + 1)} (hs : iState ≠ 0) (tranFrac : List ℝ) : -- --- CONCL ---
     ∑ r, (M.buildReach R iInput iState tranFrac).T.T iInput r iState =
       (tranFrac.take R.length).sum := by -- --- PROOF ---
   rw [← MarkovChain.reachProbability_T_sum M.field R tranFrac]

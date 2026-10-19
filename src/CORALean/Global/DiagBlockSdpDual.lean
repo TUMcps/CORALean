@@ -273,7 +273,7 @@ theorem aux_dbs_convex_cone {ι : Type*} [Fintype ι] :
 
 /-- The relaxation's matrices at objective `≤ t` form a convex set. -/
 theorem aux_dbs_convex_B (s₁ s₂ : ℝ≥0∞) [Fact (1 ≤ s₁)] [Fact (1 ≤ s₂)]
-    (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ) (t : ℝ) : -- --- STMT ---
+    (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ) (t : ℝ) : -- --- CONCL ---
     Convex ℝ {Q : Matrix (Fin m ⊕ Fin n) (Fin m ⊕ Fin n) ℝ | ∃ (v : Fin m → ℝ) (w : Fin l → ℝ),
       ‖WithLp.toLp s₁ v‖ + ‖WithLp.toLp s₂ w‖ ≤ 2 * t ∧
         Q = fromBlocks 0 Gᵀ G 0 -
@@ -315,7 +315,7 @@ theorem aux_dbs_convex_B (s₁ s₂ : ℝ≥0∞) [Fact (1 ≤ s₁)] [Fact (1 �
 matrices, `W ≽ 0`, with `u ≥ 0` and `-tr W < u`. -/
 theorem aux_dbs_sep {ι : Type*} [Fintype ι] [DecidableEq ι] (f : Matrix ι ι ℝ →L[ℝ] ℝ) (u : ℝ)
     (hfO : ∀ X ∈ {X : Matrix ι ι ℝ | ∃ δ > 0, ∀ x : ι → ℝ, δ * (x ⬝ᵥ x) ≤ x ⬝ᵥ (X *ᵥ x)},
-      f X < u) : -- --- STMT ---
+      f X < u) : -- --- CONCL ---
     ∃ W : Matrix ι ι ℝ, W.PosSemidef ∧ (∀ i j, W j i = W i j) ∧ 0 ≤ u ∧
       (∀ Q : Matrix ι ι ℝ, (∀ i j, Q j i = Q i j) → f Q = -∑ i, ∑ j, Q i j * W i j) ∧
       -∑ i, W i i < u := by -- --- PROOF ---
@@ -394,7 +394,7 @@ theorem aux_dbs_sep {ι : Type*} [Fintype ι] [DecidableEq ι] (f : Matrix ι ι
 /-- The pairing `⟨[0, Gᵀ; G, 0] - [Diag(v), 0; 0, H Diag(w) Hᵀ], W⟩` by blocks. -/
 theorem aux_dbs_pair (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ)
     (W : Matrix (Fin m ⊕ Fin n) (Fin m ⊕ Fin n) ℝ) (hWsymm : ∀ i j, W j i = W i j)
-    (v : Fin m → ℝ) (w : Fin l → ℝ) : -- --- STMT ---
+    (v : Fin m → ℝ) (w : Fin l → ℝ) : -- --- CONCL ---
     ∑ a, ∑ b, (fromBlocks 0 Gᵀ G 0 - fromBlocks (diagonal v) 0 0 (H * diagonal w * Hᵀ)) a b *
       W a b = 2 * ∑ k, ∑ j, G k j * W (Sum.inr k) (Sum.inl j) -
         ∑ j, v j * W (Sum.inl j) (Sum.inl j) -
@@ -445,7 +445,7 @@ theorem aux_dbs_certificate (s₁ s₁' s₂ s₂' : ℝ≥0∞) [Fact (1 ≤ s�
     (hw1 : ∀ w : Fin l → ℝ, ‖WithLp.toLp s₂ w‖ ≤ 2 * t →
       ∑ i, w i * (Hᵀ * W.toBlocks₂₂ * H) i i ≤
         2 * -∑ k, ∑ j, G k j * W (Sum.inr k) (Sum.inl j))
-    (hd₂0 : ∀ i, 0 ≤ (Hᵀ * W.toBlocks₂₂ * H) i i) : -- --- STMT ---
+    (hd₂0 : ∀ i, 0 ≤ (Hᵀ * W.toBlocks₂₂ * H) i i) : -- --- CONCL ---
     ∃ X : Matrix (Fin m ⊕ Fin n) (Fin m ⊕ Fin n) ℝ, X.PosSemidef ∧
       ‖WithLp.toLp s₁' (fun j => X (Sum.inl j) (Sum.inl j))‖ ≤ 1 ∧
       ‖WithLp.toLp s₂' (fun i => (Hᵀ * X.toBlocks₂₂ * H) i i)‖ ≤ 1 ∧
@@ -537,7 +537,7 @@ theorem diag_block_sdp_exists_dual (s₁ s₁' s₂ s₂' : ℝ≥0∞) [Fact (1
     (hH : Function.Surjective H.mulVec) {t : ℝ} (ht : 0 < t)
     (hK : ∀ (v : Fin m → ℝ) (w : Fin l → ℝ),
       (fromBlocks 0 Gᵀ G 0 - fromBlocks (diagonal v) 0 0 (H * diagonal w * Hᵀ)).PosSemidef →
-      t < (‖WithLp.toLp s₁ v‖ + ‖WithLp.toLp s₂ w‖) / 2) : -- --- STMT ---
+      t < (‖WithLp.toLp s₁ v‖ + ‖WithLp.toLp s₂ w‖) / 2) : -- --- CONCL ---
     ∃ X : Matrix (Fin m ⊕ Fin n) (Fin m ⊕ Fin n) ℝ, X.PosSemidef ∧
       ‖WithLp.toLp s₁' (fun j => X (Sum.inl j) (Sum.inl j))‖ ≤ 1 ∧
       ‖WithLp.toLp s₂' (fun i => (Hᵀ * X.toBlocks₂₂ * H) i i)‖ ≤ 1 ∧

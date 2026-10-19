@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)}
-    {x : Vec ℝ n} : -- --- STMT ---
+    {x : Vec ℝ n} : -- --- CONCL ---
     x ∈ InflatedContSet.nominalSet cPZ ↔ ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ,
       (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1) ∧ a ∈ cPZ.cons.construct ∧ ∀ i, x i = toReal (cPZ.c i)
         + (∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial cPZ.E a l)

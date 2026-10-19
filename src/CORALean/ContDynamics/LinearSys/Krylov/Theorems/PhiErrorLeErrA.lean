@@ -52,7 +52,8 @@ theorem Krylov.phi_error_le_errA (A : Mat ℂ n n) (V : Mat ℂ n (m + 1))
     (hK : A * V = V * T + (τ : ℂ) • vecMulVec w (Pi.single (Fin.last m) 1))
     (hV : Vᴴ * V = 1) (hVw : Vᴴ *ᵥ w = 0) (hτ : 0 ≤ τ)
     (hw : ‖(WithLp.toLp 2 w : EuclideanSpace ℂ (Fin n))‖ = 1)
-    (hH : ∀ i k : Fin (m + 1), (k : ℕ) + 1 < i → T i k = 0) (hσ : ‖σ‖ = 1) (p : ℕ) : -- --- STMT ---
+    (hH : ∀ i k : Fin (m + 1), (k : ℕ) + 1 < i → T i k = 0) (hσ : ‖σ‖ = 1)
+    (p : ℕ) : -- --- CONCL ---
     let v := V *ᵥ Pi.single 0 1
     let γ := ∏ j : Fin m, T j.succ j.castSucc
     let L : ℝ → Fin n → ℂ := fun t =>

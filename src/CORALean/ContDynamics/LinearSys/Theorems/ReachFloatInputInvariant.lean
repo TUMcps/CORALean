@@ -51,7 +51,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 the horizon, each holding what `ReachFloatInputInvariant` asks at its pass. -/
 theorem LinearSys.reachFloatInput_invariant (sys : LinearSys 𝕋 n)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} : -- --- STMT ---
+    {options : LinearSys.ReachOptions 𝕋} : -- --- CONCL ---
     ∀ Rti Rtp, (Rti, Rtp) ∈ sys.reachFloatInput params options →
       0 < toReal options.Δt ∧ ∃ N : ℕ,
         (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧

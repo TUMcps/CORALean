@@ -42,7 +42,7 @@ theorem Zonotope.edge_not_mem_interior (Z : Zonotope (Vec ℝ 2)) {σ : ℝ}
     (hB : ∀ b, s b = true → 0 ≤ σ * (Z.G b 0 * Z.G a 1 - Z.G b 1 * Z.G a 0))
     (hC : ∀ c, s c = false → c ≠ a → 0 ≤ σ * (Z.G a 0 * Z.G c 1 - Z.G a 1 * Z.G c 0))
     (hga : Z.G a ≠ 0) {x : Vec ℝ 2}
-    (hx : x ∈ segment ℝ (Z.corner s) (Z.corner s + (2 : ℝ) • Z.G a)) : -- --- STMT ---
+    (hx : x ∈ segment ℝ (Z.corner s) (Z.corner s + (2 : ℝ) • Z.G a)) : -- --- CONCL ---
     x ∉ interior Z.construct := by -- --- PROOF ---
   intro hint
   obtain ⟨ε, hε, hball⟩ := Metric.mem_nhds_iff.mp (mem_interior_iff_mem_nhds.mp hint)

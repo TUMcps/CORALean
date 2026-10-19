@@ -46,7 +46,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- The order sweep reports only orders its own check cleared. -/
 theorem aux_adaptTimeStepOrder_budget (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
     (hle : ∀ a b, le a b = true → a ≤ b) (X₀ U : Zonotope (Vec ℝ n))
-    (εHmax εPi Δt : ℝ) : -- --- STMT ---
+    (εHmax εPi Δt : ℝ) : -- --- CONCL ---
     ∀ (k η η' : ℕ), LinearSys.adaptTimeStepOrder sys le X₀ U εHmax εPi Δt η k = some η' →
       sys.timeIntervalStepCurvatureError Δt η' X₀ ≤ εHmax ∧
         sys.timePointStepRemainderError Δt η' U ≤ εPi := by -- --- PROOF ---
@@ -69,7 +69,7 @@ theorem aux_adaptTimeStepOrder_budget (sys : LinearSys 𝕋 n) {le : ℝ → ℝ
 share being the one read at that very step. -/
 theorem aux_adaptTimeStepSearch_budget (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
     (hle : ∀ a b, le a b = true → a ≤ b) (X₀ U : Zonotope (Vec ℝ n))
-    (εHmax εPmax εPacc tf ti μ : ℝ) (ηmax : ℕ) : -- --- STMT ---
+    (εHmax εPmax εPacc tf ti μ : ℝ) (ηmax : ℕ) : -- --- CONCL ---
     ∀ (k : ℕ) (Δt Δti : ℝ) (ηi : ℕ),
       LinearSys.adaptTimeStepSearch sys le X₀ U εHmax εPmax εPacc tf ti μ ηmax Δt k
         = some (Δti, ηi) →
@@ -100,7 +100,7 @@ theorem aux_adaptTimeStepSearch_budget (sys : LinearSys 𝕋 n) {le : ℝ → �
 own share of the `ε_P` budget, and the error it accumulates is eq. (9)'s. -/
 theorem LinearSys.adaptTimeStep_budget (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
     (hle : ∀ a b, le a b = true → a ≤ b) (X₀ U : Zonotope (Vec ℝ n))
-    (εHmax εPmax εPacc tf ti Δtprev μ : ℝ) (ηmax fuel : ℕ) : -- --- STMT ---
+    (εHmax εPmax εPacc tf ti Δtprev μ : ℝ) (ηmax fuel : ℕ) : -- --- CONCL ---
     ∀ Δti ηi εP,
       (Δti, ηi, εP) ∈ sys.adaptTimeStep le X₀ U εHmax εPmax εPacc tf ti Δtprev μ ηmax fuel →
       sys.timeIntervalStepCurvatureError Δti ηi X₀ ≤ εHmax ∧

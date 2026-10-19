@@ -46,7 +46,7 @@ theorem HPolytope.ahPolytope_cert_of_subset {xbar ybar : Vec ℝ n} {X : Mat ℝ
     (h18 : ∀ u : Vec ℝ qy, ∃ (c : Vec ℝ n) (k : Vec ℝ qy),
       u = Hdag *ᵥ (Yᵀ *ᵥ c) + k ∧ Hyᵀ *ᵥ k = 0)
     (hsub : HPolytope.ahPolytope xbar X (HPolytope.ineqs Hx hx)
-        ⊆ HPolytope.ahPolytope ybar Y (HPolytope.ineqs Hy hy)) : -- --- STMT ---
+        ⊆ HPolytope.ahPolytope ybar Y (HPolytope.ineqs Hy hy)) : -- --- CONCL ---
     ∃ (Γ : Mat ℝ ny nx) (β : Vec ℝ ny) (Λ : Mat ℝ qy qx), X = Y * Γ ∧
       ybar - xbar = Y *ᵥ β ∧ (∀ i j, 0 ≤ Λ i j) ∧ Λ * Hx = Hy * Γ ∧
       Λ *ᵥ hx ≤ hy + Hy *ᵥ β := by -- --- PROOF ---

@@ -12,6 +12,19 @@ A point of the sum is `x₁ + x₂` with `xᵢ = cᵢ + tᵢ gᵢ + bᵢ`, `‖b
 `(c₁ + c₂) + t₁ g₁` plus `b₁ + b₂ + t₂ g₂`, whose length is under `r₁ + r₂ + ‖g₂‖₂`. The statement
 holds whichever generator is the longer, which is what lets a float comparison of the lengths
 choose either branch of `Capsule.plus`.
+
+## Inputs
+* `C₁` – summand with the longer generator
+* `C₂` – other summand
+* `x₁` – point of `C₁`
+* `x₂` – point of `C₂`
+
+## Hypotheses
+* `h₁` – `x₁ ∈ C₁`
+* `h₂` – `x₂ ∈ C₂`
+
+## Conclusion
+* `x₁ + x₂` lies in the capsule keeping `C₁.g`
 -/
 
 -- Authors:       Claude Sonnet 5.5

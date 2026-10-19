@@ -56,7 +56,7 @@ theorem Icc_subset_image_of_innerTest_closed {g : (Fin r → ℝ) × (Fin s → 
       ∀ J₂ : Matrix (Fin r) (Fin s) ℝ, (∀ i l, J₂ i l ∈ Icc (J₂lo i l) (J₂hi i l)) →
       ∀ v ∈ Icc lo₁ hi₁, ∀ w ∈ Icc lo₂ hi₂, ∀ i,
         ũ.1 i + (y i - g ũ i - ∑ j ∈ Finset.univ.erase i, J₁ i j * (v j - ũ.1 j)
-          - ∑ l, J₂ i l * (w l - ũ.2 l)) / J₁ i i ∈ Icc (lo₁ i) (hi₁ i)) : -- --- STMT ---
+          - ∑ l, J₂ i l * (w l - ũ.2 l)) / J₁ i i ∈ Icc (lo₁ i) (hi₁ i)) : -- --- CONCL ---
     Icc ylo yhi ⊆ g '' (Icc lo₁ hi₁ ×ˢ Icc lo₂ hi₂) := by -- --- PROOF ---
   intro y hy
   -- the slice `F(v) = g(v, ũ₂)` and its partial derivatives

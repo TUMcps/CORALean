@@ -34,7 +34,7 @@ the box's left end, the upper one at its right. -/
 theorem Relaxation.ofMonotone_soundWhere {E : Enclosure 𝕋} {P : 𝕋 → 𝕋 → Prop}
     (hσ : ∀ l u, P l u → Monotone σ)
     (hlo : ∀ l u, P l u → toReal (E.lo l) ≤ σ (toReal l))
-    (hhi : ∀ l u, P l u → σ (toReal u) ≤ toReal (E.hi u)) : -- --- STMT ---
+    (hhi : ∀ l u, P l u → σ (toReal u) ≤ toReal (E.hi u)) : -- --- CONCL ---
     (Relaxation.ofMonotone E).SoundWhere σ P := by -- --- PROOF ---
   refine ⟨fun {l u t} hP hl hu => ?_⟩
   have hlo' : toReal (E.lo l) ≤ σ t := le_trans (hlo l u hP) (hσ l u hP hl)

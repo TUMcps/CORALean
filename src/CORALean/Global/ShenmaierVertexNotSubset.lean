@@ -38,7 +38,7 @@ variable {E₁ E₂ V : Type} [NormedAddCommGroup E₁] [NormedSpace ℝ E₁]
 
 theorem shenmaierVertex_eq_none_not_subset (G : E₁ →ₗ[ℝ] V) (c : V) (H : E₂ →ₗ[ℝ] V)
     (d : V) (n : ℕ) {N : ℕ} (hN : 0 < N) (z : Fin N → E₁)
-    (hz : ∀ i, ‖z i‖ ≤ 1) (h : shenmaierVertex G c H d n hN z = none) : -- --- STMT ---
+    (hz : ∀ i, ‖z i‖ ≤ 1) (h : shenmaierVertex G c H d n hN z = none) : -- --- CONCL ---
     ¬ {x | ∃ α : E₁, ‖α‖ ≤ 1 ∧ x = c + G α} ⊆
       {x | ∃ β : E₂, ‖β‖ ≤ 1 ∧ x = d + H β} := by -- --- PROOF ---
   have hgt : shenmaierVertexValue G c H d hN z > 1 := by

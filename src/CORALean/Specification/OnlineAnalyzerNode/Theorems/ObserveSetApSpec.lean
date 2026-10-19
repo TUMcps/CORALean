@@ -37,7 +37,7 @@ theorem OnlineAnalyzerNode.observeSet_ap_spec (eps : ℝ)
     (n : OnlineAnalyzerNode (AtomicProposition S d)) (set : S d) (interval : STLInterval) (loc : ℕ)
     (hk : n.kind = .ap)
     (hnc : OnlineAnalyzerNode.conflicts eps interval.infimum.value interval.infimum.closed
-      n.prop = some false) (val : Kleene) : -- --- STMT ---
+      n.prop = some false) (val : Kleene) : -- --- CONCL ---
     ∀ tent ∈ n.tentative,
       ∀ ap ∈ n.ap,
         OnlineAnalyzerNode.apValue (𝕋 := 𝕋) ap set loc = some val →

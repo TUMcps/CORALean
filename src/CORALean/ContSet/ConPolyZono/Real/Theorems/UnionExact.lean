@@ -62,7 +62,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- The union's lower rows of two systems of equations, read as equations. -/
 theorem ConPolyZono.aux_holds_unionLower_iff {p₁ p₂ : ℕ} {P₁ : PolyLevelSet p₁}
     {P₂ : PolyLevelSet p₂} (h₁ : ∀ i, P₁.op i = .eq) (h₂ : ∀ i, P₂.op i = .eq)
-    (a : Fin (p₁ + p₂ + 2) → ℝ) : -- --- STMT ---
+    (a : Fin (p₁ + p₂ + 2) → ℝ) : -- --- CONCL ---
     (∀ i, ((ConPolyZono.unionLower P₁ P₂).op i).holds ((ConPolyZono.unionLower P₁ P₂).eval a i))
       ↔ ∀ i, (ConPolyZono.unionLower P₁ P₂).eval a i = 0 := by -- --- PROOF ---
   refine forall_congr' fun i => ?_
@@ -76,7 +76,7 @@ theorem ConPolyZono.aux_mem_of_holds (cPZ₁ cPZ₂ : ConPolyZono α)
     (a : Fin (cPZ₁.p + cPZ₂.p + 2) → ℝ) (hab : ∀ k, |a k| ≤ 1)
     (hup : a ∈ (ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).construct)
     (hlow : ∀ i, ((ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons).op i).holds
-      ((ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons).eval a i)) : -- --- STMT ---
+      ((ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons).eval a i)) : -- --- CONCL ---
     (2:ℝ)⁻¹ • (cPZ₁.c + cPZ₂.c)
         + (∑ i, PolyZonotope.monomial (ConPolyZono.unionE cPZ₁.E cPZ₂.E) a i
             • ConPolyZono.unionG cPZ₁.c cPZ₂.c cPZ₁.G cPZ₂.G i)
@@ -126,7 +126,8 @@ theorem ConPolyZono.aux_mem_of_holds (cPZ₁ cPZ₂ : ConPolyZono α)
 theorem ConPolyZono.union_exact_of_noZeroCol (cPZ₁ cPZ₂ : ConPolyZono α)
     (hq₁ : cPZ₁.qI = 0) (hq₂ : cPZ₂.qI = 0)
     (hE₁ : ConPolyZono.NoZeroCol cPZ₁.E) (hR₁ : ConPolyZono.NoZeroCol cPZ₁.cons.R)
-    (hE₂ : ConPolyZono.NoZeroCol cPZ₂.E) (hR₂ : ConPolyZono.NoZeroCol cPZ₂.cons.R) : -- --- STMT ---
+    (hE₂ : ConPolyZono.NoZeroCol cPZ₂.E)
+    (hR₂ : ConPolyZono.NoZeroCol cPZ₂.cons.R) : -- --- CONCL ---
     cPZ₁.construct ∪ cPZ₂.construct = (cPZ₁.union cPZ₂).construct := by -- --- PROOF ---
   ext x
   simp only [Set.mem_union]

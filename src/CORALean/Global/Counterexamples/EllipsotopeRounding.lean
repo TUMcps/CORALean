@@ -36,7 +36,7 @@ open WithLp Matrix ENNReal
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ellipsotope_rounding_counterexample : -- --- STMT ---
+theorem ellipsotope_rounding_counterexample : -- --- CONCL ---
     ∃ M : Mat ℝ 1 2, M * Mᵀ = 1 ∧
       ¬ {y : Fin 1 → ℝ | ∃ β : Fin 2 → ℝ, ‖toLp ⊤ β‖ ≤ 1 ∧ y = M *ᵥ β}
         ⊆ {y | ‖toLp 2 y‖

@@ -29,7 +29,7 @@ variable {n : ℕ}
 /-- A point is in the padded set exactly when its first `n` variables are in the set and its
 last `r` in the new box. -/
 theorem PolyLevelSet.mem_padVars_iff (P : PolyLevelSet n) {r : ℕ} (D : Interval (Vec ℝ r))
-    (x : Vec ℝ (n + r)) : -- --- STMT ---
+    (x : Vec ℝ (n + r)) : -- --- CONCL ---
     x ∈ (P.padVars D).construct
       ↔ (fun k => x (Fin.castAdd r k)) ∈ P.construct
         ∧ (fun k => x (Fin.natAdd n k)) ∈ D.construct := by -- --- PROOF ---

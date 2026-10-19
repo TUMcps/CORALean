@@ -40,7 +40,7 @@ variable {n m : ℕ}
 
 /-- [1, Def. 6] with Eq. (40) as printed: `q := min_i max{…}` is `∞` iff all coefficients
 vanish. It is not. -/
-theorem gainOrder_max_eq_top_iff_counterexample : -- --- STMT ---
+theorem gainOrder_max_eq_top_iff_counterexample : -- --- CONCL ---
     ¬ ∀ (n m : ℕ) (q : ℕ → Fin n → ℕ∞) (a : ℕ → Fin n → Vec ℝ m),
       (∀ p i, q p i = ⊤ → a p i = 0) →
       ((⨅ i, sSup {j : ℕ∞ | ∃ p : ℕ, (p : ℕ∞) + q p i = j ∧ a p i ≠ 0}) = ⊤

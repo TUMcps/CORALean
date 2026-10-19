@@ -59,7 +59,7 @@ theorem LinearSys.verifySearch_sound
     {νhat : ℝ → (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n} {inHull : List (Vec ℝ n) → Bool}
     (hhull : ∀ V, inHull V = true → (0 : Vec ℝ n) ∈ convexHull ℝ {v | v ∈ V})
     (closestFacet : List (Vec ℝ n) → (Vec ℝ n →ₗ[ℝ] ℝ) × List ℕ)
-    (gramSchmidt : List (Vec ℝ n) → (Vec ℝ n →ₗ[ℝ] ℝ)) (fuel : ℕ) : -- --- STMT ---
+    (gramSchmidt : List (Vec ℝ n) → (Vec ℝ n →ₗ[ℝ] ℝ)) (fuel : ℕ) : -- --- CONCL ---
     (sys.verifySearch X₀ U t (m + 2) ρ ν₀ νU νL νhat ρL inHull closestFacet gramSchmidt fuel
         = .safe → Disjoint (sys.reachSetExact (Set.Icc 0 t) X₀ U t) L) ∧
     (sys.verifySearch X₀ U t (m + 2) ρ ν₀ νU νL νhat ρL inHull closestFacet gramSchmidt fuel

@@ -14,6 +14,15 @@ Avoids Minkowski's inequality entirely. At `C.r < 0` the set is `∅`. Otherwise
 segment `{c + t g | t ∈ [-1, 1]}`, an affine image of `Icc`, and the ball `{y |
 ∑ y i ^ 2 ≤ r ^ 2}`, whose defining function is a finite sum of even powers of
 linear functionals and so convex — no norm needed for either part.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* `C` is convex
 -/
 
 -- Authors:       Claude Opus 5

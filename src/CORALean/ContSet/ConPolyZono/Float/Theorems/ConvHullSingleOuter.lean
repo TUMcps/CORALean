@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- Read back, a stored generator is the exact layer's. -/
 theorem ConPolyZono.aux_toReal_convHullG (a : ℕ) {h : ℕ} (c : Vec 𝕋 n) (G : Fin h → Vec 𝕋 n)
-    (l : Fin (a + (a * h + a * h))) (i : Fin n) : -- --- STMT ---
+    (l : Fin (a + (a * h + a * h))) (i : Fin n) : -- --- CONCL ---
     toReal (ConPolyZono.convHullG a c G l i)
       = Real.ConPolyZono.convHullG a (toRealVec c) (fun l i => toReal (G l i))
         l i := by -- --- PROOF ---
@@ -64,7 +64,7 @@ whose weights add up to `1 - a`. -/
 theorem ConPolyZono.aux_convHullSingle_mem (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (v : Fin (a * cPZ.p + a) → ℝ) (hv : ∀ k, |v k| ≤ 1)
     (hcopy : ∀ j, (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))) ∈ cPZ.cons.construct)
-    (hw : ∑ j, v (Fin.natAdd (a * cPZ.p) j) = 1 - (a : ℝ)) : -- --- STMT ---
+    (hw : ∑ j, v (Fin.natAdd (a * cPZ.p) j) = 1 - (a : ℝ)) : -- --- CONCL ---
     (fun i => toReal ((cPZ.convHullSingle a).c i)
       + ∑ l, toReal ((cPZ.convHullSingle a).G l i)
         * Real.PolyZonotope.monomial (cPZ.convHullSingle a).E v l)

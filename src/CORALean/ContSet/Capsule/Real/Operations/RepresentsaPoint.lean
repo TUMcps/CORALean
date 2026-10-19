@@ -10,6 +10,12 @@ public import CORALean.ContSet.Capsule.Real.Capsule
 CORA's `@capsule/representsa_.m` at `point`: `isPoint = all(withinTol(C.g, 0, tol)) &&
 withinTol(C.r, 0, tol)`, here at tolerance `0`. The `emptySet` type of the same file is
 `isempty(C.c) || isempty(C.g) || isempty(C.r)`, which a capsule of this model never is.
+
+## Inputs
+* `C` – capsule
+
+## Output
+* `Prop` that `C` is a single point
 -/
 
 -- Authors:       Claude Opus 5.5

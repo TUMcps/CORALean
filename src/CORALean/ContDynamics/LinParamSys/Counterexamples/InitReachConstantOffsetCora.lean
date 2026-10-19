@@ -64,7 +64,7 @@ theorem LinParamSys.offsetState_hasDerivAt (t : ℝ) :
 /-- The start state `x(0) = 0` is not in the set of the first step, for every `r` and every
 width `w` below the end state `1 - e^{-r}`. -/
 theorem LinParamSys.firstTimeIntervalCora_counterexample (r w : ℝ)
-    (hw : w < LinParamSys.offsetState r) : -- --- STMT ---
+    (hw : w < LinParamSys.offsetState r) : -- --- CONCL ---
     LinParamSys.offsetState 0 = 0 ∧
       LinParamSys.offsetState 0 ∉
         LinParamSys.firstTimeIntervalCora (-1) 1 r w := by -- --- PROOF ---

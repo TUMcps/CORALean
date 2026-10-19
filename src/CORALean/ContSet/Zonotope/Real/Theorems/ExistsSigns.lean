@@ -39,7 +39,7 @@ variable {n : ℕ}
 
 /-- [1, Lemma 3.2]: signs `σ` with `x + ∑ tᵢ gᵢ ∈ Z` for `tᵢ ∈ {0, σᵢ}`; and `x ± gᵢ ∈ Z`. -/
 theorem Zonotope.exists_signs (Z : Zonotope (Vec ℝ n)) {x : Vec ℝ n}
-    (hx : x ∈ Z.construct) : -- --- STMT ---
+    (hx : x ∈ Z.construct) : -- --- CONCL ---
     (∃ σ : Fin Z.h → ℝ, (∀ i, σ i = 1 ∨ σ i = -1) ∧
       ∀ t : Fin Z.h → ℝ, (∀ i, t i = 0 ∨ t i = σ i) →
         x + ∑ i, t i • Z.G i ∈ Z.construct)

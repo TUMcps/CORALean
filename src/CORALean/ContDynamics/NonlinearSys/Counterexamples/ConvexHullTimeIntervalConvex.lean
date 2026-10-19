@@ -51,7 +51,7 @@ open Set
 /-- [1, Prop. 2] fails for the shear `ẋ = (x₂, 0)` from the box `[-1/10, 1/10] × [-1, 1]`:
 the box is convex, compact and nonempty, the run from `x₀` ends at `e^{A} x₀ = (x₀₁ + x₀₂, x₀₂)`,
 `(1/2, 0)` is in the hull of `X₀` and `e^{A} X₀`, and on no run over `[0, 1]`. -/
-theorem convexHull_timeInterval_convex_counterexample : -- --- STMT ---
+theorem convexHull_timeInterval_convex_counterexample : -- --- CONCL ---
     let X₀ : Set (Fin 2 → ℝ) := Icc ![-1 / 10, -1] ![1 / 10, 1]
     let eA : (Fin 2 → ℝ) → Fin 2 → ℝ := fun x => ![x 0 + x 1, x 1]
     Convex ℝ X₀ ∧ IsCompact X₀ ∧ X₀.Nonempty ∧

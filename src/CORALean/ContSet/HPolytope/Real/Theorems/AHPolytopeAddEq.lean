@@ -42,7 +42,7 @@ variable {n n₁ n₂ q₁ q₂ : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.ahPolytope_add_eq (x₁ x₂ : Vec ℝ n) (X₁ : Mat ℝ n n₁) (X₂ : Mat ℝ n n₂)
-    (H₁ : Mat ℝ q₁ n₁) (h₁ : Vec ℝ q₁) (H₂ : Mat ℝ q₂ n₂) (h₂ : Vec ℝ q₂) : -- --- STMT ---
+    (H₁ : Mat ℝ q₁ n₁) (h₁ : Vec ℝ q₁) (H₂ : Mat ℝ q₂ n₂) (h₂ : Vec ℝ q₂) : -- --- CONCL ---
     HPolytope.ahPolytope x₁ X₁ (HPolytope.ineqs H₁ h₁)
         + HPolytope.ahPolytope x₂ X₂ (HPolytope.ineqs H₂ h₂)
       = HPolytope.ahPolytope (x₁ + x₂) (Matrix.of fun i k => Fin.append (X₁ i) (X₂ i) k)

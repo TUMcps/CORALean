@@ -43,7 +43,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- The hull's equations hold exactly when every copy's do and the weight factors lie in the unit
 box and add up to what a convex combination needs. -/
 theorem ConPolyZono.mem_convHullSingle_cons_iff (a : ℕ) (cPZ : ConPolyZono α)
-    (v : Fin (a * cPZ.p + a) → ℝ) : -- --- STMT ---
+    (v : Fin (a * cPZ.p + a) → ℝ) : -- --- CONCL ---
     v ∈ (cPZ.convHullSingle a).cons.construct
       ↔ (∀ j, (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))) ∈ cPZ.cons.construct)
         ∧ (∀ j, |v (Fin.natAdd (a * cPZ.p) j)| ≤ 1)

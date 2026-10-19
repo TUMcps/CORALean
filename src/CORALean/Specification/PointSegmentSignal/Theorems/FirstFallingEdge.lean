@@ -29,7 +29,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The first index where `true` is followed by `false`. -/
-theorem List.first_falling_edge (v : List Bool) : -- --- STMT ---
+theorem List.first_falling_edge (v : List Bool) : -- --- CONCL ---
     ((List.matlabFind id (List.zipWith (fun a b => !b && a) v v.tail)).head? = none →
       ∀ p, 1 ≤ p → p < v.length → v.getD (p - 1) false = true → v.getD p false = true) ∧
     ∀ i, (List.matlabFind id (List.zipWith (fun a b => !b && a) v v.tail)).head? = some i →

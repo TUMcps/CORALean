@@ -10,20 +10,23 @@ public import Mathlib.Analysis.Normed.Order.Lattice
 /-!
 # When a capsule is full-dimensional
 
-A capsule `{c + t g | t ∈ [-1, 1]} ⊕ ball(0, r)` has an interior point iff it is nonempty
-(`0 ≤ r`; a negative radius denotes `∅`) and either the ball is thick (`0 < r`) or the space is
-too small for a thin capsule to miss it: `n = 0` (the whole one-point space) or `n = 1` with
-`g ≠ 0` (a non-degenerate segment is an interval of the line).
+A capsule `{c + t g | t ∈ [-1, 1]} ⊕ ball(0, r)` has an interior point iff it is nonempty (`0 ≤ r`;
+a negative radius denotes `∅`) and either the ball is thick (`0 < r`) or the space is too small for
+a thin capsule to miss it: `n = 0`, or `n = 1` with `g ≠ 0`.
 
-CORA's `@capsule/isFullDim.m` answers `~isempty(C.r) && C.r > 0`, which misses exactly the two
-thin cases: `n = 1`, `r = 0`, `g ≠ 0` and `n = 0`, `r = 0`.
+CORA's `@capsule/isFullDim.m` answers `~isempty(C.r) && C.r > 0`, which misses exactly the thin
+cases `n = 1`, `r = 0`, `g ≠ 0` and `n = 0`, `r = 0`. For `r = 0` an interior point leaves `g`
+nonzero in one axis and zero in the rest, which allows one axis only. Stated at `construct`, which
+`ContSet.IsFullDim` unfolds to.
 
-For `r = 0` the set is the segment itself. An interior point `x` has `x + ε eᵢ` in the set for
-every axis `i`, so `ε eᵢ` is a multiple of `g`: `g` is nonzero in axis `i` and zero in all others,
-which allows one axis only.
+## Inputs
+* `C` – capsule
 
-Stated at `construct`, which is what `ContSet.IsFullDim` unfolds to: the `ContSet` instance is
-declared after the theorems.
+## Hypotheses
+* none
+
+## Conclusion
+* the interior is nonempty iff the capsule is thick or too small to be thin
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -52,7 +52,7 @@ theorem LinProbSys.initReach_tp_outer (sys : LinProbSys n m) (Veig : Mat ℝ n n
     (hε : ‖r • sys.A‖ / ((η : ℝ) + 2) < 1) (gamma : ℝ) (originContained : Bool)
     (hA : IsUnit sys.A.det) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ Rinit.Z.construct) {w : Vec ℝ n}
     (hw : w ∈ (LinearSys.canonical sys.A : LinearSys ℝ n).inputReach (S := 𝒵)
-        (Zonotope.mtimes sys.B U) r) : -- --- STMT ---
+        (Zonotope.mtimes sys.B U) r) : -- --- CONCL ---
     exp (r • sys.A) *ᵥ x₀ + MatExp.expIntegral sys.A r *ᵥ (sys.B *ᵥ uTrans) + w
       ∈ (sys.initReach Veig lambda Rinit gammaInit U uTrans r η gamma
           originContained).1.Z.construct := by -- --- PROOF ---

@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem HPolytope.anchorEqsInBox_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {ε : Vec 𝕋 P.me} (β : Vec ℝ n)
     (hβ : ∀ j, |β j| ≤ 1)
     (hA : ∀ k, (toRealMat P.A *ᵥ β) k ≤ toReal (P.b k) + |toReal (P.b_error k)|)
-    (hE : ∀ i, |(toRealMat P.Ae *ᵥ β) i - toReal (P.be i)| ≤ toReal (ε i)) : -- --- STMT ---
+    (hE : ∀ i, |(toRealMat P.Ae *ᵥ β) i - toReal (P.be i)| ≤ toReal (ε i)) : -- --- CONCL ---
     ∀ Q τ, (Q, τ) ∈ P.anchorEqsInBox ε →
       0 ≤ toReal τ ∧ ∃ β'' : Vec ℝ n, (∀ j, |β'' j| ≤ 1) ∧ β'' ∈ Q.nominal.construct
         ∧ ∀ j, |β'' j - β j| ≤ toReal τ := by -- --- PROOF ---

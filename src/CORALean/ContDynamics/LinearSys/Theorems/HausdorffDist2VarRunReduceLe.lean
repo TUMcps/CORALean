@@ -78,7 +78,7 @@ theorem aux_hausdorffDist₂_add_right_var {S T X : Set (Vec ℝ n)} (hS : IsCom
 theorem hausdorffDist₂_var_run_reduce_le (W : ℕ → Zonotope (Vec ℝ n)) (Φ : ℕ → Mat ℝ n n)
     (ρ : ℕ → ℕ) (P : ℕ → Zonotope (Vec ℝ n)) (h0 : (P 0).construct = {0})
     (hstep : ∀ j, P (j + 1) = Zonotope.reduce (Zonotope.plus (P j) (Zonotope.mtimes (Φ j) (W j)))
-      (ρ j)) (k : ℕ) : -- --- STMT ---
+      (ρ j)) (k : ℕ) : -- --- CONCL ---
     hausdorffDist₂ (∑ j ∈ Finset.range k, (fun x => Φ j *ᵥ x) '' (W j).construct)
         (P k).construct
       ≤ ∑ j ∈ Finset.range k,

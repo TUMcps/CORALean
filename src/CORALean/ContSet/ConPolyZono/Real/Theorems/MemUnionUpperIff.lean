@@ -41,7 +41,7 @@ open Matrix
 
 /-- The selector rows hold exactly when the factors are in the unit box, `α₁α₂ = 1` and the
 selector polynomial vanishes. -/
-theorem ConPolyZono.mem_unionUpper_iff {p₁ p₂ : ℕ} (a : Fin (p₁ + p₂ + 2) → ℝ) : -- --- STMT ---
+theorem ConPolyZono.mem_unionUpper_iff {p₁ p₂ : ℕ} (a : Fin (p₁ + p₂ + 2) → ℝ) : -- --- CONCL ---
     a ∈ (ConPolyZono.unionUpper p₁ p₂).construct
       ↔ (∀ k, |a k| ≤ 1) ∧ (a (ConPolyZono.unionSel p₁ p₂) * a (Fin.natAdd (p₁ + p₂) 1) = 1
         ∧ (1 + a (ConPolyZono.unionSel p₁ p₂)

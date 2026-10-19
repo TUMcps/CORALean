@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 every run over `[t_k + jΔt, t_k + (j+1)Δt]`. -/
 theorem LinearSys.manualRunFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)}
     {Δt : 𝕋} {η ρ : ℕ} (hΔt : 0 < toReal Δt)
-    (hη : sys.OrderAdmissibleFloat Δt Δt η) : -- --- STMT ---
+    (hη : sys.OrderAdmissibleFloat Δt Δt η) : -- --- CONCL ---
     ∀ {K : ℕ} {s : LinearSys.ManualStateFloat 𝕋 n} {Rs : List (Zonotope (Vec 𝕋 n))},
       sys.manualRunFloat X₀ V Δt η ρ K s = some Rs → sys.ManualInvariantFloat X₀ V s →
       Rs.length = K ∧ ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},

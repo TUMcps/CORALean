@@ -32,7 +32,7 @@ set_option simprocs false in
 /-- The columns of `N` at a corner with no zero factor, as CORA's `aux_normalCone` computes them
 (printed in the module docstring of `Operations/IsPolytopeCex`). -/
 theorem PolyZonotope.isPolytopeCex_coraNormalCone (I : Fin 3 → ℝ)
-    (h : ∀ i, I i ≠ 0) : -- --- STMT ---
+    (h : ∀ i, I i ≠ 0) : -- --- CONCL ---
     PolyZonotope.isPolytopeCex.coraNormalCone I =
       ![(-(SignType.sign (I 0) : ℝ)) • (![2, I 2] : Vec ℝ 2),
         (-(SignType.sign (I 1) : ℝ)) • (![1, 0] : Vec ℝ 2),

@@ -82,7 +82,7 @@ open Matrix
 /-- The run `0, 0, 1` of `x(i+1) = A{i} x(i) + B{i}·1` is at `1` at step `2`, outside CORA's set
 there, with `uTrans = 1` or any `uTransVec` whose first two columns are `1`, at any order `o`. -/
 theorem LinearSysDT.reachLTVCora_counterexample (o : ℕ) (uTransVec : Option (ℕ → Vec ℝ 1))
-    (hu : ∀ v, uTransVec = some v → v 1 = (fun _ => 1) ∧ v 2 = fun _ => 1) : -- --- STMT ---
+    (hu : ∀ v, uTransVec = some v → v 1 = (fun _ => 1) ∧ v 2 = fun _ => 1) : -- --- CONCL ---
     let A : ℕ → Mat ℝ 1 1 := fun _ => 1
     let B : ℕ → Mat ℝ 1 1 := fun i => if i = 1 then 0 else 1
     let x : ℕ → Vec ℝ 1 := fun i => if i ≤ 1 then 0 else fun _ => 1

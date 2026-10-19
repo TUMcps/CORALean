@@ -65,7 +65,7 @@ theorem PolyZonotope.aux_trilinear_expand {k : ℕ} (M : Fin n → Fin n → Fin
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.cubEval_expand (T : Fin m → Fin n → Mat ℝ n n) (w : Fin N → ℝ)
-    (g : Fin N → Vec ℝ n) (i : Fin m) : -- --- STMT ---
+    (g : Fin N → Vec ℝ n) (i : Fin m) : -- --- CONCL ---
     PolyZonotope.cubEval T (∑ j, w j • g j) i
       = ∑ j₁, ∑ j₂, ∑ j₃, w j₁ * w j₂ * w j₃
           * ∑ k, g j₁ k * (g j₂ ⬝ᵥ (T i k *ᵥ g j₃)) := by -- --- PROOF ---

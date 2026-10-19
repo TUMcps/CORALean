@@ -52,7 +52,7 @@ theorem ConPolyZono.aux_mem_plus_point (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (w 
 
 /-- The fold over the generators `g`: a point whose every corner `y + Σ ±gⱼ` lies in `A`, and
 `A` in the start, lies in the result. -/
-theorem ConPolyZono.aux_minkDiff_fold : -- --- STMT ---
+theorem ConPolyZono.aux_minkDiff_fold : -- --- CONCL ---
     ∀ {m : ℕ} (g : Fin m → Vec 𝕋 n) (cur : ConPolyZono 𝕋 (Vec 𝕋 n)) (A : Set (Vec ℝ n)),
       A ⊆ cur.construct →
       {y | ∀ s : Fin m → Bool, y + ∑ j, (if s j then (1 : ℝ) else -1) • toRealVec (g j) ∈ A}

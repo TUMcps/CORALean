@@ -60,7 +60,7 @@ theorem aux_tw_next {α : Type} (p : α → Bool) (l : List α) (b : α)
 
 /-- The count of points `≤ u` is the position of the last one. -/
 theorem PointSegmentSignal.takeWhile_le_pos (s : PointSegmentSignal T) (hs : s.IsValid) (u : T)
-    (h0 : 0 ≤ u) : -- --- STMT ---
+    (h0 : 0 ≤ u) : -- --- CONCL ---
     1 ≤ (s.timePoints.takeWhile (· ≤ u)).length ∧ (s.timePoints.takeWhile (· ≤ u)).length ≤
       s.timePoints.length ∧
       (∃ a, s.timePoints[(s.timePoints.takeWhile (· ≤ u)).length - 1]? = some a ∧ a ≤ u) ∧

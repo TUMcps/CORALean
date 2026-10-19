@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.mem_nominal_iff {P : HPolytope 𝕋 (Vec 𝕋 n)} {x : Vec ℝ n} : -- --- STMT ---
+theorem HPolytope.mem_nominal_iff {P : HPolytope 𝕋 (Vec 𝕋 n)} {x : Vec ℝ n} : -- --- CONCL ---
     x ∈ P.nominal.construct ↔
       (∀ i, (toRealMat P.A *ᵥ x) i ≤ toReal (P.b i) + |toReal (P.b_error i)|)
         ∧ ∀ i, |(toRealMat P.Ae *ᵥ x) i - toReal (P.be i)|

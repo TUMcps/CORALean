@@ -32,7 +32,7 @@ namespace CORALean
 /-- The loop on breakpoints `(b,v) :: rest` after the time `a`, with the run (if `cond v`) started
 at `st ≤ a`: the intervals are ordered and separated, and cover the cells satisfying `cond`
 together with the part `[st,a]` of the run already begun. -/
-theorem aux_findIntervals_loop {T V : Type} [LinearOrder T] (cond : V → Bool) : -- --- STMT ---
+theorem aux_findIntervals_loop {T V : Type} [LinearOrder T] (cond : V → Bool) : -- --- CONCL ---
     ∀ (rest : List (T × V)) (b : T) (v : V) (a st : T),
       (((b, v) :: rest).map Prod.fst).Pairwise (· < ·) → a ≤ b → (cond v = true → st ≤ a) →
       (∀ I ∈ FiniteSignal.aux_findIntervalsLoop cond st ((b, v) :: rest), I.1 ≤ I.2) ∧
@@ -180,7 +180,7 @@ theorem aux_findIntervals_loop {T V : Type} [LinearOrder T] (cond : V → Bool) 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FiniteSignal.findIntervals_spec {T V : Type} [LinearOrder T] [Zero T] (s : FiniteSignal T V)
-    (hs : s.IsValid) (cond : V → Bool) : -- --- STMT ---
+    (hs : s.IsValid) (cond : V → Bool) : -- --- CONCL ---
     (∀ I ∈ s.findIntervals cond, I.1 ≤ I.2) ∧
       (s.findIntervals cond).Pairwise (fun I J => I.2 < J.1) ∧
       ∀ x, (∃ I ∈ s.findIntervals cond, I.1 ≤ x ∧ x ≤ I.2) ↔

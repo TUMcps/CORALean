@@ -59,7 +59,7 @@ variable {n : ℕ}
 
 /-- The error, split into the parts `E_err` holds: the exact orders `2…η`, the remainders. -/
 theorem aux_trajectoryError_split (A : Mat ℝ n n) (u ξ x₀ : Vec ℝ n) (t tc : ℝ)
-    (η : ℕ) : -- --- STMT ---
+    (η : ℕ) : -- --- CONCL ---
     exp (t • A) *ᵥ x₀ + MatExp.expIntegral A t *ᵥ u
         - GuardMap.sdcFlow A (GuardMap.sdcInput A u tc (η + 1) ξ) x₀ t
       = t • (∑ m ∈ Finset.range η, (((Nat.factorial (m + 2) : ℝ)⁻¹) • A ^ (m + 2)) *ᵥ
@@ -144,7 +144,7 @@ theorem aux_trajectoryError_split (A : Mat ℝ n n) (u ξ x₀ : Vec ℝ n) (t t
 
 theorem LinearSys.trajectoryError_outer (sys : LinearSys ℝ n) (f u : Vec ℝ n)
     (R₀ : Zonotope (Vec ℝ n)) {tmin tmax tc : ℝ} (hmin : 0 ≤ tmin) (η : ℕ) {t : ℝ}
-    (ht : t ∈ Set.Icc tmin tmax) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ R₀.construct) : -- --- STMT ---
+    (ht : t ∈ Set.Icc tmin tmax) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ R₀.construct) : -- --- CONCL ---
     exp (t • sys.A) *ᵥ x₀ + MatExp.expIntegral sys.A t *ᵥ u
         - GuardMap.sdcFlow sys.A (GuardMap.sdcInput sys.A u tc (η + 1) R₀.c) x₀ t
       ∈ (sys.trajectoryError f f u R₀ tmin tmax tc (η + 1)).construct := by -- --- PROOF ---

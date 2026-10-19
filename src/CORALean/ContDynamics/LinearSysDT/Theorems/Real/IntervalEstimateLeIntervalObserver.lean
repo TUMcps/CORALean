@@ -47,7 +47,7 @@ theorem LinearSysDT.intervalEstimate_le_intervalObserver (sys : LinearSysDT ℝ 
     (X₀ : Zonotope (Vec ℝ n)) (W : Zonotope (Vec ℝ sys.r)) (V : Zonotope (Vec ℝ sys.s))
     (wl wu : Vec ℝ sys.r) (vl vu : Vec ℝ sys.s) (u : ℕ → Vec ℝ sys.m) (y : ℕ → Vec ℝ sys.q)
     (hM : ∀ i j, 0 ≤ (sys.A - L * sys.C) i j) (hW : ∀ w ∈ W.construct, ∀ i, wl i ≤ w i ∧ w i ≤ wu i)
-    (hV : ∀ v ∈ V.construct, ∀ i, vl i ≤ v i ∧ v i ≤ vu i) (k : ℕ) (i : Fin n) : -- --- STMT ---
+    (hV : ∀ v ∈ V.construct, ∀ i, vl i ≤ v i ∧ v i ≤ vu i) (k : ℕ) (i : Fin n) : -- --- CONCL ---
     let Alg := LinearSysDT.intervalEstimate sys L X₀ W V u y
     let Obs := LinearSysDT.intervalObserver sys L wl wu vl vu (Alg 0).inf (Alg 0).sup u y
     (Obs k).inf i ≤ (Alg k).inf i ∧ (Alg k).sup i ≤ (Obs k).sup i := by -- --- PROOF ---

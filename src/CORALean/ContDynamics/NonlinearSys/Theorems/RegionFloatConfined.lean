@@ -61,7 +61,7 @@ theorem aux_picard {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n
     {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := 𝒮) T R₀ U x u y)
     (hU : U ⊆ Ub.construct) {a : ℝ} (hT : Set.Icc a (a + toReal Δt) ⊆ T)
     (hxa : x a ∈ X.construct)
-    (hΩ : ∀ t ∈ Set.Icc a (a + toReal Δt), x t ∈ Ω.construct) : -- --- STMT ---
+    (hΩ : ∀ t ∈ Set.Icc a (a + toReal Δt), x t ∈ Ω.construct) : -- --- CONCL ---
     ∀ t ∈ Set.Icc a (a + toReal Δt), x t ∈ (⟨fun i => addDown (X.inf i)
         (minimum zero (mulDown Δt ((fm.f Ω Ub).inf i))), fun i => addUp (X.sup i)
         (maximum zero (mulUp Δt ((fm.f Ω Ub).sup i)))⟩ :
@@ -131,7 +131,7 @@ theorem NonlinearSys.FloatModel.Encloses.regionFloat_confined {fm : NonlinearSys
     {U : Set (Vec ℝ m)} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
     {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := 𝒮) T R₀ U x u y) (hU : U ⊆ Ub.construct)
     {a : ℝ}
-    (hT : Set.Icc a (a + toReal Δt) ⊆ T) (hxa : x a ∈ X.construct) : -- --- STMT ---
+    (hT : Set.Icc a (a + toReal Δt) ⊆ T) (hxa : x a ∈ X.construct) : -- --- CONCL ---
     ∀ Ω ∈ fm.regionFloat Δt X Ub,
       ∀ t ∈ Set.Icc a (a + toReal Δt), x t ∈ Ω.construct := by -- --- PROOF ---
   intro Ω (hΩ : fm.regionFloat Δt X Ub = some Ω)

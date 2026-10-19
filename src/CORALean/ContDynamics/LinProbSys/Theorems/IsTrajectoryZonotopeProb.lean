@@ -50,7 +50,7 @@ theorem LinProbSys.IsTrajectory.zonotope_prob {sys : LinProbSys n m} {Ω : Type*
     {u : ℝ → Vec ℝ m} {x : ℝ → Ω → Vec ℝ n} (traj : sys.IsTrajectory P T X₀ U x₀ u x) {t : ℝ}
     (ht : t ∈ T) (h0 : 0 ≤ t) {Z : Zonotope (Vec ℝ n)}
     (hZ : exp (t • sys.A) *ᵥ x₀ + ∫ s in (0:ℝ)..t, exp ((t - s) • sys.A) *ᵥ (sys.B *ᵥ u s)
-      ∈ Z.construct) {γ : ℝ} (hγ : 0 < γ) : -- --- STMT ---
+      ∈ Z.construct) {γ : ℝ} (hγ : 0 < γ) : -- --- CONCL ---
     (gaussianReal 0 1 (Set.Icc (-γ) γ)) ^ n
       ≤ P {ω | x t ω ∈ ((⟨Z, noiseCovariance sys.A sys.C t⟩ : ProbZonotope n).zonotope γ).construct}
       := by -- --- PROOF ---

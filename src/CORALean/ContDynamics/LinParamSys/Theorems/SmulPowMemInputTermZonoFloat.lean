@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem LinParamSys.smul_pow_mem_inputTermZonoFloat
     (sys : LinParamSys (fun m n => Zonotope (Mat 𝕋 m n)) n) {r : 𝕋} (hr : 0 ≤ toReal r)
-    {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (i : ℕ) : -- --- STMT ---
+    {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (i : ℕ) : -- --- CONCL ---
     (toReal r ^ (i + 1) / (Nat.factorial (i + 1) : ℝ)) • A ^ i
       ∈ (sys.inputTermZonoFloat r i).construct := by -- --- PROOF ---
   show _ ∈ (Zonotope.matSmul _ _ (sys.A.matPow i)).materialiseMat.construct

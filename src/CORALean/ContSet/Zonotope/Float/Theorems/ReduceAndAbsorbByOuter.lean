@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q r : ℕ}
 /-- The merged block covers the absorbed generators and the box together. -/
 theorem Zonotope.aux_abs_merged_le_radius (Z : Zonotope (Vec 𝕋 n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) {β : Vec ℝ Z.h} {e : Vec ℝ n}
-    (hβ : ∀ j, |β j| ≤ 1) (he : e ∈ Z.I_error.construct) (i : Fin n) : -- --- STMT ---
+    (hβ : ∀ j, |β j| ≤ 1) (he : e ∈ Z.I_error.construct) (i : Fin n) : -- --- CONCL ---
     |(∑ l, toReal (Z.G (part.right l) i) * β (part.right l))
         + (e i - (toReal (Z.I_error.inf i) + toReal (Z.I_error.sup i)) / 2)|
       ≤ toReal

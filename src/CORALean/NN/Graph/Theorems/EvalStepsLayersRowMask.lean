@@ -41,7 +41,7 @@ open Matrix
 layered chain untouched, provided the two inputs agree on that ball. -/
 theorem GNN.evalStepsLayers_row_mask {N F : ℕ} (A : Mat ℝ N N) (v : Fin N) (S : Finset (Fin N))
     (L : ℕ) (hS : GNN.ball A v L ⊆ S) (g : Fin L → Vec ℝ F → Vec ℝ F) (X Y : Mat ℝ N F)
-    (hXY : ∀ u ∈ GNN.ball A v L, X u = Y u) : -- --- STMT ---
+    (hXY : ∀ u ∈ GNN.ball A v L, X u = Y u) : -- --- CONCL ---
     GNN.evalStepsLayers (GNN.messagePassing A) L g X v
       = GNN.evalStepsLayers (GNN.mask S (GNN.messagePassing A)) L g Y v := by -- --- PROOF ---
   induction L generalizing X Y with

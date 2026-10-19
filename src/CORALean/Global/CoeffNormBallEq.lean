@@ -44,7 +44,7 @@ variable {E W : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensio
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem coeffNorm_ball_eq (G : E →ₗ[ℝ] W) (hG : Function.Surjective G) : -- --- STMT ---
+theorem coeffNorm_ball_eq (G : E →ₗ[ℝ] W) (hG : Function.Surjective G) : -- --- CONCL ---
     ((∀ x y, coeffNorm G (x + y) ≤ coeffNorm G x + coeffNorm G y) ∧
       (∀ (a : ℝ) x, coeffNorm G (a • x) = |a| * coeffNorm G x) ∧
       ∀ x, coeffNorm G x = 0 ↔ x = 0) ∧

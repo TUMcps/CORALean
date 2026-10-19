@@ -44,7 +44,7 @@ theorem Taylm.taylor_outer {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Enc
     (hD : ∀ ξ ∈ Set.Icc (min (toReal c) (toReal T.bounds.inf)) (max (toReal c) (toReal
         T.bounds.sup)),
       |iteratedDeriv (T.maxOrder + 1) g ξ| ≤ D)
-    (hDup : D ≤ toReal Dup) : -- --- STMT ---
+    (hDup : D ≤ toReal Dup) : -- --- CONCL ---
     (T.taylor c lo hi Dup).Encloses fun t => g (f t) := by -- --- PROOF ---
   set N := T.maxOrder
   refine Taylm.compose_outer h g c lo hi N _

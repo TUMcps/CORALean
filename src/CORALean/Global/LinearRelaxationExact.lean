@@ -96,7 +96,7 @@ theorem lr_exact_of_columns_eq_up_to_sign (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [
     (hYmax : ∀ Y' : Matrix (Fin n) (Fin m) ℝ,
       ‖WithLp.toLp q' (fun i => ⨆ j, |(Hᵀ * Y') i j|)‖ ≤ 1 → trace (Gᵀ * Y') ≤ trace (Gᵀ * Y))
     (hcol : ∀ j j', (fun k => Y k j) = (fun k => Y k j') ∨
-      (fun k => Y k j) = -(fun k => Y k j')) : -- --- STMT ---
+      (fun k => Y k j) = -(fun k => Y k j')) : -- --- CONCL ---
     ∃ LR, IsLeast {N | ∃ X : Matrix (Fin l) (Fin m) ℝ, H * X = G ∧
         N = ‖WithLp.toLp q (fun i => ∑ j, |X i j|)‖} LR ∧
       IsGreatest ((fun α => coeffNorm ((Matrix.mulVecLin H) ∘ₗ

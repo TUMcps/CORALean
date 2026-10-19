@@ -36,7 +36,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 theorem NonlinParamSys.IsTrajectory.toNonlinearSys {sys : NonlinParamSys n m q} {T : Set ℝ}
     {R₀ : S n} {U : S m} {P : S q} {W : S (m + q)} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
     {p : ℝ → Vec ℝ q} {y : ℝ → Vec ℝ sys.r} (traj : sys.IsTrajectory T R₀ U P x u p y)
-    (hW : ∀ v ∈ construct U, ∀ w ∈ construct P, Fin.append v w ∈ construct W) : -- --- STMT ---
+    (hW : ∀ v ∈ construct U, ∀ w ∈ construct P, Fin.append v w ∈ construct W) : -- --- CONCL ---
     sys.toNonlinearSys.IsTrajectory T R₀ W x
       (fun t => Fin.append (u t) (p t)) y := by -- --- PROOF ---
   -- the field read through the stacked input is the parameterized one

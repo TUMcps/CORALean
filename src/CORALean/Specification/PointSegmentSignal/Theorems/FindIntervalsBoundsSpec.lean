@@ -43,7 +43,7 @@ theorem aux_getD_nonneg {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSig
 
 /-- The intervals of `findIntervals` are exactly the times at which `cond` holds. -/
 theorem PointSegmentSignal.findIntervalsBounds_spec {T : Type} [LinearOrder T] [Zero T]
-    (s : PointSegmentSignal T) (hs : s.IsValid) (cond : Bool → Bool) : -- --- STMT ---
+    (s : PointSegmentSignal T) (hs : s.IsValid) (cond : Bool → Bool) : -- --- CONCL ---
     (∀ b ∈ s.findIntervalsBounds cond, 0 ≤ b.1) ∧ ∀ t : T, 0 ≤ t →
       ((∃ b ∈ s.findIntervalsBounds cond,
         STLInterval.memBounds b.1 b.2.1 b.2.2.1 b.2.2.2 t) ↔

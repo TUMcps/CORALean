@@ -42,7 +42,7 @@ theorem FourValuedSTL.Formula.satBool_until {X : Type} (φ₁ φ₂ : FourValued
     (I : STLInterval) (ξ : ℝ≥0 → X)
     (l₁ l₂ : PointSegmentSignal ℝ) (hl₁ : l₁.IsValid) (hl₂ : l₂.IsValid)
     (h₁ : ∀ t : ℝ≥0, l₁.at t = φ₁.satBool ξ t)
-    (h₂ : ∀ t : ℝ≥0, l₂.at t = φ₂.satBool ξ t) : -- --- STMT ---
+    (h₂ : ∀ t : ℝ≥0, l₂.at t = φ₂.satBool ξ t) : -- --- CONCL ---
     (l₁.until I l₂).IsValid ∧ ∀ t : ℝ≥0,
       (l₁.until I l₂).at t =
         (FourValuedSTL.Formula.until I φ₁ φ₂).satBool ξ t := by -- --- PROOF ---

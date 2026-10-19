@@ -45,7 +45,7 @@ theorem NonlinDASys.IsTrajectory.initReach_outer {sys : NonlinDASys n p m} {Δt 
     {select : (Z : Zonotope (Vec ℝ n)) → Option (Fin Z.h)} {q : ℕ}
     (hcert : ∀ Z : Zonotope (Vec ℝ n), x 0 ∈ Z.construct → (lin Z).Certifies sys U Δt q x y u)
     (fuel : ℕ) {Rstart : List (Zonotope (Vec ℝ n))}
-    (hstart : ∃ Z ∈ Rstart, x 0 ∈ Z.construct) : -- --- STMT ---
+    (hstart : ∃ Z ∈ Rstart, x 0 ∈ Z.construct) : -- --- CONCL ---
     ∃ R ∈ sys.initReach lin select U Δt (q + 2) fuel Rstart,
       x Δt ∈ R.fst.construct ∧
         ∀ t ∈ Set.Icc 0 Δt,

@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem LinParamSys.reachStepkFloat_outer (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋} {η k : ℕ} (h2 : 2 ≤ η)
     {Rτ₀ : Zonotope (Vec 𝕋 n)} {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) {y : Vec ℝ n}
-    (hy : y ∈ Rτ₀.construct) : -- --- STMT ---
+    (hy : y ∈ Rτ₀.construct) : -- --- CONCL ---
     ∀ R ∈ sys.reachStepkFloat Δt η Rτ₀ k,
       exp (((k : ℝ) * toReal Δt) • A) *ᵥ y ∈ R.construct := by -- --- PROOF ---
   intro R (h : sys.reachStepkFloat Δt η Rτ₀ k = some R)

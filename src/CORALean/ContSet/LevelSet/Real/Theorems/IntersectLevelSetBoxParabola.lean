@@ -33,7 +33,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem intersectLevelSetBox_parabola : -- --- STMT ---
+theorem intersectLevelSetBox_parabola : -- --- CONCL ---
     let I : Interval (Vec ℝ 2) := ⟨![-1, 0], ![1, 2]⟩
     let p : Vec ℝ 2 → ℝ := fun x => 2 * x 0 ^ 2
     I.construct ∩ {x | x 1 = p x} = (intersectLevelSetBox I 1 p).construct ∧

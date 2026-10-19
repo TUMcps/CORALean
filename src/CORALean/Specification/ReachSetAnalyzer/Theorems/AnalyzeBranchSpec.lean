@@ -31,7 +31,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ReachSetAnalyzer.analyzeBranch_spec (obj : ReachSetAnalyzer S n) (d : ℝ)
-    (R : List (ReachSetAnalyzer.Entry S n)) : -- --- STMT ---
+    (R : List (ReachSetAnalyzer.Entry S n)) : -- --- CONCL ---
     ∀ (w : List ℕ), (∀ j ∈ w, ∃ e, R[j - 1]? = some e ∧
       ∀ s ∈ e.timeInterval, s.time.inf < s.time.sup) →
     ∀ (PT PF : String → ℝ → Prop) (obj0 : ReachSetAnalyzer S n), obj0.aps = obj.aps →

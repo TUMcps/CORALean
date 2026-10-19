@@ -30,7 +30,7 @@ namespace CORALean.Real
 
 theorem sample_bounds_of_deriv {g g' : ℝ → ℝ} {M l u t : ℝ} {N : ℕ}
     (hd : ∀ x, HasDerivAt g (g' x) x) (hM : ∀ x, l ≤ x → x ≤ u → |g' x| ≤ M)
-    (hN : 0 < N) (hl : l ≤ t) (hu : t ≤ u) : -- --- STMT ---
+    (hN : 0 < N) (hl : l ≤ t) (hu : t ≤ u) : -- --- CONCL ---
     sampleInf g l u N - M * ((u - l) / N) ≤ g t
       ∧ g t ≤ sampleSup g l u N + M * ((u - l) / N) := by -- --- PROOF ---
   have hM0 : 0 ≤ M := le_trans (abs_nonneg _) (hM t hl hu)

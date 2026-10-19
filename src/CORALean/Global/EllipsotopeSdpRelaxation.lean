@@ -95,7 +95,7 @@ theorem aux_sr_gaussMomentRoot_nonneg {p : ℝ} (hp : 0 < p) : 0 ≤ gaussMoment
 /-- `E[⟨a, g⟩ ⟨b, g⟩] = ⟨a, b⟩`, the covariance of the standard Gaussian. -/
 theorem aux_sr_integral_inner_mul_inner {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
-    (a b : E) : -- --- STMT ---
+    (a b : E) : -- --- CONCL ---
     Integrable (fun g => ⟪a, g⟫ * ⟪b, g⟫) (stdGaussian E) ∧
       ∫ g, ⟪a, g⟫ * ⟪b, g⟫ ∂(stdGaussian E) = ⟪a, b⟫ := by -- --- PROOF ---
   refine ⟨?_, ?_⟩
@@ -115,7 +115,7 @@ theorem aux_sr_homogeneous (p q : ℝ≥0∞) [Fact (1 ≤ p)] [Fact (1 ≤ q)]
     (hrle : ∀ α ∈ Metric.closedBall (0 : PiLp p (fun _ : Fin m => ℝ)) 1,
       coeffNorm ((Matrix.mulVecLin H) ∘ₗ (WithLp.linearEquiv q ℝ (Fin l → ℝ)).toLinearMap)
         (G *ᵥ WithLp.ofLp α) ≤ r)
-    (α : PiLp p (fun _ : Fin m => ℝ)) : -- --- STMT ---
+    (α : PiLp p (fun _ : Fin m => ℝ)) : -- --- CONCL ---
     coeffNorm ((Matrix.mulVecLin H) ∘ₗ (WithLp.linearEquiv q ℝ (Fin l → ℝ)).toLinearMap)
       (G *ᵥ WithLp.ofLp α) ≤ r * ‖α‖ := by -- --- PROOF ---
   set Hl := (Matrix.mulVecLin H) ∘ₗ (WithLp.linearEquiv q ℝ (Fin l → ℝ)).toLinearMap
@@ -138,7 +138,7 @@ theorem aux_sr_weak (p q q' : ℝ≥0∞) [Fact (1 ≤ p)] [Fact (1 ≤ q)] [q.H
     (H : Matrix (Fin n) (Fin l) ℝ) (hH : Function.Surjective H.mulVec) (v : Fin m → ℝ)
     (w : Fin l → ℝ)
     (hK : (fromBlocks 0 Gᵀ G 0 - fromBlocks (diagonal v) 0 0 (H * diagonal w * Hᵀ)).PosSemidef)
-    {α : PiLp p (fun _ : Fin m => ℝ)} (hα : α ∈ Metric.closedBall 0 1) : -- --- STMT ---
+    {α : PiLp p (fun _ : Fin m => ℝ)} (hα : α ∈ Metric.closedBall 0 1) : -- --- CONCL ---
     coeffNorm ((Matrix.mulVecLin H) ∘ₗ (WithLp.linearEquiv q ℝ (Fin l → ℝ)).toLinearMap)
       (G *ᵥ WithLp.ofLp α) ≤
         (‖WithLp.toLp (p / (p - 2)) v‖ + ‖WithLp.toLp (q' / (q' - 2)) w‖) / 2 := by -- --- PROOF ---
@@ -174,7 +174,7 @@ theorem aux_sr_pointwise {d : ℕ} (p q q' : ℝ≥0∞) [Fact (1 ≤ p)] [Fact 
     (hrle : ∀ α ∈ Metric.closedBall (0 : PiLp p (fun _ : Fin m => ℝ)) 1,
       coeffNorm ((Matrix.mulVecLin H) ∘ₗ (WithLp.linearEquiv q ℝ (Fin l → ℝ)).toLinearMap)
         (G *ᵥ WithLp.ofLp α) ≤ r)
-    (c : Fin m ⊕ Fin n → EuclideanSpace ℝ (Fin d)) (g : EuclideanSpace ℝ (Fin d)) : -- --- STMT ---
+    (c : Fin m ⊕ Fin n → EuclideanSpace ℝ (Fin d)) (g : EuclideanSpace ℝ (Fin d)) : -- --- CONCL ---
     ∑ k, ∑ j, G k j * (⟪c (Sum.inr k), g⟫ * ⟪c (Sum.inl j), g⟫) ≤
       r * ((∑ j, |⟪c (Sum.inl j), g⟫| ^ p.toReal) ^ (1 / p.toReal) *
         (∑ i, |⟪∑ k, H k i • c (Sum.inr k), g⟫| ^ q'.toReal) ^
@@ -211,7 +211,7 @@ theorem aux_sr_pointwise {d : ℕ} (p q q' : ℝ≥0∞) [Fact (1 ≤ p)] [Fact 
 /-- Hölder and the moment bounds: `E[A B] ≤ γ_p γ_{q*}` for the two rounded norms. -/
 theorem aux_sr_expect_le {d : ℕ} {P Q : ℝ} (hP : 2 ≤ P) (hQ : 2 ≤ Q)
     (a : Fin m → EuclideanSpace ℝ (Fin d)) (b : Fin l → EuclideanSpace ℝ (Fin d))
-    (ha : (∑ j, ‖a j‖ ^ P) ^ (1 / P) ≤ 1) (hb : (∑ i, ‖b i‖ ^ Q) ^ (1 / Q) ≤ 1) : -- --- STMT ---
+    (ha : (∑ j, ‖a j‖ ^ P) ^ (1 / P) ≤ 1) (hb : (∑ i, ‖b i‖ ^ Q) ^ (1 / Q) ≤ 1) : -- --- CONCL ---
     Integrable (fun g => (∑ j, |⟪a j, g⟫| ^ P) ^ (1 / P) * (∑ i, |⟪b i, g⟫| ^ Q) ^ (1 / Q))
       (stdGaussian (EuclideanSpace ℝ (Fin d))) ∧
     ∫ g, (∑ j, |⟪a j, g⟫| ^ P) ^ (1 / P) * (∑ i, |⟪b i, g⟫| ^ Q) ^ (1 / Q)
@@ -320,7 +320,7 @@ theorem aux_sr_rounding (p q q' : ℝ≥0∞) [Fact (1 ≤ p)] [Fact (1 ≤ q)] 
         (G *ᵥ WithLp.ofLp α) ≤ r)
     (X : Matrix (Fin m ⊕ Fin n) (Fin m ⊕ Fin n) ℝ) (hX : X.PosSemidef)
     (hX1 : ‖WithLp.toLp (p / 2) (fun j => X (Sum.inl j) (Sum.inl j))‖ ≤ 1)
-    (hX2 : ‖WithLp.toLp (q' / 2) (fun i => (Hᵀ * X.toBlocks₂₂ * H) i i)‖ ≤ 1) : -- --- STMT ---
+    (hX2 : ‖WithLp.toLp (q' / 2) (fun i => (Hᵀ * X.toBlocks₂₂ * H) i i)‖ ≤ 1) : -- --- CONCL ---
     ∑ k, ∑ j, G k j * X (Sum.inr k) (Sum.inl j) ≤
       r * (gaussMomentRoot p.toReal * gaussMomentRoot q'.toReal) := by -- --- PROOF ---
   have hq'2 := aux_sr_two_le_conj (q' := q') hq2
@@ -379,7 +379,7 @@ theorem sr_radius_bounds (p q q' : ℝ≥0∞) [Fact (1 ≤ p)] [Fact (1 ≤ q)]
           fromBlocks (diagonal vw.1) 0 0 (H * diagonal vw.2 * Hᵀ)).PosSemidef}) SR)
     (hr : IsGreatest ((fun α : PiLp p (fun _ : Fin m => ℝ) => coeffNorm ((Matrix.mulVecLin H) ∘ₗ
         (WithLp.linearEquiv q ℝ (Fin l → ℝ)).toLinearMap) (G *ᵥ WithLp.ofLp α)) ''
-        Metric.closedBall 0 1) r) : -- --- STMT ---
+        Metric.closedBall 0 1) r) : -- --- CONCL ---
     r ≤ SR ∧ SR ≤ gaussMomentRoot q'.toReal * gaussMomentRoot p.toReal * r ∧
       (SR ≤ 1 → ∀ α ∈ Metric.closedBall (0 : PiLp p (fun _ : Fin m => ℝ)) 1,
         ∃ β : PiLp q (fun _ : Fin l => ℝ), H *ᵥ WithLp.ofLp β = G *ᵥ WithLp.ofLp α ∧ ‖β‖ ≤ 1) ∧

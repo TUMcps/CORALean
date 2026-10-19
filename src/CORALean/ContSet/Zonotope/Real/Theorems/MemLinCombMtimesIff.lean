@@ -44,7 +44,7 @@ variable {n : ℕ}
 /-- The point named by coefficients `κ`, written through the three blocks' own
 coefficients. -/
 theorem Zonotope.aux_linComb_mtimes_eq (Z : Zonotope (Vec ℝ n)) (E : Mat ℝ n n)
-    (κ : Fin (Z.h + Z.h + 1) → ℝ) : -- --- STMT ---
+    (κ : Fin (Z.h + Z.h + 1) → ℝ) : -- --- CONCL ---
     (Z.linComb (Z.mtimes E)).c + ∑ j : Fin (Z.h + Z.h + 1), κ j • (Z.linComb (Z.mtimes E)).G j
       = (2:ℝ)⁻¹ • ((Z.c + ∑ j, κ (Fin.castAdd 1 (Fin.castAdd Z.h j)) • Z.G j)
           + E *ᵥ (Z.c + ∑ j, κ (Fin.castAdd 1 (Fin.castAdd Z.h j)) • Z.G j))
@@ -83,7 +83,7 @@ theorem Zonotope.aux_linComb_mtimes_eq (Z : Zonotope (Vec ℝ n)) (E : Mat ℝ n
 spanned by `Z`'s generators — `z'` with its center scaled by `m` — at coefficients in
 `[-1, 1]`, and every such point is in `P`. -/
 theorem Zonotope.mem_linComb_mtimes_iff {Z : Zonotope (Vec ℝ n)} {E : Mat ℝ n n}
-    {p : Vec ℝ n} : -- --- STMT ---
+    {p : Vec ℝ n} : -- --- CONCL ---
     p ∈ (Z.linComb (Z.mtimes E)).construct ↔
       ∃ β γ : Fin Z.h → ℝ, ∃ m : ℝ, (∀ j, |β j| ≤ 1) ∧ (∀ j, |γ j| ≤ 1) ∧ |m| ≤ 1 ∧
         p = (2:ℝ)⁻¹ • ((Z.c + ∑ j, β j • Z.G j) + E *ᵥ (Z.c + ∑ j, β j • Z.G j))

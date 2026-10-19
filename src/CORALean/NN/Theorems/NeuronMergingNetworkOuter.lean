@@ -64,7 +64,7 @@ theorem neuronMerging_network_outer {n₀ n₁ n n₂ n₃ d r : ℕ}
     {fpre : Vec ℝ n₀ → Vec ℝ n₁} (hpre : pre.Encloses fpre)
     {fpost : Vec ℝ n₂ → Vec ℝ n₃} (hpost : post.Encloses fpost)
     (hY : ∀ x ∈ construct (pre.enclose X),
-      (fun i => σ ((toRealMat W0 *ᵥ x + toRealVec b0) i)) ∈ Y.construct) : -- --- STMT ---
+      (fun i => σ ((toRealMat W0 *ᵥ x + toRealVec b0) i)) ∈ Y.construct) : -- --- CONCL ---
     (fun x => fpost (toRealMat W1 *ᵥ (fun i => σ ((toRealMat W0 *ᵥ fpre x + toRealVec b0) i))
         + toRealVec b1)) '' construct X
       ⊆ construct ((NeuralNetwork.layer (Enclose.pack (S := S) pre)

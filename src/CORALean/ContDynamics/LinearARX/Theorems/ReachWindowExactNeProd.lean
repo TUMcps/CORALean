@@ -35,7 +35,7 @@ open Matrix Scalar
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearARX.reachWindowExact_ne_prod : -- --- STMT ---
+theorem LinearARX.reachWindowExact_ne_prod : -- --- CONCL ---
     let sys : LinearARX ℝ 1 1 2 := ⟨fun _ => 0, fun j => if j.val ≤ 1 then 1 else 0, 1⟩
     let U : ℕ → Set (Vec ℝ 1) := fun _ => {v | |v 0| ≤ 1}
     ∃ w : Vec ℝ (2 * 1), (∀ a : Fin 2, (fun b => w (finProdFinEquiv (a, b))) ∈

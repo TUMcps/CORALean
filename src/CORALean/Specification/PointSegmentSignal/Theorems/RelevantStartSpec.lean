@@ -36,7 +36,8 @@ namespace CORALean
 
 /-- The first value of an interval is the one read at its left end, or just after it. -/
 theorem PointSegmentSignal.relevantStart_spec {T : Type} [LinearOrder T] [Zero T]
-    (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (h0 : 0 ≤ lb) (lc : Bool) : -- --- STMT ---
+    (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (h0 : 0 ≤ lb)
+    (lc : Bool) : -- --- CONCL ---
     1 ≤ s.relevantStart lb lc ∧ s.relevantStart lb lc ≤ s.values.length ∧
     (∀ t : T, 0 ≤ t → (lb < t ∨ (lc = true ∧ t = lb)) → s.relevantStart lb lc - 1 ≤ s.cell t) ∧
     (lc = true → s.cell lb = s.relevantStart lb lc - 1) ∧

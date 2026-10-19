@@ -27,7 +27,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.moveToEq_construct (P : HPolytope α) (S : Finset (Fin P.m))
-    (L : List (Fin P.m)) : -- --- STMT ---
+    (L : List (Fin P.m)) : -- --- CONCL ---
     (P.moveToEq S L).construct
       = {x | (∀ i ∈ S, P.A i x ≤ P.b i) ∧ (∀ r, P.Ae r x = P.be r) ∧
           ∀ i ∈ L, P.A i x = P.b i} := by -- --- PROOF ---

@@ -29,7 +29,7 @@ variable {k m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ParallelHybridAutomaton.selectGlobal_mulVec {d q : Fin k → ℕ}
-    (b : ∀ i, Fin (d i) → ResolveSource k q m) (z : Vec ℝ (∑ i, d i)) (a : Fin m) : -- --- STMT ---
+    (b : ∀ i, Fin (d i) → ResolveSource k q m) (z : Vec ℝ (∑ i, d i)) (a : Fin m) : -- --- CONCL ---
     (selectGlobal b *ᵥ z) a =
       if h : ∃ p', b (finSigmaFinEquiv.symm p').1 (finSigmaFinEquiv.symm p').2 = .global a then
         z (Fin.find _ h) else 0 := by -- --- PROOF ---

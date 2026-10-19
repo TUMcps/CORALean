@@ -44,7 +44,7 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A successful `mapM` in `Option` has an answer for every entry. -/
-theorem aux_mapM_some {α β : Type} {f : α → Option β} : -- --- STMT ---
+theorem aux_mapM_some {α β : Type} {f : α → Option β} : -- --- CONCL ---
     ∀ {l : List α} {l' : List β}, l.mapM f = some l' → ∀ a ∈ l, ∃ b ∈ l', f a = some b
   | [], _, _, a, ha => absurd ha (List.not_mem_nil)
   | a :: l, l', h, a', ha' => by
@@ -67,7 +67,7 @@ theorem HybridAutomaton.reachFloat_outer
     (HA : HybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋
     n) {tFinal : ℚ} {options : LinearSys.ReachOptions 𝕋} {T : ℝ} {k : ℕ} {ℓ ℓ' : L} {x y : Vec ℝ n}
     (run : HA.IsRunUntil T k ℓ x ℓ' y) (hT : T ≤ tFinal) {K : ℕ} (hk : k ≤ K)
-    {X₀ : Zonotope (Vec 𝕋 n)} (hx : x ∈ construct X₀) : -- --- STMT ---
+    {X₀ : Zonotope (Vec 𝕋 n)} (hx : x ∈ construct X₀) : -- --- CONCL ---
     ∀ out ∈ HA.reachFloat tFinal options K ℓ X₀,
       ∃ p ∈ out, p.1 = ℓ' ∧ y ∈ construct p.2 := by -- --- PROOF ---
   intro out (h : HA.reachFloat tFinal options K ℓ X₀ = some out)

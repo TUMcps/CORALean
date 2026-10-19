@@ -36,7 +36,7 @@ theorem StarSet.chordRow_holds (s : StarSet 𝕋 n) (j : Fin n) (b : Interval �
     (hg : StarSet.chordGuard b = true) (α : Fin s.m → ℝ)
     (hα : ∀ k, toReal (s.dom.inf k) ≤ α k ∧ α k ≤ toReal (s.dom.sup k))
     (hy : toReal b.inf ≤ toReal (s.c j) + ∑ k, toReal (s.G j k) * α k ∧
-      toReal (s.c j) + ∑ k, toReal (s.G j k) * α k ≤ toReal b.sup) : -- --- STMT ---
+      toReal (s.c j) + ∑ k, toReal (s.G j k) * α k ≤ toReal b.sup) : -- --- CONCL ---
     ∑ k : Fin (s.m + 1), toReal ((s.chordRow j b).1 k)
         * Fin.snoc (α := fun _ => ℝ) α
           (Real.relu (toReal (s.c j) + ∑ k, toReal (s.G j k) * α k)) k

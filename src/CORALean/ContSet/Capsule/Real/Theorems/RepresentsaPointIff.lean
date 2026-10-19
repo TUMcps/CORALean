@@ -11,6 +11,15 @@ public import CORALean.ContSet.Capsule.Real.Theorems.CenterMemConstructIff
 Needs `0 < n`: in dimension `0` the single point is also the capsule at any `r ≥ 0`. The
 converse direction moves from the center along `g`, or by `r` along the first axis, to a second
 point.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* `hn` – positive dimension
+
+## Conclusion
+* `C = {C.c}` iff `representsa_point`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -29,7 +29,7 @@ namespace CORALean.Real
 /-- Monotone in the operands' sizes, so a bound on them gives a bound on the cost. -/
 theorem ConZonotope.linCombCost_mono {n h₁ h₁' m₁ m₁' me₁ me₁' h₂ h₂' m₂ m₂' me₂ me₂' : ℕ}
     (hh₁ : h₁ ≤ h₁') (hm₁ : m₁ ≤ m₁') (hme₁ : me₁ ≤ me₁')
-    (hh₂ : h₂ ≤ h₂') (hm₂ : m₂ ≤ m₂') (hme₂ : me₂ ≤ me₂') : -- --- STMT ---
+    (hh₂ : h₂ ≤ h₂') (hm₂ : m₂ ≤ m₂') (hme₂ : me₂ ≤ me₂') : -- --- CONCL ---
     ConZonotope.linCombCost n h₁ m₁ me₁ h₂ m₂ me₂ ≤
       ConZonotope.linCombCost n h₁' m₁' me₁' h₂' m₂' me₂' := by -- --- PROOF ---
   cost_mono [ConZonotope.linCombCost, HPolytope.comapCost, HPolytope.halfScaledCost,

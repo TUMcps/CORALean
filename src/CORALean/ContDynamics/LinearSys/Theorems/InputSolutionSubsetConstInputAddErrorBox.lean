@@ -46,7 +46,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 `(∫₀^r e^{As} ds) U`, widened by the step's error box. -/
 theorem LinearSys.inputSolution_subset_constInput_add_errorBox (sys : LinearSys 𝕋 n)
     {r : ℝ} (hr : 0 < r) (η : ℕ) (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
-    (U : Zonotope (Vec ℝ n)) : -- --- STMT ---
+    (U : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (sys.inputSolution (S := 𝒵) r η U).construct
       ⊆ (Zonotope.mtimes (MatExp.expIntegral (toRealMat sys.A) r) U).construct
         + (sys.timePointStepErrorBox r η U).construct := by -- --- PROOF ---

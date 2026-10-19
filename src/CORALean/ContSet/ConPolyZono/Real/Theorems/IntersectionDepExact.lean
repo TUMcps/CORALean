@@ -47,7 +47,7 @@ variable {n : ℕ}
 /-- Only the first generator block survives. The second is kept at zero rather
 than dropped, so that the agreement rows have columns in which to read it. -/
 theorem ConPolyZono.aux_value_intersectionDep (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n))
-    (a : Fin (cPZ₁.p + cPZ₂.p) → ℝ) : -- --- STMT ---
+    (a : Fin (cPZ₁.p + cPZ₂.p) → ℝ) : -- --- CONCL ---
     (∑ l : Fin (cPZ₁.h + cPZ₂.h),
         PolyZonotope.monomial (PolyZonotope.plusE cPZ₁.E cPZ₂.E) a l
           • Fin.append cPZ₁.G (0 : Fin cPZ₂.h → Vec ℝ n) l)
@@ -60,7 +60,7 @@ theorem ConPolyZono.aux_value_intersectionDep (cPZ₁ cPZ₂ : ConPolyZono (Vec 
 /-- What `intersectionDep`'s constraint system says: each set's own constraints, and that
 the two points agree coordinate by coordinate. -/
 theorem ConPolyZono.aux_mem_cons_intersectionDep_iff (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n))
-    (a : Fin (cPZ₁.p + cPZ₂.p) → ℝ) : -- --- STMT ---
+    (a : Fin (cPZ₁.p + cPZ₂.p) → ℝ) : -- --- CONCL ---
     a ∈ (cPZ₁.intersectionDep cPZ₂).cons.construct ↔
       ((fun k => a (Fin.castAdd cPZ₂.p k)) ∈ cPZ₁.cons.construct
         ∧ (fun k => a (Fin.natAdd cPZ₁.p k)) ∈ cPZ₂.cons.construct)

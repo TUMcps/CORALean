@@ -93,7 +93,7 @@ theorem aux_offDiag_witness (A : Interval (Mat ℝ n n)) (hA : ∀ p q, A.inf p 
     {i j : Fin n} (hij : i ≠ j) {y u v : ℝ} (hy : A.inf i j ≤ y ∧ y ≤ A.sup i j)
     (hu : A.inf i i ≤ u ∧ u ≤ A.sup i i) (hv : A.inf j j ≤ v ∧ v ≤ A.sup j j)
     {d e : Fin n → ℝ} (hd : ∀ k, A.inf i k ≤ d k ∧ d k ≤ A.sup i k)
-    (he : ∀ k, A.inf k j ≤ e k ∧ e k ≤ A.sup k j) : -- --- STMT ---
+    (he : ∀ k, A.inf k j ≤ e k ∧ e k ≤ A.sup k j) : -- --- CONCL ---
     ∃ M ∈ A.construct, (M * M) i j
       = y * (u + v) + ∑ k ∈ Finset.univ \ {i, j}, d k * e k := by -- --- PROOF ---
   classical
@@ -142,7 +142,7 @@ theorem aux_offDiag_witness (A : Interval (Mat ℝ n n)) (hA : ∀ p q, A.inf p 
 theorem aux_diag_witness (A : Interval (Mat ℝ n n)) (hA : ∀ p q, A.inf p q ≤ A.sup p q)
     {i : Fin n} {a : ℝ} (ha : A.inf i i ≤ a ∧ a ≤ A.sup i i)
     {d e : Fin n → ℝ} (hd : ∀ k, A.inf i k ≤ d k ∧ d k ≤ A.sup i k)
-    (he : ∀ k, A.inf k i ≤ e k ∧ e k ≤ A.sup k i) : -- --- STMT ---
+    (he : ∀ k, A.inf k i ≤ e k ∧ e k ≤ A.sup k i) : -- --- CONCL ---
     ∃ M ∈ A.construct, (M * M) i i
       = a ^ 2 + ∑ k ∈ Finset.univ.erase i, d k * e k := by -- --- PROOF ---
   classical

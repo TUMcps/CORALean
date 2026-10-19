@@ -60,7 +60,7 @@ theorem LinParamSys.IsCanonicalConstTrajectory.step_outer {sys : LinParamSys ℐ
     (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.intervalInputRemainder sys.A r (m + 2)) U)))
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A r (m + 2)) U))) : -- --- STMT ---
+      (MatExp.intervalInputRemainder sys.A r (m + 2)) U))) : -- --- CONCL ---
     x r ∈ construct (Plus.plus (sys.timeIntervalStep r (m + 2) R₀)
       (sys.inputSolution r (m + 2) U)) := by -- --- PROOF ---
   have lin := traj.toLinearSys

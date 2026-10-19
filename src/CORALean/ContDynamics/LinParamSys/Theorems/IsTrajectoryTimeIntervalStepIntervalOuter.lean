@@ -53,7 +53,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalStep_interval_outer {sys :
     (traj : sys.IsCanonicalTrajectory T R₀ U x u A) {r : ℝ} (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T)
     (hu : ∀ s ∈ Set.Ico 0 r, u s = 0) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A.interval).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
-    {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- STMT ---
+    {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     x t ∈ construct
       ((LinParamSys.canonical sys.A.interval : LinParamSys ℐ n).timeIntervalStep r (m + 2)
         R₀) := by -- --- PROOF ---

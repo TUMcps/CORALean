@@ -38,7 +38,7 @@ variable {n r : ℕ}
 theorem ZonoBundle.encloseTight_outer (zB₁ zB₂ : ZonoBundle (Vec ℝ n))
     (hk₁ : 0 < zB₁.k) (hk₂ : 0 < zB₂.k) (hne₁ : zB₁.construct.Nonempty)
     (hne₂ : zB₂.construct.Nonempty) (W : Fin r → Mat ℝ n n) (hW : ∀ i, IsUnit (W i).det)
-    {U : Mat ℝ n n} (hU : U * Uᵀ = 1) : -- --- STMT ---
+    {U : Mat ℝ n n} (hU : U * Uᵀ = 1) : -- --- CONCL ---
     convexHull ℝ (zB₁.construct ∪ zB₂.construct)
       ⊆ (zB₁.encloseTight zB₂ hk₁ hk₂ hne₁ hne₂ W U).construct := by -- --- PROOF ---
   -- the joined vertices span both bundles

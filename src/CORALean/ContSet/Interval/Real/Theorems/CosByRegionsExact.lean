@@ -125,7 +125,7 @@ theorem aux_cosByRegions_last {yl yu : ℝ} (hyl : 0 ≤ yl ∧ yl < 2 * Real.pi
       (yl ∈ Set.Ico Real.pi (2 * Real.pi) ∧ yu ∈ Set.Ico Real.pi (2 * Real.pi) ∧ yu < yl)))
     (hB : ¬(yl ∈ Set.Ico Real.pi (2 * Real.pi) ∧ yu ∈ Set.Ico Real.pi (2 * Real.pi) ∧ yl ≤ yu))
     (hC : ¬(yl ∈ Set.Ico Real.pi (2 * Real.pi) ∧ yu ∈ Set.Ico 0 Real.pi))
-    (hD : ¬(yl ∈ Set.Ico 0 Real.pi ∧ yu ∈ Set.Ico Real.pi (2 * Real.pi))) : -- --- STMT ---
+    (hD : ¬(yl ∈ Set.Ico 0 Real.pi ∧ yu ∈ Set.Ico Real.pi (2 * Real.pi))) : -- --- CONCL ---
     yl ∈ Set.Ico 0 Real.pi ∧ yu ∈ Set.Ico 0 Real.pi ∧ yl ≤ yu := by -- --- PROOF ---
   -- `y̲` is not in `R_c2`
   have hl : yl < Real.pi := by

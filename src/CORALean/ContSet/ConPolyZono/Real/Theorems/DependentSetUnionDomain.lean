@@ -43,7 +43,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.dependentSet_union_domain {p h : ℕ} (c : α) (G : Fin h → α)
-    (E : Fin p → Fin h → ℕ) (D₁ D₂ : Set (Fin p → ℝ)) : -- --- STMT ---
+    (E : Fin p → Fin h → ℕ) (D₁ D₂ : Set (Fin p → ℝ)) : -- --- CONCL ---
     {x | ∃ a ∈ D₁ ∪ D₂, x = c + ∑ i, PolyZonotope.monomial E a i • G i}
       = {x | ∃ a ∈ D₁, x = c + ∑ i, PolyZonotope.monomial E a i • G i}
         ∪ {x | ∃ a ∈ D₂, x = c + ∑ i, PolyZonotope.monomial E a i • G i} := by -- --- PROOF ---

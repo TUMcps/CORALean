@@ -34,7 +34,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 theorem NeuralNetwork.Encloses.propagateBounds_outer [Intersection (S m) (Vec ℝ m)]
     {seg : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m} (hf : seg.Encloses f) (B : S n)
     (stored : Option (S m))
-    (hstored : ∀ I, stored = some I → ∀ x ∈ construct B, f x ∈ construct I) : -- --- STMT ---
+    (hstored : ∀ I, stored = some I → ∀ x ∈ construct B, f x ∈ construct I) : -- --- CONCL ---
     ∀ x ∈ construct B, f x ∈ construct (seg.propagateBounds B stored) := by -- --- PROOF ---
   intro x hx
   cases stored with

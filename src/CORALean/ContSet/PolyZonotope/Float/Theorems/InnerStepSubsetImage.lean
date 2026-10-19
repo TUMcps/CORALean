@@ -66,7 +66,7 @@ theorem PolyZonotope.innerStep_subset_image (pZ : PolyZonotope (Vec 𝕋 n))
       (y - (PolyZonotope.nominal pZ).point (toRealVec xc)) ∈ b.construct) (U : Interval (Vec 𝕋 n))
     (hU : U.construct ⊆ (⟨fun i => X.inf (ind i), fun i => X.sup (ind i)⟩ :
       Interval (Vec 𝕋 n)).construct)
-    (hmem : (Interval.point fun i => xc (ind i)).le U = true) : -- --- STMT ---
+    (hmem : (Interval.point fun i => xc (ind i)).le U = true) : -- --- CONCL ---
     ∀ t ∈ PolyZonotope.innerStep pZ X₀ ind C xc b U,
       (((Interval.point fun i => xc (ind i)).plus t).le U = true) →
       Y.construct ⊆ (PolyZonotope.nominal pZ).point '' X.construct := by -- --- PROOF ---

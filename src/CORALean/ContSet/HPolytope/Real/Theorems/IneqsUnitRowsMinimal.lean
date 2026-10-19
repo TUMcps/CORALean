@@ -43,7 +43,7 @@ variable {q n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.ineqs_unit_rows_minimal (A : Mat ℝ q n) (hA : ∀ i, A i ⬝ᵥ A i = 1)
-    (hinj : Function.Injective A) (j : Fin q) : -- --- STMT ---
+    (hinj : Function.Injective A) (j : Fin q) : -- --- CONCL ---
     (HPolytope.ineqs A 1).construct ≠
       (HPolytope.ineqs (A.submatrix (dropIdx j) id)
         fun i => (1 : Vec ℝ q) (dropIdx j i)).construct := by -- --- PROOF ---

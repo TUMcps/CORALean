@@ -31,7 +31,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.mulG_apply (pZ₁ pZ₂ : PolyZonotope (Vec ℝ n))
-    (l : Fin ((pZ₁.h + 1) * (pZ₂.h + 1))) (i : Fin n) : -- --- STMT ---
+    (l : Fin ((pZ₁.h + 1) * (pZ₂.h + 1))) (i : Fin n) : -- --- CONCL ---
     PolyZonotope.mulG pZ₁ pZ₂ l i
       = PolyZonotope.extG pZ₁ (finProdFinEquiv.symm l).1 i
         * PolyZonotope.extG pZ₂ (finProdFinEquiv.symm l).2 i := rfl

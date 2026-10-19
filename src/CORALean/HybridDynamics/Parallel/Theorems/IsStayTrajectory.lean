@@ -36,7 +36,7 @@ is the stack, under some input and disturbance of the product. -/
 theorem ParallelHybridAutomaton.IsStay.trajectory {P : ParallelHybridAutomaton S G k L ℝ n m}
     (hfeed : P.FeedthroughFree) (lift : ParallelHybridAutomaton.Lifting S G n m)
     {ℓ : ∀ i, L i} {τ : ℝ} {x : ∀ i, ℝ → Vec ℝ (n i)} {u w} {g : ℝ → Vec ℝ m}
-    (h : P.IsStay ℓ τ x u w g) : -- --- STMT ---
+    (h : P.IsStay ℓ τ x u w g) : -- --- CONCL ---
     ∃ (g' : ℝ → Vec ℝ m) (w' : ℝ → Vec ℝ (∑ i, (P.sys ℓ i).r)),
       (P.locationProduct lift ℓ).IsTrajectory τ (fun t => stack fun i => x i t) g' w' :=
   h.trajectoryWith (P.mergeFlowsLinearSys_flowLaw hfeed lift) lift

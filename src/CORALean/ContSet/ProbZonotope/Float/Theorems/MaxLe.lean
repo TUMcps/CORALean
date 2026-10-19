@@ -61,7 +61,7 @@ theorem ProbZonotope.aux_max_le_of_bounds {S : Mat ℝ n n} (hS : S.IsHermitian)
     (hgS : ∀ i, toReal g ≤ S i i - ∑ j ∈ Finset.univ.erase i, |S i j|)
     (htp : toReal twoPi ≤ 2 * π) (hq0 : 0 ≤ toReal q) (hq : toReal q ≤ toReal twoPi * toReal g)
     (hd : toReal d ≤ Real.sqrt (toReal q ^ n)) (hd0 : 0 < toReal d)
-    (he : Real.exp (-(1 / 2) * m ^ 2) ≤ toReal e) : -- --- STMT ---
+    (he : Real.exp (-(1 / 2) * m ^ 2) ≤ toReal e) : -- --- CONCL ---
     0 < S.det ∧
       (⟨Z, S⟩ : Real.ProbZonotope n).max m ≤ toReal (divUp e d) := by -- --- PROOF ---
   have hdet := ProbZonotope.aux_pow_le_det hS hg.le hgS

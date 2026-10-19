@@ -75,7 +75,7 @@ theorem ConPolyZono.union_satisfies_of_real (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (V
       - (Real.ConPolyZono.union cPZ₁.nominalCore cPZ₂.nominalCore).cons.b i|
       ≤ |Fin.append (0 : Vec ℝ (1 + 1))
           (Fin.append (toRealVec cPZ₁.cons.b_error)
-            (toRealVec cPZ₂.cons.b_error)) i|) : -- --- STMT ---
+            (toRealVec cPZ₂.cons.b_error)) i|) : -- --- CONCL ---
     a ∈ (cPZ₁.union cPZ₂).cons.construct := by -- --- PROOF ---
   -- the exact operand rows, named once
   set L := Real.ConPolyZono.unionLower cPZ₁.nominalCore.cons cPZ₂.nominalCore.cons with hLdef

@@ -45,7 +45,7 @@ variable {ny nu : ℕ} {ι : Type} [Fintype ι]
 theorem Conform.zcp_classification_lp {M E : Type} [Fintype E] {nr : ℕ}
     (f : M → Vec ℝ ny) (D : M → Mat ℝ ny nu) (c : M → Fin ny) (Gu : ι → Vec ℝ nu)
     (R : Fin (nr + 1) → Mat ℝ ny ny) (Deval : E → Mat ℝ ny nu) (α : ι → ℝ)
-    (hα : ∀ j, 0 ≤ α j) : -- --- STMT ---
+    (hα : ∀ j, 0 ≤ α j) : -- --- CONCL ---
     ((∀ m, ∃ β : ι → ℝ, (∀ j, 0 ≤ α j + β j) ∧ (∀ j, 0 ≤ α j - β j) ∧
         -(Conform.classMat (c m) *ᵥ f m) ≤ Conform.classMat (c m) *ᵥ ∑ j, β j • D m *ᵥ Gu j) ↔
       ∀ m, Conform.classesVec (Pi.single (c m) 1 : Vec ℝ ny)

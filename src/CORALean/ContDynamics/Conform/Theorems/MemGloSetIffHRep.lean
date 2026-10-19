@@ -47,7 +47,7 @@ theorem Conform.mem_gloSet_iff_hRep {ιx ιu κ : Type} [Fintype ιx] [Fintype �
       (Sum.elim (fun j => Cb *ᵥ Gx j) fun r : Fin (k + 1) × ιu => Db r.1 *ᵥ Gu r.2)) = ⊤)
     (hN : Conform.HasNormals
       (Sum.elim (fun j => Cb *ᵥ Gx j) fun r : Fin (k + 1) × ιu => Db r.1 *ᵥ Gu r.2) N)
-    (y : Vec ℝ (q + 1)) : -- --- STMT ---
+    (y : Vec ℝ (q + 1)) : -- --- CONCL ---
     y ∈ Conform.gloSet yb Cb Db cx (Conform.templateZono (cx + dx) Gx αx) cu
         (fun _ => Conform.templateZono (cu + du) Gu αu) ↔
       ∀ i, N i ⬝ᵥ (y - yb) ≤ ∑ j, |N i ⬝ᵥ (Cb *ᵥ Gx j)| * αx j

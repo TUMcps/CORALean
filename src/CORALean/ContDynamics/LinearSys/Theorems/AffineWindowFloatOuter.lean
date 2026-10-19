@@ -41,7 +41,7 @@ theorem LinearSys.affineWindowFloat_outer (sys : LinearSys 𝕋 n) {H Hnext : Zo
     (hη : sys.OrderAdmissibleFloat Δt Δt η) {h : Vec ℝ n} (hh : h ∈ H.construct)
     (hnext : exp (toReal Δt • Scalar.toRealMat sys.A) *ᵥ h
       + Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt) *ᵥ toRealVec ũ
-        ∈ Hnext.construct) {τ : ℝ} (hτ0 : 0 ≤ τ) (hτ : τ ≤ toReal Δt) : -- --- STMT ---
+        ∈ Hnext.construct) {τ : ℝ} (hτ0 : 0 ≤ τ) (hτ : τ ≤ toReal Δt) : -- --- CONCL ---
     exp (τ • Scalar.toRealMat sys.A) *ᵥ h
         + Real.MatExp.expIntegral (Scalar.toRealMat sys.A) τ *ᵥ toRealVec ũ
       ∈ (sys.affineWindowFloat H Hnext ũ Δt η).construct := by -- --- PROOF ---

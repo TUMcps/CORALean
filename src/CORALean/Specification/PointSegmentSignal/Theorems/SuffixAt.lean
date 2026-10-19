@@ -35,7 +35,7 @@ theorem PointSegmentSignal.suffix_at (s : PointSegmentSignal T) (hs : s.IsValid)
     (hj1 : 1 ≤ j) (hj2 : j ≤ s.timePoints.length) (A : List T) (VA : List Bool)
     (hlen : VA.length = 2 * A.length) (hA : A ≠ []) (hAle : ∀ x ∈ A, x ≤ u) (after : Bool)
     (hafter : after = s.succIntervalValue j)
-    (hAat : ∀ t, u < t → (PointSegmentSignal.mk A VA).at t = after) : -- --- STMT ---
+    (hAat : ∀ t, u < t → (PointSegmentSignal.mk A VA).at t = after) : -- --- CONCL ---
     ∀ t, u < t → (PointSegmentSignal.mk (A ++ s.timePoints.drop j)
       (VA ++ s.values.drop (2 * j))).at t = s.at t := by -- --- PROOF ---
   intro t ht

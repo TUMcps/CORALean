@@ -43,7 +43,7 @@ within `[a, b]` at every point. -/
 theorem aux_hasDerivWithinAt_of_eq_add_integral {a b : ℝ} {x g : ℝ → Vec ℝ n}
     (h0 : (0:ℝ) ∈ Set.Icc a b) (hg : ContinuousOn g (Set.Icc a b))
     (hx : ∀ t ∈ Set.Icc a b, x t = x 0 + ∫ s in (0:ℝ)..t, g s) {t : ℝ}
-    (ht : t ∈ Set.Icc a b) : -- --- STMT ---
+    (ht : t ∈ Set.Icc a b) : -- --- CONCL ---
     HasDerivWithinAt x (g t) (Set.Icc a b) t := by -- --- PROOF ---
   haveI : Fact (t ∈ Set.Icc a b) := ⟨ht⟩
   have hint : IntervalIntegrable g volume 0 t :=
@@ -62,7 +62,7 @@ theorem NonlinearSys.IsTrajectory.hasDerivWithinAt {sys : NonlinearSys n m} {a b
     {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (Set.Icc a b) R₀ U x u y)
     (h0 : (0:ℝ) ∈ Set.Icc a b)
     (hf : ContinuousOn (fun t => sys.f (x t) (u t)) (Set.Icc a b)) {t : ℝ}
-    (ht : t ∈ Set.Icc a b) : -- --- STMT ---
+    (ht : t ∈ Set.Icc a b) : -- --- CONCL ---
     HasDerivWithinAt x (sys.f (x t) (u t)) (Set.Icc a b) t :=
   aux_hasDerivWithinAt_of_eq_add_integral h0 hf traj.flow ht
 

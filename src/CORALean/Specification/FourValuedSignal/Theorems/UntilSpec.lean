@@ -44,7 +44,7 @@ namespace CORALean
 
 /-- The until of four-valued signals is inconclusive where the refinements differ. -/
 theorem FourValuedSignal.until_spec (lhs rhs : FourValuedSignal ℝ) (hl : lhs.IsValid)
-    (hr : rhs.IsValid) (U : STLInterval) : -- --- STMT ---
+    (hr : rhs.IsValid) (U : STLInterval) : -- --- CONCL ---
     let minU := (lhs.toKleeneSignal Kleene.ff).until U (rhs.toKleeneSignal Kleene.ff)
     let maxU := (lhs.toKleeneSignal Kleene.tt).until U (rhs.toKleeneSignal Kleene.tt)
     ∃ r, lhs.until U rhs = some r ∧ r.IsValid ∧ ∀ t : ℝ, 0 ≤ t →

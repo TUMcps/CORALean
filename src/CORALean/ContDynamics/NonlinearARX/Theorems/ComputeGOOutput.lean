@@ -42,7 +42,7 @@ variable {dy du p : ℕ}
 theorem NonlinearARX.computeGO_output (sys : NonlinearARX dy du p) (hp : 0 < p)
     (x0 : Vec ℝ (p * dy)) (u_ref : ℕ → Vec ℝ du) {y : ℕ → Vec ℝ dy} {u : ℕ → Vec ℝ du}
     (hy : ∀ k, p ≤ k → y k = sys.f (NonlinearARX.pastOut p y k) (NonlinearARX.pastIn p u k))
-    (k : ℕ) : -- --- STMT ---
+    (k : ℕ) : -- --- CONCL ---
     y k - (sys.computeGO x0 u_ref).y k
       = (sys.computeGO x0 u_ref).C k *ᵥ (NonlinearARX.stack p y 0 - x0)
         + ∑ j ∈ Finset.range (k + 1), (sys.computeGO x0 u_ref).D k j *ᵥ

@@ -56,7 +56,7 @@ theorem LinearSysDT.aux_glmReach_foldl {α β : Type} (f : α → α) (g : α �
 
 /-- The loop invariant: `Xᵢ ⊕ Sᵢ = Ωᵢ` and `Sᵢ ⊕ Vᵢ = ΦSᵢ ⊕ U`. -/
 theorem LinearSysDT.aux_glmReach_inv (sys : LinearSysDT 𝕋 n) (Ω₀ U : Zonotope (Vec ℝ n))
-    (k : ℕ) : -- --- STMT ---
+    (k : ℕ) : -- --- CONCL ---
     let f := fun (s : Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n)) =>
       (s.1.mtimes (toRealMat sys.A), s.2.1.plus s.2.2, s.2.2.mtimes (toRealMat sys.A))
     let s := f^[k] (Ω₀, Zonotope.ofPoint 0, U)

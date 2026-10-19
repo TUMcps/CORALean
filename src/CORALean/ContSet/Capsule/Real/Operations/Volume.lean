@@ -16,6 +16,12 @@ along the segment, the `(n-1)`-ball of radius `r` times the segment's length `2â
 and `0` for an empty capsule (`r < 0`) or for `n = 0`. The Lebesgue measure of a zero-dimensional
 space is `1`, not CORA's `0`, so `volume_eq` is stated for `n > 0`. The norm is written out as
 `Real.sqrt`, as in `Capsule.construct`.
+
+## Inputs
+* `C` â€“ capsule
+
+## Output
+* Lebesgue volume of `C`
 -/
 
 -- Authors:       Claude Sonnet 5.5

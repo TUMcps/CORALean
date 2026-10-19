@@ -34,7 +34,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.intersectStripLiu1D_counterexample : -- --- STMT ---
+theorem Ellipsoid.intersectStripLiu1D_counterexample : -- --- CONCL ---
     1 < (1 : ℝ) + ((1 / 2 : ℝ) - 1 * 0) ^ 2 ∧ ((1 : ℝ) - 0) ^ 2 / 1 ≤ 1 ∧
       ((1 / 2 : ℝ) - 1 * 1) ^ 2 / 1 ≤ 1 ∧
       1 < (1 - (Ellipsoid.intersectStripLiu1D 1 0 1 1 1 (1 / 2) 1).1) ^ 2 /

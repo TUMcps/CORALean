@@ -40,7 +40,7 @@ variable {n p N r k : ℕ}
 
 /-- [1, Eq. 9-12], [1, Eq. 20-23]: `Ũᵀ Ā Ũ = Ũᵀ X2 Ṽ Σ̃⁻¹`, for `ŨᵀŨ = I`. -/
 theorem dmdCandidate_reduced (X2 : Mat ℝ n N) (V : Mat ℝ n r) (s : Fin r → ℝ) (W : Mat ℝ N r)
-    (hV : Vᵀ * V = 1) : -- --- STMT ---
+    (hV : Vᵀ * V = 1) : -- --- CONCL ---
     Vᵀ * dmdCandidate X2 V s W r * V
       = Vᵀ * (X2 * W * Matrix.diagonal
         (fun i : Fin r => if (i : ℕ) < r then (s i)⁻¹ else 0)) := by -- --- PROOF ---

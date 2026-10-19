@@ -40,7 +40,7 @@ open CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `R0 = {1}`: the initial state is in `R0` and not in the observer's first box. -/
-theorem LinearSysDT.observeInterval_cora_counterexample : -- --- STMT ---
+theorem LinearSysDT.observeInterval_cora_counterexample : -- --- CONCL ---
     let sys : LinearSysDT ℝ 1 := LinearSysDT.canonical 0
     let R₀ : Zonotope (Vec ℝ 1) := Zonotope.ofPoint (fun _ => 1)
     (fun _ => 1 : Vec ℝ 1) ∈ R₀.construct ∧

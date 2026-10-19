@@ -40,7 +40,7 @@ variable {q n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.isGreatest_ball_radius (A : Mat ℝ q n) (b : Vec ℝ q) (hq : 0 < q)
-    (hA : ∀ i, ‖A i‖₂ = 1) (hb : 0 ≤ b) : -- --- STMT ---
+    (hA : ∀ i, ‖A i‖₂ = 1) (hb : 0 ≤ b) : -- --- CONCL ---
     IsGreatest {s | 0 ≤ s ∧ ∀ x : Vec ℝ n, ‖x‖₂ ≤ s → x ∈ (HPolytope.ineqs A b).construct}
         (Finset.univ.inf' ⟨⟨0, hq⟩, Finset.mem_univ _⟩ b) ∧
       (Finset.univ.inf' ⟨⟨0, hq⟩, Finset.mem_univ _⟩ b) ^ 2 =

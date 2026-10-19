@@ -54,7 +54,7 @@ theorem ConZonotope.aux_blockCoeff {k : ℕ} (P : HPolytope 𝕋 (Vec 𝕋 k))
     {Q : HPolytope 𝕋 (Vec 𝕋 k)} (hQ : Q = P.stackRows (HPolytope.unitBox 𝕋 k))
     (hl0 : 0 ≤ lam)
     (hA : ∀ i, (toRealMat Q.A *ᵥ γ) i ≤ lam * toReal (Q.b i))
-    (hE : ∀ i, (toRealMat Q.Ae *ᵥ γ) i = lam * toReal (Q.be i)) : -- --- STMT ---
+    (hE : ∀ i, (toRealMat Q.Ae *ᵥ γ) i = lam * toReal (Q.be i)) : -- --- CONCL ---
     ∃ β : Vec ℝ k, (∀ j, |β j| ≤ 1) ∧ β ∈ P.nominal.construct ∧ lam • β = γ := by -- --- PROOF ---
   obtain rfl | hpos := hl0.eq_or_lt
   · -- zero weight: the unit-box rows pin the block to the origin
@@ -96,7 +96,7 @@ theorem ConZonotope.aux_blockCoeff {k : ℕ} (P : HPolytope 𝕋 (Vec 𝕋 k))
 
 theorem ConZonotope.linCombSameCenter_subset (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n))
     (hc : cZ₂.c = cZ₁.c) (hs₁ : cZ₁.P.IsSlackFree) (hs₂ : cZ₂.P.IsSlackFree)
-    (hne₁ : (nominalSet cZ₁).Nonempty) (hne₂ : (nominalSet cZ₂).Nonempty) : -- --- STMT ---
+    (hne₁ : (nominalSet cZ₁).Nonempty) (hne₂ : (nominalSet cZ₂).Nonempty) : -- --- CONCL ---
     nominalSet (cZ₁.linCombSameCenter cZ₂) ⊆
       Set.linComb (nominalSet cZ₁) (nominalSet cZ₂) := by -- --- PROOF ---
   intro x hx

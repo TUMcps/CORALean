@@ -37,7 +37,7 @@ sets `reachFloat` computed for `ℓ`. -/
 theorem HybridAutomaton.reachSetExact_subset_reachFloat
     (HA : HybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋
     n) {tFinal : ℚ} {options : LinearSys.ReachOptions 𝕋} {K : ℕ} {ℓ₀ : L} {X₀ : Zonotope (Vec 𝕋 n)}
-    (ℓ : L) : -- --- STMT ---
+    (ℓ : L) : -- --- CONCL ---
     ∀ out ∈ HA.reachFloat tFinal options K ℓ₀ X₀,
       (⋃ (T : ℝ) (_ : T ≤ tFinal) (k : ℕ) (_ : k ≤ K),
           {y | ∃ x ∈ construct X₀, HA.IsRunUntil T k ℓ₀ x ℓ y})

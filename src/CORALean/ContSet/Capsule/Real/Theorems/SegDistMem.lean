@@ -6,6 +6,16 @@ public import CORALean.ContSet.Capsule.Real.Operations.SegDist
 
 /-!
 # The axis distance is attained
+
+## Inputs
+* `C₁` – first capsule
+* `C₂` – second capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* `segDist` is attained at parameters in `[-1, 1]`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -49,7 +49,7 @@ theorem MatExp.exists_mem_intervalCorrectionMatrix_of_integral {B : Interval (Ma
     (hxc : ContinuousOn x (Set.Icc 0 r))
     (hx : ∀ s ∈ Set.Icc 0 r, x s = x 0 + ∫ σ in (0:ℝ)..s, A σ *ᵥ x σ) {m : ℕ}
     (hε : ‖(Interval.smul r B).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
-    {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- STMT ---
+    {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     ∃ Φ ∈ (MatExp.expIntervalEnclosure (Interval.smul r B) (m + 2)).construct,
       ∃ F ∈ (MatExp.intervalCorrectionMatrix B r (m + 2)).construct,
         x t = ((1 - t / r) • x 0 + (t / r) • (Φ *ᵥ x 0)) + F *ᵥ x 0 := by -- --- PROOF ---

@@ -43,7 +43,7 @@ theorem LinearSys.canonicalFormFloat_output_outer (sys : LinearSys 𝕋 n)
     (U : Zonotope (Vec 𝕋 sys.m)) (uVec : Vec 𝕋 sys.m) (W : Zonotope (Vec 𝕋 sys.r))
     (V : Zonotope (Vec 𝕋 sys.s)) (vVec : Vec 𝕋 sys.s)
     {u : Vec ℝ sys.m} (hu : u ∈ U.construct) {v : Vec ℝ sys.s}
-    (hv : v ∈ V.construct) : -- --- STMT ---
+    (hv : v ∈ V.construct) : -- --- CONCL ---
     let G := sys.canonicalFormFloat U uVec W V vVec
     toRealMat sys.D *ᵥ (toRealVec uVec + u) + toRealVec sys.k + toRealMat sys.F *ᵥ
         (toRealVec vVec + v) ∈

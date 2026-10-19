@@ -52,7 +52,7 @@ theorem Location.IsTrajectory.timeIntervalFloat_outer
     (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • Scalar.toRealMat ℓ.dynamics.A) *ᵥ
       (Scalar.toRealMat ℓ.dynamics.B *ᵥ u s + Scalar.toRealVec ℓ.dynamics.c +
         Scalar.toRealMat ℓ.dynamics.E *ᵥ w s))
-      ∈ construct Ud) : -- --- STMT ---
+      ∈ construct Ud) : -- --- CONCL ---
     x t ∈ construct (Plus.plus (ℓ.timeIntervalStepFloat r η R₀) Ud) := by -- --- PROOF ---
   have ltraj := traj.linearSys h₀ traj.inputSetFloat_mem
   have hTt : Set.Icc (0:ℝ) t ⊆ Set.Icc 0 τ := Set.Icc_subset_Icc le_rfl htτ

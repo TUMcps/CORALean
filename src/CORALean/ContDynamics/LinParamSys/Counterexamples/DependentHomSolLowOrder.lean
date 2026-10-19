@@ -47,7 +47,7 @@ open scoped Pointwise
 /-- At `A = p₁ N`, `u = p₁ e₂`, `p = (1, 0)`, `x(0) = 0`, the solution `x(t) = (t²/2, t)` has
 `x(r) ∉ R_lowOrder ⊕ Z` for every `Z` whose first coordinates stay within `δ < r²/2`. -/
 theorem LinParamSys.dependentHomSolLowOrder_counterexample {r δ : ℝ} (hδ : δ < r ^ 2 / 2)
-    {Z : Set (Vec ℝ 2)} (hZ : ∀ z ∈ Z, |z 0| ≤ δ) : -- --- STMT ---
+    {Z : Set (Vec ℝ 2)} (hZ : ∀ z ∈ Z, |z 0| ≤ δ) : -- --- CONCL ---
     let Ag : Fin 2 → Mat ℝ 2 2 := ![!![0, 1; 0, 0], 0]
     let UG : Fin 2 → Vec ℝ 2 := ![![0, 1], 0]
     let p : Fin 2 → ℝ := ![1, 0]

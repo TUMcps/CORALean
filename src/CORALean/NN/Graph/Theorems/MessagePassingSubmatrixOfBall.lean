@@ -45,7 +45,7 @@ theorem GNN.messagePassing_submatrix_of_ball {N : ℕ} (A : Mat ℝ N N) (hA : �
     (hSymm : ∀ i j, A i j = A j i) (v : Fin N) (r : ℕ) {K : ℕ} (κ : Fin K → Fin N)
     (hinj : Function.Injective κ) (hκ : GNN.ball A v (r + 1) ⊆ Finset.univ.image κ)
     {i j : Fin N} (hi : i ∈ GNN.ball A v r) (hj : j ∈ GNN.ball A v r)
-    (ki kj : Fin K) (hki : κ ki = i) (hkj : κ kj = j) : -- --- STMT ---
+    (ki kj : Fin K) (hki : κ ki = i) (hkj : κ kj = j) : -- --- CONCL ---
     GNN.messagePassing (A.submatrix κ κ) ki kj = GNN.messagePassing A i j := by -- --- PROOF ---
   have hdi : GNN.degree (A.submatrix κ κ) ki = GNN.degree A i :=
     GNN.degree_submatrix_of_ball A hA hSymm v r κ hinj hκ hi ki hki

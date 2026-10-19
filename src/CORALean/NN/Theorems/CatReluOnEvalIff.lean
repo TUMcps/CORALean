@@ -52,7 +52,7 @@ theorem aux_mulVec_diag (p : Fin n → Prop) [DecidablePred p] (x : Vec ℝ n) :
   by_cases hp : p j <;> simp [hp, toReal_one, toReal_zero]
 
 /-- One `ReLUᵢ` replaces coordinate `i` by `max(xᵢ, 0)`. -/
-theorem aux_eval_step_iff (i : Fin n) (x y : Vec ℝ n) : -- --- STMT ---
+theorem aux_eval_step_iff (i : Fin n) (x y : Vec ℝ n) : -- --- CONCL ---
     Cat.Eval (𝕋 := 𝕋) (.cases 2 ![.nonneg i, .neg i]
       ![.affine (fun r c => if r = c then one else zero) (fun _ => zero),
         .affine (fun r c => if r = c ∧ r ≠ i then one else zero) (fun _ => zero)]) x y

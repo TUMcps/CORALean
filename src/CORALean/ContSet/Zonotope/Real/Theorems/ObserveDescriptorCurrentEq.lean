@@ -39,7 +39,7 @@ variable {n nu nw ny nv : ℕ}
 
 theorem Zonotope.observeDescriptorCurrent_construct (T : Mat ℝ n n) (N Ghat : Mat ℝ n ny)
     (A : Mat ℝ n n) (B : Mat ℝ n nu) (D : Mat ℝ n nw) (C : Mat ℝ ny n) (F : Mat ℝ ny nv)
-    (u : Vec ℝ nu) (y_plus : Vec ℝ ny) (X : Zonotope (Vec ℝ n)) : -- --- STMT ---
+    (u : Vec ℝ nu) (y_plus : Vec ℝ ny) (X : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (X.observeDescriptorCurrent T N Ghat A B D C F u y_plus).construct =
       (X.intersectDescriptor T N Ghat A B D C F u y_plus).construct := by -- --- PROOF ---
   -- the sign pattern of the four blocks

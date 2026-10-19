@@ -34,7 +34,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 
 /-- A time with `cos s ∈ [lo,hi]` lies in a shifted branch of `acos`. -/
 private theorem SyntaxTree.exists_cos_branch {s lo hi : ℝ} (h₁ : lo ≤ Real.cos s) (h₂ : Real.cos s
-    ≤ hi) : -- --- STMT ---
+    ≤ hi) : -- --- CONCL ---
     ∃ k : ℤ, (Real.arccos hi + k * (2 * Real.pi) ≤ s ∧ s ≤ Real.arccos lo + k * (2 * Real.pi)) ∨
       (-Real.arccos lo + k * (2 * Real.pi) ≤ s ∧ s ≤ -Real.arccos hi + k * (2 *
         Real.pi)) := by -- --- PROOF ---

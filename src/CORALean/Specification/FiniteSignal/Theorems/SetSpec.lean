@@ -85,7 +85,7 @@ theorem aux_last_take {α : Type} (L : List α) (k : ℕ) (hk0 : 0 < k) (hk : k 
 /-- The prefix `L.take k` of the breakpoints decides the value before `a` if it has a breakpoint
 beyond `t`; otherwise the first breakpoint of the rest does. -/
 theorem aux_value_prefix {V : Type} (L : List (ℝ × V)) (k : ℕ) (hk : k < L.length) (t : ℝ)
-    (X : List (ℝ × V)) (hX : X ≠ []) : -- --- STMT ---
+    (X : List (ℝ × V)) (hX : X ≠ []) : -- --- CONCL ---
     ((∃ p ∈ L.take k, t < p.1) → FiniteSignal.valueAt (L.take k ++ X) t = FiniteSignal.valueAt L t)
     ∧ ((∀ p ∈ L.take k, p.1 ≤ t) → FiniteSignal.valueAt (L.take k ++ X) t =
         FiniteSignal.valueAt X t ∧
@@ -103,7 +103,7 @@ theorem aux_set_left {V : Type} [DecidableEq V] (s : FiniteSignal ℝ V) (hs : s
     (hpos : ∀ b ∈ s.time.head?, 0 < b) (a : ℝ) (ha0 : 0 ≤ a) (value : V) (sI : ℕ)
     (hsI : sI < s.time.length) (hT1 : ∀ i (hi : i < sI), s.time[i]'(by omega) ≤ a)
     (hT2 : a < s.time[sI]) (A : ℕ) (nT : List ℝ) (nV : List V)
-    (h : s.aux_setLower a value sI = (A, nT, nV)) : -- --- STMT ---
+    (h : s.aux_setLower a value sI = (A, nT, nV)) : -- --- CONCL ---
     A ≤ s.time.length ∧ nT.length = nV.length ∧
       ((s.pairs.take A ++ nT.zip nV).map Prod.fst).Pairwise (· < ·) ∧
       (∀ p ∈ s.pairs.take A ++ nT.zip nV, 0 ≤ p.1 ∧ p.1 ≤ a) ∧
@@ -341,7 +341,7 @@ theorem aux_set_right {V : Type} [DecidableEq V] (s : FiniteSignal ℝ V) (hs : 
     (b : ℝ) (hb0 : 0 ≤ b) (value : V) (hbD : b ≤ s.duration) (pI : ℕ)
     (hpI : pI ≤ s.time.length) (hP1 : ∀ i (hi : i < pI), s.time[i]'(by omega) ≤ b)
     (hP2 : ∀ (hi : pI < s.time.length), b < s.time[pI]) (U : Prop) [Decidable U]
-    (hU : U ↔ (b = s.duration ∨ s.value[pI]? ≠ some value)) : -- --- STMT ---
+    (hU : U ↔ (b = s.duration ∨ s.value[pI]? ≠ some value)) : -- --- CONCL ---
     ((if U then [(b, value)] else []) ++ s.pairs.drop pI) ≠ [] ∧
     (∀ p ∈ ((if U then [(b, value)] else []) ++ s.pairs.drop pI).head?, b ≤ p.1 ∧ p.2 = value) ∧
     (((if U then [(b, value)] else []) ++ s.pairs.drop pI).map Prod.fst).Pairwise (· < ·) ∧
@@ -503,7 +503,7 @@ theorem aux_set_assemble {V : Type} [DecidableEq V] (s : FiniteSignal ℝ V) (hs
       (b = s.duration → FiniteSignal.valueAt ((if U then [(b, value)] else []) ++
         s.pairs.drop pI) t = some value) ∧
       (b < s.duration → FiniteSignal.valueAt ((if U then [(b, value)] else []) ++
-        s.pairs.drop pI) t = FiniteSignal.valueAt s.pairs t)) : -- --- STMT ---
+        s.pairs.drop pI) t = FiniteSignal.valueAt s.pairs t)) : -- --- CONCL ---
     ∃ r, FiniteSignal.mk? (s.time.take A ++ (if U then nT ++ [b] else nT) ++ s.time.drop pI)
         (s.value.take A ++ (if U then nV ++ [value] else nV) ++ s.value.drop pI) = some r ∧
       r.IsValid ∧ r.duration = s.duration ∧ ∀ t : ℝ, 0 ≤ t → t ≤ s.duration →
@@ -614,7 +614,7 @@ theorem aux_set_assemble {V : Type} [DecidableEq V] (s : FiniteSignal ℝ V) (hs
 
 theorem FiniteSignal.set?_spec {V : Type} [DecidableEq V] (s : FiniteSignal ℝ V)
     (hs : s.IsValid) (hpos : ∀ b ∈ s.time.head?, 0 < b) (lo hi : EReal) (value : V)
-    (hlt : Max.max lo 0 < Min.min hi (s.duration : EReal)) : -- --- STMT ---
+    (hlt : Max.max lo 0 < Min.min hi (s.duration : EReal)) : -- --- CONCL ---
     ∃ r, s.set? lo hi value = some r ∧ r.IsValid ∧ r.duration = s.duration ∧
       ∀ t : ℝ, 0 ≤ t → t ≤ s.duration → r.at? t =
         if Max.max lo 0 ≤ (t : EReal) ∧ ((t : EReal) < Min.min hi (s.duration : EReal) ∨

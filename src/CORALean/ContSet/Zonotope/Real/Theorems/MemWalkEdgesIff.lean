@@ -34,7 +34,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.mem_walkEdges_iff (Z : Zonotope α) (x : α) : -- --- STMT ---
+theorem Zonotope.mem_walkEdges_iff (Z : Zonotope α) (x : α) : -- --- CONCL ---
     x ∈ Z.walkEdges ↔ ∃ k : Fin Z.h,
       x ∈ segment ℝ (Z.corner fun j => decide (j.val < k.val))
           (Z.corner fun j => decide (j.val < k.val + 1)) ∨

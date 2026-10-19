@@ -63,7 +63,7 @@ theorem LinearARX.aux_image_sum {n m : ℕ} (M : Mat ℝ m n) (s : Finset ℕ)
 
 /-- The loop invariant of Alg. 1: the step, the set `S`, and the stored parameters. -/
 theorem LinearARX.aux_alg1State_inv (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ (p * dy))
-    (U : ℕ → Set (Vec ℝ du)) {kinit : ℕ} (hp : 0 < p) (hk : p ≤ kinit) (m : ℕ) : -- --- STMT ---
+    (U : ℕ → Set (Vec ℝ du)) {kinit : ℕ} (hp : 0 < p) (hk : p ≤ kinit) (m : ℕ) : -- --- CONCL ---
     (sys.aux_alg1State yinit U kinit m).1 = kinit + m * p ∧
     (sys.aux_alg1State yinit U kinit m).2.1 = {sys.Aext ^ (kinit + m * p) *ᵥ yinit}
       + ∑ i ∈ Finset.Ico p (kinit + m * p + p),

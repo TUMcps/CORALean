@@ -1084,11 +1084,11 @@ Only the declaration's own `:= by` takes it, never a nested `have … := by`:
 the flag marks the proof of the thing the file is named for, and one on every
 inner block would mark nothing at all.
 
-### The statement marker
+### The conclusion marker
 
 The PROOF flag marks where the claim stops; its twin marks where the claim starts. A theorem or
 lemma whose signature is **five lines or more** (the PROOF flag's threshold, counted the same way)
-ends the line of the colon that closes its binders with `-- --- STMT ---`, so that what is given
+ends the line of the colon that closes its binders with `-- --- CONCL ---`, so that what is given
 stands above the flag and what should hold below it:
 
 ```lean
@@ -1096,7 +1096,7 @@ theorem NonlinDASys.exists_lagrange_remainder {C : Set (Vec ℝ d)} (hC : Convex
     {F : Vec ℝ d → ℝ} {Ff : Vec ℝ d → (Vec ℝ d →L[ℝ] ℝ)}
     {Hf : Vec ℝ d → (Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] ℝ)}
     (hF : ∀ ξ ∈ C, HasFDerivAt F (Ff ξ) ξ) (hH : ∀ ξ ∈ C, HasFDerivAt Ff (Hf ξ) ξ)
-    {zs z : Vec ℝ d} (hzs : zs ∈ C) (hz : z ∈ C) : -- --- STMT ---
+    {zs z : Vec ℝ d} (hzs : zs ∈ C) (hz : z ∈ C) : -- --- CONCL ---
     ∃ ξ ∈ segment ℝ zs z,
       F z = F zs + Ff zs (z - zs) + (1 / 2) * Hf ξ (z - zs) (z - zs) := by -- --- PROOF ---
 ```
@@ -1109,7 +1109,7 @@ signature then ends at its first `:=` outside any bracket (a binder default is i
 flag is required there as well, since a theorem the check could not see was exactly the one that
 carried none (#247). `check-conventions.sh` checks both. The theorems
 the tree-wide pass could not place, because even the wrapped colon line leaves no room, are listed
-in `scripts/stmt-marker-allowlist.txt` as `path::name`; the list only shrinks. The flag carries no
+in `scripts/concl-marker-allowlist.txt` as `path::name`; the list only shrinks. The flag carries no
 meaning for Lean and none for `Last update:`.
 
 ### `API.lean`
@@ -1567,7 +1567,7 @@ The definitions that predate the rule are listed in `scripts/algorithm-steps-pen
 
 | | |
 | --- | --- |
-| module docstring, content file | 20 lines |
+| module docstring, content file | 12 lines of prose — not `## Inputs`, `## Hypotheses`, `## Output`, `## Conclusion`, `## References` |
 | module docstring, collector | 25 lines — it is the directory's entry point |
 | docstring above a declaration | 3 lines; longer explanation belongs in the header |
 | inline `--` comment | 1 line; two in a row is a paragraph in the wrong place |
@@ -1577,8 +1577,69 @@ The density check counts from the first declaration body in the file, not from
 the top: a signature and the file preamble above it are not proof steps, so
 neither has to carry a comment every 20 lines.
 
-The module-docstring cap measures the prose only, up to a `## References`
-heading: a bibliography is not text that grows the way an explanation does.
+The module-docstring cap measures the prose only, up to the first `## Inputs`,
+`## Hypotheses`, `## Output`, `## Conclusion` or `## References` heading: a bibliography
+and a list of arguments are not text that grows the way an explanation does. Files whose prose is
+still over the 12 lines are listed in `scripts/prose-cap-allowlist.txt`, one path per line; the
+list only shrinks, and an entry whose file is within the cap is reported as stale.
+
+### Inputs and outputs of the main declaration (#251)
+
+CORA's help text names every argument and the result; so does the module docstring of a content
+file, for its **main declaration** (the one under the `MAIN THEOREM` / `MAIN DEFINITION` banner),
+in sections that follow the prose and precede `## References`:
+
+* a **definition** has `## Inputs` and `## Output`;
+* a **theorem** has `## Inputs`, `## Hypotheses` and `## Conclusion`.
+
+`## Inputs` lists the *non-`Prop`* binders of the declaration, explicit or implicit, named exactly as
+in the declaration and in its order, without instance arguments (`[..]`) and without the dimension
+variables a `variable` line supplies. `## Hypotheses` lists the `Prop` binders the same way.
+`## Output` / `## Conclusion` has exactly one entry. Entries are terse, one line each:
+``* `Z` – zonotope``. A section with nothing to list says `* none`. A definition that takes
+`Prop` binders (a `dite` condition, say) lists them under `## Hypotheses` between `## Inputs` and
+`## Output`; one without has no such section. An auxiliary declaration gets an entry only where it is
+needed to understand it, in its own `/--` docstring. `Basic.lean` bundles and the other summary
+and collector files (`API.lean`, `Instances.lean`, `Interfaces.lean`, `MAIN TYPE` and
+`MAIN INSTANCE` files) are exempt.
+
+For a definition (`Zonotope.reduceGirard (Z : Zonotope (Vec ℝ n)) (o : ℕ)`):
+
+```
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Output
+* zonotope of order at most `o` enclosing `Z`
+```
+
+For a theorem (`Zonotope.reduceGirard_order_le (Z : Zonotope (Vec ℝ n)) {o : ℕ} (ho : 0 < o)`),
+which re-lists the variables of its definition as inputs and keeps what it assumes apart:
+
+```
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Hypotheses
+* `ho` – `0 < o`
+
+## Conclusion
+* the reduced zonotope has at most `o * n` generators
+```
+
+`scripts/check-io-doc.py` (run by `check-conventions.sh`) checks the sections' presence and order
+for the kind of the main declaration, that the names listed under `## Inputs` and
+`## Hypotheses` are exactly the declaration's binders in its order, none missing and none extra,
+and that `## Output` / `## Conclusion` has exactly one entry. It cannot elaborate, so it sorts
+binders into hypotheses by a text proxy: a name `h…` (`h` alone counts when its type is not a data
+type), a depth-0 relation or logic symbol in the type (`= ≠ ≤ ≥ < > ∈ ∉ ⊆ ⊂ ∣ ∀ ∃ ¬ ∧ ∨ ↔`), or an
+`Is…` / `Has…` head or a listed Mathlib predicate (`Convex`, `Continuous`, `Nonempty`, …). A
+`Prop` binder that none of these catches is taken for an input, and a data binder named `h…` for a
+hypothesis; rename the binder in either case. Files not yet converted are listed in
+`scripts/io-doc-allowlist.txt`; the list only shrinks, an entry whose file now conforms is
+reported as stale, and the files are converted directory by directory, the main types first.
 
 ### References
 

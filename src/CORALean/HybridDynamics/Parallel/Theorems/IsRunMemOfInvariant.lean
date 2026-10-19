@@ -37,7 +37,7 @@ theorem ParallelHybridAutomaton.IsRun.mem_of_invariant {P : ParallelHybridAutoma
     (hfeed : P.FeedthroughFree) {lift : ParallelHybridAutomaton.Lifting S G n m}
     {R : (∀ i, L i) → S (∑ i, n i)} (hinv : (P.product lift).Invariant R)
     {ℓ ℓ' : ∀ i, L i} {x y : ∀ i, Vec ℝ (n i)} (run : P.IsRun ℓ x ℓ' y)
-    (hx : stack x ∈ construct (R ℓ)) : -- --- STMT ---
+    (hx : stack x ∈ construct (R ℓ)) : -- --- CONCL ---
     stack y ∈ construct (R ℓ') :=
   (run.toProduct hfeed lift).mem_of_invariant hinv hx
 

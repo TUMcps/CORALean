@@ -50,7 +50,7 @@ theorem GNN.alg1Graph_sound (R : Relaxation ℝ) (hR : R.Sound invSqrt) (A : Mat
     (g : ∀ t, Vec ℝ (c (L + t)) → Vec ℝ (c (L + (t + 1))))
     (f : ∀ t, PolyZonotope (Vec ℝ (c (L + t))) → PolyZonotope (Vec ℝ (c (L + (t + 1)))))
     (hf : ∀ t S x, x ∈ S.construct → g t x ∈ (f t S).construct)
-    (X : PolyZonotope (Mat ℝ N (c 0))) {x : Mat ℝ N (c 0)} (hx : x ∈ X.construct) : -- --- STMT ---
+    (X : PolyZonotope (Mat ℝ N (c 0))) {x : Mat ℝ N (c 0)} (hx : x ∈ X.construct) : -- --- CONCL ---
     GNN.tailEval T (fun t => c (L + t)) g
         (fun j => (GNN.onesRow N *
           GNN.evalLayers (GNN.messagePassing (GNN.adjAt A U lam)) L c σ W x) 0 j)

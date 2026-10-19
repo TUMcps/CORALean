@@ -32,7 +32,7 @@ variable {A : Type}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A successful `mapM` in `Option` relates each element to its image. -/
-theorem aux_mapM_forall₂ {α β : Type} (f : α → Option β) : -- --- STMT ---
+theorem aux_mapM_forall₂ {α β : Type} (f : α → Option β) : -- --- CONCL ---
     ∀ (l : List α) (l' : List β), l.mapM f = some l' → List.Forall₂ (fun a b => f a = some b) l l'
   | [], l', h => by
     simp only [List.mapM_nil, Option.pure_def, Option.some.injEq] at h
@@ -48,7 +48,7 @@ theorem aux_mapM_forall₂ {α β : Type} (f : α → Option β) : -- --- STMT -
 
 theorem OnlineAnalyzerNode.propagate_spec (eps : ℝ) (n : OnlineAnalyzerNode A)
     (ch : List (OnlineAnalyzerNode A)) (I : STLInterval) (hk1 : n.kind ≠ .true)
-    (hk2 : n.kind ≠ .false) (hk3 : n.kind ≠ .ap) (hs : n.signal.IsValid) : -- --- STMT ---
+    (hk2 : n.kind ≠ .false) (hk3 : n.kind ≠ .ap) (hs : n.signal.IsValid) : -- --- CONCL ---
     ∀ n' ch', (n', ch') ∈ n.propagate eps ch I →
       ∀ delta ∈ n.combine ch,
         delta.IsValid →

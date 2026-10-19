@@ -59,7 +59,7 @@ theorem Zonotope.aux_sumSq_update (Y : Zonotope (Vec ℝ n)) (j : Fin Y.h) (i : 
 /-- `t ↦` the F-radius with the entry `(j, i)` replaced by `t` has the derivative at `G(j,i)` that
 the corrected statement names. -/
 theorem Zonotope.fRadius_hasDerivAt (Y : Zonotope (Vec ℝ n)) (hY : 0 < Y.fRadius)
-    (j : Fin Y.h) (i : Fin n) : -- --- STMT ---
+    (j : Fin Y.h) (i : Fin n) : -- --- CONCL ---
     HasDerivAt (fun t => Zonotope.fRadius
       { Y with G := Function.update Y.G j (Function.update (Y.G j) i t) })
       (Y.G j i / ((n : ℝ) ^ 2 * Y.fRadius)) (Y.G j i) := by -- --- PROOF ---

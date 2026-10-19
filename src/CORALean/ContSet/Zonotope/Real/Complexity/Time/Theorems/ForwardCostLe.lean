@@ -42,7 +42,7 @@ namespace CORALean.Real
 /-- [1, Prop. 16], the running time: `O(n_max² q κ)`, `n_max` over every width the input's
 included and `q` the generator count, at most `(cNeuron + 17) N² Q κ`. -/
 theorem SetBasedNet.forwardCost_le (cNeuron : Cost) {N Q : ℕ} (hN : 1 ≤ N) {n k : ℕ}
-    (net : SetBasedNet n k) : -- --- STMT ---
+    (net : SetBasedNet n k) : -- --- CONCL ---
     ∀ h, 1 ≤ h → net.maxWidth ≤ N → h + net.neurons ≤ Q →
       (net.forwardCost cNeuron h).ops ≤
         (cNeuron.ops + 17) * (N * N * Q) * net.depth := by -- --- PROOF ---

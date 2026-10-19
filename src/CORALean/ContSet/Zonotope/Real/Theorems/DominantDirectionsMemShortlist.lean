@@ -35,7 +35,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.dominantDirections_mem_shortlist (Z : Zonotope (Vec ℝ n))
-    (a b : ℕ) : -- --- STMT ---
+    (a b : ℕ) : -- --- CONCL ---
     ∀ P ∈ Z.dominantDirections a b,
       ∃ T ∈ Z.dominantShortlist (min a (Finset.univ.filter fun j => Z.G j ≠ 0).card)
           (min b (Finset.univ.filter fun j => Z.G j ≠ 0).card),

@@ -37,7 +37,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.lipConstrLinearFloat_encloses (W : Mat 𝕋 m n) (b : Vec 𝕋 m) (lam : 𝕋)
-    (hl : 0 < toReal lam) : -- --- STMT ---
+    (hl : 0 < toReal lam) : -- --- CONCL ---
     (Layer.lipConstrLinearFloat (S := S) W b lam).Encloses
       fun x i => Layer.lipConstrScale (toRealMat W) (toReal lam) i
         * (toRealMat W *ᵥ x + toRealVec b) i := by -- --- PROOF ---

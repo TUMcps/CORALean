@@ -42,7 +42,7 @@ theorem greedyAbstractExplanation_eq_greedyMinimalExplanation
     (hgen : ∀ k E, genuine k E = true → ¬ IsSuffExplanation f x ε E l)
     (hlast : ∀ E, IsSuffExplanation f x ε E l → absSuff N E = true)
     {suff : Finset (Fin n) → Bool}
-    (hsuff : ∀ E, suff E = true ↔ IsSuffExplanation f x ε E l) : -- --- STMT ---
+    (hsuff : ∀ E, suff E = true ↔ IsSuffExplanation f x ε E l) : -- --- CONCL ---
     greedyAbstractExplanation n absSuff genuine N
       = greedyMinimalExplanation n suff := by -- --- PROOF ---
   -- the two oracles decide the same query of `f`, so the two folds are one fold

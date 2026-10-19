@@ -48,7 +48,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Real.OfInterval S
 theorem linInput_outer {f : Vec ℝ n → Vec ℝ m → Vec ℝ n} {A : Mat ℝ n n}
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)}
     {U : S m} {L : S n} (cert : AbstractionError f A B xs us R (construct U) L)
-    {x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ R) (hu : u ∈ construct U) : -- --- STMT ---
+    {x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ R) (hu : u ∈ construct U) : -- --- CONCL ---
     f x u - A *ᵥ x ∈ construct (linInput f A B xs us U L) := by -- --- PROOF ---
   have hsplit : f x u - A *ᵥ x
       = ((f xs us - A *ᵥ xs) + B *ᵥ (u - us))

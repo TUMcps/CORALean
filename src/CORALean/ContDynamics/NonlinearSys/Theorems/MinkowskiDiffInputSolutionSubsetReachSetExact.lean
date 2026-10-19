@@ -76,7 +76,7 @@ theorem NonlinearSys.minkowskiDiff_inputSolution_subset_reachSetExact [Mtimes �
       x t ∈ Ω ∧ HasDerivWithinAt x (sys.f (x t) u₀) (Set.Icc 0 Δt) t)
     (hconf : ∀ x₀ ∈ construct R₀, ∀ x : ℝ → Vec ℝ n, x 0 = x₀ →
       (∀ t ∈ Set.Icc 0 Δt, HasDerivWithinAt x (sys.f (x t) u₀) (Set.Icc 0 Δt) t) →
-      ∀ t ∈ Set.Icc 0 Δt, x t ∈ R) : -- --- STMT ---
+      ∀ t ∈ Set.Icc 0 Δt, x t ∈ R) : -- --- CONCL ---
     (fun s => s + (2 : ℝ) • c) '' minkowskiDiff ((fun x₀ => exp (Δt • A) *ᵥ x₀ +
       ∫ s in (0:ℝ)..Δt, exp ((Δt - s) • A) *ᵥ (sys.f xs us - A *ᵥ xs + B *ᵥ (u₀ - us))) ''
         construct R₀) (construct ((NonlinearSys.linearize A).inputSolution Δt η L))

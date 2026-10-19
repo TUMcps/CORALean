@@ -45,7 +45,7 @@ theorem NonlinDASys.exists_localReduction (sys : NonlinDASys n p m)
     (d₂ : ∀ᶠ v in 𝓝 ((x₀, u₀), y₀),
       HasFDerivAt (fun y' => sys.g v.1.1 y' v.1.2) (G₂ v.1 v.2) v.2)
     (c₁ : ContinuousAt (Function.HasUncurry.uncurry G₁) ((x₀, u₀), y₀))
-    (c₂ : ContinuousAt (Function.HasUncurry.uncurry G₂) ((x₀, u₀), y₀)) : -- --- STMT ---
+    (c₂ : ContinuousAt (Function.HasUncurry.uncurry G₂) ((x₀, u₀), y₀)) : -- --- CONCL ---
     ∃ ψ : Vec ℝ n × Vec ℝ m → Vec ℝ p, ψ (x₀, u₀) = y₀ ∧
       (∀ᶠ xu in 𝓝 (x₀, u₀), sys.g xu.1 (ψ xu) xu.2 = 0) ∧
       ∀ᶠ v in 𝓝 ((x₀, u₀), y₀), sys.g v.1.1 v.2 v.1.2 = 0 ↔ ψ v.1 = v.2 := by -- --- PROOF ---

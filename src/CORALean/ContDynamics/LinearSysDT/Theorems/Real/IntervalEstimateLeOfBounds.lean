@@ -41,7 +41,7 @@ theorem LinearSysDT.intervalEstimate_le_of_bounds (sys : LinearSysDT ℝ n) (L :
     (X₀ : Zonotope (Vec ℝ n)) (W : Zonotope (Vec ℝ sys.r)) (V : Zonotope (Vec ℝ sys.s))
     (u : ℕ → Vec ℝ sys.m) (y : ℕ → Vec ℝ sys.q) (k : ℕ) (lo hi : Vec ℝ n)
     (h : ∀ e ∈ LinearSysDT.reachErrorSet sys L X₀ W V k, ∀ i, lo i ≤ e i ∧ e i ≤ hi i)
-    (i : Fin n) : -- --- STMT ---
+    (i : Fin n) : -- --- CONCL ---
     let x := (LinearSysDT.intervalEstimateState sys L X₀ W V u y k).x
     x i + lo i ≤ (LinearSysDT.intervalEstimate sys L X₀ W V u y k).inf i ∧
       (LinearSysDT.intervalEstimate sys L X₀ W V u y k).sup i ≤

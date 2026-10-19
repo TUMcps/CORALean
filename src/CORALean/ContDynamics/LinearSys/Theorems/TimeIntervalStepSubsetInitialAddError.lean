@@ -84,7 +84,7 @@ theorem aux_sum_univ_linCombPaired {h : ℕ} {c₁ c₂ : Vec ℝ n} {G₁ G₂ 
   Fin.sum_univ_add f
 
 theorem aux_linComb_paired_subset {h : ℕ} (c₁ c₂ : Vec ℝ n)
-    (G₁ G₂ : Fin h → Vec ℝ n) : -- --- STMT ---
+    (G₁ G₂ : Fin h → Vec ℝ n) : -- --- CONCL ---
     (Zonotope.linComb ⟨h, c₁, G₁⟩ ⟨h, c₂, G₂⟩).construct
       ⊆ (Zonotope.mk h c₁ G₁).construct
         + Metric.closedBall (0 : Vec ℝ n)
@@ -169,7 +169,7 @@ theorem aux_linComb_paired_subset {h : ℕ} (c₁ c₂ : Vec ℝ n)
 from: what it computes stays inside `X₀` widened by `timeIntervalStepError`. -/
 theorem LinearSys.timeIntervalStep_subset_initial_add_error (sys : LinearSys 𝕋 n) {r : ℝ}
     (hr : 0 < r) (η : ℕ) (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
-    (X₀ : Zonotope (Vec ℝ n)) : -- --- STMT ---
+    (X₀ : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (sys.timeIntervalStep (S := 𝒵) r η X₀).construct
       ⊆ X₀.construct
         + Metric.closedBall (0 : Vec ℝ n)

@@ -42,7 +42,7 @@ theorem ParallelHybridAutomaton.reachFloat_outer
     (lift : ParallelHybridAutomaton.Lifting 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) n m) {tFinal : ℚ}
     {options : LinearSys.ReachOptions 𝕋} {K : ℕ} {ℓ₀ ℓ : ∀ i, L i}
     {X₀ : Zonotope (Vec 𝕋 (∑ i, n i))} {x y : ∀ i, Vec ℝ (n i)} (hx : stack x ∈ construct X₀)
-    (run : P.IsRun ℓ₀ x ℓ y) : -- --- STMT ---
+    (run : P.IsRun ℓ₀ x ℓ y) : -- --- CONCL ---
     ∀ out ∈ P.reachFloat lift tFinal options K ℓ₀ X₀,
       ∃ (T : ℝ) (j : ℕ), (P.productWith lift P.mergeFlows (P.mergeInputSets lift)
         (P.mergeDistSets lift)).IsRunUntil T j ℓ₀ (stack x) ℓ (stack y) ∧

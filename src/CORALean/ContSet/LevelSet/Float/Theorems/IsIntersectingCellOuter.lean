@@ -35,7 +35,7 @@ theorem LevelSet.isIntersecting_cell_outer (L : CORALean.Real.LevelSet n)
     (htol : 0 ≤ toReal tol)
     (hB : ∀ i, CORALean.Real.IsRangeBound (fun x => L.f x i) I.construct
       (toReal (B i).inf) (toReal (B i).sup))
-    (h : LevelSet.isIntersecting_cell tol L.op B = false) : -- --- STMT ---
+    (h : LevelSet.isIntersecting_cell tol L.op B = false) : -- --- CONCL ---
     L.construct ∩ I.construct = ∅ := by -- --- PROOF ---
   refine CORALean.Real.LevelSet.isIntersecting_cell_outer L hne I.nominal
     (fun i => ⟨toReal (B i).inf, toReal (B i).sup⟩) htol hB ?_

@@ -62,7 +62,7 @@ noncomputable def Zonotope.aux_linCombGReal (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) 
 /-- Every stored generator sits at the low end of a bracket around its exact
 value: the two blocks pair, and the center generator is one directed
 difference. -/
-theorem Zonotope.aux_linCombG_bracket (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (i : Fin n) : -- --- STMT ---
+theorem Zonotope.aux_linCombG_bracket (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (i : Fin n) : -- --- CONCL ---
     ∀ j : Fin (Z₁.h + Z₂.h + 1),
       toReal (Zonotope.linCombG addDown subDown Z₁ Z₂ i j)
           ≤ Zonotope.aux_linCombGReal Z₁ Z₂ i j
@@ -86,7 +86,7 @@ theorem Zonotope.aux_linCombG_bracket (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (i : F
 /-- What the stored generators are wrong by, entrywise, which is what
 `linCombGDiff` records. -/
 theorem Zonotope.aux_linCombG_error (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (i : Fin n)
-    (j : Fin (Z₁.h + Z₂.h + 1)) : -- --- STMT ---
+    (j : Fin (Z₁.h + Z₂.h + 1)) : -- --- CONCL ---
     |Zonotope.aux_linCombGReal Z₁ Z₂ i j
         - toReal (Zonotope.linCombG addDown subDown Z₁ Z₂ i j)|
       ≤ toReal (Zonotope.linCombGDiff Z₁ Z₂ i j) := by -- --- PROOF ---
@@ -101,7 +101,7 @@ theorem Zonotope.aux_linCombG_error (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (i : Fin
 supplies: the paired blocks give back the two sets' own sums, and the center
 generator carries what is left. -/
 theorem Zonotope.aux_linComb_row (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (i : Fin n)
-    (β₁ : Fin Z₁.h → ℝ) (β₂ : Fin Z₂.h → ℝ) (lam : ℝ) : -- --- STMT ---
+    (β₁ : Fin Z₁.h → ℝ) (β₂ : Fin Z₂.h → ℝ) (lam : ℝ) : -- --- CONCL ---
     (∑ j, Zonotope.aux_linCombGReal Z₁ Z₂ i j
         * Fin.append (Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
             (Real.Zonotope.pairCoeffDiff β₁ β₂ lam)) (fun _ : Fin 1 => 2 * lam - 1) j)
@@ -116,7 +116,7 @@ theorem Zonotope.aux_linComb_row (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (i : Fin n)
 
 /-- The nominal part spills only by what the center and the generators
 rounded. -/
-theorem Zonotope.aux_linComb_nominal (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) : -- --- STMT ---
+theorem Zonotope.aux_linComb_nominal (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     Set.linComb (nominalSet Z₁) (nominalSet Z₂) ⊆
       nominalSet (Z₁.linComb Z₂)
         + ((Zonotope.midpointResidual Z₁.c Z₂.c).construct
@@ -173,7 +173,7 @@ theorem Zonotope.aux_linComb_nominal (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) : -- --
 
 /-- The box absorbs the two incoming boxes, the center rounding and the
 generator roundings. -/
-theorem Zonotope.aux_linComb_error (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) : -- --- STMT ---
+theorem Zonotope.aux_linComb_error (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     Set.linComb Z₁.I_error.construct Z₂.I_error.construct
         + ((Zonotope.midpointResidual Z₁.c Z₂.c).construct
             + (Zonotope.generatorError (Zonotope.linCombGDiff Z₁ Z₂)).construct)

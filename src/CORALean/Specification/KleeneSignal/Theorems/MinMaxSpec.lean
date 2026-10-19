@@ -41,7 +41,7 @@ namespace CORALean
 
 /-- The signal built from `mn` and `mx` is `True` where both hold, `False` where neither. -/
 theorem KleeneSignal.minMax_spec {T : Type} [LinearOrder T] [Zero T]
-    (mn mx : PointSegmentSignal T) (hmn : mn.IsValid) (hmx : mx.IsValid) : -- --- STMT ---
+    (mn mx : PointSegmentSignal T) (hmn : mn.IsValid) (hmx : mx.IsValid) : -- --- CONCL ---
     let R : KleeneSignal T := ⟨mn, PointSegmentSignal.combine
       (fun (args : Fin 2 → Bool) (_ : Unit) => decide (args 0 ≠ args 1)) ![mn, mx] ()⟩
     R.IsValid ∧ ∀ t : T, 0 ≤ t → (R.at t = Kleene.tt ↔ mn.at t = true ∧ mx.at t = true) ∧

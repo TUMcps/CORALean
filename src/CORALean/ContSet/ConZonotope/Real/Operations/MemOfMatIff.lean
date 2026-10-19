@@ -30,7 +30,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.mem_ofMat_iff {q h : ℕ} {c : α} {G : Fin h → α} {A : Mat ℝ q h}
-    {b : Vec ℝ q} {x : α} : -- --- STMT ---
+    {b : Vec ℝ q} {x : α} : -- --- CONCL ---
     x ∈ (ConZonotope.ofMat c G A b).construct ↔
       ∃ β : Fin h → ℝ, (∀ j, |β j| ≤ 1) ∧ (∀ i, (A *ᵥ β) i = b i)
         ∧ x = c + ∑ j, β j • G j :=

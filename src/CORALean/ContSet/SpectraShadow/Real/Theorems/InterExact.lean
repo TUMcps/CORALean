@@ -34,7 +34,7 @@ variable {n : ℕ}
 
 /-- `inter`'s inequality: `plus`'s, and the diagonal block at the difference of the two points. -/
 theorem SpectraShadow.aux_lmi_inter (S₁ S₂ : SpectraShadow (Vec ℝ n))
-    (β : Fin (S₁.m + S₂.m) → ℝ) : -- --- STMT ---
+    (β : Fin (S₁.m + S₂.m) → ℝ) : -- --- CONCL ---
     (S₁.inter S₂).A₀ + ∑ i : Fin (S₁.inter S₂).m, β i • (S₁.inter S₂).A i
       = blockDiag 0 ((S₁.plus S₂).A₀ + ∑ i : Fin (S₁.plus S₂).m, β i • (S₁.plus S₂).A i)
         (blockDiag 0
@@ -76,7 +76,7 @@ theorem SpectraShadow.aux_lmi_inter (S₁ S₂ : SpectraShadow (Vec ℝ n))
 /-- A point is described exactly when both halves of `β` are in their sets' inequalities and the
 two points they read off agree. -/
 theorem SpectraShadow.aux_posSemidef_inter_iff (S₁ S₂ : SpectraShadow (Vec ℝ n))
-    (β : Fin (S₁.m + S₂.m) → ℝ) : -- --- STMT ---
+    (β : Fin (S₁.m + S₂.m) → ℝ) : -- --- CONCL ---
     ((S₁.inter S₂).A₀ + ∑ i : Fin (S₁.inter S₂).m, β i • (S₁.inter S₂).A i).PosSemidef
       ↔ ((S₁.A₀ + ∑ i, β (Fin.castAdd S₂.m i) • S₁.A i).PosSemidef
           ∧ (S₂.A₀ + ∑ j, β (Fin.natAdd S₁.m j) • S₂.A j).PosSemidef)

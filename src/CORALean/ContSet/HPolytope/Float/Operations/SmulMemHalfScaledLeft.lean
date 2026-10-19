@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 theorem HPolytope.smul_mem_halfScaledLeft {P : HPolytope 𝕋 (Vec 𝕋 n₁)} {y : Vec ℝ n₁}
     {z : Vec ℝ n₂} {w t : ℝ} (hw : (t + 1) / 2 = w) (hw0 : 0 ≤ w) (hw1 : w ≤ 1)
-    (hy : y ∈ P.nominal.construct) : -- --- STMT ---
+    (hy : y ∈ P.nominal.construct) : -- --- CONCL ---
     Fin.append (Fin.append (w • y) z) (fun _ : Fin 1 => t)
       ∈ (P.halfScaledLeft n₂).construct := by -- --- PROOF ---
   obtain ⟨hle, heq⟩ := HPolytope.mem_nominal_iff.mp hy

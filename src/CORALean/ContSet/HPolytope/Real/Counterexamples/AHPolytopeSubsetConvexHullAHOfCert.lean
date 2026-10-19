@@ -40,7 +40,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.ahPolytope_subset_convexHull_ahPolytope_of_cert_counterexample : -- --- STMT ---
+theorem HPolytope.ahPolytope_subset_convexHull_ahPolytope_of_cert_counterexample : -- --- CONCL ---
     ∃ (Hy : Fin 2 → Mat ℝ 4 2) (hy : Fin 2 → Vec ℝ 4) (Hx : Mat ℝ 4 2) (hx : Vec ℝ 4)
       (Λ : Fin 2 → Mat ℝ 4 4) (lam : Fin 2 → ℝ) (β : Fin 2 → Vec ℝ 2) (Γ : Fin 2 → Mat ℝ 2 2),
       (∀ i v, Hy i *ᵥ v = 0 → v = 0) ∧

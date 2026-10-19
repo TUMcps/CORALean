@@ -56,7 +56,7 @@ theorem PolyZonotope.aux_compactGens_sum (pZ : PolyZonotope (Vec ℝ n)) (a : Fi
 
 /-- `compactFactors`'s same sum, read against the factors it keeps. -/
 theorem PolyZonotope.aux_compactFactors_sum (pZ : PolyZonotope (Vec ℝ n))
-    (a : Fin pZ.p → ℝ) : -- --- STMT ---
+    (a : Fin pZ.p → ℝ) : -- --- CONCL ---
     (∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i)
       = ∑ i : Fin pZ.compactFactors.h, PolyZonotope.monomial pZ.compactFactors.E
           (fun k => a (PolyZonotope.factorIdx pZ.E k)) i
@@ -89,7 +89,7 @@ theorem PolyZonotope.aux_compact_evalOn (pZ : PolyZonotope (Vec ℝ n))
 /-- Girard's rule leaves the factors alone: past the order bound it boxes
 generators into the independent block, below it nothing happens. -/
 theorem PolyZonotope.aux_reduceGirard_evalOn (pZ : PolyZonotope (Vec ℝ n)) (o : ℕ)
-    {B : Set (Fin pZ.p → ℝ)} (hB : ∀ a ∈ B, ∀ k, |a k| ≤ 1) : -- --- STMT ---
+    {B : Set (Fin pZ.p → ℝ)} (hB : ∀ a ∈ B, ∀ k, |a k| ≤ 1) : -- --- CONCL ---
     pZ.evalOn B ⊆ (pZ.reduceGirard o).evalOn
       {a' | ∃ a ∈ B, ∀ (k : Fin (pZ.reduceGirard o).p) (k' : Fin pZ.p),
         (k : ℕ) = (k' : ℕ) → a' k = a k'} := by -- --- PROOF ---

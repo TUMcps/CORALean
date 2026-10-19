@@ -56,7 +56,7 @@ theorem Zonotope.gen_not_required_iff {n : ℕ} (Zm Zs : Zonotope (Vec ℝ (n + 
       = {x | ∀ j, j.2.card = n + 1 → j ∉ Red → C j x ≤ d j})
     (hirr : ∀ j, j.2.card = n + 1 → j ∉ Red →
       ¬{x | ∀ k, k.2.card = n + 1 → k ≠ j → C k x ≤ d k} ⊆ {x | C j x ≤ d j})
-    (i : Fin Zm.h) : -- --- STMT ---
+    (i : Fin Zm.h) : -- --- CONCL ---
     ∑ j ∈ Red, (if i ∈ j.2 then 1 else 0) = 2 * (Zm.h - 1).choose n
       ↔ minkowskiDiff Zm.construct Zs.construct
           = {x | ∀ j, j.2.card = n + 1 → i ∉ j.2 → C j x ≤ d j} := by -- --- PROOF ---

@@ -76,7 +76,7 @@ theorem aux_ls_key (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (h0 : 0 
     (hl : lVal = if lc then [value, value] else [before, value])
     (ha : addL = s.isNewPointOk i lb lVal)
     (hi' : i' = if s.timePoints.getD (i - 1) 0 = lb then i - 1 else i)
-    (hP : P = s.timePoints.take i') (hVP : VP = s.values.take (2 * i')) : -- --- STMT ---
+    (hP : P = s.timePoints.take i') (hVP : VP = s.values.take (2 * i')) : -- --- CONCL ---
     (∀ x ∈ P, x < lb) ∧ VP.length = 2 * P.length ∧ (∀ r ∈ s.timePoints.drop i', lb ≤ r) ∧ before =
       s.at lb ∧ (P = [] → lb = 0 ∧ addL = true) ∧ (addL = false → P ≠ [] ∧ VP.getD (VP.length - 1)
       false = value ∧ lVal.getD 0 false = value) ∧ (addL = true → P ≠ [] → ¬ (lVal.getD 0 false =
@@ -219,7 +219,7 @@ theorem aux_ls_key (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (h0 : 0 
 
 /-- The lower prefix is valid and has the right values before, at and after `lb`. -/
 theorem aux_ls_spec (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (h0 : 0 ≤ lb)
-    (lc value : Bool) : -- --- STMT ---
+    (lc value : Bool) : -- --- CONCL ---
     (aux_lowerPrefix s lb lc value).IsValid ∧
       (∀ x ∈ (aux_lowerPrefix s lb lc value).timePoints, x ≤ lb) ∧
       (∀ r ∈ s.timePoints.drop (aux_lowerIdx s lb), lb ≤ r) ∧
@@ -312,7 +312,7 @@ theorem aux_ls_spec (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (h0 : 0
 
 /-- Facts about the points at or before the upper end. -/
 theorem aux_us_facts (s : PointSegmentSignal T) (hs : s.IsValid) (lb u : T) (hlb : 0 ≤ lb)
-    (hlu : lb < u) (j : ℕ) (hj : j = (s.atIdx (u : WithTop T)).2) : -- --- STMT ---
+    (hlu : lb < u) (j : ℕ) (hj : j = (s.atIdx (u : WithTop T)).2) : -- --- CONCL ---
     1 ≤ j ∧ j ≤ s.timePoints.length ∧ (∀ x ∈ s.timePoints.take j, x ≤ u) ∧
       (∀ b, s.timePoints[j]? = some b → u < b) ∧ (∀ r ∈ s.timePoints.drop j, u < r) ∧
       (∃ a, s.timePoints[j - 1]? = some a ∧ a ≤ u) := by -- --- PROOF ---
@@ -344,7 +344,7 @@ theorem aux_us_spec (s : PointSegmentSignal T) (hs : s.IsValid) (Q : PointSegmen
     (hr : rVal = if rc then [value, after] else [afterPoint, after])
     (haddR : addR ↔ rVal.any (fun v => v ≠ value) = true) (R : PointSegmentSignal T) (hR : R =
     ⟨Q.timePoints ++ (if addR then [u] else []) ++ s.timePoints.drop j, Q.values ++
-    (if addR then rVal else []) ++ s.values.drop (2 * j)⟩) : -- --- STMT ---
+    (if addR then rVal else []) ++ s.values.drop (2 * j)⟩) : -- --- CONCL ---
     R.IsValid ∧ (∀ t, 0 ≤ t → t < u → R.at t = Q.at t) ∧ R.at u = (if rc then value else s.at u) ∧ ∀
       t, u < t → R.at t = s.at t := by -- --- PROOF ---
   subst hR
@@ -424,7 +424,7 @@ theorem aux_us_spec (s : PointSegmentSignal T) (hs : s.IsValid) (Q : PointSegmen
 theorem aux_set_ne (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (up : WithTop T)
     (lc rc : Bool) (value : Bool) (h0 : 0 ≤ lb)
     (hne : STLInterval.emptyBounds lb up lc rc = false)
-    (hlt : (lb : WithTop T) ≠ up) : -- --- STMT ---
+    (hlt : (lb : WithTop T) ≠ up) : -- --- CONCL ---
     (s.setBounds lb up lc rc value).IsValid ∧ ∀ t : T, 0 ≤ t →
       (STLInterval.memBounds lb up lc rc t → (s.setBounds lb up lc rc value).at t = value) ∧
       (¬ STLInterval.memBounds lb up lc rc t → (s.setBounds lb up lc rc value).at t = s.at t)
@@ -547,7 +547,7 @@ theorem aux_set_ne (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (up : Wi
 /-- `setBounds` sets the interval to `value` and changes nothing else, and keeps the signal
 valid. -/
 theorem PointSegmentSignal.setBounds_spec (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T)
-    (up : WithTop T) (lc rc : Bool) (hI : 0 ≤ lb) (value : Bool) : -- --- STMT ---
+    (up : WithTop T) (lc rc : Bool) (hI : 0 ≤ lb) (value : Bool) : -- --- CONCL ---
     (s.setBounds lb up lc rc value).IsValid ∧ ∀ t : T, 0 ≤ t →
       (STLInterval.memBounds lb up lc rc t → (s.setBounds lb up lc rc value).at t = value) ∧
       (¬ STLInterval.memBounds lb up lc rc t →

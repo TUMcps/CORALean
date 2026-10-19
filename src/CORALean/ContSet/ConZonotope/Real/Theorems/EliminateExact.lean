@@ -59,7 +59,7 @@ theorem ConZonotope.aux_rowBound_dep {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec 
     (S : Set (Fin ng)) (r : Fin nc) (j : Fin ng)
     (hSread : ∀ l, l ≠ j → A r l ≠ 0 → l ∈ S) {E : Interval (Vec ℝ ng)}
     {β : Vec ℝ ng} (hβS : ∀ k ∈ S, E.inf k ≤ β k ∧ β k ≤ E.sup k)
-    (hAj : A r j ≠ 0) (hrow : (A *ᵥ β) r = b r) : -- --- STMT ---
+    (hAj : A r j ≠ 0) (hrow : (A *ᵥ β) r = b r) : -- --- CONCL ---
     min (ConZonotope.rowBound A b r j E).inf (ConZonotope.rowBound A b r j E).sup ≤ β j ∧
       β j ≤ max (ConZonotope.rowBound A b r j E).inf
         (ConZonotope.rowBound A b r j E).sup := by -- --- PROOF ---
@@ -106,7 +106,7 @@ way — both directions below read this once each way. -/
 theorem ConZonotope.aux_eliminate_value {ng nc : ℕ} (c : α) (G : Fin ng → α)
     (A : Mat ℝ nc ng) (b : Vec ℝ nc) (r : Fin nc) (j : Fin ng) (hAj : A r j ≠ 0)
     (β' : Fin (ng - 1) → ℝ) (t : ℝ)
-    (ht : A r j * t = b r - ∑ i, A r (dropIdx j i) * β' i) : -- --- STMT ---
+    (ht : A r j * t = b r - ∑ i, A r (dropIdx j i) * β' i) : -- --- CONCL ---
     c + t • G j + ∑ i, β' i • G (dropIdx j i)
       = (c + b r • ((A r j)⁻¹ • G j))
         + ∑ i, β' i •
@@ -130,7 +130,7 @@ equals the reduced system's corrected row at `i`, plus what `Λ_A`'s row gives b
 unconditional, given only how `t` solves row `r`. -/
 theorem ConZonotope.aux_eliminate_row {ng nc : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     (r : Fin nc) (j : Fin ng) (hAj : A r j ≠ 0) (i : Fin nc) (β' : Fin (ng - 1) → ℝ)
-    (t : ℝ) (ht : A r j * t = b r - ∑ l, A r (dropIdx j l) * β' l) : -- --- STMT ---
+    (t : ℝ) (ht : A r j * t = b r - ∑ l, A r (dropIdx j l) * β' l) : -- --- CONCL ---
     A i j * t + ∑ l, A i (dropIdx j l) * β' l
       = (∑ l, (A i (dropIdx j l) - A i j * (A r j)⁻¹ * A r (dropIdx j l)) * β' l)
         + A i j * (A r j)⁻¹ * b r := by -- --- PROOF ---
@@ -197,7 +197,7 @@ theorem ConZonotope.aux_eliminate_superset {ng nc : ℕ} (c : α) (G : Fin ng �
     (hR : -1 ≤ min (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).inf
               (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).sup ∧
           max (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).inf
-              (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).sup ≤ 1) : -- --- STMT ---
+              (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).sup ≤ 1) : -- --- CONCL ---
     (ConZonotope.eliminate c G A b r j).construct
       ⊆ (ConZonotope.ofMat c G A b).construct := by -- --- PROOF ---
   intro x hx
@@ -277,7 +277,7 @@ theorem ConZonotope.eliminate_exact_of_dependClosed {ng nc : ℕ} (c : α) (G : 
     (hR : -1 ≤ min (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).inf
               (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).sup ∧
           max (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).inf
-              (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).sup ≤ 1) : -- --- STMT ---
+              (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).sup ≤ 1) : -- --- CONCL ---
     (ConZonotope.ofMat c G A b).construct
       = (ConZonotope.eliminate c G A b r j).construct := by -- --- PROOF ---
   exact Set.Subset.antisymm (ConZonotope.aux_eliminate_subset c G A b r j hAj)

@@ -33,7 +33,7 @@ namespace CORALean
 theorem PointSegmentSignal.anyTrue_spec {T : Type} [LinearOrder T] [Zero T] [DenselyOrdered T]
     [NoMaxOrder T] (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (ub : WithTop T)
     (lc rc : Bool) (cond : Bool → Bool) (h0 : 0 ≤ lb)
-    (hne : STLInterval.emptyBounds lb ub lc rc = false) : -- --- STMT ---
+    (hne : STLInterval.emptyBounds lb ub lc rc = false) : -- --- CONCL ---
     s.anyTrue lb ub lc rc cond = true ↔
       ∃ t : T, STLInterval.memBounds lb ub lc rc t ∧ cond (s.at t) = true := by -- --- PROOF ---
   have hget : ∀ m (h : m < s.values.length), s.values[m] = s.values.getD m false := fun m h => by

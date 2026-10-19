@@ -52,7 +52,7 @@ open Matrix
 `rowBound`'s two endpoints. -/
 theorem ConZonotope.aux_rowBound_mem {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     (i : Fin nc) (j : Fin ng) {E : Interval (Vec ℝ ng)} {β : Vec ℝ ng} (h0 : A i j ≠ 0)
-    (hβ : β ∈ E.construct) (hrow : (A *ᵥ β) i = b i) : -- --- STMT ---
+    (hβ : β ∈ E.construct) (hrow : (A *ᵥ β) i = b i) : -- --- CONCL ---
     min (ConZonotope.rowBound A b i j E).inf (ConZonotope.rowBound A b i j E).sup ≤ β j ∧
       β j ≤ max (ConZonotope.rowBound A b i j E).inf
         (ConZonotope.rowBound A b i j E).sup := by -- --- PROOF ---
@@ -79,7 +79,7 @@ theorem ConZonotope.aux_tightenCoeffER_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (
     (i : Fin nc) (j : Fin ng) {β : Vec ℝ ng}
     {S : Interval (Vec ℝ ng) × ((Fin ng → EReal) × (Fin ng → EReal))}
     (hS : β ∈ S.1.construct ∧ ∀ k, S.2.1 k ≤ (β k : EReal) ∧ (β k : EReal) ≤ S.2.2 k)
-    (hrow : (A *ᵥ β) i = b i) : -- --- STMT ---
+    (hrow : (A *ᵥ β) i = b i) : -- --- CONCL ---
     β ∈ (ConZonotope.tightenCoeffER A b i j S).1.construct ∧
       ∀ k, (ConZonotope.tightenCoeffER A b i j S).2.1 k ≤ (β k : EReal) ∧
         (β k : EReal) ≤ (ConZonotope.tightenCoeffER A b i j S).2.2 k := by -- --- PROOF ---
@@ -121,7 +121,7 @@ theorem ConZonotope.aux_tightenCoeffER_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (
 theorem ConZonotope.aux_tightenPassER_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     {β : Vec ℝ ng} {S : Interval (Vec ℝ ng) × ((Fin ng → EReal) × (Fin ng → EReal))}
     (hS : β ∈ S.1.construct ∧ ∀ k, S.2.1 k ≤ (β k : EReal) ∧ (β k : EReal) ≤ S.2.2 k)
-    (heq : ∀ i, (A *ᵥ β) i = b i) : -- --- STMT ---
+    (heq : ∀ i, (A *ᵥ β) i = b i) : -- --- CONCL ---
     β ∈ (ConZonotope.tightenPassER A b S).1.construct ∧
       ∀ k, (ConZonotope.tightenPassER A b S).2.1 k ≤ (β k : EReal) ∧
         (β k : EReal) ≤ (ConZonotope.tightenPassER A b S).2.2 k := by -- --- PROOF ---
@@ -141,7 +141,7 @@ theorem ConZonotope.aux_tightenPassER_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b
 /-- [1, Alg. 1 (R)], [1, Alg. 1 (iteration)] and [2, Alg. 1], after any number `k + 1` of passes:
 every `β ∈ B∞(A, b)` lies in `E`, and `R_j ∋ β_j` for every `j`. -/
 theorem ConZonotope.tightenER_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc) (k : ℕ)
-    {β : Vec ℝ ng} (hbox : ∀ j, |β j| ≤ 1) (heq : ∀ i, (A *ᵥ β) i = b i) : -- --- STMT ---
+    {β : Vec ℝ ng} (hbox : ∀ j, |β j| ≤ 1) (heq : ∀ i, (A *ᵥ β) i = b i) : -- --- CONCL ---
     β ∈ (ConZonotope.tightenER A b k).1.construct ∧
       ∀ j, (ConZonotope.tightenER A b k).2.1 j ≤ (β j : EReal) ∧
         (β j : EReal) ≤ (ConZonotope.tightenER A b k).2.2 j := by -- --- PROOF ---

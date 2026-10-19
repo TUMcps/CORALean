@@ -48,7 +48,7 @@ theorem LinearSys.IsCanonicalTrajectory.discretizeEnclosureFloat_mem_reach_horiz
     {T : Set ℝ} {R₀ U : Zonotope (Vec 𝕋 n)} {x u : ℝ → Vec ℝ n} {Δt : 𝕋} {η K : ℕ}
     (traj : sys.IsCanonicalTrajectory (S := 𝒵[𝕋]) T R₀ U x u) (hΔt : 0 < toReal Δt)
     (hT : Set.Icc 0 ((K : ℝ) * toReal Δt) ⊆ T) (hη : sys.OrderAdmissibleFloat Δt Δt η)
-    {o : ℕ} (ho : 0 < o) : -- --- STMT ---
+    {o : ℕ} (ho : 0 < o) : -- --- CONCL ---
     ∀ k ≤ K, x ((k : ℝ) * toReal Δt) ∈ construct
     ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
       ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---

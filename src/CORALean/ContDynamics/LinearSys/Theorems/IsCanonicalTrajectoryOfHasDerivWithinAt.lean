@@ -44,7 +44,7 @@ theorem LinearSys.IsCanonicalTrajectory.of_hasDerivWithinAt {sys : LinearSys �
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} (hTconv : Convex ℝ T) (h0T : (0:ℝ) ∈ T)
     (hU : Bornology.IsBounded (construct U)) (init : x 0 ∈ construct R₀)
     (input : ∀ t ∈ T, u t ∈ construct U)
-    (hd : ∀ t ∈ T, HasDerivWithinAt x (toRealMat sys.A *ᵥ x t + u t) T t) : -- --- STMT ---
+    (hd : ∀ t ∈ T, HasDerivWithinAt x (toRealMat sys.A *ᵥ x t + u t) T t) : -- --- CONCL ---
     sys.IsCanonicalTrajectory T R₀ U x u := by -- --- PROOF ---
   have hx : ContinuousOn x T := fun t ht => (hd t ht).continuousWithinAt
   have hm := aestronglyMeasurable_of_hasDerivWithinAt hTconv hd

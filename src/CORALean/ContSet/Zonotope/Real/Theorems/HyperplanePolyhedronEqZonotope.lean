@@ -47,7 +47,7 @@ variable {n : ℕ}
 
 /-- [1, Sec. 3.4]: with orthonormal rows `L i`, the polyhedron is a zonotope. -/
 theorem Zonotope.hyperplanePolyhedron_eq (L : Mat ℝ n n) (hL : L * Lᵀ = 1)
-    (m M : Vec ℝ n → ℝ) (hmM : ∀ i, m (L i) ≤ M (L i)) : -- --- STMT ---
+    (m M : Vec ℝ n → ℝ) (hmM : ∀ i, m (L i) ≤ M (L i)) : -- --- CONCL ---
     ContSet.hyperplanePolyhedron (Finset.univ.image fun i => L i) m M
       = (Zonotope.mk n (∑ i, ((m (L i) + M (L i)) / 2) • L i)
           (fun i => ((M (L i) - m (L i)) / 2) • L i)).construct := by -- --- PROOF ---

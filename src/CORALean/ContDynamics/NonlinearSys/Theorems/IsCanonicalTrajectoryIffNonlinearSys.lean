@@ -42,7 +42,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 field it is. -/
 theorem LinearSys.isCanonicalTrajectory_iff_nonlinearSys (sys : LinearSys 𝕋 n) {T : Set ℝ}
     (hTconv : Convex ℝ T) (h0T : (0:ℝ) ∈ T) (R₀ U : S n)
-    (hU : Bornology.IsBounded (construct U)) (x u : ℝ → Vec ℝ n) : -- --- STMT ---
+    (hU : Bornology.IsBounded (construct U)) (x u : ℝ → Vec ℝ n) : -- --- CONCL ---
     sys.IsCanonicalTrajectory T R₀ U x u ↔ sys.nonlinearSys.IsTrajectory T R₀ U x u
       (fun t => sys.nonlinearSys.g (x t) (u t)) := by -- --- PROOF ---
   have hTm : MeasurableSet T := hTconv.ordConnected.measurableSet

@@ -45,7 +45,7 @@ every start in `R`, through one of the segments it returns. -/
 theorem NonlinearSys.splitReach_outer (step : Real.Zonotope (Vec ℝ n) → Option β)
     (pick : (R : Real.Zonotope (Vec ℝ n)) → Option (Fin R.h))
     (P : Vec ℝ n → β → Prop)
-    (hstep : ∀ R S, step R = some S → ∀ x ∈ R.construct, P x S) : -- --- STMT ---
+    (hstep : ∀ R S, step R = some S → ∀ x ∈ R.construct, P x S) : -- --- CONCL ---
     ∀ (fuel : ℕ) (R : Real.Zonotope (Vec ℝ n)) (l : List β),
       NonlinearSys.splitReach step pick fuel R = some l →
         ∀ x ∈ R.construct, ∃ S ∈ l, P x S := by -- --- PROOF ---

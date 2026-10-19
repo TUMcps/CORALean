@@ -39,7 +39,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.ahPolytope_inter_eq_counterexample : -- --- STMT ---
+theorem HPolytope.ahPolytope_inter_eq_counterexample : -- --- CONCL ---
     ∃ (x₁ x₂ : Vec ℝ 1) (X₁ X₂ X₂d : Mat ℝ 1 1) (H : Mat ℝ 2 1) (h : Vec ℝ 2),
       X₂ * X₂d * X₂ = X₂ ∧ X₂d * X₂ * X₂d = X₂d ∧ (X₂ * X₂d)ᵀ = X₂ * X₂d ∧
       (X₂d * X₂)ᵀ = X₂d * X₂ ∧

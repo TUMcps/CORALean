@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem ProbZonotope.enclose_mean_outer (P : ProbZonotope 𝕋 n) (Ar : Mat 𝕋 n n) {η : ℕ}
     (hη : toReal (MatExp.normUpperBound (Interval.point Ar)) / ((η : ℝ) + 2) ≤ 1 / 2)
     (Rtrans : Vec 𝕋 n) {μ : Vec ℝ n} (hμ : μ ∈ P.Z.construct) {a : ℝ}
-    (ha : a ∈ Set.Icc (0 : ℝ) 1) : -- --- STMT ---
+    (ha : a ∈ Set.Icc (0 : ℝ) 1) : -- --- CONCL ---
     a • μ + (1 - a) • (NormedSpace.exp (toRealMat Ar) *ᵥ μ + toRealVec Rtrans)
       ∈ (P.enclose Ar η Rtrans).Z.construct := by -- --- PROOF ---
   -- `e^{Ar}` in its float enclosure, and `e^{Ar} - I` in the sum with the point `-I`

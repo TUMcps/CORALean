@@ -43,7 +43,7 @@ theorem Zonotope.hausdorffDist_le_of_reduce_cert (Z Zr : Zonotope (Vec ℝ n)) (
     (Γ₀ : Mat ℝ Zr.h Z.h) (Γ₁ : Mat ℝ Z.h Zr.h) (Δ : Fin Zr.h → Vec ℝ n) (δ : ℝ) (hδ : 0 ≤ δ)
     (h₀ : ∀ j, Z.G j = ∑ k, Γ₀ k j • Zr.G k) (h₁ : ∀ k, Zr.G k = ∑ j, Γ₁ j k • Z.G j + Δ k)
     (hn₀ : ∀ k, ∑ j, |Γ₀ k j| ≤ 1) (hn₁ : ∀ j, ∑ k, |Γ₁ j k| ≤ 1)
-    (hΔ : ∀ i, ∑ k, |Δ k i| ≤ δ) : -- --- STMT ---
+    (hΔ : ∀ i, ∑ k, |Δ k i| ≤ δ) : -- --- CONCL ---
     Z.construct ⊆ Zr.construct ∧
       Metric.hausdorffDist Z.construct Zr.construct ≤ δ := by -- --- PROOF ---
   have hsub : Z.construct ⊆ Zr.construct :=

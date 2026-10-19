@@ -41,7 +41,7 @@ def LevelSet.aux_B : Fin 1 → Interval ℝ := fun _ => ⟨0, 1⟩
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LevelSet.isIntersecting_cell_counterexample : -- --- STMT ---
+theorem LevelSet.isIntersecting_cell_counterexample : -- --- CONCL ---
     LevelSet.aux_L.construct ∩ LevelSet.aux_box.construct ≠ ∅ ∧
       (∀ i, IsRangeBound (fun x => LevelSet.aux_L.f x i)
         LevelSet.aux_box.construct (LevelSet.aux_B i).inf (LevelSet.aux_B i).sup) ∧

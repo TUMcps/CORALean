@@ -44,7 +44,7 @@ namespace CORALean
 /-- The signal built from `mn` and `mx` is inconclusive where they differ. -/
 theorem FourValuedSignal.minMax_spec (mn mx K : KleeneSignal ℝ) (hmn : mn.IsValid)
     (hmx : mx.IsValid) (hK : K = KleeneSignal.combine (fun (args : Fin 2 → Kleene) (_ : Unit) =>
-      Kleene.fromBool (decide (args 0 ≠ args 1))) ![mn, mx] ()) : -- --- STMT ---
+      Kleene.fromBool (decide (args 0 ≠ args 1))) ![mn, mx] ()) : -- --- CONCL ---
     ∃ inc, K.toBoolSignal? = some inc ∧
     (⟨mn, inc⟩ : FourValuedSignal ℝ).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       ((⟨mn, inc⟩ : FourValuedSignal ℝ).at t = FourValued.ii ↔ mn.at t ≠ mx.at t) ∧

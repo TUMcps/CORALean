@@ -44,7 +44,7 @@ variable {n : ℕ}
 generator, and every earlier candidate it accepts reports too. -/
 theorem aux_autoTuneSetOrder_exists {le : ℝ → ℝ → Bool}
     (hle : ∀ a b : ℝ, a ≤ b → le a b = true) (Z : Zonotope (Vec ℝ n)) {εrτ : ℝ}
-    (hεrτ : 0 ≤ εrτ) : -- --- STMT ---
+    (hεrτ : 0 ≤ εrτ) : -- --- CONCL ---
     ∀ (m ρ : ℕ), Z.h ≤ (ρ + 1 + m) * n →
       ∃ ρ', Zonotope.autoTuneSetOrder le Z εrτ ρ (m + 1) = some ρ' := by -- --- PROOF ---
   intro m

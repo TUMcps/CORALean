@@ -86,7 +86,7 @@ theorem aux_image_sin_one_two :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.extremal_example : -- --- STMT ---
+theorem Interval.extremal_example : -- --- CONCL ---
     let Y : Set (ℝ × ℝ) := Set.Icc 0.5 1 ×ˢ Set.Icc 1 2
     let C : Interval (Vec ℝ 3) := ⟨![0.84147, 1, 1.5], ![1, 4, 3]⟩
     let gLo := fun x : ℝ => C.extremalLo (fun i => x ^ (i : ℕ))

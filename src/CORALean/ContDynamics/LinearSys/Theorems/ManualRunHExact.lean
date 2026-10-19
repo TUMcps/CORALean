@@ -61,7 +61,7 @@ theorem aux_construct_ofPoint {α : Type} [AddCommGroup α] [Module ℝ α] (v :
 /-- [1, Alg. 1] line 7, made exact: the state `manualRun` reaches at step `k` has `H` denoting
 precisely `e^{A t_k}·X₀`, Minkowski-shifted by `P^u(t_k)`. -/
 theorem LinearSys.manualRun_H_exact (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Vec ℝ n)) (Δt : ℝ)
-    (η ρ : ℕ) (k : ℕ) : -- --- STMT ---
+    (η ρ : ℕ) (k : ℕ) : -- --- CONCL ---
     construct (sys.manualRun X₀ U Δt η ρ k).H
       = (fun x₀ => exp ((sys.manualRun X₀ U Δt η ρ k).t • toRealMat sys.A) *ᵥ x₀)
           '' construct X₀ + {(sys.manualRun X₀ U Δt η ρ k).Pu} := by -- --- PROOF ---

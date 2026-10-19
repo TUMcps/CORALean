@@ -36,7 +36,7 @@ open Matrix
 /-- [1, Prop. 5] at `Λ_A = I`: `Z̃` is the zonotope `{G − Λ_G A, c + Λ_G b}`. -/
 theorem ConZonotope.constraintReduce_one_mem_iff {n q h : ℕ} (c : Vec ℝ n)
     (G : Fin h → Vec ℝ n) (A : Mat ℝ q h) (b : Vec ℝ q) (ΛG : Mat ℝ n q)
-    (x : Vec ℝ n) : -- --- STMT ---
+    (x : Vec ℝ n) : -- --- CONCL ---
     x ∈ (ConZonotope.constraintReduce c G A b ΛG 1).construct ↔
       ∃ β : Fin h → ℝ, (∀ j, |β j| ≤ 1) ∧
         x = (c + ΛG *ᵥ b) + ∑ j, β j • (G j - ΛG *ᵥ fun k => A k j) := by -- --- PROOF ---

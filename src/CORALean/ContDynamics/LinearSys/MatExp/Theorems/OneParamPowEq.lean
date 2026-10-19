@@ -47,7 +47,7 @@ theorem aux_oneParamF_eq_zero (C G : Mat ℝ n n) :
     rw [MatExp.oneParamF, if_neg (by omega), if_neg (by omega), if_neg (by omega)]
 
 /-- The printed rules as one: `F_{i+1}^{(l)} = P_i^{(l-1)} G + P_i^{(l)} C` for `l ≥ 1`. -/
-theorem aux_oneParamF_succ (C G : Mat ℝ n n) (i l : ℕ) (hl : 1 ≤ l) : -- --- STMT ---
+theorem aux_oneParamF_succ (C G : Mat ℝ n n) (i l : ℕ) (hl : 1 ≤ l) : -- --- CONCL ---
     MatExp.oneParamF C G (i + 1) l =
       (if l - 1 = 0 then MatExp.oneParamD C i else MatExp.oneParamF C G i (l - 1)) * G +
         (if l = 0 then MatExp.oneParamD C i else MatExp.oneParamF C G i l) *

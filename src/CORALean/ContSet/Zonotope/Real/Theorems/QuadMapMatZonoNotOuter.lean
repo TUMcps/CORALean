@@ -40,7 +40,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Thm. 1] as printed, a factor per coordinate, is not enclosed. -/
-theorem Zonotope.quadMapMatZono_not_outer : -- --- STMT ---
+theorem Zonotope.quadMapMatZono_not_outer : -- --- CONCL ---
     ∃ (D : Fin 2 → Mat ℝ 1 1) (K : Fin 1 → Fin 2 → Mat ℝ 1 1) (Z : Zonotope (Vec ℝ 1)),
       ¬ {l : Vec ℝ 2 | ∃ x ∈ Z.construct, ∃ β : Fin 2 → Fin 1 → ℝ, (∀ i j, |β i j| ≤ 1) ∧
           ∀ i, l i = x ⬝ᵥ ((D i + ∑ j, β i j • K j i) *ᵥ x)}

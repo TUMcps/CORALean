@@ -49,7 +49,7 @@ theorem GNN.evalLayers_mem_gcnActSteps_uncertain (R : Relaxation ℝ) (hR : R.So
     (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) (L : ℕ) (c : ℕ → ℕ) (σ : ℕ → ℝ → ℝ)
     (W : ∀ s, Mat ℝ (c s) (c (s + 1))) (acts : ∀ s, GNN.ActLayer N (c (s + 1)))
     (hσ : ∀ s, (acts s).Sound (σ s)) (H : PolyZonotope (Mat ℝ N (c 0))) (aH : Fin H.p → ℝ)
-    (haH : ∀ k, |aH k| ≤ 1) : -- --- STMT ---
+    (haH : ∀ k, |aH k| ≤ 1) : -- --- CONCL ---
     GNN.evalLayers (GNN.messagePassing (GNN.adjAt A U lam)) L c σ W (H.point aH)
       ∈ (GNN.gcnActSteps L c W acts ((GNN.messagePassingEnclosure R A U).padBack H.p)
           (H.padFront (GNN.messagePassingEnclosure R A U).p) rfl).construct := by -- --- PROOF ---

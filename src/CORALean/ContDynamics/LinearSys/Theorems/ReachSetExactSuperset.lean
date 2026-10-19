@@ -45,7 +45,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 input, `closedForm_flow` supplying exactly its `flow` field. -/
 theorem LinearSys.mulVecLin_image_add_inputReach_subset_reachSetExact
     (sys : LinearSys 𝕋 n) (R₀ U : S n) {t : ℝ} (ht : 0 ≤ t)
-    (hU : Bornology.IsBounded (construct U)) : -- --- STMT ---
+    (hU : Bornology.IsBounded (construct U)) : -- --- CONCL ---
     (exp (t • toRealMat sys.A)).mulVecLin '' construct R₀ + sys.inputReach U t
       ⊆ sys.reachSetExact (Set.Icc 0 t) R₀ U t := by -- --- PROOF ---
   rintro y hy

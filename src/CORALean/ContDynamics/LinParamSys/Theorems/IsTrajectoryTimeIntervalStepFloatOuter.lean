@@ -55,7 +55,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalStepFloat_outer
     (hΔt : 0 < toReal Δt)
     (hT : Set.Icc 0 (toReal Δt) ⊆ T) (hu : ∀ s ∈ Set.Ico 0 (toReal Δt), u s = 0)
     (hη : sys.OrderAdmissibleFloat Δt Δt η) {t : ℝ} (ht0 : 0 ≤ t)
-    (htr : t ≤ toReal Δt) : -- --- STMT ---
+    (htr : t ≤ toReal Δt) : -- --- CONCL ---
     x t ∈ (sys.timeIntervalStepFloat Δt η R₀).construct := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le' hη.1
   set r := toReal Δt with hr

@@ -42,7 +42,7 @@ variable {n : ℕ}
 
 /-- The agreement rows are all that `intersection` adds over `plus`. -/
 theorem ConZonotope.aux_mem_intersection_P_iff (cZ₁ cZ₂ : ConZonotope (Vec ℝ n))
-    (β : Vec ℝ (cZ₁.intersection cZ₂).h) : -- --- STMT ---
+    (β : Vec ℝ (cZ₁.intersection cZ₂).h) : -- --- CONCL ---
     β ∈ (cZ₁.intersection cZ₂).P.construct ↔
       (blockLeft cZ₁.h cZ₂.h β ∈ cZ₁.P.construct
         ∧ blockRight cZ₁.h cZ₂.h β ∈ cZ₂.P.construct)
@@ -57,7 +57,7 @@ theorem ConZonotope.aux_mem_intersection_P_iff (cZ₁ cZ₂ : ConZonotope (Vec �
       ⟨HPolytope.mem_intersection_iff.mpr hblocks, HPolytope.mem_eqs_iff.mpr heqs⟩
 
 theorem ConZonotope.aux_mulVec_agree (cZ₁ cZ₂ : ConZonotope (Vec ℝ n))
-    (β : Fin (cZ₁.h + cZ₂.h) → ℝ) (i : Fin n) : -- --- STMT ---
+    (β : Fin (cZ₁.h + cZ₂.h) → ℝ) (i : Fin n) : -- --- CONCL ---
     (ConZonotope.aux_agreeMat cZ₁ cZ₂ *ᵥ β) i
       = (∑ j, cZ₁.G j i * β (Fin.castAdd cZ₂.h j))
         - ∑ j, cZ₂.G j i * β (Fin.natAdd cZ₁.h j) := by -- --- PROOF ---

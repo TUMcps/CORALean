@@ -38,7 +38,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- [1, Sec. 3 (minimal representation)]: `emptySet` is `∅`, and every H-representation of `∅` has
 at least its rows. -/
-theorem HPolytope.emptySet_rows_minimal : -- --- STMT ---
+theorem HPolytope.emptySet_rows_minimal : -- --- CONCL ---
     (HPolytope.emptySet α).construct = ∅ ∧
       ∀ P : HPolytope α, P.construct = ∅ →
         (HPolytope.emptySet α).m + (HPolytope.emptySet α).me

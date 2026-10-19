@@ -34,7 +34,7 @@ theorem ipm_sol_congr {E Φ Y : Type} {N : ℕ} {𝒬 : Set E} {μQ : E → ℝ}
     {sol : Finset (Fin N) → (Fin N → Φ × Y) → E} {H : Finset (Fin N)}
     (hsol : ∀ x, sol H x ∈ 𝒬 ∧ (∀ t ∈ H, (x t).2 ∈ I (sol H x) (x t).1) ∧
       ∀ Q ∈ 𝒬, (∀ t ∈ H, (x t).2 ∈ I Q (x t).1) → Q ≠ sol H x → μQ (sol H x) < μQ Q)
-    {x x' : Fin N → Φ × Y} (hxx : ∀ t ∈ H, x t = x' t) : -- --- STMT ---
+    {x x' : Fin N → Φ × Y} (hxx : ∀ t ∈ H, x t = x' t) : -- --- CONCL ---
     sol H x = sol H x' := by -- --- PROOF ---
   by_contra hne
   obtain ⟨h1, h2, h3⟩ := hsol x

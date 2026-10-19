@@ -46,7 +46,7 @@ variable {n nu ny nw nv rw rv : ℕ}
 theorem LinearSysDT.faultObserve_outer (A : Mat ℝ n n) (B : Mat ℝ n nu) (C : Mat ℝ ny n)
     (L : Mat ℝ n ny) (Dx : Mat ℝ n nw) (Hw : Mat ℝ nw rw) (Dy : Mat ℝ ny nv) (Hv : Mat ℝ nv rv)
     (u : Vec ℝ nu) (X : Zonotope (Vec ℝ n)) (x : Vec ℝ n) (s₁ : Vec ℝ rw) (s₂ : Vec ℝ rv)
-    (hx : x ∈ X.construct) (hs₁ : ∀ i, |s₁ i| ≤ 1) (hs₂ : ∀ i, |s₂ i| ≤ 1) : -- --- STMT ---
+    (hx : x ∈ X.construct) (hs₁ : ∀ i, |s₁ i| ≤ 1) (hs₂ : ∀ i, |s₂ i| ≤ 1) : -- --- CONCL ---
     A *ᵥ x + B *ᵥ u + Dx *ᵥ (Hw *ᵥ s₁) ∈ (X.faultObserve A B C L Dx Hw Dy Hv u
       (C *ᵥ x + Dy *ᵥ (Hv *ᵥ s₂))).construct := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hx

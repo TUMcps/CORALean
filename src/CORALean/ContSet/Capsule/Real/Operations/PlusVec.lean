@@ -9,6 +9,13 @@ public import CORALean.ContSet.Capsule.Real.Capsule
 
 CORA's `@capsule/plus.m` with a vector: a capsule plus a vector is a capsule, the center shifted,
 generator and radius unchanged.
+
+## Inputs
+* `C` – capsule
+* `v` – translation
+
+## Output
+* `C` shifted by `v`
 -/
 
 -- Authors:       Claude Sonnet 5.5

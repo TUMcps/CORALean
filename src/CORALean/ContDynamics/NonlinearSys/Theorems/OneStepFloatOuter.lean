@@ -56,7 +56,7 @@ theorem aux_oneStep_mem_pt {k : ℕ} (v : Vec 𝕋 k) :
 /-- A successful step has a positive width, and every run of `sys` on `[0, Δt]` from `R`
 whose `f(x, u) - A(x - x✱)` stays in `V` is in `R(τ)` over the step and in `R(t₁)` at its end. -/
 theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n n} {xs : Vec 𝕋 n}
-    {V R : Zonotope (Vec 𝕋 n)} {options : LinearSys.ReachOptions 𝕋} : -- --- STMT ---
+    {V R : Zonotope (Vec 𝕋 n)} {options : LinearSys.ReachOptions 𝕋} : -- --- CONCL ---
     ∀ Rτ Rt, (Rτ, Rt) ∈ NonlinearSys.oneStepFloat A xs V R options →
       0 < toReal options.Δt ∧ ∀ {U : Set (Vec ℝ m)} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
       {y : ℝ → Vec ℝ sys.q},

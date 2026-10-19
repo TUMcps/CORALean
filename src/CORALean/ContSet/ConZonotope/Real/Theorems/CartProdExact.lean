@@ -41,14 +41,14 @@ theorem ConZonotope.aux_sum_univ_cartProd {cZ₁ : ConZonotope α} {cZ₂ : ConZ
 omit [Module ℝ α] [Module ℝ β] in
 /-- Each block answers to its own polytope, as `ConZonotope.aux_mem_plus_P_iff`. -/
 theorem ConZonotope.aux_mem_cartProd_P_iff (cZ₁ : ConZonotope α) (cZ₂ : ConZonotope β)
-    (β' : Vec ℝ (cZ₁.cartProd cZ₂).h) : -- --- STMT ---
+    (β' : Vec ℝ (cZ₁.cartProd cZ₂).h) : -- --- CONCL ---
     β' ∈ (cZ₁.cartProd cZ₂).P.construct ↔
       blockLeft cZ₁.h cZ₂.h β' ∈ cZ₁.P.construct
         ∧ blockRight cZ₁.h cZ₂.h β' ∈ cZ₂.P.construct :=
   HPolytope.mem_intersection_iff
 
 theorem ConZonotope.aux_value_cartProd (cZ₁ : ConZonotope α) (cZ₂ : ConZonotope β)
-    (γ : Fin (cZ₁.h + cZ₂.h) → ℝ) : -- --- STMT ---
+    (γ : Fin (cZ₁.h + cZ₂.h) → ℝ) : -- --- CONCL ---
     (cZ₁.cartProd cZ₂).c + ∑ j : Fin (cZ₁.cartProd cZ₂).h, γ j • (cZ₁.cartProd cZ₂).G j
       = (cZ₁.c + ∑ j, γ (Fin.castAdd cZ₂.h j) • cZ₁.G j,
          cZ₂.c + ∑ j, γ (Fin.natAdd cZ₁.h j) • cZ₂.G j) := by -- --- PROOF ---

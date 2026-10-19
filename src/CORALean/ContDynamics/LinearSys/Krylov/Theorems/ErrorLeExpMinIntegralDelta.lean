@@ -48,7 +48,7 @@ theorem Krylov.error_le_exp_min_integral_delta (A : Mat ℂ n n) (V : Mat ℂ n 
     (T : Mat ℂ (m + 1) (m + 1)) (τ : ℂ) (w : Fin n → ℂ)
     (hK : A * V = V * T + τ • vecMulVec w (Pi.single (Fin.last m) 1)) (ν : ℝ)
     (hA : ∀ x : Fin n → ℂ, ν * (star x ⬝ᵥ x).re ≤ (star x ⬝ᵥ (A *ᵥ x)).re) {t : ℝ}
-    (ht : 0 ≤ t) : -- --- STMT ---
+    (ht : 0 ≤ t) : -- --- CONCL ---
     let v := V *ᵥ Pi.single 0 1
     let h : ℝ → ℂ := fun s => exp (s • (-T)) (Fin.last m) 0
     ‖(WithLp.toLp 2 (exp (t • (-A)) *ᵥ v - V *ᵥ (exp (t • (-T)) *ᵥ Pi.single 0 1)) :

@@ -36,7 +36,7 @@ variable {n m N r : ℕ}
 theorem LinearSys.identify_le_candidate (lt : ℝ → ℝ → Bool)
     (hlt : ∀ a b, lt a b = true ↔ a < b)
     (err : Mat ℝ n (n + 1 + m) → ℝ) (dx : Fin N → Vec ℝ n)
-    (V : Mat ℝ (n + 1 + m) r) (s : Fin r → ℝ) (W : Mat ℝ N r) (hr : 0 < r) : -- --- STMT ---
+    (V : Mat ℝ (n + 1 + m) r) (s : Fin r → ℝ) (W : Mat ℝ N r) (hr : 0 < r) : -- --- CONCL ---
     ∃ M, LinearSys.identify lt err dx V s W =
         some (LinearSys.ofABc (dmdBlocks M).1 (dmdBlocks M).2.1 (dmdBlocks M).2.2) ∧
       (∃ k, 1 ≤ k ∧ k ≤ r ∧ M = LinearSys.identifyCandidate dx V s W k) ∧

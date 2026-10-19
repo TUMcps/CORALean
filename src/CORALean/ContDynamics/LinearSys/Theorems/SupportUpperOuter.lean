@@ -75,7 +75,7 @@ theorem aux_supportUpper_d (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (X₀
 
 /-- Line 9 in closed form: `P_u(t_k) = Γ(t_k) ũ`, `Γ(t) = ∫₀ᵗ e^{Aσ}dσ`. -/
 theorem aux_supportUpper_Pu (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 ≤ Δt) (η : ℕ)
-    (X₀ U : S n) (ρ : S n → (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) : -- --- STMT ---
+    (X₀ U : S n) (ρ : S n → (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) : -- --- CONCL ---
     (sys.supportUpper Δt η X₀ U ρ ℓ k).Pu
       = MatExp.expIntegral (toRealMat sys.A) ((k : ℝ) * Δt)
         *ᵥ Recenter.center U := by -- --- PROOF ---
@@ -92,7 +92,7 @@ theorem aux_supportUpper_Pu (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 ≤ �
 
 /-- Line 11 in closed form: `ρ(P̂_U(t_k), ℓ) = ∑_{j<k} ρ(P̂_U(Δt), d_j)`. -/
 theorem aux_supportUpper_ρP (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (X₀ U : S n)
-    (ρ : S n → (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) : -- --- STMT ---
+    (ρ : S n → (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) : -- --- CONCL ---
     (sys.supportUpper Δt η X₀ U ρ ℓ k).ρP
       = ∑ j ∈ Finset.range k, ρ (sys.inputSolution Δt η (Recenter.recenter U))
           (ℓ.comp (mulVecLin (exp (Δt • toRealMat sys.A) ^ j))) := by -- --- PROOF ---
@@ -106,7 +106,7 @@ theorem aux_supportUpper_ρP (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (X�
 
 /-- Lines 10 and 1 together: `ρ(H(t_k), ℓ) = ρ(X₀, d_k) + ℓ P_u(t_k)`. -/
 theorem aux_supportUpper_ρH (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (X₀ U : S n)
-    (ρ : S n → (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) : -- --- STMT ---
+    (ρ : S n → (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) : -- --- CONCL ---
     (sys.supportUpper Δt η X₀ U ρ ℓ k).ρH
       = ρ X₀ (sys.supportUpper Δt η X₀ U ρ ℓ k).d
         + ℓ (sys.supportUpper Δt η X₀ U ρ ℓ k).Pu := by -- --- PROOF ---
@@ -128,7 +128,7 @@ theorem aux_exp_smul_eq_pow (A : Mat ℝ n n) (Δt : ℝ) (j : ℕ) :
 `d_j`. -/
 theorem aux_propagate_le (sys : LinearSys 𝕋 n) (Δt : ℝ) {Z : Set (Vec ℝ n)}
     {ρZ : (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ} (hZ : ∀ z ∈ Z, ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, d z ≤ ρZ d)
-    (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (m : ℕ) : -- --- STMT ---
+    (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (m : ℕ) : -- --- CONCL ---
     ∀ y ∈ sys.propagateInputSolution Δt Z m,
       ℓ y ≤ ∑ j ∈ Finset.range m,
         ρZ (ℓ.comp (mulVecLin (exp (Δt • toRealMat sys.A) ^ j))) := by -- --- PROOF ---
@@ -164,7 +164,7 @@ theorem LinearSys.supportUpper_outer
     (hε : ‖Δt • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ U : S n)
     {ρ : S n → (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ}
     (hρ : ∀ X : S n, ∀ x ∈ construct X, ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, d x ≤ ρ X d)
-    (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) : -- --- STMT ---
+    (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) : -- --- CONCL ---
     (∀ x ∈ sys.reachSetExact (Set.Icc 0 ((k : ℝ) * Δt)) X₀ U ((k : ℝ) * Δt),
         ℓ x ≤ (sys.supportUpper Δt (m + 2) X₀ U ρ ℓ k).ρR) ∧
     (∀ t ∈ Set.Icc ((k : ℝ) * Δt) (((k + 1 : ℕ) : ℝ) * Δt),

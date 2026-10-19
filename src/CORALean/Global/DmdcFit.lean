@@ -53,7 +53,7 @@ rank, reproduces `X' - B Υ = A' X`. -/
 theorem dmdcKnownB_fit (x xNext : Fin N → Vec ℝ n) (u : Fin N → Vec ℝ l) (A' : Mat ℝ n n)
     (B : Mat ℝ n l) (V : Mat ℝ n r) (s : Fin r → ℝ) (W : Mat ℝ N r)
     (hX : dmdcCols x = V * Matrix.diagonal s * Wᵀ) (hV : Vᵀ * V = 1) (hW : Wᵀ * W = 1)
-    (hs : ∀ i, s i ≠ 0) (hdata : ∀ k, xNext k = A' *ᵥ x k + B *ᵥ u k) : -- --- STMT ---
+    (hs : ∀ i, s i ≠ 0) (hdata : ∀ k, xNext k = A' *ᵥ x k + B *ᵥ u k) : -- --- CONCL ---
     dmdCandidate (dmdcCols xNext - B * dmdcCols u) V s W r * dmdcCols x
       = dmdcCols xNext - B * dmdcCols u := by -- --- PROOF ---
   have h := (dmdc_data_sub x xNext u A' B).mp ((dmdc_data_matrix x xNext u A' B).mp hdata)
@@ -63,7 +63,7 @@ theorem dmdcKnownB_fit (x xNext : Fin N → Vec ℝ n) (u : Fin N → Vec ℝ l)
 theorem dmdcKnownB_leastSquares (x xNext : Fin N → Vec ℝ n) (u : Fin N → Vec ℝ l)
     (B : Mat ℝ n l) (V : Mat ℝ n r) (s : Fin r → ℝ) (W : Mat ℝ N r)
     (hX : dmdcCols x = V * Matrix.diagonal s * Wᵀ) (hV : Vᵀ * V = 1) (hW : Wᵀ * W = 1)
-    (hs : ∀ i, s i ≠ 0) (A : Mat ℝ n n) : -- --- STMT ---
+    (hs : ∀ i, s i ≠ 0) (A : Mat ℝ n n) : -- --- CONCL ---
     ∑ i, ∑ a, ((dmdcCols xNext - B * dmdcCols u
         - dmdCandidate (dmdcCols xNext - B * dmdcCols u) V s W r * dmdcCols x) a i) ^ 2
       ≤ ∑ i, ∑ a, ((dmdcCols xNext - B * dmdcCols u - A * dmdcCols x) a i) ^ 2 :=
@@ -94,7 +94,7 @@ theorem dmdcUnknownB_fit (x xNext : Fin N → Vec ℝ n) (u : Fin N → Vec ℝ 
     (B' : Mat ℝ n l) (V : Mat ℝ (n + l) r) (s : Fin r → ℝ) (W : Mat ℝ N r)
     (hΩ : dmdcCols (fun k => dmdcRegressor (x k) (u k)) = V * Matrix.diagonal s * Wᵀ)
     (hV : Vᵀ * V = 1) (hW : Wᵀ * W = 1) (hs : ∀ i, s i ≠ 0)
-    (hdata : ∀ k, xNext k = A' *ᵥ x k + B' *ᵥ u k) (k : Fin N) : -- --- STMT ---
+    (hdata : ∀ k, xNext k = A' *ᵥ x k + B' *ᵥ u k) (k : Fin N) : -- --- CONCL ---
     (dmdcBlocks (dmdCandidate (dmdcCols xNext) V s W r)).1 *ᵥ x k
       + (dmdcBlocks (dmdCandidate (dmdcCols xNext) V s W r)).2 *ᵥ u k
       = xNext k := by -- --- PROOF ---
@@ -109,7 +109,7 @@ theorem dmdcUnknownB_fit (x xNext : Fin N → Vec ℝ n) (u : Fin N → Vec ℝ 
 theorem dmdcUnknownB_leastSquares (x xNext : Fin N → Vec ℝ n) (u : Fin N → Vec ℝ l)
     (V : Mat ℝ (n + l) r) (s : Fin r → ℝ) (W : Mat ℝ N r)
     (hΩ : dmdcCols (fun k => dmdcRegressor (x k) (u k)) = V * Matrix.diagonal s * Wᵀ)
-    (hV : Vᵀ * V = 1) (hW : Wᵀ * W = 1) (hs : ∀ i, s i ≠ 0) (G : Mat ℝ n (n + l)) : -- --- STMT ---
+    (hV : Vᵀ * V = 1) (hW : Wᵀ * W = 1) (hs : ∀ i, s i ≠ 0) (G : Mat ℝ n (n + l)) : -- --- CONCL ---
     ∑ i, ∑ a, ((dmdcCols xNext - dmdCandidate (dmdcCols xNext) V s W r
         * dmdcCols (fun k => dmdcRegressor (x k) (u k))) a i) ^ 2
       ≤ ∑ i, ∑ a, ((dmdcCols xNext
@@ -119,7 +119,7 @@ theorem dmdcUnknownB_leastSquares (x xNext : Fin N → Vec ℝ n) (u : Fin N →
 /-- [1, Eq. 28]: the blocks of `Ḡ = X' Ṽ Σ̃⁻¹ Ũᵀ` are `X' Ṽ Σ̃⁻¹ Ũ₁ᵀ` and
 `X' Ṽ Σ̃⁻¹ Ũ₂ᵀ`, `Ũ₁`, `Ũ₂` the state and input rows of `Ũ`. -/
 theorem dmdcBlocks_candidate (X2 : Mat ℝ n N) (V : Mat ℝ (n + l) r) (s : Fin r → ℝ)
-    (W : Mat ℝ N r) (q : ℕ) : -- --- STMT ---
+    (W : Mat ℝ N r) (q : ℕ) : -- --- CONCL ---
     dmdcBlocks (dmdCandidate X2 V s W q)
       = (X2 * W * Matrix.diagonal (fun i : Fin r => if (i : ℕ) < q then (s i)⁻¹ else 0)
           * (Matrix.of fun a j => V (Fin.castAdd l a) j)ᵀ,

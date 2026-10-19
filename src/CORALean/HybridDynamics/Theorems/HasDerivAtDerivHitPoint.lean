@@ -41,7 +41,7 @@ variable {n : ℕ}
 
 /-- [1, Prop. 2]: `∂²y_{h,i}/∂x₀_l∂x₀_m = Q̃⁽ⁱ⁾_lm(x₀)`, wherever `Λ(x₀) = nᵀ(Ax₀ + b) ≠ 0`. -/
 theorem GuardMap.hasDerivAt_deriv_hitPoint {A : Mat ℝ n n} {b nv x₀ : Vec ℝ n} {d : ℝ}
-    (hΛ : nv ⬝ᵥ (A *ᵥ x₀ + b) ≠ 0) (i l m : Fin n) : -- --- STMT ---
+    (hΛ : nv ⬝ᵥ (A *ᵥ x₀ + b) ≠ 0) (i l m : Fin n) : -- --- CONCL ---
     HasDerivAt (fun s : ℝ => deriv (fun t : ℝ =>
         GuardMap.hitPoint A b nv d (x₀ + s • Pi.single l 1 + t • Pi.single m 1) i) 0)
       (GuardMap.hitHessian A b nv d x₀ i l m) 0 := by -- --- PROOF ---

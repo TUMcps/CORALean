@@ -47,7 +47,7 @@ Hessenberg `T_m` with `W(σT_m) ⊆ ℂ⁻`, `|σ| = 1`; `T_m` has size `m + 1` 
 theorem Krylov.norm_exp_corrected_apply_last_le (T : Mat ℂ (m + 1) (m + 1)) (τ σ : ℂ)
     (hH : ∀ i k : Fin (m + 1), (k : ℕ) + 1 < i → T i k = 0)
     (hT : ∀ x : Fin (m + 1) → ℂ, (star x ⬝ᵥ ((σ • T) *ᵥ x)).re ≤ 0) (hσ : ‖σ‖ = 1) {s : ℝ}
-    (hs : 0 ≤ s) : -- --- STMT ---
+    (hs : 0 ≤ s) : -- --- CONCL ---
     let Tp : Mat ℂ (m + 2) (m + 2) := Matrix.of fun i j =>
       Fin.lastCases (Fin.lastCases 0 (fun j' => if j' = Fin.last m then τ else 0) j)
         (fun i' => Fin.lastCases 0 (fun j' => T i' j') j) i

@@ -62,7 +62,7 @@ theorem Ellipsoid.construct_eq_of_volume_le_superset_parallelotope {G F : Mat �
     (hsub : {x | ∃ β : Vec ℝ n, (∀ j, |β j| ≤ 1) ∧ x = z + G *ᵥ β} ⊆
       (Ellipsoid.ofFactor F q).construct)
     (hvol : MeasureTheory.volume (Ellipsoid.ofFactor F q).construct ≤
-      MeasureTheory.volume (Ellipsoid.ofFactor (Real.sqrt n • G) z).construct) : -- --- STMT ---
+      MeasureTheory.volume (Ellipsoid.ofFactor (Real.sqrt n • G) z).construct) : -- --- CONCL ---
     (Ellipsoid.ofFactor F q).construct
       = (Ellipsoid.ofFactor (Real.sqrt n • G) z).construct := by -- --- PROOF ---
   rcases Nat.eq_zero_or_pos n with rfl | hn

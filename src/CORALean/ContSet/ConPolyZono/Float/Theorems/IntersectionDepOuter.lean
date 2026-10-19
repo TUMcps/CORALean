@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 lies in the stored agreement interval. -/
 theorem ConPolyZono.aux_agree_mem (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) {e₁ e₂ : Vec ℝ n}
     (h₁ : e₁ ∈ cPZ₁.I_error.construct) (h₂ : e₂ ∈ cPZ₂.I_error.construct)
-    (i : Fin n) : -- --- STMT ---
+    (i : Fin n) : -- --- CONCL ---
     toReal ((ConPolyZono.intersectionAgree cPZ₁ cPZ₂).inf i)
         ≤ toReal (cPZ₂.c i) - toReal (cPZ₁.c i) + (e₂ i - e₁ i)
       ∧ toReal (cPZ₂.c i) - toReal (cPZ₁.c i) + (e₂ i - e₁ i)

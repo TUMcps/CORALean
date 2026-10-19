@@ -45,7 +45,7 @@ theorem GNN.evalSteps_row_ball_of_adjacency_uncertain {N F m : ℕ} (A : Mat ℝ
     {lam : Fin m → ℝ} (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) (v : Fin N) (L : ℕ) {K : ℕ}
     (κ : Fin K → Fin N) (hinj : Function.Injective κ)
     (hκ : GNN.ball (GNN.adjMax A U) v (L + 1) ⊆ Finset.univ.image κ)
-    (W : Fin L → Mat ℝ F F) (X : Mat ℝ N F) : -- --- STMT ---
+    (W : Fin L → Mat ℝ F F) (X : Mat ℝ N F) : -- --- CONCL ---
     ∃ φ : Fin (GNN.ball (GNN.adjAt A U lam) v L).card → Fin K,
       GNN.evalSteps (GNN.messagePassing (GNN.adjAt A U lam)) L W X v
         = GNN.evalSteps ((GNN.messagePassing ((GNN.adjAt A U lam).submatrix κ κ)).submatrix φ φ) L

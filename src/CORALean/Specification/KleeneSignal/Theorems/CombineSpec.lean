@@ -31,7 +31,7 @@ namespace CORALean
 
 theorem KleeneSignal.combine_spec {T : Type} [LinearOrder T] [Zero T] {ι κ : Type}
     [Fintype ι] [Nonempty ι] (op : (ι → Kleene) → κ → Kleene) (sig : ι → KleeneSignal T)
-    (hv : ∀ k, (sig k).IsValid) (i : κ) : -- --- STMT ---
+    (hv : ∀ k, (sig k).IsValid) (i : κ) : -- --- CONCL ---
     (KleeneSignal.combine op sig i).IsValid ∧ ∀ t : T, 0 ≤ t →
       (KleeneSignal.combine op sig i).at t = op (fun k => (sig k).at t) i := by -- --- PROOF ---
   unfold KleeneSignal.combine

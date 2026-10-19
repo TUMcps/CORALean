@@ -153,7 +153,7 @@ theorem Ellipsoid.aux_strip_scalars {ν : ℝ} {lam δ φ' om omHi νLo νHi sLo
     (h_sHi : sHi = addUp omHi (mulUp lam νHi))
     (h_corr : corr = divDown (mulDown (maximum FloatOps.zero (mulDown lam om))
       (maximum FloatOps.zero (mulDown δ δ))) sHi)
-    (h_S : S = subUp (addUp omHi (mulUp lam (mulUp φ' φ'))) corr) : -- --- STMT ---
+    (h_S : S = subUp (addUp omHi (mulUp lam (mulUp φ' φ'))) corr) : -- --- CONCL ---
     toReal om ≤ 1 - toReal lam
       ∧ 0 < toReal sLo ∧ toReal sLo ≤ 1 - toReal lam + toReal lam * ν
       ∧ 1 - toReal lam + toReal lam * ν ≤ toReal sHi
@@ -226,7 +226,7 @@ theorem Ellipsoid.aux_strip_factor {S om sLo νHi g α β γLo : 𝕋} {l ν s :
     (hsLo₀ : 0 < toReal sLo) (hsLo : toReal sLo ≤ s)
     (h_α : α = sqrtUp steps (divUp S om)) (h_g : g = sqrtUp steps (divUp S sLo))
     (hβ : toReal β ≤ 0) (h_γLo : γLo = addDown α (mulDown β νHi)) (hγLo : 0 < toReal γLo)
-    (hgγ : toReal g ≤ toReal γLo) : -- --- STMT ---
+    (hgγ : toReal g ≤ toReal γLo) : -- --- CONCL ---
     0 < toReal α ∧ 0 < toReal α + toReal β * ν ∧ toReal S ≤ toReal α ^ 2 * (1 - l)
       ∧ toReal S ≤ (toReal α + toReal β * ν) ^ 2 * s := by -- --- PROOF ---
   have hγ₁ : toReal γLo ≤ toReal α + toReal β * ν := by
@@ -252,7 +252,7 @@ theorem Ellipsoid.aux_strip_factor {S om sLo νHi g α β γLo : 𝕋} {l ν s :
 /-- The factor `G N`, `N = α I + β v vᵀ`, `v = G cᵀ`: its value at `w` is `α G w + β (vᵀ w) W`,
 and its Gram matrix `α² Q + (2αβ + β² vᵀv) W Wᵀ`, `W = G v = Q cᵀ`. -/
 theorem Ellipsoid.aux_strip_shape {G Q : Mat ℝ n n} (hG : Gᵀ = G) (hGG : G * G = Q)
-    (cr : Vec ℝ n) (α β : ℝ) : -- --- STMT ---
+    (cr : Vec ℝ n) (α β : ℝ) : -- --- CONCL ---
     let v := G *ᵥ cr
     let W := Q *ᵥ cr
     let N : Mat ℝ n n := α • 1 + β • vecMulVec v v

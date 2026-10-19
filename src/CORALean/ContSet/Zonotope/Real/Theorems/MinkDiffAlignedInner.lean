@@ -35,7 +35,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 theorem Zonotope.minkDiffAligned_inner (Z₁ Z₂ : Zonotope α) (hh : Z₁.h = Z₂.h)
     (μ : Fin Z₁.h → ℝ) (hμ0 : ∀ i, 0 ≤ μ i) (hμ1 : ∀ i, μ i ≤ 1)
-    (hG : ∀ i, Z₂.G (Fin.cast hh i) = μ i • Z₁.G i) : -- --- STMT ---
+    (hG : ∀ i, Z₂.G (Fin.cast hh i) = μ i • Z₁.G i) : -- --- CONCL ---
     (Z₁.minkDiffAligned Z₂ hh).construct
       ⊆ minkowskiDiff Z₁.construct Z₂.construct := by -- --- PROOF ---
   intro x hx y hy

@@ -64,7 +64,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 `k ≤ N`. -/
 theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Vec 𝕋 n)) {r : 𝕋}
     {η N : ℕ} (hr : 0 < toReal r) (h0 : (0 : Vec ℝ n) ∈ U.construct) {k : ℕ} (hk : k ≤ N) {t : ℝ}
-    (ht : t ∈ Set.Icc ((k : ℝ) * toReal r) ((k + 1) * toReal r)) : -- --- STMT ---
+    (ht : t ∈ Set.Icc ((k : ℝ) * toReal r) ((k + 1) * toReal r)) : -- --- CONCL ---
     ∀ Rs ∈ sys.reachBoxFloat X₀ U r η N,
       ∃ R, Rs[k]? = some R ∧
         sys.reachSetExact (S := 𝒵[𝕋]) (Set.Icc 0 t) X₀ U t

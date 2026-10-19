@@ -45,7 +45,7 @@ variable {ι : Type}
 `δₘ = 0`. -/
 theorem Conform.isBoundaryPoint_iff_lp23 [Fintype ι] [DecidableEq ι] {M : Type} [Fintype M]
     [DecidableEq M] (C : M → Set (ι → ℝ)) (hC : ∀ m, Convex ℝ (C m)) (α : ι → ℝ)
-    (hfit : ∀ m, Conform.FitsUnder (C m) α) (β : M → ι → ℝ) (δ : M → ℝ) : -- --- STMT ---
+    (hfit : ∀ m, Conform.FitsUnder (C m) α) (β : M → ι → ℝ) (δ : M → ℝ) : -- --- CONCL ---
     let fv : ι → ℝ := fun j => if 0 < α j then 1 else 0
     let Feas : M → (ι → ℝ) → ℝ → Prop := fun m b d =>
       0 ≤ d ∧ b ∈ C m ∧ ∀ j, -α j ≤ b j - fv j * d ∧ -α j ≤ -b j - fv j * d

@@ -41,7 +41,7 @@ open Matrix Pointwise
 
 /-- [1, Prop. 5], `X_k ⊆ Z̄_k`, as printed: every step's scalings a maximizer of (max-in) over
 `W`'s halfspaces, with `A` invertible (A3). -/
-theorem LinearSysDT.backReachAligned_outer_counterexample : -- --- STMT ---
+theorem LinearSysDT.backReachAligned_outer_counterexample : -- --- CONCL ---
     ¬ ∀ (n m q : ℕ) (A : Mat ℝ n n), IsUnit A.det → ∀ (B : Mat ℝ n m) (E : Mat ℝ n n)
       (K : Vec ℝ n) (U : Zonotope (Vec ℝ m)) (H : Mat ℝ q n) (h : Vec ℝ q)
       (Z₀ : Zonotope (Vec ℝ n)) (σ : (Z : Zonotope (Vec ℝ n)) → Vec ℝ n × (Fin Z.h → ℝ))

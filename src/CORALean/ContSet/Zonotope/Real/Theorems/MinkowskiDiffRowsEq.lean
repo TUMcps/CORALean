@@ -42,7 +42,7 @@ namespace CORALean.Real
 /-- A signed row holds exactly when the sign times the unsigned normal's pairing at `x − (c⁽ᵐ⁾ −
 c⁽ˢ⁾)` is within `Δd − Δd_trans`. -/
 theorem aux_row_iff {n : ℕ} (Zm Zs : Zonotope (Vec ℝ (n + 2))) (b : Bool)
-    (T : Finset (Fin Zm.h)) (hT : T.card = n + 1) (x : Vec ℝ (n + 2)) : -- --- STMT ---
+    (T : Finset (Fin Zm.h)) (hT : T.card = n + 1) (x : Vec ℝ (n + 2)) : -- --- CONCL ---
     dotProductEquiv ℝ _ (Zm.minkDiffRowNormal (b, T)) x ≤ Zm.minkDiffRowOffset Zs (b, T)
       ↔ (if b then (1 : ℝ) else -1) *
             (Zm.facetNormal (T.orderEmbOfFin hT) ⬝ᵥ (x - (Zm.c - Zs.c)))
@@ -67,7 +67,7 @@ theorem aux_row_iff {n : ℕ} (Zm Zs : Zonotope (Vec ℝ (n + 2))) (b : Bool)
 /-- [1, Thm. 3] at `Bool × Finset` rows: `Z_m ⊖ Z_s` is cut out by the signed generator subsets of
 size `n + 1`, at `Zonotope.minkDiffRowNormal` and `Zonotope.minkDiffRowOffset`. -/
 theorem Zonotope.minkowskiDiff_rows_eq {n : ℕ} (Zm Zs : Zonotope (Vec ℝ (n + 2)))
-    (hspan : Submodule.span ℝ (Set.range Zm.G) = ⊤) : -- --- STMT ---
+    (hspan : Submodule.span ℝ (Set.range Zm.G) = ⊤) : -- --- CONCL ---
     minkowskiDiff Zm.construct Zs.construct
       = {x | ∀ j : Bool × Finset (Fin Zm.h), j.2.card = n + 1 →
           dotProductEquiv ℝ _ (Zm.minkDiffRowNormal j) x ≤

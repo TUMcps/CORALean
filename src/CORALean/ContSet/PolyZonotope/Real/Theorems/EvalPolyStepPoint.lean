@@ -32,7 +32,7 @@ variable {n : ℕ}
 /-- `evalPolyStep`'s point, generically: a coordinate `a₀ + R ⊙ pZ`, `R` read at
 `pZ`'s factors through `hR`. -/
 theorem PolyZonotope.evalPolyStep_point (R pZ : PolyZonotope (Vec ℝ n)) (hR : R.p = pZ.p)
-    (a0 : Vec ℝ n) (b : Fin R.p → ℝ) : -- --- STMT ---
+    (a0 : Vec ℝ n) (b : Fin R.p → ℝ) : -- --- CONCL ---
     (PolyZonotope.evalPolyStep R pZ hR a0).point b
       = fun i => a0 i
         + R.point b i * pZ.point (fun k => b (Fin.cast hR.symm k)) i := by -- --- PROOF ---

@@ -70,7 +70,7 @@ theorem Krylov.aux_image_sum_subset (M : Mat ℝ n n) (F : ℕ → Set (Vec ℝ 
 with (24)'s exponent. -/
 theorem Krylov.inputReach_subset_sum_exp_image (sys : LinearSys 𝕋 n) {U : S n}
     (hbdd : Bornology.IsBounded (construct U)) (h0 : (0 : Vec ℝ n) ∈ construct U) {δ : ℝ}
-    (hδ : 0 ≤ δ) (k : ℕ) {s : ℝ} (hs0 : 0 ≤ s) (hsδ : s ≤ δ) : -- --- STMT ---
+    (hδ : 0 ≤ δ) (k : ℕ) {s : ℝ} (hs0 : 0 ≤ s) (hsδ : s ≤ δ) : -- --- CONCL ---
     sys.inputReach U (k * δ + s)
       ⊆ ∑ i ∈ Finset.range (k + 1),
           (fun y => exp ((i * δ) • toRealMat sys.A) *ᵥ y)

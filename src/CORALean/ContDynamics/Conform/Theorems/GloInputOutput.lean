@@ -54,7 +54,7 @@ theorem aux_narxBext_eq_zero (np : ℕ) (B : ℕ → Mat ℝ ny nu) {i : ℤ} (h
 /-- The input sums of the unrolled recursion, regrouped by the input they hit. -/
 theorem aux_regroup_inputs (np k : ℕ) (hk : np ≤ k) (E : Mat ℝ ny (np * ny))
     (P : ℕ → Mat ℝ (np * ny) (np * ny)) (B : ℕ → ℕ → Mat ℝ ny nu)
-    (δ : ℕ → Vec ℝ nu) : -- --- STMT ---
+    (δ : ℕ → Vec ℝ nu) : -- --- CONCL ---
     ∑ j ∈ Finset.range (k - np + 1), ∑ i ∈ Finset.range (np + 1),
         (E * (P j * Conform.narxBext np (B (k - j)) i)) *ᵥ δ (k - j - i)
       = ∑ i ∈ Finset.range (k + 1), (E * ∑ j ∈ Finset.range (k - np + 1),
@@ -122,7 +122,7 @@ theorem Conform.glo_inputOutput (np : ℕ) (hp : 0 < np) (A : ℕ → ℕ → Ma
     (hy : ∀ k, np ≤ k → y k = yb k
       + ∑ i ∈ Finset.range np, A k (i + 1) *ᵥ (y (k - (i + 1)) - yb (k - (i + 1)))
       + ∑ i ∈ Finset.range (np + 1), B k i *ᵥ (u (k - i) - ub (k - i)) + l k)
-    (k : ℕ) (hk : np ≤ k) : -- --- STMT ---
+    (k : ℕ) (hk : np ≤ k) : -- --- CONCL ---
     y k = yb k
       + (Conform.narxE np ny * Conform.prodJac (fun t => Conform.narxAext np (A t)) (k + 1)
           (k - np + 1)) *ᵥ (NonlinearARX.stack np y 0 - NonlinearARX.stack np yb 0)

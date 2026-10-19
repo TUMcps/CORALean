@@ -46,7 +46,7 @@ theorem LinearSys.reachInnerRep_inner (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt
     (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ)
     (M : Fin ((sys.discretize Δt).reach (S := 𝒵) ⟨R₀, sys.inputSolution (S := 𝒵) Δt η U, 0, k⟩
       ⟨o, ho⟩).h → Fin (sys.reachError Δt η o ho R₀ U k).h → ℝ) {D : Zonotope (Vec ℝ n)}
-    (hD : sys.reachInnerRep Δt η o ho R₀ U k M = some D) : -- --- STMT ---
+    (hD : sys.reachInnerRep Δt η o ho R₀ U k M = some D) : -- --- CONCL ---
     construct D ⊆ sys.reachSetExact (S := 𝒵) (Set.Icc 0 ((k : ℝ) * Δt)) R₀ U ((k : ℝ) * Δt) :=
   (Zonotope.minkDiffRep_inner _ _ M _ hD).trans (sys.reachInner_inner hΔt η hε ho R₀ U k)
 

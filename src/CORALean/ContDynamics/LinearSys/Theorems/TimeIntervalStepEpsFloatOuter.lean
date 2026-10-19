@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- Every image of `X₀` under the flow, at every time of the step, is in the result. -/
 theorem LinearSys.timeIntervalStepEpsFloat_outer (sys : LinearSys 𝕋 n) {r ε : 𝕋} {fuel : ℕ}
     {X₀ : Zonotope (Vec 𝕋 n)} (hr : 0 < toReal r) {x : Vec ℝ n} (hx : x ∈ X₀.construct) {s : ℝ}
-    (hs0 : 0 ≤ s) (hs : s ≤ toReal r) : -- --- STMT ---
+    (hs0 : 0 ≤ s) (hs : s ≤ toReal r) : -- --- CONCL ---
     ∀ R ∈ sys.timeIntervalStepEpsFloat r ε fuel X₀,
       exp (s • Scalar.toRealMat sys.A) *ᵥ x ∈ R.construct := by -- --- PROOF ---
   intro R (h : sys.timeIntervalStepEpsFloat r ε fuel X₀ = some R)

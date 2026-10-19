@@ -75,7 +75,7 @@ theorem aux_scale_coord {β bb x : ℝ} (hβ : β ≠ 0) (hbb : 0 ≤ bb) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.mem_extremePoints_scale_iff {b β : Vec ℝ n} (hb0 : ∀ i, 0 ≤ b i)
-    (hβ : ∀ i, β i ≠ 0) {α : ℝ} {c : Vec ℝ n} : -- --- STMT ---
+    (hβ : ∀ i, β i ≠ 0) {α : ℝ} {c : Vec ℝ n} : -- --- CONCL ---
     c ∈ Set.extremePoints ℝ ((⟨0, b⟩ : Interval (Vec ℝ n)).construct ∩
         Interval.hyperplane β α) ↔
       (fun i => β i * c i) ∈ Set.extremePoints ℝ

@@ -30,7 +30,7 @@ variable {S : ℕ → Type} {d : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem OnlineReachSetAnalyzer.mk?_spec (φ : OnlineReachSetAnalyzer.Formula (AtomicProposition S d))
-    (f : ℕ) (dp : Bool) : -- --- STMT ---
+    (f : ℕ) (dp : Bool) : -- --- CONCL ---
     ∀ obj ∈ OnlineReachSetAnalyzer.mk? φ f dp,
       obj.propagationFrequency = f ∧ obj.numObservations = 0 ∧
         obj.propagated = List.replicate obj.nodes.length false ∧

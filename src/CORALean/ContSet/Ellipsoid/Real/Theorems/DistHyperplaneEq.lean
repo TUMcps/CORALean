@@ -40,7 +40,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.dist_hyperplane_eq (E : Ellipsoid n) (v : Vec ℝ n) (c : ℝ)
-    (hv : v ≠ 0) : -- --- STMT ---
+    (hv : v ≠ 0) : -- --- CONCL ---
     ((E.construct ∩ {x | v ⬝ᵥ x = c}).Nonempty ↔
         |c - v ⬝ᵥ E.q| - √(v ⬝ᵥ (E.Q *ᵥ v)) ≤ 0) ∧
     (0 < |c - v ⬝ᵥ E.q| - √(v ⬝ᵥ (E.Q *ᵥ v)) →

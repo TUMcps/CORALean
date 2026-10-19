@@ -80,7 +80,7 @@ theorem Krylov.aux_arnoldi_snd_eq_zero (C : Mat ℝ n n) (v : Vec ℝ n) {i k : 
 /-- [1, Alg. 1] is exact below the Krylov order: `V H^j e₁ = C^j v / ‖v‖` for `j ≤ m`,
 `ξ = m + 1`. -/
 theorem Krylov.arnoldiBasis_mulVec_pow (C : Mat ℝ n n) (v : Vec ℝ n) (m : ℕ) {j : ℕ}
-    (hj : j ≤ m) : -- --- STMT ---
+    (hj : j ≤ m) : -- --- CONCL ---
     Krylov.arnoldiBasis C v (m + 1) *ᵥ
         (Krylov.arnoldiHessenberg C v (m + 1) ^ j *ᵥ Pi.single 0 1)
       = ‖v‖₂⁻¹ • (C ^ j *ᵥ v) := by -- --- PROOF ---

@@ -52,7 +52,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.tendsto_depReachAt_C_zero (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ : Zonotope (Vec ℝ n))
-    (U : Zonotope (Vec ℝ m)) (κ : ℕ) (T : ℝ) : -- --- STMT ---
+    (U : Zonotope (Vec ℝ m)) (κ : ℕ) (T : ℝ) : -- --- CONCL ---
     Tendsto (fun Δt : ℝ => sSup ((fun v => ‖v‖) ''
       ⋃ i ∈ {i : ℕ | (i : ℝ) * Δt ≤ T},
         (STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ i).C.construct))

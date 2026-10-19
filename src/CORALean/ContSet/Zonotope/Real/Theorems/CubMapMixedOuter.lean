@@ -32,7 +32,7 @@ variable {n m : ℕ}
 
 /-- `{ (x₁ᵀ T x₂) * x₃ | xᵢ ∈ Zᵢ } ⊆ cubMapMixed`. -/
 theorem Zonotope.cubMapMixed_outer (T : Fin m → Fin n → Mat ℝ n n)
-    (Z₁ Z₂ Z₃ : Zonotope (Vec ℝ n)) : -- --- STMT ---
+    (Z₁ Z₂ Z₃ : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (fun x : Vec ℝ n × Vec ℝ n × Vec ℝ n => PolyZonotope.cubEvalMixed T x.1 x.2.1 x.2.2)
         '' (Z₁.construct ×ˢ Z₂.construct ×ˢ Z₃.construct)
       ⊆ (Z₁.cubMapMixed T Z₂ Z₃).construct := by -- --- PROOF ---

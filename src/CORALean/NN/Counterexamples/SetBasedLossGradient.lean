@@ -34,7 +34,7 @@ open CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem setBasedLoss_gradient_counterexample : -- --- STMT ---
+theorem setBasedLoss_gradient_counterexample : -- --- CONCL ---
     ∃ Y : Zonotope (Vec ℝ 2), 0 < Y.fRadius ∧
       Y.gradient (setBasedLoss (fun _ _ => 0) 1 1 0) ≠
         { h := Y.h

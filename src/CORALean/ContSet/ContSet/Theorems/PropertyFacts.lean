@@ -36,7 +36,7 @@ variable {n₁ n₂ : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem property_facts (S : Set (Vec ℝ n₁)) (S₁ : Set (Vec ℝ n₁))
-    (S₂ : Set (Vec ℝ n₂)) : -- --- STMT ---
+    (S₂ : Set (Vec ℝ n₂)) : -- --- CONCL ---
     Bornology.IsBounded (∅ : Set (Vec ℝ n₁)) ∧ interior (∅ : Set (Vec ℝ n₁)) = ∅ ∧
       ((interior S).Nonempty → S.Nonempty) ∧ (¬ Bornology.IsBounded S → S.Nonempty) ∧
       (S₁.Nonempty → interior S₂ = ∅ → ¬ Bornology.IsBounded S₂ →

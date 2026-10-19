@@ -44,7 +44,7 @@ theorem Zonotope.gen_not_required_iff_of_span {n : ℕ} (Zm Zs : Zonotope (Vec �
       ¬{x | ∀ k, k.2.card = n + 1 → k ≠ j →
           dotProductEquiv ℝ _ (Zm.minkDiffRowNormal k) x ≤ Zm.minkDiffRowOffset Zs k}
         ⊆ {x | dotProductEquiv ℝ _ (Zm.minkDiffRowNormal j) x ≤ Zm.minkDiffRowOffset Zs j})
-    (i : Fin Zm.h) : -- --- STMT ---
+    (i : Fin Zm.h) : -- --- CONCL ---
     ∑ j ∈ Red, (if i ∈ j.2 then 1 else 0) = 2 * (Zm.h - 1).choose n
       ↔ minkowskiDiff Zm.construct Zs.construct
           = {x | ∀ j, j.2.card = n + 1 → i ∉ j.2 →

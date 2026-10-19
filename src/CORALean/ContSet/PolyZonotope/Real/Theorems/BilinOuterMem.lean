@@ -35,7 +35,7 @@ variable {α β γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [
 theorem PolyZonotope.bilinOuter_mem (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (pZ₁ : PolyZonotope α)
     (pZ₂ : PolyZonotope β) (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ) (ha : ∀ k, |a k| ≤ 1)
     (β₁ : Fin pZ₁.q → ℝ) (β₂ : Fin pZ₂.q → ℝ) (hβ₁ : ∀ j, |β₁ j| ≤ 1)
-    (hβ₂ : ∀ j, |β₂ j| ≤ 1) : -- --- STMT ---
+    (hβ₂ : ∀ j, |β₂ j| ≤ 1) : -- --- CONCL ---
     f (pZ₁.point a + ∑ j, β₁ j • pZ₁.GI j)
         (pZ₂.point (fun k => a (Fin.cast hp.symm k)) + ∑ j, β₂ j • pZ₂.GI j)
       ∈ (pZ₁.bilinOuter f pZ₂ hp).construct := by -- --- PROOF ---

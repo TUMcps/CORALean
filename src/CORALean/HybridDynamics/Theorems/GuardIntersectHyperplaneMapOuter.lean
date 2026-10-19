@@ -116,7 +116,7 @@ theorem aux_hpMap_factor {lo hi y : ℝ} (h1 : lo ≤ y) (h2 : y ≤ hi) :
     · field_simp; ring
 
 /-- `s I` for `s ∈ [a, b]` lies in CORA's interval matrix `[a, b] I`. -/
-theorem aux_hpMap_smul_one_mem {a b s : ℝ} (hs : a ≤ s ∧ s ≤ b) : -- --- STMT ---
+theorem aux_hpMap_smul_one_mem {a b s : ℝ} (hs : a ≤ s ∧ s ≤ b) : -- --- CONCL ---
     s • (1 : Mat ℝ n n) ∈ (⟨Matrix.of fun j k =>
       Interval.mulLo ((1 : Mat ℝ n n) j k) ((1 : Mat ℝ n n) j k) a b,
       Matrix.of fun j k => Interval.mulHi ((1 : Mat ℝ n n) j k) ((1 : Mat ℝ n n) j k) a b⟩ :
@@ -130,7 +130,7 @@ theorem aux_hpMap_smul_one_mem {a b s : ℝ} (hs : a ≤ s ∧ s ≤ b) : -- ---
 
 /-- `s v ∈ [a, b] Z` for `s ∈ [a, b]` and `v ∈ Z`. -/
 theorem aux_hpMap_smul_mem_mtimes {a b s : ℝ} (hs : a ≤ s ∧ s ≤ b) {Z : Zonotope (Vec ℝ n)}
-    {v : Vec ℝ n} (hv : v ∈ Z.construct) : -- --- STMT ---
+    {v : Vec ℝ n} (hv : v ∈ Z.construct) : -- --- CONCL ---
     s • v ∈ (Zonotope.mtimesIntervalMat ⟨Matrix.of fun j k =>
       Interval.mulLo ((1 : Mat ℝ n n) j k) ((1 : Mat ℝ n n) j k) a b,
       Matrix.of fun j k => Interval.mulHi ((1 : Mat ℝ n n) j k) ((1 : Mat ℝ n n) j k) a b⟩
@@ -158,7 +158,7 @@ theorem aux_hpMap_flow_mem (A : Mat ℝ n n) (b : Vec ℝ n) {Z : Zonotope (Vec 
 /-- `res1`: the hitting point `y_h(x₀)` of a point of `R₀`. -/
 theorem aux_hpMap_res1 (A : Mat ℝ n n) (b nv : Vec ℝ n) (d : ℝ) (R₀ R0red : Zonotope (Vec ℝ n))
     (hcen : R0red.c = R₀.c) (hsub : ∀ x ∈ R₀.construct, x ∈ R0red.construct) {x₀ : Vec ℝ n}
-    (hx₀ : x₀ ∈ R₀.construct) : -- --- STMT ---
+    (hx₀ : x₀ ∈ R₀.construct) : -- --- CONCL ---
     -- the lets of `Location.guardIntersectHyperplaneMap` that `res1` reads
     let Υ : Vec ℝ n := nv ᵥ* A
     let flowRed := (Zonotope.mtimes A R0red).plus (Zonotope.ofPoint b)
@@ -261,7 +261,7 @@ theorem aux_hpMap_res1 (A : Mat ℝ n n) (b nv : Vec ℝ n) (d : ℝ) (R₀ R0re
 /-- `res2`: `(−nᵀe₁/Λ(x₀))(Ax₀ + b) + e₂` for `x₀ ∈ R₀`, `e₁, e₂ ∈ E`. -/
 theorem aux_hpMap_res2 (A : Mat ℝ n n) (b nv : Vec ℝ n) (R₀ E : Zonotope (Vec ℝ n))
     {x₀ e₁ e₂ : Vec ℝ n} (hx₀ : x₀ ∈ R₀.construct) (he₁ : e₁ ∈ E.construct)
-    (he₂ : e₂ ∈ E.construct) : -- --- STMT ---
+    (he₂ : e₂ ∈ E.construct) : -- --- CONCL ---
     let flowSet := (Zonotope.mtimes A R₀).plus (Zonotope.ofPoint b)
     let numInt := E.halfspaceRange (-nv) 0
     let denInt := flowSet.halfspaceRange nv 0

@@ -137,7 +137,7 @@ theorem aux_le_norm_of_apply (hn : 1 ≤ n) (y : Vec ℝ n) (h : ℝ) (β : Vec 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem coeffNorm_half_gadgetH (hn : 1 ≤ n) : -- --- STMT ---
+theorem coeffNorm_half_gadgetH (hn : 1 ≤ n) : -- --- CONCL ---
     Function.Surjective ((1 / 2 : ℝ) • gadgetH n) ∧
       ∀ (y : Vec ℝ n) (h : ℝ),
         coeffNorm ((1 / 2 : ℝ) • gadgetH n) (y, h) =

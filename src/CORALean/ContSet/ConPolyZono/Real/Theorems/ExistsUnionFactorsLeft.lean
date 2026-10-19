@@ -28,7 +28,7 @@ namespace CORALean.Real
 /-- The factor vector of the branch that keeps the first operand: its own
 factors, the second operand's pinned to `0`, and the two fresh ones at `t`. -/
 theorem ConPolyZono.exists_unionFactors_left {p₁ p₂ : ℕ} (t : ℝ) (ht : |t| ≤ 1)
-    {a₁ : Fin p₁ → ℝ} (ha₁ : ∀ k, |a₁ k| ≤ 1) : -- --- STMT ---
+    {a₁ : Fin p₁ → ℝ} (ha₁ : ∀ k, |a₁ k| ≤ 1) : -- --- CONCL ---
     ∃ a : Fin (p₁ + p₂ + 2) → ℝ, (∀ k, |a k| ≤ 1)
       ∧ (∀ k, a (Fin.castAdd 2 (Fin.castAdd p₂ k)) = a₁ k)
       ∧ (∀ k, a (Fin.castAdd 2 (Fin.natAdd p₁ k)) = 0)

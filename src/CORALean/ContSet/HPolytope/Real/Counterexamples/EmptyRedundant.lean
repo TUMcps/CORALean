@@ -42,7 +42,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Sec. 3 (minimal representation)]: an H-representation of `∅` with a redundant row. -/
-theorem HPolytope.empty_redundant_counterexample : -- --- STMT ---
+theorem HPolytope.empty_redundant_counterexample : -- --- CONCL ---
     ∃ (A : Mat ℝ 3 1) (b : Vec ℝ 3) (j : Fin 3),
       (HPolytope.ineqs A b).construct = ∅ ∧
       (HPolytope.ineqs (A.submatrix (dropIdx j) id) fun i => b (dropIdx j i)).construct

@@ -28,7 +28,7 @@ variable {n : ℕ}
 
 /-- The cells of `intersectingCells P I` in `1 … N` are those whose subscripts all meet `I`. -/
 theorem GridPartition.filter_intersectingCells (P : GridPartition n)
-    (I : Real.Interval (Vec ℝ n)) (hn : n ≠ 0) : -- --- STMT ---
+    (I : Real.Interval (Vec ℝ n)) (hn : n ≠ 0) : -- --- CONCL ---
     (P.intersectingCells I).filter (fun c => 0 < c ∧ c ≤ P.nrOfCells) =
       (List.range' 1 P.nrOfCells).filter fun c =>
         ∀ j, GridPartition.i2s P.nrOfSegments c j ∈

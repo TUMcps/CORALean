@@ -42,7 +42,7 @@ variable {n : ℕ}
 
 theorem Taylm.qfb_optimal {H : Mat ℝ n n} (hH : H.IsSymm) (c : ℝ) (g : Vec ℝ n)
     {D : Set (Vec ℝ n)} (hD : Convex ℝ D) {x0 : Vec ℝ n} (hx0 : x0 ∈ D)
-    (hmin : IsMinOn (fun x => c + g ⬝ᵥ x + x ⬝ᵥ (H *ᵥ x) / 2) D x0) : -- --- STMT ---
+    (hmin : IsMinOn (fun x => c + g ⬝ᵥ x + x ⬝ᵥ (H *ᵥ x) / 2) D x0) : -- --- CONCL ---
     IsMinOn (fun x => c + g ⬝ᵥ x + x ⬝ᵥ (H *ᵥ x) / 2 - (x - x0) ⬝ᵥ (H *ᵥ (x - x0)) / 2)
       D x0 := by -- --- PROOF ---
   -- `x ⬝ H y = y ⬝ H x`

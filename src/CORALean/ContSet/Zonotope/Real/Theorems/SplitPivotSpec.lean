@@ -40,7 +40,7 @@ namespace CORALean.Real
 /-- The three order facts at the pivot, uniformly in the direction `σ`. -/
 theorem Zonotope.aux_pivot_order {σ : ℝ} (hσ : σ = 1 ∨ σ = -1) {u w v : Vec ℝ 2}
     (hu : 0 ≤ u 1 ∧ (0 < u 1 ∨ 0 ≤ u 0)) (hw : 0 ≤ w 1 ∧ (0 < w 1 ∨ 0 ≤ w 0))
-    (hv : 0 ≤ v 1 ∧ (0 < v 1 ∨ 0 ≤ v 0)) (hu0 : u ≠ 0) (hv0 : v ≠ 0) : -- --- STMT ---
+    (hv : 0 ≤ v 1 ∧ (0 < v 1 ∨ 0 ≤ v 0)) (hu0 : u ≠ 0) (hv0 : v ≠ 0) : -- --- CONCL ---
     (σ * Complex.arg ⟨u 0, u 1⟩ < σ * Complex.arg ⟨v 0, v 1⟩ →
       0 < σ * (u 0 * v 1 - u 1 * v 0)) ∧
     (¬ σ * Complex.arg ⟨w 0, w 1⟩ < σ * Complex.arg ⟨v 0, v 1⟩ →
@@ -67,7 +67,7 @@ theorem Zonotope.aux_pivot_order {σ : ℝ} (hσ : σ = 1 ∨ σ = -1) {u w v : 
 theorem Zonotope.aux_pivot_half_plane (Z : Zonotope (Vec ℝ 2)) {σ : ℝ}
     (hH : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0)) (G : Finset (Fin Z.h))
     (hG : ∀ i ∈ G, 0 < σ * Z.G i 0) (hne : G.Nonempty) {s : Vec ℝ 2}
-    (hs : s = ∑ i ∈ G, (2 : ℝ) • Z.G i) : -- --- STMT ---
+    (hs : s = ∑ i ∈ G, (2 : ℝ) • Z.G i) : -- --- CONCL ---
     0 < σ * s 0 ∧ (0 ≤ s 1 ∧ (0 < s 1 ∨ 0 ≤ s 0)) := by -- --- PROOF ---
   have hs0 : s 0 = ∑ i ∈ G, 2 * Z.G i 0 := by
     rw [hs]; simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
@@ -101,7 +101,7 @@ theorem Zonotope.splitPivot_spec (Z : Zonotope (Vec ℝ 2))
     (hH : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0)) (right : Bool) {σ : ℝ}
     (hσ : σ = if right then 1 else -1) (G : Finset (Fin Z.h))
     (hG : ∀ i ∈ G, 0 < σ * Z.G i 0) (hcard : 1 < G.card) {s : Vec ℝ 2}
-    (hs : s = ∑ i ∈ G, (2 : ℝ) • Z.G i) : -- --- STMT ---
+    (hs : s = ∑ i ∈ G, (2 : ℝ) • Z.G i) : -- --- CONCL ---
     (Z.splitPivot right G s).1.Nonempty ∧ (Z.splitPivot right G s).2.Nonempty ∧
     (Z.splitPivot right G s).1 ∪ (Z.splitPivot right G s).2 = G ∧
     Disjoint (Z.splitPivot right G s).1 (Z.splitPivot right G s).2 ∧

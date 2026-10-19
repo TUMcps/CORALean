@@ -52,7 +52,7 @@ variable {X : Type} [NormedAddCommGroup X] [InnerProductSpace ℝ X]
 theorem DiffInclAutomaton.directConversion_overapprox {I : Set X} {f₁ f₂ : X → X} {a : X}
     {b : ℝ} {fe : X → Set X} {t₁ t₂ : ℝ} (hfe₁ : ∀ x, f₁ x ∈ fe x) (hfe₂ : ∀ x, f₂ x ∈ fe x)
     (ht₁ : 0 ≤ t₁) (h₁ : (spaceTriggered I f₁ f₂ a b).FirstDwell t₁)
-    (h₂ : (spaceTriggered I f₁ f₂ a b).SecondDwell t₁ t₂) (T : ℝ) : -- --- STMT ---
+    (h₂ : (spaceTriggered I f₁ f₂ a b).SecondDwell t₁ t₂) (T : ℝ) : -- --- CONCL ---
     (spaceTriggered I f₁ f₂ a b).ContOverapprox T
       (directConversion I f₁ f₂ fe t₁ t₂) Prod.fst T := by -- --- PROOF ---
   unfold DiffInclAutomaton.ContOverapprox

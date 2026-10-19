@@ -130,7 +130,7 @@ theorem ConPolyZono.aux_rescaleInv_fold (cPZ : ConPolyZono α) (cen rad : ℕ �
 
 /-- Membership, with factor vectors on `ℕ` so that the counts need no casts, and the factor box
 and the constraint rows apart. -/
-theorem ConPolyZono.aux_mem_construct_nat (acc : ConPolyZono α) (x : α) : -- --- STMT ---
+theorem ConPolyZono.aux_mem_construct_nat (acc : ConPolyZono α) (x : α) : -- --- CONCL ---
     x ∈ acc.construct ↔ ∃ a β : ℕ → ℝ, (∀ k, k < acc.p → |a k| ≤ 1)
       ∧ (∀ j, j < acc.qI → |β j| ≤ 1)
       ∧ (∀ i, (acc.cons.op i).holds (acc.cons.eval (fun k : Fin acc.p => a k) i))
@@ -155,7 +155,7 @@ theorem ConPolyZono.aux_rescale_exact_of_box (cPZ : ConPolyZono α)
     (dom : Interval (Vec ℝ cPZ.p))
     (hb : ∀ k, -1 ≤ dom.inf k ∧ dom.inf k ≤ dom.sup k ∧ dom.sup k ≤ 1)
     (hk : ∀ a : Fin cPZ.p → ℝ, (∀ k, |a k| ≤ 1) → a ∈ cPZ.cons.construct →
-      ∀ k, dom.inf k ≤ a k ∧ a k ≤ dom.sup k) : -- --- STMT ---
+      ∀ k, dom.inf k ≤ a k ∧ a k ≤ dom.sup k) : -- --- CONCL ---
     ((List.range cPZ.p).foldl (ConPolyZono.rescaleStep
         (fun r => if h : r < cPZ.p then (dom.inf ⟨r, h⟩ + dom.sup ⟨r, h⟩) / 2 else 0)
         (fun r => if h : r < cPZ.p then (dom.sup ⟨r, h⟩ - dom.inf ⟨r, h⟩) / 2 else 0))
@@ -263,7 +263,7 @@ theorem ConPolyZono.rescale_exact (cPZ : ConPolyZono α)
       ⊆ (Interval.unit cPZ.p).construct)
     (hkeep : ∀ x : Vec ℝ cPZ.p, x ∈ (Interval.unit cPZ.p).construct → x ∈ cPZ.cons.construct →
       x ∈ (contract (Interval.unit cPZ.p)).construct)
-    (hne : (contract (Interval.unit cPZ.p)).construct.Nonempty) : -- --- STMT ---
+    (hne : (contract (Interval.unit cPZ.p)).construct.Nonempty) : -- --- CONCL ---
     (cPZ.rescale contract).construct = cPZ.construct := by -- --- PROOF ---
   -- unfold the contraction: `contract` is applied only when `A` is not empty
   unfold ConPolyZono.rescale

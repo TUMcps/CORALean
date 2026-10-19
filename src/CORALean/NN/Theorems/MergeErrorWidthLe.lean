@@ -47,7 +47,7 @@ open Matrix
 /-- The bucket-error box `EB` `neuronMerging_sandwich_outer` adds is no wider than `2δ` per unit
 of `W`'s row: driving the tolerance to `0` drives the merge's cost to `0`. -/
 theorem mergeError_width_le {n n₂ : ℕ} (Y : Real.Interval (Vec ℝ n)) (y δ : ℝ) (hδ : 0 ≤ δ)
-    (hY : Y.IsNonempty) (W : Mat ℝ n₂ n) (i : Fin n₂) : -- --- STMT ---
+    (hY : Y.IsNonempty) (W : Mat ℝ n₂ n) (i : Fin n₂) : -- --- CONCL ---
     let EB := Real.Interval.mtimes (W.submatrix id (mergeSplit Y y δ).right)
       ⟨Y.inf ∘ (mergeSplit Y y δ).right, Y.sup ∘ (mergeSplit Y y δ).right⟩
     EB.sup i - EB.inf i ≤ (∑ k, |W i ((mergeSplit Y y δ).right k)|) * (2 * δ) := by -- --- PROOF ---

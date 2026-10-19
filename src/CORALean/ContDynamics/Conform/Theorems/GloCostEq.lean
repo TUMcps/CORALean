@@ -42,7 +42,7 @@ variable {n p q : ℕ}
 theorem Conform.gloCost_eq {M ιx ιu : Type} [Fintype M] [Fintype ιx] [Fintype ιu]
     (Cb : M → ℕ → Mat ℝ q n) (Db : M → (k : ℕ) → Fin (k + 1) → Mat ℝ q p)
     (Gx : ιx → Vec ℝ n) (αx : ιx → ℝ) (Gu : ιu → Vec ℝ p) (αu : ιu → ℝ)
-    (hαx : ∀ j, 0 ≤ αx j) (hαu : ∀ l, 0 ≤ αu l) (w : ℕ → ℝ) (nk : ℕ) : -- --- STMT ---
+    (hαx : ∀ j, 0 ≤ αx j) (hαu : ∀ l, 0 ≤ αu l) (w : ℕ → ℝ) (nk : ℕ) : -- --- CONCL ---
     ∑ m, ∑ k ∈ Finset.range nk, w k * Conform.intervalNorm (fun _ => 1)
         (fun j => Sum.elim αx (fun r : Fin (k + 1) × ιu => αu r.2) j
           • Sum.elim (fun j => Cb m k *ᵥ Gx j) (fun r : Fin (k + 1) × ιu => Db m k r.1 *ᵥ Gu r.2) j)

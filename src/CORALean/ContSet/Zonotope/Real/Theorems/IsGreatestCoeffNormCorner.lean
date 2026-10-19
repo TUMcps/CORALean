@@ -40,7 +40,7 @@ variable {n : ℕ} {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [Finite
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.isGreatest_coeffNorm_corner (Z : Zonotope (Vec ℝ n)) (H : E →ₗ[ℝ] Vec ℝ n)
-    (hH : Function.Surjective H) (d : Vec ℝ n) : -- --- STMT ---
+    (hH : Function.Surjective H) (d : Vec ℝ n) : -- --- CONCL ---
     IsGreatest ((fun p => coeffNorm H (p - d)) '' Z.construct)
       (Finset.univ.sup' Finset.univ_nonempty fun σ =>
         coeffNorm H (Z.corner σ - d)) := by -- --- PROOF ---

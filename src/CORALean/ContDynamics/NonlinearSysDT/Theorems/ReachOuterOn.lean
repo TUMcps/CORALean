@@ -54,7 +54,7 @@ private theorem aux_reach_zero_eq (sys : NonlinearSysDT n m) {U : S m} {o : ℕ}
   rw [Nat.sub_self, Nat.fold_zero]
 
 private theorem aux_reach_succ_eq (sys : NonlinearSysDT n m) {U : S m} {o : ℕ} (ho : 0 < o)
-    (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n) (k : ℕ) : -- --- STMT ---
+    (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n) (k : ℕ) : -- --- CONCL ---
     sys.reach ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩ steps
       = (NonlinearSysDT.linearize (steps k).A).reach
         ⟨sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps,
@@ -71,7 +71,7 @@ every step within it, confined to each step's own certified region. -/
 theorem NonlinearSysDT.reach_outer_on (sys : NonlinearSysDT n m) {U : S m} {o : ℕ} (ho : 0 < o)
     (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n) {K : ℕ} {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m}
     {y : ℕ → Vec ℝ sys.q} (traj : sys.IsTrajectoryOn R₀ U K x u y)
-    (hR : ∀ k < K, x k ∈ (steps k).R) : -- --- STMT ---
+    (hR : ∀ k < K, x k ∈ (steps k).R) : -- --- CONCL ---
     ∀ k ≤ K, x k ∈ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) := by -- --- PROOF ---
   -- the induction is on the step count, one linearization spent per step
   intro k

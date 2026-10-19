@@ -103,7 +103,7 @@ theorem LinearSys.IsCanonicalTrajectory.inputSolution_timeInterval_outer_split
       (MatExp.inputRemainder (toRealMat sys.A) r η) U₀)))
     (hRbdd₀ : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r η) U₀)))
-    {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- STMT ---
+    {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     -- the propagated constant, its interpolation error, and the recentered set
     (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s)
       ∈ construct (Plus.plus

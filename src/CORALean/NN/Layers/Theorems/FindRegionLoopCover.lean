@@ -88,7 +88,7 @@ theorem aux_cover_right {σ : ℝ → ℝ} {tol a l u : 𝕋} {r : RegionPoly �
 /-- The regions the loop returns enclose `σ` within the tolerance, keep the old ones and, with
 `ext`, cover the line. -/
 theorem findRegionLoop_cover {σ : ℝ → ℝ} {F : (o : ℕ) → PolyRelaxation 𝕋 o}
-    (hF : ∀ o, (F o).Sound σ) (order : ℕ) (tol : 𝕋) (ext : List (RegionPoly 𝕋)) : -- --- STMT ---
+    (hF : ∀ o, (F o).Sound σ) (order : ℕ) (tol : 𝕋) (ext : List (RegionPoly 𝕋)) : -- --- CONCL ---
     ∀ (fuel : ℕ) (l u : 𝕋) (acc res : List (RegionPoly 𝕋)),
       (∀ r ∈ acc, r.Encloses σ ∧ toReal r.err ≤ toReal tol) →
       (∀ t, (t ≤ toReal l ∨ toReal u ≤ t) → ∃ r ∈ ext ++ acc, r.covers t) →

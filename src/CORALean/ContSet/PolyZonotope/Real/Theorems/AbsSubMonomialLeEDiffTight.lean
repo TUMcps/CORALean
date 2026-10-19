@@ -36,7 +36,7 @@ namespace CORALean.Real
 /-- Two monomials whose exponent columns agree off `k₀` differ by at most `eDiffTight` there. -/
 theorem PolyZonotope.abs_sub_monomial_le_eDiffTight {p h : ℕ} (E : Fin p → Fin h → ℕ)
     {a : Fin p → ℝ} (ha : ∀ k, |a k| ≤ 1) {i j : Fin h} {k₀ : Fin p}
-    (hsim : ∀ k, k ≠ k₀ → E k i = E k j) : -- --- STMT ---
+    (hsim : ∀ k, k ≠ k₀ → E k i = E k j) : -- --- CONCL ---
     |PolyZonotope.monomial E a i - PolyZonotope.monomial E a j|
       ≤ PolyZonotope.eDiffTight (E k₀ i) (E k₀ j) := by -- --- PROOF ---
   have hsplit : ∀ l : Fin h, PolyZonotope.monomial E a l

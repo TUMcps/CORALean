@@ -35,7 +35,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem cube_subset_halfspace_iff (b : Vec ℝ n) : -- --- STMT ---
+theorem cube_subset_halfspace_iff (b : Vec ℝ n) : -- --- CONCL ---
     (∀ r : ℝ, 0 ≤ r →
       ((∀ x : Vec ℝ n, ‖x‖ ≤ r → ∑ i, b i * x i ≤ 1) ↔ r * ∑ i, |b i| ≤ 1)) ∧
       (b ≠ 0 → IsGreatest {r | 0 ≤ r ∧ ∀ x : Vec ℝ n, ‖x‖ ≤ r → ∑ i, b i * x i ≤ 1}

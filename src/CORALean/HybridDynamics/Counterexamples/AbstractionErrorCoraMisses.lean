@@ -69,7 +69,7 @@ theorem aux_absErrCoraCex_exp {M : Mat ℝ 3 3} (hM : M ^ 3 = 0) :
 
 /-- `GuardMap.abstractionErrorCora` misses the error `x(t) − y(t)` of a run from `x₀ ∈ R₀` with
 inputs in `U`, `t ∈ [0, tmax]`, `th = tmax/2`, `η = 3`, which `GuardMap.abstractionError` holds. -/
-theorem GuardMap.abstractionErrorCora_counterexample : -- --- STMT ---
+theorem GuardMap.abstractionErrorCora_counterexample : -- --- CONCL ---
     ∃ (A : Mat ℝ 3 3) (U R₀ : Zonotope (Vec ℝ 3)) (tmax t : ℝ) (x₀ : Vec ℝ 3)
       (u : ℝ → Vec ℝ 3), t ∈ Set.Icc 0 tmax ∧ x₀ ∈ R₀.construct ∧
       (∀ τ ∈ Set.Ioc (0:ℝ) t, u (t - τ) ∈ U.construct) ∧

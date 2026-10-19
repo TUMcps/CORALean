@@ -46,7 +46,7 @@ variable {n : ℕ}
 /-- The halves of the split cover the bundle, exactly, whenever `B` encloses `Λ⁻¹ Z_∩`. -/
 theorem ZonoBundle.split_union (Λ : Mat ℝ n n) (hΛ : IsUnit Λ.det) (B : Interval (Vec ℝ n))
     (j : Fin n) (zB : ZonoBundle (Vec ℝ n))
-    (hB : (fun x => Λ⁻¹ *ᵥ x) '' zB.construct ⊆ B.construct) : -- --- STMT ---
+    (hB : (fun x => Λ⁻¹ *ᵥ x) '' zB.construct ⊆ B.construct) : -- --- CONCL ---
     (zB.split Λ B j).fst.construct ∪ (zB.split Λ B j).snd.construct
       = zB.construct := by -- --- PROOF ---
   -- a one-member bundle denotes its member

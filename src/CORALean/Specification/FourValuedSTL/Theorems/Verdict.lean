@@ -41,7 +41,7 @@ theorem FourValuedSTL.verdict {X : Type} (φ : FourValuedSTL.Formula X) (T : Set
     (Rp R : ℝ≥0 → Set X) (hext : FourValuedSTL.Extends R Rp T)
     (S : (X → Prop) → KleeneSignal ℝ) (S' : (X → Prop) → FourValuedSignal ℝ)
     (hS : ∀ a ∈ φ.atoms, FourValuedSTL.IsAtomSignal R a (S a))
-    (hS' : ∀ a ∈ φ.atoms, FourValuedSTL.IsPartialAtomSignal T Rp a (S' a)) : -- --- STMT ---
+    (hS' : ∀ a ∈ φ.atoms, FourValuedSTL.IsPartialAtomSignal T Rp a (S' a)) : -- --- CONCL ---
     ∃ r, φ.fourValuedSat S' = some r ∧ r.IsValid ∧ ∀ ξ : ℝ≥0 → X, FourValuedSTL.Covers R ξ →
       (r.at 0 = FourValued.tt → φ.Sat ξ 0) ∧
         (r.at 0 = FourValued.ff → ¬ φ.Sat ξ 0) := by -- --- PROOF ---

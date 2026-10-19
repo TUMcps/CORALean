@@ -68,7 +68,7 @@ theorem Krylov.aux_exp_third_lt : Real.exp (1 / 3) < 1.4 := by -- --- PROOF ---
 
 /-- [1, Cor. IV.1] as printed: Alg. 1 and Prop. B.1's `ε̃` at `A = 3`, `u = 4`, `δ = 1`, and no
 error `r` with `|r| ≤ ε̃(tₑ - t₀)` closes `∫₀^{1/9} e^{A(1-t)}dt u`. -/
-theorem Krylov.partial_input_solution_counterexample : -- --- STMT ---
+theorem Krylov.partial_input_solution_counterexample : -- --- CONCL ---
     let A : Mat ℝ 1 1 := !![3]
     let u : Vec ℝ 1 := ![4]
     let C := Krylov.augment A u

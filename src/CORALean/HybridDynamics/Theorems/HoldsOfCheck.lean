@@ -35,7 +35,7 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 theorem HybridAutomaton.holds_of_check [Contains ContSet (S n)] [IsDisjoint ContSet (S n)]
     {HA : HybridAutomaton S G L 𝕋 n} {R : L → S n} (hinv : HA.Invariant R)
     (spec : Specification ContSet) {ℓ ℓ' : L} {x y : Vec ℝ n} (run : HA.IsRun ℓ x ℓ' y)
-    (hx : x ∈ construct (R ℓ)) : -- --- STMT ---
+    (hx : x ∈ construct (R ℓ)) : -- --- CONCL ---
     spec.check (R ℓ') → (spec.Holds {y}) :=
   fun h => HybridAutomaton.holds_of_invariant hinv spec run hx (spec.check_sound _ h)
 

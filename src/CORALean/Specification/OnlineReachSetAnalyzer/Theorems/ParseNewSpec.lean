@@ -35,7 +35,7 @@ variable {S : ℕ → Type} {d : ℕ}
 theorem OnlineReachSetAnalyzer.parseNew_spec (dp : Bool)
     (φ : OnlineReachSetAnalyzer.Formula (AtomicProposition S d)) (parent : ℕ)
     (st : OnlineReachSetAnalyzer.ParseState S d)
-    (hinv : OnlineReachSetAnalyzer.NodesInv dp st.nodes) : -- --- STMT ---
+    (hinv : OnlineReachSetAnalyzer.NodesInv dp st.nodes) : -- --- CONCL ---
     ∀ st' ∈ OnlineReachSetAnalyzer.parseNew dp φ parent st,
       OnlineReachSetAnalyzer.NodesInv dp st'.nodes ∧
         OnlineReachSetAnalyzer.Ext st.nodes st'.nodes ∧

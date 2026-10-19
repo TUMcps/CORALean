@@ -46,7 +46,7 @@ variable {n : ℕ}
 
 /-- Eq. 2.2 at one point: `exp(c + y)` is its degree-`k` expansion at `c` plus the Lagrange
 term `exp(c)·yᵏ⁺¹ exp(θy)/(k+1)!` at some `θ ∈ [0, 1]`. -/
-theorem Taylm.aux_exp_lagrange (c y : ℝ) (k : ℕ) : -- --- STMT ---
+theorem Taylm.aux_exp_lagrange (c y : ℝ) (k : ℕ) : -- --- CONCL ---
     ∃ θ ∈ Set.Icc (0 : ℝ) 1,
       Real.exp (c + y) - Real.exp c * ∑ j ∈ Finset.range (k + 1), y ^ j / (j.factorial : ℝ)
         = Real.exp c * (y ^ (k + 1) * Real.exp (θ * y))
@@ -99,7 +99,7 @@ theorem Taylm.aux_exp_lagrange (c y : ℝ) (k : ℕ) : -- --- STMT ---
 exponential minus its degree-`k` expansion at `c_f` is the Lagrange term, and that lies in
 `exp(c_f)·Jᵏ⁺¹·exp([0, 1]·J)/(k+1)!` for `J = B(P̄) + I`. -/
 theorem Taylm.exp_lagrange_mem {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) (k : ℕ)
-    {t : Vec ℝ n} (ht : t ∈ Taylm.box n) : -- --- STMT ---
+    {t : Vec ℝ n} (ht : t ∈ Taylm.box n) : -- --- CONCL ---
     Real.exp (f t) - Real.exp T.constCoef
         * ∑ j ∈ Finset.range (k + 1), (f t - T.constCoef) ^ j / (j.factorial : ℝ)
       ∈ (fun r => Real.exp T.constCoef * r / ((k + 1).factorial : ℝ)) ''

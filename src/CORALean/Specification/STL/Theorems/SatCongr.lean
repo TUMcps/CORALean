@@ -35,7 +35,7 @@ variable {X : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.DFormula.sat_congr : -- --- STMT ---
+theorem STL.DFormula.sat_congr : -- --- CONCL ---
     (∀ (φ : STL.DFormula X) (x y : ℕ → X) (t : ℕ),
       (∀ i ≤ φ.bound, x (t + i) = y (t + i)) → (φ.Sat x t ↔ φ.Sat y t)) ∧
     ∀ μ : X → ℝ, (STL.DFormula.always 0 10 (by norm_num)

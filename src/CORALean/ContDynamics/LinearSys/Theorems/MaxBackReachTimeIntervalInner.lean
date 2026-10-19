@@ -80,7 +80,7 @@ shows changes nothing at `t`. -/
 theorem LinearSys.aux_backReach_subset_timeInterval (sys : LinearSys 𝕋 n) {U W Xend : S n}
     {tend t : ℝ} (ht : 0 ≤ t) (hle : t ≤ tend) {τ : Set ℝ} (hτ : t ∈ τ)
     (hU : Bornology.IsBounded (construct U)) (hW : Bornology.IsBounded (construct W))
-    {c : Vec ℝ n} (hc : c ∈ construct U) : -- --- STMT ---
+    {c : Vec ℝ n} (hc : c ∈ construct U) : -- --- CONCL ---
     sys.backReachSetExistsForallExact (Set.Icc 0 t) U W Xend t ⊆
       sys.timeIntervalBackReachSetExistsForallExact
         (Set.Icc 0 tend) U W Xend τ := by -- --- PROOF ---
@@ -134,7 +134,7 @@ theorem LinearSys.aux_maxBackReachStep_inner (sys : LinearSys 𝕋 n) {U W Xend 
       ∃ t ∈ Set.Icc s.t (s.t + Δt), y ∈ (exp ((s.t + Δt - t) • toRealMat sys.A)).mulVecLin ''
         minkowskiDiff (construct Xend) (sys.inputReach W t))
     (hZU : ∀ t ∈ Set.Icc s.t (s.t + Δt), s.ZU.construct ⊆
-      (exp ((s.t + Δt - t) • toRealMat sys.A)).mulVecLin '' sys.inputReach U t) : -- --- STMT ---
+      (exp ((s.t + Δt - t) • toRealMat sys.A)).mulVecLin '' sys.inputReach U t) : -- --- CONCL ---
     (sys.maxBackReachStep ρ P₁ P₂ Uz W₀ Zw Δt η s).R.construct ⊆
       ⋃ t ∈ Set.Icc s.t (s.t + Δt),
         sys.backReachSetExistsForallExact (Set.Icc 0 t) U W Xend t := by -- --- PROOF ---

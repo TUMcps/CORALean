@@ -30,7 +30,7 @@ variable {n m N M : ℕ}
 
 theorem NonlinearReset.lift_evaluate_of_not_mem (r : NonlinearReset n m n)
     (stateBind : Fin n → Fin N) (inputBind : Fin m → Fin M) (id : Bool) (x : Vec ℝ N)
-    (u : Vec ℝ M) (i : Fin N) (hi : ∀ j, stateBind j ≠ i) : -- --- STMT ---
+    (u : Vec ℝ M) (i : Fin N) (hi : ∀ j, stateBind j ≠ i) : -- --- CONCL ---
     (r.lift N M stateBind inputBind id).evaluate x u i =
       if id then x i else 0 := by -- --- PROOF ---
   unfold NonlinearReset.evaluate NonlinearReset.lift

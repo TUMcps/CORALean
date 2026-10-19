@@ -38,7 +38,7 @@ open Matrix Scalar Pointwise
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearARX.alg2_ne_reachWindowExact : -- --- STMT ---
+theorem LinearARX.alg2_ne_reachWindowExact : -- --- CONCL ---
     let sys : LinearARX ℝ 1 1 1 := ⟨fun _ => 1, fun j => if j.val = 0 then 1 else 0, 1⟩
     let Uc : Set (Vec ℝ 1) := {v | |v 0| ≤ 1}
     (fun _ => 3) ∈ sys.reachWindowExact 0 (fun _ => Uc + {0}) (2 + 1 * 1) ∧

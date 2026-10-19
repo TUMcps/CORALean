@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 error solution for every `v ∈ Vdyn`. -/
 theorem LinearSys.expIntegral_mem_errorSolutionAdaptiveFloat (sys : LinearSys 𝕋 n) {Δt : 𝕋}
     {η : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η)
-    {Vdyn : Zonotope (Vec 𝕋 n)} {v : Vec ℝ n} (hv : v ∈ Vdyn.construct) : -- --- STMT ---
+    {Vdyn : Zonotope (Vec 𝕋 n)} {v : Vec ℝ n} (hv : v ∈ Vdyn.construct) : -- --- CONCL ---
     Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt) *ᵥ v
       ∈ (sys.errorSolutionAdaptiveFloat Δt η Vdyn none).construct := by -- --- PROOF ---
   -- the input held at `v` is admissible, so its contribution is enclosed

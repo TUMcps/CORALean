@@ -38,7 +38,7 @@ open Matrix CORALean.Real
 /-- With `E = 2`, the disturbance `w = 1` of `W = [-1, 1]` takes `x₀ = 0` to `x₁ = 2`, and `x₁`
 is not in the observer's next set, at every gain and every positive order. -/
 theorem LinearSysDT.observePropagation_dist_matrix_counterexample
-    (gain : Zonotope (Vec ℝ 1) → Mat ℝ 1 1) (order : ℕ) (horder : 0 < order) : -- --- STMT ---
+    (gain : Zonotope (Vec ℝ 1) → Mat ℝ 1 1) (order : ℕ) (horder : 0 < order) : -- --- CONCL ---
     let sys : LinearSysDT ℝ 1 := { LinearSysDT.canonical 1 with E := 2 }  -- `E = 2`
     let W : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ _ => 1⟩  -- `params.W`
     let w : Vec ℝ 1 := fun _ => 1

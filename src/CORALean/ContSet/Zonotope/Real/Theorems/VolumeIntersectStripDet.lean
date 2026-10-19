@@ -42,7 +42,7 @@ variable {m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.volume_intersectStrip_det (Z : Zonotope (Vec ℝ (m+1))) (c l : Vec ℝ (m+1))
-    (σ d : ℝ) : -- --- STMT ---
+    (σ d : ℝ) : -- --- CONCL ---
     (Zonotope.intersectStrip (Matrix.of fun _ j => c j : Mat ℝ 1 (m+1)) (fun _ => σ) (fun _ => d)
         (Matrix.of fun i _ => l i : Mat ℝ (m+1) 1) Z).volume =
       ENNReal.ofReal (

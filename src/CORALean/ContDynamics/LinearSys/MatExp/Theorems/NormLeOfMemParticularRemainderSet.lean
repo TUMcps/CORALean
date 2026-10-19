@@ -42,7 +42,7 @@ variable {n : ℕ}
 of the origin: `e^{At_i}`'s row norms times what `norm₂_le_of_mem_particularSolutionOuter`
 gives the remainder block alone, the Taylor sum being empty from order `η+1`. -/
 theorem MatExp.norm₂_le_of_mem_particularRemainderSet (A : Mat ℝ n n) (ti : ℝ)
-    {U : Set (Vec ℝ n)} (hU : Bornology.IsBounded U) (Δt : ℝ) (η : ℕ) : -- --- STMT ---
+    {U : Set (Vec ℝ n)} (hU : Bornology.IsBounded U) (Δt : ℝ) (η : ℕ) : -- --- CONCL ---
     ∀ y ∈ MatExp.particularRemainderSet A ti U Δt η,
       ‖y‖₂ ≤ (∑ i, ‖(fun j => (exp (ti • A)) i j)‖₂)
         * ((n : ℝ) ^ 2 * ‖MatExp.expRemainderMat A Δt η‖ * |Δt| * err U) := by -- --- PROOF ---

@@ -46,7 +46,7 @@ theorem Zonotope.aux_sign_mul_self_mai (r : ℝ) : Real.sign r * r = |r| := by
 
 /-- `x` maximizes `u` over `Z` iff some coefficients of it are `sign(u gⱼ)` wherever
 `u gⱼ ≠ 0`. -/
-theorem Zonotope.mem_argmax_iff (Z : Zonotope α) (u : α →ₗ[ℝ] ℝ) (x : α) : -- --- STMT ---
+theorem Zonotope.mem_argmax_iff (Z : Zonotope α) (u : α →ₗ[ℝ] ℝ) (x : α) : -- --- CONCL ---
     x ∈ {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, u y ≤ u x} ↔
       ∃ β : Fin Z.h → ℝ, (∀ j, |β j| ≤ 1) ∧
         (∀ j, u (Z.G j) ≠ 0 → β j = Real.sign (u (Z.G j))) ∧

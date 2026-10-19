@@ -13,6 +13,17 @@ For capsules with non-negative radii, the axes are within `r₁ + r₂` iff the 
 point: a point of both lies within `r₁` and `r₂` of two axis points, so the triangle inequality
 bounds their distance, and conversely the point at the fraction `r₁ / (r₁ + r₂)` of the way
 between the two nearest axis points lies in both.
+
+## Inputs
+* `C₁` – first capsule
+* `C₂` – second capsule
+
+## Hypotheses
+* `h₁` – `C₁` nonnegative radius
+* `h₂` – `C₂` nonnegative radius
+
+## Conclusion
+* `isIntersecting_` is a nonempty intersection
 -/
 
 -- Authors:       Claude Opus 5.5

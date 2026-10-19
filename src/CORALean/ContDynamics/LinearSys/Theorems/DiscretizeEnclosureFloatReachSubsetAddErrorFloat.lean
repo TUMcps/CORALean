@@ -59,7 +59,7 @@ given both error boxes bracket `0`. -/
 theorem LinearSys.discretizeEnclosureFloat_reach_subset_add_errorFloat (sys : LinearSys 𝕋 n)
     {Δt : 𝕋} (hΔt : 0 < toReal Δt) {η : ℕ} (hη : sys.OrderAdmissibleFloat Δt Δt η) {o : ℕ}
     (ho : 0 < o) {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.I_error.construct)
-    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) (k : ℕ) : -- --- STMT ---
+    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) (k : ℕ) : -- --- CONCL ---
     ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
         ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).construct
       ⊆ (sys.discretize (toReal Δt)).reachSetExact (S := 𝒵)

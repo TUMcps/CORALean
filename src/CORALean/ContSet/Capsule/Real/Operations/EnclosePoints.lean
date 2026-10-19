@@ -10,15 +10,20 @@ public import Mathlib.Data.Fintype.Basic
 /-!
 # `Capsule.enclosePoints`
 
-CORA's `@capsule/enclosePoints.m`: the center is the mean, the generator runs to the point
-farthest from it (`[~,idxMax] = max(dist)`, here the first such by `List.argmax`), and the radius
-is the largest distance of a point from the axis. No points give the empty capsule, as CORA's
+CORA's `@capsule/enclosePoints.m`: the center is the mean, the generator runs to the point farthest
+from it (`[~,idxMax] = max(dist)`, here the first such by `List.argmax`), and the radius is the
+largest distance of a point from the axis. No points give the empty capsule, as CORA's
 `capsule.empty(n)`; one point gives `g = 0` and `r = 0` (CORA special-cases it).
 
-CORA's radius is `max(vecnorm(((points-c)' * g_unit)' .* g_unit))`, the *projection* of each
-point onto the axis rather than its distance from it. That is at least the generator's length
-for the farthest point, so the ball it gives is sound but wasteful. Here the radius is the
-distance from the axis, the rejection `d - (d·g/g·g) g`.
+CORA's radius is `max(vecnorm(((points-c)' * g_unit)' .* g_unit))`, the *projection* of each point
+onto the axis, at least the generator's length for the farthest point: sound but wasteful. Here it
+is the distance from the axis, the rejection `d - (d·g/g·g) g`.
+
+## Inputs
+* `pts` – the points
+
+## Output
+* capsule enclosing `pts`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -49,7 +49,7 @@ closed, bounded and containing `0`. -/
 theorem LinearSys.inputReach_subset_closure_convexHull (sys : LinearSys 𝕋 n) {U : S n}
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U)) (h0 : (0 : Vec ℝ n) ∈ construct U) {Δt : ℝ}
-    (hΔt : 0 < Δt) (η : ℕ) : -- --- STMT ---
+    (hΔt : 0 < Δt) (η : ℕ) : -- --- CONCL ---
     sys.inputReach U Δt ⊆ closure (convexHull ℝ
       (MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt
         η)) := by -- --- PROOF ---

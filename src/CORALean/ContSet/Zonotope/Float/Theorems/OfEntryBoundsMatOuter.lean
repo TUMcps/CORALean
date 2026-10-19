@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 theorem Zonotope.aux_abs_gap_le {h : ℕ} {GLo GHi : Fin h → Mat 𝕋 m n}
     {G : Fin h → Mat ℝ m n}
     (hG : ∀ k i j, toReal (GLo k i j) ≤ G k i j ∧ G k i j ≤ toReal (GHi k i j))
-    {β : Fin h → ℝ} (hβ : ∀ k, |β k| ≤ 1) (i : Fin m) (j : Fin n) : -- --- STMT ---
+    {β : Fin h → ℝ} (hβ : ∀ k, |β k| ≤ 1) (i : Fin m) (j : Fin n) : -- --- CONCL ---
     |∑ k, β k * (G k i j - toReal (GLo k i j))|
       ≤ toReal (sumUp fun k => subUp (GHi k i j) (GLo k i j)) := by -- --- PROOF ---
   refine le_trans (Finset.abs_sum_le_sum_abs _ _) (le_trans ?_ (sum_le_sumUp _))

@@ -41,7 +41,7 @@ variable {n m p : ℕ}
 theorem Krylov.image_subset_of_approx (M : Mat ℝ n m) (c : Vec ℝ m) (g : Fin p → Vec ℝ m)
     (chat : Vec ℝ n) (ghat : Fin p → Vec ℝ n) (ec : ℝ) (eg : Fin p → ℝ)
     (hc : ∀ j, |(M *ᵥ c - chat) j| ≤ ec)
-    (hg : ∀ i j, |(M *ᵥ g i - ghat i) j| ≤ eg i) : -- --- STMT ---
+    (hg : ∀ i j, |(M *ᵥ g i - ghat i) j| ≤ eg i) : -- --- CONCL ---
     (M *ᵥ ·) '' {x | ∃ β : Fin p → ℝ, (∀ i, |β i| ≤ 1) ∧ x = c + ∑ i, β i • g i}
       ⊆ {y | ∃ β : Fin p → ℝ, (∀ i, |β i| ≤ 1) ∧ ∃ r : Vec ℝ n, (∀ j, |r j| ≤ ec + ∑ i, eg i) ∧
           y = chat + ∑ i, β i • ghat i + r} := by -- --- PROOF ---

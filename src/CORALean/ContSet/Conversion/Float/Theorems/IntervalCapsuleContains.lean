@@ -36,7 +36,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 
 omit [SoundFloatArithmetic 𝕋] in
-private theorem foldl_widest_some (I : Interval (Vec 𝕋 n)) : -- --- STMT ---
+private theorem foldl_widest_some (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
     ∀ (l : List (Fin n)) (b : Fin n), ∃ b', l.foldl
       (fun best i =>
         match best with

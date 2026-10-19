@@ -42,7 +42,7 @@ variable {n : ℕ}
 relative interior of `F`. -/
 theorem Zonotope.exists_facet_mem_intrinsicInterior (Z : Zonotope (Vec ℝ n))
     (hfull : Submodule.span ℝ (Set.range Z.G) = ⊤) {x : Vec ℝ n} (hx : x ∈ Z.construct)
-    (hdeg : Zonotope.degree Z.construct x ≤ n - 1) : -- --- STMT ---
+    (hdeg : Zonotope.degree Z.construct x ≤ n - 1) : -- --- CONCL ---
     ∃ (xs : Vec ℝ n) (F : Set (Vec ℝ n)), IsExposed ℝ Z.construct F ∧
       Module.finrank ℝ (vectorSpan ℝ F) = n - 1 ∧ x ∈ F ∧ xs ∈ F ∧
       xs ∈ intrinsicInterior ℝ F := by -- --- PROOF ---

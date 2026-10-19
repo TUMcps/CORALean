@@ -50,7 +50,7 @@ variable {n m : ℕ}
 /-- The result is exactly the pairwise image, the two arguments ranging over
 their own sets independently. -/
 theorem PolyZonotope.quadMapMixed_exact (Q : Fin m → Mat ℝ n n)
-    (pZ₁ pZ₂ : PolyZonotope (Vec ℝ n)) : -- --- STMT ---
+    (pZ₁ pZ₂ : PolyZonotope (Vec ℝ n)) : -- --- CONCL ---
     (fun x : Vec ℝ n × Vec ℝ n => PolyZonotope.quadBilin Q x.1 x.2)
         '' (pZ₁.construct ×ˢ pZ₂.construct)
       = (PolyZonotope.quadMapMixed Q pZ₁ pZ₂).construct := by -- --- PROOF ---

@@ -31,7 +31,7 @@ variable {n m : ℕ}
 /-- The column `build` sets, from nonempty sets of final states, is a distribution. -/
 theorem MarkovChain.build_column (M : MarkovChain n m) (f : MarkovChain.FinalStates n)
     (iInput : Fin m) {iState : Fin (M.field.nrOfCells + 1)} (hs : iState ≠ 0) (hT : f.T ≠ [])
-    (hOT : f.OT ≠ []) : -- --- STMT ---
+    (hOT : f.OT ≠ []) : -- --- CONCL ---
     ((∀ r, 0 ≤ (M.build f iInput iState).T.T iInput r iState) ∧
       ∑ r, (M.build f iInput iState).T.T iInput r iState = 1) ∧
     ((∀ r, 0 ≤ (M.build f iInput iState).T.OT iInput r iState) ∧

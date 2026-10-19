@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem PolyZonotope.addedTermsHessian_outer (pZ : PolyZonotope (Vec 𝕋 n))
     (A : Interval (Vec 𝕋 pZ.p)) (L : Interval (Vec 𝕋 n)) {a : Vec ℝ pZ.p} {l : Vec ℝ n}
-    (ha : a ∈ A.construct) (hl : l ∈ L.construct) (j k : Fin pZ.p) : -- --- STMT ---
+    (ha : a ∈ A.construct) (hl : l ∈ L.construct) (j k : Fin pZ.p) : -- --- CONCL ---
     toReal (pZ.addedTermsHessian A L j k).inf
         ≤ Real.PolyZonotope.addedTermsHessian (PolyZonotope.nominal pZ) a l j k
     ∧ Real.PolyZonotope.addedTermsHessian (PolyZonotope.nominal pZ) a l j k

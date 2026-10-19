@@ -47,7 +47,7 @@ open Set
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Each component's interval is inside its own range, their box is not inside the image. -/
-theorem prod_inner_ranges_not_subset_image : -- --- STMT ---
+theorem prod_inner_ranges_not_subset_image : -- --- CONCL ---
     let f : (Fin 2 → ℝ) → (Fin 2 → ℝ) := fun x => ![x 0, x 0 + x 1 / 100]
     let box : Set (Fin 2 → ℝ) := Icc (fun _ => -1) (fun _ => 1)
     Icc (-1) 1 ⊆ (fun x => f x 0) '' box ∧ Icc (-99 / 100) (99 / 100) ⊆ (fun x => f x 1) '' box ∧

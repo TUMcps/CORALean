@@ -40,7 +40,7 @@ open Classical in
 theorem Interval.exploreBN_step_spec (b : Vec ℝ n) (α : ℝ) (j : ℕ) (p : Fin n → Bool)
     (hj : j ≤ n) (hb0 : ∀ i, 0 ≤ b i)
     (hP : ∑ i, (⟨0, b⟩ : Interval (Vec ℝ n)).corner
-      (fun i => if (i : ℕ) < j then p i else false) i ≤ α) : -- --- STMT ---
+      (fun i => if (i : ℕ) < j then p i else false) i ≤ α) : -- --- CONCL ---
     let lab : ℕ → Fin n → Bool := fun k i => if (i : ℕ) < j then p i else decide ((i : ℕ) < k)
     let P := fun k => ∑ i, (⟨0, b⟩ : Interval (Vec ℝ n)).corner (lab k) i ≤ α
     let k := max j (Nat.findGreatest P n)

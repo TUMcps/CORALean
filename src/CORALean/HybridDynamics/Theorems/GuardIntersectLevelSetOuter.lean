@@ -66,7 +66,7 @@ theorem Location.guardIntersectLevelSet_outer {g : Vec ℝ n → ℝ}
     {contract : Real.Interval (Vec ℝ n) → Real.Interval (Vec ℝ n)}
     (hc : Real.IsContractor g contract) {R₀ : Real.Interval (Vec ℝ n)}
     {Rs : List (Real.Interval (Vec ℝ n))} {x : Vec ℝ n}
-    (hx : ∃ R ∈ R₀ :: Rs, x ∈ R.construct) (hg : g x = 0) : -- --- STMT ---
+    (hx : ∃ R ∈ R₀ :: Rs, x ∈ R.construct) (hg : g x = 0) : -- --- CONCL ---
     x ∈ (Location.guardIntersectLevelSet contract R₀ Rs).construct ∩
       {x | g x = 0} := by -- --- PROOF ---
   refine ⟨?_, hg⟩

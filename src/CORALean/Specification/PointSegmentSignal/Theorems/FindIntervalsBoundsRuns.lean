@@ -43,7 +43,7 @@ theorem aux_getD_default (tk : List Bool) (i : ℕ) (hi : i < tk.length) (d d' :
 
 /-- Pairing the rising edges with the falling edges, then the last rising edge with the end. -/
 theorem aux_zip_trail {α : Type} (g : ℕ → ℕ → α) (trail : ℕ → α) (N : ℕ)
-    (htrail : ∀ r, g r N = trail r) : -- --- STMT ---
+    (htrail : ∀ r, g r N = trail r) : -- --- CONCL ---
     ∀ (F R : List ℕ), R.length ≤ F.length + 1 →
     (R.zip F).map (fun x => g x.1 x.2) ++
       (if F.length < R.length then (R.getLast?.map trail).toList else []) =
@@ -98,7 +98,7 @@ theorem aux_findIntervalsBounds_eq {T : Type} [LinearOrder T] [Zero T] (s : Poin
     (hF : F = List.matlabFind (· == (-1 : ℤ)) (List.matlabDiff (s.values.map cond)))
     (hR : R = (List.matlabFind (· == (1 : ℤ)) (List.matlabDiff (s.values.map cond))).map (· + 1))
     (hR' : R' = if (s.values.map cond).head? = some true then 1 :: R else R)
-    (hlen : R'.length ≤ F.length + 1) : -- --- STMT ---
+    (hlen : R'.length ≤ F.length + 1) : -- --- CONCL ---
     s.findIntervalsBounds cond = (R'.zip (F ++ [s.values.length])).map (fun x =>
       ((s.precTimeAtValIdx x.1).1, (s.succTimeAtValIdx x.2).1, (s.precTimeAtValIdx x.1).2,
         (s.succTimeAtValIdx x.2).2)) := by -- --- PROOF ---
@@ -131,7 +131,7 @@ theorem aux_findIntervalsBounds_eq {T : Type} [LinearOrder T] [Zero T] (s : Poin
 
 /-- The intervals of `findIntervals` are the maximal runs of values satisfying `cond`. -/
 theorem PointSegmentSignal.findIntervalsBounds_runs {T : Type} [LinearOrder T] [Zero T]
-    (s : PointSegmentSignal T) (hs : s.IsValid) (cond : Bool → Bool) : -- --- STMT ---
+    (s : PointSegmentSignal T) (hs : s.IsValid) (cond : Bool → Bool) : -- --- CONCL ---
     ∃ runs : List (ℕ × ℕ),
       s.findIntervalsBounds cond = runs.map (fun x =>
         ((s.precTimeAtValIdx x.1).1, (s.succTimeAtValIdx x.2).1, (s.precTimeAtValIdx x.1).2,

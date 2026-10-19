@@ -44,7 +44,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 theorem LinProbSys.IsTrajectory.integral_eq {sys : LinProbSys n m} {Ω : Type*}
     [MeasurableSpace Ω] {P : Measure Ω} {T : Set ℝ} {X₀ : S n} {U : S m} {x₀ : Vec ℝ n}
     {u : ℝ → Vec ℝ m} {x : ℝ → Ω → Vec ℝ n} (traj : sys.IsTrajectory P T X₀ U x₀ u x) {t : ℝ}
-    (ht : t ∈ T) (h0 : 0 ≤ t) : -- --- STMT ---
+    (ht : t ∈ T) (h0 : 0 ≤ t) : -- --- CONCL ---
     ∫ ω, x t ω ∂P = exp (t • sys.A) *ᵥ x₀
       + ∫ s in (0:ℝ)..t, exp ((t - s) • sys.A) *ᵥ (sys.B *ᵥ u s) := by -- --- PROOF ---
   have hmeas := (traj.aemeasurable ht h0).1

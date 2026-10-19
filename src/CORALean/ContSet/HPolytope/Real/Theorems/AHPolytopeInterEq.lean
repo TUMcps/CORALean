@@ -45,7 +45,7 @@ variable {n n₁ n₂ q₁ q₂ : ℕ}
 
 theorem HPolytope.ahPolytope_inter_eq {x₁ x₂ : Vec ℝ n} {X₁ : Mat ℝ n n₁} {X₂ : Mat ℝ n n₂}
     {H₁ : Mat ℝ q₁ n₁} {h₁ : Vec ℝ q₁} {H₂ : Mat ℝ q₂ n₂} {h₂ : Vec ℝ q₂} {X₂d : Mat ℝ n₂ n}
-    (hg : X₂ * X₂d * X₂ = X₂) : -- --- STMT ---
+    (hg : X₂ * X₂d * X₂ = X₂) : -- --- CONCL ---
     HPolytope.ahPolytope x₁ X₁ (HPolytope.ineqs H₁ h₁)
         ∩ HPolytope.ahPolytope x₂ X₂ (HPolytope.ineqs H₂ h₂)
       = {x | ∃ (p₁ : Vec ℝ n₁) (w : Vec ℝ n₂), H₁ *ᵥ p₁ ≤ h₁ ∧

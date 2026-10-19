@@ -45,7 +45,7 @@ omit [SoundFloatArithmetic 𝕋] in
 the projection because that is the form the goal has and simp will not rewrite a
 binder's type. Only the outermost split needs it. -/
 theorem PolyZonotope.aux_sum_univ_linComb_h {pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)}
-    (f : Fin (pZ₁.h + pZ₂.h + (pZ₁.h + pZ₂.h + 1)) → ℝ) : -- --- STMT ---
+    (f : Fin (pZ₁.h + pZ₂.h + (pZ₁.h + pZ₂.h + 1)) → ℝ) : -- --- CONCL ---
     ∑ l : Fin (pZ₁.linComb pZ₂).h, f l
       = ∑ l, f (Fin.castAdd (pZ₁.h + pZ₂.h + 1) l)
         + ∑ l, f (Fin.natAdd (pZ₁.h + pZ₂.h) l) :=
@@ -69,7 +69,7 @@ noncomputable def PolyZonotope.aux_linCombGIReal (pZ₁ pZ₂ : PolyZonotope (Ve
 /-- What the stored independent generators are wrong by, entrywise, which is
 what `linCombGIDiff` records. -/
 theorem PolyZonotope.aux_linCombGI_error (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (i : Fin n)
-    (j : Fin (pZ₁.q + pZ₂.q)) : -- --- STMT ---
+    (j : Fin (pZ₁.q + pZ₂.q)) : -- --- CONCL ---
     |PolyZonotope.aux_linCombGIReal pZ₁ pZ₂ i j
         - toReal (PolyZonotope.linCombGI addDown subDown pZ₁ pZ₂ i j)|
       ≤ toReal (PolyZonotope.linCombGIDiff pZ₁ pZ₂ i j) := by -- --- PROOF ---
@@ -97,7 +97,7 @@ theorem PolyZonotope.aux_linCombGI_error (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n
 /-- One row of the exact independent generators against the coefficients the
 segment supplies: the pairing gives back the two sets' own sums. -/
 theorem PolyZonotope.aux_linCombGI_row (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (i : Fin n)
-    (β₁ : Fin pZ₁.q → ℝ) (β₂ : Fin pZ₂.q → ℝ) (lam : ℝ) : -- --- STMT ---
+    (β₁ : Fin pZ₁.q → ℝ) (β₂ : Fin pZ₂.q → ℝ) (lam : ℝ) : -- --- CONCL ---
     (∑ j, PolyZonotope.aux_linCombGIReal pZ₁ pZ₂ i j
         * Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
             (Real.Zonotope.pairCoeffDiff β₁ β₂ lam) j)
@@ -132,7 +132,7 @@ theorem PolyZonotope.aux_mul_mem_symmetric {q R s : ℝ} (hq0 : 0 ≤ q) (hqR : 
 larger than the gap between the two directed halvings; the fresh factor spreads
 it over `[-1,1]`. -/
 theorem PolyZonotope.aux_halfDiff_mem_error (a b : Vec 𝕋 n) {lam : ℝ}
-    (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1) : -- --- STMT ---
+    (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1) : -- --- CONCL ---
     (fun i => ((toReal (a i) - toReal (b i)) / 2 - toReal (PolyZonotope.halfDiff a b i))
         * (2 * lam - 1))
       ∈ (PolyZonotope.halfDiffError a b).construct := by -- --- PROOF ---
@@ -188,7 +188,7 @@ theorem PolyZonotope.aux_sum_neg_half {k : ℕ} (g : Fin k → 𝕋) (m : Fin k 
 theorem PolyZonotope.linComb_nominal_at (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) {a₁ : Fin pZ₁.p → ℝ}
     {a₂ : Fin pZ₂.p → ℝ} {β₁ : Fin pZ₁.q → ℝ} {β₂ : Fin pZ₂.q → ℝ} {lam : ℝ}
     (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hl0 : 0 ≤ lam)
-    (hl1 : lam ≤ 1) : -- --- STMT ---
+    (hl1 : lam ≤ 1) : -- --- CONCL ---
     ∃ β : Fin (pZ₁.linComb pZ₂).q → ℝ, (∀ j, |β j| ≤ 1) ∧
       lam • (fun i => toReal (pZ₁.c i)
           + (∑ l, toReal (pZ₁.G l i) * Real.PolyZonotope.monomial pZ₁.E a₁ l)

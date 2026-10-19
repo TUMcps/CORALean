@@ -42,7 +42,7 @@ theorem STL.automatedVerification_sound (tuneκ : 𝕋 → ℕ) (check checkNeg 
     (hcheck : ∀ Δt κ, check Δt κ = [] → ∀ α ∈ box, ¬ viol α)
     (hneg : ∀ Δt κ α, α ∈ box → (∀ v ∈ checkNeg Δt κ, α ∉ v) → viol α)
     (hfals : ∀ L, falsifiable L = true → ∃ α ∈ box, ∀ v ∈ L, α ∉ v) (fuel : ℕ)
-    (Δt : 𝕋) : -- --- STMT ---
+    (Δt : 𝕋) : -- --- CONCL ---
     (STL.automatedVerification tuneκ check checkNeg falsifiable fuel Δt = some true →
       ∀ α ∈ box, ¬ viol α) ∧
     (STL.automatedVerification tuneκ check checkNeg falsifiable fuel Δt = some false →

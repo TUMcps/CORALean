@@ -44,7 +44,7 @@ theorem GNN.evalStepsLayers_row_bfs_uncertain {N F m : ℕ} (A : Mat ℝ N N)
     {lam : Fin m → ℝ} (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) (v : Fin N) (L : ℕ) {K : ℕ}
     (κ : Fin K → Fin N) (hinj : Function.Injective κ)
     (hκ : (GNN.bfs (GNN.adjMax A U) v (L + 1)).1 ⊆ Finset.univ.image κ)
-    (g : Fin L → Vec ℝ F → Vec ℝ F) (X : Mat ℝ N F) : -- --- STMT ---
+    (g : Fin L → Vec ℝ F → Vec ℝ F) (X : Mat ℝ N F) : -- --- CONCL ---
     ∃ φ : Fin (GNN.ball (GNN.adjAt A U lam) v L).card → Fin K,
       GNN.evalStepsLayers (GNN.messagePassing (GNN.adjAt A U lam)) L g X v
         = GNN.evalStepsLayers

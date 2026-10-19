@@ -36,7 +36,7 @@ theorem LevelSet.isIntersecting_uniform_outer (L : CORALean.Real.LevelSet n)
     (B : Fin L.m → Interval 𝕋) {tol : 𝕋} (htol : 0 ≤ toReal tol)
     (hB : ∀ i, CORALean.Real.IsRangeBound (fun x => L.f x i) I.construct
       (toReal (B i).inf) (toReal (B i).sup))
-    (h : LevelSet.isIntersecting_uniform L tol B = false) : -- --- STMT ---
+    (h : LevelSet.isIntersecting_uniform L tol B = false) : -- --- CONCL ---
     L.construct ∩ I.construct = ∅ := by -- --- PROOF ---
   refine CORALean.Real.LevelSet.isIntersecting_uniform_outer L I.nominal
     (fun i => ⟨toReal (B i).inf, toReal (B i).sup⟩) htol hB ?_

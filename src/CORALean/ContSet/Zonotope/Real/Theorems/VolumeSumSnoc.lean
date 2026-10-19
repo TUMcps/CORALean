@@ -45,7 +45,7 @@ theorem aux_orderEmbOfFin_map (S : Finset (Fin r)) (k : ℕ) (hS : S.card = k)
     (fun a b hab => Fin.castSucc_lt_castSucc_iff.mpr ((S.orderEmbOfFin hS).strictMono hab))
 
 theorem aux_orderEmbOfFin_insert (T : Finset (Fin r)) (hT : T.card = m)
-    (h' : (insert (Fin.last r) (T.map Fin.castSuccEmb)).card = m + 1) : -- --- STMT ---
+    (h' : (insert (Fin.last r) (T.map Fin.castSuccEmb)).card = m + 1) : -- --- CONCL ---
     (insert (Fin.last r) (T.map Fin.castSuccEmb)).orderEmbOfFin h' =
       Fin.snoc (α := fun _ => Fin (r+1))
         (fun j => Fin.castSucc (T.orderEmbOfFin hT j)) (Fin.last r) := by -- --- PROOF ---
@@ -91,7 +91,7 @@ theorem aux_sum_split (f : Finset (Fin (r+1)) → ℝ) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.volume_sum_snoc (G : Fin (r+1) → Vec ℝ (m+1)) : -- --- STMT ---
+theorem Zonotope.volume_sum_snoc (G : Fin (r+1) → Vec ℝ (m+1)) : -- --- CONCL ---
     ∑ S : Finset (Fin (r+1)), (if hS : S.card = m + 1 then
         |(Matrix.of fun i k => G (S.orderEmbOfFin hS k) i : Mat ℝ (m+1) (m+1)).det| else 0) =
       ∑ S : Finset (Fin r), (if hS : S.card = m + 1 then

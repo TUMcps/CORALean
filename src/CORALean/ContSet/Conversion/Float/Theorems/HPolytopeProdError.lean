@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q h : ℕ}
 
 /-- What the stored product can be off by, on the unit box. -/
 theorem HPolytope.prodError (M : Mat 𝕋 q n) (G : Mat 𝕋 n h) (β : Vec ℝ h)
-    (hβ : ∀ j, |β j| ≤ 1) (i : Fin q) : -- --- STMT ---
+    (hβ : ∀ j, |β j| ≤ 1) (i : Fin q) : -- --- CONCL ---
     |(∑ j, (∑ k, toReal (M i k) * toReal (G k j)) * β j)
         - (toRealMat (matMulDown M G) *ᵥ β) i|
       ≤ toReal (radius (matMulDiff M G) i) := by -- --- PROOF ---

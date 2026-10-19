@@ -41,7 +41,7 @@ variable {n ℓ : ℕ}
 
 /-- [1, Thm. 1]: for `n_e = s_j`, `Z̲ ∩ G_e ≠ ∅ ⟺ Box_S(Z) ∩ G_e ≠ ∅ ⟺ Z ∩ G_e ≠ ∅`. -/
 theorem Zonotope.underS_inter_hyperplane_iff (Z : Zonotope (Vec ℝ n)) (s : Fin ℓ → Vec ℝ n)
-    (j : Fin ℓ) (fₑ : ℝ) : -- --- STMT ---
+    (j : Fin ℓ) (fₑ : ℝ) : -- --- CONCL ---
     ((∃ x ∈ Z.underS s, x ⬝ᵥ s j = fₑ) ↔ ∃ x ∈ Z.boxS (Finset.univ.image s), x ⬝ᵥ s j = fₑ) ∧
       ((∃ x ∈ Z.boxS (Finset.univ.image s), x ⬝ᵥ s j = fₑ) ↔
         ∃ x ∈ Z.construct, x ⬝ᵥ s j = fₑ) := by -- --- PROOF ---

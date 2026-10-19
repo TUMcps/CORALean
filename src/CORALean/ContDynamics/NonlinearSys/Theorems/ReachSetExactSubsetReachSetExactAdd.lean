@@ -45,7 +45,7 @@ variable {n m : ℕ}
 /-- What is reached at `Δt` from points reached at `T` is reached at `T + Δt`, under `u₀`. -/
 theorem NonlinearSys.reachSetExact_subset_reachSetExact_add (sys : NonlinearSys n m)
     (X₀ X : Set (Vec ℝ n)) (u₀ : Vec ℝ m) {T Δt : ℝ} (hT : 0 ≤ T) (hΔt : 0 ≤ Δt)
-    (hX : X ⊆ sys.reachSetExact (S := 𝒮) (Icc 0 T) X₀ {u₀} T) : -- --- STMT ---
+    (hX : X ⊆ sys.reachSetExact (S := 𝒮) (Icc 0 T) X₀ {u₀} T) : -- --- CONCL ---
     sys.reachSetExact (S := 𝒮) (Icc 0 Δt) X {u₀} Δt ⊆
       sys.reachSetExact (S := 𝒮) (Icc 0 (T + Δt)) X₀ {u₀}
         (T + Δt) := by -- --- PROOF ---

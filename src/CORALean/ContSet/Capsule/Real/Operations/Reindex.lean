@@ -11,6 +11,15 @@ The coordinates of a capsule read in another order: center and direction compose
 relabelling `e`, the radius unchanged. This is CORA's `@capsule/lift_` at the one case it
 defines, `length(proj) == N`, where it calls `project` with a permutation; for any other `proj`
 CORA throws `notDefined`, new dimensions being unbounded and a capsule always bounded.
+
+## Inputs
+* `n` – source dimension
+* `m` – target dimension
+* `e` – index bijection
+* `C` – capsule
+
+## Output
+* `C` with its coordinates renamed by `e`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -59,7 +59,7 @@ theorem indep_point_of_mDependent [MeasurableSpace Ω] {μ : Measure Ω} [IsProb
     {x : ℕ → Ω → Δ} (hx : ∀ t, Measurable (x t)) {M : ℕ}
     (hM : ∀ L R : Finset ℕ, (∀ l ∈ L, ∀ r ∈ R, l + M < r) →
       IndepFun (fun ω (l : L) => x l ω) (fun ω (r : R) => x r ω) μ)
-    (j : ℕ) (S : Finset ℕ) (hS : ∀ s ∈ S, s + M < j ∨ j + M < s) : -- --- STMT ---
+    (j : ℕ) (S : Finset ℕ) (hS : ∀ s ∈ S, s + M < j ∨ j + M < s) : -- --- CONCL ---
     Indep (MeasurableSpace.comap (x j) inferInstance)
       (MeasurableSpace.comap (fun ω (s : S) => x s ω) inferInstance) μ := by -- --- PROOF ---
   classical

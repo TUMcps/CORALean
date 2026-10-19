@@ -52,7 +52,7 @@ theorem LinProbSys.IsTrajectory.initReach_ti_mean (sys : LinProbSys n m) (Veig :
     (h0 : (0 : Vec ℝ m) ∈ U.construct) {Ω : Type*} [MeasurableSpace Ω] {P : Measure Ω}
     {T : Set ℝ} {x₀ : Vec ℝ n} {u : ℝ → Vec ℝ m} {x : ℝ → Ω → Vec ℝ n}
     (traj : sys.IsTrajectory (S := 𝒵) P T Rinit.Z (U.plus (Zonotope.ofPoint uTrans)) x₀ u x)
-    (hT : Set.Icc 0 r ⊆ T) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- STMT ---
+    (hT : Set.Icc 0 r ⊆ T) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     ∫ ω, x t ω ∂P ∈ (sys.initReach Veig lambda Rinit gammaInit U uTrans r (k + 2) gamma
       originContained).2.1.Z.construct := by -- --- PROOF ---
   rw [traj.integral_eq (hT ⟨ht0, htr⟩) ht0]

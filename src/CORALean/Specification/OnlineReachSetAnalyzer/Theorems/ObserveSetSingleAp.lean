@@ -36,7 +36,7 @@ theorem OnlineReachSetAnalyzer.observeSet_single_ap (eps : ℝ) (obj : OnlineRea
     (N : OnlineAnalyzerNode (AtomicProposition S d)) (hn : obj.nodes = [N]) (hl : obj.leaves = [1])
     (hf : obj.propagationFrequency = 1) (hc : obj.numObservations = 0) (hk : N.kind = .ap)
     (hp : N.prop = [STLInterval.empty]) (hch : N.children = []) (set : S d) (loc : ℕ)
-    (I : STLInterval) (hne : I ≠ .empty) (val : Kleene) : -- --- STMT ---
+    (I : STLInterval) (hne : I ≠ .empty) (val : Kleene) : -- --- CONCL ---
     ∀ tent ∈ N.tentative,
       ∀ a ∈ N.ap,
         OnlineAnalyzerNode.apValue (𝕋 := 𝕋) a set loc = some val →

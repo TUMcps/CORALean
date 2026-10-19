@@ -45,7 +45,7 @@ variable {n : ℕ}
 theorem Ellipsoid.normSq_add_trace_le_of_superset_parallelotope {G F : Mat ℝ n n}
     (hFu : IsUnit F.det) {z q : Vec ℝ n}
     (hsub : {x | ∃ β : Vec ℝ n, (∀ j, |β j| ≤ 1) ∧ x = z + G *ᵥ β} ⊆
-      (Ellipsoid.ofFactor F q).construct) : -- --- STMT ---
+      (Ellipsoid.ofFactor F q).construct) : -- --- CONCL ---
     ∑ i, (F⁻¹ *ᵥ (z - q)) i ^ 2 + ((F⁻¹ * G) * (F⁻¹ * G)ᵀ).trace ≤ 1 := by -- --- PROOF ---
   rw [Ellipsoid.construct_ofFactor] at hsub
   have hvert : ∀ β : Vec ℝ n, (∀ j, |β j| ≤ 1) → ∃ u : Vec ℝ n, ‖u‖₂ ≤ 1 ∧

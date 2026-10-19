@@ -10,6 +10,16 @@ public import CORALean.ContSet.Capsule.Real.Operations.Isequal
 Sound, not exact: two capsules with `r < 0` are both `∅` whatever their other fields, so the
 converse fails. CORA's own emptiness test (`representsa_(C,'emptySet')`) does not see `r < 0`
 either, and answers by the fields.
+
+## Inputs
+* `C` – first capsule
+* `S` – second capsule
+
+## Hypotheses
+* `h` – `C.isequal S`
+
+## Conclusion
+* `C` and `S` denote the same set
 -/
 
 -- Authors:       Claude Opus 5.5

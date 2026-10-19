@@ -42,7 +42,7 @@ variable {n nu ny nw nv rw rv : ℕ}
 theorem Zonotope.faultResidual_faultObserve (A : Mat ℝ n n) (B : Mat ℝ n nu) (C : Mat ℝ ny n)
     (L : Mat ℝ n ny) (M : Mat ℝ ny ny) (Dx : Mat ℝ n nw) (Hw : Mat ℝ nw rw) (Dy : Mat ℝ ny nv)
     (Hv : Mat ℝ nv rv) (u : Vec ℝ nu) (y y_plus : Vec ℝ ny)
-    (X : Zonotope (Vec ℝ n)) : -- --- STMT ---
+    (X : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (X.faultObserve A B C L Dx Hw Dy Hv u y).faultResidual M C Dy Hv y_plus =
       { h := X.h + rw + rv + rv
         c := M *ᵥ y_plus - (M * C) *ᵥ (A *ᵥ X.c + B *ᵥ u + L *ᵥ (y - C *ᵥ X.c))   -- Eq. 12a

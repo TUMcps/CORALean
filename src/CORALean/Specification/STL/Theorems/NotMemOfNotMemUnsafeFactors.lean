@@ -40,7 +40,7 @@ theorem STL.not_mem_of_not_mem_unsafeFactors (C : Matrix (Fin s) (Fin n) ℝ) (d
     (c : Fin n → ℝ) (G : Matrix (Fin n) (Fin γ) ℝ) (H : Fin h → Fin γ) (K : Finset (Fin γ))
     (hp : h ≤ p) (α : Fin p → ℝ) (β : Fin γ → ℝ) (hβ : ∀ k ∈ K, |β k| ≤ 1) (ξ : Fin n → ℝ)
     (hξ : ∀ j, ξ j = c j + ∑ i, G j (H i) * α (Fin.castLE hp i) + ∑ k ∈ K, G j k * β k)
-    (hα : α ∉ STL.unsafeFactors C d c G H K hp) : -- --- STMT ---
+    (hα : α ∉ STL.unsafeFactors C d c G H K hp) : -- --- CONCL ---
     ¬ (∀ r, C.mulVec ξ r ≤ d r) := by -- --- PROOF ---
   intro hP
   apply hα

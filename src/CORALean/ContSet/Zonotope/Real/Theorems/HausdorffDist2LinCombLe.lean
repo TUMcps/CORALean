@@ -78,7 +78,7 @@ theorem aux_sum_univ_linComb2 {α : Type} [AddCommGroup α] [Module ℝ α] {Z�
 /-- [1, Prop. 9]: `linComb`'s error against the exact linear combination of `H = H(t_k)` and the
 propagated `H(t_{k+1}) = e^{AΔt_k}H + c_p`, at `‖·‖₂`. -/
 theorem Zonotope.hausdorffDist₂_linComb_le (A : Mat ℝ n n) (Δtk : ℝ) (H : Zonotope (Vec ℝ n))
-    (cp : Vec ℝ n) : -- --- STMT ---
+    (cp : Vec ℝ n) : -- --- CONCL ---
     hausdorffDist₂
         (Set.linComb H.construct (Zonotope.mtimes (exp (Δtk • A)) H |>.shift (-cp)).construct)
         (H.linComb (Zonotope.mtimes (exp (Δtk • A)) H |>.shift (-cp))).construct

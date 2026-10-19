@@ -78,7 +78,7 @@ theorem aux_norm_le_absBound_sum {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
 each order is free to pick its own input. -/
 theorem LinearSys.aux_inputTaylorSum_mem_exists (sys : LinearSys 𝕋 n) (r : ℝ)
     (U : Zonotope (Vec ℝ n)) (η : ℕ) {y : Vec ℝ n}
-    (hy : y ∈ (sys.inputTaylorSum (S := 𝒵) r U η).construct) : -- --- STMT ---
+    (hy : y ∈ (sys.inputTaylorSum (S := 𝒵) r U η).construct) : -- --- CONCL ---
     ∃ u : ℕ → Vec ℝ n, (∀ i, u i ∈ U.construct) ∧
       y = ∑ i ∈ Finset.range (η + 1), (sys.inputTerm r i) *ᵥ (u i) := by -- --- PROOF ---
   induction η generalizing y with
@@ -113,7 +113,7 @@ reaches: what the step computes stays inside `e^{Ar} X₀ ⊕ (∫₀^r e^{As} d
 widened by `timePointStepError`. -/
 theorem LinearSys.timePointStep_subset_constInput_add_error (sys : LinearSys 𝕋 n) {r : ℝ}
     (hr : 0 < r) (η : ℕ) (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
-    (X₀ U : Zonotope (Vec ℝ n)) : -- --- STMT ---
+    (X₀ U : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (sys.timePointStep (S := 𝒵) r η X₀ U).construct
       ⊆ ((fun x₀ => exp (r • toRealMat sys.A) *ᵥ x₀) '' X₀.construct
           + (fun v => MatExp.expIntegral (toRealMat sys.A) r *ᵥ v) '' U.construct)

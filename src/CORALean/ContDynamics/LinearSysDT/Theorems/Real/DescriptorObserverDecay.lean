@@ -43,7 +43,7 @@ theorem LinearSysDT.descriptorObserver_decay (E T A : Mat ℝ n n) (N Gbar : Mat
     (B : Mat ℝ n nu) (C : Mat ℝ ny n) (W : Mat ℝ n n) (μ : ℝ) (hTN : T * E + N * C = 1)
     (hW : W.PosDef)
     (hLMI : (fromBlocks (μ • W) (W * T * A - W * Gbar * C)ᵀ (W * T * A - W * Gbar * C) W).PosDef)
-    (u : Vec ℝ nu) (x x_plus xhat : Vec ℝ n) (hE : E *ᵥ x_plus = A *ᵥ x + B *ᵥ u) : -- --- STMT ---
+    (u : Vec ℝ nu) (x x_plus xhat : Vec ℝ n) (hE : E *ᵥ x_plus = A *ᵥ x + B *ᵥ u) : -- --- CONCL ---
     let xhat_plus := T *ᵥ (A *ᵥ xhat) + T *ᵥ (B *ᵥ u) + Gbar *ᵥ (C *ᵥ x - C *ᵥ xhat) +
       N *ᵥ (C *ᵥ x_plus)
     x - xhat ≠ 0 →

@@ -24,7 +24,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.prodBounds_mem : -- --- STMT ---
+theorem Taylm.prodBounds_mem : -- --- CONCL ---
     ∀ (L : List (Interval ℝ)) (x : List ℝ), L.length = x.length →
     (∀ i (h₁ : i < L.length) (h₂ : i < x.length), L[i].inf ≤ x[i] ∧ x[i] ≤ L[i].sup) →
     (Taylm.prodBounds L).inf ≤ x.prod ∧ x.prod ≤ (Taylm.prodBounds L).sup

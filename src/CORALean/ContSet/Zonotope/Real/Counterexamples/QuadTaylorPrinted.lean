@@ -44,7 +44,7 @@ open Matrix
 
 /-- [1, Prop. 3] as printed: the zonotope with the printed `L^(j)` does not enclose the
 second-order Taylor sum of every matrix a matrix zonotope denotes. -/
-theorem Zonotope.quadTaylor_printed_counterexample : -- --- STMT ---
+theorem Zonotope.quadTaylor_printed_counterexample : -- --- CONCL ---
     ¬ ∀ (n : ℕ) (A_Z : Zonotope (Mat ℝ n n)) (t : ℝ),
       (fun A => (1 : Mat ℝ n n) + t • A + (t ^ 2 / 2) • (A * A)) '' A_Z.construct
         ⊆ ({ h := A_Z.h + A_Z.h + A_Z.h * A_Z.h

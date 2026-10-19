@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {L : Type} {n
 theorem Transition.jumpFloat_outer_conZonotope
     (e : Transition (fun k => ConZonotope 𝕋 (Vec 𝕋 k)) L 𝕋 n)
     {R : ConZonotope 𝕋 (Vec 𝕋 n)} {z : Vec ℝ n} (hz : z ∈ construct R)
-    (hguard : z ∈ construct e.guard) : -- --- STMT ---
+    (hguard : z ∈ construct e.guard) : -- --- CONCL ---
     e.reset z ∈ construct (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) e.W
     (R.intersection e.guard)
       ⊞ (Interval.point e.w).conZonotope) := by -- --- PROOF ---

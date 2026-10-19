@@ -54,7 +54,7 @@ def LinearSys.witnessVVec : Nat → ℝ := fun j => if j = 1 then 1 else 0
 
 /-- In piece `0` the output is `x + 0 = 0` for `x = 0`, and CORA's set is `{0 + 1}`; in piece `1`
 it is `x + 1` and CORA adds `0`. -/
-theorem LinearSys.adaptiveVTransCora_counterexample : -- --- STMT ---
+theorem LinearSys.adaptiveVTransCora_counterexample : -- --- CONCL ---
     LinearSys.pieceOffset LinearSys.witnessVVec 0 = 0 ∧
       LinearSys.adaptiveVTransCora LinearSys.witnessVVec 0 = 1 ∧
       (0 : ℝ) ∉ ({0 + LinearSys.adaptiveVTransCora LinearSys.witnessVVec 0} : Set ℝ) ∧

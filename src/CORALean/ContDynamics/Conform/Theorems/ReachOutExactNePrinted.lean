@@ -42,7 +42,7 @@ open Matrix Pointwise
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Eq. 7] as printed differs from the reachable set at `k + 1 = 2`. -/
-theorem Conform.Plant.reachOutExact_ne_printed : -- --- STMT ---
+theorem Conform.Plant.reachOutExact_ne_printed : -- --- CONCL ---
     ∃ (sys : Conform.Plant 1 1 1) (u : ℕ → Vec ℝ 1),
       sys.reachOutExact {0} u {0} {0} 2 ≠
         (fun x => sys.C *ᵥ x) '' ((fun x => (sys.A ^ 2) *ᵥ x) '' {0}

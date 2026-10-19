@@ -59,7 +59,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 in time, and its window holds every run over `[t_i, t_{i+1}] ∩ [0, t_f]`. -/
 theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)}
     {t₀ tf : ℚ} {options : LinearSys.AdaptiveOptions 𝕋} {s : LinearSys.AdaptiveState 𝕋 n}
-    (hinv : sys.AdaptiveInvariant V s) : -- --- STMT ---
+    (hinv : sys.AdaptiveInvariant V s) : -- --- CONCL ---
     ∀ r s', (r, s') ∈ sys.adaptiveStepFloat X₀ V t₀ tf options s →
       sys.AdaptiveInvariant V s' ∧ s.t < s'.t ∧ r.tStart = t₀ + s.t ∧
         r.tEnd = t₀ + min s'.t tf ∧

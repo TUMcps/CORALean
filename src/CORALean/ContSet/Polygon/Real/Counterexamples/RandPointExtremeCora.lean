@@ -52,7 +52,7 @@ def Polygon.randPointExtremeAllCora (V : List (Option (Fin 2 → ℝ))) : List (
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The unit square keeps its first two vertices; a polygon with a NaN column keeps none. -/
-theorem Polygon.randPointExtremeAll_cora_counterexample : -- --- STMT ---
+theorem Polygon.randPointExtremeAll_cora_counterexample : -- --- CONCL ---
     Polygon.randPointExtremeAllCora
         [some ![0, 0], some ![1, 0], some ![1, 1], some ![0, 1]] =
       [some ![0, 0], some ![1, 0]] ∧

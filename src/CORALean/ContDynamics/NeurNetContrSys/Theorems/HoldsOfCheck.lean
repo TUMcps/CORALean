@@ -48,7 +48,7 @@ theorem NeurNetContrSys.holds_of_check [Contains ContSet (S n)] [IsDisjoint Cont
     {W : Set (Vec ℝ sys.plant.r)} (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0)
     {x : ℝ → Vec ℝ n} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ sys.plant.r}
     (traj : sys.IsTrajectory π H R₀ (construct U_ext) W x v w)
-    (spec : Specification ContSet) (i : ℕ) (hi : i ≤ H) : -- --- STMT ---
+    (spec : Specification ContSet) (i : ℕ) (hi : i ≤ H) : -- --- CONCL ---
     spec.check (sys.reach U_ext ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) →
       (spec.Holds {x ((i : ℝ) * sys.dt)}) :=
   fun h => sys.holds_of_reach U_ext o η N ho hΔt hdt hε hπ hW traj spec i hi (spec.check_sound _ h)

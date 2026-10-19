@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `y_h(x₀)` is in the box `hitPointFloat` returns, and `Λ ≠ 0`. -/
 theorem GuardMap.hitPoint_mem_hitPointFloat (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋)
-    (x₀ : Vec 𝕋 n) : -- --- STMT ---
+    (x₀ : Vec 𝕋 n) : -- --- CONCL ---
     ∀ K ∈ GuardMap.hitPointFloat A b nv d x₀,
       toRealVec nv ⬝ᵥ (toRealMat A *ᵥ toRealVec x₀ + toRealVec b) ≠ 0 ∧
         GuardMap.hitPoint (toRealMat A) (toRealVec b) (toRealVec nv) (toReal d) (toRealVec x₀)

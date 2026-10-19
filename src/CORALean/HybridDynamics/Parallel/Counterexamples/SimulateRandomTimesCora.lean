@@ -44,7 +44,7 @@ def ParallelHybridAutomaton.simulateRandomTimesCora {α : Type} [Field α] (a b 
 
 /-- Number of loop iterations: `n - 1` for CORA's parallel grid, `n` for the hybrid automaton's. -/
 theorem ParallelHybridAutomaton.simulateRandomTimesCora_segments {α : Type} [Field α]
-    (a b : α) (n : Nat) : -- --- STMT ---
+    (a b : α) (n : Nat) : -- --- CONCL ---
     (ParallelHybridAutomaton.simulateRandomTimesCora a b n).length - 1 = n - 1 ∧
       (HybridAutomaton.simulateRandomTimes a b n).length - 1 = n ∧
       (ParallelHybridAutomaton.simulateRandomTimesCora a b 1).length - 1 = 0 := by -- --- PROOF ---

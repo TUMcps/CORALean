@@ -85,7 +85,7 @@ noncomputable def NN.evaluateSinghCora (f df : ℝ → ℝ) (a₁ b₁ a₂ b₂
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NN.evaluateSinghCora_misses_counterexample : -- --- STMT ---
+theorem NN.evaluateSinghCora_misses_counterexample : -- --- CONCL ---
     SShapedPrinted (fun x : ℝ => x ^ 3) ∧ Monotone (fun x : ℝ => x ^ 3) ∧
       ∃ x : ℝ, -1 ≤ x ∧ x ≤ 2 ∧
         x ^ 3 + (3 - x) ^ 3 ∉ NN.evaluateSinghCora (fun x : ℝ => x ^ 3)

@@ -58,7 +58,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 `e^{-At}((Xend ⊕ -Z_W(t)) ⊖ Z_U(t))`. -/
 theorem LinearSys.backReachSetForallExistsExact_eq (sys : LinearSys 𝕋 n) (U W Xend : S n)
     {t : ℝ} (ht : 0 ≤ t) (hU : Bornology.IsBounded (construct U))
-    (hW : Bornology.IsBounded (construct W)) : -- --- STMT ---
+    (hW : Bornology.IsBounded (construct W)) : -- --- CONCL ---
     sys.backReachSetForallExistsExact (Set.Icc 0 t) U W Xend t
       = (exp ((-t) • toRealMat sys.A)).mulVecLin ''
           minkowskiDiff (construct Xend + -sys.inputReach W t)

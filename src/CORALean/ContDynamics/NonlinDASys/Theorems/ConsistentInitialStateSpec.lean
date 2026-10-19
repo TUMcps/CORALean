@@ -33,7 +33,7 @@ variable {n p m : ℕ}
 /-- The result is a Newton step of norm below `tol` taken from some iterate. -/
 theorem NonlinDASys.consistentInitialState_spec (sys : NonlinDASys n p m)
     (F : Vec ℝ n → Vec ℝ p → Vec ℝ m → Mat ℝ p p) (tol : ℝ) (fuel : ℕ) (x₀ : Vec ℝ n) (u₀ : Vec ℝ m)
-    (y₀ : Vec ℝ p) : -- --- STMT ---
+    (y₀ : Vec ℝ p) : -- --- CONCL ---
     ∀ y' ∈ sys.consistentInitialState F tol fuel x₀ u₀ y₀,
       ∃ y Δ : Vec ℝ p, y' = y + Δ ∧ norm₂ Δ < tol ∧
         (IsUnit (F x₀ y u₀).det → F x₀ y u₀ *ᵥ Δ = -(sys.g x₀ y u₀)) := by -- --- PROOF ---

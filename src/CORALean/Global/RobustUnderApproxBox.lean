@@ -68,7 +68,7 @@ theorem exists_eq_of_mean_value_box {f : (Fin m → ℝ) → Fin n → ℝ} {π 
         + ∑ j with π j ≠ some i, dwhi i j * ((hi j - lo j) / 2))
       (fun i => f0lo i + ∑ j with π j = some i, dulo i j * ((hi j - lo j) / 2)
         - ∑ j with π j ≠ some i, dwhi i j * ((hi j - lo j) / 2)))
-    {w : Fin m → ℝ} (hw' : w ∈ Icc lo hi) : -- --- STMT ---
+    {w : Fin m → ℝ} (hw' : w ∈ Icc lo hi) : -- --- CONCL ---
     ∃ x ∈ Icc lo hi, (∀ j, π j = none → x j = w j) ∧ f x = z := by -- --- PROOF ---
   classical
   set c : Fin m → ℝ := fun j => (lo j + hi j) / 2 with hc

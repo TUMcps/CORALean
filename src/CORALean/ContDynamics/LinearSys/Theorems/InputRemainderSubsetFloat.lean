@@ -60,7 +60,7 @@ attribute [local instance] aux_setMtimesIntervalRem
 
 /-- The remainder's closed convex hull, inside the float product. -/
 theorem LinearSys.inputRemainder_subset_float (sys : LinearSys 𝕋 n) {r : 𝕋} (hr : 0 ≤ toReal r)
-    {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) (V : Zonotope (Vec 𝕋 n)) : -- --- STMT ---
+    {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     construct (Mtimes.mtimes (𝕄 := ℐ)
       (S := 𝒮)
       (Real.MatExp.inputRemainder (Scalar.toRealMat sys.A) (toReal r) η)

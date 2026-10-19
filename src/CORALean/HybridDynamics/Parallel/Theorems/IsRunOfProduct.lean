@@ -39,7 +39,7 @@ theorem ParallelHybridAutomaton.IsRun.ofProduct {P : ParallelHybridAutomaton S G
     (hfeed : P.FeedthroughFree) (hdist : P.GlobalsDistinct)
     (hne : ∀ (ℓ : ∀ i, L i) i, (construct ((P.comp i).loc (ℓ i)).U).Nonempty)
     {lift : ParallelHybridAutomaton.Lifting S G n m} (hex : lift.Exact) {ℓ ℓ' : ∀ i, L i}
-    {z w : Vec ℝ (∑ i, n i)} (run : (P.product lift).IsRun ℓ z ℓ' w) : -- --- STMT ---
+    {z w : Vec ℝ (∑ i, n i)} (run : (P.product lift).IsRun ℓ z ℓ' w) : -- --- CONCL ---
     P.IsRun ℓ (unstack z) ℓ' (unstack w) :=
   ParallelHybridAutomaton.IsRun.ofProductWith
     (P.mergeFlowsLinearSys_flowLawConverse hfeed hdist hne hex) hex run

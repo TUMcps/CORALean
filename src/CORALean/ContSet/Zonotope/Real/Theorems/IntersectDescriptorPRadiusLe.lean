@@ -61,7 +61,7 @@ theorem Zonotope.intersectDescriptor_pRadius_le (T : Mat ℝ n n) (N : Mat ℝ n
       (fromBlocks (fromBlocks (γ • W) 0 0 (diagonal (Sum.elim Γ (Sum.elim Υ Ω)))) Rᵀ R W).PosDef)
     (hΓ : ∀ i, 0 < Γ i) (hΥ : ∀ i, 0 < Υ i) (hΩ : ∀ i, 0 < Ω i)                 -- Eq. 19
     (hε : ∑ i, Γ i + ∑ i, Υ i + ∑ i, Ω i < ε)                                    -- Eq. 20
-    (hγ : 0 ≤ γ) (hℓ : ∀ z ∈ X.construct, (z - X.c) ⬝ᵥ (W *ᵥ (z - X.c)) ≤ ℓ) : -- --- STMT ---
+    (hγ : 0 ≤ γ) (hℓ : ∀ z ∈ X.construct, (z - X.c) ⬝ᵥ (W *ᵥ (z - X.c)) ≤ ℓ) : -- --- CONCL ---
     (X.intersectDescriptor T N (W⁻¹ * Y) A B D C F u y).pRadius W ≤
       γ * ℓ + ε := by -- --- PROOF ---
   set R : Matrix (Fin n) (Fin n ⊕ (Fin nw ⊕ (Fin nv ⊕ Fin nv))) ℝ :=

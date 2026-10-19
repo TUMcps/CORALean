@@ -52,7 +52,7 @@ variable {n d r dI rI : ℕ}
 /-- `mem_construct_iff` at an evaluation: one coordinate of the defining
 equation, both generator blocks transposed. -/
 theorem PolyZonotope.aux_mem_evalOn_iff {pZ : PolyZonotope (Vec ℝ n)}
-    {B : Set (Fin pZ.p → ℝ)} {x : Vec ℝ n} : -- --- STMT ---
+    {B : Set (Fin pZ.p → ℝ)} {x : Vec ℝ n} : -- --- CONCL ---
     x ∈ pZ.evalOn B ↔ ∃ a ∈ B, ∃ β : Fin pZ.q → ℝ, (∀ j, |β j| ≤ 1)
       ∧ ∀ i, x i = pZ.c i + (∑ l, pZ.G l i * PolyZonotope.monomial pZ.E a l)
             + ∑ j, pZ.GI j i * β j := by -- --- PROOF ---
@@ -77,7 +77,7 @@ through the projection because that is the form the goal has and simp will not
 rewrite a binder's type. -/
 theorem PolyZonotope.aux_sum_univ_reduceBy_q {pZ : PolyZonotope (Vec ℝ n)}
     {partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r)}
-    {partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) : -- --- STMT ---
+    {partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) : -- --- CONCL ---
     ∑ j : Fin (pZ.reduceBy partD partI).q, f j
       = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd dI j) :=
   Fin.sum_univ_add f
@@ -95,7 +95,7 @@ theorem PolyZonotope.aux_sum_univ_reduceBy_h {pZ : PolyZonotope (Vec ℝ n)}
 and never by more than one. -/
 theorem PolyZonotope.aux_abs_droppedDep_le (pZ : PolyZonotope (Vec ℝ n))
     (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r)) {a : Fin pZ.p → ℝ}
-    (ha : ∀ k, |a k| ≤ 1) (i : Fin n) : -- --- STMT ---
+    (ha : ∀ k, |a k| ≤ 1) (i : Fin n) : -- --- CONCL ---
     |∑ l, pZ.G (partD.right l) i * PolyZonotope.monomial pZ.E a (partD.right l)|
       ≤ ∑ l, |pZ.G (partD.right l) i| :=
   calc |∑ l, pZ.G (partD.right l) i * PolyZonotope.monomial pZ.E a (partD.right l)|
@@ -114,7 +114,7 @@ theorem PolyZonotope.aux_abs_droppedDep_le (pZ : PolyZonotope (Vec ℝ n))
 already free. -/
 theorem PolyZonotope.aux_abs_droppedInd_le (pZ : PolyZonotope (Vec ℝ n))
     (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) {β : Fin pZ.q → ℝ}
-    (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) : -- --- STMT ---
+    (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) : -- --- CONCL ---
     |∑ j, pZ.GI (partI.right j) i * β (partI.right j)|
       ≤ ∑ j, |pZ.GI (partI.right j) i| :=
   calc |∑ j, pZ.GI (partI.right j) i * β (partI.right j)|
@@ -133,7 +133,7 @@ original, at the very same factor vector. -/
 theorem PolyZonotope.reduceBy_evalOn (pZ : PolyZonotope (Vec ℝ n))
     (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r))
     (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) {B : Set (Fin pZ.p → ℝ)}
-    (hB : ∀ a ∈ B, ∀ k, |a k| ≤ 1) : -- --- STMT ---
+    (hB : ∀ a ∈ B, ∀ k, |a k| ≤ 1) : -- --- CONCL ---
     pZ.evalOn B ⊆ (pZ.reduceBy partD partI).evalOn B := by -- --- PROOF ---
   intro x hxmem
   obtain ⟨a, haB, β, hβ, hx⟩ := PolyZonotope.aux_mem_evalOn_iff.mp hxmem

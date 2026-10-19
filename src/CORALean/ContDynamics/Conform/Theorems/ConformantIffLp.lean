@@ -54,7 +54,7 @@ variable {n p q : ℕ}
 theorem aux_lp_row_iff (sys : Conform.Plant n p (q + 1)) {ιX ιW ιV : Type} [Fintype ιX]
     [Fintype ιW] [Fintype ιV] (cX : Vec ℝ n) (GX : ιX → Vec ℝ n) (αX : ιX → ℝ)
     (cW : Vec ℝ n) (GW : ιW → Vec ℝ n) (αW : ιW → ℝ) (cV : Vec ℝ (q + 1))
-    (GV : ιV → Vec ℝ (q + 1)) (αV : ιV → ℝ) (k : ℕ) (v y : Vec ℝ (q + 1)) : -- --- STMT ---
+    (GV : ιV → Vec ℝ (q + 1)) (αV : ιV → ℝ) (k : ℕ) (v y : Vec ℝ (q + 1)) : -- --- CONCL ---
     v ⬝ᵥ (y - ((sys.C * sys.A ^ k) *ᵥ cX + ∑ i : Fin k, (sys.C * sys.A ^ (i : ℕ)) *ᵥ cW + cV))
         ≤ ∑ j, |v ⬝ᵥ Sum.elim (Sum.elim (fun x => (sys.C * sys.A ^ k) *ᵥ GX x)
             (fun r : Fin k × ιW => (sys.C * sys.A ^ (r.1 : ℕ)) *ᵥ GW r.2)) GV j|
@@ -92,7 +92,7 @@ theorem Conform.Plant.conformant_iff_lp {M κ : Type} (sys : Conform.Plant n p (
         (fun r : Fin k × ιW => (sys.C * sys.A ^ (r.1 : ℕ)) *ᵥ GW r.2)) GV)) = ⊤)
     (hN : ∀ k ≤ K, Conform.HasNormals (Sum.elim
       (Sum.elim (fun x => (sys.C * sys.A ^ k) *ᵥ GX x)
-        (fun r : Fin k × ιW => (sys.C * sys.A ^ (r.1 : ℕ)) *ᵥ GW r.2)) GV) (N k)) : -- --- STMT ---
+        (fun r : Fin k × ιW => (sys.C * sys.A ^ (r.1 : ℕ)) *ᵥ GW r.2)) GV) (N k)) : -- --- CONCL ---
     sys.Conformant (Conform.templateZono cX GX αX) (Conform.templateZono cW GW αW)
         (Conform.templateZono cV GV αV) T K ↔
       ∀ k ≤ K, ∀ m, ∀ i, N k i ⬝ᵥ ((T m).y k - sys.nominal (T m).x0 (T m).u k)

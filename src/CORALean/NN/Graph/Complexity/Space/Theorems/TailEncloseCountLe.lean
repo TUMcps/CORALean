@@ -35,7 +35,7 @@ open Matrix
 
 /-- The tail's generators, dependent and independent, grow by at most the sum of what its layers
 add. -/
-theorem GNN.tailEnclose_count_le (T : ℕ) : -- --- STMT ---
+theorem GNN.tailEnclose_count_le (T : ℕ) : -- --- CONCL ---
     ∀ (d : ℕ → ℕ) (f : ∀ t, PolyZonotope (Vec ℝ (d t)) → PolyZonotope (Vec ℝ (d (t + 1))))
       (e : ℕ → ℕ) (_ : ∀ t S, (f t S).h + (f t S).q ≤ S.h + S.q + e t)
       (S : PolyZonotope (Vec ℝ (d 0))),

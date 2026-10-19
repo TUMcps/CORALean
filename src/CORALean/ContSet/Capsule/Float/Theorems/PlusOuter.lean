@@ -42,7 +42,7 @@ keep-left capsule plus the two box points lies in the stored capsule. -/
 theorem Capsule.aux_plus_branch (k : ℕ) (C₁ C₂ : Capsule 𝕋 n) {g g' : Vec 𝕋 n} {y e : Vec ℝ n}
     (hy : y ∈ (Real.Capsule.mk (toRealVec C₁.c + toRealVec C₂.c) (toRealVec g)
       (toReal C₁.r + toReal C₂.r + Real.sqrt (∑ i, toReal (g' i) ^ 2))).construct)
-    (he : e ∈ (C₁.I_error.plus C₂.I_error).construct) : -- --- STMT ---
+    (he : e ∈ (C₁.I_error.plus C₂.I_error).construct) : -- --- CONCL ---
     y + e ∈ (Capsule.mk (fun i => addDown (C₁.c i) (C₂.c i)) g
       (addUp (addUp C₁.r C₂.r) (normUp k g')) ((C₁.I_error.plus C₂.I_error).plus
         (Interval.residual (fun i => addDown (C₁.c i) (C₂.c i)) (fun i => addUp (C₁.c i) (C₂.c i))

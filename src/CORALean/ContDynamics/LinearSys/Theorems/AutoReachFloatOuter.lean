@@ -72,7 +72,7 @@ theorem LinearSys.aux_autoInvariantFloat_init (sys : LinearSys 𝕋 n) (X₀ V :
 /-- Every run on `[0, t_end]` from `X₀` under inputs in `V` is, at every time, in one of the
 windows, the one covering that time. -/
 theorem LinearSys.autoReachFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)} {tend : 𝕋}
-    {εmax ζ : ℚ} {ηmax fuel K : ℕ} : -- --- STMT ---
+    {εmax ζ : ℚ} {ηmax fuel K : ℕ} : -- --- CONCL ---
     ∀ Rs ∈ sys.autoReachFloat X₀ V tend εmax ζ ηmax fuel K,
       ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
         sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →

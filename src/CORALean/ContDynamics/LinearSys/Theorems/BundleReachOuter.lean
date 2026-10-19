@@ -69,7 +69,7 @@ theorem LinearSys.bundleReach_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
     (hh : ∀ τ ∈ Set.Icc (0:ℝ) r,
       (fun x => exp (τ • toRealMat sys.A) *ᵥ x) '' construct X₀ ⊆ Rh₀.construct)
     (hi : ∀ τ ∈ Set.Icc (0:ℝ) r, sys.inputReach U τ ⊆ Ri₀.construct)
-    {N k : ℕ} (hk : k ≤ N) {t : ℝ} (ht : t ∈ Set.Icc ((k : ℝ) * r) ((k + 1) * r)) : -- --- STMT ---
+    {N k : ℕ} (hk : k ≤ N) {t : ℝ} (ht : t ∈ Set.Icc ((k : ℝ) * r) ((k + 1) * r)) : -- --- CONCL ---
     ∃ R, (sys.bundleReach Rh₀ Ri₀ r N)[k]? = some R
       ∧ sys.reachSetExact (Set.Icc 0 t) X₀ U t ⊆ R.construct := by -- --- PROOF ---
   set A := toRealMat sys.A

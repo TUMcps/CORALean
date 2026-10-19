@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A point of the linear level set is in the box and meets every row `(A x - b)ᵢ ⋈ᵢ 0` within its
 slack. -/
 theorem PolyLevelSet.mem_linear_iff {m : ℕ} (A : Mat 𝕋 m n) (b b_error : Vec 𝕋 m)
-    (op : Fin m → Real.CompOp) (D : Interval (Vec 𝕋 n)) (x : Vec ℝ n) : -- --- STMT ---
+    (op : Fin m → Real.CompOp) (D : Interval (Vec 𝕋 n)) (x : Vec ℝ n) : -- --- CONCL ---
     x ∈ (PolyLevelSet.linear A b b_error op D).construct
       ↔ x ∈ D.construct ∧ ∀ i, (op i).IsMetWithin ((toRealMat A *ᵥ x - toRealVec b) i)
         |toReal (b_error i)| := by -- --- PROOF ---

@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.cartProd_nominal_exact (P₁ : HPolytope 𝕋 (Vec 𝕋 n₁))
-    (P₂ : HPolytope 𝕋 (Vec 𝕋 n₂)) : -- --- STMT ---
+    (P₂ : HPolytope 𝕋 (Vec 𝕋 n₂)) : -- --- CONCL ---
     (P₁.cartProd P₂).nominal.construct
       = blockLeft n₁ n₂ ⁻¹' P₁.nominal.construct
         ∩ blockRight n₁ n₂ ⁻¹' P₂.nominal.construct := by -- --- PROOF ---

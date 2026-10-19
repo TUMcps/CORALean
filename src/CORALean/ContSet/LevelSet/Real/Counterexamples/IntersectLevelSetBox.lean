@@ -32,7 +32,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem intersectLevelSetBox_exact_counterexample : -- --- STMT ---
+theorem intersectLevelSetBox_exact_counterexample : -- --- CONCL ---
     let I : Interval (Vec ℝ 1) := ⟨fun _ => 0, fun _ => 1⟩
     let p : Vec ℝ 1 → ℝ := fun x => x 0 / 2
     (∀ x ∈ I.construct, I.inf 0 ≤ p x ∧ p x ≤ I.sup 0) ∧

@@ -49,7 +49,7 @@ theorem NeuralNetwork.Encloses.verifySplitWith_sound {nn : NeuralNetwork S n m}
     (hcheck : ∀ s, check s → spec.Holds (construct s))
     (splitter : S n → S n × S n)
     (hcov : ∀ Y : S n, construct Y ⊆ construct (splitter Y).1 ∪ construct (splitter Y).2)
-    (d : ℕ) (X : S n) (hverify : nn.verifySplitWith check splitter d X) : -- --- STMT ---
+    (d : ℕ) (X : S n) (hverify : nn.verifySplitWith check splitter d X) : -- --- CONCL ---
     spec.Holds (f '' construct X) := by -- --- PROOF ---
   induction d generalizing X with
   | zero => exact hf.holds_of_enclose X spec (hcheck _ hverify)

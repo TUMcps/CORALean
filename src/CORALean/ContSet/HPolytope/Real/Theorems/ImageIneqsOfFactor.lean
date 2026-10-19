@@ -41,7 +41,7 @@ variable {q n m : ℕ}
 
 theorem HPolytope.image_ineqs_of_factor (A : Mat ℝ q n) (b : Vec ℝ q) (M : Mat ℝ m n)
     (U : Mat ℝ m m) (E : Mat ℝ m n) (S V : Mat ℝ n n) (hS : IsUnit S.det) (hV : V * Vᵀ = 1)
-    (hM : M = U * E * S * Vᵀ) : -- --- STMT ---
+    (hM : M = U * E * S * Vᵀ) : -- --- CONCL ---
     (M *ᵥ ·) '' (HPolytope.ineqs A b).construct =
       ((U * E) *ᵥ ·) '' (HPolytope.ineqs (A * V * S⁻¹) b).construct := by -- --- PROOF ---
   have hV' : Vᵀ * V = 1 := mul_eq_one_comm.mp hV

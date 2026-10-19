@@ -38,7 +38,7 @@ theorem Zonotope.tensorMultiplication_smul_outer (Z : Zonotope (Vec 𝕋 n)) (M 
     (hmap : ∀ p q, L.map p = L.map q →
       ({L.perm p 0, L.perm p 1, L.perm p 2} : Multiset (Fin Z.absorbRounding.h)) =
         {L.perm q 0, L.perm q 1, L.perm q 2})
-    {x : Vec ℝ n} (hx : x ∈ Z.construct) {t : ℝ} (ht : |t| ≤ 1) : -- --- STMT ---
+    {x : Vec ℝ n} (hx : x ∈ Z.construct) {t : ℝ} (ht : |t| ≤ 1) : -- --- CONCL ---
     t • Real.Zonotope.tensorEval (fun i a b c => toReal (M i a b c)) x
       ∈ (Z.tensorMultiplication M L).construct := by -- --- PROOF ---
   obtain ⟨γ, hγ, Δ, hΔ, heq⟩ := Zonotope.tensorMultiplication_coeff Z M L hc hperm hmap hx

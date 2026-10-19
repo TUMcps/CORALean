@@ -11,6 +11,13 @@ CORA's `@capsule/isequal.m` for two capsules: center, generator and radius agree
 tolerance (`abs(.) < tol`, so at `tol = eps` they must be, in effect, equal). Here the tolerance
 is `0` and the three fields are equal; the emptiness case CORA tests first (both empty, or
 neither) is left to the theorem, since two empty capsules need not have equal fields.
+
+## Inputs
+* `C` – first capsule
+* `S` – second capsule
+
+## Output
+* `Prop` that the fields agree
 -/
 
 -- Authors:       Claude Opus 5.5

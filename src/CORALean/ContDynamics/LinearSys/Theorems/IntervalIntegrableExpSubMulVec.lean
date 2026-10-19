@@ -73,7 +73,7 @@ theorem aux_continuous_expSub (A : Mat ℝ n n) (c : ℝ) :
 theorem intervalIntegrable_expSub_mulVec {A : Mat ℝ n n} {U : S n} {c τ : ℝ} (hτ : 0 ≤ τ)
     (hbdd : Bornology.IsBounded (construct U)) {u : ℝ → Vec ℝ n}
     (hu : ∀ s ∈ Set.Icc (0:ℝ) τ, u s ∈ construct U)
-    (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 τ))) : -- --- STMT ---
+    (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 τ))) : -- --- CONCL ---
     IntervalIntegrable (fun s => exp ((c - s) • A) *ᵥ u s) volume 0 τ := by -- --- PROOF ---
   obtain ⟨CU, hCU⟩ := hbdd.exists_norm_le
   obtain ⟨CE, hCE⟩ := (isCompact_Icc (a := (0:ℝ)) (b := τ)).exists_bound_of_continuousOn

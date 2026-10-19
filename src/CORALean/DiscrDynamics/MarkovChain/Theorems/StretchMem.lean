@@ -28,7 +28,7 @@ namespace CORALean
 theorem MarkovChain.stretch_mem {ι : Type} [Fintype ι] [DecidableEq ι]
     (Obj : MarkovChain.Stacked ι) {factor : ℕ} (hf : 1 ≤ factor)
     (hT : Obj.T ∈ Matrix.colStochastic ℝ ι)
-    (hOT : Obj.OT ∈ Matrix.colStochastic ℝ ι) : -- --- STMT ---
+    (hOT : Obj.OT ∈ Matrix.colStochastic ℝ ι) : -- --- CONCL ---
     (MarkovChain.stretch Obj factor).T ∈ Matrix.colStochastic ℝ ι ∧
     (MarkovChain.stretch Obj factor).OT ∈ Matrix.colStochastic ℝ ι := by -- --- PROOF ---
   refine ⟨(Matrix.colStochastic ℝ ι).pow_mem hT factor, ?_⟩

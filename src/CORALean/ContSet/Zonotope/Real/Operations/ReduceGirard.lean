@@ -16,6 +16,13 @@ The `dite` is what `reduceBox` mirrors: the error the rule pays is the box in
 one branch and the origin in the other, and only a definition splitting the
 same way can name it.
 
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Output
+* zonotope of order at most `o` enclosing `Z`
+
 ## References
 
 * [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid

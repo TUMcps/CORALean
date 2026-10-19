@@ -45,7 +45,7 @@ namespace CORALean.Real
 
 /-- Outside `0 ≤ γ ≤ 1` the closed form of [1, Prop. 5] is not an inner
 approximation of the difference, let alone equal to it. -/
-theorem Zonotope.minkDiffAligned_not_inner (γ : ℝ) (hγ : γ < 0 ∨ 1 < γ) : -- --- STMT ---
+theorem Zonotope.minkDiffAligned_not_inner (γ : ℝ) (hγ : γ < 0 ∨ 1 < γ) : -- --- CONCL ---
     ∃ (Z₁ Z₂ : Zonotope ℝ) (hh : Z₁.h = Z₂.h),
       (∀ i, Z₂.G (Fin.cast hh i) = γ • Z₁.G i) ∧
         ¬ (Z₁.minkDiffAligned Z₂ hh).construct

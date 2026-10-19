@@ -74,7 +74,7 @@ theorem MatExp.aux_norm₂_le_of_mem_curvatureEnclosure (A : Mat ℝ n n) (H : Z
     (hF : ∀ j k, |(MatExp.correctionMatrix A Δt η).inf j k| ≤ ρF
       ∧ |(MatExp.correctionMatrix A Δt η).sup j k| ≤ ρF)
     (hG : ∀ j k, |(MatExp.constCorrectionMatrix A Δt η).inf j k| ≤ ρG
-      ∧ |(MatExp.constCorrectionMatrix A Δt η).sup j k| ≤ ρG) : -- --- STMT ---
+      ∧ |(MatExp.constCorrectionMatrix A Δt η).sup j k| ≤ ρG) : -- --- CONCL ---
     ∀ y ∈ (MatExp.curvatureEnclosure A H ũ Δt η).construct,
       ‖y‖₂ ≤ Real.sqrt n * ((ρF + ρF) * ∑ j, H.absBound j
         + (ρG + ρG) * ∑ j, |ũ j|) := by -- --- PROOF ---

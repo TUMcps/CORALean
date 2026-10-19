@@ -65,7 +65,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 theorem LinearSys.reachBox_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Vec ℝ n)) {r : ℝ}
     (hr : 0 < r) {m : ℕ} (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     (h0 : (0 : Vec ℝ n) ∈ U.construct)
-    {N k : ℕ} (hk : k ≤ N) {t : ℝ} (ht : t ∈ Set.Icc ((k : ℝ) * r) ((k + 1) * r)) : -- --- STMT ---
+    {N k : ℕ} (hk : k ≤ N) {t : ℝ} (ht : t ∈ Set.Icc ((k : ℝ) * r) ((k + 1) * r)) : -- --- CONCL ---
     ∃ R, (sys.reachBox X₀ U r (m + 2) N)[k]? = some R
       ∧ sys.reachSetExact (S := 𝒵) (Set.Icc 0 t) X₀ U t ⊆ R.construct := by -- --- PROOF ---
   set A := toRealMat sys.A

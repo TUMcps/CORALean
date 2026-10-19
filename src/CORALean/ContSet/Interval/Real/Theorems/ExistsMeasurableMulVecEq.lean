@@ -147,7 +147,7 @@ measurable entry by entry does, and it lies in `B` everywhere. -/
 theorem Interval.exists_measurable_mulVec_eq {B : Interval (Mat ℝ n n)} {M₀ : Mat ℝ n n}
     (hM₀ : M₀ ∈ B.construct) {y w : ℝ → Vec ℝ n} (hy : Measurable y) (hw : Measurable w)
     {S : Set ℝ} (hS : MeasurableSet S)
-    (hex : ∀ s ∈ S, ∃ M ∈ B.construct, M *ᵥ y s = w s) : -- --- STMT ---
+    (hex : ∀ s ∈ S, ∃ M ∈ B.construct, M *ᵥ y s = w s) : -- --- CONCL ---
     ∃ Â : ℝ → Mat ℝ n n, (∀ i j, Measurable fun s => Â s i j) ∧
       (∀ s, Â s ∈ B.construct) ∧ ∀ s ∈ S, Â s *ᵥ y s = w s := by -- --- PROOF ---
   classical

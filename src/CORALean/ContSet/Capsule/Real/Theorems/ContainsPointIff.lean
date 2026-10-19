@@ -12,6 +12,16 @@ public import CORALean.ContSet.Capsule.Real.Theorems.MemConstructIffNorm
 and fails both sides; `g = 0` is the sphere, CORA's `isempty(g)` case). With `v = p - c` and
 `Q t = ‖v - t g‖₂²`, `Q t = Q s + ‖g‖₂² (t - s)²` at the foot `s` of the projection, so the best
 `t ∈ [-1, 1]` is `s` when `|s| < 1` and the nearer end otherwise: CORA's two branches.
+
+## Inputs
+* `C` – capsule
+* `p` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `containsPoint` is membership
 -/
 
 -- Authors:       Claude Opus 5.5

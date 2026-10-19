@@ -49,7 +49,7 @@ theorem LinearSysDT.luenbergerError_mem_reachErrorSet (sys : LinearSysDT ℝ n) 
     (hstep : ∀ k, x (k + 1) = sys.A *ᵥ x k + sys.B *ᵥ u k + sys.E *ᵥ w k)
     (hy : ∀ k, y k = sys.C *ᵥ x k + sys.F *ᵥ v k) (hxh0 : xh 0 = X₀.c)
     (hxh : ∀ k, xh (k + 1) = sys.A *ᵥ xh k + sys.B *ᵥ u k + L *ᵥ (y k - sys.C *ᵥ xh k))
-    (k : ℕ) : -- --- STMT ---
+    (k : ℕ) : -- --- CONCL ---
     x k - xh k ∈ LinearSysDT.reachErrorSet sys L X₀ W V k := by -- --- PROOF ---
   set M := sys.A - L * sys.C with hM
   set d : ℕ → Vec ℝ n := fun j => sys.E *ᵥ w j + (-(L * sys.F)) *ᵥ v j with hd

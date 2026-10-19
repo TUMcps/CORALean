@@ -40,7 +40,7 @@ open CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Table 2]'s capsule test, as printed, rejects a point of the capsule. -/
-theorem Capsule.contains_table_counterexample : -- --- STMT ---
+theorem Capsule.contains_table_counterexample : -- --- CONCL ---
     ∃ (C : Capsule 2) (x : Vec ℝ 2), x ∈ C.construct ∧
       ¬ ((‖((x - C.c) ⬝ᵥ (‖C.g‖₂⁻¹ • C.g)) • (‖C.g‖₂⁻¹ • C.g) - (x - C.c)‖₂ < C.r ∧
           |(x - C.c) ⬝ᵥ (‖C.g‖₂⁻¹ • C.g)| < ‖C.g‖₂) ∨

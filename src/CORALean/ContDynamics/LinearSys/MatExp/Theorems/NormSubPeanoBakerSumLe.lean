@@ -44,7 +44,7 @@ theorem MatExp.norm_sub_peanoBakerSum_le {B : Interval (Mat ℝ n n)} {A : ℝ �
     (hAB : ∀ s, A s ∈ B.construct)
     {x : ℝ → Vec ℝ n} {t : ℝ} (ht : 0 ≤ t) (hxc : ContinuousOn x (Set.Icc 0 t))
     (hx : ∀ s ∈ Set.Icc 0 t, x s = x 0 + ∫ σ in (0:ℝ)..s, A σ *ᵥ x σ) (η : ℕ)
-    (hε : ‖(Interval.smul t B).absMax‖ / ((η : ℝ) + 2) < 1) : -- --- STMT ---
+    (hε : ‖(Interval.smul t B).absMax‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
     ‖x t - ∑ k ∈ Finset.range (η + 1), MatExp.peanoBakerTerm A k t *ᵥ x 0‖
       ≤ ‖x 0‖ * MatExp.expRemainderBound (Interval.smul t B).absMax η := by -- --- PROOF ---
   have h0 : ∀ k s, MatExp.peanoBakerInputTerm A (fun _ => (0 : Vec ℝ n)) k s = 0 := by

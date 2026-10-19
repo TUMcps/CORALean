@@ -101,7 +101,7 @@ theorem Interval.polyBoxRevise_isContractor {d : ℕ} {c : Vec ℝ n → ℝ}
     {k : Fin n} {rootL rootR : (ℝ → ℝ) → ℝ → ℝ → ℝ}
     (hc : ∀ z, c z = ∑ i, F i z * z k ^ (i : ℕ))
     (hF : ∀ B : Interval (Vec ℝ n), ∀ z ∈ B.construct, (fun i => F i z) ∈ (coeff B).construct)
-    (hL : Interval.IsLeftRootBound rootL) (hR : Interval.IsRightRootBound rootR) : -- --- STMT ---
+    (hL : Interval.IsLeftRootBound rootL) (hR : Interval.IsRightRootBound rootR) : -- --- CONCL ---
     IsContractor c (Interval.polyBoxRevise coeff k rootL rootR) := by -- --- PROOF ---
   intro B
   have hB : ∀ z ∈ B.construct, ∀ i, B.inf i ≤ z i ∧ z i ≤ B.sup i := fun z hz i => hz i

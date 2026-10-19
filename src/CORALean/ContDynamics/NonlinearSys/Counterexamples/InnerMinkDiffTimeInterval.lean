@@ -61,7 +61,7 @@ variable {𝓛 : Type}
 `[0, 1]` in one step holds `(1/2, 0)`, which no run reaches at any `t ∈ [0, 1]`. -/
 theorem NonlinearSys.innerMinkDiff_timeInterval_counterexample
     (ops : NonlinearSys.InnerMinkDiffOps 2 𝓛) (fuel : ℕ) (hfuel : 0 < fuel)
-    (U : Set (Vec ℝ 1)) : -- --- STMT ---
+    (U : Set (Vec ℝ 1)) : -- --- CONCL ---
     let sys : NonlinearSys 2 1 := ⟨fun x _ => ![x 1, 0], 2, fun x _ => x⟩
     let A : Mat ℝ 2 2 := !![0, 1; 0, 0]
     let X₀ : Set (Vec ℝ 2) := Icc ![-1 / 10, -1] ![1 / 10, 1]

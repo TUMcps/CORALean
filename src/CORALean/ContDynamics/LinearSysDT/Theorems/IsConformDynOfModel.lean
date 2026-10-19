@@ -47,7 +47,7 @@ disturbances. -/
 theorem aux_conform_delta (sys : LinearSysDT ℝ n) (x0 : Vec ℝ n) (u : ℕ → Vec ℝ sys.m)
     {x : ℕ → Vec ℝ n} {w : ℕ → Vec ℝ sys.r}
     (hx : ∀ j, x (j + 1) = sys.A *ᵥ x j + sys.B *ᵥ u j + sys.c + sys.E *ᵥ w j)
-    (j : ℕ) : -- --- STMT ---
+    (j : ℕ) : -- --- CONCL ---
     x j - sys.nominalState x0 u j
       = sys.A ^ j *ᵥ (x 0 - x0)
         + ∑ l ∈ Finset.range j, (sys.A ^ (j - 1 - l) * sys.E) *ᵥ w l := by -- --- PROOF ---
@@ -98,7 +98,7 @@ theorem LinearSysDT.isConformDyn_of_model (sys : LinearSysDT ℝ n) (X₀ : S n)
     (hmodel : ∀ i, ∃ (x : ℕ → Vec ℝ n) (w : ℕ → Vec ℝ sys.r) (v : ℕ → Vec ℝ sys.s),
       x 0 - x0 i ∈ construct X₀ ∧ (∀ j, w j ∈ construct W) ∧ (∀ j, v j ∈ construct V) ∧
       (∀ j, x (j + 1) = sys.A *ᵥ x j + sys.B *ᵥ u i j + sys.c + sys.E *ᵥ w j) ∧
-      ∀ j, y i j = sys.C *ᵥ x j + sys.D *ᵥ u i j + sys.k + sys.F *ᵥ v j) : -- --- STMT ---
+      ∀ j, y i j = sys.C *ᵥ x j + sys.D *ᵥ u i j + sys.k + sys.F *ᵥ v j) : -- --- CONCL ---
     sys.IsConformDyn X₀ W V K x0 u y := by -- --- PROOF ---
   intro i k _
   obtain ⟨x, w, v, hx0, hw, hv, hx, hy⟩ := hmodel i

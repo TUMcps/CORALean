@@ -103,7 +103,7 @@ inputs. -/
 theorem aux_charpoly_convolution (A : Mat ℝ n n) (Bu : Mat ℝ n du) (C : Mat ℝ dy n)
     (Du : Mat ℝ dy du) {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ du} {y : ℕ → Vec ℝ dy}
     (hx : ∀ k, x (k + 1) = A *ᵥ x k + Bu *ᵥ u k) (hy : ∀ k, y k = C *ᵥ x k + Du *ᵥ u k)
-    (t : ℕ) : -- --- STMT ---
+    (t : ℕ) : -- --- CONCL ---
     ∑ j ∈ Finset.range (n + 1), A.charpoly.coeff (n - j) • y (n + t - j)
       = ∑ s ∈ Finset.range (n + 1), (∑ i ∈ Finset.range (s + 1), A.charpoly.coeff (n - i) •
         (if s - i = 0 then Du else C * A ^ (s - i - 1) * Bu)) *ᵥ
@@ -153,7 +153,7 @@ theorem aux_charpoly_convolution (A : Mat ℝ n n) (Bu : Mat ℝ n du) (C : Mat 
 theorem LinearARX.ofCharpoly_step (A : Mat ℝ n n) (Bu : Mat ℝ n du) (C : Mat ℝ dy n)
     (Du : Mat ℝ dy du) (dt : ℝ) {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ du} {y : ℕ → Vec ℝ dy}
     (hx : ∀ k, x (k + 1) = A *ᵥ x k + Bu *ᵥ u k) (hy : ∀ k, y k = C *ᵥ x k + Du *ᵥ u k)
-    (k : ℕ) (hk : n ≤ k) : -- --- STMT ---
+    (k : ℕ) (hk : n ≤ k) : -- --- CONCL ---
     y k = ∑ i : Fin n, toRealMat ((LinearARX.ofCharpoly A Bu C Du dt).Abar i) *ᵥ y (k - (i + 1))
       + ∑ j : Fin (n + 1),
         toRealMat ((LinearARX.ofCharpoly A Bu C Du dt).Bbar j) *ᵥ u (k - j) := by -- --- PROOF ---

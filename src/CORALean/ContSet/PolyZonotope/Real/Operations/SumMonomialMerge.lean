@@ -45,7 +45,7 @@ some `r` and `s`, and it mentions no set, so a constraint block reuses it. -/
 theorem PolyZonotope.sum_monomial_merge {p h : ℕ} (E : Fin p → Fin h → ℕ) (G : Fin h → α)
     (a : Fin p → ℝ) (r : Fin h → Fin h) (s : Finset (Fin h))
     (hcol : ∀ i, PolyZonotope.col E (r i) = PolyZonotope.col E i)
-    (hs : ∀ j ∉ s, PolyZonotope.fiberSum r G j = 0) : -- --- STMT ---
+    (hs : ∀ j ∉ s, PolyZonotope.fiberSum r G j = 0) : -- --- CONCL ---
     (∑ i, PolyZonotope.monomial E a i • G i)
       = ∑ j ∈ s, PolyZonotope.monomial E a j • PolyZonotope.fiberSum r G j := by -- --- PROOF ---
   have hall : (∑ i, PolyZonotope.monomial E a i • G i)

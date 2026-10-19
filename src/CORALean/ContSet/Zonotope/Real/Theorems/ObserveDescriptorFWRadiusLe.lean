@@ -51,7 +51,7 @@ variable {n nu nw ny nv : ℕ}
 theorem Zonotope.observeDescriptor_fwRadius_le (T : Mat ℝ n n) (N : Mat ℝ n ny)
     (A : Mat ℝ n n) (B : Mat ℝ n nu) (D : Mat ℝ n nw) (C : Mat ℝ ny n) (F : Mat ℝ ny nv)
     (u : Vec ℝ nu) (y y_plus : Vec ℝ ny) (X : Zonotope (Vec ℝ n)) (W : Mat ℝ n n)
-    (hW : ∀ v, 0 ≤ v ⬝ᵥ (W *ᵥ v)) (G : Mat ℝ n ny) : -- --- STMT ---
+    (hW : ∀ v, 0 ≤ v ⬝ᵥ (W *ᵥ v)) (G : Mat ℝ n ny) : -- --- CONCL ---
     let Ptilde : Mat ℝ n n := ∑ j, vecMulVec (X.G j) (X.G j)          -- P̃ = H̄ H̄ᵀ
     let Ltilde := Ptilde * Cᵀ                                          -- Eq. 34
     let Stilde := C * Ptilde * Cᵀ + F * Fᵀ                             -- Eq. 35

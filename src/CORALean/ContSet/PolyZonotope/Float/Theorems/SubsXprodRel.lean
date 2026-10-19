@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem PolyZonotope.subsXprod_rel (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ}
     (pZin : PolyZonotope (Vec 𝕋 nu))
-    (idu : Fin nu → Fin pZ.p) (i : Fin pZ.h) : -- --- STMT ---
+    (idu : Fin nu → Fin pZ.p) (i : Fin pZ.h) : -- --- CONCL ---
     PolyZonotope.subsRel (pZ.subsXprod pZin idu i)
       (Real.PolyZonotope.subsXprod (InflatedContSet.nominal pZ)
         (InflatedContSet.nominal pZin) idu i) := by -- --- PROOF ---

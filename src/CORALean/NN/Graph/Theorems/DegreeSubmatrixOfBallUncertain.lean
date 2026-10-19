@@ -47,7 +47,7 @@ theorem GNN.degree_submatrix_of_ball_uncertain {N m : ℕ} (A : Mat ℝ N N)
     (κ : Fin K → Fin N) (hinj : Function.Injective κ)
     (hκ : GNN.ball (GNN.adjMax A U) v (r + 1) ⊆ Finset.univ.image κ)
     {j : Fin N} (hj : j ∈ GNN.ball (GNN.adjAt A U lam) v r) (k : Fin K)
-    (hk : κ k = j) : -- --- STMT ---
+    (hk : κ k = j) : -- --- CONCL ---
     GNN.degree ((GNN.adjAt A U lam).submatrix κ κ) k
       = GNN.degree (GNN.adjAt A U lam) j := by -- --- PROOF ---
   have hAnn : ∀ p q, 0 ≤ GNN.adjAt A U lam p q := fun p q => by

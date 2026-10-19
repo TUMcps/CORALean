@@ -104,7 +104,7 @@ def Example.sigmoidTanhNet (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3) (
 
 /-- And what it computes, which is where `Real.sigmoid` and `Real.tanh` appear. -/
 theorem Example.sigmoidTanhNet_encloses (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3)
-    (W₂ : Mat 𝕋 2 3) (b₂ : Vec 𝕋 2) : -- --- STMT ---
+    (W₂ : Mat 𝕋 2 3) (b₂ : Vec 𝕋 2) : -- --- CONCL ---
     (Example.sigmoidTanhNet k W₁ b₁ W₂ b₂).Encloses fun x i =>
       Real.tanh ((Scalar.toRealMat W₂ *ᵥ (fun j =>
           Real.sigmoid ((Scalar.toRealMat W₁ *ᵥ x + Scalar.toRealVec b₁) j))
@@ -127,7 +127,7 @@ def Example.sigmoidPolyNet (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3) (
 /-- And what it computes, `Real.sigmoid` arriving only here. -/
 theorem Example.sigmoidPolyNet_encloses (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3)
     (W₂ : Mat 𝕋 2 3) (b₂ : Vec 𝕋 2) (c : Fin 3 → 𝕋 → 𝕋 → Fin 3 → 𝕋) (dx : Fin 3 → 𝕋 → 𝕋 → 𝕋)
-    (p : Fin 3 → 𝕋 → 𝕋 → Fin 5 → 𝕋) : -- --- STMT ---
+    (p : Fin 3 → 𝕋 → 𝕋 → Fin 5 → 𝕋) : -- --- CONCL ---
     (Example.sigmoidPolyNet k W₁ b₁ W₂ b₂ c dx p).Encloses fun x =>
       Scalar.toRealMat W₂ *ᵥ (fun j =>
           Real.sigmoid ((Scalar.toRealMat W₁ *ᵥ x + Scalar.toRealVec b₁) j))

@@ -67,7 +67,7 @@ theorem GNN.alg1Graph_isBigO (R : Relaxation ℝ) (A : Mat ℝ N N)
     (hadd : ∀ s, s < L → (acts s).AddsAtMost (N * c (s + 1)))
     (f : ∀ t, PolyZonotope (Vec ℝ (c (L + t))) → PolyZonotope (Vec ℝ (c (L + (t + 1)))))
     (e : ℕ → ℕ) (hf : ∀ t S, (f t S).h + (f t S).q ≤ S.h + S.q + e t)
-    (X : ℕ → PolyZonotope (Mat ℝ N (c 0))) (hX : ∀ k, (X k).h + (X k).q = k) : -- --- STMT ---
+    (X : ℕ → PolyZonotope (Mat ℝ N (c 0))) (hX : ∀ k, (X k).h + (X k).q = k) : -- --- CONCL ---
     (fun x : ℕ × ℕ =>
         (((GNN.alg1Graph R A (U x.1) L T c W acts f (X x.2)).h
           + (GNN.alg1Graph R A (U x.1) L T c W acts f (X x.2)).q : ℕ) : ℝ))

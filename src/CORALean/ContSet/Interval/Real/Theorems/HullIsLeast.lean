@@ -50,7 +50,7 @@ theorem Interval.aux_hull_bdd (S : Set (Vec ℝ n)) (hb : Bornology.IsBounded S)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.hull_isLeast (S : Set (Vec ℝ n)) (hne : S.Nonempty)
-    (hb : Bornology.IsBounded S) : -- --- STMT ---
+    (hb : Bornology.IsBounded S) : -- --- CONCL ---
     S ⊆ (Interval.hull S).construct ∧
       ∀ I : Interval (Vec ℝ n), S ⊆ I.construct →
         (Interval.hull S).construct ⊆ I.construct := by -- --- PROOF ---

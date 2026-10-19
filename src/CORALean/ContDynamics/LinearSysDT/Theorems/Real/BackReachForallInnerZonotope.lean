@@ -46,7 +46,7 @@ theorem LinearSysDT.backReachForall_inner_zonotope (sys : LinearSysDT ℝ n) {Ai
     (hA : sys.A * Ainv = 1) (M : (Z₁ Z₂ : Zonotope (Vec ℝ n)) → Fin Z₁.h → Fin Z₂.h → ℝ)
     (T U : Zonotope (Vec ℝ n)) (k : ℕ) (R : Zonotope (Vec ℝ n))
     (hR : sys.backReachForall (S := 𝒵) ⟨T, U, 0, k⟩
-      ⟨Ainv, fun Z₁ Z₂ => Z₁.minkDiffRep Z₂ (M Z₁ Z₂)⟩ = some R) : -- --- STMT ---
+      ⟨Ainv, fun Z₁ Z₂ => Z₁.minkDiffRep Z₂ (M Z₁ Z₂)⟩ = some R) : -- --- CONCL ---
     construct R ⊆ sys.backReachSetForallExact (S := 𝒵) T U k := by -- --- PROOF ---
   refine sys.backReachForall_inner (S := 𝒵) ?_ ?_ ?_ T U k R hR
   · simpa using hA

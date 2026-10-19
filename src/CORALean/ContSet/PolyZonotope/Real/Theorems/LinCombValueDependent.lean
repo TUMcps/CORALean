@@ -48,7 +48,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 factors and the fresh one and appended back together. -/
 theorem PolyZonotope.aux_append_linComb_p {pZ₁ pZ₂ : PolyZonotope α}
     (a : Fin (pZ₁.linComb pZ₂).p → ℝ) {v : ℝ}
-    (hv : a (Fin.natAdd (pZ₁.p + pZ₂.p) (0 : Fin 1)) = v) : -- --- STMT ---
+    (hv : a (Fin.natAdd (pZ₁.p + pZ₂.p) (0 : Fin 1)) = v) : -- --- CONCL ---
     Fin.append (Fin.append (fun k => a (Fin.castAdd 1 (Fin.castAdd pZ₂.p k)))
           (fun k => a (Fin.castAdd 1 (Fin.natAdd pZ₁.p k))))
         (fun _ : Fin 1 => v) = a := by -- --- PROOF ---
@@ -81,7 +81,7 @@ two operands' points at their own factors, where neither operand has an
 independent generator. -/
 theorem PolyZonotope.linComb_value_dependent (pZ₁ pZ₂ : PolyZonotope α)
     (h₁ : pZ₁.q = 0) (h₂ : pZ₂.q = 0) (a : Fin (pZ₁.linComb pZ₂).p → ℝ)
-    (β : Fin (pZ₁.linComb pZ₂).q → ℝ) : -- --- STMT ---
+    (β : Fin (pZ₁.linComb pZ₂).q → ℝ) : -- --- CONCL ---
     (pZ₁.linComb pZ₂).c
         + ∑ i, PolyZonotope.monomial (pZ₁.linComb pZ₂).E a i • (pZ₁.linComb pZ₂).G i
         + ∑ j, β j • (pZ₁.linComb pZ₂).GI j

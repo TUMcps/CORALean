@@ -71,7 +71,7 @@ omit [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (
 /-- Replacing the builder of key `k` changes what the analyzer says of `k` only. -/
 theorem aux_represents_setBuilder (obj : ReachSetAnalyzer S n) (d : ℝ) (PT PF : String → ℝ → Prop)
     (hobj : obj.Represents d PT PF) (k : String) (hk : ∃ q ∈ obj.aps, q.1 = k)
-    (b' : FiniteKleeneSignalBuilder) (X Y : ℝ → Prop) (hb' : b'.Represents d X Y) : -- --- STMT ---
+    (b' : FiniteKleeneSignalBuilder) (X Y : ℝ → Prop) (hb' : b'.Represents d X Y) : -- --- CONCL ---
     ({ obj with sigBuilder := replaceKey obj.sigBuilder k b' }
       : ReachSetAnalyzer S n).Represents d (fun k' => if k' = k then X else PT k')
         (fun k' => if k' = k then Y else PF k') := by -- --- PROOF ---
@@ -98,7 +98,7 @@ theorem aux_represents_setBuilder (obj : ReachSetAnalyzer S n) (d : ℝ) (PT PF 
 theorem ReachSetAnalyzer.analyzeKey_spec (obj : ReachSetAnalyzer S n) (d : ℝ)
     (PT PF : String → ℝ → Prop) (hobj : obj.Represents d PT PF) (set : S n) (loc : ℕ)
     (lo hi : ℝ) (hlh : lo < hi) (p : String × AtomicProposition S n)
-    (hp : p ∈ obj.aps) : -- --- STMT ---
+    (hp : p ∈ obj.aps) : -- --- CONCL ---
     ∃ obj', obj.analyzeKey (𝕋 := 𝕋) set loc lo hi p = some obj' ∧ obj'.aps = obj.aps ∧
       obj'.masks = obj.masks ∧ obj'.Represents d
         (fun k t => PT k t ∨ (k = p.1 ∧ obj.maskOk p.1 lo hi = true ∧

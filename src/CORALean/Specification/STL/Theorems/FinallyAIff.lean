@@ -37,7 +37,7 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem RTL.finally_A_iff {R : ℝ≥0 → Set X} (hne : ∀ t, (R t).Nonempty)
-    (ϱ : Pform X) : -- --- STMT ---
+    (ϱ : Pform X) : -- --- CONCL ---
     ((RTL.Formula.finally 0 1 (.A ϱ)).Sat R ↔
         ∃ t, t ≤ 1 ∧ (STL.Formula.finally t t (STL.Formula.ofPform ϱ)).HoldsOn
           (ReachSequence.traceSet R)) ∧

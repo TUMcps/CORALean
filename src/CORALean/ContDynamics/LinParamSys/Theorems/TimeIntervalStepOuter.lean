@@ -52,7 +52,7 @@ of the step. -/
 theorem LinParamSys.timeIntervalStep_outer (sys : LinParamSys ℐ n) {r : ℝ} (hr : 0 < r)
     {m : ℕ} (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     (X₀ : S n) {A : Mat ℝ n n} (hA : A ∈ construct sys.A) {t : ℝ}
-    (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- STMT ---
+    (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     (fun x₀ => exp (t • A) *ᵥ x₀) '' construct X₀
       ⊆ construct (sys.timeIntervalStep r (m + 2) X₀) := by -- --- PROOF ---
   rintro y ⟨x₀, hx₀, rfl⟩

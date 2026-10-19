@@ -44,7 +44,7 @@ variable {n nu nw nd ny nv : ℕ}
 theorem LinearSysDT.intersectDescriptor_outer (E T A : Mat ℝ n n) (N Λ : Mat ℝ n ny)
     (B : Mat ℝ n nu) (D : Mat ℝ n nw) (Dd : Mat ℝ n nd) (C : Mat ℝ ny n) (F : Mat ℝ ny nv)
     (u : Vec ℝ nu) (y : Vec ℝ ny) (X : Zonotope (Vec ℝ n))
-    (hTN : T * E + N * C = 1) (hTD : T * Dd = 0) : -- --- STMT ---
+    (hTN : T * E + N * C = 1) (hTD : T * Dd = 0) : -- --- CONCL ---
     LinearSysDT.descriptorPredictSet E A B D Dd X.construct u ∩
         LinearSysDT.measurementSet C F y ⊆
       (X.intersectDescriptor T N Λ A B D C F u y).construct := by -- --- PROOF ---

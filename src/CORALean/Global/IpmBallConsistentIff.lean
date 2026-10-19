@@ -37,7 +37,7 @@ variable {n N : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ipmBall_consistent_iff (c : Vec ℝ n) (r γ : ℝ) (hr : 0 ≤ r) (hγ : 0 ≤ γ)
-    (ϕ : Fin N → Vec ℝ n) (y : Fin N → ℝ) : -- --- STMT ---
+    (ϕ : Fin N → Vec ℝ n) (y : Fin N → ℝ) : -- --- CONCL ---
     (∀ t, y t ∈ ipmBall c r γ (ϕ t)) ↔
       ∀ t, c ⬝ᵥ ϕ t - r * Real.sqrt (ϕ t ⬝ᵥ ϕ t) - γ ≤ y t ∧
         y t ≤ c ⬝ᵥ ϕ t + r * Real.sqrt (ϕ t ⬝ᵥ ϕ t) + γ := by -- --- PROOF ---

@@ -59,7 +59,7 @@ theorem LinearSys.maxBackReachRunFloat_encloses (sys : LinearSys 𝕋 n) (Bx : I
     (hker₁ : ∀ i (y : Vec ℝ n), (toRealMat P₁.Ae *ᵥ y) i = 0)
     (hker₂ : ∀ i (y : Vec ℝ n), (toRealMat P₂.Ae *ᵥ y) i = 0)
     (hkerr₁ : ∀ (i : Fin P₁r.me) (y : Vec ℝ n), P₁r.Ae i y = 0)
-    (hkerr₂ : ∀ (i : Fin P₂r.me) (y : Vec ℝ n), P₂r.Ae i y = 0) (k : ℕ) : -- --- STMT ---
+    (hkerr₂ : ∀ (i : Fin P₂r.me) (y : Vec ℝ n), P₂r.Ae i y = 0) (k : ℕ) : -- --- CONCL ---
     ∀ s ∈ sys.maxBackReachRunFloat Bx P₁ P₂ U W₀ Zw t₀ Δt η k,
       ∃ ηr, sys.reachOrderFloat t₀ t₀ η = some ηr ∧ sys.reachOrderFloat Δt Δt η = some ηr ∧
         s.Encloses

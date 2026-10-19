@@ -45,7 +45,7 @@ variable {n : ℕ}
 
 /-- The form of `[[C, c], [cᵀ, γ]]` at `(x, y)`. -/
 theorem aux_blocks_form (C : Mat ℝ n n) (c : Fin n → ℝ) (γ : ℝ) (x : Fin n → ℝ)
-    (y : Fin 1 → ℝ) : -- --- STMT ---
+    (y : Fin 1 → ℝ) : -- --- CONCL ---
     Sum.elim x y ⬝ᵥ fromBlocks C (replicateCol (Fin 1) c) (replicateRow (Fin 1) c)
         (of fun _ _ => γ) *ᵥ Sum.elim x y =
       x ⬝ᵥ C *ᵥ x + 2 * y 0 * (c ⬝ᵥ x) + y 0 ^ 2 * γ := by -- --- PROOF ---
@@ -97,7 +97,7 @@ theorem aux_blocks_posSemidef_iff (C : Mat ℝ n n) (hC : C.IsSymm) (c : Fin n �
     exact mul_nonneg (sq_nonneg t) this
 
 /-- The certificate's matrix is the block matrix of `f + δ g`. -/
-theorem aux_blocks_add (A B : Mat ℝ n n) (a b : Fin n → ℝ) (α β δ : ℝ) : -- --- STMT ---
+theorem aux_blocks_add (A B : Mat ℝ n n) (a b : Fin n → ℝ) (α β δ : ℝ) : -- --- CONCL ---
     fromBlocks A (replicateCol (Fin 1) a) (replicateRow (Fin 1) a) (of fun _ _ => α)
         + δ • fromBlocks B (replicateCol (Fin 1) b) (replicateRow (Fin 1) b) (of fun _ _ => β) =
       fromBlocks (A + δ • B) (replicateCol (Fin 1) (a + δ • b)) (replicateRow (Fin 1) (a + δ • b))
@@ -110,7 +110,7 @@ theorem aux_blocks_add (A B : Mat ℝ n n) (a b : Fin n → ℝ) (α β δ : ℝ
 
 /-- The S-lemma with the certificate `[[A, a], [aᵀ, α]] + δ [[B, b], [bᵀ, β]] ⪰ 0`. -/
 theorem s_lemma_posSemidef (A B : Mat ℝ n n) (hA : A.IsSymm) (hB : B.IsSymm) (a b : Fin n → ℝ)
-    (α β : ℝ) (h₀ : ∃ x₀, x₀ ⬝ᵥ B *ᵥ x₀ + 2 * (b ⬝ᵥ x₀) + β < 0) : -- --- STMT ---
+    (α β : ℝ) (h₀ : ∃ x₀, x₀ ⬝ᵥ B *ᵥ x₀ + 2 * (b ⬝ᵥ x₀) + β < 0) : -- --- CONCL ---
     (∀ x, x ⬝ᵥ B *ᵥ x + 2 * (b ⬝ᵥ x) + β ≤ 0 → 0 ≤ x ⬝ᵥ A *ᵥ x + 2 * (a ⬝ᵥ x) + α) ↔
       ∃ δ : ℝ, 0 ≤ δ ∧
         (fromBlocks A (replicateCol (Fin 1) a) (replicateRow (Fin 1) a) (of fun _ _ => α)

@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 theorem HPolytope.mem_halfScaledLeft {P : HPolytope 𝕋 (Vec 𝕋 n₁)} {y : Vec ℝ n₁}
     {z : Vec ℝ n₂} {t : ℝ}
     (h : Fin.append (Fin.append y z) (fun _ : Fin 1 => t)
-      ∈ (P.halfScaledLeft n₂).construct) : -- --- STMT ---
+      ∈ (P.halfScaledLeft n₂).construct) : -- --- CONCL ---
     (∀ i, (toRealMat P.A *ᵥ y) i ≤ (t + 1) / 2 * toReal (P.b i) + |toReal (P.b_error i)|) ∧
       ∀ i, |(toRealMat P.Ae *ᵥ y) i - (t + 1) / 2 * toReal (P.be i)|
         ≤ |toReal (P.be_error i)| := by -- --- PROOF ---

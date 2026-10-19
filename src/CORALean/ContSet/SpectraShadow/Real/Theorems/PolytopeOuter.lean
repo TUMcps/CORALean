@@ -34,7 +34,7 @@ variable {n N : ℕ}
 theorem aux_polytopeOuter_row (S : SpectraShadow (Vec ℝ n)) (c : Vec ℝ n)
     (dirs : Fin N → (Vec ℝ n →ₗ[ℝ] ℝ)) {x : Vec ℝ n} (hx : x ∈ S.construct) (i : Fin N)
     (hi : (S.translate (-c)).supportFunc (dirs i) ≠ ⊤ ∧
-      (S.translate (-c)).supportFunc (dirs i) ≠ ⊥) : -- --- STMT ---
+      (S.translate (-c)).supportFunc (dirs i) ≠ ⊥) : -- --- CONCL ---
     dirs i x ≤ ((S.translate (-c)).supportFunc (dirs i)).toReal + dirs i c := by -- --- PROOF ---
   have hmem : x - c ∈ (S.translate (-c)).construct := by
     rw [SpectraShadow.mem_translate_iff]

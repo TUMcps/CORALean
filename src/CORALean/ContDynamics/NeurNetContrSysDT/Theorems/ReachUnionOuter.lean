@@ -39,7 +39,7 @@ variable [OfScalarPoint 𝕋 S]
 
 theorem NeurNetContrSysDT.reachUnion_outer (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n)
     (U_ext : S sys.nExt) (params : Reach.Params (S n) ℕ)
-    (options : NeurNetContrSysDT.ReachOptions) : -- --- STMT ---
+    (options : NeurNetContrSysDT.ReachOptions) : -- --- CONCL ---
     sys.reachUnionExact (params.tFinal - params.tStart) (construct U_ext) (construct params.X₀)
       ⊆ construct (sys.reachUnion U_ext params options) := by -- --- PROOF ---
   intro y hy

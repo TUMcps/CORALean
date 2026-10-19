@@ -42,7 +42,7 @@ variable {n : ℕ}
 
 open Classical in
 theorem Interval.mem_exploreBNVisits {b : Vec ℝ n} {α : ℝ} (hb : Monotone b)
-    (hb0 : ∀ i, 0 < b i) : -- --- STMT ---
+    (hb0 : ∀ i, 0 < b i) : -- --- CONCL ---
     ∀ (j : ℕ) (p : Fin n → Bool), j ≤ n →
       ∑ i, (⟨0, b⟩ : Interval (Vec ℝ n)).corner (fun i => if (i : ℕ) < j then p i else false) i
         ≤ α →

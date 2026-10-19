@@ -36,7 +36,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.zonotopeNorm_tfae (Z : Zonotope (Vec ℝ n)) : -- --- STMT ---
+theorem Zonotope.zonotopeNorm_tfae (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (Module.finrank ℝ (LinearMap.range Z.genMap) = n ↔ Function.Surjective Z.genMap) ∧
       ((interior Z.construct).Nonempty ↔ Function.Surjective Z.genMap) ∧
       (((∀ v, ∃ γ, Z.genMap γ = v) ∧ ∀ v, Z.zonotopeNorm v = 0 ↔ v = 0) ↔

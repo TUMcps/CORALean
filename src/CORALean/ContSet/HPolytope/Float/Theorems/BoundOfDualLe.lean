@@ -36,7 +36,7 @@ theorem HPolytope.boundOfDual_le (P : HPolytope 𝕋 (Vec 𝕋 n)) {c : Vec ℝ 
     (hc : ∀ x : Vec ℝ n, c x =
       (∑ i, toReal (y i) * (toRealMat P.A *ᵥ x) i)
         + (∑ i, toReal (zu i) * (toRealMat P.Ae *ᵥ x) i)
-        - ∑ i, toReal (zl i) * (toRealMat P.Ae *ᵥ x) i) : -- --- STMT ---
+        - ∑ i, toReal (zl i) * (toRealMat P.Ae *ᵥ x) i) : -- --- CONCL ---
     ∀ x ∈ P.construct, c x ≤ toReal (P.boundOfDual y zu zl hy hzu hzl hc).val :=
   (P.boundOfDual y zu zl hy hzu hzl hc).le
 

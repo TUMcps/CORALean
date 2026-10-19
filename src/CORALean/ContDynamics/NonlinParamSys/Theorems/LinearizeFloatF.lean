@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m q : ℕ}
 theorem NonlinParamSys.FloatModel.linearizeFloat_f_mem
     {sys : NonlinParamSys n m q} {fm : NonlinParamSys.FloatModel 𝕋 n m q}
     (h : fm.Encloses sys) (xs : Vec 𝕋 n) (us : Vec 𝕋 m) (P : Interval (Vec 𝕋 q))
-    {p : Vec ℝ q} (hp : p ∈ construct P) : -- --- STMT ---
+    {p : Vec ℝ q} (hp : p ∈ construct P) : -- --- CONCL ---
     sys.f (toRealVec xs) (toRealVec us) p ∈
       construct (fm.aux_linearizeFFloat xs us P) :=
   h.f_mem _ _ _ _ (Interval.mem_point xs) _ (Interval.mem_point us) p hp

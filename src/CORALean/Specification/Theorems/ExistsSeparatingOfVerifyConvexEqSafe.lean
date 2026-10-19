@@ -40,7 +40,7 @@ direction the search tried. -/
 theorem exists_separating_of_verifyConvex_eq_safe (bO : ∀ d : α →ₗ[ℝ] ℝ, SupportBound O d)
     (bU : ∀ d : α →ₗ[ℝ] ℝ, SupportBound U d) (wO : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness O d)
     (wU : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness U d) (ℓ : ℕ → α →ₗ[ℝ] ℝ) (fuel : ℕ)
-    (h : verifyConvex bO bU wO wU ℓ fuel = .safe) : -- --- STMT ---
+    (h : verifyConvex bO bU wO wU ℓ fuel = .safe) : -- --- CONCL ---
     ∃ c : α →ₗ[ℝ] ℝ, (bO c).val + (bU (-c)).val < 0 :=
   (verifyConvexFold_inv bO bU wO wU ℓ (List.range fuel)
     (Set.empty_subset _) (fun h => by cases h) (fun h => by cases h)).2.2 h

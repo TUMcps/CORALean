@@ -106,7 +106,7 @@ theorem aux_suffExplanationConverseFails_nnAbs_sound :
 /-- The converse of `suffExplanation_of_abstract` fails under its own
 hypothesis: a sound abstraction (`hcontain`) of a sufficient `nn` need not be
 abstractly sufficient for `nnAbs`. -/
-theorem suffExplanation_of_abstract_converse_fails : -- --- STMT ---
+theorem suffExplanation_of_abstract_converse_fails : -- --- CONCL ---
     ∃ (nn nnAbs : NeuralNetwork ℐ𝒱 1 2) (f : Vec ℝ 1 → Vec ℝ 2)
       (x : Vec ℝ 1) (ε : ℝ) (E : Finset (Fin 1)) (l : Fin 2),
       nn.Encloses f

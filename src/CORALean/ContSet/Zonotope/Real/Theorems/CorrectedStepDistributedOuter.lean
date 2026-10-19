@@ -47,7 +47,7 @@ theorem Zonotope.correctedStepDistributed_outer (Λ : Mat ℝ n ny) (A : ∀ a, 
     (y : Vec ℝ ny) (X : ∀ a, Zonotope (Vec ℝ (m a))) (x : ∀ a, Vec ℝ (m a))
     (hx : ∀ a, x a ∈ (X a).construct) (ϖ : Vec ℝ nw) (hϖ : ∀ j, |ϖ j| ≤ 1) (σ : Vec ℝ nv)
     (hσ : ∀ j, |σ j| ≤ 1)
-    (hy : y = C *ᵥ (∑ a, A a *ᵥ x a + B *ᵥ u + Dw *ᵥ ϖ) + Dv *ᵥ σ) : -- --- STMT ---
+    (hy : y = C *ᵥ (∑ a, A a *ᵥ x a + B *ᵥ u + Dw *ᵥ ϖ) + Dv *ᵥ σ) : -- --- CONCL ---
     ∑ a, A a *ᵥ x a + B *ᵥ u + Dw *ᵥ ϖ ∈
       (Zonotope.correctedStepDistributed Λ A B Dw C Dv u y X).construct := by -- --- PROOF ---
   choose β hβ hxa using hx

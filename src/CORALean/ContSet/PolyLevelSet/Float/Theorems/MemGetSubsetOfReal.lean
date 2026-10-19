@@ -40,7 +40,7 @@ point of the box. -/
 theorem PolyLevelSet.mem_getSubset_of_real (P : PolyLevelSet 𝕋 n) (hP : ∀ i, P.op i = .eq)
     (k : Fin n) (cen rad : 𝕋) (a : Fin n → ℝ) (ha : ∀ k, |a k| ≤ 1) (hdom : a ∈ P.dom.construct)
     (hsat : ∀ i, |(P.nominalCore.getSubset k (toReal cen) (toReal rad)).eval a i|
-      ≤ |toReal (P.b_error i)|) : -- --- STMT ---
+      ≤ |toReal (P.b_error i)|) : -- --- CONCL ---
     a ∈ (P.getSubset k cen rad).construct := by -- --- PROOF ---
   -- the exact generators, the stored (rounded down) ones, and the monomials, named once
   set G := Real.PolyZonotope.getSubsetG (nominal P.lhs) k (toReal cen) (toReal rad)

@@ -68,7 +68,7 @@ theorem LinearSys.discretize_reachSetExact_subset_inputReach (sys : LinearSys �
     (hΔt : 0 < Δt) (R₀ U Ud : S n) (hbdd : Bornology.IsBounded (construct U))
     (hne : (construct U).Nonempty)
     (hUd : construct Ud ⊆ (fun c => sys.stepInputConst c Δt) '' construct U)
-    (k : ℕ) : -- --- STMT ---
+    (k : ℕ) : -- --- CONCL ---
     (sys.discretize Δt).reachSetExact R₀ Ud k
       ⊆ (exp (((k : ℝ) * Δt) • toRealMat sys.A)).mulVecLin '' construct R₀
         + sys.inputReach U ((k : ℝ) * Δt) := by -- --- PROOF ---

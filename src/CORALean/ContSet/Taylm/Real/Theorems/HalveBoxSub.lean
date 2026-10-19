@@ -26,7 +26,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.halveBox_sub {B : Fin n → Interval ℝ} (hB : ∀ k, (B k).inf ≤ (B k).sup)
-    (β : Fin n) : -- --- STMT ---
+    (β : Fin n) : -- --- CONCL ---
     (∀ k, ((Taylm.halveBox B β).1 k).inf ≤ ((Taylm.halveBox B β).1 k).sup) ∧
       (∀ k, ((Taylm.halveBox B β).2 k).inf ≤ ((Taylm.halveBox B β).2 k).sup) ∧
       (∀ t, Taylm.InBox (Taylm.halveBox B β).1 t → Taylm.InBox B t) ∧

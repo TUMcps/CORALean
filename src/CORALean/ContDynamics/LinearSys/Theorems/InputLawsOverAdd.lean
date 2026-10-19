@@ -44,7 +44,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.inputLawsOver_add (sys : LinearSys 𝕋 n) (C : Mat ℝ n m) {U : S n} {r : ℝ}
-    (hr : 0 ≤ r) (k : ℕ) (hbdd : Bornology.IsBounded (construct U)) : -- --- STMT ---
+    (hr : 0 ≤ r) (k : ℕ) (hbdd : Bornology.IsBounded (construct U)) : -- --- CONCL ---
     sys.inputLawsOver C U (k * r) ((k + 1) * r)
       = {ν | ∃ ν₁ ∈ sys.inputLawsOver C U 0 r, ∃ ν₂ ∈ sys.inputLaws C U (k * r),
           ν = (ν₁.map fun x => toLp 2 (exp ((k * r) • toRealMat sys.A) *ᵥ ofLp x))

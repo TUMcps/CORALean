@@ -38,7 +38,7 @@ variable {n : ℕ}
 theorem Zonotope.dominantDirections_score_le (Z : Zonotope (Vec ℝ n)) (a b : ℕ)
     (T : Finset (Fin Z.h))
     (hT : T ∈ Z.dominantShortlist (min a (Finset.univ.filter fun j => Z.G j ≠ 0).card)
-        (min b (Finset.univ.filter fun j => Z.G j ≠ 0).card)) : -- --- STMT ---
+        (min b (Finset.univ.filter fun j => Z.G j ≠ 0).card)) : -- --- CONCL ---
     ∀ P ∈ Z.dominantDirections a b,
       Z.dominantScore P ≤ Z.dominantScore (Z.generatorMatrix T) := by -- --- PROOF ---
   intro P (h : Z.dominantDirections a b = some P)

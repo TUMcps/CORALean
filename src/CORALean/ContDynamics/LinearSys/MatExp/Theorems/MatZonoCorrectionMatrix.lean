@@ -48,7 +48,7 @@ member, at every time of the step. -/
 theorem MatExp.expDiff_mem_matZonoCorrectionMatrix (M : Zonotope (Mat ℝ n n)) {r : ℝ}
     (hr : 0 < r) {m : ℕ}
     (hε : ‖(Interval.smul r M.interval).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
-    {A : Mat ℝ n n} (hA : A ∈ M.construct) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- STMT ---
+    {A : Mat ℝ n n} (hA : A ∈ M.construct) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     exp (t • A) - 1 - (t / r) • (exp (r • A) - 1)
       ∈ (MatExp.matZonoCorrectionMatrix M r (m + 2)).construct := by -- --- PROOF ---
   have hAI : A ∈ M.interval.construct := Zonotope.interval_contains M hA

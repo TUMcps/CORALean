@@ -56,7 +56,7 @@ theorem ZonoBundle.guardIntersect_outer (zB : ZonoBundle (Vec ℝ n))
     (hvert : ((HPolytope.stack fun i => (zB.Z i).hPolytope Aq).intersection G).construct
       ⊆ convexHull ℝ
         (Set.range (vert ((HPolytope.stack fun i => (zB.Z i).hPolytope Aq).intersection G))))
-    (hΛ : ∀ j, IsUnit (Λ j).det) : -- --- STMT ---
+    (hΛ : ∀ j, IsUnit (Λ j).det) : -- --- CONCL ---
     zB.construct ∩ G.construct
       ⊆ (zB.guardIntersect Aq G vert Λ).construct := by -- --- PROOF ---
   set P := (HPolytope.stack fun i => (zB.Z i).hPolytope Aq).intersection G

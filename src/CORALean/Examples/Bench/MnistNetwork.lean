@@ -254,7 +254,7 @@ pixel, for any `instUnchecked` exact on the small integers `k` and `255`. -/
 theorem inputBox_sound (instUnchecked : ExactDyadic → 𝕋)
     (hExact : ∀ d : ExactDyadic, toReal (instUnchecked d) = (d.mantissa : ℝ) * 2 ^ d.exponent)
     (pixels : Array ℕ) (x : Vec ℝ pixels.size)
-    (hx : ∀ i, x i = (pixels[i]'i.isLt : ℝ) / 255) : -- --- STMT ---
+    (hx : ∀ i, x i = (pixels[i]'i.isLt : ℝ) / 255) : -- --- CONCL ---
     x ∈ construct (inputBox instUnchecked pixels) := by -- --- PROOF ---
   intro i
   -- `k` and `255` read in exactly, both well inside any precision here

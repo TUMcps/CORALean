@@ -10,6 +10,15 @@ public import CORALean.ContSet.Capsule.Real.Operations.EnclosePoints
 Every `pts j` lies at the parameter `t = (d·g)/(g·g)` of the axis, at the distance `‖rej j‖₂`
 from it, which the radius bounds. `|t| ≤ 1` because `‖d j‖₂ ≤ ‖g‖₂`, `g` being the longest `d`.
 Outer only: the capsule is not the smallest, and CORA's own ball is larger still.
+
+## Inputs
+* `pts` – the points
+
+## Hypotheses
+* none
+
+## Conclusion
+* every point lies in `enclosePoints`
 -/
 
 -- Authors:       Claude Opus 5.5

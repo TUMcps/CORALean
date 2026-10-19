@@ -39,7 +39,7 @@ variable {n : ℕ}
 
 /-- The two parts of `expmMixed` hold the Taylor sum and the rest of the series of every member. -/
 theorem MatExp.expmMixed_outer (A : Interval (Mat ℝ n n)) {r : ℝ} (hr : r ≠ 0) {k η : ℕ}
-    (hk : 2 ≤ k) (hη : k < η) {M : Mat ℝ n n} (hM : M ∈ A.construct) : -- --- STMT ---
+    (hk : 2 ≤ k) (hη : k < η) {M : Mat ℝ n n} (hM : M ∈ A.construct) : -- --- CONCL ---
     MatExp.expTaylor M k ∈ (MatExp.expmMixed A r k η).eI.construct ∧
       exp M - MatExp.expTaylor M k ∈
         (MatExp.expmMixed A r k η).eI2.construct := by -- --- PROOF ---

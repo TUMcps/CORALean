@@ -45,7 +45,7 @@ theorem abs_sub_le_sum_filter_of_abs_partial_le {f : (Fin m → ℝ) → ℝ} (h
     {lo hi : Fin m → ℝ} (hlh : lo ≤ hi) (E : Fin m → Prop) [DecidablePred E] (U : Fin m → ℝ)
     (hU : ∀ y ∈ Icc lo hi, (∀ j, E j → y j = (lo j + hi j) / 2) → ∀ j, ¬ E j →
       |fderiv ℝ f y (Pi.single j 1)| ≤ U j) {x : Fin m → ℝ} (hx : x ∈ Icc lo hi)
-    (hxE : ∀ j, E j → x j = (lo j + hi j) / 2) : -- --- STMT ---
+    (hxE : ∀ j, E j → x j = (lo j + hi j) / 2) : -- --- CONCL ---
     |f x - f (fun i => (lo i + hi i) / 2)|
       ≤ ∑ j with ¬ E j, U j * ((hi j - lo j) / 2) := by -- --- PROOF ---
   set c : Fin m → ℝ := fun i => (lo i + hi i) / 2 with hc

@@ -9,6 +9,16 @@ public import CORALean.Global.EuclideanNorm
 # `Capsule.plusVec` is exactly the translate
 
 Translating the point by `v` and the center by `v` leave the distance to the segment unchanged.
+
+## Inputs
+* `C` – capsule
+* `v` – translation
+
+## Hypotheses
+* none
+
+## Conclusion
+* `plusVec` is the exact translate
 -/
 
 -- Authors:       Claude Sonnet 5.5

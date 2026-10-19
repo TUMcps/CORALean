@@ -48,7 +48,7 @@ variable {n nu ny nw nv : ℕ}
 -- the four set variables of the state after `k` steps, in closed form
 theorem LinearSysDT.aux_intervalEstimateState_closed (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
     (X₀ : Zonotope (Vec ℝ n)) (W : Zonotope (Vec ℝ sys.r)) (V : Zonotope (Vec ℝ sys.s))
-    (u : ℕ → Vec ℝ sys.m) (y : ℕ → Vec ℝ sys.q) (k : ℕ) : -- --- STMT ---
+    (u : ℕ → Vec ℝ sys.m) (y : ℕ → Vec ℝ sys.q) (k : ℕ) : -- --- CONCL ---
     let s := LinearSysDT.intervalEstimateState sys L X₀ W V u y
     (s k).Sx.construct = (((sys.A - L * sys.C) ^ k) *ᵥ ·) ''
         (⟨X₀.h, 0, X₀.G⟩ : Zonotope (Vec ℝ n)).construct ∧
@@ -87,7 +87,7 @@ theorem LinearSysDT.aux_intervalEstimateState_closed (sys : LinearSysDT ℝ n) (
 
 theorem LinearSysDT.intervalEstimate_error_eq_hull (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
     (X₀ : Zonotope (Vec ℝ n)) (W : Zonotope (Vec ℝ sys.r)) (V : Zonotope (Vec ℝ sys.s))
-    (u : ℕ → Vec ℝ sys.m) (y : ℕ → Vec ℝ sys.q) (k : ℕ) : -- --- STMT ---
+    (u : ℕ → Vec ℝ sys.m) (y : ℕ → Vec ℝ sys.q) (k : ℕ) : -- --- CONCL ---
     let s := LinearSysDT.intervalEstimateState sys L X₀ W V u y k
     LinearSysDT.reachErrorSet sys L X₀ W V k ⊆
         (s.Sx.interval.plus (s.Sw.plus s.Sv)).construct ∧

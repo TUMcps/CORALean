@@ -37,7 +37,7 @@ variable {n m : ℕ}
 theorem NonlinearSysDT.computeGO_state (sys : NonlinearSysDT n m)
     (x0 : Vec ℝ n) (u_ref : ℕ → Vec ℝ m)
     {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} (hx : ∀ k, x (k + 1) = sys.f (x k) (u k))
-    (k : ℕ) : -- --- STMT ---
+    (k : ℕ) : -- --- CONCL ---
     x (k + 1) - (sys.computeGO x0 u_ref).x (k + 1)
       = (sys.computeGO x0 u_ref).A k *ᵥ (x 0 - x0)
         + ∑ j ∈ Finset.range (k + 1),

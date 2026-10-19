@@ -54,7 +54,7 @@ theorem Location.guardIntersectNondetFloat_outer (Bs : List (Mat 𝕋 n n)) (R�
     (Rs : List (Zonotope (Vec 𝕋 n))) (guard : ConZonotope 𝕋 (Vec 𝕋 n))
     (horth : ∀ B ∈ Bs, Scalar.toRealMat B * (Scalar.toRealMat B)ᵀ = 1)
     {R : Zonotope (Vec 𝕋 n)} (hR : R ∈ R₀ :: Rs) {x : Vec ℝ n} (hx : x ∈ R.construct)
-    (hg : x ∈ guard.construct) : -- --- STMT ---
+    (hg : x ∈ guard.construct) : -- --- CONCL ---
     x ∈ (Location.guardIntersectNondetFloat Bs R₀ Rs guard).construct := by -- --- PROOF ---
   -- a point of the start or of any box folded in is a point of the hull
   have hfold : ∀ (Is : List (Interval (Vec 𝕋 n))) (J : Interval (Vec 𝕋 n)) (y : Vec ℝ n),

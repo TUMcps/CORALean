@@ -43,7 +43,7 @@ variable {X : Type*} [AddCommGroup X]
 `v^{[j+1]} = E_j v^{[j]}`, `w^{[j+1]} = S_j w^{[j]}`, `v^{[0]} = w^{[0]}`. -/
 theorem Krylov.restarted_error_eq_sum (E : ℕ → X →+ X) (S : ℕ → X → X) (v w : ℕ → X)
     (hv : ∀ j, v (j + 1) = E j (v j)) (hw : ∀ j, w (j + 1) = S j (w j))
-    (h0 : v 0 = w 0) : -- --- STMT ---
+    (h0 : v 0 = w 0) : -- --- CONCL ---
     let P : ℕ → ℕ → (X →+ X) := fun a N =>
       Nat.rec (AddMonoidHom.id X)
         (fun k acc => if a ≤ k then (E k).comp acc else AddMonoidHom.id X) N

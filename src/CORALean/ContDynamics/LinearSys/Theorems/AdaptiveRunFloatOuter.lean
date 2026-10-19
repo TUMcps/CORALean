@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 reached `t_f`, or its windows cover `[t₀ + t_i, t₀ + t_f]`; and each window
 holds every run at every time of it. -/
 theorem LinearSys.adaptiveRunFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)}
-    {t₀ tf : ℚ} {options : LinearSys.AdaptiveOptions 𝕋} : -- --- STMT ---
+    {t₀ tf : ℚ} {options : LinearSys.AdaptiveOptions 𝕋} : -- --- CONCL ---
     ∀ {k : ℕ} {s : LinearSys.AdaptiveState 𝕋 n} {steps : List (LinearSys.AdaptiveStepInfo 𝕋 n)},
       sys.adaptiveRunFloat X₀ V t₀ tf options k s = some steps → sys.AdaptiveInvariant V s →
       ((tf : ℝ) ≤ s.t ∨ ∀ t ∈ Set.Icc ((t₀ : ℝ) + s.t) ((t₀ : ℝ) + tf),

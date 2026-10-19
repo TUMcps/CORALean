@@ -56,7 +56,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S] [Real.OfInterval S]
 algorithm returns. -/
 theorem NonlinearSys.subset_abstrReach (sys : NonlinearSys n m)
     (params : Reach.InputParams (S n) (S m) ℝ) (options : NonlinearSys.AbstrReachOptions S n m)
-    {j : ℕ} (hj : j < options.K) : -- --- STMT ---
+    {j : ℕ} (hj : j < options.K) : -- --- CONCL ---
     ∀ s ∈ sys.aux_abstrRun params.U options.lin options.Φ options.sub options.enlarge options.Δt
         (params.tFinal - params.tStart) options.η options.taylorTermsAbstr options.ρ options.fuel
         params.X₀ (j + 1),

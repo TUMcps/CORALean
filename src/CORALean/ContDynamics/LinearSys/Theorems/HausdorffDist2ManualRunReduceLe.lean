@@ -85,7 +85,7 @@ theorem aux_hausdorffDist₂_add_right {S T X : Set (Vec ℝ n)} (hS : IsCompact
 /-- [1, Prop. 4], eq. (28): `Alg. 1`'s iteratively reduced `P̂^U(t_k)` is within the summed
 per-step reduction errors of the same accumulation with line 10's `reduce` omitted. -/
 theorem LinearSys.hausdorffDist₂_manualRun_reduce_le (sys : LinearSys 𝕋 n)
-    (X₀ U : Zonotope (Vec ℝ n)) (Δt : ℝ) (η ρ k : ℕ) : -- --- STMT ---
+    (X₀ U : Zonotope (Vec ℝ n)) (Δt : ℝ) (η ρ k : ℕ) : -- --- CONCL ---
     hausdorffDist₂
         (∑ j ∈ Finset.range k, (fun x => exp (((j : ℝ) * Δt) • toRealMat sys.A) *ᵥ x)
           '' (sys.inputSolution (S := 𝒵) Δt η

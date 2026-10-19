@@ -51,7 +51,7 @@ open Set
 /-- [1, Eq. 10]: `p'' = (1 - x)²`, `q'' = x²`, and the remainder `(p(1), q(1)) = (1/4, 1/12)`
 of `f = (p(x₁), q(x₁))` at `z* = 0`, `z = (1, 0)` is not `½ (ν₁² p''(ξ₁), ν₁² q''(ξ₁))` for
 any one `ξ₁` and `ν₁` in `[-½, 1]`. -/
-theorem NonlinDASys.shared_lagrange_point_counterexample : -- --- STMT ---
+theorem NonlinDASys.shared_lagrange_point_counterexample : -- --- CONCL ---
     (∀ x : ℝ, HasDerivAt (fun x : ℝ => x ^ 2 / 2 - x ^ 3 / 3 + x ^ 4 / 12)
       (x - x ^ 2 + x ^ 3 / 3) x) ∧
     (∀ x : ℝ, HasDerivAt (fun x : ℝ => x - x ^ 2 + x ^ 3 / 3) ((1 - x) ^ 2) x) ∧

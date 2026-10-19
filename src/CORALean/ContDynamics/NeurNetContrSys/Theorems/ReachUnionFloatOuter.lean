@@ -40,7 +40,7 @@ theorem NeurNetContrSys.reachUnionFloat_outer (sys : NeurNetContrSys (LinearSys 
     (hπ : sys.contr.Encloses π) {W : Set (Vec ℝ sys.plant.r)}
     (hW : ∀ v ∈ W, Scalar.toRealMat sys.plant.E *ᵥ v = 0) {x : ℝ → Vec ℝ n} {v : ℝ → Vec ℝ sys.nExt}
     {w : ℝ → Vec ℝ sys.plant.r} (traj : sys.IsTrajectory π (params.tFinal - params.tStart) params.X₀
-    (construct U_ext) W x v w) : -- --- STMT ---
+    (construct U_ext) W x v w) : -- --- CONCL ---
     ∀ Rs ∈ sys.reachUnionFloat U_ext params options,
       Rs.length = params.tFinal - params.tStart + 1 ∧ ∀ (i : ℕ) (hi : i < Rs.length),
         x ((i : ℝ) * sys.dt)

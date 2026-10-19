@@ -42,7 +42,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.projection_inner_of_cert_counterexample : -- --- STMT ---
+theorem HPolytope.projection_inner_of_cert_counterexample : -- --- CONCL ---
     ∃ (H : Mat ℝ 2 1) (F : Mat ℝ 2 0) (g : Vec ℝ 2) (Hx : Mat ℝ 2 1) (xbar : Vec ℝ 1)
       (HB : Mat ℝ 2 1) (hB : Vec ℝ 2) (ε : ℝ) (Λ₀ Λ₁ Λ₂ : Mat ℝ 2 2) (Γ : Mat ℝ 0 1)
       (βu : Vec ℝ 0) (X₁ : Mat ℝ 1 1) (X₂ : Mat ℝ 1 0) (βx : Vec ℝ 1),

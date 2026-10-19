@@ -76,7 +76,7 @@ theorem Zonotope.goffinSeparator_spec (Z : Zonotope (Vec ℝ (k + 1))) (hc : Z.c
     (w : Vec ℝ (k + 1)) (hw : w ≠ 0) (hmax : ∀ y ∈ Z.construct, w ⬝ᵥ y ≤ w ⬝ᵥ (βstar • x₀))
     (H : Mat ℝ (k + 1) k) (hH : LinearIndependent ℝ fun i => Hᵀ i)
     (hHF : ∀ i, Hᵀ i ∈ vectorSpan ℝ
-      {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, w ⬝ᵥ y ≤ w ⬝ᵥ x}) : -- --- STMT ---
+      {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, w ⬝ᵥ y ≤ w ⬝ᵥ x}) : -- --- CONCL ---
     let s := Zonotope.goffinSeparator βstar x₀ H
     Z.construct ⊆ {x | s.1 ⬝ᵥ x ≤ s.2} ∧ s.2 < s.1 ⬝ᵥ x₀ ∧
       {x | x ∈ Z.construct ∧ s.1 ⬝ᵥ x = s.2}

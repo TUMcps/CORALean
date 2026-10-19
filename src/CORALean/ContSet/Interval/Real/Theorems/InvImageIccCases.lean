@@ -54,7 +54,7 @@ theorem aux_inv_image_Ioc (hi : ℝ) (hhi : 0 < hi) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Eq. 3], the five cases of `1/[y]`. -/
-theorem Interval.inv_image_Icc_cases {lo hi : ℝ} (hle : lo ≤ hi) : -- --- STMT ---
+theorem Interval.inv_image_Icc_cases {lo hi : ℝ} (hle : lo ≤ hi) : -- --- CONCL ---
     (lo = 0 ∧ hi = 0 → (·⁻¹) '' (Set.Icc lo hi ∩ {y | y ≠ 0}) = ∅) ∧
     (0 < lo ∨ hi < 0 →
       (·⁻¹) '' (Set.Icc lo hi ∩ {y | y ≠ 0}) = Set.Icc hi⁻¹ lo⁻¹) ∧

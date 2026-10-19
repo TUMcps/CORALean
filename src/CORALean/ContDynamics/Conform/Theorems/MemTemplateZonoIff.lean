@@ -47,7 +47,7 @@ linear in `α`. -/
 theorem Conform.mem_templateZono_iff {m : ℕ} {ι κ : Type} [Fintype ι] (c : Vec ℝ (m + 1))
     (G : ι → Vec ℝ (m + 1)) (hspan : Submodule.span ℝ (Set.range G) = ⊤)
     (N : κ → Vec ℝ (m + 1)) (hN : Conform.HasNormals G N) (α : ι → ℝ) (hα : ∀ j, 0 ≤ α j)
-    (y : Vec ℝ (m + 1)) : -- --- STMT ---
+    (y : Vec ℝ (m + 1)) : -- --- CONCL ---
     y ∈ Conform.templateZono c G α ↔
       ∀ i, N i ⬝ᵥ (y - c) ≤ ∑ j, |N i ⬝ᵥ G j| * α j := by -- --- PROOF ---
   -- renumber the template into a `Fin`, where `Zonotope.mem_scale_iff` applies

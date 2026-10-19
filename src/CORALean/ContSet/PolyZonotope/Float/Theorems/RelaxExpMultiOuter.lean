@@ -67,7 +67,7 @@ theorem PolyZonotope.aux_sum_univ_relaxExpMulti_q {pZ : PolyZonotope (Vec 𝕋 n
 /-- The merged column is stored downward, so it is off by at most its gap to the
 upward rounding. -/
 theorem PolyZonotope.aux_mergedGenMulti_gap (pZ : PolyZonotope (Vec 𝕋 n))
-    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (i : Fin n) : -- --- STMT ---
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (i : Fin n) : -- --- CONCL ---
     |toReal (pZ.G (part.right 1) i) + toReal (pZ.G (part.right 0) i)
       - toReal (pZ.mergedGen part i)|
       ≤ toReal (pZ.aux_relaxGapMulti part i 0) := by -- --- PROOF ---
@@ -83,7 +83,7 @@ theorem PolyZonotope.aux_mergedGenMulti_gap (pZ : PolyZonotope (Vec 𝕋 n))
 /-- The new independent column is the summed `ξ_E` copies added downward, so it
 too is off by at most its gap to the upward fold. -/
 theorem PolyZonotope.aux_relaxGenMulti_gap (pZ : PolyZonotope (Vec 𝕋 n))
-    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (i : Fin n) : -- --- STMT ---
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (i : Fin n) : -- --- CONCL ---
     |(pZ.relaxWidthMulti part : ℝ) * toReal (pZ.G (part.right 0) i)
       - toReal (pZ.aux_relaxGenMulti part i)|
         ≤ toReal (pZ.aux_relaxGapMulti part i 1) := by -- --- PROOF ---

@@ -42,7 +42,7 @@ variable {E : Type} [AddCommGroup E] [Module ℝ E] [FiniteDimensional ℝ E] {N
 theorem supportConstraints_length_le (Θ : Set E) (f : E → ℝ) (hf : ConvexOn ℝ Θ f)
     (Z : Fin N → Set E) (hZ : ∀ t, Convex ℝ (Z t)) (sol : Finset (Fin N) → E) (F : Finset (Fin N))
     (hF : sol F ∈ Θ ∧ (∀ t ∈ F, sol F ∈ Z t) ∧ ∀ z ∈ Θ, (∀ t ∈ F, z ∈ Z t) → f (sol F) ≤ f z)
-    (hFl : ∀ l ∈ F, sol (F.erase l) ∈ Θ ∧ ∀ t ∈ F.erase l, sol (F.erase l) ∈ Z t) : -- --- STMT ---
+    (hFl : ∀ l ∈ F, sol (F.erase l) ∈ Θ ∧ ∀ t ∈ F.erase l, sol (F.erase l) ∈ Z t) : -- --- CONCL ---
     (supportConstraints (fun G => f (sol G)) F).length ≤ Module.finrank ℝ E := by -- --- PROOF ---
   classical
   set S := (supportConstraints (fun G => f (sol G)) F).toFinset with hS

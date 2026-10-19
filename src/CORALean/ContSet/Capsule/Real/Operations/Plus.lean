@@ -10,6 +10,13 @@ public import CORALean.ContSet.Capsule.Real.Capsule
 CORA's `@capsule/plus.m` for two capsules. The sum is not a capsule, and CORA encloses it: the
 centers add, the longer of the two generators is kept, and the shorter one is absorbed into the
 radius, `r = r₁ + r₂ + ‖shorter g‖₂`.
+
+## Inputs
+* `C₁` – first summand
+* `C₂` – second summand
+
+## Output
+* capsule enclosing `C₁ ⊕ C₂`
 -/
 
 -- Authors:       Claude Sonnet 5.5

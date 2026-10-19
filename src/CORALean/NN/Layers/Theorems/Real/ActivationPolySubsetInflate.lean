@@ -75,7 +75,7 @@ theorem aux_coord (P : LayerRelaxation ℝ n m) (J : Float.Interval (Vec ℝ n))
 fit under. -/
 theorem Layer.activationPoly_subset_inflate {P : LayerRelaxation ℝ n m}
     (hPs : ∀ i, (P i).Sound σ) (s : PolyZonotope (Vec ℝ n)) {ε : ℝ} (hε : 0 ≤ ε)
-    (hP : ∀ i, 2 * (P i).error (s.interval.inf i) (s.interval.sup i) ≤ ε) : -- --- STMT ---
+    (hP : ∀ i, 2 * (P i).error (s.interval.inf i) (s.interval.sup i) ≤ ε) : -- --- CONCL ---
     construct ((Layer.activationPoly P).enclose s)
       ⊆ (fun x i => σ (x i)) '' construct s + Metric.closedBall 0 ε := by -- --- PROOF ---
   set J : Float.Interval (Vec ℝ n) := ⟨s.interval.inf, s.interval.sup⟩

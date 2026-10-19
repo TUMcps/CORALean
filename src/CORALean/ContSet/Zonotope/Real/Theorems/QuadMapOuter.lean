@@ -44,7 +44,7 @@ variable {V : Type} [AddCommGroup V] [Module ℝ V]
 
 /-- `b(c + Σ pⱼgⱼ, c + Σ pⱼgⱼ)` expanded: constant, linear, and every ordered pair. -/
 theorem Zonotope.aux_quadMap_sq {h : ℕ} (b : LinearMap.BilinForm ℝ V) (c : V) (g : Fin h → V)
-    (p : Fin h → ℝ) : -- --- STMT ---
+    (p : Fin h → ℝ) : -- --- CONCL ---
     b (c + ∑ j, p j • g j) (c + ∑ j, p j • g j)
       = b c c + ∑ j, p j * (b c (g j) + b (g j) c)
         + ∑ j, ∑ k, (p j * p k) * b (g j) (g k) := by -- --- PROOF ---
@@ -67,7 +67,7 @@ theorem Zonotope.aux_quadMap_sq {h : ℕ} (b : LinearMap.BilinForm ℝ V) (c : V
 
 /-- The ordered pairs split into the diagonal and one term per unordered pair `j < k`. -/
 theorem Zonotope.aux_quadMap_diagpair {h : ℕ} (b : LinearMap.BilinForm ℝ V) (g : Fin h → V)
-    (p : Fin h → ℝ) : -- --- STMT ---
+    (p : Fin h → ℝ) : -- --- CONCL ---
     ∑ j, ∑ k, (p j * p k) * b (g j) (g k)
       = ∑ j, (p j * p j) * b (g j) (g j)
         + ∑ j, ∑ k, (if j < k then

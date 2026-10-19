@@ -110,7 +110,7 @@ theorem STL.robustnessReachSetGloballyCora_lastSetOnly_counterexample
     (happrox : ∀ S b, S.inf ≤ b → isectApprox S b = true)
     (hexact : ∀ S b, S.inf ≤ b → isectExact S b = true)
     (hexact' : ∀ S b, b + 1 / 2 ≤ S.inf → isectExact S b = false)
-    (ε : ℝ) (hε : 0 ≤ ε) (hε1 : ε < 1 / 2) : -- --- STMT ---
+    (ε : ℝ) (hε : 0 ≤ ε) (hε1 : ε < 1 / 2) : -- --- CONCL ---
     let tp : List ℝ := [0, 1, 2, 4]                                     -- R.timePoint.time
     let Xp : List (Real.Interval ℝ) := [⟨-1, -1 / 2⟩, ⟨1, 3 / 2⟩, ⟨3, 7 / 2⟩, ⟨7, 15 / 2⟩]
     let ti : List (Real.Interval ℝ) := [⟨0, 1⟩, ⟨1, 2⟩, ⟨2, 4⟩]  -- R.timeInterval.time

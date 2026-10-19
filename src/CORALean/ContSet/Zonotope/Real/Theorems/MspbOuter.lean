@@ -59,7 +59,7 @@ theorem Zonotope.aux_corner_interval_zonotope (I : Interval (Vec ℝ n)) (τ : F
 
 /-- The corners of `(A □[r]) ⊕ □[v]` are the potential vertices `A [r]± + [v]±`. -/
 theorem Zonotope.aux_corner_plus_map (A : Mat ℝ n n) (R V : Interval (Vec ℝ n))
-    (σ : Fin (n + n) → Bool) : -- --- STMT ---
+    (σ : Fin (n + n) → Bool) : -- --- CONCL ---
     ((R.zonotope.map (Matrix.mulVecLin A)).plus V.zonotope).corner σ =
       A *ᵥ (fun i => if σ (Fin.castAdd n i) then R.sup i else R.inf i) +
         fun i => if σ (Fin.natAdd n i) then V.sup i else V.inf i := by -- --- PROOF ---
@@ -94,7 +94,7 @@ theorem Zonotope.aux_corner_plus_map (A : Mat ℝ n n) (R V : Interval (Vec ℝ 
 theorem Zonotope.mspb_outer [NeZero m]
     (dir : (Fin m × (Fin n → Bool) × (Fin n → Bool) → Vec ℝ n) → Vec ℝ n)
     (L : Fin m → Mat ℝ n n × Interval (Vec ℝ n) × Interval (Vec ℝ n)) (l : Fin m)
-    {r v : Vec ℝ n} (hr : r ∈ (L l).2.1.construct) (hv : v ∈ (L l).2.2.construct) : -- --- STMT ---
+    {r v : Vec ℝ n} (hr : r ∈ (L l).2.1.construct) (hv : v ∈ (L l).2.2.construct) : -- --- CONCL ---
     (L l).1 *ᵥ r + v ∈ (Zonotope.mspb dir L).construct := by -- --- PROOF ---
   -- the points enclosed, and that every candidate kept along the way encloses them
   set XP : Fin m × (Fin n → Bool) × (Fin n → Bool) → Vec ℝ n := fun (l, b, b') =>

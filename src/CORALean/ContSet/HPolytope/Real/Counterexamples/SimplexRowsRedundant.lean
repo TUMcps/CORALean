@@ -39,7 +39,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.simplexRows_redundant_counterexample : -- --- STMT ---
+theorem HPolytope.simplexRows_redundant_counterexample : -- --- CONCL ---
     ∃ ℓ : Fin 1 → Vec ℝ 1, ‖ℓ 0‖₂ = 1 ∧
       (HPolytope.ineqs (HPolytope.simplexRows ℓ) 1).construct =
         (HPolytope.ineqs ((HPolytope.simplexRows ℓ).submatrix (dropIdx (Fin.last 2)) id)

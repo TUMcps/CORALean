@@ -51,7 +51,7 @@ variable [Mtimes ℐ S]
 inside the exact sum `timeIntervalStep_outer` only reaches after two lifts. -/
 theorem LinearSys.timeIntervalStep_outer_setLinComb (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r)
     {m : ℕ} (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ : S n)
-    {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- STMT ---
+    {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' construct X₀
       ⊆ Set.linComb (construct X₀) ((exp (r • toRealMat sys.A)).mulVecLin '' construct X₀)
         + construct (Mtimes.mtimes (𝕄 := ℐ)

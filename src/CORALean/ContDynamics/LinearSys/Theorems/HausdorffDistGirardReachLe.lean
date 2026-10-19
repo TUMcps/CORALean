@@ -58,7 +58,7 @@ set_option maxHeartbeats 100000 in
 theorem LinearSys.hausdorffDist_girardReach_le (sys : LinearSys 𝕋 n) (I U : Zonotope (Vec ℝ n))
     {μ r s : ℝ} {N : ℕ} (hA : 0 < ‖toRealMat sys.A‖) (hr : 0 < r) (hμ : 0 ≤ μ)
     (hU : U.construct = Metric.closedBall 0 μ) (hN : 1 ≤ N)
-    (hs : ∀ z ∈ I.construct, ‖z‖ ≤ s) : -- --- STMT ---
+    (hs : ∀ z ∈ I.construct, ‖z‖ ≤ s) : -- --- CONCL ---
     Metric.hausdorffDist
       (⋃ t ∈ Set.Icc (0:ℝ) (N * r), sys.reachSetExact (S := 𝒵) (Set.Icc 0 t) I U t)
       (⋃ Q ∈ sys.girardReach I μ r (N * r), Q.construct)

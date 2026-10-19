@@ -40,7 +40,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 
 /-- Whatever layers of `nn` were reduced to reach `nn'`, the original network's image lies
 in the enclosure `nn'.enclose s` builds. -/
-theorem NeuralNetwork.reducesAt_outer : -- --- STMT ---
+theorem NeuralNetwork.reducesAt_outer : -- --- CONCL ---
     ∀ {n m : ℕ} {s : S n} {nn nn' : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m},
       NeuralNetwork.ReducesAt s nn nn' f → f '' construct s ⊆ construct (nn'.enclose s)
   | _, _, s, _, _, _, .nil _ hid => by

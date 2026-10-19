@@ -55,7 +55,7 @@ variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
 theorem HPolytope.zonoBundleRows_exact [NeZero n] (P : HPolytope (Vec ℝ n))
     (V : VPolytope (Vec ℝ n)) [NeZero V.k] (B : Fin (P.m + (P.me + P.me)) → Mat ℝ n n)
     (hV : V.construct = P.construct) (hB : ∀ i, B i * (B i)ᵀ = 1)
-    (hrow : ∀ i x, P.rows i x = HPolytope.rowNorm (P.rows i) * ((B i)ᵀ *ᵥ x) 0) : -- --- STMT ---
+    (hrow : ∀ i x, P.rows i x = HPolytope.rowNorm (P.rows i) * ((B i)ᵀ *ᵥ x) 0) : -- --- CONCL ---
     (P.zonoBundleRows V B).construct = P.construct := by -- --- PROOF ---
   have hBB : ∀ i, (B i)ᵀ * B i = 1 := fun i => by
     have := hB i

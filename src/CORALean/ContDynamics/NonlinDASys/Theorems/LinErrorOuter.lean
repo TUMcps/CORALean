@@ -95,7 +95,7 @@ theorem NonlinDASys.aux_linError_quadMap_sub_c (Hd : Fin n → Mat ℝ q q)
 /-- The generators of `quad(Hᵈ_c - CF⁻¹Hᵃ_c, R)` are `H - CF⁻¹V`, block by block. -/
 theorem NonlinDASys.aux_linError_quadMap_sub_G (Hd : Fin n → Mat ℝ q q)
     (Ha : Fin p → Mat ℝ q q) (M : Mat ℝ n p) (R : Zonotope (Vec ℝ q))
-    (l : Fin (R.h + R.h + R.h * R.h)) : -- --- STMT ---
+    (l : Fin (R.h + R.h + R.h * R.h)) : -- --- CONCL ---
     (R.quadMap (fun i => Hd i - ∑ j, M i j • Ha j)).G l
       = (R.quadMap Hd).G l - M *ᵥ (R.quadMap Ha).G l := by -- --- PROOF ---
   have hmv : ∀ (v : Vec ℝ p) i, (M *ᵥ v) i = ∑ j, M i j * v j := fun v i => rfl
@@ -133,7 +133,7 @@ theorem NonlinDASys.linError_outer (Hd_c Hd_Δ : Fin n → Mat ℝ q q)
     {Hd : Fin n → Mat ℝ q q} {Ha : Fin p → Mat ℝ q q}
     (hHd : ∀ i j k, |Hd i j k - Hd_c i j k| ≤ Hd_Δ i j k)
     (hHa : ∀ i j k, |Ha i j k - Ha_c i j k| ≤ Ha_Δ i j k) {ν : Vec ℝ q}
-    (hν : ν ∈ R_Δ.construct) : -- --- STMT ---
+    (hν : ν ∈ R_Δ.construct) : -- --- CONCL ---
     (1 / 2 : ℝ) • ((fun i => ν ⬝ᵥ (Hd i *ᵥ ν)) - CF_inv *ᵥ (fun j => ν ⬝ᵥ (Ha j *ᵥ ν)))
       ∈ (NonlinDASys.linError Hd_c Hd_Δ Ha_c Ha_Δ CF_inv R_Δ).construct := by -- --- PROOF ---
   set σc : Vec ℝ n := fun i => ν ⬝ᵥ (Hd_c i *ᵥ ν) with hσc

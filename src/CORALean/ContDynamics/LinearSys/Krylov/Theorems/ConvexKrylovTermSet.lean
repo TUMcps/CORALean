@@ -40,7 +40,7 @@ variable {n : ℕ}
 
 /-- `P D⁽ʲ⁾ e₁ = {P Ṽ(u) H̃ʲ(u) e₁ / j! | u ∈ U}` is convex for `1 ≤ j ≤ m`, `ξ = m + 1`. -/
 theorem Krylov.convex_krylovTermSet (A : Mat ℝ n n) {U : Set (Vec ℝ n)} (hU : Convex ℝ U)
-    (m : ℕ) {j : ℕ} (hj1 : 1 ≤ j) (hj : j ≤ m) : -- --- STMT ---
+    (m : ℕ) {j : ℕ} (hj1 : 1 ≤ j) (hj : j ≤ m) : -- --- CONCL ---
     Convex ℝ ((fun u : Vec ℝ n => ((Nat.factorial j : ℝ))⁻¹ • fun i =>
         (Krylov.arnoldiBasis (Krylov.augment A u) (Pi.single (Fin.last n) 1) (m + 1) *ᵥ
           (Krylov.arnoldiHessenberg (Krylov.augment A u) (Pi.single (Fin.last n) 1) (m + 1) ^ j

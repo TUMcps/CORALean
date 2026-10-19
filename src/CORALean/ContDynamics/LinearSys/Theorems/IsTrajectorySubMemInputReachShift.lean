@@ -53,7 +53,7 @@ theorem LinearSys.IsCanonicalTrajectory.sub_mem_inputReach_shift {sys : LinearSy
     {R₀ W U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.IsCanonicalTrajectory (Set.Icc 0 T) R₀ W x u)
     (u₀ : Vec ℝ n) (hWU : ∀ v ∈ construct W, v - u₀ ∈ construct U)
     (hW : Bornology.IsBounded (construct W)) (hU : Bornology.IsBounded (construct U))
-    {t : ℝ} (ht : t ∈ Set.Icc 0 T) : -- --- STMT ---
+    {t : ℝ} (ht : t ∈ Set.Icc 0 T) : -- --- CONCL ---
     x t - (exp (t • toRealMat sys.A) *ᵥ x 0 + MatExp.expIntegral (toRealMat sys.A) t *ᵥ u₀)
       ∈ sys.inputReach U t := by -- --- PROOF ---
   set A := toRealMat sys.A with hA

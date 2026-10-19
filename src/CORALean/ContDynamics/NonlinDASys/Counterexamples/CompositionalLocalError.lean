@@ -46,7 +46,7 @@ open Matrix
 /-- [1, Sec. V-B]: `F⁻¹ F = I`; at the consistent point `x₂ = 1`, `y = (1, 1)` the error of `ẋ₁`
 is `1` by `ℓᵈ - C F⁻¹ ℓᵃ`, and equals the dynamics' value `f₁ = y₁` there; the local error of
 subsystem 1 is `0` at every point. -/
-theorem NonlinDASys.compositional_local_error_counterexample : -- --- STMT ---
+theorem NonlinDASys.compositional_local_error_counterexample : -- --- CONCL ---
     let F : Matrix (Fin 2) (Fin 2) ℝ := !![1, -1; 0, 1]
     let F_inv : Matrix (Fin 2) (Fin 2) ℝ := !![1, 1; 0, 1]
     let g : (Fin 2 → ℝ) → (Fin 2 → ℝ) → (Fin 2 → ℝ) := fun x y => ![y 0 - y 1, y 1 - x 1 ^ 2]

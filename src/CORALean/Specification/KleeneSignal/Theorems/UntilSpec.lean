@@ -40,7 +40,7 @@ namespace CORALean
 
 /-- The until of Kleene signals is `True` and `False` as Kleene's quantified connectives say. -/
 theorem KleeneSignal.until_spec (lhs rhs : KleeneSignal ℝ) (hl : lhs.IsValid) (hr : rhs.IsValid)
-    (U : STLInterval) : -- --- STMT ---
+    (U : STLInterval) : -- --- CONCL ---
     (lhs.until U rhs).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       ((lhs.until U rhs).at t = Kleene.tt ↔ ∃ t', t' - t ∈ U.set ∧ rhs.at t' = Kleene.tt ∧
         ∀ x, t < x → x < t' → lhs.at x = Kleene.tt) ∧

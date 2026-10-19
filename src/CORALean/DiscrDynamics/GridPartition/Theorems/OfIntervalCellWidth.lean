@@ -29,7 +29,7 @@ variable {n : ℕ}
 /-- Every cell of `partition(I, segs)` is `(sup - inf) / segs j` wide in dimension `j`. -/
 theorem GridPartition.ofInterval_cell_width (I : Real.Interval (Vec ℝ n)) {segs : Fin n → ℕ}
     (h : ∀ j, 0 < segs j) {c : ℕ} (h1 : 1 ≤ c)
-    (h2 : c ≤ (GridPartition.ofInterval I segs).nrOfCells) (j : Fin n) : -- --- STMT ---
+    (h2 : c ≤ (GridPartition.ofInterval I segs).nrOfCells) (j : Fin n) : -- --- CONCL ---
     ((GridPartition.ofInterval I segs).cellInterval c).sup j -
         ((GridPartition.ofInterval I segs).cellInterval c).inf j =
       (I.sup j - I.inf j) / segs j := by -- --- PROOF ---

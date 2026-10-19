@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.enlarge_outer (zB : ZonoBundle (Vec 𝕋 n)) (f : Vec 𝕋 n)
-    (i : Fin zB.k) : -- --- STMT ---
+    (i : Fin zB.k) : -- --- CONCL ---
     (fun x : Vec ℝ n =>
         toRealVec (ScalarCenter.centerVec (𝕋 := 𝕋) (S := 𝒵[𝕋]) (zB.Z i)) +
           fun j => toReal (f j) *

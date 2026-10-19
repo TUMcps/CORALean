@@ -47,7 +47,7 @@ variable {n m : ℕ}
 /-- `∫_{t₀}^{tₑ} e^{A(δ-t)}dt u = (∫₀^{δ-t₀} - ∫₀^{δ-tₑ}) e^{At}dt u`, the first line of [1]'s
 proof. -/
 theorem Krylov.aux_integral_eq_sub (A : Mat ℝ n n) (u : Vec ℝ n) {δ t₀ tₑ : ℝ}
-    (h0 : t₀ ≤ δ) (he : tₑ ≤ δ) : -- --- STMT ---
+    (h0 : t₀ ≤ δ) (he : tₑ ≤ δ) : -- --- CONCL ---
     (∫ t in t₀..tₑ, exp ((δ - t) • A) *ᵥ u)
       = MatExp.expIntegral A (δ - t₀) *ᵥ u
         - MatExp.expIntegral A (δ - tₑ) *ᵥ u := by -- --- PROOF ---
@@ -69,7 +69,7 @@ theorem Krylov.partialInputSolution_mem_box (A : Mat ℝ n n) (u : Vec ℝ n)
     (ht₀ : 0 ≤ t₀) (htₑ : t₀ ≤ tₑ) (hδ : tₑ ≤ δ)
     (h3 : ∀ s ∈ Set.Icc 0 δ,
       ‖exp (s • Krylov.augment A u) *ᵥ (Pi.single (Fin.last n) 1 : Fin (n + 1) → ℝ)
-        - V *ᵥ (exp (s • H) *ᵥ e₁)‖₂ ≤ ε * s) : -- --- STMT ---
+        - V *ᵥ (exp (s • H) *ᵥ e₁)‖₂ ≤ ε * s) : -- --- CONCL ---
     ∃ r : Vec ℝ n, (∀ j, |r j| ≤ ε * ((δ - t₀) + (δ - tₑ))) ∧
       (∫ t in t₀..tₑ, exp ((δ - t) • A) *ᵥ u)
         = (fun j => (V *ᵥ ((exp ((δ - t₀) • H) - exp ((δ - tₑ) • H)) *ᵥ e₁)) (Fin.castSucc j))

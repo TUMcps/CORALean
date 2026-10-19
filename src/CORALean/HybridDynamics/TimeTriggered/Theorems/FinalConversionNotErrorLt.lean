@@ -126,7 +126,7 @@ theorem aux_reaches_fifty {ts : ℝ} (hts : 0 ≤ ts) :
 
 /-- With `t₁ = 10`, `t₂ = 100` the dwell conditions hold, but for every `t_scaling ≥ 0` the error
 of `H_final` against `Reach≤100(H)` is at least `50`: none brings it below `δ = 50`. -/
-theorem DiffInclAutomaton.finalConversion_not_error_lt : -- --- STMT ---
+theorem DiffInclAutomaton.finalConversion_not_error_lt : -- --- CONCL ---
     (DiffInclAutomaton.spaceTriggered ({-100, -10} : Set ℝ) (fun _ => (1 : ℝ))
         (fun _ => (0 : ℝ)) (1 : ℝ) 0).FirstDwell 10 ∧
       (DiffInclAutomaton.spaceTriggered ({-100, -10} : Set ℝ) (fun _ => (1 : ℝ))

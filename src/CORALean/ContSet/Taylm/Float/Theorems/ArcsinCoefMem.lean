@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.arcsinCoef_mem (q : ℕ) (c : 𝕋)
-    (h : 0 < toReal (sqrtDown q (subDown one (mulUp c c)))) (j : ℕ) : -- --- STMT ---
+    (h : 0 < toReal (sqrtDown q (subDown one (mulUp c c)))) (j : ℕ) : -- --- CONCL ---
     toReal (Taylm.arcsinCoef q c j).inf ≤
         iteratedDeriv (j + 1) Real.arcsin (toReal c) / ((j + 1).factorial : ℝ) ∧
       iteratedDeriv (j + 1) Real.arcsin (toReal c) / ((j + 1).factorial : ℝ) ≤

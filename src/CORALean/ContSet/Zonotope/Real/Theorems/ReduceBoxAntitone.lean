@@ -54,7 +54,7 @@ position by the difference in keep-counts lands on the same sorted rank, the
 ranking permutation being the same term at every order. -/
 theorem Zonotope.aux_girardSplit_right_eq (Z : Zonotope (Vec ℝ n)) {o o' : ℕ}
     (hlt : o * n < Z.h) (hlt' : o' * n < Z.h) (ho : o ≤ o')
-    (l' : Fin (Z.h - (o' - 1) * n)) : -- --- STMT ---
+    (l' : Fin (Z.h - (o' - 1) * n)) : -- --- CONCL ---
     (Z.girardSplit o hlt).right
         ⟨l'.val + ((o' - 1) * n - (o - 1) * n), by
           have hle : (o - 1) * n ≤ Z.h :=
@@ -116,7 +116,7 @@ theorem Zonotope.aux_reduceByBox_diag_sum_le (Z : Zonotope (Vec ℝ n)) {o o' : 
 reduced to `n`, which every diagonal-block proof above would otherwise have to
 fight: at coordinate `i` its one active generator carries `β i`. -/
 theorem Zonotope.aux_mem_reduceByBox_iff (Z : Zonotope (Vec ℝ n)) {q r : ℕ}
-    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) (x : Vec ℝ n) : -- --- STMT ---
+    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) (x : Vec ℝ n) : -- --- CONCL ---
     x ∈ (Z.reduceByBox part).construct ↔
       ∃ β : Fin n → ℝ, (∀ j, |β j| ≤ 1) ∧
         ∀ i, x i = (∑ l, |Z.G (part.right l) i|) * β i := by -- --- PROOF ---

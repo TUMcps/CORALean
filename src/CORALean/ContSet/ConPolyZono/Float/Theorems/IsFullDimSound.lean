@@ -56,7 +56,7 @@ theorem ConPolyZono.aux_satisfies_zero {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)}
     (h : ∀ i, le (subUp (cPZ.cons.b i) (dotDown (cPZ.cons.A i) cPZ.zeroMonomials))
         (absolute (cPZ.cons.b_error i)) = true
       ∧ le (subUp (dotUp (cPZ.cons.A i) cPZ.zeroMonomials) (cPZ.cons.b i))
-        (absolute (cPZ.cons.b_error i)) = true) : -- --- STMT ---
+        (absolute (cPZ.cons.b_error i)) = true) : -- --- CONCL ---
     (fun _ => 0) ∈ cPZ.cons.construct := by -- --- PROOF ---
   refine (PolyLevelSet.mem_construct_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom).mpr
     ⟨fun _ => by simp, fun i => ?_⟩
@@ -81,7 +81,7 @@ theorem ConPolyZono.aux_box_subset {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)} {H : Ma
     (hsat : (fun _ => 0) ∈ cPZ.cons.construct) {y₀ : Vec ℝ n}
     (hy₀ : ∀ i, y₀ i = toReal (cPZ.c i)
       + ∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial cPZ.E (fun _ => 0) l)
-    (y : Vec ℝ n) (hy : ∀ i, |y i - y₀ i| ≤ toReal B) : -- --- STMT ---
+    (y : Vec ℝ n) (hy : ∀ i, |y i - y₀ i| ≤ toReal B) : -- --- CONCL ---
     y ∈ nominalSet cPZ := by -- --- PROOF ---
   obtain ⟨-, hreach⟩ := Zonotope.ballCert_reach hc
   obtain ⟨β, hβ, hβδ⟩ := hreach (fun i => y i - y₀ i) hy

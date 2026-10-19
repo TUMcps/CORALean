@@ -35,7 +35,7 @@ namespace CORALean.Real
 
 /-- [1, Sec. IV-A.1]: for `d = 2`, [1, Eq. 18] is `−p₃(β)` over the denominators. -/
 theorem Ellipsoid.halderStationarity_two {l₁ l₂ β : ℝ} (h₁ : 0 < l₁) (h₂ : 0 < l₂)
-    (hβ : 0 ≤ β) : -- --- STMT ---
+    (hβ : 0 ≤ β) : -- --- CONCL ---
     Ellipsoid.halderStationarity ![l₁, l₂] β
       = -(2 * (l₁ * l₂) * β ^ 3 + (l₁ + l₂) * β ^ 2 - (l₁ + l₂) * β - 2)
         / ((1 + β * l₁) * (1 + β * l₂)) := by -- --- PROOF ---

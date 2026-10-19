@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k m : ℕ}
 /-- A point of the nominal set lies in the box of all its generators, the center included. -/
 theorem PolyZonotope.aux_matMap_hull {n k : ℕ} (pZ : PolyZonotope (Mat 𝕋 n k))
     {a : Fin pZ.p → ℝ} (ha : ∀ i, |a i| ≤ 1) {β : Fin pZ.q → ℝ}
-    (hβ : ∀ j, |β j| ≤ 1) : -- --- STMT ---
+    (hβ : ∀ j, |β j| ≤ 1) : -- --- CONCL ---
     (PolyZonotope.nominal pZ).point a + ∑ j, β j • (PolyZonotope.nominal pZ).GI j
       ∈ (PolyZonotope.matGeneratorError
           (Fin.append (PolyZonotope.extGens pZ) pZ.GI)).construct := by -- --- PROOF ---
@@ -72,7 +72,7 @@ set plus a share of the rounding box. -/
 theorem PolyZonotope.aux_matMap_refines (pZ₁ : PolyZonotope (Mat 𝕋 n k))
     (pZ₂ : PolyZonotope (Mat 𝕋 k m)) (hp : pZ₁.p = pZ₂.p) {X : Mat ℝ n m}
     (hX : X ∈ (Real.PolyZonotope.matMap (PolyZonotope.nominal pZ₁)
-      (PolyZonotope.nominal pZ₂) hp).construct) : -- --- STMT ---
+      (PolyZonotope.nominal pZ₂) hp).construct) : -- --- CONCL ---
     ∃ P ∈ (PolyZonotope.nominal (PolyZonotope.matMap pZ₁ pZ₂ hp)).construct,
       X - P ∈
         (PolyZonotope.matGeneratorError (Fin.append (PolyZonotope.aux_pairG matMulDiff pZ₁ pZ₂)
@@ -186,7 +186,7 @@ theorem PolyZonotope.matMap_outer (pZ₁ : PolyZonotope (Mat 𝕋 n k))
     (pZ₂ : PolyZonotope (Mat 𝕋 k m)) (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ)
     (ha : ∀ i, |a i| ≤ 1) (β₁ : Fin pZ₁.q → ℝ) (β₂ : Fin pZ₂.q → ℝ) (hβ₁ : ∀ j, |β₁ j| ≤ 1)
     (hβ₂ : ∀ j, |β₂ j| ≤ 1) {e₁ : Mat ℝ n k} (he₁ : e₁ ∈ pZ₁.I_error.construct) {e₂ : Mat ℝ k m}
-    (he₂ : e₂ ∈ pZ₂.I_error.construct) : -- --- STMT ---
+    (he₂ : e₂ ∈ pZ₂.I_error.construct) : -- --- CONCL ---
     ((PolyZonotope.nominal pZ₁).point a + ∑ j, β₁ j • (PolyZonotope.nominal pZ₁).GI j + e₁) *
         ((PolyZonotope.nominal pZ₂).point (fun i => a (Fin.cast hp.symm i))
           + ∑ j, β₂ j • (PolyZonotope.nominal pZ₂).GI j + e₂)

@@ -54,7 +54,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 /-- [1, Thm. 1]'s Err_a, as CORA evaluates it at order `m = 2` (`τ = h₃,₂`, `γ = h₂,₁`), on the
 integrator matrix of `A = [0 0; 1 1]`, `u = e₁`: at every `t > 0` the error of the Krylov
 approximation exceeds it in the second coordinate, and so in the 2-norm. -/
-theorem Krylov.jawecki_bound_cora_counterexample : -- --- STMT ---
+theorem Krylov.jawecki_bound_cora_counterexample : -- --- CONCL ---
     let A : Mat ℝ 2 2 := !![0, 0; 1, 1]
     let u : Vec ℝ 2 := ![1, 0]
     let C := Krylov.augment A u

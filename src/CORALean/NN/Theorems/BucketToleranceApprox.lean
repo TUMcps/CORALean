@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 difference as the scalar computes it. -/
 theorem bucketTolerance_approx {le : 𝕋 → 𝕋 → Bool}
     (hle : ∀ a b, le a b = true → toReal a ≤ toReal b) {tol : 𝕋} {fuel : ℕ} {B : MergeBuckets 𝕋}
-    {I_k : Interval (Vec 𝕋 n)} {ρ : 𝕋} : -- --- STMT ---
+    {I_k : Interval (Vec 𝕋 n)} {ρ : 𝕋} : -- --- CONCL ---
     ∀ B_kδ ∈ bucketTolerance le tol fuel B I_k ρ,
       |toReal (subUp (ratio (n - bucketed B_kδ) n) ρ)| ≤ toReal tol := by -- --- PROOF ---
   intro B_kδ (h : bucketTolerance le tol fuel B I_k ρ = some B_kδ)

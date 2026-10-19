@@ -32,7 +32,7 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 theorem LinearSysDT.mem_simulateBoxIn (sys : LinearSysDT 𝕋 n) (B₀ : Interval (Vec 𝕋 n))
     (U : ℕ → Interval (Vec 𝕋 n)) {x u : ℕ → Vec ℝ n} (h₀ : x 0 ∈ construct B₀)
     (hu : ∀ k, u k ∈ construct (U k))
-    (hstep : ∀ k, x (k + 1) = Scalar.toRealMat sys.A *ᵥ x k + u k) (k : ℕ) : -- --- STMT ---
+    (hstep : ∀ k, x (k + 1) = Scalar.toRealMat sys.A *ᵥ x k + u k) (k : ℕ) : -- --- CONCL ---
     x k ∈ construct (sys.simulateBoxIn B₀ U k) := by -- --- PROOF ---
   induction k with
   | zero => exact h₀

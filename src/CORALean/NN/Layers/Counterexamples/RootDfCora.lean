@@ -83,7 +83,7 @@ namespace CORALean.Real
 
 /-- CORA's `df` of `nnRootLayer` is `1` at `4`, where the derivative of `sqrt` is `1/4`, and the
 `'singh'` band on `[1/4, 9]` misses `sqrt 4`. -/
-theorem Layer.rootDf_cora_counterexample : -- --- STMT ---
+theorem Layer.rootDf_cora_counterexample : -- --- CONCL ---
     Layer.rootDfCora 4 = 1 ∧ HasDerivAt Real.sqrt (1 / 4) 4 ∧
       ∃ x ∈ Set.Icc (1 / 4 : ℝ) 9,
         Layer.singhMu2Cora Real.sqrt Layer.rootDfCora (1 / 4) 9 <

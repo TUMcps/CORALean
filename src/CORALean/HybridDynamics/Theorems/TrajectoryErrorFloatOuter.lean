@@ -103,7 +103,7 @@ theorem aux_trajErrFloat_mulVec_mem {IM : Interval (Mat 𝕋 n n)} {Z : Zonotope
 theorem LinearSys.trajectoryErrorFloat_outer (sys : LinearSys 𝕋 n) (f u : Vec 𝕋 n)
     (R₀ : Zonotope (Vec 𝕋 n)) {tmin tmax tc : 𝕋} (hmin : 0 ≤ toReal tmin) (η : ℕ) {t : ℝ}
     (ht : t ∈ Set.Icc (toReal tmin) (toReal tmax)) {x₀ : Vec ℝ n}
-    (hx₀ : x₀ ∈ R₀.construct) : -- --- STMT ---
+    (hx₀ : x₀ ∈ R₀.construct) : -- --- CONCL ---
     ∀ E ∈ sys.trajectoryErrorFloat f f u R₀ tmin tmax tc (η + 1),
       exp (t • toRealMat sys.A) *ᵥ x₀
           + Real.MatExp.expIntegral (toRealMat sys.A) t *ᵥ toRealVec u

@@ -24,7 +24,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.isPolytopeCex_monomial (I : Fin 3 → ℝ) (j : Fin 3) : -- --- STMT ---
+theorem PolyZonotope.isPolytopeCex_monomial (I : Fin 3 → ℝ) (j : Fin 3) : -- --- CONCL ---
     PolyZonotope.monomial ![![1, 0, 1], ![0, 1, 0], ![0, 0, 1]] I j =
       I 0 ^ (![![1, 0, 1], ![0, 1, 0], ![0, 0, 1]] 0 j : ℕ) *
       I 1 ^ (![![1, 0, 1], ![0, 1, 0], ![0, 0, 1]] 1 j : ℕ) *

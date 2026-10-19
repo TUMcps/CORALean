@@ -34,7 +34,7 @@ namespace CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The loop of `until`: every pair of runs adds the times of its piece to the true times. -/
-theorem aux_until_fold (eps p : ℝ) (q : EReal) (dur : ℝ) (h0 : 0 ≤ dur) : -- --- STMT ---
+theorem aux_until_fold (eps p : ℝ) (q : EReal) (dur : ℝ) (h0 : 0 ≤ dur) : -- --- CONCL ---
     ∀ (prs : List ((ℝ × ℝ) × (ℝ × ℝ))) (sig : FiniteSignal ℝ Bool), sig.IsValid →
       sig.duration = dur → ∃ r, prs.foldlM (FiniteSignal.aux_untilStep eps p q dur) sig = some r ∧
         r.IsValid ∧ r.duration = dur ∧ ∀ t : ℝ, 0 ≤ t → t ≤ dur → ∃ v, r.at? t = some v ∧
@@ -108,7 +108,7 @@ theorem aux_until_fold (eps p : ℝ) (q : EReal) (dur : ℝ) (h0 : 0 ≤ dur) : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FiniteSignal.until?_spec (eps : ℝ) (lsig rsig : FiniteSignal ℝ Bool) (p : ℝ) (q : EReal)
-    (hl : lsig.IsValid) (hd : lsig.duration = rsig.duration) : -- --- STMT ---
+    (hl : lsig.IsValid) (hd : lsig.duration = rsig.duration) : -- --- CONCL ---
     ∃ r, FiniteSignal.until? eps lsig p q rsig = some r ∧ r.IsValid ∧
       r.duration = lsig.duration ∧ ∀ t : ℝ, 0 ≤ t → t ≤ lsig.duration →
         (r.at? t = some true ↔ ∃ L ∈ lsig.findIntervals (fun v => decide (true ≤ v)),

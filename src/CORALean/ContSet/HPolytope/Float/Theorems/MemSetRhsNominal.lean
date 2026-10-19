@@ -38,7 +38,7 @@ theorem HPolytope.mem_setRhs_nominal (P : HPolytope 𝕋 (Vec 𝕋 n)) {lo hi : 
     (hr : ∀ i, toReal (lo i) ≤ r i ∧ r i ≤ toReal (hi i))
     (hrE : ∀ i, toReal (loE i) ≤ rE i ∧ rE i ≤ toReal (hiE i))
     (hA : ∀ i, (toRealMat P.A *ᵥ y) i ≤ r i + |toReal (P.b_error i)|)
-    (hE : ∀ i, |(toRealMat P.Ae *ᵥ y) i - rE i| ≤ |toReal (P.be_error i)|) : -- --- STMT ---
+    (hE : ∀ i, |(toRealMat P.Ae *ᵥ y) i - rE i| ≤ |toReal (P.be_error i)|) : -- --- CONCL ---
     y ∈ (P.setRhs lo hi loE hiE).nominal.construct := by -- --- PROOF ---
   refine HPolytope.mem_nominal_iff.mpr ⟨fun i => ?_, fun i => ?_⟩
   -- an inequality: the lower end plus the width reaches past `rᵢ`

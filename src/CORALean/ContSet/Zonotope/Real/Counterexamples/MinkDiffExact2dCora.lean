@@ -89,7 +89,7 @@ noncomputable def Zonotope.minkDiffExact2dCora (minuend subtrahend : Zonotope (V
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.minkDiffExact2dCora_not_inner : -- --- STMT ---
+theorem Zonotope.minkDiffExact2dCora_not_inner : -- --- CONCL ---
     let Z₁ : Zonotope (Vec ℝ 2) := ⟨2, 0, fun j i => if i = j then 1 else 0⟩
     let Z₂ : Zonotope (Vec ℝ 2) := ⟨2, 0, fun j i => if i = j then 2 else 0⟩
     minkowskiDiff Z₁.construct Z₂.construct = ∅ ∧

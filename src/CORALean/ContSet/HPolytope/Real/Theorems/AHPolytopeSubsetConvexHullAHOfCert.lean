@@ -50,7 +50,7 @@ theorem HPolytope.ahPolytope_subset_convexHull_ahPolytope_of_cert {ny qy : Fin N
     {Γ : (i : Fin N) → Mat ℝ (ny i) nx} (hΛ : ∀ i j k, 0 ≤ Λ i j k) (hlam : ∀ i, 0 ≤ lam i)
     (h1 : ∀ i, Λ i * Hx = Hy i * Γ i) (h2 : ∀ i, Λ i *ᵥ hx ≤ lam i • hy i + Hy i *ᵥ β i)
     (hsum : ∑ i, lam i = 1) (hc : ∑ i, (lam i • ybar i - Y i *ᵥ β i) = xbar)
-    (hX : ∑ i, Y i * Γ i = X) : -- --- STMT ---
+    (hX : ∑ i, Y i * Γ i = X) : -- --- CONCL ---
     HPolytope.ahPolytope xbar X (HPolytope.ineqs Hx hx)
         ⊆ convexHull ℝ (⋃ i, HPolytope.ahPolytope (ybar i) (Y i)
         (HPolytope.ineqs (Hy i) (hy i))) := by -- --- PROOF ---

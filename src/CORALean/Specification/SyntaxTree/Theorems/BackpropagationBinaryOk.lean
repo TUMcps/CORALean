@@ -33,7 +33,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 theorem SyntaxTree.backpropagation_binary_ok {op : Binary} {w : Dom}
     {f : Dom → Dom → Dom → Pair} {t₁ t₂ : SyntaxTree n} {v : Dom}
     {B r : Real.Interval (Vec ℝ n)}
-    (h : backpropagation (.binary op w f t₁ t₂) v B = .ok r) : -- --- STMT ---
+    (h : backpropagation (.binary op w f t₁ t₂) v B = .ok r) : -- --- CONCL ---
     ∃ r₁, backpropagation t₁ (f v t₁.value t₂.value).left B = .ok r₁ ∧
       ∀ x, InBox r x → InBox r₁ x := by -- --- PROOF ---
   simp only [backpropagation] at h

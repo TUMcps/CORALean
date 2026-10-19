@@ -86,7 +86,7 @@ def PTC.R : (∀ _ : Fin 2, Unit) → Interval (Vec ℝ (∑ _ : Fin 2, 1)) :=
 
 /-- The product's flow matrix, entrywise: `-1` on component `0`, plus the `1` its input takes
 from component `1`'s output, `B C`; component `1` has no flow and a global input. -/
-theorem PTC.flow_entries : -- --- STMT ---
+theorem PTC.flow_entries : -- --- CONCL ---
     let A := ((PTC.product.loc fun _ => ()).dynamics.A)
     A (finSigmaFinEquiv ⟨0, 0⟩) (finSigmaFinEquiv ⟨0, 0⟩) = -1 ∧
     A (finSigmaFinEquiv ⟨0, 0⟩) (finSigmaFinEquiv ⟨1, 0⟩) = 1 ∧

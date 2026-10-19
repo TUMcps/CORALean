@@ -43,7 +43,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- `Φ_{t+r}(R₀) = e^{rA}Φ_t(R₀) + inputReach U r`: [1, Thm. 1]'s step from one time interval
 to the next, at one time. -/
 theorem LinearSys.reachSetExact_add_eq (sys : LinearSys 𝕋 n) (R₀ U : S n) {t r : ℝ}
-    (ht : 0 ≤ t) (hr : 0 ≤ r) (hU : Bornology.IsBounded (construct U)) : -- --- STMT ---
+    (ht : 0 ≤ t) (hr : 0 ≤ r) (hU : Bornology.IsBounded (construct U)) : -- --- CONCL ---
     sys.reachSetExact (Set.Icc 0 (t + r)) R₀ U (t + r)
       = (fun y => exp (r • toRealMat sys.A) *ᵥ y) ''
           sys.reachSetExact (Set.Icc 0 t) R₀ U t + sys.inputReach U r := by -- --- PROOF ---

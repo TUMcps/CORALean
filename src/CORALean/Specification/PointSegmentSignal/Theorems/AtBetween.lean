@@ -30,7 +30,7 @@ namespace CORALean
 theorem PointSegmentSignal.at_between {T : Type} [LinearOrder T] [Zero T]
     (s : PointSegmentSignal T) (hs : s.IsValid) (i : ℕ) (a t : T)
     (ha : s.timePoints[i]? = some a) (h1 : a < t)
-    (h2 : ∀ b, s.timePoints[i + 1]? = some b → t < b) : -- --- STMT ---
+    (h2 : ∀ b, s.timePoints[i + 1]? = some b → t < b) : -- --- CONCL ---
     s.at t = s.succIntervalValue (i + 1) := by -- --- PROOF ---
   have hlen := List.length_takeWhile_eq_of_pairwise_lt s.timePoints hs.2.2.2.1 t a i ha h1.le h2
   have hne : s.timePoints[i]? ≠ some t := by rw [ha]; simpa using h1.ne

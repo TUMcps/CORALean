@@ -43,7 +43,7 @@ def LevelSet.aux_rowMatchCora (f g : Vec ℝ n → ℝ) : Prop :=
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LevelSet.isequal_cora_counterexample : -- --- STMT ---
+theorem LevelSet.isequal_cora_counterexample : -- --- CONCL ---
     let L : LevelSet 2 := ⟨1, fun x _ => x 0, fun _ => .le⟩
     let S : LevelSet 2 := ⟨1, fun x _ => x 1, fun _ => .le⟩
     L.op 0 = S.op 0 ∧ LevelSet.aux_rowMatchCora (fun x => L.f x 0) (fun x => S.f x 0) ∧

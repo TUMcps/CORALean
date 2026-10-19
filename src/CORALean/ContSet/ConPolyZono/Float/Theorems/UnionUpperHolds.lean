@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- The stored row's value is within the summed gaps of the integer row's. -/
 theorem ConPolyZono.aux_unionCon_close (p₁ p₂ : ℕ) (a : Fin (p₁ + p₂ + 2) → ℝ)
-    (ha : ∀ k, |a k| ≤ 1) : -- --- STMT ---
+    (ha : ∀ k, |a k| ≤ 1) : -- --- CONCL ---
     |(∑ l, toReal (ConPolyZono.unionConCoef p₁ p₂ l : 𝕋)
           * ∏ k, a k ^ Real.ConPolyZono.unionConCol p₁ p₂ l k)
       - ∑ l, (ConPolyZono.unionConInt p₁ p₂ l : ℝ)

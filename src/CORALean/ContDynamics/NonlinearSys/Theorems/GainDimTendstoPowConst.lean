@@ -57,7 +57,7 @@ variable {n : ℕ}
 `δ^{j+1}`, `j` being the first order at which `Aʲ`'s `i`-th row of `Ψ`'s generators survives. -/
 theorem gainDim_tendsto_pow_const (A : Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) (i : Fin n)
     {j : ℕ} (hj : ∑ l, |(A ^ j *ᵥ Z.G l) i| ≠ 0)
-    (hjmin : ∀ p < j, ∑ l, |(A ^ p *ᵥ Z.G l) i| = 0) {δ : ℝ} (hδ : 0 ≤ δ) : -- --- STMT ---
+    (hjmin : ∀ p < j, ∑ l, |(A ^ p *ᵥ Z.G l) i| = 0) {δ : ℝ} (hδ : 0 ≤ δ) : -- --- CONCL ---
     Tendsto (fun h => gainDim (fun _ => A) (fun _ => Z.construct) h δ i) (𝓝[>] (0:ℝ))
       (𝓝 (δ ^ (j + 1))) := by -- --- PROOF ---
   classical

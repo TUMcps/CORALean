@@ -48,7 +48,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 held inputs, widened by the input enclosures' accumulated error. -/
 theorem LinearSys.discretize_reachSetExact_subset_add_reachInputError (sys : LinearSys 𝕋 n)
     {Δt : ℝ} (hΔt : 0 < Δt) (η : ℕ) (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
-    (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) : -- --- STMT ---
+    (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) : -- --- CONCL ---
     (sys.discretize Δt).reachSetExact (S := 𝒵) R₀ (sys.inputSolution (S := 𝒵) Δt η U) k
       ⊆ (sys.discretize Δt).reachSetExact (S := 𝒵) R₀
           (Zonotope.mtimes (MatExp.expIntegral (toRealMat sys.A) Δt) U) k

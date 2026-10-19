@@ -41,7 +41,7 @@ variable {ns n : ℕ} {d : Fin ns → ℕ}
 theorem NonlinDASys.composeSubsystems_eq_preimage (Φ : ∀ i, Mat ℝ n (d i))
     (Υ : ∀ i, Mat ℝ (d i) n) (hdiag : ∀ i, Υ i * Φ i = 1)
     (hoff : ∀ i j, i ≠ j → Υ i * Φ j = 0) (hsum : ∑ i, Φ i * Υ i = 1)
-    (R : ∀ i, Zonotope (Vec ℝ (d i))) : -- --- STMT ---
+    (R : ∀ i, Zonotope (Vec ℝ (d i))) : -- --- CONCL ---
     (NonlinDASys.composeSubsystems Φ R).construct
       = {x | ∀ i, Υ i *ᵥ x ∈ (R i).construct} := by -- --- PROOF ---
   rw [NonlinDASys.composeSubsystems_exact]

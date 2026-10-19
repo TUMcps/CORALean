@@ -39,7 +39,7 @@ answers wherever a run ends. -/
 theorem HybridAutomaton.holdsAll_of_invariant {HA : HybridAutomaton S G L 𝕋 n}
     {R : L → S n} (hinv : HA.Invariant R) (specs : List (Specification ContSet))
     {ℓ ℓ' : L} {x y : Vec ℝ n} (run : HA.IsRun ℓ x ℓ' y) (hx : x ∈ construct (R ℓ))
-    (h : ∀ ℓ : L, Specification.HoldsAll specs (construct (R ℓ))) : -- --- STMT ---
+    (h : ∀ ℓ : L, Specification.HoldsAll specs (construct (R ℓ))) : -- --- CONCL ---
     Specification.HoldsAll specs {y} :=
   Specification.holdsAll_of_outer specs
     (Set.singleton_subset_iff.mpr (run.mem_of_invariant hinv hx)) (h ℓ')

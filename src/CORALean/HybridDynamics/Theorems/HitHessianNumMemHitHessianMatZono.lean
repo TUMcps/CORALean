@@ -48,7 +48,7 @@ theorem GuardMap.hitHessianNum_mem_hitHessianMatZono (A : Mat ℝ n n) (b nv : V
     (R₀ : Real.Zonotope (Vec ℝ n)) (ψc ψg : Vec ℝ n) (i : Fin n) {x₀ : Vec ℝ n}
     (hx₀ : x₀ ∈ R₀.construct) {κ : ℝ} (hκ : |κ| ≤ 1)
     (hψ : (nv ⬝ᵥ (A *ᵥ x₀ + b))⁻¹ •
-      (-((nv ⬝ᵥ (A *ᵥ x₀ + b)) • nv) - (d - nv ⬝ᵥ x₀) • (nv ᵥ* A)) = ψc + κ • ψg) : -- --- STMT ---
+      (-((nv ⬝ᵥ (A *ᵥ x₀ + b)) • nv) - (d - nv ⬝ᵥ x₀) • (nv ᵥ* A)) = ψc + κ • ψg) : -- --- CONCL ---
     GuardMap.hitHessianNum A b nv d x₀ i
       ∈ (GuardMap.hitHessianMatZono A b nv d R₀ ψc ψg i).construct := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hx₀

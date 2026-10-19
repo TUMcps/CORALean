@@ -47,7 +47,7 @@ theorem aux_takeWhile_take {α : Type} (p : α → Bool) (l : List α) (k : ℕ)
 /-- After cutting to the first `k` time points `cell` is capped at the last value. -/
 theorem PointSegmentSignal.cell_take {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal T)
     (hs : s.IsValid) (k : ℕ) (hk1 : 1 ≤ k) (hk2 : k ≤ s.timePoints.length) (vals : List Bool)
-    (t : T) (ht : 0 ≤ t) : -- --- STMT ---
+    (t : T) (ht : 0 ≤ t) : -- --- CONCL ---
     (PointSegmentSignal.mk (s.timePoints.take k) vals).cell t =
       if s.cell t ≤ 2 * k - 1 then s.cell t else 2 * k - 1 := by -- --- PROOF ---
   obtain ⟨p, a0, hp1, hp2, hcell, hle, hx1, hx2, hx3, hx4, hpd, hpa⟩ :=

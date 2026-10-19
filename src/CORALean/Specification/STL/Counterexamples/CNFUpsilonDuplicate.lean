@@ -34,7 +34,7 @@ open scoped NNReal
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.CNF.exists_upsilon_not_complete_of_duplicate : -- --- STMT ---
+theorem STL.CNF.exists_upsilon_not_complete_of_duplicate : -- --- CONCL ---
     ∃ (R : ℝ≥0 → Set Bool) (cnf : STL.CNF Bool),
       (∀ t, (R t).Nonempty) ∧ ReachSequence.FinRep ∅ R ∧ ReachSequence.CDivisible 1 ∅ ∧
         ¬ ((cnf.upsilon 1).Sat R ↔

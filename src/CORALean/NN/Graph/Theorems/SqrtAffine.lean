@@ -42,7 +42,7 @@ variable {N m : ℕ}
 /-- The relaxation's affine map at an uncertain degree, rewritten over the edge
 factors `α = 2λ - 1` the uncertain adjacency is built on. -/
 theorem GNN.sqrt_affine (R : Relaxation ℝ) (A : Mat ℝ N N) (U : Fin m → Fin N × Fin N)
-    (lam : Fin m → ℝ) (j : Fin N) : -- --- STMT ---
+    (lam : Fin m → ℝ) (j : Fin N) : -- --- CONCL ---
     GNN.sqrtSlope R A U j * GNN.degreeAt A U lam j + GNN.sqrtOffset R A U j
       = GNN.sqrtConst R A U j
         + ∑ e, GNN.sqrtEdgeCoeff R A U j e * (2 * lam e - 1) := by -- --- PROOF ---

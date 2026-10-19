@@ -40,7 +40,7 @@ variable {nd m : ℕ}
 
 theorem LinearSysDT.peakDisturbance_le (Hd : Mat ℝ nd m) (d : ℕ → Vec ℝ nd) (ℓ : ℝ)
     (hℓ : ∀ b : Vec ℝ m, (∀ i, |b i| ≤ 1) → Real.sqrt ((Hd *ᵥ b) ⬝ᵥ (Hd *ᵥ b)) ≤ ℓ)
-    (hd : ∀ k, ∃ b : Vec ℝ m, (∀ i, |b i| ≤ 1) ∧ d k = Hd *ᵥ b) : -- --- STMT ---
+    (hd : ∀ k, ∃ b : Vec ℝ m, (∀ i, |b i| ≤ 1) ∧ d k = Hd *ᵥ b) : -- --- CONCL ---
     (⨆ k, Real.sqrt (d k ⬝ᵥ d k)) ≤
       sSup ((fun b : Vec ℝ m => Real.sqrt ((Hd *ᵥ b) ⬝ᵥ (Hd *ᵥ b))) ''
         {b | ∀ i, |b i| ≤ 1}) := by -- --- PROOF ---

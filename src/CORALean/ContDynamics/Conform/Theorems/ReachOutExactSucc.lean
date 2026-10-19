@@ -54,7 +54,7 @@ theorem aux_state_congr (sys : Conform.Plant n p q) (x0 : Vec ℝ n) (u : ℕ �
 
 /-- [1, Eq. 6]: the reachable outputs one step on, from the reachable states. -/
 theorem Conform.Plant.reachOutExact_succ (sys : Conform.Plant n p q) (X0 : Set (Vec ℝ n))
-    (u : ℕ → Vec ℝ p) (W : Set (Vec ℝ n)) (V : Set (Vec ℝ q)) (k : ℕ) : -- --- STMT ---
+    (u : ℕ → Vec ℝ p) (W : Set (Vec ℝ n)) (V : Set (Vec ℝ q)) (k : ℕ) : -- --- CONCL ---
     sys.reachOutExact X0 u W V (k + 1)
       = (fun x => sys.C *ᵥ x) '' ((fun x => sys.A *ᵥ x) '' sys.reachStateExact X0 u W k
           + {sys.B *ᵥ u k} + W) + {sys.D *ᵥ u (k + 1)} + V := by -- --- PROOF ---

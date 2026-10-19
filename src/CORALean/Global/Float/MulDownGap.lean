@@ -57,7 +57,7 @@ theorem abs_sum_mulDown_gap_le (a r : Vec 𝕋 h) (δ : Vec ℝ h) (hδ : ∀ j,
 /-- A row against `m + diag(r) δ` splits into the row against `m`, the row rounded down against
 `δ`, and the rounding against `δ`. -/
 theorem sum_mul_affine_split (a m r : Vec 𝕋 h) (δ ξ : Vec ℝ h)
-    (hξ : ∀ j, ξ j = toReal (m j) + toReal (r j) * δ j) : -- --- STMT ---
+    (hξ : ∀ j, ξ j = toReal (m j) + toReal (r j) * δ j) : -- --- CONCL ---
     ∑ j, toReal (a j) * ξ j = ∑ j, toReal (a j) * toReal (m j)
       + ∑ j, toReal (mulDown (a j) (r j)) * δ j
       + ∑ j, (toReal (a j) * toReal (r j) - toReal (mulDown (a j) (r j)))

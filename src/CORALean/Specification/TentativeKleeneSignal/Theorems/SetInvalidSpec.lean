@@ -27,7 +27,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem TentativeKleeneSignal.setInvalid_spec (s : TentativeKleeneSignal ℝ) (hs : s.IsValid)
-    (I : STLInterval) : -- --- STMT ---
+    (I : STLInterval) : -- --- CONCL ---
     (s.setInvalid I).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (t ∈ I.set → (s.setInvalid I).at t = FourValued.ii) ∧
       (t ∉ I.set → (s.setInvalid I).at t = s.at t) := by -- --- PROOF ---

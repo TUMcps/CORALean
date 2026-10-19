@@ -46,7 +46,7 @@ theorem Ellipsoid.aux_mem_of_remainder (E : Ellipsoid 𝕋 n) (G : Mat 𝕋 n n)
     (hlo : ∀ i, toReal (E.I_error.inf i)
       ≤ toReal (subDown (p i) (addUp (E.q i) (dotUp (G i) u))))
     (hhi : ∀ i, toReal (subUp (p i) (addDown (E.q i) (dotDown (G i) u)))
-      ≤ toReal (E.I_error.sup i)) : -- --- STMT ---
+      ≤ toReal (E.I_error.sup i)) : -- --- CONCL ---
     toRealVec p ∈ E.construct := by -- --- PROOF ---
   -- the factor vector has length at most one
   have hnorm : ‖toRealVec u‖₂ ≤ 1 := by

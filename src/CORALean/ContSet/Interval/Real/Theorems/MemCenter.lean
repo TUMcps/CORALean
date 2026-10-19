@@ -34,7 +34,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.mem_center (I : Interval α) (hI : I.IsNonempty (ι := ι)) : -- --- STMT ---
+theorem Interval.mem_center (I : Interval α) (hI : I.IsNonempty (ι := ι)) : -- --- CONCL ---
     I.center ∈ I.construct := fun i => by
   have h : entry I.inf i ≤ entry I.sup i := hI i
   -- the midpoint read at one coordinate, which is where the two bounds compare

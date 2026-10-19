@@ -49,7 +49,7 @@ variable {n m : ℕ} {𝓛 : Type}
 /-- CORA's `linReachInner`: `Rtp.set ⊆ R(Δt)` from `X = Rinit`, given `Prop. 1`'s hypotheses. -/
 theorem NonlinearSys.linReachInner_subset_reachSetExact (ops : NonlinearSys.LinReachInnerOps n 𝓛)
     (sys : NonlinearSys n m) (u₀ : Vec ℝ m) {Δt : ℝ} (hΔt : 0 ≤ Δt) (fuel : ℕ) {X : Set (Vec ℝ n)}
-    {e : Vec ℝ n} : -- --- STMT ---
+    {e : Vec ℝ n} : -- --- CONCL ---
     ∀ o ∈ NonlinearSys.linReachInner ops (fun x => sys.f x u₀) Δt fuel X e, ∀ st ∈ o,
       NonlinearSys.IsLinReachInnerCert sys u₀ Δt X st →
       st.Rtp ⊆ sys.reachSetExact (S := 𝒮) (Icc 0 Δt) X {u₀}

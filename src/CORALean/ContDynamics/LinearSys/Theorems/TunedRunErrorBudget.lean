@@ -77,7 +77,7 @@ theorem aux_tunedStep_le {ε a a' tf ti Δt : ℝ} (htf : 0 < tf)
 shrunk by `μ` finitely often, so both being positive leaves it positive. -/
 theorem aux_adaptTimeStepSearch_pos (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
     (X₀ U : Zonotope (Vec ℝ n)) (εHmax εPmax εPacc tf ti μ : ℝ) (ηmax : ℕ)
-    (hμ : 0 < μ) : -- --- STMT ---
+    (hμ : 0 < μ) : -- --- CONCL ---
     ∀ (k : ℕ) (Δt Δti : ℝ) (ηi : ℕ), 0 < Δt →
       LinearSys.adaptTimeStepSearch sys le X₀ U εHmax εPmax εPacc tf ti μ ηmax Δt k
         = some (Δti, ηi) → 0 < Δti := by -- --- PROOF ---
@@ -102,7 +102,7 @@ theorem aux_adaptTimeStep_pos (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Boo
     (X₀ U : Zonotope (Vec ℝ n)) (εHmax εPmax εPacc tf ti Δtprev μ : ℝ) (ηmax fuel : ℕ)
     (hμ : 0 < μ) (hΔtprev : 0 < Δtprev) {Δti εP : ℝ} {ηi : ℕ}
     (h : sys.adaptTimeStep le X₀ U εHmax εPmax εPacc tf ti Δtprev μ ηmax fuel
-      = some (Δti, ηi, εP)) : -- --- STMT ---
+      = some (Δti, ηi, εP)) : -- --- CONCL ---
     0 < Δti := by -- --- PROOF ---
   simp only [LinearSys.adaptTimeStep] at h
   split at h
@@ -119,7 +119,7 @@ spent, and once a step has been taken its `ε_H` is inside `ε_H,max`. -/
 theorem aux_tunedRun_invariant (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
     (hle : ∀ a b, le a b = true → a ≤ b) (hn : 0 < n) (X₀ U : Zonotope (Vec ℝ n))
     {εHmax εPmax εSmax tf μ : ℝ} (hμ : 0 < μ) (htf : 0 < tf)
-    (hεSmax : 0 ≤ εSmax) (ηmax fuel : ℕ) : -- --- STMT ---
+    (hεSmax : 0 ≤ εSmax) (ηmax fuel : ℕ) : -- --- CONCL ---
     ∀ (k : ℕ), (∀ j ≤ k, ∀ s, sys.tunedRun le X₀ U εHmax εPmax εSmax tf μ ηmax fuel j = some s →
         s.t ≤ tf) →
       ∀ s, sys.tunedRun le X₀ U εHmax εPmax εSmax tf μ ηmax fuel k = some s →
@@ -188,7 +188,7 @@ the step last taken under `ε_H,max`. -/
 theorem LinearSys.tunedRun_error_le (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
     (hle : ∀ a b, le a b = true → a ≤ b) (hn : 0 < n) (X₀ U : Zonotope (Vec ℝ n))
     {εHmax εPmax εSmax tf μ : ℝ} (hμ : 0 < μ) (htf : 0 < tf) (hεPmax : 0 ≤ εPmax)
-    (hεSmax : 0 ≤ εSmax) (ηmax fuel k : ℕ) : -- --- STMT ---
+    (hεSmax : 0 ≤ εSmax) (ηmax fuel k : ℕ) : -- --- CONCL ---
     ∀ s ∈ sys.tunedRun le X₀ U εHmax εPmax εSmax tf μ ηmax fuel k,
       (∀ j ≤ k, ∀ s, sys.tunedRun le X₀ U εHmax εPmax εSmax tf μ ηmax fuel j = some s → s.t ≤ tf) →
       s.εP ≤ εPmax ∧ s.εS ≤ εSmax ∧

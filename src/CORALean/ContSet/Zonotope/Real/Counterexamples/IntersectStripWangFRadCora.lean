@@ -39,7 +39,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.intersectStrip_wangFRadCora_counterexample : -- --- STMT ---
+theorem Zonotope.intersectStrip_wangFRadCora_counterexample : -- --- CONCL ---
     let Z : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ _ => 1⟩      -- the predicted set, `P = 1`
     let a : ℝ := 2                                          -- `A`
     let lamCora : ℝ := (a * 1 * a + 0) * 1 / (1 * (a * 1 * a + 0) * 1 + 1)   -- CORA

@@ -34,7 +34,7 @@ variable {n : ℕ}
 /-- Strictly increasing `f`, continuous on the interval `D`, corners in `D`. -/
 theorem Interval.monotoneImage_exact (f : ℝ → ℝ) (D : Set ℝ) (hD : D.OrdConnected)
     (hf : StrictMonoOn f D) (hc : ContinuousOn f D) (I : Interval (Vec ℝ n))
-    (hI : ∀ i, I.inf i ∈ D ∧ I.sup i ∈ D) : -- --- STMT ---
+    (hI : ∀ i, I.inf i ∈ D ∧ I.sup i ∈ D) : -- --- CONCL ---
     (⟨fun i => f (I.inf i), fun i => f (I.sup i)⟩ : Interval (Vec ℝ n)).construct
       = (fun x i => f (x i)) '' I.construct := by -- --- PROOF ---
   ext y

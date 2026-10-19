@@ -38,7 +38,7 @@ open MeasureTheory
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem shenmaierVertex_counterexample : -- --- STMT ---
+theorem shenmaierVertex_counterexample : -- --- CONCL ---
     ∃ (G H : Vec ℝ 2 →ₗ[ℝ] Vec ℝ 2) (c d v : Vec ℝ 2) (z : Fin 1 → Vec ℝ 2) (p : ℝ),
       |v 0| + |v 1| ≤ 1 ∧ ‖z 0‖ ≤ 1 ∧
       (∀ y : Vec ℝ 2, ‖y‖ ≤ 1 → y 0 * v 0 + y 1 * v 1 ≤ z 0 0 * v 0 + z 0 1 * v 1) ∧

@@ -37,7 +37,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.robust_selector_counterexample : -- --- STMT ---
+theorem STL.robust_selector_counterexample : -- --- CONCL ---
     (∀ {m : ℕ} (rs p : Fin m → ℝ) (r M : ℝ) (j : Fin m), (∀ i, r ≤ rs i) →
       (∀ i, rs i - (1 - p i) * M ≤ r ∧ r ≤ rs i + M * (1 - p i)) → p j = 1 → r = rs j) ∧
     let rs : Fin 2 → ℝ := ![0, 0]

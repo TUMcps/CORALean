@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q r : ℕ}
 absolute sum over the dropped columns either way. -/
 theorem HPolytope.aux_abs_dropped_le {k : ℕ} (M : Mat 𝕋 k n)
     (part : Split (Fin n) into (Fin q) ⊕ (Fin r)) {x : Vec ℝ n}
-    (hx : ∀ l, |x (part.right l)| ≤ 1) (i : Fin k) : -- --- STMT ---
+    (hx : ∀ l, |x (part.right l)| ≤ 1) (i : Fin k) : -- --- CONCL ---
     |∑ l, toReal (M i (part.right l)) * x (part.right l)|
       ≤ toReal (radius (fun i l => M i (part.right l)) i) := by -- --- PROOF ---
   refine le_trans (Finset.abs_sum_le_sum_abs _ _) (le_trans (Finset.sum_le_sum fun l _ => ?_)

@@ -150,7 +150,7 @@ theorem aux_good_iff {σ : List Bool} (hσ : σ.length < m) :
 def aux_w (σ : List Bool) : ℕ := 2 ^ (m + 1 - σ.length) - 1
 
 include hadd hsmul in
-theorem aux_loop (f : ℕ) : -- --- STMT ---
+theorem aux_loop (f : ℕ) : -- --- CONCL ---
     ∀ stack : List (List Bool),
     (∀ σ ∈ stack, σ.length ≤ m ∧ nrm (b + aux_S g σ) ≤ 1) →
     (stack.map (aux_w m)).sum < f →

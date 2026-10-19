@@ -31,7 +31,7 @@ theorem Chain.pgdAttack_mem_box (c : Chain n m) (x : Vec ℝ n) (t : Vec ℝ m) 
     (hQ : 0 < Q) (l u : Vec ℝ n) (stepsize stepsizeDecay : ℝ) (stepsizeDecayIter : List ℕ)
     (lossDer : Vec ℝ m → Vec ℝ m → Vec ℝ m) (z : Vec ℝ n)
     (hz : z = c.pgdAttack x t ε Q l u stepsize stepsizeDecay stepsizeDecayIter lossDer)
-    (hbox : ∀ i, max (l i) (x i - ε) ≤ min (u i) (x i + ε)) (i : Fin n) : -- --- STMT ---
+    (hbox : ∀ i, max (l i) (x i - ε) ≤ min (u i) (x i + ε)) (i : Fin n) : -- --- CONCL ---
     l i ≤ z i ∧ z i ≤ u i ∧ |z i - x i| ≤ ε := by -- --- PROOF ---
   subst hz
   obtain ⟨q, rfl⟩ := Nat.exists_eq_succ_of_ne_zero hQ.ne'

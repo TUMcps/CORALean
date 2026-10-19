@@ -42,7 +42,7 @@ through the projection because that is the form the goal has and simp will not
 rewrite a binder's type. -/
 theorem PolyZonotope.aux_sum_univ_reduceBy_q {pZ : PolyZonotope (Vec 𝕋 n)}
     {partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r)}
-    {partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) : -- --- STMT ---
+    {partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) : -- --- CONCL ---
     ∑ j : Fin (pZ.reduceBy partD partI).q, f j
       = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd dI j) :=
   Fin.sum_univ_add f

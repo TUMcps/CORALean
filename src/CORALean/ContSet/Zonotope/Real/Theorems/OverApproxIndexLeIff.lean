@@ -37,7 +37,7 @@ variable {n : ℕ}
 /-- [1, Prop. 10]: `Θ` orders two enclosures of `Sorig` as their volumes `Θ*` do. -/
 theorem Zonotope.overApproxIndex_le_iff (hn : n ≠ 0) {Sorig : Zonotope (Vec ℝ n)}
     (hV : 0 < (MeasureTheory.volume Sorig.construct).toReal)
-    (S₁ S₂ : Zonotope (Vec ℝ n)) : -- --- STMT ---
+    (S₁ S₂ : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     S₁.overApproxIndex Sorig ≤ S₂.overApproxIndex Sorig
       ↔ (MeasureTheory.volume S₁.construct).toReal
         ≤ (MeasureTheory.volume S₂.construct).toReal := by -- --- PROOF ---

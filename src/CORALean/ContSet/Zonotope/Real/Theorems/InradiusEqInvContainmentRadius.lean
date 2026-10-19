@@ -36,7 +36,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.inradius_eq_inv_containmentRadius (Z : Zonotope (Vec ℝ n))
-    (hG : Function.Surjective Z.genMap) (hn : 0 < n) : -- --- STMT ---
+    (hG : Function.Surjective Z.genMap) (hn : 0 < n) : -- --- CONCL ---
     ∃ d, IsGreatest ((fun p => Z.zonotopeNorm (p - Z.c)) '' Metric.closedBall Z.c 1) d ∧
       IsGreatest {r | 0 ≤ r ∧ Metric.closedBall Z.c r ⊆ Z.construct}
         (1 / d) := by -- --- PROOF ---

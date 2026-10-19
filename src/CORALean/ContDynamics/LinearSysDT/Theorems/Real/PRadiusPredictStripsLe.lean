@@ -79,7 +79,7 @@ theorem aux_stripDev_eq (κ : ℕ → Mat ℝ n n) (u : ℕ → Vec ℝ n) (η :
 
 /-- The first `s + 1` strips are the first `s` and then strip `s`. -/
 theorem aux_stripsUpTo_succ (C : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Mat ℝ n p)
-    (Z : Zonotope (Vec ℝ n)) (s : ℕ) (hs : s < p) : -- --- STMT ---
+    (Z : Zonotope (Vec ℝ n)) (s : ℕ) (hs : s < p) : -- --- CONCL ---
     aux_stripsUpTo C φ y Λ Z (s + 1)
       = (aux_stripsUpTo C φ y Λ Z s).intersectStrip (Matrix.of fun _ => C ⟨s, hs⟩ : Mat ℝ 1 n)
         (fun _ => φ ⟨s, hs⟩) (fun _ => y ⟨s, hs⟩)
@@ -100,7 +100,7 @@ theorem aux_stripsUpTo_full (C : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Mat ℝ n
 theorem aux_stripsUpTo_dev (C : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Mat ℝ n p)
     (κ : ℕ → Mat ℝ n n) (u : ℕ → Vec ℝ n)
     (hκ : ∀ s : Fin p, κ s = 1 - vecMulVec (fun r => Λ r s) (C s))
-    (hu : ∀ s : Fin p, u s = φ s • fun r => Λ r s) (Z : Zonotope (Vec ℝ n)) : -- --- STMT ---
+    (hu : ∀ s : Fin p, u s = φ s • fun r => Λ r s) (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     ∀ s ≤ p, ∀ z ∈ (aux_stripsUpTo C φ y Λ Z s).construct, ∃ z₀ ∈ Z.construct, ∃ η : ℕ → ℝ,
       (∀ r, |η r| ≤ 1) ∧
         z - (aux_stripsUpTo C φ y Λ Z s).c = aux_stripDev κ u η s (z₀ - Z.c) := by -- --- PROOF ---
@@ -139,7 +139,7 @@ theorem Zonotope.pRadius_predict_strips_le (A P : Mat ℝ n n) (F : Mat ℝ n m)
       e ⬝ᵥ (P *ᵥ e) ≤ β * (θ ⬝ᵥ (P *ᵥ θ)) + (F *ᵥ γ) ⬝ᵥ (F *ᵥ γ)
         + ∑ s : Fin p, φ s ^ 2 * η s ^ 2)
     (hβ : 0 ≤ β) (hL : ∀ z ∈ X.construct, (z - X.c) ⬝ᵥ (P *ᵥ (z - X.c)) ≤ L)
-    (hψ : ∀ γ : Vec ℝ m, (∀ j, |γ j| ≤ 1) → (F *ᵥ γ) ⬝ᵥ (F *ᵥ γ) ≤ ψ) : -- --- STMT ---
+    (hψ : ∀ γ : Vec ℝ m, (∀ j, |γ j| ≤ 1) → (F *ᵥ γ) ⬝ᵥ (F *ᵥ γ) ≤ ψ) : -- --- CONCL ---
     Zonotope.pRadius P (ContSet.intersectStripSeq (S := 𝒵) C φ y (fun _ => Λ)
         ((X.mtimes A).plus (⟨m, 0, fun j i => F i j⟩ : Zonotope (Vec ℝ n))))
       ≤ β * L + ψ + ∑ s : Fin p, φ s ^ 2 := by -- --- PROOF ---

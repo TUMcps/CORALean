@@ -50,7 +50,7 @@ theorem LinearSys.heldSim_le_supportCounterexample (sys : LinearSys 𝕋 n) (Δt
     {X₀ U : Set (Vec ℝ n)} {ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n}
     (hν₀ : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, ∀ x ∈ X₀, d x ≤ d (ν₀ d))
     (hνU : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, ∀ y ∈ U, d y ≤ d (νU d)) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ)
-    {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ X₀) {u : ℕ → Vec ℝ n} (hu : ∀ j, u j ∈ U) : -- --- STMT ---
+    {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ X₀) {u : ℕ → Vec ℝ n} (hu : ∀ j, u j ∈ U) : -- --- CONCL ---
     ℓ (sys.heldSim Δt x₀ u k)
       ≤ ℓ (sys.heldSim Δt (sys.supportCounterexample Δt ν₀ νU ℓ k).1
           (sys.supportCounterexample Δt ν₀ νU ℓ k).2 k) := by -- --- PROOF ---

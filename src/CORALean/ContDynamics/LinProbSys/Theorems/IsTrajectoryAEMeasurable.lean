@@ -36,7 +36,7 @@ measure. -/
 theorem LinProbSys.IsTrajectory.aemeasurable {sys : LinProbSys n m} {Ω : Type*}
     [MeasurableSpace Ω] {P : Measure Ω} {T : Set ℝ} {X₀ : S n} {U : S m} {x₀ : Vec ℝ n}
     {u : ℝ → Vec ℝ m} {x : ℝ → Ω → Vec ℝ n} (traj : sys.IsTrajectory P T X₀ U x₀ u x) {t : ℝ}
-    (ht : t ∈ T) (h0 : 0 ≤ t) : -- --- STMT ---
+    (ht : t ∈ T) (h0 : 0 ≤ t) : -- --- CONCL ---
     AEMeasurable (fun ω => toLp 2 (x t ω)) P ∧ IsProbabilityMeasure P := by -- --- PROOF ---
   have hlaw := traj.law t ht h0
   -- the image is a probability measure, so the map is measurable

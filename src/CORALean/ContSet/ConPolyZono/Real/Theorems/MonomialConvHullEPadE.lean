@@ -32,7 +32,7 @@ namespace CORALean.Real
 
 /-- One copy's block, at the padded exponents and at the plain ones. -/
 theorem ConPolyZono.aux_prod_repBlockDiag_padE {a p h m : ℕ} (E : Fin p → Fin h → ℕ)
-    (v : Fin (a * (p + m)) → ℝ) (y : Fin (a * h)) : -- --- STMT ---
+    (v : Fin (a * (p + m)) → ℝ) (y : Fin (a * h)) : -- --- CONCL ---
     (∏ x, v x ^ repBlockDiag 0 a (ConPolyZono.padE E m) x y)
       = ∏ x : Fin (a * p), v (finProdFinEquiv ((finProdFinEquiv.symm x).1,
           Fin.castAdd m (finProdFinEquiv.symm x).2))
@@ -54,7 +54,7 @@ theorem ConPolyZono.aux_prod_repBlockDiag_padE {a p h m : ℕ} (E : Fin p → Fi
 /-- The hull's generator monomials at padded exponents are those at the plain ones, each copy's
 padded factors dropped. -/
 theorem ConPolyZono.monomial_convHullE_padE {a p h m : ℕ} (E : Fin p → Fin h → ℕ)
-    (v : Fin (a * (p + m) + a) → ℝ) (l : Fin (a + (a * h + a * h))) : -- --- STMT ---
+    (v : Fin (a * (p + m) + a) → ℝ) (l : Fin (a + (a * h + a * h))) : -- --- CONCL ---
     PolyZonotope.monomial (ConPolyZono.convHullE a (ConPolyZono.padE E m)) v l
       = PolyZonotope.monomial (ConPolyZono.convHullE a E)
           (Fin.append (fun x => v (Fin.castAdd a (finProdFinEquiv ((finProdFinEquiv.symm x).1,

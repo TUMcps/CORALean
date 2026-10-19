@@ -34,7 +34,7 @@ variable {n : ℕ} [NeZero n]
 
 /-- [1, Eq. (4)] is the cosine of the sign-aligned generators away from a zero first element. -/
 theorem Zonotope.dcos_eq_cosSigned (gi gj : Vec ℝ n) (hi : gi 0 ≠ 0)
-    (hj : gj 0 ≠ 0) : -- --- STMT ---
+    (hj : gj 0 ≠ 0) : -- --- CONCL ---
     Zonotope.dcos gi gj =
       dotProduct ((if gi 0 < 0 then (-1 : ℝ) else 1) • gi) ((if gj 0 < 0 then (-1 : ℝ) else 1) • gj)
         / (‖(if gi 0 < 0 then (-1 : ℝ) else 1) • gi‖₂ * ‖(if gj 0 < 0 then (-1 : ℝ) else 1) • gj‖₂)

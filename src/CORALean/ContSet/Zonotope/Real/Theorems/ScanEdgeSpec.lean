@@ -60,7 +60,7 @@ theorem Zonotope.aux_hits_compact (γ : ℝ) (P Q : Vec ℝ 2) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.scanEdge_spec (γ : ℝ) (P Q : Vec ℝ 2) (mM : Interval EReal) : -- --- STMT ---
+theorem Zonotope.scanEdge_spec (γ : ℝ) (P Q : Vec ℝ 2) (mM : Interval EReal) : -- --- CONCL ---
     (Zonotope.scanEdge γ P Q mM).inf ≤ mM.inf ∧ mM.sup ≤ (Zonotope.scanEdge γ P Q mM).sup ∧
     (∀ y : ℝ, (![γ, y] : Vec ℝ 2) ∈ segment ℝ P Q →
       (Zonotope.scanEdge γ P Q mM).inf ≤ y ∧ (y : EReal) ≤ (Zonotope.scanEdge γ P Q mM).sup) ∧

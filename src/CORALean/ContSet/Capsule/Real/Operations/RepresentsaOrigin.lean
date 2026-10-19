@@ -9,6 +9,12 @@ public import CORALean.ContSet.Capsule.Real.Operations.RepresentsaPoint
 
 CORA's `@capsule/representsa_.m` at `origin`: `isPoint && all(withinTol(C.c, 0, tol))`, here at
 tolerance `0`.
+
+## Inputs
+* `C` – capsule
+
+## Output
+* `Prop` that `C` is the origin
 -/
 
 -- Authors:       Claude Opus 5.5

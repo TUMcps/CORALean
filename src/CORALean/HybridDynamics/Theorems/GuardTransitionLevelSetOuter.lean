@@ -53,7 +53,7 @@ theorem Location.guardTransitionLevelSet_outer {R T : Type} {den : R → Set (Ve
     (hreset : ∀ F, r '' denT F ⊆ denT (reset F))
     (hunify : ∀ L, ∀ F ∈ L, denT F ⊆ denT (unify L))
     {Rs : List R} {Rj : R} (hRj : Rj ∈ Rs) {x : Vec ℝ n} (hx : x ∈ den Rj)
-    (hg : g x = 0) : -- --- STMT ---
+    (hg : g x = 0) : -- --- CONCL ---
     r x ∈ denT (Location.guardTransitionLevelSet bound box contract μ intersect reset
       unify Rs) := by -- --- PROOF ---
   -- Step 1 keeps `R(τⱼ)`: `0 = g(x)` lies in its bound

@@ -45,7 +45,7 @@ variable {n : ℕ}
 half of it each — the same computation `aux_norm₂_le_of_mem_particularSolutionTauError_set` does
 for `bPU`, once for the correlated summand and once for the decorrelated one. -/
 theorem aux_norm₂_le_of_mem_particularSolutionError_set (A : Mat ℝ n n) (tk : ℝ)
-    {U0 : Set (Vec ℝ n)} (hU0 : Bornology.IsBounded U0) (Δt : ℝ) (η : ℕ) : -- --- STMT ---
+    {U0 : Set (Vec ℝ n)} (hU0 : Bornology.IsBounded U0) (Δt : ℝ) (η : ℕ) : -- --- CONCL ---
     (∀ z ∈ (fun x => (exp (tk • A)).mulVec x)
           '' MatExp.particularSolutionOuterCorrelated A U0 1 Δt η,
         ‖z‖₂ ≤ MatExp.particularSolutionErrorBound A tk U0 Δt η / 2) ∧

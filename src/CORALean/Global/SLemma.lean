@@ -48,7 +48,7 @@ variable {n : ℕ}
 
 /-- The homogenization of `x ↦ xᵀAx + 2aᵀx + α` expands as a quadratic form. -/
 theorem aux_hom_expand (A : Mat ℝ n n) (a : Fin n → ℝ) (α u v : ℝ)
-    (z w : (Fin n → ℝ) × ℝ) : -- --- STMT ---
+    (z w : (Fin n → ℝ) × ℝ) : -- --- CONCL ---
     (u • z + v • w).1 ⬝ᵥ A *ᵥ (u • z + v • w).1 + 2 * (u • z + v • w).2 * (a ⬝ᵥ (u • z + v • w).1)
         + (u • z + v • w).2 ^ 2 * α =
       u ^ 2 * (z.1 ⬝ᵥ A *ᵥ z.1 + 2 * z.2 * (a ⬝ᵥ z.1) + z.2 ^ 2 * α)
@@ -79,7 +79,7 @@ theorem aux_smul_eq (A : Mat ℝ n n) (a : Fin n → ℝ) (α s : ℝ) (x : Fin 
 
 /-- The S-lemma: under Slater's condition, `g ≤ 0 → f ≥ 0` iff `f + δ g ≥ 0` for a `δ ≥ 0`. -/
 theorem s_lemma (A B : Mat ℝ n n) (a b : Fin n → ℝ) (α β : ℝ)
-    (h₀ : ∃ x₀, x₀ ⬝ᵥ B *ᵥ x₀ + 2 * (b ⬝ᵥ x₀) + β < 0) : -- --- STMT ---
+    (h₀ : ∃ x₀, x₀ ⬝ᵥ B *ᵥ x₀ + 2 * (b ⬝ᵥ x₀) + β < 0) : -- --- CONCL ---
     let f := fun x => x ⬝ᵥ A *ᵥ x + 2 * (a ⬝ᵥ x) + α
     let g := fun x => x ⬝ᵥ B *ᵥ x + 2 * (b ⬝ᵥ x) + β
     (∀ x, g x ≤ 0 → 0 ≤ f x) ↔ ∃ δ : ℝ, 0 ≤ δ ∧ ∀ x, 0 ≤ f x + δ * g x := by -- --- PROOF ---

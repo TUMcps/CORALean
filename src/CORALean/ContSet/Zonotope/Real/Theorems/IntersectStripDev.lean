@@ -43,7 +43,7 @@ variable {n : ℕ}
 theorem Zonotope.intersectStrip_dev (c l : Vec ℝ n) (φ y : ℝ) (Z : Zonotope (Vec ℝ n))
     {z : Vec ℝ n}
     (hz : z ∈ (Z.intersectStrip (Matrix.of fun _ => c : Mat ℝ 1 n) (fun _ => φ) (fun _ => y)
-      (Matrix.of fun r _ => l r : Mat ℝ n 1)).construct) : -- --- STMT ---
+      (Matrix.of fun r _ => l r : Mat ℝ n 1)).construct) : -- --- CONCL ---
     ∃ z₁ ∈ Z.construct, ∃ η : ℝ, |η| ≤ 1 ∧
       z - (Z.intersectStrip (Matrix.of fun _ => c : Mat ℝ 1 n) (fun _ => φ) (fun _ => y)
         (Matrix.of fun r _ => l r : Mat ℝ n 1)).c

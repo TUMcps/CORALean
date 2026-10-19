@@ -29,7 +29,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem SpectraShadow.aux_lmi_esum (S : SpectraShadow (Vec ℝ n)) (x : Vec ℝ n)
-    (y : Fin S.m → ℝ) : -- --- STMT ---
+    (y : Fin S.m → ℝ) : -- --- CONCL ---
     S.generateESumRep.B₀ + ∑ i, x i • S.generateESumRep.B i
         + ∑ j : Fin S.generateESumRep.q, y j • S.generateESumRep.C j
       = blockDiag 0 (S.A₀ + ∑ j, y j • S.A j)
