@@ -30,7 +30,7 @@ namespace CORALean
 
 /-- The position data of `t`. -/
 theorem aux_cell_data {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal T)
-    (hs : s.IsValid) (t : T) (ht : 0 ≤ t) : -- --- STMT ---
+    (hs : s.IsValid) (t : T) (ht : 0 ≤ t) : -- --- CONCL ---
     ∃ p a, 1 ≤ p ∧ p ≤ s.timePoints.length ∧ s.timePoints[p - 1]? = some a ∧ a ≤ t ∧
       (∀ b, s.timePoints[p]? = some b → t < b) ∧
       s.cell t = (if a = t then 2 * (p - 1) else 2 * (p - 1) + 1) ∧
@@ -45,7 +45,7 @@ theorem aux_cell_data {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSigna
 
 /-- The time points around `t`, and the value `cell t`. -/
 theorem PointSegmentSignal.cell_rel {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal T)
-    (hs : s.IsValid) (t : T) (ht : 0 ≤ t) (j : ℕ) (hj : j < s.timePoints.length) : -- --- STMT ---
+    (hs : s.IsValid) (t : T) (ht : 0 ≤ t) (j : ℕ) (hj : j < s.timePoints.length) : -- --- CONCL ---
     ∃ p a0, 1 ≤ p ∧ p ≤ s.timePoints.length ∧
       s.cell t = (if a0 = t then 2 * (p - 1) else 2 * (p - 1) + 1) ∧ a0 ≤ t ∧
       (j + 1 ≤ p → s.timePoints[j] ≤ t) ∧ (p ≤ j → t < s.timePoints[j]) ∧

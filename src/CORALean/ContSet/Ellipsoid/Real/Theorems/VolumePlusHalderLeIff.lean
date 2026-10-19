@@ -42,7 +42,7 @@ variable {n : ℕ}
 
 /-- [1, Eq. 14]: the volume of `plus` at `β` is at most that at `β'` iff `log det Q(β)` is. -/
 theorem Ellipsoid.volume_plus_halder_le_iff {E₁ E₂ : Ellipsoid n} (h₁ : E₁.Q.PosDef)
-    (h₂ : E₂.Q.PosDef) {β b : ℝ} (hβ : 0 < β) (hb : 0 < b) : -- --- STMT ---
+    (h₂ : E₂.Q.PosDef) {β b : ℝ} (hβ : 0 < β) (hb : 0 < b) : -- --- CONCL ---
     (Ellipsoid.plus (Real.sqrt (1 + 1 / β)) (Real.sqrt (1 + β)) E₁ E₂).volume
         ≤ (Ellipsoid.plus (Real.sqrt (1 + 1 / b)) (Real.sqrt (1 + b)) E₁ E₂).volume
       ↔ Real.log (((1 + 1 / β) • E₁.Q + (1 + β) • E₂.Q).det)

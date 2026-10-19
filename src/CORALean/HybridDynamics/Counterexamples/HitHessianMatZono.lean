@@ -46,7 +46,7 @@ open Matrix
 
 /-- [1, Prop. 3] is false with its proof's coordinatewise enclosure of `Θ/Λ`: it holds on
 `R(0)` and `Λ ≠ 0` there, yet `Q⁽¹⁾(x₀)` is outside the matrix zonotope for an `x₀ ∈ R(0)`. -/
-theorem GuardMap.hitHessianMatZono_counterexample : -- --- STMT ---
+theorem GuardMap.hitHessianMatZono_counterexample : -- --- CONCL ---
     ∃ (A : Mat ℝ 2 2) (b nv : Vec ℝ 2) (d : ℝ) (R₀ : Real.Zonotope (Vec ℝ 2)) (ψc ψg : Vec ℝ 2),
       (∀ x ∈ R₀.construct, nv ⬝ᵥ (A *ᵥ x + b) ≠ 0) ∧
       (∀ x ∈ R₀.construct, ∀ l, |(-((nv ⬝ᵥ (A *ᵥ x + b)) • nv) - (d - nv ⬝ᵥ x) • (nv ᵥ* A)) l

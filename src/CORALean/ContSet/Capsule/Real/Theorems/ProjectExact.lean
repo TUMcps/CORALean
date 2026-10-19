@@ -12,6 +12,16 @@ capsule: dropping coordinates only shrinks the Euclidean distance (the inclusion
 coordinates of a point can be put on the segment, where they cost nothing (the reverse). A repeated
 coordinate in `dims` is an equality constraint the capsule does not carry, and the image is then a
 proper subset of the projected capsule, so injectivity is a hypothesis; CORA does not check it.
+
+## Inputs
+* `C` – capsule
+* `dims` – kept dimensions
+
+## Hypotheses
+* `hd` – `dims` injective
+
+## Conclusion
+* `project` is the exact image
 -/
 
 -- Authors:       Claude Sonnet 5.5

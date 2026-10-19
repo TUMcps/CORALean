@@ -36,7 +36,7 @@ theorem Zonotope.scan_fold {n : ℕ} (γ : ℝ) (d : Fin n → Vec ℝ 2)
     (step : Vec ℝ 2 → Fin n → Vec ℝ 2) (hstep : ∀ P j, step P j = P + d j) (P₀ : Vec ℝ 2)
     (mM₀ : Interval EReal) (s : Vec ℝ 2 × Interval EReal)
     (hs : Fin.foldl n (fun s j => (step s.1 j, Zonotope.scanEdge γ s.1 (step s.1 j) s.2))
-      (P₀, mM₀) = s) : -- --- STMT ---
+      (P₀, mM₀) = s) : -- --- CONCL ---
     s.1 = P₀ + ∑ i, d i ∧ s.2.inf ≤ mM₀.inf ∧ mM₀.sup ≤ s.2.sup ∧
     (∀ (k : Fin n) (y : ℝ), (![γ, y] : Vec ℝ 2) ∈ segment ℝ
         (P₀ + ∑ i, if i < k then d i else 0) (P₀ + (∑ i, if i < k then d i else 0) + d k) →

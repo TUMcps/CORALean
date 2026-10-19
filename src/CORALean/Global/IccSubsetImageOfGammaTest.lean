@@ -72,7 +72,7 @@ theorem Icc_subset_image_of_gammaTest
     (hJ₁ : ∀ x ∈ interior (Icc xlo xhi), ∀ i j, f' x (Pi.single j 1) i ∈ Icc (Jlo i j) (Jhi i j))
     (hJ : ∀ i j, Jlo i j ≤ Jhi i j) (hdiag : ∀ i, (0 : ℝ) ∉ Icc (Jlo i i) (Jhi i i))
     (hx₀ : x₀ ∈ Icc xlo xhi) (hy : f x₀ ∈ Icc ylo yhi)
-    (h2 : gammaTest f x₀ xlo xhi Jlo Jhi ylo yhi) : -- --- STMT ---
+    (h2 : gammaTest f x₀ xlo xhi Jlo Jhi ylo yhi) : -- --- CONCL ---
     Icc ylo yhi ⊆ f '' Icc xlo xhi := by -- --- PROOF ---
   have hH := isHMatrix_of_gammaTest hJ hdiag hx₀ hy h2
   -- a box point with every coordinate inside is an interior point

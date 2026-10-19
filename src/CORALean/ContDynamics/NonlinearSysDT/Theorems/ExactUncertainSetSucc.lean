@@ -34,7 +34,7 @@ namespace CORALean
 
 theorem NonlinearSysDT.exactUncertainSet_succ {n nw nv p : ℕ} (sys : NonlinearSysDT n nw)
     (g : Vec ℝ n → Vec ℝ nv → Vec ℝ p) (W : Set (Vec ℝ nw)) (V : Set (Vec ℝ nv))
-    (X₀ : Set (Vec ℝ n)) (y : ℕ → Vec ℝ p) (k : ℕ) : -- --- STMT ---
+    (X₀ : Set (Vec ℝ n)) (y : ℕ → Vec ℝ p) (k : ℕ) : -- --- CONCL ---
     sys.exactUncertainSet g W V X₀ y (k + 1) =
       Set.image2 sys.f (sys.exactUncertainSet g W V X₀ y k) W ∩
         NonlinearSysDT.consistentSet g V (y (k + 1)) := by -- --- PROOF ---

@@ -48,7 +48,7 @@ theorem NonlinearSys.linReachInner_Rti_subset_reachSetExact
     {st : NonlinearSys.LinReachInnerState n 𝓛}
     (hX : X ⊆ sys.reachSetExact (S := 𝒮) (Icc 0 T) X₀ {u₀} T)
     (h : NonlinearSys.linReachInner ops (fun x => sys.f x u₀) Δt fuel X e = some (some st))
-    (cert : NonlinearSys.IsLinReachInnerCert sys u₀ Δt X st) : -- --- STMT ---
+    (cert : NonlinearSys.IsLinReachInnerCert sys u₀ Δt X st) : -- --- CONCL ---
     st.Rti ⊆ ⋃ t ∈ Icc T (T + Δt),
       sys.reachSetExact (S := 𝒮) (Icc 0 t) X₀ {u₀} t := by -- --- PROOF ---
   have hRti : st.Rti = X ∪ st.Rtp := by

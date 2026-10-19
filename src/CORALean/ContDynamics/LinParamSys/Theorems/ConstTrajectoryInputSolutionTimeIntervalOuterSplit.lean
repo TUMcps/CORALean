@@ -89,7 +89,7 @@ theorem LinParamSys.IsCanonicalConstTrajectory.inputSolution_timeInterval_outer_
       (MatExp.intervalInputRemainder sys.A r η) U₀)))
     (hRbdd₀ : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.intervalInputRemainder sys.A r η) U₀)))
-    {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- STMT ---
+    {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s) ∈ construct (Plus.plus (Plus.plus
       (sys.inputSolution r η Sg) (Mtimes.mtimes (𝕄 := ℐ)
         (MatExp.intervalConstCorrectionMatrix sys.A r η) P))

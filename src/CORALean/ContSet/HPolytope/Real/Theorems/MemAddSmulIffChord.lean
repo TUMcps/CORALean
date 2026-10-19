@@ -39,7 +39,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.mem_add_smul_iff_chord (P : HPolytope α) (x d : α)
-    (hx : ∀ i, P.A i x < P.b i) (t : ℝ) : -- --- STMT ---
+    (hx : ∀ i, P.A i x < P.b i) (t : ℝ) : -- --- CONCL ---
     (∀ i, P.A i (x + t • d) ≤ P.b i) ↔
       (∀ s, P.chordLow x d = some s → s ≤ t) ∧
         (∀ s, P.chordHigh x d = some s → t ≤ s) := by -- --- PROOF ---

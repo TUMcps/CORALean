@@ -48,7 +48,7 @@ variable {n : ℕ}
 /-- [1, Lemma 4]: one post step of `X` evaluated at `B`, propagated and widened
 by `U`, lies inside the step's own result evaluated at `postBox`. -/
 theorem PolyZonotope.post_evalOn (M : Mat ℝ n n) (X U : PolyZonotope (Vec ℝ n)) (o : ℕ)
-    {B : Set (Fin X.p → ℝ)} (hB : ∀ a ∈ B, ∀ k, |a k| ≤ 1) : -- --- STMT ---
+    {B : Set (Fin X.p → ℝ)} (hB : ∀ a ∈ B, ∀ k, |a k| ≤ 1) : -- --- CONCL ---
     (M *ᵥ ·) '' X.evalOn B + U.construct
       ⊆ (((PolyZonotope.mtimes M X).plus U).reduce o).evalOn
         (PolyZonotope.postBox M X U o B) := by -- --- PROOF ---

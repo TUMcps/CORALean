@@ -38,7 +38,7 @@ theorem NeuralNetwork.classifies {nn : NeuralNetwork S n m} {f : Vec ℝ n → V
     (u : ∀ j, SupportBound (construct (nn.enclose X))
       (marginDir m j l))
     (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ n} (hx : x ∈ construct X)
-    {j : Fin m} (hj : j ≠ l) : -- --- STMT ---
+    {j : Fin m} (hj : j ≠ l) : -- --- CONCL ---
     f x j < f x l := by -- --- PROOF ---
   have hd := disjoint_misclassified_of_bounds l u h
   have hmem := hf.enclose_outer X x hx

@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Taylm.abs_polyOf_round_le {α : Type} (L : List α) (lo hi : α → 𝕋) (x : α → ℝ)
     (e : α → (Fin n → ℕ)) (hx : ∀ a ∈ L, toReal (lo a) ≤ x a ∧ x a ≤ toReal (hi a))
-    {t : Vec ℝ n} (ht : t ∈ Real.Taylm.box n) : -- --- STMT ---
+    {t : Vec ℝ n} (ht : t ∈ Real.Taylm.box n) : -- --- CONCL ---
     |Real.Taylm.polyOf (L.map fun a => (x a, e a)) t
         - Real.Taylm.polyOf (L.map fun a => (toReal (hi a), e a)) t|
       ≤ toReal (listSumUp (L.map fun a => subUp (hi a) (lo a))) := by -- --- PROOF ---

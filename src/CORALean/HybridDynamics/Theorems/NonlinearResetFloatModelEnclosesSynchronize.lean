@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m k : ℕ}
 
 theorem NonlinearReset.FloatModel.Encloses.synchronize
     {fms : Fin k → NonlinearReset.FloatModel 𝕋 n m n} {rs : Fin k → NonlinearReset n m n}
-    (h : ∀ j, (fms j).Encloses (rs j)) (idStates : Finset (Fin n)) : -- --- STMT ---
+    (h : ∀ j, (fms j).Encloses (rs j)) (idStates : Finset (Fin n)) : -- --- CONCL ---
     (NonlinearReset.FloatModel.synchronize fms idStates).Encloses
       (NonlinearReset.synchronize rs idStates) := by -- --- PROOF ---
   refine ⟨fun X U x hx u hu i => ?_⟩

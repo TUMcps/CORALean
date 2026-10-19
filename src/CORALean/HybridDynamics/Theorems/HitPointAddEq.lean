@@ -46,7 +46,7 @@ variable {n : ℕ}
 
 /-- `νᵀQ⁽ⁱ⁾(ξ)ν = 2(Θᵀν)(Aν)ᵢ − 2(Θᵀν)(Υν)(Aξ + b)ᵢ/Λ`: `Ω` is skew. -/
 theorem aux_hitPointAdd_quad (A : Mat ℝ n n) (b nv : Vec ℝ n) (d : ℝ) (ξ ν : Vec ℝ n)
-    (i : Fin n) : -- --- STMT ---
+    (i : Fin n) : -- --- CONCL ---
     ν ⬝ᵥ (GuardMap.hitHessianNum A b nv d ξ i *ᵥ ν) =
       2 * (A *ᵥ ν) i * ((-((nv ⬝ᵥ (A *ᵥ ξ + b)) • nv) - (d - nv ⬝ᵥ ξ) • (nv ᵥ* A)) ⬝ᵥ ν)
       - 2 * ((-((nv ⬝ᵥ (A *ᵥ ξ + b)) • nv) - (d - nv ⬝ᵥ ξ) • (nv ᵥ* A)) ⬝ᵥ ν)
@@ -76,7 +76,7 @@ theorem aux_hitPointAdd_quad (A : Mat ℝ n n) (b nv : Vec ℝ n) (d : ℝ) (ξ 
 /-- [1, Sec. 5.4], exactly: `y_h(ξ + ν) = y_h(ξ) + L(ξ)ν + ½ φ (νᵀQ⁽ⁱ⁾(ξ)ν)ᵢ`,
 `φ = 1/(Λ(ξ)Λ(ξ + ν))`. -/
 theorem GuardMap.hitPoint_add_eq (A : Mat ℝ n n) (b nv : Vec ℝ n) (d : ℝ) (ξ ν : Vec ℝ n)
-    (hξ : nv ⬝ᵥ (A *ᵥ ξ + b) ≠ 0) (hx : nv ⬝ᵥ (A *ᵥ (ξ + ν) + b) ≠ 0) : -- --- STMT ---
+    (hξ : nv ⬝ᵥ (A *ᵥ ξ + b) ≠ 0) (hx : nv ⬝ᵥ (A *ᵥ (ξ + ν) + b) ≠ 0) : -- --- CONCL ---
     GuardMap.hitPoint A b nv d (ξ + ν) = GuardMap.hitPoint A b nv d ξ
       + GuardMap.hitJacobian A b nv d ξ *ᵥ ν
       + (1 / 2 : ℝ) • ((1 / ((nv ⬝ᵥ (A *ᵥ ξ + b)) * (nv ⬝ᵥ (A *ᵥ (ξ + ν) + b)))) •

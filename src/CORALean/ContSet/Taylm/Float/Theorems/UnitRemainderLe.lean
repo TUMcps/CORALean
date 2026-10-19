@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem Taylm.unitRemainder_le {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
     {g : ℝ → ℝ} (hg : ∀ ξ, ContDiffAt ℝ (T.maxOrder + 1) g ξ)
     (hD : ∀ ξ, |iteratedDeriv (T.maxOrder + 1) g ξ| ≤ 1) {t : Vec ℝ n}
-    (ht : t ∈ Real.Taylm.box n) : -- --- STMT ---
+    (ht : t ∈ Real.Taylm.box n) : -- --- CONCL ---
     |g (f t) - ∑ k ∈ Finset.range (T.maxOrder + 1), iteratedDeriv k g (toReal T.constCoef)
       / (k.factorial : ℝ) * (f t - toReal T.constCoef) ^ k|
         ≤ toReal T.unitRemainder := by -- --- PROOF ---

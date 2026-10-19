@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem Zonotope.minnormOffset_ge (p : ℕ) (Z : Zonotope (Vec 𝕋 (n + 1))) (S : Fin n → Fin Z.h)
     (r : ℝ) (hr : 0 ≤ r)
     (hball : ∀ y : Vec ℝ (n + 1), y ⬝ᵥ y ≤ r ^ 2 →
-      toRealVec Z.c + y ∈ nominalSet Z) : -- --- STMT ---
+      toRealVec Z.c + y ∈ nominalSet Z) : -- --- CONCL ---
     ∀ U ∈ Z.minnormOffset p S,
       r ≤ toReal U := by -- --- PROOF ---
   intro U (hU : Z.minnormOffset p S = some U)

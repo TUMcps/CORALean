@@ -45,7 +45,7 @@ theorem LinearSysDT.backReachAligned_feedback {A : Mat ℝ n n} (hA : IsUnit A.d
     (B : Mat ℝ n m) (E : Mat ℝ n p) (K : Vec ℝ n) (U : Zonotope (Vec ℝ m)) (W : Set (Vec ℝ p))
     (Z₀ : Zonotope (Vec ℝ n)) (σ : (Z : Zonotope (Vec ℝ n)) → Vec ℝ n × (Fin Z.h → ℝ))
     (hσ : ∀ Z, (∀ i, 0 ≤ (σ Z).2 i ∧ (σ Z).2 i ≤ 1) ∧
-      (E *ᵥ ·) '' W ⊆ (Z.aligned (σ Z).1 (σ Z).2).construct) (k : ℕ) : -- --- STMT ---
+      (E *ᵥ ·) '' W ⊆ (Z.aligned (σ Z).1 (σ Z).2).construct) (k : ℕ) : -- --- CONCL ---
     ∃ π : ℕ → Vec ℝ n → Vec ℝ m, ∀ (x : ℕ → Vec ℝ n) (w : ℕ → Vec ℝ p),
       x 0 ∈ (Zonotope.backReachAligned A B K U Z₀ σ k).construct → (∀ t, w t ∈ W) →
       (∀ t < k, x (t + 1) = A *ᵥ x t + B *ᵥ π t (x t) + E *ᵥ w t + K) →

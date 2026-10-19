@@ -118,7 +118,7 @@ theorem aux_foldl_iterate_float {α : Type} (f : α → α) (a : α) (k : ℕ) :
 over `[0, T]` is in some `Qᵢ`. -/
 theorem LinearSys.girardReachFloat_outer (sys : LinearSys 𝕋 n) {I U : Zonotope (Vec 𝕋 n)} {μ r : 𝕋}
     {T : ℚ} (hA : 0 < ‖Scalar.toRealMat sys.A‖) (hr : 0 < toReal r) (hμ : 0 ≤ toReal μ)
-    (hU : ∀ u ∈ U.construct, ‖u‖ ≤ toReal μ) : -- --- STMT ---
+    (hU : ∀ u ∈ U.construct, ‖u‖ ≤ toReal μ) : -- --- CONCL ---
     ∀ Qs ∈ sys.girardReachFloat I μ r T,
       ⋃ t ∈ Set.Icc (0:ℝ) T, sys.reachSetExact (S := 𝒵[𝕋]) (Set.Icc 0 t) I U t
         ⊆ ⋃ Q ∈ Qs, Q.construct := by -- --- PROOF ---

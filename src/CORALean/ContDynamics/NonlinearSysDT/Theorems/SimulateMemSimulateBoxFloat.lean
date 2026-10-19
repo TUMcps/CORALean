@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 theorem NonlinearSysDT.simulate_mem_simulateBoxFloat (sys : NonlinearSysDT n m)
     {fm : NonlinearSysDT.FloatModel 𝕋 n m} (h : fm.Encloses sys) (x₀ : Vec 𝕋 n)
-    (u : ℕ → Vec 𝕋 m) (k : ℕ) : -- --- STMT ---
+    (u : ℕ → Vec 𝕋 m) (k : ℕ) : -- --- CONCL ---
     sys.simulate (Scalar.toRealVec x₀) (fun j => Scalar.toRealVec (u j)) k ∈
       construct (NonlinearSysDT.simulateBoxFloat fm x₀ u k) := by -- --- PROOF ---
   induction k with

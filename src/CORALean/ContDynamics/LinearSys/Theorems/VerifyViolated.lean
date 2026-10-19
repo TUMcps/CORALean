@@ -43,7 +43,7 @@ theorem LinearSys.verify_violated
     (G : Fin (r + 1) → HPolytope (Vec ℝ n)) (F : Fin (w + 1) → HPolytope (Vec ℝ n))
     (εmax₀ : ℝ) (fuel : ℕ)
     (hv : LinearSys.verify reachFn innerApprox distG distF G F le εmax₀ fuel = some false)
-    : -- --- STMT ---
+    : -- --- CONCL ---
     ¬ LinearSys.VerifySpec G F Reach :=
   LinearSys.not_verifySpec_of_verifyRun h G F εmax₀ fuel hv
 

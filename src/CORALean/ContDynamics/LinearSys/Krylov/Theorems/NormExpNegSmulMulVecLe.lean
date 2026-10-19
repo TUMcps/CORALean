@@ -45,7 +45,7 @@ variable {n : ℕ}
 `r ≥ 0`. -/
 theorem Krylov.norm_exp_neg_smul_mulVec_le (A : Mat ℂ n n) (ν : ℝ)
     (hA : ∀ x : Fin n → ℂ, ν * (star x ⬝ᵥ x).re ≤ (star x ⬝ᵥ (A *ᵥ x)).re) (x : Fin n → ℂ)
-    {r : ℝ} (hr : 0 ≤ r) : -- --- STMT ---
+    {r : ℝ} (hr : 0 ≤ r) : -- --- CONCL ---
     ‖(WithLp.toLp 2 (exp (r • (-A)) *ᵥ x) : EuclideanSpace ℂ (Fin n))‖ ≤
       Real.exp (-(r * ν)) * ‖(WithLp.toLp 2 x : EuclideanSpace ℂ (Fin n))‖ := by -- --- PROOF ---
   set N : Mat ℂ n n := -A + ((ν : ℂ)) • 1 with hN

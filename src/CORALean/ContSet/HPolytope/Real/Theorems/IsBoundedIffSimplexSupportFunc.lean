@@ -39,7 +39,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.isBounded_iff_supportFunc_simplex (P : HPolytope (Vec ℝ n)) : -- --- STMT ---
+theorem HPolytope.isBounded_iff_supportFunc_simplex (P : HPolytope (Vec ℝ n)) : -- --- CONCL ---
     Bornology.IsBounded P.construct ↔
       (∀ i : Fin n, ∃ a : ℝ, supportFunc P.construct (LinearMap.proj i) ≤ (a : EReal)) ∧
         ∃ a : ℝ, supportFunc P.construct (-∑ i : Fin n, LinearMap.proj i) ≤ (a :

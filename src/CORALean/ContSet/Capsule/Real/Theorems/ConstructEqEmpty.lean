@@ -10,6 +10,15 @@ public import CORALean.ContSet.Capsule.Real.Capsule
 `Real.sqrt` never returns a negative value, so no `x` can meet the bound at
 `C.r < 0`. Shared by `Convex.lean` and `IsCompact.lean`, both of which split on
 the sign of `C.r`.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* `hr` – negative radius
+
+## Conclusion
+* `C` is empty
 -/
 
 -- Authors:       Claude Opus 5

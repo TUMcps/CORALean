@@ -44,7 +44,7 @@ variable {n m ν : ℕ}
 /-- [1, Thm. 1], factors shared across coordinates: `{λ | λᵢ = xᵀ(D⁽ⁱ⁾ + Σⱼ βⱼK⁽ⁱ'ʲ⁾)x}`
 lies in `Z.quadMapMatZono D K`. -/
 theorem Zonotope.quadMapMatZono_outer (D : Fin m → Mat ℝ n n)
-    (K : Fin ν → Fin m → Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) : -- --- STMT ---
+    (K : Fin ν → Fin m → Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     {l : Vec ℝ m | ∃ x ∈ Z.construct, ∃ β : Fin ν → ℝ, (∀ j, |β j| ≤ 1) ∧
         ∀ i, l i = x ⬝ᵥ ((D i + ∑ j, β j • K j i) *ᵥ x)}
       ⊆ (Z.quadMapMatZono D K).construct := by -- --- PROOF ---

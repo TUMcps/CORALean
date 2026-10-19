@@ -95,7 +95,7 @@ private theorem STLInterval.rawSet_minkDiff_lower {l₁ u₁ l₂ u₂ : EReal} 
 /-- `t + J` stays below `I`'s upper end iff `t` passes `u₁ - u₂`. -/
 private theorem STLInterval.rawSet_minkDiff_upper {l₁ u₁ l₂ u₂ : EReal} {lc₁ rc₁ lc₂ rc₂ : Bool}
     (h₁ : (rawSet l₁ u₁ lc₁ rc₁).Nonempty) (h₂ : (rawSet l₂ u₂ lc₂ rc₂).Nonempty)
-    (t : ℝ) : -- --- STMT ---
+    (t : ℝ) : -- --- CONCL ---
     (∀ y ∈ rawSet l₂ u₂ lc₂ rc₂, (↑(t + y) : EReal) < u₁ ∨ (rc₁ = true ∧ (↑(t + y) : EReal) = u₁)) ↔
       ((t : EReal) < (if u₁ = ⊤ ∧ u₂ = ⊤ then ⊤ else u₁ - u₂) ∨
         ((rc₁ || !rc₂) = true ∧
@@ -174,7 +174,7 @@ private theorem STLInterval.rawSet_minkDiff_upper {l₁ u₁ l₂ u₂ : EReal} 
 
 /-- The times `t ≥ 0` with `t + J ⊆ I` form `rawSet` of the difference of the bounds. -/
 theorem STLInterval.rawSet_minkDiff {l₁ u₁ l₂ u₂ : EReal} {lc₁ rc₁ lc₂ rc₂ : Bool}
-    (h₁ : (rawSet l₁ u₁ lc₁ rc₁).Nonempty) (h₂ : (rawSet l₂ u₂ lc₂ rc₂).Nonempty) : -- --- STMT ---
+    (h₁ : (rawSet l₁ u₁ lc₁ rc₁).Nonempty) (h₂ : (rawSet l₂ u₂ lc₂ rc₂).Nonempty) : -- --- CONCL ---
     {t : ℝ | 0 ≤ t ∧ ∀ y ∈ rawSet l₂ u₂ lc₂ rc₂, t + y ∈ rawSet l₁ u₁ lc₁ rc₁} =
       rawSet (if l₁ - l₂ < 0 then 0 else l₁ - l₂)
         (if u₁ = ⊤ ∧ u₂ = ⊤ then ⊤ else u₁ - u₂)

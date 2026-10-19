@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The stored generator sum at a factor vector, split into the selector's own and the two
 operands'. -/
 theorem ConPolyZono.aux_sum_union (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
-    (a : Fin (cPZ₁.p + cPZ₂.p + 2) → ℝ) (i : Fin n) : -- --- STMT ---
+    (a : Fin (cPZ₁.p + cPZ₂.p + 2) → ℝ) (i : Fin n) : -- --- CONCL ---
     (∑ l, toReal ((cPZ₁.union cPZ₂).G l i)
         * Real.PolyZonotope.monomial (cPZ₁.union cPZ₂).E a l)
       = a (Real.ConPolyZono.unionSel cPZ₁.p cPZ₂.p)
@@ -128,7 +128,7 @@ theorem ConPolyZono.aux_union_mem_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec
       - (Real.ConPolyZono.union cPZ₁.nominalCore cPZ₂.nominalCore).cons.b i|
       ≤ |Fin.append (0 : Vec ℝ (1 + 1))
           (Fin.append (toRealVec cPZ₁.cons.b_error)
-            (toRealVec cPZ₂.cons.b_error)) i|) : -- --- STMT ---
+            (toRealVec cPZ₂.cons.b_error)) i|) : -- --- CONCL ---
     (fun i => toReal ((cPZ₁.union cPZ₂).c i)
       + ∑ l, toReal ((cPZ₁.union cPZ₂).G l i)
         * Real.PolyZonotope.monomial (cPZ₁.union cPZ₂).E a l)
@@ -147,7 +147,7 @@ theorem ConPolyZono.union_point_mem (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 
     (hy : y ∈ ((Real.ConPolyZono.union cPZ₁.nominalCore cPZ₂.nominalCore).relax
       (Fin.append (0 : Vec ℝ (1 + 1))
         (Fin.append (toRealVec cPZ₁.cons.b_error) (toRealVec cPZ₂.cons.b_error)))).construct)
-    (he : e ∈ (cPZ₁.I_error.or cPZ₂.I_error).construct) : -- --- STMT ---
+    (he : e ∈ (cPZ₁.I_error.or cPZ₂.I_error).construct) : -- --- CONCL ---
     y + e ∈ (cPZ₁.union cPZ₂).construct := by -- --- PROOF ---
   obtain ⟨a, β, ha, hβ, hsat, hy⟩ := (Real.ConPolyZono.mem_relax_iff _ _).mp hy
   set t := a (Real.ConPolyZono.unionSel cPZ₁.p cPZ₂.p) with ht

@@ -50,7 +50,7 @@ graph's, at any node whose own ball reaches only one radius short. -/
 theorem GNN.degree_submatrix_of_ball {N : ℕ} (A : Mat ℝ N N) (_hA : ∀ i j, 0 ≤ A i j)
     (hSymm : ∀ i j, A i j = A j i) (v : Fin N) (r : ℕ) {K : ℕ} (κ : Fin K → Fin N)
     (hinj : Function.Injective κ) (hκ : GNN.ball A v (r + 1) ⊆ Finset.univ.image κ)
-    {j : Fin N} (hj : j ∈ GNN.ball A v r) (k : Fin K) (hk : κ k = j) : -- --- STMT ---
+    {j : Fin N} (hj : j ∈ GNN.ball A v r) (k : Fin K) (hk : κ k = j) : -- --- CONCL ---
     GNN.degree (A.submatrix κ κ) k = GNN.degree A j := by -- --- PROOF ---
   -- a nonzero row `i` puts `i` one hop past `j`, using the graph's own symmetry
   have hmem : ∀ i, (A + 1) i j ≠ 0 → i ∈ GNN.ball A v (r + 1) := by

@@ -40,7 +40,7 @@ variable {n p q k : ℕ}
 /-- [1, Thm. 1], (7): the GLO approximation's reachable set is `Ȳ`. -/
 theorem Conform.reachSetOfExact_glo (yb : Vec ℝ q) (Cb : Mat ℝ q n) (Db : Fin (k + 1) → Mat ℝ q p)
     (xs cx : Vec ℝ n) (X0 : Set (Vec ℝ n)) (us : Fin (k + 1) → Vec ℝ p) (cu : Vec ℝ p)
-    (U : Fin (k + 1) → Set (Vec ℝ p)) : -- --- STMT ---
+    (U : Fin (k + 1) → Set (Vec ℝ p)) : -- --- CONCL ---
     Conform.reachSetOfExact (Conform.glo yb Cb Db (xs + cx) fun i => us i + cu) xs X0 us U
       = Conform.gloSet yb Cb Db cx X0 cu U := by -- --- PROOF ---
   ext y

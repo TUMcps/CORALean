@@ -52,7 +52,7 @@ theorem aux_one_mem_frontier :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- (5) holds for `f(x₁, x₂) = x₁` on `[-1, 1]²` and `y₁ = [-1/2, 1/2]`, and (i) does not. -/
-theorem innerTest_step_counterexample : -- --- STMT ---
+theorem innerTest_step_counterexample : -- --- CONCL ---
     let g : (Fin 1 → ℝ) × (Fin 1 → ℝ) → (Fin 1 → ℝ) := fun x => x.1
     let lo : Fin 1 → ℝ := fun _ => -1
     let hi : Fin 1 → ℝ := fun _ => 1

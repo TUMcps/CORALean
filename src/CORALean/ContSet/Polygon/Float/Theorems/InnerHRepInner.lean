@@ -50,7 +50,7 @@ def Polygon.aux_orient (a b c : Vec ℝ 2) : ℝ :=
 coordinates, up to the triangle's orientation. -/
 theorem Polygon.aux_barycentric {a b c x : Vec ℝ 2} (hD : 0 < Polygon.aux_orient a b c)
     (ha : 0 ≤ Polygon.aux_orient b c x) (hb : 0 ≤ Polygon.aux_orient c a x)
-    (hc : 0 ≤ Polygon.aux_orient a b x) : -- --- STMT ---
+    (hc : 0 ≤ Polygon.aux_orient a b x) : -- --- CONCL ---
     ∃ α β γ : ℝ, 0 ≤ α ∧ 0 ≤ β ∧ 0 ≤ γ ∧ α + β + γ = 1 ∧
       x = α • a + β • b + γ • c := by -- --- PROOF ---
   have hD0 : Polygon.aux_orient a b c ≠ 0 := ne_of_gt hD
@@ -90,7 +90,7 @@ fan triangle. -/
 theorem Polygon.aux_fan {k : ℕ} (u : Fin k → Vec ℝ 2) (x : Vec ℝ 2) (hk : 3 ≤ k)
     (hfan : ∀ i : Fin k, i.val ≠ 0 → i.val + 1 ≠ k →
       0 < Polygon.aux_orient (u ⟨0, i.pos⟩) (u i) (u (finRotate k i)))
-    (hedge : ∀ i : Fin k, 0 ≤ Polygon.aux_orient (u i) (u (finRotate k i)) x) : -- --- STMT ---
+    (hedge : ∀ i : Fin k, 0 ≤ Polygon.aux_orient (u i) (u (finRotate k i)) x) : -- --- CONCL ---
     ∃ a b c : Fin k, ∃ α β γ : ℝ, 0 ≤ α ∧ 0 ≤ β ∧ 0 ≤ γ ∧ α + β + γ = 1 ∧
       x = α • u a + β • u b + γ • u c := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ : ∃ m, k = m + 1 := ⟨k - 1, by omega⟩

@@ -49,7 +49,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 projection because that is the form the goal has and simp will not rewrite a
 binder's type. -/
 theorem ConPolyZono.aux_sum_univ_reduceCon (cPZ : ConPolyZono α) (r : Fin cPZ.cons.m)
-    (d : Fin cPZ.h) (t : Fin cPZ.cons.q) (a : Fin cPZ.p → ℝ) : -- --- STMT ---
+    (d : Fin cPZ.h) (t : Fin cPZ.cons.q) (a : Fin cPZ.p → ℝ) : -- --- CONCL ---
     ∑ i : Fin (cPZ.reduceCon r d t).h,
         PolyZonotope.monomial (cPZ.reduceCon r d t).E a i • (cPZ.reduceCon r d t).G i
       = ∑ i : Fin (cPZ.h - 1), PolyZonotope.monomial cPZ.E a (dropIdx d i) • cPZ.G (dropIdx d i)

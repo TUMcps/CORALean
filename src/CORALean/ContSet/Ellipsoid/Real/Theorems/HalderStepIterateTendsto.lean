@@ -66,7 +66,7 @@ theorem Ellipsoid.aux_limit_root [Nonempty ι] (hlam : ∀ i, 0 < lam i) {r L : 
 /-- [1, Thm. 3]: the iteration [1, Eq. 26] converges to the root of [1, Eq. 18]. -/
 theorem Ellipsoid.halderStep_iterate_tendsto [Nonempty ι] (hlam : ∀ i, 0 < lam i)
     {r : ℝ} (hr : 0 < r) (hroot : Ellipsoid.halderStationarity lam r = 0) {b₀ : ℝ}
-    (hb₀ : 0 < b₀) : -- --- STMT ---
+    (hb₀ : 0 < b₀) : -- --- CONCL ---
     Filter.Tendsto (fun n => (Ellipsoid.halderStep lam)^[n] b₀) Filter.atTop
       (nhds r) := by -- --- PROOF ---
   -- the orbit, positive throughout

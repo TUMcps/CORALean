@@ -44,7 +44,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 /-- [1, Thm. 1], convergence, as printed, fails: at `N = 1` it is [1, Lemma 2]'s bound,
 which `girardExample_spec` exceeds. -/
-theorem LinearSys.exists_lt_hausdorffDist_girardReach : -- --- STMT ---
+theorem LinearSys.exists_lt_hausdorffDist_girardReach : -- --- CONCL ---
     ∃ (sys : LinearSys ℝ 1) (I U : Zonotope (Vec ℝ 1)) (μ r s : ℝ) (N : ℕ),
       0 < ‖toRealMat sys.A‖ ∧ 0 < r ∧ 0 ≤ μ ∧ U.construct = Metric.closedBall 0 μ ∧ 1 ≤ N
       ∧ IsGreatest ((fun x => ‖x‖) '' I.construct) s

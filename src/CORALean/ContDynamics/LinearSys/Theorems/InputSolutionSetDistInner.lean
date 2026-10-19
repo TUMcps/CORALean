@@ -50,7 +50,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- A point of a finite Minkowski sum of images names one point per summand. -/
 theorem LinearSys.aux_exists_of_mem_sum (sys : LinearSys 𝕋 n) {U : S n} (Δt : ℝ)
-    (hne : (construct U).Nonempty) (m : ℕ) : -- --- STMT ---
+    (hne : (construct U).Nonempty) (m : ℕ) : -- --- CONCL ---
     ∀ x ∈ ∑ i ∈ Finset.range m, (fun v => sys.inputTerm Δt i *ᵥ v) '' construct U,
       ∃ s : ℕ → Vec ℝ n, (∀ i, s i ∈ construct U) ∧
         x = ∑ i ∈ Finset.range m, sys.inputTerm Δt i *ᵥ s i := by -- --- PROOF ---
@@ -153,7 +153,7 @@ theorem LinearSys.aux_tail_term_le (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 
 inner approximation, hence from the exact particular solution. -/
 theorem LinearSys.inputSolutionSet_dist_inputSolutionInner (sys : LinearSys 𝕋 n) {U : S n}
     {Δt ρ : ℝ} (hΔt : 0 < Δt) (hAΔ : Δt * ‖toRealMat sys.A‖ ≤ 1)
-    (hne : (construct U).Nonempty) (hρ : ∀ v ∈ construct U, ‖v‖ ≤ ρ) (η : ℕ) : -- --- STMT ---
+    (hne : (construct U).Nonempty) (hρ : ∀ v ∈ construct U, ‖v‖ ≤ ρ) (η : ℕ) : -- --- CONCL ---
     ∀ x ∈ sys.inputSolutionSet U Δt η, ∃ y ∈ sys.inputSolutionInner U Δt,
       ‖x - y‖ ≤ ρ * ‖toRealMat sys.A‖
         * (2 * (n : ℝ) + 2 + Real.exp (Δt * ‖toRealMat sys.A‖)) * Δt ^ 2 := by -- --- PROOF ---

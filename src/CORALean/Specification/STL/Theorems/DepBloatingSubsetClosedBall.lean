@@ -45,7 +45,7 @@ variable {n : ℕ}
 
 /-- The Minkowski sum of the first `κ` images stays in the sum of their balls. -/
 theorem STL.aux_foldl_subset_closedBall (A : Mat ℝ n n) (U₀ : Zonotope (Vec ℝ n)) (Δt r : ℝ)
-    (hU : U₀.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r) (κ : ℕ) : -- --- STMT ---
+    (hU : U₀.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r) (κ : ℕ) : -- --- CONCL ---
     ((List.range κ).foldl
       (fun Z j => Z.plus (Zonotope.mtimes (MatExp.particularCoeff A Δt (j + 1)) U₀))
       (Zonotope.ofPoint 0)).construct
@@ -66,7 +66,7 @@ theorem STL.aux_foldl_subset_closedBall (A : Mat ℝ n n) (U₀ : Zonotope (Vec 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.depBloating_subset_closedBall (A : Mat ℝ n n) (U₀ : Zonotope (Vec ℝ n)) (Δt : ℝ)
-    (κ : ℕ) {r : ℝ} (hU : U₀.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r) : -- --- STMT ---
+    (κ : ℕ) {r : ℝ} (hU : U₀.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r) : -- --- CONCL ---
     (STL.depBloating A U₀ Δt κ).construct ⊆ Metric.closedBall (0 : Vec ℝ n)
       (‖∑ j ∈ Finset.Icc 1 κ, MatExp.particularCoeff A Δt j‖ * r
         + ∑ j ∈ Finset.range κ, ‖MatExp.particularCoeff A Δt (j + 1)‖ * r

@@ -49,7 +49,7 @@ namespace CORALean.Real
 /-- The first index whose cumulative weight passes `τ`, among those carrying weight. -/
 theorem Zonotope.aux_pick {ι : Type} [Fintype ι] (r : ι → ℤ) (hr : Function.Injective r)
     (ω : ι → ℝ) (A : Finset ι) (hA : A.Nonempty) (hω : ∀ j, j ∉ A → ω j = 0) {τ : ℝ}
-    (h0 : 0 ≤ τ) (hW : τ ≤ ∑ j, ω j) : -- --- STMT ---
+    (h0 : 0 ≤ τ) (hW : τ ≤ ∑ j, ω j) : -- --- CONCL ---
     ∃ a ∈ A, (∑ j, if r j < r a then ω j else 0) ≤ τ ∧
       τ ≤ (∑ j, if r j < r a then ω j else 0) + ω a := by -- --- PROOF ---
   classical
@@ -133,7 +133,7 @@ theorem Zonotope.aux_step (Z : Zonotope (Vec ℝ 2)) {r : Fin Z.h → ℤ} (hr :
 /-- The abscissa of the corner before `a`, along `σ`, is the lowest corner's plus the weight before
 it, when no generator before `a` points against `σ`. -/
 theorem Zonotope.aux_prefix_abscissa (Z : Zonotope (Vec ℝ 2)) (σ : ℝ) (r : Fin Z.h → ℤ)
-    (a : Fin Z.h) (hpred : ∀ j, r j < r a → 0 ≤ σ * Z.G j 0) : -- --- STMT ---
+    (a : Fin Z.h) (hpred : ∀ j, r j < r a → 0 ≤ σ * Z.G j 0) : -- --- CONCL ---
     σ * Z.corner (fun j => decide (r j < r a)) 0
       = σ * Z.corner (fun _ => false) 0
         + ∑ j, if r j < r a then 2 * max (σ * Z.G j 0) 0 else 0 := by -- --- PROOF ---
@@ -155,7 +155,8 @@ theorem Zonotope.aux_edge (Z : Zonotope (Vec ℝ 2)) {σ : ℝ} (hσ : σ = 1 �
     (hord : ∀ i j, r i < r j → 0 ≤ σ * (Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0)) (γ : ℝ)
     (a : Fin Z.h) (haX : 0 < σ * Z.G a 0)
     (hlo : 0 ≤ σ * (γ - Z.corner (fun j => decide (r j < r a)) 0))
-    (hhi : σ * (γ - Z.corner (fun j => decide (r j < r a)) 0) ≤ 2 * (σ * Z.G a 0)) : -- --- STMT ---
+    (hhi : σ * (γ - Z.corner (fun j => decide (r j < r a)) 0) ≤
+      2 * (σ * Z.G a 0)) : -- --- CONCL ---
     ∃ y : ℝ,
       (![γ, y] : Vec ℝ 2) ∈ segment ℝ (Z.corner fun j => decide (r j < r a))
         (Z.corner fun j => decide (r j ≤ r a)) ∧
@@ -197,7 +198,7 @@ theorem Zonotope.exists_edge_least_section (Z : Zonotope (Vec ℝ 2)) (hh : 0 < 
     {r : Fin Z.h → ℤ} (hr : Function.Injective r)
     (hord : ∀ i j, r i < r j → 0 ≤ σ * (Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0)) (γ : ℝ)
     (hγ : 0 ≤ σ * (γ - Z.corner (fun _ => false) 0))
-    (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.construct) : -- --- STMT ---
+    (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.construct) : -- --- CONCL ---
     ∃ a : Fin Z.h, ∃ y : ℝ,
       (![γ, y] : Vec ℝ 2) ∈ segment ℝ (Z.corner fun j => decide (r j < r a))
         (Z.corner fun j => decide (r j ≤ r a)) ∧

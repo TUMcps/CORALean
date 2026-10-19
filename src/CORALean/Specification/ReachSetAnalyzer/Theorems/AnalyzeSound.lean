@@ -38,7 +38,7 @@ theorem ReachSetAnalyzer.analyze_sound (aps : List (String × AtomicProposition 
     (masks : List (String × FiniteSignal ℝ Bool)) (hd : 0 ≤ dur) (hnd : (aps.map Prod.fst).Nodup)
     (R : List (ReachSetAnalyzer.Entry S n))
     (hR : ∀ e ∈ R, ∀ s ∈ e.timeInterval, s.time.inf < s.time.sup)
-    (outs : List (List (String × FiniteSignal ℝ Kleene))) : -- --- STMT ---
+    (outs : List (List (String × FiniteSignal ℝ Kleene))) : -- --- CONCL ---
     ∀ obj ∈ ReachSetAnalyzer.mk? aps dur masks,
       obj.analyze (𝕋 := 𝕋) R = some outs →
       ∀ out ∈ outs, ∃ w, ReachSetAnalyzer.Branch (ReachSetAnalyzer.children R) 0 w ∧

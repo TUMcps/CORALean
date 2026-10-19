@@ -36,7 +36,7 @@ open ContSet
 
 theorem StarSet.reluNeuron_outer {n : ℕ} (s : StarSet ℋ𝒫 n) (j : Fin n)
     (b : Interval ℝ)
-    (hb : ∀ x ∈ construct s, b.inf ≤ x j ∧ x j ≤ b.sup) : -- --- STMT ---
+    (hb : ∀ x ∈ construct s, b.inf ≤ x j ∧ x j ≤ b.sup) : -- --- CONCL ---
     (fun (x : Vec ℝ n) => (Function.update x j (Real.relu (x j)) : Vec ℝ n)) '' construct s
       ⊆ construct (s.reluNeuron j b) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩

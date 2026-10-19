@@ -10,6 +10,15 @@ public import CORALean.ContSet.Capsule.Real.Capsule
 CORA's `center` is the field `c`. It lies in the capsule at the segment parameter `t = 0`,
 where the distance to it is `Real.sqrt 0 = 0`, so the only thing that can exclude it is a
 negative radius, which denotes `∅`.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* the center lies in `C` iff `0 ≤ C.r`
 -/
 
 -- Authors:       Claude Opus 5.5

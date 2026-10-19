@@ -31,7 +31,7 @@ namespace CORALean.Real
 
 /-- A linear layer's forward and backward steps, at most `25 N² Q`. -/
 theorem SetBasedNet.aux_linear_le {m n h N Q : ℕ} (hN : 1 ≤ N) (hh : 1 ≤ h) (hmN : m ≤ N)
-    (hnN : n ≤ N) (hhQ : h ≤ Q) : -- --- STMT ---
+    (hnN : n ≤ N) (hhQ : h ≤ Q) : -- --- CONCL ---
     (Zonotope.mtimesCost m n h + Zonotope.plusCost m h 0 + Zonotope.mtimesCost n m h +
       (⟨2 * (m * n * (h + 1)) + 2 * (m * n) + m * n⟩ : Cost) + (⟨2 * m + m⟩ : Cost)).ops ≤
         25 * (N * N * Q) := by -- --- PROOF ---
@@ -58,7 +58,7 @@ theorem SetBasedNet.aux_linear_le {m n h N Q : ℕ} (hN : 1 ≤ N) (hh : 1 ≤ h
 
 /-- A nonlinear layer's forward and backward steps. -/
 theorem SetBasedNet.aux_nonlinear_le (cNeuron cBack : Cost) {n h N Q : ℕ} (hN : 1 ≤ N)
-    (hh : 1 ≤ h) (hnN : n ≤ N) (hhQ : h ≤ Q) : -- --- STMT ---
+    (hh : 1 ≤ h) (hnN : n ≤ N) (hhQ : h ≤ Q) : -- --- CONCL ---
     (Zonotope.imageEnclosureCost n h cNeuron + (⟨n * (2 * h + 2) + n + 11 * (n * (h + 1))⟩ : Cost) +
       (n * (h + 1)) • cBack).ops ≤
         (cNeuron.ops + 17) * (N * N * Q) + 27 * (N * N * Q) +
@@ -97,7 +97,7 @@ theorem SetBasedNet.aux_output_le (cGrad : Cost) {n h N Q : ℕ} (hN : 1 ≤ N) 
 
 /-- Every iteration, `κ + 1` terms each at most `C N² Q`. -/
 theorem SetBasedNet.trainingCost_le_succ (cNeuron cGrad cBack : Cost) {N Q : ℕ} (hN : 1 ≤ N)
-    {n k : ℕ} (net : SetBasedNet n k) : -- --- STMT ---
+    {n k : ℕ} (net : SetBasedNet n k) : -- --- CONCL ---
     ∀ h, 1 ≤ h → net.maxWidth ≤ N → h + net.neurons ≤ Q →
       (net.trainingCost cNeuron cGrad cBack h).ops ≤
         (cNeuron.ops + 2 * cBack.ops + 2 * cGrad.ops + 50) * (N * N * Q) *

@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ProbZonotope.gaussPdf_le_max (P : ProbZonotope 𝕋 n) (m : 𝕋) (p k : ℕ) {S : Mat ℝ n n}
     (hS : S ∈ P.cov.construct) (hSh : S.IsHermitian) (c : Vec ℝ n) (x : EuclideanSpace ℝ (Fin n))
-    (hx : toReal m ^ 2 ≤ (ofLp x - c) ⬝ᵥ S⁻¹ *ᵥ (ofLp x - c)) : -- --- STMT ---
+    (hx : toReal m ^ 2 ≤ (ofLp x - c) ⬝ᵥ S⁻¹ *ᵥ (ofLp x - c)) : -- --- CONCL ---
     ∀ v ∈ P.max m p k,
       Real.gaussPdf c S x ≤ toReal v := by -- --- PROOF ---
   intro v (hv : P.max m p k = some v)

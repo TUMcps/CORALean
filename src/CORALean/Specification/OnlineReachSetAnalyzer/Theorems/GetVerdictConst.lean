@@ -28,7 +28,7 @@ variable {S : ℕ → Type} {d : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem OnlineReachSetAnalyzer.getVerdict_const (f : ℕ) (dp : Bool) : -- --- STMT ---
+theorem OnlineReachSetAnalyzer.getVerdict_const (f : ℕ) (dp : Bool) : -- --- CONCL ---
     ∀ obj' ∈ OnlineReachSetAnalyzer.mk?
         (OnlineReachSetAnalyzer.Formula.ff : OnlineReachSetAnalyzer.Formula (AtomicProposition S d))
         f dp,

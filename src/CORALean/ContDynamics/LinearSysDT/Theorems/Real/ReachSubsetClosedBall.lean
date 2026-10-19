@@ -58,7 +58,8 @@ input's — crude, from bounding a step's box by its own pre-reduction width. -/
 theorem LinearSysDT.reach_subset_closedBall (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 < o)
     {R₀ U : Zonotope (Vec ℝ n)} {r₀ rU : ℝ}
     (hR₀ : R₀.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r₀) (hr₀ : 0 ≤ r₀)
-    (hU : U.construct ⊆ Metric.closedBall (0 : Vec ℝ n) rU) (hrU : 0 ≤ rU) (k : ℕ) : -- --- STMT ---
+    (hU : U.construct ⊆ Metric.closedBall (0 : Vec ℝ n) rU) (hrU : 0 ≤ rU)
+    (k : ℕ) : -- --- CONCL ---
     (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct
       ⊆ Metric.closedBall (0 : Vec ℝ n) ((2 * ‖sys.A‖) ^ k * r₀
         + 2 * rU * ∑ j ∈ Finset.range k, (2 * ‖sys.A‖) ^ j) := by -- --- PROOF ---

@@ -41,7 +41,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The same sum read against the kept factors alone. -/
 theorem PolyZonotope.aux_sum_compactFactors (pZ : PolyZonotope α)
-    (a : Fin pZ.p → ℝ) : -- --- STMT ---
+    (a : Fin pZ.p → ℝ) : -- --- CONCL ---
     (∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i)
       = ∑ i : Fin pZ.compactFactors.h, PolyZonotope.monomial pZ.compactFactors.E
           (fun k => a (PolyZonotope.factorIdx pZ.E k)) i
@@ -56,7 +56,7 @@ theorem PolyZonotope.aux_sum_compactFactors (pZ : PolyZonotope α)
 inclusion supplies. Stated separately, since obtaining it from
 `sum_compactFactors` would rewrite under a binder typed by a projection. -/
 theorem PolyZonotope.aux_sum_compactFactors_extend (pZ : PolyZonotope α)
-    (a : Fin pZ.compactFactors.p → ℝ) : -- --- STMT ---
+    (a : Fin pZ.compactFactors.p → ℝ) : -- --- CONCL ---
     (∑ i, PolyZonotope.monomial pZ.E (PolyZonotope.factorExtend pZ.E a) i • pZ.G i)
       = ∑ i : Fin pZ.compactFactors.h,
           PolyZonotope.monomial pZ.compactFactors.E a i

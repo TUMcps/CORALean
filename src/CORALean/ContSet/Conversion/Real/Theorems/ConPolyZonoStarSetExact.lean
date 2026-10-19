@@ -45,7 +45,7 @@ variable {n : ℕ}
 
 /-- The constraint rows say the constraint of the factors, the other two blocks in the unit box. -/
 theorem ConPolyZono.aux_mem_starConsRows (cPZ : ConPolyZono (Vec ℝ n))
-    (ζ : Vec ℝ (cPZ.p + cPZ.qI + cPZ.h)) : -- --- STMT ---
+    (ζ : Vec ℝ (cPZ.p + cPZ.qI + cPZ.h)) : -- --- CONCL ---
     ζ ∈ cPZ.starConsRows.construct
       ↔ ((fun k => ζ (Fin.castAdd cPZ.h (Fin.castAdd cPZ.qI k))) ∈ cPZ.cons.construct
         ∧ (fun j => ζ (Fin.castAdd cPZ.h (Fin.natAdd cPZ.p j))) ∈ (Interval.unit cPZ.qI).construct)
@@ -56,7 +56,7 @@ theorem ConPolyZono.aux_mem_starConsRows (cPZ : ConPolyZono (Vec ℝ n))
 
 /-- The generator rows say each `z` is its generator's monomial at the factors, on the unit box. -/
 theorem ConPolyZono.aux_mem_starGenRows (cPZ : ConPolyZono (Vec ℝ n))
-    (ζ : Vec ℝ (cPZ.p + cPZ.qI + cPZ.h)) : -- --- STMT ---
+    (ζ : Vec ℝ (cPZ.p + cPZ.qI + cPZ.h)) : -- --- CONCL ---
     ζ ∈ cPZ.starGenRows.construct ↔ ζ ∈ (Interval.unit _).construct
       ∧ ∀ l, ζ (Fin.natAdd (cPZ.p + cPZ.qI) l)
       = PolyZonotope.monomial cPZ.E (fun k => ζ (Fin.castAdd cPZ.h (Fin.castAdd cPZ.qI k)))
@@ -85,7 +85,7 @@ theorem ConPolyZono.aux_mem_starGenRows (cPZ : ConPolyZono (Vec ℝ n))
 /-- The star set's point at `(α, β, z)`, one coordinate: the generators on `z`, the independent
 ones on `β`. -/
 theorem ConPolyZono.aux_starSet_point (cPZ : ConPolyZono (Vec ℝ n))
-    (ζ : Vec ℝ (cPZ.p + cPZ.qI + cPZ.h)) (i : Fin n) : -- --- STMT ---
+    (ζ : Vec ℝ (cPZ.p + cPZ.qI + cPZ.h)) (i : Fin n) : -- --- CONCL ---
     ∑ k, cPZ.starSet.G i k * ζ k
       = (∑ l, cPZ.G l i * ζ (Fin.natAdd (cPZ.p + cPZ.qI) l))
         + ∑ j, cPZ.GI j i * ζ (Fin.castAdd cPZ.h (Fin.natAdd cPZ.p j)) := by -- --- PROOF ---

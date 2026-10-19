@@ -87,7 +87,7 @@ theorem MatExp.aux_abs_constCorrTerm_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 ≤ 
 /-- Neither endpoint of the integrated correction matrix leaves the ball the
 step and the order name. -/
 theorem MatExp.abs_constCorrectionMatrix_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 ≤ r) {η : ℕ}
-    (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) (j k : Fin n) : -- --- STMT ---
+    (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) (j k : Fin n) : -- --- CONCL ---
     |(MatExp.constCorrectionMatrix A r η).inf j k|
         ≤ r * (Real.exp (r * ‖A‖) - 1) + r * MatExp.expRemainderBound (r • A) η
       ∧ |(MatExp.constCorrectionMatrix A r η).sup j k|

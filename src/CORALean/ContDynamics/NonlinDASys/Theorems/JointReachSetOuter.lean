@@ -46,7 +46,7 @@ theorem NonlinDASys.jointReachSet_outer {xs : Vec ℝ n} {ys : Vec ℝ p} {us : 
     {R_d : Zonotope (Vec ℝ n)} {U : Zonotope (Vec ℝ m)} {L_a : Zonotope (Vec ℝ p)}
     {x : Vec ℝ n} {y : Vec ℝ p} {u : Vec ℝ m} {ℓa : Vec ℝ p} (hx : x ∈ R_d.construct)
     (hu : u ∈ U.construct) (hl : ℓa ∈ L_a.construct)
-    (hg : g₀ + D *ᵥ (x - xs) + E *ᵥ (u - us) + F *ᵥ (y - ys) + ℓa = 0) : -- --- STMT ---
+    (hg : g₀ + D *ᵥ (x - xs) + E *ᵥ (u - us) + F *ᵥ (y - ys) + ℓa = 0) : -- --- CONCL ---
     (x, y) ∈
       (NonlinDASys.jointReachSet xs ys us g₀ D E F_inv R_d U L_a).construct := by -- --- PROOF ---
   obtain ⟨βd, hβd, rfl⟩ := hx

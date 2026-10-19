@@ -56,7 +56,7 @@ esac
 # call and the tree is the evidence for it. Each is at or just above the trimmed
 # tree's worst case, so raising one is a decision rather than a drift.
 MAX_LINE=100          # characters, not bytes
-MAX_MODULE_DOC=20     # module docstring, content file
+MAX_MODULE_DOC=12     # module docstring, content file: the prose, not the Inputs/Output sections (#251)
 MAX_COLLECTOR_DOC=25  # module docstring, collector: it is the directory entry point
 MAX_DECL_DOC=3        # docstring ahead of a declaration
 MAX_LINES_WO_COMMENT=20  # a minimum density, not a maximum: proofs need signposts
@@ -110,6 +110,7 @@ ZEROCOST_LIST=scripts/zero-cost-allowlist.txt
 # one (a module cannot import a non-module). The list only shrinks: an entry
 # that is a module now, or is gone, is reported as stale.
 NONMODULE_LIST=scripts/non-module-allowlist.txt
+PROSE_LIST=scripts/prose-cap-allowlist.txt
 
 # Pairs `ℝ × ℝ`, `𝕋 × 𝕋`, `α × α`, `EReal × EReal`, and structures with sibling fields named
 # `…Inf`/`…Sup`, `…Lo`/`…Hi` or `lo…`/`hi…` (CONTRIBUTING, "Bounds of one quantity"): the lower
@@ -234,6 +235,7 @@ if [ -n "$STAGED" ]; then
   ALLOWLIST=$repo/$ALLOWLIST
   ZEROCOST_LIST=$repo/$ZEROCOST_LIST
   NONMODULE_LIST=$repo/$NONMODULE_LIST
+  PROSE_LIST=$repo/$PROSE_LIST
   PAIR_LIST=$repo/$PAIR_LIST
   CLASS_LIST=$repo/$CLASS_LIST
   OPS_THEOREM_LIST=$repo/$OPS_THEOREM_LIST
@@ -278,6 +280,7 @@ out=$(awk \
   -v BENCH_DIR="$BENCH_DIR" \
   -v LAKE_ROOTS="$lake_roots" \
   -v NONMOD="$NONMODULE_LIST" \
+  -v PROSELIST="$PROSE_LIST" \
   -v PAIRLIST="$PAIR_LIST" \
   -v ZEROLIST="$ZEROCOST_LIST" \
   -v CEXLIST="$cexlist" \
@@ -358,6 +361,21 @@ BEGIN {
     nonmodLine[p] = nmFNR
   }
   close(NONMOD)
+
+  # The prose-cap list (#251): `<path>` per line, `#` comments and blank lines ignored. A content
+  # file whose module-docstring prose is over the cap and that is listed here is let through; the
+  # list only shrinks, and an entry whose file is within the cap (or gone) is reported as stale.
+  while ((getline pline < PROSELIST) > 0) {
+    prFNR++
+    line = pline
+    sub(/^[ \t]+/, "", line)
+    if (line == "" || line ~ /^#/) continue
+    if (line in proseAllow)
+      say(PROSELIST ":" prFNR ": duplicate entry `" line "` (first at line " proseLine[line] ")")
+    proseAllow[line] = 1
+    proseLine[line] = prFNR
+  }
+  close(PROSELIST)
 
   # The pair list: `<path>  <reason>` per line, as the non-module list above.
   while ((getline pline < PAIRLIST) > 0) {
@@ -573,11 +591,12 @@ function endRun(f) {
 function closeBlock(e,   len) {
   len = e - blockStart + 1
   if (blockKind == "mod") {
-    # The cap is on the prose. A `## References` block is a bibliography, which
-    # does not grow the way an explanation does, so it is measured out.
+    # The cap is on the prose. A `## References` block is a bibliography and the `## Inputs` /
+    # `## Hypotheses` / `## Output` / `## Conclusion` sections list the main declaration'"'"'s
+    # arguments (#251); neither grows the way an explanation does, so both are measured out.
     if (docLine == 0) {
       docLine = blockStart; docEnd = e
-      docLen = (refsLine > 0) ? refsLine - blockStart : len
+      docLen = (secLine > 0) ? secLine - blockStart : len
     }
   } else if (blockKind == "doc") {
     if (len > MAX_DECL_DOC)
@@ -613,7 +632,8 @@ function check(f,   i, n, collector, want, dir, cap, nroot, rootList, isRoot) {
   } else {
     cap = collector ? MAX_COLLECTOR_DOC : MAX_MODULE_DOC
     if (f ~ /\/Counterexamples\// && nh1 > 1) cap = MAX_MODULE_DOC * nh1
-    if (docLen > cap)
+    if (docLen > cap && (f in proseAllow)) proseHit[f] = 1
+    else if (docLen > cap)
       say(f ":" docLine ": module docstring is " docLen " lines, over " cap \
           " — keep what is non-obvious about this file and drop the rest")
   }
@@ -828,7 +848,7 @@ FNR == 1 {
   depth = 0; nimp = 0; docLine = 0; docLen = 0; docEnd = 0
   authorLine = 0; blockEnd = 0; revDash = 0; codeLine = 0; nsLine = 0; ns = ""
   blockKind = ""; blockStart = 0; declDocEnd = 0
-  prevPureComment = 0; prevLineComment = 0; run = 0; blanks = 0; inRefs = 0; refsLine = 0
+  prevPureComment = 0; prevLineComment = 0; run = 0; blanks = 0; inRefs = 0; refsLine = 0; secLine = 0
   firstDeclSeen = 0; firstBodyFound = 0; firstBodyLine = 0
   npub = 0; nDeclTotal = 0; lastFNR = 0; defPending = 0; nh1 = 0; cexWord = 0; cexNeg = 0; cexDecl = ""; sigOpen = 0
   beginCount = 0; endCount = 0; auxCount = 0; mainishCount = 0
@@ -1003,7 +1023,12 @@ FNR == 1 {
   # number in brackets is citing one.
   if (lineKind == "mod") {
     if (raw ~ /^# /) nh1++
-    if (raw ~ /^#+ References[ \t]*$/) { inRefs = 1; if (refsLine == 0) refsLine = FNR }
+    if (raw ~ /^## (Inputs|Hypotheses|Output|Conclusion)[ \t]*$/ && secLine == 0) secLine = FNR
+    if (raw ~ /^#+ References[ \t]*$/) {
+      inRefs = 1
+      if (refsLine == 0) refsLine = FNR
+      if (secLine == 0) secLine = FNR
+    }
     else if (raw ~ /^#+ /) inRefs = 0
     if (inRefs && raw ~ /^\* \[[0-9]+\] /) {
       num = raw; sub(/^\* \[/, "", num); sub(/\].*$/, "", num)
@@ -1355,6 +1380,12 @@ END {
     else if (!(p in pairSeen))
       say(PAIRLIST ":" pairLine[p] ": stale entry `" p "` — the file spells no such pair now;" \
           " the list only shrinks")
+  for (p in proseAllow)
+    if (!(p in seenFile))
+      say(PROSELIST ":" proseLine[p] ": stale entry `" p "` — no such file")
+    else if (!(p in proseHit))
+      say(PROSELIST ":" proseLine[p] ": stale entry `" p "` — the prose is within the cap now;" \
+          " the list only shrinks")
   for (p in nonmodOK) {
     if (p ~ /^src\/CORALean\/Examples\//)
       say(NONMOD ":" nonmodLine[p] ": `" p "` is under `Examples/`, which needs no entry")
@@ -1643,18 +1674,18 @@ END { if (nf > 0) checkfile() }
 ' | sort)
 report "$out"
 
-# The statement flag (#222). Where a signature runs to five lines or more (the PROOF flag's own
+# The conclusion flag (#222). Where a signature runs to five lines or more (the PROOF flag's own
 # threshold, counted the same way: the `theorem`/`lemma` line to the `:= by` line, inclusive),
-# the colon that closes the binders ends its line with `-- --- STMT ---`, so that what is given
+# the colon that closes the binders ends its line with `-- --- CONCL ---`, so that what is given
 # sits above the flag and what should hold below it, as the PROOF flag marks where the claim stops.
 # Required there and refused on a shorter signature, on a line whose text before the flag does not
 # end with `:`, and on the `:= by` line itself (the conclusion starts below the flag). Theorems the
 # tree-wide pass could not place, because the colon line has no room for the flag, are listed in
-# `scripts/stmt-marker-allowlist.txt` as `path::name`, one per line; the list only shrinks, and an
+# `scripts/concl-marker-allowlist.txt` as `path::name`, one per line; the list only shrinks, and an
 # entry whose theorem carries the flag, is shorter or is gone is reported as stale.
 # Read from `$repo`: `--staged` runs inside a checkout of the staged files alone.
-out=$(awk -v MIN=5 -v LIST=scripts/stmt-marker-allowlist.txt \
-    -v PATHLIST="$repo/scripts/stmt-marker-allowlist.txt" -v STALE="${STAGED:-}" '
+out=$(awk -v MIN=5 -v LIST=scripts/concl-marker-allowlist.txt \
+    -v PATHLIST="$repo/scripts/concl-marker-allowlist.txt" -v STALE="${STAGED:-}" '
 function isdecl(s) {
   return s ~ /^(@\[[^]]*\][ \t]*)?(private |protected |noncomputable |scoped )*(theorem|lemma)[ \t]/
 }
@@ -1697,29 +1728,29 @@ function checkfile(   i, j, c, ch, depth, end, s, sig, m, nm, key, marks, legit)
     sig = end - i + 1; nm = declname(L[i]); key = fname "::" nm
     marks = 0
     for (j = i; j <= end; j++)
-      if (L[j] ~ /-- --- STMT ---/) {
+      if (L[j] ~ /-- --- CONCL ---/) {
         marks++; legit[j] = 1
         s = L[j]
-        if (s !~ /:[ \t]*-- --- STMT ---$/ || s ~ /:= by/ || j == end)
-          print fname ":" j ": the statement flag reads `: -- --- STMT ---` at the end of the line" \
+        if (s !~ /:[ \t]*-- --- CONCL ---$/ || s ~ /:= by/ || j == end)
+          print fname ":" j ": the conclusion flag reads `: -- --- CONCL ---` at the end of the line" \
                 " that closes the binders, with the conclusion starting below it"
       }
     if (sig >= MIN && marks == 0) {
       if (key in allow) hit[key] = 1
       else
-        print fname ":" i ": a signature of " sig " lines needs `-- --- STMT ---` after the colon" \
+        print fname ":" i ": a signature of " sig " lines needs `-- --- CONCL ---` after the colon" \
               " that closes its binders (what is given above, what should hold below)"
     }
     if (sig >= MIN && marks > 1)
-      print fname ":" i ": more than one statement flag in the signature of " nm
+      print fname ":" i ": more than one conclusion flag in the signature of " nm
     if (sig < MIN && marks > 0)
-      print fname ":" i ": the statement flag marks a signature of " sig " lines — it is for " MIN \
+      print fname ":" i ": the conclusion flag marks a signature of " sig " lines — it is for " MIN \
             " or more"
     i = end + 1
   }
   for (i = 1; i <= nf; i++)
-    if (L[i] ~ /-- --- STMT ---/ && !(i in legit))
-      print fname ":" i ": the statement flag belongs in the signature of a `theorem` or `lemma`"
+    if (L[i] ~ /-- --- CONCL ---/ && !(i in legit))
+      print fname ":" i ": the conclusion flag belongs in the signature of a `theorem` or `lemma`"
 }
 BEGIN {
   while ((getline l < PATHLIST) > 0) { if (l ~ /^#/ || l == "") continue; allow[l] = 1; aln[l] = ++na }
@@ -1957,7 +1988,7 @@ report "$out"
 if [ -z "$STAGED" ]; then
   for helper in check-float-wrappers.py check-algorithm-steps.py check-repeated-subterms.py \
     check-dt-twins.py check-single-use.py check-prop-names.py check-absorb-rounding.py \
-    check-exact-names.py check-option-hyps.py check-thesis-refs.py \
+    check-exact-names.py check-option-hyps.py check-thesis-refs.py check-io-doc.py \
     check-component-reuse.py check-float-refinement.py check-steps.py; do
     helper_err=$(mktemp)
     out=$($PYTHON "scripts/$helper" 2> "$helper_err") && helper_rc=0 || helper_rc=$?

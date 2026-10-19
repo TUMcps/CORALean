@@ -33,7 +33,7 @@ variable {n r : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.computeGOFloat_outer (sys : LinearSysDT 𝕋 n) (out : OutputEq 𝕋 n n r)
-    (nk : ℕ) (k j : Fin nk) : -- --- STMT ---
+    (nk : ℕ) (k j : Fin nk) : -- --- CONCL ---
     let G := sys.computeGO out nk
     let F := sys.computeGOFloat out nk
     G.A k ∈ (F.A k).construct ∧ G.B k j ∈ (F.B k j).construct ∧ G.C k ∈ (F.C k).construct ∧

@@ -40,7 +40,7 @@ variable {X : Type}
 
 theorem STL.CNF.sat_upsilon (c : ℝ≥0) (cnf : STL.CNF X) (R : ℝ≥0 → Set X)
     (h₀ : (R 0).Nonempty)
-    (hne : ∀ clause ∈ cnf, ∀ b ∈ clause, (R (c / 2 + b.j * c)).Nonempty) : -- --- STMT ---
+    (hne : ∀ clause ∈ cnf, ∀ b ∈ clause, (R (c / 2 + b.j * c)).Nonempty) : -- --- CONCL ---
     (cnf.upsilon c).Sat R ↔ ∀ clause ∈ cnf, ∃ b ∈ clause,
       ((∀ r ∈ R (c / 2 + b.j * c), (Pform.bigOr b.K).Sat r) ∨
         ∃ ϱ ∈ b.L, ∀ r ∈ R (c / 2 + b.j * c), (ϱ.or (Pform.bigOr b.K)).Sat r) ∨

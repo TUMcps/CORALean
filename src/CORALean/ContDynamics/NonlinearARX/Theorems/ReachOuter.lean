@@ -41,7 +41,7 @@ theorem NonlinearARX.reach_outer (sys : NonlinearARX dy du p) {o : ℕ} (ho : 0 
         v ∈ construct V)
     (steps : ℕ → sys.toNonlinearSysDT.LinStep 𝕋 V)
     {y : ℕ → Vec ℝ dy} {u : ℕ → Vec ℝ du} (traj : sys.IsTrajectory Y₀ U y u)
-    (hR : ∀ k, NonlinearARX.stack p y k ∈ (steps k).R) (k : ℕ) : -- --- STMT ---
+    (hR : ∀ k, NonlinearARX.stack p y k ∈ (steps k).R) (k : ℕ) : -- --- CONCL ---
     NonlinearARX.stack p y k ∈ construct
       (sys.toNonlinearSysDT.reach ⟨Y₀, V, 0, k⟩ ⟨o, ho⟩ steps) :=
   sys.toNonlinearSysDT.reach_outer ho steps Y₀ (sys.toNonlinearSysDT_isTrajectory hV traj) hR k

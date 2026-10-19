@@ -31,7 +31,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 theorem SpectraShadow.supportFunc_eq_of_complementary (S : SpectraShadow α) (c : α →ₗ[ℝ] ℝ)
     (Y : Mat ℝ S.k S.k) (hY : Y.PosSemidef) (hc : ∀ i, (S.A i * Y).trace = - c (S.G i))
     (β : Fin S.m → ℝ) (hβ : (S.A₀ + ∑ i, β i • S.A i).PosSemidef)
-    (hslack : ((S.A₀ + ∑ i, β i • S.A i) * Y).trace = 0) : -- --- STMT ---
+    (hslack : ((S.A₀ + ∑ i, β i • S.A i) * Y).trace = 0) : -- --- CONCL ---
     S.supportFunc c = ((c S.c + (S.A₀ * Y).trace : ℝ) : EReal)
       ∧ c (S.c + ∑ i, β i • S.G i) = c S.c + (S.A₀ * Y).trace := by -- --- PROOF ---
   -- the point's value, from the slack and the certificate

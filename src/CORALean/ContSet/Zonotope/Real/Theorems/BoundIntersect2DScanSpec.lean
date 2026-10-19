@@ -80,7 +80,7 @@ theorem Zonotope.aux_scan_sorted (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
     (hup : Fin.foldl Z.h (fun s j => (s.1 + (2 : ℝ) • Z.G j,
       Zonotope.scanEdge γ s.1 (s.1 + (2 : ℝ) • Z.G j) s.2)) (P₀, (⟨⊤, ⊥⟩ : Interval EReal)) = up)
     (hdown : Fin.foldl Z.h (fun s j => (s.1 - (2 : ℝ) • Z.G j,
-      Zonotope.scanEdge γ s.1 (s.1 - (2 : ℝ) • Z.G j) s.2)) up = down) : -- --- STMT ---
+      Zonotope.scanEdge γ s.1 (s.1 - (2 : ℝ) • Z.G j) s.2)) up = down) : -- --- CONCL ---
     {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.construct}
       = {y : ℝ | down.2.inf ≤ y ∧ (y : EReal) ≤ down.2.sup} := by -- --- PROOF ---
   obtain ⟨u1, u2, u3, uA, uB, uC⟩ := Zonotope.scan_fold γ (fun j => (2 : ℝ) • Z.G j)

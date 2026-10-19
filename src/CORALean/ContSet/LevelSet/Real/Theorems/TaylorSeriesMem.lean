@@ -62,7 +62,7 @@ theorem aux_fderiv_eq_sum (f : Vec ℝ n → ℝ) (c v : Vec ℝ n) :
 
 theorem TaylorSeries.mem {f : Vec ℝ n → ℝ} {I : Interval (Vec ℝ n)} {κ : ℕ}
     (T : TaylorSeries f I κ) (hf : ContDiff ℝ (κ + 1) f) (hκ : 1 ≤ κ) {x : Vec ℝ n}
-    (hx : x ∈ I.construct) : -- --- STMT ---
+    (hx : x ∈ I.construct) : -- --- CONCL ---
     f x - (f I.center + ∑ i, taylorGrad f I.center i * (x i - I.center i)
       + taylorHigher f κ I.center x) ∈ Set.Icc T.l T.u := by -- --- PROOF ---
   obtain ⟨ξ, hξ, h⟩ := taylor_lagrange_convex hf (Interval.convex_construct I)

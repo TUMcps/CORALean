@@ -48,7 +48,7 @@ theorem GNN.messagePassing_submatrix_of_ball_uncertain {N m : ℕ} (A : Mat ℝ 
     (hκ : GNN.ball (GNN.adjMax A U) v (r + 1) ⊆ Finset.univ.image κ)
     {i j : Fin N} (hi : i ∈ GNN.ball (GNN.adjAt A U lam) v r)
     (hj : j ∈ GNN.ball (GNN.adjAt A U lam) v r) (ki kj : Fin K) (hki : κ ki = i)
-    (hkj : κ kj = j) : -- --- STMT ---
+    (hkj : κ kj = j) : -- --- CONCL ---
     GNN.messagePassing ((GNN.adjAt A U lam).submatrix κ κ) ki kj
       = GNN.messagePassing (GNN.adjAt A U lam) i j := by -- --- PROOF ---
   have hAnn : ∀ p q, 0 ≤ GNN.adjAt A U lam p q := fun p q => by

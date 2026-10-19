@@ -46,7 +46,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- `augment`'s field at `[x; a]` under the external input `e` is the plant's,
 `A x + B_nn a + B_ext e + c`, over a zero input part. -/
 theorem NeurNetContrSys.aux_augment_mulVec_append (sys : NeurNetContrSys (LinearSys 𝕋 n) S n)
-    (x : Vec ℝ n) (a : Vec ℝ sys.m) (e : Vec ℝ sys.nExt) : -- --- STMT ---
+    (x : Vec ℝ n) (a : Vec ℝ sys.m) (e : Vec ℝ sys.nExt) : -- --- CONCL ---
     sys.augment.A *ᵥ (Fin.append x a : Vec ℝ (n + sys.m)) + (sys.augment.B *ᵥ e + sys.augment.c) =
       Fin.append (toRealMat sys.plant.A *ᵥ x + leftCols sys.hm (toRealMat sys.plant.B) *ᵥ a +
         rightCols sys.hm (toRealMat sys.plant.B) *ᵥ e + toRealVec sys.plant.c)
@@ -68,7 +68,7 @@ theorem NeurNetContrSys.augment_flow (sys : NeurNetContrSys (LinearSys 𝕋 n) S
     {W : Set (Vec ℝ sys.plant.r)} (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0)
     {x : ℝ → Vec ℝ n} {a : Vec ℝ sys.m} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ sys.plant.r}
     (traj : ContDynamics.IsTrajectory sys.plant (Set.Icc 0 τ) Set.univ (sys.inputSet {a} U_ext) W x
-      (fun t => sys.input a (v t)) w) : -- --- STMT ---
+      (fun t => sys.input a (v t)) w) : -- --- CONCL ---
     ContinuousOn (fun t => (Fin.append (x t) a : Vec ℝ (n + sys.m))) (Set.Icc 0 τ) ∧
       (∀ t ∈ Set.Icc 0 τ, v t ∈ U_ext) ∧
       MeasureTheory.AEStronglyMeasurable (fun t => sys.augment.B *ᵥ v t + sys.augment.c)

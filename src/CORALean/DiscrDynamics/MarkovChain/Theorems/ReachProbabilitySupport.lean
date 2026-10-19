@@ -35,7 +35,7 @@ variable {n m : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real
 theorem MarkovChain.reachProbability_T_support (field : GridPartition n) (hn : n ≠ 0)
     (R : List (MarkovChain.ReachEntry S n)) (tranFrac : List ℝ)
     {s : Fin (field.nrOfCells + 1)} (hs : s ≠ 0)
-    (h : (MarkovChain.reachProbability field R tranFrac).T s ≠ 0) : -- --- STMT ---
+    (h : (MarkovChain.reachProbability field R tranFrac).T s ≠ 0) : -- --- CONCL ---
     ∃ r ∈ R, (s : ℕ) ∈ field.intersectingCellsOf r.timePoint := by -- --- PROOF ---
   have hs1 : 1 ≤ (s : ℕ) := Nat.one_le_iff_ne_zero.mpr (fun h0 => hs (Fin.ext h0))
   have hs2 : (s : ℕ) ≤ field.nrOfCells := Nat.lt_succ_iff.mp s.isLt

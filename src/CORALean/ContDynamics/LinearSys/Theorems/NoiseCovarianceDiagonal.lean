@@ -61,7 +61,7 @@ theorem aux_exp_smul_diagonal (l : Fin n → ℝ) (s : ℝ) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem noiseCovariance_diagonal (l : Fin n → ℝ) (C : Mat ℝ n m) (t : ℝ) (i j : Fin n)
-    (h : l i + l j ≠ 0) : -- --- STMT ---
+    (h : l i + l j ≠ 0) : -- --- CONCL ---
     noiseCovariance (diagonal l) C t i j
       = (C * C.transpose) i j / (l i + l j)
         * (Real.exp ((l i + l j) * t) - 1) := by -- --- PROOF ---

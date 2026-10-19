@@ -43,7 +43,7 @@ variable {n ny nw nv : ℕ}
 -- a sum over `i < k + 1` of points of `(M^i K) X` is `K x₀` plus `M` times such a sum over `i < k`
 theorem LinearSysDT.aux_sum_succ_mem {m : ℕ} (M : Mat ℝ n n) (K : Mat ℝ n m) (X : Set (Vec ℝ m))
     (k : ℕ) (g : ℕ → Vec ℝ n)
-    (hg : ∀ {i}, i ∈ Finset.range (k + 1) → g i ∈ ((M ^ i * K) *ᵥ ·) '' X) : -- --- STMT ---
+    (hg : ∀ {i}, i ∈ Finset.range (k + 1) → g i ∈ ((M ^ i * K) *ᵥ ·) '' X) : -- --- CONCL ---
     ∃ z ∈ ∑ i ∈ Finset.range k, ((M ^ i * K) *ᵥ ·) '' X, ∃ x₀ ∈ X,
       ∑ i ∈ Finset.range (k + 1), g i = M *ᵥ z + K *ᵥ x₀ := by -- --- PROOF ---
   have hsucc : ∀ i, i < k → ∃ z ∈ ((M ^ i * K) *ᵥ ·) '' X, g (i + 1) = M *ᵥ z := by
@@ -63,7 +63,7 @@ theorem LinearSysDT.aux_sum_succ_mem {m : ℕ} (M : Mat ℝ n n) (K : Mat ℝ n 
 
 theorem LinearSysDT.reachErrorSet_succ_subset (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
     (X₀ : Zonotope (Vec ℝ n)) (W : Zonotope (Vec ℝ sys.r))
-    (V : Zonotope (Vec ℝ sys.s)) (k : ℕ) : -- --- STMT ---
+    (V : Zonotope (Vec ℝ sys.s)) (k : ℕ) : -- --- CONCL ---
     LinearSysDT.reachErrorSet sys L X₀ W V (k + 1) ⊆
       ((sys.A - L * sys.C) *ᵥ ·) '' LinearSysDT.reachErrorSet sys L X₀ W V k +
         (sys.E *ᵥ ·) '' W.construct + ((-(L * sys.F)) *ᵥ ·) '' V.construct := by -- --- PROOF ---

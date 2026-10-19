@@ -83,7 +83,7 @@ theorem aux_value_le (α : WithLp ∞ (PiLp ∞ (fun _ : Fin 1 => ℝ) × ℝ)) 
 
 /-- At `A = e₁`, `p = ∞`, `L = 1`: `‖A‖_{∞↦1} = 1`, yet `r(E_∞(G_A), Z(H))` exists and is at
 most `3/4`, so not `1`. -/
-theorem gadget_radius_iff_counterexample : -- --- STMT ---
+theorem gadget_radius_iff_counterexample : -- --- CONCL ---
     IsGreatest ((fun v : PiLp ∞ (fun _ : Fin 1 => ℝ) => ∑ i, |(aux_A27 *ᵥ WithLp.ofLp v) i|) ''
         Metric.closedBall 0 1) 1 ∧
       ∃ r, IsGreatest ((fun α => coeffNorm (gadgetH 2) (gadgetGA ∞ aux_A27 1 α)) ''

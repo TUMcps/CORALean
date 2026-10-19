@@ -37,7 +37,7 @@ variable {𝕋 : Type} [Scalar 𝕋] {dy du p : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearARX.reachOutExact_eq_image_block (sys : LinearARX 𝕋 dy du p) (y₀ : Vec ℝ (p * dy))
-    (U : ℕ → Set (Vec ℝ du)) (k : ℕ) (a : Fin p) : -- --- STMT ---
+    (U : ℕ → Set (Vec ℝ du)) (k : ℕ) (a : Fin p) : -- --- CONCL ---
     sys.reachOutExact y₀ U (k + a)
       = (fun w b => w (finProdFinEquiv (a, b))) ''
         sys.reachWindowExact y₀ U k := by -- --- PROOF ---

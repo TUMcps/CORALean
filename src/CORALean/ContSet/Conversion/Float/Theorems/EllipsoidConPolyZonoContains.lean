@@ -72,7 +72,7 @@ private theorem Ellipsoid.aux_nominal_conPolyZono (E : Ellipsoid 𝕋 n) :
 private theorem Ellipsoid.aux_mem_nominalSet_conPolyZono (E : Ellipsoid 𝕋 n) {x : Vec ℝ n}
     (hx : ∃ u : Vec ℝ n, ‖u‖₂ ≤ 1 ∧ x = toRealVec E.q + toRealMat
       (if Ellipsoid.isOuterFactor E.Q (Ellipsoid.outerFactor E.Q) then
-        Ellipsoid.outerFactor E.Q else fun _ _ => zero) *ᵥ u) : -- --- STMT ---
+        Ellipsoid.outerFactor E.Q else fun _ _ => zero) *ᵥ u) : -- --- CONCL ---
     x ∈ nominalSet E.conPolyZono := by -- --- PROOF ---
   -- the rows record no slack, so the nominal set is the stored fields' own
   have hs : toRealVec E.conPolyZono.cons.b_error = 0 := funext fun _ => toReal_zero

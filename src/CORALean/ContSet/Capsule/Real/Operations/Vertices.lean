@@ -15,6 +15,12 @@ first half circle around `c + g` over `[θ - π/2, θ + π/2]` and the second ar
 at the end to close the polygon; a point capsule returns its center. The point test
 `representsa_(C,'point',1e-8)` is at tolerance `0` here (`Capsule.representsa_point`). The points
 are on the boundary, not vertices: `Capsule.vertices_mem_frontier`.
+
+## Inputs
+* `C` – planar capsule
+
+## Output
+* sampled boundary points
 -/
 
 -- Authors:       Claude Opus 5.5

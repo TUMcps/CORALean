@@ -45,7 +45,7 @@ variable {n m : ℕ}
 
 theorem LinProbSys.post_cov (sys : LinProbSys n m) (Δt T : ℝ) (pRinput : ProbZonotope n)
     (st : LinProbSys.PostState n) (hst : st.Rpar_prob.cov = noiseCovariance sys.A sys.C T)
-    (hp : pRinput.cov = noiseCovariance sys.A sys.C Δt) : -- --- STMT ---
+    (hp : pRinput.cov = noiseCovariance sys.A sys.C Δt) : -- --- CONCL ---
     (sys.post Δt pRinput st).1.Rpar_prob.cov = noiseCovariance sys.A sys.C (Δt + T) ∧
       (sys.post Δt pRinput st).2.cov = noiseCovariance sys.A sys.C (Δt + T) := by -- --- PROOF ---
   -- the covariance is `e^{AΔt} Σ(T) e^{(AΔt)ᵀ} + Σ(Δt)`, `noiseCovariance_add`

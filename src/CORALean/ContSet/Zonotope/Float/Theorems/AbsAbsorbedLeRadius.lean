@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q r : ℕ}
 /-- What the absorbed generators contribute, so what the block must cover. -/
 theorem Zonotope.abs_absorbed_le_radius (Z : Zonotope (Vec 𝕋 n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) {β : Vec ℝ Z.h}
-    (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) : -- --- STMT ---
+    (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) : -- --- CONCL ---
     |∑ l, toReal (Z.G (part.right l) i) * β (part.right l)|
       ≤ toReal (radius (fun i l => Z.G (part.right l) i) i) := by -- --- PROOF ---
   exact abs_sum_le_radius (d := fun i l => Z.G (part.right l) i)

@@ -53,7 +53,7 @@ theorem GNN.aux_submatrix_mul_right {N K F : ℕ} (A : Mat ℝ N F) (κ : Fin K 
 the subgraph alone: locality holds over the whole chain, not just one step of it. -/
 theorem GNN.evalSteps_submatrix {N K F : ℕ} (Pm : Mat ℝ N N) (κ : Fin K → Fin N)
     (hinj : Function.Injective κ) (hclosed : ∀ k i, (∀ l, κ l ≠ i) → Pm (κ k) i = 0)
-    (L : ℕ) (W : Fin L → Mat ℝ F F) (X : Mat ℝ N F) : -- --- STMT ---
+    (L : ℕ) (W : Fin L → Mat ℝ F F) (X : Mat ℝ N F) : -- --- CONCL ---
     (GNN.evalSteps Pm L W X).submatrix κ id
       = GNN.evalSteps (Pm.submatrix κ κ) L W (X.submatrix κ id) := by -- --- PROOF ---
   induction L generalizing X with

@@ -70,7 +70,7 @@ theorem ParallelHybridAutomaton.mergeTransitionSetsCora_wrong_target_counterexam
     [DecidableEq Λ] (P : ParallelHybridAutomaton S G 2 (fun _ => ℕ) 𝕋 n m)
     (slift : ParallelHybridAutomaton.SyncLifting S G n m)
     (lab : ParallelHybridAutomaton.SyncLabels G (fun _ => ℕ) 𝕋 n Λ) (ℓ : Fin 2 → ℕ) (a : Λ)
-    (hp₀ : lab.parts a 0 = true) (hp₁ : lab.parts a 1 = true) : -- --- STMT ---
+    (hp₀ : lab.parts a 0 = true) (hp₁ : lab.parts a 1 = true) : -- --- CONCL ---
     ∀ e₁ ∈ lab.pick P ℓ a 1,
       e₁.target = 3 →
       ∀ e₀ ∈ lab.pick P ℓ a 0,

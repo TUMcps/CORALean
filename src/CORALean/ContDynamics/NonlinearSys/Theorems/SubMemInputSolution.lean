@@ -68,7 +68,7 @@ theorem NonlinearSys.IsTrajectory.sub_mem_inputSolution [Mtimes ℐ S] {sys : No
     (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder A Δt η) L)))
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder A Δt η) L))) : -- --- STMT ---
+      (MatExp.inputRemainder A Δt η) L))) : -- --- CONCL ---
     x Δt - (exp (Δt • A) *ᵥ x 0 + ∫ s in (0:ℝ)..Δt, exp ((Δt - s) • A) *ᵥ
       (sys.f xs us - A *ᵥ xs + B *ᵥ (u₀ - us))) ∈
         construct ((NonlinearSys.linearize A).inputSolution Δt η L) := by -- --- PROOF ---

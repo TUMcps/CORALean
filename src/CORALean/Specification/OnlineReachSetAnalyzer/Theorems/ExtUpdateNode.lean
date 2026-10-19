@@ -30,7 +30,7 @@ variable {A : Type}
 
 theorem OnlineReachSetAnalyzer.ext_updateNode (nodes : List (OnlineAnalyzerNode A)) (i : ℕ)
     (f : OnlineAnalyzerNode A → Option (OnlineAnalyzerNode A))
-    (hf : ∀ n ∈ nodes, ∀ n', f n = some n' → OnlineReachSetAnalyzer.Same n n') : -- --- STMT ---
+    (hf : ∀ n ∈ nodes, ∀ n', f n = some n' → OnlineReachSetAnalyzer.Same n n') : -- --- CONCL ---
     ∀ nodes' ∈ OnlineReachSetAnalyzer.updateNode nodes i f,
       OnlineReachSetAnalyzer.Ext nodes nodes' ∧ nodes'.length = nodes.length := by -- --- PROOF ---
   intro nodes' (h : OnlineReachSetAnalyzer.updateNode nodes i f = some nodes')

@@ -59,7 +59,7 @@ theorem aux_le_of_Ioo {h : ℝ → ℝ} {t b : ℝ} (ht : 0 < t) (hc : Continuou
 /-- The end state of an execution of `spaceTriggered`, as a value of the solutions of `f₁`, `f₂`. -/
 theorem DiffInclAutomaton.spaceTriggered_isExec_orbit {I : Set X} {f₁ f₂ : X → X} {a : X} {b : ℝ}
     {K₁ K₂ : ℝ≥0} (hf₁ : LipschitzWith K₁ f₁) (hf₂ : LipschitzWith K₂ f₂) {d : ℝ} {m : Fin 2}
-    {x : X} (h : (spaceTriggered I f₁ f₂ a b).IsExec d m x) : -- --- STMT ---
+    {x : X} (h : (spaceTriggered I f₁ f₂ a b).IsExec d m x) : -- --- CONCL ---
     0 ≤ d ∧
       (m = 0 → ∃ x₀ ∈ I, ∀ z : ℝ → X, z 0 = x₀ → (∀ u ∈ Icc 0 d, HasDerivAt z (f₁ (z u)) u) →
         z d = x ∧ (0 < d → ∀ u ∈ Icc 0 d, inner ℝ a (z u) ≤ b)) ∧

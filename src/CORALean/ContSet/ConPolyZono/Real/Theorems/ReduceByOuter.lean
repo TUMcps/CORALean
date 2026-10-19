@@ -49,7 +49,7 @@ through the projection because that is the form the goal has and simp will not
 rewrite a binder's type. -/
 theorem ConPolyZono.aux_sum_univ_reduceBy_qI {cPZ : ConPolyZono (Vec ℝ n)}
     {partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r)}
-    {partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) : -- --- STMT ---
+    {partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) : -- --- CONCL ---
     ∑ j : Fin (cPZ.reduceBy partD partI).qI, f j
       = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd dI j) :=
   Fin.sum_univ_add f
@@ -67,7 +67,7 @@ theorem ConPolyZono.aux_sum_univ_reduceBy_h {cPZ : ConPolyZono (Vec ℝ n)}
 and never by more than one. -/
 theorem ConPolyZono.aux_abs_droppedDep_le (cPZ : ConPolyZono (Vec ℝ n))
     (partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r)) {a : Fin cPZ.p → ℝ}
-    (ha : ∀ k, |a k| ≤ 1) (i : Fin n) : -- --- STMT ---
+    (ha : ∀ k, |a k| ≤ 1) (i : Fin n) : -- --- CONCL ---
     |∑ l, cPZ.G (partD.right l) i * PolyZonotope.monomial cPZ.E a (partD.right l)|
       ≤ ∑ l, |cPZ.G (partD.right l) i| :=
   calc |∑ l, cPZ.G (partD.right l) i * PolyZonotope.monomial cPZ.E a (partD.right l)|
@@ -87,7 +87,7 @@ theorem ConPolyZono.aux_abs_droppedDep_le (cPZ : ConPolyZono (Vec ℝ n))
 already free. -/
 theorem ConPolyZono.aux_abs_droppedInd_le (cPZ : ConPolyZono (Vec ℝ n))
     (partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)) {β : Fin cPZ.qI → ℝ}
-    (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) : -- --- STMT ---
+    (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) : -- --- CONCL ---
     |∑ j, cPZ.GI (partI.right j) i * β (partI.right j)|
       ≤ ∑ j, |cPZ.GI (partI.right j) i| :=
   calc |∑ j, cPZ.GI (partI.right j) i * β (partI.right j)|

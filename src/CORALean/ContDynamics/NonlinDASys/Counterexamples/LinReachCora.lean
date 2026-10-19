@@ -198,7 +198,7 @@ theorem NonlinDASys.aux_linReachCora_error_nonpos {w : Vec ℝ 1}
 ends at `x(Δt) = Δt`, outside CORA's time-point set `Δt [-1, 0]` and inside the tree's
 `linReach` with [1, Cor. 1]'s error set, at every `Δt > 0` and Taylor order `η`. -/
 theorem NonlinDASys.linReachCora_misses_counterexample {Δt : ℝ} (hΔt : 0 < Δt)
-    (η : ℕ) : -- --- STMT ---
+    (η : ℕ) : -- --- CONCL ---
     let sys : NonlinDASys 1 1 1 := ⟨fun _ y _ => y, fun _ y u => y - fun _ => u 0 ^ 2, 1,
       fun x _ _ => x⟩
     let Rinit : Zonotope (Vec ℝ 1) := Zonotope.ofPoint 0

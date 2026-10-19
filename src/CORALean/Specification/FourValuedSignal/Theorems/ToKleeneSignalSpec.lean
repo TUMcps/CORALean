@@ -41,7 +41,7 @@ namespace CORALean
 
 /-- The inconclusive values become `mapInconclusiveTo`, the others stay. -/
 theorem FourValuedSignal.toKleeneSignal_spec (s : FourValuedSignal ℝ) (hs : s.IsValid)
-    (v : Kleene) : -- --- STMT ---
+    (v : Kleene) : -- --- CONCL ---
     (s.toKleeneSignal v).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (s.at t = FourValued.ii → (s.toKleeneSignal v).at t = v) ∧
       (s.at t ≠ FourValued.ii →

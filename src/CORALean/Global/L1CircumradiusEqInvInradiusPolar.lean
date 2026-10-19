@@ -38,7 +38,7 @@ variable {N n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem l1Circumradius_eq_inv_inradius_polar (v : Fin N → Vec ℝ n)
-    (hv : ∃ i, v i ≠ 0) : -- --- STMT ---
+    (hv : ∃ i, v i ≠ 0) : -- --- CONCL ---
     ∃ R r, IsGreatest ((fun x => ∑ j, |x j|) '' convexHull ℝ (Set.range v)) R ∧
       IsGreatest {r | 0 ≤ r ∧ ∀ x : Vec ℝ n, ‖x‖ ≤ r →
         ∀ y ∈ convexHull ℝ (Set.range v), ∑ j, y j * x j ≤ 1} r ∧

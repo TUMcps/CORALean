@@ -33,7 +33,7 @@ variable {n m : ℕ}
 
 /-- The three outputs of `convertTransitionMatrix` of a stochastic chain are column-stochastic. -/
 theorem MarkovChain.convertTransitionMatrix_stochastic (M : MarkovChain n m) (h : M.IsStochastic)
-    {γ : ℝ} (hγ : 0 < γ) : -- --- STMT ---
+    {γ : ℝ} (hγ : 0 < γ) : -- --- CONCL ---
     (M.convertTransitionMatrix γ).T.T ∈
       Matrix.colStochastic ℝ (Fin (M.field.nrOfCells + 1) × Fin m) ∧
     (M.convertTransitionMatrix γ).T.OT ∈

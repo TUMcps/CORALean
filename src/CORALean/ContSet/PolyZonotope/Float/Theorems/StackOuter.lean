@@ -72,7 +72,7 @@ theorem PolyZonotope.aux_padRight_err (pZ : PolyZonotope (Vec 𝕋 n)) (n₁ : �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.stack_outer (pZ₁ : PolyZonotope (Vec 𝕋 n₁)) (pZ₂ : PolyZonotope (Vec 𝕋 n₂))
-    (hp : pZ₁.p = pZ₂.p) : -- --- STMT ---
+    (hp : pZ₁.p = pZ₂.p) : -- --- CONCL ---
     (Real.PolyZonotope.stack (nominal pZ₁) (nominal pZ₂) hp).construct
         + (CORALean.blockPadLeft n₁ n₂ '' pZ₁.I_error.construct
           + CORALean.blockPadRight n₁ n₂ '' pZ₂.I_error.construct)

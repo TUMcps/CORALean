@@ -111,7 +111,7 @@ theorem Ellipsoid.goffin_spec {ε : ℝ} (hε : 0 < ε) (hn : 2 ≤ n) (Z : Set 
       ∃ (b : ℝ) (x₀ : Vec ℝ n), ‖x₀‖₂ = 1 / Real.sqrt ((n : ℝ) * (1 + ε)) ∧
         (∀ z ∈ Z, a ⬝ᵥ ((CFC.sqrt E)⁻¹ *ᵥ z) ≤ b) ∧ b < a ⬝ᵥ x₀)
     {E₀ : Mat ℝ n n} (hE₀ : E₀.PosDef) (hZ₀ : Z ⊆ (Ellipsoid.ofShape E₀ 0).construct)
-    (j : ℕ) : -- --- STMT ---
+    (j : ℕ) : -- --- CONCL ---
     ((Ellipsoid.goffin ε test E₀ j).PosDef
         ∧ Z ⊆ (Ellipsoid.ofShape (Ellipsoid.goffin ε test E₀ j) 0).construct)
       ∧ (test (Ellipsoid.goffin ε test E₀ j) = none →

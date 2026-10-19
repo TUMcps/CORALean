@@ -36,7 +36,7 @@ variable {S : ℕ → Type} {n : ℕ}
 theorem TrajectoryAnalyzer.markKey_spec (aps : List (String × AtomicProposition S n)) (dur : ℝ)
     (sigs : List (String × FiniteSignal ℝ Bool)) (M : String → ℝ → Prop)
     (h : TrajectoryAnalyzer.SignalsRepresent aps dur sigs M) (lo hi : ℝ) (hlh : lo < hi)
-    (p : String × AtomicProposition S n) (hp : p ∈ aps) : -- --- STMT ---
+    (p : String × AtomicProposition S n) (hp : p ∈ aps) : -- --- CONCL ---
     ∃ sigs', TrajectoryAnalyzer.markKey dur lo hi sigs p.1 = some sigs' ∧
       TrajectoryAnalyzer.SignalsRepresent aps dur sigs'
         (fun k τ => M k τ ∨ (k = p.1 ∧ Covers dur τ lo hi)) := by -- --- PROOF ---

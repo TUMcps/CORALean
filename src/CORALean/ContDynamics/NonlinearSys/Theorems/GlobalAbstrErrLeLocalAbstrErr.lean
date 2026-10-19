@@ -53,7 +53,7 @@ geometric sum that recursion unrolls to. -/
 theorem aux_gronwall {L Δt M : ℝ} (hL : 0 < L) (hΔt : 0 < Δt)
     (global loc : ℕ → ℝ) (hzero : global 0 = 0) (N : ℕ)
     (hrec : ∀ k < N, global (k + 1) ≤ (1 + L * Δt) * global k + loc (k + 1))
-    (hloc : ∀ k < N, loc (k + 1) ≤ M) : -- --- STMT ---
+    (hloc : ∀ k < N, loc (k + 1) ≤ M) : -- --- CONCL ---
     global N ≤ M * ((1 + L * Δt) ^ N - 1) / (L * Δt) := by -- --- PROOF ---
   induction N with
   | zero => simp [hzero]
@@ -83,7 +83,7 @@ theorem globalAbstrErr_le_of_localAbstrErr (R Rhat Rabs : ℕ → Set (Vec ℝ n
     {L Δt tEnd : ℝ} (hL : 0 < L) (hΔt : 0 < Δt) {N : ℕ} (hN : 0 < N)
     (htEnd : (N : ℝ) * Δt = tEnd) (hzero : globalAbstrErr (R 0) (Rhat 0) = 0)
     (hstep : ∀ k < N, globalAbstrErr (R (k + 1)) (Rhat (k + 1)) ≤
-      (1 + L * Δt) * globalAbstrErr (R k) (Rhat k) + localAbstrErr (Rabs k)) : -- --- STMT ---
+      (1 + L * Δt) * globalAbstrErr (R k) (Rhat k) + localAbstrErr (Rabs k)) : -- --- CONCL ---
     globalAbstrErr (R N) (Rhat N) ≤ (Real.exp (L * tEnd) - 1) / L / Δt *
       (Finset.range N).sup' (Finset.nonempty_range_iff.mpr hN.ne')
         (fun k => localAbstrErr (Rabs k)) := by -- --- PROOF ---

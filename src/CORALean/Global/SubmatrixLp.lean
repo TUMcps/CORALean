@@ -45,7 +45,7 @@ variable {n m k : ℕ}
 /-- The rows `i ≠ ρ t` of the constraint's sum reach every other picked position. -/
 theorem aux_sum_picked_le {x : Matrix (Fin n) (Fin m) ℝ} {ρ : Fin k → Fin n} (hρ : Injective ρ)
     {κ : Fin k → Fin m} (hsel : ∀ t, x (ρ t) (κ t) = 1) (f : Fin n → Fin m → ℝ)
-    (hf : ∀ i j, 0 ≤ x i j * f i j) (t : Fin k) : -- --- STMT ---
+    (hf : ∀ i j, 0 ≤ x i j * f i j) (t : Fin k) : -- --- CONCL ---
     ∑ t' ∈ univ.erase t, f (ρ t') (κ t')
       ≤ ∑ i ∈ univ.erase (ρ t), ∑ j, x i j * f i j := by -- --- PROOF ---
   calc ∑ t' ∈ univ.erase t, f (ρ t') (κ t')
@@ -66,7 +66,7 @@ theorem aux_det_submatrix_ne_zero_of_col {x : Matrix (Fin n) (Fin m) ℝ} (hx : 
     {mig mag : Matrix (Fin n) (Fin m) ℝ}
     (hcol : ∀ t, ∑ i ∈ univ.erase (ρ t), ∑ j, x i j * mag i (κ t) < mig (ρ t) (κ t))
     (A : Matrix (Fin n) (Fin m) ℝ)
-    (hA : ∀ i j, mig i j ≤ |A i j| ∧ |A i j| ≤ mag i j) : -- --- STMT ---
+    (hA : ∀ i j, mig i j ≤ |A i j| ∧ |A i j| ≤ mag i j) : -- --- CONCL ---
     (A.submatrix ρ κ).det ≠ 0 := by -- --- PROOF ---
   refine det_ne_zero_of_sum_col_lt_diag fun t => ?_
   simp only [submatrix_apply, Real.norm_eq_abs]
@@ -88,7 +88,7 @@ theorem det_submatrix_ne_zero_of_lp14 {x : Matrix (Fin n) (Fin m) ℝ} (hx : ∀
     {mig mag : Matrix (Fin n) (Fin m) ℝ}
     (h14 : ∀ k l, x k l = 1 → ∑ i ∈ univ.erase k, ∑ j, x i j * mag i l < mig k l)
     (A : Matrix (Fin n) (Fin m) ℝ)
-    (hA : ∀ i j, mig i j ≤ |A i j| ∧ |A i j| ≤ mag i j) : -- --- STMT ---
+    (hA : ∀ i j, mig i j ≤ |A i j| ∧ |A i j| ≤ mag i j) : -- --- CONCL ---
     (A.submatrix ρ κ).det ≠ 0 :=
   aux_det_submatrix_ne_zero_of_col hx hρ hsel (fun t => h14 _ _ (hsel t)) A hA
 
@@ -99,7 +99,7 @@ theorem det_submatrix_ne_zero_of_lp15 {x : Matrix (Fin n) (Fin m) ℝ} (hx : ∀
     {mig mag : Matrix (Fin n) (Fin m) ℝ} {M μ : ℝ} (hμ : 0 < μ)
     (h15 : ∀ k l, ∑ i ∈ univ.erase k, ∑ j, x i j * mag i l ≤ M + (mig k l - μ - M) * x k l)
     (A : Matrix (Fin n) (Fin m) ℝ)
-    (hA : ∀ i j, mig i j ≤ |A i j| ∧ |A i j| ≤ mag i j) : -- --- STMT ---
+    (hA : ∀ i j, mig i j ≤ |A i j| ∧ |A i j| ≤ mag i j) : -- --- CONCL ---
     (A.submatrix ρ κ).det ≠ 0 :=
   det_submatrix_ne_zero_of_lp14 hx hρ hsel (fun k l hkl => by
     have := h15 k l; rw [hkl, mul_one] at this; linarith) A hA
@@ -113,7 +113,7 @@ theorem det_submatrix_ne_zero_of_lp17 {x : Matrix (Fin n) (Fin m) ℝ} (hx : ∀
     (h17 : ∀ k l, ∑ i ∈ univ.erase k, ∑ j, x i j * mag i l * u i j
       ≤ M + (mig k l * u k l - μ - M) * x k l)
     (A : Matrix (Fin n) (Fin m) ℝ)
-    (hA : ∀ i j, mig i j ≤ |A i j| ∧ |A i j| ≤ mag i j) : -- --- STMT ---
+    (hA : ∀ i j, mig i j ≤ |A i j| ∧ |A i j| ≤ mag i j) : -- --- CONCL ---
     (A.submatrix ρ κ).det ≠ 0 := by -- --- PROOF ---
   have hmag : ∀ i j, 0 ≤ mag i j := fun i j => (abs_nonneg _).trans (hA i j).2
   -- the transpose of the picked sub-matrix is an H-matrix, `uₜ = u(ρ t, κ t)`
@@ -143,7 +143,7 @@ theorem det_submatrix_ne_zero_of_lp18 {x : Matrix (Fin n) (Fin m) ℝ} (hx : ∀
     (h18 : ∀ k l, ∑ i ∈ univ.erase k, ∑ j, x i j * mag i l * (mig i j)⁻¹
       ≤ M + (mig k l * (mig k l)⁻¹ - μ - M) * x k l)
     (A : Matrix (Fin n) (Fin m) ℝ)
-    (hA : ∀ i j, mig i j ≤ |A i j| ∧ |A i j| ≤ mag i j) : -- --- STMT ---
+    (hA : ∀ i j, mig i j ≤ |A i j| ∧ |A i j| ≤ mag i j) : -- --- CONCL ---
     (A.submatrix ρ κ).det ≠ 0 :=
   det_submatrix_ne_zero_of_lp17 hx hρ hsel hμ (fun i j => inv_nonneg.mpr (hmig i j))
     (fun t => inv_pos.mpr ((hmig _ _).lt_of_ne (h42 t).symm)) h18 A hA

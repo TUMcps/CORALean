@@ -36,7 +36,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem generatorPower_rewrite (E V Y Ψ δ Θ : ℝ) : -- --- STMT ---
+theorem generatorPower_rewrite (E V Y Ψ δ Θ : ℝ) : -- --- CONCL ---
     E * V * Y * Real.cos (-Ψ - δ + Θ) - V ^ 2 * Y * Real.cos (-Ψ) =
         E * V * Y * Real.cos (Ψ + δ - Θ) - V ^ 2 * Y * Real.cos Ψ ∧
       E * V * Y * Real.sin (-Ψ - δ + Θ) - V ^ 2 * Y * Real.sin (-Ψ) =

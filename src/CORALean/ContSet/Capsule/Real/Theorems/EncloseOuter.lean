@@ -11,6 +11,17 @@ public import CORALean.ContSet.Capsule.Real.Theorems.MtimesOuter
 
 Outer, and of the set the code computes, `M Cplus`: not of the documented `M C ⊕ Cplus`, which
 it misses (`Capsule.enclose_cora_counterexample`).
+
+## Inputs
+* `C` – capsule
+* `M` – matrix
+* `Cplus` – capsule mapped by `M`
+
+## Hypotheses
+* none
+
+## Conclusion
+* segments between `C` and `M * Cplus` lie in `enclose`
 -/
 
 -- Authors:       Claude Opus 5.5

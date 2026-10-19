@@ -45,7 +45,7 @@ theorem HPolytope.ahPolytope_subset_of_exists_cert {xbar ybar : Vec ℝ n} {X : 
     (_hfull : (interior (HPolytope.ineqs Hx hx).construct).Nonempty)
     (h : ∃ (Γ : Mat ℝ ny nx) (β : Vec ℝ ny) (Λ : Mat ℝ qy qx), X = Y * Γ ∧
         ybar - xbar = Y *ᵥ β ∧ (∀ i j, 0 ≤ Λ i j) ∧ Λ * Hx = Hy * Γ ∧
-        Λ *ᵥ hx ≤ hy + Hy *ᵥ β) : -- --- STMT ---
+        Λ *ᵥ hx ≤ hy + Hy *ᵥ β) : -- --- CONCL ---
     HPolytope.ahPolytope xbar X (HPolytope.ineqs Hx hx)
       ⊆ HPolytope.ahPolytope ybar Y (HPolytope.ineqs Hy hy) := by -- --- PROOF ---
   obtain ⟨_, _, _, hX, hβ, hΛ, h1, h2⟩ := h

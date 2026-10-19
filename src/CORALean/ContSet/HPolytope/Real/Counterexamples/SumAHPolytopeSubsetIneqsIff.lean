@@ -34,7 +34,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.sum_ahPolytope_subset_ineqs_iff_counterexample : -- --- STMT ---
+theorem HPolytope.sum_ahPolytope_subset_ineqs_iff_counterexample : -- --- CONCL ---
     ∃ (Hx : Mat ℝ 3 2) (hx : Vec ℝ 3) (Hy : Mat ℝ 4 2) (hy : Vec ℝ 4),
       {x | ∃ p : Fin 1 → Vec ℝ 2, (∀ i, p i ∈ (HPolytope.ineqs Hx hx).construct) ∧
           x = 0 + ∑ i, (1 : Mat ℝ 2 2) *ᵥ p i} ⊆ (HPolytope.ineqs Hy hy).construct ∧

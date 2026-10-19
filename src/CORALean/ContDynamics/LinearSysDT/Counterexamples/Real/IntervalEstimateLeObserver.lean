@@ -42,7 +42,7 @@ open Matrix Pointwise CORALean.Real
 
 /-- [1, Thm. 7] as printed: `A - LC ≥ 0` is not among the hypotheses, and Eq. 36 is no longer
 an interval observer. -/
-theorem LinearSysDT.intervalEstimate_le_intervalObserver_counterexample : -- --- STMT ---
+theorem LinearSysDT.intervalEstimate_le_intervalObserver_counterexample : -- --- CONCL ---
     ¬ ∀ (n : ℕ) (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q) (X₀ : Zonotope (Vec ℝ n))
       (W : Zonotope (Vec ℝ sys.r)) (V : Zonotope (Vec ℝ sys.s)) (wl wu : Vec ℝ sys.r)
       (vl vu : Vec ℝ sys.s) (u : ℕ → Vec ℝ sys.m) (y : ℕ → Vec ℝ sys.q),

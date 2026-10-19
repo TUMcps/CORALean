@@ -45,7 +45,7 @@ variable {n qy N : ℕ}
 theorem HPolytope.sum_ahPolytope_subset_ineqs_iff {nx qx : Fin N → ℕ} (xbar : Vec ℝ n)
     (X : (i : Fin N) → Mat ℝ n (nx i)) (Hx : (i : Fin N) → Mat ℝ (qx i) (nx i))
     (hx : (i : Fin N) → Vec ℝ (qx i)) (Hy : Mat ℝ qy n) (hy : Vec ℝ qy)
-    (hne : ∀ i, (HPolytope.ineqs (Hx i) (hx i)).construct.Nonempty) : -- --- STMT ---
+    (hne : ∀ i, (HPolytope.ineqs (Hx i) (hx i)).construct.Nonempty) : -- --- CONCL ---
     {x | ∃ p : (i : Fin N) → Vec ℝ (nx i),
         (∀ i, p i ∈ (HPolytope.ineqs (Hx i) (hx i)).construct) ∧ x = xbar + ∑ i, X i *ᵥ p i}
         ⊆ (HPolytope.ineqs Hy hy).construct ↔

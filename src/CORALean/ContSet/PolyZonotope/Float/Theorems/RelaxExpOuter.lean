@@ -68,7 +68,7 @@ theorem PolyZonotope.aux_sum_univ_relaxExp_q {pZ : PolyZonotope (Vec 𝕋 n)}
 /-- The new independent column is `ξ_E` copies added downward, so it too is off
 by at most its gap to the upward fold. -/
 theorem PolyZonotope.aux_relaxGen_gap (pZ : PolyZonotope (Vec 𝕋 n))
-    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) (i : Fin n) : -- --- STMT ---
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) (i : Fin n) : -- --- CONCL ---
     |(pZ.relaxWidth part k₀ : ℝ) * toReal (pZ.G (part.right 0) i)
       - toReal (pZ.aux_relaxGen part k₀ i)|
       ≤ toReal (pZ.aux_relaxGap part k₀ i 1) := by -- --- PROOF ---
@@ -85,7 +85,7 @@ theorem PolyZonotope.aux_relaxGen_gap (pZ : PolyZonotope (Vec 𝕋 n))
 -- the two stored columns and their two gaps, the drift carried by the second
 theorem PolyZonotope.aux_relaxExp_nominal (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p)
-    (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) : -- --- STMT ---
+    (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) : -- --- CONCL ---
     nominalSet pZ ⊆ nominalSet (pZ.relaxExp part k₀)
       + (PolyZonotope.generatorError (pZ.aux_relaxGap part k₀)).construct := by -- --- PROOF ---
   intro x hx

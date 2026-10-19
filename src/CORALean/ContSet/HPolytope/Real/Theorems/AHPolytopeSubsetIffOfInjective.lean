@@ -45,7 +45,7 @@ variable {n nx ny qx qy : ℕ}
 theorem HPolytope.ahPolytope_subset_iff_of_injective {xbar ybar : Vec ℝ n} {X : Mat ℝ n nx}
     {Y : Mat ℝ n ny} {Hx : Mat ℝ qx nx} {hx : Vec ℝ qx} {Hy : Mat ℝ qy ny} {hy : Vec ℝ qy}
     (hY : Function.Injective Y.mulVec)
-    (hfull : (interior (HPolytope.ineqs Hx hx).construct).Nonempty) : -- --- STMT ---
+    (hfull : (interior (HPolytope.ineqs Hx hx).construct).Nonempty) : -- --- CONCL ---
     HPolytope.ahPolytope xbar X (HPolytope.ineqs Hx hx)
         ⊆ HPolytope.ahPolytope ybar Y (HPolytope.ineqs Hy hy) ↔
       ∃ (Γ : Mat ℝ ny nx) (β : Vec ℝ ny) (Λ : Mat ℝ qy qx), X = Y * Γ ∧

@@ -39,7 +39,7 @@ namespace CORALean
 
 /-- [1, Eq. 11]: a)-d) for `σ^T |M| 1`, `σ ≥ 0`. -/
 theorem Conform.intervalNorm_props {m : ℕ} {ι : Type} [Fintype ι] (σ : Vec ℝ m)
-    (hσ : ∀ a, 0 ≤ σ a) (G G₁ G₂ : ι → Vec ℝ m) (γ : ℝ) : -- --- STMT ---
+    (hσ : ∀ a, 0 ≤ σ a) (G G₁ G₂ : ι → Vec ℝ m) (γ : ℝ) : -- --- CONCL ---
     0 ≤ Conform.intervalNorm σ G ∧ Conform.intervalNorm σ (0 : ι → Vec ℝ m) = 0 ∧
       Conform.intervalNorm σ (γ • G) = |γ| * Conform.intervalNorm σ G ∧
       Conform.intervalNorm σ (G₁ + G₂)

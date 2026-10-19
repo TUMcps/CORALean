@@ -77,7 +77,7 @@ theorem aux_exp_A :
 
 /-- [1, Eq. 7] is false as printed: at a `2 × 2` system, `L̂ = L̄` and `θ = (1, 1)`, the
 set `A⁻¹(e^{Ar} - I)[-L̂, L̂]` leaves `[-θ r, θ r]`. -/
-theorem NonlinearSys.admissibleLinError_not_sufficient : -- --- STMT ---
+theorem NonlinearSys.admissibleLinError_not_sufficient : -- --- CONCL ---
     ∃ (A : Mat ℝ 2 2) (r : ℝ) (θ L : Vec ℝ 2),
       IsUnit A ∧ IsUnit (NormedSpace.exp (r • A) - 1) ∧ 0 < r ∧
       (∀ i, L i ≤ NonlinearSys.admissibleLinError A r θ i) ∧

@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.branchAndBound_mem (P : List (𝕋 × (Fin n → ℕ))) (X : Fin n → Interval 𝕋) (ε : 𝕋)
-    (adv : Bool) (fuel : ℕ) {t : Vec ℝ n} (ht : Taylm.InBox X t) : -- --- STMT ---
+    (adv : Bool) (fuel : ℕ) {t : Vec ℝ n} (ht : Taylm.InBox X t) : -- --- CONCL ---
     toReal (Taylm.branchAndBound P X ε adv fuel).inf ≤
         Real.Taylm.polyOf (P.map fun a => (toReal a.1, a.2)) t ∧
       Real.Taylm.polyOf (P.map fun a => (toReal a.1, a.2)) t

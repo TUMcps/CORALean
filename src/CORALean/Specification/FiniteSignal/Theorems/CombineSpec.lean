@@ -64,7 +64,7 @@ theorem aux_combineLoop_single {T V : Type} [LinearOrder T] (l r : T × V) (ls r
     (hmin : t₀ = min l.1 r.1) (ls' rs' : List (T × V))
     (hA1 : (ls' = ls ∧ t₀ = l.1) ∨ (ls' = l :: ls ∧ t₀ < l.1))
     (hA2 : (rs' = rs ∧ t₀ = r.1) ∨ (rs' = r :: rs ∧ t₀ < r.1))
-    (hnil : ls' = [] ∨ rs' = []) : -- --- STMT ---
+    (hnil : ls' = [] ∨ rs' = []) : -- --- CONCL ---
     t₀ = min eL eR ∧ ∀ t x y, FiniteSignal.valueAt (l :: ls) t = some x →
       FiniteSignal.valueAt (r :: rs) t = some y → (t < eL ∧ t < eR ∨ eL = eR ∧ t = eL) →
         x = l.2 ∧ y = r.2 := by -- --- PROOF ---
@@ -124,7 +124,7 @@ theorem aux_combineLoop_single {T V : Type} [LinearOrder T] (l r : T × V) (ls r
 /-- The properties of the loop: the first value, validity of the result, its last time and its
 value at every time up to the end of the shorter signal. -/
 theorem aux_combineLoop_props {T V W : Type} [LinearOrder T] [DecidableEq W] (op : V → V → W)
-    (n : ℕ) : -- --- STMT ---
+    (n : ℕ) : -- --- CONCL ---
     ∀ (l r : T × V) (ls rs : List (T × V)), ls.length + rs.length + 2 = n →
       ((l :: ls).map Prod.fst).Pairwise (· < ·) → ((r :: rs).map Prod.fst).Pairwise (· < ·) →
       ∀ eL eR : T, aux_IsLast eL ((l :: ls).map Prod.fst) →
@@ -301,7 +301,7 @@ theorem aux_valid_pairs {T V : Type} [LinearOrder T] [Zero T] (s : FiniteSignal 
 
 theorem FiniteSignal.combine?_spec {T V W : Type} [LinearOrder T] [Zero T] [DecidableEq W]
     (op : V → V → W) (lhs rhs : FiniteSignal T V) (hl : lhs.IsValid)
-    (hr : rhs.IsValid) : -- --- STMT ---
+    (hr : rhs.IsValid) : -- --- CONCL ---
     ∃ r, FiniteSignal.combine? op [lhs, rhs] = some r ∧ r.IsValid ∧
       r.duration = min lhs.duration rhs.duration ∧ ∀ t x y, lhs.at? t = some x →
         rhs.at? t = some y → (t < lhs.duration ∧ t < rhs.duration ∨

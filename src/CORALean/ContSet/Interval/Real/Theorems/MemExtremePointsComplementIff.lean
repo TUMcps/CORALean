@@ -34,7 +34,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.mem_extremePoints_complement_iff {b : Vec ℝ n} {α : ℝ}
-    {c : Vec ℝ n} : -- --- STMT ---
+    {c : Vec ℝ n} : -- --- CONCL ---
     c ∈ Set.extremePoints ℝ ((⟨0, b⟩ : Interval (Vec ℝ n)).construct ∩
         Interval.hyperplane 1 α) ↔
       b - c ∈ Set.extremePoints ℝ ((⟨0, b⟩ : Interval (Vec ℝ n)).construct ∩

@@ -68,7 +68,7 @@ theorem aux_closedForm_add (sys : LinearSys 𝕋 n) {U : S n}
     (hU : Bornology.IsBounded (construct U)) {a Δt : ℝ} (ha : 0 ≤ a) (hΔt : 0 ≤ Δt)
     (x₀ : Vec ℝ n) {u : ℝ → Vec ℝ n} (hu : ∀ s ∈ Set.Icc (0:ℝ) (a + Δt), u s ∈ construct U)
     (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 (a + Δt)))) {w : Vec ℝ n}
-    (hw : ∀ s ∈ Set.Ioc a (a + Δt), u s = w) : -- --- STMT ---
+    (hw : ∀ s ∈ Set.Ioc a (a + Δt), u s = w) : -- --- CONCL ---
     sys.closedForm x₀ u (a + Δt)
       = exp (Δt • toRealMat sys.A) *ᵥ sys.closedForm x₀ u a
         + MatExp.expIntegral (toRealMat sys.A) Δt *ᵥ w := by -- --- PROOF ---
@@ -123,7 +123,7 @@ theorem aux_closedForm_add (sys : LinearSys 𝕋 n) {U : S n}
 `x(k)`. -/
 theorem LinearSys.closedForm_heldInput (sys : LinearSys 𝕋 n) {U : S n}
     (hU : Bornology.IsBounded (construct U)) {Δt : ℝ} (hΔt : 0 < Δt) (x₀ : Vec ℝ n)
-    {v : ℕ → Vec ℝ n} (hv : ∀ j, v j ∈ construct U) (k : ℕ) : -- --- STMT ---
+    {v : ℕ → Vec ℝ n} (hv : ∀ j, v j ∈ construct U) (k : ℕ) : -- --- CONCL ---
     sys.closedForm x₀ (LinearSys.heldInput Δt v) (k * Δt)
       = sys.heldSim Δt x₀ v k := by -- --- PROOF ---
   induction k with

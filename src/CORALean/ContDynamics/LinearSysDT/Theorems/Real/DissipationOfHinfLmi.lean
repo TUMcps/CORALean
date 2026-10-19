@@ -43,7 +43,7 @@ variable {n ny nw nv : ℕ}
 
 theorem LinearSysDT.dissipation_of_hinfLmi (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat ℝ n nw)
     (F : Mat ℝ ny nv) (P : Mat ℝ n n) (Y : Mat ℝ n ny) (γ : ℝ) (hP : P.PosDef)
-    (h : LinearSysDT.HinfLmi A C E F P Y γ) : -- --- STMT ---
+    (h : LinearSysDT.HinfLmi A C E F P Y γ) : -- --- CONCL ---
     ∃ ε > 0, ∀ (a : Vec ℝ n) (b : Vec ℝ nw) (c : Vec ℝ nv),
       let q := (A - P⁻¹ * Y * C) *ᵥ a + E *ᵥ b - (P⁻¹ * Y * F) *ᵥ c
       q ⬝ᵥ (P *ᵥ q) + a ⬝ᵥ a - a ⬝ᵥ (P *ᵥ a) - γ ^ 2 * (b ⬝ᵥ b + c ⬝ᵥ c) ≤

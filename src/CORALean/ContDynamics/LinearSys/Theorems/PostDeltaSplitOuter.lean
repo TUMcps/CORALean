@@ -69,7 +69,7 @@ theorem LinearSys.IsCanonicalTrajectory.postDeltaSplit_outer {sys : LinearSys �
       (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U₀)))
     (hRbdd₀ : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U₀)))
-    {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- STMT ---
+    {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     x t - x 0 ∈ construct (sys.postDeltaSplit r (m + 2) R₀ Sg P U₀) :=
   traj.deltaReach_outer hr hT hε ht0 htr hbdd
     (traj.inputSolution_timeInterval_outer_split hr hT (m + 2) hε hsplit hcP hcS hbddP h0₀

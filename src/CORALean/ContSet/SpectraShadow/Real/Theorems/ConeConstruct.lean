@@ -62,7 +62,7 @@ theorem aux_arrowMat_sum {ι : Type} (u : Finset ι) (a b : ι → ℝ) (w : ι 
       aux_arrowMat_add, ih]
 
 theorem SpectraShadow.aux_lmi_cone (T : SpectraShadow (Vec ℝ N)) (s t : ℝ)
-    (β : Fin T.m → ℝ) : -- --- STMT ---
+    (β : Fin T.m → ℝ) : -- --- CONCL ---
     (0 : Mat ℝ (T.k + (N + 1)) (T.k + (N + 1))) + ∑ i : Fin (1 + T.m + 1),
         (Fin.append (Fin.append (fun _ : Fin 1 => s) β) (fun _ : Fin 1 => t) :
           Fin (1 + T.m + 1) → ℝ) i •
@@ -97,7 +97,7 @@ theorem SpectraShadow.aux_lmi_cone (T : SpectraShadow (Vec ℝ N)) (s t : ℝ)
     simp
 
 theorem SpectraShadow.aux_gen_cone (T : SpectraShadow (Vec ℝ N)) (s t : ℝ)
-    (β : Fin T.m → ℝ) : -- --- STMT ---
+    (β : Fin T.m → ℝ) : -- --- CONCL ---
     (0 : Vec ℝ N) + ∑ i : Fin (1 + T.m + 1),
         (Fin.append (Fin.append (fun _ : Fin 1 => s) β) (fun _ : Fin 1 => t) :
           Fin (1 + T.m + 1) → ℝ) i •

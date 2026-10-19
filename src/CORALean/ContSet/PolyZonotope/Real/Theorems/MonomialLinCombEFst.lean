@@ -31,7 +31,7 @@ variable {p₁ h₁ p₂ h₂ : ℕ} (E₁ : Fin p₁ → Fin h₁ → ℕ) (E�
 /-- The first block keeps the monomials the two sets brought: the fresh factor
 sits there at exponent zero. -/
 theorem PolyZonotope.monomial_linCombE_fst (a : Fin (p₁ + p₂ + 1) → ℝ)
-    (i : Fin (h₁ + h₂)) : -- --- STMT ---
+    (i : Fin (h₁ + h₂)) : -- --- CONCL ---
     PolyZonotope.monomial (PolyZonotope.linCombE E₁ E₂) a (Fin.castAdd (h₁ + h₂ + 1) i)
       = PolyZonotope.monomial (PolyZonotope.plusE E₁ E₂)
           (fun k => a (Fin.castAdd 1 k)) i := by -- --- PROOF ---

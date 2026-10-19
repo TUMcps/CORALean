@@ -29,7 +29,7 @@ theorem PolyZonotope.supportBound_le (pZ : PolyZonotope (Vec 𝕋 n))
     {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
     (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j)
     (u : FloatBound 𝕋 ((InflatedContSet.nominal pZ).subsetAt {a | ∀ k, |a k| ≤ 1}) c)
-    : -- --- STMT ---
+    : -- --- CONCL ---
     ∀ x ∈ pZ.construct, c x ≤ toReal (pZ.supportBound a hc u).val :=
   (pZ.supportBound a hc u).le
 

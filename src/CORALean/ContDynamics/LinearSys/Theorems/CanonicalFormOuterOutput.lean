@@ -39,7 +39,7 @@ variable [∀ n, Recenter (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
 
 theorem LinearSys.canonicalForm_output_outer (sys : LinearSys ℝ n) (U : S sys.m)
     (uVec : Vec ℝ sys.m) (W : S sys.r) (V : S sys.s) (vVec : Vec ℝ sys.s) {u : Vec ℝ sys.m}
-    (hu : u ∈ construct U) {v : Vec ℝ sys.s} (hv : v ∈ construct V) : -- --- STMT ---
+    (hu : u ∈ construct U) {v : Vec ℝ sys.s} (hv : v ∈ construct V) : -- --- CONCL ---
     sys.D *ᵥ (uVec + u) + sys.k + sys.F *ᵥ (vVec + v)
         - (sys.canonicalForm U uVec W V vVec).2.2.2.2
       ∈ construct (sys.canonicalForm U uVec W V vVec).2.2.2.1 := by -- --- PROOF ---

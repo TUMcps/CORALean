@@ -45,7 +45,7 @@ variable {n : ℕ}
 `Matrix.sum_mulVec` turns the one application into the same sum of images, and `norm₂_sum_le`
 plus `aux_norm₂_le_of_mem_particularCoeff_image`'s per-term bound do the rest. -/
 theorem aux_norm₂_le_of_mem_particularCoeffSum_image (A : Mat ℝ n n) {U0 : Set (Vec ℝ n)}
-    (hU0 : Bornology.IsBounded U0) (i0 η : ℕ) (Δt : ℝ) : -- --- STMT ---
+    (hU0 : Bornology.IsBounded U0) (i0 η : ℕ) (Δt : ℝ) : -- --- CONCL ---
     ∀ y ∈ (fun x => (MatExp.particularCoeffSum A Δt i0 η).mulVec x) '' U0,
       ‖y‖₂ ≤ (∑ i ∈ Finset.Ico i0 (η + 1), (∑ j, ‖(fun k => (A ^ i) j k)‖₂)
         * (|Δt| ^ (i + 1) / (Nat.factorial (i + 1) : ℝ))) * err U0 := by -- --- PROOF ---
@@ -73,7 +73,7 @@ theorem aux_norm₂_le_of_mem_particularCoeffSum_image (A : Mat ℝ n n) {U0 : S
 /-- Every point of the correlated summand is within this explicit `Δt`-polynomial of the origin —
 the same one `norm₂_le_of_mem_particularSolutionOuter` gives the decorrelated summand. -/
 theorem MatExp.norm₂_le_of_mem_particularSolutionOuterCorrelated (A : Mat ℝ n n)
-    {U0 : Set (Vec ℝ n)} (hU0 : Bornology.IsBounded U0) (i0 : ℕ) (Δt : ℝ) (η : ℕ) : -- --- STMT ---
+    {U0 : Set (Vec ℝ n)} (hU0 : Bornology.IsBounded U0) (i0 : ℕ) (Δt : ℝ) (η : ℕ) : -- --- CONCL ---
     ∀ y ∈ MatExp.particularSolutionOuterCorrelated A U0 i0 Δt η,
       ‖y‖₂ ≤ (∑ i ∈ Finset.Ico i0 (η + 1), (∑ j, ‖(fun k => (A ^ i) j k)‖₂)
           * (|Δt| ^ (i + 1) / (Nat.factorial (i + 1) : ℝ)) * err U0)

@@ -46,7 +46,7 @@ theorem aux_getVerdict_single_ap (eps : ℝ) (obj : OnlineReachSetAnalyzer S d)
     (hp : N.prop = [STLInterval.empty]) (hch : N.children = [])
     (hsig : N.signal = OnlineAnalyzerNode.initSignal .ap) (set : S d) (loc : ℕ) (val : Kleene)
     (hval : OnlineAnalyzerNode.apValue (𝕋 := 𝕋) a set loc = some val) (I : STLInterval)
-    (hne : I ≠ .empty) (h0 : (0 : ℝ) ∈ I.set) : -- --- STMT ---
+    (hne : I ≠ .empty) (h0 : (0 : ℝ) ∈ I.set) : -- --- CONCL ---
     ∃ obj1, OnlineReachSetAnalyzer.observeSet (𝕋 := 𝕋) eps obj set I loc none = some obj1 ∧
       obj1.getVerdict = some (FourValued.fromKleene val) ∧
       (val = .tt → ∀ x ∈ construct set, a.Holds x loc) ∧
@@ -70,7 +70,7 @@ theorem aux_getVerdict_single_ap (eps : ℝ) (obj : OnlineReachSetAnalyzer S d)
 
 theorem OnlineReachSetAnalyzer.getVerdict_ap (label : String) (a : AtomicProposition S d)
     (dp : Bool) (eps : ℝ) (set : S d) (loc : ℕ) (I : STLInterval) (hne : I ≠ .empty)
-    (h0 : (0 : ℝ) ∈ I.set) : -- --- STMT ---
+    (h0 : (0 : ℝ) ∈ I.set) : -- --- CONCL ---
     ∀ val ∈ OnlineAnalyzerNode.apValue (𝕋 := 𝕋) a set loc,
       ∀ obj0 ∈ OnlineReachSetAnalyzer.mk? (OnlineReachSetAnalyzer.Formula.ap label a) 1 dp,
         ∃ obj1, OnlineReachSetAnalyzer.observeSet (𝕋 := 𝕋) eps obj0 set I loc none = some obj1 ∧

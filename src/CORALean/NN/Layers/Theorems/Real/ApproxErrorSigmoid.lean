@@ -36,7 +36,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem approxError_sigmoid (m l u : ℝ) (hlu : l ≤ u) : -- --- STMT ---
+theorem approxError_sigmoid (m l u : ℝ) (hlu : l ≤ u) : -- --- CONCL ---
     IsLeast ((fun x => sigmoid x - (fun x => m * x) x) ''
           (({2 * Real.artanh (√(1 - 4 * m)), -(2 * Real.artanh (√(1 - 4 * m))), l, u} : Set ℝ) ∩
             Set.Icc l u))

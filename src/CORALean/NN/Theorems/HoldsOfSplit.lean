@@ -48,7 +48,7 @@ theorem NeuralNetwork.holds_of_split {ι : Type} {nn : NeuralNetwork S n m}
     {f : Vec ℝ n → Vec ℝ m} (hf : nn.Encloses f) (X : S n)
     (parts : ι → S n) (hcov : construct X ⊆ ⋃ i, construct (parts i))
     (spec : Specification ContSet)
-    (h : ∀ i, spec.Holds (construct (nn.enclose (parts i)))) : -- --- STMT ---
+    (h : ∀ i, spec.Holds (construct (nn.enclose (parts i)))) : -- --- CONCL ---
     spec.Holds (f '' construct X) := by -- --- PROOF ---
   have hsub : f '' construct X ⊆ ⋃ i, construct (nn.enclose (parts i)) :=
     calc f '' construct X ⊆ f '' ⋃ i, construct (parts i) := Set.image_mono hcov

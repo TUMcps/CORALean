@@ -52,7 +52,7 @@ theorem Icc_subset_image_of_preconditioned_gammaTest
     (hJ : ∀ i j, Jlo i j ≤ Jhi i j) (hdiag : ∀ i, (0 : ℝ) ∉ Icc (Jlo i i) (Jhi i i))
     (hx₀ : x₀ ∈ Icc xlo xhi) (hz : ∀ y ∈ Icc ylo yhi, C *ᵥ y ∈ Icc zlo zhi)
     (hy : f x₀ ∈ Icc ylo yhi)
-    (h4 : gammaTest (fun x => C *ᵥ f x) x₀ xlo xhi Jlo Jhi zlo zhi) : -- --- STMT ---
+    (h4 : gammaTest (fun x => C *ᵥ f x) x₀ xlo xhi Jlo Jhi zlo zhi) : -- --- CONCL ---
     Icc ylo yhi ⊆ f '' Icc xlo xhi := by -- --- PROOF ---
   -- `C f` is differentiable with derivative `C f'`
   let A : (Fin n → ℝ) →L[ℝ] (Fin n → ℝ) :=

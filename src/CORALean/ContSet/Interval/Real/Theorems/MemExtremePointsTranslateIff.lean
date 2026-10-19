@@ -33,7 +33,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.mem_extremePoints_translate_iff {I : Interval (Vec ℝ n)} {α : ℝ}
-    {c : Vec ℝ n} : -- --- STMT ---
+    {c : Vec ℝ n} : -- --- CONCL ---
     c ∈ Set.extremePoints ℝ (I.construct ∩ Interval.hyperplane 1 α) ↔
       c - I.inf ∈ Set.extremePoints ℝ ((⟨0, I.sup - I.inf⟩ : Interval (Vec ℝ n)).construct ∩
         Interval.hyperplane 1 (α - ∑ i, I.inf i)) := by -- --- PROOF ---

@@ -36,7 +36,7 @@ namespace CORALean.Real
 theorem sShape_band_sound {f df : ℝ → ℝ} {x' lam l u t : ℝ}
     (hd : ∀ x, HasDerivAt f (df x) x) (hmono : MonotoneOn df (Set.Iic x'))
     (hanti : AntitoneOn df (Set.Ici x')) (hlam : lam ≤ min (df l) (df u))
-    (hl : l ≤ t) (hu : t ≤ u) : -- --- STMT ---
+    (hl : l ≤ t) (hu : t ≤ u) : -- --- CONCL ---
     f l + lam * (t - l) ≤ f t ∧ f t ≤ f u + lam * (t - u) := by -- --- PROOF ---
   -- `f'` stays above its smaller end value on the box
   have hge : ∀ x, l ≤ x → x ≤ u → lam ≤ df x := fun x hlx hxu => by

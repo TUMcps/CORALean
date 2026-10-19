@@ -94,7 +94,7 @@ theorem aux_box_support (d : Vec ℝ 2 →ₗ[ℝ] ℝ) (y : Vec ℝ 2) (hy : �
 /-- [1, Sec. 4.2] as printed: from `x(0) = 0` under `u(j) = ν(U, (e^{A t_j})ᵀ ℓ)` (that is,
 (20) with `ũ = 0`), [1]'s Eq. (18) reaches at least as far along `ℓ` as under any other inputs
 in `U`. -/
-theorem LinearSys.printedSupportInput_counterexample : -- --- STMT ---
+theorem LinearSys.printedSupportInput_counterexample : -- --- CONCL ---
     ¬ ∀ (n : ℕ) (sys : LinearSys ℝ n) (Δt : ℝ), 0 < Δt →
       ∀ (U : Set (Vec ℝ n)) (νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n),
         (∀ d, νU d ∈ U ∧ ∀ y ∈ U, d y ≤ d (νU d)) →

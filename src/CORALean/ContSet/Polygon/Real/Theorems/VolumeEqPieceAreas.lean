@@ -31,7 +31,7 @@ namespace CORALean.Real
 theorem Polygon.aux_union_eq (l : List (VPolytope (Vec ℝ 2)))
     (h : l.Pairwise fun p q =>
       MeasureTheory.AEDisjoint MeasureTheory.volume
-        (VPolytope.construct p) (VPolytope.construct q)) : -- --- STMT ---
+        (VPolytope.construct p) (VPolytope.construct q)) : -- --- CONCL ---
     MeasureTheory.volume (⋃ p ∈ l, VPolytope.construct p) =
       (l.map fun p => MeasureTheory.volume (VPolytope.construct p)).sum := by -- --- PROOF ---
   induction l with

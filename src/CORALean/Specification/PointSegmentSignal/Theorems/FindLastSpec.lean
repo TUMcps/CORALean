@@ -41,7 +41,7 @@ namespace CORALean
 
 /-- `findLast` is the supremum of the times with the value, and whether it is attained. -/
 theorem PointSegmentSignal.findLast_spec {T : Type} [LinearOrder T] [Zero T] [DenselyOrdered T]
-    [NoMaxOrder T] (s : PointSegmentSignal T) (hs : s.IsValid) (value : Bool) : -- --- STMT ---
+    [NoMaxOrder T] (s : PointSegmentSignal T) (hs : s.IsValid) (value : Bool) : -- --- CONCL ---
     ((∃ t : T, 0 ≤ t ∧ s.at t = value) →
       IsLUB {x : WithTop T | ∃ t : T, 0 ≤ t ∧ s.at t = value ∧ (t : WithTop T) = x}
         (s.findLast value).1 ∧

@@ -9,6 +9,16 @@ public import CORALean.Global.EuclideanNorm
 # Every point of a capsule is within `radius` of the center
 
 The segment contributes at most `‖g‖₂` (`t ∈ [-1, 1]`), the ball at most `r`.
+
+## Inputs
+* `C` – capsule
+* `x` – point
+
+## Hypotheses
+* `hx` – `x ∈ C`
+
+## Conclusion
+* `‖x - C.c‖₂ ≤ C.radius`
 -/
 
 -- Authors:       Claude Sonnet 5.5

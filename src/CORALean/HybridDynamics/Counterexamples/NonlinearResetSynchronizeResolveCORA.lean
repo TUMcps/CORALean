@@ -59,7 +59,7 @@ open SynchronizeResolveExample
 
 /-- At the arguments `v i = i`, the first component's state after the synchronized jump is `1`
 for the parallel automaton (`resolve` of the synchronized reset), `0` for CORA. -/
-theorem NonlinearReset.synchronizeResolveCORA_counterexample : -- --- STMT ---
+theorem NonlinearReset.synchronizeResolveCORA_counterexample : -- --- CONCL ---
     (((NonlinearReset.synchronize aux_resets ∅).resolve aux_out aux_stateBinds aux_binds).f
       (fun _ => 0) (fun i => (i : ℝ)) 0 = 1) ∧
     ((NonlinearReset.synchronizeResolveCORA aux_resets ∅ aux_out aux_stateBinds aux_binds).f

@@ -48,7 +48,7 @@ of size `m + 1` here. -/
 theorem Krylov.norm_exp_apply_last_le (m : ℕ) (T : Mat ℂ (m + 1) (m + 1)) (σ : ℂ)
     (hH : ∀ i k : Fin (m + 1), (k : ℕ) + 1 < i → T i k = 0)
     (hT : ∀ x : Fin (m + 1) → ℂ, (star x ⬝ᵥ ((σ • T) *ᵥ x)).re ≤ 0) (hσ : ‖σ‖ = 1) {s : ℝ}
-    (hs : 0 ≤ s) : -- --- STMT ---
+    (hs : 0 ≤ s) : -- --- CONCL ---
     ‖exp (s • (σ • T)) (Fin.last m) 0‖ ≤
       ‖∏ j : Fin m, T j.succ j.castSucc‖ * s ^ m / (Nat.factorial m : ℝ) := by -- --- PROOF ---
   induction m generalizing s with

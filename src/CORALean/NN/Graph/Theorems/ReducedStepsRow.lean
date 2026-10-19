@@ -42,7 +42,7 @@ full one, every nonzero `P` entry of such a row landing in `S` and in the next b
 theorem aux_reducedSteps_row_step {N F : ℕ} (A : Mat ℝ N N) (v : Fin N) (r : ℕ)
     (T S : Finset (Fin N)) (hS : GNN.ball A v (r + 1) ⊆ S) (X : Mat ℝ N F)
     (Y : Matrix ↥S (Fin F) ℝ) (hY : ∀ a : ↥S, (a : Fin N) ∈ GNN.ball A v (r + 1) →
-      Y a = X a) (b : ↥T) (hb : (b : Fin N) ∈ GNN.ball A v r) : -- --- STMT ---
+      Y a = X a) (b : ↥T) (hb : (b : Fin N) ∈ GNN.ball A v r) : -- --- CONCL ---
     ((GNN.messagePassing A).submatrix (fun a : ↥T => (a : Fin N)) (fun c : ↥S => (c : Fin N))
       * Y) b = (GNN.messagePassing A * X) b := by -- --- PROOF ---
   funext g
@@ -69,7 +69,7 @@ theorem GNN.reducedSteps_row {N F : ℕ} (A : Mat ℝ N N) (v : Fin N) (L : ℕ)
     (S : ℕ → Finset (Fin N)) (hS : ∀ k ≤ L, GNN.ball A v (L - k) ⊆ S k)
     (W : ℕ → Mat ℝ F F) (X : Mat ℝ N F) (Y : Matrix ↥(S 0) (Fin F) ℝ)
     (hY : ∀ a : ↥(S 0), (a : Fin N) ∈ GNN.ball A v L → Y a = X a) (a : ↥(S L))
-    (ha : (a : Fin N) = v) : -- --- STMT ---
+    (ha : (a : Fin N) = v) : -- --- CONCL ---
     GNN.reducedSteps (GNN.messagePassing A) L S W Y a
       = GNN.evalSteps (GNN.messagePassing A) L (fun i : Fin L => W i) X v := by -- --- PROOF ---
   induction L generalizing S W X Y with

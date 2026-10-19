@@ -83,7 +83,7 @@ theorem Ellipsoid.aux_vieta (x : ι → ℝ) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Eq. 24]: (22) is `d β^(d+1) + ∑_{r=1}^{d+1} µᵣ β^(d+1−r)`, with the `µᵣ` of (23). -/
-theorem Ellipsoid.halder_poly_expand [DecidableEq ι] (lam : ι → ℝ) (β : ℝ) : -- --- STMT ---
+theorem Ellipsoid.halder_poly_expand [DecidableEq ι] (lam : ι → ℝ) (β : ℝ) : -- --- CONCL ---
     ∑ i, (β ^ 2 - 1 / lam i) * ∏ j ∈ univ.erase i, (β + 1 / lam j)
       = (Fintype.card ι : ℝ) * β ^ (Fintype.card ι + 1)
         + ∑ r ∈ range (Fintype.card ι + 1), Ellipsoid.halderMu lam (r + 1)

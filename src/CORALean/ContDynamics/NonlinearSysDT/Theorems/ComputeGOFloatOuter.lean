@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 theorem NonlinearSysDT.computeGOFloat_outer (sys : NonlinearSysDT n m)
     {fm : NonlinearSysDT.FloatJacModel 𝕋 n m n} (hf : fm.Encloses sys.f)
     {om : NonlinearSysDT.FloatJacModel 𝕋 n m sys.q} (ho : om.Encloses sys.g)
-    (x0 : Vec 𝕋 n) (u_ref : ℕ → Vec 𝕋 m) (k j : ℕ) : -- --- STMT ---
+    (x0 : Vec 𝕋 n) (u_ref : ℕ → Vec 𝕋 m) (k j : ℕ) : -- --- CONCL ---
     let G := sys.computeGO (toRealVec x0) (fun i => toRealVec (u_ref i))
     let F := NonlinearSysDT.computeGOFloat fm om x0 u_ref
     G.x k ∈ (F.x k).construct ∧ G.y k ∈ (F.y k).construct ∧ G.A k ∈ (F.A k).construct ∧

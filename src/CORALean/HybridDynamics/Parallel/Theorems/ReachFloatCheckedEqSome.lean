@@ -35,7 +35,7 @@ theorem ParallelHybridAutomaton.reachFloatChecked_eq_some
     (P : ParallelHybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) k L 𝕋 n m)
     (lift : ParallelHybridAutomaton.Lifting 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) n m) (tFinal : ℚ)
     (options : LinearSys.ReachOptions 𝕋) (K : ℕ) (ℓ : ∀ i, L i)
-    (X₀ : Zonotope (Vec 𝕋 (∑ i, n i))) : -- --- STMT ---
+    (X₀ : Zonotope (Vec 𝕋 (∑ i, n i))) : -- --- CONCL ---
     ∀ Rs ∈ P.reachFloatChecked lift tFinal options K ℓ X₀,
       P.reachFloat lift tFinal options K ℓ X₀ = some Rs ∧ noNaN (𝕋 := 𝕋) Rs = true := fun _ h =>
   checkNoNaN_eq_some h

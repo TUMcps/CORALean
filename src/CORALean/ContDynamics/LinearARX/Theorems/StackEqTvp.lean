@@ -65,7 +65,7 @@ theorem LinearARX.stack_eq_tvp (sys : LinearARX 𝕋 dy du p) {y : ℕ → Vec �
     {u : ℕ → Vec ℝ du}
     (hy : ∀ k, p ≤ k →
       y k = ∑ i : Fin p, toRealMat (sys.Abar i) *ᵥ y (k - (i + 1))
-        + ∑ j : Fin (p + 1), toRealMat (sys.Bbar j) *ᵥ u (k - j)) (k : ℕ) : -- --- STMT ---
+        + ∑ j : Fin (p + 1), toRealMat (sys.Bbar j) *ᵥ u (k - j)) (k : ℕ) : -- --- CONCL ---
     LinearARX.stack p y k = sys.Aext ^ k *ᵥ LinearARX.stack p y 0
       + ∑ i ∈ Finset.range (k + p), sys.Btilde k i *ᵥ u (k + p - 1 - i) := by -- --- PROOF ---
   induction k with

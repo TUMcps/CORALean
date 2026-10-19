@@ -111,7 +111,7 @@ theorem aux_particularTail_entry_eq (A : Mat ℝ n n) (Δt : ℝ) (η : ℕ) (j 
 
 /-- One order of the tail, against the same order of `E(Δt,η)·Δt`. -/
 theorem aux_abs_particularCoeff_entry_le (A : Mat ℝ n n) {Δt : ℝ} (hΔt : 0 ≤ Δt) (m : ℕ)
-    (j k : Fin n) : -- --- STMT ---
+    (j k : Fin n) : -- --- CONCL ---
     |(MatExp.particularCoeff A Δt m) j k|
       ≤ Δt * (((Nat.factorial m : ℝ)⁻¹ * Δt ^ m)
         * ((MatExp.absMat A) ^ m) j k) := by -- --- PROOF ---

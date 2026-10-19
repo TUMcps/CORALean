@@ -39,7 +39,7 @@ open CORALean.Real
 
 /-- `x₀ ∈ R0`, the first update does not fire, `v₁ ∈ V`, `w ∈ W`, `v₂ ∈ V`, and `x₁` is in
 neither the estimate nor its level-`sigma_sq` set. -/
-theorem LinearSysDT.observeEsoB1D_counterexample : -- --- STMT ---
+theorem LinearSysDT.observeEsoB1D_counterexample : -- --- CONCL ---
     let x₀ : ℝ := -9 / 10
     let w : ℝ := -1 / 10
     let x₁ : ℝ := 1 * x₀ + 0 + w

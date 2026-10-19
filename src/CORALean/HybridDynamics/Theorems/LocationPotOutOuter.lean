@@ -35,7 +35,7 @@ omit [Scalar 𝕋] in
 theorem Location.potOut_outer [∀ n, Intersection (S n) (Vec ℝ n)]
     [∀ n, IsDisjoint (S n) (S n)] (ℓ : Location S S L 𝕋 n) (Rs : List (S n))
     (minInd maxInd : List ℕ) {k : ℕ} (hk : k < Rs.length) {x : Vec ℝ n}
-    (hx : x ∈ construct Rs[k]) (hinv : x ∈ construct ℓ.inv) : -- --- STMT ---
+    (hx : x ∈ construct Rs[k]) (hinv : x ∈ construct ℓ.inv) : -- --- CONCL ---
     ∃ h : k < (ℓ.potOut Rs minInd maxInd).length,
       x ∈ construct (ℓ.potOut Rs minInd maxInd)[k] := by -- --- PROOF ---
   unfold Location.potOut

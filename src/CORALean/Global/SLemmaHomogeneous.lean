@@ -105,7 +105,7 @@ theorem aux_exists_le_add (P Q : V → ℝ) (pP pQ : V → V → ℝ)
 theorem aux_exists_delta (P Q : V → ℝ) (pP pQ : V → V → ℝ)
     (hP : ∀ (u v : ℝ) (x y : V), P (u • x + v • y) = u ^ 2 * P x + v ^ 2 * P y + u * v * pP x y)
     (hQ : ∀ (u v : ℝ) (x y : V), Q (u • x + v • y) = u ^ 2 * Q x + v ^ 2 * Q y + u * v * pQ x y)
-    (z₀ : V) (hz₀ : Q z₀ < 0) (h : ∀ z, Q z < 0 → 0 ≤ P z) : -- --- STMT ---
+    (z₀ : V) (hz₀ : Q z₀ < 0) (h : ∀ z, Q z < 0 → 0 ≤ P z) : -- --- CONCL ---
     ∃ δ : ℝ, 0 ≤ δ ∧ ∀ z, 0 ≤ P z + δ * Q z := by -- --- PROOF ---
   -- the points dominating some `(P z, Q z)`: a convex cone
   set C : Set (ℝ × ℝ) := {p | ∃ z, P z ≤ p.1 ∧ Q z ≤ p.2} with hCdef
@@ -195,7 +195,7 @@ theorem aux_exists_delta (P Q : V → ℝ) (pP pQ : V → V → ℝ)
 theorem s_lemma_homogeneous (P Q : V → ℝ) (pP pQ : V → V → ℝ)
     (hP : ∀ (u v : ℝ) (x y : V), P (u • x + v • y) = u ^ 2 * P x + v ^ 2 * P y + u * v * pP x y)
     (hQ : ∀ (u v : ℝ) (x y : V), Q (u • x + v • y) = u ^ 2 * Q x + v ^ 2 * Q y + u * v * pQ x y)
-    (h₀ : ∃ z₀, Q z₀ < 0) : -- --- STMT ---
+    (h₀ : ∃ z₀, Q z₀ < 0) : -- --- CONCL ---
     (∀ z, Q z < 0 → 0 ≤ P z) ↔ ∃ δ : ℝ, 0 ≤ δ ∧ ∀ z, 0 ≤ P z + δ * Q z := by -- --- PROOF ---
   obtain ⟨z₀, hz₀⟩ := h₀
   refine ⟨aux_exists_delta P Q pP pQ hP hQ z₀ hz₀, fun ⟨δ, hδ, h⟩ z hz => ?_⟩

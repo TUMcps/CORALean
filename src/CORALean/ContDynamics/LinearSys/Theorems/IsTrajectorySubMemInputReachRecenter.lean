@@ -54,7 +54,7 @@ motion and what `V`'s center contributes, is one `recenter V`-input's
 contribution. -/
 theorem LinearSys.IsCanonicalTrajectory.sub_mem_inputReach_recenter {sys : LinearSys 𝕋 n} {T : ℝ}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.IsCanonicalTrajectory (Set.Icc 0 T) R₀ U x u)
-    {V : S' n} (hUV : construct U ⊆ construct V) {t : ℝ} (ht : t ∈ Set.Icc 0 T) : -- --- STMT ---
+    {V : S' n} (hUV : construct U ⊆ construct V) {t : ℝ} (ht : t ∈ Set.Icc 0 T) : -- --- CONCL ---
     x t - (exp (t • toRealMat sys.A) *ᵥ x 0
         + MatExp.expIntegral (toRealMat sys.A) t *ᵥ Recenter.center V)
       ∈ sys.inputReach (Recenter.recenter V) t := by -- --- PROOF ---

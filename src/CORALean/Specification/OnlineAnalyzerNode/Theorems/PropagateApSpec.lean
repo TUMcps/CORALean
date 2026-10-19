@@ -33,7 +33,7 @@ variable {A : Type}
 
 theorem OnlineAnalyzerNode.propagate_ap_spec (eps : ℝ) (n : OnlineAnalyzerNode A)
     (ch : List (OnlineAnalyzerNode A)) (I : STLInterval) (hk : n.kind = .ap) (hs : n.signal.IsValid)
-    (hne : I ≠ .empty) : -- --- STMT ---
+    (hne : I ≠ .empty) : -- --- CONCL ---
     ∀ tent ∈ n.tentative,
       tent.IsValid →
       ∃ n', n.propagate eps ch I = some (n', ch) ∧ n'.signal.IsValid ∧

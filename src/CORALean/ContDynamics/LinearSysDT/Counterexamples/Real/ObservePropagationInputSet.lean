@@ -38,7 +38,7 @@ open Matrix CORALean.Real
 /-- The input `1` of `U = [-1, 1]` takes `x₀ = 0` to `x₁ = 1`, and `x₁` is not in the observer's
 next set, at every gain and order. -/
 theorem LinearSysDT.observePropagation_input_set_counterexample
-    (gain : Zonotope (Vec ℝ 1) → Mat ℝ 1 1) (order : ℕ) : -- --- STMT ---
+    (gain : Zonotope (Vec ℝ 1) → Mat ℝ 1 1) (order : ℕ) : -- --- CONCL ---
     let sys : LinearSysDT ℝ 1 := LinearSysDT.canonical 1
     let U : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ _ => 1⟩  -- `params.U`
     let ũ : Vec ℝ 1 := fun _ => 1  -- the input drawn from `U`

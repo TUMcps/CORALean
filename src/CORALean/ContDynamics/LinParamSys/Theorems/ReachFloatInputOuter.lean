@@ -55,7 +55,7 @@ every time of the window, under inputs in `params.U` (input coordinates) anywher
 theorem LinParamSys.reachFloatInput_outer (sys : LinParamSys ℐ[𝕋] n) {c : Vec 𝕋 n}
     (hc : Scalar.toRealVec c = sys.c)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} : -- --- STMT ---
+    {options : LinearSys.ReachOptions 𝕋} : -- --- CONCL ---
     ∀ Rs ∈ sys.reachFloatInput c params options,
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
         Rs.length = N ∧ ∀ {A : Mat ℝ n n} {B : Mat ℝ n sys.m} {x : ℝ → Vec ℝ n}

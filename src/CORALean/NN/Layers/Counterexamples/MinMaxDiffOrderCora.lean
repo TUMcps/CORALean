@@ -79,7 +79,7 @@ namespace CORALean.Real
 
 /-- For `f = df = exp` on `[-1, 1]` with the chord slope `m`, the point `0` has `f 0 - p 0`
 below CORA's lower bound `diffl`, whatever `fzero` returns. -/
-theorem Layer.minMaxDiffOrder_cora_counterexample (root : ℝ) : -- --- STMT ---
+theorem Layer.minMaxDiffOrder_cora_counterexample (root : ℝ) : -- --- CONCL ---
     ∃ x ∈ Set.Icc (-1 : ℝ) 1,
       Real.exp x - ((Real.exp 1 - Real.exp (-1)) / 2 * x + 0) <
         (Layer.minMaxDiffOrderCora Real.exp Real.exp ((Real.exp 1 - Real.exp (-1)) / 2) 0

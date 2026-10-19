@@ -45,7 +45,7 @@ theorem Zonotope.aux_min_le_right (a b k : ℕ) : min (min a b) k ≤ b := by om
 
 /-- A sum over three appended blocks, one block at a time. -/
 theorem Zonotope.aux_sum_append3 {a b c : ℕ} (δ : Fin (a + b + c) → ℝ) (A : Fin a → α)
-    (B : Fin b → α) (C : Fin c → α) : -- --- STMT ---
+    (B : Fin b → α) (C : Fin c → α) : -- --- CONCL ---
     ∑ j, δ j • Fin.append (Fin.append A B) C j =
       ∑ i, δ (Fin.castAdd c (Fin.castAdd b i)) • A i
       + ∑ i, δ (Fin.castAdd c (Fin.natAdd a i)) • B i
@@ -55,7 +55,7 @@ theorem Zonotope.aux_sum_append3 {a b c : ℕ} (δ : Fin (a + b + c) → ℝ) (A
 
 /-- The generator sum of `exactPlus`, one block at a time. -/
 theorem Zonotope.aux_sum_exactPlus (Z₁ Z₂ : Zonotope α) (k : ℕ)
-    (δ : Fin (Z₁.exactPlus Z₂ k).h → ℝ) : -- --- STMT ---
+    (δ : Fin (Z₁.exactPlus Z₂ k).h → ℝ) : -- --- CONCL ---
     ∑ j, δ j • (Z₁.exactPlus Z₂ k).G j =
       ∑ i : Fin (min (min Z₁.h Z₂.h) k),
         δ (Fin.castAdd _ (Fin.castAdd _ i)) •
@@ -90,7 +90,7 @@ theorem Zonotope.aux_abs_append3 {a b c : ℕ} {A : Fin a → ℝ} {B : Fin b �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.exactPlus_construct (Z₁ Z₂ : Zonotope α) (k : ℕ) : -- --- STMT ---
+theorem Zonotope.exactPlus_construct (Z₁ Z₂ : Zonotope α) (k : ℕ) : -- --- CONCL ---
     (Z₁.exactPlus Z₂ k).construct =
       {x | ∃ (β : Fin Z₁.h → ℝ) (γ : Fin Z₂.h → ℝ), (∀ j, |β j| ≤ 1) ∧ (∀ j, |γ j| ≤ 1) ∧
         (∀ (j₁ : Fin Z₁.h) (j₂ : Fin Z₂.h), (j₁ : ℕ) = j₂ → (j₁ : ℕ) < k → β j₁ = γ j₂) ∧

@@ -48,7 +48,7 @@ theorem LinearSysDT.intervalObserver_outer (sys : LinearSysDT ℝ n) (L : Mat �
     (h0 : ∀ i, xl₀ i ≤ x 0 i ∧ x 0 i ≤ xu₀ i) (hw : ∀ k i, wl i ≤ w k i ∧ w k i ≤ wu i)
     (hv : ∀ k i, vl i ≤ v k i ∧ v k i ≤ vu i)
     (hstep : ∀ k, x (k + 1) = sys.A *ᵥ x k + sys.B *ᵥ u k + sys.E *ᵥ w k)
-    (hy : ∀ k, y k = sys.C *ᵥ x k + sys.F *ᵥ v k) (k : ℕ) : -- --- STMT ---
+    (hy : ∀ k, y k = sys.C *ᵥ x k + sys.F *ᵥ v k) (k : ℕ) : -- --- CONCL ---
     x k ∈ (LinearSysDT.intervalObserver sys L wl wu vl vu xl₀ xu₀ u y
       k).construct := by -- --- PROOF ---
   set I := LinearSysDT.intervalObserver sys L wl wu vl vu xl₀ xu₀ u y

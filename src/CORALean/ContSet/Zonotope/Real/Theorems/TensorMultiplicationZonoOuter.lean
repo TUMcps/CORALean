@@ -69,7 +69,7 @@ theorem Zonotope.tensorMultiplication_zono_outer (Z : Zonotope (Vec ℝ n))
       ({L.perm p 0, L.perm p 1, L.perm p 2} : Multiset (Fin Z.h)) =
         {L.perm q 0, L.perm q 1, L.perm q 2})
     {M' : Tensor3 ℝ n} (hM : M' ∈ M.construct) {x : Vec ℝ n}
-    (hx : x ∈ Z.construct) : -- --- STMT ---
+    (hx : x ∈ Z.construct) : -- --- CONCL ---
     Zonotope.tensorEval M' x ∈ (Z.tensorMultiplication_zono M L).construct := by -- --- PROOF ---
   obtain ⟨γ, hγ, rfl⟩ := hM
   have hlin : Zonotope.tensorEval (M.c + ∑ j, γ j • M.G j) x

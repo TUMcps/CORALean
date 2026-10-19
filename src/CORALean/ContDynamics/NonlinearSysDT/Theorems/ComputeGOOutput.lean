@@ -35,7 +35,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 theorem NonlinearSysDT.computeGO_output (sys : NonlinearSysDT n m)
     (x0 : Vec ℝ n) (u_ref : ℕ → Vec ℝ m)
     {R₀ : S n} {U : S m} {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} {y : ℕ → Vec ℝ sys.q}
-    (traj : sys.IsTrajectory R₀ U x u y) (k : ℕ) : -- --- STMT ---
+    (traj : sys.IsTrajectory R₀ U x u y) (k : ℕ) : -- --- CONCL ---
     y k - (sys.computeGO x0 u_ref).y k
       = (sys.computeGO x0 u_ref).C k *ᵥ (x 0 - x0)
         + ∑ j ∈ Finset.range (k + 1),

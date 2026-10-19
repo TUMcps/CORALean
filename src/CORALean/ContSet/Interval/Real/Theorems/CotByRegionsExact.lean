@@ -84,7 +84,7 @@ theorem aux_image_tan_between {c d : ℝ} (k : ℤ) (hcd : c ≤ d)
 
 /-- [1, Eq. 15], at ends that are not poles. -/
 theorem Interval.cotByRegions_exact {lo hi : ℝ} (hle : lo ≤ hi) (hlo : Real.sin lo ≠ 0)
-    (hhi : Real.sin hi ≠ 0) : -- --- STMT ---
+    (hhi : Real.sin hi ≠ 0) : -- --- CONCL ---
     (Interval.cotByRegions lo hi = none →
       ¬BddAbove (Real.cot '' (Set.Icc lo hi ∩ {x | Real.sin x ≠ 0})) ∧
         ¬BddBelow (Real.cot '' (Set.Icc lo hi ∩ {x | Real.sin x ≠ 0}))) ∧

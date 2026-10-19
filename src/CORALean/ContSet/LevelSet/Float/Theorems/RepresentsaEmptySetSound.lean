@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem LevelSet.representsa_emptySet_sound (L : CORALean.Real.LevelSet n)
     (O : Fin L.m → Interval 𝕋)
     (hO : ∀ i x, toReal (O i).inf ≤ L.f x i ∧ L.f x i ≤ toReal (O i).sup)
-    (hm : 0 < L.m) (h : LevelSet.representsa_emptySet L O = true) : -- --- STMT ---
+    (hm : 0 < L.m) (h : LevelSet.representsa_emptySet L O = true) : -- --- CONCL ---
     L.construct = ∅ := by -- --- PROOF ---
   refine CORALean.Real.LevelSet.representsa_emptySet_sound L
     (fun i => ⟨((toReal (O i).inf : ℝ) : EReal), ((toReal (O i).sup : ℝ) : EReal)⟩)

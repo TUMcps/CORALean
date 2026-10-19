@@ -82,7 +82,7 @@ theorem Zonotope.aux_matMulDown_sub_le (M : Mat 𝕋 m n) (Z : Zonotope (Vec �
 
 This needs `0` to lie in the error box of `Z`. -/
 theorem Zonotope.mtimes_subset_add_box (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n))
-    (h : (0 : Vec ℝ n) ∈ Z.I_error.construct) : -- --- STMT ---
+    (h : (0 : Vec ℝ n) ∈ Z.I_error.construct) : -- --- CONCL ---
     (Zonotope.mtimes M Z).construct ⊆
       (toRealMat M *ᵥ ·) '' Z.construct
         + (Zonotope.mtimesBox M Z).construct := by -- --- PROOF ---

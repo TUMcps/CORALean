@@ -39,7 +39,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.expIntegral_toLinearSys (sys : LinearSysDT ℝ n) (L : Mat ℝ n n)
-    (hdt : sys.dt ≠ 0) (hL : exp L = sys.A) (hM : IsUnit (sys.A - 1).det) : -- --- STMT ---
+    (hdt : sys.dt ≠ 0) (hL : exp L = sys.A) (hM : IsUnit (sys.A - 1).det) : -- --- CONCL ---
     Real.MatExp.expIntegral (sys.dt⁻¹ • L) sys.dt * (sys.toLinearSys L).B = sys.B ∧
       Real.MatExp.expIntegral (sys.dt⁻¹ • L) sys.dt *ᵥ (sys.toLinearSys L).c = sys.c ∧
       Real.MatExp.expIntegral (sys.dt⁻¹ • L) sys.dt * (sys.toLinearSys L).E

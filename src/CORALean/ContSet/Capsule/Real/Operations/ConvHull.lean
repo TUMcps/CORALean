@@ -10,6 +10,13 @@ public import CORALean.ContSet.Capsule.Real.Operations.Radius
 CORA's `@capsule/convHull_.m` for two capsules: the centers' midpoint `c_`, the generator `g_`
 from it to the first center, and the larger of the two radii `‖g‖₂ + r`, a ball around that
 segment. The hull of two capsules is not a capsule, so this encloses it.
+
+## Inputs
+* `C` – first capsule
+* `S` – second capsule
+
+## Output
+* capsule enclosing the hull of `C` and `S`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -67,7 +67,7 @@ theorem NonlinearSys.reachSetExact_confinement_of_subset [Mtimes ℐ S] (sys : N
     (hρ : M * Δt < ρ) {o : ℕ} (ho : 0 < o)
     (hsub : ∀ i < N, ∀ y ∈ construct (sys.relinReach ⟨R₀, 0, i⟩ ⟨Δt, o, ho⟩ steps (fun i =>
       (NonlinearSys.linearize (steps i).A).inputSolution Δt η (steps i).linInput)),
-      Metric.closedBall y ρ ⊆ (steps i).R) : -- --- STMT ---
+      Metric.closedBall y ρ ⊆ (steps i).R) : -- --- CONCL ---
     ∀ i < N, ∀ t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt),
       sys.reachSetExact T R₀ U t ⊆ (steps i).R := by -- --- PROOF ---
   rintro i hi t ht _ ⟨x, u, traj, rfl⟩

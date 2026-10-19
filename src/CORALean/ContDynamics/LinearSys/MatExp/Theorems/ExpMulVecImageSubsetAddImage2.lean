@@ -43,7 +43,7 @@ variable {n : ℕ}
 /-- `e^{At} Z ⊆ Z + ΔR` for `t ∈ [0, r]`. -/
 theorem MatExp.expMulVec_image_subset_add_image2 (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) {m : ℕ}
     (hε : ‖r • A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r)
-    (Z : Set (Vec ℝ n)) : -- --- STMT ---
+    (Z : Set (Vec ℝ n)) : -- --- CONCL ---
     (fun x => exp (t • A) *ᵥ x) '' Z
       ⊆ Z + Set.image2 (fun B x => B *ᵥ x) (MatExp.expDiffMatrices A r m) Z := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩

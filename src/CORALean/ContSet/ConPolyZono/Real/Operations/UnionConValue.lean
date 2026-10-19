@@ -39,7 +39,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.unionCon_value {p₁ p₂ : ℕ} (a : Fin (p₁ + p₂ + 2) → ℝ) : -- --- STMT ---
+theorem ConPolyZono.unionCon_value {p₁ p₂ : ℕ} (a : Fin (p₁ + p₂ + 2) → ℝ) : -- --- CONCL ---
     (∑ l, ConPolyZono.unionConCoef p₁ p₂ l * ∏ k, a k ^ ConPolyZono.unionConCol p₁ p₂ l k)
       = (1 + a (ConPolyZono.unionSel p₁ p₂)
             + 2⁻¹ * ConPolyZono.unionMeanSq (fun j => a (Fin.castAdd 2 (Fin.castAdd p₂ j)))

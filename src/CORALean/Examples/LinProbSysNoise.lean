@@ -66,7 +66,7 @@ noncomputable def linProbInput : ProbZonotope 1 :=
 
 /-- After one `post` step both the state and the time-interval set carry the covariance over
 time `2`, which is `(e⁴ - 1)/2` by `noiseCovariance_closed`. -/
-theorem post_cov_two : -- --- STMT ---
+theorem post_cov_two : -- --- CONCL ---
     (linProbSys.post 1 linProbInput linProbState).1.Rpar_prob.cov =
         noiseCovariance linProbSys.A linProbSys.C (1 + 1) ∧
       (linProbSys.post 1 linProbInput linProbState).2.cov =

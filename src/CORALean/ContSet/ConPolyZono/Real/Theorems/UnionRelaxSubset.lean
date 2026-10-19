@@ -52,7 +52,7 @@ theorem ConPolyZono.aux_union_rows (cPZ₁ cPZ₂ : ConPolyZono α) (s₁ : Vec 
     (hlow₁ : ∀ r, |(ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons).eval a
         (Fin.castAdd cPZ₂.cons.m r)| ≤ |s₁ r|)
     (hlow₂ : ∀ r, |(ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons).eval a
-        (Fin.natAdd cPZ₁.cons.m r)| ≤ |s₂ r|) : -- --- STMT ---
+        (Fin.natAdd cPZ₁.cons.m r)| ≤ |s₂ r|) : -- --- CONCL ---
     ∀ i, |((cPZ₁.union cPZ₂).cons.A *ᵥ PolyZonotope.monomial (cPZ₁.union cPZ₂).cons.R a) i
       - (cPZ₁.union cPZ₂).cons.b i|
         ≤ |Fin.append (0 : Vec ℝ (1 + 1)) (Fin.append s₁ s₂) i| := by -- --- PROOF ---
@@ -83,7 +83,8 @@ theorem ConPolyZono.aux_union_rows (cPZ₁ cPZ₂ : ConPolyZono α) (s₁ : Vec 
 theorem ConPolyZono.union_relax_subset (cPZ₁ cPZ₂ : ConPolyZono α) (s₁ : Vec ℝ cPZ₁.cons.m)
     (s₂ : Vec ℝ cPZ₂.cons.m) (hq₁ : cPZ₁.qI = 0) (hq₂ : cPZ₂.qI = 0)
     (hE₁ : ConPolyZono.NoZeroCol cPZ₁.E) (hR₁ : ConPolyZono.NoZeroCol cPZ₁.cons.R)
-    (hE₂ : ConPolyZono.NoZeroCol cPZ₂.E) (hR₂ : ConPolyZono.NoZeroCol cPZ₂.cons.R) : -- --- STMT ---
+    (hE₂ : ConPolyZono.NoZeroCol cPZ₂.E)
+    (hR₂ : ConPolyZono.NoZeroCol cPZ₂.cons.R) : -- --- CONCL ---
     (cPZ₁.relax s₁).construct ∪ (cPZ₂.relax s₂).construct
       ⊆ ((cPZ₁.union cPZ₂).relax
           (Fin.append (0 : Vec ℝ (1 + 1)) (Fin.append s₁ s₂))).construct := by -- --- PROOF ---

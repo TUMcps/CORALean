@@ -48,7 +48,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.depReachAt_sum (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ : Zonotope (Vec ℝ n))
-    (U : Zonotope (Vec ℝ m)) (Δt : ℝ) (κ : ℕ) (α : ℕ → ℝ) (i : ℕ) : -- --- STMT ---
+    (U : Zonotope (Vec ℝ m)) (Δt : ℝ) (κ : ℕ) (α : ℕ → ℝ) (i : ℕ) : -- --- CONCL ---
     let s := STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ i
     s.H.c + ∑ k : Fin s.H.h, α k • s.H.G k + ∑ k : Fin s.Pc.h, α (X₀.h + k) • s.Pc.G k
       = (LinearSys.canonical A).heldSim Δt (X₀.c + ∑ l : Fin X₀.h, α l • X₀.G l)

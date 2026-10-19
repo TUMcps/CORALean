@@ -43,7 +43,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem add_properties (S₁ S₂ : Set (Vec ℝ n)) : -- --- STMT ---
+theorem add_properties (S₁ S₂ : Set (Vec ℝ n)) : -- --- CONCL ---
     (S₁ = ∅ → S₁ + S₂ = ∅) ∧ (S₁.Nonempty → S₂.Nonempty → (S₁ + S₂).Nonempty) ∧
       (S₁.Nonempty → (interior S₂).Nonempty → (interior (S₁ + S₂)).Nonempty) ∧
       (S₁.Nonempty → ¬ Bornology.IsBounded S₂ → ¬ Bornology.IsBounded (S₁ + S₂)) ∧

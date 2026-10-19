@@ -36,7 +36,7 @@ theorem LinearARX.identify_le_candidate (dt : ℝ) (lt : ℝ → ℝ → Bool)
     (hlt : ∀ a b, lt a b = true ↔ a < b)
     (err : Mat ℝ dy (p * dy + (p + 1) * du) → ℝ) (yNext : Fin N → Vec ℝ dy)
     (V : Mat ℝ (p * dy + (p + 1) * du) r) (s : Fin r → ℝ) (W : Mat ℝ N r)
-    (hr : 0 < r) : -- --- STMT ---
+    (hr : 0 < r) : -- --- CONCL ---
     ∃ M, LinearARX.identify dt lt err yNext V s W = some (LinearARX.identifyBlocks dt M) ∧
       (∃ k, 1 ≤ k ∧ k ≤ r ∧ M = LinearARX.identifyCandidate yNext V s W k) ∧
       err M ≤ err (LinearARX.identifyCandidate yNext V s W r) := by -- --- PROOF ---

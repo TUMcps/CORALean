@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem HPolytope.reduceOverDomain_rows (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n))
     (dom : Interval (Vec 𝕋 n))
-    {x : Vec ℝ n} (hx : x ∈ dom.construct) (i : Fin P.m) : -- --- STMT ---
+    {x : Vec ℝ n} (hx : x ∈ dom.construct) (i : Fin P.m) : -- --- CONCL ---
     let Ainf : Vec 𝕋 n := fun j => minimumOver fun i => mulDown (P.A i j) (P.rowScale p i)
     let Asup : Vec 𝕋 n := fun j => maximumOver fun i => mulUp (P.A i j) (P.rowScale p i)
     let Ared : Vec 𝕋 n := fun j => half (addDown (Ainf j) (Asup j))

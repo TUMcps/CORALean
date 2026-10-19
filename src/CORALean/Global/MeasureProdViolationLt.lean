@@ -43,7 +43,7 @@ theorem measure_prod_violation_lt {A ι E Δ : Type} [MeasurableSpace A] [Fintyp
     [MeasurableSpace E] [MeasurableSpace Δ] (μA : Measure A) [IsProbabilityMeasure μA]
     (P : Measure Δ) [IsProbabilityMeasure P] {C : Set (E × Δ)} (hC : MeasurableSet C)
     {θ : A → E} (hθ : Measurable θ) {k : ℕ} (hk : k < Fintype.card ι) {ε : ℝ} (hε : 0 < ε)
-    (hε1 : ε < 1) : -- --- STMT ---
+    (hε1 : ε < 1) : -- --- CONCL ---
     (μA.prod (Measure.pi fun _ : ι => P))
         {q | ε < P.real (Prod.mk (θ q.1) ⁻¹' Cᶜ) ∧
           (Finset.univ.filter fun j => q.2 j ∈ Prod.mk (θ q.1) ⁻¹' Cᶜ).card ≤ k} <

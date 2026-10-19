@@ -49,7 +49,7 @@ theorem NeurNetContrSysDT.ofFull_isTrajectory_iff (plant : P)
     {U_ext : Set (Vec ℝ (NeurNetContrSysDT.ofFull plant contr dt).nExt)} (hU : U_ext.Nonempty)
     {W : Set (Vec ℝ (nrOfDisturbances plant))} {x : ℕ → Vec ℝ n}
     {v : ℕ → Vec ℝ (NeurNetContrSysDT.ofFull plant contr dt).nExt}
-    {w : ℕ → Vec ℝ (nrOfDisturbances plant)} : -- --- STMT ---
+    {w : ℕ → Vec ℝ (nrOfDisturbances plant)} : -- --- CONCL ---
     (NeurNetContrSysDT.ofFull plant contr dt).IsTrajectory π R₀ U_ext W x v w ↔
       ContDynamicsDT.IsTrajectory plant (construct R₀) Set.univ W x (fun k => π (x k))
         w := by -- --- PROOF ---

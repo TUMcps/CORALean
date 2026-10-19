@@ -7,15 +7,23 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
 /-!
 # `Zonotope.reduceGirard` bounds the generator count
 
-`reduceBy`'s shape is the whole argument: `h := q + n`, and at the split
-`girardSplit` builds, `q = (o-1)*n`, so the total is `o*n` outright — no
-clamping, since a `Zonotope` has one generator block, unlike `PolyZonotope`,
-where `PolyZonotope.reduceGirard_order_le` needs one to bound two blocks
-together. Word for word `reduceCombastel_order_le`'s proof: the metric never
-appears in either.
+`reduceBy`'s shape is the whole argument: `h := q + n`, and at the split `girardSplit` builds,
+`q = (o-1)*n`, so the total is `o*n` outright, with no clamping: a `Zonotope` has one generator
+block, unlike `PolyZonotope`, where `PolyZonotope.reduceGirard_order_le` needs one to bound two
+together. Word for word `reduceCombastel_order_le`'s proof: the metric appears in neither.
 
-At `o = 0` there is nothing to state, as for `PolyZonotope`: CORA floors the
-reduced budget at nothing, so order zero lands at order one in both tools.
+At `o = 0` there is nothing to state, as for `PolyZonotope`: CORA floors the reduced budget at
+nothing, so order zero lands at order one in both tools.
+
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Hypotheses
+* `ho` – `0 < o`
+
+## Conclusion
+* the reduced zonotope has at most `o * n` generators
 -/
 
 -- Authors:       Claude Opus 5

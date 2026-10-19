@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Taylm.mpower_outer {k : ℕ} {A : Fin k → Fin k → Taylm 𝕋 n}
     {F : Fin k → Fin k → Vec ℝ n → ℝ} (hA : ∀ i j, (A i j).Encloses (F i j)) (e : ℕ)
-    (i j : Fin k) : -- --- STMT ---
+    (i j : Fin k) : -- --- CONCL ---
     (Taylm.mpower A e i j).Encloses fun t =>
       (Matrix.of (fun i j => F i j t) ^ e) i j := by -- --- PROOF ---
   -- the positive exponents, by the loop's own recursion: `P ↦ P * A`

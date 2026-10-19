@@ -41,7 +41,7 @@ theorem aux_isPolytopeCex_sign {x : ℝ} (h : x = 1 ∨ x = -1) :
 `b` and `a c` of the first corner have the opposite signs of the two coordinates of it. -/
 theorem PolyZonotope.isPolytopeCex_inCone (I J : Fin 3 → ℝ) (hI : ∀ i, I i = 1 ∨ I i = -1)
     (hdx : I 1 * (2 * J 0 + J 1 - (2 * I 0 + I 1)) ≤ 0)
-    (hdy : I 0 * I 2 * (J 0 * J 2 - I 0 * I 2) ≤ 0) : -- --- STMT ---
+    (hdy : I 0 * I 2 * (J 0 * J 2 - I 0 * I 2) ≤ 0) : -- --- CONCL ---
     inCone (PolyZonotope.isPolytopeCex.coraNormalCone I)
       (PolyZonotope.isPolytopeCex.coraVertex J -
         PolyZonotope.isPolytopeCex.coraVertex I) := by -- --- PROOF ---

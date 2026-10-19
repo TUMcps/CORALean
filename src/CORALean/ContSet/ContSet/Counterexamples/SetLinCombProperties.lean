@@ -35,7 +35,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem setLinComb_properties_counterexample (hn : 0 < n) : -- --- STMT ---
+theorem setLinComb_properties_counterexample (hn : 0 < n) : -- --- CONCL ---
     ∃ S₁ S₂ : Set (Vec ℝ n), interior S₁ = ∅ ∧ Bornology.IsBounded S₁ ∧
       (interior S₂).Nonempty ∧ ¬ Bornology.IsBounded S₂ ∧
       interior (Set.linComb S₁ S₂) = ∅ ∧

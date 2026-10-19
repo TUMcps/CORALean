@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 theorem NonlinearSys.FloatHessModel.reachAlgFloatChecked_eq_some
     (fm : NonlinearSys.FloatHessModel 𝕋 n m) (alg : NonlinearSys.LinReachAlg)
     (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ)
-    (options : LinearSys.ReachOptions 𝕋) : -- --- STMT ---
+    (options : LinearSys.ReachOptions 𝕋) : -- --- CONCL ---
     ∀ Rs ∈ fm.reachAlgFloatChecked alg params options,
       fm.reachAlgFloat alg params options = some Rs ∧ noNaN (𝕋 := 𝕋) Rs = true := fun _ h =>
   checkNoNaN_eq_some h

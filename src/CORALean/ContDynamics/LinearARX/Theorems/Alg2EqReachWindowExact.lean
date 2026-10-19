@@ -61,7 +61,7 @@ theorem LinearARX.aux_image_sum_set {n m : ℕ} (M : Mat ℝ m n) (s : Finset �
 
 /-- The constant parameters moved on by `p` steps, Lemma 1 summed over a block of indices. -/
 theorem LinearARX.aux_shift_sum (sys : LinearARX 𝕋 dy du p) (k a b : ℕ) (hab : p ≤ a)
-    (V : ℕ → Set (Vec ℝ du)) : -- --- STMT ---
+    (V : ℕ → Set (Vec ℝ du)) : -- --- CONCL ---
     ∑ i ∈ Finset.Ico a b, ((sys.Aext ^ p * sys.Btilde k i) *ᵥ ·) '' V i
       = ∑ i ∈ Finset.Ico (a + p) (b + p),
         (sys.Btilde (k + p) i *ᵥ ·) '' V (i - p) := by -- --- PROOF ---
@@ -84,7 +84,7 @@ theorem LinearARX.aux_shift_sum_vec (sys : LinearARX 𝕋 dy du p) (k a b : ℕ)
 
 /-- The loop invariant of Alg. 2, started at `k_init = p`. -/
 theorem LinearARX.aux_alg2State_inv (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ (p * dy))
-    (Uc : Set (Vec ℝ du)) (uv : ℕ → Vec ℝ du) (hp : 0 < p) (m : ℕ) : -- --- STMT ---
+    (Uc : Set (Vec ℝ du)) (uv : ℕ → Vec ℝ du) (hp : 0 < p) (m : ℕ) : -- --- CONCL ---
     (sys.aux_alg2State yinit Uc uv p m).1 = p + m * p ∧
     (sys.aux_alg2State yinit Uc uv p m).2.1
       = ∑ i ∈ Finset.range (p + m * p), (sys.Btilde (p + m * p) i *ᵥ ·) '' Uc ∧

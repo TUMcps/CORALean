@@ -65,7 +65,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 its window holds every run over `[t_k, t_{k+1}]`. -/
 theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)} {tend : 𝕋}
     {εmax ζ : ℚ} {ηmax fuel : ℕ} {s : LinearSys.AutoStateFloat 𝕋 n}
-    (hinv : sys.AutoInvariantFloat X₀ V s) : -- --- STMT ---
+    (hinv : sys.AutoInvariantFloat X₀ V s) : -- --- CONCL ---
     ∀ s' R, (s', R) ∈ sys.autoStepFloat X₀ V tend εmax ζ ηmax fuel s →
       sys.AutoInvariantFloat X₀ V s' ∧ s.t < s'.t ∧
         ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},

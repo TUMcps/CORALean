@@ -71,7 +71,7 @@ theorem LinearSysDT.aux_faultRadiusLmiCora_sos (θ s₀ s₁ w : ℝ)
         · have := sq_pos_of_ne_zero h0; linarith
 
 
-theorem LinearSysDT.aux_faultRadiusLmiCora_posDef : -- --- STMT ---
+theorem LinearSysDT.aux_faultRadiusLmiCora_posDef : -- --- CONCL ---
     let A : Mat ℝ 1 1 := 0
     let C : Mat ℝ 2 1 := 0
     let Dx : Mat ℝ 1 0 := 0                                   -- no disturbance
@@ -122,7 +122,7 @@ theorem LinearSysDT.aux_faultRadiusLmiCora_posDef : -- --- STMT ---
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.faultRadiusLmi_cora_counterexample : -- --- STMT ---
+theorem LinearSysDT.faultRadiusLmi_cora_counterexample : -- --- CONCL ---
     let A : Mat ℝ 1 1 := 0
     let C : Mat ℝ 2 1 := 0
     let Dx : Mat ℝ 1 0 := 0                                   -- no disturbance

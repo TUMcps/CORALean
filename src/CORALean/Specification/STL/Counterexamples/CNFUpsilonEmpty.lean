@@ -34,7 +34,7 @@ open scoped NNReal
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.CNF.exists_upsilon_not_complete_of_empty : -- --- STMT ---
+theorem STL.CNF.exists_upsilon_not_complete_of_empty : -- --- CONCL ---
     ∃ (R : ℝ≥0 → Set Bool) (T : Finset ℝ≥0) (cnf : STL.CNF Bool),
       ReachSequence.FinRep T R ∧ ReachSequence.CDivisible 1 T ∧
         (∀ clause ∈ cnf, (clause.map STL.Branch.j).Nodup) ∧

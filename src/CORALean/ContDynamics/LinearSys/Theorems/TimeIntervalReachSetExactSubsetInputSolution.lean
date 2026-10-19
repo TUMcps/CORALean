@@ -52,7 +52,7 @@ theorem LinearSys.timeIntervalReachSetExact_subset_inputSolution
       (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
-    (h0 : (0 : Vec ℝ n) ∈ construct U) : -- --- STMT ---
+    (h0 : (0 : Vec ℝ n) ∈ construct U) : -- --- CONCL ---
     sys.timeIntervalReachSetExact T R₀ U r
       ⊆ construct (Plus.plus (sys.timeIntervalStep r (m + 2) R₀)
         (sys.inputSolution r (m + 2) U)) := by -- --- PROOF ---

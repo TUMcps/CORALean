@@ -109,7 +109,7 @@ theorem aux_sum_le_addUp (x : 𝕋) (f : ∀ i, Fin (m i) → 𝕋) (r : (Σ i, 
 theorem aux_resolveUpdateFloat_outer (B : Mat 𝕋 N (∑ i, m i))
     (C : ∀ i, Mat 𝕋 (p i) (n i)) (D : ∀ i, Mat 𝕋 (p i) (m i)) (q : ∀ i, Vec 𝕋 (p i))
     (stateBinds : ∀ i, Fin (n i) → Fin N) (inputBinds : ∀ i, Fin (m i) → ResolveSource k p g)
-    (ij : Σ i, Fin (m i)) : -- --- STMT ---
+    (ij : Σ i, Fin (m i)) : -- --- CONCL ---
     let R := LinearReset.resolveUpdate (toRealMat B) (fun i => toRealMat (C i))
       (fun i => toRealMat (D i)) (fun i => toRealVec (q i)) stateBinds inputBinds ij
     let F := LinearReset.aux_resolveUpdateFloat B C D q stateBinds inputBinds ij
@@ -134,7 +134,7 @@ theorem aux_resolveUpdateFloat_outer (B : Mat 𝕋 N (∑ i, m i))
 theorem LinearReset.resolveFloat_outer (A : Mat 𝕋 N N) (B : Mat 𝕋 N (∑ i, m i)) (c : Vec 𝕋 N)
     (C : ∀ i, Mat 𝕋 (p i) (n i)) (D : ∀ i, Mat 𝕋 (p i) (m i)) (q : ∀ i, Vec 𝕋 (p i))
     (stateBinds : ∀ i, Fin (n i) → Fin N)
-    (inputBinds : ∀ i, Fin (m i) → ResolveSource k p g) : -- --- STMT ---
+    (inputBinds : ∀ i, Fin (m i) → ResolveSource k p g) : -- --- CONCL ---
     let R := LinearReset.resolve (toRealMat A) (toRealMat B) (toRealVec c)
       (fun i => toRealMat (C i)) (fun i => toRealMat (D i)) (fun i => toRealVec (q i))
       stateBinds inputBinds

@@ -40,7 +40,7 @@ open Filter
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.radius_ultimate_bound (V : ℕ → ℝ) (γ ε : ℝ) (hγ0 : 0 ≤ γ) (hγ1 : γ < 1)
-    (hε : 0 ≤ ε) (h15 : ∀ k, V (k + 1) ≤ γ * V k + ε) : -- --- STMT ---
+    (hε : 0 ≤ ε) (h15 : ∀ k, V (k + 1) ≤ γ * V k + ε) : -- --- CONCL ---
     (∀ k, V k ≤ γ ^ k * V 0 + ε / (1 - γ)) ∧
       (∀ δ > 0, ∀ᶠ k in atTop, V k ≤ ε / (1 - γ) + δ) ∧
       ∀ L, Tendsto V atTop (nhds L) → L ≤ ε / (1 - γ) := by -- --- PROOF ---

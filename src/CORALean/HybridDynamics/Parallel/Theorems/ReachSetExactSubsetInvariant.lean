@@ -38,7 +38,7 @@ theorem ParallelHybridAutomaton.reachSetExact_subset_invariant
     {lift : ParallelHybridAutomaton.Lifting S G n m} {R₀ : ∀ i, S (n i)}
     {ℓ₀ : ∀ i, L i} {R : (∀ i, L i) → S (∑ i, n i)} (hinv : (P.product lift).Invariant R)
     (hR₀ : ∀ x : ∀ i, Vec ℝ (n i), (∀ i, x i ∈ construct (R₀ i)) →
-      stack x ∈ construct (R ℓ₀)) (ℓ : ∀ i, L i) : -- --- STMT ---
+      stack x ∈ construct (R ℓ₀)) (ℓ : ∀ i, L i) : -- --- CONCL ---
     stack '' P.reachSetExact R₀ ℓ₀ ℓ ⊆ construct (R ℓ) := by -- --- PROOF ---
   rintro _ ⟨y, ⟨x, hx, run⟩, rfl⟩
   exact run.mem_of_invariant hfeed hinv (hR₀ x hx)

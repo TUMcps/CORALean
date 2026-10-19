@@ -38,7 +38,7 @@ theorem OnlineAnalyzerNode.observeSet_ap_sound (eps : ℝ)
     (hk : n.kind = .ap)
     (hnc : OnlineAnalyzerNode.conflicts eps interval.infimum.value interval.infimum.closed
       n.prop = some false) (val : Kleene) (hs : n.signal.IsValid) (t : ℝ) (h0 : 0 ≤ t)
-    (hti : t ∈ interval.set) : -- --- STMT ---
+    (hti : t ∈ interval.set) : -- --- CONCL ---
     ∀ n' ∈ OnlineAnalyzerNode.observeSet (𝕋 := 𝕋) eps n set interval loc false,
       ∀ tent ∈ n.tentative,
         ∀ ap ∈ n.ap,

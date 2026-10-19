@@ -39,7 +39,7 @@ namespace CORALean.Real
 
 theorem exists_fit_samplingError_lt {σ σ' : ℝ → ℝ} {l u Mσ ε : ℝ}
     (hd : ∀ x, HasDerivAt σ (σ' x) x) (hσ : ∀ x, l ≤ x → x ≤ u → |σ' x| ≤ Mσ)
-    (hlu : l ≤ u) (hε : 0 < ε) : -- --- STMT ---
+    (hlu : l ≤ u) (hε : 0 < ε) : -- --- CONCL ---
     ∃ (n : ℕ) (c : Fin (n + 1) → ℝ) (M : ℝ) (N : ℕ), 0 < N
       ∧ (∀ x, l ≤ x → x ≤ u → |σ' x - evalPolyDeriv c x| ≤ M)
       ∧ samplingError (fun x => σ x - evalPoly c x) M l u N < ε := by -- --- PROOF ---

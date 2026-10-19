@@ -15,6 +15,15 @@ At `C.r < 0` the set is `∅`. Otherwise `construct_eq_add` writes `C.construct`
 as the sum of the segment, a continuous image of the compact `Icc`, and the
 ball, closed (the sum of squares is continuous) and bounded (no coordinate of
 a point inside it exceeds `C.r` in size) in the finite-dimensional `Vec ℝ n`.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* `C` is compact
 -/
 
 -- Authors:       Claude Opus 5

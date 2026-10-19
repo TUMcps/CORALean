@@ -39,7 +39,7 @@ variable {m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.volume_intersectStrip_convexOn (Z : Zonotope (Vec ℝ (m+1))) (c : Vec ℝ (m+1))
-    (σ d : ℝ) : -- --- STMT ---
+    (σ d : ℝ) : -- --- CONCL ---
     ConvexOn ℝ Set.univ (fun l : Vec ℝ (m+1) =>
       (Zonotope.intersectStrip (Matrix.of fun _ j => c j : Mat ℝ 1 (m+1)) (fun _ => σ)
         (fun _ => d) (Matrix.of fun i _ => l i : Mat ℝ (m+1) 1)

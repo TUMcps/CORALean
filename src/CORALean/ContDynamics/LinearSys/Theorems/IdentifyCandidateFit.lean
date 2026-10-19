@@ -43,7 +43,7 @@ theorem LinearSys.identifyCandidate_fit (x dx : Fin N → Vec ℝ n) (u : Fin N 
     (hX1 : (Matrix.of fun i j => dmdRegressor (x j) (u j) i : Mat ℝ (n + 1 + m) N)
       = V * Matrix.diagonal s * Wᵀ) (hV : Vᵀ * V = 1) (hW : Wᵀ * W = 1) (hs : ∀ i, s i ≠ 0)
     (A' : Mat ℝ n n) (B' : Mat ℝ n m) (c' : Vec ℝ n)
-    (hdata : ∀ j, dx j = A' *ᵥ x j + B' *ᵥ u j + c') (j : Fin N) : -- --- STMT ---
+    (hdata : ∀ j, dx j = A' *ᵥ x j + B' *ᵥ u j + c') (j : Fin N) : -- --- CONCL ---
     (dmdBlocks (LinearSys.identifyCandidate dx V s W r)).1 *ᵥ x j
       + (dmdBlocks (LinearSys.identifyCandidate dx V s W r)).2.1 *ᵥ u j
       + (dmdBlocks (LinearSys.identifyCandidate dx V s W r)).2.2 =

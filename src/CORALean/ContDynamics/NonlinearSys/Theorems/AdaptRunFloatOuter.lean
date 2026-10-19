@@ -45,7 +45,7 @@ the horizon they cover is, at every time of step `j`, in the `j`-th state's `R(�
 theorem NonlinearSys.FloatHessModel.Encloses.adaptRunFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋} {ζδ ζh ζZ ζK : 𝕋}
-    {prec bis fuel : ℕ} {tend : ℚ} : -- --- STMT ---
+    {prec bis fuel : ℕ} {tend : ℚ} : -- --- CONCL ---
     ∀ (k : ℕ) {s : NonlinearSys.AdaptState 𝒵[𝕋] n ℚ 𝕋}
       {ss : List (NonlinearSys.AdaptState 𝒵[𝕋] n ℚ 𝕋)},
       fm.adaptRunFloat U options ζδ ζh ζZ ζK prec bis fuel tend k s = some ss →

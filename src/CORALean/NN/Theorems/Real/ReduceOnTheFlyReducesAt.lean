@@ -58,7 +58,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 
 /-- The loop from one `k` on reduces the original frozen at any bias `c` the box of the
 pending layer `L̂_{k-1}` admits. -/
-theorem aux_reduceOnTheFlyFrom_reducesAt : -- --- STMT ---
+theorem aux_reduceOnTheFlyFrom_reducesAt : -- --- CONCL ---
     ∀ {n n₁ m : ℕ} (rest : ReducibleNetwork ℝ n₁ m) (H : S n) (L : ReducedLinear ℝ n n₁)
       (R : Relaxation ℝ) (hτ : ∃ σ : ℝ → ℝ, R.Sound σ) {σ : ℝ → ℝ} (_hR : R.Sound σ)
       (B : MergeBuckets ℝ)
@@ -120,7 +120,7 @@ theorem aux_reduceOnTheFlyFrom_reducesAt : -- --- STMT ---
 /-- [1, Alg. 2] returns a reduction of every instance of `Φ`, and `Y` is its enclosure of `X`. -/
 theorem reduceOnTheFly_reducesAt {n m : ℕ} {X : S n} {Φ : ReducibleNetwork ℝ n m}
     {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}
-    (hΦ : Φ.InstanceNetwork nn f) : -- --- STMT ---
+    (hΦ : Φ.InstanceNetwork nn f) : -- --- CONCL ---
     ∀ Φhat Y, (Φhat, Y) ∈ reduceOnTheFly le tol fuel X ρ Φ →
       NeuralNetwork.ReducesAt X nn Φhat.toNetwork f
         ∧ Y = Φhat.toNetwork.enclose X := by -- --- PROOF ---

@@ -42,7 +42,7 @@ variable {n m : ℕ}
 
 theorem LinProbSys.enclosingHull_cov (sys : LinProbSys n m) (r : ℝ) (Rhat : ProbZonotope n)
     (Rbar : Zonotope (Vec ℝ n)) (Runder : ProbZonotope n) (γ : ℝ)
-    (hcov : Runder.cov = noiseCovariance sys.A sys.C r) (k : ℕ) : -- --- STMT ---
+    (hcov : Runder.cov = noiseCovariance sys.A sys.C r) (k : ℕ) : -- --- CONCL ---
     (sys.enclosingHull r Rhat Rbar Runder γ k).cov
       = exp (((k : ℝ) * r) • sys.A) * Rhat.cov * (exp (((k : ℝ) * r) • sys.A))ᵀ
         + noiseCovariance sys.A sys.C ((k : ℝ) * r) := by -- --- PROOF ---

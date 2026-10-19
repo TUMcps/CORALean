@@ -41,7 +41,7 @@ theorem LinProbSys.IsTrajectory.initReach_post_cov (sys : LinProbSys n m) (Veig 
     {r : ℝ} (hr : 0 ≤ r) (η : ℕ) (gamma : ℝ) (originContained : Bool) (k : ℕ) {Ω : Type*}
     [MeasurableSpace Ω] {P : Measure Ω} {T : Set ℝ} {X₀ : S n} {U' : S m} {x₀ : Vec ℝ n}
     {u : ℝ → Vec ℝ m} {x : ℝ → Ω → Vec ℝ n} (traj : sys.IsTrajectory P T X₀ U' x₀ u x)
-    (hT : r + k * r ∈ T) (i j : Fin n) : -- --- STMT ---
+    (hT : r + k * r ∈ T) (i j : Fin n) : -- --- CONCL ---
     let out := sys.initReach Veig lambda Rinit gammaInit U uTrans r η gamma originContained
     cov[fun ω => x (r + k * r) ω i, fun ω => x (r + k * r) ω j; P]
       = (sys.post r out.2.2.2 ((fun st => (sys.post r out.2.2.2 st).1)^[k] out.2.2.1)).2.cov i j

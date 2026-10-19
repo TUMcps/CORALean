@@ -47,7 +47,7 @@ theorem LinearSysDT.intervalEstimate_outer (sys : LinearSysDT ℝ n) (L : Mat �
     (y : ℕ → Vec ℝ sys.q) (x : ℕ → Vec ℝ n) (w : ℕ → Vec ℝ sys.r) (v : ℕ → Vec ℝ sys.s)
     (h0 : x 0 ∈ X₀.construct) (hw : ∀ k, w k ∈ W.construct) (hv : ∀ k, v k ∈ V.construct)
     (hstep : ∀ k, x (k + 1) = sys.A *ᵥ x k + sys.B *ᵥ u k + sys.E *ᵥ w k)
-    (hy : ∀ k, y k = sys.C *ᵥ x k + sys.F *ᵥ v k) (k : ℕ) : -- --- STMT ---
+    (hy : ∀ k, y k = sys.C *ᵥ x k + sys.F *ᵥ v k) (k : ℕ) : -- --- CONCL ---
     x k ∈ (LinearSysDT.intervalEstimate sys L X₀ W V u y k).construct := by -- --- PROOF ---
   set S := LinearSysDT.intervalEstimateState sys L X₀ W V u y
   -- the algorithm's estimate is the Luenberger observer from `p₀`

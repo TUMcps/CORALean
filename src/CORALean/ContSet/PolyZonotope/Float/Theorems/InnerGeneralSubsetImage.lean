@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem PolyZonotope.innerGeneral_subset_image (pZ : PolyZonotope (Vec 𝕋 n))
     (X X₀ : Interval (Vec 𝕋 pZ.p)) (Y : Interval (Vec 𝕋 n))
     (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k) (iter : ℕ)
-    (hT : PolyZonotope.innerGeneral pZ X X₀ Y inv iter = true) : -- --- STMT ---
+    (hT : PolyZonotope.innerGeneral pZ X X₀ Y inv iter = true) : -- --- CONCL ---
     Y.construct ⊆ (PolyZonotope.nominal pZ).point '' X.construct := by -- --- PROOF ---
   unfold PolyZonotope.innerGeneral at hT
   split at hT

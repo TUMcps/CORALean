@@ -40,7 +40,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.tight_redundant_counterexample : -- --- STMT ---
+theorem HPolytope.tight_redundant_counterexample : -- --- CONCL ---
     ∃ (A : Mat ℝ 6 2) (b : Vec ℝ 6) (j k : Fin 6) (ν : Vec ℝ 2), k ≠ j ∧
       {x | ∀ i, i ≠ j → (A *ᵥ x) i ≤ b i} = (HPolytope.ineqs A b).construct ∧
       ν ∈ {x | ∀ i, i ≠ j → (A *ᵥ x) i ≤ b i} ∧

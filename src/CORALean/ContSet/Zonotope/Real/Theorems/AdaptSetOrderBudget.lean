@@ -73,7 +73,7 @@ theorem aux_adaptSetOrderLoop_le {le : ℝ → ℝ → Bool} (hle : ∀ a b, le 
 `ε_S` budget, and the error it accumulates is eq. (12)'s. -/
 theorem Zonotope.adaptSetOrder_budget {le : ℝ → ℝ → Bool} (hle : ∀ a b, le a b = true → a ≤ b)
     (Z : Zonotope (Vec ℝ n)) {εSmax εSacc tf ti Δt : ℝ} (hn : 0 < n)
-    (hεSi : 0 ≤ (εSmax - εSacc) / (tf - ti) * Δt) : -- --- STMT ---
+    (hεSi : 0 ≤ (εSmax - εSacc) / (tf - ti) * Δt) : -- --- CONCL ---
     Z.reduceBoxError (Z.adaptSetOrder le εSmax εSacc tf ti Δt).1
         ≤ (εSmax - εSacc) / (tf - ti) * Δt
       ∧ (Z.adaptSetOrder le εSmax εSacc tf ti Δt).2 = εSacc

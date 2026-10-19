@@ -60,7 +60,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 theorem LinearSys.iUnion_reachSetExact_subset_linComb_plus_cube (sys : LinearSys 𝕋 n)
     (Z U : Zonotope (Vec ℝ n)) {μ r s : ℝ} (hA : 0 < ‖toRealMat sys.A‖) (hr : 0 ≤ r)
     (hμ : 0 ≤ μ) (hU : U.construct = Metric.closedBall 0 μ)
-    (hs : ∀ z ∈ Z.construct, ‖z‖ ≤ s) : -- --- STMT ---
+    (hs : ∀ z ∈ Z.construct, ‖z‖ ≤ s) : -- --- CONCL ---
     ⋃ t ∈ Set.Icc (0:ℝ) r, sys.reachSetExact (S := 𝒵) (Set.Icc 0 t) Z U t
       ⊆ ((Z.linComb (Z.mtimes (exp (r • toRealMat sys.A)))).plus
           (Zonotope.cube n ((Real.exp (r * ‖toRealMat sys.A‖) - 1 - r * ‖toRealMat sys.A‖) * s

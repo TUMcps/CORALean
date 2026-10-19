@@ -45,7 +45,7 @@ theorem LinearSysDT.holds_unsafeSet_of_separating (sys : LinearSysDT 𝕋 n) (R�
     (bU : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (construct U) d)
     {x u : ℕ → Vec ℝ n} (traj : sys.IsCanonicalTrajectory R₀ U x u) (k : ℕ)
     {c : Vec ℝ n →ₗ[ℝ] ℝ} {X : Set (Vec ℝ n)} (v : SupportBound X (-c))
-    (h : (sys.reachSetBound R₀ U b₀ bU k c).val + v.val < 0) : -- --- STMT ---
+    (h : (sys.reachSetBound R₀ U b₀ bU k c).val + v.val < 0) : -- --- CONCL ---
     (Specification.unsafeSet X).Holds {x k} :=
   (Specification.unsafeSet X).holds_of_outer
     (Set.singleton_subset_iff.mpr (sys.reachSetExact_outer R₀ U traj k))

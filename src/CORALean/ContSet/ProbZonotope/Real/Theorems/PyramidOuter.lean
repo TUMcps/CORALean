@@ -55,7 +55,7 @@ theorem aux_volume_image_zonotope_lt_top (P : ProbZonotope n) (m : ℝ) :
 theorem ProbZonotope.pyramid_outer (P : ProbZonotope n) (hP : P.cov.PosDef) {k : ℕ}
     {mArray : Fin k → ℝ} (h0 : ∀ i, 0 ≤ mArray i) (hanti : Antitone mArray)
     (Q : Set (EuclideanSpace ℝ (Fin n))) {ν : Measure (EuclideanSpace ℝ (Fin n))}
-    (hν : ν ∈ P.laws) : -- --- STMT ---
+    (hν : ν ∈ P.laws) : -- --- CONCL ---
     ν Q ≤ ENNReal.ofReal (P.pyramidLevels mArray 0) * volume Q
       + ENNReal.ofReal (P.pyramid mArray Q) := by -- --- PROOF ---
   classical

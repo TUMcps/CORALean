@@ -81,7 +81,7 @@ def ReachSetAnalyzer.aux_visit (o : List ℕ) (j : ℕ) : Option (List ℕ) := s
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ReachSetAnalyzer.analyzeTreeCora_counterexample : -- --- STMT ---
+theorem ReachSetAnalyzer.analyzeTreeCora_counterexample : -- --- CONCL ---
     ReachSetAnalyzer.analyzeTreeCora ReachSetAnalyzer.aux_forkChildren
         ReachSetAnalyzer.aux_visit some 4 0 [] = some [[1, 2], [1, 2]] ∧
       ReachSetAnalyzer.analyzeTree ReachSetAnalyzer.aux_forkChildren

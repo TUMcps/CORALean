@@ -51,7 +51,7 @@ theorem NonlinearSys.IsTrajectory.confined_of_ball {sys : NonlinearSys n m} {T :
     {a b M ρ : ℝ} {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory T R₀ U x u y) (hab : a ≤ b)
     (hT : Set.Icc a b ⊆ T)
     (hM₀ : 0 ≤ M) (hM : ∀ y ∈ R, ∀ v ∈ construct U, ‖sys.f y v‖ ≤ M)
-    (hρ : M * (b - a) < ρ) (hball : Metric.closedBall (x a) ρ ⊆ R) : -- --- STMT ---
+    (hρ : M * (b - a) < ρ) (hball : Metric.closedBall (x a) ρ ⊆ R) : -- --- CONCL ---
     ∀ t ∈ Set.Icc a b, x t ∈ R := by -- --- PROOF ---
   intro t₁ ht₁
   by_contra ht₁R

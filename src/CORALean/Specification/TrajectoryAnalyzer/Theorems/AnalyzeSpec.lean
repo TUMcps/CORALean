@@ -35,7 +35,7 @@ variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} {n : ℕ} [∀ k, ContSe
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The loop over the time points `ls`, all with proper intervals. -/
-theorem aux_analyze_loop (obj : TrajectoryAnalyzer 𝕋 S n) (s : ℕ) (dur : ℝ) : -- --- STMT ---
+theorem aux_analyze_loop (obj : TrajectoryAnalyzer 𝕋 S n) (s : ℕ) (dur : ℝ) : -- --- CONCL ---
     ∀ ls : List ℕ, (∀ l ∈ ls, obj.traj.t.getD (l - 1) 0 < obj.traj.t.getD l 0) →
     ∀ (sigs : List (String × FiniteSignal ℝ Bool)) (M : String → ℝ → Prop),
       TrajectoryAnalyzer.SignalsRepresent obj.aps dur sigs M → ∃ sigs',
@@ -73,7 +73,7 @@ theorem aux_analyze_loop (obj : TrajectoryAnalyzer 𝕋 S n) (s : ℕ) (dur : �
 
 theorem TrajectoryAnalyzer.analyze_spec (obj : TrajectoryAnalyzer 𝕋 S n) (s : ℕ)
     (hnd : (obj.aps.map Prod.fst).Nodup) (ht : obj.traj.t ≠ [])
-    (hsorted : obj.traj.t.Pairwise (· < ·)) (hnn : ∀ x ∈ obj.traj.t, 0 ≤ x) : -- --- STMT ---
+    (hsorted : obj.traj.t.Pairwise (· < ·)) (hnn : ∀ x ∈ obj.traj.t, 0 ≤ x) : -- --- CONCL ---
     ∃ dur sigs, obj.traj.t.getLast? = some dur ∧ obj.analyze s = some sigs ∧
       TrajectoryAnalyzer.SignalsRepresent obj.aps dur sigs (fun k τ =>
         ∃ l ∈ List.range' 1 (obj.traj.t.length - 1), obj.TrueAt s dur k l τ) := by -- --- PROOF ---

@@ -36,7 +36,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.factorMeet_zip_counterexample : -- --- STMT ---
+theorem STL.factorMeet_zip_counterexample : -- --- CONCL ---
     let W₁ : List (Set ℝ) := [{0}, {1}]
     let W₂ : List (Set ℝ) := [{1}, {0}]
     -- the factor `0` is in a polytope of each disjunct

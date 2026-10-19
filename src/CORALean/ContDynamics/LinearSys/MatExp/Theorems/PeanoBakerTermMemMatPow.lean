@@ -57,7 +57,7 @@ theorem aux_mulHi_scale_snd {a b c d y : ℝ} (hy : 0 ≤ y) :
 /-- Every entry of `P_k(s)` between `s^k/k!` times `matPow B k`'s endpoints. -/
 theorem aux_peanoBakerTerm_between {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
     (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b)
-    (hAB : ∀ s, A s ∈ B.construct) (k : ℕ) : -- --- STMT ---
+    (hAB : ∀ s, A s ∈ B.construct) (k : ℕ) : -- --- CONCL ---
     ∀ s, 0 ≤ s → ∀ i j,
       s ^ k / (Nat.factorial k : ℝ) * (Interval.matPow B k).inf i j
           ≤ MatExp.peanoBakerTerm A k s i j ∧
@@ -113,7 +113,7 @@ theorem aux_peanoBakerTerm_between {B : Interval (Mat ℝ n n)} {A : ℝ → Mat
 the `k`-th power of the box of the step, `s • B`. -/
 theorem MatExp.peanoBakerTerm_mem_matPow {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
     (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b)
-    (hAB : ∀ s, A s ∈ B.construct) (k : ℕ) {s : ℝ} (hs : 0 ≤ s) : -- --- STMT ---
+    (hAB : ∀ s, A s ∈ B.construct) (k : ℕ) {s : ℝ} (hs : 0 ≤ s) : -- --- CONCL ---
     (Nat.factorial k : ℝ) • MatExp.peanoBakerTerm A k s
       ∈ (Interval.matPow (Interval.smul s B) k).construct := by -- --- PROOF ---
   have hsc := Interval.matPow_smul B hs k

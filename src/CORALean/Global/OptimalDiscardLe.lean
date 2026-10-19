@@ -91,7 +91,7 @@ theorem aux_discardTree_ne_nil (j : ℕ) :
 
 -- some problem at level `j` is below `F \ K`, for any `K` of `j` constraints
 theorem aux_discardTree_exists_le (D : Finset (Fin N)) (hmono : ∀ G H, G ⊆ H → w G ≤ w H)
-    (hnd : ∀ G ⊆ D, w (supportConstraints w G).toFinset = w G) (j : ℕ) : -- --- STMT ---
+    (hnd : ∀ G ⊆ D, w (supportConstraints w G).toFinset = w G) (j : ℕ) : -- --- CONCL ---
     ∀ F ⊆ D, ∀ K ⊆ F, K.card = j →
       (∀ d < j, ∀ G ∈ discardTree w F d, supportConstraints w G ≠ []) →
       ∃ L ∈ discardTree w F j, w L ≤ w (F \ K) := by -- --- PROOF ---
@@ -135,7 +135,7 @@ theorem aux_discardTree_exists_le (D : Finset (Fin N)) (hmono : ∀ G H, G ⊆ H
 
 theorem optimalDiscard_le (D : Finset (Fin N)) (k : ℕ) (hmono : ∀ G H, G ⊆ H → w G ≤ w H)
     (hnd : ∀ G ⊆ D, w (supportConstraints w G).toFinset = w G)
-    (hsc : ∀ d < k, ∀ G ∈ discardTree w D d, supportConstraints w G ≠ []) : -- --- STMT ---
+    (hsc : ∀ d < k, ∀ G ∈ discardTree w D d, supportConstraints w G ≠ []) : -- --- CONCL ---
     ∃ L, optimalDiscard w D k = some L ∧ L ⊆ D ∧ L.card + k = D.card ∧
       ∀ K ⊆ D, K.card = k → w L ≤ w (D \ K) := by -- --- PROOF ---
   -- level `k` is not empty, so the least problem of it exists

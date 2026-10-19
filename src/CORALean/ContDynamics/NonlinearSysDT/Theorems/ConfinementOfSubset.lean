@@ -53,7 +53,7 @@ theorem NonlinearSysDT.confinement_of_subset (sys : NonlinearSysDT n m) {U : S m
     (ho : 0 < o) (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n)
     (hsub : ∀ k, construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) ⊆ (steps k).R)
     {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} {y : ℕ → Vec ℝ sys.q} (traj : sys.IsTrajectory R₀ U x u y)
-    (k : ℕ) : -- --- STMT ---
+    (k : ℕ) : -- --- CONCL ---
     x k ∈ (steps k).R := by -- --- PROOF ---
   induction k using Nat.strong_induction_on with
   | _ k ih =>

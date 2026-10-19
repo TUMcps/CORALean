@@ -50,7 +50,7 @@ open Matrix
 center's row untouched, provided the two inputs already agree on that ball. -/
 theorem GNN.evalSteps_row_mask {N F : ℕ} (A : Mat ℝ N N) (v : Fin N) (S : Finset (Fin N))
     (L : ℕ) (hS : GNN.ball A v L ⊆ S) (W : Fin L → Mat ℝ F F) (X Y : Mat ℝ N F)
-    (hXY : ∀ u ∈ GNN.ball A v L, X u = Y u) : -- --- STMT ---
+    (hXY : ∀ u ∈ GNN.ball A v L, X u = Y u) : -- --- CONCL ---
     GNN.evalSteps (GNN.messagePassing A) L W X v
       = GNN.evalSteps (GNN.mask S (GNN.messagePassing A)) L W Y v := by -- --- PROOF ---
   induction L generalizing X Y with

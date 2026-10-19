@@ -63,7 +63,7 @@ theorem NonlinDASys.reach_outer (sys : NonlinDASys n p m)
         (fun s => u ((j : ℝ) * r + s)))
     (fuel : ℕ) {res : Set (Vec ℝ n)}
     (h : sys.reach taylor corollary1 sub splitFn R0 ((K : ℝ) * r) r U Lmax lam (q + 2) fuel
-      = some res) : -- --- STMT ---
+      = some res) : -- --- CONCL ---
     ∀ t ∈ Set.Icc 0 ((K : ℝ) * r), x t ∈ res := by -- --- PROOF ---
   intro t ht
   have := sys.reachLoop_outer taylor corollary1 sub hsub Lmax lam hr U splitFn hsplit traj hcert

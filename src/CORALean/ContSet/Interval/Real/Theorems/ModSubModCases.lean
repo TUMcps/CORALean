@@ -36,7 +36,7 @@ namespace CORALean.Real
 
 /-- [1, Prop. 1], with the case split by `y̲ ≤ y̅`. -/
 theorem Interval.mod_sub_mod_cases {p lo hi : ℝ} (hp : 0 < p) (hle : lo ≤ hi)
-    (hw : hi - lo < p) : -- --- STMT ---
+    (hw : hi - lo < p) : -- --- CONCL ---
     (lo - p * ⌊lo / p⌋ ≤ hi - p * ⌊hi / p⌋ ∧
         hi - lo = (hi - p * ⌊hi / p⌋) - (lo - p * ⌊lo / p⌋)) ∨
       (hi - p * ⌊hi / p⌋ < lo - p * ⌊lo / p⌋ ∧

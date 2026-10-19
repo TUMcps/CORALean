@@ -51,7 +51,7 @@ theorem NeuralNetwork.suffExplanationExact_of_reducesAt {nnRef nnAbs : NeuralNet
     {f : Vec ℝ n → Vec ℝ m}
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
     (hred : NeuralNetwork.ReducesAt (ofInterval (explainBox x ε E)) nnRef nnAbs f)
-    (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l) : -- --- STMT ---
+    (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l) : -- --- CONCL ---
     IsSuffExplanationExact S f x ε E l :=
   suffExplanationExact_of_refined nnAbs f x ε E l
     (NeuralNetwork.reducesAt_outer hred) hsuffAbs

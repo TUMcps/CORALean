@@ -47,7 +47,7 @@ namespace CORALean.Real
 off `k₀`, lies in `[-fst, snd]` of `eDrift`. -/
 theorem PolyZonotope.sub_monomial_mem_eDrift {p h : ℕ} (E : Fin p → Fin h → ℕ)
     {a : Fin p → ℝ} (ha : ∀ k, |a k| ≤ 1) {i j : Fin h} {k₀ : Fin p}
-    (hsim : ∀ k, k ≠ k₀ → E k i = E k j) : -- --- STMT ---
+    (hsim : ∀ k, k ≠ k₀ → E k i = E k j) : -- --- CONCL ---
     PolyZonotope.monomial E a i - PolyZonotope.monomial E a j
       ∈ Set.Icc (-((PolyZonotope.eDrift E k₀ i j).1 : ℝ))
         ((PolyZonotope.eDrift E k₀ i j).2 : ℝ) := by -- --- PROOF ---

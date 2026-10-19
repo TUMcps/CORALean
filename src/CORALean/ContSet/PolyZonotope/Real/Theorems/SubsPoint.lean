@@ -87,7 +87,7 @@ theorem PolyZonotope.aux_evalTerms_subsPoly {nu : ℕ} (pZin : PolyZonotope (Vec
 /-- The value of the fold over the outputs is the product of the powers' values. -/
 theorem PolyZonotope.aux_evalTerms_foldl {nu p : ℕ} (Pol : Fin nu → List (ℝ × (Fin p → ℕ)))
     (e : Fin nu → ℕ) (β : Fin p → ℝ) (L : List (Fin nu))
-    (acc : List (ℝ × (Fin p → ℕ))) : -- --- STMT ---
+    (acc : List (ℝ × (Fin p → ℕ))) : -- --- CONCL ---
     PolyZonotope.aux_evalTerms
         (L.foldl (fun acc ii => PolyZonotope.subsMul acc (PolyZonotope.subsPow (Pol ii) (e ii)))
           acc) β
@@ -103,7 +103,7 @@ omit [AddCommGroup α] [Module ℝ α] in
 /-- The value of generator `i`'s `Xprod` is the product of the outputs' powers. -/
 theorem PolyZonotope.aux_evalTerms_subsXprod (pZ : PolyZonotope α) {nu : ℕ}
     (pZin : PolyZonotope (Vec ℝ nu)) (idu : Fin nu → Fin pZ.p) (β : Fin pZin.p → ℝ)
-    (i : Fin pZ.h) : -- --- STMT ---
+    (i : Fin pZ.h) : -- --- CONCL ---
     PolyZonotope.aux_evalTerms (pZ.subsXprod pZin idu i) β
       = ∏ ii, pZin.point β ii ^ pZ.E (idu ii) i := by -- --- PROOF ---
   -- the fold, then the `Xprod`'s start and the outputs' polynomials
@@ -134,7 +134,7 @@ each replaced `idu ii` has the value of output `ii` of `pZin` at `pZin`'s factor
 through `subsFactor`. -/
 theorem PolyZonotope.subs_point (pZ : PolyZonotope α) {nu : ℕ} (pZin : PolyZonotope (Vec ℝ nu))
     (idu : Fin nu → Fin pZ.p) (share : Fin pZin.p → Option (Fin pZ.p))
-    (hidu : Function.Injective idu) (a : Fin (pZ.subs pZin idu share).p → ℝ) : -- --- STMT ---
+    (hidu : Function.Injective idu) (a : Fin (pZ.subs pZin idu share).p → ℝ) : -- --- CONCL ---
     (pZ.subs pZin idu share).point a
       = pZ.point (Function.extend idu
           (fun ii => pZin.point (fun j => a (pZ.subsFactor pZin share j)) ii)

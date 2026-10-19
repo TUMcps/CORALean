@@ -141,7 +141,7 @@ theorem aux_eq_zero (val default : Bool) (hne : val ≠ default) :
 set_option maxHeartbeats 120000 in -- many cases
 /-- A bounded interval starting after `0`: three time points. -/
 theorem aux_lt_pos (lo s : T) (lc rc : Bool) (val default : Bool) (hne : val ≠ default)
-    (hlo : 0 < lo) (hls : lo < s) : -- --- STMT ---
+    (hlo : 0 < lo) (hls : lo < s) : -- --- CONCL ---
     aux_Spec lo (s : WithTop T) lc rc val default
       ⟨[0, lo, s], [default, default, if lc = true then val else default, val,
         if rc = true then val else default, default]⟩ := by -- --- PROOF ---
@@ -159,7 +159,7 @@ theorem aux_lt_pos (lo s : T) (lc rc : Bool) (val default : Bool) (hne : val ≠
 
 /-- A bounded interval starting at `0`: two time points. -/
 theorem aux_lt_zero (s : T) (lc rc : Bool) (val default : Bool) (hne : val ≠ default)
-    (hs : 0 < s) : -- --- STMT ---
+    (hs : 0 < s) : -- --- CONCL ---
     aux_Spec (0 : T) (s : WithTop T) lc rc val default
       ⟨[0, s], [if lc = true then val else default, val,
         if rc = true then val else default, default]⟩ := by -- --- PROOF ---
@@ -174,7 +174,7 @@ theorem aux_lt_zero (s : T) (lc rc : Bool) (val default : Bool) (hne : val ≠ d
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PointSegmentSignal.indicatorBounds_spec {T : Type} [LinearOrder T] [Zero T] (lo : T)
-    (up : WithTop T) (lc rc : Bool) (hI : 0 ≤ lo) (val default : Bool) : -- --- STMT ---
+    (up : WithTop T) (lc rc : Bool) (hI : 0 ≤ lo) (val default : Bool) : -- --- CONCL ---
     (PointSegmentSignal.indicatorBounds lo up lc rc val default).IsValid ∧ ∀ t : T, 0 ≤ t →
       (STLInterval.memBounds lo up lc rc t →
         (PointSegmentSignal.indicatorBounds lo up lc rc val default).at t = val) ∧

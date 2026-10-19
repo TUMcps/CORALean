@@ -37,7 +37,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.span_qr_cols_counterexample : -- --- STMT ---
+theorem VPolytope.span_qr_cols_counterexample : -- --- CONCL ---
     ∃ (V : Mat ℝ 3 4) (Q : Mat ℝ 3 3) (R : Mat ℝ 3 4), Qᵀ * Q = 1 ∧ Q * R = V ∧
       (∀ (i : Fin 3) (j : Fin 4), (j : ℕ) < i → R i j = 0) ∧ V.rank = 2 ∧
       V.col 2 ∉ Submodule.span ℝ (Set.range fun j : Fin 2 => Q.col (Fin.castLE (by norm_num)

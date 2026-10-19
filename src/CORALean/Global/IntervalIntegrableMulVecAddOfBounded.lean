@@ -41,7 +41,7 @@ theorem intervalIntegrable_mulVec_add_of_bounded {A : Mat ℝ n n} {T : Set ℝ}
     {x u : ℝ → Vec ℝ n} (hx : ContinuousOn x T)
     (hm : AEStronglyMeasurable (fun s => A *ᵥ x s + u s) (volume.restrict T))
     (hu : ∀ t ∈ T, u t ∈ U) (hU : Bornology.IsBounded U) {t : ℝ}
-    (hUIcc : Set.uIcc 0 t ⊆ T) : -- --- STMT ---
+    (hUIcc : Set.uIcc 0 t ⊆ T) : -- --- CONCL ---
     IntervalIntegrable (fun s => A *ᵥ x s + u s) volume 0 t := by -- --- PROOF ---
   have hUo : Set.uIoc (0:ℝ) t ⊆ Set.uIcc 0 t := Set.uIoc_subset_uIcc
   obtain ⟨Cx, hCx⟩ := (isCompact_uIcc (a := (0:ℝ)) (b := t)).exists_bound_of_continuousOn

@@ -184,7 +184,7 @@ theorem Interval.aux_unitSquare_not_capsule (C : Capsule 2) :
 theorem Interval.aux_face_unique {k : ℕ} (a u v : Fin k → ℝ) (q1 : ℝ)
     (hpos : 0 < ∑ j, a j ^ 2) (hq : Real.sqrt (∑ j, a j ^ 2) ≤ q1)
     (hu : ∑ j, u j ^ 2 ≤ 1) (hv : ∑ j, v j ^ 2 ≤ 1)
-    (hau : q1 + ∑ j, a j * u j = 0) (hav : q1 + ∑ j, a j * v j = 0) : -- --- STMT ---
+    (hau : q1 + ∑ j, a j * u j = 0) (hav : q1 + ∑ j, a j * v j = 0) : -- --- CONCL ---
     u = v := by -- --- PROOF ---
   -- `m = ‖a‖` and its basic facts
   set N := ∑ j, a j ^ 2 with hN
@@ -294,7 +294,7 @@ theorem Interval.aux_unitSquare_not_ellipsoid (E : Ellipsoid 2) :
     linarith
 
 /-- CORA reports the unit square as a capsule (and as an ellipsoid), though no capsule is it. -/
-theorem Interval.representsa_capsule_cora_counterexample : -- --- STMT ---
+theorem Interval.representsa_capsule_cora_counterexample : -- --- CONCL ---
     Interval.aux_unitSquare.representsaCapsuleCora = true ∧
       Interval.aux_unitSquare.representsaEllipsoidCora = true ∧
       (∀ C : Capsule 2, C.construct ≠ Interval.aux_unitSquare.construct) ∧

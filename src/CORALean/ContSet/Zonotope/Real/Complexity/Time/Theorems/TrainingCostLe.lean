@@ -36,7 +36,7 @@ namespace CORALean.Real
 `C = cNeuron + 2 cBack + 2 cGrad + 50`. -/
 theorem SetBasedNet.trainingCost_le (cNeuron cGrad cBack : Cost) {N Q : ℕ} (hN : 1 ≤ N)
     {n k : ℕ} (net : SetBasedNet n k) (h : ℕ) (hh : 1 ≤ h) (hw : net.maxWidth ≤ N)
-    (hq : h + net.neurons ≤ Q) (hκ : 1 ≤ net.depth) : -- --- STMT ---
+    (hq : h + net.neurons ≤ Q) (hκ : 1 ≤ net.depth) : -- --- CONCL ---
     (net.trainingCost cNeuron cGrad cBack h).ops ≤
       2 * (cNeuron.ops + 2 * cBack.ops + 2 * cGrad.ops + 50) * (N * N * Q) *
         net.depth := by -- --- PROOF ---

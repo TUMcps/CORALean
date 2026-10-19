@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem IntervalChain.fwd_outer {n k : ℕ} {c : IntervalChain 𝕋 n k}
-    {r : Real.IntervalChain n k} (hc : c.Sound r) : -- --- STMT ---
+    {r : Real.IntervalChain n k} (hc : c.Sound r) : -- --- CONCL ---
     ∀ (P : Interval (Vec 𝕋 n) × Interval (Vec 𝕋 n)) (p : Vec ℝ n × Vec ℝ n),
       p.1 ∈ P.1.construct → p.2 ∈ P.2.construct →
       (r.fwd p).1 ∈ (c.fwd P).1.construct ∧

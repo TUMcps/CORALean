@@ -38,7 +38,7 @@ theorem NonlinDASys.outputSetLinear_outer (sys : NonlinDASys n p m)
     (hh : ∀ x y u, sys.h x y u = c + M_x *ᵥ x + M_y *ᵥ y + M_u *ᵥ u)
     (p_x : Vec ℝ n) (p_y : Vec ℝ p) (p_u : Vec ℝ m) (R : S n) (R_y : S p) (U : S m)
     {x : Vec ℝ n} {y : Vec ℝ p} {u : Vec ℝ m} (hx : x ∈ construct R) (hy : y ∈ construct R_y)
-    (hu : u ∈ construct U) : -- --- STMT ---
+    (hu : u ∈ construct U) : -- --- CONCL ---
     sys.h x y u ∈ sys.outputSetLinear p_x p_y p_u R R_y U := by -- --- PROOF ---
   -- each partial map is affine, so its Jacobian is the matrix
   have hJx : jacobianMat (fun x => sys.h x p_y p_u) p_x = M_x := by

@@ -68,7 +68,7 @@ theorem LinearSys.timePointStepInnerRepFloat_inner (sys : LinearSys 𝕋 n) {r :
     (hX₀ : (0 : Vec ℝ n) ∈ X₀.I_error.construct) (hU : (0 : Vec ℝ n) ∈ U.I_error.construct)
     (M : Fin (sys.timePointStepInputFloat r η X₀ U).h →
       Fin (sys.timePointStepInnerErrorFloat r η X₀ U).h → 𝕋) (ρ : 𝕋)
-    (H : Mat 𝕋 (sys.timePointStepInputFloat r η X₀ U).h n) : -- --- STMT ---
+    (H : Mat 𝕋 (sys.timePointStepInputFloat r η X₀ U).h n) : -- --- CONCL ---
     ∀ D ∈ sys.timePointStepInnerRepFloat r η X₀ U M ρ H,
       D.construct ⊆ sys.reachSetExact (S := 𝒵)
         (Set.Icc 0 (toReal r)) (nominal X₀) (nominal U) (toReal r) := by -- --- PROOF ---

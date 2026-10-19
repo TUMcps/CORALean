@@ -53,7 +53,7 @@ theorem HPolytope.projection_inner_of_cert {H : Mat ℝ q n} {F : Mat ℝ q m} {
     (e₀ : Λ₀ * Hx = H + F * Γ) (f₀ : Λ₀ *ᵥ 1 ≤ g - H *ᵥ xbar + F *ᵥ βu)
     (e₁ : Λ₁ * H = Hx * X₁) (e₂ : Λ₁ * F = Hx * X₂) (e₃ : Λ₂ * H = HB - HB * X₁)
     (e₄ : Λ₂ * F = -(HB * X₂)) (f₁ : Λ₁ *ᵥ g ≤ 1 - Hx *ᵥ βx)
-    (f₂ : Λ₂ *ᵥ g ≤ ε • hB + HB *ᵥ xbar + HB *ᵥ βx) : -- --- STMT ---
+    (f₂ : Λ₂ *ᵥ g ≤ ε • hB + HB *ᵥ xbar + HB *ᵥ βx) : -- --- CONCL ---
     HPolytope.ahPolytope xbar 1 (HPolytope.ineqs Hx 1) ⊆ {x | ∃ u, H *ᵥ x + F *ᵥ u ≤ g} ∧
       {x | ∃ u, H *ᵥ x + F *ᵥ u ≤ g}
         ⊆ HPolytope.ahPolytope xbar 1 (HPolytope.ineqs Hx 1)

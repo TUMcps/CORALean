@@ -30,7 +30,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.mem_construct_iff {n : ℕ} {pZ : PolyZonotope (Vec ℝ n)}
-    {x : Vec ℝ n} : -- --- STMT ---
+    {x : Vec ℝ n} : -- --- CONCL ---
     x ∈ pZ.construct ↔
       ∃ a : Fin pZ.p → ℝ, ∃ β : Fin pZ.q → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
         ∧ ∀ i, x i = pZ.c i + (∑ l, pZ.G l i * PolyZonotope.monomial pZ.E a l)

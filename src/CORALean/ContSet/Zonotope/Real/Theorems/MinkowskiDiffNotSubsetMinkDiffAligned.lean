@@ -121,7 +121,7 @@ theorem aux_aligned_corner (c : Vec ℝ 2) (a θ : Fin 3 → ℝ) (hθ : ∀ j, 
 
 /-- [1, Eq. 16]: for the hexagon and the triangle, every aligned zonotope around the
 triangle misses a point of the true difference. -/
-theorem Zonotope.minkowskiDiff_not_subset_minkDiffAligned : -- --- STMT ---
+theorem Zonotope.minkowskiDiff_not_subset_minkDiffAligned : -- --- CONCL ---
     ∃ (Z : Zonotope (Vec ℝ 2)) (S : Set (Vec ℝ 2)), S = convexHull ℝ {![0, 0], ![1, 0], ![1, 1]} ∧
       ∀ (c : Vec ℝ 2) (a : Fin Z.h → ℝ), (∀ i, 0 ≤ a i ∧ a i ≤ 1) →
         S ⊆ (Z.aligned c a).construct →

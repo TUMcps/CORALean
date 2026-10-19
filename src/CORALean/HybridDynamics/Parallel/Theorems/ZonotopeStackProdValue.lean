@@ -29,7 +29,7 @@ variable {k : ℕ} {n : Fin k → ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.stackProd_value (zs : ∀ i, Zonotope (Vec ℝ (n i)))
-    (β : Fin (∑ i, (zs i).h) → ℝ) (i : Fin k) : -- --- STMT ---
+    (β : Fin (∑ i, (zs i).h) → ℝ) (i : Fin k) : -- --- CONCL ---
     unstack ((Zonotope.stackProd zs).c +
         ∑ p : Fin (∑ i, (zs i).h), β p • (Zonotope.stackProd zs).G p) i =
       (zs i).c + ∑ j, β (finSigmaFinEquiv (n := fun i => (zs i).h) ⟨i, j⟩) •

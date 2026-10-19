@@ -72,7 +72,7 @@ theorem Krylov.err_le_linear {err M : ℝ → ℝ} {a ω ν tf : ℝ} (htf : 0 <
     (hM0 : ∀ T ∈ Icc 0 tf, 0 ≤ M T) (hMω : ∀ T ∈ Icc 0 tf, M T ≤ ω)
     (h32 : ∀ T ∈ Icc 0 tf,
       err T ≤ a * M T * (if ν = 0 then T else (Real.exp (ν * T) - 1) / ν))
-    {t : ℝ} (ht : t ∈ Icc 0 tf) : -- --- STMT ---
+    {t : ℝ} (ht : t ∈ Icc 0 tf) : -- --- CONCL ---
     err t ≤ a * ω * (if 0 < ν then (Real.exp (ν * tf) - 1) / (ν * tf) else 1)
       * t := by -- --- PROOF ---
   obtain ⟨hψ0, hψ⟩ := Krylov.aux_psi_le ν htf ht.1 ht.2

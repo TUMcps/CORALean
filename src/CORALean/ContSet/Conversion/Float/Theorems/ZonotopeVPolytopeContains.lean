@@ -56,7 +56,7 @@ theorem Zonotope.aux_signed_toReal (Z : Zonotope (Vec 𝕋 n)) (σ : Fin Z.h →
   · rw [if_neg h, if_neg h, toReal_neg, neg_one_mul]
 
 theorem Zonotope.aux_corner_mem (Z : Zonotope (Vec 𝕋 n)) (l : Fin (2 ^ Z.h))
-    (i : Fin n) : -- --- STMT ---
+    (i : Fin n) : -- --- CONCL ---
     toReal (Z.cornerLo l i)
         ≤ (InflatedContSet.nominal Z).corner (signEquiv Z.h l) i
       ∧ (InflatedContSet.nominal Z).corner (signEquiv Z.h l) i

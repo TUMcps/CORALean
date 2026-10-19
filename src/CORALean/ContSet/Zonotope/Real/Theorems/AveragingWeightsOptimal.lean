@@ -64,7 +64,7 @@ theorem Zonotope.aux_frobSq_andAveraging (Z : Fin N → Zonotope (Vec ℝ n)) (v
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.averagingWeights_optimal [NeZero N] (Z : Fin N → Zonotope (Vec ℝ n))
-    (hα : ∀ j, 0 < ∑ i, ∑ k, (Z j).G k i ^ 2) : -- --- STMT ---
+    (hα : ∀ j, 0 < ∑ i, ∑ k, (Z j).G k i ^ 2) : -- --- CONCL ---
     ∑ j, Zonotope.averagingWeights Z j = 1 ∧
       ∀ v : Fin N → ℝ, ∑ j, v j = 1 →
         ∑ i, ∑ k, ((Zonotope.andAveraging Z (Zonotope.averagingWeights Z)).G k i) ^ 2 ≤

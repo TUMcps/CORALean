@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem MatExp.adaptiveIntegral_outer_refines (A : Interval (Mat 𝕋 n n)) {r : 𝕋}
     (hr : 0 ≤ toReal r) (η : ℕ)
     (hε : toReal (MatExp.normUpperBound (Interval.smul r r A)) / ((η : ℝ) + 2) ≤ 1 / 2)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) : -- --- STMT ---
+    {M : Mat ℝ n n} (hM : M ∈ A.construct) : -- --- CONCL ---
     (Real.MatExp.adaptiveIntegral M (toReal r) η).construct
       ⊆ (MatExp.adaptiveIntegral A r η).construct := by -- --- PROOF ---
   intro X hX

@@ -46,7 +46,7 @@ variable {X : Type*} [NormedAddCommGroup X]
 theorem Krylov.restarted_error_le (E : ℕ → X →+ X) (S : ℕ → X → X) (v w : ℕ → X)
     (Δt : ℕ → ℝ) (tol : ℝ) (hE : ∀ j x, ‖E j x‖ ≤ ‖x‖) (hv : ∀ j, v (j + 1) = E j (v j))
     (hw : ∀ j, w (j + 1) = S j (w j)) (h0 : v 0 = w 0)
-    (hloc : ∀ j, ‖E j (w j) - S j (w j)‖ ≤ tol * Δt j) (N : ℕ) : -- --- STMT ---
+    (hloc : ∀ j, ‖E j (w j) - S j (w j)‖ ≤ tol * Δt j) (N : ℕ) : -- --- CONCL ---
     ‖v N - w N‖ ≤ tol * ∑ j ∈ Finset.range N, Δt j := by -- --- PROOF ---
   induction N with
   | zero => simp [h0]

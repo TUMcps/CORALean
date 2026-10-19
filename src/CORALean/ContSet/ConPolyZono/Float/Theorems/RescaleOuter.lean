@@ -101,7 +101,7 @@ theorem ConPolyZono.aux_rescaleInv_zero (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (c
 
 theorem ConPolyZono.aux_rescaleInv_succ (cPZ acc : ConPolyZono 𝕋 (Vec 𝕋 n))
     (cen rad : ℕ → 𝕋) (t : ℕ)
-    (ht : t < cPZ.p) (hinv : ConPolyZono.aux_RescaleInv cPZ acc cen rad t) : -- --- STMT ---
+    (ht : t < cPZ.p) (hinv : ConPolyZono.aux_RescaleInv cPZ acc cen rad t) : -- --- CONCL ---
     ConPolyZono.aux_RescaleInv cPZ (ConPolyZono.rescaleStep cen rad acc t) cen rad
       (t + 1) := by -- --- PROOF ---
   obtain ⟨hp, hq, hc, hGI, hpt⟩ := hinv
@@ -170,7 +170,7 @@ theorem ConPolyZono.aux_cover (lo hi : 𝕋) (v : ℝ) (h : toReal lo ≤ v ∧ 
 constraints: the fold onto them encloses the set. -/
 theorem ConPolyZono.aux_rescale_outer_of_cover (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (cen rad : ℕ → 𝕋)
     (hcov : ∀ x : Fin cPZ.p → ℝ, (∀ k, |x k| ≤ 1) → x ∈ cPZ.cons.construct →
-      ∀ k : Fin cPZ.p, |x k - toReal (cen k)| ≤ toReal (rad k)) : -- --- STMT ---
+      ∀ k : Fin cPZ.p, |x k - toReal (cen k)| ≤ toReal (rad k)) : -- --- CONCL ---
     cPZ.construct ⊆ ConPolyZono.construct
       ((List.range cPZ.p).foldl (ConPolyZono.rescaleStep cen rad) cPZ) := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩
@@ -245,7 +245,7 @@ theorem ConPolyZono.rescale_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (contract : Interval (Vec 𝕋 cPZ.p) → Interval (Vec 𝕋 cPZ.p))
     (hkeep : ∀ x : Vec ℝ cPZ.p,
         x ∈ ((Interval.unit cPZ.p : Interval (Vec 𝕋 cPZ.p))).construct → x ∈ cPZ.cons.construct →
-      x ∈ (contract ((Interval.unit cPZ.p : Interval (Vec 𝕋 cPZ.p)))).construct) : -- --- STMT ---
+      x ∈ (contract ((Interval.unit cPZ.p : Interval (Vec 𝕋 cPZ.p)))).construct) : -- --- CONCL ---
     cPZ.construct ⊆ (cPZ.rescale contract).construct := by -- --- PROOF ---
   unfold ConPolyZono.rescale
   dsimp only

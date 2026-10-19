@@ -43,7 +43,7 @@ theorem zonotope_subset_ellipsotope_of_lr_center (q : ℝ≥0∞) [Fact (1 ≤ q
     (X : Matrix (Fin l) (Fin (m + 1)) ℝ)
     (hGX : ∀ α' : Fin (m + 1) → ℝ, G (fun i => α' i.castSucc) + α' (Fin.last m) • (c - d) =
       H (WithLp.toLp q (X.mulVec α')))
-    (hX : ‖WithLp.toLp q (fun i => ∑ j, |X i j|)‖ ≤ 1) : -- --- STMT ---
+    (hX : ‖WithLp.toLp q (fun i => ∑ j, |X i j|)‖ ≤ 1) : -- --- CONCL ---
     {x | ∃ α : Fin m → ℝ, ‖α‖ ≤ 1 ∧ x = c + G α} ⊆
       {x | ∃ β : PiLp q (fun _ : Fin l => ℝ), ‖β‖ ≤ 1 ∧ x = d + H β} := by -- --- PROOF ---
   rintro _ ⟨α, hα, rfl⟩

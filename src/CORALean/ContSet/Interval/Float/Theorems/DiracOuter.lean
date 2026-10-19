@@ -42,7 +42,7 @@ theorem Interval.aux_dirac_miss {I : Interval (Vec 𝕋 m)} {i : Fin m}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.dirac_zero_outer (I : Interval (Vec 𝕋 m)) {x : Vec ℝ m}
-    (hx : x ∈ I.construct) (i : Fin m) : -- --- STMT ---
+    (hx : x ∈ I.construct) (i : Fin m) : -- --- CONCL ---
     (∀ l, (Interval.dirac 0 I).lo i = some l →
         ((toReal l : ℝ) : EReal) ≤ (if x i = 0 then ⊤ else 0)) ∧
       ∀ u, (Interval.dirac 0 I).hi i = some u →

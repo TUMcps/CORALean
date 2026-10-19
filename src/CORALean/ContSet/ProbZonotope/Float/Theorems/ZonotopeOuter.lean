@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ProbZonotope.zonotope_outer (p : ℕ) (P : ProbZonotope 𝕋 n) (M : 𝕋) {μ : Vec ℝ n}
     (hμ : μ ∈ P.Z.construct) {S : Mat ℝ n n} (hS : S ∈ P.cov.construct) (hpsd : S.PosSemidef)
-    {m : ℝ} (hm : 0 ≤ m) (hmM : m ≤ toReal M) : -- --- STMT ---
+    {m : ℝ} (hm : 0 ≤ m) (hmM : m ≤ toReal M) : -- --- CONCL ---
     (Real.ProbZonotope.zonotope ⟨⟨0, μ, fun j => j.elim0⟩, S⟩ m).construct
       ⊆ (P.zonotope p M).construct := by -- --- PROOF ---
   intro x hx

@@ -134,7 +134,7 @@ of the box raises `f` from the center by at least `Σ Lᵢ rᵢ`. -/
 theorem exists_ge_add_sum_of_abs_partial_ge {f : (Fin m → ℝ) → ℝ} (hf : Differentiable ℝ f)
     {lo hi : Fin m → ℝ} (hlh : lo ≤ hi) (L : Fin m → ℝ)
     (hL : ∀ i, ∀ y ∈ Icc lo hi, (∀ j, j < i → y j = (lo j + hi j) / 2) →
-      L i ≤ |fderiv ℝ f y (Pi.single i 1)|) : -- --- STMT ---
+      L i ≤ |fderiv ℝ f y (Pi.single i 1)|) : -- --- CONCL ---
     ∃ p ∈ Icc lo hi, f (fun i => (lo i + hi i) / 2)
       + ∑ i, L i * ((hi i - lo i) / 2) ≤ f p := by -- --- PROOF ---
   set c : Fin m → ℝ := fun i => (lo i + hi i) / 2 with hc
@@ -181,7 +181,7 @@ the center by at most `Σ Uᵢ rᵢ` anywhere in the box. -/
 theorem abs_sub_le_sum_of_abs_partial_le {f : (Fin m → ℝ) → ℝ} (hf : Differentiable ℝ f)
     {lo hi : Fin m → ℝ} (U : Fin m → ℝ)
     (hU : ∀ i, ∀ y ∈ Icc lo hi, (∀ j, j < i → y j = (lo j + hi j) / 2) →
-      |fderiv ℝ f y (Pi.single i 1)| ≤ U i) {x : Fin m → ℝ} (hx : x ∈ Icc lo hi) : -- --- STMT ---
+      |fderiv ℝ f y (Pi.single i 1)| ≤ U i) {x : Fin m → ℝ} (hx : x ∈ Icc lo hi) : -- --- CONCL ---
     |f x - f (fun i => (lo i + hi i) / 2)| ≤ ∑ i, U i * ((hi i - lo i) / 2) := by -- --- PROOF ---
   set c : Fin m → ℝ := fun i => (lo i + hi i) / 2 with hc
   -- `q k`: the first `k` coordinates at the center, the rest at `x`
@@ -268,7 +268,7 @@ from wherever the others are: `f t ≥ f x₀ + Σ γᵢ`. -/
 theorem le_of_coord_gain {f : (Fin m → ℝ) → ℝ} {lo hi : Fin m → ℝ} {x₀ t : Fin m → ℝ}
     (hx₀ : x₀ ∈ Icc lo hi) (ht : t ∈ Icc lo hi) (γ : Fin m → ℝ)
     (hγ : ∀ i, ∀ p ∈ Icc lo hi, f (Function.update p i (x₀ i)) + γ i
-      ≤ f (Function.update p i (t i))) : -- --- STMT ---
+      ≤ f (Function.update p i (t i))) : -- --- CONCL ---
     f x₀ + ∑ i, γ i ≤ f t := by -- --- PROOF ---
   -- `p k`: the first `k` coordinates at the target, the rest at `x₀`
   let p : ℕ → Fin m → ℝ := fun k j => if j.val < k then t j else x₀ j

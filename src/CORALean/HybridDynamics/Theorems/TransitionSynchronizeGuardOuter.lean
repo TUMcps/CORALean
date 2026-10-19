@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q k : ℕ}
 
 /-- The accumulator of the guard fold contains the intersection so far. -/
 theorem aux_synchronizeGuard_fold (g : Fin q → HPolytope 𝕋 (Vec 𝕋 n)) (l : List (Fin q))
-    (P : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- STMT ---
+    (P : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     P.construct ∩ ⋂ i ∈ l, (g i).construct ⊆
       (l.foldl (fun guard i => HPolytope.intersection guard (g i))
         P).construct := by -- --- PROOF ---

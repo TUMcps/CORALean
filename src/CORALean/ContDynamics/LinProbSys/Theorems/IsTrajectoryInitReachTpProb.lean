@@ -67,7 +67,7 @@ theorem LinProbSys.IsTrajectory.initReach_tp_prob (sys : LinProbSys n m) (Veig :
     [MeasurableSpace Ω] {P : Measure Ω} {T : Set ℝ} {x₀ : Vec ℝ n} {u : ℝ → Vec ℝ m}
     {x : ℝ → Ω → Vec ℝ n}
     (traj : sys.IsTrajectory (S := 𝒵) P T Rinit.Z (U.plus (Zonotope.ofPoint uTrans)) x₀ u x)
-    (hT : Set.Icc 0 r ⊆ T) : -- --- STMT ---
+    (hT : Set.Icc 0 r ⊆ T) : -- --- CONCL ---
     (gaussianReal 0 1 (Set.Icc (-gamma) gamma)) ^ n
       ≤ P {ω | x r ω ∈ (sys.initReach Veig lambda Rinit gammaInit U uTrans r η gamma
           originContained).1.Z.construct} := by -- --- PROOF ---

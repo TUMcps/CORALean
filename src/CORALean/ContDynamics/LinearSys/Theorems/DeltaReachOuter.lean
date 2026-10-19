@@ -49,7 +49,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 from. -/
 theorem LinearSys.deltaReach_outer (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ : S n)
-    {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- STMT ---
+    {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀ - x₀) '' construct X₀
       ⊆ construct (sys.deltaReach r (m + 2) X₀) := by -- --- PROOF ---
   set A := toRealMat sys.A with hA

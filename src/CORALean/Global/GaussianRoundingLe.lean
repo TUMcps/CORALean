@@ -52,7 +52,7 @@ theorem aux_integrable_abs_inner_rpow (a : E) {k : ℝ} (hk : 0 < k) :
 
 theorem gaussian_rounding_le {s l : ℕ} (a : Fin s → E) (b : Fin l → E) {p r : ℝ} (hp : 1 ≤ p)
     (hr : 0 ≤ r)
-    (h : ∀ g : E, ∑ k, |⟪a k, g⟫| ≤ r * (∑ i, |⟪b i, g⟫| ^ p) ^ (1 / p)) : -- --- STMT ---
+    (h : ∀ g : E, ∑ k, |⟪a k, g⟫| ≤ r * (∑ i, |⟪b i, g⟫| ^ p) ^ (1 / p)) : -- --- CONCL ---
     gaussMomentRoot 1 * ∑ k, ‖a k‖ ≤
       r * (gaussMomentRoot p * (∑ i, ‖b i‖ ^ p) ^ (1 / p)) := by -- --- PROOF ---
   set μ := stdGaussian E

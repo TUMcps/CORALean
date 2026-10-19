@@ -67,7 +67,7 @@ theorem Ellipsoid.aux_stationarity_hasDerivAt (hlam : ∀ i, 0 < lam i) {β : �
 
 /-- [1, Eq. 19]: the second derivative of the criterion at a root of [1, Eq. 18], positive. -/
 theorem Ellipsoid.halderLogDet_secondDeriv [Nonempty ι] (hlam : ∀ i, 0 < lam i) {r : ℝ}
-    (hr : 0 < r) (hroot : Ellipsoid.halderStationarity lam r = 0) : -- --- STMT ---
+    (hr : 0 < r) (hroot : Ellipsoid.halderStationarity lam r = 0) : -- --- CONCL ---
     HasDerivAt (deriv (Ellipsoid.halderLogDet lam))
       (1 / (r * (1 + r)) * ∑ i, (r ^ 2 * lam i ^ 2 + (1 + 2 * r) * lam i) / (1 + r * lam i) ^ 2) r
     ∧ 0 < 1 / (r * (1 + r)) *

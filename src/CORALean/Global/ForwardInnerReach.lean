@@ -108,7 +108,7 @@ theorem forwardInner_sound {Φ : ℝ → (Fin n → ℝ) → (Fin n → ℝ)}
     (hΦ : ∀ τ i, Differentiable ℝ fun z => Φ τ z i)
     (ht : Monotone t) (hΦ0 : ∀ z, Φ (t 0) z = z)
     (hmodels : ∀ j s, s.Encloses Φ lo hi z₀ (t j) → ∀ τ ∈ Icc (t j) (t (j + 1)),
-      (models j s τ).Encloses Φ lo hi z₀ τ) : -- --- STMT ---
+      (models j s τ).Encloses Φ lo hi z₀ τ) : -- --- CONCL ---
     (∀ j, (forwardInnerState models t lo hi z₀ j).Encloses Φ lo hi z₀ (t j)) ∧
       ∀ j, ∀ τ ∈ Icc (t j) (t (j + 1)), ∀ i,
         Icc (forwardInnerRange models t lo hi z₀ j τ i).2

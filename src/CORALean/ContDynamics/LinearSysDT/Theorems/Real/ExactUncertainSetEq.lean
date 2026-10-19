@@ -38,7 +38,7 @@ variable {n p : ℕ}
 
 theorem LinearSysDT.exactUncertainSet_eq (sys : LinearSysDT ℝ n) (C : Mat ℝ p n)
     (V : Set (Vec ℝ p)) (X₀ W : Set (Vec ℝ n)) (y : ℕ → Vec ℝ p) (k : ℕ)
-    (x : Vec ℝ n) : -- --- STMT ---
+    (x : Vec ℝ n) : -- --- CONCL ---
     x ∈ sys.exactUncertainSet C V X₀ W y k ↔
       ∃ xs ws : ℕ → Vec ℝ n, xs 0 ∈ X₀ ∧
         (∀ j < k, ws j ∈ W ∧ xs (j + 1) = sys.A *ᵥ xs j + ws j) ∧

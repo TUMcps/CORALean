@@ -68,7 +68,7 @@ one of the computed time-interval sets. -/
 theorem Location.IsTrajectory.reachFloat_outer {ℓ : Location 𝒵[𝕋] G L 𝕋 n} {τ : ℝ} {x : ℝ → Vec ℝ n}
     {u w} (traj : ℓ.IsTrajectory τ x u w) {tFinal : ℚ} {options : LinearSys.ReachOptions 𝕋}
     {X₀ : Zonotope (Vec 𝕋 n)} (h₀ : x 0 ∈ construct X₀) (hτ : τ ≤ tFinal) {t : ℝ}
-    (ht : t ∈ Set.Icc 0 τ) : -- --- STMT ---
+    (ht : t ∈ Set.Icc 0 τ) : -- --- CONCL ---
     ∀ Rs ∈ ℓ.reachFloat tFinal options X₀,
       ∃ R ∈ Rs, x t ∈ construct R := by -- --- PROOF ---
   intro Rs (h : ℓ.reachFloat tFinal options X₀ = some Rs)

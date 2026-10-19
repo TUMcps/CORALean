@@ -55,7 +55,7 @@ theorem Krylov.aux_augment_mulVec_last (A : Mat ℝ n n) (u : Vec ℝ n) (z : Fi
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `C̃^{k+1} [0; 1] = [Aᵏ u; 0]`. -/
-theorem Krylov.augment_pow_mulVec (A : Mat ℝ n n) (u : Vec ℝ n) (k : ℕ) : -- --- STMT ---
+theorem Krylov.augment_pow_mulVec (A : Mat ℝ n n) (u : Vec ℝ n) (k : ℕ) : -- --- CONCL ---
     (fun j => (Krylov.augment A u ^ (k + 1) *ᵥ (Pi.single (Fin.last n) 1 : Fin (n + 1) → ℝ))
         (Fin.castSucc j)) = A ^ k *ᵥ u
       ∧ (Krylov.augment A u ^ (k + 1) *ᵥ (Pi.single (Fin.last n) 1 : Fin (n + 1) → ℝ))

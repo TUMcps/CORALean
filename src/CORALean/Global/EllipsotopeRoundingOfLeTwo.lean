@@ -41,7 +41,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ellipsotope_rounding_of_le_two {q : ℝ≥0∞} [Fact (1 ≤ q)] (hq : q ≤ 2) (hq1 : q ≠ ∞)
-    (M : Mat ℝ n m) (hM : M * Mᵀ = 1) : -- --- STMT ---
+    (M : Mat ℝ n m) (hM : M * Mᵀ = 1) : -- --- CONCL ---
     {y : Fin n → ℝ | ‖toLp 2 y‖ ≤ 1}
         ⊆ {y | ∃ β : Fin m → ℝ, ‖toLp q β‖ ≤ 1 ∧ y = (m : ℝ) ^ (q⁻¹ - 2⁻¹).toReal • (M *ᵥ β)} ∧
       {y | ∃ β : Fin m → ℝ, ‖toLp q β‖ ≤ 1 ∧ y = M *ᵥ β}

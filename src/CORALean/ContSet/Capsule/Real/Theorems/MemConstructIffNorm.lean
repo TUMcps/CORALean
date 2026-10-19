@@ -10,6 +10,16 @@ public import CORALean.Global.EuclideanNorm
 
 `construct` states the bound as a square root of a sum; this is the same statement in `‖·‖₂`,
 at the offset `p - c` from the center.
+
+## Inputs
+* `C` – capsule
+* `p` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `p ∈ C` iff its distance to a segment point is at most `C.r`
 -/
 
 -- Authors:       Claude Opus 5.5

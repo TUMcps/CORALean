@@ -69,7 +69,7 @@ theorem aux_posSemidef_two_iff (a b : ℝ) :
 /-- [1, Sec. 3 (Problem 1.b)]: the ellipsoid predictor is consistent with the data iff slack
 variables `ϵ_t` satisfy the program's two linear matrix inequalities at every `t`. -/
 theorem ipmEllipsoid_consistent_iff_lmi (c : Vec ℝ n) (P : Mat ℝ n n) (hP : P.PosDef) (γ : ℝ)
-    (hγ : 0 ≤ γ) (ϕ : Fin N → Vec ℝ n) (y : Fin N → ℝ) : -- --- STMT ---
+    (hγ : 0 ≤ γ) (ϕ : Fin N → Vec ℝ n) (y : Fin N → ℝ) : -- --- CONCL ---
     (∀ t, y t ∈ ipmEllipsoid c P γ (ϕ t)) ↔
       ∃ ϵ : Fin N → ℝ, ∀ t, (!![γ ^ 2, ϵ t; ϵ t, 1] : Matrix (Fin 2) (Fin 2) ℝ).PosSemidef ∧
         (!![ϕ t ⬝ᵥ (P *ᵥ ϕ t), y t - c ⬝ᵥ ϕ t - ϵ t; y t - c ⬝ᵥ ϕ t - ϵ t, 1]

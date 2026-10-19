@@ -67,7 +67,7 @@ broken. -/
 theorem Zonotope.aux_one_side_rdr (C : ι → E →ₗ[ℝ] ℝ) (d : ι → ℝ) {p : ι → Prop} {j k : ι}
     {z y : E} (hzP : ∀ i, p i → C i z ≤ d i) (hzj : C j z < d j) (hzk : C k z < d k)
     (hy : ∀ i, p i → i ≠ j → i ≠ k → C i y ≤ d i) (hyj : d j < C j y) (hyk : d k < C k y)
-    (hlt : (d j - C j z) * (C k y - d k) < (d k - C k z) * (C j y - d j)) : -- --- STMT ---
+    (hlt : (d j - C j z) * (C k y - d k) < (d k - C k z) * (C j y - d j)) : -- --- CONCL ---
     ∃ x, (∀ i, p i → i ≠ j → C i x ≤ d i) ∧ d j < C j x := by -- --- PROOF ---
   set pj := d j - C j z
   set pk := d k - C k z
@@ -116,7 +116,7 @@ theorem Zonotope.aux_pair_rdr (C : ι → E →ₗ[ℝ] ℝ) (d : ι → ℝ) (p
       {x : E | C j x ≤ d j} = Set.univ)
     {j k : ι} (hpj : p j) (hpk : p k) (hjk : j ≠ k)
     (hj : {x | ∀ i, p i → i ≠ j → C i x ≤ d i} ⊆ {x | C j x ≤ d j})
-    (hk : {x | ∀ i, p i → i ≠ k → C i x ≤ d i} ⊆ {x | C k x ≤ d k}) : -- --- STMT ---
+    (hk : {x | ∀ i, p i → i ≠ k → C i x ≤ d i} ⊆ {x | C k x ≤ d k}) : -- --- CONCL ---
     {x | ∀ i, p i → i ≠ j → i ≠ k → C i x ≤ d i} ⊆ {x | C k x ≤ d k} := by -- --- PROOF ---
   intro y hy
   by_contra hyk

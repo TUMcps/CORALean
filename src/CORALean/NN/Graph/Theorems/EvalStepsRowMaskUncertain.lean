@@ -51,7 +51,7 @@ theorem GNN.evalSteps_row_mask_uncertain (A : Mat ℝ N N) (U : Fin m → Fin N 
     (hA : ∀ i j, 0 ≤ A i j) {lam : Fin m → ℝ} (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) (v : Fin N)
     (S : Finset (Fin N)) (L : ℕ) (hS : GNN.ball (GNN.adjMax A U) v L ⊆ S)
     (W : Fin L → Mat ℝ F F) (X Y : Mat ℝ N F)
-    (hXY : ∀ u ∈ GNN.ball (GNN.adjMax A U) v L, X u = Y u) : -- --- STMT ---
+    (hXY : ∀ u ∈ GNN.ball (GNN.adjMax A U) v L, X u = Y u) : -- --- CONCL ---
     GNN.evalSteps (GNN.messagePassing (GNN.adjAt A U lam)) L W X v
       = GNN.evalSteps (GNN.mask S (GNN.messagePassing (GNN.adjAt A U lam)))
           L W Y v := by -- --- PROOF ---

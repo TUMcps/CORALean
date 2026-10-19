@@ -68,7 +68,7 @@ theorem NonlinearSys.IsInnerMinkDiffCert.of_abstractionError [Mtimes ℐ S]
       ∀ t ∈ Icc 0 Δt, x t ∈ R) {Ω : Set (Vec ℝ n)} {K : NNReal}
     (hLip : LipschitzOnWith K (fun x => sys.f x u₀) Ω)
     (hex : ∀ x₀ ∈ X, ∃ x : ℝ → Vec ℝ n, x 0 = x₀ ∧ ∀ t ∈ Icc 0 Δt,
-      x t ∈ Ω ∧ HasDerivWithinAt x (sys.f (x t) u₀) (Icc 0 Δt) t) : -- --- STMT ---
+      x t ∈ Ω ∧ HasDerivWithinAt x (sys.f (x t) u₀) (Icc 0 Δt) t) : -- --- CONCL ---
     ∀ st ∈ NonlinearSys.innerMinkDiffStep ops (fun x => sys.f x u₀) Δt μ fuel X,
       AbstractionError sys.f st.A B st.xstar u₀ R (construct U) st.Lhat →
       ‖Δt • st.A‖ / ((η : ℝ) + 2) < 1 →

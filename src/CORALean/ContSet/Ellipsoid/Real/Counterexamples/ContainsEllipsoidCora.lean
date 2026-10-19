@@ -95,7 +95,7 @@ theorem aux_psd_diag₂ {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) : (!![a, 0; 0,
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.containsEllipsoidCora_counterexample : -- --- STMT ---
+theorem Ellipsoid.containsEllipsoidCora_counterexample : -- --- CONCL ---
     let E₁ : Ellipsoid 2 := ⟨!![1, 0; 0, 0], 0, aux_psd_diag₂ zero_le_one le_rfl⟩
     let E₂ : Ellipsoid 2 := ⟨!![1 / 4, 0; 0, 0], ![0, 1], aux_psd_diag₂ (by norm_num) le_rfl⟩
     let IsSdp := fun sdp : (A B C : Matrix (Fin 2 ⊕ Fin 1) (Fin 2 ⊕ Fin 1) ℝ) → ℝ =>

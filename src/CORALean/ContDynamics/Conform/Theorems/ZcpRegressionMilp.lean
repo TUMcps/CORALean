@@ -41,7 +41,7 @@ variable {ny nu : ℕ} {ι : Type} [Fintype ι]
 /-- [1, Prop. 9]: (19c), (19d), (25) are feasible iff all but at most `n_out` points meet (10b). -/
 theorem Conform.zcp_regression_milp {nm nout : ℕ} (f : Fin nm → Vec ℝ ny)
     (D : Fin nm → Mat ℝ ny nu) (y : Fin nm → Vec ℝ ny) (Gu : ι → Vec ℝ nu) (α : ι → ℝ)
-    (hα : ∀ j, 0 ≤ α j) : -- --- STMT ---
+    (hα : ∀ j, 0 ≤ α j) : -- --- CONCL ---
     (∃ (β : Fin nm → ι → ℝ) (ρ : Fin nm → ℝ), (∀ m j, 0 ≤ α j + β m j ∧ 0 ≤ α j - β m j) ∧
         (∀ m, (0 : Vec ℝ ny) = ∑ j, β m j • D m *ᵥ Gu j - ρ m • (y m - f m)) ∧
         (nm : ℝ) - nout ≤ ∑ m, ρ m ∧ ∀ m, ρ m = 0 ∨ ρ m = 1) ↔

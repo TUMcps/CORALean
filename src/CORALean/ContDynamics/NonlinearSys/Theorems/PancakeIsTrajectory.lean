@@ -43,7 +43,7 @@ theorem NonlinearSys.pancake_isTrajectory (sys : NonlinearSys n m) (T : ℝ) (hT
     (R₀ : S n) (U : S m) (c : Vec ℝ n) (b p : ℝ) (hp : 0 < p) (x : ℝ → Vec ℝ n)
     (u : ℝ → Vec ℝ m) {y : ℝ → Vec ℝ sys.q} (hrun : sys.IsTrajectory (Icc 0 T) R₀ U x u y)
     (hf : ContinuousOn (fun t => sys.f (x t) (u t)) (Icc 0 T))
-    (hpos : ∀ t ∈ Icc 0 T, b < c ⬝ᵥ x t) : -- --- STMT ---
+    (hpos : ∀ t ∈ Icc 0 T, b < c ⬝ᵥ x t) : -- --- CONCL ---
     ∃ (S' : ℝ) (ξ : ℝ → Vec ℝ n) (v : ℝ → Vec ℝ m), 0 ≤ S' ∧
       (⟨fun z w => ((c ⬝ᵥ z - b) / p) • sys.f z w, sys.q, sys.g⟩ : NonlinearSys n m).IsTrajectory
         (Icc 0 S') R₀ U ξ v (fun s => sys.g (ξ s) (v s)) ∧

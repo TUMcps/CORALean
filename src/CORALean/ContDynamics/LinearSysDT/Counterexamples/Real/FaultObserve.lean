@@ -36,7 +36,7 @@ open Matrix CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.faultObserve_counterexample : -- --- STMT ---
+theorem LinearSysDT.faultObserve_counterexample : -- --- CONCL ---
     let A : Mat ℝ 1 1 := 0
     let B : Mat ℝ 1 1 := 0
     let C : Mat ℝ 1 1 := 1

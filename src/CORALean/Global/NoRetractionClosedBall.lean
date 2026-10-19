@@ -47,7 +47,7 @@ open Polynomial MeasureTheory Metric
 theorem aux_det_eval_one {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E]
     {v : ℕ → ℝ} (hv : Set.InjOn v (Finset.range (Module.finrank ℝ E + 1)))
-    (A : E →L[ℝ] E) : -- --- STMT ---
+    (A : E →L[ℝ] E) : -- --- CONCL ---
     (ContinuousLinearMap.id ℝ E + (1 : ℝ) • A).det =
       ∑ j ∈ Finset.range (Module.finrank ℝ E + 1),
         (ContinuousLinearMap.id ℝ E + v j • A).det *
@@ -152,7 +152,7 @@ theorem aux_det_pos {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [Finit
 `C`-Lipschitz everywhere (given a unit vector `u`). -/
 theorem aux_norm_extension_sub_le {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (h : E → E) {C : NNReal} (hLip : LipschitzOnWith C h (closedBall 0 1))
-    (hsph : ∀ x : E, ‖x‖ = 1 → h x = 0) {u : E} (hu : ‖u‖ = 1) (x y : E) : -- --- STMT ---
+    (hsph : ∀ x : E, ‖x‖ = 1 → h x = 0) {u : E} (hu : ‖u‖ = 1) (x y : E) : -- --- CONCL ---
     ‖(if ‖x‖ ≤ 1 then h x else 0) - (if ‖y‖ ≤ 1 then h y else 0)‖ ≤
       C * ‖x - y‖ := by -- --- PROOF ---
   set B := closedBall (0 : E) 1
@@ -196,7 +196,7 @@ theorem aux_setIntegral_det_eq {E : Type} [NormedAddCommGroup E] [InnerProductSp
     (hLip : LipschitzOnWith C (fun x => r x - x) (closedBall 0 1))
     (htLip : ∀ x y : E, ‖(if ‖x‖ ≤ 1 then r x - x else 0) - (if ‖y‖ ≤ 1 then r y - y else 0)‖
       ≤ C * ‖x - y‖)
-    {t : ℝ} (ht0 : 0 ≤ t) (htC : t * C < 1) (ht1 : t ≤ 1) : -- --- STMT ---
+    {t : ℝ} (ht0 : 0 ≤ t) (htC : t * C < 1) (ht1 : t ≤ 1) : -- --- CONCL ---
     ∫ x in closedBall (0 : E) 1, (ContinuousLinearMap.id ℝ E + t • h' x).det ∂μ =
       μ.real (closedBall (0 : E) 1) := by -- --- PROOF ---
   set B := closedBall (0 : E) 1
@@ -278,7 +278,7 @@ theorem no_contDiff_retraction_closedBall {E : Type} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E]
     [FiniteDimensional ℝ E] {U : Set E} (hU : IsOpen U) (hBU : closedBall (0 : E) 1 ⊆ U)
     {r : E → E} (hr : ContDiffOn ℝ 1 r U) (hnorm : ∀ x ∈ U, ‖r x‖ = 1)
-    (hfix : ∀ x, ‖x‖ = 1 → r x = x) : -- --- STMT ---
+    (hfix : ∀ x, ‖x‖ = 1 → r x = x) : -- --- CONCL ---
     False := by -- --- PROOF ---
   classical
   borelize E

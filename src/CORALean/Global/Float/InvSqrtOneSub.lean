@@ -38,7 +38,7 @@ def invSqrtOneSubHi (q : ℕ) (c : 𝕋) : 𝕋 :=
   divUp one (sqrtDown q (subDown one (mulUp c c)))
 
 theorem invSqrtOneSub_mem [SoundFloatArithmetic 𝕋] (q : ℕ) (c : 𝕋)
-    (h : 0 < toReal (sqrtDown q (subDown one (mulUp c c)))) : -- --- STMT ---
+    (h : 0 < toReal (sqrtDown q (subDown one (mulUp c c)))) : -- --- CONCL ---
     toReal c ^ 2 < 1 ∧ 0 ≤ toReal (invSqrtOneSubLo q c) ∧
       toReal (invSqrtOneSubLo q c) ≤ (√(1 - toReal c ^ 2))⁻¹ ∧
       (√(1 - toReal c ^ 2))⁻¹ ≤ toReal (invSqrtOneSubHi q c) := by -- --- PROOF ---

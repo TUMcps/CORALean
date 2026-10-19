@@ -43,7 +43,7 @@ namespace CORALean.Real
 /-- `(c + Σ p i • G i)²` expanded: the constant part, the linear-cross part sharing `p i` with
 the linear term, and the pair part at every ordered `(i, j)`. -/
 theorem Zonotope.aux_quadTaylor_sq {n h : ℕ} (c : Mat ℝ n n) (G : Fin h → Mat ℝ n n)
-    (p : Fin h → ℝ) : -- --- STMT ---
+    (p : Fin h → ℝ) : -- --- CONCL ---
     (c + ∑ i, p i • G i) * (c + ∑ i, p i • G i)
       = c * c + (∑ i, p i • (c * G i + G i * c))
         + ∑ i, ∑ j, (p i * p j) • (G i * G j) := by -- --- PROOF ---
@@ -65,7 +65,7 @@ theorem Zonotope.aux_quadTaylor_sq {n h : ℕ} (c : Mat ℝ n n) (G : Fin h → 
 
 /-- The linear-cross block, in aggregate: `t` and `½t²` pulled out of the sum over `i`. -/
 theorem Zonotope.aux_quadTaylor_lin {n h : ℕ} (c : Mat ℝ n n) (G : Fin h → Mat ℝ n n)
-    (p : Fin h → ℝ) (t : ℝ) : -- --- STMT ---
+    (p : Fin h → ℝ) (t : ℝ) : -- --- CONCL ---
     ∑ i, p i • (t • G i + (t ^ 2 / 2) • (c * G i + G i * c))
       = t • (∑ i, p i • G i)
         + (t ^ 2 / 2) • ∑ i, p i • (c * G i + G i * c) := by -- --- PROOF ---
@@ -80,7 +80,7 @@ theorem Zonotope.aux_quadTaylor_lin {n h : ℕ} (c : Mat ℝ n n) (G : Fin h →
 swapping `(i, j)` is a bijection of `Fin h × Fin h`, so the `i > j` half of the off-diagonal
 reads exactly as the `i < j` half with its factors swapped. -/
 theorem Zonotope.aux_quadTaylor_diagpair {n h : ℕ} (G : Fin h → Mat ℝ n n)
-    (p : Fin h → ℝ) : -- --- STMT ---
+    (p : Fin h → ℝ) : -- --- CONCL ---
     ∑ i, ∑ j, (p i * p j) • (G i * G j)
       = ∑ i, (p i * p i) • (G i * G i)
         + ∑ i, ∑ j,
@@ -120,7 +120,7 @@ theorem Zonotope.aux_quadTaylor_diagpair {n h : ℕ} (G : Fin h → Mat ℝ n n)
 /-- The diagonal sum, folded: `p i * p i` is read as `(1 + (2(p i)² - 1)) / 2`, the constant
 half going into the center and the rest onto the diagonal block's own generator. -/
 theorem Zonotope.aux_quadTaylor_diagfold {n h : ℕ} (G : Fin h → Mat ℝ n n) (p : Fin h → ℝ)
-    (t : ℝ) : -- --- STMT ---
+    (t : ℝ) : -- --- CONCL ---
     (t ^ 2 / 2) • ∑ i, (p i * p i) • (G i * G i)
       = (t ^ 2 / 4) • ∑ i, G i * G i
         + ∑ i, (2 * (p i) ^ 2 - 1) • ((t ^ 2 / 4) • (G i * G i)) := by -- --- PROOF ---
@@ -134,7 +134,7 @@ theorem Zonotope.aux_quadTaylor_diagfold {n h : ℕ} (G : Fin h → Mat ℝ n n)
 `i < j` guard survives the reindex unchanged, so nothing here needs `aux_quadTaylor_diagpair`'s
 own swap argument again. -/
 theorem Zonotope.aux_quadTaylor_pairblock {n h : ℕ} (G : Fin h → Mat ℝ n n) (p : Fin h → ℝ)
-    (t : ℝ) : -- --- STMT ---
+    (t : ℝ) : -- --- CONCL ---
     ∑ k, (p (finProdFinEquiv.symm k).1 * p (finProdFinEquiv.symm k).2) •
         (if (finProdFinEquiv.symm k).1 < (finProdFinEquiv.symm k).2 then
             (t ^ 2 / 2) • (G (finProdFinEquiv.symm k).1 * G (finProdFinEquiv.symm k).2

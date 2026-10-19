@@ -48,7 +48,7 @@ open Filter Topology
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem regionOfAttraction_counterexample : -- --- STMT ---
+theorem regionOfAttraction_counterexample : -- --- CONCL ---
     let γ : ℝ → ℝ × ℝ → (ℝ → Unit) → ℝ × ℝ := fun t x _ =>
       (x.1 * Real.cos t + x.2 * Real.sin t, -(x.1 * Real.sin t) + x.2 * Real.cos t)
     let S : Set (ℝ × ℝ) := {x | x.1 ^ 2 + x.2 ^ 2 ≤ 1}

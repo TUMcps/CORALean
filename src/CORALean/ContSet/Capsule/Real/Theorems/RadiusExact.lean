@@ -13,6 +13,16 @@ Every point of the capsule is within `radius` of the center (the segment contrib
 pushed outward by `r` the bound is attained: along `g` if `g ≠ 0`, along any coordinate axis if
 `g = 0` and `0 < n`. At `n = 0` with `g = 0` the only point is the center, at distance `0`, so
 `radius = r` is not attained there; the hypothesis excludes that case.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* `hr` – nonnegative radius
+* `hn` – a direction or a positive dimension
+
+## Conclusion
+* `radius` is the greatest distance from the center
 -/
 
 -- Authors:       Claude Sonnet 5.5

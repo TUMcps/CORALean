@@ -77,7 +77,7 @@ noncomputable def STL.evaluatePredicateUnionCora {n m : ℕ} (Rc : Fin n → ℝ
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.evaluatePredicateUnionCora_lastOnly_counterexample : -- --- STMT ---
+theorem STL.evaluatePredicateUnionCora_lastOnly_counterexample : -- --- CONCL ---
     let Rc : Fin 1 → ℝ := fun _ => 0
     let Rg : Fin 1 → Fin 1 → ℝ := fun _ _ => 1
     let S₁ : (Fin 1 → ℝ) × ℝ := (fun _ => 1, 0)      -- x ≤ 0

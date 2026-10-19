@@ -39,7 +39,7 @@ inputs in `U` is, at every time of window `k`, in the `k`-th set `reachFloat` re
 theorem NonlinearSys.FloatModel.Encloses.reachFloat_outer {fm : NonlinearSys.FloatModel 𝕋 n m}
     {sys : NonlinearSys n m} (h : fm.Encloses sys)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} : -- --- STMT ---
+    {options : LinearSys.ReachOptions 𝕋} : -- --- CONCL ---
     ∀ Rs ∈ fm.reachFloat params options,
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
         Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},

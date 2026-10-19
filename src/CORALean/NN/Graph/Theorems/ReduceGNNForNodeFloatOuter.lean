@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {N F : ℕ}
 theorem GNN.reduceGNNForNodeFloat_outer (A : Mat 𝕋 N N) (v : Fin N) (L : ℕ)
     (P : Interval (Mat 𝕋 N N)) (hP : Real.GNN.messagePassing (toRealMat A) ∈ P.construct)
     (W : ℕ → Interval (Mat 𝕋 F F)) (Wr : ℕ → Mat ℝ F F) (hW : ∀ k, Wr k ∈ (W k).construct)
-    (Xi : Interval (Mat 𝕋 N F)) (X : Mat ℝ N F) (hX : X ∈ Xi.construct) : -- --- STMT ---
+    (Xi : Interval (Mat 𝕋 N F)) (X : Mat ℝ N F) (hX : X ∈ Xi.construct) : -- --- CONCL ---
     ∃ Z ∈ (GNN.reduceGNNForNodeFloat A v L P W Xi).construct,
       ∀ a, (GNN.reduceKeepFloat (GNN.support A) v L L).orderEmbOfFin rfl a = v →
         Z a = Real.GNN.evalSteps (Real.GNN.messagePassing (toRealMat A)) L

@@ -119,7 +119,7 @@ private theorem monotoneOn_of_nonneg {f f' : ℝ → ℝ} (hf : Continuous f)
 private theorem midpoint_form {g : ℝ → ℝ} (hg : ∀ x y, |g x - g y| ≤ |x - y|)
     (hg1 : ∀ x, -1 ≤ g x ∧ g x ≤ 1) {l u lo hi : 𝕋}
     (hlo : toReal lo ≤ g (toReal (midOf l u))) (hhi : g (toReal (midOf l u)) ≤ toReal hi)
-    {x : ℝ} (h1 : toReal l ≤ x) (h2 : x ≤ toReal u) : -- --- STMT ---
+    {x : ℝ} (h1 : toReal l ≤ x) (h2 : x ≤ toReal u) : -- --- CONCL ---
     toReal (maximum (neg one) (subDown lo (radOf l u))) ≤ g x ∧
       g x ≤ toReal (minimum one (addUp hi (radOf l u))) := by -- --- PROOF ---
   rw [toReal_maximum, toReal_minimum, toReal_neg, toReal_one]

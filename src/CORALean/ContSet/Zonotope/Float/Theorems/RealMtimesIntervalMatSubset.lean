@@ -92,7 +92,7 @@ theorem Zonotope.real_mtimesIntervalMat_subset {IMr : CORALean.Real.Interval (Ma
     {IMf : Interval (Mat 𝕋 m n)} (hlo : IMr.inf ∈ IMf.construct) (hhi : IMr.sup ∈ IMf.construct)
     (hle : ∀ i j, IMr.inf i j ≤ IMr.sup i j) {Zr : CORALean.Real.Zonotope (Vec ℝ n)}
     {V : Zonotope (Vec 𝕋 n)} (hE : V.I_error = Interval.point fun _ => FloatOps.zero)
-    (hZ : Zr.construct ⊆ V.construct) : -- --- STMT ---
+    (hZ : Zr.construct ⊆ V.construct) : -- --- CONCL ---
     (CORALean.Real.Zonotope.mtimesIntervalMat IMr Zr).construct ⊆
       (Zonotope.mtimesIntervalMat IMf V).construct := by -- --- PROOF ---
   intro x hx

@@ -61,7 +61,7 @@ theorem LinearSys.inputReach_mem_add_closure_convexHull (sys : LinearSys 𝕋 n)
     (hbdd : Bornology.IsBounded (construct U)) {Δt : ℝ} (hΔt : 0 < Δt) (η : ℕ)
     (hEbdd : Bornology.IsBounded (MatExp.intervalMulVecSet
       (MatExp.expRemainderMat (toRealMat sys.A) Δt η) (Δt • construct U)))
-    {y : Vec ℝ n} (hy : y ∈ sys.inputReach U Δt) : -- --- STMT ---
+    {y : Vec ℝ n} (hy : y ∈ sys.inputReach U Δt) : -- --- CONCL ---
     ∃ x ∈ ∑ i ∈ Finset.Ico 0 (η + 1),
         (fun v => (MatExp.particularCoeff (toRealMat sys.A) Δt i).mulVec v) '' construct U,
       ∃ t ∈ closure (convexHull ℝ (MatExp.intervalMulVecSet

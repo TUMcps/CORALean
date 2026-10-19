@@ -153,7 +153,7 @@ theorem STL.aux_S_general {n : ℕ} (hull Pc D C : Zonotope (Vec ℝ n)) (hh : �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.depReachInterval_sum_eval (f : ℕ → ℝ) : -- --- STMT ---
+theorem STL.depReachInterval_sum_eval (f : ℕ → ℝ) : -- --- CONCL ---
     let X₀ : Zonotope (Vec ℝ 1) := ⟨0, 0, Fin.elim0⟩
     let U : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ => fun _ => 1⟩
     ∑ k : Fin (STL.depReach (0 : Mat ℝ 1 1) (1 : Mat ℝ 1 1) X₀ U 1 1 0).2.h,

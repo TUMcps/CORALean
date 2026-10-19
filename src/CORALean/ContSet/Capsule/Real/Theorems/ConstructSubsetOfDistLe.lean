@@ -12,6 +12,16 @@ If the centers are `δc` apart, the generators `δg` apart and `C.r + δc + δg 
 `x = c + t g + b` of `C` is `c' + t g' + (b + (c - c') + t (g - g'))` and the last term has length
 at most `r + δc + δg` (`|t| ≤ 1`). This is how a float capsule, whose center and generator are
 rounded, covers an exact one.
+
+## Inputs
+* `C` – inner capsule
+* `C'` – outer capsule
+
+## Hypotheses
+* `h` – the distances of centers, generators and radii fit
+
+## Conclusion
+* `C ⊆ C'`
 -/
 
 -- Authors:       Claude Sonnet 5.5

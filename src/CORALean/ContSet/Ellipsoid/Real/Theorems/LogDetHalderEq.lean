@@ -42,7 +42,7 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- [1, Eq. 14]: `log det Q(β) = log det Q₁ + ∑ᵢ log((1 + 1/β) + (1 + β) λᵢ)`, `λᵢ > 0`. -/
 theorem Ellipsoid.log_det_halder_eq {Q₁ Q₂ : Matrix n n ℝ} (h₁ : Q₁.PosDef)
-    (h₂ : Q₂.PosDef) : -- --- STMT ---
+    (h₂ : Q₂.PosDef) : -- --- CONCL ---
     ∃ (S T : Matrix n n ℝ) (lam : n → ℝ), S * T = 1 ∧ T * S = 1 ∧
       Q₁⁻¹ * Q₂ = S * diagonal lam * T ∧ (∀ i, 0 < lam i) ∧ ∀ β : ℝ, 0 < β →
       Real.log (((1 + 1 / β) • Q₁ + (1 + β) • Q₂).det)

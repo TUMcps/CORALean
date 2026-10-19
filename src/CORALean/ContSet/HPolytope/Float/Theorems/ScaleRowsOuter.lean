@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- Inside `dom`, the scaled polytope contains the error-free one. -/
 theorem HPolytope.scaleRows_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) (hP : P.ErrFree)
     (sA : Fin P.m → 𝕋) (sE : Fin P.me → 𝕋)
-    (hA : ∀ i, 0 < toReal (sA i)) (dom : Interval (Vec 𝕋 n)) : -- --- STMT ---
+    (hA : ∀ i, 0 < toReal (sA i)) (dom : Interval (Vec 𝕋 n)) : -- --- CONCL ---
     P.construct ∩ dom.construct ⊆
       (P.scaleRows sA sE dom).construct ∩ dom.construct := by -- --- PROOF ---
   -- a point of the polytope in the domain, and its two blocks of rows

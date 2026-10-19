@@ -37,7 +37,7 @@ namespace CORALean
 
 /-- The conjunction of Kleene signals is Kleene's conjunction. -/
 theorem KleeneSignal.at_and {ι : Type} [Fintype ι] [Nonempty ι]
-    (sigs : ι → KleeneSignal ℝ) (hv : ∀ k, (sigs k).IsValid) : -- --- STMT ---
+    (sigs : ι → KleeneSignal ℝ) (hv : ∀ k, (sigs k).IsValid) : -- --- CONCL ---
     (KleeneSignal.and_ sigs).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       ((KleeneSignal.and_ sigs).at t = Kleene.tt ↔ ∀ k, (sigs k).at t = Kleene.tt) ∧
       ((KleeneSignal.and_ sigs).at t = Kleene.ff ↔

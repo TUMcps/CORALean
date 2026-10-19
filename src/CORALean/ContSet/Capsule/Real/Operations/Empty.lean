@@ -10,6 +10,12 @@ public import CORALean.ContSet.Capsule.Real.Capsule
 CORA's `capsule.empty(n)`, a capsule with no generator and no radius. The model has no
 zero-width capsule, so the empty one is the one with radius `-1`, as `Capsule`'s own docstring
 says.
+
+## Inputs
+* `n` – dimension
+
+## Output
+* the empty capsule in dimension `n`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -53,7 +53,7 @@ theorem NonlinDASys.reachAdaptiveLoop_outer (sys : NonlinDASys n p m)
       sys.linReachAdaptive T st.R U (k + 2) fuelErr fuelHalf st.adm_x st.adm_y h lastStep
         = some pass → 0 < pass.Δt → pass.Δt ≤ tFinal - st.t →
       (pass.linPoint (T.taylor st.R)).Certifies sys U pass.Δt k
-        (fun s => x (st.t + s)) (fun s => y (st.t + s)) (fun s => u (st.t + s))) : -- --- STMT ---
+        (fun s => x (st.t + s)) (fun s => y (st.t + s)) (fun s => u (st.t + s))) : -- --- CONCL ---
     ∀ (fuel : ℕ) (st : NonlinDASys.AdaptState n p) (Runion : Set (Vec ℝ n)),
       0 ≤ st.t → x st.t ∈ st.R.construct →
       (0 < st.t → ∀ t ∈ Set.Icc 0 st.t, x t ∈ Runion) → st.t ≤ tFinal →

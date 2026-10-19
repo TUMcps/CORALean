@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The dependent block and the freed one, split apart and each read back against its own
 factors, coordinate by coordinate. -/
 theorem ConPolyZono.aux_sum_dependent (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
-    (a : Fin (cPZ.p + cPZ.qI) → ℝ) (i : Fin n) : -- --- STMT ---
+    (a : Fin (cPZ.p + cPZ.qI) → ℝ) (i : Fin n) : -- --- CONCL ---
     (∑ l, toReal (cPZ.dependent.G l i) * Real.PolyZonotope.monomial cPZ.dependent.E a l)
       = (∑ l, toReal (cPZ.G l i)
           * Real.PolyZonotope.monomial cPZ.E (fun k => a (Fin.castAdd cPZ.qI k)) l)

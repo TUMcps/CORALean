@@ -65,7 +65,7 @@ theorem LinearSysDT.aux_complex_dissipation (A : Mat ℝ n n) (C : Mat ℝ ny n)
         -ε * (a ⬝ᵥ a + b ⬝ᵥ b + c ⬝ᵥ c))
     (z : ℂ) (e : Fin n → ℂ) (dw : Fin nw → ℂ) (dv : Fin nv → ℂ)
     (h : z • e = (A - P⁻¹ * Y * C).map Complex.ofReal *ᵥ e + E.map Complex.ofReal *ᵥ dw -
-      (P⁻¹ * Y * F).map Complex.ofReal *ᵥ dv) : -- --- STMT ---
+      (P⁻¹ * Y * F).map Complex.ofReal *ᵥ dv) : -- --- CONCL ---
     let a := fun j => (e j).re
     let a' := fun j => (e j).im
     ‖z‖ ^ 2 * (a ⬝ᵥ (P *ᵥ a) + a' ⬝ᵥ (P *ᵥ a')) + (1 + ε) * ∑ i, ‖e i‖ ^ 2 ≤
@@ -114,7 +114,7 @@ theorem LinearSysDT.aux_complex_dissipation (A : Mat ℝ n n) (C : Mat ℝ ny n)
 
 theorem LinearSysDT.hinf_of_lmi (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat ℝ n nw)
     (F : Mat ℝ ny nv) (P : Mat ℝ n n) (Y : Mat ℝ n ny) (γ : ℝ) (hγ : 0 < γ) (hP : P.PosDef)
-    (h : LinearSysDT.HinfLmi A C E F P Y γ) : -- --- STMT ---
+    (h : LinearSysDT.HinfLmi A C E F P Y γ) : -- --- CONCL ---
     let Ae := (A - P⁻¹ * Y * C).map Complex.ofReal
     let Ec := E.map Complex.ofReal
     let Gc := (P⁻¹ * Y * F).map Complex.ofReal

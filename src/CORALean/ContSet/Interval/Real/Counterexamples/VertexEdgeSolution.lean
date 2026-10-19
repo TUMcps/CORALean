@@ -33,7 +33,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.vertex_edge_solution_counterexample : -- --- STMT ---
+theorem Interval.vertex_edge_solution_counterexample : -- --- CONCL ---
     let b : Vec ℝ 1 := fun _ => 1
     let v := (⟨0, b⟩ : Interval (Vec ℝ 1)).corner fun _ => true
     Function.update v 0 (1 / 2) ∈

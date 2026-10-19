@@ -40,7 +40,7 @@ theorem Zonotope.exists_subset_of_disjunctive_cert (Zx : Zonotope α) (Zy : Fin 
     (δ : Fin N → ℝ) (hδ : ∀ i, δ i = 0 ∨ δ i = 1) (hsum : ∑ i, δ i = 1)
     (hn : ∀ i k, ∑ j, |Γ i k j| + |β i k| ≤ δ i)
     (hc : ∑ i, ((∑ k, β i k • (Zy i).G k) + δ i • (Zy i).c) = Zx.c)
-    (hX : ∀ j, ∑ i, ∑ k, Γ i k j • (Zy i).G k = Zx.G j) : -- --- STMT ---
+    (hX : ∀ j, ∑ i, ∑ k, Γ i k j • (Zy i).G k = Zx.G j) : -- --- CONCL ---
     ∃ i, Zx.construct ⊆ (Zy i).construct := by -- --- PROOF ---
   have hδ0 : ∀ i, 0 ≤ δ i := fun i => by rcases hδ i with h | h <;> simp [h]
   obtain ⟨i₀, hi₀⟩ : ∃ i, δ i = 1 := by

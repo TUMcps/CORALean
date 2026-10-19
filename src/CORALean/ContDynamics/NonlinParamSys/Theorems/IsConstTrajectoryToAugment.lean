@@ -40,7 +40,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 theorem NonlinParamSys.IsConstTrajectory.toAugment {sys : NonlinParamSys n m q} {T : Set ℝ}
     {R₀ : S n} {U : S m} {P : S q} {Z₀ : S (n + q)} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
     {p : Vec ℝ q} {y : ℝ → Vec ℝ sys.r} (traj : sys.IsConstTrajectory T R₀ U P x u p y)
-    (hZ : ∀ v ∈ construct R₀, ∀ w ∈ construct P, Fin.append v w ∈ construct Z₀) : -- --- STMT ---
+    (hZ : ∀ v ∈ construct R₀, ∀ w ∈ construct P, Fin.append v w ∈ construct Z₀) : -- --- CONCL ---
     sys.augment.IsTrajectory T Z₀ U (fun t => Fin.append (x t) p) u y := by -- --- PROOF ---
   -- `v ↦ (v, 0)`, the linear map the parameter's zero field makes of the state's
   let L : Vec ℝ n →ₗ[ℝ] Vec ℝ (n + q) :=

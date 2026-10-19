@@ -86,7 +86,7 @@ def Zonotope.redistributeIndexCrashCora (nrOfGens nKept : Nat) (ind : List Nat) 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `validateOptions` accepts the five techniques and `reduce` stops on each. -/
-theorem Zonotope.reduceCrashCora_crash : -- --- STMT ---
+theorem Zonotope.reduceCrashCora_crash : -- --- CONCL ---
     (∀ t ∈ [ReductionTechnique.methB, .methD, .methE, .cluster, .redistribute],
         aux_accepted t = true) ∧
       reduceCrashCora .methB true false = true ∧ reduceCrashCora .cluster true false = true ∧

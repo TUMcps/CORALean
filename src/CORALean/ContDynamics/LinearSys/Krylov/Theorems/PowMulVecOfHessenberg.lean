@@ -42,7 +42,7 @@ variable {n m : ℕ}
 theorem Krylov.pow_mulVec_of_hessenberg (C : Mat ℝ n n) (V : Mat ℝ n m) (H : Mat ℝ m m)
     (hH : ∀ i k : Fin m, (k : ℕ) + 1 < i → H i k = 0)
     (hrel : ∀ k : Fin m, (k : ℕ) + 1 < m → ∀ i, (C * V) i k = (V * H) i k)
-    (j : ℕ) (x : Fin m → ℝ) (hx : ∀ i : Fin m, m ≤ (i : ℕ) + j → x i = 0) : -- --- STMT ---
+    (j : ℕ) (x : Fin m → ℝ) (hx : ∀ i : Fin m, m ≤ (i : ℕ) + j → x i = 0) : -- --- CONCL ---
     C ^ j *ᵥ (V *ᵥ x) = V *ᵥ (H ^ j *ᵥ x) := by -- --- PROOF ---
   induction j generalizing x with
   | zero => simp only [pow_zero, one_mulVec]

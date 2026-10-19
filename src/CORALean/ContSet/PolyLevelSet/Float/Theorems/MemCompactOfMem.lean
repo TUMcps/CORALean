@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A merged coefficient column is off by at most the gap between the two directed masked sums. -/
 theorem PolyLevelSet.aux_compactGap (P : PolyLevelSet 𝕋 n) (i : Fin P.m)
-    (l : Fin (PolyZonotope.repKeep P.R).card) : -- --- STMT ---
+    (l : Fin (PolyZonotope.repKeep P.R).card) : -- --- CONCL ---
     |Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep P.R)
         (fun r => toReal (P.A i r)) (PolyZonotope.keepIdx P.R l)
       - toReal (P.mergedCol i l)|

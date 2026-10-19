@@ -50,7 +50,7 @@ theorem NonlinearARX.aux_pastIn_rev (u : ℕ → Vec ℝ du) (k : ℕ) :
 theorem NonlinearARX.toNonlinearSysDT_step (sys : NonlinearARX dy du p) {y : ℕ → Vec ℝ dy}
     {u : ℕ → Vec ℝ du}
     (hy : ∀ k, p ≤ k → y k = sys.f (NonlinearARX.pastOut p y k) (NonlinearARX.pastIn p u k))
-    (k : ℕ) : -- --- STMT ---
+    (k : ℕ) : -- --- CONCL ---
     NonlinearARX.stack p y (k + 1)
       = sys.toNonlinearSysDT.f (NonlinearARX.stack p y k)
         (NonlinearARX.feed p u k) := by -- --- PROOF ---

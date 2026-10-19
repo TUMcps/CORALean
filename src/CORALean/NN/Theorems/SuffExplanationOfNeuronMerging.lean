@@ -59,7 +59,7 @@ theorem NeuralNetwork.suffExplanation_of_neuronMerging [∀ n, Plus (S n) (Vec �
             (.layer (LinearWithErrorLayer.mk (W1.submatrix id part.left) b1
                 (Float.Interval.mtimes (W1.submatrix id part.right)
                   ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩))
-              post)))).IsSuffExplanationAbstract x ε E l) : -- --- STMT ---
+              post)))).IsSuffExplanationAbstract x ε E l) : -- --- CONCL ---
     -- and the original, whose exact image `neuronMerging_network_outer` puts inside it
     IsSuffExplanation
       (fun z => fpost (toRealMat W1 *ᵥ (fun i => σ ((toRealMat W0 *ᵥ fpre z + toRealVec b0) i))

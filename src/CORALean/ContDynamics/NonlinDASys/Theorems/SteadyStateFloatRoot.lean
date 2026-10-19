@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p m : ℕ}
 /-- A returned pair is within `tol`, blockwise, of exactly one solution of `f = 0`, `g = 0`. -/
 theorem NonlinDASys.FloatModel.Encloses.steadyStateFloat_root {fm : NonlinDASys.FloatModel 𝕋 n p m}
     {sys : NonlinDASys n p m} (hfm : fm.Encloses sys) (tol : 𝕋) (fuel : ℕ) (x₀ : Vec 𝕋 n)
-    (y₀ : Vec 𝕋 p) (u₀ : Vec 𝕋 m) : -- --- STMT ---
+    (y₀ : Vec 𝕋 p) (u₀ : Vec 𝕋 m) : -- --- CONCL ---
     ∀ x' y', (x', y') ∈ fm.steadyStateFloat tol fuel x₀ y₀ u₀ →
       ∃! xy : Vec ℝ n × Vec ℝ p, xy.1 ∈ Metric.closedBall (toRealVec x') (toReal tol) ∧
         xy.2 ∈ Metric.closedBall (toRealVec y') (toReal tol) ∧

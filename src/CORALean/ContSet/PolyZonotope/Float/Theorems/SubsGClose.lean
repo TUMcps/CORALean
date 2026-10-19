@@ -35,7 +35,7 @@ theorem PolyZonotope.subsG_close (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ}
     (pZin : PolyZonotope (Vec 𝕋 nu))
     (idu : Fin nu → Fin pZ.p) (l : Fin (pZ.subsTerms pZin idu).length) (r : Fin n) {ρ : ℝ}
     (h₁ : toReal ((pZ.subsTerms pZin idu).get l).2.1.inf ≤ ρ)
-    (h₂ : ρ ≤ toReal ((pZ.subsTerms pZin idu).get l).2.1.sup) : -- --- STMT ---
+    (h₂ : ρ ≤ toReal ((pZ.subsTerms pZin idu).get l).2.1.sup) : -- --- CONCL ---
     |ρ * toReal (pZ.G ((pZ.subsTerms pZin idu).get l).1 r) - toReal (pZ.aux_subsGDown pZin idu r l)|
       ≤ toReal (pZ.aux_subsGDiff pZin idu r l) := by -- --- PROOF ---
   have hb := Real.Interval.mul_between_corners h₁ h₂

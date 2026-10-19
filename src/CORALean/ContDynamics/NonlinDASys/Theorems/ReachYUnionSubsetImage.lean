@@ -36,7 +36,7 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinDASys.WithSteps.reachYUnion_subset_image (sys : NonlinDASys.WithSteps S Rg m p n)
-    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) : -- --- STMT ---
+    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) : -- --- CONCL ---
     ∀ R ∈ sys.reachUnion params options,
       sys.reachYUnionExact (params.tFinal - params.tStart) (construct params.X₀)
         ⊆ (fun xu : Vec ℝ n × Vec ℝ m => sys.red.h xu.1 xu.2) ''

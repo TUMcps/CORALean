@@ -35,7 +35,7 @@ theorem sub_mul_bounds_of_deriv {σ σ' : ℝ → ℝ} {m M lam l u t : ℝ}
     (hc : ContinuousOn σ (Set.Icc l u))
     (hd : ∀ x, l < x → x < u → HasDerivAt σ (σ' x) x)
     (hm : ∀ x, l ≤ x → x ≤ u → m ≤ σ' x) (hM : ∀ x, l ≤ x → x ≤ u → σ' x ≤ M)
-    (hml : m ≤ lam) (hlM : lam ≤ M) (hl : l ≤ t) (hu : t ≤ u) : -- --- STMT ---
+    (hml : m ≤ lam) (hlM : lam ≤ M) (hl : l ≤ t) (hu : t ≤ u) : -- --- CONCL ---
     σ l - lam * l + (m - lam) * (u - l) ≤ σ t - lam * t
       ∧ σ t - lam * t ≤ σ l - lam * l + (M - lam) * (u - l) := by -- --- PROOF ---
   have hw : 0 ≤ u - l := by linarith

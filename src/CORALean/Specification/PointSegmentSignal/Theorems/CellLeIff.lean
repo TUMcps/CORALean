@@ -32,7 +32,7 @@ namespace CORALean
 /-- Index `cell t ≤ b` iff `t` is before the upper end of the `b`-th value. -/
 theorem PointSegmentSignal.cell_le_iff {T : Type} [LinearOrder T] [Zero T]
     (s : PointSegmentSignal T) (hs : s.IsValid) (t : T) (ht : 0 ≤ t) (b : ℕ)
-    (hb : b < s.values.length) : -- --- STMT ---
+    (hb : b < s.values.length) : -- --- CONCL ---
     s.cell t ≤ b ↔ (((t : T) : WithTop T) < (s.succTimeAtValIdx (b + 1)).1 ∨
       ((s.succTimeAtValIdx (b + 1)).2 = true ∧
         ((t : T) : WithTop T) = (s.succTimeAtValIdx (b + 1)).1)) := by -- --- PROOF ---

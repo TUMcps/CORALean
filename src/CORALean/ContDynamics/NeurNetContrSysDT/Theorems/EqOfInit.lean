@@ -38,7 +38,7 @@ theorem NeurNetContrSysDT.IsTrajectory.aux_eq_simulate
     {π : Vec ℝ n → Vec ℝ sys.m} {W : Set (Vec ℝ sys.plant.r)}
     (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0) {x : ℕ → Vec ℝ n} {v : ℕ → Vec ℝ sys.nExt}
     {w : ℕ → Vec ℝ sys.plant.r} (traj : sys.IsTrajectory π R₀ U_ext W x v w)
-    (k : ℕ) : -- --- STMT ---
+    (k : ℕ) : -- --- CONCL ---
     x k = sys.simulate π v (x 0) k := by -- --- PROOF ---
   induction k with
   | zero => rfl
@@ -58,7 +58,7 @@ theorem NeurNetContrSysDT.IsTrajectory.eq_of_init
         (hW₁ : ∀ v ∈ W₁, toRealMat sys.plant.E *ᵥ v = 0)
     {x y : ℕ → Vec ℝ n} {v : ℕ → Vec ℝ sys.nExt} {w₀ w₁ : ℕ → Vec ℝ sys.plant.r}
     (hx : sys.IsTrajectory π R₀ U_ext W₀ x v w₀) (hy : sys.IsTrajectory π R₁ U_ext W₁ y v w₁)
-    (h : x 0 = y 0) : -- --- STMT ---
+    (h : x 0 = y 0) : -- --- CONCL ---
     x = y := by -- --- PROOF ---
   funext k
   rw [hx.aux_eq_simulate hW₀ k, hy.aux_eq_simulate hW₁ k, h]

@@ -47,7 +47,7 @@ theorem Taylm.tan_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h 
       (absolute T.bounds.sup))) < Real.pi / 2)
     (hcc : 0 < toReal (cosDown p T.constCoef))
     (hcm : 0 < toReal (cosDown p (maximum (absolute T.constCoef) (maximum (absolute T.bounds.inf)
-      (absolute T.bounds.sup))))) : -- --- STMT ---
+      (absolute T.bounds.sup))))) : -- --- CONCL ---
     (T.tan p).Encloses fun t => Real.tan (f t) := by -- --- PROOF ---
   set c := T.constCoef
   set N := T.maxOrder

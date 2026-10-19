@@ -42,7 +42,7 @@ theorem Zonotope.hRep_lin_subset {n : ℕ} {ι : Type} (Z : Zonotope (Vec ℝ (n
     (C : ι → (Vec ℝ (n + 1) →ₗ[ℝ] ℝ)) (hspan : Submodule.span ℝ (Set.range Z.G) = ⊤)
     (hC : ∀ S : Fin n → Fin Z.h, ∃ (i₁ i₂ : ι) (lam : ℝ), 0 < lam ∧
       (∀ y, C i₁ y = lam * (Z.facetNormal S ⬝ᵥ y)) ∧
-      (∀ y, C i₂ y = -(lam * (Z.facetNormal S ⬝ᵥ y)))) : -- --- STMT ---
+      (∀ y, C i₂ y = -(lam * (Z.facetNormal S ⬝ᵥ y)))) : -- --- CONCL ---
     {y | ∀ i, C i (y - Z.c) ≤ ∑ υ, |C i (Z.G υ)|} ⊆ Z.construct := by -- --- PROOF ---
   intro y hy
   rw [Z.hRep_eq hspan]

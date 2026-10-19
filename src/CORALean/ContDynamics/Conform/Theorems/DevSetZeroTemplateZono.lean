@@ -42,7 +42,7 @@ variable {n p q : ℕ}
 /-- [1, Eq. 17], [1, Eq. 18]: the center and generators of `R_a(k)`. -/
 theorem Conform.Plant.devSet_zero_templateZono (sys : Conform.Plant n p q) {ιW ιV : Type}
     [Fintype ιW] [Fintype ιV] (cW : Vec ℝ n) (GW : ιW → Vec ℝ n) (αW : ιW → ℝ) (cV : Vec ℝ q)
-    (GV : ιV → Vec ℝ q) (αV : ιV → ℝ) (k : ℕ) : -- --- STMT ---
+    (GV : ιV → Vec ℝ q) (αV : ιV → ℝ) (k : ℕ) : -- --- CONCL ---
     sys.devSet {0} (Conform.templateZono cW GW αW) (Conform.templateZono cV GV αV) k
       = Conform.templateZono (∑ i : Fin k, (sys.C * sys.A ^ (i : ℕ)) *ᵥ cW + cV)
           (Sum.elim (fun r : Fin k × ιW => (sys.C * sys.A ^ (r.1 : ℕ)) *ᵥ GW r.2) GV)

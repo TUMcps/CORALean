@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem abs_sub_evalPolyDeriv_le {c : Fin (n + 1) → 𝕋} {σ' : ℝ → ℝ} {loD hiD l u : 𝕋}
     {x : ℝ} (hlo : toReal loD ≤ σ' x) (hhi : σ' x ≤ toReal hiD)
-    (hl : toReal l ≤ x) (hu : x ≤ toReal u) : -- --- STMT ---
+    (hl : toReal l ≤ x) (hu : x ≤ toReal u) : -- --- CONCL ---
     |σ' x - Real.evalPolyDeriv (fun k => toReal (c k)) x|
       ≤ toReal (polyDerivBoundUp c loD hiD l u) := by -- --- PROOF ---
   have h1 := abs_sub_le_spread (c := polyDerivCenter c) hlo hhi

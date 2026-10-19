@@ -61,7 +61,7 @@ theorem LinearARX.aux_ss_closed (A : Mat ℝ n n) (B : Mat ℝ n m) {x : ℕ →
 theorem LinearARX.ssReach_eq (A : Mat ℝ n n) (B : Mat ℝ n m) (C : Mat ℝ q n) (D : Mat ℝ q m)
     (X₀ : Set (Vec ℝ n)) {U : ℕ → Set (Vec ℝ m)} {W : ℕ → Set (Vec ℝ n)}
     {V : ℕ → Set (Vec ℝ q)} (hU : ∀ i, (U i).Nonempty) (hW : ∀ i, (W i).Nonempty)
-    (hV : ∀ i, (V i).Nonempty) (k : ℕ) : -- --- STMT ---
+    (hV : ∀ i, (V i).Nonempty) (k : ℕ) : -- --- CONCL ---
     {y | ∃ (x : ℕ → Vec ℝ n) (u : ℕ → Vec ℝ m) (w : ℕ → Vec ℝ n) (v : ℕ → Vec ℝ q),
       x 0 ∈ X₀ ∧ (∀ i, u i ∈ U i) ∧ (∀ i, w i ∈ W i) ∧ (∀ i, v i ∈ V i) ∧
       (∀ i, x (i + 1) = A *ᵥ x i + B *ᵥ u i + w i) ∧ y = C *ᵥ x k + D *ᵥ u k + v k}

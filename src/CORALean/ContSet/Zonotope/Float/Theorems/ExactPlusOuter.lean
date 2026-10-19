@@ -48,7 +48,7 @@ theorem Zonotope.aux_pairSum_gap (a b : 𝕋) :
 /-- A stored generator entry is within its gap of the exact column. -/
 theorem Zonotope.aux_exactPlus_gap (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) (i : Fin n)
     (j : Fin (min (min Z₁.h Z₂.h) k + (Z₁.h - min (min Z₁.h Z₂.h) k) +
-      (Z₂.h - min (min Z₁.h Z₂.h) k))) : -- --- STMT ---
+      (Z₂.h - min (min Z₁.h Z₂.h) k))) : -- --- CONCL ---
     |((Real.Zonotope.exactPlus (nominal Z₁) (nominal Z₂) k).G j) i
         - toReal ((Z₁.exactPlus Z₂ k).G j i)| ≤
       toReal (Z₁.aux_exactPlusGap Z₂ k i j) := by -- --- PROOF ---

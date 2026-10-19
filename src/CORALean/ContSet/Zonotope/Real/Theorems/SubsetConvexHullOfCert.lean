@@ -45,7 +45,7 @@ theorem Zonotope.construct_subset_convexHull_of_cert (Zx : Zonotope α) (Zy : Fi
     (lam : Fin N → ℝ) (hn : ∀ i k, ∑ j, |Γ i k j| + |β i k| ≤ lam i) (hlam : ∀ i, 0 ≤ lam i)
     (hsum : ∑ i, lam i = 1)
     (hc : ∑ i, ((∑ k, β i k • (Zy i).G k) + lam i • (Zy i).c) = Zx.c)
-    (hX : ∀ j, ∑ i, ∑ k, Γ i k j • (Zy i).G k = Zx.G j) : -- --- STMT ---
+    (hX : ∀ j, ∑ i, ∑ k, Γ i k j • (Zy i).G k = Zx.G j) : -- --- CONCL ---
     Zx.construct ⊆ convexHull ℝ (⋃ i, (Zy i).construct) := by -- --- PROOF ---
   rintro _ ⟨a, ha, rfl⟩
   -- the coefficients `bᵢ = Γᵢ a + βᵢ`, bounded by `λᵢ`

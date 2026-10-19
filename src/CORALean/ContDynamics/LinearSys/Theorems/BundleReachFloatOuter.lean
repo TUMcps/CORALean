@@ -71,7 +71,7 @@ theorem LinearSys.bundleReachFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
       (fun x => exp (τ • Scalar.toRealMat sys.A) *ᵥ x) '' construct X₀ ⊆ Rh₀.construct)
     (hi : ∀ τ ∈ Set.Icc (0:ℝ) (toReal r), sys.inputReach U τ ⊆ Ri₀.construct)
     {N k : ℕ} (hk : k ≤ N) {t : ℝ}
-    (ht : t ∈ Set.Icc ((k : ℝ) * toReal r) ((k + 1) * toReal r)) : -- --- STMT ---
+    (ht : t ∈ Set.Icc ((k : ℝ) * toReal r) ((k + 1) * toReal r)) : -- --- CONCL ---
     ∃ R, (sys.bundleReachFloat Rh₀ Ri₀ r η N)[k]? = some R
       ∧ sys.reachSetExact (Set.Icc 0 t) X₀ U t ⊆ R.construct := by -- --- PROOF ---
   -- the matrix, the step and the enclosure `[e^{Ar}]` the loop multiplies by

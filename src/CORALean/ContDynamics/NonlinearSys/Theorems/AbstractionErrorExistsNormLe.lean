@@ -40,7 +40,7 @@ theorem AbstractionError.exists_norm_le {f : Vec ℝ n → Vec ℝ m → Vec ℝ
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)} {U : Set (Vec ℝ m)}
     {L : S n} (cert : AbstractionError f A B xs us R U L) (hL : Bornology.IsBounded (construct L))
     {x : ℝ → Vec ℝ n} {K : Set ℝ} (hK : IsCompact K) (hx : ContinuousOn x K)
-    (hR : ∀ t ∈ K, x t ∈ R) {u₀ : Vec ℝ m} (hu₀ : u₀ ∈ U) : -- --- STMT ---
+    (hR : ∀ t ∈ K, x t ∈ R) {u₀ : Vec ℝ m} (hu₀ : u₀ ∈ U) : -- --- CONCL ---
     ∃ C, ∀ t ∈ K, ‖f (x t) u₀‖ ≤ C := by -- --- PROOF ---
   set a : ℝ → Vec ℝ n := fun t => f xs us + A *ᵥ (x t - xs) + B *ᵥ (u₀ - us)
   have ha : ContinuousOn a K :=

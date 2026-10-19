@@ -39,7 +39,7 @@ variable {n s : ℕ} {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [Fini
 theorem HPolytope.naiveHalfspace_not_subset (p : ℝ≥0∞) [Fact (1 ≤ p)] (G : E →ₗ[ℝ] Vec ℝ n)
     (c d : Vec ℝ n) {Λ : Mat ℝ s n} {b : Vec ℝ s} (hb : ∀ i, 0 < b i)
     (hsym : ∀ i, ∃ i', (∀ x, (Λ *ᵥ x) i' = -(Λ *ᵥ x) i) ∧ b i' = b i) {N : ℕ} (hN : 0 < N)
-    (j : Fin N → Fin s) (h : 1 < HPolytope.naiveHalfspaceValue p G c d Λ b hN j) : -- --- STMT ---
+    (j : Fin N → Fin s) (h : 1 < HPolytope.naiveHalfspaceValue p G c d Λ b hN j) : -- --- CONCL ---
     ¬ {x | ∃ α : E, ‖α‖ ≤ 1 ∧ x = c + G α}
       ⊆ {x | ∀ i, (Λ *ᵥ (x - d)) i ≤ b i} := by -- --- PROOF ---
   -- the radius is attained at some `α`, and above `1`

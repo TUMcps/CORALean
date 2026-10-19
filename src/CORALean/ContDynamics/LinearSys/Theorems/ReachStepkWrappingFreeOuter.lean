@@ -43,7 +43,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 `τ_k`, is in `reachStepkWrappingFree`'s set for it. -/
 theorem LinearSys.reachStepkWrappingFree_outer (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 < Δt) {m : ℕ}
     (hε : ‖Δt • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ : S n) {k : ℕ} {t : ℝ}
-    (hkt : (k : ℝ) * Δt ≤ t) (htk : t - k * Δt ≤ Δt) : -- --- STMT ---
+    (hkt : (k : ℝ) * Δt ≤ t) (htk : t - k * Δt ≤ Δt) : -- --- CONCL ---
     (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' construct X₀
       ⊆ construct (sys.reachStepkWrappingFree Δt (m + 2) X₀ k) := by -- --- PROOF ---
   rintro _ ⟨x₀, hx₀, rfl⟩

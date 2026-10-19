@@ -36,7 +36,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.peakDisturbance_counterexample : -- --- STMT ---
+theorem LinearSysDT.peakDisturbance_counterexample : -- --- CONCL ---
     let Hd : Mat ℝ 1 1 := 1
     let d : ℕ → Vec ℝ 1 := fun _ => 0
     (∀ k, ∃ b : Vec ℝ 1, (∀ i, |b i| ≤ 1) ∧ d k = Hd *ᵥ b) ∧

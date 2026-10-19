@@ -50,7 +50,7 @@ theorem LinearSysDT.control_of_mem_underS (sys : LinearSysDT ℝ n) (hΦ : IsUni
     (hα : ∑ j, |α j| ≤ 1) (y : Vec ℝ n)
     (hy : y = (Ω₀.mtimes (sys.A ^ N)).c + ∑ k ∈ Finset.range N, (U.mtimes (sys.A ^ k)).c
       + ∑ j, α j • ((Ω₀.mtimes (sys.A ^ N)).extremalGen (s j)
-        + ∑ k ∈ Finset.range N, (U.mtimes (sys.A ^ k)).extremalGen (s j))) : -- --- STMT ---
+        + ∑ k ∈ Finset.range N, (U.mtimes (sys.A ^ k)).extremalGen (s j))) : -- --- CONCL ---
     let w := fun Z : Zonotope (Vec ℝ n) => Z.c + ∑ j, α j • Z.extremalGen (s j)
     let x₀ := sys.A⁻¹ ^ N *ᵥ w (Ω₀.mtimes (sys.A ^ N))
     let v := fun i => sys.A⁻¹ ^ (N - 1 - i) *ᵥ w (U.mtimes (sys.A ^ (N - 1 - i)))

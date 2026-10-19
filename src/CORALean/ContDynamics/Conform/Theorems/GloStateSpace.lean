@@ -47,7 +47,7 @@ variable {n p q : ℕ}
 theorem aux_dev_unroll (x xb : ℕ → Vec ℝ n) (u ub : ℕ → Vec ℝ p) (A : ℕ → Mat ℝ n n)
     (B : ℕ → Mat ℝ n p) (lx : ℕ → Vec ℝ n)
     (hx : ∀ k, x (k + 1) = xb (k + 1) + A k *ᵥ (x k - xb k) + B k *ᵥ (u k - ub k) + lx k)
-    (k : ℕ) : -- --- STMT ---
+    (k : ℕ) : -- --- CONCL ---
     x k - xb k = Conform.prodJac A k k *ᵥ (x 0 - xb 0)
       + ∑ i ∈ Finset.range k, Conform.prodJac A k (k - i - 1) *ᵥ
           (B i *ᵥ (u i - ub i) + lx i) := by -- --- PROOF ---
@@ -77,7 +77,7 @@ theorem Conform.glo_stateSpace (x xb : ℕ → Vec ℝ n) (u ub : ℕ → Vec �
     (lx : ℕ → Vec ℝ n) (ly : ℕ → Vec ℝ q)
     (hx : ∀ k, x (k + 1) = xb (k + 1) + A k *ᵥ (x k - xb k) + B k *ᵥ (u k - ub k) + lx k)
     (hy : ∀ k, y k = yb k + C k *ᵥ (x k - xb k) + D k *ᵥ (u k - ub k) + ly k)
-    (k : ℕ) : -- --- STMT ---
+    (k : ℕ) : -- --- CONCL ---
     y k = yb k + (C k * Conform.prodJac A k k) *ᵥ (x 0 - xb 0)
         + ∑ i ∈ Finset.range k, (C k * Conform.prodJac A k (k - i - 1) * B i) *ᵥ (u i - ub i)
         + D k *ᵥ (u k - ub k)

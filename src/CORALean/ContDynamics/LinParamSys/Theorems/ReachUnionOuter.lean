@@ -71,7 +71,7 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 `params.U` (input coordinates) wherever it sits, reaches is in one of `reachUnion`'s windows. -/
 theorem LinParamSys.reachUnion_outer (sys : LinParamSys ℐ n)
     (params : Reach.InputParams (S n) (S sys.m) ℝ) {options : LinearSys.ReachStepOptions ℝ}
-    (hΔt : 0 < options.Δt) : -- --- STMT ---
+    (hΔt : 0 < options.Δt) : -- --- CONCL ---
     sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
       (construct params.U) ⊆ construct (sys.reachUnion params options) := by -- --- PROOF ---
   rintro _ ⟨A, B, x, uIn, trajB, t, ht, rfl⟩

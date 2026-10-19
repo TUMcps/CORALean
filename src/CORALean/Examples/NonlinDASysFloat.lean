@@ -129,7 +129,7 @@ theorem run_eq : NonlinDASys.reachFloat daeRed model { X₀ := X₀, U := U₀, 
 /-- The guarantee of the list the run returns (the `#eval` above shows it does): every trajectory
 of the algebraic system from `X₀` under `U₀` is, at every time of every window, in the window's
 zonotope. -/
-theorem run_outer {Rs : List (Zonotope (Vec D 1))} (h : run = some Rs) : -- --- STMT ---
+theorem run_outer {Rs : List (Zonotope (Vec D 1))} (h : run = some Rs) : -- --- CONCL ---
     ∃ N : ℕ, (N : ℝ) * toReal (d 1 (-3) : D) = ((1 : ℚ) : ℝ) - ((0 : ℚ) : ℝ) ∧ Rs.length = N ∧
       ∀ {x : ℝ → Vec ℝ 1} {y : ℝ → Vec ℝ 1} {u : ℝ → Vec ℝ 1} {z : ℝ → Vec ℝ daeSys.q},
         daeSys.IsTrajectory (S := 𝒮) (Set.Icc 0 (((1 : ℚ) : ℝ) - ((0 : ℚ) : ℝ)))

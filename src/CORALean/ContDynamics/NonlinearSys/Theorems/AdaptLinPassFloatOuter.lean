@@ -45,7 +45,7 @@ inputs in `U` whose `f(x, u) - A(x - x✱)` stays in `f(z✱) ⊕ B(U - u✱)` i
 the step and in `R_lin(t_{k+1})` at its end. -/
 theorem NonlinearSys.FloatModel.adaptLinPassFloat_outer {fm : NonlinearSys.FloatModel 𝕋 n m}
     {sys : NonlinearSys n m} {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋}
-    {R : Zonotope (Vec 𝕋 n)} : -- --- STMT ---
+    {R : Zonotope (Vec 𝕋 n)} : -- --- CONCL ---
     ∀ A Rt Rτ, (A, Rt, Rτ) ∈ fm.adaptLinPassFloat U options R →
       0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
         sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))

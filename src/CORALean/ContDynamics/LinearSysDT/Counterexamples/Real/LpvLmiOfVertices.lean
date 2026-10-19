@@ -55,7 +55,7 @@ theorem LinearSysDT.aux_form4 (M : Matrix ((Fin 1 ⊕ (Fin 1 ⊕ Fin 1)) ⊕ Fin
 theorem LinearSysDT.aux_isHermitian_psi
     (Dg : Matrix (Fin 1 ⊕ (Fin 1 ⊕ Fin 1)) (Fin 1 ⊕ (Fin 1 ⊕ Fin 1)) ℝ)
     (hDg : Dg.IsHermitian) (P : Matrix (Fin 1) (Fin 1) ℝ) (hP : P.IsHermitian)
-    (R : Matrix (Fin 1) (Fin 1 ⊕ (Fin 1 ⊕ Fin 1)) ℝ) : -- --- STMT ---
+    (R : Matrix (Fin 1) (Fin 1 ⊕ (Fin 1 ⊕ Fin 1)) ℝ) : -- --- CONCL ---
     (fromBlocks Dg Rᵀ R P).IsHermitian :=
   Matrix.IsHermitian.fromBlocks hDg
     (by rw [conjTranspose_eq_transpose_of_trivial, transpose_transpose]) hP
@@ -72,7 +72,7 @@ theorem LinearSysDT.aux_coord4 (x : (Fin 1 ⊕ (Fin 1 ⊕ Fin 1)) ⊕ Fin 1 → 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.lpvLmi_of_vertices_counterexample : -- --- STMT ---
+theorem LinearSysDT.lpvLmi_of_vertices_counterexample : -- --- CONCL ---
     let T : Mat ℝ 1 1 := 1
     let N : Mat ℝ 1 1 := 1
     let C : Mat ℝ 1 1 := 1

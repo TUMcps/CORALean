@@ -39,7 +39,7 @@ variable {n : ℕ}
 
 /-- The reach set over `[kr, (k+1)r]` lies in `e^{Akr}(Z + ΔR)`. -/
 theorem MatExp.iUnion_image_Icc_subset_image_add (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) {m : ℕ}
-    (hε : ‖r • A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (k : ℕ) (Z : Set (Vec ℝ n)) : -- --- STMT ---
+    (hε : ‖r • A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (k : ℕ) (Z : Set (Vec ℝ n)) : -- --- CONCL ---
     (⋃ t ∈ Set.Icc ((k : ℝ) * r) (((k : ℝ) + 1) * r), (fun x => exp (t • A) *ᵥ x) '' Z)
       ⊆ (fun y => exp (((k : ℝ) * r) • A) *ᵥ y) ''
         (Z + Set.image2 (fun B x => B *ᵥ x) (MatExp.expDiffMatrices A r m) Z) := by -- --- PROOF ---

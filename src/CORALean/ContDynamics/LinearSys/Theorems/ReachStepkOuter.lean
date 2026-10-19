@@ -45,7 +45,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 `τ_k`, is in `reachStepk`'s set for it. -/
 theorem LinearSys.reachStepk_outer (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 < Δt) {η : ℕ}
     (hη : 2 ≤ η) (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (X₀ : S n) {k : ℕ} {t : ℝ}
-    (hkt : (k : ℝ) * Δt ≤ t) (htk : t - k * Δt ≤ Δt) : -- --- STMT ---
+    (hkt : (k : ℝ) * Δt ≤ t) (htk : t - k * Δt ≤ Δt) : -- --- CONCL ---
     (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' construct X₀
       ⊆ construct (sys.reachStepk Δt η X₀ k) := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ : ∃ m, η = m + 2 := ⟨η - 2, by omega⟩

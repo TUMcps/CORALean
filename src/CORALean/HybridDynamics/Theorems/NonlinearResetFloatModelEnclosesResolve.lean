@@ -39,7 +39,7 @@ theorem NonlinearReset.FloatModel.Encloses.resolve
     (hout : ∀ c Xc Uc, ∀ x ∈ construct Xc, ∀ u ∈ construct Uc,
       out c x u ∈ construct (fmOut c Xc Uc))
     (stateBinds : ∀ i, Fin (n i) → Fin N)
-    (inputBinds : ∀ i, Fin (m i) → ResolveSource k p g) : -- --- STMT ---
+    (inputBinds : ∀ i, Fin (m i) → ResolveSource k p g) : -- --- CONCL ---
     (fm.resolve fmOut stateBinds inputBinds).Encloses
       (r.resolve out stateBinds inputBinds) := by -- --- PROOF ---
   -- a vector is in a float box when every coordinate is between the real bounds

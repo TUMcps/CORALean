@@ -46,7 +46,7 @@ theorem PolyZonotope.aux_sum_keep (s : Finset (Fin h)) (f : Fin h → ℝ) :
 /-- The exact layer's regrouping at this layer's stored generators, the merged
 columns still exact reals. -/
 theorem PolyZonotope.aux_merge (pZ : PolyZonotope (Vec 𝕋 n)) (a : Fin pZ.p → ℝ)
-    (i : Fin n) : -- --- STMT ---
+    (i : Fin n) : -- --- CONCL ---
     (∑ l, toReal (pZ.G l i) * Real.PolyZonotope.monomial pZ.E a l)
       = ∑ j : Fin (PolyZonotope.repKeep pZ.E).card,
           Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep pZ.E)
@@ -77,7 +77,7 @@ theorem PolyZonotope.aux_merge (pZ : PolyZonotope (Vec 𝕋 n)) (a : Fin pZ.p �
 /-- A merged column is off by at most the gap between the two directed masked
 sums. -/
 theorem PolyZonotope.aux_compactGap (pZ : PolyZonotope (Vec 𝕋 n)) (i : Fin n)
-    (j : Fin (PolyZonotope.repKeep pZ.E).card) : -- --- STMT ---
+    (j : Fin (PolyZonotope.repKeep pZ.E).card) : -- --- CONCL ---
     |Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep pZ.E)
         (fun l => toReal (pZ.G l i)) (PolyZonotope.keepIdx pZ.E j)
       - toReal (pZ.mergedCol i j)| ≤ toReal (PolyZonotope.compactGap pZ i j) := by -- --- PROOF ---

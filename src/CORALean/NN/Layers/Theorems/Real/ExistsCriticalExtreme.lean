@@ -36,7 +36,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem exists_critical_extreme (ϕ ϕ' : ℝ → ℝ) (m l u : ℝ) (hd : ∀ x, HasDerivAt ϕ (ϕ' x) x)
-    (hlu : l ≤ u) : -- --- STMT ---
+    (hlu : l ≤ u) : -- --- CONCL ---
     (∃ q ∈ Set.Icc l u, (∀ y ∈ Set.Icc l u, ϕ q - m * q ≤ ϕ y - m * y) ∧
       (q = l ∨ q = u ∨ ϕ' q = m)) ∧
     (∃ q ∈ Set.Icc l u, (∀ y ∈ Set.Icc l u, ϕ y - m * y ≤ ϕ q - m * q) ∧

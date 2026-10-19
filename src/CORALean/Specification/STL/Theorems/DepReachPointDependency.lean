@@ -52,7 +52,7 @@ variable {n m : ℕ}
 
 theorem STL.depReachPoint_dependency (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ : Zonotope (Vec ℝ n))
     (U : Zonotope (Vec ℝ m)) {Δt : ℝ} (hΔt : 0 < Δt) (κ : ℕ) (α : ℕ → ℝ)
-    (hα : ∀ k, |α k| ≤ 1) (i : ℕ) : -- --- STMT ---
+    (hα : ∀ k, |α k| ≤ 1) (i : ℕ) : -- --- CONCL ---
     let R := STL.depReachPoint (STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ i)
     let μ : Vec ℝ n := ∑ k : Fin R.h, (if (k : ℕ) < X₀.h + i * U.h then α k else 0) • R.G k
     let ξ := (LinearSys.canonical A).closedForm (X₀.c + ∑ l : Fin X₀.h, α l • X₀.G l)

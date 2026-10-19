@@ -28,7 +28,7 @@ namespace CORALean
 
 theorem FiniteSignal.combineLoop_step {T V W : Type} [LinearOrder T] [DecidableEq W]
     (op : V → V → W) (l r : T × V) (ls rs : List (T × V)) (hls : ∀ y ∈ ls, l.1 < y.1)
-    (hrs : ∀ y ∈ rs, r.1 < y.1) : -- --- STMT ---
+    (hrs : ∀ y ∈ rs, r.1 < y.1) : -- --- CONCL ---
     ∃ (t₀ : T) (ls' rs' : List (T × V)),
       FiniteSignal.combineLoop op (l :: ls) (r :: rs) = FiniteSignal.combineEmit op t₀
         (op l.2 r.2) ls' rs' (FiniteSignal.combineLoop op ls' rs') ∧

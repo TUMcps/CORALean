@@ -49,7 +49,7 @@ namespace CORALean
 /-- The walk only moves upward, and every step it takes is one the check
 cleared, so the endpoint's cost is under every cost it passed. -/
 theorem aux_optDeltatSearch_descent {le : ℝ → ℝ → Bool}
-    (hle : ∀ a b : ℝ, le a b = true → a ≤ b) (cost : ℕ → ℝ) : -- --- STMT ---
+    (hle : ∀ a b : ℝ, le a b = true → a ≤ b) (cost : ℕ → ℝ) : -- --- CONCL ---
     ∀ (fuel s : ℕ), s ≤ aux_optDeltatSearch le cost s fuel ∧
       ∀ j, s ≤ j → j ≤ aux_optDeltatSearch le cost s fuel →
         cost (aux_optDeltatSearch le cost s fuel) ≤ cost j := by -- --- PROOF ---
@@ -80,7 +80,7 @@ theorem aux_optDeltatSearch_descent {le : ℝ → ℝ → Bool}
 /-- [1, Alg. 2] line 10: the step size returned is `h ζ_δ^{λ'}` at a `λ'` whose
 estimated set size is at most that of every `λ'` the search passed. -/
 theorem optDeltat_descent {le : ℝ → ℝ → Bool} (hle : ∀ a b : ℝ, le a b = true → a ≤ b)
-    (ζδ ζZ ζA φ1 r₀ rabs h : ℝ) (fuel : ℕ) : -- --- STMT ---
+    (ζδ ζZ ζA φ1 r₀ rabs h : ℝ) (fuel : ℕ) : -- --- CONCL ---
     (optDeltat le ζδ ζZ ζA φ1 r₀ rabs h fuel).Δt
         = h * ζδ ^ (optDeltat le ζδ ζZ ζA φ1 r₀ rabs h fuel).exponent ∧
       ∀ j ≤ (optDeltat le ζδ ζZ ζA φ1 r₀ rabs h fuel).exponent,

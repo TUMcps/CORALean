@@ -70,7 +70,7 @@ theorem NonlinearSys.IsTrajectory.relinReach_outer {sys : NonlinearSys n m} {T :
     (hU : ∀ i < N, Bornology.IsBounded (construct (steps i).linInput))
     (hUd : ∀ i < N, (NonlinearSys.linearize (steps i).A).stepInput
       (fun t => sys.f (x t) (u t) - (steps i).A *ᵥ x t) Δt i ∈ construct (Ud i))
-    {o : ℕ} (ho : 0 < o) : -- --- STMT ---
+    {o : ℕ} (ho : 0 < o) : -- --- CONCL ---
     ∀ i ≤ N,
       x ((i : ℝ) * Δt) ∈
         construct (sys.relinReach ⟨R₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud) := by -- --- PROOF ---

@@ -50,7 +50,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 /-- Every image of the initial set under the flow, at every time of the step, with the order
 returned by the computable search `tuneOrder` at the float norm bound of `[r, r] · A`. -/
 theorem LinearSys.timeIntervalStep_outer_tuned (sys : LinearSys 𝕋 n) {r ε : 𝕋} (hr : 0 < toReal r)
-    {fuel : ℕ} (X₀ : S n) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ toReal r) : -- --- STMT ---
+    {fuel : ℕ} (X₀ : S n) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ toReal r) : -- --- CONCL ---
     ∀ η ∈ MatExp.tuneOrder
         (MatExp.normUpperBound (Interval.smul r r (Interval.point sys.A))) ε fuel,
       (fun x₀ => exp (t • Scalar.toRealMat sys.A) *ᵥ x₀) '' construct X₀

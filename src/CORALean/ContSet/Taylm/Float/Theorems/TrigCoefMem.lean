@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- A value between `l` and `u`, divided by `k + 1` between its two roundings. -/
 theorem Taylm.aux_div_succ_mem {l u : 𝕋} {v : ℝ} (hl : toReal l ≤ v) (hu : v ≤ toReal u)
-    (k : ℕ) : -- --- STMT ---
+    (k : ℕ) : -- --- CONCL ---
     toReal (minimum (divDown l (nsmulUp (k + 1) one))
         (divDown l (maximum one (nsmulDown (k + 1) one)))) ≤ v / ((k + 1 : ℕ) : ℝ) ∧
       v / ((k + 1 : ℕ) : ℝ) ≤ toReal (maximum (divUp u (nsmulUp (k + 1) one))
@@ -74,7 +74,7 @@ theorem Taylm.aux_div_succ_mem {l u : 𝕋} {v : ℝ} (hl : toReal l ≤ v) (hu 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.trigCoef_mem (p : ℕ) (c : 𝕋) (k : ℕ) : -- --- STMT ---
+theorem Taylm.trigCoef_mem (p : ℕ) (c : 𝕋) (k : ℕ) : -- --- CONCL ---
     (toReal (Taylm.trigCoef p c k).1.inf ≤ iteratedDeriv k Real.sin (toReal c) / (k.factorial : ℝ) ∧
       iteratedDeriv k Real.sin (toReal c) / (k.factorial : ℝ) ≤ toReal (Taylm.trigCoef p c k).1.sup)
     ∧ (toReal (Taylm.trigCoef p c k).2.inf ≤

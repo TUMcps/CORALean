@@ -90,7 +90,7 @@ theorem aux_upsilon (t : ℝ) (w : Vec ℝ 2) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Eq. 7] fails for [1, Eq. 2]'s sets at `A = [0 1; 0 0]`, `h = 1`, `k = 1`. -/
-theorem Conform.underApprox_step_ne : -- --- STMT ---
+theorem Conform.underApprox_step_ne : -- --- CONCL ---
     ∃ (A : Mat ℝ 2 2) (h : ℝ) (Wc : Set (Vec ℝ 2)), 0 < h ∧
       (fun w => ∫ τ in (0 : ℝ)..(2 * h), exp ((2 * h - τ) • A) *ᵥ w) '' Wc ≠
         (fun x => exp (h • A) *ᵥ x) '' ((fun w => ∫ τ in (0 : ℝ)..h, exp ((h - τ) • A) *ᵥ w) '' Wc)

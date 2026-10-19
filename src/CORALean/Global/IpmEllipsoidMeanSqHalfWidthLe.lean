@@ -42,7 +42,7 @@ variable {n : ℕ}
 /-- [1, Sec. 3 (Problem 1.b)]: `E[(√(ϕᵀPϕ) + γ)²] ≤ 2 (Tr[PW] + γ²)`, `W = E[ϕϕᵀ]`. -/
 theorem ipmEllipsoid_mean_sq_halfWidth_le (P : Mat ℝ n n) (hP : P.PosSemidef) (γ : ℝ)
     (μ : Measure (Vec ℝ n)) [IsProbabilityMeasure μ]
-    (hint : ∀ i j, Integrable (fun ϕ : Vec ℝ n => ϕ i * ϕ j) μ) : -- --- STMT ---
+    (hint : ∀ i j, Integrable (fun ϕ : Vec ℝ n => ϕ i * ϕ j) μ) : -- --- CONCL ---
     ∫ ϕ, (Real.sqrt (ϕ ⬝ᵥ (P *ᵥ ϕ)) + γ) ^ 2 ∂μ
       ≤ 2 * (Matrix.trace (P * Matrix.of fun i j => ∫ ϕ, ϕ i * ϕ j ∂μ)
         + γ ^ 2) := by -- --- PROOF ---

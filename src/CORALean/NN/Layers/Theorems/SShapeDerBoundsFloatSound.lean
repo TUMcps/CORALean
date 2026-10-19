@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- `df t` lies in the float bounds for every `t` in `[l, u]`. -/
 theorem sShapeDerBoundsFloat_sound {df : ℝ → ℝ} (h : IsSShape df) {dfLo dfHi : 𝕋 → 𝕋}
     (hlo : ∀ a, toReal (dfLo a) ≤ df (toReal a)) (hhi : ∀ a, df (toReal a) ≤ toReal (dfHi a))
-    {l u : 𝕋} {t : ℝ} (hl : toReal l ≤ t) (hu : t ≤ toReal u) : -- --- STMT ---
+    {l u : 𝕋} {t : ℝ} (hl : toReal l ≤ t) (hu : t ≤ toReal u) : -- --- CONCL ---
     toReal (sShapeDerBoundsFloat dfLo dfHi l u).inf ≤ df t ∧
       df t ≤ toReal (sShapeDerBoundsFloat dfLo dfHi l u).sup := by -- --- PROOF ---
   -- `df` rises towards `0` on the left, by evenness

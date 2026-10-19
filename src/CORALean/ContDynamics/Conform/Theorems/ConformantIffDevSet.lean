@@ -37,7 +37,7 @@ variable {n p q : ℕ}
 /-- [1, Eq. 16]: conformance is `⋃ₘ {y_a⁽ᵐ⁾(k)} ⊆ R_a(k)` at every step. -/
 theorem Conform.Plant.conformant_iff_devSet {M : Type} (sys : Conform.Plant n p q)
     (X0 W : Set (Vec ℝ n)) (V : Set (Vec ℝ q)) (T : M → Conform.TestCase n p q)
-    (K : ℕ) : -- --- STMT ---
+    (K : ℕ) : -- --- CONCL ---
     sys.Conformant X0 W V T K ↔
       ∀ k ≤ K, (⋃ m, {(T m).y k - sys.nominal (T m).x0 (T m).u k}) ⊆
         sys.devSet X0 W V k := by -- --- PROOF ---

@@ -39,7 +39,7 @@ variable {n dy du : ℕ}
 theorem LinearARX.aux_observer_unroll (A : Mat ℝ n n) (Bu : Mat ℝ n du) (C : Mat ℝ dy n)
     (Du : Mat ℝ dy du) (M : Mat ℝ n dy) {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ du}
     {y : ℕ → Vec ℝ dy} (hx : ∀ k, x (k + 1) = A *ᵥ x k + Bu *ᵥ u k)
-    (hy : ∀ k, y k = C *ᵥ x k + Du *ᵥ u k) (k : ℕ) : -- --- STMT ---
+    (hy : ∀ k, y k = C *ᵥ x k + Du *ᵥ u k) (k : ℕ) : -- --- CONCL ---
     ∀ m ≤ k, x k = (A + M * C) ^ m *ᵥ x (k - m) + ∑ i ∈ Finset.range m,
       (A + M * C) ^ i *ᵥ ((Bu + M * Du) *ᵥ u (k - 1 - i)
         - M *ᵥ y (k - 1 - i)) := by -- --- PROOF ---
@@ -64,7 +64,7 @@ theorem LinearARX.aux_observer_unroll (A : Mat ℝ n n) (Bu : Mat ℝ n du) (C :
 theorem LinearARX.ofObserver_step {p : ℕ} (A : Mat ℝ n n) (Bu : Mat ℝ n du) (C : Mat ℝ dy n)
     (Du : Mat ℝ dy du) (M : Mat ℝ n dy) (dt : ℝ) (hM : (A + M * C) ^ p = 0) {x : ℕ → Vec ℝ n}
     {u : ℕ → Vec ℝ du} {y : ℕ → Vec ℝ dy} (hx : ∀ k, x (k + 1) = A *ᵥ x k + Bu *ᵥ u k)
-    (hy : ∀ k, y k = C *ᵥ x k + Du *ᵥ u k) (k : ℕ) (hk : p ≤ k) : -- --- STMT ---
+    (hy : ∀ k, y k = C *ᵥ x k + Du *ᵥ u k) (k : ℕ) (hk : p ≤ k) : -- --- CONCL ---
     y k = ∑ i : Fin p, toRealMat ((LinearARX.ofObserver p A Bu C Du M dt).Abar i)
         *ᵥ y (k - (i + 1))
       + ∑ j : Fin (p + 1), toRealMat ((LinearARX.ofObserver p A Bu C Du M dt).Bbar j)

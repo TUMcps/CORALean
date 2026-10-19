@@ -34,7 +34,7 @@ namespace CORALean
 theorem PointSegmentSignal.and_mono {ι : Type} [Fintype ι] [Nonempty ι]
     (sigs sigs' : ι → PointSegmentSignal ℝ) (hv : ∀ k, (sigs k).IsValid)
     (hv' : ∀ k, (sigs' k).IsValid)
-    (h : ∀ k, ∀ t : ℝ, 0 ≤ t → (sigs k).at t ≤ (sigs' k).at t) : -- --- STMT ---
+    (h : ∀ k, ∀ t : ℝ, 0 ≤ t → (sigs k).at t ≤ (sigs' k).at t) : -- --- CONCL ---
     ∀ t : ℝ, 0 ≤ t →
       (PointSegmentSignal.combine (fun (args : ι → Bool) (_ : Unit) => decide (∀ k, args k = true))
         sigs ()).at t ≤

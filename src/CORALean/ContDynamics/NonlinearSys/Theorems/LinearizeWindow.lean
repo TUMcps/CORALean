@@ -42,7 +42,7 @@ theorem NonlinearSys.IsTrajectory.linearize_window {sys : NonlinearSys n m} {T :
     {V : Set (Vec ℝ n)} {t₀ τ : ℝ} {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory T R₀ U x u y)
     (hτ : 0 ≤ τ)
     (hT : Set.Icc t₀ (t₀ + τ) ⊆ T)
-    (hV : ∀ t ∈ Set.Icc t₀ (t₀ + τ), sys.f (x t) (u t) - A *ᵥ x t ∈ V) : -- --- STMT ---
+    (hV : ∀ t ∈ Set.Icc t₀ (t₀ + τ), sys.f (x t) (u t) - A *ᵥ x t ∈ V) : -- --- CONCL ---
     (NonlinearSys.linearize A).IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 τ) {x t₀} V
       (fun t => x (t₀ + t))
       (fun t => sys.f (x (t₀ + t)) (u (t₀ + t)) - A *ᵥ x (t₀ + t)) := by -- --- PROOF ---

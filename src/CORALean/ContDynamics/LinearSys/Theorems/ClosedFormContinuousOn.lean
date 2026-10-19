@@ -43,7 +43,7 @@ whatever its own integrand looks like. -/
 theorem LinearSys.closedForm_continuousOn (sys : LinearSys 𝕋 n) (x0 : Vec ℝ n) {U : S n} {t : ℝ}
     (ht : 0 ≤ t) (hU : Bornology.IsBounded (construct U)) {u : ℝ → Vec ℝ n}
     (hu : ∀ s ∈ Set.Icc (0:ℝ) t, u s ∈ construct U)
-    (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 t))) : -- --- STMT ---
+    (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 t))) : -- --- CONCL ---
     ContinuousOn (sys.closedForm x0 u) (Set.Icc 0 t) := by -- --- PROOF ---
   set A := toRealMat sys.A
   have hintT : IntervalIntegrable (fun s => exp ((-s) • A) *ᵥ u s) volume 0 t := by

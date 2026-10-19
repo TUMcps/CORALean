@@ -31,7 +31,7 @@ namespace CORALean
 /-- Index `a ≤ cell t` iff `t` is past the lower end of the `a`-th value. -/
 theorem PointSegmentSignal.cell_ge_iff {T : Type} [LinearOrder T] [Zero T]
     (s : PointSegmentSignal T) (hs : s.IsValid) (t : T) (ht : 0 ≤ t) (a : ℕ)
-    (ha : a < s.values.length) : -- --- STMT ---
+    (ha : a < s.values.length) : -- --- CONCL ---
     a ≤ s.cell t ↔ ((s.precTimeAtValIdx (a + 1)).1 < t ∨
       ((s.precTimeAtValIdx (a + 1)).2 = true ∧
         t = (s.precTimeAtValIdx (a + 1)).1)) := by -- --- PROOF ---

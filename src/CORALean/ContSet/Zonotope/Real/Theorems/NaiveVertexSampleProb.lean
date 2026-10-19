@@ -48,7 +48,7 @@ theorem Zonotope.naive_vertex_sample_prob (Z : Zonotope (Vec ℝ n)) (H : E →�
     {Ω : Type} [MeasurableSpace Ω] (P : Measure Ω) [IsProbabilityMeasure P] (hN : 0 < N)
     (a : Fin N → Ω → (Fin Z.h → Bool)) (hm : ∀ i, Measurable (a i)) (hind : iIndepFun a P)
     (hu : ∀ i σ, P.real (a i ⁻¹' {σ}) = 1 / 2 ^ Z.h) (ε : ℝ) (hε : 0 < ε)
-    (hε1 : ε ≤ 1) : -- --- STMT ---
+    (hε1 : ε ≤ 1) : -- --- CONCL ---
     ENNReal.ofReal (shenmaierProb Z.h N 0 ε)
       ≤ P {ω | (1 - ε) * r ≤ Finset.univ.sup' ⟨⟨0, hN⟩, Finset.mem_univ _⟩
         fun i => coeffNorm H (Z.corner (a i ω) - d)} := by -- --- PROOF ---

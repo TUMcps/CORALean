@@ -40,7 +40,7 @@ theorem PointSegmentSignal.isValid_append_drop (s : PointSegmentSignal T) (hs : 
     (hj1 : 1 ≤ j) (hj2 : j ≤ s.timePoints.length) (tp' : List T) (vs' : List Bool)
     (hQ : (PointSegmentSignal.mk tp' vs').IsValid)
     (hlt : ∀ x ∈ tp', ∀ b, s.timePoints[j]? = some b → x < b)
-    (hlast : vs'.getD (vs'.length - 1) false = s.values.getD (2 * j - 1) false) : -- --- STMT ---
+    (hlast : vs'.getD (vs'.length - 1) false = s.values.getD (2 * j - 1) false) : -- --- CONCL ---
     (PointSegmentSignal.mk (tp' ++ s.timePoints.drop j) (vs' ++ s.values.drop (2 * j))).IsValid
       := by -- --- PROOF ---
   obtain ⟨h1, h2, h3, h4, h5⟩ := hs

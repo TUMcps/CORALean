@@ -62,7 +62,7 @@ theorem aux_classesVec_single (c : Fin ny) :
 /-- [1, Thm. 7], (12b) at one point: `classes(e_c) ⊆ classes(Y_ZCP(x))` iff (20c)-(20e) have a
 solution `β`. -/
 theorem Conform.classesVec_single_subset_iff (c : Fin ny) (fx : Vec ℝ ny) (D : Mat ℝ ny nu)
-    (Gu : ι → Vec ℝ nu) (α : ι → ℝ) (hα : ∀ j, 0 ≤ α j) : -- --- STMT ---
+    (Gu : ι → Vec ℝ nu) (α : ι → ℝ) (hα : ∀ j, 0 ≤ α j) : -- --- CONCL ---
     Conform.classesVec (Pi.single c 1 : Vec ℝ ny)
         ⊆ Conform.classesSet (Conform.zcpSet fx D Gu α) ↔
       ∃ β : ι → ℝ, (∀ j, |β j| ≤ α j) ∧

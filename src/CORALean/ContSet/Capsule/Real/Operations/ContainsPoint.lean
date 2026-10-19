@@ -14,6 +14,13 @@ is tested against the radius by its distance to the axis, else by its distance t
 (`aux_inSphere` at `c + g` or `c - g`). CORA's `dist < r | withinTol(dist, r)` is `dist ≤ r` at
 tolerance `0`, which is what is written here. The other operand types of `contains_` (sets,
 `ellipsoid` by a zonotope outer approximation) are not modelled.
+
+## Inputs
+* `C` – capsule
+* `p` – point
+
+## Output
+* `Prop` that `p` lies in `C`
 -/
 
 -- Authors:       Claude Opus 5.5

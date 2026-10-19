@@ -16,6 +16,16 @@ first coordinate `s` and the remaining ones `w`, the set where `max(|s| - ‖g�
 slice at `w` is an interval of length `2‖g‖ + 2 sqrt(r² - ‖w‖²)` when `‖w‖ ≤ r`, so by Fubini
 the measure is `2‖g‖` times the measure of the `(n-1)`-ball, plus the integral of the ball's own
 slice lengths, which is the measure of the `n`-ball (the same computation at `g = 0`).
+
+## Inputs
+* `n` – dimension
+* `C` – capsule
+
+## Hypotheses
+* `hn` – positive dimension
+
+## Conclusion
+* the Lebesgue volume of `C` is `volume`
 -/
 
 -- Authors:       Claude Sonnet 5.5
@@ -255,7 +265,7 @@ theorem aux_sqrtPi (k : ℕ) : Real.sqrt Real.pi ^ k = Real.pi ^ ((k : ℝ) / 2)
   ring
 
 -- the measure of the `n`-ball
-theorem aux_vol_ball {r : ℝ} : -- --- STMT ---
+theorem aux_vol_ball {r : ℝ} : -- --- CONCL ---
     volume (aux_Kcap (0 : aux_E m) r)
       = ENNReal.ofReal r ^ (m + 1) *
         ENNReal.ofReal (Real.sqrt Real.pi ^ (m + 1)

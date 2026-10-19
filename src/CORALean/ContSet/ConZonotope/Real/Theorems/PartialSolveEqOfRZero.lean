@@ -45,7 +45,7 @@ theorem ConZonotope.partialSolve_eq_of_rZero {n q h : ℕ} (c : Vec ℝ n) (G : 
     (A : Mat ℝ q h) (b : Vec ℝ q) (r : Fin q) (j : Fin h) (hAj : A r j ≠ 0) (ρL ρU : ℝ)
     (hA1 : ∀ ξ : Vec ℝ h, (∀ i, i ≠ j → |ξ i| ≤ 1) → (∀ i, (A *ᵥ ξ) i = b i) →
       ρL ≤ ξ j ∧ ξ j ≤ ρU)
-    (hr : max 0 (max |ρL| |ρU| - 1) = 0) : -- --- STMT ---
+    (hr : max 0 (max |ρL| |ρU| - 1) = 0) : -- --- CONCL ---
     (ConZonotope.partialSolve c G A b r j).construct
       = (ConZonotope.ofMat c G A b).construct := by -- --- PROOF ---
   rw [ConZonotope.partialSolve_construct_eq c G A b r j hAj]

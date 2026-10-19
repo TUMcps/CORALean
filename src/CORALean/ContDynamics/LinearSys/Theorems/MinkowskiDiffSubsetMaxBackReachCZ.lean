@@ -45,7 +45,7 @@ each row's support. -/
 theorem LinearSys.minkowskiDiff_subset_maxBackReachCZ
     (ρ : ∀ (P : HPolytope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
     (Pr : HPolytope (Vec ℝ n)) (ZWr : Zonotope (Vec ℝ n))
-    (hker : ∀ (i : Fin Pr.me) (y : Vec ℝ n), Pr.Ae i y = 0) : -- --- STMT ---
+    (hker : ∀ (i : Fin Pr.me) (y : Vec ℝ n), Pr.Ae i y = 0) : -- --- CONCL ---
     minkowskiDiff Pr.construct ZWr.construct ⊆
       (LinearSys.maxBackReachCZ ρ Pr ZWr).construct := by -- --- PROOF ---
   intro x hx

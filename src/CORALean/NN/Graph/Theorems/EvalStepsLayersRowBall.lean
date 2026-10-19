@@ -40,7 +40,7 @@ enumerates the `L`-ball by. -/
 theorem GNN.evalStepsLayers_row_ball {N K F : ℕ} (A : Mat ℝ N N) (v : Fin N) (L : ℕ)
     (κ : Fin K → Fin N) (hinj : Function.Injective κ)
     (hκ : ∀ i, (∃ k, κ k = i) ↔ i ∈ GNN.ball A v L)
-    (g : Fin L → Vec ℝ F → Vec ℝ F) (X : Mat ℝ N F) (k₀ : Fin K) (hk₀ : κ k₀ = v) : -- --- STMT ---
+    (g : Fin L → Vec ℝ F → Vec ℝ F) (X : Mat ℝ N F) (k₀ : Fin K) (hk₀ : κ k₀ = v) : -- --- CONCL ---
     GNN.evalStepsLayers (GNN.messagePassing A) L g X v
       = GNN.evalStepsLayers ((GNN.messagePassing A).submatrix κ κ) L g
           (X.submatrix κ id) k₀ := by -- --- PROOF ---

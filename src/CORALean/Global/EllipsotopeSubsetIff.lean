@@ -45,7 +45,7 @@ variable {E₁ E₂ W : Type} [NormedAddCommGroup E₁] [NormedSpace ℝ E₁] [
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ellipsotope_subset_iff (G : E₁ →ₗ[ℝ] W) (c : W) (H : E₂ →ₗ[ℝ] W)
-    (hH : Function.Surjective H) (d : W) : -- --- STMT ---
+    (hH : Function.Surjective H) (d : W) : -- --- CONCL ---
     ∃ r, IsGreatest ((fun α => coeffNorm H (G α + c - d)) '' Metric.closedBall 0 1) r ∧
       ({x | ∃ α : E₁, ‖α‖ ≤ 1 ∧ x = c + G α} ⊆ {x | ∃ β : E₂, ‖β‖ ≤ 1 ∧ x = d + H β} ↔
         r ≤ 1) := by -- --- PROOF ---

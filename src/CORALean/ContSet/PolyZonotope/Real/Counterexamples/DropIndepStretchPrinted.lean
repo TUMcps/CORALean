@@ -37,7 +37,7 @@ open Matrix
 
 /-- [1, Prop. 2] as printed: stretching the picked generators by `1 + γⱼ` does not
 over-approximate. -/
-theorem PolyZonotope.dropIndepStretch_printed_counterexample : -- --- STMT ---
+theorem PolyZonotope.dropIndepStretch_printed_counterexample : -- --- CONCL ---
     ¬ ∀ (n : ℕ) (pZ : PolyZonotope (Vec ℝ n)) (r dI : ℕ)
       (partD : Split (Fin pZ.h) into (Fin n) ⊕ (Fin r))
       (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin 1))

@@ -44,7 +44,7 @@ theorem LinearSys.IsCanonicalTrajectory.discretizeMatZonotopeFloat_mem_reach {sy
     (hUd : ∀ k : ℕ, sys.stepInput u (toReal Δt) k ∈ construct Ud)
     (hε : toReal (MatExp.normUpperBound
       (Zonotope.matSmul Δt Δt (Zonotope.pointMat sys.A)).matInterval) / ((η : ℝ) + 2) ≤ 1 / 2)
-    {o : ℕ} (ho : 0 < o) (k : ℕ) : -- --- STMT ---
+    {o : ℕ} (ho : 0 < o) (k : ℕ) : -- --- CONCL ---
     x (k * toReal Δt) ∈ construct ((sys.discretizeMatZonotopeFloat Δt η).reach ⟨R₀, Ud, 0, k⟩
       ⟨o, ho⟩) :=
   (sys.discretizeMatZonotopeFloat Δt η).reach_outer ho R₀ Ud

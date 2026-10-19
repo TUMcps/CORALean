@@ -30,7 +30,7 @@ open CORALean Pointwise
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The documented set `Set.linComb C (M C + Cplus)` is not inside `Capsule.enclose`. -/
-theorem Capsule.enclose_cora_counterexample : -- --- STMT ---
+theorem Capsule.enclose_cora_counterexample : -- --- CONCL ---
     ∃ (C Cplus : Capsule 1) (M : Mat ℝ 1 1),
       ¬ Set.linComb C.construct
           ((fun y => M.mulVec y) '' C.construct + Cplus.construct) ⊆

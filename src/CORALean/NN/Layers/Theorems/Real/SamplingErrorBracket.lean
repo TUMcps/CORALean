@@ -26,7 +26,7 @@ namespace CORALean.Real
 
 theorem samplingError_bracket {g g' : ℝ → ℝ} {M l u : ℝ} {N : ℕ}
     (hd : ∀ x, HasDerivAt g (g' x) x) (hM : ∀ x, l ≤ x → x ≤ u → |g' x| ≤ M)
-    (hN : 0 < N) (hlu : l ≤ u) : -- --- STMT ---
+    (hN : 0 < N) (hlu : l ≤ u) : -- --- CONCL ---
     boxHalfRange g l u ≤ samplingError g M l u N ∧
       samplingError g M l u N ≤ boxHalfRange g l u + M * ((u - l) / N) := by -- --- PROOF ---
   have hne : (g '' Set.Icc l u).Nonempty := ⟨g l, ⟨l, ⟨le_rfl, hlu⟩, rfl⟩⟩

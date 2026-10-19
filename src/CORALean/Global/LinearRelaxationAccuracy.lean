@@ -58,7 +58,7 @@ theorem aux_lrAcc_dual_bound (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConju
     (hH : Function.Surjective H.mulVec) {r : ℝ}
     (hr : ∀ α ∈ Metric.closedBall (0 : Fin m → ℝ) 1, coeffNorm ((Matrix.mulVecLin H) ∘ₗ
       (WithLp.linearEquiv q ℝ (Fin l → ℝ)).toLinearMap) (G *ᵥ α) ≤ r)
-    (z : Fin n → ℝ) : -- --- STMT ---
+    (z : Fin n → ℝ) : -- --- CONCL ---
     ∑ k, |(z ᵥ* G) k| ≤ r * ‖WithLp.toLp q' (z ᵥ* H)‖ := by -- --- PROOF ---
   haveI : Fact (1 ≤ q') := ⟨ENNReal.HolderConjugate.one_le q' q⟩
   set Hl := (Matrix.mulVecLin H) ∘ₗ (WithLp.linearEquiv q ℝ (Fin l → ℝ)).toLinearMap
@@ -101,7 +101,7 @@ theorem lr_le_gaussMomentRoot_mul_radius (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q
         N = ‖WithLp.toLp q (fun i => ∑ j, |X i j|)‖} LR)
     (hr : IsGreatest ((fun α => coeffNorm ((Matrix.mulVecLin H) ∘ₗ
         (WithLp.linearEquiv q ℝ (Fin l → ℝ)).toLinearMap) (G *ᵥ α)) ''
-        Metric.closedBall 0 1) r) : -- --- STMT ---
+        Metric.closedBall 0 1) r) : -- --- CONCL ---
     LR ≤ gaussMomentRoot q'.toReal * Real.sqrt m / gaussMomentRoot 1 * r ∧
       (gaussMomentRoot q'.toReal * Real.sqrt m / gaussMomentRoot 1 < LR →
         ∃ α ∈ Metric.closedBall (0 : Fin m → ℝ) 1, ∀ β : PiLp q (fun _ : Fin l => ℝ),

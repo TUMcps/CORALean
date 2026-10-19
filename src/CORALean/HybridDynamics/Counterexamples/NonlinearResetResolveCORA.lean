@@ -62,7 +62,7 @@ open ResolveSwapExample
 /-- The first component's state after the jump is the global input `1` (`NonlinearReset.resolve`),
 but CORA's resolved reset hands it its first argument. At the arguments `v i = i` the two
 disagree. -/
-theorem NonlinearReset.resolveCORA_swap : -- --- STMT ---
+theorem NonlinearReset.resolveCORA_swap : -- --- CONCL ---
     ((aux_reset.resolve aux_out aux_stateBinds aux_binds).f (fun _ => 0)
       (fun i => (i : ℝ)) 0 = 1) ∧
     ((aux_reset.resolveCORA aux_out aux_stateBinds aux_binds).f (fun _ => 0)

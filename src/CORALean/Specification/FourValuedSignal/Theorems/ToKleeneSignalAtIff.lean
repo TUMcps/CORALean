@@ -28,7 +28,7 @@ namespace CORALean
 
 /-- The two refinements, read off at each of the four values. -/
 theorem FourValuedSignal.toKleeneSignal_at_iff (s : FourValuedSignal ℝ) (hs : s.IsValid) (t : ℝ)
-    (ht : 0 ≤ t) : -- --- STMT ---
+    (ht : 0 ≤ t) : -- --- CONCL ---
     ((s.toKleeneSignal Kleene.ff).at t = Kleene.tt ↔ s.at t = FourValued.tt) ∧
     ((s.toKleeneSignal Kleene.ff).at t = Kleene.ff ↔
       s.at t = FourValued.ff ∨ s.at t = FourValued.ii) ∧

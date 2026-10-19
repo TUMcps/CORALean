@@ -28,7 +28,7 @@ variable {T : Type} [LinearOrder T] [Zero T]
 
 /-- `aux_isNewPointOk` as a proposition. -/
 theorem PointSegmentSignal.isNewPointOk_iff (s : PointSegmentSignal T) (i : ℕ) (p : T)
-    (vals : List Bool) : -- --- STMT ---
+    (vals : List Bool) : -- --- CONCL ---
     s.isNewPointOk i p vals = true ↔ (s.timePoints.getD (i - 1) 0 = p ∧ (p = 0 ∨ vals.getD 0 false ≠
       vals.getD 1 false ∨ vals.getD 0 false ≠ s.precIntervalValue i)) ∨
       (s.timePoints.getD (i - 1) 0 ≠ p ∧ ∃ v ∈ vals, v ≠ s.succIntervalValue i)

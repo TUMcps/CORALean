@@ -122,7 +122,7 @@ theorem E_encloses : E.Encloses fun t => Real.exp
   norm_num
 
 /-- Their ranges on the normalized domain, as the `bounds` the run printed. -/
-theorem S_range {t : Vec ℝ 2} (ht : t ∈ Real.Taylm.box 2) : -- --- STMT ---
+theorem S_range {t : Vec ℝ 2} (ht : t ∈ Real.Taylm.box 2) : -- --- CONCL ---
     toReal S.bounds.inf ≤ ((toReal (box.zonotope.c 0) + ∑ j, toReal (box.zonotope.G j 0) * t j) *
     (toReal (box.zonotope.c 1) + ∑ j, toReal (box.zonotope.G j 1) * t j) +
     (toReal (box.zonotope.c 0) + ∑ j, toReal (box.zonotope.G j 0) * t j)) ∧

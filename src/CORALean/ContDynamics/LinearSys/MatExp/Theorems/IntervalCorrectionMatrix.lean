@@ -51,7 +51,7 @@ every matrix the box holds, at every time of the step. -/
 theorem MatExp.expDiff_mem_intervalCorrectionMatrix (A : Interval (Mat ℝ n n)) {r : ℝ}
     (hr : 0 < r) {m : ℕ}
     (hε : ‖(Interval.smul r A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- STMT ---
+    {M : Mat ℝ n n} (hM : M ∈ A.construct) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     exp (t • M) - 1 - (t / r) • (exp (r • M) - 1)
       ∈ (MatExp.intervalCorrectionMatrix A r (m + 2)).construct := by -- --- PROOF ---
   have hnorm : ‖r • M‖ ≤ ‖(Interval.smul r A).absMax‖ :=

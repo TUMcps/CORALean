@@ -42,7 +42,7 @@ theorem ConPolyZono.convHullSingle_satisfies_of_real (a : ℕ) (cPZ : ConPolyZon
     (v : Fin (a * cPZ.p + a) → ℝ)
     (hcopy : ∀ j, (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))) ∈ cPZ.cons.construct)
     (hv : ∀ j, |v (Fin.natAdd (a * cPZ.p) j)| ≤ 1)
-    (hw : ∑ j, v (Fin.natAdd (a * cPZ.p) j) = 1 - (a : ℝ)) : -- --- STMT ---
+    (hw : ∑ j, v (Fin.natAdd (a * cPZ.p) j) = 1 - (a : ℝ)) : -- --- CONCL ---
     v ∈ (cPZ.convHullSingle a).cons.construct := by -- --- PROOF ---
   refine (PolyLevelSet.mem_cartProd_iff _ _ v).mpr
     ⟨(PolyLevelSet.mem_copies_iff _ _ _).mpr hcopy, (PolyLevelSet.mem_linear_iff _ _ _ _ _ _).mpr

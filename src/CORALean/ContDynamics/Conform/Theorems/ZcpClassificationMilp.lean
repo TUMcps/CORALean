@@ -41,7 +41,7 @@ variable {ny nu : ℕ} {ι : Type} [Fintype ι]
 (12b). -/
 theorem Conform.zcp_classification_milp {nm nout : ℕ} (f : Fin nm → Vec ℝ ny)
     (D : Fin nm → Mat ℝ ny nu) (c : Fin nm → Fin ny) (Gu : ι → Vec ℝ nu) (α : ι → ℝ)
-    (hα : ∀ j, 0 ≤ α j) : -- --- STMT ---
+    (hα : ∀ j, 0 ≤ α j) : -- --- CONCL ---
     (∃ (β : Fin nm → ι → ℝ) (ρ : Fin nm → ℝ), (∀ m j, 0 ≤ α j + β m j ∧ 0 ≤ α j - β m j) ∧
         (∀ m, 0 ≤ Conform.classMat (c m) *ᵥ (∑ j, β m j • D m *ᵥ Gu j)
           + ρ m • (Conform.classMat (c m) *ᵥ f m)) ∧

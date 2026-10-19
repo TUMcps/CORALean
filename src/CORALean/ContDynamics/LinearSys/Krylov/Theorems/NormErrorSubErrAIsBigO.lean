@@ -48,7 +48,7 @@ theorem Krylov.norm_error_sub_errA_isBigO (A : Mat ℂ n n) (V : Mat ℂ n (m + 
     (T : Mat ℂ (m + 1) (m + 1)) (τ : ℝ) (σ : ℂ) (w : Fin n → ℂ)
     (hH : ∀ i k : Fin (m + 1), (k : ℕ) + 1 < i → T i k = 0)
     (hK : A * V = V * T + (τ : ℂ) • vecMulVec w (Pi.single (Fin.last m) 1)) (hτ : 0 ≤ τ)
-    (hσ : ‖σ‖ = 1) (hw : ‖(WithLp.toLp 2 w : EuclideanSpace ℂ (Fin n))‖ = 1) : -- --- STMT ---
+    (hσ : ‖σ‖ = 1) (hw : ‖(WithLp.toLp 2 w : EuclideanSpace ℂ (Fin n))‖ = 1) : -- --- CONCL ---
     let v := V *ᵥ Pi.single 0 1
     let γ := ∏ j : Fin m, T j.succ j.castSucc
     (fun t : ℝ => ‖(WithLp.toLp 2 (exp (t • (σ • A)) *ᵥ v -

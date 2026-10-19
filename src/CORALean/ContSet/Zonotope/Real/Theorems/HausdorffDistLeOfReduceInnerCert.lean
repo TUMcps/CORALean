@@ -38,7 +38,7 @@ theorem Zonotope.hausdorffDist_le_of_reduce_inner_cert (Z Zr : Zonotope (Vec ℝ
     (hc : Zr.c = Z.c) (Γ₀ : Mat ℝ Z.h Zr.h) (Γ₁ : Mat ℝ Zr.h Z.h) (Δ : Fin Z.h → Vec ℝ n)
     (δ : ℝ) (hδ : 0 ≤ δ) (h₀ : ∀ k, Zr.G k = ∑ j, Γ₀ j k • Z.G j)
     (h₁ : ∀ j, Z.G j = ∑ k, Γ₁ k j • Zr.G k + Δ j) (hn₀ : ∀ j, ∑ k, |Γ₀ j k| ≤ 1)
-    (hn₁ : ∀ k, ∑ j, |Γ₁ k j| ≤ 1) (hΔ : ∀ i, ∑ j, |Δ j i| ≤ δ) : -- --- STMT ---
+    (hn₁ : ∀ k, ∑ j, |Γ₁ k j| ≤ 1) (hΔ : ∀ i, ∑ j, |Δ j i| ≤ δ) : -- --- CONCL ---
     Zr.construct ⊆ Z.construct
       ∧ Metric.hausdorffDist Z.construct Zr.construct ≤ δ := by -- --- PROOF ---
   obtain ⟨hsub, hd⟩ := Zonotope.hausdorffDist_le_of_reduce_cert Zr Z hc.symm Γ₀ Γ₁ Δ δ hδ h₀ h₁

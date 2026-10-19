@@ -52,7 +52,7 @@ private theorem aux_grid_perm (h w : ℕ) :
 
 theorem getInputNeuronOrder_perm {n m : ℕ} (c : Chain n m) (method : InputOrderMethod)
     (x : Vec ℝ n) (sz : Option (ℕ × ℕ × ℕ))
-    (hs : method = .snake → sz.isSome = true) : -- --- STMT ---
+    (hs : method = .snake → sz.isSome = true) : -- --- CONCL ---
     (getInputNeuronOrder c method x sz).Perm
       (List.range (match sz with | none => n | some (h, w, _) => h * w)) := by -- --- PROOF ---
   -- one case per method and per shape of `inputSize`

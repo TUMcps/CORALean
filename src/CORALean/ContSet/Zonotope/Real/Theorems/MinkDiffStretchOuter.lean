@@ -54,7 +54,7 @@ theorem Zonotope.minkDiffStretch_outer {ι : Type} (Z₁ Z₂ : Zonotope α)
     (hμ : ∀ i, b i ≤ ∑ υ, |C i (Z₁.G υ)| * μ υ)
     (hCd : {y | ∀ i, C i (y - (Z₁.minkDiffStretch Z₂ μ).c)
                 ≤ ∑ υ, |C i ((Z₁.minkDiffStretch Z₂ μ).G υ)|}
-            ⊆ (Z₁.minkDiffStretch Z₂ μ).construct) : -- --- STMT ---
+            ⊆ (Z₁.minkDiffStretch Z₂ μ).construct) : -- --- CONCL ---
     minkowskiDiff Z₁.construct Z₂.construct
       ⊆ (Z₁.minkDiffStretch Z₂ μ).construct := by -- --- PROOF ---
   intro x hx

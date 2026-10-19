@@ -63,7 +63,7 @@ theorem aux_norm₂_le_of_mem_sum {ι : Type} (f : ι → Set (Vec ℝ n)) (boun
 
 /-- One `Ãᵢ`-scaled summand of `bPU`, bounded pointwise by its own polynomial order in `Δt`. -/
 theorem aux_norm₂_le_of_mem_particularCoeff_image (A : Mat ℝ n n) {U0 : Set (Vec ℝ n)}
-    (hU0 : Bornology.IsBounded U0) (Δt : ℝ) (i : ℕ) : -- --- STMT ---
+    (hU0 : Bornology.IsBounded U0) (Δt : ℝ) (i : ℕ) : -- --- CONCL ---
     ∀ y ∈ (fun x => (MatExp.particularCoeff A Δt i).mulVec x) '' U0,
       ‖y‖₂ ≤ (∑ j, ‖(fun k => (A ^ i) j k)‖₂) * (|Δt| ^ (i + 1) / (Nat.factorial (i + 1) : ℝ))
         * err U0 := by -- --- PROOF ---
@@ -128,7 +128,7 @@ theorem aux_norm₂_le_of_mem_intervalMulVecSet (A : Mat ℝ n n) {U0 : Set (Vec
 
 /-- Every point of `bPU`/`bPU_∞` is within this explicit `Δt`-polynomial of the origin. -/
 theorem MatExp.norm₂_le_of_mem_particularSolutionOuter (A : Mat ℝ n n) {U0 : Set (Vec ℝ n)}
-    (hU0 : Bornology.IsBounded U0) (i0 : ℕ) (Δt : ℝ) (η : ℕ) : -- --- STMT ---
+    (hU0 : Bornology.IsBounded U0) (i0 : ℕ) (Δt : ℝ) (η : ℕ) : -- --- CONCL ---
     ∀ y ∈ MatExp.particularSolutionOuter A U0 i0 Δt η,
       ‖y‖₂ ≤ (∑ i ∈ Finset.Ico i0 (η + 1), (∑ j, ‖(fun k => (A ^ i) j k)‖₂)
           * (|Δt| ^ (i + 1) / (Nat.factorial (i + 1) : ℝ)) * err U0)

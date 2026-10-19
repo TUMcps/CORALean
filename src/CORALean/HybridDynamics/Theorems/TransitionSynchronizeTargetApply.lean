@@ -28,7 +28,7 @@ variable {k q : ℕ} {L : Fin k → Type}
 /-- The fold over a duplicate-free list of transitions: the listed ones are moved. -/
 theorem aux_synchronizeTarget_fold (compIdx : Fin q → Fin k) (target : ∀ i, L (compIdx i))
     (hinj : Function.Injective compIdx) (l : List (Fin q)) (hl : l.Nodup) (t₀ : ∀ c, L c)
-    (i : Fin q) : -- --- STMT ---
+    (i : Fin q) : -- --- CONCL ---
     (l.foldl (fun t j => Function.update t (compIdx j) (target j)) t₀) (compIdx i) =
       if i ∈ l then target i else t₀ (compIdx i) := by -- --- PROOF ---
   induction l generalizing t₀ with

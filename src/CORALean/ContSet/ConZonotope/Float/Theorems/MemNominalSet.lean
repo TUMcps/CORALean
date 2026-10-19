@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {cZ : ConZonotope 𝕋 (Vec 𝕋 n)}
-    {x : Vec ℝ n} : -- --- STMT ---
+    {x : Vec ℝ n} : -- --- CONCL ---
     x ∈ InflatedContSet.nominalSet cZ ↔ ∃ β : Vec ℝ cZ.h, (∀ j, |β j| ≤ 1)
       ∧ β ∈ cZ.P.nominal.construct
       ∧ ∀ i, x i = toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * β j :=

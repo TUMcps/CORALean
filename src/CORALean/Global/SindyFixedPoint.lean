@@ -44,7 +44,7 @@ variable {m p n : ℕ}
 
 /-- A fixed point is zero where it is below `λ` and the regression onto the survivors where not. -/
 theorem sindy_fixed_spec (lam : ℝ) (solve : Fin n → Finset (Fin p) → Fin p → ℝ) (Ξ : Mat ℝ p n)
-    (hfix : sindyStep lam solve Ξ = Ξ) (j : Fin p) (c : Fin n) : -- --- STMT ---
+    (hfix : sindyStep lam solve Ξ = Ξ) (j : Fin p) (c : Fin n) : -- --- CONCL ---
     (|Ξ j c| < lam → Ξ j c = 0) ∧
       (lam ≤ |Ξ j c| →
         Ξ j c = solve c (Finset.univ.filter fun i => lam ≤ |Ξ i c|) j) := by -- --- PROOF ---
@@ -62,7 +62,7 @@ theorem sindy_fixed_normalEq (lam : ℝ) (solve : Fin n → Finset (Fin p) → F
     (hsolve : ∀ c S, ∀ i ∈ S,
       ∑ t, Θ t i * (dX t c - ∑ j ∈ S, Θ t j * solve c S j) = 0)
     (Ξ : Mat ℝ p n) (hfix : sindyStep lam solve Ξ = Ξ) (c : Fin n) (i : Fin p)
-    (hi : lam ≤ |Ξ i c|) : -- --- STMT ---
+    (hi : lam ≤ |Ξ i c|) : -- --- CONCL ---
     ∑ t, Θ t i * (dX t c - ∑ j, Θ t j * Ξ j c) = 0 := by -- --- PROOF ---
   set S := Finset.univ.filter fun i => lam ≤ |Ξ i c| with hS
   have hsum : ∀ t, ∑ j, Θ t j * Ξ j c = ∑ j ∈ S, Θ t j * solve c S j := fun t => by

@@ -42,7 +42,7 @@ theorem NonlinDASys.LinPoint.certifies_of_subset (T : NonlinDASys.LinPoint n p m
     {Va Va' : Zonotope (Vec ℝ p)} (hV : V.construct ⊆ V'.construct)
     (hVa : Va.construct ⊆ Va'.construct)
     (h : ({ T with Verror := V, Verror_y := Va } : NonlinDASys.LinPoint n p m).Certifies
-      sys U Δt q x y u) : -- --- STMT ---
+      sys U Δt q x y u) : -- --- CONCL ---
     ({ T with Verror := V', Verror_y := Va' } : NonlinDASys.LinPoint n p m).Certifies
       sys U Δt q x y u := by -- --- PROOF ---
   obtain ⟨F, Rz, hF, hR, hL, hLa, hus, h0, hε⟩ := h

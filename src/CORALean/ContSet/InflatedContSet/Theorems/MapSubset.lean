@@ -36,7 +36,7 @@ variable [InflatedContSet S N (Vec 𝕋 n) (Vec ℝ n)] [InflatedContSet T M (Ve
 theorem map_subset {s : S} {t : T} {f : Vec ℝ n → Vec ℝ m} {D : Set (Vec ℝ m)}
     (hadd : ∀ x y, f (x + y) = f x + f y)
     (hnominal : f '' nominalSet s ⊆ nominalSet t + D)
-    (herror : f '' (I_error s).construct + D ⊆ (I_error t).construct) : -- --- STMT ---
+    (herror : f '' (I_error s).construct + D ⊆ (I_error t).construct) : -- --- CONCL ---
     f '' construct s ⊆ construct t := by -- --- PROOF ---
   rintro _ ⟨_, ⟨a, ha, b, hb, rfl⟩, rfl⟩
   obtain ⟨t₀, ht₀, d, hd, hsum⟩ := hnominal ⟨a, ha, rfl⟩

@@ -43,7 +43,7 @@ theorem Location.IsTrajectory.of_hasDerivWithinAt {ℓ : Location S G L 𝕋 n} 
     (hd : ∀ t ∈ Set.Icc 0 τ, HasDerivWithinAt x (toRealMat ℓ.dynamics.A *ᵥ x t +
       toRealMat ℓ.dynamics.B *ᵥ u t + toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w t)
         (Set.Icc 0 τ) t)
-    (invariant : ∀ t ∈ Set.Icc 0 τ, x t ∈ construct ℓ.inv) : -- --- STMT ---
+    (invariant : ∀ t ∈ Set.Icc 0 τ, x t ∈ construct ℓ.inv) : -- --- CONCL ---
     ℓ.IsTrajectory τ x u w := by -- --- PROOF ---
   have hx : ContinuousOn x (Set.Icc 0 τ) := fun t ht => (hd t ht).continuousWithinAt
   -- the right-hand side along the stay is continuous, so measurable and integrable

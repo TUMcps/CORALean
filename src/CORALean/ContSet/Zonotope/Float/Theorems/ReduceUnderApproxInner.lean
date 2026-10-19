@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Zonotope.reduceUnderApprox_inner
     {opt : (Z : Zonotope (Vec 𝕋 n)) → Option (Σ h : ℕ, Mat 𝕋 n h)} {Z : Zonotope (Vec 𝕋 n)}
-    {H : Mat 𝕋 Z.h n} : -- --- STMT ---
+    {H : Mat 𝕋 Z.h n} : -- --- CONCL ---
     ∀ R ∈ Zonotope.reduceUnderApprox opt Z H,
       R.construct ⊆ Z.construct := by -- --- PROOF ---
   intro R (h : Zonotope.reduceUnderApprox opt Z H = some R)

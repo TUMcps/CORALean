@@ -39,7 +39,7 @@ open Matrix
 
 /-- [1, Prop. 4] as printed: with (max-in) over `W`'s halfspaces, `Z ⊖ EW` is not inside
 `Z ⊖ Z̲`. -/
-theorem Zonotope.minkDiffAligned_bounds_counterexample : -- --- STMT ---
+theorem Zonotope.minkDiffAligned_bounds_counterexample : -- --- CONCL ---
     ∃ (Z : Zonotope (Vec ℝ 1)) (H : Mat ℝ 2 1) (h : Vec ℝ 2) (E : Mat ℝ 1 1) (c : Vec ℝ 1)
       (a : Fin Z.h → ℝ),
       (∀ i, 0 ≤ a i ∧ a i ≤ 1) ∧ (∀ l, (H *ᵥ c) l + ∑ i, |(H *ᵥ Z.G i) l| * a i ≤ h l) ∧

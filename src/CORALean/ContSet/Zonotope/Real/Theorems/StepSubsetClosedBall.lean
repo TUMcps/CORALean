@@ -48,7 +48,7 @@ theorem Zonotope.step_subset_closedBall (A : Mat ℝ n n) {Z U : Zonotope (Vec �
     {r rU rbox : ℝ} (hZ : Z.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r)
     (hU : U.construct ⊆ Metric.closedBall (0 : Vec ℝ n) rU)
     (hbox : (((Zonotope.mtimes A Z).plus U).reduceBox o).construct
-      ⊆ Metric.closedBall (0 : Vec ℝ n) rbox) : -- --- STMT ---
+      ⊆ Metric.closedBall (0 : Vec ℝ n) rbox) : -- --- CONCL ---
     (((Zonotope.mtimes A Z).plus U).reduce o).construct
       ⊆ Metric.closedBall (0 : Vec ℝ n) (‖A‖ * r + rU + rbox) := by -- --- PROOF ---
   have hW : ((Zonotope.mtimes A Z).plus U).construct

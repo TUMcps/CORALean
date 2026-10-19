@@ -95,7 +95,7 @@ theorem aux_absErrCora_foldl {β : Type} (f : ℕ → β) (init : β) (k : ℕ) 
 /-- For `U = {0}`, `R₀ = {x₀}`, `Aᵑ = 0` and `W = 0`, `GuardMap.abstractionErrorCora` is the
 zonotope `{0}`: center and every generator `0`. -/
 theorem GuardMap.abstractionErrorCora_eq_zero (A : Mat ℝ n n) (x₀ : Vec ℝ n) (th tmax : ℝ)
-    {η : ℕ} (hA : A ^ η = 0) (hW : MatExp.expRemainderMat A tmax η = 0) : -- --- STMT ---
+    {η : ℕ} (hA : A ^ η = 0) (hW : MatExp.expRemainderMat A tmax η = 0) : -- --- CONCL ---
     (GuardMap.abstractionErrorCora A (Zonotope.ofPoint 0) (Zonotope.ofPoint x₀) th tmax η).c = 0
       ∧ ∀ j, (GuardMap.abstractionErrorCora A (Zonotope.ofPoint 0) (Zonotope.ofPoint x₀) th
         tmax η).G j = 0 := by -- --- PROOF ---

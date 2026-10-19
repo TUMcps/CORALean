@@ -56,7 +56,7 @@ theorem compressionPreprocessing_outer {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋
     {n n₁ m : ℕ} {I_X : Interval (Vec 𝕋 n)} (hX : ∀ x ∈ I_X.construct, ∀ i, 0 ≤ x i)
     {L_1 : ReducedLinear 𝕋 n n₁} {L_2 : Relaxation 𝕋} {hσ_2 : ∃ σ : ℝ → ℝ, L_2.Sound σ}
     {B_2 : MergeBuckets 𝕋} {rest : ReducibleNetwork 𝕋 n₁ m} {f : Vec ℝ n → Vec ℝ m}
-    (hΦ : (ReducibleNetwork.cons L_1 L_2 hσ_2 B_2 rest).Instance f) {ρ : 𝕋} : -- --- STMT ---
+    (hΦ : (ReducibleNetwork.cons L_1 L_2 hσ_2 B_2 rest).Instance f) {ρ : 𝕋} : -- --- CONCL ---
     ∀ Y ∈ compressionPreprocessing (S := S) le tol fuel R_relu hσ_relu I_X L_1 L_2 hσ_2 B_2 rest ρ,
       f '' I_X.construct ⊆ construct Y := by -- --- PROOF ---
   intro Y (hrun : compressionPreprocessing (S := S) le tol fuel R_relu hσ_relu I_X L_1 L_2 hσ_2 B_2

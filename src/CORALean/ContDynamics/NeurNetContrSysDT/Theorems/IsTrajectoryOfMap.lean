@@ -37,7 +37,7 @@ theorem NeurNetContrSysDT.isTrajectory_of_map {sys : NeurNetContrSysDT (LinearSy
     {π : Vec ℝ n → Vec ℝ sys.m} {R₀ : S n} {U_ext : Set (Vec ℝ sys.nExt)}
     {W : Set (Vec ℝ sys.plant.r)} (hW : 0 ∈ W) {x : ℕ → Vec ℝ n} {v : ℕ → Vec ℝ sys.nExt}
     (h0 : x 0 ∈ construct R₀) (hv : ∀ k, v k ∈ U_ext)
-    (hstep : ∀ k, x (k + 1) = sys.map π (x k) (v k)) : -- --- STMT ---
+    (hstep : ∀ k, x (k + 1) = sys.map π (x k) (v k)) : -- --- CONCL ---
     sys.IsTrajectory π R₀ U_ext W x v 0 := by -- --- PROOF ---
   exact (⟨0, fun k => toRealMat sys.plant.C *ᵥ x k +
       toRealMat sys.plant.D *ᵥ sys.input (π (x k)) (v k) +

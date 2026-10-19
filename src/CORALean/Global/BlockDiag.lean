@@ -74,7 +74,7 @@ theorem blockDiag_ext {M M' : Mat ℝ (a + b) (a + b)}
     (h₃ : ∀ (p : Fin b) (q : Fin a),
       M (Fin.natAdd a p) (Fin.castAdd b q) = M' (Fin.natAdd a p) (Fin.castAdd b q))
     (h₄ : ∀ p q : Fin b,
-      M (Fin.natAdd a p) (Fin.natAdd a q) = M' (Fin.natAdd a p) (Fin.natAdd a q)) : -- --- STMT ---
+      M (Fin.natAdd a p) (Fin.natAdd a q) = M' (Fin.natAdd a p) (Fin.natAdd a q)) : -- --- CONCL ---
     M = M' := by -- --- PROOF ---
   ext i j
   -- split each index into its first block or its second

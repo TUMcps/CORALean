@@ -12,6 +12,13 @@ at most the sum of the radii apart (`dist < r₁ + r₂ | withinTol(dist, r₁ +
 at tolerance `0`). The emptiness test CORA runs first never sees a negative radius
 (`isempty(C.r)` only), so, unlike `construct`, this test does not read `r < 0` as `∅`. The point,
 hyperplane and generic operand types are not modelled.
+
+## Inputs
+* `C₁` – first capsule
+* `C₂` – second capsule
+
+## Output
+* `Prop` that the capsules intersect
 -/
 
 -- Authors:       Claude Opus 5.5

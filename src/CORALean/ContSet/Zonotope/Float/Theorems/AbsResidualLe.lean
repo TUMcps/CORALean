@@ -52,7 +52,7 @@ theorem Zonotope.aux_abs_le_nominal {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}
 theorem Zonotope.abs_residual_le (IM : Interval (Mat 𝕋 m n)) {Z : Zonotope (Vec 𝕋 n)}
     {R : Mat ℝ m n}
     (hR : R ∈ (Interval.matResidual IM.inf IM.sup (Interval.centerMat IM)).construct)
-    {z : Vec ℝ n} (hz : z ∈ nominalSet Z) (i : Fin m) : -- --- STMT ---
+    {z : Vec ℝ n} (hz : z ∈ nominalSet Z) (i : Fin m) : -- --- CONCL ---
     |(R *ᵥ z) i| ≤ toReal (sumUp fun j =>
       mulUp (maximum (absolute ((Interval.matResidual IM.inf IM.sup
           (Interval.centerMat IM)).inf i j))

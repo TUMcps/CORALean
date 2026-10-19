@@ -34,7 +34,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.robust_disj_encoding {m : ℕ} (hm : 0 < m) (rs : Fin m → ℝ) (M : ℝ) : -- --- STMT ---
+theorem STL.robust_disj_encoding {m : ℕ} (hm : 0 < m) (rs : Fin m → ℝ) (M : ℝ) : -- --- CONCL ---
     let H : (Finset.univ : Finset (Fin m)).Nonempty := ⟨⟨0, hm⟩, Finset.mem_univ _⟩
     (∀ (r : ℝ) (p : Fin m → ℝ), (∀ i, p i = 0 ∨ p i = 1) → ∑ i, p i = 1 →
       (∀ i, rs i ≤ r) → (∀ i, rs i - (1 - p i) * M ≤ r ∧ r ≤ rs i + M * (1 - p i)) →

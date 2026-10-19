@@ -39,7 +39,7 @@ variable {α β γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [
 applications of `Fin.sum_univ_add`, the cross block reindexed to a pair through
 `finProdFinEquiv`. -/
 theorem Zonotope.aux_sum_univ_add3 {δ : Type} [AddCommMonoid δ] {m n : ℕ}
-    (g : Fin (m + n + m * n) → δ) : -- --- STMT ---
+    (g : Fin (m + n + m * n) → δ) : -- --- CONCL ---
     ∑ k, g k = ∑ i, g (Fin.castAdd (m * n) (Fin.castAdd n i))
       + ∑ j, g (Fin.castAdd (m * n) (Fin.natAdd m j))
       + ∑ i, ∑ j, g (Fin.natAdd (m + n) (finProdFinEquiv (i, j))) := by -- --- PROOF ---
@@ -52,7 +52,7 @@ theorem Zonotope.aux_sum_univ_add3 {δ : Type} [AddCommMonoid δ] {m n : ℕ}
 /-- The same split, read through `bilin`'s own generator count, stated at the
 projection because that is the form `rw` meets in the goal below. -/
 theorem Zonotope.aux_sum_univ_bilin (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (Z₁ : Zonotope α) (Z₂ : Zonotope β)
-    {δ : Type} [AddCommMonoid δ] (g : Fin (Zonotope.bilin f Z₁ Z₂).h → δ) : -- --- STMT ---
+    {δ : Type} [AddCommMonoid δ] (g : Fin (Zonotope.bilin f Z₁ Z₂).h → δ) : -- --- CONCL ---
     ∑ k, g k = ∑ i, g (Fin.castAdd (Z₁.h * Z₂.h) (Fin.castAdd Z₂.h i))
       + ∑ j, g (Fin.castAdd (Z₁.h * Z₂.h) (Fin.natAdd Z₁.h j))
       + ∑ i, ∑ j, g (Fin.natAdd (Z₁.h + Z₂.h) (finProdFinEquiv (i, j))) :=

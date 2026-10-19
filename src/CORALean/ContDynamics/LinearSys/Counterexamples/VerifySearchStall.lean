@@ -88,7 +88,7 @@ theorem aux_verifySearchLoop_stall (sys : LinearSys 𝕋 n) (X₀ U : S n) (η :
         (sys.supportCounterexample Δt ν₀ νU ℓ k).2 k - νL (-ℓ)) < 0)
     (fuel : ℕ) (s : LinearSys.VerifySearchState n) (hℓ : s.ℓ = ℓ) (hΔt : s.Δt = Δt)
     (hk : s.k = k) (hPhat : ∀ v ∈ s.Phat, 0 < φ v)
-    (hPcheck : ∀ v ∈ s.Pcheck, φ v < 0) : -- --- STMT ---
+    (hPcheck : ∀ v ∈ s.Pcheck, φ v < 0) : -- --- CONCL ---
     sys.verifySearchLoop X₀ U η ρ ν₀ νU νL νhat ρL inHull closestFacet gramSchmidt ℓ₁ fuel s
       = .undecided := by -- --- PROOF ---
   induction fuel generalizing s with
@@ -132,7 +132,7 @@ theorem aux_verifySearchLoop_stall (sys : LinearSys 𝕋 n) (X₀ U : S n) (η :
 
 /-- [1, Alg. 3 (termination)]: `R(1)` keeps a distance `c - (e - 1) > 0` from `L = {c}`, yet
 `verifySearch` answers `undecided` for every `fuel`, `η` and sound oracle. -/
-theorem LinearSys.verifySearch_stall_counterexample (η : ℕ) : -- --- STMT ---
+theorem LinearSys.verifySearch_stall_counterexample (η : ℕ) : -- --- CONCL ---
     let sys : LinearSys ℝ 1 := LinearSys.canonical 1
     let X₀ : Zonotope (Vec ℝ 1) := Zonotope.ofPoint 0
     let U : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ => fun _ => 1⟩

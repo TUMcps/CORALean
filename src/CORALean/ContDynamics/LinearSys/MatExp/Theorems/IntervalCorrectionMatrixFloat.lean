@@ -45,7 +45,7 @@ theorem MatExp.expDiff_mem_intervalCorrectionMatrix (A : Interval (Mat 𝕋 n n)
     (hε : toReal (MatExp.normUpperBound (Interval.smul r r A)) / (((m + 2 : ℕ) : ℝ) + 2)
       ≤ 1 / 2)
     {M : Mat ℝ n n} (hM : M ∈ A.construct) {t : ℝ} (ht0 : 0 ≤ t)
-    (htr : t ≤ toReal r) : -- --- STMT ---
+    (htr : t ≤ toReal r) : -- --- CONCL ---
     exp (t • M) - 1 - (t / toReal r) • (exp (toReal r • M) - 1)
       ∈ (MatExp.intervalCorrectionMatrix A r (m + 2)).construct := by -- --- PROOF ---
   have hnorm := MatExp.norm_smul_le_normUpperBound A r hM

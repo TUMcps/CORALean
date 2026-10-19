@@ -84,7 +84,7 @@ theorem aux_relu_dominated_above (m l u x : ℝ) (hxl : l ≤ x) (hxu : x ≤ u)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem approxError_relu (m l u : ℝ) (hlu : l ≤ u) : -- --- STMT ---
+theorem approxError_relu (m l u : ℝ) (hlu : l ≤ u) : -- --- CONCL ---
     IsLeast ((fun x => relu x - (fun x => m * x) x) '' (({0, l, u} : Set ℝ) ∩ Set.Icc l u))
         (approxErrorLow relu (fun x => m * x) l u) ∧
       IsGreatest ((fun x => relu x - (fun x => m * x) x) '' (({0, l, u} : Set ℝ) ∩ Set.Icc l u))

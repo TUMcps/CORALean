@@ -48,7 +48,7 @@ theorem subset_regionOfAttraction_of_reach_subset {γ : ℝ → X → (ℝ → I
     (hγ : ∀ t s : ℝ, 0 ≤ t → 0 ≤ s → ∀ x u, γ (t + s) x u = γ s (γ t x u) (fun r => u (t + r)))
     (hU : ∀ u ∈ U, ∀ t : ℝ, 0 ≤ t → (fun r => u (t + r)) ∈ U) (ht : 0 < t)
     (hR : ∀ x₀ ∈ R₀, ∀ u ∈ U, γ t x₀ u ∈ S)
-    (hconv : ∀ x₀ ∈ R₀, ∀ u ∈ U, ∃ L, Tendsto (fun t => γ t x₀ u) atTop (𝓝 L)) : -- --- STMT ---
+    (hconv : ∀ x₀ ∈ R₀, ∀ u ∈ U, ∃ L, Tendsto (fun t => γ t x₀ u) atTop (𝓝 L)) : -- --- CONCL ---
     R₀ ⊆ regionOfAttraction γ U S := by -- --- PROOF ---
   intro x₀ hx₀ u hu
   obtain ⟨L, hL⟩ := hconv x₀ hx₀ u hu

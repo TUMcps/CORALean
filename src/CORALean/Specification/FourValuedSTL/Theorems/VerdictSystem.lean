@@ -44,7 +44,7 @@ theorem FourValuedSTL.verdict_system {X : Type} (φ : FourValuedSTL.Formula X) (
     (hcov : ∀ ξ ∈ E, FourValuedSTL.Covers R ξ) (S : (X → Prop) → KleeneSignal ℝ)
     (S' : (X → Prop) → FourValuedSignal ℝ)
     (hS : ∀ a ∈ φ.atoms, FourValuedSTL.IsAtomSignal R a (S a))
-    (hS' : ∀ a ∈ φ.atoms, FourValuedSTL.IsPartialAtomSignal T Rp a (S' a)) : -- --- STMT ---
+    (hS' : ∀ a ∈ φ.atoms, FourValuedSTL.IsPartialAtomSignal T Rp a (S' a)) : -- --- CONCL ---
     ∃ r, φ.fourValuedSat S' = some r ∧ r.IsValid ∧ (r.at 0 = FourValued.tt → φ.HoldsOn E) ∧
       (E.Nonempty → r.at 0 = FourValued.ff → ¬ φ.HoldsOn E) := by -- --- PROOF ---
   obtain ⟨r, hr, hv, h⟩ := FourValuedSTL.verdict φ T Rp R hext S S' hS hS'

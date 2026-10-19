@@ -53,7 +53,7 @@ theorem LinProbSys.IsTrajectory.mean_eq_add_inputReach {sys : LinProbSys n m} {�
     {U : Zonotope (Vec ℝ m)} {uTrans : Vec ℝ m} {x₀ : Vec ℝ n} {u : ℝ → Vec ℝ m}
     {x : ℝ → Ω → Vec ℝ n}
     (traj : sys.IsTrajectory (S := 𝒵) P T X₀ (U.plus (Zonotope.ofPoint uTrans)) x₀ u x) {t : ℝ}
-    (h0 : 0 ≤ t) (hT : Set.Icc 0 t ⊆ T) : -- --- STMT ---
+    (h0 : 0 ≤ t) (hT : Set.Icc 0 t ⊆ T) : -- --- CONCL ---
     ∃ w ∈ (LinearSys.canonical sys.A : LinearSys ℝ n).inputReach (S := 𝒵)
         (Zonotope.mtimes sys.B U) t,
       exp (t • sys.A) *ᵥ x₀ + ∫ s in (0:ℝ)..t, exp ((t - s) • sys.A) *ᵥ (sys.B *ᵥ u s)

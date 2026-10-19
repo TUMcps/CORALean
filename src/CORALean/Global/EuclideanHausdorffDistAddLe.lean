@@ -42,7 +42,7 @@ point. -/
 theorem aux_exists_mem_add_add_dist_le {α : Type} [NormedAddCommGroup α] {S₁ S₂ T₁ T₂ : Set α}
     (hT₁ : IsCompact T₁) (hT₁ne : T₁.Nonempty) (hT₂ : IsCompact T₂) (hT₂ne : T₂.Nonempty)
     (hf₁ : Metric.hausdorffEDist S₁ T₁ ≠ ⊤) (hf₂ : Metric.hausdorffEDist S₂ T₂ ≠ ⊤)
-    {x : α} (hx : x ∈ S₁ + S₂) : -- --- STMT ---
+    {x : α} (hx : x ∈ S₁ + S₂) : -- --- CONCL ---
     ∃ y ∈ T₁ + T₂, dist x y
       ≤ Metric.hausdorffDist S₁ T₁ + Metric.hausdorffDist S₂ T₂ := by -- --- PROOF ---
   obtain ⟨s₁, hs₁, s₂, hs₂, rfl⟩ := Set.mem_add.mp hx
@@ -71,7 +71,7 @@ theorem aux_toEuclidean_image_add (X Y : Set (Vec ℝ n)) :
 theorem hausdorffDist₂_add_le {S₁ S₂ T₁ T₂ : Set (Vec ℝ n)}
     (hS₁ : IsCompact S₁) (hS₁ne : S₁.Nonempty) (hT₁ : IsCompact T₁) (hT₁ne : T₁.Nonempty)
     (hS₂ : IsCompact S₂) (hS₂ne : S₂.Nonempty) (hT₂ : IsCompact T₂)
-    (hT₂ne : T₂.Nonempty) : -- --- STMT ---
+    (hT₂ne : T₂.Nonempty) : -- --- CONCL ---
     hausdorffDist₂ (S₁ + S₂) (T₁ + T₂)
       ≤ hausdorffDist₂ S₁ T₁ + hausdorffDist₂ S₂ T₂ := by -- --- PROOF ---
   have himg : ∀ X : Set (Vec ℝ n), IsCompact X → IsCompact (toEuclidean '' X) :=

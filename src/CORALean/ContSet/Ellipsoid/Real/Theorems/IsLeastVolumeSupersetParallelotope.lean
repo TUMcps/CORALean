@@ -91,7 +91,7 @@ theorem aux_parallelotope_det_sq_le {G F : Mat ℝ n n} (hG : IsUnit G.det) {z q
 /-- [1, Sec. III-A (Remark a)]: `E(nGGᵀ, z̄)` encloses `Z(G, z̄)` and has the least volume of all
 ellipsoids `E(E, e)`, `E ≻ 0`, that do. -/
 theorem Ellipsoid.isLeast_volume_superset_parallelotope (G : Mat ℝ n n) (hG : IsUnit G.det)
-    (z : Vec ℝ n) : -- --- STMT ---
+    (z : Vec ℝ n) : -- --- CONCL ---
     IsLeast {v | ∃ (q : Vec ℝ n) (F : Mat ℝ n n),
         {x | ∃ β : Vec ℝ n, (∀ j, |β j| ≤ 1) ∧ x = z + G *ᵥ β} ⊆
           (Ellipsoid.ofFactor F q).construct ∧

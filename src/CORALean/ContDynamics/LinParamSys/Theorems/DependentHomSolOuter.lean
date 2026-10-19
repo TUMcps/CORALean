@@ -63,7 +63,7 @@ theorem LinParamSys.dependentHomSol_outer (sys : LinParamSys 𝕄𝒵 n) {r : �
     {m : ℕ} (hε : ‖(Interval.smul r sys.A.interval).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     (Rinit : Zonotope (Vec ℝ n)) (Uc : Vec ℝ n) (UG : Fin sys.A.h → Vec ℝ n)
     {p : Fin sys.A.h → ℝ} (hp : ∀ i, |p i| ≤ 1) {x₀ : Vec ℝ n}
-    (hx₀ : x₀ ∈ construct Rinit) : -- --- STMT ---
+    (hx₀ : x₀ ∈ construct Rinit) : -- --- CONCL ---
     let A := sys.A.c + ∑ i, p i • sys.A.G i
     let u := Uc + ∑ i, p i • UG i
     exp (r • A) *ᵥ x₀ + ∫ s in (0:ℝ)..r, exp ((r - s) • A) *ᵥ u

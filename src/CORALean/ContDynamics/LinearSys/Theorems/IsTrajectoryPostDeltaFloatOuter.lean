@@ -59,7 +59,7 @@ theorem LinearSys.IsCanonicalTrajectory.postDeltaFloat_outer {sys : LinearSys �
     (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) {R V : Zonotope (Vec 𝕋 n)}
     {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n}
     (traj : sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) R.construct U
-      x u) (hUV : U ⊆ V.construct) {t : ℝ} (ht : t ∈ Set.Icc 0 (toReal Δt)) : -- --- STMT ---
+      x u) (hUV : U ⊆ V.construct) {t : ℝ} (ht : t ∈ Set.Icc 0 (toReal Δt)) : -- --- CONCL ---
     x t - x 0 ∈ (sys.postDeltaFloat Δt η R V).construct := by -- --- PROOF ---
   set A := Scalar.toRealMat sys.A with hA
   set ũ := Recenter.center V with hũ

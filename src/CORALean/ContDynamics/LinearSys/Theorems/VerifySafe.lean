@@ -44,7 +44,7 @@ theorem LinearSys.verify_safe
     (G : Fin (r + 1) → HPolytope (Vec ℝ n)) (F : Fin (w + 1) → HPolytope (Vec ℝ n))
     (εmax₀ : ℝ) (fuel : ℕ)
     (hv : LinearSys.verify reachFn innerApprox distG distF G F le εmax₀ fuel = some true)
-    : -- --- STMT ---
+    : -- --- CONCL ---
     LinearSys.VerifySpec G F Reach :=
   LinearSys.verifySpec_of_verifyRun h G F εmax₀ fuel hv
 

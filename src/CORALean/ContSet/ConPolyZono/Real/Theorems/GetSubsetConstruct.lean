@@ -47,7 +47,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- The subset the factor sub-box `αᵣ ∈ cen ± rad` reaches is exactly what
 `getSubset` constructs. -/
 theorem ConPolyZono.getSubset_construct (cPZ : ConPolyZono α) (r : Fin cPZ.p) (cen rad : ℝ)
-    (hrad : 0 ≤ rad) : -- --- STMT ---
+    (hrad : 0 ≤ rad) : -- --- CONCL ---
     (cPZ.getSubset r cen rad).construct
       = {x | ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ,
             |a r - cen| ≤ rad ∧ (∀ k, k ≠ r → |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)

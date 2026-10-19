@@ -46,7 +46,7 @@ namespace CORALean.Real
 `i`-th generator spans is redundant. -/
 theorem Zonotope.gen_removable_iff {n : ℕ} (Z : Zonotope (Vec ℝ (n + 2)))
     (Red : Finset (Bool × Finset (Fin Z.h))) (hRed : ∀ j ∈ Red, j.2.card = n + 1)
-    (i : Fin Z.h) : -- --- STMT ---
+    (i : Fin Z.h) : -- --- CONCL ---
     ∑ j ∈ Red, (if i ∈ j.2 then 1 else 0) = 2 * (Z.h - 1).choose n
       ↔ ∀ (b : Bool) (S : Finset (Fin Z.h)),
           S.card = n + 1 → i ∈ S → (b, S) ∈ Red := by -- --- PROOF ---

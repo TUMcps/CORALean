@@ -32,7 +32,7 @@ theorem List.foldl_set_spec {α σ β : Type} (valid : σ → Prop) (val : σ �
     (S : α → Set ℝ) (v : β) (step : σ → α → σ)
     (hstep : ∀ sig x, x ∈ l → valid sig → valid (step sig x) ∧ ∀ t : ℝ, 0 ≤ t →
       (t ∈ S x → val (step sig x) t = v) ∧ (t ∉ S x → val (step sig x) t = val sig t))
-    (s : σ) (hs : valid s) : -- --- STMT ---
+    (s : σ) (hs : valid s) : -- --- CONCL ---
     valid (l.foldl step s) ∧ ∀ t : ℝ, 0 ≤ t →
       ((∃ x ∈ l, t ∈ S x) → val (l.foldl step s) t = v) ∧
       ((¬ ∃ x ∈ l, t ∈ S x) → val (l.foldl step s) t = val s t) := by -- --- PROOF ---

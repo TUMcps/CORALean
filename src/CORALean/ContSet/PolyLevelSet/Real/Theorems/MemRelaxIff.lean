@@ -61,7 +61,7 @@ theorem PolyLevelSet.aux_eval_relax (P : PolyLevelSet n) (s : Vec ℝ P.m)
 /-- A point `(x, y)` of the relaxed set has `x` in `P`'s box, `y` in `D`, and meets every row
 `(A μ_R(x) - b)ᵢ + sᵢ yᵢ ⋈ᵢ 0`. -/
 theorem PolyLevelSet.mem_relax_iff (P : PolyLevelSet n) (s : Vec ℝ P.m)
-    (D : Interval (Vec ℝ P.m)) (x : Vec ℝ (n + P.m)) : -- --- STMT ---
+    (D : Interval (Vec ℝ P.m)) (x : Vec ℝ (n + P.m)) : -- --- CONCL ---
     x ∈ (P.relax s D).construct
       ↔ ((fun k => x (Fin.castAdd P.m k)) ∈ P.dom.construct
         ∧ (fun i => x (Fin.natAdd n i)) ∈ D.construct)

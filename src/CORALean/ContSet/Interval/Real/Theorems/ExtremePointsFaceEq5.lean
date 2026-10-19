@@ -52,7 +52,7 @@ theorem Interval.extremePoints_face_eq5 {b : Vec ℝ n} (hb : Monotone b) (hb0 :
     (h5 : ∑ i, (⟨0, b⟩ : Interval (Vec ℝ n)).corner
         (fun i => if (i : ℕ) < j then p i else false) i ≤ α ∧
       α < b ⟨j, hj⟩ + ∑ i, (⟨0, b⟩ : Interval (Vec ℝ n)).corner
-        (fun i => if (i : ℕ) < j then p i else false) i) : -- --- STMT ---
+        (fun i => if (i : ℕ) < j then p i else false) i) : -- --- CONCL ---
     let w := (⟨0, b⟩ : Interval (Vec ℝ n)).corner fun i => if (i : ℕ) < j then p i else false
     let F : Interval (Vec ℝ n) := ⟨w, fun i => if (i : ℕ) < j then w i else b i⟩
     Set.extremePoints ℝ (F.construct ∩ Interval.hyperplane 1 α) =

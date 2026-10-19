@@ -13,6 +13,16 @@ A point of the sum is `x₁ + x₂` with `xᵢ = cᵢ + tᵢ gᵢ + bᵢ`, `‖b
 generator, say `g₁`, it is `(c₁ + c₂) + t₁ g₁` plus `b₁ + b₂ + t₂ g₂`, whose length is under
 `r₁ + r₂ + ‖g₂‖₂`. Outer only: the sum of two capsules is not a capsule, and the enclosure is
 strict in general.
+
+## Inputs
+* `C₁` – first summand
+* `C₂` – second summand
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sum lies in `plus`
 -/
 
 -- Authors:       Claude Sonnet 5.5

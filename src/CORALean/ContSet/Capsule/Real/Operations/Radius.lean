@@ -11,6 +11,12 @@ CORA's `@capsule/radius.m`: the length of the generator plus the radius of the b
 `norm(g, 2) + r`. That is the radius of the smallest Euclidean ball about the center
 holding the capsule: the far end of the segment is at distance `‖g‖₂`, and the ball reaches `r`
 further.
+
+## Inputs
+* `C` – capsule
+
+## Output
+* bound on the distance from the center
 -/
 
 -- Authors:       Claude Sonnet 5.5

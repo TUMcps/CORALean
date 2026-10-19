@@ -33,7 +33,7 @@ theorem LevelSet.isIntersecting_uniform_outer (L : LevelSet n) (I : Interval (Ve
     (B : Fin L.m → Interval ℝ) {tol : ℝ}
     (htol : 0 ≤ tol)
     (hB : ∀ i, IsRangeBound (fun x => L.f x i) I.construct (B i).inf (B i).sup)
-    (h : ¬ L.isIntersecting_uniform tol B) : -- --- STMT ---
+    (h : ¬ L.isIntersecting_uniform tol B) : -- --- CONCL ---
     L.construct ∩ I.construct = ∅ := by -- --- PROOF ---
   classical
   -- some row fails the test; a common point would satisfy it

@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 stored corners: each corner of `[alo, ahi] · [r₁ + e₁, r₂ + e₂]` splits into a corner of each. -/
 theorem Taylm.aux_mul_sum_between {alo ahi r₁ r₂ e₁ e₂ : 𝕋} {y x : ℝ}
     (hy : toReal alo ≤ y ∧ y ≤ toReal ahi)
-    (hx : toReal r₁ + toReal e₁ ≤ x ∧ x ≤ toReal r₂ + toReal e₂) : -- --- STMT ---
+    (hx : toReal r₁ + toReal e₁ ≤ x ∧ x ≤ toReal r₂ + toReal e₂) : -- --- CONCL ---
     toReal (Interval.mulLo alo ahi r₁ r₂) + toReal (Interval.mulLo alo ahi e₁ e₂) ≤ y * x ∧
       y * x ≤ toReal (Interval.mulHi alo ahi r₁ r₂) +
         toReal (Interval.mulHi alo ahi e₁ e₂) := by -- --- PROOF ---

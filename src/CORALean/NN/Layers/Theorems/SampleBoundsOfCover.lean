@@ -41,7 +41,7 @@ theorem sample_bounds_of_cover {g g' : ℝ → ℝ} {l u M dx : 𝕋}
     (hcov : ∀ y : ℝ, toReal l ≤ y → y ≤ toReal u → ∃ i, |y - toReal (p i)| ≤ toReal dx)
     (hlo : ∀ i, toReal (gLo i) ≤ g (toReal (p i)))
     (hup : ∀ i, g (toReal (p i)) ≤ toReal (gUp i)) (hl : toReal l ≤ t)
-    (hu : t ≤ toReal u) : -- --- STMT ---
+    (hu : t ≤ toReal u) : -- --- CONCL ---
     toReal (sampleLo gLo M dx) ≤ g t
       ∧ g t ≤ toReal (sampleHi gUp M dx) := by -- --- PROOF ---
   have hM0 : 0 ≤ toReal M := le_trans (abs_nonneg _) (hM t hl hu)

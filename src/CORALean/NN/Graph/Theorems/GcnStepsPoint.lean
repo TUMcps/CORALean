@@ -40,7 +40,7 @@ open Matrix
 the feature set's own point. -/
 theorem GNN.gcnSteps_point {N F : ℕ} (P : PolyZonotope (Mat ℝ N N)) (L : ℕ)
     (W : Fin L → Mat ℝ F F) (H : PolyZonotope (Mat ℝ N F)) (hp : P.p = H.p)
-    (a : Fin P.p → ℝ) : -- --- STMT ---
+    (a : Fin P.p → ℝ) : -- --- CONCL ---
     (GNN.gcnSteps P L W H hp).point (fun k => a (Fin.cast (GNN.gcnSteps_p P L W H hp) k))
       = GNN.evalSteps (P.point a) L W
           (H.point fun k => a (Fin.cast hp.symm k)) := by -- --- PROOF ---

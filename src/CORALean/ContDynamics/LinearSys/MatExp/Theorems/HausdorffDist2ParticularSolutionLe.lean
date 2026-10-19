@@ -125,7 +125,7 @@ theorem MatExp.hausdorffDist₂_particularSolution_le (A : Mat ℝ n n) (tk : �
     {U0 : Set (Vec ℝ n)} (hU0 : Bornology.IsBounded U0) {Δt : ℝ} (hΔt : 0 < Δt) (η : ℕ)
     {P : Set (Vec ℝ n)}
     (hinner : (fun c => (MatExp.expIntegral A Δt).mulVec c) '' U0 ⊆ P)
-    (houter : P ⊆ MatExp.particularSolutionOuter A U0 0 Δt η) : -- --- STMT ---
+    (houter : P ⊆ MatExp.particularSolutionOuter A U0 0 Δt η) : -- --- CONCL ---
     hausdorffDist₂ ((fun x => (exp (tk • A)).mulVec x) '' P)
         ((fun x => (exp (tk • A)).mulVec x) '' MatExp.particularSolutionOuter A U0 0 Δt η)
       ≤ MatExp.particularSolutionError A tk U0 Δt η := by -- --- PROOF ---

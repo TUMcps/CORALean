@@ -56,7 +56,7 @@ theorem shenmaierHalfspace_prob (G : E₁ →ₗ[ℝ] V) (c : V) (H : E₂ →�
     (z : Fin N → Ω → V →L[ℝ] ℝ)
     (hz : ∀ i ω, ‖(z i ω).comp (LinearMap.toContinuousLinearMap H)‖ ≤ 1)
     (hzv : ∀ i ω, z i ω (v i ω) = coeffNorm H (v i ω)) (ε : ℝ) (hε : 0 < ε)
-    (hε1 : ε ≤ 1) : -- --- STMT ---
+    (hε1 : ε ≤ 1) : -- --- CONCL ---
     ENNReal.ofReal (shenmaierProb (Module.finrank ℝ V) N ϑ ε)
       ≤ P {ω | (1 - ε) * r ≤ shenmaierHalfspaceValue G c d hN fun i => z i ω} := by -- --- PROOF ---
   set nrm := coeffNorm H with hnrm

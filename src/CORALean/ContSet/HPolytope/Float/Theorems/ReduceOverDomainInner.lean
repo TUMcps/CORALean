@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem HPolytope.reduceOverDomain_inner (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n)) (hP : P.ErrFree)
     (hme : P.me = 0)
-    (dom : Interval (Vec 𝕋 n)) : -- --- STMT ---
+    (dom : Interval (Vec 𝕋 n)) : -- --- CONCL ---
     (P.reduceOverDomain p dom false).construct ∩ dom.construct ⊆
       P.construct ∩ dom.construct := by -- --- PROOF ---
   rintro x ⟨hR, hd⟩

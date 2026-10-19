@@ -45,7 +45,7 @@ theorem subset_cnf_of_meet_eq_bot (sat : L → Set α) (neg : L → L)
     (hneg : ∀ l, sat (neg l) = (sat l)ᶜ) (meet : S → List L → S)
     (hmeet : ∀ a ls, construct a ∩ {x | ∀ l ∈ ls, x ∈ sat l} ⊆ construct (meet a ls))
     (bot : S) (hbot : construct bot = ∅) (a : S) (cnf : List (List L))
-    (h : ∀ c ∈ cnf, meet a (c.map neg) = bot) : -- --- STMT ---
+    (h : ∀ c ∈ cnf, meet a (c.map neg) = bot) : -- --- CONCL ---
     construct a ⊆ {x | ∀ c ∈ cnf, ∃ l ∈ c, x ∈ sat l} := by -- --- PROOF ---
   intro x hx c hc
   by_contra hno

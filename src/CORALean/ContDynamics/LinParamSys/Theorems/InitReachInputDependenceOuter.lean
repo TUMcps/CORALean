@@ -56,7 +56,7 @@ theorem LinParamSys.initReachInputDependence_outer (sys : LinParamSys 𝕄𝒵 n
     (Rinit : Zonotope (Vec ℝ n)) (Uc : Vec ℝ sys.m) (UG : Fin sys.A.h → Vec ℝ sys.m)
     {p : Fin sys.A.h → ℝ} (hp : ∀ i, |p i| ≤ 1) {B : Mat ℝ n sys.m} (hB : B ∈ construct sys.B)
     {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct Rinit) {t : ℝ} (ht0 : 0 ≤ t)
-    (htr : t ≤ r) : -- --- STMT ---
+    (htr : t ≤ r) : -- --- CONCL ---
     let A := sys.A.c + ∑ i, p i • sys.A.G i
     let u := B *ᵥ (Uc + ∑ i, p i • UG i) + sys.c
     exp (r • A) *ᵥ x₀ + ∫ s in (0:ℝ)..r, exp ((r - s) • A) *ᵥ u

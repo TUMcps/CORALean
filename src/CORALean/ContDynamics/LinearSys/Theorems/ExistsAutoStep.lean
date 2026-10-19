@@ -62,7 +62,7 @@ theorem LinearSys.exists_autoStep (sys : LinearSys 𝕋 n) {le : ℝ → ℝ →
     (s : LinearSys.AutoState n) {tend εmax ζ : ℝ} {ηmax : ℕ} (hn : 0 < n)
     (htend : s.t < tend) (htpos : 0 < tend) (hεmax : 0 < εmax) (hζ0 : 0 ≤ ζ) (hζ1 : ζ < 1)
     (hεa : s.εa ≤ s.t / tend * (1 - ζ) * εmax) (hεr : s.εr ≤ s.t / tend * ζ * εmax)
-    (hΔt : 0 < s.Δt) (hηmax : 1 ≤ ηmax) : -- --- STMT ---
+    (hΔt : 0 < s.Δt) (hηmax : 1 ≤ ηmax) : -- --- CONCL ---
     ∃ (fuel : ℕ) (r : LinearSys.AutoState n × Zonotope (Vec ℝ n)),
       sys.autoStep le X₀ U tend εmax ζ ηmax fuel s = some r := by -- --- PROOF ---
   obtain ⟨fuel, Δt, η, hdt, hΔtpos⟩ := sys.exists_autoTuneDeltaT hle s.H U.c

@@ -52,7 +52,7 @@ theorem PolyZonotope.relaxExpEven_outer (pZ : PolyZonotope α)
     (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1))
     (heven : ∀ k, Even (pZ.E k (part.right 0)))
     (hevenj : Even (pZ.E k₀ (part.right 1)))
-    (hle : pZ.E k₀ (part.right 1) ≤ pZ.E k₀ (part.right 0)) : -- --- STMT ---
+    (hle : pZ.E k₀ (part.right 1) ≤ pZ.E k₀ (part.right 0)) : -- --- CONCL ---
     pZ.construct ⊆ (pZ.relaxExpEven part k₀).construct := by -- --- PROOF ---
   rintro x ⟨a, β, ha, hβ, rfl⟩
   have habs : |PolyZonotope.monomial pZ.E a (part.right 0)

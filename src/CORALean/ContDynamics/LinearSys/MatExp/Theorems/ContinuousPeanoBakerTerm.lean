@@ -34,7 +34,7 @@ variable {n : ℕ}
 /-- Continuity and the integrability of the next integrand, carried together
 since each needs the other one order down. -/
 theorem aux_continuous_and_integrable {A : ℝ → Mat ℝ n n}
-    (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b) (k : ℕ) : -- --- STMT ---
+    (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b) (k : ℕ) : -- --- CONCL ---
     (∀ i j, Continuous fun s => MatExp.peanoBakerTerm A k s i j) ∧
     (∀ i j a b, IntervalIntegrable
       (fun σ => (A σ * MatExp.peanoBakerTerm A k σ) i j) volume a b) := by -- --- PROOF ---

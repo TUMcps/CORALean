@@ -52,7 +52,7 @@ theorem LinearSysDT.observeStripBased_outer (sys : LinearSysDT 𝕋 n) (σ : Vec
     (hstep : ∀ k, x (k + 1) =
       toRealMat sys.A *ᵥ x k + toRealMat sys.B *ᵥ toRealVec (u k) + toRealVec sys.c + w k)
     (hy : ∀ k i, |(toRealMat sys.C *ᵥ x k - toRealVec (y k)) i| ≤ toReal (σ i))
-    (k : ℕ) : -- --- STMT ---
+    (k : ℕ) : -- --- CONCL ---
     x k ∈ construct (sys.observeStripBased σ W R₀ u y options k) := by -- --- PROOF ---
   induction k with
   | zero =>

@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.quadMapMixed_outer (P₁ P₂ : Polygon 𝕋) (Q : Fin 2 → Mat 𝕋 2 2) (splits : ℕ)
-    (pick : ℕ → PolyZonotope (Vec 𝕋 2) → Bool) : -- --- STMT ---
+    (pick : ℕ → PolyZonotope (Vec 𝕋 2) → Bool) : -- --- CONCL ---
     (fun x : Vec ℝ 2 × Vec ℝ 2 => Real.PolyZonotope.quadBilin (fun k => toRealMat (Q k)) x.1 x.2)
         '' (ContSet.construct P₁ ×ˢ ContSet.construct P₂)
       ⊆ ContSet.construct (P₁.quadMapMixed P₂ Q splits pick) := by -- --- PROOF ---

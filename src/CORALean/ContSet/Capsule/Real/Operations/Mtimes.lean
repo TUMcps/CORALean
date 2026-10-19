@@ -9,14 +9,20 @@ public import Mathlib.Data.Matrix.Mul
 # `Capsule.mtimes`
 
 CORA's `@capsule/mtimes.m` maps the center and the generator, `M c` and `M g`, and rescales the
-radius. The image of a Euclidean ball under `M` is an ellipsoid, not a ball, so the result is an
-enclosure, and the radius has to be multiplied by a bound on the operator norm of `M` (its largest
-singular value). Here the bound is the Frobenius norm, `sqrt (∑ᵢⱼ Mᵢⱼ²)`, which is at least the
-largest singular value and needs no eigenvalue computation.
+radius. The image of a ball under `M` is an ellipsoid, so the result is an enclosure: the radius is
+multiplied by the Frobenius norm `sqrt (∑ᵢⱼ Mᵢⱼ²)`, which is at least the largest singular value and
+needs no eigenvalue computation.
 
 CORA scales by `max(eig(M Mᵀ))`, the *square* of the largest singular value, which is too small
 whenever that value is under `1`; see `Capsule.mtimes_cora_counterexample` and
 `references/coverage/contSet/capsule.md`, row `mtimes`.
+
+## Inputs
+* `M` – matrix
+* `C` – capsule
+
+## Output
+* capsule enclosing `M * C`
 -/
 
 -- Authors:       Claude Sonnet 5.5

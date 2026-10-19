@@ -10,6 +10,12 @@ public import CORALean.ContSet.Capsule.Real.Capsule
 CORA's `capsule` at a center, no direction and no radius: a single point, as
 the representation. What `OfPoint` asks every representation with a point
 operation to supply.
+
+## Inputs
+* `v` – the point
+
+## Output
+* the capsule of the single point `v`
 -/
 
 -- Authors:       Claude Opus 5

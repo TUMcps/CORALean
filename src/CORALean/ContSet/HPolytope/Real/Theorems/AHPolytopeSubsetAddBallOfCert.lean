@@ -54,7 +54,7 @@ theorem HPolytope.ahPolytope_subset_add_ball_of_cert {x₁ x₂ : Vec ℝ n} {X�
     (e₃ : Λ₃ * H₂ = H₁ * Γ₃) (e₄ : Λ₄ * H₂ = HB * Γ₄) (f₃ : Λ₃ *ᵥ h₂ ≤ h₁ + H₁ *ᵥ β₃)
     (f₄ : Λ₄ *ᵥ h₂ ≤ D • hB + HB *ᵥ β₄)
     (c₁ : x₂ - X₂ *ᵥ β₁ - β₂ = x₁) (g₁ : X₂ * Γ₁ + Γ₂ = X₁)
-    (c₂ : x₁ - X₁ *ᵥ β₃ - β₄ = x₂) (g₂ : X₁ * Γ₃ + Γ₄ = X₂) : -- --- STMT ---
+    (c₂ : x₁ - X₁ *ᵥ β₃ - β₄ = x₂) (g₂ : X₁ * Γ₃ + Γ₄ = X₂) : -- --- CONCL ---
     HPolytope.ahPolytope x₁ X₁ (HPolytope.ineqs H₁ h₁)
         ⊆ HPolytope.ahPolytope x₂ X₂ (HPolytope.ineqs H₂ h₂)
           + (HPolytope.ineqs HB (D • hB)).construct ∧

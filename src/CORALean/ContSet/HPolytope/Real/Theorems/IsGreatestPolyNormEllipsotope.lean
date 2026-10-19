@@ -45,7 +45,7 @@ variable {n s : ℕ} {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [Fini
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.isGreatest_polyNorm_ellipsotope (G : E →ₗ[ℝ] Vec ℝ n) (c d : Vec ℝ n)
-    {Λ : Mat ℝ s n} {b : Vec ℝ s} (hb : ∀ i, 0 < b i) : -- --- STMT ---
+    {Λ : Mat ℝ s n} {b : Vec ℝ s} (hb : ∀ i, 0 < b i) : -- --- CONCL ---
     IsGreatest ((fun α => HPolytope.polyNorm Λ b (G α + c - d)) '' Metric.closedBall 0 1)
       ((insert 0 (Finset.univ.image fun i =>
         (‖LinearMap.toContinuousLinearMap ((HPolytope.rowLin Λ i).comp G)‖ + (Λ *ᵥ (c - d)) i)

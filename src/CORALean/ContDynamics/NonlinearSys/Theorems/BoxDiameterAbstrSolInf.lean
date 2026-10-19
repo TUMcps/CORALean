@@ -111,7 +111,7 @@ theorem aux_norm_le_of_mem_construct {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
 /-- `[1, (35)]`: a side of the box over `R^∞_abs(h)` is twice the series of the
 row norms of `Aᵖ(h)G(h)`. -/
 theorem boxDiameter_abstrSolInf (A : ℝ → Mat ℝ n n) (Ψ : ℝ → Set (Vec ℝ n)) {h : ℝ}
-    (hh : 0 ≤ h) {Z : Zonotope (Vec ℝ n)} (hΨ : Ψ h = Z.construct) (i : Fin n) : -- --- STMT ---
+    (hh : 0 ≤ h) {Z : Zonotope (Vec ℝ n)} (hΨ : Ψ h = Z.construct) (i : Fin n) : -- --- CONCL ---
     boxDiameter (abstrSolInf A Ψ h) i =
       2 * ∑' p : ℕ, h ^ (p + 1) / (Nat.factorial (p + 1) : ℝ)
         * ∑ j, |(A h ^ p *ᵥ Z.G j) i| := by -- --- PROOF ---

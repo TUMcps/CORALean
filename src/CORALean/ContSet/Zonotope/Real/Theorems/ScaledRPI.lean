@@ -69,7 +69,7 @@ theorem Zonotope.scaled_rpi {ng : ℕ} (G : Fin ng → α) (c : α) (φ : Fin ng
     (Γ2 : Fin ng → Fin W.h → ℝ) (β : Fin ng → ℝ)
     (hA : ∀ j, φ j • A (G j) = ∑ i, Γ1 i j • G i) (hW : ∀ k, W.G k = ∑ i, Γ2 i k • G i)
     (hc : c - A c - W.c = ∑ i, β i • G i)
-    (hbound : ∀ i, (∑ j, |Γ1 i j|) + (∑ k, |Γ2 i k|) + |β i| ≤ φ i) : -- --- STMT ---
+    (hbound : ∀ i, (∑ j, |Γ1 i j|) + (∑ k, |Γ2 i k|) + |β i| ≤ φ i) : -- --- CONCL ---
     (A · : α → α) '' (⟨ng, c, fun j => φ j • G j⟩ : Zonotope α).construct + W.construct
       ⊆ (⟨ng, c, fun j => φ j • G j⟩ : Zonotope α).construct := by -- --- PROOF ---
   rintro y ⟨_, ⟨x, ⟨ψ, hψ, rfl⟩, rfl⟩, w, ⟨μ, hμ, rfl⟩, rfl⟩

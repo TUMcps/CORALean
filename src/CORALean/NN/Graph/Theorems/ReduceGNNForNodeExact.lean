@@ -37,7 +37,7 @@ open Matrix
 /-- Every row of the reduced network that names `v` is row `v` of the unreduced chain. -/
 theorem GNN.reduceGNNForNode_exact {N F : ℕ} (A : Mat ℝ N N) (v : Fin N) (L : ℕ)
     (W : ℕ → Mat ℝ F F) (X : Mat ℝ N F) (a : ↥(GNN.reduceKeep A v L L))
-    (ha : (a : Fin N) = v) : -- --- STMT ---
+    (ha : (a : Fin N) = v) : -- --- CONCL ---
     GNN.reduceGNNForNode A v L W X a
       = GNN.evalSteps (GNN.messagePassing A) L (fun i : Fin L => W i) X v :=
   GNN.reducedSteps_row A v L (GNN.reduceKeep A v L)

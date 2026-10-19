@@ -139,7 +139,7 @@ theorem shenmaier_bound [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpac
     (hϑ : 0 ≤ ϑ) (hunif : ∀ i, IsThetaUniform P (v i) vol {x | nrm x ≤ 1} ϑ)
     (z : Fin N → Ω → E →L[ℝ] ℝ) (hzB : ∀ i ω x, nrm x ≤ 1 → z i ω x ≤ 1)
     (hzv : ∀ i ω, z i ω (v i ω) = nrm (v i ω)) (rS : Ω → ℝ)
-    (hrS : ∀ ω, IsGreatest {t | ∃ i, ∃ x ∈ K, t = z i ω x} (rS ω)) : -- --- STMT ---
+    (hrS : ∀ ω, IsGreatest {t | ∃ i, ∃ x ∈ K, t = z i ω x} (rS ω)) : -- --- CONCL ---
     (∀ ω, rS ω ≤ M) ∧ ∀ ε : ℝ, 0 < ε → ε ≤ 1 →
       ENNReal.ofReal (1 - (1 - (ε / (2 + ε)) ^ Module.finrank ℝ E + ϑ) ^ N)
         ≤ P {ω | (1 - ε) * M ≤ rS ω} := by -- --- PROOF ---

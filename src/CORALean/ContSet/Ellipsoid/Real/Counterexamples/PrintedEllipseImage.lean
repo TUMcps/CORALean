@@ -43,7 +43,7 @@ open scoped MatrixOrder
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Sec. 1.1 (ellipse)]: the printed image form of `E(E, s)` fails at `E = 1`, `s = 2`. -/
-theorem Ellipsoid.printed_ellipse_image_counterexample : -- --- STMT ---
+theorem Ellipsoid.printed_ellipse_image_counterexample : -- --- CONCL ---
     ∃ (Q : Mat ℝ 1 1) (s : Vec ℝ 1), Q.PosDef ∧
       {x : Vec ℝ 1 | (x - s) ⬝ᵥ Q⁻¹ *ᵥ (x - s) ≤ 1}
         ≠ (fun x => (CFC.sqrt Q : Mat ℝ 1 1) *ᵥ (x - s)) ''

@@ -39,7 +39,7 @@ theorem LinearARX.aux_mulVec_mem_box (M : Mat 𝕋 (p * dy) du) (v : Vec 𝕋 du
 
 /-- The fold adds each listed term to a partial sum that is already enclosed. -/
 theorem LinearARX.aux_foldl_mem_box (M : Fin (p + 1) → Mat 𝕋 (p * dy) du)
-    (w : Fin (p + 1) → Vec 𝕋 du) : -- --- STMT ---
+    (w : Fin (p + 1) → Vec 𝕋 du) : -- --- CONCL ---
     ∀ (l : List (Fin p)) (acc : Interval (Vec 𝕋 (p * dy))) (a : Vec ℝ (p * dy)),
       a ∈ construct acc →
       a + (l.map fun j => Scalar.toRealMat (M j.succ) *ᵥ Scalar.toRealVec (w j.succ)).sum ∈

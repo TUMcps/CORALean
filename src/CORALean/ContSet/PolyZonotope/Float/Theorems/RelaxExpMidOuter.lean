@@ -65,7 +65,7 @@ theorem PolyZonotope.aux_sum_univ_relaxExpMid_q {pZ : PolyZonotope (Vec 𝕋 n)}
 /-- The halved column is stored downward and its upward twin lies above the
 exact half-width, so the gap between them covers it. -/
 theorem PolyZonotope.aux_relaxGenMid_gap (pZ : PolyZonotope (Vec 𝕋 n))
-    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) (i : Fin n) : -- --- STMT ---
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) (i : Fin n) : -- --- CONCL ---
     let w : ℝ := ((pZ.relaxDrift part k₀).1 : ℝ) / 2 + ((pZ.relaxDrift part k₀).2 : ℝ) / 2
     |w * toReal (pZ.G (part.right 0) i) - toReal (pZ.aux_relaxGenMid part k₀ i)|
       ≤ toReal (pZ.aux_relaxGapMid part k₀ i 1) := by -- --- PROOF ---
@@ -96,7 +96,7 @@ theorem PolyZonotope.aux_relaxGenMid_gap (pZ : PolyZonotope (Vec 𝕋 n))
 /-- The shift is stored below the exact midpoint and its upward twin above it,
 so the center stored downward stays below the exact one and the gap covers it. -/
 theorem PolyZonotope.aux_relaxCenterMid_gap (pZ : PolyZonotope (Vec 𝕋 n))
-    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) (i : Fin n) : -- --- STMT ---
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) (i : Fin n) : -- --- CONCL ---
     let m : ℝ := ((pZ.relaxDrift part k₀).2 : ℝ) / 2 - ((pZ.relaxDrift part k₀).1 : ℝ) / 2
     |toReal (pZ.c i) + m * toReal (pZ.G (part.right 0) i) - toReal
       (pZ.aux_relaxCenterMid part k₀ i)|
@@ -135,7 +135,7 @@ theorem PolyZonotope.aux_relaxCenterMid_gap (pZ : PolyZonotope (Vec 𝕋 n))
 -- the three stored quantities and their three gaps, the drift split in two
 theorem PolyZonotope.aux_relaxExpMid_nominal (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p)
-    (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) : -- --- STMT ---
+    (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) : -- --- CONCL ---
     nominalSet pZ ⊆ nominalSet (pZ.relaxExpMid part k₀)
       + (PolyZonotope.generatorError (pZ.aux_relaxGapMid part k₀)).construct := by -- --- PROOF ---
   intro x hx

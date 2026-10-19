@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- What a rounded product generator costs. -/
 theorem PolyZonotope.mulG_close (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (i : Fin n)
-    (l : Fin ((pZ₁.h + 1) * (pZ₂.h + 1))) : -- --- STMT ---
+    (l : Fin ((pZ₁.h + 1) * (pZ₂.h + 1))) : -- --- CONCL ---
     |Real.PolyZonotope.mulG (nominal pZ₁) (nominal pZ₂) l i
         - toReal (PolyZonotope.mulGDown pZ₁ pZ₂ i l)|
       ≤ toReal (PolyZonotope.mulGDiff pZ₁ pZ₂ i l) := by -- --- PROOF ---

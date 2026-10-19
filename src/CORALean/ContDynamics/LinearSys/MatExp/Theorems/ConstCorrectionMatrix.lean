@@ -99,7 +99,7 @@ theorem aux_summable_expIntegralDiff (A : Mat ℝ n n) (t r : ℝ) :
 /-- Every tail term carries `r^{i+2}` in its scalar factor; pulling one `r` out
 leaves the exponential's own remainder series. -/
 theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ)
-    (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- STMT ---
+    (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     ‖∑' i : ℕ, (((Nat.factorial (i + η + 2) : ℝ))⁻¹
         * (t ^ (i + η + 2) - (t / r) * r ^ (i + η + 2))) • A ^ (i + η + 1)‖
       ≤ r * MatExp.expRemainderBound (r • A) η := by -- --- PROOF ---
@@ -176,7 +176,7 @@ theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ
 time of the step. -/
 theorem MatExp.expIntegralDiff_mem_constCorrectionMatrix (A : Mat ℝ n n) {r : ℝ}
     (hr : 0 < r) (η : ℕ) (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) {t : ℝ}
-    (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- STMT ---
+    (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     MatExp.expIntegral A t - (t / r) • MatExp.expIntegral A r
       ∈ (MatExp.constCorrectionMatrix A r η).construct := by -- --- PROOF ---
   have hs0 : 0 ≤ t / r := div_nonneg ht0 hr.le

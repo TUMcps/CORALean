@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.tensorH_bracket (M : Tensor3 𝕋 n) (Z : Zonotope (Vec 𝕋 n))
-    (L : Real.Zonotope.TensorLists Z.h) (iDim : Fin n) (cInd : Fin L.C) : -- --- STMT ---
+    (L : Real.Zonotope.TensorLists Z.h) (iDim : Fin n) (cInd : Fin L.C) : -- --- CONCL ---
     toReal (Zonotope.tensorHDown M Z L iDim cInd)
         ≤ (Real.Zonotope.tensorMultiplication (nominal Z : Real.Zonotope (Vec ℝ n))
             (fun i a b c => toReal (M i a b c)) L).G cInd iDim

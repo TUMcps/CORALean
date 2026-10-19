@@ -77,7 +77,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.normExactCora_lt : -- --- STMT ---
+theorem Zonotope.normExactCora_lt : -- --- CONCL ---
     let Z : Zonotope (Vec ℝ 2) := ⟨2, ![(2 : ℝ), -20], ![![1, 0], ![1, 1]]⟩
     ![(2 : ℝ), -21] ∈ Z.construct ∧
       ∀ (lmax : ℝ) (binprog : ((Fin Z.h → Bool) → ℝ) → (Fin Z.h → Bool)),

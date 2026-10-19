@@ -82,7 +82,7 @@ theorem HPolytope.affineHullBasis_spec (P : HPolytope (Vec ℝ n)) (c : Vec ℝ 
       ∃ v ∈ Submodule.span ℝ (Set.range B), c + xiter r B + v ∈ P.construct)
     (hopt : ∀ r (B : Fin r → Vec ℝ n) (x : Vec ℝ n), (∀ i, B i ⬝ᵥ x = 0) →
       (∃ v ∈ Submodule.span ℝ (Set.range B), c + x + v ∈ P.construct) →
-        min ‖x‖ φ ≤ ‖xiter r B‖) : -- --- STMT ---
+        min ‖x‖ φ ≤ ‖xiter r B‖) : -- --- CONCL ---
     (∀ i j, i ≠ j → (HPolytope.affineHullBasis ε xiter n 0 Fin.elim0).2 i ⬝ᵥ
         (HPolytope.affineHullBasis ε xiter n 0 Fin.elim0).2 j = 0) ∧
       (∀ i, (HPolytope.affineHullBasis ε xiter n 0 Fin.elim0).2 i ≠ 0) ∧

@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearReset.synchronizeFloat_offset_outer (W : Fin k → Mat 𝕋 n n)
-    (w : Fin k → Vec 𝕋 n) (idStates : Finset (Fin n)) (i : Fin n) : -- --- STMT ---
+    (w : Fin k → Vec 𝕋 n) (idStates : Finset (Fin n)) (i : Fin n) : -- --- CONCL ---
     toReal ((synchronizeFloat W w idStates).2.1 i) ≤
         (synchronize (toRealMat ∘ W) (toRealVec ∘ w) idStates).2 i ∧
       (synchronize (toRealMat ∘ W) (toRealVec ∘ w) idStates).2 i ≤

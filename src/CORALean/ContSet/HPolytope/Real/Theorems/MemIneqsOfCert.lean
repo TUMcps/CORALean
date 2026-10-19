@@ -41,7 +41,7 @@ variable {qx nx qy ny : ℕ}
 theorem HPolytope.mem_ineqs_of_cert {Hx : Mat ℝ qx nx} {hx : Vec ℝ qx} {Hy : Mat ℝ qy ny}
     {hy : Vec ℝ qy} {Γ : Mat ℝ ny nx} {β : Vec ℝ ny} {Λ : Mat ℝ qy qx}
     (hΛ : ∀ i j, 0 ≤ Λ i j) (h1 : Λ * Hx = Hy * Γ) (h2 : Λ *ᵥ hx ≤ hy + Hy *ᵥ β)
-    {p : Vec ℝ nx} (hp : p ∈ (HPolytope.ineqs Hx hx).construct) : -- --- STMT ---
+    {p : Vec ℝ nx} (hp : p ∈ (HPolytope.ineqs Hx hx).construct) : -- --- CONCL ---
     Γ *ᵥ p - β ∈ (HPolytope.ineqs Hy hy).construct := by -- --- PROOF ---
   rw [HPolytope.mem_ineqs_iff] at hp ⊢
   intro i

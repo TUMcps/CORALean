@@ -100,7 +100,7 @@ theorem aux_exists_region (T : IdentHA.SplitTree n) (x : Vec ℝ n) :
 /-- [1, Thm. 1]: every state starts in an invariant, every boundary point of an invariant is in
 a guard leaving it, and every guard maps into its target invariant. -/
 theorem IdentHA.SplitTree.executable (T : IdentHA.SplitTree n)
-    (reset : Vec ℝ n × ℝ → Mat ℝ n n × Vec ℝ n) : -- --- STMT ---
+    (reset : Vec ℝ n × ℝ → Mat ℝ n n × Vec ℝ n) : -- --- CONCL ---
     (∀ x, ∃ cs ∈ T.regions, x ∈ (IdentHA.polytope cs).construct) ∧
     (∀ cs ∈ T.regions, ∀ x ∈ frontier ((IdentHA.polytope cs).construct), ∃ p ∈ cs,
       ∃ cs' ∈ T.regions,

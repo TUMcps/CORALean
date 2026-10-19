@@ -38,7 +38,7 @@ variable {nx ny nd : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.descriptorDecoupleDynamic (C : Mat ℝ ny nx) (Dd : Mat ℝ nx nd)
-    (hDd : Dd.rank = nd) : -- --- STMT ---
+    (hDd : Dd.rank = nd) : -- --- CONCL ---
     (∀ (T : Mat ℝ nx nx) (N : Mat ℝ nx ny), T + N * C = 1 → T * Dd = 0 →
       Dd = N * C * Dd ∧ T = 1 - N * C) ∧
     ((∃ (T : Mat ℝ nx nx) (N : Mat ℝ nx ny), T + N * C = 1 ∧ T * Dd = 0) ↔

@@ -38,7 +38,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.polyNorm_isAsymmNorm_counterexample : -- --- STMT ---
+theorem HPolytope.polyNorm_isAsymmNorm_counterexample : -- --- CONCL ---
     ∃ (H : Mat ℝ 2 1) (h : Vec ℝ 2), (∀ i, h i ≠ 0) ∧
       (HPolytope.ineqs H h).construct.Nonempty ∧
       Bornology.IsBounded (HPolytope.ineqs H h).construct ∧

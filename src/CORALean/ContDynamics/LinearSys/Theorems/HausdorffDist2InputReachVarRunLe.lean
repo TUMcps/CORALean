@@ -78,7 +78,7 @@ theorem LinearSys.hausdorffDist₂_inputReach_run_var_le (sys : LinearSys 𝕋 n
     (hcQΔ : ∀ j, IsCompact
       (MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 (Δt j) (η j)))
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (h0 : (0 : Vec ℝ n) ∈ construct U) (k : ℕ) : -- --- STMT ---
+    (h0 : (0 : Vec ℝ n) ∈ construct U) (k : ℕ) : -- --- CONCL ---
     hausdorffDist₂ (sys.inputReach U (∑ i ∈ Finset.range k, Δt i))
         (∑ j ∈ Finset.range k,
           (fun x => exp ((∑ i ∈ Finset.range j, Δt i) • toRealMat sys.A) *ᵥ x)

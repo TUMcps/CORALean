@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.rows_of_mem_construct {P : HPolytope 𝕋 (Vec 𝕋 n)} {x : Vec ℝ n}
-    (hx : x ∈ P.construct) : -- --- STMT ---
+    (hx : x ∈ P.construct) : -- --- CONCL ---
     (∀ i, (toRealMat P.A *ᵥ x) i ≤ toReal (P.bU i)) ∧
       ∀ i, (toRealMat P.Ae *ᵥ x) i ≤ toReal (P.beU i)
         ∧ -(toRealMat P.Ae *ᵥ x) i ≤ toReal (P.beLN i) := by -- --- PROOF ---

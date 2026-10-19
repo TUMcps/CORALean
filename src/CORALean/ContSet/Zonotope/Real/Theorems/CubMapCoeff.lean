@@ -73,7 +73,7 @@ theorem Zonotope.aux_cubMap_pairs {N : ℕ} (g : Fin N → Fin N → ℝ) :
 below the diagonal, and the sorted triples `x ≤ y ≤ z`: `c ≤ a` stays, `a < c ≤ b` and `b < c`
 move `c` into its place. -/
 theorem Zonotope.aux_cubMap_regroup {N : ℕ} (β : Fin N → ℝ) (L : Fin N → Fin N → Fin N → ℝ)
-    (hL : ∀ c a b, b < a → L c a b = 0) : -- --- STMT ---
+    (hL : ∀ c a b, b < a → L c a b = 0) : -- --- CONCL ---
     ∑ c, ∑ a, ∑ b, β c * β a * β b * L c a b
       = ∑ x, ∑ y, ∑ z, (if x ≤ y ∧ y ≤ z then β x * β y * β z *
           (L x y z + (if x < z then L z x y else 0)
@@ -193,7 +193,7 @@ theorem Zonotope.aux_cubMap_expand (T : Fin m → Fin n → Mat ℝ n n) {N : �
 
 /-- The sorted triples as the center, the halved squares and the generators of `cubMap`. -/
 theorem Zonotope.aux_cubMap_assemble (h : ℕ) (β : Fin (h + 1) → ℝ) (hβ : β 0 = 1)
-    (F : Fin (h + 1) → Fin (h + 1) → Fin (h + 1) → ℝ) : -- --- STMT ---
+    (F : Fin (h + 1) → Fin (h + 1) → Fin (h + 1) → ℝ) : -- --- CONCL ---
     ∑ x, ∑ y, ∑ z, (if x ≤ y ∧ y ≤ z then β x * β y * β z * F x y z else 0)
       = (F 0 0 0 + 1 / 2 * ∑ y : Fin h, F 0 y.succ y.succ)
         + ∑ x, ∑ y, ∑ z, (if x = 0 ∧ y = z then 2 * β y ^ 2 - 1 else β x * β y * β z)
@@ -253,7 +253,7 @@ theorem Zonotope.aux_cubMap_fold (T : Fin m → Fin n → Mat ℝ n n) (Z : Zono
               (T i k *ᵥ Zext a))
             * Zext c k
         else 0)
-    (x y z : Fin (Z.h + 1)) : -- --- STMT ---
+    (x y z : Fin (Z.h + 1)) : -- --- CONCL ---
     Z.cubFold T i x y z
       = L x y z + (if x < z then L z x y else 0)
         + (if x < y ∧ y < z then L y x z else 0) := by -- --- PROOF ---
@@ -281,7 +281,7 @@ theorem Zonotope.aux_cubMap_fold (T : Fin m → Fin n → Mat ℝ n n) (Z : Zono
 /-- The cubic image of the point `c + Σ pⱼ g⁽ʲ⁾` is the center plus the generators of `Z.cubMap T`
 at coefficients in `[-1, 1]`, those of the linear generators `(0, 0, j)` being the `pⱼ`. -/
 theorem Zonotope.cubMap_coeff (T : Fin m → Fin n → Mat ℝ n n) (Z : Zonotope (Vec ℝ n))
-    (p : Fin Z.h → ℝ) (hp : ∀ j, |p j| ≤ 1) : -- --- STMT ---
+    (p : Fin Z.h → ℝ) (hp : ∀ j, |p j| ≤ 1) : -- --- CONCL ---
     ∃ γ : Fin (Z.cubMap T).h → ℝ, (∀ l, |γ l| ≤ 1)
       ∧ (∀ j : Fin Z.h,
           γ ((Zonotope.cubIdx (Z.h + 1) (Z.h + 1) (Z.h + 1)).symm ((0, 0), j.succ)) = p j)

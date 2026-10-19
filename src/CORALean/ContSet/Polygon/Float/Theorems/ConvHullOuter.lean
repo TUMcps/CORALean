@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Polygon.aux_convHullOfList_outer : -- --- STMT ---
+theorem Polygon.aux_convHullOfList_outer : -- --- CONCL ---
     ∀ ps : List (VPolytope (Vec 𝕋 2)),
       convexHull ℝ (⋃ p ∈ ps, VPolytope.construct p) ⊆
         (Polygon.convHullOfList ps).construct

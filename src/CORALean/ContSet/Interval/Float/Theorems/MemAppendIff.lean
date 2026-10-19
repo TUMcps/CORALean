@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 /-- A point of the appended stored box is one whose two blocks lie in the two boxes. -/
 theorem Interval.mem_append_iff (I₁ : Interval (Vec 𝕋 n₁)) (I₂ : Interval (Vec 𝕋 n₂))
-    (x : Vec ℝ (n₁ + n₂)) : -- --- STMT ---
+    (x : Vec ℝ (n₁ + n₂)) : -- --- CONCL ---
     x ∈ (I₁.append I₂).construct
       ↔ (fun k => x (Fin.castAdd n₂ k)) ∈ I₁.construct
         ∧ (fun k => x (Fin.natAdd n₁ k)) ∈ I₂.construct := by -- --- PROOF ---

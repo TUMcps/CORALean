@@ -37,7 +37,7 @@ open MeasureTheory
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.naive_vertex_sample_printed_counterexample : -- --- STMT ---
+theorem Zonotope.naive_vertex_sample_printed_counterexample : -- --- CONCL ---
     ∃ (Z : Zonotope (Vec ℝ 2)) (σ : Fin Z.h → Bool),
       coeffNorm (LinearMap.id : Vec ℝ 2 →ₗ[ℝ] Vec ℝ 2) (Z.corner σ - 0) ≤ 1 ∧
       0 < shenmaierProb Z.h 1 0 (1 - coeffNorm (LinearMap.id : Vec ℝ 2 →ₗ[ℝ] Vec ℝ 2)

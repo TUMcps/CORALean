@@ -26,7 +26,7 @@ namespace CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The `i`-th value is the one of the first breakpoint above `t`. -/
-theorem aux_value_getElem_eq_valueAt {T V : Type} [LinearOrder T] (t : T) : -- --- STMT ---
+theorem aux_value_getElem_eq_valueAt {T V : Type} [LinearOrder T] (t : T) : -- --- CONCL ---
     ∀ (time : List T) (value : List V), time.length = value.length →
       value[min (time.takeWhile (· ≤ t)).length (time.length - 1)]? =
         FiniteSignal.valueAt (time.zip value) t

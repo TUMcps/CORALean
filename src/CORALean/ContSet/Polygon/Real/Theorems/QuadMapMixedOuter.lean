@@ -29,7 +29,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.quadMapMixed_outer (P₁ P₂ : Polygon) (Q : Fin 2 → Mat ℝ 2 2) (splits : ℕ)
-    (pick : ℕ → PolyZonotope (Vec ℝ 2) → Bool) : -- --- STMT ---
+    (pick : ℕ → PolyZonotope (Vec ℝ 2) → Bool) : -- --- CONCL ---
     (fun x : Vec ℝ 2 × Vec ℝ 2 => PolyZonotope.quadBilin Q x.1 x.2)
         '' (ContSet.construct P₁ ×ˢ ContSet.construct P₂)
       ⊆ ContSet.construct (P₁.quadMapMixed P₂ Q splits pick) := by -- --- PROOF ---

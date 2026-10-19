@@ -12,6 +12,15 @@ splitting a point of `C.construct` into the segment point `c + t g` and the
 remainder, a point of the Euclidean ball of squared radius `C.r ^ 2`. Shared by
 `Convex.lean` and `IsCompact.lean`, both of which transfer their property from
 the two summands with `Convex.add`/`IsCompact.add`.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* `hr` – nonnegative radius
+
+## Conclusion
+* `C` is its axis segment plus the ball of radius `C.r`
 -/
 
 -- Authors:       Claude Opus 5

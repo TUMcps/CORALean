@@ -45,7 +45,7 @@ is at time `∫₀ᵗ g(y)`. -/
 theorem scaledSolution_unscale {f : X → X} {K : ℝ≥0} (hf : LipschitzWith K f) {g : X → ℝ}
     (hg : Continuous g) {y : ℝ → X} {t : ℝ} (ht : 0 ≤ t) (hy0 : ∀ u ∈ Icc 0 t, 0 ≤ g (y u))
     (hyc : ContinuousOn y (Icc 0 t))
-    (hyd : ∀ u ∈ Ico 0 t, HasDerivWithinAt y (g (y u) • f (y u)) (Ici u) u) : -- --- STMT ---
+    (hyd : ∀ u ∈ Ico 0 t, HasDerivWithinAt y (g (y u) • f (y u)) (Ici u) u) : -- --- CONCL ---
     ∃ γ : ℝ → X, γ 0 = y 0 ∧ (∀ u ∈ Icc 0 (∫ v in (0 : ℝ)..t, g (y v)),
       HasDerivAt γ (f (γ u)) u) ∧ γ (∫ v in (0 : ℝ)..t, g (y v)) = y t := by -- --- PROOF ---
   -- the speed `c`, clamped to `[0, t]` so that it is continuous on the line

@@ -45,7 +45,7 @@ namespace CORALean.Real
 theorem Zonotope.aux_oblique (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
     (h1 : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0))
     (h2 : ∀ i j : Fin Z.h, i < j → 0 ≤ Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0) (κ : ℝ)
-    {q : Vec ℝ 2} (hq : q ∈ Z.construct) (hnE : q ∉ Z.walkEdges) : -- --- STMT ---
+    {q : Vec ℝ 2} (hq : q ∈ Z.construct) (hnE : q ∉ Z.walkEdges) : -- --- CONCL ---
     ∃ t : ℝ, 0 < t ∧
       ∀ s : ℝ, |s| ≤ t → (![q 0 + κ * s, q 1 + s] : Vec ℝ 2) ∈ Z.construct := by -- --- PROOF ---
   -- the section of the sheared zonogon through `q`

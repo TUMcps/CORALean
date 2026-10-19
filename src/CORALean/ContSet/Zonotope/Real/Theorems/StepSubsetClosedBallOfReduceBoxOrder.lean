@@ -47,7 +47,7 @@ tolerance `ε` lands the step inside `‖A‖ * r + rU + ε`. -/
 theorem Zonotope.step_subset_closedBall_of_reduceBoxOrder (A : Mat ℝ n n) (hn : 0 < n)
     {Z U : Zonotope (Vec ℝ n)} {r rU ε : ℝ}
     (hZ : Z.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r)
-    (hU : U.construct ⊆ Metric.closedBall (0 : Vec ℝ n) rU) (hε : 0 ≤ ε) : -- --- STMT ---
+    (hU : U.construct ⊆ Metric.closedBall (0 : Vec ℝ n) rU) (hε : 0 ≤ ε) : -- --- CONCL ---
     (Zonotope.reduce (Zonotope.plus (Zonotope.mtimes A Z) U)
         (Zonotope.reduceBoxOrder (Zonotope.plus (Zonotope.mtimes A Z) U)
           (Metric.closedBall (0 : Vec ℝ n) ε))).construct

@@ -37,7 +37,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 theorem LinearSys.IsCanonicalTrajectory.aestronglyMeasurable_input_reflected {sys : LinearSys 𝕋 n}
     {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.IsCanonicalTrajectory T R₀ U x u)
         {c r : ℝ}
-    (hT : Set.Icc (c - r) c ⊆ T) : -- --- STMT ---
+    (hT : Set.Icc (c - r) c ⊆ T) : -- --- CONCL ---
     AEStronglyMeasurable (fun τ => u (c - τ)) (volume.restrict (Set.Ioc 0 r)) := by -- --- PROOF ---
   -- translate the window to `[0, r]`, then reflect it about `r`
   have hpre : (fun s : ℝ => s + (c - r)) ⁻¹' Set.Icc (c - r) c = Set.Icc 0 r := by

@@ -38,7 +38,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.zonotopeNorm_equiv_norm (Z : Zonotope (Vec ℝ n))
-    (hG : Function.Surjective Z.genMap) : -- --- STMT ---
+    (hG : Function.Surjective Z.genMap) : -- --- CONCL ---
     (∃ C₁ C₂ : ℝ, 0 < C₁ ∧ 0 < C₂ ∧
       ∀ x, C₁ * ‖x‖ ≤ Z.zonotopeNorm x ∧ Z.zonotopeNorm x ≤ C₂ * ‖x‖) ∧
       ConvexOn ℝ Set.univ Z.zonotopeNorm ∧ (∃ K, LipschitzWith K Z.zonotopeNorm) ∧

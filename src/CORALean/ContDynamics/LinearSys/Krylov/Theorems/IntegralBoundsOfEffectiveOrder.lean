@@ -54,7 +54,7 @@ says: `≤` when `ρ ≥ c`, `≥` when `ρ ≤ c`. -/
 theorem Krylov.aux_mul_rpow_neg_le {f f' : ℝ → ℝ} {T c : ℝ}
     (hf : ContinuousOn f (Set.Icc 0 T)) (hd : ∀ s ∈ Set.Ioo 0 T, HasDerivAt f (f' s) s)
     (hpos : ∀ s ∈ Set.Ioc 0 T, 0 < f s) {s t : ℝ} (hs : 0 < s) (hst : s ≤ t)
-    (ht : t ≤ T) : -- --- STMT ---
+    (ht : t ≤ T) : -- --- CONCL ---
     ((∀ x ∈ Set.Ioo 0 T, c ≤ f' x * x / f x) → f s * s ^ (-c) ≤ f t * t ^ (-c)) ∧
       ((∀ x ∈ Set.Ioo 0 T, f' x * x / f x ≤ c) →
         f t * t ^ (-c) ≤ f s * s ^ (-c)) := by -- --- PROOF ---
@@ -98,7 +98,7 @@ theorem Krylov.integral_bounds_of_effectiveOrder {f f' : ℝ → ℝ} {T m' : �
     (hf : ContinuousOn f (Set.Icc 0 T)) (hd : ∀ s ∈ Set.Ioo 0 T, HasDerivAt f (f' s) s)
     (hpos : ∀ s ∈ Set.Ioc 0 T, 0 < f s) (hm' : 1 ≤ m')
     (hρ : ∀ s ∈ Set.Ioo 0 T, m' ≤ f' s * s / f s ∧ f' s * s / f s ≤ (m : ℝ) - 1)
-    {t : ℝ} (ht : t ∈ Set.Ioc 0 T) : -- --- STMT ---
+    {t : ℝ} (ht : t ∈ Set.Ioc 0 T) : -- --- CONCL ---
     t / m * f t ≤ ∫ s in (0 : ℝ)..t, f s ∧ ∫ s in (0 : ℝ)..t, f s ≤ t / (m' + 1) * f t ∧
       t / (m' + 1) * f t ≤ t / 2 * f t := by -- --- PROOF ---
   obtain ⟨ht0, htT⟩ := ht

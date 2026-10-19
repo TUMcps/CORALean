@@ -47,7 +47,7 @@ theorem GNN.alg1Node_sound (R : Relaxation ℝ) (hR : R.Sound invSqrt) (A : Mat 
     (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) (L : ℕ) (c : ℕ → ℕ) (σ : ℕ → ℝ → ℝ)
     (W : ∀ s, Mat ℝ (c s) (c (s + 1))) (acts : ∀ s, GNN.ActLayer N (c (s + 1)))
     (hσ : ∀ s, (acts s).Sound (σ s)) (X : PolyZonotope (Mat ℝ N (c 0))) {x : Mat ℝ N (c 0)}
-    (hx : x ∈ X.construct) : -- --- STMT ---
+    (hx : x ∈ X.construct) : -- --- CONCL ---
     GNN.evalLayers (GNN.messagePassing (GNN.adjAt A U lam)) L c σ W x
       ∈ (GNN.alg1Node R A U L c W acts X).construct := by -- --- PROOF ---
   -- the input is a point of its dependent form, whose independent block is empty

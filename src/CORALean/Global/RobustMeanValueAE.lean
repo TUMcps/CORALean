@@ -58,7 +58,7 @@ theorem robustMeanValueAE_outer {f : (Fin p → ℝ) → (Fin q → ℝ) → ℝ
     (dwlo : Fin p → ℝ) (hw : ∀ i, ∀ w ∈ Icc loA hiA,
       dwlo i ≤ |fderiv ℝ (fun w => f w fun j => (loE j + hiE j) / 2) w (Pi.single i 1)|)
     (duhi : Fin q → ℝ) (hu : ∀ w ∈ Icc loA hiA, ∀ j, ∀ u ∈ Icc loE hiE,
-      |fderiv ℝ (f w) u (Pi.single j 1)| ≤ duhi j) : -- --- STMT ---
+      |fderiv ℝ (f w) u (Pi.single j 1)| ≤ duhi j) : -- --- CONCL ---
     robustRange f loA hiA loE hiE
       ⊆ Icc (f0lo - ∑ j, duhi j * ((hiE j - loE j) / 2) + ∑ i, dwlo i * ((hiA i - loA i) / 2))
         (f0hi + ∑ j, duhi j * ((hiE j - loE j) / 2)
@@ -89,7 +89,7 @@ theorem robustMeanValueAE_inner {f : (Fin p → ℝ) → (Fin q → ℝ) → ℝ
     (dwhi : Fin p → ℝ) (hw : ∀ i, ∀ w ∈ Icc loA hiA,
       |fderiv ℝ (fun w => f w fun j => (loE j + hiE j) / 2) w (Pi.single i 1)| ≤ dwhi i)
     (dulo : Fin q → ℝ) (hu : ∀ w ∈ Icc loA hiA, ∀ j, ∀ u ∈ Icc loE hiE,
-      dulo j ≤ |fderiv ℝ (f w) u (Pi.single j 1)|) : -- --- STMT ---
+      dulo j ≤ |fderiv ℝ (f w) u (Pi.single j 1)|) : -- --- CONCL ---
     Icc (f0hi - ∑ j, dulo j * ((hiE j - loE j) / 2) + ∑ i, dwhi i * ((hiA i - loA i) / 2))
         (f0lo + ∑ j, dulo j * ((hiE j - loE j) / 2) - ∑ i, dwhi i * ((hiA i - loA i) / 2))
       ⊆ robustRange f loA hiA loE hiE := by -- --- PROOF ---

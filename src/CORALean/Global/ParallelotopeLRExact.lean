@@ -104,7 +104,7 @@ theorem aux_norm_mulVec_le_rowSum (M : Matrix (Fin n) (Fin m) ℝ) {R : ℝ} (hR
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem parallelotope_lr_exact [NeZero n] (G : Matrix (Fin n) (Fin m) ℝ)
-    (H : Matrix (Fin n) (Fin n) ℝ) (hH : IsUnit H.det) : -- --- STMT ---
+    (H : Matrix (Fin n) (Fin n) ℝ) (hH : IsUnit H.det) : -- --- CONCL ---
     (∃ Y : Matrix (Fin n) (Fin m) ℝ, ∑ k, (⨆ j, |(Hᵀ * Y) k j|) ≤ 1 ∧
         (∀ Y' : Matrix (Fin n) (Fin m) ℝ, ∑ k, (⨆ j, |(Hᵀ * Y') k j|) ≤ 1 →
           trace (Gᵀ * Y') ≤ trace (Gᵀ * Y)) ∧

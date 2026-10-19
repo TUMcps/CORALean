@@ -47,7 +47,7 @@ theorem aux_reducedStepsFloat_row_step {c0 c1 : ℕ} (A : Mat ℝ N N) (v : Fin 
     (κ0 : Fin c0 → Fin N) (κ1 : Fin c1 → Fin N) (hinj : Function.Injective κ0)
     (hS : ∀ x ∈ Real.GNN.ball A v (r + 1), ∃ a, κ0 a = x) (X : Mat ℝ N F) (Y : Mat ℝ c0 F)
     (hY : ∀ a, κ0 a ∈ Real.GNN.ball A v (r + 1) → Y a = X (κ0 a)) (b : Fin c1)
-    (hb : κ1 b ∈ Real.GNN.ball A v r) : -- --- STMT ---
+    (hb : κ1 b ∈ Real.GNN.ball A v r) : -- --- CONCL ---
     (((Real.GNN.messagePassing A).submatrix κ1 κ0) * Y) b
       = (Real.GNN.messagePassing A * X) (κ1 b) := by -- --- PROOF ---
   funext g
@@ -65,7 +65,7 @@ theorem aux_reducedStepsFloat_row_step {c0 c1 : ℕ} (A : Mat ℝ N N) (v : Fin 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem GNN.reducedStepsFloat_outer (A : Mat ℝ N N) (P : Interval (Mat 𝕋 N N))
-    (hP : Real.GNN.messagePassing A ∈ P.construct) (v : Fin N) : -- --- STMT ---
+    (hP : Real.GNN.messagePassing A ∈ P.construct) (v : Fin N) : -- --- CONCL ---
     ∀ (L : ℕ) (c : ℕ → ℕ) (κ : (k : ℕ) → Fin (c k) → Fin N)
       (_ : ∀ k, Function.Injective (κ k))
       (_ : ∀ k ≤ L, ∀ x ∈ Real.GNN.ball A v (L - k), ∃ a, κ k a = x)

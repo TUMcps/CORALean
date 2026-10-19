@@ -32,7 +32,7 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Polygon.aux_intervalOfList_contains : -- --- STMT ---
+theorem Polygon.aux_intervalOfList_contains : -- --- CONCL ---
     ∀ ps : List (VPolytope (Vec ℝ 2)),
       (⋃ p ∈ ps, VPolytope.construct p) ⊆ (Polygon.intervalOfList ps).construct
   | [] => by simp

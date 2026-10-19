@@ -53,7 +53,7 @@ private theorem aux_reach_zero_eq (sys : NonlinearSysDT n m) {U : Zonotope (Vec 
 
 private theorem aux_reach_succ_eq (sys : NonlinearSysDT n m) {U : Zonotope (Vec ℝ m)} {o : ℕ}
     (ho : 0 < o) (steps : ℕ → sys.LinStep ℝ (S := 𝒵) U) (R₀ : Zonotope (Vec ℝ n))
-    (k : ℕ) : -- --- STMT ---
+    (k : ℕ) : -- --- CONCL ---
     sys.reach (S := 𝒵) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩ steps
       = (NonlinearSysDT.linearize (steps k).A).reach (S := 𝒵)
         ⟨sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps,

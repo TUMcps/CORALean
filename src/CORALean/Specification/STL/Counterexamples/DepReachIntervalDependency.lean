@@ -48,7 +48,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.depReachInterval_dependency_counterexample : -- --- STMT ---
+theorem STL.depReachInterval_dependency_counterexample : -- --- CONCL ---
     ¬ ∀ (n m : ℕ) (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ : Zonotope (Vec ℝ n))
       (U : Zonotope (Vec ℝ m)) (Δt : ℝ), 0 < Δt → ∀ (κ : ℕ) (α : ℕ → ℝ), (∀ k, |α k| ≤ 1) →
       ∀ (i : ℕ) (t : ℝ), i * Δt ≤ t → t ≤ (i + 1) * Δt →

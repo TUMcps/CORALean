@@ -40,7 +40,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.dist_point_eq_max (E : Ellipsoid n) (a : Vec ℝ n) : -- --- STMT ---
+theorem Ellipsoid.dist_point_eq_max (E : Ellipsoid n) (a : Vec ℝ n) : -- --- CONCL ---
     (a ∉ E.construct → ∃ d > 0, IsLeast ((fun x => ‖a - x‖₂) '' E.construct) d ∧
       IsGreatest {t | ∃ l : Vec ℝ n, ‖l‖₂ = 1 ∧
         t = l ⬝ᵥ a - l ⬝ᵥ E.q - √(l ⬝ᵥ (E.Q *ᵥ l))} d) ∧

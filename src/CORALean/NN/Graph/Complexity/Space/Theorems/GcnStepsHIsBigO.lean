@@ -48,7 +48,7 @@ variable {N F m : ℕ}
 collects the node count and the input set, the growth is the power of `m`. -/
 theorem aux_gcnSteps_h_le_pow (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (L : ℕ) (W : Fin L → Mat ℝ F F)
-    (X : PolyZonotope (Mat ℝ N F)) (hm : 1 ≤ m) : -- --- STMT ---
+    (X : PolyZonotope (Mat ℝ N F)) (hm : 1 ≤ m) : -- --- CONCL ---
     (GNN.gcnSteps ((GNN.messagePassingEnclosure R A U).padBack X.p) L W
         (X.padFront (GNN.messagePassingEnclosure R A U).p) rfl).h
       ≤ (((N + 2) * (N + 2) + 1) * (N + 2) + 2) ^ L * (X.h + 1) * m ^ (3 * L) := by -- --- PROOF ---
@@ -84,7 +84,7 @@ theorem aux_gcnSteps_h_le_pow (R : Relaxation ℝ) (A : Mat ℝ N N)
 graph are polynomial of degree `3L` in the number of uncertain edges. -/
 theorem GNN.gcnSteps_h_isBigO (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : ∀ m : ℕ, Fin m → Fin N × Fin N) (L : ℕ) (W : Fin L → Mat ℝ F F)
-    (X : PolyZonotope (Mat ℝ N F)) : -- --- STMT ---
+    (X : PolyZonotope (Mat ℝ N F)) : -- --- CONCL ---
     (fun m : ℕ => (((GNN.gcnSteps ((GNN.messagePassingEnclosure R A (U m)).padBack X.p) L W
         (X.padFront (GNN.messagePassingEnclosure R A (U m)).p) rfl).h : ℕ) : ℝ))
       =O[Filter.atTop] fun m : ℕ => (m : ℝ) ^ (3 * L) := by -- --- PROOF ---

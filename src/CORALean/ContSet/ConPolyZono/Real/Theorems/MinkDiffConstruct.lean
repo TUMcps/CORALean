@@ -55,7 +55,7 @@ theorem ConPolyZono.aux_mem_minkDiffStep (X : ConPolyZono (Vec ℝ n)) (g x : Ve
 
 /-- The fold over `m` generators tests the minuend at every corner `x + Σⱼ ±Gⱼ`. -/
 theorem ConPolyZono.aux_foldl_minkDiff {m : ℕ} (G : Fin m → Vec ℝ n)
-    (X : ConPolyZono (Vec ℝ n)) : -- --- STMT ---
+    (X : ConPolyZono (Vec ℝ n)) : -- --- CONCL ---
     (Fin.foldl m (fun cPZ i => (cPZ.plus (ConPolyZono.ofPoint (G i))).intersection
         (cPZ.plus (ConPolyZono.ofPoint (-G i)))) X).construct
       = {x | ∀ s : Fin m → Bool,

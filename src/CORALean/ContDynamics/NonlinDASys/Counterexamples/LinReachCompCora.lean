@@ -227,7 +227,7 @@ outside CORA's compositional time-point set, at every `Δt > 0`, Taylor order, `
 order, `Csub`, `Fsub`, `R_xyu` and subsystem-2 Hessian. -/
 theorem NonlinDASys.linReachCompCora_misses_counterexample {Δt : ℝ} (hΔt : 0 < Δt) (η o : ℕ)
     (F_inv : Mat ℝ 2 2) (Csub Fsub : Fin 2 → Mat ℝ 1 1) (R_xyu : Fin 2 → Zonotope (Vec ℝ 3))
-    (Hf₂ Hf₂' Hg₂ Hg₂' : Fin 1 → Mat ℝ 3 3) : -- --- STMT ---
+    (Hf₂ Hf₂' Hg₂ Hg₂' : Fin 1 → Mat ℝ 3 3) : -- --- CONCL ---
     let sys : NonlinDASys 2 2 1 :=
       ⟨fun _ y _ => y, fun x y _ => ![y 0 - y 1, y 1 - x 1 ^ 2], 2, fun x _ _ => x⟩
     let Rinit : Zonotope (Vec ℝ 2) := ⟨1, 0, fun _ => ![0, 1]⟩

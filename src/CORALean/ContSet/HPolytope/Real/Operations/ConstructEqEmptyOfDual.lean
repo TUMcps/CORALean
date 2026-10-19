@@ -33,7 +33,7 @@ returns instead of a solution. -/
 theorem HPolytope.construct_eq_empty_of_dual (P : HPolytope α)
     (y : Fin P.m → ℝ) (z : Fin P.me → ℝ) (hy : ∀ i, 0 ≤ y i)
     (h0 : ∀ x : α, (∑ i, y i * P.A i x) + ∑ i, z i * P.Ae i x = 0)
-    (hneg : (∑ i, y i * P.b i) + ∑ i, z i * P.be i < 0) : -- --- STMT ---
+    (hneg : (∑ i, y i * P.b i) + ∑ i, z i * P.be i < 0) : -- --- CONCL ---
     P.construct = ∅ := by -- --- PROOF ---
   rw [P.construct_eq_feasible]
   exact eq_empty_of_dual y z hy h0 hneg

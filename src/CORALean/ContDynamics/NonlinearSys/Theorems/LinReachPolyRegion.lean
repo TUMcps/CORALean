@@ -38,7 +38,8 @@ variable {n m : ℕ}
 theorem aux_abstrErrPolyCandidates_q (A : Mat ℝ n n) (xs : Vec ℝ n) (us : Vec ℝ m)
     (H : Fin n → Mat ℝ (n + m) (n + m)) (E : Fin n → Fin (n + m) → Mat ℝ (n + m) (n + m))
     (Δt : ℝ) (η errorOrder intermediateOrder : ℕ) (U : PolyZonotope (Vec ℝ m))
-    (Rinit Rdiff VerrorStat : PolyZonotope (Vec ℝ n)) (abstrerr : Vec ℝ n) (k : ℕ) : -- --- STMT ---
+    (Rinit Rdiff VerrorStat : PolyZonotope (Vec ℝ n)) (abstrerr : Vec ℝ n)
+    (k : ℕ) : -- --- CONCL ---
     (NonlinearSys.aux_abstrErrPolyCandidates A xs us H E Δt η errorOrder intermediateOrder U Rinit
       Rdiff VerrorStat abstrerr k).1.q = 0 := by -- --- PROOF ---
   induction k generalizing abstrerr with
@@ -56,7 +57,7 @@ theorem NonlinearSys.linReachPoly_region {sys : NonlinearSys n m} {U : PolyZonot
     {Δt : ℝ} {η errorOrder intermediateOrder : ℕ} {Rinit : PolyZonotope (Vec ℝ n)}
     {abstrerr : Vec ℝ n} {fuel : ℕ} {step : sys.LinStep (S := 𝒫𝒵) U}
     (h : sys.linReachPoly U A B xs us H E Δt η errorOrder intermediateOrder Rinit abstrerr fuel
-      = some step) : -- --- STMT ---
+      = some step) : -- --- CONCL ---
     step.A = A ∧ step.B = B ∧ step.xs = xs ∧ step.us = us ∧ ∃ k, step.R = (Rinit.dependent.plus
       (NonlinearSys.aux_abstrErrPolyCandidates A xs us H E Δt η errorOrder intermediateOrder U Rinit
         (((NonlinearSys.linearize A).deltaReach (S := 𝒫𝒵) Δt η Rinit).plus

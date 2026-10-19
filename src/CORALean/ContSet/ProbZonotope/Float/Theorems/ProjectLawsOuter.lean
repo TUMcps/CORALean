@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.project_laws_outer {m : ℕ} (P : ProbZonotope 𝕋 n)
-    (dims : Fin m → Fin n) : -- --- STMT ---
+    (dims : Fin m → Fin n) : -- --- CONCL ---
     (fun μ : Measure (EuclideanSpace ℝ (Fin n)) =>
         μ.map (fun x : EuclideanSpace ℝ (Fin n) =>
           (toLp 2 (fun k => ofLp x (dims k)) : EuclideanSpace ℝ (Fin m)))) '' P.laws

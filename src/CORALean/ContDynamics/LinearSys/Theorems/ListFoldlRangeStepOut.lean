@@ -28,7 +28,7 @@ namespace CORALean
 
 /-- `k` passes of a loop that steps its state and appends what the new state outputs. -/
 theorem foldl_range_step_out {σ β : Type} (step : σ → σ) (out : σ → β) (s₀ : σ)
-    (k : ℕ) : -- --- STMT ---
+    (k : ℕ) : -- --- CONCL ---
     (List.range k).foldl (fun (P : σ × List β) (_ : ℕ) => (step P.1, P.2 ++ [out (step P.1)]))
       (s₀, [out s₀])
       = (step^[k] s₀,

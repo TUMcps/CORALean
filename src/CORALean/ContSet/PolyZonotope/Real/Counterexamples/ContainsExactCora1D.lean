@@ -48,7 +48,7 @@ noncomputable def PolyZonotope.containsExactCora1D (pZ : PolyZonotope (Vec ℝ 1
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.containsExactCora1D_counterexample : -- --- STMT ---
+theorem PolyZonotope.containsExactCora1D_counterexample : -- --- CONCL ---
     PolyZonotope.containsExactCora1D
         (⟨1, 2, 0, 0, ![![1], ![1]], ![![1, 2]], Fin.elim0⟩ : PolyZonotope (Vec ℝ 1)) ![-1 / 2] ∧
       (![-1 / 2] : Vec ℝ 1) ∉

@@ -41,7 +41,7 @@ open Matrix MeasureTheory
 
 /-- [1, Sec. 4.3 (new reduction)]: `v(X̃) = 2ⁿ|det T| Πᵢ(1 + |rᵢ|)`. -/
 theorem Zonotope.reduceScott_parallelotope_volume {n : ℕ} (c : Vec ℝ n) (T : Mat ℝ n n)
-    (r : Vec ℝ n) : -- --- STMT ---
+    (r : Vec ℝ n) : -- --- CONCL ---
     volume (⟨n, c, fun i a => (T * diagonal fun k => 1 + |r k|) a i⟩
         : Zonotope (Vec ℝ n)).construct
       = ENNReal.ofReal (2 ^ n * |T.det| * ∏ i, (1 + |r i|)) := by -- --- PROOF ---

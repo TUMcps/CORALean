@@ -50,7 +50,7 @@ theorem dmd_eq3_counterexample :
     norm_num at this
 
 /-- [1, Eq. 13]: for the eigenvalue `0` the mode `Ũ w` is not an eigenvector of `Ā`. -/
-theorem dmd_zeroMode_counterexample : -- --- STMT ---
+theorem dmd_zeroMode_counterexample : -- --- CONCL ---
     ∃ (X2 : Mat ℝ 2 1) (V : Mat ℝ 2 1) (s : Fin 1 → ℝ) (W : Mat ℝ 1 1) (w : Fin 1 → ℝ),
       Vᵀ * V = 1 ∧ Wᵀ * W = 1 ∧ (∀ i, s i ≠ 0) ∧
       (Vᵀ * dmdCandidate X2 V s W 1 * V) *ᵥ w = (0 : ℝ) • w ∧

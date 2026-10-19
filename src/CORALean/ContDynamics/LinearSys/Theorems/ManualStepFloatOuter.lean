@@ -66,7 +66,7 @@ its window holds every run over `[t_k, t_{k+1}]`. -/
 theorem LinearSys.manualStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)} {Δt : 𝕋}
     {η ρ : ℕ} {s : LinearSys.ManualStateFloat 𝕋 n} (hΔt : 0 < toReal Δt)
     (hη : sys.OrderAdmissibleFloat Δt Δt η)
-    (hinv : sys.ManualInvariantFloat X₀ V s) : -- --- STMT ---
+    (hinv : sys.ManualInvariantFloat X₀ V s) : -- --- CONCL ---
     ∀ s' R, (s', R) ∈ sys.manualStepFloat X₀ V Δt η ρ s →
       sys.ManualInvariantFloat X₀ V s' ∧ (s'.t : ℝ) = s.t + toReal Δt ∧
         ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},

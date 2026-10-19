@@ -13,6 +13,16 @@ public import Mathlib.Algebra.Order.Chebyshev
 Cauchy–Schwarz, and the squares add up to the Frobenius norm. So the linear image of a point
 `c + t g + b` of the capsule is the segment point `M c + t (M g)` plus a remainder `M b` of
 length at most `‖M‖_F r`. Outer only: the image is a segment thickened by an ellipsoid.
+
+## Inputs
+* `M` – matrix
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image of `C` lies in `mtimes`
 -/
 
 -- Authors:       Claude Sonnet 5.5

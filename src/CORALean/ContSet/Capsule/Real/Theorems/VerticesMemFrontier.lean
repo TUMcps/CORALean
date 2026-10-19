@@ -7,15 +7,22 @@ public import CORALean.ContSet.Capsule.Real.Operations.Vertices
 /-!
 # The points `Capsule.vertices` returns lie on the boundary
 
-Every returned point is on the frontier of the capsule: points, not vertices (a capsule has
-none). A point `x = c + t₀ g + r u` on a half circle, `u` a unit direction with
-`(t₀ - t) (g · u) ≥ 0` for every `t ∈ [-1, 1]` (the half circle faces away from the segment), is at
-distance exactly `r`
-from the segment, attained at `t₀`; and `x + δ u` is at distance at least `r + δ` from every
-point of it, so it is outside, however small `δ > 0`. The first half circle has `t₀ = 1` and
-`g · u = ‖g‖ cos(a - θ) ≥ 0` for `a ∈ [θ - π/2, θ + π/2]`, the second `t₀ = -1` and
-`cos(a - θ) ≤ 0` for `a ∈ [θ + π/2, θ + 3π/2]`. Not claimed: that the points are
-the capsule's whole boundary, or that their hull is the capsule; the hull lies inside it.
+Every returned point is on the frontier: points, not vertices (a capsule has none). A point
+`x = c + t₀ g + r u` on a half circle, `u` a unit direction with `(t₀ - t) (g · u) ≥ 0` for every
+`t ∈ [-1, 1]` (the half circle faces away from the segment), is at distance exactly `r` from the
+segment, attained at `t₀`; and `x + δ u` is at distance at least `r + δ` from every point of it, so
+it is outside, however small `δ > 0`. The first half circle has `t₀ = 1`, the second `t₀ = -1`, and
+`g · u = ‖g‖ cos(a - θ)` has the right sign on each. Not claimed: that the points are the whole
+boundary.
+
+## Inputs
+* `C` – planar capsule
+
+## Hypotheses
+* `hr` – nonnegative radius
+
+## Conclusion
+* every vertex lies on the frontier of `C`
 -/
 
 -- Authors:       Claude Opus 5.5

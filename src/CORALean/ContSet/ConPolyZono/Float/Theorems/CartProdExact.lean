@@ -50,7 +50,7 @@ theorem PolyLevelSet.aux_nominalCore_cartProd (P₁ : PolyLevelSet 𝕋 n₁)
 
 theorem ConPolyZono.aux_realG_left (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
     (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂))
-    (l : Fin cPZ₁.h) : -- --- STMT ---
+    (l : Fin cPZ₁.h) : -- --- CONCL ---
     (Real.ConPolyZono.cartProd cPZ₁.nominalCore cPZ₂.nominalCore).G
       (Fin.castAdd cPZ₂.h l) = (cPZ₁.nominalCore.G l, 0) := by -- --- PROOF ---
   dsimp only [Real.ConPolyZono.cartProd]
@@ -58,7 +58,7 @@ theorem ConPolyZono.aux_realG_left (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
 
 theorem ConPolyZono.aux_realG_right (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
     (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂))
-    (l : Fin cPZ₂.h) : -- --- STMT ---
+    (l : Fin cPZ₂.h) : -- --- CONCL ---
     (Real.ConPolyZono.cartProd cPZ₁.nominalCore cPZ₂.nominalCore).G
       (Fin.natAdd cPZ₁.h l) = (0, cPZ₂.nominalCore.G l) := by -- --- PROOF ---
   dsimp only [Real.ConPolyZono.cartProd]
@@ -67,7 +67,7 @@ theorem ConPolyZono.aux_realG_right (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
 -- the same for the independent generators
 theorem ConPolyZono.aux_realGI_left (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
     (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂))
-    (l : Fin cPZ₁.qI) : -- --- STMT ---
+    (l : Fin cPZ₁.qI) : -- --- CONCL ---
     (Real.ConPolyZono.cartProd cPZ₁.nominalCore cPZ₂.nominalCore).GI
       (Fin.castAdd cPZ₂.qI l) = (cPZ₁.nominalCore.GI l, 0) := by -- --- PROOF ---
   dsimp only [Real.ConPolyZono.cartProd]
@@ -75,7 +75,7 @@ theorem ConPolyZono.aux_realGI_left (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
 
 theorem ConPolyZono.aux_realGI_right (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
     (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂))
-    (l : Fin cPZ₂.qI) : -- --- STMT ---
+    (l : Fin cPZ₂.qI) : -- --- CONCL ---
     (Real.ConPolyZono.cartProd cPZ₁.nominalCore cPZ₂.nominalCore).GI
       (Fin.natAdd cPZ₁.qI l) = (0, cPZ₂.nominalCore.GI l) := by -- --- PROOF ---
   dsimp only [Real.ConPolyZono.cartProd]
@@ -84,7 +84,7 @@ theorem ConPolyZono.aux_realGI_right (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
 /-- The nominal constrained polynomial zonotope of the product is the exact product of the
 read-back operands, relaxed by their slacks side by side, mapped through the append. -/
 theorem ConPolyZono.aux_nominal_cartProd (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
-    (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂)) : -- --- STMT ---
+    (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂)) : -- --- CONCL ---
     InflatedContSet.nominal (cPZ₁.cartProd cPZ₂) =
       Real.ConPolyZono.map (appendLinear n₁ n₂)
         ((Real.ConPolyZono.cartProd cPZ₁.nominalCore cPZ₂.nominalCore).relax

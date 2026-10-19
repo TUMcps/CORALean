@@ -49,7 +49,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 /-- The generators of `R(τ₀)` of the example: `(0, 1, 0, 0)`, read off the weighted sums. -/
 theorem STL.aux_interval_G (k : Fin (STL.depReach (0 : Mat ℝ 1 1) (1 : Mat ℝ 1 1)
     (⟨0, 0, Fin.elim0⟩ : Zonotope (Vec ℝ 1)) (⟨1, 0, fun _ => fun _ => 1⟩ : Zonotope (Vec ℝ 1))
-    1 1 0).2.h) : -- --- STMT ---
+    1 1 0).2.h) : -- --- CONCL ---
     (STL.depReach (0 : Mat ℝ 1 1) (1 : Mat ℝ 1 1) (⟨0, 0, Fin.elim0⟩ : Zonotope (Vec ℝ 1))
       (⟨1, 0, fun _ => fun _ => 1⟩ : Zonotope (Vec ℝ 1)) 1 1 0).2.G k
       = if (k : ℕ) = 1 then (fun _ => (1 : ℝ) : Vec ℝ 1) else 0 := by -- --- PROOF ---
@@ -88,7 +88,7 @@ theorem STL.aux_interval_h :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.unsafeFactors_interval_counterexample : -- --- STMT ---
+theorem STL.unsafeFactors_interval_counterexample : -- --- CONCL ---
     ¬ ∀ (n m : ℕ) (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ : Zonotope (Vec ℝ n))
       (U : Zonotope (Vec ℝ m)) (Δt : ℝ), 0 < Δt → ∀ (κ : ℕ) (α : ℕ → ℝ), (∀ k, |α k| ≤ 1) →
       ∀ (i : ℕ) (s : ℕ) (C : Matrix (Fin s) (Fin n) ℝ) (d : Fin s → ℝ) (h p : ℕ) (hp : h ≤ p),

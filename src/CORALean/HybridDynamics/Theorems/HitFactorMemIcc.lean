@@ -44,7 +44,7 @@ theorem GuardMap.hitFactor_mem_Icc (A : Mat ℝ n n) (b nv : Vec ℝ n) {R₀ : 
     (hR : Convex ℝ R₀) {φlo φhi : ℝ} (hΛ : ∀ x ∈ R₀, nv ⬝ᵥ (A *ᵥ x + b) ≠ 0)
     (hφ : ∀ x ∈ R₀, φlo ≤ 1 / (nv ⬝ᵥ (A *ᵥ x + b)) ^ 2 ∧
       1 / (nv ⬝ᵥ (A *ᵥ x + b)) ^ 2 ≤ φhi)
-    {ξ x₀ : Vec ℝ n} (hξ : ξ ∈ R₀) (hx₀ : x₀ ∈ R₀) : -- --- STMT ---
+    {ξ x₀ : Vec ℝ n} (hξ : ξ ∈ R₀) (hx₀ : x₀ ∈ R₀) : -- --- CONCL ---
     φlo ≤ 1 / ((nv ⬝ᵥ (A *ᵥ ξ + b)) * (nv ⬝ᵥ (A *ᵥ x₀ + b))) ∧
       1 / ((nv ⬝ᵥ (A *ᵥ ξ + b)) * (nv ⬝ᵥ (A *ᵥ x₀ + b))) ≤ φhi := by -- --- PROOF ---
   -- same sign: else `Λ` vanishes on the segment, which lies in the convex `R(0)`

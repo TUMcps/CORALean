@@ -41,7 +41,7 @@ variable {n : ℕ}
 
 /-- The halves of a split bundle meet in `Z_∩` cut with `Ψ`, its `j`-th generator set to `0`. -/
 theorem ZonoBundle.split_inter (Λ : Mat ℝ n n) (B : Interval (Vec ℝ n)) (j : Fin n)
-    (zB : ZonoBundle (Vec ℝ n)) : -- --- STMT ---
+    (zB : ZonoBundle (Vec ℝ n)) : -- --- CONCL ---
     (zB.split Λ B j).fst.construct ∩ (zB.split Λ B j).snd.construct = zB.construct ∩
       ({ZonoBundle.parallelotope Λ B with G := Function.update (ZonoBundle.parallelotope Λ B).G j 0}
         : Zonotope (Vec ℝ n)).construct := by -- --- PROOF ---

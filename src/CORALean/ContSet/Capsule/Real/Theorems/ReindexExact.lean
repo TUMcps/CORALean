@@ -11,6 +11,18 @@ public import CORALean.ContSet.ContSet.ContSet
 The Euclidean distance is a sum over all coordinates, and a relabelling of the index permutes the
 summands, so the relabelled capsule denotes precisely the image of the original under
 `reindexLin e`. An equality, as `Reindex` asks.
+
+## Inputs
+* `n` – source dimension
+* `m` – target dimension
+* `e` – index bijection
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* `reindex` is the exact image
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,16 @@ public import Mathlib.Analysis.Normed.Field.Basic
 
 The converse to `mem_ofPoint`: a radius of `0` pins the squared distance to the
 segment to `0`, and the segment of direction `0` is the point itself.
+
+## Inputs
+* `v` – the point
+* `x` – candidate
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x ∈ ofPoint v` iff `x = v`
 -/
 
 -- Authors:       Claude Opus 5.5

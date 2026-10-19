@@ -86,7 +86,7 @@ theorem Location.IsTrajectory.reachGuard_outer [∀ n, Intersection (G n) (Vec �
       (construct Ps[i] ∩ construct g).Nonempty →
         (intersectionTimes Ps g).1 ≤ i ∧ i ≤ (intersectionTimes Ps g).2)
     {generatorConv : List (G n) → S n}
-    (hG : ∀ Ps, ∀ P ∈ Ps, construct P ⊆ construct (generatorConv Ps)) : -- --- STMT ---
+    (hG : ∀ Ps, ∀ P ∈ Ps, construct P ⊆ construct (generatorConv Ps)) : -- --- CONCL ---
     let out := ℓ.reachGuard e reach halfspaceConv isEmpty intersectionTimes generatorConv N
     (∀ t ∈ Set.Icc 0 τ, t < out.1.length * r → (∃ P ∈ out.1, x t ∈ construct P) ∧
       (x t ∈ construct e.guard → x t ∈ construct out.2)) ∧

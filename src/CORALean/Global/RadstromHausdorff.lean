@@ -60,7 +60,7 @@ theorem aux_infEDist_add_le {a x : α} {B X : Set α} (hx : x ∈ X) :
 theorem aux_infEDist_le_of_hausdorffEDist_add_lt {A B X : Set α} (hAconv : Convex ℝ A)
     (hAcl : ∀ r : ℝ, 0 ≤ r → IsClosed (A + Metric.closedBall (0 : α) r))
     (hX : X.Nonempty) (hXb : Bornology.IsBounded X) {c : ENNReal} (hct : c ≠ ⊤)
-    (hc : hausdorffEDist (B + X) (A + X) < c) : -- --- STMT ---
+    (hc : hausdorffEDist (B + X) (A + X) < c) : -- --- CONCL ---
     ∀ b ∈ B, infEDist b A ≤ c := by -- --- PROOF ---
   set r := c.toReal with hr
   have hr0 : 0 ≤ r := ENNReal.toReal_nonneg
@@ -93,7 +93,7 @@ closed thickenings leaves their Hausdorff distance unchanged. -/
 theorem hausdorffEDist_add_eq {A B X : Set α} (hAconv : Convex ℝ A) (hBconv : Convex ℝ B)
     (hAcl : ∀ r : ℝ, 0 ≤ r → IsClosed (A + Metric.closedBall (0 : α) r))
     (hBcl : ∀ r : ℝ, 0 ≤ r → IsClosed (B + Metric.closedBall (0 : α) r))
-    (hX : X.Nonempty) (hXb : Bornology.IsBounded X) : -- --- STMT ---
+    (hX : X.Nonempty) (hXb : Bornology.IsBounded X) : -- --- CONCL ---
     hausdorffEDist (A + X) (B + X) = hausdorffEDist A B := by -- --- PROOF ---
   refine le_antisymm ?_ ?_
   -- adding `X` moves each point of either sum no further than its summand was

@@ -35,7 +35,7 @@ variable {p₁ p₂ : ℕ}
 
 /-- Each operand's rows at its own factors, the right-hand sides weighted by `(1 ± α₁) / 2`. -/
 theorem ConPolyZono.eval_unionLower (P₁ : PolyLevelSet p₁) (P₂ : PolyLevelSet p₂)
-    (a : Fin (p₁ + p₂ + 2) → ℝ) : -- --- STMT ---
+    (a : Fin (p₁ + p₂ + 2) → ℝ) : -- --- CONCL ---
     (ConPolyZono.unionLower P₁ P₂).eval a = Fin.append
       (fun i => (P₁.A *ᵥ PolyZonotope.monomial P₁.R fun k => a (Fin.castAdd 2 (Fin.castAdd p₂ k))) i
         - 2⁻¹ * (1 + a (ConPolyZono.unionSel p₁ p₂)) * P₁.b i)

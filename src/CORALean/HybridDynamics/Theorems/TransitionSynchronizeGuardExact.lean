@@ -57,7 +57,7 @@ theorem aux_isZeroVec_append {k l : ℕ} {u : Vec 𝕋 k} {v : Vec 𝕋 l}
 theorem aux_synchronizeGuard_fold_eq
     (h0 : HPolytope.eqScalar (FloatOps.zero : 𝕋) FloatOps.zero = true)
     (g : Fin q → HPolytope 𝕋 (Vec 𝕋 n)) (hg : ∀ i, (g i).isErrFree = true) (l : List (Fin q))
-    (P : HPolytope 𝕋 (Vec 𝕋 n)) (hP : P.isErrFree = true) : -- --- STMT ---
+    (P : HPolytope 𝕋 (Vec 𝕋 n)) (hP : P.isErrFree = true) : -- --- CONCL ---
     (l.foldl (fun guard i => HPolytope.intersection guard (g i)) P).construct =
       P.construct ∩ ⋂ i ∈ l, (g i).construct := by -- --- PROOF ---
   induction l generalizing P with

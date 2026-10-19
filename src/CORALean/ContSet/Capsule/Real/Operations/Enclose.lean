@@ -11,6 +11,14 @@ public import CORALean.ContSet.Capsule.Real.Operations.Mtimes
 CORA's `@capsule/enclose.m` with a matrix: `C2 = M * Cplus`, then `convHull(C, C2)`. Read as
 printed: the header documents `C2 = M*C + Cplus`, but the code multiplies `Cplus` and adds
 nothing (see `Capsule.enclose_cora_counterexample`); `ContSet.enclose` is the documented set.
+
+## Inputs
+* `C` – capsule
+* `M` – matrix
+* `Cplus` – capsule mapped by `M`
+
+## Output
+* capsule enclosing `C` and `M * Cplus`
 -/
 
 -- Authors:       Claude Opus 5.5

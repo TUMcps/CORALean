@@ -40,7 +40,7 @@ variable {E₁ E₂ V : Type} [NormedAddCommGroup E₁] [NormedSpace ℝ E₁] [
 theorem shenmaierHalfspace_eq_none_not_subset (G : E₁ →ₗ[ℝ] V) (c : V) (H : E₂ →ₗ[ℝ] V)
     (d : V) {N : ℕ} (hN : 0 < N) (z : Fin N → V →L[ℝ] ℝ)
     (hz : ∀ i, ‖(z i).comp (LinearMap.toContinuousLinearMap H)‖ ≤ 1) (ϑ : ℝ)
-    (h : shenmaierHalfspace G c d hN z ϑ = none) : -- --- STMT ---
+    (h : shenmaierHalfspace G c d hN z ϑ = none) : -- --- CONCL ---
     ¬ {x | ∃ α : E₁, ‖α‖ ≤ 1 ∧ x = c + G α} ⊆
       {x | ∃ β : E₂, ‖β‖ ≤ 1 ∧ x = d + H β} := by -- --- PROOF ---
   have hgt : shenmaierHalfspaceValue G c d hN z > 1 := by

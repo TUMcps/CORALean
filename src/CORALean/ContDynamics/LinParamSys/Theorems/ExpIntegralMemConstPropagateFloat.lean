@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem LinParamSys.expIntegral_mem_constPropagateFloat
     (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋} {η : ℕ} (ρ : ℕ)
     (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) {A : Mat ℝ n n}
-    (hA : A ∈ sys.A.construct) (uc : Vec 𝕋 n) (k : ℕ) : -- --- STMT ---
+    (hA : A ∈ sys.A.construct) (uc : Vec 𝕋 n) (k : ℕ) : -- --- CONCL ---
     Real.MatExp.expIntegral A ((k : ℝ) * toReal Δt) *ᵥ Scalar.toRealVec uc
       ∈ (sys.constPropagateFloat Δt η ρ uc k).construct := by -- --- PROOF ---
   induction k with

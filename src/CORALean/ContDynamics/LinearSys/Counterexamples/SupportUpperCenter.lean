@@ -47,7 +47,7 @@ open Matrix ContSet Scalar NormedSpace
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.supportUpper_center_counterexample : -- --- STMT ---
+theorem LinearSys.supportUpper_center_counterexample : -- --- CONCL ---
     let sys : LinearSys ℝ 3 := LinearSys.canonical 0
     let U : Set (Vec ℝ 3) := convexHull ℝ
       {![-3, -3, -3], ![-2, -3, -3], ![-3, -2, -3], ![-3, -3, -2]}

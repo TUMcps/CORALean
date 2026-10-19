@@ -45,7 +45,7 @@ variable {m : ℕ}
 from the center of that coordinate by at least `d rⱼ`, for every position of the others. -/
 theorem exists_coord_ends_gain {f : (Fin m → ℝ) → ℝ} (hf : ContDiff ℝ 1 f) {lo hi : Fin m → ℝ}
     (hlh : lo ≤ hi) (j : Fin m) (d : ℝ)
-    (hd : ∀ y ∈ Icc lo hi, d ≤ |fderiv ℝ f y (Pi.single j 1)|) : -- --- STMT ---
+    (hd : ∀ y ∈ Icc lo hi, d ≤ |fderiv ℝ f y (Pi.single j 1)|) : -- --- CONCL ---
     ∃ a ∈ Icc (lo j) (hi j), ∃ b ∈ Icc (lo j) (hi j),
       (∀ p ∈ Icc lo hi, f (Function.update p j ((lo j + hi j) / 2)) + d * ((hi j - lo j) / 2)
         ≤ f (Function.update p j b)) ∧

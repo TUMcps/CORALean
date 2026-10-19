@@ -60,7 +60,7 @@ upper side of the float step, at `r > 0` and an admissible order. -/
 theorem LinearSys.timePointStepInputFloat_subset_add_excess (sys : LinearSys 𝕋 n) {r : 𝕋}
     (hr : 0 < toReal r) {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) {X U : Zonotope (Vec 𝕋 n)}
     (hX : (0 : Vec ℝ n) ∈ X.I_error.construct)
-    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) : -- --- STMT ---
+    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) : -- --- CONCL ---
     (sys.timePointStepInputFloat r η X U).construct
       ⊆ (exp (toReal r • Scalar.toRealMat sys.A) *ᵥ ·) '' X.construct
         + (Real.Zonotope.mtimes (Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal r))

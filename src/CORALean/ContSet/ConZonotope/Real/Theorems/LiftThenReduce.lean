@@ -38,7 +38,7 @@ theorem ConZonotope.lift_then_reduce_outer {n m h h' : ℕ} (c : Vec ℝ n)
     (G : Fin h → Vec ℝ n) (A : Mat ℝ (m + 0) h) (b : Vec ℝ (m + 0))
     (G' : Fin h' → Vec ℝ n) (A' : Mat ℝ (m + 0) h')
     (hlift : (ConZonotope.lift (m₂ := 0) c G A b).construct
-      ⊆ (ConZonotope.lift (m₂ := 0) c G' A' b).construct) : -- --- STMT ---
+      ⊆ (ConZonotope.lift (m₂ := 0) c G' A' b).construct) : -- --- CONCL ---
     (ConZonotope.ofMat c G A b).construct ⊆ (ConZonotope.ofMat c G' A' b).construct :=
   fun _ hz =>
     (ConZonotope.mem_iff_append_mem_lift (m₂ := 0) c G' A' b _).mpr

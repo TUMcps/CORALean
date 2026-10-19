@@ -51,7 +51,7 @@ theorem Krylov.error_le_integral_delta (A : Mat ℂ n n) (V : Mat ℂ n (m + 1))
     (T : Mat ℂ (m + 1) (m + 1)) (τ σ : ℂ) (w : Fin n → ℂ)
     (hK : A * V = V * T + τ • vecMulVec w (Pi.single (Fin.last m) 1))
     (hA : ∀ x : Fin n → ℂ, (star x ⬝ᵥ ((σ • A) *ᵥ x)).re ≤ 0) (hσ : ‖σ‖ = 1) {t : ℝ}
-    (ht : 0 ≤ t) : -- --- STMT ---
+    (ht : 0 ≤ t) : -- --- CONCL ---
     let v := V *ᵥ Pi.single 0 1
     let δ : ℝ → ℂ := fun s => exp (s • (σ • T)) (Fin.last m) 0
     ‖(WithLp.toLp 2 (exp (t • (σ • A)) *ᵥ v - V *ᵥ (exp (t • (σ • T)) *ᵥ Pi.single 0 1)) :

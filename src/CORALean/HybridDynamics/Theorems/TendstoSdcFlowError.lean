@@ -52,7 +52,7 @@ variable {n : ℕ}
 
 /-- From `η = 1` on, the flow at `t` is the two truncated series applied. -/
 theorem GuardMap.aux_sdcFlow_eq (A : Mat ℝ n n) (x₀ uc : Vec ℝ n) (t : ℝ) {η : ℕ}
-    (hη : 1 ≤ η) : -- --- STMT ---
+    (hη : 1 ≤ η) : -- --- CONCL ---
     GuardMap.sdcFlow A (GuardMap.sdcInput A uc t η x₀) x₀ t
       = (∑ i ∈ Finset.range (η + 1), (((i.factorial : ℝ))⁻¹ * t ^ i) • A ^ i) *ᵥ x₀
         + (∑ i ∈ Finset.range (η + 1),

@@ -63,7 +63,7 @@ theorem NonlinearSys.minkowskiDiff_add_subset_reachSetExact (sys : NonlinearSys 
       x t ∈ Ω ∧ HasDerivWithinAt x (sys.f (x t) u₀) (Set.Icc 0 Δt) t)
     (herr : ∀ x₀ ∈ construct R₀, ∀ x : ℝ → Vec ℝ n, x 0 = x₀ →
       (∀ t ∈ Set.Icc 0 Δt, HasDerivWithinAt x (sys.f (x t) u₀) (Set.Icc 0 Δt) t) →
-      x Δt - (M *ᵥ x₀ + v) ∈ E) : -- --- STMT ---
+      x Δt - (M *ᵥ x₀ + v) ∈ E) : -- --- CONCL ---
     (fun s => s + (2 : ℝ) • c) '' minkowskiDiff ((fun x₀ => M *ᵥ x₀ + v) '' construct R₀) E
       ⊆ sys.reachSetExact (Set.Icc 0 Δt) R₀ U Δt := by -- --- PROOF ---
   classical

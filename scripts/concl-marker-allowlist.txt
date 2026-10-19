@@ -1,6 +1,6 @@
-# Theorems with a signature of five lines or more, whose `-- --- STMT ---` marker the tree-wide
+# Theorems with a signature of five lines or more, whose `-- --- CONCL ---` marker the tree-wide
 # pass could not place: the line that closes the binders with `:` has no room for the marker
-# (CONTRIBUTING, "The statement marker"). `path::name`, one per line.
+# (CONTRIBUTING, "The conclusion marker"). `path::name`, one per line.
 #
 # The list only shrinks: wrap the statement so the colon line has room, add the marker, and delete
 # the line. An entry whose theorem carries the marker, or is gone, is reported as stale.

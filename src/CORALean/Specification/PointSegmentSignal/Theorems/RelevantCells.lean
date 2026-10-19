@@ -36,7 +36,7 @@ namespace CORALean
 theorem PointSegmentSignal.relevant_cells {T : Type} [LinearOrder T] [Zero T] [DenselyOrdered T]
     [NoMaxOrder T] (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (ub : WithTop T)
     (lc rc : Bool) (h0 : 0 ≤ lb) (hne : STLInterval.emptyBounds lb ub lc rc = false)
-    (m : ℕ) : -- --- STMT ---
+    (m : ℕ) : -- --- CONCL ---
     (s.relevantStart lb lc - 1 ≤ m ∧ m < s.relevantStop ub rc ∧ m < s.values.length) ↔
       ∃ t : T, STLInterval.memBounds lb ub lc rc t ∧ s.cell t = m := by -- --- PROOF ---
   -- the interval is not empty: `lb ≤ ub`, and a single point is closed on both sides

@@ -74,7 +74,7 @@ theorem aux_lowOrder_diag_add {V : Type} [AddCommGroup V] (f : Fin k → Fin k �
 
 /-- The flow's orders up to `A²`, at `A = A_c + G` and `u = U_c + w`, split by degree in
 `(G, w)`. -/
-theorem aux_lowOrder_split (Ac G : Mat ℝ n n) (c Uc w : Vec ℝ n) (r : ℝ) : -- --- STMT ---
+theorem aux_lowOrder_split (Ac G : Mat ℝ n n) (c Uc w : Vec ℝ n) (r : ℝ) : -- --- CONCL ---
     c + r • ((Ac + G) *ᵥ c) + (r ^ 2 / 2) • ((Ac + G) *ᵥ ((Ac + G) *ᵥ c))
       + (r • (Uc + w) + (r ^ 2 / 2) • ((Ac + G) *ᵥ (Uc + w))
         + (r ^ 3 / 6) • ((Ac + G) *ᵥ ((Ac + G) *ᵥ (Uc + w))))
@@ -92,7 +92,7 @@ theorem aux_lowOrder_split (Ac G : Mat ℝ n n) (c Uc w : Vec ℝ n) (r : ℝ) :
 /-- The first-degree part, generator by generator. -/
 theorem aux_lowOrder_first (Ac : Mat ℝ n n) (Ag : Fin k → Mat ℝ n n) (c Uc : Vec ℝ n)
     (UG : Fin k → Vec ℝ n) (r : ℝ) (p : Fin k → ℝ) {G : Mat ℝ n n} {w : Vec ℝ n}
-    (hG : ∀ v, G *ᵥ v = ∑ i, p i • (Ag i *ᵥ v)) (hw : w = ∑ i, p i • UG i) : -- --- STMT ---
+    (hG : ∀ v, G *ᵥ v = ∑ i, p i • (Ag i *ᵥ v)) (hw : w = ∑ i, p i • UG i) : -- --- CONCL ---
     r • (G *ᵥ c) + (r ^ 2 / 2) • (Ac *ᵥ (G *ᵥ c) + G *ᵥ (Ac *ᵥ c))
         + (r ^ 2 / 2) • (G *ᵥ Uc) + (r ^ 3 / 6) • (Ac *ᵥ (G *ᵥ Uc) + G *ᵥ (Ac *ᵥ Uc))
         + r • w + (r ^ 2 / 2) • (Ac *ᵥ w) + (r ^ 3 / 6) • (Ac *ᵥ (Ac *ᵥ w))
@@ -108,7 +108,7 @@ theorem aux_lowOrder_first (Ac : Mat ℝ n n) (Ag : Fin k → Mat ℝ n n) (c Uc
 /-- The second-degree part, over all ordered pairs. -/
 theorem aux_lowOrder_second (Ac : Mat ℝ n n) (Ag : Fin k → Mat ℝ n n) (c Uc : Vec ℝ n)
     (UG : Fin k → Vec ℝ n) (r : ℝ) (p : Fin k → ℝ) {G : Mat ℝ n n} {w : Vec ℝ n}
-    (hG : ∀ v, G *ᵥ v = ∑ i, p i • (Ag i *ᵥ v)) (hw : w = ∑ i, p i • UG i) : -- --- STMT ---
+    (hG : ∀ v, G *ᵥ v = ∑ i, p i • (Ag i *ᵥ v)) (hw : w = ∑ i, p i • UG i) : -- --- CONCL ---
     (r ^ 2 / 2) • (G *ᵥ (G *ᵥ c)) + (r ^ 3 / 6) • (G *ᵥ (G *ᵥ Uc))
         + (r ^ 2 / 2) • (G *ᵥ w) + (r ^ 3 / 6) • (Ac *ᵥ (G *ᵥ w) + G *ᵥ (Ac *ᵥ w))
       = ∑ i, ∑ j, (p i * p j) • ((r ^ 2 / 2) • (Ag i *ᵥ (Ag j *ᵥ c))
@@ -122,7 +122,7 @@ theorem aux_lowOrder_second (Ac : Mat ℝ n n) (Ag : Fin k → Mat ℝ n n) (c U
 /-- The third-degree part, over all ordered triples. -/
 theorem aux_lowOrder_third (Ag : Fin k → Mat ℝ n n) (UG : Fin k → Vec ℝ n) (r : ℝ)
     (p : Fin k → ℝ) {G : Mat ℝ n n} {w : Vec ℝ n}
-    (hG : ∀ v, G *ᵥ v = ∑ i, p i • (Ag i *ᵥ v)) (hw : w = ∑ i, p i • UG i) : -- --- STMT ---
+    (hG : ∀ v, G *ᵥ v = ∑ i, p i • (Ag i *ᵥ v)) (hw : w = ∑ i, p i • UG i) : -- --- CONCL ---
     (r ^ 3 / 6) • (G *ᵥ (G *ᵥ w))
       = ∑ t : Fin k × Fin k × Fin k,
           (p t.1 * p t.2.1 * p t.2.2) •
@@ -157,7 +157,7 @@ theorem aux_lowOrder_regroup {V : Type} [AddCommGroup V] (a b c d e f : V) :
 the system matrix and the input, lie in the corrected `R_lowOrder`. -/
 theorem LinParamSys.mem_dependentLowOrder (Ac : Mat ℝ n n) (Ag : Fin k → Mat ℝ n n)
     (c Uc : Vec ℝ n) (UG : Fin k → Vec ℝ n) (r : ℝ) {p : Fin k → ℝ}
-    (hp : ∀ i, |p i| ≤ 1) : -- --- STMT ---
+    (hp : ∀ i, |p i| ≤ 1) : -- --- CONCL ---
     let A := Ac + ∑ i, p i • Ag i
     let u := Uc + ∑ i, p i • UG i
     c + r • (A *ᵥ c) + (r ^ 2 / 2) • (A *ᵥ (A *ᵥ c))

@@ -60,7 +60,7 @@ theorem aux_hull_subset_intervalInputTerm (sys : LinParamSys ℐ[𝕋] n)
     (htr : t ≤ toReal r) (k : ℕ) {y : Vec ℝ n}
     (hy : y ∈ (t ^ (k + 1) / (Nat.factorial (k + 1) : ℝ)) • closure (convexHull ℝ
       {z | ∃ N ∈ (Real.Interval.matPow sys.A.nominal k).construct, ∃ v ∈ construct U,
-        z = N *ᵥ v})) : -- --- STMT ---
+        z = N *ᵥ v})) : -- --- CONCL ---
     y ∈ construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
     (S := 𝒵[𝕋])
       (MatExp.intervalInputTerm sys.A r k) U) := by -- --- PROOF ---
@@ -114,7 +114,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalStepFloat_outer_inputSolut
     (hΔt : 0 < toReal Δt)
     (hT : Set.Icc 0 (toReal Δt) ⊆ T)
     (hη : sys.OrderAdmissibleFloat Δt Δt η) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ toReal Δt)
-    (h0 : (0 : Vec ℝ n) ∈ construct U) : -- --- STMT ---
+    (h0 : (0 : Vec ℝ n) ∈ construct U) : -- --- CONCL ---
     x t ∈ construct (Plus.plus (sys.timeIntervalStepFloat Δt η R₀)
       (sys.inputSolutionFloat Δt η U)) := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le' hη.1

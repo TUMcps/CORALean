@@ -49,7 +49,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.inputLaws_add (sys : LinearSys 𝕋 n) (C : Mat ℝ n m) {U : S n} {a b : ℝ}
-    (ha : 0 ≤ a) (hb : 0 ≤ b) (hbdd : Bornology.IsBounded (construct U)) : -- --- STMT ---
+    (ha : 0 ≤ a) (hb : 0 ≤ b) (hbdd : Bornology.IsBounded (construct U)) : -- --- CONCL ---
     sys.inputLaws C U (a + b)
       = {ν | ∃ ν₁ ∈ sys.inputLaws C U a, ∃ ν₂ ∈ sys.inputLaws C U b,
           ν = (ν₁.map fun x => toLp 2 (exp (b • toRealMat sys.A) *ᵥ ofLp x))

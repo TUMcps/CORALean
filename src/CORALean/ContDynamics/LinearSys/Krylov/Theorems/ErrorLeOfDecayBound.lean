@@ -49,7 +49,7 @@ theorem Krylov.error_le_of_decay_bound (A : Mat ℂ n n) (V : Mat ℂ n (m + 1))
     (hA : ∀ x : Fin n → ℂ, ν * (star x ⬝ᵥ x).re ≤ (star x ⬝ᵥ (A *ᵥ x)).re) {t : ℝ}
     (ht : 0 ≤ t) (C z : ℝ) (hz : z ≤ ν)
     (hdec : ∀ s ∈ Set.Icc (0 : ℝ) t,
-      ‖exp (s • (-T)) (Fin.last m) 0‖ ≤ C * Real.exp (-(s * z))) : -- --- STMT ---
+      ‖exp (s • (-T)) (Fin.last m) 0‖ ≤ C * Real.exp (-(s * z))) : -- --- CONCL ---
     let v := V *ᵥ Pi.single 0 1
     ‖(WithLp.toLp 2 (exp (t • (-A)) *ᵥ v - V *ᵥ (exp (t • (-T)) *ᵥ Pi.single 0 1)) :
         EuclideanSpace ℂ (Fin n))‖ ≤

@@ -59,7 +59,7 @@ theorem LinearSys.aux_inputTerm_eq (sys : LinearSys 𝕋 n) (Δt : ℝ) (i : ℕ
 
 /-- One point of `U` held over every summand at once. -/
 theorem LinearSys.aux_sum_mulVec_mem (sys : LinearSys 𝕋 n) {U : S n} (Δt : ℝ)
-    {s : Vec ℝ n} (hs : s ∈ construct U) (m : ℕ) : -- --- STMT ---
+    {s : Vec ℝ n} (hs : s ∈ construct U) (m : ℕ) : -- --- CONCL ---
     (∑ i ∈ Finset.range m, sys.inputTerm Δt i) *ᵥ s
       ∈ ∑ i ∈ Finset.range m,
         (fun v => sys.inputTerm Δt i *ᵥ v) '' construct U := by -- --- PROOF ---

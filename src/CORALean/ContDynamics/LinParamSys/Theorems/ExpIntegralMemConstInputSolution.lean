@@ -60,7 +60,7 @@ theorem LinParamSys.expIntegral_mem_constInputSolution (sys : LinParamSys ℐ n)
     {r : ℝ} (hr : 0 < r) (η : ℕ)
     (hε : ‖(Interval.smul r sys.A).absMax‖ / ((η : ℝ) + 2) < 1)
     {A : Mat ℝ n n} (hA : A ∈ construct sys.A) (uc : Vec ℝ n) {t : ℝ}
-    (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- STMT ---
+    (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     MatExp.expIntegral A t *ᵥ uc
       ∈ construct (sys.constInputSolution (S := S) r η uc) := by -- --- PROOF ---
   set seg : S n := LinComb.linComb (OfPoint.ofPoint (0 : Vec ℝ n)) (OfPoint.ofPoint uc) with hseg

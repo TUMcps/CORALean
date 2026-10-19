@@ -39,7 +39,7 @@ variable {n₁ n₂ : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem prod_properties (S₁ : Set (Vec ℝ n₁)) (S₂ : Set (Vec ℝ n₂)) : -- --- STMT ---
+theorem prod_properties (S₁ : Set (Vec ℝ n₁)) (S₂ : Set (Vec ℝ n₂)) : -- --- CONCL ---
     (S₁ = ∅ ∨ S₂ = ∅ → S₁ ×ˢ S₂ = ∅) ∧ (S₁.Nonempty → S₂.Nonempty → (S₁ ×ˢ S₂).Nonempty) ∧
       (interior S₁ = ∅ ∨ interior S₂ = ∅ → interior (S₁ ×ˢ S₂) = ∅) ∧
       ((interior S₁).Nonempty → (interior S₂).Nonempty → (interior (S₁ ×ˢ S₂)).Nonempty) ∧

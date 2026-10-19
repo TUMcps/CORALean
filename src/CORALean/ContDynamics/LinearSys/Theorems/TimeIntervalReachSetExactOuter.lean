@@ -35,7 +35,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 theorem LinearSys.IsCanonicalTrajectory.timeIntervalReachSetExact_outer {sys : LinearSys 𝕋 n}
     {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.IsCanonicalTrajectory T R₀ U x u)
     {r t : ℝ}
-    (ht : t ∈ Set.Icc (0:ℝ) r) : -- --- STMT ---
+    (ht : t ∈ Set.Icc (0:ℝ) r) : -- --- CONCL ---
     x t ∈ sys.timeIntervalReachSetExact T R₀ U r :=
   ⟨x, u, traj, t, ht, rfl⟩
 

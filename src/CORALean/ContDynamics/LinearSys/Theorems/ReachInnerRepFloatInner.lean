@@ -71,7 +71,7 @@ theorem LinearSys.reachInnerRepFloat_inner (sys : LinearSys 𝕋 n) {Δt : 𝕋}
       Fin (sys.reachErrorFloat Δt η o ho R₀ U k).h → 𝕋) (ρ : 𝕋)
     (H : Mat 𝕋 ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
         ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).h n) {D : Zonotope (Vec 𝕋 n)}
-    (hD : sys.reachInnerRepFloat Δt η o ho R₀ U k M ρ H = some D) : -- --- STMT ---
+    (hD : sys.reachInnerRepFloat Δt η o ho R₀ U k M ρ H = some D) : -- --- CONCL ---
     D.construct ⊆ sys.reachSetExact (S := 𝒵)
       (Set.Icc 0 ((k : ℝ) * toReal Δt)) (nominal R₀) (nominal U)
       ((k : ℝ) * toReal Δt) := by -- --- PROOF ---

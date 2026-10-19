@@ -41,7 +41,7 @@ theorem LinearARX.identifyCandidate_leastSquares (y : Fin N → ℕ → Vec ℝ 
     (hX1 : (Matrix.of fun i j => LinearARX.identifyRegressor p (y j) (u j) (k j) i :
         Mat ℝ (p * dy + (p + 1) * du) N) = V * Matrix.diagonal s * Wᵀ)
     (hV : Vᵀ * V = 1) (hW : Wᵀ * W = 1) (hs : ∀ i, s i ≠ 0)
-    (B : Mat ℝ dy (p * dy + (p + 1) * du)) : -- --- STMT ---
+    (B : Mat ℝ dy (p * dy + (p + 1) * du)) : -- --- CONCL ---
     ∑ j, ∑ a, (y j (k j) a - (LinearARX.identifyCandidate (fun j => y j (k j)) V s W r
         *ᵥ LinearARX.identifyRegressor p (y j) (u j) (k j)) a) ^ 2
       ≤ ∑ j, ∑ a, (y j (k j) a

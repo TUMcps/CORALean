@@ -83,7 +83,7 @@ theorem aux_single_append {I : Set X} {f : X → X} {s σ : ℝ} {x : X} {γ : �
 theorem DiffInclAutomaton.scalingConversion_isExec_subset_reach {I : Set X} {f : X → X} {K : ℝ≥0}
     (hf : LipschitzWith K f) {g : X → ℝ} (hg : Continuous g) (hg0 : ∀ x, 0 ≤ g x)
     {tb ts d τ : ℝ} {k : Fin 3} {x : X}
-    (h : (DiffInclAutomaton.scalingConversion I f g tb ts).IsExec d k (x, τ)) : -- --- STMT ---
+    (h : (DiffInclAutomaton.scalingConversion I f g tb ts).IsExec d k (x, τ)) : -- --- CONCL ---
     ∃ s, 0 ≤ s ∧ (DiffInclAutomaton.singleMode I f).IsExec s () x := by -- --- PROOF ---
   -- the induction over the execution, with the state's `X`-component and the timer kept apart
   generalize hp : (x, τ) = p at h

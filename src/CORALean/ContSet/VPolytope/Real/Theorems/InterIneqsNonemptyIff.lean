@@ -37,7 +37,7 @@ variable {q n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.inter_ineqs_nonempty_iff (P : VPolytope (Vec ℝ n)) (A : Mat ℝ q n)
-    (b : Vec ℝ q) : -- --- STMT ---
+    (b : Vec ℝ q) : -- --- CONCL ---
     (P.construct ∩ (HPolytope.ineqs A b).construct).Nonempty ↔
       ∃ (x : Vec ℝ n) (β : Fin P.k → ℝ), A *ᵥ x ≤ b ∧ ∑ j, β j • P.V j = x ∧
         ∑ j, β j = 1 ∧ ∀ j, 0 ≤ β j := by -- --- PROOF ---

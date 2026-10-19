@@ -32,7 +32,8 @@ theorem STLInterval.nonempty_set_subset_iff {l₁ u₁ l₂ u₂ : EReal} {lc₁
     (a₁ : l₁ = ⊥ → lc₁ = false) (b₁ : u₁ = ⊤ → rc₁ = false)
     (c₁ : l₁ < u₁ ∨ l₁ = u₁ ∧ lc₁ = true ∧ rc₁ = true)
     (a₂ : l₂ = ⊥ → lc₂ = false) (b₂ : u₂ = ⊤ → rc₂ = false)
-    (c₂ : l₂ < u₂ ∨ l₂ = u₂ ∧ lc₂ = true ∧ rc₂ = true) (z₁ : 0 ≤ l₁) (z₂ : 0 ≤ l₂) : -- --- STMT ---
+    (c₂ : l₂ < u₂ ∨ l₂ = u₂ ∧ lc₂ = true ∧ rc₂ = true) (z₁ : 0 ≤ l₁)
+    (z₂ : 0 ≤ l₂) : -- --- CONCL ---
     (STLInterval.nonempty l₂ u₂ lc₂ rc₂ a₂ b₂ c₂ z₂).set ⊆
         (STLInterval.nonempty l₁ u₁ lc₁ rc₁ a₁ b₁ c₁ z₁).set ↔
       (l₁ < l₂ ∨ (l₁ = l₂ ∧ (lc₁ = true ∨ lc₂ = false))) ∧

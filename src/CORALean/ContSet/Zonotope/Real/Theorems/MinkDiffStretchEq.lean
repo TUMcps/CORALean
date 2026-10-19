@@ -51,7 +51,7 @@ theorem Zonotope.minkDiffStretch_eq {ι : Type} (Z₁ Z₂ : Zonotope α)
                 ≤ ∑ υ, |C i ((Z₁.minkDiffStretch Z₂ μ).G υ)|}
             ⊆ (Z₁.minkDiffStretch Z₂ μ).construct)
     (hμ : ∀ i, ∑ υ, |C i (Z₁.G υ)| * μ υ
-            = (∑ υ, |C i (Z₁.G υ)|) - ∑ υ, |C i (Z₂.G υ)|) : -- --- STMT ---
+            = (∑ υ, |C i (Z₁.G υ)|) - ∑ υ, |C i (Z₂.G υ)|) : -- --- CONCL ---
     minkowskiDiff Z₁.construct Z₂.construct
       = (Z₁.minkDiffStretch Z₂ μ).construct := by -- --- PROOF ---
   refine Set.eq_of_subset_of_subset ?_ ?_

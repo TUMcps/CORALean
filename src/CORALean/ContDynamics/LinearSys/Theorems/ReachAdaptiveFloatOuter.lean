@@ -49,7 +49,7 @@ the horizon from `X₀` under inputs `u(t) ∈ B U + c` lies, at every time of a
 window, in that window's set. -/
 theorem LinearSys.reachAdaptiveFloat_outer (sys : LinearSys 𝕋 n)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
-    {options : LinearSys.AdaptiveOptions 𝕋} : -- --- STMT ---
+    {options : LinearSys.AdaptiveOptions 𝕋} : -- --- CONCL ---
     ∀ steps ∈ sys.reachAdaptiveFloat params options,
       (∀ t ∈ Set.Icc (params.tStart : ℝ) params.tFinal, ∃ (k : ℕ) (hk : k < steps.length),
           t ∈ Set.Icc (steps[k].tStart : ℝ) steps[k].tEnd) ∧

@@ -45,7 +45,7 @@ theorem aux_indicator_finish (dur : ℝ) (L : List ℝ) (W : List Bool) (F : ℝ
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FiniteSignal.indicator?_spec (dur : ℝ) (lo hi : EReal) (val : Bool) (h0 : 0 ≤ dur)
-    (hlh : lo < hi) : -- --- STMT ---
+    (hlh : lo < hi) : -- --- CONCL ---
     ∃ r, FiniteSignal.indicator? dur lo hi val = some r ∧ r.IsValid ∧ r.duration = dur ∧
       ∀ t : ℝ, 0 ≤ t → t ≤ dur → r.at? t = some (decide (val = true ∧ (0 : EReal) < hi ∧
         lo < (dur : EReal) ∧ lo ≤ (t : EReal) ∧

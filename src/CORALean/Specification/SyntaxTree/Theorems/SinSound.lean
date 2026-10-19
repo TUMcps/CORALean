@@ -33,7 +33,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 
 /-- A time with `sin s ∈ [lo,hi]` lies in a shifted branch of `asin`. -/
 private theorem SyntaxTree.exists_sin_branch {s lo hi : ℝ}
-    (h₁ : lo ≤ Real.sin s) (h₂ : Real.sin s ≤ hi) : -- --- STMT ---
+    (h₁ : lo ≤ Real.sin s) (h₂ : Real.sin s ≤ hi) : -- --- CONCL ---
     ∃ k : ℤ, (Real.arcsin lo + k * (2 * Real.pi) ≤ s ∧ s ≤ Real.arcsin hi + k * (2 * Real.pi)) ∨
       (Real.pi - Real.arcsin hi + k * (2 * Real.pi) ≤ s ∧
         s ≤ Real.pi - Real.arcsin lo + k * (2 * Real.pi)) := by -- --- PROOF ---

@@ -65,7 +65,7 @@ chain of merges carrying that member's column to the target's. -/
 theorem PolyZonotope.relaxWidthGroup_le_chain (pZ : PolyZonotope α)
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin k)) (t : Fin d) (l : Fin k)
     (n : ℕ) (c : ℕ → Fin pZ.h) (hfst : c 0 = part.right l)
-    (hlst : c n = part.left t) : -- --- STMT ---
+    (hlst : c n = part.left t) : -- --- CONCL ---
     pZ.relaxWidthGroup part t l
       ≤ ∑ s ∈ Finset.range n,
           ∑ i, PolyZonotope.eDiff (pZ.E i (c s)) (pZ.E i (c (s + 1))) := by -- --- PROOF ---

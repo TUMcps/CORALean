@@ -38,7 +38,7 @@ open Matrix
 /-- [1, Prop. 3]: `z ∈ {G, c, A, b}` iff `[z; 0] ∈ {[G; A₁], [c; −b₁], A₂, b₂}`. -/
 theorem ConZonotope.mem_iff_append_mem_lift {n m₁ m₂ h : ℕ} (c : Vec ℝ n)
     (G : Fin h → Vec ℝ n) (A : Mat ℝ (m₁ + m₂) h) (b : Vec ℝ (m₁ + m₂))
-    (z : Vec ℝ n) : -- --- STMT ---
+    (z : Vec ℝ n) : -- --- CONCL ---
     z ∈ (ConZonotope.ofMat c G A b).construct ↔
       (Fin.append z (0 : Vec ℝ m₁) : Vec ℝ (n + m₁))
         ∈ (ConZonotope.lift (m₂ := m₂) c G A b).construct := by -- --- PROOF ---

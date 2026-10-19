@@ -41,7 +41,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Sec. 4.2]: `Box_S(Z₁ ⊕ Z₂) = [m₁ + m₂, M₁ + M₂]_S`. -/
-theorem Zonotope.boxS_plus (Z₁ Z₂ : Zonotope (Vec ℝ n)) (S : Finset (Vec ℝ n)) : -- --- STMT ---
+theorem Zonotope.boxS_plus (Z₁ Z₂ : Zonotope (Vec ℝ n)) (S : Finset (Vec ℝ n)) : -- --- CONCL ---
     (Z₁.plus Z₂).boxS S = ContSet.hyperplanePolyhedron S
       ((fun s => Z₁.c ⬝ᵥ s - ∑ j, |Z₁.G j ⬝ᵥ s|) + fun s => Z₂.c ⬝ᵥ s - ∑ j, |Z₂.G j ⬝ᵥ s|)
       ((fun s => Z₁.c ⬝ᵥ s + ∑ j, |Z₁.G j ⬝ᵥ s|) +

@@ -74,7 +74,7 @@ theorem ParallelHybridAutomaton.mergeFlowsLinearSys_flowLawConverse
     {P : ParallelHybridAutomaton S G k L ℝ n m} (hfeed : P.FeedthroughFree)
     (hdist : P.GlobalsDistinct)
     (hne : ∀ (ℓ : ∀ i, L i) i, (construct ((P.comp i).loc (ℓ i)).U).Nonempty)
-    {lift : ParallelHybridAutomaton.Lifting S G n m} (hex : lift.Exact) : -- --- STMT ---
+    {lift : ParallelHybridAutomaton.Lifting S G n m} (hex : lift.Exact) : -- --- CONCL ---
     P.FlowLawConverse (fun ℓ => mergeFlowsLinearSys (P.sys ℓ) (P.bindsAt ℓ))
       (P.mergeInputSets lift) (P.mergeDistSets lift) := by -- --- PROOF ---
   classical

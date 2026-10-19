@@ -145,7 +145,7 @@ theorem aux_doubleSum_pos {r : ℕ} (q : Fin r → Fin r → ℝ) (μ : Fin r �
 theorem doubleSum_posDef {r : ℕ} (Γ : Fin r → Fin r → Matrix ι ι ℝ) (μ : Fin r → ℝ)
     (hμ0 : ∀ i, 0 ≤ μ i) (hμ1 : ∑ i, μ i = 1) (hsym : ∀ i j, (Γ i j)ᵀ = Γ i j)
     (hd : ∀ i, (Γ i i).PosDef)
-    (ho : ∀ i j, i ≠ j → ((2 / ((r : ℝ) - 1)) • Γ i i + Γ i j + Γ j i).PosDef) : -- --- STMT ---
+    (ho : ∀ i j, i ≠ j → ((2 / ((r : ℝ) - 1)) • Γ i i + Γ i j + Γ j i).PosDef) : -- --- CONCL ---
     (∑ i, ∑ j, (μ i * μ j) • Γ i j).PosDef := by -- --- PROOF ---
   refine posDef_iff_dotProduct_mulVec.mpr ⟨?_, fun x hx => ?_⟩
   · -- symmetric, every `Γᵢⱼ` being

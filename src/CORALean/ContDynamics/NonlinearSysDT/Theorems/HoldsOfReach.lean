@@ -41,7 +41,7 @@ theorem NonlinearSysDT.holds_of_reach (sys : NonlinearSysDT n m) {U : S m} {o : 
     (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n) (spec : Specification ContSet)
     {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} {y : ℕ → Vec ℝ sys.q} (traj : sys.IsTrajectory R₀ U x u y)
     (hR : ∀ k, x k ∈ (steps k).R) (k : ℕ)
-    (h : spec.Holds (construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps))) : -- --- STMT ---
+    (h : spec.Holds (construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps))) : -- --- CONCL ---
     spec.Holds {x k} :=
   spec.holds_of_outer (Set.singleton_subset_iff.mpr (sys.reach_outer ho steps R₀ traj hR k)) h
 

@@ -46,7 +46,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The independent block of `exactPlus`, split at the seam into the two operands'. -/
 theorem PolyZonotope.aux_sum_indep_exactPlus (pZ₁ pZ₂ : PolyZonotope α) (hp : pZ₁.p = pZ₂.p)
-    (β : Fin (pZ₁.q + pZ₂.q) → ℝ) : -- --- STMT ---
+    (β : Fin (pZ₁.q + pZ₂.q) → ℝ) : -- --- CONCL ---
     ∑ j : Fin (pZ₁.exactPlus pZ₂ hp).q, β j • (pZ₁.exactPlus pZ₂ hp).GI j
       = ∑ j, β (Fin.castAdd pZ₂.q j) • pZ₁.GI j
         + ∑ j, β (Fin.natAdd pZ₁.q j) • pZ₂.GI j := by -- --- PROOF ---
@@ -60,7 +60,7 @@ theorem PolyZonotope.aux_sum_indep_exactPlus (pZ₁ pZ₂ : PolyZonotope α) (hp
 /-- [1, Prop. 10]: `x` lies in the exact addition iff it is a point of `pZ₁` plus a point of
 `pZ₂` at one shared dependent factor vector `a` and independent factors of their own. -/
 theorem PolyZonotope.mem_exactPlus_iff (pZ₁ pZ₂ : PolyZonotope α) (hp : pZ₁.p = pZ₂.p)
-    (x : α) : -- --- STMT ---
+    (x : α) : -- --- CONCL ---
     x ∈ (pZ₁.exactPlus pZ₂ hp).construct ↔
       ∃ a : Fin pZ₁.p → ℝ, ∃ β₁ : Fin pZ₁.q → ℝ, ∃ β₂ : Fin pZ₂.q → ℝ,
         (∀ k, |a k| ≤ 1) ∧ (∀ j, |β₁ j| ≤ 1) ∧ (∀ j, |β₂ j| ≤ 1) ∧

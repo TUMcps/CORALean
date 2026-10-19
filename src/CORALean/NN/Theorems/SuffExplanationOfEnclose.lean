@@ -41,7 +41,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval 
 theorem NeuralNetwork.suffExplanation_of_enclose {nn : NeuralNetwork S n m}
     {f : Vec ℝ n → Vec ℝ m} (hf : nn.Encloses f)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
-    (hsuffAbs : nn.IsSuffExplanationAbstract x ε E l) : -- --- STMT ---
+    (hsuffAbs : nn.IsSuffExplanationAbstract x ε E l) : -- --- CONCL ---
     IsSuffExplanation f x ε E l :=
   suffExplanation_of_abstract f nn x ε E l (hf.image_subset _) hsuffAbs
 

@@ -9,6 +9,15 @@ public import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaPointIff
 # A capsule is the origin iff it is a point at `0`
 
 The point is the center, so the origin is the point whose center is `0`.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* `hn` – positive dimension
+
+## Conclusion
+* `C = {0}` iff `representsa_origin`
 -/
 
 -- Authors:       Claude Opus 5.5

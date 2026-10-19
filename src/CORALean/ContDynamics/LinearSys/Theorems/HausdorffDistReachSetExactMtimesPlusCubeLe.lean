@@ -44,7 +44,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- [1, Lemma 1], convergence: `d_H(Φ_r(Z), e^{rA}Z + □(β_r)) ≤ µ‖A‖e^{r‖A‖}r²`. -/
 theorem LinearSys.hausdorffDist_reachSetExact_mtimes_plus_cube_le (sys : LinearSys 𝕋 n)
     (Z U : Zonotope (Vec ℝ n)) {μ r : ℝ} (hA : 0 < ‖toRealMat sys.A‖) (hr : 0 ≤ r)
-    (hμ : 0 ≤ μ) (hU : U.construct = Metric.closedBall 0 μ) : -- --- STMT ---
+    (hμ : 0 ≤ μ) (hU : U.construct = Metric.closedBall 0 μ) : -- --- CONCL ---
     Metric.hausdorffDist (sys.reachSetExact (S := 𝒵) (Set.Icc 0 r) Z U r)
       ((Z.mtimes (exp (r • toRealMat sys.A))).plus
           (Zonotope.cube n ((Real.exp (r * ‖toRealMat sys.A‖) - 1) / ‖toRealMat sys.A‖

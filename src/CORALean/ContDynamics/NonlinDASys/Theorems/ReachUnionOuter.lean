@@ -39,7 +39,7 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinDASys.WithSteps.reachUnion_outer (sys : NonlinDASys.WithSteps S Rg m p n)
-    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) : -- --- STMT ---
+    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) : -- --- CONCL ---
     ∀ R ∈ sys.reachUnion params options,
       sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
         ⊆ construct R := by -- --- PROOF ---

@@ -112,7 +112,7 @@ theorem aux_visits_nodup {b : Vec ℝ n} {α : ℝ} :
   · exact List.nodup_singleton _
 
 /-- `FIND SOLUTIONS` of every visit returns something, given that the plane meets the box. -/
-theorem aux_visits_nonempty {b : Vec ℝ n} {α : ℝ} (hb0 : ∀ i, 0 < b i) : -- --- STMT ---
+theorem aux_visits_nonempty {b : Vec ℝ n} {α : ℝ} (hb0 : ∀ i, 0 < b i) : -- --- CONCL ---
     ∀ (j : ℕ) (p : Fin n → Bool), (hj : j ≤ n) →
       ∑ i, (⟨0, b⟩ : Interval (Vec ℝ n)).corner (fun i => if (i : ℕ) < j then p i else false) i
         ≤ α →

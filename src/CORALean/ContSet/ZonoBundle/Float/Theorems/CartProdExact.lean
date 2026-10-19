@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.cartProd_exact (zB₁ : ZonoBundle (Vec 𝕋 n₁)) (zB₂ : ZonoBundle (Vec 𝕋 n₂))
-    (h₁ : 0 < zB₁.k) (h₂ : 0 < zB₂.k) : -- --- STMT ---
+    (h₁ : 0 < zB₁.k) (h₂ : 0 < zB₂.k) : -- --- CONCL ---
     (zB₁.cartProd zB₂).construct =
       (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
         (zB₁.construct ×ˢ zB₂.construct) := by -- --- PROOF ---

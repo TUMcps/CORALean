@@ -60,7 +60,7 @@ theorem ConZonotope.aux_abs_sum_le {h : ℕ} (c β : Vec ℝ h) (hβ : ∀ j, |�
 /-- The rows held to `[conLo, conHi]` say of the coefficients exactly what the coefficient
 polytope says. -/
 theorem ConZonotope.conRows_iff (cZ : ConZonotope (Vec ℝ n)) (β : Vec ℝ cZ.h)
-    (hβ : ∀ j, |β j| ≤ 1) : -- --- STMT ---
+    (hβ : ∀ j, |β j| ≤ 1) : -- --- CONCL ---
     (∀ i, ConZonotope.conLo cZ i ≤ (ConZonotope.conA cZ *ᵥ β) i
         ∧ (ConZonotope.conA cZ *ᵥ β) i ≤ ConZonotope.conHi cZ i)
       ↔ β ∈ cZ.P.construct := by -- --- PROOF ---

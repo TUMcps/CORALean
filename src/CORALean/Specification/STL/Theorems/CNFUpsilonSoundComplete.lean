@@ -44,7 +44,7 @@ variable {X : Type}
 /-- The window part of a branch holds of every trace iff the set `S` does, by the interval lemma. -/
 theorem STL.aux_forall_window {c : ℝ≥0} (hc : 0 < c) {T : Finset ℝ≥0} {R : ℝ≥0 → Set X}
     (hne : ∀ t, (R t).Nonempty) (hT : ReachSequence.FinRep T R)
-    (hdiv : ReachSequence.CDivisible c T) (b : STL.Branch X) : -- --- STMT ---
+    (hdiv : ReachSequence.CDivisible c T) (b : STL.Branch X) : -- --- CONCL ---
     (∀ ξ ∈ ReachSequence.traceSet R,
       (∃ ϱ ∈ b.K, ∃ t, 0 < t ∧ t < c ∧ ϱ.Sat (ξ (t + b.j * c))) ∨
         ∃ ϱ ∈ b.L, ∀ t, 0 < t → t < c → ϱ.Sat (ξ (t + b.j * c))) ↔
@@ -60,7 +60,7 @@ theorem STL.aux_forall_window {c : ℝ≥0} (hc : 0 < c) {T : Finset ℝ≥0} {R
 theorem STL.aux_clause {c : ℝ≥0} (hc : 0 < c) {T : Finset ℝ≥0} {R : ℝ≥0 → Set X}
     (hne : ∀ t, (R t).Nonempty) (hT : ReachSequence.FinRep T R)
     (hdiv : ReachSequence.CDivisible c T) (clause : STL.Clause X)
-    (hnd : (clause.map STL.Branch.j).Nodup) : -- --- STMT ---
+    (hnd : (clause.map STL.Branch.j).Nodup) : -- --- CONCL ---
     (∀ ξ ∈ ReachSequence.traceSet R, ∃ b ∈ clause,
       ((∃ ϱ ∈ b.K, ∃ t, 0 < t ∧ t < c ∧ ϱ.Sat (ξ (t + b.j * c))) ∨
         ∃ ϱ ∈ b.L, ∀ t, 0 < t → t < c → ϱ.Sat (ξ (t + b.j * c))) ∨ b.ϱ.Sat (ξ (b.j * c))) ↔
@@ -137,7 +137,7 @@ theorem STL.aux_clause {c : ℝ≥0} (hc : 0 < c) {T : Finset ℝ≥0} {R : ℝ�
 theorem STL.CNF.upsilon_sound_complete {c : ℝ≥0} (hc : 0 < c) {T : Finset ℝ≥0} {R : ℝ≥0 → Set X}
     (hne : ∀ t, (R t).Nonempty) (hT : ReachSequence.FinRep T R)
     (hdiv : ReachSequence.CDivisible c T) (cnf : STL.CNF X)
-    (hnd : ∀ clause ∈ cnf, (clause.map STL.Branch.j).Nodup) : -- --- STMT ---
+    (hnd : ∀ clause ∈ cnf, (clause.map STL.Branch.j).Nodup) : -- --- CONCL ---
     (cnf.upsilon c).Sat R ↔
       (cnf.toFormula c).HoldsOn (ReachSequence.traceSet R) := by -- --- PROOF ---
   rw [STL.CNF.sat_upsilon c cnf R (hne 0) fun _ _ _ _ => hne _]

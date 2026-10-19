@@ -65,7 +65,7 @@ attribute [local instance] aux_setPlusSplit aux_setMtimesSplit aux_setMtimesInte
 
 /-- From order `1` on, the exact sum is order `0` and the exact tail. -/
 theorem LinearSys.aux_inputTaylorSum_eq_term_add_tail (sys : LinearSys 𝕋 n) (r : ℝ)
-    (U : Set (Vec ℝ n)) (m : ℕ) : -- --- STMT ---
+    (U : Set (Vec ℝ n)) (m : ℕ) : -- --- CONCL ---
     sys.inputTaylorSum (S := 𝒮) r U (m + 1)
       = (sys.inputTerm r 0 *ᵥ ·) '' U
         + sys.inputTaylorSumTail (S := 𝒮) r U (m + 1) := by -- --- PROOF ---
@@ -84,7 +84,7 @@ theorem LinearSys.aux_inputTaylorSum_eq_term_add_tail (sys : LinearSys 𝕋 n) (
 
 theorem LinearSys.inputReach_subset_split_float (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η : ℕ}
     (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η)
-    (V : Zonotope (Vec 𝕋 n)) : -- --- STMT ---
+    (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     sys.inputReach (S := 𝒵[𝕋]) V (toReal Δt)
       ⊆ (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
           (MatExp.intervalInputTerm (Interval.point sys.A) Δt 0) V).construct

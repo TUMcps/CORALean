@@ -61,7 +61,7 @@ theorem aux_neg_mem_point_vec {k : ℕ} (v : Vec 𝕋 k) :
 /-- `(J - A)(y - ys)` lies in `([J] - A)(Y - ys)`. -/
 theorem aux_mem_slopeTerm {k l : ℕ} {IJ : Interval (Mat 𝕋 k l)} {Y : Interval (Vec 𝕋 l)}
     (A : Mat 𝕋 k l) (ys : Vec 𝕋 l) {J : Mat ℝ k l} (hJ : J ∈ IJ.construct) {y : Vec ℝ l}
-    (hy : y ∈ Y.construct) : -- --- STMT ---
+    (hy : y ∈ Y.construct) : -- --- CONCL ---
     (J - Scalar.toRealMat A) *ᵥ (y - toRealVec ys) ∈
       (Interval.mtimesIntervalMat (Interval.matPlus IJ (Interval.point (α := Mat 𝕋 k l)
         (-A))) (Interval.plus Y (Interval.point (α := Vec 𝕋 l)

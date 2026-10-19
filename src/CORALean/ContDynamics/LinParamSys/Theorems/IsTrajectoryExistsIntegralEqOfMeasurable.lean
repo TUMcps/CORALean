@@ -62,7 +62,7 @@ parameter inside the box with integrable entries. -/
 theorem LinParamSys.IsCanonicalTrajectory.exists_integral_eq_of_measurable {sys : LinParamSys ℐ n}
     {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
     (traj : sys.IsCanonicalTrajectory T R₀ U x u A) {t : ℝ} (ht : 0 ≤ t)
-    (hT : Set.Icc 0 t ⊆ T) : -- --- STMT ---
+    (hT : Set.Icc 0 t ⊆ T) : -- --- CONCL ---
     ∃ Â : ℝ → Mat ℝ n n,
       (∀ i j a b, IntervalIntegrable (fun s => Â s i j) volume a b) ∧
       (∀ s, Â s ∈ construct sys.A) ∧

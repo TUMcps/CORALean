@@ -42,7 +42,7 @@ variable {n p q k : ℕ}
 theorem Conform.mem_gloSet_iff_gen {ιx ιu : Type} [Fintype ιx] [Fintype ιu] (yb : Vec ℝ q)
     (Cb : Mat ℝ q n) (Db : Fin (k + 1) → Mat ℝ q p) (cx dx : Vec ℝ n) (Gx : ιx → Vec ℝ n)
     (αx : ιx → ℝ) (cu du : Vec ℝ p) (Gu : ιu → Vec ℝ p) (αu : ιu → ℝ) (hαx : ∀ j, 0 ≤ αx j)
-    (hαu : ∀ l, 0 ≤ αu l) (y : Vec ℝ q) : -- --- STMT ---
+    (hαu : ∀ l, 0 ≤ αu l) (y : Vec ℝ q) : -- --- CONCL ---
     y ∈ Conform.gloSet yb Cb Db cx (Conform.templateZono (cx + dx) Gx αx) cu
         (fun _ => Conform.templateZono (cu + du) Gu αu) ↔
       ∃ β : ιx ⊕ (Fin (k + 1) × ιu) → ℝ,

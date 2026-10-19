@@ -53,7 +53,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 input in `U`, is in `timePointStep`. -/
 theorem LinearSys.timePointStep_outer [∀ n, ConvexSet (S n) (Vec ℝ n)]
     [∀ n, CompactSet (S n) (Vec ℝ n)] (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r) (η : ℕ)
-    (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (X₀ U : S n) : -- --- STMT ---
+    (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (X₀ U : S n) : -- --- CONCL ---
     (fun x₀ => exp (r • toRealMat sys.A) *ᵥ x₀) '' construct X₀ + sys.inputReach U r
       ⊆ construct (sys.timePointStep r η X₀ U) := by -- --- PROOF ---
   rintro _ ⟨_, ⟨x₀, hx₀, rfl⟩, z, hz, rfl⟩

@@ -39,7 +39,7 @@ theorem aux_sum_finProd {p d : ℕ} (f : Fin (p * d) → ℝ) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearARX.identifyBlocks_mulVec (dt : ℝ) (M : Mat ℝ dy (p * dy + (p + 1) * du))
-    (y : ℕ → Vec ℝ dy) (u : ℕ → Vec ℝ du) (k : ℕ) : -- --- STMT ---
+    (y : ℕ → Vec ℝ dy) (u : ℕ → Vec ℝ du) (k : ℕ) : -- --- CONCL ---
     M *ᵥ LinearARX.identifyRegressor p y u k
       = ∑ i : Fin p, (LinearARX.identifyBlocks dt M).Abar i *ᵥ y (k - (i + 1))
         + ∑ j : Fin (p + 1),

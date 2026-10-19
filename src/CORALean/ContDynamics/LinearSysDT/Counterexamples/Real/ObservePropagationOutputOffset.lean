@@ -39,7 +39,7 @@ open Matrix CORALean.Real
 /-- With the output offset `k = 1`, the run `x ≡ 0` starts in `R0 = {0}` and has the output
 `y₀ = 1`, and `x₁` is not in the observer's next set at any nonzero gain, at every order. -/
 theorem LinearSysDT.observePropagation_output_offset_counterexample
-    (gain : Zonotope (Vec ℝ 1) → Mat ℝ 1 1) (order : ℕ) : -- --- STMT ---
+    (gain : Zonotope (Vec ℝ 1) → Mat ℝ 1 1) (order : ℕ) : -- --- CONCL ---
     let sys : LinearSysDT ℝ 1 := { LinearSysDT.canonical 1 with k := fun _ => 1 }  -- `k = 1`
     let x : ℕ → Vec ℝ 1 := fun _ _ => 0
     let R₀ : Zonotope (Vec ℝ 1) := Zonotope.ofPoint (x 0)

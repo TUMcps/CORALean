@@ -43,7 +43,7 @@ variable {N : ℕ}
 
 /-- [1, Thm. 1 (generators)], the graph layers: `L` steps leave at most `(P.h + 2)^L (h₀ + 1 + L ν)`
 generators when every activation adds at most `ν`. -/
-theorem GNN.gcnActSteps_h_le (ν : ℕ) (L : ℕ) : -- --- STMT ---
+theorem GNN.gcnActSteps_h_le (ν : ℕ) (L : ℕ) : -- --- CONCL ---
     ∀ (c : ℕ → ℕ) (W : ∀ s, Mat ℝ (c s) (c (s + 1))) (acts : ∀ s, GNN.ActLayer N (c (s + 1)))
       (_ : ∀ s, s < L → (acts s).AddsAtMost ν) (P : PolyZonotope (Mat ℝ N N))
       (H : PolyZonotope (Mat ℝ N (c 0))) (hp : P.p = H.p),

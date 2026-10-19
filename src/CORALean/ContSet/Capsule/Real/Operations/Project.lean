@@ -9,6 +9,13 @@ public import CORALean.ContSet.Capsule.Real.Capsule
 
 CORA's `@capsule/project.m`: center and generator at the chosen coordinates, the radius unchanged,
 `C.c(dims)`, `C.g(dims)`, `C.r`. `Capsule.reindex` is the case where `dims` is a permutation.
+
+## Inputs
+* `C` – capsule
+* `dims` – kept dimensions
+
+## Output
+* the capsule read at `dims`
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m N M : �
 
 theorem NonlinearReset.FloatModel.Encloses.lift {fm : NonlinearReset.FloatModel 𝕋 n m n}
     {r : NonlinearReset n m n} (h : fm.Encloses r) (stateBind : Fin n → Fin N)
-    (hinj : Function.Injective stateBind) (inputBind : Fin m → Fin M) (id : Bool) : -- --- STMT ---
+    (hinj : Function.Injective stateBind) (inputBind : Fin m → Fin M) (id : Bool) : -- --- CONCL ---
     (fm.lift N M stateBind inputBind id).Encloses
       (r.lift N M stateBind inputBind id) := by -- --- PROOF ---
   refine ⟨fun X U x hx u hu => ?_⟩

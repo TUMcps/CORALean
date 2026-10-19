@@ -45,7 +45,7 @@ theorem VPolytope.span_qr_cols_eq_of_indep (V : Mat ℝ n k) (Q : Mat ℝ n n) (
     (hQR : Q * R = V) (hR : ∀ (i : Fin n) (j : Fin k), (j : ℕ) < i → R i j = 0) (hrk : r ≤ k)
     (hrn : r ≤ n)
     (hrank : V.rank = r)
-    (hind : LinearIndependent ℝ fun j : Fin r => V.col (Fin.castLE hrk j)) : -- --- STMT ---
+    (hind : LinearIndependent ℝ fun j : Fin r => V.col (Fin.castLE hrk j)) : -- --- CONCL ---
     Submodule.span ℝ (Set.range fun j : Fin r => Q.col (Fin.castLE hrn j)) =
       Submodule.span ℝ (Set.range V.col) := by -- --- PROOF ---
   set W := Submodule.span ℝ (Set.range fun j : Fin r => V.col (Fin.castLE hrk j))

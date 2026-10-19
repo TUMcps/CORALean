@@ -13,6 +13,16 @@ A point `λ x + (1 - λ) y` of the segments between the two capsules sits, in it
 `c_ + (2λ - 1) g_`, and the rest, `λ (x - c) + (1 - λ) (y - S.c)`, is under
 `λ (‖g‖₂ + r) + (1 - λ) (‖S.g‖₂ + S.r)`, so under the larger. Outer only: the hull is not a
 capsule, and the enclosure is strict in general.
+
+## Inputs
+* `C` – first capsule
+* `S` – second capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* segments between `C` and `S` lie in `convHull`
 -/
 
 -- Authors:       Claude Opus 5.5
