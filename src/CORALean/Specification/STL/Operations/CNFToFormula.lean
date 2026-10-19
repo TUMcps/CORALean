@@ -11,6 +11,9 @@ public import CORALean.Specification.STL.Definitions.SampledTime
 The STL formula `⋀ᵢ ⋁ⱼ X_c^j (φᵢⱼ ∨ ϱᵢⱼ)` of [1, Sec. 4.1] a `CNF` stands for, `X_c^j` as
 `X_{jc}`: what `Υ` of [1, Lemma 2] is proved sound and complete for.
 
+Real-only, a specification: it rewrites or builds formulas, whose time bounds and constants are
+part of the syntax and are copied or added exactly, never rounded.
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

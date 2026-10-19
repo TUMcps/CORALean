@@ -43,6 +43,9 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 One section per declaration, at most five code lines each; alphabetical, after the
 sections each one uses (CONTRIBUTING, "Small declarations").
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (interval
+arithmetic over `𝕋` with outward rounding) is not yet written.
 -/
 
 

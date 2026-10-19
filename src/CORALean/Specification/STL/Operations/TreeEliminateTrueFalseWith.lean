@@ -12,6 +12,9 @@ public import CORALean.Specification.STL.Definitions.Tree
 the same order. One case rewrites a node on a constant operand and is a parameter: `ut a b φ`
 replaces `φ U[a,b] true`. CORA's is `true` (`eliminateTrueFalseCora`), which is not equivalent
 (`eliminateTrueFalse` keeps the node).
+
+Real-only, a specification: it rewrites or builds formulas, whose time bounds and constants are
+part of the syntax and are copied or added exactly, never rounded.
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -12,6 +12,9 @@ public import CORALean.Specification.SyntaxTree.Operations.Interval
 `aux_exp_(int,intPrev)` of `syntaxTree.m`: `log` of `int` cut to the positive reals, met with
 `intPrev`;
 `log(0) = -Inf`. An `int` below `0` throws `CORA:outOfDomain`.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (interval
+arithmetic over `𝕋` with outward rounding) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

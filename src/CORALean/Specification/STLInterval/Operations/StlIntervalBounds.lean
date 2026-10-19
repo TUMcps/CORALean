@@ -10,6 +10,9 @@ public import CORALean.Specification.STLInterval.Operations.StlInterval
 `stlInterval(lb,ub,lc,rc)` for a real lower bound and an upper bound that is real or `inf`, the
 bounds `findIntervals` and `conclusiveInterval` read off a signal. CORA rejects `lb < 0`; the
 model returns `stlInterval()` for it, a case no valid signal reaches (its time points are `≥ 0`).
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (bounds
+over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

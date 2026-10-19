@@ -11,6 +11,9 @@ public import CORALean.Global.SupportFunction.SupportFunction
 `diffPoint`: the difference between a reachable-set witness point and an unsafe-set witness
 point along `d`, fed into `P̲`.
 
+Real-only, a specification: it takes the difference of two witness points chosen by oracles that
+quantify over every direction.
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

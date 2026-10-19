@@ -12,6 +12,9 @@ public import CORALean.Specification.FiniteSignal.Operations.UntilPiece
 
 The loop body of `until.m`: if `bint` is not empty and has positive volume, the signal is or-ed
 with the indicator of `bint`. The or of `finiteSignal` is `combine` with the logical or.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

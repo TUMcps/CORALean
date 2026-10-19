@@ -14,6 +14,9 @@ time its operands need. A formula with no temporal operator needs `time`. CORA f
 `time`
 for every non-temporal sub-formula; the clauses for `~`, `&` and `|` give the same value there, so
 the test is not repeated (`STL.Tree.maximumTimeFrom_of_not_temporal`).
+
+Real-only, a specification: it states the exact latest time a formula reads, a property of the
+formula's syntax.
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -13,6 +13,9 @@ public import CORALean.Specification.TrajectoryAnalyzer.TrajectoryAnalyzer
 `sigs(k) = sigs(k) | finiteSignal.indicator(dur,interval(lo,hi),true)`: the signal of proposition
 `k` becomes true on the interval, as in `setPossiblyTrue` of the builder of the reach set analyzer.
 CORA throws if there is no signal of key `k` or the interval is degenerate; here `none`.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+intervals over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -16,6 +16,9 @@ the operators of `U₂`-signals (`FourValuedSignal.not`, `and_`, `until`). `and_
 `none` where CORA's `toBoolSignal()` throws, which `FourValuedSignal.at_and` and `until_spec` show
 does not happen for valid signals.
 
+Real-only, a specification: it denotes the satisfaction signal of a formula over a partial
+reachable set, a semantic object no machine runs.
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

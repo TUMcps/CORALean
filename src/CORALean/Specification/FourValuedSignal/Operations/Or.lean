@@ -18,6 +18,9 @@ public import Mathlib.Data.Fin.VecNotation
 mapped to `False` is the Kleene part, and the value is inconclusive where it differs from the
 disjunction of the refinements with inconclusive mapped to `True`. `toBoolSignal()` throws if a
 value is unknown; `none` is that error, which `at_or` shows does not occur.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -17,6 +17,9 @@ everything propagated to all parents (it is no longer needed). CORA throws if th
 smaller than the old one, or (through an empty logical index) if `parent` is no parent; here
 `none`. `eps` is MATLAB's machine epsilon, the tolerance of the interval comparisons; the parents
 are assumed distinct.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+intervals over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

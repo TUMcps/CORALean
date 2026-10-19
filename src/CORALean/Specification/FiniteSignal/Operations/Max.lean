@@ -14,6 +14,9 @@ public import Mathlib.Data.EReal.Operations
 value, the second takes the value after every breakpoint with `time(j) <= supremum(int)` from
 there on. The interval `int` is given by its bounds `lo` and `hi`. A signal that ends before `lo`
 has maximum `0`.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

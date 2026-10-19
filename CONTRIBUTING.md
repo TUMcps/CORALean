@@ -1239,6 +1239,15 @@ has a genuine design choice behind it. A real definition alone is a specificatio
 of something no machine runs, and it is far cheaper to refine an operation while
 its proof is still in hand than to come back to it.
 
+In `Specification/` the rule is checked (`scripts/check-float-refinement.py`): an operation
+file under `Operations/` whose code mentions `ℝ` and not `𝕋` says why in its module
+docstring, in one sentence that opens with a marker. `Real-only, a specification:` says what
+it specifies — a `Set`, a truth value, a formula or another object no machine runs, so there
+is nothing to round. A computable definition that does arithmetic on real values CORA
+computes in doubles is not that: it is `Refinement pending:`, with the refinement generic
+over `𝕋` it is waiting for, and its path goes on `scripts/float-refinement-pending.txt`, a
+list that only shrinks — writing the refinement removes the entry.
+
 ### The error box and `absorbRounding`
 
 Every float set records its rounding explicitly in an `I_error` box (`InflatedContSet`: the set

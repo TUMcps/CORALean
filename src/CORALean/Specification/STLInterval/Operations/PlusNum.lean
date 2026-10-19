@@ -10,6 +10,9 @@ public import CORALean.Specification.STLInterval.Theorems.ZeroLeAddCoe
 
 `@stlInterval/plus.m`, the numeric branch: both bounds move by the summand, the flags stay. CORA
 throws if the lower bound becomes negative; here that is the hypothesis `hc` (see `STLInterval`).
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (bounds
+over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

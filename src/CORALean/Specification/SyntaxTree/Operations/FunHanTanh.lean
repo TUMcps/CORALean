@@ -13,6 +13,9 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 `aux_tanh_(int,intPrev)` of `syntaxTree.m`: `atanh` of `int` cut to `[-1,1]` (`atanh(±1) = ±Inf`),
 met
 with `intPrev`.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (interval
+arithmetic over `𝕋` with outward rounding) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

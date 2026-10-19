@@ -14,6 +14,9 @@ public import CORALean.Specification.STL.Operations.DepReachPoint
 `ẋ = Ax + Bu`, `X₀ = ⟨c_x, G_x⟩_Z`, `U = ⟨c_u, G_u⟩_Z`, the time step `Δt` and the truncation order
 `κ`; `STL.depReach … i` is its `i`-th pair `(R(t_i), R(τ_i))`. The final time only bounds `i`.
 
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (a zonotope
+computation over `𝕋` with directed rounding) is not yet written.
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

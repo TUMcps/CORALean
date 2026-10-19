@@ -14,6 +14,9 @@ The three functions of `syntaxTree.m` differ only in the two inverse branches (`
 the
 largest and the smallest solution `x + 2 pi k` inside `intPrev` and meets `intPrev` with their hull.
 `contains` is exact (`tol = 0`).
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (interval
+arithmetic over `𝕋` with outward rounding) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

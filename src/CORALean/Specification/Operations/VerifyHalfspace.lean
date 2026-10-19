@@ -20,6 +20,9 @@ The two tests are independent here. `[1, Alg. 2]` prints the falsification one a
 `else if` under the safety one, which no run reaches: a lower bound never exceeds an upper
 one, so `return unsafe` is dead code and the printed loop only proves safety. Its page says so.
 
+Real-only, a specification: it decides by quantifiers over tables of bounds supplied as arguments,
+so no arithmetic is run here.
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

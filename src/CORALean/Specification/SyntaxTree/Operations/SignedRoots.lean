@@ -13,6 +13,9 @@ interval
 `intPrev` of the operand: both if it contains `0` (`[-m, m]`), the positive one if it is
 nonnegative, the
 negative one otherwise. `preInf` and `preSup` are the roots of the two bounds of the target.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (interval
+arithmetic over `𝕋` with outward rounding) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

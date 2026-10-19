@@ -16,6 +16,9 @@ interval matrix of the terms `[c_j Δt^j, 0] A^j/j!`, entry by entry as `MatExp.
 order `j` of `A` computed as a point; the interval sum is the sum of the bounds. The remainder is
 `MatExp.expRemainderMat`, the matrix `E` of [1] and not a scalar bound.
 
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (a zonotope
+computation over `𝕋` with directed rounding) is not yet written.
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

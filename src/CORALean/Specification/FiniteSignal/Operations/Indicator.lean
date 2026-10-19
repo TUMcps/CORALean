@@ -15,6 +15,9 @@ The `interval` `int` is given by its bounds `lo` and `hi`, extended reals as `in
 allows `inf`. CORA throws for an empty or singleton interval (`volume(int) == 0`) and in the
 constructor for a negative `dur`; both are `none`. `val` is a logical value (CORA's default
 `true`).
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

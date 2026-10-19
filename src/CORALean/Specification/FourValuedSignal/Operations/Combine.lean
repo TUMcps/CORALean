@@ -16,6 +16,9 @@ over the Kleene parts of the inputs and their inconclusive parts (as Kleene sign
 acting on four-valued values. Each output is its Kleene part and its inconclusive flag (a Kleene
 value, converted back by `toBoolSignal()`, which throws on unknown; `none` there gives the Kleene
 part's signal).
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

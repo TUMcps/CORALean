@@ -12,6 +12,9 @@ public import CORALean.Specification.PointSegmentSignal.Operations.Set
 `sig = toBoolSignal(obj,mapUnknownTo)` of `kleeneSignal.m`: the Boolean part with every interval
 where the signal is unknown set to `mapUnknownTo`. Without an argument CORA throws if some value is
 unknown; that call is `toBoolSignal?` (`none` for the error).
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -12,6 +12,9 @@ public import CORALean.Specification.SyntaxTree.Operations.Interval
 `aaux_tan_(int,intPrev)` of `syntaxTree.m`: `tan` of `int` cut to `[-pi/2, pi/2]` below
 (`tan(±pi/2) =
 ±Inf`), met with `intPrev`. An `int` below `-pi/2` throws `CORA:outOfDomain`.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (interval
+arithmetic over `𝕋` with outward rounding) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

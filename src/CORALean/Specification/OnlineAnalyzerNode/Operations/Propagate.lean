@@ -19,6 +19,9 @@ combination of its children's signals into its own, finds the interval up to whi
 conclusive given what is already propagated to its parents, and tells the children
 (`setPropagated`). The nodes are values here: the result is the new node and the new children,
 `none` where CORA throws.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+intervals over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

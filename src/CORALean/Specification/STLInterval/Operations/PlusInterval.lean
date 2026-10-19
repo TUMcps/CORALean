@@ -13,6 +13,9 @@ public import CORALean.ContSet.Interval.Real.Interval
 supremum of the (one-dimensional) summand, the flags stay. An empty summand, `sup < inf`, gives
 `stlInterval()`. CORA throws if the lower bound becomes negative; here that is the hypothesis `hc`
 (see `STLInterval`).
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (bounds
+over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

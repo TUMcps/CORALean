@@ -11,6 +11,9 @@ public import CORALean.Specification.PointSegmentSignal.Operations.IntervalUntil
 `sig = until(lhs,interval,rhs)` of `pointSegmentSignal`: the until of the intervals where the
 signals are `true`. At a time `t` it is `true` iff the right-hand side holds at some `t'` with `t' -
 t` in the interval and the left-hand side holds strictly between `t` and `t'`.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

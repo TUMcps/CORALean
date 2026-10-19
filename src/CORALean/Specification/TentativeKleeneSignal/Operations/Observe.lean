@@ -14,6 +14,9 @@ public import CORALean.Specification.TentativeKleeneSignal.TentativeKleeneSignal
 the interval, `False` lets `canBeFalse` hold, `Unknown` both; the other part is left alone. CORA's
 `otherwise` branch (`assert(false)`) is a value that is no Kleene value, which `Kleene` has none
 of.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

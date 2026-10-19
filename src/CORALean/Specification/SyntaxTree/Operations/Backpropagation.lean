@@ -17,6 +17,9 @@ errors `CORA:emptySet` and `CORA:outOfDomain` are `Outcome.emptySet` and `Outcom
 first operand's error comes first. A numeric operand is a point interval, so a numeric operand is
 not
 narrowed.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (interval
+arithmetic over `𝕋` with outward rounding) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

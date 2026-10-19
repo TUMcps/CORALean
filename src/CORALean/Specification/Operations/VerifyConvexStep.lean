@@ -13,6 +13,9 @@ public import Mathlib.Analysis.Convex.Hull
 reaches the origin, else the new point is folded in. A reached answer is carried forward,
 extra fuel harmless.
 
+Real-only, a specification: it decides from bounds and witnesses supplied as oracles over every
+direction, and its soundness is the theorem.
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

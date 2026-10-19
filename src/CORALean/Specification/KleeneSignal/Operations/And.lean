@@ -17,6 +17,9 @@ maximal refinements (unknown as true).
 This is `Λ₁ ∧ Λ₂` of [1, Sec. 4.2 (operators)]: the `⊔₁` of the conjunctions of the under- and
 overapproximations `⌊Λ⌋` and `⌈Λ⌉`.
 
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

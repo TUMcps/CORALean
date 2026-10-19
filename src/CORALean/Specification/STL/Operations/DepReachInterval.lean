@@ -14,6 +14,9 @@ the convex hull enclosed by Eq. (8), `Zonotope.linComb`, whose generators are `�
 `½(G₁-G₂)` and `½(c₁-c₂)`, `2γ_x + 1` of them, then those of `P_c(t_{i+1})`, of `D_{i+1}` and of
 `C_i`. It takes the states at `t_i` and `t_{i+1}`.
 
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (a zonotope
+computation over `𝕋` with directed rounding) is not yet written.
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

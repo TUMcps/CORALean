@@ -8,6 +8,9 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 # `interval(lb,ub)`
 
 The one-dimensional `interval` with the bounds `lb` and `ub`, as the nodes store it.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (interval
+arithmetic over `𝕋` with outward rounding) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

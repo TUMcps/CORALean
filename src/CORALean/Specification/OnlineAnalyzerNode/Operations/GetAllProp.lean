@@ -12,6 +12,9 @@ public import CORALean.Specification.STLInterval.Operations.StlInterval
 the smallest upper bound of the intervals propagated to the parents, closed at its end if that
 bound's interval is; an empty entry (nothing propagated to that parent) gives `[0,0)`, and no
 parent at all `[0,∞)`.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+intervals over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

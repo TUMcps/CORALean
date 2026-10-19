@@ -13,6 +13,9 @@ add the inner formula's own offset, so this is a lower bound that is not always 
 `until` or `release` looks at the present (its left operand holds from time `0`), and `&`, `|`
 take the smaller of the two. As for `maximumTime` the test for a non-temporal sub-formula is
 folded into the clauses.
+
+Real-only, a specification: it states the exact earliest time a formula reads, a property of the
+formula's syntax.
 -/
 
 -- Authors:       Claude Sonnet 5.5

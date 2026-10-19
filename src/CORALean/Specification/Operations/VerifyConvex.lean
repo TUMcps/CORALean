@@ -15,6 +15,9 @@ next, never whether a taken exit is sound, so neither is modelled here. `ℓ i` 
 one reachable set `O` and one unsafe set `U`: the paper's `R̂(t)` (a `SupportBound`, line 4)
 and `R̲(t)` (a `SupportWitness`, line 10) become one bound and one witness on the same `O`.
 
+Real-only, a specification: it decides from bounds and witnesses supplied as oracles over every
+direction, and its soundness is the theorem.
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

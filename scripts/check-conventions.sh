@@ -1919,14 +1919,15 @@ report "$out"
 # (scripts/option-hyp-allowlist.txt, #212), and a `## References` entry that names a thesis
 # instead of the paper (scripts/thesis-ref-allowlist.txt), and a definition of a composite
 # representation (ConPolyZono, ConZonotope, StarSet) that does its stored component's work by hand
-# instead of through the component's operations (scripts/component-reuse-allowlist.txt, #174). Same
-# contract as the helper above: status 1 with findings on stdout is a finding, anything else is
+# instead of through the component's operations (scripts/component-reuse-allowlist.txt, #174), and
+# a real-only `Specification` operation that does not say why (scripts/float-refinement-pending.txt).
+# Same contract as the helper above: status 1 with findings on stdout is a finding, anything else is
 # the helper failing.
 if [ -z "$STAGED" ]; then
   for helper in check-float-wrappers.py check-algorithm-steps.py check-repeated-subterms.py \
     check-dt-twins.py check-single-use.py check-prop-names.py check-absorb-rounding.py \
     check-exact-names.py check-option-hyps.py check-thesis-refs.py \
-    check-component-reuse.py; do
+    check-component-reuse.py check-float-refinement.py; do
     helper_err=$(mktemp)
     out=$($PYTHON "scripts/$helper" 2> "$helper_err") && helper_rc=0 || helper_rc=$?
     if [ "$helper_rc" -gt 1 ] || { [ "$helper_rc" -eq 1 ] && [ -z "$out" ]; }; then

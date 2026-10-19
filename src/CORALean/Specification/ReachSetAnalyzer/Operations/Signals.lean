@@ -10,6 +10,9 @@ public import CORALean.Specification.ReachSetAnalyzer.ReachSetAnalyzer
 
 `out = signals(obj)`: the three-valued signal of every proposition, from its builder. CORA throws
 if a key has no builder or the signal cannot be built; here `none`.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+intervals over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -13,6 +13,9 @@ public import CORALean.Specification.STLInterval.Operations.Basic
 the bounds of the interval (the empty interval, and any interval with a bound below `0`, as the
 constructor leaves them) are read off by `lowerBound`, `upperBound` and the closedness flags, and
 `indicatorBounds` builds the signal.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

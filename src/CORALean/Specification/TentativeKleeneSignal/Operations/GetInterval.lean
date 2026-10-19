@@ -13,6 +13,9 @@ public import CORALean.Specification.TentativeKleeneSignal.Operations.ToFourValu
 `sig = getInterval(obj,interval)` of `tentativeKleeneSignal.m`: everything outside the interval is
 made invalid, the rest read as a four-valued signal; the empty interval gives the inconclusive
 signal. `isemptyobject(interval)` is the case where `toLeft` has nothing to return.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

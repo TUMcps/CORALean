@@ -17,6 +17,9 @@ and a run of the right one, is or-ed with the indicator of `((lint(i) & rint(j))
 lint(i)`. The interval `int = [p,q]` is given by its bounds, `q` possibly infinite; `eps` is
 MATLAB's machine epsilon. The options `low` and `up` are not modelled. Every `none` of a step is a
 failure of a CORA call.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

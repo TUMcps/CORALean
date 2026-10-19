@@ -12,6 +12,9 @@ public import CORALean.Specification.STL.Definitions.SampledTime
 `Υ` of [1, Lemma 2], Eqs. (16) and (17), on a normal form: `⋁_k F(0,c)ϱ_k ∨ ⋁_l G(0,c)ϱ_l` becomes
 `X_{c/2}(Aϱ' ∨ ⋁_l A(ϱ_l ∨ ϱ'))`, `ϱ' = ⋁_k ϱ_k`, and `ϱᵢⱼ` becomes `Aϱᵢⱼ` beside it.
 
+Real-only, a specification: it rewrites or builds formulas, whose time bounds and constants are
+part of the syntax and are copied or added exactly, never rounded.
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

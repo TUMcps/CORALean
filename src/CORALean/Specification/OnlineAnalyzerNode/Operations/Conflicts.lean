@@ -15,6 +15,9 @@ reach back before it, `pUb > lb || (withinTol(pUb,lb,eps) && pRc && lc)`; otherw
 `CORA:specialError` ("New observation for already propagated time is not allowed"). Empty intervals
 (`pUb` empty) are skipped. If the observed interval is empty its `lb` is empty too, and comparing
 with it is a MATLAB error. `some true` is the former throw, `none` the latter.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+intervals over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

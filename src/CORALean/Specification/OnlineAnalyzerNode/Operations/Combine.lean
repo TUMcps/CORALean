@@ -15,6 +15,9 @@ child's signal, the conjunction or disjunction of the children's signals, or the
 children over the node's interval. CORA throws (`notSupported`, a failed `assert`) for a leaf, a
 wrong number of children, and where `toBoolSignal()` of the four-valued operations throws; all are
 `none`.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+intervals over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

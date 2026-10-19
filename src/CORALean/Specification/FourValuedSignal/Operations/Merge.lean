@@ -11,6 +11,9 @@ public import CORALean.Specification.FourValuedSignal.Operations.FindIntervals
 
 `sig = merge(obj,other)` of `fourValuedSignal.m`: `obj`, with the intervals where `other` is `True`,
 `False` and `Unknown` set to those values in turn; where `other` is inconclusive `obj` stays.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

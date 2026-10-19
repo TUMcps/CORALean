@@ -12,6 +12,9 @@ The loop of the private `getAllProp` of `onlineAnalyzerNode.m` over the interval
 the parents: the upper bound `ub` of the smallest, and whether it is closed (`rc`). An empty entry
 (nothing propagated to that parent) gives `[0,0)` and ends the loop; bounds equal within `eps`
 take the open end.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+intervals over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

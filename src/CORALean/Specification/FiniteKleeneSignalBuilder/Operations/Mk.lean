@@ -11,6 +11,9 @@ public import CORALean.Specification.FiniteSignal.Operations.Mk
 `obj = finiteKleeneSignalBuilder(dur)`: both signals are false on `[0,dur]`, as
 `finiteSignal(dur,false)`. CORA throws in that constructor for a negative `dur` (`time` must be
 nonnegative); here `none`.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

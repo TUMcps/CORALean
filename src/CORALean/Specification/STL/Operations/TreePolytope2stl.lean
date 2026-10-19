@@ -13,6 +13,9 @@ public import CORALean.Specification.STL.Operations.TreeConjoin
 `@stl/polytope2stl.m` extended by the rows of `P.Ae` and `P.be`, each as the two comparisons
 `<=` and `>=` (`STL.Tree` has no equality node). The printed version, which drops them, is
 `STL.Tree.polytope2stlCora`.
+
+Real-only, a specification: it builds a formula from the rows of a polytope, whose coefficients
+the formula stores as given, so nothing is rounded.
 -/
 
 -- Authors:       Claude Sonnet 5.5

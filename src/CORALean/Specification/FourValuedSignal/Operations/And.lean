@@ -22,6 +22,9 @@ value is unknown; `none` is that error, which `at_and` shows does not occur.
 This is `Λ̃₁ ∧ Λ̃₂` of [1, Sec. 4.3 (operators)]: the `⊔₂` of the conjunctions of the under- and
 overapproximations `⌊Λ̃⌋` and `⌈Λ̃⌉`.
 
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
