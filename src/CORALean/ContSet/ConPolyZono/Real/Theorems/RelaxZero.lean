@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxIff
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEqUnit
 
 @[expose] public section
 
@@ -35,13 +36,15 @@ theorem ConPolyZono.relax_zero_construct (cPZ : ConPolyZono α) :
   rw [ConPolyZono.mem_relax_iff]
   constructor
   · rintro ⟨a, β, ha, hβ, hs, hx⟩
-    refine ⟨a, β, ha, hβ, (PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mpr fun i => ?_, hx⟩
+    refine ⟨a, β, hβ, (PolyLevelSet.mem_construct_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom).mpr
+      ⟨ha, fun i => ?_⟩, hx⟩
     have h := hs i
     rw [Pi.zero_apply, abs_zero] at h
     exact sub_eq_zero.mp (abs_nonpos_iff.mp h)
-  · rintro ⟨a, β, ha, hβ, hs, hx⟩
+  · rintro ⟨a, β, hβ, hs, hx⟩
+    obtain ⟨ha, hrows⟩ := (PolyLevelSet.mem_construct_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom).mp hs
     refine ⟨a, β, ha, hβ, fun i => ?_, hx⟩
-    rw [(PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mp hs i, sub_self, abs_zero]
+    rw [hrows i, sub_self, abs_zero]
     exact abs_nonneg _
 
 end CORALean.Real

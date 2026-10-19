@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.PolyLevelSet.Float.Operations.And
 public import CORALean.ContSet.PolyLevelSet.Float.PolyLevelSet
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
 
@@ -20,6 +21,18 @@ namespace CORALean.Float
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- ==================================  `PolyLevelSet.andRows`  ================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `and_`'s rows on the first operand's box, as over ℝ (`Real.PolyLevelSet.andRows`): further rows
+on the same variables, each with its slack. -/
+def PolyLevelSet.andRows (P Q : PolyLevelSet 𝕋 n) : PolyLevelSet 𝕋 n :=
+  { P.and_ Q with dom := P.dom }
 
 
 -- =================================  `PolyLevelSet.mergedCol`  ================================= --

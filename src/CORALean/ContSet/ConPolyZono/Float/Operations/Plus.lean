@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Plus
 public import CORALean.ContSet.Interval.Float.Operations.Basic
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
 public import CORALean.ContSet.PolyLevelSet.Float.Operations.CartProd
 public import CORALean.ContSet.LevelSet.Real.Theorems.Basic
@@ -46,6 +47,7 @@ def ConPolyZono.plus (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZo
   GI := Fin.append cPZ₁.GI cPZ₂.GI
   cons := cPZ₁.cons.cartProd cPZ₂.cons
   cons_eq := Real.LevelSet.append_op_eq cPZ₁.cons_eq cPZ₂.cons_eq
+  cons_dom := Interval.append_eq_unit cPZ₁.cons_dom cPZ₂.cons_dom
   I_error := (cPZ₁.I_error.plus cPZ₂.I_error).plus (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c)
 
 end CORALean.Float

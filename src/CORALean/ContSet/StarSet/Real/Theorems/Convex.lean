@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.Interval.Real.Theorems.Convex
 public import CORALean.ContSet.StarSet.Real.StarSet
 public import Mathlib.Analysis.Convex.Basic
 public import Mathlib.Algebra.BigOperators.Ring.Finset
@@ -19,7 +20,7 @@ which a convex predicate holds of. A predicate that is not convex, a `LevelSet` 
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       15-October-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -32,13 +33,14 @@ open ContSet
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- A star set over a convex predicate is convex. -/
+/-- A star set over a convex predicate is convex, its box being convex. -/
 theorem StarSet.convex_construct {P : ℕ → Type} [∀ m, ContSet (P m) (Vec ℝ m)]
     [∀ m, ConvexSet (P m) (Vec ℝ m)] {n : ℕ} (s : StarSet P n) :
     Convex ℝ s.construct := by -- --- PROOF ---
   -- two points, with their coefficients; the convex combination of the coefficients is the witness
   rintro x ⟨α, hα, hxα⟩ y ⟨β, hβ, hyβ⟩ a b ha hb hab
-  refine ⟨a • α + b • β, ConvexSet.convex_construct s.pred hα hβ ha hb hab, fun i => ?_⟩
+  refine ⟨a • α + b • β, ⟨Interval.convex_construct s.dom hα.1 hβ.1 ha hb hab,
+    ConvexSet.convex_construct s.pred hα.2 hβ.2 ha hb hab⟩, fun i => ?_⟩
   -- the point is the same combination of the two points
   have : ∑ k, s.G i k * (a • α + b • β) k
       = a * ∑ k, s.G i k * α k + b * ∑ k, s.G i k * β k := by

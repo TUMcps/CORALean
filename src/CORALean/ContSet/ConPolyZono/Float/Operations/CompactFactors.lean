@@ -50,6 +50,10 @@ def ConPolyZono.compactFactors (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZo
     GI := cPZ.GI
     cons := cPZ.cons.reindexVars f
     cons_eq := cPZ.cons_eq
+    cons_dom := by
+      show cPZ.cons.dom.project _ = _
+      rw [cPZ.cons_dom]
+      rfl
     I_error := cPZ.I_error }
 
 end CORALean.Float

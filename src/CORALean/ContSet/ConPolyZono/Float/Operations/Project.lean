@@ -40,6 +40,7 @@ def ConPolyZono.project (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (dims : Fin m → 
   GI := fun j k => cPZ.GI j (dims k)
   cons := cPZ.cons
   cons_eq := cPZ.cons_eq
+  cons_dom := cPZ.cons_dom
   I_error := cPZ.I_error.project dims
 
 end CORALean.Float

@@ -35,9 +35,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- The widened slack holds wherever the exact re-parametrized rows are within the old one. -/
+/-- The widened slack holds wherever the exact re-parametrized rows are within the old one, at a
+point of the box. -/
 theorem PolyLevelSet.mem_getSubset_of_real (P : PolyLevelSet 𝕋 n) (hP : ∀ i, P.op i = .eq)
-    (k : Fin n) (cen rad : 𝕋) (a : Fin n → ℝ) (ha : ∀ k, |a k| ≤ 1)
+    (k : Fin n) (cen rad : 𝕋) (a : Fin n → ℝ) (ha : ∀ k, |a k| ≤ 1) (hdom : a ∈ P.dom.construct)
     (hsat : ∀ i, |(P.nominalCore.getSubset k (toReal cen) (toReal rad)).eval a i|
       ≤ |toReal (P.b_error i)|) : -- --- STMT ---
     a ∈ (P.getSubset k cen rad).construct := by -- --- PROOF ---
@@ -52,7 +53,8 @@ theorem PolyLevelSet.mem_getSubset_of_real (P : PolyLevelSet 𝕋 n) (hP : ∀ i
       (fun i l => by
         rw [abs_sub_comm]
         exact PolyZonotope.getSubsetG_close P.lhs k cen rad i l) ha
-  refine (PolyLevelSet.mem_construct_iff_of_eq (P := P.getSubset k cen rad) hP).mpr fun i => ?_
+  refine (PolyLevelSet.mem_construct_iff_of_eq (P := P.getSubset k cen rad) hP).mpr
+    ⟨hdom, fun i => ?_⟩
   have hi := hd i
   -- and the stored row is the exact one plus that point
   have heq : ((toRealMat (P.getSubset k cen rad).A) *ᵥ Real.PolyZonotope.monomial

@@ -14,7 +14,7 @@ row has the empty constraint matrix (`q = 0`, so `A μ = 0`) and the right-hand 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -29,8 +29,8 @@ variable {n : ℕ}
 
 /-- `conPolyZono.empty(n)`: the center `0`, no generators, and the unsatisfiable row `0 = 1`. -/
 def ConPolyZono.empty (n : ℕ) : ConPolyZono (Vec ℝ n) :=
-  ⟨0, 0, 0, 0, Fin.elim0, Fin.elim0, Fin.elim0, ⟨1, 0, 0, Fin.elim0, fun _ => 1, fun _ => .eq⟩,
-    fun _ => rfl⟩
+  ⟨0, 0, 0, 0, Fin.elim0, Fin.elim0, Fin.elim0,
+    ⟨1, 0, 0, Fin.elim0, fun _ => 1, fun _ => .eq, Interval.unit 0⟩, fun _ => rfl, rfl⟩
 
 end CORALean.Real
 

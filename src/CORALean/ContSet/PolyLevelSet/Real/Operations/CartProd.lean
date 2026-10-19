@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.PolyLevelSet
 public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
 
@@ -16,7 +17,7 @@ shared variables.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -29,7 +30,7 @@ variable {n₁ n₂ : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Both constraint systems, each on its own block of variables. -/
+/-- Both constraint systems, each on its own block of variables and its own box. -/
 def PolyLevelSet.cartProd (P₁ : PolyLevelSet n₁) (P₂ : PolyLevelSet n₂) :
     PolyLevelSet (n₁ + n₂) where
   m := P₁.m + P₂.m
@@ -38,6 +39,7 @@ def PolyLevelSet.cartProd (P₁ : PolyLevelSet n₁) (P₂ : PolyLevelSet n₂) 
   R := PolyZonotope.plusE P₁.R P₂.R
   b := Fin.append P₁.b P₂.b
   op := Fin.append P₁.op P₂.op
+  dom := P₁.dom.append P₂.dom
 
 end CORALean.Real
 

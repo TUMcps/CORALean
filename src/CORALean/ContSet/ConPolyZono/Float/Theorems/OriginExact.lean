@@ -42,8 +42,8 @@ theorem ConPolyZono.origin_exact (n : ℕ) :
       rw [hx i]
       simp [ConPolyZono.origin, toReal_zero]
     · rintro rfl
-      exact ⟨Fin.elim0, Fin.elim0, fun k => k.elim0, fun j => j.elim0, fun i => i.elim0,
-        fun i => by simp [ConPolyZono.origin, toReal_zero]⟩
+      exact ⟨Fin.elim0, Fin.elim0, fun k => k.elim0, fun j => j.elim0,
+        ⟨fun k => k.elim0, fun i => i.elim0⟩, fun i => by simp [ConPolyZono.origin, toReal_zero]⟩
   have hE : (ConPolyZono.origin n : ConPolyZono 𝕋 (Vec 𝕋 n)).I_error.construct = {0} :=
     Interval.origin_exact n
   -- the sum of the two singletons

@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Operations.Relax
 
 @[expose] public section
@@ -19,7 +20,7 @@ becomes one (`ConZonotope.conPolyZono`). `mem_relax_iff` says what the result de
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -41,8 +42,11 @@ def ConPolyZono.relax (cPZ : ConPolyZono α) (s : Vec ℝ cPZ.cons.m) : ConPolyZ
   G := cPZ.G
   E := ConPolyZono.padE cPZ.E cPZ.cons.m
   GI := cPZ.GI
-  cons := cPZ.cons.relax s
+  cons := cPZ.cons.relax s (Interval.unit cPZ.cons.m)
   cons_eq := cPZ.cons_eq
+  cons_dom := by
+    show cPZ.cons.dom.append _ = _
+    rw [cPZ.cons_dom, Interval.unit_append_unit]
 
 end CORALean.Real
 

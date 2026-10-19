@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Float.Theorems.MemAppendIff
 public import CORALean.ContSet.PolyLevelSet.Float.Operations.PadVars
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalPadVars
 
@@ -14,7 +15,7 @@ padded rows, which ignore them (`Real.PolyLevelSet.eval_padVars`).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -29,12 +30,17 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- A point is in the padded set exactly when its first `n` variables are in the set. -/
-theorem PolyLevelSet.mem_padVars_iff (P : PolyLevelSet 𝕋 n) (r : ℕ) (x : Vec ℝ (n + r)) :
-    x ∈ (P.padVars r).construct ↔ (fun k => x (Fin.castAdd r k)) ∈ P.construct := by
-  show (∀ i, (P.op i).IsMetWithin (P.nominalCore.padVars r |>.eval x i) _) ↔ _
-  rw [Real.PolyLevelSet.eval_padVars]
-  rfl
+/-- A point is in the padded set exactly when its first `n` variables are in the set and its
+last `r` in the new box. -/
+theorem PolyLevelSet.mem_padVars_iff (P : PolyLevelSet 𝕋 n) {r : ℕ} (D : Interval (Vec 𝕋 r))
+    (x : Vec ℝ (n + r)) : -- --- STMT ---
+    x ∈ (P.padVars D).construct
+      ↔ (fun k => x (Fin.castAdd r k)) ∈ P.construct
+        ∧ (fun k => x (Fin.natAdd n k)) ∈ D.construct := by -- --- PROOF ---
+  show (x ∈ (P.dom.append D).construct
+    ∧ ∀ i, (P.op i).IsMetWithin (P.nominalCore.padVars D.nominal |>.eval x i) _) ↔ _
+  rw [Real.PolyLevelSet.eval_padVars, Interval.mem_append_iff]
+  exact ⟨fun ⟨⟨h₁, h₂⟩, r₁⟩ => ⟨⟨h₁, r₁⟩, h₂⟩, fun ⟨⟨h₁, r₁⟩, h₂⟩ => ⟨⟨h₁, h₂⟩, r₁⟩⟩
 
 end CORALean.Float
 

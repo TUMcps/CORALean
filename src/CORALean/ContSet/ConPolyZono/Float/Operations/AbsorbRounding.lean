@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 public import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
 public import CORALean.ContSet.Interval.Float.Operations.Basic
@@ -23,7 +24,7 @@ origin. Unlike `dependent`, the independent generators stay independent.
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       15-October-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -47,8 +48,9 @@ def ConPolyZono.absorbRounding (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZo
     E := Real.ConPolyZono.padE cPZ.E cPZ.cons.m
     GI := Fin.append cPZ.GI (diagonalBlock (PolyZonotope.errorBound cPZ.I_error))
     -- the slack `cons.b_error` of each row, as a factor of its own, the slack left `zero`
-    cons := cPZ.cons.relax
+    cons := cPZ.cons.relax (Interval.unit cPZ.cons.m)
     cons_eq := cPZ.cons_eq
+    cons_dom := Interval.append_eq_unit cPZ.cons_dom rfl
     I_error := Interval.origin n }
 
 end CORALean.Float

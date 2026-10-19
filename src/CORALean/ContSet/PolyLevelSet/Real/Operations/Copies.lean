@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.PolyLevelSet
 public import CORALean.Global.RepBlockDiag
 
@@ -17,7 +18,7 @@ operands, laid out by `finProdFinEquiv`. Not one of CORA's operations: it is the
 
 -- Authors:       Claude Opus 5.5
 -- Written:       19-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -30,7 +31,7 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `a` copies of the rows, copy `j` on the `j`-th block of variables. -/
+/-- `a` copies of the rows and of the box, copy `j` on the `j`-th block of variables. -/
 def PolyLevelSet.copies (P : PolyLevelSet n) (a : ℕ) : PolyLevelSet (a * n) where
   m := a * P.m
   q := a * P.q
@@ -38,6 +39,7 @@ def PolyLevelSet.copies (P : PolyLevelSet n) (a : ℕ) : PolyLevelSet (a * n) wh
   R := repBlockDiag 0 a P.R
   b := repVec a P.b
   op := repVec a P.op
+  dom := P.dom.repVec a
 
 end CORALean.Real
 

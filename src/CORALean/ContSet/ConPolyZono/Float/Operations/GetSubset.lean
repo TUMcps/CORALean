@@ -46,6 +46,7 @@ def ConPolyZono.getSubset (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : Fin cPZ.p) 
   -- the rows re-parametrized, the slack widened by what their stored coefficients lost
   cons := cPZ.cons.getSubset k cen rad
   cons_eq := cPZ.cons_eq
+  cons_dom := cPZ.cons_dom
   I_error := (cPZ.toPolyZonotope.getSubset k cen rad).I_error
 
 end CORALean.Float

@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Operations.EBoxConstruct
 public import CORALean.ContSet.Interval.Real.Operations.Inf
+public import CORALean.ContSet.Interval.Real.Operations.Intersection
 public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 public import CORALean.ContSet.Interval.Real.Operations.RepresentsaEmptySet
 public import CORALean.ContSet.Interval.Real.Operations.SupportBound
@@ -84,6 +85,29 @@ theorem Interval.infimum_mem_construct (I : Interval α) (h : I.IsNonempty) :
     I.infimum ∈ I.construct := fun i => ⟨le_rfl, h i⟩
 
 
+-- ===============================  `Interval.intersection_self`  =============================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- A box met with itself is itself. -/
+theorem Interval.intersection_self (I : Interval (Vec ℝ n)) : I.intersection I = I := by
+  simp [Interval.intersection]
+
+
+-- =================================  `Interval.mem_unit_iff`  ================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- A point of the unit box is one whose every coordinate has modulus at most `1`. -/
+theorem Interval.mem_unit_iff (x : Vec ℝ n) :
+    x ∈ (Interval.unit n).construct ↔ ∀ k, |x k| ≤ 1 :=
+  forall_congr' fun _ => abs_le.symm
+
+
 -- ==============================  `Interval.not_isNonempty_iff`  =============================== --
 -- Authors:       Claude Opus 5
 -- Written:       17-August-2026
@@ -157,6 +181,32 @@ theorem Interval.times_outer (I J : Interval (Vec ℝ n)) :
     Set.image2 (fun x y i => x i * y i) I.construct J.construct ⊆ (I.times J).construct := by
   rintro _ ⟨x, hx, y, hy, rfl⟩ i
   exact Interval.mul_between_corners (hx i).1 (hx i).2 (hy i).1 (hy i).2
+
+
+-- ===============================  `Interval.unit_append_unit`  ================================ --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Two unit boxes side by side are the unit box of both blocks. -/
+theorem Interval.unit_append_unit (n₁ n₂ : ℕ) :
+    (Interval.unit n₁).append (Interval.unit n₂) = Interval.unit (n₁ + n₂) := by
+  simp only [Interval.append, Interval.unit, Interval.mk.injEq]
+  exact ⟨funext (Fin.addCases (by simp) (by simp)), funext (Fin.addCases (by simp) (by simp))⟩
+
+
+-- ================================  `Interval.append_eq_unit`  ================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Two boxes that are unit boxes, side by side, are the unit box of both blocks. -/
+theorem Interval.append_eq_unit {n₁ n₂ : ℕ} {I₁ : Interval (Vec ℝ n₁)} {I₂ : Interval (Vec ℝ n₂)}
+    (h₁ : I₁ = Interval.unit n₁) (h₂ : I₂ = Interval.unit n₂) :
+    I₁.append I₂ = Interval.unit (n₁ + n₂) := by
+  rw [h₁, h₂, Interval.unit_append_unit]
 
 
 -- ==================================  `Interval.uplus_exact`  ================================== --

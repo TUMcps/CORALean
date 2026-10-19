@@ -29,8 +29,8 @@ variable {n : ℕ}
 theorem ConPolyZono.empty_exact (n : ℕ) : (ConPolyZono.empty n).construct = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
-  rintro ⟨a, β, -, -, hsat, -⟩
-  have h := (PolyLevelSet.mem_construct_iff_of_eq (ConPolyZono.empty n).cons_eq).mp hsat
+  rintro ⟨a, β, -, hsat, -⟩
+  have h := ((PolyLevelSet.mem_construct_iff_of_eq (ConPolyZono.empty n).cons_eq).mp hsat).2
     (0 : Fin 1)
   simp [ConPolyZono.empty, Matrix.mulVec] at h
 

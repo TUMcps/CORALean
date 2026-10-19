@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPolyZono
 
@@ -13,7 +14,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPol
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -37,8 +38,9 @@ def PolyZonotope.conPolyZono (pZ : PolyZonotope (Vec 𝕋 n)) : ConPolyZono 𝕋
   E := pZ.E
   GI := pZ.GI
   cons := ⟨0, 0, fun i => i.elim0, fun _ => Fin.elim0, fun i => i.elim0, fun i => i.elim0,
-    fun i => i.elim0⟩
+    fun i => i.elim0, Interval.unit pZ.p⟩
   cons_eq i := i.elim0
+  cons_dom := rfl
   I_error := pZ.I_error
 
 end CORALean.Float

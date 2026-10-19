@@ -76,6 +76,7 @@ noncomputable def ConPolyZono.reduceCon {α : Type} [AddCommGroup α] [Module �
   GI := cPZ.GI
   cons := cPZ.cons.eliminate r t
   cons_eq _ := cPZ.cons_eq _
+  cons_dom := cPZ.cons_dom
 
 end CORALean.Real
 

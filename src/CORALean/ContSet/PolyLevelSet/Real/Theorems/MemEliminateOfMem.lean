@@ -44,7 +44,7 @@ theorem PolyLevelSet.mem_eliminate_of_mem (P : PolyLevelSet n) (r : Fin P.m) (t 
     x ∈ (P.eliminate r t).construct := by -- --- PROOF ---
   set μ := PolyZonotope.monomial P.R x with hμ
   have hrow : ∑ i, P.A r i * μ i = P.b r := by
-    have h := hx r
+    have h := hx.2 r
     rw [hr] at h
     exact sub_eq_zero.mp h
   -- eq. (35), read as what the surviving monomials of row `r` sum to
@@ -52,7 +52,7 @@ theorem PolyLevelSet.mem_eliminate_of_mem (P : PolyLevelSet n) (r : Fin P.m) (t 
       = P.b r - P.A r t * μ t := by
     rw [← hrow, sum_dropIdx t (fun i => P.A r i * μ i)]
     ring
-  intro j
+  refine ⟨hx.1, fun j => ?_⟩
   -- eq. (36): a surviving row is the old one, its right-hand side shifted with it
   have hJ : ∑ i : Fin (P.q - 1), P.A (dropIdx r j) (dropIdx t i) * μ (dropIdx t i)
       = (P.A *ᵥ μ) (dropIdx r j) - P.A (dropIdx r j) t * μ t := by
@@ -84,7 +84,7 @@ theorem PolyLevelSet.mem_eliminate_of_mem (P : PolyLevelSet n) (r : Fin P.m) (t 
     ring
   show (P.op (dropIdx r j)).holds _
   rw [heval]
-  exact hx (dropIdx r j)
+  exact hx.2 (dropIdx r j)
 
 end CORALean.Real
 

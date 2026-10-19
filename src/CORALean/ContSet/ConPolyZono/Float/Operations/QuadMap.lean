@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.ToPolyZonotope
 public import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapDep
 public import CORALean.ContSet.PolyLevelSet.Float.Operations.PadVars
@@ -22,7 +23,7 @@ block does. Outer, never the exact image.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -42,7 +43,8 @@ def ConPolyZono.quadMap (Q : Fin k → Mat 𝕋 n n) (cPZ : ConPolyZono 𝕋 (Ve
   -- the image of the generator part, its rounding in the error box
   let qZ := PolyZonotope.quadMapDep Q pZ
   { p := qZ.p, h := qZ.h, qI := 0, c := qZ.c, G := qZ.G, E := qZ.E, GI := Fin.elim0,
-    cons := cPZ.cons.padVars (cPZ.qI + n), cons_eq := cPZ.cons_eq, I_error := qZ.I_error }
+    cons := cPZ.cons.padVars (Interval.unit (cPZ.qI + n)), cons_eq := cPZ.cons_eq,
+    cons_dom := Interval.append_eq_unit cPZ.cons_dom rfl, I_error := qZ.I_error }
 
 end CORALean.Float
 

@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Real.Interval
 public import CORALean.ContSet.LevelSet.Real.LevelSet
 public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 public import Mathlib.Data.Matrix.Mul
@@ -9,17 +10,19 @@ public import Mathlib.Data.Matrix.Mul
 /-!
 # Polynomial level sets: the representation
 
-A `LevelSet` whose function is a polynomial, stored by its data: the points `x` with
-`(A μ_R(x))ᵢ - bᵢ ⋈ᵢ 0` in every row, `μ_R(x)` the monomials `∏ₖ xₖ^{R[k,j]}` read off the
-exponent matrix `R`, `A` the coefficients of each row on those monomials and `⋈ᵢ ∈ {≤, <, =}`.
-At `=` in every row this is the constraint `Σⱼ (∏ₖ αₖ^{R[k,j]}) A_(·,j) = b` of [1, Def. 5],
-taken as a set of its own; [1, Def. 7]'s `constrDom` is it cut down to `[-1,1]ᵖ`. That is what a
-constrained polynomial zonotope's factors satisfy (`ConPolyZono.cons`), as a constrained zonotope's
-satisfy an `HPolytope`. The rows `≤` and `<` are [2, Eq. 2]'s invariants, at a polynomial `s`.
+A `LevelSet` whose function is a polynomial, over a domain box, stored by its data: the points `x`
+of the box `dom` with `(A μ_R(x))ᵢ - bᵢ ⋈ᵢ 0` in every row, `μ_R(x)` the monomials
+`∏ₖ xₖ^{R[k,j]}` read off the exponent matrix `R`, `A` the coefficients of each row on those
+monomials and `⋈ᵢ ∈ {≤, <, =}`. At `=` in every row and the box `[-1, 1]ᵖ` this is [1, Def. 7]'s
+`constrDom`, the constraint `Σⱼ (∏ₖ αₖ^{R[k,j]}) A_(·,j) = b` of [1, Def. 5] on the factors' domain:
+what a constrained polynomial zonotope's factors satisfy (`ConPolyZono.cons`, whose `cons_dom` fixes
+the box), as a constrained zonotope's satisfy an `HPolytope`. The rows `≤` and `<` are [2, Eq. 2]'s
+invariants, at a polynomial `s`. The box is a library `Interval`, whose ends are finite.
 
 CORA has no class for it: its `levelSet` stores the symbolic equation, which a polynomial is one
-kind of. `PolyLevelSet.levelSet` (`Conversion/`) is that reading, with the same set, so whatever is
-proved of a `LevelSet` holds here; the stored data are what an operation can compute with.
+kind of. `PolyLevelSet.levelSet` (`Conversion/`) is that reading, the box written as `2n` rows of
+its own, with the same set, so whatever is proved of a `LevelSet` holds here; the stored data are
+what an operation can compute with.
 
 ## References
 
@@ -32,8 +35,8 @@ proved of a `LevelSet` holds here; the stored data are what an operation can com
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   18-October-2026
--- Reviewed:      19-October-2026 (Tobias Ladner)
+-- Last update:   19-October-2026
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
@@ -61,14 +64,16 @@ structure PolyLevelSet (n : ℕ) where
   b : Vec ℝ m
   /-- The comparison of each constraint with `0`. -/
   op : Fin m → CompOp
+  /-- The domain box the variables range over. -/
+  dom : Interval (Vec ℝ n)
 
 /-- The value of every constraint at `x`, `A μ_R(x) - b`: what each operator compares with `0`. -/
 def PolyLevelSet.eval (P : PolyLevelSet n) (x : Vec ℝ n) : Vec ℝ P.m :=
   P.A *ᵥ PolyZonotope.monomial P.R x - P.b
 
-/-- The points meeting every constraint `(A μ_R(x) - b)ᵢ ⋈ᵢ 0`. -/
+/-- The points of the box meeting every constraint `(A μ_R(x) - b)ᵢ ⋈ᵢ 0`. -/
 def PolyLevelSet.construct (P : PolyLevelSet n) : Set (Vec ℝ n) :=
-  {x | ∀ i, (P.op i).holds (P.eval x i)}
+  {x | x ∈ P.dom.construct ∧ ∀ i, (P.op i).holds (P.eval x i)}
 
 end CORALean.Real
 

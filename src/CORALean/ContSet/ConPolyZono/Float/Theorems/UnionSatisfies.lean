@@ -3,13 +3,14 @@ module
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Union
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionUpperHolds
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLower
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.EvalNominalCoreCartProd
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.EvalNominalCoreSwitch
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemAndRowsIff
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalPadVars
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalSwitch
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalAnd
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
-public import CORALean.ContSet.PolyLevelSet.Float.Theorems.AndExact
 public import CORALean.ContSet.LevelSet.Real.Theorems.Basic
 public import CORALean.Global.Float.GenBlockDiag
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Union
@@ -53,13 +54,13 @@ theorem ConPolyZono.aux_eval_nominalCore_unionLower {p₁ p₂ : ℕ} (P₁ : Po
   unfold ConPolyZono.unionLower Real.ConPolyZono.unionLower
   rw [PolyLevelSet.eval_nominalCore_switch, Real.PolyLevelSet.eval_switch,
     Real.PolyLevelSet.eval_switch]
-  have hv : ((P₁.cartProd P₂).padVars 2).nominalCore.eval a
-      = ((P₁.nominalCore.cartProd P₂.nominalCore).padVars 2).eval a := by
+  have hv : ((P₁.cartProd P₂).padVars (Interval.unit 2)).nominalCore.eval a
+      = ((P₁.nominalCore.cartProd P₂.nominalCore).padVars (Real.Interval.unit 2)).eval a := by
     rw [Real.PolyLevelSet.eval_padVars]
-    exact (Real.PolyLevelSet.eval_padVars _ 2 a).trans
+    exact (Real.PolyLevelSet.eval_padVars _ (Real.Interval.unit 2) a).trans
       (PolyLevelSet.eval_nominalCore_cartProd P₁ P₂ _)
-  have hb : ((P₁.cartProd P₂).padVars 2).nominalCore.b i
-      = ((P₁.nominalCore.cartProd P₂.nominalCore).padVars 2).b i :=
+  have hb : ((P₁.cartProd P₂).padVars (Interval.unit 2)).nominalCore.b i
+      = ((P₁.nominalCore.cartProd P₂.nominalCore).padVars (Real.Interval.unit 2)).b i :=
     congrFun (toRealVec_append P₁.b P₂.b) i
   rw [hv, hb]
 
@@ -90,22 +91,23 @@ theorem ConPolyZono.union_satisfies_of_real (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (V
   -- the selector rows have no slack, so they hold exactly
   have hUmem : a ∈ (Real.ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).construct :=
     (Real.PolyLevelSet.mem_construct_iff_of_eq
-      (Real.LevelSet.append_op_eq (fun _ => rfl) fun _ => rfl)).mpr fun i => by
+      (Real.LevelSet.append_op_eq (fun _ => rfl) fun _ => rfl)).mpr
+        ⟨(Real.Interval.mem_unit_iff a).mpr ha, fun i => by
         have h0 := h (Fin.castAdd _ i)
         erw [Fin.append_left, Fin.append_left, Pi.zero_apply, abs_zero] at h0
-        exact sub_eq_zero.mp (abs_nonpos_iff.mp h0)
+        exact sub_eq_zero.mp (abs_nonpos_iff.mp h0)⟩
   have hL : ∀ j, |L.eval a j|
       ≤ |Fin.append (toRealVec cPZ₁.cons.b_error) (toRealVec cPZ₂.cons.b_error) j| := fun j => by
     have h1 := h (Fin.natAdd (1 + 1) j)
     erw [Fin.append_right, Fin.append_right] at h1
     exact h1
   -- the stored union: selector rows by `holds_unionUpper_of_real`, operand rows read back
-  show a ∈ ((ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).and_
+  show a ∈ ((ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).andRows
     (ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons)).construct
-  rw [PolyLevelSet.and_exact]
-  refine ⟨ConPolyZono.holds_unionUpper_of_real cPZ₁.p cPZ₂.p a ha hUmem,
-    (PolyLevelSet.mem_construct_iff_of_eq
-      (Real.LevelSet.append_op_eq cPZ₁.cons_eq cPZ₂.cons_eq)).mpr fun i => ?_⟩
+  rw [PolyLevelSet.mem_andRows_iff]
+  refine ⟨ConPolyZono.holds_unionUpper_of_real cPZ₁.p cPZ₂.p a ha hUmem, fun i => ?_⟩
+  rw [show (ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons).op i = .eq from
+    Real.LevelSet.append_op_eq cPZ₁.cons_eq cPZ₂.cons_eq i]
   -- the operand rows, the exact ones at the read-back entries, with the same slacks
   show |(ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons).nominalCore.eval a i|
     ≤ |toReal (Fin.append cPZ₁.cons.b_error cPZ₂.cons.b_error i)|

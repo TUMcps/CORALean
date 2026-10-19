@@ -7,6 +7,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.AbsMulVecLeMagnitudeMat
 public import CORALean.ContSet.Interval.Float.Theorems.AcosOuter
 public import CORALean.ContSet.Interval.Float.Theorems.AcoshOuter
 public import CORALean.ContSet.Interval.Float.Theorems.AppendConstruct
+public import CORALean.ContSet.Interval.Float.Theorems.MemAppendIff
 public import CORALean.ContSet.Interval.Float.Theorems.AsinOuter
 public import CORALean.ContSet.Interval.Float.Theorems.AsinhOuter
 public import CORALean.ContSet.Interval.Float.Theorems.Atan2HiLe

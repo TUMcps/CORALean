@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemRelaxIff
 public import Mathlib.Algebra.Order.Field.Basic
 public import Mathlib.Tactic.Ring
@@ -16,7 +17,7 @@ the row is off by at most `|sᵢ|`, and `0` where `sᵢ = 0` and the row is met.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -29,32 +30,33 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- Some slack in `[-1, 1]ᵐ` completes `x` to a point of the relaxed equations exactly when
-every row of `x` is met to within `|sᵢ|`. -/
+/-- Some slack in `[-1, 1]ᵐ` completes `x` to a point of the relaxed equations exactly when `x`
+is in `P`'s box and every row of `x` is met to within `|sᵢ|`. -/
 theorem PolyLevelSet.exists_relax_iff {P : PolyLevelSet n} (h : ∀ i, P.op i = .eq)
     (s : Vec ℝ P.m) (x : Vec ℝ n) :
-    (∃ y : Vec ℝ P.m, (∀ i, |y i| ≤ 1) ∧ Fin.append x y ∈ (P.relax s).construct)
-      ↔ ∀ i, |P.eval x i| ≤ |s i| := by -- --- PROOF ---
-  have key : ∀ y : Vec ℝ P.m, Fin.append x y ∈ (P.relax s).construct
-      ↔ ∀ i, P.eval x i + s i * y i = 0 := by
+    (∃ y : Vec ℝ P.m, Fin.append x y ∈ (P.relax s (Interval.unit P.m)).construct)
+      ↔ x ∈ P.dom.construct ∧ ∀ i, |P.eval x i| ≤ |s i| := by -- --- PROOF ---
+  have key : ∀ y : Vec ℝ P.m, Fin.append x y ∈ (P.relax s (Interval.unit P.m)).construct
+      ↔ (x ∈ P.dom.construct ∧ ∀ i, |y i| ≤ 1) ∧ ∀ i, P.eval x i + s i * y i = 0 := by
     intro y
-    rw [PolyLevelSet.mem_relax_iff]
-    refine forall_congr' fun i => ?_
-    rw [h i]
+    rw [PolyLevelSet.mem_relax_iff, Interval.mem_unit_iff]
     simp only [Fin.append_left, Fin.append_right]
+    refine and_congr Iff.rfl (forall_congr' fun i => ?_)
+    rw [h i]
     rfl
   constructor
-  · rintro ⟨y, hy, hmem⟩ i
+  · rintro ⟨y, hmem⟩
+    obtain ⟨⟨hx, hy⟩, hrows⟩ := (key y).mp hmem
+    refine ⟨hx, fun i => ?_⟩
     -- the row is off by `sᵢ yᵢ`, and `|yᵢ| ≤ 1`
     have hrow : P.eval x i = -(s i * y i) := by
-      linarith [(key y).mp hmem i]
+      linarith [hrows i]
     rw [hrow, abs_neg, abs_mul]
     exact mul_le_of_le_one_right (abs_nonneg _) (hy i)
-  · intro hs
+  · rintro ⟨hx, hs⟩
     -- the slack each row needs, `0` on a row with no room
-    refine ⟨fun i => if s i = 0 then 0
-        else -P.eval x i / s i, fun i => ?_,
-      (key _).mpr fun i => ?_⟩
+    refine ⟨fun i => if s i = 0 then 0 else -P.eval x i / s i,
+      (key _).mpr ⟨⟨hx, fun i => ?_⟩, fun i => ?_⟩⟩
     · by_cases h0 : s i = 0
       · simp [h0]
       · simp only [if_neg h0, abs_div]

@@ -9,6 +9,7 @@ public import CORALean.Global.Float.Atanh
 public import CORALean.Global.Float.Exp
 public import CORALean.Global.Float.FloatOps
 public import CORALean.Global.Float.Hyperbolic
+public import CORALean.Global.RepBlockDiag
 public import Mathlib.Data.Fin.Tuple.Basic
 public import Mathlib.Order.Interval.Set.Defs
 
@@ -497,6 +498,16 @@ def Interval.uminus (I : Interval (Vec 𝕋 n)) : Interval (Vec 𝕋 n) where
   sup := (-I.inf)
 
 
+-- =====================================  `Interval.unit`  ====================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The unit box `[-1, 1]ⁿ`, stored exactly: `-1` and `1` are floats. -/
+def Interval.unit (n : ℕ) : Interval (Vec 𝕋 n) := ⟨fun _ => neg one, fun _ => one⟩
+
+
 -- =========================================  `prodUp`  ========================================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
@@ -548,6 +559,17 @@ def Interval.diagVec (I : Interval (Mat 𝕋 n n)) : Interval (Vec 𝕋 n) where
 
 /-- The stored lower bound. -/
 def Interval.infimum {α : Type} (I : Interval α) : α := I.inf
+
+
+-- ====================================  `Interval.repVec`  ===================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `a` copies of the box side by side, as `repVec` copies a vector; nothing rounds. -/
+def Interval.repVec (a : ℕ) (I : Interval (Vec 𝕋 n)) : Interval (Vec 𝕋 (a * n)) :=
+  ⟨CORALean.repVec a I.inf, CORALean.repVec a I.sup⟩
 
 
 -- ===================================  `Interval.supremum`  ==================================== --

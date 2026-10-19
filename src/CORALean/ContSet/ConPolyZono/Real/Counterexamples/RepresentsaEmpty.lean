@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
 
 @[expose] public section
@@ -44,8 +45,8 @@ def ConPolyZono.aux_isEmptySetPrinted {α : Type} (cPZ : ConPolyZono α) : Optio
 /-- One factor, `c = 0`, `GI = 1`, and the constraint `1 · α₁ = 2`. -/
 def ConPolyZono.aux_emptyWithGI : ConPolyZono ℝ :=
   ⟨1, 0, 1, 0, Fin.elim0, fun _ _ => 0, fun _ => 1, ⟨1, 1, fun _ _ => 1, fun _ _ => 1, fun _ => 2,
-      fun _ => .eq⟩,
-      fun _ => rfl⟩
+      fun _ => .eq, Interval.unit 1⟩,
+      fun _ => rfl, rfl⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -59,10 +60,10 @@ theorem ConPolyZono.representsa_empty_counterexample :
     by simp [ConPolyZono.aux_isEmptySetPrinted, ConPolyZono.aux_emptyWithGI]⟩
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
-  rintro ⟨a, β, ha, -, hs, -⟩
+  rintro ⟨a, β, -, hs, -⟩
   have h4 :=
-    (PolyLevelSet.mem_construct_iff_of_eq ConPolyZono.aux_emptyWithGI.cons_eq).mp hs (0 : Fin 1)
-  have h3 := ha (0 : Fin 1)
+    ((PolyLevelSet.mem_construct_iff_of_eq ConPolyZono.aux_emptyWithGI.cons_eq).mp hs).2 (0 : Fin 1)
+  have h3 := (Interval.mem_unit_iff a).mp hs.1 (0 : Fin 1)
   simp [ConPolyZono.aux_emptyWithGI, PolyZonotope.monomial, Matrix.mulVec, dotProduct] at h4 h3
   rw [h4] at h3
   norm_num [abs_of_pos] at h3

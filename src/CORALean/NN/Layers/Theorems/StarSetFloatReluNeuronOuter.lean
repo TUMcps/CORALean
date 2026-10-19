@@ -3,10 +3,10 @@ module
 public import CORALean.NN.Layers.Definitions.Relu
 public import CORALean.NN.Layers.Operations.StarSetFloatReluNeuron
 public import CORALean.ContSet.StarSet.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.StarSet.Float.Theorems.Basic
-public import CORALean.ContSet.StarSet.Float.Theorems.LinPredNominalSnoc
-public import CORALean.ContSet.StarSet.Real.Theorems.LinPredMemAddRowsIff
-public import CORALean.ContSet.StarSet.Real.Theorems.LinPredMemSnocIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemLiftNominalIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemNominalIff
+public import CORALean.ContSet.Interval.Float.Theorems.MemAppendIff
 public import CORALean.NN.Layers.Theorems.StarSetFloatChordRowHolds
 public import Mathlib.Algebra.Order.Group.Unbundled.Abs
 public import Mathlib.Tactic.Linarith
@@ -51,7 +51,7 @@ theorem StarSet.aux_reluNeuron_nominal (s : StarSet 𝕋 n) (j : Fin n) (b : Int
       nominalSet (s.reluNeuron j b) := by -- --- PROOF ---
   have hbx := hb x hx
   rw [StarSet.mem_nominalSet_iff] at hx
-  obtain ⟨α, ⟨hα, hcα⟩, hxα⟩ := hx
+  obtain ⟨α, ⟨hα, hP⟩, hxα⟩ := hx
   unfold StarSet.reluNeuron
   dsimp only
     -- the neuron is nonnegative everywhere: the ReLU is the identity
@@ -61,7 +61,7 @@ theorem StarSet.aux_reluNeuron_nominal (s : StarSet 𝕋 n) (j : Fin n) (b : Int
     rw [toReal_zero] at h0'
     have : Real.relu (x j) = x j := max_eq_left (by linarith [hbx.1])
     rw [this, Function.update_eq_self]
-    exact ⟨α, ⟨hα, hcα⟩, hxα⟩
+    exact ⟨α, ⟨hα, hP⟩, hxα⟩
   rw [if_neg h0]
   -- the neuron is nonpositive everywhere: the ReLU is `0`, the row cleared
   by_cases h1 : le b.sup zero = true
@@ -70,7 +70,7 @@ theorem StarSet.aux_reluNeuron_nominal (s : StarSet 𝕋 n) (j : Fin n) (b : Int
     rw [toReal_zero] at h1'
     have : Real.relu (x j) = 0 := max_eq_right (by linarith [hbx.2])
     rw [this]
-    refine ⟨α, ⟨hα, hcα⟩, fun i => ?_⟩
+    refine ⟨α, ⟨hα, hP⟩, fun i => ?_⟩
     by_cases hi : i = j
     · subst hi; simp [toReal_zero]
     · simp [Function.update_of_ne hi, hxα i]
@@ -81,31 +81,60 @@ theorem StarSet.aux_reluNeuron_nominal (s : StarSet 𝕋 n) (j : Fin n) (b : Int
   have hβ0 : 0 ≤ β := le_max_right _ _
   have hβx : x j ≤ β := le_max_left _ _
   have hS : ∑ k, toReal (s.G j k) * α k = x j - toReal (s.c j) := by rw [hxj]; ring
-  -- the old factors with `β` appended meet the predicate's `snoc`, read as reals
-  have hold : α ∈ ContSet.construct s.pred.nominal := ⟨hα, List.forall_mem_map.mpr hcα⟩
-  have hsnoc : (Fin.snoc (α := fun _ => ℝ) α β : Vec ℝ (s.m + 1))
-      ∈ ContSet.construct (s.pred.snoc zero (maximum b.sup zero)).nominal := by
-    rw [StarSet.LinPred.nominal_snoc, toReal_zero, toReal_maximum, toReal_zero]
-    exact CORALean.Real.StarSet.LinPred.mem_snoc_iff.mpr ⟨hold, hβ0, max_le_max hbx.2 le_rfl⟩
-  refine ⟨Fin.snoc (α := fun _ => ℝ) α β, ⟨?_, ?_⟩, fun i => ?_⟩
-  · exact hsnoc.1
-  · -- the old rows as `snoc` pads them, then the new ones `addRows` adds
-    intro r hr
-    rcases List.mem_append.mp hr with hr | hr
-    · exact hsnoc.2 _ (List.mem_map_of_mem hr)
-    simp only [List.mem_append, List.mem_cons, List.not_mem_nil, or_false] at hr
-    rcases hr with (rfl | rfl) | hc
-    · simp [Fin.sum_univ_castSucc, hβ0, toReal_zero, toReal_neg, toReal_one]
-    · simp only [Fin.sum_univ_castSucc, Fin.snoc_castSucc, Fin.snoc_last, hS, toReal_neg,
-        toReal_one]
-      linarith
-    · split_ifs at hc with hg
-      · simp only [List.mem_singleton] at hc
-        subst hc
-        have := StarSet.chordRow_holds s j b hg α hα (by rw [← hxj]; exact hbx)
-        rw [← hxj] at this
-        exact this
-      · simp at hc
+  -- a row on the factors with `β` appended, read back as the old row and the new coefficient
+  have hsum : ∀ (a : Fin s.m → 𝕋) (t : 𝕋), ∑ k : Fin (s.m + 1),
+      toReal (Fin.snoc (α := fun _ => 𝕋) a t k) * Fin.snoc (α := fun _ => ℝ) α β k
+        = ∑ k, toReal (a k) * α k + toReal t * β := fun a t => by
+    simp only [Fin.sum_univ_castSucc, Fin.snoc_castSucc, Fin.snoc_last]
+  -- a point meets the rows of `ineqs` exactly when it meets them as sums, no slack recorded
+  have hineq : ∀ {q : ℕ} (A : Mat 𝕋 q (s.m + 1)) (bv : Vec 𝕋 q),
+      (∀ i, ∑ k, toReal (A i k) * Fin.snoc (α := fun _ => ℝ) α β k ≤ toReal (bv i)) →
+      (Fin.snoc (α := fun _ => ℝ) α β : Vec ℝ (s.m + 1))
+        ∈ (HPolytope.ineqs A bv).nominal.construct := by
+    intro q A bv h
+    refine HPolytope.mem_nominal_iff.mpr ⟨fun i => ?_, fun i => i.elim0⟩
+    show ∑ k, toReal (A i k) * _ ≤ toReal (bv i) + |toReal (zero : 𝕋)|
+    rw [toReal_zero, abs_zero, add_zero]
+    exact h i
+  have hlast : ∀ k : Fin 1, Fin.natAdd s.m k = Fin.last s.m := fun k => Fin.ext (by simp)
+  have hA : (fun k => (Fin.snoc (α := fun _ => ℝ) α β : Vec ℝ (s.m + 1)) (Fin.castSucc k)) = α :=
+    funext fun k => Fin.snoc_castSucc (α := fun _ => ℝ) _ _ _
+  -- the old rows on the old factors, then `-β ≤ 0` and `c_j + G_j α - β ≤ 0`
+  have hbase := HPolytope.mem_stackRows_nominal_iff.mpr
+    ⟨(HPolytope.mem_lift_nominal_iff s.pred (Fin.castSucc_injective s.m)).mpr
+      ((congrArg (· ∈ s.pred.nominal.construct) hA).mpr hP),
+      hineq ![Fin.snoc (α := fun _ => 𝕋) (fun _ => zero) (neg one),
+          Fin.snoc (α := fun _ => 𝕋) (s.G j) (neg one)] ![zero, neg (s.c j)] fun r => by
+        fin_cases r
+        · show ∑ k, toReal (Fin.snoc (α := fun _ => 𝕋) (fun _ => zero) (neg one) k)
+            * Fin.snoc (α := fun _ => ℝ) α β k ≤ toReal (zero : 𝕋)
+          rw [hsum]
+          simp only [toReal_zero, zero_mul, Finset.sum_const_zero, zero_add, toReal_neg,
+            toReal_one]
+          linarith
+        · show ∑ k, toReal (Fin.snoc (α := fun _ => 𝕋) (s.G j) (neg one) k)
+            * Fin.snoc (α := fun _ => ℝ) α β k ≤ toReal (neg (s.c j))
+          rw [hsum, hS, toReal_neg, toReal_neg, toReal_one]
+          linarith⟩
+  refine ⟨Fin.snoc (α := fun _ => ℝ) α β,
+    ⟨(Interval.mem_append_iff _ _ _).mpr ⟨?_, fun k => ?_⟩, ?_⟩, fun i => ?_⟩
+  · -- the old factors in the old box, the new one in `[0, max(u, 0)]`
+    have hA' : (fun k => (Fin.snoc (α := fun _ => ℝ) α β : Vec ℝ (s.m + 1)) (Fin.castAdd 1 k))
+        = α := hA
+    exact (congrArg (· ∈ s.dom.construct) hA').mpr hα
+  · show toReal (zero : 𝕋) ≤ Fin.snoc (α := fun _ => ℝ) α β (Fin.natAdd s.m k)
+      ∧ Fin.snoc (α := fun _ => ℝ) α β (Fin.natAdd s.m k) ≤ toReal (maximum b.sup zero)
+    rw [hlast k, Fin.snoc_last, toReal_zero, toReal_maximum, toReal_zero]
+    exact ⟨hβ0, max_le_max hbx.2 le_rfl⟩
+  · -- and the chord, where the guard certifies it
+    show _ ∈ (if StarSet.chordGuard b then _ else _ : HPolytope 𝕋 _).nominal.construct
+    split_ifs with hg
+    · refine HPolytope.mem_stackRows_nominal_iff.mpr ⟨hbase, hineq (q := 1) _ _ fun r => ?_⟩
+      fin_cases r
+      have := StarSet.chordRow_holds s j b hg α hα (by rw [← hxj]; exact hbx)
+      rw [← hxj] at this
+      exact this
+    · exact hbase
   · -- the point: the neuron is `β`, the others are untouched
     by_cases hi : i = j
     · subst hi

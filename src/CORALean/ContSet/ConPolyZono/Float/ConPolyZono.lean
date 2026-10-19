@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Real.Instances
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Relax
 public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Float.PolyLevelSet
 
 @[expose] public section
@@ -11,8 +12,9 @@ public import CORALean.ContSet.PolyLevelSet.Float.PolyLevelSet
 # Constrained polynomial zonotopes over a floating-point scalar: the representation
 
 CORA's `conPolyZono` [1, Def. 5] with its three counts, its two generator blocks and its
-constraint `cons`, a float `PolyLevelSet` with `=` in every row (`cons_eq`, as in the exact layer),
-plus the error box that makes it an `InflatedContSet`. It is generic over its ambient type,
+constraint `cons`, a float `PolyLevelSet` with `=` in every row (`cons_eq`) on the unit box
+(`cons_dom`), as in the exact layer, plus the error box that makes it an `InflatedContSet`. It is
+generic over its ambient type,
 generators a family, as the exact layer's is; `𝕋` stays, the constraint being scalar. The
 constraint's `A` and `b` are in `𝕋` and read back exactly: the nominal set is *defined* as what the
 stored floats describe.
@@ -34,8 +36,8 @@ exact `ConPolyZono` with `=` rows that slack denotes, one slack factor per row
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   18-October-2026
--- Reviewed:      19-October-2026 (Tobias Ladner)
+-- Last update:   19-October-2026
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
@@ -49,7 +51,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-structure ConPolyZono (𝕋 α : Type) where
+structure ConPolyZono (𝕋 α : Type) [FloatOps 𝕋] where
   /-- The dependent factors, shared by the generators and the constraints. -/
   p : ℕ
   /-- The dependent generators. -/
@@ -64,6 +66,8 @@ structure ConPolyZono (𝕋 α : Type) where
   cons : PolyLevelSet 𝕋 p
   /-- Every constraint row is an equation, as in [1]. -/
   cons_eq : ∀ i, cons.op i = .eq
+  /-- The factors range over the constraint's domain, the unit box, as in [1]. -/
+  cons_dom : cons.dom = Interval.unit p
   /-- The error box: what rounding has cost in the ambient space. -/
   I_error : Interval α
 
@@ -72,7 +76,8 @@ polynomial zonotope they describe before the slack. -/
 protected abbrev ConPolyZono.nominalCore {α β : Type} [RealImage α β] [SoundFloatArithmetic 𝕋]
     (cPZ : ConPolyZono 𝕋 α) : CORALean.Real.ConPolyZono β :=
   ⟨cPZ.p, cPZ.h, cPZ.qI, RealImage.realImage cPZ.c, fun l => RealImage.realImage (cPZ.G l), cPZ.E,
-    fun j => RealImage.realImage (cPZ.GI j), cPZ.cons.nominalCore, cPZ.cons_eq⟩
+    fun j => RealImage.realImage (cPZ.GI j), cPZ.cons.nominalCore, cPZ.cons_eq,
+    (congrArg Interval.nominal cPZ.cons_dom).trans (Interval.nominal_unit _)⟩
 
 /-- The exact constrained polynomial zonotope the stored floats describe: `nominalCore` with
 each row relaxed by its slack. -/

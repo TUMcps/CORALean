@@ -97,18 +97,6 @@ theorem ConPolyZono.mtimes_eq_map (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ 
 def ConPolyZono.rescaleStep (cen rad : ℕ → ℝ) (acc : ConPolyZono α) (r : ℕ) : ConPolyZono α :=
   if h : r < acc.p then acc.getSubset ⟨r, h⟩ (cen r) (rad r) else acc
 
-
--- ==================================  `ConPolyZono.unitBox`  =================================== --
--- Authors:       Claude Opus 5.5
--- Written:       04-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- The factor box `[-1,1]ᵖ`, which `rescale` contracts. -/
-def ConPolyZono.unitBox (p : ℕ) : Interval (Vec ℝ p) where
-  inf := fun _ => -1
-  sup := fun _ => 1
-
 end
 
 end CORALean.Real

@@ -1,6 +1,6 @@
 import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionOuter
 import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionExact
-import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
+import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEqUnit
 import CORALean.ContSet.Conversion.Float.Theorems.ConZonotopeConPolyZonoContains
 import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeConPolyZonoExact
 import CORALean.ContSet.Conversion.Float.Operations.ConZonotope_to_ConPolyZono
@@ -18,7 +18,7 @@ intersection is exact, so nothing is given away in either step; the float layer 
 `⊆` in place of `=`, its rows' rounding recorded in `b_error`.
 
 The last example reads the constraint back as what it is: the paper's `A μ(α) = b`, a polynomial
-level set on the factors with `=` in every row.
+level set on the factors with `=` in every row, its domain the factors' unit box.
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
@@ -43,12 +43,12 @@ example (cPZ : ConPolyZono (Vec ℝ n)) (G : ConZonotope (Vec ℝ n)) :
   rw [ConZonotope.conPolyZono_exact G]
   exact ConPolyZono.intersection_exact cPZ G.conPolyZono
 
-/-- The paper's `A μ(α) = b` is the factor constraint: `cons` is a polynomial level set with `=`
-in every row, and a point of it solves the equations. -/
+/-- The paper's `A μ(α) = b` on `[-1, 1]ᵖ` is the factor constraint: `cons` is a polynomial level
+set with `=` in every row on the unit box, a point of it in the box and solving the equations. -/
 example (cPZ : ConPolyZono (Vec ℝ n)) (a : Fin cPZ.p → ℝ) :
-    a ∈ cPZ.cons.construct
-      ↔ ∀ i, (cPZ.cons.A *ᵥ PolyZonotope.monomial cPZ.cons.R a) i = cPZ.cons.b i :=
-  PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq
+    a ∈ cPZ.cons.construct ↔ (∀ k, |a k| ≤ 1)
+      ∧ ∀ i, (cPZ.cons.A *ᵥ PolyZonotope.monomial cPZ.cons.R a) i = cPZ.cons.b i :=
+  PolyLevelSet.mem_construct_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom
 
 end Real
 

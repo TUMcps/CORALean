@@ -44,6 +44,7 @@ def ConPolyZono.map (f : α →ₗ[ℝ] β) (cPZ : ConPolyZono α) : ConPolyZono
   GI := fun j => f (cPZ.GI j)
   cons := cPZ.cons
   cons_eq := cPZ.cons_eq
+  cons_dom := cPZ.cons_dom
 
 end CORALean.Real
 

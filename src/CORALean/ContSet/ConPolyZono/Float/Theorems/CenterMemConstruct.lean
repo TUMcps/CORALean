@@ -4,6 +4,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialEqZeroOfNoZer
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEqUnit
 
 @[expose] public section
 
@@ -46,8 +47,8 @@ theorem ConPolyZono.center_mem_construct (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     funext fun j => Real.ConPolyZono.monomial_eq_zero_of_noZeroCol hR (fun _ => rfl) j
   have hN : toRealVec cPZ.center ∈ InflatedContSet.nominalSet cPZ := by
     refine ConPolyZono.mem_nominalSet_iff.mpr ⟨fun _ => 0, fun _ => 0, fun _ => by simp,
-      fun _ => by simp, (PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mpr fun i => ?_,
-      fun i => ?_⟩
+      fun _ => by simp, (PolyLevelSet.mem_construct_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom).mpr
+        ⟨fun _ => by simp, fun i => ?_⟩, fun i => ?_⟩
     · rw [hR0, Matrix.mulVec_zero, Pi.zero_apply, zero_sub, abs_neg]
       exact hb i
     · simp [hE0, ConPolyZono.center, toRealVec]

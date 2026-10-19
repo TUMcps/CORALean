@@ -72,24 +72,23 @@ reduced system and give the same value. -/
 theorem ConPolyZono.reduceCon_outer (cPZ : ConPolyZono α) (r : Fin cPZ.cons.m) (d : Fin cPZ.h)
     (t : Fin cPZ.cons.q) (hE : ∀ k, cPZ.E k d = cPZ.cons.R k t) (hA : cPZ.cons.A r t ≠ 0) :
     cPZ.construct ⊆ (cPZ.reduceCon r d t).construct := by -- --- PROOF ---
-  rintro x ⟨a, β, ha, hβ, hsat, rfl⟩
-  rw [PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq] at hsat
+  rintro x ⟨a, β, hβ, hsat, rfl⟩
+  have hrows := ((PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mp hsat).2
   set μ := PolyZonotope.monomial cPZ.cons.R a with hμ
   set ν := PolyZonotope.monomial cPZ.E a with hν
   -- eq. (33): generator `d` and constraint generator `t` are the same monomial
   have hmt : ν d = μ t := by
     simp only [hμ, hν, PolyZonotope.monomial]
     exact Finset.prod_congr rfl fun k _ => by rw [hE k]
-  have hrow : ∑ i, cPZ.cons.A r i * μ i = cPZ.cons.b r := hsat r
+  have hrow : ∑ i, cPZ.cons.A r i * μ i = cPZ.cons.b r := hrows r
   -- eq. (35), read as what the surviving constraint generators sum to
   have hrest : ∑ i : Fin (cPZ.cons.q - 1), cPZ.cons.A r (dropIdx t i) * μ (dropIdx t i)
       = cPZ.cons.b r - cPZ.cons.A r t * μ t := by
     rw [← hrow, sum_dropIdx t (fun i => cPZ.cons.A r i * μ i)]
     ring
-  refine ⟨a, β, ha, hβ, ?_, ?_⟩
+  refine ⟨a, β, hβ, ?_, ?_⟩
   -- eq. (36): every surviving row holds, the constraint's own `PolyLevelSet.eliminate`
-  · exact PolyLevelSet.mem_eliminate_of_mem cPZ.cons r t (cPZ.cons_eq r) hA
-      ((PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mpr hsat)
+  · exact PolyLevelSet.mem_eliminate_of_mem cPZ.cons r t (cPZ.cons_eq r) hA hsat
   -- the value: generator `d`'s term is what the center and the new block replace
   · have hsplitG : ∑ i, ν i • cPZ.G i
         = ν d • cPZ.G d + ∑ i : Fin (cPZ.h - 1), ν (dropIdx d i) • cPZ.G (dropIdx d i) :=

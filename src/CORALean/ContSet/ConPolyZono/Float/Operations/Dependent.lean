@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Float.Operations.PadVars
 
 @[expose] public section
@@ -24,7 +25,7 @@ The fresh factors take exponent zero in every constraint row, which is what
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       03-September-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -47,8 +48,9 @@ def ConPolyZono.dependent (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono �
   G := Fin.append cPZ.G cPZ.GI
   E := Real.PolyZonotope.plusE cPZ.E (Real.PolyZonotope.identE cPZ.qI)
   GI := Fin.elim0
-  cons := cPZ.cons.padVars cPZ.qI
+  cons := cPZ.cons.padVars (Interval.unit cPZ.qI)
   cons_eq := cPZ.cons_eq
+  cons_dom := Interval.append_eq_unit cPZ.cons_dom rfl
   I_error := cPZ.I_error
 
 end CORALean.Float

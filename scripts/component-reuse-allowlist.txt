@@ -33,7 +33,3 @@ src/CORALean/ContSet/ConZonotope/Float/Operations/BoundDotWeights.lean::ConZonot
 src/CORALean/ContSet/ConZonotope/Float/Operations/BoundDotWeights.lean::ConZonotope.aux_nominalBoundWeights  certificate: weak duality over the constraint and the unit box; its right-hand sides are the constraint's own `bSlackU`, `beSlackU` and `beSlackLN`
 src/CORALean/ContSet/ConZonotope/Float/Operations/IsDisjointLP.lean::ConZonotope.aux_coeffRows  proposal: the rows decoded into ℚ for the exact simplex that proposes a separating direction, which `separatesAlong` then certifies; nothing is trusted about it
 #
-# StarSet: the predicate `pred`, a `StarSet.LinPred`.
-src/CORALean/ContSet/StarSet/Real/Operations/RowBounds.lean::StarSet.rowBounds  data: the predicate's factor box `[l, u]` only, read as CORA's `getBounds` reads it for the interval of `c + G α`; no row is read or built
-src/CORALean/ContSet/StarSet/Float/Operations/RowBounds.lean::StarSet.rowBounds  data: the predicate's factor box `[l, u]` only, as in the exact layer, rounded outward
-src/CORALean/NN/Layers/Operations/StarSetFloatChordRow.lean::StarSet.chordRow  data: the predicate's factor box bounds the rounding of the chord row it builds, which `LinPred.addRows` then adds

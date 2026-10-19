@@ -44,7 +44,7 @@ def StarSet.chordRow (s : StarSet 𝕋 n) (j : Fin n) (b : Interval 𝕋) :
      (sumUp fun k => mulUp
        (subUp (Interval.mulHi klo khi (s.G j k) (s.G j k))
          (Interval.mulLo klo khi (s.G j k) (s.G j k)))
-       (maximum (absolute (s.pred.l k)) (absolute (s.pred.u k)))))
+       (maximum (absolute (s.dom.inf k)) (absolute (s.dom.sup k)))))
 
 end CORALean.Float
 

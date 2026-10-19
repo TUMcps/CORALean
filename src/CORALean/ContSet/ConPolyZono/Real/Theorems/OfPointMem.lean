@@ -28,7 +28,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.mem_ofPoint (v : α) : v ∈ (ConPolyZono.ofPoint v).construct := by
-  refine ⟨Fin.elim0, Fin.elim0, fun k => k.elim0, fun j => j.elim0, fun i => i.elim0, ?_⟩
+  refine ⟨Fin.elim0, Fin.elim0, fun j => j.elim0, ⟨fun k => k.elim0, fun i => i.elim0⟩, ?_⟩
   show v = v + ∑ i : Fin 0, PolyZonotope.monomial Fin.elim0 Fin.elim0 i • Fin.elim0 i
         + ∑ j : Fin 0, Fin.elim0 j • Fin.elim0 j
   rw [Finset.univ_eq_empty, Finset.sum_empty, Finset.sum_empty, add_zero, add_zero]

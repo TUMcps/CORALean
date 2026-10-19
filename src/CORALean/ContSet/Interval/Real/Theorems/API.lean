@@ -1,6 +1,8 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Theorems.BoundaryRatioIsGreatest
+public import CORALean.ContSet.Interval.Real.Theorems.MemAppendIff
+public import CORALean.ContSet.Interval.Real.Theorems.MemRepVecIff
 public import CORALean.ContSet.Interval.Real.Theorems.DivMemCornerHull
 public import CORALean.ContSet.Interval.Real.Theorems.ArgEqArctanOfRePos
 public import CORALean.ContSet.Interval.Real.Theorems.ArgEqPiDivTwoSubArctanOfImPos

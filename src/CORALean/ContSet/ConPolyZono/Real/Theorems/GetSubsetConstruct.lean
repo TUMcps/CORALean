@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.GetSubset
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemGetSubsetIff
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
 public import Mathlib.Tactic.FieldSimp
@@ -50,13 +51,13 @@ theorem ConPolyZono.getSubset_construct (cPZ : ConPolyZono α) (r : Fin cPZ.p) (
     (cPZ.getSubset r cen rad).construct
       = {x | ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ,
             |a r - cen| ≤ rad ∧ (∀ k, k ≠ r → |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
-            ∧ a ∈ cPZ.cons.construct
+            ∧ (∀ i, (cPZ.cons.op i).holds (cPZ.cons.eval a i))
             ∧ x = cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i
                 + ∑ j, β j • cPZ.GI j} := by -- --- PROOF ---
   ext x
   -- `p`/`qI` are literally unchanged, so `show` picks that binder type up front
   show (∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ,
-        (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1) ∧ a ∈ (cPZ.getSubset r cen rad).cons.construct
+        (∀ j, |β j| ≤ 1) ∧ a ∈ (cPZ.getSubset r cen rad).cons.construct
         ∧ x = (cPZ.getSubset r cen rad).c
             + ∑ i, PolyZonotope.monomial (cPZ.getSubset r cen rad).E a i
                 • (cPZ.getSubset r cen rad).G i
@@ -64,14 +65,16 @@ theorem ConPolyZono.getSubset_construct (cPZ : ConPolyZono α) (r : Fin cPZ.p) (
       ↔ _
   constructor
   · -- an unrestricted factor names a point of the sub-box after substitution
-    rintro ⟨a, β, ha, hβ, hsat, rfl⟩
+    rintro ⟨a, β, hβ, hsat, rfl⟩
+    have hgs := (PolyLevelSet.mem_getSubset_iff cPZ.cons r cen rad a).mp hsat
+    have ha : ∀ k, |a k| ≤ 1 := (Interval.mem_unit_iff a).mp (cPZ.cons_dom ▸ hgs.1)
     refine ⟨Function.update a r (cen + rad * a r), β, ?_, ?_, hβ, ?_, ?_⟩
     · rw [Function.update_self, add_sub_cancel_left, abs_mul, abs_of_nonneg hrad]
       exact mul_le_of_le_one_right hrad (ha r)
     · intro k hk
       rw [Function.update_of_ne hk]
       exact ha k
-    · exact (PolyLevelSet.mem_getSubset_iff cPZ.cons r cen rad a).mp hsat
+    · exact hgs.2
     · exact congrArg (· + ∑ j, β j • cPZ.GI j)
         (PolyZonotope.getSubset_point cPZ.toPolyZonotope r cen rad a)
   · -- inverting the substitution recovers an unrestricted witness
@@ -93,8 +96,8 @@ theorem ConPolyZono.getSubset_construct (cPZ : ConPolyZono α) (r : Fin cPZ.p) (
           ring
       · rw [Function.update_of_ne hk, ha_def, Function.update_of_ne hk]
     -- `a` lands in the unit box: `a r` by construction, everywhere else by `hunit`
-    refine ⟨a, β, ?_, hβ, ?_, ?_⟩
-    · intro k
+    have ha : ∀ k, |a k| ≤ 1 := by
+      intro k
       rcases eq_or_ne k r with hk | hk
       · rw [hk, ha_def, Function.update_self]
         rcases eq_or_ne rad 0 with hr0 | hr0
@@ -105,10 +108,11 @@ theorem ConPolyZono.getSubset_construct (cPZ : ConPolyZono α) (r : Fin cPZ.p) (
           exact (div_le_one hrpos).mpr hbox
       · rw [ha_def, Function.update_of_ne hk]
         exact hunit k hk
-    · have hstep : (Function.update a r (cen + rad * a r)) ∈ cPZ.cons.construct := by
-        rw [hupdate]
-        exact hsat
-      exact (PolyLevelSet.mem_getSubset_iff cPZ.cons r cen rad a).mpr hstep
+    refine ⟨a, β, hβ, ?_, ?_⟩
+    · refine (PolyLevelSet.mem_getSubset_iff cPZ.cons r cen rad a).mpr
+        ⟨cPZ.cons_dom ▸ (Interval.mem_unit_iff a).mpr ha, ?_⟩
+      rw [hupdate]
+      exact hsat
     · -- the generator identity read backwards, at the recovered witness
       have hgen : (cPZ.toPolyZonotope.getSubset r cen rad).point a
           = cPZ.toPolyZonotope.point a' := by

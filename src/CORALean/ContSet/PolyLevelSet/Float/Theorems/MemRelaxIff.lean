@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Float.Theorems.MemAppendIff
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.EvalNominalCoreRelax
 
 @[expose] public section
@@ -14,7 +15,7 @@ exactly.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -31,14 +32,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The slack-free relaxed rows denote the exact relaxation by the read-back slack. -/
 theorem PolyLevelSet.mem_relax_iff {P : PolyLevelSet 𝕋 n} (h : ∀ i, P.op i = .eq)
-    (x : Vec ℝ (n + P.m)) :
-    x ∈ P.relax.construct
-      ↔ x ∈ (P.nominalCore.relax (toRealVec P.b_error)).construct := by -- --- PROOF ---
-  refine forall_congr' fun i => ?_
-  show (P.op i).IsMetWithin (P.relax.nominalCore.eval x i) |toReal (zero : 𝕋)|
-    ↔ (P.op i).holds ((P.nominalCore.relax (toRealVec P.b_error)).eval x i)
-  rw [PolyLevelSet.eval_nominalCore_relax, h i, toReal_zero, abs_zero]
-  exact abs_nonpos_iff
+    (D : Interval (Vec 𝕋 P.m)) (x : Vec ℝ (n + P.m)) :
+    x ∈ (P.relax D).construct
+      ↔ x ∈ (P.nominalCore.relax (toRealVec P.b_error) D.nominal).construct := by -- --- PROOF ---
+  refine and_congr ?_ (forall_congr' fun i => ?_)
+  -- the boxes: both are the appended read-back boxes
+  · show x ∈ (P.dom.append D).construct ↔ x ∈ (P.dom.nominal.append D.nominal).construct
+    rw [Interval.mem_append_iff, Real.Interval.mem_append_iff]
+    rfl
+  · show (P.op i).IsMetWithin ((P.relax D).nominalCore.eval x i) |toReal (zero : 𝕋)|
+      ↔ (P.op i).holds ((P.nominalCore.relax (toRealVec P.b_error) D.nominal).eval x i)
+    rw [PolyLevelSet.eval_nominalCore_relax, h i, toReal_zero, abs_zero]
+    exact abs_nonpos_iff
 
 end CORALean.Float
 

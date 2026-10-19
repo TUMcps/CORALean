@@ -4,6 +4,7 @@ public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 public import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEqUnit
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
 public import CORALean.ContSet.Interval.Real.Operations.Point
 public import CORALean.Global.EuclideanNorm
@@ -85,10 +86,10 @@ theorem Ellipsoid.conPolyZonoOfFactor_construct (G : Mat ℝ n n) (q : Vec ℝ n
     have htbound : |t| ≤ 1 := by
       rw [ht, abs_le]
       refine ⟨by nlinarith [sq_nonneg ‖u‖₂], by nlinarith [norm₂_sq u, hsumsq]⟩
-    refine ⟨Fin.append u fun _ : Fin 1 => t, Fin.elim0,
-      Fin.addCases (fun i => by simpa [Fin.append_left] using le_trans (abs_le_norm₂ u i) hu)
-        (fun j => by simpa [Fin.append_right] using htbound),
-      fun j => j.elim0, (PolyLevelSet.mem_construct_iff_of_eq P.cons_eq).mpr ?_, ?_⟩
+    refine ⟨Fin.append u fun _ : Fin 1 => t, Fin.elim0, fun j => j.elim0,
+      (PolyLevelSet.mem_construct_iff_of_eq_unit P.cons_eq P.cons_dom).mpr ⟨Fin.addCases
+        (fun i => by simpa [Fin.append_left] using le_trans (abs_le_norm₂ u i) hu)
+        (fun j => by simpa [Fin.append_right] using htbound), ?_⟩, ?_⟩
     · -- the ball's radius equation, read as `Σ u_i² - 0.5 t = 0.5`
       intro i
       have heqn : (P.cons.A *ᵥ
@@ -151,7 +152,8 @@ theorem Ellipsoid.conPolyZonoOfFactor_construct (G : Mat ℝ n n) (q : Vec ℝ n
       show q + G *ᵥ u = q + ∑ i, u i • ConPolyZono.consCol G i + 0
       rw [add_zero, ← Ellipsoid.aux_mulVec_eq_sum]
   -- back: the constraint pins `u`'s square-sum, and the generator sum reads off `G` again
-  · rintro x ⟨a, β, ha, _, hsat, rfl⟩
+  · rintro x ⟨a, β, _, hsat, rfl⟩
+    have ha := ((PolyLevelSet.mem_construct_iff_of_eq_unit P.cons_eq P.cons_dom).mp hsat).1
     set u : Vec ℝ n := fun i => a (Fin.castAdd 1 i) with hu
     have i0 : Fin P.cons.m := ⟨0, Nat.one_pos⟩
     have hR : ∀ j : Fin (n + 1), PolyZonotope.monomial P.cons.R a j
@@ -160,7 +162,7 @@ theorem Ellipsoid.conPolyZonoOfFactor_construct (G : Mat ℝ n n) (q : Vec ℝ n
     -- the constraint read back as `Σ u_k² - 0.5 a(last) = 0.5`
     have heqn : (∑ k, u k ^ 2) - (1 / 2) * a (Fin.natAdd n (0 : Fin 1)) = (1 / 2 : ℝ) := by
       have hval : (P.cons.A *ᵥ PolyZonotope.monomial P.cons.R a) i0
-          = (1 / 2 : ℝ) := (PolyLevelSet.mem_construct_iff_of_eq P.cons_eq).mp hsat i0
+          = (1 / 2 : ℝ) := ((PolyLevelSet.mem_construct_iff_of_eq P.cons_eq).mp hsat).2 i0
       have hexpand : (P.cons.A *ᵥ PolyZonotope.monomial P.cons.R a) i0
           = (∑ k, u k ^ 2) - (1 / 2) * a (Fin.natAdd n (0 : Fin 1)) := by
         show (∑ j : Fin (n + 1), P.cons.A i0 j *

@@ -47,6 +47,7 @@ noncomputable def PolyLevelSet.eliminate (P : PolyLevelSet n) (r : Fin P.m) (t :
   R k i := P.R k (dropIdx t i)
   b j := P.b (dropIdx r j) - P.b r * P.A (dropIdx r j) t / P.A r t
   op j := P.op (dropIdx r j)
+  dom := P.dom
 
 end CORALean.Real
 

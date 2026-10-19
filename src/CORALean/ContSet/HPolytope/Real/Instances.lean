@@ -1,10 +1,12 @@
 module
 
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
 public import CORALean.ContSet.HPolytope.Real.HPolytope
 public import CORALean.ContSet.ContSet.Operations.SupportBoundSetLinComb
 public import CORALean.ContSet.HPolytope.Real.Operations.Rows
 public import CORALean.ContSet.HPolytope.Real.Operations.SupportBound
 public import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBoundsOpt
+public import CORALean.ContSet.HPolytope.Real.Theorems.Convex
 public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.MapEquivExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
@@ -15,7 +17,7 @@ public import CORALean.Global.SupportFunction.Composition
 /-!
 # What `HPolytope` instantiates
 
-`ContSet`, and `Reduce` as the identity: CORA's `compact` drops redundant
+`ContSet`, `ConvexSet`, and `Reduce` as the identity: CORA's `compact` drops redundant
 halfspaces and keeps the set exactly, so doing nothing is the sound stand-in
 until that algorithm is written.
 
@@ -55,6 +57,8 @@ scoped notation "ℋ𝒫" => fun n => HPolytope (Vec ℝ n)
 -- ========================================  INSTANCES  ========================================= --
 
 instance : ContSet (HPolytope α) α := ⟨HPolytope.construct⟩
+
+instance : ConvexSet (HPolytope α) α := ⟨HPolytope.convex_construct⟩
 
 instance : Reduce (HPolytope α) α where
   reduce P _ := P

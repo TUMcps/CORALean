@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionConCoef
 public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionConErr
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCol
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyLevelSet.Float.PolyLevelSet
 
 @[expose] public section
@@ -22,7 +23,7 @@ slack (`unionConErr`).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -37,11 +38,11 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The selector polynomial `= 0`, to within its coefficients' rounding. -/
+/-- The selector polynomial `= 0`, to within its coefficients' rounding, on the unit box. -/
 def ConPolyZono.unionConRow (p₁ p₂ : ℕ) : PolyLevelSet 𝕋 (p₁ + p₂ + 2) :=
   ⟨1, _, fun _ l => ConPolyZono.unionConCoef p₁ p₂ l,
       fun k l => Real.ConPolyZono.unionConCol p₁ p₂ l k,
-    fun _ => zero, fun _ => ConPolyZono.unionConErr p₁ p₂, fun _ => .eq⟩
+    fun _ => zero, fun _ => ConPolyZono.unionConErr p₁ p₂, fun _ => .eq, Interval.unit _⟩
 
 end CORALean.Float
 

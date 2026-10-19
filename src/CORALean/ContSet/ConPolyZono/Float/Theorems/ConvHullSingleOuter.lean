@@ -4,6 +4,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.ConvHullSatisfies
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConvHullSingleConsIff
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.ExistsRelaxIff
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialConvHullEPadE
@@ -69,7 +70,7 @@ theorem ConPolyZono.aux_convHullSingle_mem (a : ℕ) (cPZ : ConPolyZono 𝕋 (Ve
         * Real.PolyZonotope.monomial (cPZ.convHullSingle a).E v l)
       ∈ nominalSet (cPZ.convHullSingle a) := by -- --- PROOF ---
   refine ConPolyZono.mem_nominalSet_iff.mpr ⟨v, fun j => j.elim0, hv, fun j => j.elim0,
-    ConPolyZono.convHullSingle_satisfies_of_real a cPZ v hcopy hw, fun i => ?_⟩
+    ConPolyZono.convHullSingle_satisfies_of_real a cPZ v hcopy (fun j => hv _) hw, fun i => ?_⟩
   -- no independent generators
   have h0 : ∀ f : Fin (cPZ.convHullSingle a).qI → ℝ, ∑ j, f j = 0 := fun f =>
     Finset.sum_eq_zero fun j _ => Fin.elim0 (show Fin 0 from j)
@@ -93,9 +94,12 @@ theorem ConPolyZono.convHullSingle_outer (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 
   have hr' : r ∈ (Real.ConPolyZono.convHullSingle a (nominal cPZ)).construct := by
     rw [hR]
     exact hr
-  obtain ⟨v, β, hv, hβ, hsat, hr⟩ := hr'
+  obtain ⟨v, β, hβ, hsat, hr⟩ := hr'
+  -- the factors lie in the unit box, the constraint's domain
+  have hv : ∀ k, |v k| ≤ 1 := (Real.Interval.mem_unit_iff v).mp
+    ((Real.ConPolyZono.convHullSingle a (nominal cPZ)).cons_dom ▸ hsat.1)
   -- each copy of the relaxed operand, and the weights
-  obtain ⟨hj, hl⟩ := (Real.ConPolyZono.mem_convHullSingle_cons_iff a (nominal cPZ) v).mp hsat
+  obtain ⟨hj, -, hl⟩ := (Real.ConPolyZono.mem_convHullSingle_cons_iff a (nominal cPZ) v).mp hsat
   -- the factors with every copy's slack factors dropped
   set w : Fin (a * cPZ.p + a) → ℝ := Fin.append
     (fun x => v (Fin.castAdd a (finProdFinEquiv ((finProdFinEquiv.symm x).1,
@@ -112,7 +116,7 @@ theorem ConPolyZono.convHullSingle_outer (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 
     refine (PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mpr
       ((Real.PolyLevelSet.exists_relax_iff (P := cPZ.cons.nominalCore) cPZ.cons_eq
         (toRealVec cPZ.cons.b_error) _).mp
-          ⟨fun i => v (Fin.castAdd a (finProdFinEquiv (j, Fin.natAdd cPZ.p i))), fun i => hv _, ?_⟩)
+          ⟨fun i => v (Fin.castAdd a (finProdFinEquiv (j, Fin.natAdd cPZ.p i))), ?_⟩)
     rw [Fin.append_castAdd_natAdd (f := fun k => v (Fin.castAdd a (finProdFinEquiv (j, k))))]
     exact hj j
   -- the weights are the exact form's own

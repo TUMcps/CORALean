@@ -32,20 +32,22 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The relaxed rows, read back, take the values of the read-back rows relaxed by the read-back
 slack. -/
-theorem PolyLevelSet.eval_nominalCore_relax (P : PolyLevelSet 𝕋 n) (x : Vec ℝ (n + P.m)) :
-    P.relax.nominalCore.eval x
-      = (P.nominalCore.relax (toRealVec P.b_error)).eval x := by -- --- PROOF ---
-  have hA : toRealMat P.relax.A = (P.nominalCore.relax (toRealVec P.b_error)).A := by
+theorem PolyLevelSet.eval_nominalCore_relax (P : PolyLevelSet 𝕋 n) (D : Interval (Vec 𝕋 P.m))
+    (x : Vec ℝ (n + P.m)) :
+    (P.relax D).nominalCore.eval x
+      = (P.nominalCore.relax (toRealVec P.b_error) D.nominal).eval x := by -- --- PROOF ---
+  have hA : toRealMat (P.relax D).A
+      = (P.nominalCore.relax (toRealVec P.b_error) D.nominal).A := by
     funext i l
     refine Fin.addCases (fun l => ?_) (fun l => ?_) l
     · simp only [toRealMat, PolyLevelSet.relax, Real.PolyLevelSet.relax, Fin.append_left]
     · simp only [toRealMat, PolyLevelSet.relax, Real.PolyLevelSet.relax, Fin.append_right,
         toReal_diagonalBlock, Matrix.diagonal_apply, Pi.single_apply, eq_comm]
-  show (toRealMat P.relax.A *ᵥ Real.PolyZonotope.monomial P.relax.R x - toRealVec P.relax.b :
-      Vec ℝ P.m)
-    = (P.nominalCore.relax (toRealVec P.b_error)).A *ᵥ Real.PolyZonotope.monomial
-        (P.nominalCore.relax (toRealVec P.b_error)).R x
-            - (P.nominalCore.relax (toRealVec P.b_error)).b
+  show (toRealMat (P.relax D).A *ᵥ Real.PolyZonotope.monomial (P.relax D).R x
+      - toRealVec (P.relax D).b : Vec ℝ P.m)
+    = (P.nominalCore.relax (toRealVec P.b_error) D.nominal).A *ᵥ Real.PolyZonotope.monomial
+        (P.nominalCore.relax (toRealVec P.b_error) D.nominal).R x
+            - (P.nominalCore.relax (toRealVec P.b_error) D.nominal).b
   rw [hA]
   rfl
 

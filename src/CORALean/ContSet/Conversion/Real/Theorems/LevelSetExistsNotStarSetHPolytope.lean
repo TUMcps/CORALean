@@ -9,11 +9,12 @@ public import Mathlib.Tactic.Linarith
 /-!
 # A level set that is no star set of CORA's predicate
 
-A star set `{c + G α | C α ≤ d, l ≤ α ≤ u}` is convex (`StarSet.convex_construct`), and a level set
+A star set `{c + G α | C α ≤ d, l ≤ α ≤ u}`, its predicate an `HPolytope`, is convex
+(`StarSet.convex_construct`), and a level set
 need not be: `{x | x₀² - 1 = 0} = {-1, 1}` contains the two points and not their midpoint. So the
 equivalence of star sets and level sets of [1, Fig. 1 (Star Sets ↔ Level Sets)] needs a predicate
-beyond the linear one: with a level-set predicate it holds (`LevelSet.starSet_exact`,
-`StarSet.exists_levelSet_exact`).
+beyond the linear one: with a level-set predicate it holds for bounded level sets
+(`LevelSet.starSet_exact`, `StarSet.exists_levelSet_exact`).
 
 ## References
 
@@ -24,7 +25,7 @@ beyond the linear one: with a level-set predicate it holds (`LevelSet.starSet_ex
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -35,8 +36,9 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LevelSet.exists_not_starSet_linPred :
-    ∃ L : LevelSet 1, ¬ ∃ s : StarSet StarSet.LinPred 1, s.construct = L.construct
+/-- `{-1, 1}` is a level set and no star set with a polytope predicate. -/
+theorem LevelSet.exists_not_starSet_hPolytope :
+    ∃ L : LevelSet 1, ¬ ∃ s : StarSet ℋ𝒫 1, s.construct = L.construct
     := by -- --- PROOF ---
   refine ⟨⟨1, fun x _ => x 0 ^ 2 - 1, fun _ => .eq⟩, ?_⟩
   rintro ⟨s, hs⟩

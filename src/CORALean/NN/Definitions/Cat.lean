@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Global.Float.SoundFloatArithmetic
-public import CORALean.ContSet.PolyLevelSet.Real.PolyLevelSet
+public import CORALean.ContSet.LevelSet.Real.LevelSet
 public import Mathlib.Data.Matrix.Mul
 
 @[expose] public section
@@ -11,10 +11,11 @@ public import Mathlib.Data.Matrix.Mul
 
 [1, Fig. 3]'s CAT functions, the form AI2 writes a network in before it abstracts it: an affine
 map `W x + b`, a list of guarded cases, or a composition, and `cases` returns the function of the
-first condition the point satisfies. A condition is a polynomial level set (`CatCond`): [1]'s
-atoms `xᵢ ≥ xⱼ`, `xᵢ ≥ 0` and `xᵢ < 0` are its degree-1 rows (`CatCond.ge`, `nonneg`, `neg`), a
-conjunction is two stacked (`PolyLevelSet.and_`), and a point satisfies it when it lies in its
-`construct`; every guard of [1] is one, and the level-set operations apply to all of them.
+first condition the point satisfies. A condition is a level set (`CatCond`): [1]'s atoms
+`xᵢ ≥ xⱼ`, `xᵢ ≥ 0` and `xᵢ < 0` are its affine rows (`CatCond.ge`, `nonneg`, `neg`), a conjunction
+is two stacked (`LevelSet.and_`), and a point satisfies it when it lies in its `construct`; every
+guard of [1] is one, and the level-set operations apply to all of them. A guard is unbounded, so it
+is the `LevelSet` and not a `PolyLevelSet`, whose domain is a library `Interval` with finite ends.
 
 The weights are stored in the scalar `𝕋` and read through `toReal`, so one CAT function is both
 the network a machine runs and the exact function it denotes; the conditions are real data, their
@@ -47,9 +48,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- A guard: the points of a polynomial level set on the input, `≤`/`<` rows of degree 1 for the
-conjunctions of [1]'s atoms. -/
-abbrev CatCond (n : ℕ) : Type := Real.PolyLevelSet n
+/-- A guard: the points of a level set on the input, affine `≤`/`<` rows for the conjunctions of
+[1]'s atoms. -/
+abbrev CatCond (n : ℕ) : Type := Real.LevelSet n
 
 /-- `W x + b`, `k` guarded cases, or `f₂ ∘ f₁`. -/
 inductive Cat (𝕋 : Type) : ℕ → ℕ → Type where

@@ -72,10 +72,10 @@ theorem PolyLevelSet.mem_compact_of_mem (P : PolyLevelSet 𝕋 n) (hP : ∀ i, P
     Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep P.R) (fun r => toReal (P.A i r))
       (PolyZonotope.keepIdx P.R j) with hfib
   rw [PolyLevelSet.mem_construct_iff_of_eq hP] at hsat
-  refine (PolyLevelSet.mem_construct_iff_of_eq (P := P.compactSpec) hP).mpr fun i => ?_
+  refine (PolyLevelSet.mem_construct_iff_of_eq (P := P.compactSpec) hP).mpr ⟨hsat.1, fun i => ?_⟩
   -- the row at `a`, within its slack of `b`
   set row := ∑ l, toReal (P.A i l) * Real.PolyZonotope.monomial P.R a l with hrow
-  have hb : |row - toReal (P.b i)| ≤ |toReal (P.b_error i)| := hsat i
+  have hb : |row - toReal (P.b i)| ≤ |toReal (P.b_error i)| := hsat.2 i
   have hex := PolyZonotope.sum_toReal_merge P.R P.A a Rk (fun _ _ => rfl) i
   -- the exact merged row is the stored one plus what the gaps carry
   have hsplit : (∑ j, fib i j * mon j) = (∑ j, toReal (P.mergedCol i j) * mon j)

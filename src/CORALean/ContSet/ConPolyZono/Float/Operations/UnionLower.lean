@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnitCol
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionSel
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyLevelSet.Float.Operations.CartProd
 public import CORALean.ContSet.PolyLevelSet.Float.Operations.PadVars
 public import CORALean.ContSet.PolyLevelSet.Float.Operations.Switch
@@ -32,10 +33,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] {p₁ p₂ : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Both operands' rows, switched by the selector factor, each row with its slack. -/
+/-- Both operands' rows, switched by the selector factor, whose box is the unit box, each row with
+its slack. -/
 def ConPolyZono.unionLower (P₁ : PolyLevelSet 𝕋 p₁) (P₂ : PolyLevelSet 𝕋 p₂) :
     PolyLevelSet 𝕋 (p₁ + p₂ + 2) :=
-  ((P₁.cartProd P₂).padVars 2).switch
+  ((P₁.cartProd P₂).padVars (Interval.unit 2)).switch
     (Real.ConPolyZono.unitCol (Real.ConPolyZono.unionSel p₁ p₂) 1)
     (Fin.append (fun _ => true) fun _ => false)
 

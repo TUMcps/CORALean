@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Operations.CartProd
 public import CORALean.ContSet.PolyLevelSet.Real.Operations.Copies
 public import CORALean.ContSet.PolyLevelSet.Real.Operations.Linear
@@ -56,8 +57,13 @@ noncomputable def ConPolyZono.convHullSingle {α : Type} [AddCommGroup α] [Modu
   GI := Fin.elim0
   -- the copies' rows, then the weight row `∑ⱼ λⱼ = 1 - a`
   cons := (cPZ.cons.copies a).cartProd
-    (PolyLevelSet.linear (m := 1) (fun _ _ => 1) (fun _ => 1 - (a : ℝ)) fun _ => .eq)
+    (PolyLevelSet.linear (m := 1) (fun _ _ => 1) (fun _ => 1 - (a : ℝ)) (fun _ => .eq)
+      (Interval.unit a))
   cons_eq := LevelSet.append_op_eq (fun _ => cPZ.cons_eq _) fun _ => rfl
+  cons_dom := by
+    show (cPZ.cons.dom.repVec a).append _ = _
+    rw [cPZ.cons_dom]
+    exact Interval.unit_append_unit _ _
 
 end CORALean.Real
 

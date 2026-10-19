@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.Global.NotHyperplaneOneDim
 public import Mathlib.Tactic.Linarith
 
@@ -60,12 +61,13 @@ namespace CORALean.Real
 /-- `c = 0`, `G = (1)`, `E = (1)`, no constraint: the interval `[-1, 1]`. -/
 def ConPolyZono.aux_unitSegment : ConPolyZono (Vec ℝ 1) :=
   ⟨1, 1, 0, fun _ => 0, fun _ _ => 1, fun _ _ => 1, Fin.elim0, ⟨0, 0, fun i => i.elim0,
-      fun _ j => j.elim0, fun i => i.elim0, fun _ => .eq⟩,
-      fun _ => rfl⟩
+      fun _ j => j.elim0, fun i => i.elim0, fun _ => .eq, Interval.unit 1⟩,
+      fun _ => rfl, rfl⟩
 
 theorem ConPolyZono.aux_mem (t : ℝ) (ht : |t| ≤ 1) :
     (fun _ => t) ∈ ConPolyZono.aux_unitSegment.construct := by
-  refine ⟨fun _ => t, Fin.elim0, fun _ => ht, fun j => j.elim0, fun i => i.elim0, ?_⟩
+  refine ⟨fun _ => t, Fin.elim0, fun j => j.elim0,
+    ⟨(Interval.mem_unit_iff _).mpr fun _ => ht, fun i => i.elim0⟩, ?_⟩
   ext i
   simp [ConPolyZono.aux_unitSegment, PolyZonotope.monomial]
 

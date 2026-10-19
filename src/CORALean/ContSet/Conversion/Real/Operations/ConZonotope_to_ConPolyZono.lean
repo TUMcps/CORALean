@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Relax
 public import CORALean.ContSet.ConZonotope.Real.ConZonotope
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
 
@@ -21,7 +22,7 @@ polytope says (`ConZonotope.conRows_iff`).
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       03-September-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -66,8 +67,10 @@ noncomputable def ConZonotope.conPolyZono (cZ : ConZonotope (Vec ℝ n)) : ConPo
       E := PolyZonotope.identE cZ.h
       GI := Fin.elim0
       cons := ⟨cZ.P.m + cZ.P.me, cZ.h, ConZonotope.conA cZ, PolyZonotope.identE cZ.h,
-        fun i => (ConZonotope.conLo cZ i + ConZonotope.conHi cZ i) / 2, fun _ => .eq⟩
-      cons_eq := fun _ => rfl }
+        fun i => (ConZonotope.conLo cZ i + ConZonotope.conHi cZ i) / 2, fun _ => .eq,
+        Interval.unit cZ.h⟩
+      cons_eq := fun _ => rfl
+      cons_dom := rfl }
     (fun i => (ConZonotope.conHi cZ i - ConZonotope.conLo cZ i) / 2)
 
 end CORALean.Real

@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Domain
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEqUnit
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ContinuousMonomial
 public import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallEq
 public import Mathlib.Analysis.Normed.Order.Lattice
@@ -59,20 +60,21 @@ functions, so the domain is a finite intersection of closed sets. -/
 theorem ConPolyZono.aux_isClosed_domain (cPZ : ConPolyZono α) :
     IsClosed cPZ.domain := by -- --- PROOF ---
   have hdom : cPZ.domain
-      = (⋂ k, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) | |ab.1 k| ≤ 1})
-        ∩ ((⋂ j, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) | |ab.2 j| ≤ 1})
+      = (⋂ j, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) | |ab.2 j| ≤ 1})
+        ∩ ((⋂ k, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) | |ab.1 k| ≤ 1})
           ∩ ⋂ i, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) |
                 (cPZ.cons.A *ᵥ PolyZonotope.monomial cPZ.cons.R ab.1) i = cPZ.cons.b i}) := by
     ext ab
-    simp only [ConPolyZono.domain, PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq,
+    simp only [ConPolyZono.domain,
+      PolyLevelSet.mem_construct_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom,
       Set.mem_setOf_eq, Set.mem_inter_iff, Set.mem_iInter]
   rw [hdom]
-  refine IsClosed.inter (isClosed_iInter fun k => ?_)
-    (IsClosed.inter (isClosed_iInter fun j => ?_)
+  refine IsClosed.inter (isClosed_iInter fun j => ?_)
+    (IsClosed.inter (isClosed_iInter fun k => ?_)
       (isClosed_iInter fun i => ?_))
-  · exact isClosed_le (continuous_abs.comp ((continuous_apply k).comp continuous_fst))
-      continuous_const
   · exact isClosed_le (continuous_abs.comp ((continuous_apply j).comp continuous_snd))
+      continuous_const
+  · exact isClosed_le (continuous_abs.comp ((continuous_apply k).comp continuous_fst))
       continuous_const
   · exact isClosed_eq (cPZ.aux_continuous_consRow i) continuous_const
 
@@ -88,9 +90,9 @@ theorem ConPolyZono.isCompact_domain (cPZ : ConPolyZono α) :
   -- both cubes are the unit ball of the supremum norm, which is where the bound comes from
   refine Set.mem_prod.mpr ⟨?_, ?_⟩
   · rw [Zonotope.closedBall_eq]
-    exact hab.1
+    exact ((PolyLevelSet.mem_construct_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom).mp hab.2).1
   · rw [Zonotope.closedBall_eq]
-    exact hab.2.1
+    exact hab.1
 
 end CORALean.Real
 

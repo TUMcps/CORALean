@@ -1,20 +1,22 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_StarSet
 public import CORALean.ContSet.ConZonotope.Real.ConZonotope
+public import CORALean.ContSet.HPolytope.Real.Instances
+public import CORALean.ContSet.Interval.Real.Operations.Basic
+public import CORALean.ContSet.StarSet.Real.StarSet
 
 @[expose] public section
 
 /-!
 # A constrained zonotope as a star set
 
-CORA's `conversionConZonoStarSet`: the center and the generators as they are, the factors in
-`[-1, 1]`, and the rows of the constraint polytope on the factors as the constraint rows.
+CORA's `conversionConZonoStarSet`: the center and the generators as they are, the coefficient box
+`[-1, 1]`, and the constraint polytope on the factors as the predicate, as it is.
 -/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -27,11 +29,12 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.starSet (cZ : ConZonotope (Vec ℝ n)) : StarSet StarSet.LinPred n where
+def ConZonotope.starSet (cZ : ConZonotope (Vec ℝ n)) : StarSet ℋ𝒫 n where
   m := cZ.h
   c := cZ.c
   G := fun i k => cZ.G k i
-  pred := ⟨cZ.P.starRows, fun _ => -1, fun _ => 1⟩
+  dom := Interval.unit cZ.h
+  pred := cZ.P
 
 end CORALean.Real
 

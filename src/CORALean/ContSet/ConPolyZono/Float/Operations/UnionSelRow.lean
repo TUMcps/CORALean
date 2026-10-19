@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionSelRow
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyLevelSet.Float.PolyLevelSet
 
 @[expose] public section
@@ -19,7 +20,7 @@ and right-hand side `one`, stored exactly, so its slack is `zero`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -34,10 +35,10 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `α₁α₂ = 1`, on the union's factors, with no slack. -/
+/-- `α₁α₂ = 1`, on the union's factors and their unit box, with no slack. -/
 def ConPolyZono.unionSelRow (p₁ p₂ : ℕ) : PolyLevelSet 𝕋 (p₁ + p₂ + 2) :=
   ⟨1, 1, fun _ _ => one, (Real.ConPolyZono.unionSelRow p₁ p₂).R, fun _ => one, fun _ => zero,
-    fun _ => .eq⟩
+    fun _ => .eq, Interval.unit _⟩
 
 end CORALean.Float
 

@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemPadVarsIff
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemCartProdIff
 public import CORALean.ContSet.ConPolyZono.Real.Operations.LinComb
@@ -53,23 +54,22 @@ theorem ConPolyZono.linComb_exact_of_dependent (cPZ₁ cPZ₂ : ConPolyZono α)
     (h₁ : cPZ₁.qI = 0) (h₂ : cPZ₂.qI = 0) :
     Set.linComb cPZ₁.construct cPZ₂.construct = (cPZ₁.linComb cPZ₂).construct := by -- --- PROOF ---
   refine Set.eq_of_subset_of_subset (ConPolyZono.linComb_outer cPZ₁ cPZ₂) ?_
-  rintro x ⟨a, β, ha, hβ, hsat, rfl⟩
+  rintro x ⟨a, β, hβ, hsat, rfl⟩
+  -- the combined system, split back into the two operands' own and the fresh factor's box
+  obtain ⟨hcp, hlast⟩ := (PolyLevelSet.mem_padVars_iff _ (Interval.unit 1) a).mp hsat
+  obtain ⟨hs₁, hs₂⟩ := (PolyLevelSet.mem_cartProd_iff cPZ₁.cons cPZ₂.cons _).mp hcp
   -- the fresh factor, whose unit bound is the segment parameter's `λ ∈ [0,1]`
-  obtain ⟨hl₀, hl₁⟩ := abs_le.mp (ha (Fin.natAdd (cPZ₁.p + cPZ₂.p) (0 : Fin 1)))
-  -- the combined system, split back into the two operands' own
-  obtain ⟨hs₁,
-      hs₂⟩ := ((PolyLevelSet.mem_padVars_iff _ 1 a).trans (PolyLevelSet.mem_cartProd_iff cPZ₁.cons
-      cPZ₂.cons _)).mp hsat
+  obtain ⟨hl₀, hl₁⟩ := abs_le.mp ((Interval.mem_unit_iff _).mp hlast (0 : Fin 1))
   exact ⟨cPZ₁.c + ∑ i, PolyZonotope.monomial cPZ₁.E
         (fun k => a (Fin.castAdd 1 (Fin.castAdd cPZ₂.p k))) i • cPZ₁.G i
       + ∑ j, (0 : ℝ) • cPZ₁.GI j,
     ⟨fun k => a (Fin.castAdd 1 (Fin.castAdd cPZ₂.p k)), fun _ => 0,
-      fun k => ha _, fun _ => by simp, hs₁, rfl⟩,
+      fun _ => by simp, hs₁, rfl⟩,
     cPZ₂.c + ∑ i, PolyZonotope.monomial cPZ₂.E
         (fun k => a (Fin.castAdd 1 (Fin.natAdd cPZ₁.p k))) i • cPZ₂.G i
       + ∑ j, (0 : ℝ) • cPZ₂.GI j,
     ⟨fun k => a (Fin.castAdd 1 (Fin.natAdd cPZ₁.p k)), fun _ => 0,
-      fun k => ha _, fun _ => by simp, hs₂, rfl⟩,
+      fun _ => by simp, hs₂, rfl⟩,
     (1 + a (Fin.natAdd (cPZ₁.p + cPZ₂.p) (0 : Fin 1))) / 2, ⟨by linarith, by linarith⟩,
     PolyZonotope.linComb_value_dependent cPZ₁.toPolyZonotope cPZ₂.toPolyZonotope h₁ h₂ a β⟩
 

@@ -23,7 +23,7 @@ factor for `x^e`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       19-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -45,6 +45,7 @@ noncomputable def PolyLevelSet.switch (P : PolyLevelSet n) (e : Fin n → ℕ) (
   R k := Fin.append (P.R k) fun _ => e k
   b i := 2⁻¹ * P.b i
   op := P.op
+  dom := P.dom
 
 end CORALean.Real
 

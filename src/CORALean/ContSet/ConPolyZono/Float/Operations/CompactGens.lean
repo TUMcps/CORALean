@@ -54,6 +54,7 @@ def ConPolyZono.compactGens (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 
     GI := cPZ.GI
     cons := cPZ.cons
     cons_eq := cPZ.cons_eq
+    cons_dom := cPZ.cons_dom
     -- the constraint block, its right-hand side and its slack stand
     I_error := cPZ.I_error.plus (PolyZonotope.generatorError fun i j =>
       subUp (PolyZonotope.fiberUp r (fun i l => cPZ.G l i) i (k j))

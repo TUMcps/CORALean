@@ -18,8 +18,10 @@ public import CORALean.ContSet.Interval.Float.Theorems.OrOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Real.Operations.Reindex
 public import CORALean.ContSet.Interval.Real.Theorems.Basic
+public import CORALean.ContSet.Interval.Real.Theorems.MemRepVecIff
 public import CORALean.ContSet.Interval.Real.Theorems.Convex
 public import CORALean.ContSet.Interval.Real.Theorems.CtransposeExact
+public import CORALean.Global.Float.GenBlockDiag
 public import Mathlib.Analysis.Convex.Hull
 
 @[expose] public section
@@ -144,6 +146,18 @@ theorem Interval.mem_mat_iff {I : Interval (Mat 𝕋 m n)} {A : Mat ℝ m n} :
   ⟨fun h i j => h (i, j), fun h p => h p.1 p.2⟩
 
 
+-- ================================  `Interval.mem_repVec_iff`  ================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- A point of a repeated box is one whose every block lies in the box; nothing rounds. -/
+theorem Interval.mem_repVec_iff (a : ℕ) (I : Interval (Vec 𝕋 n)) (x : Vec ℝ (a * n)) :
+    x ∈ (I.repVec a).construct ↔ ∀ j, (fun k => x (finProdFinEquiv (j, k))) ∈ I.construct :=
+  Real.Interval.mem_repVec_iff a I.nominal x
+
+
 -- ==================================  `Interval.mem_vec_iff`  ================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
@@ -155,6 +169,44 @@ reals, so the statement needs no unfolding at the use site. -/
 theorem Interval.mem_vec_iff {I : Interval (Vec 𝕋 n)} {x : Vec ℝ n} :
     x ∈ I.construct ↔ ∀ j, toReal (I.inf j) ≤ x j ∧ x j ≤ toReal (I.sup j) :=
   Iff.rfl
+
+
+-- ================================  `Interval.nominal_append`  ================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The stored boxes appended read back as the read-back boxes appended: the bounds are copied. -/
+theorem Interval.nominal_append {n₁ n₂ : ℕ} (I₁ : Interval (Vec 𝕋 n₁)) (I₂ : Interval (Vec 𝕋 n₂)) :
+    (I₁.append I₂).nominal = I₁.nominal.append I₂.nominal :=
+  congrArg₂ Real.Interval.mk (toRealVec_append I₁.inf I₂.inf) (toRealVec_append I₁.sup I₂.sup)
+
+
+-- =================================  `Interval.nominal_unit`  ================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The stored unit box reads back as the exact one: `-1` and `1` round to themselves. -/
+theorem Interval.nominal_unit (n : ℕ) :
+    (Interval.unit n : Interval (Vec 𝕋 n)).nominal = Real.Interval.unit n :=
+  congrArg₂ Real.Interval.mk (funext fun _ => (toReal_neg _).trans (by rw [toReal_one]))
+    (funext fun _ => toReal_one)
+
+
+-- =================================  `Interval.mem_unit_iff`  ================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- A point of the stored unit box is one whose every coordinate has modulus at most `1`. -/
+theorem Interval.mem_unit_iff (x : Vec ℝ n) :
+    x ∈ (Interval.unit n : Interval (Vec 𝕋 n)).construct ↔ ∀ k, |x k| ≤ 1 := by
+  rw [Interval.construct, Interval.nominal_unit]
+  exact Real.Interval.mem_unit_iff x
 
 
 -- ====================================  `Interval.norm_le`  ==================================== --
@@ -226,6 +278,32 @@ omit [FloatOps 𝕋] in
 /-- `materialise` is the identity: it changes only what running the definition costs. -/
 @[simp] theorem Interval.materialise_eq (I : Interval (Vec 𝕋 n)) : I.materialise = I := by
   simp [Interval.materialise]
+
+
+-- ===============================  `Interval.unit_append_unit`  ================================ --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Two stored unit boxes side by side are the unit box of both blocks. -/
+theorem Interval.unit_append_unit (n₁ n₂ : ℕ) : (Interval.unit n₁ : Interval (Vec 𝕋 n₁)).append
+    (Interval.unit n₂) = Interval.unit (n₁ + n₂) := by
+  simp only [Interval.append, Interval.unit, Interval.mk.injEq]
+  exact ⟨funext (Fin.addCases (by simp) (by simp)), funext (Fin.addCases (by simp) (by simp))⟩
+
+
+-- ================================  `Interval.append_eq_unit`  ================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Two stored boxes that are unit boxes, side by side, are the unit box of both blocks. -/
+theorem Interval.append_eq_unit {n₁ n₂ : ℕ} {I₁ : Interval (Vec 𝕋 n₁)} {I₂ : Interval (Vec 𝕋 n₂)}
+    (h₁ : I₁ = Interval.unit n₁) (h₂ : I₂ = Interval.unit n₂) :
+    I₁.append I₂ = Interval.unit (n₁ + n₂) := by
+  rw [h₁, h₂, Interval.unit_append_unit]
 
 end
 

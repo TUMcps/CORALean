@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyLevelSet.Float.PolyLevelSet
 
 @[expose] public section
@@ -7,13 +8,13 @@ public import CORALean.ContSet.PolyLevelSet.Float.PolyLevelSet
 /-!
 # `PolyLevelSet.reindexVars` over a floating-point scalar
 
-The rows read at the variables `f`, as over ℝ, each with its slack: only the exponent matrix is
-reindexed, over ℕ, so nothing rounds (`mem_reindexVars_iff`).
+The rows read at the variables `f`, as over ℝ, each with its slack: only the exponent matrix and
+the box are reindexed, so nothing rounds (`mem_reindexVars_of_mem`).
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       19-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -36,6 +37,7 @@ def PolyLevelSet.reindexVars (P : PolyLevelSet 𝕋 n) {n' : ℕ} (f : Fin n' �
   b := P.b
   b_error := P.b_error
   op := P.op
+  dom := P.dom.project f
 
 end CORALean.Float
 

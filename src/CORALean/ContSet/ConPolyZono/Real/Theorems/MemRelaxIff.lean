@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Relax
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.ExistsRelaxIff
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
 
@@ -50,22 +51,21 @@ theorem ConPolyZono.mem_relax_iff [AddCommGroup α] [Module ℝ α] (cPZ : ConPo
         ∧ x = cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i
           + ∑ j, β j • cPZ.GI j := by -- --- PROOF ---
   constructor
-  · rintro ⟨a, β, ha, hβ, hs, hx⟩
+  · rintro ⟨a, β, hβ, hs, hx⟩
     -- the factor vector splits into the old factors and the slack, which is in `[-1, 1]`
-    refine ⟨fun k => a (Fin.castAdd cPZ.cons.m k), β, fun k => ha _, hβ,
-      (PolyLevelSet.exists_relax_iff cPZ.cons_eq s _).mp
-        ⟨fun i => a (Fin.natAdd cPZ.p i), fun i => ha _, ?_⟩, ?_⟩
-    · rwa [Fin.append_castAdd_natAdd]
-    · rw [hx, ConPolyZono.aux_monomial_relax]
-      rfl
+    obtain ⟨hdom, hrows⟩ := (PolyLevelSet.exists_relax_iff cPZ.cons_eq s _).mp
+      ⟨fun i => a (Fin.natAdd cPZ.p i), by rwa [Fin.append_castAdd_natAdd]⟩
+    refine ⟨fun k => a (Fin.castAdd cPZ.cons.m k), β,
+      (Interval.mem_unit_iff _).mp (cPZ.cons_dom ▸ hdom), hβ, hrows, ?_⟩
+    rw [hx, ConPolyZono.aux_monomial_relax]
+    rfl
   · rintro ⟨a, β, ha, hβ, hs, hx⟩
     -- the slack each row needs, in `[-1, 1]`
-    obtain ⟨γ, hγ, hmem⟩ := (PolyLevelSet.exists_relax_iff cPZ.cons_eq s a).mpr hs
+    obtain ⟨γ, hmem⟩ := (PolyLevelSet.exists_relax_iff cPZ.cons_eq s a).mpr
+      ⟨cPZ.cons_dom ▸ (Interval.mem_unit_iff a).mpr ha, hs⟩
     have hleft : (fun k => Fin.append a γ (Fin.castAdd cPZ.cons.m k)) = a :=
       funext fun k => Fin.append_left a γ k
-    have hbox : ∀ k, |Fin.append a γ k| ≤ 1 :=
-      Fin.addCases (fun k => by simpa using ha k) (fun i => by simpa using hγ i)
-    refine ⟨Fin.append a γ, β, hbox, hβ, hmem, ?_⟩
+    refine ⟨Fin.append a γ, β, hβ, hmem, ?_⟩
     rw [hx]
     show _ = cPZ.c + ∑ i, PolyZonotope.monomial (cPZ.relax s).E (Fin.append a γ) i • cPZ.G i
       + ∑ j, β j • cPZ.GI j

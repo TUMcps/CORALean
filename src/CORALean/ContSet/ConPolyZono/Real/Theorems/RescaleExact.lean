@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Rescale
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemGetSubsetIff
 public import Mathlib.Tactic.FieldSimp
 
@@ -31,7 +32,7 @@ without casts.
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Reviewed:      15-October-2026 (Tobias Ladner)
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
@@ -48,12 +49,13 @@ def ConPolyZono.aux_rescaleSub (cen rad : ℕ → ℝ) (n : ℕ) (a : ℕ → �
   fun k => if k < n then cen k + rad k * a k else a k
 
 /-- What `n` steps of `rescaleStep` leave: the factor counts, the independent block, and
-the constraints and generators as the original's, read at `rescaleSub`. -/
+the constraint rows and generators as the original's, read at `rescaleSub`. -/
 def ConPolyZono.aux_RescaleInv (cPZ acc : ConPolyZono α) (cen rad : ℕ → ℝ) (n : ℕ) : Prop :=
   acc.p = cPZ.p ∧ acc.qI = cPZ.qI
   ∧ (∀ β : ℕ → ℝ, ∑ j : Fin acc.qI, β j • acc.GI j = ∑ j : Fin cPZ.qI, β j • cPZ.GI j)
-  ∧ (∀ a : ℕ → ℝ, (fun k : Fin acc.p => a k) ∈ acc.cons.construct
-      ↔ (fun k : Fin cPZ.p => ConPolyZono.aux_rescaleSub cen rad n a k) ∈ cPZ.cons.construct)
+  ∧ (∀ a : ℕ → ℝ, (∀ i, (acc.cons.op i).holds (acc.cons.eval (fun k : Fin acc.p => a k) i))
+      ↔ ∀ i, (cPZ.cons.op i).holds
+        (cPZ.cons.eval (fun k : Fin cPZ.p => ConPolyZono.aux_rescaleSub cen rad n a k) i))
   ∧ (∀ a : ℕ → ℝ, acc.c + ∑ i, PolyZonotope.monomial acc.E (fun k : Fin acc.p => a k) i • acc.G i
       = cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E
           (fun k : Fin cPZ.p => ConPolyZono.aux_rescaleSub cen rad n a k) i • cPZ.G i)
@@ -99,12 +101,14 @@ theorem ConPolyZono.aux_rescaleInv_succ (cPZ acc : ConPolyZono α) (cen rad : �
   rw [dif_pos h]
   -- the counts and the independent block are untouched; the constraints and the point follow
   refine ⟨hp, hq, fun β => hGI β, fun a => ?_, fun a => ?_⟩
-  · -- the constraints: `PolyLevelSet.mem_getSubset_iff` then the invariant at the updated vector
+  · -- the constraint rows: `PolyLevelSet.eval_getSubset` then the invariant at the updated vector
     rw [ConPolyZono.aux_rescaleSub_succ]
-    have h1 := PolyLevelSet.mem_getSubset_iff acc.cons ⟨n, h⟩ (cen n) (rad n) (fun k => a k)
     have h2 := hsat (Function.update a n (cen n + rad n * a n))
     rw [ConPolyZono.aux_fin_update h] at h2
-    exact h1.trans (by simpa using h2)
+    refine Iff.trans ?_ h2
+    show (∀ i, (acc.cons.op i).holds
+      ((acc.cons.getSubset ⟨n, h⟩ (cen n) (rad n)).eval (fun k => a k) i)) ↔ _
+    rw [PolyLevelSet.eval_getSubset]
   · -- the point: `getSubset_point` then the invariant at the updated vector
     rw [ConPolyZono.aux_rescaleSub_succ]
     have h1 := PolyZonotope.getSubset_point acc.toPolyZonotope ⟨n, h⟩ (cen n) (rad n)
@@ -124,14 +128,17 @@ theorem ConPolyZono.aux_rescaleInv_fold (cPZ : ConPolyZono α) (cen rad : ℕ �
     rw [List.range_succ, List.foldl_append, List.foldl_cons, List.foldl_nil]
     exact ConPolyZono.aux_rescaleInv_succ cPZ _ cen rad n (by omega) (ih (by omega))
 
-/-- Membership, with factor vectors on `ℕ` so that the counts need no casts. -/
+/-- Membership, with factor vectors on `ℕ` so that the counts need no casts, and the factor box
+and the constraint rows apart. -/
 theorem ConPolyZono.aux_mem_construct_nat (acc : ConPolyZono α) (x : α) : -- --- STMT ---
     x ∈ acc.construct ↔ ∃ a β : ℕ → ℝ, (∀ k, k < acc.p → |a k| ≤ 1)
-      ∧ (∀ j, j < acc.qI → |β j| ≤ 1) ∧ (fun k : Fin acc.p => a k) ∈ acc.cons.construct
+      ∧ (∀ j, j < acc.qI → |β j| ≤ 1)
+      ∧ (∀ i, (acc.cons.op i).holds (acc.cons.eval (fun k : Fin acc.p => a k) i))
       ∧ x = acc.c + ∑ i, PolyZonotope.monomial acc.E (fun k : Fin acc.p => a k) i • acc.G i
           + ∑ j : Fin acc.qI, β j • acc.GI j := by -- --- PROOF ---
   constructor
-  · rintro ⟨a, β, ha, hβ, hs, hx⟩
+  · rintro ⟨a, β, hβ, ⟨hdom, hs⟩, hx⟩
+    have ha := (Interval.mem_unit_iff a).mp (acc.cons_dom ▸ hdom)
     refine ⟨fun n => if h : n < acc.p then a ⟨n, h⟩ else 0,
       fun n => if h : n < acc.qI then β ⟨n, h⟩ else 0, ?_, ?_, ?_, ?_⟩
     · intro k hk; simpa [hk] using ha ⟨k, hk⟩
@@ -139,7 +146,8 @@ theorem ConPolyZono.aux_mem_construct_nat (acc : ConPolyZono α) (x : α) : -- -
     · simpa using hs
     · simpa using hx
   · rintro ⟨a, β, ha, hβ, hs, hx⟩
-    exact ⟨fun k => a k, fun j => β j, fun k => ha k k.2, fun j => hβ j j.2, hs, hx⟩
+    exact ⟨fun k => a k, fun j => β j, fun j => hβ j j.2,
+      ⟨acc.cons_dom ▸ (Interval.mem_unit_iff _).mpr fun k => ha k k.2, hs⟩, hx⟩
 
 /-- Any box `dom` inside `[-1,1]ᵖ` that keeps every factor vector satisfying the constraints
 leaves the set unchanged when the factors are rescaled onto it. -/
@@ -167,6 +175,11 @@ theorem ConPolyZono.aux_rescale_exact_of_box (cPZ : ConPolyZono α)
   have hsub : ∀ (a : ℕ → ℝ) (k : Fin cPZ.p),
       ConPolyZono.aux_rescaleSub cen rad cPZ.p a k = cen k + rad k * a k := fun a k => by
     simp [ConPolyZono.aux_rescaleSub, k.2]
+  -- the original's box and rows are its constraint's membership
+  have hcons : ∀ a : ℕ → ℝ, (∀ k, k < cPZ.p → |a k| ≤ 1)
+      → (∀ i, (cPZ.cons.op i).holds (cPZ.cons.eval (fun k : Fin cPZ.p => a k) i))
+      → (fun k : Fin cPZ.p => a k) ∈ cPZ.cons.construct := fun a ha hs =>
+    ⟨cPZ.cons_dom ▸ (Interval.mem_unit_iff _).mpr fun k => ha k k.2, hs⟩
   -- both sets in the `ℕ`-indexed form, so that the two factor counts need no cast
   ext x
   rw [ConPolyZono.aux_mem_construct_nat, ConPolyZono.aux_mem_construct_nat]
@@ -195,7 +208,7 @@ theorem ConPolyZono.aux_rescale_exact_of_box (cPZ : ConPolyZono α)
     have ht : ∀ k : Fin cPZ.p,
         ConPolyZono.aux_rescaleSub cen rad cPZ.p t k = a k := by
       intro k
-      have hk' := hk (fun j => a j) (fun j => ha j j.2) hs k
+      have hk' := hk (fun j => a j) (fun j => ha j j.2) (hcons a ha hs) k
       have htk : t k = if rad k = 0 then 0 else (a k - cen k) / rad k := by
         simp [t, k.2]
       rw [hsub, htk]
@@ -211,7 +224,7 @@ theorem ConPolyZono.aux_rescale_exact_of_box (cPZ : ConPolyZono α)
     · -- `t k` lies in `[-1,1]`: `a k` is in the box, `cen ± rad`
       intro k hk0
       have hk' : k < cPZ.p := by omega
-      have hk'' := hk (fun j => a j) (fun j => ha j j.2) hs ⟨k, hk'⟩
+      have hk'' := hk (fun j => a j) (fun j => ha j j.2) (hcons a ha hs) ⟨k, hk'⟩
       have hr : 0 ≤ rad k := by
         have := hrad' ⟨k, hk'⟩
         have hb' := hb ⟨k, hk'⟩
@@ -246,11 +259,11 @@ theorem ConPolyZono.aux_rescale_exact_of_box (cPZ : ConPolyZono α)
 constraints, and is not empty. -/
 theorem ConPolyZono.rescale_exact (cPZ : ConPolyZono α)
     (contract : Interval (Vec ℝ cPZ.p) → Interval (Vec ℝ cPZ.p))
-    (hsub : (contract (ConPolyZono.unitBox cPZ.p)).construct
-      ⊆ (ConPolyZono.unitBox cPZ.p).construct)
-    (hkeep : ∀ x : Vec ℝ cPZ.p, x ∈ (ConPolyZono.unitBox cPZ.p).construct → x ∈ cPZ.cons.construct →
-      x ∈ (contract (ConPolyZono.unitBox cPZ.p)).construct)
-    (hne : (contract (ConPolyZono.unitBox cPZ.p)).construct.Nonempty) : -- --- STMT ---
+    (hsub : (contract (Interval.unit cPZ.p)).construct
+      ⊆ (Interval.unit cPZ.p).construct)
+    (hkeep : ∀ x : Vec ℝ cPZ.p, x ∈ (Interval.unit cPZ.p).construct → x ∈ cPZ.cons.construct →
+      x ∈ (contract (Interval.unit cPZ.p)).construct)
+    (hne : (contract (Interval.unit cPZ.p)).construct.Nonempty) : -- --- STMT ---
     (cPZ.rescale contract).construct = cPZ.construct := by -- --- PROOF ---
   -- unfold the contraction: `contract` is applied only when `A` is not empty
   unfold ConPolyZono.rescale
@@ -259,22 +272,22 @@ theorem ConPolyZono.rescale_exact (cPZ : ConPolyZono α)
   · -- empty `A`: CORA does not contract, the box stays `[-1,1]ᵖ`
     rw [if_pos hA]
     refine ConPolyZono.aux_rescale_exact_of_box cPZ _ (fun k => ?_) (fun a ha _ k => ?_)
-    · simp [ConPolyZono.unitBox]
-    · simpa [ConPolyZono.unitBox, abs_le] using ha k
+    · simp [Interval.unit]
+    · simpa [Interval.unit, abs_le] using ha k
   · rw [if_neg hA]
     obtain ⟨x0, hx0⟩ := hne
     -- a nonempty box inside the unit box has its bounds inside `[-1,1]`, one coordinate moved
-    have hbox : ∀ k, -1 ≤ (contract (ConPolyZono.unitBox cPZ.p)).inf k
-        ∧ (contract (ConPolyZono.unitBox cPZ.p)).inf k
-          ≤ (contract (ConPolyZono.unitBox cPZ.p)).sup k
-        ∧ (contract (ConPolyZono.unitBox cPZ.p)).sup k ≤ 1 := by
+    have hbox : ∀ k, -1 ≤ (contract (Interval.unit cPZ.p)).inf k
+        ∧ (contract (Interval.unit cPZ.p)).inf k
+          ≤ (contract (Interval.unit cPZ.p)).sup k
+        ∧ (contract (Interval.unit cPZ.p)).sup k ≤ 1 := by
       intro k
-      have hx0k : (contract (ConPolyZono.unitBox cPZ.p)).inf k ≤ x0 k
-          ∧ x0 k ≤ (contract (ConPolyZono.unitBox cPZ.p)).sup k := hx0 k
+      have hx0k : (contract (Interval.unit cPZ.p)).inf k ≤ x0 k
+          ∧ x0 k ≤ (contract (Interval.unit cPZ.p)).sup k := hx0 k
       -- the point with coordinate `k` moved to `v` stays in the contracted box
-      have hmem : ∀ v : ℝ, (contract (ConPolyZono.unitBox cPZ.p)).inf k ≤ v →
-          v ≤ (contract (ConPolyZono.unitBox cPZ.p)).sup k →
-          Function.update x0 k v ∈ (contract (ConPolyZono.unitBox cPZ.p)).construct := by
+      have hmem : ∀ v : ℝ, (contract (Interval.unit cPZ.p)).inf k ≤ v →
+          v ≤ (contract (Interval.unit cPZ.p)).sup k →
+          Function.update x0 k v ∈ (contract (Interval.unit cPZ.p)).construct := by
         intro v h1 h2 i
         by_cases hi : i = k
         · subst hi
@@ -288,8 +301,8 @@ theorem ConPolyZono.rescale_exact (cPZ : ConPolyZono α)
       have hlo := hsub (hmem _ le_rfl (hx0k.1.trans hx0k.2)) k
       have hhi := hsub (hmem _ (hx0k.1.trans hx0k.2) le_rfl) k
       have hlo' : (-1 : ℝ) ≤ Function.update x0 k
-          ((contract (ConPolyZono.unitBox cPZ.p)).inf k) k := hlo.1
-      have hhi' : Function.update x0 k ((contract (ConPolyZono.unitBox cPZ.p)).sup k) k
+          ((contract (Interval.unit cPZ.p)).inf k) k := hlo.1
+      have hhi' : Function.update x0 k ((contract (Interval.unit cPZ.p)).sup k) k
           ≤ 1 := hhi.2
       rw [Function.update_self] at hlo' hhi'
       exact ⟨hlo', hx0k.1.trans hx0k.2, hhi'⟩
