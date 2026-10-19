@@ -10,6 +10,13 @@ public import CORALean.Global.ExactScalar
 
 `diag(v) * S`, as CORA's `times` has it, through the set's own `mtimes`: nothing here
 is specific to a representation.
+
+## Inputs
+* `v` – diagonal scaling vector
+* `s` – set
+
+## Output
+* `s` mapped by `diag(v)`
 -/
 
 -- Authors:       Claude Opus 5.5

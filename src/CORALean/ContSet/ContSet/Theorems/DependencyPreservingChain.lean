@@ -8,19 +8,30 @@ public import Mathlib.Order.BourbakiWitt
 /-!
 # [1, Lemma 5]: the whole loop preserves dependencies, not only one step
 
-[1] reads its reachability algorithm as the post operator composed over every
-time step, so the step's dependency preservation — [1, Lemma 4] — together with
-[1, Lemma 2] gives the algorithm's. That induction is run here on the chain
-itself: `e i` evaluates what the algorithm has computed after `i` steps from the
-whole initial set, `R i` is what those same steps compute from a sub-parameterized
-one, and the conclusion places `R N` inside `e N d` at every horizon `N`.
+[1] reads its reachability algorithm as the post operator composed over every time step, so the
+step's dependency preservation — [1, Lemma 4] — with [1, Lemma 2] gives the algorithm's. That
+induction is run here on the chain itself: `e i` evaluates what the algorithm has computed after `i`
+steps from the whole initial set, `R i` is what the same steps compute from a sub-parameterized one,
+and `R N` lies inside `e N d` at every horizon `N`. A chain and not an N-fold composition operator:
+`hR` reads as the loop body, the shape `NonlinearSys.relinReach`'s own enclosure theorems already
+have. `hA` is [1]'s property (6) per step; it carries step `i`'s inclusion into step `i + 1`.
 
-A chain and not an N-fold composition operator: `R` is what a loop returns, so
-`hR` reads as the loop body — the shape `NonlinearSys.relinReach`'s own enclosure
-theorems already have, and what an instance would have to supply anyway.
+## Inputs
+* `D` – parameter domain
+* `α` – set type
+* `A` – operation per step
+* `e` – evaluation function per step
+* `R` – chain of sets
+* `d` – parameter value
 
-`hA` is [1]'s property (6) per step, and it is what carries step `i`'s inclusion
-into step `i + 1`; without it the induction hypothesis meets `A i` and stops.
+## Hypotheses
+* `hA` – each operation monotone
+* `hstep` – each step preserves dependencies
+* `hR` – chain follows the operations
+* `h0` – start lies in `e 0 d`
+
+## Conclusion
+* every chain element lies in the evaluation at `d`
 
 ## References
 

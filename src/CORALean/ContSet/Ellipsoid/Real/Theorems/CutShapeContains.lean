@@ -23,6 +23,19 @@ quadratic form of a point is `(n − 1)/(n(1 − γ²)) (xᵀx + λ (cᵀx)²)`,
 at both bounds. That it is the *smallest* such
 ellipsoid is the other half of the lemma, not proved.
 
+## Inputs
+* `c` – unit cut direction
+* `γ` – cut depth
+
+## Hypotheses
+* `hc` – `c` has unit length
+* `hn` – `2 ≤ n`
+* `hγ` – `0 < γ`
+* `hγn` – `n γ² < 1`
+
+## Conclusion
+* the unit ball cut by `|cᵀx| ≤ γ` lies in the cut ellipsoid
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

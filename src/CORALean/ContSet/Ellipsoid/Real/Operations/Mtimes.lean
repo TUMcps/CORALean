@@ -10,6 +10,13 @@ public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 CORA's `@ellipsoid/mtimes` with a matrix factor: `Q ↦ M Q Mᵀ` and `q ↦ M q`, exact. CORA then
 symmetrises, `1/2 (M + M')`, against rounding; in exact arithmetic `M Q Mᵀ` is symmetric already,
 so that step is the identity here. The dimension may change: `M` is `m × n`.
+
+## Inputs
+* `M` – matrix
+* `E` – ellipsoid
+
+## Output
+* ellipsoid `M E` with shape `M Q Mᵀ`
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

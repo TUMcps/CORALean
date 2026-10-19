@@ -11,6 +11,13 @@ public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
 CORA's `@ellipsoid/project`: the shape matrix at the chosen rows and columns, `E.Q(dims, dims)`,
 the center at the chosen coordinates, and the error box projected with `Interval.project`.
 Selecting entries does no arithmetic, so nothing rounds.
+
+## Inputs
+* `E` – ellipsoid
+* `dims` – kept coordinates
+
+## Output
+* `E` projected onto `dims`
 -/
 
 -- Authors:       Claude Opus 5.5

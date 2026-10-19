@@ -10,6 +10,17 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 
 For the unit normal `c`, `(I - c cᵀ) x + d c = x - (c ⬝ x - d) c`, the foot of the perpendicular
 from `x` to `{y | c ⬝ y = d}`; `mtimes_outer` and `plus_outer` carry it into the result. Outer only.
+
+## Inputs
+* `s` – set
+* `c` – unit normal
+* `d` – hyperplane offset
+
+## Hypotheses
+* none
+
+## Conclusion
+* every projected point of `s` lies in the result
 -/
 
 -- Authors:       Claude Sonnet 5.5

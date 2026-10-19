@@ -9,6 +9,16 @@ public import CORALean.ContSet.VPolytope.Float.Operations.LinComb
 
 `toReal` and `Fin.append` commute, which is the one fact a concatenated vertex
 list needs.
+
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the nominal part of `linComb` is the real `linComb` of the nominal parts
 -/
 
 -- Authors:       Claude Opus 5

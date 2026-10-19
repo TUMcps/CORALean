@@ -7,6 +7,15 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 
 /-!
 # `uminus` encloses the negation
+
+## Inputs
+* `s` – set
+
+## Hypotheses
+* none
+
+## Conclusion
+* every negated point of `s` lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

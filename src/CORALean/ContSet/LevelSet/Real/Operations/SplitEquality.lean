@@ -12,6 +12,13 @@ constraints (`compOp == '=='`) and the one holding the others, each keeping its 
 order. CORA returns `[]` for a part with no constraint; here such a part is the level set with no
 constraints (`m = 0`), the whole space, which is the neutral element of the intersection the pair
 stands for.
+
+## Inputs
+* `n` – dimension
+* `L` – level set
+
+## Output
+* the equality rows and the other rows as two level sets
 -/
 
 -- Authors:       Claude Opus 5.5

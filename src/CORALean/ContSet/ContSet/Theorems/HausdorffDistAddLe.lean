@@ -8,21 +8,27 @@ public import Mathlib.Topology.MetricSpace.HausdorffDistance
 /-!
 # Adding a set to both sides cannot move them apart
 
-[1, Lemma 1]: `d_H(S ⊕ V, S ⊕ W) ≤ d_H(V, W)`. Translating both sets by the
-same `s` leaves the distance between them alone, so the summand `S` adds
-nothing to it. That is what lets order reduction be analyzed on the part that
-is actually reduced: `d_H(Z_full, Z_red)` is `d_H(Z' ⊕ Z, Z' ⊕ box(Z))`, which
-this bounds by `d_H(Z, box(Z))`.
+[1, Lemma 1]: `d_H(S ⊕ V, S ⊕ W) ≤ d_H(V, W)`. Translating both sets by the same `s` leaves their
+distance alone, so the summand `S` adds nothing. That lets order reduction be analyzed on the part
+actually reduced: `d_H(Z_full, Z_red)` is `d_H(Z' ⊕ Z, Z' ⊕ box(Z))`, bounded by `d_H(Z, box(Z))`.
+Stated on plain sets and the *exact* Minkowski sum, not `Plus.plus`, which only encloses. `V` and
+`W` are compact and nonempty; Mathlib's `hausdorffDist` is `0` wherever `hausdorffEDist` is `⊤`, so
+without those two the statement would be about that junk value. An empty `S` makes both sums empty
+and the bound reads `0 ≤ d_H(V, W)`.
 
-Stated on plain sets and on the *exact* Minkowski sum — `+` under `Pointwise`,
-not `Plus.plus`, which only encloses and so carries no distance bound at all.
+## Inputs
+* `S` – set
+* `V` – set
+* `W` – set
 
-`V` and `W` are compact and nonempty; `S` is anything. Mathlib's
-`hausdorffDist` is a real number that is `0` wherever `hausdorffEDist` is `⊤`,
-so without those two the statement would be about that junk value on the sets
-where it is one. `CompactSet` discharges compactness at every
-representation here, and a center or a vertex the nonemptiness. An empty `S`
-makes both sums empty and the bound reads `0 ≤ d_H(V, W)`, which holds.
+## Hypotheses
+* `hV` – `V` compact
+* `hVne` – `V` nonempty
+* `hW` – `W` compact
+* `hWne` – `W` nonempty
+
+## Conclusion
+* distance of `S + V` and `S + W` is at most that of `V` and `W`
 
 ## References
 

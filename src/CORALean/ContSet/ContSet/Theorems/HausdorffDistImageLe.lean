@@ -8,21 +8,27 @@ public import Mathlib.Analysis.Normed.Operator.Basic
 /-!
 # A continuous linear map moves two sets no further apart than its norm says
 
-For `f : E →L[ℝ] F` and compact, nonempty `S1 S2 : Set E`,
-`d_H(f '' S1, f '' S2) ≤ ‖f‖ * d_H(S1, S2)`: `f` is `‖f‖`-Lipschitz, so a point of either image
-has a partner in the other at distance `‖f‖` times a nearest-point distance in `S1`/`S2`, and the
-Hausdorff distance is the least bound of exactly that shape.
+For `f : E →L[ℝ] F` and compact, nonempty `S1 S2 : Set E`, `d_H(f '' S1, f '' S2) ≤ ‖f‖ * d_H(S1,
+S2)`: `f` is `‖f‖`-Lipschitz, so a point of either image has a partner in the other at distance
+`‖f‖` times a nearest-point distance in `S1`/`S2`. Not a numbered result of any paper but a step
+inside several propositions bounding a Hausdorff distance under a linear map, so it is stated
+generically, for a `ContinuousLinearMap` between any two real normed spaces: whichever norm `‖f‖` is
+read in is the one the bound comes out at. `S1` and `S2` compact and nonempty, as in
+`hausdorffDist_add_le`, keep the Hausdorff *e*distance finite.
 
-Not itself a numbered result of any paper — it is a step inside several open propositions bounding
-a Hausdorff distance under a linear map, so it is stated generically rather than tied to one of
-them. Written for a `ContinuousLinearMap` between any two real normed spaces rather than for
-`Mat`/`Vec` specifically, so it carries no norm of its own: whichever one `‖f‖` is read in —
-`Vec ℝ n`'s supremum norm, `‖·‖₂` at `EuclideanSpace`, or anything else — is the one the bound
-comes out at.
+## Inputs
+* `f` – continuous linear map
+* `S1` – set
+* `S2` – set
 
-`S1` and `S2` both compact and nonempty, the same two hypotheses `hausdorffDist_add_le` needs:
-together they keep the Hausdorff *e*distance finite, which is what lets a nearest point be found
-on either side at all.
+## Hypotheses
+* `hS1` – `S1` compact
+* `hS1ne` – `S1` nonempty
+* `hS2` – `S2` compact
+* `hS2ne` – `S2` nonempty
+
+## Conclusion
+* distance of the images is at most `‖f‖` times that of the sets
 -/
 
 -- Authors:       Claude Opus 5

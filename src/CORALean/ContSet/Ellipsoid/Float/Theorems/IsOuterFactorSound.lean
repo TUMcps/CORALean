@@ -13,6 +13,16 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.SymmOfIsSymm
 `isOuterFactor Q G` brackets each entry of `G Gᵀ - Q` between a rounded-down and a rounded-up
 evaluation, and the real matrix lies in that bracket and is symmetric once `Q` is
 (`posSemidef_of_psdCheck` with the zero factor).
+
+## Inputs
+* `Q` – shape matrix
+* `G` – factor
+
+## Hypotheses
+* `h` – `isOuterFactor` returns `true`
+
+## Conclusion
+* `G Gᵀ - Q` is positive semi-definite
 -/
 
 -- Authors:       Claude Opus 5.5

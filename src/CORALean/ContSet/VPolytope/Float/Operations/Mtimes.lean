@@ -10,6 +10,13 @@ public import CORALean.ContSet.VPolytope.Float.Operations.ColumnGap
 
 The matrix applied to every vertex, rounded down, with the gap charged to the
 box — the box itself going through the interval `mtimes`.
+
+## Inputs
+* `M` – matrix
+* `P` – polytope
+
+## Output
+* polytope of the vertices mapped by `M`
 -/
 
 -- Authors:       Claude Opus 5

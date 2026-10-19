@@ -13,6 +13,12 @@ that the statement needs no side condition). The trace is the sum of the eigenva
 nonnegative, so it is at least the largest, with equality for rank one: this is outer, not CORA's
 exact value, and no eigenvalue is computed. CORA's `-Inf` for an empty ellipsoid does not arise,
 an `Ellipsoid` here always holds its center.
+
+## Inputs
+* `E` – ellipsoid
+
+## Output
+* `√trace(Q) + ‖q‖`
 -/
 
 -- Authors:       Claude Opus 5.5

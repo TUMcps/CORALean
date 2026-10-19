@@ -13,6 +13,15 @@ A nominal set plus an error box, and `Convex.add` carries the property across
 a Minkowski sum: the nominal part is convex by hypothesis and the box because
 its coordinates are bounded independently. So the error box costs convexity
 nothing, whatever representation the nominal part is.
+
+## Inputs
+* `s` – inflated set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set `s` denotes is convex
 -/
 
 -- Authors:       Claude Opus 5.5

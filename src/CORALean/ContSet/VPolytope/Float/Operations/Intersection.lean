@@ -11,21 +11,21 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 /-!
 # `VPolytope.intersection`, over a floating-point scalar
 
-Through boxes, as in the exact layer, and for the same reason: the
-intersection's vertices are generally none of either operand's. Each operand's
-box already absorbed its error box, intersecting boxes is exact, and the corners
-are stored bounds copied — so this operation rounds nowhere, all of its
-imprecision being in the detour rather than in the arithmetic.
+Through boxes, as in the exact layer: the intersection's vertices are generally none of either
+operand's. Each operand's box already absorbed its error box, intersecting boxes is exact, and the
+corners are stored bounds copied, so this operation rounds nowhere. The `Intersection` class carries
+no direction family, and vertices are not computable soundly at float: enumeration would need a
+solver or a proof of its rounding (CORA stays in halfspaces and stacks the rows). So the result is a
+box, `box P₁ ∩ box P₂`, an enclosure that can be far from the intersection (two thin diagonal strips
+give the strips' whole bounding box). Where the caller can name directions,
+`VPolytope.intersectionCut` cuts the same box to both operands' halfspaces.
 
-Why this and not more. The `Intersection` class carries no direction family, and the
-intersection's vertices are not computable soundly at float: a vertex enumeration of the
-halfspace description would need either a solver or a proof of its rounding, neither of
-which exists here (CORA itself stays in halfspaces and stacks the rows; a vertex set is
-never recomputed). So the result is a box, `box P₁ ∩ box P₂`: an enclosure that can be far
-from the intersection (two thin diagonal strips meeting in a small square give the
-strips' whole bounding box). Where the caller can name directions,
-`VPolytope.intersectionCut` is tighter: the same box cut to both operands' halfspaces. A
-result that is not a box needs a sound vertex enumeration at float, which is not here.
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+
+## Output
+* box polytope of the intersection of the operands' boxes
 -/
 
 -- Authors:       Claude Opus 5

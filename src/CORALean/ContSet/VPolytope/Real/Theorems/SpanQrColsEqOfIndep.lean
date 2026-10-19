@@ -16,6 +16,22 @@ columns, which leaves the column space alone: each of those columns is a combina
 `r` columns of `Q`, `R` being upper triangular, and dimensions do the rest. Without pivoting it
 fails (`span_qr_cols_counterexample`). `Q` need not even be orthogonal.
 
+## Inputs
+* `V` – vertex matrix
+* `Q` – orthogonal factor
+* `R` – upper triangular factor
+
+## Hypotheses
+* `hQR` – `Q R = V`
+* `hR` – `R` upper triangular
+* `hrk` – `r ≤ k`
+* `hrn` – `r ≤ n`
+* `hrank` – `V` has rank `r`
+* `hind` – the first `r` columns of `V` are independent
+
+## Conclusion
+* the first `r` columns of `Q` span the columns of `V`
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

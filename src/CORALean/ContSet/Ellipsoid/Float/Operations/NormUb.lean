@@ -12,6 +12,13 @@ CORA's `@ellipsoid/norm_.m` (type `2`), as an upper bound: `‖q‖₂`, plus `�
 diagonal entry floored at `0` (so that it bounds whatever `Q` was stored), plus the length of the
 error box's largest magnitudes, every sum rounded up and the roots by `k` Newton steps
 (`Global/Float/Sqrt`). Outer, as over ℝ: not CORA's `sqrt(max(eig(Q)))`.
+
+## Inputs
+* `k` – Newton steps of the root
+* `E` – ellipsoid
+
+## Output
+* upper bound of the norm of the ellipsoid points
 -/
 
 -- Authors:       Claude Opus 5.5

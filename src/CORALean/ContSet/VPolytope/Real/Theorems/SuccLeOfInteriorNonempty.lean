@@ -11,6 +11,15 @@ public import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
 [1, Sec. 4.2 fn. 3]'s dual half: a V-polytope in `ℝⁿ` with an interior point has at least
 `n + 1` points, since `k` points span an affine subspace of dimension at most `k - 1`.
 
+## Inputs
+* `P` – polytope
+
+## Hypotheses
+* `h` – `P` has nonempty interior
+
+## Conclusion
+* `P` has at least `n + 1` vertices
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

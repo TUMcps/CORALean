@@ -18,6 +18,13 @@ is what CORA's `priv_plusEllipsoidOA_halder` runs, from `β = 0.5`, until two it
 agree within the tolerance. That loop is not a function of the data, so what is defined
 here is the step; `halderStep_iterate_tendsto` is what the loop converges to.
 
+## Inputs
+* `lam` – eigenvalues
+* `β` – positive weight
+
+## Output
+* next `β` of the fixed-point iteration
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

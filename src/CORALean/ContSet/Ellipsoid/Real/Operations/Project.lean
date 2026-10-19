@@ -10,6 +10,13 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.Map
 CORA's `@ellipsoid/project`: the image under the selection matrix, which is how CORA writes it (`P
 * E` with `P = I(dims,:)`). `dims` may repeat or reorder coordinates. Reading coordinates is
 linear, so this is `map` at the selection map, and `project_exact` is `map_exact`.
+
+## Inputs
+* `E` – ellipsoid
+* `dims` – kept coordinates
+
+## Output
+* `E` projected onto `dims`
 -/
 
 -- Authors:       Claude Opus 5.5

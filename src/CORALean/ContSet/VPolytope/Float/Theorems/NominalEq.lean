@@ -7,6 +7,14 @@ public import CORALean.ContSet.VPolytope.Float.VPolytope
 /-!
 # `VPolytope.nominal_eq`
 
+## Inputs
+* `P` – polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the nominal part is the vertex list read as reals
 -/
 
 -- Authors:       Claude Opus 5

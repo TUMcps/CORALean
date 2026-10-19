@@ -11,6 +11,13 @@ public import CORALean.ContSet.Interval.Float.Operations.ProjectHighDim
 The vertex form of CORA's `projectHighDim`, as over ℝ: each vertex zero-padded into the
 coordinates `dims` of the larger space. The padding copies the stored vertices and `0` is exact,
 so only the error box needs `Interval.projectHighDim_`, which certifies emptiness in one direction.
+
+## Inputs
+* `P` – polytope
+* `dims` – target coordinate of each dimension
+
+## Output
+* polytope of the vertices padded with zeros at `dims`
 -/
 
 -- Authors:       Claude Opus 5.5

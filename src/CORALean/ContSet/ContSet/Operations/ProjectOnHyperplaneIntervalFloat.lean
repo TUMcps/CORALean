@@ -16,6 +16,15 @@ directed square root. `projectOnHyperplaneFloat` takes one rounded normal, and s
 a hyperplane near the one meant; here each entry `δᵢⱼ − cᵢcⱼ` of the projector is bracketed by
 the corner products of the two boxes, and `δ c` likewise, so the result holds the projection
 of every point onto every hyperplane the boxes allow, the meant one among them.
+
+## Inputs
+* `s` – set
+* `c` – interval unit normal
+* `dLo` – lower hyperplane offset
+* `dHi` – upper hyperplane offset
+
+## Output
+* `s` projected onto the hyperplanes with normal in `c` and offset in `[dLo, dHi]`
 -/
 
 -- Authors:       Claude Opus 5.5

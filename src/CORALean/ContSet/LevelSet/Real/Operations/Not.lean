@@ -10,6 +10,12 @@ public import CORALean.ContSet.LevelSet.Real.LevelSet
 CORA's `@levelSet/not`: the complement of a single-constraint level set with operator `<=` or `<`,
 which is `-f < 0` or `-f <= 0`. Every other level set (several constraints, or `==`) makes CORA
 throw `notSupported`, which is `none` here.
+
+## Inputs
+* `L` – single-constraint level set
+
+## Output
+* the complement, `none` if unsupported
 -/
 
 -- Authors:       Claude Opus 5.5

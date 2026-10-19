@@ -13,6 +13,16 @@ CORA's `@ellipsoid/cartProd_.m` in its one supported mode, `'outer'`: the ellips
 of the two bounding boxes, `ellipsoid(cartProd_(interval(E), interval(S), 'exact'))`. The two square
 roots the conversions need are certificates the caller proposes, one length per coordinate for each
 box (`s₁`, `s₂`) and the factor `σ` for the product (`n + m ≤ σ·σ`), as in the conversions.
+
+## Inputs
+* `E₁` – first ellipsoid
+* `E₂` – second ellipsoid
+* `s₁` – box root lengths for `E₁`
+* `s₂` – box root lengths for `E₂`
+* `σ` – root of the dimension bound
+
+## Output
+* ellipsoid enclosing the product of the bounding boxes
 -/
 
 -- Authors:       Claude Opus 5.5

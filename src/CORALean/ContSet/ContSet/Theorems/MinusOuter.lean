@@ -6,6 +6,16 @@ public import CORALean.ContSet.ContSet.Operations.Minus
 
 /-!
 # `minus` encloses the translate
+
+## Inputs
+* `s` – set
+* `p` – offset
+
+## Hypotheses
+* none
+
+## Conclusion
+* every `x - p`, `x` in `s`, lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

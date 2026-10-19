@@ -8,6 +8,16 @@ public import CORALean.Global.ExactScalar
 
 /-!
 # `times` encloses the elementwise product
+
+## Inputs
+* `v` – scaling vector
+* `s` – set
+
+## Hypotheses
+* none
+
+## Conclusion
+* every coordinatewise-scaled point of `s` lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

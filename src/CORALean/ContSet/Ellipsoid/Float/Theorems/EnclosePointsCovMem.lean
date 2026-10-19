@@ -19,6 +19,19 @@ Outer: every point lies in `Ellipsoid.enclosePointsCov steps pts T U`, for every
 certified or `0`, so `c + G u` is in the ellipsoid of `G Gᵀ`, which the stored shape dominates
 (`inflate_sub_posSemidef`), so in the nominal part (`add_sub_mem_nominalSet`); the remainder lies
 between the two roundings the error box was hulled from. Not exact.
+
+## Inputs
+* `steps` – Newton steps for `sqrt maxDist`
+* `pts` – points
+* `T` – rotation proposed by the caller
+* `U` – rotation proposed by the caller
+* `j` – point index
+
+## Hypotheses
+* none
+
+## Conclusion
+* every point lies in the enclosing ellipsoid
 -/
 
 -- Authors:       Claude Opus 5.5

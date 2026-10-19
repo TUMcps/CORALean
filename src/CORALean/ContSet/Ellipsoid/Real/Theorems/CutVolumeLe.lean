@@ -23,6 +23,15 @@ unit ball: `κ_ε = exp(1/√(1+ε) + ε/(2(1+ε)) − 1)`. The volume of an ell
 `V_n √det` of its shape, so the ratio is `√det E`, which `cutShape_det_le` bounds by `κ_ε`; and
 `κ_ε < 1` since the exponent is `−(u − 1)²/(2u²)` for `u = √(1+ε) > 1`. The lemma needs `n ≥ 2`.
 
+## Inputs
+* `ε` – approximation tolerance
+
+## Hypotheses
+* `hε` – `0 < ε`
+
+## Conclusion
+* the cut ellipsoid has at most `κ` times the ball's volume for some `κ < 1`
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

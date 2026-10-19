@@ -12,6 +12,16 @@ CORA's `norm_(E, 2)` for `q = 0` is `sqrt(max(eig(Q)))`. It is exact: the greate
 norm of a point of the ellipsoid, attained. This is `Ellipsoid.isGreatest_radius` read at the
 center `0`. The upper bound `Ellipsoid.normUb` is the float-capable counterpart; it is not this
 value.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* `hn` – `1 ≤ n`
+* `hq` – the center is the origin
+
+## Conclusion
+* `normExact` is the greatest norm on `E`
 -/
 
 -- Authors:       Claude Opus 5.5

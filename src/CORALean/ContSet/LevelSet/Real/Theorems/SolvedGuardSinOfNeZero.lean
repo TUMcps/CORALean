@@ -12,6 +12,15 @@ Off the line `x₁ = 0`, where `-sin(x₁)/x₁` is defined, `x₂x₁ + sin(x�
 `x₂ = -sin(x₁)/x₁` say the same: [1, Example 2] with the line removed from both sides.
 `SolvedGuardSin` is the line.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* away from `x₀ = 0` the guard and its solved form agree
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

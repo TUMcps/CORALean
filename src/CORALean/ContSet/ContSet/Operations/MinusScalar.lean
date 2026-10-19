@@ -11,6 +11,13 @@ public import CORALean.Global.NegScalar
 `S + (-p)` as `ContSet.minus` has it, the point now a vector of the representation's own scalar
 and entering through `OfScalarPoint`, so a float representation runs it. Negation is exact in
 every format, hence `NegScalar` and no rounding.
+
+## Inputs
+* `s` – set
+* `p` – offset vector
+
+## Output
+* `s` shifted by `-p`
 -/
 
 -- Authors:       Claude Opus 5.5

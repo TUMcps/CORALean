@@ -17,6 +17,14 @@ argument `test`: `none` when (17) passes at `E_j`, `some a` otherwise; it is a l
 per axis and per separator, outside what a definition here computes. A stopped run stays at its
 last `E_j`, so `goffin … j` is `E_j` for every `j` up to the stop.
 
+## Inputs
+* `ε` – approximation tolerance
+* `test` – test and separator
+* `E₀` – initial shape matrix
+
+## Output
+* shape matrix of iteration `j`, held once the test passes
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

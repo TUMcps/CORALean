@@ -9,6 +9,12 @@ public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 
 CORA's `@ellipsoid/representsa_` at type `point` with tolerance `0`: the shape matrix vanishes,
 `Q = 0`.
+
+## Inputs
+* `E` – ellipsoid
+
+## Output
+* the shape matrix is zero
 -/
 
 -- Authors:       Claude Opus 5.5

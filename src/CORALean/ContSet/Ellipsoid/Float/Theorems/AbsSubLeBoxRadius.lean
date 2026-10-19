@@ -10,6 +10,18 @@ public import CORALean.ContSet.Ellipsoid.Float.Operations.BoxRadius
 
 CORA's `interval(E)`, `q ± √diag(Q)`, read at the stored floats and rounded up:
 `abs_sub_le_of_mem_nominalSet` and `le_sqrtUp`.
+
+## Inputs
+* `E` – ellipsoid
+* `x` – point
+* `p` – Newton steps per root
+* `i` – coordinate
+
+## Hypotheses
+* `hx` – `x` in the nominal part
+
+## Conclusion
+* `x` is within `boxRadius` of the center in coordinate `i`
 -/
 
 -- Authors:       Claude Opus 5.5

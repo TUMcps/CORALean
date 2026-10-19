@@ -16,6 +16,15 @@ holds the ellipsoid: `sqrt` of the largest eigenvalue `λ₀` of `Q` is the grea
 distance `‖x - q‖₂` over the ellipsoid. Bound: for `v = G u`, `G = Q^(1/2)`, `‖v‖² ≤ ‖Gᵀ v‖ ‖u‖` and
 `‖Gᵀ v‖² = vᵀ Q v ≤ λ₀ ‖v‖²` (Rayleigh, from the spectral theorem). Attained: at `q + G u*`,
 `u* = Gᵀ v / sqrt λ₀`, `v` the unit eigenvector of `λ₀`.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* `hn` – `1 ≤ n`
+
+## Conclusion
+* the first radius is the greatest distance from the center
 -/
 
 -- Authors:       Claude Opus 5.5

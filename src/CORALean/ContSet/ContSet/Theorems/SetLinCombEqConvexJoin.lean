@@ -10,6 +10,16 @@ public import Mathlib.Tactic.Linarith
 # `Set.linComb` is Mathlib's convex join
 
 The parameter runs over `[0,1]` either way, one written as `λ` and the other as `1 - λ`.
+
+## Inputs
+* `X` – set
+* `Y` – set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the linear combination of `X` and `Y` is their convex join
 -/
 
 -- Authors:       Claude Opus 5.5

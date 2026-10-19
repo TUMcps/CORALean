@@ -16,6 +16,19 @@ For invertible `G`, an ellipsoid `{q + Fu | ‖u‖₂ ≤ 1}` with a square gen
 constant on the ellipsoid, so `vᵀ(z̄ ± Geⱼ)` agree and `vᵀG = 0`, `v = 0`. Used for
 [1, Sec. III-A (Remark a)], where only such ellipsoids `E(E, e)`, `E ≻ 0`, compete.
 
+## Inputs
+* `G` – generator matrix of the parallelotope
+* `F` – factor of the ellipsoid
+* `z` – center of the parallelotope
+* `q` – center of the ellipsoid
+
+## Hypotheses
+* `hG` – `G` invertible
+* `hsub` – the ellipsoid contains the parallelotope
+
+## Conclusion
+* `F` has nonzero determinant
+
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean

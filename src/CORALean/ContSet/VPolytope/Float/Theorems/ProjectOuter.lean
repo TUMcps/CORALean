@@ -14,6 +14,16 @@ Selecting coordinates is linear and rounds nothing, so `InflatedContSet.image_su
 this into the nominal part and the box. The nominal part of the projection is the exact
 layer's `project` of the nominal part, so `project_exact` gives the nominal obligation as an
 equality; the box is `Interval.project_outer`.
+
+## Inputs
+* `P` – polytope
+* `dims` – kept coordinates
+
+## Hypotheses
+* none
+
+## Conclusion
+* the projection of `P` lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

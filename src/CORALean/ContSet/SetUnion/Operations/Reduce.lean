@@ -10,6 +10,13 @@ public import CORALean.ContSet.SetUnion.SetUnion
 Maps `Reduce.reduce` over every branch, at the same order: a union is only
 ever enlarged by enlarging what it is a union of, so reducing each branch and
 re-collecting keeps the shape a union already has.
+
+## Inputs
+* `u` – union
+* `o` – order bound
+
+## Output
+* every branch reduced to order at most `o`
 -/
 
 -- Authors:       Claude Sonnet 5

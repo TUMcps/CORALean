@@ -7,17 +7,24 @@ public import CORALean.ContSet.VPolytope.Real.Operations.Intersection
 /-!
 # `VPolytope.intersection`'s vertex count
 
-Unlike every other operation here, `intersection` has no single formula: it goes out to
-halfspaces and enumerates vertices back, `2 ^ m` of them for `m` rows, `m`
-being `intersectionH`'s own row count — `q₁ + q₂ + 2n`, the two callers' directions
-plus one operand's box. Feasible, the count is exactly that power; infeasible,
-`emptySet` gives zero. Both are `rfl` once the branch is fixed, against
-`Operations/Intersection.lean`, `Operations/IntersectionH.lean` and
-`HPolytope.vPolytope`, built in `Conversion/Real/Operations/HPolytope_to_VPolytope.lean`.
+Unlike every other operation here, `intersection` has no single formula: it goes out to halfspaces
+and enumerates vertices back, `2 ^ m` of them for `m` rows, `m` being `intersectionH`'s own row
+count — `q₁ + q₂ + 2n`, the two callers' directions plus one operand's box. Feasible, the count is
+exactly that power; infeasible, `emptySet` gives zero. Both are `rfl` once the branch is fixed,
+against `Operations/Intersection.lean`, `Operations/IntersectionH.lean` and `HPolytope.vPolytope`.
+The `Nonempty` check decides which branch applies, so the two theorems are stated separately.
 
-No closed form covers both branches at once — the `Nonempty` check genuinely
-decides which one applies — so the two theorems below are stated separately
-rather than forced into one.
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+* `Aq₁` – cut directions of the first operand
+* `Aq₂` – cut directions of the second operand
+
+## Hypotheses
+* `h` – the halfspace intersection is nonempty
+
+## Conclusion
+* the intersection has `2 ^ (q₁ + q₂ + 2n)` vertices
 -/
 
 -- Authors:       Claude Opus 5

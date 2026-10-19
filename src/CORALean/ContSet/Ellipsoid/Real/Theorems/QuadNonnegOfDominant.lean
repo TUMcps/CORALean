@@ -15,6 +15,18 @@ Gershgorin for the quadratic form: if every diagonal entry is at least the sum o
 off-diagonal entries of its row, `vᵀ M v ≥ 0`. Each off-diagonal term is bounded
 `M_ij v_i v_j ≥ -|M_ij| (v_i² + v_j²)/2`, and by symmetry the sums of the two squares agree, so
 what remains is `Σ_i v_i² (M_ii - Σ_{j≠i} |M_ij|)`.
+
+## Inputs
+* `n` – dimension
+* `M` – matrix
+* `v` – vector
+
+## Hypotheses
+* `hsymm` – `M` symmetric
+* `hdom` – `M` diagonally dominant
+
+## Conclusion
+* `vᵀ M v` is nonnegative
 -/
 
 -- Authors:       Claude Sonnet 5.5

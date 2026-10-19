@@ -14,6 +14,13 @@ the upper one up, each shifted by its end of the error box. Both are always retu
 single-vertex case (the two agree within tolerance) is not modelled, so for a point the list
 holds that point twice. The statement is an outer one, the ellipsoid lies in the hull of the two
 points.
+
+## Inputs
+* `k` – Newton steps of the root
+* `E` – one-dimensional ellipsoid
+
+## Output
+* the two end points of `E`
 -/
 
 -- Authors:       Claude Opus 5.5

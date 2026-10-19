@@ -13,6 +13,15 @@ writes `µ₂ − µ₁ = (d − 2)(e₂ + e₁)`, but by [1, Eq. 23] it is `(d 
 `d = 3` and `λ = (1, 1, 10)`, `e₁ = 21/10` and `e₂ = 6/5`, so `µ₁ = 21/5` and
 `µ₂ = −9/10`: the sequence falls.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the coefficients `µ` are not strictly increasing
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

@@ -9,6 +9,13 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 Storing the lower of the two directed roundings of a center sum leaves this
 much to pay into the box.
+
+## Inputs
+* `a` – first summand
+* `b` – second summand
+
+## Output
+* box of what rounding the sum `a + b` down leaves to pay
 -/
 
 -- Authors:       Claude Opus 5

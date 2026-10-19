@@ -10,6 +10,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.MtimesExact
 
 `mtimes_exact` read at the matrix the map is, the two being the same thing at
 `Vec ℝ n`.
+
+## Inputs
+* `f` – linear map
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image of `E` under `f` is exactly the result
 -/
 
 -- Authors:       Claude Opus 5

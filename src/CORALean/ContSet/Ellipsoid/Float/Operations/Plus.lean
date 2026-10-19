@@ -13,15 +13,22 @@ public import CORALean.ContSet.Interval.Float.Operations.Smul
 /-!
 # `Ellipsoid.plus`
 
-The Minkowski sum of two ellipsoids is not an ellipsoid, so this encloses it and carries the free
-parameter every enclosure of it does: the shape `s₁² Q₁ + s₂² Q₂` at two scalings with
-`1/s₁² + 1/s₂² ≤ 1`, which Kurzhanski and Varaiya's `l` meets with equality (`√(1+1/l)`,
-`√(1+l)`). The pair is a hypothesis the caller discharges, an unverified routine proposing it.
+The Minkowski sum of two ellipsoids is not an ellipsoid, so this encloses it with the free parameter
+every enclosure carries: the shape `s₁² Q₁ + s₂² Q₂` at two scalings with `1/s₁² + 1/s₂² ≤ 1`, which
+Kurzhanski and Varaiya's `l` meets with equality. The pair is a hypothesis the caller discharges.
 
 The shape is computed as an interval matrix and stored rounded upward (`inflate`), the center's
-rounding paid into the box. An operand whose `Q` `isPsd` cannot certify enters not through its
-shape but through its box `q ± √diag(Q)` (`boxRadius`), which holds its nominal part whatever `Q`
-is; the scaled sum would not, a refused `Q` being free to cancel the other.
+rounding paid into the box. An operand whose `Q` `isPsd` cannot certify enters through its box `q ±
+√diag(Q)` (`boxRadius`), which holds its nominal part whatever `Q` is.
+
+## Inputs
+* `s₁` – scaling of `E₁`
+* `s₂` – scaling of `E₂`
+* `E₁` – first ellipsoid
+* `E₂` – second ellipsoid
+
+## Output
+* ellipsoid enclosing the Minkowski sum of `E₁` and `E₂`
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

@@ -10,6 +10,13 @@ public import CORALean.ContSet.SetIntersection.SetIntersection
 The two lists of members, appended: an intersection of intersections is the intersection of all
 their members, so this runs no operation on any member and loses nothing. It is what CORA's
 `and_` on two `zonoBundle`s does with their cell arrays of zonotopes, at any member type.
+
+## Inputs
+* `I` – first intersection
+* `J` – second intersection
+
+## Output
+* members of both appended
 -/
 
 -- Authors:       Claude Opus 5.5

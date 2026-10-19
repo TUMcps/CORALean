@@ -9,6 +9,18 @@ public import CORALean.ContSet.LevelSet.Float.Operations.ContainsPoint
 
 Each row's value lies between its bounds, and the certified comparison of the bounds with `0`,
 read as reals, places the value on the side its operator asks for.
+
+## Inputs
+* `L` – level set
+* `B` – float bounds of the function per row
+* `x` – point
+
+## Hypotheses
+* `hB` – `B` encloses the function at `x`
+* `h` – `containsPoint` returns `true`
+
+## Conclusion
+* `x` lies in the level set
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -9,6 +9,14 @@ public import CORALean.ContSet.VPolytope.Real.Operations.ConvHull
 
 CORA's `@polytope/or`, whose whole body is `convHull_(P,S,varargin{:})`: the union is enclosed by
 the convex hull.
+
+## Inputs
+* `α` – ambient type
+* `P` – first polytope
+* `Q` – second polytope
+
+## Output
+* convex hull of both operands
 -/
 
 -- Authors:       Claude Opus 5.5

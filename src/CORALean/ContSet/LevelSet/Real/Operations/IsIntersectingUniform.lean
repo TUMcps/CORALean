@@ -8,18 +8,21 @@ public import CORALean.ContSet.Interval.Real.Interval
 /-!
 # `LevelSet.isIntersecting_` at a box, one operator
 
-CORA's `@levelSet/isIntersecting_` against a set `S` (converted to a box `I`, `type =
-'approx'`): `I = ls.funHan(I)` is the interval evaluation of the function at the box, `ub =
-supremum(I)`, `lb = infimum(I)`, and the verdict reads off the signs. CORALean has no interval
-evaluation of a real function, so the bounds `(lb, ub)` of the evaluation are the argument `B`
-(row `i`: `B i = (lb i, ub i)`), assumed a range bound (`IsRangeBound`) by the theorems. The
-tolerance `tol` enters as `withinTol(·, 0, tol)`, `|·| ≤ tol`.
+CORA's `@levelSet/isIntersecting_` against a set `S` (converted to a box `I`, `type = 'approx'`): `I
+= ls.funHan(I)` is the interval evaluation of the function at the box, `ub = supremum(I)`, `lb =
+infimum(I)`, and the verdict reads off the signs. There is no interval evaluation of a real function
+here, so the bounds `(lb, ub)` are the argument `B` (row `i`: `B i = (lb i, ub i)`), assumed a range
+bound (`IsRangeBound`) by the theorems; the tolerance `tol` enters as `|·| ≤ tol`. This is the
+branch `~iscell(ls.compOp)`: the operator is read from `ls` (`ls.op i` for row `i`), and the
+function of `ls` is not read, only its operators; `B` stands for its interval evaluation at the box.
 
-This is the branch `~iscell(ls.compOp)`, one operator for all rows: the per-row test of that
-operator. The level set `ls` is the first argument, as in CORA, and the operator is read from it
-(`ls.op i` for row `i`); when every row has the same operator this is the single-operator branch,
-and the test of each row by its own operator is that branch applied row by row. The function of
-`ls` is not read, only its operators; `B` stands for its interval evaluation at the box.
+## Inputs
+* `ls` – level set
+* `tol` – tolerance
+* `B` – bounds of the rows over the box
+
+## Output
+* every row may hold at some point of the box
 -/
 
 -- Authors:       Claude Opus 5.5

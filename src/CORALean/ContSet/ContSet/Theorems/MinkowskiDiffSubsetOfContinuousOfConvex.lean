@@ -17,6 +17,23 @@ to `B`: `A` is any set, `B` is nonempty, convex, compact and symmetric around `c
 This is the form [1, Prop. 1] needs: there `A = R_aff(Δt)` is the affine image of an initial
 set `X₀` that is only compact and nonempty, while the error set `B` is a zonotope.
 
+## Inputs
+* `A` – minuend
+* `B` – subtrahend
+* `c` – center of symmetry of `B`
+* `φ` – continuous map from `A` to `B`
+
+## Hypotheses
+* `hB` – `B` compact
+* `hBc` – `B` convex
+* `hBne` – `B` nonempty
+* `hBs` – `B` symmetric around `c`
+* `hφ` – `φ` continuous on `A`
+* `hφB` – `φ` maps `A` into `B`
+
+## Conclusion
+* `A ⊖ B` lies in `{a + φ a} - 2c`
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for

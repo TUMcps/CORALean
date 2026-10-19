@@ -15,6 +15,15 @@ whole space; the affine span of a hull is that of the vertices. Stated at `const
 what `ContSet.IsFullDim` unfolds to, over any finite-dimensional real normed space. No vertices
 means the empty set, whose span is `⊥`, never `⊤`. The half-space representation needs the
 implied-equality test, which this does not claim.
+
+## Inputs
+* `P` – polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `P` has nonempty interior iff its vertices affinely span the space
 -/
 
 -- Authors:       Claude Opus 5.5

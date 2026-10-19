@@ -12,6 +12,13 @@ public import Mathlib.Data.Real.Basic
 The numerator `∑ᵢ 1/(1 + β λᵢ)` of the fixed-point step [1, Eq. 26], which rewrites the
 stationarity condition [1, Eq. 18] as `β² ∑ λᵢ/(1+βλᵢ) = ∑ 1/(1+βλᵢ)`.
 
+## Inputs
+* `lam` – eigenvalues
+* `β` – positive weight
+
+## Output
+* `∑ 1 / (1 + β λᵢ)`
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

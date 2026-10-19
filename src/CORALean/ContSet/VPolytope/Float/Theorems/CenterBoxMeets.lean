@@ -14,6 +14,15 @@ The exact mean of the nominal vertices lies in the box (each bound brackets the 
 divided by the count, whatever the sum's sign), and it is a point of the nominal polytope
 (`center_mem`), so adding any point of the error box gives a point of the float polytope. Outer:
 the box is not claimed to be the center, only to hold it.
+
+## Inputs
+* `P` – polytope
+
+## Hypotheses
+* `hk` – `P` has a vertex
+
+## Conclusion
+* the center box holds a point whose error box lies in `P`
 -/
 
 -- Authors:       Claude Opus 5.5

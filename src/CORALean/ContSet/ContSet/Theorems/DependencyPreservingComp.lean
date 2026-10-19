@@ -8,15 +8,32 @@ public import Mathlib.Order.BourbakiWitt
 /-!
 # [1, Lemma 2]: a composition preserves dependencies
 
-Two steps joined: `B` carries the parameterized set with evaluation function `e`
-to the one with `e₁`, `A` carries that to `e₂`, each preserving dependencies, so
-`A ∘ B` does. `hA` is the monotonicity [1] states once for all the set operations
-it uses — its property (6) — rather than in the lemma, and [1, Lemma 2]'s proof
-spends it at exactly the step `hA` is spent at here.
+Two steps joined: `B` carries the set with evaluation function `e` to the one with `e₁`, `A` carries
+that to `e₂`, each preserving dependencies, so `A ∘ B` does. `hA` is the monotonicity [1] states
+once for all the set operations it uses — its property (6) — and [1, Lemma 2]'s proof spends it at
+exactly the step `hA` is spent at here.
 
-[1, Lemma 1] — that a composition keeps (6) — needs nothing of its own: (6) is
-`Monotone` at `Set α` ordered by `⊆`, so Lemma 1 is Mathlib's `Monotone.comp`.
-That is why monotonicity is a hypothesis here and never a conclusion.
+[1, Lemma 1] — that a composition keeps (6) — is Mathlib's `Monotone.comp`, (6) being `Monotone` at
+`Set α` ordered by `⊆`. That is why monotonicity is a hypothesis here and never a conclusion.
+
+## Inputs
+* `D` – parameter domain
+* `α` – source set type
+* `β` – middle set type
+* `γ` – target set type
+* `A` – outer operation
+* `B` – inner operation
+* `e` – evaluation function of the source
+* `e₁` – evaluation function of the middle
+* `e₂` – evaluation function of the target
+
+## Hypotheses
+* `hA` – `A` monotone
+* `hB` – `B` preserves dependencies
+* `hAe` – `A` preserves dependencies
+
+## Conclusion
+* `A ∘ B` preserves dependencies
 
 ## References
 

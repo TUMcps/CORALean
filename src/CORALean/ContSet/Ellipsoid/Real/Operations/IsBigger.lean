@@ -12,6 +12,13 @@ CORA's `@ellipsoid/isBigger`: is `E₂` inside `E₁` once both centers are move
 `Q₁` and `Q₂` (largest generalised eigenvalue at most `1 + tol`); what that computes, at
 tolerance `0`, is the Loewner order `Q₂ ⪯ Q₁`, stated here as the quadratic forms,
 `vᵀ Q₂ v ≤ vᵀ Q₁ v` for every `v`. `isBigger_iff_subset` is the link to the sets.
+
+## Inputs
+* `E₁` – larger ellipsoid
+* `E₂` – smaller ellipsoid
+
+## Output
+* `E₂` fits into `E₁` up to the centers
 -/
 
 -- Authors:       Claude Opus 5.5

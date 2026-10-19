@@ -16,6 +16,17 @@ public import Mathlib.Analysis.Calculus.Deriv.Inv
 Differentiating `−(1/(β(1+β))) · S(β)` the term with `S` drops at a root, and
 `S'(β) = −∑ᵢ λᵢ(1 + 2β + β²λᵢ)/(1+βλᵢ)²`.
 
+## Inputs
+* `r` – root of the stationarity equation
+
+## Hypotheses
+* `hlam` – every `λᵢ` positive
+* `hr` – `0 < r`
+* `hroot` – the stationarity function vanishes at `r`
+
+## Conclusion
+* the second derivative at `r` is the given sum and positive
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

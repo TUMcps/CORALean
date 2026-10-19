@@ -9,35 +9,31 @@ public import Mathlib.Data.Fintype.Pi
 /-!
 # `VPolytope.plusPruneCora`: the hull step of `plus` for matrix polytopes, as CORA's code runs it
 
-`@matPolytope/plus.m` (l. 36-60) adds two `n × m` matrix polytopes with `h1` and `h2` vertices:
-it forms all `h1·h2` sums and stacks each as a column of `vecVpot`, an `(n·m) × (h1·h2)` array
-(`reshape(matVpot, max(n1,n2)*max(m1,m2), h1*h2)`, l. 47), then prunes them to the hull vertices
-with
-
-```
-K = convhulln(vecVpot, opt);        % l. 55
-vecV = vecVpot(K,:);                % l. 58
-```
-
-`convhulln` takes one point per *row*, and `vecVpot` has one vertex per *column* (every other
-CORA call passes `V'`: `polytope/constraints.m` l. 219, `priv_compact_V.m` l. 49, ...). So the
-points are the `n·m` matrix entries, in dimension `d = h1·h2`; for `n·m <= h1·h2` there are too few
-points and `convhulln` throws, which the `try` of l. 53 catches (all vertices are kept, correctly).
-For `n·m > h1·h2` it succeeds, `K` holds indices of *entries*, and `vecVpot(K,:)` picks entry rows,
-which the final `reshape(vecV, max(n1,n2), max(m1,m2), [])` reads as matrices: the result is not
-the polytope of the sum vertices (and `reshape` errors when the count does not divide). `expmInd`
-and `expm` of a matrix polytope add with `+`, so they are affected whenever `n·m > h1·h2`.
-
-Modelled: `vecVpot` as its rows (the `n·m` entries, each across the `d` vertices) and the index
-array `K` as a list of facets, `K(:)` read column by column as MATLAB does. Read from the source,
-not run; the same Qhull through scipy (`ConvexHull(vecVpot, qhull_options="QJ")`) returns for the
-example below the facets `[[1,0],[3,0],[2,1],[2,3]]` and four matrices, none of them `A` or `B`.
+`@matPolytope/plus.m` (l. 36-60) adds two `n × m` matrix polytopes with `h1` and `h2` vertices: it
+stacks all `h1·h2` sums as columns of `vecVpot`, an `(n·m) × (h1·h2)` array, then prunes them to the
+hull vertices with `K = convhulln(vecVpot, opt); vecV = vecVpot(K,:);` (l. 55, 58). `convhulln`
+takes one point per *row*, and `vecVpot` has one vertex per *column* (every other CORA call passes
+`V'`). So the points are the `n·m` entries, in dimension `h1·h2`; for `n·m <= h1·h2` `convhulln`
+throws and the `try` keeps all vertices, correctly. For `n·m > h1·h2` it succeeds, `K` holds indices
+of *entries*, and the result is not the polytope of the sum vertices. Modelled: `vecVpot` as its
+rows and `K` as a list of facets, `K(:)` read column by column. Read from the source, not run; Qhull
+through scipy returns for the example below four matrices, none of them `A` or `B`.
 
 # CORA's `plus` of two matrix polytopes returns wrong vertices
 
-`A = [0 1; 1 0]`, `B = [0 1; 0 1]`, `matPolytope(cat(3,A,B)) + matPolytope(zeros(2,2))` has the
-sum vertices `A` and `B` and gets four matrices, not all on the line through `A` and `B`, whatever
-order and orientation `convhulln` returns the four edges of the square of entry pairs in.
+`A = [0 1; 1 0]`, `B = [0 1; 0 1]`, `matPolytope(cat(3,A,B)) + matPolytope(zeros(2,2))` has the sum
+vertices `A` and `B` and gets four matrices, not all on the line through `A` and `B`, whatever order
+and orientation `convhulln` returns the four edges of the square of entry pairs in.
+
+## Inputs
+* `σ` – order of the four edges
+* `o` – orientation of the four edges
+
+## Hypotheses
+* none
+
+## Conclusion
+* the pruned sum is not the polytope of the sum vertices
 -/
 
 -- Authors:       Claude Sonnet 5.5

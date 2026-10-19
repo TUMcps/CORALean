@@ -13,6 +13,13 @@ and for a full-rank `E` (where `ellipsoidNorm` is modelled). The branches for a 
 ellipsoid, a set argument (an ellipsoid through the SDP of `priv_containsEllipsoid`, a capsule
 through two ellipsoids, vertex enumeration for the polytopes, a Grothendieck SDP for the
 zonotope) and the tolerance are not formalized.
+
+## Inputs
+* `E` – ellipsoid
+* `p` – point
+
+## Output
+* the ellipsoid norm of `p - q` is at most 1
 -/
 
 -- Authors:       Claude Opus 5.5

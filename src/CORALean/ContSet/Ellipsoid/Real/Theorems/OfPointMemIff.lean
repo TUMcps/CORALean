@@ -11,6 +11,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 
 The converse to `mem_ofPoint`: the zero shape has the zero square root, so `q + G u` is `q` for
 every `u`.
+
+## Inputs
+* `v` – point
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in `ofPoint v` iff `x = v`
 -/
 
 -- Authors:       Claude Opus 5.5

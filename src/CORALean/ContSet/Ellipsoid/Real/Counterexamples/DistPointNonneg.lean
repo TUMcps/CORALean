@@ -16,6 +16,15 @@ ellipsoid and hyperplane have a non-empty intersection." For the unit interval `
 boundary point `1` is in `E`, yet the point formula is `0` along `l = 1`, and no direction makes
 it positive (`dist_point_eq_max`), so its maximum is `0`. Touching sets give `0` the same way.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a boundary point has distance zero, not negative
+
 ## References
 
 * [1] A. A. Kurzhanskiy and P. Varaiya. "Ellipsoidal Toolbox (ET)". In Proc. of the 45th

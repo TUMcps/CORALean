@@ -18,6 +18,16 @@ exact `plus_exact` — which makes the sum of the two hulls the hull of the
 pairwise sums — followed by `construct_subset_add`, since every stored vertex is
 within `columnGap` of the exact one. The error obligation is two applications of
 `Interval.plus_outer`.
+
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Minkowski sum lies in the result
 -/
 
 -- Authors:       Claude Opus 5

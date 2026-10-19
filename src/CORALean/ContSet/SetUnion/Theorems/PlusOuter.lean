@@ -11,6 +11,16 @@ public import CORALean.ContSet.SetUnion.Theorems.Basic
 Exact set identity first: `(⋃ Aᵢ) + (⋃ Bⱼ) = ⋃ᵢⱼ (Aᵢ + Bⱼ)`, since a summand
 from each side comes from some branch on that side. `Plus.plus_outer` then
 reads each pairwise sum back into `SetUnion.plus`'s own pairwise branch.
+
+## Inputs
+* `u` – first union
+* `v` – second union
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Minkowski sum lies in the result
 -/
 
 -- Authors:       Claude Sonnet 5

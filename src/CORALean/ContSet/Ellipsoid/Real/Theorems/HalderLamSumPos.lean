@@ -11,6 +11,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderLamSum
 For positive `λᵢ` and `β ≥ 0`, `∑ λᵢ/(1+βλᵢ) > 0`, so the quotient under the root of
 the fixed-point step [1, Eq. 26] is defined.
 
+## Inputs
+* `β` – weight of the shape sum
+
+## Hypotheses
+* `hlam` – every `λᵢ` positive
+* `hβ` – `0 ≤ β`
+
+## Conclusion
+* the sum `∑ λᵢ/(1+βλᵢ)` is positive
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

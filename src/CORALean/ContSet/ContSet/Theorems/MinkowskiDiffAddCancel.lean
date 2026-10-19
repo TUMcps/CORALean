@@ -15,6 +15,19 @@ The paper asks `X` and `Y` convex, compact and nonempty. Only `X` convex and clo
 and `Y` nonempty and bounded are used; without `Y` nonempty the difference is the
 whole space.
 
+## Inputs
+* `X` – minuend summand
+* `Y` – subtrahend summand
+
+## Hypotheses
+* `hY` – `Y` nonempty
+* `hYb` – `Y` bounded
+* `hXconv` – `X` convex
+* `hXcl` – `X` closed
+
+## Conclusion
+* `(X + Y) ⊖ Y` equals `X`
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

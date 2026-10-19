@@ -11,6 +11,12 @@ public import CORALean.Global.Cost
 Asserted, not proved: `Operations/Plus.lean` squares the two scalings (2 multiplications),
 multiplies every entry of both shape matrices by one (`2 n²`), adds the two (`n²` additions) and
 adds the centers (`n` more). Every computed entry is also written once: `2 + 3 n² + n` writes.
+
+## Inputs
+* `n` – dimension
+
+## Output
+* cost of the arithmetic and writes of `plus`
 -/
 
 -- Authors:       Claude Opus 5.5

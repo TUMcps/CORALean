@@ -10,6 +10,19 @@ public import CORALean.ContSet.ContSet.Theorems.SetLinCombEqConvexJoin
 `convexHull_union` and `convexJoin`: the hull of a union is the join of the hulls, and a convex
 set is its own hull. So where `LinComb` encloses the segments, a convex operand pair gets the convex
 hull of the union enclosed, which is what CORA's `convHull_` asks for.
+
+## Inputs
+* `X` – set
+* `Y` – set
+
+## Hypotheses
+* `hX` – `X` nonempty
+* `hY` – `Y` nonempty
+* `cX` – `X` convex
+* `cY` – `Y` convex
+
+## Conclusion
+* convex hull of `X ∪ Y` equals the linear combination of `X` and `Y`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,18 @@ public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 ellipsoids is `(1 + 1/β) Q₁ + (1 + β) Q₂` of [1, Eq. 11] at `β = √(ℓᵀQ₁ℓ / ℓᵀQ₂ℓ)`: writing
 `a = √(ℓᵀQ₁ℓ)` and `b = √(ℓᵀQ₂ℓ)`, `(a + b)(Q₁/a + Q₂/b) = (1 + b/a) Q₁ + (1 + a/b) Q₂`.
 
+## Inputs
+* `Q₁` – first shape matrix
+* `Q₂` – second shape matrix
+* `l` – direction
+
+## Hypotheses
+* `h₁` – `0 < lᵀ Q₁ l`
+* `h₂` – `0 < lᵀ Q₂ l`
+
+## Conclusion
+* the Kurzhanski shape equals Halder's at `β = √(lᵀ Q₁ l / lᵀ Q₂ l)`
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

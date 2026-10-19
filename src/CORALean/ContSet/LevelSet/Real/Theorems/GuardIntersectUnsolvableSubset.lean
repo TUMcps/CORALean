@@ -17,6 +17,27 @@ step, and with it the enclosure fails (`GuardIntersectUnsolvable`); [1]'s own
 polynomial's monomials. [1] divides by `a(k)` without saying so; `a(k) ≠ 0` is supplied, and
 `∂p_k/∂x(k) = 0` is not needed for the enclosure.
 
+## Inputs
+* `I` – box
+* `κ` – Taylor order
+* `k` – cut coordinate
+* `g` – guard function
+* `T` – Taylor series of `g` on `I`
+* `pk` – polynomial part free of `x(k)`
+* `Dp` – remaining part of the solved form
+* `Dl` – lower remainder bound
+* `Du` – upper remainder bound
+
+## Hypotheses
+* `hg` – `g` is `C^(κ+1)`
+* `hκ` – `1 ≤ κ`
+* `ha` – the gradient of `g` in `k` is nonzero
+* `hsplit` – the solved form splits into `pk + Dp`
+* `hD` – `[Dl, Du]` bounds `Dp` minus the scaled remainder
+
+## Conclusion
+* the box cut by the guard lies in the unsolvable-guard model
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

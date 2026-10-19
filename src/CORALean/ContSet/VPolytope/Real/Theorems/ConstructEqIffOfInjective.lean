@@ -19,6 +19,17 @@ test for any `a ≠ b` (`construct_eq_iff_counterexample`). With distinct points
 one is an extreme point, which the other list must contain; conversely every extreme point then
 lies in the other polytope, and Krein–Milman gives the rest.
 
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+
+## Hypotheses
+* `h₁` – vertices of `P₁` distinct
+* `h₂` – vertices of `P₂` distinct
+
+## Conclusion
+* the sets are equal iff every vertex is shared or redundant
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

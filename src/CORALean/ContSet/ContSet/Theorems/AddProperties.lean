@@ -18,6 +18,16 @@ paper's own convention — `∅` is degenerate and bounded — refutes
 (`add_properties_counterexample`); each holds once the first summand is nonempty, which is the
 third and fourth clause here.
 
+## Inputs
+* `S₁` – set
+* `S₂` – set
+
+## Hypotheses
+* none
+
+## Conclusion
+* emptiness, nonemptiness, interior and boundedness of `S₁ + S₂` follow from its summands
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

@@ -14,6 +14,14 @@ public import Mathlib.Data.Real.Basic
 over-approximation is `P = {x | ∀ ℓ ∈ D, m_ℓ ≤ x·ℓ ≤ M_ℓ}`. The bounds are arguments, so the
 same set serves for the exact infimum and supremum and for any enclosing pair.
 
+## Inputs
+* `D` – directions
+* `m` – lower bound per direction
+* `M` – upper bound per direction
+
+## Output
+* points whose projection on each direction lies within its bounds
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

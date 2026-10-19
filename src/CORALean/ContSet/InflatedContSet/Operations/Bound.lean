@@ -15,6 +15,15 @@ none of them has to say so separately.
 
 The nominal bound is the exact layer's problem, unchanged: the box only pays for
 the rounding that put it there.
+
+## Inputs
+* `c` – linear functional
+* `s` – inflated set
+* `u` – float bound of the nominal part
+* `v` – float bound of the error box
+
+## Output
+* float bound of `c` on the whole inflated set
 -/
 
 -- Authors:       Claude Opus 5

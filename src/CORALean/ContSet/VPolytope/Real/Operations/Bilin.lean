@@ -12,6 +12,14 @@ Any bilinear map applied to two vertex-representation sets: pair every vertex of
 
 `bilin_outer`, in `Theorems/BilinOuter.lean`, is what says this pairing loses
 nothing.
+
+## Inputs
+* `f` – bilinear map
+* `P` – first polytope
+* `Q` – second polytope
+
+## Output
+* polytope of the images of all vertex pairs
 -/
 
 -- Authors:       Claude Opus 5

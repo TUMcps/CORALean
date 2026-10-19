@@ -14,6 +14,12 @@ decomposition is its eigendecomposition `Q = U D Uᵀ`; here `U` is Mathlib's or
 eigenvector matrix and `D` the diagonal of eigenvalues, in Mathlib's order (CORA's `svd` sorts
 them in decreasing order, an order that does not enter `G Gᵀ = Q`). The result differs from the
 symmetric square root `E.G` in general, by the orthogonal factor `Uᵀ`.
+
+## Inputs
+* `E` – ellipsoid
+
+## Output
+* `U √D` from the eigendecomposition `Q = U D Uᵀ`
 -/
 
 -- Authors:       Claude Opus 5.5

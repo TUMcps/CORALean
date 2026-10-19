@@ -11,6 +11,18 @@ public import CORALean.ContSet.ContSet.Definitions.HyperplanePolyhedron
 the infimum and the supremum of `{x·ℓ | x ∈ X}` (when those exist), then `X` lies in
 `{x | ∀ ℓ ∈ D, m_ℓ ≤ x·ℓ ≤ M_ℓ}`. This is what makes the polyhedron an over-approximation.
 
+## Inputs
+* `X` – set
+* `D` – directions
+* `m` – lower bound per direction
+* `M` – upper bound per direction
+
+## Hypotheses
+* `hX` – every `x ∈ X` meets the bounds along `D`
+
+## Conclusion
+* `X` lies in the polyhedron of the bounds
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

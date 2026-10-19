@@ -14,6 +14,15 @@ is a QR decomposition — `R` is upper triangular, its middle row being zero —
 columns span `{x₃ = 0}`, which misses `e₃`, a column of `V̄`. MATLAB's `qr` returns exactly this
 `Q`, the Householder step being the identity on a column whose entries below the pivot vanish.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a QR factorization without pivoting whose columns miss the span
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

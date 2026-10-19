@@ -13,6 +13,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderLamSumPos
 The root of the positive quotient in [1, Eq. 26] is positive, so the iteration starting
 at a positive `β` stays in the cone `ℝ₊` that [1, Thm. 3] iterates on.
 
+## Inputs
+* `β` – weight of the shape sum
+
+## Hypotheses
+* `hlam` – every `λᵢ` positive
+* `hβ` – `0 ≤ β`
+
+## Conclusion
+* the step at `β` is positive
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

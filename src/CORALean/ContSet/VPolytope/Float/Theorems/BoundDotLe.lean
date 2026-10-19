@@ -10,6 +10,17 @@ public import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
 No point of the set reads more than the float value, an upper bound only: the
 real layer's `VPolytope.supportBound_attained` is the statement that the exact
 value is reached.
+
+## Inputs
+* `P` – polytope
+* `c` – linear functional
+* `a` – float vector of `c`
+
+## Hypotheses
+* `hc` – `c x = ∑ aⱼ xⱼ`
+
+## Conclusion
+* `c` is at most the bound on every point of `P`
 -/
 
 -- Authors:       Claude Opus 5.5

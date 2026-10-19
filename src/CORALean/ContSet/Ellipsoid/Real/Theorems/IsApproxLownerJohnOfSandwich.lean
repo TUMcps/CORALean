@@ -18,6 +18,19 @@ public import Mathlib.Analysis.SpecialFunctions.Sqrt
 is contained in it, then `E* = E_j/(1+ε)` is an `ε`-approximate Löwner-John ellipse of `P`, since
 `E*/n² = E_j/(n²(1+ε))` and `(1+ε) E* = E_j`. It is how Goffin's test (5) ends the iteration.
 
+## Inputs
+* `ε` – approximation tolerance
+* `C` – set
+* `E` – ellipsoid
+
+## Hypotheses
+* `hε` – `-1 < ε`
+* `hin` – the scaled inner ellipsoid lies in `C`
+* `hout` – `C` lies in `E`
+
+## Conclusion
+* `E/(1+ε)` is an `ε`-approximate Löwner-John ellipse of `C`
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

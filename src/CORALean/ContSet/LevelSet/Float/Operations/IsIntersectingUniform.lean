@@ -14,6 +14,15 @@ and the verdict is read off their signs by `le` and `ltStrict`. Only `false` is 
 answers "disjoint" when its bound is certified on the wrong side of the tolerance band (`tol < lb`
 for `≤`, `0 ≤ lb` for `<`, and for `=` either `tol < lb` or `ub < -tol`); a row whose comparison
 is not certain counts as possibly intersecting, which is what `true` says.
+
+## Inputs
+* `n` – dimension
+* `ls` – level set
+* `tol` – tolerance
+* `B` – float bounds of the rows over the box
+
+## Output
+* `false` only if some row certifiably refutes a common point
 -/
 
 -- Authors:       Claude Opus 5.5

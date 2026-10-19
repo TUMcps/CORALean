@@ -13,6 +13,15 @@ The paper makes `∅` degenerate and bounded, and `ℝⁿ` is non-degenerate and
 `∅ ⊕ ℝⁿ = ∅` is neither. So "D ⊕ ND = ND", "D ⊕ NB = NB", "ND ⊕ B = ND" and "B ⊕ NB = NB" are
 false as printed; `add_properties` has each with a nonempty summand.
 
+## Inputs
+* none
+
+## Hypotheses
+* `hn` – `0 < n`
+
+## Conclusion
+* sets exist whose sum is bounded with empty interior though one summand is unbounded
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

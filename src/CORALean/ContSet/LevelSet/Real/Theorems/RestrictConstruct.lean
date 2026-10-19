@@ -8,6 +8,17 @@ public import CORALean.ContSet.LevelSet.Real.Operations.Restrict
 # What `restrict` denotes
 
 The points meeting the constraints at the chosen indices.
+
+## Inputs
+* `n` – dimension
+* `L` – level set
+* `s` – row indices
+
+## Hypotheses
+* none
+
+## Conclusion
+* the restricted level set holds the rows at `s`
 -/
 
 -- Authors:       Claude Opus 5.5

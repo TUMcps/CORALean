@@ -10,6 +10,13 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 What `mtimes` owes beyond its nominal part: the center `M q`, stored at its lower rounding. The
 shape matrix's rounding is not here, `inflate` having paid it into `Q`.
+
+## Inputs
+* `M` – matrix
+* `E` – ellipsoid
+
+## Output
+* box of what rounding the center `M q` down leaves to pay
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

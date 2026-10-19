@@ -10,6 +10,13 @@ public import CORALean.ContSet.VPolytope.Real.VPolytope
 The vertex lists concatenate, giving the convex hull of the union — which for
 two convex sets is exactly CORA's `linComb`, every point of a segment between
 them included.
+
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+
+## Output
+* polytope of the concatenated vertex lists
 -/
 
 -- Authors:       Claude Opus 5

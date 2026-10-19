@@ -15,6 +15,18 @@ are the `y` reached by a point of `Z` whose first coordinate is `γ`. It reduces
 `d`-dimensional intersection to a line meeting a plane set, and holds for an arbitrary
 set, not only a zonotope.
 
+## Inputs
+* `Z` – set
+* `nv` – normal of the hyperplane
+* `ℓ` – direction
+* `γ` – offset of the hyperplane
+
+## Hypotheses
+* none
+
+## Conclusion
+* projections on `ℓ` of the slice equal the slice of the 2D projection
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

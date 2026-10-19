@@ -14,6 +14,16 @@ public import Mathlib.LinearAlgebra.Prod
 [1, Eq. 28]: the hull of all stacked pairs of points is the product of the two hulls, stacked —
 `convexHull_prod` carried through the linear map `appendLinear`.
 
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is exactly the product of the two sets
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

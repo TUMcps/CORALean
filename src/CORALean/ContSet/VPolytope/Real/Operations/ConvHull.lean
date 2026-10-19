@@ -11,6 +11,14 @@ CORA's `@polytope/convHull_` at two polytopes: the vertices of both, concatenate
 the vertices of each operand and compacts the union; the hull of the union of the vertex lists
 is the same set. For an empty operand CORA returns the empty polytope, which is not the hull of
 the union; this is the hull, so an empty operand contributes nothing.
+
+## Inputs
+* `α` – ambient type
+* `P` – first polytope
+* `Q` – second polytope
+
+## Output
+* polytope of both vertex lists
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -9,6 +9,16 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
 # `projectHighDim` is the zero-padded image, exactly
 
 The vertex form pads each vertex and so denotes the image of `P` under the padding matrix.
+
+## Inputs
+* `P` – polytope
+* `dims` – target coordinate of each dimension
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is exactly the zero-padded image of `P`
 -/
 
 -- Authors:       Claude Opus 5.5

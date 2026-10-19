@@ -15,6 +15,14 @@ center), `wᵀ Q w ≤ 1` from above (`quadUp`), and the remainder `p - q - Q w`
 directed roundings, inside the error box: then `q + Q w` is a point of the nominal ellipsoid
 (`Real.Ellipsoid.add_mulVec_mem_construct`). Only `true` is certain; `false` says only that this
 `w` does not show membership.
+
+## Inputs
+* `E` – ellipsoid
+* `p` – point
+* `w` – solve of `Q w = p - q`
+
+## Output
+* `true` only if the certificate proves `p ∈ E`
 -/
 
 -- Authors:       Claude Opus 5.5

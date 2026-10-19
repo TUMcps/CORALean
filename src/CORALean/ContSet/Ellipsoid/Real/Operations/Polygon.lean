@@ -18,6 +18,13 @@ is the one convex piece spanned by the points: CORA's `polyshape` of the same ve
 a boundary representation (R-PG) not modelled. A direction with `l'Q l = 0` gives the center
 `q` (Lean's `0⁻¹ = 0`), as does every direction of a point-ellipsoid (CORA's
 `representsa_(E,'point')` branch).
+
+## Inputs
+* `E` – planar ellipsoid
+* `L` – directions
+
+## Output
+* polygon spanned by the support points of the directions
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

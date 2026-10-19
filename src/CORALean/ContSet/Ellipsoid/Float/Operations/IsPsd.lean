@@ -16,6 +16,12 @@ eigenvalues; this is the check a float operation can prove something from: the s
 symmetric, and `Q - L Lᵀ` diagonally dominant for the factor `cholFactor` proposes
 (`psdCheck`). `false` says nothing about `Q`; `true` makes the nominal part the ellipsoid of `Q`
 (`Theorems/IsPsdSound`).
+
+## Inputs
+* `Q` – shape matrix
+
+## Output
+* `true` only if `Q` is certified symmetric and positive semi-definite
 -/
 
 -- Authors:       Claude Opus 5.5

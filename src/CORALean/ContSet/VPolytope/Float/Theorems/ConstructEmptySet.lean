@@ -11,6 +11,15 @@ public import CORALean.ContSet.VPolytope.Real.Operations.ConstructEmptySet
 
 The nominal part is the exact layer's empty vertex list, and the sum of `∅` with
 any box is `∅`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polytope with no vertices denotes the empty set
 -/
 
 -- Authors:       Claude Opus 5.5

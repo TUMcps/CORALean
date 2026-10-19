@@ -10,6 +10,17 @@ public import CORALean.ContSet.LevelSet.Real.Operations.RepresentsaFullspace
 If `O i` bounds row `i` of the function over the whole space (in `EReal`), a positive verdict
 means the level set is everything. One direction: a negative verdict says nothing, so no `↔` and
 no exactness of the test.
+
+## Inputs
+* `L` – level set
+* `O` – bounds of the rows over the whole space
+
+## Hypotheses
+* `hO` – `O` bounds each row's range
+* `h` – `representsa_fullspace` holds
+
+## Conclusion
+* the level set is the whole space
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -7,19 +7,22 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.Plus
 /-!
 # Kurzhanski and Varaiya's `l` names an admissible pair
 
-`plus_outer` takes the two scalings and the inequality `1/s₁² + 1/s₂² ≤ 1`,
-which is a two-dimensional set of admissible pairs. The classical family
+`plus_outer` takes two scalings and the inequality `1/s₁² + 1/s₂² ≤ 1`, a two-dimensional set of
+admissible pairs. The classical family `Q(l) = (1 + 1/l) Q₁ + (1 + l) Q₂`, `l > 0`, is one curve
+through it: its scalings are `√(1+1/l)` and `√(1+l)`, and they meet the bound with *equality*, so
+`l` sweeps the boundary and nothing else. What lies inside is out of `l`'s reach, as is every pair
+with a negative scaling, which names the same enclosure, `s²` being all `plus` reads. A caller
+holding an `l` discharges `plus_outer`'s three hypotheses here, and loses nothing to the wider
+parametrisation.
 
-  `Q(l) = (1 + 1/l) Q₁ + (1 + l) Q₂`,   `l > 0`,
+## Inputs
+* `l` – positive weight
 
-is one curve through it: its scalings are `√(1+1/l)` and
-`√(1+l)`, and this is the computation — one line — that they meet the bound
-with *equality*, so `l` sweeps the boundary and nothing else. What lies inside
-it is out of `l`'s reach, as is every pair with a negative scaling, which names
-the same enclosure, `s²` being all `plus` reads.
+## Hypotheses
+* `hl` – `0 < l`
 
-A caller holding an `l` therefore discharges `plus_outer`'s three hypotheses
-here, and loses nothing to the wider parametrisation.
+## Conclusion
+* `√(1+1/l)` and `√(1+l)` are nonzero and meet the bound with equality
 -/
 
 -- Authors:       Claude Opus 5

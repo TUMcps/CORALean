@@ -9,6 +9,15 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.GTranspose
 
 `G Gᵀ = Q`: `G` is symmetric and squares to `Q`, `Q` being positive semi-definite. This is what
 every statement in the shape matrix is proved through, by `Theorems/ConstructEqOfFactor`.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* `G Gᵀ = Q`
 -/
 
 -- Authors:       Claude Opus 5.5

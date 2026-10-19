@@ -16,6 +16,15 @@ With `rank Q < n`, `det Q = 0`, so `Ellipsoid.volume` is `0`; and the ellipsoid 
 translate of the range of `G = Q^(1/2)`, which has the rank of `G Gᵀ = Q`
 (`Matrix.rank_self_mul_transpose`), a proper subspace and so of Haar measure zero
 (`Measure.addHaar_submodule`).
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* `hr` – rank below `n`
+
+## Conclusion
+* the Lebesgue volume of `E` is `volume E`
 -/
 
 -- Authors:       Claude Opus 5.5

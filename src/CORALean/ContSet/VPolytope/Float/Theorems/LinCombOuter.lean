@@ -12,6 +12,16 @@ public import CORALean.ContSet.VPolytope.Float.Theorems.NominalLinComb
 Nothing rounds, so there is no spill and `InflatedContSet`'s composition lemma is
 not needed: the nominal halves land in the exact `linComb` and the error halves
 in the interval one, each by its own layer's theorem.
+
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* every segment between the operands lies in the result
 -/
 
 -- Authors:       Claude Opus 5

@@ -11,6 +11,17 @@ public import CORALean.ContSet.ContSet.ContSet
 
 An ellipsoid is convex, so an ellipsoid containing both operands contains every segment between them
 (`Ellipsoid.IsOrOuter`).
+
+## Inputs
+* `E₁` – first ellipsoid
+* `E₂` – second ellipsoid
+* `E` – candidate hull
+
+## Hypotheses
+* `h` – `E` contains both operands
+
+## Conclusion
+* the segments between `E₁` and `E₂` lie in `E`
 -/
 
 -- Authors:       Claude Opus 5.5

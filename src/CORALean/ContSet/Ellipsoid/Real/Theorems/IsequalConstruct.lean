@@ -8,6 +8,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.Isequal
 # Ellipsoids passing `isequal` denote the same set
 
 `isequal` compares the shape matrices and the centers, which is all `construct` reads.
+
+## Inputs
+* `E` – ellipsoid
+* `S` – ellipsoid
+
+## Hypotheses
+* `h` – `E` and `S` are `isequal`
+
+## Conclusion
+* `E` and `S` denote the same set
 -/
 
 -- Authors:       Claude Opus 5.5

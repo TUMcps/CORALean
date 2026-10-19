@@ -12,6 +12,17 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
 A point is `y + e` with `y` in the nominal ellipsoid, bounded by the exact layer's
 `Ellipsoid.norm₂_le_normUb` against the stored floats, and `e` in the error box, bounded by the
 length of its largest magnitudes. The roundings are all upward.
+
+## Inputs
+* `k` – Newton steps of the root
+* `E` – ellipsoid
+* `x` – point
+
+## Hypotheses
+* `hx` – `x` in `E`
+
+## Conclusion
+* the norm of `x` is at most `normUb`
 -/
 
 -- Authors:       Claude Opus 5.5

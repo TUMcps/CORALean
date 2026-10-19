@@ -14,6 +14,19 @@ take: the caller hands in a proposed length `s`, checked by `dᵀ Q d ≤ s²` f
 and one multiplication rounded down, so an ellipsoid costs the layer no new scalar operation.
 
 The whole set's bound adds the nominal bound and the error box's own, upward.
+
+## Inputs
+* `E` – ellipsoid
+* `c` – linear functional
+* `a` – float vector of `c`
+* `s` – length bounding `√(aᵀ Q a)`
+
+## Hypotheses
+* `hc` – `c x = ∑ aᵢ xᵢ`
+* `hs` – `aᵀ Q a ≤ s²`
+
+## Output
+* float bound of `c` on the whole set `E`
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

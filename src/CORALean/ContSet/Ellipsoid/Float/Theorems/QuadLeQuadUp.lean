@@ -11,6 +11,16 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 Coordinate `i` of `Q a` lies between its two roundings, so `aᵢ (Q a)ᵢ`, linear in it, is at most
 its value at the end of the bracket on `aᵢ`'s side, which the larger of the two products rounded
 up covers; the sum is rounded up.
+
+## Inputs
+* `E` – ellipsoid
+* `a` – vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* `aᵀ Q a` is at most `quadUp a`
 -/
 
 -- Authors:       Claude Opus 5.5

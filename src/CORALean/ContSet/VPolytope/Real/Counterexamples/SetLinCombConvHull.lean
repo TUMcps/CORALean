@@ -13,6 +13,15 @@ With [1, Table 3]'s `conv(S₁, S₂) = {λ s₁ + (1 - λ) s₂}`, `conv(∅, P
 [1, Table 1 (conv)] says so. So `conv(⟨[]⟩, ⟨[0]⟩) = ∅`, while the concatenated list `⟨[0]⟩`
 of [1, Eq. 30] is `{0}`, and the union `∅ ∪ {0}` of [1, Eq. 37] is not inside `∅`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the linear combination differs from the hull and does not contain the union
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

@@ -9,6 +9,16 @@ public import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
 # `LevelSet.and_` is exact
 
 Stacking constraints is intersecting the sets, with equality, whatever the operators.
+
+## Inputs
+* `L₁` – first level set
+* `L₂` – second level set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result denotes the intersection of the two sets
 -/
 
 -- Authors:       Claude Opus 5.5

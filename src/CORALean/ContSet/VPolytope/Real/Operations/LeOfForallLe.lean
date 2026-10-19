@@ -11,6 +11,19 @@ Where a halfspace description needs a dual solution to bound a direction, a
 vertex description reads the answer off its own data: the weights are
 nonnegative and sum to one, so a combination cannot reach past the furthest
 vertex.
+
+## Inputs
+* `P` – polytope
+* `c` – linear functional
+* `v` – bound
+* `x` – point
+
+## Hypotheses
+* `h` – `c` is at most `v` on every vertex
+* `hx` – `x` in `P`
+
+## Conclusion
+* `c x` is at most `v`
 -/
 
 -- Authors:       Claude Opus 5

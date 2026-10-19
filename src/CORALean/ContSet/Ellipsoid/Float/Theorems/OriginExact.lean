@@ -12,6 +12,15 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfShapeEq
 
 `zero` reads as `0`, so the nominal part is the exact layer's point ellipsoid at the
 origin, the zero shape being positive semi-definite, and the error box is the origin box.
+
+## Inputs
+* `n` – dimension
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is exactly the origin
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -18,6 +18,16 @@ fail at a subtrahend `∅` — degenerate and bounded by the paper's convention
 (`minkowskiDiff_properties_counterexample`); with a nonempty subtrahend they are the second and
 fourth clause.
 
+## Inputs
+* `S₁` – minuend
+* `S₂` – subtrahend
+
+## Hypotheses
+* none
+
+## Conclusion
+* emptiness, interior and boundedness of `S₁ ⊖ S₂` follow from those of the operands
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

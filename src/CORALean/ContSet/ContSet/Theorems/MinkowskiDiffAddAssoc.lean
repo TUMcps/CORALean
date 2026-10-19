@@ -7,15 +7,22 @@ public import CORALean.ContSet.ContSet.ContSet
 /-!
 # Minkowski difference nests over a sum
 
-`minkowskiDiff A (B + C) = minkowskiDiff (minkowskiDiff A B) C`: subtracting a
-sum is the same as subtracting one summand and then the other. It is the step
-[1, Thm. 1]'s proof calls eq. (6), quoted there from elsewhere as a fact about
-arbitrary sets; the identity itself needs nothing about zonotopes, only that
-addition in `α` commutes and associates, so it sits here beside `minkowskiDiff`'s
-other general facts rather than under `Zonotope/`.
+`minkowskiDiff A (B + C) = minkowskiDiff (minkowskiDiff A B) C`: subtracting a sum is subtracting
+one summand and then the other. It is the step [1, Thm. 1]'s proof calls eq. (6); the identity needs
+nothing about zonotopes, only that addition in `α` commutes and associates, so it sits here beside
+`minkowskiDiff`'s other general facts. Both directions unfold `minkowskiDiff` for free and finish by
+reassociating the sum that is left over.
 
-Both directions unfold `minkowskiDiff` for free — membership in a `setOf` is
-definitional — and finish by reassociating the sum that is left over.
+## Inputs
+* `A` – minuend
+* `B` – subtrahend
+* `C` – subtrahend
+
+## Hypotheses
+* none
+
+## Conclusion
+* `A ⊖ (B + C)` equals `(A ⊖ B) ⊖ C`
 
 ## References
 

@@ -9,21 +9,27 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqOfFactor
 /-!
 # `Ellipsoid.plus` encloses the Minkowski sum
 
-The shape `s₁² Q₁ + s₂² Q₂` is `H Hᵀ` for `H = [s₁ G₁ | s₂ G₂]`, the two square roots side by
-side, so the enclosure is the image of the unit ball of `ℝ²ⁿ` under `H`
-(`construct_eq_of_factor`). Given `u₁` and `u₂` in their unit balls, the point of that ball that
-reproduces `G₁u₁ + G₂u₂` is `(u₁/s₁, u₂/s₂)`, whose squared length is at most
-`1/s₁² + 1/s₂²` — which is exactly the hypothesis. Nothing else about the pair
-is used, so soundness holds at every admissible pair and which one a caller
-picks is a precision choice owing no proof; Kurzhanski and Varaiya's `l` sweeps the boundary,
-where the bound is met with equality (`plus_scalings_admissible`).
+The shape `s₁² Q₁ + s₂² Q₂` is `H Hᵀ` for `H = [s₁ G₁ | s₂ G₂]`, so the enclosure is the image of
+the unit ball of `ℝ²ⁿ` under `H` (`construct_eq_of_factor`). Given `u₁` and `u₂` in their unit
+balls, the point of that ball reproducing `G₁u₁ + G₂u₂` is `(u₁/s₁, u₂/s₂)`, of squared length at
+most `1/s₁² + 1/s₂²`, exactly the hypothesis. Soundness holds at every admissible pair and which one
+a caller picks is a precision choice (Kurzhanski and Varaiya's `l` meets the bound with equality,
+`plus_scalings_admissible`). The scalings are non-zero by a separate hypothesis: `1/0` is `0` in
+Lean and would satisfy the bound vacuously. Only `_outer`: the sum is not an ellipsoid.
 
-Division appears in that ball point and only there. The scalings are non-zero
-because the hypothesis gives their reciprocals a finite sum, so the caller
-states that separately — `1/0` is `0` in Lean and would otherwise satisfy the
-bound vacuously, at a `plus` whose shape matrix is zero.
+## Inputs
+* `s₁` – scaling of `E₁`
+* `s₂` – scaling of `E₂`
+* `E₁` – first ellipsoid
+* `E₂` – second ellipsoid
 
-Only `_outer`: the sum is not an ellipsoid, so no member of the family is exact.
+## Hypotheses
+* `hne₁` – `s₁ ≠ 0`
+* `hne₂` – `s₂ ≠ 0`
+* `hs` – `1/s₁² + 1/s₂² ≤ 1`
+
+## Conclusion
+* the Minkowski sum lies in the result
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

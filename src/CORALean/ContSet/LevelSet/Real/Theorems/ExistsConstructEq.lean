@@ -16,6 +16,15 @@ This is the arrow from polynomial zonotopes to level sets of
 [1, Fig. 1 (Polynomial Zonotopes → Level Sets)], and the equivalence of star sets and level sets of
 [1, Fig. 1 (Star Sets ↔ Level Sets)].
 
+## Inputs
+* `S` – set
+
+## Hypotheses
+* none
+
+## Conclusion
+* some level set denotes `S`
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

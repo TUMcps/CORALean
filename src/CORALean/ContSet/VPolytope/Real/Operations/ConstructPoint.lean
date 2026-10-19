@@ -10,6 +10,15 @@ public import CORALean.ContSet.VPolytope.Real.Operations.Point
 The set it denotes takes both directions of an `ext`, each of them working at
 `Fin 1` — the count's reduced spelling, which is what `Fin.sum_univ_one`
 matches against.
+
+## Inputs
+* `v` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the one-vertex polytope denotes `{v}`
 -/
 
 -- Authors:       Claude Opus 5

@@ -12,6 +12,13 @@ CORA's `@polytope/mtimes` on a vertex description: `map` at `A *ᵥ ·`, spelt w
 
 The vertex form of the linear map, [1, Eq. 23].
 
+## Inputs
+* `M` – matrix
+* `P` – polytope
+
+## Output
+* polytope of the vertices mapped by `M`
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

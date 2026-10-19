@@ -17,6 +17,13 @@ direction.
 The value [1, Def. 3] gives the vertex form, `max_i ℓᵀvᵢ`, as a certificate;
 `Theorems.SupportBoundAttained` is where it becomes that paper's equality.
 
+## Inputs
+* `P` – polytope
+* `c` – linear functional
+
+## Output
+* maximum of `c` over the vertices as a support bound
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

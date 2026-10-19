@@ -8,6 +8,16 @@ public import CORALean.ContSet.LevelSet.Real.LevelSet
 # Membership in a level set
 
 The definition, unfolded: a point is in a level set exactly when every component meets its operator.
+
+## Inputs
+* `L` – level set
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in `L` iff every row holds at `x`
 -/
 
 -- Authors:       Claude Opus 5.5

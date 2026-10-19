@@ -13,6 +13,16 @@ public import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
 `VPolytope.supportBound_attained`. At `m = 0` the polytope is empty and the value is `-∞`, which
 the paper fixes for the empty set at [1, Eq. 33].
 
+## Inputs
+* `P` – polytope
+* `c` – linear functional
+
+## Hypotheses
+* `hk` – `P` has a vertex
+
+## Conclusion
+* the support function is the maximum of `c` over the vertices
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

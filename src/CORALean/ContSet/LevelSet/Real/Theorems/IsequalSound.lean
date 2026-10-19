@@ -11,6 +11,16 @@ public import CORALean.ContSet.LevelSet.Real.Theorems.CompactExact
 A `true` of `isequal` means the two level sets denote the same set. One direction only: two
 level sets can denote one set with rows that are no permutation of each other, so no `↔` is
 claimed.
+
+## Inputs
+* `L` – level set
+* `S` – level set
+
+## Hypotheses
+* `h` – `isequal` holds
+
+## Conclusion
+* `L` and `S` denote the same set
 -/
 
 -- Authors:       Claude Opus 5.5

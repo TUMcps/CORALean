@@ -10,6 +10,17 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 
 An equality: the hull of the concatenated vertices is the hull of the vertex sets together, which
 is the hull of the two polytopes, a polytope being the hull of its vertices.
+
+## Inputs
+* `α` – ambient type
+* `P` – first polytope
+* `Q` – second polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is exactly the convex hull of the union
 -/
 
 -- Authors:       Claude Opus 5.5

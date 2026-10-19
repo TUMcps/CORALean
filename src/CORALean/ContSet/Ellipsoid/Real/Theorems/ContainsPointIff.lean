@@ -10,6 +10,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.EllipsoidNormLeOneIff
 
 For a full-rank ellipsoid, CORA's point test `ellipsoidNorm(p - c) <= 1` holds exactly when `p`
 lies in the ellipsoid: exact, at tolerance `0`.
+
+## Inputs
+* `E` – ellipsoid
+* `p` – point
+
+## Hypotheses
+* `hr` – shape has full rank
+
+## Conclusion
+* `containsPoint` holds iff `p ∈ E`
 -/
 
 -- Authors:       Claude Opus 5.5

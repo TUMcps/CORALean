@@ -15,6 +15,17 @@ public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSetLinComb
 (`setLinComb_convHull_counterexample`). `VPolytope.convHull_exact` is the hull of the union,
 which is what concatenating the lists gives at any operands.
 
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+
+## Hypotheses
+* `h₁` – `P₁` nonempty
+* `h₂` – `P₂` nonempty
+
+## Conclusion
+* the linear combination is exactly the convex hull
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

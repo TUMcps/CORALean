@@ -12,6 +12,20 @@ If the bounds `B i` are a range bound of row `i` of the function over the box `I
 verdict means the level set misses the box: `isIntersecting_ = false` is a proof of disjointness
 (each row tested by its operator in `L`, `tol ≥ 0`). Outer only: a positive verdict says
 nothing, and no exactness is claimed.
+
+## Inputs
+* `L` – level set
+* `I` – box
+* `B` – bounds of the rows over the box
+* `tol` – tolerance
+
+## Hypotheses
+* `htol` – `0 ≤ tol`
+* `hB` – `B` bounds each row's range over the box
+* `h` – `isIntersecting_uniform` fails
+
+## Conclusion
+* the level set and the box are disjoint
 -/
 
 -- Authors:       Claude Opus 5.5

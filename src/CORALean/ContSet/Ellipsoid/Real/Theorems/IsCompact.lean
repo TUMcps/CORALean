@@ -11,6 +11,15 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.ContinuousAffine
 The Euclidean unit ball is compact — closed because `‖·‖₂` is continuous, and
 inside the supremum-norm ball the ambient type carries because no coordinate
 exceeds the whole — and the affine map onto the ellipsoid is continuous.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* `E` is compact
 -/
 
 -- Authors:       Claude Opus 5

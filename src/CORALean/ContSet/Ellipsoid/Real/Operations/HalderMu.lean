@@ -13,6 +13,13 @@ polynomials of `1/λᵢ`. Lemma 2 and Corollary 1 of the paper claim that `µ₁
 strictly increasing and positive; `not_halderMu_strictly_increasing` and
 `not_halderMu_positive` show that neither holds.
 
+## Inputs
+* `lam` – eigenvalues
+* `r` – index
+
+## Output
+* coefficient `(d − r) eᵣ − (r − 1) eᵣ₋₁` of the reciprocals
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

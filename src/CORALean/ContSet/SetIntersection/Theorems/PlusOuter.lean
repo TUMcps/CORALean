@@ -11,6 +11,16 @@ public import CORALean.ContSet.SetIntersection.Theorems.Basic
 `(⋂ᵢ Aᵢ) + (⋂ⱼ Bⱼ) ⊆ ⋂ᵢⱼ (Aᵢ + Bⱼ)`: a summand from each operand's
 intersection lies in every branch of that operand, so it sums into every
 pairwise `plus`, `Plus.plus_outer` reading that sum back into the branch.
+
+## Inputs
+* `I` – first intersection
+* `J` – second intersection
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Minkowski sum lies in the result
 -/
 
 -- Authors:       Claude Sonnet 5

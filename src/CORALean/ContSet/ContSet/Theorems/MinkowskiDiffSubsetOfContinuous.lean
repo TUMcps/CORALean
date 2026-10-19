@@ -8,16 +8,30 @@ public import CORALean.Global.Brouwer
 /-!
 # The fixed-point inclusion
 
-[1, Lemma 1]: for `A ⊂ ℝⁿ` nonempty, convex and compact, `B` centrally symmetric around `c`,
-`φ : A → B` continuous and `S = {a + φ(a) | a ∈ A}`, `A ⊖ B ⊆ S - 2c` (19). A point `x` of
-`A ⊖ B` keeps `x + (2c - φ(a))` in `A`, because `2c - φ(a)` is in `B`, so `a ↦ x + 2c - φ(a)`
-maps `A` into itself and Brouwer's theorem (`exists_fixedPoint_of_isCompact_convex`) gives a
-fixed point `a`, which is `x + 2c = a + φ(a)`. Stated in any finite-dimensional real normed
-space; "centrally symmetric around `c`" is `b ∈ B → 2c - b ∈ B`.
-
-Continuity cannot be dropped ([1, Remark 1], `minkowskiDiff_not_subset_of_discontinuous`).
-Convexity of `A` can be traded for convexity and compactness of `B`
+[1, Lemma 1]: for `A ⊂ ℝⁿ` nonempty, convex and compact, `B` centrally symmetric around `c`, `φ : A
+→ B` continuous and `S = {a + φ(a) | a ∈ A}`, `A ⊖ B ⊆ S - 2c` (19). A point `x` of `A ⊖ B` keeps `x
++ (2c - φ(a))` in `A`, so `a ↦ x + 2c - φ(a)` maps `A` into itself and Brouwer's theorem
+(`exists_fixedPoint_of_isCompact_convex`) gives a fixed point `a`, which is `x + 2c = a + φ(a)`.
+"Centrally symmetric around `c`" is `b ∈ B → 2c - b ∈ B`. Continuity cannot be dropped ([1, Remark
+1], `minkowskiDiff_not_subset_of_discontinuous`); convexity of `A` can be traded for that of `B`
 (`minkowskiDiff_subset_of_continuous_of_convex`).
+
+## Inputs
+* `A` – minuend
+* `B` – subtrahend
+* `c` – center of symmetry of `B`
+* `φ` – continuous map from `A` to `B`
+
+## Hypotheses
+* `hA` – `A` compact
+* `hAc` – `A` convex
+* `hAne` – `A` nonempty
+* `hB` – `B` symmetric around `c`
+* `hφ` – `φ` continuous on `A`
+* `hφB` – `φ` maps `A` into `B`
+
+## Conclusion
+* `A ⊖ B` lies in `{a + φ a} - 2c`
 
 ## References
 

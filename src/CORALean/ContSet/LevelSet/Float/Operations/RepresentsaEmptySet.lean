@@ -12,6 +12,13 @@ The float form of the real test of the same name: the bounds `(lb, ub)` of each 
 over the whole space are stored floats. A row is infeasible when `0 < lb` (for `≤` and `=`),
 `ub < 0` (for `=`) or `0 ≤ lb` (for `<`) is certified by `ltStrict`, resp. `le`; every row must
 be, as in the real test. Sufficient only: `true` proves the set empty, `false` says nothing.
+
+## Inputs
+* `L` – level set
+* `O` – float bounds of the rows over the whole space
+
+## Output
+* `true` only if every row is certifiably infeasible
 -/
 
 -- Authors:       Claude Opus 5.5

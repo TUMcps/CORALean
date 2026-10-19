@@ -14,6 +14,20 @@ when members are dropped. Stated at families indexed by `Fin`, as a fixed-arity 
 this theorem with each member's own guarantee, and needs no theorem of its own. At a linear
 map of a zonotope bundle it is the enclosure `L Z_∩ ⊆ {L Z₁, …, L Z_s}_∩` of [1, Prop. 1].
 
+## Inputs
+* `k` – number of operand members
+* `l` – number of result members
+* `f` – operand members
+* `g` – result members
+* `Φ` – set operation
+
+## Hypotheses
+* `hΦ` – `Φ` monotone
+* `h` – each `g j` encloses `Φ` of some `f i`
+
+## Conclusion
+* `Φ` of the operand's intersection lies in the result
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

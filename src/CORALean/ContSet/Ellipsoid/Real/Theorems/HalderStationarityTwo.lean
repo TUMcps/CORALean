@@ -13,6 +13,19 @@ For `d = 2`, [1, Eq. 18] clears its denominators to the cubic of [1, Sec. IV-A.1
 `p₃(β) = 2λ₁λ₂β³ + (λ₁ + λ₂)β² − (λ₁ + λ₂)β − 2`. The positive roots of [1, Eq. 18] are
 those of `p₃`.
 
+## Inputs
+* `l₁` – first eigenvalue
+* `l₂` – second eigenvalue
+* `β` – weight of the shape sum
+
+## Hypotheses
+* `h₁` – `0 < l₁`
+* `h₂` – `0 < l₂`
+* `hβ` – `0 ≤ β`
+
+## Conclusion
+* at `d = 2` the stationarity function is a cubic over its denominators
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

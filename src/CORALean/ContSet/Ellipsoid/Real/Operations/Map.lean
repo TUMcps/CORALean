@@ -12,6 +12,13 @@ which a general module has none of — and there every linear map is a matrix. S
 `map` is `mtimes` at that matrix rather than a development of its own, which is
 the reverse of the zonotope, where `map` is primary and `mtimes` the instance of
 it at `A *ᵥ ·`.
+
+## Inputs
+* `f` – linear map
+* `E` – ellipsoid
+
+## Output
+* the image of `E` under `f`
 -/
 
 -- Authors:       Claude Opus 5

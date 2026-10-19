@@ -14,6 +14,15 @@ may jump. With `A = B = [-1, 1]` (so `c = 0`), `A ⊖ B = {0}`, and `φ = sign` 
 maps `A` into `B` but gives `S = [-2, -1) ∪ [1, 2]`, which misses `0`. Lemma 1 itself, for a
 continuous `φ`, is `minkowskiDiff_subset_of_continuous`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* `[-1,1] ⊖ [-1,1]` is not inside the graph set of a discontinuous `φ`
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for

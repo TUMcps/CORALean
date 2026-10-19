@@ -14,6 +14,15 @@ one half of. A direction `a` separates: if every point of the set reads at most 
 and the proposed length `s ≥ √(aᵀ Q a)` (the square root the bound needs) are the caller's; `s` is
 checked by one float comparison, and the reading of the point is rounded down. Only `true` is
 certain; `false` says only that this direction does not separate.
+
+## Inputs
+* `E` – ellipsoid
+* `p` – point
+* `a` – separating direction
+* `s` – length bounding `√(aᵀ Q a)`
+
+## Output
+* `true` only if the direction proves `p ∉ E`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,13 @@ public import CORALean.Global.ExactScalar
 `dims i`, applied through the set's own `mtimes`. CORA's `contSet/project` is an abstract stub
 and each class implements its own, mostly exactly; this is the one that every class with `mtimes`
 has, an enclosure in general, and computable over any scalar that has `0` and `1`.
+
+## Inputs
+* `s` – set
+* `dims` – kept coordinates
+
+## Output
+* `s` projected onto the coordinates `dims`
 -/
 
 -- Authors:       Claude Opus 5.5

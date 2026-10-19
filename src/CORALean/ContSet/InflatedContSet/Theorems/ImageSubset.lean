@@ -10,6 +10,19 @@ public import CORALean.ContSet.InflatedContSet.InflatedContSet
 The case of `map_subset` with nothing to carry between the two parts: the nominal part lands
 in the result's nominal part and the box in the result's box. Selecting or padding coordinates
 rounds nothing, so it is this case.
+
+## Inputs
+* `s` – inflated set
+* `t` – inflated set
+* `f` – map
+
+## Hypotheses
+* `hadd` – `f` additive
+* `hnominal` – nominal image lies in the nominal part of `t`
+* `herror` – box image lies in the box of `t`
+
+## Conclusion
+* the image of `s` lies in `t`
 -/
 
 -- Authors:       Claude Opus 5.5

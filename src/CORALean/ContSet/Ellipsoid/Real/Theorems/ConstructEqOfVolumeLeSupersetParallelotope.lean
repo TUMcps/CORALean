@@ -19,6 +19,20 @@ Equal volume makes every inequality behind `isLeast_volume_superset_parallelotop
 (`eq_smul_one_of_det_eq_trace_div_pow`), `M = F⁻¹G`; then `K = √n M` is orthogonal and
 `F = √n G Kᵀ`, which maps the unit ball onto the image of the unit ball under `√n G`.
 
+## Inputs
+* `G` – generator matrix
+* `F` – factor
+* `z` – center of the parallelotope
+* `q` – center
+
+## Hypotheses
+* `hG` – `G` invertible
+* `hsub` – the ellipsoid contains the parallelotope
+* `hvol` – volume at most that of `E(nGGᵀ, z)`
+
+## Conclusion
+* the ellipsoid equals `E(n G Gᵀ, z)`
+
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean

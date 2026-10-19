@@ -11,6 +11,16 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 A linear map commutes with the convex hull, and mapping the vertices is the same
 as taking the image of their range. Image is the operation this representation
 is exact under, where a halfspace description is not.
+
+## Inputs
+* `f` – linear map
+* `P` – polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image of `P` under `f` is exactly the result
 -/
 
 -- Authors:       Claude Opus 5

@@ -9,6 +9,19 @@ public import CORALean.ContSet.VPolytope.Float.Operations.ColumnGap
 
 Storing the lower rounding of one column leaves a residual the gap admits,
 stated per column because that is how a vertex is placed.
+
+## Inputs
+* `k` – number of vertices
+* `lo` – lower roundings of the vertices
+* `hi` – upper roundings of the vertices
+* `p` – point
+* `l` – vertex index
+
+## Hypotheses
+* `h` – `p` lies between the roundings of vertex `l`
+
+## Conclusion
+* the residual of `p` lies in the column gap
 -/
 
 -- Authors:       Claude Opus 5

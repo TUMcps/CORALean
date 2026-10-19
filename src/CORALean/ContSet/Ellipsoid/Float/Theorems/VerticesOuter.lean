@@ -10,6 +10,16 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.AbsSubLeBoxRadius
 
 `x = y + e` with `|y - q| ≤ ρ` (`abs_sub_le_boxRadius`) and `e` in the error box: so `x` is
 between the two rounded ends, which is a point of the segment joining them. Outer only.
+
+## Inputs
+* `k` – Newton steps of the root
+* `E` – one-dimensional ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* `E` lies in the convex hull of its vertices
 -/
 
 -- Authors:       Claude Opus 5.5

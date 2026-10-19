@@ -7,18 +7,23 @@ public import CORALean.ContSet.LevelSet.Real.LevelSet
 /-!
 # `isequal` of CORA's levelSet equates level sets that differ
 
-`aux_isequal_levelSet` renames the variables of each equation to placeholders by their order
-among the equation's own used variables, `subs(ls.eq(i), usedVars1, subNames)` and
-`subs(S.eq(j), usedVars2, subNames)`, and calls the rows equal when `simplify` of the difference
-is `0`. The table `symNames(:,2)` that is meant to record which variable of the second level set
-stands for which of the first is written (`symNames(idx,2) = usedVars2`) and never read, so
-nothing makes the renamings of different rows, or of the first row, agree with each other.
-For the level sets `x₁ ≤ 0` and `x₂ ≤ 0` over the variables `[x₁; x₂]` both equations become the
-placeholder `xyz_1`, and CORA answers `true` (read from the source, not run).
+`aux_isequal_levelSet` renames the variables of each equation to placeholders by their order among
+the equation's own used variables, `subs(ls.eq(i), usedVars1, subNames)` and `subs(S.eq(j),
+usedVars2, subNames)`, and calls rows equal when `simplify` of the difference is `0`. The table
+`symNames(:,2)` meant to record which variable of the second level set stands for which of the first
+is written and never read, so nothing makes the renamings of different rows agree. For the level
+sets `x₁ ≤ 0` and `x₂ ≤ 0` over `[x₁; x₂]` both equations become the placeholder `xyz_1`, and CORA
+answers `true` (read from the source, not run). `LevelSet.aux_rowMatchCora` is that per-row test;
+the theorem says it holds for the two rows while the level sets differ.
 
-`LevelSet.aux_rowMatchCora` is that per-row test, the equation of one set equal to the other's
-after some renaming of the variables (a permutation); the theorem says it holds for the two
-rows while the level sets differ.
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA equates two level sets that differ
 -/
 
 -- Authors:       Claude Opus 5.5

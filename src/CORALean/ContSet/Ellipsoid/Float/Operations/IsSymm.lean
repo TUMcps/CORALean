@@ -14,6 +14,12 @@ Q j i` at every pair, which is the stricter one, so what it accepts CORA accepts
 interface has no exact equality, and needs none: `le` constrains a `true` answer only, `a ≤ b` and
 `b ≤ a` make `a = b`, and the loop visits both `(i, j)` and `(j, i)`, so `le (Q i j) (Q j i)` at
 every pair is `Q i j = Q j i` at every pair (`Theorems/SymmOfIsSymm`).
+
+## Inputs
+* `Q` – shape matrix
+
+## Output
+* `true` only if `Q` is symmetric
 -/
 
 -- Authors:       Claude Opus 5.5

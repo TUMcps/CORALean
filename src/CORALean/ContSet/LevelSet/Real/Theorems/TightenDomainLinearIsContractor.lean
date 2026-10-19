@@ -21,6 +21,18 @@ the box, so `κᵢ` lies in the interval gradient `kᵢ`. Solving for `xⱼ` and
 interval arithmetic puts `xⱼ` in the tightened range, as long as `0 ∉ kⱼ`; the later coordinates
 see the narrowed box, which still holds `x`.
 
+## Inputs
+* `f` – equation function
+* `grad` – interval gradient of `f`
+* `maxIter` – number of sweeps
+
+## Hypotheses
+* `hf` – `f` differentiable
+* `hg` – `grad` encloses the gradient of `f`
+
+## Conclusion
+* the linear tightening is a contractor of `f`
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

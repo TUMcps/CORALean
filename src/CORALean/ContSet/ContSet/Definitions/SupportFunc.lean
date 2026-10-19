@@ -12,6 +12,13 @@ reals so that the two conventions of [1, Eq. 33] are the definition rather than 
 the empty set, `+∞` where `S` is unbounded in direction `ℓ`. A `SupportBound` is a real number
 above this; nothing computes it.
 
+## Inputs
+* `S` – set
+* `ℓ` – linear functional
+
+## Output
+* supremum of `ℓ` over `S` in the extended reals
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

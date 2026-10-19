@@ -10,6 +10,15 @@ public import Mathlib.Tactic.FieldSimp
 
 The mean of `k > 0` vertices is the convex combination with every weight `1/k`. (For no vertices
 the polytope is empty, and CORA returns an empty vector.)
+
+## Inputs
+* `P` – polytope
+
+## Hypotheses
+* `hk` – `P` has a vertex
+
+## Conclusion
+* the center lies in `P`
 -/
 
 -- Authors:       Claude Opus 5.5

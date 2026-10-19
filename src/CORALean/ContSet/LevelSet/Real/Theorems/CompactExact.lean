@@ -11,6 +11,15 @@ public import CORALean.ContSet.LevelSet.Real.Operations.Compact
 The set denoted by `compact_ L` (the level set's, or `∅` for the `emptySet` it can return) is
 the set `L` denotes, in every case: a pair of rows `f ⋈₁ 0`, `f ⋈₂ 0` (or with `-f`) merges to the
 one row, or to `∅` when the two operators contradict each other.
+
+## Inputs
+* `L` – level set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the compacted level set denotes the same set
 -/
 
 -- Authors:       Claude Opus 5.5

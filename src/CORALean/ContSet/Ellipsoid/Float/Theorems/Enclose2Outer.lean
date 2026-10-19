@@ -9,6 +9,17 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
 # `Ellipsoid.enclose₂` contains the segments
 
 Both ends of a segment are in the hull by its contract, and the float hull is convex.
+
+## Inputs
+* `orOA` – outer hull of two ellipsoids
+* `E` – ellipsoid
+* `E2` – ellipsoid
+
+## Hypotheses
+* `hor` – `orOA` contains both operands
+
+## Conclusion
+* the linear combination of `E` and `E2` lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

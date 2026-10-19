@@ -15,6 +15,13 @@ be able to reach the floating-point scalar.
 
 `maximum` rather than `max`, and nothing rounds: choosing the larger of two
 floats introduces no error.
+
+## Inputs
+* `u` – float bound for `S`
+* `v` – float bound for `T`
+
+## Output
+* float bound for the linear combination of `S` and `T`
 -/
 
 -- Authors:       Claude Sonnet 5

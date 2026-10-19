@@ -11,6 +11,15 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 
 `Q z = 0` gives `‖Gᵀ z‖₂ = 0` (`Q = G Gᵀ`, `G = Q^(1/2)`), so `z` is orthogonal to everything `G`
 reaches, which at full rank is the whole space, `G` having the rank of `G Gᵀ = Q`.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* `hr` – shape has full rank
+
+## Conclusion
+* the shape matrix is invertible
 -/
 
 -- Authors:       Claude Opus 5.5

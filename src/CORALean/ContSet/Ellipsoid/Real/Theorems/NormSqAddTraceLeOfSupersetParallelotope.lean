@@ -18,6 +18,19 @@ For `Z(G, z̄) = {z̄ + Gβ | ‖β‖∞ ≤ 1}` inside `{q + Fu | ‖u‖₂ �
 (`Zonotope.sign_sum_covariance`), hence `‖w‖₂² + tr(MMᵀ) ≤ 1`. The bound behind the least volume
 in [1, Sec. III-A (Remark a)], and, at equality, behind its uniqueness.
 
+## Inputs
+* `G` – generator matrix of the parallelotope
+* `F` – factor of the ellipsoid
+* `z` – center of the parallelotope
+* `q` – center of the ellipsoid
+
+## Hypotheses
+* `hFu` – `F` invertible
+* `hsub` – the ellipsoid contains the parallelotope
+
+## Conclusion
+* center offset squared plus trace of `(F⁻¹ G)(F⁻¹ G)ᵀ` is at most 1
+
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean

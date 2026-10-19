@@ -12,6 +12,15 @@ For the single constraint `x = 0` (one `==` row, as a cell `{'=='}`) and the box
 function `x` has range `[0, 1]` there, so the level set `{0}` meets the box, yet the cell branch
 tests `lb < 0` at `==` with `lb = 0` and answers `false`, which `isIntersecting_` reads as
 "disjoint" (read from the source, not run).
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the cell branch reports disjoint though the level set meets the box
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -21,6 +21,15 @@ not at `s`: it is `{s + E^(1/2) x | ‖x‖ ≤ 1}` that equals the first (`mem_
 For `n = 1`, `E = 1`, `s = 2` the first set is `[1, 3]` and the second `[−3, −1]`; `3` is in
 the first only.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed image form differs from the ellipsoid
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

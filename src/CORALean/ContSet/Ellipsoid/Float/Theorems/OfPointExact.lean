@@ -12,6 +12,15 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfShapeEq
 
 The nominal part is the exact layer's point ellipsoid at the stored point read as reals, and the
 error box is the origin box.
+
+## Inputs
+* `p` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is exactly `{p}`
 -/
 
 -- Authors:       Claude Opus 5.5

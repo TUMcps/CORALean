@@ -14,6 +14,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 The checked half-widths make the interval hull hold the ellipsoid (`Ellipsoid.interval_contains`),
 whose Lebesgue measure the rounded-up product bounds (`Interval.volume_le`). An upper bound only.
+
+## Inputs
+* `E` – ellipsoid
+* `s` – half-width per coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* every returned value is at least the volume of `E`
 -/
 
 -- Authors:       Claude Opus 5.5

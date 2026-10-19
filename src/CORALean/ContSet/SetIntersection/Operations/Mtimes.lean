@@ -11,6 +11,15 @@ Maps `Mtimes.mtimes` over every branch, at whatever family carries it — the
 image of an intersection sits inside the intersection of the images, never
 equal to it in general, so this is the outer construction the intersection
 side of the tree already expects.
+
+## Inputs
+* `m` – rows of the matrix
+* `n` – columns of the matrix
+* `M` – matrix
+* `I` – intersection
+
+## Output
+* `M` applied to every member
 -/
 
 -- Authors:       Claude Sonnet 5

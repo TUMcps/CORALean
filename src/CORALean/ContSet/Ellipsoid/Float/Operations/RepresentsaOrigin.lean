@@ -10,6 +10,12 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 CORA's `@ellipsoid/representsa_` at type `origin` with tolerance `0`: the shape matrix and the
 center are `0`, and the error box is `{0}`. A `true` is sound, a `false` decides nothing.
+
+## Inputs
+* `E` – ellipsoid
+
+## Output
+* `true` only if shape, center and error box are zero
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

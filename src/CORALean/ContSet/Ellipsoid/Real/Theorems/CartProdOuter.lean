@@ -13,6 +13,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeEllipsoidContain
 Each factor lies in its bounding box (`Ellipsoid.interval_contains`), the product of the boxes is
 the box of the concatenated bounds, and a box lies in its ellipsoid. Outer only, as CORA's
 `'outer'` mode: the product of two ellipsoids is not an ellipsoid.
+
+## Inputs
+* `E₁` – first ellipsoid
+* `E₂` – second ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* the product of the two ellipsoids lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

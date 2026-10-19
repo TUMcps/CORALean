@@ -10,6 +10,15 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.Basic
 
 `G = Q^(1/2)` is the nonnegative square root of a positive semi-definite matrix, which is
 Hermitian, and over ℝ that is `Gᵀ = G`.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* the generator matrix is symmetric
 -/
 
 -- Authors:       Claude Opus 5.5

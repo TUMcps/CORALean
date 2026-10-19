@@ -11,6 +11,12 @@ public import CORALean.ContSet.VPolytope.Real.Operations.Point
 CORA's `@matPolytope/mpower`: the zero power is the identity (a single vertex), the first is the
 polytope itself, and from the second on `matP * matP` is multiplied by `matP` on the right, once per
 further exponent. Only for square matrices.
+
+## Inputs
+* `P` – matrix polytope
+
+## Output
+* the `k`-th matrix power of `P`, left to right
 -/
 
 -- Authors:       Claude Sonnet 5.5

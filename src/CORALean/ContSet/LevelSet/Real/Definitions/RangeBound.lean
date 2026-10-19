@@ -14,6 +14,15 @@ the minimum and maximum to exist. How it is computed (interval arithmetic, Taylo
 left open, as in [1]; [1, Sec. 4.1] decides with it whether a set leaves an invariant or meets
 a guard.
 
+## Inputs
+* `f` – function
+* `X` – set
+* `l` – lower bound
+* `u` – upper bound
+
+## Output
+* `[l, u]` contains the range of `f` on `X`
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

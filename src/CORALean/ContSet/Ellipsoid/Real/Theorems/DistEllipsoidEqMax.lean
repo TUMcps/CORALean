@@ -20,6 +20,16 @@ the maximum is the Euclidean distance: the nearest point `p = y₀ - x₀` of th
 every value is `≤ 0`; touching ones give `0`, not the negative value the paper states
 [1, Sec. II (sign of the distance)].
 
+## Inputs
+* `E₁` – first ellipsoid
+* `E₂` – second ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* the distance of disjoint ellipsoids is the maximum over unit directions
+
 ## References
 
 * [1] A. A. Kurzhanskiy and P. Varaiya. "Ellipsoidal Toolbox (ET)". In Proc. of the 45th

@@ -12,6 +12,14 @@ public import CORALean.ContSet.Taylm.Real.Definitions.TaylorModelOn
 replaced by `p_k(x)`. [1]'s `∅` remainder is the zero box (`TaylorModelOn`).
 `Theorems.IntersectLevelSetBoxSubset` and `…Exact` say what it encloses.
 
+## Inputs
+* `I` – box
+* `k` – solved coordinate
+* `p` – polynomial for the solved coordinate
+
+## Output
+* Taylor model of the box cut by `x(k) = p(x)`
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

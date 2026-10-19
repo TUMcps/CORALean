@@ -9,6 +9,15 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.RepresentsaPointIff
 # `Ellipsoid.representsa_origin_iff`
 
 The origin is the point whose center is `0`: `{q} = {0}` iff `q = 0`.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* `E` is the origin iff `representsa_origin` holds
 -/
 
 -- Authors:       Claude Opus 5.5

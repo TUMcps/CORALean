@@ -12,6 +12,12 @@ quotient by the vertex count, which a float cannot hold exactly, so this returns
 it: per coordinate the vertex sum rounded down and up, divided by the count rounded up and by it
 rounded down (at least `1`), the outer of the two quotients taken each way, which is sound for
 either sign of the sum. The box is not a point of the set; `centerBox_meets` says it holds one.
+
+## Inputs
+* `P` – polytope
+
+## Output
+* box around the mean of the vertices
 -/
 
 -- Authors:       Claude Opus 5.5

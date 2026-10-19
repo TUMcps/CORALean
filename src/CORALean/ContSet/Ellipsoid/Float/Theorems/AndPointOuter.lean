@@ -16,6 +16,19 @@ branches denote `{p}`, which holds `E ∩ {p}`; the empty branch is taken only w
 has proved `p ∉ E`, so `E ∩ {p}` is empty there. Exact on the two certified branches, as over ℝ
 (`Real.Ellipsoid.andPoint_exact`): a certified `p ∈ E` makes `{p} = E ∩ {p}`; only the undecided
 branch may return the point for an `E` that misses it.
+
+## Inputs
+* `E` – ellipsoid
+* `p` – point
+* `w` – solve of `Q w = p - q`
+* `a` – separating direction
+* `s` – length bounding `√(aᵀ Q a)`
+
+## Hypotheses
+* none
+
+## Conclusion
+* the intersection of `E` with the point lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,18 +10,21 @@ public import Mathlib.Tactic.Positivity
 /-!
 # `VPolytope.bilin_k`
 
-`bilin`'s vertex count: every vertex of `P` paired with every vertex of `Q`,
-so the count is their product outright, not a sum plus a cross block the way
-`Zonotope.bilin_h` is — a vertex description has no linear part to keep
-separate from the pairing. `rfl`, since `Operations/Bilin.lean` states `k`
-directly. `BilinKIsBigO.lean` puts this in `O`-notation.
+`bilin`'s vertex count: every vertex of `P` paired with every vertex of `Q`, so the count is their
+product outright, not a sum plus a cross block the way `Zonotope.bilin_h` is — a vertex description
+has no linear part to keep separate from the pairing. `rfl`, since `Operations/Bilin.lean` states
+`k` directly. `BilinKIsBigO.lean` puts this in `O`-notation: the count is `O(m ^ 2)`.
 
-## `bilin`'s vertex count is `O(m ^ 2)`
+## Inputs
+* `f` – bilinear map
+* `P` – first polytope
+* `Q` – second polytope
 
-Not a bare arithmetic fact about `m * m`, but one tied to `bilin` through a
-family of vertex sets whose sizes grow as `m`. `bilin_k` reduces the left side
-to that product outright, which `m ^ 2` dominates for every `m`, so the bound
-needs no filter condition beyond what `IsBigO.of_bound` always asks for.
+## Hypotheses
+* none
+
+## Conclusion
+* the vertex count of `bilin f P Q` is `P.k * Q.k`
 -/
 
 -- Authors:       Claude Opus 5

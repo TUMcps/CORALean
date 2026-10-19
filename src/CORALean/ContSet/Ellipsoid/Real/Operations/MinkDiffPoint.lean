@@ -11,6 +11,13 @@ CORA's `@ellipsoid/minkDiff` with a numeric column subtrahend: `s = sum(S,2)` is
 and the result is `ellipsoid(E.Q, E.q - s)`, the same shape at the shifted center. The
 ellipsoid-minus-ellipsoid branch (`priv_minkDiffEllipsoid`: `isBigger`, directions `L` filtered by
 `isBadDir`, an intersection or union of the per-direction ellipsoids) is not formalized.
+
+## Inputs
+* `E` – ellipsoid
+* `s` – point
+
+## Output
+* `E` with its center moved to `q - s`
 -/
 
 -- Authors:       Claude Opus 5.5

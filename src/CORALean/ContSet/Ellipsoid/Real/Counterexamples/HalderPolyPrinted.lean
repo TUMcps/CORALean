@@ -13,6 +13,15 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderMu
 term again. At `d = 2`, `λ = (1, 1)` and `β = 1` the polynomial (22) is `0`, as
 `β² − 1/λᵢ = 0`, and the printed expansion is `2 + 2 + 2 − 2 − 2 = 2`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed expansion of the polynomial fails
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

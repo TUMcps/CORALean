@@ -18,6 +18,17 @@ q + G B`, `G = Q^(1/2)`, the cut is `q + G S` for the slice `S = {u ∈ B | wᵀ
 ‖w‖²` scaled by that radius: the ellipsoid of shape `r² G P (G P)ᵀ`. When `w = 0` the hyperplane
 contains all of `E` or none of it.
 
+## Inputs
+* `E` – ellipsoid
+* `v` – hyperplane normal
+* `c` – hyperplane offset
+
+## Hypotheses
+* `hne` – the intersection is nonempty
+
+## Conclusion
+* the intersection with the hyperplane is an ellipsoid
+
 ## References
 
 * [1] A. A. Kurzhanskiy and P. Varaiya. "Ellipsoidal Toolbox (ET)". In Proc. of the 45th

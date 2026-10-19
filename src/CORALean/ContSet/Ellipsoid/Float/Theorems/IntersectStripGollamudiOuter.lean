@@ -22,16 +22,27 @@ public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
 /-!
 # The float Gollamudi update encloses the intersection with one strip
 
-Outer: every point of `E` with `|c x - y| ≤ φ` lies in
-`Ellipsoid.intersectStripGollamudi steps E c φ y λ`, for every `λ`, `steps` and input, with no
-positive-definiteness or invertibility hypothesis; a `Q` not certified positive semi-definite, a
-`λ` outside `[0, 1)` or a failed check returns `E` itself. A point `x = q + G u + e` of `E`,
-`G = Q^(1/2)`, satisfies `|vᵀ u - δ| ≤ φ'` for `v = G cᵀ`, the stored `δ` and the widened `φ'`,
-so `Ellipsoid.exists_ball_of_strip` writes `u = κ v + α w + β (vᵀ w) v` with `‖w‖₂ ≤ 1`, every
-hypothesis of it read off a directed rounding (`ν = vᵀ v = c Q cᵀ` through `quadUp`/`quadDown`).
-Then `x = q + κ W + G N w + e`, `W = G v = Q cᵀ`: the stored center plus its rounding, a point of
-the ellipsoid of `G N (G N)ᵀ = α² Q + (2αβ + β²ν) W Wᵀ`, which the stored shape dominates
-(`inflate_sub_posSemidef`), and `e`. Not exact.
+Outer: every point of `E` with `|c x - y| ≤ φ` lies in `Ellipsoid.intersectStripGollamudi steps E c
+φ y λ`, for every `λ`, `steps` and input; a `Q` not certified positive semi-definite, a `λ` outside
+`[0, 1)` or a failed check returns `E` itself. A point `x = q + G u + e` of `E` satisfies `|vᵀ u -
+δ| ≤ φ'` for `v = G cᵀ`, so `Ellipsoid.exists_ball_of_strip` writes `u = κ v + α w + β (vᵀ w) v`
+with `‖w‖₂ ≤ 1`, every hypothesis read off a directed rounding. Then `x = q + κ W + G N w + e`, `W =
+Q cᵀ`: the stored center plus its rounding, a point of the ellipsoid of `G N (G N)ᵀ`, which the
+stored shape dominates (`inflate_sub_posSemidef`), and `e`. Not exact.
+
+## Inputs
+* `steps` – Newton steps per root
+* `E` – ellipsoid
+* `c` – measurement row
+* `φ` – strip half-width
+* `y` – measurement
+* `lam` – update weight
+
+## Hypotheses
+* none
+
+## Conclusion
+* the intersection of `E` with the strip lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

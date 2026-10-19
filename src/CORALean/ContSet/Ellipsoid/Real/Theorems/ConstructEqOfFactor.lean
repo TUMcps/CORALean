@@ -9,15 +9,24 @@ public import Mathlib.LinearAlgebra.Matrix.Rank
 /-!
 # Any factor of the shape matrix generates the ellipsoid
 
-For any `F` with `F Fᵀ = Q`, of any width `k`, `{q + F u | ‖u‖₂ ≤ 1}` is the ellipsoid of `Q`.
-The square root `G` is one such factor; `M G` is one of `M Q Mᵀ`, and two scaled square roots
-side by side are one of a weighted sum. That is how an operation computed on `Q`, as CORA
-computes it, is proved on generators.
+For any `F` with `F Fᵀ = Q`, of any width `k`, `{q + F u | ‖u‖₂ ≤ 1}` is the ellipsoid of `Q`. The
+square root `G` is one such factor; `M G` is one of `M Q Mᵀ`, and two scaled square roots side by
+side are one of a weighted sum, which is how an operation computed on `Q` is proved on generators.
 
-Why: two factors of one `Q` map the unit ball onto the same set. A point `F u` lies in the range
-of `F`, which is the range of `F Fᵀ` (the two have equal rank), so `F u = Q w` for some `w`, and
-`H v` with `v = Hᵀ w` is the same point. Its length is that of `Fᵀ w`, as both square to
-`wᵀ Q w`, and `‖Fᵀ w‖₂² = (Fᵀ w)ᵀ u ≤ ‖Fᵀ w‖₂ ‖u‖₂` bounds that by `‖u‖₂ ≤ 1`.
+Why: a point `F u` lies in the range of `F`, which is that of `F Fᵀ`, so `F u = Q w` and `H v` with
+`v = Hᵀ w` is the same point. Its length is that of `Fᵀ w`, as both square to `wᵀ Q w`, and `‖Fᵀ
+w‖₂² = (Fᵀ w)ᵀ u ≤ ‖Fᵀ w‖₂ ‖u‖₂` bounds that by `‖u‖₂ ≤ 1`.
+
+## Inputs
+* `E` – ellipsoid
+* `k` – factor width
+* `F` – factor
+
+## Hypotheses
+* `hF` – `F Fᵀ = Q`
+
+## Conclusion
+* `E` is the image of the unit ball under `F` about `q`
 -/
 
 -- Authors:       Claude Opus 5.5

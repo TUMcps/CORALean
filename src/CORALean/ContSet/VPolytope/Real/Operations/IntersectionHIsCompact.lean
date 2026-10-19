@@ -17,6 +17,18 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalVPolytopeContain
 
 The halfspace description sits inside one operand's own box, which a vertex
 description already knows is compact.
+
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+* `Aq₁` – cut directions of the first operand
+* `Aq₂` – cut directions of the second operand
+
+## Hypotheses
+* none
+
+## Conclusion
+* the halfspace intersection is compact
 -/
 
 -- Authors:       Claude Opus 5

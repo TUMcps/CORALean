@@ -17,6 +17,17 @@ the global one over `β > 0`: the derivative is `−(1/(β(1+β)))` times a stri
 function that vanishes at the root, so it is negative before it and positive after, and the
 criterion falls to the root and rises from it.
 
+## Inputs
+* `r` – root of the stationarity equation
+
+## Hypotheses
+* `hlam` – every `λᵢ` positive
+* `hr` – `0 < r`
+* `hroot` – the stationarity function vanishes at `r`
+
+## Conclusion
+* `r` minimises the criterion on `(0, ∞)`
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

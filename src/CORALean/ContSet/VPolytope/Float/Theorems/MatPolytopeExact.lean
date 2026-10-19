@@ -10,6 +10,15 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
 
 Exact: no entry is rounded, so the set the float `matPolytope` stands for is the image of the
 input's set under `v ↦ (v · ·)`, nominal part and error box alike.
+
+## Inputs
+* `P` – polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is exactly the image under the column embedding
 -/
 
 -- Authors:       Claude Opus 5.5

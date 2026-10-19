@@ -10,6 +10,12 @@ public import CORALean.ContSet.VPolytope.Float.VPolytope
 CORA's `matPolytope(P)`: every vertex read as the `n × 1` matrix with that column. Nothing is
 computed on the entries, so nothing rounds: the vertices and the two bounds of the error box are
 re-indexed into `Mat 𝕋 n 1`. This is a `VPolytope` of the ambient type `Mat 𝕋 n 1`.
+
+## Inputs
+* `P` – polytope
+
+## Output
+* the vertices of `P` as `n × 1` matrices
 -/
 
 -- Authors:       Claude Opus 5.5

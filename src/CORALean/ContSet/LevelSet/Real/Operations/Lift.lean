@@ -9,6 +9,13 @@ public import CORALean.ContSet.LevelSet.Real.LevelSet
 
 CORA's `@levelSet/lift_`: the equation on the old variables, substituted by the new variables
 `x(dims)`. The new coordinates are unconstrained.
+
+## Inputs
+* `L` – level set
+* `dims` – new coordinate of each variable
+
+## Output
+* level set over the larger space with variables moved to `dims`
 -/
 
 -- Authors:       Claude Opus 5.5

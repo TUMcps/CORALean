@@ -14,6 +14,14 @@ matrices `E/n²` and `(1+ε) E` about the same center (`ofShape`, the checked co
 `1 + ε` could be negative for `ε ≤ -1`, where the paper's `ε > 0` does not hold). For `ε = 0` and
 the Löwner-John ellipse of [1, Thm. 1.1] that is `E(E/n², s) ⊆ C ⊆ E(E, s)`.
 
+## Inputs
+* `ε` – approximation factor
+* `C` – convex set
+* `E` – ellipsoid
+
+## Output
+* `E/n²` lies in `C` which lies in `(1+ε)E`
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

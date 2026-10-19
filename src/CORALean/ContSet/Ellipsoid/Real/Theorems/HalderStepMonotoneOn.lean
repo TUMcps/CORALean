@@ -15,6 +15,15 @@ Cross-multiplying, `A(x) B(y) ≤ A(y) B(x)` for `x ≤ y` is a double sum whose
 as `−(y − x)(a − b)² / ((1+xa)(1+xb)(1+ya)(1+yb)) ≤ 0`. Monotone and with a unique fixed
 point, the step brings every orbit to it ([1, Thm. 3]).
 
+## Inputs
+* none
+
+## Hypotheses
+* `hlam` – every `λᵢ` positive
+
+## Conclusion
+* the step is monotone on `[0, ∞)`
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

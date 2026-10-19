@@ -15,6 +15,15 @@ one). The other norm types and a non-zero center are errors in CORA (`CORA:noExa
 `CORA:notSupported`); CORA's `-Inf` for an empty ellipsoid does not arise, an `Ellipsoid` here
 always holds its center. The dimension is positive, as the largest eigenvalue of a `0 × 0` matrix
 is not defined.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* `hn` – `1 ≤ n`
+
+## Output
+* spectral norm `√(max eig(Q))`
 -/
 
 -- Authors:       Claude Opus 5.5

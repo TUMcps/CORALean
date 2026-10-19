@@ -16,6 +16,16 @@ summand's derivative `(λᵢ − 1/β²)/((1 + 1/β) + (1 + β)λᵢ)` is that f
 corresponding term of [1, Eq. 18]. The first-order condition for [1, Eq. 14] is therefore
 the vanishing of [1, Eq. 18], the prefactor being nonzero.
 
+## Inputs
+* `β` – weight of the shape sum
+
+## Hypotheses
+* `hlam` – every `λᵢ` positive
+* `hβ` – `0 < β`
+
+## Conclusion
+* the criterion's derivative is `−1/(β(1+β))` times the stationarity sum
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

@@ -14,6 +14,17 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.AddMulVecMemConstruct
 The certified `Q` makes the nominal part the ellipsoid of `Q`; `wᵀ Q w ≤ quadUp w ≤ 1` puts
 `q + Q w` in it (`Real.Ellipsoid.add_mulVec_mem_construct`), and the remainder `p - q - Q w` lies
 between the two directed roundings the test compared with the error box, so in the box.
+
+## Inputs
+* `E` – ellipsoid
+* `p` – point
+* `w` – solve of `Q w = p - q`
+
+## Hypotheses
+* `h` – `containsPoint` returns `true`
+
+## Conclusion
+* `p` lies in `E`
 -/
 
 -- Authors:       Claude Opus 5.5

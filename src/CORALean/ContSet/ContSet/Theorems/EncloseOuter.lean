@@ -12,6 +12,17 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 the two operands where both are convex (`LinComb.convexHull_subset_linComb`), so for a convex
 representation this contains CORA's hull; it is an enclosure, not an equality, for any
 representation whose `linComb` is coarser than the hull.
+
+## Inputs
+* `s` – set
+* `M` – matrix
+* `s₂` – set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the linear combination of `s` and `M s ⊕ s₂` lies in the enclosure
 -/
 
 -- Authors:       Claude Sonnet 5.5

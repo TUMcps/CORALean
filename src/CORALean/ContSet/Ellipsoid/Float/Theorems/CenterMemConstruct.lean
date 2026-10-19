@@ -11,6 +11,15 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
 The stored center, read as reals, lies in the nominal part at the zero coefficient vector, and in
 the whole set once the error box holds `0`, which a box built by the operations does and an
 arbitrary one need not (as for `Zonotope.center_mem_construct`).
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* `h0` – error box contains the origin
+
+## Conclusion
+* the stored center lies in `E`
 -/
 
 -- Authors:       Claude Opus 5.5

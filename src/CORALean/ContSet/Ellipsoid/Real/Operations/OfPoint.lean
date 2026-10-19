@@ -9,6 +9,12 @@ public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 
 CORA's `ellipsoid(zeros(n), v)`: the zero shape matrix, a degenerate ellipsoid denoting the single
 point `v`. What `OfPoint` asks every representation with a point operation to supply.
+
+## Inputs
+* `v` – point
+
+## Output
+* ellipsoid with zero shape at `v`
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

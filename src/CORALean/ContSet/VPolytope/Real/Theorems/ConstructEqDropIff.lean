@@ -11,6 +11,16 @@ public import CORALean.Global.DropIdx
 [1, Eq. 2]: dropping the `j`-th point leaves the polytope unchanged exactly when that point lies
 in the polytope of the others.
 
+## Inputs
+* `P` – polytope
+* `j` – vertex index
+
+## Hypotheses
+* none
+
+## Conclusion
+* dropping vertex `j` keeps the set iff `P.V j` lies in the rest
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

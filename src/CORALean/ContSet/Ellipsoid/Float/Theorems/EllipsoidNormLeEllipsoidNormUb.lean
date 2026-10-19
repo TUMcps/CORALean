@@ -14,6 +14,18 @@ The checked equation, read as reals, is `Q w = p`. At full rank the nominal `Q` 
 positive semi-definite and invertible (`isUnit_shape`), so `Q⁻¹ p = w` and the norm is
 `√(pᵀ w)`, `pᵀ w = wᵀ Q w ≥ 0`, which the rounded-up dot product and square root bound. A refused
 `Q` has rank `0`, so full rank is dimension `0`, where the norm is `0`.
+
+## Inputs
+* `prec` – Newton steps of the root
+* `E` – ellipsoid
+* `p` – point
+* `w` – solve of `Q w = p`
+
+## Hypotheses
+* `hr` – nominal shape has full rank
+
+## Conclusion
+* every returned bound is at least the ellipsoid norm of `p`
 -/
 
 -- Authors:       Claude Opus 5.5

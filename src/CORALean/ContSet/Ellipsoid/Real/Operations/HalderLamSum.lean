@@ -12,6 +12,13 @@ public import Mathlib.Data.Real.Basic
 The denominator `∑ᵢ λᵢ/(1 + β λᵢ)` of the fixed-point step [1, Eq. 26], the other side of
 the rewriting of [1, Eq. 18] as `β² ∑ λᵢ/(1+βλᵢ) = ∑ 1/(1+βλᵢ)`.
 
+## Inputs
+* `lam` – eigenvalues
+* `β` – positive weight
+
+## Output
+* `∑ λᵢ / (1 + β λᵢ)`
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

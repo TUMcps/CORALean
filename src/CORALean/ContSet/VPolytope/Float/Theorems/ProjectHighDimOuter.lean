@@ -13,6 +13,16 @@ public import CORALean.ContSet.Interval.Float.Theorems.ProjectHighDimOuter
 The padded vertices are the exact layer's image of the nominal vertices under the padding map,
 so the nominal part is `projectHighDim_exact`; the error box is `Interval.projectHighDim_outer`.
 Outer, as the box's emptiness test is.
+
+## Inputs
+* `P` – polytope
+* `dims` – target coordinate of each dimension
+
+## Hypotheses
+* `hdims` – `dims` injective
+
+## Conclusion
+* the zero-padded image of `P` lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

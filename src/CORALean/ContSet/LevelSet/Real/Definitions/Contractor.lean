@@ -12,6 +12,13 @@ returns lies in the box it was given and keeps every solution of the constraint 
 [1]'s Sec. 4.2 names implementations (the Box algorithm, HC4revise) without fixing one, so this
 is the specification an implementation meets.
 
+## Inputs
+* `c` – constraint function
+* `contract` – box contraction
+
+## Output
+* `contract` shrinks every box and keeps its zeros of `c`
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

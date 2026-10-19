@@ -16,6 +16,19 @@ proposed length `s`: `hs`, `aᵀ Q a ≤ s²` from above (`quadUp`), is the whol
 owes, and it is one float comparison. Through `FloatBound.ofExistsBound`: the exact bound's value
 is a square root, so only an existential keeps it out of the float. Where `Q` is refused the
 nominal part is the center, and the bound holds the more.
+
+## Inputs
+* `E` – ellipsoid
+* `c` – linear functional
+* `a` – float vector of `c`
+* `s` – length bounding `√(aᵀ Q a)`
+
+## Hypotheses
+* `hc` – `c x = ∑ aᵢ xᵢ`
+* `hs` – `aᵀ Q a ≤ s²`
+
+## Output
+* float bound of `c` on the nominal part of `E`
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

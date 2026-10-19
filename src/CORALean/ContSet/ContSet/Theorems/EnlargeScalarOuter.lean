@@ -8,6 +8,16 @@ public import CORALean.ContSet.ContSet.Theorems.TimesOuter
 
 /-!
 # `enlargeScalar` encloses the scaling about the center
+
+## Inputs
+* `s` – set
+* `f` – per-coordinate scaling factor
+
+## Hypotheses
+* none
+
+## Conclusion
+* every scaled point about the center lies in the enlarged set
 -/
 
 -- Authors:       Claude Opus 5.5

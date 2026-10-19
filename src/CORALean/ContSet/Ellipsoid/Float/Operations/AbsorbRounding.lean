@@ -13,19 +13,20 @@ public import CORALean.Global.Float.Sqrt
 /-!
 # `Ellipsoid.absorbRounding`
 
-The error box moved into the shape matrix. The box lies in the ball of squared radius
-`ρ² = Σ max(|inf|, |sup|)²`, rounded up, the ellipsoid of shape `ρ² I` about the origin, and the
-sum of two ellipsoids lies in the ellipsoid of shape `(1 + 1/β) Q₁ + (1 + β) Q₂` for every
-`β > 0` [1, Eq. 11], the family CORA's `ellipsoid/plus` in mode `'outer:halder'` computes
-(`priv_plusEllipsoidOA_halder`). CORA picks the volume-optimal `β` by a fixed-point iteration on
-the eigenvalues of `Q₁⁻¹Q₂`; here `β` is the trace-optimal one [1, Sec. II-B],
-`√(tr Q / tr(ρ² I))`, in closed form and computed in floats. Any positive value is sound, so a
-computed `β` that is not certified positive falls back to `1`. The weights are rounded up, and the
-shape stored rounded upward by `Ellipsoid.inflate`, as `plus` stores its; the center is kept.
+The error box moved into the shape matrix. The box lies in the ball of squared radius `ρ² = Σ
+max(|inf|, |sup|)²`, rounded up, and the sum of two ellipsoids lies in the ellipsoid of shape `(1 +
+1/β) Q₁ + (1 + β) Q₂` for every `β > 0` [1, Eq. 11], the family CORA's `ellipsoid/plus` in mode
+`'outer:halder'` computes. Here `β` is the trace-optimal one [1, Sec. II-B], `√(tr Q / tr(ρ² I))`,
+in floats; any positive value is sound, so a `β` not certified positive falls back to `1`. The shape
+is stored rounded upward by `Ellipsoid.inflate`, the center kept. A box with `ρ²` certified `≤ 0` is
+dropped; a shape `isPsd` does not certify returns the ellipsoid unchanged. `k` is the Newton steps.
 
-A box whose `ρ²` is certified `≤ 0` holds the origin at most and is dropped. A shape `isPsd` does
-not certify has a nominal part the operation cannot bound, and the ellipsoid is returned unchanged,
-box and all: `absorbRounding` promises no empty box. `k` is the number of Newton steps of the root.
+## Inputs
+* `k` – Newton steps for the root
+* `E` – ellipsoid
+
+## Output
+* ellipsoid whose shape absorbs the error box of `E`
 
 ## References
 

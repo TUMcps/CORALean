@@ -12,6 +12,22 @@ For any normal `c` in the box and offset `δ` in `[δ̲, δ̄]`, `x − (cᵀx �
 the real projector lies in the bracketed interval matrix entrywise, `cᵢcⱼ` being between the
 corner products of the boxes of `cᵢ` and `cⱼ`, and `δ c` in its box, so `mtimes_outer`,
 `ofInterval_outer` and `plus_outer` carry it into the result. Outer only.
+
+## Inputs
+* `s` – set
+* `c` – interval unit normal
+* `dLo` – lower hyperplane offset
+* `dHi` – upper hyperplane offset
+* `cr` – normal in `c`
+* `δ` – offset in `[dLo, dHi]`
+
+## Hypotheses
+* `hc` – `cr` lies in `c`
+* `hδ` – `dLo ≤ δ`
+* `hδ'` – `δ ≤ dHi`
+
+## Conclusion
+* every point of `s` projected with `cr` and `δ` lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

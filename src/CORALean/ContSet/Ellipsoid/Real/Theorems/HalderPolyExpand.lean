@@ -16,6 +16,16 @@ and `e_{d+1} = 0`. For `P = ∏ (X + 1/λⱼ) = ∑ eₖ X^(d−k)` (Vieta) the 
 `(X² + X) P' − d P`, as `∑ᵢ (X + 1/λᵢ) ∏_{j≠i} = d P` and `∑ᵢ ∏_{j≠i} = P'`. The printed (24)
 counts the `r = 1` term twice (`printed_poly_counterexample`).
 
+## Inputs
+* `lam` – eigenvalues
+* `β` – weight of the shape sum
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polynomial expands in the coefficients `µᵣ`
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

@@ -10,16 +10,33 @@ public import Mathlib.Tactic.Linarith
 /-!
 # An affine image of an ellipsoid plus a second ellipsoid, at a weight `p`
 
-For positive-definite `Q` and `W` and `p ∈ (0, 1)`: if `x ∈ E(Q, c)` and `w ∈ E(W, 0)`, then
-`M x + u + w` lies in the ellipsoid of center `M c + u` and shape
-`N = (1 - p)⁻¹ M Q Mᵀ + p⁻¹ W`, which is positive definite. This is the prediction of CORA's
-ellipsoidal observers `ESO-A` and `ESO-B` (`linearSysDT/priv_observe_ESO_A`, `_B`) at the
-level `1`, `LinearSysDT.observeEsoA` and `LinearSysDT.observeEsoB`.
+For positive-definite `Q` and `W` and `p ∈ (0, 1)`: if `x ∈ E(Q, c)` and `w ∈ E(W, 0)`, then `M x +
+u + w` lies in the ellipsoid of center `M c + u` and shape `N = (1 - p)⁻¹ M Q Mᵀ + p⁻¹ W`, which is
+positive definite. This is the prediction of CORA's observers `ESO-A` and `ESO-B` at the level `1`.
+With `z = M (x - c) + w` and `v = N⁻¹ z`, `zᵀ N⁻¹ z = vᵀ N v`. The bound `2 aᵀ e ≤ k aᵀ P a + eᵀ P⁻¹
+e / k`, at `a = Mᵀ v`, `e = x - c`, `P = Q`, `k = (1 - p)⁻¹` and at `a = v`, `e = w`, `P = W`, `k =
+p⁻¹`, sums to `2 vᵀ z ≤ vᵀ N v + (1 - p) + p`, so `vᵀ z ≤ 1`.
 
-With `z = M (x - c) + w` and `v = N⁻¹ z`, `zᵀ N⁻¹ z = vᵀ z = vᵀ N v`. The bound
-`2 aᵀ e ≤ k aᵀ P a + eᵀ P⁻¹ e / k` (`k > 0`, from `0 ≤ (k P a - e)ᵀ P⁻¹ (k P a - e)`) at
-`a = Mᵀ v`, `e = x - c`, `P = Q`, `k = (1 - p)⁻¹` and at `a = v`, `e = w`, `P = W`, `k = p⁻¹`
-sums to `2 vᵀ z ≤ vᵀ N v + (1 - p) + p`, so `vᵀ z ≤ 1`.
+## Inputs
+* `Q` – shape matrix
+* `W` – second shape matrix
+* `M` – matrix
+* `p` – weight in `(0, 1)`
+* `c` – center
+* `u` – offset
+* `x` – point of the first ellipsoid
+* `w` – point of the second ellipsoid
+
+## Hypotheses
+* `hQ` – `Q` positive definite
+* `hW` – `W` positive definite
+* `hp0` – `0 < p`
+* `hp1` – `p < 1`
+* `hx` – `x` in `E(Q, c)`
+* `hw` – `w` in `E(W, 0)`
+
+## Conclusion
+* `M x + u + w` lies in the ellipsoid of the weighted shape sum
 -/
 
 -- Authors:       Claude Opus 5.5

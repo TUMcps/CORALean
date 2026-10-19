@@ -13,6 +13,13 @@ public import CORALean.ContSet.Ellipsoid.Float.Operations.PsdCheck
 `psdCheck` against the zero factor, with `Q` checked symmetric: `true` makes `G Gᵀ - Q`, read as
 reals, positive semi-definite (`posSemidef_of_isOuterFactor`), so that the ellipsoid of the factor
 `G` contains the one of `Q`.
+
+## Inputs
+* `Q` – shape matrix
+* `G` – factor
+
+## Output
+* `true` only if `G Gᵀ - Q` is certified positive semi-definite
 -/
 
 -- Authors:       Claude Opus 5.5

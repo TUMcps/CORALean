@@ -13,6 +13,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStepLtSelfIff
 [1, Eq. 26] is a rewriting of the first-order condition [1, Eq. 18], not an approximation of
 it.
 
+## Inputs
+* `β` – weight of the shape sum
+
+## Hypotheses
+* `hlam` – every `λᵢ` positive
+* `hβ` – `0 < β`
+
+## Conclusion
+* `β` is fixed by the step iff it solves the stationarity equation
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

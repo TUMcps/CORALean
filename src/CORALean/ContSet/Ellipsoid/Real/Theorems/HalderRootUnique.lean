@@ -15,6 +15,15 @@ positive root for positive `λᵢ`. The printed proof counts sign changes of the
 (24) by Descartes' rule and leans on [1, Cor. 1], which is false; here the left side is
 strictly decreasing, positive at `0` and negative at `1 + ∑ 1/λᵢ`, so it crosses zero once.
 
+## Inputs
+* none
+
+## Hypotheses
+* `hlam` – every `λᵢ` positive
+
+## Conclusion
+* the stationarity equation has a unique positive root
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

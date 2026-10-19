@@ -17,6 +17,17 @@ N M₂ N` is symmetric; here the symmetric matrix is diagonalized by the spectra
 `N M₂ N = U Λ Uᴴ`, and `M₁ M₂ = (N U) Λ (N U)⁻¹`. When `M₂` is positive definite so is
 `N M₂ N`, and the diagonal entries are positive, which [1, Prop. 1] needs.
 
+## Inputs
+* `M₁` – positive-definite matrix
+* `M₂` – Hermitian matrix
+
+## Hypotheses
+* `h₁` – `M₁` positive definite
+* `h₂` – `M₂` Hermitian
+
+## Conclusion
+* `M₁ M₂` is diagonalizable, with positive diagonal if `M₂` is positive definite
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

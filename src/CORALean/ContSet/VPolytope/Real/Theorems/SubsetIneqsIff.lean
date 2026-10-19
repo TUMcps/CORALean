@@ -12,6 +12,17 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 [1, Eq. 6]: `⟨V⟩ ⊆ ⟨A, b⟩` exactly when `A vⱼ ≤ b` for every point — one matrix-vector product
 per point, by convexity of the halfspaces.
 
+## Inputs
+* `P` – polytope
+* `A` – inequality matrix
+* `b` – inequality offsets
+
+## Hypotheses
+* none
+
+## Conclusion
+* `P` lies in `{A x ≤ b}` iff every vertex satisfies it
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

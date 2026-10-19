@@ -12,6 +12,13 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 CORA's `@ellipsoid/minkDiff` with a vector subtrahend, `ellipsoid(E.Q, E.q - s)`: the center
 moves, the shape matrix stays. The new center is rounded down, and what that leaves is paid into
 the error box (`centerResidual`, the same box `plus` pays).
+
+## Inputs
+* `E` – ellipsoid
+* `s` – point
+
+## Output
+* `E` shifted by the point `s`
 -/
 
 -- Authors:       Claude Opus 5.5

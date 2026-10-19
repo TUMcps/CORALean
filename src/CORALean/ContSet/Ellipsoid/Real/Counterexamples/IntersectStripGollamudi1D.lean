@@ -14,6 +14,16 @@ which contains it: the intersection is `[-1, 1]`. CORA's update, at any weight `
 is divided by `σ² = 1 + 4λ + 4λ² > 1` where the enclosure needs `σ² Q'`: from
 `(1 - λ)(x - c)ᵀ Q⁻¹ (x - c) + λ |C x - y|² ≤ 1 - λ + λ φ²` one gets
 `(x - c*)ᵀ Q'⁻¹ (x - c*) ≤ σ²`.
+
+## Inputs
+* `lam` – update weight
+
+## Hypotheses
+* `h0` – `0 < lam`
+* `h1` – `lam < 1`
+
+## Conclusion
+* a point of the intersection falls outside the computed ellipsoid
 -/
 
 -- Authors:       Claude Opus 5.5

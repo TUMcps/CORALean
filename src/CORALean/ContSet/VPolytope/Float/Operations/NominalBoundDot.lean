@@ -11,6 +11,17 @@ public import CORALean.ContSet.InflatedContSet.Operations.Bound
 
 A general direction, at the price the coordinate ones avoid: a rounded dot
 product per vertex, then the largest of them.
+
+## Inputs
+* `P` – polytope
+* `c` – linear functional
+* `a` – float vector of `c`
+
+## Hypotheses
+* `hc` – `c x = ∑ aⱼ xⱼ`
+
+## Output
+* float bound of `c` on the nominal part of `P`
 -/
 
 -- Authors:       Claude Opus 5

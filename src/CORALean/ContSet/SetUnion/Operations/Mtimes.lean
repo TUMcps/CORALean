@@ -10,6 +10,15 @@ public import CORALean.ContSet.SetUnion.SetUnion
 Maps `Mtimes.mtimes` over every branch, at whatever family carries it: the
 image of a union is the union of the images, so multiplying each branch and
 re-collecting keeps the shape a union already has.
+
+## Inputs
+* `m` – rows of the matrix
+* `n` – columns of the matrix
+* `M` – matrix
+* `u` – union
+
+## Output
+* `M` applied to every branch
 -/
 
 -- Authors:       Claude Sonnet 5

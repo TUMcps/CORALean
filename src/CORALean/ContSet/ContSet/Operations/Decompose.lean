@@ -12,6 +12,17 @@ run of consecutive coordinates. A block is its first coordinate `lo i` (zero-bas
 length `len i`, the run `lo i, …, lo i + len i - 1`, which must lie inside `n`. CORA's `blocks`
 are the one-based inclusive pairs of the same runs, and its one-block shortcut `S.copy()` is
 the identity projection, which this gives too.
+
+## Inputs
+* `s` – set
+* `lo` – first coordinate of each block
+* `len` – length of each block
+
+## Hypotheses
+* `h` – every block fits within the dimension
+
+## Output
+* the family of block projections of `s`
 -/
 
 -- Authors:       Claude Opus 5.5

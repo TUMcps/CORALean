@@ -14,6 +14,19 @@ smaller `T` can only ask for less.
 The direction on `T` is what a caller most often needs — replacing an error set
 by a larger one weakens the difference, so an implementation is free to
 over-approximate the set it subtracts and still under-approximate the result.
+
+## Inputs
+* `S₁` – smaller minuend
+* `S₂` – larger minuend
+* `T₁` – larger subtrahend
+* `T₂` – smaller subtrahend
+
+## Hypotheses
+* `hS` – `S₁ ⊆ S₂`
+* `hT` – `T₂ ⊆ T₁`
+
+## Conclusion
+* `S₁ ⊖ T₁` lies in `S₂ ⊖ T₂`
 -/
 
 -- Authors:       Claude Opus 5

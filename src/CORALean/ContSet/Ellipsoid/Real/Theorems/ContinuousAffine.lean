@@ -12,6 +12,15 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.Basic
 constant. It carries compactness from the Euclidean unit ball onto the
 ellipsoid, the same way `Zonotope.continuous_affine` carries it from the
 coefficient cube.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* the map `u ↦ q + G u` is continuous
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

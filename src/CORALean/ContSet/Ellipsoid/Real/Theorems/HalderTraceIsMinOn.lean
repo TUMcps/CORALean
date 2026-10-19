@@ -14,6 +14,17 @@ public import Mathlib.Analysis.Matrix.Order
 `√(trace Q₁ / trace Q₂)`. With `t₁ = t₂ r²` the objective is
 `t₁ + t₂ + t₂ (r²/β + β)`, and `r²/β + β − 2r = (r − β)²/β ≥ 0`.
 
+## Inputs
+* `Q₁` – first shape matrix
+* `Q₂` – second shape matrix
+
+## Hypotheses
+* `h₁` – `0 < trace Q₁`
+* `h₂` – `0 < trace Q₂`
+
+## Conclusion
+* the trace of `Q(β)` is minimal at `β = √(trace Q₁ / trace Q₂)`
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

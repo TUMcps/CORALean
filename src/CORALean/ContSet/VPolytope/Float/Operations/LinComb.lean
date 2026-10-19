@@ -11,6 +11,13 @@ public import CORALean.ContSet.VPolytope.Float.VPolytope
 The vertex lists concatenate, which copies floats and computes none, so nothing
 rounds and the box only has to hold what the two incoming boxes did. The one
 operation a vertex description performs exactly in floating point.
+
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+
+## Output
+* polytope of the concatenated vertex lists
 -/
 
 -- Authors:       Claude Opus 5

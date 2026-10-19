@@ -12,6 +12,15 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
 
 A `true` answer makes `Q = 0`, so the nominal part is the single point `q`, and the error box is a
 point: the ellipsoid is their sum, a point.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* `h` – `representsa_point` returns `true`
+
+## Conclusion
+* `E` is a single point
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

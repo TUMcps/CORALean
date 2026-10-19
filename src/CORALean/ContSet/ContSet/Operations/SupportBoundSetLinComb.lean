@@ -13,6 +13,13 @@ public import Mathlib.Tactic.Linarith
 names. `Set.linComb` is ours — CORA's `linComb`, which is the convex hull only when
 both sets already are — so its case belongs here, computing the combined bound
 rather than beside the definition.
+
+## Inputs
+* `u` – support bound for `S`
+* `v` – support bound for `T`
+
+## Output
+* support bound for the linear combination of `S` and `T`
 -/
 
 -- Authors:       Claude Sonnet 5

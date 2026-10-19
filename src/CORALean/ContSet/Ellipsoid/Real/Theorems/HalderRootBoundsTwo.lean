@@ -17,6 +17,20 @@ and the smaller of the positive zeros `(λⱼ + √(λⱼ(λⱼ+8)))/(2λⱼ)` o
 `p₃` reduces to when `λᵢ = 0`. Both follow from the stationarity function being strictly
 decreasing: `p₃` is negative at the first bound and positive at the others.
 
+## Inputs
+* `l₁` – first eigenvalue
+* `l₂` – second eigenvalue
+* `r` – root of the stationarity equation
+
+## Hypotheses
+* `h₁` – `0 < l₁`
+* `h₂` – `0 < l₂`
+* `hr` – `0 < r`
+* `hroot` – the stationarity function vanishes at `r`
+
+## Conclusion
+* `r` lies between the two printed bounds
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

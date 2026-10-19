@@ -16,6 +16,16 @@ of `n + 1` entries, which the checked right inverse of `[V; 1ᵀ]` writes as `[V
 sum to one because the last row of the product is zero, and combine the vertices into
 `v̄ + (y - v̄) = y`. So the open box of radius `B` around `v̄` lies in the nominal polytope, and
 adding the error box's lower corner keeps an interior point (`subset_interior_add_left`).
+
+## Inputs
+* `P` – polytope
+* `H` – proposed right inverse
+
+## Hypotheses
+* `h` – `isFullDimWith` returns `true`
+
+## Conclusion
+* `P` has nonempty interior
 -/
 
 -- Authors:       Claude Opus 5.5

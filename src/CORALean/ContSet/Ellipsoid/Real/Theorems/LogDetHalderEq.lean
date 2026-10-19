@@ -16,6 +16,17 @@ every `β > 0`, for any diagonalization `R = S Λ T`: with
 factor is the product. This is what turns the objective `log det Q(β)` of
 [1, Eq. 14] into the scalar function that [1, Eq. 18] differentiates.
 
+## Inputs
+* `Q₁` – first shape matrix
+* `Q₂` – second shape matrix
+
+## Hypotheses
+* `h₁` – `Q₁` positive definite
+* `h₂` – `Q₂` positive definite
+
+## Conclusion
+* `log det Q(β)` is `log det Q₁` plus a sum over the eigenvalues
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

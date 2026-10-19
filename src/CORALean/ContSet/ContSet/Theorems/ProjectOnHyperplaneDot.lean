@@ -9,6 +9,17 @@ public import CORALean.Global.EuclideanNorm
 
 `c ⬝ (x - (c ⬝ x - d) c) = c ⬝ x - (c ⬝ x - d) (c ⬝ c) = d` for the unit normal `c`: the points
 `projectOnHyperplane_outer` encloses are on `{y | c ⬝ y = d}`.
+
+## Inputs
+* `c` – unit normal
+* `x` – point
+* `d` – hyperplane offset
+
+## Hypotheses
+* `hc` – `‖c‖₂ = 1`
+
+## Conclusion
+* the projected point satisfies `c ⬝ x = d`
 -/
 
 -- Authors:       Claude Sonnet 5.5

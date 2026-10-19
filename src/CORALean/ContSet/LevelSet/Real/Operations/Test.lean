@@ -9,6 +9,13 @@ public import CORALean.ContSet.LevelSet.Real.LevelSet
 
 The boolean test one comparison operator applies to one value: what `contains_` evaluates on
 each component of `funHan`.
+
+## Inputs
+* `c` – comparison operator
+* `v` – number
+
+## Output
+* whether `v` passes the operator's comparison with zero
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -19,6 +19,16 @@ relabelling does no arithmetic. The nominal part is the exact layer's `map` at
 the relabelling, `Q` at the relabelled rows and columns (`Real.Ellipsoid.map_selection`), and
 positive semi-definite exactly when the stored one is; the box
 is relabelled alongside, and a linear map distributes over the sum.
+
+## Inputs
+* `e` – equivalence of the coordinates
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is exactly the relabelled set
 -/
 
 -- Authors:       Claude Opus 5.5

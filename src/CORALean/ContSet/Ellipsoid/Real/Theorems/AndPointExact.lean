@@ -11,6 +11,16 @@ public import CORALean.ContSet.OptEmpty.Theorems.Basic
 
 `E ∩ {p}` is the point `p` as a degenerate ellipsoid when `p ∈ E` and `∅` otherwise: the
 denotation of `Ellipsoid.andPoint` equals the intersection, an equality and not an enclosure.
+
+## Inputs
+* `E` – ellipsoid
+* `p` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is exactly `E ∩ {p}`
 -/
 
 -- Authors:       Claude Opus 5.5

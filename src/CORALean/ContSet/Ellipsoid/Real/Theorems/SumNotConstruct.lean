@@ -22,6 +22,15 @@ sum whose support function `√(ℓᵀQℓ) = ‖Gᵀℓ‖₂` would have to sa
 `ℓ ↦ √(ℓᵀQ₁ℓ) + √(ℓᵀQ₂ℓ)` breaks at `ℓ = (1, ±1)` against `e₁, e₂`: `20 + 20 ≠ 2·9 + 2·9`.
 The statement quantifies over every ellipsoid of the plane, degenerate ones included.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* two nondegenerate ellipses exist whose sum is no ellipse
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

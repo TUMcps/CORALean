@@ -19,6 +19,19 @@ metric on the cone `ℝ₊`, which is degenerate on a one-dimensional cone; here
 and fixes the root, so the orbit from below rises to it and the orbit from above falls to
 it, and the limit of a bounded monotone orbit is a fixed point by continuity.
 
+## Inputs
+* `r` – root of the stationarity equation
+* `b₀` – start of the iteration
+
+## Hypotheses
+* `hlam` – every `λᵢ` positive
+* `hr` – `0 < r`
+* `hroot` – the stationarity function vanishes at `r`
+* `hb₀` – `0 < b₀`
+
+## Conclusion
+* the iterates of the step from `b₀` converge to `r`
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

@@ -10,20 +10,37 @@ public import Mathlib.Tactic.LinearCombination
 # A point of the unit ball in a strip, in the factored Gollamudi ellipsoid
 
 The coefficient-space core of the float `intersectStripGollamudi`, for one strip. A factor vector
-`u` with `‖u‖₂ ≤ 1` and `|vᵀ u - δ| ≤ φ` satisfies the Gollamudi combination
-`(1 - λ)‖u‖₂² + λ (vᵀ u - δ)² ≤ 1 - λ + λ φ²`, which completes (with `ν = vᵀ v`,
-`s = 1 - λ + λ ν`, the center `κ v`, `κ = λ δ / s`, and `d = u - κ v`) to
+`u` with `‖u‖₂ ≤ 1` and `|vᵀ u - δ| ≤ φ` satisfies `(1 - λ)‖u‖₂² + λ (vᵀ u - δ)² ≤ 1 - λ + λ φ²`,
+which completes (`ν = vᵀ v`, `s = 1 - λ + λ ν`, `κ = λ δ / s`, `d = u - κ v`) to `(1 - λ)‖d‖₂² + λ
+(vᵀ d)² ≤ σ² = 1 - λ + λ φ² - λ (1 - λ) δ² / s`: the ellipsoid of shape `σ² M⁻¹`, `M = (1 - λ) I + λ
+v vᵀ`. Its generator `N = α I + β v vᵀ` is not a computed square root: any `α` and `γ = α + β ν`,
+both positive, with `σ² ≤ α² (1 - λ)` and `σ² ≤ γ² s` will do, for any upper bound `S` of `σ²`. The
+factor is then explicit, `w = α⁻¹ (d - (β (vᵀ d) / γ) v)`, of length at most `1` by the two
+conditions and Cauchy–Schwarz.
 
-  `(1 - λ)‖d‖₂² + λ (vᵀ d)² ≤ σ² = 1 - λ + λ φ² - λ (1 - λ) δ² / s`.
+## Inputs
+* `v` – measurement row
+* `u` – point
+* `δ` – measurement
+* `φ` – strip half-width
+* `lam` – update weight
+* `α` – scaling
+* `β` – scaling
+* `S` – level bound
 
-That is the ellipsoid of shape `σ² M⁻¹`, `M = (1 - λ) I + λ v vᵀ`, the real layer's
-`σ² invQ⁻¹` read through `G` when `Q = G Gᵀ`. Its generator `N = α I + β v vᵀ` is not a computed
-square root: any `α` and `γ = α + β ν`, both positive, with `σ² ≤ α² (1 - λ)` (the directions
-across `v`) and `σ² ≤ γ² s` (the direction of `v`) will do, for any upper bound `S` of `σ²` in
-their place. The factor is then explicit, `w = α⁻¹ (d - (β (vᵀ d) / γ) v)`, and its squared length
-is `(γ² ‖d‖₂² - 2 β γ (vᵀ d)² + β² ν (vᵀ d)²) / (α² γ²)`, which the two conditions and
-Cauchy–Schwarz bound by `1`. `v = 0` (`ν = 0`) and an empty strip (`S ≤ 0`) need no case of their
-own in the statement.
+## Hypotheses
+* `h0` – `0 ≤ lam`
+* `h1` – `lam < 1`
+* `hu` – `‖u‖ ≤ 1`
+* `hstrip` – `u` lies in the strip
+* `hS` – `S` bounds the updated level
+* `hα` – `0 < α`
+* `hγ` – `0 < α + β v·v`
+* `hSα` – `S ≤ α² (1 - lam)`
+* `hSγ` – `S` bounded by the second scaling
+
+## Conclusion
+* `u` is the center offset plus a scaled point of the unit ball
 -/
 
 -- Authors:       Claude Opus 5.5

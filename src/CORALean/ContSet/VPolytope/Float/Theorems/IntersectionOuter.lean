@@ -16,6 +16,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeIntervalContain
 # The float `VPolytope.intersection` contains the intersection
 
 The same three steps as the exact layer's, each already proved here.
+
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the intersection lies in the result
 -/
 
 -- Authors:       Claude Opus 5

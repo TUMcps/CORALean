@@ -11,6 +11,17 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 [1, Eq. 14]: exactly when the linear program [1, Eq. 15] is feasible — a convex combination of
 the points satisfying the inequalities.
 
+## Inputs
+* `P` – polytope
+* `A` – inequality matrix
+* `b` – inequality offsets
+
+## Hypotheses
+* none
+
+## Conclusion
+* `P` meets `{A x ≤ b}` iff a convex combination of the vertices satisfies it
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

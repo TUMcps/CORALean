@@ -11,6 +11,17 @@ What carries a guarantee stated on the nominal part and on the error box
 separately to the set `InflatedContSet.construct` itself: an exact statement
 about a linear image, such as a relabelling of the coordinates, then needs no
 widening between the two summands.
+
+## Inputs
+* `f` – linear map
+* `A` – set
+* `B` – set
+
+## Hypotheses
+* none
+
+## Conclusion
+* `f` maps `A + B` to `f A + f B`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -9,6 +9,17 @@ public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSetLinComb
 # For a convex representation, `linComb` holds the convex hull of the union
 
 `linComb_outer` and `convexHull_union_eq_setLinComb`: an enclosure of CORA's `convHull_`.
+
+## Inputs
+* `s` – set
+* `t` – set
+
+## Hypotheses
+* `hs` – `s` nonempty
+* `ht` – `t` nonempty
+
+## Conclusion
+* convex hull of the union lies in the linear combination
 -/
 
 -- Authors:       Claude Opus 5.5

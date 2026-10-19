@@ -13,6 +13,13 @@ For `Q(β) = (1 + 1/β) Q₁ + (1 + β) Q₂` the objective of [1, Eq. 14] is `l
 the eigenvalues `λᵢ` of `Q₁⁻¹ Q₂` it is `log det Q₁ + ∑ᵢ log((1 + 1/β) + (1 + β) λᵢ)`
 (`log_det_halder_eq`), and `halderLogDet` is the sum, the part that depends on `β`.
 
+## Inputs
+* `lam` – eigenvalues
+* `β` – positive weight
+
+## Output
+* `∑ log((1 + 1/β) + (1 + β) λᵢ)`
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

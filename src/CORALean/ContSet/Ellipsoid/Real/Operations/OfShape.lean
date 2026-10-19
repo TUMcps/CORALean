@@ -14,6 +14,13 @@ positive semi-definite and errors otherwise. The papers' `E(Q, q) = {x | (x − 
 CORA errors this returns the point `q`; no statement reads that case, every theorem about `ofShape`
 assuming `Q` positive semi-definite, where it is the structure itself (`ofShape_eq`).
 
+## Inputs
+* `Q` – positive semi-definite shape
+* `q` – center
+
+## Output
+* ellipsoid of shape `Q` and center `q`
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

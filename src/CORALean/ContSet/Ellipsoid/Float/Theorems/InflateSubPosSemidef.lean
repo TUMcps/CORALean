@@ -13,6 +13,17 @@ public import Mathlib.LinearAlgebra.Matrix.PosDef
 For a symmetric real `X` inside the interval matrix, `inflate - X` is symmetric, has off-diagonal
 entries in `[0, w]`, `w` the bracket's width, and diagonal entries at least the sum of their
 row's widths: diagonally dominant, so positive semi-definite (`quad_nonneg_of_dominant`).
+
+## Inputs
+* `X` – interval matrix
+* `Xr` – symmetric real matrix
+
+## Hypotheses
+* `hX` – `Xr` entrywise in `X`
+* `hsym` – `Xr` symmetric
+
+## Conclusion
+* the inflated matrix minus `Xr` is positive semi-definite
 -/
 
 -- Authors:       Claude Opus 5.5

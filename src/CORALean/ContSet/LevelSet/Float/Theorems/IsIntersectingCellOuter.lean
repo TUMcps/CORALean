@@ -11,6 +11,21 @@ public import CORALean.ContSet.LevelSet.Real.Theorems.IsIntersectingCellOuter
 For a level set without `=` rows, as the real theorem
 `CORALean.Real.LevelSet.isIntersecting_cell_outer` needs: the refuting row's certified
 comparison makes the real test fail at the bounds read as reals. A `true` says nothing.
+
+## Inputs
+* `L` – level set
+* `I` – box
+* `B` – float bounds of the rows over the box
+* `tol` – tolerance
+
+## Hypotheses
+* `hne` – no row is an equation
+* `htol` – `0 ≤ tol`
+* `hB` – `B` encloses each row's range over the box
+* `h` – `isIntersecting_cell` returns `false`
+
+## Conclusion
+* the level set and the box are disjoint
 -/
 
 -- Authors:       Claude Opus 5.5

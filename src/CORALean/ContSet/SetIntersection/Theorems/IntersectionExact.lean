@@ -11,6 +11,16 @@ public import CORALean.ContSet.SetIntersection.Theorems.Basic
 `⋂ (I ++ J) = (⋂ I) ∩ (⋂ J)`: a point lies in every member of the appended list iff it lies in
 every member of each. The one guarantee of this class that is an equality; `ZonoBundle`'s
 `and_` is this theorem at its members (`ZonoBundle.intersection_exact`).
+
+## Inputs
+* `I` – first intersection
+* `J` – second intersection
+
+## Hypotheses
+* none
+
+## Conclusion
+* the appended members denote the intersection of both sets
 -/
 
 -- Authors:       Claude Opus 5.5

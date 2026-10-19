@@ -9,6 +9,14 @@ public import CORALean.ContSet.VPolytope.Float.VPolytope
 
 The pairwise vertex sums of two vertex descriptions, rounded whichever way is
 asked.
+
+## Inputs
+* `add` – rounded addition
+* `P₁` – first polytope
+* `P₂` – second polytope
+
+## Output
+* all sums of a vertex of `P₁` and one of `P₂`
 -/
 
 -- Authors:       Claude Opus 5

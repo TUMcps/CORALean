@@ -14,6 +14,17 @@ The corrected Liu2016 update (CORA's `@ellipsoid/intersectStrip`, method `'Liu20
 weight `λ` is the Gollamudi fusion with `φ = √V` at `λ' = λ / (λ + V (1 - λ))`. So this is a thin
 wrapper: `φ = sqrtUp V` (an upward root only widens the strip) and `λ'` with directed rounding;
 the float Gollamudi theorem has no hypothesis on its weight, so `λ'` need not be exact.
+
+## Inputs
+* `steps` – Newton steps per root
+* `E` – ellipsoid
+* `c` – measurement row
+* `V` – scalar `V`
+* `y` – measurement
+* `lam` – update weight
+
+## Output
+* ellipsoid enclosing `E` updated by the measurement
 -/
 
 -- Authors:       Claude Opus 5.5

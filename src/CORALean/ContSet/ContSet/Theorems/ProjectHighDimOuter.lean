@@ -11,6 +11,17 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 For an injective `proj`, `I(:, proj) x` is `x` placed at the coordinates `proj` and `0` elsewhere,
 so `mtimes_outer` gives the padded points. CORA does not check injectivity; a repeated target
 adds the two coordinates instead, and the padding map is no longer the statement.
+
+## Inputs
+* `s` – set
+* `N` – target dimension
+* `proj` – target coordinate of each dimension
+
+## Hypotheses
+* `hp` – `proj` injective
+
+## Conclusion
+* every zero-padded point of `s` lies in the result
 -/
 
 -- Authors:       Claude Sonnet 5.5

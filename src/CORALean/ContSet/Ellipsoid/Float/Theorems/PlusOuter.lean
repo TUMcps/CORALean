@@ -23,15 +23,25 @@ public import CORALean.ContSet.InflatedContSet.Theorems.PlusSubset
 
 `InflatedContSet.plus_subset` reduces this to the nominal parts and the box. A certified operand's
 nominal part is the ellipsoid of its `Q`; an uncertified one's lies in its box about its center
-(`abs_sub_le_boxRadius`), so it is its center plus a point of that box. The exact layer's
-`plus_outer` puts the sum of the two ellipsoids (an uncertified one taken as its center) in the
-ellipsoid of `s₁² Q₁ + s₂² Q₂`, whose stored rounding dominates it (`inflate_sub_posSemidef`), so
-the sum about the stored center lies in the nominal part (`add_sub_mem_nominalSet`); the center's
-rounding and the two boxes are what the error box adds.
+(`abs_sub_le_boxRadius`). The exact layer's `plus_outer` puts the sum in the ellipsoid of `s₁² Q₁ +
+s₂² Q₂`, whose stored rounding dominates it (`inflate_sub_posSemidef`), so the sum about the stored
+center lies in the nominal part (`add_sub_mem_nominalSet`); the center's rounding and the two boxes
+are what the error box adds. The scalings are non-zero by a separate hypothesis: `1/0` is `0` in
+Lean and would satisfy the bound vacuously.
 
-The scalings are non-zero because the hypothesis gives their reciprocals a finite sum, so the
-caller states that separately — `1/0` is `0` in Lean and would otherwise satisfy the bound
-vacuously.
+## Inputs
+* `s₁` – scaling of `E₁`
+* `s₂` – scaling of `E₂`
+* `E₁` – first ellipsoid
+* `E₂` – second ellipsoid
+
+## Hypotheses
+* `hne₁` – `s₁ ≠ 0`
+* `hne₂` – `s₂ ≠ 0`
+* `hs` – `1/s₁² + 1/s₂² ≤ 1`
+
+## Conclusion
+* the Minkowski sum lies in the result
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

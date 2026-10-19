@@ -23,9 +23,10 @@ reported as stale.
 
 Which binder is a `Prop` is decided by a text proxy, since no elaboration happens here. A binder
 is a hypothesis when
-  * its name is `h` followed by at least one more character (`hZ`, `hlt`, `h₁`, `hΔt`), or is
-    `h` alone and its type does not begin with a data head (`ℕ ℤ ℝ ℚ ℂ Bool Fin Type Set Vec Mat
-    List Finset Option String`), or
+  * its name is `h` alone or `h` followed by at least one more character (`hZ`, `hlt`, `h₁`,
+    `hΔt`) and its type does not begin with a data head (`ℕ ℤ ℝ ℚ ℂ Bool Fin Type Set Vec Mat
+    List Finset Option String`) free of a depth-0 relation symbol (so `(hi : Fin k → Vec 𝕋 n)`
+    is an input, `(hS : Set.Nonempty S)` and `(hS : Set α ⊆ T)` are hypotheses), or
   * its type, outer parentheses removed, contains at depth 0 one of
     `= ≠ ≤ ≥ < > ∈ ∉ ⊆ ⊂ ⊇ ⊃ ∣ ∀ ∃ ¬ ∧ ∨ ↔ ⊥` (`→` is not in the list: it is a function type
     as often as an implication), or
@@ -34,8 +35,8 @@ is a hypothesis when
     `x.Nonempty`-style with such a trailing component.
 Known limits: a `Prop` binder with a name not starting with `h`, a type with no listed operator
 and a head not listed (`(P : Foo Z)` for a `Prop` structure `Foo`) is taken for an input; a data
-binder whose name starts with `h` and has a second character (`(hull : Set ..)`) is taken for a
-hypothesis; a data binder whose type has a depth-0 relation symbol in an unparenthesised
+binder named `h…` whose type is headed by a data type but contains a depth-0 relation symbol
+(`(hull : Set X ⊆ ..)`) is taken for a hypothesis; a data binder whose type has a depth-0 relation symbol in an unparenthesised
 set-builder is taken for a hypothesis. The cure for each is to rename the binder, or to put the
 file on the allowlist and say why in the issue.
 
@@ -145,10 +146,12 @@ DATA_HEADS = {"ℕ", "ℤ", "ℝ", "ℚ", "ℂ", "Bool", "Fin", "Type", "Type*",
 def is_prop(name, typ):
     t = typ.strip()
     head0 = re.match(r"[^\s(]+", t)
-    if re.match(r"^h.", name):
-        return True
-    if name == "h" and not (head0 and head0.group(0) in DATA_HEADS):
-        return True
+    # a name `h…` is a hypothesis, unless its type is headed by a data type with no relation
+    # symbol at depth 0 (`(hi : Fin k → Vec 𝕋 n)`, `(h : ℕ)`)
+    if name == "h" or re.match(r"^h.", name):
+        data = bool(head0 and head0.group(0) in DATA_HEADS)
+        if not (data and not any(c in top_level(t) for c in PROP_SYMBOLS)):
+            return True
     while t.startswith("(") and matching(t, 0) == len(t) - 1:
         t = t[1:-1].strip()
     flat = top_level(t)

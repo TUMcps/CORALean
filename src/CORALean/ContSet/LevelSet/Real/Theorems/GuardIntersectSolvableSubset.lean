@@ -16,6 +16,22 @@ needs `D_g` of class `C^{κ+1}` and `1 ≤ κ` (`TaylorSeriesMem`). [1]'s `∂D_
 used: it matters for exactness, which the proposition does not claim. The auxiliary statement is
 the same for any expansion that encloses `D_g`.
 
+## Inputs
+* `I` – box
+* `κ` – Taylor order
+* `k` – solved coordinate
+* `g` – guard function
+* `D` – function solving the guard for `x(k)`
+* `T` – Taylor series of `D` on `I`
+
+## Hypotheses
+* `hG` – the guard is `x(k) = D x`
+* `hD` – `D` is `C^(κ+1)`
+* `hκ` – `1 ≤ κ`
+
+## Conclusion
+* the box cut by the guard lies in the solvable-guard model
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

@@ -13,6 +13,16 @@ free of `x(k)` and `[D_l, D_u]` eq. (12)'s interval; how they arise from a Taylo
 guard function is what `Theorems.GuardIntersectUnsolvableSubset` takes as hypotheses — with
 eq. (11)'s sign of `v(x)` corrected, as that file says.
 
+## Inputs
+* `I` – box
+* `k` – cut coordinate
+* `pk` – polynomial part free of `x(k)`
+* `Dl` – lower remainder bound
+* `Du` – upper remainder bound
+
+## Output
+* Taylor model of the box cut by `x(k) = p_k(x)` with remainder `[Dl, Du]`
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

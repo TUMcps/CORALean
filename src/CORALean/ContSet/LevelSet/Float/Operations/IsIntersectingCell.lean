@@ -13,6 +13,14 @@ cell of operators). As in CORA every operator but `≤` is read as `lb < 0`, so 
 the level set free of `=` rows (see the real test's counterexample). Only `false` is certain: a
 row refutes a common point when `tol < lb` (for `≤`) or `0 ≤ lb` (otherwise) is certified by
 `ltStrict`, resp. `le`.
+
+## Inputs
+* `tol` – tolerance
+* `op` – comparison operator per row
+* `B` – float bounds of the rows over the box
+
+## Output
+* `false` only if some row certifiably refutes a common point
 -/
 
 -- Authors:       Claude Opus 5.5

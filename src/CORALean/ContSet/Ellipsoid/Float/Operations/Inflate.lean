@@ -15,6 +15,12 @@ stored matrix is symmetric, and each diagonal entry is raised by the widths of i
 brackets, so the difference to the exact matrix is diagonally dominant and hence positive
 semi-definite (`Theorems/InflateSubPosSemidef`). By `Real.Ellipsoid.construct_subset_of_le` the
 stored ellipsoid then contains the exact one: rounding is paid into `Q`, not into the error box.
+
+## Inputs
+* `X` – interval shape matrix
+
+## Output
+* symmetric float matrix above every symmetric matrix of `X`
 -/
 
 -- Authors:       Claude Opus 5.5

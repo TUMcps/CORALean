@@ -1633,10 +1633,10 @@ which re-lists the variables of its definition as inputs and keeps what it assum
 for the kind of the main declaration, that the names listed under `## Inputs` and
 `## Hypotheses` are exactly the declaration's binders in its order, none missing and none extra,
 and that `## Output` / `## Conclusion` has exactly one entry. It cannot elaborate, so it sorts
-binders into hypotheses by a text proxy: a name `h…` (`h` alone counts when its type is not a data
-type), a depth-0 relation or logic symbol in the type (`= ≠ ≤ ≥ < > ∈ ∉ ⊆ ⊂ ∣ ∀ ∃ ¬ ∧ ∨ ↔`), or an
+binders into hypotheses by a text proxy: a name `h…` (unless its type is headed by a data type such as `Fin`, `Vec`, `ℕ` and
+has no relation symbol), a depth-0 relation or logic symbol in the type (`= ≠ ≤ ≥ < > ∈ ∉ ⊆ ⊂ ∣ ∀ ∃ ¬ ∧ ∨ ↔`), or an
 `Is…` / `Has…` head or a listed Mathlib predicate (`Convex`, `Continuous`, `Nonempty`, …). A
-`Prop` binder that none of these catches is taken for an input, and a data binder named `h…` for a
+`Prop` binder that none of these catches is taken for an input, and a data binder named `h…` whose type has a relation symbol for a
 hypothesis; rename the binder in either case. Files not yet converted are listed in
 `scripts/io-doc-allowlist.txt`; the list only shrinks, an entry whose file now conforms is
 reported as stale, and the files are converted directory by directory, the main types first.

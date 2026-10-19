@@ -13,6 +13,13 @@ CORA's `@ellipsoid/cartProd_.m`, which supports `'outer'` only: for two ellipsoi
 `ellipsoid(cartProd_(interval(E), interval(S), 'exact'))`, the ellipsoid enclosing the product
 of the two bounding boxes (the product of two ellipsoids is not an ellipsoid). The `'inner'` and
 `'exact'` modes throw. A point operand, which CORA also handles, is `Ellipsoid.cartProdVec`.
+
+## Inputs
+* `E₁` – first ellipsoid
+* `E₂` – second ellipsoid
+
+## Output
+* ellipsoid of the product of the two bounding boxes
 -/
 
 -- Authors:       Claude Opus 5.5

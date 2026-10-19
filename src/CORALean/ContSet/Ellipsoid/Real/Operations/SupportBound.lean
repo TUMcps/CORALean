@@ -15,6 +15,13 @@ solution to check: `√(dᵀ Q d) = ‖Gᵀ d‖₂` (`norm₂_pullback`), and C
 the `≤` direction, for *every* direction at once rather than for the ones a caller enumerated.
 That is what makes the conversions out of an ellipsoid tight rather than merely sound.
 
+## Inputs
+* `E` – ellipsoid
+* `c` – linear functional
+
+## Output
+* closed-form support bound of `E` along `c`
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

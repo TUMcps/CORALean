@@ -13,6 +13,15 @@ CORA's `isFullDim` for every convex representation at once. A convex set in a fi
 real normed space has an interior point exactly when the affine span of its points is the whole
 space (Mathlib's `Convex.interior_nonempty_iff_affineSpan_eq_top`), so a class whose affine hull
 it can read off, as a polytope reads it off its vertices, has its `isFullDim` for free.
+
+## Inputs
+* `s` – set
+
+## Hypotheses
+* none
+
+## Conclusion
+* `s` is full-dimensional iff its affine span is everything
 -/
 
 -- Authors:       Claude Opus 5.5

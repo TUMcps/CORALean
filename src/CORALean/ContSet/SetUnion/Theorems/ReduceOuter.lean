@@ -11,6 +11,16 @@ public import CORALean.ContSet.SetUnion.Theorems.Basic
 Each branch only grows, by `Reduce.reduce_outer`, so a point of some branch
 stays a point of that branch reduced, and the union it witnesses in stays
 covered after every branch is replaced by its own reduction.
+
+## Inputs
+* `u` – union
+* `o` – order bound
+
+## Hypotheses
+* none
+
+## Conclusion
+* `u` lies in the reduced union
 -/
 
 -- Authors:       Claude Sonnet 5

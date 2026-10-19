@@ -9,6 +9,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 
 `x ∈ E` iff `x = q + G u` for some `‖u‖₂ ≤ 1`: `Theorems/ConstructEqSqrt`, read pointwise, so that
 a point is shown in or taken out of the ellipsoid by its coefficient `u`.
+
+## Inputs
+* `E` – ellipsoid
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x ∈ E` iff `x = q + G u` with `‖u‖ ≤ 1`
 -/
 
 -- Authors:       Claude Opus 5.5

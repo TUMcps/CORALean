@@ -19,6 +19,19 @@ public import Mathlib.Tactic.Ring
 `c`, with `a = n(1 − γ²)/(n − 1) > 0` and `κ = (1 − nγ²)/(1 − γ²) ∈ [0, 1)`. So it is the
 shape matrix of an ellipsoid (`Ellipsoid.ofShape`) for `n ≥ 2`, `0 < γ`, `nγ² < 1`.
 
+## Inputs
+* `c` – unit cut direction
+* `γ` – cut depth
+
+## Hypotheses
+* `hc` – `c` has unit length
+* `hn` – `2 ≤ n`
+* `hγ` – `0 < γ`
+* `hγn` – `n γ² < 1`
+
+## Conclusion
+* the cut shape matrix is positive definite
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

@@ -20,6 +20,14 @@ slab `|cᵀx| ≤ γ`, `‖c‖ = 1`, `γ ∈ (0, 1/√n)` ([1, Lemma 4.3 (conta
 with semi-axis² `nγ²` along `c` and `n(1 − γ²)/(n − 1)` across it. The formula divides by
 `n − 1` and `1 − γ²`: it is for `n ≥ 2` and `γ² < 1`.
 
+## Inputs
+* `n` – dimension
+* `c` – unit cut direction
+* `γ` – cut depth
+
+## Output
+* shape matrix of the smallest ellipsoid containing the cut ball
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

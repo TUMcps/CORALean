@@ -14,6 +14,15 @@ public import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
 the pairwise differences being differences of shifted points and each shifted point the mean of
 differences. At least one point, so that the mean exists.
 
+## Inputs
+* `P` – polytope
+
+## Hypotheses
+* `hk` – `P` has a vertex
+
+## Conclusion
+* the interior is empty iff the centered vertex matrix has rank below `n`
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

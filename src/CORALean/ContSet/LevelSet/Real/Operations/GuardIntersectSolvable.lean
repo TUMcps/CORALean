@@ -14,6 +14,19 @@ coordinate of the model's box remainder (eq. (8)). The expansion is passed in as
 any expansion that encloses `D_g` will do; `TaylorSeries` is [1, Def. 7]'s.
 `Theorems.GuardIntersectSolvableSubset` is the enclosure.
 
+## Inputs
+* `I` – box
+* `k` – solved coordinate
+* `b` – constant term
+* `a` – linear coefficients
+* `c` – expansion center
+* `v` – higher-order terms
+* `l` – lower remainder bound
+* `u` – upper remainder bound
+
+## Output
+* Taylor model of the box cut by the guard with remainder `[l, u]`
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

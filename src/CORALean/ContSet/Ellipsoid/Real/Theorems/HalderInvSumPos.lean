@@ -11,6 +11,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderInvSum
 For positive `λᵢ` and `β ≥ 0`, `∑ 1/(1+βλᵢ) > 0`, so the root of the fixed-point step
 [1, Eq. 26] is of a positive number.
 
+## Inputs
+* `β` – weight of the shape sum
+
+## Hypotheses
+* `hlam` – every `λᵢ` positive
+* `hβ` – `0 ≤ β`
+
+## Conclusion
+* the sum `∑ 1/(1+βλᵢ)` is positive
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

@@ -11,6 +11,17 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 CORA's `interval(E)`, `q ± sqrt(diag(Q))`, is sound and coordinatewise tight: coordinate `i` of
 `G u` is the dot product of row `i` of `G` with `u`, at most `‖Gᵢ‖₂ ‖u‖₂` by Cauchy–Schwarz, and
 `‖Gᵢ‖₂² = (G Gᵀ)ᵢᵢ = Qᵢᵢ`.
+
+## Inputs
+* `E` – ellipsoid
+* `x` – point
+* `i` – coordinate
+
+## Hypotheses
+* `hx` – `x` in `E`
+
+## Conclusion
+* `x` is within `√Qᵢᵢ` of the center in coordinate `i`
 -/
 
 -- Authors:       Claude Opus 5.5

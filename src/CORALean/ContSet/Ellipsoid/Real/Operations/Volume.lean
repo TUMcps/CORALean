@@ -11,6 +11,12 @@ public import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 CORA's `@ellipsoid/volume_`: `V_n sqrt(det Q)`, `V_n = π^(n/2) / Γ(n/2 + 1)` the volume of the
 unit `n`-ball, at the shape matrix `Q`. CORA's early `vol = 0` for an empty ellipsoid does
 not arise (an `Ellipsoid` is never empty), and a singular `Q` gives `det Q = 0` and so `0`.
+
+## Inputs
+* `E` – ellipsoid
+
+## Output
+* `π^(n/2) / Γ(n/2 + 1) · √(det Q)`
 -/
 
 -- Authors:       Claude Opus 5.5

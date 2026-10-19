@@ -14,6 +14,15 @@ public import Mathlib.Topology.Algebra.Module.Basic
 is unbounded — degeneracy says nothing about boundedness. "D × NB = D, NB": `∅` is degenerate,
 `ℝ` unbounded, and `∅ × ℝ = ∅` is bounded.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* both product boundedness claims fail for some sets
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

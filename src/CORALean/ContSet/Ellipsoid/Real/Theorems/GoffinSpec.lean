@@ -23,6 +23,26 @@ of `Z` in `|cᵀx| ≤ γ` too, `|aᵀx| ≤ b < aᵀx₀ ≤ ‖a‖γ`; Lemma 
 `E(E, 0)`, and `ξ ↦ E_j^{1/2}ξ` maps that onto `E(E_j^{1/2}EE_j^{1/2}, 0)`. The stop is Eq. 5 at
 `E_j`. Lemma 4.3 needs `n ≥ 2`, which [1] does not state.
 
+## Inputs
+* `ε` – approximation tolerance
+* `Z` – zonotope-like set
+* `test` – test and separator
+* `E₀` – initial shape matrix
+* `j` – iteration
+
+## Hypotheses
+* `hε` – `0 < ε`
+* `hn` – `2 ≤ n`
+* `hZne` – `Z` nonempty
+* `hsymm` – `Z` symmetric
+* `hpass` – a passed test puts a ball in `Z`
+* `hsep` – a failed test gives a separator
+* `hE₀` – `E₀` positive definite
+* `hZ₀` – `Z` lies in `E(E₀, 0)`
+
+## Conclusion
+* iteration `j` is positive definite and contains `Z`
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

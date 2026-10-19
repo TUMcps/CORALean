@@ -20,6 +20,15 @@ have a bound the set does not attain. The summed bounds are `10` in every direct
 admit `(10, 0)`, while every point of `P₁ ⊕ P₂` has `x ≤ 2`. The inclusion that holds is
 `ContSet.hyperplanePolyhedron_add_subset`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a sum of two hyperplane polyhedra differs from the polyhedron of the summed bounds
+
 ## References
 
 * [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of

@@ -14,18 +14,21 @@ public import CORALean.Global.Float.Sqrt
 
 CORA's `@ellipsoid/enclosePoints.m`, method `'cov'`, the real layer's
 `Real.Ellipsoid.enclosePointsCov` step for step: the mean `c`, the points rotated by the caller's
-`T` and `U` (CORA: `svd(points)` and `svd(cov(.))`), the scalings `nt`, the radius `maxDist`, and
-the generators `G = T U diag(nt · sqrt maxDist)`, whose `G Gᵀ`, CORA's `T U B Uᵀ Tᵀ`, is stored
-rounded upward (`inflate`) as the shape matrix. None of it is trusted. The real layer's proof needs
-`T` and `U` orthogonal and every step exact; a float rotation is neither, and an inverse or an
-eigen-decomposition would have to be certified. Instead every point is placed explicitly: its
-factor vector `u` is the rotated point divided by the scalings, shrunk by `1 - 2⁻³⁰` against
-rounding and kept only if its upward square sum is at most `1` (else `0`), and the remainder
-`p - c - G u`, bracketed by directed roundings as in `containsPoint`, goes into the error box,
-which is the hull of all remainders. Every point is then in the set whatever the rotations, the
-rounding or the Newton steps `steps` of the square root did; they decide only how small the box
-is. For points spanning the space with orthogonal `T`, `U` and no vanishing `ntᵢ` the remainders
-are rounding errors.
+`T` and `U`, the scalings `nt`, the radius `maxDist`, and the generators `G = T U diag(nt · sqrt
+maxDist)`, whose `G Gᵀ` is stored rounded upward (`inflate`) as the shape matrix. None of it is
+trusted: a float rotation is not orthogonal. Instead every point is placed explicitly: its factor
+vector `u` is the rotated point divided by the scalings, kept only if its upward square sum is at
+most `1` (else `0`), and the remainder `p - c - G u`, bracketed by directed roundings, goes into the
+error box, their hull. Every point is then in the set whatever the rotations did.
+
+## Inputs
+* `steps` – Newton steps for `sqrt maxDist`
+* `pts` – points
+* `T` – rotation proposed by the caller
+* `U` – rotation proposed by the caller
+
+## Output
+* ellipsoid enclosing all the points
 -/
 
 -- Authors:       Claude Opus 5.5

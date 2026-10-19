@@ -13,6 +13,15 @@ of being re-proved over the existential.
 
 Both directions are the same destructuring, the image and the set-builder agreeing
 definitionally.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* `E` is the image of the unit ball under `u ↦ q + G u`
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

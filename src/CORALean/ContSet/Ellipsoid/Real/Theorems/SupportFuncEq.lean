@@ -15,6 +15,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 of the ellipsoid: the value `Ellipsoid.supportBound` stores, as CORA's `supportFunc_` does, and
 attains (`isGreatest_support`).
 
+## Inputs
+* `E` – ellipsoid
+* `c` – linear functional
+
+## Hypotheses
+* none
+
+## Conclusion
+* the support function is `dᵀ q + √(dᵀ Q d)` for the direction `d` of `c`
+
 ## References
 
 * [1] A. A. Kurzhanskiy and P. Varaiya. "Ellipsoidal Toolbox (ET)". In Proc. of the 45th

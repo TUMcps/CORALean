@@ -12,6 +12,15 @@ Of at least one member: the empty list denotes `univ`, compact only in the trivi
 which is why `SetIntersection` carries no `CompactSet` instance and this theorem asks for
 `I.sets ≠ []`. One compact member and closed others are what the proof uses; a compact set is
 closed in the normed ambient type, so every member supplies both.
+
+## Inputs
+* `I` – intersection
+
+## Hypotheses
+* `h` – `I` has a member
+
+## Conclusion
+* the intersection is compact
 -/
 
 -- Authors:       Claude Opus 5.5

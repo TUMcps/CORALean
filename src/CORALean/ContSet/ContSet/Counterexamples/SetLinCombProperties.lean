@@ -12,6 +12,15 @@ Under [1, Table 3]'s `conv(S₁, S₂) = {λ s₁ + (1 - λ) s₂}`, `conv(∅, 
 and bounded, `ℝⁿ` non-degenerate and unbounded, and the result is neither. So "D conv ND = ND",
 "D conv NB = NB", "ND conv B = ND" and "B conv NB = NB" are false as printed.
 
+## Inputs
+* none
+
+## Hypotheses
+* `hn` – `0 < n`
+
+## Conclusion
+* sets exist whose linear combination is bounded with empty interior though one is unbounded
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

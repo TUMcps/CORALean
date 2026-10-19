@@ -11,6 +11,13 @@ Every pair of branches, one from each operand, summed — the same pairing
 `SetUnion.plus` uses, read at `⋂` instead of `⋃`: a point of each operand's
 intersection lies in every branch, so it sums into every pairwise `plus`,
 which is what makes the pairwise intersection an outer bound.
+
+## Inputs
+* `I` – first intersection
+* `J` – second intersection
+
+## Output
+* every pair of members summed
 -/
 
 -- Authors:       Claude Sonnet 5

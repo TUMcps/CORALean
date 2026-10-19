@@ -12,6 +12,13 @@ the reciprocals: the sum over the `r`-element subsets of the product of their en
 `e₀ = 1` by convention. They are the coefficients through which the polynomial form of
 [1, Eq. 18] is read in the proof of [1, Thm. 2].
 
+## Inputs
+* `x` – entries
+* `r` – subset size
+
+## Output
+* sum over `r`-element subsets of the product of the entries
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

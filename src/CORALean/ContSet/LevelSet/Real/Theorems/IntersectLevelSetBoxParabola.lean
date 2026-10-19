@@ -13,6 +13,15 @@ public import Mathlib.Tactic.FinCases
 zonotope `{[1, 0]ᵀ α₁ + [0, 2]ᵀ α₁² | α₁ ∈ [-1, 1]}`. The first is
 `intersectLevelSetBox_exact`: `2x₁²` stays in `[0, 2]` on the box and does not involve `x₂`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the box `[-1, 1] × [0, 2]` cut by `x₂ = 2 x₁²` is the model of the parabola
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

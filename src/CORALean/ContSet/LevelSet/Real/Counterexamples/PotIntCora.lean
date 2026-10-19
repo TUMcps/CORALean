@@ -22,6 +22,15 @@ The guard `{x | x = 0 ∧ x - 1 ≤ 0}` (a cell `{'==','<='}`) and the reach set
 point `0`, yet the `==` row has bounds `(0, 1)`, which `isIntersecting_` reads as `0 < 0`, so
 `potInt` does not list the pair `(0, 0)` and the jump through this guard is missed (read from the
 source, not run). The bounds are range bounds of the guard function over the set.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's `potInt` misses a guard that meets the reachable set
 -/
 
 -- Authors:       Claude Opus 5.5

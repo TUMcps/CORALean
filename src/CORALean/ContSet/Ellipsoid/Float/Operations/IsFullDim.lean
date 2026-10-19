@@ -15,6 +15,12 @@ CORA's `@ellipsoid/isFullDim` asks for `rank(Q) = n`, which rounding cannot deci
 instead certifies `Q` positive definite: symmetric, and `Q - L Lᵀ` strictly diagonally dominant
 for the factor `cholFactor` proposes (`pdCheck`). The error box must be nonempty (`inf ≤ sup` by
 `le`), so that the set is a translate-containing sum. Only `true` is certain.
+
+## Inputs
+* `E` – ellipsoid
+
+## Output
+* `true` only if the shape is certified symmetric positive definite and the box ordered
 -/
 
 -- Authors:       Claude Opus 5.5

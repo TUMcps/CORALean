@@ -12,6 +12,18 @@ member's exactness reads straight across: the reverse inclusion pulls a point
 of the mapped union back to its branch, replaces the branch's own image by the
 branch itself via `hExact`, and re-covers it as a point of the original union.
 `mtimes_outer` supplies the direction this adds nothing to.
+
+## Inputs
+* `m` – rows of the matrix
+* `n` – columns of the matrix
+* `M` – matrix
+* `u` – union
+
+## Hypotheses
+* `hExact` – `mtimes` is exact on each branch
+
+## Conclusion
+* the linear image of `u` is exactly the result
 -/
 
 -- Authors:       Claude Sonnet 5

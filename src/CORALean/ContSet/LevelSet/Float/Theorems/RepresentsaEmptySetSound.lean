@@ -11,6 +11,18 @@ public import CORALean.ContSet.LevelSet.Real.Theorems.RepresentsaEmptySetSound
 Every row's certified comparison, read as reals, is the real test at the bounds read as reals
 (and cast to `EReal`), and `CORALean.Real.LevelSet.representsa_emptySet_sound` concludes. The
 bounds are assumed to enclose each row's range, as over ℝ.
+
+## Inputs
+* `L` – level set
+* `O` – float bounds of the rows over the whole space
+
+## Hypotheses
+* `hO` – `O` encloses each row's range
+* `hm` – the level set has a row
+* `h` – `representsa_emptySet` returns `true`
+
+## Conclusion
+* the level set is empty
 -/
 
 -- Authors:       Claude Opus 5.5

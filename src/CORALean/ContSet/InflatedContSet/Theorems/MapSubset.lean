@@ -12,6 +12,20 @@ the sum of the images, so the two parts travel separately: the nominal part may
 spill by `D`, and the box must absorb `D` along with its own image.
 
 Additivity suffices; the map is applied to a sum of two sets and nothing else.
+
+## Inputs
+* `s` – inflated set
+* `t` – inflated set
+* `f` – map
+* `D` – rounding slack
+
+## Hypotheses
+* `hadd` – `f` additive
+* `hnominal` – nominal image lies in the nominal part of `t` plus `D`
+* `herror` – box image plus `D` lies in the box of `t`
+
+## Conclusion
+* the image of `s` lies in `t`
 -/
 
 -- Authors:       Claude Opus 5

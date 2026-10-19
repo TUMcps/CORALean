@@ -18,6 +18,21 @@ positive semidefinite iff `p` is at most `1/λ`, `λ` the largest `vᵀ Q₂ v /
 every `v`. So CORA's `r = 1/max(diag(D))` has no square root missing, and a bad direction is one
 along which the inner shape fails to be a shape. Stated for `Q₁` of full rank, `Q₂ ⪯ Q₁`
 (`isBigger`, which `minkDiff` checks first) and `lᵀ Q₂ l > 0`, with `Q` as its quadratic form.
+
+## Inputs
+* `E₁` – first ellipsoid
+* `E₂` – second ellipsoid
+* `l` – direction
+* `p` – ratio of the support radii
+
+## Hypotheses
+* `hr` – `E₁` has full rank
+* `hbig` – `E₁` is bigger than `E₂`
+* `hl` – `lᵀ Q₂ l` positive
+* `hp` – `p = √(lᵀ Q₁ l) / √(lᵀ Q₂ l)`
+
+## Conclusion
+* `l` is bad iff the combined quadratic form is not nonnegative
 -/
 
 -- Authors:       Claude Sonnet 5.5

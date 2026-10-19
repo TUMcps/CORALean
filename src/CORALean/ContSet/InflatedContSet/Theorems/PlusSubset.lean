@@ -13,6 +13,19 @@ computes its nominal part approximately reduces to this.
 
 The three representations are separately typed, since an operation may take and
 return different ones.
+
+## Inputs
+* `s₁` – first inflated set
+* `s₂` – second inflated set
+* `t` – inflated set
+* `D` – rounding slack
+
+## Hypotheses
+* `hnominal` – sum of nominal parts lies in the nominal part of `t` plus `D`
+* `herror` – sum of boxes plus `D` lies in the box of `t`
+
+## Conclusion
+* the sum of `s₁` and `s₂` lies in `t`
 -/
 
 -- Authors:       Claude Opus 5

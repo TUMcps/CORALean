@@ -13,6 +13,20 @@ Outer: every point `x` of `E` with `(y - c x)² / V ≤ 1` (`V > 0`) lies in
 float Gollamudi theorem, which has no hypothesis on its weight, and the strip inclusion
 `|c x - y| ≤ √V ≤ toReal (sqrtUp V)`; the equivalence of the two fusions at `σ²_prev = 1` explains
 the choice of `λ'` but is not used. Not exact.
+
+## Inputs
+* `steps` – Newton steps per root
+* `E` – ellipsoid
+* `c` – measurement row
+* `V` – scalar `V`
+* `y` – measurement
+* `lam` – update weight
+
+## Hypotheses
+* `hV` – `0 < V`
+
+## Conclusion
+* the intersection of `E` with the measurement set lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

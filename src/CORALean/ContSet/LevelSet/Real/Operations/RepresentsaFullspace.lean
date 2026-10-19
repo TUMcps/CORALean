@@ -17,6 +17,13 @@ range (`Theorems/RepresentsaFullspaceSound`).
 `aux_representsa_fullspace` turns `res = true` `false` when a row may fail: `==` unless `O(i)`
 equals `interval(0)`, `<=` when `O.sup(i) > 0`, `<` when `O.sup(i) ≥ 0` (`isequal` at its default
 tolerance `eps` in CORA, exact here).
+
+## Inputs
+* `L` – level set
+* `O` – bounds of the rows over the whole space
+
+## Output
+* every row holds everywhere
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -17,6 +17,20 @@ U Σ Vᵀ` of that direction gives — and `c` lie in the hull. With `M = [I_r 0
 orthogonal projection onto those columns, which fixes every `x - c`, and `M` carries the
 direction of the hull onto all of `ℝʳ`. The decomposition itself is a hypothesis.
 
+## Inputs
+* `P` – polytope
+* `c` – point of the affine hull
+* `U` – orthogonal matrix
+
+## Hypotheses
+* `hU` – `U` orthogonal
+* `hrn` – `r ≤ n`
+* `hc` – `c` in the affine hull of the vertices
+* `hspan` – the first `r` columns of `U` span the vertices' direction space
+
+## Conclusion
+* `P` is the lift of a full-dimensional polytope in dimension `r`
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

@@ -14,6 +14,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderStationarityEq
 The step [1, Eq. 26] lowers `β > 0` exactly where the stationarity function [1, Eq. 18] is
 negative: `g(β) < β` iff `∑ 1/(1+βλᵢ) < β² ∑ λᵢ/(1+βλᵢ)`.
 
+## Inputs
+* `β` – weight of the shape sum
+
+## Hypotheses
+* `hlam` – every `λᵢ` positive
+* `hβ` – `0 < β`
+
+## Conclusion
+* the step is below `β` iff the stationarity function is negative
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of
