@@ -1,24 +1,16 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Theorems.Basic
-public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
-public import CORALean.ContSet.Zonotope.Real.Theorems.SqNormLeMaxNormSq
-public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_Zonotope
-public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
 
 @[expose] public section
 
 /-!
 # An ellipsoid as a zonotope
 
-Through the box, as everything reaching a zonotope does here: a tighter
-zonotope enclosure of an ellipsoid is a fitting problem — how many generators,
-pointed which way — rather than a conversion, and CORA leaves that choice to the
-caller too.
-
-The box step is tight and the box-to-zonotope step is exact, so all the loss is
-in the first, and it is the loss of an axis-aligned enclosure of a rotated set.
+CORA's `'outer:box'`, `zonotope(q, sqrtm(Q))`: a point of the ellipsoid is `q + G u` with
+`‖u‖₂ ≤ 1` (`mem_construct_iff`), so every coordinate of `u` lies in `[-1, 1]` and `u` is a
+coefficient vector of the parallelotope on the columns of `G`.
 
 CORA's `'inner:norm'` and `'outer:norm'` are [1, Thm. 2] and [1, Thm. 4]: points `S` on the unit
 sphere, ideally spread evenly ([1, Lemma 4]), scaled by the inverse of a bound on the maximum,
@@ -32,9 +24,9 @@ or below the minimum, norm of `Z(S, 0)` and mapped by the ellipsoid's generator.
       2020.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -49,8 +41,16 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.zonotope_contains (E : Ellipsoid n) : E.construct ⊆ E.zonotope.construct :=
-  subset_trans E.interval_contains (Interval.zonotope_contains _)
+theorem Ellipsoid.zonotope_contains (E : Ellipsoid n) :
+    E.construct ⊆ E.zonotope.construct := by -- --- PROOF ---
+  intro x hx
+  obtain ⟨u, hu, rfl⟩ := Ellipsoid.mem_construct_iff.mp hx
+  -- `G *ᵥ u` is the sum of the columns weighted by `u`, each weight in `[-1, 1]`
+  refine ⟨u, fun j => le_trans (abs_le_norm₂ u j) hu, ?_⟩
+  congr 1
+  funext i
+  simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul, mulVec, dotProduct, Ellipsoid.zonotope]
+  exact Finset.sum_congr rfl fun j _ => mul_comm _ _
 
 end CORALean.Real
 

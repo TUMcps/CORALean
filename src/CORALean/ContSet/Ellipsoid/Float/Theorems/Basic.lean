@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Materialise
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Basic
+public import Mathlib.LinearAlgebra.Matrix.PosDef
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfShapeEq
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.NominalQEq
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.NominalCenterEq
@@ -28,9 +29,22 @@ namespace CORALean.Float
 
 section
 
-open FloatOps
+open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
+
+
+-- ===============================  `Ellipsoid.ball_posSemidef`  ================================ --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The ball's stored shape, read as reals, is positive semi-definite. -/
+theorem Ellipsoid.ball_posSemidef (r : 𝕋) : (toRealMat (Ellipsoid.ball n r).Q).PosSemidef := by
+  rw [show toRealMat (Ellipsoid.ball n r).Q = Matrix.diagonal fun _ => toReal (mulUp r r) from
+    funext fun i => funext fun l => toReal_diagonalBlock (fun _ => mulUp r r) i l]
+  exact Matrix.PosSemidef.diagonal fun _ => le_trans (mul_self_nonneg _) (mul_le_mulUp r r)
 
 
 -- ===============================  `Ellipsoid.convex_construct`  =============================== --

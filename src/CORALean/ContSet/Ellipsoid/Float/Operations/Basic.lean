@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.Global.Float.FloatOps
 
 @[expose] public section
@@ -21,6 +22,19 @@ namespace CORALean.Float
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- =====================================  `Ellipsoid.ball`  ===================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- CORA's `ellipsoid(eye(n)*r^2)`, the ball of radius `r`: the shape `r²` rounded up. -/
+def Ellipsoid.ball (n : ℕ) (r : 𝕋) : Ellipsoid 𝕋 n where
+  Q := diagonalBlock fun _ => mulUp r r
+  q := fun _ => zero
+  I_error := Interval.origin n
 
 
 -- ====================================  `Ellipsoid.center`  ==================================== --

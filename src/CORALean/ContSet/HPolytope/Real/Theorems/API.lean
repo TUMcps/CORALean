@@ -9,6 +9,7 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.IsClosed
 public import CORALean.ContSet.HPolytope.Real.Theorems.LinCombOfOuter
 public import CORALean.ContSet.HPolytope.Real.Theorems.MapEquivExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemFoldlIntersectionIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
 public import CORALean.ContSet.HPolytope.Real.Theorems.MinkDiffOfInner
 public import CORALean.ContSet.HPolytope.Real.Theorems.MinusExact

@@ -12,10 +12,12 @@ public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_VPolyt
 public import CORALean.ContSet.Conversion.Real.Operations.SpectraShadow_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.Taylm_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeVPolytopeExact
+public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeContainsVPolytope
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeVPolytopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalContainsVPolytope
@@ -28,6 +30,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeZonotopeCont
 public import CORALean.ContSet.Conversion.Real.Theorems.TaylmPolyZonotopeExact
 public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeIntervalContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleConZonotopeAllExact
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConZonotopeExact
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopePolyZonotopeExact
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeVPolytopeContains
@@ -39,9 +42,9 @@ public import CORALean.ContSet.HPolytope.Real.Operations.BasicPointTightAt
 public import CORALean.ContSet.HPolytope.Real.Operations.TightAt
 public import CORALean.ContSet.HPolytope.Real.Theorems.ExtremePoints
 public import CORALean.ContSet.Interval.Real.Operations.Basic
-public import CORALean.ContSet.LevelSet.Real.Theorems.AndExact
 public import CORALean.ContSet.Interval.Real.Operations.OfBounds
 public import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
+public import CORALean.ContSet.LevelSet.Real.Theorems.AndExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombExactOfDependent
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.OfPointMem
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
@@ -79,6 +82,17 @@ namespace CORALean.Real
 section
 
 variable {n : ℕ}
+
+
+-- =============================  `Ellipsoid.conZonotope_contains`  ============================= --
+-- Authors:       Claude Opus 5
+-- Written:       06-September-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Through the zonotope; the constrained zonotope with nothing to satisfy loses nothing. -/
+theorem Ellipsoid.conZonotope_contains (E : Ellipsoid n) : E.construct ⊆ E.conZonotope.construct :=
+  subset_trans E.zonotope_contains (Zonotope.conZonotope_exact _).subset
 
 
 -- ==============================  `Ellipsoid.interval_contains`  =============================== --

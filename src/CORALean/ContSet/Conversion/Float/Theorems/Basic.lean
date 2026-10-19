@@ -1,5 +1,7 @@
 module
 
+public import CORALean.ContSet.Conversion.Float.Theorems.ConZonotopeConPolyZonoContains
+public import CORALean.ContSet.Conversion.Float.Theorems.VPolytopeConZonotopeContains
 public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_PolyZonotope
@@ -71,6 +73,7 @@ public import CORALean.ContSet.VPolytope.Float.VPolytope
 public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.PolyZonotopeZonotopeEvenContains
 
 @[expose] public section
 
@@ -163,18 +166,6 @@ theorem HPolytope.polyZonotope_contains (up : ∀ j, FloatBound 𝕋 P.construct
     P.construct ⊆ (HPolytope.polyZonotope up lo).construct :=
   subset_trans (HPolytope.zonotope_contains up lo) (Zonotope.polyZonotope_contains _)
 
-
--- =============================  `HPolytope.conPolyZono_contains`  ============================= --
--- Authors:       Claude Sonnet 5.5
--- Written:       02-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- Through the polynomial zonotope; the constraint-free embedding is exact. -/
-theorem HPolytope.conPolyZono_contains (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) :
-    P.construct ⊆ (HPolytope.conPolyZono up lo).construct :=
-  subset_trans (HPolytope.polyZonotope_contains up lo) (PolyZonotope.conPolyZono_contains _)
 
 end
 
@@ -294,6 +285,18 @@ theorem ConPolyZono.vPolytope_contains (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
   subset_trans cPZ.zonotope_contains (Zonotope.vPolytope_contains _)
 
 
+-- =============================  `VPolytope.conPolyZono_contains`  ============================= --
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
+-- Written:       02-October-2026
+-- Last update:   19-October-2026
+-- Reviewed:      ---
+
+/-- Through the constrained zonotope of the hull, as CORA's `conPolyZono(conZonotope(P))`. -/
+theorem VPolytope.conPolyZono_contains (P : VPolytope (Vec 𝕋 n)) :
+    P.construct ⊆ P.conPolyZono.construct :=
+  subset_trans P.conZonotope_contains (ConZonotope.conPolyZono_contains _)
+
+
 -- ==============================  `VPolytope.zonotope_contains`  =============================== --
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
@@ -331,17 +334,6 @@ theorem VPolytope.polyZonotope_contains (P : VPolytope (Vec 𝕋 n)) :
     P.construct ⊆ P.polyZonotope.construct :=
   subset_trans P.zonotope_contains (Zonotope.polyZonotope_contains _)
 
-
--- =============================  `VPolytope.conPolyZono_contains`  ============================= --
--- Authors:       Claude Sonnet 5.5
--- Written:       02-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- Through the polynomial zonotope; the constraint-free embedding is exact. -/
-theorem VPolytope.conPolyZono_contains (P : VPolytope (Vec 𝕋 n)) :
-    P.construct ⊆ P.conPolyZono.construct :=
-  subset_trans P.polyZonotope_contains P.polyZonotope.conPolyZono_contains
 
 end
 
@@ -574,6 +566,19 @@ are the caller's, as in `Zonotope.hPolytope_contains`. -/
 theorem PolyZonotope.hPolytope_contains (pZ : PolyZonotope (Vec 𝕋 n)) (Aq : Mat 𝕋 q n) :
     pZ.construct ⊆ (pZ.hPolytope Aq).construct :=
   subset_trans pZ.zonotope_contains (Zonotope.hPolytope_contains _ _)
+
+
+-- ===========================  `PolyZonotope.intervalEven_contains`  =========================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- CORA's default box of a polynomial zonotope holds it: the even-column zonotope, then its box. -/
+theorem PolyZonotope.intervalEven_contains (pZ : PolyZonotope (Vec 𝕋 n)) :
+    pZ.construct ⊆ pZ.intervalEven.construct :=
+  subset_trans pZ.zonotopeEven_contains pZ.zonotopeEven.interval_contains
+
 
 end
 

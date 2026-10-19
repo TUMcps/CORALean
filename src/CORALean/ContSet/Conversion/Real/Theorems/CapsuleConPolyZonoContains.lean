@@ -1,24 +1,19 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleIntervalContains
-public import CORALean.ContSet.Conversion.Real.Theorems.IntervalConPolyZonoContains
-public import CORALean.ContSet.Conversion.Real.Operations.Basic
-public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPolyZono
+public import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqEmpty
+public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleConPolyZonoExact
 
 @[expose] public section
 
 /-!
-# A capsule as a constrained polynomial zonotope
+# A capsule lies in its constrained polynomial zonotope
 
-Via the bounding box: `Capsule.interval`, then the box's own conversion. An outer enclosure,
-coarser than CORA's conversion. CORA's `conPolyZono(capsule)` is the exact sum of the segment
-and the ball's constrained polynomial zonotope. Here the capsule is first replaced by its axis-
-aligned box, which loses the rounded ends and the slant of the segment.
+Exact for `0 ≤ r` (`Capsule.conPolyZono_exact`); a negative radius is the empty capsule.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -32,8 +27,11 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.conPolyZono_contains (C : Capsule n) :
-    C.construct ⊆ C.conPolyZono.construct :=
-  subset_trans C.interval_contains (Interval.conPolyZono_contains _)
+    C.construct ⊆ C.conPolyZono.construct := by
+  rcases lt_or_ge C.r 0 with hr | hr
+  · rw [Capsule.construct_eq_empty hr]
+    exact Set.empty_subset _
+  · exact (C.conPolyZono_exact hr).subset
 
 end CORALean.Real
 

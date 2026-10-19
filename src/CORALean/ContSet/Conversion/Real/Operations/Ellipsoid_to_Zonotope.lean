@@ -10,6 +10,12 @@ public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 /-!
 # An ellipsoid as a zonotope
 
+CORA's default `zonotope(E)`, `'outer:box'`, is `priv_encParallelotope(E)`: `zonotope(q, sqrtm(Q))`,
+the columns of the ellipsoid's own generator `E.G = Q^{1/2}`. At a degenerate `Q` CORA first
+restricts to the range by an SVD and takes the generators `U(:,1:r) sqrt(Σ_r)`; here the columns
+of `Q^{1/2}` stay, a parallelotope enclosing the same ellipsoid, not CORA's for `rank Q < n`. The
+other modes are `zonotopeNorm` and `zonotopeInnerNorm` below (`'outer:norm'`, `'inner:norm'`).
+
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean
@@ -17,9 +23,9 @@ public import Mathlib.Analysis.SpecialFunctions.Pow.Real
       2020.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -34,8 +40,10 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Ellipsoid.zonotope (E : Ellipsoid n) : Zonotope (Vec ℝ n) :=
-  E.interval.zonotope
+noncomputable def Ellipsoid.zonotope (E : Ellipsoid n) : Zonotope (Vec ℝ n) where
+  h := n
+  c := E.q
+  G := fun j i => E.G i j
 
 /-- [1, Thm. 2]: `Z(r^{-1/2} T⁻¹ S, ē)`, `T⁻¹` the ellipsoid's generator. -/
 noncomputable def Ellipsoid.zonotopeInnerNorm (E : Ellipsoid n) {m : ℕ} (S : Fin m → Vec ℝ n)
