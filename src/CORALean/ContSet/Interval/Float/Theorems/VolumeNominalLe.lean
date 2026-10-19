@@ -48,13 +48,13 @@ theorem aux_prod_le_prodUp : ∀ {k : ℕ} (f : Fin k → 𝕋), (∀ i, 0 ≤ t
     exact le_trans (mul_le_mul_of_nonneg_left h₁ (hf 0)) (mul_le_mulUp _ _)
 
 theorem Interval.aux_widthUp_nonneg (I : Interval (Vec 𝕋 n)) (i : Fin n) :
-    0 ≤ toReal (I.widthUp i) := by
-  rw [Interval.widthUp, toReal_maximum, toReal_zero]
+    0 ≤ toReal (I.aux_widthUp i) := by
+  rw [Interval.aux_widthUp, toReal_maximum, toReal_zero]
   exact le_max_left _ _
 
 theorem Interval.aux_widthUp_ge (I : Interval (Vec 𝕋 n)) (i : Fin n) :
-    toReal (I.sup i) - toReal (I.inf i) ≤ toReal (I.widthUp i) := by
-  rw [Interval.widthUp, toReal_maximum]
+    toReal (I.sup i) - toReal (I.inf i) ≤ toReal (I.aux_widthUp i) := by
+  rw [Interval.aux_widthUp, toReal_maximum]
   exact le_trans (sub_le_subUp _ _) (le_max_right _ _)
 
 
@@ -62,11 +62,11 @@ theorem Interval.aux_widthUp_ge (I : Interval (Vec 𝕋 n)) (i : Fin n) :
 
 theorem Interval.volume_nominal_le (I : Interval (Vec 𝕋 n)) :
     I.nominal.volume ≤ ENNReal.ofReal (toReal I.volume) := by -- --- PROOF ---
-  have hW : ∀ i, 0 ≤ toReal (I.widthUp i) := I.aux_widthUp_nonneg
+  have hW : ∀ i, 0 ≤ toReal (I.aux_widthUp i) := I.aux_widthUp_nonneg
   calc I.nominal.volume
-      ≤ ∏ i, ENNReal.ofReal (toReal (I.widthUp i)) :=
+      ≤ ∏ i, ENNReal.ofReal (toReal (I.aux_widthUp i)) :=
         Finset.prod_le_prod' fun i _ => ENNReal.ofReal_le_ofReal (I.aux_widthUp_ge i)
-    _ = ENNReal.ofReal (∏ i, toReal (I.widthUp i)) :=
+    _ = ENNReal.ofReal (∏ i, toReal (I.aux_widthUp i)) :=
         (ENNReal.ofReal_prod_of_nonneg fun i _ => hW i).symm
     _ ≤ ENNReal.ofReal (toReal I.volume) :=
         ENNReal.ofReal_le_ofReal (aux_prod_le_prodUp _ hW)

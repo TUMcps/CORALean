@@ -7,7 +7,6 @@ public import CORALean.Specification.OnlineAnalyzerNode.Operations.Conflicts
 public import CORALean.Specification.OnlineAnalyzerNode.Operations.GetAllProp
 public import CORALean.Specification.OnlineAnalyzerNode.Operations.Mk
 public import CORALean.Specification.OnlineAnalyzerNode.Operations.ObserveSet
-public import CORALean.Specification.OnlineAnalyzerNode.Operations.PropBound
 public import CORALean.Specification.OnlineAnalyzerNode.Operations.Propagate
 public import CORALean.Specification.OnlineAnalyzerNode.Operations.SetPropagated
 

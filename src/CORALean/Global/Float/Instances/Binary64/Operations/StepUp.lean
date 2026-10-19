@@ -8,14 +8,14 @@ public import CORALean.Global.Float.Instances.Binary64.Binary64
 # A round-to-nearest result, one step up
 
 What every upward operation does with the machine's result `r`: `nextUp`, which is above the
-exact value wherever `r` is the nearest float to it, with `inRange` on both sides of the step. A
+exact value wherever `r` is the nearest float to it, with `aux_inRange` on both sides of the step. A
 zero stays zero: the callers let `r` be zero only where the exact result is, and `nextUp` of it
-would be the smallest subnormal, which `inRange` would itself refuse.
+would be the smallest subnormal, which `aux_inRange` would itself refuse.
 
-Written on the bits, in one pass, rather than as `inRange (nextUp (inRange r))`, which it equals
-away from zero: the exponent field is `0` exactly at a zero or a subnormal and `0x7FF` exactly at
-an infinity or a NaN, and a step is `toBits` plus one above zero, minus one below. No literal
-appears either: `0.0` compiles to `Float.ofScientific` on every call, which `nextUp` pays.
+Written on the bits, in one pass, rather than as `aux_inRange (nextUp (aux_inRange r))`, which it
+equals away from zero: the exponent field is `0` exactly at a zero or a subnormal and `0x7FF`
+exactly at an infinity or a NaN, and a step is `toBits` plus one above zero, minus one below. No
+literal appears either: `0.0` compiles to `Float.ofScientific` on every call, which `nextUp` pays.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -112,7 +112,7 @@ theorem aux_resolveUpdateFloat_outer (B : Mat 𝕋 N (∑ i, m i))
     (ij : Σ i, Fin (m i)) : -- --- STMT ---
     let R := LinearReset.resolveUpdate (toRealMat B) (fun i => toRealMat (C i))
       (fun i => toRealMat (D i)) (fun i => toRealVec (q i)) stateBinds inputBinds ij
-    let F := LinearReset.resolveUpdateFloat B C D q stateBinds inputBinds ij
+    let F := LinearReset.aux_resolveUpdateFloat B C D q stateBinds inputBinds ij
     (∀ a b, toReal (F.1.inf a b) ≤ R.1 a b ∧ R.1 a b ≤ toReal (F.1.sup a b)) ∧
       (∀ a col, toReal (F.2.1.inf a col) ≤ R.2.1 a col ∧ R.2.1 a col ≤ toReal (F.2.1.sup a col)) ∧
       (∀ a, toReal (F.2.2.inf a) ≤ R.2.2 a ∧ R.2.2 a ≤ toReal (F.2.2.sup a)) := by -- --- PROOF ---
@@ -120,9 +120,9 @@ theorem aux_resolveUpdateFloat_outer (B : Mat 𝕋 N (∑ i, m i))
   obtain ⟨i, j⟩ := ij
   rcases h : inputBinds i j with u' | ⟨c', l⟩
   · -- a globally bound input updates nothing, on both sides
-    simp [R, F, LinearReset.resolveUpdate, LinearReset.resolveUpdateFloat, h, toReal_zero]
+    simp [R, F, LinearReset.resolveUpdate, LinearReset.aux_resolveUpdateFloat, h, toReal_zero]
   · -- a bound input: each entry is a product of scattered entries
-    simp only [R, F, LinearReset.resolveUpdate, LinearReset.resolveUpdateFloat, h, scatter,
+    simp only [R, F, LinearReset.resolveUpdate, LinearReset.aux_resolveUpdateFloat, h, scatter,
       vecMulVec_apply, toRealMat, toRealVec]
     exact ⟨fun a b => ⟨aux_sumDown_ite_mul _ _ _ _, aux_ite_mul_le_sumUp _ _ _ _⟩,
       fun a col => ⟨aux_sumDown_ite_mul _ _ _ _, aux_ite_mul_le_sumUp _ _ _ _⟩,

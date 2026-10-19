@@ -1,8 +1,9 @@
 module
 
-public import CORALean.ContSet.Zonotope.Float.Operations.TensorHDiff
 public import CORALean.ContSet.Zonotope.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.Zonotope.Float.Operations.Basic
+public import CORALean.ContSet.Zonotope.Float.Operations.TensorHDown
+public import CORALean.ContSet.Zonotope.Float.Operations.TensorHUp
 
 @[expose] public section
 
@@ -34,6 +35,13 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+def Zonotope.aux_tensorHDiff (M : Zonotope.Tensor3 𝕋 n) (Z : Zonotope (Vec 𝕋 n))
+    (L : Real.Zonotope.TensorLists Z.h) : Fin n → Fin L.C → 𝕋 :=
+  fun iDim cInd => subUp (Zonotope.tensorHUp M Z L iDim cInd) (Zonotope.tensorHDown M Z L iDim cInd)
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Zonotope.tensorMultiplication (Z : Zonotope (Vec 𝕋 n)) (M : Zonotope.Tensor3 𝕋 n)
@@ -41,7 +49,7 @@ def Zonotope.tensorMultiplication (Z : Zonotope (Vec 𝕋 n)) (M : Zonotope.Tens
   h := L.C
   c := fun _ => zero
   G := fun cInd iDim => Zonotope.tensorHDown M Z.absorbRounding L iDim cInd
-  I_error := Zonotope.generatorError (Zonotope.tensorHDiff M Z.absorbRounding L)
+  I_error := Zonotope.generatorError (Zonotope.aux_tensorHDiff M Z.absorbRounding L)
 
 end CORALean.Float
 

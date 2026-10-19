@@ -43,8 +43,9 @@ theorem Taylm.globalMin_le {f : Vec ℝ n → ℝ} {lb : (Fin n → Interval ℝ
   -- every point is in a live box, or above the cutoff; every live box is good
   have inv : ∀ fuel (st : List (Fin n → Interval ℝ) × ℝ), (∀ B ∈ st.1, Good B) →
       ((∃ B ∈ st.1, Taylm.InBox B t) ∨ st.2 < f t) →
-      ((∃ B ∈ (Taylm.goLoop lb ub fuel st).1, Taylm.InBox B t) ∨
-        (Taylm.goLoop lb ub fuel st).2 < f t) ∧ ∀ B ∈ (Taylm.goLoop lb ub fuel st).1, Good B := by
+      ((∃ B ∈ (Taylm.aux_goLoop lb ub fuel st).1, Taylm.InBox B t) ∨
+        (Taylm.aux_goLoop lb ub fuel st).2 < f t) ∧ ∀ B ∈ (Taylm.aux_goLoop lb ub fuel
+          st).1, Good B := by
     intro fuel
     induction fuel with
     | zero => intro st hg h; exact ⟨h, hg⟩
@@ -55,7 +56,7 @@ theorem Taylm.globalMin_le {f : Vec ℝ n → ℝ} {lb : (Fin n → Interval ℝ
       | nil => exact ih _ hg h
       | cons B rest =>
         have hB := hg B (by simp)
-        simp only [Taylm.goLoop, Taylm.goStep]
+        simp only [Taylm.aux_goLoop, Taylm.aux_goStep]
         split_ifs with hcut
         -- eliminated: its points are above the cutoff
         · refine ih _ (fun B' hB' => hg B' (by simp [hB'])) ?_

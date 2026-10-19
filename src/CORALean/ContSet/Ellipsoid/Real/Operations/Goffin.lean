@@ -1,6 +1,8 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Operations.GoffinCut
+public import CORALean.ContSet.Ellipsoid.Real.Operations.CutShape
+public import CORALean.Global.EuclideanNorm
+public import Mathlib.Analysis.Matrix.Order
 
 @[expose] public section
 
@@ -10,7 +12,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.GoffinCut
 [1, Sec. 4.6 (algorithm)]: from `E(E₀, 0) ⊇ Z` (Sec. 4.1), iteration `j` maps by
 `Φ : ξ ↦ E_j^{-1/2}ξ`, runs the test (17) with `γ = 1/√(n(1+ε))` on `Z′ = ΦZ`, and either stops
 — `E(E_j/(1+ε), 0)` is then an `ε`-approximate Löwner–John ellipse of `Z` — or cuts with the
-separator `a` of Sec. 4.5 (`goffinCut`). The test together with the separation algorithm is the
+separator `a` of Sec. 4.5 (`aux_goffinCut`). The test together with the separation algorithm is the
 argument `test`: `none` when (17) passes at `E_j`, `some a` otherwise; it is a linear program
 per axis and per separator, outside what a definition here computes. A stopped run stays at its
 last `E_j`, so `goffin … j` is `E_j` for every `j` up to the stop.
@@ -31,6 +33,18 @@ last `E_j`, so `goffin … j` is `E_j` for every `j` up to the stop.
 namespace CORALean.Real
 
 variable {n : ℕ}
+open scoped MatrixOrder
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- [1, Sec. 4.6 (algorithm)]: `E_{j+1} := Φ⁻¹(E)` for the cut `(a/‖a‖, 1/√(n(1+ε)))`. -/
+noncomputable def Ellipsoid.aux_goffinCut (ε : ℝ) (Ej : Mat ℝ n n) (a : Vec ℝ n) : Mat ℝ n n :=
+  let Φinv := CFC.sqrt Ej
+  let γ := 1 / Real.sqrt ((n : ℝ) * (1 + ε))
+  let c := (‖a‖₂)⁻¹ • a
+  let E := Ellipsoid.cutShape n c γ
+  Φinv * E * Φinv
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -43,7 +57,7 @@ noncomputable def Ellipsoid.goffin (ε : ℝ) (test : Mat ℝ n n → Option (Ve
     let Ej := Ellipsoid.goffin ε test E₀ j
     match test Ej with
     | none => Ej
-    | some a => Ellipsoid.goffinCut ε Ej a
+    | some a => Ellipsoid.aux_goffinCut ε Ej a
 
 end CORALean.Real
 

@@ -24,12 +24,18 @@ reading it. It is *outward-facing*, and left alone, when
 * `scripts/single-use-allowlist.txt` lists it: one line `<path>::<name>  <reason>`. An entry that
   no longer matches a flagged declaration is reported as stale, so the list only shrinks.
 
+An operation and its satellite theorem files (`scripts/satellites.py`, #227) count as one unit: a
+theorem whose one user file lies in its own unit has no user outside it and is left alone.
+
 Prints one finding per line and exits 1 on any; 2 when the sources cannot be read.
 `--root DIR` reads another tree (used to test the rule on a mutated copy).
 """
 import re
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import satellites  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 args = sys.argv[1:]
@@ -38,51 +44,12 @@ if args[:1] == ["--root"]:
 SRC = ROOT / "src"
 ALLOW = ROOT / "scripts" / "single-use-allowlist.txt"
 
-_LETTER = r"A-Za-z_À-ɏͰ-Ͽ℀-⅏\U0001D400-\U0001D7FF"
-_SUB = r"₀-ₜᵢ-ᵪⱼ"
-IDENT = re.compile(rf"[{_LETTER}][{_LETTER}0-9'!?{_SUB}.]*")
+IDENT = satellites.IDENT
 DECL = re.compile(
     r"^(?P<attr>@\[[^\]]*\]\s*)?(?P<mods>(?:(?:private|protected|noncomputable|nonrec)\s+)*)"
     r"(?:theorem|lemma)\s+(?P<name>[^\s:({\[]+)")
-COMMENT = re.compile(r"--|/-|-/")
-
-
-def split_code(lines):
-    """Per line, the text outside comments and docstrings (nested block comments tracked)."""
-    depth, out = 0, []
-    for line in lines:
-        if depth == 0 and "-" not in line:
-            out.append(line)
-            continue
-        code, pos = [], 0
-        for m in COMMENT.finditer(line):
-            tok, i = m.group(), m.start()
-            if i < pos:
-                continue
-            if depth == 0 and tok == "--":
-                code.append(line[pos:i])
-                pos = len(line)
-                break
-            if tok == "/-":
-                if depth == 0:
-                    code.append(line[pos:i])
-                depth += 1
-                pos = i + 2
-            elif tok == "-/" and depth:
-                depth -= 1
-                pos = i + 2
-        if depth == 0 and pos < len(line):
-            code.append(line[pos:])
-        out.append("".join(code))
-    return out
-
-
-def components(text):
-    """The dot-separated components of every identifier in `text`."""
-    out = set()
-    for tok in IDENT.findall(text):
-        out.update(p for p in tok.split(".") if p)
-    return out
+split_code = satellites.split_code
+components = satellites.components
 
 
 def main():
@@ -113,6 +80,18 @@ def main():
             if last.startswith("aux_"):
                 continue
             decls.append((rel[p], i + 1, name, last))
+
+    unit = {}
+    for p in rel.values():
+        if "/Theorems/" in p:
+            ops = satellites.operations_of(p, ROOT)
+            if ops:
+                unit[p] = set(ops)
+        elif "/Operations/" in p:
+            unit[p] = {p}
+
+    def same_unit(a, b):
+        return bool(unit.get(a, {a}) & unit.get(b, {b}))
 
     outside = ""
     for base in (ROOT / "references", ROOT / "experiments" / "paper"):
@@ -149,6 +128,8 @@ def main():
         if len(users) != 1:
             continue
         user = next(iter(users))
+        if same_unit(user, path):
+            continue  # the unit's own lemma: no file outside it reads it
         uparts = user.split("/")
         if "Examples" in uparts or uparts[-1] == "Instances.lean":
             continue

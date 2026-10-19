@@ -83,21 +83,22 @@ theorem LinearARX.aux_shift_sum_vec (sys : LinearARX 𝕋 dy du p) (k a b : ℕ)
     show ((↑(i + p) : ℤ) - p) = i by push_cast; ring, Nat.add_sub_cancel]
 
 /-- The loop invariant of Alg. 2, started at `k_init = p`. -/
-theorem LinearARX.aux_alg2State (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ (p * dy))
+theorem LinearARX.aux_alg2State_inv (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ (p * dy))
     (Uc : Set (Vec ℝ du)) (uv : ℕ → Vec ℝ du) (hp : 0 < p) (m : ℕ) : -- --- STMT ---
-    (sys.alg2State yinit Uc uv p m).1 = p + m * p ∧
-    (sys.alg2State yinit Uc uv p m).2.1
+    (sys.aux_alg2State yinit Uc uv p m).1 = p + m * p ∧
+    (sys.aux_alg2State yinit Uc uv p m).2.1
       = ∑ i ∈ Finset.range (p + m * p), (sys.Btilde (p + m * p) i *ᵥ ·) '' Uc ∧
-    (sys.alg2State yinit Uc uv p m).2.2.1
+    (sys.aux_alg2State yinit Uc uv p m).2.2.1
       = ∑ i ∈ Finset.Ico (p + m * p) (p + m * p + p), (sys.Btilde (p + m * p) i *ᵥ ·) '' Uc ∧
-    (0 < m → (sys.alg2State yinit Uc uv p m).2.2.2.1
+    (0 < m → (sys.aux_alg2State yinit Uc uv p m).2.2.2.1
       = ∑ i ∈ Finset.Ico (p + m * p) (p + m * p + p),
           (sys.Btilde (p + m * p + p) i *ᵥ ·) '' Uc) ∧
-    (sys.alg2State yinit Uc uv p m).2.2.2.2.1 = sys.Aext ^ (p + m * p) *ᵥ yinit
+    (sys.aux_alg2State yinit Uc uv p m).2.2.2.2.1 = sys.Aext ^ (p + m * p) *ᵥ yinit
       + ∑ i ∈ Finset.Ico p (p + m * p + p),
           sys.Btilde (p + m * p) i *ᵥ uv (p + m * p + p - 1 - i) ∧
     ∀ i < 2 * p,
-      (sys.alg2State yinit Uc uv p m).2.2.2.2.2 i = sys.Btilde (p + m * p) i := by -- --- PROOF ---
+      (sys.aux_alg2State yinit Uc uv p m).2.2.2.2.2 i =
+        sys.Btilde (p + m * p) i := by -- --- PROOF ---
   induction m with
   | zero =>
     rw [zero_mul, add_zero]
@@ -114,19 +115,19 @@ theorem LinearARX.aux_alg2State (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ 
     rw [hk']
     -- the stored parameters, refreshed or settled, as in Alg. 1
     have hB' : ∀ i < 2 * p,
-        (sys.alg2State yinit Uc uv p (m + 1)).2.2.2.2.2 i = sys.Btilde (k + p) i := by
+        (sys.aux_alg2State yinit Uc uv p (m + 1)).2.2.2.2.2 i = sys.Btilde (k + p) i := by
       intro i hi
       by_cases hlt : k + p < 3 * p
       · by_cases hpi : p ≤ i ∧ i ≤ 2 * p - 1
-        · simp only [LinearARX.alg2State, h1, if_pos hlt, if_pos hpi]
-        · simp only [LinearARX.alg2State, h1, if_pos hlt, if_neg hpi]
+        · simp only [LinearARX.aux_alg2State, h1, if_pos hlt, if_pos hpi]
+        · simp only [LinearARX.aux_alg2State, h1, if_pos hlt, if_neg hpi]
           rw [hB i hi, sys.Btilde_add_of_lt k p (by omega)]
-      · simp only [LinearARX.alg2State, h1, if_neg hlt]
+      · simp only [LinearARX.aux_alg2State, h1, if_neg hlt]
         rw [hB i hi, sys.Btilde_add_of_lt k p (by omega)]
     -- `T_c2` before line 22: assigned in the first pass, carried after
     have hmid : (if k + p = p + p then ∑ i ∈ Finset.Icc (k + p - p) (k + p + p - 1 - p),
-        ((sys.alg2State yinit Uc uv p (m + 1)).2.2.2.2.2 i *ᵥ ·) '' Uc
-        else (sys.alg2State yinit Uc uv p m).2.2.2.1)
+        ((sys.aux_alg2State yinit Uc uv p (m + 1)).2.2.2.2.2 i *ᵥ ·) '' Uc
+        else (sys.aux_alg2State yinit Uc uv p m).2.2.2.1)
         = ∑ i ∈ Finset.Ico k (k + p), (sys.Btilde (k + p) i *ᵥ ·) '' Uc := by
       by_cases hm : m = 0
       · have hkp : k = p := by rw [hkdef, hm, zero_mul, add_zero]
@@ -136,37 +137,38 @@ theorem LinearARX.aux_alg2State (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ 
         rw [hB' i (by have := Finset.mem_Ico.mp hi; omega)]
       · rw [if_neg (by have := Nat.le_mul_of_pos_left p (Nat.pos_of_ne_zero hm); omega),
           hTc2 (by omega)]
-    refine ⟨by simp only [LinearARX.alg2State, h1], ?_, ?_, fun _ => ?_, ?_, hB'⟩
+    refine ⟨by simp only [LinearARX.aux_alg2State, h1], ?_, ?_, fun _ => ?_, ?_, hB'⟩
     · -- line 20, by Lemma 2
-      have e : (sys.alg2State yinit Uc uv p (m + 1)).2.1 = (sys.alg2State yinit Uc uv p m).2.1
+      have e : (sys.aux_alg2State yinit Uc uv p (m + 1)).2.1 =
+          (sys.aux_alg2State yinit Uc uv p m).2.1
           + (if k + p = p + p then ∑ i ∈ Finset.Icc (k + p - p) (k + p + p - 1 - p),
-            ((sys.alg2State yinit Uc uv p (m + 1)).2.2.2.2.2 i *ᵥ ·) '' Uc
-            else (sys.alg2State yinit Uc uv p m).2.2.2.1) := by
-        simp only [LinearARX.alg2State, h1]
+            ((sys.aux_alg2State yinit Uc uv p (m + 1)).2.2.2.2.2 i *ᵥ ·) '' Uc
+            else (sys.aux_alg2State yinit Uc uv p m).2.2.2.1) := by
+        simp only [LinearARX.aux_alg2State, h1]
       rw [e, hmid, hSc, ← Finset.sum_range_add_sum_Ico _ (by omega : k ≤ k + p)]
       congr 1
       refine Finset.sum_congr rfl fun i hi => ?_
       rw [sys.Btilde_add_of_lt k p (by have := Finset.mem_range.mp hi; omega)]
     · -- line 21, by Lemma 1
-      have e : (sys.alg2State yinit Uc uv p (m + 1)).2.2.1
-          = (sys.Aext ^ p *ᵥ ·) '' (sys.alg2State yinit Uc uv p m).2.2.1 := by
-        simp only [LinearARX.alg2State, h1]
+      have e : (sys.aux_alg2State yinit Uc uv p (m + 1)).2.2.1
+          = (sys.Aext ^ p *ᵥ ·) '' (sys.aux_alg2State yinit Uc uv p m).2.2.1 := by
+        simp only [LinearARX.aux_alg2State, h1]
       rw [e, hTc1, LinearARX.aux_image_sum_set,
         sys.aux_shift_sum k k (k + p) (by omega) (fun _ => Uc)]
     · -- line 22, by Lemma 1 at `k + p`
-      have e : (sys.alg2State yinit Uc uv p (m + 1)).2.2.2.1 = (sys.Aext ^ p *ᵥ ·) ''
+      have e : (sys.aux_alg2State yinit Uc uv p (m + 1)).2.2.2.1 = (sys.Aext ^ p *ᵥ ·) ''
           (if k + p = p + p then ∑ i ∈ Finset.Icc (k + p - p) (k + p + p - 1 - p),
-            ((sys.alg2State yinit Uc uv p (m + 1)).2.2.2.2.2 i *ᵥ ·) '' Uc
-            else (sys.alg2State yinit Uc uv p m).2.2.2.1) := by
-        simp only [LinearARX.alg2State, h1]
+            ((sys.aux_alg2State yinit Uc uv p (m + 1)).2.2.2.2.2 i *ᵥ ·) '' Uc
+            else (sys.aux_alg2State yinit Uc uv p m).2.2.2.1) := by
+        simp only [LinearARX.aux_alg2State, h1]
       rw [e, hmid, LinearARX.aux_image_sum_set,
         sys.aux_shift_sum (k + p) k (k + p) (by omega) (fun _ => Uc)]
     · -- line 23, as line 13 of Alg. 1
-      have e : (sys.alg2State yinit Uc uv p (m + 1)).2.2.2.2.1
-          = sys.Aext ^ p *ᵥ (sys.alg2State yinit Uc uv p m).2.2.2.2.1
+      have e : (sys.aux_alg2State yinit Uc uv p (m + 1)).2.2.2.2.1
+          = sys.Aext ^ p *ᵥ (sys.aux_alg2State yinit Uc uv p m).2.2.2.2.1
             + ∑ i ∈ Finset.Icc p (2 * p - 1),
-              (sys.alg2State yinit Uc uv p (m + 1)).2.2.2.2.2 i *ᵥ uv (k + p + p - 1 - i) := by
-        simp only [LinearARX.alg2State, h1]
+              (sys.aux_alg2State yinit Uc uv p (m + 1)).2.2.2.2.2 i *ᵥ uv (k + p + p - 1 - i) := by
+        simp only [LinearARX.aux_alg2State, h1]
       rw [e, hsv, mulVec_add, mulVec_mulVec, ← pow_add, add_comm p k, mulVec_sum]
       simp only [mulVec_mulVec]
       rw [sys.aux_shift_sum_vec k p (k + p) le_rfl (fun j => uv (k + p - 1 - j)),
@@ -189,7 +191,7 @@ theorem LinearARX.alg2_eq_reachWindowExact (sys : LinearARX 𝕋 dy du p) (yinit
     {Uc : Set (Vec ℝ du)} (hUc : Uc.Nonempty) (uv : ℕ → Vec ℝ du) (hp : 0 < p) (m : ℕ) :
     sys.alg2 yinit Uc uv p m
       = sys.reachWindowExact yinit (fun i => Uc + {uv i}) (p + m * p) := by -- --- PROOF ---
-  obtain ⟨h1, hSc, hTc1, -, hsv, hB⟩ := sys.aux_alg2State yinit Uc uv hp m
+  obtain ⟨h1, hSc, hTc1, -, hsv, hB⟩ := sys.aux_alg2State_inv yinit Uc uv hp m
   set k := p + m * p
   simp only [LinearARX.alg2]
   rw [h1, hSc, hTc1, hsv,
@@ -203,7 +205,7 @@ theorem LinearARX.alg2_eq_reachWindowExact (sys : LinearARX 𝕋 dy du p) (yinit
         = ⇑(Matrix.mulVecLin (sys.Btilde k i)) := rfl
     rw [hM, Set.image_add, Set.image_singleton, Matrix.mulVecLin_apply]
   -- the point part: lines 7, 10 and 23 add up to `Ã(k) ỹ_init + ∑ B̃ᵢ(k) ũ_v(k₊ - i)`
-  have hlow : ∀ i ∈ Finset.range p, sys.alg2State yinit Uc uv p m |>.2.2.2.2.2 i *ᵥ
+  have hlow : ∀ i ∈ Finset.range p, sys.aux_alg2State yinit Uc uv p m |>.2.2.2.2.2 i *ᵥ
       uv (k + p - 1 - i) = sys.Btilde k i *ᵥ uv (k + p - 1 - i) := by
     intro i hi
     rw [hB i (by have := Finset.mem_range.mp hi; omega)]

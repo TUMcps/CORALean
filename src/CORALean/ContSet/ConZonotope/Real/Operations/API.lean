@@ -6,7 +6,6 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
 public import CORALean.ContSet.ConZonotope.Real.Operations.Domain
 public import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
 public import CORALean.ContSet.ConZonotope.Real.Operations.Plus
-public import CORALean.ContSet.ConZonotope.Real.Operations.AgreeMat
 public import CORALean.ContSet.ConZonotope.Real.Operations.Intersection
 public import CORALean.ContSet.ConZonotope.Real.Operations.Map
 public import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
@@ -15,10 +14,8 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.MtimesIntervalMat
 public import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
 public import CORALean.ContSet.ConZonotope.Real.Operations.Reduce
 public import CORALean.ContSet.ConZonotope.Real.Operations.KeepEmbed
-public import CORALean.ContSet.ConZonotope.Real.Operations.KeepMetric
 public import CORALean.ContSet.ConZonotope.Real.Operations.KeepRows
 public import CORALean.ContSet.ConZonotope.Real.Operations.KeepSlack
-public import CORALean.ContSet.ConZonotope.Real.Operations.KeepSplit
 public import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeep
 public import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeepBy
 public import CORALean.ContSet.ConZonotope.Real.Operations.LiftEq
@@ -46,7 +43,6 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.Lift
 public import CORALean.ContSet.ConZonotope.Real.Operations.Empty
 public import CORALean.ContSet.ConZonotope.Real.Operations.CartProd
 public import CORALean.ContSet.ConZonotope.Real.Operations.Compact
-public import CORALean.ContSet.ConZonotope.Real.Operations.CompactEmbed
 public import CORALean.ContSet.ConZonotope.Real.Operations.CompactGens
 public import CORALean.ContSet.ConZonotope.Real.Operations.ConIntersect
 public import CORALean.ContSet.ConZonotope.Real.Operations.Split
@@ -62,7 +58,6 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaEmptySet
 public import CORALean.ContSet.ConZonotope.Real.Operations.ContainsPoint
 public import CORALean.ContSet.ConZonotope.Real.Operations.IsCenter
 public import CORALean.ContSet.ConZonotope.Real.Operations.Stack
-public import CORALean.ContSet.ConZonotope.Real.Operations.NullPolytope
 public import CORALean.ContSet.ConZonotope.Real.Operations.CubLinearAt
 public import CORALean.ContSet.ConZonotope.Real.Operations.CubMap
 public import CORALean.ContSet.ConZonotope.Real.Operations.CubMapMixed

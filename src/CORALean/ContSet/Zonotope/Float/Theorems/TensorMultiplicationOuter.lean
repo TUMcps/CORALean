@@ -47,7 +47,7 @@ theorem Zonotope.tensorMultiplication_outer (Z : Zonotope (Vec 𝕋 n)) (M : Zon
   -- the nominal point at `γ`, and the shortfalls in the box
   refine ⟨fun i => ∑ m, toReal ((Z.tensorMultiplication M L).G m i) * γ m,
     Zonotope.mem_nominalSet_iff.mpr ⟨γ, hγ, fun i => ?_⟩, _,
-    Zonotope.mem_generatorError (G := Zonotope.tensorHDiff M Z.absorbRounding L) hΔ hγ, ?_⟩
+    Zonotope.mem_generatorError (G := Zonotope.aux_tensorHDiff M Z.absorbRounding L) hΔ hγ, ?_⟩
   · show _ = toReal (zero : 𝕋) + _
     rw [toReal_zero, zero_add]
   · rw [heq]

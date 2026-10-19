@@ -32,9 +32,6 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.Enclose2
 public import CORALean.ContSet.Ellipsoid.Real.Operations.NormExact
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Generators
 public import CORALean.ContSet.Ellipsoid.Real.Operations.AndPoint
-public import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsOriented
-public import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsNt
-public import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsMaxDist
 public import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsCov
 public import CORALean.ContSet.Ellipsoid.Real.Operations.IsIntersectingPoint
 public import CORALean.ContSet.Ellipsoid.Real.Operations.CutPrecision
@@ -50,7 +47,6 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.OfShape
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Polygon
 public import CORALean.ContSet.Ellipsoid.Real.Operations.IsBadDir
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Goffin
-public import CORALean.ContSet.Ellipsoid.Real.Operations.GoffinCut
 
 /-!
 # What an ellipsoid computes, collected

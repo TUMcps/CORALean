@@ -43,11 +43,11 @@ def Interval.aux_ratioInv (f : Fin n → Option (Interval 𝕋)) (idx : List (Fi
 theorem Interval.aux_ratio_step (f : Fin n → Option (Interval 𝕋)) (idx : List (Fin n)) (i : Fin n)
     (acc : Option (Interval 𝕋)) (h : Interval.aux_ratioInv f idx acc) :
     Interval.aux_ratioInv f (idx ++ [i])
-      (Interval.boundaryRatioStep acc (f i)) := by -- --- PROOF ---
+      (Interval.aux_boundaryRatioStep acc (f i)) := by -- --- PROOF ---
   obtain ⟨h1, h2⟩ := h
   rcases hfi : f i with _ | r
   · -- no ratio at `i`: nothing changes
-    simp only [Interval.boundaryRatioStep]
+    simp only [Interval.aux_boundaryRatioStep]
     refine ⟨?_, fun a ha => ?_⟩
     · simp only [List.mem_append, List.mem_singleton]
       constructor
@@ -65,7 +65,7 @@ theorem Interval.aux_ratio_step (f : Fin n → Option (Interval 𝕋)) (idx : Li
   · cases acc with
     | none =>
       -- the first ratio
-      simp only [Interval.boundaryRatioStep]
+      simp only [Interval.aux_boundaryRatioStep]
       refine ⟨?_, fun b hb => ?_⟩
       · simp only [List.mem_append, List.mem_singleton]
         constructor
@@ -82,7 +82,7 @@ theorem Interval.aux_ratio_step (f : Fin n → Option (Interval 𝕋)) (idx : Li
         · rw [hfi] at hx; cases Option.some.inj hx; exact ⟨le_rfl, le_rfl⟩
     | some a =>
       -- the least of the ratio so far and this one
-      simp only [Interval.boundaryRatioStep]
+      simp only [Interval.aux_boundaryRatioStep]
       refine ⟨?_, fun b hb => ?_⟩
       · simp only [List.mem_append, List.mem_singleton]
         constructor
@@ -108,7 +108,7 @@ theorem Interval.aux_ratio_foldl (f : Fin n → Option (Interval 𝕋)) : -- ---
     ∀ (l : List (Fin n)) (acc : Option (Interval 𝕋)) (idx : List (Fin n)),
       Interval.aux_ratioInv f idx acc →
       Interval.aux_ratioInv f (idx ++ l)
-        (l.foldl (fun acc i => Interval.boundaryRatioStep acc (f i)) acc) := by -- --- PROOF ---
+        (l.foldl (fun acc i => Interval.aux_boundaryRatioStep acc (f i)) acc) := by -- --- PROOF ---
   intro l
   induction l with
   | nil => intro acc idx h; simpa using h

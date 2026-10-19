@@ -3,9 +3,9 @@ module
 public import CORALean.ContSet.Interval.Float.Operations.MatMul
 public import CORALean.ContSet.Interval.Float.Operations.MatPlus
 public import CORALean.ContSet.PolyZonotope.Float.Operations.BilinE
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ExtGens
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MatGeneratorError
-public import CORALean.ContSet.PolyZonotope.Float.Operations.PairG
-public import CORALean.ContSet.PolyZonotope.Float.Operations.PairGI
+public import Mathlib.Logic.Equiv.Fin.Basic
 
 @[expose] public section
 
@@ -33,6 +33,27 @@ namespace CORALean.Float
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n k m : ℕ}
+variable {α β γ : Type}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- `f` at each pair of extended generators, the pairs indexed by `finProdFinEquiv`. -/
+def PolyZonotope.aux_pairG (f : α → β → γ) (pZ₁ : PolyZonotope α) (pZ₂ : PolyZonotope β) :
+    Fin ((pZ₁.h + 1) * (pZ₂.h + 1)) → γ :=
+  fun l => f (PolyZonotope.extGens pZ₁ (finProdFinEquiv.symm l).1)
+    (PolyZonotope.extGens pZ₂ (finProdFinEquiv.symm l).2)
+
+/-- The pairs `f (GI₁ j) (ext₂ l)`, `f (GI₁ j) (GI₂ l)`, `f (ext₁ l) (GI₂ j)` as one list. -/
+def PolyZonotope.aux_pairGI (f : α → β → γ) (pZ₁ : PolyZonotope α) (pZ₂ : PolyZonotope β) :
+    Fin (pZ₁.q * (pZ₂.h + 1) + pZ₁.q * pZ₂.q + (pZ₁.h + 1) * pZ₂.q) → γ :=
+  Fin.append
+    (Fin.append
+      (fun l => f (pZ₁.GI (finProdFinEquiv.symm l).1)
+        (PolyZonotope.extGens pZ₂ (finProdFinEquiv.symm l).2))
+      (fun l => f (pZ₁.GI (finProdFinEquiv.symm l).1) (pZ₂.GI (finProdFinEquiv.symm l).2)))
+    (fun l => f (PolyZonotope.extGens pZ₁ (finProdFinEquiv.symm l).1)
+      (pZ₂.GI (finProdFinEquiv.symm l).2))
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -41,7 +62,8 @@ def PolyZonotope.matMap (pZ₁ : PolyZonotope (Mat 𝕋 n k)) (pZ₂ : PolyZonot
     (hp : pZ₁.p = pZ₂.p) : PolyZonotope (Mat 𝕋 n m) :=
   -- the rounding of every stored product, dependent then independent
   let gap := PolyZonotope.matGeneratorError
-    (Fin.append (PolyZonotope.pairG matMulDiff pZ₁ pZ₂) (PolyZonotope.pairGI matMulDiff pZ₁ pZ₂))
+    (Fin.append (PolyZonotope.aux_pairG matMulDiff pZ₁ pZ₂)
+      (PolyZonotope.aux_pairGI matMulDiff pZ₁ pZ₂))
   -- the operands' hulls: every generator, center included, at a coefficient in `[-1, 1]`
   let H₁ := PolyZonotope.matGeneratorError (Fin.append (PolyZonotope.extGens pZ₁) pZ₁.GI)
   let H₂ := PolyZonotope.matGeneratorError (Fin.append (PolyZonotope.extGens pZ₂) pZ₂.GI)
@@ -52,9 +74,9 @@ def PolyZonotope.matMap (pZ₁ : PolyZonotope (Mat 𝕋 n k)) (pZ₂ : PolyZonot
     h := (pZ₁.h + 1) * (pZ₂.h + 1)
     q := pZ₁.q * (pZ₂.h + 1) + pZ₁.q * pZ₂.q + (pZ₁.h + 1) * pZ₂.q
     c := fun _ _ => zero
-    G := PolyZonotope.pairG matMulDown pZ₁ pZ₂
+    G := PolyZonotope.aux_pairG matMulDown pZ₁ pZ₂
     E := PolyZonotope.bilinE pZ₁ pZ₂ hp
-    GI := PolyZonotope.pairGI matMulDown pZ₁ pZ₂
+    GI := PolyZonotope.aux_pairGI matMulDown pZ₁ pZ₂
     I_error := Interval.matPlus gap errs }
 
 end CORALean.Float

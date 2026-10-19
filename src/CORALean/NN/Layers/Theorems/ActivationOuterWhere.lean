@@ -48,7 +48,7 @@ theorem Layer.activation_outer_where {R : Relaxation 𝕋} {P : 𝕋 → 𝕋 �
       construct ((Layer.activation (S := S) (n := n) R).enclose s) := by -- --- PROOF ---
   have hbox := interval_outer s hx
   set J := interval s with hJ
-  set A : Mat ℝ n n := Scalar.toRealMat (R.slopeMat J) with hA
+  set A : Mat ℝ n n := Scalar.toRealMat (R.aux_slopeMat J) with hA
   have hslope : ∀ i, (A *ᵥ x) i = toReal (R.slope (J.inf i) (J.sup i)) * x i := by
     intro i
     have hdiag : A = Matrix.diagonal (toRealVec fun i => R.slope (J.inf i) (J.sup i)) := by

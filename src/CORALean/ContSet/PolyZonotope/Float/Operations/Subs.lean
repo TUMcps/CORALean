@@ -1,9 +1,9 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsGDiff
-public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsFactor
-public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
 public import CORALean.ContSet.Interval.Float.Operations.Basic
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Basic
+public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
+public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsFactor
 
 @[expose] public section
 
@@ -32,6 +32,22 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+def PolyZonotope.aux_subsGDown (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ}
+  (pZin : PolyZonotope (Vec 𝕋 nu))
+    (idu : Fin nu → Fin pZ.p) : Mat 𝕋 n (pZ.subsTerms pZin idu).length := fun r l =>
+  let t := (pZ.subsTerms pZin idu).get l
+  Interval.mulLo t.2.1.inf t.2.1.sup (pZ.G t.1 r) (pZ.G t.1 r)
+
+def PolyZonotope.aux_subsGDiff (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ}
+  (pZin : PolyZonotope (Vec 𝕋 nu))
+    (idu : Fin nu → Fin pZ.p) : Mat 𝕋 n (pZ.subsTerms pZin idu).length := fun r l =>
+  let t := (pZ.subsTerms pZin idu).get l
+  subUp (Interval.mulHi t.2.1.inf t.2.1.sup (pZ.G t.1 r) (pZ.G t.1 r))
+    (pZ.aux_subsGDown pZin idu r l)
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def PolyZonotope.subs (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ} (pZin : PolyZonotope (Vec 𝕋 nu))
@@ -41,7 +57,7 @@ def PolyZonotope.subs (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ} (pZin : PolyZo
   h := (pZ.subsTerms pZin idu).length
   q := pZ.q
   c := pZ.c
-  G := fun l r => pZ.subsGDown pZin idu r l
+  G := fun l r => pZ.aux_subsGDown pZin idu r l
   -- the exponents of `pZ`'s remaining factors, and those of the term in `pZin`'s factors
   E := fun r l =>
     Fin.addCases (fun k => if k ∈ Finset.univ.image idu then 0
@@ -49,7 +65,7 @@ def PolyZonotope.subs (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ} (pZin : PolyZo
       + ∑ j ∈ Finset.univ.filter (fun j => pZ.subsFactor pZin share j = r),
           ((pZ.subsTerms pZin idu).get l).2.2 j
   GI := pZ.GI
-  I_error := pZ.I_error.plus (PolyZonotope.generatorError (pZ.subsGDiff pZin idu))
+  I_error := pZ.I_error.plus (PolyZonotope.generatorError (pZ.aux_subsGDiff pZin idu))
 
 end CORALean.Float
 

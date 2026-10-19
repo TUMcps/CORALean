@@ -21,7 +21,7 @@ src/CORALean/ContDynamics/LinParamSys/Theorems/InputSolutionOuter.lean::LinParam
 src/CORALean/ContDynamics/LinParamSys/Theorems/InputSolutionZonoOuter.lean::LinParamSys.inputSolutionZono_outer  pending: ContDynamics/HybridDynamics are rewritten in another change (89 characters, 3 times)
 src/CORALean/ContDynamics/LinParamSys/Theorems/IsTrajectoryTimeIntervalOuterInputSolution.lean::LinParamSys.IsCanonicalTrajectory.timeInterval_outer_inputSolution  pending: ContDynamics/HybridDynamics are rewritten in another change (86 characters, 3 times)
 src/CORALean/ContDynamics/LinProbSys/Theorems/InitReachPostCov.lean::LinProbSys.initReach_post_cov  pending: ContDynamics/HybridDynamics are rewritten in another change (78 characters, 5 times)
-src/CORALean/ContDynamics/LinearARX/Theorems/Alg2EqReachWindowExact.lean::LinearARX.aux_alg2State  pending: ContDynamics/HybridDynamics are rewritten in another change (181 characters, 3 times)
+src/CORALean/ContDynamics/LinearARX/Theorems/Alg2EqReachWindowExact.lean::LinearARX.aux_alg2State_inv  pending: ContDynamics/HybridDynamics are rewritten in another change (181 characters, 3 times)
 src/CORALean/ContDynamics/LinearSys/Definitions/TimeIntervalBound.lean::LinearSys.timeIntervalBound  pending: ContDynamics/HybridDynamics are rewritten in another change (90 characters, 3 times)
 src/CORALean/ContDynamics/LinearSys/Definitions/TimePointBound.lean::LinearSys.timePointBound  pending: ContDynamics/HybridDynamics are rewritten in another change (84 characters, 3 times)
 src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/PhiCorrectedErrorLeErrA.lean::Krylov.phi_corrected_error_le_errA  pending: ContDynamics/HybridDynamics are rewritten in another change (71 characters, 3 times)

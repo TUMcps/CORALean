@@ -19,8 +19,6 @@ public import CORALean.ContSet.LevelSet.Real.Operations.RepresentsaEmptySet
 public import CORALean.ContSet.LevelSet.Real.Operations.RepresentsaFullspace
 public import CORALean.ContSet.LevelSet.Real.Operations.Compact
 public import CORALean.ContSet.LevelSet.Real.Operations.Isequal
-public import CORALean.ContSet.LevelSet.Real.Operations.LinearCoord
-public import CORALean.ContSet.LevelSet.Real.Operations.LinearSweep
 public import CORALean.ContSet.LevelSet.Real.Operations.TightenDomainLinear
 
 /-!

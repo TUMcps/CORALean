@@ -1,12 +1,15 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Operations.InputSetFloat
+public import CORALean.ContDynamics.LinearSys.Definitions.ManualStateFloat
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
-public import CORALean.ContDynamics.LinearSys.Operations.ManualInitFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputSetFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ManualRunFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
-public import CORALean.ContDynamics.Reach.Operations.Steps
 public import CORALean.ContDynamics.Reach.Definitions.InputParams
+public import CORALean.ContDynamics.Reach.Operations.Steps
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.Global.Float.ToRat
 
 @[expose] public section
@@ -15,7 +18,7 @@ public import CORALean.Global.Float.ToRat
 # `Alg. 1` in floats: reachability at a fixed step, order and zonotope order
 
 `ẋ = Ax + Bu + c`, `u(t) ∈ U` arbitrary in time, from `X₀` over `[tStart, tFinal]`, by
-[1, Alg. 1] computed in `𝕋`: `N = (tFinal - tStart)/Δt` iterations from `manualInitFloat`,
+[1, Alg. 1] computed in `𝕋`: `N = (tFinal - tStart)/Δt` iterations from `aux_manualInitFloat`,
 returning `R̂(τ_0), …, R̂(τ_{N-1})`. `B` and `c` are the system's; `V = B U ⊕ c`
 (`inputSetFloat`) is split at its stored center, so `0 ∈ U` is not asked. The order `η` is
 raised until the float enclosures admit it (`reachOrderFloat`), as the other float reaches
@@ -41,6 +44,17 @@ namespace CORALean
 open CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n m : ℕ}
+open CORALean.Float FloatOps
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- Lines 1-2, before the first iteration. -/
+def LinearSys.aux_manualInitFloat (X₀ : Zonotope (Vec 𝕋 n)) : LinearSys.ManualStateFloat 𝕋 n :=
+  { t := 0, tLo := zero, tHi := zero                                -- 1. t₀ ← 0
+    H := X₀                                                         -- 2. H(t₀) ← X₀
+    Pu := Interval.point fun _ => zero                              -- 2. P^u(t₀) ← 0
+    PU := (Interval.point fun _ => zero).zonotope }                 -- 2. P̂^U(t₀) ← 0
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -58,7 +72,7 @@ def LinearSys.manualReachFloat (sys : LinearSys 𝕋 n)
   let η' ← sys.reachOrderFloat Δt Δt η                              -- η, raised until admissible
   let V := sys.inputSetFloat params.U                               -- B U ⊕ c, in the state space
   -- 1.-11. the loop over the time steps, from the initial state
-  sys.manualRunFloat X₀ V Δt η' ρ N (LinearSys.manualInitFloat X₀)
+  sys.manualRunFloat X₀ V Δt η' ρ N (LinearSys.aux_manualInitFloat X₀)
 
 end CORALean
 

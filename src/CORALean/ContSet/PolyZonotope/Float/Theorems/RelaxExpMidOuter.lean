@@ -67,29 +67,29 @@ exact half-width, so the gap between them covers it. -/
 theorem PolyZonotope.aux_relaxGenMid_gap (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) (i : Fin n) : -- --- STMT ---
     let w : ℝ := ((pZ.relaxDrift part k₀).1 : ℝ) / 2 + ((pZ.relaxDrift part k₀).2 : ℝ) / 2
-    |w * toReal (pZ.G (part.right 0) i) - toReal (pZ.relaxGenMid part k₀ i)|
-      ≤ toReal (pZ.relaxGapMid part k₀ i 1) := by -- --- PROOF ---
+    |w * toReal (pZ.G (part.right 0) i) - toReal (pZ.aux_relaxGenMid part k₀ i)|
+      ≤ toReal (pZ.aux_relaxGapMid part k₀ i 1) := by -- --- PROOF ---
   intro w
   -- the fold counts both reaches, so its bound casts to their sum
   have hcast : (((pZ.relaxDrift part k₀).1 + (pZ.relaxDrift part k₀).2 : ℕ) : ℝ)
       = ((pZ.relaxDrift part k₀).1 : ℝ) + ((pZ.relaxDrift part k₀).2 : ℝ) := Nat.cast_add _ _
-  have hlo : toReal (pZ.relaxGenMid part k₀ i) ≤ w * toReal (pZ.G (part.right 0) i) := by
-    rw [PolyZonotope.relaxGenMid, toReal_half]
+  have hlo : toReal (pZ.aux_relaxGenMid part k₀ i) ≤ w * toReal (pZ.G (part.right 0) i) := by
+    rw [PolyZonotope.aux_relaxGenMid, toReal_half]
     have h := nsmulDown_le ((pZ.relaxDrift part k₀).1 + (pZ.relaxDrift part k₀).2)
       (pZ.G (part.right 0) i)
     rw [hcast] at h
     simp only [w]
     linarith
   -- the same fold upward, which the stored column's gap is measured against
-  have hhi : w * toReal (pZ.G (part.right 0) i) ≤ toReal (pZ.relaxGenMidUp part k₀ i) := by
-    rw [PolyZonotope.relaxGenMidUp, toReal_half]
+  have hhi : w * toReal (pZ.G (part.right 0) i) ≤ toReal (pZ.aux_relaxGenMidUp part k₀ i) := by
+    rw [PolyZonotope.aux_relaxGenMidUp, toReal_half]
     have h := le_nsmulUp ((pZ.relaxDrift part k₀).1 + (pZ.relaxDrift part k₀).2)
       (pZ.G (part.right 0) i)
     rw [hcast] at h
     simp only [w]
     linarith
-  have hgap : toReal (pZ.relaxGenMidUp part k₀ i) - toReal (pZ.relaxGenMid part k₀ i)
-      ≤ toReal (pZ.relaxGapMid part k₀ i 1) := sub_le_subUp _ _
+  have hgap : toReal (pZ.aux_relaxGenMidUp part k₀ i) - toReal (pZ.aux_relaxGenMid part k₀ i)
+      ≤ toReal (pZ.aux_relaxGapMid part k₀ i 1) := sub_le_subUp _ _
   rw [abs_le]
   constructor <;> linarith
 
@@ -98,12 +98,13 @@ so the center stored downward stays below the exact one and the gap covers it. -
 theorem PolyZonotope.aux_relaxCenterMid_gap (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) (i : Fin n) : -- --- STMT ---
     let m : ℝ := ((pZ.relaxDrift part k₀).2 : ℝ) / 2 - ((pZ.relaxDrift part k₀).1 : ℝ) / 2
-    |toReal (pZ.c i) + m * toReal (pZ.G (part.right 0) i) - toReal (pZ.relaxCenterMid part k₀ i)|
-      ≤ toReal (pZ.relaxGapMid part k₀ i 2) := by -- --- PROOF ---
+    |toReal (pZ.c i) + m * toReal (pZ.G (part.right 0) i) - toReal
+      (pZ.aux_relaxCenterMid part k₀ i)|
+      ≤ toReal (pZ.aux_relaxGapMid part k₀ i 2) := by -- --- PROOF ---
   intro m
   -- the shift is stored below the exact midpoint
-  have hshiftlo : toReal (pZ.relaxShiftMid part k₀ i) ≤ m * toReal (pZ.G (part.right 0) i) := by
-    rw [PolyZonotope.relaxShiftMid, toReal_half]
+  have hshiftlo : toReal (pZ.aux_relaxShiftMid part k₀ i) ≤ m * toReal (pZ.G (part.right 0) i) := by
+    rw [PolyZonotope.aux_relaxShiftMid, toReal_half]
     have h1 := subDown_le_sub (nsmulDown (pZ.relaxDrift part k₀).2 (pZ.G (part.right 0) i))
       (nsmulUp (pZ.relaxDrift part k₀).1 (pZ.G (part.right 0) i))
     have h2 := nsmulDown_le (pZ.relaxDrift part k₀).2 (pZ.G (part.right 0) i)
@@ -111,8 +112,9 @@ theorem PolyZonotope.aux_relaxCenterMid_gap (pZ : PolyZonotope (Vec 𝕋 n))
     simp only [m]
     linarith
   -- and above it at the rounding that takes each fold the other way
-  have hshifthi : m * toReal (pZ.G (part.right 0) i) ≤ toReal (pZ.relaxShiftMidUp part k₀ i) := by
-    rw [PolyZonotope.relaxShiftMidUp, toReal_half]
+  have hshifthi : m * toReal (pZ.G (part.right 0) i) ≤ toReal (pZ.aux_relaxShiftMidUp part k₀ i) :=
+    by
+    rw [PolyZonotope.aux_relaxShiftMidUp, toReal_half]
     have h1 := sub_le_subUp (nsmulUp (pZ.relaxDrift part k₀).2 (pZ.G (part.right 0) i))
       (nsmulDown (pZ.relaxDrift part k₀).1 (pZ.G (part.right 0) i))
     have h2 := le_nsmulUp (pZ.relaxDrift part k₀).2 (pZ.G (part.right 0) i)
@@ -120,13 +122,13 @@ theorem PolyZonotope.aux_relaxCenterMid_gap (pZ : PolyZonotope (Vec 𝕋 n))
     simp only [m]
     linarith
   -- the stored center is the shift added downward, so it stays below the exact one
-  have hstore : toReal (pZ.relaxCenterMid part k₀ i)
-      ≤ toReal (pZ.c i) + toReal (pZ.relaxShiftMid part k₀ i) := addDown_le_add _ _
-  have hup : toReal (pZ.c i) + toReal (pZ.relaxShiftMidUp part k₀ i)
-      ≤ toReal (addUp (pZ.c i) (pZ.relaxShiftMidUp part k₀ i)) := add_le_addUp _ _
-  have hgap : toReal (addUp (pZ.c i) (pZ.relaxShiftMidUp part k₀ i))
-      - toReal (pZ.relaxCenterMid part k₀ i)
-      ≤ toReal (pZ.relaxGapMid part k₀ i 2) := sub_le_subUp _ _
+  have hstore : toReal (pZ.aux_relaxCenterMid part k₀ i)
+      ≤ toReal (pZ.c i) + toReal (pZ.aux_relaxShiftMid part k₀ i) := addDown_le_add _ _
+  have hup : toReal (pZ.c i) + toReal (pZ.aux_relaxShiftMidUp part k₀ i)
+      ≤ toReal (addUp (pZ.c i) (pZ.aux_relaxShiftMidUp part k₀ i)) := add_le_addUp _ _
+  have hgap : toReal (addUp (pZ.c i) (pZ.aux_relaxShiftMidUp part k₀ i))
+      - toReal (pZ.aux_relaxCenterMid part k₀ i)
+      ≤ toReal (pZ.aux_relaxGapMid part k₀ i 2) := sub_le_subUp _ _
   rw [abs_le]
   constructor <;> linarith
 
@@ -135,7 +137,7 @@ theorem PolyZonotope.aux_relaxExpMid_nominal (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p)
     (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) : -- --- STMT ---
     nominalSet pZ ⊆ nominalSet (pZ.relaxExpMid part k₀)
-      + (PolyZonotope.generatorError (pZ.relaxGapMid part k₀)).construct := by -- --- PROOF ---
+      + (PolyZonotope.generatorError (pZ.aux_relaxGapMid part k₀)).construct := by -- --- PROOF ---
   intro x hx
   obtain ⟨a, β, ha, hβ, hxi⟩ := PolyZonotope.mem_nominalSet_iff.mp hx
   obtain ⟨hdlo, hdhi⟩ := Set.mem_Icc.mp
@@ -177,18 +179,18 @@ theorem PolyZonotope.aux_relaxExpMid_nominal (pZ : PolyZonotope (Vec 𝕋 n))
     simp only [Real.PolyZonotope.monomial, PolyZonotope.relaxExpMid, Fin.append_right]
     rfl
   -- the point at the stored fields, and what the three gaps still owe it
-  refine ⟨fun i => toReal (pZ.relaxCenterMid part k₀ i)
+  refine ⟨fun i => toReal (pZ.aux_relaxCenterMid part k₀ i)
       + (∑ l : Fin d, toReal (pZ.G (part.left l) i)
             * Real.PolyZonotope.monomial pZ.E a (part.left l)
           + toReal (pZ.mergedGen part i) * Real.PolyZonotope.monomial pZ.E a (part.right 1))
-      + (∑ j, toReal (pZ.GI j i) * β j + toReal (pZ.relaxGenMid part k₀ i) * t),
+      + (∑ j, toReal (pZ.GI j i) * β j + toReal (pZ.aux_relaxGenMid part k₀ i) * t),
     PolyZonotope.mem_nominalSet_iff.mpr ⟨a, Fin.append β fun _ => t, ha, ?_, ?_⟩,
-    _, PolyZonotope.mem_generatorError (G := pZ.relaxGapMid part k₀)
+    _, PolyZonotope.mem_generatorError (G := pZ.aux_relaxGapMid part k₀)
       (Δ := fun i => ![toReal (pZ.G (part.right 1) i) + toReal (pZ.G (part.right 0) i)
           - toReal (pZ.mergedGen part i),
-        w * toReal (pZ.G (part.right 0) i) - toReal (pZ.relaxGenMid part k₀ i),
+        w * toReal (pZ.G (part.right 0) i) - toReal (pZ.aux_relaxGenMid part k₀ i),
         toReal (pZ.c i) + m * toReal (pZ.G (part.right 0) i)
-          - toReal (pZ.relaxCenterMid part k₀ i)])
+          - toReal (pZ.aux_relaxCenterMid part k₀ i)])
       (t := ![Real.PolyZonotope.monomial pZ.E a (part.right 1), t, 1]) ?_ ?_, ?_⟩
   -- the fresh independent coefficient is what the half-width asks of the column
   · refine Fin.addCases (fun j => ?_) fun _ => ?_
@@ -213,11 +215,11 @@ theorem PolyZonotope.aux_relaxExpMid_nominal (pZ : PolyZonotope (Vec 𝕋 n))
       exact le_of_eq abs_one
   -- the three gaps and the split drift recombine into the exact sums
   · funext i
-    show toReal (pZ.relaxCenterMid part k₀ i)
+    show toReal (pZ.aux_relaxCenterMid part k₀ i)
           + (∑ l : Fin d, toReal (pZ.G (part.left l) i)
               * Real.PolyZonotope.monomial pZ.E a (part.left l)
             + toReal (pZ.mergedGen part i) * Real.PolyZonotope.monomial pZ.E a (part.right 1))
-          + (∑ j, toReal (pZ.GI j i) * β j + toReal (pZ.relaxGenMid part k₀ i) * t)
+          + (∑ j, toReal (pZ.GI j i) * β j + toReal (pZ.aux_relaxGenMid part k₀ i) * t)
         + ∑ l, _ * _ = x i
     rw [hxi i, Fin.sum_univ_three,
       part.sum_split₂ fun l => toReal (pZ.G l i) * Real.PolyZonotope.monomial pZ.E a l,

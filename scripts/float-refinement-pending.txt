@@ -12,10 +12,7 @@ src/CORALean/Specification/FiniteKleeneSignalBuilder/Operations/Mk.lean  signal 
 src/CORALean/Specification/FiniteSignal/Operations/Indicator.lean  signal time stamps in doubles
 src/CORALean/Specification/FiniteSignal/Operations/Max.lean  signal time stamps in doubles
 src/CORALean/Specification/FiniteSignal/Operations/Set.lean  signal time stamps in doubles
-src/CORALean/Specification/FiniteSignal/Operations/SetLower.lean  signal time stamps in doubles
 src/CORALean/Specification/FiniteSignal/Operations/Until.lean  signal time stamps in doubles
-src/CORALean/Specification/FiniteSignal/Operations/UntilPiece.lean  signal time stamps in doubles
-src/CORALean/Specification/FiniteSignal/Operations/UntilStep.lean  signal time stamps in doubles
 src/CORALean/Specification/FourValuedSignal/Operations/And.lean  signal time stamps in doubles
 src/CORALean/Specification/FourValuedSignal/Operations/Basic.lean  signal time stamps in doubles
 src/CORALean/Specification/FourValuedSignal/Operations/Combine.lean  signal time stamps in doubles
@@ -35,7 +32,6 @@ src/CORALean/Specification/OnlineAnalyzerNode/Operations/Basic.lean  propagation
 src/CORALean/Specification/OnlineAnalyzerNode/Operations/Combine.lean  propagation times in doubles
 src/CORALean/Specification/OnlineAnalyzerNode/Operations/Conflicts.lean  propagation times in doubles
 src/CORALean/Specification/OnlineAnalyzerNode/Operations/GetAllProp.lean  propagation times in doubles
-src/CORALean/Specification/OnlineAnalyzerNode/Operations/PropBound.lean  propagation times in doubles
 src/CORALean/Specification/OnlineAnalyzerNode/Operations/Propagate.lean  propagation times in doubles
 src/CORALean/Specification/OnlineAnalyzerNode/Operations/SetPropagated.lean  propagation times in doubles
 src/CORALean/Specification/OnlineReachSetAnalyzer/Operations/ForcePropagation.lean  propagation times in doubles

@@ -58,8 +58,6 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionG
 public import CORALean.ContSet.ConPolyZono.Real.Operations.SumUnionE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Union
-public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConE
-public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConG
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceCon
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullG

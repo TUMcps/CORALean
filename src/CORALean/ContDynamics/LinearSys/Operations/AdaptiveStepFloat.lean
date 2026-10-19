@@ -17,7 +17,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # `Alg. 1` lines 5-10 in floats: one iteration of the main loop
 
-`tunedStep` computed in `𝕋`, with `V` split `ũ ⊕ Ũ` at its stored center:
+`aux_tunedStep` computed in `𝕋`, with `V` split `ũ ⊕ Ũ` at its stored center:
 `Alg. 2` picks `Δt_i` and `Φ_prop,i`, eq. (2) carries the solutions from
 `[0,Δt_i]` to `[t_i,t_{i+1}]` by `[e^{At_i}]`, `Alg. 3` reduces the input's
 accumulated share, and `R([t_i,t_{i+1}])` is their sum. What the tuning picks

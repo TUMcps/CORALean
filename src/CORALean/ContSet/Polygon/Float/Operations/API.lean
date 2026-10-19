@@ -10,7 +10,6 @@ public import CORALean.ContSet.Polygon.Float.Operations.RepresentsaEmptySet
 public import CORALean.ContSet.Polygon.Float.Operations.And
 public import CORALean.ContSet.Polygon.Float.Operations.Minus
 public import CORALean.ContSet.Polygon.Float.Operations.SplitIntoConvexSets
-public import CORALean.ContSet.Polygon.Float.Operations.CrossCertified
 public import CORALean.ContSet.Polygon.Float.Operations.IsFullDim
 public import CORALean.ContSet.Polygon.Float.Operations.ContainsPoint
 public import CORALean.ContSet.Polygon.Float.Operations.InTriangle

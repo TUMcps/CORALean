@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Float.Operations.RightInvResidual
+public import CORALean.Global.Float.FloatOps
 
 @[expose] public section
 
@@ -26,10 +26,18 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n h : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+def Zonotope.aux_rightInvResidual (G : Mat 𝕋 n h) (H : Mat 𝕋 h n) : Fin n → Fin n → 𝕋 := fun i j =>
+  maximum
+    (absolute (subDown (if i = j then one else zero) (dotUp (fun l => G i l) fun l => H l j)))
+    (absolute (subUp (if i = j then one else zero) (dotDown (fun l => G i l) fun l => H l j)))
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Zonotope.rightInvQ (G : Mat 𝕋 n h) (H : Mat 𝕋 h n) : 𝕋 :=
-  maximumOver fun i => sumUp fun j => Zonotope.rightInvResidual G H i j
+  maximumOver fun i => sumUp fun j => Zonotope.aux_rightInvResidual G H i j
 
 end CORALean.Float
 

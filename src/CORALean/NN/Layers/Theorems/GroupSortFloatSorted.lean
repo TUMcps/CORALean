@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- Under a complete `le`, every chunk of the result is ascending at the real values. -/
 theorem groupSortFloat_sorted {g : ℕ} (hg : 0 < g) (x : Vec 𝕋 n)
     (hle : ∀ a b : 𝕋, toReal a ≤ toReal b → FloatOps.le a b = true) (k : ℕ) :
-    ((groupSortChunkFloat g (groupSortFloat g x) k).map toReal).Pairwise
+    ((aux_groupSortChunkFloat g (groupSortFloat g x) k).map toReal).Pairwise
       (· ≤ ·) := by -- --- PROOF ---
   rw [groupSortChunkFloat_groupSortFloat hg]
   have h := List.pairwise_mergeSort (le := (FloatOps.le : 𝕋 → 𝕋 → Bool))
@@ -45,7 +45,7 @@ theorem groupSortFloat_sorted {g : ℕ} (hg : 0 < g) (x : Vec 𝕋 n)
       simp only [Bool.or_eq_true]
       rcases le_total (toReal a) (toReal b) with h | h
       · exact Or.inl (hle _ _ h)
-      · exact Or.inr (hle _ _ h)) (groupSortChunkFloat g x k)
+      · exact Or.inr (hle _ _ h)) (aux_groupSortChunkFloat g x k)
   rw [List.pairwise_map]
   exact h.imp fun hab => toReal_le_of_le hab
 

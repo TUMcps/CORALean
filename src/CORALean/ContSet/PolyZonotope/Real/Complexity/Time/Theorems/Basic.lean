@@ -9,13 +9,11 @@ public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.MapC
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Mtimes
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.MtimesCost
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Theorems.BilinCostMono
-public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.QuadBilinCost
 public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.QuadMapDepCost
 public import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceBy
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.ReduceByCost
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGreedy
-public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.RelaxExpMultiCost
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.RelaxExpGreedyCost
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMulti
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Theorems.RelaxWidthMultiCostMono

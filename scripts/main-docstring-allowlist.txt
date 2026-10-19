@@ -62,9 +62,7 @@ src/CORALean/ContDynamics/LinearARX/Definitions/ReachWindowExact.lean
 src/CORALean/ContDynamics/LinearARX/LinearARX.lean
 src/CORALean/ContDynamics/LinearARX/Operations/Aext.lean
 src/CORALean/ContDynamics/LinearARX/Operations/Alg1.lean
-src/CORALean/ContDynamics/LinearARX/Operations/Alg1State.lean
 src/CORALean/ContDynamics/LinearARX/Operations/Alg2.lean
-src/CORALean/ContDynamics/LinearARX/Operations/Alg2State.lean
 src/CORALean/ContDynamics/LinearARX/Operations/Bext.lean
 src/CORALean/ContDynamics/LinearARX/Operations/Btilde.lean
 src/CORALean/ContDynamics/LinearARX/Operations/FeedBox.lean
@@ -318,9 +316,6 @@ src/CORALean/ContDynamics/LinearSysDT/Operations/ObserveEsoB1D.lean
 src/CORALean/ContDynamics/LinearSysDT/Operations/ObserveInterval.lean
 src/CORALean/ContDynamics/LinearSysDT/Operations/ObserveIntervalFloat.lean
 src/CORALean/ContDynamics/LinearSysDT/Operations/ObserveIntervalState.lean
-src/CORALean/ContDynamics/LinearSysDT/Operations/ObserveIntervalStateFloat.lean
-src/CORALean/ContDynamics/LinearSysDT/Operations/ObserveIntervalStep.lean
-src/CORALean/ContDynamics/LinearSysDT/Operations/ObserveIntervalStepFloat.lean
 src/CORALean/ContDynamics/LinearSysDT/Operations/ObserveStep.lean
 src/CORALean/ContDynamics/LinearSysDT/Theorems/BackReachExistsOuter.lean
 src/CORALean/ContDynamics/LinearSysDT/Theorems/BackReachForallInner.lean
@@ -1532,7 +1527,6 @@ src/CORALean/ContSet/Interval/Float/Operations/BoundNegProj.lean
 src/CORALean/ContSet/Interval/Float/Operations/BoundaryPoint.lean
 src/CORALean/ContSet/Interval/Float/Operations/BoundaryRatio.lean
 src/CORALean/ContSet/Interval/Float/Operations/BoundaryRatioAt.lean
-src/CORALean/ContSet/Interval/Float/Operations/BoundaryRatioStep.lean
 src/CORALean/ContSet/Interval/Float/Operations/CenterBox.lean
 src/CORALean/ContSet/Interval/Float/Operations/Cos.lean
 src/CORALean/ContSet/Interval/Float/Operations/CoshHi.lean
@@ -1578,7 +1572,6 @@ src/CORALean/ContSet/Interval/Float/Operations/Tan.lean
 src/CORALean/ContSet/Interval/Float/Operations/Times.lean
 src/CORALean/ContSet/Interval/Float/Operations/Transpose.lean
 src/CORALean/ContSet/Interval/Float/Operations/Volume.lean
-src/CORALean/ContSet/Interval/Float/Operations/WidthUp.lean
 src/CORALean/ContSet/Interval/Float/Theorems/AbsExact.lean
 src/CORALean/ContSet/Interval/Float/Theorems/AbsLeMagnitude.lean
 src/CORALean/ContSet/Interval/Float/Theorems/AbsMulVecLeDotUp.lean
@@ -1933,8 +1926,6 @@ src/CORALean/ContSet/LevelSet/Real/Operations/IntersectLevelSetBox.lean
 src/CORALean/ContSet/LevelSet/Real/Operations/IsIntersectingCell.lean
 src/CORALean/ContSet/LevelSet/Real/Operations/IsIntersectingUniform.lean
 src/CORALean/ContSet/LevelSet/Real/Operations/Isequal.lean
-src/CORALean/ContSet/LevelSet/Real/Operations/LinearCoord.lean
-src/CORALean/ContSet/LevelSet/Real/Operations/LinearSweep.lean
 src/CORALean/ContSet/LevelSet/Real/Operations/RepresentsaEmptySet.lean
 src/CORALean/ContSet/LevelSet/Real/Operations/RepresentsaFullspace.lean
 src/CORALean/ContSet/LevelSet/Real/Operations/TightenDomainLinear.lean
@@ -2012,8 +2003,6 @@ src/CORALean/ContSet/PolyZonotope/Float/Operations/SplitLongestIndepGen.lean
 src/CORALean/ContSet/PolyZonotope/Float/Operations/Stack.lean
 src/CORALean/ContSet/PolyZonotope/Float/Operations/Subs.lean
 src/CORALean/ContSet/PolyZonotope/Float/Operations/SubsFactor.lean
-src/CORALean/ContSet/PolyZonotope/Float/Operations/SubsGDiff.lean
-src/CORALean/ContSet/PolyZonotope/Float/Operations/SubsGDown.lean
 src/CORALean/ContSet/PolyZonotope/Float/Operations/SubsPoly.lean
 src/CORALean/ContSet/PolyZonotope/Float/Operations/SubsPow.lean
 src/CORALean/ContSet/PolyZonotope/Float/Operations/SubsXprod.lean
@@ -2126,7 +2115,6 @@ src/CORALean/ContSet/PolyZonotope/Real/Operations/FactorExtendFactorIdx.lean
 src/CORALean/ContSet/PolyZonotope/Real/Operations/FiberSumEqZeroOfNotMem.lean
 src/CORALean/ContSet/PolyZonotope/Real/Operations/FiberSumEqZeroOfNotMemMerge.lean
 src/CORALean/ContSet/PolyZonotope/Real/Operations/IdentE.lean
-src/CORALean/ContSet/PolyZonotope/Real/Operations/JacobianDetIntegral.lean
 src/CORALean/ContSet/PolyZonotope/Real/Operations/LinComb.lean
 src/CORALean/ContSet/PolyZonotope/Real/Operations/Map.lean
 src/CORALean/ContSet/PolyZonotope/Real/Operations/MonomialIdentE.lean
@@ -2135,7 +2123,6 @@ src/CORALean/ContSet/PolyZonotope/Real/Operations/MtimesIntervalMat.lean
 src/CORALean/ContSet/PolyZonotope/Real/Operations/Mul.lean
 src/CORALean/ContSet/PolyZonotope/Real/Operations/MulGApply.lean
 src/CORALean/ContSet/PolyZonotope/Real/Operations/PadE.lean
-src/CORALean/ContSet/PolyZonotope/Real/Operations/PadFrontE.lean
 src/CORALean/ContSet/PolyZonotope/Real/Operations/Plus.lean
 src/CORALean/ContSet/PolyZonotope/Real/Operations/QuadMap.lean
 src/CORALean/ContSet/PolyZonotope/Real/Operations/ReduceDependent.lean
@@ -2466,7 +2453,6 @@ src/CORALean/ContSet/SpectraShadow/Real/Operations/CartProd.lean
 src/CORALean/ContSet/SpectraShadow/Real/Operations/Cone.lean
 src/CORALean/ContSet/SpectraShadow/Real/Operations/ConvHull.lean
 src/CORALean/ContSet/SpectraShadow/Real/Operations/FullDimShortcut.lean
-src/CORALean/ContSet/SpectraShadow/Real/Operations/GFro.lean
 src/CORALean/ContSet/SpectraShadow/Real/Operations/GenerateESumRep.lean
 src/CORALean/ContSet/SpectraShadow/Real/Operations/Inter.lean
 src/CORALean/ContSet/SpectraShadow/Real/Operations/LineExample.lean
@@ -2577,8 +2563,6 @@ src/CORALean/ContSet/Taylm/Float/Operations/ProdBounds.lean
 src/CORALean/ContSet/Taylm/Float/Operations/RangeBound.lean
 src/CORALean/ContSet/Taylm/Float/Operations/Rdivide.lean
 src/CORALean/ContSet/Taylm/Float/Operations/ReexpBoxBounds.lean
-src/CORALean/ContSet/Taylm/Float/Operations/ReexpCoef.lean
-src/CORALean/ContSet/Taylm/Float/Operations/ReexpPairs.lean
 src/CORALean/ContSet/Taylm/Float/Operations/Reexpand.lean
 src/CORALean/ContSet/Taylm/Float/Operations/ReexpandAt.lean
 src/CORALean/ContSet/Taylm/Float/Operations/RepresentsaEmptySet.lean
@@ -2697,9 +2681,7 @@ src/CORALean/ContSet/Taylm/Real/Operations/CosyGo.lean
 src/CORALean/ContSet/Taylm/Real/Operations/Det.lean
 src/CORALean/ContSet/Taylm/Real/Operations/Exp.lean
 src/CORALean/ContSet/Taylm/Real/Operations/GlobalMin.lean
-src/CORALean/ContSet/Taylm/Real/Operations/GoLoop.lean
 src/CORALean/ContSet/Taylm/Real/Operations/GoLowerBound.lean
-src/CORALean/ContSet/Taylm/Real/Operations/GoStep.lean
 src/CORALean/ContSet/Taylm/Real/Operations/HalveBox.lean
 src/CORALean/ContSet/Taylm/Real/Operations/Hessian.lean
 src/CORALean/ContSet/Taylm/Real/Operations/HigherTerms.lean
@@ -2730,7 +2712,6 @@ src/CORALean/ContSet/Taylm/Real/Operations/PowBounds.lean
 src/CORALean/ContSet/Taylm/Real/Operations/Prod.lean
 src/CORALean/ContSet/Taylm/Real/Operations/ProdBounds.lean
 src/CORALean/ContSet/Taylm/Real/Operations/QfbLower.lean
-src/CORALean/ContSet/Taylm/Real/Operations/QuadForm.lean
 src/CORALean/ContSet/Taylm/Real/Operations/QuadTerms.lean
 src/CORALean/ContSet/Taylm/Real/Operations/RangeBound.lean
 src/CORALean/ContSet/Taylm/Real/Operations/Rdivide.lean
@@ -3070,7 +3051,6 @@ src/CORALean/ContSet/Zonotope/Float/Operations/Deviation.lean
 src/CORALean/ContSet/Zonotope/Float/Operations/EntryDeviation.lean
 src/CORALean/ContSet/Zonotope/Float/Operations/ErrBound.lean
 src/CORALean/ContSet/Zonotope/Float/Operations/ExactPlus.lean
-src/CORALean/ContSet/Zonotope/Float/Operations/ExactPlusGap.lean
 src/CORALean/ContSet/Zonotope/Float/Operations/InteriorPoint.lean
 src/CORALean/ContSet/Zonotope/Float/Operations/IsFullDim.lean
 src/CORALean/ContSet/Zonotope/Float/Operations/IsFullDimWith.lean
@@ -3101,10 +3081,7 @@ src/CORALean/ContSet/Zonotope/Float/Operations/RepresentsaPoint.lean
 src/CORALean/ContSet/Zonotope/Float/Operations/RightInvCandidate.lean
 src/CORALean/ContSet/Zonotope/Float/Operations/RightInvGain.lean
 src/CORALean/ContSet/Zonotope/Float/Operations/RightInvQ.lean
-src/CORALean/ContSet/Zonotope/Float/Operations/RightInvResidual.lean
-src/CORALean/ContSet/Zonotope/Float/Operations/SplitHalf.lean
 src/CORALean/ContSet/Zonotope/Float/Operations/Tensor3.lean
-src/CORALean/ContSet/Zonotope/Float/Operations/TensorHDiff.lean
 src/CORALean/ContSet/Zonotope/Float/Operations/TensorHDown.lean
 src/CORALean/ContSet/Zonotope/Float/Operations/TensorHUp.lean
 src/CORALean/ContSet/Zonotope/Float/Operations/TensorMultiplication.lean
@@ -3847,7 +3824,6 @@ src/CORALean/HybridDynamics/Operations/JumpOfPoint.lean
 src/CORALean/HybridDynamics/Operations/LinearResetLift.lean
 src/CORALean/HybridDynamics/Operations/LinearResetResolve.lean
 src/CORALean/HybridDynamics/Operations/LinearResetResolveUpdate.lean
-src/CORALean/HybridDynamics/Operations/LinearResetResolveUpdateFloat.lean
 src/CORALean/HybridDynamics/Operations/LinearResetSynchronize.lean
 src/CORALean/HybridDynamics/Operations/NonlinearResetEvaluate.lean
 src/CORALean/HybridDynamics/Operations/NonlinearResetGlobalRank.lean

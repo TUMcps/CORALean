@@ -12,12 +12,10 @@ public import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSum
 public import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSumTail
 public import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSumTailFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.InputTerm
-public import CORALean.ContDynamics.LinParamSys.Operations.InputTermZono
 public import CORALean.ContDynamics.LinParamSys.Operations.InputTermZonoFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolution
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachOrder
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepk
-public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkInput
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachUnion
 public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
 public import CORALean.ContDynamics.LinParamSys.Operations.ToLinParam
@@ -34,7 +32,6 @@ public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatChecked
 public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepZono
 public import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolutionFloat
-public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloatInput
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInput
 public import CORALean.ContDynamics.LinParamSys.Operations.ConstInputSolutionFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.ConstPropagateFloat

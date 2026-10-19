@@ -14,7 +14,7 @@ public import CORALean.ContDynamics.Reach.Operations.Steps
 `FloatModel.reachFloat` reads it, and `none` is returned where it is no natural number
 or a step fails.
 
-`NonlinearSys.polyReachRun` and `linReachPoly` are the real layer's `'poly'` loop and
+`NonlinearSys.aux_polyReachRun` and `linReachPoly` are the real layer's `'poly'` loop and
 step at supplied derivatives and certificates; this one computes its own from the
 model, and its guarantee `reachAlgFloat_outer` is against the real system's runs
 through `FloatHessModel.Encloses`, with no certificate and no confinement asked.

@@ -48,18 +48,18 @@ theorem aux_greedyFold_inv {f : Vec ℝ n → Vec ℝ m} {x : Vec ℝ n} {ε : �
     {suff : Finset (Fin n) → Bool} (hsuff : ∀ E, suff E = true ↔ IsSuffExplanation f x ε E l) :
     ∀ (todo : List (Fin n)) {E : Finset (Fin n)}, IsSuffExplanation f x ε E l →
       (∀ j ∈ E, j ∉ todo → ¬ IsSuffExplanation f x ε (E \ {j}) l) →
-      IsSuffExplanation f x ε (todo.foldl (greedyExplanationStep suff) E) l ∧
-        ∀ j ∈ todo.foldl (greedyExplanationStep suff) E,
-          ¬ IsSuffExplanation f x ε (todo.foldl (greedyExplanationStep suff) E \ {j}) l
+      IsSuffExplanation f x ε (todo.foldl (aux_greedyExplanationStep suff) E) l ∧
+        ∀ j ∈ todo.foldl (aux_greedyExplanationStep suff) E,
+          ¬ IsSuffExplanation f x ε (todo.foldl (aux_greedyExplanationStep suff) E \ {j}) l
   | [], E, hsuffE, hminE => ⟨hsuffE, fun j hj => hminE j hj (List.not_mem_nil)⟩
   | i :: rest, E, hsuffE, hminE => by
-      have hfold : (i :: rest).foldl (greedyExplanationStep suff) E
-          = rest.foldl (greedyExplanationStep suff) (greedyExplanationStep suff E i) := rfl
+      have hfold : (i :: rest).foldl (aux_greedyExplanationStep suff) E
+          = rest.foldl (aux_greedyExplanationStep suff) (aux_greedyExplanationStep suff E i) := rfl
       rw [hfold]
       by_cases hb : suff (E \ {i}) = true
       · -- the oracle allows dropping `i`: the smaller set is still sufficient
         have hsuffE' : IsSuffExplanation f x ε (E \ {i}) l := (hsuff _).mp hb
-        have hstep : greedyExplanationStep suff E i = E \ {i} := if_pos hb
+        have hstep : aux_greedyExplanationStep suff E i = E \ {i} := if_pos hb
         rw [hstep]
         refine aux_greedyFold_inv hε hsuff rest hsuffE' fun j hj hjrest => ?_
         have hjE : j ∈ E := (Finset.mem_sdiff.mp hj).1
@@ -72,7 +72,7 @@ theorem aux_greedyFold_inv {f : Vec ℝ n → Vec ℝ m} {x : Vec ℝ n} {ε : �
           simp only [Finset.mem_sdiff, Finset.mem_singleton] at hk ⊢
           exact ⟨hk.1.1, hk.2⟩)
       · -- the oracle refuses: `i` stays, and it is now its own witness
-        have hstep : greedyExplanationStep suff E i = E := if_neg hb
+        have hstep : aux_greedyExplanationStep suff E i = E := if_neg hb
         rw [hstep]
         refine aux_greedyFold_inv hε hsuff rest hsuffE fun j hj hjrest => ?_
         rcases eq_or_ne j i with rfl | hji

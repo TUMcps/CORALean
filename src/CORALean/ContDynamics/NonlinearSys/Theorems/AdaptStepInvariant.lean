@@ -58,9 +58,9 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S] [Real.OfInterval S]
 those are the only three values line 13 can report. -/
 theorem aux_tuneAbstrOrder_mem (le : ℝ → ℝ → Bool) (ζK φstar rabs rabsLast : ℝ)
     (d1 d2 : Fin n → ℝ) {κ : ℕ} (hκ : κ = 1 ∨ κ = 2) :
-    tuneAbstrOrder le ζK φstar rabs rabsLast d1 d2 κ = 1 ∨
-      tuneAbstrOrder le ζK φstar rabs rabsLast d1 d2 κ = 2 := by -- --- PROOF ---
-  rw [tuneAbstrOrder]
+    aux_tuneAbstrOrder le ζK φstar rabs rabsLast d1 d2 κ = 1 ∨
+      aux_tuneAbstrOrder le ζK φstar rabs rabsLast d1 d2 κ = 2 := by -- --- PROOF ---
+  rw [aux_tuneAbstrOrder]
   split
   · exact hκ
   · split

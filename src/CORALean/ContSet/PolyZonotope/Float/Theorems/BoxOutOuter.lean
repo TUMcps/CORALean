@@ -43,7 +43,7 @@ theorem PolyZonotope.boxOut_outer (pZ : PolyZonotope (Vec 𝕋 n)) (removed : Fi
   -- the removed generators reach `D i` in coordinate `i`, the box has radius `R i`
   set D : Fin n → ℝ := fun i => ∑ l, if removed l then
     toReal (pZ.G l i) * Real.PolyZonotope.monomial pZ.E a l else 0 with hD
-  set R : Fin n → ℝ := fun i => toReal (pZ.boxOutRadius removed taken i) with hR
+  set R : Fin n → ℝ := fun i => toReal (pZ.aux_boxOutRadius removed taken i) with hR
   have hbound : ∀ i, |D i| ≤ R i := fun i => by
     -- the removed generators reach at most their absolute sum, which the radius rounds up
     have h1 : |D i| ≤ ∑ l, if removed l then |toReal (pZ.G l i)| else 0 := by

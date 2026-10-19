@@ -15,7 +15,7 @@ box `[degree, degreeSup]` that node's degree is known to sit in. What comes
 back is a slope, an offset and an error, and composing the slope with the affine
 `degreeAt` of `degreeAt_eq` leaves `s_j` affine in the edge weights again:
 
-    s_j = sqrtConst + Σₑ sqrtEdgeCoeff ⬝ αₑ + (residual, at most sqrtError)
+    s_j = sqrtConst + Σₑ sqrtEdgeCoeff ⬝ αₑ + (residual, at most aux_sqrtError)
 
 `sqrt_affine` is that identity, stated at the factors `α = 2λ - 1` the uncertain
 adjacency already uses, so the two sets share their factors and a product of

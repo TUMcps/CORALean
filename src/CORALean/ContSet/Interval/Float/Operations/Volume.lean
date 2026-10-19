@@ -1,7 +1,7 @@
 module
 
+public import CORALean.ContSet.Interval.Float.Interval
 public import CORALean.ContSet.Interval.Float.Operations.Basic
-public import CORALean.ContSet.Interval.Float.Operations.WidthUp
 
 @[expose] public section
 
@@ -27,9 +27,15 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+def Interval.aux_widthUp (I : Interval (Vec 𝕋 n)) (i : Fin n) : 𝕋 :=
+  maximum zero (subUp (I.sup i) (I.inf i))
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Interval.volume (I : Interval (Vec 𝕋 n)) : 𝕋 := prodUp fun i => I.widthUp i
+def Interval.volume (I : Interval (Vec 𝕋 n)) : 𝕋 := prodUp fun i => I.aux_widthUp i
 
 end CORALean.Float
 

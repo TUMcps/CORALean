@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ConZonotope.Real.Operations.AgreeMat
+public import CORALean.ContSet.ConZonotope.Real.ConZonotope
 public import CORALean.ContSet.ConZonotope.Real.Operations.Plus
 public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
 
@@ -41,6 +41,13 @@ namespace CORALean.Real
 variable {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The rows pinning the two points together, one per coordinate. -/
+def ConZonotope.aux_agreeMat (cZ₁ cZ₂ : ConZonotope (Vec ℝ n)) : Mat ℝ n (cZ₁.h + cZ₂.h) :=
+  fun i => Fin.append (fun j => cZ₁.G j i) fun j => -cZ₂.G j i
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def ConZonotope.intersection (cZ₁ cZ₂ : ConZonotope (Vec ℝ n)) : ConZonotope (Vec ℝ n) where
@@ -49,7 +56,7 @@ def ConZonotope.intersection (cZ₁ cZ₂ : ConZonotope (Vec ℝ n)) : ConZonoto
   G := Fin.append cZ₁.G 0
   P := ((cZ₁.P.comap (blockLeft cZ₁.h cZ₂.h)).intersection
           (cZ₂.P.comap (blockRight cZ₁.h cZ₂.h))).intersection
-        (HPolytope.eqs (ConZonotope.agreeMat cZ₁ cZ₂) fun i => cZ₂.c i - cZ₁.c i)
+        (HPolytope.eqs (ConZonotope.aux_agreeMat cZ₁ cZ₂) fun i => cZ₂.c i - cZ₁.c i)
 
 end CORALean.Real
 

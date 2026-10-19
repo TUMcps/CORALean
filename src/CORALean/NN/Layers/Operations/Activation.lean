@@ -1,15 +1,16 @@
 module
 
 public import CORALean.ContSet.Conversion.Float.Instances
-public import CORALean.NN.Layers.Layer
-public import CORALean.NN.Layers.Operations.RelaxationBox
-public import CORALean.NN.Layers.Operations.RelaxationSlopeMat
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Interval
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.NN.Layers.Definitions.Relaxation
+public import CORALean.NN.Layers.Layer
+public import CORALean.NN.Layers.Operations.RelaxationBox
 
 @[expose] public section
 
@@ -41,12 +42,20 @@ open ContSet Plus Mtimes Float.IntervalOuter Float.OfInterval
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
   {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋] {n : ℕ}
+open Float
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The affine map the relaxation chose, as a matrix, so that `mtimes` carries it. -/
+def Relaxation.aux_slopeMat (R : Relaxation 𝕋) (I : Interval (Vec 𝕋 n)) : Mat 𝕋 n n :=
+  diagonalBlock fun i => R.slope (I.inf i) (I.sup i)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Layer.activation (R : Relaxation 𝕋) : Layer S n n where
-  enclose s := plus (mtimes (R.slopeMat (interval s)) s) (ofInterval (R.box (interval s)))
+  enclose s := plus (mtimes (R.aux_slopeMat (interval s)) s) (ofInterval (R.box (interval s)))
 
 end CORALean
 

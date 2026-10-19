@@ -39,10 +39,8 @@ src/CORALean/Global/Float/Instances/IEEE/Operations/DivUp.lean  cycle once moved
 src/CORALean/Global/Float/Instances/IEEE/Operations/MulUp.lean  cycle once moved in: `Basic` → `Global/Float/Instances/IEEE/Operations/RoundUp` → `Basic`
 src/CORALean/NN/Layers/Operations/CoarseHi.lean  cycle once moved in: `Basic` → `NN/Layers/Operations/SampleDevUp` → `NN/Layers/Operations/EvalPolyDown` → `NN/Layers/Operations/PowRange` → `Basic`
 src/CORALean/NN/Layers/Operations/EvalPolyUp.lean  cycle once moved in: `Basic` → `NN/Layers/Operations/PowRange` → `Basic`
-src/CORALean/NN/Layers/Operations/LeakyRelu.lean  cycle once moved in: `Basic` → `NN/Layers/Operations/LeakyReluRelaxation` → `Basic`
 src/CORALean/NN/Layers/Operations/SampleDevUp.lean  cycle once moved in: `Basic` → `NN/Layers/Operations/EvalPolyDown` → `NN/Layers/Operations/PowRange` → `Basic`
 src/CORALean/NN/Layers/Operations/Sigmoid.lean  cycle once moved in: `Basic` → `NN/Layers/Operations/SigmoidRelaxation` → `Basic`
-src/CORALean/NN/Layers/Operations/SigmoidPolyDerivBound.lean  cycle once moved in: `Basic` → `NN/Layers/Operations/PolyDerivBoundUp` → `NN/Layers/Operations/PolyDerivRadiusUp` → `NN/Layers/Operations/PowRange` → `Basic`
 src/CORALean/NN/Layers/Operations/Square.lean  cycle once moved in: `Basic` → `NN/Layers/Operations/SquareRelaxation` → `Basic`
 src/CORALean/NN/Layers/Operations/Tanh.lean  cycle once moved in: `Basic` → `NN/Layers/Operations/TanhRelaxation` → `NN/Layers/Operations/SigmoidRelaxation` → `Basic`
 src/CORALean/NN/Layers/Theorems/Real/SigmoidPolyFamilySound.lean  cycle once moved in: `Basic` → `NN/Layers/Definitions/SigmoidPolyFamily` → `NN/Layers/Theorems/Real/AbsSigmoidDerivLeOne` → `Basic`

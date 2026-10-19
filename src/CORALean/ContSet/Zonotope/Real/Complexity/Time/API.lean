@@ -24,5 +24,5 @@ Not counted: `reduceMethC` and `methCBasis`, which pick a basis by
 `Classical.choose` over every embedding of `n` filtered generators, so a count
 of the definition would be factorial and say nothing of CORA's `n + 8` choose
 `n` search; `minkDiffOrEmpty` and `minkDiffGenRec`, a `choose` and a set
-recursion; and `methodCBasis`, a sublist enumeration.
+recursion; and `aux_methodCBasis`, a sublist enumeration.
 -/

@@ -25,7 +25,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.volume_of_q_zero {n : ℕ} (pZ : PolyZonotope (Vec ℝ n)) (hq : pZ.q = 0)
-    (h : pZ.p = n) : pZ.volume = some (pZ.jacobianDetIntegral h) := by
+    (h : pZ.p = n) : pZ.volume = some (pZ.aux_jacobianDetIntegral h) := by
   unfold PolyZonotope.volume
   simp only [hq, if_true]
   rw [if_neg (by omega), dif_pos h]

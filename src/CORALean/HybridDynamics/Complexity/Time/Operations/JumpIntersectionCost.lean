@@ -1,8 +1,10 @@
 module
 
-public import CORALean.HybridDynamics.Complexity.Time.Operations.JumpCost
+public import CORALean.Global.Cost
+public import CORALean.HybridDynamics.Operations.Jump
 public import CORALean.HybridDynamics.Operations.JumpIntersection
 public import CORALean.HybridDynamics.Operations.JumpIntersectionOfPoint
+public import CORALean.HybridDynamics.Operations.JumpOfPoint
 
 @[expose] public section
 
@@ -27,12 +29,19 @@ runs.
 namespace CORALean
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- What `Transition.jump` and `Transition.jumpOfPoint` cost, at what `mtimes`,
+`plus` and embedding the offset cost: the three added. -/
+def Transition.aux_jumpCost (cMtimes cPlus cEmbed : Cost) : Cost := cMtimes + cPlus + cEmbed
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What `Transition.jumpIntersection` and `Transition.jumpIntersectionOfPoint`
-cost: the guard cut, then `jumpCost`. -/
+cost: the guard cut, then `aux_jumpCost`. -/
 def Transition.jumpIntersectionCost (cIntersection cMtimes cPlus cEmbed : Cost) : Cost :=
-  cIntersection + Transition.jumpCost cMtimes cPlus cEmbed
+  cIntersection + Transition.aux_jumpCost cMtimes cPlus cEmbed
 
 end CORALean
 

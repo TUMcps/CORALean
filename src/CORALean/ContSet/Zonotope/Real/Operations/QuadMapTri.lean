@@ -1,8 +1,14 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Operations.QuadMapPairIdx
 public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.Global.Tensor
+public import Mathlib.Algebra.BigOperators.Intervals
+public import Mathlib.Data.Fintype.BigOperators
+public import Mathlib.Data.Fintype.Card
+public import Mathlib.Data.Fintype.Sigma
 public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Data.Nat.Choose.Basic
+public import Mathlib.Logic.Equiv.Fin.Basic
 
 @[expose] public section
 
@@ -13,7 +19,7 @@ public import Mathlib.Data.Matrix.Mul
 `dᵢ = cᵀQ⁽ⁱ⁾c + 0.5 Σₛ g⁽ˢ⁾ᵀQ⁽ⁱ⁾g⁽ˢ⁾`, the `p` linear generators `h⁽ʲ⁾ᵢ = cᵀQ⁽ⁱ⁾g⁽ʲ⁾ + g⁽ʲ⁾ᵀQ⁽ⁱ⁾c`,
 the `p` squares `h⁽ᵖ⁺ʲ⁾ᵢ = 0.5 g⁽ʲ⁾ᵀQ⁽ⁱ⁾g⁽ʲ⁾`, and one generator
 `h⁽²ᵖ⁺ˡ⁾ᵢ = g⁽ʲ⁾ᵀQ⁽ⁱ⁾g⁽ᵏ⁾ + g⁽ᵏ⁾ᵀQ⁽ⁱ⁾g⁽ʲ⁾` for each pair `j < k` alone, numbered by
-`quadMapPairIdx`. That is `σ = C(p + 2, 2) - 1` generators. `Zonotope.quadMap` indexes the pair
+`aux_quadMapPairIdx`. That is `σ = C(p + 2, 2) - 1` generators. `Zonotope.quadMap` indexes the pair
 block by all of `Fin p × Fin p`, zero off `j < k`.
 
 ## References
@@ -39,6 +45,28 @@ open Matrix
 variable {n m : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The pairs `j < k` of `Fin p`, as `p(p - 1)/2 = C(p, 2)` of them. -/
+theorem Zonotope.aux_card_ltPair (p : ℕ) :
+    Fintype.card {jk : Fin p × Fin p // jk.1 < jk.2} = p.choose 2 := by -- --- PROOF ---
+  -- a pair is its larger index `k` and some `j : Fin k`
+  let e : {jk : Fin p × Fin p // jk.1 < jk.2} ≃ Σ k : Fin p, Fin k :=
+    { toFun := fun jk => ⟨jk.1.2, ⟨jk.1.1, jk.2⟩⟩
+      invFun := fun kj => ⟨(⟨kj.2, kj.2.2.trans kj.1.2⟩, kj.1), kj.2.2⟩
+      left_inv := fun _ => rfl
+      right_inv := fun _ => rfl }
+  rw [Fintype.card_congr e, Fintype.card_sigma]
+  simp only [Fintype.card_fin]
+  rw [Fin.sum_univ_eq_sum_range (fun k => k) p, Nat.choose_two_right,
+    ← Finset.sum_range_id_mul_two p, Nat.mul_div_cancel _ Nat.two_pos]
+
+/-- [1, Lemma 1 (generators)]: the index `l` of the pair generators, against the pairs `j < k`. -/
+noncomputable def Zonotope.aux_quadMapPairIdx (p : ℕ) :
+    Fin (p.choose 2) ≃ {jk : Fin p × Fin p // jk.1 < jk.2} :=
+  (Fintype.equivFinOfCardEq (Zonotope.aux_card_ltPair p)).symm
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Lemma 1 (generators)]: the enclosing zonotope, the pair block over `j < k` only. -/
@@ -51,7 +79,7 @@ noncomputable def Zonotope.quadMapTri (Q : Fin m → Mat ℝ n n) (Z : Zonotope 
       (fun j i => Z.c ⬝ᵥ (Q i *ᵥ Z.G j) + Z.G j ⬝ᵥ (Q i *ᵥ Z.c))
       (fun j i => (1 / 2) * Z.G j ⬝ᵥ (Q i *ᵥ Z.G j)))
     (fun l i =>
-      let jk := (Zonotope.quadMapPairIdx Z.h l).1
+      let jk := (Zonotope.aux_quadMapPairIdx Z.h l).1
       Z.G jk.1 ⬝ᵥ (Q i *ᵥ Z.G jk.2) + Z.G jk.2 ⬝ᵥ (Q i *ᵥ Z.G jk.1))
 
 end CORALean.Real

@@ -15,7 +15,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 /-!
 # `manualReachFloat` holds every run over every window
 
-[1, Alg. 1] in floats from `manualInitFloat`, which holds the invariant at `t₀ = 0`: `H(0)`
+[1, Alg. 1] in floats from `aux_manualInitFloat`, which holds the invariant at `t₀ = 0`: `H(0)`
 is `X₀` itself, and the constant and the `Ũ`-input have contributed `0`, which `{0}` holds.
 `manualRunFloat_outer` does the rest, at the order `reachOrderFloat` admitted. Every input
 `u(t) ∈ B U + c` is in `V = B U ⊕ c`'s float enclosure.
@@ -48,24 +48,24 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [ToRat 𝕋] in
-/-- `manualInitFloat` holds what a state owes at `t₀ = 0`. -/
+/-- `aux_manualInitFloat` holds what a state owes at `t₀ = 0`. -/
 theorem LinearSys.aux_manualInvariantFloat_init (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec 𝕋 n)) :
-    sys.ManualInvariantFloat X₀ V (LinearSys.manualInitFloat X₀) := by -- --- PROOF ---
+    sys.ManualInvariantFloat X₀ V (LinearSys.aux_manualInitFloat X₀) := by -- --- PROOF ---
   have hzero : (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.construct := by
     have h0 := Interval.zonotope_contains _ (Interval.mem_point fun _ : Fin n => (zero : 𝕋))
     rwa [show RealImage.realImage (fun _ : Fin n => (zero : 𝕋)) = (0 : Vec ℝ n) from
       funext fun _ => toReal_zero] at h0
   have hΓ0 : Real.MatExp.expIntegral (Scalar.toRealMat sys.A) 0 = 0 := by
     simp [Real.MatExp.expIntegral]
-  refine ⟨le_rfl, by simp [LinearSys.manualInitFloat, toReal_zero],
-    by simp [LinearSys.manualInitFloat, toReal_zero], fun x hx => ?_, ?_, fun y hy => ?_⟩
-  · simpa [LinearSys.manualInitFloat, hΓ0] using hx
+  refine ⟨le_rfl, by simp [LinearSys.aux_manualInitFloat, toReal_zero],
+    by simp [LinearSys.aux_manualInitFloat, toReal_zero], fun x hx => ?_, ?_, fun y hy => ?_⟩
+  · simpa [LinearSys.aux_manualInitFloat, hΓ0] using hx
   · have h0 := Interval.mem_point (fun _ : Fin n => (zero : 𝕋))
     rw [show RealImage.realImage (fun _ : Fin n => (zero : 𝕋)) = (0 : Vec ℝ n) from
       funext fun _ => toReal_zero] at h0
-    simpa [LinearSys.manualInitFloat, hΓ0] using h0
+    simpa [LinearSys.aux_manualInitFloat, hΓ0] using h0
   · obtain ⟨u, -, -, rfl⟩ := hy
-    simpa [LinearSys.manualInitFloat] using hzero
+    simpa [LinearSys.aux_manualInitFloat] using hzero
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -101,8 +101,8 @@ theorem LinearSys.manualReachFloat_outer (sys : LinearSys 𝕋 n)
       U.construct ⊆ ContSet.construct V :=
     sys.inputSetFloat_outer U
   have hkN : (k : ℝ) + 1 ≤ N := by rw [hlen] at hk; exact_mod_cast hk
-  refine hsnd traj hUV k hk t ⟨by simpa [LinearSys.manualInitFloat] using ht.1,
-    by simpa [LinearSys.manualInitFloat] using ht.2⟩ ?_
+  refine hsnd traj hUV k hk t ⟨by simpa [LinearSys.aux_manualInitFloat] using ht.1,
+    by simpa [LinearSys.aux_manualInitFloat] using ht.2⟩ ?_
   rw [← hNΔt]
   exact ht.2.trans (mul_le_mul_of_nonneg_right hkN hΔt.le)
 

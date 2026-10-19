@@ -110,16 +110,11 @@ GNN.messagePassing  real-layer: an ℝ-only part of NN (the graph layers, sensit
 GNN.messagePassingEnclosure  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 GNN.reduceGNNForNode  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 GNN.reduceKeep  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
-GNN.sqrtBroadcast  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
-GNN.sqrtCol  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 GNN.sqrtConst  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 GNN.sqrtEdgeCoeff  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
-GNN.sqrtError  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 GNN.sqrtOffset  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
-GNN.sqrtRow  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 GNN.sqrtSlope  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 GNN.uncertainAdj  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
-GNN.uncertainAdjPad  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 LinParamSys.constInputSolution  real-layer: the split input's constant half over one window at `ℐ`; runs in floats as `LinParamSys.constInputSolutionFloat` (`expIntegral_mem_constInputSolutionFloat`), the segment `[0, ũ]` through `inputSolutionFloat`, needing no correction matrix
 LinParamSys.constPropagate  real-layer: the split input's constant half carried across windows at `ℐ`; runs in floats as `LinParamSys.constPropagateFloat` (`expIntegral_mem_constPropagateFloat`)
 LinParamSys.discretizeEnclosure  real-layer: the sampled system at `ℐ`; runs in floats as `LinParamSys.discretizeEnclosureFloat` (`IsConstTrajectory.discretizeEnclosureFloat_mem_reach`)
@@ -129,12 +124,10 @@ LinParamSys.inputSolutionZono  real-layer: the input solution at the real matrix
 LinParamSys.inputTaylorSum  real-layer: the input solution's Taylor orders at `ℐ`; runs in floats as `LinParamSys.inputTaylorSumFloat`
 LinParamSys.inputTaylorSumTail  real-layer: the interval-matrix orders past the matrix-zonotope ones in `inputSolutionZono`, at `r : ℝ`; runs in floats as `LinParamSys.inputTaylorSumTailFloat`
 LinParamSys.inputTerm  real-layer: `[A]ⁱ r^{i+1}/(i+1)!` at `ℐ`; runs in floats as `Float.MatExp.intervalInputTerm` at `sys.A`
-LinParamSys.inputTermZono  real-layer: a matrix-zonotope order of the input solution at `r : ℝ`; runs in floats as `LinParamSys.inputTermZonoFloat` (`smul_pow_mem_inputTermZonoFloat`)
 LinParamSys.particularSolution  real-layer: the input's accumulation across windows at `ℐ`; runs in floats as `LinParamSys.particularSolutionFloat` (`inputReach_subset_particularSolutionFloat`)
 LinParamSys.reachInstance  real-layer: the `Reach` instance over `reachUnion`; runs in floats as `LinParamSys.reachFloatInput` (`reachFloatInput_outer`)
 LinParamSys.reachOrder  real-layer: an admissible order by `⌈‖[A]r‖⌉`; runs in floats as `LinParamSys.reachOrderFloat`
 LinParamSys.reachStepk  real-layer: one window at `ℐ`; runs in floats as `LinParamSys.reachStepkFloat` (`reachStepkFloat_outer`)
-LinParamSys.reachStepkInput  real-layer: one window with the input set split at `ℐ`; runs in floats as `LinParamSys.reachStepkFloatInput`, an entry of `LinParamSys.reachFloatInput`'s list (`reachFloatInput_outer`)
 LinParamSys.reachUnion  real-layer: the windows with inputs `params.U` in input coordinates at `ℐ`; runs in floats as `LinParamSys.reachFloatInput` (`reachFloatInput_outer`)
 LinParamSys.timeIntervalStep  real-layer: one step at the real interval-matrix family `ℐ`; runs in floats as `LinParamSys.timeIntervalStepFloat` (`timeIntervalStepFloat_outer`)
 LinParamSys.timeIntervalStepZono  real-layer: one step at the real matrix-zonotope family `𝕄𝒵`; runs in floats as `LinParamSys.timeIntervalStepZonoFloat` (`timeIntervalStepZonoFloat_outer`)
@@ -155,7 +148,6 @@ LinearSys.deltaReach  real-layer: the step's state differences at the real expon
 LinearSys.discretize  real-layer: the exact sampled system `e^{AΔt}`, transcendental; its float refinement is `LinearSys.discretizeEnclosureFloat`
 LinearSys.discretizeEnclosure  real-layer: the sampled system at the real `expEnclosure`; runs in floats as `LinearSys.discretizeEnclosureFloat`
 LinearSys.discretizeMatZonotope  real-layer: the sampled system at the real matrix-zonotope exponential, `Δt : ℝ`; runs in floats as `LinearSys.discretizeMatZonotopeFloat` (`IsTrajectory.discretizeMatZonotopeFloat_mem_reach`)
-LinearSys.errorEdge  real-layer: the adaptive error solution's generator sums at real matrices, a tuning quantity; runs in floats rounded up as `LinearSys.errorEdgeFloat`
 LinearSys.errorSolutionAdaptive  real-layer: `errorSolution_adaptive` at real matrices; runs in floats as `LinearSys.errorSolutionAdaptiveFloat` (`expIntegral_mem_errorSolutionAdaptiveFloat`, `…_static`)
 LinearSys.errorSolutionOrder  real-layer: a tuning selector, the order loop of `errorSolution_adaptive` with real divisions; runs in floats as `LinearSys.errorSolutionOrderFloat`, and `expIntegral_mem_errorSolutionAdaptiveFloat` holds at any order it picks
 LinearSys.girardReach  real-layer: Girard's scheme at the exact `e^{rA}` and `e^{r‖A‖}` over `Real.Zonotope`; runs in floats as `LinearSys.girardReachFloat` (`girardReachFloat_outer`)
@@ -166,7 +158,6 @@ LinearSys.inputSolutionSet  spec: the `Set` the input-solution enclosure is meas
 LinearSys.inputTaylorSum  real-layer: the input solution's Taylor orders; runs in floats as `LinearSys.inputTaylorSumFloat`
 LinearSys.inputTaylorSumTail  real-layer: orders `1 … η` of the input solution at `r : ℝ`; runs in floats as `LinearSys.inputTaylorSumTailFloat` (`inputTaylorSumTail_subset_float`)
 LinearSys.inputTerm  real-layer: `Aⁱ r^{i+1}/(i+1)!` as a real matrix; enclosed in floats by `Float.MatExp.intervalInputTerm` at the point interval
-LinearSys.manualInit  real-layer: TAC'23 `Alg. 1` lines 1-2 over `Real.Zonotope`; runs in floats as `LinearSys.manualInitFloat` (`manualReachFloat_outer`)
 LinearSys.manualReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…IsRun` it unions
 LinearSys.manualRun  real-layer: the loop of TAC'23 `Alg. 1` over `Real.Zonotope`; runs in floats as `LinearSys.manualRunFloat` (`manualRunFloat_outer`), from `LinearSys.manualReachFloat` (`manualReachFloat_outer`)
 LinearSys.manualStep  real-layer: one iteration of TAC'23 `Alg. 1` over `Real.Zonotope` at the real exponential; runs in floats as `LinearSys.manualStepFloat` (`manualStepFloat_outer`)
@@ -174,15 +165,9 @@ LinearSys.maxBackReachCZ  real-layer: line 11's `CZ(P ⊖ Ẑ_W(τ_k))` over `Re
 LinearSys.maxBackReach  spec: the backward paper's `Alg. 3` as a `Set`, lines 3-5 computed and then `maxBackReachTimeInterval`'s union; what runs is the `…IsRun` it unions
 LinearSys.maxBackReachInit  real-layer: [1, Alg. 3] lines 1-2 over `Real.Zonotope` at the real integral; runs in floats as `LinearSys.maxBackReachInitFloat`, whose `Z̲_U(t₀)` is an outer float set recorded with its excess (`maxBackReachInitFloat_encloses`)
 LinearSys.maxBackReachMu  real-layer: the spectral norm `‖(e^{AΔt} - I)G‖₂` at the real exponential; runs in floats as `LinearSys.maxBackReachMuFloat`, an upper bound (`maxBackReachMu_le_muFloat`)
-LinearSys.maxBackReachPoly  real-layer: `X ⊖ F box(X_end) ⊖ B_μ` at real supports; runs in floats as `LinearSys.maxBackReachPolyFloat`, inside it (`maxBackReachPolyFloat_inner`)
 LinearSys.maxBackReachRun  real-layer: the loop of `maxBackReachInit` and `maxBackReachStep` over the real exponential; runs in floats as `LinearSys.maxBackReachRunFloat`, inside it (`maxBackReachRunFloat_inner`)
 LinearSys.maxBackReachStep  real-layer: [1, Alg. 3] lines 7-12 over `Real.ConZonotope` at the real exponential; runs in floats from the inside as `LinearSys.maxBackReachStepFloat`, inside it (`maxBackReachStepFloat_encloses`)
 LinearSys.maxBackReachTimeInterval  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…IsRun` it unions
-LinearSys.minBackReachInit  real-layer: [1, Alg. 2] over `Real.Zonotope`/`Real.ConZonotope` at the real exponential and a caller-supplied support oracle; runs in floats as `LinearSys.minBackReachInitFloat`
-LinearSys.minBackReachP  real-layer: [1, Alg. 2] over `Real.Zonotope`/`Real.ConZonotope` at the real exponential and a caller-supplied support oracle; runs in floats as `LinearSys.minBackReachPFloat`
-LinearSys.minBackReachRun  real-layer: [1, Alg. 2] over `Real.Zonotope`/`Real.ConZonotope` at the real exponential and a caller-supplied support oracle; runs in floats as `LinearSys.minBackReachRunFloat`
-LinearSys.minBackReachStep  real-layer: [1, Alg. 2] over `Real.Zonotope`/`Real.ConZonotope` at the real exponential and a caller-supplied support oracle; runs in floats as `LinearSys.minBackReachStepFloat`
-LinearSys.minBackReachSupport  real-layer: [1, Alg. 2] over `Real.Zonotope`/`Real.ConZonotope` at the real exponential and a caller-supplied support oracle; runs in floats as `LinearSys.minBackReachSupportFloat` (`minBackReachSupportFloat_ge`)
 LinearSys.minBackReachTimeInterval  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…IsRun` it unions
 LinearSys.postDelta  real-layer: `deltaReach` plus the input's share at the real exponential; runs in floats as `LinearSys.postDeltaFloat` (`IsTrajectory.postDeltaFloat_outer`)
 LinearSys.postDeltaSplit  real-layer: `postDelta` with the input set split at a constant, at the real exponential; runs in floats as `LinearSys.postDeltaFloat`, which splits the same way
@@ -218,10 +203,8 @@ LinearSys.timePointStepRemainderError  real-layer: an ℝ-valued error estimate 
 LinearSys.timePointStepErrorBox  real-layer: the exact error box over `Real.Zonotope`; runs in floats as `LinearSys.timePointStepErrorBoxFloat`, rounded up (`timePointStepErrorBox_subset_float`)
 LinearSys.timePointStepInnerRep  real-layer: `Real.Zonotope.minkDiffRep` of the exact step by its error box; runs in floats as `LinearSys.timePointStepInnerRepFloat`, the float step minus `timePointStepInnerErrorFloat` by the certified `Float.Zonotope.minkDiffRep` (`timePointStepInnerRepFloat_inner`)
 LinearSys.trajectoryError  real-layer: `E_err` of the mapping-based guard intersection at the real matrix exponential of `|A|tmax` and `Real.Zonotope`; no float counterpart yet
-LinearSys.tunedInit  real-layer: CDC'20 `Alg. 1` lines 1-3 over `Real.Zonotope`; runs in floats as the initial state of `LinearSys.reachAdaptiveFloat` (`reachAdaptiveFloat_outer`)
 LinearSys.tunedReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…IsRun` it unions
 LinearSys.tunedRun  real-layer: the loop of CDC'20 `Alg. 1` over `Real.Zonotope`; runs in floats as `LinearSys.adaptiveRunFloat` (`adaptiveRunFloat_outer`)
-LinearSys.tunedStep  real-layer: one iteration of CDC'20 `Alg. 1` over `Real.Zonotope`; runs in floats as `LinearSys.adaptiveStepFloat` (`adaptiveStepFloat_outer`)
 LinearSys.verify  real-layer: the verification loop over `Real.Zonotope`/`Real.ConZonotope` with ℝ tolerances; runs in floats as `LinearSys.verifyFloat` (`verifyFloat_safe`, `verifyFloat_violated`)
 LinearSys.verifyRun  real-layer: the verification loop over `Real.Zonotope`/`Real.ConZonotope` with ℝ tolerances; runs in floats as `LinearSys.verifyRunFloat`
 LinearSys.verifyStep  real-layer: one iteration of the verification loop over `Real.Zonotope`/`Real.ConZonotope` with ℝ tolerances; runs in floats as `LinearSys.verifyStepFloat`
@@ -313,29 +296,19 @@ NeurNetContrSysDT.reachCost  cost: an asserted running cost under `Complexity/Ti
 NeurNetContrSysDT.simulate  spec: an idealised real-valued closed-loop trajectory, used only in a correctness statement
 NonlinParamSys.WithSteps.reachUnion  real-layer: the parameter-as-state reduction to `NonlinearSys` at real certificates; runs in floats as `NonlinParamSys.reachFloat` (`reachFloat_outer`)
 NonlinParamSys.reachInstance  real-layer: `Reach` for the parameter-as-state reduction at real certificates; see `NonlinParamSys.WithSteps.reachUnion`
-NonlinearSys.abstrErrPolyCandidates  real-layer: the `'poly'` error loop's candidates over `Real.PolyZonotope`; the float step checks its region first, so one pass of `NonlinearSys.FloatHessModel.abstrErrPolyFloat` (`Encloses.abstrErrPolyFloat_outer`) replaces the loop
 NonlinearSys.abstrErrPolySearch  real-layer: the search over `abstrErrPolyCandidates`; the float step needs none, see `NonlinearSys.FloatHessModel.linReachFloat`
 NonlinearSys.abstrReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…IsRun` it unions
-NonlinearSys.abstrRun  real-layer: [Wetzlinger et al. 2022, Alg. 1]'s loop at a real `lin` callback and real `Δt`; runs in floats as `NonlinearSys.FloatModel.relinRunFloat` (`Encloses.relinRunFloat_outer`), which linearizes itself from a `FloatModel` and checks a region where the paper's loop enlarges an error
-NonlinearSys.abstrStep  real-layer: [Wetzlinger et al. 2022, Alg. 1]'s step at a real `lin` callback and real `Δt`; runs in floats as `NonlinearSys.FloatModel.relinStepFloat` (`Encloses.relinStepFloat_outer`), which linearizes itself from a `FloatModel` and checks a region where the paper's loop enlarges an error
-NonlinearSys.adaptLinPass  real-layer: [Wetzlinger et al. 2022, Alg. 2] lines 3-6 at a real `lin` callback; runs in floats as `NonlinearSys.FloatModel.adaptLinPassFloat`, a tuning pass whose sets only feed `adaptStepFloat`'s radii
 NonlinearSys.adaptRun  real-layer: [Wetzlinger et al. 2022]'s adaptive loop at real tuning and a real `lin` callback; runs in floats as `NonlinearSys.FloatHessModel.adaptRunFloat` (`Encloses.adaptRunFloat_outer`)
 NonlinearSys.adaptStep  real-layer: [Wetzlinger et al. 2022, Alg. 2] at real tuning and a real `lin` callback; runs in floats as `NonlinearSys.FloatHessModel.adaptStepFloat` (`Encloses.adaptStepFloat_outer`)
 NonlinearSys.centerAbstrReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…IsRun` it unions
-NonlinearSys.centerAbstrRun  real-layer: [Wetzlinger et al. HSCC 2021, Alg. 1]'s loop at a real `lin` callback and real `Δt`; runs in floats as `NonlinearSys.FloatModel.centerAbstrRunFloat` (`Encloses.centerAbstrRunFloat_outer`)
-NonlinearSys.centerAbstrStep  real-layer: [Wetzlinger et al. HSCC 2021, Alg. 1]'s step at a real `lin` callback and real `Δt`; runs in floats as `NonlinearSys.FloatModel.centerAbstrStepFloat` (`Encloses.centerAbstrStepFloat_outer`)
 NonlinearSys.innerMinkDiff  real-layer: [Wetzlinger et al. L-CSS 2024, Alg. 1] over exact sets, the Minkowski difference and convex hull of `Set`s at the real exponential; no float counterpart, which would need the paper's polytopes, constrained zonotopes and linear programs
 NonlinearSys.innerMinkDiffLoop  real-layer: [Wetzlinger et al. L-CSS 2024, Alg. 1] lines 2-17 over exact sets, the steps of `innerMinkDiffStep`; no float counterpart, see `NonlinearSys.innerMinkDiff`
 NonlinearSys.innerMinkDiffStep  real-layer: [Wetzlinger et al. L-CSS 2024, Alg. 1] lines 3-16 over exact sets at the real exponential and the integral (12); no float counterpart, see `NonlinearSys.innerMinkDiff`
 NonlinearSys.linPoint  real-layer: the expansion point at the real `f`; runs in floats as `NonlinearSys.FloatModel.linPointFloat`
 NonlinearSys.linReachInner  real-layer: CORA's `contDynamics/linReachInner.m` over exact sets, the exact Minkowski difference of `Set`s at the real exponential and the integral (12); no float counterpart, see `NonlinearSys.innerMinkDiff`
-NonlinearSys.linReachInnerErr  real-layer: the abstraction error loop of CORA's `linReachInner.m` over exact sets, its stopping test a comparison of real vectors; no float counterpart, see `NonlinearSys.innerMinkDiff`
 NonlinearSys.linReachPoly  real-layer: the `'poly'` step at a supplied Hessian and third-order bound; runs in floats as `NonlinearSys.FloatHessModel.linReachFloat` at `.poly` (`Encloses.linReachFloat_outer`)
 NonlinearSys.polyReachReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…IsRun` it unions
-NonlinearSys.polyReachRun  real-layer: [Althoff 2013, Alg. 1]'s loop at supplied derivative bundles; runs in floats as `NonlinearSys.FloatHessModel.reachAlgFloat` at `.poly` (`Encloses.reachAlgFloat_outer`)
-NonlinearSys.polyReachStep  real-layer: [Althoff 2013, Alg. 1]'s step at supplied derivative bundles; runs in floats as `NonlinearSys.FloatHessModel.linReachFloat` at `.poly` (`Encloses.linReachFloat_outer`)
 NonlinearSys.reachInnerMinkdiff  real-layer: CORA's `priv_reachInnerMinkdiff.m` over exact sets, the steps of `linReachInner`; no float counterpart, see `NonlinearSys.innerMinkDiff`
-NonlinearSys.reachInnerMinkdiffLoop  real-layer: the step loop of CORA's `priv_reachInnerMinkdiff.m` over exact sets; no float counterpart, see `NonlinearSys.innerMinkDiff`
 NonlinearSys.reachInstance  real-layer: `Reach` for `WithSteps`, real certificates in the system; the float run is `NonlinearSys.FloatModel.reachFloat`, which takes a `FloatModel` rather than the system and so is no `Reach` instance
 NonlinearSys.relinDeltaReach  real-layer: CORA's `Rdiff` at supplied certificates, read only by the `'poly'` variant; the float step computes it as `LinearSys.postDeltaFloat` inside `NonlinearSys.FloatHessModel.linReachFloat`
 NonlinearSys.relinReach  real-layer: the re-linearization loop at caller-supplied certificates `LinStep`; runs in floats as `NonlinearSys.FloatModel.reachFloat`, which linearizes itself from a `FloatModel` (`Encloses.reachFloat_outer`)
@@ -359,10 +332,8 @@ diffPoint  spec: a real-valued certificate (support witness/bound), quantifying 
 ellipsoidInputTaylorSum  real-layer: a worked example over the real specification layer, proved and never run
 err  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
 estimateGain  real-layer: a tuning heuristic in ℝ arithmetic; runs in floats as `estimateGainFloat`, restated over the scalar `𝕋` (a heuristic, so no soundness statement)
-estimateGainSearch  real-layer: a tuning heuristic in ℝ arithmetic; runs in floats as `estimateGainSearchFloat`, restated over the scalar `𝕋` (a heuristic, so no soundness statement)
 gain  spec: the gain of the exact abstraction-error set `abstrSolInf`, a supremum over dimensions
 gainDim  spec: the gain of the exact abstraction-error set `abstrSolInf`, a supremum over dimensions
-gainMax  real-layer: a tuning heuristic in ℝ arithmetic; runs in floats as `gainMaxFloat`, restated over the scalar `𝕋` (a heuristic, so no soundness statement)
 gainOrder  spec: the gain order, an infimum over `ℕ∞` of a coefficient sequence
 gainOrderDim  spec: the gain order, an infimum over `ℕ∞` of a coefficient sequence
 genOpNorm₂  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
@@ -379,18 +350,13 @@ localAbstrErr  spec: an abstraction-error measure of an exact `Set`, its box dia
 norm₂  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
 odePoly  real-layer: a polynomial over ℝ built by recursion, the derivative bound of a Taylm elementary function (`Taylm.tan`, `atan`, `asin`), reached only from the real layer
 optDeltat  real-layer: a tuning heuristic in ℝ arithmetic (eq. (58)); runs in floats as `optDeltatFloat`, restated over the scalar `𝕋` (a heuristic, so no soundness statement)
-optDeltatSearch  real-layer: a tuning heuristic in ℝ arithmetic (eq. (58)); runs in floats as `optDeltatSearchFloat`, restated over the scalar `𝕋` (a heuristic, so no soundness statement)
-reachSizeEstimate  real-layer: a tuning heuristic in ℝ arithmetic (eq. (57)); runs in floats as `reachSizeEstimateFloat`, restated over the scalar `𝕋` (a heuristic, so no soundness statement)
 refinementRank  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 refinementRankLayerBias  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
-refinementRankSensitivity  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 toEuclidean  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
-tuneAbstrOrder  real-layer: a tuning heuristic in ℝ arithmetic; runs in floats as `tuneAbstrOrderFloat`, restated over the scalar `𝕋` (a heuristic, so no soundness statement)
 tuneDeltat  real-layer: a tuning heuristic in ℝ arithmetic; runs in floats as `tuneDeltatFloat`, restated over the scalar `𝕋` (a heuristic, so no soundness statement)
 tuneDeltatInit  real-layer: a tuning heuristic in ℝ arithmetic; runs in floats as `tuneDeltatInitFloat`, restated over the scalar `𝕋` (a heuristic, so no soundness statement)
 varInputs  real-layer: the `'poly'` variant's input term over `Real.PolyZonotope` at a real Hessian `D`; runs in floats as `varInputsFloat` (`varInputsFloat_outer`), through the float `PolyZonotope.bilin` and `quadMapMixed` (`quadMapMixed_outer`)
 verifyConvex  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
-verifyConvexStep  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
 verifyHalfspace  spec: a real-valued certificate (support witness/bound), quantifying over arbitrary linear functionals
 worstIndex  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 NonlinDASys.WithSteps.reachUnion  real-layer: `NonlinearSys.WithSteps.reachUnion` on the reduced system at real certificates; runs in floats as `NonlinDASys.reachFloat` (`reachFloat_outer`)
@@ -403,7 +369,6 @@ SmoothNetwork.eval  real-layer: an ℝ-only part of NN, the exact function of th
 SmoothNetwork.outputFn  real-layer: an ℝ-only part of NN, the output function of CORA's `nonlinearSysDT` over the real activations, never run
 SmoothNetwork.toNonlinearSysDT  real-layer: an ℝ-only part of NN, CORA's `nonlinearSysDT` system, whose output is the noncomputable `outputFn`, never run
 Chain.fgsmAttack  real-layer: the signed step of the transposed-Jacobian pull-back `Chain.backprop`, ℝ-only for the same reason
-Chain.pgdStep  real-layer: one pass of `Chain.pgdAttack`, built on `Chain.fgsmAttack`, ℝ-only for the same reason
 Chain.pgdAttack  real-layer: iterated `Chain.fgsmAttack`, ℝ-only for the same reason
 groupSort  real-layer: the numeric function of CORA's `nnGroupSortLayer`, which has no enclosure there; sorts reals with the classical order, ℝ-only
 NonlinearSys.splitReach  real-layer: the splitting of Althoff et al.'s CDC 2008 linearization loop halves a `Real.Zonotope` with `Zonotope.split`, which `FloatOps` cannot do exactly; a float split rounds and needs an inflation of its own design
@@ -457,8 +422,6 @@ NonlinDASys.reachLoop  real-layer: Althoff and Krogh `Alg. 1` lines 2-23, the `w
 NonlinDASys.reachRepeat  real-layer: Althoff and Krogh `Alg. 1` lines 5-10, the linearization-error loop over zonotopes at the real exponential; proved over ℝ and never run
 NonlinDASys.abstractionErrorAdaptive  real-layer: `priv_abstractionError_adaptive` over the real `NonlinDASys.linError`; no float refinement
 NonlinDASys.linReachAt  real-layer: `NonlinDASys.linReach` at a linearization; no float refinement
-NonlinDASys.errorLoopAdaptive  real-layer: the abstraction-error `while` loop of `linReach_adaptive` over `NonlinDASys.linReach`; proved over ℝ and never run
-NonlinDASys.passAdaptive  real-layer: the step-halving loop of `linReach_adaptive` over `NonlinDASys.errorLoopAdaptive`; proved over ℝ and never run
 NonlinDASys.linReachAdaptive  real-layer: CORA's `linReach_adaptive` at the real matrix exponential, tuning as arguments; proved over ℝ and never run
 NonlinDASys.reachAdaptiveLoop  real-layer: the `while` loop of CORA's `reach_adaptive` over `NonlinDASys.linReachAdaptive`; proved over ℝ and never run
 NonlinDASys.reachAdaptive  real-layer: CORA's `reach_adaptive`, line 1 and the loop at the real matrix exponential; proved over ℝ and never run
@@ -600,7 +563,6 @@ GridPartition.tol  real-layer: an ℝ-valued grid or matrix computation (real di
 GridPartition.cellCenter  real-layer: an ℝ-valued grid or matrix computation (real division and order tests), proved and never run
 GridPartition.intersectingCells  real-layer: an ℝ-valued grid or matrix computation (real division and order tests), proved and never run
 GridPartition.intersectingCellsOf  real-layer: an ℝ-valued grid or matrix computation (real division and order tests), proved and never run
-GridPartition.meetingSubscripts  real-layer: an ℝ-valued grid or matrix computation (real division and order tests), proved and never run
 GridPartition.ofInterval  real-layer: an ℝ-valued grid or matrix computation (real division and order tests), proved and never run
 MarkovChain.gammaFull  real-layer: an ℝ-valued grid or matrix computation (real division and order tests), proved and never run
 MarkovChain.gamma  real-layer: an ℝ-valued grid or matrix computation (real division and order tests), proved and never run
@@ -621,15 +583,11 @@ FiniteSignal.indicator?  real-layer: takes extended-real bounds, so it is not co
 FiniteSignal.max  real-layer: takes extended-real bounds, so it is not computable
 OnlineAnalyzerNode.initSignal  real-layer: builds a real-layer `FourValuedSignal ℝ` over `STLInterval`, so it is not computable
 OnlineAnalyzerNode.mk?  real-layer: builds a real-layer `FourValuedSignal ℝ` over `STLInterval`, so it is not computable
-OnlineAnalyzerNode.propBound  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
 OnlineAnalyzerNode.getAllProp  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
 OnlineAnalyzerNode.setPropagated  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
 OnlineAnalyzerNode.combine  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
 OnlineAnalyzerNode.propagate  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
 FiniteSignal.set?  real-layer: takes extended-real bounds, so it is not computable
-FiniteSignal.setLower  real-layer: compares real times, so it is not computable
-FiniteSignal.untilPiece  real-layer: takes the extended-real bounds of an interval, so it is not computable
-FiniteSignal.untilStep  real-layer: takes the extended-real bounds of an interval, so it is not computable
 FiniteSignal.until?  real-layer: takes the extended-real bounds of an interval, so it is not computable
 FourValuedSTL.Formula.kleeneSat  real-layer: built from the noncomputable `KleeneSignal` operators over the real-layer `STLInterval`
 FourValuedSTL.Formula.fourValuedSat  real-layer: built from the noncomputable `FourValuedSignal` operators over the real-layer `STLInterval`

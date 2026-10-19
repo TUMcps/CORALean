@@ -17,7 +17,6 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.ReduceLift
 public import CORALean.ContSet.ConZonotope.Float.Operations.Empty
 public import CORALean.ContSet.ConZonotope.Float.Operations.Origin
 public import CORALean.ContSet.ConZonotope.Float.Operations.Reindex
-public import CORALean.ContSet.ConZonotope.Float.Operations.NominalBoundWeights
 public import CORALean.ContSet.ConZonotope.Float.Operations.BoundDotWeights
 public import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
 public import CORALean.ContSet.ConZonotope.Float.Operations.SeparatesAlong

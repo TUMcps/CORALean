@@ -29,7 +29,6 @@ public import CORALean.HybridDynamics.Operations.NonlinearResetSynchronizeFloat
 public import CORALean.HybridDynamics.Operations.LinearResetLift
 public import CORALean.HybridDynamics.Operations.LinearResetSynchronize
 public import CORALean.HybridDynamics.Operations.LinearResetSynchronizeFloat
-public import CORALean.HybridDynamics.Operations.LinearResetResolveUpdateFloat
 public import CORALean.HybridDynamics.Operations.LinearResetResolveFloat
 public import CORALean.HybridDynamics.Operations.Basic
 public import CORALean.HybridDynamics.Operations.TransitionToNonlinearResetFloat

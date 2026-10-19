@@ -36,8 +36,8 @@ variable {n : ℕ}
 
 /-- Method C's `Γ` is regular. -/
 theorem Zonotope.aux_methodCBasis_isUnit_det (Z : Zonotope (Vec ℝ n)) (κ κ' : ℕ) :
-    IsUnit (Z.methodCBasis κ κ').det := by -- --- PROOF ---
-  simp only [Zonotope.methodCBasis]
+    IsUnit (Z.aux_methodCBasis κ κ').det := by -- --- PROOF ---
+  simp only [Zonotope.aux_methodCBasis]
   split
   · rename_i l hl
     -- the choice is among the regular ones, through the sort and the cut

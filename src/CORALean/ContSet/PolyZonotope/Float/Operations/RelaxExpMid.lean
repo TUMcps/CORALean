@@ -3,9 +3,7 @@ module
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MergedGen
-public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxCenterMid
-public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGapMid
-public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGenMid
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxDrift
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMid
 
 @[expose] public section
@@ -40,6 +38,51 @@ gap at the coefficient that reads it — a monomial, a zonotope coefficient, and
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
+open FloatOps
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The center shift as stored: half the upward reach less half the downward
+one, in copies of the relaxed generator, rounded down. -/
+def PolyZonotope.aux_relaxShiftMid (pZ : PolyZonotope (Vec 𝕋 n))
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : Vec 𝕋 n :=
+  fun i => half (subDown (nsmulDown (pZ.relaxDrift part k₀).2 (pZ.G (part.right 0) i))
+    (nsmulUp (pZ.relaxDrift part k₀).1 (pZ.G (part.right 0) i)))
+
+/-- The same shift rounded up, which the center's gap reads. -/
+def PolyZonotope.aux_relaxShiftMidUp (pZ : PolyZonotope (Vec 𝕋 n))
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : Vec 𝕋 n :=
+  fun i => half (subUp (nsmulUp (pZ.relaxDrift part k₀).2 (pZ.G (part.right 0) i))
+    (nsmulDown (pZ.relaxDrift part k₀).1 (pZ.G (part.right 0) i)))
+
+/-- The same fold rounded up, which only that column's gap reads. -/
+def PolyZonotope.aux_relaxGenMidUp (pZ : PolyZonotope (Vec 𝕋 n))
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : Vec 𝕋 n :=
+  fun i => half (nsmulUp ((pZ.relaxDrift part k₀).1 + (pZ.relaxDrift part k₀).2)
+    (pZ.G (part.right 0) i))
+
+/-- The new independent column as stored: half of as many copies of the relaxed
+generator as the bracket is wide, rounded down. -/
+def PolyZonotope.aux_relaxGenMid (pZ : PolyZonotope (Vec 𝕋 n))
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : Vec 𝕋 n :=
+  fun i => half (nsmulDown ((pZ.relaxDrift part k₀).1 + (pZ.relaxDrift part k₀).2)
+    (pZ.G (part.right 0) i))
+
+/-- The shifted center as stored, the shift added at its lower rounding, so the
+stored center stays below the exact one. -/
+def PolyZonotope.aux_relaxCenterMid (pZ : PolyZonotope (Vec 𝕋 n))
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : Vec 𝕋 n :=
+  fun i => addDown (pZ.c i) (pZ.aux_relaxShiftMid part k₀ i)
+
+/-- What the merged column, the halved column and the shifted center can each be
+off by, every one of them a gap between two roundings of one expression. -/
+def PolyZonotope.aux_relaxGapMid (pZ : PolyZonotope (Vec 𝕋 n))
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : Mat 𝕋 n 3 :=
+  fun i =>
+    ![subUp (addUp (pZ.G (part.right 1) i) (pZ.G (part.right 0) i)) (pZ.mergedGen part i),
+      subUp (pZ.aux_relaxGenMidUp part k₀ i) (pZ.aux_relaxGenMid part k₀ i),
+      subUp (addUp (pZ.c i) (pZ.aux_relaxShiftMidUp part k₀ i)) (pZ.aux_relaxCenterMid part k₀ i)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -51,11 +94,11 @@ def PolyZonotope.relaxExpMid (pZ : PolyZonotope (Vec 𝕋 n))
   p := pZ.p
   h := d + 1
   q := pZ.q + 1
-  c := pZ.relaxCenterMid part k₀
+  c := pZ.aux_relaxCenterMid part k₀
   G := Fin.append (fun l => pZ.G (part.left l)) (fun _ => pZ.mergedGen part)
   E := fun k => Fin.append (fun l => pZ.E k (part.left l)) (fun _ => pZ.E k (part.right 1))
-  GI := Fin.append pZ.GI (fun _ => pZ.relaxGenMid part k₀)
-  I_error := pZ.I_error.plus (PolyZonotope.generatorError (pZ.relaxGapMid part k₀))
+  GI := Fin.append pZ.GI (fun _ => pZ.aux_relaxGenMid part k₀)
+  I_error := pZ.I_error.plus (PolyZonotope.generatorError (pZ.aux_relaxGapMid part k₀))
 
 end CORALean.Float
 

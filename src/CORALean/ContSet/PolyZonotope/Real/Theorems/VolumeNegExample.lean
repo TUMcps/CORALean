@@ -43,8 +43,8 @@ theorem PolyZonotope.volume_neg_example :
     simp [PolyZonotope.point, PolyZonotope.jacobian, PolyZonotope.monomial,
       PolyZonotope.aux_negAlpha]
   -- so the integral over `[-1,1]` is `-1` times the length `2`
-  have hint : PolyZonotope.aux_negAlpha.jacobianDetIntegral (n := 1) rfl = -2 := by
-    unfold PolyZonotope.jacobianDetIntegral
+  have hint : PolyZonotope.aux_negAlpha.aux_jacobianDetIntegral (n := 1) rfl = -2 := by
+    unfold PolyZonotope.aux_jacobianDetIntegral
     simp only [Matrix.det_unique, Matrix.of_apply, Fin.default_eq_zero]
     refine (MeasureTheory.setIntegral_congr_fun (g := fun _ => (-1 : ℝ)) measurableSet_Icc
       (fun a _ => hconst _ a)).trans ?_

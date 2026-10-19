@@ -56,28 +56,29 @@ theorem Taylm.reexpandAt_outer {T : Taylm 𝕋 n} {g : Vec ℝ n → ℝ} (h : T
       exact hs i
   have hr := h _ hp
   -- the exact expansion against the stored upper corners
-  have hround := Taylm.abs_polyOf_round_le (T.reexpPairs k)
-    (fun p => (Taylm.reexpCoef k m r p).inf) (fun p => (Taylm.reexpCoef k m r p).sup)
+  have hround := Taylm.abs_polyOf_round_le (T.aux_reexpPairs k)
+    (fun p => (Taylm.aux_reexpCoef k m r p).inf) (fun p => (Taylm.aux_reexpCoef k m r p).sup)
     (fun q => toReal q.1.1 * (((q.1.2 k).choose q.2 : ℝ) * toReal m ^ (q.1.2 k - q.2)
       * toReal r ^ q.2)) (fun q => Function.update q.1.2 k q.2)
     (fun q _ => Interval.mul_between_corners (le_refl _) (le_refl _)
       (Taylm.binomCoef_mem (q.1.2 k) q.2 m r).1 (Taylm.binomCoef_mem (q.1.2 k) q.2 m r).2) hs
   -- the exact expansion is the original polynomial at the substituted point
-  have hex : Real.Taylm.polyOf ((T.reexpPairs k).map fun q => (toReal q.1.1 *
+  have hex : Real.Taylm.polyOf ((T.aux_reexpPairs k).map fun q => (toReal q.1.1 *
         (((q.1.2 k).choose q.2 : ℝ) * toReal m ^ (q.1.2 k - q.2) * toReal r ^ q.2),
         Function.update q.1.2 k q.2)) s =
       Real.Taylm.polyOf (T.terms.map fun a => (toReal a.1, a.2))
         (Function.update s k (toReal m + toReal r * s k)) :=
     Taylm.polyOf_reexpPairs T.terms k m r s
   -- the box's two ends, rounded outward by the stored coefficients' width
-  have hlo := subDown_le_sub T.I_error.inf (listSumUp ((T.reexpPairs k).map fun p =>
-    subUp (Taylm.reexpCoef k m r p).sup (Taylm.reexpCoef k m r p).inf))
-  have hhi := add_le_addUp T.I_error.sup (listSumUp ((T.reexpPairs k).map fun p =>
-    subUp (Taylm.reexpCoef k m r p).sup (Taylm.reexpCoef k m r p).inf))
+  have hlo := subDown_le_sub T.I_error.inf (listSumUp ((T.aux_reexpPairs k).map fun p =>
+    subUp (Taylm.aux_reexpCoef k m r p).sup (Taylm.aux_reexpCoef k m r p).inf))
+  have hhi := add_le_addUp T.I_error.sup (listSumUp ((T.aux_reexpPairs k).map fun p =>
+    subUp (Taylm.aux_reexpCoef k m r p).sup (Taylm.aux_reexpCoef k m r p).inf))
   simp only [Taylm.inflated, Real.Taylm.poly] at hr ⊢
   -- the stored polynomial, spelt as a sum over the pairs
   have hrw : Real.Taylm.polyOf ((T.reexpandAt k m r).terms.map fun a => (toReal a.1, a.2)) s
-      = Real.Taylm.polyOf ((T.reexpPairs k).map fun p => (toReal (Taylm.reexpCoef k m r p).sup,
+      = Real.Taylm.polyOf
+        ((T.aux_reexpPairs k).map fun p => (toReal (Taylm.aux_reexpCoef k m r p).sup,
         Function.update p.1.2 k p.2)) s := by
     simp only [Taylm.reexpandAt, List.map_map, Function.comp_def]
   rw [hrw]

@@ -8,14 +8,11 @@ public import CORALean.ContSet.Zonotope.Real.Operations.AutoTuneSetOrder
 public import CORALean.ContSet.Zonotope.Real.Operations.Bilin
 public import CORALean.ContSet.Zonotope.Real.Operations.Cube
 public import CORALean.ContSet.Zonotope.Real.Operations.Basic
-public import CORALean.ContSet.Zonotope.Real.Operations.EnclCoverLoop
 public import CORALean.ContSet.Zonotope.Real.Operations.EnclGenSel
-public import CORALean.ContSet.Zonotope.Real.Operations.EnclRatioLoop
 public import CORALean.ContSet.Zonotope.Real.Operations.FacetNormal
 public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRowNormal
 public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRowOffset
 public import CORALean.ContSet.Zonotope.Real.Operations.GenMap
-public import CORALean.ContSet.Zonotope.Real.Operations.GenSelection
 public import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
 public import CORALean.ContSet.Zonotope.Real.Operations.LinComb
 public import CORALean.ContSet.Zonotope.Real.Operations.LinMtimes
@@ -51,7 +48,6 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Plus
 public import CORALean.ContSet.Zonotope.Real.Operations.ProjectHighDim
 public import CORALean.ContSet.Zonotope.Real.Operations.QuadTaylor
 public import CORALean.ContSet.Zonotope.Real.Operations.RadiusReach
-public import CORALean.ContSet.Zonotope.Real.Operations.RatioExceeds
 public import CORALean.ContSet.Zonotope.Real.Operations.Recenter
 public import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
@@ -91,7 +87,6 @@ public import CORALean.ContSet.Zonotope.Real.Operations.CartProd
 public import CORALean.ContSet.Zonotope.Real.Operations.SplitFirstGen
 public import CORALean.ContSet.Zonotope.Real.Operations.EnclosePolytopes
 public import CORALean.ContSet.Zonotope.Real.Operations.MethodC
-public import CORALean.ContSet.Zonotope.Real.Operations.MethodCBasis
 public import CORALean.ContSet.Zonotope.Real.Operations.Parallelotope
 public import CORALean.ContSet.Zonotope.Real.Operations.HalfspaceRange
 public import CORALean.ContSet.Zonotope.Real.Operations.QuadMap
@@ -168,7 +163,6 @@ public import CORALean.ContSet.Zonotope.Real.Operations.DominantScore
 public import CORALean.ContSet.Zonotope.Real.Operations.DominantDirections
 public import CORALean.ContSet.Zonotope.Real.Operations.OfEchelon
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceScottStep
-public import CORALean.ContSet.Zonotope.Real.Operations.QuadMapPairIdx
 public import CORALean.ContSet.Zonotope.Real.Operations.QuadMapTri
 public import CORALean.ContSet.Zonotope.Real.Operations.Walk
 public import CORALean.ContSet.Zonotope.Real.Operations.Row
@@ -205,9 +199,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.SupportRadius
 public import CORALean.ContSet.Zonotope.Real.Operations.SupportStrip
 public import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotope
 public import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotopeCompress
-public import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotopeLoop
 public import CORALean.ContSet.Zonotope.Real.Operations.SignedSums
-public import CORALean.ContSet.Zonotope.Real.Operations.SegmentLength
 public import CORALean.ContSet.Zonotope.Real.Operations.Mspb
 public import CORALean.ContSet.Zonotope.Real.Operations.EnclosePointsMaiga
 public import CORALean.ContSet.Zonotope.Real.Operations.Mpower

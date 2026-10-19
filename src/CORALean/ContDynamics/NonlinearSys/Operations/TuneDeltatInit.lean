@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.NonlinearSys.Definitions.TunedStep
-public import CORALean.ContDynamics.NonlinearSys.Operations.GainMax
+public import Mathlib.Data.Real.Basic
 
 @[expose] public section
 
@@ -22,7 +22,7 @@ reference page.
       Reachability Analysis of Nonlinear Systems". HSCC, 2021, Article 16.
 -/
 
--- Authors:       Claude Sonnet 5
+-- Authors:       Claude Sonnet 5, Claude Opus 5
 -- Written:       18-September-2026
 -- Last update:   14-October-2026
 -- Reviewed:      ---
@@ -33,6 +33,14 @@ reference page.
 namespace CORALean
 
 variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- `φ(Δt)` of eq. (25): the worst dimension's ratio of the two error widths,
+picked out by the caller's `le`. -/
+noncomputable def aux_gainMax (le : ℝ → ℝ → Bool) (d dδ : Fin n → ℝ) : ℝ :=
+  (List.finRange n).foldl (fun φ i => if le φ (dδ i / d i) then dδ i / d i else φ) 0
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -46,7 +54,7 @@ noncomputable def tuneDeltatInit (le : ℝ → ℝ → Bool) (dabs : ℝ → Fin
     let Δnext := ζδ * Δ                                        -- 4. Δ ← ζ_δ Δ
     let dΔ := dabs Δnext                                       -- 5. d(box(R_abs(Δ)))
     let dδΔ := dabs (ζδ * Δnext)                               -- 5. d(box(R_abs(ζ_δ Δ)))
-    let φ1 := gainMax le dΔ dδΔ                                -- 6. φ₁ by (25)
+    let φ1 := aux_gainMax le dΔ dδΔ                                -- 6. φ₁ by (25)
     if le ζΔ φ1 then some ⟨Δnext, φ1⟩                          -- 3. while φ₁ < ζ_Δ
     else tuneDeltatInit le dabs ζδ ζΔ Δnext k
 

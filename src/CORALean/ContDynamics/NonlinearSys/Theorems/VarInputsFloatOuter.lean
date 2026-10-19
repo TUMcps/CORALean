@@ -57,10 +57,10 @@ theorem varInputsFloat_outer (B : Mat 𝕋 n m) (D : Fin n → Mat 𝕋 o o)
       Real.PolyZonotope.quadBilin_apply]
     simp only [toRealMat, mul_add, Finset.sum_add_distrib]
   -- `½ I` acts as halving, entry by entry: only the diagonal term survives
-  have hhalf : ∀ w : Vec ℝ n, toRealMat (halfMat (𝕋 := 𝕋) n) *ᵥ w = (2 : ℝ)⁻¹ • w := by
+  have hhalf : ∀ w : Vec ℝ n, toRealMat (aux_halfMat (𝕋 := 𝕋) n) *ᵥ w = (2 : ℝ)⁻¹ • w := by
     intro w
     funext i
-    simp only [Matrix.mulVec, dotProduct, toRealMat, halfMat, Pi.smul_apply, smul_eq_mul]
+    simp only [Matrix.mulVec, dotProduct, toRealMat, aux_halfMat, Pi.smul_apply, smul_eq_mul]
     rw [Finset.sum_eq_single i]
     · simp [toReal_half, toReal_one]
     · intro j _ hj
@@ -69,7 +69,7 @@ theorem varInputsFloat_outer (B : Mat 𝕋 n m) (D : Fin n → Mat 𝕋 o o)
   -- the value is then `B uΔ` plus half of the three pairings
   have hval : (fun i => (toRealMat B *ᵥ uΔ) i
         + (2 : ℝ)⁻¹ * ∑ j, ∑ k, toReal (D i j k) * (z j * zΔ k + zΔ j * z k + zΔ j * zΔ k))
-      = toRealMat B *ᵥ uΔ + toRealMat (halfMat (𝕋 := 𝕋) n) *ᵥ
+      = toRealMat B *ᵥ uΔ + toRealMat (aux_halfMat (𝕋 := 𝕋) n) *ᵥ
           (Real.PolyZonotope.quadBilin (fun i => toRealMat (D i)) z zΔ
             + Real.PolyZonotope.quadBilin (fun i => toRealMat (D i)) zΔ z
             + Real.PolyZonotope.quadBilin (fun i => toRealMat (D i)) zΔ zΔ) := by

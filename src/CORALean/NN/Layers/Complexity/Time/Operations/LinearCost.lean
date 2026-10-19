@@ -9,7 +9,7 @@ public import CORALean.Global.Cost
 
 Asserted, not proved: `Operations/Linear.lean` is `plus (mtimes W s) (embed b)` —
 one `mtimes`, one `plus`, one embedded bias — and nothing else; the same three
-calls `Transition.jumpCost` prices for a hybrid automaton's reset.
+calls `Transition.aux_jumpCost` prices for a hybrid automaton's reset.
 
 What `mtimes`, `plus` and the embedding cost are parameters, `S` being
 abstract here: `mtimesCost` is this at `cMtimes := Cost.matVec m n`.

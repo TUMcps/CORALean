@@ -37,7 +37,7 @@ theorem sigmoidPolyRelaxation_sound (k : ℕ) (c : 𝕋 → 𝕋 → Fin (m + 1)
     (dx : 𝕋 → 𝕋 → 𝕋) (p : 𝕋 → 𝕋 → Fin (N + 1) → 𝕋) :
     (sigmoidPolyRelaxation k c dx p).Sound Real.sigmoid :=
   PolyRelaxation.ofSampling_sound (E := sigmoidEnclosure k) (c := c)
-    (M := sigmoidPolyDerivBound k c) (dx := dx) (p := p) (sigmoidEnclosure_sound k)
+    (M := aux_sigmoidPolyDerivBound k c) (dx := dx) (p := p) (sigmoidEnclosure_sound k)
     Real.hasDerivAt_sigmoid fun l u x hx hx' => abs_sub_evalPolyDeriv_le
       (sigmoidDerivLo_le (sigmoidEnclosure_sound k) l u x hx hx')
       (le_sigmoidDerivHi (sigmoidEnclosure_sound k) l u x hx hx') hx hx'

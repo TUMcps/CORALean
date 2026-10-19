@@ -24,9 +24,7 @@ public import CORALean.ContSet.Taylm.Real.Operations.Cosh
 public import CORALean.ContSet.Taylm.Real.Operations.CosyGo
 public import CORALean.ContSet.Taylm.Real.Operations.Exp
 public import CORALean.ContSet.Taylm.Real.Operations.GlobalMin
-public import CORALean.ContSet.Taylm.Real.Operations.GoLoop
 public import CORALean.ContSet.Taylm.Real.Operations.GoLowerBound
-public import CORALean.ContSet.Taylm.Real.Operations.GoStep
 public import CORALean.ContSet.Taylm.Real.Operations.HalveBox
 public import CORALean.ContSet.Taylm.Real.Operations.Hessian
 public import CORALean.ContSet.Taylm.Real.Operations.HigherTerms
@@ -55,7 +53,6 @@ public import CORALean.ContSet.Taylm.Real.Operations.Pow
 public import CORALean.ContSet.Taylm.Real.Operations.PowBounds
 public import CORALean.ContSet.Taylm.Real.Operations.ProdBounds
 public import CORALean.ContSet.Taylm.Real.Operations.QfbLower
-public import CORALean.ContSet.Taylm.Real.Operations.QuadForm
 public import CORALean.ContSet.Taylm.Real.Operations.QuadTerms
 public import CORALean.ContSet.Taylm.Real.Operations.RangeBound
 public import CORALean.ContSet.Taylm.Real.Operations.Rdivide

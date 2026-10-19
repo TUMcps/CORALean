@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Real.Operations.PadFrontE
+public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 
 @[expose] public section
 
@@ -28,6 +28,13 @@ namespace CORALean.Real
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+def PolyZonotope.aux_padFrontE {p s : ℕ} (l : ℕ) (E : Fin p → Fin s → ℕ) :
+    Fin (l + p) → Fin s → ℕ :=
+  Fin.append (fun _ _ => 0) E
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `l` fresh factors put before the set's own, at exponent zero. -/
@@ -37,7 +44,7 @@ def PolyZonotope.padFront (l : ℕ) (pZ : PolyZonotope α) : PolyZonotope α whe
   q := pZ.q
   c := pZ.c
   G := pZ.G
-  E := PolyZonotope.padFrontE l pZ.E
+  E := PolyZonotope.aux_padFrontE l pZ.E
   GI := pZ.GI
 
 end CORALean.Real

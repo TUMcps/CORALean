@@ -1,7 +1,9 @@
 module
 
-public import CORALean.ContSet.Taylm.Real.Operations.GoLoop
+public import CORALean.ContSet.Taylm.Real.Operations.Basic
+public import CORALean.ContSet.Taylm.Real.Operations.HalveBox
 public import CORALean.ContSet.Taylm.Real.Operations.ListMin
+public import CORALean.ContSet.Taylm.Real.Operations.WidestCoord
 
 @[expose] public section
 
@@ -31,11 +33,31 @@ namespace CORALean.Real
 variable {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+noncomputable def Taylm.aux_goStep (lb : (Fin n → Interval ℝ) → ℝ) (ub : Vec ℝ n → ℝ) :
+    List (Fin n → Interval ℝ) × ℝ → List (Fin n → Interval ℝ) × ℝ
+  | ([], cut) => ([], cut)
+  | (B :: rest, cut) =>
+    -- a box whose lower bound is above the cutoff is eliminated
+    if cut < lb B then (rest, cut)
+    -- otherwise the cutoff takes the mid-point estimate, and the box is bisected
+    else match Taylm.widestCoord B with
+      | none => (rest ++ [B], min cut (ub (Taylm.boxMid B)))
+      | some β => (rest ++ [(Taylm.halveBox B β).1, (Taylm.halveBox B β).2],
+          min cut (ub (Taylm.boxMid B)))
+
+noncomputable def Taylm.aux_goLoop (lb : (Fin n → Interval ℝ) → ℝ) (ub : Vec ℝ n → ℝ) :
+    ℕ → List (Fin n → Interval ℝ) × ℝ → List (Fin n → Interval ℝ) × ℝ
+  | 0, st => st
+  | fuel + 1, st => Taylm.aux_goLoop lb ub fuel (Taylm.aux_goStep lb ub st)
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def Taylm.globalMin (lb : (Fin n → Interval ℝ) → ℝ) (ub : Vec ℝ n → ℝ)
     (X : Fin n → Interval ℝ) (fuel : ℕ) : Interval ℝ :=
-  let st := Taylm.goLoop lb ub fuel ([X], ub (Taylm.boxMid X))
+  let st := Taylm.aux_goLoop lb ub fuel ([X], ub (Taylm.boxMid X))
   ⟨min st.2 (Taylm.listMin lb st.1), st.2⟩
 
 end CORALean.Real

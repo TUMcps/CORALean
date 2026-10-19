@@ -11,7 +11,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # `Alg. 2` lines 3-6: the linear pass, in floats
 
-`adaptLinPass` in `𝕋`: the linearization at `linPointFloat` and the two sets *its linear system
+`aux_adaptLinPass` in `𝕋`: the linearization at `linPointFloat` and the two sets *its linear system
 alone* reaches, `R_lin(t_{k+1})` and `R_lin(τ_k)`, with the input `f(z✱) ⊕ B(U - u✱)` and the
 abstraction error left out. What a step adds to them is `R_abs`, whose radius `adaptStepFloat`
 reads off the difference to a full step; no soundness statement is made of the pass, it only

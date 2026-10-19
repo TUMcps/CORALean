@@ -29,7 +29,7 @@ namespace Binary64
 
 def divUp (a b : Float) : Float :=
   let r := a / b
-  -- `0` and NaN by their bits, see `inRange`
+  -- `0` and NaN by their bits, see `aux_inRange`
   if r == Float.ofBits 0 && a != Float.ofBits 0 then Float.ofBits 0x7FF8000000000000
   else stepUp r
 

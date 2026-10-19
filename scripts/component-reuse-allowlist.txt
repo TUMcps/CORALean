@@ -11,7 +11,7 @@ src/CORALean/ContSet/ConPolyZono/Float/Operations/Basic.lean::ConPolyZono.compac
 src/CORALean/ContSet/ConPolyZono/Real/Operations/AppendE.lean::ConPolyZono.appendE  generators: `E` and the constraint's `R` side by side, the factor-usage table `compactFactors` reads; no constraint is built from it
 src/CORALean/ContSet/ConPolyZono/Real/Operations/ConvHullE.lean::ConPolyZono.convHullE  generators: the hull's generator exponents of [1, Prop. 9]; its constraint is `PolyLevelSet.copies` and `PolyLevelSet.linear`
 src/CORALean/ContSet/ConPolyZono/Real/Operations/PadE.lean::ConPolyZono.padE  generators: `E` with the slack factors of `relax` and `absorbRounding` appended; the constraint side is `PolyLevelSet.relax`
-src/CORALean/ContSet/ConPolyZono/Real/Operations/ReduceConE.lean::ConPolyZono.reduceConE  generators: [1, Prop. 13]'s generator exponents after the substitution; its constraint is `PolyLevelSet.eliminate`
+src/CORALean/ContSet/ConPolyZono/Real/Operations/ReduceCon.lean::ConPolyZono.aux_reduceConE  generators: [1, Prop. 13]'s generator exponents after the substitution; its constraint is `PolyLevelSet.eliminate`
 src/CORALean/ContSet/ConPolyZono/Real/Operations/UnionE.lean::ConPolyZono.unionE  generators: the union's generator exponents of [1, Thm. 1]; its constraint is `PolyLevelSet.and_` of the selector rows and `unionLower`
 #
 # Data of one construction, built into a `PolyLevelSet` where it is used.
@@ -26,11 +26,11 @@ src/CORALean/ContSet/ConZonotope/Real/Operations/LiftEq.lean::ConZonotope.liftEq
 src/CORALean/ContSet/ConZonotope/Float/Operations/LiftEq.lean::ConZonotope.liftEq  conversion: the lifted zonotope [G; Aₑ] of Scott et al. 2016, Sec. 4.3, a `Zonotope` whose lower generator rows are the equality rows
 src/CORALean/ContSet/ConZonotope/Real/Operations/ReduceLiftBy.lean::ConZonotope.reduceLiftBy  data: `bₑ` carried to the equality rows read back from the reduced lifted zonotope (`HPolytope.eqs`); the inequality rows are `keepRows`'s, the stacking `HPolytope.intersection`
 src/CORALean/ContSet/ConZonotope/Float/Operations/ReduceLiftBy.lean::ConZonotope.reduceLiftBy  data: `bₑ` and its slack carried to the equality rows read back from the reduced lifted zonotope (`HPolytope.eqsWithin`); the inequality rows are `keepCols`, `dropEqs` and `padLeft`, the stacking `stackRows`
-src/CORALean/ContSet/ConZonotope/Real/Operations/NullPolytope.lean::ConZonotope.nullPolytope  data: CORA's own null-space program `[N; -N] y ≤ [1 - x0; 1 + x0]` of `@conZonotope/center`, built from the matrices `N` and `x0`, not from a stored polytope
+src/CORALean/ContSet/ConZonotope/Real/Operations/IsCenter.lean::ConZonotope.aux_nullPolytope  data: CORA's own null-space program `[N; -N] y ≤ [1 - x0; 1 + x0]` of `@conZonotope/center`, built from the matrices `N` and `x0`, not from a stored polytope
 src/CORALean/ContSet/ConZonotope/Float/Operations/AnchorSlab.lean::ConZonotope.anchorSlab  data: the operand rows' slacks handed to the constraint's own `HPolytope.anchorEqsInBox` as their residuals; the rows themselves are `stackRows`, `eqs` and `slab`
-src/CORALean/ContSet/ConZonotope/Float/Operations/NominalBoundWeights.lean::ConZonotope.aux_resUp  certificate: the residual of the coefficient program's dual over the constraint and the unit box together, column by column, which no operation of the polytope alone states
-src/CORALean/ContSet/ConZonotope/Float/Operations/NominalBoundWeights.lean::ConZonotope.aux_resDown  certificate: the lower end of the same dual residual
-src/CORALean/ContSet/ConZonotope/Float/Operations/NominalBoundWeights.lean::ConZonotope.nominalBoundWeights  certificate: weak duality over the constraint and the unit box; its right-hand sides are the constraint's own `bSlackU`, `beSlackU` and `beSlackLN`
+src/CORALean/ContSet/ConZonotope/Float/Operations/BoundDotWeights.lean::ConZonotope.aux_resUp  certificate: the residual of the coefficient program's dual over the constraint and the unit box together, column by column, which no operation of the polytope alone states
+src/CORALean/ContSet/ConZonotope/Float/Operations/BoundDotWeights.lean::ConZonotope.aux_resDown  certificate: the lower end of the same dual residual
+src/CORALean/ContSet/ConZonotope/Float/Operations/BoundDotWeights.lean::ConZonotope.aux_nominalBoundWeights  certificate: weak duality over the constraint and the unit box; its right-hand sides are the constraint's own `bSlackU`, `beSlackU` and `beSlackLN`
 src/CORALean/ContSet/ConZonotope/Float/Operations/IsDisjointLP.lean::ConZonotope.aux_coeffRows  proposal: the rows decoded into ℚ for the exact simplex that proposes a separating direction, which `separatesAlong` then certifies; nothing is trusted about it
 #
 # StarSet: the predicate `pred`, a `StarSet.LinPred`.

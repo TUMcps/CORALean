@@ -1,8 +1,11 @@
 module
 
 public import CORALean.ContDynamics.NonlinearSys.Definitions.OptStep
-public import CORALean.ContDynamics.NonlinearSys.Operations.OptDeltatSearchFloat
-public import CORALean.ContDynamics.NonlinearSys.Operations.ReachSizeEstimateFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.InterpGainFloat
+public import CORALean.Global.Float.FloatOps
+public import CORALean.Global.Float.Log
+public import CORALean.Global.Float.PowUp
+public import CORALean.Global.Float.ToRat
 
 @[expose] public section
 
@@ -35,6 +38,33 @@ open CORALean.Float FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋]
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- Increase `λ'` while the estimate keeps falling, and stop at the first
+increase — [1]'s own evaluation of eq. (58). -/
+def aux_optDeltatSearchFloat (cost : ℕ → 𝕋) : ℕ → ℕ → ℕ
+  | s, 0 => s
+  | s, k + 1 => if le (cost (s + 1)) (cost s) then aux_optDeltatSearchFloat cost (s + 1) k else s
+
+/-- Eq. (57): the size `R(t)` is estimated to reach after the finite horizon,
+walked in `λ = ζ_δ^{-λ'}` steps. -/
+def aux_reachSizeEstimateFloat [SoundFloatArithmetic 𝕋] [ToRat 𝕋] (prec bis : ℕ)
+    (ζδ ζZ ζA φ1 r₀ rabs : 𝕋) (scalings : ℕ) : 𝕋 :=
+  let rpow := fun (x y : 𝕋) => expUp prec (mulUp y (logUp prec bis x))  -- x ^ y for x > 0
+  let lam := powUp (divUp one ζδ) scalings                       -- λ = ζ_δ^{-λ'}
+  let N := ⌊ToRat.toRat lam⌋₊                                    -- ⌊λ⌋ whole steps
+  let b := subUp lam (nsmulUp N one)                             -- the last incomplete step
+  let base := addUp one (addUp ζZ ζZ)                            -- 1 + 2 ζ_Z
+  let ζAZ := addUp (sumUp fun (j : Fin N) =>                     -- 53. ζ_{A,Z}(λ)
+      let e := addUp b (nsmulUp (j + 1) one)                     -- b + j, j = 1, …, N
+      mulUp (rpow base e) (rpow ζA (divUp (subUp e one) lam)))
+    (mulUp b (rpow base b))
+  let growth := mulUp (mulUp r₀ (rpow base lam)) ζA              -- 57. the start set, propagated
+  let gain := (List.range scalings).foldl                        -- 57. ∏ φ(j+1)
+    (fun p j => mulUp p (interpGainFloat ζδ φ1 j)) one
+  addUp growth (mulUp (mulUp (divUp rabs lam) ζAZ) gain)         -- 57. errors, accumulated
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Alg. 2] line 10: eq. (58)'s optimal time step size, and the `λ'` it was
@@ -43,9 +73,9 @@ def optDeltatFloat [SoundFloatArithmetic 𝕋] [ToRat 𝕋] (prec bis : ℕ)
     (ζδ ζZ ζA φ1 r₀ rabs h : 𝕋) (fuel : ℕ) :
     NonlinearSys.OptStep 𝕋 :=
   -- 10. eq. (57): the cost function
-  let cost := reachSizeEstimateFloat prec bis ζδ ζZ ζA φ1 r₀ rabs
+  let cost := aux_reachSizeEstimateFloat prec bis ζδ ζZ ζA φ1 r₀ rabs
   -- 10. eq. (58): the argmin over λ'
-  let sstar := optDeltatSearchFloat cost 0 fuel
+  let sstar := aux_optDeltatSearchFloat cost 0 fuel
   -- 10. eq. (58): Δt* = h ζ_δ^{λ'}
   ⟨mulUp h (powUp ζδ sstar), sstar⟩
 

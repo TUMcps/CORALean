@@ -20,7 +20,7 @@ If the bounds hold on the star set, the image of the set under the ReLU at the n
 in the set the step returns, as in `Real.StarSet.reluNeuron_outer`, with the stored numbers read as
 reals. The bounds are required of the nominal part, as `StarSet.rowBounds` gives them, and the
 error box is carried by the step: the ReLU being `1`-Lipschitz, the error at neuron `j` moves the
-image of the point by at most its own size, which `StarSet.reluError` makes room for. The
+image of the point by at most its own size, which `StarSet.aux_reluError` makes room for. The
 branches are taken on `le`, which certifies `≤` only, so the last branch is sound without knowing
 the bounds straddle `0`.
 -/
@@ -124,7 +124,7 @@ theorem StarSet.reluNeuron_outer (s : StarSet 𝕋 n) (j : Fin n) (b : Interval 
   have hnom := StarSet.aux_reluNeuron_nominal s j b hb x hx
   refine ⟨_, hnom, Function.update e j
     (Real.relu (x j + e j) - Real.relu (x j)), fun i => ?_, ?_⟩
-  · have hI : (s.reluNeuron j b).I_error = StarSet.reluError s.I_error j := by
+  · have hI : (s.reluNeuron j b).I_error = StarSet.aux_reluError s.I_error j := by
       unfold StarSet.reluNeuron
       dsimp only
       split_ifs <;> rfl
@@ -134,7 +134,7 @@ theorem StarSet.reluNeuron_outer (s : StarSet 𝕋 n) (j : Fin n) (b : Interval 
       (Function.update e j (Real.relu (x j + e j) - Real.relu (x j)) : Vec ℝ n) i ≤
         toReal (((s.reluNeuron j b).I_error).sup i)
     rw [hI]
-    unfold StarSet.reluError
+    unfold StarSet.aux_reluError
     dsimp only
     by_cases hi : i = j
     · subst hi

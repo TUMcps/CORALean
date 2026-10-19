@@ -45,8 +45,7 @@ src/CORALean/NN/Layers/Definitions/Enclosure.lean  other: `lo`/`hi` are two func
 src/CORALean/NN/Layers/Definitions/RegionPoly.lean  layering: the region `lo`/`hi` are `Option 𝕋` ends (`none` for an infinite end), which a float `Interval` cannot hold
 src/CORALean/NN/Layers/Operations/FindRegionLeft.lean  other: a region polynomial and its end `RegionPoly 𝕋 × 𝕋`
 src/CORALean/NN/Layers/Operations/FindRegionRight.lean  other: a region polynomial and its end `RegionPoly 𝕋 × 𝕋`
-src/CORALean/Specification/FiniteSignal/Operations/UntilPiece.lean  runs: a run `[start, stop]` of CORA's legacy `interval` class, as `findIntervals` returns it
-src/CORALean/Specification/FiniteSignal/Operations/UntilStep.lean  runs: a pair of runs `(lint(i), rint(j))` of CORA's legacy `interval` class
 src/CORALean/Specification/FiniteSignal/Theorems/UntilSpec.lean  runs: the runs `lint(i)`, `rint(j)` of CORA's legacy `interval` class, as pairs of bounds
+src/CORALean/Specification/FiniteSignal/Operations/Until.lean  runs: a pair of runs `(lint(i), rint(j))` of CORA's legacy `interval` class
 src/CORALean/Specification/STL/Counterexamples/REnc.lean  state: a two-dimensional signal value (x1, x2)
 src/CORALean/Specification/STL/Counterexamples/ZEnc.lean  state: a two-dimensional signal value (x1, x2)

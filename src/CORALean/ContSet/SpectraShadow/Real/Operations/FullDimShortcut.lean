@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.SpectraShadow.Real.Operations.GFro
+public import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
 
 @[expose] public section
 
@@ -25,10 +25,16 @@ namespace CORALean.Real
 variable {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+noncomputable def SpectraShadow.aux_gFro (S : SpectraShadow (Vec ℝ n)) : ℝ :=
+  Real.sqrt (∑ j, ∑ i, S.G j i ^ 2)
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def SpectraShadow.fullDimShortcut (S : SpectraShadow (Vec ℝ n)) : Prop :=
-  S.gFro < 1 / 10 ^ 8
+  S.aux_gFro < 1 / 10 ^ 8
 
 end CORALean.Real
 

@@ -3,7 +3,6 @@ module
 public import CORALean.ContSet.Zonotope.Real.Operations.ScalarIntervalMul
 public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.PlusCost
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.UnitIntervalMulCost
 public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.ScalarIntervalMulCost
 
 @[expose] public section
@@ -31,7 +30,7 @@ namespace CORALean.Real
 theorem Zonotope.scalarIntervalMulCost_mono {h h' : ℕ} (n : ℕ) (hh : h ≤ h') :
     Zonotope.scalarIntervalMulCost n h ≤ Zonotope.scalarIntervalMulCost n h' := by -- --- PROOF ---
   have := Zonotope.mtimesCost_mono n n hh
-  simp only [Zonotope.scalarIntervalMulCost, Zonotope.plusCost, Zonotope.unitIntervalMulCost,
+  simp only [Zonotope.scalarIntervalMulCost, Zonotope.plusCost, Zonotope.aux_unitIntervalMulCost,
     Cost.le_iff, Cost.ops_add, Cost.ops_smul] at this ⊢
   have := Nat.mul_le_mul_left n hh
   nlinarith

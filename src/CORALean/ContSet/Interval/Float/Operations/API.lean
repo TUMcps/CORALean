@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Operations.BoundaryRatioAt
-public import CORALean.ContSet.Interval.Float.Operations.BoundaryRatioStep
 public import CORALean.ContSet.Interval.Float.Operations.BoundaryRatio
 public import CORALean.ContSet.Interval.Float.Operations.BoundaryPoint
 public import CORALean.ContSet.Interval.Float.Operations.Atan2Lo
@@ -58,7 +57,6 @@ public import CORALean.ContSet.Interval.Float.Operations.SplitAt
 public import CORALean.ContSet.Interval.Float.Operations.Norm
 public import CORALean.ContSet.Interval.Float.Operations.CenterBox
 public import CORALean.ContSet.Interval.Float.Operations.RadiusSq
-public import CORALean.ContSet.Interval.Float.Operations.WidthUp
 public import CORALean.ContSet.Interval.Float.Operations.Prod1
 public import CORALean.ContSet.Interval.Float.Operations.Partition
 public import CORALean.ContSet.Interval.Float.Operations.Enlarge

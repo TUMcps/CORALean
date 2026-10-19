@@ -103,7 +103,7 @@ theorem aux_set_left {V : Type} [DecidableEq V] (s : FiniteSignal ℝ V) (hs : s
     (hpos : ∀ b ∈ s.time.head?, 0 < b) (a : ℝ) (ha0 : 0 ≤ a) (value : V) (sI : ℕ)
     (hsI : sI < s.time.length) (hT1 : ∀ i (hi : i < sI), s.time[i]'(by omega) ≤ a)
     (hT2 : a < s.time[sI]) (A : ℕ) (nT : List ℝ) (nV : List V)
-    (h : s.setLower a value sI = (A, nT, nV)) : -- --- STMT ---
+    (h : s.aux_setLower a value sI = (A, nT, nV)) : -- --- STMT ---
     A ≤ s.time.length ∧ nT.length = nV.length ∧
       ((s.pairs.take A ++ nT.zip nV).map Prod.fst).Pairwise (· < ·) ∧
       (∀ p ∈ s.pairs.take A ++ nT.zip nV, 0 ≤ p.1 ∧ p.1 ≤ a) ∧
@@ -167,7 +167,7 @@ theorem aux_set_left {V : Type} [DecidableEq V] (s : FiniteSignal ℝ V) (hs : s
     List.isChain_iff_getElem.mp hch
   have hadj' : ∀ i j (hj : j < s.value.length) (hij : i + 1 = j),
       s.value[i]'(by omega) ≠ s.value[j] := fun i j hj hij => by subst hij; exact hadj i hj
-  unfold FiniteSignal.setLower at h
+  unfold FiniteSignal.aux_setLower at h
   by_cases c1 : s.value[sI]? ≠ some value ∧ 0 < a
   · rw [if_pos c1] at h
     by_cases c2 : 0 < sI ∧ s.time[sI - 1]? = some a
@@ -664,7 +664,7 @@ theorem FiniteSignal.set?_spec {V : Type} [DecidableEq V] (s : FiniteSignal ℝ 
     exact absurd (hjD ▸ hT1 j (by omega)) (not_le.mpr (hab.trans_le hbD))
   have hT2 : a < s.time[sI] := by simpa using t2 hsIlt
   -- the left and the right part of the result
-  obtain ⟨A, nT, nV, hlow⟩ : ∃ A nT nV, s.setLower a value
+  obtain ⟨A, nT, nV, hlow⟩ : ∃ A nT nV, s.aux_setLower a value
       (s.time.takeWhile (fun x : ℝ => decide (x ≤ a))).length = (A, nT, nV) := ⟨_, _, _, rfl⟩
   rw [hlow]
   dsimp only

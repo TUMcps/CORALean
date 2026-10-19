@@ -12,7 +12,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Jacobian
 
 The exact layer's `jacobian` of what the stored floats denote lies in the float one: its generator
 columns are `E k i` times the stored ones, which the stored lower multiple is off from by at most
-`jacobianGap`, and the monomials lie in `[-1, 1]`, so the box holds the difference. The exact
+`aux_jacobianGap`, and the monomials lie in `[-1, 1]`, so the box holds the difference. The exact
 layer's `jacobian_hasDerivAt` says what the exact set is, the derivative of the point along `k`.
 -/
 
@@ -34,10 +34,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A column's exact multiple is off from the stored one by at most the gap. -/
-theorem PolyZonotope.aux_jacobianGap (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) (r : Fin n)
+theorem PolyZonotope.aux_jacobianGap_bound (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) (r : Fin n)
     (i : Fin pZ.h) :
     |(pZ.E k i : ℝ) * toReal (pZ.G i r) - toReal ((pZ.jacobian k).G i r)|
-      ≤ toReal (pZ.jacobianGap k r i) := by -- --- PROOF ---
+      ≤ toReal (pZ.aux_jacobianGap k r i) := by -- --- PROOF ---
   have hlo := sumDown_le_sum (fun _ : Fin (pZ.E k i) => pZ.G i r)
   have hhi := sum_le_sumUp (fun _ : Fin (pZ.E k i) => pZ.G i r)
   simp only [Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul] at hlo hhi
@@ -46,7 +46,7 @@ theorem PolyZonotope.aux_jacobianGap (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin p
   have hG : toReal ((pZ.jacobian k).G i r) = toReal (sumDown fun _ : Fin (pZ.E k i) => pZ.G i r) :=
     rfl
   rw [abs_le]
-  simp only [PolyZonotope.jacobianGap]
+  simp only [PolyZonotope.aux_jacobianGap]
   constructor <;> linarith
 
 
@@ -59,7 +59,7 @@ theorem PolyZonotope.jacobian_outer (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ
   -- the stored multiples are off by `Δ`, which the box holds
   have hbox := PolyZonotope.mem_generatorError_monomial (E := (pZ.jacobian k).E) (a := a)
     (Δ := fun r l => (pZ.E k l : ℝ) * toReal (pZ.G l r) - toReal ((pZ.jacobian k).G l r))
-    (pZ.aux_jacobianGap k) ha
+    (pZ.aux_jacobianGap_bound k) ha
   refine ⟨fun i => toReal ((pZ.jacobian k).c i)
       + (∑ l, toReal ((pZ.jacobian k).G l i) * Real.PolyZonotope.monomial (pZ.jacobian k).E a l)
       + ∑ j, toReal ((pZ.jacobian k).GI j i) * β j,

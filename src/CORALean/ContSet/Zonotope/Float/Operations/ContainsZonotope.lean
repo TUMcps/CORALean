@@ -3,7 +3,9 @@ module
 public import CORALean.ContSet.Zonotope.Float.Operations.BallB
 public import CORALean.ContSet.Zonotope.Float.Operations.BallCert
 public import CORALean.ContSet.Zonotope.Float.Operations.Basic
-public import CORALean.ContSet.Zonotope.Float.Operations.StLeftover
+public import CORALean.ContSet.Zonotope.Float.Operations.EntryDeviation
+public import CORALean.ContSet.Zonotope.Float.Operations.ErrBound
+public import CORALean.ContSet.Zonotope.Float.Operations.MulResidual
 
 @[expose] public section
 
@@ -37,13 +39,27 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- Entry `i` of what the rounded `β` (`stBeta`) and `Γ` (`stGamma`) of the `'approx:st'` test
+(`st`: Sadraddini-Tedrake) leave over, rounded up: the center and generator residuals of
+`c₂ - c₁ = G₂ β`, `G₁ = G₂ Γ`, plus `Z₁`'s error box. The box of `ballCert` must absorb it. -/
+def Zonotope.aux_stLeftover (Z₂ Z₁ : Zonotope (Vec 𝕋 n)) (H : Mat 𝕋 Z₂.h n) (i : Fin n) : 𝕋 :=
+  addUp (addUp
+    (Zonotope.entryDeviation Z₁.c Z₂.I_error.inf (Z₂.pointLo (Z₂.stBeta Z₁ H))
+      (Z₂.pointHi (Z₂.stBeta Z₁ H)) i)
+    (sumUp fun j => Zonotope.mulResidual (fun i j => Z₁.G j i) (fun i j => Z₂.G j i)
+      (Z₂.stGamma Z₁ H) i j))
+    (Zonotope.errBound Z₁.I_error i)
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Zonotope.containsZonotope (Z₂ Z₁ : Zonotope (Vec 𝕋 n)) (H : Mat 𝕋 Z₂.h n) : Bool :=
   let δ := Z₂.stDelta Z₁ H
   Zonotope.ballCert (fun i j => Z₂.G j i) H (Zonotope.ballB H δ) δ
     && (List.finRange Z₂.h).all (fun k => le (addUp (Z₂.stUsed Z₁ H k) δ) one)
-    && (List.finRange n).all (fun i => le (Z₂.stLeftover Z₁ H i) (Zonotope.ballB H δ))
+    && (List.finRange n).all (fun i => le (Z₂.aux_stLeftover Z₁ H i) (Zonotope.ballB H δ))
     && (List.finRange n).all fun i => le (Z₂.I_error.inf i) (Z₂.I_error.sup i)
 
 end CORALean.Float

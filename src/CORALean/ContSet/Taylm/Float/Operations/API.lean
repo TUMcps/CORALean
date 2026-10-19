@@ -59,8 +59,6 @@ public import CORALean.ContSet.Taylm.Float.Operations.BoundsProd
 public import CORALean.ContSet.Taylm.Float.Operations.BernsteinCoeffBounds
 public import CORALean.ContSet.Taylm.Float.Operations.BernsteinIdx
 public import CORALean.ContSet.Taylm.Float.Operations.OptBernstein
-public import CORALean.ContSet.Taylm.Float.Operations.ReexpPairs
-public import CORALean.ContSet.Taylm.Float.Operations.ReexpCoef
 public import CORALean.ContSet.Taylm.Float.Operations.ReexpandAt
 public import CORALean.ContSet.Taylm.Float.Operations.Reexpand
 

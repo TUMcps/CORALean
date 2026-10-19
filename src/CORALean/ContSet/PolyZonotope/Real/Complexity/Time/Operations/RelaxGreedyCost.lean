@@ -1,7 +1,7 @@
 module
 
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.RelaxExpGreedyCost
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxGreedy
-public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.RelaxExpMultiCost
 public import Mathlib.Analysis.Asymptotics.Defs
 public import Mathlib.Data.Real.Basic
 public import Mathlib.Order.Filter.AtTopBot.Prod

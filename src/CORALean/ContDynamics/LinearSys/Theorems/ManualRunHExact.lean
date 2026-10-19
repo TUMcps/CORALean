@@ -67,7 +67,7 @@ theorem LinearSys.manualRun_H_exact (sys : LinearSys 𝕋 n) (X₀ U : Zonotope 
           '' construct X₀ + {(sys.manualRun X₀ U Δt η ρ k).Pu} := by -- --- PROOF ---
   cases k with
   | zero =>
-    simp only [LinearSys.manualRun, LinearSys.manualInit]
+    simp only [LinearSys.manualRun, LinearSys.aux_manualInit]
     have hexp0 : exp ((0:ℝ) • toRealMat sys.A) = 1 := by simp
     rw [hexp0]
     ext x

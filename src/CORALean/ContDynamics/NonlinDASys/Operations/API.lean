@@ -8,8 +8,6 @@ public import CORALean.ContDynamics.NonlinDASys.Operations.NewtonIterate
 public import CORALean.ContDynamics.NonlinDASys.Operations.ConsistentInitialState
 public import CORALean.ContDynamics.NonlinDASys.Operations.SteadyState
 public import CORALean.ContDynamics.NonlinDASys.Operations.NewtonTestFloat
-public import CORALean.ContDynamics.NonlinDASys.Operations.FloatModelStackRes
-public import CORALean.ContDynamics.NonlinDASys.Operations.FloatModelStackJac
 public import CORALean.ContDynamics.NonlinDASys.Operations.ConsistentInitialStateFloat
 public import CORALean.ContDynamics.NonlinDASys.Operations.SteadyStateFloat
 public import CORALean.ContDynamics.NonlinDASys.Operations.JointReachSet
@@ -23,8 +21,6 @@ public import CORALean.ContDynamics.NonlinDASys.Operations.Reach
 public import CORALean.ContDynamics.NonlinDASys.Operations.AbstractionErrorAdaptive
 public import CORALean.ContDynamics.NonlinDASys.Operations.AdaptPassLinPoint
 public import CORALean.ContDynamics.NonlinDASys.Operations.LinReachAt
-public import CORALean.ContDynamics.NonlinDASys.Operations.ErrorLoopAdaptive
-public import CORALean.ContDynamics.NonlinDASys.Operations.PassAdaptive
 public import CORALean.ContDynamics.NonlinDASys.Operations.LinReachAdaptive
 public import CORALean.ContDynamics.NonlinDASys.Operations.ReachAdaptiveLoop
 public import CORALean.ContDynamics.NonlinDASys.Operations.ReachAdaptive

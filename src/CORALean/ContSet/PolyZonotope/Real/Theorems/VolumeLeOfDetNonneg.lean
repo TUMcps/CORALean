@@ -41,7 +41,7 @@ theorem PolyZonotope.volume_le_of_det_nonneg (pZ : PolyZonotope (Vec ℝ n)) (hq
       0 ≤ (Matrix.of fun (i k : Fin n) => pZ.jacobianMat a i (Fin.cast h.symm k)
         : Mat ℝ n n).det) : -- --- STMT ---
     MeasureTheory.volume pZ.construct
-      ≤ ENNReal.ofReal (pZ.jacobianDetIntegral h) := by -- --- PROOF ---
+      ≤ ENNReal.ofReal (pZ.aux_jacobianDetIntegral h) := by -- --- PROOF ---
   -- destructure, so that `p = n` and `q = 0` can be substituted
   obtain ⟨p, hh, q, c, G, E, GI⟩ := pZ
   change q = 0 at hq
