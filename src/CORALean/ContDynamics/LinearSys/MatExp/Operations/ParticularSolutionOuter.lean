@@ -25,7 +25,7 @@ which [1, Lemma 2]'s second `err` term and [1, Lemma 4] both need.
 -- Authors:       Claude Sonnet 5
 -- Written:       19-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -22,7 +22,7 @@ whenever that value is under `1`; see `Capsule.mtimes_cora_counterexample` and
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

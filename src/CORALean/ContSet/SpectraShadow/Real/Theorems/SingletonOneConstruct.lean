@@ -14,7 +14,7 @@ only at `β = 1`, and then it is the zero matrix: the set is the point `{1}`.
 -- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -34,7 +34,7 @@ The rows first appeared in [2, Thm. 7] and, at `p = n`, [2, Lemma 6].
 -- Authors:       Claude Opus 5
 -- Written:       18-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -17,7 +17,7 @@ no soundness proof for the checker; `Theorems.VerifySplitSound` needs only the s
 -- Authors:       Claude Opus 5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

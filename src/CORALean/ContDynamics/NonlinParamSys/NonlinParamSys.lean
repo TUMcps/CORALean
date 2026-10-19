@@ -33,7 +33,7 @@ admissible. [1, Def. 1] states the reachable set for Lipschitz-continuous inputs
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       07-September-2026
 -- Last update:   18-October-2026
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

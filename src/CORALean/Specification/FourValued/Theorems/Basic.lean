@@ -133,7 +133,7 @@ theorem FourValued.and_self (a : FourValued) : a.and a = a := by
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 /-- `True` is the unit of `&`. -/
 theorem FourValued.and_tt (a : FourValued) : a.and .tt = a := by

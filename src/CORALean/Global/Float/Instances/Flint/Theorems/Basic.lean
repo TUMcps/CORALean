@@ -48,7 +48,7 @@ theorem toReal_le_of_le {a b : Flint p} (h : le a b = true) : toReal a ≤ toRea
 -- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 /-- `Dyadic.toReal_neg` at the same pair: `neg` builds the pair `Dyadic.neg` does. -/
 theorem toReal_neg (a : Flint p) : toReal (neg a) = -toReal a :=

@@ -203,7 +203,7 @@ theorem PolyZonotope.plus_h (pZ₁ pZ₂ : PolyZonotope α) : (pZ₁.plus pZ₂)
 -- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 omit [Module ℝ α] in
 /-- The `q` count of `plus`'s result. -/

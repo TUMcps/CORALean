@@ -34,7 +34,7 @@ Unlike `reachWrappingFree`, `η` is taken as given and `N` is not raised to one:
 -- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
 -- Last update:   30-September-2026
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

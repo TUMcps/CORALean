@@ -15,7 +15,7 @@ matrix the set holds. Positional, as the mathematics: `Reach` reads `R₀`, `U` 
 -- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

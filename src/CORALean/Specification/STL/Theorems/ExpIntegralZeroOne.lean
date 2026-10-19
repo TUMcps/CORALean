@@ -20,7 +20,7 @@ series `Σ_j Δt^{j+1} A^j/(j+1)!`; for `A = 0` it is `Δt`, here at `Δt = 1` i
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

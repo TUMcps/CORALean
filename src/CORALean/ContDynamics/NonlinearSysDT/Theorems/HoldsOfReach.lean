@@ -18,7 +18,7 @@ from `hsub`, the check a caller can run against the computed sets instead.
 -- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   13-October-2026
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

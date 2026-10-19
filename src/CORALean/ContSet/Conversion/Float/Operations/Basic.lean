@@ -537,7 +537,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 /-- A polynomial zonotope as an ellipsoid, over a floating-point scalar -/
 def PolyZonotope.ellipsoid (pZ : PolyZonotope (Vec 𝕋 n)) (σ : 𝕋) : Ellipsoid 𝕋 n :=

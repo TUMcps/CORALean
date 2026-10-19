@@ -39,7 +39,7 @@ It stays at `Vec`, the only place either layer pairs a row with a point.
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   18-October-2026
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

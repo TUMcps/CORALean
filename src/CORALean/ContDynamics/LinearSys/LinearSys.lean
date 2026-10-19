@@ -37,6 +37,7 @@ is Def. C.2.1's continuity, without which `intervalIntegral`'s junk value would 
 -- Written:       18-August-2026
 -- Last update:   18-October-2026
 -- Reviewed:      15-October-2026 (Tobias Ladner)
+--                19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -83,7 +83,7 @@ theorem toReal_mk (m e : ℤ) : toReal (⟨m, e⟩ : Dyadic p) = (m : ℝ) * 2 ^
 -- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 /-- Any exponent, since a zero mantissa reads as zero regardless of the scale it
 is read at — what `SoundFloatArithmetic.toReal_zero` needs from `Dyadic`. -/

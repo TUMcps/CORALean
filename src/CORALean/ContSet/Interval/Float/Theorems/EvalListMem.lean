@@ -15,7 +15,7 @@ At every point of the box `[lo, hi]` the polynomial's value lies between the two
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   14-October-2026
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

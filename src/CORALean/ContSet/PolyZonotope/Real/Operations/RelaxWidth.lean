@@ -15,7 +15,7 @@ Split out of `RelaxExp.lean` (issue #62): read again by the float layer's own
 -- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

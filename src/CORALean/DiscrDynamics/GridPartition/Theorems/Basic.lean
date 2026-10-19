@@ -65,7 +65,7 @@ theorem GridPartition.nrOfCells_card (P : GridPartition n) :
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 /-- The tolerance is positive. -/
 theorem GridPartition.tol_pos : 0 < GridPartition.tol := by

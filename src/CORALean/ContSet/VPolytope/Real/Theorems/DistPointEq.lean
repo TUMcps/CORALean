@@ -16,7 +16,7 @@ distance is `Metric.infDist` in `EuclideanSpace`, not the supremum-norm one `Vec
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {N n : ℕ}
 -- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 /-- The midpoint of a bracket.
 
@@ -389,7 +389,7 @@ def Layer.invSqrtRoot (p : ℕ) : Layer S n n := Layer.activation (invSqrtRootRe
 -- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 /-- CORA's `nnReLULayer`: `Layer.activation` at `reluRelaxation`, the slope `reluSlope` unless the
 caller names another. The one standard activation that needs no transcendental function, and

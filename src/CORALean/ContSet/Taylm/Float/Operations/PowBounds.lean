@@ -15,7 +15,7 @@ The range of `t ^ k` over `[l, u]`, by the float interval power `Interval.power`
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   14-October-2026
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

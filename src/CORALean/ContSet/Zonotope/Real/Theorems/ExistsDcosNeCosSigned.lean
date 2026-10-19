@@ -21,7 +21,7 @@ cosine of `(1, -1)` and `(0, 1)` is `-1/√2` and (4) gives `1/√2`.
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
