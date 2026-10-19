@@ -21,7 +21,6 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.ExactPlusConstruct
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ExistsUnionFactorsLeft
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ExistsUnionFactorsRight
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetConstruct
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetSatisfies
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionDepExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompact
@@ -32,7 +31,6 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.LinCombExactOfDependent
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.LinCombOuter
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConstruct
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConvHullConsIff
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemExtPolyZonotopeIff
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxIff
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxVecIff
@@ -45,9 +43,6 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialConvHullEPadE
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MtimesExact
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.MulVecConvHullBlock
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.MulVecConvHullLast
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.MulVecGetSubset
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.OfPointMem
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.OfPointMemIff
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.PlusExact
@@ -69,6 +64,8 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitUnion
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionDomainIff
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionRelaxSubset
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.EvalUnionLower
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConvHullSingleConsIff
 
 /-!
 # What `ConPolyZono` guarantees

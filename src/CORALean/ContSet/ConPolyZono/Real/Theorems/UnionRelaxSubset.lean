@@ -9,8 +9,7 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Union
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionDomainIff
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemUnionUpperIff
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecUnionLowerLeft
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecUnionLowerRight
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.EvalUnionLower
 public import CORALean.ContSet.ConPolyZono.Real.Operations.SumUnionE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialEqZeroOfNoZeroCol
 public import Mathlib.Tactic.Module
@@ -31,7 +30,7 @@ against, its rows recording their rounding as slack. The hypotheses are those of
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -50,18 +49,13 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 theorem ConPolyZono.aux_union_rows (cPZ₁ cPZ₂ : ConPolyZono α) (s₁ : Vec ℝ cPZ₁.cons.m)
     (s₂ : Vec ℝ cPZ₂.cons.m) (a : Fin (cPZ₁.p + cPZ₂.p + 2) → ℝ)
     (hup : a ∈ (ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).construct)
-    (hlow₁ : ∀ r, |(ConPolyZono.unionLowerA cPZ₁.cons.A cPZ₁.cons.b cPZ₂.cons.A cPZ₂.cons.b
-        *ᵥ PolyZonotope.monomial (ConPolyZono.unionLowerR cPZ₁.cons.R cPZ₂.cons.R) a)
-          (Fin.castAdd cPZ₂.cons.m r) - 2⁻¹ * cPZ₁.cons.b r| ≤ |s₁ r|)
-    (hlow₂ : ∀ r, |(ConPolyZono.unionLowerA cPZ₁.cons.A cPZ₁.cons.b cPZ₂.cons.A cPZ₂.cons.b
-        *ᵥ PolyZonotope.monomial (ConPolyZono.unionLowerR cPZ₁.cons.R cPZ₂.cons.R) a)
-          (Fin.natAdd cPZ₁.cons.m r) - 2⁻¹ * cPZ₂.cons.b r| ≤ |s₂ r|) : -- --- STMT ---
+    (hlow₁ : ∀ r, |(ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons).eval a
+        (Fin.castAdd cPZ₂.cons.m r)| ≤ |s₁ r|)
+    (hlow₂ : ∀ r, |(ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons).eval a
+        (Fin.natAdd cPZ₁.cons.m r)| ≤ |s₂ r|) : -- --- STMT ---
     ∀ i, |((cPZ₁.union cPZ₂).cons.A *ᵥ PolyZonotope.monomial (cPZ₁.union cPZ₂).cons.R a) i
       - (cPZ₁.union cPZ₂).cons.b i|
         ≤ |Fin.append (0 : Vec ℝ (1 + 1)) (Fin.append s₁ s₂) i| := by -- --- PROOF ---
-  -- the lower rows' values at `a`, named once
-  set L := ConPolyZono.unionLowerA cPZ₁.cons.A cPZ₁.cons.b cPZ₂.cons.A cPZ₂.cons.b *ᵥ
-    PolyZonotope.monomial (ConPolyZono.unionLowerR cPZ₁.cons.R cPZ₂.cons.R) a with hL
   -- the union's rows are the selector rows' and the lower rows', stacked
   have hv := PolyLevelSet.eval_and_ (ConPolyZono.unionUpper cPZ₁.p cPZ₂.p)
     (ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons) a
@@ -79,12 +73,8 @@ theorem ConPolyZono.aux_union_rows (cPZ₁ cPZ₂ : ConPolyZono α) (s₁ : Vec 
   · rw [Fin.append_right]
     erw [Fin.append_right]
     refine Fin.addCases (fun r => ?_) (fun r => ?_) i
-    · show |L (Fin.castAdd cPZ₂.cons.m r)
-          - ConPolyZono.unionLowerB cPZ₁.cons.b cPZ₂.cons.b (Fin.castAdd cPZ₂.cons.m r)| ≤ _
-      simpa only [ConPolyZono.unionLowerB, Fin.append_left] using hlow₁ r
-    · show |L (Fin.natAdd cPZ₁.cons.m r)
-          - ConPolyZono.unionLowerB cPZ₁.cons.b cPZ₂.cons.b (Fin.natAdd cPZ₁.cons.m r)| ≤ _
-      simpa only [ConPolyZono.unionLowerB, Fin.append_right] using hlow₂ r
+    · simpa only [Fin.append_left] using hlow₁ r
+    · simpa only [Fin.append_right] using hlow₂ r
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -114,21 +104,23 @@ theorem ConPolyZono.union_relax_subset (cPZ₁ cPZ₂ : ConPolyZono α) (s₁ : 
           (fun k => a (Fin.castAdd 2 (Fin.natAdd cPZ₁.p k)))
           (by rw [hx1]; norm_num) (by rw [hy1]; norm_num)
           (fun k => hab _)).mpr (Or.inl ⟨hx1, hy1, hv⟩))
-    · rw [ConPolyZono.mulVec_unionLower_left, h1, hx1]
+    · rw [ConPolyZono.eval_unionLower, Fin.append_left, h1, hx1]
       have h := hs₁ r
-      have e : (cPZ₁.cons.A *ᵥ PolyZonotope.monomial cPZ₁.cons.R a₁) r - 2⁻¹ * cPZ₁.cons.b r * 1
-          - 2⁻¹ * cPZ₁.cons.b r = (cPZ₁.cons.A *ᵥ PolyZonotope.monomial cPZ₁.cons.R a₁) r
+      have e : (cPZ₁.cons.A *ᵥ PolyZonotope.monomial cPZ₁.cons.R a₁) r
+          - 2⁻¹ * (1 + 1) * cPZ₁.cons.b r = (cPZ₁.cons.A *ᵥ PolyZonotope.monomial cPZ₁.cons.R a₁) r
               - cPZ₁.cons.b r := by ring
       rw [e]
       exact h
     -- the other operand's rows, its whole left side pinned to zero
-    · rw [ConPolyZono.mulVec_unionLower_right]
+    · rw [ConPolyZono.eval_unionLower, Fin.append_right]
       have hzero : (cPZ₂.cons.A *ᵥ PolyZonotope.monomial cPZ₂.cons.R
           fun k => a (Fin.castAdd 2 (Fin.natAdd cPZ₁.p k))) r = 0 := by
         show (∑ l, cPZ₂.cons.A r l * PolyZonotope.monomial cPZ₂.cons.R _ l) = 0
         exact Finset.sum_eq_zero fun l _ => by
           rw [ConPolyZono.monomial_eq_zero_of_noZeroCol hR₂ hz l, mul_zero]
-      rw [hzero, hx1, zero_add, mul_one, sub_self, abs_zero]
+      rw [hzero, hx1]
+      have e : (0:ℝ) - 2⁻¹ * (1 - 1) * cPZ₂.cons.b r = 0 := by ring
+      rw [e, abs_zero]
       exact abs_nonneg _
     -- the point itself: at the selector `1` the center moves to `c₁`
     · have hβ₀ : (∑ j, β₁ j • cPZ₁.GI j) = 0 :=
@@ -163,20 +155,20 @@ theorem ConPolyZono.union_relax_subset (cPZ₁ cPZ₂ : ConPolyZono α) (s₁ : 
           (by rw [hx1]; norm_num) (by rw [hy1]; norm_num)
           (fun k => hab _)).mpr (Or.inr ⟨hx1, hy1, hu⟩))
     -- the first operand's rows, its whole left side pinned to zero
-    · rw [ConPolyZono.mulVec_unionLower_left]
+    · rw [ConPolyZono.eval_unionLower, Fin.append_left]
       have hzero : (cPZ₁.cons.A *ᵥ PolyZonotope.monomial cPZ₁.cons.R
           fun k => a (Fin.castAdd 2 (Fin.castAdd cPZ₂.p k))) r = 0 := by
         show (∑ l, cPZ₁.cons.A r l * PolyZonotope.monomial cPZ₁.cons.R _ l) = 0
         exact Finset.sum_eq_zero fun l _ => by
           rw [ConPolyZono.monomial_eq_zero_of_noZeroCol hR₁ hz l, mul_zero]
       rw [hzero, hx1]
-      have e : (0:ℝ) - 2⁻¹ * cPZ₁.cons.b r * -1 - 2⁻¹ * cPZ₁.cons.b r = 0 := by ring
+      have e : (0:ℝ) - 2⁻¹ * (1 + -1) * cPZ₁.cons.b r = 0 := by ring
       rw [e, abs_zero]
       exact abs_nonneg _
-    · rw [ConPolyZono.mulVec_unionLower_right, h2, hx1]
+    · rw [ConPolyZono.eval_unionLower, Fin.append_right, h2, hx1]
       have h := hs₂ r
-      have e : (cPZ₂.cons.A *ᵥ PolyZonotope.monomial cPZ₂.cons.R a₂) r + 2⁻¹ * cPZ₂.cons.b r * -1
-          - 2⁻¹ * cPZ₂.cons.b r = (cPZ₂.cons.A *ᵥ PolyZonotope.monomial cPZ₂.cons.R a₂) r
+      have e : (cPZ₂.cons.A *ᵥ PolyZonotope.monomial cPZ₂.cons.R a₂) r
+          - 2⁻¹ * (1 - -1) * cPZ₂.cons.b r = (cPZ₂.cons.A *ᵥ PolyZonotope.monomial cPZ₂.cons.R a₂) r
               - cPZ₂.cons.b r := by ring
       rw [e]
       exact h

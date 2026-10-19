@@ -1917,13 +1917,16 @@ report "$out"
 # whose name does not end in `Exact` (scripts/exact-name-allowlist.txt, #224), and a main
 # theorem that takes `(h : f … = some E)` instead of quantifying `∀ E ∈ f …`
 # (scripts/option-hyp-allowlist.txt, #212), and a `## References` entry that names a thesis
-# instead of the paper (scripts/thesis-ref-allowlist.txt). Same
+# instead of the paper (scripts/thesis-ref-allowlist.txt), and a ConPolyZono definition that
+# computes a constraint matrix, exponent matrix or right-hand side itself instead of through
+# `PolyLevelSet`'s operations (scripts/conpolyzono-cons-allowlist.txt, #174). Same
 # contract as the helper above: status 1 with findings on stdout is a finding, anything else is
 # the helper failing.
 if [ -z "$STAGED" ]; then
   for helper in check-float-wrappers.py check-algorithm-steps.py check-repeated-subterms.py \
     check-dt-twins.py check-single-use.py check-prop-names.py check-absorb-rounding.py \
-    check-exact-names.py check-option-hyps.py check-thesis-refs.py; do
+    check-exact-names.py check-option-hyps.py check-thesis-refs.py \
+    check-conpolyzono-cons.py; do
     helper_err=$(mktemp)
     out=$($PYTHON "scripts/$helper" 2> "$helper_err") && helper_rc=0 || helper_rc=$?
     if [ "$helper_rc" -gt 1 ] || { [ "$helper_rc" -eq 1 ] && [ -z "$out" ]; }; then

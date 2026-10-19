@@ -1,19 +1,22 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerA
-public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerB
-public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerR
-public import CORALean.ContSet.PolyLevelSet.Real.PolyLevelSet
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnitCol
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionSel
+public import CORALean.ContSet.PolyLevelSet.Real.Operations.CartProd
+public import CORALean.ContSet.PolyLevelSet.Real.Operations.PadVars
+public import CORALean.ContSet.PolyLevelSet.Real.Operations.Switch
 
 @[expose] public section
 
 /-!
 # `ConPolyZono.unionLower`
 
-The lower rows of [1, Thm. 1] as a polynomial level set on the union's factors: each operand's own
-equations on its own factors, every row shifted by its right-hand side times the selector factor,
-so that it binds on its own branch and falls away on the other (`unionLowerA`, `unionLowerR`,
-`unionLowerB`).
+The lower rows of [1, Thm. 1] as a polynomial level set on the union's factors: the operands'
+own systems on their own factors (`PolyLevelSet.cartProd`), the two fresh factors after them
+(`PolyLevelSet.padVars`), and each row's right-hand side switched by the selector factor `α₁`
+(`PolyLevelSet.switch`), at `(1 + α₁) / 2` for the first operand and `(1 - α₁) / 2` for the
+second, so that a row binds on its own branch and loses its right-hand side on the other. That is
+CORA's `@conPolyZono/or`, `[blkdiag(A₁, A₂), [-b₁; b₂] / 2]` over `b / 2`.
 
 ## References
 
@@ -23,7 +26,7 @@ so that it binds on its own branch and falls away on the other (`unionLowerA`, `
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -36,11 +39,11 @@ variable {p₁ p₂ : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Both operands' equations, switched by the selector factor. -/
+/-- Both operands' rows, switched by the selector factor. -/
 noncomputable def ConPolyZono.unionLower (P₁ : PolyLevelSet p₁) (P₂ : PolyLevelSet p₂) :
     PolyLevelSet (p₁ + p₂ + 2) :=
-  ⟨P₁.m + P₂.m, P₁.q + P₂.q + 1, ConPolyZono.unionLowerA P₁.A P₁.b P₂.A P₂.b,
-    ConPolyZono.unionLowerR P₁.R P₂.R, ConPolyZono.unionLowerB P₁.b P₂.b, fun _ => .eq⟩
+  ((P₁.cartProd P₂).padVars 2).switch (ConPolyZono.unitCol (ConPolyZono.unionSel p₁ p₂) 1)
+    (Fin.append (fun _ => true) fun _ => false)
 
 end CORALean.Real
 

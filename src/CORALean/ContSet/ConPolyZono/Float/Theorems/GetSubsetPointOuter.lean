@@ -1,8 +1,9 @@
 module
 
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetSatisfies
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.MulVecGetSubset
+public import CORALean.ContSet.ConPolyZono.Float.Operations.GetSubset
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemGetSubsetOfReal
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalGetSubset
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
 
 @[expose] public section
@@ -22,7 +23,7 @@ monomials in `[-1, 1]`, is what the box grew by.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -47,11 +48,10 @@ theorem ConPolyZono.getSubset_point_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) 
           * Real.PolyZonotope.monomial (cPZ.getSubset k cen rad).E a l) + e' i
         = (∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial cPZ.E
             (Function.update a k (toReal cen + toReal rad * a k)) l) + e i := by -- --- PROOF ---
-  refine ⟨ConPolyZono.getSubset_satisfies cPZ k cen rad a ha (fun i => ?_), fun e he => ?_⟩
+  refine ⟨PolyLevelSet.mem_getSubset_of_real cPZ.cons cPZ.cons_eq k cen rad a ha (fun i => ?_),
+    fun e he => ?_⟩
   · -- the exact rows at `a` are the stored set's at the re-parametrized factors
-    have h := congrFun
-      (Real.ConPolyZono.mulVec_getSubset cPZ.nominalCore k (toReal cen) (toReal rad) a) i
-    erw [h]
+    rw [Real.PolyLevelSet.eval_getSubset]
     exact (PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mp hsat i
   -- the exact generators, the stored (rounded down) ones and the monomials, named once
   set G := Real.PolyZonotope.getSubsetG (nominal cPZ.toPolyZonotope) k (toReal cen) (toReal rad)

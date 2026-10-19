@@ -2,10 +2,8 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.Basic
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.AbsSubLeSubUp
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealVecUnionLowerB
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CartProdExact
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CenterMemConstruct
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactConsEqSpec
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactConsOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactFactorsEqSpec
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactFactorsNominal
@@ -20,14 +18,12 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.EmptyExact
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.ExactPlusOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetPointOuter
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetSatisfies
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionDepOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.IsFullDimSound
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.IsequalSound
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.LinCombOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.Merge
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MinkDiffOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.AbsorbRoundingNominal
@@ -50,7 +46,6 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.SplitLongestGenOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.SplitOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.SupportBoundLe
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionConIntEq
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatUnionLowerA
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionPointMem
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionSatisfies

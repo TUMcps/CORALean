@@ -262,6 +262,7 @@ public import CORALean.Global.Counterexamples.API
 public import CORALean.Global.AestronglyMeasurableOfHasDerivWithinAt
 public import CORALean.Global.EqAddIntegralOfHasDerivWithinAt
 public import CORALean.Global.IntervalIntegrableMulVecAddOfBounded
+public import CORALean.Global.RepBlockDiag
 
 /-!
 # Global definitions, collected

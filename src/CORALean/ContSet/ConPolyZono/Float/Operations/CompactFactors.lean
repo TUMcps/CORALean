@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.PolyLevelSet.Float.Operations.ReindexVars
 public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactFactorsSpec
 public import CORALean.ContSet.PolyZonotope.Float.Operations.TabAt
 
@@ -10,7 +11,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.TabAt
 
 The factors neither block reads, dropped. Only `p` and the two exponent
 matrices change, all over ℕ, so nothing rounds and neither `b` nor the box
-moves.
+moves. The constraint is its own `PolyLevelSet.reindexVars` at the used factors.
 
 The used factors are listed once, and every exponent read goes through that list:
 the specification re-derives the sorted finset at each of the `p · (h + q)` reads
@@ -19,7 +20,7 @@ the specification re-derives the sorted finset at each of the `p · (h + q)` rea
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       04-September-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -47,8 +48,7 @@ def ConPolyZono.compactFactors (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZo
     G := cPZ.G
     E := fun k i => cPZ.E (f k) i
     GI := cPZ.GI
-    cons := ⟨cPZ.cons.m, cPZ.cons.q, cPZ.cons.A, fun k l => cPZ.cons.R (f k) l, cPZ.cons.b,
-      cPZ.cons.b_error, cPZ.cons.op⟩
+    cons := cPZ.cons.reindexVars f
     cons_eq := cPZ.cons_eq
     I_error := cPZ.I_error }
 

@@ -2,8 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullG
-public import CORALean.ContSet.ConPolyZono.Real.Operations.ProdBlkDiag
-public import CORALean.ContSet.ConPolyZono.Real.Operations.SumRep
+public import CORALean.Global.RepBlockDiag
 public import Mathlib.Algebra.BigOperators.Fin
 public import Mathlib.Tactic.Module
 
@@ -71,7 +70,7 @@ theorem ConPolyZono.aux_monomial_left {a p h : ℕ} (E : Fin p → Fin h → ℕ
       (Fin.natAdd a (Fin.castAdd (a * h) (finProdFinEquiv (j, i)))))
       = ∏ k, v (Fin.castAdd a (finProdFinEquiv (j, k))) ^ E k i := by
     simp only [ConPolyZono.convHullE, Fin.append_left, Fin.append_right]
-    exact ConPolyZono.prod_blkDiag E (fun x => v (Fin.castAdd a x)) j i
+    exact prod_repBlockDiag E (fun x => v (Fin.castAdd a x)) j i
   -- the weight rows meet this column at exponent zero
   have h₂ : (∏ j' : Fin a, v (Fin.natAdd (a * p) j')
       ^ ConPolyZono.convHullE a E (Fin.natAdd (a * p) j')
@@ -90,7 +89,7 @@ theorem ConPolyZono.aux_monomial_right {a p h : ℕ} (E : Fin p → Fin h → �
       (Fin.natAdd a (Fin.natAdd (a * h) (finProdFinEquiv (j, i)))))
       = ∏ k, v (Fin.castAdd a (finProdFinEquiv (j, k))) ^ E k i := by
     simp only [ConPolyZono.convHullE, Fin.append_left, Fin.append_right]
-    exact ConPolyZono.prod_blkDiag E (fun x => v (Fin.castAdd a x)) j i
+    exact prod_repBlockDiag E (fun x => v (Fin.castAdd a x)) j i
   -- here the block's own weight row does carry a power, the others none
   have h₂ : (∏ j' : Fin a, v (Fin.natAdd (a * p) j')
       ^ ConPolyZono.convHullE a E (Fin.natAdd (a * p) j')
@@ -129,26 +128,26 @@ theorem ConPolyZono.sum_convHullE {a p h : ℕ} (c : α) (G : Fin h → α) (E :
       (Fin.natAdd a (Fin.castAdd (a * h) y)))
       = ∑ j : Fin a, ∑ i, PolyZonotope.monomial E
           (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))) i • G i := by
-    rw [ConPolyZono.sum_rep (fun y => PolyZonotope.monomial (ConPolyZono.convHullE a E) v
+    rw [sum_rep (fun y => PolyZonotope.monomial (ConPolyZono.convHullE a E) v
       (Fin.natAdd a (Fin.castAdd (a * h) y)) • ConPolyZono.convHullG a c G
       (Fin.natAdd a (Fin.castAdd (a * h) y)))]
     refine Finset.sum_congr rfl fun j _ => Finset.sum_congr rfl fun i _ => ?_
     rw [ConPolyZono.aux_monomial_left, ConPolyZono.convHullG, Fin.append_right, Fin.append_left,
-      ConPolyZono.repVec, Equiv.symm_apply_apply]
+      repVec, Equiv.symm_apply_apply]
   -- and the weighted copies, each block's sum scaled by its own weight
   have e3 : (∑ y : Fin (a * h), PolyZonotope.monomial (ConPolyZono.convHullE a E) v
       (Fin.natAdd a (Fin.natAdd (a * h) y)) • ConPolyZono.convHullG a c G
       (Fin.natAdd a (Fin.natAdd (a * h) y)))
       = ∑ j : Fin a, v (Fin.natAdd (a * p) j) • ∑ i, PolyZonotope.monomial E
           (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))) i • G i := by
-    rw [ConPolyZono.sum_rep (fun y => PolyZonotope.monomial (ConPolyZono.convHullE a E) v
+    rw [sum_rep (fun y => PolyZonotope.monomial (ConPolyZono.convHullE a E) v
       (Fin.natAdd a (Fin.natAdd (a * h) y)) • ConPolyZono.convHullG a c G
       (Fin.natAdd a (Fin.natAdd (a * h) y)))]
     refine Finset.sum_congr rfl fun j _ => ?_
     rw [Finset.smul_sum]
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [ConPolyZono.aux_monomial_right, ConPolyZono.convHullG, Fin.append_right, Fin.append_right,
-      ConPolyZono.repVec, Equiv.symm_apply_apply, smul_smul]
+      repVec, Equiv.symm_apply_apply, smul_smul]
   -- four sums over the same `a` blocks, so one sum of four terms
   rw [Fin.sum_univ_add, Fin.sum_univ_add, e1, e2, e3, hc,
     ← Finset.sum_add_distrib, ← Finset.sum_add_distrib, ← Finset.sum_add_distrib]

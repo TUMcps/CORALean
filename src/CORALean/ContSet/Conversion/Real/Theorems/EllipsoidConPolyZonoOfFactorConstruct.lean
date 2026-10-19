@@ -4,7 +4,6 @@ public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 public import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecEqSum
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
 public import CORALean.ContSet.Interval.Real.Operations.Point
 public import CORALean.Global.EuclideanNorm
@@ -47,6 +46,14 @@ variable {n : ℕ}
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- `G u` read as a generator sum over the columns of `G`. -/
+theorem Ellipsoid.aux_mulVec_eq_sum {m q : ℕ} (G : Mat ℝ m q) (u : Vec ℝ q) :
+    G *ᵥ u = ∑ l, u l • ConPolyZono.consCol G l := by
+  funext i
+  show (∑ l, G i l * u l) = (∑ l, u l • ConPolyZono.consCol G l) i
+  rw [Finset.sum_apply]
+  exact Finset.sum_congr rfl fun l _ => mul_comm _ _
 
 /-- A diagonal exponent matrix's monomial is its one nonzero factor, to the
 diagonal's own power. -/
@@ -142,7 +149,7 @@ theorem Ellipsoid.conPolyZonoOfFactor_construct (G : Mat ℝ n n) (q : Vec ℝ n
         rw [ConPolyZono.monomial_padE, PolyZonotope.monomial_identE, Fin.append_left]
       rw [Finset.sum_congr rfl fun i _ => by rw [hmono i]]
       show q + G *ᵥ u = q + ∑ i, u i • ConPolyZono.consCol G i + 0
-      rw [add_zero, ← ConPolyZono.mulVec_eq_sum]
+      rw [add_zero, ← Ellipsoid.aux_mulVec_eq_sum]
   -- back: the constraint pins `u`'s square-sum, and the generator sum reads off `G` again
   · rintro x ⟨a, β, ha, _, hsat, rfl⟩
     set u : Vec ℝ n := fun i => a (Fin.castAdd 1 i) with hu
@@ -209,7 +216,7 @@ theorem Ellipsoid.conPolyZonoOfFactor_construct (G : Mat ℝ n n) (q : Vec ℝ n
     rw [Finset.sum_congr rfl fun i _ => by rw [hmono i]]
     simp only [Finset.univ_eq_empty, Finset.sum_empty, add_zero]
     show q + ∑ i, u i • ConPolyZono.consCol G i = q + G *ᵥ u
-    rw [ConPolyZono.mulVec_eq_sum]
+    rw [Ellipsoid.aux_mulVec_eq_sum]
 
 end CORALean.Real
 

@@ -1,8 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
-public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConA
-public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConB
+public import CORALean.ContSet.PolyLevelSet.Real.Operations.Eliminate
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConG
 
@@ -14,8 +13,9 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConG
 [1, Prop. 13]: constraint `r` is solved for the monomial of its constraint
 generator `t`, and that monomial is substituted everywhere it occurs — in
 generator `d`, which eq. (33) asks to carry the very same exponent column, and
-in the constraint rows that stay. One constraint and one constraint generator
-are gone, the generators grow by one per surviving constraint generator.
+in the constraint rows that stay, the latter being the constraint's own
+`PolyLevelSet.eliminate`. One constraint and one constraint generator are gone, the generators
+grow by one per surviving constraint generator.
 
 [1] follows this with `compactGens` and with restricting the exponent rows to
 those that are not all zero. Neither is applied here: [1] says of both that they
@@ -34,7 +34,7 @@ of this one.
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       13-September-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -57,14 +57,8 @@ noncomputable def ConPolyZono.reduceCon {α : Type} [AddCommGroup α] [Module �
   G := ConPolyZono.reduceConG cPZ.G cPZ.cons.A r d t
   E := ConPolyZono.reduceConE cPZ.E cPZ.cons.R d t
   GI := cPZ.GI
-  cons :=
-    { m := cPZ.cons.m - 1
-      q := cPZ.cons.q - 1
-      A := ConPolyZono.reduceConA cPZ.cons.A r t
-      R := fun k i => cPZ.cons.R k (dropIdx t i)
-      b := ConPolyZono.reduceConB cPZ.cons.A cPZ.cons.b r t
-      op := fun _ => .eq }
-  cons_eq _ := rfl
+  cons := cPZ.cons.eliminate r t
+  cons_eq _ := cPZ.cons_eq _
 
 end CORALean.Real
 

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Rescale
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetSatisfies
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemGetSubsetIff
 public import Mathlib.Tactic.FieldSimp
 
 @[expose] public section
@@ -99,9 +99,9 @@ theorem ConPolyZono.aux_rescaleInv_succ (cPZ acc : ConPolyZono α) (cen rad : �
   rw [dif_pos h]
   -- the counts and the independent block are untouched; the constraints and the point follow
   refine ⟨hp, hq, fun β => hGI β, fun a => ?_, fun a => ?_⟩
-  · -- the constraints: `getSubset_satisfies` then the invariant at the updated vector
+  · -- the constraints: `PolyLevelSet.mem_getSubset_iff` then the invariant at the updated vector
     rw [ConPolyZono.aux_rescaleSub_succ]
-    have h1 := ConPolyZono.getSubset_satisfies acc ⟨n, h⟩ (cen n) (rad n) (fun k => a k)
+    have h1 := PolyLevelSet.mem_getSubset_iff acc.cons ⟨n, h⟩ (cen n) (rad n) (fun k => a k)
     have h2 := hsat (Function.update a n (cen n + rad n * a n))
     rw [ConPolyZono.aux_fin_update h] at h2
     exact h1.trans (by simpa using h2)
