@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.InteriorMargin
+public import CORALean.ContSet.HPolytope.Float.Operations.IneqsContainBall
 public import CORALean.ContSet.Zonotope.Float.Operations.BallCert
 
 @[expose] public section
@@ -11,8 +12,8 @@ public import CORALean.ContSet.Zonotope.Float.Operations.BallCert
 The check that a float constrained zonotope contains a whole box of points around
 `y₀ = c + G β₀`, for a coefficient vector `β₀` and a right inverse `H` of the generator matrix the
 caller proposes. With a margin `δ`: the unit box and every inequality row keep their slack
-under a perturbation of `β₀` by at most `δ` in every coefficient (each row's absolute sum times
-`δ`, rounded upward), and `Zonotope.ballCert` reaches
+under a perturbation of `β₀` by at most `δ` in every coefficient (the rows by the constraint's
+own `HPolytope.ineqsContainBall`, #174), and `Zonotope.ballCert` reaches
 every vector within `B` with coefficients of size at most `δ`. Then every point whose distance to
 `y₀` is at most `B` in every entry is in the nominal set (`ConZonotope.aux_box_subset`).
 
@@ -23,7 +24,7 @@ wrote as inequality pairs (`HPolytope.slab`) keep their slack.
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   15-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -42,8 +43,7 @@ def ConZonotope.interiorCert (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (H : Mat 𝕋 
     (δ B : 𝕋) : Bool :=
   le zero δ
     && (List.finRange cZ.h).all (fun j => le (addUp (absolute (β₀ j)) δ) one)
-    && (List.finRange cZ.P.m).all (fun i =>
-      le (addUp (dotUp (cZ.P.A i) β₀) (mulUp δ (radius cZ.P.A i))) (cZ.P.b i))
+    && cZ.P.ineqsContainBall β₀ δ
     && (cZ.P.me == 0)
     && Zonotope.ballCert (fun i j => cZ.G j i) H B δ
 

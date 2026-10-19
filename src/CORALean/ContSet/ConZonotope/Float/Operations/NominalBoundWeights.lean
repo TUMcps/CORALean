@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.Global.Float.FloatBound
 
 @[expose] public section
@@ -124,10 +125,10 @@ def ConZonotope.nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c : Ve
   let zl : Vec 𝕋 cZ.P.me := fun k => ConZonotope.aux_clamp (zl₀ k)
   let R : Vec 𝕋 cZ.h := fun j =>
     maximum (ConZonotope.aux_resUp cZ a y zu zl j) (neg (ConZonotope.aux_resDown cZ a y zu zl j))
-  -- the right-hand sides, each widened by its row's slack, rounded up
-  let bS : Vec 𝕋 cZ.P.m := fun k => addUp (cZ.P.b k) (absolute (cZ.P.b_error k))
-  let beU : Vec 𝕋 cZ.P.me := fun k => addUp (cZ.P.be k) (absolute (cZ.P.be_error k))
-  let beL : Vec 𝕋 cZ.P.me := fun k => addUp (neg (cZ.P.be k)) (absolute (cZ.P.be_error k))
+  -- the right-hand sides, each widened by its row's slack, rounded up: the constraint's own
+  let bS : Vec 𝕋 cZ.P.m := cZ.P.bSlackU
+  let beU : Vec 𝕋 cZ.P.me := cZ.P.beSlackU
+  let beL : Vec 𝕋 cZ.P.me := cZ.P.beSlackLN
   { val := addUp (dotUp a cZ.c) (addUp (dotUp y bS) (addUp (dotUp zu beU)
       (addUp (dotUp zl beL) (sumUp R))))
     le := by
@@ -167,10 +168,12 @@ def ConZonotope.nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c : Ve
       have hbeU : ∀ k, (toRealMat cZ.P.Ae *ᵥ β) k ≤ toReal (beU k) := fun k => by
         have h := add_le_addUp (cZ.P.be k) (absolute (cZ.P.be_error k))
         rw [toReal_absolute] at h
+        show _ ≤ toReal (addUp (cZ.P.be k) (absolute (cZ.P.be_error k)))
         linarith [(abs_le.mp (heq k)).2]
       have hbeL : ∀ k, -toReal (beL k) ≤ (toRealMat cZ.P.Ae *ᵥ β) k := fun k => by
         have h := add_le_addUp (neg (cZ.P.be k)) (absolute (cZ.P.be_error k))
         rw [toReal_absolute, toReal_neg] at h
+        show -toReal (addUp (neg (cZ.P.be k)) (absolute (cZ.P.be_error k))) ≤ _
         linarith [(abs_le.mp (heq k)).1]
       -- the inequality block and the equality block's upper edge, weighted
       have hYb : ∑ j, β j * Y j ≤ toReal (dotUp y bS) := by

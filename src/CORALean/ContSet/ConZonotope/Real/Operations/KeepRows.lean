@@ -2,6 +2,9 @@ module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.KeepEmbed
 public import CORALean.ContSet.ConZonotope.Real.Operations.KeepSlack
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Operations.Comap
+public import CORALean.ContSet.HPolytope.Real.Operations.ToIneqs
 
 @[expose] public section
 
@@ -11,7 +14,9 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.KeepSlack
 The constraints on the kept coefficients: every row of `P`, read at a point whose
 dropped coefficients are zero and loosened by what the dropped ones can add
 (`keepSlack`). An equality `a · β = b` becomes the pair `a · β ≤ b + s` and
-`-a · β ≤ -b + s`.
+`-a · β ≤ -b + s`. Each step is the constraint's own (#174): `HPolytope.toIneqs` writes every
+equality as its two halves, `HPolytope.relax` loosens each row by its `keepSlack`
+(`HPolytope.mem_relax_iff`), and `HPolytope.comap` reads the rows along `keepEmbed`.
 
 Each row is projected on its own, so this is an outer approximation of the exact
 projection of `P` onto the kept coordinates, not the projection itself: the
@@ -22,7 +27,7 @@ unconstrained, which is the case `reduceKeep`'s ranking drops first.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -39,17 +44,10 @@ variable {h q r : ℕ}
 
 /-- Rows first, then each equality twice, as `≤`; no equalities remain. -/
 noncomputable def ConZonotope.keepRows (P : HPolytope (Vec ℝ h))
-    (part : Split (Fin h) into (Fin q) ⊕ (Fin r)) : HPolytope (Vec ℝ q) where
-  m := P.m + (P.me + P.me)
-  A := Fin.append (fun i => (P.A i).comp (ConZonotope.keepEmbed part))
-    (Fin.append (fun i => (P.Ae i).comp (ConZonotope.keepEmbed part))
-      (fun i => -((P.Ae i).comp (ConZonotope.keepEmbed part))))
-  b := Fin.append (fun i => P.b i + ConZonotope.keepSlack part (P.A i))
-    (Fin.append (fun i => P.be i + ConZonotope.keepSlack part (P.Ae i))
-      (fun i => -P.be i + ConZonotope.keepSlack part (P.Ae i)))
-  me := 0
-  Ae := fun i => i.elim0
-  be := fun i => i.elim0
+    (part : Split (Fin h) into (Fin q) ⊕ (Fin r)) : HPolytope (Vec ℝ q) :=
+  -- every row an inequality, loosened by what the dropped coefficients can add to it
+  (P.toIneqs.relax fun i => ConZonotope.keepSlack part (P.rows i)).comap
+    (ConZonotope.keepEmbed part)
 
 end CORALean.Real
 

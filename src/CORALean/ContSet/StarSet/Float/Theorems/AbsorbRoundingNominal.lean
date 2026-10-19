@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.StarSet.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.StarSet.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.StarSet.Float.Theorems.LinPredMemAppendNominal
 
 @[expose] public section
 
@@ -15,7 +16,7 @@ identity generators add `e` to the point.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -36,22 +37,14 @@ theorem StarSet.absorbRounding_nominal (s : StarSet 𝕋 n) :
   -- a point is a nominal point plus an error within the box
   rintro _ ⟨y, hy, e, he, rfl⟩
   obtain ⟨α, ⟨hbox, hcons⟩, hy⟩ := StarSet.mem_nominalSet_iff s y |>.mp hy
-  -- the witness: the old factors, then the error itself
-  refine (StarSet.mem_nominalSet_iff _ _).mpr ⟨Fin.append α e, ⟨?_, ?_⟩, fun i => ?_⟩
-  -- the factor box: the old bounds, then the error box's
-  · refine Fin.addCases (fun k => ?_) (fun k => ?_)
-    · simpa [StarSet.absorbRounding] using hbox k
-    · have hb : toReal (s.I_error.inf k) ≤ e k ∧ e k ≤ toReal (s.I_error.sup k) := he k
-      simpa [StarSet.absorbRounding] using hb
-  -- the rows: each old row reads the old factors only
-  · intro r hr
-    change r ∈ s.pred.cons.map _ at hr
-    obtain ⟨r', hr', rfl⟩ := List.mem_map.mp hr
-    have h := hcons r' hr'
-    show ∑ k : Fin (s.m + n), toReal (Fin.append r'.1 (fun _ : Fin n => (zero : 𝕋)) k)
-      * (Fin.append α e : Fin (s.m + n) → ℝ) k ≤ toReal r'.2
-    rw [Fin.sum_univ_add]
-    simpa [Fin.append_left, Fin.append_right, toReal_zero] using h
+  -- the witness: the old factors, which meet the old rows, then the error, in the box
+  have hold : α ∈ ContSet.construct s.pred.nominal :=
+    ⟨hbox, List.forall_mem_map.mpr hcons⟩
+  have hnew := (StarSet.LinPred.mem_append_nominal_iff s.pred s.I_error.inf s.I_error.sup α e).mpr
+    ⟨hold, fun k => he k⟩
+  refine (StarSet.mem_nominalSet_iff _ _).mpr
+    ⟨Fin.append α e, ⟨hnew.1, fun r hr => ?_⟩, fun i => ?_⟩
+  · exact hnew.2 _ (List.mem_map_of_mem hr)
   -- the point: the identity generators add the error
   · have hunit : ∀ k : Fin n, toReal (if k = i then (one : 𝕋) else zero) = if k = i then 1 else 0 :=
       fun k => by split_ifs <;> simp [toReal_one, toReal_zero]

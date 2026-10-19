@@ -1318,11 +1318,9 @@ src/CORALean/ContSet/HPolytope/Float/Operations/SmulMemHalfScaledLeft.lean
 src/CORALean/ContSet/HPolytope/Float/Operations/SmulMemHalfScaledRight.lean
 src/CORALean/ContSet/HPolytope/Float/Operations/StackRows.lean
 src/CORALean/ContSet/HPolytope/Float/Operations/Translate.lean
-src/CORALean/ContSet/HPolytope/Float/Operations/TranslateOuter.lean
 src/CORALean/ContSet/HPolytope/Float/Operations/UnitBox.lean
 src/CORALean/ContSet/HPolytope/Float/Theorems/AbsorbRoundingOuter.lean
 src/CORALean/ContSet/HPolytope/Float/Theorems/AnchorEqsInBoxSound.lean
-src/CORALean/ContSet/HPolytope/Float/Theorems/AnchorEqsOuter.lean
 src/CORALean/ContSet/HPolytope/Float/Theorems/BoundOfDualLe.lean
 src/CORALean/ContSet/HPolytope/Float/Theorems/CartProdExact.lean
 src/CORALean/ContSet/HPolytope/Float/Theorems/CartProdNominalExact.lean
@@ -1338,7 +1336,6 @@ src/CORALean/ContSet/HPolytope/Float/Theorems/DropZerosExact.lean
 src/CORALean/ContSet/HPolytope/Float/Theorems/ErrFreeOfIsErrFree.lean
 src/CORALean/ContSet/HPolytope/Float/Theorems/ExcludesPointSound.lean
 src/CORALean/ContSet/HPolytope/Float/Theorems/IntersectionExact.lean
-src/CORALean/ContSet/HPolytope/Float/Theorems/IntersectionOuter.lean
 src/CORALean/ContSet/HPolytope/Float/Theorems/IsFullDimSound.lean
 src/CORALean/ContSet/HPolytope/Float/Theorems/IsInvertedPairDot.lean
 src/CORALean/ContSet/HPolytope/Float/Theorems/IsInvertedPairSymm.lean
@@ -1370,7 +1367,6 @@ src/CORALean/ContSet/HPolytope/Float/Theorems/RepresentsaFullspaceSound.lean
 src/CORALean/ContSet/HPolytope/Float/Theorems/RowScalePos.lean
 src/CORALean/ContSet/HPolytope/Float/Theorems/RowsOfMemConstruct.lean
 src/CORALean/ContSet/HPolytope/Float/Theorems/ScaleDevBetween.lean
-src/CORALean/ContSet/HPolytope/Float/Theorems/ScaleRowsOuter.lean
 src/CORALean/ContSet/HPolytope/Real/Counterexamples/AHPolytopeEqOfLeftInverse.lean
 src/CORALean/ContSet/HPolytope/Real/Counterexamples/AHPolytopeInterEq.lean
 src/CORALean/ContSet/HPolytope/Real/Counterexamples/AHPolytopeSubsetConvexHullAHOfCert.lean

@@ -15,8 +15,8 @@ sums of `1 - G H`, it checks `1 - κ > 0` with outward rounding and returns
 says only that this `H` was not good enough: a rank-deficient or ill-conditioned `G`, or a bad
 candidate.
 
-It serves wherever a rounded equality is kept as one: moving a point onto the stored hyperplanes
-costs at most `γ` times the residual (`HPolytope.anchorEqs`).
+It serves wherever a rounded equality is made exact again: moving a point onto the stored
+hyperplanes costs at most `γ` times the residual (`HPolytope.anchorEqsInBox`).
 -/
 
 -- Authors:       Claude Opus 5.5

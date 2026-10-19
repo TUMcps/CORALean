@@ -15,7 +15,6 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.MtimesIntervalMat
 public import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
 public import CORALean.ContSet.ConZonotope.Real.Operations.Reduce
 public import CORALean.ContSet.ConZonotope.Real.Operations.KeepEmbed
-public import CORALean.ContSet.ConZonotope.Real.Operations.KeepInvolvement
 public import CORALean.ContSet.ConZonotope.Real.Operations.KeepMetric
 public import CORALean.ContSet.ConZonotope.Real.Operations.KeepRows
 public import CORALean.ContSet.ConZonotope.Real.Operations.KeepSlack
@@ -48,7 +47,6 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.Empty
 public import CORALean.ContSet.ConZonotope.Real.Operations.CartProd
 public import CORALean.ContSet.ConZonotope.Real.Operations.Compact
 public import CORALean.ContSet.ConZonotope.Real.Operations.CompactEmbed
-public import CORALean.ContSet.ConZonotope.Real.Operations.CompactEqs
 public import CORALean.ContSet.ConZonotope.Real.Operations.CompactGens
 public import CORALean.ContSet.ConZonotope.Real.Operations.ConIntersect
 public import CORALean.ContSet.ConZonotope.Real.Operations.Split

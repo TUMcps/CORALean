@@ -1,10 +1,17 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Theorems.Basic
+public import CORALean.ContSet.HPolytope.Float.Theorems.BoxToSlackOuter
+public import CORALean.ContSet.HPolytope.Float.Theorems.LeErrUp
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemSetRhsNominal
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemRescaleColsNominal
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemKeepColsNominal
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemSelectColsNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.ContainsOriginSound
+public import CORALean.ContSet.HPolytope.Float.Theorems.IneqsContainBallSound
 public import CORALean.ContSet.HPolytope.Float.Theorems.ConstructCongr
 public import CORALean.ContSet.HPolytope.Float.Theorems.ConstructEqNominal
 public import CORALean.ContSet.HPolytope.Float.Theorems.AbsorbRoundingOuter
-public import CORALean.ContSet.HPolytope.Float.Theorems.AnchorEqsOuter
 public import CORALean.ContSet.HPolytope.Float.Theorems.AnchorEqsInBoxSound
 public import CORALean.ContSet.HPolytope.Float.Theorems.ErrFreeOfIsErrFree
 public import CORALean.ContSet.HPolytope.Float.Theorems.BoundOfDualLe

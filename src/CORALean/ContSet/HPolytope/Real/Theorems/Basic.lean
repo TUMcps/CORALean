@@ -1,7 +1,10 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.Definitions.PolyNorm
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import CORALean.ContSet.HPolytope.Real.Operations.Lift
+public import CORALean.ContSet.HPolytope.Real.Operations.ToIneqs
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemIffRows
 public import CORALean.ContSet.HPolytope.Real.Operations.OfPoint
 public import CORALean.ContSet.HPolytope.Real.Operations.Volume
 
@@ -37,6 +40,17 @@ theorem HPolytope.comap_exact (f : β →ₗ[ℝ] α) (P : HPolytope α) :
     (HPolytope.comap f P).construct = f ⁻¹' P.construct := rfl
 
 
+-- ===========================  `HPolytope.construct_subset_dropEqs`  =========================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Dropping the equalities only widens the set. -/
+theorem HPolytope.construct_subset_dropEqs (P : HPolytope α) : P.construct ⊆ P.dropEqs.construct :=
+  fun _ hx => ⟨hx.1, fun i => i.elim0⟩
+
+
 -- ==================================  `HPolytope.lift_exact`  ================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
@@ -62,6 +76,18 @@ theorem HPolytope.mem_ofPoint (v : Vec ℝ n) : v ∈ (HPolytope.ofPoint v).cons
   ⟨fun i => i.elim0, fun i => LinearMap.proj_apply i v⟩
 
 
+-- ================================  `HPolytope.mem_relax_iff`  ================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- A point of the relaxed polytope meets every inequality up to its added `rᵢ`. -/
+theorem HPolytope.mem_relax_iff {P : HPolytope α} {r : Fin P.m → ℝ} {x : α} :
+    x ∈ (P.relax r).construct ↔ (∀ i, P.A i x ≤ P.b i + r i) ∧ ∀ i, P.Ae i x = P.be i :=
+  Iff.rfl
+
+
 -- ===============================  `HPolytope.polyNorm_le_iff`  ================================ --
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
@@ -73,6 +99,18 @@ exactly when its start and every term are. -/
 theorem HPolytope.polyNorm_le_iff {H : Mat ℝ s n} {h : Vec ℝ s} {x : Vec ℝ n} {t : ℝ} :
     HPolytope.polyNorm H h x ≤ t ↔ 0 ≤ t ∧ ∀ i, (H *ᵥ x) i / h i ≤ t := by
   simp [HPolytope.polyNorm, Finset.fold_max_le]
+
+
+-- ================================  `HPolytope.toIneqs_exact`  ================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Writing every equality as its two halves leaves the set unchanged. -/
+theorem HPolytope.toIneqs_exact (P : HPolytope α) : P.toIneqs.construct = P.construct :=
+  Set.ext fun _ => ⟨fun h => HPolytope.mem_construct_iff_rows.mpr h.1,
+    fun h => ⟨HPolytope.mem_construct_iff_rows.mp h, fun i => i.elim0⟩⟩
 
 
 -- ================================  `HPolytope.volume_lt_top`  ================================= --

@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.LeErrUp
 
 @[expose] public section
 
@@ -30,23 +31,6 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
-
-/-- The most the row `a` reads on the error box: a linear function of one coordinate is largest
-at one end of its range, so each term is bounded by the end its sign picks, and the terms are
-summed upward. -/
-private theorem HPolytope.le_errUp (P : HPolytope 𝕋 (Vec 𝕋 n)) (a : Vec 𝕋 n) {e : Vec ℝ n}
-    (he : e ∈ P.I_error.construct) :
-    ∑ j, toReal (a j) * e j ≤ toReal (P.errUp a) := by -- --- PROOF ---
-  refine le_trans (Finset.sum_le_sum fun j _ => ?_) (sum_le_sumUp _)
-  have hlo : toReal (P.I_error.inf j) ≤ e j := (he j).1
-  have hhi : e j ≤ toReal (P.I_error.sup j) := (he j).2
-  rw [toReal_maximum]
-  rcases le_total 0 (toReal (a j)) with hs | hs
-  · refine le_trans ?_ (le_max_left _ _)
-    exact le_trans (mul_le_mul_of_nonneg_left hhi hs) (mul_le_mulUp _ _)
-  · refine le_trans ?_ (le_max_right _ _)
-    exact le_trans (mul_le_mul_of_nonpos_left hlo hs) (mul_le_mulUp _ _)
-
 
 theorem HPolytope.rows_of_mem_construct {P : HPolytope 𝕋 (Vec 𝕋 n)} {x : Vec ℝ n}
     (hx : x ∈ P.construct) : -- --- STMT ---

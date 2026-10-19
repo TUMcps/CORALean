@@ -20,7 +20,7 @@ more than at `β`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       15-October-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -162,7 +162,7 @@ theorem HPolytope.anchorEqsInBox_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {ε : V
       _ = 1 := by linarith
   -- an inequality reads at most `∑ⱼ |Aₖⱼ| τ` more than at `β`
   · show (toRealMat P.A *ᵥ β'') k
-      ≤ toReal (addUp (P.b k) (mulUp (radius P.A k) τ)) + |toReal (P.b_error k)|
+      ≤ toReal (P.b k) + |toReal (addUp (absolute (P.b_error k)) (mulUp (radius P.A k) τ))|
     have hd : (toRealMat P.A *ᵥ (β'' - β)) k ≤ toReal (radius P.A k) * toReal τ :=
       calc (toRealMat P.A *ᵥ (β'' - β)) k = ∑ j, toReal (P.A k j) * (β'' - β) j := rfl
         _ ≤ ∑ j, |toReal (P.A k j)| * toReal τ := Finset.sum_le_sum fun j _ =>
@@ -176,10 +176,11 @@ theorem HPolytope.anchorEqsInBox_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {ε : V
       rw [Matrix.mulVec_sub, Pi.sub_apply]
       ring
     have h1 := mul_le_mulUp (radius P.A k) τ
-    have h2 := add_le_addUp (P.b k) (mulUp (radius P.A k) τ)
+    have h2 := add_le_addUp (absolute (P.b_error k)) (mulUp (radius P.A k) τ)
+    rw [toReal_absolute] at h2
     -- the row at `β`, plus the move
     rw [hsum]
-    linarith [hA k]
+    linarith [hA k, le_abs_self (toReal (addUp (absolute (P.b_error k)) (mulUp (radius P.A k) τ)))]
   -- the equalities hold at both ends of the segment, so along it
   · show |(toRealMat P.Ae *ᵥ β'') i - toReal (P.be i)| ≤ |toReal (FloatOps.zero : 𝕋)|
     rw [toReal_zero, abs_zero, abs_nonpos_iff, sub_eq_zero]

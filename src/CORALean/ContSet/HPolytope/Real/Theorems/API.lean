@@ -69,6 +69,8 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.MinkowskiDiffIneqsEq
 public import CORALean.ContSet.HPolytope.Real.Theorems.SuccLeOfIsBounded
 public import CORALean.ContSet.HPolytope.Real.Theorems.IsGreatestBallRadius
 public import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
+public import CORALean.ContSet.HPolytope.Real.Theorems.DropTrivialEqsExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.ColWeightEqZeroIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.CompactZerosExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.CompactAlignedIneqExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.MoveToEqConstruct

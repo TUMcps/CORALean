@@ -3,6 +3,10 @@ module
 public import CORALean.NN.Layers.Definitions.Relu
 public import CORALean.NN.Layers.Operations.StarSetFloatReluNeuron
 public import CORALean.ContSet.StarSet.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.StarSet.Float.Theorems.Basic
+public import CORALean.ContSet.StarSet.Float.Theorems.LinPredNominalSnoc
+public import CORALean.ContSet.StarSet.Real.Theorems.LinPredMemAddRowsIff
+public import CORALean.ContSet.StarSet.Real.Theorems.LinPredMemSnocIff
 public import CORALean.NN.Layers.Theorems.StarSetFloatChordRowHolds
 public import Mathlib.Algebra.Order.Group.Unbundled.Abs
 public import Mathlib.Tactic.Linarith
@@ -23,7 +27,7 @@ the bounds straddle `0`.
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       12-October-2026
--- Last update:   15-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -77,18 +81,20 @@ theorem StarSet.aux_reluNeuron_nominal (s : StarSet 𝕋 n) (j : Fin n) (b : Int
   have hβ0 : 0 ≤ β := le_max_right _ _
   have hβx : x j ≤ β := le_max_left _ _
   have hS : ∑ k, toReal (s.G j k) * α k = x j - toReal (s.c j) := by rw [hxj]; ring
+  -- the old factors with `β` appended meet the predicate's `snoc`, read as reals
+  have hold : α ∈ ContSet.construct s.pred.nominal := ⟨hα, List.forall_mem_map.mpr hcα⟩
+  have hsnoc : (Fin.snoc (α := fun _ => ℝ) α β : Vec ℝ (s.m + 1))
+      ∈ ContSet.construct (s.pred.snoc zero (maximum b.sup zero)).nominal := by
+    rw [StarSet.LinPred.nominal_snoc, toReal_zero, toReal_maximum, toReal_zero]
+    exact CORALean.Real.StarSet.LinPred.mem_snoc_iff.mpr ⟨hold, hβ0, max_le_max hbx.2 le_rfl⟩
   refine ⟨Fin.snoc (α := fun _ => ℝ) α β, ⟨?_, ?_⟩, fun i => ?_⟩
-  · intro k
-    refine Fin.lastCases ?_ (fun k => ?_) k
-    · simp only [Fin.snoc_last, Fin.snoc_last, toReal_zero, toReal_maximum]
-      exact ⟨hβ0, max_le_max hbx.2 le_rfl⟩
-    · simp only [Fin.snoc_castSucc]
-      simpa using hα k
-  · -- the old rows, then the new ones
+  · exact hsnoc.1
+  · -- the old rows as `snoc` pads them, then the new ones `addRows` adds
     intro r hr
-    simp only [List.mem_append, List.mem_map, List.mem_cons, List.not_mem_nil, or_false] at hr
-    rcases hr with (⟨r', hr', rfl⟩ | rfl | rfl) | hc
-    · simpa [Fin.sum_univ_castSucc, toReal_zero] using hcα r' hr'
+    rcases List.mem_append.mp hr with hr | hr
+    · exact hsnoc.2 _ (List.mem_map_of_mem hr)
+    simp only [List.mem_append, List.mem_cons, List.not_mem_nil, or_false] at hr
+    rcases hr with (rfl | rfl) | hc
     · simp [Fin.sum_univ_castSucc, hβ0, toReal_zero, toReal_neg, toReal_one]
     · simp only [Fin.sum_univ_castSucc, Fin.snoc_castSucc, Fin.snoc_last, hS, toReal_neg,
         toReal_one]

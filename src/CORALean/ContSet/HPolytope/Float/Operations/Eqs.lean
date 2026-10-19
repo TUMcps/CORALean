@@ -7,9 +7,9 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 /-!
 # `HPolytope.eqs`, over a floating-point scalar
 
-CORA's equality constructor. The right-hand side is a point and the error box the origin: an
-equality is kept exact, and an operation that must round one keeps it where a certificate pays
-the rounding into the error box (`anchorEqs`), and writes it as two inequalities otherwise.
+CORA's equality constructor. The right-hand side is a point, the slacks zero and the error box
+the origin: an equality is kept exact, and an operation that must round one writes the rounding
+into its slack (`be_error`), so it stays an equality.
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

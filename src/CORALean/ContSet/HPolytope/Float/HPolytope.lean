@@ -22,10 +22,11 @@ stored floats describe, slacks included (an equality with slack is the slab it t
 `construct` adds the box, through `InflatedContSet`. Separate from the box because a slack is a
 constraint-space quantity, one number per row, which no state-space box expresses without loss.
 
-An operation may still pay a rounding by raising `b` or into the box (`HPolytope.anchorEqs`
-moves a rounded equality onto the stored hyperplane, paying the step into the box and the
-inequalities); one that reads the rows first folds all three into them
-(`HPolytope.absorbRounding`), and one that moves or pads the description carries them along.
+An operation that rounds a right-hand side stores a bound and writes the rounding into that row's
+slack (`HPolytope.setRhs`, #218), so a rounded equality stays an equality; one that stacks rows
+moves the box into the slacks first (`HPolytope.boxToSlack`); one that reads the rows first folds
+all three into them (`HPolytope.absorbRounding`), the one place a slack enters `b`; and one that
+moves or pads the description carries them along.
 
 It stays at `Vec`, the only place either layer pairs a row with a point.
 
