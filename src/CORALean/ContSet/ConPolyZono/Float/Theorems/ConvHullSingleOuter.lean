@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.ConvHullSatisfies
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleExact
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConvHullConsIff
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConvHullSingleConsIff
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.ExistsRelaxIff
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialConvHullEPadE
@@ -56,7 +56,7 @@ theorem ConPolyZono.aux_toReal_convHullG (a : ℕ) {h : ℕ} (c : Vec 𝕋 n) (G
   · simp only [ConPolyZono.convHullG, Real.ConPolyZono.convHullG, Fin.append_left, toRealVec]
   · refine Fin.addCases (fun l => ?_) (fun l => ?_) l <;>
       simp only [ConPolyZono.convHullG, Real.ConPolyZono.convHullG, Fin.append_left,
-        Fin.append_right, Real.ConPolyZono.repVec]
+        Fin.append_right, repVec]
 
 /-- The stored nominal point at factors whose copies the stored operand's constraints admit and
 whose weights add up to `1 - a`. -/
@@ -95,7 +95,7 @@ theorem ConPolyZono.convHullSingle_outer (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 
     exact hr
   obtain ⟨v, β, hv, hβ, hsat, hr⟩ := hr'
   -- each copy of the relaxed operand, and the weights
-  obtain ⟨hj, hl⟩ := (Real.ConPolyZono.mem_convHullCons_iff a (nominal cPZ).cons_eq v).mp hsat
+  obtain ⟨hj, hl⟩ := (Real.ConPolyZono.mem_convHullSingle_cons_iff a (nominal cPZ) v).mp hsat
   -- the factors with every copy's slack factors dropped
   set w : Fin (a * cPZ.p + a) → ℝ := Fin.append
     (fun x => v (Fin.castAdd a (finProdFinEquiv ((finProdFinEquiv.symm x).1,

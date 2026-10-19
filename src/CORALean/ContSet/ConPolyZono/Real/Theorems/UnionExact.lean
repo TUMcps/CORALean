@@ -3,8 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Union
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.AndExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemUnionUpperIff
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecUnionLowerLeft
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecUnionLowerRight
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.EvalUnionLower
 public import CORALean.ContSet.ConPolyZono.Real.Operations.SumUnionE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialEqZeroOfNoZeroCol
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionDomainIff
@@ -43,7 +42,7 @@ weakest hypothesis on the exponent matrices alone, since an all-zero column of
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       13-September-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -58,12 +57,13 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The union's lower rows, read as the equations their matrix `A_L` states (`unionLower`). -/
-theorem ConPolyZono.aux_mem_unionLower_iff {p₁ p₂ : ℕ} (P₁ : PolyLevelSet p₁) (P₂ : PolyLevelSet p₂)
-    (a : Fin (p₁ + p₂ + 2) → ℝ) : a ∈ (ConPolyZono.unionLower P₁ P₂).construct ↔ ∀ i,
-      (ConPolyZono.unionLowerA P₁.A P₁.b P₂.A P₂.b *ᵥ PolyZonotope.monomial
-        (ConPolyZono.unionLowerR P₁.R P₂.R) a) i = ConPolyZono.unionLowerB P₁.b P₂.b i :=
-  PolyLevelSet.mem_construct_iff_of_eq fun _ => rfl
+/-- The union's lower rows of two systems of equations, read as equations. -/
+theorem ConPolyZono.aux_mem_unionLower_iff {p₁ p₂ : ℕ} {P₁ : PolyLevelSet p₁}
+    {P₂ : PolyLevelSet p₂} (h₁ : ∀ i, P₁.op i = .eq) (h₂ : ∀ i, P₂.op i = .eq)
+    (a : Fin (p₁ + p₂ + 2) → ℝ) : a ∈ (ConPolyZono.unionLower P₁ P₂).construct
+      ↔ ∀ i, (ConPolyZono.unionLower P₁ P₂).eval a i = 0 :=
+  forall_congr' fun i => by rw [show (ConPolyZono.unionLower P₁ P₂).op i = .eq from
+    LevelSet.append_op_eq h₁ h₂ i]; rfl
 
 /-- A point of the closed form lies in one operand or the other: the branch
 `union_domain_iff` hands back says which, and pins the other one's block to `0`. -/
@@ -76,7 +76,7 @@ theorem ConPolyZono.aux_mem_of_holds (cPZ₁ cPZ₂ : ConPolyZono α)
         + (∑ i, PolyZonotope.monomial (ConPolyZono.unionE cPZ₁.E cPZ₂.E) a i
             • ConPolyZono.unionG cPZ₁.c cPZ₂.c cPZ₁.G cPZ₂.G i)
       ∈ cPZ₁.construct ∪ cPZ₂.construct := by -- --- PROOF ---
-  rw [ConPolyZono.aux_mem_unionLower_iff] at hlow
+  rw [ConPolyZono.aux_mem_unionLower_iff cPZ₁.cons_eq cPZ₂.cons_eq] at hlow
   have hbr := (ConPolyZono.union_domain_iff (a (ConPolyZono.unionSel cPZ₁.p cPZ₂.p))
     (a (Fin.natAdd (cPZ₁.p + cPZ₂.p) 1))
     (fun k => a (Fin.castAdd 2 (Fin.castAdd cPZ₂.p k)))
@@ -90,10 +90,7 @@ theorem ConPolyZono.aux_mem_of_holds (cPZ₁ cPZ₂ : ConPolyZono α)
       fun k => hab _, fun _ => by simp,
       (PolyLevelSet.mem_construct_iff_of_eq cPZ₁.cons_eq).mpr fun r => ?_, ?_⟩
     · have h := hlow (Fin.castAdd cPZ₂.cons.m r)
-      rw [ConPolyZono.mulVec_unionLower_left cPZ₁.cons.A cPZ₁.cons.b cPZ₂.cons.A cPZ₂.cons.b
-          cPZ₁.cons.R cPZ₂.cons.R
-        a r, hx1] at h
-      simp only [ConPolyZono.unionLowerB, Fin.append_left] at h
+      rw [ConPolyZono.eval_unionLower, Fin.append_left, hx1] at h
       linarith
     · have hG₂ : (∑ i, PolyZonotope.monomial cPZ₂.E
           (fun k => a (Fin.castAdd 2 (Fin.natAdd cPZ₁.p k))) i • cPZ₂.G i) = 0 :=
@@ -108,10 +105,7 @@ theorem ConPolyZono.aux_mem_of_holds (cPZ₁ cPZ₂ : ConPolyZono α)
       fun k => hab _, fun _ => by simp,
       (PolyLevelSet.mem_construct_iff_of_eq cPZ₂.cons_eq).mpr fun r => ?_, ?_⟩
     · have h := hlow (Fin.natAdd cPZ₁.cons.m r)
-      rw [ConPolyZono.mulVec_unionLower_right cPZ₁.cons.A cPZ₁.cons.b cPZ₂.cons.A cPZ₂.cons.b
-          cPZ₁.cons.R cPZ₂.cons.R
-        a r, hx1] at h
-      simp only [ConPolyZono.unionLowerB, Fin.append_right] at h
+      rw [ConPolyZono.eval_unionLower, Fin.append_right, hx1] at h
       linarith
     · have hG₁ : (∑ i, PolyZonotope.monomial cPZ₁.E
           (fun k => a (Fin.castAdd 2 (Fin.castAdd cPZ₂.p k))) i • cPZ₁.G i) = 0 :=
@@ -139,7 +133,7 @@ theorem ConPolyZono.union_exact_of_noZeroCol (cPZ₁ cPZ₂ : ConPolyZono α)
       have hz : ∀ k, (fun k => a (Fin.castAdd 2 (Fin.natAdd cPZ₁.p k))) k = 0 := hv
       refine ⟨a, fun _ => 0, hab, fun j => j.elim0, ?_, ?_⟩
       · refine (Set.ext_iff.mp (PolyLevelSet.and_exact _ _) a).mpr ⟨?_,
-          (ConPolyZono.aux_mem_unionLower_iff _ _ a).mpr ?_⟩
+          (ConPolyZono.aux_mem_unionLower_iff cPZ₁.cons_eq cPZ₂.cons_eq a).mpr ?_⟩
         · exact (ConPolyZono.mem_unionUpper_iff a).mpr
             ((ConPolyZono.union_domain_iff (a (ConPolyZono.unionSel cPZ₁.p cPZ₂.p))
               (a (Fin.natAdd (cPZ₁.p + cPZ₂.p) 1))
@@ -148,21 +142,19 @@ theorem ConPolyZono.union_exact_of_noZeroCol (cPZ₁ cPZ₂ : ConPolyZono α)
               (by rw [hx1]; norm_num) (by rw [hy1]; norm_num)
               (fun k => hab _)).mpr (Or.inl ⟨hx1, hy1, hv⟩))
         · refine Fin.addCases (fun r => ?_) fun r => ?_
-          · rw [ConPolyZono.mulVec_unionLower_left]
+          · rw [ConPolyZono.eval_unionLower, Fin.append_left]
             have h1 : (fun k => a (Fin.castAdd 2 (Fin.castAdd cPZ₂.p k))) = a₁ := funext hu
             rw [h1, hx1]
             have h := (PolyLevelSet.mem_construct_iff_of_eq cPZ₁.cons_eq).mp hsat₁ r
-            simp only [ConPolyZono.unionLowerB, Fin.append_left]
             linarith
           · -- the other operand's rows, its whole left side pinned to zero
-            rw [ConPolyZono.mulVec_unionLower_right]
+            rw [ConPolyZono.eval_unionLower, Fin.append_right]
             have hzero : (cPZ₂.cons.A *ᵥ PolyZonotope.monomial cPZ₂.cons.R
                 fun k => a (Fin.castAdd 2 (Fin.natAdd cPZ₁.p k))) r = 0 := by
               show (∑ l, cPZ₂.cons.A r l * PolyZonotope.monomial cPZ₂.cons.R _ l) = 0
               exact Finset.sum_eq_zero fun l _ => by
                 rw [ConPolyZono.monomial_eq_zero_of_noZeroCol hR₂ hz l, mul_zero]
             rw [hzero, hx1]
-            simp only [ConPolyZono.unionLowerB, Fin.append_right]
             ring
       · -- the point itself: at the selector `1` the center moves to `c₁`
         have hβ₀ : (∑ j, β₁ j • cPZ₁.GI j) = 0 :=
@@ -187,7 +179,7 @@ theorem ConPolyZono.union_exact_of_noZeroCol (cPZ₁ cPZ₂ : ConPolyZono α)
       have hz : ∀ k, (fun k => a (Fin.castAdd 2 (Fin.castAdd cPZ₂.p k))) k = 0 := hu
       refine ⟨a, fun _ => 0, hab, fun j => j.elim0, ?_, ?_⟩
       · refine (Set.ext_iff.mp (PolyLevelSet.and_exact _ _) a).mpr ⟨?_,
-          (ConPolyZono.aux_mem_unionLower_iff _ _ a).mpr ?_⟩
+          (ConPolyZono.aux_mem_unionLower_iff cPZ₁.cons_eq cPZ₂.cons_eq a).mpr ?_⟩
         · exact (ConPolyZono.mem_unionUpper_iff a).mpr
             ((ConPolyZono.union_domain_iff (a (ConPolyZono.unionSel cPZ₁.p cPZ₂.p))
               (a (Fin.natAdd (cPZ₁.p + cPZ₂.p) 1))
@@ -197,20 +189,18 @@ theorem ConPolyZono.union_exact_of_noZeroCol (cPZ₁ cPZ₂ : ConPolyZono α)
               (fun k => hab _)).mpr (Or.inr ⟨hx1, hy1, hu⟩))
         · refine Fin.addCases (fun r => ?_) fun r => ?_
           · -- the first operand's rows, its whole left side pinned to zero
-            rw [ConPolyZono.mulVec_unionLower_left]
+            rw [ConPolyZono.eval_unionLower, Fin.append_left]
             have hzero : (cPZ₁.cons.A *ᵥ PolyZonotope.monomial cPZ₁.cons.R
                 fun k => a (Fin.castAdd 2 (Fin.castAdd cPZ₂.p k))) r = 0 := by
               show (∑ l, cPZ₁.cons.A r l * PolyZonotope.monomial cPZ₁.cons.R _ l) = 0
               exact Finset.sum_eq_zero fun l _ => by
                 rw [ConPolyZono.monomial_eq_zero_of_noZeroCol hR₁ hz l, mul_zero]
             rw [hzero, hx1]
-            simp only [ConPolyZono.unionLowerB, Fin.append_left]
             ring
-          · rw [ConPolyZono.mulVec_unionLower_right]
+          · rw [ConPolyZono.eval_unionLower, Fin.append_right]
             have h2 : (fun k => a (Fin.castAdd 2 (Fin.natAdd cPZ₁.p k))) = a₂ := funext hv
             rw [h2, hx1]
             have h := (PolyLevelSet.mem_construct_iff_of_eq cPZ₂.cons_eq).mp hsat₂ r
-            simp only [ConPolyZono.unionLowerB, Fin.append_right]
             linarith
       · -- and the point, the selector `-1` moving the center to `c₂`
         have hβ₀ : (∑ j, β₂ j • cPZ₂.GI j) = 0 :=

@@ -1,21 +1,24 @@
 module
 
-public import CORALean.ContDynamics.NonlinParamSys.Definitions.LinearizedFloat
+public import CORALean.ContDynamics.LinParamSys.LinParamSys
+public import CORALean.ContDynamics.NonlinParamSys.Operations.LinearizeFFloat
 public import CORALean.ContSet.Interval.Float.Operations.Center
-public import CORALean.ContSet.Interval.Float.Operations.Point
 
 @[expose] public section
 
 /-!
 # `NonlinParamSys.FloatModel.linearizeFloat`
 
-CORA's `nonlinParamSys/linearize` [1], the `paramInt` branch, in `𝕋`. The model is evaluated at
-the point boxes of the expansion point `(xs, us)` over the parameter box `P`: the enclosure of
-the constant term and of the two Jacobians, each holding at every parameter of the box
-(`linearizeFloat_f_mem` and its two siblings). Where CORA splits `f` along the unit vectors and
-so assumes it affine in `p`, the model's enclosure over `P` asks no such thing. The center of the
-box is the stored `Interval.center`, rounded up. The `'linRem'` option and the numeric-`p`
-branch are not carried.
+CORA's `nonlinParamSys/linearize` [1], the `paramInt` branch, in `𝕋`, returning what the exact
+`NonlinParamSys.linearize` returns: a `LinParamSys`, here over interval matrices, the set family
+the float `LinParamSys.reachFloat` runs on, and the point `(p.x, p.u, p.p)`. The model is
+evaluated at the point boxes of the expansion point `(xs, us)` over the parameter box `P`: the
+enclosures of the two Jacobians are the system's `A` and `B` (`linearizeFloat_jacobianX_mem`,
+`linearizeFloat_jacobianU_mem`), and the system's constant is the real value of the stored center
+of the constant term's enclosure (`linearizeFFloat`, which holds at every parameter of the box,
+`linearizeFloat_f_mem`). Where CORA splits `f` along the unit vectors and so assumes it affine in
+`p`, the model's enclosure over `P` asks no such thing. The center of the box is the stored
+`Interval.center`, rounded up. The `'linRem'` option and the numeric-`p` branch are not carried.
 
 ## References
 
@@ -24,7 +27,7 @@ branch are not carried.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -39,15 +42,17 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m q : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
+/-- The linearization of the model about `(xs, us)` over the parameter box `P`: the system over
+interval matrices, and `(p.x, p.u, p.p)`. -/
 def NonlinParamSys.FloatModel.linearizeFloat (fm : NonlinParamSys.FloatModel 𝕋 n m q)
     (xs : Vec 𝕋 n) (us : Vec 𝕋 m) (P : Interval (Vec 𝕋 q)) :
-    NonlinParamSys.LinearizedFloat 𝕋 n m q :=
+    LinParamSys ℐ[𝕋] n × Vec 𝕋 n × Vec 𝕋 m × Vec 𝕋 q :=
   let X := Interval.point xs                                        -- the point box of p.x
   let U := Interval.point us                                        -- the point box of p.u
-  { xs := xs, us := us, ps := P.center                              -- p.x, p.u, p.p
-    f := fm.f X U P                                                 -- [f(p.x, p.u, p)]
-    A := fm.jacX X U P                                              -- [∂f/∂x (p.x, p.u, p)]
-    B := fm.jacU X U P }                                            -- [∂f/∂u (p.x, p.u, p)]
+  let zf := fm.linearizeFFloat xs us P                              -- [f(p.x, p.u, p)]
+  let A := fm.jacX X U P                                            -- [∂f/∂x (p.x, p.u, p)]
+  let B := fm.jacU X U P                                            -- [∂f/∂u (p.x, p.u, p)]
+  (⟨A, m, B, toRealVec zf.center⟩, xs, us, P.center)                -- linsys, p.x, p.u, p.p
 
 end CORALean
 

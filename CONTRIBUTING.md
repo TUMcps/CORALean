@@ -239,6 +239,22 @@ directory of `ContDynamics/` or `HybridDynamics/` whose name says reach set, out
 window or locations and does not end in `Exact`, unless `scripts/exact-name-allowlist.txt` lists
 it with a reason; the list only shrinks.
 
+### A constraint is its level set's
+
+A representation that stores a constraint system as a set of its own stores that set and
+reuses its operations: `ConZonotope` stores an `HPolytope`, `ConPolyZono` a `PolyLevelSet`
+(#174). Whatever an operation does to the constraint is one of the stored set's operations,
+with that set's theorem, and an operation the representation needs but the set lacks is added
+to the set, general and with its own exactness or membership theorem, rather than written row by
+row where it is used: the union's lower rows are `PolyLevelSet.cartProd`, `padVars` and
+`switch`, the convex hull's copies `copies` beside `linear`, `getSubset`'s substitution
+`PolyLevelSet.getSubset`, `reduceCon`'s elimination `eliminate`, and the float merge
+`PolyLevelSet.compact`. `check-conventions.sh` runs `scripts/check-conpolyzono-cons.py`, which
+rejects a definition under `ContSet/ConPolyZono/` returning a matrix, an exponent matrix or a
+vector indexed by the constraint's rows or monomials, or named after a constraint field (`…A`,
+`…B`, `…R`), unless `scripts/conpolyzono-cons-allowlist.txt` lists it with a reason (the
+generator block, or data of one construction); the list only shrinks.
+
 ### The ambient type
 
 `ContSet` is indexed by the ambient type, so a representation is written once and

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
-public import CORALean.ContSet.ConPolyZono.Real.Operations.ProdBlkDiag
+public import CORALean.Global.RepBlockDiag
 public import Mathlib.Algebra.BigOperators.Fin
 
 @[expose] public section
@@ -13,8 +13,8 @@ public import Mathlib.Algebra.BigOperators.Fin
 The convex hull of a set whose last `m` factors no generator reads (`padE E m`, as a relaxed set's
 slack factors) has the generator monomials of the hull of the set without them, at the factor
 vector with each copy's last `m` factors dropped: a copy's monomial is a product over that copy's
-factors (`prod_blkDiag`), and the dropped ones sit at exponent zero. What lets a hull built over a
-set's slack factors be read as one built without them.
+factors (`prod_repBlockDiag`), and the dropped ones sit at exponent zero. What lets a hull built
+over a set's slack factors be read as one built without them.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -31,14 +31,14 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One copy's block, at the padded exponents and at the plain ones. -/
-theorem ConPolyZono.aux_prod_blkDiag_padE {a p h m : ℕ} (E : Fin p → Fin h → ℕ)
+theorem ConPolyZono.aux_prod_repBlockDiag_padE {a p h m : ℕ} (E : Fin p → Fin h → ℕ)
     (v : Fin (a * (p + m)) → ℝ) (y : Fin (a * h)) : -- --- STMT ---
-    (∏ x, v x ^ ConPolyZono.blkDiag a (ConPolyZono.padE E m) x y)
+    (∏ x, v x ^ repBlockDiag 0 a (ConPolyZono.padE E m) x y)
       = ∏ x : Fin (a * p), v (finProdFinEquiv ((finProdFinEquiv.symm x).1,
           Fin.castAdd m (finProdFinEquiv.symm x).2))
-        ^ ConPolyZono.blkDiag a E x y := by -- --- PROOF ---
+        ^ repBlockDiag 0 a E x y := by -- --- PROOF ---
   obtain ⟨⟨j, i⟩, rfl⟩ := finProdFinEquiv.surjective y
-  rw [ConPolyZono.prod_blkDiag, ConPolyZono.prod_blkDiag, Fin.prod_univ_add]
+  rw [prod_repBlockDiag, prod_repBlockDiag, Fin.prod_univ_add]
   -- the padded factors sit at exponent zero
   have hpad : (∏ k : Fin m, v (finProdFinEquiv (j, Fin.natAdd p k))
       ^ ConPolyZono.padE E m (Fin.natAdd p k) i) = 1 :=
@@ -67,7 +67,7 @@ theorem ConPolyZono.monomial_convHullE_padE {a p h m : ℕ} (E : Fin p → Fin h
     · simp [ConPolyZono.convHullE]
     · refine Fin.addCases (fun y => ?_) (fun y => ?_) l <;>
         simp only [ConPolyZono.convHullE, Fin.append_left, Fin.append_right] <;>
-        exact ConPolyZono.aux_prod_blkDiag_padE E (fun x => v (Fin.castAdd a x)) y
+        exact ConPolyZono.aux_prod_repBlockDiag_padE E (fun x => v (Fin.castAdd a x)) y
   -- the weight rows do not depend on the exponents, and read the same weight factors
   · exact Finset.prod_congr rfl fun j _ => by
       simp only [ConPolyZono.convHullE, Fin.append_right]

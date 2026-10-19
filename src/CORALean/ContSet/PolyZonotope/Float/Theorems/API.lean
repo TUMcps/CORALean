@@ -123,6 +123,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.MatMapOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestIndepGenCover
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitGenCover
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ContainsPointSetSound
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SumToRealMerge
 
 /-!
 # What `PolyZonotope` guarantees

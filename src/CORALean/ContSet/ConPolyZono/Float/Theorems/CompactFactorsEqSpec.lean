@@ -39,7 +39,7 @@ theorem ConPolyZono.compactFactors_eq_spec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
       = Real.ConPolyZono.factorIdx cPZ.E cPZ.cons.R k := fun k =>
     PolyZonotope.tabAt_filter _ _ (fun x => by
       simp [Real.ConPolyZono.usedFactors, Real.PolyZonotope.usedFactors]) k
-  simp only [ConPolyZono.compactFactors, ConPolyZono.compactFactorsSpec, hf]
+  simp only [ConPolyZono.compactFactors, ConPolyZono.compactFactorsSpec, hf, funext hf]
 
 end CORALean.Float
 

@@ -436,16 +436,11 @@ src/CORALean/ContDynamics/NonlinDASys/Theorems/ReachUnionOuter.lean
 src/CORALean/ContDynamics/NonlinDASys/Theorems/ReachYUnionSubsetImage.lean
 src/CORALean/ContDynamics/NonlinDASys/Theorems/IsTrajectoryOfNonlinearSys.lean
 src/CORALean/ContDynamics/NonlinDASys/Theorems/IsTrajectoryToNonlinearSys.lean
-src/CORALean/ContDynamics/NonlinParamSys/Definitions/LinearizedFloat.lean
 src/CORALean/ContDynamics/NonlinParamSys/NonlinParamSys.lean
-src/CORALean/ContDynamics/NonlinParamSys/Operations/LinearizeFloat.lean
 src/CORALean/ContDynamics/NonlinParamSys/Theorems/IsConstTrajectoryToAugment.lean
 src/CORALean/ContDynamics/NonlinParamSys/Theorems/IsConstTrajectoryToIsTrajectory.lean
 src/CORALean/ContDynamics/NonlinParamSys/Theorems/JacobianFamilyMem.lean
 src/CORALean/ContDynamics/NonlinParamSys/Theorems/LinearizeFMem.lean
-src/CORALean/ContDynamics/NonlinParamSys/Theorems/LinearizeFloatF.lean
-src/CORALean/ContDynamics/NonlinParamSys/Theorems/LinearizeFloatJacU.lean
-src/CORALean/ContDynamics/NonlinParamSys/Theorems/LinearizeFloatJacX.lean
 src/CORALean/ContDynamics/NonlinParamSys/Theorems/LinearizeJacUMem.lean
 src/CORALean/ContDynamics/NonlinParamSys/Theorems/LinearizeJacXMem.lean
 src/CORALean/ContDynamics/NonlinParamSys/Theorems/ReachFloatCheckedEqSome.lean
@@ -574,7 +569,6 @@ src/CORALean/ContSet/Capsule/Real/Theorems/VerticesMemFrontier.lean
 src/CORALean/ContSet/Capsule/Real/Theorems/VolumeEq.lean
 src/CORALean/ContSet/ConPolyZono/Float/ConPolyZono.lean
 src/CORALean/ContSet/ConPolyZono/Float/Operations/CartProd.lean
-src/CORALean/ContSet/ConPolyZono/Float/Operations/ConsPolyZonotope.lean
 src/CORALean/ContSet/ConPolyZono/Float/Operations/ConvHullSingle.lean
 src/CORALean/ContSet/ConPolyZono/Float/Operations/Dependent.lean
 src/CORALean/ContSet/ConPolyZono/Float/Operations/Empty.lean
@@ -601,7 +595,6 @@ src/CORALean/ContSet/ConPolyZono/Float/Operations/Union.lean
 src/CORALean/ContSet/ConPolyZono/Float/Operations/ZeroMonomials.lean
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/CartProdExact.lean
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/CenterMemConstruct.lean
-src/CORALean/ContSet/ConPolyZono/Float/Theorems/CompactConsEqSpec.lean
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/CompactConsOuter.lean
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/CompactFactorsEqSpec.lean
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/CompactFactorsNominal.lean
@@ -656,8 +649,6 @@ src/CORALean/ContSet/ConPolyZono/Real/Operations/Map.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/MonomialEqZeroOfNoZeroCol.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/MonomialPadE.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/Mtimes.lean
-src/CORALean/ContSet/ConPolyZono/Real/Operations/MulVecUnionLowerLeft.lean
-src/CORALean/ContSet/ConPolyZono/Real/Operations/MulVecUnionLowerRight.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/PadE.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/Plus.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/ProdAddCol.lean
@@ -665,7 +656,6 @@ src/CORALean/ContSet/ConPolyZono/Real/Operations/ProdUnionWithSel.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/ProdUnitCol.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/Project.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/QuadMap.lean
-src/CORALean/ContSet/ConPolyZono/Real/Operations/RescaleStep.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/SumUnionE.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/UnionConValue.lean
 src/CORALean/ContSet/ConPolyZono/Real/Theorems/CartProdExact.lean

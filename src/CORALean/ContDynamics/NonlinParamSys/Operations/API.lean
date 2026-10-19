@@ -9,6 +9,7 @@ public import CORALean.ContDynamics.NonlinParamSys.Operations.ReachFloat
 public import CORALean.ContDynamics.NonlinParamSys.Operations.ReachFloatChecked
 public import CORALean.ContDynamics.NonlinParamSys.Operations.ToNonlinParam
 public import CORALean.ContDynamics.NonlinParamSys.Operations.ToNonlinearSys
+public import CORALean.ContDynamics.NonlinParamSys.Operations.LinearizeFFloat
 
 /-!
 # What `NonlinParamSys` computes

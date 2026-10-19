@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+public import CORALean.ContSet.ConPolyZono.Real.Operations.GetSubset
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Map
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Mtimes
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UsedFactors
@@ -83,6 +84,18 @@ def ConPolyZono.factorIdx {p h q : ℕ} (E : Fin p → Fin h → ℕ) (R : Fin p
 /-- True by `rfl`, and what lets `mtimes` inherit `map`'s exactness. -/
 theorem ConPolyZono.mtimes_eq_map (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
     ConPolyZono.mtimes M cPZ = cPZ.map (Matrix.mulVecLin M) := rfl
+
+
+-- ================================  `ConPolyZono.rescaleStep`  ================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- One factor of `rescale`: factor `r`, if it is a factor of `acc`, re-parametrized onto
+`cen r ± rad r` by `getSubset`. -/
+def ConPolyZono.rescaleStep (cen rad : ℕ → ℝ) (acc : ConPolyZono α) (r : ℕ) : ConPolyZono α :=
+  if h : r < acc.p then acc.getSubset ⟨r, h⟩ (cen r) (rad r) else acc
 
 
 -- ==================================  `ConPolyZono.unitBox`  =================================== --

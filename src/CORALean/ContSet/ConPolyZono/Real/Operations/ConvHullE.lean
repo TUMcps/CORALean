@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Real.Operations.BlkDiag
+public import CORALean.Global.RepBlockDiag
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnitCol
 
 @[expose] public section
@@ -40,7 +40,7 @@ def ConPolyZono.convHullE (a : ℕ) {p h : ℕ} (E : Fin p → Fin h → ℕ) :
     Fin (a * p + a) → Fin (a + (a * h + a * h)) → ℕ :=
   Fin.append
     (fun x => Fin.append (fun _ => 0)
-      (Fin.append (ConPolyZono.blkDiag a E x) (ConPolyZono.blkDiag a E x)))
+      (Fin.append (repBlockDiag 0 a E x) (repBlockDiag 0 a E x)))
     (fun j => Fin.append (ConPolyZono.unitCol j 1)
       (Fin.append (fun _ => 0) (fun y => ConPolyZono.unitCol j 1 (finProdFinEquiv.symm y).1)))
 

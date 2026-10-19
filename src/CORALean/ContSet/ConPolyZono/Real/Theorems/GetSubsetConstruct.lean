@@ -1,10 +1,9 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.GetSubset
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecEqSum
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemGetSubsetIff
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
 public import Mathlib.Tactic.FieldSimp
-public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemCongr
 
 @[expose] public section
 
@@ -15,7 +14,7 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemCongr
 its domain to `cen ± rad` and represents the result exactly — an equality, not
 an enclosure, at every degree the factor carries in either block. The identity
 is `PolyZonotope.getSubset_point`'s, read once at the generators
-(`toPolyZonotope`) and once at the constraint columns (`consPolyZonotope`).
+(`toPolyZonotope`) and once at the constraint rows (`PolyLevelSet.mem_getSubset_iff`).
 
 `hrad` is what makes `cen ± rad` an interval rather than an empty set, the same
 hypothesis `PolyZonotope.getSubset_construct` needs and for the same reason;
@@ -29,7 +28,7 @@ the `rad = 0` branch is [1]'s degenerate case, a factor pinned to a point.
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       12-September-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -40,41 +39,6 @@ namespace CORALean.Real
 open Matrix
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
-
-
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- The expanded constraint matrix applied to the new factors is the original
-one applied to the re-parametrized factors — `getSubset_point` read at the
-constraint columns, both sides unfolded to a sum over one coordinate. -/
-theorem ConPolyZono.aux_getSubset_mulVec (cPZ : ConPolyZono α) (r : Fin cPZ.p) (cen rad : ℝ)
-    (a : Fin cPZ.p → ℝ) : -- --- STMT ---
-    (cPZ.getSubset r cen rad).cons.A *ᵥ PolyZonotope.monomial (cPZ.getSubset r cen rad).cons.R a
-      = cPZ.cons.A *ᵥ PolyZonotope.monomial cPZ.cons.R
-        (Function.update a r (cen + rad * a r)) := by -- --- PROOF ---
-  have hL : (cPZ.getSubset r cen rad).cons.A
-      *ᵥ PolyZonotope.monomial (cPZ.getSubset r cen rad).cons.R a
-      = (cPZ.consPolyZonotope.getSubset r cen rad).point a := by
-    unfold PolyZonotope.point
-    rw [ConPolyZono.mulVec_eq_sum,
-      show (cPZ.consPolyZonotope.getSubset r cen rad).c = (0 : Vec ℝ cPZ.cons.m) from rfl, zero_add]
-    exact Finset.sum_congr rfl fun x _ => rfl
-  have hR : cPZ.cons.A *ᵥ PolyZonotope.monomial cPZ.cons.R (Function.update a r (cen + rad * a r))
-      = cPZ.consPolyZonotope.point (Function.update a r (cen + rad * a r)) := by
-    unfold PolyZonotope.point
-    rw [ConPolyZono.mulVec_eq_sum,
-      show cPZ.consPolyZonotope.c = (0 : Vec ℝ cPZ.cons.m) from rfl, zero_add]
-    exact Finset.sum_congr rfl fun x _ => rfl
-  rw [hL, hR]
-  exact PolyZonotope.getSubset_point cPZ.consPolyZonotope r cen rad a
-
-/-- `getSubset`'s own constraint holds at `a` iff the original's holds at the
-re-parametrized factors. -/
-theorem ConPolyZono.aux_getSubset_holds (cPZ : ConPolyZono α) (r : Fin cPZ.p) (cen rad : ℝ)
-    (a : Fin cPZ.p → ℝ) :
-    a ∈ (cPZ.getSubset r cen rad).cons.construct
-      ↔ (Function.update a r (cen + rad * a r)) ∈ cPZ.cons.construct :=
-  PolyLevelSet.mem_congr cPZ.cons (ConPolyZono.aux_getSubset_mulVec cPZ r cen rad a)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -107,7 +71,7 @@ theorem ConPolyZono.getSubset_construct (cPZ : ConPolyZono α) (r : Fin cPZ.p) (
     · intro k hk
       rw [Function.update_of_ne hk]
       exact ha k
-    · exact (ConPolyZono.aux_getSubset_holds cPZ r cen rad a).mp hsat
+    · exact (PolyLevelSet.mem_getSubset_iff cPZ.cons r cen rad a).mp hsat
     · exact congrArg (· + ∑ j, β j • cPZ.GI j)
         (PolyZonotope.getSubset_point cPZ.toPolyZonotope r cen rad a)
   · -- inverting the substitution recovers an unrestricted witness
@@ -144,7 +108,7 @@ theorem ConPolyZono.getSubset_construct (cPZ : ConPolyZono α) (r : Fin cPZ.p) (
     · have hstep : (Function.update a r (cen + rad * a r)) ∈ cPZ.cons.construct := by
         rw [hupdate]
         exact hsat
-      exact (ConPolyZono.aux_getSubset_holds cPZ r cen rad a).mpr hstep
+      exact (PolyLevelSet.mem_getSubset_iff cPZ.cons r cen rad a).mpr hstep
     · -- the generator identity read backwards, at the recovered witness
       have hgen : (cPZ.toPolyZonotope.getSubset r cen rad).point a
           = cPZ.toPolyZonotope.point a' := by

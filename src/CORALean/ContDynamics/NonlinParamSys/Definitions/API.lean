@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContDynamics.NonlinParamSys.Definitions.FloatModel
-public import CORALean.ContDynamics.NonlinParamSys.Definitions.LinearizedFloat
 public import CORALean.ContDynamics.NonlinParamSys.Definitions.PancakeScaled
 public import CORALean.ContDynamics.NonlinParamSys.Definitions.ReachUnionExact
 public import CORALean.ContDynamics.NonlinParamSys.Definitions.WithSteps

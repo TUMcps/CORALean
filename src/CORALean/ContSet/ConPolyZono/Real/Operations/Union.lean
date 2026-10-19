@@ -32,7 +32,7 @@ The result is not regular, and CORA follows the closed form with `compact_`;
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       13-September-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -54,7 +54,8 @@ noncomputable def ConPolyZono.union {α : Type} [AddCommGroup α] [Module ℝ α
   E := ConPolyZono.unionE cPZ₁.E cPZ₂.E
   GI := Fin.elim0
   cons := (ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).and_ (ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons)
-  cons_eq := LevelSet.append_op_eq (LevelSet.append_op_eq (fun _ => rfl) fun _ => rfl) fun _ => rfl
+  cons_eq := LevelSet.append_op_eq (LevelSet.append_op_eq (fun _ => rfl) fun _ => rfl)
+    (LevelSet.append_op_eq cPZ₁.cons_eq cPZ₂.cons_eq)
 
 end CORALean.Real
 

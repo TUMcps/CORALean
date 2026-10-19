@@ -8,7 +8,6 @@
 # One line per file: `<path>  <reason>`, the reason naming the cycle as it stood when the
 # entry was written.
 
-src/CORALean/ContSet/ConPolyZono/Real/Operations/RescaleStep.lean  cycle once moved in: `Basic` → `ContSet/ConPolyZono/Real/Operations/GetSubset` → `ContSet/ConPolyZono/Real/Operations/ConsPolyZonotope` → `Basic`
 src/CORALean/ContSet/LevelSet/Real/Theorems/AndExact.lean  cycle once moved in: `Basic` → `ContSet/LevelSet/Real/Theorems/ForallAppendHolds` → `Basic`
 src/CORALean/ContSet/PolyZonotope/Float/Operations/QuadUp.lean  cycle once moved in: `Basic` → `ContSet/PolyZonotope/Float/Operations/BilinGUp` → `Basic`
 src/CORALean/ContSet/PolyZonotope/Float/Operations/SubsPoly.lean  cycle once moved in: `Basic` → `ContSet/PolyZonotope/Float/Operations/SubsXprod` → `Basic`

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
-public import CORALean.ContSet.ConPolyZono.Real.Operations.RepVec
+public import CORALean.Global.RepBlockDiag
 
 @[expose] public section
 
@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- A copy of the center per weight, then the generators plain and weighted. -/
 def ConPolyZono.convHullG (a : ℕ) {h : ℕ} (c : Vec 𝕋 n) (G : Fin h → Vec 𝕋 n) :
     Fin (a + (a * h + a * h)) → Vec 𝕋 n :=
-  Fin.append (fun _ => c) (Fin.append (Real.ConPolyZono.repVec a G) (Real.ConPolyZono.repVec a G))
+  Fin.append (fun _ => c) (Fin.append (repVec a G) (repVec a G))
 
 end CORALean.Float
 

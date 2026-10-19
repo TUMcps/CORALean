@@ -1,0 +1,20 @@
+# Definitions under `src/CORALean/ContSet/ConPolyZono/` that `scripts/check-conpolyzono-cons.py`
+# flags as constraint helpers and that must stay (#174): a matrix, exponent matrix or row-indexed
+# vector that is not the constraint's, or that is data of one construction rather than an
+# operation on a level set. One line per definition: `<path>::<name>  <reason>`. The list only
+# shrinks; an entry whose definition is gone or no longer flagged is reported as stale.
+#
+# The generator block: the dependent generators' exponent matrix `E` and the ambient matrix `G`.
+src/CORALean/ContSet/ConPolyZono/Float/Operations/Basic.lean::ConPolyZono.compactGensGap  generators: the gap of a merged generator column, an `n × h` matrix of the ambient block
+src/CORALean/ContSet/ConPolyZono/Real/Operations/AppendE.lean::ConPolyZono.appendE  generators: `E` and the constraint's `R` side by side, the factor-usage table `compactFactors` reads; no constraint is built from it
+src/CORALean/ContSet/ConPolyZono/Real/Operations/ConvHullE.lean::ConPolyZono.convHullE  generators: the hull's generator exponents of [1, Prop. 9]; its constraint is `PolyLevelSet.copies` and `PolyLevelSet.linear`
+src/CORALean/ContSet/ConPolyZono/Real/Operations/PadE.lean::ConPolyZono.padE  generators: `E` with the slack factors of `relax` and `absorbRounding` appended; the constraint side is `PolyLevelSet.relax`
+src/CORALean/ContSet/ConPolyZono/Real/Operations/ReduceConE.lean::ConPolyZono.reduceConE  generators: [1, Prop. 13]'s generator exponents after the substitution; its constraint is `PolyLevelSet.eliminate`
+src/CORALean/ContSet/ConPolyZono/Real/Operations/UnionE.lean::ConPolyZono.unionE  generators: the union's generator exponents of [1, Thm. 1]; its constraint is `PolyLevelSet.and_` of the selector rows and `unionLower`
+#
+# Data of one construction, built into a `PolyLevelSet` where it is used.
+src/CORALean/ContSet/ConPolyZono/Real/Operations/UnionConCol.lean::ConPolyZono.unionConCol  data: the monomials of [1, Thm. 1]'s selector polynomial, a fixed row of the union, stored as the `PolyLevelSet` `unionConRow`
+src/CORALean/ContSet/ConPolyZono/Float/Operations/ZeroMonomials.lean::ConPolyZono.zeroMonomials  data: the constraint monomials at the zero factor vector, which CORA's `isFullDim` test reads beside the generators; it builds no constraint
+#
+# Conversions whose target is indexed by the constraint's rows.
+src/CORALean/ContSet/ConPolyZono/Real/Operations/ExtPolyZonotope.lean::ConPolyZono.extPolyZonotope  conversion: the lifted polynomial zonotope over `state × constraint value` of [1, Lemma 1], a set, not an operation on the constraint

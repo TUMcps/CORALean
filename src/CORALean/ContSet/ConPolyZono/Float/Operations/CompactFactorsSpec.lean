@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.PolyLevelSet.Float.Operations.ReindexVars
 public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 
 @[expose] public section
@@ -9,7 +10,7 @@ public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 
 The factors neither block reads, dropped. Only `p` and the two exponent
 matrices change, all over ℕ, so nothing rounds and neither `b` nor the box
-moves.
+moves. The constraint is its own `PolyLevelSet.reindexVars` at the used factors.
 
 The definition `compactFactors` is proved equal to, which computes the same thing
 from a table built once (issue #61); this one is the statement the exactness
@@ -18,7 +19,7 @@ proof reads.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -45,9 +46,7 @@ def ConPolyZono.compactFactorsSpec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
   G := cPZ.G
   E := fun k i => cPZ.E (Real.ConPolyZono.factorIdx cPZ.E cPZ.cons.R k) i
   GI := cPZ.GI
-  cons := ⟨cPZ.cons.m, cPZ.cons.q, cPZ.cons.A,
-    fun k l => cPZ.cons.R (Real.ConPolyZono.factorIdx cPZ.E cPZ.cons.R k) l, cPZ.cons.b,
-    cPZ.cons.b_error, cPZ.cons.op⟩
+  cons := cPZ.cons.reindexVars (Real.ConPolyZono.factorIdx cPZ.E cPZ.cons.R)
   cons_eq := cPZ.cons_eq
   I_error := cPZ.I_error
 

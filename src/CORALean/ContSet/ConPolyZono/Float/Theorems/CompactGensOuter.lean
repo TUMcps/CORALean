@@ -5,7 +5,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactGensEqSpec
 public import CORALean.ContSet.ConPolyZono.Float.Operations.MergedCol
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.Merge
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SumToRealMerge
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberDownLe
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.LeFiberUp
@@ -100,7 +100,7 @@ theorem ConPolyZono.aux_compactGens_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)
   -- the regrouping read at the generators laid out as CORA's `n × h` matrix
   have hmerge : (∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial cPZ.E a l)
       = ∑ j : Fin (PolyZonotope.repKeep cPZ.E).card, fib i j * mon j :=
-    ConPolyZono.merge cPZ.E (fun i l => cPZ.G l i) a Ek (fun _ _ => rfl) i
+    PolyZonotope.sum_toReal_merge cPZ.E (fun i l => cPZ.G l i) a Ek (fun _ _ => rfl) i
   rw [hxi i, hmerge]
   linarith [hsum]
 

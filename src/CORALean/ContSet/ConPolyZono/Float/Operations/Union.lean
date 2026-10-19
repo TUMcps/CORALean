@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionUpper
 public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionLower
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionE
@@ -37,7 +38,7 @@ with each operand's rows met within their slack.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -63,7 +64,8 @@ def ConPolyZono.union (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZ
   -- the selector rows, the second with its coefficients' rounding, then the operands' own rows
   cons := (ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).and_ (ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons)
   cons_eq := Real.LevelSet.append_op_eq
-    (Real.LevelSet.append_op_eq (fun _ => rfl) fun _ => rfl) fun _ => rfl
+    (Real.LevelSet.append_op_eq (fun _ => rfl) fun _ => rfl)
+    (Real.LevelSet.append_op_eq cPZ₁.cons_eq cPZ₂.cons_eq)
   -- the boxes of both operands, and what storing the center and the generator cost
   I_error := (cPZ₁.I_error.or cPZ₂.I_error).plus
     ((PolyZonotope.midpointResidual cPZ₁.c cPZ₂.c).plus

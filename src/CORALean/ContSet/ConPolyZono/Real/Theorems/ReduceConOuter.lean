@@ -4,6 +4,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceCon
 public import Mathlib.Algebra.Module.BigOperators
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemEliminateOfMem
 
 @[expose] public section
 
@@ -29,7 +30,7 @@ value, but a factor vector of the reduced system need not put `μ_t(α)` where r
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       13-September-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -85,41 +86,10 @@ theorem ConPolyZono.reduceCon_outer (cPZ : ConPolyZono α) (r : Fin cPZ.cons.m) 
       = cPZ.cons.b r - cPZ.cons.A r t * μ t := by
     rw [← hrow, sum_dropIdx t (fun i => cPZ.cons.A r i * μ i)]
     ring
-  refine ⟨a, β, ha, hβ, (PolyLevelSet.mem_construct_iff_of_eq (cPZ.reduceCon r d t).cons_eq).mpr ?_,
-    ?_⟩
-  -- eq. (36): every surviving row holds, its right-hand side shifted
-  · intro j
-    have hJ : ∑ i : Fin (cPZ.cons.q - 1), cPZ.cons.A (dropIdx r j) (dropIdx t i) * μ (dropIdx t i)
-        = (cPZ.cons.A *ᵥ μ) (dropIdx r j) - cPZ.cons.A (dropIdx r j) t * μ t := by
-      have hmv : (cPZ.cons.A *ᵥ μ) (dropIdx r j) = ∑ i, cPZ.cons.A (dropIdx r j) i * μ i := rfl
-      rw [hmv, sum_dropIdx t (fun i => cPZ.cons.A (dropIdx r j) i * μ i)]
-      ring
-    -- the reduced row, before the rank-one correction is split off it
-    have hsum : ((cPZ.reduceCon r d t).cons.A
-        *ᵥ PolyZonotope.monomial (cPZ.reduceCon r d t).cons.R a) j
-        = ∑ i : Fin (cPZ.cons.q - 1),
-            (cPZ.cons.A (dropIdx r j) (dropIdx t i)
-              - cPZ.cons.A r (dropIdx t i) * cPZ.cons.A (dropIdx r j) t / cPZ.cons.A r t)
-                  * μ (dropIdx t i) :=
-      rfl
-    have hterm : ∀ i : Fin (cPZ.cons.q - 1),
-        (cPZ.cons.A (dropIdx r j) (dropIdx t i)
-            - cPZ.cons.A r (dropIdx t i) * cPZ.cons.A (dropIdx r j) t / cPZ.cons.A r t)
-                * μ (dropIdx t i)
-          = cPZ.cons.A (dropIdx r j) (dropIdx t i) * μ (dropIdx t i)
-            - cPZ.cons.A (dropIdx r j) t / cPZ.cons.A r t
-              * (cPZ.cons.A r (dropIdx t i) * μ (dropIdx t i)) := fun i => by ring
-    -- so the row is the original one, shifted by exactly what `reduceConB` shifts
-    have hval : ((cPZ.reduceCon r d t).cons.A
-        *ᵥ PolyZonotope.monomial (cPZ.reduceCon r d t).cons.R a) j
-        = (cPZ.cons.A *ᵥ μ) (dropIdx r j) - cPZ.cons.b r
-            * cPZ.cons.A (dropIdx r j) t / cPZ.cons.A r t := by
-      rw [hsum, Finset.sum_congr rfl (fun i _ => hterm i), Finset.sum_sub_distrib,
-        ← Finset.mul_sum, hJ, hrest]
-      field_simp
-      ring
-    rw [hval, hsat (dropIdx r j)]
-    rfl
+  refine ⟨a, β, ha, hβ, ?_, ?_⟩
+  -- eq. (36): every surviving row holds, the constraint's own `PolyLevelSet.eliminate`
+  · exact PolyLevelSet.mem_eliminate_of_mem cPZ.cons r t (cPZ.cons_eq r) hA
+      ((PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mpr hsat)
   -- the value: generator `d`'s term is what the center and the new block replace
   · have hsplitG : ∑ i, ν i • cPZ.G i
         = ν d • cPZ.G d + ∑ i : Fin (cPZ.h - 1), ν (dropIdx d i) • cPZ.G (dropIdx d i) :=

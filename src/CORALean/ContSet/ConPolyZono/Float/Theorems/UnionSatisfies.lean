@@ -2,8 +2,11 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Union
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionUpperHolds
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatUnionLowerA
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealVecUnionLowerB
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLower
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.EvalNominalCoreCartProd
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.EvalNominalCoreSwitch
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalPadVars
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalSwitch
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalAnd
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.AndExact
@@ -20,13 +23,13 @@ At a factor vector in the cube where the exact union of the two read-back operan
 meets its selector rows exactly and its operand rows within the operands' slacks, the stored union
 meets its own rows within theirs. Both constraints are the selector rows stacked on the operand
 rows (`PolyLevelSet.eval_and_`, `PolyLevelSet.and_exact`): the selector rows by
-`holds_unionUpper_of_real`, the operand rows being the exact ones (`toRealMat_unionLowerA`,
-`toRealVec_unionLowerB`) with the same slacks.
+`holds_unionUpper_of_real`, the operand rows being the exact ones
+(`aux_eval_nominalCore_unionLower`) with the same slacks.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -37,6 +40,28 @@ namespace CORALean.Float
 open Matrix FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The stored operand rows, read back, are the exact layer's at the read-back operands. -/
+theorem ConPolyZono.aux_eval_nominalCore_unionLower {p₁ p₂ : ℕ} (P₁ : PolyLevelSet 𝕋 p₁)
+    (P₂ : PolyLevelSet 𝕋 p₂) (a : Fin (p₁ + p₂ + 2) → ℝ) :
+    (ConPolyZono.unionLower P₁ P₂).nominalCore.eval a
+      = (Real.ConPolyZono.unionLower P₁.nominalCore P₂.nominalCore).eval a := by -- --- PROOF ---
+  funext i
+  unfold ConPolyZono.unionLower Real.ConPolyZono.unionLower
+  rw [PolyLevelSet.eval_nominalCore_switch, Real.PolyLevelSet.eval_switch,
+    Real.PolyLevelSet.eval_switch]
+  have hv : ((P₁.cartProd P₂).padVars 2).nominalCore.eval a
+      = ((P₁.nominalCore.cartProd P₂.nominalCore).padVars 2).eval a := by
+    rw [Real.PolyLevelSet.eval_padVars]
+    exact (Real.PolyLevelSet.eval_padVars _ 2 a).trans
+      (PolyLevelSet.eval_nominalCore_cartProd P₁ P₂ _)
+  have hb : ((P₁.cartProd P₂).padVars 2).nominalCore.b i
+      = ((P₁.nominalCore.cartProd P₂.nominalCore).padVars 2).b i :=
+    congrFun (toRealVec_append P₁.b P₂.b) i
+  rw [hv, hb]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -79,25 +104,13 @@ theorem ConPolyZono.union_satisfies_of_real (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (V
     (ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons)).construct
   rw [PolyLevelSet.and_exact]
   refine ⟨ConPolyZono.holds_unionUpper_of_real cPZ₁.p cPZ₂.p a ha hUmem,
-    (PolyLevelSet.mem_construct_iff_of_eq fun _ => rfl).mpr fun i => ?_⟩
+    (PolyLevelSet.mem_construct_iff_of_eq
+      (Real.LevelSet.append_op_eq cPZ₁.cons_eq cPZ₂.cons_eq)).mpr fun i => ?_⟩
   -- the operand rows, the exact ones at the read-back entries, with the same slacks
-  have hL' : |(Real.ConPolyZono.unionLowerA (toRealMat cPZ₁.cons.A) (toRealVec cPZ₁.cons.b)
-        (toRealMat cPZ₂.cons.A) (toRealVec cPZ₂.cons.b) *ᵥ Real.PolyZonotope.monomial
-          (Real.ConPolyZono.unionLowerR cPZ₁.cons.R cPZ₂.cons.R) a) i
-      - Real.ConPolyZono.unionLowerB (toRealVec cPZ₁.cons.b) (toRealVec cPZ₂.cons.b) i|
-      ≤ |Fin.append (toRealVec cPZ₁.cons.b_error) (toRealVec cPZ₂.cons.b_error) i| := hL i
-  show |(toRealMat (ConPolyZono.unionLowerA cPZ₁.cons.A cPZ₁.cons.b cPZ₂.cons.A cPZ₂.cons.b)
-      *ᵥ Real.PolyZonotope.monomial (Real.ConPolyZono.unionLowerR cPZ₁.cons.R cPZ₂.cons.R) a) i
-    - toReal (ConPolyZono.unionLowerB cPZ₁.cons.b cPZ₂.cons.b i)|
-    ≤ |toReal (ConPolyZono.plusB cPZ₁.cons.b_error cPZ₂.cons.b_error i)|
-  rw [ConPolyZono.toRealMat_unionLowerA,
-      show toReal (ConPolyZono.unionLowerB cPZ₁.cons.b cPZ₂.cons.b i)
-      = Real.ConPolyZono.unionLowerB (toRealVec cPZ₁.cons.b) (toRealVec cPZ₂.cons.b) i from
-    congrFun (ConPolyZono.toRealVec_unionLowerB _ _) i,
-    show toReal (ConPolyZono.plusB cPZ₁.cons.b_error cPZ₂.cons.b_error i)
-      = Fin.append (toRealVec cPZ₁.cons.b_error) (toRealVec cPZ₂.cons.b_error) i from
-    congrFun (toRealVec_append _ _) i]
-  exact hL'
+  show |(ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons).nominalCore.eval a i|
+    ≤ |toReal (Fin.append cPZ₁.cons.b_error cPZ₂.cons.b_error i)|
+  rw [ConPolyZono.aux_eval_nominalCore_unionLower]
+  exact (hL i).trans_eq (congrArg abs (congrFun (toRealVec_append _ _) i).symm)
 
 end CORALean.Float
 

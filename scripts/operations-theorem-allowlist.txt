@@ -14,16 +14,10 @@ src/CORALean/ContSet/ConPolyZono/Real/Operations/MonomialFactorExtendRight.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/MonomialFactorIdxLeft.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/MonomialFactorIdxRight.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/MonomialPadE.lean
-src/CORALean/ContSet/ConPolyZono/Real/Operations/MulVecBlkDiag.lean
-src/CORALean/ContSet/ConPolyZono/Real/Operations/MulVecEqSum.lean
-src/CORALean/ContSet/ConPolyZono/Real/Operations/MulVecUnionLowerLeft.lean
-src/CORALean/ContSet/ConPolyZono/Real/Operations/MulVecUnionLowerRight.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/ProdAddCol.lean
-src/CORALean/ContSet/ConPolyZono/Real/Operations/ProdBlkDiag.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/ProdUnionWithSel.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/ProdUnitCol.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/SumConvHullE.lean
-src/CORALean/ContSet/ConPolyZono/Real/Operations/SumRep.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/SumUnionE.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/UnionConValue.lean
 src/CORALean/ContSet/ConZonotope/Float/Operations/NominalBoundWeights.lean

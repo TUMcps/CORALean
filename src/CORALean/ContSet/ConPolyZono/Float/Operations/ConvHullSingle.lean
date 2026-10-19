@@ -1,10 +1,13 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullA
-public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullB
+public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullG
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullE
-public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullR
+public import CORALean.ContSet.PolyLevelSet.Float.Operations.CartProd
+public import CORALean.ContSet.PolyLevelSet.Float.Operations.Copies
+public import CORALean.ContSet.PolyLevelSet.Float.Operations.Linear
+public import CORALean.ContSet.LevelSet.Real.Theorems.Basic
+public import CORALean.Global.Float.IntRound
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
@@ -20,7 +23,9 @@ box being in it.
 
 No independent generators, as over ℝ. Each copy keeps its operand's slack; the exact hull of the
 operand's nominal set, whose slack factors sit inside each copy, reads as this layout with them
-dropped (`Real.ConPolyZono.monomial_convHullE_padE`).
+dropped (`Real.ConPolyZono.monomial_convHullE_padE`). The constraint is built as over ℝ, from
+`PolyLevelSet.copies`, `PolyLevelSet.linear` and `PolyLevelSet.cartProd`; the weight row's
+`1 - a` is stored from below by `intDown`, its slack the gap to `intUp`, so it only ever widens.
 
 ## References
 
@@ -30,7 +35,7 @@ dropped (`Real.ConPolyZono.monomial_convHullE_padE`).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -55,11 +60,10 @@ def ConPolyZono.convHullSingle (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
   E := Real.ConPolyZono.convHullE a cPZ.E
   GI := Fin.elim0
   -- the copies' rows, each with its slack, and the weight row with its rounding gap
-  cons := ⟨a * cPZ.cons.m + 1, a * cPZ.cons.q + a, ConPolyZono.convHullA a cPZ.cons.A,
-    Real.ConPolyZono.convHullR a cPZ.cons.R, ConPolyZono.convHullB a cPZ.cons.b,
-    Fin.append (Real.ConPolyZono.repVec a cPZ.cons.b_error)
-      (fun _ => subUp (intUp (1 - (a : ℤ))) (intDown (1 - (a : ℤ)))), fun _ => .eq⟩
-  cons_eq _ := rfl
+  cons := (cPZ.cons.copies a).cartProd (PolyLevelSet.linear (m := 1) (fun _ _ => one)
+    (fun _ => intDown (1 - (a : ℤ))) (fun _ => subUp (intUp (1 - (a : ℤ))) (intDown (1 - (a : ℤ))))
+    fun _ => .eq)
+  cons_eq := Real.LevelSet.append_op_eq (fun _ => cPZ.cons_eq _) fun _ => rfl
   -- the operand's box, and what storing `a c` from below leaves to pay
   I_error := cPZ.I_error.plus (Interval.residual (fun i => nsmulDown a (cPZ.c i))
     (fun i => nsmulUp a (cPZ.c i)) (fun i => nsmulDown a (cPZ.c i)))

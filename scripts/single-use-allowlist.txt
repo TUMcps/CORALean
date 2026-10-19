@@ -82,7 +82,6 @@ src/CORALean/ContSet/ConPolyZono/Real/Complexity/Space/Theorems/MtimesP.lean::Co
 src/CORALean/ContSet/ConPolyZono/Real/Complexity/Space/Theorems/PlusP.lean::ConPolyZono.plus_p  pending review-pattern 15 cleanup
 src/CORALean/ContSet/ConPolyZono/Real/Complexity/Space/Theorems/QuadMapP.lean::ConPolyZono.quadMap_p  pending review-pattern 15 cleanup
 src/CORALean/ContSet/ConPolyZono/Real/Complexity/Time/Theorems/IntersectionCostMono.lean::ConPolyZono.intersectionCost_mono  pending review-pattern 15 cleanup
-src/CORALean/ContSet/ConPolyZono/Real/Operations/MulVecBlkDiag.lean::ConPolyZono.mulVec_blkDiag  pending review-pattern 15 cleanup
 src/CORALean/ContSet/ConPolyZono/Real/Operations/ProdUnionWithSel.lean::ConPolyZono.prod_unionWithSel  pending review-pattern 15 cleanup
 src/CORALean/ContSet/ConPolyZono/Real/Operations/SumConvHullE.lean::ConPolyZono.sum_convHullE  pending review-pattern 15 cleanup
 src/CORALean/ContSet/ConPolyZono/Real/Operations/UnionConValue.lean::ConPolyZono.unionCon_value  pending review-pattern 15 cleanup

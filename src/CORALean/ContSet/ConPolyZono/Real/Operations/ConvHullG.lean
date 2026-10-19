@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Real.Operations.RepVec
+public import CORALean.Global.RepBlockDiag
 public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 
 @[expose] public section
@@ -37,7 +37,7 @@ namespace CORALean.Real
 /-- A copy of the center per weight, then the generators plain and weighted. -/
 noncomputable def ConPolyZono.convHullG {α : Type} [AddCommGroup α] [Module ℝ α] (a : ℕ) {h : ℕ}
     (c : α) (G : Fin h → α) : Fin (a + (a * h + a * h)) → α :=
-  Fin.append (fun _ => c) (Fin.append (ConPolyZono.repVec a G) (ConPolyZono.repVec a G))
+  Fin.append (fun _ => c) (Fin.append (repVec a G) (repVec a G))
 
 end CORALean.Real
 
