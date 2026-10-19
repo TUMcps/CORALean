@@ -26,7 +26,6 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.RotateCo
 public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.ScalarIntervalMulCost
 public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.ShiftCost
 public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.TrainingCost
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.UnitIntervalMulCost
 
 /-!
 # `ContSet/Zonotope/Real/Complexity/Time/Operations`

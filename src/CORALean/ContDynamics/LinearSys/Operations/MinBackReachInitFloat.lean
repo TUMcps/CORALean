@@ -17,10 +17,10 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotop
 /-!
 # `Alg. 2` lines 1-6 in floats: the loop state before the first iteration
 
-`minBackReachInit` computed in `𝕋`: [1, Alg. 2] lines 1-6, the two centered particular solutions of
-the time-inverted dynamics `-A` accumulated up to `t₀`, by `inputSolutionFloat` rather than
-`inputSolution`, and the origin as the start of `R̂^∃`. Negating a float is exact, so `-A` costs
-no rounding.
+`aux_minBackReachInit` computed in `𝕋`: [1, Alg. 2] lines 1-6, the two centered particular solutions
+of the time-inverted dynamics `-A` accumulated up to `t₀`, by `inputSolutionFloat` rather than
+`inputSolution`, and the origin as the start of `R̂^∃`. Negating a float is exact, so `-A` costs no
+rounding.
 
 ## References
 

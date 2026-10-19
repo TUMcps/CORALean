@@ -1,8 +1,9 @@
 module
 
+public import CORALean.ContDynamics.NonlinearSys.Definitions.TunedStep
 public import CORALean.ContDynamics.NonlinearSys.Operations.EstimateGainFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.OptDeltatFloat
-public import CORALean.ContDynamics.NonlinearSys.Operations.TuneDeltatInitFloat
+public import CORALean.Global.Float.FloatOps
 
 @[expose] public section
 
@@ -35,6 +36,27 @@ open CORALean.Float FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋]
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- `φ(Δt)` of eq. (25): the worst dimension's ratio of the two error widths. -/
+def aux_gainMaxFloat {n : ℕ} (d dδ : Fin n → 𝕋) : 𝕋 :=
+  (List.finRange n).foldl
+    (fun φ i => if le φ (divUp (dδ i) (d i)) then divUp (dδ i) (d i) else φ) zero
+
+/-- Lines 3-7: shrink `Δ` by `ζ_δ` until the gain it yields reaches `ζ_Δ`, and
+`none` once `fuel` shrinkings have not. -/
+def aux_tuneDeltatInitFloat {n : ℕ} (dabs : 𝕋 → Fin n → 𝕋) (ζδ ζΔ : 𝕋) :
+    𝕋 → ℕ → Option (NonlinearSys.TunedStep 𝕋)
+  | _, 0 => none
+  | Δ, k + 1 =>
+    let Δnext := mulUp ζδ Δ                                      -- 4. Δ ← ζ_δ Δ
+    let dΔ := dabs Δnext                                         -- 5. d(box(R_abs(Δ)))
+    let dδΔ := dabs (mulUp ζδ Δnext)                             -- 5. d(box(R_abs(ζ_δ Δ)))
+    let φ1 := aux_gainMaxFloat dΔ dδΔ                                -- 6. φ₁ by (25)
+    if le ζΔ φ1 then some ⟨Δnext, φ1⟩                            -- 3. while φ₁ < ζ_Δ
+    else aux_tuneDeltatInitFloat dabs ζδ ζΔ Δnext k
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Alg. 2]: the optimal time step size `Δt*` and the gain `φ₁` to hand the
@@ -47,7 +69,7 @@ def tuneDeltatFloat [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ} (prec bis
     -- 2. initialize Δt
     let Δ₀ := Δinit
     -- 3.-7. the loop of (32)
-    match tuneDeltatInitFloat dabs ζδ ζΔ Δ₀ fuel with
+    match aux_tuneDeltatInitFloat dabs ζδ ζΔ Δ₀ fuel with
     | none => none
     | some ⟨Δ₁, φ₁⟩ =>
       -- 8. Δt* by (31)

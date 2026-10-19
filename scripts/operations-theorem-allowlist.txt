@@ -20,7 +20,7 @@ src/CORALean/ContSet/ConPolyZono/Real/Operations/ProdUnitCol.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/SumConvHullE.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/SumUnionE.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/UnionConValue.lean
-src/CORALean/ContSet/ConZonotope/Float/Operations/NominalBoundWeights.lean
+src/CORALean/ContSet/ConZonotope/Float/Operations/BoundDotWeights.lean
 src/CORALean/ContSet/ConZonotope/Real/Operations/Basic.lean
 src/CORALean/ContSet/ConZonotope/Real/Operations/MemDomainIff.lean
 src/CORALean/ContSet/ConZonotope/Real/Operations/MemOfMatIff.lean
@@ -94,7 +94,7 @@ src/CORALean/ContSet/VPolytope/Real/Operations/LeOfForallLe.lean
 src/CORALean/ContSet/ZonoBundle/Float/Operations/SupportBound.lean
 src/CORALean/ContSet/ZonoBundle/Real/Operations/EncloseTightVerticesNonempty.lean
 src/CORALean/ContSet/Zonotope/Real/Operations/Basic.lean
-src/CORALean/ContSet/Zonotope/Real/Operations/QuadMapPairIdx.lean
+src/CORALean/ContSet/Zonotope/Real/Operations/QuadMapTri.lean
 src/CORALean/NN/Layers/Operations/AllOver.lean
 src/CORALean/NN/Layers/Operations/TapEntry.lean
 src/CORALean/Specification/STL/Operations/TreeCnfLoop.lean

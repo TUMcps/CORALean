@@ -1,6 +1,8 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Operations.ErrorEdge
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
+public import CORALean.ContSet.Zonotope.Real.Zonotope
 
 @[expose] public section
 
@@ -49,13 +51,19 @@ noncomputable def aux_errorSolutionOrder (lt : ℝ → ℝ → Bool) (ζ : ℝ) 
     if (lt (1 - edge (η - 1) / edge η) ζ || !lt 0 (edge (η - 1))) = true then some η
     else aux_errorSolutionOrder lt ζ edge (η + 1) fuel
 
+/-- The edge length of the generator sum, per coordinate, up to order `η`. -/
+noncomputable def LinearSys.aux_errorEdge (sys : LinearSys 𝕋 n) (Δt : ℝ)
+    (V : Zonotope (Vec ℝ n)) (η : ℕ) : Vec ℝ n :=
+  fun d => ∑ i ∈ Finset.range (η + 1), ∑ j, |(MatExp.particularCoeff (toRealMat sys.A) Δt i
+    *ᵥ V.G j) d|
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The order `options.tt_err` CORA stores for a step, from `V`'s generators. -/
 noncomputable def LinearSys.errorSolutionOrder (sys : LinearSys 𝕋 n) (lt : ℝ → ℝ → Bool)
     (ζ Δt : ℝ) (V : Zonotope (Vec ℝ n)) (fuel : ℕ) : Option ℕ :=
-  let edge := sys.errorEdge Δt V                                     -- RerrorInt_etanoF
+  let edge := sys.aux_errorEdge Δt V                                     -- RerrorInt_etanoF
   let crit := (List.finRange n).foldl (fun best d => match best with  -- [~,critDimnoF] = max(...)
     | none => some d
     | some b => if lt (edge 1 b) (edge 1 d) then some d else some b) none

@@ -52,8 +52,8 @@ theorem LevelSet.aux_mem_vecBox (I : Interval (Vec ℝ n)) (x : Vec ℝ n) :
 /-- A coordinate step only narrows the box. -/
 theorem LevelSet.aux_linearCoord_subset (fm : ℝ) (m : Vec ℝ n) (k : Interval (Vec ℝ n))
     (j : Fin n) (int : Interval (Vec ℝ n)) :
-    (LevelSet.linearCoord fm m k j int).construct ⊆ int.construct := by -- --- PROOF ---
-  unfold LevelSet.linearCoord
+    (LevelSet.aux_linearCoord fm m k j int).construct ⊆ int.construct := by -- --- PROOF ---
+  unfold LevelSet.aux_linearCoord
   split_ifs
   · intro x hx
     dsimp only at hx
@@ -71,8 +71,8 @@ theorem LevelSet.aux_linearCoord_subset (fm : ℝ) (m : Vec ℝ n) (k : Interval
 theorem LevelSet.aux_linearCoord_mem {fm : ℝ} {m : Vec ℝ n} {k : Interval (Vec ℝ n)} {j : Fin n}
     {int : Interval (Vec ℝ n)} {x : Vec ℝ n} (hx : x ∈ int.construct) (κ : Vec ℝ n)
     (hκ : ∀ i, k.inf i ≤ κ i ∧ κ i ≤ k.sup i) (heq : fm + ∑ i, κ i * (x i - m i) = 0) :
-    x ∈ (LevelSet.linearCoord fm m k j int).construct := by -- --- PROOF ---
-  unfold LevelSet.linearCoord
+    x ∈ (LevelSet.aux_linearCoord fm m k j int).construct := by -- --- PROOF ---
+  unfold LevelSet.aux_linearCoord
   split_ifs with hc
   swap
   · exact hx
@@ -130,16 +130,16 @@ theorem LevelSet.aux_linearCoord_mem {fm : ℝ} {m : Vec ℝ n} {k : Interval (V
 /-- The coordinate steps in turn narrow the box and keep every such solution. -/
 theorem LevelSet.aux_linearFold (fm : ℝ) (m : Vec ℝ n) (k : Interval (Vec ℝ n)) : -- --- STMT ---
     ∀ (l : List (Fin n)) (X : Interval (Vec ℝ n)),
-      (l.foldl (fun X j => linearCoord fm m k j X) X).construct ⊆ X.construct ∧
+      (l.foldl (fun X j => aux_linearCoord fm m k j X) X).construct ⊆ X.construct ∧
       ∀ x ∈ X.construct, ∀ κ : Vec ℝ n, (∀ i, k.inf i ≤ κ i ∧ κ i ≤ k.sup i) →
         fm + ∑ i, κ i * (x i - m i) = 0 →
-        x ∈ (l.foldl (fun X j => linearCoord fm m k j X) X).construct := by -- --- PROOF ---
+        x ∈ (l.foldl (fun X j => aux_linearCoord fm m k j X) X).construct := by -- --- PROOF ---
   intro l
   induction l with
   | nil => exact fun X => ⟨fun x hx => hx, fun x hx _ _ _ => hx⟩
   | cons j l ih =>
     intro X
-    obtain ⟨h₁, h₂⟩ := ih (LevelSet.linearCoord fm m k j X)
+    obtain ⟨h₁, h₂⟩ := ih (LevelSet.aux_linearCoord fm m k j X)
     exact ⟨h₁.trans (LevelSet.aux_linearCoord_subset fm m k j X),
       fun x hx κ hκ heq => h₂ x (LevelSet.aux_linearCoord_mem hx κ hκ heq) κ hκ heq⟩
 
@@ -168,12 +168,12 @@ theorem LevelSet.aux_meanValue {f : Vec ℝ n → ℝ} (hf : Differentiable ℝ 
   exact Finset.sum_congr rfl fun i _ => by ring
 
 /-- One sweep narrows the box and keeps every solution. -/
-theorem LevelSet.aux_linearSweep {f : Vec ℝ n → ℝ} (hf : Differentiable ℝ f)
+theorem LevelSet.aux_linearSweep_spec {f : Vec ℝ n → ℝ} (hf : Differentiable ℝ f)
     {grad : Interval (Vec ℝ n) → Interval (Vec ℝ n)} (hg : IsGradEnclosure f grad)
     (I : Interval (Vec ℝ n)) : -- --- STMT ---
-    (LevelSet.linearSweep f grad I).construct ⊆ I.construct ∧
+    (LevelSet.aux_linearSweep f grad I).construct ⊆ I.construct ∧
       ∀ x ∈ I.construct, f x = 0 →
-        x ∈ (LevelSet.linearSweep f grad I).construct := by -- --- PROOF ---
+        x ∈ (LevelSet.aux_linearSweep f grad I).construct := by -- --- PROOF ---
   -- the fold of `aux_linearFold`, at the center, the interval gradient and `f` of the center
   obtain ⟨h₁, h₂⟩ := LevelSet.aux_linearFold (f I.center) I.center (grad I) (List.finRange n) I
   refine ⟨h₁, fun x hx hfx => ?_⟩
@@ -204,8 +204,8 @@ theorem LevelSet.aux_tightenDomainLinear {f : Vec ℝ n → ℝ} (hf : Different
   | zero => exact fun I => ⟨fun x hx => hx, fun x hx _ => hx⟩
   | succ k ih =>
     intro I
-    obtain ⟨s₁, s₂⟩ := LevelSet.aux_linearSweep hf hg I
-    obtain ⟨i₁, i₂⟩ := ih (LevelSet.linearSweep f grad I)
+    obtain ⟨s₁, s₂⟩ := LevelSet.aux_linearSweep_spec hf hg I
+    obtain ⟨i₁, i₂⟩ := ih (LevelSet.aux_linearSweep f grad I)
     unfold LevelSet.tightenDomainLinear at *
     rw [Function.iterate_succ_apply]
     exact ⟨i₁.trans s₁, fun x hx hfx => i₂ x (s₂ x hx hfx) hfx⟩

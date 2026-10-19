@@ -35,27 +35,27 @@ theorem GridPartition.intersectingCells_outer (P : GridPartition n) (I : Real.In
     c ∈ P.intersectingCells I := by -- --- PROOF ---
   rw [GridPartition.mem_interval_iff] at hxI hxc
   -- each subscript of `c` is a segment meeting `[inf - tol, sup + tol]`
-  have hmem : ∀ j, GridPartition.i2s P.nrOfSegments c j ∈ P.meetingSubscripts I j := by
+  have hmem : ∀ j, GridPartition.i2s P.nrOfSegments c j ∈ P.aux_meetingSubscripts I j := by
     intro j
     have hs := GridPartition.i2s_mem P.nrOfSegments h2 h1 j
     have hI := hxI j
     have hc := hxc j
     simp only [GridPartition.cellInterval] at hc
     have ht := GridPartition.tol_pos
-    unfold GridPartition.meetingSubscripts
+    unfold GridPartition.aux_meetingSubscripts
     rw [List.mem_filter, List.mem_range'_1]
     refine ⟨⟨hs.1, by omega⟩, ?_⟩
     simp only [decide_eq_true_eq]
     constructor <;> linarith [hc.1, hc.2, hI.1, hI.2]
   -- so none of the early exits of `intersectingCells` applies
-  have hne : ¬ (n = 0 ∨ ∃ j, P.meetingSubscripts I j = []) := by
+  have hne : ¬ (n = 0 ∨ ∃ j, P.aux_meetingSubscripts I j = []) := by
     rintro (h | ⟨j, hj⟩)
     · exact hn h
     · have := hmem j
       rw [hj] at this
       exact List.not_mem_nil this
   have hc : c ∈ (List.range' 1 P.nrOfCells).filter fun c =>
-      ∀ j, GridPartition.i2s P.nrOfSegments c j ∈ P.meetingSubscripts I j := by
+      ∀ j, GridPartition.i2s P.nrOfSegments c j ∈ P.aux_meetingSubscripts I j := by
     rw [List.mem_filter, List.mem_range'_1]
     exact ⟨⟨h1, by omega⟩, by simpa using hmem⟩
   unfold GridPartition.intersectingCells

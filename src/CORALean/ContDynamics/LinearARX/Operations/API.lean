@@ -5,9 +5,7 @@ public import CORALean.ContDynamics.LinearARX.Operations.ComputeGOFloat
 public import CORALean.ContDynamics.LinearARX.Operations.SumRangeFloat
 public import CORALean.ContDynamics.LinearARX.Operations.Aext
 public import CORALean.ContDynamics.LinearARX.Operations.Alg1
-public import CORALean.ContDynamics.LinearARX.Operations.Alg1State
 public import CORALean.ContDynamics.LinearARX.Operations.Alg2
-public import CORALean.ContDynamics.LinearARX.Operations.Alg2State
 public import CORALean.ContDynamics.LinearARX.Operations.Bext
 public import CORALean.ContDynamics.LinearARX.Operations.Btilde
 public import CORALean.ContDynamics.LinearARX.Operations.OfObserver

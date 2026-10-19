@@ -49,7 +49,7 @@ normal is divided by `‖aᵢ‖` in `HPolytope.facetNormal`. Step 4 says to res
 met"; for a polytope that is a point on more than one hyperplane, and the check is what keeps the walk inside: at the
 edge of two hyperplanes a reflection at one can leave a direction pointing out of the other. `billiardEnd_mem`
 holds with the check and from an interior point. The step also does not say what happens when `ℓ` equals a segment
-length exactly, the end lying on the boundary; CORA (`l <= segmentLength`) and `billiardEnd` both end the trajectory
+length exactly, the end lying on the boundary; CORA (`l <= aux_segmentLength`) and `billiardEnd` both end the trajectory
 there, and the event has probability zero.
 
 **Eq. 1 — the starting point.** The formula is exact for a point with every inequality strict. At a point on a
@@ -78,7 +78,7 @@ The conclusion for a polytope follows from the symmetry of the unfolded trajecto
 formalization does not carry this out (`not-covered`).
 
 **CORA.** `randPoint_` ('uniform:billiardWalk') follows the algorithm (`tau = norm(Z,2,'ub')`, `R0 = 10 dim`, the length
-`tau * -log(unifrnd(0,1))`, the end ending at `l <= segmentLength`), with the facet normal and the chord from linear programs.
+`tau * -log(unifrnd(0,1))`, the end ending at `l <= aux_segmentLength`), with the facet normal and the chord from linear programs.
 Its zonotope version tests for a nonsmooth point by counting the generator coefficients `|λⱼ| = 1` in the
 chord LP, `extremeCounter <= m - 2 || extremeCounter == m`. For a facet point of a zonotope in general position that
 count is `m - n + 1` (the `n - 1` generators parallel to the facet are free), which is `m - 1` for `n = 2`

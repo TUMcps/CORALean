@@ -11,14 +11,13 @@ public import CORALean.ContSet.HPolytope.Real.Complexity.Time.Operations.Interse
 # `ConZonotope.intersectionCost`
 
 Asserted, not proved: `Operations/Intersection.lean` keeps the first center and generator block,
-pads the second block with zeros, builds the polytope as in `plus` and adds the equalities
-`G₁ β₁ - G₂ β₂ = c₂ - c₁`. Assembling `agreeMat` negates the `n * h₂` entries of the second block,
-and the right-hand side is `n` subtractions. No linear program is solved: emptiness is not
-decided here.
+pads the second block with zeros, builds the polytope as in `plus` and adds the equalities `G₁ β₁ -
+G₂ β₂ = c₂ - c₁`. Assembling `aux_agreeMat` negates the `n * h₂` entries of the second block, and
+the right-hand side is `n` subtractions. No linear program is solved: emptiness is not decided here.
 
 Everything is written. The zonotope part is the center and the `h₁ + h₂` generators of `n`
 entries, the second block's padding zeros included. The polytope is two `comap`s and an
-`intersection` as in `plus`, the `n` equality rows of `agreeMat` with their right-hand sides
+`intersection` as in `plus`, the `n` equality rows of `aux_agreeMat` with their right-hand sides
 (`n * (h₁ + h₂ + 1)` writes, rows dense), and a second `intersection` adding them.
 -/
 

@@ -1,8 +1,10 @@
 module
 
+public import CORALean.ContDynamics.LinParamSys.Operations.ConstPropagate
 public import CORALean.ContDynamics.LinParamSys.Operations.InputSet
+public import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolution
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachOrder
-public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkInput
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepk
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachStepOptions
 public import CORALean.ContDynamics.Reach.Definitions.InputParams
 public import CORALean.ContSet.SetUnion.SetUnion
@@ -13,7 +15,7 @@ public import CORALean.ContSet.SetUnion.SetUnion
 # Reachability with inputs over `[tStart, tFinal]`, one window of width `Δt` at a time
 
 [1, Alg. 1]'s loop with CORA's `params.U`, in input coordinates, anywhere in the input space:
-the windows `τ_0, …, τ_{N-1}`, one `reachStepkInput` each, collected as a `SetUnion`,
+the windows `τ_0, …, τ_{N-1}`, one `aux_reachStepkInput` each, collected as a `SetUnion`,
 `N = ⌈(tFinal - tStart) / Δt⌉` of them and never fewer than one. The state-space input set
 `V = B U ⊕ c` is formed here, as CORA's `priv_inputSolution` forms it, and each window splits
 it at its center, so `0 ∈ U` is not asked: the remainder `V - ũ` holds the origin by
@@ -50,6 +52,24 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recenter (S n) (Vec ℝ n)] [Mtimes ℐ S]
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The window `τ_k = [k Δt, (k + 1) Δt]` at Taylor order `η`, the input set `V` of the state
+space split at its center, at every member of `sys.A`. -/
+noncomputable def LinParamSys.aux_reachStepkInput (sys : LinParamSys ℐ n)
+    (Δt : ℝ) (η : ℕ) (X₀ : S n) (V : S n) (k : ℕ) : S n :=
+  let uc := Recenter.center V                                     -- ũ, the constant
+  let U₀ := Recenter.recenter V                                    -- Ũ = V - ũ, holding 0
+  let tk := (k : ℝ) * Δt                                           -- t_k = k Δt
+  let HRτ₀ := sys.timeIntervalStep Δt η X₀                         -- H^R(τ_0)
+  let PcRτ₀ : S n := sys.constInputSolution Δt η uc                -- P̃^R(τ_0), ũ over τ_0
+  let eAtk := sys.expEnclosure tk η                                -- e^{[A]t_k}
+  let Pctk : S n := sys.constPropagate Δt η uc k                   -- P̃(t_k)
+  let PRtk := sys.particularSolution Δt η U₀ k                     -- P^R_Ũ(t_{k+1})
+  let Hτk := Mtimes.mtimes (𝕄 := ℐ) eAtk (Plus.plus HRτ₀ PcRτ₀)    -- e^{[A]t_k}(H^R ⊕ P̃^R)(τ_0)
+  Plus.plus (Plus.plus Hτk Pctk) PRtk                              -- R(τ_k)
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- One time-interval set per window `τ_k`, `k < ⌈(tFinal - tStart) / Δt⌉` (at least one),
@@ -62,7 +82,7 @@ noncomputable def LinParamSys.reachUnion (sys : LinParamSys ℐ n)
   let N := max 1 ⌈(params.tFinal - params.tStart) / Δt⌉₊         -- windows τ_0, …, τ_{N-1}
   let η' := max options.η (sys.reachOrder Δt + 2)                 -- η, raised until admissible
   let V := sys.inputSet params.U                                  -- V = B U ⊕ c, in the state space
-  ⟨(List.range N).map (sys.reachStepkInput Δt η' X₀ V)⟩           -- ⋃_{k < N} R(τ_k)
+  ⟨(List.range N).map (sys.aux_reachStepkInput Δt η' X₀ V)⟩           -- ⋃_{k < N} R(τ_k)
 
 end CORALean
 

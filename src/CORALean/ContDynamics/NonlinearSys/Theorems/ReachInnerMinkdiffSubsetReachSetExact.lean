@@ -74,7 +74,7 @@ theorem NonlinearSys.reachInnerMinkdiff_subset_reachSetExact
   have step : ∀ (j k : ℕ) (R : Set (Vec ℝ n)) (e : Vec ℝ n) (tp ti tp' ti' : ℕ → Set (Vec ℝ n)),
       R ⊆ RS (k * Δt) → (∀ i : ℕ, tp i ⊆ RS (i * Δt)) → (∀ i, ti i ⊆ RSI i) →
       (∀ i, k < i → tp i = ∅) → (∀ i, k ≤ i → ti i = ∅) →
-      NonlinearSys.reachInnerMinkdiffLoop ops (fun x => sys.f x u₀) Δt fuel j k R e tp ti =
+      NonlinearSys.aux_reachInnerMinkdiffLoop ops (fun x => sys.f x u₀) Δt fuel j k R e tp ti =
         some (tp', ti') →
       (∀ i : ℕ, tp' i ⊆ RS (i * Δt)) ∧ (∀ i, ti' i ⊆ RSI i) ∧
         (∀ i, k + j < i → tp' i = ∅) ∧ (∀ i, k + j ≤ i → ti' i = ∅) := by
@@ -83,7 +83,7 @@ theorem NonlinearSys.reachInnerMinkdiff_subset_reachSetExact
     | zero =>
       -- no step left: the cells are returned as they are
       intro k R e tp ti tp' ti' _ htp hti htp0 hti0 hl
-      simp only [NonlinearSys.reachInnerMinkdiffLoop, Option.some.injEq, Prod.mk.injEq] at hl
+      simp only [NonlinearSys.aux_reachInnerMinkdiffLoop, Option.some.injEq, Prod.mk.injEq] at hl
       obtain ⟨rfl, rfl⟩ := hl
       exact ⟨htp, hti, fun i hi => htp0 i (by omega), fun i hi => hti0 i (by omega)⟩
     | succ j ih =>

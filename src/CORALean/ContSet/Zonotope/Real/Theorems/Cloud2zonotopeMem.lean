@@ -62,21 +62,21 @@ theorem Zonotope.cloud2zonotope_mem [Fintype κ] [Nonempty κ] (dir : (κ → Ve
   -- the loop keeps `X j - Y j ∈ Z`
   have key : ∀ (k iter : ℕ) (w : Vec ℝ n) (Z : Zonotope (Vec ℝ n)) (Y : κ → Vec ℝ n),
       (∀ j, X j - Y j ∈ Z.construct) →
-      ∀ j, X j - (Zonotope.cloud2zonotopeLoop dir ratio s₂ k iter w Z Y).2 j ∈
-        (Zonotope.cloud2zonotopeLoop dir ratio s₂ k iter w Z Y).1.construct := by
+      ∀ j, X j - (Zonotope.aux_cloud2zonotopeLoop dir ratio s₂ k iter w Z Y).2 j ∈
+        (Zonotope.aux_cloud2zonotopeLoop dir ratio s₂ k iter w Z Y).1.construct := by
     intro k
     induction k with
-    | zero => intro iter w Z Y h; simpa [Zonotope.cloud2zonotopeLoop] using h
+    | zero => intro iter w Z Y h; simpa [Zonotope.aux_cloud2zonotopeLoop] using h
     | succ k ih =>
       intro iter w Z Y h
-      simp only [Zonotope.cloud2zonotopeLoop]
+      simp only [Zonotope.aux_cloud2zonotopeLoop]
       split_ifs <;> first
         | exact ih _ _ _ _ (step Z Y _ _ h)
         | exact step Z Y _ _ h
   -- start with the empty zonotope `⟨0, 0⟩`, then box the residual
   have h0 : ∀ j, X j - X j ∈ (⟨0, 0, Fin.elim0⟩ : Zonotope (Vec ℝ n)).construct :=
     fun j => ⟨Fin.elim0, fun i => i.elim0, by simp⟩
-  set L := Zonotope.cloud2zonotopeLoop dir ratio s₂ s₁ 0 0 ⟨0, 0, Fin.elim0⟩ X with hL
+  set L := Zonotope.aux_cloud2zonotopeLoop dir ratio s₂ s₁ 0 0 ⟨0, 0, Fin.elim0⟩ X with hL
   have hres := key s₁ 0 0 _ X h0 j
   have hbox := Interval.zonotope_contains _ (Interval.enclosePoints_outer L.2 j)
   unfold Zonotope.cloud2zonotope

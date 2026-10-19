@@ -44,7 +44,7 @@ theorem Zonotope.tensorMultiplication_coeff (Z : Zonotope (Vec 𝕋 n)) (M : Zon
     {x : Vec ℝ n} (hx : x ∈ Z.construct) : -- --- STMT ---
     ∃ γ : Fin L.C → ℝ, (∀ m, |γ m| ≤ 1)
       ∧ ∃ Δ : Fin n → Fin L.C → ℝ,
-        (∀ i m, |Δ i m| ≤ toReal (Zonotope.tensorHDiff M Z.absorbRounding L i m))
+        (∀ i m, |Δ i m| ≤ toReal (Zonotope.aux_tensorHDiff M Z.absorbRounding L i m))
         ∧ Real.Zonotope.tensorEval (fun i a b c => toReal (M i a b c)) x
           = fun i => ∑ m,
             (toReal (Zonotope.tensorHDown M Z.absorbRounding L i m) + Δ i m)
@@ -63,7 +63,7 @@ theorem Zonotope.tensorMultiplication_coeff (Z : Zonotope (Vec 𝕋 n)) (M : Zon
     have hgap := sub_le_subUp (Zonotope.tensorHUp M Z.absorbRounding L i m)
       (Zonotope.tensorHDown M Z.absorbRounding L i m)
     rw [abs_le]
-    constructor <;> simp only [Zonotope.tensorHDiff] <;> linarith [hb.1, hb.2]
+    constructor <;> simp only [Zonotope.aux_tensorHDiff] <;> linarith [hb.1, hb.2]
   · -- the stored columns plus their shortfalls are the exact ones
     rw [hx']
     funext i

@@ -79,8 +79,6 @@ public import CORALean.ContSet.HPolytope.Float.Operations.EqVec
 public import CORALean.ContSet.HPolytope.Float.Operations.DropAligned
 public import CORALean.ContSet.HPolytope.Float.Operations.CompactAlignedIneq
 public import CORALean.ContSet.HPolytope.Float.Operations.IsInvertedPair
-public import CORALean.ContSet.HPolytope.Float.Operations.KeptRows
-public import CORALean.ContSet.HPolytope.Float.Operations.LeadRows
 public import CORALean.ContSet.HPolytope.Float.Operations.PairsToEq
 public import CORALean.ContSet.HPolytope.Float.Operations.CompactAtoAe
 public import CORALean.ContSet.HPolytope.Float.Operations.ExcludesPoint

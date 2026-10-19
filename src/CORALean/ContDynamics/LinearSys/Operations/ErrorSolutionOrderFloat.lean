@@ -1,6 +1,9 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Operations.ErrorEdgeFloat
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputTermFloat
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.Zonotope.Float.Zonotope
 
 @[expose] public section
 
@@ -10,7 +13,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.ErrorEdgeFloat
 `errorSolutionOrder` computed in `𝕋`: CORA's loop of `errorSolution_adaptive`, raising `η`
 from `2` until the gain `1 − former/edge` of the dominant edge `d` — the first coordinate of
 longest edge at order `1`, as MATLAB's `max` takes it — falls below `ζ`, or that edge was `0`.
-The edges are `errorEdgeFloat`'s, every comparison the float `le`, and `fuel` bounds the loop
+The edges are `aux_errorEdgeFloat`'s, every comparison the float `le`, and `fuel` bounds the loop
 CORA leaves open. A tuning selector: `errorSolutionAdaptiveFloat` is sound at any order. The
 terms are those of [1, Prop. 11].
 
@@ -47,13 +50,21 @@ def aux_errorSolutionOrderFloat (ζ : 𝕋) (edge : ℕ → 𝕋) : ℕ → ℕ 
     if (!le ζ gain || le (edge (η - 1)) zero) = true then some η      -- gain < ζ, or edge 0
     else aux_errorSolutionOrderFloat ζ edge (η + 1) fuel
 
+/-- The edge length of the generator sum, per coordinate, up to order `η`, rounded up. -/
+def LinearSys.aux_errorEdgeFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (V : Zonotope (Vec 𝕋 n)) (η : ℕ) :
+    Vec 𝕋 n :=
+  let Ã := fun i : Fin (η + 1) => MatExp.intervalInputTerm (Interval.point sys.A) Δt i  -- [Ãᵢ]
+  fun d => sumUp fun i : Fin (η + 1) => sumUp fun j : Fin V.h =>      -- Σᵢ Σⱼ
+    sumUp fun k => mulUp (maximum (absolute ((Ã i).inf d k)) (absolute ((Ã i).sup d k)))
+      (absolute (V.G j k))                                             -- ≥ |(Ãᵢ G_j)_d|
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The order `options.tt_err` CORA stores for a step, from `V`'s generators, in floats. -/
 def LinearSys.errorSolutionOrderFloat (sys : LinearSys 𝕋 n) (ζ Δt : 𝕋) (V : Zonotope (Vec 𝕋 n))
     (fuel : ℕ) : Option ℕ :=
-  let edge := sys.errorEdgeFloat Δt V                                -- RerrorInt_etanoF
+  let edge := sys.aux_errorEdgeFloat Δt V                                -- RerrorInt_etanoF
   let crit := (List.finRange n).foldl (fun best d => match best with  -- [~,critDimnoF] = max(...)
     | none => some d
     | some b => if !le (edge 1 d) (edge 1 b) then some d else some b) none

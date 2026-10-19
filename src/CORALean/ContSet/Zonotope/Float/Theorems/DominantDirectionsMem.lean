@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 theorem Zonotope.dominantDirections_mem (Z : Zonotope (Vec 𝕋 n)) (a b : ℕ) :
     ∀ P ∈ Z.dominantDirections a b,
-      ∃ T ∈ Z.dominantShortlist (min a Z.nonzeroCount) (min b Z.nonzeroCount),
+      ∃ T ∈ Z.dominantShortlist (min a Z.aux_nonzeroCount) (min b Z.aux_nonzeroCount),
         P = Z.generatorMatrix T := by -- --- PROOF ---
   intro P (h : Z.dominantDirections a b = some P)
   -- a fold that keeps the incumbent or the next candidate returns one of them

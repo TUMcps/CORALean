@@ -77,7 +77,7 @@ theorem LinParamSys.reachFloatInput_outer (sys : LinParamSys ℐ[𝕋] n) {c : V
   rw [List.length_range] at hlen
   refine ⟨N, hNΔt, hlen, fun {A B x uIn} trajB k hk t ht => ?_⟩
   have hwin := hget k hk
-  simp only [List.getElem_range, LinParamSys.reachStepkFloatInput, Option.bind_eq_bind,
+  simp only [List.getElem_range, LinParamSys.aux_reachStepkFloatInput, Option.bind_eq_bind,
     Option.bind_eq_some_iff, Option.pure_def, Option.some.injEq] at hwin
   obtain ⟨Hτk, hH, PRtk, hP, hRk⟩ := hwin
   -- the input set of the state space, `B U`

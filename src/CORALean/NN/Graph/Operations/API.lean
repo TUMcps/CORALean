@@ -30,18 +30,13 @@ public import CORALean.NN.Graph.Operations.ReduceKeep
 public import CORALean.NN.Graph.Operations.ReducedSteps
 public import CORALean.NN.Graph.Operations.Select
 public import CORALean.NN.Graph.Operations.SelectMat
-public import CORALean.NN.Graph.Operations.SqrtBroadcast
-public import CORALean.NN.Graph.Operations.SqrtCol
 public import CORALean.NN.Graph.Operations.SqrtConst
 public import CORALean.NN.Graph.Operations.SqrtEdgeCoeff
-public import CORALean.NN.Graph.Operations.SqrtError
 public import CORALean.NN.Graph.Operations.SqrtOffset
-public import CORALean.NN.Graph.Operations.SqrtRow
 public import CORALean.NN.Graph.Operations.SqrtSlope
 public import CORALean.NN.Graph.Operations.SumPool
 public import CORALean.NN.Graph.Operations.SumPoolLin
 public import CORALean.NN.Graph.Operations.UncertainAdj
-public import CORALean.NN.Graph.Operations.UncertainAdjPad
 public import CORALean.NN.Graph.Operations.EvalStepsLayers
 public import CORALean.NN.Graph.Operations.Bfs
 public import CORALean.NN.Graph.Operations.EvalLayers
@@ -72,15 +67,15 @@ outside a node set. `degree`/`messagePassing` build `P` at a known graph, `gcnLi
 itself, `sumPoolLin`/`sumPool` the pooling layer, `select` the subgraph projection.
 
 `edgeMat`/`adjAt`/`adjMax` are an uncertain graph's adjacency at one, every, and the heaviest
-admissible edge weighting; `uncertainAdj`/`uncertainAdjPad` are its exact and self-looped matrix
+admissible edge weighting; `uncertainAdj`/`aux_uncertainAdjPad` are its exact and self-looped matrix
 polynomial zonotopes. `matMulBilin`/`gcnShared`/`gcnUncertain`/`evalSteps`/`gcnSteps` are the
 uncertain convolution and its chain over steps, [1, Prop. 5].
 
 `degreeAt`/`degreeSup`/`edgeDegree`/`degreeCoeff` bracket an uncertain degree;
-`sqrtSlope`/`sqrtOffset`/`sqrtError`/`sqrtConst`/`sqrtEdgeCoeff` are the inverse-square-root
-relaxation read over that bracket, `sqrtBroadcast`/`sqrtRow`/`sqrtCol` broadcasting it into the
-two normalising matrices `messagePassingEnclosure`, [1, Prop. 4], pairs entrywise with the padded
-adjacency.
+`sqrtSlope`/`sqrtOffset`/`aux_sqrtError`/`sqrtConst`/`sqrtEdgeCoeff` are the inverse-square-root
+relaxation read over that bracket, `aux_sqrtBroadcast`/`aux_sqrtRow`/`aux_sqrtCol` broadcasting it
+into the two normalising matrices `messagePassingEnclosure`, [1, Prop. 4], pairs entrywise with the
+padded adjacency.
 
 All ℝ-only, `noncomputable` where a search or an inverse square root has no computable form yet —
 see `scripts/noncomputable-allowlist.txt`.

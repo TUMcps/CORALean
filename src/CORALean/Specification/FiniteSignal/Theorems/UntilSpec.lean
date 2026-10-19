@@ -36,10 +36,10 @@ namespace CORALean
 /-- The loop of `until`: every pair of runs adds the times of its piece to the true times. -/
 theorem aux_until_fold (eps p : ℝ) (q : EReal) (dur : ℝ) (h0 : 0 ≤ dur) :
     ∀ (prs : List ((ℝ × ℝ) × (ℝ × ℝ))) (sig : FiniteSignal ℝ Bool), sig.IsValid →
-      sig.duration = dur → ∃ r, prs.foldlM (FiniteSignal.untilStep eps p q dur) sig = some r ∧
+      sig.duration = dur → ∃ r, prs.foldlM (FiniteSignal.aux_untilStep eps p q dur) sig = some r ∧
         r.IsValid ∧ r.duration = dur ∧ ∀ t : ℝ, 0 ≤ t → t ≤ dur → ∃ v, r.at? t = some v ∧
           (v = true ↔ (sig.at? t = some true ∨ ∃ LR ∈ prs, ∃ lo hi,
-            FiniteSignal.untilPiece eps p q LR.1 LR.2 = some (lo, hi) ∧ lo < hi ∧
+            FiniteSignal.aux_untilPiece eps p q LR.1 LR.2 = some (lo, hi) ∧ lo < hi ∧
               (0 < hi ∧ lo < dur ∧ lo ≤ t ∧ (t < hi ∨ dur ≤ hi))))
   | [], sig, hs, hd => by
     refine ⟨sig, rfl, hs, hd, fun t ht0 ht1 => ?_⟩
@@ -48,20 +48,20 @@ theorem aux_until_fold (eps p : ℝ) (q : EReal) (dur : ℝ) (h0 : 0 ≤ dur) :
   | LR :: rest, sig, hs, hd => by
     -- pairs of runs after `LR`, with the signal after it
     have hrest : ∀ sig' : FiniteSignal ℝ Bool, sig'.IsValid → sig'.duration = dur →
-        FiniteSignal.untilStep eps p q dur sig LR = some sig' →
-        ∃ r, (LR :: rest).foldlM (FiniteSignal.untilStep eps p q dur) sig = some r ∧ r.IsValid ∧
+        FiniteSignal.aux_untilStep eps p q dur sig LR = some sig' →
+        ∃ r, (LR :: rest).foldlM (FiniteSignal.aux_untilStep eps p q dur) sig = some r ∧ r.IsValid ∧
           r.duration = dur ∧ ∀ t : ℝ, 0 ≤ t → t ≤ dur → ∃ v, r.at? t = some v ∧
             (v = true ↔ (sig'.at? t = some true ∨ ∃ LR' ∈ rest, ∃ lo hi,
-              FiniteSignal.untilPiece eps p q LR'.1 LR'.2 = some (lo, hi) ∧ lo < hi ∧
+              FiniteSignal.aux_untilPiece eps p q LR'.1 LR'.2 = some (lo, hi) ∧ lo < hi ∧
                 (0 < hi ∧ lo < dur ∧ lo ≤ t ∧ (t < hi ∨ dur ≤ hi)))) := fun sig' hv hdd hstep => by
       obtain ⟨r, hr1, hr2, hr3, hr4⟩ := aux_until_fold eps p q dur h0 rest sig' hv hdd
       refine ⟨r, ?_, hr2, hr3, hr4⟩
       rw [List.foldlM_cons, hstep]
       exact hr1
     -- the case of the piece of `LR`
-    rcases hpc : FiniteSignal.untilPiece eps p q LR.1 LR.2 with _ | ⟨lo, hi⟩
+    rcases hpc : FiniteSignal.aux_untilPiece eps p q LR.1 LR.2 with _ | ⟨lo, hi⟩
     · -- empty: the signal stays
-      obtain ⟨r, hr1, hr2, hr3, hr4⟩ := hrest sig hs hd (by simp [FiniteSignal.untilStep, hpc])
+      obtain ⟨r, hr1, hr2, hr3, hr4⟩ := hrest sig hs hd (by simp [FiniteSignal.aux_untilStep, hpc])
       refine ⟨r, hr1, hr2, hr3, fun t ht0 ht1 => ?_⟩
       obtain ⟨v, hv, hvi⟩ := hr4 t ht0 ht1
       refine ⟨v, hv, hvi.trans ?_⟩
@@ -76,7 +76,7 @@ theorem aux_until_fold (eps p : ℝ) (q : EReal) (dur : ℝ) (h0 : 0 ≤ dur) :
         -- the fact `hdd`
         have hdd : sig'.duration = dur := by rw [hc3, hd, hind3, min_self]
         obtain ⟨r, hr1, hr2, hr3, hr4⟩ := hrest sig' hc2 hdd (by
-          simp [FiniteSignal.untilStep, hpc, hlh, hind1, hc1])
+          simp [FiniteSignal.aux_untilStep, hpc, hlh, hind1, hc1])
         refine ⟨r, hr1, hr2, hr3, fun t ht0 ht1 => ?_⟩
         obtain ⟨v, hv, hvi⟩ := hr4 t ht0 ht1
         refine ⟨v, hv, ?_⟩
@@ -97,7 +97,7 @@ theorem aux_until_fold (eps p : ℝ) (q : EReal) (dur : ℝ) (h0 : 0 ≤ dur) :
       · -- a piece without length: the signal stays
         -- unpack the facts from the previous steps
         obtain ⟨r, hr1, hr2, hr3, hr4⟩ :=
-          hrest sig hs hd (by simp [FiniteSignal.untilStep, hpc, hlh])
+          hrest sig hs hd (by simp [FiniteSignal.aux_untilStep, hpc, hlh])
         refine ⟨r, hr1, hr2, hr3, fun t ht0 ht1 => ?_⟩
         obtain ⟨v, hv, hvi⟩ := hr4 t ht0 ht1
         refine ⟨v, hv, hvi.trans ?_⟩
@@ -113,7 +113,7 @@ theorem FiniteSignal.until?_spec (eps : ℝ) (lsig rsig : FiniteSignal ℝ Bool)
       r.duration = lsig.duration ∧ ∀ t : ℝ, 0 ≤ t → t ≤ lsig.duration →
         (r.at? t = some true ↔ ∃ L ∈ lsig.findIntervals (fun v => decide (true ≤ v)),
           ∃ R ∈ rsig.findIntervals (fun v => decide (true ≤ v)), ∃ lo hi,
-            FiniteSignal.untilPiece eps p q L R = some (lo, hi) ∧ lo < hi ∧
+            FiniteSignal.aux_untilPiece eps p q L R = some (lo, hi) ∧ lo < hi ∧
               (0 < hi ∧ lo < lsig.duration ∧ lo ≤ t ∧
                 (t < hi ∨ lsig.duration ≤ hi))) := by -- --- PROOF ---
   -- the duration is nonnegative, and the signals have the same one

@@ -2,8 +2,9 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 public import CORALean.ContSet.PolyLevelSet.Real.Operations.Eliminate
-public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConE
-public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceConG
+public import CORALean.Global.DropIdx
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Real.Basic
 
 @[expose] public section
 
@@ -43,6 +44,22 @@ of this one.
 namespace CORALean.Real
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The surviving generator exponent columns, then the surviving constraint
+exponent columns. -/
+def ConPolyZono.aux_reduceConE {p h q : ℕ} (E : Fin p → Fin h → ℕ) (R : Fin p → Fin q → ℕ)
+    (d : Fin h) (t : Fin q) : Fin p → Fin ((h - 1) + (q - 1)) → ℕ :=
+  fun k => Fin.addCases (fun i => E k (dropIdx d i)) (fun i => R k (dropIdx t i))
+
+/-- The generators that survive, then `G d` once per surviving constraint
+generator, scaled by what the eliminated row gives it. -/
+noncomputable def ConPolyZono.aux_reduceConG {α : Type} [AddCommGroup α] [Module ℝ α]
+    {h m q : ℕ} (G : Fin h → α) (A : Mat ℝ m q) (r : Fin m) (d : Fin h) (t : Fin q) :
+    Fin ((h - 1) + (q - 1)) → α :=
+  Fin.addCases (fun i => G (dropIdx d i)) (fun i => (-(A r (dropIdx t i)) / A r t) • G d)
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Constraint `r` eliminated, by solving it for constraint generator `t`'s
@@ -54,8 +71,8 @@ noncomputable def ConPolyZono.reduceCon {α : Type} [AddCommGroup α] [Module �
   h := (cPZ.h - 1) + (cPZ.cons.q - 1)
   qI := cPZ.qI
   c := cPZ.c + (cPZ.cons.b r / cPZ.cons.A r t) • cPZ.G d
-  G := ConPolyZono.reduceConG cPZ.G cPZ.cons.A r d t
-  E := ConPolyZono.reduceConE cPZ.E cPZ.cons.R d t
+  G := ConPolyZono.aux_reduceConG cPZ.G cPZ.cons.A r d t
+  E := ConPolyZono.aux_reduceConE cPZ.E cPZ.cons.R d t
   GI := cPZ.GI
   cons := cPZ.cons.eliminate r t
   cons_eq _ := cPZ.cons_eq _

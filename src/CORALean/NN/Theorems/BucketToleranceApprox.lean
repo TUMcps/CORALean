@@ -46,14 +46,14 @@ theorem bucketTolerance_approx {le : 𝕋 → 𝕋 → Bool}
   intro B_kδ (h : bucketTolerance le tol fuel B I_k ρ = some B_kδ)
   -- the bisection returns only where line 16's test passed, at every fuel
   have key : ∀ (k : ℕ) (δmin δmax : 𝕋),
-      bisectBucketTolerance le tol B I_k ρ δmin δmax k = some B_kδ →
+      aux_bisectBucketTolerance le tol B I_k ρ δmin δmax k = some B_kδ →
         |toReal (subUp (ratio (n - bucketed B_kδ) n) ρ)| ≤ toReal tol := by
     intro k
     induction k with
-    | zero => intro _ _ h0; exact absurd h0 (by simp [bisectBucketTolerance])
+    | zero => intro _ _ h0; exact absurd h0 (by simp [aux_bisectBucketTolerance])
     | succ k ih =>
       intro δmin δmax hk
-      simp only [bisectBucketTolerance] at hk
+      simp only [aux_bisectBucketTolerance] at hk
       split at hk
       · rename_i htest
         cases hk

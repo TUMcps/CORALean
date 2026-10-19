@@ -58,9 +58,9 @@ theorem LinearSysDT.aux_observeIntervalFloat_Rx (sys : LinearSysDT 𝕋 n) (L : 
     (hM : M ∈ (LinearSysDT.errMatFloat sys.A L sys.C).construct)
     {e : Vec ℝ n} (he : e ∈ R₀.construct) (k : ℕ) : -- --- STMT ---
     (M ^ k) *ᵥ e ∈
-      (sys.observeIntervalStateFloat L R₀ W V u y k).Rx.construct := by -- --- PROOF ---
+      (sys.aux_observeIntervalStateFloat L R₀ W V u y k).Rx.construct := by -- --- PROOF ---
   induction k with
-  | zero => simpa [LinearSysDT.observeIntervalStateFloat] using he
+  | zero => simpa [LinearSysDT.aux_observeIntervalStateFloat] using he
   | succ k ih =>
     -- one more step maps the set through the interval matrix
     rw [pow_succ', ← Matrix.mulVec_mulVec]
@@ -74,9 +74,9 @@ theorem LinearSysDT.aux_observeIntervalFloat_D (sys : LinearSysDT 𝕋 n) (L : M
     {d : Vec ℝ n}
     (hd : d ∈ ((Zonotope.mtimes (-L) V).plus W).construct) (k : ℕ) : -- --- STMT ---
     (M ^ k) *ᵥ d ∈
-      (sys.observeIntervalStateFloat L R₀ W V u y k).D.construct := by -- --- PROOF ---
+      (sys.aux_observeIntervalStateFloat L R₀ W V u y k).D.construct := by -- --- PROOF ---
   induction k with
-  | zero => simpa [LinearSysDT.observeIntervalStateFloat] using hd
+  | zero => simpa [LinearSysDT.aux_observeIntervalStateFloat] using hd
   | succ k ih =>
     rw [pow_succ', ← Matrix.mulVec_mulVec]
     exact Zonotope.mtimesIntervalMat_outer _ _ (Set.mem_iUnion₂.mpr ⟨M, hM, _, ih, rfl⟩)
@@ -89,7 +89,7 @@ theorem LinearSysDT.aux_observeIntervalFloat_Rwv (sys : LinearSysDT 𝕋 n) (L :
     (d : ℕ → Vec ℝ n)
     (hd : ∀ j, d j ∈ ((Zonotope.mtimes (-L) V).plus W).construct) (k : ℕ) : -- --- STMT ---
     ∑ m ∈ Finset.range k, (M ^ m) *ᵥ d m ∈
-      (sys.observeIntervalStateFloat L R₀ W V u y k).Rwv.construct := by -- --- PROOF ---
+      (sys.aux_observeIntervalStateFloat L R₀ W V u y k).Rwv.construct := by -- --- PROOF ---
   induction k with
   | zero =>
     -- the empty sum is the origin, which the collected box starts at
@@ -101,7 +101,7 @@ theorem LinearSysDT.aux_observeIntervalFloat_Rwv (sys : LinearSysDT 𝕋 n) (L :
   | succ k ih =>
     -- the new term is in the box of `D` after `k` steps
     have hk : (M ^ k) *ᵥ d k ∈
-        (sys.observeIntervalStateFloat L R₀ W V u y k).D.interval.construct :=
+        (sys.aux_observeIntervalStateFloat L R₀ W V u y k).D.interval.construct :=
       Zonotope.interval_contains _ (LinearSysDT.aux_observeIntervalFloat_D sys L R₀ W V u y hM
         (hd k) k)
     rw [Finset.sum_range_succ]
@@ -129,7 +129,7 @@ theorem LinearSysDT.observeIntervalFloat_outer (sys : LinearSysDT 𝕋 n) (L : M
     rw [hneg, Matrix.neg_mulVec]
     abel_nf
   -- the nominal estimate and the error's closed form, carried together
-  have key : ∀ k, ∃ xh ∈ (sys.observeIntervalStateFloat L R₀ W V u y k).x.construct,
+  have key : ∀ k, ∃ xh ∈ (sys.aux_observeIntervalStateFloat L R₀ W V u y k).x.construct,
       ∃ ds : ℕ → Vec ℝ n,
         (∀ m, ds m ∈ ((Zonotope.mtimes (-L) V).plus W).construct) ∧
         x k = xh + ((M ^ k) *ᵥ (x 0 - toRealVec R₀.c) +

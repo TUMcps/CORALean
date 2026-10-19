@@ -2,7 +2,6 @@ module
 
 public import CORALean.Specification.FiniteSignal.FiniteSignal
 public import CORALean.Specification.FiniteSignal.Operations.Basic
-public import CORALean.Specification.FiniteSignal.Operations.FindIntervalsLoop
 
 @[expose] public section
 
@@ -27,13 +26,29 @@ edge before it is first read.
 namespace CORALean
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The intervals `[start, time(i)]` that the loop adds for the breakpoints `L`. -/
+def FiniteSignal.aux_findIntervalsLoop {T V : Type} (cond : V → Bool) (start : T) :
+    List (T × V) → List (T × T)
+  | [] => []
+  -- last interval may hold until end of signal
+  | [(t, v)] => if cond v then [(start, t)] else []
+  | (t, v) :: (t', v') :: rest =>
+    -- rising edge: ~cond(value(i)) && cond(value(i+1))
+    let start' := if !cond v && cond v' then t else start
+    -- falling edge: cond(value(i)) && ~cond(value(i+1))
+    (if cond v && !cond v' then [(start, t)] else []) ++
+      FiniteSignal.aux_findIntervalsLoop cond start' ((t', v') :: rest)
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `int = findIntervals(sig,cond)`. -/
 def FiniteSignal.findIntervals {T V : Type} [Zero T] (s : FiniteSignal T V) (cond : V → Bool) :
     List (T × T) :=
   -- if cond(sig.value(1)) then start = 0
-  FiniteSignal.findIntervalsLoop cond 0 s.pairs
+  FiniteSignal.aux_findIntervalsLoop cond 0 s.pairs
 
 end CORALean
 

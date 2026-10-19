@@ -1,25 +1,21 @@
 module
 
 public import CORALean.NN.Operations.AtSchedule
-public import CORALean.NN.Operations.BisectBucketTolerance
 public import CORALean.NN.Operations.Bucketed
 public import CORALean.NN.Operations.BucketTolerance
 public import CORALean.NN.Operations.ChainEval
 public import CORALean.NN.Operations.CompressionPreprocessing
 public import CORALean.NN.Operations.Convergent
 public import CORALean.NN.Operations.DifferentiableChain
-public import CORALean.NN.Operations.DynamicMergeBuckets
 public import CORALean.NN.Operations.Enclose
 public import CORALean.NN.Operations.EncloseAt
 public import CORALean.NN.Operations.Eval
 public import CORALean.NN.Operations.ExplainBox
 public import CORALean.NN.Operations.ExplanationRefineLoop
 public import CORALean.NN.Operations.GreedyAbstractExplanation
-public import CORALean.NN.Operations.GreedyExplanationStep
 public import CORALean.NN.Operations.GreedyMinimalExplanation
 public import CORALean.NN.Operations.GrowBucketTolerance
 public import CORALean.NN.Operations.InitMergeBuckets
-public import CORALean.NN.Operations.InMergeBucket
 public import CORALean.NN.Operations.IntervalChainBackprop
 public import CORALean.NN.Operations.IntervalChainFwd
 public import CORALean.NN.Operations.IntervalChainJvp
@@ -53,18 +49,14 @@ public import CORALean.NN.Operations.RefinementLipschitz
 public import CORALean.NN.Operations.RefinementNeuron
 public import CORALean.NN.Operations.RefinementRank
 public import CORALean.NN.Operations.RefinementRankAll
-public import CORALean.NN.Operations.RefinementRankApproxError
 public import CORALean.NN.Operations.RefinementRankLayerBias
-public import CORALean.NN.Operations.RefinementRankSensitivity
 public import CORALean.NN.Operations.RefineWorst
 public import CORALean.NN.Operations.ScheduleCons
 public import CORALean.NN.Operations.Basic
 public import CORALean.NN.Operations.Backprop
 public import CORALean.NN.Operations.FgsmAttack
 public import CORALean.NN.Operations.PgdAttack
-public import CORALean.NN.Operations.PgdStep
 public import CORALean.NN.Operations.Sensitivity
-public import CORALean.NN.Operations.StaticMergeBuckets
 public import CORALean.NN.Operations.ToLayer
 public import CORALean.NN.Operations.VerifySplit
 public import CORALean.NN.Operations.VerifySplitWith
@@ -95,7 +87,7 @@ public import CORALean.NN.Operations.IntervalChainBackpropFloat
 
 `Enclose` is the pipeline; `ToLayer` nests a sub-network as a layer; `VerifySplit(With)` recurses
 `Enclose` over a spec's check (a checker); `ChainEval` is an exact chain's composite. `ExplainBox`
-is the set an explanation query asks over, `GreedyMinimalExplanation` (`GreedyExplanationStep`)
+is the set an explanation query asks over, `GreedyMinimalExplanation`
 and `GreedyAbstractExplanation` (`ExplanationRefineLoop`) the searches for one.
 `LayerSensitivity` and `Sensitivity` backpropagate the Jacobian a refinement heuristic weights a
 neuron's error by; `DifferentiableChain` is when `SensitivityFDeriv` makes it the derivative.

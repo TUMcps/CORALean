@@ -11,7 +11,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Point
 The part of [1, Thm. 1] that [1, Sec. 4.4] over-approximates by interval matrices:
 `LinParamSys.inputTaylorSum` starting
 at order `2` rather than `0`, since orders `0` and `1` are the exact part
-`inputTermZono` supplies instead. Below order `2` the sum is empty, matched by
+`aux_inputTermZono` supplies instead. Below order `2` the sum is empty, matched by
 `Interval.point 0`, whose singleton `{0}` is what an empty sum denotes.
 
 Recursive rather than a fold over `Finset`, for the reason `inputTaylorSum`

@@ -1,6 +1,7 @@
 module
 
-public import CORALean.NN.Operations.RefinementRankApproxError
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Real.Basic
 
 @[expose] public section
 
@@ -38,12 +39,19 @@ namespace CORALean
 variable {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- Neuron `j`'s rank under `σ`-Approximation-Error [1, Def. 4.9]: the
+error its own relaxation leaves, and nothing else. -/
+def aux_refinementRankApproxError (d : Vec ℝ n) (j : Fin n) : ℝ := |d j|
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Neuron `j`'s rank under `σ`-Layer-Bias [1, Def. 4.10]: its own
 approximation error, divided by `l + 1`. -/
 noncomputable def refinementRankLayerBias (d : Vec ℝ n) (l : ℕ) (j : Fin n) : ℝ :=
-  refinementRankApproxError d j / ((l : ℝ) + 1)
+  aux_refinementRankApproxError d j / ((l : ℝ) + 1)
 
 end CORALean
 

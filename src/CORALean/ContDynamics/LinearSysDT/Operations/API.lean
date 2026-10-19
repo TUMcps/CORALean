@@ -23,12 +23,9 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.ObservePropagationFlo
 public import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
 public import CORALean.ContDynamics.LinearSysDT.Operations.SimulateBoxFloat
 public import CORALean.ContDynamics.LinearSysDT.Operations.SimulateBoxIn
-public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalStep
 public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalState
 public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveInterval
 public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalFloat
-public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalStateFloat
-public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalStepFloat
 public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveEsoA1D
 public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveEsoB1D
 public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveEsoA

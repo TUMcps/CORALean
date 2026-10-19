@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 public import Mathlib.Data.Finset.Sort
-public import CORALean.ContSet.PolyZonotope.Float.Operations.BoxOutRadius
 
 @[expose] public section
 
@@ -11,7 +10,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.BoxOutRadius
 
 The tail of CORA's `outerApprox`: the `removed` dependent generators leave `G` and `E` for a
 diagonal box appended to the independent block, which also covers the `taken` independent ones.
-The radius is `boxOutRadius`, at least the exact one; center, error box and the kept columns are
+The radius is `aux_boxOutRadius`, at least the exact one; center, error box and the kept columns are
 copied, the kept columns being read off in order by `orderEmbOfFin`.
 -/
 
@@ -30,6 +29,15 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The radius of the box in coordinate `i`, rounded up. -/
+def PolyZonotope.aux_boxOutRadius (pZ : PolyZonotope (Vec 𝕋 n)) (removed : Fin pZ.h → Bool)
+    (taken : Fin pZ.q → Bool) : Vec 𝕋 n := fun i =>
+  addUp (sumUp fun l => if removed l then absolute (pZ.G l i) else zero)
+    (sumUp fun j => if taken j then absolute (pZ.GI j i) else zero)
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `pZ` without the `removed` dependent generators, and the box of those and of the `taken`
@@ -42,7 +50,7 @@ def PolyZonotope.boxOut (pZ : PolyZonotope (Vec 𝕋 n)) (removed : Fin pZ.h →
   c := pZ.c
   G := fun l => pZ.G ((Finset.univ.filter fun l => removed l = false).orderEmbOfFin rfl l)
   E := fun k l => pZ.E k ((Finset.univ.filter fun l => removed l = false).orderEmbOfFin rfl l)
-  GI := Fin.append pZ.GI fun j i => diagonalBlock (pZ.boxOutRadius removed taken) i j
+  GI := Fin.append pZ.GI fun j i => diagonalBlock (pZ.aux_boxOutRadius removed taken) i j
   I_error := pZ.I_error
 
 end CORALean.Float

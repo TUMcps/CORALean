@@ -48,13 +48,13 @@ theorem GridPartition.intersectingCells_inner (P : GridPartition n) (hP : P.Well
   · rw [GridPartition.mem_interval_iff]
     intro j
     have hm := hA j
-    unfold GridPartition.meetingSubscripts at hm
+    unfold GridPartition.aux_meetingSubscripts at hm
     simp only [List.mem_filter, decide_eq_true_eq] at hm
     have hne := GridPartition.cellInterval_nonempty P hP h1 h2' j
     exact ⟨le_max_left _ _, max_le hne hm.2.1⟩
   · intro j
     have hm := hA j
-    unfold GridPartition.meetingSubscripts at hm
+    unfold GridPartition.aux_meetingSubscripts at hm
     simp only [List.mem_filter, decide_eq_true_eq] at hm
     have ht := GridPartition.tol_pos
     have := hI j

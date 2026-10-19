@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Float.Operations.DominantScore
 public import CORALean.ContSet.Zonotope.Float.Operations.DominantShortlist
-public import CORALean.ContSet.Zonotope.Float.Operations.NonzeroCount
+public import CORALean.ContSet.Zonotope.Float.Zonotope
 
 @[expose] public section
 
@@ -41,13 +41,22 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The number of generators that are not provably zero. -/
+def Zonotope.aux_nonzeroCount (Z : Zonotope (Vec 𝕋 n)) : ℕ :=
+  ((List.finRange Z.h).filter fun j =>
+    !(List.finRange n).all fun i => le (absolute (Z.G j i)) zero).length
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's `dominantDirections`: the `n` generators, as columns, of least `dominantScore` among the
 shortlist; `none` where there is none. -/
 def Zonotope.dominantDirections (Z : Zonotope (Vec 𝕋 n))
     (filterLength₁ : ℕ := n + 5) (filterLength₂ : ℕ := n + 3) : Option (Mat 𝕋 n n) :=
-  let nrOfGens := Z.nonzeroCount                                         -- size(nonzeroFilter(G),2)
+  let nrOfGens :=
+    Z.aux_nonzeroCount                                         -- size(nonzeroFilter(G),2)
   let L₁ := min filterLength₁ nrOfGens                                    -- clamp filterLength1
   let L₂ := min filterLength₂ nrOfGens                                    -- clamp filterLength2
   let Gcells := Z.dominantShortlist L₁ L₂                              -- priv_generatorVolumeFilter

@@ -1,10 +1,10 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSys.Operations.HalfMat
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapMixed
+public import CORALean.Global.Float.FloatOps
 
 @[expose] public section
 
@@ -39,6 +39,12 @@ open CORALean.Float FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n m o : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- `½ I`, the scaling of the second-order part. -/
+def aux_halfMat (n : ℕ) : Mat 𝕋 n n := fun i j => if i = j then half one else zero
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Every value the time-varying input part can take over a step, given the step's three ranges,
@@ -50,7 +56,7 @@ def varInputsFloat (B : Mat 𝕋 n m) (D : Fin n → Mat 𝕋 o o)
   let DzΔz := PolyZonotope.quadMapMixed D RzΔ Rz           -- D[z∆, z]
   let DzΔzΔ := PolyZonotope.quadMap D RzΔ                  -- D[z∆, z∆]
   let quad := (DzzΔ.plus DzΔz).plus DzΔzΔ                  -- the three pairings
-  BU.plus (PolyZonotope.mtimes (halfMat n) quad)           -- B U∆ + ½ (…)
+  BU.plus (PolyZonotope.mtimes (aux_halfMat n) quad)           -- B U∆ + ½ (…)
 
 end CORALean
 

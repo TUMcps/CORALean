@@ -1,6 +1,7 @@
 module
 
-public import CORALean.Specification.OnlineAnalyzerNode.Operations.PropBound
+public import CORALean.Specification.OnlineAnalyzerNode.OnlineAnalyzerNode
+public import CORALean.Specification.STLInterval.Definitions.WithinTol
 public import CORALean.Specification.STLInterval.Operations.StlInterval
 
 @[expose] public section
@@ -30,13 +31,29 @@ namespace CORALean
 variable {A : Type}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The loop of `getAllProp`: the bound `ub` and its closedness `rc` after the intervals. -/
+noncomputable def OnlineAnalyzerNode.aux_propBound (eps : ℝ) :
+    List STLInterval → EReal × Bool → EReal × Bool
+  | [], st => st
+  -- isemptyobject(obj.prop(i)): ub = 0; rc = false; break
+  | .empty :: _, _ => (0, false)
+  | .nonempty _ u _ nRc _ _ _ _ :: rest, (ub, rc) =>
+    open Classical in
+    -- if nUb < ub || withinTol(nUb,ub,eps) && ~nRc
+    if u < ub ∨ (STLInterval.withinTol eps u ub ∧ nRc = false) then
+      OnlineAnalyzerNode.aux_propBound eps rest (u, nRc)
+    else OnlineAnalyzerNode.aux_propBound eps rest (ub, rc)
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `allProp = getAllProp(obj)`. -/
 noncomputable def OnlineAnalyzerNode.getAllProp (eps : ℝ) (n : OnlineAnalyzerNode A) :
     STLInterval :=
   -- ub = inf; rc = true; the loop; allProp = stlInterval(0,ub,true,rc)
-  let b := OnlineAnalyzerNode.propBound eps n.prop (⊤, true)
+  let b := OnlineAnalyzerNode.aux_propBound eps n.prop (⊤, true)
   STLInterval.stlInterval 0 b.1 true b.2 le_rfl
 
 end CORALean

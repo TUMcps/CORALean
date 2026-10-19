@@ -3,8 +3,8 @@ module
 public import CORALean.Specification.FiniteSignal.FiniteSignal
 public import CORALean.Specification.FiniteSignal.Operations.Basic
 public import CORALean.Specification.FiniteSignal.Operations.Mk
-public import CORALean.Specification.FiniteSignal.Operations.SetLower
 public import Mathlib.Data.EReal.Operations
+public import Mathlib.Data.Real.Basic
 
 @[expose] public section
 
@@ -34,6 +34,22 @@ stamps over `𝕋`, rounded outward) is not yet written.
 namespace CORALean
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The `startIdx`, `newTim` and `newVal` after the lower boundary; `startIdx` is `0`-based. -/
+noncomputable def FiniteSignal.aux_setLower {V : Type} [DecidableEq V] (s : FiniteSignal ℝ V)
+    (a : ℝ) (value : V) (startIdx : ℕ) : ℕ × List ℝ × List V :=
+  -- if val(startIdx) ~= value && lb > 0
+  if s.value[startIdx]? ≠ some value ∧ 0 < a then
+    -- if startIdx - 1 > 0 && tim(startIdx-1) == lb
+    if 0 < startIdx ∧ s.time[startIdx - 1]? = some a then
+      -- merge with previous interval by dropping the preceding time, or do nothing
+      if s.value[startIdx - 1]? = some value then (startIdx - 1, [], []) else (startIdx, [], [])
+    -- newTim = lb; newVal = val(startIdx)
+    else (startIdx, [a], s.value[startIdx]?.toList)
+  else (startIdx, [], [])
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = set(obj,interval,value)`. -/
@@ -49,7 +65,7 @@ protected noncomputable def FiniteSignal.set? {V : Type} [DecidableEq V] (s : Fi
     let startIdx := (s.time.takeWhile (· ≤ lb.toReal)).length
     let stopIdx := (s.time.takeWhile (· ≤ ub.toReal)).length
     -- the boundary at the lower bound
-    let lower := s.setLower lb.toReal value startIdx
+    let lower := s.aux_setLower lb.toReal value startIdx
     -- if ub == obj.duration || val(stopIdx) ~= value, a boundary at the upper bound
     let upper := ub.toReal = s.duration ∨ s.value[stopIdx]? ≠ some value
     let newTim := if upper then lower.2.1 ++ [ub.toReal] else lower.2.1

@@ -1,8 +1,8 @@
 module
 
-public import CORALean.ContSet.Taylm.Real.Operations.QuadForm
-public import CORALean.ContSet.Taylm.Real.Operations.Minus
 public import CORALean.ContSet.Taylm.Real.Operations.Bounds
+public import CORALean.ContSet.Taylm.Real.Operations.Minus
+public import CORALean.ContSet.Taylm.Real.Operations.QuadTerms
 
 @[expose] public section
 
@@ -33,10 +33,16 @@ open Matrix
 variable {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+noncomputable def Taylm.aux_quadForm (H : Mat ℝ n n) (x0 : Vec ℝ n) (N : ℕ) : Taylm n :=
+  ⟨Taylm.quadTerms H x0, ⟨0, 0⟩, N⟩
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def Taylm.qfbLower (T : Taylm n) (H : Mat ℝ n n) (x0 : Vec ℝ n) : ℝ :=
-  (T.minus (Taylm.quadForm H x0 T.maxOrder)).bounds.inf
+  (T.minus (Taylm.aux_quadForm H x0 T.maxOrder)).bounds.inf
 
 end CORALean.Real
 

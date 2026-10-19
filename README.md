@@ -127,7 +127,7 @@ axiom's inequality, read on the NaN's decoding, fails (for `mulUp`, `divUp`, `ha
    or an exact zero. So a non-NaN result of a rounded operation is a zero or a normal float, and the
    instance of its conjunct at those operands is true on IEEE 754 binary64.
 2. **Propagation.** A NaN input gives a NaN output in every one of them (`NaN + x`, `NaN * x`,
-   `NaN / x` are NaN and `stepUp` and `inRange` refuse a NaN), and so do `neg` (the sign flips; it
+   `NaN / x` are NaN and `stepUp` and `aux_inRange` refuse a NaN), and so do `neg` (the sign flips; it
    stays a NaN) and `minimum`/`maximum` (an unordered pair returns `a + b`). An infinity input is
    absorbed likewise, except `divUp 0 (+∞) = 0`, which is exact. Hence a non-NaN float has only
    non-NaN ancestors: if the output holds no NaN, no operation in its dependency cone received or

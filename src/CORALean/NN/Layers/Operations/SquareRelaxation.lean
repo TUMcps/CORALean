@@ -1,8 +1,7 @@
 module
 
-public import CORALean.NN.Layers.Operations.RelaxationOfDeriv
 public import CORALean.NN.Layers.Operations.Basic
-public import CORALean.NN.Layers.Operations.SquareSlope
+public import CORALean.NN.Layers.Operations.RelaxationOfDeriv
 
 @[expose] public section
 
@@ -29,11 +28,18 @@ open Float Float.FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The chord's slope `l + u`, clamped into the bracket. -/
+def aux_squareSlope (l u : 𝕋) : 𝕋 :=
+  maximum (squareDerivLo l u) (minimum (squareDerivHi l u) (addDown l u))
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The relaxation a bracket of `2x` buys. -/
 def squareRelaxation : Relaxation 𝕋 :=
-  Relaxation.ofDeriv squareEnclosure squareDerivLo squareDerivHi squareSlope
+  Relaxation.ofDeriv squareEnclosure squareDerivLo squareDerivHi aux_squareSlope
 
 end CORALean
 

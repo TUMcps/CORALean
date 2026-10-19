@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSys.Operations.EstimateGainSearchFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.InterpGainFloat
+public import CORALean.Global.Float.FloatOps
 
 @[expose] public section
 
@@ -34,6 +34,18 @@ open CORALean.Float FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋]
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- Halve the bracket toward where `g` crosses `target`, `fuel` times, and hand
+back the last midpoint. -/
+def aux_estimateGainSearchFloat (g : 𝕋 → 𝕋) (target : 𝕋) : 𝕋 → 𝕋 → ℕ → 𝕋
+  | lo, hi, 0 => half (addUp lo hi)
+  | lo, hi, k + 1 =>
+    let mid := half (addUp lo hi)
+    if le (g mid) target then aux_estimateGainSearchFloat g target mid hi k
+    else aux_estimateGainSearchFloat g target lo mid k
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Alg. 2] line 16: the gain `φ⁽¹⁾` eq. (56) fixes, at the `λ'` the step
@@ -45,7 +57,7 @@ def estimateGainFloat (ζδ lam rabs1 rabsOpt : 𝕋) (scalings fuel : ℕ) : �
   let lhs := fun φ1 => (List.range scalings).foldl
     (fun p j => mulUp p (interpGainFloat ζδ φ1 j)) one
   -- 16. eq. (56): solve for φ⁽¹⁾ in [0,1]
-  estimateGainSearchFloat lhs target zero one fuel
+  aux_estimateGainSearchFloat lhs target zero one fuel
 
 end CORALean
 

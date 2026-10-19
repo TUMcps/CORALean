@@ -5,10 +5,10 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptLinPassFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.EstimateGainFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.OptDeltatFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.OrderStepFloat
-public import CORALean.ContDynamics.NonlinearSys.Operations.TuneAbstrOrderFloat
-public import CORALean.Global.Float.Exp
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.Global.Float.Exp
+public import CORALean.Global.Float.FloatOps
 
 @[expose] public section
 
@@ -18,8 +18,8 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 [1, Alg. 2] for `k > 1` computed in `𝕋` from a `FloatHessModel`: line 1 updates the finite horizon
 from the last step's gain, lines 2-15 run the step twice, once over the horizon to get `R_abs(h)`
 and from it the optimal step size, once over that step size, and lines 16-18 report the gain, add
-the error and reduce. The tuning (`optDeltatFloat`, `tuneAbstrOrderFloat`, `estimateGainFloat`) is
-the real algorithm's, restated over `𝕋`.
+the error and reduce. The tuning (`optDeltatFloat`, `aux_tuneAbstrOrderFloat`, `estimateGainFloat`)
+is the real algorithm's, restated over `𝕋`.
 
 Two things differ, and both are the float layer's. The abstraction error is not a fixed point
 (lines 7-11) but a checked region (`orderStepFloat`), so a step either succeeds or the region
@@ -50,6 +50,21 @@ namespace CORALean
 open CORALean.Float FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- [1, Alg. 2] line 13: the abstraction order of the next step, from the two
+error radii of eq. (46) and the two diameter vectors of eq. (47). -/
+def aux_tuneAbstrOrderFloat {n : ℕ} (ζK φstar rabs rabsLast : 𝕋) (d1 d2 : Fin n → 𝕋) (κ : ℕ) : ℕ :=
+  if le (absolute (divUp (mulUp φstar rabs) rabsLast)) (subDown one ζK)
+    -- 13. eq. (46): too close to re-tune
+    then κ
+  else if ∀ i : Fin n, le (d1 i) zero = true ∨ le ζK (divUp (d2 i) (d1 i)) = true
+    -- 13. eq. (47): quadratic wins too little
+    then 1
+    -- 13. eq. (47): it is worth its cost
+    else 2
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -91,8 +106,8 @@ def NonlinearSys.FloatHessModel.adaptStepFloat [SoundFloatArithmetic 𝕋] [ToRa
   let F := if s.κ = 1 then F₁' else F₂'
   -- 12. r^{(λ*)}_abs,k
   let rabsOpt := maximum zero (subUp (rad F.2) (rad p₂.2.1))
-  -- 13. tuneAbstrOrder
-  let κ' := tuneAbstrOrderFloat ζK s.φ rabsOpt s.rabs dabs₁ dabs₂ s.κ
+  -- 13. aux_tuneAbstrOrder
+  let κ' := aux_tuneAbstrOrderFloat ζK s.φ rabsOpt s.rabs dabs₁ dabs₂ s.κ
   -- 16. estimateGain
   let φk := estimateGainFloat ζδ (powUp (divUp one ζδ) opt.exponent) rabs1 rabsOpt
     opt.exponent fuel

@@ -69,7 +69,7 @@ theorem aux_conjCoeffs_bracket {A B : ScaleRounding 𝕋} (hA : A.Sound ra) (hB 
     toReal (conjCoeffsDown A B c p i)
         ≤ Real.shiftConst (Real.scaleCoeffs (fun k => toReal (p k)) ra rb) (toReal c) i
       ∧ Real.shiftConst (Real.scaleCoeffs (fun k => toReal (p k)) ra rb) (toReal c) i
-        ≤ toReal (conjCoeffsUp A B c p i) := by -- --- PROOF ---
+        ≤ toReal (aux_conjCoeffsUp A B c p i) := by -- --- PROOF ---
   have h1 := aux_pow_iterate_up_le hB hb (p i) i
   have h2 := hA.up_ge (B.up^[(i : ℕ)] (p i))
   have h3 := mul_le_mul_of_nonneg_left h1 ha.le
@@ -79,9 +79,9 @@ theorem aux_conjCoeffs_bracket {A B : ScaleRounding 𝕋} (hA : A.Sound ra) (hB 
   by_cases h : i = 0
   · have u := add_le_addUp (A.up (B.up^[(i : ℕ)] (p i))) c
     have d := addDown_le_add (A.down (B.down^[(i : ℕ)] (p i))) c
-    simp only [conjCoeffsUp, conjCoeffsDown, Real.shiftConst, Real.scaleCoeffs, if_pos h]
+    simp only [aux_conjCoeffsUp, conjCoeffsDown, Real.shiftConst, Real.scaleCoeffs, if_pos h]
     constructor <;> nlinarith
-  · simp only [conjCoeffsUp, conjCoeffsDown, Real.shiftConst, Real.scaleCoeffs, if_neg h,
+  · simp only [aux_conjCoeffsUp, conjCoeffsDown, Real.shiftConst, Real.scaleCoeffs, if_neg h,
       add_zero]
     constructor <;> nlinarith
 
@@ -89,27 +89,27 @@ theorem aux_conjCoeffs_bracket {A B : ScaleRounding 𝕋} (hA : A.Sound ra) (hB 
 theorem aux_evalPoly_conjCoeffs_le {A B : ScaleRounding 𝕋} (hA : A.Sound ra) (hB : B.Sound rb)
     (ha : 0 < ra) (hb : 0 < rb) (c : 𝕋) (p : Fin (m + 1) → 𝕋) {t : ℝ} {T : 𝕋}
     (hT : |t| ≤ toReal T) : -- --- STMT ---
-    |Real.evalPoly (fun k => toReal (conjCoeffsUp A B c p k)) t
+    |Real.evalPoly (fun k => toReal (aux_conjCoeffsUp A B c p k)) t
         - (ra * Real.evalPoly (fun k => toReal (p k)) (rb * t) + toReal c)|
-      ≤ toReal (evalPolyUp (conjCoeffsGap A B c p) T) := by -- --- PROOF ---
+      ≤ toReal (evalPolyUp (aux_conjCoeffsGap A B c p) T) := by -- --- PROOF ---
   rw [show ra * Real.evalPoly (fun k => toReal (p k)) (rb * t) + toReal c
       = Real.evalPoly (Real.shiftConst (Real.scaleCoeffs (fun k => toReal (p k)) ra rb)
           (toReal c)) t by
     rw [Real.evalPoly_shiftConst, Real.evalPoly_scaleCoeffs]]
-  have hgap : ∀ i, |toReal (conjCoeffsUp A B c p i)
+  have hgap : ∀ i, |toReal (aux_conjCoeffsUp A B c p i)
       - Real.shiftConst (Real.scaleCoeffs (fun k => toReal (p k)) ra rb) (toReal c) i|
-      ≤ toReal (conjCoeffsGap A B c p i) := by
+      ≤ toReal (aux_conjCoeffsGap A B c p i) := by
     intro i
     obtain ⟨h1, h2⟩ := aux_conjCoeffs_bracket hA hB ha hb c p i
-    have h3 := sub_le_subUp (conjCoeffsUp A B c p i) (conjCoeffsDown A B c p i)
+    have h3 := sub_le_subUp (aux_conjCoeffsUp A B c p i) (conjCoeffsDown A B c p i)
     rw [abs_of_nonneg (by linarith)]
     show _ ≤ toReal (subUp _ _)
     linarith
   -- term by term: the gap times the box bound dominates the coefficient deviation times `t^i`
-  refine le_trans ?_ (le_evalPolyUp (conjCoeffsGap A B c p) T)
-  show |∑ i, toReal (conjCoeffsUp A B c p i) * t ^ (i : ℕ)
+  refine le_trans ?_ (le_evalPolyUp (aux_conjCoeffsGap A B c p) T)
+  show |∑ i, toReal (aux_conjCoeffsUp A B c p i) * t ^ (i : ℕ)
       - ∑ i, Real.shiftConst (Real.scaleCoeffs (fun k => toReal (p k)) ra rb) (toReal c) i
-        * t ^ (i : ℕ)| ≤ ∑ i, toReal (conjCoeffsGap A B c p i) * toReal T ^ (i : ℕ)
+        * t ^ (i : ℕ)| ≤ ∑ i, toReal (aux_conjCoeffsGap A B c p i) * toReal T ^ (i : ℕ)
   rw [← Finset.sum_sub_distrib]
   refine le_trans (Finset.abs_sum_le_sum_abs _ _) (Finset.sum_le_sum fun i _ => ?_)
   rw [← sub_mul, abs_mul, abs_pow]
@@ -135,7 +135,7 @@ theorem PolyRelaxation.ofAffineConj_sound {P : PolyRelaxation 𝕋 m} {A B : Sca
     (aux_abs_le_tBound hl hu)
   have h3 := hA.up_ge (P.error (B.down l) (B.up u))
   have h4 := add_le_addUp (A.up (P.error (B.down l) (B.up u)))
-    (evalPolyUp (conjCoeffsGap A B c (P.coeffs (B.down l) (B.up u)))
+    (evalPolyUp (aux_conjCoeffsGap A B c (P.coeffs (B.down l) (B.up u)))
       (Relaxation.conjTBound l u))
   -- `P`'s polynomial at the scaled point, the value the exact function is compared with
   set pe := Real.evalPoly (fun k => toReal (P.coeffs (B.down l) (B.up u) k)) (rb * t) with hpe
@@ -147,7 +147,8 @@ theorem PolyRelaxation.ofAffineConj_sound {P : PolyRelaxation 𝕋 m} {A B : Sca
       abs_mul, abs_of_pos ha]
     exact mul_le_mul_of_nonneg_left h1 ha.le
   -- the polynomial of the rounded coefficients, at the box point
-  set cu := Real.evalPoly (fun k => toReal (conjCoeffsUp A B c (P.coeffs (B.down l) (B.up u)) k)) t
+  set cu :=
+    Real.evalPoly (fun k => toReal (aux_conjCoeffsUp A B c (P.coeffs (B.down l) (B.up u)) k)) t
     with hcu
   -- split into the deviation from the exact conjugate and the coefficient roundings
   show |g t - cu| ≤ toReal (addUp _ _)

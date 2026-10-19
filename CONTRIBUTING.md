@@ -386,7 +386,8 @@ Build once before first use, since the server starts `lake serve` and otherwise
 builds from cold.
 
 `scripts/check-conventions.sh` checks the conventions on this page that the
-compiler cannot: that an `aux_` name is used only in the file that declares it,
+compiler cannot: that an `aux_` name is used only in the file that declares it (or in
+that algorithm's satellite theorem files, #227),
 that an `API.lean` holds nothing but imports, that it collects its whole
 directory unless its own docstring says which sibling it deliberately leaves
 out, that no file imports its own directory's collector, that no `Real` file of
@@ -621,8 +622,8 @@ has three, and `Dyadic`'s are one-line compositions.
 under `Operations/` or `Theorems/` declares exactly one public thing — or, if
 that thing is small, it is a section of the directory's `Basic.lean` (see
 "Small declarations" below). What it
-needs and nothing else uses is `aux_`; what the tree needs earns a file of its
-own. `<Name>.lean` and `Instances.lean` sit outside the rule — a type is
+needs and nothing else uses is `aux_` (a step of one algorithm is `aux_` in that algorithm's
+file, see "`aux_`"); what the tree needs earns a file of its own. `<Name>.lean` and `Instances.lean` sit outside the rule — a type is
 declared with what it denotes, and instances have no names to collect.
 `Complexity/` follows the same layout as every other directory (issue #187): the
 exact count (`plusCost`) is a file of `Complexity/Time/Operations/`, its
@@ -970,6 +971,43 @@ never imported before; such a proof states the lemmas and cases it needs.
 
 What a file needs and nothing else uses carries the `aux_` prefix, as in CORA.
 The test is mechanical: used outside its own file, or not.
+
+#### A step of one algorithm is `aux_` (#227)
+
+What a file needs and nothing else uses is `aux_`, and the file may be an algorithm's. A step
+of exactly one algorithm — an `Operations/` definition that one other `Operations/` file reads,
+and that is read otherwise only by that algorithm's satellite theorem files — is an `aux_`
+declaration in the algorithm's file, under its `AUXILIARY` banner, before the main definition,
+and the main definition keeps one numbered step comment per printed step. It does not get a file
+of its own because the algorithm's invariant proof needs to name it: that proof is the algorithm's
+satellite, and may read the algorithm's `aux_` declarations; nothing else may.
+
+The **satellite** theorem files of the algorithm `<D>/Operations/<X>.lean` are the files
+`<D>/Theorems/<S>.lean`, same directory `<D>`, where `<X>` occurs in `<S>` as a whole run of
+CamelCase words: `<S>` starts with `<X>` or has it at an uppercase letter, and it is followed by
+the end of `<S>`, `_` or an uppercase letter. `IsMinSuffExplanationGreedyMinimalExplanation` is a
+satellite of `GreedyMinimalExplanation`, `ExistsAutoStepAutoRun` of `AutoStep` and of `AutoRun`.
+Where several operations of the directory match, a stem that is a substring of a longer matching
+stem is dropped, so `ExistsAutoStepFloat` belongs to `AutoStepFloat` and not to `AutoStep`. A
+`Basic.lean` has no satellites. `scripts/satellites.py` computes it.
+
+A step keeps its **own file** (the D exceptions) when
+
+* the paper prints it as an Algorithm of its own: its docstring cites its own `Alg.` or
+  `Algorithm`, not just lines of one (`[1, Alg. 1, l. 3-5]`, `Lines 6-10`);
+* two algorithms read it (a second `Operations/` file, or the theorem of another algorithm);
+* a float twin calls it from the real layer: its one reader is a `Float/` file and the step is not
+  under `Float/`;
+* it belongs to another directory than its reader (a `Capsule/Float/Operations/` function that a
+  `LinearSys` algorithm calls): it is that directory's public operation; or
+* it has theorems of its own, or any other reader (an example, a `Counterexamples/` file).
+
+`scripts/check-steps.py` reports every other `Operations/` definition with exactly one
+`Operations/` reader (and no reader but that reader's satellites). Steps not folded yet are
+listed in `scripts/step-file-allowlist.txt` with the root of their cluster; the list only
+shrinks. The single-use check treats an algorithm and its satellites as one unit: a theorem whose
+one reader is in its own unit is left alone. `check-conventions.sh` accepts an `aux_` name in a
+satellite theorem file when the algorithm's file declares it.
 
 Never on an `instance`. Type class search reaches an instance from every file
 that imports it and never names it, so no file can claim nothing else uses one.

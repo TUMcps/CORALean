@@ -282,6 +282,7 @@ out=$(awk \
   -v ZEROLIST="$ZEROCOST_LIST" \
   -v CEXLIST="$cexlist" \
   -v STALE="$([ -z "$STAGED" ] && echo 1 || echo 0)" \
+  -v PYTHON="$PYTHON" \
   -v ALLOWLIST="$ALLOWLIST" '
 # One `Reviewed:` entry: `DD-Month-YYYY (Name)`, a human name.
 function checkReview(val, ln,    d, nm) {
@@ -589,12 +590,20 @@ function closeBlock(e,   len) {
   blockKind = ""
 }
 
+# #227: the `Theorems/` file of an algorithm (its satellite, see scripts/satellites.py) may read
+# the `aux_` declarations of that algorithm'"'"'s `Operations/` file; no other file may.
+function satelliteDeclares(f, a,   cmd) {
+  if (f !~ /\/Theorems\//) return 0
+  cmd = PYTHON " scripts/satellites.py declares " f " " a
+  return system(cmd) == 0
+}
+
 function check(f,   i, n, collector, want, dir, cap, nroot, rootList, isRoot) {
   endRun(f)
   collector = (f ~ /\/API\.lean$/) || (f == "src/CORALean.lean")
 
   for (a in useAux)
-    if (!(a in declAux))
+    if (!(a in declAux) && !satelliteDeclares(f, a))
       say(f ":" useAux[a] ": `aux_` name `" a "` is not declared in this file")
 
   if (docLine == 0) {
@@ -1920,14 +1929,16 @@ report "$out"
 # instead of the paper (scripts/thesis-ref-allowlist.txt), and a definition of a composite
 # representation (ConPolyZono, ConZonotope, StarSet) that does its stored component's work by hand
 # instead of through the component's operations (scripts/component-reuse-allowlist.txt, #174), and
-# a real-only `Specification` operation that does not say why (scripts/float-refinement-pending.txt).
+# a real-only `Specification` operation that does not say why (scripts/float-refinement-pending.txt),
+# and an `Operations/` definition that exactly one algorithm reads and that is not that algorithm's
+# `aux_` step (scripts/step-file-allowlist.txt, #227).
 # Same contract as the helper above: status 1 with findings on stdout is a finding, anything else is
 # the helper failing.
 if [ -z "$STAGED" ]; then
   for helper in check-float-wrappers.py check-algorithm-steps.py check-repeated-subterms.py \
     check-dt-twins.py check-single-use.py check-prop-names.py check-absorb-rounding.py \
     check-exact-names.py check-option-hyps.py check-thesis-refs.py \
-    check-component-reuse.py check-float-refinement.py; do
+    check-component-reuse.py check-float-refinement.py check-steps.py; do
     helper_err=$(mktemp)
     out=$($PYTHON "scripts/$helper" 2> "$helper_err") && helper_rc=0 || helper_rc=$?
     if [ "$helper_rc" -gt 1 ] || { [ "$helper_rc" -eq 1 ] && [ -z "$out" ]; }; then

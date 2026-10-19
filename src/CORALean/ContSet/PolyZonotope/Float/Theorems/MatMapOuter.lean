@@ -74,8 +74,9 @@ theorem PolyZonotope.aux_matMap_refines (pZ₁ : PolyZonotope (Mat 𝕋 n k))
     (hX : X ∈ (Real.PolyZonotope.matMap (PolyZonotope.nominal pZ₁)
       (PolyZonotope.nominal pZ₂) hp).construct) : -- --- STMT ---
     ∃ P ∈ (PolyZonotope.nominal (PolyZonotope.matMap pZ₁ pZ₂ hp)).construct,
-      X - P ∈ (PolyZonotope.matGeneratorError (Fin.append (PolyZonotope.pairG matMulDiff pZ₁ pZ₂)
-        (PolyZonotope.pairGI matMulDiff pZ₁ pZ₂))).construct := by -- --- PROOF ---
+      X - P ∈
+        (PolyZonotope.matGeneratorError (Fin.append (PolyZonotope.aux_pairG matMulDiff pZ₁ pZ₂)
+        (PolyZonotope.aux_pairGI matMulDiff pZ₁ pZ₂))).construct := by -- --- PROOF ---
   obtain ⟨a, b, ha, hb, hX⟩ := hX
   -- a stored product and its exact counterpart differ by at most the gap
   have close : ∀ (A : Mat 𝕋 n k) (B : Mat 𝕋 k m) (D : Mat ℝ n m),
@@ -94,8 +95,8 @@ theorem PolyZonotope.aux_matMap_refines (pZ₁ : PolyZonotope (Mat 𝕋 n k))
   have hGI : ∀ t, ∃ (A : Mat 𝕋 n k) (B : Mat 𝕋 k m),
       Real.PolyZonotope.bilinGI matMulBilin (PolyZonotope.nominal pZ₁)
         (PolyZonotope.nominal pZ₂) t = toRealMat A * toRealMat B
-      ∧ PolyZonotope.pairGI matMulDown pZ₁ pZ₂ t = matMulDown A B
-      ∧ PolyZonotope.pairGI matMulDiff pZ₁ pZ₂ t = matMulDiff A B := by
+      ∧ PolyZonotope.aux_pairGI matMulDown pZ₁ pZ₂ t = matMulDown A B
+      ∧ PolyZonotope.aux_pairGI matMulDiff pZ₁ pZ₂ t = matMulDiff A B := by
     -- block by block, as `bilinGI` orders them
     intro t
     refine Fin.addCases (fun t => ?_) (fun t => ?_) t
@@ -105,28 +106,28 @@ theorem PolyZonotope.aux_matMap_refines (pZ₁ : PolyZonotope (Mat 𝕋 n k))
         · simp only [Real.PolyZonotope.bilinGI, Fin.append_left]
           rw [← PolyZonotope.realImage_extGens]
           rfl
-        all_goals simp only [PolyZonotope.pairGI, Fin.append_left]
+        all_goals simp only [PolyZonotope.aux_pairGI, Fin.append_left]
       -- the middle block reads no extended generator
       · refine ⟨pZ₁.GI (finProdFinEquiv.symm t).1, pZ₂.GI (finProdFinEquiv.symm t).2, ?_, ?_, ?_⟩
         · simp only [Real.PolyZonotope.bilinGI, Fin.append_left, Fin.append_right]
           rfl
-        all_goals simp only [PolyZonotope.pairGI, Fin.append_left, Fin.append_right]
+        all_goals simp only [PolyZonotope.aux_pairGI, Fin.append_left, Fin.append_right]
     · refine ⟨PolyZonotope.extGens pZ₁ (finProdFinEquiv.symm t).1,
         pZ₂.GI (finProdFinEquiv.symm t).2, ?_, ?_, ?_⟩
       · simp only [Real.PolyZonotope.bilinGI, Fin.append_right]
         rw [← PolyZonotope.realImage_extGens]
         rfl
-      all_goals simp only [PolyZonotope.pairGI, Fin.append_right]
+      all_goals simp only [PolyZonotope.aux_pairGI, Fin.append_right]
   -- the float result's nominal point at the same factors and coefficients
   refine ⟨_, ⟨a, b, ha, hb, rfl⟩, ?_⟩
   have h := PolyZonotope.mem_matGeneratorError
-    (G := Fin.append (PolyZonotope.pairG matMulDiff pZ₁ pZ₂)
-      (PolyZonotope.pairGI matMulDiff pZ₁ pZ₂))
+    (G := Fin.append (PolyZonotope.aux_pairG matMulDiff pZ₁ pZ₂)
+      (PolyZonotope.aux_pairGI matMulDiff pZ₁ pZ₂))
     (Δ := Fin.append
       (fun l => Real.PolyZonotope.bilinG matMulBilin (PolyZonotope.nominal pZ₁)
-        (PolyZonotope.nominal pZ₂) l - toRealMat (PolyZonotope.pairG matMulDown pZ₁ pZ₂ l))
+        (PolyZonotope.nominal pZ₂) l - toRealMat (PolyZonotope.aux_pairG matMulDown pZ₁ pZ₂ l))
       (fun t => Real.PolyZonotope.bilinGI matMulBilin (PolyZonotope.nominal pZ₁)
-        (PolyZonotope.nominal pZ₂) t - toRealMat (PolyZonotope.pairGI matMulDown pZ₁ pZ₂ t)))
+        (PolyZonotope.nominal pZ₂) t - toRealMat (PolyZonotope.aux_pairGI matMulDown pZ₁ pZ₂ t)))
     (t := Fin.append (Real.PolyZonotope.monomial (PolyZonotope.bilinE pZ₁ pZ₂ hp) a) b)
     -- each shortfall within its gap
     (fun s => by
@@ -159,17 +160,17 @@ theorem PolyZonotope.aux_matMap_refines (pZ₁ : PolyZonotope (Mat 𝕋 n k))
     - (toRealMat (fun _ _ => (zero : 𝕋) : Mat 𝕋 n m)
       + (∑ l : Fin ((pZ₁.h + 1) * (pZ₂.h + 1)),
         Real.PolyZonotope.monomial (PolyZonotope.bilinE pZ₁ pZ₂ hp) a l
-          • toRealMat (PolyZonotope.pairG matMulDown pZ₁ pZ₂ l))
+          • toRealMat (PolyZonotope.aux_pairG matMulDown pZ₁ pZ₂ l))
       + ∑ j : Fin (pZ₁.q * (pZ₂.h + 1) + pZ₁.q * pZ₂.q + (pZ₁.h + 1) * pZ₂.q),
-        b j • toRealMat (PolyZonotope.pairGI matMulDown pZ₁ pZ₂ j))
+        b j • toRealMat (PolyZonotope.aux_pairGI matMulDown pZ₁ pZ₂ j))
     -- the shortfalls at their coefficients
     = (∑ l : Fin ((pZ₁.h + 1) * (pZ₂.h + 1)),
         Real.PolyZonotope.monomial (PolyZonotope.bilinE pZ₁ pZ₂ hp) a l
           • (Real.PolyZonotope.bilinG matMulBilin (PolyZonotope.nominal pZ₁)
-            (PolyZonotope.nominal pZ₂) l - toRealMat (PolyZonotope.pairG matMulDown pZ₁ pZ₂ l)))
+            (PolyZonotope.nominal pZ₂) l - toRealMat (PolyZonotope.aux_pairG matMulDown pZ₁ pZ₂ l)))
       + ∑ j : Fin (pZ₁.q * (pZ₂.h + 1) + pZ₁.q * pZ₂.q + (pZ₁.h + 1) * pZ₂.q),
         b j • (Real.PolyZonotope.bilinGI matMulBilin (PolyZonotope.nominal pZ₁)
-          (PolyZonotope.nominal pZ₂) j - toRealMat (PolyZonotope.pairGI matMulDown pZ₁ pZ₂ j))
+          (PolyZonotope.nominal pZ₂) j - toRealMat (PolyZonotope.aux_pairGI matMulDown pZ₁ pZ₂ j))
   have h0 : toRealMat (fun _ _ => (zero : 𝕋) : Mat 𝕋 n m) = 0 := by
     funext i j
     exact toReal_zero

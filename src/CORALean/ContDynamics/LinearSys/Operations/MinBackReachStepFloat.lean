@@ -16,11 +16,11 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotop
 /-!
 # `Alg. 2` lines 8-11 in floats: one iteration of the main loop
 
-`minBackReachStep` computed in `𝕋`: [1, Alg. 2] lines 8-11. The exact layer's `e^{-A t_k}` is the
-interval matrix `[e^{-A t_k}]` of `expSquaringFloat` (Taylor order `η`, then `ν` squarings), its
-correction matrix `F` is `intervalCorrectionMatrix`, and every product with either is a set times
-an interval matrix. The outer direction is the exact layer's: each set is enclosed, none is
-shrunk, so the state encloses what the real iteration builds.
+`aux_minBackReachStep` computed in `𝕋`: [1, Alg. 2] lines 8-11. The exact layer's `e^{-A t_k}` is
+the interval matrix `[e^{-A t_k}]` of `expSquaringFloat` (Taylor order `η`, then `ν` squarings), its
+correction matrix `F` is `intervalCorrectionMatrix`, and every product with either is a set times an
+interval matrix. The outer direction is the exact layer's: each set is enclosed, none is shrunk, so
+the state encloses what the real iteration builds.
 
 `t_{k+1}` is `t_k + Δt` rounded up; on a grid the floats represent exactly (a dyadic
 `t₀` and `Δt`) that is the exact `t_k + Δt`, and off it the time points are those the

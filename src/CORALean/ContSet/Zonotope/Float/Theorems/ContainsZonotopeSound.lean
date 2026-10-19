@@ -72,7 +72,7 @@ theorem Zonotope.containsZonotope_sound {Z₂ Z₁ : Zonotope (Vec 𝕋 n)} {H :
     have a3 := Zonotope.abs_le_errBound Z₁.I_error he₁ i
     -- the three terms, rounded up, add to at most `B`
     have a4 := toReal_le_of_le (hres i)
-    simp only [Zonotope.stLeftover] at a4
+    simp only [Zonotope.aux_stLeftover] at a4
     have a5 := add_le_addUp (addUp (Zonotope.entryDeviation Z₁.c Z₂.I_error.inf
       (Z₂.pointLo (Z₂.stBeta Z₁ H)) (Z₂.pointHi (Z₂.stBeta Z₁ H)) i)
       (sumUp fun j => Zonotope.mulResidual (fun i j => Z₁.G j i) (fun i j => Z₂.G j i)

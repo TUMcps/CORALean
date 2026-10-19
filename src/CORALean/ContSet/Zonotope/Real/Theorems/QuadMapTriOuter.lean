@@ -44,7 +44,7 @@ theorem Zonotope.aux_quadMap_subset_quadMapTri {n m : ℕ} (Q : Fin m → Mat �
     (Z : Zonotope (Vec ℝ n)) :
     (Z.quadMap Q).construct ⊆ (Z.quadMapTri Q).construct := by -- --- PROOF ---
   rintro x ⟨(β : Fin (Z.h + Z.h + Z.h * Z.h) → ℝ), hβ, rfl⟩
-  set e := Zonotope.quadMapPairIdx Z.h with he
+  set e := Zonotope.aux_quadMapPairIdx Z.h with he
   -- the pair generator of `(j, k)`, coordinate `i`
   set g : Fin Z.h × Fin Z.h → Fin m → ℝ := fun jk i =>
     Z.G jk.1 ⬝ᵥ (Q i *ᵥ Z.G jk.2) + Z.G jk.2 ⬝ᵥ (Q i *ᵥ Z.G jk.1) with hg

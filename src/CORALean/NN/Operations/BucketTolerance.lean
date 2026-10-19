@@ -1,9 +1,10 @@
 module
 
-public import CORALean.NN.Operations.BisectBucketTolerance
 public import CORALean.NN.Operations.GrowBucketTolerance
+public import CORALean.NN.Operations.InitMergeBuckets
 public import CORALean.NN.Operations.MaxOver
 public import CORALean.NN.Operations.MinOver
+public import CORALean.NN.Operations.Ratio
 
 @[expose] public section
 
@@ -41,6 +42,23 @@ open Float Float.FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- Lines 7-16: bisect `[δmin, δmax]` until `n̂_k/n_k ≈ ρ`; `none` past `fuel`. -/
+def aux_bisectBucketTolerance (le : 𝕋 → 𝕋 → Bool) (tol : 𝕋) (B : MergeBuckets 𝕋)
+    (I_k : Interval (Vec 𝕋 n)) (ρ : 𝕋) : 𝕋 → 𝕋 → ℕ → Option (Fin n → Bool)
+  | _, _, 0 => none
+  | δmin, δmax, fuel + 1 =>
+    let δ := half (addUp δmin δmax)                                 -- Alg. 1, line 8
+    let B_kδ := initMergeBuckets le B I_k δ                         -- Alg. 1, line 9
+    let nhat_k := n - bucketed B_kδ                                 -- Alg. 1, line 10
+    let tooManyMerged := !le (mulUp ρ (nsmulUp n one)) (nsmulDown nhat_k one)  -- Alg. 1, line 11
+    let δmax := if tooManyMerged then δ else δmax                   -- Alg. 1, line 12
+    let δmin := if tooManyMerged then δmin else δ                   -- Alg. 1, line 14
+    if le (absolute (subUp (ratio nhat_k n) ρ)) tol then some B_kδ  -- Alg. 1, lines 16-17
+    else aux_bisectBucketTolerance le tol B I_k ρ δmin δmax fuel
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Alg. 1]: the merge buckets `B_{k,δ}` of the layer bounded by `I_k = [l_k, u_k]` that
@@ -56,7 +74,7 @@ def bucketTolerance (le : 𝕋 → 𝕋 → Bool) (tol : 𝕋) (fuel : ℕ) (B :
   | none => none
   | some δmax =>
     -- 7. `do` 8. `δ ← (δmin + δmax) / 2` … 16. `while n̂_k / n_k ≉ ρ`, 17. `return B_{k,δ}`
-    bisectBucketTolerance le tol B I_k ρ δmin δmax fuel
+    aux_bisectBucketTolerance le tol B I_k ρ δmin δmax fuel
 
 end CORALean
 

@@ -66,8 +66,8 @@ noncomputable def GNN.aux_residual (R : Relaxation ℝ) (A : Mat ℝ N N)
 or zero, there being nothing to normalise by and nothing to carry. -/
 noncomputable def GNN.aux_resFactor (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) (j : Fin N) : ℝ :=
-  if GNN.sqrtError R A U j = 0 then 0
-  else GNN.aux_residual R A U lam j / GNN.sqrtError R A U j
+  if GNN.aux_sqrtError R A U j = 0 then 0
+  else GNN.aux_residual R A U lam j / GNN.aux_sqrtError R A U j
 
 /-- The factor vector the whole enclosure is read at: the edge weights rescaled,
 then the residuals. -/
@@ -83,7 +83,7 @@ theorem GNN.aux_hadamard_apply (X Y : Mat ℝ N N) (i j : Fin N) :
 projection because that is the form the goal has. -/
 theorem GNN.aux_sum_univ_uncertainAdjPad {β : Type} [AddCommMonoid β] {A : Mat ℝ N N}
     {U : Fin m → Fin N × Fin N} (f : Fin (m + N) → β) :
-    ∑ k : Fin (GNN.uncertainAdjPad A U).h, f k
+    ∑ k : Fin (GNN.aux_uncertainAdjPad A U).h, f k
       = ∑ e, f (Fin.castAdd N e) + ∑ t, f (Fin.natAdd m t) :=
   Fin.sum_univ_add f
 
@@ -92,7 +92,7 @@ through a different projection. -/
 theorem GNN.aux_sum_univ_sqrtBroadcast {β : Type} [AddCommMonoid β] {R : Relaxation ℝ}
     {A : Mat ℝ N N} {U : Fin m → Fin N × Fin N} {idx : Fin N → Fin N → Fin N}
     (f : Fin (m + N) → β) :
-    ∑ k : Fin (GNN.sqrtBroadcast R A U idx).h, f k
+    ∑ k : Fin (GNN.aux_sqrtBroadcast R A U idx).h, f k
       = ∑ e, f (Fin.castAdd N e) + ∑ t, f (Fin.natAdd m t) :=
   Fin.sum_univ_add f
 
@@ -100,7 +100,7 @@ theorem GNN.aux_sum_univ_sqrtBroadcast {β : Type} [AddCommMonoid β] {R : Relax
 theorem GNN.aux_residual_le (R : Relaxation ℝ) (hR : R.Sound invSqrt) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1)
     (hA : ∀ a b, 0 ≤ A a b) (j : Fin N) :
-    |GNN.aux_residual R A U lam j| ≤ GNN.sqrtError R A U j := by
+    |GNN.aux_residual R A U lam j| ≤ GNN.aux_sqrtError R A U j := by
   obtain ⟨_, hlo, hhi⟩ := GNN.degreeAt_bounds A U lam hlam hA j
   exact hR.sound hlo hhi
 
@@ -109,7 +109,7 @@ error and multiplying back, or a zero error forcing a zero residual. -/
 theorem GNN.aux_error_mul_resFactor (R : Relaxation ℝ) (hR : R.Sound invSqrt) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1)
     (hA : ∀ a b, 0 ≤ A a b) (j : Fin N) : -- --- STMT ---
-    GNN.sqrtError R A U j * GNN.aux_resFactor R A U lam j
+    GNN.aux_sqrtError R A U j * GNN.aux_resFactor R A U lam j
       = GNN.aux_residual R A U lam j := by -- --- PROOF ---
   rw [GNN.aux_resFactor]
   split_ifs with h
@@ -136,7 +136,7 @@ theorem GNN.aux_factors_abs_le (R : Relaxation ℝ) (hR : R.Sound invSqrt) (A : 
       exact zero_le_one
     · -- a nonzero error is positive, since it bounds an absolute value
       have hb := GNN.aux_residual_le R hR A U lam hlam hA t
-      have hpos : 0 < GNN.sqrtError R A U t :=
+      have hpos : 0 < GNN.aux_sqrtError R A U t :=
         lt_of_le_of_ne (le_trans (abs_nonneg _) hb) (Ne.symm h)
       rw [abs_div, abs_of_pos hpos, div_le_one hpos]
       exact hb
@@ -145,10 +145,10 @@ theorem GNN.aux_factors_abs_le (R : Relaxation ℝ) (hR : R.Sound invSqrt) (A : 
 the generators is zero, and the edge half is `smul_edge_half` again. -/
 theorem GNN.aux_padPoint (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) :
-    (GNN.uncertainAdjPad A U).point (GNN.aux_factors R A U lam)
+    (GNN.aux_uncertainAdjPad A U).point (GNN.aux_factors R A U lam)
       = GNN.adjAt A U lam + 1 := by -- --- PROOF ---
   rw [PolyZonotope.point, GNN.aux_sum_univ_uncertainAdjPad]
-  simp only [GNN.uncertainAdjPad, PolyZonotope.monomial_identE, GNN.aux_factors,
+  simp only [GNN.aux_uncertainAdjPad, PolyZonotope.monomial_identE, GNN.aux_factors,
     Fin.addCases_left, Fin.addCases_right, smul_zero, Finset.sum_const_zero, add_zero]
   -- one edge's half in the center plus its half in the generator is its weight
   have hedge : ∀ e, (1/2 : ℝ) • GNN.edgeMat (U e)
@@ -166,20 +166,20 @@ exactly, which is `sqrt_affine` plus the residual the factor spends. -/
 theorem GNN.aux_broadcastPoint (R : Relaxation ℝ) (hR : R.Sound invSqrt) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1)
     (hA : ∀ a b, 0 ≤ A a b) (idx : Fin N → Fin N → Fin N) : -- --- STMT ---
-    (GNN.sqrtBroadcast R A U idx).point (GNN.aux_factors R A U lam)
+    (GNN.aux_sqrtBroadcast R A U idx).point (GNN.aux_factors R A U lam)
       = fun i j => invSqrt (GNN.degreeAt A U lam (idx i j)) := by -- --- PROOF ---
   rw [PolyZonotope.point, GNN.aux_sum_univ_sqrtBroadcast]
   funext i j
-  simp only [GNN.sqrtBroadcast, PolyZonotope.monomial_identE, GNN.aux_factors,
+  simp only [GNN.aux_sqrtBroadcast, PolyZonotope.monomial_identE, GNN.aux_factors,
     Fin.addCases_left, Fin.addCases_right, Matrix.add_apply, Matrix.sum_apply,
     Matrix.smul_apply, smul_eq_mul]
   -- only node `idx i j`'s own residual generator is nonzero in this entry
   have hres : ∑ t, GNN.aux_resFactor R A U lam t
-      * (if idx i j = t then GNN.sqrtError R A U (idx i j) else 0)
+      * (if idx i j = t then GNN.aux_sqrtError R A U (idx i j) else 0)
       = GNN.aux_residual R A U lam (idx i j) := by
     have h : ∀ t : Fin N, GNN.aux_resFactor R A U lam t
-        * (if idx i j = t then GNN.sqrtError R A U (idx i j) else 0)
-        = if idx i j = t then GNN.sqrtError R A U (idx i j)
+        * (if idx i j = t then GNN.aux_sqrtError R A U (idx i j) else 0)
+        = if idx i j = t then GNN.aux_sqrtError R A U (idx i j)
             * GNN.aux_resFactor R A U lam t else 0 := by
       intro t
       split_ifs <;> ring
@@ -203,10 +203,10 @@ theorem GNN.messagePassing_mem_enclosure (R : Relaxation ℝ) (hR : R.Sound invS
     GNN.messagePassing (GNN.adjAt A U lam)
       ∈ (GNN.messagePassingEnclosure R A U).construct := by -- --- PROOF ---
   have hinner := PolyZonotope.bilin_point (Entrywise.hadamardLin (α := Mat ℝ N N))
-    (GNN.uncertainAdjPad A U) (GNN.sqrtRow R A U) rfl (GNN.aux_factors R A U lam)
+    (GNN.aux_uncertainAdjPad A U) (GNN.aux_sqrtRow R A U) rfl (GNN.aux_factors R A U lam)
   have houter := PolyZonotope.bilin_point (Entrywise.hadamardLin (α := Mat ℝ N N))
-    ((GNN.uncertainAdjPad A U).bilin Entrywise.hadamardLin (GNN.sqrtRow R A U) rfl)
-    (GNN.sqrtCol R A U) rfl (GNN.aux_factors R A U lam)
+    ((GNN.aux_uncertainAdjPad A U).bilin Entrywise.hadamardLin (GNN.aux_sqrtRow R A U) rfl)
+    (GNN.aux_sqrtCol R A U) rfl (GNN.aux_factors R A U lam)
   -- the clamp in `invSqrt` costs nothing, the degrees being at least `1`
   have hone : ∀ k, (1 : ℝ) ≤ GNN.degreeAt A U lam k := fun k =>
     le_trans (GNN.degreeAt_bounds A U lam hlam hA k).1
@@ -219,9 +219,9 @@ theorem GNN.messagePassing_mem_enclosure (R : Relaxation ℝ) (hR : R.Sound invS
     rw [hinner]
     -- `Fin.cast` at a shared factor set is the identity, so all three read `a`
     show Entrywise.hadamardLin
-        (Entrywise.hadamardLin ((GNN.uncertainAdjPad A U).point (GNN.aux_factors R A U lam))
-          ((GNN.sqrtBroadcast R A U fun i _ => i).point (GNN.aux_factors R A U lam)))
-        ((GNN.sqrtBroadcast R A U fun _ j => j).point (GNN.aux_factors R A U lam))
+        (Entrywise.hadamardLin ((GNN.aux_uncertainAdjPad A U).point (GNN.aux_factors R A U lam))
+          ((GNN.aux_sqrtBroadcast R A U fun i _ => i).point (GNN.aux_factors R A U lam)))
+        ((GNN.aux_sqrtBroadcast R A U fun _ j => j).point (GNN.aux_factors R A U lam))
       = GNN.messagePassing (GNN.adjAt A U lam)
     rw [GNN.aux_padPoint R A U lam, GNN.aux_broadcastPoint R hR A U lam hlam hA,
       GNN.aux_broadcastPoint R hR A U lam hlam hA]

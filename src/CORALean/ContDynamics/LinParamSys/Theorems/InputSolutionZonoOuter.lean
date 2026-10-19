@@ -25,7 +25,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 [1, Thm. 1] at a matrix drawn from `construct sys.A`, the run being
 `'constParam'` as in `InputSolutionOuter`. The Taylor sum splits into four
-pieces rather than two: orders `0` and `1` land in `inputTermZono` by
+pieces rather than two: orders `0` and `1` land in `aux_inputTermZono` by
 `matPow_outer` at the matrix zonotope, orders `2` through `η` and the remainder
 land in the interval-matrix pieces by the same argument `InputSolutionOuter`
 already makes, now at `sys.A.interval` rather than a set-valued matrix given
@@ -186,7 +186,7 @@ theorem LinParamSys.inputSolutionZono_outer (sys : LinParamSys 𝕄𝒵 n)
   have hy : ∀ i : ℕ, (∫ τ in (0:ℝ)..r, τ ^ i • g τ)
       ∈ (r ^ (i + 1) / ((i : ℝ) + 1)) • construct U :=
     fun i => integral_pow_smul_mem hconv hclosed hbdd hr i hmeas hu
-  -- `Aⁱ/i!` against `r^(i+1)/(i+1)` is exactly the matrix `inputTerm`/`inputTermZono` name
+  -- `Aⁱ/i!` against `r^(i+1)/(i+1)` is exactly the matrix `inputTerm`/`aux_inputTermZono` name
   have hcomb : ∀ (i : ℕ) (z : Vec ℝ n),
       ((Nat.factorial i : ℝ)⁻¹) • (A ^ i *ᵥ ((r ^ (i + 1) / ((i : ℝ) + 1)) • z))
         = ((r ^ (i + 1) / (Nat.factorial (i + 1) : ℝ)) • A ^ i) *ᵥ z := by
@@ -199,14 +199,14 @@ theorem LinParamSys.inputSolutionZono_outer (sys : LinParamSys 𝕄𝒵 n)
     push_cast; field_simp
   -- orders `0` and `1`: exact, through the matrix zonotope
   have htermZ : ∀ i : ℕ, (∫ τ in (0:ℝ)..r, f i τ)
-      ∈ construct (Mtimes.mtimes (𝕄 := 𝕄𝒵) (sys.inputTermZono r i) U) := by
+      ∈ construct (Mtimes.mtimes (𝕄 := 𝕄𝒵) (sys.aux_inputTermZono r i) U) := by
     intro i
     obtain ⟨z, hz, hzeq⟩ := hy i
     rw [hpull i, ← hzeq, hcomb i z]
     have hAmem : ((r ^ (i + 1) / (Nat.factorial (i + 1) : ℝ)) • A ^ i)
-        ∈ construct (sys.inputTermZono r i) := by
-      show _ ∈ (sys.inputTermZono r i).construct
-      rw [LinParamSys.inputTermZono, ← Zonotope.map_exact]
+        ∈ construct (sys.aux_inputTermZono r i) := by
+      show _ ∈ (sys.aux_inputTermZono r i).construct
+      rw [LinParamSys.aux_inputTermZono, ← Zonotope.map_exact]
       exact ⟨A ^ i, Zonotope.matPow_outer sys.A hA i, rfl⟩
     exact Mtimes.mtimes_outer _ _ (Set.mem_biUnion hAmem (Set.mem_image_of_mem _ hz))
   -- orders `2` through `m + 2`: over-approximated, through the enclosing interval matrix

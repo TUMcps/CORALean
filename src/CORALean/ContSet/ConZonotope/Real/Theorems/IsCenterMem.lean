@@ -51,11 +51,11 @@ theorem ConZonotope.IsCenter.mem {c : α} {G : Fin h → α} {A : Mat ℝ q h} {
     refine ⟨x0 + N *ᵥ y, fun j => ?_, fun i => ?_, rfl⟩
     · have h1 : (N *ᵥ y) j ≤ 1 - x0 j := by
         have := hrow (Fin.castAdd h j)
-        simp only [ConZonotope.nullPolytope, Fin.append_left] at this
+        simp only [ConZonotope.aux_nullPolytope, Fin.append_left] at this
         exact this
       have h2 : -(N *ᵥ y) j ≤ 1 + x0 j := by
         have := hrow (Fin.natAdd h j)
-        simp only [ConZonotope.nullPolytope, Fin.append_right] at this
+        simp only [ConZonotope.aux_nullPolytope, Fin.append_right] at this
         exact this
       rw [abs_le]
       simp only [Pi.add_apply]

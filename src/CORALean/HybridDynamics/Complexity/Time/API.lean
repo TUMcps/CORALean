@@ -6,7 +6,7 @@ public import CORALean.HybridDynamics.Complexity.Time.Operations.API
 # What a hybrid automaton's discrete step costs
 
 Scalar-operation counts against `Global/Cost.lean`'s model, one `def` per
-operation, every one **asserted**. `jumpCost` prices `jump` and `jumpOfPoint` —
+operation, every one **asserted**. `aux_jumpCost` prices `jump` and `jumpOfPoint` —
 one `mtimes`, one `plus`, one embedded point — at what those three cost, a
 parameter no representation-agnostic file can fix. `jumpIntersectionCost` adds
 the guard cut ahead of that.

@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem groupSortFloat_perm {g : ℕ} (hg : 0 < g) (x : Vec 𝕋 n) (k : ℕ) :
-    (groupSortChunkFloat g (groupSortFloat g x) k).Perm (groupSortChunkFloat g x k) := by
+    (aux_groupSortChunkFloat g (groupSortFloat g x) k).Perm (aux_groupSortChunkFloat g x k) := by
   rw [groupSortChunkFloat_groupSortFloat hg]
   exact List.mergeSort_perm _ _
 

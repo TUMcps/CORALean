@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.BoundaryRatioStep
+public import CORALean.ContSet.Interval.Float.Operations.BoundaryRatioAt
 
 @[expose] public section
 
@@ -27,11 +27,21 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+def Interval.aux_boundaryRatioStep (acc x : Option (Interval 𝕋)) : Option (Interval 𝕋) :=
+  match x with
+  | none => acc
+  | some r => match acc with
+    | none => some r
+    | some a => some ⟨minimum a.inf r.inf, minimum a.sup r.sup⟩
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Interval.boundaryRatio (I : Interval (Vec 𝕋 n)) (dir start : Vec 𝕋 n) : Option (Interval 𝕋) :=
   (List.finRange n).foldl (fun acc i =>
-    Interval.boundaryRatioStep acc (Interval.boundaryRatioAt I dir start i)) none
+    Interval.aux_boundaryRatioStep acc (Interval.boundaryRatioAt I dir start i)) none
 
 end CORALean.Float
 

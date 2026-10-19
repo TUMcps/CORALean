@@ -1,7 +1,10 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Real.Operations.JacobianDetIntegral
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+public import Mathlib.MeasureTheory.Integral.Bochner.Set
+public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 
 @[expose] public section
 
@@ -30,6 +33,15 @@ more (exactness where `det J ≠ 0`, an over-approximation otherwise); see
 namespace CORALean.Real
 
 variable {n : ℕ}
+open MeasureTheory
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+noncomputable def PolyZonotope.aux_jacobianDetIntegral (pZ : PolyZonotope (Vec ℝ n))
+    (h : pZ.p = n) : ℝ :=
+  ∫ a in Set.Icc (fun _ : Fin pZ.p => (-1 : ℝ)) (fun _ => 1),
+    (Matrix.of fun (i k : Fin n) => pZ.jacobianMat a i (Fin.cast h.symm k) : Mat ℝ n n).det
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -39,7 +51,7 @@ noncomputable def PolyZonotope.volume (pZ : PolyZonotope (Vec ℝ n)) : Option �
   -- redefine independent generators as new dependent generators
   let pZ' := if pZ.q = 0 then pZ else pZ.dependent
   if pZ'.p < n then some 0
-  else if h : pZ'.p = n then some (pZ'.jacobianDetIntegral h)
+  else if h : pZ'.p = n then some (pZ'.aux_jacobianDetIntegral h)
   else none
 
 end CORALean.Real

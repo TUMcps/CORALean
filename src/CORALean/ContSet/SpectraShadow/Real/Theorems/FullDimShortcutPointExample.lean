@@ -30,7 +30,7 @@ namespace CORALean.Real
 theorem SpectraShadow.fullDimShortcut_pointExample :
     SpectraShadow.pointExample.fullDimShortcut ∧ SpectraShadow.pointExample.construct.Nonempty := by
   refine ⟨?_, ?_⟩
-  · simp [SpectraShadow.fullDimShortcut, SpectraShadow.gFro, SpectraShadow.pointExample]
+  · simp [SpectraShadow.fullDimShortcut, SpectraShadow.aux_gFro, SpectraShadow.pointExample]
   · rw [SpectraShadow.pointExample_construct]
     exact ⟨0, rfl⟩
 

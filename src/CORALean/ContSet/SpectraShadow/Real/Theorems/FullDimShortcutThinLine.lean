@@ -43,7 +43,7 @@ theorem aux_thinLine_construct : aux_thinLine.construct = Set.univ := by -- --- 
 theorem SpectraShadow.fullDimShortcut_thinLine :
     aux_thinLine.fullDimShortcut ∧ (interior aux_thinLine.construct).Nonempty := by -- --- PROOF ---
   refine ⟨?_, ?_⟩
-  · simp [SpectraShadow.fullDimShortcut, SpectraShadow.gFro, aux_thinLine]
+  · simp [SpectraShadow.fullDimShortcut, SpectraShadow.aux_gFro, aux_thinLine]
     norm_num
   · rw [aux_thinLine_construct, interior_univ]
     exact ⟨0, trivial⟩

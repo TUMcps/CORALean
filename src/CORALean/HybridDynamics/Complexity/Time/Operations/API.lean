@@ -1,6 +1,5 @@
 module
 
-public import CORALean.HybridDynamics.Complexity.Time.Operations.JumpCost
 public import CORALean.HybridDynamics.Complexity.Time.Operations.JumpIntersectionCost
 
 /-!

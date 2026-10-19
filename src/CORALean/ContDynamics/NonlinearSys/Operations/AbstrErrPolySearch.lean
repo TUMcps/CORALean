@@ -22,7 +22,7 @@ so a wrong `Ws k` costs no soundness, only convergence, as a wrong pivot costs
 What is new is only the search: package the first candidate the certificate accepts
 into a `LinStep`, `none` once `fuel` runs out — `minkDiffRep`'s shape. A candidate is a
 region `pZ k`, its sub-box and static error as well as `Ws k`, since CORA's `Rmax`
-grows with the applied error; `abstrErrPolyCandidates` computes them.
+grows with the applied error; `aux_abstrErrPolyCandidates` computes them.
 
 ## References
 

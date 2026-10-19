@@ -48,7 +48,6 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.BilinOuter
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MatMap
 public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapMixed
 public import CORALean.ContSet.PolyZonotope.Real.Operations.PadE
-public import CORALean.ContSet.PolyZonotope.Real.Operations.PadFrontE
 public import CORALean.ContSet.PolyZonotope.Real.Operations.PadBack
 public import CORALean.ContSet.PolyZonotope.Real.Operations.PadFront
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MulG
@@ -160,12 +159,9 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTerms
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Polygon
 public import CORALean.ContSet.PolyZonotope.Real.Operations.SplitGen
 public import CORALean.ContSet.PolyZonotope.Real.Operations.SplitMany
-public import CORALean.ContSet.PolyZonotope.Real.Operations.JacobianDetIntegral
 public import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTermsHessian
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CubEval
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CubEvalMixed
-public import CORALean.ContSet.PolyZonotope.Real.Operations.CubPair
-public import CORALean.ContSet.PolyZonotope.Real.Operations.CubQuad
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapDep
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CubMap
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapMixed

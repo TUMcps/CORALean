@@ -14,7 +14,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotop
 /-!
 # `Alg. 3` lines 4-5 in floats: the eroded polytope
 
-`maxBackReachPoly` computed in `𝕋`: [1, Alg. 3] lines 4-5, `X ⊖ F box(X_end) ⊖ B_μ`, one of the
+`aux_maxBackReachPoly` computed in `𝕋`: [1, Alg. 3] lines 4-5, `X ⊖ F box(X_end) ⊖ B_μ`, one of the
 two polytopes of the inner approximated homogeneous time-interval solution (21). A difference
 is a guarantee, so this is where the float layer rounds **inward**: each inequality's bound is
 lowered by the subtrahend's support in that row's direction, rounded *up*

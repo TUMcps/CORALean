@@ -1,14 +1,17 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachTimeInterval
-public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachMu
-public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachPoly
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachMu
+public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachTimeInterval
+public import CORALean.ContSet.Capsule.Real.Operations.SupportBound
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
-public import CORALean.ContSet.HPolytope.Real.Operations.MapEquiv
-public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
-public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.HPolytope.Real.Operations.Comap
+public import CORALean.ContSet.HPolytope.Real.Operations.MapEquiv
+public import CORALean.ContSet.HPolytope.Real.Operations.MinkDiffOf
+public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
+public import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 
 @[expose] public section
 
@@ -32,7 +35,7 @@ the two polytopes. Line 14's union is no constrained zonotope, so the result is 
       Automatic Control, 71(1):352-367, 2026.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5
 -- Written:       08-October-2026
 -- Last update:   14-October-2026
 -- Reviewed:      ---
@@ -64,6 +67,14 @@ noncomputable def aux_maxBackReach_expEquiv (A : Mat ℝ n n) (Δt : ℝ) : Vec 
           neg_add_cancel, exp_zero]
       rw [← Matrix.mulVecLin_mul, h, Matrix.mulVecLin_one])
 
+/-- Lines 4-5: `X ⊖ F box(X_end) ⊖ B_μ`, one of the two polytopes of the inner
+approximated homogeneous time-interval solution (21). -/
+noncomputable def LinearSys.aux_maxBackReachPoly (X : HPolytope (Vec ℝ n))
+    (FB : Zonotope (Vec ℝ n)) (μ : ℝ) : HPolytope (Vec ℝ n) :=
+  let XF := X.minkDiffOf FB.construct fun i => FB.supportBound (X.A i)  -- ⊖ F box(X_end)
+  XF.minkDiffOf (⟨0, 0, μ⟩ : Capsule n).construct                       -- ⊖ B_μ
+    fun i => (⟨0, 0, μ⟩ : Capsule n).supportBound (XF.A i)
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
@@ -81,9 +92,9 @@ noncomputable def LinearSys.maxBackReach (sys : LinearSys 𝕋 n)
   -- 3. μ ← √γ ‖(e^{AΔt} - I)G‖₂
   let μ := sys.maxBackReachMu Δt B
   -- 4. P₁ ← X_end ⊖ F box ⊖ B_μ
-  let P₁ := LinearSys.maxBackReachPoly Xend FB μ
+  let P₁ := LinearSys.aux_maxBackReachPoly Xend FB μ
   -- 5. P₂ ← e^{AΔt}X_end ⊖ …
-  let P₂ := LinearSys.maxBackReachPoly
+  let P₂ := LinearSys.aux_maxBackReachPoly
     (Xend.mapEquiv (aux_maxBackReach_expEquiv (toRealMat sys.A) Δt)) FB μ
   -- 2. and 6.-14. the loop over the time intervals and its union
   sys.maxBackReachTimeInterval ρ P₁ P₂ U W₀ Zw t₀ tend η ω

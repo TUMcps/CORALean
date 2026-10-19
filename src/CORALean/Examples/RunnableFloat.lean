@@ -471,7 +471,7 @@ def minkDiffOpt : Option (Zonotope (Vec D 2)) :=
 def minkDiffRun : Zonotope (Vec D 2) := minkDiffOpt.getD (Zonotope.point ![d 0 0, d 0 0])
 
 /-- The non-square Minkowski difference pinning the generator orientation, explained in
-`minkDiffRepCandidate`'s module docstring. -/
+`aux_minkDiffRepCandidate`'s module docstring. -/
 def minkDiffNSMinuend : Zonotope (Vec D 2) where
   h := 3
   c := ![d 0 0, d 0 0]
@@ -1153,11 +1153,11 @@ example {alg : NonlinearSys.LinReachAlg} {Rs : List (Zonotope (Vec D 2))}
 
 /-! ### The rest of the nonlinear block: center linearization, adaptive tuning, cubic remainder
 
-`centerAbstrRunFloat` linearizes at the center of each step's start set, as [Wetzlinger et al.,
-HSCC 2021, Alg. 1] does. `adaptRunFloat` is [Wetzlinger et al., 2022, Alg. 1-2]'s loop: each step
-chooses its own size from the gain of the last one (`tuneDeltat`'s `optDeltatFloat`,
-`estimateGainFloat`, `tuneAbstrOrderFloat`), whatever it chooses `adaptRunFloat_outer` holds. The
-tuning constants are `ζ_δ = 1/2`, `ζ_h = ζ_φ = 1/4`, `ζ_Z = 1/8`, `ζ_K = 1/2`. -/
+`centerAbstrRunFloat` linearizes at the center of each step's start set, as [Wetzlinger et al., HSCC
+2021, Alg. 1] does. `adaptRunFloat` is [Wetzlinger et al., 2022, Alg. 1-2]'s loop: each step chooses
+its own size from the gain of the last one (`tuneDeltat`'s `optDeltatFloat`, `estimateGainFloat`,
+`aux_tuneAbstrOrderFloat`), whatever it chooses `adaptRunFloat_outer` holds. The tuning constants
+are `ζ_δ = 1/2`, `ζ_h = ζ_φ = 1/4`, `ζ_Z = 1/8`, `ζ_K = 1/2`. -/
 
 /-- Four steps of `1/32`, each linearized at its start set's center. -/
 def vdpCenterReach : Option (List (Zonotope (Vec D 2))) :=

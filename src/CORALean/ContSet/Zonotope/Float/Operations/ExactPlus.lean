@@ -1,8 +1,8 @@
 module
 
-public import CORALean.ContSet.Zonotope.Float.Operations.Plus
 public import CORALean.ContSet.Zonotope.Float.Operations.Basic
-public import CORALean.ContSet.Zonotope.Float.Operations.ExactPlusGap
+public import CORALean.ContSet.Zonotope.Float.Operations.Plus
+public import CORALean.ContSet.Zonotope.Float.Zonotope
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ CORA's `@zonotope/exactPlus`: the first `m = min(h₁, h₂, k)` generator colum
 share their coefficients and are added pairwise, the remaining columns of each follow, and the
 centers add. Only the added entries round: the center as in `plus` (its residual goes into the
 box), and each pairwise column sum, stored rounded down, whose gap to the sum rounded up
-(`exactPlusGap`) is a generator error, paid into the box by `generatorError` since the
+(`aux_exactPlusGap`) is a generator error, paid into the box by `generatorError` since the
 coefficients range over `[-1, 1]`. A copied column costs nothing.
 -/
 
@@ -32,6 +32,22 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+def Zonotope.aux_exactPlusGap (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) :
+    Mat 𝕋 n (min (min Z₁.h Z₂.h) k + (Z₁.h - min (min Z₁.h Z₂.h) k) +
+      (Z₂.h - min (min Z₁.h Z₂.h) k)) :=
+  let m := min (min Z₁.h Z₂.h) k
+  have hm₁ : m ≤ Z₁.h := (min_le_left _ _).trans (min_le_left _ _)
+  have hm₂ : m ≤ Z₂.h := (min_le_left _ _).trans (min_le_right _ _)
+  -- the gap on each shared column, and nothing on the copied ones
+  let gap : Mat 𝕋 n m := fun i j =>
+    subUp (addUp (Z₁.G (Fin.castLE hm₁ j) i) (Z₂.G (Fin.castLE hm₂ j) i))
+      (addDown (Z₁.G (Fin.castLE hm₁ j) i) (Z₂.G (Fin.castLE hm₂ j) i))
+  fun i => Fin.append (Fin.append (gap i) fun _ : Fin (Z₁.h - m) => zero)
+    fun _ : Fin (Z₂.h - m) => zero
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Zonotope.exactPlus (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) : Zonotope (Vec 𝕋 n) :=
@@ -48,7 +64,7 @@ def Zonotope.exactPlus (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) : Zonotope 
     c := fun i => addDown (Z₁.c i) (Z₂.c i)
     G := fun j i => Fin.append (Fin.append (shared i) (rest₁ i)) (rest₂ i) j
     I_error := ((Z₁.I_error.plus Z₂.I_error).plus (Zonotope.centerResidual Z₁.c Z₂.c)).plus
-      (Zonotope.generatorError (Z₁.exactPlusGap Z₂ k)) }
+      (Zonotope.generatorError (Z₁.aux_exactPlusGap Z₂ k)) }
 
 end CORALean.Float
 

@@ -8,15 +8,11 @@ public import CORALean.Specification.FiniteSignal.Operations.CombineEmit
 public import CORALean.Specification.FiniteSignal.Operations.CombineLoop
 public import CORALean.Specification.FiniteSignal.Operations.Cutoff
 public import CORALean.Specification.FiniteSignal.Operations.FindIntervals
-public import CORALean.Specification.FiniteSignal.Operations.FindIntervalsLoop
 public import CORALean.Specification.FiniteSignal.Operations.Indicator
 public import CORALean.Specification.FiniteSignal.Operations.Max
 public import CORALean.Specification.FiniteSignal.Operations.Mk
 public import CORALean.Specification.FiniteSignal.Operations.Set
-public import CORALean.Specification.FiniteSignal.Operations.SetLower
 public import CORALean.Specification.FiniteSignal.Operations.Until
-public import CORALean.Specification.FiniteSignal.Operations.UntilPiece
-public import CORALean.Specification.FiniteSignal.Operations.UntilStep
 public import CORALean.Specification.FiniteSignal.Operations.ValueAt
 
 /-!

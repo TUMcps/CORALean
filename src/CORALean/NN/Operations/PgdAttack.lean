@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Operations.PgdStep
+public import CORALean.NN.Operations.FgsmAttack
 
 @[expose] public section
 
@@ -25,6 +25,18 @@ namespace CORALean
 variable {n m : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- One pass `q` of the loop in `computePGDAttack`: `stepsize = stepsize * stepsizeDecay` if
+`q ∈ stepsizeDecayIter`, `z = computeFGSMAttack(z, t, stepsize)`, `z = min(u, max(l, z))`. -/
+noncomputable def Chain.aux_pgdStep (c : Chain n m) (t : Vec ℝ m) (l u : Vec ℝ n)
+    (stepsizeDecay : ℝ) (stepsizeDecayIter : List ℕ)
+    (lossDer : Vec ℝ m → Vec ℝ m → Vec ℝ m) (q : ℕ) (zs : Vec ℝ n × ℝ) : Vec ℝ n × ℝ :=
+  let stepsize := if q ∈ stepsizeDecayIter then zs.2 * stepsizeDecay else zs.2
+  let z := c.fgsmAttack zs.1 t stepsize lossDer
+  (fun i => min (u i) (max (l i) (z i)), stepsize)
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's `computePGDAttack`, `l` and `u` the caller's bounds (CORA's default `∓∞` is the
@@ -36,7 +48,7 @@ noncomputable def Chain.pgdAttack (c : Chain n m) (x : Vec ℝ n) (t : Vec ℝ m
   let u := fun i => min (u i) (x i + ε)
   let state : ℕ → Vec ℝ n × ℝ := fun q =>
     Nat.rec (x, stepsize)
-      (fun q zs => c.pgdStep t l u stepsizeDecay stepsizeDecayIter lossDer (q + 1) zs) q
+      (fun q zs => c.aux_pgdStep t l u stepsizeDecay stepsizeDecayIter lossDer (q + 1) zs) q
   (state Q).1
 
 end CORALean

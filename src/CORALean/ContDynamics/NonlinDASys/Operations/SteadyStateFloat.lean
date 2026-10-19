@@ -1,10 +1,11 @@
 module
 
-public import CORALean.ContDynamics.NonlinDASys.Operations.FloatModelStackJac
-public import CORALean.ContDynamics.NonlinDASys.Operations.FloatModelStackRes
+public import CORALean.ContDynamics.NonlinDASys.Definitions.FloatModel
 public import CORALean.ContDynamics.NonlinDASys.Operations.NewtonIterate
 public import CORALean.ContDynamics.NonlinDASys.Operations.NewtonTestFloat
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Center
+public import CORALean.ContSet.Interval.Float.Operations.Horzcat
 public import CORALean.ContSet.Interval.Float.Operations.Norm
 
 @[expose] public section
@@ -22,9 +23,9 @@ over iterates stored as `Vector`s. CORA splits `delta_z` to update `x0` and `y0`
 stacked update is the same, and the split is made once, at the end.
 
 What is returned is the candidate that passes `newtonTestFloat` for `(f, g)(·, ·, u₀)` on the
-stacked state with radius `tol` (`FloatModel.stackRes`, `stackJac`), and `none` when the loop runs
-out of fuel or the test fails. The certificate is the float layer's addition: CORA returns its last
-iterate unchecked.
+stacked state with radius `tol` (`FloatModel.aux_stackRes`, `aux_stackJac`), and `none` when the
+loop runs out of fuel or the test fails. The certificate is the float layer's addition: CORA returns
+its last iterate unchecked.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -49,6 +50,21 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n p m : ℕ}
 evaluates to is as thin as one evaluation's rounding, and its center is the matrix. -/
 def aux_pointJacobian {k l : ℕ} (J : Interval (Mat 𝕋 k l)) : Mat 𝕋 k l :=
   J.materialiseMat.centerMat
+
+/-- The slopes of `(f, g)` over a stacked box, `[A C; D F]`, at the input box `U`. -/
+def NonlinDASys.FloatModel.aux_stackJac (fm : NonlinDASys.FloatModel 𝕋 n p m)
+    (U : Interval (Vec 𝕋 m)) (Z : Interval (Vec 𝕋 (n + p))) : Interval (Mat 𝕋 (n + p) (n + p)) :=
+  let X : Interval (Vec 𝕋 n) := ⟨fun i => Z.inf (Fin.castAdd p i), fun i => Z.sup (Fin.castAdd p i)⟩
+  let Y : Interval (Vec 𝕋 p) := ⟨fun j => Z.inf (Fin.natAdd n j), fun j => Z.sup (Fin.natAdd n j)⟩
+  Interval.vertcat (Interval.horzcat (fm.jacA X Y U) (fm.jacC X Y U))
+    (Interval.horzcat (fm.jacD X Y U) (fm.jacF X Y U))
+
+/-- `(f, g)` over a stacked box, at the input box `U`. -/
+def NonlinDASys.FloatModel.aux_stackRes (fm : NonlinDASys.FloatModel 𝕋 n p m)
+    (U : Interval (Vec 𝕋 m)) (Z : Interval (Vec 𝕋 (n + p))) : Interval (Vec 𝕋 (n + p)) :=
+  let X : Interval (Vec 𝕋 n) := ⟨fun i => Z.inf (Fin.castAdd p i), fun i => Z.sup (Fin.castAdd p i)⟩
+  let Y : Interval (Vec 𝕋 p) := ⟨fun j => Z.inf (Fin.natAdd n j), fun j => Z.sup (Fin.natAdd n j)⟩
+  Interval.append (fm.f X Y U) (fm.g X Y U)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -86,7 +102,7 @@ def NonlinDASys.FloatModel.steadyStateFloat (fm : NonlinDASys.FloatModel 𝕋 n 
   letI : Add (Vector 𝕋 (n + p)) := ⟨fun a b => Vector.ofFn fun i => addDown a[i] b[i]⟩
   (newtonIterate step converged fuel (Vector.ofFn (Fin.append x₀ y₀))).bind fun zv =>
     let z : Vec 𝕋 (n + p) := fun i => zv[i]
-    if NonlinDASys.newtonTestFloat (fm.stackRes U₀) (fm.stackJac U₀) z tol
+    if NonlinDASys.newtonTestFloat (fm.aux_stackRes U₀) (fm.aux_stackJac U₀) z tol
     then some (fun i => z (Fin.castAdd p i), fun j => z (Fin.natAdd n j)) else none
 
 end CORALean
