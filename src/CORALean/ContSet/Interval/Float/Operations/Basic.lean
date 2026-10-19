@@ -274,7 +274,7 @@ def Interval.nonemptyHull (I : Interval (Vec 𝕋 n)) : Interval (Vec 𝕋 n) :=
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 /-- The entrywise larger of `|inf|` and `|sup|`, which `absolute` and `maximum` give exactly. -/
 def Interval.normMag (I : Interval (Vec 𝕋 n)) : Vec 𝕋 n :=
@@ -544,7 +544,7 @@ def Interval.diagVec (I : Interval (Mat 𝕋 n n)) : Interval (Vec 𝕋 n) where
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 /-- The stored lower bound. -/
 def Interval.infimum {α : Type} (I : Interval α) : α := I.inf

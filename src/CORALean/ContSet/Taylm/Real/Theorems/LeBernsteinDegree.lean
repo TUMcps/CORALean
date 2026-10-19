@@ -19,7 +19,7 @@ one-variable expansion `pow_eq_sum_bernsteinEntry` asks of its degree.
 -- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

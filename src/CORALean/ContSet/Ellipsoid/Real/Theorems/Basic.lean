@@ -159,7 +159,7 @@ theorem Ellipsoid.project_exact (E : Ellipsoid n) (dims : Fin m → Fin n) :
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 /-- `vᵀ Q v = (Gᵀ v)ᵀ (Gᵀ v)` for `Q = G Gᵀ`, so it is `‖Gᵀ v‖₂²` and nonnegative. -/
 theorem Ellipsoid.quad_eq (E : Ellipsoid n) (v : Vec ℝ n) :

@@ -35,7 +35,7 @@ is fixed, not the joint law of two times; a reach set at a time point asks no mo
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   19-October-2026
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -31,7 +31,7 @@ The constraint at `0` is the consistency condition on `y 0`. CORA assumes differ
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   18-October-2026
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

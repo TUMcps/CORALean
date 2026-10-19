@@ -35,6 +35,7 @@ known only for `k < K` — what sampling on `[0, KΔt]` gives, so `discretize_ho
 -- Written:       18-August-2026
 -- Last update:   18-October-2026
 -- Reviewed:      15-October-2026 (Tobias Ladner)
+--                19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -14,7 +14,7 @@ computation, carrying none of `reach`'s set instances.
 -- Authors:       Claude Sonnet 5
 -- Written:       18-August-2026
 -- Last update:   08-September-2026
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

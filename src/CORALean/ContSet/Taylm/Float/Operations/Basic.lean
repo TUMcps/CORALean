@@ -250,7 +250,7 @@ def Taylm.polyBoxBounds (L : List (𝕋 × (Fin n → ℕ))) (B : Fin n → Inte
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 /-- The sum of the diagonal, `Taylm.sum` of `A i i`; see the exact layer. -/
 def Taylm.trace {k : ℕ} (A : Fin k → Fin k → Taylm 𝕋 n) : Taylm 𝕋 n :=

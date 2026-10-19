@@ -26,7 +26,7 @@ H_{k-1})` an over-approximative output set, for a chain of layers.
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

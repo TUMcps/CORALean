@@ -83,7 +83,7 @@ variable {n : ℕ}
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 /-- `Ellipsoid.interval_contains`: its `interval` contains it. -/
 theorem Ellipsoid.interval_contains (E : Ellipsoid n) : E.construct ⊆ E.interval.construct :=

@@ -69,7 +69,7 @@ theorem ZonoBundle.exists_conZonotope (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB
 -- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 /-- `construct` is an intersection over `Fin 1`, so the sole conjunct is
 `Zonotope.mem_ofPoint` at the family's one member. -/

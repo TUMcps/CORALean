@@ -24,7 +24,7 @@ tuned step (`tune`, `aux_optimaldeltat`) and the next finite horizon (`nextH`, t
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   14-October-2026
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

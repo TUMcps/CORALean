@@ -15,7 +15,7 @@ Nothing is rounded, so the stored box reads as exactly the exact layer's `min` o
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

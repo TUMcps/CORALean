@@ -25,7 +25,7 @@ without a second argument about where `σ'` is maximal.
 -- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

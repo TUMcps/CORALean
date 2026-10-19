@@ -29,7 +29,7 @@ for a factor. Those are separate operations, not this one.
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -44,6 +44,7 @@ theorem apply_eq_dotProduct (c : Vec ℝ n →ₗ[ℝ] ℝ) (x : Vec ℝ n) : c 
 -- Written:       02-September-2026
 -- Last update:   18-October-2026
 -- Reviewed:      16-October-2026 (Tobias Ladner)
+--                19-October-2026 (Tobias Ladner)
 
 /-- The generator matrix `Q^(1/2)`, CORA's `sqrtm(Q)`: symmetric, and `G G = Q`. The set is its
 image of the unit ball (`Theorems/ConstructEqSqrt`). -/

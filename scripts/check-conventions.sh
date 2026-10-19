@@ -283,6 +283,7 @@ out=$(awk \
   -v CEXLIST="$cexlist" \
   -v STALE="$([ -z "$STAGED" ] && echo 1 || echo 0)" \
   -v PYTHON="$PYTHON" \
+  -v REPO="$repo" \
   -v ALLOWLIST="$ALLOWLIST" '
 # One `Reviewed:` entry: `DD-Month-YYYY (Name)`, a human name.
 function checkReview(val, ln,    d, nm) {
@@ -594,7 +595,8 @@ function closeBlock(e,   len) {
 # the `aux_` declarations of that algorithm'"'"'s `Operations/` file; no other file may.
 function satelliteDeclares(f, a,   cmd) {
   if (f !~ /\/Theorems\//) return 0
-  cmd = PYTHON " scripts/satellites.py declares " f " " a
+  # from `REPO`: `--staged` runs inside a checkout of the staged files alone
+  cmd = PYTHON " \"" REPO "/scripts/satellites.py\" declares " f " " a
   return system(cmd) == 0
 }
 

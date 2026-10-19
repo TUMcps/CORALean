@@ -14,7 +14,7 @@ difference is `minkDiff`), so the set minus a set is not defined here either.
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

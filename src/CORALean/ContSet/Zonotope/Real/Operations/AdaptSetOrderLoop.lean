@@ -24,7 +24,7 @@ size — unlike `Alg. 2`, whose step sweep has none.
 -- Authors:       Claude Sonnet 5
 -- Written:       18-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

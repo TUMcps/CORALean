@@ -328,7 +328,7 @@ theorem Kleene.not_or (a b : Kleene) : (a.or b).not = a.not.and b.not := by
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 /-- Splitting a value into its Boolean and unknown parts and joining them is the identity. -/
 theorem Kleene.ofBoolUnk_toBool_isUnknown (a : Kleene) :

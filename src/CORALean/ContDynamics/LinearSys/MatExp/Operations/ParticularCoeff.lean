@@ -20,7 +20,7 @@ public import Mathlib.Data.Matrix.Mul
 -- Authors:       Claude Sonnet 5
 -- Written:       19-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -133,7 +133,7 @@ def shift (d : Dyadic p) : ℕ := Nat.log2 d.mantissa.natAbs + 1 - p
 -- Authors:       Claude Sonnet 5
 -- Written:       16-August-2026
 -- Last update:   02-September-2026
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 /-- Integer `/` is floor division on ℤ, so shifting the mantissa right by `shift`
 bits and raising the exponent to match rounds toward `-∞`. -/

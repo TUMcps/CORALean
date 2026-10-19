@@ -15,7 +15,7 @@ float counterpart of `Real.PolyZonotope.bilinE`, of which `quadMapE` is the self
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   12-October-2026
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -17,7 +17,7 @@ Additivity suffices; the map is applied to a sum of two sets and nothing else.
 -- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -14,7 +14,7 @@ The inequality `0 ⪰ 0` holds for every `β`, and the point is `(β, 1)`: the s
 -- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

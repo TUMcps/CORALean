@@ -14,7 +14,7 @@ unavoidably so at this layer — whether two reals are equal is not decidable.
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Reviewed:      ---
+-- Reviewed:      19-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
