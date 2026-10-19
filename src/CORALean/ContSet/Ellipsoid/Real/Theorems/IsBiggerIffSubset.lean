@@ -17,6 +17,16 @@ Containment gives `‖G₂ᵀ v‖ ≤ ‖G₁ᵀ v‖` for every `v` through th
 (`vᵀ Q v = ‖Gᵀ v‖²`). Conversely, for `x = G₂ u` and `w = Q₁⁻¹ x`, `s = xᵀ w` satisfies
 `s ≤ ‖G₂ᵀ w‖` and `‖G₂ᵀ w‖² = wᵀ Q₂ w ≤ wᵀ Q₁ w = s`, so `s ≤ 1`, which is
 `ellipsoidNorm ≤ 1`.
+
+## Inputs
+* `E₁` – larger ellipsoid
+* `E₂` – smaller ellipsoid
+
+## Hypotheses
+* `hr` – `E₁` has full rank
+
+## Conclusion
+* `isBigger` holds iff `E₂` fits into `E₁` up to the centers
 -/
 
 -- Authors:       Claude Opus 5.5

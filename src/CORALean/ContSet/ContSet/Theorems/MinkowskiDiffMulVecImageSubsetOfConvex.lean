@@ -9,16 +9,29 @@ public import CORALean.Global.Tensor
 /-!
 # A perturbed matrix image, inner-approximated without a smallness condition
 
-`minkowskiDiff_image_subset_image_of_convex` at matrices: for any `Ē`, `E`, a
-convex compact `X` and a nonempty bounded `B` covering `(Ē - E) X`, the image
-`Ē X` minus `B` lies inside `E X`. The image `E X` is convex and compact as a
-linear image of one, which is all the cancellation asks.
+`minkowskiDiff_image_subset_image_of_convex` at matrices: for any `Ē`, `E`, a convex compact `X` and
+a nonempty bounded `B` covering `(Ē - E) X`, the image `Ē X` minus `B` lies inside `E X`. The image
+`E X` is convex and compact as a linear image of one, which is all the cancellation asks.
 
-Neither `Ē` invertible nor `‖Ē⁻¹ (E - Ē)‖ < 1` is needed here, unlike the
-contraction route (`minkowskiDiff_mulVec_image_subset_of_contracting`), which
-pays for a closed `X` that need not be convex. For an interval matrix holding
-the true `e^{AΔt}` and `X` a zonotope, this is the statement to use: `B` is any
-box covering `R |X|`, `R` the interval's radius.
+Neither `Ē` invertible nor `‖Ē⁻¹ (E - Ē)‖ < 1` is needed, unlike the contraction route
+(`minkowskiDiff_mulVec_image_subset_of_contracting`). For an interval matrix holding the true
+`e^{AΔt}` and `X` a zonotope, `B` is any box covering `R |X|`, `R` the interval's radius.
+
+## Inputs
+* `Ē` – matrix
+* `E` – matrix
+* `X` – domain set
+* `B` – error set
+
+## Hypotheses
+* `hXc` – `X` convex
+* `hXk` – `X` compact
+* `hBne` – `B` nonempty
+* `hBb` – `B` bounded
+* `hB` – `B` covers `Ē x - E x` on `X`
+
+## Conclusion
+* `Ē X ⊖ B` lies in `E X`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,6 +16,16 @@ For a full-rank ellipsoid, `ellipsoidNorm E p ≤ 1` exactly when the translate 
 lies in the ellipsoid: `ellipsoidNorm` is the smallest `‖u‖₂` with `G u = p`, attained at the
 minimum-norm solution `u = Gᵀ (G Gᵀ)⁻¹ p`, for which `|pᵀ (G Gᵀ)⁻¹ p| = ‖u‖₂²`. Any other
 solution differs from it by a kernel vector of `G`, which is orthogonal to `u`.
+
+## Inputs
+* `E` – ellipsoid
+* `p` – point
+
+## Hypotheses
+* `hr` – shape has full rank
+
+## Conclusion
+* the ellipsoid norm of `p` is at most 1 iff `q + p` is in `E`
 -/
 
 -- Authors:       Claude Opus 5.5

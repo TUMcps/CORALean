@@ -18,6 +18,16 @@ The step [1, Prop. 6]'s proof takes at `Z ⊖ P = ⋂ᵢ (Z − vᵢ)`, stated f
 only a zonotope, and needless of `P.k > 0`: at `P.k = 0`, `P.construct` and the intersection are
 both `Set.univ` (a subtrahend `∅` moves nothing, and no side of `⋂ i : Fin 0, ·` names a condition).
 
+## Inputs
+* `S` – convex minuend
+* `P` – polytope
+
+## Hypotheses
+* `hS` – `S` convex
+
+## Conclusion
+* the difference is the intersection of `S - vᵢ` over the vertices
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

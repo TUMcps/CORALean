@@ -14,6 +14,18 @@ hypothesis than [1] prints: `p_k` must not depend on `x(k)`. The proof "replaces
 `IntersectLevelSetBox` shows the equality failing without it. [1]'s two uses,
 `Prop. 1` and `Prop. 2`, both ask `∂p_k/∂x(k) = 0` before applying the theorem.
 
+## Inputs
+* `I` – box
+* `k` – solved coordinate
+* `p` – polynomial for the solved coordinate
+
+## Hypotheses
+* `h4` – `p` stays in the box range of `x(k)`
+* `hind` – `p` ignores `x(k)`
+
+## Conclusion
+* the box cut by `x(k) = p` is exactly the model
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

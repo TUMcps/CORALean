@@ -11,6 +11,12 @@ public import CORALean.ContSet.Interval.Float.Operations.Materialise
 Every field is a function type, so the ellipsoid an operation returns is a
 closure over the one it was given. `materialise` stores them and `materialise_eq`
 says it is the identity; `Global/Tensor` says why the vectors are built here.
+
+## Inputs
+* `E` – ellipsoid
+
+## Output
+* ellipsoid with its fields stored
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

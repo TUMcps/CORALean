@@ -10,6 +10,13 @@ public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
 
 The shape matrix's rows and columns, the center and the error box relabelled, and nothing rounds:
 a permutation moves stored floats without arithmetic.
+
+## Inputs
+* `e` – equivalence of the coordinates
+* `E` – ellipsoid
+
+## Output
+* `E` with its coordinates permuted by `e`
 -/
 
 -- Authors:       Claude Opus 5.5

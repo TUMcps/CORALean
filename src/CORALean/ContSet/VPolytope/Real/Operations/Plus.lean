@@ -15,6 +15,13 @@ vertices are for — a halfspace description has no counterpart.
 
 The vertex form of the Minkowski sum, [1, Eq. 25].
 
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+
+## Output
+* polytope of all sums of a vertex of each
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

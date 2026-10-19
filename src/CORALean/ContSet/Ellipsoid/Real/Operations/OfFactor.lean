@@ -10,6 +10,13 @@ public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 `ofFactor F q` is the ellipsoid of shape `F Fᵀ` and center `q`, for any `n × k` matrix `F`: the
 shape matrix CORA computes as `G*G'` from generators `G` (`zonotope/ellipsoid`, `fac*(G*G')`), and
 positive semi-definite on sight. `construct_ofFactor` says it is `{q + F u | ‖u‖₂ ≤ 1}`.
+
+## Inputs
+* `F` – factor
+* `q` – center
+
+## Output
+* ellipsoid of shape `F Fᵀ` and center `q`
 -/
 
 -- Authors:       Claude Opus 5.5

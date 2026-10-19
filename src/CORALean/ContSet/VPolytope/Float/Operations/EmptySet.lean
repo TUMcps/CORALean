@@ -10,6 +10,13 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 No vertices, so there is no coefficient family summing to one: the nominal part
 denotes `∅`, and so does its sum with any error box.
+
+## Inputs
+* `𝕋` – float type
+* `n` – dimension
+
+## Output
+* polytope with no vertices
 -/
 
 -- Authors:       Claude Opus 5.5

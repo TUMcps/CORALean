@@ -12,6 +12,13 @@ accepts a box and returns the interval vector `k` that `tightenDomain`'s `'linea
 divides by. The handle is symbolic differentiation compiled to interval arithmetic; what the
 contractor needs of it is only that its value at a box holds the gradient at every point of the
 box, and that is the specification here.
+
+## Inputs
+* `f` – scalar function
+* `grad` – interval gradient
+
+## Output
+* `grad J` contains the gradient at every point of `J`
 -/
 
 -- Authors:       Claude Sonnet 5.5

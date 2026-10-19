@@ -11,6 +11,17 @@ public import CORALean.Global.EuclideanHausdorffDist
 For a nonempty compact set `S`, the quadratic program `min y'y - 2x'y` over `y ∈ S` minimizes
 `‖x - y‖₂² - ‖x‖₂²`, so `sqrt(val + x'x)` is the Euclidean distance of `x` to `S`: exact. The
 distance is `Metric.infDist` in `EuclideanSpace`, not the supremum-norm one `Vec` carries.
+
+## Inputs
+* `S` – set
+* `x` – point
+
+## Hypotheses
+* `hc` – `S` compact
+* `hne` – `S` nonempty
+
+## Conclusion
+* `distPoint` is the Euclidean distance from `x` to `S`
 -/
 
 -- Authors:       Claude Opus 5.5

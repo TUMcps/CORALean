@@ -17,6 +17,13 @@ lies in `E`, and the empty ellipsoid otherwise, here `OptEmpty.empty`, as no `El
 `representsa_(E, 'point')` branch has the same result for a point argument. The hyperplane,
 polytope and ellipsoid branches (`priv_andHyperplane`, `priv_andPolytope`, `priv_andEllipsoidOA`,
 `priv_andEllipsoidIA`) are not formalized.
+
+## Inputs
+* `E` – ellipsoid
+* `p` – point
+
+## Output
+* the point as ellipsoid if `E` contains it, else empty
 -/
 
 -- Authors:       Claude Opus 5.5

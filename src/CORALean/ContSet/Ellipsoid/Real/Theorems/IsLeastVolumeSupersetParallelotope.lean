@@ -13,16 +13,21 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
 
 [1, Sec. III-A (Remark a)]: for `n = m` and `G` invertible, the minimum-volume ellipsoid enclosing
 `Z(G, z̄) = {z̄ + Gβ | ‖β‖∞ ≤ 1}` is `E(nGGᵀ, z̄)`, the generator `√n G`: it encloses `Z(G, z̄)`,
-and no ellipsoid `E(E, e)`, `E ≻ 0`, enclosing it has less volume. Those are the ellipsoids with a
-square generator `F` (any factor of `E`); a singular `F` encloses nothing full-dimensional.
-`G = I` is the hypercube and its sphere of radius `√n`, the case the remark reduces to by
-`Z(I, ẑ) = G⁻¹Z(G, z̄)` (Eq. 12, `Lemma 1` at `T = G⁻¹`).
-
-For an enclosing `E(F, q)`, `F` is invertible (`det_ne_zero_of_superset_parallelotope`) and
+and no ellipsoid `E(E, e)`, `E ≻ 0`, enclosing it has less volume; those have a square generator
+`F`. For an enclosing `E(F, q)`, `F` is invertible (`det_ne_zero_of_superset_parallelotope`) and
 `tr(MMᵀ) ≤ 1` for `M = F⁻¹G` (`normSq_add_trace_le_of_superset_parallelotope`), so AM-GM on the
-eigenvalues (`det_le_trace_div_pow`) gives `det(M)² ≤ n⁻ⁿ`, i.e. `|det F| ≥ nⁿᐟ²|det G|`, the volume
-of `E(nGGᵀ, z̄)` over that of the unit ball. That no other ellipsoid attains it is
-`construct_eq_of_volume_le_superset_parallelotope`.
+eigenvalues (`det_le_trace_div_pow`) gives `|det F| ≥ nⁿᐟ²|det G|`, the volume of `E(nGGᵀ, z̄)`.
+That no other attains it is `construct_eq_of_volume_le_superset_parallelotope`.
+
+## Inputs
+* `G` – generator matrix of the parallelotope
+* `z` – center of the parallelotope
+
+## Hypotheses
+* `hG` – `G` invertible
+
+## Conclusion
+* `E(n G Gᵀ, z)` has the least volume among ellipsoids enclosing the parallelotope
 
 ## References
 

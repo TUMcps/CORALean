@@ -14,6 +14,19 @@ way for a nonempty family only; surjectivity covers the empty one, `F univ = uni
 map of a zonotope bundle it is the exact case of [1, Prop. 1], `L` of full rank read as
 invertible.
 
+## Inputs
+* `k` – number of members
+* `f` – members of the operand
+* `g` – members of the result
+* `F` – map
+
+## Hypotheses
+* `hF` – `F` bijective
+* `h` – each `g i` is the image of `f i` under `F`
+
+## Conclusion
+* the result is the image of the operand's intersection
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

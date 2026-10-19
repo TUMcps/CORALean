@@ -16,6 +16,22 @@ Each factor lies in its bounding box (`Ellipsoid.interval_contains`, given its c
 product of the boxes is the box of the concatenated bounds, and a box lies in its ellipsoid
 (`Interval.ellipsoid_contains`, given `σ`). Outer only, as CORA's `'outer'` mode: the product of
 two ellipsoids is not an ellipsoid.
+
+## Inputs
+* `E₁` – first ellipsoid
+* `E₂` – second ellipsoid
+* `s₁` – box root lengths for `E₁`
+* `s₂` – box root lengths for `E₂`
+* `σ` – root of the dimension bound
+
+## Hypotheses
+* `hs₁` – `s₁` bounds the diagonal of `E₁`
+* `hs₂` – `s₂` bounds the diagonal of `E₂`
+* `hσ` – `0 < σ`
+* `hn` – `n + m ≤ σ²`
+
+## Conclusion
+* the product of the two ellipsoids lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

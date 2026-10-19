@@ -10,6 +10,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.SupportBoundAttained
 `SupportBound` carries only an inequality; together with a point attaining it
 that inequality becomes a maximum. This is the form a conversion reads, since it
 is what says an interval hull taken off these bounds touches the ellipsoid.
+
+## Inputs
+* `E` – ellipsoid
+* `c` – linear functional
+
+## Hypotheses
+* none
+
+## Conclusion
+* the support bound is the greatest value of `c` on `E`
 -/
 
 -- Authors:       Claude Opus 5

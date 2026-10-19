@@ -13,21 +13,21 @@ public import Mathlib.Data.Real.Basic
 # `Ellipsoid.enclosePointsCov`
 
 CORA's `@ellipsoid/enclosePoints.m` at `method = 'cov'` (the default), for points that span the
-whole space (`n_nd = n`, so no projection to a subspace and `n_d = 0`): the points are centered
-on their mean `c`, rotated by `T'` (`T` from `svd(points)`), the covariance of the result gives a
-basis `U` (`svd(C)`), and in the rotated coordinates `orientedMatrix = U' * points` the ellipsoid
-is `diag(nt²) * maxDist`, `nt = max([m1, m2], [], 2)` the larger of the per-coordinate extremes
-and `maxDist` the largest `Σᵢ (orientedMatrix(i,j) / ntᵢ)²` over the points, then rotated back,
-`E = T * (U * E) + c`.
+whole space: the points are centered on their mean `c`, rotated by `T'` (`T` from `svd(points)`),
+the covariance gives a basis `U` (`svd(C)`), and in the rotated coordinates the ellipsoid is
+`diag(nt²) * maxDist`, `nt` the larger of the per-coordinate extremes and `maxDist` the largest `Σᵢ
+(orientedMatrix(i,j) / ntᵢ)²`, then rotated back, `E = T * (U * E) + c`. A singular value
+decomposition has no algorithm in this library, so `T` and `U` are arguments: the enclosure holds
+for every orthogonal pair, the SVDs deciding only how tight it is. At least one point is required
+(`NeZero N`). The branches `n_nd < n` and the SDP method `'min-vol'` are not formalized.
 
-A singular value decomposition has no algorithm in this library, so `T` and `U` are arguments (as
-for `Zonotope.enclosePointsStursberg`): the result is the one CORA builds for those matrices, and
-the enclosure holds for every orthogonal pair, the SVDs only deciding how tight it is. The points
-are the columns of CORA's `points`, and at least one is required (`NeZero N`). The shape `B =
-diag(nt²) * maxDist` is written `D Dᵀ` with `D = diag(nt · sqrt maxDist)`, the same matrix and
-positive semi-definite on sight, and the rotation `T * (U * E)` is `(T U) B (T U)ᵀ`. The branches
-`n_nd = 0` (empty), `n_nd = 1` (an interval) and `n_nd < n` (a projection to the subspace and back)
-and the SDP method `'min-vol'` are not formalized.
+## Inputs
+* `pts` – points
+* `T` – rotation proposed by the caller
+* `U` – rotation proposed by the caller
+
+## Output
+* ellipsoid enclosing all the points
 -/
 
 -- Authors:       Claude Opus 5.5

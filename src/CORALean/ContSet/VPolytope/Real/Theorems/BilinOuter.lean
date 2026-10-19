@@ -15,6 +15,17 @@ attained. Contrast `PolyZonotope.bilin`, exact for a different reason — shared
 factors and an exponent matrix — and #81's `Zonotope.bilin`, which genuinely
 enlarges because a zonotope cannot record that `αᵢβⱼ` depends on both `αᵢ` and
 `βⱼ`.
+
+## Inputs
+* `f` – bilinear map
+* `P` – first polytope
+* `Q` – second polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* every pointwise image of the two sets lies in the result
 -/
 
 -- Authors:       Claude Opus 5

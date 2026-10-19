@@ -9,6 +9,15 @@ public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
 
 The center of the nominal ellipsoid is the stored one read as reals, positive semi-definite `Q` or
 not: CORA's constructor keeps it either way.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* the nominal center is the stored center
 -/
 
 -- Authors:       Claude Opus 5

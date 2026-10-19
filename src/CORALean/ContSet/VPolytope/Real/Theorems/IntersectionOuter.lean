@@ -20,6 +20,18 @@ public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeIntervalContain
 Both operands land in their own halfspace descriptions, intersection of
 halfspace descriptions is exact, and vertex enumeration puts the result back —
 or, when nothing is left, the empty vertex list already contains nothing.
+
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+* `Aq₁` – cut directions of the first operand
+* `Aq₂` – cut directions of the second operand
+
+## Hypotheses
+* none
+
+## Conclusion
+* the intersection lies in the result
 -/
 
 -- Authors:       Claude Opus 5

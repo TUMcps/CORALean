@@ -9,18 +9,24 @@ public import Mathlib.Analysis.RCLike.Lemmas
 # Perturbing a linear image moves it no further than the perturbation reaches
 
 [1, Prop. 10]: for a compact `S` and matrices `M1, M2`, `d_H((M1+M2)S, M1 S) ≤ d_H(0, M2 S)`. The
-correspondence keeps the same point of `S` on both sides — `M1`'s image of it against
-`(M1+M2)`'s — so the whole gap is exactly `M2`'s image of that point, already what the
-right-hand side measures against the origin.
+correspondence keeps the same point of `S` on both sides, so the whole gap is `M2`'s image of that
+point, which the right-hand side measures against the origin.
 
-The paper writes `‖·‖₂`, but the argument above never touches the norm beyond the triangle
-inequality, so it holds at whichever one the ambient space carries; here that is `Vec ℝ n`'s own
-supremum norm, not `‖·‖₂`.
+The paper writes `‖·‖₂`, but the argument uses the norm only through the triangle inequality, so it
+holds at whichever one the ambient space carries: here `Vec ℝ n`'s supremum norm. `S` compact is the
+one hypothesis: it makes `M2 '' S` bounded, hence at finite Hausdorff edistance from `{0}`.
+Nonemptiness is never a separate hypothesis.
 
-`S` compact is the one hypothesis, and it is load-bearing: it is what makes `M2 '' S` bounded,
-hence at finite Hausdorff edistance from `{0}`, which the internal argument needs. Nonemptiness is
-never a separate hypothesis — whichever point the correspondence is applied to already witnesses
-that the relevant image is nonempty.
+## Inputs
+* `S` – set
+* `M1` – matrix
+* `M2` – perturbation matrix
+
+## Hypotheses
+* `hS` – `S` compact
+
+## Conclusion
+* distance is at most that of the perturbation's image from the origin
 
 ## References
 

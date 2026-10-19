@@ -12,6 +12,13 @@ CORA's vertex matrix. The operations here store a whole vertex list, and a hull 
 no center to move a vertex away from, so one box has to cover all of it — the widest
 gap in each coordinate, taken over the vertices.
 
+## Inputs
+* `k` – number of vertices
+* `lo` – lower roundings of the vertices
+* `hi` – upper roundings of the vertices
+
+## Output
+* box of the widest gap per coordinate
 -/
 
 -- Authors:       Claude Opus 5

@@ -22,6 +22,16 @@ For positive-definite `Q`, the Lebesgue measure of `{x | (x − q)ᵀ Q⁻¹ (x 
 `Q^(1/2)` (`mem_ofShape_iff`), a square generator, whose volume is `Ellipsoid.volume`
 (`volume_eq`) at the shape `Q` (`ofShape_eq`).
 
+## Inputs
+* `Q` – shape matrix
+* `q` – center
+
+## Hypotheses
+* `hQ` – `Q` positive definite
+
+## Conclusion
+* the volume of the set is `V_n √(det Q)`
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

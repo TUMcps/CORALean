@@ -13,34 +13,31 @@ public import Mathlib.LinearAlgebra.Matrix.Notation
 /-!
 # CORA's ellipsoid-in-ellipsoid `contains_`, as printed
 
-`@ellipsoid/private/priv_containsEllipsoid.m` (l. 46-96), reached from `contains_(E1, E2)` for an
-ellipsoid `E2` that is not a point (l. 88-90): `H` and `G` are the generators of `E1` and `E2` (`E.G
-= Q^(1/2)` here, where CORA has `U*sqrt(D)` of `svd(Q)`, the same up to an orthogonal factor on the
-right, which changes neither the ranks nor the SDP's value); if `rank(H) < n` and `rank([H G]) >
+`@ellipsoid/private/priv_containsEllipsoid.m` (l. 46-96), reached from `contains_(E1, E2)` for a
+non-point `E2`: `H` and `G` are the generators of `E1` and `E2`; if `rank(H) < n` and `rank([H G]) >
 rank(H)` the answer is `false`; otherwise `Theta = pinv(H)*G`, `theta = pinv(H)*(q2 - q1)`, and the
-SDP `min rho` s.t. `A - rho*B <= delta*C`, `delta >= 0` with `A = [Theta'Theta Theta'theta;
-theta'Theta theta'theta]`, `B = diag(0, …, 0, 1)`, `C = diag(1, …, 1, -1)` decides by `rho <= 1 +
-tol`. The ranks are exact (`Matrix.rank`; CORA's `rank(·, tol)` agrees on the matrices of the
-theorems); `pinv(H)` is the argument `Hp` and the solver (`value(rho)` after `optimize`) the
-argument `sdp A B C`, each pinned down by hypotheses in the theorems. The rank test checks the
-generators but not the center offset `q2 - q1`, which `pinv(H)` projects away when `E1` is
-degenerate; kept only so that `Ellipsoid.containsEllipsoidCora_counterexample` can state that this
-is unsound.
+SDP `min rho` s.t. `A - rho*B <= delta*C`, `delta >= 0` decides by `rho <= 1 + tol`. `pinv(H)` is
+the argument `Hp` and the solver the argument `sdp A B C`, each pinned down by hypotheses in the
+theorems. The rank test checks the generators but not the offset `q2 - q1`, which `pinv(H)` projects
+away when `E1` is degenerate.
 
 # CORA's ellipsoid-in-ellipsoid `contains_` accepts a disjoint degenerate ellipsoid
 
 `E1 = ellipsoid(diag([1,0]))` is the segment `[-1, 1] × {0}`, `E2 = ellipsoid(diag([0.25,0]),
-[0;1])` the segment `[-0.5, 0.5] × {1}`, disjoint from it. CORA's generators are `H = diag(1, 0)`
-and `G = diag(0.5, 0)`; `rank([H G]) = rank(H) = 1`, so the rank test passes. `pinv(H) = H`
-sends the offset `q2 - q1 = (0, 1)` to `theta = 0`, so `Theta = diag(0.5, 0)` and the SDP is
-`min rho` s.t. `diag(Theta'Theta, -rho) <= delta*diag(1, 1, -1)`: its optimum is `rho = 1/4`, at
-`delta = 1/4`, and CORA answers `true`.
+[0;1])` the segment `[-0.5, 0.5] × {1}`, disjoint from it. With `H = diag(1, 0)` and `G = diag(0.5,
+0)` the rank test passes, `pinv(H) = H` sends the offset `(0, 1)` to `theta = 0`, and the SDP has
+optimum `rho = 1/4`: CORA answers `true`. `pinv(H)` is any `Hp` meeting the four Penrose equations;
+the solver is any function within `3/4` of every feasible `rho`, and the second conjunct shows one
+exists. Read from the source, not run.
 
-`pinv(H)` is any `Hp` meeting the four Penrose equations (which force `Hp = H`); the SDP solver is
-any function whose value on a problem bounded below is within `3/4` of every feasible `rho` — a
-margin covering an inexact optimum. The second conjunct shows such a solver exists, so the
-statement is not vacuous. Sign flips of CORA's `svd` columns leave `Theta'Theta` and `theta = 0`
-unchanged. Read from the source, not run.
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's `contains_` answers `true` though the ellipsoid is not contained
 -/
 
 -- Authors:       Claude Opus 5.5

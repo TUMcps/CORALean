@@ -27,6 +27,15 @@ The polytope `polytope(0)` (a single vertex, in `ℝ¹`) reaches `aux_isHalfspac
 and its undefined `V`. The answer is `false`: a halfspace `{x | a x ≤ b}`, `a ≠ 0`, is
 unbounded and holds `(b - 1)/a` and `(b - 2)/a`, two points a single vertex cannot. Read from the
 source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's halfspace test errors on a polytope that is no halfspace
 -/
 
 -- Authors:       Claude Sonnet 5.5

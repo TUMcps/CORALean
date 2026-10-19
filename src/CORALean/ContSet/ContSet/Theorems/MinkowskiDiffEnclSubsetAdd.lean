@@ -16,6 +16,17 @@ paper states it as its own proposition.
 [1, Prop. 4]'s statement even though the algebra needs neither it nor
 convexity, exactly as `minkowskiDiff_add_subset_add`'s docstring already says.
 
+## Inputs
+* `Zmencl` – enclosing minuend part
+* `Zmrem` – remaining minuend part
+* `Zs` – subtrahend
+
+## Hypotheses
+* `_hencl` – `Zs ⊆ Zmencl`
+
+## Conclusion
+* `(Zmencl ⊖ Zs) + Zmrem` lies in `(Zmencl + Zmrem) ⊖ Zs`
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

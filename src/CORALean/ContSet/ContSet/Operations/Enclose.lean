@@ -11,6 +11,14 @@ CORA's `enclose(S, M, S₂)` returns the convex hull of `S` and `M S ⊕ S₂`. 
 classes, as the `linComb` of `S` and `mtimes M S` plus `S₂`: nothing here is specific to a
 representation, and a representation that has `LinComb`, `Mtimes` and `Plus` gets it. The hull
 is a `linComb`, which is the hull only where both operands are convex.
+
+## Inputs
+* `s` – set
+* `M` – matrix
+* `s₂` – set
+
+## Output
+* set enclosing `s` and `M s ⊕ s₂`
 -/
 
 -- Authors:       Claude Sonnet 5.5

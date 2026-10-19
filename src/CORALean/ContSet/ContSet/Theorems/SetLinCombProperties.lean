@@ -16,6 +16,16 @@ claims "D conv ND = ND", "D conv NB = NB", "ND conv B = ND" and "B conv NB = NB"
 an empty operand — degenerate and bounded in the paper's convention, and absorbing under this
 `conv` (`setLinComb_properties_counterexample`).
 
+## Inputs
+* `S₁` – first set
+* `S₂` – second set
+
+## Hypotheses
+* none
+
+## Conclusion
+* emptiness, interior and boundedness of the linear combination follow from the operands
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

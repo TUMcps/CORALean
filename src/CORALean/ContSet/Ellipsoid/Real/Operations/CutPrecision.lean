@@ -19,6 +19,14 @@ The inverse of the shape matrix [1, Eq. 16] of the ball with a parallel cut is
 for a unit `c`: `(I − κ c cᵀ)⁻¹ = I + κ/(1 − κ) · c cᵀ`, and `1 − κ = (n − 1)γ²/(1 − γ²)`
 for `κ = (1 − nγ²)/(1 − γ²)`. `cutShape_mul_cutPrecision` says so.
 
+## Inputs
+* `n` – dimension
+* `c` – unit cut direction
+* `γ` – cut depth
+
+## Output
+* inverse of the cut ellipsoid's shape matrix
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

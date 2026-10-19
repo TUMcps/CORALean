@@ -18,6 +18,18 @@ At the depth `γ = 1/√(n(1+ε))` of [1, Lemma 4.4], `det E ≤ exp(2/√(1+ε)
 determinant is `(1+x)^(n−1)/(1+ε)`; `1 + x ≤ eˣ` gives `(1+x)^(n−1) ≤ e^(ε/(1+ε))`, and
 `1/(1+ε) = (1/√(1+ε))² ≤ (e^(1/√(1+ε) − 1))²`.
 
+## Inputs
+* `c` – unit cut direction
+* `ε` – approximation tolerance
+
+## Hypotheses
+* `hc` – `c` has unit length
+* `hn` – `2 ≤ n`
+* `hε` – `0 < ε`
+
+## Conclusion
+* the determinant at Goffin's depth is at most `exp(2/√(1+ε) − 2 + ε/(1+ε))`
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

@@ -10,6 +10,16 @@ public import CORALean.ContSet.Equality.Float.Theorems.Basic
 
 If the denoted sets differ, `neBool` is `true`. Only this direction: it can be `true` of two
 representations of one set, since `isequal` is conservative.
+
+## Inputs
+* `s` – set
+* `t` – set
+
+## Hypotheses
+* `h` – the denoted sets differ
+
+## Conclusion
+* `neBool s t` is `true`
 -/
 
 -- Authors:       Claude Opus 5.5

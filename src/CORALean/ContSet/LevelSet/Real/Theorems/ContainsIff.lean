@@ -8,6 +8,16 @@ public import CORALean.ContSet.LevelSet.Real.Operations.Contains
 # `LevelSet.contains` decides membership
 
 The boolean answer is `true` exactly when the point is in the denoted set.
+
+## Inputs
+* `L` – level set
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `contains` returns `true` iff `x` lies in `L`
 -/
 
 -- Authors:       Claude Opus 5.5

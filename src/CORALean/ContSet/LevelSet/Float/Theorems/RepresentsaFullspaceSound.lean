@@ -11,6 +11,17 @@ public import CORALean.ContSet.LevelSet.Real.Theorems.RepresentsaFullspaceSound
 Every row's certified comparison, read as reals, is the real test at the bounds read as reals
 (and cast to `EReal`), and `CORALean.Real.LevelSet.representsa_fullspace_sound` concludes. The
 bounds are assumed to enclose each row's range, as over ℝ.
+
+## Inputs
+* `L` – level set
+* `O` – float bounds of the rows over the whole space
+
+## Hypotheses
+* `hO` – `O` encloses each row's range
+* `h` – `representsa_fullspace` returns `true`
+
+## Conclusion
+* the level set is the whole space
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -8,6 +8,12 @@ public import CORALean.ContSet.VPolytope.Real.VPolytope
 # `colLin`
 
 A vector as an `n × 1` matrix, linearly: the embedding `matPolytope` maps each vertex by.
+
+## Inputs
+* `n` – dimension
+
+## Output
+* the linear map reading a vector as an `n × 1` matrix
 -/
 
 -- Authors:       Claude Opus 5.5

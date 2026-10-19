@@ -13,6 +13,17 @@ CORA's `interval(E)`, `q ± √diag(Q)`, read at the stored floats: where `Q` is
 semi-definite this is `Real.Ellipsoid.abs_sub_le_sqrt_diag`, and where it is not the nominal part
 is the center alone. The `max` with `0` makes the bound hold for any stored `Q`, which is what
 lets an operation fall back to the box without first certifying `Q`.
+
+## Inputs
+* `E` – ellipsoid
+* `x` – point
+* `i` – coordinate
+
+## Hypotheses
+* `hx` – `x` in the nominal part
+
+## Conclusion
+* `x` is within `√max(0, Qᵢᵢ)` of the center in coordinate `i`
 -/
 
 -- Authors:       Claude Opus 5.5

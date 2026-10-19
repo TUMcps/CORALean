@@ -13,6 +13,16 @@ has to be built and its sum computed, which is three rewrites through
 `Finset.sum_ite_eq'`.
 
 What the convex-hull characterisation and `linComb`'s enclosure both start from.
+
+## Inputs
+* `P` – polytope
+* `j` – vertex index
+
+## Hypotheses
+* none
+
+## Conclusion
+* vertex `j` lies in `P`
 -/
 
 -- Authors:       Claude Opus 5

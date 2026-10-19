@@ -16,6 +16,16 @@ Inner: each support point `q + Q l / √(lᵀ Q l)` is `q + G u` with `‖u‖�
 `Gᵀ l / ‖Gᵀ l‖₂`, or `0`, `G = Q^(1/2)`), so it is in the ellipsoid, and the ellipsoid is convex, so
 the hull of the points is. CORA states neither this nor that the points lie on the boundary; the
 polygon is an inner approximation, not an enclosure.
+
+## Inputs
+* `E` – planar ellipsoid
+* `L` – directions
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polygon lies in `E`
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

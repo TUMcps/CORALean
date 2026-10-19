@@ -15,6 +15,15 @@ equation), and `grad` is the handle `der.grad`, passed in with the property
 `IsGradEnclosure` that the contractor's soundness needs of it. The other contractors
 (`'forwardBackward'`, the default, runs `backpropagation` on the symbolic syntax tree; `'taylor'`
 and `'split'` use the solved-variable tables) need symbolic data a `LevelSet` does not carry.
+
+## Inputs
+* `f` – equation function
+* `grad` – interval gradient of `f`
+* `maxIter` – number of sweeps
+* `int` – initial box
+
+## Output
+* the box contracted by the linear contractor
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -16,6 +16,15 @@ The ellipsoid is `q` plus the image of the unit ball under the square matrix `G 
 so its volume is `|det G|` times the ball's (`Measure.addHaar_image_linearMap`), and
 `sqrt(det Q) = sqrt(det(G Gᵀ)) = |det G|`. This is `Ellipsoid.volume` exactly, for every
 ellipsoid, degenerate ones included.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Lebesgue volume of `E` is `volume E`
 -/
 
 -- Authors:       Claude Opus 5.5

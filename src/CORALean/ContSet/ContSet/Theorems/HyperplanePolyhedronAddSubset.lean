@@ -14,6 +14,19 @@ bounds. The equality fails when a bound is not attained
 (`ContSet.exists_hyperplanePolyhedron_add_ne`). The inclusion is what [1, Alg. 2] with
 `S`-bands needs, and there the bounds are attained ([1, Prop. 2]).
 
+## Inputs
+* `S` – directions
+* `m₁` – first lower bounds
+* `M₁` – first upper bounds
+* `m₂` – second lower bounds
+* `M₂` – second upper bounds
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sum of the two polyhedra lies in the polyhedron of the summed bounds
+
 ## References
 
 * [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of

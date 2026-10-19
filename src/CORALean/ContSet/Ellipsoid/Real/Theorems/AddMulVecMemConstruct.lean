@@ -11,6 +11,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 The certificate a float membership test checks, as CORA's `contains_` solves `Q \ (p - q)`:
 `Q w = G (G w)` with `‖G w‖₂² = wᵀ G G w = wᵀ Q w`, so `G w` is in the unit ball. No inverse, and
 no full rank: any `w` with `Q w = p - q` and `wᵀ Q w ≤ 1` shows `p` in the set.
+
+## Inputs
+* `E` – ellipsoid
+* `w` – vector
+
+## Hypotheses
+* `hw` – `wᵀ Q w ≤ 1`
+
+## Conclusion
+* `q + Q w` lies in `E`
 -/
 
 -- Authors:       Claude Opus 5.5

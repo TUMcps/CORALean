@@ -13,6 +13,15 @@ public import Mathlib.Analysis.Normed.Module.FiniteDimension
 Euclidean ball `s ⊕ B_ε` inside it. `Vec ℝ n` carries the supremum norm, so the Euclidean ball is
 read through `toEuclidean`, a homeomorphism; any norm would give the same interior.
 
+## Inputs
+* `S` – set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the interior is empty iff no point of `S` has a ball inside `S`
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

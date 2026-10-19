@@ -9,6 +9,14 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.IsOrOuter
 
 CORA's `@ellipsoid/enclose.m` with two ellipsoids, `enclose(E, E2)`: `E = convHull(E, E2)`, the
 hull `orOA` of `Ellipsoid.enclose`.
+
+## Inputs
+* `orOA` – outer hull of two ellipsoids
+* `E` – ellipsoid
+* `E2` – ellipsoid
+
+## Output
+* hull of `E` and `E2` under `orOA`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,13 @@ public import CORALean.ContSet.InflatedContSet.Operations.Bound
 
 The opposite coordinate direction, where the negation is taken before the
 maximum.
+
+## Inputs
+* `P` – polytope
+* `j` – coordinate
+
+## Output
+* float bound of `-xⱼ` on the nominal part of `P`
 -/
 
 -- Authors:       Claude Opus 5

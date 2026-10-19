@@ -15,6 +15,15 @@ public import Mathlib.Tactic.Linarith
 list — its copy is left — so the printed test answers `⊤`. `construct_eq_iff_of_injective` is the
 test for lists without repeats.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* two polytopes satisfy the printed criterion yet denote different sets
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

@@ -16,6 +16,21 @@ sums `v` from `i = 2`, so at `κ = 0` it would count the first-order term twice 
 and once in the Lagrange remainder of order `1`. The proof is `taylor_lagrange_convex` on the box,
 with the order-`0` and order-`1` terms split off the sum.
 
+## Inputs
+* `f` – function
+* `I` – box
+* `κ` – Taylor order
+* `T` – Taylor series of `f` on `I`
+* `x` – point of the box
+
+## Hypotheses
+* `hf` – `f` is `C^(κ+1)`
+* `hκ` – `1 ≤ κ`
+* `hx` – `x` in `I`
+
+## Conclusion
+* the expansion's error at `x` lies in the remainder `[l, u]`
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

@@ -11,6 +11,13 @@ Every pair of branches, one from each operand, summed: CORA has no bundle to
 model this against, but the shape is `ZonoBundle.plus`'s, read at `⋃` instead
 of `⋂` — `(⋃ Aᵢ) + (⋃ Bⱼ)` is exactly `⋃ᵢⱼ (Aᵢ + Bⱼ)`, so pairing every branch
 loses nothing a union-shaped result could keep.
+
+## Inputs
+* `u` – first union
+* `v` – second union
+
+## Output
+* every pair of branches summed
 -/
 
 -- Authors:       Claude Sonnet 5

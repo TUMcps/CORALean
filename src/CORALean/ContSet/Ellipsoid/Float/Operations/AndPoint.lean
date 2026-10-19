@@ -16,6 +16,16 @@ tests, each sound only at `true`: `containsPoint` with the solve `w` of `Q w = p
 proposes for `p ∈ E`, and `excludesPoint` with a separating direction `a` and the length `s` it
 needs for `p ∉ E`. When neither certifies, the point is returned: `{p} ⊇ E ∩ {p}` whatever the
 truth, so the answer stays an enclosure, exact on both certified branches.
+
+## Inputs
+* `E` – ellipsoid
+* `p` – point
+* `w` – solve of `Q w = p - q`
+* `a` – separating direction
+* `s` – length bounding `√(aᵀ Q a)`
+
+## Output
+* the point if `p ∈ E` or undecided, empty if certified outside
 -/
 
 -- Authors:       Claude Opus 5.5

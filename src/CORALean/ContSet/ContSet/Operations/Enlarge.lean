@@ -10,6 +10,13 @@ public import CORALean.ContSet.ContSet.Operations.Times
 # CORA's `enlarge`: scaling about the center
 
 `S - c`, scaled by the factors, then `+ c` back, with `c` the set's center.
+
+## Inputs
+* `s` – set
+* `factor` – per-coordinate scaling factor
+
+## Output
+* `s` scaled by `factor` about its center
 -/
 
 -- Authors:       Claude Opus 5.5

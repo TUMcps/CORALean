@@ -16,6 +16,14 @@ two ellipsoids. CORA takes `[~,D] = simdiag(Q1, Q2)`, the simultaneous diagonali
 over nonzero `v`, which is what `simdiag` computes for `Q1` positive definite and `Q2` positive
 semidefinite (it throws otherwise); the tolerance `TOL` is `0`. `L` is a matrix of directions
 and the result one verdict per column, so this is the verdict of one column.
+
+## Inputs
+* `E₁` – first ellipsoid
+* `E₂` – second ellipsoid
+* `l` – direction
+
+## Output
+* `l` is a bad direction for `E₁ ⊖ E₂`
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

@@ -10,6 +10,17 @@ public import CORALean.ContSet.InflatedContSet.InflatedContSet
 The degenerate case of `map_subset`, for an operation that is already an
 inclusion rather than an image: nominal part into nominal part, box into box,
 with nothing moving between them.
+
+## Inputs
+* `s` – inflated set
+* `t` – inflated set
+
+## Hypotheses
+* `hnominal` – nominal part of `s` lies in that of `t`
+* `herror` – box of `s` lies in that of `t`
+
+## Conclusion
+* `s` denotes a subset of `t`
 -/
 
 -- Authors:       Claude Opus 5

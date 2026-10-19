@@ -15,6 +15,15 @@ roundings, and `μ² lᵀ Q₁ l ≤ lᵀ Q₂ l`, with `lᵀ Q₁ l` rounded up
 (`quadDown`). Only `true` is certain, and it says the direction is not bad for the nominal
 ellipsoids; `false` says nothing. Gershgorin is conservative: a `Q₁` far from diagonal needs a
 larger `μ`.
+
+## Inputs
+* `E₁` – first ellipsoid
+* `E₂` – second ellipsoid
+* `l` – direction
+* `μ` – eigenvalue bound
+
+## Output
+* `true` only if `l` is certified not a bad direction
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

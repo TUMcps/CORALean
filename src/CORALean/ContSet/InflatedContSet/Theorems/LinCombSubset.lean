@@ -13,6 +13,19 @@ the nominal part may spill by `D` and the box must absorb `D` along with the
 segment between the two incoming boxes.
 
 Not an instance of `plus_subset`: one weight is shared by both halves.
+
+## Inputs
+* `s₁` – first inflated set
+* `s₂` – second inflated set
+* `t` – inflated set
+* `D` – rounding slack
+
+## Hypotheses
+* `hnominal` – segments of nominal parts lie in the nominal part of `t` plus `D`
+* `herror` – segments of boxes plus `D` lie in the box of `t`
+
+## Conclusion
+* the segments between `s₁` and `s₂` lie in `t`
 -/
 
 -- Authors:       Claude Opus 5

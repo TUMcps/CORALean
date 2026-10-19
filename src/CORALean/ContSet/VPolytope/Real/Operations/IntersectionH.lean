@@ -12,6 +12,15 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
 Intersection is the operation vertices are worst at, so it goes out to
 halfspaces, where intersection is free: the two operands, on the caller's
 directions, and one operand's own box, so the result is bounded.
+
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+* `Aq₁` – cut directions of the first operand
+* `Aq₂` – cut directions of the second operand
+
+## Output
+* halfspace polytope of the intersection
 -/
 
 -- Authors:       Claude Opus 5

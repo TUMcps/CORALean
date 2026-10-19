@@ -16,6 +16,13 @@ every `(y, 0)` within a certified radius `B` of the vertices' mean is `[V; 1ᵀ]
 `|λ'ⱼ| ≤ δ`, and with `k δ ≤ 1` the weights `1/k + λ'ⱼ` are nonnegative and sum to one, so the
 point is a convex combination of the vertices. The error box must be nonempty. `true` proves an
 interior point; `false` refutes nothing.
+
+## Inputs
+* `P` – polytope
+* `H` – proposed right inverse of the bordered vertex matrix
+
+## Output
+* `true` only if `H` certifies an interior point
 -/
 
 -- Authors:       Claude Opus 5.5

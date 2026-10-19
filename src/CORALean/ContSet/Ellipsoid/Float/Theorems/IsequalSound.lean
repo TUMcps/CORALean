@@ -11,6 +11,16 @@ A `true` answer says the stored shape matrices, centers and error boxes agree as
 the nominal ellipsoids are the same and the error boxes are the same, and the denoted sets are
 equal.
 `false` refutes nothing.
+
+## Inputs
+* `E` – ellipsoid
+* `S` – ellipsoid
+
+## Hypotheses
+* `h` – `isequal` returns `true`
+
+## Conclusion
+* `E` and `S` denote the same set
 -/
 
 -- Authors:       Claude Opus 5.5

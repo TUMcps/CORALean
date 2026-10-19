@@ -17,6 +17,16 @@ nearest point; for `a ∈ E` every value is `≤ 0`. The paper says the value is
 ellipsoid [1, Sec. II (sign of the distance)], which fails on the boundary, where it is `0`
 (`dist_point_nonneg_counterexample`).
 
+## Inputs
+* `E` – ellipsoid
+* `a` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the distance of an outside point is the maximum over unit directions
+
 ## References
 
 * [1] A. A. Kurzhanskiy and P. Varaiya. "Ellipsoidal Toolbox (ET)". In Proc. of the 45th

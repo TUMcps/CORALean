@@ -10,6 +10,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.OfShape
 `Ellipsoid.ofShape Q q` is the ellipsoid of shape `Q` and center `q` when `Q` is positive
 semi-definite, the papers' `E(Q, q)` ([1, Eq. 5], [2, Sec. 1.1 (ellipse)]).
 
+## Inputs
+* `Q` – shape matrix
+* `q` – center
+
+## Hypotheses
+* `hQ` – `Q` positive semi-definite
+
+## Conclusion
+* the checked constructor is the structure with fields `Q`, `q`
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

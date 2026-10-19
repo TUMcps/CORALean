@@ -10,6 +10,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.ContainsPointIff
 
 For a full-rank ellipsoid, `Ellipsoid.isIntersectingPoint` holds iff `{p}` and the ellipsoid are
 not disjoint. Exact for the point, at tolerance `0`.
+
+## Inputs
+* `E` – ellipsoid
+* `p` – point
+
+## Hypotheses
+* `hr` – shape has full rank
+
+## Conclusion
+* `isIntersectingPoint` holds iff `{p}` meets `E`
 -/
 
 -- Authors:       Claude Opus 5.5

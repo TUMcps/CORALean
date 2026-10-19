@@ -11,6 +11,15 @@ public import CORALean.ContSet.VPolytope.Real.VPolytope
 this holds of every V-representation of `∅`: a V-polytope with a point contains it, so one
 describing `∅` has none, the least count there is, and nothing to remove.
 
+## Inputs
+* `P` – polytope
+
+## Hypotheses
+* `hP` – `P` denotes the empty set
+
+## Conclusion
+* `P` has no vertices
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

@@ -13,6 +13,13 @@ the volume of the float interval hull (`Ellipsoid.interval`, one proposed half-w
 coordinate, each checked against its diagonal entry `Qᵢᵢ ≤ sᵢ²` by `le`), widths and product
 rounded up. `none` when a half-width fails its check. Not the volume, and coarser than it by up
 to the box-to-ellipsoid ratio.
+
+## Inputs
+* `E` – ellipsoid
+* `s` – half-width per coordinate
+
+## Output
+* upper bound of the volume, `none` if a half-width fails
 -/
 
 -- Authors:       Claude Opus 5.5

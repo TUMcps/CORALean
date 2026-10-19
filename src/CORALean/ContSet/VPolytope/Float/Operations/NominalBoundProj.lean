@@ -12,6 +12,13 @@ public import CORALean.ContSet.InflatedContSet.Operations.Bound
 The exact layer's answer is a maximum over the vertex list, so this layer's is
 `maximumOver` — no certificate, no rounding, the maximum of stored floats being
 one of them.
+
+## Inputs
+* `P` – polytope
+* `j` – coordinate
+
+## Output
+* float bound of `xⱼ` on the nominal part of `P`
 -/
 
 -- Authors:       Claude Opus 5

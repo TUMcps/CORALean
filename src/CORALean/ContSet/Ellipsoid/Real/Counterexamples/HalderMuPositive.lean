@@ -12,6 +12,15 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderMu
 so that the polynomial (24) has a single sign change. For `d = 3` and `λ = (1, 1, 10)`,
 `e₁ = 21/10` and `e₂ = 6/5` give `µ₂ = (3 − 2) e₂ − (2 − 1) e₁ = −9/10 < 0`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the coefficients `µ` are not all positive
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

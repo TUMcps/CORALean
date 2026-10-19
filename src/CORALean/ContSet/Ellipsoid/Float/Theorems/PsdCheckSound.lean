@@ -13,6 +13,19 @@ public import Mathlib.LinearAlgebra.Matrix.PosDef
 `R = X' - L Lᵀ` lies entrywise between the check's two roundings, so its off-diagonal magnitudes
 are below the rounded-up maxima and its diagonal above the lower bounds: diagonally dominant, and
 symmetric with `X'`, so positive semi-definite (`quad_nonneg_of_dominant`); and `X' = R + L Lᵀ`.
+
+## Inputs
+* `X` – interval matrix
+* `L` – factor
+* `Xr` – symmetric real matrix
+
+## Hypotheses
+* `h` – `psdCheck` returns `true`
+* `hX` – `Xr` entrywise in `X`
+* `hsym` – `Xr` symmetric
+
+## Conclusion
+* `Xr` is positive semi-definite
 -/
 
 -- Authors:       Claude Opus 5.5

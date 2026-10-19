@@ -18,6 +18,16 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.MtimesExact
 exact `mtimes_exact` — the image of a hull is the hull of the images — followed
 by `construct_subset_add`, every stored column being within `columnGap` of the
 exact product. The error obligation is the interval `mtimes` and one `plus`.
+
+## Inputs
+* `M` – matrix
+* `P` – polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image of `P` under `M` lies in the result
 -/
 
 -- Authors:       Claude Opus 5

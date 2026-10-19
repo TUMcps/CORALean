@@ -14,6 +14,19 @@ public import Mathlib.LinearAlgebra.Matrix.PosDef
 are below the rounded-up maxima and its diagonal above the lower bounds: strictly diagonally
 dominant, by some `ε > 0` in every row, and symmetric with `X'`; `R - ε I` is then diagonally
 dominant (`quad_nonneg_of_dominant`), so `vᵀ R v ≥ ε ‖v‖² > 0`; and `X' = R + L Lᵀ`.
+
+## Inputs
+* `X` – interval matrix
+* `L` – factor
+* `Xr` – symmetric real matrix
+
+## Hypotheses
+* `h` – `pdCheck` returns `true`
+* `hX` – `Xr` entrywise in `X`
+* `hsym` – `Xr` symmetric
+
+## Conclusion
+* `Xr` is positive definite
 -/
 
 -- Authors:       Claude Opus 5.5

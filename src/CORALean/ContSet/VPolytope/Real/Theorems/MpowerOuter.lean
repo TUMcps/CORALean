@@ -12,6 +12,17 @@ public import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
 The identity for the zero power, the polytope for the first, and `matMul_outer` for each further
 factor on the right: `M ^ (k + 2) = M ^ (k + 1) * M`. An enclosure only, the vertex products being a
 superset.
+
+## Inputs
+* `P` – matrix polytope
+* `M` – matrix
+* `k` – exponent
+
+## Hypotheses
+* `hM` – `M` in `P`
+
+## Conclusion
+* `M ^ k` lies in the `k`-th power of `P`
 -/
 
 -- Authors:       Claude Sonnet 5.5

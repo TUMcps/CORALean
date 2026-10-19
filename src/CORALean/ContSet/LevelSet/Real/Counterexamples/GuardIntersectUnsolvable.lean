@@ -18,6 +18,15 @@ it free of `x₂`, so `p_k = x₁²`, `D_p = 0` and eq. (12) gives `[D_l, D_u] =
 the parabola `x₂ = x₁²`, while the guard is `x₂ = -x₁²`: `(1, -1)` is in `I ∩ G` and not in the
 model. With `- v(x)`, `GuardIntersectUnsolvableSubset`, the model is `x₂ = -x₁²`, exact.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the guard intersection with eq. (11) as printed misses part of the guard
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

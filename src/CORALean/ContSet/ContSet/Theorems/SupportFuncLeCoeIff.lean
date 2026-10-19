@@ -10,6 +10,17 @@ public import CORALean.ContSet.ContSet.Definitions.SupportFunc
 A real bound on the support function is a bound on every point: the step that turns the
 support-function tests of [1, Eq. 5] and [1, Eq. 16] into statements about points.
 
+## Inputs
+* `S` – set
+* `ℓ` – linear functional
+* `b` – bound
+
+## Hypotheses
+* none
+
+## Conclusion
+* the support function is at most `b` iff `ℓ x ≤ b` on all of `S`
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

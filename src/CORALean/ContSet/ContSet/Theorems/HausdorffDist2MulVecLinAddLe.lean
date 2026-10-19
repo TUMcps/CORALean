@@ -8,16 +8,23 @@ public import CORALean.Global.EuclideanHausdorffDistZero
 /-!
 # Perturbing a linear image moves it no further than the perturbation reaches, at `‖·‖₂`
 
-[1, Prop. 10]: for a compact `S` and matrices `M1, M2`, `d_H((M1+M2)S, M1 S) ≤ d_H(0, M2 S)`,
-with `d_H` [1, Def. 5]'s Hausdorff distance in `‖·‖₂` — `hausdorffDist₂`, not the supremum-norm
-`Metric.hausdorffDist` that `Vec ℝ n` carries and that `hausdorffDist_mulVecLin_add_le` is
-stated at. The correspondence keeps the same point of `S` on both sides, `M1`'s image of it
-against `(M1+M2)`'s, so the whole gap is `M2`'s image of that point, which is within
-`d_H(0, M2 S)` of the origin by `norm₂_le_hausdorffDist₂_zero`.
+[1, Prop. 10]: for a compact `S` and matrices `M1, M2`, `d_H((M1+M2)S, M1 S) ≤ d_H(0, M2 S)`, with
+`d_H` [1, Def. 5]'s Hausdorff distance in `‖·‖₂` — `hausdorffDist₂`, not the supremum-norm
+`Metric.hausdorffDist` that `hausdorffDist_mulVecLin_add_le` is stated at. The correspondence keeps
+the same point of `S` on both sides, so the gap is `M2`'s image of that point, within `d_H(0, M2 S)`
+of the origin by `norm₂_le_hausdorffDist₂_zero`. `S` compact is the one hypothesis, as [1] states
+it: it makes `M2 S` bounded. Nonemptiness is never needed — an empty `S` leaves both sides `0`.
 
-`S` compact is the one hypothesis, as [1] states it: it makes `M2 S` bounded, hence at finite
-distance from `{0}`. Nonemptiness is never needed — an empty `S` leaves both images empty and
-both sides `0`.
+## Inputs
+* `S` – set
+* `M1` – matrix
+* `M2` – perturbation matrix
+
+## Hypotheses
+* `hS` – `S` compact
+
+## Conclusion
+* Hausdorff distance is at most the distance of the perturbation's image from the origin
 
 ## References
 

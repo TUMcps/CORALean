@@ -16,6 +16,21 @@ of [1, Eq. 11], whose shape is `Q(β) = (1 + 1/β) Q₁ + (1 + β) Q₂`, one ha
 smaller volume `V_d √det Q(β)` exactly when it has the smaller `log det Q(β)`: the volume is
 increasing in the determinant, and the logarithm is increasing on the positive reals.
 
+## Inputs
+* `E₁` – first ellipsoid
+* `E₂` – second ellipsoid
+* `β` – first weight
+* `b` – second weight
+
+## Hypotheses
+* `h₁` – `Q₁` positive definite
+* `h₂` – `Q₂` positive definite
+* `hβ` – `0 < β`
+* `hb` – `0 < b`
+
+## Conclusion
+* the volume at `β` is at most that at `b` iff the log-determinant is
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

@@ -13,6 +13,13 @@ map, the transpose of the selection matrix, which is linear.
 
 CORA's assignment overwrites on a repeated index where the matrix sums; the statement
 `projectHighDim_exact` is an image under the matrix, which is what an injective `dims` gives.
+
+## Inputs
+* `P` – polytope
+* `dims` – target coordinate of each dimension
+
+## Output
+* vertices of `P` padded with zeros at `dims`
 -/
 
 -- Authors:       Claude Opus 5.5

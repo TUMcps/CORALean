@@ -14,6 +14,19 @@ exact.
 
 [2, Eq. 3] and [2, Eq. 4] in one, strip by strip.
 
+## Inputs
+* `C` – measurement matrix
+* `φ` – strip lower offsets
+* `y` – strip upper offsets
+* `Λ` – gain matrix as a function of the set
+* `Z` – initial set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set meeting all strips lies in the result
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state

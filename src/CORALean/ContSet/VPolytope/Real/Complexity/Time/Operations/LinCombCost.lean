@@ -11,6 +11,14 @@ public import CORALean.Global.Cost
 Asserted, not proved, and no longer zero: `Operations/LinComb.lean` is `Fin.append` on the two
 vertex lists. No fresh vertex is computed, unlike a zonotope's `linComb`, but the result lists
 `k₁ + k₂` vertices of `n` entries, and each entry is a write.
+
+## Inputs
+* `n` – dimension
+* `k₁` – vertices of the first polytope
+* `k₂` – vertices of the second polytope
+
+## Output
+* cost of writing the concatenated vertex list
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

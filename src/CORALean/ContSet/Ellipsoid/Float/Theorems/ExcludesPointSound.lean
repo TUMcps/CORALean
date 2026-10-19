@@ -9,6 +9,18 @@ public import CORALean.ContSet.Ellipsoid.Float.Operations.ExcludesPoint
 
 Every point of the set reads at most the bound in direction `a`; the point reads at least its
 rounded-down reading, which the test found strictly above the bound.
+
+## Inputs
+* `E` – ellipsoid
+* `p` – point
+* `a` – separating direction
+* `s` – length bounding `√(aᵀ Q a)`
+
+## Hypotheses
+* `h` – `excludesPoint` returns `true`
+
+## Conclusion
+* `p` lies outside `E`
 -/
 
 -- Authors:       Claude Opus 5.5

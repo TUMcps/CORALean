@@ -13,6 +13,18 @@ Outer, and of the set the code computes, `M Eplus`: not of the documented `M E �
 misses (`Ellipsoid.enclose_cora_counterexample`). The enclosure is of the segments between the
 operands, the convex hull since both are convex; it rests on the hull `orOA` enclosing both operands
 (`Ellipsoid.IsOrOuter`).
+
+## Inputs
+* `orOA` – outer hull of two ellipsoids
+* `E` – ellipsoid
+* `M` – matrix
+* `Eplus` – ellipsoid
+
+## Hypotheses
+* `hor` – `orOA` contains both operands
+
+## Conclusion
+* the linear combination of `E` and `M Eplus` lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

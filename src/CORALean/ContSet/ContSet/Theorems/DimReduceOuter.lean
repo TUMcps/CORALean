@@ -15,6 +15,19 @@ public import Mathlib.Data.Matrix.Mul
 `Z ∩ G`. A point `x ∈ Z` with `x·n = γ` has `(γ, x·ℓ) ∈ Π_{n,ℓ}(Z)` ([1, Prop. 1]), so `x·ℓ`
 lies in the segment the routine returns for that plane set, for every `ℓ ∈ D`.
 
+## Inputs
+* `bound` – bound-intersect oracle
+* `Z` – set
+* `nv` – normal of the hyperplane
+* `γ` – offset of the hyperplane
+* `D` – directions
+
+## Hypotheses
+* `hb` – `bound` meets its specification
+
+## Conclusion
+* the intersection of `Z` with the hyperplane lies in the polyhedron
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

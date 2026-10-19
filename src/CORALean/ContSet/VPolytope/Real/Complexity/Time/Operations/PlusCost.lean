@@ -12,6 +12,14 @@ Asserted, not proved: `Operations/Plus.lean` pairs every vertex of one operand
 with every vertex of the other and adds the pair, `n` additions at `Vec ℝ n`
 each — `k₁ * k₂` pairs in all, `finProdFinEquiv` being index work — and writes each
 sum, `n` entries.
+
+## Inputs
+* `n` – dimension
+* `k₁` – vertices of the first polytope
+* `k₂` – vertices of the second polytope
+
+## Output
+* cost of the pairwise vertex sums and writes
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

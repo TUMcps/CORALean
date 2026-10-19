@@ -13,6 +13,15 @@ any vertex list, the empty one included.
 
 Proved directly rather than from the hull, since `construct_eq_convexHull` is
 what needs it.
+
+## Inputs
+* `P` – polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set `P` denotes is convex
 -/
 
 -- Authors:       Claude Opus 5

@@ -10,6 +10,19 @@ public import CORALean.ContSet.Ellipsoid.Float.Operations.SupportBound
 No point of the set reads more than the float value, an upper bound only: the
 real layer's `Ellipsoid.supportBound_attained` is the statement that the exact
 value is reached.
+
+## Inputs
+* `E` – ellipsoid
+* `c` – linear functional
+* `a` – float vector of `c`
+* `s` – length bounding `√(aᵀ Q a)`
+
+## Hypotheses
+* `hc` – `c x = ∑ aᵢ xᵢ`
+* `hs` – `aᵀ Q a ≤ s²`
+
+## Conclusion
+* `c` is at most the bound on every point of `E`
 -/
 
 -- Authors:       Claude Opus 5.5

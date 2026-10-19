@@ -10,6 +10,17 @@ public import CORALean.ContSet.LevelSet.Real.Operations.IntersectLevelSetBox
 [1, Thm. 1]'s enclosure: `I ∩ LS ⊆ {T(x) | x ∈ I}`, for every function `p_k` and with no
 condition on the box. A point of the cut is its own image: there `x(k) = p_k(x)` already.
 
+## Inputs
+* `I` – box
+* `k` – solved coordinate
+* `p` – polynomial for the solved coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* the box cut by `x(k) = p` lies in the model
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

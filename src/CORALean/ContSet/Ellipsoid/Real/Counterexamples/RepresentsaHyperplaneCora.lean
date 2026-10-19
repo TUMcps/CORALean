@@ -28,6 +28,15 @@ The branch `'hyperplane'` (l. 143-146) is `res = n == 1`. The ellipsoid
 with `q = 0`, `Q = (1)` is one-dimensional, so CORA answers `true`, though in one dimension a
 hyperplane `{x | a x = b}`, `a ≠ 0`, is a single point and `[-1, 1]` holds `0` and `1`. A wrong
 answer, not unsound. Read from the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA answers `true` for a segment that is no hyperplane
 -/
 
 -- Authors:       Claude Sonnet 5.5

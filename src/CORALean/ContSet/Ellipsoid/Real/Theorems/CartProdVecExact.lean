@@ -13,6 +13,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.MulGMulTranspose
 `blkdiag(Q, 0) = P Q Pᵀ` is factored by `P G`, `P = [I; 0]` the embedding
 (`construct_eq_of_factor`), and `E.q + E.G u` with the point appended is the padded center plus
 `P G u`, as the padding rows of `P` are zero.
+
+## Inputs
+* `E` – ellipsoid
+* `v` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is exactly the product of `E` with `v`
 -/
 
 -- Authors:       Claude Opus 5.5

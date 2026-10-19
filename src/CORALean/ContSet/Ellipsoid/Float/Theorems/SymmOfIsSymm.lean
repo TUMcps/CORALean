@@ -11,6 +11,17 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 `isSymm` applies `le` to `(Q i j, Q j i)` at every pair, so each mirrored pair is compared in both
 orders; `le` is sound, so each comparison holds as reals, and the two inequalities make the
 entries equal.
+
+## Inputs
+* `Q` – shape matrix
+* `i` – row
+* `j` – column
+
+## Hypotheses
+* `h` – `isSymm` returns `true`
+
+## Conclusion
+* entries `(i, j)` and `(j, i)` of `Q` are equal
 -/
 
 -- Authors:       Claude Opus 5.5

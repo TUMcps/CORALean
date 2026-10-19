@@ -23,6 +23,16 @@ dominates `M Q Mᵀ` (`inflate_sub_posSemidef`, `M Q Mᵀ` lying in the interval
 with `Q`), so the image about the stored center lies in the nominal part
 (`add_sub_mem_nominalSet`). Where `Q` is refused the nominal part is a point and so is its
 image. What is left is the center's rounding, which `mtimesResidual` holds.
+
+## Inputs
+* `M` – matrix
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image of `E` under `M` lies in the result
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

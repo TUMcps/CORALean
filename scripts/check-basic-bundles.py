@@ -379,6 +379,8 @@ def module_prose(lf):
         title = lines.pop(0).lstrip()[2:].strip()
     paras, cur = [], []
     for l in lines + [""]:
+        if l.startswith("## Inputs"):
+            break  # the inputs/outputs sections (#251) are a file's, not prose a section takes over
         if l.strip():
             cur.append(l.rstrip())
         elif cur:

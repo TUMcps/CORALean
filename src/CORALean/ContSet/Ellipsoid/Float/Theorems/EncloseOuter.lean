@@ -12,6 +12,18 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.MtimesOuter
 Each segment runs from a point of `E` to the image of a point of `Eplus`, which lies in the
 float `M * Eplus` (`Ellipsoid.mtimes_outer`); both ends are in the hull by its contract, and the
 float hull is convex (`Ellipsoid.convex_construct`), so the segment is too. Outer, as over ℝ.
+
+## Inputs
+* `orOA` – outer hull of two ellipsoids
+* `E` – ellipsoid
+* `M` – matrix
+* `Eplus` – ellipsoid
+
+## Hypotheses
+* `hor` – `orOA` contains both operands
+
+## Conclusion
+* the linear combination of `E` and `M Eplus` lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,13 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 The image of a level set under an invertible matrix. CORA's `levelSet` has no such method; it is
 a preimage substitution in `f`, so a level set answers it exactly where most representations only
 enclose.
+
+## Inputs
+* `M` – invertible matrix
+* `L` – level set
+
+## Output
+* level set whose points `y` have `M⁻¹ y` in `L`
 -/
 
 -- Authors:       Claude Opus 5.5

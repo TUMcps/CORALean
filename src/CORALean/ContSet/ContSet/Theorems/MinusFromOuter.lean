@@ -8,6 +8,16 @@ public import CORALean.Global.NegScalar
 
 /-!
 # `minusFrom` encloses the reflected translate
+
+## Inputs
+* `p` – point
+* `s` – set
+
+## Hypotheses
+* none
+
+## Conclusion
+* every `p - x`, `x` in `s`, lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

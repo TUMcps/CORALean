@@ -14,6 +14,18 @@ If the nominal part of a stored set is the pair of two others' nominal parts rea
 itself is the pair of their sets read through `Fin.append`. Set addition is coordinatewise, so a
 product of sums is a sum of products. Every Cartesian product of float representations discharges
 its exactness through this.
+
+## Inputs
+* `s₁` – first inflated set
+* `s₂` – second inflated set
+* `t` – inflated set
+
+## Hypotheses
+* `hnominal` – `t` has the product of the nominal parts
+* `herror` – `t` has the appended error boxes
+
+## Conclusion
+* `t` denotes the product of `s₁` and `s₂`
 -/
 
 -- Authors:       Claude Sonnet 5.5

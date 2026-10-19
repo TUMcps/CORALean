@@ -11,6 +11,16 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
 `q + G u` for `u` in the unit ball, `G` the square root of the nominal shape matrix: `Q` read as
 reals where it is positive semi-definite, `0` where CORA's constructor refuses it, and the center
 the stored one either way (`nominal_q`).
+
+## Inputs
+* `E` – ellipsoid
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` is in the nominal part iff it is the center plus a shape image of the unit ball
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

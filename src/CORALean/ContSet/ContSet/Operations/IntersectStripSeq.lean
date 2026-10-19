@@ -7,17 +7,23 @@ public import CORALean.ContSet.ContSet.ContSet
 /-!
 # The strips one at a time
 
-The strips `|C x - y| ≤ φ` taken one at a time, [1, Eq. 3]: the set is met with the first
-strip by [1, Prop. 6] at the gain `λ₁`, the result with the second at `λ₂`, and so on. Step `i`
-reads `p̂_{k/i} = p̂_{k/i-1} + λ_i (y_i - c_iᵀ p̂_{k/i-1})` and
-`Ĥ_{k/i} = [κ_i Ĥ_{k/i-1}  φ_i λ_i]` with `κ_i = I - λ_i c_iᵀ`, which is `intersectStrip` at the
-one strip `i` and the one gain column `λ_i`. CORA's `priv_observe_intersectionMethod_I` is this.
-Written once over `IntersectStrip`, so a float zonotope runs the same loop in rounded arithmetic.
+The strips `|C x - y| ≤ φ` taken one at a time, [1, Eq. 3]: the set is met with the first strip by
+[1, Prop. 6] at the gain `λ₁`, the result with the second at `λ₂`, and so on; step `i` is
+`intersectStrip` at the one strip `i` and the one gain column `λ_i`. CORA's
+`priv_observe_intersectionMethod_I` is this, written once over `IntersectStrip` so a float zonotope
+runs the same loop in rounded arithmetic. The gain of strip `i` is column `i` of `Λ Z`, `Z` the set
+it meets; a gain fixed offline, as [1, Eq. 9] computes it, is a constant `Λ`, CORA's online methods
+compute it from `Z`. The enclosure (`intersectStripSeq_outer`) holds for every gain.
 
-The gain of strip `i` is column `i` of `Λ Z`, `Z` the set it meets. A gain fixed offline, as
-[1, Eq. 9] computes it, is a constant `Λ`; CORA's online methods (`'alamo-FRad'`,
-`'alamo-volume'`) compute it from `Z`. Nothing here depends on which: the enclosure
-(`intersectStripSeq_outer`) holds for every gain.
+## Inputs
+* `C` – measurement matrix
+* `φ` – strip lower offsets
+* `y` – strip upper offsets
+* `Λ` – gain matrix as a function of the set
+* `Z` – initial set
+
+## Output
+* the set after intersecting the strips one after another
 
 ## References
 

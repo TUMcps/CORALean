@@ -9,6 +9,13 @@ public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
 
 CORA's `@ellipsoid/cartProd_.m` with a point operand, which is exact: `blkdiag(E.Q, zeros(m))`,
 the center extended by the point and the error box by the origin. Nothing rounds.
+
+## Inputs
+* `E` – ellipsoid
+* `v` – point
+
+## Output
+* ellipsoid of the product of `E` with the point `v`
 -/
 
 -- Authors:       Claude Opus 5.5

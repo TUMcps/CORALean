@@ -11,6 +11,16 @@ The definition names one pseudo-inverse, `Ellipsoid.Qpinv`; any `P` meeting the 
 conditions (`IsPinv`) describes the same set, `{x | (x - q)ᵀ P (x - q) ≤ 1, x - q ∈ range Q}`,
 the four conditions determining `P` (`IsPinv.unique`). This is CORA's `pinv(Q)`, however it is
 computed.
+
+## Inputs
+* `E` – ellipsoid
+* `P` – pseudo-inverse
+
+## Hypotheses
+* `hP` – `P` is a pseudo-inverse of `Q`
+
+## Conclusion
+* `E` is the set `(x - q)ᵀ P (x - q) ≤ 1` within the range of `Q`
 -/
 
 -- Authors:       Claude Opus 5.5

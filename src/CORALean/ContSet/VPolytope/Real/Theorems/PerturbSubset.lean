@@ -15,6 +15,19 @@ and `D` closed under that.
 
 What a float layer owes when it stores rounded vertices, and the only fact about
 vertex descriptions it needs.
+
+## Inputs
+* `k` – number of vertices
+* `V` – vertices
+* `W` – perturbed vertices
+* `D` – convex set of perturbations
+
+## Hypotheses
+* `hD` – `D` convex
+* `h` – each `V l - W l` lies in `D`
+
+## Conclusion
+* the hull of `V` lies in the hull of `W` plus `D`
 -/
 
 -- Authors:       Claude Opus 5

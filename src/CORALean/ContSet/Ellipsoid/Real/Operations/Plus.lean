@@ -7,18 +7,22 @@ public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 /-!
 # `Ellipsoid.plus`
 
-The Minkowski sum of two ellipsoids is not an ellipsoid, so CORA's
-`@ellipsoid/plus` encloses it, and every enclosure carries a free parameter.
-Here that parameter is two scalings `s₁` and `s₂`, the shape matrix being
-`s₁² Q₁ + s₂² Q₂`, and what they owe is `1/s₁² + 1/s₂² ≤ 1`, which is what `plus_outer` asks.
+The Minkowski sum of two ellipsoids is not an ellipsoid, so CORA's `@ellipsoid/plus` encloses it
+with a free parameter: two scalings `s₁` and `s₂`, the shape matrix `s₁² Q₁ + s₂² Q₂`, owing `1/s₁²
++ 1/s₂² ≤ 1`, which is what `plus_outer` asks. Kurzhanski and Varaiya's `Q(l) = (1 + 1/l) Q₁ + (1 +
+l) Q₂`, `l > 0`, which CORA's `priv_plusEllipsoid` computes for each direction, sweeps one curve
+through that set — `s₁ = √(1+1/l)`, `s₂ = √(1+l)`; `plus_scalings_admissible` puts an `l` back on
+it. The pair stays an argument: fixing it would bury a precision choice in an interface, which is
+why `Instances` leaves it alone.
 
-That admissible set is two-dimensional. Kurzhanski and Varaiya's
-`Q(l) = (1 + 1/l) Q₁ + (1 + l) Q₂`, `l > 0`, which CORA's `priv_plusEllipsoid` computes for each
-direction, sweeps one curve through it — `s₁ = √(1+1/l)`, `s₂ = √(1+l)`, along the boundary where
-the sum is one; `plus_scalings_admissible` is what puts an `l` back on it.
+## Inputs
+* `s₁` – scaling of `E₁`
+* `s₂` – scaling of `E₂`
+* `E₁` – first ellipsoid
+* `E₂` – second ellipsoid
 
-The pair stays an argument: `Plus` has no room for it, and fixing it would bury
-a precision choice in an interface, which is why `Instances` leaves it alone.
+## Output
+* ellipsoid of shape `s₁² Q₁ + s₂² Q₂` enclosing the sum
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

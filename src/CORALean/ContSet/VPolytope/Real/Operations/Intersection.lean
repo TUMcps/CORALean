@@ -11,22 +11,23 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 /-!
 # `VPolytope.intersection`
 
-Intersection is the operation vertices are worst at — the result's vertices are
-generally none of either operand's — so it goes out to halfspaces, where
-intersection is free, and comes back.
-
-Both steps are already available and neither is a placeholder: out on directions
-the caller names, and back by vertex enumeration, which is exact. So `intersection` is
-exact whenever the directions given contain each operand's facet normals, and
-merely encloses otherwise. The directions are the whole of the imprecision.
-
-One extra row goes in on the way out: one operand's own box, so that the
-halfspace description is bounded and can be converted back at all. It costs
-nothing, the operand already being inside it.
-
-Empty is handled rather than assumed. If the halfspace description turns out to
-denote nothing then so does the intersection, and the answer is the empty vertex
+Intersection is the operation vertices are worst at — the result's vertices are generally none of
+either operand's — so it goes out to halfspaces, where intersection is free, and comes back: out on
+directions the caller names, back by exact vertex enumeration. So `intersection` is exact whenever
+the directions contain each operand's facet normals, and merely encloses otherwise; the directions
+are the whole of the imprecision. One extra row goes in on the way out, one operand's own box, so
+that the halfspace description is bounded and can be converted back; it costs nothing. If the
+halfspace description denotes nothing so does the intersection, and the answer is the empty vertex
 list.
+
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+* `Aq₁` – cut directions of the first operand
+* `Aq₂` – cut directions of the second operand
+
+## Output
+* vertices of the halfspace intersection
 -/
 
 -- Authors:       Claude Opus 5

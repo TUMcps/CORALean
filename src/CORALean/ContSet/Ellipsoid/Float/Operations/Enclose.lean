@@ -11,6 +11,15 @@ CORA's `enclose(E, M, Eplus)` as the exact layer has it: `E2 = M * Eplus` (the f
 `Ellipsoid.mtimes`, outer), then the hull `orOA` of `E` and `E2`. CORA's `or(E, E2, 'outer')`
 is an SDP solver's minimum-volume ellipsoid, so the hull is an argument, owing the same
 contract as over ℝ: its result contains both operands. Its minimum volume is not claimed.
+
+## Inputs
+* `orOA` – outer hull of two ellipsoids
+* `E` – ellipsoid
+* `M` – matrix
+* `Eplus` – ellipsoid
+
+## Output
+* hull of `E` and `M Eplus` under `orOA`
 -/
 
 -- Authors:       Claude Opus 5.5

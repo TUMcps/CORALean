@@ -12,6 +12,12 @@ CORA's `@ellipsoid/rank`: the number of singular values of the shape matrix `Q` 
 tolerance `d(1) * E.TOL`. Here the exact rank of `Q`, the tolerance being `0` (as for
 `Zonotope.rank`). CORA's `rank` of an empty ellipsoid is `0`; an `Ellipsoid` here is never empty
 (`Q = 0` is the point `q`), so that case does not arise.
+
+## Inputs
+* `E` – ellipsoid
+
+## Output
+* rank of the shape matrix
 -/
 
 -- Authors:       Claude Opus 5.5

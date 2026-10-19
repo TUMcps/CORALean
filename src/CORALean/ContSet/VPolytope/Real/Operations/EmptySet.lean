@@ -12,6 +12,12 @@ so this denotes `∅`. A vertex description needs no unsatisfiable row to say it
 unlike a halfspace one.
 
 What `intersection` returns when two polytopes are shown disjoint.
+
+## Inputs
+* `α` – ambient type
+
+## Output
+* polytope with no vertices
 -/
 
 -- Authors:       Claude Opus 5

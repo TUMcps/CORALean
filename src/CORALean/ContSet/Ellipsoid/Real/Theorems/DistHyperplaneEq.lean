@@ -16,6 +16,17 @@ so `E` meets `H` exactly when `|c - vᵀ q| ≤ σ`; otherwise the gap `|c - v�
 projection onto `H`. The paper says the value is negative when `E` and `H` intersect
 [1, Sec. II (sign of the distance)], which fails at tangency, where it is `0`.
 
+## Inputs
+* `E` – ellipsoid
+* `v` – hyperplane normal
+* `c` – hyperplane offset
+
+## Hypotheses
+* `hv` – `v ≠ 0`
+
+## Conclusion
+* the distance to the hyperplane is the closed form, zero if they meet
+
 ## References
 
 * [1] A. A. Kurzhanskiy and P. Varaiya. "Ellipsoidal Toolbox (ET)". In Proc. of the 45th

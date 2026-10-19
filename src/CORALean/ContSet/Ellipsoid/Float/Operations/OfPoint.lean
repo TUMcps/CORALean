@@ -10,6 +10,12 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 A point as an ellipsoid, CORA's `ellipsoid(zeros(n), p)`: the zero shape matrix, the center
 stored as given, the error box at zero. Nothing is computed, so nothing rounds.
+
+## Inputs
+* `p` – point
+
+## Output
+* degenerate ellipsoid at `p`
 -/
 
 -- Authors:       Claude Opus 5.5

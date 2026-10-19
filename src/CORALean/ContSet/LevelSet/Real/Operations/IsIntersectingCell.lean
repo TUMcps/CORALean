@@ -8,16 +8,21 @@ public import CORALean.ContSet.Interval.Real.Interval
 /-!
 # `LevelSet.isIntersecting_` at a box, a cell of operators
 
-CORA's `@levelSet/isIntersecting_` against a set `S` (converted to a box `I`, `type =
-'approx'`): `I = ls.funHan(I)` is the interval evaluation of the function at the box, `ub =
-supremum(I)`, `lb = infimum(I)`, and the verdict reads off the signs. CORALean has no interval
-evaluation of a real function, so the bounds `(lb, ub)` of the evaluation are the argument `B`
-(row `i`: `B i = (lb i, ub i)`), assumed a range bound (`IsRangeBound`) by the theorems. The
-tolerance `tol` enters as `withinTol(·, 0, tol)`, `|·| ≤ tol`.
+CORA's `@levelSet/isIntersecting_` against a set `S` (converted to a box `I`, `type = 'approx'`): `I
+= ls.funHan(I)` is the interval evaluation of the function at the box, `ub = supremum(I)`, `lb =
+infimum(I)`, and the verdict reads off the signs. There is no interval evaluation of a real function
+here, so the bounds `(lb, ub)` are the argument `B`, assumed a range bound (`IsRangeBound`); the
+tolerance `tol` enters as `|·| ≤ tol`. This is the branch with a cell `compOp`: each row is tested
+by `lb(i) < 0 | withinTol(lb(i),0,tol)` at `<=`, and by `lb(i) < 0` at every other operator, `==`
+included. That is not a test of `==`, and unsound (`Theorems/IsIntersectingCellCounterexample`).
 
-This is the branch with a cell `compOp`: each row is tested by `lb(i) < 0 | withinTol(lb(i),0,tol)`
-at `<=`, and by `lb(i) < 0` at every other operator, `==` included. That is not a test of `==`,
-and unsound (`Theorems/IsIntersectingCellCounterexample`).
+## Inputs
+* `tol` – tolerance
+* `op` – comparison operator per row
+* `B` – bounds of the rows over the box
+
+## Output
+* every row may hold at some point of the box
 -/
 
 -- Authors:       Claude Opus 5.5

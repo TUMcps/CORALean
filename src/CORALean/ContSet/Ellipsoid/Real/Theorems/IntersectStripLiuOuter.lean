@@ -16,20 +16,31 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfShapeEq
 /-!
 # The corrected Liu update encloses the intersection
 
-For positive-definite `Q` and `V` and `λ ∈ (0, 1)`, every point `x` with
-`(x - c)ᵀ Q⁻¹ (x - c) ≤ σ²_prev` and `(y - C x)ᵀ V⁻¹ (y - C x) ≤ 1` lies in
-`intersectStripLiu Q c C V y σ²_prev λ`. With `T = V/λ + C Q Cᵀ/(1 - λ)` (the code's `Q_tmp`),
-`w = T⁻¹ δ`, `u = Cᵀ w` and `P = (1 - λ) Q⁻¹ + λ Cᵀ V⁻¹ C`, one has
-`P Q Cᵀ = λ (1 - λ) Cᵀ V⁻¹ T`, so `P K = λ Cᵀ V⁻¹` and `P (I - K C) Q / (1 - λ) = I`: the
-corrected shape is `P⁻¹`. The center is `c* = c + Q u/(1 - λ)`, `y - C c* = V w/λ - C d` for
-`d = x - c*`, and
+For positive-definite `Q` and `V` and `λ ∈ (0, 1)`, every point `x` with `(x - c)ᵀ Q⁻¹ (x - c) ≤
+σ²_prev` and `(y - C x)ᵀ V⁻¹ (y - C x) ≤ 1` lies in `intersectStripLiu Q c C V y σ²_prev λ`. With `T
+= V/λ + C Q Cᵀ/(1 - λ)`, `w = T⁻¹ δ`, `u = Cᵀ w` and `P = (1 - λ) Q⁻¹ + λ Cᵀ V⁻¹ C`, one has `P Q Cᵀ
+= λ (1 - λ) Cᵀ V⁻¹ T`, so the corrected shape is `P⁻¹`, the center `c* = c + Q u/(1 - λ)`, and `(1 -
+λ)(x - c)ᵀ Q⁻¹ (x - c) + λ (y - C x)ᵀ V⁻¹ (y - C x) = dᵀ P d + δᵀ w`, `d = x - c*`. The left side is
+at most `(1 - λ) σ²_prev + λ`, so `dᵀ P d ≤ σ²`; when `σ² = 0` it forces `d = 0`. CORA's shape is
+`(1 - λ)² P⁻¹`, without `σ²` (`intersectStripLiu1D_counterexample`).
 
-  `(1 - λ)(x - c)ᵀ Q⁻¹ (x - c) + λ (y - C x)ᵀ V⁻¹ (y - C x) = dᵀ P d + δᵀ w`,
+## Inputs
+* `Q` – shape matrix
+* `c` – center
+* `C` – measurement matrix
+* `V` – measurement covariance
+* `y` – measurement
+* `σsqPrev` – previous level
+* `lam` – update weight
 
-the cross terms `2 dᵀ u` cancelling. The left side is at most `(1 - λ) σ²_prev + λ`, so
-`dᵀ P d ≤ σ²`, which is membership in the ellipsoid of shape `σ² P⁻¹`; when `σ² = 0` it forces
-`d = 0`, the center. CORA's shape is `(1 - λ)² P⁻¹`, without `σ²`
-(`intersectStripLiu1D_counterexample`).
+## Hypotheses
+* `hQ` – `Q` positive definite
+* `hV` – `V` positive definite
+* `h0` – `0 < lam`
+* `h1` – `lam < 1`
+
+## Conclusion
+* the intersection of state and measurement sets lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

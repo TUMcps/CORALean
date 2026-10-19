@@ -18,15 +18,23 @@ public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
 /-!
 # `Ellipsoid.absorbRounding` loses no point
 
-A point is a point `y` of the nominal part plus a point `e` of the box. Each coordinate of `e` is
-at most the box's larger end magnitude there, so `Σ eᵢ² ≤ ρ²` (`sq_sum_le_sqSumUp`) and `e` lies
-in the ball of radius `√ρ²`, the ellipsoid of factor `√ρ² I` (`aux_mem_ball`). For a certified
-shape the exact layer's `plus_outer` at the scalings `√(1 + 1/β)`, `√(1 + β)` (rounded up, which
-keeps the reciprocal squares summing to at most one, `aux_weights_admissible`) puts `y + e` in the
-ellipsoid of `(1 + 1/β) Q + (1 + β) ρ² I` about the stored center, which the stored shape
-dominates (`inflate_sub_posSemidef`), so `y + e` is in the result's nominal part
-(`add_sub_mem_nominalSet`) and the origin box adds nothing. A box with `ρ² ≤ 0` holds only the
-origin, and an uncertified shape is returned unchanged.
+A point is a point `y` of the nominal part plus a point `e` of the box. Each coordinate of `e` is at
+most the box's larger end magnitude, so `Σ eᵢ² ≤ ρ²` (`sq_sum_le_sqSumUp`) and `e` lies in the
+ellipsoid of factor `√ρ² I` (`aux_mem_ball`). For a certified shape the exact layer's `plus_outer`
+at the scalings `√(1 + 1/β)`, `√(1 + β)` (`aux_weights_admissible`) puts `y + e` in the ellipsoid of
+`(1 + 1/β) Q + (1 + β) ρ² I` about the stored center, which the stored shape dominates
+(`inflate_sub_posSemidef`; `add_sub_mem_nominalSet`), and the origin box adds nothing. A box with
+`ρ² ≤ 0` holds only the origin, and an uncertified shape is returned unchanged.
+
+## Inputs
+* `k` – Newton steps for the root
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* `E` lies in the absorbed ellipsoid
 -/
 
 -- Authors:       Claude Opus 5.5

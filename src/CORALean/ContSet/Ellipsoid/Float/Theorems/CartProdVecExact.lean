@@ -16,6 +16,16 @@ positive semi-definite exactly when `Q` is, being `P Q Pᵀ` for the embedding `
 as a principal block, so both refuse the same `Q`, and `Real.Ellipsoid.cartProdVec_exact` appends
 the point. The error box is the original's with a zero-width box on the appended coordinates, so
 a point of it is a point of the original's with nothing added there.
+
+## Inputs
+* `E` – ellipsoid
+* `v` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is exactly the product of `E` with `v`
 -/
 
 -- Authors:       Claude Opus 5.5

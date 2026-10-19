@@ -14,6 +14,17 @@ The update of CORA's `@ellipsoid/intersectStrip` (method `'Gollamudi1996'`,
 `(1 - λ) Q⁻¹ + λ C²`, the new center `c + λ Q C δ` and the new shape `Q' / σ²`. It returns
 the new center and shape matrix `Q` of the ellipsoid `{x | (x - c)² / Q ≤ 1}`; the trigger
 `σ²_prev + δ² > φ` and the choice of `λ` are left to the caller.
+
+## Inputs
+* `Q` – shape
+* `c` – center
+* `C` – measurement factor
+* `φ` – strip half-width
+* `y` – measurement
+* `lam` – update weight
+
+## Output
+* new center and shape
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,16 @@ Each branch only grows, by `Reduce.reduce_outer`, so a point of every branch
 of the operand stays a point of every branch reduced, and the intersection it
 witnesses in stays covered after every branch is replaced by its own
 reduction.
+
+## Inputs
+* `I` – intersection
+* `o` – order bound
+
+## Hypotheses
+* none
+
+## Conclusion
+* `I` lies in the reduced intersection
 -/
 
 -- Authors:       Claude Sonnet 5

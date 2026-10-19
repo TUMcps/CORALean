@@ -11,6 +11,12 @@ public import Mathlib.Data.Real.Basic
 
 A functional on `Vec ℝ n` is a dot product, and `dualVec` is the vector it is
 one with.
+
+## Inputs
+* `c` – linear functional
+
+## Output
+* vector whose dot product is `c`
 -/
 
 -- Authors:       Claude Opus 5

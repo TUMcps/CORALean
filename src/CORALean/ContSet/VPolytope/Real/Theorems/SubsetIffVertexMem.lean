@@ -11,6 +11,16 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 feasibility of [1, Eq. 4] — which is `VPolytope.construct` itself. The containing polytope is
 convex, and that is all the argument uses.
 
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `P₁` lies in `P₂` iff every vertex of `P₁` does
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

@@ -16,6 +16,15 @@ Read as reals, `Q` is symmetric and positive definite (`posDef_of_pdCheck`), so 
 ellipsoid is that of `Q`, of rank `n`, which is a nonempty interior
 (`CORALean.Real.Ellipsoid.isFullDim_iff`). Adding the error box's lower corner, a member of the
 nonempty box, keeps an interior point (`subset_interior_add_left`).
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* `h` – `isFullDim` returns `true`
+
+## Conclusion
+* `E` has nonempty interior
 -/
 
 -- Authors:       Claude Opus 5.5

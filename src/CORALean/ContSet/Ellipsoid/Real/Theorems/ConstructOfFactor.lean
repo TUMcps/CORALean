@@ -10,6 +10,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqOfFactor
 
 `ellipsoid(F*F', q)` is `{q + F u | ‖u‖₂ ≤ 1}`, whatever the width of `F`: `construct_eq_of_factor`
 at the factor the shape was built from.
+
+## Inputs
+* `F` – factor
+* `q` – center
+
+## Hypotheses
+* none
+
+## Conclusion
+* the ellipsoid is the image of the unit ball under `F` about `q`
 -/
 
 -- Authors:       Claude Opus 5.5

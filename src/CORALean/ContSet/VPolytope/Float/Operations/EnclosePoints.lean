@@ -10,6 +10,13 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 CORA's `enclosePoints`: the polytope spanned by a list of points, the points as the vertex list.
 The points are stored floats, so the hull of them is exact and the error box is the origin.
+
+## Inputs
+* `N` – number of points
+* `pts` – points
+
+## Output
+* polytope with the points as vertices
 -/
 
 -- Authors:       Claude Sonnet 5.5

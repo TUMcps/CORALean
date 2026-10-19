@@ -9,6 +9,13 @@ public import CORALean.ContSet.LevelSet.Real.LevelSet
 
 The image of a level set under a translation, a preimage substitution in `f`. CORA's `levelSet`
 has no `plus`.
+
+## Inputs
+* `L` – level set
+* `v` – shift
+
+## Output
+* level set whose points `y` have `y - v` in `L`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,16 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 
 Every point of the set, read at `dims`, lies in `project s dims`: it is the selection matrix
 applied to the point, which `mtimes_outer` covers. Outer, and for any `dims`, repeated or not.
+
+## Inputs
+* `s` – set
+* `dims` – kept coordinates
+
+## Hypotheses
+* none
+
+## Conclusion
+* every projected point of `s` lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

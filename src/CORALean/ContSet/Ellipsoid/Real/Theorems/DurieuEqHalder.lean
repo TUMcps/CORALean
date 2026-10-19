@@ -11,6 +11,18 @@ public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 ellipsoids and `α₂ = 1 − α₁` is `(1 + 1/β) Q₁ + (1 + β) Q₂` of [1, Eq. 11] at
 `β = α₁/(1 − α₁)`, since `1 + 1/β = 1/α₁` and `1 + β = 1/(1 − α₁)`.
 
+## Inputs
+* `Q₁` – first shape matrix
+* `Q₂` – second shape matrix
+* `α₁` – weight
+
+## Hypotheses
+* `h₀` – `0 < α₁`
+* `h₁` – `α₁ < 1`
+
+## Conclusion
+* the `K = 2` sum equals Halder's sum at `β = α₁ / (1 − α₁)`
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

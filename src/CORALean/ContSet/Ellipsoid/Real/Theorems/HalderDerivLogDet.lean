@@ -14,6 +14,19 @@ The printed derivation applies Jacobi's formula to `Q(β)` with [1, Eq. 15] and 
 Here `R = S Λ T` and the trace of `S diag((1 − β²λᵢ)/(1+βλᵢ)) T` is the stationarity sum,
 so the derivative is that of `log det Q₁ + ∑ᵢ log((1 + 1/β) + (1 + β)λᵢ)`.
 
+## Inputs
+* `Q₁` – first shape matrix
+* `Q₂` – second shape matrix
+* `β` – weight of the shape sum
+
+## Hypotheses
+* `h₁` – `Q₁` positive definite
+* `h₂` – `Q₂` positive definite
+* `hβ` – `0 < β`
+
+## Conclusion
+* the derivative of `log det Q(β)` is a trace in `Q₁⁻¹ Q₂`
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

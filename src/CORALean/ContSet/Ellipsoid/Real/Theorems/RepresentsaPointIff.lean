@@ -13,6 +13,15 @@ Each column `Gⱼ` of `G = Q^(1/2)` is the image of the unit vector `eⱼ`, whic
 `q + Gⱼ` lies in the ellipsoid and, if that is `{q}`, `Gⱼ = 0`; conversely `G = 0` leaves only
 `q`; and `G = 0` iff `Q = 0` (`G_eq_zero_iff`). The origin is the
 point at `q = 0`. The empty set is never represented: `Ellipsoid.center_mem_construct`.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* `E` is its center iff `representsa_point` holds
 -/
 
 -- Authors:       Claude Opus 5.5

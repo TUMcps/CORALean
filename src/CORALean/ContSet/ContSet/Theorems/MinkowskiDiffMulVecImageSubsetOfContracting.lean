@@ -10,16 +10,29 @@ public import CORALean.Global.Tensor
 /-!
 # A perturbed matrix image, inner-approximated by a contraction
 
-`minkowskiDiff_image_subset_image_of_contracting` at matrices: for an invertible
-`Ē`, a true `E` with `‖Ē⁻¹ (E - Ē)‖ < 1` in the operator norm of the supremum
-norm, and a closed nonempty `X`, the image `Ē X` minus any `B` covering
-`(Ē - E) X` lies inside `E X`. `P = Ē⁻¹` is the left inverse, and
-`x - Ē⁻¹ E x = -Ē⁻¹ (E - Ē) x` is the contraction.
+`minkowskiDiff_image_subset_image_of_contracting` at matrices: for an invertible `Ē`, a true `E`
+with `‖Ē⁻¹ (E - Ē)‖ < 1` in the operator norm of the supremum norm, and a closed nonempty `X`, the
+image `Ē X` minus any `B` covering `(Ē - E) X` lies inside `E X`. `P = Ē⁻¹` is the left inverse.
 
-This is the statement for an interval matrix `[Ē ± R]` known to hold the true
-`e^{AΔt}`: the true matrix is one fixed member `E`, and `‖Ē⁻¹ (E - Ē)‖` is at
-most `‖|Ē⁻¹| R‖`. A convex compact `X`, a zonotope, needs neither the bound nor
-`Ē` invertible (`minkowskiDiff_mulVec_image_subset_of_convex`).
+This is the statement for an interval matrix `[Ē ± R]` known to hold the true `e^{AΔt}`: the true
+matrix is one fixed member `E`, and `‖Ē⁻¹ (E - Ē)‖` is at most `‖|Ē⁻¹| R‖`. A convex compact `X`
+needs neither the bound nor `Ē` invertible (`minkowskiDiff_mulVec_image_subset_of_convex`).
+
+## Inputs
+* `Ē` – invertible matrix
+* `E` – matrix
+* `X` – domain set
+* `B` – error set
+
+## Hypotheses
+* `hĒ` – `Ē` invertible
+* `hK` – `‖Ē⁻¹ (E - Ē)‖ < 1`
+* `hX` – `X` closed
+* `hXne` – `X` nonempty
+* `hB` – `B` covers `Ē x - E x` on `X`
+
+## Conclusion
+* `Ē X ⊖ B` lies in `E X`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -14,6 +14,13 @@ magnitudes of its row's other entries, rounded up: diagonal dominance, which mak
 symmetric residual positive semi-definite, and with it every symmetric matrix of `X`, `L Lᵀ` being
 so on sight (`Theorems/PsdCheckSound`). Symmetry is the caller's to check, as it is a property of
 the stored floats and not of the interval.
+
+## Inputs
+* `X` – interval matrix
+* `L` – factor
+
+## Output
+* `true` only if `X - L Lᵀ` is diagonally dominant
 -/
 
 -- Authors:       Claude Opus 5.5

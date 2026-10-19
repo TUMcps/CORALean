@@ -16,6 +16,16 @@ positive: `β < g(β)` iff `β² ∑ λᵢ/(1+βλᵢ) < ∑ 1/(1+βλᵢ)`, whi
 `halderStationarity_eq` read as a sign. With the two companions it makes the fixed point
 of `g` the root of [1, Eq. 18], which is [1, Thm. 3]'s limit.
 
+## Inputs
+* `β` – weight of the shape sum
+
+## Hypotheses
+* `hlam` – every `λᵢ` positive
+* `hβ` – `0 ≤ β`
+
+## Conclusion
+* `β` is below its step iff the stationarity function is positive
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

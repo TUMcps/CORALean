@@ -9,6 +9,17 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.Map
 
 For `f x = x ∘ σ`, the image `f E` has shape matrix `S Q Sᵀ` with `S` the selection matrix, which is
 `Q` at the rows and columns `σ`, CORA's `E.Q(dims, dims)` of `project`, and center `q ∘ σ`.
+
+## Inputs
+* `E` – ellipsoid
+* `σ` – selected coordinates
+* `f` – coordinate selection map
+
+## Hypotheses
+* `hf` – `f` reads the coordinates `σ`
+
+## Conclusion
+* the image has shape `Q(σ, σ)` and center `q(σ)`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,15 @@ and `LS = {x | x = x/2} = {0}`, so `I ∩ LS = {0}`; the model is `{x/2 | x ∈ 
 which contains `½`. Printed with `LS = {x | x(k) = p_k(x)}` and no condition on `p_k`'s
 variables, the theorem claims these equal; `IntersectLevelSetBoxExact` adds the missing one.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the box cut is not exact when `p_k` depends on `x(k)`
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

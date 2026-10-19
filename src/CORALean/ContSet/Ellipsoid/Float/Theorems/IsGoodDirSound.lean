@@ -20,6 +20,21 @@ every entry of `M` between the two roundings the test summed) and `μ² lᵀ Q�
 `vᵀ Q₂ v ≤ vᵀ Q₁ v / p` and the inner shape is positive semidefinite, which
 `Ellipsoid.isBadDir_iff` reads as the direction not being bad. A statement about the nominal
 ellipsoids, the error boxes aside, under the hypotheses of that theorem.
+
+## Inputs
+* `E₁` – first ellipsoid
+* `E₂` – second ellipsoid
+* `l` – direction
+* `μ` – eigenvalue bound
+
+## Hypotheses
+* `h` – `isGoodDir` returns `true`
+* `hr` – nominal `E₁` has full rank
+* `hbig` – nominal `E₁` is bigger than nominal `E₂`
+* `hl` – `lᵀ Q₂ l` positive
+
+## Conclusion
+* `l` is not a bad direction of the nominal ellipsoids
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

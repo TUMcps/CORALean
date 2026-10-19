@@ -19,6 +19,19 @@ public import Mathlib.Tactic.Ring
 `λ = κ/(1 − κ)`. It is the matrix of [1, Eq. 16] being invertible, with the inverse
 that the containment of [1, Lemma 4.3 (containment)] is stated against.
 
+## Inputs
+* `c` – unit cut direction
+* `γ` – cut depth
+
+## Hypotheses
+* `hc` – `c` has unit length
+* `hn` – `2 ≤ n`
+* `hγ` – `0 < γ`
+* `hγn` – `n γ² < 1`
+
+## Conclusion
+* the cut shape times `cutPrecision` is the identity
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

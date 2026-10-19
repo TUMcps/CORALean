@@ -16,6 +16,16 @@ times a point is unbounded, and `∅ × ℝⁿ` is bounded (`prod_properties_cou
 degenerate factor makes the product degenerate, and a nonempty factor carries the other's
 unboundedness, which is all that survives.
 
+## Inputs
+* `S₁` – first set
+* `S₂` – second set
+
+## Hypotheses
+* none
+
+## Conclusion
+* emptiness, interior and boundedness of `S₁ × S₂` follow from those of the factors
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

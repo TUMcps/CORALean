@@ -13,6 +13,17 @@ the two descriptions of an ellipsoid, as the affine image of the unit ball under
 and as a sublevel set of the quadratic form of `Q⁻¹` ([1, Eq. 5], [2, Sec. 1.1 (ellipse)]).
 With `x − q = N u`, `(N u)ᵀ Q⁻¹ (N u) = uᵀ u`, since `Q⁻¹ = N⁻¹ N⁻¹`.
 
+## Inputs
+* `Q` – shape matrix
+* `q` – center
+* `x` – point
+
+## Hypotheses
+* `hQ` – `Q` positive definite
+
+## Conclusion
+* `x ∈ E(Q, q)` iff `(x − q)ᵀ Q⁻¹ (x − q) ≤ 1`
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

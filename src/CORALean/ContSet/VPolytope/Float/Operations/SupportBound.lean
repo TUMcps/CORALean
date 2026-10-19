@@ -11,6 +11,17 @@ public import CORALean.ContSet.Interval.Float.Operations.BoundDot
 At the price the coordinate directions avoid: a rounded dot product per
 vertex, then the largest of them, plus the error box's own reach, added
 upward.
+
+## Inputs
+* `P` – polytope
+* `c` – linear functional
+* `a` – float vector of `c`
+
+## Hypotheses
+* `hc` – `c x = ∑ aⱼ xⱼ`
+
+## Output
+* float bound of `c` on the whole set `P`
 -/
 
 -- Authors:       Claude Opus 5

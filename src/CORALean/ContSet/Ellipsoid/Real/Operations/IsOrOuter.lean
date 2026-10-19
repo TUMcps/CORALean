@@ -10,6 +10,14 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.Mtimes
 What CORA's `or(E₁, E₂, 'outer')` (`priv_orEllipsoidOA`) owes: its ellipsoid contains both operands.
 CORA returns a minimum-volume such ellipsoid from an SDP solver (MOSEK, SDPT3 or YALMIP), after
 bloating degenerate operands; only the enclosure is formalized, not the minimum volume.
+
+## Inputs
+* `E₁` – first ellipsoid
+* `E₂` – second ellipsoid
+* `E` – candidate hull
+
+## Output
+* `E` contains both `E₁` and `E₂`
 -/
 
 -- Authors:       Claude Opus 5.5

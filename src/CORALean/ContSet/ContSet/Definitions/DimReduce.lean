@@ -14,6 +14,16 @@ with the line `L_γ` by `BOUND_INTERSECT_2D` to get `[m_ℓ; M_ℓ]`, and return
 `{x | ∀ ℓ ∈ D, m_ℓ ≤ x·ℓ ≤ M_ℓ}`. The intersection routine is an argument `bound`
 (`IsBoundIntersect2D` is what it owes), as the optimizer is in `Zonotope.reduceCoOptSVD`.
 
+## Inputs
+* `bound` – bound-intersect oracle
+* `Z` – set
+* `nv` – normal of the hyperplane
+* `γ` – offset of the hyperplane
+* `D` – directions
+
+## Output
+* polyhedron bounding `Z` intersected with the hyperplane
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

@@ -17,6 +17,16 @@ public import Mathlib.Topology.Algebra.Module.FiniteDimension
 `isFullDim` of CORA's `@ellipsoid`: `rank(E) == dim(E)`. The ellipsoid `q + G · ball` has an
 interior point exactly when the range of `G = Q^(1/2)` is the whole space, i.e. when
 `rank G = n`, and `rank G = rank (G Gᵀ) = rank Q`. Exact, tolerance `0`.
+
+## Inputs
+* `n` – dimension
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* `E` has nonempty interior iff its rank is `n`
 -/
 
 -- Authors:       Claude Opus 5.5

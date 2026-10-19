@@ -10,6 +10,15 @@ public import Mathlib.Tactic.Linarith
 
 No coefficient family over an empty index sums to one, so the vertex list
 denotes nothing.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polytope with no vertices denotes the empty set
 -/
 
 -- Authors:       Claude Opus 5

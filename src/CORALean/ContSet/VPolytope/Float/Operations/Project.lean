@@ -10,6 +10,13 @@ public import CORALean.ContSet.VPolytope.Float.VPolytope
 
 Every vertex read at the chosen coordinates, and the error box projected with
 `Interval.project`. Selecting coordinates does no arithmetic, so nothing rounds.
+
+## Inputs
+* `P` – polytope
+* `dims` – kept coordinates
+
+## Output
+* polytope of the vertices projected onto `dims`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -17,6 +17,12 @@ function `bound` does: `{y | (γ, y) ∈ S}` is `[m, M]` for every `S` and `γ`.
 [1, Alg. 2] asks of its subroutine: the specification of the scanning and of the dichotomic
 search, not either algorithm.
 
+## Inputs
+* `bound` – candidate bound function
+
+## Output
+* `bound` returns exact slice bounds of every set at every abscissa
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

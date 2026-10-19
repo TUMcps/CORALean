@@ -13,6 +13,19 @@ public import Mathlib.Analysis.Matrix.Order
 `Q(β)⁻¹ = β/(1+β) (I + βR)⁻¹ Q₁⁻¹`. Indeed `Q(β) = ((1+β)/β) Q₁ (I + βR)`, and `I + βR` is
 invertible because `Q(β)` is, its determinant being a factor of `det Q(β)`.
 
+## Inputs
+* `Q₁` – first shape matrix
+* `Q₂` – second shape matrix
+* `β` – weight of the shape sum
+
+## Hypotheses
+* `h₁` – `Q₁` positive definite
+* `h₂` – `Q₂` positive definite
+* `hβ` – `0 < β`
+
+## Conclusion
+* `Q(β)⁻¹ = β/(1+β) · (I + βR)⁻¹ Q₁⁻¹`
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

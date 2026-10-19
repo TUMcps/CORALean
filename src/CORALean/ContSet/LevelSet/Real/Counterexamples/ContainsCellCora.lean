@@ -32,6 +32,15 @@ the guard at l. 93 does not fire on the cell, the interval evaluation over `[0, 
 `ub(1) < 0` (l. 127), which holds: CORA answers `true`, yet `0 ∈ S` is not in `ls` (read from the
 source, not run). The bounds are the exact ranges, so any range bound tighter than CORA's would
 give the same verdict.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's `contains_` with a cell of operators misjudges a point
 -/
 
 -- Authors:       Claude Opus 5.5

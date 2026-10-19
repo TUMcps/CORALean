@@ -11,6 +11,13 @@ public import Mathlib.Analysis.SpecialFunctions.Sqrt
 CORA's `aux_distPolyPoint(S, x)` of `polytope/hausdorffDist`: the Euclidean distance of a point
 `x` to a polytope `S`, `sqrt(val + x'x)` with `val` the optimal value of the quadratic program
 `min y'y - 2x'y` over `y ∈ S` (`problem.H = 2 I`, `problem.f = -2x`).
+
+## Inputs
+* `S` – set
+* `x` – point
+
+## Output
+* Euclidean distance from `x` to `S`
 -/
 
 -- Authors:       Claude Opus 5.5

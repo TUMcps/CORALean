@@ -13,6 +13,15 @@ Each term `(1 − β²λ)/(1 + βλ)` of [1, Eq. 18] is strictly decreasing in `
 `(b − a) λ (1 + (a + b) + abλ) > 0`. A sum of strictly decreasing terms is, so the root of
 [1, Thm. 2] is unique.
 
+## Inputs
+* none
+
+## Hypotheses
+* `hlam` – every `λᵢ` positive
+
+## Conclusion
+* the stationarity function is strictly decreasing on `[0, ∞)`
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

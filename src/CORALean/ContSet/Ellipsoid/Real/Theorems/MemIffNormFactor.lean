@@ -15,6 +15,15 @@ of the inverse shape matrix, `L Lᵀ = Q⁻¹`, because `‖Lᵀ w‖₂² = w�
 `E(q, N)` for the symmetric `N = Q^(-1/2)` (which exists, `N = (Q⁻¹)^(1/2)`) and `E(q, L)`
 for the Cholesky factor `L` of `Q⁻¹`, or any other.
 
+## Inputs
+* `Q` – shape matrix
+
+## Hypotheses
+* `hQ` – `Q` positive definite
+
+## Conclusion
+* any factor of `Q⁻¹` gives the norm form of membership
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

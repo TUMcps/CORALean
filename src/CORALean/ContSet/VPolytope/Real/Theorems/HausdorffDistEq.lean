@@ -19,6 +19,17 @@ polytopes in the Euclidean norm (`hausdorffDist₂`, not the supremum norm `Vec`
 The distance to a polytope is a convex function, so its largest value over the polytope is at a
 vertex (`ConvexOn.exists_ge_of_mem_convexHull`), and `VPolytope.distPoint_eq` says that
 `aux_distPolyPoint` is that distance.
+
+## Inputs
+* `P` – first polytope
+* `S` – second polytope
+
+## Hypotheses
+* `hP` – `P` has a vertex
+* `hS` – `S` has a vertex
+
+## Conclusion
+* `hausdorffDist` is the Euclidean Hausdorff distance of the sets
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,6 +16,16 @@ semi-definite (`posSemidef_of_psdCheck`): `Q₁` dominates `E₂`'s nominal shap
 `Q₂` is refused), so a point `q₂ + y` of `E₂`'s nominal part gives the point `q₁ + y` of `E₁`'s
 (`add_sub_mem_nominalSet`), and `E₂`'s error box lies in `E₁`'s by the checked corners. So
 `E₂ - q₂ ⊆ E₁ - q₁`, the inclusion the exact layer's `isBigger_iff_subset` characterises.
+
+## Inputs
+* `E₁` – larger ellipsoid
+* `E₂` – smaller ellipsoid
+
+## Hypotheses
+* `h` – `isBigger` returns `true`
+
+## Conclusion
+* `E₂` centered at the origin lies in `E₁` centered at the origin
 -/
 
 -- Authors:       Claude Opus 5.5

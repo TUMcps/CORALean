@@ -8,6 +8,15 @@ public import CORALean.ContSet.LevelSet.Real.Operations.Not
 # `LevelSet.not` is the complement
 
 Where CORA's `not` is defined, the result denotes exactly the complement.
+
+## Inputs
+* `L` – single-constraint level set
+
+## Hypotheses
+* none
+
+## Conclusion
+* every result is the complement of `L`
 -/
 
 -- Authors:       Claude Opus 5.5

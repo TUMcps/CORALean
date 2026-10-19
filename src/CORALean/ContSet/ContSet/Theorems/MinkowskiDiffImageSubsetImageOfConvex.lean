@@ -7,15 +7,29 @@ public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
 /-!
 # A perturbed image, inner-approximated by cancellation
 
-`f '' X` minus a set `B` covering `f x - g x` on `X` lies inside `g '' X`,
-provided `g '' X` is convex and closed and `B` is nonempty and bounded. Each
-`f x` is `g x + (f x - g x)`, so `f '' X ⊆ g '' X + B`, and
-`minkowskiDiff_inner_of_outer` cancels `B` by Rådström's law.
+`f '' X` minus a set `B` covering `f x - g x` on `X` lies inside `g '' X`, provided `g '' X` is
+convex and closed and `B` is nonempty and bounded. Each `f x` is `g x + (f x - g x)`, so `f '' X ⊆ g
+'' X + B`, and `minkowskiDiff_inner_of_outer` cancels `B` by Rådström's law.
 
-No smallness and no invertibility: at `f = Ē`, `g = E` matrices and `X` a
-zonotope, the perturbation `E - Ē` may be as large as it likes, only `B` has to
-cover it. Convexity of `g '' X` is what does the work; without it the statement
-needs a contraction (`minkowskiDiff_image_subset_image_of_contracting`).
+No smallness and no invertibility: at `f = Ē`, `g = E` matrices and `X` a zonotope, `E - Ē` may be
+as large as it likes, only `B` has to cover it. Without convexity the statement needs a contraction
+(`minkowskiDiff_image_subset_image_of_contracting`).
+
+## Inputs
+* `f` – first map
+* `g` – second map
+* `X` – domain set
+* `B` – error set
+
+## Hypotheses
+* `hB` – `B` nonempty
+* `hBb` – `B` bounded
+* `hconv` – `g '' X` convex
+* `hcl` – `g '' X` closed
+* `hfg` – `B` covers `f x - g x` on `X`
+
+## Conclusion
+* `f '' X ⊖ B` lies in `g '' X`
 -/
 
 -- Authors:       Claude Opus 5.5

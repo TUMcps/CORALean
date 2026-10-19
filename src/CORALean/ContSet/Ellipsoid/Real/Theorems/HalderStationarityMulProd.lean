@@ -12,6 +12,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStationarity
 the denominators, giving `−∑ᵢ (β²λᵢ − 1) ∏_{j≠i} (βλⱼ + 1)`, the negative of the polynomial
 `p_{d+1}(β)` of [1, Eq. 21]. Since `∏ⱼ (1 + βλⱼ) > 0`, the roots agree.
 
+## Inputs
+* `β` – weight of the shape sum
+
+## Hypotheses
+* `hlam` – every `λᵢ` positive
+* `hβ` – `0 ≤ β`
+
+## Conclusion
+* the stationarity function times `∏ (1 + βλⱼ)` is a polynomial
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

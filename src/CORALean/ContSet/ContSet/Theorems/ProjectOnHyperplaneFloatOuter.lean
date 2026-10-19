@@ -11,6 +11,17 @@ For the normal `c` and offset `d` the floats read as, `(I - c cᵀ) x + d c = x 
 foot of the perpendicular from `x`: the real projector lies in the bracketed interval matrix
 entrywise and `d c` in its box, so `mtimes_outer`, `ofInterval_outer` and `plus_outer` carry it into
 the result. Outer only.
+
+## Inputs
+* `s` – set
+* `c` – unit normal
+* `d` – hyperplane offset
+
+## Hypotheses
+* none
+
+## Conclusion
+* every projected point of `s` lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

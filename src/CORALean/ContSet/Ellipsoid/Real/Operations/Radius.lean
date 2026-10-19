@@ -13,6 +13,16 @@ eigenvalues of the shape matrix `Q`, the radii of the enclosing hyperball and th
 semi-axes, the `j`-th entry (from `0`) being the `j+1`-th largest. CORA's default `i = 1` is
 the enclosing radius. The eigenvalues are Mathlib's `eigenvalues₀`, sorted in decreasing
 order. CORA's `zeros(dim(E), 0)` for an empty ellipsoid does not arise.
+
+## Inputs
+* `E` – ellipsoid
+* `i` – number of radii
+
+## Hypotheses
+* `hi` – `i ≤ n`
+
+## Output
+* square roots of the `i` largest eigenvalues of the shape
 -/
 
 -- Authors:       Claude Opus 5.5

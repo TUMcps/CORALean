@@ -12,6 +12,13 @@ contains_(E, S, type, tol, 0, false, false)`, a point intersects the ellipsoid i
 contains it, here at `tol = 0` through `Ellipsoid.containsPoint`. The emptiness branch (an
 `Ellipsoid` is never empty), the branch for an ellipsoid that is a point, and the set arguments
 through `distance` (solver-dependent) and `priv_isIntersectingMixed` are not formalized.
+
+## Inputs
+* `E` – ellipsoid
+* `p` – point
+
+## Output
+* `E` contains `p`
 -/
 
 -- Authors:       Claude Opus 5.5

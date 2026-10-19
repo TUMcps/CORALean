@@ -15,6 +15,16 @@ The convex hull of the union of the two stored sets sits inside the stored hull.
 operand is its nominal part plus its error: the first is a vertex combination of the joined list,
 the second is in the hull of the two boxes; and the joined set, a sum of two convex sets, is
 convex. Not exact, since the box is a hull of boxes and every nominal vertex is carried as stored.
+
+## Inputs
+* `P` – first polytope
+* `Q` – second polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the convex hull of both operands lies in the result
 -/
 
 -- Authors:       Claude Sonnet 5.5

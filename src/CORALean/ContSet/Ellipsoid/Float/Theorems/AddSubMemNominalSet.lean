@@ -16,6 +16,18 @@ or `F` is a point. In the first case `Q` is positive semi-definite, the nominal 
 ellipsoid of `Q`, and it contains `F`'s shape about the stored center
 (`construct_subset_of_le`); in the second only the center is asked for, which every nominal part
 holds.
+
+## Inputs
+* `E` – float ellipsoid
+* `F` – real ellipsoid
+* `x` – point of `F`
+
+## Hypotheses
+* `hF` – `F` is a point or `Q` dominates its shape
+* `hx` – `x` in `F`
+
+## Conclusion
+* `x` moved to the stored center lies in the nominal part
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -9,19 +9,22 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
 /-!
 # The support bound is the support function
 
-`SupportBound` claims only that nothing exceeds the value, which leaves open how
-much was given away. Here nothing was: the value is a maximum, so an ellipsoid
-loses no precision to the certificate machinery and a conversion read off these
-bounds is as tight as the direction allows.
+`SupportBound` claims only that nothing exceeds the value, which leaves open how much was given
+away. Here nothing was: the value is a maximum, so a conversion read off these bounds is as tight as
+the direction allows. The value is `⟨d, q⟩ + √(dᵀ Q d) = ⟨d, q⟩ + ‖Gᵀd‖₂` (`norm₂_pullback`),
+attained at `q + G (Gᵀd)/‖Gᵀd‖₂`, the unit-ball point Cauchy–Schwarz is tight at, which is CORA's `q
++ Q d/√(dᵀ Q d)`. When `Gᵀd` vanishes the direction is one `G` collapses, the value is `⟨d, q⟩`, and
+the center attains it. This makes [1, Def. 4] an equality here and not merely a bound.
 
-The value is `⟨d, q⟩ + √(dᵀ Q d) = ⟨d, q⟩ + ‖Gᵀd‖₂` (`norm₂_pullback`), and the attaining point
-is `q + G (Gᵀd)/‖Gᵀd‖₂`, the unit-ball point Cauchy–Schwarz is tight at, which is CORA's
-`q + Q d/√(dᵀ Q d)`. When `Gᵀd` vanishes the direction is one `G` collapses, the value
-is `⟨d, q⟩`, and the center attains it — which is why the center's membership is
-what the degenerate case needs.
+## Inputs
+* `E` – ellipsoid
+* `c` – linear functional
 
-This is what makes [1, Def. 4] an equality here and not merely a bound; the
-support vector it prints is the non-degenerate branch alone.
+## Hypotheses
+* none
+
+## Conclusion
+* some point of `E` attains the support bound
 
 ## References
 

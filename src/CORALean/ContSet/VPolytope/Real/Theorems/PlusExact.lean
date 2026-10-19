@@ -15,6 +15,16 @@ counting argument.
 
 This is [1, Eq. 25], the Minkowski sum of two V-polytopes as all pairwise sums of their points.
 
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Minkowski sum is exactly the result
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

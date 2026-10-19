@@ -12,6 +12,16 @@ public import Mathlib.Analysis.Normed.Module.Basic
 degenerate or a bounded set, and nothing more is claimed. Every cell holds; the other operand's
 cells follow by commutativity.
 
+## Inputs
+* `S₁` – set
+* `S₂` – set
+
+## Hypotheses
+* none
+
+## Conclusion
+* emptiness, empty interior and boundedness of `S₁` pass to `S₁ ∩ S₂`
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

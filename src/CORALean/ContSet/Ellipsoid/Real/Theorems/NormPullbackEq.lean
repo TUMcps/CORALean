@@ -10,6 +10,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 
 `‖Gᵀ d‖₂ = √(dᵀ Q d)`, as `‖Gᵀ d‖₂² = dᵀ G Gᵀ d` and `G Gᵀ = Q`: the generator form of the support
 function's second term is CORA's `sqrt(dir'*E.Q*dir)`.
+
+## Inputs
+* `E` – ellipsoid
+* `c` – linear functional
+
+## Hypotheses
+* none
+
+## Conclusion
+* the pulled-back norm is `√(dᵀ Q d)` for the direction `d` of `c`
 -/
 
 -- Authors:       Claude Opus 5.5

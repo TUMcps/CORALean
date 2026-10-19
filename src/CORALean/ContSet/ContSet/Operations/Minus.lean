@@ -9,6 +9,13 @@ public import CORALean.ContSet.ContSet.ContSet
 
 `S + (-p)`, the point entering as a singleton. CORA throws for any other subtrahend (a Minkowski
 difference is `minkDiff`), so the set minus a set is not defined here either.
+
+## Inputs
+* `s` – set
+* `p` – numeric offset
+
+## Output
+* `s` shifted by `-p`
 -/
 
 -- Authors:       Claude Opus 5.5

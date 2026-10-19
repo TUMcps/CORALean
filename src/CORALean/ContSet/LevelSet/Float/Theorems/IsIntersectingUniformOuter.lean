@@ -12,6 +12,20 @@ The refuting row's certified comparison, read as reals by `toReal_le_of_le` and
 `toReal_lt_of_ltStrict`, makes the real test fail at the bounds read as reals, and the real
 theorem `CORALean.Real.LevelSet.isIntersecting_uniform_outer` does the rest at the box the float
 interval denotes. A `true` says nothing, as over ℝ.
+
+## Inputs
+* `L` – level set
+* `I` – box
+* `B` – float bounds of the rows over the box
+* `tol` – tolerance
+
+## Hypotheses
+* `htol` – `0 ≤ tol`
+* `hB` – `B` encloses each row's range over the box
+* `h` – `isIntersecting_uniform` returns `false`
+
+## Conclusion
+* the level set and the box are disjoint
 -/
 
 -- Authors:       Claude Opus 5.5

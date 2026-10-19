@@ -7,18 +7,24 @@ public import CORALean.ContSet.ContSet.ContSet
 /-!
 # The Galois connection behind the Minkowski difference
 
-`X ⊆ minkowskiDiff S T` and `X + T ⊆ S` say the same thing, which is what makes
-`minkowskiDiff S T` the *largest* set that `T` can be added to without leaving
-`S` — the reason a `MinkDiff` implementation may only under-approximate it.
+`X ⊆ minkowskiDiff S T` and `X + T ⊆ S` say the same thing, which makes `minkowskiDiff S T` the
+*largest* set that `T` can be added to without leaving `S` — the reason a `MinkDiff` implementation
+may only under-approximate it.
 
-Here rather than beside the definition in `ContSet.lean`, which holds the
-interface and what it denotes; a fact proved about one of its definitions is a
-theorem, and `Theorems/` is where a theorem goes. Nothing about it mentions a
-representation, so it is stated on bare sets and every `construct` use below
-is an instance of it.
+Here rather than beside the definition in `ContSet.lean`, which holds the interface; a fact about
+one of its definitions is a theorem, and `Theorems/` is where a theorem goes. Nothing mentions a
+representation, so it is stated on bare sets. No hypotheses: it is `Set.mem_add` unfolded.
 
-No hypotheses at all: it is `Set.mem_add` unfolded against the definition, and
-holds in any module.
+## Inputs
+* `X` – set
+* `S` – minuend
+* `T` – subtrahend
+
+## Hypotheses
+* none
+
+## Conclusion
+* `X` lies in `S ⊖ T` iff `X + T` lies in `S`
 -/
 
 -- Authors:       Claude Opus 5

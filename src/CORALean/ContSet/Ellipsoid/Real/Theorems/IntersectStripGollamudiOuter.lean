@@ -14,17 +14,29 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfShapeEq
 /-!
 # The corrected Gollamudi update encloses the intersection
 
-For positive-definite `Q` and `λ ∈ [0, 1)`, every point `x` of the ellipsoid `E(Q, c)` with
-`‖C x - y‖₂ ≤ φ` lies in `intersectStripGollamudi Q c C φ y λ`. With `T = (1 - λ) I + λ C Q Cᵀ`,
-`w = T⁻¹ δ`, `u = Cᵀ w` and `invQ = (1 - λ) Q⁻¹ + λ Cᵀ C`, one has `invQ Q Cᵀ = Cᵀ T`, so the
-center is `c* = c + λ Q u`, `C c* - y = -(1 - λ) w`, and with `d = x - c*`
-
-  `(1 - λ)(x - c)ᵀ Q⁻¹ (x - c) + λ ‖C x - y‖₂² = dᵀ invQ d + λ (1 - λ) δᵀ w`,
-
-the cross terms `2 λ (1 - λ) dᵀ u` cancelling. The left side is at most `1 - λ + λ φ²`, so
-`dᵀ invQ d ≤ σ²`, which is membership in the ellipsoid of shape `σ² invQ⁻¹`; when `σ² = 0` it
-forces `d = 0`, the center. CORA divides by `σ²` instead
+For positive-definite `Q` and `λ ∈ [0, 1)`, every point `x` of `E(Q, c)` with `‖C x - y‖₂ ≤ φ` lies
+in `intersectStripGollamudi Q c C φ y λ`. With `T = (1 - λ) I + λ C Q Cᵀ`, `w = T⁻¹ δ`, `u = Cᵀ w`
+and `invQ = (1 - λ) Q⁻¹ + λ Cᵀ C`, one has `invQ Q Cᵀ = Cᵀ T`, so the center is `c* = c + λ Q u`, `C
+c* - y = -(1 - λ) w`, and with `d = x - c*` `(1 - λ)(x - c)ᵀ Q⁻¹ (x - c) + λ ‖C x - y‖₂² = dᵀ invQ d
++ λ (1 - λ) δᵀ w`. The left side is at most `1 - λ + λ φ²`, so `dᵀ invQ d ≤ σ²`, membership in the
+ellipsoid of shape `σ² invQ⁻¹`; when `σ² = 0` it forces `d = 0`. CORA divides by `σ²` instead
 (`intersectStripGollamudi1D_counterexample`).
+
+## Inputs
+* `Q` – shape matrix
+* `c` – center
+* `C` – measurement matrix
+* `φ` – strip half-width
+* `y` – measurement
+* `lam` – update weight
+
+## Hypotheses
+* `hQ` – `Q` positive definite
+* `h0` – `0 ≤ lam`
+* `h1` – `lam < 1`
+
+## Conclusion
+* the intersection of the ellipsoid with the strip lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

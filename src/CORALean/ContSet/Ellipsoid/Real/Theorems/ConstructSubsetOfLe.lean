@@ -12,6 +12,17 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqOfFactor
 the second: `[G₁ | D^(1/2)]`, `D = Q₂ - Q₁`, is a factor of `Q₂`, so the second is the image of the
 unit ball under it (`construct_eq_of_factor`), and a point `q + G₁ u` is its value at `(u, 0)`.
 This is what a rounded shape matrix inflated above the exact one is sound by.
+
+## Inputs
+* `E₁` – smaller ellipsoid
+* `E₂` – larger ellipsoid
+
+## Hypotheses
+* `hle` – `Q₁ ⪯ Q₂`
+* `hq` – same center
+
+## Conclusion
+* `E₁` lies in `E₂`
 -/
 
 -- Authors:       Claude Opus 5.5

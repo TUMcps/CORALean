@@ -15,6 +15,15 @@ public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 nonnegative diagonal, and `Ellipsoid.add_sub_mem_nominalSet` puts the real ball inside. The error
 box is the origin, so the nominal part is inside the whole. The shape is also positive
 semi-definite, which `Ellipsoid.spectraShadow_exact` asks for.
+
+## Inputs
+* `r` – radius
+
+## Hypotheses
+* none
+
+## Conclusion
+* the real ball of radius `r` lies in the float ball
 -/
 
 -- Authors:       Claude Opus 5.5

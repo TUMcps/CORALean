@@ -12,6 +12,12 @@ floats no factor is exact, so the factor proposed here errs upward: `cholFactor`
 diagonal entry raised by `2⁻²⁸` of itself, so that `G Gᵀ ≈ Q + τ` with `τ` about `2⁻²⁹` of each
 diagonal entry, a diagonal margin the rounding errors cannot outweigh. Nothing about `G` is proved:
 `isOuterFactor` checks `G Gᵀ - Q` in outward rounding.
+
+## Inputs
+* `Q` – shape matrix
+
+## Output
+* proposed factor `G` with `G Gᵀ` slightly above `Q`
 -/
 
 -- Authors:       Claude Opus 5.5

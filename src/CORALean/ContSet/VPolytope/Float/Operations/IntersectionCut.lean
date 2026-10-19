@@ -13,15 +13,21 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 /-!
 # `VPolytope.intersectionCut`, over a floating-point scalar
 
-The tighter sibling of `VPolytope.intersection`. Each operand goes out to halfspaces on
-the caller's directions (`VPolytope.hPolytope`, bounds rounded outward), and the two boxes'
-intersection is cut to those rows one after another (`HPolytope.contractBox`). The result is
-still the corners of a box, since nothing here enumerates vertices; but the box is the cut
-one, never larger than the boxes' intersection and, where the directions include the
-operands' facet normals, much smaller.
+The tighter sibling of `VPolytope.intersection`. Each operand goes out to halfspaces on the caller's
+directions (`VPolytope.hPolytope`, bounds rounded outward), and the two boxes' intersection is cut
+to those rows one after another (`HPolytope.contractBox`). The result is still the corners of a box,
+since nothing here enumerates vertices, but never larger than the boxes' intersection and, where the
+directions include the operands' facet normals, much smaller. Nothing is solved: a row is cut by one
+interval evaluation, and soundness is that of the conversion and of the cut.
 
-Nothing is solved: a row is cut by one interval evaluation, and soundness is that of the
-conversion and of the cut, each proved elsewhere.
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+* `Aq₁` – cut directions of the first operand
+* `Aq₂` – cut directions of the second operand
+
+## Output
+* box of the operands' intersection cut to both halfspace systems
 -/
 
 -- Authors:       Claude Sonnet 5.5

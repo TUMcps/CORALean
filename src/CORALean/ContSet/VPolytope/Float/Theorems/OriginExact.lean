@@ -13,6 +13,15 @@ public import CORALean.ContSet.VPolytope.Real.Operations.Point
 
 The nominal vertex list is the exact layer's single point `0`, and the error box is the point
 `0` as well.
+
+## Inputs
+* `n` – dimension
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is exactly the origin
 -/
 
 -- Authors:       Claude Opus 5.5

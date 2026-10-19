@@ -12,6 +12,15 @@ public import Mathlib.Analysis.Normed.Module.Basic
 [1, Table 3]. So "E ⊖ D = E", "E ⊖ B = E", "B ⊖ D = B" and "B ⊖ B = B" are false as printed;
 `minkowskiDiff_properties` has each with a nonempty subtrahend.
 
+## Inputs
+* none
+
+## Hypotheses
+* `hn` – `0 < n`
+
+## Conclusion
+* sets exist whose Minkowski difference is nonempty and unbounded
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

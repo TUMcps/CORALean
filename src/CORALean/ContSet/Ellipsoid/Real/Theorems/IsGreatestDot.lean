@@ -16,6 +16,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 formulas of [1, Sec. II (distances)] use: `lᵀ (q + G u) = lᵀ q + (Gᵀ l)ᵀ u`, at most
 `‖Gᵀ l‖₂ = (lᵀ G Gᵀ l)^{1/2}` on the unit ball and equal to it at `u = Gᵀ l / ‖Gᵀ l‖₂`.
 
+## Inputs
+* `E` – ellipsoid
+* `l` – direction
+
+## Hypotheses
+* none
+
+## Conclusion
+* `lᵀ q + √(lᵀ Q l)` is the greatest value of `l ·` on `E`
+
 ## References
 
 * [1] A. A. Kurzhanskiy and P. Varaiya. "Ellipsoidal Toolbox (ET)". In Proc. of the 45th

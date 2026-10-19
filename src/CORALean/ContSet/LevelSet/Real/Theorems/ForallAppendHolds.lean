@@ -10,6 +10,20 @@ public import Mathlib.Data.Fin.Tuple.Basic
 
 The stacked operator list and value vector of `and_` satisfy every comparison exactly when each
 block does.
+
+## Inputs
+* `a` – number of rows of the first block
+* `b` – number of rows of the second block
+* `o₁` – operators of the first block
+* `o₂` – operators of the second block
+* `v₁` – values of the first block
+* `v₂` – values of the second block
+
+## Hypotheses
+* none
+
+## Conclusion
+* all stacked rows hold iff each block holds
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -18,6 +18,16 @@ nominal ellipsoid is the exact layer's `project`, `Q(dims, dims)` (`aux_nominal_
 `project_exact` gives the nominal obligation as an equality; where `Q` is refused the nominal
 part is its center, whose projection is the projection's center. The box is
 `Interval.project_outer`.
+
+## Inputs
+* `E` – ellipsoid
+* `dims` – kept coordinates
+
+## Hypotheses
+* none
+
+## Conclusion
+* the projection of `E` lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

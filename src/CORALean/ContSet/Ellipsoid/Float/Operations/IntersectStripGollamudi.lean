@@ -14,20 +14,25 @@ public import CORALean.Global.Float.Sqrt
 /-!
 # `Ellipsoid.intersectStripGollamudi`, over a floating-point scalar
 
-The real layer's corrected Gollamudi update (CORA's `@ellipsoid/intersectStrip`) for **one**
-strip `|c x - y| ≤ φ`. With `G = Q^(1/2)` and `x = q + G u`, the strip is `|vᵀ u - δ| ≤ φ` for
-`v = G cᵀ`, `δ = y - c q`; with `ν = vᵀ v = c Q cᵀ` and `s = 1 - λ + λ ν` the result has center
-`q + κ W`, `W = G v = Q cᵀ`, `κ = λ δ / s` (the real center), and the shape
-`α² Q + (2αβ + β²ν) W Wᵀ` of the factor `G (α I + β v vᵀ)`, with
-`(α I + β v vᵀ)² ⪰ σ² ((1 - λ) I + λ v vᵀ)⁻¹`; for `Q` invertible that is the real shape
-`σ² invQ⁻¹` (`Theorems/ExistsBallOfStrip`). Only `Q`, `c` and `W` enter, never `G`.
-
-Nothing is trusted: `α`, `g` are `sqrtUp` of `σ²/(1 - λ)` and `σ²/s`, `β ≤ 0` aims at
-`α + β ν = g`, and the proof uses only the checks `0 < γ_lo`, `g ≤ γ_lo` on a lower bound of
-`α + β ν`. The input's box widens `φ` by `Σᵢ |cᵢ| max(|infᵢ|, |supᵢ|)` and the rounding gap of `δ`,
-and is carried over; the center is stored at its lower rounding and the gap paid into the box, the
-shape computed as an interval matrix and stored rounded upward (`inflate`). A `Q` that `isPsd`
+The real layer's corrected Gollamudi update (CORA's `@ellipsoid/intersectStrip`) for **one** strip
+`|c x - y| ≤ φ`. With `G = Q^(1/2)` and `x = q + G u`, the strip is `|vᵀ u - δ| ≤ φ` for `v = G cᵀ`,
+`δ = y - c q`; with `ν = c Q cᵀ`, `s = 1 - λ + λ ν`, the result has center `q + κ W`, `W = Q cᵀ`, `κ
+= λ δ / s`, and the shape `α² Q + (2αβ + β²ν) W Wᵀ`; for `Q` invertible that is the real shape `σ²
+invQ⁻¹` (`Theorems/ExistsBallOfStrip`). Nothing is trusted: `α`, `g` are `sqrtUp` of `σ²/(1 - λ)`
+and `σ²/s`, and the proof uses only the checks `0 < γ_lo`, `g ≤ γ_lo`. The box widens `φ` by the
+input's box and the rounding gap of `δ`; the shape is stored rounded upward. A `Q` that `isPsd`
 cannot certify, a failed check, or `λ` not certified in `[0, 1)` returns `E`.
+
+## Inputs
+* `steps` – Newton steps per root
+* `E` – ellipsoid
+* `c` – measurement row
+* `φ` – strip half-width
+* `y` – measurement
+* `lam` – update weight
+
+## Output
+* ellipsoid enclosing `E` cut by the strip
 -/
 
 -- Authors:       Claude Opus 5.5

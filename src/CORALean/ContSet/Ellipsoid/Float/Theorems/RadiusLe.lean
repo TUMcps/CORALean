@@ -11,6 +11,17 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.NormUbLe
 
 `x - q`, for `x` in the ellipsoid, is in the ellipsoid moved to the origin (the same shape, the
 same error, `add_sub_mem_nominalSet`), whose points `norm₂_le_normUb` bounds. An upper bound only.
+
+## Inputs
+* `p` – Newton steps of the roots
+* `E` – ellipsoid
+* `x` – point
+
+## Hypotheses
+* `hx` – `x` in `E`
+
+## Conclusion
+* the distance of `x` to the center is at most `radius`
 -/
 
 -- Authors:       Claude Opus 5.5

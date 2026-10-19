@@ -8,6 +8,18 @@ public import CORALean.ContSet.VPolytope.Real.Operations.Intersection
 # `VPolytope.intersection_k_of_empty`
 
 The `k_of_empty` count of `intersection`'s result.
+
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+* `Aq₁` – cut directions of the first operand
+* `Aq₂` – cut directions of the second operand
+
+## Hypotheses
+* `h` – the halfspace intersection is empty
+
+## Conclusion
+* the intersection has no vertices
 -/
 
 -- Authors:       Claude Opus 5

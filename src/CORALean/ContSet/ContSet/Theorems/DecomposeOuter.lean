@@ -11,6 +11,18 @@ public import CORALean.ContSet.ContSet.Theorems.ProjectOuter
 Block `i` contains the run of coordinates `lo i, …, lo i + len i - 1` of every point of the set.
 Outer, since each block is a `project`; the blocks together enclose the set's projection onto
 each run, not the set (the product of the blocks is wider in general).
+
+## Inputs
+* `s` – set
+* `lo` – first coordinate of each block
+* `len` – length of each block
+* `i` – block index
+
+## Hypotheses
+* `h` – every block fits within the dimension
+
+## Conclusion
+* block `i` of the projection of `s` is contained in the `i`-th decomposed set
 -/
 
 -- Authors:       Claude Opus 5.5

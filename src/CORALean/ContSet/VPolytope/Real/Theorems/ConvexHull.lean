@@ -16,6 +16,15 @@ containing them.
 This is what makes the vertex operations cheap — `plus`, `map` and `linComb` are
 then Mathlib's hull algebra applied to `Set.range V`, with no coefficient
 bookkeeping of their own.
+
+## Inputs
+* `P` – polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `P` denotes the convex hull of its vertices
 -/
 
 -- Authors:       Claude Opus 5

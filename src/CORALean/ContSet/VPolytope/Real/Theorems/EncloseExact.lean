@@ -14,6 +14,17 @@ At ℝ the generic `ContSet.enclose` of vertex lists is `linComb` (the vertex li
 convex hull of `P` and `M P + Q`, as CORA's `enclose` computes it.
 
 Not collected in `Theorems/API.lean`: it needs the instances, which that API feeds.
+
+## Inputs
+* `P` – first polytope
+* `Q` – second polytope
+* `M` – matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* `enclose` is exactly the convex hull of `P` and `M Q`
 -/
 
 -- Authors:       Claude Sonnet 5.5

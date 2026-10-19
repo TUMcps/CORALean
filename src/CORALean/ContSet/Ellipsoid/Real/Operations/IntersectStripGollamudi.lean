@@ -7,21 +7,25 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.OfShape
 /-!
 # `Ellipsoid.intersectStripGollamudi`
 
-CORA's `@ellipsoid/intersectStrip` (method `'Gollamudi1996'`, `aux_methodGollamudi1996`) for an
-ellipsoid of shape `Q` and center `c` and the strip `‖C x - y‖₂ ≤ φ` (`C` is `m × n`), at the
-weight `λ` (CORA picks `min(1e-4, ν)`; the trigger `σ²_prev + δᵀδ > φ` and the choice of `λ`
-are left to the caller), corrected so that it encloses the intersection
-(`intersectStripGollamudi_outer`). Every point of the intersection satisfies the convex
-combination `(1 - λ)(x - c)ᵀ Q⁻¹ (x - c) + λ ‖C x - y‖₂² ≤ 1 - λ + λ φ²`, which completes to
-`(x - c*)ᵀ invQ (x - c*) ≤ σ²` with
+CORA's `@ellipsoid/intersectStrip` (method `'Gollamudi1996'`) for an ellipsoid of shape `Q` and
+center `c` and the strip `‖C x - y‖₂ ≤ φ`, at the weight `λ` (the trigger and the choice of `λ` are
+the caller's), corrected so that it encloses the intersection (`intersectStripGollamudi_outer`).
+With `δ = y - C c`, `invQ = (1 - λ) Q⁻¹ + λ Cᵀ C` and `σ² = 1 - λ + λ φ² - λ (1 - λ) δᵀ ((1 - λ) I +
+λ C Q Cᵀ)⁻¹ δ`, as the code computes them, the result has the minimiser `c* = c + λ invQ⁻¹ Cᵀ δ`,
+where the code has `c + λ Q Cᵀ δ`, and the shape `σ² invQ⁻¹`, where the code has `invQ⁻¹ / σ²`.
+These two departures are the corrections; `intersectStripGollamudi1D` is the update as coded, with
+its counterexample.
 
-* `δ = y - C c`, `invQ = (1 - λ) Q⁻¹ + λ Cᵀ C`, as the code computes them,
-* `σ² = 1 - λ + λ φ² - λ (1 - λ) δᵀ ((1 - λ) I + λ C Q Cᵀ)⁻¹ δ`, as the code computes it,
-* the minimiser `c* = c + λ invQ⁻¹ Cᵀ δ`, where the code has `c + λ Q Cᵀ δ`,
-* the shape `σ² invQ⁻¹`, where the code has `invQ⁻¹ / σ²`.
+## Inputs
+* `Q` – shape matrix
+* `c` – center
+* `C` – measurement matrix
+* `φ` – strip half-width
+* `y` – measurement
+* `lam` – update weight
 
-The two departures from the code are the corrections; `intersectStripGollamudi1D` is the update
-as the code computes it, with its counterexample.
+## Output
+* ellipsoid enclosing the intersection of `E` with the strip
 -/
 
 -- Authors:       Claude Opus 5.5

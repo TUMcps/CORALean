@@ -11,6 +11,16 @@ public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 
 The stored polytope is the convex hull of the points read as reals, with nothing added: the error
 box is the origin, a singleton `{0}`.
+
+## Inputs
+* `N` – number of points
+* `pts` – points
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is exactly the convex hull of the points
 -/
 
 -- Authors:       Claude Sonnet 5.5

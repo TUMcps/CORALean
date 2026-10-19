@@ -8,18 +8,22 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
 /-!
 # The support bound is the support function
 
-`SupportBound` claims only that nothing exceeds the value, which leaves open how
-much was given away. Over a vertex list nothing is: the supremum runs over a
-finite family, so some vertex takes it, and `vertex_mem` puts that vertex in the
-polytope. That is what makes [1, Def. 3]'s `max_i ℓᵀvᵢ` an equality rather than
-a bound, and where its "the support vector is the maximizing vertex" lands.
+`SupportBound` claims only that nothing exceeds the value, which leaves open how much was given
+away. Over a vertex list nothing is: the supremum runs over a finite family, so some vertex takes
+it, and `vertex_mem` puts that vertex in the polytope. That makes [1, Def. 3]'s `max_i ℓᵀvᵢ` an
+equality rather than a bound; the maximizing vertex is the support vector of [2, Eq. 34]. A
+non-empty vertex list is a hypothesis: `k = 0` denotes `∅`, which attains nothing, and a supremum
+over an empty family at `ℝ` is `0` rather than `-∞`.
 
-A non-empty vertex list is a hypothesis and not a technicality: `k = 0` denotes
-`∅`, which attains nothing, and a supremum over an empty family at `ℝ` is `0`
-rather than `-∞`. `0 < P.k` says exactly what has to hold for the claim to mean
-anything.
+## Inputs
+* `P` – polytope
+* `c` – linear functional
 
-The maximizing vertex is the support vector of [2, Eq. 34].
+## Hypotheses
+* `hk` – `P` has a vertex
+
+## Conclusion
+* some point of `P` attains the support bound
 
 ## References
 

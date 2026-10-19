@@ -13,6 +13,17 @@ eigenvalues are positive. It is [1, Lemma 1] at `M₁ = Q₁⁻¹`, which is pos
 `Q₁` is; the positivity of the eigenvalues, which the printed proof reads off the spectrum
 of `Q₂^(1/2) Q₁⁻¹ Q₂^(1/2)`, comes with the construction there.
 
+## Inputs
+* `Q₁` – first shape matrix
+* `Q₂` – second shape matrix
+
+## Hypotheses
+* `h₁` – `Q₁` positive definite
+* `h₂` – `Q₂` positive definite
+
+## Conclusion
+* `Q₁⁻¹ Q₂` is diagonalizable with positive eigenvalues
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

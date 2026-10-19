@@ -22,6 +22,16 @@ of `M E` is `M Q Mᵀ`, of determinant `(det M)² det Q`, and the volume is `V_n
 map does not change ratios of volumes, which [1, Eq. 19] uses for the map `Φ` that sends
 `E(Eⱼ, 0)` to the unit ball.
 
+## Inputs
+* `M` – square matrix
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* the volume of `M E` is `|det M|` times that of `E`
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

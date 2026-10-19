@@ -10,6 +10,14 @@ public import Mathlib.Data.Finset.Sort
 
 The constraints of a level set at a chosen set of indices, in order, each with its own operator:
 what CORA's `splitEquality` builds with `ls.eq(ind)` and `ls.compOp(ind)`.
+
+## Inputs
+* `n` – dimension
+* `L` – level set
+* `s` – row indices
+
+## Output
+* level set of the rows at `s` in order
 -/
 
 -- Authors:       Claude Opus 5.5

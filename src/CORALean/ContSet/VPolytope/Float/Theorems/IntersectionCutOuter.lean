@@ -23,6 +23,18 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 A point of both operands lies in both boxes, hence in their intersection, and in both
 halfspace descriptions, which the cuts keep it through one after the other.
+
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+* `Aq₁` – cut directions of the first operand
+* `Aq₂` – cut directions of the second operand
+
+## Hypotheses
+* none
+
+## Conclusion
+* the intersection lies in the result
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -13,6 +13,15 @@ CORA's `generators` returns a matrix `G` with `G Gᵀ = Q`: `U sqrt(D) sqrt(D)�
 the eigenvalues of the positive semi-definite `Q` being nonnegative. Exact for the shape matrix,
 and so for the set: `construct_eq_of_factor` makes the image of the unit ball under this matrix
 the ellipsoid itself.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* `generators(E)` times its transpose is `Q`
 -/
 
 -- Authors:       Claude Opus 5.5

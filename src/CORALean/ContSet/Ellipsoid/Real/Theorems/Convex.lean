@@ -13,6 +13,15 @@ triangle inequality, so nothing here is specific to ellipsoids beyond
 
 What the reachability theorems consume: an integral valued in the set needs it,
 and it holds whatever `G` is, degenerate ones included.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* `E` is convex
 -/
 
 -- Authors:       Claude Opus 5

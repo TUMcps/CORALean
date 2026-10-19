@@ -10,6 +10,12 @@ public import CORALean.ContSet.LevelSet.Real.LevelSet
 `v ⋈ 0` widened by `e ≥ 0`: `v ≤ e`, `v < e`, or `|v| ≤ e` for an equation. It is what a row of a
 float polynomial level set holds once its rounding is recorded as the slack `e = |b_errorᵢ|`
 (`Float.PolyLevelSet.construct`), and at `e = 0` it is `holds`.
+
+## Inputs
+* none
+
+## Output
+* the comparison of the value with `0` holds within the slack
 -/
 
 -- Authors:       Claude Opus 5.5

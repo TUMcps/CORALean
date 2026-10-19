@@ -17,6 +17,15 @@ and `Eplus = {1}` the documented set contains `1` (at `a = 0`: `x₂ = M 0 + 1`)
 between `E` and the `E2` the code hands to `convHull` are `{0}`. What `convHull` returns is an
 enclosure of those segments, so nothing in the code makes it reach the documented set. Read from
 the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the documented set is not inside the hull CORA computes
 -/
 
 -- Authors:       Claude Opus 5.5

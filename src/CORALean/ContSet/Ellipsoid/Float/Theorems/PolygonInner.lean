@@ -14,6 +14,16 @@ public import CORALean.ContSet.VPolytope.Float.Theorems.EnclosePointsExact
 Inner: every kept vertex is a point of the ellipsoid by `Ellipsoid.containsPoint_sound`, the
 ellipsoid is convex, and the polygon is the hull of the kept vertices (`enclosePoints_exact`, the
 origin error box adding nothing). Nothing is claimed of the vertices dropped.
+
+## Inputs
+* `E` – planar ellipsoid
+* `W` – solves proposed for the vertices
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polygon lies in `E`
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

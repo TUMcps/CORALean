@@ -8,6 +8,16 @@ public import CORALean.ContSet.LevelSet.Real.Operations.Plus
 # `LevelSet.plus` is exact
 
 The image under a translation is the level set of the substituted function, with equality.
+
+## Inputs
+* `L` – level set
+* `v` – shift
+
+## Hypotheses
+* none
+
+## Conclusion
+* the shifted level set is exactly `L` translated by `v`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,14 @@ public import CORALean.ContSet.Conversion.Float.Instances
 products round, so the projector is an interval matrix, each entry `δᵢⱼ - cᵢ cⱼ` bracketed by
 directed arithmetic, and the translation `d c` is a box; the set goes through `mtimes` at the
 interval matrix, then `plus` with the box taken into the representation (`ofInterval`).
+
+## Inputs
+* `s` – set
+* `c` – unit normal
+* `d` – hyperplane offset
+
+## Output
+* `s` projected onto the hyperplane `{x | c ⬝ x = d}`
 -/
 
 -- Authors:       Claude Opus 5.5

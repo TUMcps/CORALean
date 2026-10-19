@@ -10,6 +10,16 @@ public import CORALean.ContSet.VPolytope.Real.VPolytope
 [1, Eq. 11]: exactly when the linear program [1, Eq. 12] is feasible — two convex combinations,
 one of each point list, meeting in one point.
 
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polytopes meet iff two convex combinations of the vertices agree
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

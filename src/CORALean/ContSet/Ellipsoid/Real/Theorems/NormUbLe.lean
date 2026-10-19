@@ -12,6 +12,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 `‖q + G u‖₂ ≤ ‖q‖₂ + ‖G u‖₂`, and the Frobenius norm of `G = Q^(1/2)`, which is `sqrt(trace Q)`,
 bounds `‖G u‖₂` for `‖u‖₂ ≤ 1` (Cauchy-Schwarz on each row). An outer bound; it is not tight in
 general.
+
+## Inputs
+* `E` – ellipsoid
+* `x` – point
+
+## Hypotheses
+* `hx` – `x` in `E`
+
+## Conclusion
+* the norm of `x` is at most `normUb`
 -/
 
 -- Authors:       Claude Opus 5.5

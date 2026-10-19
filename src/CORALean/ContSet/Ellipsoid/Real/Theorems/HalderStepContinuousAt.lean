@@ -14,6 +14,16 @@ The sums in [1, Eq. 26] are continuous where their denominators `1 + βλᵢ` do
 and the quotient is of positive numbers, so `g` is continuous at every `β > 0`: the
 fixed-point argument of [1, Thm. 3] passes to the limit through it.
 
+## Inputs
+* `L` – point
+
+## Hypotheses
+* `hlam` – every `λᵢ` positive
+* `hL` – `0 < L`
+
+## Conclusion
+* the step is continuous at `L`
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

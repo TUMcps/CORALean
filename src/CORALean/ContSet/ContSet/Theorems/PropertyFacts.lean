@@ -12,6 +12,17 @@ nonempty, and properties combine pair by pair: the product of a nonempty set and
 unbounded one is degenerate and unbounded, from the cells "NE × D = D" and "NE × NB = NB". The
 third convention, that `∅` is in minimal representation, is about CORA's storage, not the set.
 
+## Inputs
+* `S` – set
+* `S₁` – set
+* `S₂` – set
+
+## Hypotheses
+* none
+
+## Conclusion
+* basic facts on boundedness, interior and emptiness of sets and products
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

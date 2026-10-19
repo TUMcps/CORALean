@@ -11,6 +11,14 @@ CORA normalizes the hyperplane to unit normal `c` and offset `d` (`{x | cᵀ x =
 computes `A = I - c cᵀ`, `b = d c` and `S = A S + b`. Here the normalized normal and offset are
 the arguments, the normalization being the caller's (it needs a square root of a float sum); the
 operation is at the real scalar, as it multiplies entries of the supplied normal.
+
+## Inputs
+* `s` – set
+* `c` – unit normal
+* `d` – hyperplane offset
+
+## Output
+* `s` projected onto the hyperplane `{x | c ⬝ x = d}`
 -/
 
 -- Authors:       Claude Sonnet 5.5

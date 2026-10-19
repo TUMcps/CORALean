@@ -10,14 +10,19 @@ public import Mathlib.Data.EReal.Basic
 # `LevelSet.representsa_emptySet`
 
 CORA's `@levelSet/representsa_` at `emptySet`: `O = ls.funHan(interval.Inf(n))`, the interval
-evaluation of the function at the whole space, and a verdict per row from its bounds. Those
-bounds can be infinite (`x²` is `[0, ∞]` there), and CORALean has no interval evaluation of a
-real function, so `O i = (inf, sup)` is the argument, in `EReal`, assumed to enclose the row's
-range (`Theorems/RepresentsaEmptySetSound`).
-`aux_representsa_emptySet` starts at `res = true` and turns it `false` on the first row that may
-be satisfiable: `==` when `0 ∈ O(i)`, `<=` when `O.inf(i) ≤ 0`, `<` when `O.inf(i) < 0`; so `true`
-needs every row infeasible. The type `levelSet` (`true`), `probZonotope` (`false`) and the throw
-for other types are not modelled.
+evaluation of the function at the whole space, and a verdict per row from its bounds. Those bounds
+can be infinite (`x²` is `[0, ∞]` there), and there is no interval evaluation of a real function
+here, so `O i = (inf, sup)` is the argument, in `EReal`, assumed to enclose the row's range. A row
+may be satisfiable when `==` and `0 ∈ O(i)`, `<=` and `O.inf(i) ≤ 0`, or `<` and `O.inf(i) < 0`;
+`true` needs every row infeasible. The types `levelSet` (`true`), `probZonotope` (`false`) and the
+throw for other types are not modelled.
+
+## Inputs
+* `L` – level set
+* `O` – bounds of the rows over the whole space
+
+## Output
+* every row is infeasible
 -/
 
 -- Authors:       Claude Opus 5.5

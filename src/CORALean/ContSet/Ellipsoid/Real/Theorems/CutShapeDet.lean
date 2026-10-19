@@ -21,6 +21,16 @@ Weinstein-Aronszajn identity), and the `ⁿ` is that of `det(a M) = aⁿ det M` 
 the volume ratio that [1, Lemma 4.4] bounds. The paper does not print this determinant; it is what
 the proof of the lemma needs.
 
+## Inputs
+* `c` – unit cut direction
+* `γ` – cut depth
+
+## Hypotheses
+* `hc` – `c` has unit length
+
+## Conclusion
+* the determinant of the cut shape in closed form
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

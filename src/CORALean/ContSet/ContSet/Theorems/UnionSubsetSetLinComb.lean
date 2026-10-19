@@ -15,6 +15,17 @@ the segments lie in the result, which by itself says nothing about the operands.
 [1, Eq. 37] encloses a union by the convex hull; with the `conv` of [1, Table 3], which is
 `Set.linComb`, that needs both operands nonempty, as here.
 
+## Inputs
+* `X` – set
+* `Y` – set
+
+## Hypotheses
+* `hX` – `X` nonempty
+* `hY` – `Y` nonempty
+
+## Conclusion
+* the union lies in the linear combination of `X` and `Y`
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

@@ -14,6 +14,20 @@ Outer: every point lies in `Ellipsoid.enclosePointsCov pts T U`, for every ortho
 coordinate takes a positive value, since the centered points sum to zero in it). With `u` the
 coordinates of the point divided by `ntᵢ · sqrt maxDist`, `‖u‖₂² = Σᵢ (oᵢ / ntᵢ)² / maxDist ≤ 1`
 by the definition of `maxDist`. Not exact: the ellipsoid is larger than the hull of the points.
+
+## Inputs
+* `pts` – points
+* `T` – rotation
+* `U` – rotation
+* `j` – point index
+
+## Hypotheses
+* `hT` – `T` orthogonal
+* `hU` – `U` orthogonal
+* `hnt` – the scalings are nonzero
+
+## Conclusion
+* every point lies in the enclosing ellipsoid
 -/
 
 -- Authors:       Claude Opus 5.5

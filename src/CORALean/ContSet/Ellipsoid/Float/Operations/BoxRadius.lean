@@ -13,6 +13,13 @@ and taken of the diagonal entry floored at `0`, so that they bound the nominal p
 was stored (`abs_sub_le_boxRadius`; for a positive semi-definite `Q` the real fact is
 `Real.Ellipsoid.abs_sub_le_sqrt_diag`). An operation that cannot certify `Q` positive
 semi-definite falls back to this box.
+
+## Inputs
+* `p` – Newton steps per root
+* `E` – ellipsoid
+
+## Output
+* upper half-widths of the box `q ± √diag(Q)`
 -/
 
 -- Authors:       Claude Opus 5.5

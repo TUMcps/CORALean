@@ -9,6 +9,13 @@ public import Mathlib.Data.Fin.Tuple.Basic
 # `LevelSet.and_`
 
 CORA's `@levelSet/and_` for two level sets (`aux_and_ls`): the constraints of both, stacked.
+
+## Inputs
+* `L₁` – first level set
+* `L₂` – second level set
+
+## Output
+* level set with the constraints of both appended
 -/
 
 -- Authors:       Claude Opus 5.5

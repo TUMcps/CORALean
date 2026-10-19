@@ -11,6 +11,14 @@ public import CORALean.Global.ExactScalar
 `S = I(:, proj) * S`: the selection matrix `I(:, proj)`, whose `k`-th column is the unit vector of
 coordinate `proj k`, applied through the set's own `mtimes`. A point is padded with zeros outside
 `proj`.
+
+## Inputs
+* `s` – set
+* `N` – target dimension
+* `proj` – target coordinate of each dimension
+
+## Output
+* `s` embedded in dimension `N` at the coordinates `proj`
 -/
 
 -- Authors:       Claude Sonnet 5.5

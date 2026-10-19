@@ -15,6 +15,13 @@ dominance, which makes every symmetric residual positive definite, and with it e
 matrix of `X`, `L Lᵀ` being positive semi-definite on sight (`posDef_of_pdCheck`). `psdCheck` is
 the same test at `≤`. Symmetry is the caller's to check, as it is a property of the stored floats
 and not of the interval.
+
+## Inputs
+* `X` – interval matrix
+* `L` – factor
+
+## Output
+* `true` only if `X - L Lᵀ` is strictly diagonally dominant
 -/
 
 -- Authors:       Claude Opus 5.5

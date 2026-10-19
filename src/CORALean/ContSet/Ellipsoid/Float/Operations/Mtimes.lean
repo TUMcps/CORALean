@@ -17,6 +17,13 @@ as an interval matrix (`Interval.matMul` at the stored points) and stored rounde
 center's into the error box, and the old box travels through `M` as a box.
 
 Exact over ℝ, and only `_outer` here. That gap is the rounding and nothing else.
+
+## Inputs
+* `M` – matrix
+* `E` – ellipsoid
+
+## Output
+* ellipsoid enclosing `M E`
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

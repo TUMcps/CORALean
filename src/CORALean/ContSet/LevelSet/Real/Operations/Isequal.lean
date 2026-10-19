@@ -7,15 +7,20 @@ public import CORALean.ContSet.LevelSet.Real.Operations.Compact
 /-!
 # `LevelSet.isequal`
 
-CORA's `@levelSet/isequal` at two level sets (`aux_isequal_levelSet`): both are compacted
-(`compact_(ls,'all',eps)`), then every row of the first must find an unused row of the second
-with the same operator and an equation that `simplify` shows equal after the variables used
-are renamed. The renaming is a symbolic matter, so here the rows are matched under the identity
-renaming, the equation as a function: the second level set is the first with its rows
-permuted. That is stricter than CORA, which also accepts a renaming of the variables (and
-accepts too many, see `Theorems/IsequalCoraCounterexample`), and the tolerance `tol` is not
-modelled. A level set that compacts to `emptySet` is outside CORA's `aux_isequal_levelSet`
-(its `ls.eq` read fails) and is `False` here.
+CORA's `@levelSet/isequal` (`aux_isequal_levelSet`): both level sets are compacted, then every row
+of the first must find an unused row of the second with the same operator and an equation that
+`simplify` shows equal after the variables used are renamed. The renaming is symbolic, so here the
+rows are matched under the identity renaming: the second level set is the first with its rows
+permuted. That is stricter than CORA, which accepts a renaming of the variables (and too many, see
+`Theorems/IsequalCoraCounterexample`); the tolerance `tol` is not modelled. A level set that
+compacts to `emptySet` is outside CORA's `aux_isequal_levelSet` and is `False` here.
+
+## Inputs
+* `L` – level set
+* `S` – level set
+
+## Output
+* the rows of `S` are those of `L` permuted
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,16 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.BilinOuter
 
 `bilin_outer` at `Matrix.mulVecBilin`, once that bilinear map is known to read
 back as `*ᵥ`.
+
+## Inputs
+* `M` – matrix polytope
+* `P` – polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the images under all matrices of `M` lie in the result
 -/
 
 -- Authors:       Claude Opus 5

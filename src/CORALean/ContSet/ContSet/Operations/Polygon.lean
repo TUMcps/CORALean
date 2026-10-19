@@ -16,6 +16,12 @@ step has nothing left to do (`ContSet.construct_polygon`). CORA's `polyshape` bo
 
 Source: [1].
 
+## Inputs
+* `s` – set
+
+## Output
+* polygon of the vertex polytope of `s`
+
 ## References
 
 * [1] `contSet/@contSet/polygon.m`, CORA (Sep. 2025).

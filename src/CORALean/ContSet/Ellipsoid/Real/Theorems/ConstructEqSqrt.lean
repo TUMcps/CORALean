@@ -8,17 +8,23 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsPinvQpinv
 /-!
 # The ellipsoid is the image of the unit ball under the square root
 
-The definition states [1, Def. 4] over the shape matrix,
-`{x | (x - q)ᵀ Q⁺ (x - q) ≤ 1, x - q ∈ range Q}`; this is the same set as
-`{q + G u | ‖u‖₂ ≤ 1}`, `G = Q^(1/2)`, for every positive semi-definite `Q`, degenerate ones
-included. It is the form most proofs go through: convexity, compactness and every exact image are
-statements about an affine image of a ball.
+The definition states [1, Def. 4] over the shape matrix, `{x | (x - q)ᵀ Q⁺ (x - q) ≤ 1, x - q ∈
+range Q}`; this is the same set as `{q + G u | ‖u‖₂ ≤ 1}`, `G = Q^(1/2)`, for every positive
+semi-definite `Q`. It is the form most proofs go through: convexity, compactness and every exact
+image.
 
-Why: `Q⁺` (here `P`) is symmetric, being the pseudo-inverse of a symmetric matrix, and
-`R = G P G` fixes the range of `G` (`R G = G`, as `G (R G - G) = Q P Q - Q = 0` and `R G - G`
-lies in the range of `G`) and is symmetric and idempotent. A point `y = G u` is then
-`Q (P G u)`, in the range of `Q`, and `yᵀ P y = uᵀ R u = ‖R u‖₂² ≤ ‖u‖₂²`. Conversely `y = Q w` is
-`G u` for `u = G P y`, of squared length `yᵀ P Q P y = yᵀ P y`.
+Why: `Q⁺` (here `P`) is symmetric and `R = G P G` fixes the range of `G` and is symmetric and
+idempotent. A point `y = G u` is then `Q (P G u)`, and `yᵀ P y = uᵀ R u = ‖R u‖₂² ≤ ‖u‖₂²`.
+Conversely `y = Q w` is `G u` for `u = G P y`, of squared length `yᵀ P Q P y = yᵀ P y`.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* `E` is the image of the unit ball under `q + Q^(1/2) u`
 
 ## References
 

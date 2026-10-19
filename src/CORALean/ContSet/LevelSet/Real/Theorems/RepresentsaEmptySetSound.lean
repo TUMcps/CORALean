@@ -10,6 +10,18 @@ public import CORALean.ContSet.LevelSet.Real.Operations.RepresentsaEmptySet
 If `O i` bounds row `i` of the function over the whole space (in `EReal`), a positive verdict
 on a level set with at least one row means it is empty. One direction: a negative verdict says
 nothing, so no `↔` and no exactness of the test.
+
+## Inputs
+* `L` – level set
+* `O` – bounds of the rows over the whole space
+
+## Hypotheses
+* `hO` – `O` bounds each row's range
+* `hm` – the level set has a row
+* `h` – `representsa_emptySet` holds
+
+## Conclusion
+* the level set is empty
 -/
 
 -- Authors:       Claude Opus 5.5

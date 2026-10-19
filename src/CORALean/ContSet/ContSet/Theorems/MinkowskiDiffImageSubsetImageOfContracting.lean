@@ -9,20 +9,33 @@ public import CORALean.ContSet.ContSet.ContSet
 /-!
 # A perturbed image, inner-approximated by a fixed point
 
-`Ē '' X` minus a set `B` covering what the perturbation moves, `Ē x - E x`, lies
-inside `E '' X` once `x ↦ x - P (E x)` contracts, where `P` is an injective
-additive left inverse of `Ē` (`Ē⁻¹` for a matrix). A point `y` of the difference
-keeps `y + (Ē x - E x)` in `Ē '' X` for every `x ∈ X`, so `T x = P (y + Ē x - E x)`
-maps `X` into itself; it is `P y + (x - P (E x))`, a contraction, and Banach's
-theorem gives a fixed point, which is `y = E x`.
+`Ē '' X` minus a set `B` covering `Ē x - E x` lies inside `E '' X` once `x ↦ x - P (E x)` contracts,
+`P` an injective additive left inverse of `Ē`. A point `y` of the difference keeps `y + (Ē x - E x)`
+in `Ē '' X` for every `x ∈ X`, so `T x = P (y + Ē x - E x)` maps `X` into itself; it is `P y + (x -
+P (E x))`, a contraction, and Banach's theorem gives a fixed point, which is `y = E x`. `X` need
+only be complete, `E` need not be linear; the contraction is what missing convexity costs: for `X =
+{0, 1}`, `Ē = 1`, `E = 2`, `B = {0, -1}`, `y = 1` is in the difference and not in `E '' X`. Convex
+closed images need no smallness (`minkowskiDiff_image_subset_image_of_convex`).
 
-`X` need only be complete, not convex, and `E` need not be linear. The
-contraction is what the missing convexity costs: for `X = {0, 1}`, `Ē = 1`,
-`E = 2` and `B = {0, -1}`, `y = 1` is in the difference and not in `E '' X`,
-at the contraction constant `1`. Convex closed images need no smallness at all
-(`minkowskiDiff_image_subset_image_of_convex`).
+## Inputs
+* `P` – additive left inverse of `Ē`
+* `Ē` – map on the minuend image
+* `E` – target map
+* `K` – Lipschitz constant
+* `X` – domain set
+* `B` – error set
 
-`B` covers `Ē x - E x`, which for `E = Ē + Δ` is `-Δ x`.
+## Hypotheses
+* `hP` – `P` injective
+* `hĒ` – `P` is a left inverse of `Ē`
+* `hK` – `K < 1`
+* `hLip` – `x ↦ x - P (E x)` is `K`-Lipschitz
+* `hX` – `X` complete
+* `hXne` – `X` nonempty
+* `hB` – `B` covers `Ē x - E x` on `X`
+
+## Conclusion
+* `Ē '' X ⊖ B` lies in `E '' X`
 -/
 
 -- Authors:       Claude Opus 5.5

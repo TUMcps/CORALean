@@ -13,6 +13,15 @@ because the vertex hull is the set (`ExactVertices.vertices_exact`).
 
 Source: [1].
 
+## Inputs
+* `s` – set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polygon denotes the same set as `s`
+
 ## References
 
 * [1] `contSet/@contSet/polygon.m`, CORA (Sep. 2025).

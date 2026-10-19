@@ -22,6 +22,22 @@ enclosing `E(q, Q)` also encloses its mirror image in `c`, hence the intersectio
 the ellipsoid `{(x - c)ᵀ Q⁻¹ (x - c) ≤ 1 - (q - c)ᵀ Q⁻¹ (q - c)}` centered at `c`. Unless `q = c`
 that is a strictly smaller volume. Existence and uniqueness of the minimum are not used.
 
+## Inputs
+* `K` – number of ellipsoids
+* `Qs` – shape matrices
+* `qs` – centers
+* `Q` – shape of the outer ellipsoid
+* `q` – center of the outer ellipsoid
+
+## Hypotheses
+* `hQs` – each `Qs k` positive definite
+* `hQ` – `Q` positive definite
+* `hsub` – the sum lies in the outer ellipsoid
+* `hmin` – the outer ellipsoid has minimum volume
+
+## Conclusion
+* the center `q` is the sum of the centers
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

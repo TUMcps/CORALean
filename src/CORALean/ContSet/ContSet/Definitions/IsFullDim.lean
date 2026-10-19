@@ -11,6 +11,12 @@ public import Mathlib.Topology.Basic
 CORA's `isFullDim`, stated once for every representation: what it denotes has an interior point.
 The topology is the ambient type's, so at `Vec ℝ n` it is the usual one and "full-dimensional"
 means what it says. Each class then characterises it (`Interval.isFullDim_iff`, ...).
+
+## Inputs
+* `s` – set representation
+
+## Output
+* the set `s` denotes has nonempty interior
 -/
 
 -- Authors:       Claude Opus 5.5

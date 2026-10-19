@@ -11,6 +11,16 @@ public import CORALean.ContSet.ContSet.ContSet
 
 `x + s ∈ E` iff `x ∈ E` shifted by `-s`: every `E` and every `s`, degenerate ones included. Exact
 (an equality of sets), for the vector branch of CORA's `minkDiff` only.
+
+## Inputs
+* `E` – ellipsoid
+* `s` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is exactly the Minkowski difference with `{s}`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,17 @@ public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubsetAdd
 inclusion with no hypothesis at all, since neither the printed proof nor ours
 uses it; this is the printed statement, hypothesis included, read off it.
 
+## Inputs
+* `A` – minuend
+* `B` – shift
+* `C` – subtrahend
+
+## Hypotheses
+* `_hCA` – `C ⊆ A`
+
+## Conclusion
+* `(A ⊖ C) + B` lies in `(A + B) ⊖ C`
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

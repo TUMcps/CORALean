@@ -10,6 +10,13 @@ public import CORALean.Global.Cost
 
 Asserted, not proved: `Operations/Mtimes.lean` computes `M Q` (`n` matrix-vector products at
 `m × n`, one per column of `Q`), then `(M Q) Mᵀ` (`m` more, one per column of `Mᵀ`), and `M q`.
+
+## Inputs
+* `m` – rows
+* `n` – columns
+
+## Output
+* cost of `n + m + 1` matrix-vector products
 -/
 
 -- Authors:       Claude Opus 5.5

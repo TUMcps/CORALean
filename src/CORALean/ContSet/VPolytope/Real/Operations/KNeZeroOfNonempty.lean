@@ -9,6 +9,15 @@ public import CORALean.ContSet.VPolytope.Real.VPolytope
 
 The convex combinations of no vertices are empty (the weights must sum to `1`), so a nonempty
 `VPolytope` has `k ≠ 0`.
+
+## Inputs
+* `P` – polytope
+
+## Hypotheses
+* `h` – `P` denotes a nonempty set
+
+## Conclusion
+* `P` has a vertex
 -/
 
 -- Authors:       Claude Opus 5.5

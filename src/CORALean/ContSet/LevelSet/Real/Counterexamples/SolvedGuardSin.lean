@@ -15,6 +15,15 @@ On the line `x₁ = 0` the constraint reads `0 = 0`, so all of it is in `G`, whi
 Either way `(0, 1)` is in `G` and not in the solved form. `SolvedGuardSinOfNeZero` proves the
 equality away from `x₁ = 0`, which is what (5) can mean for this `g`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the solved form drops a line of the guard set
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

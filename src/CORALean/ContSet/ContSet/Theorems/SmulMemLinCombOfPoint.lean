@@ -12,6 +12,16 @@ public import Mathlib.Tactic.Linarith
 {0} {v}` is exactly `{(1 - lam) • v}`, witnessed at `1 - lam`. So a
 representation with `LinComb` and `OfPoint` gets the segment for free, and no
 class has to carry a `segment` field of its own.
+
+## Inputs
+* `v` – vector
+* `lam` – scalar in `[0, 1]`
+
+## Hypotheses
+* `hlam` – `lam ∈ [0, 1]`
+
+## Conclusion
+* `lam • v` lies in the segment from the origin to `v`
 -/
 
 -- Authors:       Claude Opus 5

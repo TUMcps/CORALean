@@ -13,6 +13,20 @@ public import CORALean.ContSet.LevelSet.Real.Definitions.RangeBound
 `w = 0` the invariant is the whole space and the printed test passes vacuously, so [1]'s
 reading needs at least one constraint.
 
+## Inputs
+* `s` – invariant functions
+* `R` – set
+* `l` – lower bounds
+* `u` – upper bounds
+* `i` – row index
+
+## Hypotheses
+* `hb` – `[l, u]` bounds each row on `R`
+* `hl` – `0 < l i`
+
+## Conclusion
+* `R` misses the invariant
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

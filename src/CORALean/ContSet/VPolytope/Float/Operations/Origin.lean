@@ -10,6 +10,12 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 CORA's `polytope.origin(n)` in its vertex form: the single vertex `0`, stored as `zero`, and
 the error box at the point `0`.
+
+## Inputs
+* `n` – dimension
+
+## Output
+* polytope with the origin as its only vertex
 -/
 
 -- Authors:       Claude Opus 5.5

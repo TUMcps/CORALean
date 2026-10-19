@@ -8,21 +8,27 @@ public import CORALean.Global.Radstrom
 /-!
 # An outer approximation minus its own error bound is an inner approximation
 
-Inner statements in the library so far all come from a Minkowski difference
-computed directly — `MinkDiff`'s own obligation, and `backReachForall_inner`
-propagating it along a run. This is the other source, and the one an algorithm
-that only encloses can use: given an error bound — a set `E` with `Ŷ ⊆ Y + E` —
-the difference `minkowskiDiff Ŷ E` is an *inner* approximation of `Y`.
+Inner statements so far come from a Minkowski difference computed directly. This is the other
+source, usable by an algorithm that only encloses: given an error bound `E` with `Ŷ ⊆ Y + E`, the
+difference `minkowskiDiff Ŷ E` is an *inner* approximation of `Y`. The proof is `minkowskiDiff Ŷ E +
+E ⊆ Ŷ ⊆ Y + E`, then `E` cancels by Rådström's law. `E` is asked only to be nonempty and bounded,
+which the cancellation uses; `Y` must be convex and closed, and that is not a technicality: it is
+the exact set the algorithm is about, so the hypothesis says which systems this answers for.
 
-The proof is one line on top of two facts: `minkowskiDiff Ŷ E + E ⊆ Ŷ ⊆ Y + E`,
-and then `E` cancels by Rådström's law.
+## Inputs
+* `Y` – set
+* `Ŷ` – outer approximation of `Y`
+* `E` – error set
 
-`E` is asked only to be nonempty and bounded, which is what the cancellation
-uses; a caller holding a convex compact error set — a box, a zonotope — has
-both. `Y` must be convex and closed, and that is not a technicality: it is the
-exact set the algorithm is about, so the hypothesis says which systems this
-answers for.
+## Hypotheses
+* `hE` – `E` nonempty
+* `hEb` – `E` bounded
+* `hYconv` – `Y` convex
+* `hYcl` – `Y` closed
+* `hOuter` – `Ŷ ⊆ Y + E`
 
+## Conclusion
+* `Ŷ ⊖ E` lies in `Y`
 -/
 
 -- Authors:       Claude Opus 5

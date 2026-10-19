@@ -13,6 +13,15 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.SymmOfIsSymm
 `isPsd Q` checks the floats symmetric (each pair `le` both ways, so equal as reals) and the
 residual of the proposed factor diagonally dominant on the point interval of `Q`, where `Q` read
 as reals is the one symmetric matrix (`posSemidef_of_psdCheck`).
+
+## Inputs
+* `Q` – shape matrix
+
+## Hypotheses
+* `h` – `isPsd` returns `true`
+
+## Conclusion
+* `Q` is positive semi-definite
 -/
 
 -- Authors:       Claude Opus 5.5

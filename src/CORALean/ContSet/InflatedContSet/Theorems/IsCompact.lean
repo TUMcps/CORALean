@@ -14,6 +14,15 @@ A nominal set plus an error box, and `IsCompact.add` carries the property
 across a Minkowski sum: the nominal part is compact by hypothesis and the box by
 Heine–Borel. Compactness, not closedness, is what has to be carried: a sum of
 two merely closed sets need not be closed.
+
+## Inputs
+* `s` – inflated set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set `s` denotes is compact
 -/
 
 -- Authors:       Claude Opus 5.5

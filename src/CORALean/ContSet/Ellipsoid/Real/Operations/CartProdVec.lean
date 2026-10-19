@@ -10,6 +10,13 @@ public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 CORA's `@ellipsoid/cartProd_.m` with a point operand, which is exact: `blkdiag(E.Q, zeros(m))` and
 `[E.q; S]`. The block-diagonal matrix is written `P Q Pᵀ` for the embedding `P = [I; 0]` of the
 first `n` coordinates, which is the same matrix and positive semi-definite on sight.
+
+## Inputs
+* `E` – ellipsoid
+* `v` – point
+
+## Output
+* ellipsoid with shape `blkdiag(Q, 0)` and center extended by `v`
 -/
 
 -- Authors:       Claude Opus 5.5

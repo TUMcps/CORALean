@@ -11,6 +11,12 @@ CORA's `@ellipsoid/vertices_.m`, which supports the one-dimensional case only (i
 `dim(E) > 1`): the two points attaining the support function in the directions `-1` and `1`, or
 the single one when they agree (`withinTol` at the default tolerance, here exact equality). In one
 dimension the points are `q ∓ ‖G₀‖₂`, the support values of `Ellipsoid.supportBound`.
+
+## Inputs
+* `E` – one-dimensional ellipsoid
+
+## Output
+* lower and upper end, once if they agree
 -/
 
 -- Authors:       Claude Opus 5.5

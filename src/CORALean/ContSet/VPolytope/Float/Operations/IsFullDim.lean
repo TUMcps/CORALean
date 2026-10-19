@@ -10,6 +10,12 @@ public import CORALean.ContSet.Zonotope.Float.Operations.RightInvCandidate
 
 `VPolytope.isFullDimWith` at the default candidate right inverse of the bordered vertex matrix
 (`Zonotope.rightInvCandidate`). Only `true` is certain.
+
+## Inputs
+* `P` – polytope
+
+## Output
+* `true` only if `P` is certified full-dimensional
 -/
 
 -- Authors:       Claude Opus 5.5

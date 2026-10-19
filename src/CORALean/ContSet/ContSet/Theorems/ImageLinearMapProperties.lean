@@ -14,6 +14,16 @@ public import Mathlib.Topology.Algebra.Module.FiniteDimension
 emptiness and boundedness and makes every image degenerate, its range being a proper subspace;
 what it does to an unbounded set is left open, rightly — a projection can make it bounded.
 
+## Inputs
+* `M` – linear map
+* `S` – set
+
+## Hypotheses
+* none
+
+## Conclusion
+* emptiness, interior and boundedness of `M '' S` follow from those of `S`
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

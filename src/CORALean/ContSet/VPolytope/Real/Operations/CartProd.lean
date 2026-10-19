@@ -12,6 +12,13 @@ public import Mathlib.Logic.Equiv.Fin.Basic
 every point of the second, `m₁ m₂` points. CORA converts both factors to halfspaces instead
 (`@polytope/cartProd_`); this is the vertex form the paper also gives.
 
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+
+## Output
+* polytope of the concatenated vertex pairs
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

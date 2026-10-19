@@ -14,6 +14,17 @@ public import Mathlib.Analysis.Matrix.Order
 `Q = A⁻¹` and `q = −Q b`. Expanding the left side, the cross terms agree because `Q⁻¹` is
 symmetric.
 
+## Inputs
+* `Q` – shape matrix
+* `q` – center
+* `x` – point
+
+## Hypotheses
+* `hQ` – `Q` positive definite
+
+## Conclusion
+* the shape form and the quadratic form denote the same ellipsoid
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

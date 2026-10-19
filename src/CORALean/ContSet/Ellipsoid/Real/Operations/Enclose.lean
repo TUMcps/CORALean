@@ -14,6 +14,15 @@ hull is an argument `orOA` owing `Ellipsoid.IsOrOuter`.
 
 Read as printed: the header documents `E2 = M*E + Eplus`, but the code multiplies `Eplus` and
 adds nothing (see `Ellipsoid.enclose_cora_counterexample`).
+
+## Inputs
+* `orOA` – outer hull of two ellipsoids
+* `E` – ellipsoid
+* `M` – matrix
+* `Eplus` – ellipsoid
+
+## Output
+* hull of `E` and `M Eplus` under `orOA`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -7,18 +7,26 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.OfShape
 /-!
 # `Ellipsoid.intersectStripLiu`
 
-CORA's `@ellipsoid/intersectStrip` (method `'Liu2016'`, `aux_methodLiu2016`) for the state set
-`{x | (x - c)ᵀ Q⁻¹ (x - c) ≤ σ²_prev}` and the measurement set `{x | (y - C x)ᵀ V⁻¹ (y - C x) ≤ 1}`
-(`C` is `m × n`, `V = sys.V`), at the weight `λ` (CORA's `λ` from Thm. 3 and the eigenvalue of
-`barV C Q Cᵀ barVᵀ`, and the trigger `σ²_prev + δᵀδ > 1`, are the caller's), corrected so that
-it encloses the intersection (`intersectStripLiu_outer`). Every point of the intersection has
-`(1 - λ)(x - c)ᵀ Q⁻¹ (x - c) + λ (y - C x)ᵀ V⁻¹ (y - C x) ≤ (1 - λ) σ²_prev + λ`, which completes
-to `(x - c*)ᵀ ((1 - λ) Q⁻¹ + λ Cᵀ V⁻¹ C) (x - c*) ≤ σ²`. As the code computes them: `δ = y - C c`,
-`Q_tmp = V/λ + C Q Cᵀ/(1 - λ)` (Eq. 27), `K = Q Cᵀ Q_tmp⁻¹/(1 - λ)` (Eq. 26),
-`σ² = (1 - λ) σ²_prev + λ - δᵀ Q_tmp⁻¹ δ` (Eq. 25) and the center `c* = c + K δ` (Eq. 23). The
-correction: `((1 - λ) Q⁻¹ + λ Cᵀ V⁻¹ C)⁻¹ = (I - K C) Q/(1 - λ)`, where the code's shape (Eq. 24)
-is `(1 - λ)(I - K C) Q`; the result is the level-`σ²` set of it, the shape `σ² (I - K C) Q/(1 - λ)`.
-`intersectStripLiu1D` is the update as the code computes it, with its counterexample.
+CORA's `@ellipsoid/intersectStrip` (method `'Liu2016'`) for the state set `{x | (x - c)ᵀ Q⁻¹ (x - c)
+≤ σ²_prev}` and the measurement set `{x | (y - C x)ᵀ V⁻¹ (y - C x) ≤ 1}`, at the weight `λ` (CORA's
+`λ` from Thm. 3 and the trigger `σ²_prev + δᵀδ > 1` are the caller's), corrected so that it encloses
+the intersection (`intersectStripLiu_outer`). As the code computes them: `δ = y - C c`, `Q_tmp = V/λ
++ C Q Cᵀ/(1 - λ)`, `K = Q Cᵀ Q_tmp⁻¹/(1 - λ)`, `σ² = (1 - λ) σ²_prev + λ - δᵀ Q_tmp⁻¹ δ` and the
+center `c* = c + K δ`. The correction: the shape is `σ² (I - K C) Q/(1 - λ)`, the level-`σ²` set of
+`((1 - λ) Q⁻¹ + λ Cᵀ V⁻¹ C)⁻¹`, where the code has `(1 - λ)(I - K C) Q`. `intersectStripLiu1D` is
+the update as coded, with its counterexample.
+
+## Inputs
+* `Q` – shape matrix
+* `c` – center
+* `C` – measurement matrix
+* `V` – measurement covariance
+* `y` – measurement
+* `σsqPrev` – previous level
+* `lam` – update weight
+
+## Output
+* ellipsoid enclosing the intersection with the measurement set
 -/
 
 -- Authors:       Claude Opus 5.5

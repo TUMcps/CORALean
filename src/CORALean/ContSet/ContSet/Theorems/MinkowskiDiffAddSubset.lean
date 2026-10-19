@@ -10,6 +10,16 @@ public import CORALean.ContSet.ContSet.Theorems.SubsetMinkowskiDiffIff
 The defining property, read off the Galois connection at `X := minkowskiDiff S T`
 — an *inner* statement, and the one an algorithm uses: whatever a `MinkDiff`
 implementation returns still absorbs all of `T` without leaving `S`.
+
+## Inputs
+* `S` – minuend
+* `T` – subtrahend
+
+## Hypotheses
+* none
+
+## Conclusion
+* `S ⊖ T` plus `T` lies in `S`
 -/
 
 -- Authors:       Claude Opus 5

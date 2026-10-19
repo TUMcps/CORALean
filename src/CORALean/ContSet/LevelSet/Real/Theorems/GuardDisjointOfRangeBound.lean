@@ -11,6 +11,19 @@ public import CORALean.ContSet.LevelSet.Real.Definitions.RangeBound
 "potentially intersects the guard set if `l ≤ 0 ∧ u ≥ 0`" — read as the test it is used for:
 if that fails, `R(τ_j) ∩ G = ∅`. Nothing about `g` is needed.
 
+## Inputs
+* `g` – guard function
+* `R` – set
+* `l` – lower bound
+* `u` – upper bound
+
+## Hypotheses
+* `hb` – `[l, u]` bounds `g` on `R`
+* `h` – `0` is outside `[l, u]`
+
+## Conclusion
+* `R` misses the guard `g = 0`
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

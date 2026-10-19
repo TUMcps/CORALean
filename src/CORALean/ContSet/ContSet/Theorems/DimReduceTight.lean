@@ -16,6 +16,22 @@ that is: for every `ℓ ∈ D`, `[m_ℓ, M_ℓ]` is the exact range of `x·ℓ` 
 the intersection is nonempty, and the polyhedron attains both ends, `M_ℓ` and `m_ℓ` being its
 greatest and least `x·ℓ`. It follows from [1, Prop. 1] and the specification of the routine.
 
+## Inputs
+* `bound` – bound-intersect oracle
+* `Z` – set
+* `nv` – normal of the hyperplane
+* `γ` – offset of the hyperplane
+* `D` – directions
+* `ℓ` – direction in `D`
+
+## Hypotheses
+* `hb` – `bound` meets its specification
+* `hne` – intersection nonempty
+* `hℓ` – `ℓ ∈ D`
+
+## Conclusion
+* the polyhedron attains the exact bounds of `Z` along `ℓ`
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

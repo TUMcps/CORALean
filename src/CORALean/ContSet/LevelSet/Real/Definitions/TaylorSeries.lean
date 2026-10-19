@@ -8,17 +8,20 @@ public import Mathlib.Analysis.Calculus.ContDiff.Defs
 /-!
 # The Taylor series operator
 
-[1, Def. 7]: `a, b, c, v(·), l, u ← taylor(f(·), I, κ)` expands `f` around `c = center(I)`:
-`b = f(c)`, `aᵀ(x - c)` the first-order term, `v(x)` the terms of order `2 … κ`, each
-`((x - c)ᵀ∇)ⁱ f(c) / i!` — here `Dⁱf(c)(x - c, …, x - c) / i!` — and `[l, u]` any interval
-containing [1]'s Lagrange remainder set
-`L = {((x - c)ᵀ∇)^{κ+1} f(ξ) / (κ+1)! | ξ ∈ I, x ∈ I}`.
+[1, Def. 7]: `a, b, c, v(·), l, u ← taylor(f(·), I, κ)` expands `f` around `c = center(I)`: `b =
+f(c)`, `aᵀ(x - c)` the first-order term, `v(x)` the terms of order `2 … κ`, each `Dⁱf(c)(x - c, …, x
+- c) / i!`, and `[l, u]` any interval containing [1]'s Lagrange remainder set `L = {((x -
+c)ᵀ∇)^{κ+1} f(ξ) / (κ+1)! | ξ ∈ I, x ∈ I}`. `b`, `a` and `v` are determined by `f`, `I` and `κ`, so
+they are definitions; `[l, u]` is whatever an interval evaluation of `L` returns, so `TaylorSeries`
+carries it with the proof that it encloses `L`. The enclosure [1] states is
+`Theorems.TaylorSeriesMem`, which needs more of `f` than [1]'s Lipschitz continuity.
 
-`b` is `f(c)` itself, and `a` and `v` are determined by `f`, `I` and `κ`, so they are
-definitions; `[l, u]` is whatever enclosure an interval evaluation of `L` returns, so
-`TaylorSeries` carries it with the proof that it encloses `L`. The enclosure [1] then states,
-`∀ x ∈ I : f(x) ∈ b + aᵀ(x - c) + v(x) ⊕ [l, u]`, is `Theorems.TaylorSeriesMem`, which needs
-more of `f` than [1]'s Lipschitz continuity.
+## Inputs
+* `f` – function
+* `c` – expansion point
+
+## Output
+* the gradient of `f` at `c`, coordinate by coordinate
 
 ## References
 

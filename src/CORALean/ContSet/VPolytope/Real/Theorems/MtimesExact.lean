@@ -15,6 +15,18 @@ vertices.
 
 This is [1, Eq. 23]: the image of a V-polytope is the V-polytope of the images of its points.
 
+## Inputs
+* `n` – columns of the matrix
+* `m` – rows of the matrix
+* `M` – matrix
+* `P` – polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image of `P` under `M` is exactly the result
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

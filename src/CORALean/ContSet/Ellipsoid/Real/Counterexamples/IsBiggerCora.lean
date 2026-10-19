@@ -18,6 +18,15 @@ looking at the ellipsoids (`if dim(E1)==1 res = true`), otherwise the test of `i
 The intervals `[-2, 2]` (`Q = 4`) and `[-1, 1]` (`Q = 1`) in `ℝ¹`: the first does not lie in
 the second, so `isBigger([-1, 1], [-2, 2])` is `false`, yet CORA's `dim(E1)==1` shortcut
 returns `true`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's `isBigger` holds though the inclusion fails
 -/
 
 -- Authors:       Claude Opus 5.5

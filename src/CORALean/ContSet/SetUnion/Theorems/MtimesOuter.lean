@@ -12,6 +12,18 @@ Sound unconditionally, and without help from the member's own guarantee being
 tight: a point of the image comes from some branch, `Mtimes.mtimes_outer`
 reads it back into that branch's own image, mapped, and the union of images is
 still contained in the union of the mapped branches.
+
+## Inputs
+* `m` – rows of the matrix
+* `n` – columns of the matrix
+* `M` – matrix
+* `u` – union
+
+## Hypotheses
+* none
+
+## Conclusion
+* the linear image of `u` lies in the result
 -/
 
 -- Authors:       Claude Sonnet 5

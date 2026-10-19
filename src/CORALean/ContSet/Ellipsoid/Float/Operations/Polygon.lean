@@ -17,6 +17,13 @@ CORA's `q + Q l / √(lᵀ Q l)`, rounded up, and a vertex is kept only if `Elli
 certifies it with its own `w`. That test needs the rounding remainder inside the error box and
 `wᵀ Q w ≤ 1` upward, so the `w` are best shrunk slightly. The polygon is the hull of the kept
 vertices, with no error box.
+
+## Inputs
+* `E` – planar ellipsoid
+* `W` – solves proposed for the vertices
+
+## Output
+* polygon spanned by the certified vertices `q + Q w`
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

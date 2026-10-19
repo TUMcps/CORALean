@@ -10,6 +10,16 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
 [1, Sec. 4.2 (unbounded)]: H-polyhedron in V-polytope containment can be disproved at once when the
 polyhedron is unbounded, a V-polytope being bounded.
 
+## Inputs
+* `S` – set
+* `P` – polytope
+
+## Hypotheses
+* `hS` – `S` unbounded
+
+## Conclusion
+* `S` is not contained in `P`
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

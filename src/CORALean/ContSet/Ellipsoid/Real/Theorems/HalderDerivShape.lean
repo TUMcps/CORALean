@@ -16,6 +16,20 @@ public import Mathlib.Analysis.Calculus.Deriv.Add
 `∂Q/∂β = −(1/β²) Q₁ (I − β² R)`: the derivative of `Q₁/β + β Q₂` is `−Q₁/β² + Q₂`, and
 `Q₁ R = Q₂`. Stated entrywise, since a matrix is a function of its entries.
 
+## Inputs
+* `Q₁` – first shape matrix
+* `Q₂` – second shape matrix
+* `β` – weight of the shape sum
+* `i` – row
+* `j` – column
+
+## Hypotheses
+* `h₁` – `Q₁` positive definite
+* `hβ` – `0 < β`
+
+## Conclusion
+* entry `(i, j)` of `Q(β)` has the derivative of `−(1/β²) Q₁ (I − β² R)`
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

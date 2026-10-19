@@ -10,6 +10,13 @@ public import CORALean.ContSet.SetIntersection.SetIntersection
 Maps `Reduce.reduce` over every branch, at the same order: an intersection is
 only ever enlarged by enlarging what it is an intersection of, so reducing
 each branch and re-collecting keeps the shape an intersection already has.
+
+## Inputs
+* `I` – intersection
+* `o` – order bound
+
+## Output
+* every member reduced to order at most `o`
 -/
 
 -- Authors:       Claude Sonnet 5

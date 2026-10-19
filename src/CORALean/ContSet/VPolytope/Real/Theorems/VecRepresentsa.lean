@@ -11,6 +11,15 @@ CORA's `matPolytope/representsa` hands `polytope(matP)` to the vector class, so 
 answers about the set is the answer. The vectorisation is a linear equivalence, which preserves the
 set (`vec_exact`), so the set is empty, or a single matrix, exactly when the stacked set is empty or
 the stacked matrix. The other types of CORA's `representsa` are not modelled for V-polytopes.
+
+## Inputs
+* `P` – matrix polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* emptiness and single-matrix status agree with the vectorisation
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -20,6 +20,15 @@ gives `E(E, 0)`, so `Eⱼ₊₁ = Φ⁻¹ E(E, 0)` and `Eⱼ = Φ⁻¹ B`, and
 `M = Φ⁻¹`: the ratio is the same as in the unit frame (`vol(M E) vol(B) = vol(E) vol(M B)`), and
 at most `κ_ε` (`volume_mtimes`). The cut needs `n ≥ 2`.
 
+## Inputs
+* `ε` – approximation tolerance
+
+## Hypotheses
+* `hε` – `0 < ε`
+
+## Conclusion
+* the volume ratio is invariant under `M` and at most `κ` for some `κ < 1`
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

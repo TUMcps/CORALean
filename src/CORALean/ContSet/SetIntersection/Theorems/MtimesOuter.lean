@@ -12,6 +12,18 @@ public import CORALean.ContSet.SetIntersection.Theorems.Basic
 its image under any `A` from `construct M` lies in every branch's own image,
 `Mtimes.mtimes_outer` reading that into the mapped branch. At `sets = []` both
 sides are `univ`, and the image of `univ` sits in `univ` for free.
+
+## Inputs
+* `m` – rows of the matrix
+* `n` – columns of the matrix
+* `M` – matrix
+* `I` – intersection
+
+## Hypotheses
+* none
+
+## Conclusion
+* the linear image of `I` lies in the result
 -/
 
 -- Authors:       Claude Sonnet 5

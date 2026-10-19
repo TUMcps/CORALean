@@ -12,6 +12,14 @@ Asserted, not proved: `Operations/Mtimes.lean` sends each of the `k` vertices
 through `M *ᵥ ·`, one matrix-vector product per vertex, each writing its result inside
 `Cost.matVec`, and nothing
 else.
+
+## Inputs
+* `m` – rows of the matrix
+* `n` – columns of the matrix
+* `k` – vertices
+
+## Output
+* cost of one matrix-vector product per vertex
 -/
 
 -- Authors:       Claude Opus 5.5

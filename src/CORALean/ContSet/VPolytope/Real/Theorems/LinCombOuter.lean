@@ -13,6 +13,16 @@ public import Mathlib.Tactic.Linarith
 Each argument's vertices are vertices of the result, so each argument is
 contained in it; a segment between two points of a convex set stays inside, and
 the result is convex.
+
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* every segment between the operands lies in the result
 -/
 
 -- Authors:       Claude Opus 5

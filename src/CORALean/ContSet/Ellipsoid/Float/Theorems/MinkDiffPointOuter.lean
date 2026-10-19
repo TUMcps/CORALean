@@ -15,6 +15,16 @@ A point `y + e` of the ellipsoid moved by `-s` is `(q' + (y - q)) + (e + r)`, wi
 center and `r` its rounding; `y - q` about `q'` is a point of the result's nominal part, the shape
 matrix being the same (`add_sub_mem_nominalSet`), and `r` which `centerResidual` holds. Outer: the
 error box grows by the rounding, so the result can be larger than the translate.
+
+## Inputs
+* `E` – ellipsoid
+* `s` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `E` shifted by `-s` lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

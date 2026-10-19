@@ -10,6 +10,12 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 The point `0` as an ellipsoid, CORA's `ellipsoid.origin(n)`: the zero shape matrix, the center
 stored as `zero` and the error box at zero.
+
+## Inputs
+* `n` – dimension
+
+## Output
+* degenerate ellipsoid at the origin
 -/
 
 -- Authors:       Claude Opus 5.5

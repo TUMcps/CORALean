@@ -9,6 +9,15 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.NominalQEq
 
 `Q - nominal Q` is `0` where `Q` is positive semi-definite, and the nominal shape is `0` where it
 is not: the condition of `add_sub_mem_nominalSet` for an operation that keeps `Q`.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* the nominal shape is zero or dominated by the stored one
 -/
 
 -- Authors:       Claude Opus 5.5

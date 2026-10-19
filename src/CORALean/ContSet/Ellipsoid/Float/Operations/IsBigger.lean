@@ -15,6 +15,13 @@ by a simultaneous diagonalisation, which rounding cannot decide. What it decides
 order `Q₂ ⪯ Q₁`, and that is what this certifies: both stored matrices symmetric, `Q₁ - Q₂`
 bracketed entry by entry and checked positive semi-definite against the factor `cholFactor`
 proposes (`psdCheck`), and `E₂`'s error box inside `E₁`'s. Only `true` is certain.
+
+## Inputs
+* `E₁` – larger ellipsoid
+* `E₂` – smaller ellipsoid
+
+## Output
+* `true` only if `E₂` fits into `E₁` up to the centers
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -9,6 +9,16 @@ public import CORALean.ContSet.LevelSet.Real.Theorems.RestrictConstruct
 # Splitting a level set is exact
 
 The level set is the intersection of the equality part and the rest, an equality of sets.
+
+## Inputs
+* `n` – dimension
+* `L` – level set
+
+## Hypotheses
+* none
+
+## Conclusion
+* `L` is the intersection of its two parts
 -/
 
 -- Authors:       Claude Opus 5.5

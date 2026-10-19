@@ -11,6 +11,12 @@ public import CORALean.ContSet.VPolytope.Float.VPolytope
 Every field is a function type, so the polytope an operation returns is a closure
 over the one it was given. `materialise` stores them and `materialise_eq` says it
 is the identity; `Global/Tensor` says why the vectors are built here.
+
+## Inputs
+* `P` – polytope
+
+## Output
+* polytope with its fields stored
 -/
 
 -- Authors:       Claude Opus 5

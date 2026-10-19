@@ -7,19 +7,25 @@ public import CORALean.ContSet.ContSet.ContSet
 /-!
 # Minkowski difference distributes over the hull of two sets
 
-[1, Lemma 1]: for compact, convex, nonempty `S1, S2, S3 ⊂ ℝⁿ`,
-`conv(S1 ⊖ S3, S2 ⊖ S3) ⊆ conv(S1, S2) ⊖ S3`. Stated on `Set.linComb`, which is
-CORA's convex hull exactly when both operands are convex — the paper's own
-hypothesis on `S1` and `S2` — so this is a literal reading of the claim rather
-than a restatement of it.
+[1, Lemma 1]: for compact, convex, nonempty `S1, S2, S3 ⊂ ℝⁿ`, `conv(S1 ⊖ S3, S2 ⊖ S3) ⊆ conv(S1,
+S2) ⊖ S3`. Stated on `Set.linComb`, which is CORA's convex hull exactly when both operands are
+convex, so this is a literal reading of the claim.
 
-The inclusion needs none of the paper's three hypotheses: a point of the left
-side is `λ•(y1+z) + (1-λ)•(y2+z)` for any `z ∈ S3`, whatever `y1, y2, λ` witness
-it, and that is already a point of the right side. Compactness, convexity and
-nonemptiness of `S1, S2, S3` are what the paper needs to identify `conv` with
-pairwise segments in the first place — not asked for here, following the
-convention already set by `minkowskiDiff_add_subset_add`, which drops a
-hypothesis its own proof does not use.
+The inclusion needs none of the three hypotheses: a point of the left side is `λ•(y1+z) +
+(1-λ)•(y2+z)` for any `z ∈ S3`, and that is already a point of the right side. They are what the
+paper needs to identify `conv` with pairwise segments, and are dropped as in
+`minkowskiDiff_add_subset_add`.
+
+## Inputs
+* `S1` – first minuend
+* `S2` – second minuend
+* `S3` – subtrahend
+
+## Hypotheses
+* none
+
+## Conclusion
+* the linear combination of the differences lies in the difference of the linear combination
 
 ## References
 

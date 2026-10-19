@@ -11,6 +11,19 @@ public import Mathlib.Analysis.Convex.Hull
 If `f ≤ m` on `S` and `f s = m` for some `s ∈ S`, then `m` is the greatest value of `f` on
 `convexHull S`: the half-space `{f ≤ m}` is convex and so contains the hull. This is how the
 support function of a polytope given by vertices is read off a vertex.
+
+## Inputs
+* `V` – vector space
+* `S` – set
+* `f` – linear functional
+* `m` – bound on `f`
+
+## Hypotheses
+* `hmem` – some point of `S` attains `m`
+* `hle` – `f` is at most `m` on `S`
+
+## Conclusion
+* `m` is the greatest value of `f` on the convex hull of `S`
 -/
 
 -- Authors:       Claude Opus 5.5

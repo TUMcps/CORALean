@@ -12,6 +12,13 @@ CORA's `convHull_` of two V-polytopes: the vertex lists side by side, as over �
 families appended. Nothing is rounded in the vertices;
 the error box is the hull of the two boxes (`Interval.or`), which is what a convex combination of
 a point of one operand with a point of the other needs.
+
+## Inputs
+* `P` – first polytope
+* `Q` – second polytope
+
+## Output
+* polytope of both vertex lists with the hull of the error boxes
 -/
 
 -- Authors:       Claude Sonnet 5.5

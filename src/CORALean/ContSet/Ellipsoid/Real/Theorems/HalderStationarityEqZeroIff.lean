@@ -12,6 +12,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStationarity
 `∑ᵢ λᵢ/(1 + βλᵢ) = d/(β(β+1))`, which is [1, Eq. 20], the condition Appendix A.1 of the paper's
 reference 24 reduces to. Termwise, `(1 − β²λ)/(1 + βλ) = 1 − β(β+1) λ/(1 + βλ)`.
 
+## Inputs
+* `β` – weight of the shape sum
+
+## Hypotheses
+* `hlam` – every `λᵢ` positive
+* `hβ` – `0 < β`
+
+## Conclusion
+* the stationarity equation holds iff the second form does
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

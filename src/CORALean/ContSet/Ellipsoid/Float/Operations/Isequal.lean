@@ -10,6 +10,13 @@ public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
 The test at tolerance `0`, as over ℝ: the shape matrix, the center and the two ends of the error
 box equal entry by entry, each by the certified `le` in both directions. Certified in one
 direction only: `true` is a proof, `false` refutes nothing.
+
+## Inputs
+* `E` – ellipsoid
+* `S` – ellipsoid
+
+## Output
+* `true` only if shape, center and error box agree entrywise
 -/
 
 -- Authors:       Claude Opus 5.5

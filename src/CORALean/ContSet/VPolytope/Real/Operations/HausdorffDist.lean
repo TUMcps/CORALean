@@ -9,16 +9,21 @@ public import CORALean.Global.EuclideanHausdorffDist
 /-!
 # `VPolytope.hausdorffDist`
 
-CORA's `polytope/hausdorffDist` between two bounded nonempty polytopes: the largest
-distance from a vertex of either polytope to the other one, the distance of a vertex `x` to a
-polytope `S` being `aux_distPolyPoint`, `sqrt(val + x'x)` with `val` the optimal value of the
-quadratic program `min y'y - 2x'y` over `y ∈ S`. The loop over the vertices of the first
-polytope and then of the second starts at `val = 0`.
+CORA's `polytope/hausdorffDist` between two bounded nonempty polytopes: the largest distance from a
+vertex of either polytope to the other one, the distance of a vertex `x` to `S` being
+`aux_distPolyPoint`, `sqrt(val + x'x)` with `val` the optimum of the quadratic program `min y'y -
+2x'y` over `y ∈ S`.
 
-The vertices are `P.V`: for a polytope given by constraints CORA takes `vertices(P)`, the
-extreme points, whose hull is the polytope; here, as for `VPolytope.center`, the stored
-vertices are CORA's when they are the extreme points. The empty and unbounded cases (`Inf`,
-or `0` for two empty sets) are not here: a `VPolytope` is bounded, and `k = 0` denotes `∅`.
+The vertices are `P.V`: CORA takes `vertices(P)`, the extreme points, and the stored vertices are
+CORA's when they are the extreme points. The empty and unbounded cases (`Inf`, or `0` for two empty
+sets) are not here: a `VPolytope` is bounded, and `k = 0` denotes `∅`.
+
+## Inputs
+* `P` – first polytope
+* `S` – second polytope
+
+## Output
+* largest distance from a vertex of either polytope to the other
 -/
 
 -- Authors:       Claude Opus 5.5

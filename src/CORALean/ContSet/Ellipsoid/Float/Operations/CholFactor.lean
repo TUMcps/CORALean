@@ -13,6 +13,13 @@ below it. Nothing about `L` is proved and nothing needs to be: it is a proposal,
 checks `Q - L Lᵀ` in outward rounding. The margin is what makes that check pass: `Q - L Lᵀ` is
 then about `τ`, a diagonal matrix the rounding errors cannot outweigh, where without it the
 residual would be rounding alone. A pivot not proved positive gives a zero column.
+
+## Inputs
+* `p` – Newton steps per root
+* `Q` – shape matrix
+
+## Output
+* approximate Cholesky factor of `Q` less a margin
 -/
 
 -- Authors:       Claude Opus 5.5

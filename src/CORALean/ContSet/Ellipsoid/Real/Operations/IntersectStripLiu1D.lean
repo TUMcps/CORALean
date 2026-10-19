@@ -7,19 +7,26 @@ public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 /-!
 # `Ellipsoid.intersectStripLiu1D`
 
-The update of CORA's `@ellipsoid/intersectStrip` (method `'Liu2016'`, `aux_methodLiu2016`) for
-`n = 1` and one measurement, as the code computes it. The measurement set is
-`{x | (y - C x)ᵀ V⁻¹ (y - C x) ≤ 1}`; the struct `sys` is the pair `V = sys.V` and
-`barV = sys.bar_V` (`linearSysDT/priv_observe_ESO_B` passes `chol(inv(V))`). With `δ = y - C c`:
-`G = barV C Q C barV`, `g = eigs(G,1) = G`, `β = (1 - σ²_prev)/δ²`, `ω = 1 + β (g - 1)`,
-`λ = (1 - β)/2` if `withinTol(g,1)` (here exact equality) else `(1 - √(g/ω))/(1 - g)` (Thm. 3),
-`Q_tmp = V/λ + C Q C/(1 - λ)` (Eq. 27), `K = Q C Q_tmp⁻¹/(1 - λ)` (Eq. 26),
-`σ² = (1 - λ) σ²_prev + λ - δ Q_tmp⁻¹ δ` (Eq. 25), the shape `(1 - λ)(1 - K C) Q` (Eq. 24) and
-the center `c + K δ` (Eq. 23).
+The update of CORA's `@ellipsoid/intersectStrip` (method `'Liu2016'`) for `n = 1` and one
+measurement, as the code computes it, with the measurement set `{x | (y - C x)ᵀ V⁻¹ (y - C x) ≤ 1}`,
+`V = sys.V`, `barV = sys.bar_V`. With `δ = y - C c`: `G = barV C Q C barV`, `g = G`, `β = (1 -
+σ²_prev)/δ²`, `ω = 1 + β (g - 1)`, `λ = (1 - β)/2` if `g = 1` else `(1 - √(g/ω))/(1 - g)` (Thm. 3),
+`Q_tmp = V/λ + C Q C/(1 - λ)`, `K = Q C Q_tmp⁻¹/(1 - λ)`, `σ² = (1 - λ) σ²_prev + λ - δ Q_tmp⁻¹ δ`,
+the shape `(1 - λ)(1 - K C) Q` and the center `c + K δ`. It returns the center, the shape and `σ²`;
+the trigger `σ²_prev + δ² > 1` is the caller's. The shape is `(1 - λ)²` times the one the fusion
+needs (`intersectStripLiu1D_counterexample`).
 
-It returns the new center, the new shape `Q` of `{x | (x - c)² / Q ≤ 1}` and `σ²`; the trigger
-`σ²_prev + δ² > 1` is the caller's. The shape is `(1 - λ)²` times the one the fusion needs
-(`intersectStripLiu1D_counterexample`, `intersectStripLiu`).
+## Inputs
+* `Q` – shape
+* `c` – center
+* `C` – measurement factor
+* `V` – measurement covariance
+* `barV` – factor of the inverse covariance
+* `y` – measurement
+* `σsqPrev` – previous level
+
+## Output
+* new center, shape and level
 -/
 
 -- Authors:       Claude Opus 5.5

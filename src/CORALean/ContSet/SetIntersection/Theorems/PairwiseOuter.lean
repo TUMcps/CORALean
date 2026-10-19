@@ -14,6 +14,22 @@ The two-argument form of `memberwise_outer`, stated at `Fin`-indexed families as
 this theorem with each pair's own guarantee: at the Minkowski sum of zonotope bundles, the
 enclosure of [1, Prop. 2], of which a bundle plus one zonotope is the one-member case.
 
+## Inputs
+* `k` – number of first members
+* `k'` – number of second members
+* `l` – number of result members
+* `f` – first members
+* `f'` – second members
+* `g` – result members
+* `Φ` – binary set operation
+
+## Hypotheses
+* `hΦ` – `Φ` monotone in both arguments
+* `h` – each `g p` encloses `Φ` of some pair
+
+## Conclusion
+* `Φ` of the two intersections lies in the result
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

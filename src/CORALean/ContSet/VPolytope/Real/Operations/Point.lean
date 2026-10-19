@@ -11,6 +11,12 @@ One vertex, which is the singleton. Composed with `plus` this is a translation,
 so the representation needs no separate one.
 
 One vertex, which is the singleton.
+
+## Inputs
+* `v` – point
+
+## Output
+* polytope with the single vertex `v`
 -/
 
 -- Authors:       Claude Opus 5

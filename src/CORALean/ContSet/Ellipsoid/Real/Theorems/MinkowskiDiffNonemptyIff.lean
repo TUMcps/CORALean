@@ -13,6 +13,16 @@ public import CORALean.ContSet.ContSet.ContSet
 nonempty iff `E(0, Q₂) ⊆ E(0, Q₁)`. If a translate of the second shape fits in the first, so does
 its reflection, both being centrally symmetric, and the midpoint of the two is the shape itself.
 
+## Inputs
+* `E₁` – minuend
+* `E₂` – subtrahend
+
+## Hypotheses
+* none
+
+## Conclusion
+* the difference is nonempty iff `E₂` fits into `E₁` centered at the origin
+
 ## References
 
 * [1] A. A. Kurzhanskiy and P. Varaiya. "Ellipsoidal Toolbox (ET)". In Proc. of the 45th

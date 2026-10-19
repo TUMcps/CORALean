@@ -18,6 +18,13 @@ condition is [1, Eq. 18]
 and `halderStationarity` is its left side, a function of `β` and the `λᵢ` alone. The
 eigenvalues are an argument: that they are those of `Q₁⁻¹ Q₂` is `log_det_halder_eq`.
 
+## Inputs
+* `lam` – eigenvalues
+* `β` – positive weight
+
+## Output
+* `∑ (1 − β² λᵢ) / (1 + β λᵢ)`
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

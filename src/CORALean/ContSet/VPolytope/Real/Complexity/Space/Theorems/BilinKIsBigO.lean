@@ -12,6 +12,18 @@ public import CORALean.ContSet.VPolytope.Real.Complexity.Space.Theorems.BilinK
 # `VPolytope.bilin_k_isBigO`
 
 The `k` count of `bilin`'s result in `O`-notation.
+
+## Inputs
+* `f` – bilinear map
+* `P` – polytopes with `m` vertices
+* `Q` – polytopes with `m` vertices
+
+## Hypotheses
+* `hP` – `P m` has `m` vertices
+* `hQ` – `Q m` has `m` vertices
+
+## Conclusion
+* the vertex count of `bilin` grows like `m²`
 -/
 
 -- Authors:       Claude Opus 5

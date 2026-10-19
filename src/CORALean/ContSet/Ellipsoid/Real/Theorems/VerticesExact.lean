@@ -12,6 +12,15 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
 The two support points of `Ellipsoid.vertices` are in the set, the set is convex, and every point
 lies between the two support values: so the convex hull of the listed points is the ellipsoid.
 Exact, for `n = 1`.
+
+## Inputs
+* `E` – one-dimensional ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* the convex hull of the vertices is `E`
 -/
 
 -- Authors:       Claude Opus 5.5

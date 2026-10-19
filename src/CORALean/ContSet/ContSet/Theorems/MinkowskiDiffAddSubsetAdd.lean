@@ -15,6 +15,17 @@ part split off it, and the subtrahend.
 The paper's own hypothesis `C ⊆ A` plays no role in either proof, its own or
 this one: the inclusion holds regardless, so it is not asked for here.
 
+## Inputs
+* `A` – minuend
+* `B` – shift
+* `C` – subtrahend
+
+## Hypotheses
+* none
+
+## Conclusion
+* `(A ⊖ C) + B` lies in `(A + B) ⊖ C`
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

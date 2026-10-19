@@ -12,6 +12,13 @@ public import CORALean.ContSet.VPolytope.Float.Operations.PairSum
 Every vertex of one added to every vertex of the other, as over ℝ, with each sum
 rounded down and the gap to the upper rounding charged to the box. One box
 covers the whole vertex list, which is what `columnGap` is for.
+
+## Inputs
+* `P₁` – first polytope
+* `P₂` – second polytope
+
+## Output
+* polytope of the pairwise vertex sums
 -/
 
 -- Authors:       Claude Opus 5

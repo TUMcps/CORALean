@@ -10,6 +10,13 @@ public import CORALean.ContSet.VPolytope.Real.VPolytope
 A linear map applies to the vertices, the count untouched, exactly as it does to
 a zonotope's center and generators. Every multiplication a vertex description
 carries is this at a particular map.
+
+## Inputs
+* `f` – linear map
+* `P` – polytope
+
+## Output
+* polytope of the mapped vertices
 -/
 
 -- Authors:       Claude Opus 5

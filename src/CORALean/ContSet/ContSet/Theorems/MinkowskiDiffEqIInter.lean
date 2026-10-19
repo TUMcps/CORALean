@@ -8,20 +8,25 @@ public import Mathlib.Analysis.Convex.Hull
 /-!
 # A convex subtrahend only has to be subtracted at the points that span it
 
-[1, Lemma 1]: the difference against a convex subtrahend is already the
-intersection of the differences against finitely many of its points. A point
-that survives every `v ∈ V` survives all of `convexHull ℝ V`, because
-`{z | x + z ∈ S}` is a translate of the convex `S` and so contains the hull of
-anything it contains.
+[1, Lemma 1]: the difference against a convex subtrahend is already the intersection of the
+differences against finitely many of its points. A point that survives every `v ∈ V` survives all of
+`convexHull ℝ V`, because `{z | x + z ∈ S}` is a translate of the convex `S`. Stated at any spanning
+`V` rather than the vertices the paper names: the proof uses `T ⊆ convexHull ℝ V`, and the vertex
+set of a compact convex `T` is one such `V`, finite for a zonotope. Convexity is asked of the
+*minuend*, not — as printed — of the subtrahend: that is where the hull argument runs.
 
-Stated at any spanning `V` rather than at the vertices the paper names: what
-the proof uses is `T ⊆ convexHull ℝ V`, and the vertex set of a compact convex
-`T` is one such `V` — finitely many of them for a zonotope, which is what makes
-the printed intersection finite. Nothing here needs `V` finite, and neither
-does [1, Thm. 1], which applies this at the two ends of a single segment.
+## Inputs
+* `S` – minuend
+* `T` – subtrahend
+* `V` – spanning set
 
-Convexity is asked of the *minuend*, not — as printed — of the subtrahend:
-that is where the hull argument runs. `T` convex is neither used nor implied.
+## Hypotheses
+* `hS` – `S` convex
+* `hVT` – `V ⊆ T`
+* `hT` – `T` in the convex hull of `V`
+
+## Conclusion
+* `S ⊖ T` is the intersection of the differences `S ⊖ {v}` over `V`
 
 ## References
 

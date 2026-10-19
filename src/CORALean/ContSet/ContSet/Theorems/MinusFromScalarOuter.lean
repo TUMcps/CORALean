@@ -7,6 +7,16 @@ public import CORALean.ContSet.ContSet.Theorems.UminusOuter
 
 /-!
 # `minusFromScalar` encloses the reflected translate
+
+## Inputs
+* `p` – point
+* `s` – set
+
+## Hypotheses
+* none
+
+## Conclusion
+* every `p - x`, `x` in `s`, lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

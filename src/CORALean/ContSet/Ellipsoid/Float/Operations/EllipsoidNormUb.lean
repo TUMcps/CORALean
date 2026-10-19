@@ -16,6 +16,15 @@ checked exactly in ℚ (`ToRat`); then `pᵀ Q⁻¹ p = pᵀ w`, rounded up and 
 `none` when the equation fails, or when `Q`, `p` or `w` holds a NaN: `toRat` reads it as the
 number `1.5 · 2 ^ 1024`, of which the equation could hold. Of the nominal ellipsoid, as CORA's
 (the shape matrix alone).
+
+## Inputs
+* `prec` – Newton steps of the root
+* `E` – ellipsoid
+* `p` – point
+* `w` – solve of `Q w = p`
+
+## Output
+* upper bound of the ellipsoid norm of `p`, `none` if `Q w = p` fails
 -/
 
 -- Authors:       Claude Opus 5.5

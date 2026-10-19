@@ -12,6 +12,15 @@ public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 `(β²λᵢ − 1) = λᵢ (β² − 1/λᵢ)` and `βλⱼ + 1 = λⱼ (β + 1/λⱼ)`, and the `λ`s multiply to the
 product.
 
+## Inputs
+* `β` – weight of the shape sum
+
+## Hypotheses
+* `hlam` – every `λᵢ` positive
+
+## Conclusion
+* the polynomial over `∏ λⱼ` equals the sum of products
+
 ## References
 
 * [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of

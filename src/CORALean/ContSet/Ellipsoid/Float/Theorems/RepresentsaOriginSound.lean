@@ -12,6 +12,15 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
 
 A `true` answer makes `Q` and `q` `0`, so the nominal part is `{0}`, and the error box is `{0}`: the
 ellipsoid is `{0}`.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* `h` – `representsa_origin` returns `true`
+
+## Conclusion
+* `E` is the origin
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

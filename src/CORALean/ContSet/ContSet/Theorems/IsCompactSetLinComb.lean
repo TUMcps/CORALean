@@ -16,6 +16,17 @@ itself is written against.
 This is what lets a Hausdorff bound stated against `Set.linComb` be read back as a
 witness: a compact set attains its infimum distance, and `≤` on a Hausdorff
 distance gives an actual nearby point only where it does.
+
+## Inputs
+* `X` – set
+* `Y` – set
+
+## Hypotheses
+* `hX` – `X` compact
+* `hY` – `Y` compact
+
+## Conclusion
+* the linear combination of `X` and `Y` is compact
 -/
 
 -- Authors:       Claude Opus 5

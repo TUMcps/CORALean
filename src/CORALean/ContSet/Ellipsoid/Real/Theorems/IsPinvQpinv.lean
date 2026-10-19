@@ -15,6 +15,15 @@ Why: the continuous functional calculus turns products of functions of `Q` into 
 functions, which on reals are `x x⁻¹ x = x` and `x⁻¹ x x⁻¹ = x⁻¹`, `0` included, and every
 function of a symmetric `Q` is symmetric. The spectrum of a matrix is finite, so `x⁻¹` is
 continuous on it.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Q⁺` is the Moore-Penrose pseudo-inverse of `Q`
 -/
 
 -- Authors:       Claude Opus 5.5
