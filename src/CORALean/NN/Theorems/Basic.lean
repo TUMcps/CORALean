@@ -2,6 +2,7 @@ module
 
 public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.NN.Definitions.Basic
+public import CORALean.NN.Definitions.Sound
 public import CORALean.NN.Layers.Definitions.Relu
 public import CORALean.NN.Layers.Instances
 public import CORALean.NN.Operations.Basic
@@ -197,6 +198,30 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 theorem NeuralNetwork.enclose_outer (nn : NeuralNetwork S n m) (X : S n) :
     nn.eval.out '' construct X ⊆ construct (nn.enclose X) :=
   (NeuralNetwork.sound_eval nn).image_subset X
+
+
+-- ==============================  `NeuralNetwork.ofLayer_sound`  =============================== --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   24-September-2026
+-- Reviewed:      ---
+
+/-- A single layer, sound at the function it is sound at. -/
+theorem NeuralNetwork.ofLayer_sound {L : ℕ → ℕ → Type} [Enclose L S] {curr : L n m}
+    {f : Vec ℝ n → Vec ℝ m} (h : (Enclose.toLayer (S := S) curr).Sound f) :
+    (NeuralNetwork.ofLayer (S := S) curr).Sound f :=
+  .layer h (.output fun _ => rfl) fun _ => rfl
+
+
+-- ===============================  `NeuralNetwork.sound_output`  =============================== --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   24-September-2026
+-- Reviewed:      ---
+
+/-- The identity at `output`, which is the constructor read at `f = id`. -/
+theorem NeuralNetwork.sound_output : (NeuralNetwork.output : NeuralNetwork S n n).Sound id :=
+  .output fun _ => rfl
 
 
 -- =============================  `RefinableLayer.atPattern_sound`  ============================= --

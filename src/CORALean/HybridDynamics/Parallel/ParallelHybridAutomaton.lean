@@ -72,10 +72,6 @@ def ParallelHybridAutomaton.boundInput (P : ParallelHybridAutomaton S G k L 𝕋
   | .output c s => (toRealMat (P.sys ℓ c).C *ᵥ x c + toRealMat (P.sys ℓ c).D *ᵥ u c +
       toRealVec (P.sys ℓ c).k) s
 
--- The components' states side by side: coordinate `⟨i, j⟩` is coordinate `j` of component `i`.
-def stack {d : Fin k → ℕ} (x : ∀ i, Vec ℝ (d i)) : Vec ℝ (∑ i, d i) :=
-  fun p => x (finSigmaFinEquiv.symm p).1 (finSigmaFinEquiv.symm p).2
-
 -- One shared dwell time; the input set constrains only the global inputs, as CORA's `bindsInputs`.
 structure ParallelHybridAutomaton.IsStay [∀ n, ContSet (S n) (Vec ℝ n)]
     [∀ n, ContSet (G n) (Vec ℝ n)] (P : ParallelHybridAutomaton S G k L 𝕋 n m)

@@ -16,6 +16,24 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean
+
+variable {k : ℕ}
+
+
+-- =========================================  `stack`  ========================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       01-October-2026
+-- Last update:   18-October-2026
+-- Reviewed:      ---
+
+/-- The components' states side by side: coordinate `⟨i, j⟩` is coordinate `j` of component `i`. -/
+def stack {d : Fin k → ℕ} (x : ∀ i, Vec ℝ (d i)) : Vec ℝ (∑ i, d i) :=
+  fun p => x (finSigmaFinEquiv.symm p).1 (finSigmaFinEquiv.symm p).2
+
+end CORALean
+
+
 namespace CORALean.Real
 
 variable {k : ℕ} {n : Fin k → ℕ}

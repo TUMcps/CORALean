@@ -4,6 +4,7 @@ public import CORALean.Global.Float.FloatOps
 public import CORALean.NN.Layers.Definitions.Enclosure
 public import CORALean.NN.Layers.Definitions.Relaxation
 public import CORALean.NN.Layers.Definitions.ScaleRounding
+public import CORALean.NN.Layers.Layer
 public import CORALean.NN.Layers.Operations.Activation
 public import CORALean.NN.Layers.Operations.ConjOffsetLow
 public import CORALean.NN.Layers.Operations.ExpRelaxation
@@ -303,6 +304,53 @@ def softplusRelaxation (β : 𝕋) (k nl kl : ℕ) : Relaxation 𝕋 :=
 def squareEnclosure : Enclosure 𝕋 where
   lo a := mulDown a a
   hi a := mulUp a a
+
+end
+
+
+section
+
+universe u
+
+open ContSet
+
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
+  {f : Vec ℝ n → Vec ℝ m} {g : Vec ℝ m → Vec ℝ k}
+
+
+-- ====================================  `Enclose.toLayer`  ===================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       02-September-2026
+-- Last update:   24-September-2026
+-- Reviewed:      ---
+
+/-- One layer of a kind, the kind forgotten, which is how a network holds it. -/
+def Enclose.toLayer {L : ℕ → ℕ → Type u} [Enclose L S] (l : L n m) : Layer S n m where
+  enclose := Enclose.enclose l
+
+
+-- =======================================  `Layer.comp`  ======================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       02-September-2026
+-- Last update:   24-September-2026
+-- Reviewed:      ---
+
+/-- Applied right to left, as composition is written. -/
+def Layer.comp (L₂ : Layer S m k) (L₁ : Layer S n m) : Layer S n k where
+  enclose s := L₂.enclose (L₁.enclose s)
+
+
+-- =====================================  `Layer.identity`  ===================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       02-September-2026
+-- Last update:   24-September-2026
+-- Reviewed:      ---
+
+/-- Carries a coordinate past a block untouched, which is how a skip connection
+is written: the skipped coordinates travel in the same set as the rest, so the
+dependency between them survives. -/
+def Layer.identity (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] (n : ℕ) : Layer S n n where
+  enclose s := s
 
 end
 

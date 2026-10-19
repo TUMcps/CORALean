@@ -668,7 +668,13 @@ is at most five code lines ("Small declarations"), a file of its own otherwise.
 A validity predicate (`IsValid`, `WellFormed` and the like) is no part of the type: it is a
 definition in `Definitions/IsValid.lean` of the same class, like any other proposition about the type.
 `check-conventions.sh` rejects a `theorem`, `lemma`, validity predicate or `materialise…` definition
-in a main-type file. What a system class denotes is its runs, so the main file of `ContDynamics/<C>/` declares
+in a main-type file.
+The rule is not about the file's name: any file with a `MAIN TYPE` banner (`NN/NeuralNetwork.lean`,
+`NN/Layers/Layer.lean`) declares no `theorem` or `lemma` and no operation, a `def` returning data
+that nothing else in the file is stated with (#134); `NeuralNetwork.Sound` is in
+`Definitions/Sound.lean`, `Enclose.toLayer` and `Layer.comp` in `Layers/Operations/Basic.lean`.
+`Global/`, `Examples/` and `Interfaces.lean` (whose operation classes are #135's) are out of scope,
+and `scripts/main-type-allowlist.txt` names the rest, a reason to each, and only shrinks. What a system class denotes is its runs, so the main file of `ContDynamics/<C>/` declares
 `<C>.IsTrajectory`, with what it is stated with (the closed loop's plant input `[a; e]`), and
 `check-conventions.sh` asks for it; `LinProbSys`, which denotes the law of its solution, and
 `OutputEq`, which is no system, are the named exceptions. A continuous-time run, a hybrid

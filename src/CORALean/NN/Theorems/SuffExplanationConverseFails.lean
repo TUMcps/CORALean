@@ -3,14 +3,18 @@ module
 public import CORALean.ContSet.Interval.Float.Theorems.NonemptyHullIsNonempty
 public import CORALean.ContSet.Interval.Real.Instances
 public import CORALean.ContSet.Interval.Real.Operations.Basic
+public import CORALean.NN.Definitions.Sound
 public import CORALean.NN.Layers.Definitions.Enclosure
 public import CORALean.NN.Layers.Definitions.Relaxation
 public import CORALean.NN.Layers.Instances
 public import CORALean.NN.Layers.Theorems.LinearSound
 public import CORALean.NN.Layers.Theorems.LinearWithErrorSound
+public import CORALean.NN.Operations.Basic
+public import CORALean.NN.Theorems.Basic
 public import CORALean.NN.Theorems.EncloseOuter
 public import CORALean.NN.Definitions.SuffExplanation
 public import CORALean.NN.Definitions.SuffExplanationAbstract
+public import CORALean.NN.Theorems.SoundCongr
 
 @[expose] public section
 

@@ -436,7 +436,6 @@ src/CORALean/ContDynamics/NonlinDASys/Theorems/ReachUnionOuter.lean
 src/CORALean/ContDynamics/NonlinDASys/Theorems/ReachYUnionSubsetImage.lean
 src/CORALean/ContDynamics/NonlinDASys/Theorems/IsTrajectoryOfNonlinearSys.lean
 src/CORALean/ContDynamics/NonlinDASys/Theorems/IsTrajectoryToNonlinearSys.lean
-src/CORALean/ContDynamics/NonlinParamSys/Definitions/Linearized.lean
 src/CORALean/ContDynamics/NonlinParamSys/Definitions/LinearizedFloat.lean
 src/CORALean/ContDynamics/NonlinParamSys/NonlinParamSys.lean
 src/CORALean/ContDynamics/NonlinParamSys/Operations/LinearizeFloat.lean

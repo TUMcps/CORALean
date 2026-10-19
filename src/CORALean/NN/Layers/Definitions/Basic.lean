@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Global.Tensor
+public import CORALean.NN.Layers.Layer
 
 @[expose] public section
 
@@ -17,6 +18,10 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean
 
+open ContSet
+
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+
 
 -- =====================================  `IdentityLayer`  ====================================== --
 -- Authors:       Claude Opus 5.5
@@ -29,6 +34,18 @@ but `dim`, the proof that the two dimensions agree, which `rfl` discharges where
 built; `: Type` keeps a structure of one proof out of `Prop`. -/
 structure IdentityLayer (n m : ℕ) : Type where
   dim : n = m
+
+
+-- ======================================  `Layer.Sound`  ======================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       02-September-2026
+-- Last update:   24-September-2026
+-- Reviewed:      ---
+
+/-- The obligation `Layer` no longer carries: what `enclose` encloses. -/
+structure Layer.Sound (L : Layer S n m) (f : Vec ℝ n → Vec ℝ m) : Prop where
+  enclose_outer (s : S n) (x : Vec ℝ n) (hx : x ∈ construct s) :
+    f x ∈ construct (L.enclose s)
 
 
 -- ======================================  `LinearLayer`  ======================================= --

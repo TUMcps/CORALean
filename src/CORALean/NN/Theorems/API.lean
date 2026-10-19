@@ -76,9 +76,11 @@ public import CORALean.NN.Theorems.SensitivitySigmoid
 public import CORALean.NN.Theorems.SensitivityTanh
 public import CORALean.NN.Theorems.SigmoidLipschitz
 public import CORALean.NN.Theorems.SigmoidRefinementConverges
+public import CORALean.NN.Theorems.SoundCongr
 public import CORALean.NN.Theorems.SoundEval
 public import CORALean.NN.Theorems.SoundHoldsAllOfEnclose
 public import CORALean.NN.Theorems.SoundHoldsOfEnclose
+public import CORALean.NN.Theorems.SoundLayer
 public import CORALean.NN.Theorems.SoundVerifySplitSound
 public import CORALean.NN.Theorems.SoundVerifySplitWithSound
 public import CORALean.NN.Theorems.SuffExplanationConverseFails

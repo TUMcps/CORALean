@@ -2085,6 +2085,113 @@ END { flush() }
 ' $files)
 report "$out"
 
+# A main-type file holds the type, and nothing proved or computed about it (#134): *any* file
+# with a `MAIN TYPE` banner, whatever it is called (`NN/NeuralNetwork.lean`, `Layers/Layer.lean`
+# and `Definitions/Sound.lean` are main-type files too, which the check above, keyed to the
+# `<Dir>/<Dir>.lean` name, does not reach), declares no `theorem`/`lemma`, and no operation, a
+# computable-or-not `def` (not an `abbrev` or an `instance`) returning data, that nothing else in
+# the file is stated with: a `def` the file's other declarations mention is the type's own
+# vocabulary (`construct`, `IsTrajectory`, the input a run is stated with), one nothing in the file
+# mentions is an operation and goes to `Operations/`. The exempt names are `construct`, `nominal…`,
+# `toReal…`, `containsReal`, `IsTrajectory…`; a `def` returning `Prop`, `Set` or a `Type` is a
+# meaning. Out of scope: `Global/` and `Examples/`, which are not class roots, and
+# `Interfaces.lean`, whose operation classes are #135's. What is legitimately there is listed in
+# `scripts/main-type-allowlist.txt`, `<path>::<name>  <reason>` per line (`<path>::*` for a whole
+# file); the list only shrinks, and an entry that matches nothing is stale.
+out=$(awk -v LIST=scripts/main-type-allowlist.txt -v PATHLIST="$repo/scripts/main-type-allowlist.txt" \
+    -v STALE="${STAGED:-}" '
+function dataResult(h,   i, c, d, cut, t, seg) {
+  sub(/:=.*$/, "", h); sub(/ where([ \t].*)?$/, "", h); sub(/[ \t]\|.*$/, "", h)
+  d = 0; cut = 0
+  for (i = 1; i <= length(h); i++) {
+    c = substr(h, i, 1)
+    if (c == "(" || c == "{" || c == LB) d++
+    else if (c == ")" || c == "}" || c == RB) d--
+    else if (c == ":" && d == 0) cut = i
+  }
+  if (cut == 0) return 0
+  t = substr(h, cut + 1); d = 0; seg = t
+  for (i = 1; i <= length(t); i++) {
+    c = substr(t, i, 1)
+    if (c == "(" || c == "{" || c == LB) d++
+    else if (c == ")" || c == "}" || c == RB) d--
+    else if (d == 0 && substr(t, i, 3) == "→") seg = substr(t, i + 3)
+  }
+  sub(/^[ \t]+/, "", seg); sub(/[ \t]+$/, "", seg)
+  return !(seg == "Prop" || seg ~ /^Set([ \t(]|$)/ || seg ~ /^Type/ || seg ~ /^Sort/)
+}
+function report(key, line, msg) {
+  if ((file "::*") in allow) { hit[file "::*"] = 1; return }
+  if (key in allow) { hit[key] = 1; return }
+  print file ":" line ": " msg " — move it to `Theorems/` or `Operations/` (a `Basic.lean` section" \
+        " when it is small), or list `" key "` in " LIST " with the reason it stays"
+}
+function flush(   i, j, k, short, refs, pat, s) {
+  if (file == "" || !banner) return
+  mainfile[file] = 1
+  for (i = 1; i <= nd; i++) {
+    if (dk[i] == "theorem") { report(file "::" dn[i], dl[i], "a " dk[i] " `" dn[i] "` in a main-type file"); continue }
+    short = dn[i]; sub(/^.*[.]/, "", short)
+    if (short == "construct" || short ~ /^nominal/ || short ~ /^toReal/ || short == "containsReal" || short ~ /^IsTrajectory/) continue
+    if (!dd[i]) continue
+    pat = "(^|[^A-Za-z0-9_\x27])" short "([^A-Za-z0-9_\x27]|$)"
+    refs = 0
+    for (j = 1; j <= nl; j++) {
+      if (j >= dl[i] && j <= de[i]) continue
+      if (cl[j] ~ pat) { refs++; break }
+    }
+    if (!refs) report(file "::" dn[i], dl[i], "an operation `" dn[i] "` in a main-type file")
+  }
+}
+BEGIN {
+  LB = "\133"; RB = "\135"
+  while ((getline l < PATHLIST) > 0) {
+    if (l ~ /^#/ || l == "") continue
+    split(l, kv, /[ \t]+/); allow[kv[1]] = 1; aln[kv[1]] = ++n
+  }
+  close(PATHLIST)
+}
+FNR == 1 {
+  flush()
+  file = FILENAME; seen[file] = 1; inb = 0; banner = 0; nd = 0; nl = 0; pend = 0; cur = 0
+  skip = (file ~ /\/(Global|Examples)\// || file ~ /\/Interfaces\.lean$/)
+}
+{
+  s = $0
+  if (inb) { if (s ~ /-\//) inb = 0; next }
+  if (s ~ /^[ \t]*\/-/) { if (s !~ /-\//) inb = 1; next }
+  if (s ~ /^-- =.*MAIN TYPE/ && !skip) banner = 1
+  if (s ~ /^[ \t]*--/) next
+  nl++; cl[nl] = s; lineno[nl] = FNR
+  if (s ~ /^(@\[[^]]*\][ \t]*)?((private|protected|noncomputable|nonrec|partial|unsafe)[ \t]+)*(theorem|lemma)[ \t]/) {
+    nd++; dk[nd] = "theorem"; t = s
+    sub(/^(@\[[^]]*\][ \t]*)?((private|protected|noncomputable|nonrec|partial|unsafe)[ \t]+)*(theorem|lemma)[ \t]+/, "", t)
+    sub(/[ \t:({\[].*$/, "", t); dn[nd] = t; dl[nd] = FNR; de[nd] = nl; dd[nd] = 0
+  } else if (s ~ /^(@\[[^]]*\][ \t]*)?((private|protected|noncomputable|nonrec|partial|unsafe)[ \t]+)*def[ \t]/) {
+    nd++; dk[nd] = "def"; t = s
+    sub(/^(@\[[^]]*\][ \t]*)?((private|protected|noncomputable|nonrec|partial|unsafe)[ \t]+)*def[ \t]+/, "", t)
+    sub(/[ \t:({\[].*$/, "", t); dn[nd] = t; dl[nd] = nl; hdr[nd] = s; dd[nd] = 0; pend = nd; de[nd] = nl
+    if (s ~ /:=/ || s ~ / where([ \t]|$)/) { dd[nd] = dataResult(s); pend = 0 }
+  } else if (pend) {
+    hdr[pend] = hdr[pend] " " s
+    if (s ~ /:=/ || s ~ / where([ \t]|$)/) { dd[pend] = dataResult(hdr[pend]); pend = 0 }
+  }
+  # a declaration extends to the next column-0 command; lines in between are its own
+  if (s ~ /^(@\[[^]]*\][ \t]*)?((private|protected|noncomputable|nonrec|partial|unsafe)[ \t]+)*(theorem|lemma|def)[ \t]/) cur = nd
+  else if (s !~ /^([ \t]|$)/) cur = 0
+  if (cur > 0) de[cur] = nl
+}
+END {
+  flush()
+  if (STALE != "") exit
+  for (k in allow) {
+    split(k, kp, "::")
+    if (!(kp[1] in seen)) print LIST ":" aln[k] ": stale entry `" k "` — no such file"
+    else if (!(k in hit)) print LIST ":" aln[k] ": stale entry `" k "` — nothing matches it any more; the list only shrinks"
+  }
+}' $files | sort)
+report "$out"
+
 # A main-type file cites the publication it formalizes (#211): the file with the `MAIN TYPE`
 # banner at `<Dir>/<Dir>.lean` or `<Dir>/<Layer>/<Dir>.lean` has at least one numbered entry
 # (`* [N] ...`) under `## References` in its module docstring. Files not yet brought up to this

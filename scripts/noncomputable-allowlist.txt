@@ -449,6 +449,7 @@ sindyStep  real-layer: one pass of sequential thresholded least squares, compari
 sindy  real-layer: sequential thresholded least squares at real coefficients, the regression an argument; no float counterpart
 sindyBig  real-layer: the entries at least the threshold in magnitude, a filter on real comparisons
 NonlinParamSys.linearize  real-layer: the matrix zonotopes of real Jacobians (`fderiv`) over the parameter box; no float Jacobian of a real `f` exists to run it on
+NonlinParamSys.linearizeF  real-layer: the zonotope of the constant term `f(x*, u*, p)` of a real `f` over the parameter box, the real half of `linearize`, which is already listed
 NonlinDASys.linReach  real-layer: one DAE linearization step through `LinearSys.oneStep` at the real matrix exponential; no float refinement
 NonlinDASys.initReach  real-layer: `NonlinDASys.linReach` on each start set, split by `Zonotope.split`; no float refinement
 NonlinDASys.reach  real-layer: Althoff and Krogh `Alg. 1`, line 1 and the loop over zonotopes at the real exponential, with the linearization, Cor. 1's errors and the split as arguments; proved sound for certified runs over ℝ and never run

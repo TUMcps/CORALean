@@ -17,9 +17,10 @@ field, as CORA's constructor refuses any other.
 
 The set is stated over `Q`, as the paper and CORA state it, so that the definition is the one a
 reader checks against them. The square root `G = Q^(1/2)` (`CFC.sqrt`, CORA's `sqrtm`, which some
-of its operations call) is a derived helper: the set is `{q + G u | ‖u‖₂ ≤ 1}`
-(`Theorems/ConstructEqSqrt`), the form proofs go through, and any `F` with `F Fᵀ = Q` gives the same
-set (`Theorems/ConstructEqOfFactor`). `‖·‖₂` is `CORALean.norm₂`; `Vec ℝ n` carries the sup norm.
+of its operations call; `Operations/Basic.lean`) is a derived helper: the set is
+`{q + G u | ‖u‖₂ ≤ 1}` (`Theorems/ConstructEqSqrt`), the form proofs go through, and any `F` with
+`F Fᵀ = Q` gives the same set (`Theorems/ConstructEqOfFactor`). `‖·‖₂` is `CORALean.norm₂`;
+`Vec ℝ n` carries the sup norm.
 
 ## References
 
@@ -62,10 +63,6 @@ noncomputable def Ellipsoid.Qpinv (E : Ellipsoid n) : Mat ℝ n n := cfc (fun x 
 degenerate `Q` confines it to. -/
 def Ellipsoid.construct (E : Ellipsoid n) : Set (Vec ℝ n) :=
   {x | (x - E.q) ⬝ᵥ E.Qpinv *ᵥ (x - E.q) ≤ 1 ∧ ∃ w : Vec ℝ n, x - E.q = E.Q *ᵥ w}
-
-/-- The generator matrix `Q^(1/2)`, CORA's `sqrtm(Q)`: symmetric, and `G G = Q`. The set is its
-image of the unit ball (`Theorems/ConstructEqSqrt`). -/
-noncomputable def Ellipsoid.G (E : Ellipsoid n) : Mat ℝ n n := CFC.sqrt E.Q
 
 end CORALean.Real
 

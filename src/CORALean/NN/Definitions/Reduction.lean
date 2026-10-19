@@ -6,6 +6,7 @@ public import CORALean.NN.Layers.Definitions.Enclosure
 public import CORALean.NN.Layers.Definitions.Relaxation
 public import CORALean.NN.Layers.Instances
 public import CORALean.NN.Layers.Operations.ActivationLayerOf
+public import CORALean.NN.Operations.Basic
 public import CORALean.NN.Operations.Enclose
 
 @[expose] public section
@@ -49,13 +50,6 @@ open Matrix ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [Real.IntervalOuter S] [Real.OfInterval S]
-
-/-- The unreduced sandwich a `merge` step replaces: linear, activation, linear. -/
-noncomputable def sandwich {n n₁ n₂ : ℕ} (W0 : Mat ℝ n₁ n) (b0 : Vec ℝ n₁) {σ : ℝ → ℝ}
-    {R : Relaxation ℝ} (hR : R.Sound σ) (W1 : Mat ℝ n₂ n₁) (b1 : Vec ℝ n₂) :
-    NeuralNetwork S n n₂ :=
-  .layer (LinearLayer.mk W0 b0)
-    (.layer (ActivationLayer.of (n := n₁) hR) (.ofLayer (LinearLayer.mk W1 b1)))
 
 /-- The reduced sandwich `neuronMerging_sandwich_outer` bounds `sandwich` by, trimmed to
 `part.left` and boxing `part.right`'s contribution to `k+1` from `Y`. -/

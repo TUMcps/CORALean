@@ -1,0 +1,21 @@
+# Declarations a main-type file (any file with a `MAIN TYPE` banner) keeps although they are a
+# `def` returning data, or a theorem (#134). `scripts/check-conventions.sh` refuses any other
+# `theorem`/`lemma`, and any `def` that nothing else in the file is stated with: what the type
+# denotes and what its statements are stated with stay, an operation goes to `Operations/`.
+# `Global/`, `Examples/` and `Interfaces.lean` (the operation classes, #135) are out of scope.
+# One `<path>::<name>  <reason>` per line (`<path>::*` for a whole file). The list only shrinks:
+# move the declaration and delete the line; an entry that matches nothing is stale.
+src/CORALean/ContDynamics/OutputEq/OutputEq.lean::OutputEq.eval  what the type denotes: the output `y = C x + D u + k`, which no other file of the type could be stated without
+src/CORALean/DiscrDynamics/GridPartition/GridPartition.lean::GridPartition.intervals  CORA's property `intervals` of the partition, the state space it covers, which CORA stores beside the dividers
+src/CORALean/HybridDynamics/Definitions/Transition.lean::Transition.reset  the map the coefficients denote, which is what a run applies at a jump
+src/CORALean/NN/Layers/Definitions/Enclosure.lean::Enclosure.exact  the exact enclosure at ℝ, the instance of the structure the soundness predicate is stated against
+src/CORALean/NN/Layers/Definitions/ScaleRounding.lean::ScaleRounding.exact  the exact scale rounding at ℝ, the instance of the structure the soundness predicate is stated against
+src/CORALean/Specification/STL/Definitions/DiscreteFormula.lean::STL.DFormula.rob  the robustness semantics of the discrete formula, beside its satisfaction relation `Sat`
+src/CORALean/Specification/STL/STL.lean::STL.Formula.next  derived connective of the formula language, defined by its constructors
+src/CORALean/Specification/STL/STL.lean::STL.Formula.release  derived connective of the formula language, defined by its constructors
+src/CORALean/Specification/STL/STL.lean::STL.Formula.implies  derived connective of the formula language, defined by its constructors
+src/CORALean/Specification/STL/STL.lean::STL.Formula.globally  derived connective of the formula language, defined by its constructors
+src/CORALean/Specification/STL/STL.lean::STL.Formula.bigOr  derived connective of the formula language, defined by its constructors
+src/CORALean/Specification/STL/STL.lean::STL.Formula.bigAnd  derived connective of the formula language, defined by its constructors
+src/CORALean/Specification/Specification.lean::Specification.custom  constructor of the specification, like `safeSet`, `unsafeSet` and `invariant` beside it
+src/CORALean/Specification/TentativeKleeneSignal/TentativeKleeneSignal.lean::TentativeKleeneSignal.at  the signal's value at a time: what the type denotes

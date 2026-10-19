@@ -1,5 +1,7 @@
 module
 
+public import CORALean.NN.Layers.Definitions.Basic
+public import CORALean.NN.Layers.Theorems.Basic
 public import CORALean.NN.Layers.Theorems.Real.SoftmaxSound
 
 @[expose] public section

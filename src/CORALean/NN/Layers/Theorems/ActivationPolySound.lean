@@ -4,6 +4,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsorbRoundingNominal
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.EvalPolyOuter
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyRealOfFn
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
+public import CORALean.NN.Layers.Definitions.Basic
 public import CORALean.NN.Layers.Operations.ActivationPoly
 public import CORALean.NN.Layers.Theorems.CoeffListCoord
 public import CORALean.ContSet.Conversion.Float.Operations.Basic

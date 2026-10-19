@@ -1,6 +1,7 @@
 module
 
 public import CORALean.NN.Definitions.Reduction
+public import CORALean.NN.Definitions.Sound
 
 @[expose] public section
 

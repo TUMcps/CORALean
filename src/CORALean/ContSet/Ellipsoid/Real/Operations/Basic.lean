@@ -22,6 +22,7 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 namespace CORALean.Real
 
 open Matrix
+open scoped MatrixOrder
 
 variable {n : ℕ}
 
@@ -36,6 +37,17 @@ variable {n : ℕ}
 theorem apply_eq_dotProduct (c : Vec ℝ n →ₗ[ℝ] ℝ) (x : Vec ℝ n) : c x = dualVec c ⬝ᵥ x := by
   rw [LinearMap.pi_apply_eq_sum_univ c x, dotProduct]
   exact Finset.sum_congr rfl fun i _ => by rw [smul_eq_mul]; exact mul_comm _ _
+
+
+-- ======================================  `Ellipsoid.G`  ======================================= --
+-- Authors:       Claude Opus 5, Claude Opus 5.5
+-- Written:       02-September-2026
+-- Last update:   18-October-2026
+-- Reviewed:      16-October-2026 (Tobias Ladner)
+
+/-- The generator matrix `Q^(1/2)`, CORA's `sqrtm(Q)`: symmetric, and `G G = Q`. The set is its
+image of the unit ball (`Theorems/ConstructEqSqrt`). -/
+noncomputable def Ellipsoid.G (E : Ellipsoid n) : Mat ℝ n n := CFC.sqrt E.Q
 
 
 -- ===================================  `Ellipsoid.pullback`  =================================== --

@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Basic
 
 @[expose] public section
 

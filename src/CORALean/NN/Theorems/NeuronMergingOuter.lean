@@ -14,6 +14,7 @@ public import CORALean.NN.Layers.Theorems.ActivationSound
 public import CORALean.NN.Layers.Theorems.LinearSound
 public import CORALean.NN.Layers.Theorems.LinearWithErrorMem
 public import CORALean.NN.NeuralNetwork
+public import CORALean.NN.Operations.Basic
 public import CORALean.NN.Operations.Enclose
 
 @[expose] public section

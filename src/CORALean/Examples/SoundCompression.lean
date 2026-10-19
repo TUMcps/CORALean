@@ -1,5 +1,6 @@
 import CORALean.Global.Float.Instances.Real.Theorems.Basic
 import CORALean.NN.Definitions.Reduction
+import CORALean.NN.Definitions.Sound
 import CORALean.NN.Layers.Definitions.Relu
 import CORALean.NN.Layers.Operations.Activation
 import CORALean.NN.Layers.Operations.Conv

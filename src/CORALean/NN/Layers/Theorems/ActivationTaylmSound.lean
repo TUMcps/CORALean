@@ -6,6 +6,7 @@ public import CORALean.ContSet.Taylm.Float.Theorems.PowOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.SmulOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.SumOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
+public import CORALean.NN.Layers.Definitions.Basic
 public import CORALean.NN.Layers.Operations.ActivationTaylm
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval

@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinParamSys.Operations.InitReachInputDependence
 public import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 public import CORALean.ContDynamics.NonlinParamSys.Operations.Linearize
+public import CORALean.ContDynamics.NonlinParamSys.Operations.LinearizeF
 public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
 public import Mathlib.Analysis.Calculus.Deriv.Prod
 public import Mathlib.Analysis.Calculus.Deriv.Add
@@ -47,7 +48,7 @@ zero (`linReachCora_remainder_zero`), `Rerror = {0}`. The linearized system here
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       12-October-2026
--- Last update:   15-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -68,14 +69,14 @@ noncomputable def NonlinParamSys.linReachCora (sys : NonlinParamSys n m q) (xs :
     (Rerror : Zonotope (Vec ℝ n)) (r : ℝ) (η : ℕ) : Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n) :=
   -- [sys,linsys,linParams,linOptions] = linearize(sys,Rinit,params,options);
   let lin := sys.linearize xs us paramInt
-  let linsys : LinParamSys 𝕄𝒵 n := LinParamSys.canonical lin.zA
+  let linsys : LinParamSys 𝕄𝒵 n := LinParamSys.canonical lin.1.A
   -- Rdelta = Rinit + (-sys.linError.p.x);
-  let Rdelta : Zonotope (Vec ℝ n) := Rinit ⊞ Zonotope.ofPoint (-lin.xs)
+  let Rdelta : Zonotope (Vec ℝ n) := Rinit ⊞ Zonotope.ofPoint (-lin.2.1)
   -- [linsys,R] = initReach_inputDependence(linsys,Rdelta,linParams,linOptions);
-  let R := linsys.initReachInputDependence r η Rdelta lin.zf.c lin.zf.G
+  let R := linsys.initReachInputDependence r η Rdelta lin.1.c (sys.linearizeF xs us paramInt).G
   -- Rti = Rti+sys.linError.p.x;  Rtp = Rtp+sys.linError.p.x;
-  let Rtp := R.1 ⊞ Zonotope.ofPoint lin.xs
-  let Rti := R.2 ⊞ Zonotope.ofPoint lin.xs
+  let Rtp := R.1 ⊞ Zonotope.ofPoint lin.2.1
+  let Rti := R.2 ⊞ Zonotope.ofPoint lin.2.1
   -- Rti=Rti+Rerror;  Rtp=Rtp+Rerror;
   (Rtp ⊞ Rerror, Rti ⊞ Rerror)
 
@@ -379,23 +380,26 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
         simpa using htp.le
     exact ⟨by rw [hfst, hSplus, hextS'.2]; simpa using htp.le, hti⟩
   -- the linearization of `ẋ = p²` over `[1, 2]`: `zA = 0`, `zf = [1, 2]`
-  have hA : (sys.linearize (fun _ => x₀) 0 I).zA = ⟨1, 0, fun _ => 0⟩ := by
-    simp [sys, I, NonlinParamSys.linearize, jacobianMat, Interval.center, Interval.radius]
-  have hUc : (sys.linearize (fun _ => x₀) 0 I).zf.c = fun _ => 3 / 2 := by
+  have hA : (sys.linearize (fun _ => x₀) 0 I).1.A = ⟨1, 0, fun _ => 0⟩ := by
+    simp [sys, I, NonlinParamSys.linearize, NonlinParamSys.linearizeF, jacobianMat,
+      Interval.center, Interval.radius]
+  -- the center of `zf`, `3/2`, is the constant of the returned system
+  have hUc : (sys.linearize (fun _ => x₀) 0 I).1.c = fun _ => 3 / 2 := by
     funext i
-    simp [sys, I, NonlinParamSys.linearize, Interval.center, Interval.radius]
+    simp [sys, I, NonlinParamSys.linearize, NonlinParamSys.linearizeF, Interval.center,
+      Interval.radius]
     norm_num
-  have hUG : ∀ i, (sys.linearize (fun _ => x₀) 0 I).zf.G i = fun _ => 1 / 2 := by
+  have hUG : ∀ i, (sys.linearizeF (fun _ => x₀) 0 I).G i = fun _ => 1 / 2 := by
     intro i
     funext j
     fin_cases i
-    simp [sys, I, NonlinParamSys.linearize, Interval.center, Interval.radius]
+    simp [sys, I, NonlinParamSys.linearizeF, Interval.center, Interval.radius]
     norm_num
-  have hc := core r hr.le _ hUc (sys.linearize (fun _ => x₀) 0 I).zA hA _ hUG
-    (Zonotope.ofPoint (fun _ => x₀) ⊞ Zonotope.ofPoint (-(sys.linearize (fun _ => x₀) 0 I).xs))
+  have hc := core r hr.le _ hUc (sys.linearize (fun _ => x₀) 0 I).1.A hA _ hUG
+    (Zonotope.ofPoint (fun _ => x₀) ⊞ Zonotope.ofPoint (-(sys.linearize (fun _ => x₀) 0 I).2.1))
     rfl
   have hSRdc : (Zonotope.ofPoint (fun _ : Fin 1 => x₀)
-      ⊞ Zonotope.ofPoint (-(sys.linearize (fun _ => x₀) 0 I).xs)).c 0 = 0 := by
+      ⊞ Zonotope.ofPoint (-(sys.linearize (fun _ => x₀) 0 I).2.1)).c 0 = 0 := by
     show (fun _ : Fin 1 => x₀) 0 + (-fun _ : Fin 1 => x₀) 0 = 0
     simp
   -- both sets of `linReachCora` stay below `x₀ + 2 r`, the run at `p = 2` is at `x₀ + 4 r`
@@ -409,7 +413,7 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
       have := hc.1
       rw [hSRdc] at this
       have e0 : ((0 : Vec ℝ 1) : Fin 1 → ℝ) 0 = 0 := rfl
-      have e1 : (sys.linearize (fun _ => x₀) 0 I).xs 0 = x₀ := rfl
+      have e1 : (sys.linearize (fun _ => x₀) 0 I).2.1 0 = x₀ := rfl
       rw [e0, e1]
       linarith
     have h2 : S R.2 ≤ x₀ + 2 * r := by
@@ -417,7 +421,7 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
       have := hc.2
       rw [hSRdc] at this
       have e0 : ((0 : Vec ℝ 1) : Fin 1 → ℝ) 0 = 0 := rfl
-      have e1 : (sys.linearize (fun _ => x₀) 0 I).xs 0 = x₀ := rfl
+      have e1 : (sys.linearize (fun _ => x₀) 0 I).2.1 0 = x₀ := rfl
       rw [e0, e1]
       linarith
     exact ⟨fun hmem => by linarith [hbound _ _ hmem], fun hmem => by linarith [hbound _ _ hmem]⟩

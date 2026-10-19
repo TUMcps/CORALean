@@ -1,5 +1,6 @@
 module
 
+public import CORALean.NN.Layers.Definitions.Basic
 public import CORALean.NN.Layers.Definitions.Relu
 public import CORALean.NN.Layers.Operations.ReluStarFloat
 public import CORALean.NN.Layers.Theorems.StarSetFloatReluNeuronOuter

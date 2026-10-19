@@ -1,5 +1,6 @@
 module
 
+public import CORALean.HybridDynamics.Parallel.Operations.Basic
 public import CORALean.HybridDynamics.Parallel.ParallelHybridAutomaton
 
 @[expose] public section

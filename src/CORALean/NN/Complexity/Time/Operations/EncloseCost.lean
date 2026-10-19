@@ -1,5 +1,6 @@
 module
 
+public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Operations.Enclose
 public import CORALean.Global.Cost
 
