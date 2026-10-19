@@ -46,7 +46,6 @@ src/CORALean/ContDynamics/LinParamSysDT/Theorems/SimulateIsTrajectory.lean
 src/CORALean/ContDynamics/LinParamSysDT/Theorems/IsTrajectoryToLinParam.lean
 src/CORALean/ContDynamics/LinProbSys/Counterexamples/ReachCovCora.lean
 src/CORALean/ContDynamics/LinProbSys/Definitions/PostState.lean
-src/CORALean/ContDynamics/LinProbSys/LinProbSys.lean
 src/CORALean/ContDynamics/LinProbSys/Theorems/EnclosingHullCov.lean
 src/CORALean/ContDynamics/LinProbSys/Theorems/InitReachCovLt.lean
 src/CORALean/ContDynamics/LinProbSys/Theorems/InitReachInputCov.lean

@@ -1985,14 +1985,13 @@ report "$out"
 
 # A system class states what it denotes where it is declared (#215): the main file
 # `ContDynamics/<C>/<C>.lean` declares `<C>.IsTrajectory`, the runs of the system, as
-# `LinearSys` and `NonlinearSys` do, and not a `Definitions/` file beside it. The exceptions are
+# `LinearSys` and `NonlinearSys` do, and not a `Definitions/` file beside it. The exception is
 # named here with their reason.
 if [ -z "$STAGED" ]; then
   out=$(for d in src/CORALean/ContDynamics/*/; do
     c=$(basename "$d"); f="$d$c.lean"
     [ -f "$f" ] || continue
     case "$c" in
-      LinProbSys) continue ;;  # denotes the law of its solution; the process itself is not defined
       OutputEq) continue ;;    # an output map applied to any system's run, not a system
     esac
     grep -Eq "^(structure|def|abbrev|inductive)[[:space:]]+$c\.IsTrajectory([[:space:]]|$)" "$f" ||
@@ -2005,6 +2004,8 @@ fi
 # (#179): where the main structure of `ContDynamics/<C>/<C>.lean` stores an output map (`g`, `h`, or
 # `C` for the linear ones), each `<C>.Is…Trajectory…` structure there that is not a canonical form
 # has an `output` field, `y = g x u` (`outputEq.eval` at a linear class, noise beside it).
+# `LinProbSys`'s `C` is the noise matrix, not an output map: CORA's `linProbSys` has no output
+# equation (its `simulate` refuses output trajectories).
 if [ -z "$STAGED" ]; then
   out=$(for d in src/CORALean/ContDynamics/*/; do
     c=$(basename "$d"); f="$d$c.lean"
@@ -2012,7 +2013,7 @@ if [ -z "$STAGED" ]; then
     awk -v F="$f" -v C="$c" '
       /MAIN TYPE/ { m = 1 }
       m && /^structure / { s++ ; if (s > 1) { insT = 0 } }
-      s == 1 && /^  (g|h|C) : / { hasOut = 1 }
+      s == 1 && /^  (g|h|C) : / && C != "LinProbSys" { hasOut = 1 }
       /^structure / {
         if (cur != "" && !seen) bad[cur] = curLine
         cur = ""; seen = 0
