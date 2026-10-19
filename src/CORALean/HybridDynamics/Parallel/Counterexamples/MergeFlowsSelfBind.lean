@@ -1,5 +1,6 @@
 module
 
+public import CORALean.HybridDynamics.Parallel.Operations.Basic
 public import CORALean.HybridDynamics.Parallel.Operations.MergeFlows
 public import CORALean.HybridDynamics.Parallel.Operations.MergeFlowsLinearSys
 public import CORALean.ContDynamics.LinearSys.Operations.Canonical

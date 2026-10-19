@@ -1,11 +1,11 @@
 module
 
-public import CORALean.ContDynamics.NonlinParamSys.Operations.Linearize
+public import CORALean.ContDynamics.NonlinParamSys.Operations.LinearizeF
 
 @[expose] public section
 
 /-!
-# `linearize` assumes the dynamics are affine in the parameters
+# `linearizeF` assumes the dynamics are affine in the parameters
 
 CORA builds `parametricDynamicFile` from `f(x, u, 0)` and the unit vectors, and nothing checks
 that `f` is affine in `p` (the `try` of `aux_parametric` catches symbolic failures only). For
@@ -15,7 +15,7 @@ that `f` is affine in `p` (the `try` of `aux_parametric` catches symbolic failur
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -32,12 +32,12 @@ open CORALean.Real
 theorem NonlinParamSys.linearize_f_counterexample :
     let sys : NonlinParamSys 1 1 1 := ⟨fun _ _ p => fun _ => p 0 ^ 2, 1, fun x _ _ => x⟩
     let I : Interval (Vec ℝ 1) := ⟨fun _ => 1, fun _ => 2⟩
-    sys.f 0 0 (fun _ => 2) ∉ (sys.linearize 0 0 I).zf.construct := by -- --- PROOF ---
+    sys.f 0 0 (fun _ => 2) ∉ (sys.linearizeF 0 0 I).construct := by -- --- PROOF ---
   intro sys I
   rintro ⟨β, hβ, h⟩
   -- the coordinate: `4 = 3/2 + β/2`, so `β = 5`
   have h0 := congrFun h 0
-  simp [sys, I, NonlinParamSys.linearize, Interval.center, Interval.radius] at h0
+  simp [sys, I, NonlinParamSys.linearizeF, Interval.center, Interval.radius] at h0
   have := hβ (0 : Fin 1)
   rw [abs_le] at this
   norm_num at h0

@@ -1,5 +1,6 @@
 module
 
+public import CORALean.NN.Layers.Definitions.Basic
 public import CORALean.NN.Layers.Operations.MaxPool
 public import CORALean.NN.Layers.Theorems.LeMaxPoolGapUp
 public import CORALean.NN.Layers.Theorems.Real.MaxPoolBounds

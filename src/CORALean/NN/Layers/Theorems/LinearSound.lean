@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.NN.Layers.Definitions.Basic
 public import CORALean.NN.Layers.Operations.Linear
 
 @[expose] public section

@@ -1,5 +1,6 @@
 module
 
+public import CORALean.NN.Layers.Definitions.Basic
 public import CORALean.NN.Layers.Operations.Reshape
 
 @[expose] public section

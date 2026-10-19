@@ -7,6 +7,7 @@ public import CORALean.NN.Definitions.Schedule
 public import CORALean.ContSet.PolyLevelSet.Real.Operations.Linear
 public import CORALean.NN.Definitions.WeightAcc
 public import CORALean.NN.Definitions.WeightNetwork
+public import CORALean.NN.NeuralNetwork
 public import CORALean.NN.Operations.WeightLayerEval
 public import Mathlib.Data.Matrix.Diagonal
 public import Mathlib.Data.Matrix.Mul
@@ -26,7 +27,7 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean
 
-variable {n : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
 
 -- =======================================  `CatCond.ge`  ======================================= --
@@ -61,6 +62,18 @@ def CatCond.neg (i : Fin n) : CatCond n :=
 /-- `xᵢ ≥ 0`: the degree-1 row `-xᵢ ≤ 0`. -/
 def CatCond.nonneg (i : Fin n) : CatCond n :=
   Real.PolyLevelSet.linear (m := 1) (fun _ => (-Pi.single i 1 : Vec ℝ n)) 0 fun _ => .le
+
+
+-- =================================  `NeuralNetwork.ofLayer`  ================================== --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   24-September-2026
+-- Reviewed:      ---
+
+/-- One layer, so that a single layer needs no special case anywhere. -/
+def NeuralNetwork.ofLayer {L : ℕ → ℕ → Type} [Enclose L S] (curr : L n m) :
+    NeuralNetwork S n m :=
+  .layer curr .output
 
 end CORALean
 

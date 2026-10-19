@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.NN.Layers.Definitions.Basic
 public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Layers.Operations.ClampUnit
 public import CORALean.NN.Layers.Operations.DoubleRounding
@@ -201,6 +202,78 @@ theorem tanhRelaxation_sound (k : ℕ) : (tanhRelaxation (𝕋 := 𝕋) k).Sound
   Relaxation.ofAffineConj_sound (sigmoidRelaxation_sound k) doubleRounding_sound
     doubleRounding_sound (by norm_num) (by norm_num)
     (fun t => by rw [toReal_neg, toReal_one, Real.tanh_eq_sigmoid]; ring)
+
+end
+
+
+section
+
+universe u
+
+open ContSet
+
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
+  {f : Vec ℝ n → Vec ℝ m} {g : Vec ℝ m → Vec ℝ k}
+
+
+-- =================================  `Enclose.toLayer_sound`  ================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       02-September-2026
+-- Last update:   24-September-2026
+-- Reviewed:      ---
+
+/-- What forgetting the kind keeps: the layer is sound at its kind's `eval`. -/
+theorem Enclose.toLayer_sound {L : ℕ → ℕ → Type u} [Enclose L S] (l : L n m) :
+    (Enclose.toLayer (S := S) l).Sound (Enclose.eval (S := S) l).out :=
+  ⟨fun s _x hx => Enclose.enclose_outer l s (Set.mem_image_of_mem _ hx)⟩
+
+
+-- ====================================  `Layer.comp_sound`  ==================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       02-September-2026
+-- Last update:   24-September-2026
+-- Reviewed:      ---
+
+/-- Composition of layers is sound at the composition of their functions. -/
+theorem Layer.comp_sound {L₂ : Layer S m k} {L₁ : Layer S n m} (h₂ : L₂.Sound g)
+    (h₁ : L₁.Sound f) : (L₂.comp L₁).Sound (g ∘ f) :=
+  ⟨fun s x hx => h₂.enclose_outer _ _ (h₁.enclose_outer s x hx)⟩
+
+
+-- ==================================  `Layer.identity_sound`  ================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       02-September-2026
+-- Last update:   24-September-2026
+-- Reviewed:      ---
+
+/-- The identity layer is sound at the identity function. -/
+theorem Layer.identity_sound : (Layer.identity S n).Sound id := ⟨fun _ _ hx => hx⟩
+
+
+-- ===================================  `Layer.Sound.congr`  ==================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       02-September-2026
+-- Last update:   24-September-2026
+-- Reviewed:      ---
+
+/-- Soundness is stable under replacing the function by one that agrees with it
+everywhere, which is what lets a caller name the map in its own terms. -/
+theorem Layer.Sound.congr {L : Layer S n m} {f' : Vec ℝ n → Vec ℝ m} (h : L.Sound f)
+    (hff : ∀ x, f' x = f x) : L.Sound f' :=
+  ⟨fun s x hx => (hff x) ▸ h.enclose_outer s x hx⟩
+
+
+-- ================================  `Layer.Sound.image_subset`  ================================ --
+-- Authors:       Claude Opus 5.5
+-- Written:       02-September-2026
+-- Last update:   24-September-2026
+-- Reviewed:      ---
+
+/-- The obligation as an inclusion, which is the form it composes in. -/
+theorem Layer.Sound.image_subset {L : Layer S n m} (h : L.Sound f) (s : S n) :
+    f '' construct s ⊆ construct (L.enclose s) := by
+  rintro _ ⟨x, hx, rfl⟩
+  exact h.enclose_outer s x hx
 
 end
 

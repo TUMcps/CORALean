@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.NonlinParamSys.Operations.Augment
 public import CORALean.ContDynamics.NonlinParamSys.Operations.Linearize
+public import CORALean.ContDynamics.NonlinParamSys.Operations.LinearizeF
 public import CORALean.ContDynamics.NonlinParamSys.Operations.LinearizeFloat
 public import CORALean.ContDynamics.NonlinParamSys.Operations.ReachUnion
 public import CORALean.ContDynamics.NonlinParamSys.Operations.ReachFloat

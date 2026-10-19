@@ -13,7 +13,7 @@ zonotope `zA` of `linearize` for every `p` of the parameter box (`jacobianFamily
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -34,7 +34,7 @@ theorem NonlinParamSys.linearize_jacobianX_mem (sys : NonlinParamSys n m q)
     (xs : Vec ℝ n) (us : Vec ℝ m)
     (hd : ∀ p, DifferentiableAt ℝ (fun x => sys.f x us p) xs) (I : Interval (Vec ℝ q))
     {p : Vec ℝ q} (hp : p ∈ I.construct) :
-    jacobianMat (fun x => sys.f x us p) xs ∈ (sys.linearize xs us I).zA.construct :=
+    jacobianMat (fun x => sys.f x us p) xs ∈ (sys.linearize xs us I).1.A.construct :=
   NonlinParamSys.jacobianFamily_mem (fun x p => sys.f x us p) (fun x p => hAff x us p) xs hd I hp
 
 end CORALean

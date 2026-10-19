@@ -12,8 +12,10 @@ public import CORALean.NN.Definitions.Reduction
 public import CORALean.NN.Definitions.RefinableLayer
 public import CORALean.NN.Definitions.RefinableNetwork
 public import CORALean.NN.Definitions.RefinableNetworkImage
+public import CORALean.NN.Definitions.Sandwich
 public import CORALean.NN.Definitions.Schedule
 public import CORALean.NN.Definitions.SmoothNetwork
+public import CORALean.NN.Definitions.Sound
 public import CORALean.NN.Definitions.SuffExplanation
 public import CORALean.NN.Definitions.SuffExplanationAbstract
 public import CORALean.NN.Definitions.SuffExplanationExact

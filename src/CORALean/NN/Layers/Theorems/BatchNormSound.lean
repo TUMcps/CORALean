@@ -1,6 +1,8 @@
 module
 
+public import CORALean.NN.Layers.Definitions.Basic
 public import CORALean.NN.Layers.Operations.BatchNorm
+public import CORALean.NN.Layers.Theorems.Basic
 public import CORALean.NN.Layers.Theorems.LinearSound
 
 @[expose] public section

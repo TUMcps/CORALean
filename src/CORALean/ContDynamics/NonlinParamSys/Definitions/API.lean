@@ -1,6 +1,5 @@
 module
 
-public import CORALean.ContDynamics.NonlinParamSys.Definitions.Linearized
 public import CORALean.ContDynamics.NonlinParamSys.Definitions.FloatModel
 public import CORALean.ContDynamics.NonlinParamSys.Definitions.LinearizedFloat
 public import CORALean.ContDynamics.NonlinParamSys.Definitions.PancakeScaled
@@ -12,5 +11,5 @@ public import CORALean.ContDynamics.NonlinParamSys.Definitions.WithSteps
 
 `WithSteps` bundles the system with its parameter set and the data a `Reach`
 run of its augmented system spends; `ReachUnionExact` is the constant-parameter
-reachable set that run encloses. `Linearized` is what `linearize` hands on.
+reachable set that run encloses.
 -/

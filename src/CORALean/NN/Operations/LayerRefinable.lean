@@ -1,6 +1,7 @@
 module
 
 public import CORALean.NN.Definitions.RefinableLayer
+public import CORALean.NN.Layers.Definitions.Basic
 
 @[expose] public section
 

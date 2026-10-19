@@ -1,5 +1,8 @@
 module
 
+public import CORALean.NN.Definitions.Sound
+public import CORALean.NN.Layers.Operations.Basic
+public import CORALean.NN.Layers.Theorems.Basic
 public import CORALean.NN.Operations.Eval
 
 @[expose] public section

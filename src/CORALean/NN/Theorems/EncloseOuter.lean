@@ -1,5 +1,6 @@
 module
 
+public import CORALean.NN.Definitions.Sound
 public import CORALean.NN.Operations.Enclose
 
 @[expose] public section

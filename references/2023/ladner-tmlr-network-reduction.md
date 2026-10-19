@@ -40,6 +40,7 @@ once over the scalar, so the same definition runs at a machine one.
 
 These name the paper as a whole. A locator would put each in a row above.
 
+* [`Sandwich.lean`](../../src/CORALean/NN/Definitions/Sandwich.lean)
 * [`MergeRowWeight.lean`](../../src/CORALean/NN/Operations/MergeRowWeight.lean)
 * [`ExistsMergeBucketAll.lean`](../../src/CORALean/NN/Theorems/ExistsMergeBucketAll.lean)
 * [`ExistsMergeTolerance.lean`](../../src/CORALean/NN/Theorems/ExistsMergeTolerance.lean)

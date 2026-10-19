@@ -1,6 +1,7 @@
 module
 
 public import CORALean.NN.Layers.Definitions.ActivationPoly
+public import CORALean.NN.Layers.Definitions.Basic
 public import CORALean.NN.Layers.Theorems.CoeffListCoord
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyExact

@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Real.Theorems.MemCenter
+public import CORALean.NN.Layers.Definitions.Basic
 public import CORALean.NN.Layers.Operations.LinearWithError
 
 @[expose] public section

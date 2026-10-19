@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+public import CORALean.NN.Layers.Definitions.Basic
 public import CORALean.NN.Layers.Operations.LipConstrLinearFloat
 public import CORALean.NN.Layers.Theorems.LipConstrScaleFloatMem
 

@@ -1,5 +1,8 @@
 module
 
+public import CORALean.NN.Definitions.Sound
+public import CORALean.NN.Layers.Definitions.Basic
+public import CORALean.NN.Layers.Theorems.Basic
 public import CORALean.NN.Operations.Enclose
 
 @[expose] public section
@@ -11,7 +14,13 @@ Induction on `Sound`, the exact map and `enclose` unfolding in step: at `output`
 both are the identity, at `layer` `Layer.Sound.image_subset` gets the head
 layer's set inside the head layer's enclosure, and the tail's own induction
 carries that the rest of the way — the form `Verified` composes with
-`Specification.holds_of_outer`.
+`Specification.holds_of_outer`. That is [1, Prop. 2.14]'s image enclosure, `H_k = enclose(L_k,
+H_{k-1})` an over-approximative output set, for a chain of layers.
+
+## References
+
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
+      Network Verification using Sensitivity Analysis". HSCC 2023.
 -/
 
 -- Authors:       Claude Opus 5
