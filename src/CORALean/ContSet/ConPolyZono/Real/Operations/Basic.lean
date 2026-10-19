@@ -85,30 +85,6 @@ theorem ConPolyZono.mtimes_eq_map (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ 
     ConPolyZono.mtimes M cPZ = cPZ.map (Matrix.mulVecLin M) := rfl
 
 
--- ===================================  `ConPolyZono.plusB`  ==================================== --
--- Authors:       Claude Opus 5, Claude Opus 5.5
--- Written:       02-September-2026
--- Last update:   18-October-2026
--- Reviewed:      ---
-
-/-- The two right-hand sides side by side. -/
-def ConPolyZono.plusB {m₁ m₂ : ℕ} (b₁ : Vec ℝ m₁) (b₂ : Vec ℝ m₂) : Vec ℝ (m₁ + m₂) :=
-  Fin.append b₁ b₂
-
-
--- ===============================  `ConPolyZono.intersectionB`  ================================ --
--- Authors:       Claude Opus 5, Claude Opus 5.5
--- Written:       02-September-2026
--- Last update:   18-October-2026
--- Reviewed:      ---
-
-/-- The right-hand side of `intersectionDep`: the two systems' own, then the agreement
-rows' `c₂ − c₁`. -/
-def ConPolyZono.intersectionB (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) :
-    Vec ℝ (cPZ₁.m + cPZ₂.m + n) :=
-  Fin.append (ConPolyZono.plusB cPZ₁.b cPZ₂.b) fun i => cPZ₂.c i - cPZ₁.c i
-
-
 -- ==================================  `ConPolyZono.unitBox`  =================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
@@ -119,24 +95,6 @@ def ConPolyZono.intersectionB (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) :
 def ConPolyZono.unitBox (p : ℕ) : Interval (Vec ℝ p) where
   inf := fun _ => -1
   sup := fun _ => 1
-
-end
-
-
-section
-
-variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
-
-
--- ===============================  `ConPolyZono.satisfies_map`  ================================ --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   05-September-2026
--- Reviewed:      ---
-
-/-- The constraint is untouched, and `rfl` is the honest proof of it. -/
-theorem ConPolyZono.satisfies_map (f : α →ₗ[ℝ] β) (cPZ : ConPolyZono α)
-    (a : Fin cPZ.p → ℝ) : (cPZ.map f).satisfies a ↔ cPZ.satisfies a := Iff.rfl
 
 end
 

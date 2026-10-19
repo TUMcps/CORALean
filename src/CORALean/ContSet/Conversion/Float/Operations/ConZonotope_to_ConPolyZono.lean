@@ -52,17 +52,15 @@ def ConZonotope.conPolyZono (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConPolyZono �
   p := cZ.h
   h := cZ.h
   qI := 0
-  m := cZ.P.m + cZ.P.me
-  q := cZ.h
   c := cZ.c
   G := cZ.G
   E := Real.PolyZonotope.identE cZ.h
   GI := Fin.elim0
-  A := ConZonotope.conA cZ
   -- each row held to its enclosure: its lower end, and the width above it
-  b := (ConZonotope.conB cZ).inf
-  b_error := fun k => subUp ((ConZonotope.conB cZ).sup k) ((ConZonotope.conB cZ).inf k)
-  R := Real.PolyZonotope.identE cZ.h
+  cons := ⟨cZ.P.m + cZ.P.me, cZ.h, ConZonotope.conA cZ, Real.PolyZonotope.identE cZ.h,
+    (ConZonotope.conB cZ).inf,
+    fun k => subUp ((ConZonotope.conB cZ).sup k) ((ConZonotope.conB cZ).inf k), fun _ => .eq⟩
+  cons_eq _ := rfl
   I_error := cZ.I_error
 
 end CORALean.Float

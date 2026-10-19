@@ -19,9 +19,9 @@ the same reason it does for a polynomial zonotope: the same witnesses work in
 both directions.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -38,15 +38,12 @@ def ConPolyZono.map (f : α →ₗ[ℝ] β) (cPZ : ConPolyZono α) : ConPolyZono
   p := cPZ.p
   h := cPZ.h
   qI := cPZ.qI
-  m := cPZ.m
-  q := cPZ.q
   c := f cPZ.c
   G := fun i => f (cPZ.G i)
   E := cPZ.E
   GI := fun j => f (cPZ.GI j)
-  A := cPZ.A
-  b := cPZ.b
-  R := cPZ.R
+  cons := cPZ.cons
+  cons_eq := cPZ.cons_eq
 
 end CORALean.Real
 

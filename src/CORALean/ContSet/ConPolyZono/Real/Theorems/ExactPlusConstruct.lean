@@ -36,7 +36,7 @@ theorem ConPolyZono.exactPlus_construct (cPZ₁ cPZ₂ : ConPolyZono α)
     (hp : cPZ₁.p = cPZ₂.p) : -- --- STMT ---
     (cPZ₁.exactPlus cPZ₂ hp).construct
       = {x | ∃ a : Fin cPZ₁.p → ℝ, ∃ β₁ : Fin cPZ₁.qI → ℝ, ∃ β₂ : Fin cPZ₂.qI → ℝ,
-          (∀ k, |a k| ≤ 1) ∧ (∀ j, |β₁ j| ≤ 1) ∧ (∀ j, |β₂ j| ≤ 1) ∧ cPZ₁.satisfies a
+          (∀ k, |a k| ≤ 1) ∧ (∀ j, |β₁ j| ≤ 1) ∧ (∀ j, |β₂ j| ≤ 1) ∧ a ∈ cPZ₁.cons.construct
           ∧ x = (cPZ₁.polyZonotope.point a + ∑ j, β₁ j • cPZ₁.GI j)
               + (cPZ₂.polyZonotope.point (fun k => a (Fin.cast hp.symm k))
                 + ∑ j, β₂ j • cPZ₂.GI j)} := by -- --- PROOF ---

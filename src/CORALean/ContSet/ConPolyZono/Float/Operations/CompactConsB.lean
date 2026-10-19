@@ -31,8 +31,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The slack widened by what a merged row can be off by: one `radius` of the row's gaps,
 every constraint monomial being in `[-1,1]`. -/
-def ConPolyZono.compactConsB (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Vec 𝕋 cPZ.m :=
-  fun i => addUp (absolute (cPZ.b_error i)) (radius (ConPolyZono.compactConsGap cPZ) i)
+def ConPolyZono.compactConsB (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Vec 𝕋 cPZ.cons.m :=
+  fun i => addUp (absolute (cPZ.cons.b_error i)) (radius (ConPolyZono.compactConsGap cPZ) i)
 
 end CORALean.Float
 

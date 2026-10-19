@@ -4,6 +4,8 @@ public import CORALean.NN.Layers.Definitions.WindowMax
 public import CORALean.NN.Layers.Theorems.Real.Basic
 public import CORALean.NN.Layers.Theorems.SelectMatMulVec
 public import CORALean.NN.Operations.CatMaxSegment
+public import CORALean.NN.Theorems.Basic
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.AndExact
 
 @[expose] public section
 
@@ -24,7 +26,7 @@ selection keeps that coordinate. A maximum exists, the window being nonempty.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -42,16 +44,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- The guard is that `x P` dominates every `x (g q)`. -/
 theorem aux_holds_foldr_ge {N : ℕ} (P : Fin N) (x : Vec ℝ N) :
     ∀ {j : ℕ} (g : Fin j → Fin N),
-      (Fin.foldr j (fun q acc => CatCond.and (.ge P (g q)) acc) (.ge P P)).Holds x
+      x ∈ (Fin.foldr j (fun q acc => (CatCond.ge P (g q)).and_ acc) (CatCond.ge P P)).construct
         ↔ ∀ q, x (g q) ≤ x P := by -- --- PROOF ---
   intro j
   induction j with
-  | zero => intro g; simp [Fin.foldr_zero, CatCond.Holds]
+  | zero => intro g; rw [Fin.foldr_zero, CatCond.mem_ge_iff]; simp
   | succ j ih =>
     intro g
-    rw [Fin.foldr_succ]
-    show x (g 0) ≤ x P ∧ _ ↔ _
-    rw [ih (fun q => g q.succ), Fin.forall_fin_succ]
+    rw [Fin.foldr_succ, Real.PolyLevelSet.and_exact, Set.mem_inter_iff, CatCond.mem_ge_iff,
+      ih (fun q => g q.succ), Fin.forall_fin_succ]
 
 /-- The selection of position `p`, read off coordinate by coordinate. -/
 theorem aux_eval_select (a k b : ℕ) (p : Fin (k + 1))

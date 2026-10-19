@@ -9,6 +9,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
 public import CORALean.ContSet.StarSet.Real.Instances
 public import Mathlib.Algebra.Order.Ring.Abs
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemPadVarsIff
 
 @[expose] public section
 
@@ -24,7 +25,7 @@ predicate as a constrained polynomial zonotope, is not exact: the predicate may 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -69,16 +70,8 @@ theorem ConPolyZono.aux_mem_starBoxRows (cPZ : ConPolyZono (Vec ℝ n))
 theorem ConPolyZono.aux_mem_starConsRows (cPZ : ConPolyZono (Vec ℝ n))
     (ζ : Vec ℝ (cPZ.p + cPZ.qI + cPZ.h)) :
     ζ ∈ cPZ.starConsRows.construct
-      ↔ cPZ.satisfies fun k => ζ (Fin.castAdd cPZ.h (Fin.castAdd cPZ.qI k)) := by -- --- PROOF ---
-  have hm : PolyZonotope.monomial cPZ.starConsRows.R ζ
-      = PolyZonotope.monomial cPZ.R fun k => ζ (Fin.castAdd cPZ.h (Fin.castAdd cPZ.qI k)) :=
-    funext fun j => by
-      show PolyZonotope.monomial (ConPolyZono.padE (ConPolyZono.padE cPZ.R cPZ.qI) cPZ.h) ζ j = _
-      rw [ConPolyZono.monomial_padE, ConPolyZono.monomial_padE]
-  show (∀ i, CompOp.holds .eq ((cPZ.starConsRows.A *ᵥ PolyZonotope.monomial cPZ.starConsRows.R ζ
-    - cPZ.starConsRows.b) i)) ↔ _
-  rw [hm]
-  exact forall_congr' fun i => sub_eq_zero
+      ↔ (fun k => ζ (Fin.castAdd cPZ.h (Fin.castAdd cPZ.qI k))) ∈ cPZ.cons.construct :=
+  (PolyLevelSet.mem_padVars_iff _ _ ζ).trans (PolyLevelSet.mem_padVars_iff _ _ _)
 
 /-- The generator rows say each `z` is its generator's monomial at the factors. -/
 theorem ConPolyZono.aux_mem_starGenRows (cPZ : ConPolyZono (Vec ℝ n))

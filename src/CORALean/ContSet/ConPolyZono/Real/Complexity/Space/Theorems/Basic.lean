@@ -47,7 +47,7 @@ theorem ConPolyZono.intersection_h (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) :
 
 /-- The `m` count of `intersection`'s result. -/
 theorem ConPolyZono.intersection_m (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.intersection cPZ₁ cPZ₂).m = cPZ₁.m + cPZ₂.m + n := rfl
+    (ConPolyZono.intersection cPZ₁ cPZ₂).cons.m = cPZ₁.cons.m + cPZ₂.cons.m + n := rfl
 
 
 -- ===============================  `ConPolyZono.intersection_q`  =============================== --
@@ -58,8 +58,8 @@ theorem ConPolyZono.intersection_m (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) :
 
 /-- The `q` count of `intersection`'s result. -/
 theorem ConPolyZono.intersection_q (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.intersection cPZ₁ cPZ₂).q
-      = cPZ₁.q + cPZ₂.q + ((cPZ₁.h + cPZ₁.qI) + (cPZ₂.h + cPZ₂.qI)) := rfl
+    (ConPolyZono.intersection cPZ₁ cPZ₂).cons.q
+      = cPZ₁.cons.q + cPZ₂.cons.q + ((cPZ₁.h + cPZ₁.qI) + (cPZ₂.h + cPZ₂.qI)) := rfl
 
 
 -- ==============================  `ConPolyZono.intersection_qI`  =============================== --
@@ -100,7 +100,7 @@ theorem ConPolyZono.mtimes_h (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
 
 /-- The `m` count of `mtimes`'s result. -/
 theorem ConPolyZono.mtimes_m (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.mtimes M cPZ).m = cPZ.m := rfl
+    (ConPolyZono.mtimes M cPZ).cons.m = cPZ.cons.m := rfl
 
 
 -- ==================================  `ConPolyZono.mtimes_q`  ================================== --
@@ -111,7 +111,7 @@ theorem ConPolyZono.mtimes_m (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
 
 /-- The `q` count of `mtimes`'s result. -/
 theorem ConPolyZono.mtimes_q (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.mtimes M cPZ).q = cPZ.q := rfl
+    (ConPolyZono.mtimes M cPZ).cons.q = cPZ.cons.q := rfl
 
 
 -- =================================  `ConPolyZono.mtimes_qI`  ================================== --
@@ -150,7 +150,8 @@ theorem ConPolyZono.plus_h (cPZ₁ cPZ₂ : ConPolyZono α) : (cPZ₁.plus cPZ�
 
 omit [Module ℝ α] in
 /-- The `m` count of `plus`'s result. -/
-theorem ConPolyZono.plus_m (cPZ₁ cPZ₂ : ConPolyZono α) : (cPZ₁.plus cPZ₂).m = cPZ₁.m + cPZ₂.m := rfl
+theorem ConPolyZono.plus_m (cPZ₁ cPZ₂ : ConPolyZono α) : (cPZ₁.plus cPZ₂).cons.m = cPZ₁.cons.m
+    + cPZ₂.cons.m := rfl
 
 
 -- ===================================  `ConPolyZono.plus_q`  =================================== --
@@ -161,7 +162,8 @@ theorem ConPolyZono.plus_m (cPZ₁ cPZ₂ : ConPolyZono α) : (cPZ₁.plus cPZ�
 
 omit [Module ℝ α] in
 /-- The `q` count of `plus`'s result. -/
-theorem ConPolyZono.plus_q (cPZ₁ cPZ₂ : ConPolyZono α) : (cPZ₁.plus cPZ₂).q = cPZ₁.q + cPZ₂.q := rfl
+theorem ConPolyZono.plus_q (cPZ₁ cPZ₂ : ConPolyZono α) : (cPZ₁.plus cPZ₂).cons.q = cPZ₁.cons.q
+    + cPZ₂.cons.q := rfl
 
 
 -- ==================================  `ConPolyZono.plus_qI`  =================================== --
@@ -201,7 +203,7 @@ theorem ConPolyZono.quadMap_h (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Ve
 
 /-- The `m` count of `quadMap`'s result. -/
 theorem ConPolyZono.quadMap_m (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.quadMap Q cPZ).m = cPZ.m := rfl
+    (ConPolyZono.quadMap Q cPZ).cons.m = cPZ.cons.m := rfl
 
 
 -- =================================  `ConPolyZono.quadMap_q`  ================================== --
@@ -212,7 +214,7 @@ theorem ConPolyZono.quadMap_m (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Ve
 
 /-- The `q` count of `quadMap`'s result. -/
 theorem ConPolyZono.quadMap_q (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.quadMap Q cPZ).q = cPZ.q := rfl
+    (ConPolyZono.quadMap Q cPZ).cons.q = cPZ.cons.q := rfl
 
 
 -- =================================  `ConPolyZono.quadMap_qI`  ================================= --

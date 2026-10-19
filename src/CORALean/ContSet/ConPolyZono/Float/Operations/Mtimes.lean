@@ -40,16 +40,12 @@ def ConPolyZono.mtimes (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) 
   p := cPZ.p
   h := cPZ.h
   qI := cPZ.qI
-  m := cPZ.m
-  q := cPZ.q
   c := mulVecDown M cPZ.c
   G := fun l => mulVecDown M (cPZ.G l)
   E := cPZ.E
   GI := fun j => mulVecDown M (cPZ.GI j)
-  A := cPZ.A
-  b := cPZ.b
-  b_error := cPZ.b_error
-  R := cPZ.R
+  cons := cPZ.cons
+  cons_eq := cPZ.cons_eq
   I_error := (Interval.mtimes M cPZ.I_error).plus (ConPolyZono.mtimesResidual M cPZ)
 
 end CORALean.Float

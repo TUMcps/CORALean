@@ -85,11 +85,11 @@ def ConPolyZono.compactGensGap (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
 -- Last update:   05-September-2026
 -- Reviewed:      ---
 
-/-- The merged constraint column as stored, `A`'s rows read as the generator
-matrix they are on the constraint side. -/
-def ConPolyZono.mergedConsCol (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin cPZ.m)
-    (l : Fin (PolyZonotope.repKeep cPZ.R).card) : 𝕋 :=
-  PolyZonotope.fiberDown (Real.PolyZonotope.rep cPZ.R) cPZ.A i (PolyZonotope.keepIdx cPZ.R l)
+/-- The merged constraint column as stored, `A`'s rows read as a generator matrix. -/
+def ConPolyZono.mergedConsCol (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin cPZ.cons.m)
+    (l : Fin (PolyZonotope.repKeep cPZ.cons.R).card) : 𝕋 :=
+  PolyZonotope.fiberDown (Real.PolyZonotope.rep cPZ.cons.R) cPZ.cons.A i
+    (PolyZonotope.keepIdx cPZ.cons.R l)
 
 
 -- ==============================  `ConPolyZono.mergedConsColUp`  =============================== --
@@ -99,9 +99,10 @@ def ConPolyZono.mergedConsCol (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin cPZ
 -- Reviewed:      ---
 
 /-- `ConPolyZono.mergedConsColUp` -/
-def ConPolyZono.mergedConsColUp (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin cPZ.m)
-    (l : Fin (PolyZonotope.repKeep cPZ.R).card) : 𝕋 :=
-  PolyZonotope.fiberUp (Real.PolyZonotope.rep cPZ.R) cPZ.A i (PolyZonotope.keepIdx cPZ.R l)
+def ConPolyZono.mergedConsColUp (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin cPZ.cons.m)
+    (l : Fin (PolyZonotope.repKeep cPZ.cons.R).card) : 𝕋 :=
+  PolyZonotope.fiberUp (Real.PolyZonotope.rep cPZ.cons.R) cPZ.cons.A i
+    (PolyZonotope.keepIdx cPZ.cons.R l)
 
 
 -- ===============================  `ConPolyZono.compactConsGap`  =============================== --
@@ -112,7 +113,7 @@ def ConPolyZono.mergedConsColUp (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin c
 
 /-- What a merged constraint column can be off by. -/
 def ConPolyZono.compactConsGap (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    Mat 𝕋 cPZ.m (PolyZonotope.repKeep cPZ.R).card :=
+    Mat 𝕋 cPZ.cons.m (PolyZonotope.repKeep cPZ.cons.R).card :=
   fun i l => subUp (cPZ.mergedConsColUp i l) (cPZ.mergedConsCol i l)
 
 
@@ -125,18 +126,6 @@ def ConPolyZono.compactConsGap (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
 /-- Two right-hand sides, or two slack vectors, side by side. Copied, so nothing here rounds. -/
 def ConPolyZono.plusB {m₁ m₂ : ℕ} (b₁ : Vec 𝕋 m₁) (b₂ : Vec 𝕋 m₂) : Vec 𝕋 (m₁ + m₂) :=
   Fin.append b₁ b₂
-
-
--- ===============================  `ConPolyZono.intersectionB`  ================================ --
--- Authors:       Claude Opus 5, Claude Opus 5.5
--- Written:       03-September-2026
--- Last update:   18-October-2026
--- Reviewed:      ---
-
-/-- The two systems' own right-hand sides, then the agreement rows' lower ends. -/
-def ConPolyZono.intersectionB (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    Vec 𝕋 (cPZ₁.m + cPZ₂.m + n) :=
-  Fin.append (ConPolyZono.plusB cPZ₁.b cPZ₂.b) (ConPolyZono.intersectionAgree cPZ₁ cPZ₂).inf
 
 
 -- ================================  `ConPolyZono.rescaleStep`  ================================= --

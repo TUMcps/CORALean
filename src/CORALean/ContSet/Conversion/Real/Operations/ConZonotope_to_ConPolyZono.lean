@@ -61,15 +61,13 @@ noncomputable def ConZonotope.conPolyZono (cZ : ConZonotope (Vec ℝ n)) : ConPo
     { p := cZ.h
       h := cZ.h
       qI := 0
-      m := cZ.P.m + cZ.P.me
-      q := cZ.h
       c := cZ.c
       G := cZ.G
       E := PolyZonotope.identE cZ.h
       GI := Fin.elim0
-      A := ConZonotope.conA cZ
-      b := fun i => (ConZonotope.conLo cZ i + ConZonotope.conHi cZ i) / 2
-      R := PolyZonotope.identE cZ.h }
+      cons := ⟨cZ.P.m + cZ.P.me, cZ.h, ConZonotope.conA cZ, PolyZonotope.identE cZ.h,
+        fun i => (ConZonotope.conLo cZ i + ConZonotope.conHi cZ i) / 2, fun _ => .eq⟩
+      cons_eq := fun _ => rfl }
     (fun i => (ConZonotope.conHi cZ i - ConZonotope.conLo cZ i) / 2)
 
 end CORALean.Real

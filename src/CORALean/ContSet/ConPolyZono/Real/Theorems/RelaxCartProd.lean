@@ -1,9 +1,10 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.ForallAbsSubAppendIff
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.CartProdExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxIff
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.MulVecPlusAPlusE
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalCartProd
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Data.Fin.Tuple.Basic
 
 @[expose] public section
 
@@ -12,13 +13,14 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.MulVecPlusAPlusE
 
 `relax` of `cartProd`, at the two slack vectors side by side, denotes the product of the two
 relaxed operands: the product's rows are each operand's at its own factors
-(`mulVec_plusA_plusE`), so each block meets its rows within its own slack, and the point splits as
+(`PolyLevelSet.eval_cartProd`), so each block meets its rows within its own slack, and the point
+splits as
 in `cartProd_exact`. What a float product's nominal set is read through.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -31,11 +33,23 @@ open Matrix
 variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- Two blocks of rows side by side are each within their slack exactly when both blocks are. -/
+theorem ConPolyZono.aux_forall_abs_sub_append_iff {m₁ m₂ : ℕ} (u₁ c₁ s₁ : Fin m₁ → ℝ)
+    (u₂ c₂ s₂ : Fin m₂ → ℝ) :
+    (∀ i, |Fin.append u₁ u₂ i - Fin.append c₁ c₂ i| ≤ |Fin.append s₁ s₂ i|)
+      ↔ (∀ i, |u₁ i - c₁ i| ≤ |s₁ i|) ∧ ∀ i, |u₂ i - c₂ i| ≤ |s₂ i| :=
+  ⟨fun h => ⟨fun i => by simpa using h (Fin.castAdd m₂ i),
+      fun i => by simpa using h (Fin.natAdd m₁ i)⟩,
+    fun ⟨h₁, h₂⟩ => Fin.addCases (fun i => by simpa using h₁ i) fun i => by simpa using h₂ i⟩
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The product relaxed by the two slacks side by side is the product of the relaxed operands. -/
 theorem ConPolyZono.relax_cartProd (cPZ₁ : ConPolyZono α) (cPZ₂ : ConPolyZono β)
-    (s₁ : Vec ℝ cPZ₁.m) (s₂ : Vec ℝ cPZ₂.m) :
+    (s₁ : Vec ℝ cPZ₁.cons.m) (s₂ : Vec ℝ cPZ₂.cons.m) :
     ((cPZ₁.cartProd cPZ₂).relax (Fin.append s₁ s₂)).construct
       = (cPZ₁.relax s₁).construct ×ˢ (cPZ₂.relax s₂).construct := by -- --- PROOF ---
   -- `Fin.sum_univ_add` at the product's generator counts, through the projections
@@ -49,27 +63,28 @@ theorem ConPolyZono.relax_cartProd (cPZ₁ : ConPolyZono α) (cPZ₂ : ConPolyZo
     ConPolyZono.mem_relax_iff]
   -- the product's rows, each block at its own factors
   have hrows : ∀ a : Fin (cPZ₁.p + cPZ₂.p) → ℝ,
-      (cPZ₁.cartProd cPZ₂).A *ᵥ PolyZonotope.monomial (cPZ₁.cartProd cPZ₂).R a
-        - (cPZ₁.cartProd cPZ₂).b
-      = Fin.append (cPZ₁.A *ᵥ PolyZonotope.monomial cPZ₁.R (fun k => a (Fin.castAdd cPZ₂.p k))
-          - cPZ₁.b) (cPZ₂.A *ᵥ PolyZonotope.monomial cPZ₂.R (fun k => a (Fin.natAdd cPZ₁.p k))
-          - cPZ₂.b) := fun a => by
-    show ConPolyZono.plusA cPZ₁.A cPZ₂.A *ᵥ PolyZonotope.monomial
-        (PolyZonotope.plusE cPZ₁.R cPZ₂.R) a - ConPolyZono.plusB cPZ₁.b cPZ₂.b = _
-    rw [ConPolyZono.mulVec_plusA_plusE]
-    refine funext (Fin.addCases (fun i => ?_) fun i => ?_) <;>
-      simp [ConPolyZono.plusB]
+      (cPZ₁.cartProd cPZ₂).cons.A *ᵥ PolyZonotope.monomial (cPZ₁.cartProd cPZ₂).cons.R a
+        - (cPZ₁.cartProd cPZ₂).cons.b
+      = Fin.append (cPZ₁.cons.A
+          *ᵥ PolyZonotope.monomial cPZ₁.cons.R (fun k => a (Fin.castAdd cPZ₂.p k))
+          - cPZ₁.cons.b) (cPZ₂.cons.A
+              *ᵥ PolyZonotope.monomial cPZ₂.cons.R (fun k => a (Fin.natAdd cPZ₁.p k))
+          - cPZ₂.cons.b) := fun a => PolyLevelSet.eval_cartProd cPZ₁.cons cPZ₂.cons a
   -- so the rows are within the two slacks exactly when each block is within its own
   have hsplit : ∀ a : Fin (cPZ₁.p + cPZ₂.p) → ℝ,
-      (∀ i, |((cPZ₁.cartProd cPZ₂).A *ᵥ PolyZonotope.monomial (cPZ₁.cartProd cPZ₂).R a) i
-        - (cPZ₁.cartProd cPZ₂).b i| ≤ |Fin.append s₁ s₂ i|)
-      ↔ (∀ i, |(cPZ₁.A *ᵥ PolyZonotope.monomial cPZ₁.R (fun k => a (Fin.castAdd cPZ₂.p k))) i
-          - cPZ₁.b i| ≤ |s₁ i|)
-        ∧ ∀ i, |(cPZ₂.A *ᵥ PolyZonotope.monomial cPZ₂.R (fun k => a (Fin.natAdd cPZ₁.p k))) i
-          - cPZ₂.b i| ≤ |s₂ i| := fun a => by
-    have h := ConPolyZono.forall_abs_sub_append_iff
-      (cPZ₁.A *ᵥ PolyZonotope.monomial cPZ₁.R (fun k => a (Fin.castAdd cPZ₂.p k)) - cPZ₁.b) 0 s₁
-      (cPZ₂.A *ᵥ PolyZonotope.monomial cPZ₂.R (fun k => a (Fin.natAdd cPZ₁.p k)) - cPZ₂.b) 0 s₂
+      (∀ i, |((cPZ₁.cartProd cPZ₂).cons.A *ᵥ PolyZonotope.monomial (cPZ₁.cartProd cPZ₂).cons.R a) i
+        - (cPZ₁.cartProd cPZ₂).cons.b i| ≤ |Fin.append s₁ s₂ i|)
+      ↔ (∀ i, |(cPZ₁.cons.A
+          *ᵥ PolyZonotope.monomial cPZ₁.cons.R (fun k => a (Fin.castAdd cPZ₂.p k))) i
+          - cPZ₁.cons.b i| ≤ |s₁ i|)
+        ∧ ∀ i, |(cPZ₂.cons.A
+            *ᵥ PolyZonotope.monomial cPZ₂.cons.R (fun k => a (Fin.natAdd cPZ₁.p k))) i
+          - cPZ₂.cons.b i| ≤ |s₂ i| := fun a => by
+    have h := ConPolyZono.aux_forall_abs_sub_append_iff
+      (cPZ₁.cons.A *ᵥ PolyZonotope.monomial cPZ₁.cons.R (fun k => a (Fin.castAdd cPZ₂.p k))
+          - cPZ₁.cons.b) 0 s₁
+      (cPZ₂.cons.A *ᵥ PolyZonotope.monomial cPZ₂.cons.R (fun k => a (Fin.natAdd cPZ₁.p k))
+          - cPZ₂.cons.b) 0 s₂
     simp only [Pi.sub_apply, Pi.zero_apply, sub_zero] at h
     rw [← h]
     refine forall_congr' fun i => ?_

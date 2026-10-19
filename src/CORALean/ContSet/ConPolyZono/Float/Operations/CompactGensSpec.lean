@@ -41,16 +41,12 @@ def ConPolyZono.compactGensSpec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZ
   p := cPZ.p
   h := (PolyZonotope.repKeep cPZ.E).card
   qI := cPZ.qI
-  m := cPZ.m
-  q := cPZ.q
   c := cPZ.c
   G := fun j i => cPZ.mergedCol i j
   E := fun k j => cPZ.E k (PolyZonotope.keepIdx cPZ.E j)
   GI := cPZ.GI
-  A := cPZ.A
-  b := cPZ.b
-  b_error := cPZ.b_error
-  R := cPZ.R
+  cons := cPZ.cons
+  cons_eq := cPZ.cons_eq
   I_error := cPZ.I_error.plus (PolyZonotope.generatorError (ConPolyZono.compactGensGap cPZ))
 
 end CORALean.Float

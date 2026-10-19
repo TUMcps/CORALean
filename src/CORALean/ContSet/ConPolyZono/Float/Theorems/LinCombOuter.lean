@@ -1,12 +1,14 @@
 module
 
+public import CORALean.ContSet.ConPolyZono.Float.Operations.LinComb
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.SatisfiesLinCombIff
 public import CORALean.ContSet.InflatedContSet.Theorems.LinCombSubset
 public import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombNominalAt
 public import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_PolyZonotope
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemPadVarsIff
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemCartProdIff
 
 @[expose] public section
 
@@ -17,15 +19,16 @@ public import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_PolyZo
 polynomial zonotope's at named factors (`PolyZonotope.linComb_nominal_at`): the
 segment point lands on the nominal point at `[a₁; a₂; 2λ-1]`, up to the
 rounding the box holds. What a constrained set adds is that those factors satisfy
-the carried constraints, and they do: `satisfies_linComb_iff` reads each system
+the carried constraints, and they do: `PolyLevelSet.mem_padVars_iff` and
+`PolyLevelSet.mem_cartProd_iff` read each system
 on the factors its operand came with, which are `a₁` and `a₂` themselves.
 
 Outer only, as over ℝ: the independent coefficients cannot be tied to `λ`.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -76,7 +79,8 @@ theorem ConPolyZono.aux_linComb_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec �
       rw [abs_le]
       constructor <;> linarith
   -- each constraint system read on the factors its operand came with
-  · refine (ConPolyZono.satisfies_linComb_iff cPZ₁ cPZ₂ _).mpr ⟨?_, ?_⟩
+  · refine ((PolyLevelSet.mem_padVars_iff _ 1 _).trans (PolyLevelSet.mem_cartProd_iff cPZ₁.cons
+      cPZ₂.cons _)).mpr ⟨?_, ?_⟩
     · rw [hA₁]
       exact hs₁
     · rw [hA₂]

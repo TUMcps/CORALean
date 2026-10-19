@@ -15,9 +15,9 @@ structure already has a field named `m`, and reading the two in one signature is
 harder than renaming one of them.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -37,15 +37,12 @@ def ConPolyZono.mtimes (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
   p := cPZ.p
   h := cPZ.h
   qI := cPZ.qI
-  m := cPZ.m
-  q := cPZ.q
   c := M *ᵥ cPZ.c
   G := fun i => M *ᵥ cPZ.G i
   E := cPZ.E
   GI := fun j => M *ᵥ cPZ.GI j
-  A := cPZ.A
-  b := cPZ.b
-  R := cPZ.R
+  cons := cPZ.cons
+  cons_eq := cPZ.cons_eq
 
 end CORALean.Real
 

@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxVecIff
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
 
 @[expose] public section
 
@@ -10,8 +11,8 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxVecIff
 
 The form every enclosure proof at this layer reads the nominal half of a point
 in: the center and the two generator blocks through `toReal`, the exponent
-matrices unrounded, and the constraint as this set's own `satisfies`: the slack factors of
-`Real.ConPolyZono.relax` are read away into each row's `|b_error|` (`mem_relax_vec_iff`).
+matrices unrounded, and the constraint as membership in this set's own `cons`: the slack factors
+of `Real.ConPolyZono.relax` are read away into each row's `|b_error|` (`mem_relax_vec_iff`).
 
 Proofs use it rather than going through `nominal` because through it every count
 is `cPZ.h`, where the instance gives the equal-but-distinct `(nominal cPZ).h` that
@@ -38,10 +39,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 theorem ConPolyZono.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)}
     {x : Vec ℝ n} :
     x ∈ InflatedContSet.nominalSet cPZ ↔ ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ,
-      (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1) ∧ cPZ.satisfies a ∧ ∀ i, x i = toReal (cPZ.c i)
+      (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1) ∧ a ∈ cPZ.cons.construct ∧ ∀ i, x i = toReal (cPZ.c i)
         + (∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial cPZ.E a l)
         + ∑ j, toReal (cPZ.GI j i) * β j :=
-  Real.ConPolyZono.mem_relax_vec_iff _ _
+  (Real.ConPolyZono.mem_relax_vec_iff _ _).trans <| exists_congr fun _ => exists_congr fun _ =>
+    and_congr Iff.rfl <| and_congr Iff.rfl <|
+      and_congr (PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).symm Iff.rfl
 
 end CORALean.Float
 

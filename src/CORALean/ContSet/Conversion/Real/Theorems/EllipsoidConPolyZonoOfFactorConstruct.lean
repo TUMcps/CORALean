@@ -9,6 +9,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
 public import CORALean.ContSet.Interval.Real.Operations.Point
 public import CORALean.Global.EuclideanNorm
 public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_ConPolyZono
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
 
 @[expose] public section
 
@@ -80,25 +81,25 @@ theorem Ellipsoid.conPolyZonoOfFactor_construct (G : Mat ℝ n n) (q : Vec ℝ n
     refine ⟨Fin.append u fun _ : Fin 1 => t, Fin.elim0,
       Fin.addCases (fun i => by simpa [Fin.append_left] using le_trans (abs_le_norm₂ u i) hu)
         (fun j => by simpa [Fin.append_right] using htbound),
-      fun j => j.elim0, ?_, ?_⟩
+      fun j => j.elim0, (PolyLevelSet.mem_construct_iff_of_eq P.cons_eq).mpr ?_, ?_⟩
     · -- the ball's radius equation, read as `Σ u_i² - 0.5 t = 0.5`
       intro i
-      have heqn : (P.A *ᵥ
-          PolyZonotope.monomial P.R (Fin.append u fun _ : Fin 1 => t)) i
+      have heqn : (P.cons.A *ᵥ
+          PolyZonotope.monomial P.cons.R (Fin.append u fun _ : Fin 1 => t)) i
             = (1 / 2 : ℝ) := by
-        show (∑ j : Fin (n + 1), P.A i j *
-            PolyZonotope.monomial P.R (Fin.append u fun _ : Fin 1 => t) j)
+        show (∑ j : Fin (n + 1), P.cons.A i j *
+            PolyZonotope.monomial P.cons.R (Fin.append u fun _ : Fin 1 => t) j)
           = (1 / 2 : ℝ)
         rw [Fin.sum_univ_add]
-        -- each square term contributes `u_k²`, read off `P.A` and the diagonal `R`
-        have hleft : ∀ k : Fin n, P.A i (Fin.castAdd 1 k) *
-            PolyZonotope.monomial P.R (Fin.append u fun _ : Fin 1 => t)
+        -- each square term contributes `u_k²`, read off `P.cons.A` and the diagonal `R`
+        have hleft : ∀ k : Fin n, P.cons.A i (Fin.castAdd 1 k) *
+            PolyZonotope.monomial P.cons.R (Fin.append u fun _ : Fin 1 => t)
               (Fin.castAdd 1 k) = u k ^ 2 := by
           intro k
-          have h1 : P.A i (Fin.castAdd 1 k) = 1 := by
+          have h1 : P.cons.A i (Fin.castAdd 1 k) = 1 := by
             show (if (Fin.castAdd 1 k).val < n then (1:ℝ) else -(1/2)) = 1
             rw [if_pos (by simp)]
-          have h2 : PolyZonotope.monomial P.R
+          have h2 : PolyZonotope.monomial P.cons.R
               (Fin.append u fun _ : Fin 1 => t) (Fin.castAdd 1 k) = u k ^ 2 := by
             show PolyZonotope.monomial (Ellipsoid.conPolyZonoR n)
                 (Fin.append u fun _ : Fin 1 => t) (Fin.castAdd 1 k) = u k ^ 2
@@ -107,15 +108,15 @@ theorem Ellipsoid.conPolyZonoOfFactor_construct (G : Mat ℝ n n) (q : Vec ℝ n
               Fin.append_left]
           rw [h1, h2, one_mul]
         -- the one slack term contributes `-0.5 t`
-        have hright : ∀ l : Fin 1, P.A i (Fin.natAdd n l) *
-            PolyZonotope.monomial P.R (Fin.append u fun _ : Fin 1 => t)
+        have hright : ∀ l : Fin 1, P.cons.A i (Fin.natAdd n l) *
+            PolyZonotope.monomial P.cons.R (Fin.append u fun _ : Fin 1 => t)
               (Fin.natAdd n l) = -(1 / 2) * t := by
           intro l
           have hval : ¬ (Fin.natAdd n l).val < n := by simp
-          have h1 : P.A i (Fin.natAdd n l) = -(1 / 2) := by
+          have h1 : P.cons.A i (Fin.natAdd n l) = -(1 / 2) := by
             show (if (Fin.natAdd n l).val < n then (1:ℝ) else -(1/2)) = -(1/2)
             rw [if_neg hval]
-          have h2 : PolyZonotope.monomial P.R
+          have h2 : PolyZonotope.monomial P.cons.R
               (Fin.append u fun _ : Fin 1 => t) (Fin.natAdd n l) = t := by
             show PolyZonotope.monomial (Ellipsoid.conPolyZonoR n)
                 (Fin.append u fun _ : Fin 1 => t) (Fin.natAdd n l) = t
@@ -145,41 +146,41 @@ theorem Ellipsoid.conPolyZonoOfFactor_construct (G : Mat ℝ n n) (q : Vec ℝ n
   -- back: the constraint pins `u`'s square-sum, and the generator sum reads off `G` again
   · rintro x ⟨a, β, ha, _, hsat, rfl⟩
     set u : Vec ℝ n := fun i => a (Fin.castAdd 1 i) with hu
-    have i0 : Fin P.m := ⟨0, Nat.one_pos⟩
-    have hR : ∀ j : Fin (n + 1), PolyZonotope.monomial P.R a j
+    have i0 : Fin P.cons.m := ⟨0, Nat.one_pos⟩
+    have hR : ∀ j : Fin (n + 1), PolyZonotope.monomial P.cons.R a j
         = a j ^ (if j.val < n then 2 else 1) :=
       Ellipsoid.aux_monomial_conPolyZonoR a
     -- the constraint read back as `Σ u_k² - 0.5 a(last) = 0.5`
     have heqn : (∑ k, u k ^ 2) - (1 / 2) * a (Fin.natAdd n (0 : Fin 1)) = (1 / 2 : ℝ) := by
-      have hval : (P.A *ᵥ PolyZonotope.monomial P.R a) i0
-          = (1 / 2 : ℝ) := hsat i0
-      have hexpand : (P.A *ᵥ PolyZonotope.monomial P.R a) i0
+      have hval : (P.cons.A *ᵥ PolyZonotope.monomial P.cons.R a) i0
+          = (1 / 2 : ℝ) := (PolyLevelSet.mem_construct_iff_of_eq P.cons_eq).mp hsat i0
+      have hexpand : (P.cons.A *ᵥ PolyZonotope.monomial P.cons.R a) i0
           = (∑ k, u k ^ 2) - (1 / 2) * a (Fin.natAdd n (0 : Fin 1)) := by
-        show (∑ j : Fin (n + 1), P.A i0 j *
-            PolyZonotope.monomial P.R a j)
+        show (∑ j : Fin (n + 1), P.cons.A i0 j *
+            PolyZonotope.monomial P.cons.R a j)
           = (∑ k, u k ^ 2) - (1 / 2) * a (Fin.natAdd n (0 : Fin 1))
         rw [Fin.sum_univ_add]
-        -- the square terms, `P.A`'s first block against `R`'s diagonal
-        have hleft : ∀ k : Fin n, P.A i0 (Fin.castAdd 1 k) *
-            PolyZonotope.monomial P.R a (Fin.castAdd 1 k) = u k ^ 2 := by
+        -- the square terms, `P.cons.A`'s first block against `R`'s diagonal
+        have hleft : ∀ k : Fin n, P.cons.A i0 (Fin.castAdd 1 k) *
+            PolyZonotope.monomial P.cons.R a (Fin.castAdd 1 k) = u k ^ 2 := by
           intro k
-          have h1 : P.A i0 (Fin.castAdd 1 k) = 1 := by
+          have h1 : P.cons.A i0 (Fin.castAdd 1 k) = 1 := by
             show (if (Fin.castAdd 1 k).val < n then (1:ℝ) else -(1/2)) = 1
             rw [if_pos (by simp)]
-          have h2 : PolyZonotope.monomial P.R a (Fin.castAdd 1 k) = u k ^ 2 := by
+          have h2 : PolyZonotope.monomial P.cons.R a (Fin.castAdd 1 k) = u k ^ 2 := by
             rw [hR, if_pos (show (Fin.castAdd 1 k).val < n by simp)]
           rw [h1, h2, one_mul]
         -- the one slack term
-        have hright : ∀ l : Fin 1, P.A i0 (Fin.natAdd n l) *
-            PolyZonotope.monomial P.R a (Fin.natAdd n l)
+        have hright : ∀ l : Fin 1, P.cons.A i0 (Fin.natAdd n l) *
+            PolyZonotope.monomial P.cons.R a (Fin.natAdd n l)
               = -(1 / 2) * a (Fin.natAdd n (0 : Fin 1)) := by
           intro l
           have hl0 : l = (0 : Fin 1) := Subsingleton.elim l 0
           have hval2 : ¬ (Fin.natAdd n l).val < n := by simp
-          have h1 : P.A i0 (Fin.natAdd n l) = -(1 / 2) := by
+          have h1 : P.cons.A i0 (Fin.natAdd n l) = -(1 / 2) := by
             show (if (Fin.natAdd n l).val < n then (1:ℝ) else -(1/2)) = -(1/2)
             rw [if_neg hval2]
-          have h2 : PolyZonotope.monomial P.R a (Fin.natAdd n l)
+          have h2 : PolyZonotope.monomial P.cons.R a (Fin.natAdd n l)
               = a (Fin.natAdd n (0 : Fin 1)) := by
             rw [hR, if_neg hval2, pow_one, hl0]
           rw [h1, h2]

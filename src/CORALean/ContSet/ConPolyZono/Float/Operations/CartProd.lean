@@ -1,10 +1,11 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Float.Operations.PlusA
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.Global.Float.GenBlockDiag
+public import CORALean.ContSet.PolyLevelSet.Float.Operations.CartProd
+public import CORALean.ContSet.LevelSet.Real.Theorems.Basic
 
 @[expose] public section
 
@@ -13,8 +14,8 @@ public import CORALean.Global.Float.GenBlockDiag
 
 CORA's `@conPolyZono/cartProd_`: the factors of the two operands stay disjoint, so both exponent
 matrices are block diagonal (`PolyZonotope.plusE`), the centers stack, the dependent and the
-independent generators are each `genBlockDiag` of the two, the constraint matrix is block diagonal
-(`plusA`), and the right-hand sides and their slacks stack (`plusB`), the nominal part being the
+independent generators are each `genBlockDiag` of the two, and the constraint is the float
+`PolyLevelSet.cartProd` of the two, rows and slacks stacked, the nominal part being the
 product of the two (`Real.ConPolyZono.relax_cartProd`). The error boxes stack (`Interval.append`).
 Nothing is added or multiplied, so nothing rounds.
 -/
@@ -39,16 +40,12 @@ def ConPolyZono.cartProd (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁)) (cPZ₂ : C
   p := cPZ₁.p + cPZ₂.p
   h := cPZ₁.h + cPZ₂.h
   qI := cPZ₁.qI + cPZ₂.qI
-  m := cPZ₁.m + cPZ₂.m
-  q := cPZ₁.q + cPZ₂.q
   c := Fin.append cPZ₁.c cPZ₂.c
   G := fun l i => genBlockDiag (fun i l => cPZ₁.G l i) (fun i l => cPZ₂.G l i) i l
   E := Real.PolyZonotope.plusE cPZ₁.E cPZ₂.E
   GI := fun j i => genBlockDiag (fun i j => cPZ₁.GI j i) (fun i j => cPZ₂.GI j i) i j
-  A := ConPolyZono.plusA cPZ₁.A cPZ₂.A
-  b := ConPolyZono.plusB cPZ₁.b cPZ₂.b
-  b_error := ConPolyZono.plusB cPZ₁.b_error cPZ₂.b_error
-  R := Real.PolyZonotope.plusE cPZ₁.R cPZ₂.R
+  cons := cPZ₁.cons.cartProd cPZ₂.cons
+  cons_eq := Real.LevelSet.append_op_eq cPZ₁.cons_eq cPZ₂.cons_eq
   I_error := Interval.append cPZ₁.I_error cPZ₂.I_error
 
 end CORALean.Float

@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Union
+public import Mathlib.Tactic.FinCases
 
 @[expose] public section
 

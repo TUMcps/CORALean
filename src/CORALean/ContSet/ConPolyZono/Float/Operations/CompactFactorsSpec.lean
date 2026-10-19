@@ -36,20 +36,19 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- The specification of `compactFactors`: the factors neither block reads, dropped.
 Only `p` and the two exponent matrices change, all over ℕ, so nothing rounds and
 neither `b` nor the box moves. -/
-def ConPolyZono.compactFactorsSpec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) where
-  p := (Real.ConPolyZono.usedFactors cPZ.E cPZ.R).card
+def ConPolyZono.compactFactorsSpec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
+    ConPolyZono 𝕋 (Vec 𝕋 n) where
+  p := (Real.ConPolyZono.usedFactors cPZ.E cPZ.cons.R).card
   h := cPZ.h
   qI := cPZ.qI
-  m := cPZ.m
-  q := cPZ.q
   c := cPZ.c
   G := cPZ.G
-  E := fun k i => cPZ.E (Real.ConPolyZono.factorIdx cPZ.E cPZ.R k) i
+  E := fun k i => cPZ.E (Real.ConPolyZono.factorIdx cPZ.E cPZ.cons.R k) i
   GI := cPZ.GI
-  A := cPZ.A
-  b := cPZ.b
-  b_error := cPZ.b_error
-  R := fun k l => cPZ.R (Real.ConPolyZono.factorIdx cPZ.E cPZ.R k) l
+  cons := ⟨cPZ.cons.m, cPZ.cons.q, cPZ.cons.A,
+    fun k l => cPZ.cons.R (Real.ConPolyZono.factorIdx cPZ.E cPZ.cons.R k) l, cPZ.cons.b,
+    cPZ.cons.b_error, cPZ.cons.op⟩
+  cons_eq := cPZ.cons_eq
   I_error := cPZ.I_error
 
 end CORALean.Float

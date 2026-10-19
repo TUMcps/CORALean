@@ -2,11 +2,12 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionDep
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.AbsSubLeSubUp
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.ForallAbsSubAppendIff
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatIntersectionA
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealVecPlusB
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.MulVecIntersectionDep
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.AndExact
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemCartProdIff
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
 
 @[expose] public section
 
@@ -14,8 +15,9 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.MulVecIntersectionDep
 # `intersectionDep` over-approximates the intersection
 
 A point of both sets is `y₁ + e₁ = y₂ + e₂`, its nominal parts at factors `a₁` and `a₂`. At the
-appended factors the rows read as the exact layer's do (`mulVec_intersectionDep`): each set's
-own, within its slack, and the agreement rows `y₁ - c₁ - (y₂ - c₂)`, which is `c₂ - c₁ + e₂ - e₁`
+appended factors the constraint, the product of the two sets' stacked on the agreement rows
+(`PolyLevelSet.mem_cartProd_iff`, `PolyLevelSet.and_exact`), holds: each set's own rows, within
+its slack, and the agreement rows `y₁ - c₁ - (y₂ - c₂)`, which is `c₂ - c₁ + e₂ - e₁`
 and lies in the stored interval `intersectionAgree` (`aux_agree_mem`), so within its recorded
 slack of the lower end. The rounding of the centers never has to be pushed anywhere.
 -/
@@ -78,44 +80,40 @@ theorem ConPolyZono.intersectionDep_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec
     funext fun k => Fin.append_left a₁ a₂ k
   have hA₂ : (fun k => Fin.append a₁ a₂ (Fin.natAdd cPZ₁.p k)) = a₂ :=
     funext fun k => Fin.append_right a₁ a₂ k
-  -- the rows at the appended factors, as the exact layer's
-  have hrows : toRealMat (cPZ₁.intersectionDep cPZ₂).A *ᵥ Real.PolyZonotope.monomial
-        (cPZ₁.intersectionDep cPZ₂).R (Fin.append a₁ a₂)
-      = Fin.append (Fin.append
-          (toRealMat cPZ₁.A *ᵥ Real.PolyZonotope.monomial cPZ₁.R a₁)
-          (toRealMat cPZ₂.A *ᵥ Real.PolyZonotope.monomial cPZ₂.R a₂))
-        fun i => (∑ l, toReal (cPZ₁.G l i) * Real.PolyZonotope.monomial cPZ₁.E a₁ l)
-          - ∑ l, toReal (cPZ₂.G l i) * Real.PolyZonotope.monomial cPZ₂.E a₂ l := by
-    have h := Real.ConPolyZono.mulVec_intersectionDep cPZ₁.nominalCore cPZ₂.nominalCore
-      (Fin.append a₁ a₂)
-    rw [hA₁, hA₂] at h
-    exact (congrArg (· *ᵥ _) (ConPolyZono.toRealMat_intersectionA cPZ₁ cPZ₂)).trans h
-  have hb : ∀ {m₁ m₂ : ℕ} (u : Vec 𝕋 m₁) (v : Vec 𝕋 m₂) (i : Fin (m₁ + m₂)),
-      toReal (ConPolyZono.plusB u v i) = Fin.append (toRealVec u) (toRealVec v) i :=
-    fun u v i => congrFun (ConPolyZono.toRealVec_plusB u v) i
   refine ⟨y₁, ConPolyZono.mem_nominalSet_iff.mpr ⟨Fin.append a₁ a₂, Fin.elim0,
     Fin.addCases (fun k => by simpa using ha₁ k) (fun k => by simpa using ha₂ k),
     fun j => j.elim0, ?_, fun i => ?_⟩, e₁, he₁, hx₁⟩
   -- the constraints: each set's own rows, then the agreement rows
-  · intro i
-    rw [hrows]
-    refine Fin.addCases (fun i => ?_) (fun i => ?_) i
-    · simp only [Fin.append_left, ConPolyZono.intersectionDep, ConPolyZono.intersectionB, hb]
-      exact (Real.ConPolyZono.forall_abs_sub_append_iff _ _ _ _ _ _).mpr ⟨hs₁, hs₂⟩ i
-    · simp only [Fin.append_right, ConPolyZono.intersectionDep, ConPolyZono.intersectionB]
-      have hag := ConPolyZono.aux_agree_mem cPZ₁ cPZ₂ he₁ he₂ i
-      have hv : (∑ l, toReal (cPZ₁.G l i) * Real.PolyZonotope.monomial cPZ₁.E a₁ l)
-          - ∑ l, toReal (cPZ₂.G l i) * Real.PolyZonotope.monomial cPZ₂.E a₂ l
-          = toReal (cPZ₂.c i) - toReal (cPZ₁.c i) + (e₂ i - e₁ i) := by
-        have h₁ := hy₁ i
-        have h₂ := hy₂ i
-        have hxi : y₁ i + e₁ i = y₂ i + e₂ i := by
-          rw [← Pi.add_apply y₁ e₁ i, ← Pi.add_apply y₂ e₂ i, hx₁', hx₂']
-        rw [hz₁] at h₁
-        rw [hz₂] at h₂
-        linarith
-      rw [hv]
-      exact ConPolyZono.abs_sub_le_subUp hag.1 hag.2
+  · show Fin.append a₁ a₂
+      ∈ ((cPZ₁.cons.cartProd cPZ₂.cons).and_ (ConPolyZono.agreeCons cPZ₁ cPZ₂)).construct
+    rw [PolyLevelSet.and_exact, Set.mem_inter_iff, PolyLevelSet.mem_cartProd_iff, hA₁, hA₂]
+    refine ⟨⟨hs₁, hs₂⟩, (PolyLevelSet.mem_construct_iff_of_eq fun _ => rfl).mpr fun i => ?_⟩
+    -- an agreement row reads each set's generator monomials at its own factors
+    have hrow : (toRealMat (ConPolyZono.agreeCons cPZ₁ cPZ₂).A *ᵥ Real.PolyZonotope.monomial
+          (ConPolyZono.agreeCons cPZ₁ cPZ₂).R (Fin.append a₁ a₂)) i
+        = (∑ l, toReal (cPZ₁.G l i) * Real.PolyZonotope.monomial cPZ₁.E a₁ l)
+          - ∑ l, toReal (cPZ₂.G l i) * Real.PolyZonotope.monomial cPZ₂.E a₂ l := by
+      show ∑ l : Fin (cPZ₁.h + cPZ₂.h), toReal (ConPolyZono.agreeRow cPZ₁ cPZ₂ i l)
+        * Real.PolyZonotope.monomial (Real.PolyZonotope.plusE cPZ₁.E cPZ₂.E) (Fin.append a₁ a₂) l
+        = _
+      rw [Fin.sum_univ_add]
+      simp only [ConPolyZono.agreeRow, Fin.append_left, Fin.append_right, toReal_neg, neg_mul,
+        Finset.sum_neg_distrib, Real.PolyZonotope.monomial_plusE_left,
+        Real.PolyZonotope.monomial_plusE_right, ← sub_eq_add_neg]
+    -- its value is the centers' difference plus the boxes', in the stored interval
+    have hag := ConPolyZono.aux_agree_mem cPZ₁ cPZ₂ he₁ he₂ i
+    have hv : (∑ l, toReal (cPZ₁.G l i) * Real.PolyZonotope.monomial cPZ₁.E a₁ l)
+        - ∑ l, toReal (cPZ₂.G l i) * Real.PolyZonotope.monomial cPZ₂.E a₂ l
+        = toReal (cPZ₂.c i) - toReal (cPZ₁.c i) + (e₂ i - e₁ i) := by
+      have h₁ := hy₁ i
+      have h₂ := hy₂ i
+      have hxi : y₁ i + e₁ i = y₂ i + e₂ i := by
+        rw [← Pi.add_apply y₁ e₁ i, ← Pi.add_apply y₂ e₂ i, hx₁', hx₂']
+      rw [hz₁] at h₁
+      rw [hz₂] at h₂
+      linarith
+    rw [hrow, hv]
+    exact ConPolyZono.abs_sub_le_subUp hag.1 hag.2
   -- and the point, where only the first set's generator block is nonzero
   · rw [hy₁ i, hz₁]
     show _ = toReal (cPZ₁.c i) + (∑ l : Fin (cPZ₁.h + cPZ₂.h),

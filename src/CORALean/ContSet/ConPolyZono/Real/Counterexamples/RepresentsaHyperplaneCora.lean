@@ -59,8 +59,9 @@ namespace CORALean.Real
 
 /-- `c = 0`, `G = (1)`, `E = (1)`, no constraint: the interval `[-1, 1]`. -/
 def ConPolyZono.aux_unitSegment : ConPolyZono (Vec ℝ 1) :=
-  ⟨1, 1, 0, 0, 0, fun _ => 0, fun _ _ => 1, fun _ _ => 1, Fin.elim0, fun i => i.elim0,
-    fun i => i.elim0, fun _ j => j.elim0⟩
+  ⟨1, 1, 0, fun _ => 0, fun _ _ => 1, fun _ _ => 1, Fin.elim0, ⟨0, 0, fun i => i.elim0,
+      fun _ j => j.elim0, fun i => i.elim0, fun _ => .eq⟩,
+      fun _ => rfl⟩
 
 theorem ConPolyZono.aux_mem (t : ℝ) (ht : |t| ≤ 1) :
     (fun _ => t) ∈ ConPolyZono.aux_unitSegment.construct := by

@@ -39,9 +39,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 def ConPolyZono.isFullDimWith (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (H : Mat 𝕋 cPZ.qI n) : Bool :=
   Zonotope.ballCert (fun i j => cPZ.GI j i) H (Zonotope.ballB H one) one
-    && (List.finRange cPZ.m).all (fun i =>
-      le (subUp (cPZ.b i) (dotDown (cPZ.A i) cPZ.zeroMonomials)) (absolute (cPZ.b_error i))
-        && le (subUp (dotUp (cPZ.A i) cPZ.zeroMonomials) (cPZ.b i)) (absolute (cPZ.b_error i)))
+    && (List.finRange cPZ.cons.m).all (fun i =>
+      le (subUp (cPZ.cons.b i) (dotDown (cPZ.cons.A i) cPZ.zeroMonomials)) (absolute
+          (cPZ.cons.b_error i))
+        && le (subUp (dotUp (cPZ.cons.A i) cPZ.zeroMonomials) (cPZ.cons.b i)) (absolute
+            (cPZ.cons.b_error i)))
     && (List.finRange n).all fun i => le (cPZ.I_error.inf i) (cPZ.I_error.sup i)
 
 end CORALean.Float

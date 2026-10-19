@@ -13,8 +13,18 @@ never folded silently into a parameter. Each float representation therefore prov
   * a `def <X>.absorbRounding` and a `theorem <X>.absorbRounding_outer` stand under
     `ContSet/<X>/Float/`, and
   * every other recorded rounding of the type, a field `<name>_error` beside `I_error` (the per-row
-    slack `b_error` of an `HPolytope` or a `ConPolyZono`), is named in the body of
-    `<X>.absorbRounding`, which moves it into the parameters as it moves the box.
+    slack `b_error` of an `HPolytope`), is named in the body of `<X>.absorbRounding`, which moves
+    it into the parameters as it moves the box. A field whose type is another float main type
+    brings that type's `<name>_error` fields along (a `ConPolyZono`'s constraint `cons`, a float
+    `PolyLevelSet`, records the slack `b_error` of its rows), and they are named there too, where
+    `absorbRounding` moves them or says where they stay.
+
+A float type whose variables are no ambient points (a constraint system, as a float `PolyLevelSet`
+is: its rows are on free variables, with no point to hold a box around) has no box and no
+`absorbRounding`. It says so on one line of its main docstring, starting
+`There is no \`I_error\` and no \`absorbRounding\`:` and giving the reason, and it records its
+rounding in a `<name>_error` field of its own. The marker is refused on a type that has a box, and on
+one that records no rounding at all.
 
 It also rejects the names this operation had before it was unified: `dependent_outer` and
 `dependent_nominal` under a `Float/` folder, and a `Dependent*.lean` file there, except for
@@ -50,10 +60,22 @@ def allowlist():
     return entries
 
 
+MARKER = re.compile(r"^There is no `I_error` and no `absorbRounding`: \S", re.M)
+
+
+def error_fields(text):
+    return [f for f in re.findall(r"^\s*(\w+_error)\s*:", text, re.M) if f != "I_error"]
+
+
 def main():
     allowed = allowlist()
     findings = 0
     seen = set()
+    # the `_error` fields of every float main type, for the fields typed by one
+    nested = {}
+    for main_file in sorted(CONTSET.glob("*/Float/*.lean")):
+        if main_file.stem == main_file.parent.parent.name:
+            nested[main_file.stem] = error_fields(main_file.read_text(encoding="utf-8"))
     for main_file in sorted(CONTSET.glob("*/Float/*.lean")):
         X = main_file.parent.parent.name
         if main_file.stem != X:
@@ -69,7 +91,19 @@ def main():
         ok = has_box and has_def and has_thm
         rel = main_file.relative_to(ROOT)
         # the other `_error` fields, and the body of `absorbRounding` they must appear in
-        others = [f for f in re.findall(r"^\s*(\w+_error)\s*:", text, re.M) if f != "I_error"]
+        others = error_fields(text)
+        if MARKER.search(text):
+            if has_box or has_def or has_thm or not others:
+                print(f"{main_file.relative_to(ROOT)}:1: the docstring says the type has no "
+                      "`I_error` and no `absorbRounding`, but it has one, or it records no "
+                      "rounding in a `<name>_error` field — drop the line or the field")
+                findings += 1
+            seen.add(X)
+            continue
+        struct = re.search(rf"^structure {X}\b.*?(?=^\S)", text, re.M | re.S)
+        for typ, fs in nested.items():
+            if typ != X and struct and re.search(rf"^\s*\w+\s*:\s*{typ}\b", struct.group(0), re.M):
+                others += [f for f in fs if f not in others]
         absorb = re.search(rf"^def {X}\.absorbRounding\b.*?(?=^\S|\Z)", body, re.M | re.S)
         for field in others:
             if absorb and not re.search(rf"\b{field}\b", absorb.group(0)):

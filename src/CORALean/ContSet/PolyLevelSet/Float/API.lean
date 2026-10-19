@@ -1,10 +1,14 @@
 module
 
+public import CORALean.ContSet.PolyLevelSet.Float.PolyLevelSet
+public import CORALean.ContSet.PolyLevelSet.Float.Operations.API
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.API
+public import CORALean.ContSet.PolyLevelSet.Float.Instances
+
 /-!
 # Polynomial level sets at float, collected
 
-No float representation yet. A float constrained polynomial zonotope keeps its constraint rows in
-its own fields, each with its recorded rounding `b_error`; a polynomial level set of its own at
-float would have to move an error box into polynomial rows, which takes a bound on the
-polynomial's variation over the box that an unbounded set does not supply.
+The representation in `PolyLevelSet`, its operations in `Operations`, what each guarantees in
+`Theorems`, and the class instances in `Instances`. A float constrained polynomial zonotope stores
+its constraint as one of these (`ConPolyZono.cons`).
 -/

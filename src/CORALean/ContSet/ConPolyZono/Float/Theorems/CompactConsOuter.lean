@@ -9,6 +9,7 @@ public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberDownLe
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.LeFiberUp
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
 
 @[expose] public section
 
@@ -40,20 +41,22 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A merged constraint column is off by at most the gap between the two
 directed masked sums, as a generator column is. -/
-theorem ConPolyZono.aux_compactConsGap (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin cPZ.m)
-    (l : Fin (PolyZonotope.repKeep cPZ.R).card) : -- --- STMT ---
-    |Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.R)
-        (fun r => toReal (cPZ.A i r)) (PolyZonotope.keepIdx cPZ.R l)
+theorem ConPolyZono.aux_compactConsGap (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin cPZ.cons.m)
+    (l : Fin (PolyZonotope.repKeep cPZ.cons.R).card) : -- --- STMT ---
+    |Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.cons.R)
+        (fun r => toReal (cPZ.cons.A i r)) (PolyZonotope.keepIdx cPZ.cons.R l)
       - toReal (cPZ.mergedConsCol i l)|
         ≤ toReal (ConPolyZono.compactConsGap cPZ i l) := by -- --- PROOF ---
   have hlo : toReal (cPZ.mergedConsCol i l)
-      ≤ Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.R)
-          (fun r => toReal (cPZ.A i r)) (PolyZonotope.keepIdx cPZ.R l) :=
-    PolyZonotope.fiberDown_le (Real.PolyZonotope.rep cPZ.R) cPZ.A i (PolyZonotope.keepIdx cPZ.R l)
-  have hhi : Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.R)
-        (fun r => toReal (cPZ.A i r)) (PolyZonotope.keepIdx cPZ.R l)
+      ≤ Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.cons.R)
+          (fun r => toReal (cPZ.cons.A i r)) (PolyZonotope.keepIdx cPZ.cons.R l) :=
+    PolyZonotope.fiberDown_le (Real.PolyZonotope.rep cPZ.cons.R) cPZ.cons.A i
+        (PolyZonotope.keepIdx cPZ.cons.R l)
+  have hhi : Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.cons.R)
+        (fun r => toReal (cPZ.cons.A i r)) (PolyZonotope.keepIdx cPZ.cons.R l)
       ≤ toReal (cPZ.mergedConsColUp i l) :=
-    PolyZonotope.le_fiberUp (Real.PolyZonotope.rep cPZ.R) cPZ.A i (PolyZonotope.keepIdx cPZ.R l)
+    PolyZonotope.le_fiberUp (Real.PolyZonotope.rep cPZ.cons.R) cPZ.cons.A i
+      (PolyZonotope.keepIdx cPZ.cons.R l)
   have hgap := sub_le_subUp (cPZ.mergedConsColUp i l) (cPZ.mergedConsCol i l)
   rw [abs_le]
   simp only [ConPolyZono.compactConsGap]
@@ -62,20 +65,21 @@ theorem ConPolyZono.aux_compactConsGap (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i 
 /-- The widened slack admits every factor vector the old one did: the row moved
 by at most one `radius` of its gaps, and the slack grew by exactly that. -/
 theorem ConPolyZono.aux_satisfies_compactCons (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) {a : Fin cPZ.p → ℝ}
-    (ha : ∀ k, |a k| ≤ 1) (hsat : cPZ.satisfies a) :
-    cPZ.compactConsSpec.satisfies a := by -- --- PROOF ---
+    (ha : ∀ k, |a k| ≤ 1) (hsat : a ∈ cPZ.cons.construct) :
+    a ∈ cPZ.compactConsSpec.cons.construct := by -- --- PROOF ---
   -- the kept exponents of the constraints, the monomials on them, and the exact fibre sums
-  set Rk : Fin cPZ.p → Fin (PolyZonotope.repKeep cPZ.R).card → ℕ :=
-    fun k j' => cPZ.R k (PolyZonotope.keepIdx cPZ.R j') with hRk
+  set Rk : Fin cPZ.p → Fin (PolyZonotope.repKeep cPZ.cons.R).card → ℕ :=
+    fun k j' => cPZ.cons.R k (PolyZonotope.keepIdx cPZ.cons.R j') with hRk
   set mon := Real.PolyZonotope.monomial Rk a with hmon
-  set fib : Fin cPZ.m → Fin (PolyZonotope.repKeep cPZ.R).card → ℝ := fun i j =>
-    Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.R) (fun r => toReal (cPZ.A i r))
-      (PolyZonotope.keepIdx cPZ.R j) with hfib
-  intro i
+  set fib : Fin cPZ.cons.m → Fin (PolyZonotope.repKeep cPZ.cons.R).card → ℝ := fun i j =>
+    Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.cons.R) (fun r => toReal (cPZ.cons.A i r))
+      (PolyZonotope.keepIdx cPZ.cons.R j) with hfib
+  rw [PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq] at hsat
+  refine (PolyLevelSet.mem_construct_iff_of_eq cPZ.compactConsSpec.cons_eq).mpr fun i => ?_
   -- the constraint row at `a`, within its slack of `b`
-  set row := ∑ l, toReal (cPZ.A i l) * Real.PolyZonotope.monomial cPZ.R a l with hrow
-  have hb : |row - toReal (cPZ.b i)| ≤ |toReal (cPZ.b_error i)| := hsat i
-  have hex := ConPolyZono.merge cPZ.R cPZ.A a Rk (fun _ _ => rfl) i
+  set row := ∑ l, toReal (cPZ.cons.A i l) * Real.PolyZonotope.monomial cPZ.cons.R a l with hrow
+  have hb : |row - toReal (cPZ.cons.b i)| ≤ |toReal (cPZ.cons.b_error i)| := hsat i
+  have hex := ConPolyZono.merge cPZ.cons.R cPZ.cons.A a Rk (fun _ _ => rfl) i
   -- the exact merged row is the stored one plus what the gaps carry
   have hsplit : (∑ j, fib i j * mon j) = (∑ j, toReal (cPZ.mergedConsCol i j) * mon j)
         + ∑ j, (fib i j - toReal (cPZ.mergedConsCol i j)) * mon j := by
@@ -89,13 +93,14 @@ theorem ConPolyZono.aux_satisfies_compactCons (cPZ : ConPolyZono 𝕋 (Vec 𝕋 
       (fun i j => le_trans (ConPolyZono.aux_compactConsGap cPZ i j) (le_abs_self _))
       (fun j => Real.PolyZonotope.abs_monomial_le_one Rk ha j) i
   -- the slack has grown by the very number `hrad` supplies
-  have hu := add_le_addUp (absolute (cPZ.b_error i)) (radius (ConPolyZono.compactConsGap cPZ) i)
+  have hu := add_le_addUp (absolute (cPZ.cons.b_error i))
+    (radius (ConPolyZono.compactConsGap cPZ) i)
   rw [toReal_absolute] at hu
-  show |(∑ j, toReal (cPZ.mergedConsCol i j) * mon j) - toReal (cPZ.b i)|
-    ≤ |toReal (addUp (absolute (cPZ.b_error i)) (radius (ConPolyZono.compactConsGap cPZ) i))|
+  show |(∑ j, toReal (cPZ.mergedConsCol i j) * mon j) - toReal (cPZ.cons.b i)|
+    ≤ |toReal (addUp (absolute (cPZ.cons.b_error i)) (radius (ConPolyZono.compactConsGap cPZ) i))|
   rw [abs_le] at hb hrad ⊢
   have hu' := le_abs_self
-    (toReal (addUp (absolute (cPZ.b_error i)) (radius (ConPolyZono.compactConsGap cPZ) i)))
+    (toReal (addUp (absolute (cPZ.cons.b_error i)) (radius (ConPolyZono.compactConsGap cPZ) i)))
   constructor <;> linarith [hb.1, hb.2, hex, hsplit, hrad.1, hrad.2]
 
 /-- Only the constraint weakens, so the nominal set grows and the error box does

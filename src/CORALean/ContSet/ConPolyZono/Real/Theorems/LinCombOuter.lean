@@ -1,7 +1,9 @@
 module
 
 public import CORALean.ContSet.ContSet.ContSet
-public import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesLinCombIff
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemPadVarsIff
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemCartProdIff
+public import CORALean.ContSet.ConPolyZono.Real.Operations.LinComb
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombValue
 public import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
 
@@ -15,7 +17,8 @@ fresh one, the zonotope pairing on the independent coefficients — and
 `linComb_value` is the arithmetic, unchanged by the constraints.
 
 What the constraints add is one goal: the combined system holds at that witness.
-`satisfies_linComb_iff` splits it into the two operands' own systems at their own
+`PolyLevelSet.mem_padVars_iff` with `PolyLevelSet.mem_cartProd_iff` splits it into the two operands'
+own systems at their own
 factors, which the two segment endpoints already satisfy. So no nonemptiness
 hypothesis: a point of `Set.linComb` hands over a point of *each* set, and with it
 the witness that its constraints are satisfiable. That both systems are imposed
@@ -25,9 +28,9 @@ Outer and not exact, for the reason `PolyZonotope.linComb_outer` is: the
 independent block is enclosed by the pairing. The constraints give up nothing.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -70,7 +73,8 @@ theorem ConPolyZono.linComb_outer (cPZ₁ cPZ₂ : ConPolyZono α) :
     · intro j
       simpa using Zonotope.abs_pairCoeffDiff_le_one hβ₁ hβ₂ hl0 hl1 j
   -- the constraints: each endpoint satisfies its own, on the factors it came with
-  · refine (ConPolyZono.satisfies_linComb_iff cPZ₁ cPZ₂ _).mpr ⟨?_, ?_⟩
+  · refine ((PolyLevelSet.mem_padVars_iff _ 1 _).trans (PolyLevelSet.mem_cartProd_iff cPZ₁.cons
+      cPZ₂.cons _)).mpr ⟨?_, ?_⟩
     · rw [hA₁]
       exact hs₁
     · rw [hA₂]

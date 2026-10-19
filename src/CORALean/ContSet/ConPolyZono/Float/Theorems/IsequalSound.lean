@@ -14,7 +14,7 @@ the nominal sets are the same and the error boxes are the same, and the denoted 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -40,10 +40,12 @@ theorem ConPolyZono.isequal_sound {Z S : ConPolyZono 𝕋 (Vec 𝕋 n)} (h : Z.i
     have eqr : ∀ {a b : 𝕋}, (le a b = true ∧ le b a = true) → toReal a = toReal b :=
       fun ⟨h₁, h₂⟩ => le_antisymm (toReal_le_of_le h₁) (toReal_le_of_le h₂)
     obtain ⟨⟨hnum, hcon⟩, hE⟩ := h
-    obtain ⟨p₁, h₁, qI₁, m₁, q₁, c₁, G₁, E₁, GI₁, A₁, b₁, s₁, R₁, r₁⟩ := Z
-    obtain ⟨p₂, h₂, qI₂, m₂, q₂, c₂, G₂, E₂, GI₂, A₂, b₂, s₂, R₂, r₂⟩ := S
+    obtain ⟨p₁, h₁, qI₁, c₁, G₁, E₁, GI₁, ⟨m₁, q₁, A₁, R₁, b₁, s₁, o₁⟩, ho₁, r₁⟩ := Z
+    obtain ⟨p₂, h₂, qI₂, c₂, G₂, E₂, GI₂, ⟨m₂, q₂, A₂, R₂, b₂, s₂, o₂⟩, ho₂, r₂⟩ := S
     simp only at e hnum hcon hE
     obtain ⟨rfl, rfl, rfl, rfl, rfl⟩ := e
+    -- every row of both is an equation, so the operators agree too
+    obtain rfl : o₁ = o₂ := funext fun i => (ho₁ i).trans (ho₂ i).symm
     simp only [Fin.cast_eq_self] at hnum hcon hE
     have hc : toRealVec c₁ = toRealVec c₂ := funext fun i => eqr (hnum i).1.1.1.1
     have hG : (fun l i => toReal (G₁ l i)) = fun l i => toReal (G₂ l i) :=
@@ -71,22 +73,23 @@ theorem ConPolyZono.isequal_sound {Z S : ConPolyZono 𝕋 (Vec 𝕋 n)} (h : Z.i
       unfold Interval.construct
       rw [hint hEi hEs]
     -- so the nominal sets are the same
-    have hN : (nominal (⟨p₁, h₁, qI₁, m₁, q₁, c₁, G₁, E₁, GI₁, A₁, b₁, s₁, R₁, r₁⟩ :
+    have hN : (nominal (⟨p₁, h₁, qI₁, c₁, G₁, E₁, GI₁, ⟨m₁, q₁, A₁, R₁, b₁, s₁, o₁⟩, ho₁, r₁⟩ :
         ConPolyZono 𝕋 (Vec 𝕋 n))) =
-        nominal (⟨p₁, h₁, qI₁, m₁, q₁, c₂, G₂, E₂, GI₂, A₂, b₂, s₂, R₂, r₂⟩ : ConPolyZono
-          𝕋 (Vec 𝕋 n)) := by
-      show CORALean.Real.ConPolyZono.relax (⟨p₁, h₁, qI₁, m₁, q₁, toRealVec c₁,
-          fun l i => toReal (G₁ l i), E₁, fun j i => toReal (GI₁ j i), toRealMat A₁,
-          toRealVec b₁, R₁⟩ : CORALean.Real.ConPolyZono (Vec ℝ n)) (toRealVec s₁) =
-        CORALean.Real.ConPolyZono.relax ⟨p₁, h₁, qI₁, m₁, q₁, toRealVec c₂,
-          fun l i => toReal (G₂ l i), E₂, fun j i => toReal (GI₂ j i), toRealMat A₂,
-          toRealVec b₂, R₂⟩ (toRealVec s₂)
+        nominal (⟨p₁, h₁, qI₁, c₂, G₂, E₂, GI₂, ⟨m₁, q₁, A₂, R₂, b₂, s₂, o₁⟩, ho₂, r₂⟩ :
+          ConPolyZono 𝕋 (Vec 𝕋 n)) := by
+      show CORALean.Real.ConPolyZono.relax (⟨p₁, h₁, qI₁, toRealVec c₁,
+          fun l i => toReal (G₁ l i), E₁, fun j i => toReal (GI₁ j i),
+          ⟨m₁, q₁, toRealMat A₁, R₁, toRealVec b₁, o₁⟩, ho₁⟩ :
+            CORALean.Real.ConPolyZono (Vec ℝ n)) (toRealVec s₁) =
+        CORALean.Real.ConPolyZono.relax ⟨p₁, h₁, qI₁, toRealVec c₂,
+          fun l i => toReal (G₂ l i), E₂, fun j i => toReal (GI₂ j i),
+          ⟨m₁, q₁, toRealMat A₂, R₂, toRealVec b₂, o₁⟩, ho₂⟩ (toRealVec s₂)
       rw [hc, hG, hGI, hE₁, hE₂, hA, hb, hs]
     -- the sum of nominal set and error box, on both sides
-    change ContSet.construct (nominal (⟨p₁, h₁, qI₁, m₁, q₁, c₁, G₁, E₁, GI₁, A₁, b₁, s₁, R₁,
-          r₁⟩ : ConPolyZono 𝕋 (Vec 𝕋 n))) + r₁.construct =
-      ContSet.construct (nominal (⟨p₁, h₁, qI₁, m₁, q₁, c₂, G₂, E₂, GI₂, A₂, b₂, s₂, R₂,
-          r₂⟩ : ConPolyZono 𝕋 (Vec 𝕋 n))) + r₂.construct
+    change ContSet.construct (nominal (⟨p₁, h₁, qI₁, c₁, G₁, E₁, GI₁,
+          ⟨m₁, q₁, A₁, R₁, b₁, s₁, o₁⟩, ho₁, r₁⟩ : ConPolyZono 𝕋 (Vec 𝕋 n))) + r₁.construct =
+      ContSet.construct (nominal (⟨p₁, h₁, qI₁, c₂, G₂, E₂, GI₂,
+          ⟨m₁, q₁, A₂, R₂, b₂, s₂, o₁⟩, ho₂, r₂⟩ : ConPolyZono 𝕋 (Vec 𝕋 n))) + r₂.construct
     rw [hN, hr]
   · simp at h
 

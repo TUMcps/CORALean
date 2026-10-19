@@ -16,9 +16,9 @@ of the enclosing polynomial zonotope; the constraint system reads none of
 those, so `A`, `b` and `R` pass through untouched.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   06-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -38,15 +38,12 @@ def ConPolyZono.quadMapDep (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec �
   p := cPZ.p
   h := (cPZ.h + 1) * (cPZ.h + 1)
   qI := 0
-  m := cPZ.m
-  q := cPZ.q
   c := 0
   G := PolyZonotope.quadMapG Q cPZ.polyZonotope
   E := PolyZonotope.quadMapE cPZ.polyZonotope
   GI := Fin.elim0
-  A := cPZ.A
-  b := cPZ.b
-  R := cPZ.R
+  cons := cPZ.cons
+  cons_eq := cPZ.cons_eq
 
 end CORALean.Real
 

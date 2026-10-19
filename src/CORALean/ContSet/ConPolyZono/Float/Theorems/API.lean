@@ -32,7 +32,6 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.MinkDiffOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.AbsorbRoundingNominal
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.AbsorbRoundingOuter
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealVecPlusB
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalSetDependent
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.OriginExact
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.PlusOuter
@@ -46,16 +45,10 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.ReindexExact
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.RepresentsaPointSubset
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.RescaleOuter
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.SatisfiesLinCombIff
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.SatisfiesMtimes
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.SatisfiesPlusIff
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.SplitDepFactorOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.SplitLongestGenOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.SplitOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.SupportBoundLe
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealAgreeRow
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatIntersectionA
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatPlusA
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionConIntEq
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatUnionLowerA
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionOuter
@@ -75,9 +68,9 @@ generator count is memory and time per step.
 merging a constraint column rounds, and the slack `b_error` is the only place on that side a
 rounding can go, the state's error box being of the wrong dimension.
 
-`plus` and `mtimes` rest on the constraint block surviving `toReal`:
-`satisfies_plus_iff` splits the rows as the exact layer's `mulVec_plusA_plusE` does at the
-read-back matrices, and `satisfies_mtimes` is `Iff.rfl`.
+`plus` and `mtimes` rest on the constraint surviving `toReal`: `plus`'s is the float
+`PolyLevelSet.cartProd`, whose rows read back as the exact product's
+(`PolyLevelSet.mem_cartProd_iff`), and `mtimes` copies the constraint.
 
 `intersection_outer` is the one that computes a constraint, and it is the file to read.
 The two nominal points it has to make agree differ by whatever the two error

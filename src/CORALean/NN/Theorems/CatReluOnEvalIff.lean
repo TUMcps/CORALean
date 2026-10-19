@@ -2,6 +2,7 @@ module
 
 public import CORALean.NN.Layers.Definitions.Relu
 public import CORALean.NN.Operations.CatReluOn
+public import CORALean.NN.Theorems.Basic
 public import Mathlib.Data.List.FinRange
 
 @[expose] public section
@@ -24,7 +25,7 @@ coordinates it names are replaced and the rest kept, a repeated coordinate costi
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -70,7 +71,7 @@ theorem aux_eval_step_iff (i : Fin n) (x y : Vec ℝ n) : -- --- STMT ---
       intro hk _ hy
       cases hy
       rw [hb, add_zero, hid]
-      have h0 : (0:ℝ) ≤ x i := hk
+      have h0 : (0:ℝ) ≤ x i := (CatCond.mem_nonneg_iff i x).mp hk
       funext j
       by_cases hj : j = i
       · subst hj; simp [Real.relu, max_eq_left h0]
@@ -80,7 +81,7 @@ theorem aux_eval_step_iff (i : Fin n) (x y : Vec ℝ n) : -- --- STMT ---
       intro hk _ hy
       cases hy
       rw [hb, add_zero, hzero]
-      have h0 : x i < 0 := hk
+      have h0 : x i < 0 := (CatCond.mem_neg_iff i x).mp hk
       funext j
       by_cases hj : j = i
       · subst hj; simp [Real.relu, max_eq_right h0.le]
@@ -88,7 +89,8 @@ theorem aux_eval_step_iff (i : Fin n) (x y : Vec ℝ n) : -- --- STMT ---
   · rintro rfl
     rcases le_or_gt 0 (x i) with h0 | h0
     · -- `xᵢ ≥ 0`: the first case applies, and it is the identity
-      refine Cat.Eval.cases _ _ 0 (by exact h0) (fun j hj => absurd hj (Fin.not_lt_zero j)) ?_
+      refine Cat.Eval.cases _ _ 0 ((CatCond.mem_nonneg_iff i x).mpr h0)
+        (fun j hj => absurd hj (Fin.not_lt_zero j)) ?_
       have hy : Function.update x i (Real.relu (x i)) = toRealMat (fun r c : Fin n =>
           if r = c then (one : 𝕋) else zero) *ᵥ x + toRealVec (fun _ : Fin n => (zero : 𝕋)) := by
         rw [hb, add_zero, hid]
@@ -99,10 +101,10 @@ theorem aux_eval_step_iff (i : Fin n) (x y : Vec ℝ n) : -- --- STMT ---
       rw [hy]
       exact Cat.Eval.affine _ _ x
     · -- `xᵢ < 0`: the first guard fails, and the second case zeroes the row
-      refine Cat.Eval.cases _ _ 1 (by exact h0) (fun j hj => ?_) ?_
+      refine Cat.Eval.cases _ _ 1 ((CatCond.mem_neg_iff i x).mpr h0) (fun j hj => ?_) ?_
       · have hj0 : j = 0 := Fin.ext (by have := hj; simp [Fin.lt_def] at this; omega)
         subst hj0
-        exact fun h => absurd (show (0:ℝ) ≤ x i from h) (not_le.mpr h0)
+        exact fun h => absurd ((CatCond.mem_nonneg_iff i x).mp h) (not_le.mpr h0)
       · have hy : Function.update x i (Real.relu (x i)) = toRealMat (fun r c : Fin n =>
             if r = c ∧ r ≠ i then (one : 𝕋) else zero) *ᵥ x
             + toRealVec (fun _ : Fin n => (zero : 𝕋)) := by

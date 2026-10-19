@@ -2,10 +2,15 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Intersection
 public import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionDep
-public import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesIntersectionDepIff
 public import CORALean.ContSet.Interval.Real.Operations.Point
 public import Mathlib.Algebra.Group.Pointwise.Set.Basic
 public import Mathlib.Tactic.Abel
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.AndExact
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemCartProdIff
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
+public import Mathlib.Algebra.BigOperators.Fin
 
 @[expose] public section
 
@@ -50,6 +55,30 @@ theorem ConPolyZono.aux_value_intersectionDep (cPZ₁ cPZ₂ : ConPolyZono (Vec 
   simp only [Fin.append_left, Fin.append_right, Pi.zero_apply, smul_zero,
     Finset.sum_const_zero, add_zero, PolyZonotope.monomial_plusE_left]
 
+/-- What `intersectionDep`'s constraint system says: each set's own constraints, and that
+the two points agree coordinate by coordinate. -/
+theorem ConPolyZono.aux_mem_cons_intersectionDep_iff (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n))
+    (a : Fin (cPZ₁.p + cPZ₂.p) → ℝ) : -- --- STMT ---
+    a ∈ (cPZ₁.intersectionDep cPZ₂).cons.construct ↔
+      ((fun k => a (Fin.castAdd cPZ₂.p k)) ∈ cPZ₁.cons.construct
+        ∧ (fun k => a (Fin.natAdd cPZ₁.p k)) ∈ cPZ₂.cons.construct)
+      ∧ ∀ i, (∑ l, cPZ₁.G l i
+              * PolyZonotope.monomial cPZ₁.E (fun k => a (Fin.castAdd cPZ₂.p k)) l)
+            - ∑ l, cPZ₂.G l i
+              * PolyZonotope.monomial cPZ₂.E (fun k => a (Fin.natAdd cPZ₁.p k)) l
+          = cPZ₂.c i - cPZ₁.c i := by -- --- PROOF ---
+  show a ∈ ((cPZ₁.cons.cartProd cPZ₂.cons).and_ (ConPolyZono.agreeCons cPZ₁ cPZ₂)).construct ↔ _
+  rw [PolyLevelSet.and_exact, Set.mem_inter_iff, PolyLevelSet.mem_cartProd_iff,
+    PolyLevelSet.mem_construct_iff_of_eq (P := ConPolyZono.agreeCons cPZ₁ cPZ₂) fun _ => rfl]
+  -- an agreement row reads each side's monomials off its own factors
+  refine and_congr Iff.rfl (forall_congr' fun i => ?_)
+  show (∑ l, Fin.append (fun l => cPZ₁.G l i) (fun l => -cPZ₂.G l i) l
+      * PolyZonotope.monomial (PolyZonotope.plusE cPZ₁.E cPZ₂.E) a l) = _ ↔ _
+  rw [Fin.sum_univ_add]
+  simp only [Fin.append_left, Fin.append_right, PolyZonotope.monomial_plusE_left,
+    PolyZonotope.monomial_plusE_right, neg_mul, Finset.sum_neg_distrib, ← sub_eq_add_neg]
+  rfl
+
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
@@ -78,7 +107,7 @@ theorem ConPolyZono.intersectionDep_exact (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ 
     refine ⟨Fin.append a₁ a₂, fun _ => 0,
       Fin.addCases (fun k => by simpa using ha₁ k) (fun k => by simpa using ha₂ k),
       fun j => j.elim0, ?_, ?_⟩
-    · refine (ConPolyZono.satisfies_intersectionDep_iff cPZ₁ cPZ₂ _).mpr ⟨⟨?_, ?_⟩, fun i => ?_⟩
+    · refine (ConPolyZono.aux_mem_cons_intersectionDep_iff cPZ₁ cPZ₂ _).mpr ⟨⟨?_, ?_⟩, fun i => ?_⟩
       · rw [hA₁]
         exact hs₁
       · rw [hA₂]
@@ -93,7 +122,8 @@ theorem ConPolyZono.intersectionDep_exact (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ 
       rw [ConPolyZono.aux_value_intersectionDep, hA₁, hx₁, hz₁ β₁]
       simp only [Finset.univ_eq_empty, Finset.sum_empty, add_zero]
   · rintro x ⟨a, β, ha, -, hsat, hx⟩
-    obtain ⟨⟨hs₁, hs₂⟩, hagree⟩ := (ConPolyZono.satisfies_intersectionDep_iff cPZ₁ cPZ₂ a).mp hsat
+    obtain ⟨⟨hs₁, hs₂⟩,
+        hagree⟩ := (ConPolyZono.aux_mem_cons_intersectionDep_iff cPZ₁ cPZ₂ a).mp hsat
     have hxv : x = cPZ₁.c
         + ∑ l, PolyZonotope.monomial cPZ₁.E (fun k => a (Fin.castAdd cPZ₂.p k)) l • cPZ₁.G l := by
       rw [hx]

@@ -3,14 +3,14 @@ module
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerA
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerB
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerR
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecPlusALeft
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecPlusARight
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ProdUnitCol
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
+public import CORALean.ContSet.ConPolyZono.Real.Operations.PlusA
+public import Mathlib.Algebra.BigOperators.Fin
 
 @[expose] public section
 
@@ -38,6 +38,19 @@ branch where the first one's falls away.
 namespace CORALean.Real
 
 open Matrix
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+theorem ConPolyZono.aux_mulVec_plusA_right {m₁ q₁ m₂ q₂ : ℕ} (A₁ : Mat ℝ m₁ q₁)
+    (A₂ : Mat ℝ m₂ q₂) (v : Fin (q₁ + q₂) → ℝ) (i : Fin m₂) :
+    (ConPolyZono.plusA A₁ A₂ *ᵥ v) (Fin.natAdd m₁ i)
+      = (A₂ *ᵥ fun l => v (Fin.natAdd q₁ l)) i := by -- --- PROOF ---
+  show ∑ l : Fin (q₁ + q₂), ConPolyZono.plusA A₁ A₂ (Fin.natAdd m₁ i) l * v l
+      = ∑ l, A₂ i l * v (Fin.natAdd q₁ l)
+  rw [Fin.sum_univ_add]
+  simp only [ConPolyZono.plusA, Fin.append_left, Fin.append_right, Pi.zero_apply,
+    zero_mul, Finset.sum_const_zero, zero_add]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -76,7 +89,7 @@ theorem ConPolyZono.mulVec_unionLower_right {p₁ p₂ m₁ q₁ m₂ q₂ : ℕ
             (fun k => a (Fin.castAdd 2 k)) l)
         = (ConPolyZono.plusA A₁ A₂ *ᵥ PolyZonotope.monomial (PolyZonotope.plusE R₁ R₂)
             fun k => a (Fin.castAdd 2 k)) (Fin.natAdd m₁ i) from rfl,
-      ConPolyZono.mulVec_plusA_right]
+      ConPolyZono.aux_mulVec_plusA_right]
     congr 1
     exact funext fun l => PolyZonotope.monomial_plusE_right R₁ R₂ _ l
   rw [hblk, hlast]

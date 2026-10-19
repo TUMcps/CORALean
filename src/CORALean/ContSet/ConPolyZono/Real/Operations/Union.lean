@@ -2,12 +2,10 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionG
-public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperA
-public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperB
-public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperR
-public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerA
-public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerB
-public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerR
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpper
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLower
+public import CORALean.ContSet.PolyLevelSet.Real.Operations.And
+public import CORALean.ContSet.LevelSet.Real.Theorems.Basic
 
 @[expose] public section
 
@@ -32,9 +30,9 @@ The result is not regular, and CORA follows the closed form with `compact_`;
       Informatica, 2023.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       13-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -51,18 +49,12 @@ noncomputable def ConPolyZono.union {α : Type} [AddCommGroup α] [Module ℝ α
   p := cPZ₁.p + cPZ₂.p + 2
   h := 1 + (cPZ₁.h + cPZ₂.h)
   qI := 0
-  m := 1 + 1 + (cPZ₁.m + cPZ₂.m)
-  q := 1 + (2 + (cPZ₁.p + cPZ₁.p + (cPZ₂.p + cPZ₂.p + (cPZ₁.p * cPZ₂.p + cPZ₁.p * cPZ₂.p))))
-    + (cPZ₁.q + cPZ₂.q + 1)
   c := (2 : ℝ)⁻¹ • (cPZ₁.c + cPZ₂.c)
   G := ConPolyZono.unionG cPZ₁.c cPZ₂.c cPZ₁.G cPZ₂.G
   E := ConPolyZono.unionE cPZ₁.E cPZ₂.E
   GI := Fin.elim0
-  A := ConPolyZono.plusA (ConPolyZono.unionUpperA cPZ₁.p cPZ₂.p)
-    (ConPolyZono.unionLowerA cPZ₁.A cPZ₁.b cPZ₂.A cPZ₂.b)
-  b := ConPolyZono.plusB ConPolyZono.unionUpperB (ConPolyZono.unionLowerB cPZ₁.b cPZ₂.b)
-  R := ConPolyZono.appendE (ConPolyZono.unionUpperR cPZ₁.p cPZ₂.p)
-    (ConPolyZono.unionLowerR cPZ₁.R cPZ₂.R)
+  cons := (ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).and_ (ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons)
+  cons_eq := LevelSet.append_op_eq (LevelSet.append_op_eq (fun _ => rfl) fun _ => rfl) fun _ => rfl
 
 end CORALean.Real
 

@@ -42,7 +42,7 @@ variable [SoundFloatArithmetic 𝕋]
 -- the polytope's rows read as a constraint system over the factors themselves
 theorem ConZonotope.satisfies_conPolyZono (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {β : Vec ℝ cZ.h}
     (hβ : ∀ j, |β j| ≤ 1) (hP : β ∈ cZ.P.nominal.construct) :
-    cZ.conPolyZono.satisfies β := by -- --- PROOF ---
+    β ∈ cZ.conPolyZono.cons.construct := by -- --- PROOF ---
   obtain ⟨hle, heq⟩ := HPolytope.mem_nominal_iff.mp hP
   have hm : Real.PolyZonotope.monomial (Real.PolyZonotope.identE cZ.h) β = β :=
     funext fun j => Real.PolyZonotope.monomial_identE β j

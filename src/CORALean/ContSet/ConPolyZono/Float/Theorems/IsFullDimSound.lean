@@ -5,6 +5,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.IsFullDimWith
 public import CORALean.ContSet.Zonotope.Float.Theorems.BallCertReach
 public import Mathlib.Analysis.Normed.Module.FiniteDimension
 public import Mathlib.Topology.Algebra.Group.Pointwise
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
 
 @[expose] public section
 
@@ -37,11 +38,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The stored indicator is the real monomial at the factors `0`. -/
-theorem ConPolyZono.aux_zeroMonomials (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : Fin cPZ.q) :
+theorem ConPolyZono.aux_zeroMonomials (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : Fin cPZ.cons.q) :
     toReal (cPZ.zeroMonomials k)
-      = Real.PolyZonotope.monomial cPZ.R (fun _ => (0 : ℝ)) k := by -- --- PROOF ---
+      = Real.PolyZonotope.monomial cPZ.cons.R (fun _ => (0 : ℝ)) k := by -- --- PROOF ---
   unfold ConPolyZono.zeroMonomials Real.PolyZonotope.monomial
-  by_cases h : ∀ l, cPZ.R l k = 0
+  by_cases h : ∀ l, cPZ.cons.R l k = 0
   · rw [if_pos h, toReal_one]
     exact (Finset.prod_eq_one fun l _ => by rw [h l, pow_zero]).symm
   · rw [if_neg h, toReal_zero]
@@ -51,14 +52,14 @@ theorem ConPolyZono.aux_zeroMonomials (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k :
 
 /-- The checked rows say the factors `0` meet the constraints within their slack. -/
 theorem ConPolyZono.aux_satisfies_zero {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)}
-    (h : ∀ i, le (subUp (cPZ.b i) (dotDown (cPZ.A i) cPZ.zeroMonomials))
-        (absolute (cPZ.b_error i)) = true
-      ∧ le (subUp (dotUp (cPZ.A i) cPZ.zeroMonomials) (cPZ.b i))
-        (absolute (cPZ.b_error i)) = true) : -- --- STMT ---
-    cPZ.satisfies (fun _ => 0) := by -- --- PROOF ---
-  intro i
-  have hA : (toRealMat cPZ.A *ᵥ Real.PolyZonotope.monomial cPZ.R (fun _ => (0 : ℝ))) i
-      = ∑ k, toReal (cPZ.A i k) * toReal (cPZ.zeroMonomials k) := by
+    (h : ∀ i, le (subUp (cPZ.cons.b i) (dotDown (cPZ.cons.A i) cPZ.zeroMonomials))
+        (absolute (cPZ.cons.b_error i)) = true
+      ∧ le (subUp (dotUp (cPZ.cons.A i) cPZ.zeroMonomials) (cPZ.cons.b i))
+        (absolute (cPZ.cons.b_error i)) = true) : -- --- STMT ---
+    (fun _ => 0) ∈ cPZ.cons.construct := by -- --- PROOF ---
+  refine (PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mpr fun i => ?_
+  have hA : (toRealMat cPZ.cons.A *ᵥ Real.PolyZonotope.monomial cPZ.cons.R (fun _ => (0 : ℝ))) i
+      = ∑ k, toReal (cPZ.cons.A i k) * toReal (cPZ.zeroMonomials k) := by
     simp only [Matrix.mulVec, dotProduct, toRealMat]
     exact Finset.sum_congr rfl fun k _ => by rw [ConPolyZono.aux_zeroMonomials]
   rw [hA, abs_le]
@@ -66,16 +67,16 @@ theorem ConPolyZono.aux_satisfies_zero {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)}
   have hlo := toReal_le_of_le (h i).1
   have hhi := toReal_le_of_le (h i).2
   rw [toReal_absolute] at hlo hhi
-  have h₁ := sub_le_subUp (cPZ.b i) (dotDown (cPZ.A i) cPZ.zeroMonomials)
-  have h₂ := sub_le_subUp (dotUp (cPZ.A i) cPZ.zeroMonomials) (cPZ.b i)
-  have h₃ := dotDown_le (cPZ.A i) cPZ.zeroMonomials
-  have h₄ := le_dotUp (cPZ.A i) cPZ.zeroMonomials
+  have h₁ := sub_le_subUp (cPZ.cons.b i) (dotDown (cPZ.cons.A i) cPZ.zeroMonomials)
+  have h₂ := sub_le_subUp (dotUp (cPZ.cons.A i) cPZ.zeroMonomials) (cPZ.cons.b i)
+  have h₃ := dotDown_le (cPZ.cons.A i) cPZ.zeroMonomials
+  have h₄ := le_dotUp (cPZ.cons.A i) cPZ.zeroMonomials
   constructor <;> linarith
 
 /-- The box of radius `B` around `y₀` lies in the nominal set. -/
 theorem ConPolyZono.aux_box_subset {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)} {H : Mat 𝕋 cPZ.qI n} {B : 𝕋}
     (hc : Zonotope.ballCert (fun i j => cPZ.GI j i) H B one = true)
-    (hsat : cPZ.satisfies (fun _ => 0)) {y₀ : Vec ℝ n}
+    (hsat : (fun _ => 0) ∈ cPZ.cons.construct) {y₀ : Vec ℝ n}
     (hy₀ : ∀ i, y₀ i = toReal (cPZ.c i)
       + ∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial cPZ.E (fun _ => 0) l)
     (y : Vec ℝ n) (hy : ∀ i, |y i - y₀ i| ≤ toReal B) : -- --- STMT ---

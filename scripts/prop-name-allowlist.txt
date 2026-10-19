@@ -29,7 +29,6 @@ isBigger
 isBadDir
 isequalPieces
 matContains
-satisfies
 holds
 eq
 ne

@@ -13,7 +13,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.SumMonomialMerge
 
 The result is [1, Prop. 1].
 
-`compactGens` leaves the whole constraint block alone, so `satisfies` transfers
+`compactGens` leaves the whole constraint block alone, so membership in `cons` transfers
 by definition and only the generator sum moves. An equality of sets with no
 hypothesis, which is what makes this stage bookkeeping.
 

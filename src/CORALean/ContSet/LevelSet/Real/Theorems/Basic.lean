@@ -25,6 +25,19 @@ namespace CORALean.Real
 variable {n : ℕ}
 
 
+-- =================================  `LevelSet.append_op_eq`  ================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       18-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Two stacked systems of equations are a system of equations (`PolyLevelSet.and_`, `cartProd`). -/
+theorem LevelSet.append_op_eq {a b : ℕ} {o₁ : Fin a → CompOp} {o₂ : Fin b → CompOp}
+    (h₁ : ∀ i, o₁ i = .eq) (h₂ : ∀ i, o₂ i = .eq) : ∀ i, Fin.append o₁ o₂ i = .eq :=
+  Fin.addCases (fun i => (Fin.append_left _ _ i).trans (h₁ i))
+    (fun i => (Fin.append_right _ _ i).trans (h₂ i))
+
+
 -- ================================  `LevelSet.construct_empty`  ================================ --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026

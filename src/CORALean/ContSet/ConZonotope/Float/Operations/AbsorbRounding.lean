@@ -36,6 +36,7 @@ def ConZonotope.absorbRounding (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConZonotop
   h := cZ.h + n
   c := cZ.c
   G := Fin.append cZ.G (diagonalBlock (PolyZonotope.errorBound cZ.I_error))
+  -- the polytope keeps its own slacks `b_error` and `be_error`, padded with it
   P := cZ.P.padLeft n
   I_error := ⟨fun _ => zero, fun _ => zero⟩
 

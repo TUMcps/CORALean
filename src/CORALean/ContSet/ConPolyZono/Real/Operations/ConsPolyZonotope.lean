@@ -9,7 +9,7 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 # `ConPolyZono.consPolyZonotope`
 
 The constraint data read as a `PolyZonotope` over the constraint codomain
-`Vec ℝ m`: CORA's `polyZonotope(-cPZ.b, cPZ.A, [], cPZ.R, cPZ.id)` inside
+`Vec ℝ m`: CORA's `polyZonotope(-cPZ.cons.b, cPZ.cons.A, [], cPZ.cons.R, cPZ.id)` inside
 `@conPolyZono/getSubset`, with the offset dropped rather than carried as `-b` —
 `b` is an `Interval` here and is `getSubset`'s own field, untouched by the
 substitution, so there is nothing to fold in and fold back out.
@@ -35,13 +35,13 @@ namespace CORALean.Real
 
 /-- The constraint data read as a `PolyZonotope` over `Vec ℝ m`. -/
 def ConPolyZono.consPolyZonotope {α : Type} (cPZ : ConPolyZono α) :
-    PolyZonotope (Vec ℝ cPZ.m) where
+    PolyZonotope (Vec ℝ cPZ.cons.m) where
   p := cPZ.p
-  h := cPZ.q
+  h := cPZ.cons.q
   q := 0
   c := 0
-  G := ConPolyZono.consCol cPZ.A
-  E := cPZ.R
+  G := ConPolyZono.consCol cPZ.cons.A
+  E := cPZ.cons.R
   GI := Fin.elim0
 
 end CORALean.Real

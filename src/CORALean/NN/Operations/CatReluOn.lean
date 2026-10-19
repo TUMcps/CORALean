@@ -1,5 +1,6 @@
 module
 
+public import CORALean.NN.Operations.Basic
 public import CORALean.NN.Definitions.Cat
 
 @[expose] public section

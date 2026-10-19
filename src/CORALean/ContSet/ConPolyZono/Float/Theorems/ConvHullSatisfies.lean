@@ -7,6 +7,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.MulVecConvHullLast
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.AbsSubLeSubUp
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullSingle
 public import CORALean.Global.Float.IntRound
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
 
 @[expose] public section
 
@@ -57,13 +58,14 @@ theorem ConPolyZono.aux_toRealMat_convHullA (a : ℕ) {m q : ℕ} (A : Mat 𝕋 
 
 theorem ConPolyZono.convHullSingle_satisfies_of_real (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (v : Fin (a * cPZ.p + a) → ℝ)
-    (hcopy : ∀ j, cPZ.satisfies (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))))
+    (hcopy : ∀ j, (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))) ∈ cPZ.cons.construct)
     (hw : ∑ j, v (Fin.natAdd (a * cPZ.p) j) = 1 - (a : ℝ)) : -- --- STMT ---
-    (cPZ.convHullSingle a).satisfies v := by -- --- PROOF ---
-  intro i
-  show |(toRealMat (ConPolyZono.convHullA a cPZ.A) *ᵥ Real.PolyZonotope.monomial
-      (Real.ConPolyZono.convHullR a cPZ.R) v) i - toReal (ConPolyZono.convHullB a cPZ.b i)|
-    ≤ |toReal (Fin.append (Real.ConPolyZono.repVec a cPZ.b_error)
+    v ∈ (cPZ.convHullSingle a).cons.construct := by -- --- PROOF ---
+  refine (PolyLevelSet.mem_construct_iff_of_eq (cPZ.convHullSingle a).cons_eq).mpr fun i => ?_
+  show |(toRealMat (ConPolyZono.convHullA a cPZ.cons.A) *ᵥ Real.PolyZonotope.monomial
+      (Real.ConPolyZono.convHullR a cPZ.cons.R) v) i
+          - toReal (ConPolyZono.convHullB a cPZ.cons.b i)|
+    ≤ |toReal (Fin.append (Real.ConPolyZono.repVec a cPZ.cons.b_error)
       (fun _ => subUp (intUp (1 - (a : ℤ))) (intDown (1 - (a : ℤ)))) i)|
   rw [ConPolyZono.aux_toRealMat_convHullA]
   refine Fin.addCases (fun r => ?_) (fun r => ?_) i
@@ -71,7 +73,8 @@ theorem ConPolyZono.convHullSingle_satisfies_of_real (a : ℕ) (cPZ : ConPolyZon
   · obtain ⟨⟨j, k⟩, rfl⟩ := finProdFinEquiv.surjective r
     rw [Real.ConPolyZono.mulVec_convHull_block]
     simpa only [ConPolyZono.convHullB, Real.ConPolyZono.repVec, Fin.append_left,
-      Equiv.symm_apply_apply] using hcopy j k
+      Equiv.symm_apply_apply] using
+        (PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mp (hcopy j) k
   -- the weight row: the weights' sum, `1 - a` exactly, stored between its two roundings
   · have hr : r = 0 := Subsingleton.elim r 0
     subst hr

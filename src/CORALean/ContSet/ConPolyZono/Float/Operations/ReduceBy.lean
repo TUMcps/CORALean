@@ -36,17 +36,13 @@ def ConPolyZono.reduceBy (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
   p := cPZ.p
   h := d
   qI := dI + n
-  m := cPZ.m
-  q := cPZ.q
   c := cPZ.c
   G := fun l => cPZ.G (partD.left l)
   E := fun k l => cPZ.E k (partD.left l)
   GI := Fin.append (fun j => cPZ.GI (partI.left j))
     fun j i => diagonalBlock (cPZ.dropRadius partD partI) i j
-  A := cPZ.A
-  b := cPZ.b
-  b_error := cPZ.b_error
-  R := cPZ.R
+  cons := cPZ.cons
+  cons_eq := cPZ.cons_eq
   I_error := cPZ.I_error
 
 end CORALean.Float

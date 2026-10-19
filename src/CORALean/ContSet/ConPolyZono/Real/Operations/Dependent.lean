@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
+public import CORALean.ContSet.PolyLevelSet.Real.Operations.PadVars
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
 public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
@@ -26,9 +26,9 @@ The fresh factors take exponent zero in every constraint row, which is what
 factors, and a fresh factor appearing in one would silently change them.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -45,15 +45,12 @@ def ConPolyZono.dependent (cPZ : ConPolyZono α) : ConPolyZono α where
   p := cPZ.p + cPZ.qI
   h := cPZ.h + cPZ.qI
   qI := 0
-  m := cPZ.m
-  q := cPZ.q
   c := cPZ.c
   G := Fin.append cPZ.G cPZ.GI
   E := PolyZonotope.plusE cPZ.E (PolyZonotope.identE cPZ.qI)
   GI := Fin.elim0
-  A := cPZ.A
-  b := cPZ.b
-  R := ConPolyZono.padE cPZ.R cPZ.qI
+  cons := cPZ.cons.padVars cPZ.qI
+  cons_eq := cPZ.cons_eq
 
 end CORALean.Real
 

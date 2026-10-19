@@ -42,13 +42,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ConPolyZono.union_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (hq₁ : cPZ₁.qI = 0) (hq₂ : cPZ₂.qI = 0)
-    (hE₁ : Real.ConPolyZono.NoZeroCol cPZ₁.E) (hR₁ : Real.ConPolyZono.NoZeroCol cPZ₁.R)
+    (hE₁ : Real.ConPolyZono.NoZeroCol cPZ₁.E) (hR₁ : Real.ConPolyZono.NoZeroCol cPZ₁.cons.R)
     (hE₂ : Real.ConPolyZono.NoZeroCol cPZ₂.E)
-    (hR₂ : Real.ConPolyZono.NoZeroCol cPZ₂.R) : -- --- STMT ---
+    (hR₂ : Real.ConPolyZono.NoZeroCol cPZ₂.cons.R) : -- --- STMT ---
     cPZ₁.construct ∪ cPZ₂.construct ⊆ (cPZ₁.union cPZ₂).construct := by -- --- PROOF ---
   -- the relaxed exact union of the read-back operands holds both nominal sets
   have hex := Real.ConPolyZono.union_relax_subset cPZ₁.nominalCore cPZ₂.nominalCore
-    (toRealVec cPZ₁.b_error) (toRealVec cPZ₂.b_error) hq₁ hq₂ hE₁ hR₁ hE₂ hR₂
+    (toRealVec cPZ₁.cons.b_error) (toRealVec cPZ₂.cons.b_error) hq₁ hq₂ hE₁ hR₁ hE₂ hR₂
   rintro x (⟨y, hy, e, he, rfl⟩ | ⟨y, hy, e, he, rfl⟩)
   · exact ConPolyZono.union_point_mem cPZ₁ cPZ₂ (hex (Or.inl hy))
       (Interval.or_outer _ _ (Or.inl he))

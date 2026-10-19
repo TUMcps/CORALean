@@ -82,19 +82,6 @@ omit [SoundFloatArithmetic 𝕋] in
     (cPZ₁.plus cPZ₂).h = cPZ₁.h + cPZ₂.h := rfl
 
 
--- ==============================  `ConPolyZono.toRealVec_append`  ============================== --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   05-September-2026
--- Reviewed:      ---
-
-/-- Appending two float vectors and reading back commutes -/
-theorem ConPolyZono.toRealVec_append {m₁ m₂ : ℕ} (b₁ : Vec 𝕋 m₁) (b₂ : Vec 𝕋 m₂) :
-    toRealVec (Fin.append b₁ b₂) = Fin.append (toRealVec b₁) (toRealVec b₂) := by
-  refine funext (Fin.addCases (fun i => ?_) (fun i => ?_)) <;>
-    simp only [toRealVec, Fin.append_left, Fin.append_right]
-
-
 end
 
 

@@ -10,19 +10,18 @@ public import Mathlib.Data.Matrix.Mul
 # Constrained polynomial zonotopes: the representation
 
 CORA's `conPolyZono`, and [1, Def. 5]: a `PolyZonotope` whose factors additionally satisfy
-polynomial constraints `A μ_R(α) = b`, the constraint monomials read off the exponent
-matrix `R` over the *same* factors as the generators. That sharing is the content of the
-representation — a constraint and a generator are two readings of one
-`PolyZonotope.monomial` — so the constraints are a matrix relation, not a polytope.
+polynomial constraints `A μ_R(α) = b`, the constraint monomials read off the exponent matrix `R`
+over the *same* factors as the generators — a constraint and a generator are two readings of one
+`PolyZonotope.monomial`. The symbols are [1]'s: `p` factors, `h` generators, `m` constraints and
+`q` constraint generators (`cons.m`, `cons.q`); [1] has no independent generators, their count is
+`qI`, `PolyZonotope`'s `q` [2, Def. 1] being the letter [1] gives the constraint generators.
 
-The symbols are [1]'s: `p` factors, `h` generators, `m` constraints, `q` constraint generators,
-so `A` is `m × q` and `R` is `p × q`. [1] has no independent generators; their count is `qI`,
-`PolyZonotope`'s `q` [2, Def. 1] being the letter [1] gives the constraint generators.
-
-The constraint system is a `PolyLevelSet` on the factors with `=` in every row (`cons`), as a
-constrained zonotope's is an `HPolytope`: `satisfies a` is `a ∈ cons.construct`
-(`satisfies_iff_mem_cons`). `A`, `b` and `R` are stored as [1] writes them, `b` a point vector;
-what rounding costs the float layer's rows is its own record, `b_error`.
+The constraint is the field `cons`, a `PolyLevelSet` on the factors, as a constrained zonotope's
+is an `HPolytope`: an operation on it is one of `PolyLevelSet`'s (`and_`, `cartProd`, `padVars`,
+`relax`, `compact`). Every row is an equation, as in CORA, and `cons_eq` says so: a `≤` row would
+make a different set from [1]'s, and `union` rewrites each row with its selector factor
+([1, Thm. 1]), which is sound for an equation only. An operation keeps the invariant from its
+operands' (`LevelSet.append_op_eq` where it stacks rows, `rfl` where it writes new ones).
 
 ## References
 
@@ -57,37 +56,18 @@ structure ConPolyZono (α : Type) where
   h : ℕ
   /-- The independent generators, `qI` of them; [1] has none. -/
   qI : ℕ
-  /-- The constraints. -/
-  m : ℕ
-  /-- The constraint generators. -/
-  q : ℕ
   c : α
   G : Fin h → α
   E : Fin p → Fin h → ℕ
   GI : Fin qI → α
-  A : Mat ℝ m q
-  /-- The constraint vector `b` of [1]. -/
-  b : Vec ℝ m
-  /-- The constraint exponent matrix, `R` of [1]. -/
-  R : Fin p → Fin q → ℕ
-
-/-- The constraint `A μ_R(α) = b`, one row at a time and over the data rather than over a set,
-so an operation can name the constraints of the system it is still assembling. -/
-def ConPolyZono.holds {p m q : ℕ} (A : Mat ℝ m q) (b : Vec ℝ m)
-    (R : Fin p → Fin q → ℕ) (a : Fin p → ℝ) : Prop :=
-  ∀ i, (A *ᵥ PolyZonotope.monomial R a) i = b i
-
-/-- The constraint system as a polynomial level set on the factors, `=` in every row. -/
-def ConPolyZono.cons (cPZ : ConPolyZono α) : PolyLevelSet cPZ.p :=
-  ⟨cPZ.m, cPZ.q, cPZ.A, cPZ.R, cPZ.b, fun _ => .eq⟩
-
-/-- What a set's own factors must satisfy: `holds` at its own fields. -/
-def ConPolyZono.satisfies (cPZ : ConPolyZono α) (a : Fin cPZ.p → ℝ) : Prop :=
-  ConPolyZono.holds cPZ.A cPZ.b cPZ.R a
+  /-- The constraint `A μ_R(α) = b` of [1] on the factors: `m` rows over `q` monomials. -/
+  cons : PolyLevelSet p
+  /-- Every constraint row is an equation, as in [1]. -/
+  cons_eq : ∀ i, cons.op i = .eq
 
 def ConPolyZono.construct (cPZ : ConPolyZono α) : Set α :=
   {x | ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
-        ∧ cPZ.satisfies a
+        ∧ a ∈ cPZ.cons.construct
         ∧ x = cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i + ∑ j, β j • cPZ.GI j}
 
 end CORALean.Real

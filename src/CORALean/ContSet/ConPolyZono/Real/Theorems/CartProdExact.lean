@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.CartProd
-public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPlusIff
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemCartProdIff
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
 public import Mathlib.Algebra.Module.Prod
@@ -14,7 +14,7 @@ public import Mathlib.Algebra.Module.Prod
 The result is [1, Prop. 7].
 
 The witnesses are the same as `plus_exact`'s — `Fin.append` on the factors and
-on the independent coefficients, `holds_plus_iff` for the constraint half — and
+on the independent coefficients, `PolyLevelSet.mem_cartProd_iff` for the constraint half — and
 what differs is only what happens to the generator sum: a generator of one set
 already sits at zero in the other coordinate, so the assembled sum splits along
 `Prod.fst`/`Prod.snd` into the two sets' own sums rather than needing to be
@@ -26,9 +26,9 @@ identified with them, exactly as in `PolyZonotope.cartProd_exact`.
       Informatica, 2023.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       11-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      14-October-2026 (Tobias Ladner)
 
 
@@ -75,8 +75,7 @@ theorem ConPolyZono.cartProd_exact (cPZ₁ : ConPolyZono α) (cPZ₂ : ConPolyZo
       Fin.addCases (fun k => by simpa using ha₁ k) (fun k => by simpa using ha₂ k),
       Fin.addCases (fun j => by simpa using hβ₁ j) (fun j => by simpa using hβ₂ j),
       ?_, ?_⟩
-    · refine (ConPolyZono.holds_plus_iff cPZ₁.A cPZ₁.b cPZ₁.R cPZ₂.A cPZ₂.b cPZ₂.R
-        _).mpr ⟨?_, ?_⟩
+    · refine (PolyLevelSet.mem_cartProd_iff cPZ₁.cons cPZ₂.cons _).mpr ⟨?_, ?_⟩
       · rw [hA₁]; exact hs₁
       · rw [hA₂]; exact hs₂
     · rw [ConPolyZono.aux_sum_univ_cartProd_h, ConPolyZono.aux_sum_univ_cartProd_qI]
@@ -90,7 +89,7 @@ theorem ConPolyZono.cartProd_exact (cPZ₁ : ConPolyZono α) (cPZ₂ : ConPolyZo
   -- back: the pair's equation and its constraint split apart per coordinate
   · rintro ⟨x₁, x₂⟩ ⟨a, β, ha, hβ, hsat, hxy⟩
     obtain ⟨hs₁, hs₂⟩ :=
-      (ConPolyZono.holds_plus_iff cPZ₁.A cPZ₁.b cPZ₁.R cPZ₂.A cPZ₂.b cPZ₂.R a).mp hsat
+      (PolyLevelSet.mem_cartProd_iff cPZ₁.cons cPZ₂.cons a).mp hsat
     have hx₁ : x₁ = cPZ₁.c + ∑ i, PolyZonotope.monomial cPZ₁.E (fun k => a (Fin.castAdd cPZ₂.p k)) i
               • cPZ₁.G i + ∑ j, β (Fin.castAdd cPZ₂.qI j) • cPZ₁.GI j := by
       have h1 := congrArg Prod.fst hxy

@@ -1,12 +1,10 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionUpperA
-public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionUpperB
-public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionLowerA
-public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionLowerB
+public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionUpper
+public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionLower
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionE
-public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperR
-public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerR
+public import CORALean.ContSet.PolyLevelSet.Float.Operations.And
+public import CORALean.ContSet.LevelSet.Real.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.HalfDiffError
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MidpointResidual
@@ -58,22 +56,14 @@ def ConPolyZono.union (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZ
   p := cPZ₁.p + cPZ₂.p + 2
   h := 1 + (cPZ₁.h + cPZ₂.h)
   qI := 0
-  m := 1 + 1 + (cPZ₁.m + cPZ₂.m)
-  q := 1 + (2 + (cPZ₁.p + cPZ₁.p + (cPZ₂.p + cPZ₂.p + (cPZ₁.p * cPZ₂.p + cPZ₁.p * cPZ₂.p))))
-    + (cPZ₁.q + cPZ₂.q + 1)
   c := PolyZonotope.midpoint cPZ₁.c cPZ₂.c
   G := Fin.append (fun _ => PolyZonotope.halfDiff cPZ₁.c cPZ₂.c) (Fin.append cPZ₁.G cPZ₂.G)
   E := Real.ConPolyZono.unionE cPZ₁.E cPZ₂.E
   GI := Fin.elim0
-  A := ConPolyZono.plusA (ConPolyZono.unionUpperA cPZ₁.p cPZ₂.p)
-    (ConPolyZono.unionLowerA cPZ₁.A cPZ₁.b cPZ₂.A cPZ₂.b)
-  b := ConPolyZono.plusB ConPolyZono.unionUpperB (ConPolyZono.unionLowerB cPZ₁.b cPZ₂.b)
-  -- the selector polynomial's coefficient rounding, then the operands' own slacks
-  b_error := ConPolyZono.plusB
-    (ConPolyZono.plusB (fun _ => zero) (fun _ => ConPolyZono.unionConErr cPZ₁.p cPZ₂.p))
-    (ConPolyZono.plusB cPZ₁.b_error cPZ₂.b_error)
-  R := Real.ConPolyZono.appendE (Real.ConPolyZono.unionUpperR cPZ₁.p cPZ₂.p)
-    (Real.ConPolyZono.unionLowerR cPZ₁.R cPZ₂.R)
+  -- the selector rows, the second with its coefficients' rounding, then the operands' own rows
+  cons := (ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).and_ (ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons)
+  cons_eq := Real.LevelSet.append_op_eq
+    (Real.LevelSet.append_op_eq (fun _ => rfl) fun _ => rfl) fun _ => rfl
   -- the boxes of both operands, and what storing the center and the generator cost
   I_error := (cPZ₁.I_error.or cPZ₂.I_error).plus
     ((PolyZonotope.midpointResidual cPZ₁.c cPZ₂.c).plus

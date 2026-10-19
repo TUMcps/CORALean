@@ -37,20 +37,19 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- The specification of `compactCons`: equal constraint exponent columns added
 together, the stored value the lower rounding and the widening paid into `b_error`.
 The generators stand, so the ambient box is untouched. -/
-def ConPolyZono.compactConsSpec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) where
+def ConPolyZono.compactConsSpec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
+    ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := cPZ.p
   h := cPZ.h
   qI := cPZ.qI
-  m := cPZ.m
-  q := (PolyZonotope.repKeep cPZ.R).card
   c := cPZ.c
   G := cPZ.G
   E := cPZ.E
   GI := cPZ.GI
-  A := cPZ.mergedConsCol
-  b := cPZ.b
-  b_error := ConPolyZono.compactConsB cPZ
-  R := fun k l => cPZ.R k (PolyZonotope.keepIdx cPZ.R l)
+  cons := ⟨cPZ.cons.m, (PolyZonotope.repKeep cPZ.cons.R).card, cPZ.mergedConsCol,
+    fun k l => cPZ.cons.R k (PolyZonotope.keepIdx cPZ.cons.R l), cPZ.cons.b,
+    ConPolyZono.compactConsB cPZ, cPZ.cons.op⟩
+  cons_eq := cPZ.cons_eq
   I_error := cPZ.I_error
 
 end CORALean.Float

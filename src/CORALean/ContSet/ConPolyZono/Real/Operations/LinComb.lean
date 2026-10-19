@@ -1,7 +1,8 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
-public import CORALean.ContSet.ConPolyZono.Real.Operations.PlusA
+public import CORALean.ContSet.PolyLevelSet.Real.Operations.CartProd
+public import CORALean.ContSet.PolyLevelSet.Real.Operations.PadVars
+public import CORALean.ContSet.LevelSet.Real.Theorems.Basic
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ToPolyZonotope
 public import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
@@ -13,8 +14,8 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
 
 CORA's `@conPolyZono/linComb`: `PolyZonotope.linComb` on the generators — which
 is where the fresh factor for the segment parameter comes from — with the two
-constraint systems carried along side by side, `plusA` and `plusB` as `plus`
-lays them out, and `padE` giving the fresh factor a row of zeros.
+constraint systems carried along side by side, `PolyLevelSet.cartProd` as `plus`
+lays them out, and `PolyLevelSet.padVars` giving the fresh factor a row of zeros.
 
 Both systems are imposed unconditionally, and that is not an approximation: a
 point of `linComb` is `λ x₁ + (1-λ) x₂`, so *both* operands contribute to
@@ -27,9 +28,9 @@ changes nothing unless it is empty — and then the combination is empty too,
 which is the answer wanted.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -47,15 +48,12 @@ noncomputable def ConPolyZono.linComb (cPZ₁ cPZ₂ : ConPolyZono α) : ConPoly
   { p := cPZ₁.p + cPZ₂.p + 1
     h := cPZ₁.h + cPZ₂.h + (cPZ₁.h + cPZ₂.h + 1)
     qI := cPZ₁.qI + cPZ₂.qI
-    m := cPZ₁.m + cPZ₂.m
-    q := cPZ₁.q + cPZ₂.q
     c := pZ.c
     G := pZ.G
     E := pZ.E
     GI := pZ.GI
-    A := ConPolyZono.plusA cPZ₁.A cPZ₂.A
-    b := ConPolyZono.plusB cPZ₁.b cPZ₂.b
-    R := ConPolyZono.padE (PolyZonotope.plusE cPZ₁.R cPZ₂.R) 1 }
+    cons := (cPZ₁.cons.cartProd cPZ₂.cons).padVars 1
+    cons_eq := LevelSet.append_op_eq cPZ₁.cons_eq cPZ₂.cons_eq }
 
 end CORALean.Real
 

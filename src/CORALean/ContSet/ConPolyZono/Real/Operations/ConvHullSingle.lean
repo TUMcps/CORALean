@@ -1,9 +1,7 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullA
-public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullB
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullCons
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullE
-public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullR
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullG
 
 @[expose] public section
@@ -26,9 +24,9 @@ free in every copy at once, which is not what a weighted sum of points means.
       Informatica, 2023.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       13-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -45,15 +43,12 @@ noncomputable def ConPolyZono.convHullSingle {α : Type} [AddCommGroup α] [Modu
   p := a * cPZ.p + a
   h := a + (a * cPZ.h + a * cPZ.h)
   qI := 0
-  m := a * cPZ.m + 1
-  q := a * cPZ.q + a
   c := (a : ℝ) • cPZ.c
   G := ConPolyZono.convHullG a cPZ.c cPZ.G
   E := ConPolyZono.convHullE a cPZ.E
   GI := Fin.elim0
-  A := ConPolyZono.convHullA a cPZ.A
-  b := ConPolyZono.convHullB a cPZ.b
-  R := ConPolyZono.convHullR a cPZ.R
+  cons := ConPolyZono.convHullCons a cPZ.cons
+  cons_eq _ := rfl
 
 end CORALean.Real
 

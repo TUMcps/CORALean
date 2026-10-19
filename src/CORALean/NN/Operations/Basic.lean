@@ -2,7 +2,9 @@ module
 
 public import CORALean.ContSet.Interval.Float.Interval
 public import CORALean.Global.Float.FloatOps
+public import CORALean.NN.Definitions.Cat
 public import CORALean.NN.Definitions.Schedule
+public import CORALean.ContSet.PolyLevelSet.Real.Operations.Linear
 public import CORALean.NN.Definitions.WeightAcc
 public import CORALean.NN.Definitions.WeightNetwork
 public import CORALean.NN.Operations.WeightLayerEval
@@ -20,6 +22,47 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+
+namespace CORALean
+
+variable {n : ℕ}
+
+
+-- =======================================  `CatCond.ge`  ======================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `xᵢ ≥ xⱼ`, the first atom of AI2's guards: the degree-1 row `xⱼ - xᵢ ≤ 0`. -/
+def CatCond.ge (i j : Fin n) : CatCond n :=
+  Real.PolyLevelSet.linear (m := 1) (fun _ => (Pi.single j 1 - Pi.single i 1 : Vec ℝ n)) 0
+    fun _ => .le
+
+
+-- ======================================  `CatCond.neg`  ======================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `xᵢ < 0`: the degree-1 row `xᵢ < 0`. -/
+def CatCond.neg (i : Fin n) : CatCond n :=
+  Real.PolyLevelSet.linear (m := 1) (fun _ => (Pi.single i 1 : Vec ℝ n)) 0 fun _ => .lt
+
+
+-- =====================================  `CatCond.nonneg`  ===================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `xᵢ ≥ 0`: the degree-1 row `-xᵢ ≤ 0`. -/
+def CatCond.nonneg (i : Fin n) : CatCond n :=
+  Real.PolyLevelSet.linear (m := 1) (fun _ => (-Pi.single i 1 : Vec ℝ n)) 0 fun _ => .le
+
+end CORALean
 
 
 namespace CORALean.Float

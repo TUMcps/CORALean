@@ -38,21 +38,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 used factors built once. -/
 def ConPolyZono.compactFactors (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
   let ft := ((List.finRange cPZ.p).filter fun k =>
-    (∃ i, Real.ConPolyZono.appendE cPZ.E cPZ.R k i ≠ 0 : Bool)).toArray
-  let f := PolyZonotope.tabAt (Real.ConPolyZono.usedFactors cPZ.E cPZ.R) ft
-  { p := (Real.ConPolyZono.usedFactors cPZ.E cPZ.R).card
+    (∃ i, Real.ConPolyZono.appendE cPZ.E cPZ.cons.R k i ≠ 0 : Bool)).toArray
+  let f := PolyZonotope.tabAt (Real.ConPolyZono.usedFactors cPZ.E cPZ.cons.R) ft
+  { p := (Real.ConPolyZono.usedFactors cPZ.E cPZ.cons.R).card
     h := cPZ.h
     qI := cPZ.qI
-    m := cPZ.m
-    q := cPZ.q
     c := cPZ.c
     G := cPZ.G
     E := fun k i => cPZ.E (f k) i
     GI := cPZ.GI
-    A := cPZ.A
-    b := cPZ.b
-    b_error := cPZ.b_error
-    R := fun k l => cPZ.R (f k) l
+    cons := ⟨cPZ.cons.m, cPZ.cons.q, cPZ.cons.A, fun k l => cPZ.cons.R (f k) l, cPZ.cons.b,
+      cPZ.cons.b_error, cPZ.cons.op⟩
+    cons_eq := cPZ.cons_eq
     I_error := cPZ.I_error }
 
 end CORALean.Float

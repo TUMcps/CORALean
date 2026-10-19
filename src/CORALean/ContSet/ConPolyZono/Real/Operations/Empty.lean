@@ -29,7 +29,8 @@ variable {n : ℕ}
 
 /-- `conPolyZono.empty(n)`: the center `0`, no generators, and the unsatisfiable row `0 = 1`. -/
 def ConPolyZono.empty (n : ℕ) : ConPolyZono (Vec ℝ n) :=
-  ⟨0, 0, 0, 1, 0, 0, Fin.elim0, Fin.elim0, Fin.elim0, 0, fun _ => 1, Fin.elim0⟩
+  ⟨0, 0, 0, 0, Fin.elim0, Fin.elim0, Fin.elim0, ⟨1, 0, 0, Fin.elim0, fun _ => 1, fun _ => .eq⟩,
+    fun _ => rfl⟩
 
 end CORALean.Real
 

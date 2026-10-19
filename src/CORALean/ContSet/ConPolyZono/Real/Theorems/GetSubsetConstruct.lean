@@ -4,6 +4,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.GetSubset
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecEqSum
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
 public import Mathlib.Tactic.FieldSimp
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemCongr
 
 @[expose] public section
 
@@ -26,9 +27,9 @@ the `rad = 0` branch is [1]'s degenerate case, a factor pinned to a point.
       Informatica, 2023.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       12-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -48,20 +49,21 @@ one applied to the re-parametrized factors — `getSubset_point` read at the
 constraint columns, both sides unfolded to a sum over one coordinate. -/
 theorem ConPolyZono.aux_getSubset_mulVec (cPZ : ConPolyZono α) (r : Fin cPZ.p) (cen rad : ℝ)
     (a : Fin cPZ.p → ℝ) : -- --- STMT ---
-    (cPZ.getSubset r cen rad).A *ᵥ PolyZonotope.monomial (cPZ.getSubset r cen rad).R a
-      = cPZ.A *ᵥ PolyZonotope.monomial cPZ.R
+    (cPZ.getSubset r cen rad).cons.A *ᵥ PolyZonotope.monomial (cPZ.getSubset r cen rad).cons.R a
+      = cPZ.cons.A *ᵥ PolyZonotope.monomial cPZ.cons.R
         (Function.update a r (cen + rad * a r)) := by -- --- PROOF ---
-  have hL : (cPZ.getSubset r cen rad).A *ᵥ PolyZonotope.monomial (cPZ.getSubset r cen rad).R a
+  have hL : (cPZ.getSubset r cen rad).cons.A
+      *ᵥ PolyZonotope.monomial (cPZ.getSubset r cen rad).cons.R a
       = (cPZ.consPolyZonotope.getSubset r cen rad).point a := by
     unfold PolyZonotope.point
     rw [ConPolyZono.mulVec_eq_sum,
-      show (cPZ.consPolyZonotope.getSubset r cen rad).c = (0 : Vec ℝ cPZ.m) from rfl, zero_add]
+      show (cPZ.consPolyZonotope.getSubset r cen rad).c = (0 : Vec ℝ cPZ.cons.m) from rfl, zero_add]
     exact Finset.sum_congr rfl fun x _ => rfl
-  have hR : cPZ.A *ᵥ PolyZonotope.monomial cPZ.R (Function.update a r (cen + rad * a r))
+  have hR : cPZ.cons.A *ᵥ PolyZonotope.monomial cPZ.cons.R (Function.update a r (cen + rad * a r))
       = cPZ.consPolyZonotope.point (Function.update a r (cen + rad * a r)) := by
     unfold PolyZonotope.point
     rw [ConPolyZono.mulVec_eq_sum,
-      show cPZ.consPolyZonotope.c = (0 : Vec ℝ cPZ.m) from rfl, zero_add]
+      show cPZ.consPolyZonotope.c = (0 : Vec ℝ cPZ.cons.m) from rfl, zero_add]
     exact Finset.sum_congr rfl fun x _ => rfl
   rw [hL, hR]
   exact PolyZonotope.getSubset_point cPZ.consPolyZonotope r cen rad a
@@ -70,17 +72,9 @@ theorem ConPolyZono.aux_getSubset_mulVec (cPZ : ConPolyZono α) (r : Fin cPZ.p) 
 re-parametrized factors. -/
 theorem ConPolyZono.aux_getSubset_holds (cPZ : ConPolyZono α) (r : Fin cPZ.p) (cen rad : ℝ)
     (a : Fin cPZ.p → ℝ) :
-    (cPZ.getSubset r cen rad).satisfies a
-      ↔ cPZ.satisfies (Function.update a r (cen + rad * a r)) := by -- --- PROOF ---
-  have hmv := ConPolyZono.aux_getSubset_mulVec cPZ r cen rad a
-  simp only [ConPolyZono.satisfies, ConPolyZono.holds]
-  constructor
-  · intro h i
-    rw [← hmv]
-    exact h i
-  · intro h i
-    rw [hmv]
-    exact h i
+    a ∈ (cPZ.getSubset r cen rad).cons.construct
+      ↔ (Function.update a r (cen + rad * a r)) ∈ cPZ.cons.construct :=
+  PolyLevelSet.mem_congr cPZ.cons (ConPolyZono.aux_getSubset_mulVec cPZ r cen rad a)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -92,13 +86,13 @@ theorem ConPolyZono.getSubset_construct (cPZ : ConPolyZono α) (r : Fin cPZ.p) (
     (cPZ.getSubset r cen rad).construct
       = {x | ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ,
             |a r - cen| ≤ rad ∧ (∀ k, k ≠ r → |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
-            ∧ cPZ.satisfies a
+            ∧ a ∈ cPZ.cons.construct
             ∧ x = cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i
                 + ∑ j, β j • cPZ.GI j} := by -- --- PROOF ---
   ext x
   -- `p`/`qI` are literally unchanged, so `show` picks that binder type up front
   show (∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ,
-        (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1) ∧ (cPZ.getSubset r cen rad).satisfies a
+        (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1) ∧ a ∈ (cPZ.getSubset r cen rad).cons.construct
         ∧ x = (cPZ.getSubset r cen rad).c
             + ∑ i, PolyZonotope.monomial (cPZ.getSubset r cen rad).E a i
                 • (cPZ.getSubset r cen rad).G i
@@ -147,7 +141,7 @@ theorem ConPolyZono.getSubset_construct (cPZ : ConPolyZono α) (r : Fin cPZ.p) (
           exact (div_le_one hrpos).mpr hbox
       · rw [ha_def, Function.update_of_ne hk]
         exact hunit k hk
-    · have hstep : cPZ.satisfies (Function.update a r (cen + rad * a r)) := by
+    · have hstep : (Function.update a r (cen + rad * a r)) ∈ cPZ.cons.construct := by
         rw [hupdate]
         exact hsat
       exact (ConPolyZono.aux_getSubset_holds cPZ r cen rad a).mpr hstep

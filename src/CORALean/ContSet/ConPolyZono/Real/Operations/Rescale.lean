@@ -46,8 +46,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 noncomputable def ConPolyZono.rescale (cPZ : ConPolyZono α)
     (contract : Interval (Vec ℝ cPZ.p) → Interval (Vec ℝ cPZ.p)) : ConPolyZono α :=
   let dom := ConPolyZono.unitBox cPZ.p
-  -- `if ~isempty(cPZ.A)`
-  let dom' := if cPZ.m = 0 ∨ cPZ.q = 0 then dom else contract dom
+  -- `if ~isempty(cPZ.cons.A)`
+  let dom' := if cPZ.cons.m = 0 ∨ cPZ.cons.q = 0 then dom else contract dom
   let cen : ℕ → ℝ := fun r => if h : r < cPZ.p then (dom'.inf ⟨r, h⟩ + dom'.sup ⟨r, h⟩) / 2 else 0
   let rad : ℕ → ℝ := fun r => if h : r < cPZ.p then (dom'.sup ⟨r, h⟩ - dom'.inf ⟨r, h⟩) / 2 else 0
   (List.range cPZ.p).foldl (ConPolyZono.rescaleStep cen rad) cPZ

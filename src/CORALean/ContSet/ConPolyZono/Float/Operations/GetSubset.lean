@@ -39,18 +39,17 @@ def ConPolyZono.getSubset (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : Fin cPZ.p) 
   p := cPZ.p
   h := (cPZ.toPolyZonotope.getSubset k cen rad).h
   qI := cPZ.qI
-  m := cPZ.m
-  q := (cPZ.consPolyZonotope.getSubset k cen rad).h
   c := cPZ.c
   G := (cPZ.toPolyZonotope.getSubset k cen rad).G
   E := (cPZ.toPolyZonotope.getSubset k cen rad).E
   GI := cPZ.GI
-  A := fun i l => (cPZ.consPolyZonotope.getSubset k cen rad).G l i
-  -- the rounding of the stored constraint entries, scaled by monomials in `[-1, 1]`
-  b := cPZ.b
-  b_error := fun i => addUp (absolute (cPZ.b_error i))
-    (radius (cPZ.consPolyZonotope.getSubsetGDiff k cen rad) i)
-  R := (cPZ.consPolyZonotope.getSubset k cen rad).E
+  -- the slack grows by the stored entries' rounding, scaled by monomials in `[-1, 1]`
+  cons := ⟨cPZ.cons.m, (cPZ.consPolyZonotope.getSubset k cen rad).h,
+    fun i l => (cPZ.consPolyZonotope.getSubset k cen rad).G l i,
+    (cPZ.consPolyZonotope.getSubset k cen rad).E, cPZ.cons.b,
+    fun i => addUp (absolute (cPZ.cons.b_error i))
+      (radius (cPZ.consPolyZonotope.getSubsetGDiff k cen rad) i), cPZ.cons.op⟩
+  cons_eq := cPZ.cons_eq
   I_error := (cPZ.toPolyZonotope.getSubset k cen rad).I_error
 
 end CORALean.Float

@@ -2,10 +2,10 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.SatisfiesPlusIff
 public import CORALean.ContSet.InflatedContSet.Theorems.PlusSubset
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemCartProdIff
 
 @[expose] public section
 
@@ -13,14 +13,14 @@ public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 # `ConPolyZono.plus` over-approximates the Minkowski sum
 
 `PolyZonotope.plus_outer`'s argument at one more field, carried across the
-layer by `satisfies_plus_iff`. Only the center rounds, so the box holds the two
+layer by `PolyLevelSet.mem_cartProd_iff`. Only the center rounds, so the box holds the two
 incoming boxes and one `centerResidual`, and all five counts are the exact
 layer's.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -79,7 +79,7 @@ theorem ConPolyZono.aux_plus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋
     · simpa using hβ₁ j
     · simpa using hβ₂ j
   -- the constraint side, each system read on the factors it came with
-  · refine (ConPolyZono.satisfies_plus_iff cPZ₁ cPZ₂ _).mpr ⟨?_, ?_⟩
+  · refine (PolyLevelSet.mem_cartProd_iff cPZ₁.cons cPZ₂.cons _).mpr ⟨?_, ?_⟩
     · rw [hA₁]; exact hs₁
     · rw [hA₂]; exact hs₂
   · exact Interval.sub_mem_residual (fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩)

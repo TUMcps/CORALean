@@ -56,8 +56,8 @@ def ConPolyZono.aux_RescaleInv (cPZ acc : ConPolyZono 𝕋 (Vec 𝕋 n)) (cen ra
       = ∑ j : Fin cPZ.qI, toReal (cPZ.GI j i) * β j)
   ∧ ∀ a : ℕ → ℝ, (∀ k, k < cPZ.p → |a k| ≤ 1)
     → (∀ k, k < cPZ.p → |ConPolyZono.aux_rescaleSub cen rad t a k| ≤ 1)
-    → cPZ.satisfies (fun k : Fin cPZ.p => ConPolyZono.aux_rescaleSub cen rad t a k)
-    → acc.satisfies (fun k : Fin acc.p => a k)
+    → (fun k : Fin cPZ.p => ConPolyZono.aux_rescaleSub cen rad t a k) ∈ cPZ.cons.construct
+    → (fun k : Fin acc.p => a k) ∈ acc.cons.construct
       ∧ ∀ e ∈ cPZ.I_error.construct, ∃ e' ∈ acc.I_error.construct, ∀ i,
         (∑ l, toReal (acc.G l i) * Real.PolyZonotope.monomial acc.E (fun k : Fin acc.p => a k) l)
             + e' i
@@ -169,7 +169,7 @@ theorem ConPolyZono.aux_cover (lo hi : 𝕋) (v : ℝ) (h : toReal lo ≤ v ∧ 
 /-- Any midpoints and radii whose boxes cover every factor vector of `[-1,1]ᵖ` satisfying the
 constraints: the fold onto them encloses the set. -/
 theorem ConPolyZono.aux_rescale_outer_of_cover (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (cen rad : ℕ → 𝕋)
-    (hcov : ∀ x : Fin cPZ.p → ℝ, (∀ k, |x k| ≤ 1) → cPZ.satisfies x →
+    (hcov : ∀ x : Fin cPZ.p → ℝ, (∀ k, |x k| ≤ 1) → x ∈ cPZ.cons.construct →
       ∀ k : Fin cPZ.p, |x k - toReal (cen k)| ≤ toReal (rad k)) : -- --- STMT ---
     cPZ.construct ⊆ ConPolyZono.construct
       ((List.range cPZ.p).foldl (ConPolyZono.rescaleStep cen rad) cPZ) := by -- --- PROOF ---
@@ -243,7 +243,8 @@ theorem ConPolyZono.aux_rescale_outer_of_cover (cPZ : ConPolyZono 𝕋 (Vec 𝕋
 vector of the unit box satisfying them. -/
 theorem ConPolyZono.rescale_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (contract : Interval (Vec 𝕋 cPZ.p) → Interval (Vec 𝕋 cPZ.p))
-    (hkeep : ∀ x : Vec ℝ cPZ.p, x ∈ (ConPolyZono.unitBox 𝕋 cPZ.p).construct → cPZ.satisfies x →
+    (hkeep : ∀ x : Vec ℝ cPZ.p,
+        x ∈ (ConPolyZono.unitBox 𝕋 cPZ.p).construct → x ∈ cPZ.cons.construct →
       x ∈ (contract (ConPolyZono.unitBox 𝕋 cPZ.p)).construct) : -- --- STMT ---
     cPZ.construct ⊆ (cPZ.rescale contract).construct := by -- --- PROOF ---
   unfold ConPolyZono.rescale
@@ -256,7 +257,7 @@ theorem ConPolyZono.rescale_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     show toReal (neg one) ≤ x i ∧ x i ≤ toReal one
     rw [toReal_neg, toReal_one]
     exact abs_le.mp (hx i)
-  by_cases hA : cPZ.m = 0 ∨ cPZ.q = 0
+  by_cases hA : cPZ.cons.m = 0 ∨ cPZ.cons.q = 0
   · -- empty `A`: CORA does not contract, the box stays `[-1,1]ᵖ`
     rw [if_pos hA]
     exact hunit k

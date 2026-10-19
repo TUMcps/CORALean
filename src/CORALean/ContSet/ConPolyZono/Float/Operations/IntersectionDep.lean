@@ -1,16 +1,18 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionA
-public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
-public import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
+public import CORALean.ContSet.ConPolyZono.Float.Operations.AgreeCons
+public import CORALean.ContSet.PolyLevelSet.Float.Operations.And
+public import CORALean.ContSet.PolyLevelSet.Float.Operations.CartProd
+public import CORALean.ContSet.LevelSet.Real.Theorems.Basic
 
 @[expose] public section
 
 /-!
 # `ConPolyZono.intersectionDep`
 
-Sound where both independent blocks are empty; `intersection` arranges that. Its rows read as
-the exact layer's at the read-back data (`Real.ConPolyZono.mulVec_intersectionDep`). Keeps
+Sound where both independent blocks are empty; `intersection` arranges that. Its constraint is
+the two sets' side by side (`PolyLevelSet.cartProd`) stacked on the agreement rows `agreeCons`
+(`PolyLevelSet.and_`), each held to its interval. Keeps
 `cPZ₁`'s error box and only `cPZ₁`'s generator block: the point it denotes is
 `y₁ + e₁`, and `cPZ₂` enters through the constraint system alone, its generator
 columns kept at `zero` so the agreement rows can read the second point.
@@ -39,20 +41,14 @@ def ConPolyZono.intersectionDep (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) 
   p := cPZ₁.p + cPZ₂.p
   h := cPZ₁.h + cPZ₂.h
   qI := 0
-  m := cPZ₁.m + cPZ₂.m + n
-  q := cPZ₁.q + cPZ₂.q + (cPZ₁.h + cPZ₂.h)
   c := cPZ₁.c
   G := Fin.append cPZ₁.G fun _ _ => zero
   E := Real.PolyZonotope.plusE cPZ₁.E cPZ₂.E
   GI := Fin.elim0
-  A := ConPolyZono.intersectionA cPZ₁ cPZ₂
-  b := ConPolyZono.intersectionB cPZ₁ cPZ₂
-  -- each agreement row held to its interval: its lower end, and the width above it
-  b_error := Fin.append (ConPolyZono.plusB cPZ₁.b_error cPZ₂.b_error) fun i =>
-    subUp ((ConPolyZono.intersectionAgree cPZ₁ cPZ₂).sup i)
-      ((ConPolyZono.intersectionAgree cPZ₁ cPZ₂).inf i)
-  R := Real.ConPolyZono.appendE (Real.PolyZonotope.plusE cPZ₁.R cPZ₂.R)
-          (Real.PolyZonotope.plusE cPZ₁.E cPZ₂.E)
+  -- each set's rows on its own factors, then the agreement rows, each held to its interval
+  cons := (cPZ₁.cons.cartProd cPZ₂.cons).and_ (ConPolyZono.agreeCons cPZ₁ cPZ₂)
+  cons_eq := Real.LevelSet.append_op_eq (Real.LevelSet.append_op_eq cPZ₁.cons_eq cPZ₂.cons_eq)
+    fun _ => rfl
   I_error := cPZ₁.I_error
 
 end CORALean.Float
