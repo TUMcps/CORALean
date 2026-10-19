@@ -56,8 +56,8 @@ src/CORALean/
                    Real/ and Float/
     Capsule/       a segment thickened by a ball, for an obstacle rather than a
                    reachable set: Real/ and Float/, being closed under almost nothing
-    StarSet/       the star set `{c + G α | α ∈ P}`, its predicate any representation in
-                   coefficient space; at CORA's `C α ≤ d, l ≤ α ≤ u`, the form a network
+    StarSet/       the star set `{c + G α | α ∈ [l, u], α ∈ P}`, its predicate any representation
+                   in coefficient space; at an `HPolytope`, CORA's `C α ≤ d`, the form a network
                    layer steps through, a bounded polytope exactly; Real/ and Float/, the
                    latter at CORA's predicate
     Taylm/         a polynomial over `[-1, 1]ⁿ` and a remainder interval, enclosing
@@ -243,7 +243,7 @@ it with a reason; the list only shrinks.
 
 A representation that stores a set of another representation stores that set and reuses its
 operations (#174): `ConZonotope` stores an `HPolytope`, `ConPolyZono` a `PolyLevelSet`, `StarSet` a
-predicate (`StarSet.LinPred` at CORA's form), `ZonoBundle` and `Zoo` their members, denoted through
+predicate (an `HPolytope` at CORA's form), `ZonoBundle` and `Zoo` their members, denoted through
 `SetIntersection`. Whatever an operation does to the component is one of the component's
 operations, with its theorem, and an operation the representation needs but the component lacks is
 added to the component, general and with its own exactness or membership theorem, rather than
@@ -255,14 +255,16 @@ and `switch`, the convex hull's copies `copies` beside `linear`, `getSubset`'s s
 float `reduceLiftBy` is `keepCols`, `dropEqs`, `padLeft`, `stackRows` and `eqsWithin`, `rescale`
 is `rescaleCols`, and `zeroFeasible`, `interiorCert` and `interiorMargin` are `containsOrigin`,
 `ineqsContainBall` and `ineqMargin`; a ReLU step on a star set builds its predicate with
-`LinPred.snoc` and `addRows`, and `absorbRounding` with `LinPred.append`.
+`HPolytope.lift_` and `intersection` of `ineqs` (float: `stackRows`), and `absorbRounding` with
+`lift_`; the intersection's agreement rows and the union's selector rows of a constrained
+polynomial zonotope are `PolyLevelSet.andRows`.
 `check-conventions.sh` runs `scripts/check-component-reuse.py`, whose per-representation table
 says what counts as doing the component's work by hand: under `ContSet/ConPolyZono/`, a definition
 returning a matrix, an exponent matrix or a vector indexed by the constraint's rows or monomials,
 or named after a constraint field (`…A`, `…B`, `…R`); under `ContSet/ConZonotope/`, one that reads
 the polytope's rows (`P.A`, `P.b`, `P.Ae`, `P.be`, the slacks) or builds an `HPolytope` field by
-field; and under `ContSet/StarSet/` and the star-set files of `NN/Layers/`, one other than the
-predicate's own operations that reads or builds the predicate's fields. `Counterexamples/` model
+field; and under `ContSet/StarSet/` and the star-set files of `NN/Layers/`, one that reads the
+polytope predicate's rows (`pred.A`, `pred.b`, …) or builds an `HPolytope` field by field. `Counterexamples/` model
 CORA's code as written and are not read. What must stay is in
 `scripts/component-reuse-allowlist.txt` with its reason (the generator block, data of one
 construction, a conversion, a certificate or a proposal that reads the rows as numbers); the list
@@ -1302,8 +1304,8 @@ with equality rows records it per row in a field `<name>_error` beside the box, 
 `|·|`, and its constructors set it to zero; a representation that holds its rows in a float
 representation of their own (`ConZonotope.P`, `ConPolyZono.cons`) inherits that one's `_error`
 fields, and its `absorbRounding` names them too, moving them or saying where they stay. A float
-type whose variables are no ambient points, a constraint system such as the float `PolyLevelSet`,
-has no box to absorb: it records its rounding in its `_error` fields and says so on one line of its
+type none of whose operations moves a point, a constraint system such as the float `PolyLevelSet`
+whose rounding is all in its rows' coefficients, has no box to absorb: it records its rounding in its `_error` fields and says so on one line of its
 main docstring, `` There is no `I_error` and no `absorbRounding`: `` and the reason, which the check
 accepts in place of the box, and refuses on a type that has one.
 `absorbRounding` may itself round, so it does **not** promise an empty `I_error` afterwards: the

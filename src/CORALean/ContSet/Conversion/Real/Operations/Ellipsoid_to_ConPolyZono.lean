@@ -6,6 +6,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Basic
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
 public import CORALean.ContSet.Interval.Real.Operations.Point
 public import CORALean.Global.EuclideanNorm
@@ -18,7 +19,7 @@ public import CORALean.Global.EuclideanNorm
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       12-September-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -52,8 +53,9 @@ noncomputable def Ellipsoid.conPolyZonoOfFactor (G : Mat ℝ n n) (q : Vec ℝ n
   E := ConPolyZono.padE (PolyZonotope.identE n) 1
   GI := Fin.elim0
   cons := ⟨1, n + 1, fun _ j => if j.val < n then 1 else -(1 / 2), Ellipsoid.conPolyZonoR n,
-    fun _ => (1 / 2 : ℝ), fun _ => .eq⟩
+    fun _ => (1 / 2 : ℝ), fun _ => .eq, Interval.unit (n + 1)⟩
   cons_eq _ := rfl
+  cons_dom := rfl
 
 /-- The conversion with the factor `G = Q^(1/2)`. -/
 noncomputable def Ellipsoid.conPolyZono (E : Ellipsoid n) : ConPolyZono (Vec ℝ n) :=

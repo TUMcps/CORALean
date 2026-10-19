@@ -29,6 +29,7 @@ public import CORALean.ContSet.Interval.Real.Interval
 public import CORALean.ContSet.Interval.Real.Operations.OfBounds
 public import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
 public import CORALean.ContSet.LevelSet.Real.LevelSet
+public import CORALean.ContSet.LevelSet.Real.Operations.And
 public import CORALean.ContSet.PolyLevelSet.Real.PolyLevelSet
 public import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
 public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
@@ -543,14 +544,13 @@ noncomputable def Interval.taylm (I : Interval (Vec ℝ n)) (N : ℕ) : Fin n �
 -- =================================  `PolyLevelSet.levelSet`  ================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
-/-- The polynomial as the level set's function: `A μ_R(x) - b`, each row with its operator. -/
-def PolyLevelSet.levelSet (P : PolyLevelSet n) : LevelSet n where
-  m := P.m
-  f x := Matrix.mulVec P.A (PolyZonotope.monomial P.R x) - P.b
-  op := P.op
+/-- The box as its own rows (`Interval.levelSet`), then the polynomial as the level set's function,
+`A μ_R(x) - b`, each row with its operator. -/
+def PolyLevelSet.levelSet (P : PolyLevelSet n) : LevelSet n :=
+  P.dom.levelSet.and_ ⟨P.m, P.eval, P.op⟩
 
 end
 

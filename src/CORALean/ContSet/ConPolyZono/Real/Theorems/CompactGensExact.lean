@@ -66,10 +66,10 @@ theorem ConPolyZono.compactGens_exact (cPZ : ConPolyZono α) :
           + ∑ j, β j • cPZ.GI j :=
     fun a _ => by rw [ConPolyZono.aux_sum_compactGens cPZ a]
   apply Set.eq_of_subset_of_subset
-  · rintro _ ⟨a, β, ha, hβ, hsat, rfl⟩
-    exact ⟨a, β, ha, hβ, hsat, key a β⟩
-  · rintro _ ⟨a, β, ha, hβ, hsat, rfl⟩
-    exact ⟨a, β, ha, hβ, hsat, (key a β).symm⟩
+  · rintro _ ⟨a, β, hβ, hsat, rfl⟩
+    exact ⟨a, β, hβ, hsat, key a β⟩
+  · rintro _ ⟨a, β, hβ, hsat, rfl⟩
+    exact ⟨a, β, hβ, hsat, (key a β).symm⟩
 
 end CORALean.Real
 

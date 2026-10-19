@@ -44,7 +44,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- `contract` is CORA's `contractPoly` at the constraint `A μ(α) = b`. -/
 noncomputable def ConPolyZono.rescale (cPZ : ConPolyZono α)
     (contract : Interval (Vec ℝ cPZ.p) → Interval (Vec ℝ cPZ.p)) : ConPolyZono α :=
-  let dom := ConPolyZono.unitBox cPZ.p
+  let dom := Interval.unit cPZ.p
   -- `if ~isempty(cPZ.cons.A)`
   let dom' := if cPZ.cons.m = 0 ∨ cPZ.cons.q = 0 then dom else contract dom
   let cen : ℕ → ℝ := fun r => if h : r < cPZ.p then (dom'.inf ⟨r, h⟩ + dom'.sup ⟨r, h⟩) / 2 else 0

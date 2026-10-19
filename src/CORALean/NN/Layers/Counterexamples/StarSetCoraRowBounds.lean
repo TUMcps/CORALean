@@ -2,6 +2,7 @@ module
 
 public import CORALean.NN.Layers.Definitions.Relu
 public import CORALean.ContSet.StarSet.Real.Instances
+public import CORALean.ContSet.HPolytope.Real.Operations.Fullspace
 public import CORALean.ContSet.Interval.Real.Interval
 public import Mathlib.Tactic.Linarith
 public import Mathlib.Tactic.NormNum
@@ -42,10 +43,10 @@ namespace CORALean.Real
 
 
 -- The model: CORA's code as printed, kept only to be refuted.
-noncomputable def StarSet.coraRowBounds {n : ℕ} (s : StarSet StarSet.LinPred n) (j : Fin n) :
+noncomputable def StarSet.coraRowBounds {n : ℕ} (s : StarSet ℋ𝒫 n) (j : Fin n) :
     Interval ℝ :=
-  let c_ := s.c j + (1 / 2) * ∑ k, s.G j k * (s.pred.u k - s.pred.l k)
-  let r := ∑ k, |(1 / 2) * s.G j k * (s.pred.u k - s.pred.l k)|
+  let c_ := s.c j + (1 / 2) * ∑ k, s.G j k * (s.dom.sup k - s.dom.inf k)
+  let r := ∑ k, |(1 / 2) * s.G j k * (s.dom.sup k - s.dom.inf k)|
   ⟨c_ - r, c_ + r⟩
 
 
@@ -55,20 +56,20 @@ open ContSet
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem StarSet.coraRowBounds_unsound :
-    ∃ (s : StarSet StarSet.LinPred 2) (x : Vec ℝ 2), x ∈ construct s ∧
+    ∃ (s : StarSet ℋ𝒫 2) (x : Vec ℝ 2), x ∈ construct s ∧
       (Function.update x 0 (Real.relu (x 0)) : Vec ℝ 2)
         ∉ construct (s.reluNeuron 0 (s.coraRowBounds 0)) := by -- --- PROOF ---
-  let s : StarSet StarSet.LinPred 2 :=
+  let s : StarSet ℋ𝒫 2 :=
     { m := 1, c := fun _ => 0, G := fun i _ => if i = 0 then 1 else -1,
-      pred := ⟨[], fun _ => -1, fun _ => 1⟩ }
+      dom := ⟨fun _ => -1, fun _ => 1⟩, pred := HPolytope.fullspace (Vec ℝ 1) }
   have hb : s.coraRowBounds 0 = ⟨0, 2⟩ := by
     simp only [StarSet.coraRowBounds, s]
     norm_num [abs_of_nonneg]
   have hs : s.reluNeuron 0 (s.coraRowBounds 0) = s := by
     rw [hb]; simp [StarSet.reluNeuron]
   refine ⟨s, fun i => if i = 0 then -1 else 1, ⟨fun _ => -1, ⟨?_, ?_⟩, ?_⟩, ?_⟩
-  · intro k; simp [s]
-  · intro r hr; simp [s] at hr
+  · intro k; show (-1 : ℝ) ≤ -1 ∧ (-1 : ℝ) ≤ 1; norm_num
+  · exact ⟨fun i => i.elim0, fun i => i.elim0⟩
   · intro i; fin_cases i <;> simp [s]
   · rw [hs]
     rintro ⟨α, -, h⟩

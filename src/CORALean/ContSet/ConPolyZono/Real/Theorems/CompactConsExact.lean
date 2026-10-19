@@ -41,7 +41,7 @@ same set (`PolyLevelSet.compact_exact`). -/
 theorem ConPolyZono.compactCons_exact (cPZ : ConPolyZono α) :
     cPZ.construct = cPZ.compactCons.construct := by
   ext x
-  show _ ↔ ∃ a β, _ ∧ _ ∧ a ∈ cPZ.cons.compact.construct ∧ _
+  show _ ↔ ∃ a β, _ ∧ a ∈ cPZ.cons.compact.construct ∧ _
   rw [PolyLevelSet.compact_exact]
   rfl
 

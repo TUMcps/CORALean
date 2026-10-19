@@ -38,6 +38,7 @@ def PolyLevelSet.compactSpec (P : PolyLevelSet 𝕋 n) : PolyLevelSet 𝕋 n whe
   b := P.b
   b_error := P.compactSlack
   op := P.op
+  dom := P.dom
 
 end CORALean.Float
 

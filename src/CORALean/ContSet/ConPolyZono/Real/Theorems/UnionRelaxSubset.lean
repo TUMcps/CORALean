@@ -67,7 +67,7 @@ theorem ConPolyZono.aux_union_rows (cPZ₁ cPZ₂ : ConPolyZono α) (s₁ : Vec 
   refine Fin.addCases (fun i => ?_) (fun i => ?_) i
   · have hup0 : (ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).eval a i = 0 :=
       sub_eq_zero.mpr ((PolyLevelSet.mem_construct_iff_of_eq
-        (LevelSet.append_op_eq (fun _ => rfl) fun _ => rfl)).mp hup i)
+        (LevelSet.append_op_eq (fun _ => rfl) fun _ => rfl)).mp hup |>.2 i)
     rw [Fin.append_left, hup0, abs_zero]
     exact abs_nonneg _
   · rw [Fin.append_right]
@@ -97,13 +97,13 @@ theorem ConPolyZono.union_relax_subset (cPZ₁ cPZ₂ : ConPolyZono α) (s₁ : 
     refine (ConPolyZono.mem_relax_iff _ _).mpr ⟨a, fun _ => 0, hab, fun j => j.elim0,
       ConPolyZono.aux_union_rows cPZ₁ cPZ₂ s₁ s₂ a ?_ (fun r => ?_) (fun r => ?_), ?_⟩
     -- the selector rows, at the branch's factors
-    · exact (ConPolyZono.mem_unionUpper_iff a).mpr
-        ((ConPolyZono.union_domain_iff (a (ConPolyZono.unionSel cPZ₁.p cPZ₂.p))
+    · exact (ConPolyZono.mem_unionUpper_iff a).mpr ⟨hab,
+        (ConPolyZono.union_domain_iff (a (ConPolyZono.unionSel cPZ₁.p cPZ₂.p))
           (a (Fin.natAdd (cPZ₁.p + cPZ₂.p) 1))
           (fun k => a (Fin.castAdd 2 (Fin.castAdd cPZ₂.p k)))
           (fun k => a (Fin.castAdd 2 (Fin.natAdd cPZ₁.p k)))
           (by rw [hx1]; norm_num) (by rw [hy1]; norm_num)
-          (fun k => hab _)).mpr (Or.inl ⟨hx1, hy1, hv⟩))
+          (fun k => hab _)).mpr (Or.inl ⟨hx1, hy1, hv⟩)⟩
     · rw [ConPolyZono.eval_unionLower, Fin.append_left, h1, hx1]
       have h := hs₁ r
       have e : (cPZ₁.cons.A *ᵥ PolyZonotope.monomial cPZ₁.cons.R a₁) r
@@ -147,13 +147,13 @@ theorem ConPolyZono.union_relax_subset (cPZ₁ cPZ₂ : ConPolyZono α) (s₁ : 
     refine (ConPolyZono.mem_relax_iff _ _).mpr ⟨a, fun _ => 0, hab, fun j => j.elim0,
       ConPolyZono.aux_union_rows cPZ₁ cPZ₂ s₁ s₂ a ?_ (fun r => ?_) (fun r => ?_), ?_⟩
     -- the selector rows, at the branch's factors
-    · exact (ConPolyZono.mem_unionUpper_iff a).mpr
-        ((ConPolyZono.union_domain_iff (a (ConPolyZono.unionSel cPZ₁.p cPZ₂.p))
+    · exact (ConPolyZono.mem_unionUpper_iff a).mpr ⟨hab,
+        (ConPolyZono.union_domain_iff (a (ConPolyZono.unionSel cPZ₁.p cPZ₂.p))
           (a (Fin.natAdd (cPZ₁.p + cPZ₂.p) 1))
           (fun k => a (Fin.castAdd 2 (Fin.castAdd cPZ₂.p k)))
           (fun k => a (Fin.castAdd 2 (Fin.natAdd cPZ₁.p k)))
           (by rw [hx1]; norm_num) (by rw [hy1]; norm_num)
-          (fun k => hab _)).mpr (Or.inr ⟨hx1, hy1, hu⟩))
+          (fun k => hab _)).mpr (Or.inr ⟨hx1, hy1, hu⟩)⟩
     -- the first operand's rows, its whole left side pinned to zero
     · rw [ConPolyZono.eval_unionLower, Fin.append_left]
       have hzero : (cPZ₁.cons.A *ᵥ PolyZonotope.monomial cPZ₁.cons.R

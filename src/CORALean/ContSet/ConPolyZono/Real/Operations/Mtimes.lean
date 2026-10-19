@@ -43,6 +43,7 @@ def ConPolyZono.mtimes (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
   GI := fun j => M *ᵥ cPZ.GI j
   cons := cPZ.cons
   cons_eq := cPZ.cons_eq
+  cons_dom := cPZ.cons_dom
 
 end CORALean.Real
 

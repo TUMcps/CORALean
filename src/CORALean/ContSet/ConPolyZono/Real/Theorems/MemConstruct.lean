@@ -19,7 +19,7 @@ nominal set.
 
 -- Authors:       Claude Opus 5
 -- Written:       04-September-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -33,8 +33,7 @@ namespace CORALean.Real
 theorem ConPolyZono.mem_construct_iff {n : ℕ} {cPZ : ConPolyZono (Vec ℝ n)}
     {x : Vec ℝ n} : -- --- STMT ---
     x ∈ cPZ.construct ↔
-      ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
-        ∧ a ∈ cPZ.cons.construct
+      ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ, (∀ j, |β j| ≤ 1) ∧ a ∈ cPZ.cons.construct
         ∧ ∀ i, x i = cPZ.c i + (∑ l, cPZ.G l i * PolyZonotope.monomial cPZ.E a l)
               + ∑ j, cPZ.GI j i * β j := by -- --- PROOF ---
   -- one coordinate of the defining equation, both generator blocks transposed
@@ -47,10 +46,10 @@ theorem ConPolyZono.mem_construct_iff {n : ℕ} {cPZ : ConPolyZono (Vec ℝ n)}
     exact congrArg _ (Finset.sum_congr rfl fun j _ => by
       rw [Pi.smul_apply, smul_eq_mul, mul_comm])
   constructor
-  · rintro ⟨a, β, ha, hβ, hsat, rfl⟩
-    exact ⟨a, β, ha, hβ, hsat, key a β⟩
-  · rintro ⟨a, β, ha, hβ, hsat, hx⟩
-    exact ⟨a, β, ha, hβ, hsat, funext fun i => (hx i).trans (key a β i).symm⟩
+  · rintro ⟨a, β, hβ, hsat, rfl⟩
+    exact ⟨a, β, hβ, hsat, key a β⟩
+  · rintro ⟨a, β, hβ, hsat, hx⟩
+    exact ⟨a, β, hβ, hsat, funext fun i => (hx i).trans (key a β i).symm⟩
 
 end CORALean.Real
 

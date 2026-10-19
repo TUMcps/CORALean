@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConPolyZono.Float.Operations.IsFullDimWith
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEqUnit
 public import CORALean.ContSet.Zonotope.Float.Theorems.BallCertReach
 public import Mathlib.Analysis.Normed.Module.FiniteDimension
 public import Mathlib.Topology.Algebra.Group.Pointwise
@@ -57,7 +58,8 @@ theorem ConPolyZono.aux_satisfies_zero {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)}
       ∧ le (subUp (dotUp (cPZ.cons.A i) cPZ.zeroMonomials) (cPZ.cons.b i))
         (absolute (cPZ.cons.b_error i)) = true) : -- --- STMT ---
     (fun _ => 0) ∈ cPZ.cons.construct := by -- --- PROOF ---
-  refine (PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mpr fun i => ?_
+  refine (PolyLevelSet.mem_construct_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom).mpr
+    ⟨fun _ => by simp, fun i => ?_⟩
   have hA : (toRealMat cPZ.cons.A *ᵥ Real.PolyZonotope.monomial cPZ.cons.R (fun _ => (0 : ℝ))) i
       = ∑ k, toReal (cPZ.cons.A i k) * toReal (cPZ.zeroMonomials k) := by
     simp only [Matrix.mulVec, dotProduct, toRealMat]

@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_PolyZonotope
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.LinComb
 public import CORALean.ContSet.PolyLevelSet.Float.Operations.CartProd
 public import CORALean.ContSet.PolyLevelSet.Float.Operations.PadVars
@@ -26,7 +27,7 @@ error box is therefore the generator part's, unchanged.
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -48,8 +49,9 @@ def ConPolyZono.linComb (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPol
     G := pZ.G
     E := pZ.E
     GI := pZ.GI
-    cons := (cPZ₁.cons.cartProd cPZ₂.cons).padVars 1
+    cons := (cPZ₁.cons.cartProd cPZ₂.cons).padVars (Interval.unit 1)
     cons_eq := Real.LevelSet.append_op_eq cPZ₁.cons_eq cPZ₂.cons_eq
+    cons_dom := Interval.append_eq_unit (Interval.append_eq_unit cPZ₁.cons_dom cPZ₂.cons_dom) rfl
     I_error := pZ.I_error }
 
 end CORALean.Float

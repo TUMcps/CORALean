@@ -1,7 +1,11 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Interval
-public import CORALean.ContSet.StarSet.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
+public import CORALean.ContSet.HPolytope.Float.Operations.Lift
+public import CORALean.ContSet.HPolytope.Float.Operations.StackRows
+public import CORALean.ContSet.Interval.Float.Operations.Basic
+public import CORALean.ContSet.StarSet.Float.StarSet
 public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.NN.Layers.Operations.StarSetFloatChordGuard
 public import CORALean.NN.Layers.Operations.StarSetFloatChordRow
@@ -18,9 +22,9 @@ certifies it, the chord row `StarSet.chordRow`. The comparisons are the scalar's
 which certifies `≤` only, so a bound that is not known to be on one side takes the last branch,
 whose rows hold wherever the bounds do. The bounds are those of the nominal part, as
 `StarSet.rowBounds` gives them; the error box is made symmetric at `j` by `StarSet.aux_reluError`
-in every branch, the ReLU being `1`-Lipschitz. The predicate is built by its own operations
-(#174), `LinPred.snoc` for the factor and `LinPred.addRows` for the rows, as in the exact layer,
-which the float `snoc` reads as (`StarSet.LinPred.nominal_snoc`).
+in every branch, the ReLU being `1`-Lipschitz. The new factor's box is appended to the coefficient
+box, and the predicate is built by `HPolytope`'s own operations (#174), `lift_` for the factor and
+`stackRows` of `ineqs` for the rows, as in the exact layer; nothing rounds there.
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
@@ -61,10 +65,15 @@ def StarSet.reluNeuron (s : StarSet 𝕋 n) (j : Fin n) (b : Interval 𝕋) :
       c := Function.update s.c j zero
       G := fun i => Fin.snoc (α := fun _ => 𝕋) (if i = j then (fun _ => zero) else s.G i)
         (if i = j then one else zero)
-      pred := (s.pred.snoc zero (maximum b.sup zero)).addRows
-        ([(Fin.snoc (α := fun _ => 𝕋) (fun _ => zero) (neg one), zero),
-          (Fin.snoc (α := fun _ => 𝕋) (s.G j) (neg one), neg (s.c j))] ++
-          (if StarSet.chordGuard b then [s.chordRow j b] else []))
+      dom := s.dom.append ⟨fun _ => zero, fun _ => maximum b.sup zero⟩
+      -- the old rows on the old factors, `-β ≤ 0`, `c_j + G_j α - β ≤ 0`, the chord if certified
+      pred :=
+        let base := (s.pred.lift_ Fin.castSucc).stackRows (HPolytope.ineqs
+          ![Fin.snoc (α := fun _ => 𝕋) (fun _ => zero) (neg one),
+            Fin.snoc (α := fun _ => 𝕋) (s.G j) (neg one)] ![zero, neg (s.c j)])
+        if StarSet.chordGuard b then
+          base.stackRows (HPolytope.ineqs ![(s.chordRow j b).1] ![(s.chordRow j b).2])
+        else base
       I_error := e }
 
 end CORALean.Float

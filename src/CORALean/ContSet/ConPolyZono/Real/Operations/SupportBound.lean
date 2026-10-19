@@ -26,7 +26,7 @@ the point attaining the value are not modelled.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -42,13 +42,12 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- The dependent part's bound `u` over the feasible factors, plus the independent block's own
 extent in the direction `c`. -/
 noncomputable def ConPolyZono.supportBound (cPZ : ConPolyZono α) (c : α →ₗ[ℝ] ℝ)
-    (u : SupportBound (cPZ.polyZonotope.point '' {a | (∀ k,
-        |a k| ≤ 1) ∧ a ∈ cPZ.cons.construct}) c) :
+    (u : SupportBound (cPZ.polyZonotope.point '' cPZ.cons.construct) c) :
     SupportBound cPZ.construct c where
   val := u.val + ∑ j, |c (cPZ.GI j)|
   le := by
-    rintro _ ⟨a, β, ha, hβ, hs, rfl⟩
-    have hdep : c (cPZ.polyZonotope.point a) ≤ u.val := u.le _ ⟨a, ⟨ha, hs⟩, rfl⟩
+    rintro _ ⟨a, β, hβ, hs, rfl⟩
+    have hdep : c (cPZ.polyZonotope.point a) ≤ u.val := u.le _ ⟨a, hs, rfl⟩
     have hind : c (∑ j, β j • cPZ.GI j) ≤ ∑ j, |c (cPZ.GI j)| := by
       rw [map_sum]
       refine Finset.sum_le_sum fun j _ => ?_

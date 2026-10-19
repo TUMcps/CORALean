@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Dependent
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemPadVarsIff
 public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
@@ -61,16 +62,18 @@ theorem ConPolyZono.aux_sum_dependent (cPZ : ConPolyZono α)
 theorem ConPolyZono.dependent_exact (cPZ : ConPolyZono α) :
     cPZ.construct = cPZ.dependent.construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
-  · rintro _ ⟨a, b, ha, hb, hsat, rfl⟩
+  · rintro _ ⟨a, b, hb, hsat, rfl⟩
     have hA : (fun k => Fin.append a b (Fin.castAdd cPZ.qI k)) = a :=
       funext fun k => Fin.append_left a b k
     -- forward: the freed coefficients become the right half of the factor vector
-    refine ⟨Fin.append a b, fun _ => 0,
-      Fin.addCases (fun k => by simpa using ha k) (fun j => by simpa using hb j),
-      fun j => j.elim0, ?_, ?_⟩
-    · refine (PolyLevelSet.mem_padVars_iff cPZ.cons cPZ.qI _).mpr ?_
-      rw [hA]
-      exact hsat
+    have hB : (fun j => Fin.append a b (Fin.natAdd cPZ.p j)) = b :=
+      funext fun j => Fin.append_right a b j
+    refine ⟨Fin.append a b, fun _ => 0, fun j => j.elim0, ?_, ?_⟩
+    · refine (PolyLevelSet.mem_padVars_iff cPZ.cons (Interval.unit cPZ.qI) _).mpr ⟨?_, ?_⟩
+      · rw [hA]
+        exact hsat
+      · rw [hB]
+        exact (Interval.mem_unit_iff b).mpr hb
     · show cPZ.c + (∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i) + ∑ j, b j • cPZ.GI j
           = cPZ.c + (∑ i : Fin (cPZ.h + cPZ.qI),
               PolyZonotope.monomial (PolyZonotope.plusE cPZ.E (PolyZonotope.identE cPZ.qI))
@@ -81,10 +84,10 @@ theorem ConPolyZono.dependent_exact (cPZ : ConPolyZono α) :
         Fin.append_right]
       abel
   -- back: the same split read the other way, the independent block now empty
-  · rintro _ ⟨a, b, ha, _, hsat, rfl⟩
+  · rintro _ ⟨a, b, _, hsat, rfl⟩
+    obtain ⟨hs₁, hs₂⟩ := (PolyLevelSet.mem_padVars_iff cPZ.cons (Interval.unit cPZ.qI) a).mp hsat
     refine ⟨fun k => a (Fin.castAdd cPZ.qI k), fun j => a (Fin.natAdd cPZ.p j),
-      fun k => ha _, fun j => ha _,
-      (PolyLevelSet.mem_padVars_iff cPZ.cons cPZ.qI a).mp hsat, ?_⟩
+      (Interval.mem_unit_iff _).mp hs₂, hs₁, ?_⟩
     show cPZ.c + (∑ i : Fin (cPZ.h + cPZ.qI),
             PolyZonotope.monomial (PolyZonotope.plusE cPZ.E (PolyZonotope.identE cPZ.qI)) a i
               • Fin.append cPZ.G cPZ.GI i)

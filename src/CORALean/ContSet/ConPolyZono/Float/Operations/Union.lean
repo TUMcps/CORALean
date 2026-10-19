@@ -7,6 +7,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionE
 public import CORALean.ContSet.PolyLevelSet.Float.Operations.And
 public import CORALean.ContSet.LevelSet.Real.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Basic
+public import CORALean.ContSet.PolyLevelSet.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.HalfDiffError
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MidpointResidual
 public import CORALean.ContSet.PolyZonotope.Float.Operations.HalfDiff
@@ -62,10 +63,12 @@ def ConPolyZono.union (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZ
   E := Real.ConPolyZono.unionE cPZ₁.E cPZ₂.E
   GI := Fin.elim0
   -- the selector rows, the second with its coefficients' rounding, then the operands' own rows
-  cons := (ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).and_ (ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons)
+  cons := (ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).andRows
+    (ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons)
   cons_eq := Real.LevelSet.append_op_eq
     (Real.LevelSet.append_op_eq (fun _ => rfl) fun _ => rfl)
     (Real.LevelSet.append_op_eq cPZ₁.cons_eq cPZ₂.cons_eq)
+  cons_dom := rfl
   -- the boxes of both operands, and what storing the center and the generator cost
   I_error := (cPZ₁.I_error.or cPZ₂.I_error).plus
     ((PolyZonotope.midpointResidual cPZ₁.c cPZ₂.c).plus

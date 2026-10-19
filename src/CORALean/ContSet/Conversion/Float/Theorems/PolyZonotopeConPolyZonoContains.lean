@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_ConPolyZono
 public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPolyZono
@@ -39,7 +40,8 @@ theorem PolyZonotope.conPolyZono_contains (pZ : PolyZonotope (Vec 𝕋 n)) :
     pZ.construct ⊆ pZ.conPolyZono.construct := by
   refine mono_subset (fun x hx => ?_) subset_rfl
   obtain ⟨a, β, ha, hβ, hx⟩ := PolyZonotope.mem_nominalSet_iff.mp hx
-  exact ConPolyZono.mem_nominalSet_iff.mpr ⟨a, β, ha, hβ, fun i => i.elim0, hx⟩
+  exact ConPolyZono.mem_nominalSet_iff.mpr
+    ⟨a, β, ha, hβ, ⟨(Interval.mem_unit_iff a).mpr ha, fun i => i.elim0⟩, hx⟩
 
 end CORALean.Float
 

@@ -34,7 +34,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 
 theorem StarSet.chordRow_holds (s : StarSet 𝕋 n) (j : Fin n) (b : Interval 𝕋)
     (hg : StarSet.chordGuard b = true) (α : Fin s.m → ℝ)
-    (hα : ∀ k, toReal (s.pred.l k) ≤ α k ∧ α k ≤ toReal (s.pred.u k))
+    (hα : ∀ k, toReal (s.dom.inf k) ≤ α k ∧ α k ≤ toReal (s.dom.sup k))
     (hy : toReal b.inf ≤ toReal (s.c j) + ∑ k, toReal (s.G j k) * α k ∧
       toReal (s.c j) + ∑ k, toReal (s.G j k) * α k ≤ toReal b.sup) : -- --- STMT ---
     ∑ k : Fin (s.m + 1), toReal ((s.chordRow j b).1 k)
@@ -81,7 +81,8 @@ theorem StarSet.chordRow_holds (s : StarSet 𝕋 n) (j : Fin n) (b : Interval �
   -- per generator: the two rounded products with the slope's corners, and the widest factor
   set lo : Fin s.m → 𝕋 := fun i => Interval.mulLo klo khi (s.G j i) (s.G j i) with hlo
   set hi : Fin s.m → 𝕋 := fun i => Interval.mulHi klo khi (s.G j i) (s.G j i) with hhi
-  set wd : Fin s.m → 𝕋 := fun i => maximum (absolute (s.pred.l i)) (absolute (s.pred.u i)) with hwd
+  set wd : Fin s.m → 𝕋 := fun i => maximum (absolute (s.dom.inf i)) (absolute (s.dom.sup i))
+    with hwd
   have hmag : ∀ i, |α i| ≤ toReal (wd i) := fun i => by
     rw [toReal_maximum, toReal_absolute, toReal_absolute]
     exact abs_le_max_abs_abs (hα i).1 (hα i).2

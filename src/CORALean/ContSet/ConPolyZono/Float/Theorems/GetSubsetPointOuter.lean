@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
 public import CORALean.ContSet.ConPolyZono.Float.Operations.GetSubset
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemGetSubsetOfReal
@@ -48,11 +49,11 @@ theorem ConPolyZono.getSubset_point_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) 
           * Real.PolyZonotope.monomial (cPZ.getSubset k cen rad).E a l) + e' i
         = (∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial cPZ.E
             (Function.update a k (toReal cen + toReal rad * a k)) l) + e i := by -- --- PROOF ---
-  refine ⟨PolyLevelSet.mem_getSubset_of_real cPZ.cons cPZ.cons_eq k cen rad a ha (fun i => ?_),
-    fun e he => ?_⟩
+  refine ⟨PolyLevelSet.mem_getSubset_of_real cPZ.cons cPZ.cons_eq k cen rad a ha
+    (cPZ.cons_dom ▸ (Interval.mem_unit_iff a).mpr ha) (fun i => ?_), fun e he => ?_⟩
   · -- the exact rows at `a` are the stored set's at the re-parametrized factors
     rw [Real.PolyLevelSet.eval_getSubset]
-    exact (PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mp hsat i
+    exact ((PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mp hsat).2 i
   -- the exact generators, the stored (rounded down) ones and the monomials, named once
   set G := Real.PolyZonotope.getSubsetG (nominal cPZ.toPolyZonotope) k (toReal cen) (toReal rad)
   set Gd : Fin n → Fin (cPZ.toPolyZonotope.h * (cPZ.toPolyZonotope.maxExp k + 1)) → 𝕋 :=

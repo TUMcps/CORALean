@@ -244,8 +244,8 @@ vector of the unit box satisfying them. -/
 theorem ConPolyZono.rescale_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (contract : Interval (Vec 𝕋 cPZ.p) → Interval (Vec 𝕋 cPZ.p))
     (hkeep : ∀ x : Vec ℝ cPZ.p,
-        x ∈ (ConPolyZono.unitBox 𝕋 cPZ.p).construct → x ∈ cPZ.cons.construct →
-      x ∈ (contract (ConPolyZono.unitBox 𝕋 cPZ.p)).construct) : -- --- STMT ---
+        x ∈ ((Interval.unit cPZ.p : Interval (Vec 𝕋 cPZ.p))).construct → x ∈ cPZ.cons.construct →
+      x ∈ (contract ((Interval.unit cPZ.p : Interval (Vec 𝕋 cPZ.p)))).construct) : -- --- STMT ---
     cPZ.construct ⊆ (cPZ.rescale contract).construct := by -- --- PROOF ---
   unfold ConPolyZono.rescale
   dsimp only
@@ -253,7 +253,7 @@ theorem ConPolyZono.rescale_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
   simp only [Fin.is_lt, dif_pos, Fin.eta]
   refine ConPolyZono.aux_cover _ _ _ ?_
   -- the unit box, read as reals
-  have hunit : x ∈ (ConPolyZono.unitBox 𝕋 cPZ.p).construct := fun i => by
+  have hunit : x ∈ ((Interval.unit cPZ.p : Interval (Vec 𝕋 cPZ.p))).construct := fun i => by
     show toReal (neg one) ≤ x i ∧ x i ≤ toReal one
     rw [toReal_neg, toReal_one]
     exact abs_le.mp (hx i)

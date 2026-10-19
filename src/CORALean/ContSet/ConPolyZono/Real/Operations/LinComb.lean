@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Operations.CartProd
 public import CORALean.ContSet.PolyLevelSet.Real.Operations.PadVars
 public import CORALean.ContSet.LevelSet.Real.Theorems.Basic
@@ -30,7 +31,7 @@ which is the answer wanted.
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       07-September-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -52,8 +53,9 @@ noncomputable def ConPolyZono.linComb (cPZ₁ cPZ₂ : ConPolyZono α) : ConPoly
     G := pZ.G
     E := pZ.E
     GI := pZ.GI
-    cons := (cPZ₁.cons.cartProd cPZ₂.cons).padVars 1
-    cons_eq := LevelSet.append_op_eq cPZ₁.cons_eq cPZ₂.cons_eq }
+    cons := (cPZ₁.cons.cartProd cPZ₂.cons).padVars (Interval.unit 1)
+    cons_eq := LevelSet.append_op_eq cPZ₁.cons_eq cPZ₂.cons_eq
+    cons_dom := Interval.append_eq_unit (Interval.append_eq_unit cPZ₁.cons_dom cPZ₂.cons_dom) rfl }
 
 end CORALean.Real
 

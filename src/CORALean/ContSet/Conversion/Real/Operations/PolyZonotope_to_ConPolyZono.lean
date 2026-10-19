@@ -11,7 +11,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Point
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -32,8 +32,9 @@ def PolyZonotope.conPolyZono (pZ : PolyZonotope α) : ConPolyZono α where
   G := pZ.G
   E := pZ.E
   GI := pZ.GI
-  cons := ⟨0, 0, 0, fun _ => Fin.elim0, 0, Fin.elim0⟩
+  cons := ⟨0, 0, 0, fun _ => Fin.elim0, 0, Fin.elim0, Interval.unit pZ.p⟩
   cons_eq i := i.elim0
+  cons_dom := rfl
 
 end CORALean.Real
 

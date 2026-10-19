@@ -4,9 +4,11 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Relax
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.ExistsRelaxIff
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemRelaxIff
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemRelaxIff
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
@@ -52,16 +54,21 @@ theorem ConPolyZono.absorbRounding_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
   have hbound : ∀ i, |e i| ≤ toReal (PolyZonotope.errorBound cPZ.I_error i) :=
     fun i => PolyZonotope.abs_le_errorBound he i
   -- each row's slack as a factor of its own, in `[-1, 1]`: the exact rows, relaxed, then hold
-  obtain ⟨γ, hγ, hrel⟩ := (Real.PolyLevelSet.exists_relax_iff (P := cPZ.cons.nominalCore)
+  obtain ⟨γ, hrel⟩ := (Real.PolyLevelSet.exists_relax_iff (P := cPZ.cons.nominalCore)
     cPZ.cons_eq (toRealVec cPZ.cons.b_error) a).mpr
       ((PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mp hs)
+  have hγ : ∀ i, |γ i| ≤ 1 := fun i => by
+    have h := (Real.Interval.mem_unit_iff _).mp
+      ((Real.PolyLevelSet.mem_relax_iff _ _ _ _).mp hrel).1.2 i
+    simpa using h
   have hleft : (fun k => Fin.append a γ (Fin.castAdd cPZ.cons.m k)) = a :=
     funext fun k => Fin.append_left a γ k
   refine ConPolyZono.mem_nominalSet_iff.mpr
     ⟨Fin.append a γ, Fin.append β
       (fun i => Real.Zonotope.coefficient (toReal (PolyZonotope.errorBound cPZ.I_error i)) (e i)),
       Fin.addCases (fun k => by simpa using ha k) (fun i => by simpa using hγ i), ?_,
-      (PolyLevelSet.mem_relax_iff cPZ.cons_eq _).mpr hrel, fun i => ?_⟩
+      (PolyLevelSet.mem_relax_iff cPZ.cons_eq _ _).mpr (by rw [Interval.nominal_unit]; exact hrel),
+      fun i => ?_⟩
   -- the old independent coefficients, then one per coordinate, each within the unit box
   · refine Fin.addCases (fun k => ?_) (fun j => ?_)
     · simpa using hβ k

@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemPadVarsIff
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemCartProdIff
 public import CORALean.ContSet.ConPolyZono.Real.Operations.LinComb
@@ -45,7 +46,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 theorem ConPolyZono.linComb_outer (cPZ₁ cPZ₂ : ConPolyZono α) :
     Set.linComb cPZ₁.construct cPZ₂.construct ⊆ (cPZ₁.linComb cPZ₂).construct := by -- --- PROOF ---
-  rintro x ⟨y₁, ⟨a₁, β₁, ha₁, hβ₁, hs₁, rfl⟩, y₂, ⟨a₂, β₂, ha₂, hβ₂, hs₂, rfl⟩,
+  rintro x ⟨y₁, ⟨a₁, β₁, hβ₁, hs₁, rfl⟩, y₂, ⟨a₂, β₂, hβ₂, hs₂, rfl⟩,
     lam, ⟨hl0, hl1⟩, rfl⟩
   have hA₁ : (fun k => Fin.append (Fin.append a₁ a₂) (fun _ : Fin 1 => 2 * lam - 1)
       (Fin.castAdd 1 (Fin.castAdd cPZ₂.p k))) = a₁ :=
@@ -55,30 +56,24 @@ theorem ConPolyZono.linComb_outer (cPZ₁ cPZ₂ : ConPolyZono α) :
     funext fun k => by rw [Fin.append_left, Fin.append_right]
   refine ⟨Fin.append (Fin.append a₁ a₂) (fun _ : Fin 1 => 2 * lam - 1),
     Fin.append (Zonotope.pairCoeffSum β₁ β₂ lam) (Zonotope.pairCoeffDiff β₁ β₂ lam),
-    ?_, ?_, ?_, ?_⟩
-  -- the fresh factor is `2λ-1`, which stays in `[-1,1]` for `λ` in the unit interval
-  · refine Fin.addCases ?_ ?_
-    · refine Fin.addCases ?_ ?_
-      · intro k
-        simpa using ha₁ k
-      · intro k
-        simpa using ha₂ k
-    · intro _
-      simp only [Fin.append_right]
-      rw [abs_le]
-      constructor <;> linarith
+    ?_, ?_, ?_⟩
   · refine Fin.addCases ?_ ?_
     · intro j
       simpa using Zonotope.abs_pairCoeffSum_le_one hβ₁ hβ₂ hl0 hl1 j
     · intro j
       simpa using Zonotope.abs_pairCoeffDiff_le_one hβ₁ hβ₂ hl0 hl1 j
   -- the constraints: each endpoint satisfies its own, on the factors it came with
-  · refine ((PolyLevelSet.mem_padVars_iff _ 1 _).trans (PolyLevelSet.mem_cartProd_iff cPZ₁.cons
-      cPZ₂.cons _)).mpr ⟨?_, ?_⟩
+  · refine (PolyLevelSet.mem_padVars_iff _ (Interval.unit 1) _).mpr
+      ⟨(PolyLevelSet.mem_cartProd_iff cPZ₁.cons cPZ₂.cons _).mpr ⟨?_, ?_⟩, ?_⟩
     · rw [hA₁]
       exact hs₁
     · rw [hA₂]
       exact hs₂
+    -- the fresh factor is `2λ-1`, which stays in `[-1,1]` for `λ` in the unit interval
+    · refine (Interval.mem_unit_iff _).mpr fun _ => ?_
+      simp only [Fin.append_right]
+      rw [abs_le]
+      constructor <;> linarith
   -- the value: the generators are `PolyZonotope.linComb`'s and so is the arithmetic
   · exact PolyZonotope.linComb_value cPZ₁.toPolyZonotope cPZ₂.toPolyZonotope a₁ β₁ a₂ β₂ lam
 

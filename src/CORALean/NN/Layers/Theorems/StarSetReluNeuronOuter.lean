@@ -4,8 +4,9 @@ public import CORALean.NN.Layers.Definitions.Relu
 public import Mathlib.Tactic.Linarith
 public import Mathlib.Tactic.FieldSimp
 public import CORALean.NN.Layers.Operations.StarSetReluNeuron
-public import CORALean.ContSet.StarSet.Real.Theorems.LinPredMemAddRowsIff
-public import CORALean.ContSet.StarSet.Real.Theorems.LinPredMemSnocIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
+public import CORALean.ContSet.Interval.Real.Theorems.MemAppendIff
 
 @[expose] public section
 
@@ -33,7 +34,7 @@ open ContSet
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem StarSet.reluNeuron_outer {n : ℕ} (s : StarSet StarSet.LinPred n) (j : Fin n)
+theorem StarSet.reluNeuron_outer {n : ℕ} (s : StarSet ℋ𝒫 n) (j : Fin n)
     (b : Interval ℝ)
     (hb : ∀ x ∈ construct s, b.inf ≤ x j ∧ x j ≤ b.sup) : -- --- STMT ---
     (fun (x : Vec ℝ n) => (Function.update x j (Real.relu (x j)) : Vec ℝ n)) '' construct s
@@ -77,21 +78,47 @@ theorem StarSet.reluNeuron_outer {n : ℕ} (s : StarSet StarSet.LinPred n) (j : 
     · rw [hβ, Real.relu, max_eq_left h]; nlinarith [hbx.2]
   -- the old factors with `β` appended witness the new set
   have hS : ∑ k, s.G j k * α k = x j - s.c j := by rw [hxj]; ring
-  refine ⟨Fin.snoc (α := fun _ => ℝ) α β, StarSet.LinPred.mem_addRows_iff.mpr
-    ⟨StarSet.LinPred.mem_snoc_iff.mpr ⟨⟨hα, hcα⟩, hβ0, hβu⟩, ?_⟩, fun i => ?_⟩
+  -- a row on the factors with `β` appended, read as the old row and the new coefficient
+  have hrow : ∀ (a : Fin s.m → ℝ) (t : ℝ), ∑ k : Fin (s.m + 1),
+      Fin.snoc (α := fun _ => ℝ) a t k * Fin.snoc (α := fun _ => ℝ) α β k
+        = ∑ k, a k * α k + t * β := fun a t => by
+    simp only [Fin.sum_univ_castSucc, Fin.snoc_castSucc, Fin.snoc_last]
+  have hlast : ∀ k : Fin 1, Fin.natAdd s.m k = Fin.last s.m := fun k =>
+    Fin.ext (by simp)
+  refine ⟨Fin.snoc (α := fun _ => ℝ) α β, ⟨(Interval.mem_append_iff _ _ _).mpr ⟨?_, fun k => ?_⟩,
+    (HPolytope.intersection_exact _ _).subset ⟨?_, HPolytope.mem_ineqs_iff.mpr fun r => ?_⟩⟩,
+    fun i => ?_⟩
+  · -- the old factors in the old box, the new one in `[0, u]`
+    have hA : (fun k => (Fin.snoc (α := fun _ => ℝ) α β : Vec ℝ (s.m + 1)) (Fin.castAdd 1 k))
+        = α := funext fun k => Fin.snoc_castSucc (α := fun _ => ℝ) _ _ _
+    exact (congrArg (· ∈ s.dom.construct) hA).mpr hα
+  · show 0 ≤ Fin.snoc (α := fun _ => ℝ) α β (Fin.natAdd s.m k)
+      ∧ Fin.snoc (α := fun _ => ℝ) α β (Fin.natAdd s.m k) ≤ b.sup
+    rw [hlast k, Fin.snoc_last]
+    exact ⟨hβ0, hβu⟩
+  · -- the old rows, which read the old factors only
+    rw [HPolytope.lift_exact]
+    have hA : (fun k => (Fin.snoc (α := fun _ => ℝ) α β : Vec ℝ (s.m + 1)) (Fin.castSucc k))
+        = α := funext fun k => Fin.snoc_castSucc (α := fun _ => ℝ) _ _ _
+    exact (congrArg (· ∈ s.pred.construct) hA).mpr hcα
   · -- the three new rows
-    intro r hr
-    simp only [List.mem_cons, List.not_mem_nil, or_false] at hr
-    rcases hr with rfl | rfl | rfl
-    · simp [Fin.sum_univ_castSucc, hβ0]
-    · simp only [Fin.sum_univ_castSucc, Fin.snoc_castSucc, Fin.snoc_last, hS]
+    fin_cases r
+    · show ∑ k, Fin.snoc (α := fun _ => ℝ) 0 (-1) k * Fin.snoc (α := fun _ => ℝ) α β k ≤ 0
+      rw [hrow]
+      simp only [Pi.zero_apply, zero_mul, Finset.sum_const_zero, zero_add]
       linarith
-    · have hS' : ∑ k : Fin s.m, -(b.sup / (b.sup - b.inf)) * s.G j k * α k
+    · show ∑ k, Fin.snoc (α := fun _ => ℝ) (s.G j) (-1) k * Fin.snoc (α := fun _ => ℝ) α β k
+        ≤ -s.c j
+      rw [hrow, hS]
+      linarith
+    · show ∑ k, Fin.snoc (α := fun _ => ℝ) (fun k => -(b.sup / (b.sup - b.inf)) * s.G j k) 1 k
+          * Fin.snoc (α := fun _ => ℝ) α β k
+        ≤ b.sup / (b.sup - b.inf) * (s.c j - b.inf)
+      have hS' : ∑ k : Fin s.m, -(b.sup / (b.sup - b.inf)) * s.G j k * α k
           = -(b.sup / (b.sup - b.inf)) * (x j - s.c j) := by
         rw [← hS, Finset.mul_sum]
         exact Finset.sum_congr rfl fun k _ => by ring
-      simp only [Fin.sum_univ_castSucc, Fin.snoc_castSucc, Fin.snoc_last]
-      rw [hS']
+      rw [hrow, hS']
       linarith
   · -- the point: the neuron is `β`, the others are untouched
     by_cases hi : i = j

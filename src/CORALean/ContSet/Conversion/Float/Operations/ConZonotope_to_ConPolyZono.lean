@@ -4,6 +4,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_ConPolyZono
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 
@@ -21,7 +22,7 @@ per row (`Real.ConZonotope.conPolyZono`).
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       03-September-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -59,8 +60,10 @@ def ConZonotope.conPolyZono (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConPolyZono �
   -- each row held to its enclosure: its lower end, and the width above it
   cons := ⟨cZ.P.m + cZ.P.me, cZ.h, ConZonotope.conA cZ, Real.PolyZonotope.identE cZ.h,
     (ConZonotope.conB cZ).inf,
-    fun k => subUp ((ConZonotope.conB cZ).sup k) ((ConZonotope.conB cZ).inf k), fun _ => .eq⟩
+    fun k => subUp ((ConZonotope.conB cZ).sup k) ((ConZonotope.conB cZ).inf k), fun _ => .eq,
+    Interval.unit cZ.h⟩
   cons_eq _ := rfl
+  cons_dom := rfl
   I_error := cZ.I_error
 
 end CORALean.Float

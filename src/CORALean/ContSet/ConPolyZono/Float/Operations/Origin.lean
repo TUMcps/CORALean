@@ -14,7 +14,7 @@ constraint system, the center stored as `zero` and the box at zero.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -38,8 +38,9 @@ def ConPolyZono.origin (n : ℕ) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   E := fun i => i.elim0
   GI := Fin.elim0
   cons := ⟨0, 0, fun i => i.elim0, fun i => i.elim0, fun i => i.elim0, fun i => i.elim0,
-    fun i => i.elim0⟩
+    fun i => i.elim0, Interval.unit 0⟩
   cons_eq i := i.elim0
+  cons_dom := rfl
   I_error := Interval.origin n
 
 end CORALean.Float

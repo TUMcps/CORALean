@@ -8,6 +8,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorExtendR
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorIdxLeft
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorIdxRight
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEqUnit
 
 @[expose] public section
 
@@ -48,10 +49,10 @@ theorem ConPolyZono.compactFactors_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
         = Real.PolyZonotope.monomial cPZ.cons.R a :=
       funext fun l => Real.ConPolyZono.monomial_factorIdx_right cPZ.E cPZ.cons.R a l
     refine ⟨fun k => a (Real.ConPolyZono.factorIdx cPZ.E cPZ.cons.R k), β, fun k => ha _, hβ,
-      (PolyLevelSet.mem_construct_iff_of_eq cPZ.compactFactorsSpec.cons_eq).mpr fun i => ?_,
-      fun i => ?_⟩
+      (PolyLevelSet.mem_construct_iff_of_eq_unit cPZ.compactFactorsSpec.cons_eq
+        cPZ.compactFactorsSpec.cons_dom).mpr ⟨fun k => ha _, fun i => ?_⟩, fun i => ?_⟩
     -- a row of the kept factors reads what the row of all of them read
-    · have h := (PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mp hs i
+    · have h := ((PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mp hs).2 i
       rw [← hR] at h
       exact h
     · rw [hx i]
@@ -68,8 +69,10 @@ theorem ConPolyZono.compactFactors_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
       funext fun l => Real.ConPolyZono.monomial_factorExtend_right cPZ.E cPZ.cons.R a l
     refine ⟨Real.ConPolyZono.factorExtend cPZ.E cPZ.cons.R a, β,
       fun k => Real.ConPolyZono.abs_factorExtend_le_one cPZ.E cPZ.cons.R ha k, hβ,
-      (PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mpr fun i => ?_, fun i => ?_⟩
-    · have h := (PolyLevelSet.mem_construct_iff_of_eq cPZ.compactFactorsSpec.cons_eq).mp hs i
+      (PolyLevelSet.mem_construct_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom).mpr
+        ⟨fun k => Real.ConPolyZono.abs_factorExtend_le_one cPZ.E cPZ.cons.R ha k, fun i => ?_⟩,
+      fun i => ?_⟩
+    · have h := ((PolyLevelSet.mem_construct_iff_of_eq cPZ.compactFactorsSpec.cons_eq).mp hs).2 i
       rw [← hR] at h
       exact h
     · rw [hx i]

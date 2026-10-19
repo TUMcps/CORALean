@@ -46,7 +46,8 @@ def PolyLevelSet.compact (P : PolyLevelSet 𝕋 n) : PolyLevelSet 𝕋 n :=
   let gap : Mat 𝕋 P.m (PolyZonotope.repKeep P.R).card := fun i l =>
     subUp (PolyZonotope.fiberUp r P.A i (k l)) (PolyZonotope.fiberDown r P.A i (k l))
   ⟨P.m, (PolyZonotope.repKeep P.R).card, fun i l => PolyZonotope.fiberDown r P.A i (k l),
-    fun a l => P.R a (k l), P.b, fun i => addUp (absolute (P.b_error i)) (radius gap i), P.op⟩
+    fun a l => P.R a (k l), P.b, fun i => addUp (absolute (P.b_error i)) (radius gap i), P.op,
+    P.dom⟩
 
 end CORALean.Float
 

@@ -66,14 +66,13 @@ theorem ConPolyZono.aux_sum_univ_cartProd_qI {cPZ₁ : ConPolyZono α} {cPZ₂ :
 theorem ConPolyZono.cartProd_exact (cPZ₁ : ConPolyZono α) (cPZ₂ : ConPolyZono β) :
     cPZ₁.construct ×ˢ cPZ₂.construct = (cPZ₁.cartProd cPZ₂).construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
-  · rintro ⟨x₁, x₂⟩ ⟨⟨a₁, β₁, ha₁, hβ₁, hs₁, hx₁⟩, ⟨a₂, β₂, ha₂, hβ₂, hs₂, hx₂⟩⟩
+  · rintro ⟨x₁, x₂⟩ ⟨⟨a₁, β₁, hβ₁, hs₁, hx₁⟩, ⟨a₂, β₂, hβ₂, hs₂, hx₂⟩⟩
     have hA₁ : (fun k => Fin.append a₁ a₂ (Fin.castAdd cPZ₂.p k)) = a₁ :=
       funext fun k => Fin.append_left a₁ a₂ k
     have hA₂ : (fun k => Fin.append a₁ a₂ (Fin.natAdd cPZ₁.p k)) = a₂ :=
       funext fun k => Fin.append_right a₁ a₂ k
     -- forward: appended factors and appended coefficients, each read on its own half
     refine ⟨Fin.append a₁ a₂, Fin.append β₁ β₂,
-      Fin.addCases (fun k => by simpa using ha₁ k) (fun k => by simpa using ha₂ k),
       Fin.addCases (fun j => by simpa using hβ₁ j) (fun j => by simpa using hβ₂ j),
       ?_, ?_⟩
     · refine (PolyLevelSet.mem_cartProd_iff cPZ₁.cons cPZ₂.cons _).mpr ⟨?_, ?_⟩
@@ -88,7 +87,7 @@ theorem ConPolyZono.cartProd_exact (cPZ₁ : ConPolyZono α) (cPZ₂ : ConPolyZo
       · simpa only [Prod.snd_add, Prod.snd_sum, Prod.smul_snd, smul_zero, Finset.sum_const_zero,
           zero_add] using hx₂
   -- back: the pair's equation and its constraint split apart per coordinate
-  · rintro ⟨x₁, x₂⟩ ⟨a, β, ha, hβ, hsat, hxy⟩
+  · rintro ⟨x₁, x₂⟩ ⟨a, β, hβ, hsat, hxy⟩
     obtain ⟨hs₁, hs₂⟩ :=
       (PolyLevelSet.mem_cartProd_iff cPZ₁.cons cPZ₂.cons a).mp hsat
     have hx₁ : x₁ = cPZ₁.c + ∑ i, PolyZonotope.monomial cPZ₁.E (fun k => a (Fin.castAdd cPZ₂.p k)) i
@@ -107,9 +106,9 @@ theorem ConPolyZono.cartProd_exact (cPZ₁ : ConPolyZono α) (cPZ₂ : ConPolyZo
         Prod.snd_sum, Prod.smul_snd, smul_zero, Finset.sum_const_zero, zero_add] using h2
     -- the restricted factors and coefficients, one point of each set
     exact ⟨⟨fun k => a (Fin.castAdd cPZ₂.p k), fun j => β (Fin.castAdd cPZ₂.qI j),
-              fun k => ha _, fun j => hβ _, hs₁, hx₁⟩,
+              fun j => hβ _, hs₁, hx₁⟩,
            ⟨fun k => a (Fin.natAdd cPZ₁.p k), fun j => β (Fin.natAdd cPZ₁.qI j),
-              fun k => ha _, fun j => hβ _, hs₂, hx₂⟩⟩
+              fun j => hβ _, hs₂, hx₂⟩⟩
 
 end CORALean.Real
 

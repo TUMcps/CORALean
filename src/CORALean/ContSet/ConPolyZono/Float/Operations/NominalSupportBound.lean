@@ -19,7 +19,7 @@ upward-rounded dot product and the negated downward-rounded one and summed upwar
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -40,7 +40,7 @@ that sum is what the stored floats can compute. -/
 def ConPolyZono.nominalSupportBound (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ}
     (a : Vec 𝕋 n) (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j)
     (u : FloatBound 𝕋 ((InflatedContSet.nominal cPZ).polyZonotope.point ''
-      {α | (∀ k, |α k| ≤ 1) ∧ α ∈ (InflatedContSet.nominal cPZ).cons.construct}) c) :
+      (InflatedContSet.nominal cPZ).cons.construct) c) :
     FloatBound 𝕋 (nominalSet cPZ) c :=
   let extent : Fin cPZ.qI → 𝕋 := fun j =>
     maximum (dotUp a (cPZ.GI j)) (neg (dotDown a (cPZ.GI j)))

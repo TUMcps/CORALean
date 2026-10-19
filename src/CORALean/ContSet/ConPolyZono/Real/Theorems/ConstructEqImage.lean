@@ -33,11 +33,11 @@ theorem ConPolyZono.construct_eq_image (cPZ : ConPolyZono α) :
     cPZ.construct = cPZ.affine '' cPZ.domain := by -- --- PROOF ---
   ext x
   constructor
-  · rintro ⟨a, β, ha, hβ, hsat, rfl⟩
-    exact ⟨(a, β), ⟨ha, hβ, hsat⟩, rfl⟩
+  · rintro ⟨a, β, hβ, hsat, rfl⟩
+    exact ⟨(a, β), ⟨hβ, hsat⟩, rfl⟩
   -- back, the two cubes and the constraint read off the domain again
-  · rintro ⟨⟨a, β⟩, ⟨ha, hβ, hsat⟩, rfl⟩
-    exact ⟨a, β, ha, hβ, hsat, rfl⟩
+  · rintro ⟨⟨a, β⟩, ⟨hβ, hsat⟩, rfl⟩
+    exact ⟨a, β, hβ, hsat, rfl⟩
 
 end CORALean.Real
 

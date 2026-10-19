@@ -53,8 +53,8 @@ theorem ConPolyZono.quadMapDep_exact (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZ
     exact h
   -- both directions are `hquad` at the same `a`, the independent block being empty
   apply Set.eq_of_subset_of_subset
-  · rintro _ ⟨_, ⟨a, b, ha, _, hsat, rfl⟩, rfl⟩
-    refine ⟨a, fun _ => 0, ha, fun j => j.elim0, hsat, ?_⟩
+  · rintro _ ⟨_, ⟨a, b, _, hsat, rfl⟩, rfl⟩
+    refine ⟨a, fun _ => 0, fun j => j.elim0, hsat, ?_⟩
     show quadEval Q (cPZ.c + ∑ i, monomial cPZ.E a i • cPZ.G i + ∑ j, b j • cPZ.GI j)
         = (0 : Vec ℝ k)
           + (∑ l, monomial (quadMapE cPZ.polyZonotope) a l • quadMapG Q cPZ.polyZonotope l)
@@ -62,9 +62,9 @@ theorem ConPolyZono.quadMapDep_exact (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZ
     rw [hz b, add_zero, hquad a]
     simp only [Finset.univ_eq_empty, Finset.sum_empty, add_zero, zero_add]
   -- back, with the independent coefficients read as zero
-  · rintro _ ⟨a, b, ha, _, hsat, rfl⟩
+  · rintro _ ⟨a, b, _, hsat, rfl⟩
     refine ⟨cPZ.c + ∑ i, monomial cPZ.E a i • cPZ.G i + ∑ j, (0:ℝ) • cPZ.GI j,
-      ⟨a, fun _ => 0, ha, fun _ => by norm_num, hsat, rfl⟩, ?_⟩
+      ⟨a, fun _ => 0, fun _ => by norm_num, hsat, rfl⟩, ?_⟩
     show quadEval Q (cPZ.c + ∑ i, monomial cPZ.E a i • cPZ.G i + ∑ j, (0:ℝ) • cPZ.GI j)
         = (0 : Vec ℝ k)
           + (∑ l, monomial (quadMapE cPZ.polyZonotope) a l • quadMapG Q cPZ.polyZonotope l)

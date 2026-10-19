@@ -48,15 +48,15 @@ theorem ConPolyZono.convHullSingle_construct (a : ℕ) (cPZ : ConPolyZono α) (h
         ∧ (∀ j, 0 ≤ lam j) ∧ ∑ j, lam j = 1 ∧ x = ∑ j, lam j • y j} := by -- --- PROOF ---
   ext x
   constructor
-  · rintro ⟨v, β, hv, hβ, hsat, rfl⟩
-    obtain ⟨hj, hl⟩ := (ConPolyZono.mem_convHullSingle_cons_iff a cPZ v).mp hsat
+  · rintro ⟨v, β, hβ, hsat, rfl⟩
+    obtain ⟨hj, hv, hl⟩ := (ConPolyZono.mem_convHullSingle_cons_iff a cPZ v).mp hsat
     refine ⟨fun j => cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E
         (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))) i • cPZ.G i,
       fun j => 1 + v (Fin.natAdd (a * cPZ.p) j), fun j => ?_, fun j => ?_, ?_, ?_⟩
     · -- block `j` is a factor vector of the set, and its point is that block's
-      exact ⟨fun k => v (Fin.castAdd a (finProdFinEquiv (j, k))), fun _ => 0, fun k => hv _,
+      exact ⟨fun k => v (Fin.castAdd a (finProdFinEquiv (j, k))), fun _ => 0,
         fun _ => by simp, hj j, by simp⟩
-    · linarith [abs_le.mp (hv (Fin.natAdd (a * cPZ.p) j)) |>.1]
+    · linarith [abs_le.mp (hv j) |>.1]
     · -- `a` weights shifted by one, over a factor sum the last row pins
       rw [Finset.sum_add_distrib, hl, Finset.sum_const, Finset.card_univ, Fintype.card_fin,
         nsmul_eq_mul, mul_one]
@@ -67,7 +67,7 @@ theorem ConPolyZono.convHullSingle_construct (a : ℕ) (cPZ : ConPolyZono α) (h
       rw [ConPolyZono.sum_convHullE]
       simp
   · rintro ⟨y, lam, hy, hlam, hsum, rfl⟩
-    choose aj βj haj hbj hsatj hyj using hy
+    choose aj βj hbj hsatj hyj using hy
     -- a weight is at most one, so the factor standing for it stays in the cube
     have hlam1 : ∀ j, lam j ≤ 1 := fun j => by
       rw [← hsum]; exact Finset.single_le_sum (fun i _ => hlam i) (Finset.mem_univ j)
@@ -80,13 +80,11 @@ theorem ConPolyZono.convHullSingle_construct (a : ℕ) (cPZ : ConPolyZono α) (h
       fun j => by rw [hvdef, Fin.append_right]
     have hGI : ∀ j, (∑ l, βj j l • cPZ.GI l) = (0 : α) := fun j =>
       Finset.sum_eq_zero fun l _ => absurd l.isLt (by omega)
-    refine ⟨v, fun _ => 0, ?_, fun _ => by simp, ?_, ?_⟩
-    · refine Fin.addCases (fun x => ?_) (fun j => ?_)
-      · rw [hvdef, Fin.append_left]; exact haj _ _
-      · rw [hvlam j, abs_le]; constructor <;> linarith [hlam j, hlam1 j]
+    refine ⟨v, fun _ => 0, fun _ => by simp, ?_, ?_⟩
     · -- each copy carries its own point's factors, and the weights the last row
-      refine (ConPolyZono.mem_convHullSingle_cons_iff a cPZ v).mpr ⟨fun j => ?_, ?_⟩
+      refine (ConPolyZono.mem_convHullSingle_cons_iff a cPZ v).mpr ⟨fun j => ?_, fun j => ?_, ?_⟩
       · rw [hvblk j]; exact hsatj j
+      · rw [hvlam j, abs_le]; constructor <;> linarith [hlam j, hlam1 j]
       · rw [Finset.sum_congr rfl (fun j (_ : j ∈ Finset.univ) => hvlam j),
           Finset.sum_sub_distrib, hsum, Finset.sum_const, Finset.card_univ, Fintype.card_fin,
           nsmul_eq_mul, mul_one]

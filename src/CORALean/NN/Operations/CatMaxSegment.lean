@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyLevelSet.Real.Operations.And
+public import CORALean.ContSet.LevelSet.Real.Operations.And
 public import CORALean.NN.Operations.Basic
 public import CORALean.NN.Definitions.Cat
 public import CORALean.NN.Layers.Operations.SelectMat

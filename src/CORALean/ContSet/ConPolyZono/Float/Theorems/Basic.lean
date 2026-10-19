@@ -98,7 +98,6 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- Last update:   14-October-2026
 -- Reviewed:      ---
 
-omit [FloatOps 𝕋] in
 /-- `materialise` is the identity: it changes only what running the definition costs. -/
 @[simp] theorem ConPolyZono.materialise_eq (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     cPZ.materialise = cPZ := by

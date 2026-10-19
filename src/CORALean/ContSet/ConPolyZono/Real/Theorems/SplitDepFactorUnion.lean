@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.SplitDepFactor
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetConstruct
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 
 @[expose] public section
 
@@ -37,19 +38,20 @@ theorem ConPolyZono.splitDepFactor_union (cPZ : ConPolyZono α) (r : Fin cPZ.p) 
   constructor
   · -- either half's factor vector is in the unit cube
     rintro (⟨a, β, h1, h2, hβ, hsat, hx⟩ | ⟨a, β, h1, h2, hβ, hsat, hx⟩) <;>
-      refine ⟨a, β, fun k => ?_, hβ, hsat, hx⟩ <;>
+      refine ⟨a, β, hβ, ⟨cPZ.cons_dom ▸ (Interval.mem_unit_iff a).mpr fun k => ?_, hsat⟩, hx⟩ <;>
       rcases eq_or_ne k r with rfl | hk <;> try exact h2 k hk
     · rw [abs_le] at h1 ⊢; constructor <;> linarith [h1.1, h1.2]
     · rw [abs_le] at h1 ⊢; constructor <;> linarith [h1.1, h1.2]
   · -- a point of the cube lies in the half its `r`-th factor lies in
-    rintro ⟨a, β, ha, hβ, hsat, hx⟩
+    rintro ⟨a, β, hβ, hsat, hx⟩
+    have ha := (Interval.mem_unit_iff a).mp (cPZ.cons_dom ▸ hsat.1)
     have hr := ha r
     rw [abs_le] at hr
     rcases le_total (a r) 0 with h0 | h0
     · exact Or.inl ⟨a, β, by rw [abs_le]; constructor <;> linarith [hr.1], fun k _ => ha k, hβ,
-        hsat, hx⟩
+        hsat.2, hx⟩
     · exact Or.inr ⟨a, β, by rw [abs_le]; constructor <;> linarith [hr.2], fun k _ => ha k, hβ,
-        hsat, hx⟩
+        hsat.2, hx⟩
 
 end CORALean.Real
 

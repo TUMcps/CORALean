@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Float.Operations.LinComb
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.InflatedContSet.Theorems.LinCombSubset
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombNominalAt
@@ -79,12 +80,16 @@ theorem ConPolyZono.aux_linComb_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec �
       rw [abs_le]
       constructor <;> linarith
   -- each constraint system read on the factors its operand came with
-  · refine ((PolyLevelSet.mem_padVars_iff _ 1 _).trans (PolyLevelSet.mem_cartProd_iff cPZ₁.cons
-      cPZ₂.cons _)).mpr ⟨?_, ?_⟩
+  · refine (PolyLevelSet.mem_padVars_iff _ (Interval.unit 1) _).mpr
+      ⟨(PolyLevelSet.mem_cartProd_iff cPZ₁.cons cPZ₂.cons _).mpr ⟨?_, ?_⟩, ?_⟩
     · rw [hA₁]
       exact hs₁
     · rw [hA₂]
       exact hs₂
+    · refine (Interval.mem_unit_iff _).mpr fun _ => ?_
+      simp only [Fin.append_right]
+      rw [abs_le]
+      constructor <;> linarith
   · rw [funext hy₁, funext hy₂]
     exact hx
 

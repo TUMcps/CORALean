@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionDep
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.AbsSubLeSubUp
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.PolyLevelSet.Float.Theorems.AndExact
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemAndRowsIff
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemCartProdIff
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
@@ -85,9 +85,13 @@ theorem ConPolyZono.intersectionDep_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec
     fun j => j.elim0, ?_, fun i => ?_⟩, e₁, he₁, hx₁⟩
   -- the constraints: each set's own rows, then the agreement rows
   · show Fin.append a₁ a₂
-      ∈ ((cPZ₁.cons.cartProd cPZ₂.cons).and_ (ConPolyZono.agreeCons cPZ₁ cPZ₂)).construct
-    rw [PolyLevelSet.and_exact, Set.mem_inter_iff, PolyLevelSet.mem_cartProd_iff, hA₁, hA₂]
-    refine ⟨⟨hs₁, hs₂⟩, (PolyLevelSet.mem_construct_iff_of_eq fun _ => rfl).mpr fun i => ?_⟩
+      ∈ ((cPZ₁.cons.cartProd cPZ₂.cons).andRows (ConPolyZono.agreeCons cPZ₁ cPZ₂)).construct
+    rw [PolyLevelSet.mem_andRows_iff, PolyLevelSet.mem_cartProd_iff, hA₁, hA₂]
+    refine ⟨⟨hs₁, hs₂⟩, fun i => ?_⟩
+    show |(toRealMat (ConPolyZono.agreeCons cPZ₁ cPZ₂).A *ᵥ Real.PolyZonotope.monomial
+        (ConPolyZono.agreeCons cPZ₁ cPZ₂).R (Fin.append a₁ a₂)) i
+        - toReal ((ConPolyZono.agreeCons cPZ₁ cPZ₂).b i)|
+      ≤ |toReal ((ConPolyZono.agreeCons cPZ₁ cPZ₂).b_error i)|
     -- an agreement row reads each set's generator monomials at its own factors
     have hrow : (toRealMat (ConPolyZono.agreeCons cPZ₁ cPZ₂).A *ᵥ Real.PolyZonotope.monomial
           (ConPolyZono.agreeCons cPZ₁ cPZ₂).R (Fin.append a₁ a₂)) i

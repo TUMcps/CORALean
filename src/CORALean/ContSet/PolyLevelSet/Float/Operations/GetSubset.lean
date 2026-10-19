@@ -43,6 +43,7 @@ def PolyLevelSet.getSubset (P : PolyLevelSet 𝕋 n) (k : Fin n) (cen rad : 𝕋
   -- the slack grows by the stored entries' rounding, scaled by monomials in `[-1, 1]`
   b_error i := addUp (absolute (P.b_error i)) (radius (P.lhs.getSubsetGDiff k cen rad) i)
   op := P.op
+  dom := P.dom
 
 end CORALean.Float
 

@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCol
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.PolyLevelSet
 
 @[expose] public section
@@ -19,7 +20,7 @@ common sign: one equation over the single monomial `α₁α₂`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -30,10 +31,10 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `α₁α₂ = 1`, on the union's factors. -/
+/-- `α₁α₂ = 1`, on the union's factors and their unit box. -/
 def ConPolyZono.unionSelRow (p₁ p₂ : ℕ) : PolyLevelSet (p₁ + p₂ + 2) :=
   ⟨1, 1, fun _ _ => 1, fun k _ => ConPolyZono.unitCol (ConPolyZono.unionSel p₁ p₂) 1 k
-    + ConPolyZono.unitCol (Fin.natAdd (p₁ + p₂) 1) 1 k, fun _ => 1, fun _ => .eq⟩
+    + ConPolyZono.unitCol (Fin.natAdd (p₁ + p₂) 1) 1 k, fun _ => 1, fun _ => .eq, Interval.unit _⟩
 
 end CORALean.Real
 

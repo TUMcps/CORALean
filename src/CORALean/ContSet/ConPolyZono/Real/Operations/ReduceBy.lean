@@ -45,6 +45,7 @@ def ConPolyZono.reduceBy (cPZ : ConPolyZono (Vec ℝ n))
           (Matrix.diagonal (cPZ.dropRadius partD partI))
   cons := cPZ.cons
   cons_eq := cPZ.cons_eq
+  cons_dom := cPZ.cons_dom
 
 end CORALean.Real
 

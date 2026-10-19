@@ -47,11 +47,11 @@ theorem ConPolyZono.map_exact (f : α →ₗ[ℝ] β) (cPZ : ConPolyZono α) :
     · exact Finset.sum_congr rfl fun j _ => map_smul f (b j) (cPZ.GI j)
   -- both inclusions are `hf` read in the two directions; the constraint never moves
   apply Set.eq_of_subset_of_subset
-  · rintro _ ⟨x, ⟨a, b, ha, hb, hsat, rfl⟩, rfl⟩
-    exact ⟨a, b, ha, hb, hsat, hf a b⟩
-  · rintro y ⟨a, b, ha, hb, hsat, hy⟩
+  · rintro _ ⟨x, ⟨a, b, hb, hsat, rfl⟩, rfl⟩
+    exact ⟨a, b, hb, hsat, hf a b⟩
+  · rintro y ⟨a, b, hb, hsat, hy⟩
     refine ⟨cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i + ∑ j, b j • cPZ.GI j,
-      ⟨a, b, ha, hb, hsat, rfl⟩, ?_⟩
+      ⟨a, b, hb, hsat, rfl⟩, ?_⟩
     rw [hy]
     exact hf a b
 

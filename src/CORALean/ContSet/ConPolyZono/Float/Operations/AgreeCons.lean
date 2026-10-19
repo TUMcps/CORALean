@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.AgreeRow
 public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionAgree
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
 
 @[expose] public section
@@ -16,7 +17,7 @@ side and the width above it, rounded up, as the slack.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -31,13 +32,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- One equation per coordinate, met to within its interval's width. -/
+/-- One equation per coordinate, met to within its interval's width, on the unit box. -/
 def ConPolyZono.agreeCons (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     PolyLevelSet 𝕋 (cPZ₁.p + cPZ₂.p) :=
   ⟨n, cPZ₁.h + cPZ₂.h, fun i => ConPolyZono.agreeRow cPZ₁ cPZ₂ i,
     Real.PolyZonotope.plusE cPZ₁.E cPZ₂.E, (ConPolyZono.intersectionAgree cPZ₁ cPZ₂).inf,
     fun i => subUp ((ConPolyZono.intersectionAgree cPZ₁ cPZ₂).sup i)
-      ((ConPolyZono.intersectionAgree cPZ₁ cPZ₂).inf i), fun _ => .eq⟩
+      ((ConPolyZono.intersectionAgree cPZ₁ cPZ₂).inf i), fun _ => .eq, Interval.unit _⟩
 
 end CORALean.Float
 

@@ -16,7 +16,7 @@ polynomial data every other operation computes with.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       19-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -29,10 +29,10 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The rows `(A x - b)ᵢ ⋈ᵢ 0`, monomial `k` being `xₖ`. -/
-def PolyLevelSet.linear {m : ℕ} (A : Mat ℝ m n) (b : Vec ℝ m) (op : Fin m → CompOp) :
-    PolyLevelSet n :=
-  ⟨m, n, A, PolyZonotope.identE n, b, op⟩
+/-- The rows `(A x - b)ᵢ ⋈ᵢ 0` on the box `D`, monomial `k` being `xₖ`. -/
+def PolyLevelSet.linear {m : ℕ} (A : Mat ℝ m n) (b : Vec ℝ m) (op : Fin m → CompOp)
+    (D : Interval (Vec ℝ n)) : PolyLevelSet n :=
+  ⟨m, n, A, PolyZonotope.identE n, b, op, D⟩
 
 end CORALean.Real
 

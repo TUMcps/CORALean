@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullG
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullE
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Float.Operations.CartProd
 public import CORALean.ContSet.PolyLevelSet.Float.Operations.Copies
 public import CORALean.ContSet.PolyLevelSet.Float.Operations.Linear
@@ -62,8 +63,12 @@ def ConPolyZono.convHullSingle (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
   -- the copies' rows, each with its slack, and the weight row with its rounding gap
   cons := (cPZ.cons.copies a).cartProd (PolyLevelSet.linear (m := 1) (fun _ _ => one)
     (fun _ => intDown (1 - (a : ℤ))) (fun _ => subUp (intUp (1 - (a : ℤ))) (intDown (1 - (a : ℤ))))
-    fun _ => .eq)
+    (fun _ => .eq) (Interval.unit a))
   cons_eq := Real.LevelSet.append_op_eq (fun _ => cPZ.cons_eq _) fun _ => rfl
+  cons_dom := by
+    show (cPZ.cons.dom.repVec a).append _ = _
+    rw [cPZ.cons_dom]
+    exact Interval.unit_append_unit _ _
   -- the operand's box, and what storing `a c` from below leaves to pay
   I_error := cPZ.I_error.plus (Interval.residual (fun i => nsmulDown a (cPZ.c i))
     (fun i => nsmulUp a (cPZ.c i)) (fun i => nsmulDown a (cPZ.c i)))

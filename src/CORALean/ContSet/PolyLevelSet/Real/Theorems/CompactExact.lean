@@ -49,7 +49,7 @@ theorem PolyLevelSet.aux_mulVec_eq_sum {m q : ℕ} (A : Mat ℝ m q) (v : Vec �
 theorem PolyLevelSet.compact_exact (P : PolyLevelSet n) :
     P.compact.construct = P.construct := by -- --- PROOF ---
   ext x
-  refine PolyLevelSet.mem_congr P ?_
+  refine PolyLevelSet.mem_congr P ?_ Iff.rfl
   rw [PolyLevelSet.aux_mulVec_eq_sum, PolyLevelSet.aux_mulVec_eq_sum,
     PolyZonotope.sum_monomial_merge P.R (fun l i => P.A i l) x (PolyZonotope.rep P.R)
       (PolyZonotope.compactKeep P.R (fun l i => P.A i l)) (PolyZonotope.col_rep P.R)

@@ -15,7 +15,7 @@ The polynomial level set of degree-1 rows at stored coefficients, each row with 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       19-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -28,10 +28,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The rows `(A x - b)ᵢ ⋈ᵢ 0` with the slacks `b_error`, monomial `k` being `xₖ`. -/
+/-- The rows `(A x - b)ᵢ ⋈ᵢ 0` with the slacks `b_error` on the box `D`, monomial `k` being `xₖ`. -/
 def PolyLevelSet.linear {m : ℕ} (A : Mat 𝕋 m n) (b b_error : Vec 𝕋 m)
-    (op : Fin m → Real.CompOp) : PolyLevelSet 𝕋 n :=
-  ⟨m, n, A, Real.PolyZonotope.identE n, b, b_error, op⟩
+    (op : Fin m → Real.CompOp) (D : Interval (Vec 𝕋 n)) : PolyLevelSet 𝕋 n :=
+  ⟨m, n, A, Real.PolyZonotope.identE n, b, b_error, op, D⟩
 
 end CORALean.Float
 

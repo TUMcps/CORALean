@@ -10,13 +10,14 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubset
 
 Variable `r` re-parametrized onto `cen ± rad`: every row read at `x` with `xᵣ` replaced by
 `cen + rad xᵣ` (`eval_getSubset`). The monomials are expanded binomially by
-`PolyZonotope.getSubset` at the rows' polynomial part (`lhs`), and `b` and the operators stand.
-CORA's `@conPolyZono/getSubset` at its constraint, the part of it that is the level set's.
+`PolyZonotope.getSubset` at the rows' polynomial part (`lhs`), and `b`, the operators and the box
+stand, so a point of the result is one of the box at which the substituted rows hold
+(`mem_getSubset_iff`). CORA's `@conPolyZono/getSubset` at its constraint, the level set's part.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       19-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -37,6 +38,7 @@ def PolyLevelSet.getSubset (P : PolyLevelSet n) (r : Fin n) (cen rad : ℝ) : Po
   R := (P.lhs.getSubset r cen rad).E
   b := P.b
   op := P.op
+  dom := P.dom
 
 end CORALean.Real
 

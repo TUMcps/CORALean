@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Operations.CartProd
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
@@ -45,6 +46,7 @@ def ConPolyZono.plus (cPZ₁ cPZ₂ : ConPolyZono α) : ConPolyZono α where
   GI := Fin.append cPZ₁.GI cPZ₂.GI
   cons := cPZ₁.cons.cartProd cPZ₂.cons
   cons_eq := LevelSet.append_op_eq cPZ₁.cons_eq cPZ₂.cons_eq
+  cons_dom := Interval.append_eq_unit cPZ₁.cons_dom cPZ₂.cons_dom
 
 end CORALean.Real
 

@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 
@@ -36,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- `contract` is CORA's `contractPoly` at the constraint `A μ(α) = b`. -/
 def ConPolyZono.rescale (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (contract : Interval (Vec 𝕋 cPZ.p) → Interval (Vec 𝕋 cPZ.p)) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
-  let dom := ConPolyZono.unitBox 𝕋 cPZ.p
+  let dom := Interval.unit cPZ.p
   -- `if ~isempty(cPZ.cons.A)`
   let dom' := if cPZ.cons.m = 0 ∨ cPZ.cons.q = 0 then dom else contract dom
   -- the midpoint rounded, the radius rounded up from it to both ends

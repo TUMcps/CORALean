@@ -14,7 +14,7 @@ is `0`, held to `one` with no slack. The center is `zero` and the error box the 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -37,8 +37,10 @@ def ConPolyZono.empty (n : ℕ) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   G := Fin.elim0
   E := fun i => i.elim0
   GI := Fin.elim0
-  cons := ⟨1, 0, fun _ j => j.elim0, fun i => i.elim0, fun _ => one, fun _ => zero, fun _ => .eq⟩
+  cons := ⟨1, 0, fun _ j => j.elim0, fun i => i.elim0, fun _ => one, fun _ => zero, fun _ => .eq,
+    Interval.unit 0⟩
   cons_eq _ := rfl
+  cons_dom := rfl
   I_error := Interval.origin n
 
 end CORALean.Float

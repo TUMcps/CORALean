@@ -3,9 +3,11 @@ module
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Intersection
 public import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionDep
 public import CORALean.ContSet.Interval.Real.Operations.Point
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
+public import CORALean.ContSet.Interval.Real.Theorems.MemAppendIff
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemAndRowsIff
 public import Mathlib.Algebra.Group.Pointwise.Set.Basic
 public import Mathlib.Tactic.Abel
-public import CORALean.ContSet.PolyLevelSet.Real.Theorems.AndExact
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemCartProdIff
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
@@ -67,17 +69,18 @@ theorem ConPolyZono.aux_mem_cons_intersectionDep_iff (cPZ₁ cPZ₂ : ConPolyZon
             - ∑ l, cPZ₂.G l i
               * PolyZonotope.monomial cPZ₂.E (fun k => a (Fin.natAdd cPZ₁.p k)) l
           = cPZ₂.c i - cPZ₁.c i := by -- --- PROOF ---
-  show a ∈ ((cPZ₁.cons.cartProd cPZ₂.cons).and_ (ConPolyZono.agreeCons cPZ₁ cPZ₂)).construct ↔ _
-  rw [PolyLevelSet.and_exact, Set.mem_inter_iff, PolyLevelSet.mem_cartProd_iff,
-    PolyLevelSet.mem_construct_iff_of_eq (P := ConPolyZono.agreeCons cPZ₁ cPZ₂) fun _ => rfl]
+  show a ∈ ((cPZ₁.cons.cartProd cPZ₂.cons).andRows (ConPolyZono.agreeCons cPZ₁ cPZ₂)).construct
+    ↔ _
+  rw [PolyLevelSet.mem_andRows_iff, PolyLevelSet.mem_cartProd_iff]
   -- an agreement row reads each side's monomials off its own factors
   refine and_congr Iff.rfl (forall_congr' fun i => ?_)
   show (∑ l, Fin.append (fun l => cPZ₁.G l i) (fun l => -cPZ₂.G l i) l
-      * PolyZonotope.monomial (PolyZonotope.plusE cPZ₁.E cPZ₂.E) a l) = _ ↔ _
+      * PolyZonotope.monomial (PolyZonotope.plusE cPZ₁.E cPZ₂.E) a l)
+      - (cPZ₂.c i - cPZ₁.c i) = 0 ↔ _
+  rw [sub_eq_zero]
   rw [Fin.sum_univ_add]
   simp only [Fin.append_left, Fin.append_right, PolyZonotope.monomial_plusE_left,
     PolyZonotope.monomial_plusE_right, neg_mul, Finset.sum_neg_distrib, ← sub_eq_add_neg]
-  rfl
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -90,7 +93,7 @@ theorem ConPolyZono.intersectionDep_exact (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ 
   have hz₂ : ∀ b : Fin cPZ₂.qI → ℝ, ∑ j, b j • cPZ₂.GI j = 0 :=
     fun b => Finset.sum_eq_zero fun j _ => absurd j.isLt (by omega)
   apply Set.eq_of_subset_of_subset
-  · rintro x ⟨⟨a₁, β₁, ha₁, -, hs₁, hx₁⟩, ⟨a₂, β₂, ha₂, -, hs₂, hx₂⟩⟩
+  · rintro x ⟨⟨a₁, β₁, -, hs₁, hx₁⟩, ⟨a₂, β₂, -, hs₂, hx₂⟩⟩
     have hA₁ : (fun k => Fin.append a₁ a₂ (Fin.castAdd cPZ₂.p k)) = a₁ :=
       funext fun k => Fin.append_left a₁ a₂ k
     have hA₂ : (fun k => Fin.append a₁ a₂ (Fin.natAdd cPZ₁.p k)) = a₂ :=
@@ -104,9 +107,7 @@ theorem ConPolyZono.intersectionDep_exact (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ 
       intro i
       rw [hx₂, hz₂ β₂, add_zero, Entrywise.add_sum_smul_apply]
     -- the witness: the two factor vectors appended, with no independent coefficients left
-    refine ⟨Fin.append a₁ a₂, fun _ => 0,
-      Fin.addCases (fun k => by simpa using ha₁ k) (fun k => by simpa using ha₂ k),
-      fun j => j.elim0, ?_, ?_⟩
+    refine ⟨Fin.append a₁ a₂, fun _ => 0, fun j => j.elim0, ?_, ?_⟩
     · refine (ConPolyZono.aux_mem_cons_intersectionDep_iff cPZ₁ cPZ₂ _).mpr ⟨⟨?_, ?_⟩, fun i => ?_⟩
       · rw [hA₁]
         exact hs₁
@@ -121,7 +122,7 @@ theorem ConPolyZono.intersectionDep_exact (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ 
             + ∑ j : Fin 0, (0:ℝ) • (Fin.elim0 j : Vec ℝ n)
       rw [ConPolyZono.aux_value_intersectionDep, hA₁, hx₁, hz₁ β₁]
       simp only [Finset.univ_eq_empty, Finset.sum_empty, add_zero]
-  · rintro x ⟨a, β, ha, -, hsat, hx⟩
+  · rintro x ⟨a, β, -, hsat, hx⟩
     obtain ⟨⟨hs₁, hs₂⟩,
         hagree⟩ := (ConPolyZono.aux_mem_cons_intersectionDep_iff cPZ₁ cPZ₂ a).mp hsat
     have hxv : x = cPZ₁.c
@@ -144,9 +145,9 @@ theorem ConPolyZono.intersectionDep_exact (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ 
           * PolyZonotope.monomial cPZ₁.E (fun k => a (Fin.castAdd cPZ₂.p k)) l := by
         rw [hxv, Entrywise.add_sum_smul_apply]
       linarith [hagree i]
-    refine ⟨⟨fun k => a (Fin.castAdd cPZ₂.p k), fun _ => 0, fun k => ha _,
+    refine ⟨⟨fun k => a (Fin.castAdd cPZ₂.p k), fun _ => 0,
         fun _ => by norm_num, hs₁, ?_⟩, ⟨fun k => a (Fin.natAdd cPZ₁.p k), fun _ => 0,
-        fun k => ha _, fun _ => by norm_num, hs₂, ?_⟩⟩
+        fun _ => by norm_num, hs₂, ?_⟩⟩
     · rw [hxv]
       simp only [zero_smul, Finset.sum_const_zero, add_zero]
     · rw [hxv₂]

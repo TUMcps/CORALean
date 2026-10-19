@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullSingle
 public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemCartProdIff
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemCopiesIff
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemLinearIff
@@ -40,10 +41,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem ConPolyZono.convHullSingle_satisfies_of_real (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (v : Fin (a * cPZ.p + a) → ℝ)
     (hcopy : ∀ j, (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))) ∈ cPZ.cons.construct)
+    (hv : ∀ j, |v (Fin.natAdd (a * cPZ.p) j)| ≤ 1)
     (hw : ∑ j, v (Fin.natAdd (a * cPZ.p) j) = 1 - (a : ℝ)) : -- --- STMT ---
     v ∈ (cPZ.convHullSingle a).cons.construct := by -- --- PROOF ---
   refine (PolyLevelSet.mem_cartProd_iff _ _ v).mpr
-    ⟨(PolyLevelSet.mem_copies_iff _ _ _).mpr hcopy, (PolyLevelSet.mem_linear_iff _ _ _ _ _).mpr ?_⟩
+    ⟨(PolyLevelSet.mem_copies_iff _ _ _).mpr hcopy, (PolyLevelSet.mem_linear_iff _ _ _ _ _ _).mpr
+      ⟨(Interval.mem_unit_iff _).mpr hv, ?_⟩⟩
   -- the weight row: the weights' sum, `1 - a` exactly, stored between its two roundings
   intro _
   show |(∑ j, toReal (one : 𝕋) * v (Fin.natAdd (a * cPZ.p) j)) - toReal (intDown (1 - (a : ℤ)) : 𝕋)|

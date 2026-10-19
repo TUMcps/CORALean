@@ -70,14 +70,13 @@ theorem ConPolyZono.aux_sum_univ_plus_qI {cPZ₁ cPZ₂ : ConPolyZono α}
 theorem ConPolyZono.plus_exact (cPZ₁ cPZ₂ : ConPolyZono α) :
     cPZ₁.construct + cPZ₂.construct = (cPZ₁.plus cPZ₂).construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
-  · rintro _ ⟨x₁, ⟨a₁, β₁, ha₁, hβ₁, hs₁, rfl⟩, x₂, ⟨a₂, β₂, ha₂, hβ₂, hs₂, rfl⟩, rfl⟩
+  · rintro _ ⟨x₁, ⟨a₁, β₁, hβ₁, hs₁, rfl⟩, x₂, ⟨a₂, β₂, hβ₂, hs₂, rfl⟩, rfl⟩
     have hA₁ : (fun k => Fin.append a₁ a₂ (Fin.castAdd cPZ₂.p k)) = a₁ :=
       funext fun k => Fin.append_left a₁ a₂ k
     have hA₂ : (fun k => Fin.append a₁ a₂ (Fin.natAdd cPZ₁.p k)) = a₂ :=
       funext fun k => Fin.append_right a₁ a₂ k
     -- forward: appended factors and appended coefficients, each read on its own half
     refine ⟨Fin.append a₁ a₂, Fin.append β₁ β₂,
-      Fin.addCases (fun k => by simpa using ha₁ k) (fun k => by simpa using ha₂ k),
       Fin.addCases (fun j => by simpa using hβ₁ j) (fun j => by simpa using hβ₂ j),
       ?_, ?_⟩
     · refine (PolyLevelSet.mem_cartProd_iff cPZ₁.cons cPZ₂.cons _).mpr ⟨?_, ?_⟩
@@ -90,18 +89,18 @@ theorem ConPolyZono.plus_exact (cPZ₁ cPZ₂ : ConPolyZono α) :
         PolyZonotope.monomial_plusE_right, Fin.append_left, Fin.append_right]
       abel
   -- back: the appended data split again, giving one point of each set
-  · rintro x ⟨a, β, ha, hβ, hsat, rfl⟩
+  · rintro x ⟨a, β, hβ, hsat, rfl⟩
     obtain ⟨hs₁, hs₂⟩ := (PolyLevelSet.mem_cartProd_iff cPZ₁.cons cPZ₂.cons a).mp hsat
     refine ⟨cPZ₁.c
               + ∑ i, PolyZonotope.monomial cPZ₁.E (fun k => a (Fin.castAdd cPZ₂.p k)) i • cPZ₁.G i
               + ∑ j, β (Fin.castAdd cPZ₂.qI j) • cPZ₁.GI j,
             ⟨fun k => a (Fin.castAdd cPZ₂.p k), fun j => β (Fin.castAdd cPZ₂.qI j),
-              fun k => ha _, fun j => hβ _, hs₁, rfl⟩,
+              fun j => hβ _, hs₁, rfl⟩,
             cPZ₂.c
               + ∑ i, PolyZonotope.monomial cPZ₂.E (fun k => a (Fin.natAdd cPZ₁.p k)) i • cPZ₂.G i
               + ∑ j, β (Fin.natAdd cPZ₁.qI j) • cPZ₂.GI j,
             ⟨fun k => a (Fin.natAdd cPZ₁.p k), fun j => β (Fin.natAdd cPZ₁.qI j),
-              fun k => ha _, fun j => hβ _, hs₂, rfl⟩, ?_⟩
+              fun j => hβ _, hs₂, rfl⟩, ?_⟩
     rw [ConPolyZono.aux_sum_univ_plus_h, ConPolyZono.aux_sum_univ_plus_qI]
     simp only [ConPolyZono.plus, PolyZonotope.monomial_plusE_left,
       PolyZonotope.monomial_plusE_right, Fin.append_left, Fin.append_right]

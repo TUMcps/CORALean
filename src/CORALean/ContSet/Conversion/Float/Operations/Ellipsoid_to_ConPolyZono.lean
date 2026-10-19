@@ -22,7 +22,7 @@ certified, the generators are zero and the ellipsoid's box `q ± sqrt(diag(Q))` 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -52,8 +52,9 @@ def Ellipsoid.conPolyZono (E : Ellipsoid 𝕋 n) : ConPolyZono 𝕋 (Vec 𝕋 n)
     GI := Fin.elim0
     cons := ⟨1, n + 1, fun _ j => if j.val < n then one else neg (half one),
       fun r c => if r = c then (if c.val < n then 2 else 1) else 0, fun _ => half one,
-      fun _ => zero, fun _ => .eq⟩
+      fun _ => zero, fun _ => .eq, Interval.unit (n + 1)⟩
     cons_eq := fun _ => rfl
+    cons_dom := rfl
     I_error := if ok then E.I_error
       else E.I_error.plus (Interval.symmetric (Ellipsoid.boxRadius 64 E)) }
 

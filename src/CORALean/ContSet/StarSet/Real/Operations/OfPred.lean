@@ -7,9 +7,10 @@ public import CORALean.ContSet.StarSet.Real.StarSet
 /-!
 # A predicate as a star set
 
-The star set with center `0`, the unit vectors as basis and `p` as the predicate: the coefficients
-are the point, so it denotes what `p` denotes (`Theorems/OfPredExact`). Any set a representation
-of the family denotes is a star set this way, which is how [1, Def. 1] generalizes them.
+The star set with center `0`, the unit vectors as basis, the box `D` and `p` as the predicate: the
+coefficients are the point, so it denotes what `p` denotes in `D` (`Theorems/OfPredExact`). Any
+bounded set a representation of the family denotes is a star set this way, `D` any box around it,
+which is how [1, Def. 1] generalizes them.
 
 ## References
 
@@ -19,7 +20,7 @@ of the family denotes is a star set this way, which is how [1, Def. 1] generaliz
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -30,11 +31,13 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `p` as a star set: center `0`, the identity basis, predicate `p`. -/
-def StarSet.ofPred {P : ℕ → Type} {n : ℕ} (p : P n) : StarSet P n where
+/-- `p` on the box `D` as a star set: center `0`, the identity basis, predicate `p`. -/
+def StarSet.ofPred {P : ℕ → Type} {n : ℕ} (D : Interval (Vec ℝ n)) (p : P n) :
+    StarSet P n where
   m := n
   c := 0
   G := fun i k => if i = k then 1 else 0
+  dom := D
   pred := p
 
 end CORALean.Real

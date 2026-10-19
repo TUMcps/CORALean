@@ -23,12 +23,12 @@ variable {n : ℕ}
 -- ==================================  `StarSet.mem_ofPoint`  =================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 /-- A point is in its star set: no factors, no rows, and `c + G α` is `c`. -/
 theorem StarSet.mem_ofPoint (v : Vec ℝ n) : v ∈ (StarSet.ofPoint v).construct :=
-  ⟨Fin.elim0, ⟨fun k => k.elim0, fun _ h => (List.not_mem_nil h).elim⟩, fun i => by
+  ⟨Fin.elim0, ⟨fun k => k.elim0, fun i => i.elim0, fun i => i.elim0⟩, fun i => by
     simp [StarSet.ofPoint]⟩
 
 end CORALean.Real

@@ -53,6 +53,7 @@ def ConPolyZono.getSubset (cPZ : ConPolyZono α) (r : Fin cPZ.p) (cen rad : ℝ)
   GI := cPZ.GI
   cons := cPZ.cons.getSubset r cen rad
   cons_eq := cPZ.cons_eq
+  cons_dom := cPZ.cons_dom
 
 end CORALean.Real
 

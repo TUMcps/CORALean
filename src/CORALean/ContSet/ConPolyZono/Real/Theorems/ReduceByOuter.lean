@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceBy
 public import CORALean.ContSet.ConPolyZono.Real.Operations.DropRadius
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConstruct
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEqUnit
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
@@ -107,7 +108,8 @@ theorem ConPolyZono.reduceBy_outer (cPZ : ConPolyZono (Vec ℝ n))
     (partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)) :
     cPZ.construct ⊆ (cPZ.reduceBy partD partI).construct := by -- --- PROOF ---
   intro x hxmem
-  obtain ⟨a, β, ha, hβ, hsat, hx⟩ := ConPolyZono.mem_construct_iff.mp hxmem
+  obtain ⟨a, β, hβ, hsat, hx⟩ := ConPolyZono.mem_construct_iff.mp hxmem
+  have ha := ((PolyLevelSet.mem_construct_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom).mp hsat).1
   have hbound : ∀ i,
       |(∑ l, cPZ.G (partD.right l) i * PolyZonotope.monomial cPZ.E a (partD.right l))
           + ∑ j, cPZ.GI (partI.right j) i * β (partI.right j)|
@@ -123,7 +125,7 @@ theorem ConPolyZono.reduceBy_outer (cPZ : ConPolyZono (Vec ℝ n))
         (fun i => Zonotope.coefficient (cPZ.dropRadius partD partI i)
           ((∑ l, cPZ.G (partD.right l) i * PolyZonotope.monomial cPZ.E a (partD.right l))
             + ∑ j, cPZ.GI (partI.right j) i * β (partI.right j))),
-      ha, ?_, hsat, fun i => ?_⟩
+      ?_, hsat, fun i => ?_⟩
   · refine Fin.addCases (fun j => ?_) (fun i => ?_)
     · simpa using hβ (partI.left j)
     · simp only [Fin.append_right]

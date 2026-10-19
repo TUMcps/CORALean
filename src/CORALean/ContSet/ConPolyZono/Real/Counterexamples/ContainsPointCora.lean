@@ -54,8 +54,8 @@ theorem ConPolyZono.containsPointCora_counterexample :
   -- one factor `α`, generator `α`, constraint `α = 0`
   let cPZ : ConPolyZono (Vec ℝ 1) :=
     ⟨1, 1, 0, fun _ => 0, fun _ _ => 1, fun _ _ => 1, Fin.elim0, ⟨1, 1, Matrix.of fun _ _ => 1,
-        fun _ _ => 1, fun _ => 0, fun _ => .eq⟩,
-      fun _ => rfl⟩
+        fun _ _ => 1, fun _ => 0, fun _ => .eq, Interval.unit 1⟩,
+      fun _ => rfl, rfl⟩
   refine ⟨cPZ, fun _ => 1, ?_, ?_⟩
   · -- `α = 1` passes the extended test
     unfold ConPolyZono.containsPointCora
@@ -65,8 +65,8 @@ theorem ConPolyZono.containsPointCora_counterexample :
     · funext i
       simp [cPZ, PolyZonotope.monomial]
   · -- but the constraint pins `α = 0`, so `1` is not in the set
-    rintro ⟨a, β, ha, hβ, hs, hx⟩
-    have h0 := (PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mp hs 0
+    rintro ⟨a, β, hβ, hs, hx⟩
+    have h0 := ((PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mp hs).2 0
     simp [cPZ, Matrix.mulVec, dotProduct, PolyZonotope.monomial] at h0
     have h1 := congrFun hx 0
     simp [cPZ, PolyZonotope.monomial] at h1

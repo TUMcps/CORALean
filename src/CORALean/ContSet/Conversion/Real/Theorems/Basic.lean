@@ -19,6 +19,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeVPolytopeExac
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeContainsVPolytope
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeVPolytopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalContainsVPolytope
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalLevelSetExact
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalVPolytopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalVPolytopeExact
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
@@ -38,6 +39,7 @@ public import CORALean.ContSet.HPolytope.Real.Operations.BasicPointTightAt
 public import CORALean.ContSet.HPolytope.Real.Operations.TightAt
 public import CORALean.ContSet.HPolytope.Real.Theorems.ExtremePoints
 public import CORALean.ContSet.Interval.Real.Operations.Basic
+public import CORALean.ContSet.LevelSet.Real.Theorems.AndExact
 public import CORALean.ContSet.Interval.Real.Operations.OfBounds
 public import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombExactOfDependent
@@ -136,12 +138,13 @@ theorem Interval.polyZonotope_q (I : Interval (Vec ℝ n)) : I.polyZonotope.q = 
 -- ==============================  `PolyLevelSet.levelSet_exact`  =============================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
-/-- The polynomial level set and its level set denote one set: `construct` is defined as the
-level set of the polynomial, so everything proved of a `LevelSet` holds of it. -/
-theorem PolyLevelSet.levelSet_exact (P : PolyLevelSet n) : P.levelSet.construct = P.construct :=
+/-- The polynomial level set and its level set denote one set, the box's rows meeting its box, so
+everything proved of a `LevelSet` holds of it. -/
+theorem PolyLevelSet.levelSet_exact (P : PolyLevelSet n) : P.levelSet.construct = P.construct := by
+  rw [PolyLevelSet.levelSet, LevelSet.and_exact, Interval.levelSet_exact]
   rfl
 
 

@@ -7,6 +7,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ExactPlus
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxVecIff
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEqUnit
 
 @[expose] public section
 
@@ -52,7 +53,8 @@ theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec
                 * Real.PolyZonotope.monomial (cPZ₁.exactPlus cPZ₂ hp).E a l)
             + ∑ j, toReal ((cPZ₁.exactPlus cPZ₂ hp).GI j i) * β j,
           ConPolyZono.mem_nominalSet_iff.mpr
-            ⟨a, β, ha, hβ, (PolyLevelSet.mem_construct_iff_of_eq cPZ₁.cons_eq).mpr hs,
+            ⟨a, β, ha, hβ,
+              (PolyLevelSet.mem_construct_iff_of_eq_unit cPZ₁.cons_eq cPZ₁.cons_dom).mpr ⟨ha, hs⟩,
                 fun _ => rfl⟩,
           fun i => toReal (cPZ₁.c i) + toReal (cPZ₂.c i)
             - toReal ((cPZ₁.exactPlus cPZ₂ hp).c i),

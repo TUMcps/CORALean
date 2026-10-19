@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Operations.PadVars
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
 public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
@@ -28,7 +29,7 @@ factors, and a fresh factor appearing in one would silently change them.
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -49,8 +50,11 @@ def ConPolyZono.dependent (cPZ : ConPolyZono α) : ConPolyZono α where
   G := Fin.append cPZ.G cPZ.GI
   E := PolyZonotope.plusE cPZ.E (PolyZonotope.identE cPZ.qI)
   GI := Fin.elim0
-  cons := cPZ.cons.padVars cPZ.qI
+  cons := cPZ.cons.padVars (Interval.unit cPZ.qI)
   cons_eq := cPZ.cons_eq
+  cons_dom := by
+    show cPZ.cons.dom.append _ = _
+    rw [cPZ.cons_dom, Interval.unit_append_unit]
 
 end CORALean.Real
 

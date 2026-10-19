@@ -10,6 +10,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Or
 public import CORALean.ContSet.Interval.Real.Operations.Point
 public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
 public import CORALean.ContSet.Zonotope.Real.Operations.Bilin
+public import CORALean.Global.RepBlockDiag
 public import Mathlib.Analysis.SpecialFunctions.Log.Basic
 public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
 
@@ -46,6 +47,18 @@ so it acts on the two bounds, coordinate by coordinate. -/
 noncomputable def Interval.acos (I : Interval (Vec ℝ n)) : Interval (Vec ℝ n) where
   inf := fun i => Real.arccos (I.sup i)
   sup := fun i => Real.arccos (I.inf i)
+
+
+-- ====================================  `Interval.append`  ===================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The box of `n₁ + n₂` coordinates whose first block is `I₁` and whose second is `I₂`. -/
+def Interval.append {n₁ n₂ : ℕ} (I₁ : Interval (Vec ℝ n₁)) (I₂ : Interval (Vec ℝ n₂)) :
+    Interval (Vec ℝ (n₁ + n₂)) :=
+  ⟨Fin.append I₁.inf I₂.inf, Fin.append I₁.sup I₂.sup⟩
 
 
 -- =====================================  `Interval.asin`  ====================================== --
@@ -288,6 +301,17 @@ noncomputable def Interval.radius (I : Interval α) : α := (2:ℝ)⁻¹ • (I.
 def Interval.representsa_origin (I : Interval α) : Prop := I.inf = 0 ∧ I.sup = 0
 
 
+-- ====================================  `Interval.repVec`  ===================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `a` copies of the box side by side, as `repVec` copies a vector. -/
+def Interval.repVec (a : ℕ) (I : Interval (Vec ℝ n)) : Interval (Vec ℝ (a * n)) :=
+  ⟨CORALean.repVec a I.inf, CORALean.repVec a I.sup⟩
+
+
 -- =====================================  `Interval.sign`  ====================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
@@ -346,6 +370,16 @@ noncomputable def Interval.tanh (I : Interval (Vec ℝ n)) : Interval (Vec ℝ n
 def Interval.uminus (I : Interval α) : Interval α where
   inf := -I.sup
   sup := -I.inf
+
+
+-- =====================================  `Interval.unit`  ====================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The unit box `[-1, 1]ⁿ`, where the factors of a zonotope range. -/
+def Interval.unit (n : ℕ) : Interval (Vec ℝ n) := ⟨fun _ => -1, fun _ => 1⟩
 
 
 -- =====================================  `Interval.uplus`  ===================================== --

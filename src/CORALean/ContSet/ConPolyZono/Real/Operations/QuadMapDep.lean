@@ -44,6 +44,7 @@ def ConPolyZono.quadMapDep (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec �
   GI := Fin.elim0
   cons := cPZ.cons
   cons_eq := cPZ.cons_eq
+  cons_dom := cPZ.cons_dom
 
 end CORALean.Real
 

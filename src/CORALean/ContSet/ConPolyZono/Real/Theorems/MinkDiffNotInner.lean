@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffConstruct
 public import CORALean.ContSet.Interval.Real.Operations.Point
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
 
 @[expose] public section
@@ -38,14 +39,14 @@ theorem ConPolyZono.minkDiff_not_inner :
   -- `{α ∈ [-1, 1] | α² = 1}`, as the point `α`
   let cPZ : ConPolyZono (Vec ℝ 1) :=
     ⟨1, 1, 0, 0, fun _ => fun _ => 1, fun _ _ => 1, Fin.elim0, ⟨1, 1, fun _ _ => 1, fun _ _ => 2,
-        fun _ => 1, fun _ => .eq⟩,
-      fun _ => rfl⟩
+        fun _ => 1, fun _ => .eq, Interval.unit 1⟩,
+      fun _ => rfl, rfl⟩
   let Z : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ => fun _ => 1⟩
   refine ⟨cPZ, Z, fun h => ?_⟩
   -- every point of `P` is `±1`
   have hP : ∀ x ∈ cPZ.construct, x 0 = 1 ∨ x 0 = -1 := by
-    rintro x ⟨a, β, ha, hβ, hs, rfl⟩
-    have h1 := (PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mp hs 0
+    rintro x ⟨a, β, hβ, hs, rfl⟩
+    have h1 := ((PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mp hs).2 0
     simp [PolyZonotope.monomial, cPZ, Matrix.mulVec, dotProduct] at h1
     rcases h1 with h3 | h3
     · left; simp [cPZ, PolyZonotope.monomial, h3]
@@ -53,8 +54,9 @@ theorem ConPolyZono.minkDiff_not_inner :
   -- both `±1` are points of `P`
   have hmem : ∀ v : ℝ, v ^ 2 = 1 → |v| ≤ 1 → (fun _ => v : Vec ℝ 1) ∈ cPZ.construct := by
     intro v hv hv1
-    refine ⟨fun _ => v, Fin.elim0, fun _ => hv1, fun j => j.elim0, ?_, ?_⟩
-    · refine (PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mpr fun i => ?_
+    refine ⟨fun _ => v, Fin.elim0, fun j => j.elim0, ?_, ?_⟩
+    · refine (PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mpr
+        ⟨(Interval.mem_unit_iff _).mpr fun _ => hv1, fun i => ?_⟩
       simp [PolyZonotope.monomial, cPZ, Matrix.mulVec, dotProduct, hv]
     · funext k
       simp [cPZ, PolyZonotope.monomial]

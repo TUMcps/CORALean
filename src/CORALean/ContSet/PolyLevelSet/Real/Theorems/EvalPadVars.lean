@@ -30,8 +30,9 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The padded rows' values ignore the fresh variables. -/
-theorem PolyLevelSet.eval_padVars (P : PolyLevelSet n) (r : ℕ) (x : Vec ℝ (n + r)) :
-    (P.padVars r).eval x = P.eval fun k => x (Fin.castAdd r k) := by -- --- PROOF ---
+theorem PolyLevelSet.eval_padVars (P : PolyLevelSet n) {r : ℕ} (D : Interval (Vec ℝ r))
+    (x : Vec ℝ (n + r)) :
+    (P.padVars D).eval x = P.eval fun k => x (Fin.castAdd r k) := by -- --- PROOF ---
   have hμ : PolyZonotope.monomial (PolyZonotope.padE P.R r) x
       = PolyZonotope.monomial P.R (fun k => x (Fin.castAdd r k)) := by
     funext l

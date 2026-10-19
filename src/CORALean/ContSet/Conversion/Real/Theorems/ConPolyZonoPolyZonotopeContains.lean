@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZonotope
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 
 @[expose] public section
 
@@ -43,8 +44,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 theorem ConPolyZono.polyZonotope_contains (cPZ : ConPolyZono α) :
     cPZ.construct ⊆ cPZ.polyZonotope.construct := by
-  rintro _ ⟨a, b, ha, hb, _, rfl⟩
-  exact ⟨a, b, ha, hb, rfl⟩
+  rintro _ ⟨a, b, hb, hs, rfl⟩
+  exact ⟨a, b, (Interval.mem_unit_iff a).mp (cPZ.cons_dom ▸ hs.1), hb, rfl⟩
 
 end CORALean.Real
 

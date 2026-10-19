@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionSelRow
 public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionConRow
 public import CORALean.ContSet.PolyLevelSet.Float.Operations.And
+public import CORALean.ContSet.PolyLevelSet.Float.Operations.Basic
 
 @[expose] public section
 
@@ -10,7 +11,7 @@ public import CORALean.ContSet.PolyLevelSet.Float.Operations.And
 # `ConPolyZono.unionUpper` over a floating-point scalar
 
 `Real.ConPolyZono.unionUpper` at the stored floats: the two selector rows of [1, Thm. 1] stacked
-by `PolyLevelSet.and_`, `α₁α₂ = 1` stored exactly and the selector polynomial with its
+by `PolyLevelSet.andRows`, `α₁α₂ = 1` stored exactly and the selector polynomial with its
 coefficients' rounding as its slack.
 
 ## References
@@ -21,7 +22,7 @@ coefficients' rounding as its slack.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -34,9 +35,9 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The selector rows, both equations. -/
+/-- The selector rows, both equations, on the unit box. -/
 def ConPolyZono.unionUpper (p₁ p₂ : ℕ) : PolyLevelSet 𝕋 (p₁ + p₂ + 2) :=
-  (ConPolyZono.unionSelRow p₁ p₂).and_ (ConPolyZono.unionConRow p₁ p₂)
+  (ConPolyZono.unionSelRow p₁ p₂).andRows (ConPolyZono.unionConRow p₁ p₂)
 
 end CORALean.Float
 

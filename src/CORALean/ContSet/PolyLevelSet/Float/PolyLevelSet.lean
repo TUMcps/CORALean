@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Float.Interval
 public import CORALean.ContSet.PolyLevelSet.Real.PolyLevelSet
 public import CORALean.ContSet.LevelSet.Real.Definitions.IsMetWithin
 public import CORALean.Global.Float.SoundFloatArithmetic
@@ -9,18 +10,18 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 /-!
 # Polynomial level sets over a floating-point scalar: the representation
 
-The rows `(A μ_R(x) - b)ᵢ ⋈ᵢ 0` of [1, Def. 5]'s constraint and of `Real.PolyLevelSet`, with `A`
-and `b` stored in `𝕋` and read back exactly (`nominalCore`), plus the slack each row records for
-its rounding: row `i` holds to within `|b_errorᵢ|` (`CompOp.IsMetWithin`), so an equation is
-`|(A μ_R(x) - b)ᵢ| ≤ |b_errorᵢ|`, as a float `HPolytope` records its rows'. The slack is a field
-of its own, separate from any box, because it is a constraint-space quantity, one number per row.
-The exponent matrix `R` and the operators are exact data and stay as they are.
+The rows `(A μ_R(x) - b)ᵢ ⋈ᵢ 0` of [1, Def. 5]'s constraint and of `Real.PolyLevelSet`, on the
+domain box `dom`, with `A`, `b` and the box stored in `𝕋` and read back exactly (`nominalCore`),
+plus the slack each row records for its rounding: row `i` holds to within `|b_errorᵢ|`
+(`CompOp.IsMetWithin`), so an equation is `|(A μ_R(x) - b)ᵢ| ≤ |b_errorᵢ|`, as a float `HPolytope`
+records its rows'. The slack is a constraint-space quantity, one number per row. The exponent
+matrix `R` and the operators are exact data and stay as they are.
 
-There is no `I_error` and no `absorbRounding`: the variables of a level set are free, so there is
-no ambient point to hold a box, and an equation has no interior to take its slack back into `b`.
-`relax` turns each row's slack into a variable of its own, at the cost of `m` more variables, which
-a constrained polynomial zonotope can afford as factors (`ConPolyZono.absorbRounding`) and a level
-set of fixed dimension cannot.
+There is no `I_error` and no `absorbRounding`: every operation rounds the rows' coefficients, which
+the slack records, and none moves a point, so an error box on the variables would always be zero;
+the box would also need a range bound of every row over `dom` to be absorbed, and an equation has no
+interior to take its slack back into `b`. `relax` turns each row's slack into a variable of its own,
+which a constrained polynomial zonotope can afford as a factor (`ConPolyZono.absorbRounding`).
 
 ## References
 
@@ -30,7 +31,7 @@ set of fixed dimension cannot.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -61,15 +62,18 @@ structure PolyLevelSet (𝕋 : Type) (n : ℕ) where
   b_error : Vec 𝕋 m
   /-- The comparison of each constraint with `0`. -/
   op : Fin m → Real.CompOp
+  /-- The domain box the variables range over. -/
+  dom : Interval (Vec 𝕋 n)
 
-/-- The rows the stored floats state, read back exactly, the slack aside. -/
+/-- The rows and the box the stored floats state, read back exactly, the slack aside. -/
 protected abbrev PolyLevelSet.nominalCore [SoundFloatArithmetic 𝕋] (P : PolyLevelSet 𝕋 n) :
     Real.PolyLevelSet n :=
-  ⟨P.m, P.q, toRealMat P.A, P.R, toRealVec P.b, P.op⟩
+  ⟨P.m, P.q, toRealMat P.A, P.R, toRealVec P.b, P.op, P.dom.nominal⟩
 
-/-- The points meeting every row of `nominalCore` to within its slack. -/
+/-- The points of the box meeting every row of `nominalCore` to within its slack. -/
 def PolyLevelSet.construct [SoundFloatArithmetic 𝕋] (P : PolyLevelSet 𝕋 n) : Set (Vec ℝ n) :=
-  {x | ∀ i, (P.op i).IsMetWithin (P.nominalCore.eval x i) |toReal (P.b_error i)|}
+  {x | x ∈ P.dom.construct
+    ∧ ∀ i, (P.op i).IsMetWithin (P.nominalCore.eval x i) |toReal (P.b_error i)|}
 
 end CORALean.Float
 

@@ -9,8 +9,8 @@ Where the star set comes from: the paper introduces the *generalized star set* `
 basis and a predicate on the coefficients, as the representation in which the reachable set of a linear
 system is computed from `n + 1` simulations. CORALean takes the representation only. Its `StarSet` is
 the definition with the predicate any of CORALean's representations in coefficient space (a
-`LevelSet` for a nonlinear one, as the paper's disc example); CORA's `neuralNetwork` uses the
-predicate `LinPred`, a list of linear rows together with a box on the coefficients, at which a star
+`LevelSet` for a nonlinear one, as the paper's disc example) and, as in CORA, a box on the
+coefficients always beside it; CORA's `neuralNetwork` uses an `HPolytope` predicate, at which a star
 set is a bounded polytope. The simulation-based reachability algorithms and their
 guarantees are not formalized.
 
@@ -18,7 +18,7 @@ guarantees are not formalized.
 
 | Result | What it says | In CORALean | Class |
 |---|---|---|---|
-| `Def. 1` | (Generalized star set) A tuple Θ = ⟨x₀, V, P⟩ with center x₀ ∈ ℝⁿ, basis V = {v₁, …, v_m} of m (≤ n) vectors, and a predicate P : ℝⁿ → {⊤, ⊥}; it denotes {x \| ∃ ᾱ, x = x₀ + Σ αᵢvᵢ ∧ P(ᾱ) = ⊤}. | [`StarSet.lean`](../../src/CORALean/ContSet/StarSet/Real/StarSet.lean) — `StarSet P n`, the predicate an element of the family `P` of coefficient-space representations, so a `LevelSet` states an arbitrary predicate ([`OfPred.lean`](../../src/CORALean/ContSet/StarSet/Real/Operations/OfPred.lean), any predicate as a star set); [`StarSet.lean`](../../src/CORALean/ContSet/StarSet/Float/StarSet.lean), the float layer, at CORA's linear predicate `LinPred` only; `m` is not bounded by `n`, which the paper also does not require | `correct` |
+| `Def. 1` | (Generalized star set) A tuple Θ = ⟨x₀, V, P⟩ with center x₀ ∈ ℝⁿ, basis V = {v₁, …, v_m} of m (≤ n) vectors, and a predicate P : ℝⁿ → {⊤, ⊥}; it denotes {x \| ∃ ᾱ, x = x₀ + Σ αᵢvᵢ ∧ P(ᾱ) = ⊤}. | n/a — done differently on purpose: [`StarSet.lean`](../../src/CORALean/ContSet/StarSet/Real/StarSet.lean) — `StarSet P n` carries CORA's coefficient box `[l, u]` beside the predicate, an element of the family `P` of coefficient-space representations, so it denotes the star sets whose coefficients are bounded, and a `LevelSet` states an arbitrary predicate ([`OfPred.lean`](../../src/CORALean/ContSet/StarSet/Real/Operations/OfPred.lean), any predicate on a box as a star set); [`StarSet.lean`](../../src/CORALean/ContSet/StarSet/Float/StarSet.lean), the float layer, at CORA's polytope predicate only; [the coverage README, departures from CORA](../coverage/README.md#departures-from-cora-that-belong-to-no-single-method) | `done-differently` |
 | `Example 1` | A rectangle as a star set with the linear predicate Cᾱ ≤ g, and a disc with a quadratic predicate. | n/a — an illustration of Def. 1, not a claim | `not-a-claim` |
 | `Def. 2` | (Validated simulation) A sequence of sets Rᵢ with time steps at most h, each containing the trajectory on its interval and of diameter at most ϵ. | n/a — simulation-based verification, a subject CORALean does not cover | `not-covered` |
 | `Def. 3` | The set reachable within time T, and over- and under-approximations of it. | n/a — restates the standard notion of a reachable set and its enclosures | `not-a-claim` |

@@ -3,9 +3,10 @@ module
 public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionUpper
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionConIntEq
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpper
-public import CORALean.ContSet.PolyLevelSet.Float.Theorems.AndExact
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemAndRowsIff
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
-public import CORALean.ContSet.PolyLevelSet.Real.Theorems.AndExact
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemAndRowsIff
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 
@@ -71,13 +72,14 @@ theorem ConPolyZono.holds_unionUpper_of_real (p₁ p₂ : ℕ) (a : Fin (p₁ + 
     (ha : ∀ k, |a k| ≤ 1) (h : a ∈ (Real.ConPolyZono.unionUpper p₁ p₂).construct) :
     a ∈ (ConPolyZono.unionUpper (𝕋 := 𝕋) p₁ p₂).construct := by -- --- PROOF ---
   -- both stacks split into their two rows, each an equation
-  rw [Real.ConPolyZono.unionUpper, Real.PolyLevelSet.and_exact, Set.mem_inter_iff,
-    Real.PolyLevelSet.mem_construct_iff_of_eq fun _ => rfl,
+  rw [Real.ConPolyZono.unionUpper, Real.PolyLevelSet.mem_andRows_iff,
     Real.PolyLevelSet.mem_construct_iff_of_eq fun _ => rfl] at h
-  obtain ⟨h₁, h₂⟩ := h
-  rw [ConPolyZono.unionUpper, PolyLevelSet.and_exact]
-  refine ⟨(PolyLevelSet.mem_construct_iff_of_eq fun _ => rfl).mpr fun i => ?_,
-    (PolyLevelSet.mem_construct_iff_of_eq fun _ => rfl).mpr fun i => ?_⟩
+  obtain ⟨⟨-, h₁⟩, h₂⟩ := h
+  rw [ConPolyZono.unionUpper, PolyLevelSet.mem_andRows_iff]
+  refine ⟨(PolyLevelSet.mem_construct_iff_of_eq fun _ => rfl).mpr
+      ⟨(Interval.mem_unit_iff a).mpr ha, fun i => ?_⟩,
+    fun i => ((PolyLevelSet.mem_construct_iff_of_eq (P := ConPolyZono.unionConRow (𝕋 := 𝕋) p₁ p₂)
+      fun _ => rfl).mpr ⟨(Interval.mem_unit_iff a).mpr ha, fun i => ?_⟩).2 i⟩
   · -- the `α₁α₂ = 1` row is copied, its entry `one` reading back as `1`, and holds exactly
     have hA : toRealMat (fun (_ : Fin 1) (_ : Fin 1) => (one : 𝕋)) = fun _ _ => 1 :=
       funext fun _ => funext fun _ => toReal_one
@@ -90,7 +92,12 @@ theorem ConPolyZono.holds_unionUpper_of_real (p₁ p₂ : ℕ) (a : Fin (p₁ + 
     simp [toReal_one, toReal_zero]
   · -- the selector row: the integer row's value is zero, the stored one within `unionConErr`
     have h0 : (∑ l, Real.ConPolyZono.unionConCoef p₁ p₂ l
-        * ∏ k, a k ^ Real.ConPolyZono.unionConCol p₁ p₂ l k) = 0 := h₂ i
+        * ∏ k, a k ^ Real.ConPolyZono.unionConCol p₁ p₂ l k) = 0 := by
+      have h := h₂ i
+      change ((fun _ l => Real.ConPolyZono.unionConCoef p₁ p₂ l) *ᵥ Real.PolyZonotope.monomial
+        (fun k l => Real.ConPolyZono.unionConCol p₁ p₂ l k) a - 0) i = 0 at h
+      rw [Pi.sub_apply, Pi.zero_apply, sub_zero] at h
+      exact h
     -- the integer row's value is the exact row's, scaled, hence zero
     have hz : (∑ l, (ConPolyZono.unionConInt p₁ p₂ l : ℝ)
         * ∏ k, a k ^ Real.ConPolyZono.unionConCol p₁ p₂ l k) = 0 := by

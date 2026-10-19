@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Float.Operations.QuadMap
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinGClose
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.LeQuadUp
@@ -131,7 +132,8 @@ theorem ConPolyZono.quadMap_outer (Q : Fin k → Mat 𝕋 n n) (cPZ : ConPolyZon
     ConPolyZono.mem_nominalSet_iff.mpr ⟨a', Fin.elim0, ha'b, fun j => j.elim0, ?_, fun _ => rfl⟩,
     _, hbox, ?_⟩
   · -- the padded constraints read only the first block, which is `a`
-    refine (PolyLevelSet.mem_padVars_iff cPZ.cons (cPZ.qI + n) a').mpr ?_
+    refine (PolyLevelSet.mem_padVars_iff cPZ.cons (Interval.unit (cPZ.qI + n)) a').mpr
+      ⟨?_, (Interval.mem_unit_iff _).mpr fun l => ha'b _⟩
     have ha'1 : (fun k => a' (Fin.castAdd (cPZ.qI + n) k)) = a :=
       funext fun k => by simp only [ha', Fin.append_left]
     rw [ha'1]

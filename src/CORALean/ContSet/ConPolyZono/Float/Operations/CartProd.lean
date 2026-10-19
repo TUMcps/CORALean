@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.Global.Float.GenBlockDiag
@@ -46,6 +47,7 @@ def ConPolyZono.cartProd (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁)) (cPZ₂ : C
   GI := fun j i => genBlockDiag (fun i j => cPZ₁.GI j i) (fun i j => cPZ₂.GI j i) i j
   cons := cPZ₁.cons.cartProd cPZ₂.cons
   cons_eq := Real.LevelSet.append_op_eq cPZ₁.cons_eq cPZ₂.cons_eq
+  cons_dom := Interval.append_eq_unit cPZ₁.cons_dom cPZ₂.cons_dom
   I_error := Interval.append cPZ₁.I_error cPZ₂.I_error
 
 end CORALean.Float

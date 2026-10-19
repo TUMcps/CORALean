@@ -4,7 +4,6 @@ public import CORALean.ContSet.Interval.Float.Interval
 public import CORALean.Global.Float.FloatOps
 public import CORALean.NN.Definitions.Cat
 public import CORALean.NN.Definitions.Schedule
-public import CORALean.ContSet.PolyLevelSet.Real.Operations.Linear
 public import CORALean.NN.Definitions.WeightAcc
 public import CORALean.NN.Definitions.WeightNetwork
 public import CORALean.NN.NeuralNetwork
@@ -36,10 +35,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- `xᵢ ≥ xⱼ`, the first atom of AI2's guards: the degree-1 row `xⱼ - xᵢ ≤ 0`. -/
-def CatCond.ge (i j : Fin n) : CatCond n :=
-  Real.PolyLevelSet.linear (m := 1) (fun _ => (Pi.single j 1 - Pi.single i 1 : Vec ℝ n)) 0
-    fun _ => .le
+/-- `xᵢ ≥ xⱼ`, the first atom of AI2's guards: the row `xⱼ - xᵢ ≤ 0`. -/
+def CatCond.ge (i j : Fin n) : CatCond n := ⟨1, fun x _ => x j - x i, fun _ => .le⟩
 
 
 -- ======================================  `CatCond.neg`  ======================================= --
@@ -48,9 +45,8 @@ def CatCond.ge (i j : Fin n) : CatCond n :=
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- `xᵢ < 0`: the degree-1 row `xᵢ < 0`. -/
-def CatCond.neg (i : Fin n) : CatCond n :=
-  Real.PolyLevelSet.linear (m := 1) (fun _ => (Pi.single i 1 : Vec ℝ n)) 0 fun _ => .lt
+/-- `xᵢ < 0`: the row `xᵢ < 0`. -/
+def CatCond.neg (i : Fin n) : CatCond n := ⟨1, fun x _ => x i, fun _ => .lt⟩
 
 
 -- =====================================  `CatCond.nonneg`  ===================================== --
@@ -59,9 +55,8 @@ def CatCond.neg (i : Fin n) : CatCond n :=
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- `xᵢ ≥ 0`: the degree-1 row `-xᵢ ≤ 0`. -/
-def CatCond.nonneg (i : Fin n) : CatCond n :=
-  Real.PolyLevelSet.linear (m := 1) (fun _ => (-Pi.single i 1 : Vec ℝ n)) 0 fun _ => .le
+/-- `xᵢ ≥ 0`: the row `-xᵢ ≤ 0`. -/
+def CatCond.nonneg (i : Fin n) : CatCond n := ⟨1, fun x _ => -x i, fun _ => .le⟩
 
 
 -- =================================  `NeuralNetwork.ofLayer`  ================================== --

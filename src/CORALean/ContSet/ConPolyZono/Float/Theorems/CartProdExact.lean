@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.CartProd
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.Global.Float.GenBlockDiag
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.RelaxCartProd
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
@@ -40,10 +41,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 theorem PolyLevelSet.aux_nominalCore_cartProd (P₁ : PolyLevelSet 𝕋 n₁)
     (P₂ : PolyLevelSet 𝕋 n₂) :
     (P₁.cartProd P₂).nominalCore = P₁.nominalCore.cartProd P₂.nominalCore := by -- --- PROOF ---
-  show (⟨_, _, toRealMat (P₁.cartProd P₂).A, _, toRealVec (P₁.cartProd P₂).b, _⟩ :
-    Real.PolyLevelSet (n₁ + n₂)) = _
+  show (⟨_, _, toRealMat (P₁.cartProd P₂).A, _, toRealVec (P₁.cartProd P₂).b, _,
+    (P₁.dom.append P₂.dom).nominal⟩ : Real.PolyLevelSet (n₁ + n₂)) = _
   rw [PolyLevelSet.toRealMat_cartProd, show toRealVec (P₁.cartProd P₂).b
-    = Fin.append (toRealVec P₁.b) (toRealVec P₂.b) from toRealVec_append _ _]
+    = Fin.append (toRealVec P₁.b) (toRealVec P₂.b) from toRealVec_append _ _,
+    Interval.nominal_append]
   rfl
 
 theorem ConPolyZono.aux_realG_left (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
@@ -88,8 +90,8 @@ theorem ConPolyZono.aux_nominal_cartProd (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n�
         ((Real.ConPolyZono.cartProd cPZ₁.nominalCore cPZ₂.nominalCore).relax
           (Fin.append (toRealVec cPZ₁.cons.b_error) (toRealVec cPZ₂.cons.b_error)))
               := by -- --- PROOF ---
-  show (⟨_, _, _, _, _, _, _, _, _⟩ : Real.ConPolyZono (Vec ℝ (n₁ + n₂))) =
-    ⟨_, _, _, _, _, _, _, _, _⟩
+  show (⟨_, _, _, _, _, _, _, _, _, _⟩ : Real.ConPolyZono (Vec ℝ (n₁ + n₂))) =
+    ⟨_, _, _, _, _, _, _, _, _, _⟩
   congr 1
   · -- the centers
     rw [appendLinear_apply]

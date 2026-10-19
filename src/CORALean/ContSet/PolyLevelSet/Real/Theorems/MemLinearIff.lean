@@ -14,7 +14,7 @@ The points meeting every row `(A x - b)ᵢ ⋈ᵢ 0`: monomial `k` of `identE` i
 
 -- Authors:       Claude Opus 5.5
 -- Written:       19-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -29,13 +29,15 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- A point of the linear level set meets every row `(A x - b)ᵢ ⋈ᵢ 0`. -/
+/-- A point of the linear level set is in the box and meets every row `(A x - b)ᵢ ⋈ᵢ 0`. -/
 theorem PolyLevelSet.mem_linear_iff {m : ℕ} (A : Mat ℝ m n) (b : Vec ℝ m)
-    (op : Fin m → CompOp) (x : Vec ℝ n) :
-    x ∈ (PolyLevelSet.linear A b op).construct ↔ ∀ i, (op i).holds ((A *ᵥ x - b) i) := by
+    (op : Fin m → CompOp) (D : Interval (Vec ℝ n)) (x : Vec ℝ n) :
+    x ∈ (PolyLevelSet.linear A b op D).construct
+      ↔ x ∈ D.construct ∧ ∀ i, (op i).holds ((A *ᵥ x - b) i) := by -- --- PROOF ---
   have hμ : PolyZonotope.monomial (PolyZonotope.identE n) x = x :=
     funext fun k => PolyZonotope.monomial_identE x k
-  show (∀ i, (op i).holds ((A *ᵥ PolyZonotope.monomial (PolyZonotope.identE n) x - b) i)) ↔ _
+  show (x ∈ D.construct
+    ∧ ∀ i, (op i).holds ((A *ᵥ PolyZonotope.monomial (PolyZonotope.identE n) x - b) i)) ↔ _
   rw [hμ]
 
 end CORALean.Real

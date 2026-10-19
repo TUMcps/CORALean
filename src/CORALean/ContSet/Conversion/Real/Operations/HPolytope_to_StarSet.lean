@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Real.HPolytope
+public import CORALean.ContSet.HPolytope.Real.Instances
 public import CORALean.ContSet.StarSet.Real.StarSet
 public import CORALean.Global.SupportFunction.SupportFunction
 
@@ -10,14 +10,14 @@ public import CORALean.Global.SupportFunction.SupportFunction
 # A halfspace description as a star set
 
 The identity map on the factors: the star set `{α | A α ≤ b, A_e α = b_e, l ≤ α ≤ u}` with the
-rows of the polytope as its constraint rows, an equality as the two inequalities it stands for.
-A star set is bounded, so the conversion takes the bounds the polytope's coordinates satisfy as
-certificates, as `HPolytope.conZonotope` does, and they enter as `l` and `u`.
+polytope itself as its predicate. A star set is bounded, so the conversion takes the bounds the
+polytope's coordinates satisfy as certificates, as `HPolytope.conZonotope` does, and they enter as
+the coefficient box `[l, u]`.
 -/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -30,25 +30,16 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The coefficients of a linear functional on `Vec ℝ n`: its value at each unit vector. -/
-def HPolytope.coeffRow (f : Vec ℝ n →ₗ[ℝ] ℝ) : Fin n → ℝ :=
-  fun k => f (fun j => if k = j then 1 else 0)
-
-/-- The constraint rows of a halfspace description, `a · α ≤ b` read row by row. -/
-def HPolytope.starRows (P : HPolytope (Vec ℝ n)) : List ((Fin n → ℝ) × ℝ) :=
-  (List.finRange P.m).map (fun i => (HPolytope.coeffRow (P.A i), P.b i)) ++
-    (List.finRange P.me).flatMap (fun i => [(HPolytope.coeffRow (P.Ae i), P.be i),
-      (-HPolytope.coeffRow (P.Ae i), -P.be i)])
-
-/-- The star set with the identity as its generators and the polytope's rows as its constraints,
-the factors bounded by the certified bounds of the coordinates. -/
+/-- The star set with the identity as its generators and the polytope as its predicate, the
+coefficient box the certified bounds of the coordinates. -/
 def HPolytope.starSet (P : HPolytope (Vec ℝ n))
     (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : StarSet StarSet.LinPred n where
+    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : StarSet ℋ𝒫 n where
   m := n
   c := 0
   G := fun i k => if i = k then 1 else 0
-  pred := ⟨P.starRows, fun j => -(lo j).val, fun j => (up j).val⟩
+  dom := ⟨fun j => -(lo j).val, fun j => (up j).val⟩
+  pred := P
 
 end CORALean.Real
 

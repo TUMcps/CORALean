@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyLevelSet.Float.PolyLevelSet
 
 @[expose] public section
@@ -14,7 +15,7 @@ nothing rounds (`eval_nominalCore_and_`).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -29,7 +30,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Both constraint systems, each with its own operators and slacks, over both monomial lists. -/
+/-- Both constraint systems, each with its own operators and slacks, over both monomial lists, on
+the boxes' intersection. -/
 def PolyLevelSet.and_ (P₁ P₂ : PolyLevelSet 𝕋 n) : PolyLevelSet 𝕋 n where
   m := P₁.m + P₂.m
   q := P₁.q + P₂.q
@@ -39,6 +41,7 @@ def PolyLevelSet.and_ (P₁ P₂ : PolyLevelSet 𝕋 n) : PolyLevelSet 𝕋 n wh
   b := Fin.append P₁.b P₂.b
   b_error := Fin.append P₁.b_error P₂.b_error
   op := Fin.append P₁.op P₂.op
+  dom := P₁.dom.intersection P₂.dom
 
 end CORALean.Float
 

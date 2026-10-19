@@ -53,8 +53,9 @@ def ConPolyZono.materialise (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 
     GI := fun j i => (GI[j.val]'j.isLt)[i.val]'i.isLt
     cons := ⟨cPZ.cons.m, cPZ.cons.q, fun i l => (A[i.val]'i.isLt)[l.val]'l.isLt,
       fun k l => (R[k.val]'k.isLt)[l.val]'l.isLt, fun i => b[i.val]'i.isLt,
-      fun i => b_error[i.val]'i.isLt, cPZ.cons.op⟩
+      fun i => b_error[i.val]'i.isLt, cPZ.cons.op, cPZ.cons.dom⟩
     cons_eq := cPZ.cons_eq
+    cons_dom := cPZ.cons_dom
     I_error := cPZ.I_error.materialise }
 
 end CORALean.Float

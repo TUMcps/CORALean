@@ -6,7 +6,8 @@
 A representation that stores a set of another representation as a component — a constrained
 polynomial zonotope its factor constraint (`ConPolyZono.cons`, a `PolyLevelSet`), a constrained
 zonotope its coefficient polytope (`ConZonotope.P`, an `HPolytope`), a star set its predicate
-(`StarSet.pred`, a `StarSet.LinPred`) — does to that component only what the component's own
+(`StarSet.pred`, an `HPolytope` at CORA's star set) — does to that component only what the
+component's own
 operations do, each with its own exactness or membership theorem. A definition that builds or
 reads the component's rows itself is that logic written again; a missing general operation goes
 to the component instead. One entry of `CONFIG` per composite representation says where its
@@ -20,9 +21,11 @@ definitions live and what counts as doing the component's work by hand:
   as written): a `def` or `abbrev` whose body reads a field of the polytope's rows
   (`P.A`, `P.b`, `P.Ae`, `P.be`, `P.b_error`, `P.be_error`) or builds an `HPolytope` field by field
   (`m :=`, `me :=`, `Ae :=`, `be :=`, `b_error :=`, `be_error :=`).
-* `StarSet` (under `ContSet/StarSet/` and the `NN/Layers/` files that step a star set): a `def`
-  or `abbrev` not itself one of the predicate's operations (`StarSet.LinPred.…`) whose body reads
-  the predicate's fields (`pred.cons`, `pred.l`, `pred.u`) or builds one (`cons :=`).
+* `StarSet` (under `ContSet/StarSet/` and the `NN/Layers/` files that step a star set, `Counterexamples/`
+  aside): a `def` or `abbrev` whose body reads the polytope predicate's rows (`pred.A`, `pred.b`,
+  `pred.Ae`, `pred.be`, `pred.b_error`, `pred.be_error`, `pred.m`, `pred.me`) or builds an
+  `HPolytope` field by field (`me :=`, `Ae :=`, `be :=`, `b_error :=`, `be_error :=`; a star set's
+  own literal has an `m :=` too); the coefficient box `dom` is the star set's own field.
 
 `scripts/component-reuse-allowlist.txt` lists what must stay, with the reason (a generator-side
 matrix, data of one construction, a conversion, a certificate or a proposal that reads the rows as
@@ -53,8 +56,9 @@ CONS = re.compile(r"\bcons\.(m|q)\b")
 NAME = re.compile(r"[a-z][ABR]$")
 HP_FIELD = re.compile(r"\bP\.(A|b|Ae|be|b_error|be_error)\b")
 HP_LIT = re.compile(r"(?:^\s*|[{,]\s*)(?:m|me|Ae|be|b_error|be_error) :=")
-PRED_FIELD = re.compile(r"\bpred\.(cons|l|u)\b")
-PRED_LIT = re.compile(r"\bcons :=")
+PRED_FIELD = re.compile(r"\bpred\.(A|b|Ae|be|b_error|be_error|m|me)\b")
+# an `HPolytope` literal, less `m :=`, which a star set's own literal also has
+PRED_LIT = re.compile(r"(?:^\s*|[{,]\s*)(?:me|Ae|be|b_error|be_error) :=")
 
 
 def result_type(sig):
@@ -112,13 +116,11 @@ def conzonotope(name, sig, body):
 
 
 def starset(name, sig, body):
-    if ".LinPred." in name:
-        return []
     why = []
     if any(PRED_FIELD.search(l) for l in body):
-        why.append("reads the predicate's fields")
+        why.append("reads the predicate's rows")
     if any(PRED_LIT.search(l) for l in body):
-        why.append("builds a predicate field by field")
+        why.append("builds an `HPolytope` field by field")
     return why
 
 
@@ -129,7 +131,7 @@ CONFIG = [
      conpolyzono),
     ("ConZonotope", "`HPolytope` operations", [("ContSet/ConZonotope", None)],
      ["/Counterexamples/"], conzonotope),
-    ("StarSet", "`StarSet.LinPred` operations",
+    ("StarSet", "`HPolytope` operations",
      [("ContSet/StarSet", None), ("NN/Layers", re.compile(r"StarSet|ReluStar"))],
      ["/Counterexamples/"], starset),
 ]

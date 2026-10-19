@@ -5,7 +5,7 @@ public import CORALean.NN.Layers.Theorems.Real.Basic
 public import CORALean.NN.Layers.Theorems.SelectMatMulVec
 public import CORALean.NN.Operations.CatMaxSegment
 public import CORALean.NN.Theorems.Basic
-public import CORALean.ContSet.PolyLevelSet.Real.Theorems.AndExact
+public import CORALean.ContSet.LevelSet.Real.Theorems.AndExact
 
 @[expose] public section
 
@@ -51,7 +51,7 @@ theorem aux_holds_foldr_ge {N : ℕ} (P : Fin N) (x : Vec ℝ N) :
   | zero => intro g; rw [Fin.foldr_zero, CatCond.mem_ge_iff]; simp
   | succ j ih =>
     intro g
-    rw [Fin.foldr_succ, Real.PolyLevelSet.and_exact, Set.mem_inter_iff, CatCond.mem_ge_iff,
+    rw [Fin.foldr_succ, Real.LevelSet.and_exact, Set.mem_inter_iff, CatCond.mem_ge_iff,
       ih (fun q => g q.succ), Fin.forall_fin_succ]
 
 /-- The selection of position `p`, read off coordinate by coordinate. -/

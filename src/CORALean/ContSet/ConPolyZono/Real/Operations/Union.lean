@@ -4,8 +4,10 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionG
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpper
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLower
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Operations.And
 public import CORALean.ContSet.LevelSet.Real.Theorems.Basic
+public import CORALean.ContSet.PolyLevelSet.Real.Operations.Basic
 
 @[expose] public section
 
@@ -53,9 +55,11 @@ noncomputable def ConPolyZono.union {α : Type} [AddCommGroup α] [Module ℝ α
   G := ConPolyZono.unionG cPZ₁.c cPZ₂.c cPZ₁.G cPZ₂.G
   E := ConPolyZono.unionE cPZ₁.E cPZ₂.E
   GI := Fin.elim0
-  cons := (ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).and_ (ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons)
+  cons := (ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).andRows
+    (ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons)
   cons_eq := LevelSet.append_op_eq (LevelSet.append_op_eq (fun _ => rfl) fun _ => rfl)
     (LevelSet.append_op_eq cPZ₁.cons_eq cPZ₂.cons_eq)
+  cons_dom := rfl
 
 end CORALean.Real
 

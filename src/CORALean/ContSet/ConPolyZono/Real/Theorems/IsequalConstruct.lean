@@ -28,8 +28,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 theorem ConPolyZono.isequal_construct {Z S : ConPolyZono α} (h : Z.isequal S) :
     Z.construct = S.construct := by -- --- PROOF ---
   obtain ⟨ep, eh, eq, em, es, hc, hG, hE, hGI, hA, hb, hR⟩ := h
-  obtain ⟨p₁, h₁, qI₁, c₁, G₁, E₁, GI₁, ⟨m₁, q₁, A₁, R₁, b₁, op₁⟩, hop₁⟩ := Z
-  obtain ⟨p₂, h₂, qI₂, c₂, G₂, E₂, GI₂, ⟨m₂, q₂, A₂, R₂, b₂, op₂⟩, hop₂⟩ := S
+  obtain ⟨p₁, h₁, qI₁, c₁, G₁, E₁, GI₁, ⟨m₁, q₁, A₁, R₁, b₁, op₁, dom₁⟩, hop₁, hdom₁⟩ := Z
+  obtain ⟨p₂, h₂, qI₂, c₂, G₂, E₂, GI₂, ⟨m₂, q₂, A₂, R₂, b₂, op₂, dom₂⟩, hop₂, hdom₂⟩ := S
   simp only at ep eh eq em es hc hG hE hGI hA hb hR
   subst ep eh eq em es hc
   have h1 : G₁ = G₂ := funext fun j => hG j
@@ -38,7 +38,9 @@ theorem ConPolyZono.isequal_construct {Z S : ConPolyZono α} (h : Z.isequal S) :
   have h4 : R₁ = R₂ := funext fun k => funext fun i => hR k i
   -- every row of both is an equation, so the operators agree too
   have h5 : op₁ = op₂ := funext fun i => (hop₁ i).trans (hop₂ i).symm
-  subst h1 h2 h3 h4 h5
+  -- and both boxes are the unit box
+  have h6 : dom₁ = dom₂ := hdom₁.trans hdom₂.symm
+  subst h1 h2 h3 h4 h5 h6
   cases eq_of_heq hA
   cases eq_of_heq hb
   rfl

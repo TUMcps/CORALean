@@ -15,7 +15,7 @@ so nothing rounds, the slack stands, and the rows read back as `Real.PolyLevelSe
 
 -- Authors:       Claude Opus 5.5
 -- Written:       19-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -40,6 +40,7 @@ def PolyLevelSet.switch (P : PolyLevelSet 𝕋 n) (e : Fin n → ℕ) (s : Fin P
   b i := half (P.b i)
   b_error := P.b_error
   op := P.op
+  dom := P.dom
 
 end CORALean.Float
 

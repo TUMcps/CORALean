@@ -19,7 +19,7 @@ operators stand, so the set does too (`compact_exact`).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -41,6 +41,7 @@ noncomputable def PolyLevelSet.compact (P : PolyLevelSet n) : PolyLevelSet n whe
   R := fun k l => P.R k (PolyZonotope.compactIdx P.R (fun l i => P.A i l) l)
   b := P.b
   op := P.op
+  dom := P.dom
 
 end CORALean.Real
 

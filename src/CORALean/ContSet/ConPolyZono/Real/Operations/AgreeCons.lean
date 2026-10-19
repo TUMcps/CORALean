@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.AgreeRow
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
 
 @[expose] public section
@@ -15,7 +16,7 @@ sets' factors: in coordinate `i`, the first set's dependent part minus the secon
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -28,10 +29,10 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- One equation per coordinate: the two points agree there. -/
+/-- One equation per coordinate on the factors' unit box: the two points agree there. -/
 def ConPolyZono.agreeCons (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) : PolyLevelSet (cPZ₁.p + cPZ₂.p) :=
   ⟨n, cPZ₁.h + cPZ₂.h, fun i => ConPolyZono.agreeRow cPZ₁ cPZ₂ i,
-    PolyZonotope.plusE cPZ₁.E cPZ₂.E, fun i => cPZ₂.c i - cPZ₁.c i, fun _ => .eq⟩
+    PolyZonotope.plusE cPZ₁.E cPZ₂.E, fun i => cPZ₂.c i - cPZ₁.c i, fun _ => .eq, Interval.unit _⟩
 
 end CORALean.Real
 

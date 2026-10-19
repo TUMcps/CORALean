@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.GetSubset
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemGetSubsetOfReal
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxVecIff
@@ -65,7 +66,8 @@ theorem ConPolyZono.getSubset_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : F
           * Real.PolyZonotope.monomial (cPZ.getSubset k cen rad).E a l)
       + ∑ j : Fin cPZ.qI, toReal ((cPZ.getSubset k cen rad).GI j i) * β j,
     ConPolyZono.mem_nominalSet_iff.mpr ⟨a, β, ha, hβ,
-      PolyLevelSet.mem_getSubset_of_real cPZ.cons cPZ.cons_eq k cen rad a ha hsat, fun _ => rfl⟩,
+      PolyLevelSet.mem_getSubset_of_real cPZ.cons cPZ.cons_eq k cen rad a ha
+        (cPZ.cons_dom ▸ (Interval.mem_unit_iff a).mpr ha) hsat, fun _ => rfl⟩,
     fun i => err i + e i,
     ?_, ?_⟩
   · -- the sum of the two boxes' points is a point of the interval sum

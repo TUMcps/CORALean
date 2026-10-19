@@ -4,6 +4,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_ConPolyZono
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 public import CORALean.ContSet.Conversion.Float.Operations.ConZonotope_to_ConPolyZono
@@ -86,7 +87,7 @@ theorem ConZonotope.satisfies_conPolyZono (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {
       rw [toReal_absolute] at hu hd
       have hab := abs_le.mp (heq i)
       exact ⟨by linarith [hab.1], by linarith [hab.2]⟩
-  intro i
+  refine ⟨(Interval.mem_unit_iff β).mpr hβ, fun i => ?_⟩
   show |(toRealMat (ConZonotope.conA cZ) *ᵥ Real.PolyZonotope.monomial
       (Real.PolyZonotope.identE cZ.h) β) i - toReal ((ConZonotope.conB cZ).inf i)|
     ≤ |toReal (subUp ((ConZonotope.conB cZ).sup i) ((ConZonotope.conB cZ).inf i))|

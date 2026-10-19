@@ -40,6 +40,10 @@ def ConPolyZono.compactFactors (cPZ : ConPolyZono α) : ConPolyZono α where
   GI := cPZ.GI
   cons := cPZ.cons.reindexVars (ConPolyZono.factorIdx cPZ.E cPZ.cons.R)
   cons_eq := cPZ.cons_eq
+  cons_dom := by
+    show cPZ.cons.dom.project _ = _
+    rw [cPZ.cons_dom]
+    rfl
 
 end CORALean.Real
 

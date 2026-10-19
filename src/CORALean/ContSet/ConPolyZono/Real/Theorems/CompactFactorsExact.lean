@@ -8,7 +8,9 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorIdxRigh
 public import CORALean.ContSet.ConPolyZono.Real.Operations.FactorExtend
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
 public import CORALean.ContSet.ConPolyZono.Real.Operations.CompactFactors
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemCongr
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEqUnit
 
 @[expose] public section
 
@@ -71,23 +73,29 @@ theorem ConPolyZono.aux_sum_compactFactors_extend (cPZ : ConPolyZono α)
             • cPZ.G i
   exact Finset.sum_congr rfl fun i _ => by rw [ConPolyZono.monomial_factorExtend_left]
 
--- the constraint monomials restrict alongside the generator ones, and nothing else moves
+-- the constraint monomials restrict alongside the generator ones, the box projects with them
 omit [AddCommGroup α] [Module ℝ α] in
-theorem ConPolyZono.aux_satisfies_compactFactors (cPZ : ConPolyZono α) (a : Fin cPZ.p → ℝ) :
-    a ∈ cPZ.cons.construct
-      ↔ (fun k => a (ConPolyZono.factorIdx cPZ.E cPZ.cons.R k))
-        ∈ cPZ.compactFactors.cons.construct :=
+theorem ConPolyZono.aux_satisfies_compactFactors (cPZ : ConPolyZono α) {a : Fin cPZ.p → ℝ}
+    (ha : a ∈ cPZ.cons.construct) :
+    (fun k => a (ConPolyZono.factorIdx cPZ.E cPZ.cons.R k))
+      ∈ cPZ.compactFactors.cons.construct :=
   (PolyLevelSet.mem_congr cPZ.cons (congrArg (cPZ.cons.A *ᵥ ·)
-    (funext fun l => ConPolyZono.monomial_factorIdx_right cPZ.E cPZ.cons.R a l))).symm
+    (funext fun l => ConPolyZono.monomial_factorIdx_right cPZ.E cPZ.cons.R a l))
+    (iff_of_true (Interval.project_outer _ _ ⟨a, ha.1, rfl⟩) ha.1)).mpr ha
 
--- and the same the other way, a dropped factor coming back as zero
+-- and the same the other way, a dropped factor coming back as zero, inside the unit box
 omit [AddCommGroup α] [Module ℝ α] in
 theorem ConPolyZono.aux_satisfies_compactFactors_extend (cPZ : ConPolyZono α)
-    (a : Fin cPZ.compactFactors.p → ℝ) :
-    (ConPolyZono.factorExtend cPZ.E cPZ.cons.R a) ∈ cPZ.cons.construct
-      ↔ a ∈ cPZ.compactFactors.cons.construct :=
-  (PolyLevelSet.mem_congr cPZ.cons (congrArg (cPZ.cons.A *ᵥ ·)
-    (funext fun l => (ConPolyZono.monomial_factorExtend_right cPZ.E cPZ.cons.R a l).symm))).symm
+    {a : Fin cPZ.compactFactors.p → ℝ} (ha : a ∈ cPZ.compactFactors.cons.construct) :
+    (ConPolyZono.factorExtend cPZ.E cPZ.cons.R a) ∈ cPZ.cons.construct := by -- --- PROOF ---
+  have hbox : ∀ k, |a k| ≤ 1 := ((PolyLevelSet.mem_construct_iff_of_eq_unit
+    cPZ.compactFactors.cons_eq cPZ.compactFactors.cons_dom).mp ha).1
+  have hext : ConPolyZono.factorExtend cPZ.E cPZ.cons.R a ∈ cPZ.cons.dom.construct := by
+    rw [cPZ.cons_dom, Interval.mem_unit_iff]
+    exact fun k => ConPolyZono.abs_factorExtend_le_one cPZ.E cPZ.cons.R hbox k
+  exact (PolyLevelSet.mem_congr cPZ.cons (congrArg (cPZ.cons.A *ᵥ ·)
+    (funext fun l => (ConPolyZono.monomial_factorExtend_right cPZ.E cPZ.cons.R a l).symm))
+    (iff_of_true ha.1 hext)).mp ha
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -110,13 +118,12 @@ theorem ConPolyZono.compactFactors_exact (cPZ : ConPolyZono α) :
           + ∑ j, β j • cPZ.GI j :=
     fun a _ => by rw [ConPolyZono.aux_sum_compactFactors_extend cPZ a]
   apply Set.eq_of_subset_of_subset
-  · rintro _ ⟨a, β, ha, hβ, hsat, rfl⟩
-    exact ⟨fun k => a (ConPolyZono.factorIdx cPZ.E cPZ.cons.R k), β, fun k => ha _, hβ,
-      (ConPolyZono.aux_satisfies_compactFactors cPZ a).mp hsat, key a β⟩
-  · rintro _ ⟨a, β, ha, hβ, hsat, rfl⟩
-    exact ⟨ConPolyZono.factorExtend cPZ.E cPZ.cons.R a, β,
-      fun k => ConPolyZono.abs_factorExtend_le_one cPZ.E cPZ.cons.R ha k, hβ,
-      (ConPolyZono.aux_satisfies_compactFactors_extend cPZ a).mpr hsat, (key' a β).symm⟩
+  · rintro _ ⟨a, β, hβ, hsat, rfl⟩
+    exact ⟨fun k => a (ConPolyZono.factorIdx cPZ.E cPZ.cons.R k), β, hβ,
+      ConPolyZono.aux_satisfies_compactFactors cPZ hsat, key a β⟩
+  · rintro _ ⟨a, β, hβ, hsat, rfl⟩
+    exact ⟨ConPolyZono.factorExtend cPZ.E cPZ.cons.R a, β, hβ,
+      ConPolyZono.aux_satisfies_compactFactors_extend cPZ hsat, (key' a β).symm⟩
 
 end CORALean.Real
 

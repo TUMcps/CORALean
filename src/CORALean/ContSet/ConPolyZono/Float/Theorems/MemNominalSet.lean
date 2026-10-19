@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxVecIff
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEqUnit
 
 @[expose] public section
 
@@ -43,8 +44,9 @@ theorem ConPolyZono.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {cPZ : ConPol
         + (∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial cPZ.E a l)
         + ∑ j, toReal (cPZ.GI j i) * β j :=
   (Real.ConPolyZono.mem_relax_vec_iff _ _).trans <| exists_congr fun _ => exists_congr fun _ =>
-    and_congr Iff.rfl <| and_congr Iff.rfl <|
-      and_congr (PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).symm Iff.rfl
+    and_congr_right fun ha => and_congr Iff.rfl <| and_congr
+      ((PolyLevelSet.mem_construct_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom).trans
+        (and_iff_right ha)).symm Iff.rfl
 
 end CORALean.Float
 

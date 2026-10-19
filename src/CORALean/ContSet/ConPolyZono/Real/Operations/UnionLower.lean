@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnitCol
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionSel
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Operations.CartProd
 public import CORALean.ContSet.PolyLevelSet.Real.Operations.PadVars
 public import CORALean.ContSet.PolyLevelSet.Real.Operations.Switch
@@ -39,10 +40,11 @@ variable {p₁ p₂ : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Both operands' rows, switched by the selector factor. -/
+/-- Both operands' rows, switched by the selector factor, whose box is the unit box. -/
 noncomputable def ConPolyZono.unionLower (P₁ : PolyLevelSet p₁) (P₂ : PolyLevelSet p₂) :
     PolyLevelSet (p₁ + p₂ + 2) :=
-  ((P₁.cartProd P₂).padVars 2).switch (ConPolyZono.unitCol (ConPolyZono.unionSel p₁ p₂) 1)
+  ((P₁.cartProd P₂).padVars (Interval.unit 2)).switch
+    (ConPolyZono.unitCol (ConPolyZono.unionSel p₁ p₂) 1)
     (Fin.append (fun _ => true) fun _ => false)
 
 end CORALean.Real
