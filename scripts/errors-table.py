@@ -11,7 +11,7 @@ One row per `## Results` row of `references/<year>/*.md` classed `false` or `fix
 table. Four columns:
 
 * the reference, `\\errorcite[<result>]{<key>}`, with the page's key from
-  `experiments/paper/ledger-bibkeys.json`, followed by a `[page]` link to the row's page under
+  `experiments/paper/ledger-bibkeys.json`, followed by an `[Audit]` link to the row's page under
   `references/`; a `false` row is marked with a dagger. The table
   `\\providecommand`s `\\errorcite` as `\\cite`; the paper defines it to cite into the
   appendix's own reference list unless the main text cites the paper too;
@@ -196,9 +196,9 @@ def table(cr):
                 counts["no_fix"].append(where)
         mark = "\\textsuperscript{\\dag}" if row["class"] == "false" else ""
         ref = (f"\\errorcite[{cite_label(label)}]{{{key or 'MISSING'}}}{mark}"
-               f" \\href{{\\coraleanrepo/references/{page}.md}}{{[page]}}")
+               f" \\href{{\\coraleanrepo/references/{page}.md}}{{[Audit]}}")
         body[row["class"]].append(f"{ref} & {latex(entry.get('description', ''))} & "
-                                  f"{link(cr, cex, 'CEX')} & {link(cr, fix, 'FIX')} \\\\")
+                                  f"{link(cr, cex, 'Cex')} & {link(cr, fix, 'Fix')} \\\\")
     for page, entries in descs.items():
         if page.startswith("_"):
             continue

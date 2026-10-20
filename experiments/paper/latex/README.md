@@ -105,10 +105,11 @@ There is no TeX Live where the generator runs, so these files are written to the
 and `booktabs` forms as the evaluation floats and have not been compiled by it.
 
 **The errors table** (`appendix-errors.tex`) lists every paper result classed `false` or
-`fixed`, one `longtable` row each (booktabs, `\footnotesize`), sorted by year, then page, then
-the row's place in the page's table: the reference as `\cite[Prop.~32]{key}` (a dagger marks
-`false`), a few words on what is wrong, and links `[CEX]` to the Lean counterexample and
-`[FIX]` to the Lean file proving the corrected statement (`---` where there is none: every
+`fixed`, one `longtable` row each (booktabs, `\footnotesize`): the `false` rows first, a rule, then
+the `fixed` ones, each sorted by year, then page, then the row's place in the page's table. A row
+holds the reference as `\cite[Prop.~32]{key}` (a dagger marks `false`) with a link `[Audit]` to the
+result's page under `references/`, a few words on what is wrong, and links `[Cex]` to the Lean counterexample and
+`[Fix]` to the Lean file proving the corrected statement (`---` where there is none: every
 `false` row, and a `fixed` row whose corrected theorem lives in a file the row does not link).
 `python3 scripts/formalization-stats.py` writes it with the files above, through
 `scripts/errors-table.py`, which documents how the two files are picked from the row's links.
@@ -140,7 +141,7 @@ hybridDynamics, nn), then class, then method: the function as `\texttt{class/met
 marking an *unsound* bug (CORA's result can miss reachable states, is not the enclosure it claims
 to be, or is a wrong verdict a verification relies on; the others are too large, a wrong flag, a
 crash or error path, or a documented behaviour that is not the code's), at most ten words on what
-CORA gets wrong, and links `[CEX]` to the Lean counterexample and `[FIX]` to the Lean file of the
+CORA gets wrong (the function name links to its page under `references/coverage/`), and links `[Cex]` to the Lean counterexample and `[Fix]` to the Lean file of the
 corrected version (`---` where there is none). `python3 scripts/formalization-stats.py` writes it,
 through `scripts/cora-bugs-table.py`, which documents how the two files are picked. The data is
 committed beside it, `experiments/paper/cora-bugs.json`: per coverage file and method, the
