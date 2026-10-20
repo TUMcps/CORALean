@@ -14,6 +14,20 @@ through one intermediate computed set — can use it without unfolding `toEuclid
 
 The middle set is the one that has to be nonempty and bounded: it is the one both halves of
 the chain are measured against.
+
+## Inputs
+* `S` – first set
+* `T` – middle set
+* `U` – last set
+
+## Hypotheses
+* `hS` – the first set is bounded
+* `hSne` – the first set is nonempty
+* `hT` – the middle set is bounded
+* `hTne` – the middle set is nonempty
+
+## Conclusion
+* the Euclidean Hausdorff distance obeys the triangle inequality
 -/
 
 -- Authors:       Claude Opus 5

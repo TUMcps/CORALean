@@ -14,6 +14,15 @@ points). `Φᵀ Φ` is `N × N` of rank at most `v`, so its determinant is `0` o
 printed formula has no inverse to take. The paper's grid starts at `w = ⌈(v - 1)/2⌉`, where
 `N ≥ v`, and goes to ten times that.
 
+## Inputs
+* `Φ` – template matrix
+
+## Hypotheses
+* `hvN` – there are fewer templates than data points
+
+## Conclusion
+* the determinant of the Gram matrix is zero
+
 ## References
 
 * [1] N. Kochdumper, M. A. Foughali, P. Habermehl and E. Asarin. "Robust Identification of

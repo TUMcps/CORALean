@@ -15,6 +15,24 @@ center is a move from the center through the other coordinates only, each bounde
 The reduction is [`abs_sub_le_sum_of_abs_partial_le`](CoordinatePath.lean) applied to `f`
 with the `E` coordinates pinned to the center.
 
+## Inputs
+* `f` – function of the box variables
+* `lo` – lower corner of the box
+* `hi` – upper corner of the box
+* `E` – predicate marking the coordinates held at the center
+* `U` – bounds on the partial derivatives
+* `x` – point of the box
+
+## Hypotheses
+* `hf` – `f` is differentiable
+* `hlh` – the box is nonempty
+* `hU` – partials are bounded by `U` where the `E` coordinates sit at the center
+* `hx` – the point lies in the box
+* `hxE` – the point has its `E` coordinates at the center
+
+## Conclusion
+* `f` moves from the center by at most the bounds times the radii over the coordinates outside `E`
+
 ## References
 
 * [1] E. Goubault and S. Putot. "Robust Under-Approximations and Application to

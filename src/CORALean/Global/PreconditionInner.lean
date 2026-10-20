@@ -13,6 +13,19 @@ public import Mathlib.Data.Real.Basic
 box `{C⁻¹z | z ∈ z} ⊆ range(f, x)`; [1] takes `C` the inverse of the center of the interval
 Jacobian. Stated for any set `Z`, as nothing about a box is used.
 
+## Inputs
+* `C` – preconditioning matrix
+* `f` – map
+* `X` – domain
+* `Z` – set inside the preconditioned range
+
+## Hypotheses
+* `hC` – the preconditioner is invertible
+* `hZ` – the set lies in the range of the preconditioned map
+
+## Conclusion
+* the image of the set under the inverse lies in the range of the map
+
 ## References
 
 * [1] E. Goubault and S. Putot. "Robust Under-Approximations and Application to

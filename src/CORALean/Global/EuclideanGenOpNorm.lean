@@ -8,19 +8,19 @@ public import CORALean.Global.EuclideanNorm
 /-!
 # `‖G‖₂`, the induced `‖·‖₂` norm of a family of generators read as a linear map
 
-Wetzlinger et al.'s TAC'23 `Prop. 9`'s `‖G_h^{(-)}‖₂` is not a plain vector's Euclidean norm:
-`G_h^{(-)}` there is a matrix (`n × γ_h`), and `‖·‖₂` applied to a matrix is the induced operator
-norm — the tight constant `sup {‖Mx‖₂ / ‖x‖₂ | x ≠ 0}` a Cauchy–Schwarz-style bound needs to be
-sharp. Mathlib already carries exactly this: `Matrix.instL2OpNormedAddCommGroup` (scoped in
-`Matrix.Norms.L2Operator`) reads a rectangular matrix's norm off the operator norm of the
-`ContinuousLinearMap` it induces between `EuclideanSpace`s, and `Matrix.l2_opNorm_mulVec` is the
-Cauchy–Schwarz bound itself. `genOpNorm₂` packages that at `Vec ℝ n`'s own generator-family
-convention (`G j` is generator `j`, `Zonotope.G`'s own shape) rather than asking a caller to
-transpose into a `Matrix` and open the scoped instance itself.
+Wetzlinger et al.'s TAC'23 `Prop. 9`'s `‖G_h^{(-)}‖₂` is the induced operator norm of a matrix
+(`n × γ_h`), `sup {‖Mx‖₂ / ‖x‖₂ | x ≠ 0}`, the tight constant a Cauchy–Schwarz-style bound needs.
+Mathlib carries it: `Matrix.instL2OpNormedAddCommGroup` (scoped in `Matrix.Norms.L2Operator`) reads
+a rectangular matrix's norm off the operator norm of the `ContinuousLinearMap` between
+`EuclideanSpace`s, and `Matrix.l2_opNorm_mulVec` is the bound itself. `genOpNorm₂` packages that at
+`Vec ℝ n`'s generator-family convention (`G j` is generator `j`, as `Zonotope.G`), read through
+`toEuclidean` as `hausdorffDist₂`/`norm₂` are, so a caller need not open the scoped instance.
 
-Read through `toEuclidean` exactly as `hausdorffDist₂`/`norm₂` are: the scoped instance is a
-local elaboration device for `genOpNorm₂`'s own definition, not something a caller of the bound
-below needs to open.
+## Inputs
+* `G` – family of generators
+
+## Output
+* the induced Euclidean operator norm of the generator matrix
 -/
 
 -- Authors:       Claude Opus 5

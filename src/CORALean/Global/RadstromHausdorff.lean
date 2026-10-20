@@ -8,18 +8,29 @@ public import Mathlib.Analysis.Normed.Module.Convex
 /-!
 # Adding a bounded set keeps the Hausdorff distance
 
-`d(A + X, B + X) = d(A, B)` for convex `A`, `B` whose thickenings `A + λS` and
-`B + λS` are closed, with `S` the closed unit ball and `X` bounded and nonempty.
-Adding `X` to both sides of `B ⊆ A + λS` can only keep it true, which gives `≤`.
-Rådström's cancellation law takes `X` back off, which gives `≥`.
+`d(A + X, B + X) = d(A, B)` for convex `A`, `B` whose thickenings `A + λS` and `B + λS` are closed,
+with `S` the closed unit ball and `X` bounded and nonempty. Adding `X` to both sides of
+`B ⊆ A + λS` can only keep it true, which gives `≤`; Rådström's cancellation law takes `X` back
+off, which gives `≥`. Stated at `Metric.hausdorffEDist`, not `hausdorffDist`: the source's convex
+sets need not be bounded, so their distance may be infinite, and `hausdorffDist` reads that as `0`.
+The source asks `X` bounded and not nonempty; at `X = ∅` both sums are empty and their distance is
+`0`, so the hypothesis is needed, the same unstated one that [1, Lemma 1] uses.
 
-Stated at `Metric.hausdorffEDist`, not at `hausdorffDist`: the source's convex
-sets need not be bounded, so their distance may be infinite, and `hausdorffDist`
-reads that as `0`.
+## Inputs
+* `A` – first convex set
+* `B` – second convex set
+* `X` – summand
 
-The source asks `X` bounded and not nonempty. At `X = ∅` both sums are empty and
-their distance is `0`, so the hypothesis is needed. It is the same unstated one
-that [1, Lemma 1] uses.
+## Hypotheses
+* `hAconv` – the first set is convex
+* `hBconv` – the second set is convex
+* `hAcl` – every closed-ball thickening of the first set is closed
+* `hBcl` – every closed-ball thickening of the second set is closed
+* `hX` – the summand is nonempty
+* `hXb` – the summand is bounded
+
+## Conclusion
+* adding the summand to both sets leaves their Hausdorff distance unchanged
 
 ## References
 

@@ -7,15 +7,19 @@ public import CORALean.Global.Float.Instances.FixedPoint.FixedPoint
 /-!
 # Division, rounded down
 
-Unlike addition and multiplication, a quotient of fixed-point values is not
-one, so there is no exact step to round afterwards: `a.m / 10 ^ a.d` over
-`b.m / 10 ^ b.d` is `a.m · 10 ^ b.d` over `b.m · 10 ^ a.d`, and this floors
-that exact rational straight to `f` digits in one division, `/` on ℤ being
-floor division.
+Unlike addition and multiplication, a quotient of fixed-point values is not one, so there is no
+exact step to round afterwards: `a.m / 10 ^ a.d` over `b.m / 10 ^ b.d` is `a.m · 10 ^ b.d` over
+`b.m · 10 ^ a.d`, and this floors that exact rational straight to `f` digits in one division, `/`
+on ℤ being floor division. A divisor of zero divides by zero in ℤ, which is `0` and bounds nothing,
+which is why `SoundFloatArithmetic` asks for a positive one; a negative divisor floors the wrong
+way.
 
-A divisor of zero divides by zero in ℤ, which is `0` -- and bounds nothing,
-which is why `SoundFloatArithmetic` asks for a positive one; a negative
-divisor floors the wrong way, which is why it asks for exactly that.
+## Inputs
+* `a` – dividend
+* `b` – divisor
+
+## Output
+* the quotient floored to the format's digit count
 -/
 
 -- Authors:       Claude Opus 5.5

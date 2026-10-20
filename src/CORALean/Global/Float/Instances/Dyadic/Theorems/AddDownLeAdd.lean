@@ -12,6 +12,16 @@ public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactAdd
 
 `addDown` coarsens both operands downward, adds exactly, and rounds down; each step only lowers
 the value (`coarsenDown_le`, `toReal_exactAdd`, `roundDown_le`).
+
+## Inputs
+* `a` – first summand
+* `b` – second summand
+
+## Hypotheses
+* none
+
+## Conclusion
+* the downward sum is at most the real sum
 -/
 
 -- Authors:       Claude Sonnet 5.5

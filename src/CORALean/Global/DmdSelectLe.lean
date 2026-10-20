@@ -12,6 +12,19 @@ smaller error, in particular not the full-rank one. Only as good as `err`: nothi
 a small `err` is a fit.
 The source is [1].
 
+## Inputs
+* `lt` – strict comparison of errors
+* `err` – error of a candidate
+* `cand` – candidate for each rank
+* `rankMax` – largest rank
+
+## Hypotheses
+* `hlt` – the comparison is the strict order on errors
+* `hr` – some rank is tried
+
+## Conclusion
+* the selected candidate is one of the candidates and no candidate has a smaller error
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/private/priv_identifyDMD.m`

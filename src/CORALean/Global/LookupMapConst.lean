@@ -8,6 +8,19 @@ public import Mathlib.Data.List.Basic
 # Reading a list of pairs whose values are all one
 
 If every pair `(k,w)` of a list is replaced by `(k,v)`, reading a key of the list gives `v`.
+
+## Inputs
+* `α` – key type of the pairs
+* `β` – value type of the pairs
+* `l` – list of pairs
+* `v` – replacement value
+* `p` – pair of the list
+
+## Hypotheses
+* `hp` – the pair belongs to the list
+
+## Conclusion
+* looking up the pair's key after replacing all values gives the replacement
 -/
 
 -- Authors:       Claude Sonnet 5.5

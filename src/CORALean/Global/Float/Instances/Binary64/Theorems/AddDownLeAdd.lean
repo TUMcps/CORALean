@@ -13,6 +13,16 @@ read through `toReal_neg` and nothing else: the machine is assumed to round one
 step up, and a step up on the negated arguments is a step down here. No second
 assumption about the hardware is needed, which is the point of defining the
 downward operations as mirrors rather than as primitives.
+
+## Inputs
+* `a` – first summand
+* `b` – second summand
+
+## Hypotheses
+* none
+
+## Conclusion
+* the downward sum is at most the real sum
 -/
 
 -- Authors:       Claude Opus 5

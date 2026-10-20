@@ -15,6 +15,18 @@ blocks `[Ā, B̄]` of `Ḡ` [1, Eq. 28]; and if `Û` spans the columns of `X'` a
 [1, Eq. 35] then `Ā Φ = Φ Λ`. The paper's truncation is `p`; the guarantees about the fit
 of the data (`dmdcUnknownB_fit`) are at the full rank.
 
+## Inputs
+* `xNext` – successor states
+* `Vω` – left singular vectors of the stacked snapshots
+* `s` – singular values of the stacked snapshots
+* `Wω` – right singular vectors of the stacked snapshots
+* `p` – truncation rank
+* `Û` – orthonormal basis of the output space
+* `W` – eigenvectors of the reduced state matrix
+
+## Output
+* the reduced state and input matrices and the dynamic modes
+
 ## References
 
 * [1] J. L. Proctor, S. L. Brunton and J. N. Kutz. "Dynamic mode decomposition with control".

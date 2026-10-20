@@ -16,6 +16,16 @@ The sign rounding of [1, Thm. 17]: for a standard Gaussian `g`, the product
 (`integral_abs_inner_rpow_stdGaussian`). The second has expectation `0`: the reflection in
 `y⊥ᗮ` fixes `c`, negates `y⊥` and preserves the standard Gaussian, so it negates the integral.
 
+## Inputs
+* `y` – projected vector
+* `c` – sign vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the product is integrable, its expectation the Gaussian constant times the normalized pairing
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

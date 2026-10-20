@@ -10,6 +10,13 @@ public import CORALean.Global.Float.Instances.Binary64.Operations.StepUp
 The machine's product, nudged one step out by `stepUp` — see `AddUp` for why that suffices
 whatever the machine's own rounding did. A product of two nonzero factors that rounds to zero has
 underflowed, and its exact value is not zero, so it is NaN rather than a zero `stepUp` would keep.
+
+## Inputs
+* `a` – first factor
+* `b` – second factor
+
+## Output
+* the machine product nudged one step up
 -/
 
 -- Authors:       Claude Sonnet 5

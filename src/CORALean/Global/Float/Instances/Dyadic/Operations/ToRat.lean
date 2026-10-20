@@ -10,6 +10,13 @@ public import CORALean.Global.Float.Instances.Dyadic.Dyadic
 `m · 2 ^ e` evaluated in ℚ, where the power of two is exact for either sign of
 `e`: the decoding `ToRat` asks for, shared by every format stored as a dyadic —
 `IEEE`, `Flint` and the native binary64 through its bit decoding.
+
+## Inputs
+* `p` – mantissa width in bits
+* `d` – dyadic
+
+## Output
+* the exact rational value of the dyadic
 -/
 
 -- Authors:       Claude Opus 5.5

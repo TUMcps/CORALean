@@ -14,6 +14,15 @@ conditions (`IsPinv`). Invertibility is read off the kernel: `H Hᵀ v = 0` give
 `‖Hᵀ v‖² = vᵀ H Hᵀ v = 0`, so `v` is orthogonal to `Im H`, which is everything, and `v = 0`.
 With `H Hᵀ (H Hᵀ)⁻¹ = 1` the conditions are a line each; the last uses that the inverse of
 the symmetric `H Hᵀ` is symmetric.
+
+## Inputs
+* `H` – matrix
+
+## Hypotheses
+* `hH` – the matrix is onto
+
+## Conclusion
+* the transpose times the inverse Gram matrix is its pseudo-inverse
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,12 @@ public import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 moment `E|g|^k` of a standard normal `g`; `integral_abs_inner_rpow_stdGaussian` proves that
 it is that root. This file is the formula as printed, for `k > 0`; `γ₁ = √(2/π)`, `γ₂ = 1`.
 
+## Inputs
+* `k` – moment order
+
+## Output
+* the root of the Gaussian absolute moment of that order
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

@@ -17,6 +17,23 @@ rank and `priv_identifyDMD` for `linearSys`/`linearSysDT`: `A Φ = Ẋ V Vᵀ`, 
 needed; the rank-adapted candidates (fewer singular values) are not least-squares fits. The
 same formula is [2, Eq. 7], `A ≈ X' Ṽ Σ̃⁻¹ Ũᵀ`, for the snapshots of `x_{k+1} = A x_k`.
 
+## Inputs
+* `Xd` – derivative snapshots
+* `Φ` – regressor snapshots
+* `U` – left singular vectors
+* `s` – singular values
+* `V` – right singular vectors
+* `B` – competing matrix
+
+## Hypotheses
+* `hΦ` – the regressors have this economy SVD
+* `hU` – the left singular vectors are orthonormal
+* `hV` – the right singular vectors are orthonormal
+* `hs` – the singular values are nonzero
+
+## Conclusion
+* the candidate's squared error is at most that of any competing matrix
+
 ## References
 
 * [1] N. Kochdumper, M. A. Foughali, P. Habermehl and E. Asarin. "Robust Identification of

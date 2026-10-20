@@ -13,6 +13,23 @@ is the support of `Ê - d` in the direction `zᵢ` (`[1, Eq. 19]`), so some `x �
 `zᵢ(x - d) > 1`; a point `d + Hβ` of `E` has `zᵢ(Hβ) ≤ ‖Hᵀzᵢ‖_{q*} ‖β‖ ≤ 1`. Only
 `zᵢ` in the dual set is used, not that it maximizes anything, nor how the samples came.
 
+## Inputs
+* `G` – generator map of the inner ellipsotope
+* `c` – center of the inner ellipsotope
+* `H` – generator map of the outer ellipsotope
+* `d` – center of the outer ellipsotope
+* `N` – number of samples
+* `z` – dual vectors of the samples
+* `ϑ` – uniformity parameter
+
+## Hypotheses
+* `hN` – there is at least one sample
+* `hz` – every dual vector is in the unit dual ball
+* `h` – the algorithm returns none
+
+## Conclusion
+* the inner ellipsotope is not contained in the outer one
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

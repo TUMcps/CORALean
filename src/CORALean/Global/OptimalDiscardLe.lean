@@ -16,6 +16,19 @@ at a time (`aux_discardTree_succ`). A set `F \ K` with no support constraint rem
 of `F`, which every leaf under `F` is below; otherwise the first support constraint in `K` is
 removed and the induction goes on at `F - s`, `K - s`. Without the last hypothesis the tree can die
 before level `k`, and the algorithm returns nothing, though `F \ K` of value `w(∅)` exists.
+
+## Inputs
+* `D` – full constraint set
+* `k` – number of constraints to discard
+
+## Hypotheses
+* `hmono` – the value grows with the constraints
+* `hnd` – every problem is non-degenerate
+* `hsc` – every problem before the level has a support constraint
+
+## Conclusion
+* the returned set has the right size and least value among all remaining sets
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

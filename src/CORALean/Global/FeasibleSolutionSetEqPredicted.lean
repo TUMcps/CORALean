@@ -15,6 +15,20 @@ last measurement `F_{d(N+1)}`. This is what lets the recursion `FSS_{k+1} = (FSS
 stand for [1, Def. 1]'s set, which the paper does not prove. Induction on `N`; a run for `N + 2`
 steps is a run for `N + 1` and one more step.
 
+## Inputs
+* `Θ₀` – initial parameter set
+* `r` – regressor vectors
+* `y` – measurements
+* `σ` – error bound
+* `γ` – expansion per step
+* `N` – number of earlier measurements
+
+## Hypotheses
+* none
+
+## Conclusion
+* the feasible set is the predicted set met with the last measurement's strip
+
 ## References
 
 * [1] J. M. Bravo, T. Alamo and E. F. Camacho. "Bounded error identification of systems with

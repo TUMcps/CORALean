@@ -17,6 +17,21 @@ to the other end lowers it by as much. The end does not depend on the other coor
 which is what makes the parametrization of `Thm. 3`'s fixed-point argument continuous.
 `d ≤ 0` asks nothing, and the center is both ends.
 
+## Inputs
+* `f` – differentiable function on the box
+* `lo` – lower corner of the box
+* `hi` – upper corner of the box
+* `j` – coordinate moved
+* `d` – lower bound on the partial derivative
+
+## Hypotheses
+* `hf` – `f` is continuously differentiable
+* `hlh` – the box is nonempty
+* `hd` – the partial derivative along the coordinate is at least `d` in absolute value on the box
+
+## Conclusion
+* the ends of coordinate `j` raise and lower `f` from the center by at least `d` times the radius
+
 ## References
 
 * [1] E. Goubault and S. Putot. "Robust Under-Approximations and Application to

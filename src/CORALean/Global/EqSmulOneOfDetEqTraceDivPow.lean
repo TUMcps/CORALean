@@ -15,6 +15,17 @@ are all equal, and a symmetric matrix with all its eigenvalues `c` is `c I` (the
 theorem). It is what makes `E(nGGᵀ, z̄)` the only ellipsoid of least volume around a
 parallelotope in [1, Sec. III-A (Remark a)].
 
+## Inputs
+* `S` – matrix
+
+## Hypotheses
+* `hS` – the matrix is positive semidefinite
+* `hn` – the dimension is positive
+* `h` – the determinant attains the trace bound
+
+## Conclusion
+* the matrix is the mean eigenvalue times the identity
+
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean

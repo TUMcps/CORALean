@@ -7,15 +7,24 @@ public import CORALean.Global.CoeffNormBallEq
 /-!
 # Ellipsotope containment as a maximum
 
-`[1, Eq. 6]`: `E_p(G, c) ⊆ E_q(H, d)` iff `r ≤ 1`, where
-`r = max_{‖α‖_p ≤ 1} ‖G α + c - d‖_{E_q(H)}`, for a full-rank `H`. The maximum is attained
-(the norm is continuous, the coefficient ball compact), and the containment is the norm
-bound pointwise, `E_q(H, d)` being `{x | ‖x - d‖_{E_q(H)} ≤ 1}` (`coeffNorm_ball_eq`). Any
-norms on either coefficient space.
+`[1, Eq. 6]`: `E_p(G, c) ⊆ E_q(H, d)` iff `r ≤ 1`, where `r = max_{‖α‖_p ≤ 1} ‖G α + c -
+d‖_{E_q(H)}`, for a full-rank `H`. The maximum is attained (continuous norm, compact coefficient
+ball), and the containment is the norm bound pointwise, `E_q(H, d)` being `{x | ‖x - d‖_{E_q(H)} ≤
+1}` (`coeffNorm_ball_eq`). Any norms on either coefficient space. The containment half of
+[2, Thm. 12] is the same statement at a non-degenerate circumbody (`H` onto). Not proved: that `r`
+is the smallest scaling, nor the degenerate-circumbody convention.
 
-The containment half of [2, Thm. 12] is the same statement: `r ≤ 1` iff `Ê ⊆ E`, at a
-non-degenerate circumbody (`H` onto). Not proved: that `r` is the smallest scaling, nor the
-degenerate-circumbody convention.
+## Inputs
+* `G` – generator map of the inner ellipsotope
+* `c` – center of the inner ellipsotope
+* `H` – generator map of the outer ellipsotope
+* `d` – center of the outer ellipsotope
+
+## Hypotheses
+* `hH` – the outer generator map is onto
+
+## Conclusion
+* the maximum norm exists and the containment holds exactly when it is at most one
 
 ## References
 

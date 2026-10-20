@@ -11,6 +11,16 @@ public import CORALean.Global.Float.Instances.Binary64.Operations.Basic
 `mulDown` negates one argument rather than two: a product changes sign with
 either factor, where a sum needs both. Otherwise the reading is `AddDownLeAdd`'s
 — the upward assumption at `-a`, turned around by `toReal_neg`.
+
+## Inputs
+* `a` – first factor
+* `b` – second factor
+
+## Hypotheses
+* none
+
+## Conclusion
+* the downward product is at most the real product
 -/
 
 -- Authors:       Claude Opus 5

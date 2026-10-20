@@ -12,6 +12,16 @@ public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactAdd
 
 `addUp` coarsens both operands upward, adds exactly, and rounds up; each step only raises the
 value (`le_coarsenUp`, `toReal_exactAdd`, `le_roundUp`).
+
+## Inputs
+* `a` – first summand
+* `b` – second summand
+
+## Hypotheses
+* none
+
+## Conclusion
+* the real sum is at most the upward sum
 -/
 
 -- Authors:       Claude Sonnet 5.5

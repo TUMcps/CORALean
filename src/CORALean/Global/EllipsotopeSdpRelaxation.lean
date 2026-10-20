@@ -13,19 +13,35 @@ public import Mathlib.Probability.Distributions.Gaussian.Fernique
 /-!
 # The semidefinite relaxation of ellipsotope-in-ellipsotope containment
 
-[1, Thm. 19]: for `1 < q ≤ 2 ≤ p < ∞` and `H` onto,
-`SR_{p,q} = ½ min_K (‖v‖_{p/(p-2)} + ‖w‖_{q*/(q*-2)})` (Eq. 41), `K` the `(v, w) ∈ ℝ^m × ℝ^l`
-with `[Diag(v), 0; 0, H Diag(w) Hᵀ] ≼ [0, Gᵀ; G, 0]` (Eq. 42, the difference positive
-semidefinite), has `r ≤ SR_{p,q} ≤ γ_{q*} γ_p r` (Eq. 43), `r` the greatest `coeffNorm H` over the
-`p`-ball and `γ_k` the constant of Eq. 31; hence the two tests. The minimum exists
-(`sdp_relaxation_exists_isLeast`); at `x = 2` the exponent `x/(x-2)` is `∞`. The paper cites
-Thm. 5.4 of its reference 22; here the duality and rounding are written out. `r ≤ SR_{p,q}` as for
-`zsr_radius_bounds`. `SR_{p,q} ≤ γ_{q*} γ_p r`: below `SR_{p,q}` a certificate `X ≽ 0` exists
-(`diag_block_sdp_exists_dual`); as a Gram matrix of vectors `cₚ`, rounded at a standard Gaussian
-`g` to `αⱼ = ⟨cⱼ, g⟩`, `ζₖ = ⟨cₖ, g⟩`, it gives `ζᵀ G α ≤ r ‖α‖_p ‖Hᵀ ζ‖_{q*}`. The left side has
-expectation `Σ G_{kj} X_{kj} ≥ t` (the covariance of the standard Gaussian is the inner product),
-the right side at most `r γ_p γ_{q*}` by Hölder with exponents `p`, `p/(p-1) ≤ 2 ≤ q*` and
-`gaussian_norm_moment_le`.
+[1, Thm. 19]: for `1 < q ≤ 2 ≤ p < ∞` and `H` onto, `SR_{p,q} = ½ min_K (‖v‖_{p/(p-2)} +
+‖w‖_{q*/(q*-2)})` (Eq. 41), `K` the `(v, w)` with `[Diag(v), 0; 0, H Diag(w) Hᵀ] ≼ [0, Gᵀ; G, 0]`
+(Eq. 42), has `r ≤ SR_{p,q} ≤ γ_{q*} γ_p r` (Eq. 43), `r` the greatest `coeffNorm H` over the
+`p`-ball and `γ_k` the constant of Eq. 31. The minimum exists (`sdp_relaxation_exists_isLeast`); at
+`x = 2` the exponent `x/(x-2)` is `∞`. The paper cites Thm. 5.4 of its reference 22; here duality
+and rounding are written out: `r ≤ SR_{p,q}` as for `zsr_radius_bounds`; for the upper bound a
+certificate `X ≽ 0` (`diag_block_sdp_exists_dual`), rounded at a standard Gaussian as a Gram matrix,
+gives `ζᵀ G α ≤ r ‖α‖_p ‖Hᵀ ζ‖_{q*}`, bounded by Hölder and `gaussian_norm_moment_le`.
+
+## Inputs
+* `p` – exponent of the inner coefficient norm
+* `q` – exponent of the outer coefficient norm
+* `q'` – its conjugate exponent
+* `G` – generator matrix of the inner set
+* `H` – generator matrix of the outer set
+* `SR` – relaxation value
+* `r` – containment radius
+
+## Hypotheses
+* `hq1` – the outer exponent exceeds one
+* `hq2` – the outer exponent is at most two
+* `hp2` – the inner exponent is at least two
+* `hpT` – the inner exponent is finite
+* `hH` – the outer generator matrix is onto
+* `hSR` – the relaxation value is the least feasible one
+* `hr` – the radius is the greatest norm over the unit ball
+
+## Conclusion
+* the radius is at most the relaxation value, which is at most a Gaussian constant times the radius
 
 ## References
 

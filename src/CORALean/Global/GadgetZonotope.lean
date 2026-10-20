@@ -15,6 +15,15 @@ public import Mathlib.Algebra.GroupWithZero.Action.Pointwise.Set
 the closed-form norm of `Z(½H)` (`coeffNorm_half_gadgetH`): `(y, t) ∈ Ẑ` iff `‖y‖_∞ ≤ 1` and
 `‖y‖₁ + |t - n| ≤ n`. The paper's `n > 1` is `2 ≤ n`; the proof uses `1 ≤ n` only.
 
+## Inputs
+* none
+
+## Hypotheses
+* `hn` – the dimension is at least two
+
+## Conclusion
+* the circumbody is a zonotope with cross-polytope slices and contains the stated box
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

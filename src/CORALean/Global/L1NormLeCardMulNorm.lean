@@ -13,6 +13,15 @@ its `∞`-circumradius, `R₁(Π) ≤ n R∞(Π)`, through `‖x‖₁ ≤ n ‖
 on any set. Its first step, `R₁(Π) = maxᵢ ‖vᵢ‖₁`, does not
 (`l1_norm_le_card_mul_norm_counterexample`); only this inequality is used afterwards.
 
+## Inputs
+* `x` – vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the 1-norm is at most the dimension times the supremum norm
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

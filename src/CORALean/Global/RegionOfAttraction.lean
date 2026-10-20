@@ -14,6 +14,14 @@ initial states from which every admissible input leads into the invariant set `S
 printed: the limit exists and lies in `S`. `γ` is the unique solution [1, Sec. 3.1] assumes,
 an argument here as in the paper (`RobustInvariant`).
 
+## Inputs
+* `γ` – solution map of the system
+* `U` – set of admissible input signals
+* `S` – invariant target set
+
+## Output
+* the set of initial states whose solutions converge into the target set
+
 ## References
 
 * [1] M. Althoff. "Benchmarks for the Formal Verification of Power Systems". In Proc. of the

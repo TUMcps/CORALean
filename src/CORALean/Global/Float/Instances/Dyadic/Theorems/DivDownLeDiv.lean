@@ -18,6 +18,16 @@ direction depends on — with a negative one the floor of the mantissa quotient
 is an upper bound, not a lower — and `SoundFloatArithmetic` asks for exactly
 that. The grid rounding on top of the quotient only moves the bound further
 out, which is `roundDown_le` composed on.
+
+## Inputs
+* `a` – dividend
+* `b` – divisor
+
+## Hypotheses
+* `hb` – the divisor is positive
+
+## Conclusion
+* the downward quotient is at most the real quotient
 -/
 
 -- Authors:       Claude Opus 5

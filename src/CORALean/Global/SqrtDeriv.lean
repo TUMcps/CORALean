@@ -11,6 +11,12 @@ public import Mathlib.Tactic.FieldSimp
 
 `√⁽ᵏ⁾ x = (1/2)(1/2 - 1)⋯(1/2 - k + 1) · x^(1/2 - k)`, the product `∏ᵢ<ₖ (1/2 - i)` being the
 integer `sqrtDeriv k = ∏ᵢ<ₖ (1 - 2i)` over `2ᵏ`: the computable form of the real `descPochhammer`.
+
+## Inputs
+* none
+
+## Output
+* the function giving the integer numerator of each derivative factor
 -/
 
 -- Authors:       Claude Opus 5.5

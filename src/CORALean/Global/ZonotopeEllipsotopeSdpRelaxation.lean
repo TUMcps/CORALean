@@ -13,18 +13,32 @@ public import CORALean.Global.SdpRelaxationQuadLe
 /-!
 # The semidefinite relaxation of zonotope-in-ellipsotope containment
 
-[1, Thm. 17]: for `H` onto and `q ∈ (1, 2]`, `ZSR_q = ½ min_K (‖v‖₁ + ‖w‖_{q/(2-q)})` (Eq. 38),
-`K` the `(v, w) ∈ ℝ^m × ℝ^l` with `[Diag(v), 0; 0, H Diag(w) Hᵀ] ≼ [0, Gᵀ; G, 0]` (Eq. 39, the
-difference positive semidefinite), has `r ≤ ZSR_q ≤ (γ_{q*}/γ₁) r` (Eq. 40), `r` the greatest
-`coeffNorm H` over the cube and `γ_k` the constant of Eq. 31; hence the two tests. The minimum
-exists (`sdp_relaxation_exists_isLeast`). The paper cites Thm. 5.6 of its reference 22; here
-the duality and rounding are written out. `r ≤ ZSR_q`: a dual vector `z` attains the norm of
-`G α` (`exists_dual_coeffNorm_le`) and the matrix inequality at `(α, -z)` bounds `2 zᵀ G α`
-(`sdp_relaxation_quad_le`). `ZSR_q ≤ (γ_{q*}/γ₁) r`: below `ZSR_q` a certificate `X ≽ 0` exists
-(`diag_block_sdp_exists_dual`); as a Gram matrix of vectors `cₚ`, rounded at a standard Gaussian
-`g` to `αⱼ = sⱼ sign⟨cⱼ, g⟩`, `ζₖ = ⟨cₖ, g⟩`, it gives `ζᵀ G α ≤ r ‖Hᵀ ζ‖_{q*}`, whose two sides
-have expectations at least `γ₁ t` (`integral_inner_mul_sign_inner_stdGaussian`) and at most
-`r γ_{q*}` (`gaussian_norm_moment_le`).
+[1, Thm. 17]: for `H` onto and `q ∈ (1, 2]`, `ZSR_q = ½ min_K (‖v‖₁ + ‖w‖_{q/(2-q)})` (Eq. 38), `K`
+the `(v, w)` with `[Diag(v), 0; 0, H Diag(w) Hᵀ] ≼ [0, Gᵀ; G, 0]` (Eq. 39), has
+`r ≤ ZSR_q ≤ (γ_{q*}/γ₁) r` (Eq. 40), `r` the greatest `coeffNorm H` over the cube and `γ_k` the
+constant of Eq. 31; the minimum exists (`sdp_relaxation_exists_isLeast`). The paper cites Thm. 5.6
+of its reference 22; here the proof is written out: `r ≤ ZSR_q` by `exists_dual_coeffNorm_le` and
+`sdp_relaxation_quad_le`; for the upper bound a certificate `X ≽ 0` (`diag_block_sdp_exists_dual`)
+is rounded at a standard Gaussian, and `integral_inner_mul_sign_inner_stdGaussian` and
+`gaussian_norm_moment_le` bound the two sides' expectations.
+
+## Inputs
+* `q` – exponent of the coefficient norm
+* `q'` – its conjugate exponent
+* `G` – zonotope generator matrix
+* `H` – ellipsotope generator matrix
+* `ZSR` – relaxation value
+* `r` – containment radius
+
+## Hypotheses
+* `hq1` – the exponent exceeds one
+* `hq2` – the exponent is at most two
+* `hH` – the ellipsotope generator matrix is onto
+* `hZSR` – the relaxation value is the least feasible one
+* `hr` – the radius is the greatest norm over the cube
+
+## Conclusion
+* the radius is at most the relaxation value, which is at most a Gaussian constant times the radius
 
 ## References
 

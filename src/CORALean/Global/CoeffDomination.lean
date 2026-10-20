@@ -16,6 +16,19 @@ derivatives, and gives `|P y| ≤ A |y|`: the way to bound a polynomial that a r
 built, from the recursion run on absolute values of its coefficients. It is what bounds
 the high derivatives of `tanh`, `tan`, `atan`, `asin` and `acos`, each a polynomial in a
 variable whose range is known.
+
+## Inputs
+* `P` – polynomial
+* `A` – dominating polynomial
+* `y` – evaluation point
+* `m` – bound on the absolute value of the point
+
+## Hypotheses
+* `h` – `A` dominates `P` coefficientwise
+* `hy` – the point is at most `m` in absolute value
+
+## Conclusion
+* the absolute value of `P` at the point is at most `A` at `m`
 -/
 
 -- Authors:       Claude Opus 5.5

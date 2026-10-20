@@ -13,17 +13,27 @@ public import Mathlib.LinearAlgebra.Prod
 /-!
 # Strong duality: Farkas' lemma
 
-`Duality` proves the easy half: nonnegative weights bound every objective they
-assemble. This is the other half — a bound that holds on a nonempty polyhedron
-*has* such weights — which is what turns an LP encoding of a containment into an
-equivalence rather than a sufficient condition.
+`Duality` proves the easy half: nonnegative weights bound every objective they assemble. This is
+the other half, a bound that holds on a nonempty polyhedron *has* such weights, which turns an LP
+encoding of a containment into an equivalence rather than a sufficient condition. The homogeneous
+form is Bartl's purely algebraic induction on the number of rows: either the last row is not
+needed, or a point violating the reduced system lets it be eliminated from all the others. Nothing
+about the space is used, not even finite dimension. The affine form follows by homogenizing over
+`E × ℝ`, and needs the polyhedron nonempty: `∅` satisfies every bound.
 
-The homogeneous form is Bartl's purely algebraic induction on the number of
-rows: either the last row is not needed, or a point violating the reduced
-system lets the last row be eliminated from all the others. Nothing about the
-space is used, not even finite dimension. The affine form follows by
-homogenizing over `E × ℝ`, and needs the polyhedron nonempty: `∅` satisfies
-every bound, and is not always cut out by weights that assemble it.
+## Inputs
+* `m` – number of constraints
+* `A` – constraint functionals
+* `b` – right-hand sides
+* `c` – objective functional
+* `d` – bound on the objective
+
+## Hypotheses
+* `hne` – the polyhedron is nonempty
+* `h` – the objective is bounded by the bound on the polyhedron
+
+## Conclusion
+* nonnegative weights on the rows assemble the objective and the bound
 -/
 
 -- Authors:       Claude Opus 5.5

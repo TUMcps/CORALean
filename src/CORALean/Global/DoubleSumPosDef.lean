@@ -18,6 +18,21 @@ In the form at `x ≠ 0`, `qᵢⱼ = xᵀΓᵢⱼx`: the two conditions bound `q
 `(2 + c) Σ aᵢ² - c (Σ aᵢ)²`, `c = 2/(r-1)`, which is nonnegative by Cauchy-Schwarz; strictly
 positive since either some pair has `μᵢ μⱼ > 0`, where the bound is strict, or one `μᵢ = 1`.
 
+## Inputs
+* `r` – number of vertices
+* `Γ` – matrices indexed by ordered pairs of vertices
+* `μ` – probability weights
+
+## Hypotheses
+* `hμ0` – the weights are nonnegative
+* `hμ1` – the weights sum to one
+* `hsym` – every matrix is symmetric
+* `hd` – the diagonal matrices are positive definite
+* `ho` – the scaled diagonal plus both mixed matrices is positive definite for every ordered pair
+
+## Conclusion
+* the weighted double sum of matrices is positive definite
+
 ## References
 
 * [1] Y. Wang, Z. Wang, V. Puig and G. Cembrano. "Zonotopic set-membership state estimation for

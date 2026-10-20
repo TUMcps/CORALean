@@ -8,21 +8,25 @@ public import Mathlib.Algebra.Group.Pointwise.Set.Basic
 /-!
 # A simplex, deliberately outside the trusted base
 
-`Duality` turns a nonnegative weighting of the rows into a bound. Something has
-to produce the weighting, and this is it: a two-phase tableau simplex over any
-ordered field, with no proof attached to any part of it.
+`Duality` turns a nonnegative weighting of the rows into a bound; this produces the weighting: a
+two-phase tableau simplex over any ordered field, with no proof attached to any part of it.
+Nothing downstream trusts what comes out: the caller checks nonnegativity and dual feasibility
+itself and builds the `SupportBound` out of that check, so a pivoting bug, an exhausted budget or a
+degenerate cycle costs a bound or its tightness and never soundness. Iteration is bounded by `fuel`
+rather than a termination argument, which keeps every definition structurally recursive and total.
+What is solved is the *dual* of `max cᵀx` over `A x ≤ b`, namely `min bᵀy` over `Aᵀ y = c, y ≥ 0`:
+phase one prices the artificial columns out, phase two minimises `bᵀy`.
 
-Nothing downstream trusts what comes out. The caller checks nonnegativity and
-dual feasibility itself and builds the `SupportBound` out of that check, so a
-pivoting bug, an exhausted budget or a degenerate cycle costs a bound or its
-tightness and can never cost soundness.
+## Inputs
+* `fuel` – iteration budget
+* `m` – number of constraints
+* `n` – number of variables
+* `A` – constraint matrix
+* `b` – right-hand sides
+* `c` – objective vector
 
-Iteration is bounded by `fuel` rather than by a termination argument, which is
-what keeps every definition here structurally recursive and total.
-
-What is solved is the *dual* of `max cᵀx` over `A x ≤ b`, namely `min bᵀy` over
-`Aᵀ y = c, y ≥ 0`: phase one prices the artificial columns out, phase two
-minimises `bᵀy`, and a candidate comes back as soon as phase one succeeds.
+## Output
+* a candidate dual weighting, or none when the budget runs out
 -/
 
 -- Authors:       Claude Opus 5

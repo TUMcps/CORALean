@@ -9,6 +9,12 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 
 `Bᵏ` by repeated `mulDown`: below `xᵏ` for every `x ≥ B ≥ 0`, the lower end of an
 enclosure `powUp` is the upper end of.
+
+## Inputs
+* `B` – base
+
+## Output
+* the function giving the base raised to a power by repeated downward products
 -/
 
 -- Authors:       Claude Opus 5.5

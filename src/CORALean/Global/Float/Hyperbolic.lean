@@ -8,18 +8,22 @@ public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
 /-!
 # `sinh`, `cosh` and `tanh` rounded in either direction
 
-All three are built on `expUp`/`expDown` and exact halving, and need no division but one.
+All three are built on `expUp`/`expDown` and exact halving, with no division but one.
 
-* `sinh x = (eˣ - e⁻ˣ)/2`: from above the first exponential is rounded up and the second down, so
-  the upward bound needs `expUp` at `x` and the downward one `expUp` at `-x`.
-* `cosh x = (eˣ + e⁻ˣ)/2`: both exponentials are rounded the same way, so the upward bound needs
-  both `x ≤ 2ᵖ/2` and `-x ≤ 2ᵖ/2`, and the downward one needs nothing.
-* `tanh x = 1 - 2/(e²ˣ + 1)`, increasing in `e²ˣ = (eˣ)²`, which is the square of the one
-  exponential. The reciprocal is taken of `(E + 1)/2`, so no `two` is needed. The upward bound
-  needs `x ≤ 2ᵖ/2`; the downward one nothing.
+* `sinh x = (eˣ - e⁻ˣ)/2`: upward needs `expUp` at `x`, downward `expUp` at `-x`.
+* `cosh x = (eˣ + e⁻ˣ)/2`: upward needs `x ≤ 2ᵖ/2` and `-x ≤ 2ᵖ/2`; downward nothing.
+* `tanh x = 1 - 2/(e²ˣ + 1)`, with `e²ˣ = (eˣ)²`; upward needs `x ≤ 2ᵖ/2`, downward nothing.
 
-`expUp`'s range is therefore an explicit hypothesis on `x` wherever it is used, and `expDown` is
-total, as in `Global/Float/Exp`. `p` is the exponential's precision.
+`expUp`'s range is an explicit hypothesis wherever used, `expDown` is total; `p` is the precision.
+
+## Inputs
+* `x` – real argument
+
+## Hypotheses
+* none
+
+## Conclusion
+* the hyperbolic tangent is one minus two over the squared exponential plus one
 -/
 
 -- Authors:       Claude Sonnet 5.5

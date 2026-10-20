@@ -12,6 +12,17 @@ only usable through the points it controls: each member `y` of `S` has `‖y‖�
 Mathlib's `Metric.infDist_le_hausdorffDist_of_mem` says exactly that once the distance is
 finite, which is what boundedness supplies; this reads it at `‖·‖₂` so a caller never unfolds
 `toEuclidean`.
+
+## Inputs
+* `S` – set of vectors
+* `y` – member of the set
+
+## Hypotheses
+* `hS` – the set is bounded
+* `hy` – the vector belongs to the set
+
+## Conclusion
+* the vector's Euclidean norm is at most the set's distance to the origin
 -/
 
 -- Authors:       Claude Opus 5.5

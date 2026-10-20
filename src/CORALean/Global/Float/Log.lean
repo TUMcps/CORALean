@@ -8,21 +8,28 @@ public import Mathlib.Analysis.SpecialFunctions.Log.Basic
 /-!
 # A directed-rounding logarithm
 
-`logDown` and `logUp` enclose `Real.log` at a float and compute no series:
-`log` is inverted rather than evaluated. A candidate `s` bounds `log a` from
-below exactly when `exp s ≤ a`, and `expUp` bounds `exp s` from above, so
-`le (expUp n s) a` *certifies* `s` — `EuclideanNorm`'s pattern with `expUp` in
-place of a squaring. Bisection over `[0, a]` turns the check into a value: each
-step keeps the endpoint its own check certified, so the one returned is.
+`logDown` and `logUp` enclose `Real.log` at a float and compute no series: `log` is inverted
+rather than evaluated. A candidate `s` bounds `log a` from below exactly when `exp s ≤ a`, and
+`expUp` bounds `exp s` from above, so `le (expUp n s) a` *certifies* `s` (`EuclideanNorm`'s pattern
+with `expUp` in place of a squaring); bisection over `[0, a]` turns the check into a value. Hence
+the domain: `Real.log x = 0` for `x ≤ 0` is a junk value neither theorem leans on, `le_logUp` asks
+`0 < toReal a` and `logDown_le` asks `1 ≤ toReal a`. `logDown` inherits `expUp`'s hypothesis
+`toReal a ≤ 2ⁿ / 2`, which `logDown_le_of_le` discharges by comparison; `logUp` goes through
+`expDown`, which carries none.
 
-Hence the domain. `Real.log x = 0` for `x ≤ 0` is a junk value, and neither
-theorem leans on it: `le_logUp` asks `0 < toReal a`, `logDown_le` asks
-`1 ≤ toReal a`, which is what makes `zero` a certified left endpoint. Below one
-a caller reflects, `log a = -log (1 / a)`.
+## Inputs
+* `n` – precision of the exponential
+* `k` – number of bisection steps
+* `a` – float argument
+* `b` – float bound on the exponential's range
 
-`logDown` inherits `expUp`'s hypothesis `toReal a ≤ 2ⁿ / 2` — no candidate ever
-exceeds `a` — and `logDown_le_of_le` discharges it by comparison. `logUp` goes
-through `expDown`, which carries no hypothesis, so neither does it.
+## Hypotheses
+* `hb` – the bound is within the exponential's range
+* `h1` – one is at most the argument by comparison
+* `h` – the argument is at most the bound by comparison
+
+## Conclusion
+* the downward logarithm is at most the logarithm
 -/
 
 -- Authors:       Claude Opus 5

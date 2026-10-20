@@ -15,6 +15,15 @@ with `φ ε_P(Δt)` and a linear `ε_P(Δt) = Δt` meets it with equality, at ev
 errors over any partition of `[0, t_f]` then sum to exactly `t_f`, so the budget
 `ε_{P,max} = t_f / 2` is never met.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a superlinearly decreasing error exists whose partitions never meet the budget
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

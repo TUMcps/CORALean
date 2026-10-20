@@ -8,21 +8,14 @@ public import CORALean.Global.Tensor
 /-!
 # Reporting a result only if it holds no NaN
 
-`reachFloat` and its kin conclude about `some Rs` whatever `Rs` holds. Under hardware `Float`
-the guarantee rests on `Binary64.trustedHardware`, which is false of a NaN, and the argument
-that a run is sound anyway needs one thing from the caller: that no float of the value it
-reports is a NaN (README, "The trust base", item 2). This file lets the library make that
-test itself.
-
-`Floats 𝕋 α` lists the floats a value of type `α` stores; `noNaN` is the test over that
-list through `ToRat.isNaN`; `ifNoNaN` keeps a value that passes and gives `none` for one
-that does not; `checkNoNaN` does so under an `Option`, which is what a `reach…Checked` entry
-point is: the unchecked call, then `checkNoNaN`. The theorems say a `some` out of either is
-the unchecked value, and that no float of it is a NaN, so every guarantee of the unchecked
-entry point holds of a `some` of the checked one, unchanged.
-
-At a format without a NaN `isNaN` is `false`, `noNaN` is `true`, and a checked entry point
-returns what the unchecked one does.
+`reachFloat` and its kin conclude about `some Rs` whatever `Rs` holds. Under hardware `Float` the
+guarantee rests on `Binary64.trustedHardware`, which is false of a NaN, and the argument that a run
+is sound anyway needs one thing from the caller: that no float of the value it reports is a NaN
+(README, "The trust base", item 2). This file lets the library make that test itself. `Floats 𝕋 α`
+lists the floats a value of type `α` stores; `noNaN` is the test over that list through
+`ToRat.isNaN`; `ifNoNaN` keeps a value that passes and gives `none` for one that does not;
+`checkNoNaN` does so under an `Option`, which is what a `reach…Checked` entry point is: the
+unchecked call, then `checkNoNaN`.
 -/
 
 -- Authors:       Claude Sonnet 5.5

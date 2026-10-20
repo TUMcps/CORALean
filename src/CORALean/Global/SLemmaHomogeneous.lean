@@ -10,16 +10,26 @@ public import Mathlib.Analysis.Real.Sqrt
 
 Yakubovich's S-lemma for two quadratic forms `P`, `Q` on a real vector space, under Slater's
 condition `Q z₀ < 0`: `P` is non-negative wherever `Q` is negative iff `P + δ Q ≥ 0` for some
-`δ ≥ 0`. It is the theorem of alternatives the proof of [1, Thm. 13] invokes, there for the
-homogenized trust-region constraint. A form is given by its expansion
-`P (u • x + v • y) = u² P x + v² P y + u v · pP x y`, so no finite dimension is needed.
+`δ ≥ 0` (the theorem of alternatives of [1, Thm. 13]). A form is given by its expansion
+`P (u • x + v • y) = u² P x + v² P y + u v · pP x y`, so no finite dimension is needed. The
+argument is Dines': on the plane spanned by `x` and `y`, a rotation making them `Q`-orthogonal
+leaves `Q x + Q y` and `P x + P y` unchanged, and one of the diagonals `x' ± y'` keeps `Q` at the
+sum and `P` at most at it. So the points dominating some `(P z, Q z)` form a convex cone missing the
+open negative quadrant, and a line through the origin separates them (`geometric_hahn_banach_open`).
 
-The argument is Dines': on the plane spanned by `x` and `y`, a rotation that makes `x` and
-`y` `Q`-orthogonal leaves `Q x + Q y` and `P x + P y` unchanged, and one of the two diagonals
-`x' ± y'` keeps `Q` at the sum and `P` at most at it. So the set of points dominating some
-`(P z, Q z)` is a convex cone; it misses the open negative quadrant, and a line through the
-origin separates the two (`geometric_hahn_banach_open`), its normal `(λ, μ) ≥ 0` with `λ > 0`
-by Slater's condition, and `δ = μ / λ`.
+## Inputs
+* `P` – first quadratic form
+* `Q` – second quadratic form
+* `pP` – polarization of the first form
+* `pQ` – polarization of the second form
+
+## Hypotheses
+* `hP` – the first form obeys its expansion
+* `hQ` – the second form obeys its expansion
+* `h₀` – some point makes the second form negative
+
+## Conclusion
+* the first form is nonnegative where the second is negative exactly when a multiplier corrects it
 
 ## References
 

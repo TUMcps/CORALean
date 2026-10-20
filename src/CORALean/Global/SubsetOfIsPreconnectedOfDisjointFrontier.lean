@@ -13,6 +13,20 @@ used — not closedness, not that it is a reachable set — and preconnected is 
 the frontier, so it splits into its parts in the interior and in the exterior of `R`, both
 open, and the point of `C ∩ R` lies in the first.
 
+## Inputs
+* `C` – connected set
+* `B` – boundary enclosure
+* `R` – set
+
+## Hypotheses
+* `hB` – the enclosure contains the set's frontier
+* `hC` – the connected set is preconnected
+* `hCB` – the connected set misses the enclosure
+* `hCR` – the connected set meets the set
+
+## Conclusion
+* the connected set lies in the set
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets

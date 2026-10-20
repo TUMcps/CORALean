@@ -9,6 +9,16 @@ public import CORALean.Global.Float.Instances.IEEE.Theorems.Basic
 # The greater of two numbers is exact
 
 `le` decides the order exactly, so the argument picked is the maximum.
+
+## Inputs
+* `a` – first value
+* `b` – second value
+
+## Hypotheses
+* none
+
+## Conclusion
+* the maximum denotes the larger of the two real values
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,25 @@ A step of [1, Thm. 4] under `M`-dependence: if `A` is independent of `(B, C)` an
 `μ(a ∩ b ∩ c) = μ(a)μ(b)μ(c)` and `μ(a ∩ c) = μ(a)μ(c)`, and the sets `a ∩ c` are a π-system
 generating `A ⊔ C`. A point of an `M`-dependent sequence is so independent of points more than
 `M` away on both sides, though the definition only separates a past from a future.
+
+## Inputs
+* `Ω` – sample space
+* `mΩ` – its sigma-algebra
+* `μ` – probability measure
+* `mA` – sigma-algebra of the first block
+* `mB` – sigma-algebra of the middle block
+* `mC` – sigma-algebra of the last block
+
+## Hypotheses
+* `hA` – the first block is measurable
+* `hB` – the middle block is measurable
+* `hC` – the last block is measurable
+* `h1` – the first block is independent of the other two
+* `h2` – the first two blocks are independent of the last
+
+## Conclusion
+* the middle block is independent of the two outer ones
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

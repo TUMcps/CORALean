@@ -14,6 +14,16 @@ product topology the interior of the box is the product of the open intervals, s
 the box is on its frontier exactly when some coordinate sits at a bound. No `l ≤ u` is needed:
 a box with `l(i) > u(i)` is empty and so are its faces, and a flat one is its own frontier.
 
+## Inputs
+* `l` – lower corner of the box
+* `u` – upper corner of the box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the frontier of the box is the union of its faces
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets

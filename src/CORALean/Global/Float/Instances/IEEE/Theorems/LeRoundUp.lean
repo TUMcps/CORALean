@@ -12,6 +12,15 @@ public import Mathlib.Analysis.Normed.Ring.Lemmas
 
 `Dyadic.le_roundUp`'s argument, which never used how many bits were dropped: the ceiling of the
 shifted mantissa, shifted back, is at least the mantissa, whatever `gridShift` is.
+
+## Inputs
+* `d` – dyadic with the format's mantissa width
+
+## Hypotheses
+* none
+
+## Conclusion
+* rounding up does not decrease the value
 -/
 
 -- Authors:       Claude Opus 5.5

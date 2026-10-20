@@ -12,6 +12,16 @@ public import CORALean.Global.BilliardReflect
 opposite component along the normal, the same component along the wall, and the same length:
 speed stays constant, as the introduction says of the gas particle.
 
+## Inputs
+* `s` – wall normal
+* `d` – incoming direction
+
+## Hypotheses
+* `hs` – the normal has unit length
+
+## Conclusion
+* the normal component flips, the wall component and the length stay
+
 ## References
 
 * [1] B. T. Polyak and E. N. Gryazina. "Billiard walk - a new sampling algorithm for control

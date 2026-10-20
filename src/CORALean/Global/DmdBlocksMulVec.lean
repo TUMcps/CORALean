@@ -14,6 +14,17 @@ public import Mathlib.Tactic.Ring
 three.
 The source is [1].
 
+## Inputs
+* `M` – stacked matrix `[A c B]`
+* `x` – state
+* `u` – input vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the stacked matrix applied to the regressor equals the state, input and offset terms
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/private/priv_identifyDMD.m`

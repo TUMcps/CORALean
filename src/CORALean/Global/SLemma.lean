@@ -11,16 +11,26 @@ public import Mathlib.Data.Matrix.Mul
 # The S-lemma
 
 Yakubovich's S-lemma for one quadratic constraint: for `f x = xᵀAx + 2aᵀx + α` and
-`g x = xᵀBx + 2bᵀx + β` with `g x₀ < 0` for some `x₀` (Slater's condition),
-`g x ≤ 0 → f x ≥ 0` holds for every `x` iff `f + δ g ≥ 0` everywhere for some `δ ≥ 0`. It is
-the theorem of alternatives the proof of [1, Thm. 13] invokes. Neither `A` nor `B` needs to be
-symmetric here: only `xᵀAx` enters.
+`g x = xᵀBx + 2bᵀx + β` with `g x₀ < 0` for some `x₀` (Slater's condition), `g x ≤ 0 → f x ≥ 0`
+holds for every `x` iff `f + δ g ≥ 0` everywhere for some `δ ≥ 0`. It is the theorem of
+alternatives the proof of [1, Thm. 13] invokes; neither `A` nor `B` needs to be symmetric. The
+proof homogenizes, `P (x, t) = xᵀAx + 2t aᵀx + t²α`, and applies `s_lemma_homogeneous`: its
+hypothesis is `g ≤ 0 → f ≥ 0` at `x / t` for `t ≠ 0`, and at `t = 0` `xᵀBx < 0` and `xᵀAx < 0`
+would make both `f (s x)` and `g (s x)` negative for large `s` (`exists_quad_neg`).
 
-The proof homogenizes, `P (x, t) = xᵀAx + 2t aᵀx + t²α`, and applies
-`s_lemma_homogeneous`. Its hypothesis `Q (x, t) < 0 → P (x, t) ≥ 0` is `g ≤ 0 → f ≥ 0` at
-`x / t` for `t ≠ 0`; at `t = 0`, `xᵀBx < 0` and `xᵀAx < 0` would make both `f (s x)` and
-`g (s x)` negative for large `s` (`exists_quad_neg`). The certificate read at `t = 1` is
-`f + δ g ≥ 0`.
+## Inputs
+* `A` – quadratic matrix of the objective
+* `B` – quadratic matrix of the constraint
+* `a` – linear vector of the objective
+* `b` – linear vector of the constraint
+* `α` – constant of the objective
+* `β` – constant of the constraint
+
+## Hypotheses
+* `h₀` – some point makes the constraint strictly negative
+
+## Conclusion
+* the constraint implies a nonnegative objective exactly when a nonnegative multiplier certifies it
 
 ## References
 

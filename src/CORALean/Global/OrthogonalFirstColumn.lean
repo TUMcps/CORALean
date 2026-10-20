@@ -17,6 +17,16 @@ public import Mathlib.Tactic.Linarith
 Every unit vector `u` is the first column of an orthogonal matrix: the Householder reflection
 `B = I - (2 / wᵀw) w wᵀ` with `w = u - e₀` is symmetric, squares to `I`, and carries `e₀` to `u`
 (`wᵀw = 2 - 2 u₀` and `wᵀe₀ = u₀ - 1`, so `(2 / wᵀw) w₀ = -1`). When `u = e₀` the identity does.
+
+## Inputs
+* `n` – dimension
+* `u` – unit vector
+
+## Hypotheses
+* `hu` – the vector has unit length
+
+## Conclusion
+* an orthogonal matrix has the vector as its first column
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,6 +11,14 @@ The matrix `dmdBlocks` takes apart: `A` in the first `n` columns, `c` in column 
 in the last `m`.
 The source is [1].
 
+## Inputs
+* `A` – state matrix
+* `B` – input matrix
+* `c` – offset vector
+
+## Output
+* the stacked matrix `[A c B]`
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/private/priv_identifyDMD.m`

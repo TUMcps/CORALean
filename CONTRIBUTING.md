@@ -1579,9 +1579,8 @@ neither has to carry a comment every 20 lines.
 
 The module-docstring cap measures the prose only, up to the first `## Inputs`,
 `## Hypotheses`, `## Output`, `## Conclusion` or `## References` heading: a bibliography
-and a list of arguments are not text that grows the way an explanation does. Files whose prose is
-still over the 12 lines are listed in `scripts/prose-cap-allowlist.txt`, one path per line; the
-list only shrinks, and an entry whose file is within the cap is reported as stale.
+and a list of arguments are not text that grows the way an explanation does. The cap has no
+exceptions: the references hold the detail.
 
 ### Inputs and outputs of the main declaration (#251)
 
@@ -1637,9 +1636,8 @@ binders into hypotheses by a text proxy: a name `h…` (unless its type is heade
 has no relation symbol), a depth-0 relation or logic symbol in the type (`= ≠ ≤ ≥ < > ∈ ∉ ⊆ ⊂ ∣ ∀ ∃ ¬ ∧ ∨ ↔`), or an
 `Is…` / `Has…` head or a listed Mathlib predicate (`Convex`, `Continuous`, `Nonempty`, …). A
 `Prop` binder that none of these catches is taken for an input, and a data binder named `h…` whose type has a relation symbol for a
-hypothesis; rename the binder in either case. Files not yet converted are listed in
-`scripts/io-doc-allowlist.txt`; the list only shrinks, an entry whose file now conforms is
-reported as stale, and the files are converted directory by directory, the main types first.
+hypothesis; rename the binder in either case. The rule has no exceptions: every content file with
+a main declaration carries the sections.
 
 ### References
 

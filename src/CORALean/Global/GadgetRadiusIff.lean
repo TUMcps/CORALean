@@ -10,15 +10,32 @@ public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 /-!
 # The reduction's containment radius is one iff the `p ↦ 1` norm is
 
-[1, Lemma 27], at the circumbody `Z(½H)` the proof works with: for `p ∈ (1, ∞]`, `G_A` of
-Eq. 65 with the radii `L, ϱ` of [1, Lemma 26], and `ξ = ‖A‖_{p↦1}`,
-`r(E_p(G_A), Z(½H)) = 1` iff `ξ = 1`, and likewise with `<` and `>`. The printed `Z(H)` is
-twice as large (`gadget_radius_iff_counterexample`). Through the closed-form norm of `Z(½H)`
-(`coeffNorm_half_gadgetH`) the radius is the maximum of `max(‖A α'‖_∞, (‖A α'‖₁ + L|s|)/n)`
-over `‖(α', s)‖_p ≤ 1`, and with `‖A α'‖₁ ≤ ξ‖α'‖_p` the question is whether `a + L s ≤ n` on
-`aᵖ + sᵖ ≤ 1`. Eq. 66 and 67 give `n = ϱ^{1-p}` and `L = ϱ^{1-p} x^{p-1}`, `x = (n - ϱ)/L`,
-and the tangent planes of `t ↦ tᵖ` at `ϱ` and `x` bound `ϱ^{p-1} a + x^{p-1} s` by
-`ϱᵖ + xᵖ = 1`; the point `(ϱ v, x)` attains it. At `p = ∞`, `L = n - 1` and `a, s ≤ 1`.
+[1, Lemma 27], at the circumbody `Z(½H)` the proof works with: for `p ∈ (1, ∞]`, `G_A` of Eq. 65
+with the radii `L, ϱ` of [1, Lemma 26], and `ξ = ‖A‖_{p↦1}`, `r(E_p(G_A), Z(½H)) = 1` iff `ξ = 1`,
+and likewise with `<` and `>`. The printed `Z(H)` is twice as large
+(`gadget_radius_iff_counterexample`). Through the closed-form norm of `Z(½H)`
+(`coeffNorm_half_gadgetH`) the radius is the maximum of `max(‖A α'‖_∞, (‖A α'‖₁ + L|s|)/n)` over
+`‖(α', s)‖_p ≤ 1`, and with `‖A α'‖₁ ≤ ξ‖α'‖_p` the question is whether `a + L s ≤ n` on
+`aᵖ + sᵖ ≤ 1`: Eq. 66 and 67 make the tangent planes of `t ↦ tᵖ` at `ϱ` and `x = (n - ϱ)/L` bound
+it, attained at `(ϱ v, x)`. At `p = ∞`, `L = n - 1` and `a, s ≤ 1`.
+
+## Inputs
+* `p` – norm exponent
+* `L` – first gadget radius
+* `ϱ` – second gadget radius
+* `A` – matrix to be reduced
+* `ξ` – induced norm of the matrix
+* `r` – containment radius
+
+## Hypotheses
+* `hn` – the dimension is at least two
+* `hp` – the exponent exceeds one
+* `hL` – the radii satisfy the gadget equations
+* `hξ` – the induced norm is the greatest 1-norm image over the unit ball
+* `hr` – the radius is the greatest coefficient norm over the unit ball
+
+## Conclusion
+* the radius equals, is below or is above one exactly when the induced norm is
 
 ## References
 

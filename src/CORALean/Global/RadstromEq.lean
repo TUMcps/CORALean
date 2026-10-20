@@ -14,6 +14,23 @@ The source asks `X` bounded and not nonempty, and the lemma is false without it:
 `A + ∅ = B + ∅` holds for every `A` and `B`. Its proof opens on "given any
 `x₁ ∈ X`", which is where the hypothesis is used without being stated.
 
+## Inputs
+* `A` – first convex closed set
+* `B` – second convex closed set
+* `X` – summand
+
+## Hypotheses
+* `hX` – the summand is nonempty
+* `hXb` – the summand is bounded
+* `hAconv` – the first set is convex
+* `hAcl` – the first set is closed
+* `hBconv` – the second set is convex
+* `hBcl` – the second set is closed
+* `h` – the two sums are equal
+
+## Conclusion
+* the two sets are equal
+
 ## References
 
 * [1] H. Rådström. "An embedding theorem for spaces of convex sets".

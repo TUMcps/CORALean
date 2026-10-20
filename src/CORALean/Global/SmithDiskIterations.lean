@@ -13,6 +13,15 @@ algorithm by `(1 - γ / (n 2ⁿ⁻¹))^(m-1)`; for the disk in `ℝ²`, `γ = 1`
 1% of a uniform distribution after 17 iterations": `(3/4)^16 = 0.01002…` is above `1/100`, so the
 bound certifies 1% from `m = 18`, where the exponent is `17`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the disk bound is above one percent at 17 iterations and below it at 18
+
 ## References
 
 * [1] R. L. Smith. "Efficient Monte Carlo Procedures for Generating Points Uniformly Distributed

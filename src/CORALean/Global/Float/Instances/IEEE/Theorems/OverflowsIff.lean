@@ -12,6 +12,15 @@ public import CORALean.Global.Float.Instances.IEEE.Theorems.Basic
 
 Exactly the values past the format's range: `|x| > maxFinite`, compared through
 `Dyadic.le_iff` with no rounding.
+
+## Inputs
+* `x` – format value
+
+## Hypotheses
+* none
+
+## Conclusion
+* the overflow flag is true exactly when the magnitude exceeds the largest finite number
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,22 +10,26 @@ public import Mathlib.Tactic.Positivity
 /-!
 # A directed-rounding exponential
 
-`expDown` and `expUp` enclose `Real.exp` at a float, out of `FloatOps` and
-nothing else — no division, no factorials, no series. Argument reduction removes
-the need for one: `exp x = (exp (x / 2ⁿ))^(2ⁿ)`, `half` is exact, and at
-`y = x / 2ⁿ` a two-term enclosure is good to `O(x²/2ⁿ)` relative. Division is in
-`FloatOps` for `sigmoid` and `tanh`, not for this. Both seeds are
-`Real.add_one_le_exp`, once at `y` and once at `-y`: `1 + y ≤ exp y` everywhere,
-and `exp y ≤ 1/(1-y) ≤ 1 + y + 2y²` for `y ≤ 1/2`.
+`expDown` and `expUp` enclose `Real.exp` at a float, out of `FloatOps` alone: no division, no
+factorials, no series. Argument reduction does it: `exp x = (exp (x / 2ⁿ))^(2ⁿ)`, `half` is exact,
+and a two-term enclosure at `y = x / 2ⁿ` (`1 + y ≤ exp y ≤ 1 + y + 2y²` for `y ≤ 1/2`, from
+`Real.add_one_le_exp` at `y` and `-y`) is good to `O(x²/2ⁿ)` relative. The asymmetry is real:
+`expDown` holds at every argument (`maximum zero` keeps it non-negative), `expUp n a` keeps its
+hypothesis `toReal a ≤ 2ⁿ / 2`. A sound `le` (issue #46) lets a caller *branch* on range, but no
+float bounds `exp` above everywhere (that needs overflow handling, issue #48); `le_expUp_of_le`
+discharges the hypothesis against a bound known in advance.
 
-The asymmetry is real. `expDown` holds at every argument, `maximum zero` keeping
-it non-negative across the squarings; `expUp n a` keeps its hypothesis
-`toReal a ≤ 2ⁿ / 2`. A sound `le` (issue #46) does not remove that: it lets a
-caller *branch* on range, but the out-of-range branch still needs a sound value
-to return, and no float bounds `exp` above at every argument — that needs
-overflow handling (issue #48), not a comparison. What `le` buys is
-`le_expUp_of_le`: discharging the hypothesis against a bound known in advance.
-`(1 + x/2ⁿ)^(2ⁿ)` is `exp (x - x²/2ⁿ⁺¹ + …)`, under `10⁻¹²` relative at `n = 50`.
+## Inputs
+* `n` – number of squarings
+* `a` – float argument
+* `b` – float bound on the range
+
+## Hypotheses
+* `hb` – the bound is within the exponential's range
+* `h` – the comparison says the argument is at most the bound
+
+## Conclusion
+* the exponential of the argument is at most its upward enclosure
 -/
 
 -- Authors:       Claude Opus 5

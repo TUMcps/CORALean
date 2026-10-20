@@ -14,6 +14,17 @@ direction the linear matrix inequalities of the observer papers use, from `[-Q �
 quadratic form it stands for and back. Mathlib has the semidefinite equivalence
 (`Matrix.PosDef.fromBlocks₁₁`); the strict one is the same quadratic-form identity
 (`Matrix.schur_complement_eq₁₁`): the form is a square in `A` plus the form of the complement.
+
+## Inputs
+* `A` – upper left block
+* `B` – off-diagonal block
+* `D` – lower right block
+
+## Hypotheses
+* `hA` – the upper left block is positive definite
+
+## Conclusion
+* the block matrix is positive definite exactly when the Schur complement of the first block is
 -/
 
 -- Authors:       Claude Sonnet 5.5

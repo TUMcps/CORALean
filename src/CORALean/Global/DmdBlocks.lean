@@ -10,6 +10,12 @@ public import CORALean.Global.DmdRegressor
 `A = Alist{i}(:,1:n)`, `c = Alist{i}(:,n+1)`, `B = Alist{i}(:,n+2:end)` of `priv_identifyDMD`.
 The source is [1].
 
+## Inputs
+* `M` – stacked matrix `[A c B]`
+
+## Output
+* the state, input and offset blocks
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/private/priv_identifyDMD.m`

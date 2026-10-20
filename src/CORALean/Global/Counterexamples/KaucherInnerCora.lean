@@ -16,6 +16,15 @@ for `~isProp` writes the whole line), which no bounded reachable set contains. F
 (18) is `[-½, 3/2]`, proper, and CORA's component is `ℝ` against the range `[0, 1]`
 (read from the source, not run).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the whole line CORA stores for a proper component is not in the range
+
 ## References
 
 * [1] E. Goubault and S. Putot. "Forward Inner-Approximated Reachability of Non-Linear

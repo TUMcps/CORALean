@@ -13,6 +13,24 @@ public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 bounded on every compact window `[0, t] ⊆ T` — `‖A‖` times the state's bound plus the input's —
 and so integrable over it. It is what a linear run's integral equation needs of its integrand,
 given only that the input set is bounded, which every representation of a set of points is.
+
+## Inputs
+* `A` – system matrix
+* `T` – set of times
+* `U` – bounded set of input values
+* `x` – state trajectory
+* `u` – input trajectory
+* `t` – end time
+
+## Hypotheses
+* `hx` – the state is continuous on the times
+* `hm` – the field is measurable on the times
+* `hu` – the input values lie in the bounded set
+* `hU` – the input set is bounded
+* `hUIcc` – the window from zero to the end time lies in the times
+
+## Conclusion
+* the field is interval integrable from zero to the end time
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,14 +12,44 @@ public import Mathlib.Analysis.Normed.Module.FiniteDimension
 
 `[1, Thm. 4.2]`: for a compact `K`, a norm `‖·‖` with unit ball `B`, and `N` independent
 `ϑ`-uniform samples `vᵢ ∈ B` with `zᵢ = argmax_{z ∈ B*} zᵀvᵢ`, the value
-`r_S = maxᵢ max_{x ∈ K} zᵢᵀ x` never exceeds `max_K ‖x‖` (Eq. 16), and for every
-`ε ∈ (0, 1]` reaches `(1 - ε) max_K ‖x‖` with probability at least
-`P_S(ε) = 1 - (1 - (ε / (2 + ε))ⁿ + ϑ)^N` (Eq. 17-18). The norm is any function with the
-norm laws, continuous and above a multiple of the ambient norm, so that its ball is a
-compact body; `zᵢ ∈ B*` with `zᵢ vᵢ = ‖vᵢ‖` is what the argmax gives. The proof is the
-paper's: a sample landing in `(1 + ε/2)⁻¹ (χ + (ε/2) B)`, `χ` the direction of the far point,
-forces `zᵢ χ ≥ 1 - ε`, and the samples all miss that set with probability at most
-`(1 - (ε/(2+ε))ⁿ + ϑ)^N`. `P_S(ε) < 0` reads `0`, as `ENNReal.ofReal` does; `ϑ ≥ 0`.
+`r_S = maxᵢ max_{x ∈ K} zᵢᵀ x` never exceeds `max_K ‖x‖` (Eq. 16), and for every `ε ∈ (0, 1]`
+reaches `(1 - ε) max_K ‖x‖` with probability at least `P_S(ε) = 1 - (1 - (ε / (2 + ε))ⁿ + ϑ)^N`
+(Eq. 17-18). The norm is any function with the norm laws, continuous and above a multiple of the
+ambient norm. The proof is the paper's: a sample landing in `(1 + ε/2)⁻¹ (χ + (ε/2) B)`, `χ` the
+direction of the far point, forces `zᵢ χ ≥ 1 - ε`, and the samples all miss that set with
+probability at most `(1 - (ε/(2+ε))ⁿ + ϑ)^N`. `P_S(ε) < 0` reads `0`, as `ENNReal.ofReal` does.
+
+## Inputs
+* `nrm` – the norm function
+* `C` – lower comparison constant
+* `vol` – Haar measure
+* `K` – compact set
+* `M` – its greatest norm
+* `Ω` – sample space
+* `P` – probability measure
+* `N` – number of samples
+* `v` – sample vectors
+* `ϑ` – uniformity parameter
+* `z` – maximizing functionals
+* `rS` – attained value of the samples
+
+## Hypotheses
+* `hadd` – the norm is subadditive
+* `hsmul` – the norm is homogeneous
+* `hcont` – the norm is continuous
+* `hC` – the comparison constant is positive
+* `hlow` – the norm is above the constant times the ambient norm
+* `hM` – the greatest norm is attained on the set
+* `hvm` – every sample is measurable
+* `hind` – the samples are independent
+* `hϑ` – the uniformity parameter is nonnegative
+* `hunif` – every sample is nearly uniform on the unit ball
+* `hzB` – every functional is at most one on the unit ball
+* `hzv` – every functional attains the norm at its sample
+* `hrS` – the value is the greatest functional value over the set
+
+## Conclusion
+* the value never exceeds the greatest norm and reaches a fraction of it with the stated probability
 
 ## References
 

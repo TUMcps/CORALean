@@ -15,6 +15,16 @@ If every row of `1 - M C` has absolute sum below `1`, then `C` is injective: `C 
 `z = (1 - M C) z`, and at the largest coordinate of `z` that bounds `|zᵢ|` by a fraction of
 itself. This is how an approximate inverse `C` of `M`, computed in floating point and trusted for
 nothing, is certified nonsingular by one interval product.
+
+## Inputs
+* `M` – matrix
+* `C` – approximate inverse
+
+## Hypotheses
+* `h` – every row of the residual has absolute sum below one
+
+## Conclusion
+* the approximate inverse is injective
 -/
 
 -- Authors:       Claude Opus 5.5

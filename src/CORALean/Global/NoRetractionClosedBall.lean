@@ -16,16 +16,29 @@ public import Mathlib.MeasureTheory.Integral.Bochner.Set
 /-!
 # No smooth retraction of the closed unit ball onto its sphere
 
-In a finite-dimensional real inner product space, no `C¹` map `r` defined on an open set
-around the closed unit ball `B` has `‖r x‖ = 1` there and fixes the unit sphere. This is the
-analytic half of Brouwer's fixed-point theorem (`exists_fixedPoint_closedBall`).
+In a finite-dimensional real inner product space, no `C¹` map `r` defined on an open set around
+the closed unit ball `B` has `‖r x‖ = 1` there and fixes the unit sphere: the analytic half of
+Brouwer's fixed-point theorem (`exists_fixedPoint_closedBall`). The volume-polynomial argument:
+with `h = r - id`, vanishing on the sphere, the map `x + t h(x)` takes `B` bijectively onto `B`
+for small `t ≥ 0` (a contraction argument), with a positive Jacobian, so
+`∫_B det(1 + t Dh) = vol B`. The integrand is a polynomial in `t` of degree at most the dimension,
+so Lagrange interpolation at that many small nodes gives the same at `t = 1`, where it is
+`∫_B det Dr`. But `‖r‖ = 1` makes `Dr` singular everywhere, so `vol B = 0`.
 
-The volume-polynomial argument. With `h = r - id`, which vanishes on the sphere, the map
-`x + t h(x)` takes `B` bijectively onto `B` for small `t ≥ 0` (a contraction argument for the
-extension of `h` by zero), with a positive Jacobian, so by the change of variables
-`∫_B det(1 + t Dh) = vol B` there. In `t` the integrand is a polynomial of degree at most the
-dimension, so Lagrange interpolation at that many small nodes gives the same at `t = 1`,
-where it is `∫_B det Dr`. But `‖r‖ = 1` makes `Dr` singular everywhere, so `vol B = 0`.
+## Inputs
+* `E` – finite-dimensional real inner product space
+* `U` – open neighbourhood of the ball
+* `r` – candidate retraction
+
+## Hypotheses
+* `hU` – the neighbourhood is open
+* `hBU` – the neighbourhood contains the closed unit ball
+* `hr` – the map is continuously differentiable on the neighbourhood
+* `hnorm` – the map sends the neighbourhood into the unit sphere
+* `hfix` – the map fixes the sphere pointwise
+
+## Conclusion
+* no such smooth retraction exists
 -/
 
 -- Authors:       Claude Opus 5.5

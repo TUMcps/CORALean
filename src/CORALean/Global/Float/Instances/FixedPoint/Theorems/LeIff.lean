@@ -13,6 +13,16 @@ public import Mathlib.Tactic.Positivity
 that back as the same comparison on `toReal`. Shared by `toReal_minimum`,
 `toReal_maximum` and `toReal_le_of_le`, each of which needs both directions or
 only the one `SoundFloatArithmetic` asks for.
+
+## Inputs
+* `a` – left value
+* `b` – right value
+
+## Hypotheses
+* none
+
+## Conclusion
+* the comparison is true exactly when the real order holds
 -/
 
 -- Authors:       Claude Opus 5.5

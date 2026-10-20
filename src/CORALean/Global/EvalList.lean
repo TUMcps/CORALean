@@ -10,6 +10,12 @@ public import Mathlib.Data.Real.Basic
 `evalL [a₀, a₁, …] x = a₀ + a₁ x + …` by Horner's rule. The derivative polynomials of `tan` and
 `tanh` have integer coefficients, so a list of them is a computable stand-in for the real
 polynomial that a Lagrange remainder bound is written with.
+
+## Inputs
+* none
+
+## Output
+* the function evaluating a list of integer coefficients at a real point
 -/
 
 -- Authors:       Claude Opus 5.5

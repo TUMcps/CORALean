@@ -17,6 +17,18 @@ public import Mathlib.Data.Real.Basic
 orthogonal to every `M Φ`. Both closed forms the paper gives, (5) corrected and (6), are shown
 optimal through this.
 
+## Inputs
+* `Xd` – derivative snapshots
+* `Φ` – regressor snapshots
+* `A` – candidate matrix
+* `B` – competing matrix
+
+## Hypotheses
+* `hA` – the candidate solves the normal equations
+
+## Conclusion
+* the candidate's squared error is at most the competing matrix's
+
 ## References
 
 * [1] N. Kochdumper, M. A. Foughali, P. Habermehl and E. Asarin. "Robust Identification of

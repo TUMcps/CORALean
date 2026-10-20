@@ -17,6 +17,12 @@ Without the input, the only solution of `X' = A' X` is the closed loop `[0.5 0; 
 is stable: DMD on the data returns the wrong dynamics (`A' ≠ A`), as the paper says it would
 [1, Sec. III-B]. The rounded singular values and vectors the paper prints are not restated.
 
+## Inputs
+* none
+
+## Output
+* the printed state snapshot matrix of Example 1
+
 ## References
 
 * [1] J. L. Proctor, S. L. Brunton and J. N. Kutz. "Dynamic mode decomposition with control".

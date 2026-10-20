@@ -14,6 +14,15 @@ here, which takes the first candidate whatever its error, as `err < inf` does fo
 finite error.
 The source is [1].
 
+## Inputs
+* `lt` – strict comparison of errors
+* `err` – error of a candidate
+* `cand` – candidate for each rank
+* `rankMax` – largest rank
+
+## Output
+* the first least-error candidate, none when no rank is tried
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/private/priv_identifyDMD.m`

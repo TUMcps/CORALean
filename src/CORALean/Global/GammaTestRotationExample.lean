@@ -16,6 +16,15 @@ paper's `x̃`) and `J = M`. The image of `x` is `x` rotated by `π/4` and inflat
 `y ⊆ range(f, x)` holds if and only if `ε ≤ 2`; yet (2) of [1, Cor. 3.1], `gammaTest`, fails
 for every `ε > 0`, because `M` is not an H-matrix. (2) is that of the corollary, `gammaTest`.
 
+## Inputs
+* `ε` – half width of the target box
+
+## Hypotheses
+* `hε` – the half width is positive
+
+## Conclusion
+* the test fails although the box lies in the range exactly when the half width is at most two
+
 ## References
 
 * [1] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued

@@ -13,6 +13,15 @@ needs (it is an equality). The range of `I ⊗ M` contains one copy of the range
 each of the `k` blocks, independent of one another: `y ↦ ((i, a) ↦ (y i) a)` is an injective
 linear map of `k` copies of the range into it, as each `y i = M u_i` is read off the block
 vector `(i, b) ↦ u_i b`.
+
+## Inputs
+* `M` – matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Kronecker product with the identity has at least the number of blocks times the matrix's rank
 -/
 
 -- Authors:       Claude Sonnet 5.5

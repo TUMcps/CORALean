@@ -10,15 +10,26 @@ public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
 /-!
 # The range of sine and cosine over a float range
 
-`cosRange n l u` and `sinRange n l u` enclose `cos x` and `sin x` for every `x ∈ [l, u]`, at every
-range and precision. CORA's `@interval/cos` locates the extremal points `kπ` by reducing the range
-modulo `2π`, which needs an enclosure of `π` and a rounding to an integer, neither of which
-`FloatOps` has. These certify monotonicity instead: the derivative on `[l, u]` is within `r` of
-its value at a float `m` near the middle, `r ≥ |x - m|`, both functions being 1-Lipschitz. If the
-derivative is certified of one sign the function is monotone there and the range is between its
-values at the ends, each rounded outward. Otherwise an extremum may lie inside, and the range is
-the midpoint form `f(m) ± r`, clamped to `[-1, 1]`: sound, and tight for a narrow range, as at a
-taylm center or a rotation angle.
+`cosRange n l u` and `sinRange n l u` enclose `cos x` and `sin x` for every `x ∈ [l, u]`. CORA's
+`@interval/cos` locates the extremal points `kπ` by reducing the range modulo `2π`, which needs an
+enclosure of `π` and a rounding to an integer, neither of which `FloatOps` has. These certify
+monotonicity instead: the derivative on `[l, u]` is within `r` of its value at a float `m` near the
+middle, `r ≥ |x - m|`. If it is certified of one sign the function is monotone and the range is
+between its values at the ends, rounded outward; otherwise the range is the midpoint form
+`f(m) ± r`, clamped to `[-1, 1]`: sound, and tight for a narrow range.
+
+## Inputs
+* `n` – number of halvings
+* `l` – lower end of the range
+* `u` – upper end of the range
+* `x` – real point
+
+## Hypotheses
+* `h1` – the point is at least the lower end
+* `h2` – the point is at most the upper end
+
+## Conclusion
+* the cosine of the point lies in the computed enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

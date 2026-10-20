@@ -10,6 +10,13 @@ public import CORALean.Global.Float.Instances.Binary64.Operations.StepUp
 The machine's quotient, nudged one step out by `stepUp` — see `AddUp` for why that suffices
 whatever the machine's own rounding did. A nonzero dividend whose quotient rounds to zero has
 underflowed, so that is NaN, as `MulUp`'s underflow is.
+
+## Inputs
+* `a` – dividend
+* `b` – divisor
+
+## Output
+* the machine quotient nudged one step up
 -/
 
 -- Authors:       Claude Sonnet 5

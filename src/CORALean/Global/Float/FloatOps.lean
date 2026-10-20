@@ -7,20 +7,13 @@ public import CORALean.Global.Tensor
 /-!
 # Floating-point operations
 
-The arithmetic a machine float offers, with no claim about what it computes:
-two rounding directions per operation, and the exact operations that need none.
-`SoundFloatArithmetic` is what says the directions are honest.
-
-Kept separate from that class so the layer stays executable — a real
-interpretation is noncomputable, and so is everything reached through a class
-carrying one. Definitions assume this class alone; theorems assume both.
-
-The folds recurse so that proofs about them are one induction, and run as loops
-because `@[csimp]` swaps in a `Fin.foldr` version — which the compiler accepts
-only with the proof of equality beside it, so the trusted base is untouched and
-the theorems still see the recursion. Each swap sits directly under the
-definition it replaces: `@[csimp]` reaches only the call sites compiled after
-it, so a use above the attribute would keep the recursion and its cost.
+The arithmetic a machine float offers, with no claim about what it computes: two rounding directions
+per operation, and the exact operations that need none. `SoundFloatArithmetic` is what says the
+directions are honest. Kept separate from that class so the layer stays executable (a real
+interpretation is noncomputable, and so is everything reached through a class carrying one):
+definitions assume this class alone, theorems both. The folds recurse so that proofs about them are
+one induction, and run as loops because `@[csimp]` swaps in a `Fin.foldr` version, which the
+compiler accepts only with the proof of equality beside it, so the trusted base is untouched.
 -/
 
 -- Authors:       Claude Opus 5

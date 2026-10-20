@@ -7,6 +7,15 @@ public import CORALean.Global.Float.Instances.FixedPoint.FixedPoint
 /-!
 # `FixedPoint.toReal_def`
 
+## Inputs
+* `f` – digit count
+* `x` – fixed-point value
+
+## Hypotheses
+* none
+
+## Conclusion
+* the real value is the mantissa over a power of ten
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,16 @@ public import CORALean.Global.NormTwoSqEqDotProduct
 `[1, App. B]`: for `M Mᵀ = I`, `‖Mᵀ y‖₂ = ‖y‖₂`, since `(Mᵀy)ᵀ(Mᵀy) = yᵀ M Mᵀ y`. It is what
 puts a ball of `ℝⁿ` into the image of a ball of `ℝᵐ` under `M`.
 
+## Inputs
+* `M` – matrix with orthonormal rows
+* `y` – vector
+
+## Hypotheses
+* `hM` – the rows are orthonormal
+
+## Conclusion
+* the transposed image has the vector's Euclidean norm
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

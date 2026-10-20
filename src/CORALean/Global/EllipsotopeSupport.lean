@@ -15,6 +15,17 @@ public import Mathlib.Topology.Algebra.Module.FiniteDimension
 which in finite dimension is compact (`isGreatest_apply_closedBall`). Any norm on the
 coefficients.
 
+## Inputs
+* `G` – generator map
+* `c` – center
+* `z` – direction functional
+
+## Hypotheses
+* none
+
+## Conclusion
+* the functional's maximum is its dual norm on the generators plus its center value
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

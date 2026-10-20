@@ -15,6 +15,19 @@ and `γ ≥ 0`, `I(ϕ) = [cᵀϕ - (√(ϕᵀPϕ) + γ), cᵀϕ + (√(ϕᵀPϕ)
 `P⁻¹`, `|ρᵀϕ| ≤ √(ρᵀP⁻¹ρ) √(ϕᵀPϕ)`, from the form of `P⁻¹` at `ρ - λPϕ` being nonnegative for
 every `λ`; every point is attained at `ϑ = c + (t/√(ϕᵀPϕ)) Pϕ`, `e = tγ`, `|t| ≤ 1`.
 
+## Inputs
+* `c` – center of the parameter ellipsoid
+* `P` – shape matrix of the ellipsoid
+* `γ` – noise bound
+* `ϕ` – regressor
+
+## Hypotheses
+* `hP` – the shape matrix is positive definite
+* `hγ` – the noise bound is nonnegative
+
+## Conclusion
+* the predictor set is the interval around the center's output with the ellipsoid's half width
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

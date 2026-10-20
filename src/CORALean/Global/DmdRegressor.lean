@@ -13,6 +13,13 @@ One column of CORA's `X1 = [X; ones; U]` in `aux_dynamicModeDecomposition`: the 
 constant `1` that carries the offset `c`, and the input.
 The source is [1].
 
+## Inputs
+* `x` – state
+* `u` – input vector
+
+## Output
+* the state stacked with the constant one and the input
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/private/priv_identifyDMD.m`

@@ -7,18 +7,14 @@ public import CORALean.Global.Float.Instances.Dyadic.Dyadic
 /-!
 # FLINT-rounded dyadics: the representation
 
-`Flint p` is `mantissa * 2 ^ exponent`, the same pair `Dyadic p` holds and read
-the same way: `toReal` is `Dyadic.toReal` of that pair, an ordinary definition,
-so everything exact about a `Flint` value is proved exactly as it is for
-`Dyadic`. What differs is who rounds. The six directed operations are handed to
-FLINT's `arf_add`/`arf_mul`/`arf_div` at `p` bits, compiled C that Lean cannot
-see into, so their directions are assumed once, in `Definitions/Axioms`, not
-proved.
-
-The exponent is unbounded on both sides of the boundary, FLINT's being an
-`fmpz`, so nothing overflows or underflows, and the one assumption needs no
-range side condition, unlike the hardware's. Opt-in: nothing in the default
-build links FLINT (README, "FLINT backend (optional)").
+`Flint p` is `mantissa * 2 ^ exponent`, the same pair `Dyadic p` holds and read the same way:
+`toReal` is `Dyadic.toReal` of that pair, so everything exact about a `Flint` value is proved as for
+`Dyadic`. What differs is who rounds. The six directed operations are handed to FLINT's
+`arf_add`/`arf_mul`/`arf_div` at `p` bits, compiled C that Lean cannot see into, so their directions
+are assumed once, in `Definitions/Axioms`. The exponent is unbounded on both sides, FLINT's being an
+`fmpz`, so nothing overflows or underflows and the assumption needs no range side condition, unlike
+the hardware's. Opt-in: nothing in the default build links FLINT (README, "FLINT backend
+(optional)").
 -/
 
 -- Authors:       Claude Opus 5.5

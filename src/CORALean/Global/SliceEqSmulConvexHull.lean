@@ -18,6 +18,20 @@ A point of the slice is `∑ μᵢ vᵢ` with `μᵢ ∈ [0, 1]` and `α ∑ μ�
 by `α / β` gives convex weights. The printed proof divides by `β`, and at `β = 0` the slice
 is `{0}` for a reason of its own: every `μᵢ` is `0`. The lift is `Vec ℝ n × ℝ`.
 
+## Inputs
+* `v` – generator vectors
+* `α` – lift height
+* `β` – slice height
+
+## Hypotheses
+* `hN` – there is at least one generator
+* `hα` – the lift height is positive
+* `hβ0` – the slice height is nonnegative
+* `hβα` – the slice height is at most the lift height
+
+## Conclusion
+* the slice at that height is the scaled convex hull of the generators
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

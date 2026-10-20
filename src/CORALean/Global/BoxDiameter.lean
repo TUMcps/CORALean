@@ -8,21 +8,19 @@ public import Mathlib.Analysis.Normed.Ring.Lemmas
 /-!
 # `d(box(S))`, the width of the tightest box over a set
 
-The tightest axis-aligned box over `S` has `[inf_i S, sup_i S]` for its `i`-th
-interval, so its diameter — the vector of widths — is `sup_i S - inf_i S` and
-the box itself never has to be named. That is what `boxDiameter` is, and it is
-the one notion every error measure stated as `d(box(·))` reads.
+`boxDiameter S` is `sup_i S - inf_i S` coordinatewise, the diameter of the tightest axis-aligned
+box over `S`, so the box never has to be named; every error measure stated as `d(box(·))` reads
+it. On a bare `Set` rather than `Interval`, since the sets it is asked about (a Minkowski
+difference, an infinite Minkowski sum) are not representations; where the set is one, `interval`
+boxes it first and the two agree. Mathlib's `sSup` and `sInf` are `0` off their domain, so an
+unbounded or empty `S` gets a junk value: boundedness is a hypothesis on the theorems that need it
+(`boxDiameter_mono`), not a field.
 
-Deliberately on a bare `Set` rather than on `Interval`: the sets it is asked
-about are a Minkowski difference and an infinite Minkowski sum, neither of which
-is a representation, so `2 • Interval.radius` would have nothing to apply to.
-Where the set *is* a representation, `interval` boxes it first and the two
-agree.
+## Inputs
+* `S` – set of vectors
 
-Mathlib's `sSup` and `sInf` are `0` off their domain, so an unbounded or empty
-`S` gets a junk value rather than an error. Boundedness is therefore a
-hypothesis on the theorems that need it, as in `boxDiameter_mono`, and not a
-field on the definition.
+## Output
+* the vector of coordinate widths of the tightest box over the set
 -/
 
 -- Authors:       Claude Opus 5

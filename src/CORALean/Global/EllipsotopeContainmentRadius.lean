@@ -9,15 +9,25 @@ public import Mathlib.Topology.Algebra.Module.FiniteDimension
 /-!
 # The containment radius of two ellipsotopes
 
-[1, Thm. 12]: for `Ê = E_p(G, c)` and `E = E_q(H, d)`,
-`r = max_{‖α‖_p ≤ 1} min_{Hβ = Gα + c - d} ‖β‖_q` (Eq. 15) is the smallest scaling with
-`Ê ⊆ r (E - d) + d`, and `r ≤ 1` iff `Ê ⊆ E`; where `rank [G, c - d, H] ≠ rank H` (Eq. 16),
-that is `Im [G, c - d] ⊄ Im H`, no scaling works and `r = ∞` by convention. Any norms on
-either coefficient space, `p`- and `q`-norms among them. A degenerate `E` needs no projection
-(Eq. 19): where `Im [G, c - d] ⊆ Im H` the inner minimum is over a non-empty fibre, and
-`coeffNorm` through `H` onto its range is Lipschitz, so the maximum is attained. The scalings
-range over `ρ ≥ 0`, as in the proof: `E - d` is symmetric, so a negative `ρ` reaches the same
-set as `|ρ|`, and among all reals there is no least.
+[1, Thm. 12]: for `Ê = E_p(G, c)` and `E = E_q(H, d)`, `r = max_{‖α‖_p ≤ 1} min_{Hβ = Gα + c - d}
+‖β‖_q` (Eq. 15) is the smallest scaling with `Ê ⊆ r (E - d) + d`, and `r ≤ 1` iff `Ê ⊆ E`; where
+`rank [G, c - d, H] ≠ rank H` (Eq. 16) no scaling works and `r = ∞` by convention. Any norms on
+either coefficient space. A degenerate `E` needs no projection (Eq. 19): where
+`Im [G, c - d] ⊆ Im H` the inner minimum is over a non-empty fibre, and `coeffNorm` through `H` onto
+its range is Lipschitz, so the maximum is attained. The scalings range over `ρ ≥ 0`, as in the
+proof: `E - d` is symmetric, so a negative `ρ` reaches the same set as `|ρ|`.
+
+## Inputs
+* `G` – generator map of the inner ellipsotope
+* `c` – center of the inner ellipsotope
+* `H` – generator map of the outer ellipsotope
+* `d` – center of the outer ellipsotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the radius is the smallest enclosing scaling, at most one exactly when contained
 
 ## References
 

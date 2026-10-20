@@ -7,6 +7,15 @@ public import CORALean.Global.Float.Instances.Dyadic.Dyadic
 /-!
 # `Dyadic.toReal_def`
 
+## Inputs
+* `p` – mantissa width in bits
+* `d` – dyadic
+
+## Hypotheses
+* none
+
+## Conclusion
+* the real value is the mantissa times two to the exponent
 -/
 
 -- Authors:       Claude Opus 5

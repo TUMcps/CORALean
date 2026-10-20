@@ -13,6 +13,13 @@ and minus magnitudes off it; [1, Def. 4.8]: `A` is an H-matrix if `⟨A⟩ u > 0
 `u > 0`. Both are written in the mignitudes `mig` and magnitudes `mag` alone, which is all of
 the interval matrix the definition reads.
 
+## Inputs
+* `mig` – matrix of mignitudes
+* `mag` – matrix of magnitudes
+
+## Output
+* the proposition that some positive vector makes the comparison matrix positive
+
 ## References
 
 * [1] O. Mullier, É. Goubault, M. Kieffer and S. Putot. "General Inner Approximation of

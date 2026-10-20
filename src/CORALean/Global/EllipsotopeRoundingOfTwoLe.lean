@@ -16,6 +16,17 @@ the dimension `m` of the coefficient space `B_q` lives in, not the printed `n`, 
 dimension of the image (`ellipsotope_rounding_counterexample`). A point `y` of `B₂` is `M (Mᵀ y)`
 with `‖Mᵀ y‖_q ≤ ‖Mᵀ y‖₂ = ‖y‖₂`, and `‖M β‖₂ ≤ ‖β‖₂ ≤ m^{1/2-1/q} ‖β‖_q`.
 
+## Inputs
+* `q` – exponent of the coefficient norm
+* `M` – matrix with orthonormal rows
+
+## Hypotheses
+* `hq` – the exponent is at least two
+* `hM` – the rows are orthonormal
+
+## Conclusion
+* the Euclidean ball lies in the ellipsotope, which lies in the dimension-scaled ball
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

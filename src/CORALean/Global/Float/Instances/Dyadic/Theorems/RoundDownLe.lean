@@ -12,6 +12,15 @@ public import Mathlib.Analysis.Normed.Ring.Lemmas
 
 `Int.ediv_mul_le`: floor division never overshoots. `roundDown` is exactly that
 fact read back through `toReal_shift`.
+
+## Inputs
+* `d` – dyadic
+
+## Hypotheses
+* none
+
+## Conclusion
+* rounding down does not increase the value
 -/
 
 -- Authors:       Claude Opus 5

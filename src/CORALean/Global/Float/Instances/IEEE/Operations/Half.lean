@@ -10,6 +10,12 @@ public import CORALean.Global.Float.Instances.IEEE.IEEE
 Exact, as the class demands, because only the exponent moves. Below the normal range that is a
 step finer than the format has: the halved smallest subnormal is no number of `fmt`. The result
 is kept exactly, and the next rounded operation rounds it back onto the grid.
+
+## Inputs
+* `x` – format value
+
+## Output
+* the exact half, kept off the grid where it is subnormal
 -/
 
 -- Authors:       Claude Opus 5.5

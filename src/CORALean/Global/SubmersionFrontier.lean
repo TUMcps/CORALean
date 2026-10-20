@@ -14,6 +14,20 @@ one: `HasStrictFDerivAt.map_nhds_eq_of_surj` is the local surjectivity theorem b
 Stated for any `g` with a strict, surjective derivative at the interior points of `E`, which
 is all the proof uses; (3) gives it at every point of `D ⊇ E`.
 
+## Inputs
+* `g` – map
+* `g'` – its derivative
+* `K` – compact domain
+
+## Hypotheses
+* `hK` – the domain is compact
+* `hg` – the derivative is strict at interior points
+* `hsurj` – the derivative is onto at interior points
+* `hcont` – the map is continuous on the domain
+
+## Conclusion
+* the frontier of the image lies in the image of the frontier
+
 ## References
 
 * [1] O. Mullier, É. Goubault, M. Kieffer and S. Putot. "General Inner Approximation of

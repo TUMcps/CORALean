@@ -10,6 +10,13 @@ public import Mathlib.LinearAlgebra.Pi
 
 `Fin.append` of a pair of real vectors as a linear map, the sum of the two block paddings: what a
 Cartesian product of generator representations is read through.
+
+## Inputs
+* `n₁` – dimension of the first vector
+* `n₂` – dimension of the second vector
+
+## Output
+* the linear map appending a pair into one vector
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -9,6 +9,13 @@ public import CORALean.Global.Float.Instances.IEEE.Operations.RoundUp
 # Multiplication, rounded up
 
 `Dyadic.exactMul`, which loses nothing, then `roundUp` onto the grid of `fmt`.
+
+## Inputs
+* `a` – first factor
+* `b` – second factor
+
+## Output
+* the exact product rounded up onto the format's grid
 -/
 
 -- Authors:       Claude Opus 5.5

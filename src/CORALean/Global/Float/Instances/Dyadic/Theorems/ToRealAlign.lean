@@ -13,6 +13,16 @@ A dyadic read at any exponent at or below its own, moved there by
 `two_zpow_align`. Needed to compare two dyadics: `Order`'s `le` reads both at
 the smaller of their two exponents, which this lets it do without changing
 either's value.
+
+## Inputs
+* `d` – dyadic
+* `e` – smaller exponent
+
+## Hypotheses
+* `h` – the exponent is at most the dyadic's own
+
+## Conclusion
+* the dyadic's value is its mantissa shifted to that exponent times the power of two
 -/
 
 -- Authors:       Claude Opus 5

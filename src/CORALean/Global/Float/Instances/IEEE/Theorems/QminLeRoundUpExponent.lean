@@ -9,6 +9,15 @@ public import CORALean.Global.Float.Instances.IEEE.Operations.RoundUp
 
 What separates `roundUp` from `Dyadic.roundUp`: its result is a multiple of `2 ^ qmin`, the
 step of the subnormal grid, whatever it rounded, as a number of the format has to be.
+
+## Inputs
+* `d` – dyadic with the format's mantissa width
+
+## Hypotheses
+* none
+
+## Conclusion
+* the rounded-up exponent is at least the smallest subnormal exponent
 -/
 
 -- Authors:       Claude Opus 5.5

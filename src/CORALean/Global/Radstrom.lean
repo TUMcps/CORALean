@@ -11,22 +11,29 @@ public import Mathlib.Tactic.Positivity
 /-!
 # Rådström's cancellation law
 
-`X + E ⊆ Y + E` gives `X ⊆ Y` once `E` is nonempty and bounded and `Y` is
-convex and closed. It is the one tool an *inner* approximation needs: an outer
-approximation is a sum, and cancellation is what takes the error term back off
-again.
+`X + E ⊆ Y + E` gives `X ⊆ Y` once `E` is nonempty and bounded and `Y` is convex and closed. It is
+the one tool an *inner* approximation needs: an outer approximation is a sum, and cancellation
+takes the error term back off. Here rather than under `ContSet/`, because nothing in it mentions a
+representation or a Minkowski difference, on a par with `Global/EuclideanNorm.lean`. Mathlib has no
+form of this result: iterate `a + eₖ = yₖ + eₖ₊₁`, telescope to `n • a + e₀ = ∑ yₖ + eₙ`, and read
+`a` as the average of `y₁ … yₙ`, in `Y` by convexity, displaced by `(eₙ - e₀)/n`, which
+boundedness sends to `0`; closedness collects the limit. `E` nonempty is needed and not printed,
+since `X + ∅ ⊆ Y + ∅` always holds.
 
-Here rather than under `ContSet/`, because nothing in it mentions a
-representation, a `construct` or even a Minkowski difference — it is a statement
-about a normed space, on a par with `Global/EuclideanNorm.lean`.
+## Inputs
+* `X` – set to be cancelled from
+* `Y` – convex closed set
+* `E` – summand
 
-Mathlib has no form of this result, so the proof is written out: iterate
-`a + eₖ = yₖ + eₖ₊₁`, telescope to `n • a + e₀ = ∑ yₖ + eₙ`, and read `a` as the
-average of `y₁ … yₙ` — in `Y` by convexity — displaced by `(eₙ - e₀)/n`, which
-boundedness sends to `0`. Closedness collects the limit.
+## Hypotheses
+* `hE` – the summand is nonempty
+* `hEb` – the summand is bounded
+* `hYconv` – the second set is convex
+* `hYcl` – the second set is closed
+* `h` – the first sum lies in the second sum
 
-Boundedness and not compactness of `E`: only `‖eₙ - e₀‖ ≤ 2M` is ever used.
-`E` nonempty is needed and not printed, since `X + ∅ ⊆ Y + ∅` always holds.
+## Conclusion
+* the first set lies in the second set
 
 ## References
 

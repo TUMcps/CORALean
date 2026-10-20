@@ -13,6 +13,16 @@ of the ball, which has `2⁻ᵐ` of its volume under every Haar measure. The `2�
 carried onto one another by sign reflections, which have determinant `±1`, and cover the ball
 up to the coordinate hyperplanes, which are null.
 
+## Inputs
+* `vol` – Haar measure
+* `s` – vector of signs
+
+## Hypotheses
+* `hs` – every sign is plus or minus one
+
+## Conclusion
+* the orthant of the unit ball has a power-of-two fraction of its volume
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

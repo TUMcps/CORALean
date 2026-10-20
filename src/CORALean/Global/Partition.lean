@@ -9,16 +9,12 @@ public import Mathlib.Data.Matrix.Mul
 /-!
 # Splitting an index type into parts
 
-`Split α into β` names every index of `α` exactly once as `P.on k l`, where `k`
-picks a part and `l` an index within it. Two parts are the common case and read
-`Split α into βₗ ⊕ βᵣ`, with `P.left` and `P.right`.
-
-`sum_split` is why the type exists: a sum over `α` splits along the parts with
-no side condition, since the equivalence already rules out overlap.
-
-The type is `Partition`; `Split` is only its notation, since naming the two
-alike would make `Partition` a keyword. `ofPred` builds one out of a decidable
-predicate, for a caller that only has one of those, such as a merge bucket.
+`Split α into β` names every index of `α` exactly once as `P.on k l`, where `k` picks a part and `l`
+an index within it. Two parts are the common case and read `Split α into βₗ ⊕ βᵣ`, with `P.left` and
+`P.right`. `sum_split` is why the type exists: a sum over `α` splits along the parts with no side
+condition, since the equivalence already rules out overlap. The type is `Partition`; `Split` is only
+its notation, since naming the two alike would make `Partition` a keyword. `ofPred` builds one out
+of a decidable predicate, for a caller that only has one of those, such as a merge bucket.
 -/
 
 -- Authors:       Claude Opus 5

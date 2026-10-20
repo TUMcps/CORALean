@@ -14,6 +14,16 @@ AM-GM on the eigenvalues: `det S = ∏ λᵢ ≤ (∑ λᵢ / n)ⁿ = (tr S / n)
 what makes `E(nGGᵀ, z̄)` the ellipsoid of least volume around a parallelotope in [1, Sec. III-A
 (Remark a)], and `eq_smul_one_of_det_eq_trace_div_pow` is the equality case.
 
+## Inputs
+* `S` – matrix
+
+## Hypotheses
+* `hS` – the matrix is positive semidefinite
+* `hn` – the dimension is positive
+
+## Conclusion
+* the determinant is at most the power of the mean eigenvalue given by the trace over the dimension
+
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean

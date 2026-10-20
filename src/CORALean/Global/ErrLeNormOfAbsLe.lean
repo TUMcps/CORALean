@@ -12,6 +12,16 @@ If every point of `S` is bounded in magnitude by `m`, coordinate by coordinate, 
 magnitudes `m` are what a float zonotope's `absBoundError` holds, and `‖m‖₂` is what
 `normUp` bounds from above. `err_le_of_forall_norm₂_le` loses a factor `√n` against this one,
 reading each coordinate's reach as the whole vector's.
+
+## Inputs
+* `S` – set of vectors
+* `m` – vector of coordinatewise bounds
+
+## Hypotheses
+* `h` – every coordinate of every point is bounded in magnitude by the vector
+
+## Conclusion
+* the radius of the set is at most the Euclidean norm of the bound vector
 -/
 
 -- Authors:       Claude Sonnet 5.5

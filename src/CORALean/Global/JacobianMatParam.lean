@@ -11,6 +11,18 @@ public import Mathlib.Analysis.Calculus.FDeriv.Mul
 
 `z ↦ g₀(z) + ∑ᵢ pᵢ gᵢ(z)` has the Jacobian `J g₀ + ∑ᵢ pᵢ J gᵢ` wherever the `gᵢ` are
 differentiable: the Jacobian is linear in the map. `jacobianMat_sub` is the difference case.
+
+## Inputs
+* `g` – first map
+* `h` – second map
+* `x` – point
+
+## Hypotheses
+* `hg` – the first map is differentiable at the point
+* `hh` – the second map is differentiable at the point
+
+## Conclusion
+* the Jacobian of a difference is the difference of the Jacobians
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -7,20 +7,14 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 /-!
 # Dyadic numbers at a fixed precision: the representation
 
-`Dyadic p` is `mantissa * 2 ^ exponent` with the mantissa held to `p` bits. The
-bound is what makes it a float model: unbounded dyadics are closed under `+`
-and `*`, so rounding them would do nothing.
-
-`p` is a phantom parameter rather than a field bound — the class constrains only
-`toReal` of a result, so values off the grid are representable but never produced.
-The exponent is unbounded, so nothing overflows, which is what
-`SoundFloatArithmetic` assumes and why this instance needs no axioms.
-
-`toReal` takes its power of two through ℚ, and that detour is what makes the
-scalar *runnable*: a negative exponent is an inversion, ℝ's is noncomputable and
-ℚ's is not, and a class field of type `𝕋 → ℝ` is data the compiler cannot erase,
-so a noncomputable `toReal` would make every generic algorithm called at this
-type noncomputable too. `toReal_def` is the number it denotes.
+`Dyadic p` is `mantissa * 2 ^ exponent` with the mantissa held to `p` bits. `p` is a phantom
+parameter rather than a field bound, since the class constrains only `toReal` of a result, so values
+off the grid are representable but never produced. The exponent is unbounded, so nothing overflows,
+which is what `SoundFloatArithmetic` assumes and why this instance needs no axioms. `toReal` takes
+its power of two through ℚ, which makes the scalar *runnable*: ℝ's inversion is noncomputable and
+ℚ's is not, and a class field of type `𝕋 → ℝ` is data the compiler cannot erase, so a noncomputable
+`toReal` would make every generic algorithm at this type noncomputable. `toReal_def` is the number
+it denotes.
 -/
 
 -- Authors:       Claude Opus 5

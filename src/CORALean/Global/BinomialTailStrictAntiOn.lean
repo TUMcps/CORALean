@@ -15,6 +15,17 @@ of at most `k` successes in `m` independent trials of probability `ζ`, is stric
 `ζ ∈ [0, 1]` when `k < m`, "as it can be checked by differentiation". The sum is that of the
 Bernstein polynomials `b_{m,i}`, `i ≤ k`, whose derivatives telescope to `-m b_{m-1,k}`, negative
 on `(0, 1)`.
+
+## Inputs
+* `m` – number of trials
+* `k` – largest number of successes counted
+
+## Hypotheses
+* `hk` – fewer successes counted than trials
+
+## Conclusion
+* the binomial tail is strictly decreasing in the success probability on the unit interval
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

@@ -10,17 +10,25 @@ public import Mathlib.Tactic.FieldSimp
 /-!
 # A square root rounded in either direction
 
-`EuclideanNorm` can only *check* a root a caller proposes. This file computes one, from
-`FloatOps` alone: Newton's iteration `s ↦ (s + a/s)/2`, started above the root, with `p` steps.
+`EuclideanNorm` can only *check* a root a caller proposes. This file computes one from `FloatOps`
+alone: Newton's iteration `s ↦ (s + a/s)/2`, started above the root, with `p` steps. Soundness
+does not depend on convergence: every iterate is an upper bound of `√a`, by induction (the start
+`(a + 1)/2` is one by AM-GM, and so is a Newton step from a positive `s`, with `divUp` and `addUp`
+rounding up). The step is only taken from an `s` that `ltStrict` proves positive, so
+`div_le_divUp`'s one partial guarantee is met, and the `minimum` with the previous iterate keeps
+the sequence from growing. `sqrtDown a = a / sqrtUp a`, below `√a` because the divisor is above it;
+`zero` where the divisor is not proven positive.
 
-Soundness does not depend on convergence. Every iterate is an upper bound of `√a`, by induction:
-the start `(a + 1)/2` is one (AM-GM), and a Newton step from a positive `s` is one (AM-GM again,
-with `divUp` and `addUp` rounding up). The step is only taken from an `s` that `ltStrict` proves
-positive, so `div_le_divUp`'s one partial guarantee is met, and the `minimum` with the previous
-iterate keeps the sequence from growing. More fuel buys accuracy only, as `n` does for `expUp`.
+## Inputs
+* `a` – radicand
+* `s` – current iterate
 
-`sqrtDown a = a / sqrtUp a`, below `√a` because the divisor is above it; `zero` where the divisor
-is not proven positive. The argument is floored at zero first, so there is no side condition.
+## Hypotheses
+* `ha` – the radicand is nonnegative
+* `hs` – the iterate is positive
+
+## Conclusion
+* the root of the radicand is at most the Newton step
 -/
 
 -- Authors:       Claude Sonnet 5.5

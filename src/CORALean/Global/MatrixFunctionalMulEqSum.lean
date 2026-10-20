@@ -9,6 +9,17 @@ public import CORALean.Global.Basic
 # A linear functional of a product `H X`
 
 After `X ↦ H X`, a functional `f` is `X ↦ Σ (Hᵀ Z)_{ij} X_{ij}` with `Z_{kj} = f(E_{kj})`.
+
+## Inputs
+* `f` – linear functional on matrices
+* `H` – left factor
+* `X` – right factor
+
+## Hypotheses
+* none
+
+## Conclusion
+* the functional of the product is an entrywise sum against the transposed left factor
 -/
 
 -- Authors:       Claude Opus 5.5

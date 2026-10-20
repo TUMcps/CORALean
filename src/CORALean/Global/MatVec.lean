@@ -16,6 +16,12 @@ The reshape `reshape(M, [], 1)` and its inverse `reshape(v, [m, n])`, MATLAB's c
 which the matrix-set methods (`zonotope(matZ)`, `polytope(matP)`) use to reuse the vector classes:
 entry `(i, j)` of an `m × n` matrix is entry `i + m * j` of the vector. Linear, so it carries sets
 across exactly.
+
+## Inputs
+* none
+
+## Output
+* the column-major vectorisation of matrices as a linear equivalence
 -/
 
 -- Authors:       Claude Sonnet 5.5

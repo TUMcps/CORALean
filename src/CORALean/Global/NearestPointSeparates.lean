@@ -16,6 +16,19 @@ norm, at distance `d > 0`, and `K` lies on one side of the hyperplane through `p
 `lᵀ a - ρ(l | K)` over unit `l`, attained at `l = (a - p)/d`, which is how [1, Sec. II (distances)]
 writes the distances to an ellipsoid. Hilbert's projection theorem, carried through `toEuclidean`.
 
+## Inputs
+* `K` – set of vectors
+* `a` – point outside the set
+
+## Hypotheses
+* `hK` – the set is closed
+* `hc` – the set is convex
+* `hne` – the set is nonempty
+* `ha` – the point is not in the set
+
+## Conclusion
+* a nearest point exists and the set lies on one side of the hyperplane through it
+
 ## References
 
 * [1] A. A. Kurzhanskiy and P. Varaiya. "Ellipsoidal Toolbox (ET)". In Proc. of the 45th

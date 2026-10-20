@@ -13,6 +13,18 @@ public import CORALean.Global.IsPinvOfSurjective
 `ellipsoid_containmentRadius_sdp` applies at it, and `Θ = H⁺G`, `θ = H⁺(c - d)` are written
 out. `S = [r², ∞)` with `r` Eq. 15 at `p = q = 2`.
 
+## Inputs
+* `G` – generator matrix of the inner ellipsoid
+* `c` – center of the inner ellipsoid
+* `H` – generator matrix of the outer ellipsoid
+* `d` – center of the outer ellipsoid
+
+## Hypotheses
+* `hH` – the outer generator matrix is onto
+
+## Conclusion
+* the squared radius is the program's least feasible value at the explicit pseudo-inverse
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

@@ -10,6 +10,17 @@ public import Mathlib.Topology.Algebra.Module.FiniteDimension
 # The Jacobian of an affine map
 
 `jacobianMat` of `z ↦ c + M z` is `M` at every point.
+
+## Inputs
+* `c` – constant offset
+* `M` – matrix
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Jacobian of the affine map is the matrix
 -/
 
 -- Authors:       Claude Sonnet 5.5

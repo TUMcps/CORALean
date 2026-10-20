@@ -11,6 +11,13 @@ public import CORALean.Global.Float.Instances.Dyadic.Operations.Basic
 Exact, and needing no rounding: aligned to the common exponent, the order on dyadics is the order
 on their mantissas. When the exponents are so far apart that the aligned mantissa dwarfs the
 other one, the sign alone decides (`leShl`, `leShr`), and the alignment is not formed.
+
+## Inputs
+* `a` – left dyadic
+* `b` – right dyadic
+
+## Output
+* whether the left dyadic is at most the right, decided exactly
 -/
 
 -- Authors:       Claude Sonnet 5

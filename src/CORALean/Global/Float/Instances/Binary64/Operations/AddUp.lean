@@ -12,6 +12,13 @@ machine's sum followed by one step outward, `stepUp`: `nextUp` of a round-to-nea
 strictly above the exact value, because the exact value is never as far as a whole step from the
 nearest float to it. A sum that rounds to zero is exactly zero, subnormals being what make
 addition exact near zero, so a zero is kept; a sum outside the normal range is NaN.
+
+## Inputs
+* `a` – first summand
+* `b` – second summand
+
+## Output
+* the machine sum nudged one step up
 -/
 
 -- Authors:       Claude Sonnet 5

@@ -14,17 +14,41 @@ public import Mathlib.Order.Interval.Set.Pi
 /-!
 # The inclusion test for an inner box of the first `r` components
 
-[1, Cor. 3.1]: `f₁:ᵣ` on `u = (u₁, u₂) ∈ IRʳ × IRᵐ⁻ʳ`, `J = (J₁ J₂)` enclosing its Jacobian
-on `u`, `0 ∉ (J₁)ᵢᵢ`, and `f₁:ᵣ(ũ) ∈ y₁`: if
-`H = ũ₁ + Diag⁻¹(J₁)(y₁ - f₁:ᵣ(ũ) - OffDiag(J₁)(u₁ - ũ₁) - J₂(u₂ - ũ₂)) ⊆ int(u₁)` (5),
-then `y₁ ⊆ f₁:ᵣ(u)`. (5) is read over real matrices `J₁, J₂` in the interval ones and points
-of `y₁` and `u`, which any interval evaluation of `H` encloses.
+[1, Cor. 3.1]: `f₁:ᵣ` on `u = (u₁, u₂) ∈ IRʳ × IRᵐ⁻ʳ`, `J = (J₁ J₂)` enclosing its Jacobian on `u`,
+`0 ∉ (J₁)ᵢᵢ`, and `f₁:ᵣ(ũ) ∈ y₁`: if
+`H = ũ₁ + Diag⁻¹(J₁)(y₁ - f₁:ᵣ(ũ) - OffDiag(J₁)(u₁ - ũ₁) - J₂(u₂ - ũ₂)) ⊆ int(u₁)` (5), then
+`y₁ ⊆ f₁:ᵣ(u)`. The printed proof checks (i) of [1, Thm. 3.1] on all of `∂u`, which (5) does not
+give (`innerTest_step_counterexample`). The statement holds: on the slice `v ↦ f₁:ᵣ(v, ũ₂)` the
+mean-value argument reaches every point of `∂u₁`, and Thm. 3.1 applies there. (3) is the
+hypothesis `det J₁(x) ≠ 0`.
 
-The printed proof checks (i) of [1, Thm. 3.1] on all of `∂u`, which (5) does not give: on a
-face where `u₂` sits at a bound and `u₁` is interior there is no contradiction
-(`innerTest_step_counterexample`). The statement holds: on the slice `v ↦ f₁:ᵣ(v, ũ₂)` the
-mean-value argument reaches every point of `∂u₁`, and Thm. 3.1 applies there; the `J₂` term,
-`0` on the slice, only makes (5) harder to meet. (3) is the hypothesis `det J₁(x) ≠ 0`.
+## Inputs
+* `g` – map
+* `g'` – its derivative
+* `ũ` – expansion point
+* `lo₁` – lower end of the controlled box
+* `hi₁` – upper end of the controlled box
+* `lo₂` – lower end of the remaining box
+* `hi₂` – upper end of the remaining box
+* `J₁lo` – lower end of the first Jacobian block enclosure
+* `J₁hi` – upper end of the first Jacobian block enclosure
+* `J₂lo` – lower end of the second Jacobian block enclosure
+* `J₂hi` – upper end of the second Jacobian block enclosure
+* `ylo` – lower end of the target box
+* `yhi` – upper end of the target box
+
+## Hypotheses
+* `hg` – the derivative is strict on the box
+* `h3` – the first Jacobian block is invertible on the box
+* `hJ₁` – the first block enclosure contains the derivative
+* `hJ₂` – the second block enclosure contains the derivative
+* `hdiag` – no diagonal enclosure of the first block contains zero
+* `hũ` – the expansion point lies in the box
+* `hii` – the map's value at the expansion point lies in the target box
+* `h5` – the inclusion test holds
+
+## Conclusion
+* the target box lies in the image of the controlled box
 
 ## References
 

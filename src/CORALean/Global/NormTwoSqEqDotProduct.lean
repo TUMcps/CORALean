@@ -11,6 +11,15 @@ public import Mathlib.Analysis.InnerProductSpace.PiL2
 `‖x‖₂² = x ⬝ᵥ x` on `Vec ℝ n` read in `ℓ₂`, which carries the Euclidean norm only through
 `toLp 2`: the bridge `[1, App. B]`'s rounding by `B₂` needs from `Vec ℝ n`'s supremum norm.
 
+## Inputs
+* `v` – vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the squared Euclidean norm is the dot product with itself
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

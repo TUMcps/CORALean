@@ -15,6 +15,22 @@ by the next term evaluated at some `ξ ∈ C` — `((x - c)ᵀ∇)^{N+1} f(ξ) /
 notation. Read off the one-variable theorem along the segment `t ↦ c + t (x - c)`, whose `k`-th
 derivative is `Dᵏf` applied to `x - c` in every slot; `ξ` lies on the segment, hence in `C`.
 
+## Inputs
+* `f` – function of several variables
+* `N` – expansion order
+* `C` – convex set
+* `c` – expansion point
+* `x` – evaluation point
+
+## Hypotheses
+* `hf` – the function is smooth to one order past the expansion order
+* `hC` – the set is convex
+* `hc` – the expansion point lies in the set
+* `hx` – the evaluation point lies in the set
+
+## Conclusion
+* the function equals its Taylor polynomial plus a Lagrange remainder at some point of the set
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

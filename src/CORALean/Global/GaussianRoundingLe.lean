@@ -13,6 +13,22 @@ Eq. 31: take expectations at a standard Gaussian `g`. On the left
 `E|⟨aₖ, g⟩| = γ₁ ‖aₖ‖`; on the right Jensen's inequality for `t ↦ t^p` moves the expectation
 inside the root, where `E|⟨bᵢ, g⟩|^p = γ_p^p ‖bᵢ‖^p` (`gaussian_norm_moment_le`).
 
+## Inputs
+* `s` – number of left vectors
+* `l` – number of right vectors
+* `a` – left vectors
+* `b` – right vectors
+* `p` – norm exponent
+* `r` – ratio bound
+
+## Hypotheses
+* `hp` – the norm exponent is at least one
+* `hr` – the ratio bound is nonnegative
+* `h` – the pointwise ratio bound holds at every Gaussian sample
+
+## Conclusion
+* the same ratio bound holds for the norms of the vectors, up to the Gaussian constants
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

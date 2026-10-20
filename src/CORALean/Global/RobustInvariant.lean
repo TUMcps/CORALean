@@ -14,6 +14,14 @@ unique solution [1, Sec. 3.1] assumes for every consistent initial state and inp
 an argument here, as in the paper; a state `x` stands for the pair `[x; y]` of differential
 and algebraic variables, and `U` for the admissible input signals `U(·)`.
 
+## Inputs
+* `γ` – solution map of the system
+* `U` – set of admissible input signals
+* `S` – candidate invariant set
+
+## Output
+* the proposition that no admissible input drives a solution out of the set
+
 ## References
 
 * [1] M. Althoff. "Benchmarks for the Formal Verification of Power Systems". In Proc. of the

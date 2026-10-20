@@ -12,6 +12,12 @@ primitive. It holds while the result is normal, where only the exponent moves; a
 normal range would have lost a bit, so `aux_inRange` makes it NaN instead. The smallest subnormal is
 the one such input whose half rounds to zero, which `aux_inRange` keeps: it is NaN here too (found
 by `hardwarecheck`).
+
+## Inputs
+* `a` – machine double
+
+## Output
+* the exact half where the result is normal, NaN otherwise
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5

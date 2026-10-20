@@ -16,6 +16,16 @@ that agree with the first `k` measurements, before the `(k+1)`-th is used, which
 [1, Def. 1]'s set `feasibleSolutionSet`, that one having met `F_{d(k+1)}` already. The paper calls
 both `FSS`; here `predictedSolutionSet … k` is the printed `FSS_{k+1}`.
 
+## Inputs
+* `Θ₀` – initial parameter set
+* `r` – regressor vectors
+* `y` – measurements
+* `σ` – error bound
+* `γ` – expansion per step
+
+## Output
+* the function giving the parameter set before each measurement
+
 ## References
 
 * [1] J. M. Bravo, T. Alamo and E. F. Camacho. "Bounded error identification of systems with

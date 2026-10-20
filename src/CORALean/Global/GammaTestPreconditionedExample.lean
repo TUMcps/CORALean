@@ -13,6 +13,15 @@ so the interval Jacobian of `C f` is the identity and `C y = [-ε, ε]²` (the p
 `0.5 [-ε, ε] ± 0.5 [-ε, ε]`). The inclusion (2) for `C f = id`, `x₀ = 0` (the paper's `x̃`) and
 `J = I` holds for every `0 < ε < 2`.
 
+## Inputs
+* `ε` – half width of the target box
+
+## Hypotheses
+* `hε` – the half width is below two
+
+## Conclusion
+* the inclusion test holds on the preconditioned rotation
+
 ## References
 
 * [1] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued

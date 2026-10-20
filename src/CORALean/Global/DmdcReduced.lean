@@ -15,6 +15,19 @@ in `x = Û x̃`: `x̃_{k+1} = Ã x̃_k + B̃ u_k` [1, Eq. 31]; the same step wit
 truncation) the dynamic modes `φ = Ā Û w`, `Ã w = λ w` [1, Eq. 32], in matrix form
 [1, Eq. 36], are eigenvectors of `Ā` for `λ`, and nonzero for `λ ≠ 0`. Real eigenpairs only.
 
+## Inputs
+* `Ā` – state matrix of the full model
+* `Bb` – input matrix of the full model
+* `Û` – orthonormal output basis
+* `xt` – reduced state
+* `u` – input vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* projecting the full step equals the reduced step
+
 ## References
 
 * [1] J. L. Proctor, S. L. Brunton and J. N. Kutz. "Dynamic mode decomposition with control".

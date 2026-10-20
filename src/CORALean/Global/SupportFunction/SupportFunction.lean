@@ -8,22 +8,14 @@ public import Mathlib.Data.Real.Basic
 /-!
 # Bounds on a linear objective
 
-Every operation that has to leave one set representation for another asks how far
-this set reaches in direction `c`; this is the shape of its answer. Bounds are
-produced by closed forms, by composition (`Composition`), and by LP duality
-(`Global/LinProg/Duality`), one producer among them.
-
-A `SupportBound` is a number together with the fact that no point of the set
-exceeds it. It says nothing about where the number came from, which is exactly
-the point: a simplex implementation may produce it and need not be trusted,
-because the dual solution it returns *proves* the bound by weak duality, and it
-is the proof that gets carried.
-
-Stated over a `Set`, not a representation, so a bound transfers along the set
-operations rather than along any particular description of them —
-`Duality` says where bounds come from, `Composition` how they travel.
-
-`SupportWitness` is the dual: a value with a point attaining it; no `ofEmpty`.
+Every operation that has to leave one set representation for another asks how far this set reaches
+in direction `c`; this is the shape of its answer. Bounds are produced by closed forms, by
+composition (`Composition`), and by LP duality (`Global/LinProg/Duality`). A `SupportBound` is a
+number together with the fact that no point of the set exceeds it, and says nothing about where the
+number came from: a simplex implementation may produce it and need not be trusted, because the dual
+solution it returns *proves* the bound by weak duality, and the proof is what gets carried. Stated
+over a `Set`, not a representation, so a bound transfers along set operations. `SupportWitness` is
+the dual: a value with a point attaining it; no `ofEmpty`.
 -/
 
 -- Authors:       Claude Opus 5

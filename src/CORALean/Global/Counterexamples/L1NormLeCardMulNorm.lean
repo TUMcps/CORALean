@@ -18,6 +18,15 @@ halfspace representation. For `zᵢ = eᵢ` in `ℝ²`, `Π = {|x₁| ≤ 1, |x�
 `‖vᵢ‖₁ = 1`, but the corner `(1, 1)` of `Π` has `‖·‖₁ = 2`. The rows are vertices of `Π^Δ`,
 not of `Π`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* rows of unit 1-norm exist whose polytope has a corner of 1-norm two
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

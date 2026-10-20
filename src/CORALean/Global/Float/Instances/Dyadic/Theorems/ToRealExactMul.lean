@@ -13,6 +13,16 @@ public import Mathlib.Algebra.Ring.CharZero
 which is exactly what `zpow_add₀` reads back. What
 `SoundFloatArithmetic.mul_le_mulUp`/`mulDown_le_mul` compose with the rounding
 step to get.
+
+## Inputs
+* `a` – first factor
+* `b` – second factor
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact product denotes the real product
 -/
 
 -- Authors:       Claude Opus 5

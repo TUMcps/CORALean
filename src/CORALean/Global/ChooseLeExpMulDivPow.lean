@@ -14,6 +14,16 @@ facet count of a zonotope with `m` generators in `ℝⁿ` that makes `polymax` p
 fixed dimension. With `r = n - 1`: `(m choose r) ≤ m^r / r!`, and `r^r / r! ≤ e^r` is one
 term of the exponential series. At `r = 0` both sides are `2`.
 
+## Inputs
+* `m` – number of generators
+* `r` – chosen count, one less than the dimension
+
+## Hypotheses
+* none
+
+## Conclusion
+* twice the binomial coefficient is at most twice the power of `e m / r`
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

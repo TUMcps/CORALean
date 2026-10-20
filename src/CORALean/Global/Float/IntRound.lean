@@ -10,6 +10,12 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 `intDown a ≤ a ≤ intUp a`: a non-negative integer is `nsmulUp`/`nsmulDown` of one, a negative
 one the negation of the opposite rounding of its absolute value. Exact for every integer a
 scalar represents, an enclosure otherwise.
+
+## Inputs
+* `a` – integer
+
+## Output
+* a scalar enclosing the integer from below
 -/
 
 -- Authors:       Claude Opus 5.5

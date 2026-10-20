@@ -11,6 +11,16 @@ public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeIff
 `le_iff` picks the smaller side directly, which is what lets `minimum` absorb
 a sign without widening anything. What `SoundFloatArithmetic.toReal_minimum`
 needs from `Dyadic`.
+
+## Inputs
+* `a` – first dyadic
+* `b` – second dyadic
+
+## Hypotheses
+* none
+
+## Conclusion
+* the minimum denotes the smaller of the two real values
 -/
 
 -- Authors:       Claude Opus 5

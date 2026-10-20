@@ -17,6 +17,19 @@ component `i` reads `x₀ᵢ + (yᵢ - f(x₀)ᵢ - Σ_{j≠i} Jᵢⱼ (vⱼ - x
 every real matrix `J` in the bounds, `y ∈ y` and `v ∈ x`. This is the range of the interval
 evaluation, which is exact here: each of `Jᵢᵢ`, `Jᵢⱼ`, `vⱼ`, `yᵢ` occurs once.
 
+## Inputs
+* `f` – map
+* `x₀` – expansion point
+* `xlo` – lower end of the domain box
+* `xhi` – upper end of the domain box
+* `Jlo` – lower end of the Jacobian enclosure
+* `Jhi` – upper end of the Jacobian enclosure
+* `ylo` – lower end of the target box
+* `yhi` – upper end of the target box
+
+## Output
+* the proposition that the Gamma inclusion lies in the interior of the domain box
+
 ## References
 
 * [1] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued

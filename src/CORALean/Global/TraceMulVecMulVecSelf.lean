@@ -14,6 +14,16 @@ public import Mathlib.Tactic.Ring
 `tr(W v vᵀ) = vᵀ W v`: the step from a weighted Frobenius norm, a sum of `gᵀ W g` over the
 generators `g`, to the trace of `W` against `Σ g gᵀ`, in which the gain-optimality proofs of
 the zonotopic Kalman observers are written.
+
+## Inputs
+* `W` – weight matrix
+* `v` – vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the weighted trace of the outer square is the weighted quadratic form
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -7,15 +7,19 @@ public import CORALean.Global.Float.Instances.Dyadic.Dyadic
 /-!
 # The quotient, rounded down while dividing
 
-A quotient of dyadics is a general rational, so the direction has to be
-chosen while the integers are still there rather than afterwards, unlike the
-other operations. The dividend is shifted left first, by `p` bits plus the
-divisor's own length, which is what buys the quotient its `p`-bit mantissa
-whatever the dividend's: a shift of `p` alone leaves `1 / k!` one bit once `k!`
-fills `p` bits of its own.
+A quotient of dyadics is a general rational, so the direction has to be chosen while the integers
+are still there rather than afterwards, unlike the other operations. The dividend is shifted left
+first, by `p` bits plus the divisor's own length, which buys the quotient its `p`-bit mantissa
+whatever the dividend's: a shift of `p` alone leaves `1 / k!` one bit once `k!` fills `p` bits of
+its own. A divisor of zero divides by zero in ℤ, which is `0` and bounds nothing, which is why
+`SoundFloatArithmetic` asks for a positive one.
 
-A divisor of zero divides by zero in ℤ, which is `0` — and bounds nothing,
-which is why `SoundFloatArithmetic` asks for a positive one.
+## Inputs
+* `a` – dividend
+* `b` – divisor
+
+## Output
+* the quotient rounded down to the format's mantissa width
 -/
 
 -- Authors:       Claude Sonnet 5

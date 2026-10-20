@@ -8,6 +8,16 @@ public import CORALean.Global.StackSelect
 # The selection matrices pick their block
 
 `[eye zeros] [a; b] = a` and `[zeros eye] [a; b] = b`.
+
+## Inputs
+* `a` – first block
+* `b` – second block
+
+## Hypotheses
+* none
+
+## Conclusion
+* the selection matrix returns the first block of the stacked vector
 -/
 
 -- Authors:       Claude Opus 5.5

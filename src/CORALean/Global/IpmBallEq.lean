@@ -14,6 +14,19 @@ public import Mathlib.Algebra.Order.BigOperators.Ring.Finset
 shows the enclosure, `|ρᵀϕ| ≤ r‖ϕ‖` for `ϑ = c + ρ`, `‖ρ‖ ≤ r` (Cauchy-Schwarz); every point of it
 is attained, `y = cᵀϕ + t(r‖ϕ‖ + γ)` at `ϑ = c + (tr/‖ϕ‖)ϕ`, `e = tγ`, `|t| ≤ 1`.
 
+## Inputs
+* `c` – center of the parameter ball
+* `r` – radius of the parameter ball
+* `γ` – noise bound
+* `ϕ` – regressor
+
+## Hypotheses
+* `hr` – the radius is nonnegative
+* `hγ` – the noise bound is nonnegative
+
+## Conclusion
+* the predictor set is the interval around the center's output with the ball's half width
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

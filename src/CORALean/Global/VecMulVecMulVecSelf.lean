@@ -13,6 +13,16 @@ public import Mathlib.Tactic.Ring
 `(M x)(M x)ᵀ = M (x xᵀ) Mᵀ`: a generator mapped by `M` contributes `M (g gᵀ) Mᵀ` to the
 generator Gram matrix `H Hᵀ`, which is how `P₊ = Ĥ₊ Ĥ₊ᵀ` of the zonotopic observers is
 assembled from its blocks.
+
+## Inputs
+* `M` – matrix
+* `x` – vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the outer square of the image is the matrix times the outer square times its transpose
 -/
 
 -- Authors:       Claude Opus 5.5

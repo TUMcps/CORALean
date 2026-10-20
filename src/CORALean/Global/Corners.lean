@@ -10,16 +10,24 @@ public import Mathlib.Tactic.Ring
 /-!
 # Choosing one of two per coordinate
 
-A box has `2ⁿ` corners, one per choice of end per coordinate, and any weighting
-over those choices that is a product of per-coordinate factors behaves the same
-way: the weights sum to the product of the per-coordinate sums, and weighting
-them by a second such product leaves each coordinate's own average, since the
-sum factors coordinate by coordinate. `sum_prod_bool_mul` is that at a second
-product which is `1` away from one coordinate.
+A box has `2ⁿ` corners, one per choice of end per coordinate, and any weighting over those choices
+that is a product of per-coordinate factors behaves the same way: the weights sum to the product
+of the per-coordinate sums, and weighting them by a second such product leaves each coordinate's
+own average. `sum_prod_bool_mul` is that at a second product which is `1` away from one
+coordinate. Stated here rather than at the box, being about `Fin n → Bool` alone; `signEquiv` lets
+a list indexed by `Fin k` hold something indexed by those choices.
 
-The facts are stated here rather than at the box, being about `Fin n → Bool`
-and nothing else. `signEquiv` is the bookkeeping that lets a list indexed by
-`Fin k` hold something indexed by those choices.
+## Inputs
+* `t` – per-coordinate weights
+* `u` – second factor where the choice is the first end
+* `v` – second factor where the choice is the other end
+* `i` – the coordinate singled out
+
+## Hypotheses
+* none
+
+## Conclusion
+* the weighted sum of the second factor equals the weighted average at that coordinate
 -/
 
 -- Authors:       Claude Opus 5

@@ -16,6 +16,15 @@ The theorem says that when `r_Svs ≤ 1`, `P_Svs` "is a lower bound on the proba
 `r_Svs = ‖G z + c‖_∞ = 19/20`, so the algorithm returns `P_Svs = P_S(1/20) > 0`. But `Ê ⊆ E` is
 false, an event of probability `0` under any measure on the samples.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a positive probability bound is returned although the estimate is not contained
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

@@ -15,6 +15,15 @@ A real `M ≻ 0` has some `ε > 0` with `ε xᵀx ≤ xᵀ M x` for every `x`: t
 inequality leaves, which the observer papers spend without naming (a strict `H∞` bound, the
 scalars `α₁ I ≺ P` of a Lyapunov argument). The form attains its minimum `ε` on the compact
 unit sphere `xᵀx = 1`, positive there, and scales by `xᵀx` off it.
+
+## Inputs
+* `M` – matrix
+
+## Hypotheses
+* `hM` – the matrix is positive definite
+
+## Conclusion
+* some positive margin bounds the quadratic form below by the margin times the squared norm
 -/
 
 -- Authors:       Claude Opus 5.5

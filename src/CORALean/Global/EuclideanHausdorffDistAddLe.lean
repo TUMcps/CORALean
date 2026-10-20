@@ -7,17 +7,31 @@ public import CORALean.Global.EuclideanHausdorffDist
 /-!
 # Minkowski sums move apart by at most the sum of the two distances
 
-`d_H(S₁ ⊕ S₂, T₁ ⊕ T₂) ≤ d_H(S₁,T₁) + d_H(S₂,T₂)`, at `‖·‖₂`. The witness for a
-point `s₁ + s₂` is the nearest point of `T₁` to `s₁` added to the nearest point
-of `T₂` to `s₂`, which is why the sets have to be compact and nonempty — the two
-nearest points have to exist, and `Metric.hausdorffDist` is `0` rather than `⊤`
-wherever `hausdorffEDist` is not finite.
+`d_H(S₁ ⊕ S₂, T₁ ⊕ T₂) ≤ d_H(S₁,T₁) + d_H(S₂,T₂)`, at `‖·‖₂`. The witness for a point `s₁ + s₂` is
+the nearest point of `T₁` to `s₁` added to the nearest point of `T₂` to `s₂`, which is why the sets
+have to be compact and nonempty, as a paper stating the Hausdorff distance for compact sets already
+asks. The one-sided `d_H(S ⊕ V, S ⊕ W) ≤ d_H(V,W)` is `ContSet/ContSet/Theorems`'
+`hausdorffDist_add_le`, out of reach from here since `Global` is below `ContSet`, so the argument
+is made once more.
 
-Compactness is exactly what a paper stating the Hausdorff distance for compact
-sets already asks, so this is not an extra assumption at the point of use. The
-one-sided `d_H(S ⊕ V, S ⊕ W) ≤ d_H(V,W)` is `ContSet/ContSet/Theorems`'
-`hausdorffDist_add_le`, which cannot be reached from here — `Global` is below
-`ContSet` — so the argument is made once more rather than imported.
+## Inputs
+* `S₁` – first summand of the first sum
+* `S₂` – first summand of the second sum
+* `T₁` – second summand of the first sum
+* `T₂` – second summand of the second sum
+
+## Hypotheses
+* `hS₁` – `S₁` is compact
+* `hS₁ne` – `S₁` is nonempty
+* `hT₁` – `T₁` is compact
+* `hT₁ne` – `T₁` is nonempty
+* `hS₂` – `S₂` is compact
+* `hS₂ne` – `S₂` is nonempty
+* `hT₂` – `T₂` is compact
+* `hT₂ne` – `T₂` is nonempty
+
+## Conclusion
+* the distance between the sums is at most the sum of the distances of the summands
 -/
 
 -- Authors:       Claude Opus 5

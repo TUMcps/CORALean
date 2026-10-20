@@ -26,6 +26,18 @@ attains it (Hahn–Banach), it factors through `X ↦ H X` as `X ↦ tr(Yᵀ H X
 gives `‖Hᵀ Y‖_{L⊤∞,q*} ≤ 1` by the attained case of Hölder. The proof of [1, Thm. 16]
 (`lr_exact_of_columns_eq_up_to_sign`) uses it too; `q* = q'` is the Hölder conjugate.
 
+## Inputs
+* `q` – exponent of the coefficient norm
+* `q'` – its conjugate exponent
+* `G` – zonotope generator matrix
+* `H` – ellipsotope generator matrix
+
+## Hypotheses
+* `hG` – some coefficient matrix maps onto the zonotope generators
+
+## Conclusion
+* the relaxation value is attained and a dual matrix of unit norm reaches it
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

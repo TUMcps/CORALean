@@ -12,6 +12,16 @@ public import Mathlib.Analysis.Normed.Ring.Lemmas
 
 The same floor-division fact as for `roundUp`, `Int.ediv_mul_le` on the negated mantissa,
 read at the shift `(e - exponent).toNat` that `two_zpow_coarsen` aligns.
+
+## Inputs
+* `e` – exponent of the target grid
+* `d` – dyadic
+
+## Hypotheses
+* none
+
+## Conclusion
+* coarsening up does not decrease the value
 -/
 
 -- Authors:       Claude Sonnet 5.5

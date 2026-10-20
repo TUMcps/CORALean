@@ -18,6 +18,15 @@ the zonotope's `Cor. 1` of Kulmburg and Althoff.
 
 [2, Prop. 7] is the same statement.
 
+## Inputs
+* `G` – linear map from the coefficients
+
+## Hypotheses
+* `hG` – the map is surjective
+
+## Conclusion
+* `coeffNorm` is a norm whose unit ball is the image of the coefficient ball
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

@@ -12,6 +12,18 @@ of `B_q` by `B₂` rests on, with the dimension `m` of the space the balls live 
 m^{1/p-1/q} ‖x‖_q` for `1 ≤ p ≤ q ≤ ∞`, `p` finite. The power mean inequality at the exponent
 `q/p`; at `q = ∞` each of the `m` coordinates is at most `‖x‖_∞`.
 
+## Inputs
+* `p` – smaller exponent
+* `q` – larger exponent
+* `x` – vector
+
+## Hypotheses
+* `hpq` – the exponents are ordered
+* `hp` – the smaller exponent is finite
+
+## Conclusion
+* the smaller-exponent norm is at most a dimension power times the larger-exponent norm
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

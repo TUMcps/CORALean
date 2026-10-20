@@ -11,6 +11,13 @@ public import CORALean.Global.Float.Instances.IEEE.Operations.RoundUp
 A quotient is not dyadic, so there is no exact step: `Dyadic.divUp` rounds up to `p` bits at an
 unbounded exponent, and `roundUp` onto the grid. Both round the same way, so the bound composes;
 the unit checks in `Examples/IEEERounding.lean` compare the result with binary64's own.
+
+## Inputs
+* `a` – dividend
+* `b` – divisor
+
+## Output
+* the quotient rounded up onto the format's grid
 -/
 
 -- Authors:       Claude Opus 5.5

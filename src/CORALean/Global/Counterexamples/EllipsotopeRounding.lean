@@ -14,6 +14,15 @@ The appendix prints `B₂ ⊆ E_q(D⁻¹Uᵀ H) ⊆ n^{1/2-1/q} B₂` for `q ≥
 `M = D⁻¹Uᵀ H = (√2/2, √2/2)` (`M Mᵀ = 1`), `M (1, 1) = √2`, a point of `E_∞(M)` outside
 `1^{1/2} B₂ = [-1, 1]`; the factor is `m^{1/2} = √2` (`ellipsotope_rounding_of_two_le`).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* an ellipsotope image of a one-row matrix leaves the printed rounding ball
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

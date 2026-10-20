@@ -12,6 +12,25 @@ Problem 1′ in `d` variables with a unique solution for every set of at least `
 `F` of at least `d` constraints holds `d` constraints `H` with `Î_H = Î_F`. While more than `d`
 are left one of them is not a support constraint (`supportConstraints_length_le`), and removing
 it keeps the solution, which stays feasible, optimal and so, being unique, the solution.
+
+## Inputs
+* `𝒬` – set of candidate predictors
+* `μQ` – cost of a candidate
+* `I` – predictor family
+* `sol` – solution map
+* `x` – data
+* `F` – subset of constraints
+
+## Hypotheses
+* `hμ` – the cost is convex
+* `hI` – the predictor membership sets are convex
+* `hd` – the dimension is the given one
+* `hsol` – every subset of at least that many constraints has a unique optimal solution
+* `hF` – the subset has at least that many constraints
+
+## Conclusion
+* some subset of that size has the same solution as the whole subset
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

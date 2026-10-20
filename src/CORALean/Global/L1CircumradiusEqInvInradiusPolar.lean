@@ -16,6 +16,15 @@ at a vertex, and a cube lies in `P^Δ` iff it lies in each halfspace `{vᵢᵀ x
 (`[1, Lemma 4, Eq. 26]`), which is `[1, Lemma 3]` vertex by vertex. Neither symmetry nor full
 dimension is used.
 
+## Inputs
+* `v` – vertices of the polytope
+
+## Hypotheses
+* `hv` – some vertex is nonzero
+
+## Conclusion
+* the 1-norm circumradius is the reciprocal of the polar's infinity-norm inradius
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

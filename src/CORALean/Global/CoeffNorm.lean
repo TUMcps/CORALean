@@ -11,16 +11,20 @@ public import Mathlib.Topology.EMetricSpace.Lipschitz
 /-!
 # The norm a coefficient ball induces through a linear map
 
-`coeffNorm G x = min {‖α‖ | G α = x}`: how far the coefficient ball must be scaled for its
-image under `G` to reach `x`. At `G` a zonotope's generator map and the supremum norm it is
-the zonotope norm of Kulmburg and Althoff; at a `p`-norm it is an ellipsotope's. Nothing
-about the coefficient norm is used beyond its being a norm on a finite-dimensional space,
-which is what makes the minimum attained: the fibre is a closed affine subspace, and a
-bounded piece of it is compact.
+`coeffNorm G x = min {‖α‖ | G α = x}`: how far the coefficient ball must be scaled for its image
+under `G` to reach `x`. At a zonotope's generator map and the supremum norm it is the zonotope norm
+of Kulmburg and Althoff; at a `p`-norm, an ellipsotope's. Only that the coefficient norm is a norm
+on a finite-dimensional space is used: it makes the minimum attained. Off `range G` the infimum is
+over `∅` and reads `0`; statements needing a preimage ask for one, and at a surjective `G` that is
+every point. That this is a norm there is `[1, Thm. 1]`, and at any coefficient norm
+`[2, Prop. 2.2]`.
 
-Off `range G` the infimum is over `∅`, and reads `0`; every statement here that needs a
-preimage asks for one, and at a surjective `G` that is every point. That this is a norm
-there is `[1, Thm. 1]`, and at any coefficient norm `[2, Prop. 2.2]`.
+## Inputs
+* `G` – linear map from the coefficients
+* `x` – target point
+
+## Output
+* the least coefficient norm mapped onto the point, `0` if none
 
 ## References
 

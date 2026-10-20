@@ -12,6 +12,12 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 the lower end by `j` rounded up, the upper end by `j` rounded down and floored at one, so
 every divisor is positive and `div_le_divUp`'s hypothesis holds. The coefficients of an
 expansion, `g⁽ᵏ⁾(c) / k!`, and `1 / (N+1)!` in a Lagrange remainder, are this.
+
+## Inputs
+* `q` – enclosure of a non-negative number
+
+## Output
+* the function giving the enclosure of that number divided by `k` factorial
 -/
 
 -- Authors:       Claude Opus 5.5

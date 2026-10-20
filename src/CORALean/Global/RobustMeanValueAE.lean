@@ -7,16 +7,23 @@ public import CORALean.Global.MeanValueAE
 /-!
 # Mean-value AE extensions of a robust range
 
-[1, Thm. 2]: the robust range `range(f, x, I_A, I_E) = {z | ∀w ∈ x_A, ∃u ∈ x_E, z = f(w, u)}`
-of `f` over `x = x_A × x_E` — `w` the disturbances, `u` the controls — lies between
+[1, Thm. 2]: the robust range `range(f, x, I_A, I_E) = {z | ∀w ∈ x_A, ∃u ∈ x_E, z = f(w, u)}` of
+`f` over `x = x_A × x_E` (`w` the disturbances, `u` the controls) lies between
 `[f̄₀ - ⟨∇̲u, r(x_E)⟩ + ⟨∇̄w, r(x_A)⟩, f̲₀ + ⟨∇̲u, r(x_E)⟩ - ⟨∇̄w, r(x_A)⟩]` (4) and
 `[f̲₀ - ⟨∇̄u, r(x_E)⟩ + ⟨∇̲w, r(x_A)⟩, f̄₀ + ⟨∇̄u, r(x_E)⟩ - ⟨∇̲w, r(x_A)⟩]` (3), where
-`f(c(x)) ∈ f₀`, `|∇_w f(w, c(x_E))| ∈ ∇w` on `x_A` and `|∇_u f(w, u)| ∈ ∇u` on `x`.
+`f(c(x)) ∈ f₀`, `|∇_w f(w, c(x_E))| ∈ ∇w` on `x_A` and `|∇_u f(w, u)| ∈ ∇u` on `x`. The inputs are
+split as two vectors, `f w u`; both inclusions are [1, Thm. 1] twice, once in `w` at `u = c(x_E)`
+and once in `u` at each `w`, the outer one needing `x_A` nonempty and the inner one `x_E`.
 
-The inputs are split as two vectors, `f w u`, rather than by index sets of one. Both
-inclusions are [1, Thm. 1] twice, once in `w` at `u = c(x_E)` and once in `u` at each `w`;
-the outer one needs `x_A` nonempty (over no disturbance every `z` is robustly reached),
-the inner one `x_E`.
+## Inputs
+* `f` – function of disturbances and controls
+* `loA` – lower corner of the disturbance box
+* `hiA` – upper corner of the disturbance box
+* `loE` – lower corner of the control box
+* `hiE` – upper corner of the control box
+
+## Output
+* the set of values reached for every disturbance with some control
 
 ## References
 

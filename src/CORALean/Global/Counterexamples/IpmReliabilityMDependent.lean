@@ -14,12 +14,20 @@ public import Mathlib.Analysis.Convex.Function
 `x(t)` and `x(t + s)` independent whenever `|s| > M`: independence of pairs. The proof idea,
 "concentrate on data that are `M` instants apart", needs those data independent jointly, which
 pairs do not give. On the circle `ℝ/ℤ`, `x(t) = U + tV` with `U, V` independent and uniform is
-strictly stationary with uniform marginals, and `x(t)`, `x(t + s)`, `s ≥ 1`, are independent
-(`(u, v) ↦ (u + tv, u + (t + s)v)` preserves the measure); so it is `0`-dependent in the printed
-sense, with `W = N - d`. With `y = x(t)` read in `(0, 1]`, the interval model `I_Q = (-∞, Q]`
-(`d = 1`, cost `Q`, solution `max_t y(t)`), `N = 4`, `k = 0` and `1 - ε = a = 1/128`, the theorem
-claims `Prob{max_t y(t) ≥ a} > 1 - 4a³`. But `U ≤ a/2`, `V ≤ a/8` puts all four below `7a/8`, with
-probability `a²/16 > 4a³`. The supplied measurability hypotheses of `ipm_reliability` hold too.
+strictly stationary and pairwise independent at lags `s ≥ 1`, so `0`-dependent in the printed
+sense. With `y = x(t)` read in `(0, 1]`, the interval model `I_Q = (-∞, Q]` (`d = 1`, cost `Q`,
+solution `max_t y(t)`), `N = 4`, `k = 0` and `1 - ε = a = 1/128`, the theorem claims
+`Prob{max_t y(t) ≥ a} > 1 - 4a³`; but `U ≤ a/2`, `V ≤ a/8` puts all four below `7a/8`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* pairwise independence beyond the lag does not give the reliability bound
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

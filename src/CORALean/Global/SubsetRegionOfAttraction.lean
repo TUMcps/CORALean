@@ -19,6 +19,25 @@ convergence is a hypothesis, and has to be: the criterion holds for a rotation, 
 solutions have no limit (`regionOfAttraction_counterexample`). `hγ` and `hU` are the
 time-invariance and unique solutions of [1, Sec. 3.1], as in `RobustInvariant.mem_of_reach_subset`.
 
+## Inputs
+* `γ` – solution map of the system
+* `U` – set of admissible input signals
+* `S` – robust invariant closed set
+* `R₀` – set of initial states
+* `t` – time
+
+## Hypotheses
+* `hS` – the set is robust positively invariant
+* `hSc` – the set is closed
+* `hγ` – the flow is time-invariant
+* `hU` – shifted inputs are admissible
+* `ht` – the time is positive
+* `hR` – states from the initial set are in the set at the time
+* `hconv` – every solution from the initial set converges
+
+## Conclusion
+* the initial set lies in the region of attraction
+
 ## References
 
 * [1] M. Althoff. "Benchmarks for the Formal Verification of Power Systems". In Proc. of the

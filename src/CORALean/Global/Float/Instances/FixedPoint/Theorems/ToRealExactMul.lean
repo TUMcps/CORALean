@@ -13,6 +13,16 @@ public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealDef
 which `pow_add` reads back as the product of the two quotients. What
 `SoundFloatArithmetic.mul_le_mulUp`/`mulDown_le_mul` compose with the rounding
 step to get.
+
+## Inputs
+* `a` – first factor
+* `b` – second factor
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact product denotes the real product
 -/
 
 -- Authors:       Claude Opus 5.5

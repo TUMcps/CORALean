@@ -13,6 +13,19 @@ public import Mathlib.Analysis.Normed.Lp.PiLp
 absolute values. The surjectivity of `H` is not needed here; that `LR_q` is attained and bounds
 the radius is `lr_isLeast_radius_le`.
 
+## Inputs
+* `q` – exponent of the coefficient norm
+* `G` – zonotope generator map
+* `H` – ellipsotope generator map
+* `X` – coefficient matrix
+
+## Hypotheses
+* `hGX` – the zonotope map factors through the coefficient matrix
+* `hX` – the coefficient matrix has row-sum norm at most one
+
+## Conclusion
+* the zonotope lies in the ellipsotope
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

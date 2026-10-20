@@ -13,6 +13,13 @@ line serve a polytope in `ℝⁿ` and, with the trace inner product, the matrix 
 `[1, Sec. 2.3]`, `D → D - 2 trace(DS) S`. A reflection only when `‖s‖ = 1`, as the paper says
 `‖s‖ = 1`; `BilliardReflectLaw.lean` is that law.
 
+## Inputs
+* `s` – unit internal normal at the wall
+* `d` – incoming direction
+
+## Output
+* the reflected direction
+
 ## References
 
 * [1] B. T. Polyak and E. N. Gryazina. "Billiard walk - a new sampling algorithm for control

@@ -11,17 +11,29 @@ public import Mathlib.Analysis.Calculus.FDeriv.Comp
 /-!
 # Moving one coordinate at a time through a box
 
-[1, Thm. 1]'s mean-value arguments move from the center of a box to a point of it one
-coordinate at a time, coordinate `i` varied with every coordinate before it at the center,
-and bound each move by the partial derivative `∂ᵢf` on that *path set*. Three facts are
-here: the moves change `f` by at most `Σ Uᵢ rᵢ` when `|∂ᵢf| ≤ Uᵢ` on the path sets; some
-point raises `f` by at least `Σ Lᵢ rᵢ` when `|∂ᵢf| ≥ Lᵢ` there, the direction of each move
-picked by the sign of `∂ᵢf`, constant along a line by Darboux's theorem; and, for any
-start and any targets, the gains of the single moves add up (`le_of_coord_gain`), which is
-what a Kaucher-arithmetic mean-value extension needs once the signs are known.
+[1, Thm. 1]'s mean-value arguments move from the center of a box to a point of it one coordinate
+at a time, coordinate `i` varied with every coordinate before it at the center, and bound each move
+by `∂ᵢf` on that *path set*. Three facts: the moves change `f` by at most `Σ Uᵢ rᵢ` when
+`|∂ᵢf| ≤ Uᵢ` on the path sets; some point raises `f` by at least `Σ Lᵢ rᵢ` when `|∂ᵢf| ≥ Lᵢ` there
+(each move's direction from the sign of `∂ᵢf`, constant along a line by Darboux's theorem); and for
+any start and targets the gains of the single moves add up (`le_of_coord_gain`), which a Kaucher
+mean-value extension needs. `∂ᵢf y` is `fderiv ℝ f y (Pi.single i 1)`; `f` is differentiable, which
+is all the arguments use ([1] assumes `C¹`).
 
-`∂ᵢf y` is `fderiv ℝ f y (Pi.single i 1)`; `f` is differentiable, which is all the
-arguments use ([1] assumes `C¹`).
+## Inputs
+* `g` – function of one variable
+* `g'` – its derivative
+* `c` – center of the interval
+* `r` – radius of the interval
+* `L` – lower bound on the derivative's absolute value
+
+## Hypotheses
+* `hr` – radius nonnegative
+* `hg` – `g'` is the derivative of `g` on the interval
+* `hL` – the derivative is at least `L` in absolute value on the interval
+
+## Conclusion
+* some point of the interval has `g` at least `g c` plus `L` times the radius
 
 ## References
 

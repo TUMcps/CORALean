@@ -12,6 +12,17 @@ public import Mathlib.Algebra.Ring.CharZero
 Dropping `k` bits and raising the exponent by `k` leaves only mantissas to
 compare. Shared by `roundDown_le` and `le_roundUp`, both of which round by
 shifting the mantissa down and reading the result back at the original scale.
+
+## Inputs
+* `m` – mantissa
+* `e` – exponent
+* `k` – number of dropped bits
+
+## Hypotheses
+* none
+
+## Conclusion
+* dropping the bits and raising the exponent leaves the mantissa scaled by that power of two
 -/
 
 -- Authors:       Claude Opus 5

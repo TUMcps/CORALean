@@ -7,21 +7,21 @@ public import Mathlib.Analysis.Asymptotics.Defs
 /-!
 # Def. 1: superlinear decrease
 
-[1, Def. 1]: the set-based evaluation of a continuous function decreases
-superlinearly in the length of the interval it is evaluated over if shrinking
-that length by any `φ ∈ (0,1)` shrinks the evaluation by at least that factor.
+[1, Def. 1]: the set-based evaluation of a continuous function decreases superlinearly in the
+length of the interval it is evaluated over if shrinking that length by any `φ ∈ (0,1)` shrinks the
+evaluation by at least that factor. Stated at a function `F : ℝ → Set α` and one fixed length `Δt`,
+not universally: [1]'s own uses, `Lemma 1` and `Thm. 2`, each name one specific `Δt` under a side
+condition holding at that `Δt` alone. `t` in the paper's `f(S([t,t+Δt]))` is this same length, the
+interval's start playing no role, so it carries no argument here. Generic over any real vector
+space, not a representation: `α` is `Mat ℝ n n` at `Lemma 1`'s `E(Δt,η)` and `ℝ` at `Thm. 2`'s
+`ε_P`, on a par with `Global/Radstrom.lean`.
 
-Stated at a function `F : ℝ → Set α` and one fixed length `Δt`, not
-universally over every length: [1]'s own uses, `Lemma 1` and `Thm. 2`, each
-name one specific `Δt` — a step's own size — under a side condition holding at
-that `Δt` alone, which a "for every length" reading would have to smuggle in
-as a second hypothesis. `t` in the paper's own `f(S([t,t+Δt]))` is this same
-length, the interval's start playing no role in the inequality, so it carries
-no argument here.
+## Inputs
+* `F` – set-valued evaluation as a function of interval length
+* `Δt` – interval length
 
-Generic over any real vector space, not a representation: `α` is `Mat ℝ n n`
-at `Lemma 1`'s `E(Δt,η)` and would be `ℝ` itself at `Thm. 2`'s `ε_P`, on a par
-with `Global/Radstrom.lean`.
+## Output
+* the proposition that shrinking the length by any factor shrinks the evaluation by that factor
 
 ## References
 

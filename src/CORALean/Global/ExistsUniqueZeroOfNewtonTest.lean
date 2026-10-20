@@ -12,18 +12,30 @@ public import Mathlib.Topology.EMetricSpace.Lipschitz
 /-!
 # A Newton test proves a unique zero in a ball
 
-`g : ℝᵏ → ℝᵏ`, a center `c`, a radius `r` and a matrix `R`, an approximate inverse of the
-Jacobian trusted for nothing. Between any two points of the sup-norm ball `B` of radius `r`
-about `c`, `g` has a slope `J` (`g a - g a' = J (a - a')`) whose rows of `|1 - R J|` sum to at
-most `qᵢ < 1`, and `qᵢ r + |(R g(c))ᵢ| ≤ r` in every coordinate. Then `g` has exactly one zero
-in `B`.
+`g : ℝᵏ → ℝᵏ`, a center `c`, a radius `r` and a matrix `R`, an approximate inverse of the Jacobian
+trusted for nothing. Between any two points of the sup-norm ball `B` about `c`, `g` has a slope `J`
+(`g a - g a' = J (a - a')`) whose rows of `|1 - R J|` sum to at most `qᵢ < 1`, and
+`qᵢ r + |(R g(c))ᵢ| ≤ r` in every coordinate. Then `g` has exactly one zero in `B`. Krawczyk's
+test: `φ a = a - R g(a)` takes `B` into itself and is `1`-Lipschitz there, so Brouwer's theorem
+(`exists_fixedPoint_of_isCompact_convex`) fixes a point, where `R g = 0`; rows of `1 - R J` below
+`1` make `R J` injective (`mulVec_injective_of_residual`), so `R` is invertible and a second zero
+`z'` would give `R J (z - z') = 0`.
 
-This is Krawczyk's test, in the form that bounds the Krawczyk operator
-`c - R g(c) + (1 - R J)(B - c)` by magnitudes. The map `φ a = a - R g(a)` takes `B` into itself,
-since `φ a - c = (1 - R J)(a - c) - R g(c)`, and is `1`-Lipschitz on it, so Brouwer's theorem
-(`exists_fixedPoint_of_isCompact_convex`) fixes a point, where `R g = 0`. `1 - R J` having rows
-below `1` makes `R J` injective (`mulVec_injective_of_residual`), hence `R` invertible, and a
-second zero `z'` would give `R J (z - z') = 0`.
+## Inputs
+* `g` – map
+* `c` – center of the ball
+* `r` – radius of the ball
+* `R` – approximate inverse of the Jacobian
+* `q` – row-sum bounds of the residual
+
+## Hypotheses
+* `hr` – the radius is nonnegative
+* `hslope` – slopes between ball points have residual row sums within the bounds
+* `hq` – the bounds are below one
+* `hball` – the Newton step stays within the radius in every coordinate
+
+## Conclusion
+* `g` has exactly one zero in the ball
 -/
 
 -- Authors:       Claude Opus 5.5

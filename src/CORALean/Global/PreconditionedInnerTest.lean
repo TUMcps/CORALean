@@ -17,6 +17,39 @@ is `m × m`, and names the blocks `(C₁, C₂)` without using them. Its upper b
 `aux_preconditionMatrix` takes it too. Soundness needs only `det C ≠ 0`: (5) for `C f₁:ᵣ`
 puts the box `z ⊇ C y₁` in `C f₁:ᵣ(u)`, and `C` is injective.
 
+## Inputs
+* `g` – map
+* `g'` – its derivative
+* `ũ` – expansion point
+* `lo₁` – lower end of the controlled box
+* `hi₁` – upper end of the controlled box
+* `lo₂` – lower end of the remaining box
+* `hi₂` – upper end of the remaining box
+* `J₁lo` – lower end of the first Jacobian block enclosure
+* `J₁hi` – upper end of the first Jacobian block enclosure
+* `J₂lo` – lower end of the second Jacobian block enclosure
+* `J₂hi` – upper end of the second Jacobian block enclosure
+* `ylo` – lower end of the target box
+* `yhi` – upper end of the target box
+* `zlo` – lower end of the preconditioned box
+* `zhi` – upper end of the preconditioned box
+* `C` – preconditioning matrix
+
+## Hypotheses
+* `hC` – the preconditioner is regular
+* `hg` – the derivative is strict on the box
+* `h3` – the first Jacobian block is invertible on the box
+* `hJ₁` – the first block enclosure contains the preconditioned derivative
+* `hJ₂` – the second block enclosure contains the preconditioned derivative
+* `hdiag` – no diagonal enclosure of the first block contains zero
+* `hũ` – the expansion point lies in the box
+* `hz` – the preconditioner maps the target box into the preconditioned box
+* `hii` – the map's value at the expansion point lies in the target box
+* `h10` – the preconditioned inclusion test holds
+
+## Conclusion
+* the target box lies in the image of the controlled box
+
 ## References
 
 * [1] O. Mullier, É. Goubault, M. Kieffer and S. Putot. "General Inner Approximation of

@@ -10,6 +10,12 @@ public import CORALean.Global.Float.Instances.IEEE.Operations.Basic
 `Dyadic.roundUp` at `gridShift` rather than `Dyadic.shift`: the ceiling is the floor of the
 negation, taken `gridShift` bits right. The result has at most `p` bits, one more only when the
 ceiling carries into the next power of two, and an exponent of at least `qmin`.
+
+## Inputs
+* `d` – dyadic with the format's mantissa width
+
+## Output
+* the dyadic ceiled onto the format's grid
 -/
 
 -- Authors:       Claude Opus 5.5

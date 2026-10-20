@@ -13,6 +13,16 @@ A value read at any digit count at or above its own, its mantissa padded with
 the zeros the extra digits need -- exact, since padding a decimal with zeros
 changes nothing it denotes. What `RoundDownLe`/`LeRoundUp` need for the
 branch that pads rather than cuts.
+
+## Inputs
+* `x` – fixed-point value
+* `e` – larger digit count
+
+## Hypotheses
+* `h` – the value has at most that many digits
+
+## Conclusion
+* the value is its mantissa padded with zeros to that digit count
 -/
 
 -- Authors:       Claude Opus 5.5

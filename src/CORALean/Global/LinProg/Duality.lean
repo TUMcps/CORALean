@@ -9,18 +9,29 @@ public import Mathlib.Tactic.Linarith
 /-!
 # Where a bound comes from: weak duality
 
-Give the constraints nonnegative weights and add them up. Each inequality only
-gets weaker when its left side is replaced by its right, and each equality does
-not change at all, so whatever functional the weights assemble is bounded by
-whatever number they assemble — for every feasible point at once, and with no
-appeal to the existence of an optimum.
+Give the constraints nonnegative weights and add them up. Each inequality only gets weaker when its
+left side is replaced by its right, and each equality does not change at all, so whatever
+functional the weights assemble is bounded by whatever number they assemble, for every feasible
+point at once and with no appeal to an optimum. That is the whole trusted content of an LP bound:
+a solver's dual solution is such a weighting, and a solver that returns a wrong one produces no
+bound rather than a wrong one. Setting the objective to zero turns the same statement into a
+certificate of infeasibility.
 
-That is the whole trusted content of an LP bound. A solver's dual solution is
-such a weighting, and a solver that returns a wrong one produces no bound rather
-than a wrong one.
+## Inputs
+* `A` – inequality constraint functionals
+* `b` – inequality right-hand sides
+* `Ae` – equality constraint functionals
+* `be` – equality right-hand sides
+* `y` – weights of the inequalities
+* `z` – weights of the equalities
 
-Setting the objective to zero turns the same statement into a certificate of
-infeasibility, so the empty case needs nothing new.
+## Hypotheses
+* `hy` – the inequality weights are nonnegative
+* `h0` – the weighted functionals cancel
+* `hneg` – the weighted right-hand sides are negative
+
+## Conclusion
+* the feasible set is empty
 -/
 
 -- Authors:       Claude Opus 5

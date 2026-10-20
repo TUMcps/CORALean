@@ -9,15 +9,31 @@ public import Mathlib.LinearAlgebra.Matrix.Rank
 # The linear programs that extract a regular sub-matrix
 
 [1, Eq. 14]-[1, Eq. 18]: binary `xᵢⱼ`, at most one per row and column, pick the diagonal of a
-square sub-matrix of an interval matrix `A`; the constraints make it strictly dominant ((14),
-its big-M form (15)) or an H-matrix ((17), and (18) at `uᵢⱼ = ⟨aᵢⱼ⟩⁻¹`), so every real
-matrix in it is regular. They bound column `l` over the picked rows `i ≠ k`: the transposes
-of [1, Def. 4.5] and [1, Def. 4.8], equally regular. The sub-matrix is `A.submatrix ρ κ` for
-injective `ρ`, `κ` whose positions `x` picks; of `x` only `x ≥ 0` and `x(ρ t, κ t) = 1` are
-used. Magnitudes and mignitudes are bounds on `|A|`, as in `HMatrix.lean`. `M` plays no part
-in soundness, `μ > 0` does: the printed (16) has `+μ` where (15) has `-μ` and is false
-(`subLp16_counterexample`). `le_rank_of_det_submatrix_ne_zero` is the reading of
-[1, Def. 4.3]: a regular `k × k` sub-matrix bounds the rank below.
+square sub-matrix of an interval matrix `A`; the constraints make it strictly dominant ((14), its
+big-M form (15)) or an H-matrix ((17), and (18) at `uᵢⱼ = ⟨aᵢⱼ⟩⁻¹`), so every real matrix in it is
+regular. They bound column `l` over the picked rows `i ≠ k`: the transposes of [1, Def. 4.5] and
+[1, Def. 4.8]. The sub-matrix is `A.submatrix ρ κ` for injective `ρ`, `κ` whose positions `x`
+picks; of `x` only `x ≥ 0` and `x(ρ t, κ t) = 1` are used. `M` plays no part in soundness, `μ > 0`
+does: the printed (16) has `+μ` where (15) has `-μ` and is false (`subLp16_counterexample`).
+`le_rank_of_det_submatrix_ne_zero` reads [1, Def. 4.3]: a regular sub-matrix bounds the rank.
+
+## Inputs
+* `x` – selection matrix
+* `ρ` – picked rows
+* `κ` – picked columns
+* `mig` – matrix of mignitudes
+* `mag` – matrix of magnitudes
+* `A` – interval matrix representative
+
+## Hypotheses
+* `hx` – the selection is nonnegative
+* `hρ` – the picked rows are distinct
+* `hsel` – the picked positions are selected
+* `h14` – the dominance constraint holds
+* `hA` – the representative lies between the mignitudes and magnitudes
+
+## Conclusion
+* the picked sub-matrix has nonzero determinant
 
 ## References
 

@@ -11,6 +11,16 @@ public import CORALean.Global.Float.Instances.FixedPoint.Theorems.LeIff
 `le_iff` picks the larger side directly, which is what lets `maximum` absorb
 a sign without widening anything. What `SoundFloatArithmetic.toReal_maximum`
 needs from `FixedPoint`.
+
+## Inputs
+* `a` – first value
+* `b` – second value
+
+## Hypotheses
+* none
+
+## Conclusion
+* the maximum denotes the larger of the two real values
 -/
 
 -- Authors:       Claude Opus 5.5

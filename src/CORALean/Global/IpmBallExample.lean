@@ -12,6 +12,15 @@ public import CORALean.Global.IpmBallEq
 [1, Eq. 6] gives `I(ϕ) = [1.5ϕ - 0.5|ϕ|, 1.5ϕ + 0.5|ϕ|]`, and `y(ϕ) ∈ I(ϕ)` for every `ϕ`, so the
 predictor's reliability is 100% ([1, Def. 1]) whatever the distribution of `ϕ` on `[-1, 1]`.
 
+## Inputs
+* `ϕ` – regressor
+
+## Hypotheses
+* `hϕ` – the regressor has absolute value at most one
+
+## Conclusion
+* the predictor is the stated interval and contains the mechanism's output
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

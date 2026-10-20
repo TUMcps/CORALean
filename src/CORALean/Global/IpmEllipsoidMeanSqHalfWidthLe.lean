@@ -16,6 +16,18 @@ of `I(ϕ)` is `√(ϕᵀPϕ) + γ` by [1, Eq. 7] (`ipmEllipsoid_eq`). The chain 
 pointwise, then `E[ϕᵀPϕ] = Σᵢⱼ Pᵢⱼ E[ϕᵢϕⱼ] = Tr[PW]`, for any probability distribution of `ϕ` whose
 second moments exist.
 
+## Inputs
+* `P` – shape matrix of the ellipsoid
+* `γ` – noise bound
+* `μ` – distribution of the regressor
+
+## Hypotheses
+* `hP` – the shape matrix is positive semidefinite
+* `hint` – all second moments of the regressor are integrable
+
+## Conclusion
+* the mean squared half width is at most twice the trace cost
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

@@ -10,6 +10,13 @@ public import CORALean.Global.Float.Instances.Dyadic.Dyadic
 Closed on dyadics, so this loses nothing; only the mantissa grows, aligned to
 the smaller exponent, where both mantissas are integers. `AddUp`/`AddDown`
 round it back to `p` bits.
+
+## Inputs
+* `a` – first addend
+* `b` – second addend
+
+## Output
+* the exact sum, aligned to the smaller exponent
 -/
 
 -- Authors:       Claude Sonnet 5

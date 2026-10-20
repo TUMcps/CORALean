@@ -11,6 +11,16 @@ public import CORALean.Global.NormTwoSqEqDotProduct
 `[1, App. B]`: for `M Mᵀ = I`, `‖M β‖₂ ≤ ‖β‖₂`: `β` is `Mᵀ(Mβ)` plus an orthogonal part, and
 `‖Mᵀ(Mβ)‖₂ = ‖Mβ‖₂`. It puts the image of a ball of `ℝᵐ` under `M` into a ball of `ℝⁿ`.
 
+## Inputs
+* `M` – matrix with orthonormal rows
+* `β` – coefficient vector
+
+## Hypotheses
+* `hM` – the rows are orthonormal
+
+## Conclusion
+* the Euclidean norm does not increase
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

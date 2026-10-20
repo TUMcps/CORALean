@@ -15,6 +15,16 @@ induction go through without the state's own type depending on the loop count.
 This is the induction principle a loop-shaped algorithm's soundness proof asks for: a
 pass that tightens one coordinate's bound at a time is exactly such a fold, and this is
 what carries "every feasible point stays inside" across the whole pass.
+
+## Inputs
+* `α` – state type
+* `P` – property carried through the fold
+
+## Hypotheses
+* none
+
+## Conclusion
+* a property preserved by every step holds of the folded state
 -/
 
 -- Authors:       Claude Opus 5

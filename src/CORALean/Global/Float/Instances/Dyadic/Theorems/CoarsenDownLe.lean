@@ -12,6 +12,16 @@ public import Mathlib.Analysis.Normed.Ring.Lemmas
 
 `Int.ediv_mul_le` on the mantissa, read at the shift `(e - exponent).toNat` that
 `two_zpow_coarsen` aligns.
+
+## Inputs
+* `e` – exponent of the target grid
+* `d` – dyadic
+
+## Hypotheses
+* none
+
+## Conclusion
+* coarsening down does not increase the value
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -9,6 +9,16 @@ public import CORALean.Global.Float.Instances.IEEE.Theorems.Basic
 # The lesser of two numbers is exact
 
 `le` decides the order exactly, so the argument picked is the minimum.
+
+## Inputs
+* `a` – first value
+* `b` – second value
+
+## Hypotheses
+* none
+
+## Conclusion
+* the minimum denotes the smaller of the two real values
 -/
 
 -- Authors:       Claude Opus 5.5

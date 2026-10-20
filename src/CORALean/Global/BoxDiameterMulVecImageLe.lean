@@ -18,6 +18,17 @@ linear step [1, Lemma 2]'s solver takes between abstraction errors.
 The four `Matrix.linftyOp*` instances are picked locally, as every file here
 that needs a matrix norm must.
 
+## Inputs
+* `M` – matrix
+* `S` – set of vectors
+
+## Hypotheses
+* `hne` – the set is nonempty
+* `hS` – the set is bounded
+
+## Conclusion
+* the image's box diameter is at most the matrix norm times the set's
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

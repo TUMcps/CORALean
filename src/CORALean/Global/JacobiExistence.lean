@@ -10,18 +10,32 @@ public import Mathlib.Analysis.Calculus.Deriv.Prod
 /-!
 # The interval Jacobi test proves a zero, with a closed inclusion
 
-`F : ℝⁿ → ℝⁿ` is `C¹`, its partial derivatives on the box `x = [lo, hi]` lie in the interval
-matrix `[Jlo, Jhi]`, `x̃ ∈ x`, and every value of the Jacobi step
-`x̃ᵢ + (bᵢ - Σ_{j≠i} Aᵢⱼ (xⱼ - x̃ⱼ)) / Aᵢᵢ`, over the real `A` in the interval matrix and the `x`
-in the box, lies in `[loᵢ, hiᵢ]`. Then `F x = F x̃ + b` has a solution in the box. With
-`F = C f` and `b = C (y - f x̃)` this is [1, Cor. 2.1]'s test with `⊆ x` in place of `⊆ int(x)`,
-the form CORA's `aux_InnerSpecial` checks; an interval evaluation of the step encloses the
-values quantified here.
+`F : ℝⁿ → ℝⁿ` is `C¹`, its partial derivatives on the box `x = [lo, hi]` lie in the interval matrix
+`[Jlo, Jhi]`, `x̃ ∈ x`, and every value of the Jacobi step `x̃ᵢ + (bᵢ - Σ_{j≠i} Aᵢⱼ (xⱼ - x̃ⱼ)) /
+Aᵢᵢ`, over the real `A` in the interval matrix and the `x` in the box, lies in `[loᵢ, hiᵢ]`. Then `F
+x = F x̃ + b` has a solution in the box: [1, Cor. 2.1]'s test with `⊆ x` in place of `⊆ int(x)`, as
+CORA's `aux_InnerSpecial` checks it. The average Jacobian `A(x)` is continuous, in the interval
+matrix, with `F x - F x̃ = A(x)(x - x̃)`, so the Jacobi map with `A(x)` is a continuous self-map of
+the box; Brouwer's theorem (`exists_fixedPoint_of_isCompact_convex`) fixes a point, where `A(x)(x -
+x̃) = b`.
 
-The average Jacobian `A(x) = ∫₀¹ F'(x̃ + s(x - x̃)) ds` is continuous, lies in the interval
-matrix and has `F x - F x̃ = A(x)(x - x̃)`, so the Jacobi map with `A(x)` is a continuous
-self-map of the box; Brouwer's theorem (`exists_fixedPoint_of_isCompact_convex`) fixes a point,
-at which every row of `A(x)(x - x̃) = b` holds.
+## Inputs
+* `F` – continuously differentiable map
+* `lo` – lower end of the box
+* `hi` – upper end of the box
+* `xc` – expansion point
+* `Jlo` – lower end of the Jacobian enclosure
+* `Jhi` – upper end of the Jacobian enclosure
+* `b` – right-hand side
+
+## Hypotheses
+* `hF` – the map is continuously differentiable
+* `hxc` – the expansion point lies in the box
+* `hJ` – the enclosure contains the derivative on the box
+* `hstep` – every Jacobi step for a matrix in the enclosure lands in the box
+
+## Conclusion
+* the equation has a solution in the box
 
 ## References
 

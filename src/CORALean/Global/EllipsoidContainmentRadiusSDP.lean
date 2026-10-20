@@ -11,17 +11,27 @@ public import Mathlib.Topology.MetricSpace.ProperSpace.Real
 /-!
 # The ellipsoid-in-ellipsoid containment radius as a semidefinite program
 
-[1, Thm. 13]: for `Ê = E₂(G, c)` and a non-degenerate `E = E₂(H, d)`,
-`r(Ê, E) = √(min_{ρ ∈ S} ρ)`, `S` the `ρ` with
-`[[ΘᵀΘ, Θᵀθ], [θᵀΘ, θᵀθ]] - ρ [[0, 0], [0, 1]] ⪯ δ [[I, 0], [0, -1]]` (Eq. 23) for some
-`δ ≥ 0`, `Θ = H⁺G`, `θ = H⁺(c - d)`. Non-degenerate is `H` onto; `H⁺` is any matrix with the
-Penrose conditions (`IsPinv`), and `r` is Eq. 15 at `p = q = 2`, `‖·‖₂` written `√(β ⬝ᵥ β)`.
+[1, Thm. 13]: for `Ê = E₂(G, c)` and a non-degenerate `E = E₂(H, d)`, `r(Ê, E) = √(min_{ρ ∈ S} ρ)`,
+`S` the `ρ` with `[[ΘᵀΘ, Θᵀθ], [θᵀΘ, θᵀθ]] - ρ [[0, 0], [0, 1]] ⪯ δ [[I, 0], [0, -1]]` (Eq. 23) for
+some `δ ≥ 0`, `Θ = H⁺G`, `θ = H⁺(c - d)`. Non-degenerate is `H` onto; `H⁺` is any matrix with the
+Penrose conditions (`IsPinv`), and `r` is Eq. 15 at `p = q = 2`. As in the proof, `H⁺x` is the
+least-norm solution of `Hβ = x`, so `r² = max_{αᵀα ≤ 1} ‖Θα + θ‖²`, attained on the compact ball,
+and the S-lemma at `g α = αᵀα - 1` (`s_lemma_posSemidef`) turns `αᵀα ≤ 1 → ‖Θα + θ‖² ≤ ρ` into
+Eq. 23, so `S = [r², ∞)`.
 
-As in the proof: `H⁺x` solves `Hβ = x` (`HH⁺H = H`, `H` onto) and is orthogonal to `ker H`
-(`H⁺ = H⁺HH⁺`, `H⁺H` symmetric), so it is the solution of least norm, and
-`r² = max_{αᵀα ≤ 1} ‖Θα + θ‖²`, attained on the compact ball. The theorem of alternatives the
-proof cites is the S-lemma at `g α = αᵀα - 1`, which `α = 0` makes strictly negative:
-`s_lemma_posSemidef` turns `αᵀα ≤ 1 → ‖Θα + θ‖² ≤ ρ` into Eq. 23, so `S = [r², ∞)`.
+## Inputs
+* `G` – generator matrix of the inner ellipsoid
+* `c` – center of the inner ellipsoid
+* `H` – generator matrix of the outer ellipsoid
+* `d` – center of the outer ellipsoid
+* `Hp` – pseudo-inverse of the outer generator matrix
+
+## Hypotheses
+* `hH` – the outer generator matrix is onto
+* `hHp` – the pseudo-inverse satisfies the Penrose conditions
+
+## Conclusion
+* the squared containment radius is the least feasible value of the semidefinite program
 
 ## References
 

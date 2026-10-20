@@ -15,6 +15,17 @@ generators. The float layer has no operator norm and no singular value, but
 looser than the tight constant by at most `√h`, and enough wherever the quantity bounded is a
 tuning one, as [1]'s `Δε^h_k` is.
 
+## Inputs
+* `p` – number of Newton steps per length
+* `G` – real generators
+* `m` – float bounds on the generators' magnitudes
+
+## Hypotheses
+* `hm` – the float bounds cover the generators' entries
+
+## Conclusion
+* the induced operator norm is at most the float upper bound
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

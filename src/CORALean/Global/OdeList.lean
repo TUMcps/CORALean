@@ -12,6 +12,12 @@ public import Mathlib.Algebra.Polynomial.Roots
 `odeL q k` is `odePoly q k` with `q` and the result as lists of integer coefficients, lowest
 degree first: the computable form of the derivative polynomials of `tan` and `tanh`
 (`q = 1 + X²`, `1 - X²`). The theorem is that the two evaluate alike.
+
+## Inputs
+* none
+
+## Output
+* the function adding two coefficient lists termwise
 -/
 
 -- Authors:       Claude Opus 5.5

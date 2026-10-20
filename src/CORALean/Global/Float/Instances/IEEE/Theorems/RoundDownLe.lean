@@ -12,6 +12,15 @@ public import Mathlib.Analysis.Normed.Ring.Lemmas
 
 The floor of the shifted mantissa, shifted back, is at most the mantissa, whatever `gridShift`
 is: `Dyadic.roundDown_le`'s argument at a different shift.
+
+## Inputs
+* `d` – dyadic with the format's mantissa width
+
+## Hypotheses
+* none
+
+## Conclusion
+* rounding down does not increase the value
 -/
 
 -- Authors:       Claude Opus 5.5

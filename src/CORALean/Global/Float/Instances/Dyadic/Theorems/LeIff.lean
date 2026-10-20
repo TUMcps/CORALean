@@ -14,6 +14,16 @@ public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeShlIff
 mantissa (`leShl_iff`), and `leAligned_iff` compares aligned integers. Shared by
 `toReal_minimum`, `toReal_maximum` and `toReal_le_of_le`, each of which needs both directions or
 only the one `SoundFloatArithmetic` asks for.
+
+## Inputs
+* `a` – left dyadic
+* `b` – right dyadic
+
+## Hypotheses
+* none
+
+## Conclusion
+* the comparison is true exactly when the real order holds
 -/
 
 -- Authors:       Claude Opus 5

@@ -13,6 +13,18 @@ public import Mathlib.Topology.Homeomorph.Lemmas
 is a homeomorphism `φ`, and `R_{X₀}(t) = φ(X₀)`. `X₀` is closed, so that `∂X₀ ⊆ X₀` and (6)
 applies to it; [1, Thm. 2] assumes it compact, Prop. 1 does not say so.
 
+## Inputs
+* `φ` – homeomorphism, the flow at the end time
+* `X₀` – closed set of initial states
+* `reachSubset` – operator enclosing reachable sets of subsets
+
+## Hypotheses
+* `hX₀` – the initial set is closed
+* `h6` – the operator encloses the image of every subset of the initial set
+
+## Conclusion
+* the frontier of the image lies in the enclosure of the initial set's frontier
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets

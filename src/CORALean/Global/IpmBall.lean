@@ -14,6 +14,15 @@ regression `y = ϑᵀϕ + e` with `ϑ` in the ball `B_{c,r} = {ϑ | ‖ϑ - c‖
 `I(ϕ) = {y | y = ϑᵀϕ + e for some ϑ ∈ B_{c,r}, |e| ≤ γ}`. The Euclidean ball is written
 `(ϑ - c)ᵀ(ϑ - c) ≤ r²`, which is it for `r ≥ 0`, the radii of the class [1, Eq. 8].
 
+## Inputs
+* `c` – center of the parameter ball
+* `r` – radius of the parameter ball
+* `γ` – noise bound
+* `ϕ` – regressor
+
+## Output
+* the set of outputs the ball predictor allows at the regressor
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

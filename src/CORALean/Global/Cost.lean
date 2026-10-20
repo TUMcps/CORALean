@@ -9,21 +9,13 @@ public import Mathlib.Tactic.GCongr
 # What running an operation costs
 
 A `Cost` counts, at unit price, **scalar arithmetic** (one `+`, `-`, `*`, `/`, comparison, `min`,
-`max` or absolute value on the scalar a layer computes in) and **writes** (one unit for every
-scalar of the result: computed, copied, padded with a zero or placed alike, exponents and
-constraint coefficients included). One convention throughout: **a computed entry costs its
-arithmetic plus one write, a copied or padded entry costs one write.** Reading is free:
-indexing, taking a field and passing a value on cost nothing, and a value held only in a
-register, feeding the next operation directly, is not written. A called subroutine is charged
-its own cost, which includes the writes of its own result, so a result is not charged again by
-its caller. That is why `Zonotope.plusCost` takes the operands' generator counts: the sum writes
-`n (1 + h₁ + h₂)` scalars.
-
-A cost is **asserted**, never derived: a Lean `def` says what is computed and never what
-computing it costs, so every `…Cost` is read off an operation's definition by hand. Every cost is
-an **upper** bound, so bounds compose; one needing the size of the result takes the operand
-sizes as arguments. No enclosure guarantee mentions a `Cost`: a count read wrong makes a bound
-wrong, never a set.
+`max` or absolute value) and **writes** (one unit for every scalar of the result, computed, copied
+or padded, exponents and constraint coefficients included). **A computed entry costs its arithmetic
+plus one write, a copied or padded entry one write**; reading is free, and a called subroutine is
+charged its own cost, so a result is not charged again by its caller (`Zonotope.plusCost` takes the
+operands' generator counts). A cost is **asserted**, never derived, read off an operation's
+definition by hand, and an **upper** bound, so bounds compose. No enclosure guarantee mentions a
+`Cost`: a count read wrong makes a bound wrong, never a set.
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

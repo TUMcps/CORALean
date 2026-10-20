@@ -12,15 +12,24 @@ public import Mathlib.Logic.Equiv.Fin.Basic
 # Repeated blocks
 
 `a` copies of a vector side by side (`repVec`) and `a` copies of a matrix on the diagonal of a
-block matrix (`repBlockDiag`), an entry outside the blocks being the zero given explicitly, so
-that a float scalar, which has no `Zero` instance, can use it too, as for `blockDiag`. The rows
-and the columns are both split by `finProdFinEquiv`, so the block an index belongs to and its
-position inside that block are read off the same equivalence.
+block matrix (`repBlockDiag`), an entry outside the blocks being the zero given explicitly, so that
+a float scalar, which has no `Zero` instance, can use it too, as for `blockDiag`. The rows and
+columns are both split by `finProdFinEquiv`, so the block an index belongs to and its position
+inside it are read off the same equivalence. It is the shape of a system repeated on fresh
+variables (`PolyLevelSet.copies`), and of every matrix of the convex hull of a constrained
+polynomial zonotope. The lemmas read a sum or a product over the blocks as one over each block, and
+a column of `repBlockDiag` as block `j`'s alone.
 
-It is the shape of a system repeated on fresh variables (`PolyLevelSet.copies`), and of every
-matrix of the convex hull of a constrained polynomial zonotope, whose copies of the operand each
-read a fresh block of factors. The lemmas read a sum or a product over the blocks as a sum or a
-product over each block, and a column of `repBlockDiag` as block `j`'s alone.
+## Inputs
+* `β` – entry type
+* `z` – zero entry
+* `a` – number of copies
+* `r` – rows of a block
+* `c` – columns of a block
+* `M` – block to be repeated
+
+## Output
+* the block matrix with one copy of the block per diagonal position
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

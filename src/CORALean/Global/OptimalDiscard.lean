@@ -12,6 +12,15 @@ public import Mathlib.Data.List.MinMax
 returns a problem `D^r_{N-k}` of least `w(D^r_{N-k}) ≤ w(D^j_{N-k})`, `j = 1, …, M_k`. The first of
 the least, `List.argmin`, and `none` where level `k` is empty: a problem with no support constraint
 has no child, and the pseudo-code then has nothing to return.
+
+## Inputs
+* `w` – value of a problem
+* `D` – full constraint set
+* `k` – number of constraints to discard
+
+## Output
+* the remaining constraints of least value, none when the tree is exhausted
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

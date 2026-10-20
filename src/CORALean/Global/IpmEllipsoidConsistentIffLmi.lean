@@ -18,6 +18,20 @@ and `|y(t) - cᵀϕ(t) - ϵ_t| ≤ √(ϕ(t)ᵀPϕ(t))`. Some `ϵ_t` satisfies b
 `|y(t) - cᵀϕ(t)| ≤ √(ϕ(t)ᵀPϕ(t)) + γ`, which is `y(t) ∈ I(ϕ(t))` by [1, Eq. 7] (`ipmEllipsoid_eq`).
 The program's variable is `γ²`, and `γ = √(γ²) ≥ 0`.
 
+## Inputs
+* `c` – center of the parameter ellipsoid
+* `P` – shape matrix of the ellipsoid
+* `γ` – noise bound
+* `ϕ` – regressor data
+* `y` – observed outputs
+
+## Hypotheses
+* `hP` – the shape matrix is positive definite
+* `hγ` – the noise bound is nonnegative
+
+## Conclusion
+* the data are consistent exactly when slack variables satisfy the two matrix inequalities
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

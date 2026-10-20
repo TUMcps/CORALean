@@ -12,6 +12,14 @@ each problem at level `i` has a child for each of its support constraints, the p
 Step 1 of the algorithm, `D^{M_{i+1}}_{N-i-1} := D^h_{N-i} - sc_l(D^h_{N-i})` for `h = 1, …, M_i`
 and `l = 1, …, |sc(D^h_{N-i})|`, as a list, so that `M_i` is its length; a problem reached by two
 removal orders appears twice.
+
+## Inputs
+* `w` – solution map on constraint subsets
+* `D` – full constraint set
+
+## Output
+* the function giving the list of problems at each level, from the full set downwards
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

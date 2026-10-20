@@ -16,6 +16,15 @@ public import Mathlib.Algebra.Order.Star.Real
 `1/4 + 1/4 - 1/2 = 0`. With Eq. 28b strict and for every ordered pair `i ≠ j` the lemma holds
 (`doubleSum_posDef`).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the pairwise conditions hold at equality yet the double sum vanishes
+
 ## References
 
 * [1] Y. Wang, Z. Wang, V. Puig and G. Cembrano. "Zonotopic set-membership state estimation for

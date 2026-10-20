@@ -7,19 +7,14 @@ public import CORALean.Global.KaucherInner
 /-!
 # Forward inner and outer reachable sets, the loop of Algorithm 1
 
-[1, Alg. 1] steps through a time grid `t₀ < t₁ < … < t_N` carrying three enclosures: `[z_j]`
-of the solutions from the initial box at `t_j`, `[z̃_j]` of the solution from the one point
-`z̃₀`, and `[J_j]` of the Jacobian of the flow with respect to `z₀`. Per step: (Step 1) a priori
-enclosures by the interval Picard-Lindelöf iteration, (Step 2) the Taylor models (15)-(17) of
-the three on `[t_j, t_{j+1}]`, (Step 3) the inner range (18) for every `t` of the step, and
-(Step 4) the Taylor models at `t_{j+1}` as the next enclosures.
-
-Steps 1 and 2 are one argument here, `models`: the Taylor models of Sections 3.2 and 3.3 at time
-`t`, from the enclosures at `t_j`. The validated Taylor-model integration they stand for is
-not in this tree, nor is the differentiability of a flow with respect to its initial
-condition, so what the loop needs of them is the hypothesis of the soundness theorem: from
-valid enclosures at `t_j` they give valid enclosures at every `t` of the step. Step 3 is
-[`kaucherInnerStep`](KaucherInner.lean), per component.
+[1, Alg. 1] steps through a time grid `t₀ < … < t_N` carrying enclosures `[z_j]` of the solutions
+from the initial box, `[z̃_j]` of the solution from the one point `z̃₀`, and `[J_j]` of the Jacobian
+of the flow. Per step: (1) a priori enclosures by the interval Picard-Lindelöf iteration, (2) the
+Taylor models (15)-(17) on `[t_j, t_{j+1}]`, (3) the inner range (18) for every `t` of the step, (4)
+the Taylor models at `t_{j+1}` as the next enclosures. Steps 1 and 2 are one argument here,
+`models`: the validated Taylor-model integration they stand for is not in this tree, so the
+soundness theorem takes as hypothesis that valid enclosures at `t_j` give valid enclosures at every
+`t` of the step. Step 3 is [`kaucherInnerStep`](KaucherInner.lean), per component.
 
 ## References
 

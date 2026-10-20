@@ -9,6 +9,13 @@ public import CORALean.Global.Float.Instances.Dyadic.Operations.Le
 
 `le` decides it exactly, so this picks one of its two arguments and rounds
 nothing.
+
+## Inputs
+* `a` – first dyadic
+* `b` – second dyadic
+
+## Output
+* the greater of the two dyadics
 -/
 
 -- Authors:       Claude Sonnet 5

@@ -14,6 +14,16 @@ public import Mathlib.Data.Int.ConditionallyCompleteOrder
 `DivDownLeDiv`'s mirror: the ceiling is the floor of the negation, and
 `Int.ediv_mul_le` applied there gives the same cross-multiplied fact the other
 way, read back at `f` digits by `div_le_div_iff₀`.
+
+## Inputs
+* `a` – dividend
+* `b` – divisor
+
+## Hypotheses
+* `hb` – the divisor is positive
+
+## Conclusion
+* the real quotient is at most the upward quotient
 -/
 
 -- Authors:       Claude Opus 5.5

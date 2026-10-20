@@ -10,6 +10,13 @@ public import CORALean.Global.Float.Instances.Dyadic.Dyadic
 Aligned to the smaller exponent, where both mantissas are integers. Forms `2 ^ gap`, so it is
 the specification of `le` rather than what runs: `le` agrees with it (`le_iff`) but does not
 abort on a huge gap.
+
+## Inputs
+* `a` – left dyadic
+* `b` – right dyadic
+
+## Output
+* whether the left is at most the right, by aligning the mantissas
 -/
 
 -- Authors:       Claude Sonnet 5.5
