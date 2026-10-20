@@ -11,6 +11,19 @@ public import Mathlib.Tactic.Ring
 
 The synchronized affine reset at a point is the sum of the component resets there, plus the
 pre-jump value at the coordinates `idStates`: exact.
+
+## Inputs
+* `W` – reset matrices
+* `w` – reset offsets
+* `idStates` – states kept by identity
+* `x` – state
+* `i` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* synchronized reset is the sum of the component resets
 -/
 
 -- Authors:       Claude Opus 5.5

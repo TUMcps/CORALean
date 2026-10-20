@@ -13,6 +13,21 @@ public import CORALean.HybridDynamics.Parallel.Theorems.LiftTransitionReset
 `IsRun.toProductWith` at `mergeFlowsLinearSys`, whose flow law holds at `ℝ` under `FeedthroughFree`,
 CORA's own check against algebraic loops. The soundness direction; the converse is
 `IsRun.ofProduct`, under more conditions.
+
+## Inputs
+* `P` – parallel automaton
+* `lift` – lifting
+* `ℓ` – start locations
+* `ℓ'` – end locations
+* `x` – start states
+* `y` – end states
+
+## Hypotheses
+* `hfeed` – no feedthrough between bound outputs
+* `run` – parallel run from `x` to `y`
+
+## Conclusion
+* the stacked states are a run of the product
 -/
 
 -- Authors:       Claude Opus 5.5

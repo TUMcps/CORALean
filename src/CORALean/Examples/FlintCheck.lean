@@ -3,20 +3,22 @@ import CORALean.Global.Float.Instances.Flint.API
 /-!
 # `lake exe flintcheck`: does FLINT do what `trustedFlint` says?
 
-`trustedFlint` (`Flint/Definitions/Axioms.lean`) is a claim about C no proof reaches; this
-SAMPLES it, as `hardwarecheck` does `TrustedHardware`, against exact rationals with the rounding
-written out from the definition, not `Dyadic`'s code. For each directed operation, precision `p` and
-random or structured operand pair (bit lengths about `p`, ties, cancellation, a far-smaller addend,
-zeros, a positive divisor), with `x` the exact result, `r` must lie on the claimed side of `x`, have
-at most `p` significant bits, and be the nearest such number. The shim's `Int`/`fmpz` conversion is
-checked as `a + 0` and `a * 1` returning `a` at a precision that rounds nothing, mantissas and
-exponents past `2^64` included.
+`trustedFlint` (`Flint/Definitions/Axioms.lean`) is a claim about C no proof reaches; this SAMPLES
+it, as `hardwarecheck` does `TrustedHardware`, against exact rationals with the rounding written
+out from the definition. For each directed operation, precision `p` and operand pair (bit lengths
+about `p`, ties, cancellation, zeros, a positive divisor), with `x` the exact result, `r` must lie
+on the claimed side of `x`, have at most `p` significant bits, and be the nearest such number. Run
+`lake exe flintcheck [--seed N] [--n N]` after `scripts/install-flint.sh` and
+`scripts/build-flint-shim.sh`; it exits `1` on any violation (CI job `flint-check`).
 
-    bash scripts/install-flint.sh && bash scripts/build-flint-shim.sh
-    lake build flintcheck && lake exe flintcheck [--seed N] [--n N]
+## Inputs
+* `t` – statistics so far
+* `p` – significand width
+* `n` – number of samples
+* `seed` – random seed
 
-Prints the samples per operation and the first failing input; exits `1` on any violation. Its Lean
-side is elaborated on every commit; only the link needs FLINT (CI job `flint-check`).
+## Output
+* statistics updated by the samples at that width
 -/
 
 -- Authors:       Claude Sonnet 5.5

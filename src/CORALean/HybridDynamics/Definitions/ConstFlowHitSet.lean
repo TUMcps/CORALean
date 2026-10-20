@@ -18,6 +18,16 @@ printed symbol; `-bnᵀ/(nᵀb) ⊗ E` is the set-based multiplication of a matr
 A set, as eq. (1) has it, not a representation: [1] computes with zonotopes only from
 Sec. 5 on, where the state-dependent flow replaces `b`.
 
+## Inputs
+* `x₀` – initial state
+* `b` – constant flow vector
+* `nv` – guard normal
+* `d` – guard offset
+* `E` – flow error set
+
+## Output
+* set the guard hit lies in
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

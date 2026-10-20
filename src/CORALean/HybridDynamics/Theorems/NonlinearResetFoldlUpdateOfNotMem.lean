@@ -10,6 +10,19 @@ public import Mathlib.Data.Real.Basic
 Folding `Function.update acc (g j) (v j)` over a list of indices leaves the value at `i` alone if
 no `g j` of the list equals `i`: the fact behind `NonlinearReset.lift` keeping its unbound
 coordinates.
+
+## Inputs
+* `n` – number of updates
+* `N` – dimension
+* `g` – index map
+* `v` – update values
+* `i` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* a fold of updates leaves an unhit coordinate unchanged
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,15 +11,21 @@ public import CORALean.HybridDynamics.Operations.TimeIntervalStep
 /-!
 # `Location.timeIntervalStepSplit`
 
-The stay enclosure with the input contribution computed rather than named, at a
-location whose combined input set `ℓ.inputSet = B U ⊕ c ⊕ E W` need not hold the origin.
-`Recenter` takes it apart into a center and a remainder around zero, as CORA's `canonicalForm`
-does: the center travels as a constant through `expIntegral` and `constCorrectionMatrix`, and
-`inputSolution` sees only the remainder, which does hold the origin.
+The stay enclosure with the input contribution computed rather than named, at a location whose
+combined input set `ℓ.inputSet = B U ⊕ c ⊕ E W` need not hold the origin. `Recenter` takes it
+apart into a center and a remainder around zero, as CORA's `canonicalForm` does: the center
+travels as a constant through `expIntegral` and `constCorrectionMatrix`, and `inputSolution` sees
+only the remainder. The set is that of `timeIntervalStep ⊞ inputSolution ℓ.inputSet` where
+`0 ∈ ℓ.inputSet` already; this is `TimeIntervalOuterSplit`'s form, which a location can supply.
 
-`timeIntervalStep ⊞ inputSolution ℓ.inputSet` is the same set where `0 ∈ ℓ.inputSet` already;
-this is `TimeIntervalOuterSplit`'s form, which asks nothing about where the input set sits and
-so is the one a location can actually supply.
+## Inputs
+* `ℓ` – location
+* `r` – time step
+* `η` – Taylor order
+* `X₀` – initial set
+
+## Output
+* stay enclosure with split input
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

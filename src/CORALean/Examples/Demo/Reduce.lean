@@ -19,15 +19,19 @@ import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # [1, Alg. 2] at `Dyadic`, run
 
-A network with four hidden ReLU neurons, two of which the input box `X` leaves at or near
-zero: one never fires, the other fires by at most `1/16`. At `ρ = 1/2` [1, Alg. 1] has to
-merge two, and the static bucket at `0` finds exactly those; the reduced network then runs
-through two hidden neurons, and what the merged pair could have contributed arrives as the
-error box [1, Eq. 2] adds to the next linear layer.
+A network with four hidden ReLU neurons, two of which the input box `X` leaves at or near zero: one
+never fires, the other fires by at most `1/16`. At `ρ = 1/2` [1, Alg. 1] has to merge two, and the
+static bucket at `0` finds exactly those; the reduced network then runs through two hidden neurons,
+and what the merged pair could have contributed arrives as the error box [1, Eq. 2] adds to the
+next linear layer. The unreduced network's enclosure is printed beside the reduced one's. Both
+contain the exact image (`enclose_outer`, `reduceOnTheFly_outer`), and the reduced one pays for its
+merged neurons with a box, which forgets how they depend on the input.
 
-The unreduced network's enclosure is printed beside the reduced one's. Both contain the exact
-image — `enclose_outer` and `reduceOnTheFly_outer` — and the reduced one pays for its merged
-neurons with a box, which forgets how they depend on the input.
+## Inputs
+* none
+
+## Output
+* report of the reduced network
 
 ## References
 

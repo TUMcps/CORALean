@@ -11,6 +11,15 @@ public import CORALean.ContSet.Interval.Real.Instances
 
 A point of the stacked space is in the product of the boxes exactly when each of its blocks is in
 its component's box. An equality, not an inclusion: this is the product `ContSet` lacks.
+
+## Inputs
+* `bs` – boxes of the components
+
+## Hypotheses
+* none
+
+## Conclusion
+* a point lies in the product iff each block lies in its component
 -/
 
 -- Authors:       Claude Opus 5.5

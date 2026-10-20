@@ -11,6 +11,18 @@ public import Mathlib.Algebra.BigOperators.Pi
 
 The real `c` that `LinearReset.synchronize` returns for the real values of the stored offsets
 lies, entry by entry, between the bounds `synchronizeFloat` returns. An outer statement.
+
+## Inputs
+* `W` – float reset matrices
+* `w` – float reset offsets
+* `idStates` – states kept by identity
+* `i` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* the real offset lies between the float bounds
 -/
 
 -- Authors:       Claude Opus 5.5

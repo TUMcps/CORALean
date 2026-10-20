@@ -30,22 +30,20 @@ import CORALean.Examples.Bench.RandVerifyTypes
 /-!
 # `dtdemo`, `headline-a`, `headline-b`, `exp2-timepoint`
 
-`dispatch` is the one place `main` calls into; every experiment name it knows goes through
-`runAt`, generic in the scalar `𝕋`, instantiated once at `Dyadic p` and once at `Float` by
-`dispatch` itself. `dtdemo` is `LinearSysDT.reach` on `Rollout.buildSystem`'s placeholder Euler
-discretization. The other three run the verified continuous-time algorithms
-(`ContRollout.buildContSystem`'s exact `A`, `X0`) through `aux_runTiTp`, shared over the one
-difference between them, `aux_algoHeadlineA`/`B`/`Exp2` -- which call of
-`reachWrappingFreeFloat`/`reachTimePointWrappingFreeFloat`/`reachFloat` each is, as `…Checked`;
-a result holding a NaN is not reported (nor is `dtdemo`'s).
+`dispatch` is the one place `main` calls into; every experiment name it knows goes through `runAt`,
+generic in the scalar `𝕋`, instantiated once at `Dyadic p` and once at `Float`. `dtdemo` is
+`LinearSysDT.reach` on `Rollout.buildSystem`'s placeholder Euler discretization. The other three
+run the verified continuous-time algorithms (`ContRollout.buildContSystem`) through `aux_runTiTp`;
+a result holding a NaN is not reported. A `dyadic` run's significand width, `resolvedPrec`, is
+`--prec` if given, else `--format` mapped through `formatToPrec`, else `53`, so the default agrees
+with native `Float`. `opcompare`, `firststep`, `randverify` and `randverify-family` are unrelated,
+intercepted ahead of `runAt`: each takes every scalar it needs from its own files.
 
-A `dyadic` run's significand width, `resolvedPrec`, is `--prec` if given (a
-raw bit count, for a precision none of the five `--format` labels name), else
-`--format` mapped through `formatToPrec` (already validated by `parseArgs`),
-else `53` -- `binary64`, so the default agrees with native `Float`.
+## Inputs
+* `args` – parsed command line
 
-`opcompare`, `firststep`, `randverify` and `randverify-family` are unrelated, intercepted ahead
-of `runAt`: each takes every scalar it needs from their own files, not the one `--type` picks.
+## Output
+* significand width of the run
 -/
 
 -- Authors:       Claude Opus 5.5

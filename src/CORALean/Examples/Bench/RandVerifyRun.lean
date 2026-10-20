@@ -8,15 +8,22 @@ import CORALean.Examples.Bench.RandVerifySameSystem
 /-!
 # `lake exe bench randverify --in FILE|DIR [--types L] [--algs L] [--dt Q] [--eta K] [--order R]`
 
-EXPLORATORY: ARCH24 random verification instances (`ẋ = A x + B u`, `y = C x`, four unsafe boxes
-in output space) under many number types. `--in` is an instance file, or a directory whose
-`*.json` are all read (default `experiments/randverify`); every instance is run at every type of
-`--types` (comma list of `randTypeKind` labels, default all of `defaultTypes`) and every
-algorithm of `--algs` (`standard`, `wrappingfree`; default both), `--dt` (default `1/64`), `--eta`
+EXPLORATORY: ARCH24 random verification instances (`ẋ = A x + B u`, `y = C x`, four unsafe boxes in
+output space) under many number types. `--in` is an instance file, or a directory whose `*.json`
+are all read (default `experiments/randverify`); every instance is run at every type of `--types`
+and every algorithm of `--algs` (`standard`, `wrappingfree`), `--dt` (default `1/64`), `--eta`
 (default `6`), `--order` (default `20`), and written to `<out>/randverify/<instance><tag>.json`.
 Instances stating the same system (`RandInstance.sameSystem`) are reached once per type and
 algorithm and checked together. `runFor` is the per-type half, `none` for a type this executable
-does not link, so one driver serves `bench` and `bench-flint`.
+does not link.
+
+## Inputs
+* `args` – parsed command line
+* `tag` – output file tag
+* `runFor` – per-type runner
+
+## Output
+* the instances are run and written
 -/
 
 -- Authors:       Claude Sonnet 5.5

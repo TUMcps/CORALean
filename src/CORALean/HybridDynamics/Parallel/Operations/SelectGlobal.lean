@@ -17,6 +17,14 @@ row `a` picks the first input that `b` binds to global input `a` (in the order o
 is zero where none is. CORA's `aux_mergeInputSet` places each component's input set at its global
 inputs by `projectHighDim`; this is the same placement read backwards, so that the image of the
 product of the components' input sets is the product's input set (`zonoLifting`, ...).
+
+## Inputs
+* `d` – input counts of the components
+* `q` – output counts of the components
+* `b` – input bindings
+
+## Output
+* matrix reading the global inputs off the stacked inputs
 -/
 
 -- Authors:       Claude Opus 5.5

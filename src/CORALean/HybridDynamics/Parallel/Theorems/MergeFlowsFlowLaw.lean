@@ -21,6 +21,17 @@ Row `⟨i, a⟩` of the merged right-hand side is component `i`'s: the block of 
 `a`'s input is bound to output `s` of component `c`, state `s` of `c` (the `1` of `B C`, `C` the
 identity), or, where it is bound to global input `a'`, `g a'` (the `1` of `B`); `B u` of the
 component reads the same, `B` the identity, `D` and `k` zero. `c` and `E` are copied.
+
+## Inputs
+* `P` – parallel automaton
+* `lift` – lifting
+
+## Hypotheses
+* `hst` – components are state-bound
+* `hself` – self-bound inputs meet zero entries
+
+## Conclusion
+* the flow assembled without arithmetic has the flow law
 -/
 
 -- Authors:       Claude Opus 5.5

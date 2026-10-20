@@ -9,6 +9,19 @@ public import CORALean.DiscrDynamics.MarkovChain.Definitions.Basic
 
 What makes a `MarkovChain` a Markov chain: a column-stochastic transition matrix sends a
 probability vector over the cells (the outside first) to another.
+
+## Inputs
+* `M` – Markov chain
+* `i` – input index
+* `p` – distribution over the cells
+
+## Hypotheses
+* `h` – chain is stochastic
+* `hp0` – entries nonnegative
+* `hp1` – entries sum to one
+
+## Conclusion
+* the step image is a distribution
 -/
 
 -- Authors:       Claude Sonnet 5.5

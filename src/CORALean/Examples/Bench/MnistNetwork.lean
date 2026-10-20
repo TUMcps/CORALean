@@ -10,22 +10,13 @@ import CORALean.NN.Theorems.Basic
 /-!
 # `mnistfc`'s graph, at a sound scalar, with weights that may not fit it
 
-`SOURCES.md` gives the graph: `Flatten -> (Gemm -> Relu)* -> Gemm`, no input
-normalisation; `MnistParse.lean` decodes every `float32` bit pattern exactly,
-and this file reads that value into `𝕋` and propagates it.
-
-At `p ≥ 24` bits every weight/bias already sits on `𝕋`'s grid; narrower it
-does not, and `NN/Layers/` has no interval-weight linear layer (checked:
-`Linear`/`LinearWithError` both take a plain `Mat 𝕋 m n`) -- but
-`.../Interval/Float` already instantiates `Mtimes` at an *interval* matrix
-family (`mtimesIntervalMat`, built for `LinParamSys`'s uncertain system
-matrix). `affineLayer` reuses that: `W`/`b` rounded outward with
-`mulDown`/`mulUp` against `one`, a no-op on the grid, sound at every
-precision, `fitsPrecision` checked nowhere here. `buildChain` folds the
-layers into a `NeuralNetwork`, sound via the library's own
-`NeuralNetwork.enclose_outer`; `runLayers` (a box, not a zonotope -- see its
-own docstring for why) is the same fold as a loop. `k / 255` is not dyadic,
-so `inputBox` encloses it, both bounds rounded outward.
+`SOURCES.md` gives the graph: `Flatten -> (Gemm -> Relu)* -> Gemm`, no input normalisation;
+`MnistParse.lean` decodes every `float32` bit pattern exactly, and this file reads that value into
+`𝕋` and propagates it. At `p ≥ 24` bits every weight and bias sits on `𝕋`'s grid; narrower it does
+not, so `affineLayer` reuses the interval-matrix `Mtimes` (`mtimesIntervalMat`), rounding `W` and
+`b` outward against `one`, a no-op on the grid and sound at every precision. `buildChain` folds the
+layers into a `NeuralNetwork`, sound via `NeuralNetwork.enclose_outer`; `runLayers` is the same
+fold as a loop on a box. `k / 255` is not dyadic, so `inputBox` encloses it.
 -/
 
 -- Authors:       Claude Opus 5.5

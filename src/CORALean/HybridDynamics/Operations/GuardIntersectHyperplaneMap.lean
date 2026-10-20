@@ -20,14 +20,24 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
 CORA's `guardIntersect_hyperplaneMap` [1] for `ẋ = Ax + Bu + c + Ew` onto `{x | nᵀx = d}`, one
 `let` per line: `k ⊕ L(R₀ ⊖ ξ) ⊕ ½[φ̲, φ̄] R_quad ⊕ I (AR₀ ⊕ b) ⊕ E` of [2, Sec. 5.4], `b` of
 [2, Prop. 1] at `th = tmax/2`, Girard-reduced and projected onto the normalized hyperplane.
-Departures: `ψ_c`, `ψ_g` are the one-factor `−n − τ_c Υᵀ`, `−τ_g Υᵀ` from an interval of `τ =
-(d − nᵀx)/Λ(x)`, the reading of [2, Prop. 3] that holds, where CORA encloses `Θ/Λ` coordinatewise
-(`references/coverage/hybridDynamics/location.md`, row `guardIntersect_hyperplaneMap`); `err1` and
-the slices of `Q⁽ⁱ⁾` as the code means (`references/coverage/hybridDynamics/location.md`, row
-`guardIntersect_hyperplaneMap`); `none` when a divisor interval holds `0`.
-`aux_refinedIntersectionTime`, a second `reach` with the guard's halfspace as invariant, enters as
-its outputs `R₀` and `tmax`; `aux_systemParams`'s `B U + c` is `inputSet`, which adds `E W`; its
-nonlinear branch is not modelled.
+Departures: `ψ_c`, `ψ_g` are the one-factor reading of [2, Prop. 3] that holds, where CORA
+encloses `Θ/Λ` coordinatewise; `err1` and the slices of `Q⁽ⁱ⁾` as the code means (both:
+`references/coverage/hybridDynamics/location.md`, row `guardIntersect_hyperplaneMap`); `none`
+when a divisor interval holds `0`; `aux_refinedIntersectionTime` enters as its outputs `R₀` and
+`tmax`; the nonlinear branch is not modelled.
+
+## Inputs
+* `ℓ` – location
+* `nv` – guard normal
+* `d` – guard offset
+* `R₀` – initial zonotope
+* `tmax` – final time
+* `η` – Taylor order
+* `guardOrder` – order of the guard mapping
+* `zonotopeOrder` – order of the result
+
+## Output
+* zonotope on the guard, none if a divisor holds zero
 
 ## References
 

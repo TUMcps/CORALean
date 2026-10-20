@@ -8,21 +8,26 @@ public import CORALean.HybridDynamics.Definitions.Location
 # `Location.reachGuard`: [1, Alg. 1], the reachable set within a location and at a guard
 
 [1, Alg. 1], "Compute `R'_j` within a location `z_i`", one `let` per printed line. Its four
-operators are arguments, as the listing leaves them to other sections of [1]: `reach` gives
-`R([kr, (k+1)r]) = e^{Ar}R([(k-1)r, kr]) + R̄([0, r])` at `k`, `halfspaceConv` and
-`generatorConv` are the over-approximative conversions of [1, Prop. 9] with [1, Thm. 7] and
-of [1, Prop. 12] (the latter enclosing several polytopes at once), and `intersectionTimes` returns
-the first and last position of `R^H([0, t^end_inv])` that may meet the guard. `isEmpty` is the test
-`R^H = ∅`, `true` only when it is. `Location.IsTrajectory.reachGuard_outer` states what each must
-guarantee.
+operators are arguments: `reach` gives `R([kr, (k+1)r])` at `k`, `halfspaceConv` and
+`generatorConv` are the over-approximative conversions of [1, Prop. 9], [1, Thm. 7] and
+[1, Prop. 12], `intersectionTimes` the first and last position that may meet the guard, and
+`isEmpty` the test `R^H = ∅`. `Location.IsTrajectory.reachGuard_outer` states what each must
+guarantee. Two readings of the listing: the loop runs while `R^H ≠ ∅` and `t < t_f`, where it
+prints "or"; `t`, never assigned, is `kr`. Times are in steps. Generic over the representations
+and the scalar.
 
-Two readings of the listing: the loop runs while `R^H([(k-1)r, kr]) ≠ ∅` *and* `t < t_f`,
-where it prints "or", which would not stop before `t_f`; and `t`, never assigned, is `kr`.
-At `t_f = N r` it runs at most `N - 1` times: `N` passes, a failed test leaving `k` alone.
-Times are in steps, `t^end_inv = (k - 1) r` being `k - 1`; the output `R^H([0, t^end_inv])` is
-the list of the `R^H([(i-1)r, ir])`, `i = 1, …, k - 1`, whose union the listing writes.
+## Inputs
+* `ℓ` – location
+* `e` – transition
+* `reach` – reach set at a step
+* `halfspaceConv` – conversion to a guard set
+* `isEmpty` – emptiness test
+* `intersectionTimes` – first and last step meeting the guard
+* `generatorConv` – conversion back to a state set
+* `N` – number of steps
 
-Generic over the representations and the scalar: one definition, both layers.
+## Output
+* guard sets up to the exit and the set there
 
 ## References
 

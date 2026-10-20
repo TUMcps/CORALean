@@ -11,14 +11,22 @@ public import Mathlib.Topology.Order.Basic
 # The identified automaton has no execution errors
 
 [1, Thm. 1], as its proof sketch establishes it: the leaves' invariants cover the state space;
-every boundary point of an invariant lies on one of its bounding surfaces `aᵀx = b`, and there
-in the guard of a transition built by [1, Prop. 1] towards some leaf, since the reset's image
-lies in some invariant; and every guard maps into its target's invariant. "Executable" is not
-defined in the paper; these are the two errors it names (a state outside the target invariant
-after a jump, leaving an invariant without hitting a guard) and the start. Transitions are
-taken from every leaf, across every surface on its path, to every leaf, with any affine reset
-per surface (`I`, `0` for switching and bouncing, (17)'s fit for jumps). Whether the flow
-`ẋ = Aᵢφ(x, u)` exists for all time is not part of it: for affine templates it does.
+every boundary point of an invariant lies on one of its bounding surfaces `aᵀx = b`, and there in
+the guard of a transition built by [1, Prop. 1] towards some leaf, since the reset's image lies in
+some invariant; and every guard maps into its target's invariant. "Executable" is not defined in
+the paper; these are the two errors it names (a state outside the target invariant after a jump,
+leaving an invariant without hitting a guard) and the start. Whether the flow exists for all time
+is not part of it.
+
+## Inputs
+* `T` – split tree
+* `reset` – reset per surface
+
+## Hypotheses
+* none
+
+## Conclusion
+* the automaton has no execution errors
 
 ## References
 

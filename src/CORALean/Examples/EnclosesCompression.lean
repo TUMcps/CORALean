@@ -27,20 +27,20 @@ import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # Sound compression by an identity convolution, and [1, Cor. 1]
 
-`Cor. 1`'s network: two convolutional layers at the identity-like kernel
-`K(k,l,1,1) = δ_{kl}`, sandwiching one ReLU, applied to a nonnegative "uncertain
-image" `X`. A convolution is `Layer.linear` at its stencil matrix, and the network is
-written with that matrix, `compressW = tapMat compressTap compressK`, as `LinearLayer`s,
-the form `ReducesAt.merge` matches: folding `l = k` into `tap` turns the size-`cI` diagonal
-into a single tap of weight `1` per output, the same matrix up to reindexing.
+`Cor. 1`'s network: two convolutional layers at the identity-like kernel `K(k,l,1,1) = δ_{kl}`,
+sandwiching one ReLU, applied to a nonnegative "uncertain image" `X`. A convolution is
+`Layer.linear` at its stencil matrix, and the network is written with that matrix, `compressW`, as
+`LinearLayer`s, the form `ReducesAt.merge` matches. The corollary needs nothing beyond `Thm. 1`
+applied at this one network: the two convolutions compute the identity, so on a nonnegative image
+the ReLU between them is the identity too, and `reducesAt_outer` puts `X` inside whatever network
+`ReducesAt.merge` reduces this one to, at any split of its hidden layer; the split chosen here is
+one instance of "dynamic merge buckets".
 
-The corollary needs nothing beyond `Thm. 1` applied at this one network: the two
-convolutions compute the identity, so on a nonnegative image the ReLU between
-them is the identity too, and `reducesAt_outer` — the containment `Thm. 1`'s own
-proof reduces to — puts `X` inside whatever network `ReducesAt.merge` reduces
-this one to, at any split of its hidden layer. The split chosen here — one
-kept neuron, two merged — is one instance of "dynamic merge buckets"; the
-proof does not depend on which.
+## Inputs
+* none
+
+## Output
+* compression network of two convolutions and a ReLU
 
 ## References
 

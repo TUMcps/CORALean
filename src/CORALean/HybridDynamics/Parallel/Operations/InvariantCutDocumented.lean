@@ -8,6 +8,14 @@ module
 A polytope or level-set guard whose synchronization label is merged: the condition the comment
 in CORA's `@parallelHybridAutomaton/mergeInvariants.m` states, against which `invariantCutCora`
 is what the code computes (#40).
+
+## Inputs
+* `isPolytope` – guard is a polytope
+* `isLevelSet` – guard is a level set
+* `labelMerged` – label is merged
+
+## Output
+* whether the documented condition cuts the invariant
 -/
 
 -- Authors:       Claude Sonnet 5.5

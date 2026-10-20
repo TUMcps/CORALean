@@ -14,17 +14,18 @@ public import CORALean.ContSet.HPolytope.Real.Instances
 # `boxLifting`: a `Lifting` at boxes and halfspace descriptions
 
 The first concrete `Lifting`: inputs and disturbances in `Interval`, invariants and guards in
-`HPolytope`.
+`HPolytope`. `inv` is `HPolytope.stackProd`; `guard i g` is `HPolytope.comap (blockProj i) g`,
+constraining block `i` and free elsewhere, which no box can say; `input b` is the box of the global
+inputs, the bounds of the first input `b` binds to each (`selectGlobal`), `[0, 0]` where none is;
+`dist` is `Interval.stackProd`. `inv`, `guard` and `dist` are exact
+(`Theorems.IntervalStackProdExact`, `Theorems.HPolytopeStackProdExact`); `input` is, where no global
+input feeds two inputs.
 
-* `inv` is `HPolytope.stackProd`, the Cartesian product of the components' invariants;
-* `guard i g` is `HPolytope.comap (blockProj i) g`, constraining block `i` and free elsewhere,
-  which no box can say;
-* `input b` is the box of the global inputs: at `a`, the bounds of the first input `b` binds to
-  `a` (`selectGlobal`), `[0, 0]` where none is;
-* `dist` is `Interval.stackProd`, the product of the components' disturbance boxes.
+## Inputs
+* none
 
-`inv`, `guard` and `dist` are exact (`Theorems.IntervalStackProdExact`,
-`Theorems.HPolytopeStackProdExact`); `input` is, where no global input feeds two inputs.
+## Output
+* lifting at boxes and halfspace descriptions
 -/
 
 -- Authors:       Claude Opus 5.5

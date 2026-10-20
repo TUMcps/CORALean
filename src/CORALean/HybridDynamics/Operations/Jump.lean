@@ -9,22 +9,19 @@ public import CORALean.HybridDynamics.Definitions.Transition
 /-!
 # `Transition.jump`
 
-The reset propagated over a set: `mtimes` for the matrix, `plus` for the offset,
-which is `Layer.linear` at a square matrix and for the same reason — a
-representation closed under both loses nothing here.
+The reset propagated over a set: `mtimes` for the matrix, `plus` for the offset. The argument is
+the set already cut down by the guard, so the guard's representation `G` never enters;
+`JumpOuter` takes an enclosure of the intersection as its one hypothesis, and `JumpIntersection`
+is the call site that supplies `Intersection.intersection`. The offset enters as a box of zero
+width through `OfInterval`, which keeps `ConPolyZono` out. `W` and `w` are read through
+`Scalar 𝕋`, so `OfInterval` here is the exact layer's, whatever `𝕋` stores.
 
-The argument is the set *already cut down by the guard*, so the guard's own
-representation `G` never enters here at all. Intersecting would tie this
-definition to `Intersection`, which not every representation instantiates, so `JumpOuter`
-takes an enclosure of the intersection as its one hypothesis instead; `JumpIntersection`
-is the call site that supplies `Intersection.intersection` where one exists.
+## Inputs
+* `e` – transition
+* `Rg` – set cut by the guard
 
-The offset enters as a box of zero width through `OfInterval`, so no translation
-operation is needed — and that is what keeps `ConPolyZono` out, having `plus`
-and `mtimes` but no `OfInterval` instance.
-
-`W` and `w` are read through `Scalar 𝕋`, so `mtimes` and `Interval.point` see
-what they denote: `OfInterval` here is the exact layer's, whatever `𝕋` stores.
+## Output
+* image of the set under the reset
 -/
 
 -- Authors:       Claude Opus 5

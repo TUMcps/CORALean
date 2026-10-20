@@ -8,14 +8,20 @@ public import CORALean.HybridDynamics.Operations.TimeIntervalStep
 # `Location.timeIntervalStepInv`
 
 The stay enclosure cut by the invariant. `Intersection.intersection` intersects with `ℓ.inv`
-after `Plus.plus` has already added the input contribution `Ud` in, not
-before: the invariant holds of the two added together, and cutting the
-homogeneous part alone before the addition would not be sound.
+after `Plus.plus` has added the input contribution `Ud`, not before: the invariant holds of the two
+added together, and cutting the homogeneous part alone before the addition would not be sound, so
+the cut cannot be stated over `X₀` alone. `Intersection.intersection` is homogeneous, so a
+location's invariant has to be in the state's own family: `Location S S L 𝕋 n`, not `S G` (#39).
 
-Takes `Ud` for that reason — the cut cannot be stated over `X₀` alone.
+## Inputs
+* `ℓ` – location
+* `r` – time step
+* `η` – Taylor order
+* `X₀` – initial set
+* `Ud` – input contribution
 
-`Intersection.intersection` is homogeneous, so this is where a location's invariant has to be in
-the state's own family: `Location S S L 𝕋 n`, not the general `S G` (#39).
+## Output
+* stay enclosure cut by the invariant
 -/
 
 -- Authors:       Claude Opus 5

@@ -15,6 +15,15 @@ disturbances `w` in theirs, the product has an input in `U` and a disturbance in
 coordinate `⟨i, a⟩` of its right-hand side at the stack of `x` is component `i`'s own
 `Aᵢ xᵢ + Bᵢ uᵢ + cᵢ + Eᵢ wᵢ` at `a`. `mergeFlowsLinearSys` has it at `ℝ` under `FeedthroughFree`
 (`product_flowLaw`); the run theorems are stated for any flow that has it.
+
+## Inputs
+* `P` – parallel automaton
+* `F` – product flow at each location tuple
+* `U` – product input sets
+* `W` – product disturbance sets
+
+## Output
+* the flow reproduces the components' flows on every stack
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

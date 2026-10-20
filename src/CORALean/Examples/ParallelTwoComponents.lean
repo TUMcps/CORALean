@@ -9,17 +9,19 @@ import CORALean.ContSet.Interval.Real.Instances
 # Two components, one fed by the other, as a parallel hybrid automaton
 
 Two one-dimensional components, each a `linearSys` with output `y = x`. Component `0` decays,
-`ẋ₀ = -x₀ + u₀`, with its input *bound* to component `1`'s output, and has a transition: past
+`ẋ₀ = -x₀ + u₀`, with its input bound to component `1`'s output, and has a transition: past
 `x₀ ≥ 1` it resets to `0`. Component `1` integrates a global input, `ẋ₁ = u₁`, `u₁ ∈ [-1, 1]`.
-Invariants are boxes `x₀ ∈ [0, 2]` and `x₁ ∈ [-1, 1]`.
+Invariants are boxes `x₀ ∈ [0, 2]` and `x₁ ∈ [-1, 1]`. The lifting is `boxLifting`: the product's
+invariant is the box as halfspaces and the lifted guard `x₀ ≥ 1` is free in `x₁`. The product's
+flow is `mergeFlowsLinearSys`, `A + B C`, the `1` being component `0`'s `B` times component `1`'s
+`C`. The box is a product `Invariant`, so `reachSetExact_subset_invariant` puts every reachable
+tuple in it; the invariant proof is by hand.
 
-The lifting is `boxLifting`: boxes for the input and disturbance sets, `HPolytope` for invariants
-and guards, so the product's invariant is the box `[0, 2] × [-1, 1]` as halfspaces and the lifted
-guard `x₀ ≥ 1` is free in `x₁`. The product's flow is `mergeFlowsLinearSys`, its matrix read off
-entrywise: `A + B C`, the `1` being component `0`'s `B` times component `1`'s `C`. The box is a
-product `Invariant`, so `ParallelHybridAutomaton.reachSetExact_subset_invariant` puts every
-reachable tuple of the parallel automaton in it. The invariant proof is by hand: the flow half is
-the location invariant sitting inside the box, the jump half is the reset landing in it.
+## Inputs
+* none
+
+## Output
+* parallel automaton of the decay and the integrator
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -8,16 +8,24 @@ public import CORALean.HybridDynamics.Theorems.JumpOuter
 /-!
 # `Transition.jumpIntersection` contains what leaves through the transition
 
-`jump_outer` at `hinter := Intersection.intersection_outer R e.guard`: the
-interface's guarantee is exactly the inclusion `jump_outer` asks for, so the
-guard intersection needs no caller-supplied enclosure here, unlike at a
-representation with no `Intersection` instance.
+`jump_outer` at `hinter := Intersection.intersection_outer R e.guard`: the interface's guarantee is
+exactly the inclusion `jump_outer` asks for, so the guard intersection needs no caller-supplied
+enclosure here. The enclosed intersection with a guard is the second half of [1, Alg. 1]
+(`timeIntervalInv_outer` is the first). The price is that `Intersection.intersection` takes two
+sets of one type, so the guard is asked to be in the state's own family: `Transition S L 𝕋 n`
+(#39).
 
-The enclosed intersection with a guard, the second half of [1, Alg. 1] —
-`timeIntervalInv_outer` is the first.
+## Inputs
+* `e` – transition
+* `R` – set holding the state at the jump
+* `z` – state at the jump
 
-The price is that `Intersection.intersection` takes two sets of one type, so the
-guard is asked to be in the state's own family here: `Transition S L 𝕋 n` (#39).
+## Hypotheses
+* `hz` – state lies in the reach set
+* `hguard` – state lies in the guard
+
+## Conclusion
+* reset image lies in the jump image
 
 ## References
 

@@ -8,14 +8,32 @@ public import CORALean.HybridDynamics.Theorems.HitHessianNumEqHitHessianMatZono
 # The matrix zonotope of [1, Prop. 3] encloses `Q⁽ⁱ⁾`, with one factor for `Θ/Λ`
 
 [1, Prop. 3]: `Q⁽ⁱ⁾(x₀) ∈ (C̃⁽ⁱ⁾, G̃^(i,1), …, G̃^(i,1+2p))` for `x₀ ∈ R(0)`, provided the vector
-`Θ(x₀)/Λ(x₀)` lies in the one-generator zonotope `ψ_c ⊕ [-1, 1]ψ_g`: a single factor `κ`
-for all its coordinates, which the one generator `G̃^(i,1)` requires. With
-`x₀ = c_x + ∑ β_α g_x^(α)`,
-`Θ` and `(Ax₀ + b)ᵢ` are affine in `β`, and `Q⁽ⁱ⁾(x₀)` is `C̃⁽ⁱ⁾ + κG̃^(i,1)` plus `β_α` times
-`G̃^(i,1+α)` plus `κβ_α` times `G̃^(i,1+p+α)`. The proof's (19) encloses each coordinate by interval
-arithmetic, a factor per coordinate; `GuardMap.hitHessianMatZono_counterexample` shows that
-this is not enough. The factors themselves are `GuardMap.hitHessianNum_eq_hitHessianMatZono`;
-[1, Sec. 5.4] feeds these matrix zonotopes to [1, Thm. 1].
+`Θ(x₀)/Λ(x₀)` lies in the one-generator zonotope `ψ_c ⊕ [-1, 1]ψ_g`: a single factor `κ` for all
+its coordinates. With `x₀ = c_x + ∑ β_α g_x^(α)`, `Θ` and `(Ax₀ + b)ᵢ` are affine in `β`. The
+proof's (19) encloses each coordinate by interval arithmetic, a factor per coordinate;
+`GuardMap.hitHessianMatZono_counterexample` shows that this is not enough. The factors themselves
+are `GuardMap.hitHessianNum_eq_hitHessianMatZono`; [1, Sec. 5.4] feeds these matrix zonotopes to
+[1, Thm. 1].
+
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `nv` – guard normal
+* `d` – guard offset
+* `R₀` – initial zonotope
+* `ψc` – center of the coefficient enclosure
+* `ψg` – generator of the coefficient enclosure
+* `i` – output coordinate
+* `x₀` – state
+* `κ` – shared factor
+
+## Hypotheses
+* `hx₀` – state lies in the initial zonotope
+* `hκ` – factor within one
+* `hψ` – coefficient vector equals its enclosure at the factor
+
+## Conclusion
+* the numerator lies in the matrix zonotope
 
 ## References
 

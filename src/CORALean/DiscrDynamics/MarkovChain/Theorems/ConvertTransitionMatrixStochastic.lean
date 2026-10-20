@@ -12,6 +12,17 @@ public import CORALean.DiscrDynamics.MarkovChain.Operations.ConvertTransitionMat
 
 The converted `T.T` and `T.OT` are column-stochastic when the chain is, and `GammaFull` is for
 `γ > 0`; `projMat` marginalizes (`projMat_mulVec`).
+
+## Inputs
+* `M` – Markov chain
+* `γ` – input mixing parameter
+
+## Hypotheses
+* `h` – chain is stochastic
+* `hγ` – mixing parameter positive
+
+## Conclusion
+* the converted matrices and mixing matrix are column-stochastic
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -12,6 +12,15 @@ A point is in the stacked zonotope exactly when each of its blocks is in its com
 the coefficients of different components' generators are independent, so a block's coefficients
 can be chosen on their own. An equality, not an enclosure, as `IntervalStackProdExact` and
 `HPolytopeStackProdExact` are for the other two stacked sets.
+
+## Inputs
+* `zs` – zonotopes of the components
+
+## Hypotheses
+* none
+
+## Conclusion
+* a point lies in the product iff each block lies in its component
 -/
 
 -- Authors:       Claude Sonnet 5.5

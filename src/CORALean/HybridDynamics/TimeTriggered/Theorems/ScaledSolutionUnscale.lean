@@ -15,6 +15,24 @@ only at another speed. With `σ(u) = ∫₀ᵘ g(y)` and `γ` the solution of `�
 constant `K · sup g(y)`, so they agree. This is what the printed proof of [1, Lemma 2] means by "the
 point `x'` will eventually be the continuous part of a reachable state of `H`".
 
+## Inputs
+* `f` – vector field
+* `K` – Lipschitz constant
+* `g` – scaling function
+* `y` – scaled solution
+* `t` – duration
+
+## Hypotheses
+* `hf` – field is Lipschitz
+* `hg` – scaling function continuous
+* `ht` – duration nonnegative
+* `hy0` – scaling function nonnegative along the curve
+* `hyc` – scaled solution continuous
+* `hyd` – scaled solution solves the scaled field
+
+## Conclusion
+* an orbit solution reaches the scaled state at the clock
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

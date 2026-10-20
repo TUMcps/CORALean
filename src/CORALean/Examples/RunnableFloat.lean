@@ -179,22 +179,20 @@ import CORALean.ContDynamics.NeurNetContrSys.Operations.Basic
 /-!
 # Every runnable algorithm, instantiated at a concrete float representation
 
-Guarantees: every `def` below is a plain `def`, never `noncomputable def`, so
-`lake build` fails the moment any of it stops computing — a generic `def` can
-type-check and still fail once *instantiated*, since a structure *parameter*
-is erased by the code generator but an ordinary function argument is not
-(!216). A handful are also `#eval`'d, to show the definition runs to a value.
+Every `def` below is a plain `def`, never `noncomputable def`, so `lake build` fails the moment any
+of it stops computing: a generic `def` can type-check and still fail once instantiated, since a
+structure parameter is erased by the code generator but an ordinary function argument is not
+(!216). A handful are also `#eval`'d. Not a guarantee: precision, which `scripts/check-demo.sh`
+catches. Left out: `LinearSys`'s float reaches (run in `RotationFloat`), `varInputs`
+(`pending #1`), `reachErrorFloat`/`reachInnerFloat` (real-valued guarantee objects), and
+`HPolytope.zonotope`, `vPolytopeBox`, `interval`, `conZonotope`, `verifyHalfspace`/`verifyConvex`,
+which ask for a `FloatBound`/`SupportBound` a solver alone can supply.
 
-Not a guarantee: precision — `scripts/check-demo.sh` is what catches a silent
-widening; an enclosure the size of the state space satisfies every theorem
-here just as a tight one does.
+## Inputs
+* none
 
-Left out, and why: `LinearSys`'s float reaches are run in `RotationFloat`; its float sampling,
-a location's stay, `LinParamSys`' step, a network in the loop and the nonlinear block are run
-here, bar `varInputs` (`pending #1`), which has no float refinement yet;
-`reachErrorFloat`/`reachInnerFloat` are real-valued guarantee objects, `spec:`;
-`HPolytope.zonotope`/`vPolytopeBox`/`interval`/`conZonotope` and `verifyHalfspace`/
-`verifyConvex` each ask for a `FloatBound`/`SupportBound` a solver alone can supply.
+## Output
+* float reach set of the first example
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

@@ -18,17 +18,28 @@ import CORALean.Specification.Instances
 /-!
 # `nn-float32`'s network: `y = relu(x + 2^24) - 2^24` on `X = [-7/4, 1/4]`
 
-Over the reals the network is the identity on `X`, so `y ≤ 0` fails on `(0, 1/4]`;
-`xStar = 1/4` gives `y = 1/4`. In binary32 every point of `X` is absorbed by
-`2^24`, whose neighbours are `2^24 - 1` and `2^24 + 2`: the hidden neuron's bounds
-round to `[2^24 - 2, 2^24]`, `y`'s to `[-2, 0]`, and a verifier that trusts them
-certifies `y ≤ 0`. The zonotope's center `-3/4` rounds to `2^24 - 1` the same way.
+Over the reals the network is the identity on `X`, so `y ≤ 0` fails on `(0, 1/4]`; `xStar = 1/4`
+gives `y = 1/4`. In binary32 every point of `X` is absorbed by `2^24`, whose neighbours are
+`2^24 - 1` and `2^24 + 2`: the hidden neuron's bounds round to `[2^24 - 2, 2^24]`, `y`'s to
+`[-2, 0]`, and a verifier that trusts them certifies `y ≤ 0`. Every weight, bias and bound is exact
+data, read into whichever scalar an analysis runs at: `NnNaive`'s binary32, or `network` at
+`Dyadic 24` and `Float`, the verified enclosure through `NeuralNetwork.enclose`. `network_encloses`
+says what that enclosure is sound for, the exact map the stored weights denote;
+`network_mem_enclose` is `enclose_outer` read at it.
 
-Every weight, bias and bound is data here, exact, and read into whichever scalar
-an analysis runs at: `NnNaive`'s binary32, or `network` at `Dyadic 24` and
-`Float`, the verified enclosure through `NeuralNetwork.enclose`. `network_encloses`
-says what that enclosure is sound for -- the exact map the stored weights denote,
-the ReLU exact -- and `network_mem_enclose` is `enclose_outer` read at it.
+## Inputs
+* `W₁` – first weight matrix
+* `b₁` – first bias
+* `W₂` – second weight matrix
+* `b₂` – second bias
+* `X` – input set
+* `x` – input point
+
+## Hypotheses
+* `hx` – input point lies in the input set
+
+## Conclusion
+* the network value lies in the enclosure
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

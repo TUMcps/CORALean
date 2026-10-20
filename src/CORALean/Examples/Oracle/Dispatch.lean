@@ -9,15 +9,18 @@ import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # One request line to one response `Json`
 
-`respond` is the whole protocol from the transport's point of view: parse the
-line, run the request, echo `id` either way. A malformed line -- not JSON, or
-JSON missing `op`/`dtype` -- becomes `{"ok":false,"error":...}` the same way an
-op's own failure does, never a crash; `Oracle.lean`'s loop calls this once per
-line and nothing else.
+`respond` is the whole protocol from the transport's point of view: parse the line, run the
+request, echo `id` either way. A malformed line, not JSON or JSON missing `op`/`dtype`, becomes
+`{"ok":false,"error":...}` the same way an op's own failure does, never a crash; `Oracle.lean`'s
+loop calls this once per line and nothing else. `"ping"` is the one op that needs no `dtype`, so it
+is checked first; every other op goes through `withDtype`, where a dtype string becomes a type, and
+`handleOp`, where an op name becomes a handler.
 
-`"ping"` is the one op that needs no `dtype`, so it is checked first;
-every other op goes through `withDtype`, which is where a dtype string becomes
-a type, and `handleOp`, which is where an op name becomes a handler.
+## Inputs
+* none
+
+## Output
+* names of the operations the oracle serves
 -/
 
 -- Authors:       Claude Opus 5.5

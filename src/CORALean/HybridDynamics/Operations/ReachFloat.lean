@@ -12,19 +12,21 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # `HybridAutomaton.reachFloat`
 
-CORA's `hybridAutomaton/reach`, at float zonotopes and with halfspace guards
-and invariants: the stay in `ℓ` from `X₀` is enclosed by `Location.reachFloat`;
-every outgoing transition cuts those sets to its guard by
-`Location.guardIntersectFloat` and, where the guard is met, resets the cut by
-`Transition.jumpFloat` and continues in the target location from there. The
-result lists every time-interval set with the location it belongs to.
+CORA's `hybridAutomaton/reach`, at float zonotopes and with halfspace guards and invariants: the
+stay in `ℓ` from `X₀` is enclosed by `Location.reachFloat`; every outgoing transition cuts those
+sets to its guard by `Location.guardIntersectFloat` and, where the guard is met, resets the cut
+by `Transition.jumpFloat` and continues in the target location. Bounded twice: at most `K` jumps,
+and every stay to `tFinal`. CORA shortens a later stay by the time already spent; here each stay
+takes the whole `tFinal`, which encloses more and is no less sound. One branch per transition and
+jump depth, CORA's `'box'` hull standing for all the time steps that meet the guard.
 
-Bounded twice: at most `K` jumps, a depth CORA leaves to the horizon, and every
-stay to `tFinal`. CORA shortens a later stay by the time already spent; here
-each stay is taken over the whole `tFinal`, which encloses more and is no less
-sound, a run of duration at most `tFinal` having no stay longer than that.
-One branch per transition and jump depth, CORA's `'box'` hull standing for all
-the time steps that meet the guard.
+## Inputs
+* `HA` – hybrid automaton
+* `tFinal` – final time
+* `options` – reach options
+
+## Output
+* location-tagged reach sets, none on failure
 -/
 
 -- Authors:       Claude Opus 5.5

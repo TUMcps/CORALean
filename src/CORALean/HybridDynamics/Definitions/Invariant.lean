@@ -7,22 +7,13 @@ public import CORALean.HybridDynamics.HybridAutomaton
 /-!
 # A set per location that a run cannot leave
 
-One set per location, closed under both things a run does: flowing inside a
-location keeps the state in that location's set, and jumping out of it lands
-inside the target's. Everything a run can reach is then covered, by induction on
-the run and nothing else — which is `Theorems.IsRunOuter`.
-
-`R` is in the state's representation `S`, the guard it is cut against in `G`:
-the two never meet except as sets, `construct (R ℓ) ∩ construct e.guard` (#39).
-
-An inductive invariant rather than a family indexed by step count, because a run
-here is unbounded in length: `LinearSysDT.holds_of_reach` answers per step since
-`reach` is a function of that count, and no such index exists once jumps appear.
-
-Both fields are obligations on the caller. `flow` is discharged by
-`Theorems.FlowOuter`, `LinearSys`'s time-interval enclosure with its hypotheses
-about the input set; `jump` by `Theorems.JumpOuter`, whose one hypothesis is an
-enclosure of the intersection with the guard. Neither is computed here.
+One set per location, closed under both things a run does: flowing inside a location keeps the
+state in that location's set, and jumping out of it lands inside the target's. Everything a run can
+reach is then covered, by induction on the run (`Theorems.IsRunOuter`). `R` is in the state's
+representation `S`, the guard in `G`; they meet only as sets, `construct (R ℓ) ∩ construct e.guard`
+(#39). An inductive invariant rather than a family indexed by step count, because a run here is
+unbounded in length. Both fields are obligations on the caller: `flow` is discharged by
+`Theorems.FlowOuter`, `jump` by `Theorems.JumpOuter`; neither is computed here.
 -/
 
 -- Authors:       Claude Sonnet 5

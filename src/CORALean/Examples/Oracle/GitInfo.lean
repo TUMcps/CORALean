@@ -3,21 +3,19 @@ import CORALean.Examples.Bench.GitInfo
 /-!
 # `ping`'s version, independent of the caller's current directory
 
-`Bench.gitCommit` runs `git rev-parse HEAD` in the process's own current
-directory, which is correct for `bench`: it is always run from the repo root.
-The oracle is not -- `CORA.cpp` spawns it from *its own* repository -- so
-`ping` cannot reuse `gitCommit` without reporting CORA.cpp's commit instead of
-CORALean's, which is the bug this file fixes.
+`Bench.gitCommit` runs `git rev-parse HEAD` in the process's own current directory, correct for
+`bench`, which is always run from the repo root. The oracle is not: `CORA.cpp` spawns it from its
+own repository, so `ping` cannot reuse `gitCommit` without reporting CORA.cpp's commit.
+`coraleanCommit` instead resolves a directory that is CORALean's own: the linked executable's
+location under the linked backend, or the current directory under the interpreter. Either candidate
+is accepted only once its `git rev-parse --show-toplevel` resolves to a directory whose
+`lakefile.toml` declares `name = "CORALean"`; `"unknown"` when neither passes.
 
-`coraleanCommit` instead resolves a directory that is CORALean's own: the
-linked executable's own location (`IO.appPath`'s parent, `<repo>/.lake/build/
-bin/oracle`) under the linked backend, or the current directory under the
-interpreter (where `IO.appPath` is the `lean` binary, not this repository).
-Either candidate is accepted only once its `git rev-parse --show-toplevel`
-resolves to a directory whose `lakefile.toml` declares `name = "CORALean"`,
-so an unrelated repository -- CORA.cpp's, or any other tree the oracle
-happens to be run from -- is never reported as this one; `"unknown"` when
-neither candidate passes that check.
+## Inputs
+* none
+
+## Output
+* commit and working-tree state of CORALean
 -/
 
 -- Authors:       Claude Opus 5.5

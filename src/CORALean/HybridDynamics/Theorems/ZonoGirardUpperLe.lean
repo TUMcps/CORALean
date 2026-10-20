@@ -11,6 +11,20 @@ public import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
 A state `x` of the zonotope with `x·n = γ` has `x·ℓ = x·(ℓ - μ n) + μγ`, and `x·(ℓ - μ n)` is
 at most the zonotope's support function in that direction, for every multiplier `μ`. The least
 of finitely many such bounds is a bound.
+
+## Inputs
+* `Z` – zonotope
+* `nv` – guard normal
+* `γ` – guard offset
+* `ℓ` – direction
+* `x` – state
+
+## Hypotheses
+* `hx` – state lies in the zonotope
+* `hg` – state lies on the guard
+
+## Conclusion
+* the state's direction value is at most the dual bound
 -/
 
 -- Authors:       Claude Sonnet 5.5

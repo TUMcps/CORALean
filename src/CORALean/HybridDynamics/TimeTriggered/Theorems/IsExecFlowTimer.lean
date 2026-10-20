@@ -13,6 +13,25 @@ In an automaton whose state is `(x, t)` with `ṫ = 1` ([1, Sec. 3.1]), a curve 
 `V` on `[0, r]` whose derivative and invariant fit the mode `k` at the timer `τ + u` extends an
 execution ending at `(w 0, τ)` by one continuous successor of duration `r`, or by none if `r = 0`.
 
+## Inputs
+* `H` – automaton with a clock
+* `k` – mode
+* `d` – duration so far
+* `τ` – clock at the start
+* `r` – extension time
+* `w` – curve
+* `V` – derivative of the curve
+
+## Hypotheses
+* `hr` – extension time nonnegative
+* `hw` – curve has the derivative on the closed interval
+* `hflow` – derivative lies in the flow with rate one
+* `hinv` – curve lies in the invariant
+* `h` – execution ends at the curve start
+
+## Conclusion
+* the execution extends to the curve end
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

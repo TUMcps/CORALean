@@ -10,15 +10,19 @@ import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 # A Taylor model, run and bounded
 
 At `Dyadic 53`. The box `[1/2, 3/2] × [-1/4, 1/4]` becomes an array of two Taylor models, one
-variable per coordinate (`Interval.taylm`, order 3). The product `x · y`, the sum `x · y + x`
-and `exp (x · y)` are then computed in floats (`Taylm.times`, `Taylm.plus`, `Taylm.exp`), and
-`Taylm.bounds` reads off the range each model guarantees, printed below as `m*2^e`.
+variable per coordinate (`Interval.taylm`, order 3). The product `x · y`, the sum `x · y + x` and
+`exp (x · y)` are computed in floats (`Taylm.times`, `Taylm.plus`, `Taylm.exp`), and `Taylm.bounds`
+reads off the range each model guarantees, printed as `m*2^e`. The theorem instances apply the
+general ones: `Interval.taylm_contains` puts the box inside the models' range set,
+`Taylm.times_outer`, `Taylm.plus_outer` and `Taylm.exp_outer` say the computed models enclose the
+product, the sum and `exp`, and `Taylm.bounds_mem` turns that into a range bound on the normalized
+domain `[-1, 1]²`.
 
-The theorem instances apply the general ones to these models: `Interval.taylm_contains` puts the
-whole box inside the models' range set, `Taylm.times_outer`, `Taylm.plus_outer` and
-`Taylm.exp_outer` say the computed models enclose the product, the sum and `exp` of the
-coordinate functions they came from, and `Taylm.bounds_mem` turns that into a range bound on the
-normalized domain `[-1, 1]²`.
+## Inputs
+* none
+
+## Output
+* input box of the Taylor models
 -/
 
 -- Authors:       Claude Sonnet 5.5

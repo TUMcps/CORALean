@@ -11,6 +11,21 @@ public import CORALean.DiscrDynamics.GridPartition.Theorems.Basic
 
 CORA's `intersectingCells` is an over-approximation; this says by how much: a returned cell holds a
 point within `tol` of the box `I`, so it is the tolerance of `1e-12` alone that over-approximates.
+
+## Inputs
+* `P` – grid partition
+* `I` – box
+* `c` – cell number
+
+## Hypotheses
+* `hP` – partition well formed
+* `hI` – box nonempty
+* `hn` – dimension nonzero
+* `hc` – cell is returned
+* `h0` – cell is not the outside
+
+## Conclusion
+* the cell holds a point within the tolerance of the box
 -/
 
 -- Authors:       Claude Sonnet 5.5

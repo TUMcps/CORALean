@@ -13,6 +13,20 @@ public import CORALean.HybridDynamics.Operations.NonlinearResetEvaluate
 If `fm` encloses `r`, then `fm.lift` encloses `r.lift`, for an injective `stateBind` (the case the
 real `lift_evaluate_bind` is stated for): a bound coordinate takes the old reset's box, and any
 other keeps its box or is the origin. An outer statement.
+
+## Inputs
+* `fm` – float reset model
+* `r` – reset
+* `stateBind` – state index map
+* `inputBind` – input index map
+* `id` – identity outside the bound states
+
+## Hypotheses
+* `h` – the model encloses the reset
+* `hinj` – index map injective
+
+## Conclusion
+* the lifted model encloses the lifted reset
 -/
 
 -- Authors:       Claude Opus 5.5

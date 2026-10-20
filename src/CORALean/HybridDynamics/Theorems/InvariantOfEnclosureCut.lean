@@ -9,22 +9,24 @@ public import CORALean.HybridDynamics.Theorems.JumpOuter
 /-!
 # `Invariant` from the enclosures, cut down by the location's invariant
 
-`InvariantOfEnclosure` without the two hypotheses no caller could meet.
-`FlowOuterSplit` stands in for `FlowOuterInputSolution`, so `0 ∈ ℓ.inputSet` is gone;
-and `hflow`'s containment is asked only of the part of the enclosure still
-inside `ℓ.inv`, so a dwell time long enough to leave the location no longer has
-to be absorbed by `R`. A trajectory that leaves `ℓ.inv` has left the location.
+`InvariantOfEnclosure` without the two hypotheses no caller could meet. `FlowOuterSplit` stands in
+for `FlowOuterInputSolution`, so `0 ∈ ℓ.inputSet` is gone; and `hflow`'s containment is asked only
+of the part of the enclosure still inside `ℓ.inv`, so a dwell time long enough to leave the
+location need not be absorbed by `R`. The cut is `∩ construct (HA.loc ℓ).inv` on sets rather than
+`Location.timeIntervalStepInv`, which would need `Intersection` and shut out `Zonotope`; `hjump`
+names `Rg` for the same reason. Both cuts being set inclusions lets the invariant and the guard sit
+in their own representation `G`; `Examples.BouncingBall` runs it at a zonotope state (#39).
 
-The cut is `∩ construct (HA.loc ℓ).inv` on sets rather than
-`Location.timeIntervalStepInv`: `Intersection.intersection` computes that set, but the criterion
-needs only the containment, and asking for `Intersection` would shut out `Zonotope`,
-which has none. `hjump` names `Rg` for the same reason — `jump_outer`'s bargain,
-any enclosure of the guard intersection, `Intersection.intersection` where there is one.
+## Inputs
+* `HA` – hybrid automaton
+* `R` – reach set
 
-Both cuts being set inclusions is what lets the invariant and the guard sit in
-their own representation `G`: this theorem asks `ContSet` of it and nothing
-else, and `Examples.BouncingBall` runs it at a zonotope state with halfspace
-guards, `hflow` reading the invariant across the two (#39).
+## Hypotheses
+* `hflow` – every dwell time is enclosed by the sets inside the invariant
+* `hjump` – every jump is enclosed by the sets
+
+## Conclusion
+* the sets are an invariant of the automaton
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

@@ -10,6 +10,15 @@ public import Mathlib.Algebra.Field.Basic
 The list of the `n` points MATLAB's `linspace(a, b, n)` returns: empty for `n = 0`, `[b]` for
 `n = 1` (MATLAB returns the upper end), otherwise `a + k (b - a) / (n - 1)` for `k < n`.
 Used to read the time grids of the `simulateRandom` methods.
+
+## Inputs
+* `α` – scalar field
+* `a` – first point
+* `b` – last point
+* `n` – number of points
+
+## Output
+* list of the equally spaced points
 -/
 
 -- Authors:       Claude Opus 5.5

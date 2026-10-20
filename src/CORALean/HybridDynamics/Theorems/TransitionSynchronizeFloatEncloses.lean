@@ -16,6 +16,18 @@ target tuple of `Transition.synchronizeTarget`. Its interval reset contains a re
 `x ↦ W x + w` (the real `LinearReset.synchronize` of the stored coefficients) that is, at every
 point, the sum of the component resets plus the pre-jump value at `idStates`, which is what the
 real `Transition.synchronize_reset` says the synchronized reset is. Outer in the reset only.
+
+## Inputs
+* `compIdx` – component indices
+* `t` – transitions of the components
+* `idStates` – states kept by identity
+* `locID` – current locations
+
+## Hypotheses
+* none
+
+## Conclusion
+* the synchronized float transition encloses the synchronized transition
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

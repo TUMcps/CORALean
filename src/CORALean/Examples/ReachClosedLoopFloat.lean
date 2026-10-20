@@ -23,6 +23,19 @@ a float zonotope with every declaration `:=` and nothing else. The loop is affin
 affine with a two-state plant; the exact layer's soundness theorem is read at it, and a box safe
 set is checked on the computed zonotope. The `def`s are `def` rather than `noncomputable def`,
 as are `Sigmoid`, `Tanh`, `Softmax`, `maxPool` and `SigmoidPoly`: `Layer` stores no function.
+
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input zonotope
+* `o` – zonotope order
+* `R₀` – initial zonotope
+* `k` – step count
+
+## Hypotheses
+* `ho` – zonotope order positive
+
+## Output
+* float reach set after the steps
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5

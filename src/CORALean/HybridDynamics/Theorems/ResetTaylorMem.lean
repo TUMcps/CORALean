@@ -17,6 +17,23 @@ it ranges over has to contain that segment: `C` is convex and contains `F`, `c` 
 polynomial zonotope `F` need not be convex; [1]'s own evaluation encloses `F` by a box before
 bounding the remainder by interval arithmetic, which is this statement at `C` the box.
 
+## Inputs
+* `r` – reset
+* `γ` – Taylor order
+* `C` – convex set
+* `c` – expansion point
+* `x` – state
+* `j` – coordinate
+
+## Hypotheses
+* `hr` – reset coordinates smooth enough
+* `hC` – the set is convex
+* `hc` – expansion point lies in the set
+* `hx` – state lies in the set
+
+## Conclusion
+* the coordinate remainder lies in its Lagrange set
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

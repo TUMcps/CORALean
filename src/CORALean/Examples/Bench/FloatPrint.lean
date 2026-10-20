@@ -4,18 +4,19 @@ import Lean.Data.Json
 /-!
 # A native double, printed so it round-trips, canonically
 
-`Lean.toJson (x : Float)` goes through `Float.toString`, fixed at six decimal
-places -- fine for a log line, not for a number a reader is meant to recover
-bit-for-bit. `floatToJson`/`floatToCsv` build the exact decimal digits
-`Binary64.toDyadic` reads off (`x = m * 2 ^ e`) directly, rounded to at most
-17 significant digits -- enough to recover any binary64 exactly, per Steele &
-White -- printed `%.17g`-style (`aux_canonicalString`): plain decimal in the
-normal range, `d.ddd…e±XX` outside it, never `Lean.JsonNumber.toString`'s own
-compact-exponent shape, which is syntactically valid but not canonical: a
-fixed nine leading zeros before the digits, whatever the true exponent is,
-e.g. `1.0 / 2 ^ 49` used to print `"0.0000000002116615374147344e-5"`. The
-`#guard`s below are that regression, plus the plain/scientific boundary
-(`10 ^ 16`/`17`, `10 ^ -4`/`-5`) and the smallest/largest finite magnitudes.
+`Lean.toJson (x : Float)` goes through `Float.toString`, fixed at six decimal places, fine for a
+log line but not for a number a reader is meant to recover bit for bit. `floatToJson`/`floatToCsv`
+build the exact decimal digits `Binary64.toDyadic` reads off directly, rounded to at most 17
+significant digits, enough to recover any binary64 exactly, printed `%.17g`-style
+(`aux_canonicalString`): plain decimal in the normal range, `d.ddd…e±XX` outside it. The `#guard`s
+below are the regression for the compact-exponent shape of `Lean.JsonNumber.toString`, the
+plain/scientific boundary and the smallest and largest finite magnitudes.
+
+## Inputs
+* `x` – double
+
+## Output
+* JSON number that reads back exactly
 -/
 
 -- Authors:       Claude Opus 5.5

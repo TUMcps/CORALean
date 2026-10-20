@@ -9,22 +9,28 @@ public import CORALean.HybridDynamics.Theorems.JumpIntersectionOuter
 /-!
 # `Invariant`, discharged from the computed enclosures
 
-`Invariant.jump` falls out of `JumpIntersectionOuter` at `hjump`, one enclosure per
-transition met. `Invariant.flow` quantifies over every dwell time and every
-admissible input `u`; `FlowOuterInputSolution` discharges `u` structurally from
-`hconv`/`hclosed`/`hbdd`/`h0` about `ℓ.inputSet`, so no `u` or `w` survives the criterion.
+`Invariant.jump` falls out of `JumpIntersectionOuter` at `hjump`, one enclosure per transition met.
+`Invariant.flow` quantifies over every dwell time and admissible input; `FlowOuterInputSolution`
+discharges `u` structurally from `hconv`/`hclosed`/`hbdd`/`h0`. Two prices, which
+`InvariantOfEnclosureCut` does not pay: `h0` asks the input set to hold the origin, which a
+constant drift such as gravity breaks; and `hflow` asks one `R` to absorb the enclosure at every
+dwell time, which under a nonzero drift grows without bound. `jumpIntersection` is
+`Intersection.intersection` on the guard, so the guard is in the state's own family (#39).
 
-Two prices, and `InvariantOfEnclosureCut` is what pays neither. `h0` asks the
-location's input set to hold the origin, which a constant drift — gravity —
-already breaks. And `hflow` asks one `R` to absorb the enclosure at *every*
-dwell time, the invariant nowhere in the statement; under a nonzero drift that
-enclosure grows without bound and no compact `R` contains it.
+## Inputs
+* `HA` – hybrid automaton with guards in the state family
+* `R` – reach set
 
-`jumpIntersection` is `Intersection.intersection` on the guard, so this criterion
-alone asks the guard to be in the state's own family (#39).
+## Hypotheses
+* `hconv` – every input set convex
+* `hclosed` – every input set closed
+* `hbdd` – every input set bounded
+* `h0` – every input set contains the origin
+* `hflow` – every dwell time is enclosed by the sets
+* `hjump` – every jump is enclosed by the sets
 
-Kept for those locations. The fixpoint iteration that would find such an `R` is
-left to CORA, as `NonlinearSysDT.confinement_of_subset` leaves its analogue.
+## Conclusion
+* the sets are an invariant of the automaton
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

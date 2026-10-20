@@ -23,22 +23,23 @@ import CORALean.NN.Theorems.MemSafeSet
 /-!
 # The same feed-forward network, over a floating-point scalar
 
-`Examples.FeedForward` at `Float.Zonotope (Vec 𝕋 n)` instead of `Real.Zonotope`, and the
-point of compiling it is what does *not* appear below: `NeuralNetwork`, `.cons`,
-`enclose`, `enclose_outer`, `mem_safeSet` and `classifies` are the exact layer's,
-used unchanged. Only the layer constructors are float ones, their weights in `𝕋`.
+`Examples.FeedForward` at `Float.Zonotope (Vec 𝕋 n)` instead of `Real.Zonotope`; the point of
+compiling it is what does not appear: `NeuralNetwork`, `.cons`, `enclose`, `enclose_outer`,
+`mem_safeSet` and `classifies` are the exact layer's, used unchanged. Only the layer constructors
+are float ones, their weights in `𝕋`. `Layer` is indexed by a `ContSet` whose ambient type is
+`Vec ℝ n`, which a float representation denotes through `InflatedContSet`; the network encloses the
+exact affine map the stored floats describe, composed with the exact `relu`. Every operation
+computes, provided `𝕋` does. `sigmoidTanhNet` and `sigmoidPolyNet` are plain `def`s, `Layer`
+storing no function.
 
-So the network is a `NeuralNetwork` over a float representation, and that
-is not a loophole: `Layer` is indexed by a `ContSet` whose ambient type is
-`Vec ℝ n`, which is what a float representation denotes through
-`InflatedContSet`. What the network encloses is the exact affine map the stored
-floats describe, composed with the exact `relu`.
+## Inputs
+* `W₁` – first weight matrix
+* `b₁` – first bias
+* `W₂` – second weight matrix
+* `b₂` – second bias
 
-Every operation here computes, unlike the exact version, provided `𝕋` does —
-which is the whole reason for the float layer. `sigmoidTanhNet` is the same
-point where it used to fail: `Layer` stores no function, so a chain holding
-sigmoid and tanh is a plain `def`. `sigmoidPolyNet` is the last chain to join
-them, its relaxation storing floats and naming `Real.sigmoid` only in a proof.
+## Output
+* feed-forward network of two affine layers
 -/
 
 -- Authors:       Claude Opus 5

@@ -14,6 +14,17 @@ variable `t` with `ṫ = 1` is added, reset to `0` on entering each mode. The gu
 invariant. `t₁`, `t₂` are parameters here, their selection being `FirstDwell`, `SecondDwell`;
 it is the `H_tt` of [1, Lemma 1].
 
+## Inputs
+* `I` – initial states
+* `f₁` – flow in the first mode
+* `f₂` – flow in the second mode
+* `fe` – flow in the either mode
+* `t₁` – first dwell time
+* `t₂` – second dwell time
+
+## Output
+* direct time-triggered automaton
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

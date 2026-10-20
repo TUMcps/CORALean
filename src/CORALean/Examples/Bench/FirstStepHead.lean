@@ -6,6 +6,16 @@ import CORALean.Examples.Bench.NumberType
 `format` is `IEEE`'s label, `p<p>` for a significand width (never `binary8` for `Dyadic 4`,
 which is no format) and `decimal<f>` for fixed point; `NumberType`'s `metaFields` follow, an
 `IEEE` format's parameters among them.
+
+## Inputs
+* `𝕋` – scalar type
+* `ty` – number type name
+* `format` – format label
+* `sig` – significand width
+* `nt` – number type description
+
+## Output
+* leading JSON fields of a first-step record
 -/
 
 -- Authors:       Claude Sonnet 5.5

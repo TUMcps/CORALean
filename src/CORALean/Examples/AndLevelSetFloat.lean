@@ -10,6 +10,12 @@ import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 with two rows, exactly their intersection (`LevelSet.and_exact`); a float sign test
 (`containsPoint`) at `Dyadic 53` certifies `(1/2, 1/4)` in the stack from exact bounds on
 its two row values.
+
+## Inputs
+* none
+
+## Output
+* level set of the stacked constraints
 -/
 
 -- Authors:       Claude Sonnet 5.5

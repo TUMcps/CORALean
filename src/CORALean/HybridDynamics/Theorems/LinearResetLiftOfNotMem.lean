@@ -10,6 +10,20 @@ public import Mathlib.Data.Matrix.Mul
 
 A coordinate of the larger space that no `stateBind` entry hits keeps its value when `id` holds
 and is `0` otherwise.
+
+## Inputs
+* `W` – reset matrix
+* `w` – reset offset
+* `stateBind` – state index map
+* `id` – identity outside the bound states
+* `x` – state of the larger space
+* `i` – coordinate
+
+## Hypotheses
+* `hi` – coordinate is not bound
+
+## Conclusion
+* lifted reset keeps the coordinate or zeroes it
 -/
 
 -- Authors:       Claude Opus 5.5

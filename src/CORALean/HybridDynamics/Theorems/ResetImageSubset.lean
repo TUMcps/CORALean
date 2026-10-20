@@ -10,6 +10,17 @@ public import CORALean.HybridDynamics.Theorems.JumpOuter
 `jump_outer` at every point of the intersection at once, which is the form a
 chain of steps composes in: a jump's image feeding the next step's `R` needs a
 subset, not a per-point membership.
+
+## Inputs
+* `e` – transition
+* `R` – set holding the state at the jump
+* `Rg` – enclosure of the guard intersection
+
+## Hypotheses
+* `hinter` – enclosure contains the guard intersection
+
+## Conclusion
+* reset image lies in the jump image
 -/
 
 -- Authors:       Claude Opus 5

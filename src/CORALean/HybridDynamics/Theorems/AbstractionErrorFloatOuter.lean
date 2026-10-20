@@ -28,17 +28,37 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 /-!
 # The float abstraction error encloses the difference of a run and the constant flow
 
-`GuardMap.abstractionError_outer` at floats: for `t ∈ [0, tmax]`, `η ≥ 1`, `th ≥ 0`, `x₀ ∈ R₀`
-and a measurable input with values in `U`, the run of `ẋ = Ax + u` minus the constant flow
-`x₀ + (Ax₀ + b)t`, `b` the exact `GuardMap.sdcInput` at the stored centers, is a point of
-`GuardMap.abstractionErrorFloat`, provided the float bound `nrm` of `‖tmax A‖` passes
-`nrm ≤ (η + 2)/2`, the test under which `MatExp.expRemainderBound` bounds the remainders.
+`GuardMap.abstractionError_outer` at floats: for `t ∈ [0, tmax]`, `η ≥ 1`, `th ≥ 0`, `x₀ ∈ R₀` and
+a measurable input in `U`, the run of `ẋ = Ax + u` minus the constant flow `x₀ + (Ax₀ + b)t`, `b`
+the exact `GuardMap.sdcInput` at the stored centers, is a point of
+`GuardMap.abstractionErrorFloat`, provided the float bound `nrm` of `‖tmax A‖` passes `nrm ≤ (η +
+2)/2`. `abstractionError_decomp` gives the point as `t(v₁ + v₂ + v₃) + R x₀ + ρ`; each part is a
+point of its float set, by the directed powers, `norm_exp_sub_expTaylor_le` and the float
+`mtimesIntervalMat`.
 
-`GuardMap.abstractionError_decomp` gives the point as `t(v₁ + v₂ + v₃) + R x₀ + ρ`; each part is
-then a point of its float set: the coefficients `Aⁱ/(i + 1)!` lie in their interval matrices
-(`matPow_outer`, `invFactorialBounds_mem`, `smul_outer`), the powers of `t` and `th` between
-their directed powers, `R` within `W` by `norm_exp_sub_expTaylor_le` and the float bound, and
-the float `mtimesIntervalMat`, `plus` and `sumTerms` hold products and sums of their points.
+## Inputs
+* `A` – flow matrix
+* `U` – input zonotope
+* `R₀` – initial set
+* `th` – expansion time
+* `tmax` – final time
+* `t` – time
+* `η` – Taylor order
+* `x₀` – initial state
+* `u` – input trajectory
+
+## Hypotheses
+* `hη` – at least one Taylor term
+* `ht` – time within the horizon
+* `hth` – expansion time nonnegative
+* `hnrm` – float norm bound passes the Taylor test
+* `hx₀` – initial state lies in the initial zonotope
+* `hU` – input zonotope nonempty
+* `hu` – input stays in its set
+* `hmeas` – input measurable
+
+## Conclusion
+* run minus constant flow lies in the float abstraction error
 
 ## References
 

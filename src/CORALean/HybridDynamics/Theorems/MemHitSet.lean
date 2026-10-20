@@ -15,6 +15,24 @@ public import Mathlib.Tactic.Ring
 `(Ax₀ + b)(-nᵀe)/(nᵀ(Ax₀ + b)) + e`. `nᵀ(Ax₀ + b) ≠ 0` is the division the formula makes, the
 paper's interval `I` of eq. (16) excluding `0`.
 
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `nv` – guard normal
+* `x₀` – initial state
+* `e` – flow error
+* `d` – guard offset
+* `t` – time
+* `E` – flow error set
+
+## Hypotheses
+* `hf` – flow does not run parallel to the guard
+* `he` – error lies in the error set
+* `hhit` – state is on the guard hyperplane
+
+## Conclusion
+* the guard hit lies in the hit set
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

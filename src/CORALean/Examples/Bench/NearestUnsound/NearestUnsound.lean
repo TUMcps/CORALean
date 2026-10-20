@@ -4,20 +4,13 @@ import CORALean.Examples.Bench.NearestUnsound.NearestFloat
 /-!
 # What "round-to-nearest is sound" would say — and it is FALSE
 
-One property with twelve conjuncts: the six rounding laws `SoundFloatArithmetic`
-asks of a scalar, stated of `NearestFloat`'s operations and of `NearestDyadic p`'s
-at every `p`. Rounding to nearest lands on whichever side of the exact result is
-closer, so it satisfies none of them: every field is false, and at `NearestDyadic`
-refutable. `Axioms` assumes this anyway, once, so that the *unchanged* library
-runs on the arithmetic CORA uses — the paper's "round-to-nearest (as in CORA)"
-baseline, and nothing else.
-
-Bundled for the reason `Binary64.TrustedHardware` is: one name in every
-`#print axioms` that reaches either scalar, and one place that says what is
-assumed. The opposite of that one in substance: it states what IEEE 754 hardware
-does, and this what it does not. Everything a round-to-nearest scalar gets right
-(`neg`, `min`, `max`, `≤`, `half`, the constants) is proved in `Instances`, not
-assumed here.
+One property with twelve conjuncts: the six rounding laws `SoundFloatArithmetic` asks of a scalar,
+stated of `NearestFloat`'s operations and of `NearestDyadic p`'s at every `p`. Rounding to nearest
+lands on whichever side of the exact result is closer, so it satisfies none of them: every field is
+false, and at `NearestDyadic` refutable. `Axioms` assumes this anyway, once, so that the unchanged
+library runs on the arithmetic CORA uses, the paper's baseline and nothing else. Bundled for the
+reason `Binary64.TrustedHardware` is: one name in every `#print axioms` that reaches either scalar.
+Everything a round-to-nearest scalar gets right is proved in `Instances`, not assumed here.
 -/
 
 -- Authors:       Claude Opus 5.5

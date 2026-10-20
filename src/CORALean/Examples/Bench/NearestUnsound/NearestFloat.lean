@@ -3,19 +3,14 @@ import CORALean.Global.Float.Instances.Binary64.Binary64
 /-!
 # Round-to-nearest binary64, WITHOUT guarantees
 
-The paper's baseline, "round-to-nearest (as in CORA)": a native `Float` whose
-four rounded operations are the machine's round-to-nearest ones, *both*
-directions alike, so `addUp a b` and `addDown a b` are the same `a + b`. That is
-what CORA computes with, and it bounds nothing in any direction.
-
-A one-field structure rather than `Float` itself, so that no instance written
-for `Float` applies to it by accident; the compiler erases the wrapper, and the
-code it runs is `Float`'s own. `toReal` is `Binary64.toReal`, the same decoding
-of the same bits. The laws that stay true (`neg`, `min`, `max`, `≤`, `half`, the
-two constants) are proved in `Instances` from `Binary64.trustedHardware`; the
-six that are false are fields of `NearestUnsound`, assumed by the one false
-axiom in `Axioms`. Nothing here is sound: see `Axioms` for what that costs, and
-`scripts/check-axioms.sh` for what keeps it out of the library.
+The paper's baseline, "round-to-nearest (as in CORA)": a native `Float` whose four rounded
+operations are the machine's round-to-nearest ones, both directions alike, so `addUp a b` and
+`addDown a b` are the same `a + b`. That is what CORA computes with, and it bounds nothing in any
+direction. A one-field structure rather than `Float` itself, so that no instance written for
+`Float` applies to it by accident; the compiler erases the wrapper. The laws that stay true (`neg`,
+`min`, `max`, `≤`, `half`, the constants) are proved in `Instances` from
+`Binary64.trustedHardware`; the six false ones are fields of `NearestUnsound`, assumed by the false
+axiom in `Axioms` (see `scripts/check-axioms.sh`).
 -/
 
 -- Authors:       Claude Opus 5.5

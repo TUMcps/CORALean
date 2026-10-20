@@ -9,6 +9,19 @@ public import CORALean.HybridDynamics.Parallel.Operations.SelectGlobal
 
 `selectGlobal b` applied to a stacked vector `z` is, at global input `a`, the entry of `z` at the
 first input bound to `a`, and `0` where no input is.
+
+## Inputs
+* `d` – input counts of the components
+* `q` – output counts of the components
+* `b` – input bindings
+* `z` – stacked inputs
+* `a` – global input
+
+## Hypotheses
+* none
+
+## Conclusion
+* entry is the first input bound to `a`, else zero
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,12 @@ independently of which member of `A` a given power came from.
 The enclosure is not exact even here, where `A` holds only diagonal matrices:
 `matPow A k` already admits different diagonal members at different powers `k`,
 the ordinary interval-arithmetic dependency loss that compounds with `η`.
+
+## Inputs
+* none
+
+## Output
+* example interval matrix
 -/
 
 -- Authors:       Claude Opus 5

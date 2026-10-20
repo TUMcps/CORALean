@@ -12,6 +12,13 @@ end state in mode `m₁`". Read strictly, `d < t₁`, which is the weaker hypoth
 proof of [1, Lemma 1] uses; the paper says "minimum", which would make `t₁` zero. [1, Cor. 1]
 and [1, Thm. 1] take it as a hypothesis.
 
+## Inputs
+* `H` – two-mode automaton
+* `t₁` – candidate dwell time
+
+## Output
+* every execution shorter than `t₁` is in the first mode
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

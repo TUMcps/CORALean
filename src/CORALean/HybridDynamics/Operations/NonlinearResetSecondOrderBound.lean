@@ -13,6 +13,17 @@ Lagrange remainder of output `i` by `0.5 * dz' * H_ * dz`, where `dz` is the lar
 the state and input from the expansion point in each coordinate and `H_ = max(infimum(abs(H)),
 supremum(abs(H)))` the entrywise bound of the interval Hessian of that output. `Habs i a b` is the
 entry `(a, b)` of `H_` for output `i`; the remainder is the interval `[-s, s]`.
+
+## Inputs
+* `α` – scalar field
+* `q` – number of outputs
+* `d` – state dimension
+* `Habs` – absolute Hessian bounds
+* `dz` – state radius
+* `i` – output index
+
+## Output
+* second-order term of output `i`
 -/
 
 -- Authors:       Claude Sonnet 5.5

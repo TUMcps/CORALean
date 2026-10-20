@@ -19,6 +19,14 @@ its disturbances the stacked ones, from `mergeDistSets`, as CORA's `reach` sets 
 `params.W` per location tuple. Built on the fly for one tuple, as CORA does, so no product over all
 tuples is formed unless `product` asks for it. At `ℝ`, where the merge's sums are exact; at a
 float scalar the product is `productWith` at `mergeFlows`.
+
+## Inputs
+* `P` – parallel automaton
+* `lift` – lifting
+* `ℓ` – current locations
+
+## Output
+* product location of the location tuple
 -/
 
 -- Authors:       Claude Opus 5.5

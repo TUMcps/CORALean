@@ -8,16 +8,17 @@ public import CORALean.HybridDynamics.Operations.Jump
 # `Transition.jumpIntersection`
 
 `Transition.jump` with the guard intersection computed rather than assumed:
-`Intersection.intersection` cuts `R` down to what meets `e.guard`, and the reset
-propagates over that result exactly as `jump` propagates it over any enclosure.
+`Intersection.intersection` cuts `R` down to what meets `e.guard`, and the reset propagates over
+that result as `jump` propagates it over any enclosure. A representation with no `Intersection`
+instance still calls `jump` and supplies `hinter` itself. The guard has to live in the state's own
+family, so the transition is `Transition S L 𝕋 n`, not the general `Transition G L 𝕋 n` (#39).
 
-`jump_outer`'s `hinter` bargain stays untouched — a representation with no
-`Intersection` instance still calls `jump` directly and supplies `hinter`
-itself. This is the case where the interface discharges it.
+## Inputs
+* `e` – transition
+* `R` – reach set
 
-`Intersection.intersection` takes two sets of *one* type, so this is the one
-place where the guard has to live in the state's own family: the transition here
-is `Transition S L 𝕋 n`, not the general `Transition G L 𝕋 n` (#39).
+## Output
+* image of the guard intersection under the reset
 -/
 
 -- Authors:       Claude Opus 5

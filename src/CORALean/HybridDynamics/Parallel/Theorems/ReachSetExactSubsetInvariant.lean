@@ -12,6 +12,22 @@ public import CORALean.HybridDynamics.Parallel.Definitions.ReachSetExact
 `reachSetExact`: every tuple of states reached, stacked, lies in the set the product's `Invariant`
 gives at that location tuple. This is the outer reachable set of the parallel automaton, once
 the product's `Invariant` is in hand.
+
+## Inputs
+* `P` – parallel automaton
+* `lift` – lifting
+* `R₀` – initial sets of the components
+* `ℓ₀` – initial locations
+* `R` – invariant sets of the product
+* `ℓ` – locations reached
+
+## Hypotheses
+* `hfeed` – no feedthrough between bound outputs
+* `hinv` – the sets are an invariant of the product
+* `hR₀` – stacked initial states lie in their set
+
+## Conclusion
+* stacked reachable states lie in the invariant
 -/
 
 -- Authors:       Claude Opus 5.5

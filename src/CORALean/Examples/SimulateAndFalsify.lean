@@ -7,17 +7,19 @@ import CORALean.Specification.Theorems.Basic
 /-!
 # A sampled run falsifies a specification the enclosure cannot refute
 
-An enclosure is a superset, so a specification holding on it proves safety and
-one violated on it proves nothing — the violation may sit entirely in the
-approximation error. A sampled run is exact: one point genuinely reached, so a
-specification it violates is genuinely violated. `not_holds_of_simulate` turns
-that violation into a verdict on whatever `reach` computes, at any order.
+An enclosure is a superset, so a specification holding on it proves safety and one violated on it
+proves nothing: the violation may sit entirely in the approximation error. A sampled run is exact,
+one point genuinely reached, so a specification it violates is genuinely violated.
+`not_holds_of_simulate` turns that violation into a verdict on whatever `reach` computes, at any
+order. The system is a discrete double integrator, `x(k+1) = [[1, 1], [0, 1]] x(k)`, started at
+`(0, 1)` with no input: `x(k) = (k, 1)`. The specification keeps the position at most `3`, so it
+holds for three steps and the run leaves the safe set only at step `4`.
 
-The system is a discrete double integrator, `x(k+1) = [[1, 1], [0, 1]] x(k)`,
-started at `(0, 1)` with no input: the position grows by the speed `1` every
-step, `x(k) = (k, 1)`. The specification keeps the position at most `3`, so it
-holds at the start and for three steps, and the run leaves the safe set only at
-step `4`: the falsification has to follow the evolution that far.
+## Inputs
+* none
+
+## Output
+* discrete double integrator
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

@@ -22,6 +22,18 @@ which vanish — the proof's `Ê(t̃_h)x₀ ⊕ Ê(t̃_h)t̃_h u_c` at `ξ = x�
 That is the content of the proposition, which also says `b` "minimizes" the error; at a
 fixed `η` it does not, see the page's `## Findings`.
 
+## Inputs
+* `A` – flow matrix
+* `x₀` – initial state
+* `uc` – input center
+* `t` – time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the state difference tends to zero with the order
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

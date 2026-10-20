@@ -9,21 +9,24 @@ public import CORALean.HybridDynamics.Theorems.JumpOuter
 /-!
 # The jump step at a constrained zonotope, with nothing assumed
 
-`JumpOuter`'s hypothesis is what a representation with an exact intersection
-supplies, and here it is supplied: `ConZonotope.intersection_exact` is an equality, so
-`hinter` holds with no loss at all and the step has no side condition left.
+`JumpOuter`'s hypothesis is what a representation with an exact intersection supplies, and here it
+is supplied: `ConZonotope.intersection_exact` is an equality, so `hinter` holds with no loss and
+the step has no side condition left. This is what says the interface choice in `JumpOuter` costs
+nothing. Convex only, which a constrained zonotope is; a non-convex guard is
+`ConPolyZono.intersection`, equally exact. Guard and state are the same representation here because
+`intersection` is what supplies `hinter`; `JumpOuter` itself keeps them apart (#39).
 
-This is what says the interface choice in `JumpOuter` costs nothing. It is also
-the only place in this directory that names a representation, and it names one
-for the reason the rest of `ContDynamics` does — to record what is left once a
-representation that does have the property is substituted in.
+## Inputs
+* `e` – transition
+* `R` – constrained zonotope holding the state at the jump
+* `z` – state at the jump
 
-Convex only, which a constrained zonotope is. A non-convex guard is
-`ConPolyZono.intersection`, equally exact, and reaches this theorem as soon as
-`OfInterval` covers that representation; nothing here would change.
+## Hypotheses
+* `hz` – state lies in the reach set
+* `hguard` – state lies in the guard
 
-Guard and state are the same representation here because `intersection` is what supplies
-`hinter`. `JumpOuter` itself keeps them apart, `hinter` being an inclusion (#39).
+## Conclusion
+* reset image lies in the jump image
 -/
 
 -- Authors:       Claude Opus 5

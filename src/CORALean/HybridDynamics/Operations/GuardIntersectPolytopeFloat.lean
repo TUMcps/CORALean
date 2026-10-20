@@ -20,17 +20,20 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # `Location.guardIntersectPolytopeFloat`
 
 CORA's `guardIntersect_polytope`, at float zonotopes. The reach sets are first cut to the guard,
-`cZ_j = R_j ∩ guard` as conZonotopes, and each enclosing method then takes the box of the union
-of the cuts in its own basis: `box` is the identity basis, `pca` the basis of
-`zonotope.enclosePoints 'stursberg'` and `flow` the Gram-Schmidt basis orthogonal to the flow
-direction, so the three differ only in the basis `B_i`, a parameter here, as in
-`guardIntersectNondetFloat`. The boxes `B_i interval(B_iᵀ ⋃_j cZ_j)` form a zonoBundle.
+`cZ_j = R_j ∩ guard` as conZonotopes, and each enclosing method then takes the box of the union of
+the cuts in its own basis `B_i` (`box`, `pca` or `flow` differ only there, a parameter here, as in
+`guardIntersectNondetFloat`); the boxes form a zonoBundle. Left out: CORA's enclosure of each `R_j`
+by a polytope (`aux_conv2polytope`) and its vertices; here the box is of the cut. A bundle of one
+member is kept a bundle. The sets are `R₀ :: Rs`, never empty.
 
-Left out: CORA first encloses each `R_j` by a polytope (`aux_conv2polytope`: the intersection
-of its PCA-reduced and its box zonotope), cuts that with the guard and takes the *vertices*;
-here the cut is the conZonotope intersection of `R_j` itself and the box is of the cut, not of
-its vertices. A bundle of one member is kept a bundle; CORA returns the zonotope itself. The
-sets are `R₀ :: Rs`, never empty.
+## Inputs
+* `Bs` – bases
+* `R₀` – initial zonotope
+* `Rs` – reach sets
+* `guard` – constrained zonotope guard
+
+## Output
+* bundle of boxes enclosing the guard intersection
 -/
 
 -- Authors:       Claude Opus 5.5

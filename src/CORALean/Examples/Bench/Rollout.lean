@@ -7,19 +7,21 @@ import CORALean.ContDynamics.LinearSysDT.Operations.CanonicalFloat
 /-!
 # The spiral system and its rollout, at a chosen scalar
 
-`dtdemo` needs a discrete-time matrix, and the verified continuous-time
-discretization (`headline-a`/`headline-b`) is not landed yet, so `buildSystem`
-takes it directly: `A_d := I + dt A`, first-order Euler, computed *exactly* in
-`ExactDyadic` from the config's rationals and read into the target scalar
-*unchecked* (`Rational.lean`'s module docstring says why). This is a
-placeholder for demonstrating the harness end to end, not a sound enclosure of
-the flow -- `headline-a` and `headline-b` are what replace it.
+`dtdemo` needs a discrete-time matrix, and the verified continuous-time discretization
+(`headline-a`/`headline-b`) is not landed yet, so `buildSystem` takes it directly:
+`A_d := I + dt A`, first-order Euler, computed exactly in `ExactDyadic` and read into the target
+scalar unchecked (`Rational.lean`). This is a placeholder for demonstrating the harness, not a
+sound enclosure of the flow. `rollout` mirrors `LinearSysDT.reach`'s recursion equation unrolled
+into an accumulator, so the harness pays for one step each rather than replaying every prefix; the
+two agree by that equation, not reproved here, since this is harness code.
 
-`rollout` mirrors `LinearSysDT.reach`'s own recursion equation
-(`reach (k+1) = reduce (plus (mtimes sys.A (reach k)) U) o`) unrolled into an
-accumulator, so the harness pays for one step each rather than replaying every
-prefix, the way a table indexed by `k` would. The two agree by that equation;
-it is not reproved here, since this is harness code, not the verified library.
+## Inputs
+* `cfg` – headline config
+* `inst` – checked reader of exact numbers
+* `instUnchecked` – unchecked reader of exact numbers
+
+## Output
+* discrete-time system or an error message
 -/
 
 -- Authors:       Claude Opus 5.5

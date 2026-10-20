@@ -9,6 +9,17 @@ public import CORALean.DiscrDynamics.GridPartition.Theorems.Basic
 # A cell's center is in the cell
 
 In a well-formed partition `cellCenter` returns a point of each cell asked for.
+
+## Inputs
+* `P` – grid partition
+* `cs` – cell numbers
+
+## Hypotheses
+* `hP` – partition well formed
+* `hcs` – cell numbers in range
+
+## Conclusion
+* every returned center lies in one of the cells
 -/
 
 -- Authors:       Claude Sonnet 5.5

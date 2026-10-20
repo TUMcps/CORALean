@@ -13,6 +13,13 @@ public import Mathlib.Data.Finset.Card
 The position of a globally bound input among the globally bound ones, in the order of
 `idxCompInput`: the index of `u_sym(1:numGlobalInputs)` that CORA's `subs(f_sym,
 u_sym(idxGlobalInput), u_sym(1:numGlobalInputs))` replaces it by.
+
+## Inputs
+* `inputBinds` – input bindings
+* `ij` – component input
+
+## Output
+* position among the globally bound inputs
 -/
 
 -- Authors:       Claude Opus 5.5

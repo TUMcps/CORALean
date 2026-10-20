@@ -7,6 +7,12 @@ The experiment harness's entry point, following `Examples/Demo.lean`'s shape:
 a `[[lean_lib]]` for `lake build` to elaborate this against every commit, and a
 `[[lean_exe]]` a human runs. See `experiments/README.md` for the one-command
 contract this satisfies and `CORALean.Bench.Cli.CliArgs` for every flag.
+
+## Inputs
+* `argv` – command line arguments
+
+## Output
+* the experiment runs and writes its results
 -/
 
 -- Authors:       Claude Opus 5.5

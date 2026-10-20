@@ -14,6 +14,12 @@ same question of a vertex list: a triangle spans the plane, three collinear poin
 
 Each `true` is a guarantee (`Zonotope.isFullDim_sound`, `VPolytope.isFullDim_sound`); a
 `false` decides nothing.
+
+## Inputs
+* none
+
+## Output
+* triangle with the checked vertices
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

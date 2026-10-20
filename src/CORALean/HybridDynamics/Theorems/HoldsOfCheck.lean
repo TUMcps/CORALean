@@ -11,6 +11,23 @@ public import CORALean.Specification.Theorems.CheckSound
 `holds_of_invariant` with its hypothesis discharged by running `Specification.check` on
 the invariant at the location the run ends in: a `true`, found by evaluation, is the
 specification on the state it ends at, with nothing left to prove by hand.
+
+## Inputs
+* `HA` – hybrid automaton
+* `R` – invariant sets
+* `spec` – specification
+* `ℓ` – start location
+* `ℓ'` – end location
+* `x` – start state
+* `y` – end state
+
+## Hypotheses
+* `hinv` – the sets are an invariant
+* `run` – run of the automaton from `x` to `y`
+* `hx` – start state lies in its set
+
+## Conclusion
+* a passed check implies the specification holds at the end state
 -/
 
 -- Authors:       Claude Opus 5.5

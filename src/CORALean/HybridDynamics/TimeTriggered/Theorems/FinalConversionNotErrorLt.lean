@@ -15,15 +15,20 @@ public import CORALean.HybridDynamics.TimeTriggered.Theorems.SpaceTriggeredIsExe
 # The error of the combined transformation does not go to zero
 
 [1, Thm. 1] says that for every `T` and `δ > 0` some `t_scaling` brings the error of `H_final`
-against `Reach≤T(H)` below `δ`. It does not. Take `ẋ = 1` in `m₁`, `ẋ = 0` in `m₂`, the guard
-`x = 0` (`a = 1`, `b = 0`), initial states `-100` and `-10`: they reach the guard at `100` and
-`10`, so `t₁ = 10` and every `t₂ > 90` fits `SecondDwell` (here `t₂ = 100`). With
-`f_either = [0, 1]` the run from `-10` is on the guard at `t₁`, where the scaling `g = -x` does
-nothing, and it spends the whole dwell `t₂` in `m_either`, reaching `50` within
-`T' = 100 + t_scaling` for every `t_scaling ≥ 0`, while `Reach≤100(H) ⊆ [-100, 0]`. The printed
-proof bounds the time spent in `m_either` by `t₂ ≤ t_γ`, but `t₂` is the dwell time of `H`, which
-scaling does not shrink. All executions of `H` end in `[-100, 0]`, so the unbounded `Reach(H)` is
-no nearer.
+below `δ`. It does not. Take `ẋ = 1` in `m₁`, `ẋ = 0` in `m₂`, the guard `x = 0`, initial states
+`-100` and `-10`, so `t₁ = 10` and `t₂ = 100` fit. The run from `-10` spends the whole dwell `t₂`
+in `m_either`, reaching `50` within `T' = 100 + t_scaling` for every `t_scaling ≥ 0`, while
+`Reach≤100(H) ⊆ [-100, 0]`. The printed proof bounds the time in `m_either` by `t₂ ≤ t_γ`, but
+`t₂` is the dwell time of `H`, which scaling does not shrink.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* no scaling time brings the error below fifty
 
 ## References
 

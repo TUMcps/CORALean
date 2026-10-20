@@ -5,6 +5,13 @@ import CORALean.Examples.Bench.RandVerifyInstance
 
 Equal `A`, `B`, `C`, `X0`, `U` and `tend`, as exact rationals; the unsafe boxes may differ. Two
 such instances have the same reachable set at every type and setting, so a run reaches it once.
+
+## Inputs
+* `I` – first instance
+* `J` – second instance
+
+## Output
+* whether both instances state the same system
 -/
 
 -- Authors:       Claude Opus 5.5

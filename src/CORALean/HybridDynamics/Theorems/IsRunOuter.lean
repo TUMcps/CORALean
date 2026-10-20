@@ -8,19 +8,28 @@ public import CORALean.HybridDynamics.Definitions.Invariant
 /-!
 # A run never leaves the invariant
 
-The chaining, and it is the run's own recursion principle: one case per
-constructor, each discharging an obligation the invariant already carries. That
-is what choosing an inductive family for the run bought — the same shape as
-`NeuralNetwork.Encloses.enclose_outer`, and for the same reason.
+The chaining, and it is the run's own recursion principle: one case per constructor, each
+discharging an obligation the invariant already carries; the same shape as
+`NeuralNetwork.Encloses.enclose_outer`. The `jump` case applies `flow` first, at the right endpoint
+of the stay: the state a guard is tested against is the one the stay ends at, which is why
+`Location.IsTrajectory.nonneg` has to be a field. Only soundness is chained: a run that visits a
+location twice is answered by the same set both times, the price of an inductive invariant and the
+reason a bounded analysis indexes by step count.
 
-The `jump` case applies `flow` first, at the right endpoint of the stay: the
-state a guard is tested against is the one the stay ends at, which is why
-`Location.IsTrajectory.nonneg` has to be a field rather than an afterthought.
+## Inputs
+* `HA` – hybrid automaton
+* `R` – reach set
+* `ℓ` – location
+* `ℓ'` – end location
+* `x` – trajectory of the stay
+* `y` – end state
 
-Only soundness is chained. Nothing here says the invariant is tight, and a run
-that visits a location twice is answered by the same set both times — which is
-the price of an inductive invariant and the reason a bounded analysis indexes by
-step count instead.
+## Hypotheses
+* `hinv` – the sets are an invariant
+* `run` – run of the automaton from `x` to `y`
+
+## Conclusion
+* membership at the start implies membership at the end
 -/
 
 -- Authors:       Claude Opus 5

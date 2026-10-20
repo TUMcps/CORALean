@@ -12,6 +12,17 @@ public import Mathlib.Analysis.ODE.ExistUnique
 Picard-Lindelöf on the ball of radius `2h‖f y‖ + 1` about `y`, where `f` is bounded by
 `‖f y‖ + K · radius`. The windows are glued in `lipschitzSolution`.
 
+## Inputs
+* `f` – vector field
+* `K` – Lipschitz constant
+* `y` – initial point
+
+## Hypotheses
+* `hf` – field is Lipschitz
+
+## Conclusion
+* a solution through the point exists on a fixed window
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

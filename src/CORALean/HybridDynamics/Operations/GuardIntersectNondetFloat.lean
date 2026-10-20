@@ -27,6 +27,15 @@ form a zonoBundle, one member per basis.
 The sets are `R₀ :: Rs`, never empty: CORA's `interval.empty` start and its empty-box
 special case are not needed. The guard is a conZonotope, which is what CORA's `and_` converts it
 to. A bundle of one member is kept a bundle; CORA returns the zonotope itself.
+
+## Inputs
+* `Bs` – bases
+* `R₀` – initial zonotope
+* `Rs` – reach sets
+* `guard` – constrained zonotope guard
+
+## Output
+* bundle of boxes enclosing the guard intersection
 -/
 
 -- Authors:       Claude Opus 5.5

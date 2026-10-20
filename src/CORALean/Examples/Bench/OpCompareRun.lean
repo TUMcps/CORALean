@@ -19,6 +19,12 @@ timed per quantity and variant. `--out`, elsewhere a results directory, is this 
 here, since `opcompare` writes one file rather than a `<config>/<experiment>/` tree; its default
 is `experiments/matlab-ops/coralean_results.json`. A `hardware_down`/`_up` result equal to the
 range guard's fixed bit pattern is counted as a NaN, past `Binary64`'s trusted range.
+
+## Inputs
+* `args` – parsed command line
+
+## Output
+* the comparison results are written to the output file
 -/
 
 -- Authors:       Claude Opus 5.5

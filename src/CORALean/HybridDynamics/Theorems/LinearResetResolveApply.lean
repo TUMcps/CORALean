@@ -16,6 +16,30 @@ entry of `u`: exact. Hypotheses are what CORA's own checks and the synchronizati
 `stateBinds{i}` is injective, `B` has only the rows of component `i` in the columns of `i` (the
 reset is a synchronization of component resets) and `D(l,:)` points only at global inputs
 (otherwise `resolve` throws).
+
+## Inputs
+* `A` – state matrix
+* `B` – stacked input matrix
+* `c` – offset
+* `C` – output matrices
+* `D` – feedthrough matrices
+* `q` – output offsets
+* `stateBinds` – state index maps
+* `inputBinds` – input bindings
+* `x` – state
+* `u` – global input
+* `w` – stacked input of all components
+* `a` – coordinate
+
+## Hypotheses
+* `hinj` – state index maps injective
+* `hblock` – stacked inputs only reach bound states
+* `hD` – feedthrough only reads global inputs
+* `hg` – globally bound inputs read the global input
+* `ho` – output-bound inputs read the component outputs
+
+## Conclusion
+* resolved reset equals the original reset at the stacked input
 -/
 
 -- Authors:       Claude Opus 5.5

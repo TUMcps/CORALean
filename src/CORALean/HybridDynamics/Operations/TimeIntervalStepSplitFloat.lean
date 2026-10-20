@@ -19,6 +19,15 @@ where the exact step uses `expIntegral` and `constCorrectionMatrix`; `Ũ` holds
 the origin, so `inputSolutionFloat Ũ` holds its share at every `t ≤ r` too.
 The location's combined input set `B U ⊕ c ⊕ E W` need not hold the origin.
 
+## Inputs
+* `ℓ` – float location
+* `r` – time step
+* `η` – Taylor order
+* `X₀` – initial zonotope
+
+## Output
+* float stay enclosure with split input
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

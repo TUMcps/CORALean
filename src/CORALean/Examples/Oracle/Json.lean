@@ -10,6 +10,12 @@ import Lean.Data.Json.FromToJson
 found: k"`; every helper here instead names both the field and, for a type
 mismatch, what was read in its place, since a malformed request is the normal
 case for this executable and the message is what a caller debugs from.
+
+## Inputs
+* none
+
+## Output
+* description of the kind of a JSON value
 -/
 
 -- Authors:       Claude Opus 5.5

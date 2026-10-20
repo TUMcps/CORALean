@@ -10,6 +10,19 @@ public import CORALean.DiscrDynamics.MarkovChain.Operations.WithColumn
 
 For a cell other than the outside, column `iState` of the chosen input is the probabilities given,
 in both matrices; only the outside column keeps `(1, 1) = 1` of its own.
+
+## Inputs
+* `M` – Markov chain
+* `tp` – transition probabilities
+* `iInput` – input index
+* `iState` – cell index
+* `r` – row
+
+## Hypotheses
+* `hs` – cell is not the outside
+
+## Conclusion
+* the column holds the given probabilities in both matrices
 -/
 
 -- Authors:       Claude Sonnet 5.5

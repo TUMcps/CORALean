@@ -15,6 +15,12 @@ the square's four corners off, so the intersection is an octagon, which needs fo
 generators; the answer has them. The hull of the answer is printed; `Zonotope.and_outer` says the
 intersection lies inside it, and the origin, a point of both, is shown to be in the
 answer.
+
+## Inputs
+* none
+
+## Output
+* enclosure of the square and diamond intersection
 -/
 
 -- Authors:       Claude Sonnet 5.5

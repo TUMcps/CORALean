@@ -8,6 +8,18 @@ public import CORALean.DiscrDynamics.MarkovChain.Operations.Basic
 # `projMat` sums over the inputs
 
 Multiplying a distribution over (cell, input) by `projMat` gives the cell marginal.
+
+## Inputs
+* `N` – cell count
+* `m` – number of inputs
+* `p` – distribution over cells and inputs
+* `s` – cell
+
+## Hypotheses
+* none
+
+## Conclusion
+* the projection gives the cell marginal
 -/
 
 -- Authors:       Claude Sonnet 5.5

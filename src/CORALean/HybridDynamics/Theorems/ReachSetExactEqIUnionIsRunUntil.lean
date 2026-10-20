@@ -12,6 +12,18 @@ public import CORALean.HybridDynamics.Theorems.IsRunIffExistsIsRunUntil
 the states reached by runs lasting at most `T` with `k` jumps — the run-level
 `isRun_iff_exists_isRunUntil` read at the set `reachSetExact` names. A slice `T ≤ tFinal`,
 `k ≤ K` of this union is what `reachSetExact_subset_reachFloat` encloses.
+
+## Inputs
+* `HA` – hybrid automaton
+* `R₀` – initial set
+* `ℓ₀` – initial location
+* `ℓ` – end location
+
+## Hypotheses
+* none
+
+## Conclusion
+* the reachable set is the union over durations and jump counts
 -/
 
 -- Authors:       Claude Opus 5.5

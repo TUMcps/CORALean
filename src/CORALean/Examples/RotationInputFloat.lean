@@ -14,6 +14,12 @@ steps at `Dyadic 64`: `LinearSys.reachFloatInput` (CORA's standard scheme) and
 against every run. The `#eval`s print the summary `RotationFloat` prints, and
 the time-point sets' centers, the second falling at `-x₁ + 1/2`, half the rate
 it falls at without the input.
+
+## Inputs
+* `Rs` – reach sets
+
+## Output
+* centers of the reach sets as doubles
 -/
 
 -- Authors:       Claude Opus 5.5

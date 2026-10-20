@@ -13,6 +13,13 @@ identity, so the guard intersection is enclosed in the coordinate directions. Th
 (the left singular vectors of the reachable set's generators, `svd([-G, G])`) and the `'flow'`
 case (a Gram-Schmidt basis of the flow direction) are not modelled, and `calcBasis` returns one
 basis per entry of `options.enclose`, of which this is the `'box'` entry.
+
+## Inputs
+* `𝕋` – scalar type
+* `n` – dimension
+
+## Output
+* identity matrix as the basis
 -/
 
 -- Authors:       Claude Opus 5.5

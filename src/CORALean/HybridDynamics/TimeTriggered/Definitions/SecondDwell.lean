@@ -13,6 +13,14 @@ smallest `t₂` need not exist: an execution that reaches the guard at duration 
 may still be in `m₁`, so the set of admissible `t₂` is open at its lower end. [1, Lemma 1],
 [1, Cor. 1] and [1, Thm. 1] take it as a hypothesis.
 
+## Inputs
+* `H` – two-mode automaton
+* `t₁` – first dwell time
+* `t₂` – candidate second dwell time
+
+## Output
+* every execution of at least the total dwell is in the second mode
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

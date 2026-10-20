@@ -9,15 +9,31 @@ public import CORALean.HybridDynamics.Parallel.Theorems.LiftTransitionReset
 # Every run of the product is a parallel run
 
 The converse of `IsRun.toProductWith`, for any flow with `FlowLawConverse`, by the product run's
-recursion. A stay is `IsStay.ofTrajectoryWith`; a jump of the product is a lifted transition of some
-component `c` (the merged list is the components' lifted lists), whose guard comes back through
-`Lifting.Exact` and whose reset is the update, by `liftTransition_reset`, of the blocks of the
-stacked state.
-
-The conditions are those under which the product loses nothing: `Lifting.Exact` (the lifted sets
-are not larger than the components' put together) and the converse flow law, which for
+recursion. A stay is `IsStay.ofTrajectoryWith`; a jump of the product is a lifted transition of
+some component `c`, whose guard comes back through `Lifting.Exact` and whose reset is the update,
+by `liftTransition_reset`, of the blocks of the stacked state. The conditions are those under which
+the product loses nothing: `Lifting.Exact` and the converse flow law, which for
 `mergeFlowsLinearSys` asks `GlobalsDistinct` and nonempty input sets as well
 (`mergeFlowsLinearSys_flowLawConverse`).
+
+## Inputs
+* `P` – parallel automaton
+* `F` – product flow at each location tuple
+* `U` – product input sets
+* `W` – product disturbance sets
+* `lift` – lifting
+* `ℓ` – start locations
+* `ℓ'` – end locations
+* `z` – start state of the product
+* `w` – end state of the product
+
+## Hypotheses
+* `hF` – the flow has the converse flow law
+* `hex` – lifting is exact
+* `run` – run of the product from `z` to `w`
+
+## Conclusion
+* the unstacked states are a parallel run
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

@@ -9,6 +9,15 @@ public import CORALean.HybridDynamics.Parallel.Operations.Basic
 
 The stack of the blocks of a point is the point: every point of the product space is a stack,
 which is what lets a statement about the product be read off its components.
+
+## Inputs
+* `z` – point of the product space
+
+## Hypotheses
+* none
+
+## Conclusion
+* stacking the blocks gives back the point
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -17,6 +17,14 @@ public import Mathlib.Data.Real.Basic
 reads off it: each inner node splits by a hyperplane, `aᵀx ≤ b` left and `≥ b` right; the
 library of partitions and the criteria that chose the splits are the learning's.
 
+## Inputs
+* `a` – hyperplane normal
+* `b` – hyperplane offset
+* `cs` – polytope rows
+
+## Output
+* points on the hyperplane inside the polytope
+
 ## References
 
 * [1] N. Kochdumper, M. A. Foughali, P. Habermehl and E. Asarin. "Robust Identification of

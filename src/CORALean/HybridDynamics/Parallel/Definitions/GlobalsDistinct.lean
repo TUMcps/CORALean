@@ -12,6 +12,12 @@ When two inputs are bound to the same global input `a`, the lifted set can only 
 from one of them, and so may admit a value the other component's set rules out: the product then
 has behaviours the parallel automaton lacks. `GlobalsDistinct` rules that out, each global input
 feeding at most one input, and is what the converse of `IsRun.toProduct` assumes.
+
+## Inputs
+* `P` – parallel automaton
+
+## Output
+* no global input feeds two inputs
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

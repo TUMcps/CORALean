@@ -6,19 +6,23 @@ import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovarianceDiagonal
 /-!
 # A linear system with white noise: covariance after a step
 
-The scalar Ornstein-Uhlenbeck process `ẋ = x + ξ` (`A = B = C = 1` in dimension one, `B` unused
-by the covariance). A `LinProbSys` is the three matrices, and what it denotes is the Gaussian
-law of its solution, so the worked quantity is the covariance of the noise the process picks up
-(`noiseCovariance`). It has no float counterpart (a Gaussian process has no machine form), so
-nothing runs here; the example is the closed form and the two theorems about it on this instance.
+The scalar Ornstein-Uhlenbeck process `ẋ = x + ξ` (`A = B = C = 1` in dimension one). A
+`LinProbSys` is the three matrices, and what it denotes is the Gaussian law of its solution, so the
+worked quantity is the covariance of the noise the process picks up (`noiseCovariance`). It has no
+float counterpart, so nothing runs here. `noiseCovariance_diagonal` gives
+`Σ_s(t) = (e^{2t} - 1)/2`; `LinProbSys.post_cov` says one `post` step from the covariance over
+`T = 1` has the covariance over 2; `LinProbSys.initReachCov_lt_noiseCovariance` is the finding:
+CORA's `initReach` covariance for `A = C = 1`, `r = 1` is `(1 - e⁻²)/2 ≈ 0.43`, below the true
+`(e² - 1)/2 ≈ 3.19`.
 
-* `noiseCovariance_diagonal` gives `Σ_s(t) = (e^{2t} - 1)/2` at the diagonal `A = 1`.
-* `LinProbSys.post_cov` says one `post` step from a state whose probabilistic part has the
-  covariance of the noise over time `T = 1`, with input solution the covariance over `Δt = 1`,
-  has the covariance over `Δt + T = 2`, that is `(e⁴ - 1)/2`.
-* `LinProbSys.initReachCov_lt_noiseCovariance` is the finding on this very instance: CORA's
-  `initReach` covariance for `A = C = 1`, `r = 1` is `(1 - e⁻²)/2 ≈ 0.43`, below the true
-  `(e² - 1)/2 ≈ 3.19`, so the set built from it is too narrow for an unstable `A`.
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* one step from the noise covariance gives the covariance over two
 -/
 
 -- Authors:       Claude Sonnet 5.5

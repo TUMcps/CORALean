@@ -11,6 +11,12 @@ separating direction. The segment and a triangle on the same generators do meet,
 answer is `false`.
 
 `ConZonotope.isDisjointLP_sound` makes each `true` a guarantee; a `false` decides nothing.
+
+## Inputs
+* none
+
+## Output
+* segment shifted from the origin segment
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

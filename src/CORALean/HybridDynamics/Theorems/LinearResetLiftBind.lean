@@ -10,6 +10,20 @@ public import Mathlib.Data.Matrix.Mul
 
 For an injective `stateBind`, the lifted affine reset at coordinate `stateBind j` is the old reset
 at `j` of the bound state: the exactness statement for CORA's `lift`.
+
+## Inputs
+* `W` – reset matrix
+* `w` – reset offset
+* `stateBind` – state index map
+* `id` – identity outside the bound states
+* `x` – state of the larger space
+* `j` – bound coordinate
+
+## Hypotheses
+* `hinj` – index map injective
+
+## Conclusion
+* lifted reset at a bound coordinate is the old reset
 -/
 
 -- Authors:       Claude Opus 5.5

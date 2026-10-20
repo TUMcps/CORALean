@@ -13,6 +13,16 @@ public import CORALean.HybridDynamics.TimeTriggered.DiffInclAutomaton
 the guard `G = {x | a·x = b}` with no reset, the invariant of `m₁` being `a·x ≤ b`. The paper
 leaves the invariant of `m₂` open; here it is the whole space. It is the `H` of [1, Lemma 1].
 
+## Inputs
+* `I` – initial states
+* `f₁` – flow in the first mode
+* `f₂` – flow in the second mode
+* `a` – guard normal
+* `b` – guard offset
+
+## Output
+* space-triggered two-mode automaton
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

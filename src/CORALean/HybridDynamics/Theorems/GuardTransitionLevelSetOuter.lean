@@ -17,6 +17,38 @@ A state on the guard passes Step 1, since `0 = g(x) ∈ [l, u]`; the contractor 
 box and in the united box of its run (`guardIntersectLevelSet_outer`); the rest is the chain of
 the operators' guarantees. The grouping into runs of `μ` affects precision, not soundness.
 
+## Inputs
+* `R` – reach set type
+* `T` – enclosure type
+* `den` – denotation of a reach set
+* `denT` – denotation of an enclosure
+* `g` – guard function
+* `r` – reset map
+* `bound` – range bound of the guard function
+* `box` – box enclosure
+* `contract` – box contractor
+* `μ` – chunk size
+* `intersect` – guard intersection of a box
+* `reset` – enclosure reset
+* `unify` – union of enclosures
+* `Rs` – reach sets
+* `Rj` – reach set
+* `x` – state
+
+## Hypotheses
+* `hbound` – bound holds on each reach set
+* `hbox` – box encloses each reach set
+* `hcontract` – contractor is valid
+* `hintersect` – intersection encloses the guard
+* `hreset` – reset encloses the image
+* `hunify` – union encloses its members
+* `hRj` – reach set is among the given ones
+* `hx` – state lies in the reach set
+* `hg` – guard function vanishes at the state
+
+## Conclusion
+* the reset image lies in the unified enclosure
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

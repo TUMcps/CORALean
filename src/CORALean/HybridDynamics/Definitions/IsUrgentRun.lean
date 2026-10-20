@@ -7,15 +7,19 @@ public import CORALean.HybridDynamics.HybridAutomaton
 /-!
 # Urgent runs
 
-[1, Def. 1]'s transitions are urgent: a transition is taken as soon as its guard is hit, so a
-run never flows on through an enabled guard. `IsUrgentRun` is `IsRun` with that semantics: every
-stay, the last one included, meets no guard of its location before its end, and a stay that
-ends in a jump ends at the first time a guard is met. A guard met only at the end of the last
-stay is where the run is cut off, not one it passed.
+[1, Def. 1]'s transitions are urgent: a transition is taken as soon as its guard is hit.
+`IsUrgentRun` is `IsRun` with that semantics: every stay meets no guard of its location before its
+end, and a stay that ends in a jump ends at the first time a guard is met. `IsRun` admits the
+non-urgent runs as well, so every enclosure of its reachable states encloses the urgent ones
+(`IsUrgentRun.toIsRun`); the reachability results are stated for `IsRun`.
 
-`IsRun` admits the non-urgent runs as well, so it is the larger family, and every enclosure of
-`IsRun`'s reachable states encloses the urgent ones (`IsUrgentRun.toIsRun`); the reachability
-results are stated for `IsRun`.
+## Inputs
+* `ℓ` – location
+* `τ` – stay duration
+* `x` – trajectory
+
+## Output
+* the trajectory meets no guard before time `τ`
 
 ## References
 

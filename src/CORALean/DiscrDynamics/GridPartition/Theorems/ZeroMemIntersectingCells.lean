@@ -9,6 +9,18 @@ public import CORALean.DiscrDynamics.GridPartition.Theorems.Basic
 # A box leaving the state space puts `0` in `intersectingCells`
 
 A point of `I` outside the box the partition covers makes the list end in `0`, the outside.
+
+## Inputs
+* `P` – grid partition
+* `I` – box
+* `x` – point
+
+## Hypotheses
+* `hxI` – point lies in the box
+* `hx` – point lies outside the state space
+
+## Conclusion
+* the outside is among the returned cells
 -/
 
 -- Authors:       Claude Sonnet 5.5

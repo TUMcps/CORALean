@@ -21,6 +21,17 @@ With `numLoc ≥ 2` locations and the default cell `params.U`, a numeric `params
 with the empty input and gives the last location a cell of `numLoc` copies of `u` instead of `u`;
 with one location it gives `{u}` instead of `u`. Read from `postProcessing.m` l. 617, not run
 (`references/coverage/hybridDynamics/hybridAutomaton.md`, row `reach`).
+
+## Inputs
+* `α` – input type
+* `numLoc` – number of locations
+* `u` – numeric input
+
+## Hypotheses
+* `hn` – at least two locations
+
+## Conclusion
+* CORA's trajectory is missing at the first location and replicated at the last
 -/
 
 -- Authors:       Claude Opus 5.5

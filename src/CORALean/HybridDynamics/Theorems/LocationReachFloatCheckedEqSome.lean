@@ -10,6 +10,18 @@ public import CORALean.HybridDynamics.Operations.LocationReachFloatChecked
 `reachFloatChecked` is `reachFloat` followed by `checkNoNaN`, so a `some` of it is the
 unchecked `some`, and none of its floats is a NaN. Whatever is proved of `reachFloat` is
 proved of the checked result, which has passed the NaN test as well.
+
+## Inputs
+* `ℓ` – location
+* `tFinal` – final time
+* `options` – reach options
+* `X₀` – initial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* a checked result is the unchecked one without NaN
 -/
 
 -- Authors:       Claude Opus 5.5

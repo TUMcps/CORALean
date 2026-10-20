@@ -13,6 +13,16 @@ coordinates `stateBind` of the new space feeding the old reset and receiving its
 coordinates keep their value if `id` holds and are `0` otherwise. Returns the new `(W', w')`.
 
 Only places `0`, `1` and entries of `W` and `w`, so it runs at every scalar (route b).
+
+## Inputs
+* `W` – reset matrix
+* `w` – reset offset
+* `N` – global dimension
+* `stateBind` – state index map
+* `id` – identity outside the bound states
+
+## Output
+* lifted matrix and offset
 -/
 
 -- Authors:       Claude Opus 5.5

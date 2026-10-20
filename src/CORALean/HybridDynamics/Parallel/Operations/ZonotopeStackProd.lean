@@ -13,6 +13,12 @@ centers stacked, and the generators those of every component, each embedded at z
 blocks. The generator count is the sum of the components', indexed through `finSigmaFinEquiv` as
 `stack` is. CORA's `cartProd_` of two zonotopes is the same, `blkdiag(G1, G2)`;
 `Theorems.ZonotopeStackProdExact` says it is exactly the product.
+
+## Inputs
+* `zs` – zonotopes of the components
+
+## Output
+* stacked product of the zonotopes
 -/
 
 -- Authors:       Claude Sonnet 5.5

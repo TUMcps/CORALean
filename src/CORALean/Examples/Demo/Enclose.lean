@@ -18,6 +18,12 @@ where a ReLU relaxation costs anything at all.
 `layerBoxes` is `enclose`'s own recursion with a line printed between the
 steps, so the last line it prints and the `enclose` line under it are the same
 computation reached two ways; they agree or the table says so.
+
+## Inputs
+* none
+
+## Output
+* report of the network enclosure
 -/
 
 -- Authors:       Claude Opus 5

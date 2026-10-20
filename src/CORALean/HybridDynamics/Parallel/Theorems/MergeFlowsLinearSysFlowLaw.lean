@@ -17,6 +17,16 @@ disturbances `w` of the components, the product's input is `g` with the global i
 reads set to `0` (in `mergeInputSets` by `Lifting.mem_input`), its disturbance the stack of `w`
 (in `mergeDistSets` by `Lifting.mem_dist`), and `mergeFlowsLinearSys_flow` is the coordinate
 identity. So every run theorem stated for `FlowLaw` holds of `product`.
+
+## Inputs
+* `P` – parallel automaton
+* `lift` – lifting
+
+## Hypotheses
+* `hfeed` – no feedthrough between bound outputs
+
+## Conclusion
+* the merged flow has the flow law
 -/
 
 -- Authors:       Claude Opus 5.5

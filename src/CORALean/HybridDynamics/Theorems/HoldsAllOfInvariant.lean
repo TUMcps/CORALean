@@ -13,6 +13,24 @@ The requirement stated once for the automaton rather than once per
 `holds_of_invariant` call: checked at every location, `holdsAll_of_invariant`
 answers wherever a run ends, which is what a caller with several locations and
 one list of requirements actually wants.
+
+## Inputs
+* `HA` – hybrid automaton
+* `R` – invariant sets
+* `specs` – specifications
+* `ℓ` – start location
+* `ℓ'` – end location
+* `x` – start state
+* `y` – end state
+
+## Hypotheses
+* `hinv` – the sets are an invariant
+* `run` – run of the automaton from `x` to `y`
+* `hx` – start state lies in its set
+* `h` – the specifications hold on the invariant everywhere
+
+## Conclusion
+* all specifications hold at the end state
 -/
 
 -- Authors:       Claude Opus 5

@@ -13,6 +13,20 @@ If every input bound to global input `a` is `g a`, and `g` is zero at the global
 reads, then `selectGlobal b` takes the stack of the inputs to `g`: each row reads one input bound
 to its global input, whichever it is. So the image of the product of the components' input sets
 holds every global-input vector the components admit (`Lifting.mem_input`).
+
+## Inputs
+* `d` – input counts of the components
+* `q` – output counts of the components
+* `b` – input bindings
+* `v` – inputs of the components
+* `g` – global input
+
+## Hypotheses
+* `hv` – inputs bound to `a` equal `g a`
+* `hz` – unread global inputs are zero
+
+## Conclusion
+* `selectGlobal` recovers the global input
 -/
 
 -- Authors:       Claude Opus 5.5

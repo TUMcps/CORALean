@@ -15,6 +15,18 @@ inclusion asked for, so no caller-supplied enclosure is needed here either.
 
 And the same price: the guard is in the state's own family, `Intersection.intersection` having
 nowhere else to put it (#39).
+
+## Inputs
+* `e` – transition
+* `R` – set holding the state at the jump
+* `z` – state at the jump
+
+## Hypotheses
+* `hz` – state lies in the reach set
+* `hguard` – state lies in the guard
+
+## Conclusion
+* reset image lies in the jump image
 -/
 
 -- Authors:       Claude Opus 5

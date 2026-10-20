@@ -8,17 +8,13 @@ public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 /-!
 # Hybrid automata with nonlinear flows, guards and resets
 
-[1, Def. 1]: `p` modes with flows `ẋ = fᵢ(x, u)` and invariant sets `Sᵢ ⊂ ℝⁿ`, and `q`
-transitions `Tᵢ = ⟨Gᵢ, rᵢ(·), sᵢ, dᵢ⟩` with a guard set, a reset `rᵢ : ℝⁿ → ℝⁿ` and the source and
-target modes. `HybridAutomaton` is the linear case CORA's reachability runs on; here every part
-is a set or a function, which is all the definition asks.
-
-`IsRunAt` is the evolution [1] describes in words, with the time it lasts: flow in mode `m` with
-inputs in `U`, staying in `S_m`, until the state is in the guard of a transition out of `m`;
-that transition is taken at once, its reset applied, and the flow goes on in its target mode.
-Urgency is the "is taken" of the text: a stay meets no guard out of its mode before its end. A
-stay is a Carathéodory run of `fᵢ`, as `NonlinearSys.IsTrajectory` is, the invariant kept over the
-whole of it, the semantics [1, Sec. 3.2] computes against; the text states it only of `x₀`.
+[1, Def. 1]: `p` modes with flows `ẋ = fᵢ(x, u)` and invariant sets `Sᵢ ⊂ ℝⁿ`, and `q` transitions
+`Tᵢ = ⟨Gᵢ, rᵢ(·), sᵢ, dᵢ⟩` with a guard set, a reset `rᵢ : ℝⁿ → ℝⁿ` and the source and target
+modes. `HybridAutomaton` is the linear case CORA's reachability runs on. `IsRunAt` is the evolution
+[1] describes in words, with the time it lasts: flow in mode `m` with inputs in `U`, staying in
+`S_m`, until the state is in the guard of a transition out of `m`, which is taken at once, the
+reset applied. Urgency is the "is taken" of the text. A stay is a Carathéodory run of `fᵢ` with the
+invariant kept over the whole of it, the semantics [1, Sec. 3.2] computes against.
 
 ## References
 

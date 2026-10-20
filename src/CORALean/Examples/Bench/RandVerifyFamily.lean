@@ -14,19 +14,18 @@ import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # `lake exe bench randverify-family --in FILE [--dt Q] [--eta K] [--order R] [--check C] ...`
 
 EXPLORATORY: `randverify` instances of `relError = 10^-i`, `i = 1, …, 12`, from the instance `--in`
-(its system, `X0`, `U`, `tend` and box shapes kept), to `<out>/randverify-family/`.
+(its system, `X0`, `U`, `tend` and box shapes kept), to `<out>/randverify-family/`. The reference is
+the exact output windows (`referenceWindows`) of the wrapping-free reach at `Dyadic P`. Per unsafe
+box `S` it takes the rational unit `ℓ` along which `S` is farthest beyond every window and that
+support gap `h_ref`; per `r`, `ε = r · Σ_i width_i(X0)`, and `S` is translated by `(ε - h_ref) ℓ`,
+so its gap is exactly `ε`, stored rounded outward at `2^-80`. The change of the gap on a second
+reference (`--check`) indicates the reference's own overestimation.
 
-1. The reference: the exact output windows (`referenceWindows`) of the wrapping-free reach at
-   `Dyadic P` (`--prec`, `1024`), `--dt` (`1/256`), `--eta` (`10`), `--order` (`400`). Sound.
-2. Per unsafe box `S`, the rational unit `ℓ` (`ratUnit t`, `bestDirection`) along which `S` is
-   farthest beyond every window, and that support gap `h_ref` (`supportGap`), exactly.
-3. Per `r`, `ε = r · Σ_i width_i(X0)`, and `S` translated by `(ε - h_ref) ℓ`, so its gap is exactly
-   `ε`; stored rounded outward at `2^-80`, and its gap `h_stored ∈ [ε - 2^-79, ε]` recomputed.
+## Inputs
+* `args` – parsed command line
 
-So every instance is satisfiable with true support gap `≥ h_stored`. The change of the gap on a
-second reference (`--check DT,ETA,ORDER`, default `dt / 2`) indicates the reference's own
-overestimation `refErr`: the true gap is in `[ε, ε + refErr]`. CORA's generator instead places a
-box to touch CORA's own `ε`-accurate outer set, a true gap in `[0, ε]`: this family is not CORA's.
+## Output
+* the family of instances is written to the output directory
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -9,6 +9,19 @@ public import CORALean.HybridDynamics.Definitions.Location
 
 `Location.IsTrajectory.mem_Icc_right`: the state a jump reads, packaged as the
 membership the endpoint always has.
+
+## Inputs
+* `ℓ` – location
+* `τ` – stay duration
+* `x` – trajectory of the stay
+* `u` – input trajectory
+* `w` – disturbance trajectory
+
+## Hypotheses
+* `traj` – the curves are a stay of the location
+
+## Conclusion
+* the stay duration lies in its own interval
 -/
 
 -- Authors:       Claude Sonnet 5

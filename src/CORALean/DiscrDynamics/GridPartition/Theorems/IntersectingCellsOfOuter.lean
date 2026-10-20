@@ -10,6 +10,22 @@ public import CORALean.DiscrDynamics.GridPartition.Theorems.IntersectingCellsOut
 
 The over-approximation for a set that is not a box, CORA's `intersectingCells(obj, zonotope)`:
 the set sits in its interval hull, so a cell meeting the set meets the hull.
+
+## Inputs
+* `P` – grid partition
+* `X` – set
+* `c` – cell number
+* `x` – point
+
+## Hypotheses
+* `hn` – dimension nonzero
+* `h1` – cell number at least one
+* `h2` – cell number within the cell count
+* `hx` – point lies in the set
+* `hxc` – point lies in the cell
+
+## Conclusion
+* the cell is returned
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -13,6 +13,17 @@ public import Mathlib.Data.Real.Basic
 `Q⁽ⁱ⁾_lm = A_il Θ_m + A_im Θ_l + (Ω_lm - (Θ_l/Λ) 2Υ_m)(Σⱼ A_ij x₀_j + bᵢ)`. [1, Prop. 3] encloses
 `Q⁽ⁱ⁾ = {Q⁽ⁱ⁾(x₀) | x₀ ∈ R(0)}` by a matrix zonotope and `1/Λ²` by an interval separately.
 
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `nv` – guard normal
+* `d` – guard offset
+* `x₀` – initial state
+* `i` – output coordinate
+
+## Output
+* numerator matrix of the second derivatives
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

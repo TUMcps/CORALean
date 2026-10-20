@@ -7,15 +7,40 @@ public import CORALean.HybridDynamics.Operations.ReachGuard
 /-!
 # [1, Alg. 1] is sound
 
-Given the guarantees its operators owe — `reach k` holds every state of the stay at
-`t ∈ [kr, (k+1)r]`, the conversions enclose, `isEmpty` answers `true` only for `∅`, and
-`intersectionTimes` brackets every position that meets the guard — every state of a stay in
-`ℓ` before `t^end_inv` lies in a piece of `R^H([0, t^end_inv])`, and in `R_j` too where it is
-in the guard of `e`. A loop that stopped before the horizon `t_f = N r` did so because a piece
-was empty, and then the stay ended before `t^end_inv`: the invariant has been left.
+[1, Alg. 1] is sound given the guarantees its operators owe: `reach k` holds every state of the
+stay at `t ∈ [kr, (k+1)r]`, the conversions enclose, `isEmpty` answers `true` only for `∅`, and
+`intersectionTimes` brackets every position that meets the guard. Then every state of a stay in `ℓ`
+before `t^end_inv` lies in a piece of `R^H([0, t^end_inv])`, and in `R_j` too where it is in the
+guard of `e`. A loop that stopped before the horizon `t_f = N r` did so because a piece was empty,
+and then the stay ended before `t^end_inv`: the invariant has been left. `reach` is the continuous
+reachable set, `LinearSys.reachBox_outer` one way to meet its obligation at linear dynamics.
 
-`reach` is the continuous reachable set, `LinearSys.reachBox_outer` being one way to meet its
-obligation at linear location dynamics.
+## Inputs
+* `ℓ` – location
+* `τ` – stay duration
+* `x` – trajectory of the stay
+* `u` – input trajectory
+* `w` – disturbance trajectory
+* `e` – transition
+* `r` – time step
+* `N` – number of steps
+* `reach` – reach set at a step
+* `halfspaceConv` – conversion to a guard set
+* `isEmpty` – emptiness test
+* `intersectionTimes` – first and last step meeting the guard
+* `generatorConv` – conversion back to a state set
+
+## Hypotheses
+* `traj` – the curves are a stay of the location
+* `hr` – time step positive
+* `hreach` – reach sets hold the stay at their times
+* `hH` – the conversion encloses the set
+* `hE` – the emptiness test answers true only for the empty set
+* `hT` – the bracket holds every position meeting the guard
+* `hG` – the conversion encloses the sets
+
+## Conclusion
+* the pieces hold the stay until the exit and the guard hit lies in the last set
 
 ## References
 

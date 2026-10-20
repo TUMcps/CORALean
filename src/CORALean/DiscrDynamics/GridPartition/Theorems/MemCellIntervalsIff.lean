@@ -8,6 +8,17 @@ public import CORALean.DiscrDynamics.GridPartition.Operations.Basic
 # The members of `cellIntervals`
 
 A box is listed by `cellIntervals` exactly when it is the box of a cell asked for and in range.
+
+## Inputs
+* `P` – grid partition
+* `cs` – cell numbers
+* `B` – box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the box is listed iff it is the box of a requested cell
 -/
 
 -- Authors:       Claude Sonnet 5.5

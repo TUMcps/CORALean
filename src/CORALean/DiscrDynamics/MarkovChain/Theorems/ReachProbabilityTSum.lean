@@ -10,6 +10,17 @@ public import CORALean.DiscrDynamics.GridPartition.Theorems.ExactIntersectingCel
 
 Each `iProp` sums to one, so the transition probabilities add up to the sum of the weights
 `tranFrac{k}`: one, for weights that are probabilities, as `priv_transitionFraction` gives.
+
+## Inputs
+* `field` – grid partition
+* `R` – reach sets
+* `tranFrac` – weights of the reach sets
+
+## Hypotheses
+* none
+
+## Conclusion
+* the probabilities sum to the sum of the weights
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -17,6 +17,16 @@ The windows of the instance's system in output space, `Y_k = C · R(τ_k)` exact
 `dt`, Taylor order `η` and zonotope order `ρ`. The reach is sound, so each `Y_k` contains the
 output of every trajectory over its time interval: a box beyond every `Y_k` along a direction is
 beyond the true reachable set by at least as much.
+
+## Inputs
+* `I` – instance
+* `p` – significand width
+* `dt` – step size
+* `η` – Taylor order
+* `ρ` – zonotope order
+
+## Output
+* exact output windows or an error message
 -/
 
 -- Authors:       Claude Opus 5.5

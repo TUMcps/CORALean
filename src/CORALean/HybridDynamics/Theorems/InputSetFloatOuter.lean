@@ -11,6 +11,18 @@ public import CORALean.HybridDynamics.Operations.InputSetFloat
 For every input `u ∈ U` and disturbance `w ∈ W` of a location at float zonotopes, the combined
 input `B u + c + E w` lies in `inputSetFloat`: `B u + c` in `LinearSys.inputSetFloat U`
 (`inputSetFloat_outer`), `E w` in the float product `E W`.
+
+## Inputs
+* `ℓ` – float location
+* `u` – input value
+* `w` – disturbance value
+
+## Hypotheses
+* `hu` – input lies in the input set
+* `hw` – disturbance lies in the disturbance set
+
+## Conclusion
+* combined input lies in the float input set
 -/
 
 -- Authors:       Claude Opus 5.5

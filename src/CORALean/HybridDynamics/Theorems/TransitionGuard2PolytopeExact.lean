@@ -8,6 +8,16 @@ public import CORALean.HybridDynamics.Operations.TransitionGuard2Polytope
 # `Transition.guard2polytope` with an exact conversion
 
 An exact conversion (`=`) gives the same guard.
+
+## Inputs
+* `conv` – guard conversion
+* `e` – transition
+
+## Hypotheses
+* `h` – the conversion is exact
+
+## Conclusion
+* the converted guard denotes the same set
 -/
 
 -- Authors:       Claude Opus 5.5

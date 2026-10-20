@@ -13,6 +13,14 @@ CORA's `stretch(Obj, factor)` on a chain whose `T` is one matrix (after `convert
 `T` becomes `T^factor` and `OT` the average `OT (I + T + ⋯ + T^(factor-1)) / factor`, the chain
 sampled `factor` times more coarsely. CORA's loops start at `2` and fail for `factor = 1`, where
 `T_pow{i}` indexes an empty loop variable; the definition is the same expression there.
+
+## Inputs
+* `ι` – state type
+* `Obj` – chain with one transition matrix
+* `factor` – stretch factor
+
+## Output
+* chain with the matrix raised to the factor
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -13,6 +13,12 @@ same algorithm and arithmetic, so that a difference can only be an algorithmic o
 It lives here, and is a separate executable, because `NearestFloat`'s instances rest on the one
 false axiom of `NearestUnsound/Axioms.lean`: only files under `Examples/Bench/` may import it, and
 the sound `oracle` must never reach it. Every dtype of the sound oracle is served here too.
+
+## Inputs
+* none
+
+## Output
+* operations of the round-to-nearest dtype
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -7,17 +7,13 @@ import CORALean.Global.Float.Instances.Binary64.Operations.Basic
 /-!
 # The checks
 
-One function per conjunct of `TrustedHardware`, each comparing the native result with the exact
-one and answering with the failures it saw, tagged by kind:
-
-* `unsound` -- the result lies on the wrong side of the exact value (the soundness bound), or a
-  `≤` that holds natively while the decoded values disagree;
-* `loose` -- the result is more than one step past the soft-float's directed result, or a `≤`
-  that fails natively while the decoded values are ordered;
-* `range` -- NaN where the result is in the normal range, or a number where it is not;
-* `value` -- a result that is not exactly what the operation must return.
-
-A `Stat` counts them per operation and keeps the first failing input's report.
+One function per conjunct of `TrustedHardware`, each comparing the native result with the exact one
+and answering with the failures it saw, tagged by kind: `unsound` (the result lies on the wrong
+side of the exact value, or a `≤` that holds natively while the decoded values disagree), `loose`
+(more than one step past the soft-float's directed result, or a `≤` that fails natively while the
+decoded values are ordered), `range` (NaN where the result is in the normal range, or a number
+where it is not) and `value` (a result that is not what the operation must return). A `Stat` counts
+them per operation and keeps the first failing input's report.
 -/
 
 -- Authors:       Claude Opus 5.5

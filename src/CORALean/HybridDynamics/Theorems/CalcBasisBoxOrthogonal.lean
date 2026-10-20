@@ -9,6 +9,15 @@ public import CORALean.HybridDynamics.Operations.CalcBasisBox
 
 A basis for an enclosure by rotated boxes must be invertible, and an orthogonal one is its own
 inverse's transpose; the identity is orthogonal, so the enclosure is the interval hull itself.
+
+## Inputs
+* `n` – dimension
+
+## Hypotheses
+* none
+
+## Conclusion
+* the box basis is orthogonal
 -/
 
 -- Authors:       Claude Opus 5.5

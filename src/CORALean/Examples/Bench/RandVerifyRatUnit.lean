@@ -7,6 +7,12 @@ import Mathlib.Data.Rat.Defs
 the unit circle (every point but `(-1, 0)`, approached as `t → ±∞`): `‖ℓ(t)‖₂ = 1` exactly. For
 `t = a / b` it is returned as an integer vector `p = (b² - a², 2ab)` and its length
 `q = a² + b²`, `ℓ = p / q`.
+
+## Inputs
+* `t` – rational parameter
+
+## Output
+* unit vector numerators and common denominator
 -/
 
 -- Authors:       Claude Opus 5.5

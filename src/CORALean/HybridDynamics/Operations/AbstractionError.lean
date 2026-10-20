@@ -13,13 +13,24 @@ public import CORALean.ContSet.Zonotope.Real.Operations.SumTerms
 /-!
 # The abstraction error of the state-dependent constant flow, with uncertain inputs
 
-CORA's `aux_abstractionError` [1], the set `E` of [2, Eq. 13] holding `x(t) − y(t)`, `t ∈ [0,
-tmax]`, for a run of `ẋ = Ax + u`, `u ∈ U`, from `x₀ ∈ R₀` and the flow `x₀ + (Ax₀ + b)t` of
-[2, Prop. 1] at `th`: `τ(err₁ ⊕ err₂ ⊕ err₃) ⊕ Ê R₀ ⊕ Ê tmax U`, `τ = [0, tmax]`, `Ê = [−W, W]`,
+CORA's `aux_abstractionError` [1], the set `E` of [2, Eq. 13] holding `x(t) − y(t)`,
+`t ∈ [0, tmax]`, for a run of `ẋ = Ax + u`, `u ∈ U`, from `x₀ ∈ R₀` and the flow `x₀ + (Ax₀ + b)t`
+of [2, Prop. 1] at `th`: `τ(err₁ ⊕ err₂ ⊕ err₃) ⊕ Ê R₀ ⊕ Ê tmax U`, `τ = [0, tmax]`, `Ê = [−W, W]`,
 `W = |e^{|A|tmax} − ∑ᵢ₌₀^η (|A|tmax)ⁱ/i!|`. Interval products are CORA's (`Interval.mulLo`,
 `Interval.mulHi`, `Zonotope.mtimesIntervalMat`; `[a, b] Z` as `[a, b] I` times `Z`). `err1`
 accumulates its summands, which CORA's assignment `err1 = M * (...)` in the loop does not
 (`references/coverage/hybridDynamics/location.md`, row `guardIntersect_hyperplaneMap`).
+
+## Inputs
+* `A` – flow matrix
+* `U` – input zonotope
+* `R₀` – initial zonotope
+* `th` – expansion time
+* `tmax` – final time
+* `η` – Taylor order
+
+## Output
+* zonotope holding the abstraction error
 
 ## References
 

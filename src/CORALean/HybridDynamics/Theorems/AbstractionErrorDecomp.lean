@@ -12,20 +12,45 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVe
 /-!
 # The difference of a run and the constant flow, order by order
 
-The identity behind [1, Eq. 13], with every membership left to the caller: for `t ∈ [0, tmax]`,
-`η = k + 1 ≥ 1`, any `x₀`, `ξ`, `u_c`, `th` and a measurable input `u` with values in a convex
-closed bounded nonempty `U`, the run `e^{At}x₀ + ∫₀ᵗ e^{A(t−s)}u(s) ds` of `ẋ = Ax + u` minus the
-state-dependent constant flow `x₀ + (Ax₀ + b)t`, `b = Θ(th)ξ + Γ*(th)u_c` of [1, Prop. 1], is
-`t(v₁ + v₂ + v₃) + R x₀ + ρ`: `v₁ = ∑ₘ Aᵐ⁺²/(m + 2)! (tᵐ⁺¹x₀ − thᵐ⁺¹ξ)`,
-`v₂ = ∑ₘ (tᵐ⁺¹ − thᵐ⁺¹) Aᵐ⁺¹/(m + 2)! u_c`, `v₃ = (w₀ − u_c) + ∑ₘ tᵐ⁺¹ Aᵐ⁺¹/(m + 2)! (wₘ₊₁ − u_c)`
-with `wᵢ ∈ U`, `R = e^{At} − ∑ᵢ₌₀^η (At)ⁱ/i!` within `W` entrywise, and `ρ` in any convex closed
-bounded `S ∋ 0` holding `tmax M v` for `M` within `W` and `v ∈ U`, `W` bounding the remainders on
-`[0, tmax]`. CORA's sets of `aux_abstractionError` [2] hold each part; the exact layer's
-`GuardMap.abstractionError_outer` and the float layer's read the memberships off their own sets.
+The identity behind [1, Eq. 13], every membership left to the caller: for `t ∈ [0, tmax]`,
+`η = k + 1` and a measurable input `u` in a convex closed bounded nonempty `U`, the run of
+`ẋ = Ax + u` minus the state-dependent constant flow `x₀ + (Ax₀ + b)t`, `b = Θ(th)ξ + Γ*(th)u_c` of
+[1, Prop. 1], is `t(v₁ + v₂ + v₃) + R x₀ + ρ` with `v₁, v₂, v₃` sums over the orders, `wᵢ ∈ U`, `R`
+within `W` entrywise and `ρ` in a convex closed bounded `S ∋ 0`. CORA's sets of
+`aux_abstractionError` [2] hold each part; `GuardMap.abstractionError_outer` and the float layer's
+read the memberships off their own sets. The input's orders are averages (`integral_pow_smul_mem`).
 
-The input's orders are averages, `∫₀ᵗ τⁱ u(t − τ) dτ = tⁱ⁺¹/(i + 1) · wᵢ`
-(`integral_pow_smul_mem`), and the integral of `R(τ)u(t − τ)` is `t/tmax` times an average of
-`tmax R(τ)u(t − τ) ∈ S`.
+## Inputs
+* `A` – flow matrix
+* `Us` – input set
+* `S` – remainder set
+* `uc` – center of the input set
+* `ξ` – center of the initial set
+* `th` – expansion time
+* `tmax` – final time
+* `t` – time
+* `k` – Taylor order minus one
+* `W` – entrywise bound on the remainders
+* `x₀` – initial state
+* `u` – input trajectory
+
+## Hypotheses
+* `hUc` – input set convex
+* `hUcl` – input set closed
+* `hUb` – input set bounded
+* `hUn` – input set nonempty
+* `hSc` – remainder set convex
+* `hScl` – remainder set closed
+* `hSb` – remainder set bounded
+* `hS0` – remainder set contains zero
+* `ht` – time within the horizon
+* `hW` – remainder bounded entrywise by the matrix
+* `hS` – matrix products of the input stay in the remainder set
+* `hu` – input stays in its set
+* `hmeas` – input measurable
+
+## Conclusion
+* difference of run and flow splits into order terms and a remainder in `S`
 
 ## References
 

@@ -14,22 +14,14 @@ import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # Every runnable algorithm of `RunnableFloat`, executed
 
-`Examples/RunnableFloat.lean` instantiates the algorithms at `Dyadic 24` as plain `def`s,
-which proves each *compiles* at a float scalar. This executable *runs* each of them and prints
-one line per `def`, `name | summary | status`, where the summary is a short deterministic
-reading of the result (a count, a center, a hull, a Bool) and the status is `ok`, `NAN` (a NaN
-reached a result) or `NONE` (an `Option.none` where a value is expected).
-
-`scripts/check-runcheck.sh` diffs the output against `scripts/runcheck-expected.txt` and
-checks coverage: every `def` of `RunnableFloat.lean` must be run here, as `RunnableFloat.<name>`
-on a line of its own, or listed in `skipped` with a reason. A new runnable algorithm cannot
-escape execution.
-
-Hardware `Float` (native binary64) runs a portable subset at the end, the same code at a second
-scalar. `Dyadic 24` is the software scalar. The numbers are the demo's: compare, not duplicate,
-`scripts/demo-expected.txt`.
-
-Run: `lake exe runcheck` (links, slow) or `lake env lean --run src/CORALean/Examples/RunCheck.lean`.
+`Examples/RunnableFloat.lean` instantiates the algorithms at `Dyadic 24` as plain `def`s, which
+proves each compiles at a float scalar. This executable runs each of them and prints one line per
+`def`, `name | summary | status`: a short deterministic reading of the result, and `ok`, `NAN` (a
+NaN reached a result) or `NONE` (an `Option.none` where a value is expected).
+`scripts/check-runcheck.sh` diffs the output against `scripts/runcheck-expected.txt` and checks
+coverage: every `def` of `RunnableFloat.lean` must be run here, as `RunnableFloat.<name>` on a line
+of its own, or listed in `skipped` with a reason. Hardware `Float` runs a portable subset at the
+end. Run `lake exe runcheck` or `lake env lean --run src/CORALean/Examples/RunCheck.lean`.
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

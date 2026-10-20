@@ -8,6 +8,12 @@ The ARCH instance files write every number as an exact string `"m*2^e"`; a reade
 plain decimal string (`"0.125"`, `"-1.5e-3"`), a rational `"m/d"` or a JSON number takes it
 too, and converts it exactly to a rational: a number that is not binary stays a rational here,
 and `ExactDyadic` is where one is refused.
+
+## Inputs
+* `s0` – number string
+
+## Output
+* exact rational or an error message
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -13,22 +13,22 @@ import CORALean.NN.Theorems.MemSafeSet
 /-!
 # A feed-forward network, verified end to end
 
-The pipeline at a representation, which is the thing a set of interfaces cannot
-promise on its own: `Zonotope` supplies `Mtimes`, `Plus`, a box it produces and
-a box it absorbs, and that is exactly what the linear and ReLU layers ask for,
-so the network below elaborates with no further instances.
+The pipeline at a representation, which a set of interfaces cannot promise on its own: `Zonotope`
+supplies `Mtimes`, `Plus`, a box it produces and a box it absorbs, which is exactly what the linear
+and ReLU layers ask for, so the network elaborates with no further instances. Compiled, so it is a
+regression test as much as an example: it fails the moment an instance stops resolving. Nothing
+here evaluates to a number, that being the layer's job description: over ℝ every operation is
+noncomputable. `Float` is where the same network produces bounds. A call has to name the family,
+`(S := 𝒵)`, once at the first layer.
 
-Compiled, so it is a regression test as much as an example. It fails the moment
-an instance stops resolving, which is what a use site — and nothing in the
-library itself — is able to notice.
+## Inputs
+* `W₁` – first weight matrix
+* `b₁` – first bias
+* `W₂` – second weight matrix
+* `b₂` – second bias
 
-Nothing here evaluates to a number, and that is the layer's job description
-rather than a limitation: over ℝ every operation is noncomputable, since
-ordering reals is. `Float` is where the same network produces bounds.
-
-One Lean detail a first use site trips over: `S : ℕ → Type` cannot be read off
-`S 3`, so a call has to name the family — `(S := 𝒵)` — and naming it once at
-the first layer is enough, the rest of the network following from it.
+## Output
+* feed-forward network of two affine layers
 -/
 
 -- Authors:       Claude Opus 5

@@ -13,6 +13,15 @@ public import CORALean.HybridDynamics.Parallel.Theorems.StackUnstack
 A point is in the stacked constrained zonotope exactly when each block is in its component's:
 the generators' blocks are independent (`Zonotope.stackProd_value`) and so are the constraints on
 the coefficients (`HPolytope.stackProd_exact`). An equality, not an enclosure.
+
+## Inputs
+* `zs` – constrained zonotopes of the components
+
+## Hypotheses
+* none
+
+## Conclusion
+* a point lies in the product iff each block lies in its component
 -/
 
 -- Authors:       Claude Sonnet 5.5

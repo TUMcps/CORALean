@@ -21,6 +21,14 @@ import CORALean.Examples.Bench.RandVerifyRecord
 `randTypeKind`): `Dyadic p`, `IEEE fmt`, the hardware `Float`, and round-to-nearest (`NearestFloat`
 or `NearestDyadic p`, unsound), with the same readers `firstStepBenchRecord` uses. `none` for
 `flint<p>`, which only `bench-flint` links, and for a label that is no type.
+
+## Inputs
+* `label` – number type label
+* `J` – job
+* `insts` – instances sharing the system
+
+## Output
+* records at the labelled type, none if not linked
 -/
 
 -- Authors:       Claude Sonnet 5.5

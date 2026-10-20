@@ -16,6 +16,26 @@ and disturbance, in its input and disturbance sets, under which every coordinate
 right-hand side at the stack is the component's own; the integral of the stack is the stack of
 the integrals, so the stack is a stay of the product with those. The invariant is the lifted
 one, by `Lifting.mem_inv`. Nothing else of the product is read.
+
+## Inputs
+* `P` – parallel automaton
+* `F` – product flow at each location tuple
+* `U` – product input sets
+* `W` – product disturbance sets
+* `lift` – lifting
+* `ℓ` – current locations
+* `τ` – stay duration
+* `x` – component trajectories
+* `u` – component inputs
+* `w` – component disturbances
+* `g` – global input
+
+## Hypotheses
+* `hF` – the flow has the flow law
+* `h` – shared stay of the components
+
+## Conclusion
+* the stacked stay is a trajectory of the product
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

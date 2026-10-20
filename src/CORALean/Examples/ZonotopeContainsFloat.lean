@@ -10,6 +10,12 @@ with the rounding absorbed. `[-2, 2]²` is certified to contain the unit square 
 `(1/2, 0)` and a diagonal segment through the origin, and not the unit square centered at
 `(3, 0)`. It is also not certified to contain itself: a set touching the boundary leaves no
 margin for the rounding, so that `false` decides nothing.
+
+## Inputs
+* none
+
+## Output
+* larger square zonotope
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

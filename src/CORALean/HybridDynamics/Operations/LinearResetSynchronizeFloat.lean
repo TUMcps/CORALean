@@ -11,6 +11,14 @@ The sum of the components' matrices and offsets, `A = ΣW_i + diag(id)`, `c = Σ
 a float, so it is returned as two matrices and two vectors: lower and upper entry bounds, each
 sum rounded in its own direction (`sumDown`, `sumUp`; the added `1` is exact). Soundness is
 `LinearReset.synchronizeFloat_outer`.
+
+## Inputs
+* `W` – reset matrices
+* `w` – reset offsets
+* `idStates` – states kept by identity
+
+## Output
+* lower and upper bounds of the summed reset
 -/
 
 -- Authors:       Claude Opus 5.5

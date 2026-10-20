@@ -11,6 +11,19 @@ public import CORALean.HybridDynamics.Definitions.IsUrgentRun
 its end leaves a run. So every enclosure proved of `IsRun`'s reachable states, the invariant-free
 automaton's included, holds of the urgent semantics too.
 
+## Inputs
+* `HA` – hybrid automaton
+* `ℓ` – location
+* `ℓ'` – end location
+* `x` – trajectory of the stay
+* `y` – end state
+
+## Hypotheses
+* `h` – urgent run from `x` to `y`
+
+## Conclusion
+* the urgent run is a run
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

@@ -9,6 +9,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalHPolytopeExact
 # `cellPolytopes` are the cells
 
 Each cell polytope denotes exactly its cell box.
+
+## Inputs
+* `P` – grid partition
+* `cs` – cell numbers
+
+## Hypotheses
+* none
+
+## Conclusion
+* each cell polytope denotes its cell box
 -/
 
 -- Authors:       Claude Sonnet 5.5

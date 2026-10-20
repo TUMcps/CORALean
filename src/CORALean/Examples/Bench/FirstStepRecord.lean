@@ -8,17 +8,24 @@ import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
 /-!
 # `firststep`: one number type at one `dt`, one step
 
-The headline spiral `A = [[a, b], [-b, a]]`, the config's `X0` and `eta`, `rho`, run through
-`LinearSys.reachFloat` -- `headline-b`'s own call, `Registry.aux_algoHeadlineB` -- with
-`tFinal = dt`, so `N = 1`: `Rti = [R_0]`, the first time-interval enclosure, and
-`Rtp = [X_0, X_1]`, the time-point sets.
+The headline spiral `A = [[a, b], [-b, a]]`, the config's `X0`, `eta` and `rho`, run through
+`LinearSys.reachFloat` with `tFinal = dt`, so `N = 1`: `Rti = [R_0]`, the first time-interval
+enclosure, and `Rtp = [X_0, X_1]`. `A` and `dt` are read exactly through `inst`, and a format that
+cannot hold one is a `"none"` record saying `not representable`. `X0` is rounded outward
+(`roundX0In`), so a coarse format still has a first step. The record's `status` is `"ok"`,
+`"overflow-NaN"` if any stored scalar of `x0`, `R0` or `X1` is past the format's range or a `NaN`,
+or `"none"` with a `reason`.
 
-`A` and `dt` are read exactly through `inst`, as `buildContSystem` reads them, and a format that
-cannot hold one is a `"none"` record saying `not representable`. `X0` is the exception: it is
-rounded outward (`roundX0In`), so a format too coarse for it still has a first step, from the
-set it can hold. The record's `status` is `"ok"`; `"overflow-NaN"` if any stored scalar of
-`x0`, `R0` or `X1` is past the format's range or a `NaN` (`nt.overflows`), the numbers still
-given where they are rational; `"none"` with a `reason` for everything else.
+## Inputs
+* `cfg` – headline config
+* `head` – leading JSON fields
+* `inst` – checked reader of exact numbers
+* `exactIn` – exact number held off the grid
+* `nt` – number type description
+* `dtStr` – step size as a string
+
+## Output
+* JSON record of the first step
 -/
 
 -- Authors:       Claude Sonnet 5.5

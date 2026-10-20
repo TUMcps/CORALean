@@ -8,6 +8,17 @@ public import CORALean.DiscrDynamics.GridPartition.Theorems.I2sMem
 # `s2i` undoes `i2s`
 
 A cell number in `1 … N` is recovered from its subscripts.
+
+## Inputs
+* `siz` – segments per dimension
+* `c` – cell number
+
+## Hypotheses
+* `h1` – cell number at least one
+* `h2` – cell number within the cell count
+
+## Conclusion
+* the cell number is recovered from its subscripts
 -/
 
 -- Authors:       Claude Sonnet 5.5

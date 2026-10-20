@@ -4,15 +4,19 @@ import CORALean.Global.Float.Instances.Dyadic.Instances
 /-!
 # What the demo computes in
 
-`Dyadic 24` — binary32's significand with no exponent range, which is the one
-place `Dyadic` is more generous than a machine and the reason
-`SoundFloatArithmetic`'s assumption that nothing overflows is earned rather than
-assumed here.
+`Dyadic 24`: binary32's significand with no exponent range, the one place `Dyadic` is more generous
+than a machine and the reason `SoundFloatArithmetic`'s assumption that nothing overflows is earned
+rather than assumed here. It is also the only scalar in the repository an algorithm can be run at:
+`FloatOps` is what a definition asks for and computes, and `Dyadic`'s `SoundFloatArithmetic`
+instance carries a `toReal` that computes as well, which keeps every instance derived from it out
+of `noncomputable`.
 
-It is also the only scalar in the repository an algorithm can be *run* at:
-`FloatOps` is what a definition asks for and computes, and `Dyadic`'s
-`SoundFloatArithmetic` instance carries a `toReal` that computes as well, which
-is what keeps every instance derived from it out of `noncomputable`.
+## Inputs
+* `p` – significand width
+* `n` – dimension
+
+## Output
+* box of zeros
 -/
 
 -- Authors:       Claude Opus 5

@@ -13,6 +13,25 @@ A state with the derivative `A x + B u + c + E w` within `[0, τ]` at every poin
 continuous input and disturbance, is a stay: the integrand is then continuous, so measurable and
 integrable, and the fundamental theorem of calculus gives the integral equation `IsTrajectory`
 states. It is how a stay written down in closed form is shown to be one.
+
+## Inputs
+* `ℓ` – location
+* `τ` – stay duration
+* `x` – trajectory of the stay
+* `u` – input trajectory
+* `w` – disturbance trajectory
+
+## Hypotheses
+* `nonneg` – stay duration nonnegative
+* `input` – input stays in the input set
+* `dist` – disturbance stays in the disturbance set
+* `hu` – input continuous
+* `hw` – disturbance continuous
+* `hd` – curve has the flow derivative at every point
+* `invariant` – curve stays in the invariant
+
+## Conclusion
+* the curves are a stay of the location
 -/
 
 -- Authors:       Claude Opus 5.5

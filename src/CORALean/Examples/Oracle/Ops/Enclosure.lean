@@ -8,20 +8,21 @@ import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # `"interval"` and `"enclosure"`
 
-`"interval"` is `Zonotope.interval`, the library's own box hull
-(`Conversion/Float/Operations/Zonotope_to_Interval.lean`), sound by `Zonotope.interval_contains`.
+`"interval"` is `Zonotope.interval`, the library's own box hull, sound by
+`Zonotope.interval_contains`. `"enclosure"` asks for a zonotope enclosing `Z` with `E` exactly
+`[0, 0]`. `Zonotope.absorbError` (`absorbError_outer`) moves the box into `n` generators about its
+midpoint but leaves a residual `[lo_i, hi_i]` per row; this folds that residual too, without
+rounding: each row with `[lo_i, hi_i] ≠ [0, 0]` gets one more generator `r_i · e_i`,
+`r_i := maximum (neg lo_i) hi_i`, exact in every `FloatOps`, then `E := [0, 0]`. Soundness:
+`e_i ∈ [lo_i, hi_i] ⊆ [-r_i, r_i]`; an informal claim, not a theorem restated here. A row already
+`[0, 0]` gets no generator.
 
-`"enclosure"` asks for a zonotope enclosing `Z` with `E` *exactly* `[0, 0]`, for
-every `Z`. `Zonotope.absorbError`, sound by `Zonotope.absorbError_outer`, moves
-the box into `n` generators about its own midpoint but leaves a residual
-`[lo_i, hi_i]` per row -- the rounding gap, `[0, 0]` only at a single-point box.
-This folds that residual too, without rounding: each row `i` with
-`[lo_i, hi_i] ≠ [0, 0]` gets one more generator `r_i · e_i`,
-`r_i := maximum (neg lo_i) hi_i` -- exact, `neg`/`maximum` being exact in
-every `FloatOps` -- then `E := [0, 0]`. Soundness: `e_i ∈ [lo_i, hi_i] ⊆
-[-r_i, r_i]` by `r_i`'s own definition; an informal claim, as `plusBox`'s own
-is, not a theorem restated here. A row already `[0, 0]` gets no generator, so
-this never appends a zero one.
+## Inputs
+* `dops` – dtype operations
+* `req` – request
+
+## Output
+* response fields or an error message
 -/
 
 -- Authors:       Claude Opus 5.5

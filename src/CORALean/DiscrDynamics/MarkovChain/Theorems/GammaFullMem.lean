@@ -9,6 +9,17 @@ public import CORALean.DiscrDynamics.MarkovChain.Operations.Basic
 # `GammaFull` is column-stochastic
 
 A block `Gamma` for each cell keeps every column a distribution.
+
+## Inputs
+* `N` – cell count
+* `m` – number of inputs
+* `γ` – input mixing parameter
+
+## Hypotheses
+* `hγ` – mixing parameter positive
+
+## Conclusion
+* the block mixing matrix is column-stochastic
 -/
 
 -- Authors:       Claude Sonnet 5.5

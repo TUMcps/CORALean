@@ -13,6 +13,16 @@ flow `F ℓ` with its input set `U ℓ` and disturbance set `W ℓ` in place of 
 `mergeInputSets` and `mergeDistSets`. `product` is the instance at those three; the run theorems
 are proved for any flow with `FlowLaw`, so that a flow assembled at a float scalar, where
 `mergeFlowsLinearSys`'s sums would round, is covered by the same proof.
+
+## Inputs
+* `P` – parallel automaton
+* `lift` – lifting
+* `F` – product flow at each location tuple
+* `U` – product input sets
+* `W` – product disturbance sets
+
+## Output
+* product automaton with the given flow
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

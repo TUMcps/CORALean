@@ -12,6 +12,12 @@ no point in the box — the nearest corner `(2, 2)` is at distance `√8` from t
 outside the unit disc.
 
 `LevelSet.isIntersecting_cell_outer` is applied to these very bounds; a `true` decides nothing.
+
+## Inputs
+* none
+
+## Output
+* box from two to three in both coordinates
 -/
 
 -- Authors:       Claude Sonnet 5.5

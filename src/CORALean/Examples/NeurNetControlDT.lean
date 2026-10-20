@@ -13,6 +13,17 @@ import CORALean.Examples.NeurNetControl
 at every step; a safe set the reached zonotope stays inside is a safe set the run stays
 inside; and the loop is deterministic, so a run is settled by where it started. Compiled at
 an abstract system, for the reason `NeurNetControl` gives.
+
+## Inputs
+* `A` – plant matrix
+* `W₁` – first weight matrix
+* `b₁` – first bias
+* `W₂` – second weight matrix
+* `b₂` – second bias
+* `dt` – control period
+
+## Output
+* discrete-time closed loop of the plant and the controller
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5

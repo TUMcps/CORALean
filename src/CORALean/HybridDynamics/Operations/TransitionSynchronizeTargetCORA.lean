@@ -10,6 +10,14 @@ public import CORALean.HybridDynamics.Definitions.Transition
 CORA's target loop of `transition/synchronize`, transcribed literally, locations being numbers as
 in CORA: `target(compIdx) = transList(i).target` writes the target of transition `i` to every
 participating component, so the last one wins. Kept to state the counterexample.
+
+## Inputs
+* `locID` – current locations
+* `compIdx` – component indices
+* `target` – target locations
+
+## Output
+* locations as CORA's loop sets them
 -/
 
 -- Authors:       Claude Opus 5.5

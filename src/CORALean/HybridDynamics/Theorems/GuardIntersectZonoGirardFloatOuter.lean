@@ -18,6 +18,24 @@ A state `x` of a reach set on the hyperplane has `x·ℓ` between the ends of th
 each column `ℓ` of a basis (`zonoGirardUpperFloat_le` in the directions `ℓ` and `-ℓ`), so in the
 joined interval, so in every member of the bundle: the basis, with `B Bᵀ = 1` over ℝ, carries
 `x` through its coordinates `Bᵀ x` and back. Outer only.
+
+## Inputs
+* `Bs` – bases
+* `R₀` – initial set
+* `Rs` – reach sets
+* `nv` – guard normal
+* `γ` – guard offset
+* `R` – reach set
+* `x` – trajectory of the stay
+
+## Hypotheses
+* `horth` – bases orthogonal
+* `hR` – the reach set is among the given ones
+* `hx` – state lies in the reach set
+* `hg` – state lies on the guard
+
+## Conclusion
+* state lies in the bundle
 -/
 
 -- Authors:       Claude Sonnet 5.5

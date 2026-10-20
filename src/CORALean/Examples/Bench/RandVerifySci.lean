@@ -4,6 +4,12 @@
 `x` as `"-1.234567890e-05"`: ten significant digits, whatever its magnitude, where `toString`
 gives six decimals and so `0.000000` for every distance of the hard instances. `"0"`, `"NaN"`,
 `"inf"` and `"-inf"` as such.
+
+## Inputs
+* `x` – double
+
+## Output
+* scientific notation string with ten digits
 -/
 
 -- Authors:       Claude Opus 5.5

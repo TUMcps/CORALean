@@ -11,6 +11,13 @@ error-box dimension of nonzero radius; a zero generator is dropped. `C` is the i
 exact matrix. Every entry of `R` and of `C` is first put over a common denominator, so the
 product is taken in integers: `2 D` for `R` (twice, for the midpoint and radius of `E`), `D_C`
 for `C`, and `2 D D_C` for `Y`. The result is the set `C · R` denotes.
+
+## Inputs
+* `C` – output matrix
+* `R` – reach window
+
+## Output
+* exact output window over the rationals
 -/
 
 -- Authors:       Claude Opus 5.5

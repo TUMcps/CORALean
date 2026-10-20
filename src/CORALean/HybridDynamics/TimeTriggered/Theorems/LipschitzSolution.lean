@@ -13,6 +13,18 @@ saying so: through every point, on `[0, T]` for every `T`. The window of
 extended to `(-h, T + h/2)` by a local one centered at `T - h/2`, which equals it on the overlap
 by uniqueness.
 
+## Inputs
+* `f` – vector field
+* `K` – Lipschitz constant
+* `x₀` – initial point
+* `T` – horizon
+
+## Hypotheses
+* `hf` – field is Lipschitz
+
+## Conclusion
+* a solution from the point exists up to the horizon
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

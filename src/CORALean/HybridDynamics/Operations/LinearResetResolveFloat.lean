@@ -15,6 +15,19 @@ at a float, so the resolved `A`, `B` and `c` are returned as interval matrices a
 vector: the bounds of the updates (`aux_resolveUpdateFloat`) summed in their own directions, and the
 columns of one global index summed from the bounds of the updated `B`. Soundness is
 `LinearReset.resolveFloat_outer`.
+
+## Inputs
+* `A` – state matrix
+* `B` – stacked input matrix
+* `c` – offset
+* `C` – output matrices
+* `D` – feedthrough matrices
+* `q` – output offsets
+* `stateBinds` – state index maps
+* `inputBinds` – input bindings
+
+## Output
+* resolved interval matrices and offset
 -/
 
 -- Authors:       Claude Opus 5.5

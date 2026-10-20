@@ -5,16 +5,19 @@ import CORALean.Examples.Bench.RandVerifyWindow
 /-!
 # `randverify`: the candidate normals of a window, and its support along each
 
-`ρ_Y(n) = n · c + Σ_j |n · g_j|` for the zonotope `Y`, in integers over `Y.den`, at every
-candidate normal: `±` the perpendicular `(-b, a)` of each generator `g = (a, b)`, and `±e₁`,
-`±e₂`.
+`ρ_Y(n) = n · c + Σ_j |n · g_j|` for the zonotope `Y`, in integers over `Y.den`, at every candidate
+normal: `±` the perpendicular `(-b, a)` of each generator `g = (a, b)`, and `±e₁`, `±e₂`. Each
+generator is first turned into the upper half-plane and the generators sorted by angle, exactly, by
+the sign of the cross product. For `n = (-b, a)` at the `j`-th, `n · g_i = g_j × g_i` is `≥ 0` for
+every `i` after `j` and `≤ 0` before, so `Σ_i |n · g_i| = g_j × (T - 2 P_j - g_j)`, with `T` the
+sum of all generators and `P_j` that of those before `j`: one prefix sum instead of a sum per
+normal.
 
-Each generator is first turned into the upper half-plane (`-g` spans the same zonotope) and the
-generators sorted by angle, exactly, by the sign of the cross product. For `n = (-b, a)` at the
-`j`-th, `n · g_i = g_j × g_i` is `≥ 0` for every `i` after `j` and `≤ 0` for every `i` before,
-so `Σ_i |n · g_i| = g_j × (T - 2 P_j - g_j)`, with `T` the sum of all generators and `P_j` that
-of those before `j`: one prefix sum instead of a sum per normal. Parallel generators give the
-same normal twice, which costs nothing but time.
+## Inputs
+* `Y` – output window
+
+## Output
+* candidate normals with the support along each
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,12 @@ the pieces' boxes). A square `[0, 2]²` and a triangle with corners `(1, 1)`, `(
 `(1, 3)` give one piece, printed as its box (the float box of a vertex list is the hull of
 the vertices, here `[1, 2]²`); `Polygon.and_outer` says the intersection of the polygons
 lies inside the answer.
+
+## Inputs
+* none
+
+## Output
+* intersection of the square and the triangle
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -4,20 +4,22 @@ import CORALean.ContSet.Interval.Real.Instances
 /-!
 # A certificate computed from a field, end to end
 
-What this records is that `AbstractionError` is a certificate someone can
-*produce*, and not only assume: `f(x, u) = x₀² + u₀` over the unit box, expanded
-at the origin, is certified by `abstrErrLin` with nothing left over.
+`AbstractionError` is a certificate someone can produce, and not only assume: `f(x, u) = x₀² + u₀`
+over the unit box, expanded at the origin, is certified by `abstrErrLin` with nothing left over.
+`γ` is `(1, 1)`, the box's own radius; the second derivative is the constant `2` in the state entry
+and `0` elsewhere, so the bound is `½ · 1 · 2 · 1 = 1`, and the true error `x₀²` reaches exactly
+`1` at `x₀ = 1`: the certificate is tight, not the vacuous one a mis-stated proposition would
+admit. Everything the theorem needs is supplied by hand, as CORA's `hessian` handle supplies it;
+`sqProj` is an `abbrev` so that `simp` still reads a coordinate through it.
 
-The numbers are worth reading. `γ` is `(1, 1)`, the box's own radius; the second
-derivative is the constant `2` in the state entry and `0` elsewhere, so the bound
-is `½ · 1 · 2 · 1 = 1`; and the true error is `x₀²`, which reaches exactly `1` at
-`x₀ = 1`. The certificate is therefore tight here, and is not the vacuous one a
-mis-stated proposition would admit.
+## Inputs
+* none
 
-Everything the theorem needs is supplied by hand, as CORA's `hessian` handle
-supplies it: the field on the stacked variable, its derivative, its second
-derivative, and the entrywise bound. `sqProj` is an `abbrev` so that `simp` still
-reads a coordinate through it.
+## Hypotheses
+* none
+
+## Conclusion
+* the square field has the linear abstraction error certificate
 -/
 
 -- Authors:       Claude Opus 5

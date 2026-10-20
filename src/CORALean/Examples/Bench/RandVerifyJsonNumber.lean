@@ -5,6 +5,12 @@ import CORALean.Examples.Bench.RandVerifyNumber
 
 A JSON number `m * 10^-e` is the exact rational it spells; a string goes through
 `parseRandString`.
+
+## Inputs
+* none
+
+## Output
+* exact rational read from a JSON number or string
 -/
 
 -- Authors:       Claude Sonnet 5.5

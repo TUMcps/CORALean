@@ -13,6 +13,14 @@ public import Mathlib.Data.Real.Basic
 CORA's `linearReset/synchronize` for the affine resets `x ↦ W_i x + w_i` of a `Transition`: the
 matrices and the offsets are summed, and the coordinates `idStates` add the identity. Returns
 `(W, w)`. Real, since the sum of floats is not exact.
+
+## Inputs
+* `W` – reset matrices
+* `w` – reset offsets
+* `idStates` – states kept by identity
+
+## Output
+* summed reset matrix and offset
 -/
 
 -- Authors:       Claude Opus 5.5

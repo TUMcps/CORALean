@@ -19,6 +19,18 @@ For `nrConstInp = n` the loop `for g = 1:length(time)-1` runs `n - 1` times for 
 automaton, `n` times for the hybrid automaton. With `nrConstInp = 1` the parallel automaton
 simulates nothing, so every returned trajectory is empty. Read from the source, not run
 (`references/coverage/hybridDynamics/parallelHybridAutomaton.md`, row `simulateRandom`).
+
+## Inputs
+* `α` – scalar field
+* `a` – start time
+* `b` – final time
+* `n` – number of constant inputs
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's grid has one segment fewer than the automaton's
 -/
 
 -- Authors:       Claude Opus 5.5

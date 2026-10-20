@@ -5,16 +5,12 @@ import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
 /-!
 # A halfspace description that sums, and a solver nothing trusts
 
-`HPolytope` now instantiates `Plus` and `LinComb`, which it could not while its
-bounds had to come from the caller. `Simplex` proposes the weighting,
-`supportBound` checks it, and the checked weighting is what `ofBoundsOpt` turns
-into a row.
-
-The last two examples are the point of the design. A direction the solver cannot
-answer — the whole space has one in every non-zero direction — leaves the row
-out rather than the operation, so `plus` is total on a type that admits
-unbounded sets. And a bound is a `SupportBound`, which cannot be written down
-without its proof: a solver returning nonsense loses rows and can win none.
+`HPolytope` now instantiates `Plus` and `LinComb`, which it could not while its bounds had to come
+from the caller. `Simplex` proposes the weighting, `supportBound` checks it, and the checked
+weighting is what `ofBoundsOpt` turns into a row. The last two examples are the point of the
+design: a direction the solver cannot answer leaves the row out rather than the operation, so
+`plus` is total on a type that admits unbounded sets; and a bound is a `SupportBound`, which cannot
+be written down without its proof, so a solver returning nonsense loses rows and can win none.
 -/
 
 -- Authors:       Claude Opus 5

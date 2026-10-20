@@ -9,18 +9,20 @@ public import Mathlib.Algebra.BigOperators.Fin
 /-!
 # `mergeFlows` at the components' full equations
 
-CORA's `aux_mergeFlowsLinearSys` [1] over any commutative ring, its sums exact (so not at a
-float scalar): the components' full linear equations as one system
-of dimension `∑ i, n i`, input `j` of component `i` bound by `binds i j` to a global input or to
-an output `s` of a component `c`. `Amerged` adds `B(:,j) C_c(s,:)` to the block-diagonal `Aᵢ`,
-`Bmerged` holds `B(:,j)` at a global binding and `B(:,j) D_c(s,:)` through `c`'s global inputs,
-`cMerged` adds `B(:,j) k_c(s)`, `Emerged` is block diagonal, `Fmerged` holds `B(:,j) F_c(s,:)`;
-the output is the state. Two departures, in `Fmerged` alone: CORA assigns each term (a second
-input bound to the same component overwrites the first), where this adds, and numbers the noise
-blocks by the disturbance counts, where this stacks the noises. CORA keeps the bound outputs'
-noise in the merged output equation although it acts on the state, so the flow theorem
-`mergeFlowsLinearSys_flow` is for noise-free bound outputs. It is the product automaton's flow
-(`locationProduct`); `mergeFlows` assembles it without arithmetic at state-bound components.
+CORA's `aux_mergeFlowsLinearSys` [1] over any commutative ring, its sums exact: the components'
+full linear equations as one system of dimension `∑ i, n i`, input `j` of component `i` bound by
+`binds i j` to a global input or to an output `s` of a component `c`. `Amerged` adds
+`B(:,j) C_c(s,:)` to the block-diagonal `Aᵢ`, `Bmerged`, `cMerged` and `Fmerged` follow.
+Two departures, in `Fmerged` alone: CORA assigns each term where this adds, and numbers the noise
+blocks by the disturbance counts where this stacks them. The flow theorem `mergeFlowsLinearSys_flow`
+is for noise-free bound outputs. It is the product's flow (`locationProduct`).
+
+## Inputs
+* `sys` – linear system of each component
+* `binds` – input bindings
+
+## Output
+* merged linear system of the product
 
 ## References
 

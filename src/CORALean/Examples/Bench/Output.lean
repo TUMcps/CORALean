@@ -9,21 +9,32 @@ import Lean.Data.Json
 # Writing a run out: one JSON file, one CSV
 
 `writeRun` (`dtdemo`): `meta` beside `sets`, one record per step. `writeRunTiTp`
-(`headline-a`/`headline-b`/`exp2-timepoint`): `meta` beside two arrays,
-`sets_ti` (`t0 < t1`) and `sets_tp` (`t0 = t1`), either empty where a scheme has
-none, plus `meta.summary.ti`/`.tp` (`Summary.lean`) and the run's own
-`eta`/`rho`/`N`/`dt`. `writeRunNone` writes only why there is no run.
+(`headline-a`/`headline-b`/`exp2-timepoint`): `meta` beside `sets_ti` (`t0 < t1`) and `sets_tp`
+(`t0 = t1`), plus `meta.summary.ti`/`.tp` and the run's `eta`/`rho`/`N`/`dt`. `writeRunNone` writes
+only why there is no run. Every "nearest double" is `floatToJson`/`floatToCsv`'s round-trip
+17-digit decimal, not `Float.toString`'s six; `--exact` adds `"m*2^e"` beside it. The CSV holds
+what a pgfplots figure reads: the interval hull's width per dimension and the error box's radius.
+`sound`, in every `meta`, is `false` for `--type nearest` alone; at a type with a range,
+`overflow_step` marks every record from the first overflow on.
 
-Every "nearest double", JSON or CSV, is `floatToJson`/`floatToCsv`'s
-round-trip 17-digit decimal (`FloatPrint.lean`), not `Float.toString`'s six.
-`--exact` adds `"m*2^e"` beside it. The CSV holds what a pgfplots figure
-actually reads: the interval hull's width per dimension and the error box's
-radius, derived once here so `experiments/plot/` never recomputes them from
-`G`. `format`/`sig` are the IEEE-shaped label and significand width
-`Format.lean` maps to and from; `sound`, in every `meta`, is `false` for
-`--type nearest` alone, the round-to-nearest baseline. `NumberType` adds
-`number_type`, and at a type with a range `overflow_step`: every record from
-that step on carries `"overflow": true`, its numbers past what the format holds.
+## Inputs
+* `out` – output path without extension
+* `experiment` – experiment name
+* `scheme` – reach scheme name
+* `ty` – number type name
+* `format` – format label
+* `sig` – significand width
+* `configJ` – config JSON
+* `eta` – Taylor order
+* `samples` – timing samples
+* `medianNs` – median time
+* `toD` – conversion to a double
+* `toExact` – optional exact printer
+* `dtFloat` – step size
+* `steps` – reach sets per step
+
+## Output
+* the JSON and CSV files are written
 -/
 
 -- Authors:       Claude Opus 5.5

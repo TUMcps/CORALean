@@ -28,16 +28,25 @@ public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonoto
 # `Location.guardIntersectHyperplaneMapFloat`, the guard mapping at floats
 
 `Location.guardIntersectHyperplaneMap`, CORA's `guardIntersect_hyperplaneMap` [1], at float
-zonotopes, one `let` per line of the code: `k ⊕ L(R₀ ⊖ ξ) ⊕ ½[φ̲, φ̄] R_quad ⊕ I (AR₀ ⊕ b) ⊕ E` of
-[2, Sec. 5.4], reduced and projected. What rounds is an interval, and what an interval cannot stand
-in for is charged to a set: `b` is the lower end of the box `GuardMap.sdcInputFloat`, the rest `t(b
-− b̲)` added to the error; `k`, `L` are a box and an interval matrix; `aux_systemParams`'s `B U + c`
-is `inputSetFloat`, with `E W`; `Q⁽ⁱ⁾` is taken at the center `τ_c` and radius `τ_g` of `τ`'s
-interval and `R_quad` at interval centers; `Λ` and `nᵀx − d` range over `R₀red ⊖ ξ ⊕ ξ`, which holds
-the stored center `ξ` even when the error box of `R₀red` does not hold `0`; `n/‖n‖` and `d/‖n‖` are
-boxes (`sqrtDown`/`sqrtUp` at precision `p`) for `projectOnHyperplaneIntervalFloat`. `none` when a
-float test fails: `Λ`, `nᵀ(Ax + b)`, `Λ²` or `‖n‖` not certified away from `0`, the float `‖tmax A‖`
-above `(η + 2)/2`, or `k`, `L` not computed.
+zonotopes, one `let` per line: `k ⊕ L(R₀ ⊖ ξ) ⊕ ½[φ̲, φ̄] R_quad ⊕ I (AR₀ ⊕ b) ⊕ E` of
+[2, Sec. 5.4]. What rounds is an interval, and what an interval cannot stand in for is charged to
+a set (`b` is the lower end of `GuardMap.sdcInputFloat`, the rest added to the error). `none` when
+a float test fails: `Λ`, `nᵀ(Ax + b)`, `Λ²` or `‖n‖` not certified away from `0`, the float
+`‖tmax A‖` above `(η + 2)/2`, or `k`, `L` not computed.
+
+## Inputs
+* `ℓ` – location
+* `nv` – guard normal
+* `d` – guard offset
+* `R₀` – initial zonotope
+* `tmax` – final time
+* `η` – Taylor order
+* `guardOrder` – order of the guard mapping
+* `zonotopeOrder` – order of the result
+* `p` – precision of the square roots
+
+## Output
+* float zonotope on the guard, none if a test fails
 
 ## References
 

@@ -13,6 +13,17 @@ are cut down to the coordinates `stateBind` and `inputBind` the old reset reads,
 back to `stateBind`, and the coordinates outside it keep their box if `id` holds and are the
 origin otherwise. Assignments run in order, so for a repeated `stateBind` entry the last one wins,
 as in the real `lift`. It only places existing bounds and `0`, so no rounding enters.
+
+## Inputs
+* `fm` – float reset model
+* `N` – larger state dimension
+* `M` – larger input dimension
+* `stateBind` – state index map
+* `inputBind` – input index map
+* `id` – identity outside the bound states
+
+## Output
+* float reset model on the larger space
 -/
 
 -- Authors:       Claude Opus 5.5

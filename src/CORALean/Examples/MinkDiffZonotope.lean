@@ -9,6 +9,12 @@ is `∅` and no zonotope is: `OptEmpty` is where the instance lives. `[-1, 1]` l
 `[-0.2, 0.2]`, one generator each, is a pair it answers with a zonotope rather than `∅`: the
 subtrahend's generator written in the minuend's own certifies it, and one candidate certifying
 is enough.
+
+## Inputs
+* none
+
+## Output
+* first example zonotope
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

@@ -11,6 +11,13 @@ the interval hull `Zonotope.interval`, each end rounded away from the set. The h
 support function of `Y` along `±e_i`, and `±e_i` are the facet normals of an unsafe set that is
 a box, so for box unsafe sets the hull loses nothing a support bound along the facet normals
 would keep.
+
+## Inputs
+* `C` – output matrix
+* `Rs` – reach windows
+
+## Output
+* interval hulls of the output windows
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -7,22 +7,14 @@ import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # The wire format: scalars, matrices, intervals, zonotopes
 
-A scalar is `"m*2^e"` (bench's own `--exact` convention), `"m*10^e"`, or a
-plain integer read as `m*2^0`; a JSON number is accepted too. `ExactScalar` is
-either shape, kept apart rather than merged into `CORALean.Bench.ExactDyadic`:
-`m*10^e` at `e < 0` is generally not `m'*2^e'`, `1/50` having no binary
-expansion. Both are normalised on the way in as well as the way out: a
-precision check reads a mantissa's width literally, so an un-normalised value
-could be refused on a width the number it denotes does not need. `"inf"`/`"nan"`
-are refused outright; `e ≥ 0` is always accepted, being an integer either way.
-
-A matrix is `{"rows":r,"cols":c,"data":[...]}`, row-major; a vector is the
-`cols = 1` case, read straight to `Vec` rather than through `Mat`, which is what
-keeps a caller from ever casting between a checked and a discovered dimension.
-Every `parse*` below takes the dtype's own checked reader, `String →
-ExactScalar → Except String 𝕋`; the `Fixed` ones take a dimension already known
-from an earlier field of the request and check the request agrees, the others
-read it off the request and return it, as a `Σ`.
+A scalar is `"m*2^e"` (bench's own `--exact` convention), `"m*10^e"`, or a plain integer read as
+`m*2^0`; a JSON number is accepted too. `ExactScalar` is either shape, kept apart rather than
+merged into `CORALean.Bench.ExactDyadic`: `m*10^e` at `e < 0` is generally not `m'*2^e'`. Both are
+normalised on the way in and out, since a precision check reads a mantissa's width literally;
+`"inf"`/`"nan"` are refused outright. A matrix is `{"rows":r,"cols":c,"data":[...]}`, row-major; a
+vector is the `cols = 1` case, read straight to `Vec`. Every `parse*` takes the dtype's own checked
+reader; the `Fixed` ones take a dimension known from an earlier field and check the request agrees,
+the others read it off the request and return it, as a `Σ`.
 -/
 
 -- Authors:       Claude Opus 5.5

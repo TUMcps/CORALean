@@ -21,6 +21,15 @@ and the matrix zonotope is `{C̃ + κG̃^(1,1)}`, the other generators vanishing
 At `x₀ = (3, 0)`, `Θ/Λ = (-1/3, -2/3)`: entry `(1, 1)` forces `κ = 1`, entry `(2, 1)` forces
 `κ = -1`. CORA's `guardIntersect_hyperplaneMap` takes `psi_g = rad(psi_int)` the same way.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the matrix zonotope misses the numerator at some state
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

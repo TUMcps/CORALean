@@ -13,6 +13,17 @@ its result is written back to `stateBind`. The coordinates outside `stateBind` k
 `id` holds and are `0` otherwise. Assignments run in order, so for a repeated `stateBind` entry the
 last one wins, as in CORA. CORA's `N` and `M` count one coordinate less than the dimension, which
 here is `N` and `M` themselves.
+
+## Inputs
+* `r` – reset
+* `N` – larger state dimension
+* `M` – larger input dimension
+* `stateBind` – state index map
+* `inputBind` – input index map
+* `id` – identity outside the bound states
+
+## Output
+* reset on the larger space
 -/
 
 -- Authors:       Claude Sonnet 5.5

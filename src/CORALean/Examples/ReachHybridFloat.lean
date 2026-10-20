@@ -7,17 +7,13 @@ import CORALean.Specification.Instances
 /-!
 # A hybrid automaton, at a floating-point representation
 
-The automaton, its runs and its invariant are propositions over whatever the
-locations are described in — the state's representation and the guard's alike,
-those being separate parameters — so they read at a float one with nothing to
-add. `Transition.W` and `.w` read through `Scalar 𝕋` like `LinearSysDT.A`,
-so that half is not what stops `Transition.jump` at a float representation.
-What stops it is `OfInterval`: `jump` calls `CORALean.Real`'s, converting an
-*exact* real box, and no float representation has that instance — one would have
-to round the box into the representation's own floats before an `InflatedContSet`
-error box exists to pay that rounding into, which is exactly what
-`CORALean.Float.OfInterval` is for instead. `Transition.jumpFloat` is the float
-route, `w` being stored floats already; `BouncingBallFloat` runs it.
+The automaton, its runs and its invariant are propositions over whatever the locations are
+described in, the state's representation and the guard's alike, so they read at a float one with
+nothing to add. `Transition.W` and `.w` read through `Scalar 𝕋` like `LinearSysDT.A`, so that half
+is not what stops `Transition.jump` at a float representation. What stops it is `OfInterval`:
+`jump` converts an exact real box, and no float representation has that instance, which would have
+to round the box before an `InflatedContSet` error box exists to pay for it. `Transition.jumpFloat`
+is the float route, `w` being stored floats already; `BouncingBallFloat` runs it.
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

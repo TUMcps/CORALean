@@ -7,20 +7,13 @@ import CORALean.ContSet.Zonotope.Real.Instances
 /-!
 # Linear reachability, one statement per representation
 
-Reachability is stated once, over `ConvexSet` and `CompactSet` and over the
-operation classes; these are the per-representation statements it replaced,
-kept as use sites. Each is `:=` and nothing else, which is the claim: the
-generalization still covers the representation. If one ever stops elaborating,
-the generalization has lost it, and this file is where the build says so.
-
-`Zonotope` and `ConZonotope` reach `reach_outer_convexCompact`, so the only
-things left to supply are the step, the Taylor order and the bound relating
-them.
-
-`Interval` reaches them too, now that it has `Mtimes ℐ` and the two topological
-instances. It is the one representation here that has to spell its family out —
-`𝒵` and `𝒞` are notation their own `Instances` file declares, and `ℐ` is the
-interval *matrix* family, not this one.
+Reachability is stated once, over `ConvexSet` and `CompactSet` and the operation classes; these are
+the per-representation statements it replaced, kept as use sites. Each is `:=` and nothing else:
+the generalization still covers the representation, and if one stops elaborating this file is where
+the build says so. `Zonotope` and `ConZonotope` reach `reach_outer_convexCompact`, so only the
+step, the Taylor order and the bound relating them are left to supply. `Interval` reaches them too,
+now that it has `Mtimes ℐ` and the two topological instances; it has to spell its family out, `𝒵`
+and `𝒞` being notation their own `Instances` file declares, and `ℐ` the interval matrix family.
 -/
 
 -- Authors:       Claude Opus 5

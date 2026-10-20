@@ -3,16 +3,19 @@ import CORALean.ContSet.HPolytope.Real.Theorems.MinkDiffOfInner
 /-!
 # The Minkowski difference of a halfspace description is only inner
 
-`MinkDiff`'s obligation is *inner* — the only class whose direction flips: an implementation may
-only ever return less than the true difference. `HPolytope.minkDiffOf` meets it by tightening
-each row by a `SupportBound` of the subtrahend, and a loose bound shows the gap directly: `[-1, 1]`
-less `[-0.2, 0.2]`, with the bound `0.3` in place of the true `0.2`, is `[-0.7, 0.7]` rather than
+`MinkDiff`'s obligation is inner, the only class whose direction flips: an implementation may only
+ever return less than the true difference. `HPolytope.minkDiffOf` meets it by tightening each row
+by a `SupportBound` of the subtrahend, and a loose bound shows the gap: `[-1, 1]` less
+`[-0.2, 0.2]`, with the bound `0.3` in place of the true `0.2`, is `[-0.7, 0.7]` rather than
 `[-0.8, 0.8]`, so `0.75` is a point genuinely in the true difference that the representation
-excludes.
+excludes. `minkDiffOf_inner`'s `hker` needs the subtrahend in the kernel of every equality row, so
+a polytope with no equality rows makes that hypothesis vacuous.
 
-`minkDiffOf_inner`'s `hker` needs the subtrahend in the kernel of every equality row, so a
-polytope built with no equality rows (`me = 0`) makes that hypothesis vacuous; a subtrahend moving
-along an equality direction has no difference at all.
+## Inputs
+* none
+
+## Output
+* polytope of the interval minus one
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

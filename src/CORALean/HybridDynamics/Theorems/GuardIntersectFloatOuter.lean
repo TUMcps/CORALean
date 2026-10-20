@@ -20,6 +20,22 @@ A state in one of the time-interval sets, in the invariant and in the guard
 lies in that set's cut, which is then not certified empty and so is joined into
 the hull — and the hull is `some`. This is the `hinter` that
 `Transition.jumpFloat_outer` asks for, computed.
+
+## Inputs
+* `ℓ` – location
+* `guard` – guard
+* `Rs` – reach sets
+* `R` – reach set
+* `x` – trajectory of the stay
+
+## Hypotheses
+* `hR` – the reach set is among the given ones
+* `hx` – state lies in the reach set
+* `hinv` – the sets are an invariant
+* `hguard` – state lies in the guard
+
+## Conclusion
+* the float guard intersection is a box holding the state
 -/
 
 -- Authors:       Claude Opus 5.5

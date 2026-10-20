@@ -13,6 +13,12 @@ state space. `canonicalForm` keeps the centers apart (`u_ = B c_U + c + E c_W`, 
 E(W - c_W)`); their sum is this set. The reachability steps of a location read their input
 here, as CORA's `linearSys/reach` runs on the canonical form. Soundness is `inputSet_outer`.
 
+## Inputs
+* `ℓ` – location
+
+## Output
+* input set of the canonical form
+
 ## References
 
 * [1] `contDynamics/@linearSys/canonicalForm.m`

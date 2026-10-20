@@ -5,17 +5,20 @@ import CORALean.HybridDynamics.Theorems.IsRunOnOuter
 /-!
 # An invariant family that genuinely depends on how many jumps a run has taken
 
-Two locations, `false` and `true`, each transitioning to the other. `R k ℓ` is a
-box of radius `k + 1` regardless of `ℓ`, so `R 0 ℓ ≠ R 1 ℓ`: an example with a
-constant family would prove nothing about the index `InvariantOn` carries.
+Two locations, `false` and `true`, each transitioning to the other. `R k ℓ` is a box of radius
+`k + 1` regardless of `ℓ`, so `R 0 ℓ ≠ R 1 ℓ`: an example with a constant family would prove
+nothing about the index `InvariantOn` carries. `hinv` is proved outright: `flow` from the
+radius-`1` invariant box sitting inside every wider `R k ℓ`; `jump` from the identity reset
+carrying a radius-`(k+1)` point into the radius-`(k+2)` box. An actual flowing run is not
+attempted: `Location.IsTrajectory.flow` asks for a `HasDerivWithinAt` witness this file does not
+build, so `run` is taken as a hypothesis, as `BouncingBall` does for `IsRun`.
 
-`hinv` is proved outright — `flow` from `(HA.loc ℓ).inv`, the radius-`1` box,
-sitting inside every wider `R k ℓ`; `jump` from the identity reset carrying a
-radius-`(k+1)` point into the radius-`(k+2)` box it lands in. What is *not*
-attempted is an actual flowing run: `Location.IsTrajectory.flow` asks for a
-`HasDerivWithinAt` witness, real-analysis machinery this file does not build,
-so `run` below is taken as a hypothesis, exactly as round one's `BouncingBall`
-already does for `IsRun`.
+## Inputs
+* `k` – jump count
+* `_` – location
+
+## Output
+* box of radius one more than the jump count
 -/
 
 -- Authors:       Claude Opus 5

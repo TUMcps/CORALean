@@ -15,15 +15,22 @@ public import Mathlib.Tactic.NormNum
 /-!
 # CORA's printed `aux_abstractionError` misses the abstraction error
 
-`GuardMap.abstractionErrorCora`, CORA's error set with `err1` overwritten in its loop, against
-the difference `x(t) − y(t)` of a run and the state-dependent constant flow that
-`GuardMap.abstractionError` holds (`GuardMap.abstractionError_outer`). In `ℝ³` the shift
-`A = [0 1 0; 0 0 1; 0 0 0]`, `A³ = 0`, with no inputs, `R₀ = {(0, 0, 1)}`, `tmax = 2`,
-`th = tmax/2 = 1` and `η = 3`: the run is `e^{At}x₀ = (t²/2, t, 1)`, `b = Θ(th)x₀ = ½A²x₀ =
-(½, 0, 0)`, the flow `x₀ + (Ax₀ + b)t = (t/2, t, 1)`, and at `t = 2` the error is `(1, 0, 0)`,
-the dropped summand `t(A²/2)(t − th)x₀` of `err1`. CORA keeps `(A³/6)(…) = 0`, and with `|A| = A`
-nilpotent `W = 0`: its set is `{0}` (`GuardMap.abstractionErrorCora_eq_zero`). In two dimensions
-no `A` with `A² ≠ 0` has `W = 0`, so the witness is three-dimensional.
+CORA's `aux_abstractionError` with `err1` overwritten in its loop (`GuardMap.abstractionErrorCora`)
+against the difference `x(t) − y(t)` of a run and the constant flow that
+`GuardMap.abstractionError` holds (`GuardMap.abstractionError_outer`). In `ℝ³` take the shift
+`A = [0 1 0; 0 0 1; 0 0 0]`, no inputs, `R₀ = {(0, 0, 1)}`, `tmax = 2`, `th = 1`, `η = 3`: at
+`t = 2` the error is `(1, 0, 0)`, the dropped summand `t(A²/2)(t − th)x₀` of `err1`. CORA keeps
+`(A³/6)(…) = 0` and, `W` being zero, its set is `{0}` (`GuardMap.abstractionErrorCora_eq_zero`).
+No `A` with `A² ≠ 0` has `W = 0` in two dimensions.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's error set misses the true abstraction error
 -/
 
 -- Authors:       Claude Opus 5.5

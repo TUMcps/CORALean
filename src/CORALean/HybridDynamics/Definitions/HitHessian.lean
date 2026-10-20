@@ -14,6 +14,17 @@ public import Mathlib.Data.Real.Basic
 `Ω = -nΥ + Υᵀnᵀ`, `Λ`, `Υ` and `Θ` as for `hitJacobian`. The printed `Θ_l(x₀)/Λ(x₀) 2Υ_m` is
 read as `2Θ_lΥ_m/Λ`, the reading Prop. 3's `ψ_{c,l} 2Υ_m`, `ψ = Θ/Λ`, confirms.
 
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `nv` – guard normal
+* `d` – guard offset
+* `x₀` – initial state
+* `i` – output coordinate
+
+## Output
+* second derivative matrix of coordinate `i`
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

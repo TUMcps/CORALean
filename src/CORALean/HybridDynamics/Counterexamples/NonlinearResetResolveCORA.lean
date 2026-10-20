@@ -16,6 +16,15 @@ bound to the global inputs `2` and `1`, the first component receives the *first*
 the resolved reset (read from the source, not run).
 
 The example: two components with one state, input and output each, the reset `x'_i = u_i`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the corrected resolve gives one, CORA's gives zero
 -/
 
 -- Authors:       Claude Opus 5.5

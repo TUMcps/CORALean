@@ -9,6 +9,13 @@ public import CORALean.DiscrDynamics.MarkovChain.Definitions.Basic
 
 The `Gamma` of CORA's `convertTransitionMatrix`: `1 / ((i - j)² + γ)` between inputs `i`
 and `j`, `normalizeMatrix`-ed so that each column with a nonzero sum adds up to one.
+
+## Inputs
+* `m` – number of inputs
+* `γ` – input mixing parameter
+
+## Output
+* normalized input mixing matrix
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -3,18 +3,21 @@ import CORALean.Examples.Bench.Rational
 /-!
 # The unsound baseline: bound propagation in round-to-nearest binary32
 
-What a typical verifier that trusts its floats does, written out so the baseline
-`nn-float32` compares against is reproducible rather than described: interval
-bound propagation (IBP) and DeepZ-style zonotope propagation through an affine,
-ReLU, affine network, every operation Lean's native `Float32` in round-to-nearest,
-with no rounding error accounted for anywhere. Nothing here is proved, and nothing
-here should be: it is the thing the sound analysis is measured against, and
-`experiments/nn/naive_float32.py` recomputes every number it prints.
+What a typical verifier that trusts its floats does, written out so the baseline `nn-float32`
+compares against is reproducible: interval bound propagation (IBP) and DeepZ-style zonotope
+propagation through an affine, ReLU, affine network, every operation Lean's native `Float32` in
+round-to-nearest, with no rounding error accounted for. Nothing here is proved, and nothing here
+should be: `experiments/nn/naive_float32.py` recomputes every number it prints. `pointEval` is the
+network at one input, generic in the arithmetic, so the same code runs it exactly (`ExactDyadic`)
+and as deployed (`Float32`); every dot product sums left to right from zero and adds the bias last.
 
-`pointEval` is the network itself at one input, generic in the arithmetic, so the
-same code runs it exactly (`ExactDyadic`) and as deployed (`Float32`). Every dot
-product sums left to right from zero and adds the bias last, in all three, so
-the only difference between them is the rounding.
+## Inputs
+* `L₁` – first affine layer
+* `L₂` – second affine layer
+* `X` – input box
+
+## Output
+* output box of interval bound propagation
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -14,6 +14,24 @@ public import CORALean.HybridDynamics.Parallel.Operations.Product
 (`mergeFlowsLinearSys_flowLawConverse`): the converse of `IsRun.toProduct`. Without
 `GlobalsDistinct` or nonempty input sets the product may have more runs than the parallel
 automaton (#40).
+
+## Inputs
+* `P` – parallel automaton
+* `lift` – lifting
+* `ℓ` – start locations
+* `ℓ'` – end locations
+* `z` – start state of the product
+* `w` – end state of the product
+
+## Hypotheses
+* `hfeed` – no feedthrough between bound outputs
+* `hdist` – no global input feeds two inputs
+* `hne` – every input set is nonempty
+* `hex` – lifting is exact
+* `run` – run of the product from `z` to `w`
+
+## Conclusion
+* the unstacked states are a parallel run
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

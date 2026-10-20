@@ -17,6 +17,13 @@ generic over the scalar, so this runs at any float and at `ℝ`.
 
 Not modelled: the `'conZonotope'` branch, which converts a polytope guard to a conZonotope and
 leaves the invariant alone, and the conversion of a non-polytope guard to a polytope.
+
+## Inputs
+* `e` – transition
+* `inv` – invariant polytope
+
+## Output
+* transition with the guard intersected with the invariant
 -/
 
 -- Authors:       Claude Opus 5.5

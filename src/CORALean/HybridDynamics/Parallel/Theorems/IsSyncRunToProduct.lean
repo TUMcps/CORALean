@@ -11,16 +11,32 @@ public import CORALean.HybridDynamics.Parallel.Theorems.LiftSyncTransitionReset
 /-!
 # Every run with synchronization labels is a run of the labeled product
 
-`IsRun.toProductWith` for `IsSyncRun`, by the run's recursion. A stay is `IsStay.trajectoryWith`
-(the labeled product differs from `productWith` in its transitions only, which a trajectory does not
-read); an unlabeled jump is the lifted transition, in the merged list's first part; a synchronized
-jump is `liftSyncTransition`, in its second, available because every participant has its
-transition, its guard met by `SyncLifting.mem_guardAll` and its reset the participants' resets,
-by `liftSyncTransition_reset`. For any flow with `FlowLaw`, `mergeFlowsLinearSys` among them.
+`IsRun.toProductWith` for `IsSyncRun`, by the run's recursion. A stay is `IsStay.trajectoryWith`;
+an unlabeled jump is the lifted transition, in the merged list's first part; a synchronized jump
+is `liftSyncTransition`, in its second, available because every participant has its transition,
+its guard met by `SyncLifting.mem_guardAll` and its reset the participants' resets, by
+`liftSyncTransition_reset`. For any flow with `FlowLaw`. The soundness direction only: the
+converse would need the lifted guards and the conjunction to be exact, and the labeled transition
+to be the only way to take a labeled transition, which is not proved.
 
-The soundness direction only. The converse would need the lifted guards and the conjunction to be
-exact, and the product's labeled transition to be the only way to take a labeled transition, which
-holds here since labeled transitions are not lifted alone, but is not proved.
+## Inputs
+* `P` – parallel automaton
+* `F` – product flow at each location tuple
+* `U` – product input sets
+* `W` – product disturbance sets
+* `slift` – lifting with synchronization
+* `lab` – synchronization labels
+* `ℓ` – start locations
+* `ℓ'` – end locations
+* `x` – start states
+* `y` – end states
+
+## Hypotheses
+* `hF` – the flow has the flow law
+* `run` – synchronized run from `x` to `y`
+
+## Conclusion
+* the stacked states are a run of the labeled product
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

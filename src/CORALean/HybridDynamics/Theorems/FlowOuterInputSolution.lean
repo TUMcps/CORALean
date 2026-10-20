@@ -10,16 +10,40 @@ public import CORALean.HybridDynamics.Theorems.LinearEmbedding
 /-!
 # A stay is enclosed with the input contribution computed, not assumed
 
-`FlowOuter.timeInterval_outer` leaves the input's contribution as a hypothesis
-`hUd`, naming a set `Ud` the caller must already know contains this
-trajectory's particular integral. `TimeIntervalOuterInputSolution` discharges
-that hypothesis from properties of `ℓ.inputSet` alone — convex, closed, bounded, and
-containing the origin — so this restates the enclosure with no set named
-after `u` at all: `inputSolution` supplies it, and it is the same for every
-admissible input.
+`FlowOuter.timeInterval_outer` leaves the input's contribution as a hypothesis `hUd`, naming a set
+`Ud` the caller must already know contains the trajectory's particular integral.
+`TimeIntervalOuterInputSolution` discharges it from properties of `ℓ.inputSet` alone (convex,
+closed, bounded, containing the origin), so the enclosure names no set after `u`: `inputSolution`
+supplies it, the same for every admissible input. That is what makes `Invariant.flow`'s quantifier
+over trajectories tractable.
 
-That is what makes `Invariant.flow`'s universal quantifier over trajectories
-tractable: nothing here depends on which `u` a particular stay picked.
+## Inputs
+* `ℓ` – location
+* `τ` – stay duration
+* `x` – trajectory of the stay
+* `u` – input trajectory
+* `w` – disturbance trajectory
+* `R₀` – initial set
+* `m` – Taylor order offset
+* `t` – time within the stay
+
+## Hypotheses
+* `traj` – the curves are a stay of the location
+* `h₀` – initial state lies in the initial set
+* `hτ` – stay duration positive
+* `hε` – step small enough for the Taylor order
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `hRconv` – input remainder set convex
+* `hRclosed` – input remainder set closed
+* `hRbdd` – input remainder set bounded
+* `h0` – input set contains the origin
+* `ht0` – time nonnegative
+* `htτ` – time within the stay duration
+
+## Conclusion
+* state at the time lies in the step plus the computed input solution
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

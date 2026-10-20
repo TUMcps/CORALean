@@ -11,6 +11,12 @@ import CORALean.Global.Float.Instances.FixedPoint.Instances
 the way `Examples/RunnableFloat.lean` runs the other representations:
 `divDown_le_div`/`le_divUp`/`PlusOuter` (Theorems) are what makes each `#eval`
 below an enclosure and not merely a number.
+
+## Inputs
+* none
+
+## Output
+* box enclosing the sum of two repeating fractions
 -/
 
 -- Authors:       Claude Opus 5.5

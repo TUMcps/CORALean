@@ -11,15 +11,32 @@ public import CORALean.HybridDynamics.Theorems.LinearEmbedding
 /-!
 # A stay is enclosed with no assumption on where the input set sits
 
-`FlowOuterInputSolution` computes the input contribution but pays for it with
-`0 ∈ ℓ.inputSet`, which a location's combined input set need not satisfy — a constant drift
-such as gravity, the offset `c`, is exactly an input set that misses the origin.
-`TimeIntervalOuterSplit` drops that hypothesis, and this is it at a location.
+`FlowOuterInputSolution` computes the input contribution but pays for it with `0 ∈ ℓ.inputSet`,
+which a location's combined input set need not satisfy: a constant drift such as gravity is exactly
+an input set that misses the origin. `TimeIntervalOuterSplit` drops that hypothesis, and this is it
+at a location. Every remaining side condition comes off `ConvexSet` and `CompactSet`, so the
+enclosure holds of every stay of every location at a representation carrying those instances.
 
-Every remaining side condition comes off `ConvexSet` and `CompactSet` rather
-than off the caller, so the enclosure holds of every stay of every location at
-a representation carrying those two instances — nothing about `u`, and nothing
-about `ℓ.U` or `ℓ.W`, survives into the statement.
+## Inputs
+* `ℓ` – location
+* `τ` – stay duration
+* `x` – trajectory of the stay
+* `u` – input trajectory
+* `w` – disturbance trajectory
+* `R₀` – initial set
+* `m` – Taylor order offset
+* `t` – time within the stay
+
+## Hypotheses
+* `traj` – the curves are a stay of the location
+* `h₀` – initial state lies in the initial set
+* `hτ` – stay duration positive
+* `hε` – step small enough for the Taylor order
+* `ht0` – time nonnegative
+* `htτ` – time within the stay duration
+
+## Conclusion
+* state at the time lies in the split time-interval step
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

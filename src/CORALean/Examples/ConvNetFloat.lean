@@ -25,20 +25,20 @@ import CORALean.NN.Operations.MarginDir
 /-!
 # The same convolutional network, over a floating-point scalar
 
-`Examples.ConvNet` at `Float.Zonotope (Vec 𝕋 n)`, and what is worth reading is which
-lines changed and which did not. The taps did not: `Example.convTap` and
-`Example.poolTap` are the exact layer's, reused verbatim, because an index
-function has no scalar in it.
+`Examples.ConvNet` at `Float.Zonotope (Vec 𝕋 n)`; what is worth reading is which lines changed and
+which did not. The taps did not: `Example.convTap` and `Example.poolTap` are the exact layer's,
+since an index function has no scalar in it. The layers did not either: each is written once over
+the scalar. The reshape carries no scalar, sound here because `Zonotope (Vec 𝕋 n)` has the
+`Reindex` instance it owes; batch normalization takes its scale and shift folded, in the scalar.
+`Layer` no longer carries what a layer computes, so the network is a plain `def` and every step of
+its `enclose` is float arithmetic. Max pooling's supremum over ℝ lives in `Layer.maxPool_encloses`,
+a `Prop`.
 
-The layers did not either: each is written once over the scalar, and this is it at
-`𝕋`. The reshape carries no scalar at all, sound here because `Zonotope (Vec 𝕋 n)` has the
-`Reindex` instance it owes; batch normalization takes its scale and shift folded,
-in the scalar, as the network read in stores them.
+## Inputs
+* none
 
-`Layer` no longer carries what a layer computes, so nothing here stores a real
-function: the network below is a plain `def` and every step of its `enclose` is
-float arithmetic. Max pooling's supremum over ℝ lives in `Layer.maxPool_encloses`,
-which is a `Prop`.
+## Output
+* two-tap average pooling layer
 -/
 
 -- Authors:       Claude Opus 5

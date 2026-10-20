@@ -8,18 +8,19 @@ import CORALean.ContSet.Interval.Float.Operations.MulHi
 /-!
 # A nonlinear ARX model, simulated in boxes
 
-The model `y(k) = y(k-1)/2 - y(k-2)²/4 + u(k)`, one output, one input and two lags. The square
-is the nonlinearity: its interval extension `[a, b]·[a, b]` at `Dyadic 24` is crude at a sign
-change but sound, and `model_encloses` proves the whole extension encloses the real `f_ARX`.
-`NonlinearSysDT.simulateBoxFloat` is then run on the converted system (`toNonlinearSysDTFloat`)
-from the start window `(y(0), y(1)) = (1, 1/2)` under the constant input `u = 1/16`, which is
-what `NonlinearARX.simulateBoxFloat` does, and prints the box of each window
-`(y(k), y(k+1))`. They are points: every product here is exact at `Dyadic 24`, so the box is
-the run itself (`y(2) = 1/16`, `y(3) = 1/32`, ...); a model with a wider extension widens it.
+The model `y(k) = y(k-1)/2 - y(k-2)²/4 + u(k)`, one output, one input and two lags. The square is
+the nonlinearity: its interval extension at `Dyadic 24` is crude at a sign change but sound
+(`model_encloses`). `NonlinearSysDT.simulateBoxFloat` is run on the converted system from the start
+window `(y(0), y(1)) = (1, 1/2)` under the constant input `u = 1/16`, as
+`NonlinearARX.simulateBoxFloat` does, and prints the box of each window. They are points: every
+product here is exact at `Dyadic 24`. `NonlinearARX.simulate_mem_simulateBoxFloat` is the
+guarantee: the real run of `f_ARX` has its stacked window, at every step, in the printed box.
 
-`NonlinearARX.simulate_mem_simulateBoxFloat` is the guarantee, instantiated here: the real run
-of `f_ARX` from the real value of that window under that input has its stacked window, at every
-step, in the printed box.
+## Inputs
+* none
+
+## Output
+* nonlinear ARX example model
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

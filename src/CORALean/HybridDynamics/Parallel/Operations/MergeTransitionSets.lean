@@ -11,6 +11,14 @@ CORA's `mergeTransitionSets`: every outgoing transition of every component's cur
 lifted. Without synchronization labels each transition is its own product transition, which
 is all `Transition` can say. One component jumps at a time; `IsRun` has simultaneous jumps
 as consecutive ones.
+
+## Inputs
+* `P` – parallel automaton
+* `lift` – lifting
+* `ℓ` – current locations
+
+## Output
+* lifted transitions of all components
 -/
 
 -- Authors:       Claude Opus 5.5

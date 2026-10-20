@@ -8,6 +8,13 @@ quotient is taken in integers at 62 significant bits and scaled by a power of tw
 neither `a` nor `b` need fit a `Float`. The sign is exact, and so is zero: `a = 0` gives `0`,
 any other `a` a nonzero result of its sign. `b = 0` gives `0`. For reporting, never for a
 decision.
+
+## Inputs
+* `a` – numerator
+* `b` – denominator
+
+## Output
+* double within a few ulps of the quotient
 -/
 
 -- Authors:       Claude Opus 5.5

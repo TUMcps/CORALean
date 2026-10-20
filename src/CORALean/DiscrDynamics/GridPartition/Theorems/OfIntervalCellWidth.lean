@@ -9,6 +9,20 @@ public import CORALean.DiscrDynamics.GridPartition.Theorems.I2sMem
 # The cells of `partition(I, segs)` have equal width
 
 In each dimension every cell is `(sup - inf) / segs` wide: the grid is uniform.
+
+## Inputs
+* `I` – box
+* `segs` – segments per dimension
+* `c` – cell number
+* `j` – dimension
+
+## Hypotheses
+* `h` – every segment count positive
+* `h1` – cell number at least one
+* `h2` – cell number within the cell count
+
+## Conclusion
+* the cell width is the box width over the segment count
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -15,6 +15,16 @@ reset acts on each participant's block by that participant's own reset and is th
 others, and the target moves every participant. A participant with no `λ`-labeled transition at its
 location contributes nothing here; `mergeTransitionSetsSync` only keeps this transition when every
 participant has one. The product's transition carries no label of its own.
+
+## Inputs
+* `P` – parallel automaton
+* `slift` – lifting with synchronization
+* `lab` – synchronization labels
+* `ℓ` – current locations
+* `a` – label
+
+## Output
+* product transition of the synchronized transitions
 -/
 
 -- Authors:       Claude Sonnet 5.5

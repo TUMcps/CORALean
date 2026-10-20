@@ -6,6 +6,12 @@ import Mathlib.Data.Rat.Defs
 
 `{"num": "...", "den": "..."}`, both decimal strings, `den > 0`: a number a plot can read
 back exactly, which a double cannot promise.
+
+## Inputs
+* `q` – rational number
+
+## Output
+* JSON numerator and denominator strings
 -/
 
 -- Authors:       Claude Sonnet 5.5

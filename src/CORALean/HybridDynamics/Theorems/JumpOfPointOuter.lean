@@ -11,6 +11,20 @@ public import CORALean.HybridDynamics.Theorems.JumpOuter
 `jump_outer`'s guarantee, `hinter` and all, at `ofPoint` in place of whatever
 `OfInterval` supplied for the offset — the proof is the same shape, one
 membership fact swapped for another.
+
+## Inputs
+* `e` – transition
+* `R` – set holding the state at the jump
+* `Rg` – enclosure of the guard intersection
+* `z` – state at the jump
+
+## Hypotheses
+* `hinter` – enclosure contains the guard intersection
+* `hz` – state lies in the reach set
+* `hguard` – state lies in the guard
+
+## Conclusion
+* reset image lies in the jump image
 -/
 
 -- Authors:       Claude Opus 5

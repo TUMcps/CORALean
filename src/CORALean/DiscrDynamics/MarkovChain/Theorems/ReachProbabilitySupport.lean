@@ -12,6 +12,20 @@ public import CORALean.DiscrDynamics.GridPartition.Theorems.ExactIntersectingCel
 The soundness of `build_reach`: a cell with nonzero transition probability is one the
 over-approximation `intersectingCellsOf` returns for some reachable set, so the chain moves
 only into cells the reachable sets meet.
+
+## Inputs
+* `field` – grid partition
+* `R` – reach sets
+* `tranFrac` – weights of the reach sets
+* `s` – cell
+
+## Hypotheses
+* `hn` – dimension nonzero
+* `hs` – cell is not the outside
+* `h` – the cell has nonzero probability
+
+## Conclusion
+* the cell meets the hull of a time-point set
 -/
 
 -- Authors:       Claude Sonnet 5.5

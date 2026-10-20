@@ -7,16 +7,14 @@ public import Mathlib.Analysis.Calculus.Deriv.Basic
 /-!
 # Hybrid automata with differential-inclusion flows, as [1] defines them
 
-[1, Def. 1]'s tuple `(Modes, Var, Init, Flow, Trans, Inv)` over a normed space `X` of
-continuous parts, flows `ẋ ∈ f_m(x)`, and their semantics: a continuous successor [1, Def. 4] is
-a differentiable `g : [0, t] → X` with `g(δ) ∈ Inv(m)` and `ġ(δ) ∈ Flow(m)(g(δ))` on the open
-interval, a discrete successor [1, Def. 5] takes a transition whose guard holds, and an execution
-[1, Def. 6] is a finite chain of both from an initial state. `IsExec d m x` says `(m, x)` ends an
-execution of duration `d`; `reachLE T` is [1, Def. 7]'s `Reach≤T`.
-
-This is not `HybridAutomaton`: the flow is any set-valued map, and a run carries its duration.
-The invariant is read on the open interval only, as [1, Def. 4] prints it, and the discrete
-successor is `(m', υ(x))`, [1, Def. 5] printing `(m, x')` for it.
+[1, Def. 1]'s tuple `(Modes, Var, Init, Flow, Trans, Inv)` over a normed space `X`, flows
+`ẋ ∈ f_m(x)`, and their semantics: a continuous successor [1, Def. 4] is a differentiable
+`g : [0, t] → X` with `g(δ) ∈ Inv(m)` and `ġ(δ) ∈ Flow(m)(g(δ))` on the open interval, a discrete
+successor [1, Def. 5] takes a transition whose guard holds, and an execution [1, Def. 6] is a
+finite chain of both from an initial state. `IsExec d m x` says `(m, x)` ends an execution of
+duration `d`; `reachLE T` is [1, Def. 7]'s `Reach≤T`. This is not `HybridAutomaton`: the flow is
+any set-valued map, and a run carries its duration. The invariant is read on the open interval
+only, as printed, and the discrete successor is `(m', υ(x))`, where [1, Def. 5] prints `(m, x')`.
 
 ## References
 

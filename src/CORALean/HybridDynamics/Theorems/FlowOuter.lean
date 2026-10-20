@@ -10,22 +10,36 @@ public import CORALean.HybridDynamics.Theorems.LinearEmbedding
 /-!
 # A stay is enclosed by the linear time-interval step
 
-What `Location` holding `LinearSys` dynamics buys: the enclosure of a whole stay
-is `LinearSys`'s over one step, applied on the location's own clock. `hT` is
-`subset_rfl` here — the stay is defined on `Set.Icc 0 τ` and on nothing else,
-which is the case the time domain was made a parameter for.
+What `Location` holding `LinearSys` dynamics buys: the enclosure of a whole stay is `LinearSys`'s
+over one step, applied on the location's own clock; `hT` is `subset_rfl` here. The invariant does
+not appear: it can only shrink the enclosure, by intersecting with `ℓ.inv`, which
+`TimeIntervalInvOuter` restates. `0 < τ` rather than `0 ≤ τ`, since `timeIntervalStep` divides by
+the step length. Stated through `Location.timeIntervalStep` rather than the dynamics' own, since
+`ℓ.dynamics` drops `S`.
 
-The invariant does not appear here. It cannot make the enclosure unsound and can
-only shrink it, and shrinking it means intersecting with `ℓ.inv` — left to
-`TimeIntervalInvOuter`, which restates this theorem cut to the invariant at a
-representation with an `Intersection` instance.
+## Inputs
+* `ℓ` – location
+* `τ` – stay duration
+* `x` – trajectory of the stay
+* `u` – input trajectory
+* `w` – disturbance trajectory
+* `R₀` – initial set
+* `Ud` – input contribution set
+* `m` – Taylor order offset
+* `t` – time within the stay
 
-`0 < τ` rather than `0 ≤ τ`: `timeIntervalStep` divides by the step length, and a
-zero-length stay needs no enclosure of its own.
+## Hypotheses
+* `traj` – the curves are a stay of the location
+* `h₀` – initial state lies in the initial set
+* `hτ` – stay duration positive
+* `hε` – step small enough for the Taylor order
+* `ht0` – time nonnegative
+* `htτ` – time within the stay duration
+* `hU` – input set bounded
+* `hUd` – input contribution holds the particular integral
 
-Stated through `Location.timeIntervalStep` rather than the dynamics' own:
-`ℓ.dynamics` drops `S`, and a use site would have to name the family back in a
-statement its `ℓ` already pinned.
+## Conclusion
+* state at the time lies in the time-interval step plus the input contribution
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

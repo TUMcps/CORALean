@@ -13,6 +13,12 @@ public import CORALean.ContSet.Interval.Float.Operations.Point
 `Transition.toNonlinearResetFloat`: the interval extension of `x ↦ W x + w` of a transition's
 stored float coefficients, `W X ⊕ w` in directed rounding, independent of the (empty) input.
 That it encloses the real reset is `toNonlinearResetFloat_encloses`.
+
+## Inputs
+* `e` – transition
+
+## Output
+* float reset model of the affine reset
 -/
 
 -- Authors:       Claude Opus 5.5

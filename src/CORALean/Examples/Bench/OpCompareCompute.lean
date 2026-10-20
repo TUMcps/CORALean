@@ -4,15 +4,13 @@ import CORALean.Global.Float.FloatOps
 # `opcompare`: the sequential sum, dot product and matrix product
 
 Every quantity is computed strictly left to right, one rounding per operation, matching
-`experiments/matlab-ops/compare.py`'s own `seqsum`/`seqdot` exactly: the accumulator starts at
-`zero`, and a dot product's product and sum are two separate rounded steps, never a fused
-multiply-add. `seqSumFO`/`seqDotFO` are generic in `FloatOps`, so the very same code computes
+`experiments/matlab-ops/compare.py`'s `seqsum`/`seqdot`: the accumulator starts at `zero`, and a
+dot product's product and sum are two separate rounded steps, never a fused multiply-add.
+`seqSumFO`/`seqDotFO` are generic in `FloatOps`, so the same code computes
 `hardware_down`/`hardware_up` at `Float` and `ieee_down`/`ieee_up` at `IEEE .binary64`;
-`seqSumNearest`/`seqDotNearest` are `hardware_nearest`'s own native round-to-nearest.
-
-`mtimes500` is 1.25e8 multiply-adds per bound at `IEEE`'s big-integer arithmetic, so
-`aux_parMatrix` spreads the `n` rows over `numChunks` `Task`s, each computing a contiguous
-row range -- pure, since every entry is a function of `A`/`B` alone.
+`seqSumNearest`/`seqDotNearest` are `hardware_nearest`'s native round-to-nearest. `mtimes500` is
+1.25e8 multiply-adds per bound at `IEEE`'s big-integer arithmetic, so `aux_parMatrix` spreads the
+`n` rows over `numChunks` `Task`s.
 -/
 
 -- Authors:       Claude Opus 5.5

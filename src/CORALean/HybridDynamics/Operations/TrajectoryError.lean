@@ -22,6 +22,20 @@ with `ξ` the center of `R₀`, `Y = R₀ ⊖ ξ`, `T = [tmin, tmax]`, `Ê = [-W
 `W = |e^{|A|tmax} − ∑ᵢ₌₀^η |A|ⁱtmaxⁱ/i!|`, and the flow correction `T (f₁ − f₂)`. Only `E_err`: the
 outputs `c_tilde` and `d_tilde`, which CORA documents as `?`, are not defined here.
 
+## Inputs
+* `sys` – linear system
+* `f₁` – first constant flow
+* `f₂` – second constant flow
+* `u` – constant input
+* `R₀` – initial zonotope
+* `tmin` – start of the time interval
+* `tmax` – end of the time interval
+* `tc` – expansion time
+* `η` – Taylor order
+
+## Output
+* zonotope holding the trajectory error
+
 ## References
 
 * [1] `contDynamics/@linearSys/trajectoryError.m`

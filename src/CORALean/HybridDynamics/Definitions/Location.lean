@@ -8,20 +8,14 @@ public import CORALean.HybridDynamics.Definitions.Transition
 /-!
 # Hybrid automata: a location
 
-CORA's `location`: the invariant that holds while the run is here, the dynamics that govern it,
-and the outgoing transitions, with the input and disturbance sets of CORA's `params.Uloc` and
-`params.Wloc` at this location. The dynamics are CORA's `contDynamics`, a `LinearSys` with its
-whole equation `ẋ = A x + B u + c + E w`, `U` in its input space and `W` in its disturbance
-space. The output equation plays no part in a stay; the parallel automaton reads it where it
-binds an input to an output. `inv` is in the guard's representation `G`, `U` and `W` in the
-state's `S` (#39).
-
-`IsTrajectory` is what a location denotes — one admissible stay, on a *local* clock from `0` to
-the dwell time `τ`. It is a Carathéodory run, as `NonlinearSys.IsTrajectory` is: the integral
-equation over the stay, its integrand measurable and integrable, so a zero-order-hold input is
-admissible (`IsTrajectory.of_hasDerivWithinAt` admits a classical stay). `Theorems.LinearEmbedding`
-hands a stay to `LinearSys` as a run of its canonical form. `nonneg` is not bookkeeping: without
-it `Set.Icc 0 τ` is empty and `x τ`, the state a jump reads, is unconstrained.
+CORA's `location`: the invariant that holds while the run is here, the dynamics that govern it, and
+the outgoing transitions, with the input and disturbance sets of CORA's `params.Uloc` and
+`params.Wloc`. The dynamics are a `LinearSys` with its whole equation `ẋ = A x + B u + c + E w`;
+the output equation plays no part in a stay. `inv` is in the guard's representation `G`, `U` and
+`W` in the state's `S` (#39). `IsTrajectory` is one admissible stay on a local clock from `0` to
+the dwell time `τ`, a Carathéodory run (`IsTrajectory.of_hasDerivWithinAt` admits a classical
+stay); `Theorems.LinearEmbedding` hands it to `LinearSys`. `nonneg` is not bookkeeping: without it
+`Set.Icc 0 τ` is empty and `x τ`, the state a jump reads, is unconstrained.
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5

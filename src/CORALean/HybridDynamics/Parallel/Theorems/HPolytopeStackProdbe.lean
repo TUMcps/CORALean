@@ -11,6 +11,17 @@ public import CORALean.HybridDynamics.Parallel.Operations.BlockProj
 A row of the product at `⟨i, s⟩` is component `i`'s row `s`, precomposed with block `i`. The
 rows are read through `finSigmaFinEquiv.symm`, so this is `Equiv.symm_apply_apply` under the
 dependent pair.
+
+## Inputs
+* `gs` – halfspace descriptions of the components
+* `i` – component
+* `s` – equality row of the component
+
+## Hypotheses
+* none
+
+## Conclusion
+* product bound is the component's bound
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -15,6 +15,19 @@ entering it are mapped into `Y`. `Y` is the H-polytope of the rows `(cᵢ, dᵢ)
 constrained hyperplane `IdentHA.conHyperplane` of the rows `identGuard` builds. That `G` is
 exactly the states of `H` mapped into `Y` is `conHyperplane_identGuard`.
 
+## Inputs
+* `a` – hyperplane normal
+* `b` – hyperplane offset
+* `H` – reset matrix
+* `k` – reset offset
+* `cs` – invariant rows
+
+## Hypotheses
+* none
+
+## Conclusion
+* every state of the guard is reset into the invariant
+
 ## References
 
 * [1] N. Kochdumper, M. A. Foughali, P. Habermehl and E. Asarin. "Robust Identification of

@@ -19,6 +19,18 @@ assigned`, here `none`. Read from the source, not run.
 numeric `u` (also the default `u = zeros(m, 1)`) `pu` is never assigned and MATLAB raises `Output
 argument 'pu' ... not assigned`; the expansion point is `(center x, u)`. Read from `evaluate.m`
 l. 91-95, not run (`references/coverage/hybridDynamics/nonlinearReset.md`, row `evaluate`).
+
+## Inputs
+* `E` – element type
+* `c` – center of the set
+* `v` – numeric input
+* `w` – numeric state
+
+## Hypotheses
+* none
+
+## Conclusion
+* a set state crashes, a numeric state gives its pair
 -/
 
 -- Authors:       Claude Sonnet 5.5

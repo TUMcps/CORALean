@@ -12,6 +12,20 @@ The converse of `singleMode_exists_solution_of_isExec`: a solution of `ẋ = f(x
 starts in `I` is one continuous successor of an initial state of `H_single`, of duration `s`, in
 the sense of [1, Def. 6].
 
+## Inputs
+* `I` – initial states
+* `f` – flow
+* `s` – duration
+* `z` – curve
+
+## Hypotheses
+* `hs` – duration nonnegative
+* `hz0` – curve starts in an initial state
+* `hz` – curve solves the flow
+
+## Conclusion
+* the curve end ends an execution of that duration
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

@@ -3,21 +3,18 @@ import CORALean.Examples.Bench.Format
 /-!
 # `lake exe bench <exp> --type dyadic|ieee|float|nearest|fixed --format binary64 [--config FILE]`
 
-The one place the command line is read. `--reps` and `--out` override the
-config's own `reps` and the harness's default output directory; everything
-else about a run comes from the config file, which is the point of having one.
+The one place the command line is read. `--reps` and `--out` override the config's own `reps` and
+the default output directory; everything else about a run comes from the config file. `--format` is
+validated here, against `formatToPrec`, once: it names the format for `--type ieee`, only a
+significand width for `dyadic`/`nearest`. `--prec` is the raw-bit-count escape hatch, unchecked,
+and wins if both are given; `--digits` is its `--type fixed` counterpart. `--net` and `--images`
+are `nn-mnist`'s own, left `none` and defaulted by the experiment itself.
 
-`--format` is validated here, against `formatToPrec`, once. It names the format
-for `--type ieee`, only a significand width for `dyadic`/`nearest`. `--prec` is
-the raw-bit-count escape hatch, unchecked, and wins if both are given.
-`--digits` is its `--type fixed` counterpart, the decimal digit count
-`FixedPoint f` rounds to, likewise unchecked.
+## Inputs
+* none
 
-`--net` and `--images` are `nn-mnist`'s own: which of the three converted
-networks (`experiments/nn/mnist/nets/`) to run, and how many of the 100
-converted images to use. Left `none` and defaulted by the experiment itself,
-the way `--reps` is, rather than validated here -- neither name means
-anything to `dtdemo` or `nn-float32`.
+## Output
+* parsed command line or a usage error
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -21,6 +21,22 @@ printed `Q⁽ⁱ⁾_lm/Λ²`, whose bracket has `l` and `m` the other way round,
 Prop. 2 states the derivative of `y_h` twice; `hasDerivAt_deriv_hitPoint` composes this with
 `hasDerivAt_hitPoint` to state exactly that.
 
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `nv` – guard normal
+* `x₀` – initial state
+* `d` – guard offset
+* `i` – output coordinate
+* `l` – derivative axis
+* `m` – Jacobian column
+
+## Hypotheses
+* `hΛ` – flow does not run parallel to the guard
+
+## Conclusion
+* the Hessian entry is the derivative of the Jacobian entry
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

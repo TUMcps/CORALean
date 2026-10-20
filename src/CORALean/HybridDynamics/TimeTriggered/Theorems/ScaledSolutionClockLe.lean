@@ -16,6 +16,31 @@ time, where `y = z(M)` is a zero of `g · f` and so stays put (`lipschitzSolutio
 and the clock would not grow after. With `g` the distance to the guard, [1, Sec. 3.3], this is
 that the scaled run never crosses `G`, the step [1, Cor. 1] needs.
 
+## Inputs
+* `f` – vector field
+* `K` – Lipschitz constant
+* `g` – scaling function
+* `K'` – Lipschitz constant of the scaled field
+* `y` – scaled solution
+* `z` – orbit solution
+* `t` – duration
+* `M` – time of the zero
+
+## Hypotheses
+* `hf` – field is Lipschitz
+* `hg` – scaling function continuous
+* `hF` – scaled field is Lipschitz
+* `ht` – duration nonnegative
+* `hy` – curve solves the scaled field
+* `hy0` – scaling function nonnegative along the curve
+* `hz` – orbit solves the field
+* `hz0` – the curves start together
+* `hM` – time of the zero nonnegative
+* `hgM` – orbit meets the zero set at that time
+
+## Conclusion
+* the clock of the scaled solution is at most the time of the zero
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

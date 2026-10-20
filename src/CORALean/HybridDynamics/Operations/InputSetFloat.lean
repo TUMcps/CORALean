@@ -13,6 +13,12 @@ and `c` at the location's `U`, plus `E W`, the disturbances CORA's `canonicalFor
 the input. At `W` a point zonotope of `0`, `E W` adds no generator. Soundness is
 `inputSetFloat_outer`.
 
+## Inputs
+* `ℓ` – float location
+
+## Output
+* float zonotope of the combined input set
+
 ## References
 
 * [1] `contDynamics/@linearSys/canonicalForm.m`

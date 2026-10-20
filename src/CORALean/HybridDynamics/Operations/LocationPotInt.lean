@@ -15,6 +15,14 @@ conservative negation, so an indeterminate pair is listed, which is the safe dir
 Indices are 0-based, transitions in order and sets inside each transition, as CORA's loops.
 Not modelled: the final step, which swaps a lone hit on a hyperplane guard for the following
 time-point set.
+
+## Inputs
+* `ℓ` – location
+* `Rs` – reach sets
+* `finalLoc` – final location
+
+## Output
+* transition and reach set index pairs that may meet
 -/
 
 -- Authors:       Claude Opus 5.5

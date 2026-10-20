@@ -10,6 +10,22 @@ public import CORALean.HybridDynamics.Operations.NonlinearResetEvaluate
 
 For a float model that encloses the reset, `evaluate` at any point of the boxes lies in the box
 `evaluateFloat` returns. An outer statement; the box is not the value.
+
+## Inputs
+* `r` – reset
+* `fm` – float reset model
+* `X` – box of states
+* `U` – box of inputs
+* `x` – state
+* `u` – input vector
+
+## Hypotheses
+* `h` – the model encloses the reset
+* `hx` – state lies in its box
+* `hu` – input lies in its box
+
+## Conclusion
+* reset value lies in the float box
 -/
 
 -- Authors:       Claude Opus 5.5

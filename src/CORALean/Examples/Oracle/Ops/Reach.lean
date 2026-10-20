@@ -5,19 +5,21 @@ import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
 /-!
 # `"linearSysReach"`, via `LinearSys.reachFloat`
 
-`A` is read square and dynamic, `X0` at the dimension `A` fixes; `X0` and the
-exact `tFinal` are `reachFloat`'s `params` (`tStart = 0`), `timeStep`,
-`taylorTerms` and `zonotopeOrder` its `options`, same names. `LinearSys` here
-carries no input (`LinearSys.lean`'s own docstring), so `B`/`U` have nothing to
-enter through -- rejected unless every entry is exactly zero, `aux_checkNoInput`.
+`A` is read square and dynamic, `X0` at the dimension `A` fixes; `X0` and the exact `tFinal` are
+`reachFloat`'s `params` (`tStart = 0`), `timeStep`, `taylorTerms` and `zonotopeOrder` its
+`options`, same names. `LinearSys` here carries no input, so `B`/`U` have nothing to enter through:
+rejected unless every entry is exactly zero (`aux_checkNoInput`). `timeStep` and `tFinal` are read
+as arbitrary exact reals: `exactDiv` checks that `tFinal / timeStep` is a nonnegative integer
+before either is asked to fit `𝕋`, so an inexact ratio is refused by name. `timeStep` is then read
+into `𝕋` exactly, since rounding it would run a different time grid than the one asked for.
 
-`timeStep`/`tFinal` are read as arbitrary exact reals: `exactDiv` checks that
-`tFinal / timeStep` is a nonnegative integer, cross-multiplied, before either is
-asked to fit `𝕋`, so an inexact ratio is refused by name, not for a grid. It is
-the check `reachFloat` makes itself, `Reach.steps`, done first for its message.
-`timeStep` is then read into `𝕋` exactly, since it is `reachFloat`'s own `Δt`:
-refused by name if it does not fit, since rounding it would run a different
-time grid than the one asked for.
+## Inputs
+* `𝕋` – scalar type
+* `dops` – dtype operations
+* `req` – request
+
+## Output
+* response fields or an error message
 -/
 
 -- Authors:       Claude Opus 5.5

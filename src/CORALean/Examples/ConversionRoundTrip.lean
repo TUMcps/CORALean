@@ -14,19 +14,13 @@ import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonotope
 /-!
 # Leaving a representation and coming back
 
-What an operation implemented by conversion relies on and no single conversion
-states: the two directions compose, so a set is still inside itself after a
-round trip. Nothing is regained on the way back — an `_outer` step out is an
-`_outer` step back — which is why these read `⊆` and never `=`.
-
-Where the outward step is `_exact`, the round trip loses exactly what the
-inward step loses and nothing more: `Zonotope → ConZonotope` and
-`Zonotope → PolyZonotope` are equalities, so the width below is entirely the
-other half's.
-
-One use site per pair is what makes the conversion table a table rather than a
-directory: these fail to compile if a conversion is renamed, retyped, or
-restated in the other direction.
+What an operation implemented by conversion relies on and no single conversion states: the two
+directions compose, so a set is still inside itself after a round trip. Nothing is regained on the
+way back, an `_outer` step out is an `_outer` step back, which is why these read `⊆` and never `=`.
+Where the outward step is `_exact`, the round trip loses exactly what the inward step loses:
+`Zonotope → ConZonotope` and `Zonotope → PolyZonotope` are equalities. One use site per pair makes
+the conversion table a table rather than a directory: these fail to compile if a conversion is
+renamed, retyped, or restated in the other direction.
 -/
 
 -- Authors:       Claude Opus 5

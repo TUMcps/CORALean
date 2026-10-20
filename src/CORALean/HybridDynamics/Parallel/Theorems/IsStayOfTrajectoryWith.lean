@@ -17,6 +17,26 @@ converse law supplies the components' inputs, disturbances and global inputs, bo
 parallel automaton binds them and in the components' sets, under which the product's right-hand
 side is every component's own, so each block flows as its component does. The invariant comes
 back through `Lifting.Exact`.
+
+## Inputs
+* `P` – parallel automaton
+* `F` – product flow at each location tuple
+* `U` – product input sets
+* `W` – product disturbance sets
+* `lift` – lifting
+* `ℓ` – current locations
+* `τ` – stay duration
+* `X` – trajectory of the product
+* `g'` – global input of the product
+* `w'` – disturbance of the product
+
+## Hypotheses
+* `hF` – the flow has the converse flow law
+* `hex` – lifting is exact
+* `h` – trajectory of the product over the stay
+
+## Conclusion
+* the blocks of the trajectory are a shared stay
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

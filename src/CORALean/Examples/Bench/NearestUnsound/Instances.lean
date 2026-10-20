@@ -12,18 +12,13 @@ import CORALean.Global.Float.ToRat
 /-!
 # The round-to-nearest scalars as float models, UNSOUNDLY
 
-`FloatOps` with one operation in both directions, and `SoundFloatArithmetic`
-whose six rounding laws are projections of `nearestUnsound`, the false axiom in
-`Axioms`, as `Float`'s are of `Binary64.trustedHardware`. Every other law is
-true of round-to-nearest and proved: at `NearestFloat` from `trustedHardware`,
-as native `Float` proves it, and at `NearestDyadic` from `Dyadic`'s own lemmas.
-Every data field is an ordinary computable definition, so the library's
-algorithms compile and run here unchanged.
-
-`scoped`, in `CORALean.Bench.NearestUnsound`, the false property's own namespace:
-nothing sees these instances unless it opens that namespace, which only the
-bench's `--type nearest` branch does. A result obtained through them carries no
-guarantee whatsoever.
+`FloatOps` with one operation in both directions, and `SoundFloatArithmetic` whose six rounding
+laws are projections of `nearestUnsound`, the false axiom in `Axioms`, as `Float`'s are of
+`Binary64.trustedHardware`. Every other law is true of round-to-nearest and proved: at
+`NearestFloat` from `trustedHardware`, at `NearestDyadic` from `Dyadic`'s own lemmas. Every data
+field is an ordinary computable definition, so the library's algorithms run here unchanged. The
+instances are `scoped` in `CORALean.Bench.NearestUnsound`, which only the bench's `--type nearest`
+branch opens; a result obtained through them carries no guarantee whatsoever.
 -/
 
 -- Authors:       Claude Opus 5.5

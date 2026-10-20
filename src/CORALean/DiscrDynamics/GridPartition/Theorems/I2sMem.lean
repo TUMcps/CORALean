@@ -8,6 +8,18 @@ public import CORALean.DiscrDynamics.GridPartition.Operations.Basic
 # The subscripts of a cell are in range
 
 A cell `1 ≤ c ≤ N` has subscripts between `1` and `nrOfSegments`.
+
+## Inputs
+* `siz` – segments per dimension
+* `c` – cell number
+* `i` – dimension
+
+## Hypotheses
+* `h2` – cell number within the cell count
+* `h1` – cell number at least one
+
+## Conclusion
+* the subscript lies between one and the segment count
 -/
 
 -- Authors:       Claude Sonnet 5.5

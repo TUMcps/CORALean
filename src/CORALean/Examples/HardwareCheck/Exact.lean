@@ -8,6 +8,13 @@ Everything `hardwarecheck` compares is an exact rational: `qOf` decodes a `Float
 soft-float `IEEE .binary64` result. `rnOf` is IEEE 754's round-to-nearest-even of an exact value,
 read off the soft-float's own round-down and round-up. `stepBits` is `stepUp`'s specification, "one
 step out from the nearest float, NaN out of range", written on bit patterns independently of it.
+
+## Inputs
+* `m` – mantissa
+* `e` – exponent
+
+## Output
+* the rational mantissa times two to the exponent
 -/
 
 -- Authors:       Claude Opus 5.5

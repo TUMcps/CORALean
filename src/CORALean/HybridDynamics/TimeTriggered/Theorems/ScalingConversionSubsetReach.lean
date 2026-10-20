@@ -18,6 +18,27 @@ scaled one moves along the same orbit (`scaledSolution_unscale`). This is the ze
 lemma, against `Reach(H)` and not `Reach≤T(H)`, which the printed statement mixes up
 (`scalingConversion_not_zeroError`).
 
+## Inputs
+* `I` – initial states
+* `f` – flow
+* `K` – Lipschitz constant
+* `g` – scaling function
+* `tb` – time scaling begins
+* `ts` – scaling duration
+* `d` – duration
+* `τ` – clock
+* `k` – mode
+* `x` – continuous state
+
+## Hypotheses
+* `hf` – flow is Lipschitz
+* `hg` – scaling function continuous
+* `hg0` – scaling function nonnegative
+* `h` – execution of the scaled automaton
+
+## Conclusion
+* the single mode reaches the same continuous state
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

@@ -10,6 +10,20 @@ public import CORALean.HybridDynamics.Parallel.Theorems.Basic
 
 `liftTransition_reset` for several components at once: on a stack, the reset is each
 participant's own reset on its block and the identity on the others.
+
+## Inputs
+* `P` – parallel automaton
+* `slift` – lifting with synchronization
+* `lab` – synchronization labels
+* `ℓ` – current locations
+* `a` – label
+* `x` – component states
+
+## Hypotheses
+* none
+
+## Conclusion
+* reset on a stack updates the participating blocks
 -/
 
 -- Authors:       Claude Sonnet 5.5

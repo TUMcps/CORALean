@@ -11,13 +11,17 @@ import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 At `Dyadic 53`. `ContSet.eqBool` runs the class's conservative `isequal`, which for a float
 representation is a certified structural test: entry by entry, `le` in both directions. Two
 zonotopes written with different mantissas and exponents for the same numbers (`2 · 2⁰` against
-`1 · 2¹`) are certified equal; a zonotope and its permutation (swapped generators, the same set)
-are not: the test compares generators in order and is not CORA's merge of parallel ones, so that
-`false` decides nothing. Boxes are tested the same way, by containment each way.
+`1 · 2¹`) are certified equal; a zonotope and its permutation are not: the test compares generators
+in order and is not CORA's merge of parallel ones, so that `false` decides nothing. Boxes are
+tested by containment each way. The theorem instances apply `ContSet.eqBool_sound` to the certified
+pair, and `ContSet.neBool_of_construct_ne` to two boxes whose sets differ (the point `3/2` is in
+one and not the other), getting `neBool = true`.
 
-The theorem instances apply `ContSet.eqBool_sound` to the certified pair, getting the equality of
-the denoted sets of reals, and `ContSet.neBool_of_construct_ne` to two boxes whose sets differ
-(the point `3/2` is in one and not the other), getting `neBool = true`.
+## Inputs
+* none
+
+## Output
+* zonotope with unnormalized mantissas
 -/
 
 -- Authors:       Claude Sonnet 5.5

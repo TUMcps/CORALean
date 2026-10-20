@@ -14,22 +14,24 @@ import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # A continuous plant with a ReLU controller, verified end to end
 
-The sampled-data loop at a representation, which is the thing the interfaces cannot promise
-on their own: `Zonotope` supplies `Mtimes` at a plain and at an interval matrix, `Plus`, `Reduce`,
-convexity, compactness and the two boxes the layers want, and that is everything the plant and the
-controller ask for between them. If an instance ever stops resolving, this file is where the build
-says so (`NeurNetControlDT` has the discrete-time loop).
+The sampled-data loop at a representation, which the interfaces cannot promise on their own:
+`Zonotope` supplies `Mtimes` at a plain and at an interval matrix, `Plus`, `Reduce`, convexity,
+compactness and the two boxes the layers want, which is everything the plant and the controller ask
+for. If an instance stops resolving, this file is where the build says so (`NeurNetControlDT` has
+the discrete-time loop). The network drives every input (`NeurNetContrSys.ofFull`, `nExt = 0`).
+`Δt` is the reachability step, `N Δt` the control period `dt`, and `N` is a variable so that
+nothing quietly assumes they are equal. Compiled at concrete types and an abstract system.
 
-The network drives every input of this plant (`NeurNetContrSys.ofFull`, `nExt = 0`); the abstract
-systems below allow `m ≤ nrOfInputs`, the rest being external inputs `U_ext`, and
-`Example.nnControlledExt` is one such loop. `Δt` is the reachability step, `N Δt` the control
-period `dt`, and `N` is a variable so that nothing can quietly assume they are equal.
+## Inputs
+* `A` – plant matrix
+* `W₁` – first weight matrix
+* `b₁` – first bias
+* `W₂` – second weight matrix
+* `b₂` – second bias
+* `dt` – control period
 
-Compiled at concrete *types* and an abstract system, deliberately: applying a
-general theorem to a fully concrete network forces the elaborator to whnf the
-whole graph, which `FeedForward` records as a timeout.
-
-Nothing here evaluates to a number: over ℝ every operation is noncomputable.
+## Output
+* closed loop of the plant and the controller
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5

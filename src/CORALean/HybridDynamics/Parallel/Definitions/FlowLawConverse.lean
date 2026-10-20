@@ -14,6 +14,15 @@ product in `U` and disturbance in `W`, at the stack of any states `x`, there are
 disturbances `w` in theirs, under which coordinate `⟨i, a⟩` of the product's right-hand side is
 component `i`'s own at `a`. `mergeFlowsLinearSys` has it at `ℝ` under `FeedthroughFree`, an exact
 `Lifting`, `GlobalsDistinct` and nonempty input sets (`product_flowLawConverse`).
+
+## Inputs
+* `P` – parallel automaton
+* `F` – product flow at each location tuple
+* `U` – product input sets
+* `W` – product disturbance sets
+
+## Output
+* every product input comes from component inputs
 -/
 
 -- Authors:       Claude Opus 5.5

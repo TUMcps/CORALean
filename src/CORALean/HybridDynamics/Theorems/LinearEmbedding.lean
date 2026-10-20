@@ -12,13 +12,26 @@ public import CORALean.HybridDynamics.Definitions.Location
 `Location.IsTrajectory` runs the whole equation `ẋ = A x + B u + c + E w`;
 `LinearSys.IsCanonicalTrajectory` runs `ẋ = A x + u'`, anchored at a set and with no invariant,
 both by the integral equation. A stay is a run of the latter with the combined input `u' = B u + c
-+ E w`, CORA's `canonicalForm`, wherever the caller's set `U'` holds every value it takes — at
-`ℓ.inputSet` (`B U ⊕ c ⊕ E W`, `memInputSet`) or its float counterpart. Naming a set the initial
-point lies in and one the combined input lies in is all it takes to hand a stay to the whole of
-`LinearSys`; the invariant is dropped — it only ever tightens an enclosure, never justifies one.
++ E w`, CORA's `canonicalForm`, wherever the caller's set `U'` holds every value it takes: at
+`ℓ.inputSet` (`memInputSet`) or its float counterpart. The invariant is dropped, as it only ever
+tightens an enclosure. The time domain is `Set.Icc 0 τ` on the location's own clock.
 
-The time domain is `Set.Icc 0 τ` on the location's own clock, which is the shape every bounded
-statement in `LinearSys` asks for.
+## Inputs
+* `ℓ` – location
+* `τ` – stay duration
+* `x` – trajectory of the stay
+* `u` – input trajectory
+* `w` – disturbance trajectory
+* `R₀` – initial set
+* `U'` – set holding the combined input
+
+## Hypotheses
+* `traj` – the curves are a stay of the location
+* `h₀` – initial state lies in the initial set
+* `hU'` – combined input stays in the set
+
+## Conclusion
+* the stay is a canonical trajectory of the dynamics
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

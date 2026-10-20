@@ -3,21 +3,19 @@ import CORALean.Examples.Bench.Rational
 /-!
 # Reading a converted MNIST network and its test images
 
-Two flat, whitespace-separated text formats, both produced by
-`experiments/nn/mnist/*.py` (see `SOURCES.md` for the exact commands and
-checksums) and read back here with nothing but `String` splitting and
-`Nat`/`Int` parsing -- no JSON, no external library, so a reader never needs
-more than this file to regenerate a network or a data point by hand.
+Two flat, whitespace-separated text formats, both produced by `experiments/nn/mnist/*.py` (see
+`SOURCES.md`) and read back with `String` splitting and `Nat`/`Int` parsing alone. `decodeFloat32`
+is the one place a bit pattern becomes a number: sign, an 8-bit exponent and a 23-bit mantissa read
+into `ExactDyadic` exactly, subnormals scaled by `2^-149`, and `NaN`/`±Inf` rejected outright.
+Every weight and bias in `experiments/nn/mnist/nets/` is `onnx`'s own `float32`, so this is the
+only place rounding could silently happen and doesn't; the value is read into the run's scalar
+afterwards, in `MnistNetwork.lean`.
 
-`decodeFloat32` is the one place a bit pattern becomes a number: sign, an
-8-bit exponent and a 23-bit mantissa, read into `ExactDyadic` exactly --
-subnormals scaled by `2^-149` rather than `2^(e-150)`, and `NaN`/`±Inf`
-(exponent `0xFF`) rejected outright, since nothing downstream is prepared to
-propagate one. Every weight and bias in `experiments/nn/mnist/nets/` is
-`onnx`'s own `float32`, so this is the *only* place rounding could silently
-happen and doesn't: the returned `ExactDyadic` is the bit pattern's exact
-value, read into whichever scalar a run picks only afterwards, in
-`MnistNetwork.lean`.
+## Inputs
+* `contents` – network file contents
+
+## Output
+* parsed network or an error message
 -/
 
 -- Authors:       Claude Opus 5.5

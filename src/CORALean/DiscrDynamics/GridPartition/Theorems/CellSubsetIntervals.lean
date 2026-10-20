@@ -9,6 +9,18 @@ public import CORALean.DiscrDynamics.GridPartition.Theorems.Basic
 # A cell lies in the state space
 
 In a well-formed partition each cell box is inside the box the partition covers.
+
+## Inputs
+* `P` – grid partition
+* `c` – cell number
+
+## Hypotheses
+* `hP` – partition well formed
+* `h1` – cell number at least one
+* `h2` – cell number within the cell count
+
+## Conclusion
+* the cell lies in the state space
 -/
 
 -- Authors:       Claude Sonnet 5.5

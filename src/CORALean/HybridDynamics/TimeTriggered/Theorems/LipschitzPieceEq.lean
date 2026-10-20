@@ -12,6 +12,24 @@ public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionUn
 `(0, t)` only. For `f` Lipschitz it agrees on all of `[0, t]` with any solution that starts where
 it does: the right derivative at `0` is `f(g 0)` by `hasDerivWithinAt_Ici_of_deriv_eq`.
 
+## Inputs
+* `f` – vector field
+* `K` – Lipschitz constant
+* `g` – first curve
+* `w` – second curve
+* `t` – duration
+
+## Hypotheses
+* `hf` – field is Lipschitz
+* `ht` – duration positive
+* `hgd` – first curve differentiable on the closed interval
+* `hgder` – first curve solves the field on the open interval
+* `hw` – second curve solves the field
+* `h0` – the curves start together
+
+## Conclusion
+* the curves agree on the closed interval
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

@@ -15,6 +15,16 @@ public import CORALean.ContSet.Interval.Float.Operations.Recip
 dot products by `dotDown`/`dotUp`, products by their corners, `1/Λ` by `Interval.recip` and
 `1/Λ²` as its square. `none` when the interval of `Λ` is not certified to exclude `0`.
 
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `nv` – guard normal
+* `d` – guard offset
+* `x₀` – initial state
+
+## Output
+* interval matrix holding the Jacobian, none if undefined
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

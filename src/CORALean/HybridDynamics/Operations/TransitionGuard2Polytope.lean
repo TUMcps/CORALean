@@ -12,6 +12,13 @@ CORA's `guard2polytope`: unless the guard is a `levelSet` or a `polytope`, it is
 is the choice of conversion: `guard2polytope conv` applies `conv`, the representation's own
 `polytope` conversion, and leaves the reset and the target as they are. A guard that is a polytope
 already needs no call (`conv = id`).
+
+## Inputs
+* `conv` – guard conversion
+* `e` – transition
+
+## Output
+* transition with a polytope guard
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,20 @@ public import CORALean.DiscrDynamics.GridPartition.Theorems.MemIntersectingCells
 
 A cell `s ≥ 1` with a nonzero entry in `iProp` is returned by `intersectingCellsOf`: whatever
 share `exactIntersectingCells` assigns a cell, the cell meets the hull of the set.
+
+## Inputs
+* `P` – grid partition
+* `X` – set
+* `s` – cell number
+
+## Hypotheses
+* `hn` – dimension nonzero
+* `h1` – cell number at least one
+* `h2` – cell number within the cell count
+* `h` – the cell has a nonzero share
+
+## Conclusion
+* the cell is among the intersecting cells
 -/
 
 -- Authors:       Claude Sonnet 5.5

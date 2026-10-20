@@ -15,13 +15,33 @@ public import Mathlib.Analysis.Convex.Basic
 
 [1, Prop. 3, Eq. 17]: for `x₀, ξ` in a convex `R(0)` on which `Λ = nᵀ(Ax₀ + b)` does not vanish,
 `y_{h,i}(x₀) = y_{h,i}(ξ) + L_i(ξ)ν + ½νᵀ(φQ⁽ⁱ⁾(x))ν`, `ν = x₀ - ξ`, for some `x ∈ R(0)` and some
-`φ` in any interval `[φ̲, φ̄]` holding `{1/Λ(x₀)² | x₀ ∈ R(0)}`: the remainder lies in
-`½νᵀ([φ̲, φ̄] ⊗ Q⁽ⁱ⁾)ν`. The point `x` is that of Lagrange's form, on the segment from `ξ` to `x₀`,
-and is per coordinate `i`, as is `φ`: [1, Sec. 5.4] encloses all coordinates at once.
+`φ` in any interval `[φ̲, φ̄]` holding `{1/Λ(x₀)² | x₀ ∈ R(0)}`. The point `x` is that of
+Lagrange's form, on the segment from `ξ` to `x₀`, and is per coordinate `i`, as is `φ`:
+[1, Sec. 5.4] encloses all coordinates at once. Along the segment `Λ` and `d - nᵀx` are affine and
+`Θ(x)ᵀν` does not depend on `s`, so `y_{h,i}` is a rational function of `s` and the one-variable
+theorem applies.
 
-Along the segment `s ↦ ξ + sν`, `Λ` and `d - nᵀx` are affine in `s`, and `Θ(x)ᵀν =
--Λ(x)nᵀν - (d - nᵀx)Υν` does not depend on `s`; so `y_{h,i}` is a rational function of `s` whose
-first two derivatives are `L_i ν` and `νᵀQ⁽ⁱ⁾ν/Λ²`, and the one-variable theorem applies.
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `nv` – guard normal
+* `d` – guard offset
+* `R₀` – convex set of states
+* `φlo` – lower bound of the factor
+* `φhi` – upper bound of the factor
+* `ξ` – expansion point
+* `x₀` – state
+* `i` – output coordinate
+
+## Hypotheses
+* `hR₀` – the set is convex
+* `hΛ` – flow does not run parallel to the guard on the set
+* `hφ` – the bounds hold on the set
+* `hξ` – expansion point lies in the set
+* `hx₀` – state lies in the set
+
+## Conclusion
+* Taylor expansion with a Lagrange remainder holds at some point
 
 ## References
 

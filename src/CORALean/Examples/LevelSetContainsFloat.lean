@@ -13,6 +13,12 @@ function: `containsPoint` certifies the point `(1/2, 1/4)` from exact bounds on 
 values, and refuses a point outside the disc, `(2, 0)`.
 
 `LevelSet.containsPoint_sound` is applied to these very bounds; a `false` decides nothing.
+
+## Inputs
+* none
+
+## Output
+* comparison operators of the three rows
 -/
 
 -- Authors:       Claude Sonnet 5.5

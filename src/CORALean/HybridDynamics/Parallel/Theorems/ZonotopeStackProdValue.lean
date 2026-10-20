@@ -11,6 +11,17 @@ public import CORALean.HybridDynamics.Parallel.Theorems.Basic
 The block `i` of the point of `Zonotope.stackProd zs` at coefficients `β` is component `i`'s own
 point at the coefficients `β` takes on `i`'s block of generators. This is the whole content of
 `ZonotopeStackProdExact`: the blocks are independent.
+
+## Inputs
+* `zs` – zonotopes of the components
+* `β` – coefficients of the product
+* `i` – component
+
+## Hypotheses
+* none
+
+## Conclusion
+* block of the product point is the component's point
 -/
 
 -- Authors:       Claude Sonnet 5.5

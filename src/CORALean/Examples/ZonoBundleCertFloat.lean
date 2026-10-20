@@ -14,6 +14,12 @@ common point, and the bundle is certified empty.
 
 Each `true` is a guarantee (`ZonoBundle.isFullDim_sound`,
 `ZonoBundle.representsa_emptySet_sound`); a `false` decides nothing.
+
+## Inputs
+* none
+
+## Output
+* bundle of the flat box and the thin parallelogram
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

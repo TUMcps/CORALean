@@ -11,6 +11,16 @@ public import CORALean.DiscrDynamics.GridPartition.Theorems.MemIntersectingCells
 `priv_transitionProbability` counts, for each point, the first cell `intersectingCells` names,
 which is a cell or the outside; every point is counted once, so the shares of a nonempty set of
 points add up to `1`.
+
+## Inputs
+* `field` – grid partition
+* `pts` – final points
+
+## Hypotheses
+* `h` – points nonempty
+
+## Conclusion
+* the empirical frequencies add up to one
 -/
 
 -- Authors:       Claude Sonnet 5.5

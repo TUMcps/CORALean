@@ -23,9 +23,9 @@ hypothesis and existential included, read off it.
 * `hx` – vector of length `qx`
 * `Hy` – `qy × ny` matrix
 * `hy` – vector of length `qy`
-* `_hfull` – full-dimensionality of the first polytope, unused
 
 ## Hypotheses
+* `_hfull` – full-dimensionality of the first polytope, unused
 * `h` – a certificate `Γ`, `β`, `Λ` of the conditions (12) exists
 
 ## Conclusion

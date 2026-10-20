@@ -13,6 +13,16 @@ public import Mathlib.Data.Real.Basic
 `L_il = I_il + A_il(d - Σⱼ nⱼx₀_j)/Λ(x₀) + (Σⱼ A_ij x₀_j + bᵢ)Θ_l(x₀)/Λ(x₀)²`,
 with `Λ(y) = nᵀ(Ay + b)`, `Υ = nᵀA` and `Θ(y) = -nΛ(y) - (d - nᵀy)Υᵀ`, one `let` each.
 
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `nv` – guard normal
+* `d` – guard offset
+* `x₀` – initial state
+
+## Output
+* Jacobian of the hit point
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

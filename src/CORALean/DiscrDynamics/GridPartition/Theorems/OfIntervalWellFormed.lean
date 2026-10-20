@@ -9,6 +9,17 @@ public import CORALean.DiscrDynamics.GridPartition.Definitions.Basic
 # `partition(I, segs)` is well formed
 
 The evenly spaced dividers of a nonempty box do not decrease.
+
+## Inputs
+* `I` – box
+* `segs` – segments per dimension
+
+## Hypotheses
+* `h` – every segment count positive
+* `hI` – box nonempty
+
+## Conclusion
+* the evenly cut partition is well formed
 -/
 
 -- Authors:       Claude Sonnet 5.5

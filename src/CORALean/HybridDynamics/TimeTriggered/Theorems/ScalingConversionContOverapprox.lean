@@ -16,14 +16,33 @@ public import CORALean.HybridDynamics.TimeTriggered.Theorems.SingleModeExistsSol
 # The scaled automaton overapproximates within the extended time bound
 
 [1, Lemma 2], the overapproximation half: `Reach≤T(H_single) ⊆ Reach≤T+t_scaling(H_scaling)`. A
-state of `H_single` at time `s ≤ T` is `z(s)` on a solution `z`. If `s ≤ t_begin` the same
-execution is one of `H_scaling`. Otherwise `H_scaling` follows `z` to `t_begin`, then the scaled
-solution `y` from `z(t_begin)`, which is `z(t_begin + σ)` for the clock `σ(τ) = ∫₀^τ g(y)`
-(`scaledSolution_unscale` and uniqueness): `z(s)` is on `y` if the clock reaches `s - t_begin`
-within `t_scaling`, by the intermediate value theorem, and is otherwise reached in `m'` for the
-rest, `t_scaling` having been spent. The paper's "pauses for at most `t_scaling`" is this
-count of the time budget. `t_begin, t_scaling > 0` are [1, Sec. 3.2]'s; `g · f` is Lipschitz
-because [1, Def. 2] makes every flow so, which gives the solution `y`.
+state of `H_single` at time `s ≤ T` is `z(s)` on a solution `z`. If `s ≤ t_begin` the same execution
+is one of `H_scaling`. Otherwise `H_scaling` follows `z` to `t_begin`, then the scaled solution `y`,
+which is `z(t_begin + σ)` for the clock `σ(τ) = ∫₀^τ g(y)` (`scaledSolution_unscale`): `z(s)` is on
+`y` if the clock reaches `s - t_begin` within `t_scaling`, and is otherwise reached in `m'`. The
+paper's "pauses for at most `t_scaling`" is this count of the time budget. `g · f` is Lipschitz
+because [1, Def. 2] makes every flow so.
+
+## Inputs
+* `I` – initial states
+* `f` – flow
+* `K` – Lipschitz constant
+* `K'` – Lipschitz constant of the scaled flow
+* `g` – scaling function
+* `tb` – time scaling begins
+* `ts` – scaling duration
+* `T` – time bound
+
+## Hypotheses
+* `hf` – flow is Lipschitz
+* `hg` – scaling function continuous
+* `hg0` – scaling function nonnegative
+* `hF` – scaled flow is Lipschitz
+* `htb` – start time positive
+* `hts` – scaling duration positive
+
+## Conclusion
+* the scaled automaton overapproximates the single mode within the extended bound
 
 ## References
 

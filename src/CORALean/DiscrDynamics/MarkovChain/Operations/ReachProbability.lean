@@ -14,6 +14,15 @@ time-interval sets, weighted by `tranFrac{k}` over their number, to `tp.OT`.
 
 CORA adds a one-entry `iProp = 1` (a set of volume zero) to every entry; here it is `1` padded
 with zeros, that is, the entry for the outside. See `reachProbabilityCora`.
+
+## Inputs
+* `S` – set representation per dimension
+* `field` – grid partition
+* `R` – reach sets
+* `tranFrac` – weights of the reach sets
+
+## Output
+* transition probabilities from the volume shares
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,6 +11,13 @@ public import CORALean.Global.Float.FloatOps
 CORA's `nonlinearReset/synchronize` on the interval extensions of the component resets:
 `f = Σ f_i(x, u) + x(idStates)`, the sum of the component boxes plus the pre-jump box at the
 coordinates `idStates`, each sum rounded outward (`sumDown`, `sumUp`; the added box is exact).
+
+## Inputs
+* `fms` – component float reset models
+* `idStates` – states kept by identity
+
+## Output
+* float reset model of the sum
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -18,21 +18,39 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
 /-!
 # The hyperplane map holds every guard hit of a run from `R₀`
 
-`Location.guardIntersectHyperplaneMap_outer`: a run of the location from `x(0) ∈ R₀` that is on
-the hyperplane `nᵀx = d` at a time `t ≤ tmax` is, at `t`, in the set the guard mapping returns,
-whenever it returns one (`some`: the intervals of `Λ` it divides by exclude `0`), for
-`η ≥ 1` Taylor terms. No hypothesis on the run beyond its being one, and none on the result.
+`Location.guardIntersectHyperplaneMap_outer`: a run from `x(0) ∈ R₀` that is on the hyperplane `nᵀx
+= d` at a time `t ≤ tmax` is, at `t`, in the set the guard mapping returns, whenever it returns
+one, for `η ≥ 1` Taylor terms. The chain is [1]'s: `x(t) = x₀ + (Ax₀ + b)t + e` with `e` in the
+abstraction error (`abstractionError_outer`, [1, Eq. 13]); a state of that form on the hyperplane
+is `y_h(x₀) + (−nᵀe/Λ(x₀))(Ax₀ + b) + e` ([1, Eq. 15]); `y_h(x₀)` is in `res1` by the expansion
+`hitPoint_add_eq` with the remainder in `R_quad` by [1, Thm. 1] and [1, Prop. 3]; the rest is in
+`res2`; the projection fixes a point of the hyperplane.
 
-The chain is [1]'s: `x(t) = x₀ + (Ax₀ + b)t + e` with `e` in the abstraction error `E`
-(`GuardMap.abstractionError_outer`, [1, Eq. 13]); a state of that form on the hyperplane is
-`y_h(x₀) + (−nᵀe/Λ(x₀))(Ax₀ + b) + e` ([1, Eq. 15]); `y_h(x₀)` is in `res1` by the exact
-expansion `GuardMap.hitPoint_add_eq` around the center `ξ` of the reduced `R₀`, whose
-remainder `½φ(νᵀQ⁽ⁱ⁾(ξ)ν)ᵢ` is a point of `R_quad` by [1, Thm. 1] with the factors of `ξ` in the
-matrix zonotopes of [1, Prop. 3] (`GuardMap.hitHessianNum_eq_hitHessianMatZono`, at the
-one-factor `ψ`) and `φ ∈ [φ̲, φ̄]` (`GuardMap.hitFactor_mem_Icc`); the rest is in `res2`; and a
-point of the hyperplane is fixed by the projection onto it. This is the route of
-`GuardMap.hitSet_subset_hitEnclosure`, with CORA's `R₀` (not its reduction) under `L`, CORA's
-interval products, and the reduction and projection after.
+## Inputs
+* `ℓ` – location
+* `nv` – guard normal
+* `d` – guard offset
+* `R₀` – initial set
+* `tmax` – final time
+* `η` – Taylor order
+* `guardOrder` – order of the guard mapping
+* `zonotopeOrder` – order of the result
+* `τ` – stay duration
+* `x` – trajectory of the stay
+* `u` – input trajectory
+* `w` – disturbance trajectory
+* `t` – time within the stay
+
+## Hypotheses
+* `hη` – at least one Taylor term
+* `traj` – the curves are a stay of the location
+* `h₀` – initial state lies in the initial set
+* `ht` – time within the stay
+* `htmax` – time within the horizon
+* `hhit` – state is on the guard hyperplane
+
+## Conclusion
+* every result set contains the guard hit
 
 ## References
 

@@ -24,6 +24,17 @@ For `f(x, u) = (x₁ + u, x₂²)`, `x = zonotope([0; 1], eye(2))` and `u = zono
 term is `0`, so it returns `[-1, 3]`, but `x₂ = 2` gives `4`. With its own Hessian the term is `1`
 and `[-2, 4]` holds `4`. Read from `evaluate.m` l. 117-121, 132-137, not run
 (`references/coverage/hybridDynamics/nonlinearReset.md`, row `evaluate`).
+
+## Inputs
+* `Habs` – Hessian bounds
+* `dz` – state radius
+
+## Hypotheses
+* `hH` – only one Hessian entry is nonzero
+* `hz` – the radius vector is fixed
+
+## Conclusion
+* CORA's bound is zero and misses a value the correct bound covers
 -/
 
 -- Authors:       Claude Sonnet 5.5

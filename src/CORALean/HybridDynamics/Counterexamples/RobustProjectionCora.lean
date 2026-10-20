@@ -23,6 +23,16 @@ unit column `D(:, i)` on the hyperplane is `γ / n_ᵢ`, which is `γ n_ᵢ` onl
 For the guard `2 x₁ = 4` (normal `(2, 0)`, `γ = 4`, hyperplane `x₁ = 2`) and the standard basis,
 `aux_robustProjection` pins the first coordinate to `γ · 2 = 8`: whatever the bounds it is given,
 the box it returns contains no point of the hyperplane.
+
+## Inputs
+* `lb` – lower box bound
+* `ub` – upper box bound
+
+## Hypotheses
+* none
+
+## Conclusion
+* the projected box excludes every guard point
 -/
 
 -- Authors:       Claude Opus 5.5

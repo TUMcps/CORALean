@@ -13,6 +13,15 @@ public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 
 The interval extension `toNonlinearResetFloat` of a transition's affine reset encloses the real
 reset `x ↦ W x + w` the stored coefficients denote, over any boxes.
+
+## Inputs
+* `e` – transition
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float model encloses the affine reset
 -/
 
 -- Authors:       Claude Opus 5.5

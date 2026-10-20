@@ -21,6 +21,17 @@ entries by implicit expansion, so every entry becomes `tranFrac{k}` and the colu
 `(nrOfStates + 1) tranFrac{k}`, not `tranFrac{k}`: a set of zero volume, such as a lower-dimensional
 zonotope, would have the whole outside as its probability. `reachProbability` pads the
 single entry with zeros instead, which puts the weight on the outside.
+
+## Inputs
+* `field` – grid partition
+* `X` – set
+
+## Hypotheses
+* `hN` – partition has cells
+* `h` – set has no positive volume
+
+## Conclusion
+* CORA's probabilities are one per state and do not sum to one
 -/
 
 -- Authors:       Claude Sonnet 5.5

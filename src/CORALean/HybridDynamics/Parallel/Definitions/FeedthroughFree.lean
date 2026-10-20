@@ -12,6 +12,12 @@ that is itself bound to an output: "this would otherwise lead to infinite loops"
 loop). `FeedthroughFree` is that check, at every location tuple: where input `j` of component `i`
 reads output `s` of component `c`, the entry `D_c(s, j')` is zero at every input `j'` of `c` bound
 to an output. Under it the bound inputs are the merged system's, `mergeFlowsLinearSys_flow`.
+
+## Inputs
+* `P` – parallel automaton
+
+## Output
+* no output feeding an input passes an output-bound input through
 -/
 
 -- Authors:       Claude Opus 5.5

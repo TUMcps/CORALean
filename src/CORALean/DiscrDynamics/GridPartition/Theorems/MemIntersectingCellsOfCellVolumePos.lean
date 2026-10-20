@@ -9,6 +9,22 @@ public import CORALean.DiscrDynamics.GridPartition.Theorems.IntersectingCellsOut
 
 A cell sharing positive volume with a set inside the box `I` meets `I`, so `intersectingCells`
 lists it: the volume-weighted `exactIntersectingCells` loses no cell by taking its candidates there.
+
+## Inputs
+* `P` – grid partition
+* `I` – box
+* `K` – set inside the box
+* `c` – cell number
+
+## Hypotheses
+* `hn` – dimension nonzero
+* `hK` – the set lies in the box
+* `h1` – cell number at least one
+* `h2` – cell number within the cell count
+* `hv` – the set has positive volume in the cell
+
+## Conclusion
+* the cell is returned
 -/
 
 -- Authors:       Claude Sonnet 5.5

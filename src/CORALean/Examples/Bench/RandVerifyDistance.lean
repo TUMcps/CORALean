@@ -8,6 +8,13 @@ For one window with output hull `H` and an unsafe box `S`, the gap in dimension 
 `H ∩ S = ∅` as soon as one dimension's gap is positive. The window's distance is the largest gap
 over the dimensions, the set's the smallest such over the windows: positive iff every window is
 separated from `S`. Exact, over ℚ.
+
+## Inputs
+* `hulls` – output hulls of the windows
+* `S` – unsafe box
+
+## Output
+* signed distance to the box, none if no window
 -/
 
 -- Authors:       Claude Sonnet 5.5

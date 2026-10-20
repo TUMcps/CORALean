@@ -11,6 +11,22 @@ public import CORALean.HybridDynamics.TimeTriggered.DiffInclAutomaton
 invariant and the flow on `(0, t)`. A curve that has a two-sided derivative at every point of
 `[0, t]`, as the solutions of an ODE do, is one when its derivative lies in the flow inside.
 
+## Inputs
+* `H` – automaton
+* `m` – mode
+* `y` – curve
+* `v` – derivative of the curve
+* `t` – duration
+
+## Hypotheses
+* `ht` – duration positive
+* `hy` – curve has the derivative on the closed interval
+* `hflow` – derivative lies in the flow on the open interval
+* `hinv` – curve lies in the invariant on the open interval
+
+## Conclusion
+* the curve is a continuous successor
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

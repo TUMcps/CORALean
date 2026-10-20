@@ -8,18 +8,37 @@ public import CORALean.HybridDynamics.Theorems.FlowOuter
 /-!
 # A stay is enclosed by the invariant-cut time-interval step
 
-`timeInterval_outer` restated against `timeIntervalStepInv`: the invariant
-holds of every state of the stay, `x t ∈ construct ℓ.inv`, so `Intersection.intersection_outer`
-cuts the enclosure `timeInterval_outer` already gives down to it. The cut lands
-on the sum with `Ud`, not on `timeIntervalStep` alone — the invariant is a fact
-about `x t`, not about the homogeneous part in isolation.
+`timeInterval_outer` restated against `timeIntervalStepInv`: the invariant holds of every state of
+the stay, `x t ∈ construct ℓ.inv`, so `Intersection.intersection_outer` cuts the enclosure
+`timeInterval_outer` gives down to it. The cut lands on the sum with `Ud`, not on
+`timeIntervalStep` alone: the invariant is a fact about `x t`. This is the first half of
+[1, Alg. 1], `jumpIntersection` and its theorems the second. `Intersection.intersection` is
+homogeneous, so a location's invariant is asked to be in the state's own family,
+`Location S S L 𝕋 n` (#39).
 
-The continuous reachable set within a location, up to where it would leave the
-invariant: the first half of [1, Alg. 1], `jumpIntersection` and its theorems
-the second.
+## Inputs
+* `ℓ` – location
+* `τ` – stay duration
+* `x` – trajectory of the stay
+* `u` – input trajectory
+* `w` – disturbance trajectory
+* `R₀` – initial set
+* `Ud` – input contribution set
+* `m` – Taylor order offset
+* `t` – time within the stay
 
-`Intersection.intersection` is homogeneous, so this is one of the two places that ask a location's
-invariant to be in the state's own family, `Location S S L 𝕋 n` (#39).
+## Hypotheses
+* `traj` – the curves are a stay of the location
+* `h₀` – initial state lies in the initial set
+* `hτ` – stay duration positive
+* `hε` – step small enough for the Taylor order
+* `ht0` – time nonnegative
+* `htτ` – time within the stay duration
+* `hU` – input set bounded
+* `hUd` – input contribution holds the particular integral
+
+## Conclusion
+* state at the time lies in the invariant-cut step
 
 ## References
 

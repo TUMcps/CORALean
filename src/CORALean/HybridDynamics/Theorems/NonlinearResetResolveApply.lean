@@ -13,6 +13,23 @@ one is the output of the component it is bound to, at that component's own input
 unique, and the theorem says the resolved reset does not depend on which `w` is used, so it is
 the value at the closed-loop input. The output must not depend on locally bound inputs, which
 `resolve` throws for in CORA.
+
+## Inputs
+* `r` – stacked reset
+* `out` – component output maps
+* `stateBinds` – state index maps
+* `inputBinds` – input bindings
+* `x` – state
+* `v` – global input
+* `w` – stacked input of all components
+
+## Hypotheses
+* `hloc` – component outputs only read their bound inputs
+* `hg` – globally bound inputs read the global input
+* `ho` – output-bound inputs read the component outputs
+
+## Conclusion
+* resolved reset equals the original reset at the stacked input
 -/
 
 -- Authors:       Claude Opus 5.5

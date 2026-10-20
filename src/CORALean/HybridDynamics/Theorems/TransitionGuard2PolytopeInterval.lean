@@ -13,6 +13,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_HPolytope
 
 A box guard, converted by `Interval.hPolytope`, is the same guard: exact
 (`Interval.hPolytope_exact`).
+
+## Inputs
+* `e` – transition with a box guard
+
+## Hypotheses
+* none
+
+## Conclusion
+* the box guard converts exactly
 -/
 
 -- Authors:       Claude Opus 5.5

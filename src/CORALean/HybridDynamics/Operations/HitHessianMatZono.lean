@@ -16,6 +16,19 @@ formula. Its factors are `κ`, the one of `[-1, 1]ψ_g`, then `β_α` and `κβ_
 
 Real layer only: a specification of the matrix zonotope [1] computes, at `ℝ`.
 
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `nv` – guard normal
+* `d` – guard offset
+* `R₀` – initial zonotope
+* `ψc` – center of the coefficient enclosure
+* `ψg` – generator of the coefficient enclosure
+* `i` – output coordinate
+
+## Output
+* matrix zonotope enclosing the numerators
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

@@ -12,6 +12,16 @@ with time bound `T` when `Reach≤T(H) ⊆ Reach≤T'(H')`, the variables exclus
 away before the comparison. `π` is the projection onto the variables of `H`. [1, Lemma 1],
 [1, Lemma 2] and [1, Cor. 1] are statements of it.
 
+## Inputs
+* `H` – original automaton
+* `T` – time bound
+* `H'` – converted automaton
+* `π` – projection to the original state
+* `T'` – converted time bound
+
+## Output
+* projected reach set of the conversion contains the original reach set
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

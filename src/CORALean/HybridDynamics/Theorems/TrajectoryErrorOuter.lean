@@ -29,6 +29,26 @@ series are cut at `η` and what they leave, `R(t) x₀` and the tail of `Γ(t) u
 and `Ê tmax u`, `Ê(t) ≤ Ê(tmax)` by `expRemainderMat_mono`. Outer only, and at `f₁ = f₂`:
 what a nonzero flow correction stands for CORA does not say.
 
+## Inputs
+* `sys` – linear system
+* `f` – constant flow
+* `u` – constant input
+* `R₀` – initial zonotope
+* `tmin` – start of the time interval
+* `tmax` – end of the time interval
+* `tc` – expansion time
+* `η` – Taylor order
+* `t` – time
+* `x₀` – initial state
+
+## Hypotheses
+* `hmin` – start time nonnegative
+* `ht` – time within the interval
+* `hx₀` – initial state lies in the initial zonotope
+
+## Conclusion
+* solution minus constant flow lies in the error set
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

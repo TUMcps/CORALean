@@ -14,15 +14,29 @@ public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
 # The float matrix zonotope holds `Q⁽ⁱ⁾` at the center's factors
 
 For `|κ| ≤ 1`, the point `C̃⁽ⁱ⁾ + κG̃^(i,1)` of the exact layer's matrix zonotope
-(`GuardMap.hitHessianMatZono`, at the floats read as reals, `ψ_c = −n − τ_cΥᵀ` and
-`ψ_g = −τ_gΥᵀ`) is the float one's point at the same factors, `(κ, 0, 0)`, plus a point `E` of
-its error box: the factors `(κ, 0, 0)` are those of the center `c_x` of `R(0)`
-(`GuardMap.hitHessianNum_eq_hitHessianMatZono`), the only point the guard mapping needs.
+(`GuardMap.hitHessianMatZono`, at the floats read as reals, `ψ_c = −n − τ_cΥᵀ`, `ψ_g = −τ_gΥᵀ`) is
+the float one's point at the same factors `(κ, 0, 0)` plus a point `E` of its error box; those are
+the factors of the center `c_x` of `R(0)` (`GuardMap.hitHessianNum_eq_hitHessianMatZono`), the only
+point the guard mapping needs. Each printed formula is a product and sum of row and column
+matrices, so `C̃⁽ⁱ⁾` and `G̃^(i,1)` lie in the float interval matrices (`matMul_outer`,
+`matPlus_outer`, `smul_outer`, `mem_point`); then `E` lies in the error box.
 
-Each printed formula is a product and sum of row and column matrices, so `C̃⁽ⁱ⁾` and
-`G̃^(i,1)` lie in the float interval matrices (`matMul_outer`, `matPlus_outer`, `smul_outer`,
-`mem_point`) once read as those products, an identity checked entry by entry; then
-`E = (C̃ − C̲) + κ(G̃ − G̲)` lies in `[−(Ḡ − G̲), (C̄ − C̲) + (Ḡ − G̲)]`.
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `nv` – guard normal
+* `d` – guard offset
+* `R₀` – initial zonotope
+* `τc` – center of the hitting time interval
+* `τg` – radius of the hitting time interval
+* `i` – output coordinate
+* `κ` – shared factor
+
+## Hypotheses
+* `hκ` – factor within one
+
+## Conclusion
+* the exact point is a float point plus a point of the error box
 
 ## References
 

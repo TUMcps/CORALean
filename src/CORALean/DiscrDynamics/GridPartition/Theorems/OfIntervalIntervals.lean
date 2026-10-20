@@ -8,6 +8,16 @@ public import CORALean.DiscrDynamics.GridPartition.Operations.OfInterval
 # `partition(I, segs)` covers `I`
 
 The state space of the evenly cut partition is the box it was cut from.
+
+## Inputs
+* `I` – box
+* `segs` – segments per dimension
+
+## Hypotheses
+* `h` – every segment count positive
+
+## Conclusion
+* the partition covers the box
 -/
 
 -- Authors:       Claude Sonnet 5.5

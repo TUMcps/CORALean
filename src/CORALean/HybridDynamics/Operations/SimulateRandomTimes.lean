@@ -9,6 +9,15 @@ public import CORALean.HybridDynamics.Operations.MatlabLinspace
 
 `@hybridAutomaton/simulateRandom.m` draws `time = linspace(tStart, tFinal, nrConstInp+1)` and
 loops `for g = 1:length(time)-1`: `nrConstInp` segments, one per constant input.
+
+## Inputs
+* `α` – scalar field
+* `a` – start time
+* `b` – final time
+* `nrConstInp` – number of constant inputs
+
+## Output
+* grid of the switching times
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,15 @@ public import CORALean.HybridDynamics.Parallel.Theorems.Basic
 
 A point of the stacked space is in the product of the halfspace descriptions exactly when each
 of its blocks is in its component's. An equality, not an inclusion.
+
+## Inputs
+* `gs` – halfspace descriptions of the components
+
+## Hypotheses
+* none
+
+## Conclusion
+* a point lies in the product iff each block lies in its component
 -/
 
 -- Authors:       Claude Opus 5.5

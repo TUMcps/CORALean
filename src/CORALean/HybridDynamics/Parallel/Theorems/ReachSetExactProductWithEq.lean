@@ -15,6 +15,26 @@ initial set whose stacks are exactly the tuples of the components' initial sets,
 `stack` of the parallel automaton's exact reachable set. An *equality of reachable sets*, under the
 conditions of `IsRun.toProductWith` and `IsRun.ofProductWith`; the outer theorems
 (`reachFloat_outer`, `reachSetExact_subset_invariant`) enclose either side and are inclusions only.
+
+## Inputs
+* `P` – parallel automaton
+* `F` – product flow at each location tuple
+* `U` – product input sets
+* `W` – product disturbance sets
+* `lift` – lifting
+* `R₀` – initial sets of the components
+* `R₀'` – initial set of the product
+* `ℓ₀` – initial locations
+* `ℓ` – locations reached
+
+## Hypotheses
+* `hF` – the flow has the flow law
+* `hF'` – the flow has the converse flow law
+* `hex` – lifting is exact
+* `hR₀` – product set stacks the component sets
+
+## Conclusion
+* the product reaches exactly the stacks of the parallel reach set
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

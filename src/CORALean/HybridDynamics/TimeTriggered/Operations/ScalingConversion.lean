@@ -15,6 +15,16 @@ asks `g` for "a nonnegative number for every reachable state" and nothing else; 
 required Lipschitz by [1, Def. 2], which `g · f` is not made to be. It is the `H_scaling` of
 [1, Lemma 2].
 
+## Inputs
+* `I` – initial states
+* `f` – flow
+* `g` – scaling function
+* `tBegin` – time scaling begins
+* `tScaling` – scaling duration
+
+## Output
+* time-scaled three-mode automaton
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

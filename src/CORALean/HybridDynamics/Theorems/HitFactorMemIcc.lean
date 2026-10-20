@@ -14,6 +14,26 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 `1/Λ(x₀)²`. The factor `φ` of the exact expansion `GuardMap.hitPoint_add_eq`, enclosed by
 the interval `[φ̲, φ̄]` of [1, Prop. 3].
 
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `nv` – guard normal
+* `R₀` – convex set of states
+* `φlo` – lower bound of the factor
+* `φhi` – upper bound of the factor
+* `ξ` – expansion point
+* `x₀` – state
+
+## Hypotheses
+* `hR` – the set is convex
+* `hΛ` – flow does not run parallel to the guard on the set
+* `hφ` – the bounds hold on the set
+* `hξ` – expansion point lies in the set
+* `hx₀` – state lies in the set
+
+## Conclusion
+* the shared remainder factor lies between the bounds
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

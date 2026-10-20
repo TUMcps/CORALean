@@ -14,6 +14,16 @@ flow `ẏ = Ax₀ + b` of eq. (2) from `x₀` meets the hyperplane `nᵀx = d` �
 initial state whose Taylor series [1, Prop. 3] encloses over a set of initial states, and
 whose derivatives [1, Prop. 2] gives. `GuardMap.hitSet` adds the error set to it.
 
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `nv` – guard normal
+* `d` – guard offset
+* `x₀` – initial state
+
+## Output
+* point where the flow meets the guard
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

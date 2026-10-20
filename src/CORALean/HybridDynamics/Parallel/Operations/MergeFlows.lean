@@ -9,18 +9,20 @@ public import CORALean.HybridDynamics.Parallel.ParallelHybridAutomaton
 # `mergeFlows`: `mergeFlowsLinearSys` assembled without arithmetic
 
 CORA's `aux_mergeFlowsLinearSys` at components whose inputs and outputs are their states: `B` and
-`C` identities, `D` and `k` zero (CORA treats `C = 1` with no `D`, `k`, `F` as `C = I`). Then
-`B(:,j) C_c(s,:)` is a single `1`, at row `⟨i, j⟩` and column `⟨c, s⟩`, `B(:,j)` a single `1` at
-the bound global input, `B(:,j) k_c(s)` zero and `B(:,j) F_c(s,:)` row `s` of `F_c`: every entry is
-an existing entry, `0` or `1`, chosen by `if`, with no arithmetic, so the result is exact at every
-scalar with an exact `0` and `1`, rounded ones included (#117). It reads `A`, `c`, `E`, `F` and
-the bindings, and nothing of `B`, `C`, `D`, `k`; `mergeFlows_flowLaw` holds where those are as
-said (`StateBound`).
+`C` identities, `D` and `k` zero. Every entry of the merged system is an existing entry, `0` or
+`1`, chosen by `if`, with no arithmetic, so the result is exact at every scalar with an exact `0`
+and `1`, rounded ones included (#117). It reads `A`, `c`, `E`, `F` and the bindings; the flow law
+`mergeFlows_flowLaw` holds where the rest is as said (`StateBound`). Restriction: CORA's
+`Amerged += B * C` adds the `1`, and an addition rounds; where an input is bound to its own
+component's output the `1` replaces `A_ij`, which is `Amerged` exactly when `A_ij = 0`
+(`SelfBindFree`). At a commutative ring the merge is `mergeFlowsLinearSys`.
 
-Restriction: CORA's `Amerged += B * C` *adds* the `1` to the block entry, and an addition rounds.
-Where an input is bound to its own component's output, the `1` replaces `A_ij`, which is
-`Amerged` exactly when `A_ij = 0`: `SelfBindFree`. A binding to another component's output is
-always exact: the block is `0` there. At a commutative ring the merge is `mergeFlowsLinearSys`.
+## Inputs
+* `P` – parallel automaton
+* `ℓ` – current locations
+
+## Output
+* product flow assembled without arithmetic
 -/
 
 -- Authors:       Claude Opus 5.5
