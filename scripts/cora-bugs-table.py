@@ -181,7 +181,7 @@ def table(cr):
         name = latex(f"{row['cls']}/{row['method']}").replace("/", "/\\allowbreak{}").replace("\\_", "\\_\\allowbreak{}")
         page = f"\\coraleanrepo/references/coverage/{key}.md"
         body.append(f"\\href{{{page}}}{{\\texttt{{{name}}}}}{mark} & {latex(desc)} & "
-                    f"{link(cr, cex, 'CEX')} & {link(cr, fix, 'FIX')} \\\\")
+                    f"{link(cr, cex, 'Cex')} & {link(cr, fix, 'Fix')} \\\\")
     order = {g: i for i, g in enumerate(cr.CORA_GROUPS)}
     keyed = sorted(zip(rows, body), key=lambda rb: (order[rb[0]["group"]], rb[0]["cls"].lower(),
                                                     rb[0]["method"].lower()))
