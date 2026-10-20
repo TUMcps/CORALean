@@ -15,6 +15,14 @@ Taylor model `P_f + I_f`": the input variables are the models `F`, a constant is
 order `N` with no remainder, and each operation is [1, Def. 2] or an intrinsic. `none` when an
 intrinsic's condition fails on the model it is handed.
 
+## Inputs
+* `m` – number of variables
+* `N` – expansion order
+* `F` – variable models
+
+## Output
+* model of the code list's value, if all intrinsics are defined
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

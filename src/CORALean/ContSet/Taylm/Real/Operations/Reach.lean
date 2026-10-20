@@ -9,6 +9,13 @@ public import CORALean.ContSet.Taylm.Real.Operations.Bounds
 
 `max(|lo - c|, |hi - c|)` for the range `[lo, hi]`: a bound on `|f t - c|`, the quantity
 the Lagrange remainder is a power of.
+
+## Inputs
+* `T` – Taylor model
+* `c` – point
+
+## Output
+* largest distance from the point to the range ends
 -/
 
 -- Authors:       Claude Opus 5.5

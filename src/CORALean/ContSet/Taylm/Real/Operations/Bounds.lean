@@ -13,6 +13,12 @@ The polynomial's range plus the remainder: one coordinate of CORA's `interval`, 
 The bound `B(T) = B(P) + [I]` of [1, Eq. 5], `B(P)` being interval evaluation over the
 normalized box.
 
+## Inputs
+* `T` – Taylor model
+
+## Output
+* interval enclosing the model's range
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

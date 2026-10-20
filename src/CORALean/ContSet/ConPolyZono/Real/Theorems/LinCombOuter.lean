@@ -13,20 +13,24 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
 /-!
 # `linComb` contains every segment between the two constrained polynomial zonotopes
 
-The witness is `PolyZonotope.linComb`'s — each set's own factors, `2λ-1` on the
-fresh one, the zonotope pairing on the independent coefficients — and
-`linComb_value` is the arithmetic, unchanged by the constraints.
+The witness is `PolyZonotope.linComb`'s (each set's own factors, `2λ-1` on the fresh one, the
+zonotope pairing on the independent coefficients), and `linComb_value` is the arithmetic,
+unchanged by the constraints. What the constraints add is one goal, the combined system at that
+witness: `PolyLevelSet.mem_padVars_iff` with `PolyLevelSet.mem_cartProd_iff` splits it into the
+two operands' own systems, which the endpoints already satisfy. So no nonemptiness hypothesis.
 
-What the constraints add is one goal: the combined system holds at that witness.
-`PolyLevelSet.mem_padVars_iff` with `PolyLevelSet.mem_cartProd_iff` splits it into the two operands'
-own systems at their own
-factors, which the two segment endpoints already satisfy. So no nonemptiness
-hypothesis: a point of `Set.linComb` hands over a point of *each* set, and with it
-the witness that its constraints are satisfiable. That both systems are imposed
-even at `λ = 0`, where the first operand's point drops out, costs nothing here.
+Outer and not exact, as `PolyZonotope.linComb_outer` is: the independent block is enclosed by the
+pairing.
 
-Outer and not exact, for the reason `PolyZonotope.linComb_outer` is: the
-independent block is enclosed by the pairing. The constraints give up nothing.
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Hypotheses
+* none
+
+## Conclusion
+* every segment between the two sets is contained in the result
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

@@ -13,21 +13,25 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombValueDependent
 /-!
 # `linComb` is exactly the linear combination where neither set has independent generators
 
-The result is [1, Prop. 8], stated there as an equality for the representation
-of [1, Def. 5] — which carries no independent generators, and that is why the
-hypothesis here is `qI = 0` on both sides. `linComb_outer` is `⊆` and needs none.
+The result is [1, Prop. 8], stated there for the representation of [1, Def. 5], which carries no
+independent generators; hence the hypothesis `qI = 0` on both sides. `linComb_outer` is `⊆` and
+needs none. `⊇` is `PolyZonotope.linComb_value_dependent`, reached at `toPolyZonotope`.
 
-`⊇` is `PolyZonotope.linComb_value_dependent`: the generators of
-`ConPolyZono.linComb` are `PolyZonotope.linComb`'s, so the arithmetic reading a
-factor vector back as a segment point is the unconstrained one, reached here at
-`toPolyZonotope`.
+What the constraints add is that each endpoint must lie in its *own* set:
+`PolyLevelSet.mem_padVars_iff` with `PolyLevelSet.mem_cartProd_iff` says the combined system holds
+iff each operand's does at the factors it came with, so the fresh factor, which neither system
+reads, is free to be the segment parameter.
 
-What the constraints add is that each endpoint must lie in its *own* set, and
-`PolyLevelSet.mem_padVars_iff` with `PolyLevelSet.mem_cartProd_iff` is exactly that: the combined
-system holds iff each
-operand's does at the factors it came with. So the split hands back two
-constrained points, and the fresh factor — which neither system reads — is free
-to be the segment parameter.
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Hypotheses
+* `h₁` – first has no independent generators
+* `h₂` – second has no independent generators
+
+## Conclusion
+* the linear combination is the result's set
 
 ## References
 

@@ -9,16 +9,22 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceGirardOrderLe
 /-!
 # `ConPolyZono.reduce` bounds the generator count
 
-The order bound half of [1, Prop. 12] — `ReduceOuter.lean` carries the other
-half, the enclosure.
+The order bound half of [1, Prop. 12]; `ReduceOuter.lean` carries the enclosure.
 
-The other half of what `reduce` is for, and the half no `_outer` theorem sees:
-an enclosure the size of the state space is sound too, and so is one whose
-representation grows every step. `reduce o` returns at most `o·n` generators,
-dependent and independent together, whatever it is called on.
+An enclosure the size of the state space is sound too, and so is one whose representation grows
+every step; this is the half no `_outer` theorem sees. `reduce o` returns at most `o·n`
+generators, dependent and independent together. Compacting first only lowers the count
+`reduceGirard_order_le` then bounds, so the bound reads off unchanged.
 
-Compacting first only lowers the count `reduceGirard_order_le` then bounds, so
-the bound reads off unchanged.
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `o` – target order
+
+## Hypotheses
+* `ho` – target order is positive
+
+## Conclusion
+* the generator count is at most the order times the dimension
 
 ## References
 

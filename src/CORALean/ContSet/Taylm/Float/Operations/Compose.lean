@@ -9,6 +9,17 @@ public import CORALean.ContSet.Taylm.Float.Operations.Pow
 
 `Σₖ [lo k, hi k] (T - c)ᵏ` up to `N`, plus `[-ρ, ρ]`: the exact layer's `compose` with each
 coefficient known only to within an enclosure, which is all a float can know of `exp c / k!`.
+
+## Inputs
+* `T` – Taylor model
+* `c` – center
+* `lo` – lower coefficient bounds
+* `hi` – upper coefficient bounds
+* `N` – expansion order
+* `ρ` – remainder radius
+
+## Output
+* Taylor model of the composed polynomial
 -/
 
 -- Authors:       Claude Opus 5.5

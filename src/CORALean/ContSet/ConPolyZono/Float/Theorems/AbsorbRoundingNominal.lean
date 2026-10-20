@@ -25,6 +25,15 @@ that every row of the constraint `PolyLevelSet.relax` now holds exactly
 (`PolyLevelSet.mem_relax_iff`); and it appends to the independent coefficients one per coordinate,
 placing that coordinate's error in its new generator.
 `errorBound` rounds nothing, so the coefficient always fits.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set lies in the nominal part of the result
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

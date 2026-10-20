@@ -12,6 +12,13 @@ CORA's `reexpand(obj, int)`: the model re-expanded at the center of a sub-box `B
 normalized box and rescaled by its radius, so that the new variables again range over `[-1, 1]`;
 the remainder is kept. The `reexp` of the advanced branch and bound of [1, Alg. 1].
 
+## Inputs
+* `B` – box
+* `T` – Taylor model
+
+## Output
+* Taylor model re-expanded onto the box
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

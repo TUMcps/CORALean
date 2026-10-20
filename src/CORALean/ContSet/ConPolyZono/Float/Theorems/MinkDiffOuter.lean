@@ -22,6 +22,16 @@ takes them, the points whose remaining corners all land in the current set lie i
 float translates by `±g` (`plus_outer`), so in their float cut (`intersection_outer`). The
 corners are points of the nominal zonotope; when the error box holds `0` the float zonotope
 holds them too, and the statement is about the whole float subtrahend.
+
+## Inputs
+* `cPZ₁` – minuend
+* `Z` – zonotope subtrahend
+
+## Hypotheses
+* `h0` – subtrahend's error box contains the origin
+
+## Conclusion
+* the Minkowski difference is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

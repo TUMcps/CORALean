@@ -10,6 +10,13 @@ public import CORALean.ContSet.Taylm.Float.Operations.ArgMaxIdx
 
 One step of the branch and bound: the box holding the upper bound and the one holding the lower
 bound are halved (lines 8-29 of the listing).
+
+## Inputs
+* `bnd` – bounding function on a box
+* `l` – current list of boxes
+
+## Output
+* list of boxes after one bisection step
 -/
 
 -- Authors:       Claude Opus 5.5

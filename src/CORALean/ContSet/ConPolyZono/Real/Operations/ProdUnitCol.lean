@@ -9,6 +9,18 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.UnitCol
 
 What `unitCol i e` names: `a i ^ e`, every other factor dropping out at exponent
 zero. `PolyZonotope.monomial_identE` is this at `e = 1` for a whole matrix.
+
+## Inputs
+* `p` – number of factors
+* `a` – factor values
+* `i` – factor index
+* `e` – exponent
+
+## Hypotheses
+* none
+
+## Conclusion
+* the monomial is that factor to the exponent
 -/
 
 -- Authors:       Claude Opus 5

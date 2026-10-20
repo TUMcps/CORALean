@@ -9,15 +9,19 @@ public import CORALean.ContSet.Zonotope.Float.Operations.BallB
 /-!
 # `ConPolyZono.isFullDimWith`, over a floating-point scalar
 
-CORA's `@conPolyZono/isFullDim` asks for `rank([G GI]) = n` after an emptiness check, which is
-necessary for a nonempty interior and not sufficient. A sound test certifies the real property
-instead: if the factors `α = 0` satisfy the constraints, the set contains the translate of the
-zonotope spanned by the independent generators `GI`, so a right inverse `H` of `GI` that the caller
-proposes and the check of `Zonotope.ballCert` accepts puts a box of positive radius inside the set.
-At `α = 0` a constraint generator survives exactly when its exponent column is zero
-(`ConPolyZono.zeroMonomials`); each row `A μ(0)` is enclosed by directed roundings, and both
-ends' distance from `b`, rounded up, must be within the slack. The error box must be nonempty.
-`true` proves an interior point; `false` refutes nothing.
+CORA's `@conPolyZono/isFullDim` asks for `rank([G GI]) = n`, which is necessary for a nonempty
+interior and not sufficient. A sound test certifies the real property: if the factors `α = 0`
+satisfy the constraints, the set contains a translate of the zonotope spanned by `GI`, so a right
+inverse `H` of `GI` accepted by `Zonotope.ballCert` puts a box of positive radius inside the set.
+Each row `A μ(0)` is enclosed by directed roundings and must be within the slack. `true` proves an
+interior point; `false` refutes nothing.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `H` – matrix of independent generators
+
+## Output
+* whether the witness shows full dimension
 -/
 
 -- Authors:       Claude Opus 5.5

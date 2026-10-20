@@ -16,6 +16,19 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 in some direction `i`, so the linear part alone puts it more than `d` above `M`, that is above
 `Min`, which some point stays below.
 
+## Inputs
+* `T` – Taylor model
+* `g` – enclosed function
+* `s` – point
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hs` – point lies in the unit box
+* `hR` – point is cut off by the step
+
+## Conclusion
+* the function's value exceeds the step's upper bound
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

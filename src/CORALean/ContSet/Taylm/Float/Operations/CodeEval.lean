@@ -14,6 +14,17 @@ model arithmetic": the exact layer's `codeEval` with each operation the float la
 constants floats, and `p`, `q`, `s` the precisions of the float intrinsics. `none` when an
 intrinsic's check fails or the float layer has no such intrinsic.
 
+## Inputs
+* `m` – number of variables
+* `p` – precision of the exponential
+* `q` – precision of the logarithm
+* `s` – precision of the trigonometric functions
+* `N` – expansion order
+* `F` – variable models
+
+## Output
+* model of the code list's value, if all intrinsics are defined
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

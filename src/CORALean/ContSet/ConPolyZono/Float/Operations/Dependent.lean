@@ -9,18 +9,18 @@ public import CORALean.ContSet.PolyLevelSet.Float.Operations.PadVars
 /-!
 # `ConPolyZono.dependent`
 
-Every independent generator made dependent, by giving it a fresh factor that
-appears in it alone and to the first power. Not one entry is computed: the two
-generator blocks are concatenated, the exponent matrices are over ℕ, and the
-error box is carried across, so this operation rounds nothing at all and is
-exact rather than enclosing.
+Every independent generator made dependent, by giving it a fresh factor that appears in it alone
+and to the first power. Nothing is computed, so this operation rounds nothing and is exact.
 
-It is here because `intersection` needs it. The agreement rows constrain the factors, and
-an independent coefficient is not one, so both arguments have to have an empty
-independent block before the rows are written.
+It is here because `intersection` needs it: the agreement rows constrain the factors, and an
+independent coefficient is not one. The fresh factors take exponent zero in every constraint row
+(`padE`).
 
-The fresh factors take exponent zero in every constraint row, which is what
-`padE` says.
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* same set with independent generators made dependent
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

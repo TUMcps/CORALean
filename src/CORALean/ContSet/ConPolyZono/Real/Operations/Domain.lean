@@ -9,14 +9,16 @@ public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 
 The definition is [1, Def. 7].
 
-The coefficients the representation admits, split from the map they go
-through so that the set can be read as an image. Both blocks of factors
-travel together, as one point of a product, because the constraint couples
-the dependent ones.
+The coefficients the representation admits, split from the map they go through so that the set can
+be read as an image. Both blocks of factors travel together, as one point of a product, because
+the constraint couples the dependent ones. No `HPolytope` here, unlike `ConZonotope.domain`: the
+constraint is polynomial in the factors, so closedness comes from the continuity of a monomial.
 
-No `HPolytope` here, unlike `ConZonotope.domain`: the constraint is polynomial
-in the factors, so what makes this domain closed is the continuity of a monomial
-and not a halfspace description.
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* admissible factor and coefficient vectors
 
 ## References
 

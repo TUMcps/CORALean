@@ -11,6 +11,16 @@ The stored remainder of the result is the sum of the remainder and the box, each
 outward, so whatever the remainder and the box held together the result's remainder alone holds:
 its nominal model, the remainder without a box, encloses what the input encloses. A product, whose
 cross terms multiply the remainders, starts from this (`Taylm.times`).
+
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+
+## Conclusion
+* the nominal part of the absorbed model encloses it too
 -/
 
 -- Authors:       Claude Opus 5.5

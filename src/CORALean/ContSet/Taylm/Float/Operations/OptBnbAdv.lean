@@ -9,6 +9,14 @@ public import CORALean.ContSet.Taylm.Float.Operations.BranchAndBound
 # `Taylm.optBnbAdv`, over a floating-point scalar
 
 CORA's `optBnbAdv`: as `optBnb`, each sub-box's polynomial re-expanded at its midpoint first.
+
+## Inputs
+* `T` – Taylor model
+* `ε` – tolerance
+* `fuel` – step budget
+
+## Output
+* enclosure of its range by advanced branch and bound
 -/
 
 -- Authors:       Claude Opus 5.5

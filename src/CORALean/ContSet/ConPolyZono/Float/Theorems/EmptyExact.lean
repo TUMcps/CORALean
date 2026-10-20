@@ -11,6 +11,15 @@ public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
 
 The nominal part is `∅`: its single constraint row asks `|(A μ)₀ - 1| ≤ |0|` of an empty matrix,
 `one` and `zero` reading as `1` and `0`. So the sum with the error box is `∅` too.
+
+## Inputs
+* `n` – ambient dimension
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is empty
 -/
 
 -- Authors:       Claude Opus 5.5

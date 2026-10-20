@@ -17,6 +17,21 @@ The hypotheses are the exact layer's: no independent generators, a bound `b` tha
 and no all-zero exponent column in any of the four exponent matrices. Without the last, [1, Thm. 1]
 fails even over ℝ. Outer, never exact: the stored union also contains what rounding admits.
 
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Hypotheses
+* `hq₁` – first has no independent generators
+* `hq₂` – second has no independent generators
+* `hE₁` – first exponent matrix has no zero column
+* `hR₁` – first constraint exponents have no zero column
+* `hE₂` – second exponent matrix has no zero column
+* `hR₂` – second constraint exponents have no zero column
+
+## Conclusion
+* the union is contained in the result
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

@@ -10,6 +10,16 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.ReduceByOuter
 Two cases: below the order there is nothing to do, and above it the rule is a
 pair of partitions like any other. The metric never appears, which is what lets
 `sortPerm`'s unconstrained comparator rank a float.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

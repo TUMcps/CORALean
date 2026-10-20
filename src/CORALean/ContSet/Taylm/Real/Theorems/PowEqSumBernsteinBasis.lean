@@ -19,6 +19,17 @@ For `i ≤ N`, `uⁱ = Σⱼ C(j, i) / C(N, i) · B_{j,N}(u)`: the entries of `U
 by `C(N, i)` the sum starts at `j = i`, where `C(j, i) C(N, j) = C(N, i) C(N - i, j - i)`, and
 what is left is the binomial theorem at `(u + (1 - u))^(N - i)`.
 
+## Inputs
+* `N` – degree
+* `i` – exponent
+* `u` – point of the unit interval
+
+## Hypotheses
+* `hi` – exponent is at most the degree
+
+## Conclusion
+* the monomial is a combination of Bernstein basis polynomials
+
 ## References
 
 * [1] `global/functions/helper/sets/contSet/polyZonotope/poly2bernstein.m`, CORA (Sep. 2025).

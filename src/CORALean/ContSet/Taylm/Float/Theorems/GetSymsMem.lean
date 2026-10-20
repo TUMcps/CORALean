@@ -11,6 +11,18 @@ public import CORALean.ContSet.Taylm.Real.Theorems.GetSymsMem
 A function the float model encloses lies within the stored remainder interval plus the error box
 around its polynomial part `T.nominal.getSyms` on the box: the stored floats read as exact
 coefficients, with nothing rounded.
+
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `t` – point
+
+## Hypotheses
+* `h` – the model encloses the function
+* `ht` – point lies in the unit box
+
+## Conclusion
+* the function value lies between the stored polynomial plus remainder ends
 -/
 
 -- Authors:       Claude Opus 5.5

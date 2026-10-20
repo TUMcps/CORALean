@@ -12,6 +12,19 @@ Variable by variable, `reexpandAt_outer` carries the enclosure through each subs
 `sₖ ↦ mₖ + rₖ sₖ`; the variables are distinct, so each substitution reads the original `sₖ`, and
 the whole composite is `s ↦ f (m + r ⊙ s)`. The sub-box `|mₖ| + |rₖ| ≤ 1` keeps every substituted
 point in the normalized box, where the original remainder holds.
+
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `m` – centers
+* `r` – radii
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hmr` – center plus radius stays within the unit interval in each coordinate
+
+## Conclusion
+* the result encloses the function on the sub-box
 -/
 
 -- Authors:       Claude Opus 5.5

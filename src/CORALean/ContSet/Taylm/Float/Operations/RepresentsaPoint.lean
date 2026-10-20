@@ -12,6 +12,12 @@ CORA's `representsa(T, 'point')`, a sufficient test: `true` only if in every com
 of positive degree has coefficient `0` and the remainder with the error box absorbed
 (`absorbRounding`) is `[0, 0]` (`le` on the absolute values, certified `true` only). The range
 set is then within the single point of the constant terms. `false` refutes nothing.
+
+## Inputs
+* `T` – family of Taylor models
+
+## Output
+* whether the range set is a single point
 -/
 
 -- Authors:       Claude Opus 5.5

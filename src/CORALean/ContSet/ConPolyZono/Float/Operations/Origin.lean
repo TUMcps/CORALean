@@ -10,6 +10,12 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 The point `0` as a constrained polynomial zonotope with no generators and an empty
 constraint system, the center stored as `zero` and the box at zero.
+
+## Inputs
+* `n` – ambient dimension
+
+## Output
+* the singleton containing the origin
 -/
 
 -- Authors:       Claude Opus 5.5

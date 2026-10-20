@@ -18,6 +18,23 @@ product's terms, a dropped term has degree above `N` and so carries `hᴺ⁺¹`,
 is at most its weight and each remainder at most `C·hᴺ⁺¹`: four summands, each at most
 `C₁C₂·hᴺ⁺¹` once `h ≤ 1`.
 
+## Inputs
+* `T₁` – first model
+* `T₂` – second model
+* `h` – domain radius
+* `C₁` – first scaling constant
+* `C₂` – second scaling constant
+
+## Hypotheses
+* `h0` – radius is positive
+* `h1` – radius is at most one
+* `hN` – the models have the same order
+* `h₁` – first model is scaled by its constant
+* `h₂` – second model is scaled by its constant
+
+## Conclusion
+* the product is scaled by four times the product of the constants
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

@@ -15,6 +15,16 @@ the ambient space moves points, not factors. Linearity carried through the two
 sums is then the whole proof.
 
 `MtimesExact` is this at `A *ᵥ ·`.
+
+## Inputs
+* `f` – linear map
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image under the map is the result's set
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

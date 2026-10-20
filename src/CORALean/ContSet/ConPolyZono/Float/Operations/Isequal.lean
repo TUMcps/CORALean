@@ -12,6 +12,13 @@ constraints, the center, the generators, the exponent matrices, the constraint m
 right-hand side and its slack, and the two ends of the error box equal, each stored number by the
 certified `le` in both directions. Certified in one direction only: `true` is a proof, `false`
 refutes nothing. Not CORA's test, which compacts and reorders first.
+
+## Inputs
+* `Z` – first set
+* `S` – second set
+
+## Output
+* whether the two sets are equal
 -/
 
 -- Authors:       Claude Opus 5.5

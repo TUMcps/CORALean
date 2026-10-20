@@ -16,6 +16,13 @@ public import CORALean.ContSet.PolyLevelSet.Float.Operations.Switch
 on their own factors (`PolyLevelSet.cartProd`), the two fresh factors (`PolyLevelSet.padVars`) and
 the right-hand sides switched by the selector factor (`PolyLevelSet.switch`), each row with its
 own slack. Halving and negating are exact, so the switch costs no slack.
+
+## Inputs
+* `P₁` – constraint of first operand
+* `P₂` – constraint of second operand
+
+## Output
+* both constraints switched by the selector factor
 -/
 
 -- Authors:       Claude Opus 5.5

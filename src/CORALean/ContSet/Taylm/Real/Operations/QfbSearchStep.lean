@@ -15,6 +15,15 @@ of it, on the domain box `D = [-1, 1]ⁿ` of a Taylor model: a step of length `�
 `∇P₂(x) = g + Hx` for `P₂ = c + g ⬝ x + ½ x ⬝ Hx` with `H` symmetric, then every coordinate limited
 to `[-1, 1]`. The series is the iterate `x₀⁽ⁱ⁾ = step^[i] x₀⁽⁰⁾`.
 
+## Inputs
+* `H` – Hessian matrix
+* `g` – gradient
+* `α` – step length
+* `x` – current point
+
+## Output
+* point after one step along the negative gradient, kept in the unit box
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

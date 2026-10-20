@@ -8,6 +8,17 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 
 /-!
 # Scaling every coefficient scales the polynomial
+
+## Inputs
+* `a` – scalar
+* `L` – terms of the polynomial
+* `t` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* scaling every coefficient scales the value
 -/
 
 -- Authors:       Claude Opus 5.5

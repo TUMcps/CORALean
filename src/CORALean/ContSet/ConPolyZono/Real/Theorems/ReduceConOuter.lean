@@ -11,16 +11,26 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemEliminateOfMem
 /-!
 # `ConPolyZono.reduceCon` over-approximates the set
 
-The operation and its guarantee are [1, Prop. 13]. Constraint row `r` reads
-`A(r,t) μ_t(α) + Σ_{i ≠ t} A(r,i) μ_i(α) = b(r)`, which solves for `μ_t(α)`
-whenever `A(r,t) ≠ 0`; eq. (33)'s other half, that generator `d` carries the
-same exponent column as constraint generator `t`, is what makes that solution
-land in the generator sum as well as in the constraints.
+The operation and its guarantee are [1, Prop. 13]. Constraint row `r` reads `A(r,t) μ_t(α) + Σ_{i
+≠ t} A(r,i) μ_i(α) = b(r)`, which solves for `μ_t(α)` whenever `A(r,t) ≠ 0`; eq. (33)'s other
+half, that generator `d` carries the same exponent column as constraint generator `t`, makes that
+solution land in the generator sum as well.
 
-An enclosure and not an equality, and the asymmetry is the substitution's: every
-factor vector the original admits satisfies the reduced system with the same
-value, but a factor vector of the reduced system need not put `μ_t(α)` where row
-`r` would have. Nothing here compensates for that, and [1] claims nothing more.
+An enclosure and not an equality: a factor vector of the reduced system need not put `μ_t(α)`
+where row `r` would have. [1] claims nothing more.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `r` – constraint to eliminate
+* `d` – generator to substitute into
+* `t` – constraint generator solved for
+
+## Hypotheses
+* `hE` – exponent columns of generator and constraint generator agree
+* `hA` – the pivot coefficient is nonzero
+
+## Conclusion
+* the set is contained in the result
 
 ## References
 

@@ -9,6 +9,12 @@ public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 
 The monomials of the constraint generators at the factors `0`: `1` for an exponent column that is
 zero, `0` otherwise.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* monomial values at the zero factor vector
 -/
 
 -- Authors:       Claude Opus 5.5

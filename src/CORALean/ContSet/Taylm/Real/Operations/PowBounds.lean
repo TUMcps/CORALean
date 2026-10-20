@@ -12,6 +12,14 @@ The power of an interval in interval arithmetic: `[1, 1]` at `k = 0`, for odd `k
 the monotone `xᵏ`, for even `k` from `0` (when the interval holds it) or the smaller end's power
 to the larger one's. The building block of [1, Eq. 12].
 
+## Inputs
+* `l` – lower end
+* `u` – upper end
+* `k` – exponent
+
+## Output
+* range of the power over the interval
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

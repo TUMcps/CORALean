@@ -11,15 +11,21 @@ public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZon
 /-!
 # `quadMapDep` is exact where every coefficient is dependent
 
-The expansion is `PolyZonotope`'s, at a fixed factor vector: a point is one sum
-once the center is generator zero, and the product of two monomials is the
-monomial of the added exponent columns. That is why the two lemmas it needs are
-public there — a set equality would not do, since the constraint has to survive
-with the *same* factor vector on both sides.
+The expansion is `PolyZonotope`'s, at a fixed factor vector: a point is one sum once the center is
+generator zero, and the product of two monomials is the monomial of the added exponent columns.
+The two lemmas it needs are public there, since a set equality would not do: the constraint has to
+survive with the *same* factor vector on both sides. The witnesses are unchanged, so the
+constraint they satisfy is, `quadMapDep` copying `A`, `b` and `R` across.
 
-Which is the whole content. The witnesses are unchanged, so the constraint they
-satisfy is unchanged, and it is the same proposition before and after because
-`quadMapDep` copies `A`, `b` and `R` across.
+## Inputs
+* `Q` – family of quadratic forms
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* `hq` – no independent generators
+
+## Conclusion
+* the image under the quadratic map is the result's set
 -/
 
 -- Authors:       Claude Opus 5

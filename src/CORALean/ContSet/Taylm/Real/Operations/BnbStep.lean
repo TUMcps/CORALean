@@ -12,6 +12,13 @@ Lines 8-29 of [1, Alg. 1], for any way `bnd` of bounding a box: find the box who
 the upper bound and the one whose interval holds the lower bound; if they are one box, halve it,
 otherwise halve each. The source's `α̅` and `α̲`; lines 15-16, 22-23 and 28-29 are `bnd` itself.
 
+## Inputs
+* `bnd` – bounding function on a box
+* `l` – current list of boxes
+
+## Output
+* list of boxes after one bisection step
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

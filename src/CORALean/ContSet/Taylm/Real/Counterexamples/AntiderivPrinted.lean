@@ -17,6 +17,15 @@ public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 remainder `([0, 0] + [0, 1])·2 = [0, 2]`, but `∫₀ˣ f = x + x³/3` is `x - 1/3` at `x = -1`, below
 `x + 0`: for negative `x` the integral of a positive remainder is negative.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed antiderivative does not enclose the integral
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

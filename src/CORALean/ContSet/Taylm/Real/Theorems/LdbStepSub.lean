@@ -10,6 +10,16 @@ public import CORALean.ContSet.Taylm.Real.Operations.LdbStep
 `d/|Lᵢ| < 2` is the condition under which [1, Sec. 2] shrinks direction `i`, so the kept part ends
 inside `[-1, 1]`.
 
+## Inputs
+* `T` – Taylor model
+* `k` – variable index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the kept box lies in the unit box
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

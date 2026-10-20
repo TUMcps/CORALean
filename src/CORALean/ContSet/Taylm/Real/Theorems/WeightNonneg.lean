@@ -8,6 +8,16 @@ public import CORALean.ContSet.Taylm.Real.Definitions.Scaled
 # The weight is nonnegative
 
 A sum of magnitudes over positive powers of a positive `h`.
+
+## Inputs
+* `L` – terms of the polynomial
+* `h` – domain radius
+
+## Hypotheses
+* `h0` – radius is positive
+
+## Conclusion
+* the weight is nonnegative
 -/
 
 -- Authors:       Claude Opus 5.5

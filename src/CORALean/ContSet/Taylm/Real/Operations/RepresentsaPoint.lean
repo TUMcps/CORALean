@@ -15,6 +15,12 @@ the same variables, as in `Taylm.polyZonotope`. The other types, and the second 
 
 At `point` the polynomial zonotope's test is sufficient only: every generator is `0`, before
 CORA's compaction.
+
+## Inputs
+* `T` – family of Taylor models
+
+## Output
+* proposition that the range set is a single point
 -/
 
 -- Authors:       Claude Opus 5.5

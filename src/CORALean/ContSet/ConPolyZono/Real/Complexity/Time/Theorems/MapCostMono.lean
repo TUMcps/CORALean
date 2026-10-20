@@ -11,6 +11,29 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.Map
 
 Monotone in the factor count, both generator counts and the constraint sizes, so bounds on the
 operand's sizes give a bound on the cost.
+
+## Inputs
+* `p` – smaller factor count
+* `p'` – larger factor count
+* `h` – smaller dependent generators
+* `h'` – larger dependent generators
+* `qI` – smaller independent generators
+* `q'` – larger independent generators
+* `m` – smaller constraint count
+* `m'` – larger constraint count
+* `q` – smaller constraint generators
+* `q''` – larger constraint generators
+* `cf` – cost of one application
+
+## Hypotheses
+* `hp` – factor counts are ordered
+* `hh` – dependent generator counts are ordered
+* `hq` – independent generator counts are ordered
+* `hm` – constraint counts are ordered
+* `hc` – constraint generator counts are ordered
+
+## Conclusion
+* the cost is monotone in all the counts
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

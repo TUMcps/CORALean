@@ -12,6 +12,15 @@ public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
 `arctan_add` at `f` and `-c_f`, which needs `f·(-c_f) < 1`: the corrected condition is
 `1 + c_f·f > 0` on the domain, without which the formula fails (`AtanShift`).
 
+## Inputs
+* none
+
+## Hypotheses
+* `h` – the denominator of the shift is positive
+
+## Conclusion
+* the arctangent addition formula holds
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

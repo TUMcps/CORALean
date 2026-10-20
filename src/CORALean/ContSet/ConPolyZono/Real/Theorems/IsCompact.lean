@@ -13,6 +13,15 @@ The continuous image of a compact domain. Not convex, and not closed for any
 reason a zonotope is closed — the set is a polynomial image of a cube cut by
 polynomial constraints — but compact all the same, which is what an algorithm
 enclosing an integral asks for.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is compact
 -/
 
 -- Authors:       Claude Opus 5

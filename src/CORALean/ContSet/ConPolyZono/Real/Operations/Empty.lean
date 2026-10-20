@@ -10,6 +10,12 @@ public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 CORA's `conPolyZono.empty(n)`: no generators and a single constraint row that cannot hold. The
 row has the empty constraint matrix (`q = 0`, so `A μ = 0`) and the right-hand side `1`, so
 `0 = 1` is required of every factor vector and none is admitted.
+
+## Inputs
+* `n` – ambient dimension
+
+## Output
+* the empty set
 -/
 
 -- Authors:       Claude Opus 5.5

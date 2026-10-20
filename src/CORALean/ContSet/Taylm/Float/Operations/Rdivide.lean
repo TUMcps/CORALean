@@ -8,6 +8,13 @@ public import CORALean.ContSet.Taylm.Float.Operations.Inv
 # `Taylm.rdivide`, over a floating-point scalar
 
 A model over a model, CORA's `priv_inverse` then `times`: `T₁ · (1/T₂)`.
+
+## Inputs
+* `T₁` – numerator
+* `T₂` – denominator
+
+## Output
+* Taylor model of the quotient
 -/
 
 -- Authors:       Claude Opus 5.5

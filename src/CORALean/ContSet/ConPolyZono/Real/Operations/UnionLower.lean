@@ -19,6 +19,13 @@ own systems on their own factors (`PolyLevelSet.cartProd`), the two fresh factor
 second, so that a row binds on its own branch and loses its right-hand side on the other. That is
 CORA's `@conPolyZono/or`, `[blkdiag(A₁, A₂), [-b₁; b₂] / 2]` over `b / 2`.
 
+## Inputs
+* `P₁` – constraint of first operand
+* `P₂` – constraint of second operand
+
+## Output
+* both constraints switched by the selector factor
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

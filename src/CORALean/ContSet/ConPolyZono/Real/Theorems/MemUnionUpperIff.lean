@@ -18,6 +18,17 @@ public import Mathlib.Tactic.FinCases
 domains. The two rows are two systems stacked over the same factors, so each is read on its own
 (`PolyLevelSet.mem_andRows_iff`).
 
+## Inputs
+* `p₁` – factor count of first operand
+* `p₂` – factor count of second operand
+* `a` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the selector rows hold exactly when factors are bounded and the polynomial vanishes
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

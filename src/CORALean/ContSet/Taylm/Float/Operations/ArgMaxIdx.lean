@@ -9,6 +9,12 @@ public import CORALean.ContSet.Taylm.Float.Taylm
 
 The index of a largest entry, the first index when none is certified larger than the running best
 by `le`.
+
+## Inputs
+* `v` – list of floats
+
+## Output
+* index of the largest entry
 -/
 
 -- Authors:       Claude Opus 5.5

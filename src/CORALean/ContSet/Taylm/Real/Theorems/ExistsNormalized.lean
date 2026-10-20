@@ -10,6 +10,16 @@ public import CORALean.ContSet.Taylm.Real.Definitions.Box
 
 `t = mid + rad ⊙ s` for some `s` in the normalized box, `sₖ = 0` along a direction of radius
 zero: how a statement about a re-expanded model reaches the box's points.
+
+## Inputs
+* `B` – box
+* `t` – point
+
+## Hypotheses
+* `ht` – point lies in the box
+
+## Conclusion
+* the point has normalized coordinates in the unit box
 -/
 
 -- Authors:       Claude Opus 5.5

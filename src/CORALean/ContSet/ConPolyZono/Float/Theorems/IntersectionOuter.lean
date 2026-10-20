@@ -12,6 +12,16 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.DependentExact
 `intersectionDep_outer` at the two dependent forms `intersection` builds its argument from, the
 first intersection in this repository that a machine can run on non-convex
 sets.
+
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Hypotheses
+* none
+
+## Conclusion
+* the intersection is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

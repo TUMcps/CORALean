@@ -10,6 +10,18 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PowMaxOrder
 
 `taylor` sums `N + 1` scaled powers of `T - c`, each at the model's order, and adds a remainder
 of order `0`; the larger order wins.
+
+## Inputs
+* `T` – Taylor model
+* `g` – outer function
+* `c` – center
+* `D` – derivative bound
+
+## Hypotheses
+* none
+
+## Conclusion
+* the expansion keeps the model's order
 -/
 
 -- Authors:       Claude Opus 5.5

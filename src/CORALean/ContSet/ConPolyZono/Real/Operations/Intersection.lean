@@ -16,6 +16,13 @@ two constrained polynomial zonotopes intersect to one, exactly.
 independent coefficient answers to no constraint, so it could move the two
 points apart with nothing in the system to forbid it. Freeing the independent
 blocks into factors first is what makes this exact where CORA's `and_` encloses.
+
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Output
+* intersection of the two sets
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

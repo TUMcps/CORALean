@@ -16,6 +16,13 @@ Both sets' factors side by side: each set's equations on its own factors
 (`PolyLevelSet.cartProd`), and with them the rows pinning the two points together
 (`agreeCons`, `PolyLevelSet.andRows`, on the factors' unit box). Exact where both independent
 blocks are empty (`intersectionDep_exact`); `intersection` arranges that.
+
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Output
+* intersection for dependent-only operands
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

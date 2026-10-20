@@ -14,6 +14,13 @@ The two selector rows of [1, Thm. 1], the upper half of its constraint, stacked 
 factors by `PolyLevelSet.andRows`: `α₁α₂ = 1` (`unionSelRow`) and the selector polynomial `= 0`
 (`unionConRow`). Block-diagonal, since neither row reads the other's monomials.
 
+## Inputs
+* `p₁` – factor count of first operand
+* `p₂` – factor count of second operand
+
+## Output
+* both selector rows on the unit box
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

@@ -18,6 +18,12 @@ A Taylor model of `arctan ∘ f` as [1, Def. 3 (arctan)] asks, but expanded at `
 rather than through the source's addition formula, which needs `1 + c_f·f > 0`
 (`AtanShift`).
 
+## Inputs
+* `T` – Taylor model
+
+## Output
+* Taylor model of arctan of the argument
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

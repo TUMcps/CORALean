@@ -11,13 +11,21 @@ public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.Depe
 
 Asserted, not proved, and no longer zero: `Operations/Dependent.lean` concatenates the generator
 blocks, lays `identE` beside the exponent matrix and pads the constraint block with `padE`. Every
-entry of any of these is one the operand already held or a literal `0` or `1`, so nothing is
-computed, but the result is a new object and each of its entries is a write: those of
-`PolyZonotope.dependentCost`, and the constraint block, `A`, `b` and the padded `R`
-at `p + qI` rows.
+entry is one the operand already held or a literal `0` or `1`, so nothing is computed, but the
+result is a new object and each entry is a write: those of `PolyZonotope.dependentCost`, and the
+constraint block `A`, `b` and the padded `R` at `p + qI` rows. `quadMapCost` and
+`intersectionCost` pay it first.
 
-Worth stating exactly as `PolyZonotope.dependentCost` is: `quadMapCost` and `intersectionCost`
-pay it before they do anything else.
+## Inputs
+* `n` – ambient dimension
+* `p` – number of factors
+* `h` – dependent generators
+* `qI` – independent generators
+* `m` – number of constraints
+* `q` – constraint generators
+
+## Output
+* cost of making the generators dependent
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

@@ -12,6 +12,24 @@ public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Operations.QuadM
 
 Monotone in both generator counts, so bounds on the operand's sizes give a
 bound on the cost.
+
+## Inputs
+* `h` – smaller dependent generators
+* `h'` – larger dependent generators
+* `qI` – smaller independent generators
+* `q'` – larger independent generators
+* `m` – number of matrices
+* `n` – ambient dimension
+* `p` – number of factors
+* `mC` – number of constraints
+* `q` – constraint generators
+
+## Hypotheses
+* `hh` – dependent generator counts are ordered
+* `hq` – independent generator counts are ordered
+
+## Conclusion
+* the cost is monotone in both generator counts
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

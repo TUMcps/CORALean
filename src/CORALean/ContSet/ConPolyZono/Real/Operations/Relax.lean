@@ -16,6 +16,13 @@ row read by that row alone, and the fresh factors enter no generator. `γᵢ ∈
 Not one of CORA's operations: it is what a float set's per-row slack `b_error` denotes, so that the
 float layer's nominal set is an exact `ConPolyZono` with `=` rows, and how an inequality row
 becomes one (`ConZonotope.conPolyZono`). `mem_relax_iff` says what the result denotes.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `s` – slack per constraint row
+
+## Output
+* same set with each row widened by its slack
 -/
 
 -- Authors:       Claude Opus 5.5

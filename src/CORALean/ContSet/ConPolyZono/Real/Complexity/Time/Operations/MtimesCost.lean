@@ -12,6 +12,18 @@ Asserted, not proved: `Operations/Mtimes.lean` sends the center and each of the
 `h + qI` generators through `M *ᵥ ·` and carries the constraint system over
 unchanged, so the whole count is `mapCost` at `Cost.matVec k n`, the constraint system's entries
 being writes of the result.
+
+## Inputs
+* `k` – rows of the matrix
+* `n` – ambient dimension
+* `p` – number of factors
+* `h` – dependent generators
+* `qI` – independent generators
+* `m` – number of constraints
+* `q` – constraint generators
+
+## Output
+* cost of the matrix product
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

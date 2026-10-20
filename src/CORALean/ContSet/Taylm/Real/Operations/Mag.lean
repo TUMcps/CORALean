@@ -10,6 +10,12 @@ public import CORALean.ContSet.Taylm.Real.Operations.Bounds
 The largest `|x|` over the constant part and the range: every point between the center and
 the range lies within it. The derivative bounds of `sinh`, `cosh`, `tanh`, `tan`, `atan`,
 `asin` and `acos` are stated at this one number.
+
+## Inputs
+* `T` – Taylor model
+
+## Output
+* largest absolute value over the constant part and the range
 -/
 
 -- Authors:       Claude Opus 5.5

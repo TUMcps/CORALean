@@ -11,6 +11,12 @@ public import CORALean.ContSet.PolyLevelSet.Real.Operations.Compact
 Equal constraint exponent columns added together and the zero columns gone: the constraint's own
 `PolyLevelSet.compact`, the generators untouched. `b` stands: a merged column is exact, and a
 column at exponent zero stays a column here rather than moving into the bound.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* same set with equal constraint columns merged
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

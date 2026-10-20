@@ -8,20 +8,20 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.Dependent
 /-!
 # `ConPolyZono.intersection`
 
-The operation the representation exists for. Here a set is a nominal one plus an error box, so
-the two points that have to agree are `y₁ + e₁` and `y₂ + e₂`, and it is the *nominal* points
-the rows can speak about. Those differ by `e₂ - e₁`, which the two boxes bound, so the rows say
-the nominal points agree only to within
+Here a set is a nominal one plus an error box, so the points that have to agree are `y₁ + e₁` and
+`y₂ + e₂`, and the rows can only speak about the nominal points. These differ by `e₂ - e₁`, so the
+rows say they agree to within `c₂ − c₁ + [err₂.inf − err₁.sup, err₂.sup − err₁.inf]`, each end
+rounded outward, recorded as a right-hand side `b` with slack `b_error`.
 
-  `c₂ − c₁ + [err₂.inf − err₁.sup, err₂.sup − err₁.inf]`,
+The result keeps `cPZ₁`'s error box and generator block; `cPZ₂` enters through the constraints
+alone.
 
-each end rounded away from the other, so the rounding of `c₂ − c₁` costs nothing extra. Only
-that interval is computed, and it is recorded as a right-hand side with its slack: the lower end
-as `b`, the width above it, rounded up, as `b_error`, which reads it as `[lo, 2 hi − lo]`.
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
 
-The result keeps `cPZ₁`'s error box and only `cPZ₁`'s generator block: the point it
-denotes is `y₁ + e₁`, and `cPZ₂` enters through the constraint system alone, its
-generator columns kept at `zero` so the agreement rows can read the second point.
+## Output
+* enclosure of the intersection
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

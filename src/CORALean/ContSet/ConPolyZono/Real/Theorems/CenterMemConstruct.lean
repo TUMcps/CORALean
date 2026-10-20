@@ -15,6 +15,17 @@ CORA's `center` returns the field `c` with no guarantee. At the factor vector `0
 vanishes when no exponent column of `E` (and of `R`) is zero, so the point is `c`; the constraint
 `A μ(0) = b` then reads `0 = b`. Without these hypotheses `c` need not lie in the set: one
 generator `1` with exponent column `0` denotes `{c + 1}`.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* `hE` – exponent matrix has no zero column
+* `hR` – constraint exponents have no zero column
+* `h0` – constraint offset is zero
+
+## Conclusion
+* the center belongs to the set
 -/
 
 -- Authors:       Claude Opus 5.5

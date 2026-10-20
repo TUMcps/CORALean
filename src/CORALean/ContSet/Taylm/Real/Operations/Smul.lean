@@ -14,6 +14,13 @@ ends.
 
 The scalar factors of [1, Eq. 6] and [1, Eq. 7], `(αP, α[I])`.
 
+## Inputs
+* `a` – scalar
+* `T` – Taylor model
+
+## Output
+* Taylor model scaled by the scalar
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

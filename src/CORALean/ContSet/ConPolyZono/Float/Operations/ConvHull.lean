@@ -12,6 +12,13 @@ CORA's `@conPolyZono/convHull_`, [1, Prop. 9]: the convex hull of two constraine
 polynomial zonotopes, as `n + 1` weighted copies of their linear combination. Pinned to `Vec`, the
 count of copies being the ambient dimension plus one.
 
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Output
+* convex hull enclosure
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

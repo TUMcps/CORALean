@@ -11,6 +11,14 @@ public import CORALean.Global.Partition
 How far the dropped generators of both blocks reach in each coordinate. A
 monomial and an independent coefficient obey the same bound, so one box
 covers the two blocks together.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `partD` – split of the dependent generators
+* `partI` – split of the independent generators
+
+## Output
+* box reaching the dropped generators
 -/
 
 -- Authors:       Claude Opus 5

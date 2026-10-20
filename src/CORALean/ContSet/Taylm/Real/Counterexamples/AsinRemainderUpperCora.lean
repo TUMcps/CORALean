@@ -53,6 +53,15 @@ For `taylm(interval(-1, 1), 7)` the polynomial is `x + x³/6 + 3x⁵/40 + 5x⁷/
 interval `[0, (π/2)⁸/8!] ≈ [0, 0.00092]` (the unit test `test_taylm_asin` asserts it). At
 `x = 1` the model is therefore `[1.2863, 1.2872]`, while `asin 1 = π/2 ≈ 1.5708`: the true error
 of the polynomial is `0.2845`. Read from the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's arcsine enclosure at one misses arcsin one from above
 -/
 
 -- Authors:       Claude Sonnet 5.5

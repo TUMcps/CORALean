@@ -13,6 +13,15 @@ One variable of the re-expansion: `sₖ` replaced by `m + r · sₖ`, every term
 the exponent of that variable, `(m + r sₖ)ᵉ = Σⱼ C(e, j) mᵉ⁻ʲ rʲ sₖʲ`. Each coefficient is the
 term's times the bracketed binomial one; the upper corner is stored and the width goes to the
 error box, a monomial being at most one in magnitude on the box. The remainder is kept.
+
+## Inputs
+* `k` – variable index
+* `m` – center
+* `r` – radius
+* `T` – Taylor model
+
+## Output
+* Taylor model with that variable re-expanded
 -/
 
 -- Authors:       Claude Opus 5.5

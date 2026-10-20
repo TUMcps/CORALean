@@ -12,6 +12,21 @@ public import CORALean.Global.TaylorRemainder
 
 `taylor_remainder_abs_le` at the constant part with derivative bound one, then the reach and the
 factorial below their roundings, as in `Taylm.exp_outer`.
+
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `g` – outer function
+* `t` – point
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hg` – outer function is smooth
+* `hD` – its derivative is at most one
+* `ht` – point lies in the unit box
+
+## Conclusion
+* the Lagrange remainder at the point is within the unit remainder bound
 -/
 
 -- Authors:       Claude Opus 5.5

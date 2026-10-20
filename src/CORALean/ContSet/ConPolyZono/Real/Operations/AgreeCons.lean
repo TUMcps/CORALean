@@ -12,6 +12,13 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
 The rows of `intersectionDep` that pin the two points together, as a polynomial level set on both
 sets' factors: in coordinate `i`, the first set's dependent part minus the second's equals
 `c₂ᵢ - c₁ᵢ`, read against both generator exponent matrices side by side (`agreeRow`).
+
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Output
+* constraint pinning the two points together
 -/
 
 -- Authors:       Claude Opus 5.5

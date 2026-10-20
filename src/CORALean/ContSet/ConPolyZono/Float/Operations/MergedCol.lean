@@ -10,6 +10,14 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
 
 The merged generator column as stored: the lower of the two directed fibre
 sums, `repKeep` naming the one column per class that survives.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `i` – coordinate
+* `j` – kept column
+
+## Output
+* merged generator entry, rounded down
 -/
 
 -- Authors:       Claude Opus 5

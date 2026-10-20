@@ -19,6 +19,18 @@ not make the list executable: an intrinsic's condition is checked on the model i
 whose bound may be wider than the range. So the theorem is stated for a run that returns a model,
 and `codeEval` returns `none` exactly where an intrinsic's condition fails.
 
+## Inputs
+* `m` – number of variables
+* `N` – expansion order
+* `F` – variable models
+* `f` – variable functions
+
+## Hypotheses
+* `hF` – each model encloses its function
+
+## Conclusion
+* any evaluated model encloses the code list's function
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

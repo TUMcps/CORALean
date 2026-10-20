@@ -13,6 +13,13 @@ A box of `n` coordinates is a pair of bounds per coordinate, the `[x]` that [1, 
 `InBox` is membership, and `Covers X l` says the boxes `l` together contain `X`, the invariant
 branch and bound keeps.
 
+## Inputs
+* `B` – box
+* `t` – point
+
+## Output
+* proposition that the point lies in the box
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

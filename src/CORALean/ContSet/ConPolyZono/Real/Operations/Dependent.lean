@@ -11,20 +11,20 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
 /-!
 # `ConPolyZono.dependent`
 
-`PolyZonotope.dependent` with the constraints carried along: every independent
-generator made dependent, by giving it a fresh factor that appears in it alone
-and to the first power. Exact, and cheaply so — a factor occurring in one
-generator only is as free as the coefficient it replaces.
+`PolyZonotope.dependent` with the constraints carried along: every independent generator made
+dependent, by giving it a fresh factor that appears in it alone and to the first power. Exact,
+since a factor occurring in one generator only is as free as the coefficient it replaces.
 
-Here it earns more than it does for a polynomial zonotope. The constraints reach
-the dependent factors and nothing else, so an operation stated as a constraint —
-`intersection` above all — is exact only on a set whose coefficients are all dependent.
-`dependent` is what makes that a restriction on nothing: it is applied first,
-and it loses nothing.
+The constraints reach the dependent factors and nothing else, so an operation stated as a
+constraint, `intersection` above all, is exact only on a set whose coefficients are all dependent;
+`dependent` is applied first. The fresh factors take exponent zero in every constraint row
+(`padE`).
 
-The fresh factors take exponent zero in every constraint row, which is what
-`padE` says. They have to: the constraints were written against the original
-factors, and a fresh factor appearing in one would silently change them.
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* same set with independent generators made dependent
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

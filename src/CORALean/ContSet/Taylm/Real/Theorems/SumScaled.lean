@@ -12,6 +12,20 @@ Models scaled by `C i` at a common order `N` sum to one whose weight is at most 
 remainder is at most `(Σ C i)·hᴺ⁺¹`. The empty sum has order `0`, so the result's order is only
 at most `N`, which is the direction [1, Thm. 1] can use.
 
+## Inputs
+* `m` – number of models
+* `T` – family of models
+* `h` – domain radius
+* `C` – scaling constants
+* `N` – expansion order
+
+## Hypotheses
+* `hN` – each model has the expansion order
+* `hT` – each model is scaled by its constant
+
+## Conclusion
+* the sum's weight and remainders are bounded by the summed constants
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

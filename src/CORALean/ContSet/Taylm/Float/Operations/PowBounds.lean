@@ -13,6 +13,14 @@ The range of `t ^ k` over `[l, u]`, by the float interval power `Interval.power`
 interval `[l, u]` is wrapped as a box of one coordinate and read back at coordinate `0`: `P` itself
 has the type `Interval (Vec 𝕋 1)`, not the `Interval 𝕋` that `Taylm.prodBounds` multiplies, so
 returning it directly does not typecheck. The two ends are those of `P`, nothing else is changed.
+
+## Inputs
+* `l` – lower end
+* `u` – upper end
+* `k` – exponent
+
+## Output
+* range of the power over the interval
 -/
 
 -- Authors:       Claude Opus 5.5

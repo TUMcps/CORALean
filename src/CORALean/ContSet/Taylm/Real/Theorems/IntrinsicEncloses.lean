@@ -25,6 +25,17 @@ Whenever `Taylm.intrinsic` returns a model, its condition held, and the operatio
 theorem says the model encloses the intrinsic of the enclosed function: the source's intrinsics, one
 intrinsic at a time, as the induction of [1, Thm. 2] uses it.
 
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `s` – intrinsic
+
+## Hypotheses
+* `h` – the model encloses the function
+
+## Conclusion
+* any returned model encloses the intrinsic of the function
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

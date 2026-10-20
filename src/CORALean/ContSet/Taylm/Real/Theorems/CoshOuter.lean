@@ -14,6 +14,16 @@ The magnitude bounds the hull, and `cosh` is monotone in `|x|`.
 
 [1, Def. 3 (cosh)]: the result is a Taylor model of `cosh ∘ f`.
 
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+
+## Conclusion
+* the result encloses hyperbolic cosine of the function
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

@@ -18,6 +18,15 @@ The binomial expansion itself is not reproved here: it is
 `PolyZonotope.getSubset_point`'s, read at the generators in `Theorems/GetSubsetConstruct.lean`
 and at the rows in `PolyLevelSet.eval_getSubset`.
 
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `r` – factor index
+* `cen` – center of the subinterval
+* `rad` – radius of the subinterval
+
+## Output
+* the part of the set on that subinterval
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

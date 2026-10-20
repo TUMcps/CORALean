@@ -18,6 +18,17 @@ exponent matrices block-diagonally, widened by the two fresh factors.
 The `α₂` row is zero throughout — `α₂` exists only to pin `α₁`'s sign — which is
 why the fresh factors enter here through `padE` and not otherwise.
 
+## Inputs
+* `p₁` – factors of first operand
+* `h₁` – generators of first
+* `p₂` – factors of second operand
+* `h₂` – generators of second
+* `E₁` – first exponent matrix
+* `E₂` – second exponent matrix
+
+## Output
+* exponent matrix of the union
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

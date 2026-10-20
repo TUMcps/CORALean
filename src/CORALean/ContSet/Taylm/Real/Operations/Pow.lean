@@ -9,6 +9,12 @@ public import CORALean.ContSet.Taylm.Real.Operations.Times
 
 CORA's `power` and `mpower` at a natural exponent on one model: `times` repeated, each
 product truncated at the model's order, starting from the constant one.
+
+## Inputs
+* `T` – Taylor model
+
+## Output
+* function giving the model's power for each exponent
 -/
 
 -- Authors:       Claude Opus 5.5

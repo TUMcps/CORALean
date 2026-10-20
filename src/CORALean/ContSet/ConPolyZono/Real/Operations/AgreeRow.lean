@@ -9,6 +9,14 @@ public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 
 The row pinning the two points together in one coordinate, read against the
 concatenated generator monomials.
+
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+* `i` – coordinate
+
+## Output
+* constraint row for that coordinate
 -/
 
 -- Authors:       Claude Opus 5

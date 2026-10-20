@@ -11,6 +11,20 @@ public import CORALean.ContSet.Taylm.Real.Theorems.HalveBoxSub
 The cutoff is always some point's upper estimate, a point of a live box inside `X`, so the minimum
 over `X` is at most the cutoff, [1, Sec. 4].
 
+## Inputs
+* `f` – enclosed function
+* `lb` – lower bounding function
+* `ub` – upper bounding function
+* `X` – domain box
+* `fuel` – step budget
+
+## Hypotheses
+* `hub` – the upper bounding function dominates the function on the box
+* `hX` – the box ends are ordered
+
+## Conclusion
+* some point of the box has a value below the upper end
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

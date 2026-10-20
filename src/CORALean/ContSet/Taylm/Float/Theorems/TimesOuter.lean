@@ -20,6 +20,19 @@ for the two operands with their boxes absorbed (`absorbRounding_nominal`, so the
 enclose), with two more summands, the rounding of the kept and of the dropped coefficient products,
 each bounded by `abs_polyOf_round_le`, the kept one the result's error box, and every sum of the
 remainder rounded outward.
+
+## Inputs
+* `T₁` – first model
+* `T₂` – second model
+* `f` – first function
+* `g` – second function
+
+## Hypotheses
+* `h₁` – the first model encloses its function
+* `h₂` – the second model encloses its function
+
+## Conclusion
+* the product model encloses the product of the functions
 -/
 
 -- Authors:       Claude Opus 5.5

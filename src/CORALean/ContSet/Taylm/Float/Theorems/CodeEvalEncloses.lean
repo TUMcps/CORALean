@@ -19,6 +19,21 @@ constants as reals. By induction over the code list, as the source proves it; th
 paid inside each operation, so `P` is not the Taylor polynomial, only an enclosure's. As for
 [1, Thm. 2], the statement is for a run that returns a model.
 
+## Inputs
+* `m` – number of variables
+* `p` – precision of the exponential
+* `q` – precision of the logarithm
+* `s` – precision of the trigonometric functions
+* `N` – expansion order
+* `F` – variable models
+* `f` – variable functions
+
+## Hypotheses
+* `hF` – each model encloses its function
+
+## Conclusion
+* any evaluated model encloses the code list's function
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

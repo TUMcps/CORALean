@@ -14,6 +14,13 @@ The second selector row of [1, Thm. 1]: the selector polynomial `= 0`, its coeff
 `unionConCoef` on the monomials `unionConCol` names, one equation that cuts the factor cube down
 to the two branch domains.
 
+## Inputs
+* `p₁` – factor count of first operand
+* `p₂` – factor count of second operand
+
+## Output
+* selector polynomial constraint on the unit box
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

@@ -10,6 +10,12 @@ public import CORALean.ContSet.Taylm.Real.Taylm
 At `0`: twice the coefficient of `xₖ²` on the diagonal, the coefficient of `xₖxₗ` off it, as
 CORA's `optLinQuad` reads it. The `H` of [1, Sec. 3].
 
+## Inputs
+* `L` – terms of the polynomial
+
+## Output
+* Hessian matrix of the terms at zero
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

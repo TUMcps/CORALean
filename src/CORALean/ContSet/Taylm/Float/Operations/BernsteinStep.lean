@@ -15,6 +15,15 @@ the ratio from `divDown` of the rounded-down numerator by the rounded-up denomin
 of the rounded-up numerator by the rounded-down denominator when that is at least one, else by
 the bound `1` (`C(j, i) ≤ C(N, i)`); the signed integer from its directed roundings;
 the corner products. Zero for `i > j`, where `C(j, i) = 0`.
+
+## Inputs
+* `N` – degree
+* `e` – exponent
+* `j` – coefficient row index
+* `i` – term index
+
+## Output
+* enclosure of that term of the Bernstein entry
 -/
 
 -- Authors:       Claude Opus 5.5

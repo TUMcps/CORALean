@@ -14,6 +14,18 @@ public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
 
 The integer, the two powers and their products each lie between their directed roundings, so
 `C(e, j) · mᵉ⁻ʲ · rʲ` lies between the two floats `binomCoef` returns.
+
+## Inputs
+* `e` – exponent
+* `j` – term index
+* `m` – center
+* `r` – radius
+
+## Hypotheses
+* none
+
+## Conclusion
+* the binomial term lies in its enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

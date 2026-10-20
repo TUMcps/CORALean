@@ -15,6 +15,17 @@ The remainder scales as an interval: `a (f - p)` lies between the corner product
 
 With `plus_outer` and `minus_outer`, the linear combinations of [1, Eq. 6] and [1, Eq. 7].
 
+## Inputs
+* `a` – scalar
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+
+## Conclusion
+* the scaled model encloses the scaled function
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

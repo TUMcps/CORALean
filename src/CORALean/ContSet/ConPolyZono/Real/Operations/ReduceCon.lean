@@ -11,21 +11,24 @@ public import Mathlib.Data.Real.Basic
 /-!
 # `ConPolyZono.reduceCon`
 
-[1, Prop. 13]: constraint `r` is solved for the monomial of its constraint
-generator `t`, and that monomial is substituted everywhere it occurs — in
-generator `d`, which eq. (33) asks to carry the very same exponent column, and
-in the constraint rows that stay, the latter being the constraint's own
-`PolyLevelSet.eliminate`. One constraint and one constraint generator are gone, the generators
-grow by one per surviving constraint generator.
+[1, Prop. 13]: constraint `r` is solved for the monomial of its constraint generator `t`, and that
+monomial is substituted everywhere it occurs, in generator `d` (which eq. (33) asks to carry the
+same exponent column) and in the constraint rows that stay (`PolyLevelSet.eliminate`). One
+constraint and one constraint generator are gone.
 
-[1] follows this with `compactGens` and with restricting the exponent rows to
-those that are not all zero. Neither is applied here: [1] says of both that they
-only change the representation, and `compactGens` is its own operation.
+[1] follows this with `compactGens` and a restriction of the exponent rows; neither is applied
+here. Real only: the construction divides by `A(r,t)`, and a rounded quotient is not a rounded
+set, so a float layer wants an interval-valued correction.
 
-Real only. The construction divides by `A(r,t)`, and a rounded quotient is not a
-rounded *set* — the surviving rows would constrain something else — so a float
-layer wants an interval-valued correction, which is a design and not a rounding
-of this one.
+## Inputs
+* `α` – ambient type
+* `cPZ` – constrained polynomial zonotope
+* `r` – constraint to eliminate
+* `d` – generator to substitute into
+* `t` – constraint generator solved for
+
+## Output
+* same set with the constraint eliminated
 
 ## References
 

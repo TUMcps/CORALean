@@ -16,6 +16,13 @@ This is the addition of [1, Def. 2], `(P₁ + P₂, I₁ + I₂)`.
 
 The sum of [2, Eq. 6], with the scalars through `smul`.
 
+## Inputs
+* `T₁` – first model
+* `T₂` – second model
+
+## Output
+* Taylor model of the sum
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

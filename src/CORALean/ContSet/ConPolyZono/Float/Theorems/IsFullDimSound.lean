@@ -19,6 +19,16 @@ nominal set contains `y₀ + GI β` for every `|βⱼ| ≤ 1`, with `y₀` the c
 generators weighted by their monomials at `0`; the checked rows then put the open box of radius
 `B` around `y₀` inside it (`Zonotope.ballCert_reach`), and the error box's lower corner keeps an
 interior point.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `H` – matrix of independent generators
+
+## Hypotheses
+* `h` – the test returns true
+
+## Conclusion
+* the set has an interior point
 -/
 
 -- Authors:       Claude Opus 5.5

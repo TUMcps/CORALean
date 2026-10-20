@@ -9,6 +9,12 @@ public import CORALean.ContSet.Taylm.Float.Operations.Times
 
 Expansion along the first row, as in the exact layer. The sign `(-1)^j` is the exact float `one`
 or `neg one`, by the parity of `j`, scaling the entry as the point interval `[s, s]`.
+
+## Inputs
+* none
+
+## Output
+* Taylor model of the determinant
 -/
 
 -- Authors:       Claude Opus 5.5

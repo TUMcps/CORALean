@@ -18,6 +18,13 @@ the interval's supremum. The row `dir' * tay` is `Taylm.mtimes` at a one-row mat
 is `Taylm.bounds`, and the supremum is that range's upper end. An upper bound only: the range of
 a Taylor model's polynomial is enclosed, not attained. CORA's other types are not given (only
 `lower` and `range` are, its `else` branch being empty).
+
+## Inputs
+* `c` – direction as a linear functional
+* `T` – family of Taylor models
+
+## Output
+* upper bound of the functional on the set
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -13,6 +13,16 @@ side by side and would decouple the very columns this couples.
 
 `Theorems/MonomialAppendELeft` and `Theorems/MonomialAppendERight` read a
 monomial back off each half of the append.
+
+## Inputs
+* `p` – number of factors
+* `q` – columns of first matrix
+* `t` – columns of second matrix
+* `E₁` – first exponent matrix
+* `E₂` – second exponent matrix
+
+## Output
+* the two exponent matrices side by side
 -/
 
 -- Authors:       Claude Opus 5

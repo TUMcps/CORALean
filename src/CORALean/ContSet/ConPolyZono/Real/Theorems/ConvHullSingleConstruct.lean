@@ -9,16 +9,24 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.SumConvHullE
 /-!
 # What `convHullSingle` denotes
 
-The set of [1, Prop. 9]'s construction applied to one set, before Carathéodory
-is brought to bear on it: exactly the weighted sums of `a` of that set's points,
-with non-negative weights summing to one.
+The set of [1, Prop. 9]'s construction applied to one set, before Carathéodory is brought to bear
+on it: exactly the weighted sums of `a` of that set's points, with non-negative weights summing to
+one.
 
-Both halves are the same two lemmas read in opposite directions —
-`mem_convHullSingle_cons_iff` splitting the constraints into the copies' own plus the
-weight row, and `sum_convHullE` reading the generator sum back as a weighted sum
-of points. `qI = 0` is [1, Def. 5]'s representation, as for
-`linComb_exact_of_dependent`: a point of the set has to be its copy's, and an
+Both halves are the same two lemmas read in opposite directions: `mem_convHullSingle_cons_iff`
+splits the constraints into the copies' own plus the weight row, and `sum_convHullE` reads the
+generator sum back as a weighted sum of points. `qI = 0` is [1, Def. 5]'s representation: an
 independent generator would answer to no copy.
+
+## Inputs
+* `a` – number of weights
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* `hq` – no independent generators
+
+## Conclusion
+* the set is the weighted sums of points of the original
 
 ## References
 

@@ -20,6 +20,16 @@ already sits at zero in the other coordinate, so the assembled sum splits along
 `Prod.fst`/`Prod.snd` into the two sets' own sums rather than needing to be
 identified with them, exactly as in `PolyZonotope.cartProd_exact`.
 
+## Inputs
+* `cPZ₁` – first factor
+* `cPZ₂` – second factor
+
+## Hypotheses
+* none
+
+## Conclusion
+* the product of the two sets is the result's set
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

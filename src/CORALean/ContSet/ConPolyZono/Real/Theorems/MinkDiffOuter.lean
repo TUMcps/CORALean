@@ -10,6 +10,16 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffConstruct
 If `x + Z ⊆ P` then `x` passes the test at every corner of `Z`, which is what `minkDiff_construct`
 says the result is. So the result is an enclosure of `P ⊖ Z` for every minuend, convex or not;
 it is the whole difference when the minuend is convex (`minkDiff_inner_of_convex`).
+
+## Inputs
+* `cPZ₁` – minuend
+* `Z` – zonotope subtrahend
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Minkowski difference is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

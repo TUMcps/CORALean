@@ -15,6 +15,18 @@ feasible factors, an argument as over ℝ (CORA's branch and bound under the con
 the independent block's extent `∑ⱼ |a · GIⱼ|`, each term bounded by the larger of the
 upward-rounded dot product and the negated downward-rounded one and summed upward, and one more
 `addUp` for the sum. An upper bound for the nominal set only; `supportBound` adds the error box.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `c` – direction as a linear functional
+* `a` – float direction
+* `u` – float bound on the nominal point set
+
+## Hypotheses
+* `hc` – float direction represents the functional
+
+## Output
+* float bound on the nominal set in that direction
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -26,6 +26,18 @@ meets its own rows within theirs. Both constraints are the selector rows stacked
 rows (`PolyLevelSet.eval_and_`, `PolyLevelSet.and_exact`): the selector rows by
 `holds_unionUpper_of_real`, the operand rows being the exact ones
 (`aux_eval_nominalCore_unionLower`) with the same slacks.
+
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+* `a` – factor vector
+
+## Hypotheses
+* `ha` – factors are within the unit interval
+* `h` – exact union constraint holds up to the slack
+
+## Conclusion
+* the factor vector satisfies the result's constraint
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -17,6 +17,22 @@ some `t` plus an offset inside their remainders (`taylm_contains`); the identity
 that map, [1, Thm. 3] carries the enclosure through the code list, and `bounds` contains every
 value of an enclosed function.
 
+## Inputs
+* `m` – number of variables
+* `p` – precision of the exponential
+* `q` – precision of the logarithm
+* `s` – precision of the trigonometric functions
+* `N` – expansion order
+* `e` – code list
+* `D` – domain box
+* `x` – point
+
+## Hypotheses
+* `hx` – point lies in the domain box
+
+## Conclusion
+* the range enclosure contains the code list's value at the point
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

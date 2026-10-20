@@ -14,6 +14,15 @@ A merged constraint row has no ambient box to reach, so the slack absorbs it: th
 `[-1,1]`, where the constraint's own `PolyLevelSet.compact` admits every factor vector it did
 (`PolyLevelSet.mem_compact_of_mem`). The nominal set only *grows*, and the error box does not
 move.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

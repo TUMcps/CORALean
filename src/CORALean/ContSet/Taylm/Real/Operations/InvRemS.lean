@@ -12,6 +12,12 @@ the integrals `∫_c^x (x - t)ʲ / tʲ⁺² dt` that integration by parts relate
 `a·Sⱼ` by the name `Rⱼ` of eq. (34) with `a` fixed at the top order `q`, which is how CORA's
 `priv_inverse` computes it: the recursion on `Sⱼ`, then one multiplication by `a`.
 
+## Inputs
+* `c` – center
+
+## Output
+* recursion for the exact reciprocal remainder integrals
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

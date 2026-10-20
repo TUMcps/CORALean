@@ -22,6 +22,22 @@ that does not depend on `h`. Shown for `ScalingFragment`, the code lists whose i
 `exp`, `sin` and `cos`; the others need a uniform bound on their derivative bound away from
 the edge of their domain, which `taylor_scaled` takes as a hypothesis.
 
+## Inputs
+* `m` – number of variables
+* `N` – expansion order
+* `F` – variable models
+* `h` – domain radius
+* `C` – scaling constant
+
+## Hypotheses
+* `h0` – radius is positive
+* `h1` – radius is at most one
+* `hN` – each model has the expansion order
+* `hF` – each model is scaled by the constant
+
+## Conclusion
+* any evaluated model has the order and is scaled by the code list's constant
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

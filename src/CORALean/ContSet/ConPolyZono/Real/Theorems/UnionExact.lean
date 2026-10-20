@@ -21,20 +21,29 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
 /-!
 # The union, exactly — under the hypothesis [1, Thm. 1] leaves out
 
-`Thm. 1` as printed is false. Its Appendix A.3 argues that on the branch selecting
-`CPZ₁` every column of `CPZ₂`'s blocks vanishes, `CPZ₂`'s own factors being pinned
-to `0` there. An all-zero exponent column is a degree-`0` monomial, equals `1`
-whatever the factors are, and so is added on *both* branches. `Def. 5` names that
-case — `regular` forbids it — but `Thm. 1` states nothing about its inputs:
-`⟨0, G = 3, E = 1⟩ ∪ ⟨0, G = 5, E = 0⟩` is `[-3,3] ∪ {5}`; the formula also reaches `8`.
-CORA's `@conPolyZono/or` builds the same matrices and inherits the same gap.
+`Thm. 1` as printed is false. Its Appendix A.3 argues that on the branch selecting `CPZ₁` every
+column of `CPZ₂`'s blocks vanishes. An all-zero exponent column is a degree-`0` monomial, equals
+`1` whatever the factors are, and so is added on *both* branches: `⟨0, G = 3, E = 1⟩ ∪ ⟨0, G = 5,
+E = 0⟩` is `[-3,3] ∪ {5}`, but the formula also reaches `8`. CORA's `@conPolyZono/or` inherits the
+same gap.
 
-`NoZeroCol` on all four exponent matrices is what A.3 actually needs, and is
-weaker than `regular`: duplicate columns never enter the argument. It is also the
-weakest hypothesis on the exponent matrices alone, since an all-zero column of
-`E₂` is broken by putting all of `G₂` on it.
+`NoZeroCol` on all four exponent matrices is what A.3 needs, weaker than `regular`. `qI = 0` is
+`Def. 5`'s representation, as for `linComb_exact_of_dependent`.
 
-`qI = 0` is `Def. 5`'s representation, as for `linComb_exact_of_dependent`.
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Hypotheses
+* `hq₁` – first has no independent generators
+* `hq₂` – second has no independent generators
+* `hE₁` – first exponent matrix has no zero column
+* `hR₁` – first constraint exponents have no zero column
+* `hE₂` – second exponent matrix has no zero column
+* `hR₂` – second constraint exponents have no zero column
+
+## Conclusion
+* the union is the result's set
 
 ## References
 

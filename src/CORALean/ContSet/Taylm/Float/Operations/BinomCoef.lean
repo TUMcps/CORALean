@@ -15,6 +15,15 @@ public import CORALean.Global.Float.IntRound
 The binomial coefficient `C(e, j) · mᵉ⁻ʲ · rʲ` that term `j` of the expansion of `(m + r · s)ᵉ`
 carries, between two floats: each factor from the directed integer, the directed powers, and the
 corner products, so the exact real lies in the pair.
+
+## Inputs
+* `e` – exponent
+* `j` – term index
+* `m` – center
+* `r` – radius
+
+## Output
+* enclosure of the binomial term
 -/
 
 -- Authors:       Claude Opus 5.5

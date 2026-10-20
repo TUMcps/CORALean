@@ -8,6 +8,16 @@ public import CORALean.ContSet.Taylm.Float.Operations.Basic
 # `Taylm.listMin` is a lower bound
 
 The least of `f` over a list is at most `f a` for each member `a`.
+
+## Inputs
+* `α` – type of the items
+* `f` – value function
+
+## Hypotheses
+* none
+
+## Conclusion
+* the list minimum is at most every listed item's value
 -/
 
 -- Authors:       Claude Opus 5.5

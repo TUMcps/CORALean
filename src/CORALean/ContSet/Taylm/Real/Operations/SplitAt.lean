@@ -12,6 +12,13 @@ Lines 11-16 of [1, Alg. 1]: box `i` is replaced by its first half along its wide
 the second half is appended as box `k`, so no other box moves. A list without box `i`, or a box
 without coordinates, is left as it is.
 
+## Inputs
+* `i` – box index
+* `l` – list of boxes
+
+## Output
+* list with that box halved along its widest coordinate
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

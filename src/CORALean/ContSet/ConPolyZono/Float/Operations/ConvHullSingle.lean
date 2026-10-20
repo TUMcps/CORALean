@@ -16,17 +16,21 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 /-!
 # `ConPolyZono.convHullSingle`
 
-CORA's `aux_convHullSingle`, [1, Prop. 9] applied to one set: `a` copies of it, each over
-its own block of factors and its own copy of the constraint system, weighted by `a` fresh factors
-whose sum one extra row fixes. The center `a c` is the only thing that rounds, stored from below
-with its shortfall in the box; the box of the operand is kept, a convex combination of points of a
-box being in it.
+CORA's `aux_convHullSingle`, [1, Prop. 9] applied to one set: `a` copies of it, each over its own
+block of factors and its own copy of the constraint system, weighted by `a` fresh factors whose
+sum one extra row fixes. The center `a c` is the only thing that rounds, stored from below with
+its shortfall in the box.
 
-No independent generators, as over ℝ. Each copy keeps its operand's slack; the exact hull of the
-operand's nominal set, whose slack factors sit inside each copy, reads as this layout with them
-dropped (`Real.ConPolyZono.monomial_convHullE_padE`). The constraint is built as over ℝ, from
-`PolyLevelSet.copies`, `PolyLevelSet.linear` and `PolyLevelSet.cartProd`; the weight row's
-`1 - a` is stored from below by `intDown`, its slack the gap to `intUp`, so it only ever widens.
+No independent generators, as over ℝ; the exact hull reads as this layout with the slack factors
+dropped (`Real.ConPolyZono.monomial_convHullE_padE`). The weight row's `1 - a` is stored from
+below by `intDown`, its slack the gap to `intUp`, so it only ever widens.
+
+## Inputs
+* `a` – number of weights
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* one weighted copy for the convex hull
 
 ## References
 

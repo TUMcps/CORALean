@@ -11,6 +11,16 @@ public import CORALean.ContSet.Interval.Float.Theorems.Basic
 A `true` answer says the stored numbers agree as real numbers and the exponent matrices agree, so
 the nominal sets are the same and the error boxes are the same, and the denoted sets are equal.
 `false` refutes nothing.
+
+## Inputs
+* `Z` – first set
+* `S` – second set
+
+## Hypotheses
+* `h` – the test returns true
+
+## Conclusion
+* the two sets are equal
 -/
 
 -- Authors:       Claude Opus 5.5

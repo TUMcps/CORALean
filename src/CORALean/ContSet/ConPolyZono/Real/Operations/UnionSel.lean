@@ -16,6 +16,13 @@ operation in this directory puts fresh factors last, so that the two operands'
 blocks keep the layout `plusE` gives them; identity is positional, and a
 relabelling of factors changes nothing a set denotes.
 
+## Inputs
+* `p₁` – factor count of first operand
+* `p₂` – factor count of second operand
+
+## Output
+* index of the branch selector factor
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

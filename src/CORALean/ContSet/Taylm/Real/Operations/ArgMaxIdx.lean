@@ -10,6 +10,12 @@ public import Mathlib.Data.Real.Basic
 The first index at which a list of reals is largest, `0` for the empty list: the `argmax` of
 [1, Alg. 1], lines 8 and 9 (the latter on the negated lower bounds).
 
+## Inputs
+* `v` – list of reals
+
+## Output
+* index of the largest entry
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

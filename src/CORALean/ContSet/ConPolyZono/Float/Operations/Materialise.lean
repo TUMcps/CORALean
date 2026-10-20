@@ -13,6 +13,12 @@ closure over the one it was given. `materialise` stores them and `materialise_eq
 says it is the identity; `Global/Tensor` says why the vectors are built here.
 Both exponent matrices are stored along with the floats, being curried functions
 rather than `Mat`s.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* same set with every field stored
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

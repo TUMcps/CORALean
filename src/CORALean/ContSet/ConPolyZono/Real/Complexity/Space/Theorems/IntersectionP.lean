@@ -13,6 +13,16 @@ own `qI` along before the two combine, the independent block empties, `m` picks
 up one row per output coordinate, and `q` gains one constraint generator per
 freed dependent generator. `rfl` by unfolding `dependent` and `intersectionDep` rather
 than restating either.
+
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Hypotheses
+* none
+
+## Conclusion
+* the factor count of the intersection is the sum of both operands' factor counts
 -/
 
 -- Authors:       Claude Opus 5

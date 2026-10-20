@@ -11,6 +11,12 @@ public import CORALean.ContSet.Interval.Float.Interval
 
 The exact layer's three cases; `minimum`, `maximum`, `neg` and `absolute` are exact, so
 nothing rounds.
+
+## Inputs
+* `a` – term
+
+## Output
+* range of the term over the box
 -/
 
 -- Authors:       Claude Opus 5.5

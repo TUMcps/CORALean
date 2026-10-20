@@ -14,6 +14,18 @@ public import Mathlib.Tactic.Ring
 
 A product of a binomial coefficient and two nonnegative powers [1].
 
+## Inputs
+* `N` – degree
+* `j` – index
+* `u` – point of the unit interval
+
+## Hypotheses
+* `h0` – argument is at least zero
+* `h1` – argument is at most one
+
+## Conclusion
+* the basis value is nonnegative
+
 ## References
 
 * [1] `global/functions/helper/sets/contSet/polyZonotope/poly2bernstein.m`, CORA (Sep. 2025).

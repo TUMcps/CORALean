@@ -9,6 +9,12 @@ public import CORALean.ContSet.Taylm.Real.Operations.Basic
 
 The nonlinear part of a term list, whose bound is `Iₕ` in [1, Sec. 2].
 
+## Inputs
+* `L` – terms of the polynomial
+
+## Output
+* the terms of degree two and more
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

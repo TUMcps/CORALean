@@ -15,6 +15,16 @@ Minkowski sum: the result's points are the sum of the two sets' points at one sh
 first operand's. CORA requires the second's to be identical and throws otherwise; that check is
 not a hypothesis here, since the statement is exact for the constructed set whatever it is, and
 it is what makes the second operand's own points constrained in the same way.
+
+## Inputs
+* `cPZ₁` – first summand
+* `cPZ₂` – second summand
+
+## Hypotheses
+* `hp` – both have the same number of factors
+
+## Conclusion
+* the set is the sum over shared factors
 -/
 
 -- Authors:       Claude Opus 5.5

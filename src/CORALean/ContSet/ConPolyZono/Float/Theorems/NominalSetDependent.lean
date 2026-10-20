@@ -17,6 +17,15 @@ public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemPadVarsIff
 As in the exact layer's `dependent_exact`: the freed coefficients become the right half of the
 factor vector, read by their identity exponent block and by no constraint row (`padE`), so the
 slack of every row is untouched.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the nominal set is unchanged
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

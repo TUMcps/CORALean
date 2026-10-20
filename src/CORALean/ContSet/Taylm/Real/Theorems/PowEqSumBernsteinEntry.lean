@@ -13,6 +13,17 @@ one-variable case of what `poly2bernstein` [1] computes. With `x = 2u - 1` the b
 expands `xᵉ` in powers of `u`, and `pow_eq_sum_bernsteinBasis` takes each power to the Bernstein
 basis.
 
+## Inputs
+* `N` – degree
+* `e` – exponent
+* `x` – point of the symmetric interval
+
+## Hypotheses
+* `he` – exponent is at most the degree
+
+## Conclusion
+* the monomial on the symmetric interval is a Bernstein combination
+
 ## References
 
 * [1] `global/functions/helper/sets/contSet/polyZonotope/poly2bernstein.m`, CORA (Sep. 2025).

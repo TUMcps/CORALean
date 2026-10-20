@@ -13,6 +13,13 @@ public import CORALean.ContSet.Taylm.Real.Operations.Reexpand
 minimum. The source repeats until (b); here `fuel` bounds the repetitions, and `M` is returned
 when it runs out.
 
+## Inputs
+* `T` – Taylor model
+* `ε` – gap tolerance
+
+## Output
+* lower bound of the model's minimum from the iteration
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

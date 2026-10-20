@@ -13,6 +13,12 @@ derivative is bounded by `exp` at the top of the range.
 The exponential of [1, Def. 3 (exp)] at `k = n`, the source's eq. (2.2), its Lagrange term
 bounded in magnitude rather than as the interval product of eq. (2.4).
 
+## Inputs
+* `T` – Taylor model
+
+## Output
+* Taylor model of exponential of the argument
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

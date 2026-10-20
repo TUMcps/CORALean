@@ -14,6 +14,14 @@ the product of the sums as a sum over the exponent vectors `j ≤ e`. The `reexp
 (lines 15, 22, 28), here with the scaling `r` that maps the new expansion point's box onto the
 normalized one.
 
+## Inputs
+* `m` – centers
+* `r` – radii
+* `L` – terms of the polynomial
+
+## Output
+* terms re-expanded about the centers and rescaled
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

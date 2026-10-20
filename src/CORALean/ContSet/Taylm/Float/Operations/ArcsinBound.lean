@@ -13,6 +13,14 @@ public import CORALean.Global.Float.PowUp
 `|arcsin⁽ᴺ⁺¹⁾| = |arccos⁽ᴺ⁺¹⁾| ≤ asinDom N (m) · (√(1 - m²))⁻⁽²ᴺ⁺¹⁾` on `|x| ≤ m < 1`: the
 integer polynomial `recL [1, 0, 1] (j ↦ 2j+1) N` by `Interval.evalPolyCoeffs` on `[m, m]`, the power
 of `invSqrtOneSubHi`, the product rounded up. `q` is the precision of the square root.
+
+## Inputs
+* `q` – precision of the square root
+* `m` – magnitude of the argument
+* `N` – expansion order
+
+## Output
+* upper bound on the next derivative of arcsin
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -9,6 +9,19 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 
 /-!
 # `Taylm.plus` encloses the sum
+
+## Inputs
+* `T₁` – first model
+* `T₂` – second model
+* `f` – first function
+* `g` – second function
+
+## Hypotheses
+* `h₁` – the first model encloses its function
+* `h₂` – the second model encloses its function
+
+## Conclusion
+* the sum model encloses the sum of the functions
 -/
 
 -- Authors:       Claude Opus 5.5

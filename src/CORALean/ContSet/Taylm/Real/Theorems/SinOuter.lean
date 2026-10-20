@@ -13,6 +13,16 @@ Every derivative of `sin` is bounded by one.
 
 [1, Def. 3 (sin)]: the result is a Taylor model of `sin ∘ f`.
 
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+
+## Conclusion
+* the result encloses sine of the function
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

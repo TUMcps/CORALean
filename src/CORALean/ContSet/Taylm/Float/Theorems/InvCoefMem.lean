@@ -13,6 +13,16 @@ public import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
 `(1/|c|)ᵏ⁺¹` lies between the directed powers of the rounded reciprocal, and the sign is
 read off where `ltStrict` certifies it, an uncertified sign being covered by the symmetric
 interval.
+
+## Inputs
+* `c` – center
+* `k` – coefficient index
+
+## Hypotheses
+* `hc` – the center is nonzero
+
+## Conclusion
+* the true reciprocal coefficient lies in the enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

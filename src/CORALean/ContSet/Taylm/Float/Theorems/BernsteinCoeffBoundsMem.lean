@@ -12,6 +12,17 @@ public import CORALean.ContSet.Taylm.Real.Operations.BernsteinCoeff
 
 The coefficient of the exact term list the floats read as, at any multi-index, lies between the two
 floats `bernsteinCoeffBounds` returns.
+
+## Inputs
+* `L` – terms of the polynomial
+* `N` – degree
+* `β` – multi-index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Bernstein coefficient lies in its enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

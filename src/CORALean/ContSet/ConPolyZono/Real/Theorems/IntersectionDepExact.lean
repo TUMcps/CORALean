@@ -27,6 +27,17 @@ shared factor vector, and a point of the result reproduces a point of `cPZ₂`.
 `hq₁` and `hq₂` say the independent blocks are empty. An independent coefficient
 answers to no constraint and could move the two points apart, so the rows cannot
 be written until they are gone.
+
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Hypotheses
+* `hq₁` – first has no independent generators
+* `hq₂` – second has no independent generators
+
+## Conclusion
+* the intersection is the result's set
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

@@ -12,6 +12,13 @@ public import CORALean.ContSet.PolyLevelSet.Float.PolyLevelSet
 `Real.ConPolyZono.unionSelRow` at the stored floats: `α₁α₂ = 1` of [1, Thm. 1], its coefficient
 and right-hand side `one`, stored exactly, so its slack is `zero`.
 
+## Inputs
+* `p₁` – factor count of first operand
+* `p₂` – factor count of second operand
+
+## Output
+* selector equation on the union's factors
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

@@ -10,6 +10,13 @@ public import CORALean.ContSet.Taylm.Real.Taylm
 `a·tᵉ ↦ a/(eᵢ + 1)·tᵉ⁺ᵉⁱ`: the antiderivative in `tᵢ` that vanishes at `tᵢ = 0`, term by term,
 the `∫₀^{xᵢ} P dxᵢ` of [1, Def. 3 (antiderivation)].
 
+## Inputs
+* `i` – variable index
+* `L` – terms of the polynomial
+
+## Output
+* the terms integrated in that variable
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

@@ -14,6 +14,12 @@ The multiplicative inverse of the square root of [1, Def. 3 (1/sqrt)]: the expan
 source writes the coefficients as `(2k - 1)!! / (k! 2ᵏ)`; `descPochhammer` at `-1/2` over `k!`
 is the same number with its sign.
 
+## Inputs
+* `T` – Taylor model
+
+## Output
+* Taylor model of the reciprocal square root
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

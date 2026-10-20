@@ -13,6 +13,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPol
 
 The same arc `(a, a²)` as for `polyZonotope/isFullDim`, with no constraints: nonempty, the rank
 test true, and no interior point. Read from the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's rank test accepts a set with empty interior
 -/
 
 -- Authors:       Claude Opus 5.5

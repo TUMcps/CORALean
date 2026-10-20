@@ -18,6 +18,13 @@ interval `[-1, 1]` with expansion point `0`"): `D` is the box and `x₀ = 0`.
 `Taylm.Encloses` is the last clause alone, and is what every operation here keeps: once the
 coefficients are rounded the polynomial is no longer the Taylor polynomial ([1, Thm. 3]).
 
+## Inputs
+* `T` – Taylor model
+* `f` – function
+
+## Output
+* proposition that the model is a Taylor model of the function
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

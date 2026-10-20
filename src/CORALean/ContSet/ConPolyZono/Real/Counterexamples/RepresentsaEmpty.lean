@@ -17,6 +17,15 @@ is empty whenever its constraints have no solution in the box, whatever `GI` is.
 The example has one factor, no dependent generators, one independent generator `GI = 1` and the
 constraint `α₁ = 2`, which no `α₁ ∈ [-1, 1]` satisfies. `ConPolyZono.construct` is `∅`, and the
 printed check answers `false`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA answers not empty for an empty set
 -/
 
 -- Authors:       Claude Opus 5.5

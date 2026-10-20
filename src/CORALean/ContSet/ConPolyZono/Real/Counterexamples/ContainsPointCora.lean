@@ -19,6 +19,15 @@ The constraint `α = 0` on the single factor of `{α : |α| ≤ 1}` leaves the s
 branch tests `[p; 1]` in the extended polynomial zonotope, whose last coordinate is `α - 0`: the
 point `p = 1`, reached at `α = 1`, passes, though `1` is not in the set. Read from the source,
 not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA accepts a point outside the set
 -/
 
 -- Authors:       Claude Opus 5.5

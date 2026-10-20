@@ -10,16 +10,27 @@ public import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 /-!
 # The exponential's expansion and its Lagrange term, as printed
 
-[1, Def. 3 (exp)], eqs. 2.2-2.4: with `f̄ = f - c_f`,
-`exp(f) = exp(c_f)·{1 + f̄ + … + f̄ᵏ/k! + f̄ᵏ⁺¹ exp(θf̄)/(k+1)!}` for some `θ ∈ [0, 1]`, and the
-Lagrange term lies in `exp(c_f)·(B(P̄) + I)ᵏ⁺¹·exp([0, 1]·(B(P̄) + I))/(k+1)!`.
+[1, Def. 3 (exp)], eqs. 2.2-2.4: with `f̄ = f - c_f`, `exp(f) = exp(c_f)·{1 + f̄ + … + f̄ᵏ/k! +
+f̄ᵏ⁺¹ exp(θf̄)/(k+1)!}` for some `θ ∈ [0, 1]`, and the Lagrange term lies in `exp(c_f)·(B(P̄) +
+I)ᵏ⁺¹·exp([0, 1]·(B(P̄) + I))/(k+1)!`.
 
-`B(P̄) + I` is the interval `J = [B₁ - c_f, B₂ - c_f]` from the model's own bounds
-`Taylm.bounds`, which hold `f` (`Taylm.bounds_mem`), so `f̄(t) ∈ J` at every point of the box.
-The interval products of the printed bound are read as the pointwise products of sets
-(`open Pointwise`): interval arithmetic returns a superset of each, so the Lagrange term lying
-in the set expression is the printed claim at its tightest. Every order `k` is covered, not
-only the `k = n` that `Taylm.exp` uses.
+`B(P̄) + I` is the interval `J = [B₁ - c_f, B₂ - c_f]` from `Taylm.bounds`, which hold `f`
+(`Taylm.bounds_mem`). The interval products of the printed bound are read as pointwise products of
+sets: interval arithmetic returns a superset of each, so this is the printed claim at its
+tightest, for every order `k`.
+
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `k` – expansion order
+* `t` – point
+
+## Hypotheses
+* `h` – the model encloses the function
+* `ht` – point lies in the unit box
+
+## Conclusion
+* the exponential's remainder lies in its printed Lagrange range
 
 ## References
 

@@ -12,6 +12,15 @@ public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
 `f(x) = -√3`, `1 + c_f·f = -2` and `g = √3`, so the right side is `π/3 + π/3` where the left is
 `-π/3`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the arctangent addition formula fails for some points
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

@@ -7,17 +7,20 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
 /-!
 # `ConPolyZono.rescale`
 
-CORA's `@conPolyZono/rescale`: contract the factor box `[-1,1]ᵖ` against the constraint
-`A μ(α) = b` with `contractPoly`, and re-parametrize every factor onto the contracted
-box, by `getSubset`. The set is unchanged; only the factors' ranges are smaller, so a
-later enclosure is tighter.
+CORA's `@conPolyZono/rescale`: contract the factor box `[-1,1]ᵖ` against the constraint `A μ(α) =
+b` with `contractPoly`, and re-parametrize every factor onto the contracted box, by `getSubset`.
+The set is unchanged; only the factors' ranges are smaller, so a later enclosure is tighter.
 
-`contractPoly` (forward-backward, linearization, polynomial or interval contraction, or all
-of them) is a contractor [1, Def. 6]: it is taken here as a parameter, and what is proved
-about `rescale` assumes the contractor contract and nothing else. CORA's `getSubset` takes
-all factors at once; here the single-factor `getSubset` is applied to factors `0, …, p-1`
-in turn, the same substitution. When the contracted box is empty CORA throws
-`CORA:emptySet`; the theorem assumes it is not.
+`contractPoly` is a contractor [1, Def. 6], taken here as a parameter. CORA's `getSubset` takes
+all factors at once; here the single-factor one is applied to factors `0, …, p-1` in turn. An
+empty contracted box throws `CORA:emptySet` in CORA; the theorem assumes it is not.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `contract` – contractor on the factor box
+
+## Output
+* set rescaled to the contracted factor box
 
 ## References
 

@@ -20,6 +20,20 @@ exact one, which by `getSubset_point` is the stored set at `a` with factor `k` s
 generator sum at `a`, plus a point of its error box, is the stored set's at the re-parametrized
 vector plus the given point of the old error box: the rounding of the generators, scaled by
 monomials in `[-1, 1]`, is what the box grew by.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `k` – factor index
+* `cen` – center of the subinterval
+* `rad` – radius of the subinterval
+* `a` – factor vector
+
+## Hypotheses
+* `ha` – factors are within the unit interval
+* `hsat` – the re-parametrized vector satisfies the constraint
+
+## Conclusion
+* the vector satisfies the result's constraint and every point is matched
 -/
 
 -- Authors:       Claude Opus 5.5

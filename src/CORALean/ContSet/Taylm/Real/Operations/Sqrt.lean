@@ -13,6 +13,12 @@ being `(1/2)(1/2 - 1)⋯ x^(1/2 - N - 1)`, largest in magnitude at the bottom of
 
 The square root of [1, Def. 3 (sqrt)], under its condition that the range is positive.
 
+## Inputs
+* `T` – Taylor model
+
+## Output
+* Taylor model of the square root of the argument
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

@@ -10,6 +10,16 @@ public import Mathlib.Tactic.Linarith
 # Halving keeps a sub-box of the normalized box
 
 The midpoint lies between the two ends.
+
+## Inputs
+* `B` – box
+* `β` – coordinate
+
+## Hypotheses
+* `hB` – the box lies in the unit box
+
+## Conclusion
+* both halves lie in the unit box
 -/
 
 -- Authors:       Claude Opus 5.5

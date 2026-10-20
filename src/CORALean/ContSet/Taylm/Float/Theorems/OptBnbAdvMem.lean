@@ -11,6 +11,20 @@ public import CORALean.ContSet.Taylm.Float.Theorems.AbsorbRoundingNominal
 
 Outer: a function the float model encloses lies in the result at every point of the normalized
 box; sound for every `ε` and `fuel`.
+
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `ε` – tolerance
+* `fuel` – step budget
+* `t` – point
+
+## Hypotheses
+* `h` – the model encloses the function
+* `ht` – point lies in the unit box
+
+## Conclusion
+* the advanced branch and bound enclosure contains the function's value
 -/
 
 -- Authors:       Claude Opus 5.5

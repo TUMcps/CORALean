@@ -21,6 +21,14 @@ with `[divFact ⟨1, 1⟩ k]` through the four corner products `mulLo`, `mulHi`,
 sign. The remainder is Lagrange's: `cosh` at the magnitude `m` of the model bounds every
 derivative, times `Bᴺ⁺¹ / (N+1)!` with `B` the reach, each factor rounded up. `p` is the precision
 of the exponentials (`Global/Float/Exp`).
+
+## Inputs
+* `p` – precision of the halvings
+* `first` – flag for sinh instead of cosh
+* `T` – Taylor model
+
+## Output
+* Taylor model of sinh or cosh of the argument
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -10,6 +10,16 @@ public import Mathlib.Tactic.Linarith
 
 /-!
 # `Taylm.uminus` encloses the negation
+
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+
+## Conclusion
+* the negated model encloses the negated function
 -/
 
 -- Authors:       Claude Opus 5.5

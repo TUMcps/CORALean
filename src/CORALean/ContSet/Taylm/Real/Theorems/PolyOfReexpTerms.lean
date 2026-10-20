@@ -15,6 +15,18 @@ public import Mathlib.Data.Nat.Choose.Sum
 
 `reexpTerms m r P` at `s` is `P` at `m + r ⊙ s`, term by term: the binomial theorem on each
 coordinate, and `Finset.prod_univ_sum` to turn the product of sums into a sum of products.
+
+## Inputs
+* `m` – centers
+* `r` – radii
+* `L` – terms of the polynomial
+* `s` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the re-expanded terms evaluate to the original at the substituted point
 -/
 
 -- Authors:       Claude Opus 5.5

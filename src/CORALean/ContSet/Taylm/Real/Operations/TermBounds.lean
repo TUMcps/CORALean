@@ -9,6 +9,12 @@ public import CORALean.ContSet.Taylm.Real.Operations.Basic
 
 CORA's `aux_tayl2int` per term: a constant is exact, a monomial with every exponent even
 ranges over `[0, 1]`, any other over `[-1, 1]`, scaled by the coefficient.
+
+## Inputs
+* `a` – term
+
+## Output
+* range of the term over the unit box
 -/
 
 -- Authors:       Claude Opus 5.5

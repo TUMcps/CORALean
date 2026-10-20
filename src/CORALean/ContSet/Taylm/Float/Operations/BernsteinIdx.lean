@@ -9,6 +9,12 @@ public import CORALean.ContSet.Taylm.Float.Taylm
 
 Every multi-index `Fin n → Fin (N + 1)` of the Bernstein coefficients, as a list the float
 minimum and maximum run over.
+
+## Inputs
+* none
+
+## Output
+* all Bernstein multi-indices of the given dimension and degree
 -/
 
 -- Authors:       Claude Opus 5.5

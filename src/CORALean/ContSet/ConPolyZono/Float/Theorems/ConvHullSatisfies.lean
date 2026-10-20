@@ -19,6 +19,19 @@ The stored constraint is the operand's copies beside the weight row
 to the operand's right-hand side and slack (`PolyLevelSet.mem_copies_iff`), and the weight row is
 the weights' sum (`PolyLevelSet.mem_linear_iff`), held to `1 - a` stored from below with the gap
 to the upward rounding as its slack.
+
+## Inputs
+* `a` – number of weights
+* `cPZ` – constrained polynomial zonotope
+* `v` – factor vector
+
+## Hypotheses
+* `hcopy` – each copy satisfies the constraint
+* `hv` – weights are within the unit interval
+* `hw` – weights sum to the required value
+
+## Conclusion
+* the vector satisfies the hull constraint
 -/
 
 -- Authors:       Claude Opus 5.5

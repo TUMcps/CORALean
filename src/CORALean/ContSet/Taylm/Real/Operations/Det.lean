@@ -12,6 +12,12 @@ its entry, else `Σⱼ (-1)^(j+1) · obj(1,j) · det(A₁)` with `A₁` the matr
 column `j`; the sign scales the entry (`smul`) and the product with the minor's determinant is
 `times`. The sum is `Taylm.sum`, ending in the zero model where CORA starts from the number `0`.
 The matrix is at least `1 × 1`, as CORA's recursion stops there.
+
+## Inputs
+* none
+
+## Output
+* Taylor model of the determinant
 -/
 
 -- Authors:       Claude Opus 5.5

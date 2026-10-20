@@ -14,6 +14,13 @@ public import CORALean.ContSet.PolyLevelSet.Float.Operations.Basic
 by `PolyLevelSet.andRows`, `α₁α₂ = 1` stored exactly and the selector polynomial with its
 coefficients' rounding as its slack.
 
+## Inputs
+* `p₁` – factor count of first operand
+* `p₂` – factor count of second operand
+
+## Output
+* both selector rows on the unit box
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

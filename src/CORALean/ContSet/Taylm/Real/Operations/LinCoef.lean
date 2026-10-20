@@ -10,6 +10,13 @@ public import CORALean.ContSet.Taylm.Real.Taylm
 `Lₖ`, the sum of the coefficients of `tₖ` alone: the linear part that the linear dominated bounder
 of [1, Sec. 2] follows.
 
+## Inputs
+* `L` – terms of the polynomial
+* `k` – variable index
+
+## Output
+* sum of the coefficients of that variable alone
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

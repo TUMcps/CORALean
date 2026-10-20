@@ -14,6 +14,17 @@ Where the hull of the center and the range stays at a positive distance `m` from
 is smooth on it, its Taylor coefficients at the center lie in the rounded interval `invCoef`
 (`invCoef_mem`), and its `(N+1)`-th derivative is below the rounded `invBound` (`invBound_ge`).
 `Taylm.taylor_outer` does the rest. Outer.
+
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hm` – the range stays away from zero
+
+## Conclusion
+* the result encloses the reciprocal of the function
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,21 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtendFactorId
 # The generator monomial read against an extended factor vector
 
 What the reverse inclusion supplies.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of dependent generators
+* `q` – number of constraint generators
+* `E` – exponent matrix
+* `R` – constraint exponent matrix
+* `a` – values of the used factors
+* `i` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* extended and restricted factor vectors give the same generator monomial
 -/
 
 -- Authors:       Claude Opus 5

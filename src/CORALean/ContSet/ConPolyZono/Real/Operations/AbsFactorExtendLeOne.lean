@@ -7,6 +7,21 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.AbsFactorExtendLeOne
 
 /-!
 # `factorExtend` stays within `[-1, 1]`
+
+## Inputs
+* `p` – number of factors
+* `h` – number of dependent generators
+* `q` – number of constraint generators
+* `E` – exponent matrix
+* `R` – constraint exponent matrix
+* `a` – used factor values
+* `k` – factor index
+
+## Hypotheses
+* `ha` – used factor values are within the unit interval
+
+## Conclusion
+* the extended factor value is within the unit interval
 -/
 
 -- Authors:       Claude Opus 5

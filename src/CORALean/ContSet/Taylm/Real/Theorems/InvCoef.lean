@@ -9,6 +9,16 @@ public import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
 # The Taylor coefficients of `1/x`
 
 `(1/x)⁽ᵏ⁾(c)/k! = (-1)ᵏ/cᵏ⁺¹`, from `iter_deriv_inv`.
+
+## Inputs
+* `c` – center
+* `k` – coefficient index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Taylor coefficient of the reciprocal has a closed form
 -/
 
 -- Authors:       Claude Opus 5.5

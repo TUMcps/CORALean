@@ -17,6 +17,12 @@ Exact.
 CORA's `compact` runs the generators, then the constraints, then the factors.
 The order matters in one direction only — dropping a column can leave a
 factor unused, never the reverse.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* same set with equal columns merged and unused factors dropped
 -/
 
 -- Authors:       Claude Opus 5

@@ -11,6 +11,12 @@ The degree `poly2bernstein` [1] expands at: `n = max(max(E))`, the largest expon
 in any term, used for every variable (`optBernstein` [2] passes the exponent matrix of the
 polynomial). A term list without terms has degree `0`.
 
+## Inputs
+* `T` – Taylor model
+
+## Output
+* largest exponent in any term
+
 ## References
 
 * [1] `global/functions/helper/sets/contSet/polyZonotope/poly2bernstein.m`, CORA (Sep. 2025).

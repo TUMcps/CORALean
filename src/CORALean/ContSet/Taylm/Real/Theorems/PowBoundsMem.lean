@@ -12,6 +12,19 @@ public import Mathlib.Tactic.Linarith
 
 An even power is `|t|ᵏ`, monotone in `|t|`, which is at most the larger end's magnitude and, off
 an interval holding `0`, at least the smaller; an odd power is monotone.
+
+## Inputs
+* `l` – lower end
+* `u` – upper end
+* `t` – real point
+* `k` – exponent
+
+## Hypotheses
+* `hl` – value is at least the lower end
+* `hu` – value is at most the upper end
+
+## Conclusion
+* the power lies in its enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

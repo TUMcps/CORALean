@@ -15,6 +15,17 @@ derivatives are `iter_deriv_rpow_const`'s, and a negative power decreases.
 
 [1, Def. 3 (sqrt)]: the result is a Taylor model of `sqrt ∘ f`.
 
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hpos` – the range stays positive
+
+## Conclusion
+* the result encloses the square root of the function
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

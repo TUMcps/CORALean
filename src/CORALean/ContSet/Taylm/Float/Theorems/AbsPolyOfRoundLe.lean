@@ -14,6 +14,22 @@ public import CORALean.Global.Float.ListSum
 For real coefficients `x a ∈ [lo a, hi a]`, the polynomial with `hi a` stored differs from
 the exact one by at most the summed widths on the box, every monomial being in `[-1, 1]`.
 Every float operation that computes a coefficient pays its rounding through this.
+
+## Inputs
+* `α` – type of the terms
+* `L` – list of terms
+* `lo` – lower coefficient ends
+* `hi` – upper coefficient ends
+* `x` – chosen coefficients
+* `e` – exponents
+* `t` – point
+
+## Hypotheses
+* `hx` – each chosen coefficient lies between its ends
+* `ht` – point lies in the unit box
+
+## Conclusion
+* storing the upper ends changes the polynomial by at most the summed widths
 -/
 
 -- Authors:       Claude Opus 5.5

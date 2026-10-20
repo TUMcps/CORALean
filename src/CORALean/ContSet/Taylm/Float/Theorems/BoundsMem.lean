@@ -7,6 +7,18 @@ public import CORALean.ContSet.Taylm.Float.Theorems.PolyBoundsMem
 
 /-!
 # An enclosed function stays in the float `bounds` on the box
+
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `t` – point
+
+## Hypotheses
+* `h` – the model encloses the function
+* `ht` – point lies in the unit box
+
+## Conclusion
+* the function value lies within the model's float bounds
 -/
 
 -- Authors:       Claude Opus 5.5

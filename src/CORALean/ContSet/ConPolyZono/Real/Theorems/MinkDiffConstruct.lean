@@ -15,6 +15,16 @@ A point is in the result exactly when it lies in the minuend at every vertex of 
 reached by a choice of signs: `x ∈ P ⊖ Z` is tested at `x + c + Σⱼ ±gⱼ`, the `2ʰ` corner points of
 the zonotope (with its center), and nowhere else. Each step `(P + g) ∩ (P - g)` asks `x - g` and
 `x + g` to lie in the set so far, and the steps compose over the generators.
+
+## Inputs
+* `cPZ₁` – minuend
+* `Z` – zonotope subtrahend
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is the points whose every sign-vertex shift lies in the minuend
 -/
 
 -- Authors:       Claude Opus 5.5

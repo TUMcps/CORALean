@@ -14,6 +14,20 @@ public import CORALean.ContSet.Taylm.Float.Theorems.LeListMax
 If every sub-box's bound brackets `g`, the loop's result brackets `g` at each point of the
 starting box, whichever way the loop stops: the list always covers the box, the steps only halve
 boxes.
+
+## Inputs
+* `bnd` – bounding function on a box
+* `g` – bounded function
+* `ε` – tolerance
+* `X` – domain box
+* `t` – point
+
+## Hypotheses
+* `hb` – bounds hold on every box containing the point
+* `ht` – point lies in the domain box
+
+## Conclusion
+* the loop's enclosure contains the function's value at the point
 -/
 
 -- Authors:       Claude Opus 5.5

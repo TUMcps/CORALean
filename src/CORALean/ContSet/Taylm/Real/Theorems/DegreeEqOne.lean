@@ -8,6 +8,15 @@ public import CORALean.ContSet.Taylm.Real.Operations.Basic
 # An exponent of degree one is a unit vector
 
 A sum of naturals equal to one has exactly one summand one and the others zero.
+
+## Inputs
+* `e` – exponents
+
+## Hypotheses
+* `h` – the degree of the exponents is one
+
+## Conclusion
+* the exponents are a unit vector
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,6 +16,15 @@ was written against.
 generator block, and the same function: a constraint and a generator are two
 readings of one factor vector, so widening that vector is one operation. The
 name is kept because a caller reaching for it here is padding constraints.
+
+## Inputs
+* `p` – number of factors
+* `q` – number of columns
+* `R` – exponent matrix
+* `r` – number of added factors
+
+## Output
+* the exponent matrix with zero rows appended
 -/
 
 -- Authors:       Claude Opus 5

@@ -12,6 +12,15 @@ public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
 `f(x) = √3/2` the angles are `∓π/3`, two thirds of `π` apart: `g = √3/2` again, and the right
 side is `-π/3 + π/3 = 0` where the left is `π/3`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the arcsine addition formula fails for some points in the open unit interval
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

@@ -19,6 +19,19 @@ public import CORALean.Global.TaylorRemainder
 by `cosh` at the magnitude of the model. `hp` is `expUp`'s range hypothesis at that magnitude, as
 `Taylm.exp_outer` keeps it; the magnitude is at least `|c|`, so it covers `sinhUp`, `sinhDown`,
 `coshUp` at the center and `coshUp` at the magnitude itself.
+
+## Inputs
+* `p` – precision of the halvings
+* `first` – flag for sinh instead of cosh
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hp` – the hull is small enough for the precision
+
+## Conclusion
+* the result encloses sinh or cosh of the function
 -/
 
 -- Authors:       Claude Sonnet 5.5

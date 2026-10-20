@@ -11,6 +11,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.Basic
 
 The union of the two halves is the original set: the constraints and the independent block go
 unchanged into both, and only the domain of factor `r` is cut at `0`.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `r` – factor index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the two halves together are exactly the set
 -/
 
 -- Authors:       Claude Opus 5.5

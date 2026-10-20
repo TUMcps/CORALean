@@ -10,6 +10,17 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 # `Taylm.polyOf_append`
 
 The polynomial of an appended term list is the sum of the polynomials.
+
+## Inputs
+* `L₁` – first terms
+* `L₂` – second terms
+* `t` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polynomial of joined term lists is the sum of the two values
 -/
 
 -- Authors:       Claude Opus 5.5

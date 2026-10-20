@@ -12,6 +12,12 @@ public import CORALean.ContSet.Taylm.Float.Operations.InvBound
 `1/x` through the Taylor model of `taylor`, as over ℝ: the coefficients at the center
 (`invCoef`), and the remainder from the derivative bound at the distance `m` of the hull of the
 center and the range from zero, `max (min c lo) (-max c hi)` (`invBound`). Sound where `m > 0`.
+
+## Inputs
+* `T` – Taylor model
+
+## Output
+* Taylor model of the reciprocal
 -/
 
 -- Authors:       Claude Opus 5.5

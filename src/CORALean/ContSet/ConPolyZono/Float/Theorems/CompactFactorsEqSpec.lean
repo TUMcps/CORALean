@@ -11,6 +11,15 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.TabAtFilter
 The version that lists the used factors once and the one that rederives them at
 every read are one definition: the list holds the very values the specification
 recomputes, so the two differ in cost alone.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the computed result equals its specification
 -/
 
 -- Authors:       Claude Opus 5.5

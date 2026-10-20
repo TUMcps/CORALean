@@ -8,6 +8,13 @@ public import CORALean.ContSet.Taylm.Float.Operations.Hyperbolic
 # `Taylm.sinh`
 
 The Taylor model of `sinh`: `Taylm.hyperbolic` with the even coefficients `sinh`'s.
+
+## Inputs
+* `p` – precision of the halvings
+* `T` – Taylor model
+
+## Output
+* Taylor model of hyperbolic sine of the argument
 -/
 
 -- Authors:       Claude Sonnet 5.5

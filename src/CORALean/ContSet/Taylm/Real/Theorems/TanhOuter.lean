@@ -11,6 +11,16 @@ public import CORALean.Global.ElementaryDerivBounds
 # `Taylm.tanh` encloses `tanh ∘ f`
 
 `tanh` is smooth and `|tanh| ≤ 1`, so `abs_iteratedDeriv_tanh_le` applies on all of `ℝ`.
+
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+
+## Conclusion
+* the result encloses hyperbolic tangent of the function
 -/
 
 -- Authors:       Claude Opus 5.5

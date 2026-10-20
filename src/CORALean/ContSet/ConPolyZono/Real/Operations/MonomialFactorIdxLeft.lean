@@ -11,6 +11,21 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorIdx
 
 It is a monomial of `appendE`'s left half, and `monomial_factorIdx` holds of
 the whole.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of dependent generators
+* `q` – number of constraint generators
+* `E` – exponent matrix
+* `R` – constraint exponent matrix
+* `a` – factor values
+* `i` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* restricting to the kept factors leaves the generator monomial unchanged
 -/
 
 -- Authors:       Claude Opus 5

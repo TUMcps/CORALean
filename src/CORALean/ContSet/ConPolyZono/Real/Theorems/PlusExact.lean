@@ -12,16 +12,21 @@ public import Mathlib.Tactic.Abel
 
 The result is [1, Prop. 6].
 
-The witnesses are `Fin.append` on the factors and on the independent
-coefficients, and the block-diagonal layout is what makes them work twice over:
-a generator of one set carries exponent zero on every factor of the other, and
-so does every constraint row of one set on every constraint generator of the
-other.
+The witnesses are `Fin.append` on the factors and on the independent coefficients, and the
+block-diagonal layout makes them work twice over: a generator of one set carries exponent zero on
+every factor of the other, and so does every constraint row on every constraint generator of the
+other. Exactness is what the separation buys: with the two factor sets identified the reverse
+inclusion would fail.
 
-Exactness is what the separation buys. Had the two factor sets been identified,
-the reverse inclusion would fail — one factor cannot take two values at once —
-and had the constraint systems been merged, each set's rows would have
-constrained the other's factors.
+## Inputs
+* `cPZ₁` – first summand
+* `cPZ₂` – second summand
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Minkowski sum is the result's set
 
 ## References
 

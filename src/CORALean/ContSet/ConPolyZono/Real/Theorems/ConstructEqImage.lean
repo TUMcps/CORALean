@@ -12,6 +12,15 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
 is the reading compactness needs: the domain is a subset of a finite-dimensional
 cube and the map is continuous, and neither statement can be made about the set
 itself.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is the affine image of its domain
 -/
 
 -- Authors:       Claude Opus 5

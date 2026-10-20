@@ -12,6 +12,13 @@ public import Mathlib.Data.Fin.Tuple.Sort
 Girard's metric, `‖g‖₁ - ‖g‖∞`, ranks both blocks as one: the `(o-1)·n` best
 survive and the rest boxes into `n` fresh independent generators, bringing the
 total back to `n·o`.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `o` – target order
+
+## Output
+* Girard-reduced enclosure of the set
 -/
 
 -- Authors:       Claude Opus 5

@@ -15,6 +15,16 @@ supplies it by running `dependent` first, and `dependent` is exact. Together
 with `intersection_exact` this is what a nonlinear reachability step needs: propagate
 through a quadratic map, then cut by a guard, neither losing anything.
 
+## Inputs
+* `Q` – family of quadratic forms
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image under the quadratic map is the result's set
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

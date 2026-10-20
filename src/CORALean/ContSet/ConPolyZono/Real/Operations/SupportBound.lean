@@ -18,6 +18,14 @@ its own extent `Σ |c(GIⱼ)|`. The result is an upper bound, equal to CORA's va
 is tight, which is not claimed. CORA's `'lower'` and `'range'` types, the tolerance and
 the point attaining the value are not modelled.
 
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `c` – direction as a linear functional
+* `u` – bound on the dependent part
+
+## Output
+* bound on the set in that direction
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta Informatica,

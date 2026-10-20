@@ -15,6 +15,21 @@ slack factors) has the generator monomials of the hull of the set without them, 
 vector with each copy's last `m` factors dropped: a copy's monomial is a product over that copy's
 factors (`prod_repBlockDiag`), and the dropped ones sit at exponent zero. What lets a hull built
 over a set's slack factors be read as one built without them.
+
+## Inputs
+* `a` – number of weights
+* `p` – number of factors
+* `h` – number of generators
+* `m` – number of padded factors
+* `E` – exponent matrix
+* `v` – factor values
+* `l` – column index
+
+## Hypotheses
+* none
+
+## Conclusion
+* padding the exponent matrix leaves the hull's monomials on the plain factors
 -/
 
 -- Authors:       Claude Opus 5.5

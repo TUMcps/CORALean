@@ -12,6 +12,24 @@ public import CORALean.ContSet.Taylm.Float.Theorems.TimesOuter
 
 Entry `(i, j)` encloses the `(i, j)` entry of the product of the matrices of the enclosed
 functions, pointwise.
+
+## Inputs
+* `a` – rows of the first matrix
+* `b` – shared dimension
+* `c` – columns of the second matrix
+* `A` – first matrix of models
+* `B` – second matrix of models
+* `F` – first matrix of functions
+* `G` – second matrix of functions
+* `i` – row index
+* `j` – column index
+
+## Hypotheses
+* `hA` – each entry of the first matrix encloses its function
+* `hB` – each entry of the second matrix encloses its function
+
+## Conclusion
+* the product entry encloses the product of the functions
 -/
 
 -- Authors:       Claude Opus 5.5

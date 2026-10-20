@@ -10,6 +10,12 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 
 The generator data on its own, the constraint system left behind: the same fields, the same error
 box.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* polynomial zonotope of the generator part
 -/
 
 -- Authors:       Claude Opus 5.5

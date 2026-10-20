@@ -18,6 +18,22 @@ public import CORALean.ContSet.Taylm.Real.Theorems.SumOuter
 The model arithmetic alone: if `ρ` bounds how far `g ∘ f` is from the polynomial in
 `f - c` on the box, the composed model encloses `g ∘ f`. Where `ρ` comes from is
 `TaylorOuter`'s business.
+
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `g` – outer function
+* `c` – center
+* `a` – coefficients
+* `N` – expansion order
+* `ρ` – remainder radius
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hg` – the outer function is within the radius of its expansion
+
+## Conclusion
+* the composed model encloses the composition
 -/
 
 -- Authors:       Claude Opus 5.5

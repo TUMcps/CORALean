@@ -12,19 +12,22 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
 /-!
 # The coefficient domain of a constrained polynomial zonotope is compact
 
-Bounded because every factor and every coefficient it admits lies in a unit
-cube, so it is a subset of a product of two closed balls, compact because both
-factor spaces are finite-dimensional.
+Bounded because every factor and every coefficient it admits lies in a unit cube, a subset of a
+product of two closed balls in finite-dimensional spaces.
 
-Closed is where the constraints are paid for. A constraint row is `A μ(α)`, a
-polynomial in the factors and hence continuous, so each of the three families of
-conditions cuts out a closed set and the domain is their intersection. This is
-what `ConZonotope` gets from a halfspace description instead, and the reason
-that argument does not carry over.
+Closed is where the constraints are paid for. A constraint row is `A μ(α)`, a polynomial in the
+factors and hence continuous, so each family of conditions cuts out a closed set and the domain is
+their intersection; `ConZonotope` gets this from a halfspace description instead. Stated apart
+from `isCompact_construct` because it is about the coefficient space.
 
-Stated apart from `isCompact_construct` because it is about the coefficient
-space, whose finite-dimensionality is what the ball argument needs, and not
-about the ambient type.
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the coefficient domain is compact
 -/
 
 -- Authors:       Claude Opus 5

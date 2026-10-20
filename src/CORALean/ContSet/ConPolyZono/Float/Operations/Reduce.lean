@@ -9,19 +9,20 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.Reduce
 /-!
 # `ConPolyZono.reduce`
 
-The exact layer's `reduce`, rounded — and the one operation the float layer
-*runs* where the exact layer only specifies: `reduceGirard` is noncomputable
-over ℝ because `Tuple.sort` needs a `LinearOrder`, while `sortPerm` asks its
-comparator for nothing. It can afford to, `reduceBy_outer` holding at every pair
-of partitions, so a misranking costs precision and never soundness.
+The exact layer's `reduce`, rounded, and the one operation the float layer *runs* where the exact
+layer only specifies: `reduceGirard` is noncomputable over ℝ because `Tuple.sort` needs a
+`LinearOrder`, while `sortPerm` asks its comparator for nothing. A misranking costs precision,
+never soundness (`reduceBy_outer`).
 
-`reduceBy` charges nothing to either place a rounding can go. The center, the
-kept generators and their exponent columns are copied exactly, the whole
-constraint block with them — so `b` and its slack do not move and the ranking never reads a
-constraint — and the diagonal block rounds *up*, twice, which only enlarges an
-over-approximation. `compact`, which `reduce` runs first, is where the rounding
-of this operation is: it pays into the error box and into the slack `b_error` both, and running
-it is what makes the order bound count distinct monomials.
+`reduceBy` copies the center, kept generators and constraint block exactly and rounds the diagonal
+block up; the rounding of `reduce` is in `compact`, which it runs first.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `o` – target order
+
+## Output
+* enclosure of the set of reduced order
 -/
 
 -- Authors:       Claude Opus 5

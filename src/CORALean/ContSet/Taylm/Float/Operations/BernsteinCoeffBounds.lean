@@ -11,6 +11,14 @@ public import CORALean.ContSet.Taylm.Float.Operations.BoundsProd
 The Bernstein coefficient at `β` of a float term list, between two floats: each term's coefficient
 times the entry brackets of its exponents, by `boundsProd`, then the lower ends summed down and the
 upper ends summed up.
+
+## Inputs
+* `L` – terms of the polynomial
+* `N` – degree
+* `β` – multi-index
+
+## Output
+* enclosure of that Bernstein coefficient
 -/
 
 -- Authors:       Claude Opus 5.5

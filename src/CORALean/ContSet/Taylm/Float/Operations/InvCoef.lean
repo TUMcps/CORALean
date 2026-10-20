@@ -13,6 +13,13 @@ public import CORALean.ContSet.Interval.Float.Interval
 The Taylor coefficient `(-1)ᵏ c⁻⁽ᵏ⁺¹⁾` of `x ↦ 1/x` at `c`, between `1/|c|` rounded each way and
 raised to `k + 1` by the directed powers. The sign is read off only where `ltStrict` certifies it;
 an uncertified sign gives the symmetric interval, which holds either.
+
+## Inputs
+* `c` – center
+* `k` – coefficient index
+
+## Output
+* enclosure of that Taylor coefficient of the reciprocal
 -/
 
 -- Authors:       Claude Opus 5.5

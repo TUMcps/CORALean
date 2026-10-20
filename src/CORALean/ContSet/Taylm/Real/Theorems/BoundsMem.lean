@@ -10,6 +10,18 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyBoundsMem
 
 [1, Eq. 5]'s `B` over-approximates the range: the enclosed function stays in it on the box.
 
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `t` – point
+
+## Hypotheses
+* `h` – the model encloses the function
+* `ht` – point lies in the unit box
+
+## Conclusion
+* the function value lies within the model's bounds
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

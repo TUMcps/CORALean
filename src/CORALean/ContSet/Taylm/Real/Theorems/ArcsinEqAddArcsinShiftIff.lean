@@ -13,6 +13,16 @@ the range lies in `(-1, 1)`. `g` is `sin (arcsin f - arcsin c_f)`, so the identi
 `arcsin (sin θ) = θ`, which holds exactly when `|θ| ≤ π/2`: the corrected condition, and the
 reason the printed one is not enough (`ArcsinShift`).
 
+## Inputs
+* none
+
+## Hypotheses
+* `ha` – first argument lies in the unit interval
+* `hc` – center lies in the unit interval
+
+## Conclusion
+* the arcsine addition formula holds exactly when the arcsine difference is at most half pi
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

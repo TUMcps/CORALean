@@ -10,6 +10,18 @@ public import CORALean.ContSet.Taylm.Real.Operations.Basic
 `getSyms` is the model's polynomial `poly` (`rfl`), and a function the model encloses lies
 within the remainder interval of it, at every point of the box: `getSyms` is the model with
 the remainder dropped, and the remainder is what separates it from the enclosed function.
+
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `t` – point
+
+## Hypotheses
+* `h` – the model encloses the function
+* `ht` – point lies in the unit box
+
+## Conclusion
+* the function value lies between the polynomial plus remainder ends
 -/
 
 -- Authors:       Claude Opus 5.5

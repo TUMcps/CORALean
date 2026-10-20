@@ -14,6 +14,13 @@ Scaling the row by `4 max(1,p₁) max(1,p₂)` makes every coefficient an intege
 `b = 0` is unchanged by a scale; `max` only keeps the scale non-zero when an
 operand has no factors, where the groups it would divide are empty anyway.
 
+## Inputs
+* `p₁` – factor count of first operand
+* `p₂` – factor count of second operand
+
+## Output
+* selector row coefficients as integers
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

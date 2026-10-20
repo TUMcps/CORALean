@@ -12,6 +12,12 @@ Equal exponent columns added together and the zero generators gone. The whole
 constraint block stands, `p` included, so the constraint is untouched.
 Noncomputable for that reason: dropping a zero column decides whether an
 element of an arbitrary real module is zero.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* same set with equal generator columns merged
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

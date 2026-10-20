@@ -9,6 +9,17 @@ public import CORALean.ContSet.Taylm.Real.Taylm
 
 A point of `construct` is the value at one point of the box of functions the models
 enclose, and conversely: the range-set semantics follows from the functional one.
+
+## Inputs
+* `m` – number of functions
+* `T` – family of Taylor models
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership means some enclosed functions take that value at a box point
 -/
 
 -- Authors:       Claude Opus 5.5

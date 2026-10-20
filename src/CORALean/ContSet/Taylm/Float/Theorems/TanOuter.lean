@@ -23,6 +23,20 @@ public import CORALean.Global.TaylorRemainder
 evaluate as the real ones (`eval_odePoly_odeL`), and `Interval.evalPolyCoeffs_mem` encloses them.
 The domain is explicit: the magnitude below `π/2`, and the cosine certified positive by
 `cosDown` at the center and at the magnitude, which is what `tanDown_le` and `le_tanUp` need.
+
+## Inputs
+* `p` – precision of the halvings
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hπ` – the hull stays below half of pi
+* `hcc` – cosine at the center is positive
+* `hcm` – cosine at the hull's magnitude is positive
+
+## Conclusion
+* the result encloses tangent of the function
 -/
 
 -- Authors:       Claude Opus 5.5

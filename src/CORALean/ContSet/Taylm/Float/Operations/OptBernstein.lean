@@ -14,6 +14,12 @@ CORA's `optBernstein`: the least and greatest Bernstein coefficient of the polyn
 (`bernsteinCoeffBounds`, binomial ratios rounded outward); the bound takes the least lower end and
 the greatest upper end over all multi-indices, and adds the remainder with the error box absorbed
 (`absorbRounding`), the ends rounded outward.
+
+## Inputs
+* `T` – Taylor model
+
+## Output
+* enclosure of its range by Bernstein coefficients
 -/
 
 -- Authors:       Claude Opus 5.5

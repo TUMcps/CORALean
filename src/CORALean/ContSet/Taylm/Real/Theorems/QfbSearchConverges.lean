@@ -14,17 +14,33 @@ public import Mathlib.Topology.Instances.Matrix
 /-!
 # The search for `x₀` determines the minimizer of `P₂`
 
-[1, Sec. 3 (search for x₀)]: "for a given `P₂` in `D`, `x₀` can be determined inexpensively by an
-iterative scheme to search a series of `x₀⁽ⁱ⁾` in the direction of `-∇P₂` while limiting `x₀⁽ⁱ⁾` to
-stay inside `D`", the `x₀` sought being the minimizer of `P₂` in `D`. For `H` positive semidefinite
-and a step `α` with `α v ⬝ Hv ≤ v ⬝ v`, the series from any start in the box has a limit point,
-every limit point minimizes `P₂` on the box, and `P₂(x₀⁽ⁱ⁾)` tends to that minimum.
+[1, Sec. 3 (search for x₀)]: `x₀` is determined by searching a series of `x₀⁽ⁱ⁾` in the direction
+of `-∇P₂` while staying inside `D`; it is the minimizer of `P₂` in `D`. For `H` positive
+semidefinite and a step `α` with `α v ⬝ Hv ≤ v ⬝ v`, the series from any start in the box has a
+limit point that minimizes `P₂`, and `P₂(x₀⁽ⁱ⁾)` tends to that minimum.
 
-The argument is the projected-gradient one. The projection property gives the descent
-`2α P₂(x⁺) + ‖x⁺ - x‖² ≤ 2α P₂(x)`, so the steps are square-summable and tend to `0`. The box is
-compact, so a subsequence converges, and by continuity its limit is a fixed point of the step,
-which is a minimizer (`qfbSearchStep_fixed_isMinOn`). `P₂(x₀⁽ⁱ⁾)` falls monotonically, so it
-converges, and to the value at that limit.
+The argument is projected-gradient: the steps tend to `0`, a subsequence converges to a fixed
+point of the step, a minimizer (`qfbSearchStep_fixed_isMinOn`), and `P₂(x₀⁽ⁱ⁾)` falls
+monotonically.
+
+## Inputs
+* `H` – Hessian matrix
+* `c` – constant
+* `g` – gradient
+* `α` – step length
+* `L` – smoothness constant
+* `x₀` – start point
+
+## Hypotheses
+* `hH` – the Hessian is symmetric
+* `hP` – the Hessian is positive semidefinite
+* `hα` – step length is positive
+* `hL` – the Hessian is bounded by the smoothness constant
+* `hαL` – step length times the constant is at most one
+* `hx₀` – start point lies in the unit box
+
+## Conclusion
+* some subsequence of the search converges to a minimizer of the quadratic part
 
 ## References
 

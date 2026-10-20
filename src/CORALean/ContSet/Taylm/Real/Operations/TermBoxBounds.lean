@@ -11,6 +11,13 @@ public import CORALean.ContSet.Taylm.Real.Operations.ProdBounds
 One summand of [1, Eq. 12]: the coefficient times the interval product of the coordinates'
 interval powers.
 
+## Inputs
+* `B` – box
+* `a` – term
+
+## Output
+* range of the term over the box by interval arithmetic
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

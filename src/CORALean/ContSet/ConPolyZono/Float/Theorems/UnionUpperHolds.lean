@@ -20,6 +20,18 @@ own in the stack `unionUpper` (`PolyLevelSet.and_exact`, at both layers). The fi
 holds exactly. The second is stored scaled to integers and rounded: its value moves
 by at most the sum of the coefficients' rounding gaps, a monomial being at most `1`, and
 `unionConErr` is that sum rounded up, which is the slack the stored row is held to.
+
+## Inputs
+* `p₁` – factor count of first operand
+* `p₂` – factor count of second operand
+* `a` – factor vector
+
+## Hypotheses
+* `ha` – factors are within the unit interval
+* `h` – the exact selector rows hold
+
+## Conclusion
+* the stored selector rows hold
 -/
 
 -- Authors:       Claude Opus 5.5

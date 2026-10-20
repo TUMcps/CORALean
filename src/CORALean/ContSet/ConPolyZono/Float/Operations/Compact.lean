@@ -10,22 +10,17 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.Materialise
 /-!
 # `ConPolyZono.compact`
 
-The exact layer's three stages, with the obstacles traded as they are for
-`PolyZonotope`: no zero test is made, costing a column that denotes nothing
-rather than soundness, and which columns survive is decided structurally by
-`repKeep`, one per class. What appears instead is arithmetic, merging two
-columns being an addition.
+The exact layer's three stages, with the obstacles traded as for `PolyZonotope`: no zero test is
+made, and which columns survive is decided structurally by `repKeep`. A merged *generator* column
+is off by the gap between the two directed masked sums, paid into the ambient box; a merged
+*constraint* column pays into the rows' slack `b_error`. Each stage is `materialise`d before the
+next reads it (issue #61).
 
-The two merges pay into different places, which is the whole of what the
-constraints add. A merged *generator* column is off by the gap between the two
-directed masked sums, and that gap is a `generatorError` in the ambient box, as
-for `PolyZonotope`. A merged *constraint* column has no ambient box to pay into
-— its rows live in `Fin m`, not in the state — so it pays into the rows' slack `b_error`.
+## Inputs
+* `cPZ` – constrained polynomial zonotope
 
-Each stage is `materialise`d before the next reads it (issue #61): the stages
-return closures over their input, so three stacked unstored stages made every
-read of the result walk all of them again, and `reduce` then read the result
-`O(h²)` times. `materialise_eq` makes it invisible to the theorems.
+## Output
+* same set with equal columns merged and unused factors dropped
 -/
 
 -- Authors:       Claude Opus 5

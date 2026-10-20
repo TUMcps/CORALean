@@ -11,6 +11,20 @@ public import CORALean.ContSet.Taylm.Float.Theorems.TimesOuter
 
 `T₁ · (1/T₂)`: `times_outer` at the enclosure of `1/g` that `inv_outer` gives, under the same
 condition on the denominator's hull.
+
+## Inputs
+* `T₁` – numerator model
+* `T₂` – denominator model
+* `f` – numerator function
+* `g` – denominator function
+
+## Hypotheses
+* `h₁` – the numerator encloses its function
+* `h₂` – the denominator encloses its function
+* `hm` – the denominator's range stays away from zero
+
+## Conclusion
+* the quotient model encloses the quotient of the functions
 -/
 
 -- Authors:       Claude Opus 5.5

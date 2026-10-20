@@ -11,6 +11,18 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.ProdAddCol
 
 The selector splits off as a factor of its own, which is what lets the value of
 the whole constraint row be read as a polynomial in `α₁` and the two block means.
+
+## Inputs
+* `p₁` – factor count of first operand
+* `p₂` – factor count of second operand
+* `a` – factor values
+* `c` – exponent column
+
+## Hypotheses
+* none
+
+## Conclusion
+* the selector multiplies the monomial by the selector factor
 -/
 
 -- Authors:       Claude Opus 5

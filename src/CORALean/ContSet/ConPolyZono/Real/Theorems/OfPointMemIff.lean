@@ -11,6 +11,16 @@ public import Mathlib.Algebra.Group.Fin.Tuple
 
 The converse to `mem_ofPoint`: no generator of either kind leaves nothing to add to
 the center.
+
+## Inputs
+* `v` – the point
+* `x` – a candidate point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the candidate lies in the set exactly when it equals the point
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -22,6 +22,15 @@ generator, to the first power, and in no constraint row, so it ranges over
 Both directions are stated through `show`, since the counts of the result are
 projections of a definition and the sum lemmas match only in their reduced
 spelling.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is unchanged
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

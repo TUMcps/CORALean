@@ -16,6 +16,18 @@ the smaller of the center and the bottom of the range.
 
 [1, Def. 3 (sqrt)]: the result is a Taylor model of `sqrt ∘ f`.
 
+## Inputs
+* `q` – precision of the square root
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hpos` – the range stays positive
+
+## Conclusion
+* the result encloses the square root of the function
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

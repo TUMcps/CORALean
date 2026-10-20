@@ -11,6 +11,16 @@ public import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 
 [1, Def. 3 (exp)]: the result is a Taylor model of `exp ∘ f`.
 
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+
+## Conclusion
+* the result encloses the exponential of the function
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

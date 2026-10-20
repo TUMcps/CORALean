@@ -14,6 +14,14 @@ public import CORALean.Global.Float.PowUp
 `|√⁽ᴺ⁺¹⁾ ξ| ≤ (|sqrtDeriv (N+1)| / 2ᴺ⁺¹) · √m₀ · (1/m₀)ᴺ⁺¹` for `ξ ≥ m₀ > 0`: the integer by
 `intUp` and exact halvings, `√m₀` by `sqrtUp`, `(1/m₀)ᴺ⁺¹` by `powUp` of `divUp one m₀`, the
 product rounded up. `q` is the precision of the square root.
+
+## Inputs
+* `q` – precision of the square root
+* `m₀` – lower end of the range
+* `N` – expansion order
+
+## Output
+* upper bound on the next derivative of the square root
 -/
 
 -- Authors:       Claude Opus 5.5

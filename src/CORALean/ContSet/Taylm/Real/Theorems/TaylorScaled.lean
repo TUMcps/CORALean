@@ -23,6 +23,25 @@ a constant in `A`, `E`, `C` and `N` alone — not in `h`. `T - c_f` weighs at mo
 `(8C)ᵏ` (`pow_scaled`), and `reach ≤ 2C·h` (`reach_le`) makes the last term `O(hᴺ⁺¹)`: the
 source's "additional interval, the width of which scales at least with the `(n+1)`-st power".
 
+## Inputs
+* `T` – Taylor model
+* `g` – outer function
+* `D` – derivative bound
+* `h` – domain radius
+* `C` – scaling constant
+* `A` – coefficient bound
+* `E` – derivative bound magnitude
+
+## Hypotheses
+* `h0` – radius is positive
+* `h1` – radius is at most one
+* `hT` – the model is scaled by the constant
+* `hA` – Taylor coefficients are bounded
+* `hD` – the derivative bound is bounded
+
+## Conclusion
+* the expansion is scaled by a constant built from them
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

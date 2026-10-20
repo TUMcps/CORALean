@@ -15,6 +15,15 @@ Induction on the size, expanding the determinant along its first row
 (`Matrix.det_succ_row_zero`) exactly as `Taylm.det` does: each summand is the sign times the entry
 (`smul_outer`) times the minor's determinant (`times_outer`, the induction hypothesis), and the sum
 is `sum_outer`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the determinant model encloses the determinant of the enclosed functions
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,20 @@ public import CORALean.ContSet.Taylm.Real.Operations.Pow
 `(4B)ᵏ`; the constant is independent of `h`, which is what [1, Thm. 1] needs of the powers its
 intrinsics are made of.
 
+## Inputs
+* `T` – Taylor model
+* `h` – domain radius
+* `B` – scaling constant
+* `k` – exponent
+
+## Hypotheses
+* `h0` – radius is positive
+* `h1` – radius is at most one
+* `hT` – the model is scaled by the constant
+
+## Conclusion
+* the power is scaled by a constant built from it
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

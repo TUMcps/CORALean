@@ -18,6 +18,19 @@ The sum of [1, Def. 2] is a Taylor model of `f + g`.
 
 [2, Eq. 6]: with `smul_outer`, `αT₁ + βT₂` encloses `αf + βg`.
 
+## Inputs
+* `T₁` – first model
+* `T₂` – second model
+* `f` – first function
+* `g` – second function
+
+## Hypotheses
+* `h₁` – the first model encloses its function
+* `h₂` – the second model encloses its function
+
+## Conclusion
+* the sum model encloses the sum of the functions
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

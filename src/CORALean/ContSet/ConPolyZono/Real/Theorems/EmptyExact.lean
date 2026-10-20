@@ -9,6 +9,15 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
 # `ConPolyZono.empty` denotes the empty set
 
 The one constraint row asks `(A μ)₀ = 1` of an empty matrix, whose product is `0`.
+
+## Inputs
+* `n` – ambient dimension
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is empty
 -/
 
 -- Authors:       Claude Opus 5.5

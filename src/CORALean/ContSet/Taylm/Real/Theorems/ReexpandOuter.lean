@@ -14,6 +14,18 @@ public import Mathlib.Tactic.Linarith
 The re-expanded polynomial at `s` is the original at `mid + rad ⊙ s` exactly
 (`polyOf_reexpTerms`), and for `s` in the normalized box that point lies in the sub-box, hence in
 the normalized box, where the original remainder holds.
+
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `B` – box
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hB` – the box lies in the unit box
+
+## Conclusion
+* the result encloses the function on the sub-box
 -/
 
 -- Authors:       Claude Opus 5.5

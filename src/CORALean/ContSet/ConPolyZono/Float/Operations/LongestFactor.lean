@@ -12,6 +12,12 @@ time: drop the columns that are a single factor to the power one unless that wou
 halve the generators whose exponents are all even, measure each factor by the summed squared lengths
 of the generators it appears in, rounded up, and take the first factor of largest measure. `none`
 where there is no factor. Any factor is sound for the split, so a misranking costs precision alone.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* index of the longest factor, if any
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,21 @@ public import CORALean.ContSet.Taylm.Real.Theorems.Basic
 [1, Thm. 1], eq. (2.8) for the sum: the weights add and so do the remainders, so two models
 scaled by `C₁` and `C₂` at the same order give one scaled by `C₁ + C₂`, at every `h`.
 
+## Inputs
+* `T₁` – first model
+* `T₂` – second model
+* `h` – domain radius
+* `C₁` – first scaling constant
+* `C₂` – second scaling constant
+
+## Hypotheses
+* `hN` – the models have the same order
+* `h₁` – first model is scaled by its constant
+* `h₂` – second model is scaled by its constant
+
+## Conclusion
+* the sum is scaled by the sum of the constants
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

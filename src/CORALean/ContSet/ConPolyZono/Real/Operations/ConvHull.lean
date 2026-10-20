@@ -17,6 +17,14 @@ combination and the combination inside the hull.
 
 Pinned to `Vec`, since the count of copies is the ambient dimension plus one.
 
+## Inputs
+* `n` – ambient dimension
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Output
+* convex hull as weighted copies
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

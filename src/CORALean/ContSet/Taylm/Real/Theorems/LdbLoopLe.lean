@@ -17,6 +17,17 @@ public import CORALean.ContSet.Taylm.Real.Theorems.ReexpandOuter
 last box by `ldbStep_lower`; a point cut off earlier is above that step's `Min`, which a kept
 point is below, and the kept point is in the next box, where the induction holds.
 
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `ε` – tolerance
+
+## Hypotheses
+* `h` – the model encloses the function
+
+## Conclusion
+* the iteration's bound is at most the function's value on every box in the unit box
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

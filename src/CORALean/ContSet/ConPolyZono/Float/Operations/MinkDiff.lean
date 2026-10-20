@@ -21,6 +21,13 @@ cut the float `intersection`, both outer, so the result is outer. The subtrahend
 not subtracted: the difference is taken with its nominal part, which holds the float zonotope
 when that box holds `0`.
 
+## Inputs
+* `cPZ₁` – minuend
+* `Z` – zonotope subtrahend
+
+## Output
+* enclosure of the Minkowski difference
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes". arXiv, 2015.

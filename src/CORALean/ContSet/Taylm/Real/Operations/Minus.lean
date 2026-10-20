@@ -12,6 +12,13 @@ same interval.
 
 The difference of [1, Eq. 7], with the scalars through `smul`.
 
+## Inputs
+* `T₁` – first model
+* `T₂` – second model
+
+## Output
+* Taylor model of the difference
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

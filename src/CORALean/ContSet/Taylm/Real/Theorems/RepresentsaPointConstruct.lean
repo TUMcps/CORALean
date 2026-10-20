@@ -12,6 +12,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.TaylmPolyZonotopeExact
 
 When the test holds, and every remainder is a nonempty interval, the range set of the models is
 the one point, the polynomial zonotope's center. One direction: the test is sufficient only.
+
+## Inputs
+* `T` – family of Taylor models
+
+## Hypotheses
+* `hT` – each remainder is an ordered interval
+* `h` – the point test holds
+
+## Conclusion
+* the range set is the point of the constant terms
 -/
 
 -- Authors:       Claude Opus 5.5

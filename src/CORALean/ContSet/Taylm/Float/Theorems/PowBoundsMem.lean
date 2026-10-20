@@ -9,6 +9,19 @@ public import CORALean.ContSet.Interval.Float.Theorems.PowerOuter
 # `Taylm.powBounds` brackets the power
 
 Every power `t ^ k` of a point of `[l, u]` lies in the stored range, by `Interval.power_outer`.
+
+## Inputs
+* `l` – lower end
+* `u` – upper end
+* `t` – real point
+* `k` – exponent
+
+## Hypotheses
+* `hl` – value is at least the lower end
+* `hu` – value is at most the upper end
+
+## Conclusion
+* the power lies in its enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

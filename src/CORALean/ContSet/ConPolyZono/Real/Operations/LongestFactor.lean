@@ -16,6 +16,12 @@ squared lengths of the generators it appears in; take the first factor of larges
 `none` when there is no factor, where CORA's `max` of an empty vector errors.
 
 Which factor is chosen never matters for the union of the halves.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* index of the factor with the longest generators, if any
 -/
 
 -- Authors:       Claude Opus 5.5

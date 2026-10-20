@@ -13,18 +13,21 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullG
 /-!
 # `ConPolyZono.convHullSingle`
 
-CORA's `aux_convHullSingle`, the construction of [1, Prop. 9] applied to one
-set: `a` copies of it, each over its own block of factors and its own copy of
-the constraint system, weighted by `a` fresh factors whose sum one extra row
-fixes. That is a convex combination of `a` of the set's points, and at
-`a = dim + 1` Carathéodory says those are the whole convex hull.
+CORA's `aux_convHullSingle`, the construction of [1, Prop. 9] applied to one set: `a` copies of
+it, each over its own block of factors and its own copy of the constraint system
+(`PolyLevelSet.copies`), weighted by `a` fresh factors whose sum one extra row fixes
+(`PolyLevelSet.linear`). At `a = dim + 1` Carathéodory says the result is the whole convex hull.
 
-The constraint is the operand's, copied onto each block (`PolyLevelSet.copies`), beside the
-weight row, a linear level set (`PolyLevelSet.linear`) on the weight factors
-(`PolyLevelSet.cartProd`).
+No independent generators: a coefficient answering to no constraint would be free in every copy at
+once.
 
-No independent generators: a coefficient answering to no constraint would be
-free in every copy at once, which is not what a weighted sum of points means.
+## Inputs
+* `α` – ambient type
+* `a` – number of weights
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* weighted copies of the set
 
 ## References
 

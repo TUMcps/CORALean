@@ -8,6 +8,17 @@ public import CORALean.ContSet.Taylm.Float.Operations.BernsteinIdx
 # The index list holds every multi-index
 
 Every multi-index is in `bernsteinIdx`.
+
+## Inputs
+* `n` – number of variables
+* `N` – degree
+* `β` – multi-index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the index list holds the multi-index
 -/
 
 -- Authors:       Claude Opus 5.5

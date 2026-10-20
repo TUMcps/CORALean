@@ -12,6 +12,12 @@ CORA's `representsa(T, 'emptySet')`, answered one-sidedly: `true` only if some c
 remainder with the error box absorbed (`absorbRounding`, the ends rounded outward) is crossed, its
 upper end below its lower end by the strict test `ltStrict`, so the exact sum of the remainder and
 the box is empty and the range set is `∅`. `false` refutes nothing.
+
+## Inputs
+* `T` – family of Taylor models
+
+## Output
+* whether some remainder proves the range set empty
 -/
 
 -- Authors:       Claude Opus 5.5

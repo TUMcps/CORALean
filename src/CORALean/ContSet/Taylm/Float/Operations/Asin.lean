@@ -15,6 +15,14 @@ The exact layer's `asin` with every number enclosed: the zeroth coefficient `arc
 `asinDown` and `asinUp`, the others `Taylm.arcsinCoef`, the Lagrange bound `Taylm.arcsinBound` at
 the magnitude `Taylm.magUp`. `p` and `q` are the precisions of `asinDown`/`asinUp` and
 `Global/Float/Sqrt`.
+
+## Inputs
+* `p` – precision of the arcsine
+* `q` – precision of the square root
+* `T` – Taylor model
+
+## Output
+* Taylor model of arcsin of the argument
 -/
 
 -- Authors:       Claude Opus 5.5

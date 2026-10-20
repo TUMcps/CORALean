@@ -15,6 +15,14 @@ coefficient such as `exp c / k!` is in general. Each coefficient product is encl
 corner products; the upper one is stored and the width goes to the error box, a monomial
 being at most one in magnitude on the box. The remainder and the box are each scaled by the
 interval, rounded outward.
+
+## Inputs
+* `alo` – lower end of the scalar
+* `ahi` – upper end of the scalar
+* `T` – Taylor model
+
+## Output
+* Taylor model scaled by any real in the interval
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -19,6 +19,13 @@ out block-diagonally by `PolyZonotope.plusE`, and the constraint is the product 
 `PolyLevelSet.cartProd`, its rows block-diagonal too. A row of one set then reads exponent zero
 on every factor of the other, so it constrains the factors it came with and no
 others — which is what makes the sum exact rather than too small.
+
+## Inputs
+* `cPZ₁` – first summand
+* `cPZ₂` – second summand
+
+## Output
+* Minkowski sum of the two sets
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

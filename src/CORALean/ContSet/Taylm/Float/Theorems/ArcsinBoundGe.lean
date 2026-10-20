@@ -13,6 +13,19 @@ public import CORALean.Global.ElementaryDerivBounds
 `(√(1 - m²))⁻⁽²ᴺ⁺¹⁾`; the polynomial is below its `Interval.evalPolyCoeffs` enclosure, the power
 below `powUp` of the rounded-up `invSqrtOneSubHi`, and the product below its rounding. `hm` is the
 rounded root positive at `m`, which puts `m` below one.
+
+## Inputs
+* `q` – precision of the square root
+* `m` – magnitude bound
+* `N` – expansion order
+* `x` – point
+
+## Hypotheses
+* `hm` – the root at the magnitude is positive
+* `hx` – point is within the magnitude
+
+## Conclusion
+* the bound dominates the next derivative of arcsin at the point
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,16 +12,20 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 # `ConPolyZono.minkDiff`
 
 CORA's `@conPolyZono/minkDiff` with a zonotope subtrahend [1, Thm. 1], type `'exact'`: the
-independent generators of the minuend become dependent ones (`dependent`), the subtrahend's
-center is subtracted, and for every generator `g` of the subtrahend the set `P` is replaced by
-`(P + g) ∩ (P - g)`.
+independent generators of the minuend become dependent ones (`dependent`), the subtrahend's center
+is subtracted, and for every generator `g` of the subtrahend `P` is replaced by `(P + g) ∩ (P -
+g)`.
 
-For a convex minuend each step is exact, `{x | x ± g ∈ P} = {x | x + [-g, g] ⊆ P}`, and the result
-is `P ⊖ Z`. For a nonconvex minuend the segment between `x - g` and `x + g` is not in `P` in
-general, so CORA's `'exact'` is an outer approximation there: `minkDiff_not_inner` gives a minuend
-and a zonotope for which the result is not a subset of the difference. The numeric subtrahend
-(`P + (-v)`), the vertex form for a conZonotope, polytope or zonoBundle subtrahend (Lemma 1) and the
-`'inner'` type are not modelled.
+For a convex minuend each step is exact and the result is `P ⊖ Z`. For a nonconvex minuend CORA's
+`'exact'` is an outer approximation (`minkDiff_not_inner`). The numeric subtrahend, the vertex
+form for other subtrahends (Lemma 1) and the `'inner'` type are not modelled.
+
+## Inputs
+* `cPZ₁` – minuend
+* `Z` – zonotope subtrahend
+
+## Output
+* the Minkowski difference
 
 ## References
 

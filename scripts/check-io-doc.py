@@ -25,7 +25,7 @@ Which binder is a `Prop` is decided by a text proxy, since no elaboration happen
 is a hypothesis when
   * its name is `h` alone or `h` followed by at least one more character (`hZ`, `hlt`, `h₁`,
     `hΔt`) and its type does not begin with a data head (`ℕ ℤ ℝ ℚ ℂ Bool Fin Type Set Vec Mat
-    List Finset Option String`) free of a depth-0 relation symbol (so `(hi : Fin k → Vec 𝕋 n)`
+    List Finset Option String`, or the float scalar `𝕋`: `{lo hi : 𝕋}`; a function type `α → 𝕋` counts by its codomain) free of a depth-0 relation symbol (so `(hi : Fin k → Vec 𝕋 n)`
     is an input, `(hS : Set.Nonempty S)` and `(hS : Set α ⊆ T)` are hypotheses), or
   * its type, outer parentheses removed, contains at depth 0 one of
     `= ≠ ≤ ≥ < > ∈ ∉ ⊆ ⊂ ⊇ ⊃ ∣ ∀ ∃ ¬ ∧ ∨ ↔ ⊥` (`→` is not in the list: it is a function type
@@ -148,7 +148,7 @@ def binders(sig):
 
 
 DATA_HEADS = {"ℕ", "ℤ", "ℝ", "ℚ", "ℂ", "Bool", "Fin", "Type", "Type*", "Sort", "Prop", "String",
-              "List", "Finset", "Set", "Vec", "Mat", "Option"}
+              "List", "Finset", "Set", "Vec", "Mat", "Option", "𝕋"}
 
 
 def is_prop(name, typ):
@@ -164,6 +164,13 @@ def is_prop(name, typ):
     # symbol at depth 0 (`(hi : Fin k → Vec 𝕋 n)`, `(h : ℕ)`)
     if name == "h" or re.match(r"^h.", name):
         data = bool(head0 and head0.group(0) in DATA_HEADS)
+        if not data:
+            # a function type `α → 𝕋` is data when its codomain is
+            flat0 = top_level(t)
+            k = flat0.rfind("→")
+            if k >= 0:
+                cod = re.match(r"[^\s(]+", t[k + 1:].strip())
+                data = bool(cod and cod.group(0) in DATA_HEADS)
         if not (data and not any(c in re.sub(r"[ℝℚ]≥0∞?", "ℝ", top_level(t)) for c in PROP_SYMBOLS)):
             return True
     while t.startswith("(") and matching(t, 0) == len(t) - 1:

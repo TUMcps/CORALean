@@ -19,6 +19,15 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMono
 A merged generator column is bracketed by the two directed masked sums, the
 lower is stored, and the gap is a `generatorError` in the ambient box. The
 nominal set only *grows* at this stage, and the error box does not move.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

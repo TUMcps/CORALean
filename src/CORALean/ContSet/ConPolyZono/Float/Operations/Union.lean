@@ -17,19 +17,21 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.HalfDiff
 /-!
 # `ConPolyZono.union`
 
-CORA's `@conPolyZono/or`, [1, Thm. 1], as the exact layer lays it out: the center
-at the midpoint, one generator `(c₁ - c₂) / 2` whose factor is the branch selector, then both
-operands' generators unchanged, and the selector constraints over two fresh factors.
+CORA's `@conPolyZono/or`, [1, Thm. 1], as the exact layer lays it out: the center at the midpoint,
+one generator `(c₁ - c₂) / 2` whose factor is the branch selector, then both operands' generators,
+and the selector constraints over two fresh factors.
 
-The midpoint and the sliding generator are rounded down and their shortfalls paid into
-the box, as `linComb`'s are; the box also holds both operands' boxes (`Interval.or`),
-which each branch carries along. The operands' constraint blocks are copied with their slacks, and
-the selector polynomial is stored scaled to integer coefficients (`unionConInt`), what storing them
-cost being its row's slack (`unionConErr`).
+The midpoint and the sliding generator are rounded down, their shortfalls paid into the box; the
+selector polynomial is stored scaled to integer coefficients (`unionConInt`), what that cost being
+its row's slack (`unionConErr`). No independent generators, as over ℝ. That the result holds both
+operands rests on `Real.ConPolyZono.union_relax_subset`.
 
-No independent generators: as over ℝ, there is nothing for them to mean here. That the result
-holds both operands rests on `Real.ConPolyZono.union_relax_subset`, [1, Thm. 1]'s construction
-with each operand's rows met within their slack.
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Output
+* enclosure of the union
 
 ## References
 

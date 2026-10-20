@@ -12,6 +12,23 @@ public import CORALean.ContSet.Taylm.Real.Theorems.GoodBoxHalve
 
 [1, Sec. 4]: the lower end of `cosyGo` is below the enclosed function on all of `X`.
 
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `X` – domain box
+* `ε` – tolerance
+* `ldbFuel` – fuel of the linear bounder
+* `fuel` – step budget
+* `t` – point
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hX` – the box lies in the unit box
+* `ht` – point lies in the box
+
+## Conclusion
+* the lower end of the optimizer's enclosure is at most the function's value
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

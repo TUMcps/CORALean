@@ -11,6 +11,13 @@ public import CORALean.ContSet.Taylm.Float.Operations.Basic
 The iteration of the listing: bound the union of the boxes, step, and stop once neither end moved
 by more than `2ε` times the radius, or when `fuel` runs out. The float comparison is `le`, which
 certifies a `true` only; the bounds stay sound for every stopping rule.
+
+## Inputs
+* `bnd` – bounding function on a box
+* `ε` – tolerance
+
+## Output
+* enclosure of the range from the search loop
 -/
 
 -- Authors:       Claude Opus 5.5

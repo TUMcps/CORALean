@@ -12,6 +12,13 @@ The advanced setting of [1, Alg. 1]: re-expand `P` at the box's center, scaled t
 normalized box, and bound the result there by interval arithmetic (`polyBounds`). CORA's
 `optBnbAdv` bounds each sub-box this way.
 
+## Inputs
+* `P` – terms of the polynomial
+* `B` – box
+
+## Output
+* range of the terms over the box after re-expansion
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

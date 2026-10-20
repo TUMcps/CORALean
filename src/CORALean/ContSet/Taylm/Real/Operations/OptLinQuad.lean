@@ -12,6 +12,15 @@ CORA's `optLinQuad`: the bounds of a model over the normalized box by the LDB/QF
 optimizer reduces the domain by LDB before each bisection and seeds the QFB point by a gradient
 search; this one bisects and takes the box's center.
 
+## Inputs
+* `T` – Taylor model
+* `ε` – tolerance
+* `ldbFuel` – fuel of the linear bounder
+* `fuel` – step budget
+
+## Output
+* enclosure of its range by the linear and quadratic bounders
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

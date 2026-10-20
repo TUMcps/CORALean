@@ -15,6 +15,14 @@ operand's factor block, `αⱼ² αₖ²`, indexed by the pair `(j,k)` that
 There are `p₁ p₂` of them, and they are what makes the constraint's column count
 quadratic rather than linear in the operands' factor counts.
 
+## Inputs
+* `p₁` – factor count of first operand
+* `p₂` – factor count of second operand
+* `l` – column index
+
+## Output
+* exponent column squaring one factor of each operand
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

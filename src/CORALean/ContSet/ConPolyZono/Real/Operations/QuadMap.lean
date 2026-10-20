@@ -13,6 +13,13 @@ CORA's `@conPolyZono/quadMap`: `quadMapDep` run on `dependent`, exactly as
 on a set whose coefficients are all dependent. Here `dependent` also widens
 the constraints with zero rows for the fresh factors, which is what keeps the
 two arrangements in step.
+
+## Inputs
+* `Q` – family of quadratic forms
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* image under the quadratic map
 -/
 
 -- Authors:       Claude Opus 5

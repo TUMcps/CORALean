@@ -19,6 +19,22 @@ other the first's, and there is no third solution.
 Stated over bare reals rather than over a factor vector, since that is all it is
 about: the two counts enter only through the two means.
 
+## Inputs
+* `p₁` – factor count of first operand
+* `p₂` – factor count of second operand
+* `x` – first selector
+* `y` – second selector
+* `u` – factors of first operand
+* `v` – factors of second operand
+
+## Hypotheses
+* `hx` – first selector is within the unit interval
+* `hy` – second selector is within the unit interval
+* `hv` – factors of second operand are within the unit interval
+
+## Conclusion
+* the selector equations hold exactly on the two branches
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

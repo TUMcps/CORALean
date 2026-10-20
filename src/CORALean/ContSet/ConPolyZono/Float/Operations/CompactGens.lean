@@ -19,6 +19,12 @@ The exponent matrix is scanned once, into a table of representatives and a table
 of kept columns, and every entry is read through those: the specification
 `compactGensSpec` rescans for each of the `n · h` entries and each of the `h`
 summands under it (issue #61). `compactGens_eq_spec` says they are one.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* same set with equal generator columns merged
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

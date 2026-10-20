@@ -13,6 +13,13 @@ The exact layer's `cos` with every number enclosed: the expansion at the constan
 `maxOrder`, the coefficients `cos⁽ᵏ⁾(c) / k!` by `trigCoef`, and the remainder `unitRemainder`,
 every derivative of `cos` being at most one in magnitude. `p` is the number of halvings of the
 sine and cosine (`Global/Float/SinCos`).
+
+## Inputs
+* `p` – precision of the halvings
+* `T` – Taylor model
+
+## Output
+* Taylor model of cosine of the argument
 -/
 
 -- Authors:       Claude Opus 5.5

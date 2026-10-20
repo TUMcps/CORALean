@@ -12,6 +12,18 @@ factor is the branch selector, and then both operands' generators unchanged. The
 center of the union is half their sum, so `α₁ = 1` reaches `c₁` and `α₁ = -1`
 reaches `c₂`.
 
+## Inputs
+* `h₁` – generators of first
+* `h₂` – generators of second
+* `α` – ambient type
+* `c₁` – first center
+* `c₂` – second center
+* `G₁` – first generators
+* `G₂` – second generators
+
+## Output
+* generators of the union
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

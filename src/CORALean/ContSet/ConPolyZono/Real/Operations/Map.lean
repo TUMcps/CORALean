@@ -8,15 +8,17 @@ public import Mathlib.Algebra.Module.LinearMap.Defs
 /-!
 # `ConPolyZono.map`
 
-A linear map applies to the center and to both generator blocks and touches
-nothing else — not the exponent matrix, not the counts, and above all not the
-constraints.
+A linear map applies to the center and to both generator blocks and touches nothing else, above
+all not the constraints. That is the whole content of the file: the constraints live on the
+factors, and a map of the ambient space does not move a factor, so the set of admissible factor
+vectors is the same before and after. Exactness follows as for a polynomial zonotope.
 
-That last part is the whole content of the file. The constraints live on the
-factors, and a map of the ambient space does not move a factor, so the set of
-admissible factor vectors is the same before and after. Exactness follows for
-the same reason it does for a polynomial zonotope: the same witnesses work in
-both directions.
+## Inputs
+* `f` – linear map
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* image under the linear map
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

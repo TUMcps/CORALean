@@ -15,6 +15,19 @@ public import Mathlib.Data.Nat.Choose.Sum
 The exact coefficients `a · C(eₖ, j) mᵉᵏ⁻ʲ rʲ` at the expanded exponents give, at `s`, the original
 polynomial at `s` with `sₖ` replaced by `m + r sₖ`: a term's monomial splits into the factor of
 `sₖ` and the rest, and the factor of `sₖ` is the binomial theorem.
+
+## Inputs
+* `L` – terms of the polynomial
+* `k` – variable index
+* `m` – center
+* `r` – radius
+* `s` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the re-expanded terms evaluate to the original at the substituted point
 -/
 
 -- Authors:       Claude Opus 5.5

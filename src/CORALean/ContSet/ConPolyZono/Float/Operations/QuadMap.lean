@@ -19,6 +19,13 @@ part, which also frees the error box into one fresh factor per coordinate; then 
 one charged to the error box. The constraints are kept on the original factors, widened by zero
 exponent rows for the fresh ones (`padE`), so a factor vector meets them exactly when its first
 block does. Outer, never the exact image.
+
+## Inputs
+* `Q` – family of quadratic forms
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* image under the quadratic map
 -/
 
 -- Authors:       Claude Opus 5.5

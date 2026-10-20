@@ -12,6 +12,19 @@ public import Mathlib.Analysis.SpecialFunctions.Sqrt
 `√ = x^(1/2)`, so `√⁽ᴺ⁺¹⁾ ξ = ∏ᵢ(1/2 - i) · ξ^(1/2 - (N+1))` (`Real.iter_deriv_rpow_const`), the
 product `sqrtDeriv (N+1) / 2ᴺ⁺¹` (`eval_descPochhammer_half`), and a negative power decreases, so
 `ξ ≥ m₀` is bounded by `m₀^(1/2 - (N+1)) = √m₀ · (1/m₀)ᴺ⁺¹`. Each factor is below its rounding.
+
+## Inputs
+* `q` – precision of the square root
+* `m₀` – lower end of the range
+* `N` – expansion order
+* `ξ` – point
+
+## Hypotheses
+* `hm` – lower end is positive
+* `hξ` – point is at least the lower end
+
+## Conclusion
+* the bound dominates the next derivative of the square root at the point
 -/
 
 -- Authors:       Claude Opus 5.5

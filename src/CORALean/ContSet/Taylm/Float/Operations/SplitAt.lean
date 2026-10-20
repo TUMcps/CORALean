@@ -10,6 +10,13 @@ public import CORALean.ContSet.Taylm.Float.Operations.WidestCoord
 
 Box `i` of the list halved along its widest coordinate: the first half replaces it, the second is
 appended.
+
+## Inputs
+* `i` – box index
+* `l` – list of boxes
+
+## Output
+* list with that box halved along its widest coordinate
 -/
 
 -- Authors:       Claude Opus 5.5

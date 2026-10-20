@@ -9,6 +9,14 @@ public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 
 Split out of `Reduce.lean` (issue #62): read again by `Theorems/
 ReduceByOuter.lean`, outside this file.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `partD` – split of the dependent generators
+* `partI` – split of the independent generators
+
+## Output
+* box reaching the dropped generators
 -/
 
 -- Authors:       Claude Opus 5

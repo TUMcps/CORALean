@@ -11,6 +11,17 @@ public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
 By induction on `k`: `iteratedDeriv (k+1) sin = iteratedDeriv k cos` and
 `iteratedDeriv (k+1) cos = -iteratedDeriv k sin`, and `(k+1)! = (k+1) k!`, so each coefficient is
 the previous one of the other function over `k + 1`, which the division encloses.
+
+## Inputs
+* `p` – precision of the halvings
+* `c` – center
+* `k` – coefficient index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the true sine and cosine coefficients lie in the enclosures
 -/
 
 -- Authors:       Claude Opus 5.5

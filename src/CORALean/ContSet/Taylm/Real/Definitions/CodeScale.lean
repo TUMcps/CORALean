@@ -15,6 +15,14 @@ constants, and the intrinsics `exp`, `sin`, `cos`, whose derivative bounds need 
 `ScalingFragment` is that part of the code lists; `codeScale N e C` the constant a run of `e`
 from inputs scaled by `C` is scaled by — a function of `N` and `C`, never of `h`.
 
+## Inputs
+* `m` – number of variables
+* `N` – expansion order
+* `C` – input scaling constant
+
+## Output
+* scaling constant of a run of the code list
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

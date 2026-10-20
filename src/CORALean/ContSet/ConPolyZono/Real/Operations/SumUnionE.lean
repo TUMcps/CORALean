@@ -19,6 +19,26 @@ read back against the factors it came with. Every step is a monomial lemma:
 `appendE` separates the selector column, `padE` drops the fresh factors, `plusE`
 separates the two operands.
 
+## Inputs
+* `p₁` – factors of first operand
+* `h₁` – generators of first
+* `p₂` – factors of second operand
+* `h₂` – generators of second
+* `α` – ambient type
+* `c₁` – first center
+* `c₂` – second center
+* `G₁` – first generators
+* `G₂` – second generators
+* `E₁` – first exponent matrix
+* `E₂` – second exponent matrix
+* `a` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the union's generator sum splits into selector, first and second parts
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

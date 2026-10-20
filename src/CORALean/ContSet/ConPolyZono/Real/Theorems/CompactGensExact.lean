@@ -13,13 +13,19 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.SumMonomialMerge
 
 The result is [1, Prop. 1].
 
-`compactGens` leaves the whole constraint block alone, so membership in `cons` transfers
-by definition and only the generator sum moves. An equality of sets with no
-hypothesis, which is what makes this stage bookkeeping.
+`compactGens` leaves the whole constraint block alone, so membership in `cons` transfers by
+definition and only the generator sum moves. An equality of sets with no hypothesis, which is what
+makes this stage bookkeeping. The `key` is stated with the *original* center and independent block
+on both sides, keeping the equation to the one sum that changes.
 
-The `key` is stated with the *original* center and independent block on both
-sides. They are the compacted ones up to unfolding, and writing them so keeps
-the equation to the one sum that actually changes.
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is unchanged
 
 ## References
 

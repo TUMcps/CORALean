@@ -16,6 +16,13 @@ Given as a map from column index to column rather than as the transposed matrix
 the representation stores, since every group is defined by what its column *is*;
 `unionConR` is this read the other way round.
 
+## Inputs
+* `p₁` – factor count of first operand
+* `p₂` – factor count of second operand
+
+## Output
+* monomials of the selector constraint
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

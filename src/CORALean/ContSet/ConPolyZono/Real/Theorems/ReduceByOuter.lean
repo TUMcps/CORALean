@@ -15,18 +15,25 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
 /-!
 # Boxing what two partitions drop over-approximates
 
-The whole argument behind the reduction rule here, and it holds at *every* pair
-of partitions, which is what lets the ranking be a heuristic — Girard's metric
-appears nowhere below.
+The whole argument behind the reduction rule here, and it holds at *every* pair of partitions,
+which is what lets the ranking be a heuristic.
 
-The constraint is what a `PolyZonotope` does not have to carry, and it costs
-nothing: `p`, `A`, `b` and `R` are copied, so the very witness `a` that
-satisfied the old system satisfies the new one, and only the value equation has
-work in it. Kept generators keep their exponent columns; the dropped ones of
-either block contribute `D` in row `i`, which the diagonal block reproduces with
-coefficient `D / R` for `R` that row's box radius. `abs_monomial_le_one` bounds
-the dependent half of `|D|` — which is why the two halves may share one box —
-and `Zonotope.coefficient` handles the rescaling, degenerate `R = 0` included.
+The constraint costs nothing: `p`, `A`, `b` and `R` are copied, so the very witness `a` that
+satisfied the old system satisfies the new one, and only the value equation has work in it. The
+dropped generators of either block contribute `D` in row `i`, which the diagonal block reproduces
+with coefficient `D / R` for `R` that row's box radius; `abs_monomial_le_one` bounds the dependent
+half, so the two halves may share one box.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `partD` – split of the dependent generators
+* `partI` – split of the independent generators
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

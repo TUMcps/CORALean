@@ -10,6 +10,12 @@ public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 CORA's `conPolyZono` at a center, no generators of either block and no
 constraints: a single point, as the representation. What `OfPoint` asks every
 representation with a point operation to supply.
+
+## Inputs
+* `v` – the point
+
+## Output
+* the point as a constrained polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

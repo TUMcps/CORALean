@@ -20,6 +20,18 @@ basis polynomials, which are nonnegative on `[0, 1]` and sum to one (`sum_bernst
 Not exact: the coefficients' hull contains the range, with equality only where the polynomial
 attains its extreme coefficients, as at the corners of a multilinear one.
 
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `t` – point
+
+## Hypotheses
+* `h` – the model encloses the function
+* `ht` – point lies in the unit box
+
+## Conclusion
+* the Bernstein enclosure contains the function's value
+
 ## References
 
 * [1] `global/functions/helper/sets/contSet/polyZonotope/poly2bernstein.m`, CORA (Sep. 2025).

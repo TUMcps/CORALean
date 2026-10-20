@@ -18,6 +18,13 @@ the two sets' side by side (`PolyLevelSet.cartProd`) stacked on the agreement ro
 `cPZ₁`'s error box and only `cPZ₁`'s generator block: the point it denotes is
 `y₁ + e₁`, and `cPZ₂` enters through the constraint system alone, its generator
 columns kept at `zero` so the agreement rows can read the second point.
+
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Output
+* intersection for dependent-only operands
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

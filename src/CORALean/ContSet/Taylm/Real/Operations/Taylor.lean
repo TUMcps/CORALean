@@ -16,6 +16,15 @@ and the model's range. CORA writes each elementary function out by hand in this
 shape; here `exp`, `log` and `sqrt` are this definition at their own `g` and `D`. The
 remainder is the magnitude form, symmetric about zero, where CORA evaluates the signed
 Lagrange term in interval arithmetic: sound either way, coarser here by up to a factor two.
+
+## Inputs
+* `T` – Taylor model
+* `g` – outer function
+* `c` – center
+* `D` – derivative bound
+
+## Output
+* Taylor model of the expansion at the center
 -/
 
 -- Authors:       Claude Opus 5.5

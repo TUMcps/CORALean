@@ -13,6 +13,18 @@ The result is [1, Prop. 5].
 `map_exact` at `A *ᵥ ·`, which is the case reachability runs. The constraint is
 on the factors, and a linear map of the ambient space moves points, not factors.
 
+## Inputs
+* `k` – rows of the matrix
+* `n` – ambient dimension
+* `M` – linear map
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image under the map is the result's set
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

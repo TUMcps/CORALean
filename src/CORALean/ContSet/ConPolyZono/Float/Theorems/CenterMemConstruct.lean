@@ -16,6 +16,18 @@ point at the factors `0`, as in the exact layer's `center_mem_construct`: every 
 when no exponent column of `E` or `R` is zero, so it is in the nominal set when `0` meets every
 row within its slack, `|b| ≤ |b_error|`; it is then in the whole set once the error box holds
 `0`, which a box built by the operations does and an arbitrary one need not.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* `hE` – exponent matrix has no zero column
+* `hR` – constraint exponents have no zero column
+* `hb` – each constraint slack covers its offset
+* `h0` – error box contains the origin
+
+## Conclusion
+* the stored center belongs to the set
 -/
 
 -- Authors:       Claude Opus 5.5

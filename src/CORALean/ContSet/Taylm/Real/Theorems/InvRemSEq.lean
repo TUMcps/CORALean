@@ -16,6 +16,17 @@ remainder `1/x - Σₖ₌₀^q (-1)ᵏ (x - c)ᵏ / cᵏ⁺¹` of `1/x`'s Taylor
 (34)'s integral by Taylor's theorem. With `Rⱼ₋₁` taken as eq. (34) at order `j - 1`, as printed,
 the recursion would be `R_q = (-1)^{q+1}(x - c)^q/c^{q+1} + R_{q-1}` instead.
 
+## Inputs
+* `c` – center
+* `x` – point
+* `q` – order
+
+## Hypotheses
+* `hc` – the center is nonzero
+
+## Conclusion
+* the recursion gives the exact reciprocal remainder
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

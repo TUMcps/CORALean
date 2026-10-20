@@ -16,6 +16,22 @@ semidefinite and any step length `α > 0`. The projection property at `x⁺ = x`
 `∇P₂(x) ⬝ (z - x) ≥ 0` for every `z` in the box, and
 `P₂(z) - P₂(x) = ∇P₂(x) ⬝ (z - x) + ½ (z - x) ⬝ H(z - x) ≥ 0`.
 
+## Inputs
+* `H` – Hessian matrix
+* `c` – constant
+* `g` – gradient
+* `α` – step length
+* `x` – point
+
+## Hypotheses
+* `hH` – the Hessian is symmetric
+* `hP` – the Hessian is positive semidefinite
+* `hα` – step length is positive
+* `hx` – the search step fixes the point
+
+## Conclusion
+* the point minimizes the quadratic part over the unit box
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

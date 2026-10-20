@@ -11,6 +11,12 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.LongestFactor
 CORA's `@conPolyZono/splitLongestGen`: `splitDepFactor` at the factor `longestFactor` picks.
 CORA also returns the factor; it is `longestFactor`. A set with no factor to split is returned
 twice, where CORA's `max` of an empty vector errors.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* two halves split along the longest generator
 -/
 
 -- Authors:       Claude Opus 5.5

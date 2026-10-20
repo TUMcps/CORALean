@@ -10,6 +10,16 @@ public import CORALean.ContSet.Taylm.Float.Operations.ReexpBoxBounds
 
 The branch and bound of the ARCH 2018 listing over a box `X`: one box `[x]`, bounded on each
 sub-box by interval evaluation of the term list (`polyBoxBounds`).
+
+## Inputs
+* `P` – terms of the polynomial
+* `X` – domain box
+* `ε` – tolerance
+* `adv` – advanced bounding flag
+* `fuel` – step budget
+
+## Output
+* enclosure of the polynomial's range
 -/
 
 -- Authors:       Claude Opus 5.5

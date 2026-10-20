@@ -10,6 +10,15 @@ public import CORALean.ContSet.Taylm.Float.Operations.RepresentsaEmptySet
 A `true` answer exhibits a component whose remainder bounds with the error box absorbed are
 crossed; they bracket the exact sums of the two, which are then crossed too, so no point satisfies
 it: the range set is empty.
+
+## Inputs
+* `T` – family of Taylor models
+
+## Hypotheses
+* `h` – the test returns true
+
+## Conclusion
+* the range set is empty
 -/
 
 -- Authors:       Claude Opus 5.5

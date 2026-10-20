@@ -18,6 +18,16 @@ Partition of unity, for every `u`: the binomial theorem at `(u + (1 - u))ᴺ`. W
 nonnegativity on `[0, 1]` it makes a convex combination of the coefficients of a Bernstein
 expansion, which [1] uses to bound a polynomial by them.
 
+## Inputs
+* `N` – degree
+* `u` – point of the unit interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Bernstein basis polynomials sum to one
+
 ## References
 
 * [1] `global/functions/helper/sets/contSet/polyZonotope/poly2bernstein.m`, CORA (Sep. 2025).

@@ -7,19 +7,29 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 /-!
 # The dependent generator map splits over a union of factor domains
 
-The result is [1, Lemma 2], the step Appendix A takes once A.1 has cut the factor
-domain of the union in [1, Thm. 1] in two: a dependent generator map sends a
-union of domains to the union of its images.
+The result is [1, Lemma 2], the step Appendix A takes once A.1 has cut the factor domain of the
+union in [1, Thm. 1] in two: a dependent generator map sends a union of domains to the union of
+its images.
 
-[1] states the domains `D₁, D₂` as subsets of the unit cube `[-1,1]ᵖ`; nothing
-in the proof reads that, so it is dropped here and the result specializes to
-[1]'s at that restriction. The proof is `Set.image_union`'s content, unfolded
-to the paper's set-builder notation rather than phrased through `Set.image`
-itself, since neither side names the underlying map on its own.
+[1] states the domains `D₁, D₂` as subsets of the unit cube `[-1,1]ᵖ`; nothing in the proof reads
+that, so it is dropped here. The proof is `Set.image_union`'s content in the paper's set-builder
+notation. `union_exact_of_noZeroCol` does not go through this statement but through
+`union_domain_iff`.
 
-`union_exact_of_noZeroCol` does not go through this statement: it reaches the
-same split by case analysis on the branch `union_domain_iff` hands back, which
-is what the assembled constraint system already makes available.
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+* `E` – exponent matrix
+* `D₁` – first factor domain
+* `D₂` – second factor domain
+
+## Hypotheses
+* none
+
+## Conclusion
+* the generator image of a union is the union of the images
 
 ## References
 

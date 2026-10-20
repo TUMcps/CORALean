@@ -13,18 +13,24 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
 /-!
 # Boxing what two partitions drop encloses
 
-The error box is untouched and so is the constraint block, so `mono_subset`
-reduces this to the nominal part and the very witness `a` that satisfied the old
-system satisfies the new one. What is left is the exact layer's argument with
-one substitution: a monomial plays the part a free coefficient plays for a
-zonotope. `abs_sum_le_radius` takes either, needing only `|coefficient| ≤ 1`, so
-what the dropped generators of both blocks reach is the same row sum of absolute
-values — rounded up, and added upward again to merge the two, which only
-enlarges.
+The error box and the constraint block are untouched, so `mono_subset` reduces this to the nominal
+part and the very witness `a` that satisfied the old system satisfies the new one. What is left is
+the exact layer's argument with a monomial in the part of a free coefficient: `abs_sum_le_radius`
+needs only `|coefficient| ≤ 1`, so the dropped generators of both blocks reach the same row sum,
+rounded up.
 
 Sound at every pair of partitions, as over ℝ, so a selection rule owes no proof.
-That is what lets `reduceGirard` rank with `le`, which `SoundFloatArithmetic`
-constrains not at all, and so what makes the rule computable here.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `partD` – split of the dependent generators
+* `partI` – split of the independent generators
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

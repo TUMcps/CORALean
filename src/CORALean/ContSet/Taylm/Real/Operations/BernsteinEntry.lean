@@ -17,6 +17,14 @@ width `2` (`Vx`, entries `2ⁱ`), and the change from monomials to Bernstein for
 `Σᵢ C(j, i) / C(N, i) · C(e, i) 2ⁱ (-1)^(e - i)`, the sum running to `e`, since `C(j, i) = 0`
 for `i > j`.
 
+## Inputs
+* `N` – degree
+* `e` – exponent
+* `j` – coefficient index
+
+## Output
+* Bernstein coefficient of that monomial on the unit interval
+
 ## References
 
 * [1] `global/functions/helper/sets/contSet/polyZonotope/poly2bernstein.m`, CORA (Sep. 2025).

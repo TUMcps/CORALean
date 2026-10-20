@@ -12,6 +12,15 @@ The generators of [1, Prop. 9]: `a` copies of the center, one per weight factor,
 the generators twice over, plain and weighted. All entries are copies, so nothing here
 rounds.
 
+## Inputs
+* `a` – number of weights
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+
+## Output
+* generators of the convex hull
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
