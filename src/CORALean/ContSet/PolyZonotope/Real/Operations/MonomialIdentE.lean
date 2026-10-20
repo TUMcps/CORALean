@@ -10,6 +10,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 Split out of `IdentE.lean` (issue #62): read again by `Theorems/
 DependentExact.lean` at both layers and by two `Conversion/` files, all
 outside this file.
+
+## Inputs
+* `m` – size
+* `a` – factor values
+* `i` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the monomial equals the factor value itself
 -/
 
 -- Authors:       Claude Opus 5

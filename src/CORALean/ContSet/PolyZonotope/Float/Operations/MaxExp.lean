@@ -9,6 +9,13 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 
 The largest exponent factor `k` carries over the dependent generators: the exact layer's count, on
 the stored exponent matrix, so the two agree.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+
+## Output
+* largest exponent of that factor
 -/
 
 -- Authors:       Claude Opus 5.5

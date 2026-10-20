@@ -10,6 +10,13 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
 
 Split out of `Mtimes.lean` (issue #62): read again by
 `Theorems/MtimesOuter.lean`, outside this file.
+
+## Inputs
+* `M` – matrix
+* `pZ` – polynomial zonotope
+
+## Output
+* interval covering the rounding error of the matrix image
 -/
 
 -- Authors:       Claude Opus 5

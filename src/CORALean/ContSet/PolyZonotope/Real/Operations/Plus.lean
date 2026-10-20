@@ -7,19 +7,20 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
 /-!
 # `PolyZonotope.plus`
 
-CORA's `@polyZonotope/plus`: centers add, and all three generator blocks
-concatenate.
+CORA's `@polyZonotope/plus`: centers add, and all three generator blocks concatenate. The
+exponent matrices do *not*: each set's dependent factors range freely and independently of the
+other's, so identifying them would tie the sets together and shrink the sum. `plusE` lays the
+two matrices out block-diagonally, so a generator from one set carries exponent zero on every
+factor of the other. This is where positional factor identity costs something: CORA's `id`
+vector lets `plus` *keep* a shared factor shared; here `plus` always separates, which is sound
+and never tighter.
 
-The exponent matrices do *not*. Each set's dependent factors range freely and
-independently of the other's, so identifying them would tie the two sets
-together and shrink the sum. `plusE` therefore lays the two matrices out
-block-diagonally: the combined set has `p₁ + p₂` factors, and a generator that
-came from one set carries exponent zero on every factor of the other, which
-reads its monomial back as a monomial of its own set alone.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
 
-This is where positional factor identity costs something. CORA's `id` vector
-lets `plus` *keep* a shared factor shared when the two sets are known to have
-one; here `plus` always separates, which is sound and never tighter.
+## Output
+* polynomial zonotope of the Minkowski sum
 -/
 
 -- Authors:       Claude Opus 5

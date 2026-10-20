@@ -22,6 +22,16 @@ The parallelotope encloses the zonotope of `pZ` (`reduceMethC_outer`), which enc
 (`zonotope_contains`); its two halves cover it (`Zonotope.split_outer`), and each half's
 polynomial zonotope contains it (`polyZonotope_contains`). Outer, not exact: the union of the
 halves contains `pZ` along any generator, and is in general larger.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `j` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is covered by the two halves
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -20,6 +20,20 @@ the unit box under `indepFactors`' point map, `innerGeneral_subset_image`, which
 nominal set, `indepFactors_point_mem`, and the error box holds `0`), and a piece split is
 covered by its pieces (`splitLongestGenAll_cover`). `true` means the list
 ended empty.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `S` – inner polynomial zonotope
+* `guess` – factor-box guess for a split piece
+* `inv` – matrix inverse routine
+* `iter` – number of iterations
+* `fuel` – splitting depth bound
+
+## Hypotheses
+* `h` – the test returns true
+
+## Conclusion
+* the inner set is contained in the set
 -/
 
 -- Authors:       Claude Opus 5.5

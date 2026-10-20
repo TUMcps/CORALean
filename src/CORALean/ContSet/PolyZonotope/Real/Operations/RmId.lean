@@ -16,6 +16,13 @@ the same and the merge is left out.
 
 Factor identity being positional, the identifiers become a `Finset` of row indices, and the
 rows that stay are read off in order by `orderIsoOfFin`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `S` – factors to remove
+
+## Output
+* polynomial zonotope without those factors
 -/
 
 -- Authors:       Claude Opus 5.5

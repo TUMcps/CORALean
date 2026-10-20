@@ -10,6 +10,14 @@ public import CORALean.Global.Partition
 
 Split out of `Reduce.lean` (issue #62): read again by `reduceBy` in this
 directory, outside this file.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `partD` – split of the dependent generators
+* `partI` – split of the independent generators
+
+## Output
+* vector bounding the radius of the dropped generators
 -/
 
 -- Authors:       Claude Opus 5

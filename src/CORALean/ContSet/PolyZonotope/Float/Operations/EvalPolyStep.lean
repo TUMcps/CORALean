@@ -13,6 +13,17 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.Mul
 
 Split out of `EvalPoly.lean` (issue #62): read again by
 `Theorems/EvalPolyOuter.lean`, outside this file.
+
+## Inputs
+* `R` – running Horner result
+* `pZ` – polynomial zonotope
+* `a0` – next coefficient vector
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Output
+* polynomial zonotope of one Horner step
 -/
 
 -- Authors:       Claude Opus 5

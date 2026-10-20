@@ -10,6 +10,18 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.MatGeneratorError
 `mem_generatorError`'s counterpart at `Mat 𝕋 n m`: a combination of matrices bounded entrywise
 by the generators, with coefficients in `[-1, 1]`, lies in the box. Entry `(i, j)` is
 `abs_sum_le_radius` at row `j` of the generators' `(i, ·)` rows.
+
+## Inputs
+* `G` – family of matrix generators
+* `Δ` – family of real error matrices
+* `t` – coefficients
+
+## Hypotheses
+* `hG` – errors are bounded by the generators
+* `ht` – coefficients are at most one
+
+## Conclusion
+* the weighted error sum lies in the error box
 -/
 
 -- Authors:       Claude Opus 5.5

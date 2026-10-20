@@ -12,6 +12,21 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerTestSubsetImage
 guarantee: `true` puts `Y` inside the image of `X` under the dependent point map, which is
 what [1, Alg. 2] claims of `Inner`: `Inner(f, x, x̃, ỹ) = 1 ⟹ ỹ ⊆ range(f, x)`.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `X` – factor box
+* `X₀` – inner factor box
+* `Y` – target box
+* `inv` – matrix inverse routine
+* `iter` – number of iterations
+
+## Hypotheses
+* `h` – dimension equals factor count
+* `hT` – the test returns true
+
+## Conclusion
+* the target box lies in the image of the factor box
+
 ## References
 
 * [1] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued

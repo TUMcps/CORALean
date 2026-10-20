@@ -14,6 +14,12 @@ its first test, "a variable appears with exponent greater than 1", while the set
 interval `[0, 1]` (`squareExample_construct`), a polytope
 (`references/coverage/contSet/polyZonotope.md`, row `isPolytope`).
 
+## Inputs
+* none
+
+## Output
+* one-dimensional set with generator one and exponent two
+
 ## References
 
 * [1] `contSet/@polyZonotope/isPolytope.m`, CORA (Sep. 2025), by N. Kochdumper (2019).

@@ -14,6 +14,15 @@ public import Mathlib.Analysis.Calculus.Deriv.Add
 
 `a ↦ c + ∑ᵢ (∏ₖ aₖ^{Eₖᵢ}) · Gᵢ` is a polynomial in the factors, so differentiable in the sup norm
 of `Fin p → ℝ`: each monomial is a finite product of powers of coordinates.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point map is differentiable
 -/
 
 -- Authors:       Claude Opus 5.5

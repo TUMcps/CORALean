@@ -9,19 +9,22 @@ public import Mathlib.LinearAlgebra.Prod
 /-!
 # `PolyZonotope.exactCartProd`
 
-[1, Prop. 2.12]: the pair of two sets written over *one* factor list. Each
-operand is embedded into the product at zero in the other coordinate and the
-two are added with `exactPlus`, so the exponent matrices lie side by side
-rather than block-diagonally — the whole difference from `cartProd`.
+[1, Prop. 2.12]: the pair of two sets written over *one* factor list. Each operand is embedded
+into the product at zero in the other coordinate and the two are added with `exactPlus`, so
+the exponent matrices lie side by side rather than block-diagonally, the whole difference from
+`cartProd`. It is not the Cartesian product: both coordinates are functions of the same factor
+vector, so the claim is `exactCartProd_point`, about the pairing map. [1] additionally shares
+the first `q₁` independent generators; here they stay separate, so this result contains [1]'s.
 
-What it denotes is not the Cartesian product, and cannot be: both coordinates
-are functions of the same factor vector, so the claim is `exactCartProd_point`,
-about the pairing map, exactly as `exactPlus_point` is for the sum.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
 
-[1] additionally shares the first `q₁` *independent* generators, its `PZ₂`
-being written as `⟨c₂, [G₂ Ĝ₂], [G_{I,2} Ĝ_{I,2}], [E₁ E₂]⟩`. Here they stay
-separate, as `exactPlus` keeps them, so this result contains [1]'s; the
-per-neuron sets [1, Alg. 1] pairs have no independent block at all.
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Output
+* Cartesian product sharing the factors
 
 ## References
 

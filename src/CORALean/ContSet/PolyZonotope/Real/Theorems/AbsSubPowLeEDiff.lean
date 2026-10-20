@@ -7,16 +7,23 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.EDiff
 /-!
 # `eDiff` bounds the difference of two powers on `[-1,1]`
 
-The one fact the exponent relaxation rests on, `[1, Prop. 3]` as an inequality
-rather than as a maximum. Everything the relaxation does to a pair of monomials
-reduces to it: the two share every factor but one, so their difference is
-`(x^a - x^b)` times a product that never leaves `[-1,1]`.
+The one fact the exponent relaxation rests on, `[1, Prop. 3]` as an inequality rather than as
+a maximum: the two monomials share every factor but one, so their difference is `(x^a - x^b)`
+times a product that never leaves `[-1,1]`. Equal parity is where the bound is worth having:
+`a = 2s + r` and `b = 2t + r` share the remainder, so both powers are `x^r` times a power of
+`x²`, which stays in `[0,1]`, where two powers differ by at most one. Without it, `x^a` and
+`x^b` land on opposite sides of zero at `x = -1` and the bound is the trivial `2`.
 
-Equal parity is where the bound is worth having. Then `a = 2s + r` and
-`b = 2t + r` share the remainder, so both powers are `x^r` times a power of
-`x²` — and `x²` stays in `[0,1]`, where two powers of it differ by at most one.
-Without it, `x^a` and `x^b` land on opposite sides of zero at `x = -1` and the
-bound is the trivial `2`.
+## Inputs
+* `x` – real number
+* `a` – first exponent
+* `b` – second exponent
+
+## Hypotheses
+* `hx` – number is at most one in absolute value
+
+## Conclusion
+* the powers differ by at most the exponent difference
 
 ## References
 

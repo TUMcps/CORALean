@@ -10,17 +10,19 @@ public import CORALean.ContSet.Zonotope.Real.Operations.LinComb
 # `PolyZonotope.convHull`
 
 CORA's `@polyZonotope/convHull_` for a second set that is a polynomial zonotope
-(`aux_convHullMult`):
-the dependent parts of the two sets (`pZ1_`, `pZ2_`: the independent generators dropped) are each
-paired with themselves by `linComb`, the two chord sets with each other, and the independent
-generators of the result are the generators of `enclose(Z1, Z2)` for the zero-centered zonotopes of
-the two independent blocks, which for those is `Zonotope.linComb`.
+(`aux_convHullMult`): the dependent parts of the two sets are each paired with themselves by
+`linComb`, the two chord sets with each other, and the independent generators of the result
+are those of `enclose(Z1, Z2)` for the zero-centered zonotopes of the independent blocks
+(`Zonotope.linComb`). The result is the chords of chords. It contains both operands
+(`union_subset_convHull`) and is the convex hull only where such combinations suffice (not in
+dimension three and more). The one-argument call is `linComb(pZ, pZ)`; other classes are not.
 
-The result is the chords of chords. It contains both operands (`union_subset_convHull`) and is the
-convex hull only where such combinations of two points per operand suffice (not in general in
-dimension three and more, and CORA's documentation says "convex hull"). The one-argument call
-`convHull_(pZ)` is `linComb(pZ, pZ)`, `PolyZonotope.linComb`; a second set of another class is
-converted to a polynomial zonotope first, and an empty second set returns `pZ`, neither modelled.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Output
+* polynomial zonotope enclosing the convex hull of both
 -/
 
 -- Authors:       Claude Sonnet 5.5

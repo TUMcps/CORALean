@@ -11,6 +11,14 @@ One index per distinct exponent column, the least carrying it. This is
 `compactKeep` without the second half of a compaction: a column whose merged
 generator came out zero stays, and so does the all-zero column, because
 `merge` is asked to join equal columns and nothing else.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+
+## Output
+* set of the columns that represent themselves
 -/
 
 -- Authors:       Claude Opus 5

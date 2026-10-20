@@ -7,18 +7,23 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
 /-!
 # `bilin` is exactly the pairing over shared factors
 
-What exactness can mean here, and what it cannot: `construct (bilin f pZ₁ pZ₂)` is
-not `f '' (construct pZ₁ ×ˢ construct pZ₂)`. Both sets are functions of one shared
-factor vector, so `f` at their points ranges over far fewer points than `f` over
-the two sets independently. The claim is about the evaluation map — the result is
-exactly the image of the admissible factors under `a ↦ f (point pZ₁ a) (point pZ₂ a)`,
-with `pZ₂` read at the same factors through `Fin.cast`.
+What exactness can mean here: `construct (bilin f pZ₁ pZ₂)` is not
+`f '' (construct pZ₁ ×ˢ construct pZ₂)`. Both sets are functions of one shared factor vector,
+so `f` at their points ranges over far fewer points than `f` over the two sets independently.
+The claim is about the evaluation map: the result is exactly the image of the admissible
+factors under `a ↦ f (point pZ₁ a) (point pZ₂ a)`, with `pZ₂` read at the same factors through
+`Fin.cast`. `point` ignores the independent blocks, so they take no part on either side.
 
-`bilin_point` gives that fact directly, `bilin`'s own point unfolding to the sum
-this file reads it back through.
+## Inputs
+* `f` – bilinear map
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
 
-The independent blocks are not hypothesised away: `point` ignores them, so they
-take no part on either side.
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Conclusion
+* result is exactly the pairing over shared factors
 -/
 
 -- Authors:       Claude Opus 5

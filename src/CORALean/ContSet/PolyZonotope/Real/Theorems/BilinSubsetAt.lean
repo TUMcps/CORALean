@@ -17,6 +17,18 @@ in that pairwise image and is generally strictly smaller: the gap is [1, Def. 4]
 whole point, what a dependency-preserving representation buys over one that
 can only pair sets.
 
+## Inputs
+* `f` – bilinear map
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+* `B` – box of factor values
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Conclusion
+* subset at the box is the diagonal image
+
 ## References
 
 * [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to

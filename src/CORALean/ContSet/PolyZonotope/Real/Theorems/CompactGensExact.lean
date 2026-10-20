@@ -24,6 +24,15 @@ with no hypothesis anywhere, which is what makes this bookkeeping.
 The `key` is stated with the *original* center and independent block on both
 sides. They are the compacted ones up to unfolding, and writing them so keeps
 the equation to the one sum that actually changes.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* merging equal columns leaves the set unchanged
 -/
 
 -- Authors:       Claude Opus 5

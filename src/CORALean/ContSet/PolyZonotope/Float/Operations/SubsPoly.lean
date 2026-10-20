@@ -8,6 +8,14 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 # `PolyZonotope.subsPoly`
 
 Output `ii` of `pZin` as a sum of monomials, each stored coefficient a degenerate bracket.
+
+## Inputs
+* `nu` – number of substituted factors
+* `pZin` – polynomial zonotope substituted in
+* `ii` – substituted coordinate
+
+## Output
+* term list of that coordinate
 -/
 
 -- Authors:       Claude Opus 5.5

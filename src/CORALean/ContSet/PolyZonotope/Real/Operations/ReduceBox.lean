@@ -14,6 +14,14 @@ the factors no column reads any more, which renumbers the survivors by
 since the two domains are equal in size but not in name. It is the half of
 [1, Lemma 4]'s bookkeeping that [1] never states: its Table 1 omits `reduce`.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `o` – target order
+* `B` – box of factor values
+
+## Output
+* box of factor values of the reduced set
+
 ## References
 
 * [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to

@@ -16,6 +16,16 @@ At a factor vector `(α, β)` of the unit box, the dependent point of `indepFact
 nominal set's point at `α` plus `GI β`: the left block of the exponent matrix sees the factors
 `α` alone (`monomial_plusE_left`), the right block is the identity on `β`
 (`monomial_plusE_right`, `monomial_identE`).
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `a` – factor values
+
+## Hypotheses
+* `ha` – factor values are at most one
+
+## Conclusion
+* the point lies in the nominal set
 -/
 
 -- Authors:       Claude Opus 5.5

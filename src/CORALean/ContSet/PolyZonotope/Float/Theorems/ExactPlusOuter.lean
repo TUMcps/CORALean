@@ -19,6 +19,16 @@ two points differ by the center's rounding alone, which `centerResidual` holds.
 
 The error boxes are added rather than threaded through the factors: a box has no
 factors to share, so the sum of two boxes is what any point-wise sum can pick up.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Conclusion
+* the exact sum plus both error boxes lies in the result
 -/
 
 -- Authors:       Claude Sonnet 5.5

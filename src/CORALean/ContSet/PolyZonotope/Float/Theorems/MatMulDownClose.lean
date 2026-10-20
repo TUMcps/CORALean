@@ -10,6 +10,18 @@ public import Mathlib.Data.Matrix.Mul
 
 Entry by entry, off by at most `matMulDiff`, the gap between the two directed roundings. The
 matrix counterpart of `matMul_close`, which reads the product a column at a time.
+
+## Inputs
+* `A` – left matrix
+* `B` – right matrix
+* `i` – row index
+* `j` – column index
+
+## Hypotheses
+* none
+
+## Conclusion
+* rounded-down entry is within its gap of the exact product
 -/
 
 -- Authors:       Claude Opus 5.5

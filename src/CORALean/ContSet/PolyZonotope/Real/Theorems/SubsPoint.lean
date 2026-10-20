@@ -19,6 +19,20 @@ read off `a` through `subsFactor`) and every other factor keeps its value. The e
 is only bookkeeping: a sum of terms evaluates to the product of the evaluations
 (`aux_evalTerms_subsMul`), a power to the power, and the factors' exponents of a shared identifier
 add (`ReplaceIdPoint`). `subs_construct` is the set equality; the independent block is `pZ`'s.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `nu` – number of substituted factors
+* `pZin` – polynomial zonotope substituted in
+* `idu` – indices of the substituted factors
+* `share` – map of shared factors
+* `a` – factor values of the result
+
+## Hypotheses
+* `hidu` – the indices are injective
+
+## Conclusion
+* the point is the original point at the substituted values
 -/
 
 -- Authors:       Claude Opus 5.5

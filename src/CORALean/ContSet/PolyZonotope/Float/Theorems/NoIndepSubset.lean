@@ -11,6 +11,15 @@ public import CORALean.ContSet.PolyZonotope.Real.Instances
 
 Inner: the nominal part is the exact layer's `noIndep` of the original's, which is a subset,
 and the error box is the same on both sides.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set without independent generators is contained in the set
 -/
 
 -- Authors:       Claude Sonnet 5.5

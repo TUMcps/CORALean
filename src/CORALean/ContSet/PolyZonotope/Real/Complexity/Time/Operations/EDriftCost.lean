@@ -13,6 +13,12 @@ Asserted, not proved: `Operations/EDrift.lean` at `p` factors tests the parity o
 further comparisons and parity tests choose the branch, and a branch returns at
 most two `eDiff`s, which the definition writes out and so evaluates separately. The pair is two
 writes.
+
+## Inputs
+* `p` – number of factors
+
+## Output
+* operation count of an exponent drift
 -/
 
 -- Authors:       Claude Sonnet 5.5

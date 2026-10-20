@@ -16,18 +16,25 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 /-!
 # The recentered relaxation over-approximates, at the stored columns
 
-The exact layer's argument at this layer's stored fields, with three roundings
-charged instead of two. `abs_sub_monomial_le` and `sub_monomial_nonpos` are the
-exact layer's and are what put the drift in `[-ξ_E, 0]`; the width bounding it
-is a natural number both layers read off the same exponent matrix.
+The exact layer's argument at this layer's stored fields, with three roundings charged instead
+of two. `abs_sub_monomial_le` and `sub_monomial_nonpos` are the exact layer's and put the
+drift in `[-ξ_E, 0]`; the width bounding it is a natural number both layers read off the same
+exponent matrix. The third gap is the center's, charged at coefficient `1`. Storing the shift
+at its upward rounding keeps that gap one-sided: the stored center is below the exact one.
 
-The third gap is the center's. It is charged at coefficient `1` rather than at a
-monomial, which is what a constant offset costs and what makes `generatorError`
-the right box for it: the box already sums a row with no cancellation.
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
+* `k₀` – factor index
 
-Storing the shift at its upward rounding is what keeps that gap one-sided —
-the stored center is then below the exact one, so the same `subUp` difference
-that bounds a column's gap bounds the center's.
+## Hypotheses
+* `hsim` – generators agree outside that factor
+* `heven` – first generator has even exponents
+* `hevenj` – second exponent in that factor is even
+* `hle` – second exponent is at most the first
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

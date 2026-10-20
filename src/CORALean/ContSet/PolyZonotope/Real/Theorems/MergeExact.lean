@@ -15,6 +15,15 @@ added back on either side, the center being `point`'s own first summand.
 
 What is *not* claimed here is [1, Prop. 3.3]'s regularity — see `Merge.lean`.
 
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* merging equal columns leaves the set unchanged
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

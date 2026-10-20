@@ -11,6 +11,16 @@ Multiplying by an interval matrix keeps the dependent factors and generators
 and boxes the radius into one fresh *independent* generator per output
 coordinate: `m` more, the matrix's row count, unrelated to the operand's own
 size. `rfl` against the structure instance in `Operations/MtimesIntervalMat.lean`.
+
+## Inputs
+* `IM` – interval matrix
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the factor count is preserved
 -/
 
 -- Authors:       Claude Opus 5

@@ -16,17 +16,22 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyExact
 /-!
 # `PolyZonotope.evalPoly` encloses the exact evaluation, rounding outward
 
-The gap `evalPoly_p`'s exactness argument never has to close: at the exact
-layer, `R`'s point is `pZ`'s multiplied in without residue. Here `R` is already
-only an enclosure, so the same product costs the extra term `evalPolyStep`'s
-box already carries, `errorBound R.err * evalPolyBoundS pZ`. `mulG_close`
-prices what `mul` itself rounds, `Interval.sub_mem_residual` what the center
-shift rounds, and the two combine with that extra term through `Interval.plus`.
+At the exact layer `R`'s point is `pZ`'s multiplied in without residue. Here `R` is already only
+an enclosure, so the same product costs the extra term `evalPolyStep`'s box carries,
+`errorBound R.err * evalPolyBoundS pZ`. `mulG_close` prices what `mul` rounds,
+`Interval.sub_mem_residual` the center shift, and they combine through `Interval.plus`. The
+induction carries a single admissible factor vector `b` through every level, as
+`evalPolyP_point` does over ℝ: a set-level statement would let the levels re-witness independently.
 
-The induction carries a single admissible factor vector `b` through every
-level, exactly as `evalPolyP_point` does over ℝ: the point-level statement is
-what makes chaining sound, where a set-level one would let the two layers
-re-witness independently and identify unrelated slack.
+## Inputs
+* `pZ` – polynomial zonotope
+* `coeffs` – coefficient vectors
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact polynomial image lies in the result
 -/
 
 -- Authors:       Claude Opus 5

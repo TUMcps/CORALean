@@ -14,6 +14,13 @@ which keeps the operation total and exact at once. CORA keeps them independent a
 their cubic terms by a zonotope (`zonotope(pZindSum)`), so there its result is an enclosure
 where this one is exact; for a set without independent generators the two agree.
 `ind` (the non-zero tensor columns) is not modelled: a column left out is the zero matrix.
+
+## Inputs
+* `T` – family of cubic form tensors
+* `pZ` – polynomial zonotope
+
+## Output
+* polynomial zonotope of the cubic image
 -/
 
 -- Authors:       Claude Opus 5.5

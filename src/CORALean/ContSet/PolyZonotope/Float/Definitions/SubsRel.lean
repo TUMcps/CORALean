@@ -15,6 +15,13 @@ The float terms `subsMul`, `subsPow`, `subsXprod` and `subsTerms` build carry a 
 coefficient, not the exact real one the exact layer's lists carry. `subsRel A A'` says the lists
 have the same length, the same exponents, and each coefficient of `A'` is between the floats of
 the matching term of `A`.
+
+## Inputs
+* `A` – float term list (interval coefficients)
+* `A'` – real term list
+
+## Output
+* relation: equal exponents, real coefficients inside the float intervals
 -/
 
 -- Authors:       Claude Opus 5.5

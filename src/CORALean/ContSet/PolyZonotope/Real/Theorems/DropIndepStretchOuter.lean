@@ -18,6 +18,23 @@ which is exactly what lets `a` be nudged at those `n` factors alone without
 disturbing any other generator's monomial. `hPinv` is what recovers `γ = P⁻¹
 g^{(i)}` afterwards: `P *ᵥ γ = g^{(i)}` is the one place it is spent.
 
+## Inputs
+* `n` – dimension
+* `pZ` – polynomial zonotope
+* `r` – number of dropped dependent generators
+* `dI` – number of kept independent generators
+* `partD` – split of the dependent generators
+* `partI` – split of the independent generators
+* `k` – factor chosen for each kept generator
+
+## Hypotheses
+* `hk` – the choice is injective
+* `hE` – exponents are the identity pattern on the chosen factors
+* `hPinv` – the kept generator matrix is invertible
+
+## Conclusion
+* the set is contained in the result
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative

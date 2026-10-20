@@ -14,6 +14,17 @@ the right of each generator entry, as it does for `Zonotope`.
 
 The float layer inherits it — its `mem_nominalSet_iff` is this theorem at the
 nominal polynomial zonotope.
+
+## Inputs
+* `n` – dimension
+* `pZ` – polynomial zonotope
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership is equivalent to a coordinatewise factor representation
 -/
 
 -- Authors:       Claude Opus 5

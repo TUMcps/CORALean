@@ -14,6 +14,16 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
 The nominal part of the product is the exact layer's `cartProd` mapped through the append, field
 by field, so its set is the append of the two nominal sets. Its own file: read by `cartProd_exact`
 and by `quadMapMixed_outer`.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* nominal set of the product is the product of the nominal sets
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,6 +11,12 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Rep
 
 Split out of `Compact.lean` (issue #62): read again by the float layer's own
 `compactGens`, outside this file.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* polynomial zonotope with equal-exponent generators merged and zero ones dropped
 -/
 
 -- Authors:       Claude Opus 5

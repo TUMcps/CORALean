@@ -8,15 +8,18 @@ public import Mathlib.LinearAlgebra.Pi
 /-!
 # `PolyZonotope.project`
 
-CORA's `@polyZonotope/project` and [1, Prop. 2.11]: one coordinate of the set,
-which is `map` at that coordinate's functional — the exponent matrix and both
-factor counts are untouched, exactly as [1] writes it, because reading off a
-coordinate is linear.
+CORA's `@polyZonotope/project` and [1, Prop. 2.11]: one coordinate of the set, which is `map`
+at that coordinate's functional; the exponent matrix and both factor counts are untouched,
+because reading off a coordinate is linear. Nothing in this tree calls it: `evalPoly` is
+coordinatewise by construction, so the split of [1, Alg. 1] into one-dimensional sets never
+happens here. It is still the representation's operation, and `project_exact` says so.
 
-Nothing in this tree calls it. `evalPoly` is coordinatewise by construction,
-`mul` multiplying entrywise, so the split of [1, Alg. 1] into one-dimensional
-sets and the recombination afterwards never happen here. It is still the
-representation's operation, and `project_exact` is what says so.
+## Inputs
+* `pZ` – polynomial zonotope
+* `i` – coordinate
+
+## Output
+* one-dimensional polynomial zonotope of that coordinate
 
 ## References
 

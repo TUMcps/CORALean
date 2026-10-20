@@ -8,20 +8,22 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinExact
 /-!
 # `mul` is exactly the product over shared factors
 
-At one dimension, this is [1, Prop. 2.9], the same reading `Mul.lean` gives the
-operation itself; `mul` and this exactness proof generalize it coordinatewise.
+At one dimension this is [1, Prop. 2.9]; `bilin_exact` at the entrywise product is what `mul`
+is. `construct (mul pZ₁ pZ₂)` is not `construct pZ₁ * construct pZ₂`: both sets are functions
+of one shared factor vector, so their pointwise product ranges over far fewer points than the
+product of the two sets. The claim is about the evaluation map: the result is exactly the
+image of the admissible factors under `a ↦ point pZ₁ a ⊙ point pZ₂ a`, with `pZ₂` read at the
+same factors through `Fin.cast`. `point` ignores the independent blocks, so they take no part.
 
-`bilin_exact` at the entrywise product, which is what `mul` is.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
 
-What exactness can mean here, and what it cannot: `construct (mul pZ₁ pZ₂)` is not
-`construct pZ₁ * construct pZ₂`. Both sets are functions of one shared factor
-vector, so their pointwise product ranges over far fewer points than the product
-of the two sets. The claim is about the evaluation map — the result is exactly
-the image of the admissible factors under `a ↦ point pZ₁ a ⊙ point pZ₂ a`, with
-`pZ₂` read at the same factors through `Fin.cast`.
+## Hypotheses
+* `hp` – both have the same factor count
 
-The independent blocks are not hypothesised away: `point` ignores them, so they
-take no part on either side.
+## Conclusion
+* the product over shared factors equals the result
 
 ## References
 

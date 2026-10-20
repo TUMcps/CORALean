@@ -15,6 +15,13 @@ thing that separates a coordinatewise product from a matrix one, so `mul` is
 `hadamardLin_vec` is what keeps the statements downstream reading as `*`: at
 `Vec` a coordinate is an application, so the bundled product is the `Pi` one
 definitionally.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Output
+* generators of the product
 -/
 
 -- Authors:       Claude Opus 5

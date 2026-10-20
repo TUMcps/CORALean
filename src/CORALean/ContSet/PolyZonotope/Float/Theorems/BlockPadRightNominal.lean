@@ -11,6 +11,16 @@ public import CORALean.Global.Block
 
 The nominal set of `blockPadRight` is the exact layer's `map` at the block embedding, entry by
 entry: the padded rows are zero on both sides.
+
+## Inputs
+* `n₁` – number of prepended zero coordinates
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* nominal set of the padded set is the padded nominal set
 -/
 
 -- Authors:       Claude Opus 5.5

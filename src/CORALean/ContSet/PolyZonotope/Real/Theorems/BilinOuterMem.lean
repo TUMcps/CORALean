@@ -14,6 +14,23 @@ At one factor vector `a` and independent coefficients `β₁`, `β₂`, the prod
 `f (P + U₁) (Q + U₂) = f P Q + f U₁ Q + f U₁ U₂ + f P U₂` is a point of the result: `f P Q` is
 `bilin_point`, and each other term is a block of `bilinGI`, with coefficients `β₁ j · mₗ`,
 `β₁ j · β₂ l` and `mₗ · β₂ j` (`mₗ` the extended monomials), all in `[-1, 1]`.
+
+## Inputs
+* `f` – bilinear map
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+* `a` – shared factor values
+* `β₁` – independent values of the first set
+* `β₂` – independent values of the second set
+
+## Hypotheses
+* `hp` – both have the same factor count
+* `ha` – factor values are at most one
+* `hβ₁` – first independent values are at most one
+* `hβ₂` – second independent values are at most one
+
+## Conclusion
+* the pairing of the two points lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

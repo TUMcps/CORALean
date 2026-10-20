@@ -9,6 +9,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.EDiffTight
 
 The generator the relaxation adds is `eDiffTight` times a generator, and the coefficient that the
 difference asks of it (`Zonotope.coefficient`) is stated for a nonnegative width.
+
+## Inputs
+* `a` – first exponent
+* `b` – second exponent
+
+## Hypotheses
+* none
+
+## Conclusion
+* the tight difference is nonnegative
 -/
 
 -- Authors:       Claude Sonnet 5.5

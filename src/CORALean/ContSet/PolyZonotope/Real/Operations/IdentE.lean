@@ -14,6 +14,12 @@ looks like once it has been made dependent.
 This is the block `dependent` appends, and what a zonotope's generators become
 when they are converted into dependent ones. The monomial fact is
 `MonomialIdentE.lean`.
+
+## Inputs
+* `m` – size
+
+## Output
+* identity exponent matrix
 -/
 
 -- Authors:       Claude Opus 5

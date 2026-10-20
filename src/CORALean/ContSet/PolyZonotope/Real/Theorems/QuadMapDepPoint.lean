@@ -9,16 +9,23 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
 /-!
 # `quadMapDep`'s point is the quadratic form at the point
 
-`bilin_point` at `quadBilin`, one set paired with itself: the image of the
-factor vector `a` is the quadratic form evaluated at the point `a` picks out.
-`quadEval Q x` is `quadBilin Q x x` definitionally, so nothing else is needed.
+`bilin_point` at `quadBilin`, one set paired with itself: the image of the factor vector `a` is
+the quadratic form evaluated at the point `a` picks out (`quadEval Q x` is `quadBilin Q x x`
+definitionally). The point-level companion to `quadMapDep_exact`, and what a
+*dependency-preserving* abstraction error is stated against: it says which factors carry the
+second-order term. Only the dependent block is named, so no hypothesis on `q` appears;
+`dependent` is what brings the independent generators in.
 
-The point-level companion to `quadMapDep_exact`, and what a *dependency-preserving*
-abstraction error is stated against: an enclosure of the image set says the second
-order term lies somewhere in a set, this says which factors carry it there. Only
-the dependent block is named, so no hypothesis on `q` appears — the independent
-generators of `pZ` are simply not points of `pZ.point`, and `dependent` is what
-brings them in.
+## Inputs
+* `Q` – family of quadratic form matrices
+* `pZ` – polynomial zonotope
+* `a` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point is the quadratic map of the point
 -/
 
 -- Authors:       Claude Opus 5

@@ -10,6 +10,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
 
 The union of the two halves is the original set. The independent block is carried unchanged
 into both halves, so the statement holds with it: only the factor domain is split.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the two halves together are the set
 -/
 
 -- Authors:       Claude Opus 5.5

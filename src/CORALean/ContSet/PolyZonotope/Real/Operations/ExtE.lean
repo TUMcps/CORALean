@@ -10,6 +10,12 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 Split out of `QuadMap.lean` (issue #62): shared with `Mul.lean` in this
 directory and with the float layer's own `quadMap` and `mul`, all outside
 this file.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* exponent matrix with a zero column for the center
 -/
 
 -- Authors:       Claude Opus 5

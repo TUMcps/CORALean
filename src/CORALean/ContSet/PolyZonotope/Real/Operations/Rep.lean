@@ -11,6 +11,15 @@ public import Mathlib.Data.Finset.Max
 Split out of `Compact.lean` (issue #62): used again by `Theorems/RepIdem.lean`
 and by every later step of `compact`, and by `ConPolyZono`'s own compaction
 over `R`, all outside this file.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `i` – generator index
+
+## Output
+* the smallest index with the same exponent column
 -/
 
 -- Authors:       Claude Opus 5

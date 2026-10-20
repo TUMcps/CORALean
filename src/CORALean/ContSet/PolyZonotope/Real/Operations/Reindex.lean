@@ -15,6 +15,13 @@ is what makes it the only freedom an operation that reorders columns has.
 `sort` is this at the permutation that puts the columns in lexicographic order,
 and is the only caller so far; the definition asks for no property of the
 permutation because nothing below it needs one.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `σ` – permutation of the dependent generators
+
+## Output
+* polynomial zonotope with generators reordered
 -/
 
 -- Authors:       Claude Opus 5

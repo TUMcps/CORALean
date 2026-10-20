@@ -14,6 +14,12 @@ over the dimensions of an `n`-dimensional polynomial zonotope, one new factor `l
 dimension (exponent `1` on exactly the terms of dimension `i`), as a one-dimensional
 polynomial zonotope. Identifiers are positional: the factors of `pZ` are `Fin p`, the weights
 `Fin n`, and the sum's factors `Fin (p + n)`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* one-dimensional polynomial zonotope of the added terms
 -/
 
 -- Authors:       Claude Opus 5.5

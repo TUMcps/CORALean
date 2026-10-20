@@ -7,19 +7,22 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 /-!
 # `PolyZonotope.exactPlus`
 
-CORA's `@polyZonotope/exactPlus` and [1, Prop. 10]: the sum of two sets written
-over *one* factor list. Centers add and all three blocks concatenate, and the
-exponent matrices concatenate too — side by side, not block-diagonally, which is
-the whole difference from `plus`.
+CORA's `@polyZonotope/exactPlus` and [1, Prop. 10]: the sum of two sets written over *one*
+factor list. Centers add and all three blocks concatenate, and the exponent matrices
+concatenate side by side, not block-diagonally, the whole difference from `plus`. Here `hp`
+says the sets share factors, so the dependency the Minkowski sum would have thrown away
+survives: the result is a *subset* of `plus`'s. `hp : pZ₁.p = pZ₂.p` replaces [1]'s shared
+identifier vector, identity being positional, and `mergeID` is `padBack` (`PadBackExact`).
 
-`plus` must separate the factors because nothing says the two sets were written
-against the same ones; here `hp` says exactly that, so a factor that moved both
-sets moves the sum, and the dependency the Minkowski sum would have thrown away
-survives. The result is a *subset* of `plus`'s and never wider.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
 
-`hp : pZ₁.p = pZ₂.p` in place of [1]'s shared identifier vector, factor identity
-being positional here, and `mergeID` is `padBack` — see `PadBackExact`. `pZ₂`'s
-exponent rows are read at `pZ₁`'s indices through `Fin.cast`, as `bilin`'s are.
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Output
+* polynomial zonotope of their sum with generators concatenated
 
 ## References
 

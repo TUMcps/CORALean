@@ -8,19 +8,19 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Restructure
 /-!
 # `PolyZonotope.restructureReduce`
 
-CORA's `restructure` at its `reduce` methods: the same conversion, with a
-reduction ahead of it. `restructure` alone fixes the *factor* count at `n` but
-carries every dependent generator it was given across; reducing first is what
-bounds the generator count too, which is why CORA parameterises by an order.
+CORA's `restructure` at its `reduce` methods: the same conversion, with a reduction ahead of
+it. `restructure` alone fixes the *factor* count at `n` but carries every dependent generator
+across; reducing first bounds the generator count too, which is why CORA parameterises by an
+order. Reduce first and restructure after: `reduce` returns a diagonal independent block, so
+restructuring last leaves it empty. CORA's four `reduce` variants differ in which generators
+they keep; the ranking here is Girard's, from `reduce`.
 
-Reduce first and restructure after, not the other way round: `reduce` returns a
-diagonal independent block, so restructuring last is what leaves the independent
-block empty. The counts and the enclosure of `restructure` still read off the
-reduced set, `restructure_q` and `restructure_p` included.
+## Inputs
+* `pZ` – polynomial zonotope
+* `o` – target order
 
-CORA's four `reduce` variants differ in which generators they judge worth
-keeping, ranking dependent factors by the volume their removal costs. The ranking
-here is Girard's, from `reduce`; what it ranks is the only difference.
+## Output
+* reduced polynomial zonotope after restructuring
 -/
 
 -- Authors:       Claude Opus 5

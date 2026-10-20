@@ -11,6 +11,15 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.ZeroMemAbsorbRounding
 Read back through `ContSet`, for a caller that only wants the inclusion:
 `absorbRounding_nominal` places every point in the nominal set, and the box denotes
 the origin alone.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set lies in the absorbed one
 -/
 
 -- Authors:       Claude Opus 5

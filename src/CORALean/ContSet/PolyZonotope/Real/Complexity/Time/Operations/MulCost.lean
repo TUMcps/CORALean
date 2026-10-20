@@ -8,15 +8,20 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
 /-!
 # `PolyZonotope.mulCost`
 
-Asserted, not proved: `Operations/Mul.lean` is `bilin` at the entrywise
-product, which is `n` multiplications at `Vec ℝ n`, each written, so the whole
-count is `bilinCost` at `⟨2 * n⟩`.
+Asserted, not proved: `Operations/Mul.lean` is `bilin` at the entrywise product, which is `n`
+multiplications at `Vec ℝ n`, each written, so the whole count is `bilinCost` at `⟨2 * n⟩`.
+Quadratic in the generator counts, the operation's own doing: the result carries
+`(h₁+1)(h₂+1)` generators and each is computed. A caller who repeats `mul` pays this at the
+previous product's count, which is why `compact` and `reduce` sit between the factors.
 
-Quadratic in the generator counts, and that is the operation's own doing rather
-than the model's: `Complexity/Space/Theorems/Bilin*.lean` proves the result carries
-`(h₁+1)(h₂+1)` generators, and each of them is computed. A caller who repeats
-`mul` to reach a higher order pays this at the previous product's count, which
-is why `compact` and `reduce` sit between the factors in practice.
+## Inputs
+* `n` – dimension
+* `p` – number of factors
+* `h₁` – first dependent generator count
+* `h₂` – second dependent generator count
+
+## Output
+* operation count of the product
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

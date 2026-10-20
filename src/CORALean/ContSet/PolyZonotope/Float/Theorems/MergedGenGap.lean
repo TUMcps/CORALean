@@ -7,15 +7,22 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExp
 /-!
 # What storing the merged column costs
 
-Every exponent relaxation merges the same two dependent columns and stores their
-sum at its lower rounding, so every one of them owes the same gap: the distance
-up to the sum taken at the *upper* rounding, which `generatorError` charges at
-the surviving column's monomial.
+Every exponent relaxation merges the same two dependent columns and stores their sum at its
+lower rounding, so every one owes the same gap: the distance up to the sum taken at the
+*upper* rounding, which `generatorError` charges at the surviving column's monomial. Stated
+against that gap written out rather than a row of one operation's gap matrix, so that
+`relaxExp`, `relaxExpEven` and `relaxExpMid` each read it at their own matrix by `exact`.
 
-Stated against that gap written out rather than against a row of one operation's
-gap matrix, so that `relaxExp`, `relaxExpEven` and `relaxExpMid` each read it at
-their own matrix without the fact being proved three times. The row reduces to
-this expression, which is why each reads it by `exact`.
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
+* `i` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* stored merged entry is within its gap of the exact sum
 -/
 
 -- Authors:       Claude Opus 5

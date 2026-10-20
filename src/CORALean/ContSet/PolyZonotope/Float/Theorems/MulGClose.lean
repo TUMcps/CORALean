@@ -13,6 +13,18 @@ Shared by `MulOuter` and `EvalPolyOuter`, which both need it and cannot import
 one another: `mul_outer` prices one call, `evalPoly_outer`'s recursion one call
 per Horner step. `mulDown`/`mulUp` bracket the exact product directly, and
 `subUp` covers the gap between them.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+* `i` – coordinate
+* `l` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* stored generator is within its gap of the exact product
 -/
 
 -- Authors:       Claude Opus 5

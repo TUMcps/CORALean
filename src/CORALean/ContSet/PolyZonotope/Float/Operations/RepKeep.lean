@@ -11,6 +11,12 @@ Split out of `Compact.lean` (issue #62): read again by `keepIdx` in this
 directory, by `Theorems/FiberEqZeroOfNotMem.lean` and
 `Theorems/CompactGensOuter.lean`, and by `ConPolyZono`'s own compaction, all
 outside this file.
+
+## Inputs
+* `E` – exponent matrix
+
+## Output
+* set of the columns that represent themselves
 -/
 
 -- Authors:       Claude Opus 5

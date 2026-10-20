@@ -22,6 +22,18 @@ entry of `J1` holds `0`, where CORA's `aux_InvDiag` makes the step fail (`catch;
 diagonal product is taken row by row rather than as an interval matrix with zero off-diagonal
 entries, which is the same interval.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `X₀` – inner factor box
+* `ind` – selected factor indices
+* `C` – approximate inverse Jacobian
+* `xc` – center of the factor box
+* `b` – residual box
+* `U` – candidate enclosure box
+
+## Output
+* contracted enclosure box, if the step succeeds
+
 ## References
 
 * [1] O. Mullier, É. Goubault, M. Kieffer and S. Putot. "General Inner Approximation of

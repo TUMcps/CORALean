@@ -12,6 +12,13 @@ Lines 4 and 5 of `[1, Alg. 2]`: a leaf node `i` of the greedy subgraph, one with
 and one outgoing edge, and the target `j` of that edge. The subgraph is given by the target
 each node keeps. The paper takes any leaf; the least index is taken.
 
+## Inputs
+* `h` – number of generators
+* `g` – parent map
+
+## Output
+* a leaf with its parent, if any
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and

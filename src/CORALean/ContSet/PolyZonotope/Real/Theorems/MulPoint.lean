@@ -16,6 +16,17 @@ the sets' points at each Horner step.
 The statement reads as `*` rather than as `hadamardLin` because at `Vec` the
 two are the same term: a coordinate is an application there, so `ofEntry` and
 `entry` are both the identity.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+* `a` – factor values
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Conclusion
+* the point is the product of the two points
 -/
 
 -- Authors:       Claude Opus 5

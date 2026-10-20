@@ -12,6 +12,17 @@ public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 # The sum of points of boxes is a point of the summed box
 
 `sumErr` encloses: a point from each of `m` boxes sums to a point of their `Interval.plus` fold.
+
+## Inputs
+* `m` – number of boxes
+* `f` – family of interval vectors
+* `e` – family of points
+
+## Hypotheses
+* `he` – each point lies in its box
+
+## Conclusion
+* the sum of the points lies in the summed box
 -/
 
 -- Authors:       Claude Opus 5.5

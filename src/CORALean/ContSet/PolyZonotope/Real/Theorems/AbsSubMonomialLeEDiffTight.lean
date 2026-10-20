@@ -14,6 +14,22 @@ share every factor but the one at `k₀`, so their difference is `(a_{k₀}^{E_i
 times a product of powers of factors in `[-1,1]`, which never leaves `[-1,1]`, and
 `abs_sub_pow_le_eDiffTight` bounds the first.
 
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `a` – factor values
+* `i` – first generator index
+* `j` – second generator index
+* `k₀` – factor index
+
+## Hypotheses
+* `ha` – factor values are at most one
+* `hsim` – exponents agree outside that factor
+
+## Conclusion
+* the monomials differ by at most the tight exponent difference
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and

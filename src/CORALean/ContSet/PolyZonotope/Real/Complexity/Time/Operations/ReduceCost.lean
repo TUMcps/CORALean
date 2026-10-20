@@ -9,19 +9,21 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Reduce
 /-!
 # `PolyZonotope.reduceCost`
 
-Asserted, not proved: `Operations/Reduce.lean` is `compact` and then
-`reduceGirard`, so the count is the two added.
+Asserted, not proved: `Operations/Reduce.lean` is `compact` and then `reduceGirard`, so the
+count is the two added. The ranking is priced at the *operand's* counts and not at what
+compaction leaves, which is sound because compaction only shrinks them
+(`Complexity/Space/Theorems/CompactHLe.lean`; `reduceGirardCost_mono` turns that into this
+inequality). Quadratic in `h`, from the merge and the sorts alike, against a `Zonotope`'s
+`reduce` quadratic only in the sort: the price of exponent columns that can repeat.
 
-The ranking is priced at the *operand's* counts and not at what compaction
-leaves, which is sound because compaction only ever shrinks them:
-`Complexity/Space/Theorems/CompactHLe.lean` proves `compact_h_le` and `compact_q`, and
-`reduceGirardCost_mono` turns those into this inequality. Stating it here at
-the operand's own sizes is what lets a caller who knows nothing about how many
-columns collided still bound the whole operation.
+## Inputs
+* `n` – dimension
+* `p` – number of factors
+* `h` – dependent generator count
+* `q` – independent generator count
 
-Quadratic in `h`, from the merge and the sorts alike, against a `Zonotope`'s
-`reduce` which is quadratic only in the sort — the price of exponent columns
-that can repeat.
+## Output
+* operation count of compacting and reducing
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

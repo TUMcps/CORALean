@@ -15,6 +15,12 @@ dimensions of an `n`-dimensional polynomial zonotope as a one-dimensional one (a
 `1`, where the exact layer has the scalar), one new factor `lᵢ` per dimension.
 The generators are the original's entries, copied, so nothing is rounded and the error box is
 the point `0`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* polynomial zonotope of one-dimensional added terms of the input
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,14 +10,17 @@ public import Mathlib.Data.Fin.VecNotation
 
 `{(2a + b, a c) | a, b, c ∈ [-1, 1]}`: `c = 0`, `G = [(2,0), (1,0), (0,1)]`, monomials `a`,
 `b`, `a c`. It is not convex (`isPolytopeCex_not_convex`), yet CORA's `isPolytope` [1] says `true`.
-Hand trace, factors `(a, b, c)`:
+Hand trace, factors `(a, b, c)`: all exponents are `0/1`, so `any(expMat >= 2)` does not fire;
+`aux_polyVertices`: the corner images are distinct and `convhulln` keeps the extreme points
+`(±3, ±1)`, from `I = (1,1,1), (1,1,-1), (-1,-1,-1), (-1,-1,1)`; `aux_normalCone` at `I` gives
+the columns `(-2a, -ac)`, `(-b, 0)`, `(0, -ac)`, which at the four extreme points span the four
+quadrants and contain the other three vertices: every `aux_inCone` LP has slack `0`, so `true`.
 
-* all exponents are `0/1`, so the test `any(expMat >= 2)` does not fire;
-* `aux_polyVertices`: the corner images `(±3, ±1)`, `(±1, ±1)` are distinct; `convhulln` keeps
-  the extreme points `(±3, ±1)`, from `I = (1,1,1), (1,1,-1), (-1,-1,-1), (-1,-1,1)`;
-* `aux_normalCone` at `I` gives the columns `(-2a, -ac)`, `(-b, 0)`, `(0, -ac)`;
-* at `(3,1), (3,-1), (-3,1), (-3,-1)` they span the third, second, fourth, first quadrant,
-  which contain the other three vertices: every `aux_inCone` LP has slack `0`, result `true`.
+## Inputs
+* none
+
+## Output
+* the polynomial zonotope of the polytope counterexample
 
 ## References
 

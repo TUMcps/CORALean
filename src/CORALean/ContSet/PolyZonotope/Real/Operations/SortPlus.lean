@@ -9,15 +9,22 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Sort
 /-!
 # `PolyZonotope.sortPlus`
 
-[1, Prop. 3.4]: the sum over one factor list, written down once rather than
-built up. The two exponent matrices are laid side by side (`exactPlus`), the
-columns put back in order (`sort`), and the columns the two operands share
-joined (`merge`) — which is exactly [1]'s `merge ⟨ĉ, Ĝ(·,K), [], Ê(·,K)⟩`.
+[1, Prop. 3.4]: the sum over one factor list, written down once rather than built up. The
+two exponent matrices are laid side by side (`exactPlus`), the columns put back in order
+(`sort`), and the shared columns joined (`merge`), which is [1]'s `merge ⟨ĉ, Ĝ(·,K), [], Ê(·,K)⟩`.
+[1] takes `m` sorted operands, so that sorting is an `m`-way merge of runs, `O(p ĥ log m)`.
+Neither is a hypothesis of the result: `m` operands are this iterated, and the set does not
+depend on how the sorting permutation was found.
 
-[1] takes `m` operands and asks them to be sorted, so that the sorting is an
-`m`-way merge of runs and costs `O(p ĥ log m)`. Neither is a hypothesis of the
-result: `m` operands are this iterated, and the set the formula denotes does
-not depend on how the sorting permutation was found.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Output
+* sorted and merged sum
 
 ## References
 

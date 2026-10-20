@@ -13,6 +13,20 @@ The cubic map as a polynomial in the very factors `P` is written in, rather than
 of it: at every factor vector `a` the point of the result is the cubic map of the point of `P`
 at `a`, `zᵢ = Σₖ (π₃ x)ₖ ((π₁ x)ᵀ T{i,k} (π₂ x))` with `x = P.point a`. Two applications of
 `bilin_point`, the quadratic forms first.
+
+## Inputs
+* `π₁` – first projection to vectors
+* `π₂` – second projection to vectors
+* `π₃` – third projection to vectors
+* `T` – family of cubic form tensors
+* `P` – polynomial zonotope
+* `a` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point is the mixed cubic map of the projected points
 -/
 
 -- Authors:       Claude Opus 5.5

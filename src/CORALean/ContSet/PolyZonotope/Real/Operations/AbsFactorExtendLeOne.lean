@@ -9,6 +9,19 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtend
 
 Split out of `Compact.lean` (issue #62): reused unchanged by
 `ConPolyZono.abs_factorExtend_le_one`, outside this file.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `a` – values of the used factors
+* `k` – factor index
+
+## Hypotheses
+* `ha` – values are at most one
+
+## Conclusion
+* extended value is at most one in absolute value
 -/
 
 -- Authors:       Claude Opus 5

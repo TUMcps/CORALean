@@ -15,6 +15,18 @@ over ℝ, plus the independent block's extent `∑ⱼ |a · GIⱼ|`, each term b
 larger of the upward-rounded dot product and the negated downward-rounded one and summed
 upward, and one more `addUp` for the sum.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `c` – linear functional
+* `a` – float coefficient vector of the functional
+* `u` – support bound of the factor part
+
+## Hypotheses
+* `hc` – the vector represents the functional
+
+## Output
+* support bound of the nominal set
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

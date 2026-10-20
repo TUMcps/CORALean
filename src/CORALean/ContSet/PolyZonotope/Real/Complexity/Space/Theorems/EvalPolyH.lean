@@ -17,6 +17,16 @@ count depends on `pZ` only through `pZ.h`, and on `coeffs` only through its
 length, not on the coefficients' own values — the fact `Layer.activationPoly`'s
 generator count rests on: a layer's order pattern chooses `coeffs.length`, and
 nothing about the individual neurons' fits reaches this count at all.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `coeffs` – coefficient vectors
+
+## Hypotheses
+* none
+
+## Conclusion
+* exact dependent-generator count of the evaluation
 -/
 
 -- Authors:       Claude Opus 5

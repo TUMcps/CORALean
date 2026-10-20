@@ -10,6 +10,16 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.Isequal
 A `true` answer says the stored numbers agree as real numbers and the exponent matrices agree, so
 the nominal polynomial zonotopes are the same and the error boxes are the same, and the denoted
 sets are equal. `false` refutes nothing.
+
+## Inputs
+* `Z` – first polynomial zonotope
+* `S` – second polynomial zonotope
+
+## Hypotheses
+* `h` – the test returns true
+
+## Conclusion
+* the two sets are equal
 -/
 
 -- Authors:       Claude Opus 5.5

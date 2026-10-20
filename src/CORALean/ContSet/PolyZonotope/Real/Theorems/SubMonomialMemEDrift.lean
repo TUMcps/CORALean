@@ -10,19 +10,28 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.SubPowNonpos
 /-!
 # `eDrift` brackets the drift of one monomial from another
 
-The two-sided reading of `[1, Prop. 3]`: `abs_sub_monomial_le` says the drift of
-two monomials agreeing off `k₀` stays within `ξ_E` of zero, and this says which
-half of that interval it can actually reach. Where a sign never changes the
-opposite reach is `0`, and a relaxation can then put the interval's midpoint in
-its center and only its half-width in a generator.
+The two-sided reading of `[1, Prop. 3]`: `abs_sub_monomial_le` says the drift of two monomials
+agreeing off `k₀` stays within `ξ_E` of zero, and this says which half of that interval it can
+reach. Where a sign never changes the opposite reach is `0`, and a relaxation can put the
+midpoint in its center and only the half-width in a generator. One hypothesis, the agreement
+off `k₀`, and no evenness: `eDrift` reads the parity out of the exponent matrix itself, and a
+pair with nothing to exploit falls back on the symmetric bound.
 
-One hypothesis, the agreement off `k₀`, and no evenness: `eDrift` reads the
-parity out of the exponent matrix itself, so the caller is never asked for it
-and a pair with nothing to exploit falls back on the symmetric bound.
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `a` – factor values
+* `i` – first generator index
+* `j` – second generator index
+* `k₀` – factor index
 
-`sub_monomial_nonpos` is the case where the reach upward vanishes and every
-exponent of column `i` is even. The upward branch is the same argument with the
-two columns exchanged, which is why the bracket is symmetric under swapping them.
+## Hypotheses
+* `ha` – factor values are at most one
+* `hsim` – exponents agree outside that factor
+
+## Conclusion
+* the monomial difference lies in the drift interval
 
 ## References
 

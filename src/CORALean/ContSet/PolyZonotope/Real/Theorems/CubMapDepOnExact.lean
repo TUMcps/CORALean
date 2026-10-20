@@ -13,6 +13,19 @@ What exactness means here: `construct (cubMapDepOn π₁ π₂ π₃ T P)` is th
 factors `a` under `a ↦ cubEvalMixed T (π₁ (P.point a)) (π₂ (P.point a)) (π₃ (P.point a))`, all
 three arguments at the same factors. The result has an empty independent block, so its set is
 the image of the factors alone.
+
+## Inputs
+* `π₁` – first projection to vectors
+* `π₂` – second projection to vectors
+* `π₃` – third projection to vectors
+* `T` – family of cubic form tensors
+* `P` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the mixed cubic image over the factors equals the result
 -/
 
 -- Authors:       Claude Opus 5.5

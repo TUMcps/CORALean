@@ -11,6 +11,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Instances
 
 An equality: the stored floats are untouched and the nominal part is the exact layer's
 `padBack` of the original's, so the exact theorem carries over with the error box as it was.
+
+## Inputs
+* `r` – number of added factors
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the padded set equals the original
 -/
 
 -- Authors:       Claude Sonnet 5.5

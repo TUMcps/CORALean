@@ -18,6 +18,14 @@ is `PolyZonotope.zonotope` (every monomial a free factor in `[-1, 1]`), a wider 
 CORA's `zonotope(pZ)`, which halves the all-even columns; its polygon is the float
 `Zonotope.polygon` (the sorted walk, `2 h` vertices). The choice of the pieces to refine is the
 parameter `pick`, as at the real layer.
+
+## Inputs
+* `pZ` – two-dimensional polynomial zonotope
+* `splits` – number of splitting rounds
+* `pick` – chooser of the sets to split
+
+## Output
+* polygon enclosing the set
 -/
 
 -- Authors:       Claude Opus 5.5

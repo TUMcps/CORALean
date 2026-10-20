@@ -21,6 +21,15 @@ source, not run.
 For `pZ = {0}` and the list `{1}, {2}` (all three are points) the Minkowski sum is `{3}`, and
 `sum` returns it. CORA's loop adds `pZlist{1}.c` twice and returns `{0 + 1 + 1} = {2}`.
 Read from the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's sum differs from the exact sum
 -/
 
 -- Authors:       Claude Opus 5.5

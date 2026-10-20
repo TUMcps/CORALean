@@ -12,6 +12,13 @@ exactly on every block. Everything the radius allows is boxed into one fresh
 generator per coordinate, and it goes into the *independent* block: the
 matrix's uncertainty answers to none of the set's dependent factors, so making
 it dependent would misstate where the sharing is.
+
+## Inputs
+* `IM` – interval matrix
+* `pZ` – polynomial zonotope
+
+## Output
+* polynomial zonotope enclosing the interval matrix image
 -/
 
 -- Authors:       Claude Opus 5

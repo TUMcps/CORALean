@@ -12,6 +12,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpMultiOuter
 over-approximates whichever pair it merges (`relaxExpMulti_outer`), so the greedy subgraph, the
 leaf and the tie-break decide precision and nothing else, and the loop encloses at every `fuel`.
 
+## Inputs
+* `η` – exponent threshold
+* `fuel` – step bound
+* `PZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and Its

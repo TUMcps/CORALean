@@ -17,6 +17,14 @@ factors disjoint, and `bilin` pairs the product with itself over those factors, 
 the
 *first* block of one argument against the *second* block of the other (`aux_mixedForm`). The product
 has dimension `n + n`, where the exact layer's lives in `Vec ℝ n × Vec ℝ n`.
+
+## Inputs
+* `Q` – family of quadratic form matrices
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Output
+* polynomial zonotope enclosing the mixed quadratic image
 -/
 
 -- Authors:       Claude Sonnet 5.5

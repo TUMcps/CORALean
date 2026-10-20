@@ -19,6 +19,16 @@ columns are equal (`merge_col_injective` applies here unchanged), but an
 all-zero column would survive — and cannot arise, since [1, Alg. 2]'s operand is
 regular and `sq` adds a non-zero column to every exponent it produces.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `coeffs` – coefficient vectors
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exponent matrix of the result is sorted
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

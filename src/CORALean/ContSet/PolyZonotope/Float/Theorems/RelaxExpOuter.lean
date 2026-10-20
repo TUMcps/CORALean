@@ -15,20 +15,23 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 /-!
 # `relaxExp` over-approximates, merging two similar generators
 
-The exact layer's argument at this layer's stored columns, with two roundings
-charged. `abs_sub_monomial_le` is the exact layer's and is what bounds the
-drift between the two monomials; the width it is bounded by is a natural number
-both layers read off the same exponent matrix.
+The exact layer's argument at this layer's stored columns, with two roundings charged.
+`abs_sub_monomial_le` is the exact layer's and bounds the drift between the two monomials; the
+width is a natural number both layers read off the same exponent matrix. Each stored column is
+a sum rounded down, off by at most its gap to the upward rounding, read by a coefficient in
+`[-1,1]`: one `generatorError` with two columns. The independent coefficient is one scalar for
+the column, so it is stored collinear with the generator it relaxes.
 
-Each stored column is a sum rounded down, so each is off by at most its gap to
-the upward rounding, and the coefficient reading it — a monomial for the merged
-dependent column, `Zonotope.coefficient` for the new independent one — is in
-`[-1,1]`. That is one `generatorError` with two columns.
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
+* `k₀` – factor index
 
-The independent coefficient is one scalar for the whole column, as over ℝ, which
-is why the column has to be stored collinear with the generator it relaxes:
-rounding each coordinate outward on its own would not be reachable by any single
-coefficient.
+## Hypotheses
+* `hsim` – generators agree outside that factor
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

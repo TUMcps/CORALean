@@ -12,6 +12,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.MapEvalOn
 post operator of [1, Alg. 1] and the first of the three [1, Lemma 4] composes —
 the one that is dependency preserving by an *equality* rather than an enclosure.
 
+## Inputs
+* `M` – matrix
+* `pZ` – polynomial zonotope
+* `B` – box of factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* evaluation of the product is the matrix image of the evaluation
+
 ## References
 
 * [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to

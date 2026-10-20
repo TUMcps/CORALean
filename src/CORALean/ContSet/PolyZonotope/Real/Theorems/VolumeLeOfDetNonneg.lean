@@ -15,6 +15,17 @@ CORA's `volume_` integrates `det J`, not `|det J|`. Where `det J ≥ 0` on the f
 two agree, and the area formula bounds the volume of the image by CORA's value. Nothing is
 claimed where the determinant changes sign, and `volume_neg_example` shows the value is not a
 volume there.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* `hq` – no independent generators
+* `h` – factor count equals the dimension
+* `hdet` – determinant is nonnegative on the cube
+
+## Conclusion
+* volume of the set is at most the integral of the determinant
 -/
 
 -- Authors:       Claude Opus 5.5

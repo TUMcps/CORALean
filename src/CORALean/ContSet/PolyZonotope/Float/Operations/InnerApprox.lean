@@ -10,15 +10,20 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 
 CORA's `@polyZonotope/innerApprox`: the boxes `innerApproxImage` proves inside the image of the
 factor cube `[-1, 1]ᵖ` under the dependent point map, each turned into a zonotope and shifted by
-the independent generators, `zonotope(S{i}) + zonotope(0, GI)`. The union of the zonotopes is an
-inner approximation.
+the independent generators; the union is an inner approximation. A box becomes a zonotope by
+rounding inward (center the rounded midpoint kept only inside the box, radius the smaller
+distance to the bounds, rounded down, error box `0`); where the stored error box does not hold
+`0`, the result is empty. `tol` is CORA's; `inv`, `iter` and `depth` are `innerApproxImage`'s.
 
-The conversion of a box to a zonotope rounds inward: the center is the rounded midpoint, kept
-only where it lies in the box, and the radius in each coordinate is the smaller distance to the
-two bounds, rounded down and at least `0`; the error box is `0`, so nothing is added outward.
-Where the stored error box does not hold `0`, the nominal set need not lie in the set, and the
-result is empty. `tol` is CORA's (default `max(rad(X))/100`); `inv`, `iter` and `depth` are
-the approximate inverse and the caps `innerApproxImage` takes.
+## Inputs
+* `pZ` – polynomial zonotope
+* `tol` – tolerance
+* `inv` – matrix inverse routine
+* `iter` – number of iterations
+* `depth` – splitting depth
+
+## Output
+* list of zonotopes proven inside the set
 -/
 
 -- Authors:       Claude Opus 5.5

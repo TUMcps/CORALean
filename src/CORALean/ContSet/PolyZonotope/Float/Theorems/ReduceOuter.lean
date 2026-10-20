@@ -11,6 +11,16 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceGirardOuter
 `compact` first, then `reduceGirard` — Girard's is the rule `reduce` runs, and
 this composition is the whole of that choice: any other rule would discharge it
 too.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

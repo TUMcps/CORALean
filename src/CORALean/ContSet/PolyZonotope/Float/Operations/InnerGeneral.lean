@@ -18,6 +18,17 @@ once more without preconditioning (`C = eye(n)`). CORA falls back to `eye(n)` wh
 Jacobian is rank-deficient; here an inverse `innerTest` cannot certify fails that pass, and the
 retry is the same.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `X` – factor box
+* `X₀` – inner factor box
+* `Y` – target box
+* `inv` – matrix inverse routine
+* `iter` – number of iterations
+
+## Output
+* Boolean, true only if the target box is shown inside the image
+
 ## References
 
 * [1] O. Mullier, É. Goubault, M. Kieffer and S. Putot. "General Inner Approximation of

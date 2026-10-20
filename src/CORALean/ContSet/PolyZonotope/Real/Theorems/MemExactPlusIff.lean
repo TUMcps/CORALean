@@ -9,16 +9,23 @@ public import Mathlib.Tactic.Abel
 /-!
 # `exactPlus` is the exact addition, independent blocks included
 
-[1, Prop. 10] defines the exact addition `PZ₁ ⊞ PZ₂` of two polynomial zonotopes over a
-common identifier vector as the concatenation `⟨[G₁ G₂], [G_{I,1} G_{I,2}], [E₁ E₂], id⟩`,
-and its proof reads it as the Minkowski sum `(10)` with the dependent factors shared
-instead of renamed apart. This is that reading in full: a point of `exactPlus` is a point
-of `pZ₁` plus a point of `pZ₂` at the *same* dependent factors `α` and at independent
-factors `β₁`, `β₂` of their own. `exactPlus_point` is the dependent half; the independent
-blocks are concatenated, so each operand keeps its own `β`.
+[1, Prop. 10] defines the exact addition `PZ₁ ⊞ PZ₂` over a common identifier vector as the
+concatenation `⟨[G₁ G₂], [G_{I,1} G_{I,2}], [E₁ E₂], id⟩`, and its proof reads it as the Minkowski
+sum with the dependent factors shared instead of renamed apart. This is that reading in full: a
+point of `exactPlus` is a point of `pZ₁` plus a point of `pZ₂` at the *same* dependent factors
+`α` and at independent factors `β₁`, `β₂` of their own. The compact operation the proposition
+applies afterwards changes the representation, not the set.
 
-The compact operation the proposition applies afterwards merges columns with one exponent
-vector and changes the representation, not the set.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+* `x` – point
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Conclusion
+* membership means being a sum of points with independent values
 
 ## References
 

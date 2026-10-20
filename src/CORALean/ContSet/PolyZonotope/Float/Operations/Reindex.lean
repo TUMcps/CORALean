@@ -11,6 +11,13 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 Center, both generator blocks' rows and the error box relabelled, and nothing
 rounds: a permutation moves stored floats without arithmetic. The exponent matrix
 indexes factors and generators, not coordinates, so it is kept.
+
+## Inputs
+* `e` – equivalence of dimensions
+* `pZ` – polynomial zonotope
+
+## Output
+* polynomial zonotope with dimensions relabelled
 -/
 
 -- Authors:       Claude Opus 5.5

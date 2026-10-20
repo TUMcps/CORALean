@@ -12,6 +12,17 @@ The tightening of [1, Prop. 3] is real: `eDiff` bounds the maximum by `0`, `1` o
 parity alone, and the maximum itself is `0` and `2` where those are exact and below `1` where
 `eDiff` says `1`, the equal-parity exponents that differ. `abs_sub_pow_le_eDiffTight` says it is
 still an upper bound.
+
+## Inputs
+* `a` – first exponent
+* `b` – second exponent
+
+## Hypotheses
+* none
+
+## Conclusion
+* the tight difference is at most the plain one
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and

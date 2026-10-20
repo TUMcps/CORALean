@@ -11,6 +11,17 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.BoxOutOuter
 Whatever `tol` and `id` are: the selection is a heuristic and `boxOut_outer` holds for every
 selection. Not exact; the taken independent generators stay in `GI` as in CORA, so their radius
 is counted twice.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `tol` – tolerance
+* `S` – selected factors
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

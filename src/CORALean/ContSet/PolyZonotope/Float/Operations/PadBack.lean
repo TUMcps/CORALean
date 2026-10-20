@@ -11,6 +11,13 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.PadE
 CORA's `restoreId` for the ids missing after a set's own: `r` further factors appended at
 exponent zero. The center, both generator blocks and the error box are kept, so nothing
 rounds and the set is unchanged.
+
+## Inputs
+* `r` – number of added factors
+* `pZ` – polynomial zonotope
+
+## Output
+* polynomial zonotope with r unused factors appended
 -/
 
 -- Authors:       Claude Sonnet 5.5

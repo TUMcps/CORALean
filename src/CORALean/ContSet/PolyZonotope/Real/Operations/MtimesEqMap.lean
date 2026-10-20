@@ -11,6 +11,16 @@ public import Mathlib.LinearAlgebra.Matrix.ToLin
 
 Split out of `Mtimes.lean` (issue #62), matching `Zonotope`, `VPolytope`,
 `ConZonotope` and `ConPolyZono`, which each give this fact its own file too.
+
+## Inputs
+* `M` – matrix
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* matrix product equals the image under the matrix's linear map
 -/
 
 -- Authors:       Claude Opus 5

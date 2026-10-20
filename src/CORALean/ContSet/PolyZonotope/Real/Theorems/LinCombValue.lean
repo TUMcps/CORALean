@@ -13,16 +13,27 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SumPair
 /-!
 # What `linComb`'s witness evaluates to
 
-The value identity behind `linComb_outer`, split out of it so that a
-representation built on top of `PolyZonotope.linComb` can reuse the arithmetic
-rather than restate it: the constrained polynomial zonotope's `linComb` has the
-same generators and the same witness, and differs only in carrying a constraint
-system along.
+The value identity behind `linComb_outer`, split out so that a representation built on top of
+`PolyZonotope.linComb` can reuse the arithmetic: the constrained polynomial zonotope's
+`linComb` has the same generators and witness, and differs only in carrying a constraint
+system. An identity, not an inclusion, and free in `lam`: the three dependent blocks and the
+paired independent one recombine into the segment whatever the parameter is. The unit-box side
+conditions, where `lam ∈ [0,1]` is needed, are stated where the inclusion is.
 
-An identity, not an inclusion, and free in `lam`: the three dependent blocks and
-the paired independent one recombine into the segment whatever the parameter is.
-The unit-box side conditions are what `lam ∈ [0,1]` is needed for, and they are
-stated where the inclusion is.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+* `a₁` – factor values of the first set
+* `β₁` – independent values of the first set
+* `a₂` – factor values of the second set
+* `β₂` – independent values of the second set
+* `lam` – convex weight
+
+## Hypotheses
+* none
+
+## Conclusion
+* the witness point equals the weighted combination of the two points
 -/
 
 -- Authors:       Claude Opus 5

@@ -16,6 +16,16 @@ generator blocks and the center pass through `toReal`.
 Proofs use it rather than going through `nominal` because through it every count
 is `pZ.h`, where the instance gives the equal-but-distinct `(nominal pZ).h` that
 `rw` reads apart.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership in the nominal set is equivalent to a factor representation
 -/
 
 -- Authors:       Claude Opus 5

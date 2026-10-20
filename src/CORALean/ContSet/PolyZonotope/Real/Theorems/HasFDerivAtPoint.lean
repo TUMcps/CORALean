@@ -16,6 +16,16 @@ public import Mathlib.Topology.Algebra.Module.FiniteDimension
 Column `k` of the Fréchet derivative is its value on the `k`-th unit vector, which is the
 derivative along `Function.update a k` (the chain rule) and so, by `jacobian_hasDerivAt`, the
 point of `jacobian k`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `a` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point map has the Jacobian matrix as derivative
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,15 @@ public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaPointSound
 `representsa_point = true` means the set is a single point (a `true` only, a `false` decides
 nothing). The exact layer's `construct_eq_of_representsa_point` carries the nominal part, the
 interval's soundness the box.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* `h` – the test returns true
+
+## Conclusion
+* the set is a single point
 -/
 
 -- Authors:       Claude Opus 5.5

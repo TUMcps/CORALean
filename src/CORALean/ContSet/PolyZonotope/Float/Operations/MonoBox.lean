@@ -14,6 +14,15 @@ CORA's `prod(x.^E(:,i),1)` evaluates them on an interval `x` in `aux_funcPoly` a
 Jacobian handle of `@polyZonotope/contains_`: each power by `Interval.power`, which keeps an
 even power of an interval around `0` nonnegative, and the product over the factors by
 `Interval.prod₁`, every corner rounded outward, and stored (`materialise`).
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `X` – factor box
+
+## Output
+* interval enclosing the monomials over the box
 -/
 
 -- Authors:       Claude Opus 5.5

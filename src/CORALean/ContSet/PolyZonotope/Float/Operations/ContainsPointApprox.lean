@@ -11,15 +11,21 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerGeneral
 
 The point branch of CORA's `@polyZonotope/contains_` with `'approx'`: a point equal to the center
 is contained; otherwise `aux_containsInterval`, [1, Alg. 3] (`innerGeneral`), tries to prove the
-point box `Y = interval(S(:,i))` inside the image of `[-1, 1]ᵖ⁺ᵍ` under `aux_funcPoly`
-(`indepFactors`), from the box `X_ = x ± 1e-10` around a start point `x`. CORA finds `x` by
-`fmincon` (`aux_getFactorDomain`); here it is the caller's `start`, which soundness does not
-depend on.
+point box inside the image of `[-1, 1]ᵖ⁺ᵍ` under `aux_funcPoly` (`indepFactors`), from the box
+`x ± 1e-10` around a start point `x`. CORA finds `x` by `fmincon`; here it is the caller's
+`start`. CORA's center shortcut `withinTol(S(:,i), pZ.c)` accepts a point `1e-8` away; here the
+point must equal the center and no column of `E` be zero. `true` is only returned where the
+error box holds `0`; `false` decides nothing.
 
-CORA's center shortcut is `withinTol(S(:,i), pZ.c)`, which accepts a point `1e-8` away from the
-center, and the center itself where an exponent column is zero, though the center is then not
-in the set; here the point must equal the center and no column of `E` be zero. `true` is only
-returned where the error box holds `0`. `false` decides nothing, as in CORA (`cert = false`).
+## Inputs
+* `pZ` – polynomial zonotope
+* `s` – point
+* `start` – starting point of the factor search
+* `inv` – matrix inverse routine
+* `iter` – number of iterations
+
+## Output
+* Boolean, true only if the point is shown to lie in the set
 
 ## References
 

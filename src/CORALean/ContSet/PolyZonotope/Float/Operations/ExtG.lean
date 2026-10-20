@@ -10,6 +10,12 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 Split out of `QuadMap.lean` (issue #62): shared with `Mul.lean` in this
 directory, and reused by their matching `Theorems/` files, all outside this
 file.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* generator matrix with the center as first column
 -/
 
 -- Authors:       Claude Opus 5

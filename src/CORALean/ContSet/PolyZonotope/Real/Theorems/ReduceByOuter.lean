@@ -17,6 +17,17 @@ Stated separately because almost every caller wants the set and not the
 dependency: an order bound is a precision knob, and only [1, Lemma 4] needs to
 know that the factors were left alone while the generators moved.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `partD` – split of the dependent generators
+* `partI` – split of the independent generators
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
+
 ## References
 
 * [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to

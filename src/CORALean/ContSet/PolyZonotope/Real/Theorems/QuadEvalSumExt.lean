@@ -20,6 +20,17 @@ point is the sum on the right with an empty center.
 
 Pointwise in the factor vector, and public for that reason: the constrained
 representation needs it at a fixed `a`, which a set equality cannot give.
+
+## Inputs
+* `Q` – family of quadratic form matrices
+* `pZ` – polynomial zonotope
+* `a` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the quadratic map of the extended sum expands over generator pairs
 -/
 
 -- Authors:       Claude Opus 5

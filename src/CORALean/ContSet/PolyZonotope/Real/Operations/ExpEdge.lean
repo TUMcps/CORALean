@@ -7,18 +7,23 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdgeAt
 /-!
 # `PolyZonotope.ExpEdge`
 
-The graph `G_{pZ,η}` of `[1, Def. 5]`, as the relation its edges form: nodes are
-the dependent generators and `i → j` holds where `ExpEdgeAt` does at some index.
-`[1, Def. 4]` makes that index the only one at which the two columns differ, so
-the existential loses nothing.
+The graph `G_{pZ,η}` of `[1, Def. 5]`, as the relation its edges form: nodes are the dependent
+generators and `i → j` holds where `ExpEdgeAt` does at some index. `[1, Def. 4]` makes that index
+the only one at which the two columns differ, so the existential loses nothing. Hiding the
+index lets a path be spoken of (`[1, Lemma 1]`); what consumes an edge to relax needs the index
+back and takes `ExpEdgeAt`. The relation is decidable, so the edge set is a `Finset` a
+selection can search.
 
-Hiding the index is what lets a path be spoken of at all — the graph is a
-relation on nodes, and `[1, Lemma 1]` is a statement about paths in it. What
-consumes an edge in order to relax needs the index back, and takes `ExpEdgeAt`.
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `η` – exponent threshold
+* `i` – first generator index
+* `j` – second generator index
 
-The existential is over a `Fintype` and its body decides, so the relation does
-too, and the edge set of `[1, Def. 5]` is a `Finset` a selection can search.
-Nothing about soundness needs that; a heuristic does.
+## Output
+* Prop that some factor makes the pair a relaxable edge
 
 ## References
 

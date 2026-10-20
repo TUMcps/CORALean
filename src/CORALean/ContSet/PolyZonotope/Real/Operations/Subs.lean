@@ -8,18 +8,23 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsFactor
 /-!
 # `PolyZonotope.subs`
 
-CORA's `@polyZonotope/subs(pZ, pZin, idu)`: the dependent factors `idu` of `pZ` are replaced by the
-outputs of the polynomial zonotope `pZin` (no independent generators), whose own factors become
-factors of the result, shared with `pZ`'s where the identifiers agree.
+CORA's `@polyZonotope/subs(pZ, pZin, idu)`: the dependent factors `idu` of `pZ` are replaced by
+the outputs of the polynomial zonotope `pZin` (no independent generators), whose own factors
+become factors of the result, shared with `pZ`'s where the identifiers agree. Each generator is
+scaled by `∏ᵢ αᵤ(ᵢ)^e`; substituting gives a product of powers of polynomials in `β`, expanded
+into one generator per term (`subsXprod`, `subsTerms`). CORA then merges equal columns and
+moves constant ones into the center: same set, left out. Identifiers are indices: `idu i` is the
+factor of `pZ` that output `i` replaces, the result's factors are `pZ`'s and then `pZin`'s.
 
-Each generator is scaled by `∏ᵢ αᵤ(ᵢ)^e`; substituting `αᵤ(ᵢ) = (pZin)ᵢ(β)` gives a product of
-powers of polynomials in `β`, expanded into one generator per term (`subsXprod`, `subsTerms`).
-CORA then merges equal columns and moves constant ones into the center
-(`removeRedundantExponents`, `priv_removeZeroExponents`): same set, left out. Its shortcut for a
-`pZin` without center and at most one monomial per output computes the same terms.
+## Inputs
+* `pZ` – polynomial zonotope
+* `nu` – number of substituted factors
+* `pZin` – polynomial zonotope substituted in
+* `idu` – indices of the substituted factors
+* `share` – map of shared factors
 
-Identifiers are indices: `idu i` is the factor of `pZ` that output `i` replaces, the result's
-factors are `pZ`'s (the replaced ones left as zero rows) and then `pZin`'s (`subsFactor`).
+## Output
+* polynomial zonotope after the substitution
 -/
 
 -- Authors:       Claude Opus 5.5

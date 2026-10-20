@@ -15,6 +15,16 @@ The parallelotope encloses `zonotope(pZ)` (`reduceMethC_outer`), which encloses 
 (`zonotope_contains`); its two halves cover it exactly (`Zonotope.split_union`), and the
 polynomial zonotope of a zonotope denotes it (`Zonotope.polyZonotope_exact`). So the union of
 the two halves, along any generator, is an over-approximation of `pZ`, not equal to it.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `j` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is covered by the two halves
 -/
 
 -- Authors:       Claude Opus 5.5

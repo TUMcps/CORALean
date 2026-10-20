@@ -9,6 +9,20 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 
 Exponent columns add where monomials multiply — what keeps the representation
 closed under a quadratic map, which sums exponent columns pairwise.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E₁` – first exponent matrix
+* `E₂` – second exponent matrix
+* `a` – factor values
+* `i` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the monomial of summed exponents is the product of the monomials
 -/
 
 -- Authors:       Claude Opus 5

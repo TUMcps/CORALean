@@ -14,6 +14,15 @@ so the recursion collapses to `∑ j, c j * t ^ j`.
 Which is the form a caller states its own polynomial in — an activation layer
 holds a coefficient *function* per neuron and hands `evalPoly` a list — so the
 two spellings have to meet somewhere, and this is the only place they do.
+
+## Inputs
+* `t` – real argument
+
+## Hypotheses
+* none
+
+## Conclusion
+* Horner evaluation equals the monomial sum
 -/
 
 -- Authors:       Claude Opus 5

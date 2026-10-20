@@ -9,6 +9,12 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 
 Split out of `EvalPoly.lean` (issue #62): read again by
 `Theorems/EvalPolyOuter.lean`, outside this file.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* vector bounding the absolute values of the set
 -/
 
 -- Authors:       Claude Opus 5

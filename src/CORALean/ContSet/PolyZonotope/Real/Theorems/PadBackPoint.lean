@@ -16,6 +16,17 @@ a factor at exponent zero contributes `a ^ 0 = 1` to every one of them.
 Stated over `point` rather than `construct` because that is what a product of
 two sets is stated over; the set itself follows, the two constructions differing
 in no field a point does not read.
+
+## Inputs
+* `r` – number of added factors
+* `pZ` – polynomial zonotope
+* `a` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point ignores the added factors
 -/
 
 -- Authors:       Claude Opus 5

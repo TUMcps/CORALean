@@ -8,15 +8,18 @@ public import Mathlib.Algebra.Module.LinearMap.Defs
 /-!
 # `PolyZonotope.map`
 
-The construction is [1, Prop. 2.8].
-
-A linear map applies to the center and to both generator blocks, and touches
-neither the exponent matrix nor any of the three counts: the monomials are
-scalars, and a linear map commutes with scaling.
-
-That is the whole reason a polynomial zonotope propagates through a linear layer
-without loss, exactly as a zonotope does. Every multiplication this
+The construction is [1, Prop. 2.8]. A linear map applies to the center and to both generator
+blocks, and touches neither the exponent matrix nor any of the three counts: the monomials
+are scalars, and a linear map commutes with scaling. That is why a polynomial zonotope
+propagates through a linear layer without loss, as a zonotope does; every multiplication this
 representation carries is this at a particular map.
+
+## Inputs
+* `f` – linear map
+* `pZ` – polynomial zonotope
+
+## Output
+* polynomial zonotope of the image
 
 ## References
 

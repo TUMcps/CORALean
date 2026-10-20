@@ -9,6 +9,13 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.SplitLongestGen
 
 One round of the refinement CORA's `polygon` runs: every piece the predicate `pick` selects is
 split along its longest factor (`splitLongestGen`), the others are kept.
+
+## Inputs
+* `pick` – chooser of the sets to split
+* `L` – list of polynomial zonotopes
+
+## Output
+* list with the chosen sets split in two
 -/
 
 -- Authors:       Claude Opus 5.5

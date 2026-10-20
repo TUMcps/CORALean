@@ -14,6 +14,16 @@ two sums is the whole proof. The monomials are untouched because they are
 scalars, which is why the exponent matrix never enters.
 
 `MtimesExact` is this at `A *ᵥ ·`.
+
+## Inputs
+* `f` – linear map
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image of the set equals the result
 -/
 
 -- Authors:       Claude Opus 5

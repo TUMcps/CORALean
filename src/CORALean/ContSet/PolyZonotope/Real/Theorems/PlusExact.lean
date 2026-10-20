@@ -11,16 +11,21 @@ public import Mathlib.Tactic.Abel
 /-!
 # `PolyZonotope.plus` is exactly the Minkowski sum
 
-The result is [1, Prop. 9].
+The result is [1, Prop. 9]. The witnesses are `Fin.append a₁ a₂` and `Fin.append β₁ β₂` on the
+factors and the independent coefficients, and the block-diagonal exponent matrix makes them
+work: a generator of one set carries exponent zero on every factor of the other. Exactness is
+the point of separating the factors: had the two sets' factors been identified, the reverse
+inclusion would fail, one factor not taking two values at once.
 
-The witnesses are `Fin.append a₁ a₂` and `Fin.append β₁ β₂` on the factors and
-the independent coefficients, and the block-diagonal exponent matrix is what
-makes them work: a generator of one set carries exponent zero on every factor of
-the other, so its monomial reads back as a monomial of its own set alone.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
 
-Exactness is the point of separating the factors. Had the two sets' factors been
-identified, the reverse inclusion would fail — one factor cannot take two values
-at once, so the sum would come out too small rather than too large.
+## Hypotheses
+* none
+
+## Conclusion
+* result equals the Minkowski sum of the sets
 
 ## References
 

@@ -11,17 +11,21 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxWidth
 # `PolyZonotope.relaxExp`
 
 The exact layer's `relaxExp`, rounded. Two things it computes are sums of stored
-floats — the merged dependent column and the `ξ_E` copies of the relaxed one —
-and each is stored downward with the gap to its upward rounding paid into the
-box, as `compact` pays for merging columns.
+floats, the merged dependent column and the `ξ_E` copies of the relaxed one, and
+each is stored downward with the gap to its upward rounding paid into the box,
+as `compact` pays for merging columns.
 
-`ξ_E` itself rounds nothing: `eDiff` is over ℕ in both layers and the exponent
-matrix is copied, so the two layers relax by the same width. At `ξ_E ≤ 1` that
-column folds against `zero` alone, which no format moves and only the axioms
-leave open; the paper's graph selects exactly those pairs.
+`ξ_E` itself rounds nothing: `eDiff` is over ℕ in both layers, so the two layers
+relax by the same width. The center is untouched, `ξ_c` being zero at
+`ξ_G = ξ_E`, so nothing is added to the box beyond the two gaps.
 
-The center is untouched, `ξ_c` being zero at `ξ_G = ξ_E`, so this operation adds
-nothing to the box beyond the two gaps.
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
+* `k₀` – factor index
+
+## Output
+* polynomial zonotope with the two generators relaxed into one
 -/
 
 -- Authors:       Claude Opus 5

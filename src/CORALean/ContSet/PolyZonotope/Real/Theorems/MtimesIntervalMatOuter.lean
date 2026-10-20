@@ -27,6 +27,16 @@ The center part is `mtimes` exactly on every block; the leftover `(A - center)
 x` fits in the fresh independent generators because `x`, read through the
 enclosing zonotope's coefficients (the dependent monomials appended to the
 independent ones), never exceeds `pZ.zonotope.absBound`.
+
+## Inputs
+* `IM` – interval matrix
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image under every member matrix lies in the result
 -/
 
 -- Authors:       Claude Opus 5

@@ -11,6 +11,14 @@ The box `X_` with the coordinates `ind` replaced by the box `U`: CORA's
 `X_modified = X_; X_modified(ind) = cartProd(U1_, U2_)` in `aux_InnerGeneral` and
 `aux_containsInterval`, on which the Jacobian is re-evaluated after each domain inflation of
 `U1_`. The coordinates not in `ind` keep `X_`'s bounds, which is `U2_` in CORA's split.
+
+## Inputs
+* `X₀` – factor box
+* `ind` – selected factor indices
+* `U` – replacement box
+
+## Output
+* factor box with the selected entries replaced
 -/
 
 -- Authors:       Claude Opus 5.5

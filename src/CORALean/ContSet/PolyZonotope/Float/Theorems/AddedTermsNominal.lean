@@ -12,6 +12,15 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTerms
 The float `addedTerms` copies the stored floats, so its exponents are the exact layer's `addedTerms`
 exponents of the nominal set and its generator `idx` reads as the exact one; the error box is the
 point `0`. (The float set is a vector of length `1`, the exact one a scalar one.)
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* generators and exponents match the exact added terms, error box is zero
 -/
 
 -- Authors:       Claude Opus 5.5

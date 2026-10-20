@@ -7,20 +7,25 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombValue
 /-!
 # A point of `linComb` read back as a segment, where the operands are dependent
 
-`linComb_value` evaluates a chosen witness; this reads the other way. Given *any*
-factor vector of `linComb`, the point it names is the segment point at
-`λ = (1+α)/2` between the two operands' points at their own factors — which is
-the reverse inclusion of [1, Prop. 14], and the whole of it, `⊆` being
-`linComb_outer`.
+`linComb_value` evaluates a chosen witness; this reads the other way. Given *any* factor vector
+of `linComb`, the point it names is the segment point at `λ = (1+α)/2` between the two
+operands' points at their own factors, the reverse inclusion of [1, Prop. 14] (`⊆` being
+`linComb_outer`). `q = 0` on both operands makes the reading exact: with no independent block
+there is nothing left to enclose. Stated apart from the set equality so that `ConPolyZono`
+can reach it at `toPolyZonotope`: `exact` unfolds the projections.
 
-The hypothesis `q = 0` on both operands is what makes the reading exact: the
-independent block of `linComb` is `pairSum`/`pairDiff` over the two, so with
-neither present there is nothing left to enclose and the `β` the point came with
-contributes nothing.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+* `a` – factor values of the combination
+* `β` – independent values of the combination
 
-Stated apart from the set equality so that `ConPolyZono` can reach it at
-`toPolyZonotope`: `exact` unfolds the projections, where a rewrite into an
-already-elaborated goal would not.
+## Hypotheses
+* `h₁` – first has no independent generators
+* `h₂` – second has no independent generators
+
+## Conclusion
+* the combination point reads back as a segment point
 
 ## References
 

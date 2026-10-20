@@ -10,6 +10,13 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.CubMapGUp
 
 How far a stored generator of `PolyZonotope.cubMap` can be from the exact one: the gap between its
 two roundings, which a monomial in `[-1, 1]` then spreads either way.
+
+## Inputs
+* `T` – family of cubic form tensors
+* `pZ` – polynomial zonotope
+
+## Output
+* generator-wise difference between rounded-up and rounded-down cubic generators
 -/
 
 -- Authors:       Claude Opus 5.5

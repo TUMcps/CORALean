@@ -9,6 +9,15 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubsetGDown
 
 What the rounded-down generators of `getSubset` cost: the rounded-up entry minus the rounded-down
 one, rounded up. Both bracket the exact entry, so the exact one is within this of the stored one.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+* `cen` – subinterval center
+* `rad` – subinterval radius
+
+## Output
+* gap between rounded-up and rounded-down subset generators
 -/
 
 -- Authors:       Claude Opus 5.5

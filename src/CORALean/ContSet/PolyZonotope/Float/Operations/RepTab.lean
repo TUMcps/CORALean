@@ -10,6 +10,12 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Rep
 `rep` costs a scan of every exponent column, and the merges ask for it once per
 summand of every fibre of every entry. Computed once into an `Array`, the same
 answers cost a lookup (issue #61).
+
+## Inputs
+* `E` – exponent matrix
+
+## Output
+* table of the representative of each column
 -/
 
 -- Authors:       Claude Opus 5.5

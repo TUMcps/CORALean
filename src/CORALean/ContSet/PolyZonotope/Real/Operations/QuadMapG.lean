@@ -16,6 +16,13 @@ this is where that choice is made.
 Its own file (issue #62): read again by the float layer's own
 `Theorems/QuadMapOuter.lean` and by `ConPolyZono.quadMapDep`, both outside this
 file.
+
+## Inputs
+* `Q` – family of quadratic form matrices
+* `pZ` – polynomial zonotope
+
+## Output
+* generators of the quadratic image
 -/
 
 -- Authors:       Claude Opus 5

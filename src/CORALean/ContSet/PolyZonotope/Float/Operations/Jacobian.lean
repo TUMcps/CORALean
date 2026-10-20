@@ -12,6 +12,13 @@ generator `i` is `E k i` times the original and whose exponent of `k` is lowered
 is `0` and the independent block is dropped. The multiples are stored with the lower rounding and
 the gap goes into the error box (`aux_jacobianGap`). The original's error box is not part of the
 derivative.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+
+## Output
+* polynomial zonotope of the partial derivative in that factor
 -/
 
 -- Authors:       Claude Opus 5.5

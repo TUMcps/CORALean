@@ -11,6 +11,16 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.RmIdConstruct
 # `rmId` gives a subset, in float too
 
 Inner: the set with the removed factors pinned lies in the original.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `S` – factors to remove
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is contained in the original set
 -/
 
 -- Authors:       Claude Opus 5.5

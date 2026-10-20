@@ -11,6 +11,14 @@ public import Mathlib.Data.Sign.Basic
 `aux_normalCone` in `isPolytope` [1]: at a corner, the inward derivative per factor.
 Zero columns, which CORA drops, add nothing to a cone and are kept.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `I` – factor values
+* `i` – factor index
+
+## Output
+* normal cone column as CORA computes it
+
 ## References
 
 * [1] `contSet/@polyZonotope/isPolytope.m`, CORA (Sep. 2025), by N. Kochdumper (2019).

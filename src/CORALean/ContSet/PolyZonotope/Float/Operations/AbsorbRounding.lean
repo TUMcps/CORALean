@@ -12,20 +12,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 
 Every free coefficient made dependent, by giving it a fresh factor that appears
 in it alone and to the first power. The exact layer frees the independent
-generators; here there is a second block of free coefficients — the error box —
-and freeing it is the same construction, so this one operation does both and
-leaves `q = 0` together with an empty box.
+generators; here the error box is a second block of free coefficients, freed the
+same way, leaving `q = 0` and an empty box. `quadMap` needs that, a quadratic map
+not being additive. Emptying the box costs no rounding: `errorBound` takes the
+larger endpoint magnitude (`maximum`, `absolute` are exact), not a midpoint.
 
-That is what `quadMap` needs. A quadratic map is not additive, so a nominal part
-and a box cannot travel through it separately: `(x+e)ᵀQ(x+e)` is not
-`xᵀQx + eᵀQe`, and the cross term has to be bounded against the whole set. Empty
-the box first and the question does not arise.
+## Inputs
+* `pZ` – polynomial zonotope
 
-Emptying it costs no rounding, which is why `errorBound` takes the larger
-magnitude of the two endpoints rather than the box's midpoint and radius:
-`maximum` and `absolute` are exact, where a midpoint would have to be stored as
-a float and leave a residual behind. The price is a generator up to twice as
-wide on an off-center coordinate, which for a box of rounding error is nothing.
+## Output
+* polynomial zonotope with its error box turned into independent generators
 -/
 
 -- Authors:       Claude Opus 5

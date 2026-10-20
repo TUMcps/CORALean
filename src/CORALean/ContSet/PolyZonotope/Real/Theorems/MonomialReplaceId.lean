@@ -10,6 +10,21 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 The monomial of the exponent matrix whose row `k'` adds the rows of the factors sent to `k'` by `f`,
 at `a'`, is the original monomial at `a' ∘ f`: the powers regroup along the fibres of `f`.
 `replaceId` and `subs` (a shared identifier) are stated through it.
+
+## Inputs
+* `p` – number of factors
+* `p'` – new factor count
+* `h` – number of generators
+* `E` – exponent matrix
+* `f` – map from old to new factors
+* `a'` – new factor values
+* `i` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the renamed monomial equals the monomial of the pulled-back values
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -9,6 +9,12 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 
 CORA's `@polyZonotope/representsa_` at type `emptySet`: `false`. A polynomial zonotope cannot denote
 the empty set (the factor vector `0` is always allowed), which `representsa_emptySet_iff` states.
+
+## Inputs
+* `_pZ` – polynomial zonotope
+
+## Output
+* Boolean, always false since the set is nonempty
 -/
 
 -- Authors:       Claude Opus 5.5

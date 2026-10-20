@@ -11,6 +11,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.RmIdConstruct
 
 The stored floats are untouched and the nominal part is the exact layer's `rmId` of the original's,
 so the exact theorem carries over with the error box as it was.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `S` – factors to remove
+
+## Hypotheses
+* none
+
+## Conclusion
+* result is the set with those factors fixed at one
 -/
 
 -- Authors:       Claude Opus 5.5

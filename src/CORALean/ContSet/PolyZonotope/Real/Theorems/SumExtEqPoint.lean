@@ -14,6 +14,16 @@ The center becomes generator zero at the all-zero exponent column, so the whole
 point is one sum over the extended index. Stated pointwise rather than as a set
 equality because the constrained representation needs it at a *fixed* factor
 vector, which is also why it carries no `aux_` prefix.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `a` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the extended sum is the center plus the generator sum
 -/
 
 -- Authors:       Claude Opus 5

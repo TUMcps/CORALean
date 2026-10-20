@@ -12,6 +12,15 @@ public import CORALean.Global.Sort
 Split out of `Reduce.lean` (issue #62), no longer `aux_`: `reduceGirard` and
 `reduceGirardDependent` each need it from their own file, so neither can keep
 it file-local.
+
+## Inputs
+* `𝕋` – float scalar type
+* `m` – number of generators
+* `metric` – score per generator
+* `k` – number of generators kept
+
+## Output
+* split of the generators into the top scored and the rest
 -/
 
 -- Authors:       Claude Opus 5

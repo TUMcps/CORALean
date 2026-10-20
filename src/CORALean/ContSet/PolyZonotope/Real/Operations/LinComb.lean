@@ -9,22 +9,20 @@ public import CORALean.ContSet.Zonotope.Real.Operations.PairSum
 /-!
 # `PolyZonotope.linComb`
 
-CORA's `@polyZonotope/linComb`, and the operation the representation is good at:
-one fresh dependent factor `α` carries the whole segment parameter. Writing
-`λ = (1+α)/2` turns `λ y₁ + (1-λ) y₂` into `½(y₁+y₂) + ½α(y₁-y₂)`, and both
-halves are again polynomial in the factors, so the dependent part loses nothing
-where a zonotope has to spend a generator on the center difference.
+CORA's `@polyZonotope/linComb`, and the operation the representation is good at: one fresh
+dependent factor `α` carries the whole segment parameter. `λ = (1+α)/2` turns `λ y₁ + (1-λ) y₂`
+into `½(y₁+y₂) + ½α(y₁-y₂)`, polynomial in the factors, so the dependent part loses nothing.
+Three dependent blocks result: `½G₁ ++ ½G₂`, `½G₁ ++ -½G₂` at the same monomials times `α`, and
+`½(c₁-c₂)` at `α` alone; `linCombE` sets the fresh factor's row to `1` on exactly the second.
+Exactness stops at the independent generators (`½(1±α)βⱼ` is not expressible): the two blocks
+are enclosed by `Zonotope.pairSum` and `pairDiff`, at the same count `q₁ + q₂`.
 
-Three dependent blocks come out of that: `½G₁ ++ ½G₂` at the original monomials,
-`½G₁ ++ -½G₂` at the same monomials times `α`, and one generator `½(c₁-c₂)` at
-`α` alone. `linCombE` repeats the block-diagonal `plusE` across the first two
-blocks and sets the fresh factor's row to `1` on exactly the second.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
 
-The independent generators are where exactness stops: their coefficients come
-out as `½(1±α)βⱼ`, which the representation cannot express, so the two blocks
-are enclosed instead. That enclosure is CORA's `zonotope/enclose` at a zero
-center, which is `Zonotope.pairSum` and `Zonotope.pairDiff` — tighter than
-keeping each `GIⱼ` at full width, at the same count `q₁ + q₂`.
+## Output
+* polynomial zonotope of all linear combinations of both
 -/
 
 -- Authors:       Claude Opus 5

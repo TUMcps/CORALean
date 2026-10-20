@@ -9,19 +9,23 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombValueDependent
 /-!
 # `linComb` is exactly [1, Def. 7] where neither set has independent generators
 
-The result is [1, Prop. 14], whose construction is `PolyZonotope.linComb`: the
-paper's `0.5[G₁ G₁ G₂ -G₂]` at the exponent matrix `linCombE` assembles, with
-the center column `½(c₁-c₂)` carrying what a center kept outside `G` costs.
+The result is [1, Prop. 14], whose construction is `PolyZonotope.linComb`: the paper's
+`0.5[G₁ G₁ G₂ -G₂]` at the exponent matrix `linCombE` assembles. `⊆` is `linComb_outer`, which
+needs no hypothesis. `⊇` is `linComb_value_dependent` (every factor vector of `linComb` names a
+segment point) and is what the independent generators would break, hence `q = 0` on both
+sides. The fresh factor is the segment parameter under `λ = (1+α)/2`, and `|α| ≤ 1` is exactly
+`λ ∈ [0,1]`. It is the convex hull only where both operands are convex.
 
-`⊆` is `linComb_outer`, which needs no hypothesis. `⊇` is
-`linComb_value_dependent` — every factor vector of `linComb` names a segment
-point — and is what the independent generators would break, which is why the
-hypothesis is `q = 0` on both sides. The fresh factor is the segment parameter
-under `λ = (1+α)/2`, and `|α| ≤ 1` is exactly `λ ∈ [0,1]`.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
 
-[1, Def. 7] writes that parameter over `[-1,1]` as `0.5(1±λ)`; `Set.linComb` writes
-it over `[0,1]`, the same set under `λ ↦ 2λ-1`. It is the convex hull only where
-both operands are convex, which a polynomial zonotope need not be.
+## Hypotheses
+* `h₁` – first has no independent generators
+* `h₂` – second has no independent generators
+
+## Conclusion
+* the linear combination set is exactly the result
 
 ## References
 

@@ -13,6 +13,22 @@ an exponent matrix and a matrix of
 stored floats and knows nothing about which block they came from, so `A`'s rows
 use it as `G`'s do. `E'` is passed rather than computed, so the caller's own
 field is what appears in the result.
+
+## Inputs
+* `p` – number of factors
+* `d` – dimension
+* `h` – number of generators
+* `E` – exponent matrix
+* `G` – generator matrix
+* `a` – factor values
+* `E'` – exponent matrix of the kept columns
+* `i` – row index
+
+## Hypotheses
+* `hE'` – it is the kept columns of the original
+
+## Conclusion
+* the sum regroups into merged columns
 -/
 
 -- Authors:       Claude Opus 5

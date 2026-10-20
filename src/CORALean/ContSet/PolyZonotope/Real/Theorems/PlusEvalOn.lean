@@ -12,15 +12,22 @@ public import Mathlib.Tactic.Abel
 /-!
 # Adding a whole set to an evaluated one, [1, (23)]
 
-`plus` lays the two factor blocks side by side, so the summand's factors are
-fresh: holding the first operand's factors inside `B` and leaving the second's
-free in their box names, in the sum, exactly the evaluated first operand plus
-all of the second. That is [1, Def. 4] for `plus`, and it is the step [1]'s
-Lemma 4 proof calls (23), without its hypothesis that the summand carry no
-dependent factors — with them, they are simply among the free ones.
+`plus` lays the two factor blocks side by side, so the summand's factors are fresh: holding
+the first operand's factors inside `B` and leaving the second's free in their box names, in
+the sum, exactly the evaluated first operand plus all of the second. That is [1, Def. 4] for
+`plus`, the step [1]'s Lemma 4 proof calls (23), without its hypothesis that the summand carry
+no dependent factors. An enclosure only because the free block is quantified on the right.
 
-An enclosure and not an equality only because the free block is quantified on
-the right; every point of the left is reached.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+* `B` – box of factor values of the first set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the evaluated set plus the second set lies in the sum's evaluation
 
 ## References
 

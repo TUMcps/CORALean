@@ -10,6 +10,12 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.LongestFactor
 
 The two halves of `pZ` along the factor of its longest generator, or the set twice where it has no
 dependent generator.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* pair of polynomial zonotopes from splitting the longest factor
 -/
 
 -- Authors:       Claude Opus 5.5

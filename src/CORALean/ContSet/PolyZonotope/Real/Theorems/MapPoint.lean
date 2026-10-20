@@ -8,15 +8,22 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
 /-!
 # `PolyZonotope.map` moves the point by the map itself
 
-`map` leaves the exponent matrix and the factor count alone, so one factor
-vector names the same monomials before and after and the point commutes with
-`f`.
+`map` leaves the exponent matrix and the factor count alone, so one factor vector names the
+same monomials before and after and the point commutes with `f`. Stated over `point` rather
+than `construct` (which `map_exact` says): a recursion that pairs sets at *shared* factors, a
+chain of graph convolutions say, argues one factor vector at a time and never reaches the
+independent block. `bilin_point` sits beside `bilin_exact` for the same reason.
 
-Stated over `point` rather than over `construct`, which is what `map_exact`
-already says and is not this: a recursion that pairs sets at *shared* factors —
-a chain of graph convolutions, say — argues one factor vector at a time and
-never reaches the independent block. `bilin_point` sits beside `bilin_exact` for
-the same reason, and the two compose only if `map` has both as well.
+## Inputs
+* `f` – linear map
+* `pZ` – polynomial zonotope
+* `a` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point is the map of the original point
 -/
 
 -- Authors:       Claude Opus 5

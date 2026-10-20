@@ -14,6 +14,15 @@ generator `g = 1` on the factor `α` (so `P = [1]`) and one independent generato
 the set is `α + β·(-1)`, which holds `2` at `α = 1`, `β = -1`. Every hypothesis of
 `dropIndepStretch_outer` (`hk`, `hE`, `hPinv`) holds there.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed stretch factor does not enclose in general
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative

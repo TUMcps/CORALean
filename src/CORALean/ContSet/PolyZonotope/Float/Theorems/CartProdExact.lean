@@ -12,6 +12,16 @@ public import CORALean.ContSet.InflatedContSet.Theorems.AppendConstruct
 The stored operands' sets, paired and read through `Fin.append`, are the product's set. Nothing
 rounds: the nominal part is the exact layer's `cartProd` mapped through the append, field by
 field, and the error box is the stack of the two.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* result equals the Cartesian product of the sets
 -/
 
 -- Authors:       Claude Sonnet 5.5

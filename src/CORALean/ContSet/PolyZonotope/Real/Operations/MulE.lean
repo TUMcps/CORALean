@@ -11,6 +11,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.BilinE
 type, so there is nothing here beyond the name: `mul` is the entrywise case of
 `bilin`, and this is its exponent matrix under the name the float layer's
 `Theorems/MulOuter.lean` and `Theorems/MulGClose.lean` cite it by.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Output
+* exponent matrix of the product
 -/
 
 -- Authors:       Claude Opus 5

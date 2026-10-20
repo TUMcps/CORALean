@@ -16,6 +16,16 @@ frees are all that is added to it.
 Stated at `h + q` as `reduce_order_le` is, though `q` is zero here — that is the
 count the order of a set means, and reading it back at `h` alone would hide the
 `restructure_q` half of the specification.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `o` – target order
+
+## Hypotheses
+* `ho` – order is positive
+
+## Conclusion
+* the generator count is at most the order plus one times the dimension
 -/
 
 -- Authors:       Claude Opus 5

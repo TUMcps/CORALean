@@ -16,6 +16,16 @@ trades for a tighter step.
 At `o = 0` there is nothing to state: CORA's `K = max(0, N·order - N)` floors
 the budget at nothing and the box of `n` is added regardless, so order zero
 lands at order one in both tools.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `o` – target order
+
+## Hypotheses
+* `ho` – order is positive
+
+## Conclusion
+* the generator count is at most the order times the dimension
 -/
 
 -- Authors:       Claude Opus 5

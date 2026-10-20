@@ -22,6 +22,15 @@ dropped factors are free to take, since no monomial reads them.
 The two `key`s are stated with the *original* center and independent block on
 both sides. They are the compacted ones up to unfolding, and writing them so
 keeps each equation to the one sum that actually changes.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* dropping unused factors leaves the set unchanged
 -/
 
 -- Authors:       Claude Opus 5

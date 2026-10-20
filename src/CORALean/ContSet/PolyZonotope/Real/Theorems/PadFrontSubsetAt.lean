@@ -15,6 +15,17 @@ through, `Fin.natAdd l` dropping the `l` prepended factors.
 `padFront` preserves `p` only up to the equation `(pZ.padFront l).p = l + pZ.p`,
 but that equation is `rfl` — `p` is set by a structure literal, so the
 projection reduces without a cast, exactly as `map_subsetAt` needs none.
+
+## Inputs
+* `l` – number of added factors
+* `pZ` – polynomial zonotope
+* `B` – box of factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* subset at the box is the original subset at the restricted box
 -/
 
 -- Authors:       Claude Opus 5

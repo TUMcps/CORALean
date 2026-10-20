@@ -15,6 +15,17 @@ At every factor vector of the box, the Jacobian matrix of the nominal set's depe
 (`Real.PolyZonotope.jacobianMat`, whose column `k` is the point of `jacobian k`) lies in
 `jacobianBox`: the exact coefficients `E[k,l] Gₗ` lie between their two roundings, the lowered
 monomials in `monoBox`, and their products summed in `Interval.mtimesIntervalMat`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `X` – factor box
+* `a` – factor values
+
+## Hypotheses
+* `ha` – factor values lie in the box
+
+## Conclusion
+* the exact Jacobian lies in the Jacobian box
 -/
 
 -- Authors:       Claude Opus 5.5

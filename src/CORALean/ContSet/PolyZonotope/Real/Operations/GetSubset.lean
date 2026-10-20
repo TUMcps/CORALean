@@ -8,20 +8,22 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubsetG
 /-!
 # `PolyZonotope.getSubset`
 
-CORA's `@polyZonotope/getSubset`: one factor re-parametrized onto a sub-interval
-`cen ± rad` of `[-1,1]`, so that the unit box of the new factors reaches what
-that sub-interval of the old one reached. What such a sub-box names is [1, Thm. 1]'s
-subject; this is the representation of it, `getSubsetG` at `getSubsetE`.
+CORA's `@polyZonotope/getSubset`: one factor re-parametrized onto a sub-interval `cen ± rad` of
+`[-1,1]`, so that the unit box of the new factors reaches what that sub-interval of the old one
+reached ([1, Thm. 1]'s subject); this is the representation, `getSubsetG` at `getSubsetE`. An
+exact change of variables, not an enclosure: the binomial expansion is a polynomial identity.
+Center, factor count and independent block are untouched. CORA substitutes a list of factors at
+once and prunes; here one factor is substituted (iterating gives the list), the uniform padding
+keeps the generator index a product type, and pruning is `compact`'s job.
 
-An exact change of variables and not an enclosure, above degree one as much as
-at it: the binomial expansion is a polynomial identity. Center, factor count and
-independent block are untouched, so a caller's sub-box needs no transport.
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+* `cen` – subinterval center
+* `rad` – subinterval radius
 
-CORA substitutes a list of factors at once, expands each column only as far as
-its own degree, folds the constant columns into the center, merges the duplicate
-ones and drops the factors nothing reads. Here one factor is substituted —
-iterating gives the list — and the uniform padding is what keeps the generator
-index a product type; the pruning is `compact`'s job in this tree.
+## Output
+* polynomial zonotope for the factor restricted to the subinterval
 
 ## References
 

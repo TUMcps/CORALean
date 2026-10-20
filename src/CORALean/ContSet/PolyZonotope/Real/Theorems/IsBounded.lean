@@ -11,6 +11,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPol
 
 CORA's `isBounded` is `true`. A polynomial zonotope is the constrained one with no
 constraints (`conPolyZono_exact`), which is compact.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is bounded
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.PartZonotopeOuter
 
 Halving is exact and the rest of the construction is over the exponent matrix, so the nominal part
 of the float `partZonotope` is the exact layer's `partZonotope` of the original's nominal part.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `V` – selected factors
+
+## Hypotheses
+* none
+
+## Conclusion
+* nominal set equals the exact layer's one
 -/
 
 -- Authors:       Claude Opus 5.5

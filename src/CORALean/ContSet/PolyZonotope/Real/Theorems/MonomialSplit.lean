@@ -10,6 +10,20 @@ public import Mathlib.Algebra.BigOperators.Fin
 
 `∏ₖ aₖ^{E k i}` is the product over all factors with the exponents in `V` zeroed, times the product
 over `V`: what `partZonotope` and `subs` do to a generator's monomial.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `V` – selected factors
+* `a` – factor values
+* `i` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the monomial splits into the part off and the part on the selected factors
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,6 +16,13 @@ independent generators `GI`, so a right inverse `H` of `GI` that the caller prop
 of `Zonotope.ballCert` accepts puts a box of positive radius inside the set. The error box must be
 nonempty. `true` proves an interior point; `false` refutes nothing, a set with full-dimensional
 dependent part and no independent generators included.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `H` – candidate right inverse of the generators
+
+## Output
+* Boolean, true only if the candidate proves the set full-dimensional
 -/
 
 -- Authors:       Claude Opus 5.5

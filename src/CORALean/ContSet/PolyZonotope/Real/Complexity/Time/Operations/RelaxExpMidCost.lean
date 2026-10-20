@@ -16,6 +16,15 @@ generators (`n`).
 The result is written once, and the result's `n * (d + q + 3) + p * (d + 1)` entries are written:
 the center, the `d + 1`
 dependent and `q + 1` independent generators, and the `d + 1` exponent columns.
+
+## Inputs
+* `n` – dimension
+* `p` – number of factors
+* `d` – kept dependent generators
+* `q` – independent generator count
+
+## Output
+* operation count of one midpoint exponent relaxation
 -/
 
 -- Authors:       Claude Sonnet 5.5

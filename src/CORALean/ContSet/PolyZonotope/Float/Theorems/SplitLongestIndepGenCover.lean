@@ -10,6 +10,15 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitIndepGenOuter
 
 `splitIndepGen_outer` at whichever generator the float ranking chose, the set being its own
 cover where there is none. Outer, not exact.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is covered by the two halves
 -/
 
 -- Authors:       Claude Opus 5.5

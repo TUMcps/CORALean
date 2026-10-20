@@ -43,6 +43,8 @@ file on the allowlist and say why in the issue.
 The number types `ℝ≥0∞`, `ℝ≥0`, `ℚ≥0` are read as plain number types: their `≥` is not a relation
 symbol. (Without this, `(f : α → ℝ≥0∞)` was sorted into the hypotheses.) A dependent family
 `(hy : (i : Fin N) → Vec ℝ (qy i))` is judged by its codomain, so it is data, not a hypothesis.
+A function binder `(contract : ∀ m : ℕ, A → B → (Fin m → ℝ) × (Fin m → ℝ))` — a `∀` whose body
+has no relation symbol and ends in a parenthesised codomain — is data (a contractor), not a statement.
 
 An entry whose description is only a backticked expression longer than 15 characters is
 rejected: it repeats the signature; say it in words. Inputs/Hypotheses entries read exactly
@@ -175,6 +177,15 @@ def is_prop(name, typ):
             return True
     while t.startswith("(") and matching(t, 0) == len(t) - 1:
         t = t[1:-1].strip()
+    # a function binder `∀ m : ℕ, A → B` (no relation symbol in its body, a function type whose
+    # last component is a parenthesised or product type) is data: a contractor, not a statement
+    if t.startswith("∀"):
+        comma = top_level(t).find(",")
+        body = t[comma + 1:].strip() if comma >= 0 else ""
+        flat_body = re.sub(r"[ℝℚ]≥0∞?", "ℝ", top_level(body))
+        k = flat_body.rfind("→")
+        if k >= 0 and not any(c in flat_body for c in PROP_SYMBOLS) and body[k + 1:].strip().startswith("("):
+            return False
     # `ℝ≥0∞` / `ℝ≥0` / `ℚ≥0` are number types, not the relation `≥`
     flat = re.sub(r"[ℝℚ]≥0∞?", "ℝ", top_level(t))
     # a function type `A → B` is a hypothesis only when its last component is one

@@ -9,15 +9,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Sort
 /-!
 # The powers [1, Alg. 2] builds
 
-`powSort pZ k` is `PZ^(k+1)`, sorted and with equal columns joined at every
-step: [1, Alg. 2] lines 1 and 3, where each `PZ_i` is `sq(PZ_1, PZ_{i-1})`
-followed by lines 4-10, and lines 4-10 are `sort` then `merge`.
+`powSort pZ k` is `PZ^(k+1)`, sorted and with equal columns joined at every step: [1, Alg. 2]
+lines 1 and 3, where each `PZ_i` is `sq(PZ_1, PZ_{i-1})` followed by lines 4-10 (`sort` then
+`merge`). Paired with the proof that the factor count never moves, as `evalPolyP` is. [1]
+multiplies by `PZ_1 = sort(PZ)`; here by `pZ` itself, which permutes `sq`'s columns and nothing
+else; [1]'s choice leaves each of `sq`'s blocks sorted, so its line 10 can be an `m`-way merge.
 
-Paired with the proof that the factor count never moves, as `evalPolyP` is, so
-the next `mul` needs no new one. [1] multiplies by `PZ_1 = sort(PZ)`; here by
-`pZ` itself, which permutes `sq`'s columns and nothing else — `sort` puts them
-in order either way. [1]'s choice is what leaves each of `sq`'s blocks
-separately sorted, so that its line 10 can be an `m`-way merge of runs.
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* function from the power to the sorted power with its factor count
 
 ## References
 

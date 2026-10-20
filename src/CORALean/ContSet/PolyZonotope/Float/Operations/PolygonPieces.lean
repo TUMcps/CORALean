@@ -8,6 +8,14 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.PolygonRound
 # `PolyZonotope.polygonPieces`, over a floating-point scalar
 
 The pieces after `splits` rounds of refinement; `pick i` chooses which pieces round `i` splits.
+
+## Inputs
+* `pZ` – two-dimensional polynomial zonotope
+* `splits` – number of splitting rounds
+* `pick` – chooser of the sets to split
+
+## Output
+* list of the pieces after splitting
 -/
 
 -- Authors:       Claude Opus 5.5

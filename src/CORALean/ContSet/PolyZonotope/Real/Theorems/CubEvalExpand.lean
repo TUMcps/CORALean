@@ -14,6 +14,18 @@ The cubic map `x ↦ (Σₖ xₖ · xᵀ T{i,k} x)ᵢ` is trilinear in `(x, x, x
 the sum over ordered triples of `wⱼ₁ wⱼ₂ wⱼ₃` times the contraction of `gⱼ₁, gⱼ₂, gⱼ₃`. With the
 extended generators `[c, G]` and monomials as weights, this is why `PolyZonotope.cubMap` has one
 generator per triple.
+
+## Inputs
+* `T` – family of cubic form tensors
+* `w` – weights
+* `g` – vectors
+* `i` – output coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* the cubic map of a weighted sum expands into a triple sum
 -/
 
 -- Authors:       Claude Opus 5.5

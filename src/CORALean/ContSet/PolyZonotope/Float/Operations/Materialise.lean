@@ -15,6 +15,12 @@ says it is the identity; `Global/Tensor` says why the vectors are built here.
 `E` is stored along with the floats: it is a curried function rather than a
 `Mat`, and `compact` reads it through two index maps, so it is where an
 unstored exponent matrix costs the most.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* the same set with its data stored in vectors
 -/
 
 -- Authors:       Claude Opus 5

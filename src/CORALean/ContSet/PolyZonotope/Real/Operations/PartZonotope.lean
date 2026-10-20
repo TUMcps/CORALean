@@ -9,17 +9,19 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.PartPatterns
 # `PolyZonotope.partZonotope`
 
 CORA's `@polyZonotope/partZonotope(pZ, id)` (first output `PZ`): the dependent generators are
-grouped by their exponent pattern in the factors `id`, and every group but the zero pattern gets a
-new factor `t ∈ [-1, 1]` standing for the monomial of those factors. An odd pattern's monomial lies
-in `[-1, 1]` and is `t`. An all-even one lies in `[0, 1]` and is `(1 + t) / 2`: the generators are
-halved and a copy of the halves without `t` is added (`pZevenShift`). Different patterns get
-independent factors, hence an enclosure, not an equality.
+grouped by their exponent pattern in the factors `id`, and every group but the zero pattern gets
+a new factor `t ∈ [-1, 1]` standing for the monomial of those factors. An odd pattern's monomial
+is `t`; an all-even one lies in `[0, 1]` and is `(1 + t) / 2` (generators halved, a copy without
+`t` added: `pZevenShift`). Different patterns get independent factors, hence an enclosure.
+Identifiers are positional: the new factors are the rows after `p`, one per distinct pattern,
+and constant columns are not folded into the center. CORA's other outputs are not returned.
 
-Identifiers are positional. The rows of `id` stay as zero rows, the new factors are the rows after
-`p`, one per distinct pattern (the zero pattern's unused), and constant columns are not folded into
-the center. Each generator gives a column of the first block and one of the second (the shift,
-zero unless the pattern is even and non-zero). The other outputs of CORA (`pZ_gi_cell`,
-`ind_constGen`, `EM`, `indexE`) are the grouping itself and are not returned.
+## Inputs
+* `pZ` – polynomial zonotope
+* `V` – selected factors
+
+## Output
+* polynomial zonotope grouped by the exponent patterns
 -/
 
 -- Authors:       Claude Opus 5.5

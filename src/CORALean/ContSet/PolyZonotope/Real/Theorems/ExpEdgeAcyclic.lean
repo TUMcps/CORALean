@@ -8,21 +8,26 @@ public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 /-!
 # The generator graph has no cycles
 
-`[1, Lemma 1]`. `[1]` argues it one index at a time — the `k`-th exponent cannot
-increase along a path — which has to keep track of an index that changes from
-edge to edge. One `ℕ`-valued measure does the same work: an edge holds the two
-columns equal off `k₀` and strictly lowers the exponent there, so the *column
-sum* `∑ k, E k i` strictly drops across every edge, whichever index it moves.
-Acyclicity is then irreflexivity of `<` on ℕ.
+`[1, Lemma 1]`. `[1]` argues it one index at a time (the `k`-th exponent cannot increase along
+a path), which has to track an index that changes from edge to edge. One `ℕ`-valued measure
+does the same work: an edge holds the two columns equal off `k₀` and strictly lowers the
+exponent there, so the *column sum* `∑ k, E k i` strictly drops across every edge. Acyclicity
+is then irreflexivity of `<` on ℕ. The parity condition and the threshold only shrink the edge
+set. Stated as `¬ Relation.TransGen`, "no cycles" literally; well-foundedness of the reversed
+relation follows from the same measure.
 
-The parity condition and the threshold only shrink the edge set, so they cost
-this nothing: they are what bounds `eDiff`, not what orders the nodes.
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `η` – exponent threshold
+* `i` – generator index
 
-Stated as `¬ Relation.TransGen`, which is "no cycles" literally — a cycle is a
-non-empty path from a node back to itself — and is what a caller ruling out a
-merge that comes round again would ask for. Well-foundedness of the reversed
-relation follows from the same measure, and belongs to whatever first recurses
-along the graph rather than here.
+## Hypotheses
+* none
+
+## Conclusion
+* no chain of relaxable edges returns to its start
 
 ## References
 

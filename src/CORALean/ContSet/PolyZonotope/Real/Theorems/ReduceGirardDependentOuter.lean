@@ -13,6 +13,16 @@ Word for word Girard's proof at a different pair of partitions, which is the
 point of `reduceBy_outer` holding at every pair. What separates this rule from
 the bounded one is the order bound and nothing here: it never cuts the
 independent block, so no order bound is available for it.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

@@ -10,6 +10,18 @@ public import Mathlib.Tactic.Ring
 
 `quadBilin D x y i = ∑ j, ∑ k, D i j k * (x j * y k)`, which is the shape the paper writes its
 second-order terms in. Its own file, read by the exact and the float `varInputs` theorems.
+
+## Inputs
+* `D` – family of quadratic form matrices
+* `x` – first vector
+* `y` – second vector
+* `i` – output coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* the entry is the double sum of the form
 -/
 
 -- Authors:       Claude Sonnet 5.5

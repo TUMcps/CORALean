@@ -10,6 +10,18 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
 
 At any factor vector, the resolved set's point is the original's with factor `k` replaced by the
 value `x`: the factor's own value no longer matters.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+* `x` – value of the factor
+* `b` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point is the original point with that factor replaced
 -/
 
 -- Authors:       Claude Opus 5.5

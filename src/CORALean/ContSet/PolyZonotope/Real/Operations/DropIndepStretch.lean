@@ -8,18 +8,22 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 /-!
 # `PolyZonotope.dropIndepStretch`
 
-[1, Prop. 2] (Overapproximative Generator Removal): one independent generator,
-named by `partI.right 0`, is dropped, and the `n` picked dependent generators
-`partD.left` are stretched to compensate — by `1 + |γⱼ|` rather than [1]'s own
-`1 + γⱼ`, `γ := P⁻¹ g^{(i)}` — a safe bound either way (`|1 + γⱼ| ≤ 1 + |γⱼ|`)
-and one that does not depend on which sign convention the source's own
-generators happen to use. Every other dependent generator, and the whole
-exponent matrix `E`, is untouched — the compensation lives entirely in the
-`n` picked columns of `G`, never in a fresh independent block the way
-`reduceBy` would spend it.
+[1, Prop. 2] (Overapproximative Generator Removal): one independent generator, named by
+`partI.right 0`, is dropped, and the `n` picked dependent generators `partD.left` are
+stretched to compensate, by `1 + |γⱼ|` rather than [1]'s own `1 + γⱼ`, `γ := P⁻¹ g^{(i)}`: a
+safe bound either way (`|1 + γⱼ| ≤ 1 + |γⱼ|`) that does not depend on the sign convention.
+Every other dependent generator, and the whole exponent matrix `E`, is untouched; the
+compensation lives entirely in the `n` picked columns of `G`.
 
-`partD.index.symm` tells `G` which side of the partition an index came from,
-the same bookkeeping `reduceBy`'s own `dropRadius`/`reduceBy` pair reads.
+## Inputs
+* `pZ` – polynomial zonotope
+* `r` – number of dropped dependent generators
+* `dI` – number of kept independent generators
+* `partD` – split of the dependent generators
+* `partI` – split of the independent generators
+
+## Output
+* polynomial zonotope with one independent generator absorbed by stretching
 
 ## References
 

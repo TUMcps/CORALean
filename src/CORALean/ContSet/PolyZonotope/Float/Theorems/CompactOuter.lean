@@ -10,6 +10,15 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactGensOuter
 
 `compactGens` merges columns and rounds; `compactFactors` then drops unused
 factors for free.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

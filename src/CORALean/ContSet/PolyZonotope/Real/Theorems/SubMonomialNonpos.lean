@@ -8,20 +8,31 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.SubPowNonpos
 /-!
 # Two monomials that agree off one even factor drift only downwards
 
-The all-even case of `[1, Thm. 1]`, and the shape of drift that makes a center
-shift worth taking: `abs_sub_monomial_le` bounds the drift by `eDiff`
-symmetrically, and this signs it, so the drift runs over `[-ξ_E, 0]` and half of
-it is a constant the center can absorb.
+The all-even case of `[1, Thm. 1]`, the shape of drift that makes a center shift worth taking:
+`abs_sub_monomial_le` bounds the drift by `eDiff` symmetrically, and this signs it, so the
+drift runs over `[-ξ_E, 0]` and half of it is a constant the center can absorb. Every exponent
+of column `i` being even is `sub_monomial_nonpos_of_pow`'s hypothesis; both exponents at `k₀`
+even and ordered is `sub_pow_nonpos`'s second disjunct. The evenness of `E_{k₀,j}` is what
+`[1, Thm. 1]` omits. `eDrift` reads the same two facts at full generality.
 
-Two facts assembled. Every exponent of column `i` being even makes the shared
-factors a product of even powers, which is `sub_monomial_nonpos_of_pow`'s
-hypothesis; both exponents at `k₀` even and ordered is `sub_pow_nonpos`'s second
-disjunct. The evenness of `E_{k₀,j}` is what `[1, Thm. 1]` omits, and without it
-`α^{E_{k₀,j}}` changes sign and nothing is one-sided.
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `a` – factor values
+* `i` – first generator index
+* `j` – second generator index
+* `k₀` – factor index
 
-Kept as its own statement because this is the case `[1]` names; `eDrift` reads
-the same two facts at their full generality, where a zero exponent is one-sided
-at any parity.
+## Hypotheses
+* `ha` – factor values are at most one
+* `hsim` – exponents agree outside that factor
+* `heven` – first generator has even exponents
+* `hevenj` – second exponent in that factor is even
+* `hle` – second exponent is at most the first
+
+## Conclusion
+* the first monomial does not exceed the second
 
 ## References
 

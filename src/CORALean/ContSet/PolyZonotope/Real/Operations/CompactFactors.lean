@@ -9,6 +9,12 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorIdx
 
 Split out of `Compact.lean` (issue #62): read again by the float layer's own
 `compactFactors`, outside this file.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* polynomial zonotope without the factors no column reads
 -/
 
 -- Authors:       Claude Opus 5

@@ -7,6 +7,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
 
 /-!
 # The extended generator matrix reads back to the exact layer's
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `i` – row index
+* `l` – column index
+
+## Hypotheses
+* none
+
+## Conclusion
+* extended generator entry reads back as the exact one
 -/
 
 -- Authors:       Claude Opus 5

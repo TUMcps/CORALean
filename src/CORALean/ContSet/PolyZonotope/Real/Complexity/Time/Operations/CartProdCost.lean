@@ -13,6 +13,19 @@ Asserted, not proved: `Operations/CartProd.lean` pairs the centers, pads each op
 block-diagonally with `plusE`, whose off-diagonal blocks are literal zeros. Nothing is computed,
 but every entry of the result is a write: the center and both generator blocks at `n₁ + n₂`
 rows, and the `p₁ + p₂` by `h₁ + h₂` exponent matrix, zeros included.
+
+## Inputs
+* `n₁` – first dimension
+* `n₂` – second dimension
+* `p₁` – first factor count
+* `p₂` – second factor count
+* `h₁` – first dependent generator count
+* `h₂` – second dependent generator count
+* `q₁` – first independent generator count
+* `q₂` – second independent generator count
+
+## Output
+* operation count of the Cartesian product
 -/
 
 -- Authors:       Claude Sonnet 5.5

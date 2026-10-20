@@ -12,6 +12,21 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.SliceBox
 For `v` in `U`, `jacobiSlice xc ind v` reads `v` at the coordinates `ind` and `xc` elsewhere,
 so it lies in `sliceBox X₀ ind U` once `ind` is injective and `xc` lies in `X₀` at the other
 coordinates.
+
+## Inputs
+* `X₀` – factor box
+* `ind` – selected factor indices
+* `U` – replacement box
+* `xc` – center point
+* `v` – point of the replacement box
+
+## Hypotheses
+* `hind` – the indices are injective
+* `hv` – point lies in the replacement box
+* `hxc` – center lies in the box outside the selected factors
+
+## Conclusion
+* the slice through the point lies in the slice box
 -/
 
 -- Authors:       Claude Opus 5.5

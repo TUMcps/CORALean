@@ -10,6 +10,16 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.ExtE
 The pairing of two sets over the *same* factors: the product of two monomials is the monomial at
 the added exponent column, `pZ₂`'s read at `pZ₁`'s factor indices by `hp`. Over ℕ, so exact; the
 float counterpart of `Real.PolyZonotope.bilinE`, of which `quadMapE` is the self-pairing.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Output
+* exponent matrix of the bilinear image
 -/
 
 -- Authors:       Claude Sonnet 5.5

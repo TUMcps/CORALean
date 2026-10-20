@@ -11,6 +11,12 @@ Not merged into `EvalPoly.lean`: the recursion cannot be written without its pro
 `evalPolyStep` needs `hp : R.p = pZ.p` for the accumulated `R`, so the recursion returns the set
 together with that proof. `evalPoly` is its first projection, `evalPoly_p` its second, and
 `Theorems/EvalPolyOuter.lean` unfolds the recursion itself, so it has users outside `evalPoly`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* evaluator mapping coefficients to a set with the same factor count
 -/
 
 -- Authors:       Claude Opus 5

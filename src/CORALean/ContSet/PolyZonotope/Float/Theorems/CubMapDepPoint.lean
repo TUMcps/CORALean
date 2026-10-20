@@ -17,6 +17,17 @@ monomials times the contraction of the three generators (`cubEval_expand`). The 
 is the monomial of the result's exponent column `E_a + E_b + E_c`, and each exact contraction is
 within `cubMapGDiff` of the stored generator (`cubContract_bracket`), so the shortfalls, with the
 monomials as coefficients in `[-1, 1]`, are in the box.
+
+## Inputs
+* `T` – family of cubic form tensors
+* `pZ` – polynomial zonotope
+* `a` – factor values
+
+## Hypotheses
+* `ha` – factor values are at most one
+
+## Conclusion
+* the cubic image of the point is attained up to an error-box element
 -/
 
 -- Authors:       Claude Opus 5.5

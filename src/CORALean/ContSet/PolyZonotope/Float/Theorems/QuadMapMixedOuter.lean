@@ -16,6 +16,17 @@ two dependent forms (`absorbRounding_nominal`, then the product's nominal part a
 two). The mixed form read at an appended pair is `x₁ᵀ Q x₂`, so the image is the exact layer's
 `quadMapDep` of that nominal product (`quadMapDep_exact`), which `bilin_refines` puts inside the
 float one. Outer only.
+
+## Inputs
+* `Q` – family of quadratic form matrices
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the mixed quadratic image of the sets lies in the result
 -/
 
 -- Authors:       Claude Sonnet 5.5

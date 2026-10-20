@@ -11,6 +11,19 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorIdx
 Split out of `Compact.lean` (issue #62): used again by
 `Theorems/CompactFactorsExact.lean`, and by `ConPolyZono`'s own
 `MonomialFactorExtendLeft`/`Right.lean`, both outside this file.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `a` – values of the used factors
+* `k` – used factor number
+
+## Hypotheses
+* none
+
+## Conclusion
+* extension returns the value of a used factor
 -/
 
 -- Authors:       Claude Opus 5

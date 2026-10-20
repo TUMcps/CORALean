@@ -12,6 +12,12 @@ public import Mathlib.LinearAlgebra.Dimension.Finrank
 never fires here, a polynomial zonotope containing the point `α = 0`. The rank of a matrix is
 the dimension of the span of its columns, which is how it is written. The test is necessary
 and not sufficient: `isFullDim_cora_counterexample`. Read from the source, not run.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* Prop that the generators span the whole space
 -/
 
 -- Authors:       Claude Opus 5.5

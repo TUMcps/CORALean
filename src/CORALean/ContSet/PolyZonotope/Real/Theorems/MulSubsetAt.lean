@@ -11,6 +11,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.MulPoint
 `bilin_subsetAt` at the entrywise product, read off `mul_point` rather than
 through `bilin` itself, since `mul` and `bilin Entrywise.hadamardLin` agree at
 every point but are not the same operation term for term.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+* `B` – box of factor values
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Conclusion
+* subset at the box is the product of the points over the box
 -/
 
 -- Authors:       Claude Opus 5

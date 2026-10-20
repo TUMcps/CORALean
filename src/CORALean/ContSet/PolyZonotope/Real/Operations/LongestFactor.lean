@@ -14,6 +14,12 @@ largest exponent, again the first on a tie. `none` when there is no generator or
 where CORA's `max` of an empty vector errors.
 
 Over `Vec ℝ n`, where a generator has coordinates, and `noncomputable` with it.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* index of the longest factor, if any
 -/
 
 -- Authors:       Claude Opus 5.5

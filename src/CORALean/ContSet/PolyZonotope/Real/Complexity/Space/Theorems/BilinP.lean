@@ -10,22 +10,23 @@ public import Mathlib.Tactic.Positivity
 /-!
 # `PolyZonotope.bilin`'s counts
 
-The shared factor count carries over from either operand, since sharing is a
-hypothesis rather than a fresh count; the dependent generator count is the two
-operands' own plus their cross block, `(h₁+1)*(h₂+1)` — quadratic, not linear;
-and the independent block is empty, `bilin` being a claim about `point`.
-`BilinHIsBigO.lean` puts the quadratic one in `O`-notation. `rfl` against the
-structure instance in `Operations/Bilin.lean`.
+The shared factor count carries over from either operand, sharing being a hypothesis; the
+dependent generator count is the cross block `(h₁+1)*(h₂+1)`, quadratic not linear; and the
+independent block is empty, `bilin` being a claim about `point`. `rfl` against the structure
+instance in `Operations/Bilin.lean`. `BilinHIsBigO.lean` puts the quadratic count in
+`O`-notation: `bilin_h` reduces it to that product, which `4 * m ^ 2` dominates for every
+`m ≥ 1`, closed by `Asymptotics.IsBigO.of_bound`.
 
-## `PolyZonotope.bilin`'s dependent-generator count is `O(m ^ 2)`
+## Inputs
+* `f` – bilinear map
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
 
-Not a bare arithmetic fact about `(m+1)*(m+1)`, but one tied to `bilin` through
-a family of sets whose dependent-generator counts grow as `m`. `bilin_h`
-reduces the left side to that product, which `4 * m ^ 2` dominates for every
-`m ≥ 1`.
+## Hypotheses
+* `hp` – both have the same factor count
 
-`Asymptotics.IsBigO.of_bound` closes it: it asks for domination by a fixed
-constant `∀ᶠ x in l`, which the whole range `m ≥ 1` clears with room to spare.
+## Conclusion
+* the factor count is preserved
 -/
 
 -- Authors:       Claude Opus 5

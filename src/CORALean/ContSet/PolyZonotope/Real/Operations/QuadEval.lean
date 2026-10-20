@@ -11,6 +11,15 @@ public import Mathlib.Data.Real.Basic
 
 Split out of `QuadMap.lean` (issue #62): read again by the float layer's own
 `Theorems/QuadMapOuter.lean`, outside this file.
+
+## Inputs
+* `n` – dimension
+* `m` – output dimension
+* `Q` – family of quadratic form matrices
+* `x` – point
+
+## Output
+* value of the quadratic map at the point
 -/
 
 -- Authors:       Claude Opus 5

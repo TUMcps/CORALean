@@ -15,6 +15,16 @@ has `(h₁ + 1)(h₂ + 1)`. So `PZ^(k+1)` has at most `(h + 2)^(k+1) - 1`, and t
 `1..o` at most `o (h + 2)^o`. For `h ≥ 1` that is at most `o 3^o h^o`, a constant in `o` times
 `h^o`.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `coeffs` – coefficient vectors
+
+## Hypotheses
+* `hh` – at least one generator
+
+## Conclusion
+* dependent-generator count is bounded in the degree
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

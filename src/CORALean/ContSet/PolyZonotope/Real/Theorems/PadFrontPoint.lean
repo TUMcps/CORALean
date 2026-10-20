@@ -15,6 +15,17 @@ exponent zero in every monomial.
 
 The two halves together are what a product over independent factors is read
 through, one set per projection out of `Fin (p₁ + p₂)`.
+
+## Inputs
+* `l` – number of added factors
+* `pZ` – polynomial zonotope
+* `a` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point ignores the added factors
 -/
 
 -- Authors:       Claude Opus 5

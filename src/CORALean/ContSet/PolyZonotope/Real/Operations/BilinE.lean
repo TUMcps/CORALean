@@ -14,6 +14,16 @@ zonotope again rather than an enclosure of one.
 
 Nothing here reads the ambient types, so the exponent arithmetic of a product
 is the same whatever the two sets hold — `mulE` is this at `Vec`.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Output
+* exponent matrix of the bilinear image
 -/
 
 -- Authors:       Claude Opus 5

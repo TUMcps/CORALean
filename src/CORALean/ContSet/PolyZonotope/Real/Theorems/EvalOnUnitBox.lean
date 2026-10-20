@@ -13,6 +13,15 @@ whole of [1, Def. 3] and not only its dependent half. It is what turns an
 argument's `construct` into an `evalOn` and back, which is how a set added to an
 evaluated one is read in Lean.
 
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* evaluation on the whole factor box is the set
+
 ## References
 
 * [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to

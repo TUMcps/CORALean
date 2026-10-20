@@ -10,6 +10,16 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceByOuter
 
 `reduceBy_outer` holds at every pair of partitions, so it holds at this rule's
 own tighter one too.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

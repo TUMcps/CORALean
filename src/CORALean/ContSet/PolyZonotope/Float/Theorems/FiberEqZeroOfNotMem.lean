@@ -7,6 +7,17 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.RepIdem
 
 /-!
 # A column that is not its class's representative gathers nothing
+
+## Inputs
+* `E` – exponent matrix
+* `Gr` – real generator row
+* `j` – column index
+
+## Hypotheses
+* `hj` – column is not a kept one
+
+## Conclusion
+* the exact fibre sum at that column is zero
 -/
 
 -- Authors:       Claude Opus 5

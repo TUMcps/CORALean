@@ -14,6 +14,19 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 At every factor vector of the box, each monomial lies in its interval: the power of each factor
 lies in the power's interval (`Interval.power_outer`) and the product of those in the product's
 (`Interval.prod₁_outer`).
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `X` – factor box
+* `a` – factor values
+
+## Hypotheses
+* `ha` – factor values lie in the box
+
+## Conclusion
+* the monomial vector lies in the monomial box
 -/
 
 -- Authors:       Claude Opus 5.5

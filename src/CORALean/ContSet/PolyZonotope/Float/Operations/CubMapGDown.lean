@@ -13,6 +13,13 @@ The generators of `PolyZonotope.cubMap`, rounded down: one per ordered triple `(
 extended generators `[c, G]` (`Real.Zonotope.cubIdx`), the cubic contraction `Σₖ g_a(k) (g_bᵀ
 T{i,k} g_c)` through `Zonotope.cubContractDown`. The monomial of the triple is the product of the
 three, so the exponent column is the sum of theirs.
+
+## Inputs
+* `T` – family of cubic form tensors
+* `pZ` – polynomial zonotope
+
+## Output
+* cubic image generators, rounded down
 -/
 
 -- Authors:       Claude Opus 5.5

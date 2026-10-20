@@ -12,6 +12,19 @@ public import Mathlib.LinearAlgebra.Matrix.ToLin
 The two halves of Mathlib's change of variables on `[-1,1]ᵖ` for a map whose derivative at `a` is
 the matrix `M a`, with `det ≥ 0` there: the image's volume is at most `∫ det`, and equal to it
 if the map is injective on the cube.
+
+## Inputs
+* `p` – number of factors
+* `f` – map of the factor cube
+* `M` – matrix derivative of the map
+
+## Hypotheses
+* `hf` – the matrix is the derivative
+* `hM` – the matrix is continuous
+* `hdet` – determinant is nonnegative on the cube
+
+## Conclusion
+* volume of the image is bounded by the integral of the determinant
 -/
 
 -- Authors:       Claude Opus 5.5

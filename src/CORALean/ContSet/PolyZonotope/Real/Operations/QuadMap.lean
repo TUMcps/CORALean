@@ -8,21 +8,20 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
 /-!
 # `PolyZonotope.quadMap`
 
-CORA's `@polyZonotope/quadMap`, and the operation the representation exists for:
-the image under `x ↦ (xᵀQ₁x, …, xᵀQₘx)` of a polynomial zonotope is a polynomial
-zonotope, exactly. A zonotope has no such closure — the image of a zonotope
-under a quadratic map is generally not a zonotope — and the reason this one does
-is that the factors are shared: `mᵢ mⱼ` is again a monomial, in the exponent
-column `Eᵢ + Eⱼ`.
+CORA's `@polyZonotope/quadMap`, and the operation the representation exists for: the image
+under `x ↦ (xᵀQ₁x, …, xᵀQₘx)` of a polynomial zonotope is a polynomial zonotope, exactly. A
+zonotope has no such closure; this one does because the factors are shared: `mᵢ mⱼ` is a
+monomial at the exponent column `Eᵢ + Eⱼ`. `extG`/`extE` fold the center in as generator zero,
+and `quadMapG`/`quadMapE` are a plain double sum indexed by pairs through `finProdFinEquiv`.
+Independent generators are handled before the map: `quadMap` runs `quadMapDep` on `dependent`,
+whose independent block is empty, which keeps the operation total and exact at once.
 
-`extG`/`extE` fold the center in as generator zero with the all-zero exponent
-column, so a point is one sum rather than a center plus a sum; `quadMapG`/
-`quadMapE` are then a plain double sum, indexed by pairs through
-`finProdFinEquiv` since the structure carries a count and not an index type.
+## Inputs
+* `Q` – family of quadratic form matrices
+* `pZ` – polynomial zonotope
 
-Independent generators are handled before the map: `quadMap` runs `quadMapDep`
-on `dependent`, whose independent block is empty by construction, which keeps
-the operation total and exact at once.
+## Output
+* polynomial zonotope of the quadratic image
 -/
 
 -- Authors:       Claude Opus 5

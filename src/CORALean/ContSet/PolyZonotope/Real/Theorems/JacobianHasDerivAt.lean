@@ -17,6 +17,17 @@ powers, with derivative `e tᵉ⁻¹` times the same, which is the monomial of t
 matrix; for `e = 0` both sides are `0` since the coefficient is `0` (the natural subtraction does
 not matter there). In any real normed space, in particular `Vec ℝ n`, where the derivative is
 taken in the sup norm.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+* `a` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the derivative set's point is the derivative in that factor
 -/
 
 -- Authors:       Claude Opus 5.5

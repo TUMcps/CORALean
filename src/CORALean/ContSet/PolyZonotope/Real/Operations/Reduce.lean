@@ -14,6 +14,13 @@ order, by the Girard rule of `ReduceGirard.lean` on both blocks.
 One box covers both blocks because a monomial never leaves `[-1,1]`, so a
 dropped dependent generator reaches no further than an independent coefficient.
 CORA is tighter on an all-even column and ranks by `sum(G.^2)`, not Girard's.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `o` – target order
+
+## Output
+* compacted polynomial zonotope of reduced order
 -/
 
 -- Authors:       Claude Opus 5

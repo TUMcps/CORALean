@@ -16,6 +16,16 @@ generators CORA carries (`GI1 c2`, `c1 GI2`, `GI1 GI2`, `G1 GI2`, `GI1 G2`) are 
 The factors are shared positionally, as in `bilin`, which is what CORA's `mergeExpMatrix` makes of
 two sets that name the same ids; two sets over different factors are padded to a common set first
 (`padBack`, `padFront`).
+
+## Inputs
+* `pZ₁` – first matrix polynomial zonotope
+* `pZ₂` – second matrix polynomial zonotope
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Output
+* matrix polynomial zonotope of their product
 -/
 
 -- Authors:       Claude Opus 5.5

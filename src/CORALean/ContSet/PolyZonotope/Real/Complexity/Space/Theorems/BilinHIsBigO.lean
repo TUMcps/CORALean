@@ -12,6 +12,19 @@ public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Theorems.Basic
 # `PolyZonotope.bilin_h_isBigO`
 
 The `h` count of `bilin`'s result in `O`-notation.
+
+## Inputs
+* `f` – bilinear map
+* `pZ` – sequence of polynomial zonotopes
+* `T` – sequence of second polynomial zonotopes
+
+## Hypotheses
+* `hp` – factor counts agree
+* `hS` – first has m generators
+* `hT` – second has m generators
+
+## Conclusion
+* generator count grows at most quadratically
 -/
 
 -- Authors:       Claude Opus 5

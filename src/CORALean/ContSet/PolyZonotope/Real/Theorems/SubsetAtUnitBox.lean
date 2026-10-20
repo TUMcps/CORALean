@@ -15,6 +15,15 @@ simplifying assumption. With `q > 0` the inclusion is strict and a subset
 statement is only ever about the dependent part — [1, Def. 3]'s point: dependency
 lives in the dependent block, the independent one carries none.
 
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* `hq` – no independent generators
+
+## Conclusion
+* the subset at the unit box is the whole set
+
 ## References
 
 * [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to

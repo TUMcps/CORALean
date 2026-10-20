@@ -12,6 +12,16 @@ hypothesis rather than a fresh count; the dependent generator count is the two
 operands' own plus their cross block, `(h₁+1)*(h₂+1)` — quadratic, not linear,
 as at `bilin`; and the independent block is empty, `mul` being a claim about
 `point`. `rfl` against the structure instance in `Operations/Mul.lean`.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Conclusion
+* the factor count is preserved
 -/
 
 -- Authors:       Claude Opus 5

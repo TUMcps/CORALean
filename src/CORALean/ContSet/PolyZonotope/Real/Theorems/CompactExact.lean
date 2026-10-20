@@ -14,6 +14,15 @@ The two stages composed. Every step is an equality of sets and needs no
 hypothesis, which is the point: `compact` is bookkeeping, and an order bound is
 only worth stating once the bookkeeping is done.
 
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* compacting leaves the set unchanged
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

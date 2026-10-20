@@ -11,6 +11,13 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 Split out of `Plus.lean` (issue #62): read again by `evalPoly`, by
 `ConPolyZono.plus`, and by their matching `Theorems/PlusOuter.lean` and
 `Theorems/EvalPolyOuter.lean` files, all outside this file.
+
+## Inputs
+* `a` – first vector
+* `b` – second vector
+
+## Output
+* interval enclosing the rounding error of their sum
 -/
 
 -- Authors:       Claude Opus 5

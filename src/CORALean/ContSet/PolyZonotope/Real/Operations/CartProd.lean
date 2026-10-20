@@ -15,6 +15,13 @@ no longer share an ambient type, so there is nothing to add.
 The exponent matrices still lay out block-diagonally, exactly as `plus`'s do:
 `plusE` is agnostic to what a generator denotes, and here too neither set's
 factors may reach the other's generators.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Output
+* Cartesian product as a polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5

@@ -15,6 +15,16 @@ side, the center being `point`'s own first summand.
 The `key` is stated with the *original* center and independent block on both
 sides. They are the reindexed ones up to unfolding, and writing them so keeps
 the equation to the one sum that actually moves.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `σ` – permutation of the dependent generators
+
+## Hypotheses
+* none
+
+## Conclusion
+* reordering leaves the set unchanged
 -/
 
 -- Authors:       Claude Opus 5

@@ -8,16 +8,21 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.DropRadius
 # `PolyZonotope.reduceBy`
 
 Split out of `Reduce.lean` (issue #62): read again by `reduceGirard` and
-`reduceGirardDependent` in this directory and by `Theorems/ReduceByOuter.lean`,
-all outside this file.
+`reduceGirardDependent` in this directory and by `Theorems/ReduceByOuter.lean`.
 
 CORA's reduction at a given pair of partitions, sound for every one of them:
 kept dependent generators keep their exponent columns, kept independent ones
-are copied, and the rest becomes a box no longer tied to the factors.
-`reduceBy` charges nothing to the error box beyond it: the center and the kept
-generators are copied exactly, and the diagonal block rounds *up* — twice,
-once per block radius and once for their sum — which only enlarges an
-over-approximation.
+are copied, and the rest becomes a box no longer tied to the factors. It charges
+nothing to the error box beyond it: the center and the kept generators are
+copied exactly, and the diagonal block rounds *up*, which only enlarges.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `partD` – split of the dependent generators
+* `partI` – split of the independent generators
+
+## Output
+* polynomial zonotope with the split-off generators boxed
 -/
 
 -- Authors:       Claude Opus 5

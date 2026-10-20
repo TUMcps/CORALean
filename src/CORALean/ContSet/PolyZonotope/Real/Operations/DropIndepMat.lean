@@ -13,6 +13,14 @@ by `partD.left`, laid out as columns of a square matrix. Named on its own
 because `dropIndepStretch` and its outer theorem both need it, one to invert
 and one to state invertibility of.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `r` – number of dropped generators
+* `partD` – split of the dependent generators
+
+## Output
+* square matrix of the kept dependent generators
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative

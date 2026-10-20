@@ -12,6 +12,18 @@ Asserted, not proved: `Operations/Plus.lean` adds the two centers, `n` additions
 concatenates the generator blocks and lays the exponent matrices out block-diagonally. That
 computes nothing, but every entry of the result is a write: the center and both generator blocks,
 and the `p₁ + p₂` by `h₁ + h₂` exponent matrix, zeros included. So the operands' sizes enter.
+
+## Inputs
+* `n` – dimension
+* `p₁` – first factor count
+* `p₂` – second factor count
+* `h₁` – first dependent generator count
+* `h₂` – second dependent generator count
+* `q₁` – first independent generator count
+* `q₂` – second independent generator count
+
+## Output
+* operation count of the Minkowski sum
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

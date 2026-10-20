@@ -8,16 +8,28 @@ public import Mathlib.Algebra.Order.BigOperators.Ring.Finset
 /-!
 # Two monomials that agree off one factor drift by at most `eDiff`
 
-What the exponent relaxation costs, in one line: the two monomials share every
-factor but the one at `k₀`, so their difference is `(a_{k₀}^{E_i} - a_{k₀}^{E_j})`
-times a product of powers of factors in `[-1,1]`, which never leaves `[-1,1]`
-itself. `abs_sub_pow_le_eDiff` bounds the first, so `eDiff` bounds the whole.
+What the exponent relaxation costs, in one line: the two monomials share every factor but the
+one at `k₀`, so their difference is `(a_{k₀}^{E_i} - a_{k₀}^{E_j})` times a product of powers of
+factors in `[-1,1]`, which never leaves `[-1,1]`. `abs_sub_pow_le_eDiff` bounds the first, so
+`eDiff` bounds the whole. Stated over a bare exponent matrix, so both layers read it. The
+hypothesis is agreement off `k₀`, which is `[1, Def. 4]` minus the demand that the columns
+actually differ there.
 
-Stated over a bare exponent matrix rather than over a set, so both layers read
-it: the float layer stores its exponents over ℕ and its monomials are these.
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `a` – factor values
+* `i` – first generator index
+* `j` – second generator index
+* `k₀` – factor index
 
-The hypothesis is agreement off `k₀`, which is `[1, Def. 4]` minus the demand
-that the columns actually differ there — nothing here needs them to.
+## Hypotheses
+* `ha` – factor values are at most one
+* `hsim` – exponents agree outside that factor
+
+## Conclusion
+* the monomials differ by at most the exponent difference
 
 ## References
 

@@ -10,6 +10,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
 `map` is exact, so what it denotes is the image of what its operand does, and an
 image is monotone in the set mapped. The counterpart of `plus_mono`, and used
 the same way: once per layer of an algorithm written in linear images.
+
+## Inputs
+* `f` – linear map
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* `h` – the first set is contained in the second
+
+## Conclusion
+* the image of the first is contained in the image of the second
 -/
 
 -- Authors:       Claude Opus 5

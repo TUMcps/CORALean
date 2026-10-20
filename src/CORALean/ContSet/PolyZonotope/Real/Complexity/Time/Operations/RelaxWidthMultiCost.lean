@@ -10,6 +10,12 @@ public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.EDif
 
 Asserted, not proved: `Operations/RelaxWidthMulti.lean` sums one `eDiff` per
 factor, `p` of them and `p` additions, and one write of the sum.
+
+## Inputs
+* `p` – number of factors
+
+## Output
+* operation count of a relaxation width over all factors
 -/
 
 -- Authors:       Claude Sonnet 5.5

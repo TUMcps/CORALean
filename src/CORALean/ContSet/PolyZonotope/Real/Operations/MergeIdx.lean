@@ -11,6 +11,15 @@ public import Mathlib.Data.Finset.Sort
 `compactIdx`'s counterpart for `merge`: the field `h` needs a count and a
 `Finset` is not one. Order-preserving, which is what carries a sorted operand's
 order through to the result.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `j` – kept column number
+
+## Output
+* the original index of that kept column
 -/
 
 -- Authors:       Claude Opus 5

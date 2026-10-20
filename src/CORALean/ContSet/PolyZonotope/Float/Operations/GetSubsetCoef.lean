@@ -15,6 +15,17 @@ public import CORALean.Global.Float.IntRound
 The binomial coefficient `C(e, j) · cenᵉ⁻ʲ · radʲ` that term `j` of the expansion of `(cen + rad ·
 β)ᵉ` carries, between two floats: each factor from the directed integer, the directed powers, and
 the corner products, so the exact real lies in the pair.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+* `cen` – subinterval center
+* `rad` – subinterval radius
+* `i` – dependent generator index
+* `j` – binomial term index
+
+## Output
+* interval enclosing the binomial coefficient term
 -/
 
 -- Authors:       Claude Opus 5.5

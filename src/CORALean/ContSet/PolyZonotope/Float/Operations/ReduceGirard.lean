@@ -14,6 +14,13 @@ own file, as CORA gives each a file too.
 The two blocks are ranked as one, which is what bounds the result:
 `Theorems/ReduceOrder.lean` reads `n·o` off the two clamped budgets and never
 off the ranking. `aux_girardKeptDep` is the joint accounting as one number.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `o` – target order
+
+## Output
+* polynomial zonotope reduced by Girard's method
 -/
 
 -- Authors:       Claude Opus 5

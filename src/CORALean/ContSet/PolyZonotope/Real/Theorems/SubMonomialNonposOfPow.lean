@@ -8,16 +8,28 @@ public import Mathlib.Algebra.Order.BigOperators.GroupWithZero.Finset
 /-!
 # A signed power difference carries its sign to the whole monomial
 
-What turns one-sidedness at a single factor into one-sidedness of the drift.
-Two monomials agreeing off `k₀` are the same product of shared factors times
-`α_{k₀}^{E_{k₀,i}}` and `α_{k₀}^{E_{k₀,j}}`, so their difference is that product
-times the power difference. Every exponent off `k₀` being even makes the product
-nonnegative, and then the power difference alone decides the sign.
+What turns one-sidedness at a single factor into one-sidedness of the drift. Two monomials
+agreeing off `k₀` are the same product of shared factors times `α_{k₀}^{E_{k₀,i}}` and
+`α_{k₀}^{E_{k₀,j}}`, so their difference is that product times the power difference. Every
+exponent off `k₀` being even makes the product nonnegative, and then the power difference
+alone decides the sign. This is the half of `[1, Thm. 1]`'s halving the exponent matrix decides.
 
-Split from the power fact and from `eDrift`'s case analysis so that each side is
-stated where it is proved: this asks nothing about `[-1,1]` and nothing about
-parity at `k₀`, only that the shared factors cannot turn the sign around. It is
-the half of `[1, Thm. 1]`'s halving that the exponent matrix decides.
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `a` – factor values
+* `i` – first generator index
+* `j` – second generator index
+* `k₀` – factor index
+
+## Hypotheses
+* `hsim` – exponents agree outside that factor
+* `heven` – first generator has even exponents elsewhere
+* `hd` – power difference in that factor is nonpositive
+
+## Conclusion
+* the first monomial does not exceed the second
 
 ## References
 

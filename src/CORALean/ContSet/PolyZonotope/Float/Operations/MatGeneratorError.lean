@@ -11,6 +11,12 @@ public import CORALean.ContSet.Interval.Float.Interval
 half-width the sum of the generators' absolute entries at `(i, j)`, rounded up — `radius` of the
 generators' `(i, ·)` rows laid out as columns. Any combination of matrices bounded entrywise by
 these, with coefficients in `[-1, 1]`, lies in it (`mem_matGeneratorError`).
+
+## Inputs
+* `G` – family of matrix generators
+
+## Output
+* symmetric interval matrix spanned by the generators
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -14,6 +14,20 @@ Jacobian, and the inflation loop runs on all of `X_` (`innerTest` with `ind` the
 approximate inverse, which `innerTest` certifies before trusting. The inflation loop is the
 iteration [2, Eq. 7], with `τ = 1.01` and `μ = 0.9`.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `X` – factor box
+* `X₀` – inner factor box
+* `Y` – target box
+* `inv` – matrix inverse routine
+* `iter` – number of iterations
+
+## Hypotheses
+* `h` – dimension equals factor count
+
+## Output
+* Boolean, true only if the target box is shown inside the image
+
 ## References
 
 * [1] O. Mullier, É. Goubault, M. Kieffer and S. Putot. "General Inner Approximation of

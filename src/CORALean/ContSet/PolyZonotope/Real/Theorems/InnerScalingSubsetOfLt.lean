@@ -21,6 +21,22 @@ half-open slab closed, so `C` can meet `B` on the face it shares with the contra
 every `PZₖ`; the closed box is its closure, inside `R` as `R` is closed. A reachable set from a
 compact `X₀` is. Without `α̲ < ᾱ` the statement is false, `innerScaling_counterexample`.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `B` – list of boundary pieces
+* `contract` – bounds contractor
+* `R` – closed set
+
+## Hypotheses
+* `hcon` – the contractor is a valid bounds contractor
+* `hR` – the set is closed
+* `hB` – boundary of the set is covered by the pieces
+* `hlt` – lower bounds are below upper bounds
+* `h14` – center of the scaling lies in the set
+
+## Conclusion
+* the scaled subset lies in the set
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets

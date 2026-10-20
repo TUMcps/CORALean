@@ -16,17 +16,21 @@ public import Mathlib.Logic.Equiv.Fin.Basic
 
 CORA's `@polyZonotope/cubMap` on a set whose coefficients are all dependent: the cubic map
 `{ (xᵀ T x) * x | x ∈ pZ }` of a polynomial zonotope is a polynomial zonotope again, exactly,
-for the reason `quadMap` is: the factors are shared, so `mᵢ mⱼ mₖ` is a monomial, in the
-exponent column `Eᵢ + Eⱼ + Eₖ`.
+for the reason `quadMap` is: shared factors make `mᵢ mⱼ mₖ` a monomial at `Eᵢ + Eⱼ + Eₖ`.
+Here the pairs are all the ordered ones (as in `quadMap`: the same polynomial, symmetrization
+and `removeRedundantExponents` not modelled), and the two steps are two `bilin`s: the quadratic
+forms `w(i, k) = xᵀ T{i,k} x`, then `zᵢ = Σₖ xₖ w(i, k)`. The three arguments are read out of
+one set `P` by linear maps: the identity three times is the single form, the mixed form otherwise.
 
-CORA's `aux_cubMapSingle` extends the generators by the center, builds the exponents of the
-pairs `(a ≤ b)` and of the triples `(j; a ≤ b)`, and the generators of the pairs (`quadMat` with
-both orders added) times the `k`-th entry of the `j`-th extended column, summed over `k`. Here
-the pairs are all the ordered ones (as in `quadMap`: the same polynomial, symmetrization and
-`removeRedundantExponents` not modelled), and the two steps are two `bilin`s: the quadratic forms
-`w(i, k) = xᵀ T{i,k} x` over the factors, then `zᵢ = Σₖ xₖ w(i, k)`. The three arguments are
-read out of one set `P` by linear maps: the identity three times is the single form, the
-projections of a product the mixed form.
+## Inputs
+* `π₁` – first projection to vectors
+* `π₂` – second projection to vectors
+* `π₃` – third projection to vectors
+* `T` – family of cubic form tensors
+* `P` – polynomial zonotope
+
+## Output
+* polynomial zonotope of the cubic image of the projected set
 -/
 
 -- Authors:       Claude Opus 5.5

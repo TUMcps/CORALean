@@ -11,6 +11,16 @@ public import Mathlib.Algebra.BigOperators.Fin
 Split out of `Operations/LinComb.lean` (issue #62): a proof device rather than
 an operation, hence in `Theorems/`, reused by `LinCombOuter.lean` at both
 layers — the whole of what makes `linComb` exact on the dependent part.
+
+## Inputs
+* `a` – factor values
+* `i` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the second block is the first times the fresh factor
 -/
 
 -- Authors:       Claude Opus 5

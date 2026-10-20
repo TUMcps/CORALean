@@ -10,6 +10,14 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 Split out of `Compact.lean` (issue #62): used again by `Theorems/
 CompactFactorsExact.lean`, and reused unchanged by `ConPolyZono.usedFactors`
 over the joint exponent matrix, both outside this file.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+
+## Output
+* set of the factors some column reads
 -/
 
 -- Authors:       Claude Opus 5

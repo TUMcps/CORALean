@@ -14,11 +14,20 @@ CORA's `innerApproxImage` for the dependent point map `f` of a polynomial zonoto
 of [2, Alg. 1] (restated as [1, Alg. 1]): for a box `X_` of the domain,
 `Y_ = f(X_) & (f(c) + df(X_)(X_ - c))` encloses its image; if `Inner` proves `Y_ ⊆ f(X)` the
 box `Y_` is kept, else `X_` is split at its widest coordinate while its narrowest radius is at
-least `tol`. `Inner` is `aux_InnerSpecial`
-(`innerSpecial`) when `f` and the domain have the same dimension, `aux_InnerGeneral`
-(`innerGeneral`) when the domain is larger; CORA throws when it is smaller, and the result here
-is empty. CORA's worklist runs breadth first and this recursion depth first, which reorders the
-list and keeps every box; `depth` caps the recursion, which CORA bounds by `tol` alone.
+least `tol`. `Inner` is `aux_InnerSpecial` (`innerSpecial`) when `f` and the domain have the same
+dimension, `aux_InnerGeneral` (`innerGeneral`) when the domain is larger; CORA throws when it is
+smaller, and the result here is empty. CORA's worklist runs breadth first and this recursion
+depth first, which reorders the list; `depth` caps the recursion, which CORA bounds by `tol` alone.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `X` – factor box
+* `tol` – tolerance
+* `inv` – matrix inverse routine
+* `iter` – number of iterations
+
+## Output
+* function from depth and box to the proven inner boxes
 
 ## References
 

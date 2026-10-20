@@ -10,6 +10,12 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 The factor of highest exponent in the longest dependent generator, the length being `Σᵢ G(i,j)²`
 rounded up and the first of equal ones winning, as over ℝ. Any factor is sound for the split
 below, so a misranking costs precision alone.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* index of the longest factor, if any
 -/
 
 -- Authors:       Claude Opus 5.5

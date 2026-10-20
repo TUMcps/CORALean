@@ -7,21 +7,24 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.EDiff
 /-!
 # `PolyZonotope.eDrift`
 
-`eDiff` is a symmetric radius, and the drift of one monomial from another is not
-symmetric. This splits the radius into a downward and an upward reach, so that
-the pair reads `[-fst, snd]` rather than `[-ξ_E, ξ_E]`, and a relaxation can
-absorb the difference into its center instead of paying for it twice.
+`eDiff` is a symmetric radius, and the drift of one monomial from another is not symmetric.
+This splits it into a downward and an upward reach, so the pair reads `[-fst, snd]` and a
+relaxation can absorb the difference into its center. A reach vanishes when a sign never
+changes: the shared factors `∏_{k ≠ k₀} α_k^{E_{k,i}}` are nonnegative exactly when every
+exponent is even; and `α^A - α^B` keeps one sign when `B = 0` or when `A` and `B` are both even.
+Those two disjuncts are `[1, Def. 5]`'s parity condition. Naturals, as for `eDiff`: a count of
+copies of a generator is exact in both layers.
 
-What makes a reach vanish is a sign that never changes. The factors the two
-columns share are `∏_{k ≠ k₀} α_k^{E_{k,i}}`, nonnegative exactly when every
-exponent there is even; and `α^A - α^B` keeps one sign when `B = 0`, where it is
-`α^A - 1 ≤ 0`, and when `A` and `B` are both even, where it is a difference of
-powers of `α² ∈ [0,1]` and the higher exponent gives the smaller. Those two
-disjuncts are `[1, Def. 5]`'s parity condition, which is why every edge of the
-graph gets a one-sided reach and not only the all-even ones.
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `k₀` – factor index
+* `i` – first generator index
+* `j` – second generator index
 
-Naturals rather than integers, and the same reason as `eDiff`: a count of copies
-of a generator is exact in both layers, where a real bound would have to round.
+## Output
+* pair of exponent reaches of the drift
 
 ## References
 

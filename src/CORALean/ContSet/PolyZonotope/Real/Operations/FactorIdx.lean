@@ -11,6 +11,15 @@ public import Mathlib.Data.Finset.Sort
 Split out of `Compact.lean` (issue #62): used again by `Theorems/
 CompactFactorsExact.lean`, and reused unchanged by `ConPolyZono.factorIdx`,
 both outside this file.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `k` – used factor number
+
+## Output
+* the original index of that used factor
 -/
 
 -- Authors:       Claude Opus 5

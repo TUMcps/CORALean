@@ -12,6 +12,17 @@ A finset of `Fin h` listed by filtering `List.finRange h` with its own
 membership test is listed in increasing order, so reading the list at `j` is
 what `orderIsoOfFin` answers. `orderEmbOfFin_unique` is the only strictly
 increasing enumeration of a finset, and a filtered `finRange` is one.
+
+## Inputs
+* `s` – finite index set
+* `P` – membership test
+* `j` – element number
+
+## Hypotheses
+* `hP` – the test decides membership
+
+## Conclusion
+* the table entry is that element of the set
 -/
 
 -- Authors:       Claude Opus 5.5

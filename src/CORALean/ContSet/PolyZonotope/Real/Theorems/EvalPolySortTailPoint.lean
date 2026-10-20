@@ -19,6 +19,18 @@ the coefficient list, which is what makes the step fall out of
 `sortPlus_point` splits the term off, `map_point` applies the coefficient and
 `powSort_point` names the power; the rest is `ring` at one coordinate.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `coeffs` – coefficient vectors
+* `k` – first power kept
+* `a` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point is the polynomial tail from that degree
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

@@ -13,6 +13,14 @@ The last lines of CORA's `outerApprox`: the dependent generators satisfying `rem
 and of the independent generators satisfying `taken` is appended to `GI`, which keeps all its
 columns. Which generators are removed is `outerApprox`'s scan; the enclosure holds for any choice
 (`BoxOutOuter`).
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `removed` – predicate of dependent generators removed
+* `taken` – predicate of independent generators taken
+
+## Output
+* polynomial zonotope with the selected generators moved into a box
 -/
 
 -- Authors:       Claude Opus 5.5

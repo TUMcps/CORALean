@@ -11,16 +11,20 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 # `PolyZonotope.polygon`
 
 CORA's `@polyZonotope/polygon` for a two-dimensional set: split along the longest generator
-`splits` times, refining only the pieces whose polygon touches the boundary of the union so
-far, and return the union of the polygons of `zonotope(piece)`, whose vertices are
-`vertices_(zonotope(piece))`. A zonotope's vertex hull is the zonotope, so each piece's polygon
-is its `vPolytope` (the corners are a superset of the vertices with the same hull).
+`splits` times, refining only the pieces whose polygon touches the boundary of the union so far,
+and return the union of the polygons of `zonotope(piece)`; a zonotope's vertex hull is the
+zonotope, so each piece's polygon is its `vPolytope`. The rule that picks the pieces to refine
+reads the vertices of the union's boundary (`ismembertol` against a `polyshape`), which has no
+counterpart here: it is the parameter `pick`. Every choice gives an enclosure. The shortcuts
+for an empty set and for a zonotope are not modelled.
 
-The rule that picks the pieces to refine reads the vertices of the union's boundary
-(`ismembertol` against a `polyshape`), which has no counterpart here: it is the parameter
-`pick`, a verdict per round and piece. Every choice gives an enclosure, so the theorem is
-for all of them. The shortcuts for an empty set and for a set that is a zonotope are not
-modelled; there CORA returns the set itself.
+## Inputs
+* `pZ` – two-dimensional polynomial zonotope
+* `splits` – number of splitting rounds
+* `pick` – chooser of the sets to split
+
+## Output
+* polygon enclosing the set
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -8,18 +8,19 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.MergeIdx
 /-!
 # `PolyZonotope.merge`
 
-[1, Prop. 3.3]: equal exponent columns are one monomial, so their generators
-add and one column carries them. What `compact` does, minus everything else it
-does — a generator that came out zero keeps its column, and no factor is
-dropped — because `sortPlus` needs the join and nothing further.
+[1, Prop. 3.3]: equal exponent columns are one monomial, so their generators add and one column
+carries them. What `compact` does, minus everything else: a generator that came out zero keeps
+its column and no factor is dropped, because `sortPlus` needs the join and nothing further. [1]
+merges neighbours in one pass over a *sorted* matrix (`O(p h)`); the specification here joins
+every equal column at once and states no hypothesis. [1] calls the result regular; in general
+it is not: equal columns are gone (`merge_col_injective`) but an all-zero one is not. Sorted it
+stays sorted (`merge_sorted`).
 
-[1] computes it in one pass over a *sorted* matrix, merging neighbours, which
-is where its `O(p h)` comes from. The specification here joins every equal
-column at once and so states no hypothesis; on a sorted operand the two agree.
+## Inputs
+* `pZ` – polynomial zonotope
 
-[1] calls the result regular. It is not, in general: equal columns are gone
-(`merge_col_injective`) but an all-zero column is not, and [1, Def. 2.4] forbids
-that too. Sorted it does stay (`merge_sorted`).
+## Output
+* polynomial zonotope with equal-exponent generators merged
 
 ## References
 

@@ -12,6 +12,17 @@ independent block is the same on both sides, so only the dependent half moves an
 the image is monotone. Property (6) of [1] for "hold the factors in `B`", and
 what lets a chain of dependency statements be relaxed one step at a time.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `B` – box of factor values
+* `B'` – larger box of factor values
+
+## Hypotheses
+* `h` – the first box is contained in the second
+
+## Conclusion
+* the evaluation on the smaller box is contained in the larger one
+
 ## References
 
 * [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to

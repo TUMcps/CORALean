@@ -11,6 +11,16 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestGenOuter
 
 Every point of the set is in one of the pieces: the set itself where nothing is split, else
 one of the two halves (`splitLongestGen_outer`, `splitIndepGen_outer`).
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `x` – point
+
+## Hypotheses
+* `hx` – point lies in the set
+
+## Conclusion
+* some piece of the split contains the point
 -/
 
 -- Authors:       Claude Opus 5.5

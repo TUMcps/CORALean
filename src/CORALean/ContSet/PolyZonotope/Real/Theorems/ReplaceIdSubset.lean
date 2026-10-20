@@ -10,6 +10,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReplaceIdPoint
 At a factor vector `a'` of the renamed set the point is the original's at `a' ∘ f`, which lies in
 the unit box too. Strictly smaller in general: identifying two independent factors adds a
 dependency.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `p'` – new factor count
+* `f` – map from old to new factors
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is contained in the original set
 -/
 
 -- Authors:       Claude Opus 5.5

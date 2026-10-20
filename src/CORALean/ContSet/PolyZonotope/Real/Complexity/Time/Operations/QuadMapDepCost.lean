@@ -10,15 +10,20 @@ public import CORALean.Global.Cost
 /-!
 # `PolyZonotope.quadMapDepCost`
 
-Asserted, not proved: `Operations/QuadMapDep.lean` is `bilin` at `quadBilin`
-with one set paired with itself, so the count is `bilinCost` at
-`aux_quadBilinCost`, at `h₁ = h₂ = h`.
+Asserted, not proved: `Operations/QuadMapDep.lean` is `bilin` at `quadBilin` with one set paired
+with itself, so the count is `bilinCost` at `aux_quadBilinCost`, at `h₁ = h₂ = h`. `(h+1)²`
+pairs, each `m` quadratic forms at `n × n`, is where a polynomial zonotope's exactness under a
+quadratic map is paid for: `O(h² m n²)` against a zonotope's linear pass. The `compact` that
+`reduce` runs first is what stops the square compounding across steps.
 
-`(h+1)²` pairs, each `m` quadratic forms at `n × n`, is where a polynomial
-zonotope's exactness under a quadratic map is paid for: `O(h² m n²)` against a
-zonotope's linear pass, for a set a zonotope cannot represent at all. The
-`compact` that `reduce` runs first is what stops the square compounding across
-steps.
+## Inputs
+* `m` – output dimension
+* `n` – input dimension
+* `p` – number of factors
+* `h` – dependent generator count
+
+## Output
+* operation count of the quadratic map without independent generators
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

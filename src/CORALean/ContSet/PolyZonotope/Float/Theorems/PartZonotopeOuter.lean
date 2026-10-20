@@ -10,6 +10,16 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.PartZonotopeNominal
 The nominal part of the float `partZonotope` is the exact layer's (`partZonotope_nominal`) and the
 error box is copied, so the exact layer's enclosure carries over. Not exact: different patterns
 get independent factors, so the inclusion is strict in general.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `V` – selected factors
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

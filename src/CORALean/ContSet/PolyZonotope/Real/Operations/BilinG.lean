@@ -9,15 +9,20 @@ public import Mathlib.Logic.Equiv.Fin.Basic
 /-!
 # The generators of `bilin`
 
-Generator `(i, j)` is `f` at the two extended generators. Every product of two
-polynomial zonotopes over shared factors differs only here: `mulG` is the
-entrywise product, the uncertain-structure graph layer is matrix
-multiplication, and both are bilinear, so both are this definition at a
-different `f`.
+Generator `(i, j)` is `f` at the two extended generators. Every product of two polynomial
+zonotopes over shared factors differs only here: `mulG` is the entrywise product, the
+uncertain-structure graph layer is matrix multiplication, and both are bilinear, so both are
+this definition at a different `f`. `f` is a `→ₗ →ₗ` and not a function with two hypotheses,
+because bilinearity is what makes the pairing distribute over the two sums that a point of
+each set is; nothing else about `f` is ever used.
 
-`f` is a `→ₗ →ₗ` and not a function with two hypotheses, because bilinearity is
-what makes the pairing distribute over the two sums that a point of each set
-is — nothing else about `f` is ever used.
+## Inputs
+* `f` – bilinear map
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Output
+* generators of the bilinear image
 -/
 
 -- Authors:       Claude Opus 5

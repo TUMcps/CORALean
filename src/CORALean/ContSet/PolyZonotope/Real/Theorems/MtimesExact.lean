@@ -14,6 +14,18 @@ The result is [1, Prop. 8].
 matrix never enters: the monomials are scalars, so a linear map of the ambient
 space cannot touch them.
 
+## Inputs
+* `n` – input dimension
+* `m` – output dimension
+* `M` – matrix
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the matrix image of the set equals the result
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

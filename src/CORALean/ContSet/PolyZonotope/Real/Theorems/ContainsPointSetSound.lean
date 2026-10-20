@@ -15,6 +15,19 @@ Contrapositively, `false` proves that some point is outside the set. The convers
 is not claimed: `true` says only that every point is inside some enclosure, and an
 enclosure is larger than the set, so a point can pass every one and still be outside it.
 Nothing here is an exactness claim.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `N` – number of points
+* `points` – the points
+* `splits` – number of splits
+* `order` – zonotope reduction order
+
+## Hypotheses
+* `h` – every point lies in the set
+
+## Conclusion
+* the containment test holds
 -/
 
 -- Authors:       Claude Opus 5.5

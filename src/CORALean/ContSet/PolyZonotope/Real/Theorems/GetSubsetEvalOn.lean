@@ -18,6 +18,18 @@ denotes there, independent block included.
 This is what supplies [1, Thm. 1]'s initial inclusion — the subset named by a
 box of factor values, as a polynomial zonotope a run can start from.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+* `cen` – subinterval center
+* `rad` – subinterval radius
+
+## Hypotheses
+* `hrad` – radius is nonnegative
+
+## Conclusion
+* the result is the evaluation over the sub-box
+
 ## References
 
 * [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to

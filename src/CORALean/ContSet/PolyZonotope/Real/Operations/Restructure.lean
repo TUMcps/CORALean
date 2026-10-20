@@ -8,16 +8,18 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceBy
 /-!
 # `PolyZonotope.restructure`
 
-CORA's `@polyZonotope/restructure` [1, Prop. 17]: the representation with no
-independent generators left. The independent block is boxed into one generator
-per coordinate and those are then made dependent, under the partitions that keep
-every dependent generator and drop every independent one — the paper's
-`reduce(⟨0, GI⟩_Z, 1)`.
+CORA's `@polyZonotope/restructure` [1, Prop. 17]: the representation with no independent
+generators left. The independent block is boxed into one generator per coordinate and those
+are then made dependent, under the partitions that keep every dependent generator and drop
+every independent one (the paper's `reduce(⟨0, GI⟩_Z, 1)`). Only the boxing loses anything;
+freeing an independent coefficient is exact, so this is `reduceBy` followed by `dependent`, and
+the enclosure is `reduceBy`'s. CORA pairs the conversion with four further reductions.
 
-Only the boxing loses anything. Freeing an independent coefficient into a fresh
-factor is exact, so this is `reduceBy` followed by `dependent` rather than a
-construction of its own, and the enclosure is `reduceBy`'s and no wider. CORA
-pairs the same conversion with four further reductions.
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* polynomial zonotope with all generators boxed and made dependent
 
 ## References
 

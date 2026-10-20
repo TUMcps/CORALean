@@ -10,6 +10,15 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 Split out of `Compact.lean` (issue #62): shared with `compactKeep` and
 `compactGens` in this directory, and read again by `ConPolyZono`'s own
 compaction over `R`, all outside this file.
+
+## Inputs
+* `h` – number of generators
+* `r` – representative map
+* `G` – generators
+* `j` – representative index
+
+## Output
+* sum of the generators represented by that index
 -/
 
 -- Authors:       Claude Opus 5

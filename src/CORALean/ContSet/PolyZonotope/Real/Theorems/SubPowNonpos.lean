@@ -7,16 +7,23 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 /-!
 # When one power of a factor never exceeds another on `[-1,1]`
 
-The sign half of what `eDiff` bounds in absolute value: `abs_sub_pow_le_eDiff`
-says how far `α^A` and `α^B` drift apart, and this says when the drift has only
-one direction to go. Two disjuncts, and they are `[1, Def. 5]`'s parity
-condition: `B = 0` leaves `α^A - 1`, which is nonpositive because `|α| ≤ 1`; and
-`A` and `B` both even makes both powers powers of `α² ∈ [0,1]`, where the higher
-exponent gives the smaller value.
+The sign half of what `eDiff` bounds in absolute value: `abs_sub_pow_le_eDiff` says how far
+`α^A` and `α^B` drift apart, and this says when the drift has only one direction. Two
+disjuncts, `[1, Def. 5]`'s parity condition: `B = 0` leaves `α^A - 1`, nonpositive because
+`|α| ≤ 1`; and `A` and `B` both even makes both powers powers of `α² ∈ [0,1]`, where the higher
+exponent gives the smaller value. Neither asks anything of the other exponent's parity.
 
-Neither disjunct asks anything of the other exponent's parity, so an edge with
-`E_{k₀,j} = 0` is one-sided at every parity of `E_{k₀,i}` — the case a symmetric
-radius alone cannot see.
+## Inputs
+* `x` – real number
+* `A` – first exponent
+* `B` – second exponent
+
+## Hypotheses
+* `hx` – number is at most one in absolute value
+* `hcase` – second is zero or both even and ordered
+
+## Conclusion
+* the first power does not exceed the second
 
 ## References
 

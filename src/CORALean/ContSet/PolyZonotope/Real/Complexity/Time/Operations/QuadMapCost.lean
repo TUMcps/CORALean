@@ -9,15 +9,21 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
 /-!
 # `PolyZonotope.quadMapCost`
 
-Asserted, not proved: `Operations/QuadMap.lean` is `quadMapDep` after
-`dependent`, so the count is `dependentCost`, the conversion's writes, and `quadMapDepCost`
-at the sizes `dependent` leaves — `p + q` factors and `h + q` dependent
-generators, both proved in `Complexity/Space/Theorems/DependentP.lean`.
+Asserted, not proved: `Operations/QuadMap.lean` is `quadMapDep` after `dependent`, so the count
+is `dependentCost`, the conversion's writes, and `quadMapDepCost` at the sizes `dependent`
+leaves, `p + q` factors and `h + q` dependent generators (`Space/Theorems/DependentP.lean`).
+That the independent generators enter the *square* is why a caller reduces before mapping:
+`q` free coefficients cost `q` dependent generators here, and `(h+q)²` pairs after that.
 
-That the independent generators enter the *square* is the operation's own
-doing and the reason a caller reduces before mapping rather than after: `q`
-free coefficients cost `q` dependent generators here, and `(h+q)²` pairs after
-that.
+## Inputs
+* `m` – output dimension
+* `n` – input dimension
+* `p` – number of factors
+* `h` – dependent generator count
+* `q` – independent generator count
+
+## Output
+* operation count of the quadratic map
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

@@ -17,6 +17,16 @@ block and no error box, so `quadMapDep_exact` applies to the nominal part as it
 stands; from there the two representations differ in their generator entries
 alone, and `generatorError` prices that difference exactly as it does for
 `mtimes`.
+
+## Inputs
+* `Q` – family of quadratic form matrices
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the quadratic image of the set lies in the result
 -/
 
 -- Authors:       Claude Opus 5

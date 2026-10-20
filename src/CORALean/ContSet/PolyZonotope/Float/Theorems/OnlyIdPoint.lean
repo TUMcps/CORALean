@@ -13,6 +13,17 @@ public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 The nominal parts of the two results are the exact layer's `onlyId` of the original's nominal part
 (`aux_onlyId_nominal_G`; `zero` reads as `0`, nothing rounds), so the point of the original at a
 factor vector is the sum of the first part's point at the factors of `S` and the second's.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `S` – selected factors
+* `a` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the nominal point is the sum of the two parts' points
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -14,6 +14,13 @@ counts untouched, and the error box projected with `Interval.project`. Selecting
 does no arithmetic, so nothing rounds. `dims` may repeat or reorder coordinates; one coordinate
 is `dims = fun _ => i` at `m = 1`.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `dims` – selected dimensions
+
+## Output
+* polynomial zonotope projected onto those dimensions
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

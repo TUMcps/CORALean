@@ -14,19 +14,25 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
 /-!
 # Boxing what two partitions drop keeps every dependency
 
-The whole argument behind every reduction rule here, and it holds at *every*
-pair of partitions, which is what lets the ranking be a heuristic — Girard's
-metric appears nowhere below. `reduceBy_outer` is this at the whole factor box.
+The argument behind every reduction rule here, holding at *every* pair of partitions, which
+lets the ranking be a heuristic. `reduceBy_outer` is this at the whole factor box. The factors
+are untouched, so the same `a` reads both sides: an enclosure of each evaluation separately,
+which [1, Lemma 4] needs and never states. Kept generators keep their exponent columns; the
+dropped ones contribute `D` in row `i`, which the diagonal block reproduces with coefficient
+`D / R`. `abs_monomial_le_one` bounds the dependent half of `|D|`, and `Zonotope.coefficient`
+rescales, degenerate `R = 0` included.
 
-The factors are untouched, so the same `a` reads both sides: the enclosure is an
-enclosure of each evaluation separately, which is what [1, Lemma 4] needs and
-never states, its Table 1 leaving order reduction out. Kept generators keep
-their exponent columns; the dropped ones of either block contribute `D` in row
-`i`, which the diagonal block reproduces with coefficient `D / R` for `R` that
-row's box radius. `abs_monomial_le_one` bounds the dependent half of `|D|` — a
-monomial is no larger than an independent coefficient, which is why the two
-halves may share one box — and `Zonotope.coefficient` rescales, degenerate
-`R = 0` included.
+## Inputs
+* `pZ` – polynomial zonotope
+* `partD` – split of the dependent generators
+* `partI` – split of the independent generators
+* `B` – box of factor values
+
+## Hypotheses
+* `hB` – factor values are at most one
+
+## Conclusion
+* evaluation on the box is preserved
 
 ## References
 

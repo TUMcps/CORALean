@@ -9,6 +9,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Volume
 
 With no independent generators and as many factors as dimensions, `volume` is the integral
 of the Jacobian determinant of the set itself (no `dependent` step).
+
+## Inputs
+* `n` – dimension
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* `hq` – no independent generators
+* `h` – factor count equals the dimension
+
+## Conclusion
+* the volume is the signed determinant integral
 -/
 
 -- Authors:       Claude Opus 5.5

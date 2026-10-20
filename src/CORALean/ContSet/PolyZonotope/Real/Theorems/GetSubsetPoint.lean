@@ -10,15 +10,24 @@ public import Mathlib.Data.Nat.Choose.Sum
 /-!
 # `getSubset`'s point is the original's at the re-parametrized factor
 
-The whole content of the construction, and an *equality*: the new factor vector
-`b` names the point the old one named at `αₖ = cen + rad·βₖ`, every other factor
-left alone. Nothing is over-approximated, because the binomial expansion of
-`(cen + rad·βₖ)^e` is a polynomial identity — a monomial above degree one is
-re-parametrized exactly, not merely enclosed.
+The whole content of the construction, and an *equality*: the new factor vector `b` names the
+point the old one named at `αₖ = cen + rad·βₖ`, every other factor left alone. Nothing is
+over-approximated, because the binomial expansion of `(cen + rad·βₖ)^e` is a polynomial
+identity. Stated over `point` rather than `construct`, like `map_point` and `bilin_point`: the
+independent block takes no part in a change of *dependent* variables.
 
-Stated over `point` rather than over `construct`, like `map_point` and
-`bilin_point`: the independent block takes no part in a change of *dependent*
-variables, and only the set-level statements need it back.
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+* `cen` – subinterval center
+* `rad` – subinterval radius
+* `b` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point is the original point at the rescaled factor
 -/
 
 -- Authors:       Claude Opus 5

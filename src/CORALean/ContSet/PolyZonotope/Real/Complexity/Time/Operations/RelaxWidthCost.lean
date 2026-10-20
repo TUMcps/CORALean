@@ -14,6 +14,12 @@ parities and their comparison, `min`, `max` and the test `l = 0`, seven operatio
 like the scalar ones the model counts; on the reals `l / h`, `h - l`, `(h - l) / h`,
 `l / (h - l)`, the power and the product, six; and one write of the result. CORA's
 `minMaxDiffPoly` finds the same value by the roots of a derivative, which the closed form replaces.
+
+## Inputs
+* none
+
+## Output
+* operation count of one relaxation width
 -/
 
 -- Authors:       Claude Sonnet 5.5

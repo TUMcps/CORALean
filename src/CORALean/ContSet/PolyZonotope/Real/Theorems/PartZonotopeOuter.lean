@@ -15,6 +15,16 @@ At a factor vector `a ∈ [-1,1]ᵖ` the new factor of a pattern is set to the m
 `[-1,1]`, and the generator's value is reproduced, `G · P · vm = (G/2) · P · (2 vm - 1) + (G/2) · P`
 for an even pattern. This is an enclosure only: the new factors are independent of each other and
 of `a`, which `partZonotope_outer` does not claim to be tight.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `V` – selected factors
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

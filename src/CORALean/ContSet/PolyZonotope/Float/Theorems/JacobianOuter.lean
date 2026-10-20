@@ -14,6 +14,16 @@ The exact layer's `jacobian` of what the stored floats denote lies in the float 
 columns are `E k i` times the stored ones, which the stored lower multiple is off from by at most
 `aux_jacobianGap`, and the monomials lie in `[-1, 1]`, so the box holds the difference. The exact
 layer's `jacobian_hasDerivAt` says what the exact set is, the derivative of the point along `k`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact derivative set lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

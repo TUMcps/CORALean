@@ -9,6 +9,15 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 
 Split out of `Compact.lean` (issue #62): used again by `Theorems/RepIdem.lean`
 and by every step of `compact` that follows, all outside this file.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `i` – generator index
+
+## Output
+* exponent column of that generator
 -/
 
 -- Authors:       Claude Opus 5

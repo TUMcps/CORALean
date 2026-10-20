@@ -11,6 +11,12 @@ CORA's `@polyZonotope/representsa_` at type `point`: after `compact_(pZ,'all',ep
 no independent generator is left. Here the sufficient test without the compaction: every
 generator is `0`. CORA's compaction also merges generators with equal exponent columns and
 drops the ones that cancel, so it answers `true` for more sets than this does.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* Prop that all generators vanish
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -14,6 +14,13 @@ own file, as CORA gives each a file too.
 The same rule with the independent block left out: cut the dependent
 generators alone against `n·o` and keep every independent one. Tighter per step
 and bounding nothing — the box adds `n` independent generators at every call.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `o` – target order
+
+## Output
+* polynomial zonotope with dependent generators reduced by Girard's method
 -/
 
 -- Authors:       Claude Opus 5

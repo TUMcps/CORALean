@@ -13,6 +13,14 @@ CORA does), the scan takes the smallest while the running sum stays below `tol` 
 entry per coordinate, and the taken ones leave for a box (`PolyZonotope.boxOut`). The ranking and
 the scan compare rounded sums with the certified `le`; they only choose the generators, and
 `boxOut_outer` holds for every choice, so the guarantee does not depend on them.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `tol` – tolerance
+* `S` – selected factors
+
+## Output
+* outer-approximating polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

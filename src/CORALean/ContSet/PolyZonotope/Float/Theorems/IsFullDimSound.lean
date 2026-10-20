@@ -15,6 +15,16 @@ the center plus the dependent generators weighted by their monomials at `0`. The
 every vector within `B` of zero in that zonotope's span with such coefficients
 (`Zonotope.ballCert_reach`), so the open box of radius `B` around `y₀` lies inside the set.
 Adding the error box's lower corner keeps an interior point (`subset_interior_add_left`).
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `H` – candidate right inverse of the generators
+
+## Hypotheses
+* `h` – the test returns true
+
+## Conclusion
+* the set has a nonempty interior
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,12 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.MergedColUp
 
 Split out of `Compact.lean` (issue #62): read again by
 `Theorems/CompactGensOuter.lean`, outside this file.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* matrix of the gaps between rounded-up and rounded-down merged columns
 -/
 
 -- Authors:       Claude Opus 5

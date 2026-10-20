@@ -7,15 +7,20 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
 /-!
 # How large `compact`'s result is
 
-Bounds and not counts, and the only file here that is neither: how many columns
-survive a merge depends on how many of them were equal, which nothing in the
-operand's *sizes* fixes. What does hold at every operand is that compaction
-never grows anything — it keeps a sub-`Finset` of the columns and a sub-`Finset`
-of the factors, and leaves the independent block alone.
+Bounds and not counts: how many columns survive a merge depends on how many were equal, which
+nothing in the operand's *sizes* fixes. What holds at every operand is that compaction never
+grows anything: it keeps a sub-`Finset` of the columns and of the factors, and leaves the
+independent block alone. `Complexity/Time/Reduce.lean` needs that to price the ranking at the
+operand's own counts, an upper bound because compaction cannot have made them larger.
 
-That is what `Complexity/Time/Reduce.lean` needs: it prices the ranking at the operand's
-own counts, which is an upper bound exactly because compaction cannot have made
-them larger.
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* compacting does not add generators
 -/
 
 -- Authors:       Claude Opus 5

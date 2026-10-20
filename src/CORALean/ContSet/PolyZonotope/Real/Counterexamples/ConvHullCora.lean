@@ -10,15 +10,22 @@ public import Mathlib.Tactic.FinCases
 # The one-argument `convHull_` is not the convex hull
 
 CORA documents `convHull_(pZ)` as the convex hull of `pZ`, but with one argument the code [1]
-returns `linComb(pZ, pZ)`, the union of the chords between two points of
-`pZ` (`PolyZonotope.linComb_exact_of_dependent`, for a set with no independent generators). The
-chords of a curve need not fill its hull in dimension three: for the curve `γ(t) = (t, t², t⁴)`,
-`t ∈ [-1, 1]`, the point `(0, 2/3, 2/3)` is a convex combination of the midpoint `(0, 1, 1)` of the
-chord from `γ(-1)` to `γ(1)` and the point `γ(0) = 0`, but lies on no chord. A chord
-`λ γ(s) + (1-λ) γ(t)` with `y = z` needs `λ s²(1-s²) + (1-λ) t²(1-t²) = 0`, so each atom is `-1`,
-`0` or `1`, and the first moment `0` and second moment `2/3` cannot both hold. So the chord set is
-not convex, hence not the convex hull of `pZ`. (The moment curve `(t, t², t³)` is no example: its
-chords appear to fill the hull.) Read from the source, not run.
+returns `linComb(pZ, pZ)`, the union of the chords between two points of `pZ`
+(`PolyZonotope.linComb_exact_of_dependent`). The chords of a curve need not fill its hull in
+dimension three: for `γ(t) = (t, t², t⁴)`, `t ∈ [-1, 1]`, the point `(0, 2/3, 2/3)` is a convex
+combination of the midpoint `(0, 1, 1)` of the chord from `γ(-1)` to `γ(1)` and `γ(0) = 0`, but
+lies on no chord: `λ s²(1-s²) + (1-λ) t²(1-t²) = 0` forces each atom to be `-1`, `0` or `1`,
+and the moments `0` and `2/3` cannot both hold. So the chord set is not convex. (The moment curve
+`(t, t², t³)` is no example: its chords appear to fill the hull.) Read from the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the one-argument hull is not convex and not the hull
 
 ## References
 

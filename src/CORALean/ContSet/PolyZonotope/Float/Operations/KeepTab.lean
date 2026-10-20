@@ -9,6 +9,12 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.KeepIdx
 
 The columns whose table entry is themselves, in column order: `repKeep` listed
 instead of re-derived, which is what `keepIdx` does at every call (issue #61).
+
+## Inputs
+* `t` – representative table
+
+## Output
+* array of the indices that represent themselves
 -/
 
 -- Authors:       Claude Opus 5.5

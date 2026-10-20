@@ -16,6 +16,15 @@ one factor `α`, `g_i = 1` at exponent `2` and `g_j = 0` at exponent `0`, so the
 misses `0 = 0²`. Every hypothesis `relaxExpEven_outer` asks for holds, so the sign is the
 only fault.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed center shift does not enclose in general
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and

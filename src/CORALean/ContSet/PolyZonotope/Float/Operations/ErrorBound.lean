@@ -10,6 +10,12 @@ public import CORALean.ContSet.Interval.Float.Interval
 Split out of `Dependent.lean` (issue #62): read again by `evalPoly`, by
 `Conversion/PolyZonotope_to_Interval.lean`, and by several `Theorems/` files,
 all outside this file.
+
+## Inputs
+* `I` – interval vector
+
+## Output
+* vector of the largest absolute endpoint per coordinate
 -/
 
 -- Authors:       Claude Opus 5

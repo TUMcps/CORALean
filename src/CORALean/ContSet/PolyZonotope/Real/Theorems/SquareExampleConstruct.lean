@@ -13,6 +13,15 @@ public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 So the set is a polytope although it has an exponent of two, which CORA's `isPolytope` [1] takes
 as proof that it is not (`references/coverage/contSet/polyZonotope.md`, row `isPolytope`).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the square example is the unit interval from zero to one
+
 ## References
 
 * [1] `contSet/@polyZonotope/isPolytope.m`, CORA (Sep. 2025), by N. Kochdumper (2019).

@@ -14,6 +14,18 @@ The monomial of the renamed set at `a'` is the original monomial at `a' ∘ f`: 
 So the renamed set's dependent points are the original's at the factor vectors that are constant
 on the fibres of `f`; `replaceId_subset` and, for an injective `f` (a plain renaming),
 `replaceId_exact` follow. Identifying two factors adds a dependency and shrinks the set.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `p'` – new factor count
+* `f` – map from old to new factors
+* `a'` – new factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point is the original point at the pulled-back values
 -/
 
 -- Authors:       Claude Opus 5.5

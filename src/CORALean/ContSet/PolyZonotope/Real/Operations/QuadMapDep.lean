@@ -15,6 +15,13 @@ generators and exponent columns.
 Its own file (issue #62): read again by the float layer's own `quadMap` and
 `Theorems/QuadMapOuter.lean`, both outside this file. Sound only where the
 independent block is empty, so nothing outside `quadMap` calls it directly.
+
+## Inputs
+* `Q` – family of quadratic form matrices
+* `pZ` – polynomial zonotope
+
+## Output
+* quadratic image of the set, as a bilinear image with itself
 -/
 
 -- Authors:       Claude Opus 5

@@ -12,13 +12,17 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 
 The interval Jacobian of the dependent point map over a box of factor values: column `k` is the
 derivative along factor `k`, `Σₗ E[k,l] Gₗ α^{Eˡ - eₖ}`, as `aux_funHanJacobian` of
-`@polyZonotope/contains_` builds it (`G(:,ind)·diag(E(i,ind))` and the lowered exponents) and
-evaluates it on an interval. The coefficients `E[k,l] Gₗ` are rounded both ways into an interval
-matrix, the monomials come from `monoBox`, and `Interval.mtimesIntervalMat` multiplies the two.
+`@polyZonotope/contains_` builds it. The coefficients `E[k,l] Gₗ` are rounded both ways into an
+interval matrix, the monomials come from `monoBox`, and `Interval.mtimesIntervalMat` multiplies
+the two. `innerApproxImage` differentiates `aux_funcPoly` symbolically instead, which yields
+the same derivative in another form, possibly enclosed more tightly.
 
-`innerApproxImage` differentiates `aux_funcPoly` symbolically instead (`jacobian`,
-`matlabFunction`), which yields the same derivative written in another form; an interval
-evaluation of another form encloses the same values, possibly more tightly.
+## Inputs
+* `pZ` – polynomial zonotope
+* `X` – factor box
+
+## Output
+* interval enclosing the Jacobian over the box
 -/
 
 -- Authors:       Claude Opus 5.5

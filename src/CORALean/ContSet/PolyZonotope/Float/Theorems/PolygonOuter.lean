@@ -17,6 +17,17 @@ public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeZonotopeCont
 The pieces cover the set after every round (`splitLongestGen_outer`) for every choice of the
 pieces to refine, and each piece lies in its zonotope and that in its float `Zonotope.polygon`.
 Outer, and no exactness is claimed.
+
+## Inputs
+* `pZ` – two-dimensional polynomial zonotope
+* `splits` – number of splitting rounds
+* `pick` – chooser of the sets to split
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the polygon
 -/
 
 -- Authors:       Claude Opus 5.5

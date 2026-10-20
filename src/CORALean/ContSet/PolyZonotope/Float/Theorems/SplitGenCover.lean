@@ -10,6 +10,15 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestIndepGenC
 # `PolyZonotope.splitGen` covers the set
 
 `splitDepFactor_outer` or `splitLongestIndepGen_cover`, whichever branch ran. Outer, not exact.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is covered by the two halves
 -/
 
 -- Authors:       Claude Opus 5.5

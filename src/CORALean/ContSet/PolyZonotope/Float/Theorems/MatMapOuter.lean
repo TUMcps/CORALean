@@ -20,6 +20,26 @@ the float result. The exact product of the nominal points is a point of the exac
 the nominal sets, whose generators the stored ones miss by at most the rounding gaps
 (`aux_matMap_refines`); the error boxes' share is `N₁e₂ + e₁(N₂ + e₂)`, bounded by
 interval-matrix products against the operands' hulls (`aux_matMap_hull`).
+
+## Inputs
+* `pZ₁` – first matrix polynomial zonotope
+* `pZ₂` – second matrix polynomial zonotope
+* `a` – shared factor values
+* `β₁` – independent values of the first set
+* `β₂` – independent values of the second set
+* `e₁` – error matrix of the first set
+* `e₂` – error matrix of the second set
+
+## Hypotheses
+* `hp` – both have the same factor count
+* `ha` – factor values are at most one
+* `hβ₁` – first independent values are at most one
+* `hβ₂` – second independent values are at most one
+* `he₁` – first error lies in its box
+* `he₂` – second error lies in its box
+
+## Conclusion
+* the matrix product of the points lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

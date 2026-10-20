@@ -8,16 +8,20 @@ public import CORALean.Global.Partition
 /-!
 # `PolyZonotope.relaxDrift`
 
-`eDrift` at the pair a partition names, read as an interval's midpoint and
-half-width rather than as its two ends. That is the form a relaxation consumes:
-the midpoint is a constant the center absorbs and the half-width is what the new
-independent generator has to carry, so a drift of `[-ξ_E, 0]` costs half of what
-the symmetric `[-ξ_E, ξ_E]` does.
+`eDrift` at the pair a partition names, read as an interval's midpoint and half-width rather
+than its two ends. That is the form a relaxation consumes: the midpoint is a constant the
+center absorbs and the half-width is what the new independent generator carries, so a drift of
+`[-ξ_E, 0]` costs half of what `[-ξ_E, ξ_E]` does. Both are halves of a natural number, hence
+exact in the float layer: `[1, Thm. 1]` scales one generator by a count read off the exponent
+matrix, and halving a stored float rounds nothing.
 
-Both are multiples of the relaxed generator, and both are halves of a natural
-number, which is why they are exact in the float layer too: `[1, Thm. 1]` scales
-one generator by a count read off the exponent matrix, and halving a stored
-float rounds nothing.
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
+* `k₀` – factor index
+
+## Output
+* pair of center-shift amounts of the relaxation
 
 ## References
 

@@ -10,6 +10,13 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 
 Split out of `LinComb.lean` (issue #62): read again by
 `Theorems/LinCombOuter.lean`, outside this file.
+
+## Inputs
+* `a` – first center
+* `b` – second center
+
+## Output
+* symmetric error box of the stored half-difference
 -/
 
 -- Authors:       Claude Opus 5

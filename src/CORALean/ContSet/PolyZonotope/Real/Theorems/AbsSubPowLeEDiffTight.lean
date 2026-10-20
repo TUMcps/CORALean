@@ -14,6 +14,17 @@ and on `u ∈ [0,1]` the drift `u^l - u^(l+c) = v^s (1 - v)` with `v = u^c` and 
 bounded by the weighted mean inequality at the weights `s/(s+1)` and `1/(s+1)`, which is where
 `(l/h)^(l/c) · (c/h)` comes from.
 
+## Inputs
+* `x` – real number
+* `a` – first exponent
+* `b` – second exponent
+
+## Hypotheses
+* `hx` – number is at most one in absolute value
+
+## Conclusion
+* the powers differ by at most the tight exponent difference
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and

@@ -11,6 +11,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapDepOnExact
 
 On a set with nothing independent the image of the factors is the image of `P`'s own points,
 `cubEval T '' P.construct = (cubMapDep T P).construct`.
+
+## Inputs
+* `T` – family of cubic form tensors
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* `hq` – no independent generators
+
+## Conclusion
+* the cubic image of the set equals the result
 -/
 
 -- Authors:       Claude Opus 5.5

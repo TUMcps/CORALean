@@ -15,6 +15,16 @@ shows in the proof: any ranking would discharge the second step, and the first
 contributes nothing but a rewrite. What compaction buys is the order bound,
 which is stated in `ReduceOrder`.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

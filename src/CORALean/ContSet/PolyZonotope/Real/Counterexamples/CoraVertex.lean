@@ -9,6 +9,13 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 
 `V(:,i)` of `aux_polyVertices` in `isPolytope` [1]: the image of a cube corner.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `I` – factor values
+
+## Output
+* corner image as CORA computes it
+
 ## References
 
 * [1] `contSet/@polyZonotope/isPolytope.m`, CORA (Sep. 2025), by N. Kochdumper (2019).

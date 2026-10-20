@@ -12,6 +12,20 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubset
 The exact generator entry is the exact coefficient times the stored generator, and both the
 rounded-down and the rounded-up product bracket it, so `getSubsetGDiff` covers the distance to the
 stored entry.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+* `cen` – subinterval center
+* `rad` – subinterval radius
+* `r` – row index
+* `l` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* stored generator is within its gap of the exact one
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -27,6 +27,16 @@ its value not modelled.
 `poly2bernstein` returns a matrix, not a cell, when the dimension is `1`, and
 `@polyZonotope/interval.m` l. 71 applies `cellfun` to it. The set has a bounding interval all
 the same. Read from the source, not run.
+
+## Inputs
+* `pZ` – one-dimensional polynomial zonotope
+
+## Hypotheses
+* `hh` – at least one dependent generator
+* `hp` – at least one factor
+
+## Conclusion
+* CORA's Bernstein interval code crashes
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -14,22 +14,19 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 /-!
 # `PolyZonotope.linComb`
 
-The exact layer's three dependent blocks, and nothing in any of them rounds.
-Halving is exact and so is negation, so `½G₁`, `½G₂` and `-½G₂` are copies, and
-`linCombE` is over ℕ.
+The exact layer's three dependent blocks, and nothing in any of them rounds: halving and
+negation are exact, so `½G₁`, `½G₂` and `-½G₂` are copies, and `linCombE` is over ℕ. What is
+left is three vectors' worth of rounding. The center and the sliding generator are what a
+zonotope's `linComb` already pays (a `residual`, and a symmetric box). The independent block
+pairs, so `generatorError` charges its whole matrix; `Zonotope.pairSum`, `pairDiff` and
+`generatorError` are borrowed, as CORA runs `zonotope/enclose` on it.
 
-Three vectors' worth of rounding is what is left, in two kinds. The center and
-the sliding generator are what a zonotope's `linComb` already pays: a midpoint
-stored in place of a known bracket is a `residual`, while the sliding
-generator's coefficient ranges over `[-1,1]`, so its shortfall pulls both ways
-and needs a symmetric box. The independent block pairs, and a pairing is
-arithmetic, so `generatorError` charges its whole matrix at once. The dependent
-side is therefore free, and both counts are what they are over ℝ.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
 
-`Zonotope.pairSum`, `Zonotope.pairDiff` and `Zonotope.generatorError` are
-borrowed rather than restated, as CORA's `@polyZonotope/linComb` runs
-`zonotope/enclose` on the independent blocks. `midpoint` and `halfDiff` are
-one-line expressions that happen to coincide.
+## Output
+* polynomial zonotope enclosing the linear combinations
 -/
 
 -- Authors:       Claude Opus 5

@@ -11,6 +11,12 @@ public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.EDri
 Asserted, not proved: `Operations/RelaxDrift.lean` is written with `eDrift`
 appearing four times, so four evaluations are counted, no sharing being
 assumed; then two subtractions-or-additions and two halvings, and two writes for the pair.
+
+## Inputs
+* `p` – number of factors
+
+## Output
+* operation count of the relaxation drift
 -/
 
 -- Authors:       Claude Sonnet 5.5

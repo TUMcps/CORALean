@@ -10,6 +10,12 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.BilinE
 Split out of `QuadMap.lean` (issue #62): read again by
 `Theorems/QuadMapOuter.lean` and `Theorems/QuadMapENominal.lean`, both outside
 this file.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* exponent matrix of the quadratic image
 -/
 
 -- Authors:       Claude Opus 5

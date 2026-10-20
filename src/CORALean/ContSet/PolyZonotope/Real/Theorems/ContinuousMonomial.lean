@@ -13,6 +13,16 @@ either polynomial-zonotope representation needs. It is what carries topology
 through the dependent block: a constrained polynomial zonotope's coefficient
 domain is closed because its constraint rows are continuous in the factors, and
 the map onto the set is continuous for the same reason.
+
+## Inputs
+* `E` – exponent matrix
+* `i` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the monomial is continuous in the factor values
 -/
 
 -- Authors:       Claude Opus 5

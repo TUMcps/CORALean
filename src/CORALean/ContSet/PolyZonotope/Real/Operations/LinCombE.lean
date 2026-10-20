@@ -13,6 +13,17 @@ Split out of `LinComb.lean` (issue #62): read again by the float layer's own
 The two sets' factors block-diagonally as `plus` lays them out, repeated
 across the two dependent blocks, and the fresh factor last, at exponent `1` on
 the second block and `0` on the first.
+
+## Inputs
+* `p₁` – first factor count
+* `h₁` – first generator count
+* `p₂` – second factor count
+* `h₂` – second generator count
+* `E₁` – first exponent matrix
+* `E₂` – second exponent matrix
+
+## Output
+* exponent matrix of the linear combination
 -/
 
 -- Authors:       Claude Opus 5

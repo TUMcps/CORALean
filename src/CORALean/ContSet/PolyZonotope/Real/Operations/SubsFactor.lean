@@ -9,6 +9,16 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 
 The factor of the result that a factor of `pZin` is: the one of `pZ` it shares its identifier with
 (`Idx`, given by `share`), or a new one after `pZ`'s.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `nu` – number of substituted factors
+* `pZin` – polynomial zonotope substituted in
+* `share` – map of shared factors
+* `j` – inner factor index
+
+## Output
+* index of that factor in the combined factors
 -/
 
 -- Authors:       Claude Opus 5.5

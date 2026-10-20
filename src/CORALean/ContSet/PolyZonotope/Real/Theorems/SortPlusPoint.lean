@@ -14,6 +14,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.SortPoint
 so what is left is `exactPlus_point`, and the same reading applies — this is
 the sum of the two sets' points at one factor vector, not the Minkowski sum.
 
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+* `a` – factor values
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Conclusion
+* the point is the sum of the two points
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

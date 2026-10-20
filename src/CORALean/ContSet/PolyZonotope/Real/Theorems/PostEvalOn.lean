@@ -10,17 +10,26 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceEvalOn
 /-!
 # [1, Lemma 4]: the post operator preserves dependencies
 
-[1, (19)] at the post operator of its Alg. 1 — lines 11 and 12, propagate, add
-the step's inputs and abstraction errors, reduce — over polynomial zonotopes:
-what the operator reaches from a parameterized subset of `X` lies inside the
-evaluation of what it reaches from all of `X`.
+[1, (19)] at the post operator of its Alg. 1 (lines 11 and 12: propagate, add the step's
+inputs and abstraction errors, reduce) over polynomial zonotopes: what the operator reaches
+from a parameterized subset of `X` lies inside the evaluation of what it reaches from all of
+`X`. [1] proves this by appealing to properties of its primitives it never proves. Here each
+is discharged: `mtimes_evalOn` is the propagation, exactly; `plus_evalOn` is [1, (23)], the
+added set free in its own fresh factors; and `reduce_evalOn` is the reduction, which [1]'s
+Table 1 leaves out.
 
-[1] proves this by reading the operator as `A(R) ⊕ B(R, Ψ)` and appealing to
-properties it asserts of its primitives and never proves. Here each of the three
-is discharged: `mtimes_evalOn` is the propagation, exactly; `plus_evalOn` is
-[1, (23)], with the added set free in its own fresh factors rather than assumed
-to have none; and `reduce_evalOn` is the reduction, which [1]'s Table 1 leaves
-out altogether.
+## Inputs
+* `M` – matrix
+* `X` – polynomial zonotope
+* `U` – polynomial zonotope added
+* `o` – target order
+* `B` – box of factor values
+
+## Hypotheses
+* `hB` – factor values are at most one
+
+## Conclusion
+* evaluation is preserved on the transformed box
 
 ## References
 

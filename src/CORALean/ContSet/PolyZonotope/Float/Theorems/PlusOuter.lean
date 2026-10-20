@@ -11,15 +11,21 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 /-!
 # `PolyZonotope.plus` over-approximates the Minkowski sum
 
-`InflatedContSet.plus_subset` reduces this to two obligations: the nominal parts
-spill only by the center rounding, and the box absorbs that spill along with the
-two incoming boxes.
+`InflatedContSet.plus_subset` reduces this to two obligations: the nominal parts spill only
+by the center rounding, and the box absorbs that spill along with the two incoming boxes.
+The nominal obligation is the exact `plus` argument with the center displaced (`Fin.append`
+on the factors and on the independent coefficients), and `monomial_plusE_left`/`_right` read
+a concatenated factor vector back as each set's own. Nothing about the monomials rounds.
 
-The nominal obligation is the exact `plus` argument with the center displaced —
-`Fin.append a₁ a₂` on the factors and `Fin.append β₁ β₂` on the independent
-coefficients — and `monomial_plusE_left`/`_right` are what read a concatenated
-factor vector back as each set's own. Nothing about the monomials rounds, so
-this is a zonotope's `plus` with an extra block.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Minkowski sum lies in the result
 -/
 
 -- Authors:       Claude Opus 5

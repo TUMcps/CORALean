@@ -12,20 +12,20 @@ public import Mathlib.Order.Filter.AtTopBot.Prod
 # `PolyZonotope.relaxGreedyCost`
 
 Asserted, not proved, as the proof of [1, Thm. 2 (complexity)] counts it, for `h` dependent
-generators, `q` independent ones, `n` dimensions and `p` factors. The graph of [1, Def. 5] checks
-`h²` pairs at `p` factors each; its greedy subgraph is `h²` comparisons; the loop runs at most `h`
-times, a node being processed once, each round updating the subgraph in `h` and applying [1, Thm. 1]
-in `(h + q) n + h p`. The paper's `(h + q) n` is moving the generators, which the model of
-`Global/Cost.lean` charges as writes: a round writes at most `n (1 + 2h + q) + h p` scalars.
+generators, `q` independent ones, `n` dimensions and `p` factors: the graph of [1, Def. 5]
+checks `h²` pairs at `p` factors each, its greedy subgraph is `h²` comparisons, and the loop
+runs at most `h` times, each round updating in `h` and applying [1, Thm. 1] in `(h + q) n + h p`
+(writes: at most `n (1 + 2h + q) + h p` scalars a round). `Operations/RelaxGreedy.lean` differs.
+The count `2 h² p + 4 h² + n h + 2 h² n + h q n` is at most `8 ((h + q) h n + h² p)` for `p ≥ 1`.
 
-`Operations/RelaxGreedy.lean` searches for the leaf in `h²` per round instead of walking the tree,
-so its own cost is not this one.
+## Inputs
+* `h` – dependent generator count
+* `q` – independent generator count
+* `n` – dimension
+* `p` – number of factors
 
-## [1, Thm. 2 (complexity)]: the greedy relaxation is `O((h + q) h n + h² p)`
-
-The proof's arithmetic read off `relaxGreedyCost`: the count is
-`2 h² p + 4 h² + n h + 2 h² n + h q n`, at most `8 ((h + q) h n + h² p)` once there is a factor
-(`p ≥ 1`). `IsBigO` along all four sizes growing, as the theorem states it.
+## Output
+* operation count of the greedy relaxation of all pairs
 
 ## References
 

@@ -13,6 +13,17 @@ The point of the sum at a factor vector `a` is `pZ`'s point plus the point of ev
 that same `a`: the dependency the Minkowski sum drops survives. The center in particular is
 the plain sum of the centers, which CORA's center is not for three summands or more
 (`sum_cora_counterexample`).
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `L` – family of further polynomial zonotopes
+* `a` – factor values
+
+## Hypotheses
+* `hp` – all have the same factor count
+
+## Conclusion
+* the point is the sum of the points
 -/
 
 -- Authors:       Claude Opus 5.5

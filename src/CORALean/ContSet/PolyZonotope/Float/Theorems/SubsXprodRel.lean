@@ -12,6 +12,19 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsXprod
 
 The fold over the outputs multiplies the powers of the output polynomials (`subsPow_rel`,
 `subsPoly_rel`), starting from `1`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `nu` – number of substituted factors
+* `pZin` – polynomial zonotope substituted in
+* `idu` – indices of the substituted factors
+* `i` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float term list brackets the exact one
 -/
 
 -- Authors:       Claude Opus 5.5

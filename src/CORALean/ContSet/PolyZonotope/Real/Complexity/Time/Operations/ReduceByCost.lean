@@ -8,19 +8,23 @@ public import CORALean.Global.Cost
 /-!
 # `PolyZonotope.reduceByCost`
 
-Asserted, not proved: `Operations/ReduceBy.lean` copies the kept columns of
-both blocks and their exponents, which costs their writes, and builds the diagonal
-block from `dropRadius` — one row sum per output coordinate over the `r`
-absorbed dependent and `rI` absorbed independent generators, `n * (r + rI)`
-absolute values and one addition fewer.
+Asserted, not proved: `Operations/ReduceBy.lean` copies the kept columns of both blocks and
+their exponents, which costs their writes, and builds the diagonal block from `dropRadius`:
+one row sum per output coordinate over the `r` absorbed dependent and `rI` absorbed independent
+generators, `n * (r + rI)` absolute values and one addition fewer. The `n * (n - 1)` off-diagonal
+zeros are written, not computed. Every scalar of the result is also a write: the center, `d`
+kept dependent generators with exponents, `dI` kept independent ones and the `n` by `n` block.
 
-The `n * (n - 1)` off-diagonal zeros are written, not computed, so neither the
-kept counts nor the block's own width enter.
+## Inputs
+* `n` – dimension
+* `p` – number of factors
+* `d` – kept dependent generators
+* `dI` – kept independent generators
+* `r` – dropped dependent generators
+* `rI` – dropped independent generators
 
-Under `Global/Cost.lean`'s model every scalar of the result is also a write, one unit each, and the
-result is the center, the `d` kept dependent generators with their
-exponent columns, the `dI` kept independent generators and the `n` by `n` diagonal block, whose
-zeros are written too.
+## Output
+* operation count of the reduction by a split
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

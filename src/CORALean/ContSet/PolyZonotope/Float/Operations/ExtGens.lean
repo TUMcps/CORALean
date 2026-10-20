@@ -10,6 +10,12 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 The family counterpart of `extG`, which lays the same generators out as the columns of a matrix
 over `Vec`; this one is the exact layer's `Real.PolyZonotope.extG` read over stored floats, so a
 set over matrices has it too.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* generator family with the center as first entry
 -/
 
 -- Authors:       Claude Opus 5.5

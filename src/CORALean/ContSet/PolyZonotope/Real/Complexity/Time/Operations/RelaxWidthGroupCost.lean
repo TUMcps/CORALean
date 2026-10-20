@@ -11,6 +11,12 @@ public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.EDif
 Asserted, not proved: `Operations/RelaxWidthGroup.lean` is the same sum as
 `relaxWidthMulti`, `p` `eDiff`s and `p` additions, for one grouped generator, and one write of the
 sum.
+
+## Inputs
+* `p` – number of factors
+
+## Output
+* operation count of a group relaxation width
 -/
 
 -- Authors:       Claude Sonnet 5.5

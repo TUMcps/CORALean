@@ -11,15 +11,21 @@ public import Mathlib.Algebra.Module.Prod
 /-!
 # `PolyZonotope.cartProd` is exactly the Cartesian product
 
-The result is [1, Prop. 11].
+The result is [1, Prop. 11]. The witnesses are `Fin.append a₁ a₂` and `Fin.append β₁ β₂` on
+the factors and the independent coefficients, as in `plus_exact`: the block-diagonal exponent
+matrix reads a generator's monomial back as a monomial of its own set alone. A generator of
+one set already sits at zero in the other coordinate, so the assembled sum splits along
+`Prod.fst`/`Prod.snd` into the two sets' own sums.
 
-The witnesses are `Fin.append a₁ a₂` and `Fin.append β₁ β₂` on the factors and
-the independent coefficients, as in `plus_exact`: the block-diagonal exponent
-matrix reads a generator's monomial back as a monomial of its own set alone.
-What differs from `plus` is what happens after that — a generator of one set
-already sits at zero in the other coordinate, so the assembled sum splits along
-`Prod.fst`/`Prod.snd` into the two sets' own sums rather than needing to be
-identified with them.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* result equals the Cartesian product of the sets
 
 ## References
 

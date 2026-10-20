@@ -15,6 +15,18 @@ public import Mathlib.Tactic.FinCases
 
 For corners of `isPolytopeCex` with factors `±1`, the difference of two corner images is in the
 cone of the first corner's columns once two sign conditions hold.
+
+## Inputs
+* `I` – corner vertex signs
+* `J` – other corner vertex signs
+
+## Hypotheses
+* `hI` – signs are plus or minus one
+* `hdx` – first inequality of the difference
+* `hdy` – second inequality of the difference
+
+## Conclusion
+* the corner difference lies in the normal cone
 -/
 
 -- Authors:       Claude Opus 5.5

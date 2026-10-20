@@ -13,18 +13,20 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpEven
 
 The exact layer's `relaxExpEven`, rounded. `half` is exact, so the `ξ_E/2` the
 recentering asks for costs nothing beyond what `ξ_E` copies of the generator
-already cost: the width stays a count read off the exponent matrix, and both
-layers relax by the same amount.
+already cost: both layers relax by the same amount.
 
 Three sums round here where `relaxExp` has two. The merged dependent column and
-the halved independent one are stored downward; the recentered center is a
-subtraction, and it is stored downward too by taking the *upward* rounding of
-the shift off it, so it stays below the exact center and its gap is one-sided
-like the others.
+the halved independent one are stored downward; the recentered center is stored
+downward too, by taking the *upward* rounding of the shift off it. Each gap is
+charged to the box by `generatorError`.
 
-Each gap is the width between the two roundings of one expression, which is what
-`generatorError` charges to the box — at coefficient `1` for the center, at a
-monomial or a zonotope coefficient for the two columns.
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
+* `k₀` – factor index
+
+## Output
+* relaxed polynomial zonotope with even-exponent center shift
 -/
 
 -- Authors:       Claude Opus 5

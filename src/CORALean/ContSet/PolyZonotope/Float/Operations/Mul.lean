@@ -11,19 +11,24 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
 /-!
 # `PolyZonotope.mul`
 
-The exact layer's product, rounded. None of the bookkeeping rounds — `extE`,
-`mulE` and `finProdFinEquiv` are all over ℕ — so only the `(h₁+1)(h₂+1)`
-generators are computed, and only they are charged.
+The exact layer's product, rounded. None of the bookkeeping rounds (`extE`,
+`mulE` and `finProdFinEquiv` are all over ℕ), so only the `(h₁+1)(h₂+1)`
+generators are computed and charged.
 
-Each is a single product of two stored floats, where `quadMap`'s is a bilinear
-form and has to carry the middle vector as an interval. `mulDown` and `mulUp`
-bracket it directly, and the gap between them goes into the error box, which
-`generatorError` prices exactly as it does for `mtimes`.
+Each is a single product of two stored floats; `mulDown` and `mulUp` bracket it
+and the gap goes into the error box, priced by `generatorError` as for `mtimes`.
+The guarantee is stated over the nominal sets, so a caller runs `absorbRounding`
+first, once, so that a repeated factor's freed coefficients stay identified.
 
-The guarantee is stated over the nominal sets, so this is an operation for a
-caller that has run `absorbRounding` — the one thing here that empties both the
-independent block and the box — and run it once, so that a repeated factor's
-freed coefficients stay identified.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Output
+* polynomial zonotope enclosing the product
 -/
 
 -- Authors:       Claude Opus 5

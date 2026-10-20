@@ -18,6 +18,16 @@ already asks for.
 What `exactPlus` denotes is `ExactPlusPoint.lean`'s subject, and is not the
 Minkowski sum; this theorem inherits that reading unchanged.
 
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Conclusion
+* the sorted and merged sum denotes the same set
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

@@ -14,6 +14,24 @@ at an arbitrary coefficient vector `t` for the dependent block rather than at
 where the coefficients came from. It carries no `aux_` prefix and takes the
 three blocks loose, the constrained representation needing the same regrouping
 at its own fields.
+
+## Inputs
+* `hh` – number of dependent generators
+* `qq` – number of independent generators
+* `M` – matrix
+* `c` – center
+* `G` – dependent generators
+* `GI` – independent generators
+* `t` – dependent coefficients
+* `β` – independent coefficients
+* `x` – point
+* `i` – coordinate
+
+## Hypotheses
+* `hx` – point has that generator representation
+
+## Conclusion
+* the image coordinate splits into center and generator terms
 -/
 
 -- Authors:       Claude Opus 5

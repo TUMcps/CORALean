@@ -11,6 +11,22 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinOuterMem
 Outer, not exact: the independent cross terms are carried as independent generators, whose
 coefficients (a product of a monomial and an independent coefficient, or of two independent ones)
 range over a box and not independently of the factors.
+
+## Inputs
+* `pZ₁` – first matrix polynomial zonotope
+* `pZ₂` – second matrix polynomial zonotope
+* `a` – shared factor values
+* `β₁` – independent values of the first set
+* `β₂` – independent values of the second set
+
+## Hypotheses
+* `hp` – both have the same factor count
+* `ha` – factor values are at most one
+* `hβ₁` – first independent values are at most one
+* `hβ₂` – second independent values are at most one
+
+## Conclusion
+* the matrix product of the points lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

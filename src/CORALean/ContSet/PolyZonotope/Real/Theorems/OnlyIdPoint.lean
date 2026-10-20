@@ -13,6 +13,17 @@ At every factor vector the point of `pZ` is the sum of the point of the `S`-part
 its monomial reads the factors of `S` only, and every other generator is in the remainder, with
 the center `0` there so that the center is counted once. The independent block belongs to the
 remainder and is not part of `point`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `S` – selected factors
+* `a` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point is the sum of the two parts' points
 -/
 
 -- Authors:       Claude Opus 5.5

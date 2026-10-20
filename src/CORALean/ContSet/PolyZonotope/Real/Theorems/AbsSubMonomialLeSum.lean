@@ -8,18 +8,26 @@ public import Mathlib.Data.Fin.VecNotation
 /-!
 # Two monomials drift by at most the sum of their `eDiff`s
 
-`[1, Prop. 4]`, and the whole of it. The chain of zero-length generators the
-paper inserts is a chain of *hybrid* monomials here — column `i` off a finset
-and column `j` on it — so it lives in this proof and no intermediate polynomial
-zonotope is ever built. Each step of the chain moves the exponent at one index,
-which is what `abs_sub_monomial_le` bounds, and the triangle inequality
-telescopes the steps.
+`[1, Prop. 4]`, and the whole of it. The chain of zero-length generators the paper inserts is
+a chain of *hybrid* monomials here (column `i` off a finset and column `j` on it), so no
+intermediate polynomial zonotope is built. Each step moves the exponent at one index, which
+`abs_sub_monomial_le` bounds, and the triangle inequality telescopes. Nothing relates the two
+columns: `eDiff a a = 0`, so the sum over every factor is the paper's sum over the indices
+where they differ. Similarity (`[1, Def. 4]`) buys precision here rather than soundness.
 
-Nothing relates the two columns. `eDiff a a = 0`, so a step that moves nothing
-costs nothing and the sum over every factor already *is* the paper's sum over
-the indices where the columns differ. Similarity in the sense of `[1, Def. 4]`
-therefore buys precision here rather than soundness, which is why the relaxation
-built on this bound asks for no hypothesis at all.
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `a` – factor values
+* `i` – first generator index
+* `j` – second generator index
+
+## Hypotheses
+* `ha` – factor values are at most one
+
+## Conclusion
+* the monomials differ by at most the summed exponent differences
 
 ## References
 

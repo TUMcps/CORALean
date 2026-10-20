@@ -17,6 +17,14 @@ Equal columns are adjacent in a sorted matrix, which is the property `merge`
 would need if it merged runs; the specification here merges every equal column
 at once and so asks for nothing.
 
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+
+## Output
+* Prop that the exponent columns are in sorted order
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

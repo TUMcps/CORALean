@@ -12,6 +12,13 @@ Split out of `RelaxExp.lean` (issue #62): every relaxation shares this column �
 `relaxExpEven`, `relaxExpMulti` and `relaxExpMid` all reuse it rather than
 restating it, and so does `Theorems/MergedGenGap.lean`, the gap fact common to
 all of them.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
+
+## Output
+* sum of the two selected generators
 -/
 
 -- Authors:       Claude Opus 5

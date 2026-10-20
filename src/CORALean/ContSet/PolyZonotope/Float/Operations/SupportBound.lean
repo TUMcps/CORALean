@@ -11,6 +11,18 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.NominalSupportBound
 CORA's `supportFunc_` for a polynomial zonotope: the nominal part's bound, whose dependent
 range bound `u` is an argument as over ℝ, and the error box's own bound, added upward. An
 upper bound only: the `le` field of the returned `FloatBound` is the outer theorem.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `c` – linear functional
+* `a` – float coefficient vector of the functional
+* `u` – support bound of the nominal part
+
+## Hypotheses
+* `hc` – the vector represents the functional
+
+## Output
+* support bound of the set
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -9,6 +9,14 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadUp
 # `bilin`'s generators, rounded up
 
 `bilinGDown`'s generators rounded the other way, for the gap that `bilinGDiff` charges.
+
+## Inputs
+* `Q` – family of bilinear form matrices
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Output
+* generator matrix of the bilinear image, rounded up
 -/
 
 -- Authors:       Claude Sonnet 5.5

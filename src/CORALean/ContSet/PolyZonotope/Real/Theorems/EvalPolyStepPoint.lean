@@ -10,6 +10,18 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.MulPoint
 
 Split out of `EvalPolyExact.lean` (issue #62): read again by the float layer's
 own `Theorems/EvalPolyOuter.lean`, outside this file.
+
+## Inputs
+* `R` – running Horner result
+* `pZ` – polynomial zonotope
+* `a0` – next coefficient vector
+* `b` – factor values
+
+## Hypotheses
+* `hR` – both have the same factor count
+
+## Conclusion
+* the point is the coefficient plus the running point times the set's point
 -/
 
 -- Authors:       Claude Opus 5
