@@ -7,21 +7,13 @@ public import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
 /-!
 # A neural network in the loop of a discrete-time plant: the representation
 
-CORA's `neurNetContrSys` at a discrete-time plant [1], any `ContDynamicsDT` — CORA accepts
-`linearSysDT` and `nonlinearSysDT`, here also `LinParamSysDT` and the ARX models: the
-controller reads the state and produces the first `m` inputs of the plant, `u_nn(k) = π(x(k))`,
-and the plant advances by its own equation. The remaining `nExt = nrOfInputs − m` inputs are
-external, CORA's `n_ext`, in `U_ext` (CORA's `params.U`); the plant receives `U_nn × U_ext`
-(`inputSet`), its input vector being `[a; e]` (`input`), as in `NeurNetContrSys`, the
-continuous-time loop. One controller invocation per plant step, so a run is indexed by the step
-`k`, at time `k dt` for the sampling time `dt` the system stores. The plant's disturbance is the
-loop's: CORA's closed loop at a `linearSysDT` drops `E`, so what is proved of its reachability
-there is for a disturbance `E` sends to `0`.
-
-What the loop denotes is its runs, `IsTrajectory`, stated here as for every other system class: a
-run of the plant whose input at step `k` is `[π(x(k)); v(k)]`. The input vector `[a; e]` is
-`joinInput`, shared with the continuous-time loop, whose file this one imports for it. With
-`nExt = 0` (`ofFull`) the network drives every input.
+CORA's `neurNetContrSys` at a discrete-time plant [1], any `ContDynamicsDT`: the controller
+reads the state and produces the first `m` inputs of the plant, `u_nn(k) = π(x(k))`, and the
+plant advances by its own equation. The remaining `nExt` inputs are external, CORA's `n_ext`,
+in `U_ext`; the plant receives `U_nn × U_ext` (`inputSet`), as in `NeurNetContrSys`. One
+controller invocation per plant step, so a run is indexed by the step `k`. CORA's closed loop
+at a `linearSysDT` drops `E`, so its reachability is for a disturbance `E` sends to `0`. The
+runs are `IsTrajectory`: a run of the plant whose input at step `k` is `[π(x(k)); v(k)]`.
 
 ## References
 

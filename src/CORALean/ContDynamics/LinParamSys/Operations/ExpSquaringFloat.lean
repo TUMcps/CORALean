@@ -11,6 +11,16 @@ public import CORALean.ContDynamics.LinParamSys.Operations.ExpIntervalFloat
 at the range halved `s` times, then `s` interval squarings, each stored. A
 squaring of the box holds `e^{2tA}` for every member `A` because the member is
 the same in both factors — the constant-parameter reading, `IsConstTrajectory`.
+
+## Inputs
+* `sys` – system
+* `tLo` – lower time bound
+* `tHi` – upper time bound
+* `η` – Taylor order
+* `s` – number of squarings
+
+## Output
+* float interval matrix enclosing the exponential over the time range
 -/
 
 -- Authors:       Claude Opus 5.5

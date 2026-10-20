@@ -7,22 +7,30 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.OptDeltat
 /-!
 # `optDeltat` returns the best `λ'` it saw
 
-The soundness of line 10 of [1, Alg. 2] as written here. [1] evaluates eq.
-(58)'s `argmin` by increasing `λ'` "until the objective value increases again",
-which is a descent and not a global minimization; what it buys is that the
-`λ'` reported beats every `λ'` the walk passed through, this one included.
+The soundness of line 10 of [1, Alg. 2] as written here. [1] evaluates eq. (58)'s `argmin` by
+increasing `λ'` "until the objective value increases again", a descent and not a global
+minimization: the `λ'` reported beats every `λ'` the walk passed through. That is the whole
+guarantee: eq. (57) is not shown convex here, so a `λ'` past the first increase may be better.
+[2, Alg. 2] evaluates the same argmin at its lines 8 and 12, its (31) over (30). One hypothesis,
+on the caller's check: `le a b = true` implies `a ≤ b`. The induction is on the search's own
+fuel; nothing here needs it to terminate.
 
-That is the whole guarantee, and saying so is the point: eq. (57) is not shown
-convex here, so a `λ'` past the first increase may well be better. [1] makes no
-claim otherwise.
+## Inputs
+* `le` – comparison of reals
+* `ζδ` – limit gain
+* `ζZ` – start-set constant
+* `ζA` – matrix constant
+* `φ1` – gain at the horizon
+* `r₀` – initial radius
+* `rabs` – abstraction radius
+* `h` – finite horizon
+* `fuel` – bound for the search
 
-[2, Alg. 2] evaluates the same argmin at its lines 8 and 12, its (31) over (30).
+## Hypotheses
+* `hle` – comparison implies less-or-equal
 
-One hypothesis, on the caller's check: `le a b = true` implies `a ≤ b`. Nothing
-asks the converse, so a check that gives up early stops the walk sooner and
-never reports a `λ'` it has not beaten.
-
-The induction is on the search's own fuel; nothing here needs it to terminate.
+## Conclusion
+* the step size beats every scaling index the search passed
 
 ## References
 

@@ -11,6 +11,26 @@ public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuter
 `NonlinearSysDT.reach_outer` along the converted trajectory: the window of outputs
 `(y(k), …, y(k+p-1))` lies in the reachable set at step `k`. The linearizations
 `steps` and their regions `hR` are the caller's, as for `NonlinearSysDT`.
+
+## Inputs
+* `sys` – ARX system
+* `o` – maximum zonotope order
+* `Y₀` – initial window set
+* `U` – input set
+* `V` – stacked input set
+* `steps` – linearization steps
+* `y` – outputs
+* `u` – inputs
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `hV` – `V` encloses the stacked inputs from `U`
+* `traj` – ARX trajectory
+* `hR` – each window lies in its linearization region
+
+## Conclusion
+* the output window lies in the converted system's reachable set
 -/
 
 -- Authors:       Claude Opus 5.5

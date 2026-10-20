@@ -8,16 +8,22 @@ public import CORALean.Global.SupportFunction.Composition
 /-!
 # A support witness propagated along the steps
 
-The dual of `ReachSetBound`, by the same two-line recursion — `image` for the
-matrix, `add` for the input set — but for a lower bound carrying the point that
-attains it. This is the CORALean counterpart of `Alg. 1` of [1]'s
-verify-or-falsify loop: a lower bound on the support function of the reachable
-set is that paper's novel contribution, obtained from support vectors of an
-inner approximation, which is exactly what a `SupportWitness` carries [1, Alg. 1 (lower bounds)].
+The dual of `ReachSetBound`, by the same two-line recursion — `image` for the matrix, `add` for the
+input set — but for a lower bound carrying the point that attains it. This is the CORALean
+counterpart of `Alg. 1` of [1]'s verify-or-falsify loop: a lower bound on the support function of
+the reachable set is that paper's novel contribution, obtained from support vectors of an inner
+approximation, which is what a `SupportWitness` carries [1, Alg. 1 (lower bounds)]. As with
+`reachSetBound`, the hypotheses are functions of a direction rather than two numbers.
 
-As with `reachSetBound`, the hypotheses are functions of a direction rather
-than two numbers, so any representation that can answer `SupportWitness` for
-itself may be handed in and none is named here.
+## Inputs
+* `sys` – system
+* `R₀` – initial set
+* `U` – input set
+* `b₀` – support witness of the initial set
+* `bU` – support witness of the input set
+
+## Output
+* the support witness of the set reached after each number of steps
 
 ## References
 

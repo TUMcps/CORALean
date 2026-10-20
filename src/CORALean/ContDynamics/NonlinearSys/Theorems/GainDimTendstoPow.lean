@@ -10,22 +10,30 @@ public import Mathlib.Analysis.Normed.Field.Basic
 /-!
 # The limit of the gain as the time span shrinks
 
-`[1, Thm. 2]`: `φᵢ(h;δ) → δ^{qᵢ+1}` as `h → 0`. The whole content is that
-`dᵢ(box(R^∞_abs(t)))` vanishes to order `qᵢ+1` at `t = 0`: write it `t^{qᵢ+1}g(t)`
-with `g` continuous and `g(0) ≠ 0`, and the ratio of the two spans is
-`δ^{qᵢ+1}·g(δh)/g(h)`, whose second factor goes to `1`.
+`[1, Thm. 2]`: `φᵢ(h;δ) → δ^{qᵢ+1}` as `h → 0`. The whole content is that `dᵢ(box(R^∞_abs(t)))`
+vanishes to order `qᵢ+1` at `t = 0`: write it `t^{qᵢ+1}g(t)` with `g` continuous and `g(0) ≠ 0`,
+and the ratio of the two spans is `δ^{qᵢ+1}·g(δh)/g(h)`, whose second factor goes to `1`. That
+factorisation is the hypothesis, supplied by `[1, Lemma 3]` and `[1, (40)]`, with `qᵢ` the
+*least* surviving `j` (`[1, (40)]` prints a maximum). `[1]`'s proof passes to the limit inside
+the series without uniform control, the step the hypothesis stands in for. `g 0 ≠ 0` is also the
+nonvanishing `[1, Def. 5]` defers to its readers. Only `δ ≥ 0` is used.
 
-That factorisation is the hypothesis, and it is what `[1, Lemma 3]` and
-`[1, (40)]` supply: grouping `[1, (35)]` by `j = p + q⁽ᵖ⁾ᵢ` gives
-`2 Σⱼ t^{j+1} Σ_{p+q⁽ᵖ⁾ᵢ=j} Q⁽ᵖ⁾ᵢ(t)/(p+1)!`, and `qᵢ` is the *least* `j` whose
-coefficient survives at `t = 0` — `[1, (40)]` prints a maximum; see the paper
-page's finding. `[1]`'s proof then passes to the limit inside that series
-without uniform control over `p`, which is the step the hypothesis stands in
-for; `[1, Prop. 2 (gain bound)]`'s constant-`Q⁽ᵖ⁾ᵢ` case is where it is elementary.
+## Inputs
+* `A` – matrix as a function of the step
+* `Ψ` – error set as a function of the step
+* `i` – dimension
+* `qi` – order of the dimension
+* `g` – leading factor of the width
+* `δ` – shrink factor
 
-`g 0 ≠ 0` is also the nonvanishing `[1, Def. 5]` defers to its readers, `[1, (19)]`'s
-`Ψᵢ > 0`. Only `δ ≥ 0` is used: `[1]`'s `δ ∈ [0,1]` is what makes the limit a
-contraction rather than what makes it exist.
+## Hypotheses
+* `hδ` – shrink factor nonnegative
+* `hg` – leading factor continuous
+* `hg0` – leading factor nonzero at zero
+* `hexp` – width has the power form
+
+## Conclusion
+* the gain tends to the shrink factor power
 
 ## References
 

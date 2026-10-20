@@ -17,6 +17,15 @@ only ever applied to `Xᵢ` and `Vᵢ`, whose generator counts stay those of `Ω
 `Sᵢ` grows by concatenation alone. `Φ` is the state matrix of the discrete-time system.
 Its exactness, the paper's output line, is `LinearSysDT.glmReach_eq`.
 
+## Inputs
+* `sys` – system
+* `Ω₀` – initial zonotope
+* `U` – input zonotope
+* `N` – number of steps
+
+## Output
+* the reachable zonotopes of steps one to `N`
+
 ## References
 
 * [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of

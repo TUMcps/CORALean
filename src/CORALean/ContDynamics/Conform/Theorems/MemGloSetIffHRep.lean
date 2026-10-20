@@ -15,6 +15,33 @@ cross-product normal of the template `[C̄ G_x, D̄₀ G_u, …, D̄ₖ G_u]` �
 as a linear program needs — and the template must span the output space; [1] takes `N`
 from [1, Def. 2]'s halfspace representation of `Ȳ`, whose normals these are for `α > 0`.
 
+## Inputs
+* `ιx` – index type of the initial generators
+* `ιu` – index type of the input generators
+* `κ` – normal index type
+* `yb` – reference output
+* `Cb` – state-to-output matrix
+* `Db` – input-to-output matrices
+* `cx` – nominal initial state
+* `dx` – initial center offset
+* `Gx` – initial generators
+* `αx` – initial stretch factors
+* `cu` – nominal input
+* `du` – input center offset
+* `Gu` – input generators
+* `αu` – input stretch factors
+* `N` – normal vectors
+* `y` – output point
+
+## Hypotheses
+* `hαx` – initial factors nonnegative
+* `hαu` – input factors nonnegative
+* `hspan` – generators span the output space
+* `hN` – `N` carries all generator normals
+
+## Conclusion
+* the point is in the set iff the halfspace inequalities hold row by row
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE

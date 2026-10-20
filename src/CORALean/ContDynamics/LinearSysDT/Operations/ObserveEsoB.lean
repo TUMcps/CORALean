@@ -8,21 +8,29 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripLiu
 /-!
 # `LinearSysDT.observeEsoB`
 
-One step of CORA's ellipsoidal observer `ESO-B` (`priv_observe_ESO_B`), corrected so that it
-encloses the true state (`LinearSysDT.observeEsoB_outer`), on `E(Q, c)` at the level `1`:
+CORA's ellipsoidal observer `ESO-B` (`priv_observe_ESO_B`) for one step, corrected so that it
+encloses the true state (`LinearSysDT.observeEsoB_outer`), on `E(Q, c)` at the level `1`. The step
+is `post` (shape `A Q Aᵀ`, center `A c + B u + c_sys`), the prediction
+`Q_next = (1 - p)⁻¹ A Q Aᵀ + p⁻¹ W` at any `p ∈ (0, 1)` where the code has `(σ² p)⁻¹ W` (Eq. 21 of
+Liu, Zhao and Wu, IET Control Theory & Applications, 2016), then, when the trigger
+`σ²_prev + δᵀδ > 1` fires, the corrected update `Ellipsoid.intersectStripLiu` (Thm. 3) at the
+level `1` of the predicted set, where the code passes its `sigma_sq`, otherwise the prediction
+unchanged. `LinearSysDT.observeEsoB1D` is the step as the code computes it, with its counterexample.
 
-* `post`: the shape `A Q Aᵀ` and the center `A c + B u + c_sys` (`B` and the offset `c_sys`
-  the system's, as CORA's `post` adds them; `C` too is the system's);
-* the prediction `Q_next = (1 - p)⁻¹ A Q Aᵀ + p⁻¹ W` at any `p ∈ (0, 1)`, where the code has
-  `(σ² p)⁻¹ W`, the prediction of the level-`σ²` set (Eq. 21 of Liu, Zhao and Wu, IET Control
-  Theory & Applications, 2016); CORA's `p = √tr W / (√tr(σ² A Q Aᵀ) + √tr W)` (Eq. 48) is one
-  choice;
-* the code's trigger `σ²_prev + δᵀδ > 1` and the corrected update `Ellipsoid.intersectStripLiu`
-  (Thm. 3) with the measurement noise `E(0, V)`, at the level `1` of the predicted set where the
-  code passes its `sigma_sq` (`0.3` at the first step, which `R0` need not satisfy), at the weight
-  `λ` (CORA's from Thm. 3 is one choice); otherwise the prediction `E(Q_next, A c + u)` unchanged.
+## Inputs
+* `sys` – system
+* `W` – disturbance shape
+* `V` – noise shape
+* `p` – prediction weight
+* `lam` – update weight
+* `σsqPrev` – previous sigma squared
+* `u` – input at this step
+* `y` – measurement
+* `Q` – ellipsoid shape
+* `c` – ellipsoid center
 
-`LinearSysDT.observeEsoB1D` is the step as the code computes it, with its counterexample.
+## Output
+* the updated ellipsoid
 -/
 
 -- Authors:       Claude Opus 5.5

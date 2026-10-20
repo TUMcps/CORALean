@@ -10,6 +10,18 @@ public import CORALean.ContDynamics.NonlinearSys.Definitions.AdaptState
 `adaptInit`: the state [1, Alg. 2] needs before its first step, which [1]
 describes for `k = 1` in prose rather than in the algorithm.
 
+## Inputs
+* `T` – time type
+* `τ` – step size type
+* `X₀` – start set
+* `h₀` – initial horizon
+* `φ₀` – initial gain
+* `rabs₀` – initial abstraction radius
+* `κ₀` – initial order
+
+## Output
+* the adaptive loop state before the first step
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

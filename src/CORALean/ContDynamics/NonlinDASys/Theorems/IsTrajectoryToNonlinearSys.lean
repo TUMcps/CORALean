@@ -12,6 +12,23 @@ public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 `y_eq` puts `y t` at `h (x t) (u t)`, so `f` at the trajectory is the reduced field at it,
 and the other fields are unchanged. The integral equation reads `f` on the whole window from
 `0`, where `y_eq` holds only inside the time domain; on `[0, τ]` every such window is inside it.
+
+## Inputs
+* `sys` – system
+* `red` – reduced model
+* `τ` – horizon
+* `R₀` – initial set
+* `U` – input set
+* `x` – differential trajectory
+* `y` – algebraic trajectory
+* `u` – input signal
+* `z` – output signal
+
+## Hypotheses
+* `traj` – DAE trajectory
+
+## Conclusion
+* the run is a trajectory of the reduced system
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -15,6 +15,25 @@ holding on it proves safety and one violated on it proves nothing — the
 violation may sit entirely in the approximation error. A run is exact: one
 point genuinely reached, so a specification it violates is genuinely violated.
 Reachability and simulation answer opposite halves of the same question.
+
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial set
+* `U` – input set
+* `spec` – specification
+* `x₀` – initial state
+* `u` – inputs
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `hx₀` – start lies in `R₀`
+* `hu` – inputs lie in `U`
+* `hbad` – specification fails along the run
+
+## Conclusion
+* the specification does not hold on the reachable set
 -/
 
 -- Authors:       Claude Opus 5

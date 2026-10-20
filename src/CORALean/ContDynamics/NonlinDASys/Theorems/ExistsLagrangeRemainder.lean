@@ -13,20 +13,31 @@ public import Mathlib.Analysis.Convex.Segment
 # The first-order Taylor expansion with Lagrange remainder, one coordinate at a time
 
 [1, Eq. 8]: `fᵢ(z) ∈ fᵢ(z*) + ∂fᵢ/∂z|_{z*} (z - z*) ⊕ {½ (z - z*)ᵀ ∂²fᵢ/∂z²|_ξ (z - z*)}`, the
-remainder taken at some `ξ` on the segment from `z*` to `z` ("which follows from the mean
-value theorem"), and the same for `gⱼ`. Stated for one scalar function `F`, a coordinate
-`fᵢ` or `gⱼ`, with first derivative `Ff` and second derivative `Hf`; `Hf ξ ν ν` is the
-quadratic form `νᵀ H(ξ) ν` of the Hessian, whose entries are `Hf ξ eⱼ eₖ`.
+remainder taken at some `ξ` on the segment from `z*` to `z`, and the same for `gⱼ`. Stated for one
+scalar function `F`, with first derivative `Ff` and second derivative `Hf`; `Hf ξ ν ν` is the
+quadratic form `νᵀ H(ξ) ν` of the Hessian. `ξ` belongs to the coordinate: each `fᵢ` has its own,
+on the segment and so in `R^z` when `R^z` is convex, which is [1, Eq. 23]'s `Hᵈ⁽ⁱ⁾(ξ) ∈ Hᵈ⁽ⁱ⁾`
+row by row. [1, Eq. 10], [1, Eq. 11] and [1, Eq. 20] take one `ξ` for all coordinates at once,
+which fails (`SharedLagrangePoint`). The proof is the mean value theorem twice along
+`φ(s) = F(z* + s ν)`: Cauchy's form for `φ(s) - s φ'(0)`, then Lagrange's form for `φ'`.
 
-`ξ` belongs to the coordinate: each `fᵢ` has its own, on the segment and so in `R^z` when
-`R^z` is convex, which is [1, Eq. 23]'s `Hᵈ⁽ⁱ⁾(ξ) ∈ Hᵈ⁽ⁱ⁾` row by row. [1, Eq. 10], [1, Eq. 11]
-and [1, Eq. 20] take one `ξ` for all coordinates at once, which this does not give and which
-fails (`SharedLagrangePoint`).
+## Inputs
+* `C` – convex set
+* `F` – scalar function
+* `Ff` – first derivative
+* `Hf` – second derivative
+* `zs` – expansion point
+* `z` – point
 
-The proof is the mean value theorem twice along `φ(s) = F(z* + s ν)`: Cauchy's form for
-`φ(s) - s φ'(0)` against `s²` on `[0, 1]` gives `c` with `φ'(c) - φ'(0) = 2c (φ(1) - φ(0) - φ'(0))`,
-and Lagrange's form for `φ'` on `[0, c]` gives `d` with `φ'(c) - φ'(0) = c φ''(d)`; `ξ = z* + d ν`.
-The derivatives are two-sided at every point of the convex set `C` holding both ends.
+## Hypotheses
+* `hC` – the set is convex
+* `hF` – `Ff` is the derivative of `F`
+* `hH` – `Hf` is the derivative of `Ff`
+* `hzs` – expansion point lies in the set
+* `hz` – point lies in the set
+
+## Conclusion
+* some point on the segment gives the expansion with Lagrange remainder
 
 ## References
 

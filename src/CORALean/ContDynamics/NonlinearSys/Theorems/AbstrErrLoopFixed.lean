@@ -7,19 +7,23 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLoop
 /-!
 # What the abstraction error's loop reports is conservative
 
-The soundness of lines 8-11 of [1, Alg. 1], which are lines 7-10 of [2, Alg. 1]:
-an error the loop reports was computed from an applied error that contains it.
-That is line 11's exit condition read as sets, and it is what makes line 12's `abstrSol` an
-over-approximation — the sets `abstrErr` was evaluated against were at least as
-large as the error they turned out to induce.
+The soundness of lines 8-11 of [1, Alg. 1], which are lines 7-10 of [2, Alg. 1]: an error the
+loop reports was computed from an applied error that contains it. That is line 11's exit
+condition read as sets, and it is what makes line 12's `abstrSol` an over-approximation. One
+hypothesis, on the caller's check: `sub a b = true` implies `construct a ⊆ construct b`; nothing
+asks the converse, so a test that gives up early loses iterations and never reports a wrong
+error. The induction is on the loop's own fuel; nothing here needs the loop to terminate.
 
-One hypothesis, on the caller's check: `sub a b = true` implies
-`construct a ⊆ construct b`. Nothing asks the converse, so a test that gives up
-early loses iterations and never reports a wrong error, which is why the loop
-returns an `Option` rather than a value with a junk branch.
+## Inputs
+* `sub` – containment check
+* `enlarge` – enlargement of the error
+* `Φ` – error map
 
-The induction is on the loop's own fuel and the invariant is carried by the
-check alone; nothing here needs the loop to terminate.
+## Hypotheses
+* `hsub` – check implies containment
+
+## Conclusion
+* a reported error is contained in an applied error it came from
 
 ## References
 

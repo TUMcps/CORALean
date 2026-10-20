@@ -11,6 +11,21 @@ public import CORALean.ContDynamics.NonlinDASys.Theorems.NewtonIterateSpec
 The returned `y'` is `y + Δy` for an iterate `y`, where `Δy` has norm below `tol`, the code's own
 stopping test, and, when `F` is invertible there, solves `F Δy = -g(x₀, y, u₀)`: a Newton step.
 The test is on the step, not the residual, so `g(x₀, y', u₀) = 0` is not claimed.
+
+## Inputs
+* `sys` – system
+* `F` – Jacobian block of the constraint
+* `tol` – step tolerance
+* `fuel` – iteration bound
+* `x₀` – initial differential state
+* `u₀` – initial input
+* `y₀` – initial guess
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is a Newton step of norm below the tolerance from some iterate
 -/
 
 -- Authors:       Claude Opus 5.5

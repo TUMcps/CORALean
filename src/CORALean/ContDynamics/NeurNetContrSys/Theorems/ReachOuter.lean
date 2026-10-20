@@ -17,15 +17,39 @@ public import CORALean.ContSet.ContSet.Definitions.ConvexSet
 
 [1, Alg. 2] at a linear plant: `reachWith_timePoint_outer` at the plant's own reachability. A
 control period is a run of the plant under the held input (`IsTrajectory.flow`), at a linear plant
-whose disturbance `E` sends to `0` one of the augmented system `[A B; 0 0]`, `[c; 0]` under the
-constant input `[c; 0]` (`augment_flow`), handed to `reach_outer_horizon_inputSolution` for `N`
-steps; `cartProd_outer` and `project_outer` are the product and the projection. The horizon is
-exactly the period, `Set.Icc 0 (N Δt)`, and the order is admissible for the augmented matrix. Period
-boundaries only: between them `reach` says nothing, and the network is not invoked either.
+whose disturbance `E` sends to `0` one of the augmented system under the constant input
+(`augment_flow`), handed to `reach_outer_horizon_inputSolution` for `N` steps; `cartProd_outer` and
+`project_outer` are the product and the projection. The horizon is exactly the period,
+`Set.Icc 0 (N Δt)`, and the order is admissible for the augmented matrix. Period boundaries only:
+between them `reach` says nothing. Stated at a convex, compact representation, which makes
+`inputSolution`'s six topological hypotheses instances; `reachSetExact_subset_reach` restates it.
 
-Stated at a convex, compact representation, which is what makes `inputSolution`'s six topological
-hypotheses instances rather than arguments; `reachSetExact_subset_reach` restates it on the
-reachable set.
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input set
+* `o` – maximum zonotope order
+* `η` – Taylor order
+* `N` – steps per period
+* `Δt` – step size
+* `H` – number of periods
+* `R₀` – initial set
+* `π` – controller function
+* `W` – disturbance set
+* `x` – plant states
+* `v` – external input signal
+* `w` – disturbance signal
+
+## Hypotheses
+* `ho` – order positive
+* `hΔt` – step positive
+* `hdt` – the period is `N` steps
+* `hε` – order admissible
+* `hπ` – the network encloses `π`
+* `hW` – disturbances sent to zero by the disturbance matrix
+* `traj` – closed-loop trajectory
+
+## Conclusion
+* the state at every period boundary lies in the reachable set
 
 ## References
 

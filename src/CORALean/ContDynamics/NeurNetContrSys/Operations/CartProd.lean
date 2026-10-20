@@ -15,6 +15,13 @@ CORA's `aux_appendU2X` also shares `X`'s generators with `U`'s first ones, which
 dependence of the input on the state; that is sound only for an image that keeps them, which
 `NeuralNetwork.enclose` does not promise, so the product here is the plain one (`cartProd_outer`).
 
+## Inputs
+* `X` – state set
+* `Y` – network output set
+
+## Output
+* the set stacking a state and a network output
+
 ## References
 
 * [1] N. Kochdumper et al. "Open- and Closed-Loop Neural Network Verification

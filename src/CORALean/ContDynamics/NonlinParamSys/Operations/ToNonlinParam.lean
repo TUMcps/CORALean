@@ -13,6 +13,12 @@ public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 development standing — the conversion belongs to the more general
 representation. The guarantee that trajectories agree is
 `TrajectoryToNonlinParam.lean`.
+
+## Inputs
+* `sys` – nonlinear system
+
+## Output
+* the parametric system that ignores its parameter
 -/
 
 -- Authors:       Claude Opus 5

@@ -18,6 +18,19 @@ without touching `k`. At `k = 0` the set is `R₀` itself, the caller's, so ther
 is nothing to bound.
 
 No induction: the bound is a fact about the last step alone, not about the run.
+
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* the reachable set has at most `o * n` generators
 -/
 
 -- Authors:       Claude Opus 5

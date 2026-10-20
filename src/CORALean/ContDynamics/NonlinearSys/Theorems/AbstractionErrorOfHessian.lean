@@ -12,22 +12,41 @@ public import Mathlib.Topology.Algebra.Module.ModuleTopology
 /-!
 # A twice-differentiable field supplies its own certificate
 
-[1, Prop. 1], and the one place in the directory where `f` is differentiated:
-`abstrErrLin` is an `AbstractionError` once `A` and `B` really are the derivative
-at `(xs, us)` and `H` really bounds the second derivative. No theorem that
-*spends* a certificate imports it, so `AbstractionError` and the reachability
-chain built on it stay derivative-free: a caller holding a bound from elsewhere
-never meets any of this.
+[1, Prop. 1], and the one place in the directory where `f` is differentiated: `abstrErrLin` is
+an `AbstractionError` once `A` and `B` really are the derivative at `(xs, us)` and `H` really
+bounds the second derivative. No theorem that *spends* a certificate imports it, so the
+reachability chain built on it stays derivative-free. `C` carries the regularity the proposition
+leaves implicit: an open convex neighbourhood of `Z` and `zs` ([1, Eq. 2]). `hA` pins `Ff`
+at `zs`, making `A` and `B` the Jacobian blocks. The parameter box `P` has no counterpart.
 
-`C` carries the regularity the printed proposition leaves implicit: the two
-`HasFDerivAt` hypotheses are two-sided at every point of it, so `C` is read as an
-open convex neighbourhood of `Z` and of the expansion point, and the segment
-`Z ∪ {zs}` spans lies inside it, the segment of `ξ(z, z✱)` in [1, Eq. 2]'s remainder.
+## Inputs
+* `f` – field
+* `A` – state Jacobian
+* `B` – input Jacobian
+* `xs` – state expansion point
+* `us` – input expansion point
+* `R` – state region
+* `U` – input region
+* `F` – stacked field
+* `C` – neighbourhood
+* `Z` – zonotope of states and inputs
+* `Ff` – first derivative
+* `Hf` – second derivative
+* `H` – second-derivative bounds
 
-`hA` pins `Ff i zs` on every stacked vector, which is what makes `A` and `B` the
-Jacobian blocks rather than merely one pair among many. The parameter box `P` of
-the proposition has no counterpart: `AbstractionError` carries no parameters, so
-the bound is over states and inputs alone.
+## Hypotheses
+* `hf` – stacked field agrees with field
+* `hC` – neighbourhood convex
+* `hzs` – expansion point in neighbourhood
+* `hZC` – zonotope in neighbourhood
+* `hZ` – zonotope covers regions
+* `hF` – first derivative exists
+* `hH` – second derivative exists
+* `hHb` – second derivative bounded
+* `hA` – first derivative gives matrices
+
+## Conclusion
+* the Hessian error box is a valid abstraction error
 
 ## References
 

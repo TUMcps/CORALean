@@ -7,17 +7,21 @@ public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 /-!
 # The set a discrete run actually reaches
 
-What `reach` encloses, written out: one linear image and one Minkowski sum per
-step, both Mathlib's, so this names no operation class and no representation
-computes it. That is what it is for. A support bound travels *down* an
-inclusion, and every guarantee the operation classes give points the other way
-— `plus_outer`, `mtimes_outer` and `reduce_outer` all say the computed set is
-the *larger* one — so a bound on `R₀` and one on `U` cannot bound
-`construct (reach ...)` at all. They bound this instead, which is the set a
-specification is about.
+What `reach` encloses, written out: one linear image and one Minkowski sum per step, both
+Mathlib's, so this names no operation class and no representation computes it. A support bound
+travels *down* an inclusion, and every guarantee the operation classes give points the other way
+— `plus_outer`, `mtimes_outer` and `reduce_outer` all say the computed set is the *larger* one —
+so a bound on `R₀` and one on `U` cannot bound `construct (reach ...)`. They bound this instead,
+the set a specification is about. `Theorems.ReachSetExactOuter` puts every trajectory into it,
+`ReachSetExactSubsetReach` puts it inside `reach`, and `ReachSetBound` propagates a bound along it.
 
-`Theorems.ReachSetExactOuter` puts every trajectory into it, `ReachSetExactSubsetReach`
-puts it inside `reach`, and `ReachSetBound` propagates a bound along it.
+## Inputs
+* `sys` – system
+* `R₀` – initial set
+* `U` – input set
+
+## Output
+* the states reachable in exactly `k` steps, by step count
 -/
 
 -- Authors:       Claude Sonnet 5

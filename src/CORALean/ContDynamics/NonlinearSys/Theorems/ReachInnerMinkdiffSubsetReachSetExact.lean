@@ -8,20 +8,35 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachInnerRtiSubset
 /-!
 # CORA's `'minkdiff'` inner reachability: every cell is an inner approximation
 
-`reachInnerMinkdiff`, CORA's `nonlinearSys/reachInner` with `'minkdiff'` as CORALean computes
-it: every time-point cell `k` lies in the reachable set `R(k Δt)`, every time-interval cell `k`
-in `R([k Δt, (k+1) Δt]) = ⋃_t R(t)` [1, Def. 1], and the cells past the horizon are empty. The
-induction is over the steps: the start of step `k` lies in `R(k Δt)`, its `Rtp` in
-`R((k+1) Δt)` (`linReachInner_subset_reachSetExact`, then `reachSetExact_subset_reachSetExact_add`)
-and its `Rti` in `R([k Δt, (k+1) Δt])` (`linReachInner_Rti_subset_reachSetExact`); `R0` is reached
-at `0`.
+`reachInnerMinkdiff`, CORA's `nonlinearSys/reachInner` with `'minkdiff'`: every time-point cell
+`k` lies in the reachable set `R(k Δt)`, every time-interval cell `k` in `R([k Δt, (k+1) Δt])`
+[1, Def. 1], and the cells past the horizon are empty. The induction is over the steps: the
+start of step `k` lies in `R(k Δt)`, its `Rtp` in `R((k+1) Δt)`
+(`linReachInner_subset_reachSetExact`) and its `Rti` in `R([k Δt, (k+1) Δt])`
+(`linReachInner_Rti_subset_reachSetExact`). Each step needs [1, Prop. 1]'s hypotheses
+(`IsLinReachInnerCert`), certified by `IsLinReachInnerCert.of_abstractionError`. Runs are under
+the constant input `u₀` (CORA's `params.u`), so under any `U ∋ u₀`.
 
-What each step needs is [1, Prop. 1]'s hypotheses (`IsLinReachInnerCert`), asked for every step
-started from reachable states: the solutions exist, (21), which the abstraction error loop
-certifies (`IsLinReachInnerCert.of_abstractionError`), and `Rerror` convex, compact, nonempty and
-symmetric about the origin.
+## Inputs
+* `ops` – set operations
+* `sys` – system
+* `u₀` – constant input
+* `U` – input set
+* `Δt` – step size
+* `steps` – number of steps
+* `fuel` – bound per error loop
+* `X₀` – initial set
+* `timePoint` – time-point cells
+* `timeInt` – time-interval cells
 
-Runs are under the constant input `u₀` (CORA's `params.u`), so under any `U ∋ u₀`.
+## Hypotheses
+* `hu₀` – input in input set
+* `hΔt` – step size nonnegative
+* `hcert` – every step has its certificate
+* `h` – reachability returned these cells
+
+## Conclusion
+* each cell lies in the reachable set at its time
 
 ## References
 

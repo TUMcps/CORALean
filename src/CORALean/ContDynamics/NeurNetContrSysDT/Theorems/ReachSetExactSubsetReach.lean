@@ -16,6 +16,23 @@ At every `k`, unlike `NeurNetContrSys`: one plant step and one controller
 invocation coincide here, with no period between them for `reachSetExact` and
 `reach` to fall silent over — the gap that theorem's docstring names does not
 arise in the purely discrete loop.
+
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input set
+* `o` – maximum zonotope order
+* `R₀` – initial set
+* `π` – controller function
+* `W` – disturbance set
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `hπ` – the network encloses `π`
+* `hW` – disturbances sent to zero by the disturbance matrix
+
+## Conclusion
+* the exact reachable set lies in the computed one
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5

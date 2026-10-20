@@ -13,6 +13,15 @@ The constraint (19c)-(19e), or (20c)-(20e), of one data point, with its `βₘ` 
 which is what makes (19) and (20) convex scenario programs in `α` ([1, Sec. 5.2]); the
 probability bounds (8) and (9) applied to them are scenario theory's, not formalized here.
 
+## Inputs
+* `C` – convex set of coefficient vectors
+
+## Hypotheses
+* `hC` – `C` is convex
+
+## Conclusion
+* the stretch factors fitting under `C` form a convex set
+
 ## References
 
 * [1] L. Lützow, M. Eichelbeck, M. J. Kochenderfer and M. Althoff. "Zono-Conformal

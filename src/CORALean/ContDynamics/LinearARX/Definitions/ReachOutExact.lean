@@ -11,6 +11,15 @@ public import CORALean.ContDynamics.LinearARX.LinearARX
 `ỹ_init` under inputs `ũ(i) ∈ Ũ(i)` (Problem statement, Sec. II-E). The inputs are one
 signal for all time, which is what makes `Y(k)` and `Y(k+1)` dependent.
 
+## Inputs
+* `sys` – ARX system
+* `y₀` – measured first output window
+* `U` – input sets per step
+* `k` – step
+
+## Output
+* the outputs some run reaches at step `k`
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

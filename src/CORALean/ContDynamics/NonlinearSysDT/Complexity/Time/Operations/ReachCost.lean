@@ -12,19 +12,25 @@ public import CORALean.ContSet.Conversion.Real.Instances
 /-!
 # `NonlinearSysDT.reachCost`
 
-What running `reach` costs, assembled, and assembled out of a *whole
-algorithm's* cost rather than out of leaf counts: `Operations.lean` runs one
-step of `LinearSysDT.reach` per linearization, so one step here is
-`LinearSysDT.reachCost` at `k = 1` and this file reads nothing else off.
+What running `reach` costs, assembled out of a *whole algorithm's* cost rather than leaf
+counts: `Operations.lean` runs one step of `LinearSysDT.reach` per linearization, so one step
+here is `LinearSysDT.reachCost` at `k = 1`. The only reading done is of `reach`'s own
+definition, one call per step with no arithmetic of its own, and the recursion mirrors it. The
+linearization is a matrix the caller supplies, so nothing is charged for producing it. At `𝒵`
+and `𝕋 = ℝ`, where `LinearSysDT`'s own count is stated.
 
-The only reading done is of `reach`'s own definition — one call per step, no
-arithmetic of its own — and the recursion mirrors it line for line. The
-linearization is a matrix the caller supplies, not one this operation computes,
-so nothing is charged for producing it; a caller who computes a Jacobian pays
-for that where it is computed.
+## Inputs
+* `sys` – system
+* `U` – input zonotope
+* `o` – maximum order
+* `steps` – linearization steps
+* `R₀` – initial zonotope
 
-At `𝒵` and `𝕋 = ℝ`, where `LinearSysDT`'s own count is stated, and for the same
-reason: `plus` and `reduce` cost what a representation makes them cost.
+## Hypotheses
+* `ho` – order positive
+
+## Output
+* the cost of the given number of steps
 -/
 
 -- Authors:       Claude Opus 5

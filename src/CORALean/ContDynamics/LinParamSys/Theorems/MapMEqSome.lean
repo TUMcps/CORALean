@@ -9,6 +9,17 @@ public import Mathlib.Data.Nat.Notation
 
 The windows `reachFloat` and its input variants return come from a `mapM` over
 `List.range N`; this reads off the length and each entry's own computation.
+
+## Inputs
+* `α` – element type
+* `β` – result type
+* `f` – partial function
+
+## Hypotheses
+* none
+
+## Conclusion
+* a successful `mapM` has one result per entry
 -/
 
 -- Authors:       Claude Sonnet 5.5

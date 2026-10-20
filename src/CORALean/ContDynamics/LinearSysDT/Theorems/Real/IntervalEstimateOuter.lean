@@ -17,6 +17,29 @@ observer [1, Eq. 10] from `x̂_0 = p₀`, its error lies in `Ω_k`
 (`luenbergerError_mem_reachErrorSet`), and `Ω_k` in the error box
 (`intervalEstimate_error_eq_hull`).
 
+## Inputs
+* `sys` – system
+* `L` – observer gain
+* `X₀` – initial zonotope
+* `W` – disturbance zonotope
+* `V` – noise zonotope
+* `u` – inputs
+* `y` – measurements
+* `x` – true states
+* `w` – true disturbances
+* `v` – true noise
+* `k` – step
+
+## Hypotheses
+* `h0` – start lies in `X₀`
+* `hw` – disturbances lie in `W`
+* `hv` – noise lies in `V`
+* `hstep` – the dynamics hold
+* `hy` – the measurements follow the outputs
+
+## Conclusion
+* the true state lies in the estimator's box
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

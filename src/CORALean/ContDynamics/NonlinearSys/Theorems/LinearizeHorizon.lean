@@ -13,6 +13,31 @@ The one-step statement: confinement on `[0, τ]` alone yields a linear run on
 than the step costs nothing, `restrict` throwing the rest away. `hR` is asked
 for on `[0, τ]` and nowhere else, which is what lets `reach_outer_horizon`
 answer for a bounded horizon without a total run.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+* `A` – state Jacobian
+* `B` – input Jacobian
+* `xs` – state expansion point
+* `us` – input expansion point
+* `R` – state region
+* `L` – remainder set
+* `τ` – step length
+* `y` – output trajectory
+* `cert` – abstraction-error certificate
+
+## Hypotheses
+* `traj` – trajectory of the system
+* `hT` – step inside time set
+* `hR` – trajectory stays in region over step
+
+## Conclusion
+* confinement over one step gives a linear trajectory on that step
 -/
 
 -- Authors:       Claude Opus 5

@@ -18,6 +18,16 @@ term: `B ⊗ U∆`, and half the sum of the three quadratic pairings, `quadMapMi
 `quadMap` once. The halving is `mtimes` by `½ I`, which is exact in a binary format and so costs
 the error box nothing it does not already carry.
 
+## Inputs
+* `B` – input matrix
+* `D` – Hessian family
+* `Rz` – state-input range
+* `RzΔ` – varying state-input range
+* `UΔ` – varying input range
+
+## Output
+* the float polynomial zonotope enclosing the varying input part
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative

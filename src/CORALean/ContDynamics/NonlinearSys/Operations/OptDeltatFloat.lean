@@ -16,6 +16,21 @@ public import CORALean.Global.Float.ToRat
 statement reads it, so every rounding is upward and no theorem is owed. What a run guarantees
 holds for whatever this returns. See [1].
 
+## Inputs
+* `prec` – precision
+* `bis` – bisection depth
+* `ζδ` – limit gain
+* `ζZ` – start-set constant
+* `ζA` – matrix constant
+* `φ1` – gain at the horizon
+* `r₀` – initial radius
+* `rabs` – abstraction radius
+* `h` – finite horizon
+* `fuel` – bound for the search
+
+## Output
+* the float step size and its scaling index
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

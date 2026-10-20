@@ -20,6 +20,23 @@ that of `ΦⁱU`. If `Φ` is invertible, `x₀ = Φ^{-N}(u^N + Σⱼ αⱼg^N_j)
 because the under-approximation lies in `ΦᵏU` (`Zonotope.underS_subset`), the image of `U`;
 and the run sums the `N + 1` points back into `y`, the same `α` throughout.
 
+## Inputs
+* `sys` – system
+* `Ω₀` – initial zonotope
+* `U` – input zonotope
+* `s` – support directions
+* `N` – number of steps
+* `α` – coefficients
+* `y` – target point
+
+## Hypotheses
+* `hΦ` – state matrix invertible
+* `hα` – coefficients sum to at most one in absolute value
+* `hy` – `y` is the point of the under-approximation built from `α`
+
+## Conclusion
+* the printed initial state and inputs steer the run to `y`
+
 ## References
 
 * [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of

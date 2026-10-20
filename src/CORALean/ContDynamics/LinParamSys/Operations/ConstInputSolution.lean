@@ -16,6 +16,15 @@ taking the place of a plain `Mtimes`, widened by the box's own interpolation err
 `intervalConstCorrectionMatrix` in place of the point one. That input correction matrix is not in
 a paper; CORA's `priv_inputTie` [2]. `expIntegral_mem_constInputSolution` is the guarantee.
 
+## Inputs
+* `sys` – system
+* `r` – step size
+* `η` – Taylor order
+* `uc` – constant input
+
+## Output
+* what the constant input contributes at every time of the step
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

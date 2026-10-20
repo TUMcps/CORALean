@@ -12,6 +12,22 @@ that is reachset conformant on the test suite passes: contrapositively, a measur
 computed set proves the system is not conformant (CORA's `res = false`). The converse is false:
 `R` is an outer set, so passing shows only that each measurement lies in an enclosure, not in the
 reachable set itself.
+
+## Inputs
+* `sys` – plant
+* `X0` – initial uncertainty set
+* `W` – disturbance set
+* `V` – noise set
+* `T` – test cases
+* `K` – horizon
+* `R` – computed reachable sets
+
+## Hypotheses
+* `hR` – computed sets enclose the reachable outputs
+* `hconf` – the system is conformant
+
+## Conclusion
+* the brute-force check passes
 -/
 
 -- Authors:       Claude Sonnet 5.5

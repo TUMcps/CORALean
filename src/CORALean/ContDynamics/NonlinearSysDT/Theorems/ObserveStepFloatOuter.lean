@@ -18,6 +18,31 @@ returns, whatever the gain. The prediction is `NonlinearSysDT.reach`'s step
 (`reach_one_outer` on the widened input); an outer statement, the strips read as real numbers at
 the stored values.
 
+## Inputs
+* `sys` – system
+* `U` – input zonotope
+* `step` – linearization step
+* `o` – maximum order
+* `C` – output matrix
+* `σ` – strip half-widths
+* `W` – disturbance zonotope
+* `options` – observer options
+* `y` – measurement
+* `Xhat` – set before the measurement
+* `x` – state
+* `u` – admissible input
+* `w` – disturbance
+
+## Hypotheses
+* `hx` – state in prior set
+* `hR` – state in the step's region
+* `hu` – input in input set
+* `hw` – disturbance in disturbance set
+* `hy` – output meets the strip
+
+## Conclusion
+* the next state lies in the observer's new set
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state

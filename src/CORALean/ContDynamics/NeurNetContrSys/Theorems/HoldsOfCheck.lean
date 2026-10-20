@@ -12,6 +12,36 @@ public import CORALean.Specification.Theorems.CheckSound
 set `reach` computed, through the pair's `Contains` or `IsDisjoint`: a `true`, found by
 evaluation, is the specification on the exact state, with nothing left to prove by hand.
 At the period boundaries, since that is where `reach` has anything to say.
+
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input set
+* `o` – maximum zonotope order
+* `η` – Taylor order
+* `N` – steps per period
+* `Δt` – step size
+* `H` – number of periods
+* `R₀` – initial set
+* `π` – controller function
+* `W` – disturbance set
+* `x` – plant states
+* `v` – external input signal
+* `w` – disturbance signal
+* `spec` – specification
+* `i` – period index
+
+## Hypotheses
+* `ho` – order positive
+* `hΔt` – step positive
+* `hdt` – the period is `N` steps
+* `hε` – order admissible
+* `hπ` – the network encloses `π`
+* `hW` – disturbances sent to zero by the disturbance matrix
+* `traj` – closed-loop trajectory
+* `hi` – period index within the horizon
+
+## Conclusion
+* a passed check on the reachable set implies the specification at the period boundary
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

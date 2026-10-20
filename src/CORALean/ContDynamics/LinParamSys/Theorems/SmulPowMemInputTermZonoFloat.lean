@@ -12,6 +12,19 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MatSmulOuter
 
 `matPow_outer` places the member's power, `smul_outer` scales it by the bracketed
 coefficient `taylorCoeffBounds_mem` supplies.
+
+## Inputs
+* `sys` – system
+* `r` – step size
+* `A` – system matrix member
+* `i` – order
+
+## Hypotheses
+* `hr` – step nonnegative
+* `hA` – `A` lies in the matrix zonotope
+
+## Conclusion
+* the member's scaled power lies in the input term zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,6 +16,20 @@ recursion `eAt Σ eAtᵀ + Σ₁` is exact. Only the covariance: the sets `Rhom`
 (`references/coverage/contDynamics/linProbSys.md`, row `initReach`); `LinProbSys.initReach`, sign
 corrected, meets both hypotheses (`initReach_cov`). The recursion is that of [1, Sec. II].
 
+## Inputs
+* `sys` – system
+* `Δt` – step size
+* `T` – accumulated time
+* `pRinput` – probabilistic input solution
+* `st` – post state
+
+## Hypotheses
+* `hst` – state covariance is the noise covariance over `T`
+* `hp` – input covariance is the noise covariance over `Δt`
+
+## Conclusion
+* the new covariances are the noise covariance over `Δt + T`
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

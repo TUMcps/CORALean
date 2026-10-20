@@ -13,6 +13,21 @@ CORA's `steadyState`: Newton's method on `(f, g)(x, y, u₀) = 0` in `(x, y)`, t
 `M \ (-[k; l])` with `M = [[A, C], [D, F]]` the Jacobian blocks `∂f/∂x, ∂f/∂y, ∂g/∂x, ∂g/∂y`,
 until the step has 2-norm below `1e-10`. The blocks are parameters, as in `consistentInitialState`,
 the state stacked as `Fin n ⊕ Fin p → ℝ`, and the iteration takes a `fuel`.
+
+## Inputs
+* `sys` – system
+* `A` – Jacobian block function in the state
+* `C` – dynamics Jacobian block function in the algebraic variable
+* `D` – constraint Jacobian block function in the state
+* `F` – constraint Jacobian block function in the algebraic variable
+* `tol` – step tolerance
+* `fuel` – iteration bound
+* `x₀` – initial differential state
+* `y₀` – initial algebraic guess
+* `u₀` – fixed input
+
+## Output
+* the steady state, or none
 -/
 
 -- Authors:       Claude Opus 5.5

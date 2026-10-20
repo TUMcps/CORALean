@@ -8,15 +8,29 @@ public import CORALean.ContDynamics.OutputEq.Theorems.OutputSetOuter
 /-!
 # The output of a discrete run lies in the output set of its reachable set
 
-The two enclosures a run already carries, joined: `reach_outer` places the state
-at step `k` in the reachable set, and `IsTrajectory.input` places the input at
-that step in `U`, which is exactly the pair `outputSet_outer` asks for.
+The two enclosures a run already carries, joined: `reach_outer` places the state at step `k` in the
+reachable set, and `IsTrajectory.input` places the input at that step in `U`, which is exactly the
+pair `outputSet_outer` asks for. `U` appears twice in the conclusion, as the set the step was taken
+with and as the set the output is read at; that is the same set by definition here, and why an
+output equation stored on the system would be wrong for a *sampled* system, where the two sets come
+apart.
 
-`U` appears twice in the conclusion, as the set the step was taken with and as
-the set the output is read at. That is the same set by definition here — a
-`LinearSysDT.IsCanonicalTrajectory` draws every step's input from one `U` — and it is why
-an output equation stored on the system would be wrong for a *sampled* system,
-where the two sets come apart.
+## Inputs
+* `sys` – system
+* `out` – output equation
+* `o` – maximum zonotope order
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `traj` – discrete-time trajectory
+
+## Conclusion
+* the run's output lies in the output set of the reachable set
 -/
 
 -- Authors:       Claude Opus 5

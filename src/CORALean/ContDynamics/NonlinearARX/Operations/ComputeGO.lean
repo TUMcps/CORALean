@@ -20,6 +20,14 @@ system, whose products `A_tilde{k} ... A_tilde{k-j}` are the recursion
 Step `k` here is the window `stack y k`, CORA's step `k + p`; the first `p` outputs are the
 window `x0` itself and need no linearization, which is CORA's `C{k}`, `D{k,·}` for `k ≤ n_p`.
 
+## Inputs
+* `sys` – ARX system
+* `x0` – initial window
+* `u_ref` – reference inputs
+
+## Output
+* the GO parameters along the reference run
+
 ## References
 
 * [1] `contDynamics/@nonlinearARX/computeGO.m`

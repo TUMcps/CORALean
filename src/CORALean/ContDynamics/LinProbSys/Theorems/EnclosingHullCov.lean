@@ -13,6 +13,21 @@ that of `ℛ̂([0,r])`: the first interval's noise enters only through the γ-co
 a set of covariance `0`, and each later step adds `Σ_s(r)`, which `noiseCovariance_add` sums to
 `Σ_s(kr)`. This presumes `ℛ̲(r)` has the covariance `Σ_s(r)` of `[1, Sec. II]`.
 
+## Inputs
+* `sys` – system
+* `r` – step size
+* `Rhat` – hull of the first interval
+* `Rbar` – deterministic hull of one step
+* `Runder` – probabilistic part of one step
+* `γ` – confidence level
+* `k` – number of iterations
+
+## Hypotheses
+* `hcov` – `Runder` carries the one-step noise covariance
+
+## Conclusion
+* the hull's covariance is the propagated first covariance plus accumulated noise
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

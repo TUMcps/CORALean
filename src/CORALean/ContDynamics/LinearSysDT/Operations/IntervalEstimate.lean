@@ -12,6 +12,19 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 `[e̲_k, e̅_k] = Box(S_x) ⊕ S_w ⊕ S_v`, the state of `intervalEstimateState`. The box of `S_x`
 is `Zonotope.interval`, exact by [1, Property 4] (`Zonotope.interval_eq_hull`).
 
+## Inputs
+* `sys` – system
+* `L` – observer gain
+* `X₀` – initial zonotope
+* `W` – disturbance zonotope
+* `V` – noise zonotope
+* `u` – inputs
+* `y` – measurements
+* `k` – step
+
+## Output
+* the interval estimate of the state after `k` steps
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

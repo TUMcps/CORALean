@@ -12,6 +12,28 @@ the recursion of `ofObserver` from `k = p` on, once `(A + MC)^p = 0`. [1] cites 
 (Phan et al. 1993); here it is the observer form `x(k+1) = F x(k) + (B̃ + MD̃) ũ(k) - M y(k)`,
 `F = A + MC`, unrolled `p` times, `F^p x(k-p)` vanishing.
 
+## Inputs
+* `p` – number of lags
+* `A` – state matrix
+* `Bu` – input matrix
+* `C` – output matrix
+* `Du` – feedthrough matrix
+* `M` – deadbeat observer gain
+* `dt` – sampling time
+* `x` – states
+* `u` – inputs
+* `y` – outputs
+* `k` – step
+
+## Hypotheses
+* `hM` – the observer matrix power vanishes
+* `hx` – state recursion holds
+* `hy` – output equation holds
+* `hk` – step at least the number of lags
+
+## Conclusion
+* the output satisfies the ARMAX recursion
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

@@ -8,17 +8,13 @@ public import CORALean.ContSet.Interval.Float.Operations.Point
 /-!
 # What a float run is told about the field's second derivative
 
-A `FloatModel` with one more interval extension: of the Hessian of each component
-`fᵢ` in the stacked `z = (x, u)`, over a box `X × U` — CORA's `sys.hessian(totalInt_x,
-totalInt_u)`. The `FloatModel` remainder is first order; this is what CORA's `'lin'`
-bound (`priv_abstrerr_lin`) and the polynomialization [1] spend instead.
-
-`Encloses` asks the second-order expansion with a Lagrange remainder, read so that
-no derivative of `f` appears: at any expansion point `z✱` of the box, the Jacobian
-there lies in the model's box at the point, and what is left of `f(z)` is
-`½ (z - z✱)ᵀ Hᵢ (z - z✱)` per component for some `Hᵢ` in the Hessian box. Taylor's
-theorem on the segment gives it for a `C²` field over a convex box, and for a
-polynomial field it is algebra.
+A `FloatModel` with one more interval extension: of the Hessian of each component `fᵢ` in the
+stacked `z = (x, u)`, over a box `X × U`, CORA's `sys.hessian`. The `FloatModel` remainder is
+first order; this is what CORA's `'lin'` bound (`priv_abstrerr_lin`) and the polynomialization
+[1] spend instead. `Encloses` asks the second-order expansion with a Lagrange remainder, read so
+that no derivative of `f` appears: at any expansion point `z✱` of the box, the Jacobian there
+lies in the model's box, and what is left of `f(z)` is `½ (z - z✱)ᵀ Hᵢ (z - z✱)` per component
+for some `Hᵢ` in the Hessian box. Taylor's theorem gives it for a `C²` field over a convex box.
 
 ## References
 

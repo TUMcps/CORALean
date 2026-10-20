@@ -20,6 +20,21 @@ refuses an output that is not linear), the strips met together or one at a time 
 say. `U` is the input set the certificate is issued for (`params.U` with the known input
 `uTrans` already added). Soundness is `observeStepFloat_outer`.
 
+## Inputs
+* `sys` – system
+* `U` – input zonotope
+* `step` – linearization step
+* `o` – maximum order
+* `C` – output matrix
+* `σ` – strip half-widths
+* `W` – disturbance zonotope
+* `options` – observer options
+* `y` – measurement
+* `Xhat` – set before the measurement
+
+## Output
+* the set held after the measurement
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state

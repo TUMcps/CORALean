@@ -19,6 +19,15 @@ interval matrices of `fm` and `om` over that box and the point box of `u_ref`, a
 are `Interval.descProd` and `Interval.matMul`, so every entry is rounded outward. `fm` models the
 field, `om` the output equation `out_mFile`. Soundness is `computeGOFloat_outer`.
 
+## Inputs
+* `fm` – float field model
+* `om` – float output model
+* `x0` – initial point
+* `u_ref` – reference input
+
+## Output
+* interval enclosures of the parameters along the reference run
+
 ## References
 
 * [1] `contDynamics/@nonlinearSysDT/computeGO.m`

@@ -11,6 +11,14 @@ public import CORALean.ContSet.SetUnion.SetUnion
 The steps `0` through `K = tFinal - tStart` of `reach`, one per branch of the
 `SetUnion` — the `Reach.reach` field of the instance, computable wherever `reach`
 is.
+
+## Inputs
+* `sys` – system
+* `params` – reachability parameters with inputs
+* `options` – reachability options
+
+## Output
+* the reachable sets of all steps up to the final one, as a union
 -/
 
 -- Authors:       Claude Sonnet 5

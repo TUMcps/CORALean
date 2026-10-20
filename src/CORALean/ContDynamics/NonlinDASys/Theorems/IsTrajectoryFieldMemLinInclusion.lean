@@ -7,19 +7,45 @@ public import CORALean.ContDynamics.NonlinDASys.Theorems.MemLinInclusion
 /-!
 # A run of the DAE solves the abstracting inclusion
 
-[1, Prop. 1]: if `L̄ ⊇ L`, the solution of the original dynamics is enclosed by the solution
-of the abstracting differential inclusion `˙x̃ ∈ Ã x̃ ⊕ w ⊕ B̃ (U ⊕ (-u*)) ⊕ L̄`. Read as: a
-run `(x, y, u)` of the system on `τ` has, at every time of `τ`, its field `f(x(t), y(t), u(t))`,
-the integrand of its integral equation, in the inclusion's right-hand side at `x(t) - x*` — it is
-a Carathéodory solution of the inclusion, the derivative lying there wherever it exists.
+[1, Prop. 1]: if `L̄ ⊇ L`, the solution of the original dynamics is enclosed by the solution of the
+abstracting differential inclusion `˙x̃ ∈ Ã x̃ ⊕ w ⊕ B̃ (U ⊕ (-u*)) ⊕ L̄`. Read as: a run
+`(x, y, u)` of the system on `τ` has, at every time of `τ`, its field `f(x(t), y(t), u(t))` in the
+inclusion's right-hand side at `x(t) - x*`, a Carathéodory solution of the inclusion. Two
+hypotheses carry what the printed proof assumes: the run stays in the region `R^z` the errors are
+taken over, which the proof never shows; and `L̄` holds the exact linearization error
+`ℓᵈ - C F⁻¹ ℓᵃ` at every consistent point of `R^z`, which is `L ⊆ L̄` with `L` read with one
+Lagrange point per row ([1, Eq. 8]) rather than the one `ξ` of [1, Eq. 15] (`SharedLagrangePoint`).
 
-Two hypotheses carry what the printed proof assumes. The run stays in the region `R^z`
-the errors are taken over: the proof quantifies over `x ∈ Rᵈ(τₖ)`, `y ∈ Rᵃ(τₖ)`, `u ∈ U`,
-the sets being computed, and never shows the run stays there; the proposition's own
-"independent of the amount of overapproximation" says the same. And `L̄` holds the exact
-linearization error `ℓᵈ - C F⁻¹ ℓᵃ` at every consistent point of `R^z`, which is `L ⊆ L̄` with
-`L` read with one Lagrange point per row ([1, Eq. 8]) rather than the single `ξ` of
-[1, Eq. 15], which can miss it (`SharedLagrangePoint`).
+## Inputs
+* `sys` – system
+* `τ` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – differential trajectory
+* `y` – algebraic trajectory
+* `u` – input signal
+* `z` – output signal
+* `xs` – linearization state
+* `ys` – linearization algebraic variable
+* `us` – linearization input
+* `A` – dynamics Jacobian in the state
+* `B` – dynamics Jacobian in the input
+* `C` – dynamics Jacobian in the algebraic variable
+* `D` – constraint Jacobian in the state
+* `E` – constraint Jacobian in the input
+* `F` – constraint Jacobian in the algebraic variable
+* `F_inv` – inverse of `F`
+* `L` – linearization error set
+* `Rz` – confinement region
+
+## Hypotheses
+* `hrun` – DAE trajectory
+* `hF` – `F_inv` is a left inverse of `F`
+* `hR` – the run stays in the region
+* `hL` – `L` holds every consistent point's error
+
+## Conclusion
+* the field lies in the inclusion's right-hand side at all times
 
 ## References
 

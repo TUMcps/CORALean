@@ -11,6 +11,22 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.IntervalObserverCoord
 `x̅ᵗ_k = (S⁻¹)⁺ z̅_k - (S⁻¹)⁻ z̲_k` for `k ≥ 1`, from the transformed observer
 `intervalObserverCoord`, and the given `x̲ᵗ₀`, `x̅ᵗ₀` at `k = 0`.
 
+## Inputs
+* `sys` – system
+* `L` – observer gain
+* `S` – coordinate transformation
+* `wl` – lower disturbance bound
+* `wu` – upper disturbance bound
+* `vl` – lower noise bound
+* `vu` – upper noise bound
+* `xl₀` – lower initial bound
+* `xu₀` – upper initial bound
+* `u` – inputs
+* `y` – measurements
+
+## Output
+* the state interval mapped back from transformed coordinates
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

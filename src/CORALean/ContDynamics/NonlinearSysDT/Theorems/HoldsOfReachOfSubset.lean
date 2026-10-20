@@ -12,6 +12,27 @@ public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuterOfSubset
 checks `hsub` against the concrete sets `reach` builds, instead of assuming
 confinement of the trajectory itself. Sound at every `steps` whose regions
 pass that check, exactly as `reach_outer_of_subset` is.
+
+## Inputs
+* `sys` – system
+* `U` – input set
+* `o` – maximum order
+* `steps` – linearization steps
+* `R₀` – initial set
+* `spec` – specification
+* `x` – state trajectory
+* `u` – input trajectory
+* `y` – output trajectory
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `hsub` – computed sets inside regions
+* `traj` – trajectory of the system
+* `h` – specification holds on the reachable set
+
+## Conclusion
+* the specification holds on the state
 -/
 
 -- Authors:       Claude Opus 5

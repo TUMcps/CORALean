@@ -8,15 +8,30 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 /-!
 # What [1, Alg. 2] returns
 
-The result `(R⁽ⁱ⁾ᵈ(t_{k+1}), R(τ_k), Û⁽ⁱ⁾)` of `NonlinDASys.reachNextCompositional` has passed
-the test of lines 10-15 for every subsystem, `Υ⁽ⁱ⁾ R(τ_k) ⊆ Λ⁽ⁱ⁾ Û⁽ⁱ⁾` (with an inclusion test
-`sub` that is sound), and is built from [1, Alg. 1] run on the final `Û⁽ⁱ⁾`: `R(τ_k)` is
-the join of the local sets (line 9) and each subsystem's pair is `subReach` at its `Û⁽ⁱ⁾`,
-given that the start state's confirmed subsystems are.
+The result `(R⁽ⁱ⁾ᵈ(t_{k+1}), R(τ_k), Û⁽ⁱ⁾)` of `NonlinDASys.reachNextCompositional` has passed the
+test of lines 10-15 for every subsystem, `Υ⁽ⁱ⁾ R(τ_k) ⊆ Λ⁽ⁱ⁾ Û⁽ⁱ⁾` (with an inclusion test `sub`
+that is sound), and is built from [1, Alg. 1] run on the final `Û⁽ⁱ⁾`: `R(τ_k)` is the join of the
+local sets (line 9) and each subsystem's pair is `subReach` at its `Û⁽ⁱ⁾`, given that the start
+state's confirmed subsystems are. This is the whole of what the loop certifies. That a solution
+of the coupled system then stays in `R(τ_k)` is the assumption's validation by the computed
+sets, which [1] states and does not prove, and is not shown here.
 
-This is the whole of what the loop certifies. That a solution of the coupled system then
-stays in `R(τ_k)`, the interface inputs being the other subsystems' states, is the assumption's
-validation by the computed sets, which [1] states and does not prove, and is not shown here.
+## Inputs
+* `subReach` – reachability of a subsystem
+* `Φ` – embeddings of the subsystems
+* `Υ` – interface readouts
+* `Λ` – interface selection matrices
+* `lamU` – enlargement factor
+* `sub` – inclusion test
+* `fuel` – iteration bound
+* `s` – start state
+
+## Hypotheses
+* `hsub` – the inclusion test is sound
+* `hs` – confirmed subsystems come from the subsystem reachability
+
+## Conclusion
+* the returned sets pass the interface test and come from the subsystem reachability
 
 ## References
 

@@ -13,19 +13,44 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuter
 /-!
 # [1, Thm. 1]: a reachable subset read off the computed set
 
-The exact reachable set of a run started inside `X₀.evalOn (Bs 0)` lies, at
-every step boundary, inside the computed set evaluated at the factors that name
-it — [1, (25)] with [1, Lemma 5]'s induction run on the loop itself rather than
-on an abstract chain.
+The exact reachable set of a run started inside `X₀.evalOn (Bs 0)` lies, at every step boundary,
+inside the computed set evaluated at the factors that name it: [1, (25)] with [1, Lemma 5]'s
+induction run on the loop itself. Nothing on the left is computed: the run is the exact flow, not
+`reach` of a sub-initial set, so the reduction of [1, Alg. 1] appears on one side only and no
+monotonicity of `reduce` is needed. `Bs` is data because the factor domain grows and is
+renumbered as the loop runs; `hnext` is the one condition on it, `postBox` per step, and
+`post_evalOn` discharges the step.
 
-Nothing on the left is computed: the run is the exact flow, not `reach` of a
-sub-initial set, so the reduction of [1, Alg. 1] appears on one side only and no
-monotonicity of `reduce` is needed — [1]'s own route through `reach(X₀(α), …)`
-would need it, and `reduce` is a function of the representation.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+* `steps` – linearization steps
+* `Ud` – input enclosures per step
+* `Δt` – step size
+* `N` – number of steps
+* `o` – maximum order
+* `y` – output trajectory
+* `X₀` – sub-initial set
+* `Bs` – factor domains
 
-`Bs` is data because the factor domain grows and is renumbered as the loop runs;
-`hnext` is the one condition on it, `postBox` per step, and `post_evalOn` is
-what discharges the step.
+## Hypotheses
+* `ho` – order positive
+* `traj` – trajectory of the system
+* `hΔt` – step size nonnegative
+* `hT` – horizon inside time set
+* `hR` – trajectory stays in regions
+* `hU` – widened inputs bounded
+* `hUd` – input enclosures hold step inputs
+* `h0` – initial set inside evaluated set
+* `hunit` – factor domains bounded by one
+* `hnext` – factor domains closed under steps
+
+## Conclusion
+* the trajectory state lies in the computed set evaluated at the subset factors
 
 ## References
 

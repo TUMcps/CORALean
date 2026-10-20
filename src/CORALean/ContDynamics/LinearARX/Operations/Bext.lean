@@ -11,6 +11,13 @@ public import CORALean.ContDynamics.LinearARX.Operations.InputMat
 because [1] reads `B̄ᵢ = 0` for `i < 0` and `i > p` and then sums over shifted indices
 (Eq. 9b, Lemma 3), so the zero outside `0 ≤ i ≤ p` is part of the definition.
 
+## Inputs
+* `sys` – ARX system
+* `i` – lag index
+
+## Output
+* the extended input matrix at lag `i`
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

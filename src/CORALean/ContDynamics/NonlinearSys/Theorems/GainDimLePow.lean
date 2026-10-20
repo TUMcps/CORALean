@@ -9,22 +9,38 @@ public import Mathlib.Analysis.Normed.Order.Lattice
 /-!
 # The gain is under `δ^{q+1}` while the coefficients hold still
 
-`[1, (42)]`, the second half of `[1, Prop. 2 (gain bound)]`: if every `Q⁽ᵖ⁾ᵢ` is constant
-on `[0,h]`, then `φᵢ(t;δ) ≤ δ^{qᵢ+1}` for every `t` in it. `[1, Prop. 1]` and `[1, Lemma 3]` put the
-width in the shape asked here, `e p` standing for `p + q⁽ᵖ⁾ᵢ` and `Q p` for the constant
-value of `Q⁽ᵖ⁾ᵢ`; `hQ0` is `[1, Lemma 3]`'s convention that a vanishing coefficient has
-`a⁽ᵖ⁾ᵢ = 0`, and `hsum` is the majorant `boxDiameter_abstrSolInf` already builds.
+`[1, (42)]`, the second half of `[1, Prop. 2 (gain bound)]`: if every `Q⁽ᵖ⁾ᵢ` is constant on
+`[0,h]`, then `φᵢ(t;δ) ≤ δ^{qᵢ+1}` for every `t` in it. `e p` stands for `p + q⁽ᵖ⁾ᵢ` and `Q p`
+for the constant value of `Q⁽ᵖ⁾ᵢ`; `hQ0` is `[1, Lemma 3]`'s convention that a vanishing
+coefficient has `a⁽ᵖ⁾ᵢ = 0`. Proved directly: shrinking the span to `δt` multiplies the `p`-th
+term by `δ^{e p+1}`, and `e p ≥ qᵢ` for every surviving term (`[1, (40)]` read as a minimum), so
+`δ ≤ 1` pulls `δ^{qᵢ+1}` out of the series. `(41)`, the derivative half, is not proved here.
+Where the width vanishes Lean's `x / 0 = 0` makes `φᵢ` zero, which is under the bound too.
 
-Proved directly rather than by `[1]`'s argument from `(41)`: shrinking the span to `δt`
-multiplies the `p`-th term by `δ^{e p+1}`, and `e p ≥ qᵢ` for every term that survives —
-which is `[1, (40)]` read as a minimum, as `gainOrderDim` has it — so `δ ≤ 1` pulls
-`δ^{qᵢ+1}` out of the whole series at once. No continuity, no monotonicity and no
-contradiction are needed, and the bound holds on all of `[0,h]`, not only near `0`.
+## Inputs
+* `A` – matrix as a function of the step
+* `Ψ` – error set as a function of the step
+* `i` – dimension
+* `q` – orders of the coefficients
+* `a` – leading vectors of the coefficients
+* `e` – exponent per term
+* `Q` – constant coefficients
+* `qi` – gain order of the dimension
+* `h` – horizon
+* `δ` – shrink factor
 
-`(41)`, the derivative half, is not proved here: it asks for `dφᵢ/dh` and nothing in the
-tree yet says `φᵢ` is differentiable. `(43)`, the inequality `(41)` is used to reach, is
-this theorem. Where the width vanishes Lean's `x / 0 = 0` makes `φᵢ` zero, which is under
-the bound too, so no positivity hypothesis joins the ones above.
+## Hypotheses
+* `hqi` – gain order is the given one
+* `he` – exponent is order plus power
+* `hQ0` – vanishing coefficient is zero
+* `hQnn` – coefficients nonnegative
+* `hδ0` – shrink factor nonnegative
+* `hδ1` – shrink factor at most one
+* `hsum` – series summable
+* `hexp` – width is the series
+
+## Conclusion
+* the gain stays below the shrink factor power
 
 ## References
 

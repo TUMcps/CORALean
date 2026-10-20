@@ -19,6 +19,14 @@ public import CORALean.ContDynamics.Reach.Definitions.InputParams
 time-interval sets. Line 18 unions the steps' sets, which is no zonotope, so
 this is a `Set`.
 
+## Inputs
+* `sys` – system
+* `params` – reachability parameters with inputs
+* `options` – reachability options
+
+## Output
+* the union of the time-interval sets
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

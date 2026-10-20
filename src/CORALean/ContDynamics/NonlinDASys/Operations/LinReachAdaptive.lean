@@ -16,6 +16,22 @@ the last step one pass at `h`, otherwise a first run at `h` and a second at the 
 at 2, and the extra pass of `timeStepequalHorizon` is not modelled: the second run's sets are
 returned.
 
+## Inputs
+* `sys` – system
+* `T` – tuning heuristics
+* `Rstart` – start set
+* `U` – input zonotope
+* `η` – Taylor order
+* `fuelErr` – error loop fuel
+* `fuelHalf` – step halving fuel
+* `adm_x` – admissible state errors
+* `adm_y` – admissible algebraic errors
+* `h` – horizon
+* `lastStep` – whether this is the last step
+
+## Output
+* the accepted pass, or none
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic

@@ -14,6 +14,15 @@ the step starts from, `z✱(t_s) = center(R(t_s))` with `center(U)` for the inpu
 the `taylor` call and the abstraction-error loop of lines 4-10, then one step of the linearized
 system. It returns `R(τ_s)` and `R(t_{s+1})`.
 
+## Inputs
+* `fm` – float model
+* `U` – input zonotope
+* `options` – reachability options
+* `R` – start set
+
+## Output
+* the time-interval set and the end set of the step, or none
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Adaptive Parameter Tuning for

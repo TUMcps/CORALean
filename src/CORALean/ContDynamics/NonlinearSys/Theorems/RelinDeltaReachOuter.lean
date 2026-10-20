@@ -12,15 +12,48 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 /-!
 # The loop's state differences, over the whole of a step
 
-`relinTimeIntervalOuter` at the differences instead of the states, and by the
-same route: `relinReach_outer_inputSolution` places `x (iΔt)` at the start of
-step `i`, `Shift` re-anchors the run there, `IsTrajectory.linearize` makes it a
-run of the linearized system on `[0, Δt]`, and `deltaReach_outer_inputSolution`
-covers every difference that run spans.
+`relinTimeIntervalOuter` at the differences instead of the states, by the same route:
+`relinReach_outer_inputSolution` places `x (iΔt)` at the start of step `i`, `Shift` re-anchors
+the run there, `IsTrajectory.linearize` makes it a run of the linearized system on `[0, Δt]`,
+and `deltaReach_outer_inputSolution` covers every difference that run spans. Nothing is asked
+that `relinTimeInterval_outer` does not ask: the two conclusions differ by the term `x (iΔt)`,
+which the shift has already named.
 
-Nothing is asked that `relinTimeInterval_outer` does not ask: the hypotheses are
-the same list, because the two conclusions differ by the term `x (iΔt)`, which
-the shift has already named.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+* `steps` – linearization steps
+* `Δt` – step size
+* `N` – number of steps
+* `y` – output trajectory
+* `q` – Taylor terms minus two
+* `o` – maximum order
+* `i` – step index
+* `t` – time
+
+## Hypotheses
+* `traj` – trajectory of the system
+* `hΔt` – step size positive
+* `hT` – horizon inside time set
+* `hR` – trajectory stays in regions
+* `hε` – step norm small enough
+* `hconv` – widened input convex
+* `hclosed` – widened input closed
+* `hbdd` – widened input bounded
+* `h0` – zero in widened input
+* `hRconv` – remainder input convex
+* `hRclosed` – remainder input closed
+* `hRbdd` – remainder input bounded
+* `ho` – order positive
+* `hi` – index below step count
+* `ht` – time within the step
+
+## Conclusion
+* the state difference within the step lies in the difference enclosure
 -/
 
 -- Authors:       Claude Opus 5

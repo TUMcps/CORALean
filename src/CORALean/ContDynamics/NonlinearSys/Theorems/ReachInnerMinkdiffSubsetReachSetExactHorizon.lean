@@ -13,6 +13,27 @@ set over the horizon `R([0, steps Δt]) = ⋃_t R(t)` [1, Def. 1]: each cell lie
 set at its own times, which are in the horizon, and the cells past it are empty
 (`reachInnerMinkdiff_subset_reachSetExact`).
 
+## Inputs
+* `ops` – set operations
+* `sys` – system
+* `u₀` – constant input
+* `U` – input set
+* `Δt` – step size
+* `steps` – number of steps
+* `fuel` – bound per error loop
+* `X₀` – initial set
+* `timePoint` – time-point cells
+* `timeInt` – time-interval cells
+
+## Hypotheses
+* `hu₀` – input in input set
+* `hΔt` – step size nonnegative
+* `hcert` – every step has its certificate
+* `h` – reachability returned these cells
+
+## Conclusion
+* every cell lies in the reachable set over the horizon
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for

@@ -17,18 +17,38 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
 /-!
 # A time-varying run with an input stays in the float step and input solution
 
-`IsTrajectory.timeIntervalStep_outer_inputSolution` at the float layer, with the
-sets the float `'constParam'` step computes: `timeIntervalStepFloat` and
-`inputSolutionFloat`. The run is one of the box's nominal real system, so its
-Peano–Baker expansion is the real one; the homogeneous half goes through the float
-core (`Float.MatExp.exists_mem_intervalCorrectionMatrix_of_remainder`).
+`IsTrajectory.timeIntervalStep_outer_inputSolution` at the float layer, with the sets the float
+`'constParam'` step computes: `timeIntervalStepFloat` and `inputSolutionFloat`. The run is one of
+the box's nominal real system, so its Peano–Baker expansion is the real one; the homogeneous half
+goes through the float core (`Float.MatExp.exists_mem_intervalCorrectionMatrix_of_remainder`). The
+input's `k`-th term lies in `t^{k+1}/(k+1)!` times the closed convex hull of the real `matPow` of
+the nominal box applied to `U`; the real power is inside the float one (`Interval.matPow_subset`),
+so each generating point is in the float `intervalInputTerm` applied to `U`, a zonotope: closed and
+convex with no hypothesis. The remainder is within the float `E(r)·r` applied to a point of `U`.
 
-The input's `k`-th term lies in `t^{k+1}/(k+1)!` times the closed convex hull of
-the real `matPow` of the nominal box applied to `U`. The real power is inside the
-float one (`Interval.matPow_subset`), so each generating point is in the float
-`intervalInputTerm` applied to `U`, and that set is a zonotope: closed and convex
-with no hypothesis, unlike the real theorem, where the representation is generic.
-The remainder is a matrix within the float `E(r)·r` applied to a longest point of `U`.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `x` – trajectory
+* `u` – input signal
+* `A` – matrix signal
+* `Δt` – step size
+* `η` – Taylor order
+* `t` – time
+
+## Hypotheses
+* `traj` – time-varying trajectory
+* `hΔt` – step positive
+* `hT` – step lies in the time set
+* `hη` – order admissible
+* `ht0` – time nonnegative
+* `htr` – time at most the step
+* `h0` – origin lies in the input set
+
+## Conclusion
+* the state at time `t` lies in the float step plus the float input solution
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,15 @@ The state after `k` steps of [1, Eq. 5] from `x0`, under inputs `u` and disturba
 disturbance and noise, [1, Eq. 14]'s `y_*` and [2, Sec. 3]'s `ỹ`: what a measurement is
 compared against once the test case's initial state and inputs are put in.
 
+## Inputs
+* `sys` – plant
+* `x0` – initial state
+* `u` – inputs
+* `w` – disturbances
+
+## Output
+* the state after each number of steps
+
 ## References
 
 * [1] S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems:

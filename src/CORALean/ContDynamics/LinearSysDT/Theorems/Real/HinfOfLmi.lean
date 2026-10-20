@@ -19,6 +19,23 @@ and some `γ' < γ` has `‖e‖ ≤ γ' ‖d‖` whenever `z e = A_e e + B_e d`
 [1, Lemma 1]; here the dissipation inequality its Eq. 17 (`dissipation_of_hinfLmi`) is applied to
 the real and imaginary parts of `(e, d)`, where `|z| = 1` turns `(z e)ᴴ P (z e)` into `eᴴ P e`.
 
+## Inputs
+* `A` – state matrix
+* `C` – output matrix
+* `E` – disturbance matrix
+* `F` – noise matrix
+* `P` – Lyapunov matrix
+* `Y` – gain variable
+* `γ` – attenuation level
+
+## Hypotheses
+* `hγ` – attenuation level positive
+* `hP` – Lyapunov matrix positive definite
+* `h` – the design inequality holds
+
+## Conclusion
+* the error system is stable with gain below `γ`
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

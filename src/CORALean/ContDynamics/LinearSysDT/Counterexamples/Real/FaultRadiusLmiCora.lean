@@ -11,15 +11,21 @@ public import Mathlib.Algebra.BigOperators.Fin
 
 CORA's `@linearSysDT/private/priv_observe_gain_PRadE.m`, which cites [1], assembles [1, Eq. 17]
 with `E = generators(W)` for `D_xH_w`, `F = generators(V)` for `D_yH_v` and `Y` for `W`, and sets
-its block `(3, 4)` to `F*Y'`, that is `D_yH_v Wᵀ`, where Eq. 17 has `H_vᵀD_yᵀWᵀ` (the transpose of
-`F`; MATLAB accepts the product only when `F` is square). With `n_x = 1`, two outputs, no
-disturbance, `A = C = 0`, `F = [1 1/2; 0 1]`, `P = 9/10`, `W = [0 1]` and `γ = 1/2`, CORA's
-matrix is negative definite while Eq. 17 is not: at the gain `L = P⁻¹W` the step inequality
-Eq. 17 gives (`LinearSysDT.quadForm_le_of_faultRadiusLmi`) fails at `θ = 0`, `s₂ = (-1/2, 1)`, where
-`‖L F s₂‖²_P = 10/9 > 1 = ‖F s₂‖²₂`. So a gain CORA accepts need not have the P-radius property the
-paper designs it for. The observer's enclosure does not depend on the gain
-(`LinearSysDT.faultObserve_outer`, CORA's `observePropagation`), so this costs tightness, not
-soundness.
+its block `(3, 4)` to `F*Y'`, that is `D_yH_v Wᵀ`, where Eq. 17 has `H_vᵀD_yᵀWᵀ` (the transpose
+of `F`). With `n_x = 1`, two outputs, no disturbance, `A = C = 0`, `F = [1 1/2; 0 1]`, `P = 9/10`,
+`W = [0 1]` and `γ = 1/2`, CORA's matrix is negative definite while Eq. 17 is not: at the gain
+`L = P⁻¹W` the step inequality (`LinearSysDT.quadForm_le_of_faultRadiusLmi`) fails at `θ = 0`,
+`s₂ = (-1/2, 1)`. A gain CORA accepts need not have the P-radius property; the observer's
+enclosure does not depend on the gain (`LinearSysDT.faultObserve_outer`), so only tightness is lost.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's matrix is negative definite while the paper's is not
 
 ## References
 

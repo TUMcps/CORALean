@@ -15,6 +15,27 @@ non-positive exactly when `g'(0)/g(0) ≥ 0`, that is when the width
 coefficient of `t^{qᵢ+2}` and the condition holds. `GainDeriv` has `g'(0)/g(0) < 0`
 and a positive limit.
 
+## Inputs
+* `A` – matrix as a function of the step
+* `Ψ` – error set as a function of the step
+* `i` – dimension
+* `qi` – order of the dimension
+* `g` – leading factor of the width
+* `g'` – its derivative
+* `δ` – shrink factor
+
+## Hypotheses
+* `hδ0` – shrink factor nonnegative
+* `hδ1` – shrink factor at most one
+* `hg` – leading factor differentiable
+* `hg'` – derivative continuous at zero
+* `hg0` – leading factor nonzero at zero
+* `hexp` – width has the power form
+* `hgrow` – relative growth nonnegative
+
+## Conclusion
+* the gain derivative tends to a limit at most zero
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

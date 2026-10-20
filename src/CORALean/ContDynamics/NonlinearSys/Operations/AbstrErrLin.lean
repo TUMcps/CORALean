@@ -9,21 +9,22 @@ public import Mathlib.Data.Matrix.Mul
 /-!
 # The linearization error of a second-order expansion
 
-CORA's `priv_abstrerr_lin` at `tensorOrder = 2`, [1, Prop. 1]: the box
-`[-l, l]` with `lᵢ = ½ γᵀ Hᵢ γ`, where `γ` bounds `|z - z✱|` over the set the step
-runs on and `Hᵢ` bounds the second derivative of coordinate `i` entrywise.
+CORA's `priv_abstrerr_lin` at `tensorOrder = 2`, [1, Prop. 1]: the box `[-l, l]` with
+`lᵢ = ½ γᵀ Hᵢ γ`, where `γ` bounds `|z - z✱|` over the set the step runs on and `Hᵢ` bounds the
+second derivative of coordinate `i` entrywise. `γ` is the proposition's `|c - z✱| + Σⱼ |g⁽ʲ⁾|`,
+read off a zonotope rather than off a box, which is what lets `abstrErrLin_center_subset` name its
+center. `H` is data, as `precompStatError`'s `Q` is: nothing here differentiates `f`, and a wrong
+`H` yields a box `AbstractionError.of_hessian` cannot certify rather than an unsound one. Real
+only. The state and the input are stacked into one `Vec ℝ d`, CORA's `dz = [dx; du]`, so `Hᵢ` is
+a single square matrix per coordinate; `d` is `n + m` at the use site.
 
-`γ` is the proposition's `|c - z✱| + Σⱼ |g⁽ʲ⁾|`, read off a zonotope rather than
-off a box, which is what lets `abstrErrLin_center_subset` name its center.
+## Inputs
+* `H` – second-derivative bounds
+* `Z` – region of the remainder
+* `zs` – expansion point
 
-`H` is data, as `precompStatError`'s `Q` is: nothing here differentiates `f`, and
-a wrong `H` yields a box `AbstractionError.of_hessian` cannot certify rather than
-an unsound one. Real only: `NonlinearSys` carries no scalar and the certificate
-slot is generic, so a float run fills it with its own box rather than this one.
-
-The state and the input are stacked into one `Vec ℝ d`, CORA's `dz = [dx; du]`,
-so `Hᵢ` is a single square matrix per coordinate whose off-diagonal blocks are
-the mixed derivatives. `d` is free here and `n + m` at the use site.
+## Output
+* the symmetric box bounding the second-order remainder
 
 ## References
 

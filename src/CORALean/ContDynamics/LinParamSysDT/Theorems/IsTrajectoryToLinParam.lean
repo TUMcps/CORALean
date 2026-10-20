@@ -11,6 +11,19 @@ public import CORALean.ContDynamics.LinParamSysDT.Operations.ToLinParam
 repackaged as `LinParamSysDT.IsCanonicalTrajectory.step`'s existential: the witness is
 `toRealMat sys.A` itself, and `construct sys.A = {toRealMat sys.A}` makes its
 membership `rfl`.
+
+## Inputs
+* `sys` – linear system
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+
+## Hypotheses
+* `traj` – linear-system trajectory
+
+## Conclusion
+* the trajectory is a trajectory of the set-valued-matrix system
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

@@ -10,6 +10,23 @@ public import CORALean.ContDynamics.NonlinParamSys.NonlinParamSys
 `IsConstTrajectory`'s fixed `p` read through the constant function `fun _ => p`:
 same initial condition, same input condition, and `param` becomes trivial since
 every `t` reads the same membership witness.
+
+## Inputs
+* `sys` – parametric system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `P` – parameter set
+* `x` – state trajectory
+* `u` – input signal
+* `p` – parameter vector
+* `y` – output signal
+
+## Hypotheses
+* `traj` – constant-parameter trajectory
+
+## Conclusion
+* the run is a trajectory with a time-varying parameter
 -/
 
 -- Authors:       Claude Opus 5

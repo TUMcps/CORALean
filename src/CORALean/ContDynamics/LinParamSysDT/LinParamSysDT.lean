@@ -8,18 +8,12 @@ public import CORALean.ContSet.ContSet.ContSet
 # Discrete-time linear systems with a set-valued system matrix
 
 `x(k+1) = A(k) x(k) + B(k) u(k) + c` with `A(k)`, `B(k)` ranging over the sets `sys.A`, `sys.B`
-at every step, not fixed for the run — the system-matrix uncertainty of [1, Sec. 2]. The
-parameters are those of the continuous twin `LinParamSys` (`A`, `B` matrix sets, `c`, `m`); no
-`dt`, steps being counted. CORA has no class of this name: this is the discrete step inside
-`linParamSys/post`, `R(k+1) = M R(k) ⊕ R_input`, `M` the enclosure `mappingMatrixSet` of
-`e^{AΔt}` and `R_input` the input solution of `V = B*U + c`, the loop of [1, Alg. 1].
-`LinParamSys.discretizeEnclosure` (and its float twin) produce one, `LinearSys.discretize…` from
-a `LinearSys`, and `LinearSysDT.toLinParam` embeds the point case `𝕄 := Mat 𝕋`. The reach takes
-the input in state coordinates, `U' ⊇ B U ⊕ c` (`inputSet`), so it reads neither `B` nor `c`:
-`IsCanonicalTrajectory` is the run of that form, `IsTrajectory.canonical` takes every run into it.
-`LinearSysDT` stays separate, a decision left open on #29. `IsTrajectory` picks a fresh `A k`,
-`B k` at every `k`, as `LinearSysDT.reachHeld` a fresh input; `IsCanonicalTrajectoryOn K` is the
-canonical run known for `k < K`.
+at every step, the system-matrix uncertainty of [1, Sec. 2]. The parameters are those of the
+continuous twin `LinParamSys`; no `dt`, steps being counted. CORA has no class of this name:
+this is the discrete step inside `linParamSys/post`, `R(k+1) = M R(k) ⊕ R_input`, the loop of
+[1, Alg. 1]. The reach takes the input in state coordinates, `U' ⊇ B U ⊕ c`, so it reads
+neither `B` nor `c`: `IsCanonicalTrajectory` is the run of that form, `IsTrajectory.canonical`
+takes every run into it. `IsTrajectory` picks a fresh `A k`, `B k` at every `k`.
 
 ## References
 

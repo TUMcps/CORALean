@@ -13,6 +13,23 @@ A `IsTrajectory` of the closed loop at a `LinearSysDT`, its disturbance in a `W`
 `0`, starts in `R₀`, has its external input `v k` in `U_ext` and steps by `map`:
 `A x + B [π(x); v k] + c`, the plant's own equation with `E w` gone. This is what every guarantee
 at a linear plant reads a run through, as CORA's loop, which drops `E`, computes.
+
+## Inputs
+* `sys` – closed-loop system
+* `π` – controller function
+* `R₀` – initial set
+* `U_ext` – external input set
+* `W` – disturbance set
+* `x` – states
+* `v` – external input signal
+* `w` – disturbance signal
+
+## Hypotheses
+* `hW` – disturbances sent to zero by the disturbance matrix
+* `traj` – closed-loop trajectory
+
+## Conclusion
+* the run starts in the initial set, takes its inputs from `U_ext` and steps by `map`
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

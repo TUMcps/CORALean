@@ -12,6 +12,19 @@ A state `x` of `X` and an input `u` of `Y` stack to `[x; u] = [I; 0] x + [0; I] 
 in its embedded set by `Mtimes`'s guarantee, the sum in `cartProd X Y` by `Plus`'s. What
 [1, Alg. 2] asks of the product.
 
+## Inputs
+* `X` – state set
+* `Y` – network output set
+* `x` – state
+* `u` – network output
+
+## Hypotheses
+* `hx` – `x` lies in `X`
+* `hu` – `u` lies in `Y`
+
+## Conclusion
+* the stacked pair lies in the product set
+
 ## References
 
 * [1] N. Kochdumper et al. "Open- and Closed-Loop Neural Network Verification

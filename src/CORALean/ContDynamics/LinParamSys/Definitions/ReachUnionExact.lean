@@ -12,6 +12,15 @@ Every state a `'constParam'` run on the horizon `[0, tFinal]` is at, at some tim
 `X`, the input `u t` in `U` in input coordinates, and the offset `sys.c` — `IsConstTrajectory`
 at the representation `Set` itself. The windows `reachUnion` covers the horizon with, and the
 `B U ⊕ c` it computes, are how it encloses this set, not part of it.
+
+## Inputs
+* `sys` – system
+* `tFinal` – horizon
+* `X` – initial set
+* `U` – input set
+
+## Output
+* the states some constant-parameter run is at, at some time of the horizon
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Sonnet 5.5

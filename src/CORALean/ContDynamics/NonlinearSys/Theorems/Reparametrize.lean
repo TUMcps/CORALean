@@ -14,6 +14,22 @@ The lemma under Kochdumper and Althoff's pancake time scaling (CORA's
 `guardIntersect_pancake`): a classical run of `ẋ = f(x, u)` on `[0, T]` along which a
 continuous `g` stays positive is, under the clock `τ(t) = ∫₀ᵗ g(x(r))⁻¹ dr`, a run of
 `y' = g(y) f(y, u ∘ σ)` on `[0, τ(T)]`, with `σ = τ⁻¹`. Both runs visit the same states.
+
+## Inputs
+* `sys` – system
+* `T` – final time
+* `x` – state trajectory
+* `u` – input trajectory
+* `g` – positive scaling function
+
+## Hypotheses
+* `hT` – final time nonnegative
+* `hx` – state has the field as derivative
+* `hgc` – scaling continuous along the run
+* `hgp` – scaling positive along the run
+
+## Conclusion
+* a rescaled clock makes the state a run of the scaled system
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,20 @@ For a system affine in `p` (`hAff`: the split `f = f_0 + ∑ pᵢ fᵢ` that `li
 the center plus `βᵢ rᵢ` and `f` is affine in it. The set of values is the image of a box under an
 affine map, a zonotope, so `zf` is not only an enclosure of it; the statement is the inclusion.
 Without `hAff` it fails (`linearize_f_counterexample`).
+
+## Inputs
+* `sys` – parametric system
+* `xs` – state expansion point
+* `us` – input expansion point
+* `I` – parameter box
+* `p` – parameter vector
+
+## Hypotheses
+* `hAff` – the dynamics are affine in the parameter
+* `hp` – `p` lies in the box
+
+## Conclusion
+* the dynamics at the parameter lie in the constant term zonotope
 -/
 
 -- Authors:       Claude Sonnet 5.5

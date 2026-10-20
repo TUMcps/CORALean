@@ -14,6 +14,14 @@ read off a state and an input in state coordinates. CORA's loop
 `A{k} = A A{k-1}`, `C{k} = C A{k-1}`, `B{k,j} = A{k-j} B`, `D{k,j} = C B{k,j+1}` is written
 here as the powers it computes; the time-varying branch (`A` a cell) is not modelled.
 
+## Inputs
+* `sys` – system
+* `out` – output equation
+* `nk` – number of steps
+
+## Output
+* the GO parameters as real matrices
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/computeGO.m`

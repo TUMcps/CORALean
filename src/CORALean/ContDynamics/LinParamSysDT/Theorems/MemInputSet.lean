@@ -10,6 +10,19 @@ public import CORALean.ContDynamics.LinParamSysDT.Operations.InputSet
 A value `B u + c`, `B` from `sys.B` and `u` from `U`, lies in `sys.inputSet U`: the step's input in
 state coordinates, as `LinParamSys.mem_inputSet` has it. With `IsTrajectory.canonical` this puts
 every run into the canonical form at CORA's `V = B*U + c`.
+
+## Inputs
+* `sys` – system
+* `U` – input set
+* `B` – input matrix member
+* `v` – input value
+
+## Hypotheses
+* `hB` – `B` lies in the input matrix set
+* `hv` – `v` lies in `U`
+
+## Conclusion
+* the combined input lies in the input set
 -/
 
 -- Authors:       Claude Sonnet 5.5

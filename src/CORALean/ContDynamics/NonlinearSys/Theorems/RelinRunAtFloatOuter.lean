@@ -14,6 +14,19 @@ Induction on the step count. The first step places the run over `[0, Δt]` and
 at `Δt` (`relinStepAtFloat_outer`); the run re-anchored at `Δt` (`IsTrajectory.shift`)
 starts in the set that step returned, which is what the rest of the loop was run
 from, so the hypothesis places it over every later step.
+
+## Inputs
+* `fm` – float model
+* `sys` – system
+* `U` – input zonotope
+* `options` – reachability options
+* `pt` – expansion point of a set
+
+## Hypotheses
+* `h` – model encloses system
+
+## Conclusion
+* the sets enclose every run at every time of their step
 -/
 
 -- Authors:       Claude Sonnet 5.5

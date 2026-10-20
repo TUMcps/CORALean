@@ -14,6 +14,14 @@ past the horizon. The bare set is the representation `Set` itself, which
 `IsTrajectoryOn` accepts as it accepts any other. Nothing here mentions the
 linearizations: they are how `reach` encloses this set, not part of it.
 Positional, as the mathematics: `Reach` reads `K = tFinal - tStart` off `params`.
+
+## Inputs
+* `sys` – system with steps
+* `K` – number of steps
+* `X` – initial set
+
+## Output
+* every state reached within the horizon
 -/
 
 -- Authors:       Claude Opus 5.5

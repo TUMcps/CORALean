@@ -13,6 +13,20 @@ public import Mathlib.Logic.Function.Basic
 equality, the set-based evaluation of [1, Eq. 5] losing nothing: each step draws a
 fresh disturbance, independent of those before it.
 
+## Inputs
+* `sys` – plant
+* `X0` – initial set
+* `u` – inputs
+* `W` – disturbance set
+* `V` – noise set
+* `k` – step
+
+## Hypotheses
+* none
+
+## Conclusion
+* the outputs one step on come from the reachable states
+
 ## References
 
 * [1] S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems:

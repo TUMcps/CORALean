@@ -10,16 +10,29 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.TuneDeltatInit
 # `Alg. 2`: tuning of the time step size Δt
 
 [1, Alg. 2], which is its §3.4. Both branches end in eq. (31)'s `Δt* = Δ ζ_δ^{k'_*}`,
-`optDeltat`; what differs is where the finite horizon `Δ` comes from. From the second
-step on (lines 10-13) it is the last step's `Δ` rescaled by the gain, which is then
-updated for the next step; in the first (lines 2-8) there is no last step, so `Δ` is
-shrunk by `ζ_δ` from an arbitrary start until eq. (32)'s `φ₁ ≥ ζ_Δ` holds — `tuneDeltatInit`.
+`optDeltat`; what differs is where the finite horizon `Δ` comes from. From the second step on
+(lines 10-13) it is the last step's `Δ` rescaled by the gain; in the first (lines 2-8) `Δ` is
+shrunk by `ζ_δ` until eq. (32)'s `φ₁ ≥ ζ_Δ` holds — `tuneDeltatInit`. Scalars throughout, as
+`optDeltat` is: `dabs` and `rabs` are the caller's. [2, Alg. 2]'s line 1 is line 10 here;
+(27), (29), (30), (31) are [2]'s (54), (56), (57), (58).
 
-Scalars throughout, as `optDeltat` is: `dabs Δt` is `d(box(R_abs(Δt)))`, what (25)
-compares, and `rabs Δt` is `r(R_abs(Δt))`, simplification (1)'s radius — both the caller's.
+## Inputs
+* `le` – comparison of reals
+* `dabs` – box diameter of the abstraction error
+* `rabs` – radius of the abstraction error
+* `ζδ` – limit gain
+* `ζΔ` – gain threshold
+* `ζZ` – start-set constant
+* `ζP` – second constant
+* `r₀` – initial radius
+* `φ1` – last step's gain
+* `Δ` – last finite horizon
+* `Δinit` – initial finite horizon
+* `s` – step number
+* `fuel` – bound for the search
 
-[2, Alg. 2]'s line 1 is line 10 here, and `optDeltat` and `estimateGain` are shared
-unchanged: (27), (29), (30), (31) are [2]'s (54), (56), (57), (58).
+## Output
+* the step size and the gain for the next step, or none
 
 ## References
 

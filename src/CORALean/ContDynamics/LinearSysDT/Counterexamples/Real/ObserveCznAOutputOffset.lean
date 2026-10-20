@@ -20,6 +20,15 @@ documents `y = C x + D u + k + F v`, so the set must be `C x ∈ y - k - D u - V
 `C = 1`, `k = 1`, `R0 = [-1, 1]`, `V = [-0.1, 0.1]`, `x₀ = 0`, `v₀ = 0`: the output is
 `y₀ = 1`, and CORA's first set `[0.9, 1]` misses `x₀`. Every later step (l. 57-58) meets the
 same strip. Read from the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a true initial state is missing from the first set of `CZN-A`
 -/
 
 -- Authors:       Claude Opus 5.5

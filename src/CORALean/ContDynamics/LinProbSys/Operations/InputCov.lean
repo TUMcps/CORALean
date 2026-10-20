@@ -9,19 +9,22 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 # The covariance of one step's noise, sign corrected
 
 `priv_inputSolution` of `linProbSys/initReach` [1] with the sign of the exponent corrected. It
-takes the eigendecomposition `A = V Λ V⁻¹`, `Λ = diag(λ)` with real eigenvalues as CORA's
-`eig` gives them for a diagonalizable `A`, transforms the noise to `C* = V⁻¹C`,
-`D = C* C*ᵀ`, and takes in those coordinates
-`Σ_ij = D_ij/(λ_i + λ_j) (e^{(λ_i+λ_j) r} - 1)`, which is `∫₀ʳ D_ij e^{(λ_i+λ_j)s} ds`, the
-limit `D_ij r` where `λ_i + λ_j = 0`, and returns `V Σ Vᵀ`. CORA writes
-`(1 - e^{-(λ_i+λ_j) r})` instead, the covariance for the drift `-A` (`initReachCov`, see
-`references/coverage/contDynamics/linProbSys.md`, row `initReach`), and divides by `λ_i + λ_j` with
-no case for `0`.
+takes the eigendecomposition `A = V Λ V⁻¹`, `Λ = diag(λ)`, transforms the noise to `C* = V⁻¹C`,
+`D = C* C*ᵀ`, and takes `Σ_ij = D_ij/(λ_i + λ_j) (e^{(λ_i+λ_j) r} - 1)`, which is
+`∫₀ʳ D_ij e^{(λ_i+λ_j)s} ds`, the limit `D_ij r` where `λ_i + λ_j = 0`, and returns `V Σ Vᵀ`. CORA
+writes `(1 - e^{-(λ_i+λ_j) r})` instead, the covariance for the drift `-A` (`initReachCov`, see
+`references/coverage/contDynamics/linProbSys.md`, row `initReach`). The eigendecomposition is an
+argument, as `[V,W] = eig(A)` is CORA's: what ties it to `A` is the hypothesis of
+`inputCov_eq_noiseCovariance`.
 
-The eigendecomposition is an argument, as `[V,W] = eig(A)` is CORA's: what ties it to `A` is
-the hypothesis of `inputCov_eq_noiseCovariance`. CORA's `aux_generators` then factors the
-result as `G Gᵀ` after symmetrizing it, a no-op in exact arithmetic (`V Σ Vᵀ` is symmetric), so
-the covariance is returned as it is.
+## Inputs
+* `V` – eigenvector matrix
+* `lambda` – eigenvalues
+* `C` – noise matrix
+* `r` – step size
+
+## Output
+* the corrected input covariance matrix
 
 ## References
 

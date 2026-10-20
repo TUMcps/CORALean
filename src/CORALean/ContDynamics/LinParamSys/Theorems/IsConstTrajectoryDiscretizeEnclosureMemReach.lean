@@ -9,18 +9,38 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # A sampled constant-parameter run lands in `reach`, over a whole horizon
 
-The loop of [1, Alg. 1]: `discretizeEnclosure` handed to
-`LinParamSysDT.reach_outer`, so the whole run — propagate by the enclosed
-exponential, add the input set, reduce — is the discrete recursion and the
-continuous guarantee holds at every sample time `k Δt`, for every `k`.
-
+The loop of [1, Alg. 1]: `discretizeEnclosure` handed to `LinParamSysDT.reach_outer`, so the
+whole run — propagate by the enclosed exponential, add the input set, reduce — is the discrete
+recursion and the continuous guarantee holds at every sample time `k Δt`, for every `k`.
 `reduce` enters here and nowhere else, which is what makes this algorithm not wrapping-effect
-free ([1, Sec. 2]): each step multiplies the previous set by an interval matrix and reduces
-the result, rather than propagating the initial set by one exact exponential.
+free ([1, Sec. 2]). No horizon is fixed: [1, Alg. 1] runs `k = 1 … t_f/r - 1` and takes the
+union; `k` is universally quantified here, so a bounded horizon is a restriction of this.
 
-No horizon is fixed. [1, Alg. 1] runs `k = 1 … t_f/r - 1` and takes the union;
-`k` is universally quantified here instead, so a bounded horizon is a
-restriction of this rather than a second statement.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `Ud` – set of sampled inputs
+* `x` – trajectory
+* `u` – input signal
+* `A` – system matrix member
+* `Δt` – sampling time
+* `η` – Taylor order
+* `o` – maximum zonotope order
+* `k` – number of steps
+
+## Hypotheses
+* `traj` – constant-parameter trajectory
+* `hΔt` – sampling time nonnegative
+* `hT` – nonnegative times lie in the time set
+* `hU` – input set bounded
+* `hUd` – sampled inputs lie in `Ud`
+* `hε` – order admissible
+* `ho` – order positive
+
+## Conclusion
+* the sample after `k` steps lies in the discretized system's reach
 
 ## References
 

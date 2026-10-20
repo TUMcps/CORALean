@@ -11,16 +11,25 @@ public import Mathlib.Analysis.InnerProductSpace.Basic
 /-!
 # The two forms `[1, Def. 4]` gives the local abstraction error
 
-`[1, (28)]` writes `d(box(R ⊖ R̂))` and `d(box(R_abs))` as the same number, on
-the strength of `R = R̂ ⊕ R_abs`. Only one direction of that is free: `⊖`
-undoes `⊕` up to a containment, `R_abs ⊆ (R̂ ⊕ R_abs) ⊖ R̂`, and the reverse is
-Rådström cancellation, which asks `R_abs` to be convex and closed and `R̂` to be
-nonempty and bounded. The hypotheses are stated here rather than built into
-either definition, since every step of `[1, Alg. 1]` meets them — both sets are
-zonotopes — while the definitions are about any solver at all.
+`[1, (28)]` writes `d(box(R ⊖ R̂))` and `d(box(R_abs))` as the same number, on the strength of
+`R = R̂ ⊕ R_abs`. Only one direction is free: `⊖` undoes `⊕` up to a containment,
+`R_abs ⊆ (R̂ ⊕ R_abs) ⊖ R̂`, and the reverse is Rådström cancellation, which asks `R_abs` to be
+convex and closed and `R̂` to be nonempty and bounded. The hypotheses are stated here rather than
+built into the definitions, since every step of `[1, Alg. 1]` meets them. Equality of the two
+*sets* is what is proved; the error identity is that read through `boxDiameter` and the norm.
 
-Equality of the two *sets*, not only of the two numbers, is what is proved; the
-error identity is that read through `boxDiameter` and the norm.
+## Inputs
+* `Rhat` – error-free run
+* `Rabs` – abstraction error set
+
+## Hypotheses
+* `hne` – run nonempty
+* `hb` – run bounded
+* `hconv` – error set convex
+* `hcl` – error set closed
+
+## Conclusion
+* the global error of one step equals the local error
 
 ## References
 

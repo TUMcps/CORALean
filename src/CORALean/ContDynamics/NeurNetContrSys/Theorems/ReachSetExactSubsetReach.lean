@@ -8,17 +8,38 @@ public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachOuter
 /-!
 # `reach` encloses the reachable set at the period boundaries
 
-`reach_outer` restated on `reachSetExact`: what it says of every run at `iΔtc`, this
-says of the set of them at once, so a specification about the reachable set
-meets the loop's enclosure as a single inclusion.
+`reach_outer` restated on `reachSetExact`: what it says of every run at `iΔtc`, this says of the
+set of them at once, so a specification about the reachable set meets the loop's enclosure as a
+single inclusion. Period boundaries only, and for the reason `ReachOuter` gives: between them
+`reachSetExact` says nothing and the network is not invoked either. Unlike
+`LinearSys.reachSetExact`, whose flow gets a stated time-interval enclosure between sample points,
+there is no such statement to restate here. [1, Alg. 2]'s postcondition, `R ⊇ R([0, tF])`, read at
+one control cycle.
 
-Period boundaries only, and for the reason `ReachOuter` already gives: between
-them `reachSetExact` says nothing and the network is not invoked either, so the two
-silences coincide. Unlike `LinearSys.reachSetExact`, whose flow gets a stated
-time-interval enclosure between sample points, there is no such statement to
-restate here — the gap sits in what the class proves, not only in this file.
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input set
+* `o` – maximum zonotope order
+* `η` – Taylor order
+* `N` – steps per period
+* `Δt` – step size
+* `H` – number of periods
+* `R₀` – initial set
+* `π` – controller function
+* `W` – disturbance set
+* `i` – period index
 
-[1, Alg. 2]'s postcondition, `R ⊇ R([0, tF])`, read at one control cycle.
+## Hypotheses
+* `ho` – order positive
+* `hΔt` – step positive
+* `hdt` – the period is `N` steps
+* `hε` – order admissible
+* `hπ` – the network encloses `π`
+* `hW` – disturbances sent to zero by the disturbance matrix
+* `hi` – period index within the horizon
+
+## Conclusion
+* the exact reachable set at the period boundary lies in the computed one
 
 ## References
 

@@ -17,6 +17,24 @@ step can cut off part of `X_k` (`aligned_subset_of_maxIn_counterexample`). The
 difference by the aligned zonotope is exact ([1, Prop. 3]), so `X_k ⊖ EW ⊆ Z̄_k ⊖ EW`
 is inside it. `A` is invertible, [1]'s assumption A3.
 
+## Inputs
+* `A` – state matrix
+* `B` – input matrix
+* `E` – disturbance matrix
+* `K` – offset
+* `U` – input zonotope
+* `W` – disturbance set
+* `Z₀` – target zonotope
+* `σ` – alignment choice per zonotope
+* `k` – step
+
+## Hypotheses
+* `hA` – state matrix invertible
+* `hσ` – alignments inside the scaling range and inside the disturbance set
+
+## Conclusion
+* the robust backward reachable set lies inside the aligned recursion
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

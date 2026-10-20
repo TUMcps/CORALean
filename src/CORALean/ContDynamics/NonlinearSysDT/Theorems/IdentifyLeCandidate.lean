@@ -11,6 +11,23 @@ public import CORALean.Global.DmdSelectLe
 `identify` returns the system of one of the candidates of ranks `1, …, rankMax`, and its `err` is
 at most that of every one of them, the full-rank candidate among them, for a comparison `lt`
 that is `<`. Only as good as `err`.
+
+## Inputs
+* `φ` – basis functions
+* `dt` – sampling time
+* `lt` – order test on errors
+* `err` – error of a candidate system
+* `xNext` – next-state data
+* `V` – left singular vectors
+* `s` – singular values
+* `W` – right singular vectors
+
+## Hypotheses
+* `hlt` – test agrees with less-than
+* `hr` – rank positive
+
+## Conclusion
+* the chosen system has no larger error than the full-rank candidate
 -/
 
 -- Authors:       Claude Opus 5.5

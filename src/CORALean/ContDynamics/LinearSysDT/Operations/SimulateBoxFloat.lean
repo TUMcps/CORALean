@@ -11,6 +11,14 @@ public import CORALean.ContSet.Interval.Float.Operations.Point
 CORA's `simulate` at a float start and a float input signal: `simulateBoxIn` on
 `Interval.point` start and inputs, every step in directed rounding. Soundness is
 `simulate_mem_simulateBox`.
+
+## Inputs
+* `sys` – system
+* `x₀` – float initial state
+* `u` – float input signal
+
+## Output
+* boxes containing the real run after each number of steps
 -/
 
 -- Authors:       Claude Opus 5.5

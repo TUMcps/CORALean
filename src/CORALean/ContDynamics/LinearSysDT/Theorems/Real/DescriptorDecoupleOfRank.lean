@@ -15,6 +15,17 @@ condition says the row `vec(Jᵀ)ᵀ` adds nothing to `I ⊗ M`, whose rank is a
 (`rank_one_kronecker_ge`) and at most that of the stacked matrix: so `vec Jᵀ` is in the column space
 of `I ⊗ Mᵀ`, which is a solution `Xᵀ`.
 
+## Inputs
+* `E` – descriptor matrix
+* `Dd` – unknown input matrix
+* `C` – output matrix
+
+## Hypotheses
+* `h` – the rank condition holds
+
+## Conclusion
+* decoupling matrices exist
+
 ## References
 
 * [1] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on

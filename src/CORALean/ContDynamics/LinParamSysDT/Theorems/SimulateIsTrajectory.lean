@@ -11,6 +11,22 @@ public import CORALean.ContDynamics.LinParamSysDT.Operations.Simulate
 staying in `construct U`, and `A k ∈ construct sys.A` at every `k`: `init` and
 `input` are the hypotheses handed in, `step` is `⟨A k, hA k, rfl⟩`, since
 `simulate`'s equation at `A k` is one witness of `IsCanonicalTrajectory.step`'s `∃ A`.
+
+## Inputs
+* `sys` – system
+* `A` – matrices chosen per step
+* `R₀` – initial set
+* `U` – input set
+* `x₀` – initial state
+* `u` – inputs
+
+## Hypotheses
+* `hA` – every chosen matrix lies in the set
+* `hx₀` – start lies in `R₀`
+* `hu` – inputs lie in `U`
+
+## Conclusion
+* the simulated run is a canonical trajectory
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

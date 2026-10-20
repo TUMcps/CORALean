@@ -8,16 +8,50 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetExactSubsetRel
 /-!
 # The reachable set inside a computed one, with nothing left to assume
 
-The two halves composed: `reachSetExact_confinement_of_subset` discharges the
-confinement `reachSetExact_subset_relinTimeInterval` asks for, at the same order
-`q + 2`, so what remains are properties of each step's `linInput`, a bound `M`
-on the field over each certified region, and the ball check `hsub` — every one
-of them a condition on `R₀`, `U`, `steps` and the sets `relinReach` computes.
+The two halves composed: `reachSetExact_confinement_of_subset` discharges the confinement
+`reachSetExact_subset_relinTimeInterval` asks for, at the same order `q + 2`, so what remains
+are properties of each step's `linInput`, a bound `M` on the field over each certified region,
+and the ball check `hsub`, each a condition on `R₀`, `U`, `steps` and the sets `relinReach`
+computes. This is the shape `LinearSys.reachSetExact_subset_timeInterval_inputSolution` has in
+the linear case; `M` and `ρ` are extra data it has no counterpart to, since a linear field needs
+no region to be conservative over.
 
-This is the shape `LinearSys.reachSetExact_subset_timeInterval_inputSolution` has in
-the linear case, and it is as far as the nonlinear one gets: `M` and `ρ` are
-extra data there is no linear counterpart to, since a linear field needs no
-region to be conservative over.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `steps` – linearization steps
+* `Δt` – step size
+* `N` – number of steps
+* `M` – field bound
+* `ρ` – ball radius
+* `q` – Taylor terms minus two
+* `o` – maximum order
+* `i` – step index
+* `t` – time
+
+## Hypotheses
+* `hΔt` – step size positive
+* `hT` – horizon inside time set
+* `hε` – step norm small enough
+* `hconv` – widened input convex
+* `hclosed` – widened input closed
+* `hbdd` – widened input bounded
+* `h0` – zero in widened input
+* `hRconv` – remainder input convex
+* `hRclosed` – remainder input closed
+* `hRbdd` – remainder input bounded
+* `hM₀` – bound nonnegative
+* `hM` – field bounded on regions
+* `hρ` – radius exceeds travel distance
+* `ho` – order positive
+* `hsub` – inflated sets inside regions
+* `hi` – index below step count
+* `ht` – time within the step
+
+## Conclusion
+* the exact reachable set at the time lies in the step enclosure
 -/
 
 -- Authors:       Claude Opus 5

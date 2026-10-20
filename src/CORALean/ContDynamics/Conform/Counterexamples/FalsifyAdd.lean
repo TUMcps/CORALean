@@ -17,6 +17,15 @@ measurement `y = -1` has `y ⊕ V = [-1, 0] ∋ 0`, so the exact output may be r
 yet `-1 ∉ R ⊕ V = [0, 1]` declares it falsified. The test is `y ∉ R ⊕ (-V)`
 (`DisjointSingletonAddIff`); for a centrally symmetric `V` both coincide.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a measurement that is not falsified, yet `y ∉ R ⊕ V` declares it falsified
+
 ## References
 
 * [1] M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". In Proc. of

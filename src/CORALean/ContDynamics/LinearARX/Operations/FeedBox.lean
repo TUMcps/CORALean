@@ -13,6 +13,14 @@ public import CORALean.ContSet.Interval.Float.Operations.Point
 `inputSet` does but with each lag's input held as a point interval: the `p + 1` lag
 terms `inputMat j · u(k + p - j)` are summed by `plus`, in the fold order of
 `inputSet`.
+
+## Inputs
+* `sys` – ARX system
+* `u` – inputs
+* `k` – step
+
+## Output
+* the box of the input a float step feeds
 -/
 
 -- Authors:       Claude Opus 5.5

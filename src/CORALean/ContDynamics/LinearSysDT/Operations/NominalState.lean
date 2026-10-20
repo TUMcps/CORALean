@@ -11,6 +11,14 @@ The state sequence `simulate(linsysDT, params)` returns when `w = 0` and `v = 0`
 `priv_conform_unifyTrajectories` [1] calls it to get the nominal solution a test case's
 output is compared with: `x(k+1) = A x(k) + B u(k) + c`.
 
+## Inputs
+* `sys` – system
+* `x0` – initial state
+* `u` – inputs
+
+## Output
+* the nominal state after each number of steps
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/private/priv_conform_unifyTrajectories.m`

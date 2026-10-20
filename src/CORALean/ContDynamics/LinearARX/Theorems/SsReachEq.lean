@@ -15,6 +15,25 @@ the paper compares ARMAX against. Written with `i - 1` as `i`, over `range k`. E
 input and disturbance enters once, so the Minkowski sums lose nothing; the sets are
 nonempty so that the signals past `k`, which `y(k)` does not read, exist.
 
+## Inputs
+* `A` – state matrix
+* `B` – input matrix
+* `C` – output matrix
+* `D` – feedthrough matrix
+* `X₀` – initial set
+* `U` – input sets per step
+* `W` – disturbance sets per step
+* `V` – noise sets per step
+* `k` – step
+
+## Hypotheses
+* `hU` – input sets nonempty
+* `hW` – disturbance sets nonempty
+* `hV` – noise sets nonempty
+
+## Conclusion
+* the reachable outputs equal the Minkowski sum expression
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

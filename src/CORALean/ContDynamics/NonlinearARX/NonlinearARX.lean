@@ -7,21 +7,13 @@ public import CORALean.ContSet.ContSet.ContSet
 /-!
 # Nonlinear ARX models: the representation
 
-CORA's `nonlinearARX` [1], `y(k) = f(y(k-1), …, y(k-p), u(k), …, u(k-p))`, in the
-outputs and not in a state, with `f` over `ℝ` as `NonlinearSysDT` holds its `f`.
-`f` takes the past outputs stacked as CORA documents them, block `i` of the first
-argument holding `y(k-1-i)`, and the inputs, block `j` of the second holding
-`u(k-j)`; `pastOut` and `pastIn` read those two windows off a signal.
-
-CORA's sampling time `dt` is stored, as in `NonlinearSysDT`, and carried to the converted
-system; runs are indexed by the step.
-Left out: CORA's cached Jacobian, Hessian and third-order tensor, which
-`NonlinearSysDT.LinStep` already supplies at the converted system.
-
-`stack y k` is the window `(y(k), …, y(k+p-1))`, block `a` holding `y(k+a)`, the
-state the conversion to `NonlinearSysDT` carries. `IsTrajectory` is the ARX
-recursion for every `k ≥ p`, the first window `stack y 0` in `Y₀` as CORA's `y0`,
-and every input in `U`; the conversion is not used to state it.
+CORA's `nonlinearARX` [1], `y(k) = f(y(k-1), …, y(k-p), u(k), …, u(k-p))`, in the outputs and
+not in a state, with `f` over `ℝ` as `NonlinearSysDT` holds its `f`. `f` takes the past outputs
+stacked as CORA documents them, block `i` of the first argument holding `y(k-1-i)`, and the
+inputs, block `j` of the second holding `u(k-j)`; `pastOut` and `pastIn` read those windows off
+a signal. CORA's sampling time `dt` is stored and carried to the converted system. `stack y k` is
+the window `(y(k), …, y(k+p-1))`, the state the conversion to `NonlinearSysDT` carries.
+`IsTrajectory` is the ARX recursion for every `k ≥ p`, the first window in `Y₀`, as CORA's `y0`.
 
 ## References
 

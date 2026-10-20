@@ -15,6 +15,21 @@ public import CORALean.Global.PosDefSchurComplementFirst
 complement of `-Q` (`posDef_fromBlocks_first_iff`, on the negated matrix) is the lower block plus
 `[(A - LC)  -LE]ᵀ Q [(A - LC)  -LE]`, which is Eq. 25.
 
+## Inputs
+* `A` – state matrix
+* `C` – output matrix
+* `E` – fault matrix
+* `L` – observer gain
+* `Q` – Lyapunov matrix
+* `M` – residual weight
+* `β` – sensitivity level
+
+## Hypotheses
+* `hQ` – Lyapunov matrix positive definite
+
+## Conclusion
+* the two block inequalities are equivalent
+
 ## References
 
 * [1] Y. Wang, M. Zhou, V. Puig, G. Cembrano and Z. Wang. "Zonotopic Fault Detection Observer

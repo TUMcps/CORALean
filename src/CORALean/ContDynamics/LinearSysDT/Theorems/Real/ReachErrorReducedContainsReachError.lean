@@ -11,20 +11,27 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
 /-!
 # The reduced error contains the unreduced one
 
-The two recursions share their step's box and differ only in the `reduce` on
-top, so the induction is one application of `reduce_outer` per step with
-`plus_exact` and `mtimes_exact` splitting what is under it — the previous
-step's error rides through the same `A` on both sides.
+The two recursions share their step's box and differ only in the `reduce` on top, so the induction
+is one application of `reduce_outer` per step with `plus_exact` and `mtimes_exact` splitting what
+is under it — the previous step's error rides through the same `A` on both sides. This makes
+`reachErrorReduced` worth having: everything proved about `reachError` transfers to it in the
+direction the error is used, since the error is *added* to the exact set.
+`reach_subset_reachSetExact_add_errorReduced` is that transfer, and
+`reachInnerReduced_subset_reachInner` is the price paid, read on the other side of the Minkowski
+difference. `contains` and not `_outer`: both sides are computed errors.
 
-This is the fact that makes `reachErrorReduced` worth having rather than a
-second definition sitting beside the first: everything already proved about
-`reachError` transfers to it in the direction the error is used, since the
-error is *added* to the exact set. `reach_subset_reachSetExact_add_errorReduced` is
-that transfer, and `reachInnerReduced_subset_reachInner` is the price paid for
-it, read on the other side of the Minkowski difference.
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – step
 
-`contains` and not `_outer`: both sides are computed errors, neither is the
-exact set, and the name reads with the receiver elided.
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* the unreduced error lies in the reduced error
 -/
 
 -- Authors:       Claude Sonnet 5

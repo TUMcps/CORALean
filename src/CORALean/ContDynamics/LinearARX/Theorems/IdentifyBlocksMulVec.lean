@@ -11,6 +11,19 @@ public import CORALean.ContDynamics.LinearARX.Operations.IdentifyRegressor
 `[A B]` applied to the regressor of step `k` is `∑ A_i y(k-1-i) + ∑ B_j u(k-j)`, the right-hand
 side of `LinearARX.IsTrajectory.step`: `identifyBlocks` cuts the columns where `identifyRegressor`
 stacks them.
+
+## Inputs
+* `dt` – sampling time
+* `M` – identified matrix
+* `y` – outputs
+* `u` – inputs
+* `k` – step
+
+## Hypotheses
+* none
+
+## Conclusion
+* the matrix applied to the regressor is the right side of the ARX recursion
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

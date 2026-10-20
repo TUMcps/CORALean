@@ -12,6 +12,20 @@ public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 in the step's region and the input in `U`, `f(x,u) - A x` lies in `linInput`. The
 three summands are the constant `c`, `B(u - u✱)` and the abstraction error; the
 `A x✱` terms cancel against the constant `c` encloses.
+
+## Inputs
+* `sys` – system
+* `U` – input set
+* `step` – linearization step
+* `x` – state
+* `u` – admissible input
+
+## Hypotheses
+* `hx` – state in the step's region
+* `hu` – input in the input set
+
+## Conclusion
+* the field less its linear part lies in the input set
 -/
 
 -- Authors:       Claude Opus 5.5

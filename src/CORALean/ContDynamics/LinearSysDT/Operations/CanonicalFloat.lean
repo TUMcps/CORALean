@@ -10,6 +10,13 @@ public import CORALean.Global.Float.FloatOps
 
 `LinearSysDT.canonical` at a float scalar, whose `0` and `1` are `FloatOps`'s own rather than
 `Zero` and `One` instances: `(A, I, 0, I, 0, 0, 0, I)`, every entry exact.
+
+## Inputs
+* `A` – float state matrix
+* `dt` – sampling time
+
+## Output
+* the canonical-form system at that float matrix
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -17,6 +17,13 @@ blocks `A_{k,i} = ∇_{y_{k-i}} h` arrive as a family `A` indexed by the lag `i`
 in column `b` of the last row is `A (np - b)`; the window is `p` blocks of `ny`, block
 `a` first, as `NonlinearARX.stack` reads it.
 
+## Inputs
+* `np` – number of lags
+* `A` – output Jacobian blocks per lag
+
+## Output
+* the extended state matrix of the lag window
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE

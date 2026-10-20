@@ -14,6 +14,24 @@ input steering `x` into `Z̲_{k-t-1}` against every disturbance, which
 `backReachAligned_control` provides on `Z̲_{k-t}`; by induction `x_t ∈ Z̲_{k-t}`. The
 strategy is shown to exist, not computed: computing it is (16)'s linear program.
 
+## Inputs
+* `A` – state matrix
+* `B` – input matrix
+* `E` – disturbance matrix
+* `K` – offset
+* `U` – input zonotope
+* `W` – disturbance set
+* `Z₀` – target zonotope
+* `σ` – alignment choice per zonotope
+* `k` – step
+
+## Hypotheses
+* `hA` – state matrix invertible
+* `hσ` – alignments inside the scaling range and around the disturbance set
+
+## Conclusion
+* a feedback reaches the target in `k` steps against every disturbance
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

@@ -7,15 +7,11 @@ public import Mathlib.Data.Nat.Basic
 /-!
 # CORA's `options` for a discrete-time linear reach
 
-`ρ`, the one option CORA's `config_linearSysDT_reach` makes
-mandatory. CORA's default is `inf`, no reduction at all, which `ℕ` has no value
-for, so here it is mandatory.
-
-`hZonotopeOrder` rules out `0`, as the positional `ho` did: at `o = 0`,
-`Zonotope.reduceGirard`'s natural subtraction keeps `(0 - 1) · n = 0` generators
-and silently returns order 1, where CORA's `geone` check refuses the value. Its
-default proof closes it at any positive literal, so a literal order costs a
-caller nothing; an order held in a variable brings its own proof.
+`ρ`, the one option CORA's `config_linearSysDT_reach` makes mandatory. CORA's default is `inf`,
+no reduction at all, which `ℕ` has no value for. `hZonotopeOrder` rules out `0`: at `o = 0`,
+`Zonotope.reduceGirard`'s natural subtraction silently returns order 1, where CORA's `geone`
+check refuses the value. Its default proof closes it at any positive literal; an order held in
+a variable brings its own proof.
 -/
 
 -- Authors:       Claude Opus 5.5

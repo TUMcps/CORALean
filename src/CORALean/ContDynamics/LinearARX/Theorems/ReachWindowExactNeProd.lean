@@ -14,6 +14,15 @@ window set. They differ once an input enters two outputs of one window:
 `y(k) = ũ(k) + ũ(k-1)`, `p = 2`, `ũ ∈ [-1, 1]`. Then `y(2) = 2` and `y(3) = -2` are each
 reachable, but `y(2) = 2` forces `ũ(2) = 1` and so `y(3) ≥ 0`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a window exists whose blocks are reachable outputs but which is not reachable
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

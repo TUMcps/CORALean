@@ -14,6 +14,27 @@ specification violated along one sampled run cannot have held on the
 reachable set either. Confinement (`hR`) is asked of `simulate` itself, as
 `simulate_mem_reach` already asks it — no shortcut around checking a sampled
 run stayed in the region each step's certificate was issued for.
+
+## Inputs
+* `sys` – system
+* `U` – input set
+* `o` – maximum order
+* `steps` – linearization steps
+* `R₀` – initial set
+* `spec` – specification
+* `x₀` – start state
+* `u` – input signal
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `hx₀` – start state in initial set
+* `hu` – inputs in input set
+* `hR` – simulated states stay in regions
+* `hbad` – specification fails on simulated state
+
+## Conclusion
+* the specification fails on the reachable set
 -/
 
 -- Authors:       Claude Opus 5

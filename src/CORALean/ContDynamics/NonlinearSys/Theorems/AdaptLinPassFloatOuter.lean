@@ -16,6 +16,19 @@ linear step it ends in (`oneStepFloat_outer`): a run of the nonlinear system who
 linear part stays in that input is in the pass's sets. The abstraction error is what a step adds on
 top (`adaptStepFloat_outer`). See [1].
 
+## Inputs
+* `fm` – float model
+* `sys` – system
+* `U` – input zonotope
+* `options` – reachability options
+* `R` – start zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* a successful pass encloses every run whose remainder stays in the input
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

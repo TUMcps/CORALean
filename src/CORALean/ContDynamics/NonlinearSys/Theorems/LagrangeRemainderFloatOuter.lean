@@ -21,6 +21,22 @@ zonotope is attained at a point of it (`aux_radius_attained`), which lies in the
 box, so the float `γ` bounds it; `abs_bilin_le_bilinUp` bounds the form and the sixth is `11/64 ≥
 1/6`. See [1].
 
+## Inputs
+* `d` – dimension
+* `n` – output dimension
+* `Ef` – float third-derivative bounds
+* `E` – exact third-derivative bounds
+* `Z` – float zonotope
+* `Zr` – exact zonotope
+* `zs` – expansion point
+
+## Hypotheses
+* `hE` – float bounds dominate exact ones
+* `hZ` – float zonotope holds exact one
+
+## Conclusion
+* the exact remainder box is inside the float one
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative

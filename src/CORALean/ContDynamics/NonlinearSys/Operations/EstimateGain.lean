@@ -9,22 +9,26 @@ public import Mathlib.Data.Real.Basic
 /-!
 # `estimateGain`: the gain at the finite horizon, read back from two radii
 
-Line 16 of [1, Alg. 2]: eq. (56) fixes `φ⁽¹⁾` implicitly, by asking the product
-`φ(1)·…·φ(λ')` of eq. (54)'s interpolated gains to equal `λ r⁽ᵛ⁾_abs / r⁽¹⁾_abs`
-— the two radii the step's two passes just computed. [1] calls solving it
-`estimateGain` and says nothing about how.
+Line 16 of [1, Alg. 2]: eq. (56) fixes `φ⁽¹⁾` implicitly, by asking the product `φ(1)·…·φ(λ')` of
+eq. (54)'s interpolated gains to equal `λ r⁽ᵛ⁾_abs / r⁽¹⁾_abs`, the two radii the step's two passes
+just computed. [1] calls solving it `estimateGain` and says nothing about how. Line 13 of
+[2, Alg. 2] is the same equation. How, here, is bisection on `[0,1]`: every factor of the
+left-hand side grows with `φ⁽¹⁾`, so the product does, and halving the bracket toward the crossing
+converges to the solution. No `Nat.find` and no `Classical.choose`: every decision goes through
+the caller's `le`, so a float layer transcribes this and it runs. `fuel` is the number of
+halvings.
 
-Line 13 of [2, Alg. 2] is the same equation, its (29) being (56) here.
+## Inputs
+* `le` – comparison of reals
+* `ζδ` – tuning constant
+* `lam` – step scaling
+* `rabs1` – abstraction radius at the horizon
+* `rabsOpt` – abstraction radius at the optimal step
+* `scalings` – number of scalings
+* `fuel` – number of halvings
 
-How, here, is bisection on `[0,1]`: every factor of the left-hand side grows
-with `φ⁽¹⁾`, so the product does, and halving the bracket toward the crossing
-converges to the solution. A gain is a ratio of two widths, so `[0,1]` is where
-the answer is and the bracket needs no search of its own.
-
-No `Nat.find` and no `Classical.choose`: every decision goes through the
-caller's `le`, in the style of `Global/Float/Log.lean`, so a float layer
-transcribes this and it runs. `fuel` is the number of halvings, and the
-accompanying theorem is what it buys.
+## Output
+* the gain at the finite horizon
 
 ## References
 

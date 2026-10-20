@@ -16,6 +16,24 @@ iff every `y⁽ᵐ⁾ ∈ Y_ZCP(x⁽ᵐ⁾)` (10b), by [1, Lemma 5]; and the obj
 predictors meeting (10b), at their cost: its optimum is Problem 1's over that class. Data
 points and evaluation inputs are any finite families; `R₀ = I` is not used.
 
+## Inputs
+* `M` – data point index type
+* `E` – evaluation index type
+* `nr` – size index of `R`
+* `f` – predictions per point
+* `D` – derivatives per point
+* `y` – targets per point
+* `Gu` – uncertainty generators
+* `R` – cost rotation matrices
+* `Deval` – evaluation derivatives
+* `α` – generator scaling
+
+## Hypotheses
+* `hα` – scalings nonnegative
+
+## Conclusion
+* the regression constraints are those of the linear program and the cost is linear in `α`
+
 ## References
 
 * [1] L. Lützow, M. Eichelbeck, M. J. Kochenderfer and M. Althoff. "Zono-Conformal

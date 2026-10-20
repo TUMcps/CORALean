@@ -17,28 +17,33 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 The path `reach(nonlinParamSys)` takes with `paramInt` an interval: `@contDynamics/linReach.m` [2]
 calls `linearize` [1] (`NonlinParamSys.linearize`), translates the initial set by the
-linearization point, and, as `isa(sys,'nonlinParamSys') && isa(params.paramInt,'interval')`,
-runs `initReach_inputDependence` on the `linParamSys` of `zA` with the constant input `zf`
-(`LinParamSys.initReachInputDependence`, corrected where CORA's `inputCorr` is too small; for the
-zero matrix `zA` and `B = 1`, which has no deviation from its center, of the counterexample
-the two coincide), then translates back and adds the
-abstraction error `Rerror`.
-
-Not modelled: the time-varying input `zB (U + uTrans - p.u)` (`linParams.U`), the choice of the
-linearization point, and the computation of `Rerror` by the Lagrange remainder over the enclosing
-set with its tightening loop, which is a parameter here.
+linearization point, and runs `initReach_inputDependence` on the `linParamSys` of `zA` with the
+constant input `zf` (`LinParamSys.initReachInputDependence`, corrected where CORA's `inputCorr` is
+too small; for the zero matrix `zA` and `B = 1` of the counterexample the two coincide), then
+translates back and adds the abstraction error `Rerror`. Not modelled: the time-varying input
+`zB (U + uTrans - p.u)`, the choice of the linearization point, and the computation of `Rerror` by
+the Lagrange remainder over the enclosing set, which is a parameter here.
 
 # `linReach` of a `nonlinParamSys` with an interval `paramInt` misses states
 
 `reach(nonlinParamSys)` with an interval `paramInt` goes through `linReach.m` [2], which calls
-`linearize` [1] and, because `isa(params.paramInt,'interval')`, runs `initReach_inputDependence`
-on the linearized system. `linearize` builds `zf` from `f(x, u, 0)` and unit-vector differences,
-which is the dynamics only for `f` affine in `p` (`linearize_f_counterexample`), and nothing
-checks that. So the reachable set misses states: for `ẋ = p²`, `p ∈ [1, 2]`, from the point
-`x₀`, the state `x₀ + 4 r` of the run at `p = 2` after a step `r` is in neither set
-`NonlinParamSys.linReachCora` returns. The abstraction error cannot cover it: the remainder is
-zero (`linReachCora_remainder_zero`), `Rerror = {0}`. The linearized system here has `zA = 0` and
-`zf = [1, 2]`, so its step set is `x₀ + r [1, 2]`.
+`linearize` [1] and runs `initReach_inputDependence` on the linearized system. `linearize` builds
+`zf` from `f(x, u, 0)` and unit-vector differences, which is the dynamics only for `f` affine in
+`p` (`linearize_f_counterexample`), and nothing checks that. So the reachable set misses states:
+for `ẋ = p²`, `p ∈ [1, 2]`, from the point `x₀`, the state `x₀ + 4 r` of the run at `p = 2` after a
+step `r` is in neither set `NonlinParamSys.linReachCora` returns. The abstraction error cannot
+cover it: the remainder is zero (`linReachCora_remainder_zero`), `Rerror = {0}`. The linearized
+system has `zA = 0` and `zf = [1, 2]`, so its step set is `x₀ + r [1, 2]`.
+
+## Inputs
+* `r` – step size
+* `x₀` – start point
+
+## Hypotheses
+* `hr` – step positive
+
+## Conclusion
+* a run's end state lies outside both sets of `linReachCora`
 
 ## References
 

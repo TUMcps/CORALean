@@ -10,23 +10,26 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 /-!
 # `LinParamSys.initReachInputDependence`, CORA's `initReach_inputDependence` corrected
-The first step when the constant input `Uconst = zonotope(U_c, U_G)`, in input coordinates,
-shares its parameters with the matrix zonotope `sys.A`: `Rhom_tp`
-(`dependentHomSol`, corrected) and `Rhom = enclose(Rinit, Rhom_tp) + F Rinit + inputCorr`, `F`
-from `priv_tie` and `inputF` from `priv_inputTie` (`intervalCorrectionMatrix`,
-`intervalConstCorrectionMatrix` of the box). The input is `B Uconst ⊕ c` with `B` ranging over the
-matrix zonotope `sys.B`, as CORA's `inputCorr = inputF*sys.B*zonotope(...)` has it, split as
-`B_c Uconst ⊕ c`, whose generators keep the parameters of `sys.A` (a product with the matrix
-zonotope's own generators would not), and the deviation `B_Δ Uconst`, `B_Δ = B - B_c`, an input
-independent of them, carried by `inputSolutionZono` as CORA's `priv_inputSolution` carries
-`sys.RV`: CORA's `priv_dependentHomSol` takes `Uconst` as the state-space input (its only caller
-has `B = 1`), so the deviation has no counterpart there.
 
-**`inputCorr` corrected**: CORA's `inputF*B*zonotope(uTrans + center(Uconst))` corrects the
-input's curvature over the step at its center only, but `Rhom_tp` integrates all of `Uconst`;
-here `inputF` times the state-space `B Uconst ⊕ c`, `B` ranging over all of `sys.B`.
+The first step when the constant input `Uconst = zonotope(U_c, U_G)`, in input coordinates, shares
+its parameters with the matrix zonotope `sys.A`: `Rhom_tp` (`dependentHomSol`, corrected) and
+`Rhom = enclose(Rinit, Rhom_tp) + F Rinit + inputCorr`, `F` from `priv_tie`, `inputF` from
+`priv_inputTie`. The input is `B Uconst ⊕ c` with `B` ranging over the matrix zonotope `sys.B`,
+split as `B_c Uconst ⊕ c`, whose generators keep the parameters of `sys.A`, and the deviation
+`B_Δ Uconst`, carried by `inputSolutionZono`. **`inputCorr` corrected**: CORA's
+`inputF*B*zonotope(uTrans + center(Uconst))` corrects the curvature at the center only, but
+`Rhom_tp` integrates all of `Uconst`; here it is `inputF` times `B Uconst ⊕ c`.
 
-Not modelled: `params.U` (`sys.RV`), `uTrans` (zero) and the final `reduce`.
+## Inputs
+* `sys` – system
+* `r` – step size
+* `η` – Taylor order
+* `Rinit` – initial zonotope
+* `Uc` – input center
+* `UG` – input generators
+
+## Output
+* the time-point and time-interval zonotopes of the first step
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

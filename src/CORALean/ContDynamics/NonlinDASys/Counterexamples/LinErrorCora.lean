@@ -16,27 +16,29 @@ public import CORALean.ContDynamics.NonlinDASys.Theorems.LinErrorOuter
 The set of linearization errors as CORA's `nonlinDASys` computes it, in
 `private/priv_linError_mixed_noInt.m` (and alike in `priv_linError`, `priv_linError_thirdOrder`,
 `priv_abstractionError_adaptive`): `error_mid = error_x_mid + CF_inv*error_y_mid` and
-`error_rad = error_x_rad_zono + CF_inv*error_y_rad_zono`, that is
-
-`½ (d + CF⁻¹e, H + CF⁻¹V) ⊕ ½ ([-ζ, ζ] ⊕ CF⁻¹[-ϱ, ϱ])`
-
-where [1, Cor. 1] (`NonlinDASys.linError`) has `d - CF⁻¹e`, `H - CF⁻¹V` and `-CF⁻¹`. The
-algebraic error enters the dynamics as `-C F⁻¹ ℓᵃ` ([1, Eq. 13]), and CORA's own algebraic set
-`R_y = p.y + (-F_inv)*(f0_con + D*R + E*U + error_y)` has the minus; only the dynamics' error
-flips it. On the symmetric radius part the sign makes no difference; on the midpoint part it
-does (`NonlinDASys.linErrorCora_counterexample`). The radius `|R^z_Δ|` stands for CORA's
-`dz_abs`, the absolute bound of the box of the deviations; the reduction CORA applies before
-`quadMap` is left out.
+`error_rad = error_x_rad_zono + CF_inv*error_y_rad_zono`, where [1, Cor. 1]
+(`NonlinDASys.linError`) has `d - CF⁻¹e`, `H - CF⁻¹V` and `-CF⁻¹`. The algebraic error enters the
+dynamics as `-C F⁻¹ ℓᵃ` ([1, Eq. 13]); only the dynamics' error flips it. On the symmetric radius
+part the sign makes no difference; on the midpoint part it does
+(`NonlinDASys.linErrorCora_counterexample`). The reduction before `quadMap` is left out.
 
 # CORA's `nonlinDASys` linearization error misses the error
 
 `NonlinDASys.linErrorCora`, CORA's `error_mid + error_rad` with `+ CF_inv` on the algebraic part,
-against [1, Cor. 1] (`NonlinDASys.linError`) with `- CF⁻¹`. The system `ẋ = y`, `0 = y - x²`
-(index 1, `F = 1`), linearized at `z* = 0`: `A = 0`, `C = 1`, `D = 0`, so `C F⁻¹ = 1`, and the
-Hessians are `Hᵈ = 0` and `Hᵃ = -2` in the `x` direction, nothing in `y` (the deviation
-zonotope is taken over `x` alone, `R^z_Δ = [-1, 1]`). On the constraint `y = x²`, so `ẋ = x²`
-while the linearization gives `0`: the error at `x = 1` is `1`. [1, Cor. 1] holds it, `½ (σ -
-CF⁻¹φ) = ½ (0 - (-2)) = 1`; CORA's set is `½ (0 + (-2) [0, 1]) = [-1, 0]` and does not.
+against [1, Cor. 1] with `- CF⁻¹`. The system `ẋ = y`, `0 = y - x²` (index 1, `F = 1`), linearized
+at `z* = 0`: `A = 0`, `C = 1`, `D = 0`, so `C F⁻¹ = 1`, and the Hessians are `Hᵈ = 0` and `Hᵃ = -2`
+in the `x` direction (`R^z_Δ = [-1, 1]`). On the constraint `y = x²`, so `ẋ = x²` while the
+linearization gives `0`: the error at `x = 1` is `1`. [1, Cor. 1] holds it,
+`½ (σ - CF⁻¹φ) = ½ (0 - (-2)) = 1`; CORA's set is `½ (0 + (-2) [0, 1]) = [-1, 0]` and does not.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the true error lies in the paper's set but not in CORA's
 
 ## References
 

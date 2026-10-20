@@ -13,6 +13,18 @@ public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 `simulate` of the real values of a float start and a float input signal lies, at
 every step, in the box `simulateBox` computed in float arithmetic: the float
 `simulate` row's guarantee (ruling R-SIM). An enclosure, so the box is outer.
+
+## Inputs
+* `sys` – system
+* `x₀` – float start state
+* `u` – float inputs
+* `k` – step
+
+## Hypotheses
+* none
+
+## Conclusion
+* the real run lies in the float box
 -/
 
 -- Authors:       Claude Opus 5.5

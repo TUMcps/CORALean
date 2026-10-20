@@ -13,6 +13,26 @@ field as its derivative at every point, within the interval: the converse of
 `IsTrajectory.of_hasDerivWithinAt`. A continuous input under a continuous right-hand side, as
 [1, Def. 1]'s Lipschitz-continuous inputs are, gives such a field.
 
+## Inputs
+* `sys` – system
+* `a` – interval start
+* `b` – interval end
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+* `y` – output trajectory
+* `t` – time
+
+## Hypotheses
+* `traj` – trajectory of the system
+* `h0` – zero in interval
+* `hf` – field continuous along run
+* `ht` – time in interval
+
+## Conclusion
+* the state has the field as derivative at the time
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear Systems with

@@ -8,6 +8,14 @@ public import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
 # The reference run of a discrete-time system
 
 `x_ref(:,k+1) = nlnsysDT.mFile(x_ref(:,k), u_ref(:,k))` of `computeGO`, from `x_ref(:,1) = x0`.
+
+## Inputs
+* `sys` – system
+* `x0` – initial point
+* `u_ref` – reference input
+
+## Output
+* the reference states at each step
 -/
 
 -- Authors:       Claude Opus 5.5

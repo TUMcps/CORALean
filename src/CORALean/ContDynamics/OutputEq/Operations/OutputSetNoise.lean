@@ -13,6 +13,16 @@ the measurement noise `F V`, one more `mtimes` and `plus`. Pass `U` already shif
 
 Not modelled: the shortcut `Y = R` when `C` is empty (the same set as `C = I`, `D = 0`, `k = 0`,
 `F = 0`, which this computes, only coarser), and the optional `reduce` to `saveOrder`.
+
+## Inputs
+* `out` – output equation
+* `F` – noise matrix
+* `R` – state set
+* `U` – input set
+* `V` – noise set
+
+## Output
+* the enclosure of all noisy outputs
 -/
 
 -- Authors:       Claude Opus 5.5

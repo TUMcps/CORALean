@@ -15,6 +15,18 @@ system `f(x,u) = A φ(x,u)`, and the one of least `computeError` is the result (
 dx; the interpolation to a uniform step and the finite differences of `getDataPoints`
 are not modelled. `'opt'`, `'sparse'` and `'nested'` are not formalized.
 
+## Inputs
+* `φ` – basis functions
+* `lt` – order test on errors
+* `err` – error of a candidate system
+* `dx` – derivatives of the data points
+* `V` – left singular vectors
+* `s` – singular values
+* `W` – right singular vectors
+
+## Output
+* the system of least error over all ranks, if any
+
 ## References
 
 * [1] `contDynamics/@nonlinearSys/private/priv_identifyDMD.m`

@@ -16,6 +16,38 @@ every gain `G`. As in the paper's proof, which sets `x̂ = x` in Eq. 30 of [1, T
 x - F υ) = 0` and `x₊ = (TE + NC) x₊ = TA x + TB u + TD ω + N y₊ - NF υ₊`, the point of the zonotope
 at the coefficients `(β, ω, υ₊, υ)`.
 
+## Inputs
+* `E` – descriptor matrix
+* `T` – decoupling matrix
+* `A` – state matrix
+* `N` – measurement decoupling matrix
+* `G` – observer gain
+* `B` – input matrix
+* `D` – disturbance matrix
+* `Dd` – unknown input matrix
+* `C` – output matrix
+* `F` – noise matrix
+* `u` – input at this step
+* `X` – previous zonotope
+* `x` – state
+* `x_plus` – next state
+* `ω` – disturbance coefficients
+* `υ` – noise coefficients
+* `υ_plus` – next noise coefficients
+* `d` – unknown input
+
+## Hypotheses
+* `hTN` – decoupling identity holds
+* `hTD` – decoupling kills the unknown input
+* `hx` – `x` lies in `X`
+* `hω` – disturbance coefficients within one
+* `hυ` – noise coefficients within one
+* `hυp` – next noise coefficients within one
+* `hE` – the descriptor step holds
+
+## Conclusion
+* the next state lies in the observer zonotope
+
 ## References
 
 * [1] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on

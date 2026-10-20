@@ -11,6 +11,22 @@ public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
 `LinearSysDT.reach_outer` along the converted trajectory: the window of outputs
 `(y(k), …, y(k+p-1))` lies in the reachable set at step `k`. The set is the
 conversion's, with its input set `inputSet U`; reach in the ARX form is separate.
+
+## Inputs
+* `sys` – ARX system
+* `o` – maximum zonotope order
+* `Y₀` – initial window set
+* `U` – input set
+* `y` – outputs
+* `u` – inputs
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `traj` – ARX trajectory
+
+## Conclusion
+* the output window lies in the converted system's reachable set
 -/
 
 -- Authors:       Claude Opus 5.5

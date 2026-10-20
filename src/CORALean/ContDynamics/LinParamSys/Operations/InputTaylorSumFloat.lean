@@ -12,6 +12,14 @@ public import CORALean.ContSet.Zonotope.Float.Instances
 `LinParamSys.inputTaylorSum` computed in `𝕋`: order `i`'s interval matrix
 `[Aⁱ r^{i+1}/(i+1)!]` over the whole box `sys.A` is `MatExp.intervalInputTerm`
 at `sys.A` itself, times the input set, summed.
+
+## Inputs
+* `sys` – system
+* `r` – step size
+* `V` – input zonotope
+
+## Output
+* the orders of the input solution summed up to a given order
 -/
 
 -- Authors:       Claude Opus 5.5

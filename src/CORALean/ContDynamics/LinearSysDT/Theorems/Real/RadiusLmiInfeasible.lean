@@ -17,6 +17,17 @@ satisfy it, in any dimension `n ≥ 1`: the form at `(e_i, 0)` is the top-left e
 CORA's `PRad-D` gain (`priv_observe_gain_PRadD`) imposes Eq. 20 as printed, `SM2 <= 0` with
 `SM2 = [eye(n) ⋆; γP P]`, so every step of its bisection on `γ` is infeasible.
 
+## Inputs
+* `P` – candidate matrix
+* `γ` – candidate scalar
+* `i` – coordinate index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the block matrix is never negative semidefinite
+
 ## References
 
 * [1] Y. Wang, Z. Wang, V. Puig and G. Cembrano. "Zonotopic set-membership state estimation for

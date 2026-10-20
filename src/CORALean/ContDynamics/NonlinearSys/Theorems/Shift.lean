@@ -9,21 +9,34 @@ public import Mathlib.MeasureTheory.Group.LIntegral
 /-!
 # A trajectory re-anchored at a later time
 
-`IsTrajectory.init` pins the state at `0` and every guarantee in `LinearSys` is
-written from `0`, so a method that takes a second step has to move the clock.
-This is the move: `fun t => x (t₀ + t)` is a trajectory on any domain the shift
-carries into `T`, with the input shifted alongside it.
+`IsTrajectory.init` pins the state at `0` and every guarantee in `LinearSys` is written from
+`0`, so a method that takes a second step has to move the clock. This is the move:
+`fun t => x (t₀ + t)` is a trajectory on any domain the shift carries into `T`, with the input
+shifted alongside it. The field is time-invariant, so `flow` transports without a change of
+vector field: the integral from `t₀` to `t₀ + t` is the difference of the two integral equations,
+which is why `t₀ ∈ T` is asked. `R₀'` is a parameter and its membership a hypothesis: the state
+reached at `t₀` is what the previous step enclosed, which makes this compose.
 
-The field is time-invariant, so `flow` transports without a change of vector
-field: the integral from `t₀` to `t₀ + t` is the integral from `0` of the
-shifted integrand, and it is the difference of the two integral equations at
-`t₀ + t` and at `t₀`, which is why `t₀ ∈ T` is asked. That is the only reason
-re-anchoring is cheap here, and it is why `NonlinearSys` carrying time in the
-state rather than as an argument is not a neutral choice.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `T'` – shifted time set
+* `R₀` – initial set
+* `R₀'` – set holding the later state
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+* `y` – output trajectory
+* `t₀` – anchor time
 
-`R₀'` is a parameter and its membership a hypothesis: the state reached at `t₀`
-is what the previous step enclosed, so the caller already has the set and the
-proof, and asking for them is what makes this compose.
+## Hypotheses
+* `traj` – trajectory of the system
+* `hT` – shift maps new set into old
+* `ht₀` – anchor time in time set
+* `h₀` – later state in the new initial set
+
+## Conclusion
+* the trajectory is a trajectory re-anchored at the later time
 -/
 
 -- Authors:       Claude Opus 5

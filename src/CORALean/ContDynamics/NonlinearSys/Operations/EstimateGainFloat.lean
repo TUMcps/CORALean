@@ -12,6 +12,17 @@ public import CORALean.Global.Float.FloatOps
 soundness statement reads it, so every rounding is upward and no theorem is owed. What a run
 guarantees holds for whatever this returns. See [1].
 
+## Inputs
+* `ζδ` – tuning constant
+* `lam` – step scaling
+* `rabs1` – abstraction radius at the horizon
+* `rabsOpt` – abstraction radius at the optimal step
+* `scalings` – number of scalings
+* `fuel` – number of halvings
+
+## Output
+* the float gain at the finite horizon
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

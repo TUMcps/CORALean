@@ -11,14 +11,11 @@ public import CORALean.Global.Jacobian
 
 `NonlinParamSys` stores `f` over ℝ, which no float run can evaluate. A `FloatModel` is what it
 evaluates instead: interval extensions of `f` and of its two Jacobian blocks `∂f/∂x`, `∂f/∂u`
-over a box of states, a box of inputs and a box of parameters, as computable functions at the
-scalar `𝕋`. `Encloses` ties it to `f`, beside the structure rather than inside it.
-
-The Jacobians are asked for pointwise, as `NonlinearSysDT.FloatJacModel` does: at every point of
-the three boxes, the Jacobian at that parameter lies in the interval matrix. Unlike CORA's
-`linearize`, which builds its zonotopes from `f(x, u, 0)` and the unit vectors and is right only
-for a `f` affine in `p` (`NonlinParamSys.linearize_f_counterexample`), an enclosure over the
-parameter box asks nothing of `f` but the enclosure itself.
+over a box of states, of inputs and of parameters, as computable functions at the scalar `𝕋`.
+`Encloses` ties it to `f`. The Jacobians are asked for pointwise, as `NonlinearSysDT.FloatJacModel`
+does. Unlike CORA's `linearize`, right only for a `f` affine in `p`
+(`NonlinParamSys.linearize_f_counterexample`), an enclosure over the parameter box asks nothing
+of `f` but the enclosure itself.
 -/
 
 -- Authors:       Claude Opus 5.5

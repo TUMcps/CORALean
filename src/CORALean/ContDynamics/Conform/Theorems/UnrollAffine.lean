@@ -14,6 +14,18 @@ public import Mathlib.Tactic.Abel
 with `prodJac A M j` the product of the latest `j` factors. This is the recursion inserted
 into itself, which [1, Cor. 1] and [1, Cor. 2] state as the GLO matrices.
 
+## Inputs
+* `A` – matrices per step
+* `d` – states
+* `w` – offsets per step
+* `M` – step
+
+## Hypotheses
+* `h` – the recursion holds
+
+## Conclusion
+* the state is the matrix product applied to the start plus weighted offsets
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE

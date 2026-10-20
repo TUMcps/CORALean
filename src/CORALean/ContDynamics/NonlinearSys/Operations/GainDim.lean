@@ -8,18 +8,24 @@ public import CORALean.Global.BoxDiameter
 /-!
 # The gain of one dimension
 
-`[1, Def. 5]`: `φᵢ(h;δ) = dᵢ(box(R^∞_abs(δh))) / dᵢ(box(R^∞_abs(h)))`, how much
-of dimension `i` of the local abstraction error survives shrinking the span from
-`h` to `δh`. `[1, Thm. 2]` is its limit as `h → 0`, and `[1, Prop. 1]` is what
-lets both be computed from `Ψ(h)`'s generators rather than from the set.
+`[1, Def. 5]`: `φᵢ(h;δ) = dᵢ(box(R^∞_abs(δh))) / dᵢ(box(R^∞_abs(h)))`, how much of dimension `i`
+of the local abstraction error survives shrinking the span from `h` to `δh`. `[1, Thm. 2]` is its
+limit as `h → 0`, and `[1, Prop. 1]` is what lets both be computed from `Ψ(h)`'s generators
+rather than from the set. **Where the denominator vanishes** Lean's `x / 0 = 0` makes `φᵢ` zero,
+and that is not what `[1, Def. 5]` means. By `[1, Def. 6]` the denominator vanishes identically in
+`h` exactly when dimension `i` has gain order `∞`. The nonvanishing hypothesis belongs to whatever
+reads `φᵢ`, as in `[1, (19)]`, which quantifies over the dimensions with `Ψᵢ > 0`, and not to the
+definition, which has to be total.
 
-**Where the denominator vanishes** Lean's `x / 0 = 0` makes `φᵢ` zero, and that
-is not what `[1, Def. 5]` means — a ratio of two vanishing widths is no ratio at
-all. By `[1, Def. 6]` the denominator vanishes identically in `h` exactly when
-dimension `i` has gain order `∞`, i.e. when the method commits no abstraction
-error there. The nonvanishing hypothesis belongs to whatever reads `φᵢ`, which
-is where `[1]` itself puts it — `[1, (19)]` quantifies over the dimensions with
-`Ψᵢ > 0` — and not on the definition, which has to be total.
+## Inputs
+* `A` – matrix as a function of the step
+* `Ψ` – error set as a function of the step
+* `h` – step size
+* `δ` – shrink factor
+* `i` – dimension
+
+## Output
+* the share of its width dimension `i` keeps
 
 ## References
 

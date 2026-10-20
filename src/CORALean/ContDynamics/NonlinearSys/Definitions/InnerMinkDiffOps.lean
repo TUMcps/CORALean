@@ -8,17 +8,14 @@ public import Mathlib.Data.Real.Basic
 /-!
 # The subroutines of the inner Minkowski-difference algorithm
 
-What [1, Alg. 1] computes by formulas of other papers or by representation-specific
-routines, supplied rather than fixed: the Chebyshev center `cen` and the enclosing box `box`
-(Sec. II-A, by linear programs on polytopes), the Jacobian `jac` of (6), the curvature error
-`curv` of (17), `C = F(Δt) box ⊕ G(Δt) w` with the interval matrices `F` and `G` [1] cites, the
-abstraction error `err` of (13), `R̂_err(L̂)`, and the Lagrange remainder `lagr` of (9) on a
-domain around the linearization point. `L` and `L̂` are intervals in the paper; their type
-`𝓛` is left open, with the three operations line 9-13 performs on them: the zero interval
-`[0ₙ, 0ₙ]`, the scaling `μL` and the containment test `L ⊆ L̂`, a `Bool` so the loop runs.
-
-None of the fields carries a specification: a theorem about [1, Alg. 1] states what it needs
-of them as a hypothesis (`NonlinearSys.IsInnerMinkDiffCert`).
+What [1, Alg. 1] computes by formulas of other papers or by representation-specific routines,
+supplied rather than fixed: the Chebyshev center `cen` and the enclosing box `box` (Sec. II-A),
+the Jacobian `jac` of (6), the curvature error `curv` of (17), the abstraction error `err` of
+(13), `R̂_err(L̂)`, and the Lagrange remainder `lagr` of (9). `L` and `L̂` are intervals in the
+paper; their type `𝓛` is left open, with the three operations lines 9-13 perform on them: the
+zero interval, the scaling `μL` and the containment test `L ⊆ L̂`, a `Bool` so the loop runs.
+None of the fields carries a specification: a theorem states what it needs of them as a
+hypothesis (`NonlinearSys.IsInnerMinkDiffCert`).
 
 ## References
 

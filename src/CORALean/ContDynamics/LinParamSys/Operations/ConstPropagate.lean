@@ -15,6 +15,15 @@ of a set `U` holding the origin. `P̃(t_0) = {0}`, and `P̃(t_{k+1}) = e^{[A]Δt
 of width `Δt` rather than across `t_k` itself, so every factor is enclosed at
 the fixed order admissible for `Δt` alone.
 
+## Inputs
+* `sys` – system
+* `Δt` – window length
+* `η` – Taylor order
+* `uc` – constant input
+
+## Output
+* the contribution up to the start of each window, by window index
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

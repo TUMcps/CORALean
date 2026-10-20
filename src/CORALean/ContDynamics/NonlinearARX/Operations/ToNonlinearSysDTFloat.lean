@@ -14,6 +14,12 @@ of the next window is the box of block `a + 1` of this one, and the last block i
 value, which reads the window and the inputs newest first, as the real conversion does. Only
 existing bounds are moved, so no rounding enters beyond the extension's.
 
+## Inputs
+* `fm` – float model of the ARX system
+
+## Output
+* the float model of the converted discrete-time system
+
 ## References
 
 * [1] `contDynamics/@nonlinearARX/nonlinearSysDT.m`

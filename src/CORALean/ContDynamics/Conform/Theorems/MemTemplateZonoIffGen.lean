@@ -12,6 +12,20 @@ public import Mathlib.Tactic.FieldSimp
 `β = diag(α) λ` behind the generator constraints of [1, Lemma 4] and [2, Lemma 5], linear in
 `α` and `β` together. Where `αⱼ = 0`, `βⱼ = 0` is forced and the generator drops out.
 
+## Inputs
+* `m` – dimension
+* `ι` – generator index type
+* `c` – center
+* `G` – template generators
+* `α` – stretch factors
+* `y` – point
+
+## Hypotheses
+* `hα` – stretch factors nonnegative
+
+## Conclusion
+* the point is in the template iff some coefficients bounded by `α` reach it
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE

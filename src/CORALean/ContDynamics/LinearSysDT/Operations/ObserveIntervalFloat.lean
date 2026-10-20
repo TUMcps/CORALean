@@ -20,6 +20,19 @@ CORA's `observe_interval` (`Hinf-G`), [1, Alg. 1]: the state after `k` measureme
 nominal box plus the box of the error, `x̂ + (box(R_x) + R_wv)`, all in directed rounding with the
 gain `L` fixed. Soundness is `observeIntervalFloat_outer`.
 
+## Inputs
+* `sys` – system
+* `L` – observer gain
+* `R₀` – initial zonotope
+* `W` – disturbance zonotope
+* `V` – noise zonotope
+* `u` – inputs
+* `y` – measurements
+* `k` – step
+
+## Output
+* the float interval enclosing the state after `k` measurements
+
 ## References
 
 * [1] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th

@@ -14,6 +14,19 @@ sits beside `ReachSetExactOuter`: no operation class in sight, and no topology e
 
 This is the missing hypothesis `minkowskiDiff_inner_of_outer` asks of the exact
 set it turns into an inner approximation; `ReachSetExactIsCompact` supplies the other.
+
+## Inputs
+* `sys` – system
+* `R₀` – initial set
+* `U` – input set
+* `k` – step
+
+## Hypotheses
+* `hR₀` – initial set convex
+* `hU` – input set convex
+
+## Conclusion
+* the exact reachable set is convex
 -/
 
 -- Authors:       Claude Opus 5

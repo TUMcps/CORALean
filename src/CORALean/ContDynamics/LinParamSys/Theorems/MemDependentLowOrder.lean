@@ -13,16 +13,29 @@ public import Mathlib.Tactic.Positivity
 /-!
 # The corrected `R_lowOrder` holds the dependent low orders
 
-`LinParamSys.mem_dependentLowOrder`: at `A = A_c + G`, `G = Σ pᵢ A_g⁽ⁱ⁾`, `u = U_c + w`,
-`w = Σ pᵢ U_G⁽ⁱ⁾`, the orders `(I + A r + A² r²/2) c + (I r + A r²/2 + A² r³/6) u` split by
-degree in `(G, w)` (`aux_lowOrder_split`); each degree is a sum over the parameters' indices
-(`aux_lowOrder_first`, `…_second`, `…_third`), the pairs folded into their diagonal and their
-`i < j` halves (`aux_lowOrder_diag_add`), the squares into a center and a generator
-(`aux_lowOrder_sq_split`). The coefficients are the monomials `pᵢ`, `2pᵢ² - 1`, `pᵢpⱼ`,
-`pᵢpⱼpₗ`, all in `[-1, 1]`.
+At `A = A_c + G`, `G = Σ pᵢ A_g⁽ⁱ⁾`, `u = U_c + w`, `w = Σ pᵢ U_G⁽ⁱ⁾`, the orders
+`(I + A r + A² r²/2) c + (I r + A r²/2 + A² r³/6) u` split by degree in `(G, w)`
+(`aux_lowOrder_split`); each degree is a sum over the parameters' indices (`aux_lowOrder_first`,
+`…_second`, `…_third`), the pairs folded into their diagonal and their `i < j` halves
+(`aux_lowOrder_diag_add`), the squares into a center and a generator (`aux_lowOrder_sq_split`).
+The coefficients are the monomials `pᵢ`, `2pᵢ² - 1`, `pᵢpⱼ`, `pᵢpⱼpₗ`, all in `[-1, 1]`. What
+`dependentHomSolLowOrder_counterexample` shows CORA's `R_lowOrder` misses is what the second and
+third degree here hold.
 
-What `dependentHomSolLowOrder_counterexample` shows CORA's `R_lowOrder` misses is exactly
-what the second and third degree here hold.
+## Inputs
+* `Ac` – center matrix
+* `Ag` – matrix generators
+* `c` – center of the initial zonotope
+* `Uc` – input center
+* `UG` – input generators
+* `r` – step size
+* `p` – shared parameter
+
+## Hypotheses
+* `hp` – parameters within `[-1, 1]`
+
+## Conclusion
+* the flow's low orders lie in the corrected low-order zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,15 @@ public import CORALean.ContDynamics.NonlinearARX.NonlinearARX
 none of `reach`'s set instances. CORA's `nonlinearARX/simulate`: the first `p` outputs are the
 initial window `y₀`, whose block `k` holds `y(k)`, and every later one is
 `y(k) = f(y(k-1), …, y(k-p), u(k), …, u(k-p))`, which `IsTrajectory.step` states.
+
+## Inputs
+* `sys` – ARX system
+* `y₀` – initial output window
+* `u` – input signal
+* `k` – step
+
+## Output
+* the output of the run at step `k`
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -18,6 +18,29 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 the frozen member's `e^{AΔt}`, which lies in `[e^{AΔt}]` by
 `exp_mem_expIntervalFloat` at an order admissible for `[Δt, Δt]`; sampling is at
 the real time `toReal Δt` the float denotes.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `Ud` – set of sampled inputs
+* `x` – trajectory
+* `u` – input signal
+* `A` – system matrix member
+* `Δt` – sampling time
+* `η` – Taylor order
+
+## Hypotheses
+* `traj` – constant-parameter trajectory
+* `hΔt` – sampling time nonnegative
+* `hT` – nonnegative times lie in the time set
+* `hU` – input set bounded
+* `hUd` – sampled inputs lie in `Ud`
+* `hη` – order admissible
+
+## Conclusion
+* the samples are a trajectory of the float-sampled system
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

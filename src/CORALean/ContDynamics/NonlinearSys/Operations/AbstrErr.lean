@@ -13,19 +13,31 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonoto
 /-!
 # `abstrErr`, the abstraction error of one step
 
-`[2, Alg. 2]` assembled out of the three operations `[2]` says are `[1, Sec. 4.1]`'s
-and `[1, Eq. 7]`'s: the state differences a step spans, the values its varying
-input part takes over them, and the remainder the third-order term leaves. Alg. 2's `×U` is a
-Cartesian product taken inside `Vec ℝ (n + m)` rather than in a pair type,
-`blockPadLeft`/`blockPadRight` embedding each half.
+`[2, Alg. 2]` assembled out of the three operations `[2]` says are `[1, Sec. 4.1]`'s and
+`[1, Eq. 7]`'s: the state differences a step spans, the values its varying input part takes over
+them, and the remainder the third-order term leaves. Alg. 2's `×U` is a Cartesian product taken
+inside `Vec ℝ (n + m)` rather than in a pair type, `blockPadLeft`/`blockPadRight` embedding each
+half. `Z` is the region the remainder is taken over, supplied rather than computed: the `zono`
+Alg. 2 computes it through is the one step whose property (6) its implementation does not have,
+`zonotope_not_mono`. Supplying it keeps `[2, Lemma 3]`'s proof here, `abstrErr_mono`, from resting
+on an assumption this tree can refute.
 
-`Z` is the region the remainder is taken over, supplied rather than computed, as
-`lagrangeRemainder` and `abstrErrLin` already take theirs. Alg. 2 computes it in
-its lines 3, 5 and 6, and line 5 as printed adds a set of `ℝⁿ` to one of
-`ℝⁿ⁺ᵐ`; more to the point, the `zono` it goes through is the one step of Alg. 2
-whose property (6) its *implementation* does not have, `zonotope_not_mono`.
-Supplying it is what keeps `[2, Lemma 3]`'s proof here, `abstrErr_mono`, from
-resting on an assumption this tree can refute.
+## Inputs
+* `sys` – linear system
+* `r` – step size
+* `η` – Taylor order
+* `B` – input matrix
+* `D` – second-derivative matrices
+* `E` – third-derivative matrices
+* `U` – input set
+* `UΔ` – input deviation set
+* `Z` – region of the remainder
+* `zs` – expansion point
+* `R` – reachable set
+* `Ψ` – applied error
+
+## Output
+* the abstraction error the step leaves
 
 ## References
 

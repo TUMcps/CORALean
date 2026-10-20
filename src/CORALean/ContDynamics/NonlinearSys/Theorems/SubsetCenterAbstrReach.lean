@@ -7,18 +7,24 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.CenterAbstrReach
 /-!
 # Line 17 collects what the loop computed
 
-[1, Alg. 1] line 17 returns `⋃_{j=0}^{K-1} R(τ_j)`, and this is what that union
-is worth: every time-interval set an iteration of lines 3-15 reported is inside
-it. Nothing is lost between the loop and the set the algorithm hands back, which
-is the only claim line 17 makes.
+[1, Alg. 1] line 17 returns `⋃_{j=0}^{K-1} R(τ_j)`, and this is what that union is worth: every
+time-interval set an iteration of lines 3-15 reported is inside it. Nothing is lost between the
+loop and the set the algorithm hands back, the only claim line 17 makes. It is not soundness of
+`Alg. 1`: that the union encloses the trajectories needs the certificate lines 4-5 do not carry
+here, and `abstrErrLoop_subset` is the part of it this tree can state. The bound `j < K` is the
+caller's iteration count standing in for line 2's `while`.
 
-It is not soundness of `Alg. 1`: that the union encloses the trajectories needs
-the certificate lines 4-5 do not carry here, and `abstrErrLoop_subset` is the
-part of it this tree can state without differentiating `f`.
+## Inputs
+* `sys` – system
+* `params` – reachability parameters
+* `options` – reachability options
+* `j` – iteration index
 
-The bound `j < K` is the caller's iteration count standing in for line 2's
-`while`, so the union is over the iterations a caller chose to run rather than
-over the ones the horizon would force.
+## Hypotheses
+* `hj` – index below iteration count
+
+## Conclusion
+* every iteration's time-interval set lies in the returned union
 
 ## References
 

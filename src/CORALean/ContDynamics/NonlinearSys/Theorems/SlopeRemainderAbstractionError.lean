@@ -17,6 +17,24 @@ model encloses `f` and the expansion point lies in the box, `slopeRemainder` is
 an `AbstractionError` for `A`, `B` over `X × U`. The slope at `(x, u)` against
 `(x✱, u✱)` rewrites the remainder as `(J_x - A)(x - x✱) + (J_u - B)(u - u✱)`, and
 each factor lies in the interval its operation was given.
+
+## Inputs
+* `fm` – float model
+* `sys` – system
+* `A` – state Jacobian center
+* `B` – input Jacobian center
+* `xs` – state expansion point
+* `us` – input expansion point
+* `X` – state box
+* `U` – input box
+
+## Hypotheses
+* `h` – model encloses system
+* `hxs` – state point in box
+* `hus` – input point in box
+
+## Conclusion
+* the slope remainder certifies the linearization over the boxes
 -/
 
 -- Authors:       Claude Opus 5.5

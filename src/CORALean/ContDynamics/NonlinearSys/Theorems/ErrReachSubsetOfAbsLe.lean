@@ -9,19 +9,24 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 /-!
 # The condition that does keep the error set inside `[-θ r, θ r]`
 
-[1, Eq. 7] wants `R̄err(r) = N [-L̂, L̂] ⊆ [-θ r, θ r]`, `N := A⁻¹(e^{Ar} - I)`, and
-offers `L̂ ≤ |N⁻¹| θ r` for it, which `admissibleLinError_not_sufficient` refutes.
-The test that works is on `N` itself, not on its inverse: the box `[-L̂, L̂]` is
-mapped into the box of radius `|N| L̂`, so `|N| L̂ ≤ θ r` suffices, coordinate by
-coordinate, `|(N x)ᵢ| ≤ Σⱼ |Nᵢⱼ| |xⱼ| ≤ Σⱼ |Nᵢⱼ| L̂ⱼ`. It needs no inverse of `A` or
-of `e^{Ar} - I` to be checked.
+[1, Eq. 7] wants `R̄err(r) = N [-L̂, L̂] ⊆ [-θ r, θ r]`, `N := A⁻¹(e^{Ar} - I)`, and offers
+`L̂ ≤ |N⁻¹| θ r` for it, which `admissibleLinError_not_sufficient` refutes. The test that works
+is on `N` itself: the box `[-L̂, L̂]` is mapped into the box of radius `|N| L̂`, so `|N| L̂ ≤ θ r`
+suffices, coordinate by coordinate. It needs no inverse to be checked. `N` is whatever the caller
+passes as `A⁻¹(e^{Ar} - I)`: the statement holds for every matrix. The formula for `R̄err` is
+the paper's, taken as given. Real only: a specification, with nothing to compute.
 
-`N` is whatever the caller passes as `A⁻¹(e^{Ar} - I)`: the statement holds for every
-matrix, so `A⁻¹` is Mathlib's, zero at a singular `A`, without affecting it. The
-formula `R̄err(r) = A⁻¹(e^{Ar} - I)[-L̂, L̂]` is the paper's, quoted from an
-earlier paper of its authors, and taken as given here.
+## Inputs
+* `A` – state matrix
+* `r` – time step
+* `θ` – box radius
+* `L` – error radius
 
-Real only: a specification, with nothing to compute.
+## Hypotheses
+* `h` – radius condition holds
+
+## Conclusion
+* the image of the error box lies in the target box
 
 ## References
 

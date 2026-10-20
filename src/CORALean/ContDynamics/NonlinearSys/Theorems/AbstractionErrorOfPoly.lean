@@ -11,21 +11,32 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
 /-!
 # A polynomial certificate is a certificate
 
-Forgetting the dependency: read at a factor vector the error is `L`'s point there
-and `W` around it, so read over the whole sub-box it is a member of `L ⊞ W`, and
-the states the sub-box names are `subsetAt`. That is `AbstractionError` at
-`S := 𝒫𝒵`, so every theorem downstream — `linInput_outer`, `reach_outer_horizon`,
-`relinReach_outer` — applies to the polynomialization variant unchanged, which is
-what `AbstractionError`'s "any pair admits a certificate" design was for.
+Forgetting the dependency: read at a factor vector the error is `L`'s point there and `W` around
+it, so over the whole sub-box it is a member of `L ⊞ W`, and the states the sub-box names are
+`subsetAt`. That is `AbstractionError` at `S := 𝒫𝒵`, so every theorem downstream —
+`linInput_outer`, `reach_outer_horizon`, `relinReach_outer` — applies to the polynomialization
+variant unchanged. The converse fails: `L ⊞ W` says only that the error is *somewhere* in a set.
+`hBa` is what `subsetAt` needs to name members rather than arbitrary points.
 
-The converse is the whole point of the variant and fails: `L ⊞ W` says only that
-the error is *somewhere* in a set, and a next step built on it starts from a box
-again.
+## Inputs
+* `f` – field
+* `A` – state Jacobian
+* `B` – input Jacobian
+* `xs` – state expansion point
+* `us` – input expansion point
+* `pZ` – region polynomial zonotope
+* `Ba` – factor domain
+* `U` – input region
+* `L` – error polynomial zonotope
+* `W` – remainder polynomial zonotope
+* `cert` – polynomial certificate
 
-`hBa` is what `subsetAt` needs to name members rather than arbitrary points. At
-the full factor box and `pZ.q = 0` the states it names are all of `construct pZ`
-— `subsetAt_unitBox` — so what a caller downstream confines the run to is a set
-and not a factor vector.
+## Hypotheses
+* `hp` – factor counts agree
+* `hBa` – factors bounded by one
+
+## Conclusion
+* the polynomial certificate gives an ordinary abstraction-error certificate
 -/
 
 -- Authors:       Claude Opus 5

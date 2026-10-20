@@ -14,6 +14,14 @@ public import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
 as it accepts any other. Nothing here mentions the linearizations or the step:
 they are how `reach` encloses this set, not part of it. Positional, as the
 mathematics: `Reach` reads the horizon `tFinal - tStart` off `params`.
+
+## Inputs
+* `sys` – system with steps
+* `tFinal` – horizon
+* `X` – initial set
+
+## Output
+* the states some run is at within the horizon
 -/
 
 -- Authors:       Claude Opus 5.5

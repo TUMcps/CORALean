@@ -18,6 +18,30 @@ each summand of [1, Eq. 6]. [1] states the condition as `x̂_0 ∈ S_0` with `0 
 estimate's start says nothing of the true state's, and the origin is not needed: what the
 induction uses is `x_0 ∈ S_0`.
 
+## Inputs
+* `sys` – system
+* `gain` – gain function
+* `order` – zonotope order
+* `W` – disturbance zonotope
+* `R₀` – initial zonotope
+* `V` – noise zonotope
+* `u` – inputs
+* `y` – measurements
+* `x` – true states
+* `w` – true disturbances
+* `v` – true noise
+* `k` – step
+
+## Hypotheses
+* `h0` – start lies in `R₀`
+* `hw` – disturbances lie in `W`
+* `hv` – noise lies in `V`
+* `hstep` – the dynamics hold
+* `hy` – the measurements follow the outputs
+
+## Conclusion
+* the true state lies in the observer's set
+
 ## References
 
 * [1] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th

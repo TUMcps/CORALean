@@ -10,17 +10,29 @@ public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 /-!
 # `timeIntervalStep` contains the flow of every matrix the set holds
 
-`LinearSys.timeIntervalStep_outer_at` at a matrix drawn from `construct sys.A`
-instead of the one a point system stores: the straight line from `X₀` to its
-image is a `linComb` at weight `1 - t/r` as before, and the interpolation error
-is what the box's correction matrix spans.
+`LinearSys.timeIntervalStep_outer_at` at a matrix drawn from `construct sys.A` instead of the one
+a point system stores: the straight line from `X₀` to its image is a `linComb` at weight `1 - t/r`
+as before, and the interpolation error is what the box's correction matrix spans. The image is
+taken at `e^{tA}` for one member `A`, which is `'constParam'`: a time-varying reading needs
+`e^{tA(t)}`, which is not a matrix exponential of anything. Homogeneous only, as in the point case.
 
-The image is taken at `e^{tA}` for one member `A`, which is `'constParam'`: the
-same matrix at every instant of the step. A time-varying reading needs
-`e^{tA(t)}`, which is not a matrix exponential of anything, and the argument
-below does not reach it.
+## Inputs
+* `sys` – system
+* `r` – step size
+* `m` – Taylor order minus two
+* `X₀` – initial set
+* `A` – system matrix member
+* `t` – time
 
-Homogeneous only, as in the point case.
+## Hypotheses
+* `hr` – step positive
+* `hε` – order admissible
+* `hA` – `A` lies in the matrix set
+* `ht0` – time nonnegative
+* `htr` – time at most the step
+
+## Conclusion
+* the member's flow image of the initial set lies in the step set
 -/
 
 -- Authors:       Claude Opus 5

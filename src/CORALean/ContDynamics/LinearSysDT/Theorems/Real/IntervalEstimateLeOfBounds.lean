@@ -13,6 +13,25 @@ on the error box of [1, Alg. 1], so `x̂_k + lo ≤ x̲_k` and `x̅_k ≤ x̂_k 
 the comparisons [1, Thm. 6], [1, Thm. 7] and [1, Thm. 8] end with (their Eqs. 54, 63 and 80):
 another method bounds the reachable error, and the box is the hull of it.
 
+## Inputs
+* `sys` – system
+* `L` – observer gain
+* `X₀` – initial zonotope
+* `W` – disturbance zonotope
+* `V` – noise zonotope
+* `u` – inputs
+* `y` – measurements
+* `k` – step
+* `lo` – lower error bound
+* `hi` – upper error bound
+* `i` – coordinate
+
+## Hypotheses
+* `h` – the bounds hold on the reachable error set
+
+## Conclusion
+* the estimator's box lies within the box those bounds give
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

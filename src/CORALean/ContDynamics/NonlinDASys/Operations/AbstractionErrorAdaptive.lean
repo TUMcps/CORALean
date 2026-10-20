@@ -19,6 +19,13 @@ CF_inv Z_error_y` adds the algebraic error where the linearized DAE subtracts it
 (`nlnsysDA.hessian`), `R_y` the joint set of the pass run with `Z_error_y`, the third-order branch
 is not formalized. CORA's tuning.
 
+## Inputs
+* `CF_inv` – the matrix `C F⁻¹`
+* `H` – Hessian intervals
+
+## Output
+* the dynamics, constraint and total abstraction errors
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic

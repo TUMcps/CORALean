@@ -16,6 +16,30 @@ as `LinearSys`'s does here, has no sets over a cycle to vouch for. Induction on 
 being a run of the plant over the cycle (`IsTrajectory.flow`) and the three enclosures `cp`, `rx`
 and `pr`: [1, Alg. 2] at the cycle ends.
 
+## Inputs
+* `sys` – closed-loop system
+* `cp` – Cartesian product operation
+* `pr` – projection to the state
+* `rx` – reachability algorithm of the extended system
+* `X₀` – initial set
+* `U_ext` – external input set
+* `W` – disturbance set
+* `π` – controller function
+* `H` – number of cycles
+* `x` – plant states
+* `v` – external input signal
+* `w` – disturbance signal
+
+## Hypotheses
+* `hcp` – the product encloses stacked pairs
+* `hpr` – the projection encloses state parts
+* `hrx` – the extended reachability encloses plant runs
+* `hπ` – the network encloses `π`
+* `traj` – closed-loop trajectory
+
+## Conclusion
+* a run lies in the algorithm's set at each cycle end
+
 ## References
 
 * [1] N. Kochdumper et al. "Open- and Closed-Loop Neural Network Verification

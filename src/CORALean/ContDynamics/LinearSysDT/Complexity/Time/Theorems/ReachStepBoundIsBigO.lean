@@ -9,18 +9,22 @@ public import Mathlib.Analysis.Asymptotics.Defs
 /-!
 # A step of `reach` is `O(n ^ 3)`
 
-The one `O` statement in this directory, and it is a *slice*: `reachStepBound`
-grows in three parameters — the dimension `n`, the order `o` and the input set's
-generator count `hU` — and `IsBigO` takes a function of one argument along one
-filter. So the composable claim is `reachCost_le`, an inequality in all three,
-and this is what it reads as in `n` at fixed `o` and `hU`. Turning it round
-costs a constant that `IsBigO` then discards, which is why the tree states the
-inequality first and this second.
+The one `O` statement in this directory, and a *slice*: `reachStepBound` grows in three
+parameters — the dimension `n`, the order `o` and the input set's generator count `hU` — and
+`IsBigO` takes a function of one argument along one filter. The composable claim is
+`reachCost_le`, an inequality in all three; this is what it reads as in `n` at fixed `o` and `hU`.
+`n ^ 3` is the `mtimes`: `o * n` generators through an `n × n` matrix. The `reduce` behind it is
+quadratic in `o * n + hU`, so at fixed `o` that is only `n ^ 2`.
 
-`n ^ 3` is the `mtimes`: `o * n` generators through an `n × n` matrix. The
-`reduce` behind it is quadratic in `o * n + hU`, since `Cost.sort_le_mul_succ`
-is all this proof reads of the sort — at fixed `o` that is only `n ^ 2`, so
-neither the sort's shape nor a later tightening of it shows here.
+## Inputs
+* `hU` – input generator count
+* `o` – maximum zonotope order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the step bound is cubic in the dimension
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

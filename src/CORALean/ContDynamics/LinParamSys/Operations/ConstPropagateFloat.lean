@@ -13,6 +13,16 @@ public import CORALean.ContDynamics.LinParamSys.Operations.ExpIntervalFloat
 box `[e^{[A]Δt}]` of `expIntervalFloat`, enclosed at the order admissible for `Δt`; the
 accumulated set is reduced to order `ρ`.
 
+## Inputs
+* `sys` – system
+* `Δt` – window length
+* `η` – Taylor order
+* `ρ` – zonotope order bound
+* `uc` – constant input
+
+## Output
+* the contribution up to the start of each window, by window index
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

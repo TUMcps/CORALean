@@ -18,6 +18,15 @@ normalized, `f_0 + ∑ c_i f_i` with generators `r_i f_i`. Nothing checks that `
 the split is right only if it is. `linearize` hands its center on as the constant of the system it
 returns, a `LinParamSys` holding a vector there, and CORA keeps the zonotope as the constant input.
 
+## Inputs
+* `sys` – parametric system
+* `xs` – state expansion point
+* `us` – input expansion point
+* `paramInt` – parameter box
+
+## Output
+* the zonotope of the constant term over the parameter box
+
 ## References
 
 * [1] `contDynamics/@nonlinParamSys/linearize.m`

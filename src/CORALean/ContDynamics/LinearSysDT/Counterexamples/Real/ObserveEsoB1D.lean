@@ -8,18 +8,23 @@ public import Mathlib.Tactic.NormNum.RealSqrt
 /-!
 # CORA's observer `ESO-B` misses the true state
 
-A run of `priv_observe_ESO_B` on `x_{k+1} = x_k + w_k`, `y_k = x_k + v_k`, with
-`R0 = E(0, 5/6)`, `W = E(0, 1/100)` and `V = E(0, 9)` (`bar_V = 1/3`). The initial state
-`x₀ = -9/10` lies in `R0`; the first measurement `y₁ = 0` (`v = 9/10`) has `0.3 + δ² = 0.3 ≤ 1`,
-so the initial update does not fire and the first estimate is `R0` with `sigma_sq = 0.3`. The
-disturbance `w = -1/10` gives `x₁ = -1`, measured as `y₂ = 6/5` (`v = 11/5`). The step predicts
-`p = 1/6`, `Q_next = 6/5`, fires (`0.3 + (6/5)² > 1`), takes `λ = 3/5` (`g = 2/15`,
-`√(g/ω) = 12/25`) and returns the center `1/5`, the shape `2/5` and `sigma_sq = 16/25`, which
-misses `x₁`: `(x₁ - c)² / Q = 18/5 > 1`, and also as the level-`sigma_sq` set,
-`(x₁ - c)² / (sigma_sq Q) = 45/8 > 1`. The cause is the update's shape, `(1 - λ)²` times the
-one the fusion needs (`Ellipsoid.intersectStripLiu1D_counterexample`): at `(1 - λ)⁻²` times it,
-`5/2`, the level-`sigma_sq` set has `(x₁ - c)² = 36/25 ≤ sigma_sq · 5/2 = 8/5` and holds `x₁`.
+A run of `priv_observe_ESO_B` on `x_{k+1} = x_k + w_k`, `y_k = x_k + v_k`, with `R0 = E(0, 5/6)`,
+`W = E(0, 1/100)` and `V = E(0, 9)`. The initial state `x₀ = -9/10` lies in `R0`; the first
+measurement `y₁ = 0` does not fire the initial update. The disturbance `w = -1/10` gives
+`x₁ = -1`, measured as `y₂ = 6/5`. The step fires, takes `λ = 3/5` and returns the center `1/5`,
+the shape `2/5` and `sigma_sq = 16/25`, which misses `x₁`: `(x₁ - c)² / Q = 18/5 > 1`, and also
+as the level-`sigma_sq` set, `(x₁ - c)² / (sigma_sq Q) = 45/8 > 1`. The cause is the update's
+shape, `(1 - λ)²` times the one the fusion needs (`Ellipsoid.intersectStripLiu1D_counterexample`).
 Read from the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the true next state lies outside the estimate and its level set
 -/
 
 -- Authors:       Claude Opus 5.5

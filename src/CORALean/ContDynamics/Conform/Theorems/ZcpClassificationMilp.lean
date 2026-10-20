@@ -13,6 +13,21 @@ public import Mathlib.Algebra.BigOperators.Ring.Finset
 constraints have a solution iff at least `n_m - n_out` points meet (12b). At `ρₘ = 0`, `βₘ = 0`
 satisfies (26a) trivially, as the paper's proof by analogy with [1, Prop. 9] says.
 
+## Inputs
+* `nm` – number of data points
+* `nout` – allowed outliers
+* `f` – predictions per point
+* `D` – derivatives per point
+* `c` – class per point
+* `Gu` – uncertainty generators
+* `α` – generator scaling
+
+## Hypotheses
+* `hα` – scalings nonnegative
+
+## Conclusion
+* the mixed-integer constraints are feasible iff all but `nout` points are classified
+
 ## References
 
 * [1] L. Lützow, M. Eichelbeck, M. J. Kochenderfer and M. Althoff. "Zono-Conformal

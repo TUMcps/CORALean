@@ -11,19 +11,22 @@ public import CORALean.ContSet.Interval.Real.Operations.Smul
 /-!
 # One step of the homogeneous flow at a set-valued system matrix, as a set
 
-`LinearSys.timeIntervalStep` with both matrices replaced by the sets that hold
-them: `e^{Ar}` by `expIntervalEnclosure` of the box `r • sys.A`, and `F` by
-`intervalCorrectionMatrix`. Neither is computed at a member — a member is what a
-`IsConstTrajectory` fixes and an implementation never sees.
+`LinearSys.timeIntervalStep` with both matrices replaced by the sets that hold them: `e^{Ar}` by
+`expIntervalEnclosure` of the box `r • sys.A`, and `F` by `intervalCorrectionMatrix`. Neither is
+computed at a member — a member is what a `IsConstTrajectory` fixes and an implementation never
+sees. At `ℐ`, not at any matrix representation: both enclosures are interval matrices. `𝕄𝒵`
+would keep the correlations between a matrix's entries through the powers, but needs
+`intervalCorrectionMatrix`'s counterpart at a matrix zonotope, which is not written. The order
+`η` is a choice, sound at any value, subject to the condition the enclosures carry.
 
-At `ℐ`, not at any matrix representation: both enclosures are interval matrices,
-and the step multiplies by them. `𝕄𝒵` would keep the correlations between a
-matrix's entries through the powers, as `expMatZonoEnclosure` does, and needs
-`intervalCorrectionMatrix`'s counterpart at a matrix zonotope, which is not
-written.
+## Inputs
+* `sys` – system
+* `r` – step size
+* `η` – Taylor order
+* `X₀` – initial set
 
-The order `η` is a choice, sound at any value, subject to the same joint
-condition on step and order the enclosures carry.
+## Output
+* the set covering the flow over the whole step
 -/
 
 -- Authors:       Claude Opus 5

@@ -15,6 +15,24 @@ span, nor which cross products occur. This is the halfspace form [1, Thm. 1],
 center and in the stretch factors, at normals fixed by the template alone. It is also
 [1, Remark 1]: the halfspaces of `W` and `V` make [1, Cor. 1]'s inclusions linear.
 
+## Inputs
+* `m` – dimension minus one
+* `ι` – generator index type
+* `κ` – normal index type
+* `c` – center
+* `G` – template generators
+* `N` – normal vectors
+* `α` – stretch factors
+* `y` – point
+
+## Hypotheses
+* `hspan` – generators span the space
+* `hN` – `N` carries all generator normals
+* `hα` – stretch factors nonnegative
+
+## Conclusion
+* the point is in the template iff its halfspace inequalities hold
+
 ## References
 
 * [1] S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems:

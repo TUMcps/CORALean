@@ -13,6 +13,18 @@ public import Mathlib.Data.Matrix.ColumnRowPartitioned
 blocks sized `n_x`, `n_x` and the fault dimension; it is [1, Eq. 25] by the Schur complement of
 the block `-Q`. Stated as its negative being positive definite, the `⋆` blocks the transposes.
 
+## Inputs
+* `A` – state matrix
+* `C` – output matrix
+* `E` – fault matrix
+* `L` – observer gain
+* `Q` – Lyapunov matrix
+* `M` – residual weight
+* `β` – sensitivity level
+
+## Output
+* the block matrix is negative definite
+
 ## References
 
 * [1] Y. Wang, M. Zhou, V. Puig, G. Cembrano and Z. Wang. "Zonotopic Fault Detection Observer

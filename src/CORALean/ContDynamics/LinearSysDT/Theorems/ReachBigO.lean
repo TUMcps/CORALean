@@ -14,6 +14,18 @@ nothing shrinks it back. It is reduction alone that holds a reachable set's
 size independent of how long the run goes — `reach_order_le`'s `o * n`, with no
 `k` in it, is that fact; this restates it as growth, the shape
 `bilin_h_isBigO` set for the rest of `Complexity/Space/`.
+
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* the generator count of the reachable set is bounded by a constant
 -/
 
 -- Authors:       Claude Opus 5

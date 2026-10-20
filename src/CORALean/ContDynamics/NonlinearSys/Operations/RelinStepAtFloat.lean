@@ -14,20 +14,23 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # One step of the float re-linearization loop, at a given point
 
-CORA's `linReach` at `alg = 'lin'`, computed in `𝕋`, which is one pass of [1, Alg. 1]:
-from the set `R(t_k)` the step starts at, a region `Ω` it provably stays in
-(`regionFloat`), the expansion point (`linPointFloat`), the matrices
-(`linearizeFloat`), the input set holding the abstraction error over `Ω`
-(`linInputFloat`), and then exactly one step of `LinearSys.reachFloatInput` of the
-linearized system `δ̇ = A δ + ũ`, `ũ ∈ V`, `V` entering through the identity, in
-CORA's deviation coordinates `δ = x - x✱`, shifted back after. It returns
-`R(τ_k)`, the set over the whole step (line 13), and `R(t_{k+1})`.
+CORA's `linReach` at `alg = 'lin'`, computed in `𝕋`, one pass of [1, Alg. 1]: from the start set
+`R(t_k)`, a region `Ω` it provably stays in (`regionFloat`), the expansion point, the matrices
+(`linearizeFloat`), the input set holding the abstraction error over `Ω` (`linInputFloat`), and
+exactly one step of `LinearSys.reachFloatInput` of the linearized system in CORA's deviation
+coordinates, shifted back after. It returns `R(τ_k)` (line 13) and `R(t_{k+1})`. CORA computes
+the error after the linear step and enlarges it until it holds; here the region comes first and
+is checked, so one pass suffices.
 
-CORA computes the error *after* the linear step, from the time-interval set it
-encloses, and enlarges it until it holds; here the region comes first and is
-checked, so one pass suffices and no loop over a growing error is needed. `Ω` and
-the input box are widened by `x✱` and `u✱`, the remainder's expansion point having
-to lie in the box its slopes are taken over.
+## Inputs
+* `fm` – float model
+* `U` – input zonotope
+* `options` – reachability options
+* `R` – start zonotope
+* `xs` – expansion point
+
+## Output
+* the time-interval and end sets, or none
 
 ## References
 

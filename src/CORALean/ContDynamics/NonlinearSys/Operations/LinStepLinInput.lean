@@ -12,6 +12,14 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
 arguments of `relinReach`; varying them per step is adaptive tuning, a
 separate method. The discrete input set is what a step is *run* with rather
 than what the linearization *is*.
+
+## Inputs
+* `sys` – system
+* `U` – input set
+* `step` – linearization step
+
+## Output
+* the input set of the step's linear system
 -/
 
 -- Authors:       Claude Sonnet 5

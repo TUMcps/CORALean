@@ -13,6 +13,13 @@ step. CORA turns it into a polytope for the halfspace test; the set is taken as 
 is the same set for a zonotope. `W` and `V` are the sets `params.W`, `params.V` before the
 mapping by `E` and `F`, which this applies, as `isconform_dyn` does.
 
+## Inputs
+* `sys` – system
+* `W` – disturbance set
+
+## Output
+* the accumulated disturbance part after each number of steps
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/private/priv_conform_reachableHalfspaces.m`

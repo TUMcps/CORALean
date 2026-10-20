@@ -13,6 +13,28 @@ As for `NonlinearSys`: a state with the derivative `f(x t, u t, p)` within a con
 every point of `T`, the field along it integrable from `0`, satisfies the integral equation
 `IsConstTrajectory` states; the derivative makes the field measurable on `T` and the state
 continuous.
+
+## Inputs
+* `sys` – parametric system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `P` – parameter set
+* `x` – state trajectory
+* `u` – input signal
+* `p` – parameter vector
+
+## Hypotheses
+* `hTconv` – time set convex
+* `h0T` – zero lies in the time set
+* `init` – start lies in `R₀`
+* `input` – inputs lie in `U`
+* `param` – `p` lies in `P`
+* `hd` – the field is the derivative
+* `hint` – the field is integrable
+
+## Conclusion
+* the classical run is a constant-parameter trajectory
 -/
 
 -- Authors:       Claude Opus 5.5

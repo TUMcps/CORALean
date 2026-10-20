@@ -14,6 +14,18 @@ of one shared input signal `λ`, the generating functions summed pointwise — g
 exactly. That evaluation, at the signal `u`, is `simulate y₀ u k`; so `Y(k)` is the image
 of the admissible signals under it, by `eq_simulate` one way and `simulate` the other.
 
+## Inputs
+* `sys` – ARX system
+* `y₀` – measured first output window
+* `U` – input sets per step
+* `k` – step
+
+## Hypotheses
+* none
+
+## Conclusion
+* the reachable outputs are the simulations over all admissible inputs
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

@@ -18,6 +18,22 @@ integral equation, the field `A x + u` being the canonical form's integrand. The
 regularity they ask: the linear run's input is measurable, the nonlinear run's field is
 measurable and integrable. On a convex `T ∋ 0` under a bounded input set the two agree, the
 field being the input plus a continuous drift, and bounded on every window from `0`.
+
+## Inputs
+* `sys` – linear system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+
+## Hypotheses
+* `hTconv` – time set convex
+* `h0T` – zero in time set
+* `hU` – input set bounded
+
+## Conclusion
+* a canonical trajectory is a trajectory of the embedding
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -20,6 +20,21 @@ handed, and `reduce`'s error box is untouched — `reduceGirard`'s `E` is
 literally the operand's own, in either branch — so it costs nothing to carry
 forward. `R₀` and `U` bracketing `0` is the one hypothesis a caller supplies;
 everything downstream inherits it by induction.
+
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial float zonotope
+* `U` – input float zonotope
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `hR₀` – initial error box contains the origin
+* `hU` – input error box contains the origin
+
+## Conclusion
+* the float run's error box contains the origin
 -/
 
 -- Authors:       Claude Opus 5

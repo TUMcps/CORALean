@@ -17,6 +17,30 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceOuter
 measurements `y_k = C x_k + v_k`, `v_k ∈ V`, is in the observer's set at every step, whatever the
 gain and the order. All quantities are the real values of stored floats; an outer statement.
 
+## Inputs
+* `sys` – system
+* `gain` – gain function
+* `order` – zonotope order
+* `W` – disturbance zonotope
+* `R₀` – initial zonotope
+* `V` – noise zonotope
+* `u` – inputs
+* `y` – measurements
+* `x` – true states
+* `w` – true disturbances
+* `v` – true noise
+* `k` – step
+
+## Hypotheses
+* `h0` – start lies in `R₀`
+* `hw` – disturbances lie in `W`
+* `hv` – noise lies in `V`
+* `hstep` – the dynamics hold
+* `hy` – the measurements follow the outputs
+
+## Conclusion
+* the true state lies in the observer's set
+
 ## References
 
 * [1] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th

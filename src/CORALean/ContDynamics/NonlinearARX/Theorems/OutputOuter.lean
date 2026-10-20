@@ -11,6 +11,27 @@ public import CORALean.ContDynamics.NonlinearARX.Theorems.ReachOuter
 `y(k)` is block `0` of the window at step `k`, which `outputSel` selects, so the
 `mtimes` of `outputSel` with the converted reach encloses it. `0 < p`: at `p = 0`
 the window is empty and says nothing about `y`.
+
+## Inputs
+* `sys` – ARX system
+* `o` – maximum zonotope order
+* `Y₀` – initial window set
+* `U` – input set
+* `V` – stacked input set
+* `steps` – linearization steps
+* `y` – outputs
+* `u` – inputs
+* `k` – step
+
+## Hypotheses
+* `hp` – at least one lag
+* `ho` – order positive
+* `hV` – `V` encloses the stacked inputs from `U`
+* `traj` – ARX trajectory
+* `hR` – each window lies in its linearization region
+
+## Conclusion
+* the output lies in the output set of the converted reach
 -/
 
 -- Authors:       Claude Opus 5.5

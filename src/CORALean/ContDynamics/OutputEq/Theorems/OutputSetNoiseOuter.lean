@@ -10,6 +10,24 @@ public import CORALean.ContDynamics.OutputEq.Theorems.OutputSetOuter
 
 `outputSet_outer` for `C x + D u + k`, then the noise term is put back by `mtimes` and
 `plus`. An enclosure, not an equality: each term is enclosed separately.
+
+## Inputs
+* `out` – output equation
+* `F` – noise matrix
+* `R` – state set
+* `U` – input set
+* `V` – noise set
+* `x` – state
+* `u` – admissible input
+* `v` – noise value
+
+## Hypotheses
+* `hx` – state in state set
+* `hu` – input in input set
+* `hv` – noise in noise set
+
+## Conclusion
+* the noisy output lies in the output enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

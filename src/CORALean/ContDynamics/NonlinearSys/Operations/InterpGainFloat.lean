@@ -11,6 +11,14 @@ public import CORALean.Global.Float.PowUp
 statement reads it, so every rounding is upward and no theorem is owed. What a run guarantees
 holds for whatever this returns. See [1].
 
+## Inputs
+* `ζδ` – limit gain
+* `φ1` – gain at the horizon
+* `j` – interpolation index
+
+## Output
+* the interpolated gain in floats
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

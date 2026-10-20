@@ -11,14 +11,20 @@ public import Mathlib.Analysis.Calculus.FDeriv.Basic
 CORA's reachability for `nonlinDASys` presumes a differentiation-index-1 system: the constraint
 Jacobian `∂g/∂y` is invertible, so the constraint can be solved for `y` and the algebraic
 variables carry no dynamics of their own. `IsIndex1At` is that at one point, `IsIndex1` at every
-solution of the constraint. `g` is asked to be differentiable in `y`, the derivative `L` being
-the Jacobian block; it is a hypothesis wherever it is spent, not a field of the class.
-
-[1, Eq. 1] takes the DAE to be of index 1, which for the semi-explicit form holds if and only if
-`det(∂g/∂y) ≠ 0` along the solution, i.e. the Jacobian of the algebraic equations is non-singular;
-`L.IsInvertible` is that, and CORA does not check it. The paper asks it along the solutions of the
-system; `IsIndex1` asks it at every point of the constraint, which needs no solution through the
+solution of the constraint. `g` is asked to be differentiable in `y`, the derivative `L` being the
+Jacobian block. [1, Eq. 1] takes the DAE to be of index 1, which for the semi-explicit form holds
+if and only if `det(∂g/∂y) ≠ 0` along the solution; `L.IsInvertible` is that, and CORA does not
+check it. `IsIndex1` asks it at every point of the constraint, which needs no solution through the
 point and implies the paper's.
+
+## Inputs
+* `sys` – system
+* `x` – differential state
+* `y` – algebraic variable
+* `u` – input at this point
+
+## Output
+* the constraint Jacobian in `y` exists and is invertible there
 
 ## References
 

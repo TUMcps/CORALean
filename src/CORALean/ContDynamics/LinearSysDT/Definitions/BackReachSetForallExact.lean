@@ -7,21 +7,22 @@ public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 /-!
 # The states every admissible input drives into the target
 
-Backward reachability, in the `∀` reading: `x` is in the `k`-step set when
-*every* input signal `U` admits carries it into `T` at step `k`. The `∃`
-reading — *some* signal does — is a different set: `backReachSetExistsExact`, beside
-this one and never in place of it.
+Backward reachability, in the `∀` reading: `x` is in the `k`-step set when *every* input signal
+`U` admits carries it into `T` at step `k`. The `∃` reading is a different set,
+`backReachSetExistsExact`, beside this one and never in place of it. The `∀` reading is what a
+Minkowski difference computes: `{x | ∀ u ∈ U, A x + u ∈ B}` is the preimage under `A` of `B ⊖ U`.
+Like `reachSetExact` it names no operation class and nothing may widen it. A preimage rather than
+an image under `A⁻¹`: this asks nothing of `A` at all.
+`Theorems.BackReachSetForallExactIsTrajectory` proves what the name claims;
+`Theorems.BackReachForallInner` puts a computed set inside it.
 
-The `∀` reading is what a Minkowski difference computes, which is why one was
-the prerequisite: `{x | ∀ u ∈ U, A x + u ∈ B}` is the preimage under `A` of
-`B ⊖ U`. That is `reachSetExact`'s image and sum, each read backwards, and like
-`reachSetExact` it names no operation class and nothing may widen it.
+## Inputs
+* `sys` – system
+* `T` – target set
+* `U` – input set
 
-A preimage rather than an image under `A⁻¹`: this asks nothing of `A` at all,
-and producing an inverse is the computed version's problem, not this one's.
-
-`Theorems.BackReachSetForallExactIsTrajectory` proves what the name claims, against
-the dynamics; `Theorems.BackReachForallInner` puts a computed set inside it.
+## Output
+* the states every input signal drives into the target in `k` steps
 -/
 
 -- Authors:       Claude Sonnet 5

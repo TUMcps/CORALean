@@ -18,6 +18,24 @@ part of `v∆` lies in `varInputsFloat`. One outer fact per piece — `mtimes` t
 times, `quadMapMixed` twice and `quadMap` once — after the double sum has been read back as the
 three pairings. Outer only.
 
+## Inputs
+* `B` – input matrix
+* `D` – Hessian family
+* `Rz` – state-input range
+* `RzΔ` – varying state-input range
+* `UΔ` – varying input range
+* `z` – point of the range
+* `zΔ` – point of the varying range
+* `uΔ` – point of the input range
+
+## Hypotheses
+* `hz` – point in range
+* `hzΔ` – point in varying range
+* `huΔ` – point in input range
+
+## Conclusion
+* the varying input part lies in the float enclosure
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative

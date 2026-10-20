@@ -16,6 +16,27 @@ the segment from `x` to `e^{AΔt} x`, which `linComb` holds once `e^{AΔt}` is i
 float exponential of `Δt • [A]` (`matSmul_outer` puts `Δt • A` there), and the
 interpolation error, which `F` holds. Both orders' smallness conditions are float
 checks on the boxes the zonotopes enclose.
+
+## Inputs
+* `sys` – system
+* `Δt` – step size
+* `m` – Taylor order minus two
+* `R` – initial zonotope
+* `A` – system matrix member
+* `x` – start point
+* `s` – time
+
+## Hypotheses
+* `hΔt` – step positive
+* `hεe` – exponential order admissible
+* `hεF` – correction order admissible
+* `hA` – `A` lies in the matrix zonotope
+* `hx` – `x` lies in `R`
+* `hs0` – time nonnegative
+* `hs` – time at most the step
+
+## Conclusion
+* the member's flow of the point lies in the float zonotope step
 -/
 
 -- Authors:       Claude Opus 5.5

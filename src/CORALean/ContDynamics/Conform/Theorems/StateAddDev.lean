@@ -15,6 +15,20 @@ plus `Aᵏ x̃ + ∑_{i<k} Aⁱ w(k-1-i)`, the deviation (22) names `x_a`: the m
 affine, and the deviation depends on neither `x0` nor `u`. Every statement that
 subtracts the nominal run — [1, Eq. 15], [2, Eq. 8] — rests on this.
 
+## Inputs
+* `sys` – plant
+* `x0` – nominal initial state
+* `xt` – initial deviation
+* `u` – inputs
+* `w` – disturbances
+* `k` – step
+
+## Hypotheses
+* none
+
+## Conclusion
+* the run is the nominal run plus the deviation
+
 ## References
 
 * [1] S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems:

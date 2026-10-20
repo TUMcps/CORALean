@@ -13,6 +13,23 @@ public import CORALean.ContDynamics.LinearSys.Theorems.SampleTimeFloatMem
 `e^{A t_k}` is in the window's matrix at every member `A`: `t_k` is in its bracket
 (`sampleTimeFloat_mem`), the squaring count is admissible (`squaringsFloat_spec`),
 and `exp_mem_expSquaringFloat` encloses the rest.
+
+## Inputs
+* `sys` – system
+* `Δt` – window length
+* `η` – Taylor order
+* `k` – window index
+* `Rτ₀` – first window set
+* `A` – system matrix member
+* `y` – start point
+
+## Hypotheses
+* `h2` – order at least two
+* `hA` – `A` lies in the matrix set
+* `hy` – `y` lies in the first window
+
+## Conclusion
+* the member's flow from `y` lies in every returned window
 -/
 
 -- Authors:       Claude Opus 5.5

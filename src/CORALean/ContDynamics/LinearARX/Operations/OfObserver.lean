@@ -13,6 +13,18 @@ public import CORALean.ContDynamics.LinearARX.LinearARX
 [1]'s `[B I 0]`, `[D 0 I]` for `ũ = (u, w, v)` are one choice of them. As everywhere in
 this structure, `Abar i` is `Ā_{i+1}` and `Bbar j` is `B̄_j`.
 
+## Inputs
+* `p` – number of lags
+* `A` – state matrix
+* `Bu` – input matrix
+* `C` – output matrix
+* `Du` – feedthrough matrix
+* `M` – deadbeat observer gain
+* `dt` – sampling time
+
+## Output
+* the ARX system from the observer form
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

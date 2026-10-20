@@ -12,6 +12,28 @@ errors over the region, and `0 ∈ Verror`: all monotone in the sets. So a run c
 errors `L` that [1, Cor. 1] computes is certified at any enlargement `L̄`, which is how
 [1, Alg. 1]'s exit `L ⊆ L̄` passes from the errors it computed to the ones it assumed.
 
+## Inputs
+* `T` – linearization point
+* `sys` – system
+* `U` – input zonotope
+* `Δt` – step size
+* `q` – Taylor order minus two
+* `x` – differential trajectory
+* `y` – algebraic trajectory
+* `u` – input signal
+* `V` – dynamics error zonotope
+* `V'` – enlarged dynamics error zonotope
+* `Va` – constraint error zonotope
+* `Va'` – enlarged constraint error zonotope
+
+## Hypotheses
+* `hV` – `V` lies in `V'`
+* `hVa` – `Va` lies in `Va'`
+* `h` – the certificate holds at the smaller errors
+
+## Conclusion
+* the certificate holds at the enlarged errors
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic

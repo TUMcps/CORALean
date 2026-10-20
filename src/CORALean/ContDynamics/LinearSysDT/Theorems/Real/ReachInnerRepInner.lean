@@ -9,16 +9,28 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
 /-!
 # `reachInnerRep` is an inner approximation, as a representation
 
-What `reachInner_inner` guarantees about a `Set`, carried to a zonotope a later
-step could take as input: `minkDiffRep_inner` puts the returned zonotope inside
-the Minkowski difference, and that difference *is* `reachInner`.
+What `reachInner_inner` guarantees about a `Set`, carried to a zonotope a later step could take as
+input: `minkDiffRep_inner` puts the returned zonotope inside the Minkowski difference, and that
+difference *is* `reachInner`. `M` is the caller's, and is the only thing left to choose.
+`minkDiffRep` checks it — each error generator written in the run's own, and each row of the run
+left non-negative room — and answers `none` where it does not check out, so a wrong `M` costs
+precision and never soundness.
 
-`M` is the caller's, and is the only thing left to choose. `minkDiffRep` checks
-it — each error generator written in the run's own, and each row of the run
-left non-negative room — and answers `none` where it does not check out, so a
-wrong `M` costs precision and never soundness. The zonotope returned can be a
-point, or `none` where the accumulated error has outgrown the run; neither is a
-statement about the system, only about how much the reductions took.
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – step
+* `M` – coefficients for the generator difference
+* `D` – returned zonotope
+
+## Hypotheses
+* `ho` – order positive
+* `hD` – the computation returns `D`
+
+## Conclusion
+* the returned zonotope lies in the exact reachable set
 -/
 
 -- Authors:       Claude Sonnet 5

@@ -15,6 +15,15 @@ both matrices float interval enclosures over the whole box `sys.A` —
 `MatExp.intervalCorrectionMatrix` at `sys.A` itself. `Δt` is a float and its own
 value is the step.
 
+## Inputs
+* `sys` – system
+* `Δt` – step size
+* `η` – Taylor order
+* `R` – initial zonotope
+
+## Output
+* the float zonotope covering the flow over one step
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

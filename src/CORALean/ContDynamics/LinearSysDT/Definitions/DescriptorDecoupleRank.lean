@@ -15,6 +15,15 @@ public import Mathlib.Data.Matrix.ColumnRowPartitioned
 υ`, `rank [I_{n_x} ⊗ [E D_d; C 0]; vec([I_{n_x}; 0])ᵀ] = n_x · rank [E D_d; C 0]`: the row
 `vec([I; 0])ᵀ` stacked under the Kronecker product `I ⊗ [E D_d; C 0]` adds no rank. `vec` stacks
 the columns, as in Mathlib, and `⊗` is the Kronecker product with the identity on the left.
+
+## Inputs
+* `E` – descriptor matrix
+* `Dd` – unknown input matrix
+* `C` – output matrix
+
+## Output
+* the augmented matrix keeps the rank of the Kronecker matrix
+
 ## References
 
 * [1] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on

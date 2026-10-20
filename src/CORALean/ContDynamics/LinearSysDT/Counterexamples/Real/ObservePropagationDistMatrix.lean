@@ -10,14 +10,23 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 # CORA's observers drop the disturbance matrix `E`
 
 `linearSysDT` documents `x(k+1) = A x(k) + B u(k) + c + E w(k)` with `w ∈ params.W`, checks
-`dim(params.W)` against the columns of `E` (`checkDynParameterParams`, `eqdists`), and its
-`simulate` adds `E w`; CORA's examples set `E = eye(dim(params.W))`. The observers add
-`params.W` itself: `observe_stripBased`, l. 63; `priv_observe_intersectionFree`, l. 54;
-`intersectionFreeAdaptive`, l. 69; `interval`, l. 48; `CZN_A`, l. 54; `CZN_B`, l. 76; and
-the gains take `generators(params.W)` as `E`. Here `A = C = 1`, `E = 2`, `W = [-1, 1]`,
-`R0 = V = {0}`, `u = 0`: `w = 1` moves the state to `x₁ = 2`, and the next set of
-`observePropagation` (`PRad-E`, `Nom-G`, `FRad-C`) is `[-1, 1]` at every gain, which misses
-it. `F` and `params.V` are dropped alike. Read from the source, not run.
+`dim(params.W)` against the columns of `E`, and its `simulate` adds `E w`. The observers add
+`params.W` itself (`observe_stripBased`, l. 63; `priv_observe_intersectionFree`, l. 54;
+`intersectionFreeAdaptive`, l. 69; `interval`, l. 48; `CZN_A`, l. 54; `CZN_B`, l. 76), and the
+gains take `generators(params.W)` as `E`. Here `A = C = 1`, `E = 2`, `W = [-1, 1]`, `R0 = V = {0}`,
+`u = 0`: `w = 1` moves the state to `x₁ = 2`, and the next set of `observePropagation` (`PRad-E`,
+`Nom-G`, `FRad-C`) is `[-1, 1]` at every gain, which misses it. `F` and `params.V` are dropped
+alike. Read from the source, not run.
+
+## Inputs
+* `gain` – gain function
+* `order` – zonotope order
+
+## Hypotheses
+* `horder` – order positive
+
+## Conclusion
+* the true next state lies outside the observer's next set
 -/
 
 -- Authors:       Claude Opus 5.5

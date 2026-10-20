@@ -10,6 +10,20 @@ public import CORALean.ContDynamics.NonlinearARX.Operations.Simulate
 From a start window in `Y₀` and inputs in `U`, the sampled outputs are exactly what
 `IsTrajectory` asks of a run: the recursion holds from `p` on by definition, and the first
 window is `y₀` read back through the same block indexing.
+
+## Inputs
+* `sys` – ARX system
+* `Y₀` – initial window set
+* `U` – input set
+* `y₀` – start window
+* `u` – inputs
+
+## Hypotheses
+* `hy₀` – start window lies in `Y₀`
+* `hu` – inputs lie in `U`
+
+## Conclusion
+* the simulated run is a trajectory
 -/
 
 -- Authors:       Claude Sonnet 5.5

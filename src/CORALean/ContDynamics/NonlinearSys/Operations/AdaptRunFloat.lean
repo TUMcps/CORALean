@@ -12,6 +12,22 @@ Where the real `adaptRun` returns the state after `k` iterations, this returns e
 iterations produced, in order: each carries the window `R(τ_k)` that the run's guarantee is about.
 One failed step fails the run.
 
+## Inputs
+* `fm` – float Hessian model
+* `U` – input zonotope
+* `options` – reachability options
+* `ζδ` – first tuning constant
+* `ζh` – second tuning constant
+* `ζZ` – third tuning constant
+* `ζK` – fourth tuning constant
+* `prec` – precision
+* `bis` – bisection depth
+* `fuel` – iteration bound
+* `tend` – end time
+
+## Output
+* every state of the iterated steps, or none
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

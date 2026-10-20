@@ -9,15 +9,20 @@ public import CORALean.ContDynamics.Reach.Definitions.InputParams
 /-!
 # Reachability of a discrete-time linear system with a set-valued matrix
 
-`reach`, character for character `LinearSysDT.reach`'s recursion, with the
-matrix set `sys.A` multiplied through `Mtimes` instead of a single matrix.
-`Mtimes` already quantifies over a set of matrices (`mtimes_outer`'s `⋃`), so
-the point-matrix case, `𝕄 := Mat 𝕋`, needs no class of its own — it is
-`Mtimes (Mat 𝕋) S`, the instance `LinearSysDT.reach` already uses.
+`reach`, character for character `LinearSysDT.reach`'s recursion, with the matrix set `sys.A`
+multiplied through `Mtimes` instead of a single matrix. `Mtimes` already quantifies over a set of
+matrices (`mtimes_outer`'s `⋃`), so the point-matrix case, `𝕄 := Mat 𝕋`, needs no class of its
+own. Params and options are CORA's, as in `LinearSysDT.reach`: the problem is a
+`Reach.InputParams` counted in sampling periods (`ℕ`), the step count is `tFinal - tStart`, and
+`ρ` comes from `LinParamSysDT.ReachOptions`.
 
-Params and options are CORA's, as in `LinearSysDT.reach`: the problem is a
-`Reach.InputParams` counted in sampling periods (`ℕ`), the step count is
-`tFinal - tStart`, and `ρ` comes from `LinParamSysDT.ReachOptions`.
+## Inputs
+* `sys` – system
+* `params` – reachability parameters with inputs
+* `options` – reachability options
+
+## Output
+* the reachable set at the final time
 -/
 
 -- Authors:       Claude Sonnet 5

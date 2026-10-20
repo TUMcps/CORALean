@@ -17,6 +17,19 @@ CORA's `observe_propagation`, [1, Eq. 6], in directed rounding: `S' = (A - L C) 
 `A - L C` is the interval matrix `errMatFloat`, `L y` the product of `L` with the point `y`.
 Soundness is `observePropagationFloat_outer`.
 
+## Inputs
+* `sys` – system
+* `gain` – gain function
+* `order` – zonotope order
+* `W` – disturbance zonotope
+* `R₀` – initial zonotope
+* `V` – noise zonotope
+* `u` – inputs
+* `y` – measurements
+
+## Output
+* the observer's float state set after each number of steps
+
 ## References
 
 * [1] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th

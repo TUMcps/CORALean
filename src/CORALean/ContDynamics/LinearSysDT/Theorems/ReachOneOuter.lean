@@ -15,6 +15,22 @@ step, so each step is a `reach` at `steps = 1` from a set the previous step comp
 
 Only `plus_outer`, `mtimes_outer` and `reduce_outer` are used, so it asks for no
 more than `reach` itself does.
+
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R` – set of states
+* `U` – input set
+* `x` – state
+* `u` – input value
+
+## Hypotheses
+* `ho` – order positive
+* `hx` – `x` lies in `R`
+* `hu` – `u` lies in `U`
+
+## Conclusion
+* the one-step successor lies in the one-step reachable set
 -/
 
 -- Authors:       Claude Opus 5

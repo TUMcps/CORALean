@@ -12,16 +12,31 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.StepSubsetClosedBall
 /-!
 # One step of `reach` bounds the sup-norm ball it lands in
 
-`Zonotope.step_subset_closedBall` read at the step `reach` actually takes:
-`mtimes` by the system matrix, `plus` with the input set, `reduce` at the
-fixed order the whole run shares. `‖sys.A‖` is the `l∞` operator norm — the
-one already local-instanced throughout `LinearSys`, `LinParamSys` and
-`MatExp` — and `Vec ℝ n`'s norm is the sup norm it pairs with, so no new norm
-enters here.
+`Zonotope.step_subset_closedBall` read at the step `reach` actually takes: `mtimes` by the system
+matrix, `plus` with the input set, `reduce` at the fixed order the whole run shares. `‖sys.A‖` is
+the `l∞` operator norm — the one already local-instanced throughout `LinearSys`, `LinParamSys`
+and `MatExp` — and `Vec ℝ n`'s norm is the sup norm it pairs with. `_step_`, not `_le`: this is the
+analogue of `reach_order_le` for the set's reach rather than its generator count, one step at a
+time and no induction — `reach_subset_closedBall` is where the steps compose into a run.
 
-`_step_`, not `_le`: this is the analogue of `reach_order_le` for the set's
-reach rather than its generator count, one step at a time and no induction —
-`reach_subset_closedBall` is where the steps compose into a run.
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `r` – radius of the previous reachable set
+* `rU` – radius of the input set
+* `rbox` – radius of the reduction box
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `hR` – previous reachable set lies in its ball
+* `hU` – input set lies in its ball
+* `hbox` – reduction box lies in its ball
+
+## Conclusion
+* the next reachable set lies in the ball whose radius adds the three radii
 -/
 
 -- Authors:       Claude Sonnet 5

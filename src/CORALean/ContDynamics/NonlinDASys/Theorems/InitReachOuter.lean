@@ -16,6 +16,30 @@ provided every start set holding `x(0)` comes with a linearization that certifie
 (`LinPoint.Certifies`, the hypotheses of `linReach_outer`). Whatever `select` splits, the two
 halves cover the set they came from (`Zonotope.split_union`), so the run's start lies in one
 of them, and the induction on the fuel ends in a `linReach` of a set holding it. Outer.
+
+## Inputs
+* `sys` – system
+* `Δt` – step size
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `x` – differential trajectory
+* `y` – algebraic trajectory
+* `u` – input signal
+* `z` – output signal
+* `lin` – linearization of a start set
+* `select` – choice of the generator to split along
+* `q` – Taylor order minus two
+* `fuel` – splitting depth
+* `Rstart` – start sets
+
+## Hypotheses
+* `traj` – DAE trajectory
+* `hΔt` – step positive
+* `hcert` – every start set holding the start has a certifying linearization
+* `hstart` – the start lies in a start set
+
+## Conclusion
+* the run lies in the sets of one returned entry
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,18 @@ public import CORALean.ContDynamics.LinearARX.Operations.InputSet
 
 Each lag's term is in its own `mtimes`, so the sum is in the `plus` of them; the
 fold over the lags is an induction that carries the partial sum.
+
+## Inputs
+* `sys` – ARX system
+* `U` – input set
+* `u` – input signal
+* `k` – step
+
+## Hypotheses
+* `hu` – inputs lie in `U`
+
+## Conclusion
+* the input feed lies in the converted input set
 -/
 
 -- Authors:       Claude Opus 5.5

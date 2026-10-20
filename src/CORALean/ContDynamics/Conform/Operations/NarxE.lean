@@ -13,6 +13,13 @@ public import Mathlib.Logic.Equiv.Fin.Basic
 `E = [0 I]` of [1, Cor. 2]: it reads the last block of the window `(y_{k-n_p}, …, y_{k-1})`,
 and `Eᵀ` writes a vector into that block.
 
+## Inputs
+* `np` – number of lags
+* `ny` – output dimension
+
+## Output
+* the matrix selecting the last block of the window
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE

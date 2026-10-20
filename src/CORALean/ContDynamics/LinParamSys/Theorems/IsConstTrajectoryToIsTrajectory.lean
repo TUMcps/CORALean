@@ -11,6 +11,21 @@ CORA's `'constParam'` is a special case of `'varParam'`: witness the constant
 function `fun _ => A`. The converse fails — a trajectory free to pick a fresh
 `A t` at each instant need not settle on one matrix — and is not stated here,
 having no counterexample constructed.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `A` – system matrix member
+
+## Hypotheses
+* `traj` – constant-parameter trajectory
+
+## Conclusion
+* the constant matrix function gives a time-varying trajectory
 -/
 
 -- Authors:       Claude Opus 5

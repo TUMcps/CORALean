@@ -12,20 +12,24 @@ public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 /-!
 # `innerMinkDiffStep`, one step of the inner Minkowski-difference algorithm
 
-Lines 3-16 of [1, Alg. 1] from the inner set `R̂(t_k)` (`Rtk`), over exact sets: line 4's
-linearization point, line 5's `w = f(x*)` and `A = Df(x*)` of (6), line 6's curvature error,
-lines 7-8's affine solutions (10)-(12) and (16), lines 9-13's remainder loop
-(`innerMinkDiffRemainder`), and lines 14-16: `R̂(t_{k+1}) = R_aff(Δt) ⊖ R̂_err(L̂) + 2c` (`Prop. 1`)
-and `R̂(τ_k) = conv(R̂(t_k) ⊖ R̂_err(L̂) ⊖ C, R̂(t_{k+1}) ⊖ C) + 2c` (`Prop. 2`), with line 14's
-`c = cen(C) + cen(R̂_err(L̂))`. `none` when the remainder loop runs out of `fuel`.
+Lines 3-16 of [1, Alg. 1] from the inner set `R̂(t_k)` (`Rtk`), over exact sets: linearization
+point, `w = f(x*)` and `A = Df(x*)`, curvature error, affine solutions (10)-(12) and (16), the
+remainder loop (`innerMinkDiffRemainder`), then `R̂(t_{k+1})` by `Prop. 1` and `R̂(τ_k)` by
+`Prop. 2`. `none` when the remainder loop runs out of `fuel`. Line 4 prints `x*` on both sides;
+the field is evaluated at `cen(R̂(t_k))`, as CORA's `linReachInner` does. (10)-(12) and (17) are
+stated for `x* = 0ₙ`, so `R_hom` maps `R̂(t_k) - x*` and is shifted back by `x*`. `CZ(·)` in
+line 16 converts a polytope exactly [1, Sec. IV-A], so it is not written.
 
-Three readings of the listing. Line 4 prints `x*(t_k) ← cen(R̂(t_k)) + ½Δt f(x*(t_k))`, `x*`
-on both sides; the field is evaluated at `cen(R̂(t_k))`, as CORA's `linReachInner` does.
-(10)-(12) and (17) are stated for `x* = 0ₙ`, so `R_hom` maps `R̂(t_k) - x*` and is shifted back
-by `x*`, and line 6 boxes `R̂(t_k) - x*`, as `linReachInner` does; `R_aff(Δt)` is then the
-affine solution `x* + e^{AΔt}(x(0) - x*) + R_con(Δt)` of (8) in the original coordinates.
-`CZ(·)` in line 16 converts a polytope to a constrained zonotope exactly [1, Sec. IV-A], so it
-leaves the set unchanged and is not written.
+## Inputs
+* `ops` – set operations
+* `f` – autonomous field
+* `Δt` – step size
+* `μ` – enlargement factor
+* `fuel` – bound for remainder loop
+* `Rtk` – inner set at step start
+
+## Output
+* the next inner set and the time-interval set, or none
 
 ## References
 

@@ -19,6 +19,25 @@ with (15b), (15c) and `ē_k = E ∑_{j ≤ k-n_p} (∏_{l<j} A_ext,k-l) Eᵀ l_{
 of `narx_window_step` inserted into itself. `B_{k,i}` is zero outside `0 ≤ i ≤ n_p`, which the
 printed `B_ext,k-j,k-i-j` needs. A linear `h` has `l = 0` and so `ē = 0`.
 
+## Inputs
+* `np` – number of lags
+* `A` – output Jacobians
+* `B` – input Jacobians
+* `l` – remainders
+* `y` – outputs
+* `yb` – reference outputs
+* `u` – inputs
+* `ub` – reference inputs
+* `k` – step
+
+## Hypotheses
+* `hp` – at least one lag
+* `hy` – the Taylor expansion holds
+* `hk` – step at least the number of lags
+
+## Conclusion
+* the output equals the linearization along the reference plus the remainder terms
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE

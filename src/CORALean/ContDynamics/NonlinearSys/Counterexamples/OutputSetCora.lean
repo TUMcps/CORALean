@@ -30,6 +30,15 @@ the set `reach` stores as its first time-point output (`outputSet(sys,params.Xâ‚
 the later ones read the same `params.U`. `h` is affine, so `out_isLinear` holds and the
 second- and third-order terms are `0` at either `tensorOrderOutput`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a run's output lies outside CORA's output set
+
 ## References
 
 * [1] `contDynamics/@contDynamics/reach.m`

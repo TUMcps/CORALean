@@ -11,6 +11,26 @@ A run of `x(k+1) = A x(k) + B u(k) + c + E w(k)` is a run of the canonical form
 `x(k+1) = A x(k) + u'(k)` with the combined input `u' = B u + c + E w`, wherever `U'` holds every
 value it takes. So whatever is proved of `IsCanonicalTrajectory` at an input set
 `U' ⊇ B U ⊕ c ⊕ E W` holds of every run of the full system. The output plays no part.
+
+## Inputs
+* `sys` – system
+* `X₀` – initial set
+* `U` – input set
+* `W` – disturbance set
+* `V` – noise set
+* `x` – trajectory
+* `u` – input signal
+* `w` – disturbances
+* `v` – noise
+* `y` – outputs
+* `U'` – set holding the combined input
+
+## Hypotheses
+* `traj` – trajectory
+* `hU'` – combined input lies in `U'`
+
+## Conclusion
+* the combined input drives the canonical form along the same state
 -/
 
 -- Authors:       Claude Opus 5.5

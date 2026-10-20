@@ -7,15 +7,20 @@ public import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
 /-!
 # The box a float step stays in, checked
 
-A step's certificate holds only where the run is, so the run has to be shown to
-stay in the box `X ⊕ [-δ, δ]` the abstraction error is taken over. The check is
-the one `confined_of_ball` proves sound: `M` bounds the model's `‖f‖∞` over that
-box and the input box, and `MΔt < δ` means no run starting in `X` can reach its
-edge within `Δt`. `ltStrict` makes the comparison strict, as the lemma needs.
+A step's certificate holds only where the run is, so the run has to be shown to stay in the box
+`X ⊕ [-δ, δ]` the abstraction error is taken over. The check is the one `confined_of_ball`
+proves sound: `M` bounds the model's `‖f‖∞` over that box and the input box, and `MΔt < δ` means
+no run starting in `X` can reach its edge within `Δt`. `δ = (2M₀ + 1)Δt` is a guess from the
+bound `M₀` over `X` alone; a guess that fails costs the run, never its soundness.
 
-`δ = (2M₀ + 1)Δt` is a guess from the bound `M₀` over `X` alone: twice what a
-state moves at the speeds it starts with, plus a margin for a field that vanishes
-there. A guess that fails costs the run, never its soundness.
+## Inputs
+* `fm` – float model
+* `Δt` – step size
+* `X` – state box
+* `U` – input box
+
+## Output
+* the checked box around the state box, or none
 -/
 
 -- Authors:       Claude Opus 5.5

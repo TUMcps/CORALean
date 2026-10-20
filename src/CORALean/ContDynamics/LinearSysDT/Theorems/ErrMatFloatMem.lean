@@ -11,6 +11,17 @@ public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 # The interval error matrix holds `A - L C`
 
 The real `A - L C` of the real values of the stored matrices lies in `errMatFloat A L C`.
+
+## Inputs
+* `A` – float state matrix
+* `L` – float gain
+* `C` – float output matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the real error matrix lies in the interval error matrix
 -/
 
 -- Authors:       Claude Opus 5.5

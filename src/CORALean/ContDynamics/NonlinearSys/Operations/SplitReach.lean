@@ -7,20 +7,19 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Split
 /-!
 # `splitReach`, one time step of conservative linearization with splitting
 
-[1, Fig. 1]: run the step from `R((k - 1) r)`; if its linearization error is not
-admissible, "split `R((k - 1) r)` into two sets and repeat reachable set
-computation" on each, so that the step yields one segment more each time. The
-step itself — linearize, compute `R_lin`, bound `L` by Prop. 1, test `L ⊆ L̄` — is
-`step`, which answers `none` when the test fails; which generator to split is
-`pick`, the paper's performance index `ρ_j` being `Zonotope.splitRank`, and `none`
-there when nothing is left to split.
+[1, Fig. 1]: run the step from `R((k - 1) r)`; if its linearization error is not admissible,
+"split `R((k - 1) r)` into two sets and repeat reachable set computation" on each. The step
+itself — linearize, compute `R_lin`, bound `L` by Prop. 1, test `L ⊆ L̄` — is `step`, which
+answers `none` when the test fails; which generator to split is `pick`, the paper's performance
+index `ρ_j` being `Zonotope.splitRank`. `fuel` caps the depth of the splitting, and an exhausted
+budget is a failure; `splitReach_outer` says every start in `R` is answered by one segment.
 
-The figure repeats with no bound, so `fuel` caps the depth of the splitting and an
-exhausted budget is a failure, as a failed `pick` is. The segments come back as a
-list; `splitReach_outer` says every start in `R` is answered by one of them.
+## Inputs
+* `step` – step on a zonotope
+* `pick` – generator to split
 
-Outside this step: the time loop around it, and Sec. VI-B's cancellation.
-Real only, since `Zonotope.split` is: `FloatOps` carries no exact halving.
+## Output
+* the segments' answers, or none
 
 ## References
 

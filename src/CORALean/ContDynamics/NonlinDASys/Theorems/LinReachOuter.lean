@@ -16,17 +16,52 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # `linReach` holds every confined run of the DAE over the step
 
-A run of the DAE on `[0, Δt]` from `Rinit`, confined to a region `R^z` over which `Verror`
-holds the dynamics' linearization error `ℓᵈ - C F⁻¹ ℓᵃ` and `Verror_y` the constraint's `ℓᵃ`
-at every consistent point, is in `linReach`'s time-point set at `Δt`, in its time-interval set
-throughout, and with its algebraic variable in the joint set. Outer.
+A run of the DAE on `[0, Δt]` from `Rinit`, confined to a region `R^z` over which `Verror` holds
+the dynamics' linearization error `ℓᵈ - C F⁻¹ ℓᵃ` and `Verror_y` the constraint's `ℓᵃ` at every
+consistent point, is in `linReach`'s time-point set at `Δt`, in its time-interval set throughout,
+and with its algebraic variable in the joint set. `NonlinDASys.IsTrajectory.toLinearSys` makes the
+shifted run a run of the linear system, and `oneStep`'s two theorems do the rest; [1, Prop. 2]
+(`jointReachSet_outer`) places `y`. The side conditions are `oneStep`'s: `u* ∈ U`, `0 ∈ Verror`
+and `F⁻¹ F = I`. Where `Verror` comes from `NonlinDASys.linError`, `linError_outer` and
+`exists_lagrange_remainder` say why the certificate holds.
 
-`NonlinDASys.IsTrajectory.toLinearSys` makes the shifted run a run of the linear system, and
-`oneStep`'s two theorems do the rest; [1, Prop. 2] (`jointReachSet_outer`) places `y`. The
-side conditions are `oneStep`'s: `u* ∈ U` and `0 ∈ Verror`, so that the time-varying input
-holds `0`, and `F⁻¹ F = I`. Where `Verror` comes from `NonlinDASys.linError`,
-`linError_outer` and `exists_lagrange_remainder` say why the certificate holds: one Lagrange
-point per row and the Hessians in their intervals over `R^z`.
+## Inputs
+* `sys` – system
+* `Δt` – step size
+* `Rinit` – start set
+* `U` – input zonotope
+* `x` – differential trajectory
+* `y` – algebraic trajectory
+* `u` – input signal
+* `z` – output signal
+* `xs` – linearization state
+* `ys` – linearization algebraic variable
+* `us` – linearization input
+* `A` – dynamics Jacobian in the state
+* `B` – dynamics Jacobian in the input
+* `C` – dynamics Jacobian in the algebraic variable
+* `D` – constraint Jacobian in the state
+* `E` – constraint Jacobian in the input
+* `F` – constraint Jacobian in the algebraic variable
+* `F_inv` – inverse of `F`
+* `Verror` – dynamics error zonotope
+* `Verror_y` – constraint error zonotope
+* `Rz` – confinement region
+* `q` – Taylor order minus two
+
+## Hypotheses
+* `traj` – DAE trajectory
+* `hΔt` – step positive
+* `hF` – `F_inv` is a left inverse of `F`
+* `hR` – the run stays in the region
+* `hL` – `Verror` holds the dynamics error at consistent points
+* `hLa` – `Verror_y` holds the constraint error at consistent points
+* `hus` – the linearization input lies in `U`
+* `h0` – zero lies in `Verror`
+* `hε` – order admissible
+
+## Conclusion
+* the run lies in the time-point, time-interval and joint sets
 
 ## References
 

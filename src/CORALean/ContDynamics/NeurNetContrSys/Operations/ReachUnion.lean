@@ -14,6 +14,15 @@ The periods `0` through `H = tFinal - tStart` of `reach`, one per branch of the
 `SetUnion` — the `Reach.reach` field of the instance. `η` is a floor,
 raised to `reachOrder`'s order where that is higher, since only an order admissible
 for `Δt` and the augmented matrix `[A B_nn; 0 0]` makes `reach_outer` hold.
+
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input set
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Output
+* the reachable sets at every period boundary, as a union
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5, Claude Sonnet 5.5

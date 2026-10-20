@@ -11,6 +11,14 @@ public import CORALean.ContDynamics.LinParamSys.Operations.InputTerm
 point one. Recursive rather than a fold over `Finset`, for the reason the point
 case gives: `plus` is only an enclosure and never has to be reassociated, and
 the guarantee is then one induction.
+
+## Inputs
+* `sys` – system
+* `r` – step size
+* `U` – input set
+
+## Output
+* the exact orders of the input solution summed up to a given order
 -/
 
 -- Authors:       Claude Opus 5

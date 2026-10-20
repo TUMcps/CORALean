@@ -16,6 +16,16 @@ is `reachStepkFloat` applied to `P^R(Δt)`, so it encloses `e^{[A] t_k}` by scal
 and squaring there, and no window is found when that has no admissible
 squaring count. The accumulated set is reduced to order `ρ`.
 
+## Inputs
+* `sys` – system
+* `Δt` – window length
+* `η` – Taylor order
+* `ρ` – zonotope order bound
+* `U` – input zonotope
+
+## Output
+* the input's contribution up to the end of each window, or none
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

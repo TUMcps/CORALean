@@ -14,6 +14,15 @@ The first expression depends on the sequence, the second does not: at `H_d = 1` 
 the admissible run `d ≡ 0` has `sup_k ‖d_k‖ = 0`, while `max_{|b| ≤ 1} |b| = 1`. Only
 `sup_k ‖d_k‖ ≤ max_b ‖H_d b‖` holds (`LinearSysDT.peakDisturbance_le`).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the supremum over a run differs from the maximum over the generator box
+
 ## References
 
 * [1] Y. Wang, Z. Wang, V. Puig and G. Cembrano. "Zonotopic set-membership state estimation for

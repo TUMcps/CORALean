@@ -22,6 +22,26 @@ the point system `⟨A⟩`'s own `P^R(t)`: with `0 ∈ U` it grows with time
 and that one step lies in the box's `inputSolution`. Each propagator
 `e^{A t_j}` is a member of `expEnclosure t_j`, which is all the recursion needs.
 
+## Inputs
+* `sys` – system
+* `Δt` – window length
+* `η` – Taylor order
+* `A` – system matrix member
+* `U` – input set
+* `k` – window index
+* `t` – time
+
+## Hypotheses
+* `hΔt` – window length positive
+* `hε` – order admissible
+* `hA` – `A` lies in the matrix set
+* `h0` – origin lies in the input set
+* `ht0` – time nonnegative
+* `htk` – time at most the window end
+
+## Conclusion
+* everything an admissible input contributes by time `t` lies in the particular solution
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

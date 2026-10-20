@@ -13,6 +13,15 @@ instance of `Reach`: if `reach` returned a set, `Specification.check` it. A `rea
 returned `none` could not certify its own soundness conditions, so it verifies
 nothing and the answer is `false`, the "not shown" a conservative `Contains`
 gives.
+
+## Inputs
+* `sys` – system
+* `params` – reachability parameters
+* `options` – reachability options
+* `spec` – specification
+
+## Output
+* whether the specification holds on the reachable set
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

@@ -19,6 +19,22 @@ reach `0`. A detected fault therefore means some output was not fault-free, give
 state zonotope held its state, which [1, Eq. 10] gives only while no fault has occurred
 (`LinearSysDT.faultObserve_outer`).
 
+## Inputs
+* `M` – residual weight
+* `C` – output matrix
+* `Dy` – noise matrix
+* `Hv` – noise generators
+* `X` – state zonotope
+* `x` – state
+* `s` – noise coefficients
+
+## Hypotheses
+* `hx` – `x` lies in `X`
+* `hs` – noise coefficients within one
+
+## Conclusion
+* the residual zonotope of a fault-free output contains zero
+
 ## References
 
 * [1] Y. Wang, M. Zhou, V. Puig, G. Cembrano and Z. Wang. "Zonotopic Fault Detection Observer

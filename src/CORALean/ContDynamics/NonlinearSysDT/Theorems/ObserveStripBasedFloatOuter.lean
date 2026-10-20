@@ -16,6 +16,33 @@ set, `ω_k ∈ W`, each state in its step's certified region, whose outputs meet
 The confinement of the run to each step's region stays a hypothesis, as for
 `NonlinearSysDT.reach_outer`. An outer statement; `𝕋 := ℝ` is the real case.
 
+## Inputs
+* `sys` – system
+* `U` – input zonotope
+* `steps` – linearization steps
+* `o` – maximum order
+* `C` – output matrix
+* `σ` – strip half-widths
+* `W` – disturbance zonotope
+* `R₀` – initial zonotope
+* `y` – measurements
+* `options` – observer options
+* `x` – state trajectory
+* `w` – disturbance sequence
+* `u` – input sequence
+* `k` – step
+
+## Hypotheses
+* `h0` – start state in initial set
+* `hu` – inputs in input set
+* `hw` – disturbances in disturbance set
+* `hR` – states stay in regions
+* `hstep` – states follow the dynamics
+* `hy` – outputs meet every strip
+
+## Conclusion
+* the true state lies in the observer's set
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state

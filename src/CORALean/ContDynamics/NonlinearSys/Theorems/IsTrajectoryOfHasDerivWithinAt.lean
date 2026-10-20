@@ -13,6 +13,25 @@ A state with the derivative `f(x t, u t)` within a convex `T ∋ 0` at every poi
 field along it integrable from `0`, satisfies the integral equation `IsTrajectory` states: the
 fundamental theorem of calculus, one-sided inside `T`. The derivative makes the field
 measurable on `T` and the state continuous, the rest of what a Carathéodory run asks.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+
+## Hypotheses
+* `hTconv` – time set convex
+* `h0T` – zero in time set
+* `init` – start state in initial set
+* `input` – inputs in input set
+* `hd` – field is the derivative
+* `hint` – field integrable from zero
+
+## Conclusion
+* the state and input form a trajectory
 -/
 
 -- Authors:       Claude Opus 5.5

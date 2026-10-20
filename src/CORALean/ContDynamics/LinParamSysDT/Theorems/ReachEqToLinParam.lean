@@ -12,6 +12,19 @@ public import CORALean.ContDynamics.LinParamSysDT.Operations.ToLinParam
 The two recursions are the same term at every step: both read off `sys.A`
 through the same `mtimes`, and `toLinParam` changes nothing `mtimes`, `plus`
 or `reduce` can see.
+
+## Inputs
+* `sys` – linear system
+* `o` – maximum zonotope order
+* `R₀` – initial set
+* `U` – input set
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* the reachable set equals that of the linear system
 -/
 
 -- Authors:       Claude Opus 5

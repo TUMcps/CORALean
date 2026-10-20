@@ -8,18 +8,13 @@ public import CORALean.ContDynamics.Interfaces
 /-!
 # `LinParamSys` instantiates `ContDynamics`, and at `ℐ` `Reach`
 
-`params` is `Reach.InputParams` at real time: CORA's `params.U` in input coordinates, of the
-system's own `nrOfInputs`, which is why `Reach`'s `P` reads the system. `options` is
-`LinearSys.ReachStepOptions`, the point case's. `reachExact` is `reachUnionExact` on
-`[0, tFinal - tStart]`, the system being time-invariant, `reach` is `reachUnion`, `none` unless
-`0 < Δt`, and the guarantee is `reachUnion_outer` [1, Alg. 1], constant-parameter, in
-`⌈(tFinal - tStart) / Δt⌉` windows. The representation is asked to be convex and compact, what
-`inputSolution`'s enclosure needs of `V = B U ⊕ c`, and for `Recenter` and `OfPoint`, which
-split `V` at its center: no `0 ∈ U` is asked.
-
-`LinParamSys` is a `ContDynamics`: `m` inputs and no disturbance, a run a `IsTrajectory` —
-`'varParam'`, a fresh `A t` and `B t` at every instant, which every `'constParam'` run is too —
-at some such matrices.
+`params` is `Reach.InputParams` at real time: CORA's `params.U` in input coordinates. `options`
+is `LinearSys.ReachStepOptions`. `reachExact` is `reachUnionExact` on `[0, tFinal - tStart]`,
+the system being time-invariant, `reach` is `reachUnion`, `none` unless `0 < Δt`, and the
+guarantee is `reachUnion_outer` [1, Alg. 1], constant-parameter, in `⌈(tFinal - tStart) / Δt⌉`
+windows. The representation is asked to be convex and compact, what `inputSolution`'s enclosure
+needs of `V = B U ⊕ c`. `LinParamSys` is a `ContDynamics`: `m` inputs, no disturbance, a run
+an `IsTrajectory` (`'varParam'`, which every `'constParam'` run is too).
 
 ## References
 

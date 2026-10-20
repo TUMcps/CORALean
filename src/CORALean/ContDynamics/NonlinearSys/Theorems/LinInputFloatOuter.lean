@@ -16,6 +16,29 @@ certified box and an input `u ∈ U`, `f(x,u) - A(x - x✱)` is in `linInputFloa
 so `δ = x - x✱` solves `δ̇ = A δ + ũ` with `ũ` there. Split as `f(x✱,u✱)`, then
 `B(u - u✱)`, then the remainder `slopeRemainder_abstractionError` places, each in
 its own summand.
+
+## Inputs
+* `fm` – float model
+* `sys` – system
+* `A` – state Jacobian center
+* `B` – input Jacobian center
+* `xs` – state expansion point
+* `X` – state box
+* `U` – input zonotope
+* `U'` – input box
+* `x` – state
+* `u` – admissible input
+
+## Hypotheses
+* `h` – model encloses system
+* `hxs` – expansion point in box
+* `hU` – input zonotope in box
+* `hus` – input center in box
+* `hx` – state in box
+* `hu` – input in zonotope
+
+## Conclusion
+* the field less its linear part lies in the input set
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -15,6 +15,17 @@ The step (24) in the proof of [1, Prop. 8]: at `α ≥ 0` that admits the point,
 asserts the equivalence; one direction needs a `β` per coordinate, and `C` convex (an affine
 set for (19e), a polyhedron for (20e)) lets their average serve all at once.
 
+## Inputs
+* `C` – convex set of coefficient vectors
+* `α` – generator scaling
+
+## Hypotheses
+* `hC` – `C` is convex
+* `hfit` – `α` fits under `C`
+
+## Conclusion
+* not a boundary point iff some coefficients fit strictly below every positive factor
+
 ## References
 
 * [1] L. Lützow, M. Eichelbeck, M. J. Kochenderfer and M. Althoff. "Zono-Conformal

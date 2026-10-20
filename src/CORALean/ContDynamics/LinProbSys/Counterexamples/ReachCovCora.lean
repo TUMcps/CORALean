@@ -25,6 +25,18 @@ carries (`reachCovCora`, [4]) is strictly below the noise covariance `Σ_s(k r)`
 `post` multiplies the covariance by `e²` and adds `pRinput`'s, and `pRinput`'s is already
 below the true one (`initReachCov_lt_noiseCovariance`), so the gap persists and grows.
 
+## Inputs
+* `B` – input matrix
+* `st0` – initial post state
+* `k` – step
+
+## Hypotheses
+* `h0` – initial covariance zero
+* `hk` – at least one step
+
+## Conclusion
+* CORA's carried covariance is below the true noise covariance
+
 ## References
 
 * [1] `contDynamics/@contDynamics/reach.m`

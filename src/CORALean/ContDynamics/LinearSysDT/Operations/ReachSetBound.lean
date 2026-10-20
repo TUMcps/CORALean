@@ -8,16 +8,22 @@ public import CORALean.Global.SupportFunction.Composition
 /-!
 # A support bound propagated along the steps
 
-The whole recursion is two lines of `Global.SupportFunction.Composition`: `image` for
-the matrix and `add` for the input set. `image` is the one that carries the
-matrix, and it does so by moving the *direction* — the value is unchanged and
-`c` becomes `c ∘ A` — so what a caller must be able to answer is one direction
-per step, `c ∘ Aᵏ` at the initial set and `c ∘ Aⁱ` at the input set.
+The whole recursion is two lines of `Global.SupportFunction.Composition`: `image` for the matrix
+and `add` for the input set. `image` carries the matrix by moving the *direction* — the value is
+unchanged and `c` becomes `c ∘ A` — so what a caller must be able to answer is one direction per
+step, `c ∘ Aᵏ` at the initial set and `c ∘ Aⁱ` at the input set. That is why the hypotheses are
+functions of a direction rather than two numbers: every `supportBound` this tree defines already
+has that shape, `Ellipsoid`, `Interval`, `Zonotope`, `VPolytope` and `Capsule` alike.
 
-That is why the hypotheses are functions of a direction rather than two numbers:
-every `supportBound` this tree defines already has that shape, `Ellipsoid`,
-`Interval`, `Zonotope`, `VPolytope` and `Capsule` alike, so any of them may be
-handed in and none is named here.
+## Inputs
+* `sys` – system
+* `R₀` – initial set
+* `U` – input set
+* `b₀` – support bound of the initial set
+* `bU` – support bound of the input set
+
+## Output
+* the support bound of the set reached after each number of steps
 -/
 
 -- Authors:       Claude Opus 5

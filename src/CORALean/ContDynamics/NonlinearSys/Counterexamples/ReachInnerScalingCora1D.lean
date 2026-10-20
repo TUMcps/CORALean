@@ -12,34 +12,37 @@ public import Mathlib.Topology.Order.Basic
 /-!
 # `reachInnerScalingCora1D`, CORA's `'scale'` inner approximation in one dimension
 
-CORA's `@nonlinearSys/private/priv_reachInnerScaling.m` (`reachInner`, `algInner = 'scale'`) at
-one time point, without inputs, line by line from the outer approximation
-`R = c + Σᵢ Gᵢ α^Eᵢ + Σₖ GIₖ βₖ` that `reach` returned. With one state, `aux_removeAddGens` has
-nothing to remove; `aux_reduceOrderDep` is modelled only when it does nothing (else `none`).
-`getSubset(R,1,±1)` evaluates the dependent part at `α = ±1`; `aux_reduceOrderInd` is the
-interval hull of `GI`, radius `Σ|GIₖ|`. `aux_constraintIntersection` is `R.G`'s polynomial minus
-the piece, `R.GI` left out (line 217). `fmincon` returns a point `(α, γ)`, `val` its objective;
-`isEmptyContract` is `isempty(contract(...))`. Both are arguments: their theorems quantify over
-them. `scaleFac = none` is `'auto'`: start at `0.99`, on a failed contraction subtract `0.01`
-and restart the boundary loop, keeping `I`; the `while` stops at `factor ≤ 0`, with `I` as it is
-(lines 111, 137-139). `fuel` bounds the passes, ending as `factor ≤ 0` does. The result is
-`getSubset(R,1:n,I)` without `GI` (lines 151-152); `none` also marks `interval`'s error at
-`lower > upper`.
-
-The paper's Step 4, the backward simulation (14), is not in the code and not here.
+CORA's `@nonlinearSys/private/priv_reachInnerScaling.m` (`reachInner`, `algInner = 'scale'`) at one
+time point, without inputs, line by line from the outer approximation
+`R = c + Σᵢ Gᵢ α^Eᵢ + Σₖ GIₖ βₖ` that `reach` returned. `getSubset(R,1,±1)` evaluates the dependent
+part at `α = ±1`. `fmincon` returns a point `(α, γ)`, `isEmptyContract` is
+`isempty(contract(...))`: both are arguments. `scaleFac = none` is `'auto'`: start at `0.99`, on a
+failed contraction subtract `0.01` and restart the boundary loop; the `while` stops at
+`factor ≤ 0`, with `I` as it is. `fuel` bounds the passes. The result is `getSubset(R,1:n,I)`
+without `GI`. The paper's Step 4, the backward simulation (14), is not in the code and not here.
 
 # CORA's `'scale'` returns an "inner approximation" of unreachable states
 
-`ẋ = 0` on `ℝ`, `X₀ = [-1, 1]`, `t = 1`, so the reachable set is `[-1, 1]`. The outer approximation
-`R = 2 + α + 2β` holds the run from each `α ∈ X₀` ([1, (6)]), and the pieces of the boundary
-enclosure, `[1, 5]` and `[-1, 3]`, hold `∂R = {±1}`. At the default `scaleFac = 'auto'`,
+`ẋ = 0` on `ℝ`, `X₀ = [-1, 1]`, `t = 1`, so the reachable set is `[-1, 1]`. The outer
+approximation `R = 2 + α + 2β` holds the run from each `α ∈ X₀` ([1, (6)]), and the pieces of the
+boundary enclosure, `[1, 5]` and `[-1, 3]`, hold `∂R = {±1}`. At the default `scaleFac = 'auto'`,
 `priv_reachInnerScaling` asks `fmincon` for a point of the first piece and contracts
-`[-1, factor·val] × [-1, 1]`. Every point `fmincon` may return lies in the box, so `factor·val ≥ -1`
-and `(-1, -1)` solves the constraint in that box: no contractor that [1, Def. 3] admits proves it
-empty. Each pass lowers `factor`, the `while` ends at `factor ≤ 0`, `I` is still `[-1, 1]`, and
-CORA returns `2 + [-1, 1] = [1, 3]`. Whatever `fmincon` returns, whatever the contractor and the
-number of passes: `3` is in it and unreachable, and the center `2` fails [1]'s Step 4, (14),
-which the code never runs.
+`[-1, factor·val] × [-1, 1]`. Every point `fmincon` may return lies in the box, so `(-1, -1)` solves
+the constraint in that box: no contractor that [1, Def. 3] admits proves it empty. Each pass lowers
+`factor`, `I` is still `[-1, 1]`, and CORA returns `2 + [-1, 1] = [1, 3]`: `3` is in it and
+unreachable, and the center `2` fails [1]'s Step 4, (14), which the code never runs.
+
+## Inputs
+* `fmincon` – optimizer
+* `isEmptyContract` – contractor emptiness test
+* `fuel` – iteration bound
+
+## Hypotheses
+* `hopt` – the optimizer returns a feasible point
+* `hcontract` – the contractor is sound
+
+## Conclusion
+* the returned inner approximation holds a state no run reaches
 
 ## References
 

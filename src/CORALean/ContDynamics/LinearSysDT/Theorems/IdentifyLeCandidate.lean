@@ -13,6 +13,22 @@ its `err` is at most that of every one of them, the full-rank candidate among th
 comparison `lt` that is `<`. Only as good as `err`.
 The source is [1].
 
+## Inputs
+* `dt` – sampling time
+* `lt` – order test on errors
+* `err` – error of a candidate matrix
+* `xNext` – successor states
+* `V` – left singular vectors
+* `s` – singular values
+* `W` – right singular vectors
+
+## Hypotheses
+* `hlt` – `lt` is the strict order
+* `hr` – rank positive
+
+## Conclusion
+* the identified matrix has error at most the full-rank candidate's
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/private/priv_identifyDMD.m`

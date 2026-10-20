@@ -13,6 +13,19 @@ reducing to `o` by `rfl`: nothing distinguishes them but which argument the
 order comes from. This is what keeps the two definitions from drifting apart
 — a proof about `reach` alone is a proof about `reachOrders` at the sequence
 that never changes.
+
+## Inputs
+* `sys` – system
+* `o` – constant order
+* `R₀` – initial set
+* `U` – input set
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* constant per-step orders give the same reachable set
 -/
 
 -- Authors:       Claude Opus 5

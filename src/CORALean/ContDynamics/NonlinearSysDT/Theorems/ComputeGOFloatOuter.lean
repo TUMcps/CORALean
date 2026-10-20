@@ -17,6 +17,22 @@ value of a float reference input lies in what `computeGOFloat` returns: the refe
 `y` and the parameters `A{k}`, `B{k,j}`, `F{k,j}`, `C{k}`, `D{k,j}`, `E{k,j}`. An outer statement;
 with `computeGO_state` and `computeGO_output` it encloses the deviation of every run, the
 linearization errors `L_j` aside.
+
+## Inputs
+* `sys` – system
+* `fm` – float field model
+* `om` – float output model
+* `x0` – initial point
+* `u_ref` – reference input
+* `k` – step
+* `j` – earlier step
+
+## Hypotheses
+* `hf` – field model encloses field
+* `ho` – output model encloses output
+
+## Conclusion
+* every real parameter lies in its float enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

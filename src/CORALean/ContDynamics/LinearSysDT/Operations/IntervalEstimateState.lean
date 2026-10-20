@@ -12,6 +12,18 @@ the estimate at the center `p₀` of `X₀ = ⟨p₀, H₀⟩` and line 3 the er
 starts `S_w` and `S_v` at `∅`, which would make line 5's sum empty at every step; they start at
 `{0}`, the neutral element of `⊕` that line 5 needs.
 
+## Inputs
+* `sys` – system
+* `L` – observer gain
+* `X₀` – initial zonotope
+* `W` – disturbance zonotope
+* `V` – noise zonotope
+* `u` – inputs
+* `y` – measurements
+
+## Output
+* the estimator state after each number of steps
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

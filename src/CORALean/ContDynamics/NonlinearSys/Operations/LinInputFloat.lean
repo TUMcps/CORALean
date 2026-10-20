@@ -10,16 +10,23 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # The input set a float linearization widens to
 
-`linInput` in `𝕋`, in CORA's deviation coordinates `δ = x - x✱`:
-`δ̇ = A δ + ũ(t)` with every admissible `ũ(t)` in `{f(x✱,u✱)} ⊕ B(U ⊖ u✱) ⊕ L`, as a
-float zonotope. `linInput`'s `- A x✱` is gone with the shift, which is what keeps
-the constant input small: it is the field at the expansion point, not that minus
-a matrix times a state of any size. `f(x✱,u✱)` enters as the model's box at the
-point; `U ⊖ u✱` is `recenter U`, the input set with its stored center taken out,
-so `u✱` is that center and nothing is rounded there; `L` is `slopeRemainder`.
+`linInput` in `𝕋`, in CORA's deviation coordinates `δ = x - x✱`: `δ̇ = A δ + ũ(t)` with every
+admissible `ũ(t)` in `{f(x✱,u✱)} ⊕ B(U ⊖ u✱) ⊕ L`, as a float zonotope. `linInput`'s `- A x✱` is
+gone with the shift. `f(x✱,u✱)` enters as the model's box at the point; `U ⊖ u✱` is `recenter U`,
+so `u✱` is the stored center of `U`; `L` is `slopeRemainder`. `X` and `U'` are boxes the caller
+certifies: `X` holds every state of the step and `x✱`, `U'` every input and `u✱`.
 
-`X` and `U'` are boxes the caller certifies: `X` has to hold every state of the
-step and `x✱`, `U'` every input and `u✱`.
+## Inputs
+* `fm` – float model
+* `A` – state Jacobian center
+* `B` – input Jacobian center
+* `xs` – state expansion point
+* `X` – state box
+* `U` – input zonotope
+* `U'` – input box
+
+## Output
+* the float input zonotope of the linearized system
 -/
 
 -- Authors:       Claude Opus 5.5

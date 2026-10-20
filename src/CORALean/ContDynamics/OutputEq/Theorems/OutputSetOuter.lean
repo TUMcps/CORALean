@@ -15,6 +15,20 @@ Stated at a single state and input rather than along a run, which is what keeps
 it independent of the system: the caller supplies `x ∈ R` from whatever produced
 `R` — a discrete recursion, a sampled flow, a hybrid invariant — and `u ∈ U`
 from the run's own input set.
+
+## Inputs
+* `out` – output equation
+* `R` – state set
+* `U` – input set
+* `x` – state
+* `u` – admissible input
+
+## Hypotheses
+* `hx` – state in state set
+* `hu` – input in input set
+
+## Conclusion
+* the output lies in the output enclosure
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

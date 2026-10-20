@@ -8,15 +8,20 @@ public import CORALean.ContSet.Interval.Float.Instances
 /-!
 # One interval-valued run of the dynamics
 
-The float counterpart of `simulate`: a run of the step on boxes rather than on
-points, so that the float step's rounding is carried (directed outward) instead of
-silently lost. `simulateBoxIn` takes the start box and one input box per step;
-`simulateBox` is the case CORA's `simulate` has, a float start and a float input
-signal, each stored as a point interval.
+The float counterpart of `simulate`: a run of the step on boxes rather than on points, so that the
+float step's rounding is carried (directed outward) instead of silently lost. `simulateBoxIn` takes
+the start box and one input box per step; `simulateBox` is the case CORA's `simulate` has, a float
+start and a float input signal, each stored as a point interval. The step is exactly `reach`'s,
+`A R ⊕ U`, at the float `Interval` class and without `reduce`; `simulate_mem_simulateBox` says the
+real run lies in these boxes.
 
-The step is exactly `reach`'s, `A R ⊕ U`, at the float `Interval` class and
-without `reduce` (a box has no order to give up); `simulate_mem_simulateBox` says
-the real run lies in these boxes.
+## Inputs
+* `sys` – system
+* `B₀` – start box
+* `U` – input boxes per step
+
+## Output
+* the boxes of the run after each number of steps
 -/
 
 -- Authors:       Claude Opus 5.5

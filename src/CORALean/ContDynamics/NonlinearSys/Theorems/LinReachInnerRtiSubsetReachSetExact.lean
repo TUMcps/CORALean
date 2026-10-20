@@ -15,6 +15,28 @@ hull, `Rinit ∪ Rtp`, lies in the time-interval reachable set `R([T, T + Δt]) 
 `X₀` (`reachSetExact_subset_reachSetExact_add`). CORA's own `Rti` is not inside it
 (`convexHull_timeInterval_convex_counterexample`).
 
+## Inputs
+* `ops` – set operations
+* `sys` – system
+* `u₀` – constant input
+* `X₀` – initial set
+* `T` – start time
+* `Δt` – step size
+* `fuel` – bound for error loop
+* `X` – start set
+* `e` – abstraction error guess
+* `st` – returned step state
+
+## Hypotheses
+* `hT` – start time nonnegative
+* `hΔt` – step size nonnegative
+* `hX` – start set reachable at start time
+* `h` – step returned this state
+* `cert` – step certificate
+
+## Conclusion
+* the time-interval set lies in the reachable set over the step
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for

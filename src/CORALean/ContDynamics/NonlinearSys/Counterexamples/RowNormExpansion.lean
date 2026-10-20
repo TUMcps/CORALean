@@ -16,6 +16,15 @@ identically `0` or `h^q ‖a + b(h)‖₁` with `a ≠ 0` and `b(h) = O(h)`. Tak
 `expNegInvGlue`): smooth, positive for `h > 0`, so not zero near `0`, and under every
 power of `h`, so `h^{-q} G(h) → 0` while `‖a + b(h)‖₁ → ‖a‖₁ ≠ 0`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a smooth coefficient is neither zero nor of the claimed power form
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

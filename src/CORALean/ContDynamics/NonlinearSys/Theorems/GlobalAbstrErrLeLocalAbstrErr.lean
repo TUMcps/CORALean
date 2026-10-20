@@ -10,20 +10,33 @@ public import Mathlib.Tactic.Positivity
 /-!
 # Lemma 2: the global abstraction error from the worst local one
 
-[1, Lemma 2]: for a solver "of the form (10)" — one step sharing its
-particular-solution term between the error-carrying run `R` and the error-free
-run `R̂`, so consecutive global errors grow by at most a fixed per-step factor
-`1 + LΔt` before the step's own error is added — the global error after `N`
-equal steps of length `Δt` is at most the worst local error over the run,
-scaled by a constant depending on `t_end := NΔt` alone.
+[1, Lemma 2]: for a solver "of the form (10)" — one step sharing its particular-solution term
+between the error-carrying run `R` and the error-free run `R̂`, so consecutive global errors grow
+by at most a fixed per-step factor `1 + LΔt` before the step's own error is added — the global
+error after `N` equal steps of length `Δt` is at most the worst local error, scaled by a
+constant depending on `t_end := NΔt` alone. `hstep` is (10)'s content, cashed out as [1]'s own
+Appendix-B inequality `εₖ₊₁ ≤ (1+LΔt)εₖ + εₖ,loc`. Deriving it from a concrete `A` is not done
+here; `aux_gronwall` proves the deferred discrete Grönwall step from `hstep` to (30).
 
-`hstep` is (10)'s content, cashed out as [1]'s own Appendix-B inequality
-`εₖ₊₁ ≤ (1+LΔt)εₖ + εₖ,loc` — mid-proof, right before the paper defers the rest
-to a cited textbook's own Grönwall argument. Deriving `hstep` in turn from a
-concrete linearization matrix `A`, the Taylor remainder of `e^{AΔt}` and its
-Lipschitz constant over `[0,t_end]` is not done here; see the finding on the
-paper's page. What *is* proved here, in `aux_gronwall`, is that deferred step:
-the discrete Grönwall argument from `hstep` to (30).
+## Inputs
+* `R` – runs with error
+* `Rhat` – error-free runs
+* `Rabs` – abstraction error sets
+* `L` – accumulation constant
+* `Δt` – step size
+* `tEnd` – final time
+* `N` – number of steps
+
+## Hypotheses
+* `hL` – constant positive
+* `hΔt` – step size positive
+* `hN` – step count positive
+* `htEnd` – final time is steps times size
+* `hzero` – initial errors agree
+* `hstep` – error grows by the step recursion
+
+## Conclusion
+* the final global error is at most the scaled worst local error
 
 ## References
 

@@ -10,6 +10,16 @@ public import Mathlib.Algebra.Order.Ring.Star
 
 `LinearSys.reachOrder_admissible`'s argument, `Nat.le_ceil` putting the bound
 at or under `reachOrder r`, strictly under the denominator once `4` is added.
+
+## Inputs
+* `sys` – system
+* `r` – window length
+
+## Hypotheses
+* none
+
+## Conclusion
+* the norm bound over the order plus two is below one
 -/
 
 -- Authors:       Claude Sonnet 5

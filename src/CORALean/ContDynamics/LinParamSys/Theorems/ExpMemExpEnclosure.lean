@@ -13,6 +13,18 @@ public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 `exp_mem_expIntervalEnclosure` at the member `t • A` of the box `t • sys.A`,
 its order condition met by the raise `expEnclosure` makes: a larger order only
 shrinks `‖(t • sys.A).absMax‖ / (η + 2)`.
+
+## Inputs
+* `sys` – system
+* `t` – time
+* `η` – Taylor order
+* `A` – system matrix member
+
+## Hypotheses
+* `hA` – `A` lies in the matrix set
+
+## Conclusion
+* the member's exponential lies in the enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

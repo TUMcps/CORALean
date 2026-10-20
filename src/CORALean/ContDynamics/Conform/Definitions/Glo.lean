@@ -18,6 +18,16 @@ output map — a state-space model's, an input-output model's — fixed at one s
 (7)'s `Ȳ = ȳ ⊕ C̄(-c_x ⊕ X₀) ⊕ ⨁ᵢ D̄ᵢ(-c_u ⊕ Uᵢ)`. `prodJac A k m` is the product
 `∏_{l=1}^m A_{k-l} = A_{k-1} ⋯ A_{k-m}` of (11b), the latest factor leftmost.
 
+## Inputs
+* `τ` – output map
+* `xs` – nominal initial state
+* `X0` – initial uncertainty set
+* `us` – nominal inputs
+* `U` – input uncertainty sets per step
+
+## Output
+* the outputs `τ` reaches from the initial set under the input sets
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE

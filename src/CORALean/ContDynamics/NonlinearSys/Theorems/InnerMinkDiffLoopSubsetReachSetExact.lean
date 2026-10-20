@@ -10,21 +10,34 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetExactSubsetRea
 # The time-point sets of the inner algorithm are inner approximations
 
 [1, Alg. 1]'s time-point sets: after `k` steps from `X₀`, `R̂(t_k) ⊆ R(t_k)`, `t_k = kΔt`, the
-states some run from `X₀` reaches at `t_k`. The induction is over the steps: `R̂(t_k)` holds
-only reachable states, every state of `R̂(t_{k+1})` is reached from one of them in `Δt`
-(`innerMinkDiffStep_subset_reachSetExact`, line 15 by `Prop. 1`), and a run to a reachable state
-continued by a run from it is a run from `X₀` (`reachSetExact_subset_reachSetExact_add`); `R̂(t₀) =
-X₀` is reached at `0` by the run that starts there. `innerMinkDiffLoop_add` makes this a statement
-about every time-point set a run of `ω ≥ k` steps computes.
+states some run from `X₀` reaches at `t_k`. The induction is over the steps: every state of
+`R̂(t_{k+1})` is reached from one of `R̂(t_k)` in `Δt` (`innerMinkDiffStep_subset_reachSetExact`,
+line 15 by `Prop. 1`), and a run continued by a run is a run from `X₀`. Each step needs
+`Prop. 1`'s hypotheses (`IsInnerMinkDiffCert`): solutions exist, (21), certified by
+`IsInnerMinkDiffCert.of_abstractionError`, and `R̂_err(L̂)` convex, compact, nonempty and
+symmetric about line 14's `c`. Runs are under the constant input `u₀` of the autonomous (4).
 
-What each step needs is `Prop. 1`'s hypotheses (`IsInnerMinkDiffCert`), asked for every step
-started from reachable states, which is every step: solutions that exist, (21), which the
-remainder loop certifies (`IsInnerMinkDiffCert.of_abstractionError`), and `R̂_err(L̂)` convex,
-compact, nonempty and symmetric about line 14's `c = cen(C) + cen(R̂_err(L̂))`. A bounded set
-has one center of symmetry, so with `cen(R̂_err(L̂))` that center this needs `cen(C) = 0`;
-`Prop. 1` shifts by `2 cen(R̂_err)` alone.
+## Inputs
+* `ops` – set operations
+* `sys` – system
+* `u₀` – constant input
+* `U` – input set
+* `Δt` – step size
+* `μ` – enlargement factor
+* `fuel` – bound per remainder loop
+* `X₀` – initial set
+* `k` – number of steps
+* `Rtk` – last time-point set
+* `Rτ` – accumulated time-interval sets
 
-Runs are under the constant input `u₀` of the autonomous (4) of [1], so under any `U ∋ u₀`.
+## Hypotheses
+* `hu₀` – input in input set
+* `hΔt` – step size nonnegative
+* `hcert` – every step has its certificate
+* `h` – loop returned these sets
+
+## Conclusion
+* the time-point set lies in the exact reachable set
 
 ## References
 

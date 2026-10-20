@@ -10,16 +10,30 @@ public import Mathlib.Data.Matrix.Mul
 # The linear differential inclusion abstracting a DAE
 
 [1, Eq. 14] and [1, Eq. 16]: linearized at `z* = (x*, y*, u*)` with Jacobian blocks
-`∂f/∂z = [A, C, B]`, `∂g/∂z = [D, F, E]` ([1, Eq. 9]), the algebraic deviation eliminated
-through `F⁻¹` (index 1), the differential variables obey `˙x̃ ∈ Ã x̃ ⊕ Ũ`, `x̃ = Δx`, with
+`∂f/∂z = [A, C, B]`, `∂g/∂z = [D, F, E]` ([1, Eq. 9]), the algebraic deviation eliminated through
+`F⁻¹` (index 1), the differential variables obey `˙x̃ ∈ Ã x̃ ⊕ Ũ`, `x̃ = Δx`, with
+`w = f(z*) - C F⁻¹ g(z*)`, `Ã = A - C F⁻¹ D`, `B̃ = B - C F⁻¹ E` and `Ũ = w ⊕ B̃ (U ⊕ (-u*)) ⊕ L`,
+`L` the set of linearization errors. `linInclusion` is the right-hand side `Ã Δx ⊕ Ũ` at one `Δx`.
+`F⁻¹` is a parameter, a left inverse of `F` wherever a theorem needs one; `f(z*)`, `g(z*)` are
+passed as values. `L` is any set; which errors it must hold is the hypothesis of the theorems
+that use it.
 
-* `w = f(z*) - C F⁻¹ g(z*)`, `Ã = A - C F⁻¹ D`, `B̃ = B - C F⁻¹ E` ([1, Eq. 14]),
-* `Ũ = w ⊕ B̃ (U ⊕ (-u*)) ⊕ L` ([1, Eq. 16]), `L` the set of linearization errors.
+## Inputs
+* `f₀` – dynamics at the linearization point
+* `g₀` – constraint at the linearization point
+* `A` – dynamics Jacobian in the state
+* `B` – dynamics Jacobian in the input
+* `C` – dynamics Jacobian in the algebraic variable
+* `D` – constraint Jacobian in the state
+* `E` – constraint Jacobian in the input
+* `F_inv` – inverse of the constraint Jacobian in the algebraic variable
+* `us` – linearization input
+* `U` – input set
+* `L` – linearization error set
+* `Δx` – state deviation
 
-`linInclusion` is the right-hand side `Ã Δx ⊕ Ũ` at one `Δx`. `F⁻¹` is a parameter, a left
-inverse of `F` wherever a theorem needs one; `f(z*)`, `g(z*)` are passed as values, so the
-definition does not mention `f` and `g`. `L` is any set; which errors it must hold is the
-hypothesis of the theorems that use it.
+## Output
+* the right-hand side of the differential inclusion at the deviation
 
 ## References
 

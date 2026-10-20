@@ -14,6 +14,33 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 makes the run a `LinearSys` one (`toLinearSys`), whose closed form splits it into
 the flow of the initial state, which `timeIntervalStepZono_outer` holds, and what
 the inputs contributed, which `Vd` has to hold.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `Ud` – set holding the input's contribution
+* `x` – trajectory
+* `u` – input signal
+* `A` – system matrix member
+* `r` – step size
+* `m` – Taylor order minus two
+* `t` – time
+
+## Hypotheses
+* `traj` – constant-parameter trajectory
+* `hr` – step positive
+* `hT` – step lies in the time set
+* `hεe` – exponential order admissible
+* `hεF` – correction order admissible
+* `ht0` – time nonnegative
+* `htr` – time at most the step
+* `hU` – input set bounded
+* `hUd` – input's contribution lies in `Ud`
+
+## Conclusion
+* the state at time `t` lies in the zonotope step plus the input set
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,13 +11,25 @@ public import Mathlib.Tactic.Abel
 A recording of states `x`, inputs `u` and outputs `y`, cut into sequential test cases
 [1, Def. 4] — test case `m` starts at sample `m`, from the recorded state `x(m)`. If every
 one-step state residual `x(t+1) - A x(t) - B u(t)` lies in `W` (20) and every output
-residual `y(t) - C x(t) - D u(t)` in `V` (21), the model is conformant on all of
-them, at every horizon `K`: the recording is itself a run of the model, the residuals
-its disturbances and its noise. The printed proof inducts on the state deviation
-(26) instead; the statement is the same.
+residual `y(t) - C x(t) - D u(t)` in `V` (21), the model is conformant on all of them, at
+every horizon `K`. The printed proof inducts on the state deviation (26); the statement is
+the same. (20)'s `x_a⁽ᵐ⁾(1)` is `x(m+1) - (A x(m) + B u(m))` here.
 
-(20)'s `x_a⁽ᵐ⁾(1)` is `x(m+1) - (A x(m) + B u(m))` here, the test case's states being
-the recording's from sample `m` on, which the proof's use of [1, Def. 4] presupposes.
+## Inputs
+* `sys` – plant
+* `W` – disturbance set
+* `V` – noise set
+* `x` – recorded states
+* `u` – recorded inputs
+* `y` – recorded outputs
+* `K` – horizon
+
+## Hypotheses
+* `hW` – state residuals lie in `W`
+* `hV` – output residuals lie in `V`
+
+## Conclusion
+* the model is conformant on the recording's sequential test cases
 
 ## References
 

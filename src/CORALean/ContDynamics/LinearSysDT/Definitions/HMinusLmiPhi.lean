@@ -13,6 +13,18 @@ public import Mathlib.LinearAlgebra.Matrix.PosDef
 state and the fault dimension. Stated as its negative being positive definite, the `⋆` block the
 transpose of `Φ₁₂`.
 
+## Inputs
+* `A` – state matrix
+* `C` – output matrix
+* `E` – fault matrix
+* `L` – observer gain
+* `Q` – Lyapunov matrix
+* `M` – residual weight
+* `β` – sensitivity level
+
+## Output
+* the block matrix is negative definite
+
 ## References
 
 * [1] Y. Wang, M. Zhou, V. Puig, G. Cembrano and Z. Wang. "Zonotopic Fault Detection Observer

@@ -13,6 +13,20 @@ sys.A`, so it is a `IsConstTrajectory` there directly; `param` is
 `LinearSys.IsCanonicalTrajectory` — needs the matrix set to denote *only* `toRealMat
 sys.A`, which `OfPoint` alone does not give: `mem_ofPoint` says the point is
 in the set, never that the set is only the point. Not stated.
+
+## Inputs
+* `sys` – linear system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+
+## Hypotheses
+* `traj` – linear-system trajectory
+
+## Conclusion
+* the trajectory is a constant-parameter trajectory at the system's matrix
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

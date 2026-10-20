@@ -11,6 +11,17 @@ public import CORALean.ContDynamics.LinearARX.Theorems.BtildeSucc
 Alg. 1 and Alg. 2 compute their parameters with. `Btilde_succ` gives `B̃ᵢ₊₁(k+1)` both
 ways — as `B̄_ext,i+1 + Ā_ext B̃ᵢ(k)`, and as `B̃ᵢ₊₁(k)` plus its last term.
 
+## Inputs
+* `sys` – ARX system
+* `k` – step
+* `i` – lag index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the parameter at the next lag follows from the one at lag `i`
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

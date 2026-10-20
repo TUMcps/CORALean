@@ -10,6 +10,27 @@ public import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateIsTrajectory
 
 `simulate_isTrajectory` composed with `reach_outer`, under the same hypotheses: the window of
 simulated outputs `(y(k), …, y(k+p-1))` lies in the reachable set at step `k`.
+
+## Inputs
+* `sys` – ARX system
+* `o` – maximum zonotope order
+* `Y₀` – initial window set
+* `U` – input set
+* `V` – stacked input set
+* `steps` – linearization steps
+* `y₀` – start window
+* `u` – inputs
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `hV` – `V` encloses the stacked inputs from `U`
+* `hy₀` – start window lies in `Y₀`
+* `hu` – inputs lie in `U`
+* `hR` – each simulated window lies in its linearization region
+
+## Conclusion
+* the simulated window lies in the reachable set
 -/
 
 -- Authors:       Claude Sonnet 5.5

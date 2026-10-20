@@ -14,6 +14,23 @@ approximation reaches exactly `Ȳ` of (7) from `x∗ ⊕ X₀` under inputs in `
 — an equality, as the paper argues after the proof: every uncertain variable enters
 `τ̄` once, so no dependency is lost, and the inputs are chosen independently per step.
 
+## Inputs
+* `yb` – reference output
+* `Cb` – state-to-output matrix
+* `Db` – input-to-output matrices
+* `xs` – nominal initial state
+* `cx` – initial center offset
+* `X0` – initial uncertainty set
+* `us` – nominal inputs
+* `cu` – input center offset
+* `U` – input uncertainty sets
+
+## Hypotheses
+* none
+
+## Conclusion
+* the reachable set of the approximation equals its generator-form set
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE

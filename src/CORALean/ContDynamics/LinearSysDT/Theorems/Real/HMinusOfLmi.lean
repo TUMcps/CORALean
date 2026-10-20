@@ -8,18 +8,37 @@ public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmi
 # The `H₋` inequality makes the residual fault-sensitive
 
 [1, Eq. 21], [1, Eq. 24]: with no disturbance or noise, the error `e_k = x_k - p_k` follows
-`e_{k+1} = (A - LC) e_k - L E f_k` [1, Eq. 19] and the residual center is
-`r_k = M C e_k + M E f_k` [1, Eq. 20]. If `P ≻ 0`, `α ≥ 0`, `W` and `β` satisfy [1, Eq. 27]
-(`LinearSysDT.HMinusLmi`) with `Y = MᵀM`, then at `L = P⁻¹W`, from `e_0 = 0`, every fault sequence
-with `f_{k₀} ≠ 0` has `J^N_- = Σ_{k<N} (r_kᵀr_k - β² f_kᵀf_k) ≥ c > 0` [1, Eq. 21] for all `N > k₀`,
-`c` independent of `N`: the `H₋` performance `‖r‖²₂ > β²‖f‖²₂` over every horizon, and in the limit.
+`e_{k+1} = (A - LC) e_k - L E f_k` [1, Eq. 19] and the residual center is `r_k = M C e_k + M E f_k`
+[1, Eq. 20]. If `P ≻ 0`, `α ≥ 0`, `W` and `β` satisfy [1, Eq. 27] (`LinearSysDT.HMinusLmi`) with
+`Y = MᵀM`, then at `L = P⁻¹W`, from `e_0 = 0`, every fault sequence with `f_{k₀} ≠ 0` has
+`J^N_- = Σ_{k<N} (r_kᵀr_k - β² f_kᵀf_k) ≥ c > 0` [1, Eq. 21] for all `N > k₀`, `c` independent of
+`N`. The chain of the paper, run backwards: the form of the negated Eq. 27 is
+`r_kᵀr_k - β²f_kᵀf_k - ΔV_k` with `V_k = e_kᵀ(αP)e_k` [1, Eq. 22] ([1, Eq. 24], [1, Eq. 25]),
+positive whenever `f_k ≠ 0`; summing and telescoping gives `J^N_-` with `V_0 = 0` [1, Eq. 23].
 
-The chain of the paper, run backwards. At `(w, e, f)` with `w = e_{k+1}` the form of the negated
-Eq. 27 is `r_kᵀr_k - β²f_kᵀf_k - ΔV_k` with `V_k = e_kᵀ(αP)e_k` [1, Eq. 22], `Q = αP` (the
-substitution of [1, Eq. 26] into Eq. 27): the first block row of Eq. 26 is `Q(A - LC)` and `-QLE`
-once `W = PL`, so the cross terms give `2 wᵀQw`. That is [1, Eq. 24] (and [1, Eq. 25], its form
-in `(e, f)`), positive whenever `f_k ≠ 0`, nonnegative always. Summing and telescoping,
-`J^N_- = Σ_k (r_kᵀr_k - β²f_kᵀf_k - ΔV_k) + V_N` with `V_0 = 0` [1, Eq. 23], and `V_N ≥ 0`.
+## Inputs
+* `A` – state matrix
+* `C` – output matrix
+* `E` – fault matrix
+* `P` – Lyapunov matrix
+* `W` – gain variable
+* `M` – residual weight
+* `α` – scaling
+* `β` – sensitivity level
+* `e` – error sequence
+* `f` – fault sequence
+* `k₀` – first fault step
+
+## Hypotheses
+* `hP` – Lyapunov matrix positive definite
+* `hα` – scaling nonnegative
+* `h` – the design inequality holds
+* `he0` – initial error zero
+* `he` – the error recursion holds
+* `hf` – fault nonzero at `k₀`
+
+## Conclusion
+* the accumulated residual excess is bounded below by a positive constant
 
 ## References
 

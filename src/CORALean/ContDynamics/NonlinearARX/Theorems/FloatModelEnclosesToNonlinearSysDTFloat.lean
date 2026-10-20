@@ -10,6 +10,16 @@ public import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDTFloa
 If `fm` encloses `sys`, then `fm.toNonlinearSysDTFloat` encloses `sys.toNonlinearSysDT`: a block of
 the next window below the last is a block of this one, and the last block is `f_ARX` at the
 window and the inputs, newest first. An outer statement.
+
+## Inputs
+* `fm` – float model
+* `sys` – ARX system
+
+## Hypotheses
+* `h` – the float model encloses the system
+
+## Conclusion
+* the converted float model encloses the converted system
 -/
 
 -- Authors:       Claude Opus 5.5

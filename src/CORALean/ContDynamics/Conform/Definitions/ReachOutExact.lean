@@ -15,6 +15,16 @@ for the discrete-time model, and what every conformance statement here is about.
 Only `w(0), …, w(k-1)` constrain the set at `k`, so only they are required to lie
 in `W`; no nonemptiness of `W` is then needed for the steps past `k`.
 
+## Inputs
+* `sys` – plant
+* `X0` – initial set
+* `u` – known inputs
+* `W` – disturbance set
+* `k` – step
+
+## Output
+* the states reachable in exactly `k` steps
+
 ## References
 
 * [1] S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems:

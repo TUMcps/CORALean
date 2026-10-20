@@ -12,6 +12,14 @@ box `V = ⟨0, I⟩`. Printed as `{x | |C x - y| ≤ F}`, which compares a vecto
 `F`; read as `C x - y ∈ F Bⁿᵛ`, the form the proof of [1, Thm. 1] uses (`C x₊ - y₊ = F α`,
 `α ∈ Bⁿᵛ`, its Eq. 8). For a diagonal `F` the two agree.
 
+## Inputs
+* `C` – output matrix
+* `F` – noise matrix
+* `y` – measurement
+
+## Output
+* the states consistent with the measurement
+
 ## References
 
 * [1] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on

@@ -22,37 +22,41 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 # `NonlinDASys.linReachCompCora`
 
 CORA's `@nonlinDASys/linReach.m` for one step as printed on its compositional branch: with
-`options.index` set and `tensorOrder == 2` (ll. 91-99) the error set `Verror` is the
-`errorTotal` of `priv_linError_mixed_noInt_comp`, `Σ_i index{i}.X' * reduce(error{i})`
-(ll. 163-178), each `error{i}` the subsystem's own `NonlinDASys.compLocalErrorCora` with its
-local `Csub*pinv(Fsub)`. The rest is `NonlinDASys.linReachCora`: `priv_linearize`'s `Ã`, `B̃`,
-`f0`, `oneStep` from `Rinit - x*`, `Rerror = particularSolution_timeVarying(linsys, Verror)`
-added to both sets moved back by `x*`.
-
-As in `linReachCora`, the `while` loop is not run: its accepting pass's per-subsystem zonotopes
-`R_xyu` (l. 104) and Hessian midpoints and radii (ll. 116-123, over that pass's box) are
-arguments. All `k` subsystems have the same sizes `nx`, `ny`, `nz` (CORA's may differ); every
-`index{i}.X` is taken nonempty (l. 165). `reduce(·, 'girard', options.ρ)` is
-`Zonotope.reduce`. The loop-only outputs `errorTotal_x`, `errorTotal_y`, `Rtotal_y` and the
-split decision are left out.
+`options.index` set and `tensorOrder == 2` (ll. 91-99) the error set `Verror` is the `errorTotal` of
+`priv_linError_mixed_noInt_comp`, `Σ_i index{i}.X' * reduce(error{i})` (ll. 163-178), each
+`error{i}` the subsystem's own `NonlinDASys.compLocalErrorCora`. The rest is
+`NonlinDASys.linReachCora`. As in `linReachCora`, the `while` loop is not run: its accepting
+pass's per-subsystem zonotopes `R_xyu` and Hessian midpoints and radii are arguments; all `k`
+subsystems have the same sizes, and every `index{i}.X` is taken nonempty (l. 165).
 
 # CORA's compositional `nonlinDASys/linReach` misses a reachable state
 
 `ẋ₁ = y₁`, `0 = y₁ - y₂` (subsystem 1, input `y₂`), `ẋ₂ = y₂`, `0 = y₂ - x₂²` (subsystem 2),
-`x(0) ∈ {0} × [-1, 1]`, run with `options.index` through `linReach` (`linReachCompCora`). At the
-center `0` CORA linearizes (`p.x = 0`, `p.y = 0`): `A = B = D = E = 0`, `C = I`, `f0 = 0`, so
-`Ã = B̃ = 0` whatever `pinv(F)` returns. Subsystem 1 is linear: its Hessians are `0` and its
-local error ([1, Sec. V-B]) `error{1}` is `{0}` for every `R_xyu`, `Csub`, `Fsub`; `index{2}.X'`
-has a zero first row, and `reduce` keeps a zero row. So `x₁` of CORA's time-point set is
-`x₁(0) = 0`. The solution from `x(0) = (0, -1)`, `x₂ = -1/(1+t)`, `x₁ = 1 - 1/(1+t)`,
-`y₁ = y₂ = x₂²`, has `x₁(Δt) > 0`. Not the sign issue: the miss holds at every `Csub`, `Fsub` of
-either sign, and with every value of subsystem 2's terms.
+`x(0) ∈ {0} × [-1, 1]`, run with `options.index`. At the center `0` CORA linearizes: `A = B = D = E
+= 0`, `C = I`, `f0 = 0`, so `Ã = B̃ = 0` whatever `pinv(F)` returns. Subsystem 1 is linear: its
+local error ([1, Sec. V-B]) is `{0}` for every `R_xyu`, `Csub`, `Fsub`; `index{2}.X'` has a zero
+first row, so `x₁` of CORA's time-point set is `0`. The solution from `x(0) = (0, -1)`,
+`x₂ = -1/(1+t)`, `x₁ = 1 - 1/(1+t)`, has `x₁(Δt) > 0`. The miss holds at every `Csub`, `Fsub` of
+either sign; which pass of the `while` loop accepts does not matter (read from the source).
 
-Which pass of the `while` loop accepts does not matter (all `R_xyu` are quantified). It does
-accept: with `maxError_* = Inf` (default) `perfInd = 0`; `error_x = 0` gives `0/0 = NaN`, not
-`> 1`; pass 1 has `appliedError_y = 0` (`initReach` starts at `0`), pass 2 `1.1 · 1`, and
-`error_y₂ = (1 + 1.1 Δt)² ≤ 1.1` for `Δt ≤ 0.044` (read from the source, not run).
-`options.index` draws a redundancy warning from `validateOptions` and is kept.
+## Inputs
+* `Δt` – step size
+* `η` – Taylor order
+* `o` – zonotope order
+* `F_inv` – inverse of the constraint block
+* `Csub` – subsystem algebraic matrices
+* `Fsub` – subsystem constraint matrices
+* `R_xyu` – subsystem zonotopes
+* `Hf₂` – second subsystem dynamic Hessian midpoints
+* `Hf₂'` – second subsystem dynamic Hessian radii
+* `Hg₂` – second subsystem constraint Hessian midpoints
+* `Hg₂'` – second subsystem constraint Hessian radii
+
+## Hypotheses
+* `hΔt` – step positive
+
+## Conclusion
+* the true solution ends outside CORA's compositional time-point set
 
 ## References
 

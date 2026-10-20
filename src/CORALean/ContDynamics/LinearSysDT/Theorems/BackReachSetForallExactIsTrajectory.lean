@@ -7,15 +7,27 @@ public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetForallEx
 /-!
 # Every run from the backward reachable set lands in the target
 
-What makes `backReachSetForallExact` deserve the name: a trajectory that starts in
-the `k`-step set is in `T` at step `k`, whatever inputs `U` handed it. `R₀`
-goes unused — where a run began says nothing about where it must end, and
-`simulate_isTrajectory` builds a `IsTrajectory` from any starting point at all.
+What makes `backReachSetForallExact` deserve the name: a trajectory that starts in the `k`-step set
+is in `T` at step `k`, whatever inputs `U` handed it. `R₀` goes unused — where a run began says
+nothing about where it must end. The induction runs on the step count with the start time left
+free, since `backReachSetForallExact` peels a step off the *front* of a run while `IsTrajectory`
+is stated from time zero; `aux_backReachSetForallExact_from` is that general form.
 
-The induction runs on the step count with the start time left free, since
-`backReachSetForallExact` peels a step off the *front* of a run while `IsTrajectory`
-is stated from time zero. `aux_backReachSetForallExact_from` is that general form,
-and the theorem below is it at time zero.
+## Inputs
+* `sys` – system
+* `T` – target set
+* `U` – input set
+* `R₀` – initial set
+* `x` – trajectory
+* `u` – input signal
+* `k` – step
+
+## Hypotheses
+* `traj` – discrete-time trajectory
+* `hx` – start lies in the backward reachable set
+
+## Conclusion
+* the run is in the target at step `k`
 -/
 
 -- Authors:       Claude Opus 5

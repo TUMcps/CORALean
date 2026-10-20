@@ -16,6 +16,27 @@ are those of the scheduling parameter `θ_{k-1}`, fixed for the step. This is [1
 `D H_d`, `F H_d` as its `D`, `F`, no unknown input, and the measurement noise sign flipped, the
 box being symmetric; that Eq. 10 is Eq. 7 of [1, Thm. 1] in this notation.
 
+## Inputs
+* `E` – descriptor matrix
+* `T` – decoupling matrix
+* `A` – state matrix
+* `N` – measurement decoupling matrix
+* `Λ` – correction matrix
+* `B` – input matrix
+* `D` – disturbance matrix
+* `C` – output matrix
+* `F` – noise matrix
+* `Hd` – disturbance generator matrix
+* `u` – previous input
+* `y` – measurement
+* `X` – previous zonotope
+
+## Hypotheses
+* `hTN` – decoupling identity holds
+
+## Conclusion
+* the consistent set lies in the intersection zonotope
+
 ## References
 
 * [1] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on

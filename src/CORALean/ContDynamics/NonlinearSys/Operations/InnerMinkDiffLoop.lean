@@ -12,6 +12,16 @@ previous step's `R̂(t_{k+1})`, returning the last time-point set and the union 
 time-interval sets `R̂(τ_k)` the steps computed on top of `Rτ` — line 18's union, accumulated
 as the loop runs. `none` as soon as one step's remainder loop runs out of fuel.
 
+## Inputs
+* `ops` – set operations
+* `f` – autonomous field
+* `Δt` – step size
+* `μ` – enlargement factor
+* `fuel` – bound per remainder loop
+
+## Output
+* the last time-point set and the union of time-interval sets
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for

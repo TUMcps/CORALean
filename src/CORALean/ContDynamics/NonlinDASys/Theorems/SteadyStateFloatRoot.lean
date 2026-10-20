@@ -16,6 +16,21 @@ of the system at `u₀`: a point with `f = 0` and `g = 0`. The real `steadyState
 CORA's stopping test, a last stacked Newton step below `tol`; here the test the float run adds
 (`newtonTestFloat_sound`, on the stacked state through `FloatModel.aux_stackRes` and `aux_stackJac`)
 makes the claim about the steady state itself.
+
+## Inputs
+* `fm` – float model
+* `sys` – system
+* `tol` – step tolerance
+* `fuel` – iteration bound
+* `x₀` – initial differential state
+* `y₀` – initial algebraic guess
+* `u₀` – fixed input
+
+## Hypotheses
+* `hfm` – the float model encloses the system
+
+## Conclusion
+* a returned pair is within the tolerance of exactly one steady state
 -/
 
 -- Authors:       Claude Opus 5.5

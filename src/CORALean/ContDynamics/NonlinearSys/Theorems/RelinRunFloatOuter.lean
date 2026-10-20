@@ -9,6 +9,18 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinRunAtFloatOuter
 # The float re-linearization loop holds every run of the real system
 
 `relinRunAtFloat_outer` at the expansion points `linPointFloat` computes.
+
+## Inputs
+* `fm` – float model
+* `sys` – system
+* `U` – input zonotope
+* `options` – reachability options
+
+## Hypotheses
+* `h` – model encloses system
+
+## Conclusion
+* the sets enclose every run at every time of their step
 -/
 
 -- Authors:       Claude Opus 5.5

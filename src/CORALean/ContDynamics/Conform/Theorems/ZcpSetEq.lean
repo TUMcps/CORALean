@@ -11,6 +11,18 @@ public import CORALean.ContDynamics.Conform.Definitions.ZonoConformal
 `Y_ZCP(x) = ⟨f(x), D̄(x) G_u diag(α)⟩`, the generators of `U` mapped by `D̄(x)`. An equality
 of sets, for any `α`.
 
+## Inputs
+* `fx` – prediction at the point
+* `D` – derivative in the uncertainties
+* `Gu` – uncertainty generators
+* `α` – generator scaling
+
+## Hypotheses
+* none
+
+## Conclusion
+* the prediction set equals a stretched template zonotope
+
 ## References
 
 * [1] L. Lützow, M. Eichelbeck, M. J. Kochenderfer and M. Althoff. "Zono-Conformal

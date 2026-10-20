@@ -10,13 +10,20 @@ public import CORALean.ContDynamics.Conform.Definitions.TemplateZono
 [1, Eq. 13] with [1, Eq. 15]: the prediction set `Y_ZCP(x) = {f(x) + D̄(x) u | u ∈ U}` of a
 point predictor `f`, `D̄(x)` the derivative of the augmented predictor in the uncertainties at
 `0`, and `U = ⟨0, G_u diag(α)⟩`; `classesSet` and `classesVec` are [1, Eq. 11]'s `classes`,
-`classMat c` the `Tₘ` of [1, Eq. 21] for a point of class `c`.
-CORA's `confPredictor` holds these, with `nonlinearSysDT` as the predictor.
+`classMat c` the `Tₘ` of [1, Eq. 21] for a point of class `c`. CORA's `confPredictor` holds these.
 
-The identification constraints of [1, Thm. 6] and [1, Thm. 7] are, per data point, a convex
-set `C` of coefficient vectors `β` (an affine set (19e), a polyhedron (20e)) and `|β| ≤ α`:
-`FitsUnder C α`. [1, Sec. 5.1.1]'s boundary point is one for which some `αⱼ > 0` cannot be
-reduced at all without losing the point: `IsBoundaryPoint`.
+The constraints of [1, Thm. 6] and [1, Thm. 7] are, per data point, a convex set `C` of
+coefficient vectors `β` and `|β| ≤ α`: `FitsUnder C α`. [1, Sec. 5.1.1]'s boundary point is
+one where some `αⱼ > 0` cannot be reduced without losing the point: `IsBoundaryPoint`.
+
+## Inputs
+* `fx` – prediction at the point
+* `D` – derivative in the uncertainties
+* `Gu` – uncertainty generators
+* `α` – generator scaling
+
+## Output
+* the zonotope of predictions around the point prediction
 
 ## References
 

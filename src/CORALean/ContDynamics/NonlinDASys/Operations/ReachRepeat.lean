@@ -21,6 +21,21 @@ stated iteration count, so `fuel` is an argument and the result an `Option`, `no
 enlargements have not reached an exit. The errors are pairs, the dynamics' and the constraint's;
 `L_max` bounds the dynamics' only, and `taylor`'s own `Verror` fields are not read.
 
+## Inputs
+* `sys` – system
+* `taylor` – linearization of the start set
+* `corollary1` – error-set computation
+* `sub` – subset test
+* `Lmax` – bound on the linearization errors
+* `lam` – enlargement factor
+* `r` – step size
+* `η` – Taylor order
+* `Rk` – start set
+* `U` – input zonotope
+
+## Output
+* the last pass of the error loop, or none
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic

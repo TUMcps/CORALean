@@ -15,6 +15,38 @@ computes: stays in the region over which [1, Cor. 1] bounds the linearization er
 whole number, and positive: at `t_f = 0` the loop does not run and the union is empty.
 `reachLoop_outer` is the induction; here it is started at `t_0 = 0`, `L = {0}` and `R_union = ∅`.
 
+## Inputs
+* `sys` – system
+* `taylor` – linearization of a start set
+* `corollary1` – error-set computation
+* `sub` – subset test
+* `splitFn` – set splitting
+* `Lmax` – bound on the linearization errors
+* `lam` – enlargement factor
+* `r` – step size
+* `q` – Taylor order minus two
+* `U` – input zonotope
+* `R0` – start set
+* `x` – differential trajectory
+* `y` – algebraic trajectory
+* `u` – input signal
+* `K` – number of steps
+* `z` – output signal
+* `fuel` – iteration bound
+* `res` – returned union
+
+## Hypotheses
+* `hsub` – the subset test is sound
+* `hsplit` – the split halves cover the set
+* `hr` – step positive
+* `hK` – at least one step
+* `traj` – DAE trajectory
+* `hcert` – every step is certified by the error loop
+* `h` – the algorithm returned `res`
+
+## Conclusion
+* the run up to the horizon lies in the returned union
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic

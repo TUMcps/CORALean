@@ -13,15 +13,36 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 /-!
 # The interval observer holds the true state
 
-CORA's `priv_observe_interval` at any fixed gain `L`: every run
-`x_{k+1} = A x_k + u_k + w_k`, `w_k ∈ W`, with outputs `y_k = C x_k + v_k`, `v_k ∈ V`, is in the
-observer's box at every step, provided the initial error `x_0 - center(R₀)` lies in `R₀`
-(CORA seeds `R_x` with `R₀` itself, so this is what its box needs). The error obeys
-`e_{k+1} = (A - L C) e_k + (w_k - L v_k)`; unrolled, `e_k = (A - L C)^k e_0` plus the sum of
-`(A - L C)^m d_{k-1-m}` with `d_j ∈ D`, and each term lies in the box of `(A - L C)^m D`.
+CORA's `priv_observe_interval` at any fixed gain `L`: every run `x_{k+1} = A x_k + u_k + w_k`,
+`w_k ∈ W`, with outputs `y_k = C x_k + v_k`, `v_k ∈ V`, is in the observer's box at every step,
+provided the initial error `x_0 - center(R₀)` lies in `R₀` (CORA seeds `R_x` with `R₀` itself). The
+error obeys `e_{k+1} = (A - L C) e_k + (w_k - L v_k)`; unrolled, `e_k = (A - L C)^k e_0` plus the
+sum of `(A - L C)^m d_{k-1-m}` with `d_j ∈ D`, each term in the box of `(A - L C)^m D`. [1, Alg. 1]
+encloses the true state when `S_{x,0}` holds the initial error `x_0 - x̂_0`; as printed,
+`S_{x,0} ← X_0`, it need not (`observeInterval_cora_counterexample`).
 
-[1, Alg. 1] encloses the true state when `S_{x,0}` holds the initial error `x_0 - x̂_0`;
-as printed, `S_{x,0} ← X_0`, it need not (`observeInterval_cora_counterexample`).
+## Inputs
+* `sys` – system
+* `L` – observer gain
+* `R₀` – initial zonotope
+* `W` – disturbance zonotope
+* `V` – noise zonotope
+* `u` – inputs
+* `y` – measurements
+* `x` – true states
+* `w` – true disturbances
+* `v` – true noise
+* `k` – step
+
+## Hypotheses
+* `h0` – initial error lies in `R₀`
+* `hw` – disturbances lie in `W`
+* `hv` – noise lies in `V`
+* `hstep` – the dynamics hold
+* `hy` – the measurements follow the outputs
+
+## Conclusion
+* the true state lies in the observer's box
 
 ## References
 

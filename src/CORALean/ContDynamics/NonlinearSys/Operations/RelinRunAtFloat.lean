@@ -12,6 +12,15 @@ set the next one starts from — the while loop of [1, Alg. 1] — collecting ea
 step's set over its whole interval. One failed step fails the run: a later step
 would start from a set nothing has enclosed.
 
+## Inputs
+* `fm` – float model
+* `U` – input zonotope
+* `options` – reachability options
+* `pt` – expansion point of a set
+
+## Output
+* the time-interval sets of the steps, or none
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

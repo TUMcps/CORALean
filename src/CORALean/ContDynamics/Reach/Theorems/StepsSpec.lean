@@ -10,6 +10,17 @@ public import CORALean.ContDynamics.Reach.Operations.Steps
 `N` steps of `timeStep` span the horizon exactly, and `timeStep` is positive.
 A quotient with denominator one is its numerator, and a nonnegative integer is
 the cast of its `toNat`.
+
+## Inputs
+* `tStart` – start time
+* `tFinal` – final time
+* `timeStep` – step size
+
+## Hypotheses
+* none
+
+## Conclusion
+* the step count spans the horizon with a positive step
 -/
 
 -- Authors:       Claude Opus 5.5

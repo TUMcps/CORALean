@@ -7,20 +7,38 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptRun
 /-!
 # What one step of `Alg. 2` reports
 
-Three facts about a step [1, Alg. 2] completes, one per tuned quantity it hands
-on. The horizon is line 1's update of the last one. The time advances by a step
-size that is that horizon scaled down by `ζ_δ` a whole number of times, which
-is eq. (58)'s shape and is what makes `Δt* ≤ h_k` for `ζ_δ ∈ (0,1)`. And the
-abstraction order stays in `{1,2}`, §5.2's restriction for a linearization
-approach, which line 13 is asked to respect and does.
+Three facts about a step [1, Alg. 2] completes, one per tuned quantity it hands on. The horizon
+is line 1's update of the last one. The time advances by a step size that is that horizon scaled
+down by `ζ_δ` a whole number of times, eq. (58)'s shape. And the abstraction order stays in
+`{1,2}`, §5.2's restriction for a linearization approach. Nothing here is about the sets: what
+`optDeltat` and `estimateGain` guarantee is proved where they are defined. A step that gave out
+reports nothing, so the statement is about `some s'` only.
 
-Nothing here is about the sets: what `optDeltat` and `estimateGain` guarantee
-is proved where they are defined, and the enclosure the step computes needs the
-certificate lines 4-5 do not carry — `abstrErrLoop_subset` is the part of that
-this tree can state.
+## Inputs
+* `sys` – system
+* `U` – input set
+* `lin` – linearization
+* `Φ` – error map
+* `sub` – containment check
+* `enlarge` – enlargement of the error
+* `le` – comparison of reals
+* `rad` – radius of a set
+* `dbox` – box diameter of a set
+* `ζδ` – first tuning constant
+* `ζh` – second tuning constant
+* `ζZ` – third tuning constant
+* `ζK` – fourth tuning constant
+* `ηlin` – Taylor terms of linear part
+* `ηabs` – Taylor terms of error
+* `o` – maximum order
+* `fuel` – iteration bound
+* `s` – loop state
 
-A step that gave out reports nothing, so the statement is about `some s'` only,
-as the budget theorems of the CDC paper's `Alg. 2` are.
+## Hypotheses
+* none
+
+## Conclusion
+* horizon, time step and abstraction order follow the tuning rules
 
 ## References
 

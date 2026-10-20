@@ -17,6 +17,14 @@ derivative, and the remainder `slopeRemainder` encloses is taken against whateve
 pair this returns, so a center rounded either way costs a slightly larger
 remainder and nothing else. That is why no real counterpart has to be named:
 `NonlinearSys.linearize` reads off whatever matrix it is given.
+
+## Inputs
+* `fm` – float model
+* `xs` – state expansion point
+* `us` – input expansion point
+
+## Output
+* the Jacobian centers in state and input
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,6 +16,23 @@ public import CORALean.ContDynamics.OutputEq.Theorems.OutputSetOuter
 `out : OutputEq 𝕋 n n r` carries its own scalar `𝕋`, separate from the
 system's matrix-set family `𝕄`: an uncertain system matrix paired with an
 exactly-known output map is the normal case here, not an oversight.
+
+## Inputs
+* `sys` – system
+* `out` – output equation
+* `o` – maximum zonotope order
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `traj` – discrete-time trajectory
+
+## Conclusion
+* the run's output lies in the output set of the reachable set
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

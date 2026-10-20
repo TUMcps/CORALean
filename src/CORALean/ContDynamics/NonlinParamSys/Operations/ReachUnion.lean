@@ -16,6 +16,14 @@ system from it; every member of the union it returns is mapped back to the
 first `n` coordinates by the selection matrix. `none` is exactly the augmented
 run's: some step's start, inflated by `2MΔt`, not shown inside its region in
 dimension `n + q` — the parameter's coordinates tested with the state's.
+
+## Inputs
+* `sys` – parametric system with steps
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Output
+* the projected augmented reachable sets as a union, or none
 -/
 
 -- Authors:       Claude Opus 5.5

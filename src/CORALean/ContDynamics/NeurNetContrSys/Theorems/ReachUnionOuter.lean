@@ -16,6 +16,19 @@ A `reachUnionExact` witness's fields are `NeurNetContrSys.IsTrajectory`'s own, r
 the controller's own `eval`, the period `N · Δt`; `reach_outer`, at an order
 admissible by `reachOrder_admissible` and the raise, and `sound_eval` place it in
 `reach`'s period, landing in its own branch of the `SetUnion`.
+
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input set
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Hypotheses
+* `hdt` – the period is `N` steps
+* `hΔt` – step positive
+
+## Conclusion
+* the computed union encloses the exact reachable union
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5, Claude Sonnet 5.5

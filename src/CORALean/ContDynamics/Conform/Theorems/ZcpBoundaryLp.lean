@@ -17,6 +17,20 @@ any optimal solution of (23); when `α* = 0` every `δₘ` is unconstrained abov
 none, which the proposition passes over. The blocks `(βₘ, δₘ)` are independent, so an optimum
 has each `δₘ` at its largest, and that is positive iff (24) holds (`not_isBoundaryPoint_iff`).
 
+## Inputs
+* `M` – data point index type
+* `C` – constraint set per point
+* `α` – generator scaling
+* `β` – coefficients per point
+* `δ` – slack per point
+
+## Hypotheses
+* `hC` – constraint sets convex
+* `hfit` – `α` fits all points
+
+## Conclusion
+* at an optimal solution a point is a boundary point iff its slack is zero
+
 ## References
 
 * [1] L. Lützow, M. Eichelbeck, M. J. Kochenderfer and M. Althoff. "Zono-Conformal

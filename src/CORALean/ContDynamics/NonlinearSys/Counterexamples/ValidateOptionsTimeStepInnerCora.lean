@@ -22,6 +22,15 @@ the fields the user sets: `none` is the error. Read from the source, not run.
 
 `options.timeStepInner = 0.05` with `tFinal = 1` is a valid value (`rem(1, 0.05) = 0`), and
 `reachInner(sys, params, options)` stops in `validateOptions`.
+
+## Inputs
+* `fields` – option fields the user gave
+
+## Hypotheses
+* `h` – `timeStepInner` is among the fields
+
+## Conclusion
+* the validation fails
 -/
 
 -- Authors:       Claude Sonnet 5.5

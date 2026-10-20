@@ -11,20 +11,36 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # `NonlinDASys.linReach`
 
-CORA's `nonlinDASys/linReach` for one step, one `let` per CORA variable: `priv_linearize`
-builds the linear system `Ã x̃ ⊕ w ⊕ B̃ (U ⊕ (-u*))` of [1, Eq. 14], [1, Eq. 16] at the
-expansion point `z* = (x*, y*, u*)`, `oneStep` runs it from `Rinit - x*`, the sets are moved
-back by `x*`, and the algebraic set is [1, Prop. 2]'s `jointReachSet` over the time-interval
-set. The Jacobian blocks, `F⁻¹`, `f(z*)`, `g(z*)` and the error sets are data.
+CORA's `nonlinDASys/linReach` for one step, one `let` per CORA variable: `priv_linearize` builds
+the linear system `Ã x̃ ⊕ w ⊕ B̃ (U ⊕ (-u*))` of [1, Eq. 14], [1, Eq. 16] at `z* = (x*, y*, u*)`,
+`oneStep` runs it from `Rinit - x*`, the sets are moved back by `x*`, and the algebraic set is
+[1, Prop. 2]'s `jointReachSet` over the time-interval set. Departures from CORA, on purpose: the
+error sets `Verror` (`ℓᵈ - C F⁻¹ ℓᵃ`) and `Verror_y` (`ℓᵃ`) are arguments, since CORA's
+`priv_linError_mixed_noInt` adds `CF_inv` times the algebraic error where [1, Cor. 1] subtracts it
+(`references/coverage/contDynamics/nonlinDASys.md`, row `linReach`); the `while` loop that grows
+the assumed error becomes the region the theorem confines the run to; `Verror` joins the input.
 
-Departures from CORA, on purpose. The error sets `Verror` (the dynamics', `ℓᵈ - C F⁻¹ ℓᵃ`)
-and `Verror_y` (the constraint's, `ℓᵃ`) are arguments: CORA's `priv_linError_mixed_noInt` adds
-`CF_inv` times the algebraic error where [1, Cor. 1] subtracts it
-(`references/coverage/contDynamics/nonlinDASys.md`, row `linReach`), and `NonlinDASys.linError` is
-the corrected set. The `while` loop that grows the assumed error until it covers the computed one
-becomes the region the theorem confines the run to. `Verror` joins the time-varying input of
-`oneStep`, where CORA adds `particularSolution_timeVarying(Verror)` to both sets afterwards; the
-algebraic set is the second component of the joint set, which CORA builds as `R_xy` and projects.
+## Inputs
+* `f₀` – dynamics at the linearization point
+* `g₀` – constraint at the linearization point
+* `A` – dynamics Jacobian in the state
+* `B` – dynamics Jacobian in the input
+* `C` – dynamics Jacobian in the algebraic variable
+* `D` – constraint Jacobian in the state
+* `E` – constraint Jacobian in the input
+* `F_inv` – inverse of the constraint Jacobian in the algebraic variable
+* `xs` – linearization state
+* `ys` – linearization algebraic variable
+* `us` – linearization input
+* `Rinit` – start set
+* `U` – input zonotope
+* `Verror` – dynamics error set
+* `Verror_y` – constraint error set
+* `Δt` – step size
+* `η` – Taylor order
+
+## Output
+* the time-point set, the time-interval set and the joint set of the step
 
 ## References
 

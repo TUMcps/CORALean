@@ -9,21 +9,38 @@ public import Mathlib.Analysis.InnerProductSpace.Basic
 /-!
 # Confinement over a step, from a ball the field cannot cross
 
-A run cannot leave a region faster than its field carries it: if `‖f‖ ≤ M`
-wherever the run is confined, and the closed ball of radius `ρ > M(b - a)`
-about `x a` already lies in `R`, then the run stays in `R` for the whole of
-`[a, b]`. The classical a priori enclosure of validated integration, and the
-one statement here that places `x t` without assuming where `x` goes.
+A run cannot leave a region faster than its field carries it: if `‖f‖ ≤ M` wherever the run is
+confined, and the closed ball of radius `ρ > M(b - a)` about `x a` lies in `R`, then the run
+stays in `R` for the whole of `[a, b]`. The classical a priori enclosure of validated
+integration. The proof is the first-exit argument: below `τ = inf {t | x t ∉ R}` the run is
+confined, so `‖x t - x a‖ ≤ M(b - a)`, which puts `x τ` in the interior of `R`. Strictness in
+`hρ` buys the interior: at `ρ = M(b - a)` the run may reach the boundary exactly at `b`.
 
-The proof is the first-exit argument. Below `τ = inf {t | x t ∉ R}` the run is
-confined, so the integral of the field from `a` to `t` bounds `‖x t - x a‖` by
-`M(b - a)` there; that bound passes to `x τ` in the limit, which puts `x τ` at distance
-`ρ - M(b - a) > 0` from the outside of the ball and hence in the interior of
-`R`. Continuity then keeps the run in `R` just past `τ`, which is what no
-point of `{t | x t ∉ R}` above `τ` allows.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+* `R` – region
+* `a` – start time
+* `b` – end time
+* `M` – field bound
+* `ρ` – ball radius
+* `y` – output trajectory
 
-Strictness in `hρ` is what buys the interior: at `ρ = M(b - a)` the run may
-reach the boundary of `R` exactly at `b`, and nothing keeps it inside after.
+## Hypotheses
+* `traj` – trajectory of the system
+* `hab` – start before end
+* `hT` – interval inside time set
+* `hM₀` – bound nonnegative
+* `hM` – field bounded on region
+* `hρ` – radius exceeds travel distance
+* `hball` – ball inside region
+
+## Conclusion
+* the trajectory stays in the region over the interval
 -/
 
 -- Authors:       Claude Opus 5

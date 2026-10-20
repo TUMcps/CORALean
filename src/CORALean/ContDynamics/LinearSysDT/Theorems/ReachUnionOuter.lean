@@ -13,6 +13,17 @@ public import CORALean.ContSet.SetUnion.Theorems.Basic
 
 Every step's inclusion, `LinearSysDT.reachSetExact_subset_reach`, landing in its own
 branch of the `SetUnion`.
+
+## Inputs
+* `sys` – system
+* `params` – reachability parameters with inputs
+* `options` – reachability options
+
+## Hypotheses
+* none
+
+## Conclusion
+* the computed union encloses the exact reachable union
 -/
 
 -- Authors:       Claude Sonnet 5

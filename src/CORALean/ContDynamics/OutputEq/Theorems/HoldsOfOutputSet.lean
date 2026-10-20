@@ -8,16 +8,28 @@ public import CORALean.Specification.Theorems.HoldsOfOuter
 /-!
 # A specification checked on the output set holds of the output
 
-What an output equation is added for: until there is one, a requirement can only
-be written about the state, and a system whose safety is a property of what it
-*emits* has no way to say so. This is `outputSet_outer` handed to
-`Specification.holds_of_outer`, the same step `LinearSysDT.holds_of_reach` and
-`NeuralNetwork.holds_of_enclose` take.
+What an output equation is added for: until there is one, a requirement can only be written
+about the state, and a system whose safety is a property of what it *emits* has no way to say
+so. This is `outputSet_outer` handed to `Specification.holds_of_outer`, the same step
+`LinearSysDT.holds_of_reach` and `NeuralNetwork.holds_of_enclose` take. The specification lives
+at the output dimension `r`, not at `n`: `C` is where the two come apart, and it is not
+invertible in the cases that motivate an output, such as a projection onto measured coordinates.
 
-The specification lives at the output dimension `r`, not at `n`, which is the
-whole point: `C` is where the two come apart, and it is not invertible in the
-cases that motivate an output — a projection onto the measured coordinates, a
-sensor reading fewer numbers than the state carries.
+## Inputs
+* `out` – output equation
+* `R` – state set
+* `U` – input set
+* `spec` – specification
+* `x` – state
+* `u` – admissible input
+
+## Hypotheses
+* `hx` – state in state set
+* `hu` – input in input set
+* `h` – specification holds on the output set
+
+## Conclusion
+* the specification holds on the output
 -/
 
 -- Authors:       Claude Opus 5

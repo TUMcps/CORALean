@@ -13,6 +13,19 @@ public import Mathlib.Tactic.Ring
 linear in the stretch factors — what makes every cost here the objective of a linear
 program ([2, Thm. 1], [3, Lemma 2]). [1, Def. 2] is the case `σ = 1`.
 
+## Inputs
+* `m` – dimension
+* `ι` – generator index type
+* `σ` – weights
+* `G` – template generators
+* `α` – stretch factors
+
+## Hypotheses
+* `hα` – stretch factors nonnegative
+
+## Conclusion
+* the norm of the stretched template is linear in the factors
+
 ## References
 
 * [1] S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems:

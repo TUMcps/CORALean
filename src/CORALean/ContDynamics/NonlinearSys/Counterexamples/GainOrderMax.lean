@@ -16,6 +16,15 @@ and `Def. 6` takes `q := min_i q_i` and says the method has zero abstraction err
 for the minimum, and with `Lemma 3`'s convention `q^(p)_i = ∞ → a^(p)_i = 0`, which holds
 here, as a hypothesis.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* infinite gain order and vanishing coefficients are not equivalent as printed
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

@@ -8,16 +8,25 @@ public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetReachSe
 /-!
 # The computed run stays inside the exact set plus the *reduced* error
 
-`reach_subset_reachSetExact_add_error` with the error enlarged, which is the whole
-argument: the error sits on the right of that inclusion, added to `reachSetExact`,
-so replacing it by anything containing it keeps the inclusion true. Enlarging
-a computed set usually breaks a guarantee; here it cannot, and that asymmetry
-is what lets the error be reduced at all.
+`reach_subset_reachSetExact_add_error` with the error enlarged, which is the whole argument: the
+error sits on the right of that inclusion, added to `reachSetExact`, so replacing it by anything
+containing it keeps the inclusion true. Enlarging a computed set usually breaks a guarantee; here
+it cannot, and that asymmetry is what lets the error be reduced at all. No induction of its own —
+the induction is `reachErrorReduced_contains_reachError`'s — and no new hypothesis on the system.
+What it costs is precision downstream: `reachInnerReduced` is a smaller set than `reachInner`.
 
-So no induction of its own — the induction is
-`reachErrorReduced_contains_reachError`'s — and no new hypothesis on the
-system. What it costs is precision downstream: `reachInnerReduced` is a
-smaller set than `reachInner`, by exactly this widening.
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* the computed run lies in the exact set plus the reduced error
 -/
 
 -- Authors:       Claude Sonnet 5

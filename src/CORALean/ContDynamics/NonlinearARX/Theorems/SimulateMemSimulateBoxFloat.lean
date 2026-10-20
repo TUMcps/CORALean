@@ -13,6 +13,19 @@ public import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateMemSimulateB
 For a float model enclosing the converted system, the stacked window of the real `simulate`
 from the real value of a float start window under the real value of a float input signal lies,
 at every step, in the box `simulateBoxFloat` computes. An outer statement.
+
+## Inputs
+* `sys` – ARX system
+* `fm` – float model of the converted system
+* `y₀` – float start window
+* `u` – float inputs
+* `k` – step
+
+## Hypotheses
+* `h` – the float model encloses the converted system
+
+## Conclusion
+* the real run's window lies in the float box
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

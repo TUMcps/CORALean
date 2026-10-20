@@ -19,6 +19,29 @@ sensor fault `E f_k`, which the zonotope does not account for; a fault moves `y_
 the center, which is what the test [1, Eq. 31] detects. A point of `X̂_k` is `p_k + θ`, and
 `x_{k+1} = p_{k+1} + (A - LC) θ + D_x H_w s₁ - L D_y H_v s₂`.
 
+## Inputs
+* `A` – state matrix
+* `B` – input matrix
+* `C` – output matrix
+* `L` – observer gain
+* `Dx` – disturbance matrix
+* `Hw` – disturbance generators
+* `Dy` – noise matrix
+* `Hv` – noise generators
+* `u` – input at this step
+* `X` – previous zonotope
+* `x` – state
+* `s₁` – disturbance coefficients
+* `s₂` – noise coefficients
+
+## Hypotheses
+* `hx` – `x` lies in `X`
+* `hs₁` – disturbance coefficients within one
+* `hs₂` – noise coefficients within one
+
+## Conclusion
+* the successor state lies in the observer zonotope
+
 ## References
 
 * [1] Y. Wang, M. Zhou, V. Puig, G. Cembrano and Z. Wang. "Zonotopic Fault Detection Observer

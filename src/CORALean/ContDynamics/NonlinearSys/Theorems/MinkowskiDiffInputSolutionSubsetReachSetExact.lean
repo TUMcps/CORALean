@@ -12,16 +12,51 @@ public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 # The inner time-point set of one linearized step
 
 [1, Prop. 1] with its representation (21) derived rather than assumed: for a linearization whose
-`AbstractionError` certificate `L` holds on a region `R` that the solutions under `u₀` do not
-leave over the step, `R̂(Δt) = (e^{AΔt} X₀ + R_con) ⊖ R̂_err + 2c ⊆ R(Δt)` with
+`AbstractionError` certificate `L` holds on a region `R` the solutions under `u₀` do not leave
+over the step, `R̂(Δt) = (e^{AΔt} X₀ + R_con) ⊖ R̂_err + 2c ⊆ R(Δt)` with
 `R̂_err = inputSolution Δt η L` (`IsTrajectory.sub_mem_inputSolution`, then
 `NonlinearSys.minkowskiDiff_add_subset_reachSetExact`). This is the time-point set of [1, Alg. 1]
-with `Prop. 1`'s shift `2 cen(R̂_err)` (line 15 writes another center), and `Rtp` of CORA's
-`linReachInner`, `minkDiff(e^{AΔt}(R₀ - p) + R_con + p, Rerror)` with `Rerror` the
-`particularSolution_timeVarying` of the abstraction error, in coordinates not shifted by the
-linearization point `p`. What remains assumed is what conservative linearization assumes: the
-confinement `hconf`, the existence of solutions `hex`, the field Lipschitz along them `hLip`,
-and that `R̂_err` is convex, compact and symmetric about `c`, which it is for a zonotope `L`.
+and `Rtp` of CORA's `linReachInner`. Still assumed: the confinement `hconf`, the existence of
+solutions `hex`, the field Lipschitz along them `hLip`, and `R̂_err` convex, compact, symmetric.
+
+## Inputs
+* `sys` – system
+* `R₀` – initial set
+* `U` – input set
+* `Δt` – step size
+* `A` – state Jacobian
+* `B` – input Jacobian
+* `xs` – state expansion point
+* `us` – input expansion point
+* `R` – confinement region
+* `L` – remainder set
+* `cert` – abstraction-error certificate
+* `u₀` – constant input
+* `η` – Taylor terms
+* `c` – center of symmetry
+* `Ω` – Lipschitz region
+* `K` – Lipschitz constant
+
+## Hypotheses
+* `hΔt` – step size positive
+* `hu₀` – input in input set
+* `hε` – step norm small enough
+* `hconv` – remainder set convex
+* `hclosed` – remainder set closed
+* `hbdd` – remainder set bounded
+* `hRconv` – remainder input set convex
+* `hRclosed` – remainder input set closed
+* `hRbdd` – remainder input set bounded
+* `hEc` – error set compact
+* `hEcv` – error set convex
+* `hEne` – error set nonempty
+* `hEs` – error set symmetric about center
+* `hLip` – field Lipschitz on region
+* `hex` – solutions exist from every start
+* `hconf` – solutions stay in region
+
+## Conclusion
+* the shifted Minkowski difference lies in the exact reachable set
 
 ## References
 

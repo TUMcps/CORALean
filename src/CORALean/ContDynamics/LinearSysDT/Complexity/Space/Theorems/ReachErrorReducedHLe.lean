@@ -8,17 +8,25 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
 /-!
 # `LinearSysDT.reachErrorReduced` bounds the generator count
 
-At every `k`, which is the point of the definition and where it differs from
-`reach_order_le`: a step ends in a `reduce`, so `reduce_order_le` closes it
-without touching `k`, and at `k = 0` the error is `ofPoint 0` with no
-generators at all. `reach` has no such base case — at `k = 0` it is `R₀`, the
-caller's set, at whatever order the caller handed over.
+At every `k`, which is where it differs from `reach_order_le`: a step ends in a `reduce`, so
+`reduce_order_le` closes it without touching `k`, and at `k = 0` the error is `ofPoint 0` with no
+generators at all. `reach` has no such base case — at `k = 0` it is `R₀`, the caller's set, at
+whatever order the caller handed over. So the error's description is held at `o * n` throughout.
+`reachError` has no bound of this shape: never reducing, it reaches `k * n`. No induction: the
+bound is a fact about the last step alone.
 
-So the error's description is held at `o * n` throughout, the same bound the
-run itself meets from the first step on. `reachError` has no bound of this
-shape: never reducing, it grows a box per step and reaches `k * n`.
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – step
 
-No induction: the bound is a fact about the last step alone.
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* the reduced error has at most `o * n` generators
 -/
 
 -- Authors:       Claude Opus 5

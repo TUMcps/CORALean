@@ -9,17 +9,39 @@ public import Mathlib.Topology.GDelta.MetrizableSpace
 /-!
 # `[1, Lemma 2]` outright, for a solver of the form (10) at a fixed `A`
 
-Composes `globalAbstrErr_succ_le_of_solver` — (10)'s recursion, expanded into
-`hstep` — with `globalAbstrErr_le_of_localAbstrErr` — the discrete Grönwall
-step [1]'s own proof defers to a cited textbook. Nothing here is assumed: the
-per-step bound is proved from (B.1)-(B.2) themselves.
+Composes `globalAbstrErr_succ_le_of_solver` — (10)'s recursion, expanded into `hstep` — with
+`globalAbstrErr_le_of_localAbstrErr`, the discrete Grönwall step [1]'s own proof defers to a
+cited textbook. Nothing here is assumed: the per-step bound is proved from (B.1)-(B.2). `A` is
+one fixed matrix, not a per-step `A_k`, as (B.1)-(B.2) already read in [1]'s Appendix B; a
+re-linearizing run is out of scope. `hA : A ≠ 0` keeps the accumulation constant `L` positive,
+which `aux_gronwall` needs to divide by.
 
-`A` is one fixed matrix, not a per-step `A_k`: (B.1)-(B.2) already read that
-way, "for ease of notation" in [1]'s own Appendix B, and a re-linearizing run
-(`Alg. 1`, applied `N` times) is out of scope here — see the finding on the
-paper's page. `hA : A ≠ 0` keeps the accumulation constant `L` positive, which
-`aux_gronwall` needs to divide by; a truly zero dynamics matrix is the one
-case this excludes.
+## Inputs
+* `A` – state matrix
+* `Δt` – step size
+* `tEnd` – final time
+* `N` – number of steps
+* `R` – runs with error
+* `Rhat` – error-free runs
+* `Rabs` – abstraction error sets
+* `P` – particular-solution sets
+
+## Hypotheses
+* `hA` – matrix nonzero
+* `hΔt` – step size positive
+* `hN` – step count positive
+* `htEnd` – final time is steps times size
+* `hR0` – initial runs agree
+* `hB1` – run with error follows recursion
+* `hB2` – error-free run follows recursion
+* `hRhatNe` – error-free runs nonempty
+* `hRhatBdd` – error-free runs bounded
+* `hRabsNe` – error sets nonempty
+* `hRabsConv` – error sets convex
+* `hRabsCpt` – error sets compact
+
+## Conclusion
+* the final global error is at most the scaled worst local error
 
 ## References
 

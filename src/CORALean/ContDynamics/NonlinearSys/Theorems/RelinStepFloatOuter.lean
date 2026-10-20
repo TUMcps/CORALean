@@ -9,6 +9,19 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinStepAtFloatOuter
 # One float re-linearization step holds every run of the real system
 
 `relinStepAtFloat_outer` at the expansion point `linPointFloat` computes.
+
+## Inputs
+* `fm` – float model
+* `sys` – system
+* `U` – input zonotope
+* `options` – reachability options
+* `R` – start zonotope
+
+## Hypotheses
+* `h` – model encloses system
+
+## Conclusion
+* a successful step encloses every run over the step and at its end
 -/
 
 -- Authors:       Claude Opus 5.5

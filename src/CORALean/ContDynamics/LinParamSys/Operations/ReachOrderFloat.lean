@@ -13,6 +13,15 @@ public import CORALean.ContSet.Interval.Float.Operations.Smul
 `LinearSys.reachOrderFloat` at the system's interval matrix: the first order
 from `max η 2` that `MatExp.admissibleOrder` certifies against the float norm
 bound of `[tLo, tHi] · sys.A`. `reachOrderFloat_spec` is what it guarantees.
+
+## Inputs
+* `sys` – system
+* `tLo` – lower time bound
+* `tHi` – upper time bound
+* `η` – minimal order
+
+## Output
+* the first admissible order, or none
 -/
 
 -- Authors:       Claude Opus 5.5

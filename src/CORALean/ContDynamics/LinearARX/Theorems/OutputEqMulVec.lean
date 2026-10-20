@@ -9,6 +9,17 @@ public import CORALean.ContDynamics.LinearARX.Operations.Simulate
 # The output equation reads the first block
 
 `outputEq.C` applied to a window is its first block, for a model with at least one lag.
+
+## Inputs
+* `sys` – ARX system
+* `w` – output window
+* `r` – output coordinate
+
+## Hypotheses
+* `hp` – at least one lag
+
+## Conclusion
+* the output matrix applied to a window gives its first block
 -/
 
 -- Authors:       Claude Opus 5.5

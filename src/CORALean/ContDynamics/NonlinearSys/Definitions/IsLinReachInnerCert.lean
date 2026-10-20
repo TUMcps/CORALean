@@ -12,15 +12,13 @@ public import Mathlib.Topology.EMetricSpace.Lipschitz
 /-!
 # What one step of CORA's `linReachInner` needs
 
-[1, Prop. 1]'s hypotheses for the step `st` CORA's `contDynamics/linReachInner.m` computes from
-the start set `X = Rinit`, in the form its proof spends them: the abstraction error `Rerror`
-is convex, compact, nonempty and symmetric about the origin, which CORA's code assumes
-("`center(Rerror)` is the origin") and its `Rtp = minkDiff(Rlintp, Rerror)` relies on, as
-`Prop. 1` shifts by `2 cen(Rerror)`; solutions from `X` exist over `[0, Δt]` with the field
-Lipschitz along them (the paper's standing assumption); and every solution from `X` satisfies
-the representation (21), `x(Δt) ∈ p + e^{AΔt}(x(0) - p) + Rcon + Rerror`, which the
-abstraction error loop is there to certify. `IsLinReachInnerCert.of_abstractionError` derives
-that last field from an `AbstractionError` certificate on a region the solutions do not leave.
+[1, Prop. 1]'s hypotheses for the step `st` CORA's `linReachInner.m` computes from the start set
+`X = Rinit`, in the form its proof spends them: the abstraction error `Rerror` is convex,
+compact, nonempty and symmetric about the origin, which CORA's code assumes and its
+`Rtp = minkDiff(Rlintp, Rerror)` relies on; solutions from `X` exist over `[0, Δt]` with the
+field Lipschitz along them; and every solution satisfies the representation (21),
+`x(Δt) ∈ p + e^{AΔt}(x(0) - p) + Rcon + Rerror`, which the abstraction error loop certifies
+(`IsLinReachInnerCert.of_abstractionError`).
 
 ## References
 

@@ -17,6 +17,15 @@ box of `R0` moved by its own center. [1, Alg. 1] prints the same lines 1-2 (`x̂
 error set must start as `R0 - center(R0)`, which is the hypothesis `x_0 - center(R0) ∈ R0` that
 `LinearSysDT.observeInterval_outer` carries. Read from the source, not run.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the initial state is outside the observer's first box
+
 ## References
 
 * [1] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th

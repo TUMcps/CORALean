@@ -13,6 +13,28 @@ A run of the DAE on `[0, T]` is, from `a` on, a run on `[0, b]` for `a + b ≤ T
 counted from `a`, started in any set that holds `x(a)`. What `[1, Alg. 1]` does at each step:
 the set `Rᵈ(t_k)` is the new initial set, and the step's soundness is about the run from `t_k`.
 
+## Inputs
+* `sys` – system
+* `T` – horizon
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `x` – differential trajectory
+* `y` – algebraic trajectory
+* `u` – input signal
+* `z` – output signal
+* `a` – restart time
+* `b` – new horizon
+* `Z` – new initial set
+
+## Hypotheses
+* `traj` – DAE trajectory
+* `ha` – restart time nonnegative
+* `hab` – the new window fits in the horizon
+* `hx` – the state at the restart lies in `Z`
+
+## Conclusion
+* the shifted run is a trajectory from the new set
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic

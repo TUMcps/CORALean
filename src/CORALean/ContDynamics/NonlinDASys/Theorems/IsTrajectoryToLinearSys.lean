@@ -16,16 +16,46 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # A confined run of the DAE is a run of the linear system `linReach` steps
 
-[1, Prop. 1] read for the deviation `x̃ = x - x*`: a run of the DAE that stays in a region
-`R^z` over which `Verror` holds every consistent point's linearization error
-`ℓᵈ - C F⁻¹ ℓᵃ` is, shifted by `-x*`, a run of `˙x̃ = Ã x̃ + v` from `Rinit - x*` with the
-input `v(t) = f(z(t)) - Ã x̃(t)` in `w ⊕ B̃ (U ⊕ (-u*)) ⊕ Verror`, all as zonotopes, the
-linear system `NonlinDASys.linReach` hands to `oneStep`. The input lies there by
-`NonlinDASys.mem_linInclusion`, which uses only `F⁻¹ F = I`.
+[1, Prop. 1] read for the deviation `x̃ = x - x*`: a run of the DAE that stays in a region `R^z`
+over which `Verror` holds every consistent point's linearization error `ℓᵈ - C F⁻¹ ℓᵃ` is,
+shifted by `-x*`, a run of `˙x̃ = Ã x̃ + v` from `Rinit - x*` with the input
+`v(t) = f(z(t)) - Ã x̃(t)` in `w ⊕ B̃ (U ⊕ (-u*)) ⊕ Verror`, the linear system
+`NonlinDASys.linReach` hands to `oneStep`. The input lies there by `NonlinDASys.mem_linInclusion`,
+which uses only `F⁻¹ F = I`. The confinement and the error certificate are hypotheses, as in
+`NonlinDASys.IsTrajectory.field_mem_linInclusion`: CORA checks the error after the fact on a set
+computed under the assumption it checks.
 
-The confinement and the error certificate are hypotheses, as in
-`NonlinDASys.IsTrajectory.field_mem_linInclusion`: CORA checks the error after
-the fact on a set computed under the assumption it checks.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `Rinit` – initial zonotope
+* `U` – input zonotope
+* `x` – differential trajectory
+* `y` – algebraic trajectory
+* `u` – input signal
+* `z` – output signal
+* `xs` – linearization state
+* `ys` – linearization algebraic variable
+* `us` – linearization input
+* `A` – dynamics Jacobian in the state
+* `B` – dynamics Jacobian in the input
+* `C` – dynamics Jacobian in the algebraic variable
+* `D` – constraint Jacobian in the state
+* `E` – constraint Jacobian in the input
+* `F` – constraint Jacobian in the algebraic variable
+* `F_inv` – inverse of `F`
+* `Verror` – dynamics error zonotope
+* `Rz` – confinement region
+
+## Hypotheses
+* `traj` – DAE trajectory
+* `hF` – `F_inv` is a left inverse of `F`
+* `hTm` – time set measurable
+* `hR` – the run stays in the region
+* `hL` – `Verror` holds every consistent point's error
+
+## Conclusion
+* the shifted run solves the linear system with the bounded input
 
 ## References
 

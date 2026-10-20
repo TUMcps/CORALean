@@ -8,22 +8,28 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 /-!
 # What `estimateGain`'s bisection buys
 
-The soundness of line 16 of [1, Alg. 2] as written here: the gain reported sits
-between a `φ⁽¹⁾` whose eq. (56) left-hand side is still under the right-hand
-side and one already over it, and those two are `2^{-fuel}` apart. Halving a
-bracket is all the bisection does, and this is exactly what it gets.
+The soundness of line 16 of [1, Alg. 2] as written here: the gain reported sits between a
+`φ⁽¹⁾` whose eq. (56) left-hand side is still under the right-hand side and one already over it,
+and those two are `2^{-fuel}` apart. It is not a root: eq. (56)'s left-hand side is not shown
+continuous here, so nothing says a crossing point exists. Line 13 of [2, Alg. 2] solves the same
+equation, its (29) being (56) here. The two hypotheses are the starting bracket, `φ⁽¹⁾ = 0` under
+the target and `φ⁽¹⁾ = 1` over it; where there is no crossing the theorem does not apply.
 
-It is not a root: eq. (56)'s left-hand side is not shown continuous here, so
-nothing says a crossing point exists. What the theorem gives is the bracket,
-which is what a caller can act on and all a float layer could ever check.
+## Inputs
+* `le` – comparison of reals
+* `ζδ` – tuning constant
+* `lam` – step scaling
+* `rabs1` – abstraction radius at the horizon
+* `rabsOpt` – abstraction radius at the optimal step
+* `scalings` – number of scalings
+* `fuel` – number of halvings
 
-Line 13 of [2, Alg. 2] solves the same implicit equation, its (29) being (56)
-here, so this is what its bisection buys there too.
+## Hypotheses
+* `hlo` – zero gain passes
+* `hhi` – unit gain fails
 
-The two hypotheses are the starting bracket, `φ⁽¹⁾ = 0` under the target and
-`φ⁽¹⁾ = 1` over it. A gain is a ratio of two widths, so that is where the
-answer lies whenever there is one; where there is not, the search still returns
-a value in `[0,1]` and the theorem simply does not apply.
+## Conclusion
+* the gain is bracketed by a passing and a failing value
 
 ## References
 

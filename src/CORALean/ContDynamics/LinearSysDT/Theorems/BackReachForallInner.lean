@@ -8,18 +8,27 @@ public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetForallEx
 /-!
 # `backReachForall` is an inner approximation of the backward reachable set
 
-The direction `MinkDiff` runs, propagated along a run: a backward reachable set
-is a guarantee about every state in it, so an implementation may only ever
-return a subset of it, and both hypotheses about the operations run inner too.
-`hdiff` is `MinkDiff`'s own obligation at a partial difference, and `hinv` is
-the half of an exact `mtimes` that `mtimes_outer` does not give — an enclosure
-of the image would put states outside the preimage into the result, which is
-exactly the unsound direction here.
+The direction `MinkDiff` runs, propagated along a run: a backward reachable set is a guarantee
+about every state in it, so an implementation may only ever return a subset of it, and both
+hypotheses about the operations run inner too. `hdiff` is `MinkDiff`'s own obligation at a partial
+difference, and `hinv` is the half of an exact `mtimes` that `mtimes_outer` does not give. `hA` is
+a *right* inverse, `A Ainv = 1`, which is all a step uses. `Zonotope` supplies `hinv` and `hdiff`
+both — see `BackReachForallInnerZonotope`.
 
-`hA` is a *right* inverse, `A Ainv = 1`, which is all a step uses: what `Ainv`
-maps into is carried back onto itself by `A`, and nothing asks what `Ainv` does
-anywhere else. `Zonotope` supplies `hinv` and `hdiff` both — see
-`BackReachForallInnerZonotope`.
+## Inputs
+* `sys` – system
+* `Ainv` – right inverse of the state matrix
+* `diff` – partial Minkowski difference
+* `T` – target set
+* `U` – input set
+
+## Hypotheses
+* `hA` – `Ainv` is a right inverse
+* `hdiff` – `diff` returns inner approximations
+* `hinv` – `mtimes` by `Ainv` is inner
+
+## Conclusion
+* a returned set lies in the exact backward reachable set
 -/
 
 -- Authors:       Claude Opus 5

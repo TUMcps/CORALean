@@ -13,6 +13,19 @@ public import CORALean.ContDynamics.LinearARX.Theorems.Basic
 
 The input enters the last block of the window, and `A_ext` shifts a block one place per step,
 so it needs `p-1` steps to reach the first block: `C₀ A_ext^a B_ext_j = 0` for `a < p-1`.
+
+## Inputs
+* `sys` – ARX system
+* `a` – number of steps
+* `j` – lag index
+* `v` – input vector
+
+## Hypotheses
+* `hp` – at least one lag
+* `ha` – fewer steps than the lags need
+
+## Conclusion
+* the input does not reach the first output block within `a` steps
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -14,6 +14,17 @@ component `y i` of the output determines, `X_y(i) = {x | y i ∈ g_i(x, V)}` of 
 which the strips of [1, Property 1] are taken. `g` is an argument: `NonlinearSysDT` carries the
 update map `f` only. No representation: `V` is any set, and so are the results.
 
+## Inputs
+* `n` – state dimension
+* `nv` – noise dimension
+* `p` – output dimension
+* `g` – measurement map
+* `V` – noise set
+* `y` – measured output
+
+## Output
+* the states that could have produced the output
+
 ## References
 
 * [1] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".

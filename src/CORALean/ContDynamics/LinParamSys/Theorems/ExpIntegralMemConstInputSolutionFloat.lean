@@ -16,6 +16,24 @@ What the constant `ũ` contributes by any `t ∈ [0, r]` at a member `A` of `sys
 `[0, ũ]`, whose contribution grows with time [1, Sec. 3.3] and by `r` lies in
 `inputSolutionFloat` [1, Thm. 1].
 
+## Inputs
+* `sys` – system
+* `r` – step size
+* `η` – Taylor order
+* `A` – system matrix member
+* `uc` – constant input
+* `t` – time
+
+## Hypotheses
+* `hr` – step positive
+* `hη` – order admissible
+* `hA` – `A` lies in the matrix set
+* `ht0` – time nonnegative
+* `htr` – time at most the step
+
+## Conclusion
+* the constant input's contribution by time `t` lies in the enclosure
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

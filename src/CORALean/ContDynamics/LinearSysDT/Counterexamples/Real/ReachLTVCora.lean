@@ -30,6 +30,16 @@ way `LinearSysDT.reachLTVCora` reaches `{0}` at step `2` (all sets are points, s
 order is the identity), and `x(2) = 1` is missed; `C = 1`, `D = 0` make it the output too.
 The hypothesis on `uTransVec` only makes `u ≡ 1` the user's input: `B{1} = 0` gives `{0}` for any.
 
+## Inputs
+* `o` – zonotope order
+* `uTransVec` – optional constant input columns
+
+## Hypotheses
+* `hu` – the constant input columns equal one
+
+## Conclusion
+* a true state at step two lies outside CORA's set
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/reach.m`

@@ -14,6 +14,24 @@ network's output alone (`input a e = a`). Its `IsTrajectory`, for any nonempty `
 `Vec ℝ 0`s, which all coincide), is a run of the plant from `R₀` under the input `π(x k)` at every
 step, in the plant's whole input set: the statement of the closed loop before external inputs were
 modelled.
+
+## Inputs
+* `plant` – plant
+* `contr` – controller network
+* `dt` – sampling time
+* `π` – controller function
+* `R₀` – initial set
+* `U_ext` – external input set
+* `W` – disturbance set
+* `x` – states
+* `v` – external input signal
+* `w` – disturbance signal
+
+## Hypotheses
+* `hU` – external input set nonempty
+
+## Conclusion
+* a loop trajectory is a plant trajectory driven by the controller
 -/
 
 -- Authors:       Claude Sonnet 5.5

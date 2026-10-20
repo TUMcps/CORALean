@@ -15,6 +15,27 @@ holding on it proves safety and one violated on it proves nothing — the
 violation may sit entirely in the approximation error. A run is exact: one
 point genuinely reached, so a specification it violates is genuinely violated.
 Reachability and simulation answer opposite halves of the same question.
+
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input set
+* `o` – maximum zonotope order
+* `R₀` – initial set
+* `spec` – specification
+* `π` – controller function
+* `v` – external input signal
+* `x₀` – initial state
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `hπ` – the network encloses `π`
+* `hv` – external inputs lie in `U_ext`
+* `hx₀` – start lies in `R₀`
+* `hbad` – specification fails along the run
+
+## Conclusion
+* the specification does not hold on the reachable set
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5

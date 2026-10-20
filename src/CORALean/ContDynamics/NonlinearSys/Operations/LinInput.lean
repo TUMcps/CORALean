@@ -9,20 +9,23 @@ public import CORALean.ContSet.Interval.Real.Operations.Point
 /-!
 # The input set a linearization widens to
 
-Rearranging `f(x,u) = f(x✱,u✱) + A(x - x✱) + B(u - u✱) + L(x,u)` moves
-everything but `A x` into the input:
+Rearranging `f(x,u) = f(x✱,u✱) + A(x - x✱) + B(u - u✱) + L(x,u)` moves everything but `A x`
+into the input: `ẋ = A x + ũ(t)` with `ũ(t) = f(x✱,u✱) - A x✱ + B(u(t) - u✱) + L(x(t), u(t))`.
+So the set every admissible `ũ(t)` lies in is `{f(x✱,u✱) - A x✱} ⊞ B(U ⊖ u✱) ⊞ L`: two points,
+one `mtimes` and three `plus`es. A translation is a `plus` with a box of zero width. The result
+lives at the state dimension, which lets `LinearSys` take it unchanged.
 
-`ẋ = A x + ũ(t)`, `ũ(t) = f(x✱,u✱) - A x✱ + B(u(t) - u✱) + L(x(t), u(t))`,
+## Inputs
+* `f` – field
+* `A` – state Jacobian
+* `B` – input Jacobian
+* `xs` – state expansion point
+* `us` – input expansion point
+* `U` – input set
+* `L` – remainder set
 
-so the set every admissible `ũ(t)` lies in is
-`{f(x✱,u✱) - A x✱} ⊞ B(U ⊖ u✱) ⊞ L`. That is the whole construction: two
-points, one `mtimes` and three `plus`es. A translation is a `plus` with a box
-of zero width, which is why `OfInterval` is asked for and no translation
-operation is.
-
-The result lives at the state dimension rather than the input one — `B` has
-already carried `U` across — which is what lets `LinearSys`, whose input is
-additive and so state-dimensional, take it unchanged.
+## Output
+* the input set of the linearized system
 -/
 
 -- Authors:       Claude Opus 5

@@ -9,6 +9,18 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinRunFloatOuter
 # The float run linearized at the center holds every run of the real system
 
 `relinRunAtFloat_outer` at `x✱ = center(R)` for each step's start set.
+
+## Inputs
+* `fm` – float model
+* `sys` – system
+* `U` – input zonotope
+* `options` – reachability options
+
+## Hypotheses
+* `h` – model encloses system
+
+## Conclusion
+* the sets enclose every run at every time of their step
 -/
 
 -- Authors:       Claude Sonnet 5.5

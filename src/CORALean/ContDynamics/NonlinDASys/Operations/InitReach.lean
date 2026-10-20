@@ -9,15 +9,24 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Split
 /-!
 # `NonlinDASys.initReach`
 
-CORA's `nonlinDASys/initReach`: `linReach` on every start set, and where the step asks for a
-split (`dimForSplit` non-empty), the start set halved along that generator by `split` and
-`initReach` run again on the two halves. `lin` gives the linearization of a start set (what
-`priv_linearize` computes at its center, with the step's error sets), and `select` the
-generator to split along or `none`: CORA decides by its performance index `perfInd > 1` and
-picks by `priv_select`, heuristics with no guarantee attached, so both are arguments. A
-fuel bounds the recursion, which CORA's code does not. The consistent initial algebraic state
-CORA finds by `consistentInitialState` enters through `lin`'s `y*`; the error bookkeeping
-(`error_x`, `error_y`) seeds CORA's loop and is not carried.
+CORA's `nonlinDASys/initReach`: `linReach` on every start set, and where the step asks for a split
+(`dimForSplit` non-empty), the start set halved along that generator by `split` and `initReach`
+run again on the two halves. `lin` gives the linearization of a start set, and `select` the
+generator to split along or `none`: CORA decides by its performance index `perfInd > 1` and picks
+by `priv_select`, heuristics with no guarantee attached, so both are arguments. A fuel bounds the
+recursion, which CORA's code does not. The consistent initial algebraic state enters through
+`lin`'s `y*`; the error bookkeeping (`error_x`, `error_y`) is not carried.
+
+## Inputs
+* `sys` – system
+* `lin` – linearization of a start set
+* `select` – choice of the generator to split along
+* `U` – input zonotope
+* `Δt` – step size
+* `η` – Taylor order
+
+## Output
+* the step sets of the start sets after splitting, by fuel and start list
 -/
 
 -- Authors:       Claude Opus 5.5

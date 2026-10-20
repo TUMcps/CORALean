@@ -13,6 +13,27 @@ handed to `Specification.holds_of_outer`, so the linearization `steps` and its
 confinement hypothesis `hR` are threaded through unchanged rather than hidden
 behind a weaker statement. `holds_of_reach_of_subset` is the same corollary
 from `hsub`, the check a caller can run against the computed sets instead.
+
+## Inputs
+* `sys` – system
+* `U` – input set
+* `o` – maximum order
+* `steps` – linearization steps
+* `R₀` – initial set
+* `spec` – specification
+* `x` – state trajectory
+* `u` – input trajectory
+* `y` – output trajectory
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `traj` – trajectory of the system
+* `hR` – states stay in regions
+* `h` – specification holds on the reachable set
+
+## Conclusion
+* the specification holds on the state
 -/
 
 -- Authors:       Claude Opus 5

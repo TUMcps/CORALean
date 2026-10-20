@@ -14,21 +14,42 @@ public import Mathlib.Analysis.Normed.Module.FiniteDimension
 /-!
 # A time-varying run with an input stays in the box's step and input solution
 
-`IsConstTrajectory.timeInterval_outer_inputSolution` at `'varParam'`, with the same two
-sets — CORA's `initReach`, whose `priv_inputSolution` has no `'varParam'` branch of
-its own, the run read at a measurable parameter by `IsTrajectory.exists_integral_eq_of_measurable`.
+`IsConstTrajectory.timeInterval_outer_inputSolution` at `'varParam'`, with the same two sets —
+CORA's `initReach`, the run read at a measurable parameter by
+`IsTrajectory.exists_integral_eq_of_measurable`. The Peano–Baker expansion splits the run: the
+homogeneous half is the interpolation plus correction
+(`MatExp.exists_mem_intervalCorrectionMatrix_of_remainder`); the input's `k`-th term lies in
+`t^{k+1}/(k+1)!` times the closed convex hull of `matPow sys.A k` applied to `U`
+(`MatExp.peanoBakerInputTerm_mem`), inside `inputTerm r k` applied to `U` when that set is closed
+and convex and `0 ∈ U`. The frozen-member proof does not carry over. Real only.
 
-The Peano–Baker expansion splits the run. The homogeneous half is the interpolation
-plus correction (`MatExp.exists_mem_intervalCorrectionMatrix_of_remainder`). The
-input's `k`-th term lies in `t^{k+1}/(k+1)!` times the closed convex hull of
-`matPow sys.A k` applied to `U` (`MatExp.peanoBakerInputTerm_mem`), inside
-`inputTerm r k` applied to `U` when that set is closed and convex and `0 ∈ U`; the
-remainder is a matrix within `r · expRemainderBound` applied to a longest point of `U`.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `A` – matrix signal
+* `r` – step size
+* `m` – Taylor order minus two
+* `t` – time
 
-The frozen-member proof (`inputReach_subset_inputSolution`) does not carry over: it
-pulls the one matrix `A^i` out of the integral and averages the input alone, in `U`.
-Here the integrand is a product of members and an input, and only the closedness
-and convexity of each order's image of `U` keep the average in it. Real only.
+## Hypotheses
+* `traj` – time-varying trajectory
+* `hr` – step positive
+* `hT` – step lies in the time set
+* `hε` – order admissible
+* `ht0` – time nonnegative
+* `htr` – time at most the step
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `h0` – origin lies in the input set
+* `hTconv` – every order's input term image convex
+* `hTclosed` – every order's input term image closed
+
+## Conclusion
+* the state at time `t` lies in the box's step plus the input solution
 -/
 
 -- Authors:       Claude Opus 5.5

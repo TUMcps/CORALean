@@ -15,6 +15,24 @@ the zonotope with center `∑_{i<k} Eᵢ c_W + c_V` [1, Eq. 17] and generators
 `[E₀ G'_W ⋯ E_{k-1} G'_W  G'_V]` [1, Eq. 18], `Eᵢ = C Aⁱ`, stretched by `α_W` once per step
 and by `α_V`. An equality, as the paper's `=` says.
 
+## Inputs
+* `sys` – plant
+* `ιW` – index type of the disturbance generators
+* `ιV` – index type of the noise generators
+* `cW` – disturbance center
+* `GW` – disturbance template generators
+* `αW` – disturbance stretch factors
+* `cV` – noise center
+* `GV` – noise template generators
+* `αV` – noise stretch factors
+* `k` – step
+
+## Hypotheses
+* none
+
+## Conclusion
+* from an exact initial state the deviation set is one stretched template
+
 ## References
 
 * [1] S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems:

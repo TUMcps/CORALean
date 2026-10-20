@@ -15,6 +15,14 @@ step `k`, after the order reduction CORA applies; it is a parameter, so the chec
 whatever set-based `reach` supplies. The verdict is `res`; the first measurement outside makes
 CORA return `false` at once.
 
+## Inputs
+* `T` – test cases
+* `K` – horizon
+* `R` – computed reachable sets per test case and step
+
+## Output
+* every measurement up to the horizon lies in its reachable set
+
 ## References
 
 * [1] `contDynamics/@contDynamics/private/priv_isconform_BF.m`

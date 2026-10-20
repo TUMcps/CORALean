@@ -14,6 +14,14 @@ positive `timeStep`, CORA's `gezero` check. `none` otherwise, no rounding. A flo
 algorithm reaches ℚ from its scalar through `ToRat`, which reads a NaN `timeStep` as
 `1.5 · 2 ^ 1024`: a count `≥ 1` then needs `tFinal - tStart` to be a multiple of that, and any
 step run with the NaN returns a NaN, which the `…Checked` entry points reject.
+
+## Inputs
+* `tStart` – start time
+* `tFinal` – final time
+* `timeStep` – step size
+
+## Output
+* the number of steps, or none
 -/
 
 -- Authors:       Claude Opus 5.5

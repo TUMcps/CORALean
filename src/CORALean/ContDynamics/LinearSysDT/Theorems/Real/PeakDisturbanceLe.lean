@@ -14,6 +14,18 @@ public import Mathlib.Order.ConditionallyCompleteLattice.Indexed
 (`LinearSysDT.peakDisturbance_counterexample`). Each `‖d_k‖ = ‖H_d b_k‖` is a value of the maximum,
 bounded since the box is.
 
+## Inputs
+* `Hd` – disturbance generator matrix
+* `d` – disturbance sequence
+* `ℓ` – bound on the generator box norm
+
+## Hypotheses
+* `hℓ` – the generator box norm is at most `ℓ`
+* `hd` – every disturbance lies in the generator box
+
+## Conclusion
+* the peak of the disturbance is at most the maximum over the generator box
+
 ## References
 
 * [1] Y. Wang, Z. Wang, V. Puig and G. Cembrano. "Zonotopic set-membership state estimation for

@@ -13,6 +13,14 @@ the move, so the returned point is one step beyond the iterate the test was made
 
 CORA loops until the test passes, with no bound; this one takes a `fuel` and gives `none` when it
 runs out. Computable: the step and the test are parameters.
+
+## Inputs
+* `V` – vector type
+* `step` – Newton step
+* `small` – smallness test on a step
+
+## Output
+* the point reached by the first accepted step, or none
 -/
 
 -- Authors:       Claude Opus 5.5

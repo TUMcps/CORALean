@@ -13,6 +13,18 @@ unit box `W = ⟨0, I⟩` and `d_k` an unknown input with no bound, the states `
 an unknown `d`; read here as some `d`, every unknown input being possible. `E` may be
 singular, so the set is given by the equation it satisfies, not by a map.
 
+## Inputs
+* `E` – descriptor matrix
+* `A` – state matrix
+* `B` – input matrix
+* `D` – disturbance matrix
+* `Dd` – unknown input matrix
+* `Xprev` – previous state set
+* `u` – previous input
+
+## Output
+* the states consistent with the dynamics over every unknown input
+
 ## References
 
 * [1] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on

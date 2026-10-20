@@ -14,18 +14,25 @@ public import CORALean.ContSet.Zonotope.Real.Instances
 /-!
 # `LinearSysDT.reachCost`
 
-What running `reach` costs, assembled: one line per operation the step calls,
-each line an asserted count from `ContSet/Zonotope/Real/Complexity/Time/`. The only
-reading done here is of `reach`'s own definition — three operations per step
-and no arithmetic of its own — and the recursion mirrors it line for line.
+What running `reach` costs, assembled: one line per operation the step calls, each an asserted
+count from `ContSet/Zonotope/Real/Complexity/Time/`. The only reading done here is of `reach`'s
+own definition — three operations per step and no arithmetic of its own. At `𝒵` and `𝕋 = ℝ`, not
+at the classes `reach` is written against: `plus` and `reduce` cost what a representation makes
+them cost. `reachStepBound` is the same three costs at the largest sizes a step can see — `o * n`
+generators in, by `Complexity/Space/`'s size facts — and `Theorems/ReachCostLe.lean` is where the
+two meet.
 
-At `𝒵` and `𝕋 = ℝ`, not at the classes `reach` is written against: `plus` and
-`reduce` cost what a representation makes them cost, so a cost is stated where
-the instance is. `reach`'s own generality is untouched.
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
 
-`reachStepBound` is the same three costs at the largest sizes a step can see —
-`o * n` generators in, by `Complexity/Space/`'s size facts — and `Theorems/ReachCostLe.lean` is
-where the two meet.
+## Hypotheses
+* `ho` – order positive
+
+## Output
+* the cost of `reach` after each number of steps
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

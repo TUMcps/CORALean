@@ -13,6 +13,15 @@ In `ℝ¹` with `A = C = 1` and `r = 1` the noise accumulated over a step has va
 `initReach` and `post` build from it is too narrow, so the sets are not enclosures of the law
 of the process [1]. For a stable `A` the same formula is too wide.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's input covariance is below the true noise covariance
+
 ## References
 
 * [1] `contDynamics/@linProbSys/private/priv_inputSolution.m`

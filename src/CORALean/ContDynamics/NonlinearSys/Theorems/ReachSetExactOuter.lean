@@ -7,15 +7,27 @@ public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSetExact
 /-!
 # `reachSetExact` contains every trajectory
 
-The cheap half of the two-step form, exactly as in the linear case: a
-trajectory is in the set of what trajectories reach by construction, so the
-proof is the pair itself. All the content then sits in the other half, the
-inclusion of this set in a computed one, where it reads as one set inside
-another rather than as a claim about a run.
+The cheap half of the two-step form, exactly as in the linear case: a trajectory is in the set of
+what trajectories reach by construction, so the proof is the pair itself. All the content then
+sits in the other half, the inclusion of this set in a computed one. Stated at every `t`,
+including outside `T`: there `IsTrajectory` constrains nothing beyond `x 0 ∈ R₀`, so the set is
+large and the theorems that consume it ask for the window they speak about.
 
-Stated at every `t`, including outside `T`: there `IsTrajectory` constrains
-nothing beyond `x 0 ∈ R₀`, so the set is large and the theorems that consume it
-ask for the window they speak about.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+* `y` – output trajectory
+* `t` – time
+
+## Hypotheses
+* `traj` – trajectory of the system
+
+## Conclusion
+* a trajectory state lies in the exact reachable set
 -/
 
 -- Authors:       Claude Opus 5

@@ -10,17 +10,13 @@ public import Mathlib.Topology.Algebra.Module.ModuleTopology
 # Continuous-time nonlinear systems: the representation
 
 CORA's `nonlinearSys`: `ẋ(t) = f(x(t), u(t))` with the output equation `y = g(x, u)`,
-time-invariant as CORA's is. The output dimension `q` is a field, as CORA's `nrOfOutputs` is a
-property; absent an output equation CORA's is the state, `g x u = x`. `IsTrajectory` carries the
-output `y t = g (x t) (u t)`, as `LinearSys.IsTrajectory` carries its `outputEq.eval`.
-
-`IsTrajectory` is a Carathéodory run, the integral equation `x t = x 0 + ∫₀ᵗ f(x s, u s) ds`
-rather than a derivative at every point (Sontag, *Math. Control Theory*, Def. C.2.1): a
-zero-order-hold input has no derivative at a jump. `meas` and `integrable` are the integrand's
-regularity, without which `intervalIntegral`'s junk value would let `flow` admit an `x` nothing
-like a run. [1, Def. 1] asks for Lipschitz-continuous inputs, whose runs are classical as well
-(`IsTrajectory.hasDerivWithinAt`); `IsTrajectory.of_hasDerivWithinAt` is the converse bridge, so
-whatever encloses these runs encloses [1]'s. `IsTrajectory.linearize` hands a run to `LinearSys`.
+time-invariant as CORA's is. The output dimension `q` is a field; absent an output equation
+CORA's is the state, `g x u = x`. `IsTrajectory` is a Carathéodory run, the integral equation
+`x t = x 0 + ∫₀ᵗ f(x s, u s) ds` rather than a derivative at every point (Sontag, *Math.
+Control Theory*, Def. C.2.1): a zero-order-hold input has no derivative at a jump. [1, Def. 1]
+asks for Lipschitz-continuous inputs, whose runs are classical as well
+(`IsTrajectory.hasDerivWithinAt`); `IsTrajectory.of_hasDerivWithinAt` is the converse bridge.
+`IsTrajectory.linearize` hands a run to `LinearSys`.
 
 ## References
 

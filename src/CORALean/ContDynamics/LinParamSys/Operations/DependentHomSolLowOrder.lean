@@ -9,18 +9,24 @@ public import Mathlib.Logic.Equiv.Fin.Basic
 /-!
 # `LinParamSys.dependentHomSolLowOrder`, as CORA computes it
 
-The part `R_lowOrder` of CORA's `linParamSys/private/priv_dependentHomSol`, the solution
-after one step `r` of `ẋ = A x + u` with `A = A_c + Σᵢ pᵢ A_g⁽ⁱ⁾` and the constant input
-`u = U_c + Σᵢ pᵢ U_G⁽ⁱ⁾` sharing the parameters `pᵢ ∈ [-1, 1]`, expanded to second order in
-the `pᵢ`: `R_c` (order zero, and the center of the `pᵢ²` terms), `R_g` the first-order
-generators, the halved `pᵢ²` generators and the mixed `pᵢpⱼ` ones, line by line as printed.
-The time orders above `A² r²` (state) and `A² r³` (input) are left to the high-order mapping
-matrices, which CORA adds afterwards and which are not modelled here.
+The part `R_lowOrder` of CORA's `priv_dependentHomSol`, the solution after one step `r` of
+`ẋ = A x + u` with `A = A_c + Σᵢ pᵢ A_g⁽ⁱ⁾` and the constant input `u = U_c + Σᵢ pᵢ U_G⁽ⁱ⁾`
+sharing the parameters `pᵢ ∈ [-1, 1]`, expanded to second order in the `pᵢ`, line by line as
+printed. The time orders above `A² r²` (state) and `A² r³` (input) are left to the high-order
+mapping matrices, not modelled here. It is defined to be refuted: the second-order input terms
+are incomplete (`dependentHomSolLowOrder_counterexample`,
+`references/coverage/contDynamics/linParamSys.md`, row `initReach_inputDependence`).
 
-It is defined to be refuted: the second-order input terms are incomplete
-(`dependentHomSolLowOrder_counterexample`, `references/coverage/contDynamics/linParamSys.md`, row
-`initReach_inputDependence`). The mixed generators are indexed by all pairs `(i, j)`, zero unless
-`i < j`, where CORA lists the pairs `i < j`.
+## Inputs
+* `Ac` – center matrix
+* `Ag` – matrix generators
+* `c` – center of the initial zonotope
+* `Uc` – input center
+* `UG` – input generators
+* `r` – step size
+
+## Output
+* the second-order part `R_lowOrder` as a zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

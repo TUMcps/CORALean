@@ -17,6 +17,14 @@ at order `2` rather than `0`, since orders `0` and `1` are the exact part
 Recursive rather than a fold over `Finset`, for the reason `inputTaylorSum`
 gives: `plus` is only an enclosure and never has to be reassociated.
 
+## Inputs
+* `sys` – system
+* `r` – step size
+* `U` – input set
+
+## Output
+* orders 2 up to a given order of the input solution, summed
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

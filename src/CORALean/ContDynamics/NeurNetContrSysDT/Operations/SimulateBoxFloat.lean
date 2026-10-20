@@ -18,6 +18,14 @@ controller supplies the network's input box by `enclose` and the external inputs
 `U_ext`, in float interval arithmetic; the
 real run lies in the boxes by `simulate_mem_simulateBox` (ruling R-SIM). The
 enclosure is outer: `enclose` of a box is not a point even from a point.
+
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input box
+* `x₀` – float start state
+
+## Output
+* boxes of the closed loop after each number of steps
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

@@ -8,21 +8,14 @@ public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 /-!
 # Continuous-time linear systems with a set-valued system matrix
 
-CORA's `@linParamSys`, `ẋ(t) = A x(t) + B u(t) + c` with `A` ranging over a set `sys.A` — the
-system-matrix uncertainty CORA calls `type` — and `B` over a set `sys.B` of the same family, as
-the constructor accepts a numeric matrix, an `intervalMatrix` or a `matZonotope` for either
-(l. 162-175; a numeric one is the point set, a mix is read in the coarser family); `c` a plain
-vector, `m` inputs as in `LinearSys`. `IsTrajectory` is `'varParam'`, a fresh `A t`, `B t` from
-their sets at every instant; `IsConstTrajectory` is `'constParam'` (CORA's default), one `A`, one
-`B` over the whole flow. Both are Carathéodory runs, as `LinearSys.IsTrajectory` is [1, Sec. 2]:
-the parameters sit inside the integral, so a jumping input or parameter is admissible.
-`IsCanonicalTrajectory` and `IsCanonicalConstTrajectory` are the same runs of the canonical form
-`ẋ = A x + u'`, the combined input `u' = B u + c` in state coordinates (CORA's `V = B*U + c`,
-`inputSet`), which the proofs of the reachability algorithms run on: the algorithms themselves
-take `U` in input coordinates and form `inputSet` themselves;
-`IsTrajectory.canonical` and `IsConstTrajectory.canonical` turn every run into one.
-`isConstTrajectory_toIsTrajectory` holds always; its converse fails (a run free to vary need not
-settle on one matrix) and is not stated.
+CORA's `@linParamSys`, `ẋ(t) = A x(t) + B u(t) + c` with `A` ranging over a set `sys.A`, the
+system-matrix uncertainty CORA calls `type`, and `B` over a set `sys.B` of the same family;
+`c` a plain vector, `m` inputs as in `LinearSys`. `IsTrajectory` is `'varParam'`, a fresh `A t`,
+`B t` from their sets at every instant; `IsConstTrajectory` is `'constParam'` (CORA's default),
+one `A`, one `B` over the whole flow. Both are Carathéodory runs, as `LinearSys.IsTrajectory`
+is [1, Sec. 2]. `IsCanonicalTrajectory` and `IsCanonicalConstTrajectory` are the same runs of
+the canonical form `ẋ = A x + u'`, `u' = B u + c` (CORA's `inputSet`), which the proofs run on;
+`isConstTrajectory_toIsTrajectory` holds always, its converse fails and is not stated.
 
 ## References
 

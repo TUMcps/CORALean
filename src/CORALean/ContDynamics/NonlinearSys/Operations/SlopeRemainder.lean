@@ -11,21 +11,25 @@ public import CORALean.ContSet.Interval.Float.Operations.Point
 /-!
 # The abstraction error from a slope enclosure
 
-The box `L` an `AbstractionError` certificate asks for, computed in `𝕋` from the
-model's slope boxes over `X × U`: with `f(x,u) - f(x✱,u✱) = J_x (x - x✱) + J_u (u - u✱)`
-for some `J_x ∈ [J_x]`, `J_u ∈ [J_u]`, what is left once the affine part at
-`(x✱, u✱)` is taken off is `(J_x - A)(x - x✱) + (J_u - B)(u - u✱)`, which lies in
+The box `L` an `AbstractionError` certificate asks for, computed in `𝕋` from the model's slope
+boxes over `X × U`: what is left once the affine part at `(x✱, u✱)` is taken off lies in
+`L = ([J_x] - A)(X - x✱) ⊕ ([J_u] - B)(U - u✱)`. A departure from CORA's `'lin'`
+(`priv_abstrerr_lin`), which bounds the remainder by the second-order Lagrange term from an
+interval Hessian [1, Prop. 1]: `FloatModel` carries no Hessian enclosure, so this is the
+first-order mean-value remainder, coarser, `O(‖δ‖)` where the Hessian's is `O(‖δ‖²)`.
+`FloatHessModel.hessRemainder` is the float Hessian run.
 
-`L = ([J_x] - A)(X - x✱) ⊕ ([J_u] - B)(U - u✱)`.
+## Inputs
+* `fm` – float model
+* `A` – state Jacobian center
+* `B` – input Jacobian center
+* `xs` – state expansion point
+* `us` – input expansion point
+* `X` – state box
+* `U` – input box
 
-A departure from CORA's `'lin'` (`priv_abstrerr_lin`), which bounds the remainder
-by the second-order Lagrange term `½ δᵀ H(ξ) δ` from an interval Hessian
-[1, Prop. 1]: `FloatModel` carries no Hessian enclosure, so this is the first-order
-mean-value remainder. It is coarser: over a fixed box it is `O(‖δ‖)` in the
-deviation `δ = z - z✱` from the expansion point, the Hessian's `O(‖δ‖²)`; only
-the width of `[J] - A`, which shrinks with the box, makes up part of the gap.
-`abstrErrLin` stays the real layer's Hessian box; `FloatHessModel.hessRemainder` is its
-float run, where the model carries one.
+## Output
+* the box enclosing the linearization remainder
 
 ## References
 

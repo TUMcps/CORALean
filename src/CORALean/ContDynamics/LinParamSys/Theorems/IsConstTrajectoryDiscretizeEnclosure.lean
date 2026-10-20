@@ -14,17 +14,35 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # A sampled constant-parameter run is a run of the discretized system
 
-`LinearSys.IsCanonicalTrajectory.discretizeEnclosure` at `'constParam'`: one matrix `A` is
-fixed over the whole run, so `toLinearSys` hands the sampled recursion to
-`discretize_step` unchanged, and the witness each step needs is
-`exp_mem_expIntervalEnclosure` at that member of the box.
+`LinearSys.IsCanonicalTrajectory.discretizeEnclosure` at `'constParam'`: one matrix `A` is fixed
+over the whole run, so `toLinearSys` hands the sampled recursion to `discretize_step` unchanged,
+and the witness each step needs is `exp_mem_expIntervalEnclosure` at that member of the box. The
+discrete input is `LinearSys.stepInput` at the member, not a set-valued object of its own, which
+is the reading `inputReach` already gets at `'constParam'`. `hε` is stated at the box, so it is
+checkable before a member is fixed.
 
-The discrete input is `LinearSys.stepInput` at the member, not a set-valued
-object of its own, which is the reading `inputReach` already gets at
-`'constParam'`: what one run's input contributed is a vector, and which matrix
-propagated it is fixed by the run.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `Ud` – set of sampled inputs
+* `x` – trajectory
+* `u` – input signal
+* `A` – system matrix member
+* `Δt` – sampling time
+* `η` – Taylor order
 
-`hε` is stated at the box, so it is checkable before a member is fixed.
+## Hypotheses
+* `traj` – constant-parameter trajectory
+* `hΔt` – sampling time nonnegative
+* `hT` – nonnegative times lie in the time set
+* `hU` – input set bounded
+* `hUd` – sampled inputs lie in `Ud`
+* `hε` – order admissible
+
+## Conclusion
+* the samples are a trajectory of the discretized system
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

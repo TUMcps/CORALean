@@ -17,6 +17,17 @@ whole flow: `e^{A(t_k + s)} x₀ = e^{A t_k}(e^{As} x₀)`, the inner factor in 
 first window by `timeIntervalStepFloat_outer` and the outer one carried by
 `reachStepkFloat_outer`. The member is the same in both, which is the
 constant-parameter reading; a `IsConstTrajectory` with no input is such a flow.
+
+## Inputs
+* `sys` – system
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Hypotheses
+* none
+
+## Conclusion
+* the returned windows hold every member's flow at every time
 -/
 
 -- Authors:       Claude Opus 5.5

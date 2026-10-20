@@ -12,6 +12,24 @@ The returned `(x', y')` is `(x + Δx, y + Δy)` for an iterate `(x, y)`, the sta
 2-norm below `tol`, the code's own stopping test, and, when the block matrix `M` is invertible
 there, solving `A Δx + C Δy = -f` and `D Δx + F Δy = -g`. The test is on the step: `f = 0` and
 `g = 0` at `(x', y')` are not claimed.
+
+## Inputs
+* `sys` – system
+* `A` – Jacobian block function in the state
+* `C` – dynamics Jacobian block function in the algebraic variable
+* `D` – constraint Jacobian block function in the state
+* `F` – constraint Jacobian block function in the algebraic variable
+* `tol` – step tolerance
+* `fuel` – iteration bound
+* `x₀` – initial differential state
+* `y₀` – initial algebraic guess
+* `u₀` – fixed input
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is a Newton step of stacked norm below the tolerance
 -/
 
 -- Authors:       Claude Opus 5.5

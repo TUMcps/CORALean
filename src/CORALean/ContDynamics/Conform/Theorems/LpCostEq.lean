@@ -17,6 +17,29 @@ At `α ≥ 0`, `n^T z` with `n = [0, ∑_k ω_k σ^T G̃(I_m, t_k)]` (15) is
 (`intervalNorm_smul`). The center
 `c` does not enter: [1, Eq. 11] moves it to the origin first, which is `n`'s zero block.
 
+## Inputs
+* `sys` – plant
+* `ιX` – index type of the initial generators
+* `ιW` – index type of the disturbance generators
+* `ιV` – index type of the noise generators
+* `GX` – initial template generators
+* `αX` – initial stretch factors
+* `GW` – disturbance template generators
+* `αW` – disturbance stretch factors
+* `GV` – noise template generators
+* `αV` – noise stretch factors
+* `σ` – norm weights
+* `ω` – step weights
+* `K` – horizon
+
+## Hypotheses
+* `hαX` – initial factors nonnegative
+* `hαW` – disturbance factors nonnegative
+* `hαV` – noise factors nonnegative
+
+## Conclusion
+* the weighted interval-norm cost is linear in the stretch factors
+
 ## References
 
 * [1] M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". In Proc. of

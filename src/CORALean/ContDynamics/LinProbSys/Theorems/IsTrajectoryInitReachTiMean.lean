@@ -17,6 +17,40 @@ hypotheses are those of `initReach_ti_outer`. Only the mean: that the state is i
 the probability of its confidence part is not proved, see
 `references/coverage/contDynamics/linProbSys.md`, row `initReach`.
 
+## Inputs
+* `sys` – system
+* `Veig` – eigenvector matrix
+* `lambda` – eigenvalues
+* `Rinit` – initial probabilistic zonotope
+* `gammaInit` – confidence level of the initial set
+* `U` – input zonotope
+* `uTrans` – constant input
+* `r` – step size
+* `k` – Taylor order minus two
+* `gamma` – confidence level
+* `originContained` – input set holds the origin
+* `Ω` – sample space
+* `P` – probability measure
+* `T` – time set
+* `x₀` – initial state
+* `u` – input signal
+* `x` – state process
+* `t` – time
+
+## Hypotheses
+* `hr` – step positive
+* `hε` – order admissible
+* `hA` – matrix invertible
+* `hoc` – origin flag implies zero constant input
+* `h0` – origin lies in `U`
+* `traj` – probabilistic trajectory
+* `hT` – first step lies in the time set
+* `ht0` – time nonnegative
+* `htr` – time at most the step
+
+## Conclusion
+* the run's expectation at `t` lies in the time-interval set
+
 ## References
 
 * [1] `contDynamics/@linProbSys/initReach.m`

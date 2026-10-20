@@ -11,6 +11,17 @@ public import CORALean.ContDynamics.NonlinDASys.Definitions.LinPoint
 The sets of one DAE linearization step at the linearization `L`, [1, Alg. 1] line 18: the
 fixed-step `NonlinDASys.linReach` at `L`'s Jacobians, point and errors (CORA's tuning).
 
+## Inputs
+* `sys` – system
+* `L` – linearization
+* `Rinit` – start set
+* `U` – input zonotope
+* `Δt` – step size
+* `η` – Taylor order
+
+## Output
+* the time-point set, the time-interval set and the joint set of the step
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic

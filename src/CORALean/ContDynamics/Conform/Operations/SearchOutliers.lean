@@ -16,6 +16,15 @@ The value is the least leaf cost; `searchOutliers_optimal` proves it the least c
 removals of at most `n_out` points. Written over any linear order, so it runs at whatever
 scalar the costs come in.
 
+## Inputs
+* `P` – data point type
+* `β` – ordered cost type
+* `cost` – cost of a set of points
+* `bd` – boundary points of a set
+
+## Output
+* the least cost over the leaves of the search tree
+
 ## References
 
 * [1] L. Lützow, M. Eichelbeck, M. J. Kochenderfer and M. Althoff. "Zono-Conformal

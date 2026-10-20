@@ -15,6 +15,28 @@ a run of `ẋ = A δ + ũ` for any linear system `lsys` with system matrix `A`, 
 nonlinear one, `ũ` is measurable as the field less a continuous drift, and the sets are plain sets,
 `(S := 𝒮)`: the start and the input set are what the step encloses them in, the run's own sets
 being in whatever representation.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+* `lsys` – linear system
+* `xs` – expansion point
+* `X₀` – deviation start set
+* `V` – deviation input set
+* `y` – output trajectory
+
+## Hypotheses
+* `traj` – trajectory of the system
+* `hTm` – time set measurable
+* `h₀` – start deviation in start set
+* `hV` – remainder inputs in input set
+
+## Conclusion
+* the deviation from the point is a linear trajectory
 -/
 
 -- Authors:       Claude Opus 5.5

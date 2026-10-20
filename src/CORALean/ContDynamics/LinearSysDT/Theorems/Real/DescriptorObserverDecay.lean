@@ -16,6 +16,30 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 proof: `e₊ = (TA - ḠC) e`, and the Schur complement of the block `W` (`posDef_schur_of_fromBlocks`)
 is `μW - (TA - ḠC)ᵀ W (TA - ḠC) ≻ 0`, since `WTA - YC = W(TA - ḠC)`.
 
+## Inputs
+* `E` – descriptor matrix
+* `T` – decoupling matrix
+* `A` – state matrix
+* `N` – measurement decoupling matrix
+* `Gbar` – observer gain
+* `B` – input matrix
+* `C` – output matrix
+* `W` – Lyapunov matrix
+* `μ` – decay rate
+* `u` – input at this step
+* `x` – state
+* `x_plus` – next state
+* `xhat` – estimate
+
+## Hypotheses
+* `hTN` – decoupling identity holds
+* `hW` – Lyapunov matrix positive definite
+* `hLMI` – block inequality positive definite
+* `hE` – the descriptor step holds
+
+## Conclusion
+* the weighted estimation error shrinks by the decay rate
+
 ## References
 
 * [1] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on

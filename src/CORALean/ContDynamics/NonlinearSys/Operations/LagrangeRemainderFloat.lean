@@ -20,6 +20,16 @@ dyadic `11/64`, an upper bound on `1/6` that `FloatOps` can form without a divis
 `E` is data here as in the exact layer: `FloatHessModel` carries Hessians and no third derivative,
 so `linReachFloat` does not call this; it stands for a model that does.
 
+## Inputs
+* `d` – dimension
+* `n` – output dimension
+* `E` – third-derivative bounds
+* `Z` – zonotope of states and inputs
+* `zs` – expansion point
+
+## Output
+* the symmetric float box bounding the cubic remainder
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative

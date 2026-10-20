@@ -13,6 +13,17 @@ sampling it at `dt` gives the original state matrix. `discretize` returns the ca
 so `A` is what there is to compare. [1] holds for any `L` that is an exponential logarithm,
 the principal one or not; no claim that CORA's `logm` is the only one.
 
+## Inputs
+* `sys` – discrete-time system
+* `L` – matrix logarithm candidate
+
+## Hypotheses
+* `hdt` – sampling time nonzero
+* `hL` – `L` is a matrix logarithm of the state matrix
+
+## Conclusion
+* discretizing the converted system gives back the state matrix
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/linearSys.m`

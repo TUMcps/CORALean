@@ -17,6 +17,18 @@ iterations of the loop (`k = 0` is the second line); the listing's `for k = 1…
 "`h` time intervals" are the caller's `k`. A set has no covariance, so `R̄(r)` and `η(·, γ)`
 enter with covariance `0`.
 
+## Inputs
+* `sys` – system
+* `r` – step size
+* `Rhat` – hull of the first interval
+* `Rbar` – deterministic hull of one step
+* `Runder` – probabilistic part of one step
+* `γ` – confidence level
+* `k` – number of iterations
+
+## Output
+* the probabilistic hull after `k` iterations of the loop
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

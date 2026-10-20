@@ -15,6 +15,32 @@ The paper takes a bound of `X_{k-1}` as available, which is the first hypothesis
 `exactUncertainSet_succ`. The steps are hypotheses on the sets: how each bound is computed is [1,
 Thm. 5], [1, Property 1] and [1, Property 2].
 
+## Inputs
+* `n` – state dimension
+* `nw` – disturbance dimension
+* `nv` – noise dimension
+* `p` – output dimension
+* `sys` – system
+* `g` – measurement map
+* `W` – disturbance set
+* `V` – noise set
+* `X₀` – initial set
+* `y` – measured outputs
+* `k` – step
+* `Xt` – bound of the previous set
+* `Xbar` – bound of the predicted set
+* `Xe` – bound of the consistent set
+* `Xt'` – bound of the intersection
+
+## Hypotheses
+* `hprev` – bound holds for previous set
+* `hbar` – bound holds for prediction
+* `he` – bound holds for consistent set
+* `hint` – bound holds for intersection
+
+## Conclusion
+* the next exact set lies in the new bound
+
 ## References
 
 * [1] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".

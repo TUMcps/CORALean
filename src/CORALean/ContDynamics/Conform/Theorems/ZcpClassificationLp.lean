@@ -16,6 +16,24 @@ linear program (20). Each data point carries one class `c⁽ᵐ⁾`, its output 
 (20a) is the cost (12a), by [1, Lemma 4]. Multi-label data enter as several one-hot points,
 as the paper builds them.
 
+## Inputs
+* `M` – data point index type
+* `E` – evaluation index type
+* `nr` – size index of `R`
+* `f` – predictions per point
+* `D` – derivatives per point
+* `c` – class per point
+* `Gu` – uncertainty generators
+* `R` – cost rotation matrices
+* `Deval` – evaluation derivatives
+* `α` – generator scaling
+
+## Hypotheses
+* `hα` – scalings nonnegative
+
+## Conclusion
+* the class constraints are those of the linear program and the cost is linear in `α`
+
 ## References
 
 * [1] L. Lützow, M. Eichelbeck, M. J. Kochenderfer and M. Althoff. "Zono-Conformal

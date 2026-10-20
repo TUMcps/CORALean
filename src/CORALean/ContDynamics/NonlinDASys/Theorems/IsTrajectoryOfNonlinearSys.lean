@@ -9,6 +9,22 @@ public import CORALean.ContDynamics.NonlinDASys.Operations.Basic
 
 With `y t := h (x t) (u t)`, which `sound` makes satisfy the constraint. Together with
 `TrajectoryToNonlinearSys` the elimination of `y` loses no run and adds none.
+
+## Inputs
+* `sys` – system
+* `red` – reduced model
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input signal
+* `z` – output signal
+
+## Hypotheses
+* `traj` – reduced-system trajectory
+
+## Conclusion
+* the run with the reduced algebraic variable is a DAE trajectory
 -/
 
 -- Authors:       Claude Opus 5.5

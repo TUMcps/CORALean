@@ -14,6 +14,30 @@ The `R` of the step `linReachPoly` returns is not only what the factor box names
 because both summands have run `dependent` and so have no independent block for `point`
 to miss — `subsetAt_unitBox`. That is what lets a caller discharge the step's
 confinement against a set it can compute, as `confinement_of_subset` asks.
+
+## Inputs
+* `sys` – system
+* `U` – input polynomial zonotope
+* `A` – state Jacobian
+* `B` – input Jacobian
+* `xs` – state expansion point
+* `us` – input expansion point
+* `H` – Hessian family
+* `E` – third-derivative bounds
+* `Δt` – step size
+* `η` – Taylor terms
+* `errorOrder` – order for the error
+* `intermediateOrder` – intermediate order
+* `Rinit` – start polynomial zonotope
+* `abstrerr` – previous abstraction error
+* `fuel` – bound for the search
+* `step` – returned step
+
+## Hypotheses
+* `h` – search returned the step
+
+## Conclusion
+* the step keeps the linearization and certifies a whole candidate region
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -8,16 +8,20 @@ public import CORALean.ContDynamics.Reach.Operations.Steps
 /-!
 # Nonlinear reachability in floats: CORA's `nonlinearSys/reach` at `alg = 'lin'`
 
-`ẋ = f(x, u)`, `u(t) ∈ U` arbitrary in time, from `X₀`, computed in `𝕋` from a
-`FloatModel` of `f`: `N = (tFinal - tStart) / Δt` re-linearized steps
-(`relinRunFloat`), each returning its set over the whole step. `N` is read as
-`LinearSys.reachFloatInput` reads it, through `Reach.steps`, and `none` is
-returned where it is no natural number or a step fails.
+`ẋ = f(x, u)`, `u(t) ∈ U` arbitrary in time, from `X₀`, computed in `𝕋` from a `FloatModel` of
+`f`: `N = (tFinal - tStart) / Δt` re-linearized steps (`relinRunFloat`), each returning its set
+over the whole step. `N` is read as `LinearSys.reachFloatInput` reads it, through `Reach.steps`,
+and `none` is returned where it is no natural number or a step fails. The real layer's same loop
+is `NonlinearSys.relinReach`, given certificates; this one computes its own, and its guarantee
+`reachFloat_outer` is against the real system's runs through `FloatModel.Encloses`.
 
-`NonlinearSys.relinReach` and `WithSteps.reachUnion` are the real layer's same
-loop, given the linearizations as certificates; this one computes its own, and its
-guarantee `reachFloat_outer` is against the real system's runs through
-`FloatModel.Encloses`, with no certificate and no confinement asked of anyone.
+## Inputs
+* `fm` – float model
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Output
+* the time-interval sets of all steps, or none
 
 ## References
 

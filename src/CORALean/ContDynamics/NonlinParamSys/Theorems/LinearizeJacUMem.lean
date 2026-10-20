@@ -9,6 +9,21 @@ public import CORALean.ContDynamics.NonlinParamSys.Theorems.JacobianFamilyMem
 
 For a system affine in `p` and differentiable in the input, `∂f/∂u (x*, u*, p)` lies in the matrix
 zonotope `zB` of `linearize` for every `p` of the parameter box (`jacobianFamily_mem` at the input).
+
+## Inputs
+* `sys` – parametric system
+* `xs` – state expansion point
+* `us` – input expansion point
+* `I` – parameter box
+* `p` – parameter vector
+
+## Hypotheses
+* `hAff` – the dynamics are affine in the parameter
+* `hd` – differentiable in the input
+* `hp` – `p` lies in the box
+
+## Conclusion
+* the input Jacobian at the parameter lies in `zB`
 -/
 
 -- Authors:       Claude Sonnet 5.5

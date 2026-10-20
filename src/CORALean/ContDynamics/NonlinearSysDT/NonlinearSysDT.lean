@@ -8,18 +8,13 @@ public import CORALean.ContSet.ContSet.ContSet
 # Discrete-time nonlinear systems: the representation
 
 CORA's `nonlinearSysDT`: `x(k+1) = f(x(k), u(k))` with the output equation `y(k) = g(x(k), u(k))`,
-the output dimension `q` a field as in `NonlinearSys`, time-invariant as `NonlinearSys`'s field
-is, and CORA's sampling time `dt`; runs are indexed by the step `k`, the time `k dt`. No flow,
-no time integral and no `MatExp`: a step is one evaluation of `f`, not a solution of an ODE.
-
-Simpler than `NonlinearSys` for the same reason `LinearSysDT` is simpler than
-`LinearSys` — no continuous time to sample and no discretization step, so a
-linearization here is already the discrete system a step is taken against.
-
-`IsTrajectory` mirrors `NonlinearSys.IsTrajectory` with `step` in place of `flow`, the output
-`y k = g (x k) (u k)` carried as there, and `LinearSysDT.IsCanonicalTrajectory` with `f` in place
-of `A x + u`. `IsTrajectoryOn K` is the bounded form `LinearSysDT` carries, for the same reason: a
-run known only for its first `K` steps.
+the output dimension `q` a field as in `NonlinearSys`, time-invariant, and CORA's sampling time
+`dt`; runs are indexed by the step `k`, the time `k dt`. No flow, no time integral and no
+`MatExp`: a step is one evaluation of `f`, not a solution of an ODE, so a linearization here is
+already the discrete system a step is taken against. `IsTrajectory` mirrors
+`NonlinearSys.IsTrajectory` with `step` in place of `flow`, the output `y k = g (x k) (u k)`
+carried as there. `IsTrajectoryOn K` is the bounded form `LinearSysDT` carries: a run known only
+for its first `K` steps.
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

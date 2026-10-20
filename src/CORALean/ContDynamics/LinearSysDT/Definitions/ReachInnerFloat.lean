@@ -7,22 +7,26 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorFloat
 /-!
 # An inner approximation of a reachable set, from a float run
 
-The float counterpart of `reachInner`: the computed float run minus the error
-that run accumulated, put inside `reachSetExact` — the *exact*, real-valued
-reachable set, over the nominal parts of `R₀` and `U` — by
-`reachInnerFloat_inner`.
+The float counterpart of `reachInner`: the computed float run minus the error that run
+accumulated, put inside `reachSetExact` — the *exact*, real-valued reachable set, over the
+nominal parts of `R₀` and `U` — by `reachInnerFloat_inner`. A float computation certifying
+something about the true reachable set is what the two-layer design is for: `reachInnerFloat` is
+`Set (Vec ℝ n)`, the same real space every layer denotes into. `minkowskiDiff` is a specification
+and computes nothing, as at `reachInner`; a representation-level version would first need a real
+zonotope standing for the float run's whole construct, which no operation here builds.
 
-A float computation certifying something about the true reachable set is
-exactly what the two-layer design is for: `reachInnerFloat` is `Set (Vec ℝ n)`,
-the same real space every layer denotes into, so a check against it answers for
-the exact system regardless of which layer computed the enclosure.
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – step
 
-`minkowskiDiff` is a specification and computes nothing, exactly as at
-`reachInner`, so this is a guarantee about a set rather than an object a later
-step could consume — a representation-level version would first need a real
-zonotope standing for the float run's *whole* construct, nominal part and error
-box together, which no operation here builds; `reachErrorFloat`'s own
-`Real.Zonotope` values are the model for what one would look like.
+## Hypotheses
+* `ho` – order positive
+
+## Output
+* the computed float run minus its accumulated error, an inner approximation
 -/
 
 -- Authors:       Claude Sonnet 5

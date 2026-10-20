@@ -10,6 +10,25 @@ public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 The integral equation is anchored at `0`; subtracting it at `a` from it at `b` leaves the
 integral from `a` to `b`, the field integrable on both pieces. This is the form every estimate
 over a window `[a, b]` reads, where a classical run read the mean value inequality.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+* `y` – output trajectory
+* `a` – first time
+* `b` – second time
+
+## Hypotheses
+* `traj` – trajectory of the system
+* `ha` – first time in time set
+* `hb` – second time in time set
+
+## Conclusion
+* the state change equals the field integral between the times
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,18 @@ public import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTStep
 `k₊ = k + p - 1`, each input once. By induction on `k`: (11) is `toLinearSysDT_step`, and
 `Btilde_succ` splits `B̃ᵢ(k+1)` into the new inputs, `feed`, and `Ā_ext` times the old sum.
 
+## Inputs
+* `sys` – ARX system
+* `y` – outputs
+* `u` – inputs
+* `k` – step
+
+## Hypotheses
+* `hy` – the ARMAX recursion holds
+
+## Conclusion
+* the window is determined by the first window and the inputs
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

@@ -9,22 +9,22 @@ public import CORALean.ContDynamics.Reach.Definitions.InputParams
 /-!
 # Backward reachability in the `∃` reading, computed
 
-`backReachSetExistsExact`'s step at a representation: `plus` against the negated
-input set, then `mtimes Ainv` for the preimage under `A`, taken as the image
-under a left inverse the caller hands in as `options.Ainv`. `sys` is carried and never read — the
-dynamics enter through `backReachExists_outer`'s `hA` alone.
+`backReachSetExistsExact`'s step at a representation: `plus` against the negated input set, then
+`mtimes Ainv` for the preimage under `A`, taken as the image under a left inverse the caller hands
+in as `options.Ainv`. `sys` is carried and never read — the dynamics enter through
+`backReachExists_outer`'s `hA` alone. Total, where `backReachForall` is `Option`-valued and takes
+`diff`: both steps are the ordinary outer ones. `negU` is `params.U`, a set and not `-U`: no class
+here negates a set. The caller supplies a representation enclosing `-U`, which for a centrally
+symmetric input set is `U` itself. No `reduce` in the loop: `Zonotope.plus` appends generators, so
+the result grows with `k`, left out to keep what this asks for down to two classes.
 
-Total, and with no operation parameter, where `backReachForall` is `Option`-
-valued and takes `diff`: both steps here are the ordinary outer ones, `Plus`
-and `Mtimes`, and neither can fail to certify what it returns.
+## Inputs
+* `_sys` – system
+* `params` – reachability parameters with inputs
+* `options` – backward reachability options
 
-`negU` is `params.U`, a set and not `-U`: no class here negates a set, and `Scalar` gives
-`Mat 𝕋` no ring structure to build `-1` in. The caller supplies a representation
-enclosing `-U`, which for a centrally symmetric input set is `U` itself.
-
-No `reduce` in the loop, where `backReachForall` had nothing for one to bound:
-`Zonotope.plus` appends generators, so at `Zonotope` the result does grow with
-`k`. It is left out to keep what this asks for down to two classes.
+## Output
+* the computed backward reachable set
 -/
 
 -- Authors:       Claude Sonnet 5

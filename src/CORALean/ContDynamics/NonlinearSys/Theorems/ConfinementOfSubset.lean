@@ -8,22 +8,49 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuterInputSo
 /-!
 # Confinement, discharged from the computed sets
 
-`NonlinearSysDT.confinement_of_subset` gets confinement at step `k` from
-`reach_outer_on`, which places `x k` asking confinement strictly below `k`. No
-continuous statement does that: `IsTrajectory.linearize` spends the certificate at
-every time of the window it is given, so `relinTimeInterval_outer` needs step
-`i`'s own confinement to place `x t` inside step `i`. Checking CORA's
-`R([iΔt, (i+1)Δt]) ⊆ R_i` therefore closes no induction on its own.
+`NonlinearSysDT.confinement_of_subset` gets confinement at step `k` from `reach_outer_on`, which
+asks confinement strictly below `k`. No continuous statement does that: `IsTrajectory.linearize`
+spends the certificate at every time of the window, so `relinTimeInterval_outer` needs step `i`'s
+own confinement. What closes the induction is `confined_of_ball`: `relinReach_outer_inputSolution`
+at horizon `i` supplies the value at the step's start from confinement below `i`, and the check
+becomes a ball — inflate step `i`'s computed set by `ρ > MΔt` and ask that it lie in `R_i`. `M`
+bounds the field over `R_i`, so it is data like the abstraction error.
 
-What does close it is a second ingredient the discrete case has no use for:
-`confined_of_ball`, which places the run over a whole step from its value at the
-step's start alone. `relinReach_outer_inputSolution` at horizon `i` supplies that
-value from confinement below `i`, and the check becomes a ball — inflate step
-`i`'s computed set by `ρ > MΔt` and ask that it lie in `R_i`, which is a check on
-computed sets and a fatter `R` than CORA's, never on the trajectory.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+* `steps` – linearization steps
+* `Δt` – step size
+* `N` – number of steps
+* `M` – field bound
+* `ρ` – ball radius
+* `y` – output trajectory
+* `η` – Taylor terms
+* `o` – maximum order
 
-`M` bounds the field over `R_i`, so it is data of the same kind as the
-abstraction error, and `hρ` is strict for the reason `confined_of_ball` is.
+## Hypotheses
+* `traj` – trajectory of the system
+* `hΔt` – step size positive
+* `hT` – horizon inside time set
+* `hε` – step norm small enough
+* `hconv` – input sets convex
+* `hclosed` – input sets closed
+* `hbdd` – input sets bounded
+* `hRconv` – remainder input sets convex
+* `hRclosed` – remainder input sets closed
+* `hRbdd` – remainder input sets bounded
+* `hM₀` – bound nonnegative
+* `hM` – field bounded on regions
+* `hρ` – radius exceeds travel distance
+* `ho` – order positive
+* `hsub` – inflated sets inside regions
+
+## Conclusion
+* the trajectory stays in each step's region over its window
 -/
 
 -- Authors:       Claude Opus 5

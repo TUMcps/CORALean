@@ -18,6 +18,15 @@ the selection matrix `outputSel` as the output equation (`C_tilde`: its value is
 Jacobians the matrix itself and zero) and the stacked reference inputs `feed p u_ref`
 (`getStackedU`). Soundness is `computeGOFloat_outer`.
 
+## Inputs
+* `sys` – ARX system
+* `fm` – float Jacobian model
+* `x0` – float initial window
+* `u_ref` – float reference inputs
+
+## Output
+* the GO parameters as enclosing intervals
+
 ## References
 
 * [1] `contDynamics/@nonlinearARX/computeGO.m`

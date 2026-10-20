@@ -14,22 +14,46 @@ public import Mathlib.Topology.Algebra.Module.ModuleTopology
 /-!
 # A twice-differentiable field, taken one order further
 
-[1, Sec. 4.1], and `AbstractionErrorOfHessian` carried one order up: where
-`A, B` are the derivative of `f` at `(xs, us)` and `Q` is (half) the exact
-Hessian there, `lagrangeRemainder` certifies what is left of `f` once the
-affine part *and* the exact quadratic part are both subtracted, provided `E`
-bounds the third derivative entrywise on a neighbourhood.
+[1, Sec. 4.1], and `AbstractionErrorOfHessian` carried one order up: where `A, B` are the
+derivative of `f` at `(xs, us)` and `Q` is half the exact Hessian there, `lagrangeRemainder`
+certifies what is left of `f` once the affine and the exact quadratic part are subtracted,
+provided `E` bounds the third derivative entrywise. The result is an `AbstractionError` of the
+*shifted* field, as the type has no slot for a quadratic term. A caller wanting a certificate for
+`f` itself must enclose the quadratic term separately; `precompStatError`'s `Q` is state-only,
+this one's is over the full stacked `(x, u)`, so the two do not yet compose.
 
-The result is stated as an `AbstractionError` of the *shifted* field, its exact
-quadratic term subtracted out: `AbstractionError` has no slot for one, and
-shifting it there reuses that type rather than inventing one. A caller wanting
-a certificate for `f` itself still has to enclose the quadratic term
-separately — CORA's `sq(D, ·)`; this repository's dependency-preserving
-analogue is `precompStatError`, whose own `Q` is state-only, while this file's
-is exact over the full stacked `(x, u)`, so the two do not yet compose.
+## Inputs
+* `f` – field
+* `A` – state Jacobian
+* `B` – input Jacobian
+* `xs` – state expansion point
+* `us` – input expansion point
+* `R` – state region
+* `U` – input region
+* `F` – stacked field
+* `C` – neighbourhood
+* `Z` – zonotope of states and inputs
+* `Ff` – first derivative
+* `Hf` – second derivative
+* `Ef` – third derivative
+* `E` – third-derivative bounds
+* `Q` – half the Hessian
 
-`Ef` is `Hf`'s own derivative, the step `Hf` is from `Ff`; `hEb` bounds it as
-`hHb` bounds `Hf` in the order-one file.
+## Hypotheses
+* `hf` – stacked field agrees with field
+* `hC` – neighbourhood convex
+* `hzs` – expansion point in neighbourhood
+* `hZC` – zonotope in neighbourhood
+* `hZ` – zonotope covers regions
+* `hF` – first derivative exists
+* `hH` – second derivative exists
+* `hE` – third derivative exists
+* `hEb` – third derivative bounded
+* `hA` – first derivative gives matrices
+* `hQ` – second derivative gives half matrix
+
+## Conclusion
+* the Lagrange remainder box certifies the shifted field
 
 ## References
 

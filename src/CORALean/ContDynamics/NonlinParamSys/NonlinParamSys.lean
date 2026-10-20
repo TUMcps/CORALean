@@ -10,18 +10,13 @@ public import Mathlib.Topology.Algebra.Module.ModuleTopology
 # Continuous-time nonlinear systems with uncertain parameters
 
 CORA's `nonlinParamSys`: `ẋ(t) = f(x(t), u(t), p(t))` with the output equation `y = g(x, u, p)`,
-`NonlinearSys` with a third argument ranging over a parameter set of dimension `q`, the output
-dimension `r` a field as `NonlinearSys`'s is; both readings carry the output
-`y t = g (x t) (u t) (p t)`. Two readings, as CORA distinguishes them: `IsTrajectory` lets `p` vary
-freely over time, a fresh element of `P` at every instant; `IsConstTrajectory` fixes one
-`p ∈ construct P` for the whole run. Every constant trajectory is a time-varying one
-(`isConstTrajectory_toIsTrajectory`); the converse fails and is not stated.
-`NonlinearSys.toNonlinParam` and `NonlinParamSys.toNonlinearSys` are the two embeddings.
-
-Both are Carathéodory runs, as `NonlinearSys.IsTrajectory` is, `x t = x 0 + ∫₀ᵗ f(x, u, p)`
-with the integrand measurable on `T` and integrable from `0`, so a jumping input or parameter is
-admissible. [1, Def. 1] states the reachable set for Lipschitz-continuous inputs and time-varying
-`p(t) ∈ P`, whose classical runs are among these (`IsConstTrajectory.of_hasDerivWithinAt`).
+`NonlinearSys` with a third argument ranging over a parameter set of dimension `q`. Two
+readings, as CORA distinguishes them: `IsTrajectory` lets `p` vary freely over time;
+`IsConstTrajectory` fixes one `p ∈ construct P` for the whole run. Every constant trajectory is
+a time-varying one (`isConstTrajectory_toIsTrajectory`); the converse fails and is not stated.
+`NonlinearSys.toNonlinParam` and `NonlinParamSys.toNonlinearSys` are the two embeddings. Both
+are Carathéodory runs, so a jumping input or parameter is admissible; [1, Def. 1] states the
+reachable set for Lipschitz-continuous inputs and time-varying `p(t) ∈ P`.
 
 ## References
 

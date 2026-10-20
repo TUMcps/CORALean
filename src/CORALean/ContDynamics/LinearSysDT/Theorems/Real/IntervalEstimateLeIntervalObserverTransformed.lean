@@ -19,6 +19,31 @@ Eq. 63 for the transformed system). By induction on Eq. 24 of [1, Thm. 2], `S e`
 transformed bounds less `S x̂_k` for every reachable error `e` its Eq. 72, and [1, Lemma 2] at
 `S⁻¹` bounds `e` itself its Eq. 78; the box of Alg. 1 is the hull of the reachable error.
 
+## Inputs
+* `sys` – system
+* `L` – observer gain
+* `S` – coordinate transformation
+* `X₀` – initial zonotope
+* `W` – disturbance zonotope
+* `V` – noise zonotope
+* `wl` – lower disturbance bound
+* `wu` – upper disturbance bound
+* `vl` – lower noise bound
+* `vu` – upper noise bound
+* `u` – inputs
+* `y` – measurements
+* `k` – step
+* `i` – coordinate
+
+## Hypotheses
+* `hS` – transformation invertible
+* `hR` – transformed error matrix nonnegative
+* `hW` – disturbance zonotope within the bounds
+* `hV` – noise zonotope within the bounds
+
+## Conclusion
+* the estimator's bounds are tighter than the transformed observer's
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

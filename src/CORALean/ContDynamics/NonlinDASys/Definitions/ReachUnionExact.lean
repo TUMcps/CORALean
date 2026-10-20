@@ -11,6 +11,14 @@ public import CORALean.ContDynamics.NonlinDASys.Definitions.WithSteps
 differential-algebraic system itself, on `[0, tFinal]` from a bare initial set under inputs in
 `ode.U`, at some time of that horizon. `reachYUnionExact` is the same for the algebraic part
 `y t`. Nothing here mentions the reduction: it is how `reach` encloses these sets.
+
+## Inputs
+* `sys` – system with steps
+* `tFinal` – horizon
+* `X` – initial set
+
+## Output
+* the states some trajectory is at within the horizon
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,23 @@ public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
 `LinearSys.exp_mem_expIntervalFloat` with the member `A ∈ sys.A` in place of
 the stored point: `t • A` is in `[tLo, tHi] · sys.A` by `Interval.smul_outer`,
 and `MatExp.exp_mem_expIntervalEnclosure` does the rest at an admissible order.
+
+## Inputs
+* `sys` – system
+* `tLo` – lower time bound
+* `tHi` – upper time bound
+* `η` – Taylor order
+* `A` – system matrix member
+* `t` – time
+
+## Hypotheses
+* `hη` – order admissible
+* `hA` – `A` lies in the matrix set
+* `htLo` – time at least the lower bound
+* `htHi` – time at most the upper bound
+
+## Conclusion
+* the member's exponential lies in the float enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

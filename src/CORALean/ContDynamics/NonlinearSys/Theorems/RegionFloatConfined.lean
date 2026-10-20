@@ -14,6 +14,31 @@ inflated box `X ⊕ [-δ, δ]`, which holds a sup-norm ball of radius `δ > MΔt
 about every state of `X`. Inside it the field lies in the model's box `F`, so
 each coordinate moves at a rate in `[F_i⁻, F_i⁺]`; the integral of that rate keeps it in
 `X_i + [min(0, ΔtF_i⁻), max(0, ΔtF_i⁺)]` — the Picard step, taken twice.
+
+## Inputs
+* `fm` – float model
+* `sys` – system
+* `Δt` – step size
+* `X` – state box
+* `Ub` – input box
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+* `y` – output trajectory
+* `a` – window start
+
+## Hypotheses
+* `h` – model encloses system
+* `hΔt` – step size nonnegative
+* `traj` – trajectory of the system
+* `hU` – inputs in input box
+* `hT` – window inside time set
+* `hxa` – window start state in state box
+
+## Conclusion
+* the trajectory stays in the checked box over the window
 -/
 
 -- Authors:       Claude Opus 5.5

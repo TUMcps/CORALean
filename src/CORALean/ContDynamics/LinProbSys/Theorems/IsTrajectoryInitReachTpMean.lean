@@ -16,6 +16,35 @@ state at `r` lies in the set of `Rfirst.tp`: the mean of the run is the one of
 hypotheses are those of `initReach_tp_outer`. Only the mean; the probability is
 `IsTrajectory.initReach_tp_prob`.
 
+## Inputs
+* `sys` – system
+* `Veig` – eigenvector matrix
+* `lambda` – eigenvalues
+* `Rinit` – initial probabilistic zonotope
+* `gammaInit` – confidence level of the initial set
+* `U` – input zonotope
+* `uTrans` – constant input
+* `r` – step size
+* `η` – Taylor order
+* `gamma` – confidence level
+* `originContained` – input set holds the origin
+* `Ω` – sample space
+* `P` – probability measure
+* `T` – time set
+* `x₀` – initial state
+* `u` – input signal
+* `x` – state process
+
+## Hypotheses
+* `hr` – step positive
+* `hε` – order admissible
+* `hA` – matrix invertible
+* `traj` – probabilistic trajectory
+* `hT` – first step lies in the time set
+
+## Conclusion
+* the run's expectation at `r` lies in the time-point set
+
 ## References
 
 * [1] `contDynamics/@linProbSys/initReach.m`

@@ -8,20 +8,37 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
 /-!
 # Narrowing a factor narrows the error with it
 
-What the polynomialization variant buys, in one statement: re-parametrizing
-factor `k` of the initial set onto a sub-interval — [1, Lemma 4]'s `getSubset`, which is
-how a set is split — re-parametrizes the *abstraction error* by the same
-substitution. The error over a piece of the initial set is a piece of the error,
-not the whole of it.
+What the polynomialization variant buys: re-parametrizing factor `k` of the initial set onto a
+sub-interval — [1, Lemma 4]'s `getSubset`, which is how a set is split — re-parametrizes the
+*abstraction error* by the same substitution. An interval error cannot say this:
+`AbstractionError`'s `L` is a set, so the same `L` answers for every subset of `R` and splitting
+buys nothing on the error term; here only `W`, the part that had to be boxed, stays put. The
+proof `show`s the goal back into `L.p` and `pZ.p` first: the two `Fin.cast`s are the same map on
+defeq index types but not the same term.
 
-An interval error cannot say this. `AbstractionError`'s `L` is a set, so the same
-`L` answers for every subset of `R` and splitting buys nothing on the error term;
-here only `W`, the part that had to be boxed, stays put.
+## Inputs
+* `f` – field
+* `A` – state Jacobian
+* `B` – input Jacobian
+* `xs` – state expansion point
+* `us` – input expansion point
+* `pZ` – region polynomial zonotope
+* `Ba` – factor domain
+* `U` – input region
+* `L` – error polynomial zonotope
+* `W` – remainder polynomial zonotope
+* `cert` – polynomial certificate
+* `k` – factor index
+* `cen` – sub-interval center
+* `rad` – sub-interval radius
+* `Ba'` – narrowed factor domain
 
-The proof `show`s the goal back into `L.p` and `pZ.p` before touching it: the
-certificate's `Fin.cast` is at the counts `getSubset` leaves, `getSubset_point`'s
-at the counts it was handed, and the two are the same map on defeq index types
-but not the same term.
+## Hypotheses
+* `hp` – factor counts agree
+* `hBa'` – narrowed domain maps into domain
+
+## Conclusion
+* the narrowed sets carry a polynomial certificate with the same remainder
 
 ## References
 

@@ -9,18 +9,26 @@ public import CORALean.ContSet.ContSet.Operations.IntersectStripSeq
 /-!
 # One step of the strip-based observer
 
-[1, Alg. 1]: Step 1 (prediction) `X̄_k = A X̂_{k-1} ⊕ W`, which is `A p̂ ⊕ [A Ĥ  F]`
-[1, Eq. 2], and Step 2 (update) the measurement strips `|c_iᵀ x - y_i| ≤ σ_i` met by
-`intersectStripSeq` [1, Eq. 3], or, as CORA's `intersectionType = 2` does, all at once by
-`intersectStrip`. CORA's prediction is its `post`, `A X̂ ⊕ B u ⊕ c`, before `W` is added, with
-`A`, `B`, `c` and the strips' `C` the system's; the paper's system has neither input nor offset,
-`u = 0`, `c = 0`.
+[1, Alg. 1]: Step 1 (prediction) `X̄_k = A X̂_{k-1} ⊕ W`, which is `A p̂ ⊕ [A Ĥ  F]` [1, Eq. 2], and
+Step 2 (update) the measurement strips `|c_iᵀ x - y_i| ≤ σ_i` met by `intersectStripSeq`
+[1, Eq. 3], or, as CORA's `intersectionType = 2` does, all at once by `intersectStrip`. CORA's
+prediction is its `post`, `A X̂ ⊕ B u ⊕ c`, before `W` is added; the paper's system has neither
+input nor offset, `u = 0`, `c = 0`. Written once over the set classes and the scalar: at
+`Real.Zonotope` and ℝ it is the paper's step, at `Float.Zonotope` the same step in directed
+rounding; soundness for both is `observeStep_outer`. [2, Eq. 4]: the prediction and correction,
+steps 1 and 3 of its Sec. 2.1.
 
-Written once over the set classes and the scalar: at `Real.Zonotope` and ℝ it is the paper's
-step, at `Float.Zonotope` and a float type the same step in directed rounding. Soundness, for
-both, is `observeStep_outer`.
+## Inputs
+* `sys` – system
+* `σ` – strip widths
+* `W` – disturbance set
+* `options` – strip options
+* `u` – input at this step
+* `y` – measurement at this step
+* `Xhat` – previous estimate
 
-[2, Eq. 4]: the strip-based observer's prediction and correction, steps 1 and 3 of its Sec. 2.1.
+## Output
+* the next estimate after prediction and update
 
 ## References
 

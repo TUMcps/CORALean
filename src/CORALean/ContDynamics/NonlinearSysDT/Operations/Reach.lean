@@ -11,21 +11,22 @@ public import CORALean.ContDynamics.Reach.Definitions.InputParams
 /-!
 # Reachability of a discrete nonlinear system
 
-CORA's `nonlinearSysDT/reach`, one linearization per step: step `k` runs
-`LinearSysDT.reach` for one step at `(steps k).A`, on the widened input `(steps k)
-.linInput`, the set reached at the end of a step becoming the initial set of
-the next. Unlike `NonlinearSys.relinReach` there is no `discretize` and no
-`Δt`: the matrix a step's certificate is issued for is already the discrete
-system's own, so nothing converts it.
+CORA's `nonlinearSysDT/reach`, one linearization per step: step `k` runs `LinearSysDT.reach` for
+one step at `(steps k).A`, on the widened input `(steps k).linInput`, the set reached at the end
+of a step becoming the initial set of the next. Unlike `NonlinearSys.relinReach` there is no
+`discretize` and no `Δt`: the matrix a step's certificate is issued for is already the discrete
+system's own. Time is counted in sampling periods (`ℕ`), as in `LinearSysDT.reach`. `steps`
+stays positional, unlike CORA, which computes the linearizations inside `reach`: here they are
+certificates a caller supplies, and `params.U` is the input set they are issued for.
 
-Time is counted in sampling periods (`ℕ`), as in `LinearSysDT.reach`, and step `i`
-is the `i`-th after `tStart`. `steps` stays positional, unlike CORA, which
-computes the linearizations inside `reach`: here they are certificates a caller
-supplies.
+## Inputs
+* `sys` – system
+* `params` – reachability parameters
+* `options` – reachability options
+* `steps` – linearization steps
 
-`params.U` is the input set the linearizations `steps` are issued for; the
-discrete step itself needs no more than `linInput`, the discrete analogue of
-`NonlinearSys.reach_outer_inputSolution`, folded into the definition.
+## Output
+* the reachable set at the final time
 -/
 
 -- Authors:       Claude Sonnet 5

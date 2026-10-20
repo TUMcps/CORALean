@@ -9,21 +9,38 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsMono
 /-!
 # `[2, Lemma 3]`: the abstraction error grows with what it is computed from
 
-`[2]`'s property (7) for `[2, Alg. 2]`, an inclusion and not an equality, proved
-the way `[2]` proves it: every step of Alg. 2 is monotone, so the composition is.
+`[2]`'s property (7) for `[2, Alg. 2]`, an inclusion and not an equality: every step of Alg. 2
+is monotone, so the composition is. The Cartesian products, `varInputs` and the final `⊕` are
+exact, hence monotone, and `lagrangeRemainder` is monotone for a reason of its own. Kept as
+hypotheses are `[2]`'s own standing assumption (its Sec. 2.3) at the two steps whose
+implementations do not have it: `hpost` for `[1, Sec. 4.1]`'s `postΔ`, and `hZ` for `zono`,
+which `zonotope_not_mono` refutes outright. `hE` is not added: `E` bounds a third derivative.
 
-What `[2]` assumes and this discharges: the Cartesian products, `varInputs` and
-the final `⊕` are exact, hence monotone, and `lagrangeRemainder` is monotone for
-a reason of its own. What it keeps as a hypothesis is `[2]`'s own standing
-assumption — its Sec. 2.3, that *every* operation it uses satisfies (6) or (7) —
-at the two steps whose implementations do not have it: `hpost` for
-`[1, Sec. 4.1]`'s `postΔ`, whose `linComb` and interval-matrix product both read
-the representation rather than the set, and `hZ` for `zono`, which
-`zonotope_not_mono` refutes outright.
+## Inputs
+* `sys` – linear system
+* `r` – time step
+* `η` – Taylor terms
+* `B` – input matrix
+* `D` – Hessian family
+* `E` – third-derivative bounds
+* `U` – input range
+* `UΔ` – varying input range
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+* `zs` – expansion point
+* `R₁` – first reachable set
+* `R₂` – second reachable set
+* `Ψ₁` – first applied error
+* `Ψ₂` – second applied error
 
-`Ψ` reaches the result through `postΔ` alone, so `[2]`'s hypothesis
-`Ψ⁽¹⁾ ⊆ Ψ⁽²⁾` is spent exactly there and appears as `hpost` rather than on its
-own. `hE` is not an added hypothesis: `E` bounds a third derivative entrywise.
+## Hypotheses
+* `hE` – bounds nonnegative
+* `hR` – reachable sets nested
+* `hpost` – error propagation monotone
+* `hZ` – zonotopes nested
+
+## Conclusion
+* larger sets give a larger abstraction error
 
 ## References
 

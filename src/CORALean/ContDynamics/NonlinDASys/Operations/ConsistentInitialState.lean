@@ -14,6 +14,18 @@ CORA's `consistentInitialState`: Newton's method on the constraint `g(x₀, y, u
 `Δy = F \ (-l)` with `l = g(x₀, y, u₀)` and `F = ∂g/∂y`, until `‖Δy‖ < 1e-10`. `F` is a
 parameter, the Jacobian block CORA generates, and `tol` the `1e-10`. The iteration takes a `fuel`,
 CORA's loop being unbounded; `none` is running out of it.
+
+## Inputs
+* `sys` – system
+* `F` – Jacobian block of the constraint
+* `tol` – step tolerance
+* `fuel` – iteration bound
+* `x₀` – initial differential state
+* `u₀` – initial input
+* `y₀` – initial guess
+
+## Output
+* the consistent algebraic state, or none
 -/
 
 -- Authors:       Claude Opus 5.5

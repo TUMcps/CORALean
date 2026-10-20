@@ -12,6 +12,14 @@ CORA's `aux_scaledSystem` (`guardIntersect_pancake`): `F(x, u, p) = g(x, p) f(x,
 scaling `g(x, p) = (nᵀx − d)/p`, `nᵀx = d` the guard hyperplane, oriented as CORA orients it
 (`nᵀx − d > 0` on the invariant side of the reach set's center). CORA writes `F` to a file with
 `matlabFunction`; here it is the function itself. The parameter is one-dimensional.
+
+## Inputs
+* `sys` – nonlinear system
+* `nv` – guard normal
+* `d` – guard offset
+
+## Output
+* the system scaled by the distance to the guard
 -/
 
 -- Authors:       Claude Opus 5.5

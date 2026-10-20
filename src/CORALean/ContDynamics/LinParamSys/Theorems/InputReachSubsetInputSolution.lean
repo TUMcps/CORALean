@@ -10,15 +10,33 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # `inputSolution` contains everything the input can contribute at one member
 
-`inputSolution_outer` for every admissible input at once, which is the form
-`inputReach_mono` composes with. The set of points is `LinearSys.inputReach` at
-the member `A`, not a set-valued object of its own: a `'constParam'` run fixes
-one matrix over the step, so what the input can reach is the point system's
-`P^R(τ)` at that matrix, and the enclosure it lands in is the box's.
+`inputSolution_outer` for every admissible input at once, which is the form `inputReach_mono`
+composes with. The set of points is `LinearSys.inputReach` at the member `A`: a `'constParam'` run
+fixes one matrix over the step, so what the input can reach is the point system's `P^R(τ)` at that
+matrix, and the enclosure it lands in is the box's. `inputReach` is stated over `Icc` and
+`inputSolution_outer` reads its input on the reflected `Ioc`, joined by
+`aestronglyMeasurable_reflect_Ioc` and one endpoint step, as in the point case.
 
-`inputReach` is stated over `Icc` and `inputSolution_outer` reads its input on
-the reflected `Ioc`, so the two are joined by `aestronglyMeasurable_reflect_Ioc`
-and one endpoint step, exactly as in the point case.
+## Inputs
+* `sys` – system
+* `r` – step size
+* `η` – Taylor order
+* `A` – system matrix member
+* `U` – input set
+
+## Hypotheses
+* `hr` – step positive
+* `hε` – order admissible
+* `hA` – `A` lies in the matrix set
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `hRconv` – remainder image convex
+* `hRclosed` – remainder image closed
+* `hRbdd` – remainder image bounded
+
+## Conclusion
+* everything the input alone can reach lies in the enclosure
 -/
 
 -- Authors:       Claude Opus 5

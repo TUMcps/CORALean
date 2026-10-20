@@ -17,6 +17,21 @@ being the family with the center as one more column, and `intervalNorm` itself, 
 Eq. 11]'s `‖·‖_{I,σ}`, the family without it. Only `σ ≥ 0` is used. Property d) prints
 its first right-hand term as `‖⟨[c, G₁]⟩‖`, the `c` there being `c₁`.
 
+## Inputs
+* `m` – dimension
+* `ι` – generator index type
+* `σ` – weights
+* `G` – generators
+* `G₁` – first generator family
+* `G₂` – second generator family
+* `γ` – scalar
+
+## Hypotheses
+* `hσ` – weights nonnegative
+
+## Conclusion
+* the norm is nonnegative, zero at zero, homogeneous and subadditive
+
 ## References
 
 * [1] M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". In Proc. of

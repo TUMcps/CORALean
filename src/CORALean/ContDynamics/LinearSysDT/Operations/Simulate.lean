@@ -9,6 +9,14 @@ public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 
 `simulate` samples one run rather than enclosing all of them: a point
 computation, carrying none of `reach`'s set instances.
+
+## Inputs
+* `sys` – system
+* `x₀` – initial state
+* `u` – input signal
+
+## Output
+* the state after each number of steps
 -/
 
 -- Authors:       Claude Sonnet 5

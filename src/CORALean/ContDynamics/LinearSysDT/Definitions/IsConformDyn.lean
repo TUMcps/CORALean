@@ -16,6 +16,19 @@ case's measured output from the nominal one, at every sample `k ≤ K`, lies in 
 whole test case. One index `ι` for the pairs (test, sample), each with its own initial state
 (CORA takes the one of the first sample of a test, `x(:,1,1)`).
 
+## Inputs
+* `sys` – system
+* `X₀` – initial set
+* `W` – disturbance set
+* `V` – noise set
+* `K` – horizon
+* `x0` – initial states per test case
+* `u` – inputs per test case
+* `y` – measured outputs per test case
+
+## Output
+* every deviation up to the horizon lies in its deviation set
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/isconform_dyn.m`

@@ -12,6 +12,32 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 `IsConstTrajectory.discretizeEnclosureFloat` handed to `LinParamSysDT.reach_outer`,
 as `discretizeEnclosure_mem_reach` is at the exact layer: `reach` at the float
 interval-matrix family is the discrete recursion run in floats.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `Ud` – set of sampled inputs
+* `x` – trajectory
+* `u` – input signal
+* `A` – system matrix member
+* `Δt` – sampling time
+* `η` – Taylor order
+* `o` – maximum zonotope order
+* `k` – number of steps
+
+## Hypotheses
+* `traj` – constant-parameter trajectory
+* `hΔt` – sampling time nonnegative
+* `hT` – nonnegative times lie in the time set
+* `hU` – input set bounded
+* `hUd` – sampled inputs lie in `Ud`
+* `hη` – order admissible
+* `ho` – order positive
+
+## Conclusion
+* the sample after `k` steps lies in the float-sampled system's reach
 -/
 
 -- Authors:       Claude Opus 5.5

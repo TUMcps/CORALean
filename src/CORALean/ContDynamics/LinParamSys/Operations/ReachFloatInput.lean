@@ -21,6 +21,15 @@ vector `c` that stands for it, as `LinearSys 𝕋 n` stores its `c` in `𝕋`; `
 relates it to the system's through `toRealVec`. `none` when the order, a window's squaring count
 or the accumulation fails.
 
+## Inputs
+* `sys` – system
+* `c` – offset
+* `params` – reachability parameters with inputs
+* `options` – reachability options
+
+## Output
+* the reachable zonotope of every window under the inputs, or none
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

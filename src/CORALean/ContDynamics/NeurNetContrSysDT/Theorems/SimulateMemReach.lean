@@ -10,6 +10,25 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateIsTraject
 
 `simulate_isTrajectory` handed to `reach_outer`: the one fact `simulate` is for,
 stated once so nothing downstream redoes the induction on `reach`.
+
+## Inputs
+* `sys` – closed-loop system
+* `o` – maximum zonotope order
+* `U_ext` – external input set
+* `R₀` – initial set
+* `π` – controller function
+* `v` – external input signal
+* `x₀` – initial state
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `hπ` – the network encloses `π`
+* `hv` – external inputs lie in `U_ext`
+* `hx₀` – start lies in `R₀`
+
+## Conclusion
+* the simulated state lies in the reachable set
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5

@@ -14,6 +14,17 @@ with `n_θ = 1` and `n_out` as in (4)": with `n_out = n_m - ⌈(n_m + 1)(1 - ε)
 `(n_out + 1)/(n_m + 1) ≤ ε`. Only this arithmetic is proved; (9) itself is O'Sullivan et al.'s,
 cited, and needs scenario theory, not in Mathlib.
 
+## Inputs
+* `nm` – number of calibration points
+* `nout` – number of removed outliers
+* `ε` – miscoverage level
+
+## Hypotheses
+* `h4` – `nout` follows the quantile rule
+
+## Conclusion
+* the term subtracted in the scenario bound is at most `ε`
+
 ## References
 
 * [1] L. Lützow, M. Eichelbeck, M. J. Kochenderfer and M. Althoff. "Zono-Conformal

@@ -9,21 +9,13 @@ public import CORALean.ContSet.ContSet.ContSet
 # Discrete-time linear systems: the representation
 
 CORA's `linearSysDT`, `x(k+1) = A x(k) + B u(k) + c + E w(k)` with the output
-`y(k) = C x(k) + D u(k) + k + F v(k)`, every matrix stored, the dimensions beside `n` fields as
-in `LinearSys`: `m` inputs, `q` outputs, `r` disturbances, `s` noises, and CORA's sampling
-time `dt`. Runs and reachable sets are indexed by the step `k`, the time `k dt`, as CORA's
-`reach` and `simulate` step through `tStart:dt:tFinal`; `dt` is what a conversion to
-continuous time reads (`toLinearSys`) and what a discretization stores (`LinearSys.discretize`).
-
-`IsTrajectory` is a run of the whole equation, its output
-`y k = outputEq.eval (x k) (u k) + F v k`, the form every class with an output equation states it
-in. `IsCanonicalTrajectory` is a run of the canonical form, `x(k+1) = A x(k) + u'(k)` with the
-combined input `u' = B u + c + E w` in state coordinates, as in [1, Sec. 3.2]: what the
-reachability algorithms, which read `A` and an input set in state coordinates, are proved against.
-`IsTrajectory.canonical` turns every run into one. `IsCanonicalTrajectoryOn K` is the canonical run
-known only for `k < K` — what sampling on `[0, KΔt]` gives, so `discretize_horizon` produces it and
-`reach_outer_horizon` consumes it; `toIsTrajectoryOn` gives it at any `K` from a total run.
-`IsCanonicalHeldTrajectory` holds one input for the whole run.
+`y(k) = C x(k) + D u(k) + k + F v(k)`, every matrix stored, `m` inputs, `q` outputs, `r`
+disturbances, `s` noises, and CORA's sampling time `dt`. Runs and reachable sets are indexed by
+the step `k`, the time `k dt`. `IsTrajectory` is a run of the whole equation;
+`IsCanonicalTrajectory` of the canonical form, `x(k+1) = A x(k) + u'(k)` with
+`u' = B u + c + E w` in state coordinates, as in [1, Sec. 3.2], what the reachability
+algorithms are proved against; `IsTrajectory.canonical` turns every run into one.
+`IsCanonicalTrajectoryOn K` is the canonical run known only for `k < K`.
 
 ## References
 

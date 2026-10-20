@@ -13,6 +13,25 @@ network's output alone (`input a e = a`). Its `IsTrajectory`, for any nonempty `
 `Vec ℝ 0`s, which all coincide), is a start in `R₀` and, on each period, a run of the plant under
 the held input `π(x(i dt))` — the statement of the closed loop before external inputs were
 modelled, but for the input set the plant is handed, `{π(x(i dt))}` where it was `univ`.
+
+## Inputs
+* `plant` – plant
+* `contr` – controller network
+* `dt` – control period
+* `π` – controller function
+* `H` – number of periods
+* `R₀` – initial set
+* `U_ext` – external input set
+* `W` – disturbance set
+* `x` – plant states
+* `v` – external input signal
+* `w` – disturbance signal
+
+## Hypotheses
+* `hU` – external input set nonempty
+
+## Conclusion
+* a closed-loop trajectory starts in the initial set and follows the plant each period
 -/
 
 -- Authors:       Claude Sonnet 5.5

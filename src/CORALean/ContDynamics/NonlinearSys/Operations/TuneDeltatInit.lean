@@ -16,6 +16,15 @@ computed one; read as the `repeat … until` the prose describes, which is the
 only reading under which the first step has a `φ₁` to test. See the
 reference page.
 
+## Inputs
+* `le` – comparison of reals
+* `dabs` – box diameter of the abstraction error
+* `ζδ` – limit gain
+* `ζΔ` – gain threshold
+
+## Output
+* the first step's horizon and gain, or none
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Adaptive Parameter Tuning for

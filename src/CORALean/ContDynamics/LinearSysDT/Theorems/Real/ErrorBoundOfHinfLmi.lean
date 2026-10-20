@@ -18,6 +18,22 @@ the error system [1, Eq. 15] at `L = P⁻¹ Y`, `V₀ = e₀ᵀ P e₀`, `‖d�
 the margin of Eq. 17 and `α₂` the sum of the `|P_ij|`, so `V_{k+1} ≤ α V_k + γ² ‖d‖²_∞`,
 `α = 1 - 1/α₂`, unrolled (its Eq. 32), and `β = 1/α₁`.
 
+## Inputs
+* `A` – state matrix
+* `C` – output matrix
+* `E` – disturbance matrix
+* `F` – noise matrix
+* `P` – Lyapunov matrix
+* `Y` – gain variable
+* `γ` – attenuation level
+
+## Hypotheses
+* `hP` – Lyapunov matrix positive definite
+* `h` – the design inequality holds
+
+## Conclusion
+* the error bound holds with rates between zero and one
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

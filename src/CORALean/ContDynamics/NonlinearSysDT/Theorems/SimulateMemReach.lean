@@ -12,6 +12,25 @@ public import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateIsTrajectory
 `reach_outer` itself asks for: a re-linearized step needs its own certified
 region, and a sampled run supplies no shortcut around checking it stayed
 there.
+
+## Inputs
+* `sys` – system
+* `U` – input set
+* `o` – maximum order
+* `steps` – linearization steps
+* `R₀` – initial set
+* `x₀` – start state
+* `u` – input signal
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `hx₀` – start state in initial set
+* `hu` – inputs in input set
+* `hR` – simulated states stay in regions
+
+## Conclusion
+* the sampled state lies in the reachable set
 -/
 
 -- Authors:       Claude Opus 5

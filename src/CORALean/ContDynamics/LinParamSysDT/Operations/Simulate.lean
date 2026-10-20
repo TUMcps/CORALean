@@ -11,6 +11,15 @@ public import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
 per step chosen from `sys.A`, and carries no set instance of its own — the
 concrete meaning of `step`'s `∃ A ∈ construct sys.A`; not a field of `sys`,
 since it is chosen afresh each run.
+
+## Inputs
+* `sys` – system
+* `A` – matrix chosen per step
+* `x₀` – initial state
+* `u` – inputs
+
+## Output
+* the state after each number of steps
 -/
 
 -- Authors:       Claude Sonnet 5

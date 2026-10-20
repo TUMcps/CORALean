@@ -15,6 +15,18 @@ and `reach_outer` is the outer approximation `holds_of_outer` carries it back
 across. Found by evaluation, it is the specification on the exact reachable set,
 at any instance of `Reach` and with nothing left to prove by hand. No argument
 fixes `S` for instance search, `P` being an output of it, so `S` is named, `(S := S)`.
+
+## Inputs
+* `sys` – system
+* `params` – reachability parameters
+* `options` – reachability options
+* `spec` – specification
+
+## Hypotheses
+* none
+
+## Conclusion
+* a passed check gives the specification on the exact reachable set
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

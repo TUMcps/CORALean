@@ -11,6 +11,19 @@ public import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTStep
 The windows `stack p y` run through `toLinearSysDT` under the input signal `feed u`,
 which `inputSet U` encloses. The converse is not stated: a run of the converted
 system need not have its window's blocks agree, nor its input be of the form `feed u`.
+
+## Inputs
+* `sys` – ARX system
+* `Y₀` – initial window set
+* `U` – input set
+* `y` – outputs
+* `u` – inputs
+
+## Hypotheses
+* `traj` – ARX trajectory
+
+## Conclusion
+* the window sequence is a trajectory of the converted system
 -/
 
 -- Authors:       Claude Opus 5.5

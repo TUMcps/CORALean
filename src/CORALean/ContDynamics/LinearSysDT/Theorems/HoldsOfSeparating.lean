@@ -18,6 +18,26 @@ guarantee about the trajectory itself.
 Unsafe sets only, and one direction only: that is what a separating hyperplane
 certifies. A safe set is not of this shape — containment in one needs a bound in
 every direction bounding its faces, which is a list of these, not one.
+
+## Inputs
+* `sys` – system
+* `R₀` – initial set
+* `U` – input set
+* `b₀` – support bound of the initial set
+* `bU` – support bound of the input set
+* `x` – trajectory
+* `u` – input signal
+* `k` – step
+* `c` – direction
+* `X` – unsafe set
+* `v` – support bound of the unsafe set
+
+## Hypotheses
+* `traj` – discrete-time trajectory
+* `h` – the two bounds add up to a negative number
+
+## Conclusion
+* the state at step `k` avoids the unsafe set
 -/
 
 -- Authors:       Claude Opus 5

@@ -23,6 +23,13 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
 `polyReachReach`: `R([0,t_f])`, the union of the first `K` iterations'
 time-interval sets.
 
+## Inputs
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Output
+* the union of the time-interval sets
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative

@@ -14,6 +14,13 @@ gain orders, so that `φ(h;δ) ≤ δ^{q+1}` holds in every dimension at once.
 case: `[1, Def. 6]` reads `q = ∞` as the method committing no abstraction error
 at all, which is `gainOrder_eq_top_iff`.
 
+## Inputs
+* `q` – orders of the coefficients
+* `a` – leading vectors of the coefficients
+
+## Output
+* the smallest gain order over the dimensions
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

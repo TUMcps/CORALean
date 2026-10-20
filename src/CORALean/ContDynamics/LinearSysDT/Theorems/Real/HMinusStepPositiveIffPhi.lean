@@ -14,6 +14,21 @@ public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmiPhi
 `eᵀCᵀMᵀMCe + 2eᵀCᵀMᵀMEf + fᵀEᵀMᵀMEf`, `e⁺ᵀQe⁺` to the blocks `(A - LC)ᵀQ(A - LC)`,
 `(A - LC)ᵀQ(-LE)` and `(LE)ᵀQ(LE)`, as `Q` is symmetric.
 
+## Inputs
+* `A` – state matrix
+* `C` – output matrix
+* `E` – fault matrix
+* `L` – observer gain
+* `Q` – Lyapunov matrix
+* `M` – residual weight
+* `β` – sensitivity level
+
+## Hypotheses
+* `hQ` – Lyapunov matrix symmetric
+
+## Conclusion
+* positivity of the step quantity is equivalent to the block inequality
+
 ## References
 
 * [1] Y. Wang, M. Zhou, V. Puig, G. Cembrano and Z. Wang. "Zonotopic Fault Detection Observer

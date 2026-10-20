@@ -14,6 +14,12 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 reachability of `LinearSys` (`discretizeEnclosureFloat`, `inputSolutionFloat`) runs on it: CORA's
 `aux_augmentLinear`, `[A B_nn; 0 0]`, `[B_ext; 0]` and `[c; 0]`, the zeros being `𝕋`'s own. It reads
 as `augment` entry by entry (`toRealMat_augmentFloat`).
+
+## Inputs
+* `sys` – closed-loop system
+
+## Output
+* the augmented linear system in the plant's scalar
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

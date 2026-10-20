@@ -15,6 +15,18 @@ The window `stack` of `simulate` from the real value of a float start window und
 the real values of a float input signal lies, at every step, in `simulateBox`
 computed in float arithmetic: the float `simulate` row's guarantee (ruling R-SIM).
 An enclosure, so the box is outer.
+
+## Inputs
+* `sys` – ARX system
+* `y₀` – float start window
+* `u` – float input signal
+* `k` – step
+
+## Hypotheses
+* none
+
+## Conclusion
+* the real run's window lies in the float box
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -17,15 +17,21 @@ CORA's loop, step for step, on a `FloatModel` and the stacked state `z = (x, y)`
 `l = g` are the centers of the model's enclosures at the point `(x, y, u₀)`, so are the Jacobian
 blocks `A, C, D, F`, `M = [A C; D F]`, and `delta_z = M \ (-[k; l])` is the midpoint of the outward
 product of an approximate inverse (`Zonotope.basisInverse`) with `-[k; l]`. The test is
-`‖delta_z‖₂ < tol` (`tol² ≤ ‖delta_z‖₂²` failing, the square rounded up), the update
-`z + delta_z` rounds down, and `newtonIterate` takes a `fuel` in place of CORA's unbounded loop,
-over iterates stored as `Vector`s. CORA splits `delta_z` to update `x0` and `y0` each pass; the
-stacked update is the same, and the split is made once, at the end.
+`‖delta_z‖₂ < tol` (the square rounded up), the update `z + delta_z` rounds down, and
+`newtonIterate` takes a `fuel` in place of CORA's unbounded loop. What is returned is the
+candidate that passes `newtonTestFloat` for `(f, g)(·, ·, u₀)` on the stacked state with radius
+`tol`, and `none` when the loop runs out of fuel or the test fails: CORA returns it unchecked.
 
-What is returned is the candidate that passes `newtonTestFloat` for `(f, g)(·, ·, u₀)` on the
-stacked state with radius `tol` (`FloatModel.aux_stackRes`, `aux_stackJac`), and `none` when the
-loop runs out of fuel or the test fails. The certificate is the float layer's addition: CORA returns
-its last iterate unchecked.
+## Inputs
+* `fm` – float model
+* `tol` – step tolerance
+* `fuel` – iteration bound
+* `x₀` – initial differential state
+* `y₀` – initial algebraic guess
+* `u₀` – fixed input
+
+## Output
+* the certified steady state, or none
 -/
 
 -- Authors:       Claude Opus 5.5

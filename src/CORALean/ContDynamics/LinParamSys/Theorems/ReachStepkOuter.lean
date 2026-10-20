@@ -14,6 +14,25 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepOuter
 (`timeIntervalStep_outer`, at the same member) and `e^{A t_k}` is in
 `expEnclosure` (`exp_mem_expEnclosure`), so `mtimes_outer` puts the product in
 the window's set.
+
+## Inputs
+* `sys` – system
+* `Δt` – window length
+* `m` – Taylor order minus two
+* `X₀` – initial set
+* `A` – system matrix member
+* `k` – window index
+* `t` – time
+
+## Hypotheses
+* `hΔt` – window length positive
+* `hε` – order admissible
+* `hA` – `A` lies in the matrix set
+* `hkt` – time at least the window start
+* `htk` – time within the window
+
+## Conclusion
+* the member's flow image of the initial set lies in the window set
 -/
 
 -- Authors:       Claude Opus 5.5

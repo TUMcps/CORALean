@@ -14,6 +14,14 @@ public import CORALean.ContSet.Zonotope.Float.Instances
 starting at order `2`, orders `0` and `1` being `inputTermZonoFloat`'s. Below order `2`
 the sum is empty, matched by the zero point interval, as the exact layer matches it.
 
+## Inputs
+* `sys` – system
+* `r` – step size
+* `V` – input zonotope
+
+## Output
+* orders 2 up to a given order of the input solution, summed
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

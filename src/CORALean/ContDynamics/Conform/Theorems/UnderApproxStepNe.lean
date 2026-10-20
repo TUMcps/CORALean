@@ -12,17 +12,23 @@ public import Mathlib.Algebra.Group.Pointwise.Set.Basic
 /-!
 # [1, Eq. 7] is not an equality for [1, Eq. 2]'s inner approximation
 
-[1, Eq. 2] keeps the disturbance constant over the whole of `[0, t]`, so that
-`R_x(t) - x̃(t) = e^{At} X̃₀ ⊕ Υ(t) W_c`, `Υ(t) w = ∫₀ᵗ e^{A(t-τ)} w dτ`. [1, Eq. 7] states
-`R_x(t_{k+1}) - x̃(t_{k+1}) = e^{Ah}(R_x(t_k) - x̃(t_k)) ⊕ Υ(h) W_c`. The right side lets the
-disturbance change at `t_k`; the left does not. As `Υ(t_{k+1}) = e^{Ah} Υ(t_k) + Υ(h)`, the left is
-`{(e^{Ah} Υ(t_k) + Υ(h)) w}` and the right `e^{Ah} Υ(t_k) W_c ⊕ Υ(h) W_c`, a strictly larger set
-once the two images point different ways: at `A = [0 1; 0 0]`, `h = 1`, `k = 1`, `X̃₀ = {0}`,
-`W_c = {0} × [-1, 1]`, the left is the segment `{s (2, 2)}` and the right a parallelogram
-containing `(1, 0)`. The right side, iterated, is the reachable set under disturbances
-constant on each step, which is what [1, Eq. 8] and the discrete-time model use; it lies
-between [1, Eq. 2]'s inner approximation and the exact reachable set, so conformance
-established against it is still conformance of the continuous model.
+[1, Eq. 2] keeps the disturbance constant over `[0, t]`, so
+`R_x(t) - x̃(t) = e^{At} X̃₀ ⊕ Υ(t) W_c` with `Υ(t) w = ∫₀ᵗ e^{A(t-τ)} w dτ`. [1, Eq. 7] states
+`R_x(t_{k+1}) - x̃(t_{k+1}) = e^{Ah}(R_x(t_k) - x̃(t_k)) ⊕ Υ(h) W_c`; its right side lets the
+disturbance change at `t_k`, the left does not. At `A = [0 1; 0 0]`, `h = 1`, `k = 1`,
+`X̃₀ = {0}`, `W_c = {0} × [-1, 1]` the left is the segment `{s (2, 2)}`, the right a
+parallelogram containing `(1, 0)`. The right side, iterated, is the reachable set under
+disturbances constant per step, which [1, Eq. 8] and the discrete-time model use; it lies
+between the inner approximation and the exact set.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a system and disturbance set exist where the printed step equation fails
 
 ## References
 

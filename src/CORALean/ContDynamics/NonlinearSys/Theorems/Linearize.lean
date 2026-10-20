@@ -10,18 +10,37 @@ public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 /-!
 # A nonlinear run is a linear run over a widened input
 
-The handoff conservative linearization exists for: the same state function `x`, the linear
-system `linearize A`, and the input signal `ũ(t) = f(x(t), u(t)) - A x(t)`, which lies in
-`linInput` wherever the certificate holds. The integrand is then an identity, `A x + ũ = f(x,u)`,
-and the run is a `LinearSys.IsCanonicalTrajectory`, `ũ` measurable as the field less a
-continuous drift.
+The handoff conservative linearization exists for: the same state function `x`, the linear system
+`linearize A`, and the input signal `ũ(t) = f(x(t), u(t)) - A x(t)`, which lies in `linInput`
+wherever the certificate holds. The integrand is then an identity, `A x + ũ = f(x,u)`, and the
+run is a `LinearSys.IsCanonicalTrajectory`. The confinement `hR` stays a hypothesis, the
+certificate saying nothing outside `R`; it is discharged one level up by `confinement_of_subset`,
+from a check on the computed sets, not by CORA's own, circular check. This is the step
+[1, Sec. IV-A] takes by superposition.
 
-The confinement `hR` stays a hypothesis here, the certificate saying nothing outside `R`. It is
-discharged one level up, by `confinement_of_subset`, from a check on the computed sets — not by
-CORA's own check, which is circular. `hR` is asked for on the time domain and nowhere else: the
-linear run constrains its input on the same set, so confinement over one step buys a linear run
-over one step — `linearize_horizon`'s whole content. This is the step [1, Sec. IV-A] takes by
-superposition.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+* `A` – state Jacobian
+* `B` – input Jacobian
+* `xs` – state expansion point
+* `us` – input expansion point
+* `R` – state region
+* `L` – remainder set
+* `y` – output trajectory
+* `cert` – abstraction-error certificate
+
+## Hypotheses
+* `traj` – trajectory of the system
+* `hTm` – time set measurable
+* `hR` – trajectory stays in region
+
+## Conclusion
+* the trajectory is a linear trajectory over the widened input
 
 ## References
 

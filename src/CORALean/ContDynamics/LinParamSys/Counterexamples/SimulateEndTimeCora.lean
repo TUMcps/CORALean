@@ -19,6 +19,15 @@ segments is `i · tFinal`, not `tFinal`.
 With `tStart = 0`, `tFinal = 1`, no `timeStep` and an input `u` of two columns, the last time of
 the trajectory `simulate` returns is `2 > tFinal` (`@linParamSys/simulate.m`, l. 67, 76, 120). A
 wrong trajectory, not a reachable-set soundness issue.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's last time stamp exceeds `tFinal` for two input columns
 -/
 
 -- Authors:       Claude Opus 5.5

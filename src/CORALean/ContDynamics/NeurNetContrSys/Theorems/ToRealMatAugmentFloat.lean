@@ -11,6 +11,15 @@ public import CORALean.ContDynamics.NeurNetContrSys.Operations.AugmentFloat
 Entry by entry: the plant's own entries read as themselves (`B_nn` and `B_ext` being columns of
 `B`), and the zeros as `0` by `toReal_zero`. So the float reachability of the augmented system in
 `𝕋` reaches the real augmented system, which `augment_flow` ties to the closed loop.
+
+## Inputs
+* `sys` – closed-loop system
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float augmented system reads as the real augmented system
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

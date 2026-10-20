@@ -12,6 +12,23 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.IsTrajectoryOfMap
 input `v` stays in `U_ext`: `init` and `v` are the hypotheses handed in and `step` is `rfl`, since
 `simulate` is `IsTrajectory.step`'s equation read as a recursive definition rather than a
 predicate.
+
+## Inputs
+* `sys` – closed-loop system
+* `π` – controller function
+* `R₀` – initial set
+* `U_ext` – external input set
+* `W` – disturbance set
+* `v` – external input signal
+* `x₀` – initial state
+
+## Hypotheses
+* `hW` – zero disturbance admitted
+* `hv` – external inputs lie in `U_ext`
+* `hx₀` – start lies in `R₀`
+
+## Conclusion
+* the simulated run is a closed-loop trajectory
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5

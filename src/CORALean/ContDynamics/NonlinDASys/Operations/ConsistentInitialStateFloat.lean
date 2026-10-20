@@ -11,18 +11,25 @@ public import CORALean.ContSet.Interval.Float.Operations.Norm
 /-!
 # `nonlinDASys.consistentInitialState` in floats
 
-CORA's loop, step for step, on a `FloatModel`: `l = g(x₀, y, u₀)` and `F = ∂g/∂y` are the
-centers of the model's enclosures at the point `(x₀, y, u₀)`, `delta_y = F \ (-l)` is the midpoint
-of the outward product of an approximate inverse (`Zonotope.basisInverse`) with `-l`, the test is
-`‖delta_y‖₂ < tol` (`tol² ≤ ‖delta_y‖₂²` failing, the square rounded up) and the update
-`y + delta_y` rounds down. None of this is trusted: it only finds a candidate, as `newtonIterate`
-with a `fuel` in place of CORA's unbounded loop. The iterates are stored as `Vector`s, and the
-enclosures and the inverse materialised, so a pass reads the last iterate rather than the closure
-of every pass before it.
+CORA's loop, step for step, on a `FloatModel`: `l = g(x₀, y, u₀)` and `F = ∂g/∂y` are the centers
+of the model's enclosures at the point `(x₀, y, u₀)`, `delta_y = F \ (-l)` is the midpoint of the
+outward product of an approximate inverse (`Zonotope.basisInverse`) with `-l`, the test is
+`‖delta_y‖₂ < tol` (the square rounded up) and the update `y + delta_y` rounds down. None of this
+is trusted: it only finds a candidate, as `newtonIterate` with a `fuel` in place of CORA's
+unbounded loop. What is returned is the candidate `y'` that passes `newtonTestFloat` for
+`g(x₀, ·, u₀)` with radius `tol`, and `none` when the loop runs out of fuel or the test fails. The
+certificate is the float layer's addition: CORA returns its last iterate unchecked.
 
-What is returned is the candidate `y'` that passes `newtonTestFloat` for `g(x₀, ·, u₀)` with radius
-`tol`, and `none` when the loop runs out of fuel or the test fails. The certificate is the float
-layer's addition: CORA returns its last iterate unchecked.
+## Inputs
+* `fm` – float model
+* `tol` – step tolerance
+* `fuel` – iteration bound
+* `x₀` – initial differential state
+* `u₀` – initial input
+* `y₀` – initial guess
+
+## Output
+* the certified consistent algebraic state, or none
 -/
 
 -- Authors:       Claude Opus 5.5

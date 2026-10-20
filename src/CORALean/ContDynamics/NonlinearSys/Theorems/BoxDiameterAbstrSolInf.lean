@@ -11,22 +11,26 @@ public import Mathlib.Tactic.Positivity
 /-!
 # The diameter of the set of abstraction errors
 
-`[1, Prop. 1]`: with `Ψ(h)` the zonotope `⟨c(h), G(h)⟩_Z`, the `i`-th side of
-the box over `R^∞_abs(h)` is `2 Σₚ h^{p+1}/(p+1)! ‖Aᵖ(h)G(h)‖₁,ᵢ`, the 1-norm
-of the `i`-th *row*. The row is where the coordinate enters: `dᵢ` reads the set
-through `x ↦ (Aᵖ(h) x)ᵢ`, which pairs one row with the generators; the factor
-`2` is the set being symmetric about its center, so a width is twice a reach.
+`[1, Prop. 1]`: with `Ψ(h)` the zonotope `⟨c(h), G(h)⟩_Z`, the `i`-th side of the box over
+`R^∞_abs(h)` is `2 Σₚ h^{p+1}/(p+1)! ‖Aᵖ(h)G(h)‖₁,ᵢ`, the 1-norm of the `i`-th *row*; the factor
+`2` is the set being symmetric about its center. An `=` and not a `⊆`: each summand's maximum is
+attained at the sign pattern of its own row, and the choices are independent
+(`Zonotope.supportBound_attained`). Generators are a family, so the norm is `Σⱼ |(Aᵖ(h) gʲ)ᵢ|`.
+`0 ≤ h` is the paper's implicit reading of a time span; nothing else is asked.
 
-An `=` and not a `⊆`: each summand's maximum is attained, at the sign pattern
-of its own row, and the choices in different summands are independent — which
-is what `Zonotope.supportBound_attained` supplies, one `p` at a time.
+## Inputs
+* `A` – matrix as a function of the step
+* `Ψ` – error set as a function of the step
+* `h` – step size
+* `Z` – error zonotope at the step
+* `i` – dimension
 
-Generators are a family, so `‖Aᵖ(h)G(h)‖₁,ᵢ` is written `Σⱼ |(Aᵖ(h) gʲ)ᵢ|`.
+## Hypotheses
+* `hh` – step size nonnegative
+* `hΨ` – error set is the zonotope
 
-`0 ≤ h` is the paper's implicit reading of a time span: at `h < 0` the odd
-coefficients flip sign and the identity would need `|h|^{p+1}`. Nothing else is
-asked — at the l-infinity operator norm the series converges for every `A` and
-`Ψ`, which is what makes `R^∞_abs(h)` nonempty too.
+## Conclusion
+* the box side equals twice the series of row norms
 
 ## References
 

@@ -14,21 +14,58 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # A time-interval input enclosure at a box, when the input set misses the origin
 
-`inputSolution_timeInterval_outer` needs `0 ∈ U`; this is the case of [1, Alg. 1]
-that [1, Sec. 3.3] leaves out, the input set split into a constant `ũ` and a set `Ũ` holding the
-origin. `Ũ` goes through [1, Sec. 3.3]'s `P([0, r]) = P(r)` unchanged, and the constant
-contributes `(∫₀ᵗ e^{Aσ}dσ)ũ`, enclosed as the straight line to its value at `r` widened by
+`inputSolution_timeInterval_outer` needs `0 ∈ U`; this is the case of [1, Alg. 1] that [1, Sec. 3.3]
+leaves out, the input set split into a constant `ũ` and a set `Ũ` holding the origin. `Ũ` goes
+through [1, Sec. 3.3]'s `P([0, r]) = P(r)` unchanged, and the constant contributes
+`(∫₀ᵗ e^{Aσ}dσ)ũ`, enclosed as the straight line to its value at `r` widened by
 `intervalConstCorrectionMatrix`, the input correction matrix `F̃` over the whole box (not in a
-paper; CORA's `priv_inputTie` [2]).
+paper; CORA's `priv_inputTie` [2]). The line is the series `inputSolution` already encloses,
+applied to the segment rather than to an input set; distributing the product over that sum is
+the tightness this costs. The split itself is a hypothesis, `ContSet` being unable to name a center.
 
-The propagated half differs from the point case, and this is where the matrix
-being a set is paid for: there the line is `expIntegral A r` applied to the
-segment, an exact matrix no machine holds. Here `A` is a box, so the same
-`C(r) := ∫₀ʳ e^{At}dt` is the series `inputSolution` already
-encloses — applied to the segment rather than to an input set. Distributing the
-product over that sum is the tightness this costs.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `U₀` – part of the input set holding the origin
+* `P` – set containing the constant part
+* `Sg` – set containing the segment to the constant
+* `x` – trajectory
+* `u` – input signal
+* `A` – system matrix member
+* `c` – constant part of the input
+* `r` – step size
+* `η` – Taylor order
+* `t` – time
 
-The split itself is a hypothesis, `ContSet` being unable to name a center.
+## Hypotheses
+* `traj` – canonical constant-parameter trajectory
+* `hr` – step positive
+* `hT` – step lies in the time set
+* `hε` – order admissible
+* `hsplit` – inputs split into `c` and `U₀`
+* `hcP` – `c` lies in `P`
+* `hcS` – segment to `c` lies in `Sg`
+* `hbddP` – `P` bounded
+* `hconvS` – `Sg` convex
+* `hclosedS` – `Sg` closed
+* `hbddS` – `Sg` bounded
+* `hRconvS` – remainder image of `Sg` convex
+* `hRclosedS` – remainder image of `Sg` closed
+* `hRbddS` – remainder image of `Sg` bounded
+* `h0₀` – origin lies in `U₀`
+* `hconv₀` – `U₀` convex
+* `hclosed₀` – `U₀` closed
+* `hbdd₀` – `U₀` bounded
+* `hRconv₀` – remainder image of `U₀` convex
+* `hRclosed₀` – remainder image of `U₀` closed
+* `hRbdd₀` – remainder image of `U₀` bounded
+* `ht0` – time nonnegative
+* `htr` – time at most the step
+
+## Conclusion
+* the input's contribution at time `t` lies in the sum of the three enclosures
 
 ## References
 

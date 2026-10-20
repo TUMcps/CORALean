@@ -12,6 +12,37 @@ The same as `relinReach_outer`, with each step's input enclosure named rather
 than assumed. Step `i`'s integral is enclosed on the original clock — restrict
 to `[iΔt, (i+1)Δt]`, linearize there, apply `stepInput_outer` — which is why no
 shift appears, unlike in `relinReach_outer`'s own induction.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+* `steps` – linearization steps
+* `Δt` – step size
+* `N` – number of steps
+* `y` – output trajectory
+* `η` – Taylor terms
+* `o` – maximum order
+
+## Hypotheses
+* `traj` – trajectory of the system
+* `hΔt` – step size positive
+* `hT` – horizon inside time set
+* `hR` – trajectory stays in regions
+* `hε` – step norm small enough
+* `hconv` – widened input convex
+* `hclosed` – widened input closed
+* `hbdd` – widened input bounded
+* `hRconv` – remainder input convex
+* `hRclosed` – remainder input closed
+* `hRbdd` – remainder input bounded
+* `ho` – order positive
+
+## Conclusion
+* the trajectory state at each boundary lies in the loop result
 -/
 
 -- Authors:       Claude Opus 5

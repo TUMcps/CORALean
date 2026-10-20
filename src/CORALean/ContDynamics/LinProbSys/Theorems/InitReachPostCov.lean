@@ -13,6 +13,27 @@ probabilistic particular solution has the covariance `Σ_s(k r)` of the noise ac
 `k` steps, and the time-interval set of the next step that of `r + k r`: `initReach_cov` gives
 `post_cov` its two hypotheses, and `post_cov` the induction step. For a diagonalizable `A`
 given as its eigendecomposition. Covariances only, not the law of the process.
+
+## Inputs
+* `sys` – system
+* `Veig` – eigenvector matrix
+* `lambda` – eigenvalues
+* `Rinit` – initial probabilistic zonotope
+* `gammaInit` – confidence level of the initial set
+* `U` – input zonotope
+* `uTrans` – constant input
+* `r` – step size
+* `η` – Taylor order
+* `gamma` – confidence level
+* `originContained` – input set holds the origin
+* `k` – number of post steps
+
+## Hypotheses
+* `hV` – eigenvector matrix invertible
+* `hA` – `Veig` and `lambda` diagonalize the matrix
+
+## Conclusion
+* after `k` post steps the covariances are the accumulated noise covariances
 -/
 
 -- Authors:       Claude Opus 5.5

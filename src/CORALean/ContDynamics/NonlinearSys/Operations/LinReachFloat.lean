@@ -22,18 +22,22 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # One step of `linReach` at `alg = 'lin'` or `'poly'`, in floats
 
-CORA's `linReach`, [1, Alg. 1] lines 3-14, computed in `𝕋` from a `FloatHessModel`:
-the checked region `Ω` (`regionFloat`), the expansion point, `A` and `B`, and then the
-input set `V = f(z✱) ⊕ B(U - u✱) ⊕ L` one linearized step is run with
-(`oneStepFloat`). `L` is what `alg` selects. At `'lin'` it is `hessRemainder` over
-`Ω × U`, CORA's `priv_abstrerr_lin` at `tensorOrder = 2`. At `'poly'` it is
-`abstrErrPolyFloat`: `Rdiff`, CORA's `aux_deltaReach`, is `postDeltaFloat` of the
-`'lin'` linearization from `Rdelta = R - x✱`, and the static error is taken over
-`Rdelta` reduced to `errorOrder`, CORA's `Zdelta`.
+CORA's `linReach`, [1, Alg. 1] lines 3-14, computed in `𝕋` from a `FloatHessModel`: the checked
+region `Ω` (`regionFloat`), the expansion point, `A` and `B`, and then the input set
+`V = f(z✱) ⊕ B(U - u✱) ⊕ L` one linearized step is run with (`oneStepFloat`). `L` is what `alg`
+selects: `hessRemainder` over `Ω × U` at `'lin'`, `abstrErrPolyFloat` at `'poly'`. As in
+`relinStepFloat`, the region is checked before the error rather than the error enlarged until it
+holds, so CORA's `while perfIndCurr > 1` loop is a single pass that cannot fail to terminate.
 
-As in `relinStepFloat`, the region is checked before the error rather than the
-error enlarged until it holds, so CORA's `while perfIndCurr > 1` loop is a
-single pass that cannot fail to terminate.
+## Inputs
+* `fm` – float Hessian model
+* `alg` – abstraction algorithm
+* `U` – input zonotope
+* `options` – reachability options
+* `R` – start zonotope
+
+## Output
+* the time-interval and end sets of the step, or none
 
 ## References
 

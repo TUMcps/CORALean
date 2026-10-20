@@ -13,6 +13,17 @@ public import CORALean.ContDynamics.LinearARX.Theorems.BtildeSucc
 `B̄_ext,i` it adds being zero because `i > p`. What lets Alg. 1 and Alg. 2 multiply
 the older sets by `Ā_ext^p` instead of recomputing them.
 
+## Inputs
+* `sys` – ARX system
+* `k` – step
+* `Δk` – step increment
+
+## Hypotheses
+* none
+
+## Conclusion
+* later parameters follow from earlier ones by powers of the extended matrix
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

@@ -11,6 +11,18 @@ public import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDT
 The window `stack p y (k+1)` is `f` of the window `stack p y k` and the input signal
 `feed p u k`: a shift row reads the next block, the last row is the ARX recursion at
 `k + p`, its past windows reindexed by `Fin.rev`.
+
+## Inputs
+* `sys` – ARX system
+* `y` – outputs
+* `u` – inputs
+* `k` – step
+
+## Hypotheses
+* `hy` – the ARX recursion holds
+
+## Conclusion
+* the next window is the converted field at the window and stacked inputs
 -/
 
 -- Authors:       Claude Opus 5.5

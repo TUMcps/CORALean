@@ -12,17 +12,38 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSubPeanoBakerS
 /-!
 # An input-free time-varying run stays in the float step
 
-`LinParamSys.IsCanonicalTrajectory.timeIntervalStep_outer` at the float step: a fresh member
-of the float box at every instant, and still `timeIntervalStepFloat`, the set the
-float `'constParam'` step computes. The run is a run of the box's nominal real
-system, so it solves the integral equation at a measurable member
-(`IsTrajectory.exists_integral_eq`); its Peano–Baker expansion misses little
-(`MatExp.norm_sub_peanoBakerSum_le`), and the float core
-(`Float.MatExp.exists_mem_intervalCorrectionMatrix_of_remainder`) reads the rest as
-the float interpolation plus the float correction.
+`LinParamSys.IsCanonicalTrajectory.timeIntervalStep_outer` at the float step: a fresh member of
+the float box at every instant, and still `timeIntervalStepFloat`, the set the float
+`'constParam'` step computes. The run is a run of the box's nominal real system, so it solves
+the integral equation at a measurable member (`IsTrajectory.exists_integral_eq`); its
+Peano–Baker expansion misses little (`MatExp.norm_sub_peanoBakerSum_le`), and the float core
+(`Float.MatExp.exists_mem_intervalCorrectionMatrix_of_remainder`) reads the rest as the float
+interpolation plus the float correction. The condition is the float step's own,
+`OrderAdmissibleFloat`.
 
-The condition is the float step's own, `OrderAdmissibleFloat`: the real one it
-implies at every time of the step is read off a member attaining the box's norm.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `x` – trajectory
+* `u` – input signal
+* `A` – matrix signal
+* `Δt` – step size
+* `η` – Taylor order
+* `t` – time
+
+## Hypotheses
+* `traj` – time-varying trajectory
+* `hΔt` – step positive
+* `hT` – step lies in the time set
+* `hu` – input vanishes on the step
+* `hη` – order admissible
+* `ht0` – time nonnegative
+* `htr` – time at most the step
+
+## Conclusion
+* the state at time `t` lies in the float step
 -/
 
 -- Authors:       Claude Opus 5.5

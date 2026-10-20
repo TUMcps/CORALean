@@ -13,6 +13,14 @@ The float counterpart of `simulate`, through the converted state-space system: t
 window of `p` outputs is the state, the start window a point interval, and each
 step adds `feedBox`. The boxes enclose the stacked window of the real run
 (`simulate_mem_simulateBox`, ruling R-SIM).
+
+## Inputs
+* `sys` – ARX system
+* `y₀` – initial output window
+* `u` – input signal
+
+## Output
+* boxes enclosing the output window at each step
 -/
 
 -- Authors:       Claude Opus 5.5

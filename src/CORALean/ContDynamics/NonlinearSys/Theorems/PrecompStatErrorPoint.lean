@@ -17,6 +17,18 @@ error dependency-preserving.
 
 `quadMapDep_point` does the work; all this adds is the shift by the linearization
 point, which moves the center and leaves every monomial alone.
+
+## Inputs
+* `Q` – halved Hessian family
+* `xs` – linearization point
+* `pZ` – polynomial zonotope
+* `a` – factor vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the value at a factor vector is the second-order term there
 -/
 
 -- Authors:       Claude Opus 5

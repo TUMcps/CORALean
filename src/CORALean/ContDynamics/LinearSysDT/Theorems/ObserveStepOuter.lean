@@ -17,6 +17,22 @@ strips are the reals the floats store.
 
 [2, Eq. 4]: the correction keeps `S_p ∩ Ŝ`.
 
+## Inputs
+* `sys` – system
+* `σ` – strip widths
+* `W` – disturbance set
+* `options` – strip options
+* `u` – input at this step
+* `y` – measurement at this step
+* `Xhat` – previous estimate
+* `X` – set of possible states
+
+## Hypotheses
+* `hX` – `X` lies in the previous estimate
+
+## Conclusion
+* the successor states allowed by the measurement lie in the next estimate
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state

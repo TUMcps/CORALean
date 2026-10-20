@@ -14,6 +14,15 @@ CORA's `simulate` at a float start window and a float input signal, through the 
 `NonlinearSysDT`: the float model of its field applied to the box of the stacked window and the
 point box of the stacked inputs `feed`. The boxes enclose the stacked window of the real run;
 soundness is `simulate_mem_simulateBoxFloat`.
+
+## Inputs
+* `_sys` – ARX system
+* `fm` – float model of the converted system
+* `y₀` – float start window
+* `u` – float input signal
+
+## Output
+* boxes enclosing the output window at each step
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

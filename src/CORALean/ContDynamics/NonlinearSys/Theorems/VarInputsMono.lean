@@ -11,15 +11,28 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapMixedExact
 /-!
 # `varInputs` grows with the sets it runs on
 
-`[2]`'s property (7) for `[1, Eq. 7]`'s operator, which `[2, Lemma 3]` assumes of
-every operation `[2, Alg. 2]` composes and never proves of any: here it is proved
-rather than assumed, and it costs nothing.
+`[2]`'s property (7) for `[1, Eq. 7]`'s operator, which `[2, Lemma 3]` assumes of every operation
+`[2, Alg. 2]` composes and never proves of any: here it is proved, and it costs nothing. Every
+piece of `varInputs` is exact — `mtimes`, `map`, `plus`, `quadMapMixed` twice and `quadMap` once
+— so what it denotes is a Minkowski sum of images of its arguments' own sets, and an image and
+a sum are both monotone. The third argument is held fixed: `UΔ` is the step's input range, not a
+set `[2, Alg. 1]`'s loop grows.
 
-Every piece of `varInputs` is exact — `mtimes`, `map`, `plus`, `quadMapMixed`
-twice and `quadMap` once — so what it denotes is a Minkowski sum of images of its
-arguments' own sets, and an image and a sum are both monotone. The third argument
-is held fixed: `UΔ` is the step's input range, not a set `[2, Alg. 1]`'s loop
-grows.
+## Inputs
+* `B` – input matrix
+* `D` – Hessian family
+* `Rz₁` – smaller state-input range
+* `Rz₂` – larger state-input range
+* `RzΔ₁` – smaller varying range
+* `RzΔ₂` – larger varying range
+* `UΔ` – varying input range
+
+## Hypotheses
+* `hz` – state-input ranges nested
+* `hzΔ` – varying ranges nested
+
+## Conclusion
+* widening either range widens the varying input part
 
 ## References
 

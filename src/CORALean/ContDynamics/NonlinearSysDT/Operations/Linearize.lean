@@ -10,6 +10,12 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.CanonicalFloat
 `linearize`: fresh rather than `NonlinearSys.linearize`, whose target
 `LinearSys` carries a flow this system has none of. The canonical form at `A`,
 `LinearSysDT.canonicalFloat`, its input the linearization's in state coordinates.
+
+## Inputs
+* `A` – state matrix
+
+## Output
+* the linear system with that matrix
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5

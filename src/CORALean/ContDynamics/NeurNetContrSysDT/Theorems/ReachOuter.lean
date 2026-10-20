@@ -14,20 +14,35 @@ public import CORALean.NN.Theorems.EncloseOuter
 /-!
 # `NeurNetContrSysDT.reach` contains every closed-loop run
 
-Where the two halves of this repository meet, and the meeting is two lines: the
-controller's enclosure of the input it produces at the reached state, handed to
-the plant's one-step enclosure. Nothing else appears, and nothing new is proved
-here — `NeuralNetwork.Encloses.enclose_outer` and `LinearSysDT.reach_one_outer` are
-both already stated against the interfaces, so neither knows it is being
-composed.
+Where the two halves of this repository meet, and the meeting is two lines: the controller's
+enclosure of the input it produces at the reached state, handed to the plant's one-step enclosure.
+Nothing new is proved here — `NeuralNetwork.Encloses.enclose_outer` and
+`LinearSysDT.reach_one_outer` are both already stated against the interfaces. The induction
+hypothesis is used twice, once for each half, and that is the whole reason the enclosure is loose:
+the state it places in the reachable set and the state the controller is read at are the same state
+in the proof and independent points in the set. `reachSetExact_subset_reach` is the same guarantee
+on the reachable set rather than on one run.
 
-The induction hypothesis is used twice, once for each half, and that is the
-whole reason the enclosure is loose: the state it places in the reachable set
-and the state the controller is read at are the same state in the proof and
-independent points in the set.
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input set
+* `o` – maximum zonotope order
+* `R₀` – initial set
+* `π` – controller function
+* `W` – disturbance set
+* `x` – states
+* `v` – external input signal
+* `w` – disturbance signal
+* `k` – step
 
-Reach for `reachSetExact_subset_reach` for the same guarantee restated on the
-reachable set rather than on one run.
+## Hypotheses
+* `ho` – order positive
+* `hπ` – the network encloses `π`
+* `hW` – disturbances sent to zero by the disturbance matrix
+* `traj` – closed-loop trajectory
+
+## Conclusion
+* the state at step `k` lies in the reachable set
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5

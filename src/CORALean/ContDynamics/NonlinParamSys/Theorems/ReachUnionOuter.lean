@@ -18,6 +18,17 @@ bundled augmented system, whose union encloses it at every time of the horizon,
 `NonlinearSys.WithSteps.reachUnion_outer`, with no confinement assumed; the
 selection matrix, through `mtimes_outer`, carries the member holding the pair
 to the one holding its first half, which is the state.
+
+## Inputs
+* `sys` – parametric system with steps
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Hypotheses
+* none
+
+## Conclusion
+* every constant-parameter state reached lies in the returned union
 -/
 
 -- Authors:       Claude Opus 5.5

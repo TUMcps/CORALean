@@ -15,6 +15,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 `y_k = C x_k + F v_k` and the observer gain `L`. Real only, as CORA's interval observer
 (`aux_observeIntervalStep`) is: no float layer of the observers is written yet.
 
+## Inputs
+* `sys` – system
+* `L` – observer gain
+* `u` – input at this step
+* `y` – measurement
+* `s` – estimator state
+
+## Output
+* the estimator state one step later
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

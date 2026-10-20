@@ -16,6 +16,24 @@ of something not computable.
 Per step, since that is what `reach` returns. A requirement over a horizon is
 this at each `k`, and an unbounded one needs an invariant rather than a longer
 list.
+
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial set
+* `U` – input set
+* `spec` – specification
+* `x` – trajectory
+* `u` – input signal
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `traj` – discrete-time trajectory
+* `h` – specification holds on the reachable set
+
+## Conclusion
+* the specification holds at the state of step `k`
 -/
 
 -- Authors:       Claude Opus 5

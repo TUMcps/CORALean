@@ -19,6 +19,19 @@ of the one hypothesis `reach` carries for the whole run.
 
 No induction, for the same reason `reach_order_le` needs none: the bound is a
 fact about the last step alone.
+
+## Inputs
+* `sys` – system
+* `o` – maximum order per step
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – step
+
+## Hypotheses
+* `ho` – orders positive
+
+## Conclusion
+* the generator count is at most the order of the step times `n`
 -/
 
 -- Authors:       Claude Opus 5

@@ -15,6 +15,12 @@ Needs `OfPoint (𝕄 m n) (Mat ℝ m n)` rather than fixing `𝕄 := Mat 𝕋` a
 not only the point-matrix one. `B` is the point set at `sys.B`, `c` carries over as it stands;
 `E` and the output equation have no counterpart in CORA's `linParamSys`. The trajectory
 correspondence is `TrajectoryToLinParam.lean`.
+
+## Inputs
+* `sys` – linear system
+
+## Output
+* the constant-parameter system at the linear system's matrices
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

@@ -9,19 +9,39 @@ public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
 /-!
 # Where a constant-parameter run is at the end of a step
 
-The two halves of a step put together: `timeIntervalStep` for what the initial
-set carries and `inputSolution` for what the inputs contributed, both computed
-from the matrix set alone. Nothing is assumed of the run beyond the trajectory
-itself — the measurability the input solution wants is
-`aestronglyMeasurable_input_reflected`, which a trajectory always has.
+The two halves of a step put together: `timeIntervalStep` for what the initial set carries and
+`inputSolution` for what the inputs contributed, both computed from the matrix set alone. Nothing
+is assumed of the run beyond the trajectory itself — the measurability the input solution wants
+is `aestronglyMeasurable_input_reflected`. `inputSolution_outer` is proved at `r`, so this is the
+time-point solution there; `timeInterval_outer_inputSolution` is the same statement at every `t`
+of the step, at the cost of `0 ∈ U`. The three hypotheses on the remainder product are what the
+input solution asks of `Mtimes` at an interval matrix, properties of a representation.
 
-At the end of the step: `inputSolution_outer` is proved at `r`, so this is the
-time-point solution there, enclosed by the time-interval step of the
-homogeneous part. `timeInterval_outer_inputSolution` is the same statement at
-every `t` of the step, at the cost of `0 ∈ U`.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `A` – system matrix member
+* `r` – step size
+* `m` – Taylor order minus two
 
-The three hypotheses on the remainder product are what the input solution asks
-of `Mtimes` at an interval matrix, and are properties of a representation.
+## Hypotheses
+* `traj` – constant-parameter trajectory
+* `hr` – step positive
+* `hT` – step lies in the time set
+* `hε` – order admissible
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `hRconv` – remainder image convex
+* `hRclosed` – remainder image closed
+* `hRbdd` – remainder image bounded
+
+## Conclusion
+* the state at the end of the step lies in the step enclosure plus the input solution
 -/
 
 -- Authors:       Claude Opus 5

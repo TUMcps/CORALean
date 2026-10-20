@@ -15,20 +15,25 @@ public import Mathlib.Order.Interval.Set.Pi
 /-!
 # The inner algorithm's time-interval output holds an unreachable state
 
-[1, Alg. 1] ensures that its output `R̂(τ) = ⋃_k R̂(τ_k)` is an inner approximation of the
-reachable set over `[0, t_end]`; line 16 computes `R̂(τ_k)` by `Prop. 2`, which is false for a
-convex initial set as well (`convexHull_timeInterval_convex_counterexample`), and the algorithm
-inherits it. One step, `t_end = 1`, `ω = 1`, of the shear `ẋ = (x₂, 0)` from the box
-`X₀ = [-1/10, 1/10] × [-1, 1]`, a polytope as line 1 requires: with the box's center `0` as
-`cen(X₀)`, line 4 gives `x* = 0`, line 5 `w = 0` and `A = [0 1; 0 0]`, line 6 `C = 0`
-(`F(1) = 0` and `w = 0`, since `A² = 0`), the field has no Lagrange remainder, so lines 9-13
-stop at `L̂ = 0` and line 14 gives `R̂_err(L̂) = 0` and `c = 0`. Line 16 is then
-`conv(X₀, e^{A}X₀)`, which holds `(1/2, 0)`, the midpoint of `(0, -1)` and `e^{A}(0, 1) = (1, 1)`,
-and no run from `X₀` passes through `(1/2, 0)` in `[0, 1]`: one through it starts on `x₂ = 0`,
-where `ẋ = 0`, so its first coordinate stays in `[-1/10, 1/10]`.
+[1, Alg. 1] ensures that its output `R̂(τ) = ⋃_k R̂(τ_k)` is an inner approximation of the reachable
+set over `[0, t_end]`; line 16 computes `R̂(τ_k)` by `Prop. 2`, which is false for a convex initial
+set as well (`convexHull_timeInterval_convex_counterexample`). One step, `t_end = 1`, `ω = 1`, of
+the shear `ẋ = (x₂, 0)` from the box `X₀ = [-1/10, 1/10] × [-1, 1]`: with the box's center `0` as
+`cen(X₀)`, lines 4-14 give `x* = 0`, `w = 0`, `A = [0 1; 0 0]`, `C = 0`, `L̂ = 0`, `R̂_err(L̂) = 0`,
+`c = 0`. Line 16 is then `conv(X₀, e^{A}X₀)`, which holds `(1/2, 0)`, the midpoint of `(0, -1)` and
+`(1, 1)`, and no run from `X₀` passes through it in `[0, 1]`. The subroutines enter only through
+what (6), (9), (13), (17) and the center give for this system, stated as hypotheses on `ops`.
 
-The subroutines enter only through what (6), (9), (13), (17) and the center give for this
-system, stated as hypotheses on `ops`.
+## Inputs
+* `ops` – subroutine operations
+* `fuel` – iteration bound
+* `U` – input set
+
+## Hypotheses
+* `hfuel` – iteration bound positive
+
+## Conclusion
+* the algorithm's output holds a state no run reaches
 
 ## References
 

@@ -18,6 +18,35 @@ Eq. 44), so the errors of (42c), (42d) stay nonnegative (its Eq. 47, [1, Lemma 2
 [1, Lemma 3]), and `x_k = S⁻¹ z_k` is bounded by (42e), (42f) [1, Lemma 2]. That `A - LC` is
 Schur is not needed for the enclosure, only for the bounds to stay bounded.
 
+## Inputs
+* `sys` – system
+* `L` – observer gain
+* `S` – coordinate transformation
+* `wl` – lower disturbance bound
+* `wu` – upper disturbance bound
+* `vl` – lower noise bound
+* `vu` – upper noise bound
+* `xl₀` – lower initial bound
+* `xu₀` – upper initial bound
+* `u` – inputs
+* `y` – measurements
+* `x` – true states
+* `w` – true disturbances
+* `v` – true noise
+* `k` – step
+
+## Hypotheses
+* `hS` – transformation invertible
+* `hR` – transformed error matrix nonnegative
+* `h0` – start within the bounds
+* `hw` – disturbances within the bounds
+* `hv` – noise within the bounds
+* `hstep` – the dynamics hold
+* `hy` – the measurements follow the outputs
+
+## Conclusion
+* the true state lies in the observer's interval
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

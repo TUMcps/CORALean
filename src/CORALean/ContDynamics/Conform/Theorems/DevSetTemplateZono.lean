@@ -16,6 +16,28 @@ generators `[Λ_k G_X, Λ₀ G_W, …, Λ_{k-1} G_W, G_V]` stretched by `α_X`, 
 and `α_V`, `Λᵢ = C Aⁱ`. An equality: Minkowski sums and linear maps of zonotopes are
 exact. [1, Eq. 17] and [1, Eq. 18] are the case `X̃₀ = {0}`, `DevSetZeroTemplateZono`.
 
+## Inputs
+* `sys` – plant
+* `ιX` – index type of the initial generators
+* `ιW` – index type of the disturbance generators
+* `ιV` – index type of the noise generators
+* `cX` – initial center
+* `GX` – initial template generators
+* `αX` – initial stretch factors
+* `cW` – disturbance center
+* `GW` – disturbance template generators
+* `αW` – disturbance stretch factors
+* `cV` – noise center
+* `GV` – noise template generators
+* `αV` – noise stretch factors
+* `k` – step
+
+## Hypotheses
+* none
+
+## Conclusion
+* the deviation set equals one stretched template zonotope
+
 ## References
 
 * [1] S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems:

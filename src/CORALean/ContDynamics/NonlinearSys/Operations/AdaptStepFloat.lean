@@ -18,17 +18,26 @@ public import CORALean.Global.Float.FloatOps
 [1, Alg. 2] for `k > 1` computed in `𝕋` from a `FloatHessModel`: line 1 updates the finite horizon
 from the last step's gain, lines 2-15 run the step twice, once over the horizon to get `R_abs(h)`
 and from it the optimal step size, once over that step size, and lines 16-18 report the gain, add
-the error and reduce. The tuning (`optDeltatFloat`, `aux_tuneAbstrOrderFloat`, `estimateGainFloat`)
-is the real algorithm's, restated over `𝕋`.
+the error and reduce. The tuning is the real algorithm's, restated over `𝕋`; the abstraction
+error is a checked region (`orderStepFloat`), not a fixed point (lines 7-11), so a step either
+succeeds or the region check fails. The tuning cannot affect soundness: `adaptStepFloat_outer`
+holds of whatever it chose.
 
-Two things differ, and both are the float layer's. The abstraction error is not a fixed point
-(lines 7-11) but a checked region (`orderStepFloat`), so a step either succeeds or the region
-check fails. And the step is not assembled as `R_lin ⊕ R_abs` but is the full step of the order,
-`R_abs` entering the tuning only as the difference of box radii and diameters between that step
-and the linear pass `adaptLinPassFloat`, which is exact for the Minkowski sum the paper forms.
+## Inputs
+* `fm` – float Hessian model
+* `U` – input zonotope
+* `options` – reachability options
+* `ζδ` – first tuning constant
+* `ζh` – second tuning constant
+* `ζZ` – third tuning constant
+* `ζK` – fourth tuning constant
+* `prec` – precision
+* `bis` – bisection depth
+* `fuel` – iteration bound
+* `s` – loop state
 
-The tuning cannot affect soundness: the step that is returned is a step of `orderStepFloat` at the
-time step the tuning chose, so `adaptStepFloat_outer` holds of whatever it chose.
+## Output
+* the next loop state, or none
 
 ## References
 

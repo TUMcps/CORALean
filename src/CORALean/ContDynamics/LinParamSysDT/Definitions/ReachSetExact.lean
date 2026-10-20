@@ -10,6 +10,14 @@ public import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
 `LinearSysDT.reachSetExact`'s recursion, one step's image taken at every
 `A ∈ construct sys.A` rather than at a fixed matrix: no `reduce`, no enclosure,
 and nothing an implementation is free to widen.
+
+## Inputs
+* `sys` – system
+* `R₀` – initial set
+* `U` – input set
+
+## Output
+* the states reachable in exactly `k` steps, by step count
 -/
 
 -- Authors:       Claude Opus 5.5

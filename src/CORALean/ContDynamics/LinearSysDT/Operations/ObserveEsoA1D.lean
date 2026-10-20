@@ -7,21 +7,28 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripGollamudi
 /-!
 # `LinearSysDT.observeEsoA1D`
 
-One step of CORA's ellipsoidal observer `ESO-A` (`linearSysDT/executeObserver` with
-`options.alg = 'ESO-A'`, `priv_observe_ESO_A`) for `n = 1`, as the code computes it: from the
-estimate `E(Q, c)` (`{x | (x - c)² / Q ≤ 1}`) and the previous `σ²_prev`, the prediction the code
-takes from Eq. 21 and Eq. 48 of Liu, Zhao and Wu (IET Control Theory & Applications, 2016),
+One step of CORA's ellipsoidal observer `ESO-A` (`priv_observe_ESO_A`) for `n = 1`, as the code
+computes it: from the estimate `E(Q, c)` and the previous `σ²_prev`, the prediction of Eq. 21 and
+Eq. 48 of Liu, Zhao and Wu (IET Control Theory & Applications, 2016),
+`Q_next = (1 - p)⁻¹ A Q A + (σ²_prev p)⁻¹ W`, centered at `A c + u`, then the strip update of
+Gollamudi, Nagaraj, Kapoor and Huang (ISITA 1996): the trigger `σ²_prev + δ² > phi`, the weight
+`λ = min(1e-4, ν)` and `Ellipsoid.intersectStripGollamudi1D`. The update divides the shape by `σ²`
+where the enclosure needs `σ²` times it (`Ellipsoid.intersectStripGollamudi1D_counterexample`,
+`LinearSysDT.observeEsoA1D_counterexample`); `LinearSysDT.observeEsoA` is the corrected step.
 
-  `Q_next = (1 - p)⁻¹ A Q A + (σ²_prev p)⁻¹ W`,  `p = √W / (√(σ²_prev A Q A) + √W)`,
+## Inputs
+* `A` – state coefficient
+* `C` – output coefficient
+* `W` – disturbance variance
+* `V` – noise variance
+* `u` – input at this step
+* `y` – measurement
+* `Q` – ellipsoid shape
+* `c` – ellipsoid center
+* `σsqPrev` – previous sigma squared
 
-centered at `A c + u` (`post`: `A x + B u + c`, the known input folded into `u`), then the strip
-update the code takes from Gollamudi, Nagaraj, Kapoor and Huang (ISITA 1996), by
-`intersectStrip(…, 'Gollamudi1996')` with `phi = norm(params.V) = √V` for the measurement noise
-`E(0, V)`: the trigger `σ²_prev + δ² > phi`, the weight `λ = min(1e-4, ν)` and the update
-`Ellipsoid.intersectStripGollamudi1D`. It returns the new center, shape and `sigma_sq`. The update
-divides the shape by `σ²` where the enclosure needs `σ²` times it
-(`Ellipsoid.intersectStripGollamudi1D_counterexample`); the observer inherits that
-(`LinearSysDT.observeEsoA1D_counterexample`). `LinearSysDT.observeEsoA` is the corrected step.
+## Output
+* the new center, shape and sigma squared
 -/
 
 -- Authors:       Claude Opus 5.5

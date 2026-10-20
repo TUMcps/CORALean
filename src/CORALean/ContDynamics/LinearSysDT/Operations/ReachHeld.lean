@@ -12,6 +12,13 @@ public import CORALean.ContDynamics.Reach.Definitions.InputParams
 `reduce`: `U` multiplied once by `∑ i < N, Aⁱ`, not accumulated per step, so
 a zero-order hold reads off exactly rather than through the jitter a fresh
 point of `U` at every step would add.
+
+## Inputs
+* `sys` – system
+* `params` – reachability parameters with inputs
+
+## Output
+* the reachable set at one held input point
 -/
 
 -- Authors:       Claude Sonnet 5

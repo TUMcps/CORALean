@@ -8,18 +8,17 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # The linear system a linearization leaves behind
 
-CORA's `nonlinearSys/private/linearize`, minus the derivative: the system is
-the matrix and nothing else. Everything the field contributes beyond `A x` —
-its value at the expansion point, the input coupling, the abstraction error —
-is collected in `linInput` instead, so the two halves of a linearization are
-two definitions rather than one returning a pair.
+CORA's `nonlinearSys/private/linearize`, minus the derivative: the system is the matrix and
+nothing else. Everything the field contributes beyond `A x` is collected in `linInput` instead,
+so the two halves of a linearization are two definitions. `sys` is not an argument: `A` is
+whatever matrix the certificate was issued for. `LinearSys ℝ`, not `LinearSys 𝕋`: the
+certificate's `A` is real, and a float layer certifies against the real matrix its result reads as.
 
-`sys` is not an argument and cannot be: `A` is whatever matrix the certificate
-was issued for, and no property of the field is used to read a system off it.
+## Inputs
+* `A` – state matrix
 
-`LinearSys ℝ`, not `LinearSys 𝕋`: the certificate's `A` is real. A float layer
-linearizes in float arithmetic and then certifies against the real matrix its
-result reads as.
+## Output
+* the linear system with that matrix
 -/
 
 -- Authors:       Claude Opus 5

@@ -10,6 +10,15 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepAtFloat
 
 `relinStepAtFloat` at the expansion point `linPointFloat` computes: the center of the set the
 step starts from, carried half a step along the field.
+
+## Inputs
+* `fm` – float model
+* `U` – input zonotope
+* `options` – reachability options
+* `R` – start zonotope
+
+## Output
+* the time-interval and end sets, or none
 -/
 
 -- Authors:       Claude Opus 5.5

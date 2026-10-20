@@ -11,6 +11,14 @@ public import CORALean.ContSet.Interval.Float.Operations.Point
 CORA's `simulate` at a float start and a float input signal: the field's interval extension
 `fm.f`, applied step by step to the box of the previous state and the point box of the input.
 Soundness is `simulate_mem_simulateBoxFloat`; no rounding is claimed exact.
+
+## Inputs
+* `fm` – float field model
+* `x₀` – initial point
+* `u` – input signal
+
+## Output
+* boxes containing the run at each step
 -/
 
 -- Authors:       Claude Opus 5.5

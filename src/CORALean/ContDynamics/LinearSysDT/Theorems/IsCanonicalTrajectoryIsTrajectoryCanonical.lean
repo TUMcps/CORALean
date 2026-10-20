@@ -11,6 +11,23 @@ The converse of `IsTrajectory.canonical`: a `IsCanonicalTrajectory` of `sys` is 
 `LinearSysDT.canonical A` at `sys`'s own `A`, with no disturbance or noise and the state as
 output. Together the two say the canonical form loses no run and adds none. Stated at ℝ, where
 `1` and `0` read as themselves.
+
+## Inputs
+* `sys` – system
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `W` – disturbance set
+* `V` – noise set
+
+## Hypotheses
+* `traj` – canonical trajectory
+* `hW` – zero lies in the disturbance set
+* `hV` – zero lies in the noise set
+
+## Conclusion
+* the run is a trajectory of the canonical full system
 -/
 
 -- Authors:       Claude Opus 5.5

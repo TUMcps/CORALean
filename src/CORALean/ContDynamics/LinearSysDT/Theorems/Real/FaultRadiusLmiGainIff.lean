@@ -13,6 +13,23 @@ public import CORALean.ContDynamics.LinearSysDT.Definitions.FaultRadiusLmi
 `W = PL`, the same matrix: `(A - LC)ᵀP = AᵀP - CᵀWᵀ` and `(LD_yH_v)ᵀP = H_vᵀD_yᵀWᵀ`, as
 `Wᵀ = LᵀP` for a symmetric `P`.
 
+## Inputs
+* `A` – state matrix
+* `C` – output matrix
+* `Dx` – disturbance matrix
+* `Hw` – disturbance generators
+* `Dy` – noise matrix
+* `Hv` – noise generators
+* `P` – Lyapunov matrix
+* `L` – observer gain
+* `γ` – radius bound
+
+## Hypotheses
+* `hP` – Lyapunov matrix symmetric
+
+## Conclusion
+* the inequalities with the gain and with the product agree
+
 ## References
 
 * [1] Y. Wang, M. Zhou, V. Puig, G. Cembrano and Z. Wang. "Zonotopic Fault Detection Observer

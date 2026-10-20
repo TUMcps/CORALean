@@ -10,16 +10,39 @@ public import CORALean.Global.BoxDiameterAddLe
 /-!
 # `hstep`, derived from (10) at a single fixed linearization matrix
 
-[1, Lemma 2]'s Appendix B expands (10) with `A(Δtₖ)` written `A`, "for ease of
-notation" — one fixed matrix, the honest reading for a step that does not
-re-linearize. `R (k+1) = e^{AΔt}R(k) ⊕ P(k) ⊞ Rabs(k)` and
-`R̂ (k+1) = e^{AΔt}R̂(k) ⊕ P(k)` share `P(k)`, and reassociating it away — not
-cancelling it through `⊖`, which fails for the erosion `minkowskiDiff` on bare
-sets without a Rådström argument this general — leaves `R(k) = R̂(k) + E(k)`
-for the honestly-tracked error `E(k+1) := e^{AΔt}E(k) ⊞ Rabs(k)`, `E(0) = {0}`.
-`aux_exists_solverError` is that invariant; the two `boxDiameter` bounds turn
-it into `hstep`'s `(1+LΔt)εₖ+εₖ,loc` with `L := ‖A‖e^{t_end‖A‖}`, valid across
-the whole of `Δt ∈ (0, t_end]` and not only a neighbourhood of `0`.
+[1, Lemma 2]'s Appendix B expands (10) with `A(Δtₖ)` written `A`, one fixed matrix, the honest
+reading for a step that does not re-linearize. `R (k+1) = e^{AΔt}R(k) ⊕ P(k) ⊞ Rabs(k)` and
+`R̂ (k+1) = e^{AΔt}R̂(k) ⊕ P(k)` share `P(k)`, and reassociating it away leaves
+`R(k) = R̂(k) + E(k)` for the tracked error `E(k+1) := e^{AΔt}E(k) ⊞ Rabs(k)`, `E(0) = {0}`
+(`aux_exists_solverError`). The two `boxDiameter` bounds turn it into `hstep`'s
+`(1+LΔt)εₖ+εₖ,loc` with `L := ‖A‖e^{t_end‖A‖}`, valid across all of `Δt ∈ (0, t_end]`.
+
+## Inputs
+* `A` – state matrix
+* `Δt` – step size
+* `tEnd` – final time
+* `N` – number of steps
+* `R` – runs with error
+* `Rhat` – error-free runs
+* `Rabs` – abstraction error sets
+* `P` – particular-solution sets
+* `k` – step index
+
+## Hypotheses
+* `hΔt` – step size positive
+* `htEnd` – step size within final time
+* `hR0` – initial runs agree
+* `hB1` – run with error follows recursion
+* `hB2` – error-free run follows recursion
+* `hRhatNe` – error-free runs nonempty
+* `hRhatBdd` – error-free runs bounded
+* `hRabsNe` – error sets nonempty
+* `hRabsConv` – error sets convex
+* `hRabsCpt` – error sets compact
+* `hk` – index below step count
+
+## Conclusion
+* the global error grows by at most a fixed factor plus the local error
 
 ## References
 

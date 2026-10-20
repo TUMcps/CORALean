@@ -9,19 +9,39 @@ public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 /-!
 # A constant-parameter run stays in the step enclosure, inputs and all
 
-`LinearSys.IsCanonicalTrajectory.timeInterval_outer` at `'constParam'`: the closed form
-splits the run into what the initial set carries and what the inputs
-contributed, and `toLinearSys` is what lets that closed form be used at all —
-one matrix is fixed over the step, so `variation_of_constants` applies to it
-unchanged.
+`LinearSys.IsCanonicalTrajectory.timeInterval_outer` at `'constParam'`: the closed form splits the
+run into what the initial set carries and what the inputs contributed, and `toLinearSys` is what
+lets that closed form be used — one matrix is fixed over the step, so `variation_of_constants`
+applies unchanged. The initial part is the box's `timeIntervalStep`, which knows no member. The
+input part is a set the caller supplies; `timeInterval_outer_inputSolution` discharges `hUd` with
+`sys.inputSolution`. Integrability is not a hypothesis — `InputIntegrable` derives it from `U`
+being bounded.
 
-The initial part is the box's `timeIntervalStep`, which knows no member. The
-input part is a set the caller supplies, left open so that this file states the
-homogeneous half alone; `timeInterval_outer_inputSolution` discharges `hUd`
-with `sys.inputSolution`.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `Ud` – set holding the input's contribution
+* `x` – trajectory
+* `u` – input signal
+* `A` – system matrix member
+* `r` – step size
+* `m` – Taylor order minus two
+* `t` – time
 
-Integrability is not a hypothesis — `InputIntegrable` derives it from `U` being
-bounded.
+## Hypotheses
+* `traj` – constant-parameter trajectory
+* `hr` – step positive
+* `hT` – step lies in the time set
+* `hε` – order admissible
+* `ht0` – time nonnegative
+* `htr` – time at most the step
+* `hU` – input set bounded
+* `hUd` – input's contribution lies in `Ud`
+
+## Conclusion
+* the state at time `t` lies in the step enclosure plus the input set
 -/
 
 -- Authors:       Claude Opus 5

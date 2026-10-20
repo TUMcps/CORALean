@@ -17,6 +17,25 @@ the `0` the augmented field puts there. `hZ` is what makes the initial state lan
 cartesian-product class on `ContSet` to build `Z₀` from `R₀` and `P` instead.
 The augmented field is the parameterized one under the linear map `v ↦ (v, 0)`,
 which moves through the integral.
+
+## Inputs
+* `sys` – parametric system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `P` – parameter set
+* `Z₀` – augmented initial set
+* `x` – state trajectory
+* `u` – input signal
+* `p` – parameter vector
+* `y` – output signal
+
+## Hypotheses
+* `traj` – constant-parameter trajectory
+* `hZ` – appended start and parameter lie in `Z₀`
+
+## Conclusion
+* the state with the parameter appended is an augmented trajectory
 -/
 
 -- Authors:       Claude Opus 5.5

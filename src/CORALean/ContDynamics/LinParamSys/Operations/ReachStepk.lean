@@ -8,15 +8,22 @@ public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
 /-!
 # The homogeneous part of one window of `reachUnion`, over `τ_k = [t_k, t_k + Δt]`
 
-`LinearSys.reachStepkWrappingFree` at a set of matrices: `H^R(τ_k) = e^{A t_k} H^R(τ_0)`,
-with `H^R(τ_0)` the step `timeIntervalStep` and `e^{A t_k}` the interval
-matrix `expEnclosure` of the box `t_k • sys.A`, applied by one `Mtimes ℐ`.
-Taken from the first window rather than from the previous one, as in the point
-case, so no window pays for the interval products of those before it.
+`LinearSys.reachStepkWrappingFree` at a set of matrices: `H^R(τ_k) = e^{A t_k} H^R(τ_0)`, with
+`H^R(τ_0)` the step `timeIntervalStep` and `e^{A t_k}` the interval matrix `expEnclosure` of the
+box `t_k • sys.A`, applied by one `Mtimes ℐ`. Taken from the first window rather than from the
+previous one, as in the point case. The matrix a run fixes is the same in every window; the
+windows here each enclose their own time range at every member independently — sound, since a
+window's set only has to hold that window's states.
 
-The matrix a run fixes is the same in every window; the windows here do not
-know that, each enclosing its own time range at every member independently —
-sound, since a window's set only has to hold that window's states.
+## Inputs
+* `sys` – system
+* `Δt` – window length
+* `η` – Taylor order
+* `X₀` – initial set
+* `k` – window index
+
+## Output
+* the homogeneous reachable set of window `k`
 -/
 
 -- Authors:       Claude Opus 5.5

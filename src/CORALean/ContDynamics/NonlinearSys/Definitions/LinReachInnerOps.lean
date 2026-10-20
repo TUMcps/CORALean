@@ -9,16 +9,12 @@ public import Mathlib.Data.Real.Basic
 # The subroutines of CORA's inner linearized step
 
 What CORA's `contDynamics/linReachInner.m` computes by representation-specific routines,
-supplied rather than fixed: the enclosing box `interval(·)` (`box`), the emptiness test
-`representsa_(·, 'emptySet', 1e-12)` (`isEmpty`, a `Bool` so the step branches), the box center
-`center(·)` (`cen`), the Jacobian of `linearize` (`jac`), the curvature error
-`F * zonotope(·) + G * u` of `taylorMatrices` (`curv`), the box zonotope
-`zonotope(0 * a, diag(a))` (`diagZono`), the particular solution
-`particularSolution_timeVarying` (`inputSol`), and `priv_abstrerr_lin` (`abstrErr`), which
-returns the true error vector `trueError` and the abstraction error set `VerrorDyn` for the
-linearization point and a region. `𝓛` is the type of `VerrorDyn`, a zonotope in CORA.
-
-None of the fields carries a specification: a theorem about the step states what it needs of
+supplied rather than fixed: the enclosing box (`box`), the emptiness test (`isEmpty`, a `Bool`
+so the step branches), the box center (`cen`), the Jacobian of `linearize` (`jac`), the
+curvature error of `taylorMatrices` (`curv`), the box zonotope (`diagZono`), the particular
+solution `particularSolution_timeVarying` (`inputSol`), and `priv_abstrerr_lin` (`abstrErr`),
+which returns the true error vector and the abstraction error set `VerrorDyn`. `𝓛` is the type
+of `VerrorDyn`. None of the fields carries a specification: a theorem states what it needs of
 them as a hypothesis (`NonlinearSys.IsLinReachInnerCert`).
 
 ## References

@@ -10,6 +10,25 @@ public import CORALean.ContDynamics.LinParamSysDT.Theorems.SimulateIsTrajectory
 
 `simulate_isTrajectory` handed to `reach_outer`: the one fact `simulate` is for,
 stated once so nothing downstream redoes the induction on `reach`.
+
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial set
+* `U` – input set
+* `A` – matrices chosen per step
+* `x₀` – initial state
+* `u` – inputs
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `hA` – every chosen matrix lies in the set
+* `hx₀` – start lies in `R₀`
+* `hu` – inputs lie in `U`
+
+## Conclusion
+* the simulated state at step `k` lies in the reachable set
 -/
 
 -- Authors:       Claude Opus 5

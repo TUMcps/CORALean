@@ -14,18 +14,33 @@ public import Mathlib.Algebra.Order.Star.Real
 
 [1, Eq. 9]: if `P ≻ 0`, `Y` and `β` satisfy the matrix inequality
 `[βP 0 0 GᵢᵀP - Gᵢᵀc₁Yᵀ; ∗ FᵀF 0 FᵀP - Fᵀc₁Yᵀ; ∗ ∗ φ₁² Yᵀφ₁; ∗ ∗ ∗ P] ≽ 0` at every vertex `Gᵢ`
-of the interval matrix `[A]`, then the gain `λ₁ = P⁻¹ Y` makes the quadratic form of
-[1, Eq. 8] nonpositive at every `A` in the convex hull of the vertices:
-`‖κ₁ A θ + κ₁ F γ + φ₁ λ₁ η‖²_P ≤ β ‖θ‖²_P + ‖F γ‖²₂ + φ₁² η²`, `κ₁ = I - λ₁ c₁ᵀ`, which is what
-`Zonotope.pRadius_predict_strip_le` turns into the P-radius bound [1, Eq. 4].
+of the interval matrix `[A]`, then the gain `λ₁ = P⁻¹ Y` makes the quadratic form of [1, Eq. 8]
+nonpositive at every `A` in the convex hull of the vertices, which
+`Zonotope.pRadius_predict_strip_le` turns into the P-radius bound [1, Eq. 4]. Two steps, as in the
+paper: the matrix is affine in the vertex, so the set of `A` at which it is semidefinite is convex
+and holds the hull; at one `A`, the Schur complement (`Matrix.PosDef.fromBlocks₂₂`) gives the form
+of Eq. 8. That `[A]` is the hull of its vertices is `Interval.construct_subset_convexHull_vertices`.
 
-Two steps, as in the paper. The matrix is affine in the vertex, so the set of `A` at which it is
-semidefinite is convex and holds the hull. At one `A`, the Schur complement
-(`Matrix.PosDef.fromBlocks₂₂`) gives `diag(βP, FᵀF, φ₁²) - Ξ P⁻¹ Ξᵀ ≽ 0`, and with `Y = P λ₁`,
-`Ξᵀ (θ, γ, η) = P (κ₁ A θ + κ₁ F γ + φ₁ λ₁ η)`, so the quadratic form at `(θ, γ, η)` is Eq. 8.
-That `[A]` is the hull of its vertices is `Interval.construct_subset_convexHull_vertices`. The
-objective of Eq. 9, `max τ` with `(1 - β)P/(φ₁² + ψ) ≽ τ I`, is how the paper picks among the
-feasible gains; every feasible one is sound.
+## Inputs
+* `G` – vertex matrices
+* `F` – disturbance matrix
+* `c` – output row
+* `Y` – gain variable
+* `φ` – strip width
+* `β` – contraction factor
+* `P` – radius matrix
+* `A` – state matrix member
+* `θ` – error vector
+* `γ` – disturbance coefficients
+* `η` – strip coefficient
+
+## Hypotheses
+* `hP` – radius matrix positive definite
+* `hLMI` – matrix inequality holds at every vertex
+* `hA` – `A` lies in the hull of the vertices
+
+## Conclusion
+* the quadratic form of the gain is bounded for every convex combination
 
 ## References
 

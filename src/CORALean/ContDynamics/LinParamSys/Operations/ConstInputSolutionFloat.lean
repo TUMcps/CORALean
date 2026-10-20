@@ -12,6 +12,15 @@ of the segment `[0, ũ]`, which holds the origin, so by [1, Thm. 1] and [1, Sec.
 contribution at any time of `[0, r]` lies in `inputSolutionFloat` of that segment. No
 correction matrix `F̃` is needed: the segment's own enclosure already holds the constant.
 
+## Inputs
+* `sys` – system
+* `r` – step size
+* `η` – Taylor order
+* `uc` – constant input
+
+## Output
+* the zonotope enclosing the constant input's contribution
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

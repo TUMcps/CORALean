@@ -18,6 +18,27 @@ the Schur complement of the block `-P` (`posDef_schur_of_fromBlocks`) is
 at `(θ, s₁, -s₂)` is the inequality; the sign of the last block of `Ψ` against `-LD_yH_v` in
 [1, Eq. 10] is absorbed by the symmetric box. `W = PL` turns Eq. 16 into Eq. 17.
 
+## Inputs
+* `A` – state matrix
+* `C` – output matrix
+* `Dx` – disturbance matrix
+* `Hw` – disturbance generators
+* `Dy` – noise matrix
+* `Hv` – noise generators
+* `P` – Lyapunov matrix
+* `W` – gain variable
+* `γ` – radius bound
+* `θ` – error vector
+* `s₁` – disturbance coefficients
+* `s₂` – noise coefficients
+
+## Hypotheses
+* `hP` – Lyapunov matrix positive definite
+* `h` – the design inequality holds
+
+## Conclusion
+* the P-norm of the error step is bounded
+
 ## References
 
 * [1] Y. Wang, M. Zhou, V. Puig, G. Cembrano and Z. Wang. "Zonotopic Fault Detection Observer

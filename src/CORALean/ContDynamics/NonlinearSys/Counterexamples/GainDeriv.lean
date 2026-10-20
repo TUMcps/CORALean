@@ -20,6 +20,15 @@ whenever every `Q⁽ᵖ⁾ᵢ` is differentiable at `0`. Take `n = 1`, `A = 0` a
 at `δ = 1/2`: positive. The proof's line `(B.5)` replaces `Q(h)` by `Q(δh)` and drops the `Q̇`
 terms of the numerator, which here are the whole derivative.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the gain's derivative tends to a positive limit
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

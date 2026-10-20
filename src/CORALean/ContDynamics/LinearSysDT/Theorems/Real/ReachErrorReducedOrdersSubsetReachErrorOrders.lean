@@ -19,6 +19,19 @@ the argument nothing past that substitution.
 What this buys is the same as the fixed-order fact does: `reachErrorOrders`'s
 theorems, once it has any, transfer to `reachErrorReducedOrders` in the
 direction the error is used, since the error is *added* to the exact set.
+
+## Inputs
+* `sys` – system
+* `o` – orders per step
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – step
+
+## Hypotheses
+* `ho` – orders positive
+
+## Conclusion
+* the unreduced error lies in the reduced error at per-step orders
 -/
 
 -- Authors:       Claude Sonnet 5

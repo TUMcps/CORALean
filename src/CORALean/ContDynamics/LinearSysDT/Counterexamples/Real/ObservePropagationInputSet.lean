@@ -9,15 +9,24 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 /-!
 # CORA's observers drop the input set `U`
 
-`observe` validates `params.U` (`config_contDynamics_observe`, l. 40) and `postProcessing`
-skips the split of `u` into `U` and `uTransVec` for `observe` (l. 53), so `params.U` reaches
-`executeObserver` and no observer reads it: the strip-based ones predict with
-`post(sys, Rnext, params.uTransVec(:,k))` (`observe_stripBased`, l. 61; `nonlinearSysDT/post`
-sets `params.U` to the origin, l. 34), the others with `B*params.uTransVec(:,k)` alone
-(`priv_observe_intersectionFree`, l. 53; `CZN_A`, l. 54; `CZN_B`, l. 76; `interval`, l. 62).
-Here `A = B = C = 1`, `R0 = {0}`, `W = V = {0}`, `u = 0` and `U = [-1, 1]`: the input `1 ∈ U`
-moves the state to `x₁ = 1`, and the next set of `observePropagation` (`PRad-E`, `Nom-G`,
-`FRad-C`) is `{0}` at every gain, which misses it. Read from the source, not run.
+`observe` validates `params.U` (`config_contDynamics_observe`, l. 40) and `postProcessing` skips
+the split of `u` into `U` and `uTransVec` for `observe` (l. 53), so no observer reads `params.U`:
+the strip-based ones predict with `post(sys, Rnext, params.uTransVec(:,k))` (`observe_stripBased`,
+l. 61), the others with `B*params.uTransVec(:,k)` alone (`priv_observe_intersectionFree`, l. 53;
+`CZN_A`, l. 54; `CZN_B`, l. 76; `interval`, l. 62). Here `A = B = C = 1`, `R0 = {0}`, `W = V = {0}`,
+`u = 0` and `U = [-1, 1]`: the input `1 ∈ U` moves the state to `x₁ = 1`, and the next set of
+`observePropagation` (`PRad-E`, `Nom-G`, `FRad-C`) is `{0}` at every gain, which misses it. Read
+from the source, not run.
+
+## Inputs
+* `gain` – gain function
+* `order` – zonotope order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the true next state lies outside the observer's next set
 -/
 
 -- Authors:       Claude Opus 5.5

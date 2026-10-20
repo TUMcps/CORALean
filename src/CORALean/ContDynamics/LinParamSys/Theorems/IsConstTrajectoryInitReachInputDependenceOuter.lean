@@ -19,6 +19,35 @@ coordinates, at the same `p`. `initReachInputDependence` reads `B` at its center
 `B` is that center. The run is a run of the canonical form at the state-space input `B u + c`
 (`IsConstTrajectory.canonical`), the point system's (`toLinearSys`), so variation of constants
 gives it in closed form, the input integral being the constant's on `[0, t]`.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `Rinit` – initial zonotope
+* `Uc` – input center
+* `UG` – input generators
+* `x` – trajectory
+* `u` – input signal
+* `A` – system matrix member
+* `B` – input matrix member
+* `p` – shared parameter
+* `r` – step size
+* `m` – Taylor order minus two
+* `t` – time
+
+## Hypotheses
+* `traj` – constant-parameter trajectory
+* `hp` – parameters within `[-1, 1]`
+* `hA` – matrix is the parameter combination
+* `hu` – input is the parameter combination
+* `hr` – step positive
+* `hT` – step lies in the time set
+* `hε` – convergence condition holds
+* `ht0` – time nonnegative
+* `htr` – time at most the step
+
+## Conclusion
+* the state lies in the time-point set at `r` and the time-interval set at `t`
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

@@ -14,6 +14,18 @@ On windows of an ARX run, `A x(k) + feed u k` is `x(k+1)`. Block `a < p-1` is a
 shift, and the last block is the recursion at `k + p`, with `Fin.rev` turning the
 column `a'` back into the lag `i = p-1-a'` it carries. Stated at `ℝ`, where
 `toRealMat` is the identity and the block matrices can be read off entrywise.
+
+## Inputs
+* `sys` – ARX system
+* `y` – outputs
+* `u` – inputs
+* `k` – step
+
+## Hypotheses
+* `hy` – the ARMAX recursion holds
+
+## Conclusion
+* the converted system advances the window by one step
 -/
 
 -- Authors:       Claude Opus 5.5

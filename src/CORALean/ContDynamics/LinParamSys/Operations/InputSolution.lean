@@ -8,15 +8,20 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRem
 /-!
 # The set every input contributes over one step, at a set-valued matrix
 
-[1, Thm. 1] with the system matrix ranging over a set: the orders up to `η`
-exactly, each an interval matrix, and everything past `η` in
-`intervalInputRemainder` — the same remainder that bounds the exponential of
-the box, so the tail costs a second product rather than a second argument about
-convergence.
+[1, Thm. 1] with the system matrix ranging over a set: the orders up to `η` exactly, each an
+interval matrix, and everything past `η` in `intervalInputRemainder` — the same remainder that
+bounds the exponential of the box. Every factor is an interval matrix here, where the point
+case multiplies by a plain matrix for the exact orders. The input set is the state-space
+`V = B U ⊕ c` (`inputSet`) that `reachUnion` forms from CORA's `params.U`.
 
-Every factor is an interval matrix here, where the point case multiplies by a
-plain matrix for the exact orders and by an interval one for the tail alone. The input set is
-the state-space `V = B U ⊕ c` (`inputSet`) that `reachUnion` forms from CORA's `params.U`.
+## Inputs
+* `sys` – system
+* `r` – step size
+* `η` – Taylor order
+* `U` – input set
+
+## Output
+* the set the inputs contribute over one step
 
 ## References
 

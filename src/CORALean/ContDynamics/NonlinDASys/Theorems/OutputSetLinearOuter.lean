@@ -13,6 +13,31 @@ For an affine output `h(x, y, u) = c + M_x x + M_y y + M_u u`, the output of eve
 and the term in `y`, absent from CORA's (`outputSetLinearCora_counterexample`), is what covers
 the algebraic variables. An outer statement over the product `R × R_y × U`: the algebraic
 variable is determined by `x` and `u`, so the true output set can be smaller.
+
+## Inputs
+* `sys` – system
+* `c` – output offset
+* `M_x` – output matrix in the state
+* `M_y` – output matrix in the algebraic variable
+* `M_u` – output matrix in the input
+* `p_x` – state center
+* `p_y` – algebraic center
+* `p_u` – input center
+* `R` – state set
+* `R_y` – algebraic set
+* `U` – input set
+* `x` – state
+* `y` – algebraic variable
+* `u` – input at the point
+
+## Hypotheses
+* `hh` – the output equation is affine
+* `hx` – `x` lies in `R`
+* `hy` – `y` lies in `R_y`
+* `hu` – `u` lies in `U`
+
+## Conclusion
+* the output of the point lies in the linear output set
 -/
 
 -- Authors:       Claude Sonnet 5.5

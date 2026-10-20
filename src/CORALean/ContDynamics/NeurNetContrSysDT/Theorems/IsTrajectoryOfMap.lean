@@ -11,6 +11,24 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
 The converse of `IsTrajectory.linear`: a sequence that starts in `R₀` and steps by `map` under
 external inputs in `U_ext` is a `IsTrajectory` of the closed loop under no disturbance, wherever `W`
 admits `0`, its noise `0` and its output what the output equation makes it.
+
+## Inputs
+* `sys` – closed-loop system
+* `π` – controller function
+* `R₀` – initial set
+* `U_ext` – external input set
+* `W` – disturbance set
+* `x` – states
+* `v` – external input signal
+
+## Hypotheses
+* `hW` – zero disturbance admitted
+* `h0` – start lies in `R₀`
+* `hv` – external inputs lie in `U_ext`
+* `hstep` – the sequence steps by `map`
+
+## Conclusion
+* the sequence is a closed-loop trajectory under zero disturbance
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

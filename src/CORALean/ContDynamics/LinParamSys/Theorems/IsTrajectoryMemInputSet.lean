@@ -11,6 +11,19 @@ Every value `B t u t + c` of a run, `B t` drawn from `sys.B` and `u t` from `U`,
 `sys.inputSet U`, whether `B` is drawn afresh at every instant (`'varParam'`) or once
 (`'constParam'`). With `IsTrajectory.canonical` this puts every run into the canonical form at
 CORA's `V = B*U + c`.
+
+## Inputs
+* `sys` – system
+* `U` – input set
+* `B` – input matrix member
+* `v` – input value
+
+## Hypotheses
+* `hB` – `B` lies in the input matrix set
+* `hv` – `v` lies in `U`
+
+## Conclusion
+* the combined input lies in the input set
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -16,6 +16,14 @@ center of a set), line by line with `computeGO_k` [2]: the Jacobians `A_lin`, `B
 `D_lin` along the reference run, and the products `A_lin{k} ... A_lin{j+1}` (`descProd`).
 `out` is the system's `g`, CORA's `out_mFile`.
 
+## Inputs
+* `sys` – system
+* `x0` – initial point
+* `u_ref` – reference input
+
+## Output
+* the Jacobians and products along the reference run
+
 ## References
 
 * [1] `contDynamics/@nonlinearSysDT/computeGO.m`

@@ -17,6 +17,25 @@ expansion (`MatExp.norm_sub_peanoBakerSum_le`) takes.
 every instant and equal to `A` almost everywhere on the window; inside the box its
 entries are bounded, hence integrable; and the flow, an integral, does not see
 the null set where the two differ, nor the endpoint where the input may not vanish.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `A` – matrix signal
+* `t` – time
+
+## Hypotheses
+* `traj` – time-varying trajectory
+* `ht` – time nonnegative
+* `hT` – window lies in the time set
+* `hu` – input vanishes on the window
+
+## Conclusion
+* a parameter in the box with integrable entries solves the integral equation
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -15,6 +15,17 @@ test passed, `contains_sound` and `region_subset` turn each into the set
 inclusion `confinement_of_subset_on` asks for, and that confinement is the
 hypothesis `reach_outer_on` places the run with. No confinement is assumed of
 any run; `none` is where it could not be shown.
+
+## Inputs
+* `sys` – system with steps
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Hypotheses
+* none
+
+## Conclusion
+* the returned union contains every exact reachable state
 -/
 
 -- Authors:       Claude Opus 5.5

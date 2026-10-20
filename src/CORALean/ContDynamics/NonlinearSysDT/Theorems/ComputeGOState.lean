@@ -15,6 +15,20 @@ initial deviation, plus `B{k,j}` applied to each input deviation, plus `F{k,j}` 
 linearization error `L_j = [L_x; L_y]`, the `linResidual` of `f` and of the output equation at
 the reference point. An identity, exact for any run: it says how the deviation is built from
 the errors, and nothing about how large the errors are.
+
+## Inputs
+* `sys` – system
+* `x0` – initial point
+* `u_ref` – reference input
+* `x` – state trajectory
+* `u` – input trajectory
+* `k` – step
+
+## Hypotheses
+* `hx` – states follow the dynamics
+
+## Conclusion
+* the state deviation is the sum of the parameter terms
 -/
 
 -- Authors:       Claude Opus 5.5

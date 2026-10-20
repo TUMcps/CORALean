@@ -11,6 +11,23 @@ public import Mathlib.Analysis.InnerProductSpace.Basic
 Every field of a Carathéodory run is a statement at the points of `T`, or a measurability on
 `T`, so each survives on any `T' ⊆ T`. It is what lets `linearize` be applied to a run over all
 forward time while asking for confinement on one step only: restrict first, linearize second.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `T'` – smaller time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+* `y` – output trajectory
+
+## Hypotheses
+* `traj` – trajectory of the system
+* `hT` – smaller set inside time set
+
+## Conclusion
+* the trajectory is a trajectory on the smaller domain
 -/
 
 -- Authors:       Claude Opus 5

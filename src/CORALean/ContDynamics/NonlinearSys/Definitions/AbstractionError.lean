@@ -8,21 +8,12 @@ public import CORALean.ContSet.ContSet.ContSet
 # The abstraction error of a linearization
 
 [1, Eq. 3]. Splitting a nonlinear field at an expansion point,
-`f(x,u) = f(x✱,u✱) + A(x - x✱) + B(u - u✱) + L(x,u)`, leaves a remainder `L`, and
-this is a set enclosing it over the whole of `R × U`.
-
-It is a certificate in the sense `SupportBound` is: it says nothing about where
-`L` came from, so whatever produced it stays outside the trusted base and a wrong
-`L` yields no certificate rather than a wrong reachable set. No derivative of `f`
-appears here or in anything that spends one — only in `of_hessian`, its supplier.
-
-`A` and `B` are consequently *not* required to be the Jacobians at `(x✱, u✱)`: any
-pair admits a certificate, a bad pair only making `L` large. So a linearization
-computed in float arithmetic, or reused across several steps as CORA does, is
-covered without a word about the true derivative.
-
-`R` and `U` are plain sets, as `SupportBound`'s are. `L` is a representation,
-having to enter a computed set, and a parameter rather than a field.
+`f(x,u) = f(x✱,u✱) + A(x - x✱) + B(u - u✱) + L(x,u)`, leaves a remainder `L`, and this is a set
+enclosing it over the whole of `R × U`. It is a certificate in the sense `SupportBound` is: it
+says nothing about where `L` came from, so a wrong `L` yields no certificate rather than a wrong
+reachable set. No derivative of `f` appears here, only in `of_hessian`, its supplier. `A` and
+`B` are *not* required to be the Jacobians at `(x✱, u✱)`: any pair admits a certificate, a bad
+pair only making `L` large. `R` and `U` are plain sets; `L` is a representation, a parameter.
 
 ## References
 

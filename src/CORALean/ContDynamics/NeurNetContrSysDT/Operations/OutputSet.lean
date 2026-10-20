@@ -16,6 +16,14 @@ public import CORALean.NN.Operations.Enclose
 controller's enclosure of its own output at `R`, through the first `m` columns of `D`, and the
 external inputs `U_ext`, through the remaining ones, `D [a; e] = D_nn a + D_ext e`. With no external
 input the second term is the zero set and this is `OutputEq.outputSet R (enclose R)`.
+
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input set
+* `R` – state set
+
+## Output
+* the set of closed-loop outputs at the states of `R`
 -/
 
 -- Authors:       Claude Sonnet 5.5

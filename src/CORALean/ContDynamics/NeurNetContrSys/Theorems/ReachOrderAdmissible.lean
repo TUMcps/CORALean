@@ -11,6 +11,16 @@ public import Mathlib.Tactic.Positivity
 `Nat.le_ceil` puts `‖Δt • A‖` at or under `reachOrder Δt`, strictly under the
 denominator once `2` is added — `LinearSys.reachOrder_admissible`'s argument,
 one `+ 2` short since `reach_outer` asks for none on the numerator's side.
+
+## Inputs
+* `sys` – closed-loop system
+* `Δt` – step size
+
+## Hypotheses
+* none
+
+## Conclusion
+* the order is admissible for the step at the augmented matrix
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5

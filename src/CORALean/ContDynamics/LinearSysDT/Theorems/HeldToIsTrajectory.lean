@@ -11,6 +11,19 @@ public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 `fun _ => u` — a restriction, not a separate guarantee. So `reach_outer` already
 encloses a held run, and what `reachHeld` buys over `reach` is precision, not
 soundness: the point of a closed form is losing less, not covering more.
+
+## Inputs
+* `sys` – system
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – held input
+
+## Hypotheses
+* `h` – held trajectory
+
+## Conclusion
+* a held run is a trajectory with constant input
 -/
 
 -- Authors:       Claude Opus 5

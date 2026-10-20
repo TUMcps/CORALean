@@ -21,6 +21,14 @@ enlarging it keeps that inclusion regardless of which order enlarged it.
 
 Otherwise the recursion of `reachErrorOrders` unchanged, and at the same
 instances: `Zonotope` and `𝕋 = ℝ`.
+
+## Inputs
+* `sys` – system
+* `params` – reachability parameters with inputs
+* `options` – reachability options with per-step orders
+
+## Output
+* the reduced error zonotope the run owes at per-step orders
 -/
 
 -- Authors:       Claude Sonnet 5

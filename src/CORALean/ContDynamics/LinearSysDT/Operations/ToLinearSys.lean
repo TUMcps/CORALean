@@ -14,6 +14,13 @@ time. The matrix logarithm is an argument `L` (one with `e^L = A_d`, as `logm` r
 is real: Mathlib has none). Where `logm` is not real or `linsolve` fails, CORA
 runs `fmincon` on a cost of the discretization, not formalized (solver-dependent).
 
+## Inputs
+* `sys` – discrete-time system
+* `L` – matrix logarithm of the state matrix
+
+## Output
+* the continuous-time system with the same output equation
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/linearSys.m`

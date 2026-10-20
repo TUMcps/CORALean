@@ -10,6 +10,20 @@ public import CORALean.ContDynamics.LinearARX.Operations.Simulate
 Any output sequence satisfying the ARMAX recursion from `p` on, with first window `y₀`, is
 `simulate y₀ u`. By strong induction: the first `p` outputs are read off `y₀`, and every
 later one is the recursion over earlier ones.
+
+## Inputs
+* `sys` – ARX system
+* `y₀` – initial output window
+* `y` – outputs
+* `u` – inputs
+* `k` – step
+
+## Hypotheses
+* `h₀` – first window is `y₀`
+* `hy` – the ARMAX recursion holds
+
+## Conclusion
+* the output at step `k` is the simulated one
 -/
 
 -- Authors:       Claude Opus 5.5

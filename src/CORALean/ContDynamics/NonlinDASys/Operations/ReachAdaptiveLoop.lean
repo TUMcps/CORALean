@@ -16,6 +16,19 @@ horizon by the time left); `fuel` replaces the unbounded loop. The order reducti
 which only enlarges), `aux_checkForAbortion` and the algebraic and time-point lists are left
 out.
 
+## Inputs
+* `sys` – system
+* `T` – tuning heuristics
+* `U` – input zonotope
+* `tFinal` – final time
+* `tol` – tolerance
+* `η` – Taylor order
+* `fuelErr` – error loop fuel
+* `fuelHalf` – step halving fuel
+
+## Output
+* the union of the time-interval sets and the time reached, or none
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic

@@ -13,6 +13,23 @@ public import CORALean.ContDynamics.LinearSysDT.Theorems.OutputOuter
 `y(k)` is block `0` of the window at step `k`, which `outputEq` reads, so
 `LinearSysDT.output_outer` along the converted trajectory encloses it. `0 < p`: at
 `p = 0` the window is empty and says nothing about `y`.
+
+## Inputs
+* `sys` – ARX system
+* `o` – maximum zonotope order
+* `Y₀` – initial window set
+* `U` – input set
+* `y` – outputs
+* `u` – inputs
+* `k` – step
+
+## Hypotheses
+* `hp` – at least one lag
+* `ho` – order positive
+* `traj` – ARX trajectory
+
+## Conclusion
+* the output lies in the output set of the converted reach
 -/
 
 -- Authors:       Claude Opus 5.5

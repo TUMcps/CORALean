@@ -18,6 +18,18 @@ CORA's `priv_observe_interval` initialisation, `x = center(R0)`, `R_x = R0`, `R_
 
 [1, Alg. 1], lines 1-2 and the loop.
 
+## Inputs
+* `sys` – system
+* `L` – observer gain
+* `R₀` – initial zonotope
+* `W` – disturbance zonotope
+* `V` – noise zonotope
+* `u` – inputs
+* `y` – measurements
+
+## Output
+* the observer state after each number of steps
+
 ## References
 
 * [1] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th

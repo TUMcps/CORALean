@@ -15,6 +15,12 @@ first `n` coordinates of `z` read as `x`, the last `q` as `p`, split as
 `(x₀, p)` is a constant-parameter run of `sys` read in `n + q` coordinates,
 `ConstTrajectoryToAugment.lean`; a time-varying parameter is not one, its
 derivative not being zero.
+
+## Inputs
+* `sys` – parametric system
+
+## Output
+* the nonlinear system with the parameter as extra states
 -/
 
 -- Authors:       Claude Opus 5.5

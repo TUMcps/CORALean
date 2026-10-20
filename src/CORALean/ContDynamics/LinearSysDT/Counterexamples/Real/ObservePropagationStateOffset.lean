@@ -9,15 +9,23 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 /-!
 # CORA's set-propagation observers drop the state offset `c`
 
-`linearSysDT` documents `x(k+1) = A x(k) + B u(k) + c + E w(k)`, and its `post` and `simulate`
-add `c`, but `priv_observe_intersectionFree` (l. 53-54, behind `PRad-E` and `Nom-G`) and
+`linearSysDT` documents `x(k+1) = A x(k) + B u(k) + c + E w(k)`, and its `post` and `simulate` add
+`c`, but `priv_observe_intersectionFree` (l. 53-54, behind `PRad-E` and `Nom-G`) and
 `priv_observe_intersectionFreeAdaptive` (l. 68-69, `FRad-C`) propagate
 `(A - L C) S + B u + L y - L V + W` without it, as do `priv_observe_CZN_A` (l. 54) and
-`priv_observe_CZN_B` (l. 76). Here `A = 1`, `c = 1`, `C = 1`, `R0 = {0}`, `W = {0}`,
-`V = {0}`, `u = 0`: the true state is `x₀ = 0`, `x₁ = 1`, the output `y₀ = 0`, and the
-observer's next set is `{(1 - L) 0 + L 0} = {0}` at every gain `L`, which misses `x₁`.
-`LinearSysDT.observePropagation` is CORA's step as printed; `sys.c` has no place in it. Read
-from the source, not run.
+`priv_observe_CZN_B` (l. 76). Here `A = 1`, `c = 1`, `C = 1`, `R0 = W = V = {0}`, `u = 0`: the
+true state is `x₀ = 0`, `x₁ = 1`, the output `y₀ = 0`, and the observer's next set is `{0}` at
+every gain `L`, which misses `x₁`. Read from the source, not run.
+
+## Inputs
+* `gain` – gain function
+* `order` – zonotope order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the true next state lies outside the observer's next set
 -/
 
 -- Authors:       Claude Opus 5.5

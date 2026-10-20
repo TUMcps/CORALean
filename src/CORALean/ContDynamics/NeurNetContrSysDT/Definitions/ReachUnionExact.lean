@@ -12,6 +12,15 @@ Every state the closed loop reaches in at most `K` steps from a bare initial set
 controller's own `eval`, the function every layer's `enclose` is checked against, under external
 inputs in `U_ext` at every step. Positional, as the mathematics: `Reach` reads `K = tFinal - tStart`
 and the initial set off `params`, the closed loop being time-invariant.
+
+## Inputs
+* `sys` – closed-loop system
+* `K` – step bound
+* `U_ext` – external input set
+* `X` – initial set
+
+## Output
+* the states the closed loop reaches within `K` steps
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Sonnet 5.5

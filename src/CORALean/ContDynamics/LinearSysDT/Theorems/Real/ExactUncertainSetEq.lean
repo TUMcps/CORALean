@@ -13,6 +13,22 @@ run `x_0 ∈ X_0`, `x_{j+1} = A x_j + ω_j` with `ω_j ∈ W`, meets every measu
 `y_j - C x_j ∈ V` for `1 ≤ j ≤ k` and ends at `x_k = x`. Induction on `k`; a run is extended
 past `k` by overwriting its value at `k + 1` and its disturbance at `k`.
 
+## Inputs
+* `sys` – system
+* `C` – output matrix
+* `V` – noise set
+* `X₀` – initial set
+* `W` – disturbance set
+* `y` – measurements
+* `k` – step
+* `x` – state
+
+## Hypotheses
+* none
+
+## Conclusion
+* the state is in the set iff a run consistent with the measurements ends there
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state

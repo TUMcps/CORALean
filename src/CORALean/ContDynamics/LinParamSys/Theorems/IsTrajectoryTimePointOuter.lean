@@ -12,6 +12,27 @@ exponential enclosure over `t` times the initial set holds the run's state at
 `t`. CORA's `'varParam'` homogeneous solution at a time point, the mapping matrix
 of `priv_mappingMatrix` applied to the initial set; the same set
 `LinParamSys.timeIntervalStep` starts from at `'constParam'`.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `A` – matrix signal
+* `t` – time
+* `η` – Taylor order
+
+## Hypotheses
+* `traj` – time-varying trajectory
+* `ht` – time nonnegative
+* `hT` – window lies in the time set
+* `hu` – input vanishes on the window
+* `hε` – order admissible
+
+## Conclusion
+* the state at `t` lies in the exponential enclosure applied to the initial set
 -/
 
 -- Authors:       Claude Opus 5.5

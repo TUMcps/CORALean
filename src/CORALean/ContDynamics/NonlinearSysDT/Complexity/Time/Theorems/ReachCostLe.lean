@@ -10,20 +10,29 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Theorems.ReduceGira
 /-!
 # `reach` costs at most `k` worst-case linear steps
 
-The second worked composition, and it composes one level higher than the first:
-`LinearSysDT.reachCost_le` is used whole, at `k = 1`, rather than the leaf
-counts under it. Nothing is asserted here either.
+The second worked composition, one level higher than the first: `LinearSysDT.reachCost_le` is
+used whole, at `k = 1`, rather than the leaf counts under it. Two hypotheses beyond that. `hR₀`
+is the one the size facts cannot supply, as in the linear file. `hL` is new: each step gets its
+own input set, built by `linInput` from that step's abstraction error, and a run has no bound on
+those unless the caller gives one. The bound is the linear one, `LinearSysDT.reachStepBound`:
+the operations a step runs are the same, so re-linearization is free in the count.
 
-Two hypotheses is all it takes beyond that. `hR₀` is the one the size facts
-cannot supply, exactly as in the linear file. `hL` is new and is what
-re-linearization costs the statement: each step gets its *own* input set, built
-by `linInput` from that step's abstraction error, and a run has no bound on
-those unless the caller gives one. A caller whose errors are uniform passes the
-same `hU` every step and gets the linear bound back unchanged.
+## Inputs
+* `sys` – system
+* `U` – input zonotope
+* `o` – maximum order
+* `steps` – linearization steps
+* `R₀` – initial zonotope
+* `hU` – generator bound of step inputs
+* `k` – number of steps
 
-The bound is the linear one, `LinearSysDT.reachStepBound`, not a fresh number:
-the operations a step runs are the same operations, so the count is the same
-count and the re-linearization is free in it.
+## Hypotheses
+* `ho` – order positive
+* `hR₀` – initial generators bounded
+* `hL` – step input generators bounded
+
+## Conclusion
+* the cost is at most that of worst-case linear steps
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

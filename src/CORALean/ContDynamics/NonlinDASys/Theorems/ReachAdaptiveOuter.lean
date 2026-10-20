@@ -11,6 +11,39 @@ public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachAdaptiveLoopOuter
 `reachAdaptiveLoop_outer` from the start state of `reachAdaptive` ([1, Alg. 1]): a certified
 run is in the union returned, up to the time reached.
 
+## Inputs
+* `sys` – system
+* `T` – tuning heuristics
+* `U` – input zonotope
+* `tFinal` – final time
+* `tol` – tolerance
+* `h₀` – initial step size
+* `adm_x₀` – admissible state errors
+* `adm_y₀` – admissible algebraic errors
+* `k` – Taylor order minus two
+* `fuelErr` – error loop fuel
+* `fuelHalf` – step halving fuel
+* `fuel` – iteration bound
+* `R0` – start set
+* `Tmax` – horizon of the trajectory
+* `x` – differential trajectory
+* `y` – algebraic trajectory
+* `u` – input signal
+* `z` – output signal
+* `res` – returned union
+* `tEnd` – time reached
+
+## Hypotheses
+* `traj` – DAE trajectory
+* `hT` – final time within the horizon
+* `hcert` – every adaptive pass certifies the run
+* `h0` – final time nonnegative
+* `hres` – the algorithm returned `res` and `tEnd`
+* `hpos` – time reached positive
+
+## Conclusion
+* the run up to the time reached lies in the returned union
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic

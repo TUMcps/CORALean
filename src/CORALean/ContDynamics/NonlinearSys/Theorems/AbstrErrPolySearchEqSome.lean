@@ -15,6 +15,28 @@ forgotten which factors carry the error.
 No bound on `k` is stated. The search tries candidates `0` to `fuel - 1`, but the
 recursion that does so is its file's own, and nothing downstream needs the index,
 only that the step is one of the candidates and that the certificate held there.
+
+## Inputs
+* `sys` – system
+* `U` – input polynomial zonotope
+* `A` – state Jacobian
+* `B` – input Jacobian
+* `xs` – state expansion point
+* `us` – input expansion point
+* `pZ` – candidate regions
+* `Ba` – factor domains
+* `L` – candidate errors
+* `Ws` – candidate remainders
+* `fuel` – bound for the search
+* `step` – returned step
+
+## Hypotheses
+* `hp` – factor counts agree
+* `hBa` – factors bounded by one
+* `h` – search returned the step
+
+## Conclusion
+* some candidate's polynomial certificate holds for the step
 -/
 
 -- Authors:       Claude Opus 5.5

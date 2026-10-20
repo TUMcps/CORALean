@@ -16,6 +16,21 @@ For a controller function `π` the network is `Sound` for, `simulate` from the r
 value of a float start lies at every step in the box `simulateBox` computed in
 float arithmetic: the float `simulate` row's guarantee (ruling R-SIM). An
 enclosure, so the box is outer.
+
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input box
+* `π` – controller function
+* `v` – external input signal
+* `x₀` – float start state
+* `k` – step
+
+## Hypotheses
+* `hπ` – the network encloses `π`
+* `hv` – external inputs lie in `U_ext`
+
+## Conclusion
+* the real closed-loop run lies in the float box
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

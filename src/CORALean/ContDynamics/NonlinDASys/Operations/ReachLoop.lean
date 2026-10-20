@@ -8,15 +8,28 @@ public import CORALean.ContDynamics.NonlinDASys.Operations.ReachRepeat
 # [1, Alg. 1]'s time loop and its splits
 
 Lines 2-23 of `[1, Alg. 1]`: while `t_k < t_f`, linearize at the current set (line 3, `taylor`),
-run the error loop of lines 4-10 (`reachRepeat`), and either split the set when the errors
-exceed `L_max` (lines 11-16: each half is run on the remaining horizon `t_f - t_k` by this same
-loop from `t_0 = 0`, `L = {0}`, `R_union = ∅`, the recursion `reach(R^(j)(t_k), t_f - t_k, ...)`
-of lines 13-14) or step to `t_{k+1}` (lines 17-21: `Rᵈ(t_{k+1})` from the computed `L`, and
-`Rᵈ(τ_k)` of line 7, not recomputed at `L`, joined to `R_union`). The split `splitFn` and the
-linearization `taylor` are arguments: CORA picks the generator to split by a heuristic, and
-the expansion point `z*`, with `u* = center(U)`, is `taylor`'s. `fuel` bounds the iterations
-and splits along any one path, the result being `none` where it runs out; the union is a `Set`,
-being no zonotope. `L_max` and `L ⊆ L̄` are read through `sub`.
+run the error loop of lines 4-10 (`reachRepeat`), and either split the set when the errors exceed
+`L_max` (lines 11-16: each half is run on the remaining horizon `t_f - t_k` by this same loop) or
+step to `t_{k+1}` (lines 17-21: `Rᵈ(t_{k+1})` from the computed `L`, and `Rᵈ(τ_k)` of line 7,
+joined to `R_union`). The split `splitFn` and the linearization `taylor` are arguments: CORA picks
+the generator to split by a heuristic, and the expansion point `z*`, with `u* = center(U)`, is
+`taylor`'s. `fuel` bounds the iterations and splits along any one path, the result being `none`
+where it runs out; the union is a `Set`. `L_max` and `L ⊆ L̄` are read through `sub`.
+
+## Inputs
+* `sys` – system
+* `taylor` – linearization of a start set
+* `corollary1` – error-set computation
+* `sub` – subset test
+* `Lmax` – bound on the linearization errors
+* `lam` – enlargement factor
+* `r` – step size
+* `η` – Taylor order
+* `U` – input zonotope
+* `splitFn` – set splitting
+
+## Output
+* the union of everything covered, or none
 
 ## References
 

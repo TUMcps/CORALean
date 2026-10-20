@@ -14,76 +14,57 @@ public import Mathlib.Analysis.ODE.ExistUnique
 # `abstrErrAdaptiveCora1D`, CORA's `priv_abstractionError_adaptive` in one dimension
 
 CORA's `@nonlinearSys/private/priv_abstractionError_adaptive.m` at `alg = 'lin'`,
-`tensorOrder = 2`, without inputs (`U = 0`, so `du = 0`), line by line: the box of `R = Rmax`,
-shifted by the linearization point `p` to `totalInt_x`, its largest magnitude `dx`, and the
-Lagrange term `0.5 * dz' * H_ * dz` of [1, Prop. 1] with the Hessian read over `totalInt_x`.
-
-Intervals are `Real.Interval ℝ`, read through `inf` and `sup`. `hessIv lo hi` is CORA's interval
-Hessian `H` over `[lo, hi]`, as the user's Hessian file evaluates it;
-`max(infimum(abs(H)), supremum(abs(H)))` is `max |inf H| |sup H|`. `hessianConst` is
-`options.hessianConst` once `options.isHessianConst` holds (`some`), else `none`;
-the check that sets it runs in the caller.
+`tensorOrder = 2`, without inputs, line by line: the box of `R = Rmax`, shifted by the
+linearization point `p` to `totalInt_x`, its largest magnitude `dx`, and the Lagrange term
+`0.5 * dz' * H_ * dz` of [1, Prop. 1] with the Hessian read over `totalInt_x`. Intervals are
+`Real.Interval ℝ`; `hessIv lo hi` is CORA's interval Hessian over `[lo, hi]` as the user's Hessian
+file evaluates it; `hessianConst` is `options.hessianConst` once `options.isHessianConst` holds.
 
 # `adaptErrLoopCora1D`, the abstraction-error loop of CORA's `linReach_adaptive`
 
-The inner `while true` loop of CORA's `@nonlinearSys/linReach_adaptive.m` at `alg = 'lin'`, in
-one dimension: from an admissible error `error_adm`, compute the `trueError` it induces
-(`Φ`, which the caller builds from `RallError`, `Rmax` and `priv_abstractionError_adaptive`),
-accept it once it fits, else enlarge `error_adm` to `1.1 * trueError` and repeat; from the third
-pass on, a `perfIndCurr` above the previous one gives up (`options.Lconverged = false`, `none`).
-
-Over the reals with `trueError ≥ 0` and `error_adm ≥ 0`, `perfIndCurr <= 1 || ~any(trueError)`
-is `trueError ≤ error_adm` (`trueError / 0` is `Inf` for a positive `trueError`, and a zero one
-is `~any`). `perfIndCounter` starts at `1`; `perfInds(1)` is never compared. The loop states no
-iteration count, so `fuel` bounds it and running out is `none`.
+The inner `while true` loop of `@nonlinearSys/linReach_adaptive.m` at `alg = 'lin'`, in one
+dimension: from an admissible error `error_adm`, compute the `trueError` it induces, accept it once
+it fits, else enlarge `error_adm` to `1.1 * trueError` and repeat; from the third pass on, a
+`perfIndCurr` above the previous one gives up (`none`). Over the reals `perfIndCurr <= 1` is
+`trueError ≤ error_adm`. The loop states no iteration count, so `fuel` bounds it.
 
 # `optimalDeltatCora`, CORA's `aux_optimaldeltat`
 
-The time step size CORA's `@nonlinearSys/linReach_adaptive.m` tunes (`aux_optimaldeltat`, at
-`alg = 'lin'`), line by line: the candidates `deltat * mu^k'` for `k' = 0, …, kprimemax`, the
-estimate `objfuncset` of the set size after the finite horizon (eq. (57) of [2]), and its first
-minimizer, `min`'s index. `rR` and `rerr1` are the radii the caller reads from `Rt` and `Rerr`;
-`mu` is `opt.decrFactor`, `redFactor` is `opt.redFactor`.
-
-This is the code, not [2]'s §5.4 (`optDeltat`, a descent that stops at the first increase): MATLAB's
-`min` scans every candidate. The first minimizer is a left fold that moves only on a strict
-decrease.
+The time step size CORA's `linReach_adaptive.m` tunes at `alg = 'lin'`, line by line: the candidates
+`deltat * mu^k'` for `k' = 0, …, kprimemax`, the estimate `objfuncset` of the set size after the
+finite horizon (eq. (57) of [2]), and its first minimizer. This is the code, not [2]'s §5.4 (a
+descent that stops at the first increase): MATLAB's `min` scans every candidate.
 
 # `linReachAdaptiveCora1D`, the first step of CORA's `linReach_adaptive` in one dimension
 
-CORA's `@nonlinearSys/linReach_adaptive.m` (`alg = 'lin-adaptive'`, `postProcessing`'s
-`decrFactor = 0.9`, `redFactor = 0.0005`, `zetaphi(3) = 0.68`), first step (`options.i == 1`),
-from a point `x0`, without inputs, line by line along the path whose tuned step is the finite
-horizon `0.01 (tFinal - tStart)`: run 1 at the horizon (`veryfirststep`), run 1 at `decrFactor`
-times it, the gain `varphi` against `zetaphi`, `aux_optimaldeltat` (`optimalDeltatCora`), and, the
-tuned step being the horizon (`timeStepequalHorizon`), run 2 at `decrFactor` times it; the result
-is the horizon run's sets. Each run is `linearize` (`p = x0 + f(x0)·Δt/2`), `initReach_adaptive`
-and the error loop `adaptErrLoopCora1D` over `abstrErrAdaptiveCora1D`. Sets are
-`Real.Interval ℝ`.
-
-Only `A = f'(p) = 0` is modelled (else `none`): `aux_expmtie_adaptive` stops at `eta = 2` with
-`E = F = 0`, so `Rhom_tp = Rdelta + Δt f(p)`, `Rhom = enclose(Rdelta, Rhom_tp)`, and
-`errorSolution_adaptive` scales a box by `Δt`. A point start gives `tensorOrder = 2` and, by
-`aux_getPowers` at `A = 0`, `minorder = 2`; a zero `trueError` makes `orders = Inf`, an indexing
-error. Branches off the path (halving, a small `varphi`, a shorter tuned step) and running out of
-`fuel` are `none`. The result is `(Rti, Rtp, options.Δt)`.
+CORA's `linReach_adaptive.m` (`alg = 'lin-adaptive'`, `decrFactor = 0.9`, `redFactor = 0.0005`,
+`zetaphi(3) = 0.68`), first step, from a point `x0`, without inputs, along the path whose tuned
+step is the finite horizon: run 1 at the horizon, run 1 at `decrFactor` times it, the gain `varphi`
+against `zetaphi`, `aux_optimaldeltat`, and run 2 at `decrFactor` times the horizon; the result is
+the horizon run's sets. Each run is `linearize`, `initReach_adaptive` and the error loop
+`adaptErrLoopCora1D`. Only `A = f'(p) = 0` is modelled (else `none`), as are branches off the path
+and running out of `fuel`. The result is `(Rti, Rtp, options.Δt)`.
 
 # CORA's adaptive `'lin'` step accepts a set that misses a reachable state
 
 `linReach_adaptive` reads the Hessian over `interval(Rmax) + p` as `linReach` does, and its tuning
 [2] does not save it. For `ẋ = f(x) = 1 - (59049/39400) x + (468559/236400) x⁶ - (40951/27580) x⁷`
-from `x(0) = 0`, `tFinal = 200`, the first step (`linReachAdaptiveCora1D`) runs at the horizon
-`Δt = 2` (`p = 1`) and at `9/5` (`p = 9/10`); `f' = 0` at both, `f(1) ≈ -0.0015`,
-`f(9/10) ≈ -0.0057`, so each linearized run drifts away from `p` and each loop reads
+from `x(0) = 0`, `tFinal = 200`, the first step runs at the horizon `Δt = 2` (`p = 1`) and at `9/5`
+(`p = 9/10`); `f' = 0` at both, so each linearized run drifts away from `p` and each loop reads
 `f''(x) ≈ 59.5 x⁴` near `0` only. The errors are `≈ 2.1·10⁻⁹` and `≈ 2.7·10⁻⁷`, the gain
-`varphi ≈ 113` passes `0.68`, and `aux_optimaldeltat`, from a point, keeps the horizon (each
-shorter candidate multiplies the estimate by at least `varphi / 2`). `Rti` ends below `1/50000`,
-while the run is at `x(1/4) ≥ 1/20`: the remainder [1, Prop. 1] needs `f''` along `[0, 1]`.
+`varphi ≈ 113` passes `0.68`, and `aux_optimaldeltat` keeps the horizon. `Rti` ends below `1/50000`,
+while the run is at `x(1/4) ≥ 1/20`: the remainder needs `f''` along `[0, 1]`. `hessIv` is any
+interval Hessian of magnitude `f''(lo)` on boxes `[lo, hi]`, `lo ≤ 0`, `hi ≤ -lo`, the only boxes
+the step reads. The miss is the region, not overestimation.
 
-`hessIv` is any interval Hessian of magnitude `f''(lo)` on boxes `[lo, hi]`, `lo ≤ 0`,
-`hi ≤ -lo`, the only boxes the step reads: every interval Hessian between the range of `f''` and
-the majorant `M` of its monomials has it, so CORA's interval `f''` in expanded, Horner or factored
-form does. The miss is the region, not overestimation.
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's first adaptive step ends below a state the run reaches
 
 ## References
 

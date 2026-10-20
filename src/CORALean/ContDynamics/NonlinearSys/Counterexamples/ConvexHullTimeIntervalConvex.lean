@@ -13,18 +13,23 @@ public import Mathlib.Topology.Order.Compact
 /-!
 # The time-interval inner set of L-CSS 2024 fails for a convex initial set too
 
-[1, Prop. 2] claims `conv((X₀ ⊖ C) ⊖ R̂_err, R̂(Δt) ⊖ C) + 2c ⊆ R([0, Δt])` for a compact,
-nonempty `X₀`; `convexHull_timeInterval_counterexample` refutes it for a nonconvex `X₀`, this
-file for a box, so convexity (all [1, Alg. 1] and CORA pass) does not repair it.
+[1, Prop. 2] claims `conv((X₀ ⊖ C) ⊖ R̂_err, R̂(Δt) ⊖ C) + 2c ⊆ R([0, Δt])` for a compact, nonempty
+`X₀`; `convexHull_timeInterval_counterexample` refutes it for a nonconvex `X₀`, this file for a
+box. For the shear `ẋ = (x₂, 0)`, `A² = 0`, the linearization is exact, so `R̂_err` (13) and `C`
+(17) vanish, `c = 0`, and (23) reads `conv(X₀ ∪ e^{AΔt} X₀) ⊆ R([0, Δt])`. For
+`X₀ = [-1/10, 1/10] × [-1, 1]`, `Δt = 1`, the run from `x₀` ends at `(x₀₁ + x₀₂, x₀₂)`;
+`(1/2, 0)` is the midpoint of `(0, -1) ∈ X₀` and `e^{A}(0, 1) = (1, 1)`, and a run through it
+starts on `x₂ = 0`, where it does not move. The printed proof applies [1, Lemma 1] to
+`conv(X₀, R_aff(Δt))`, whose points need not lie on a chord `[x₀, e^{A}x₀]`.
 
-For the shear `ẋ = (x₂, 0)`, `A = [0 1; 0 0]`, `A² = 0`, the linearization is exact, so
-`R̂_err` (13) vanishes, and so does `C = F X₀ ⊕ G w` (17): `F` sums `Aⁱ`, `i ≥ 2`, and the
-remainder `E(Δt)` the `|A|ⁱ`, `i > η`, and `w = 0`. So `c = 0` and (23) reads
-`conv(X₀ ∪ e^{AΔt} X₀) ⊆ R([0, Δt])`. For `X₀ = [-1/10, 1/10] × [-1, 1]`, `Δt = 1`, the run
-from `x₀` ends at `(x₀₁ + x₀₂, x₀₂)`; `(1/2, 0)` is the midpoint of `(0, -1) ∈ X₀` and
-`e^{A}(0, 1) = (1, 1)`, and a run through it starts on `x₂ = 0`, where it does not move. The
-printed proof applies [1, Lemma 1] to `conv(X₀, R_aff(Δt))`, whose points need not lie on a
-chord `[x₀, e^{A}x₀]`; those chords sweep only the bow tie `x₁ ∈ x₂·[0, 1] + [-1/10, 1/10]`.
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a point of the hull of a convex box and its sheared image is reached by no run
 
 ## References
 

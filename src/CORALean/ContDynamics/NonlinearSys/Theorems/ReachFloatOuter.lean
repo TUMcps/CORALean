@@ -15,6 +15,18 @@ signal in `U`. `Reach.steps` makes the horizon `N` steps exactly, and
 `relinRunFloat_outer` does the rest. What `reachUnion_outer` is handed as
 certificates and checks as confinement, `FloatModel.Encloses` and the run's own
 region checks supply.
+
+## Inputs
+* `fm` – float model
+* `sys` – system
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Hypotheses
+* `h` – model encloses system
+
+## Conclusion
+* every run lies in the returned set of its window
 -/
 
 -- Authors:       Claude Opus 5.5

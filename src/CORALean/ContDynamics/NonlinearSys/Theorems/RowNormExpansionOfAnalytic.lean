@@ -9,22 +9,26 @@ public import Mathlib.Analysis.InnerProductSpace.Basic
 /-!
 # The expansion of a coefficient of the error series
 
-`[1, Lemma 3]`: each coefficient `‖Aᵖ(h)G(h)‖₁,ᵢ` of `[1, (35)]` either vanishes
-near `0` or equals `h^{q⁽ᵖ⁾ᵢ}‖a⁽ᵖ⁾ᵢ + b⁽ᵖ⁾ᵢ(h)‖₁` with `a⁽ᵖ⁾ᵢ ≠ 0` and
-`b⁽ᵖ⁾ᵢ(h) = O(h)`. `Q⁽ᵖ⁾ᵢ(h) = ‖a⁽ᵖ⁾ᵢ + b⁽ᵖ⁾ᵢ(h)‖₁` is then non-negative, being
-a sum of absolute values, and continuous at `0` — the regularity `[1, Thm. 2]`
-and `[1, Prop. 2 (derivative)]` read off it, in place of `[1]`'s "piecewise smooth".
+`[1, Lemma 3]`: each coefficient `‖Aᵖ(h)G(h)‖₁,ᵢ` of `[1, (35)]` either vanishes near `0` or
+equals `h^{q⁽ᵖ⁾ᵢ}‖a⁽ᵖ⁾ᵢ + b⁽ᵖ⁾ᵢ(h)‖₁` with `a⁽ᵖ⁾ᵢ ≠ 0` and `b⁽ᵖ⁾ᵢ(h) = O(h)`; the factor
+`Q⁽ᵖ⁾ᵢ(h)` is non-negative and continuous at `0`, the regularity `[1, Thm. 2]` and
+`[1, Prop. 2 (derivative)]` read off it. **Analytic, where `[1]` says smooth.** The dichotomy is
+false for a merely smooth `f`: `h ↦ exp(-1/h²)` is smooth and under `h^q` for every `q`, so it
+is neither alternative. `[1]`'s proof reads "every Taylor coefficient vanishes" as `≡ 0`, which
+analyticity buys and smoothness does not. `≡ 0` is read as vanishing near `0`.
 
-**Analytic, where `[1]` says smooth.** The dichotomy is false for a merely smooth `f`:
-`h ↦ exp(-1/h²)`, extended by `0`, is smooth, vanishes nowhere but at `0`, and is under
-`h^q` for every `q`, so it is neither alternative. `[1]`'s proof reads "every Taylor
-coefficient of `[Aᵖ(h)G(h)]ᵢ` vanishes" as `[Aᵖ(h)G(h)]ᵢ ≡ 0`, which is what analyticity
-buys and smoothness does not; see the paper page's finding. Analyticity is asked of the
-entries, so nothing has to put a norm on `Mat ℝ`.
+## Inputs
+* `A` – matrix as a function of the step
+* `G` – generator matrix as a function of the step
+* `p` – series index
+* `i` – dimension
 
-`≡ 0` is read as vanishing near `0`, which is all the limit `h → 0` uses and all
-`AnalyticAt` can give; `a⁽ᵖ⁾ᵢ` is a vector of `m` generator coefficients rather than
-`[1, (36)]`'s scalar, `‖·‖₁` there being the 1-norm of a row of `Aᵖ(h)G(h)`.
+## Hypotheses
+* `hA` – matrix entries analytic at zero
+* `hG` – generator entries analytic at zero
+
+## Conclusion
+* the coefficient vanishes near zero or is a power times a nonvanishing factor
 
 ## References
 
