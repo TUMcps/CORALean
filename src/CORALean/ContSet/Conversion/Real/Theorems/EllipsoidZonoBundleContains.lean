@@ -13,6 +13,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 Through the ellipsoid's own box's zonotope, then `Zonotope.zonoBundle` — the
 single-member bundle, exact by `Set.iInter_const`. All the loss is the box
 route's, so this is no worse than `Ellipsoid → Zonotope` already is.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* ellipsoid is contained in its zonotope bundle
 -/
 
 -- Authors:       Claude Opus 5

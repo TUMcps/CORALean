@@ -18,6 +18,14 @@ over the half-widths of the other axes. The center and the generator are halves 
 and differences; what they miss of the exact ones goes into the error box (the center's between
 `0` and the gap to the upward rounding, the generator's at every segment parameter as the symmetric
 box of its gap), and the radius is the half-widths' norm rounded up.
+
+## Inputs
+* `k` – Newton steps for the norm
+* `I` – interval
+* `a` – axis of the segment
+
+## Output
+* capsule with its segment along axis `a`
 -/
 
 -- Authors:       Claude Sonnet 5.5

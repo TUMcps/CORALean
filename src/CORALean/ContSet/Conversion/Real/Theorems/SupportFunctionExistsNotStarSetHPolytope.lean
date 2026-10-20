@@ -15,6 +15,15 @@ The ellipsoid's closed-form support function denotes the unit disc
 support function itself as the predicate it holds, on a box around the disc
 (`SupportFunction.starSet_exact`).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* some planar support function is no star set with polytope predicate
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

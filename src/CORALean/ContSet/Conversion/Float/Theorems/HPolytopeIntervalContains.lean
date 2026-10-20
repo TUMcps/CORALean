@@ -12,6 +12,16 @@ public import CORALean.ContSet.Conversion.Float.Operations.Basic
 
 `2n` certified bounds read into a box. Nothing rounds here — each bound was
 already rounded outward where it was computed, and negating a float is exact.
+
+## Inputs
+* none
+
+## Hypotheses
+* `up` – float upper bound per coordinate
+* `lo` – float lower bound per coordinate
+
+## Conclusion
+* polytope is contained in its interval
 -/
 
 -- Authors:       Claude Opus 5

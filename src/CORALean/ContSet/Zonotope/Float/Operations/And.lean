@@ -14,6 +14,13 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotop
 CORA's `@zonotope/and_` with method `'conZonotope'`: the float constrained-zonotope intersection of
 the two conversions, enclosed by a zonotope that forgets the constraints. As over ℝ, an outer
 enclosure; the interval shortcut and `'averaging'` are not covered.
+
+## Inputs
+* `Z` – first zonotope
+* `S` – second zonotope
+
+## Output
+* zonotope enclosing the intersection
 -/
 
 -- Authors:       Claude Opus 5.5

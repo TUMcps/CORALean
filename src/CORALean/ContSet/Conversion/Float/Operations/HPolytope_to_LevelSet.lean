@@ -7,6 +7,12 @@ public import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
 
 /-!
 # A float polytope as a level set
+
+## Inputs
+* `P` – halfspace polytope
+
+## Output
+* level set of the rows, slacks included
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

@@ -14,6 +14,12 @@ public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 
 `PolyZonotope.intervalEven` is CORA's default, the box of `zonotope(pZ)` (`zonotopeEven`);
 `PolyZonotope.interval` frees every dependent generator first.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* interval enclosing the polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5

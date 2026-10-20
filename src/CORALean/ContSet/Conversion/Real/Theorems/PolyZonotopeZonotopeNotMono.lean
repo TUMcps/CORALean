@@ -14,6 +14,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonoto
 /-!
 # A polynomial zonotope as a zonotope: `zonotope_not_mono`
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* enclosing zonotope is not monotone under set inclusion
+
 ## References
 
 * [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to

@@ -10,6 +10,16 @@ public import CORALean.Global.Float.FloatOps
 An upper bound on `|x - e - y|` in one entry, for `y` known only to lie between `lo` and `hi`: the
 two signed differences rounded upward, the larger taken. `Zonotope.deviation` is the largest over
 the entries.
+
+## Inputs
+* `x` – point
+* `e` – box corner
+* `lo` – lower bound of the vector
+* `hi` – upper bound of the vector
+* `i` – entry
+
+## Output
+* upper bound on the deviation in entry `i`
 -/
 
 -- Authors:       Claude Opus 5.5

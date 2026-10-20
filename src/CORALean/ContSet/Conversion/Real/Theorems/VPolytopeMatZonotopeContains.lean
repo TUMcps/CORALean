@@ -15,6 +15,16 @@ Every vertex lies in the enclosing zonotope of the point cloud (`enclosePointsMa
 the zero generators changes nothing (`compactZeros_exact`) and neither does reading the vectors back
 as matrices (`map_exact` at the inverse of the vectorisation). A zonotope is convex, so it contains
 the hull of the vertices, which is the polytope.
+
+## Inputs
+* `P` – matrix vertex polytope
+* `dir` – direction chosen from the vertices
+
+## Hypotheses
+* none
+
+## Conclusion
+* polytope is contained in its matrix zonotope
 -/
 
 -- Authors:       Claude Sonnet 5.5

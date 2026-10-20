@@ -17,22 +17,23 @@ public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeVPolytopeContai
 /-!
 # Halfspaces to vertices
 
-Two routes, and they trade opposite exponentials.
+Two routes, and they trade opposite exponentials. `vPolytope` is **exact**: a bounded polytope is
+the closure of the hull of its extreme points, and at an extreme point the rows tight there admit
+exactly one solution, so enumerating the subsets of rows reaches all of them. Costs `2^m`, and needs
+the polytope nonempty, as CORA needs a feasible point: a subset naming nothing usable falls back on
+a point inside. `vPolytopeBox` goes through a box instead, `2n` linear programs, then `2ⁿ` corners:
+never tight unless the polytope was a box, but polynomial in the number of rows. Neither enumerates
+facets: which subsets give vertices is a question of cost the enclosure does not depend on.
 
-`vPolytope` is the real conversion and is **exact**. A bounded polytope is the
-closure of the hull of its extreme points, and at an extreme point no direction
-is free, so the rows tight there admit exactly one solution — which means every
-extreme point is named by its own tight set. Enumerating the subsets of rows
-therefore reaches all of them. Costs `2^m`, and needs the polytope nonempty, for
-the same reason CORA needs a feasible point: a subset of rows that names nothing
-usable has to fall back on something inside.
+## Inputs
+* none
 
-`vPolytopeBox` goes through a box instead — `2n` linear programs, then `2ⁿ`
-corners. Never tight unless the polytope was a box, but polynomial in the number
-of rows, which is the case that matters when a step has accumulated many.
+## Hypotheses
+* `up` – certified upper bound per coordinate
+* `lo` – certified lower bound per coordinate
 
-Neither enumerates facets: nothing here identifies *which* subsets give
-vertices, which is a question of cost the enclosure does not depend on.
+## Conclusion
+* polytope is contained in its box vertex polytope
 -/
 
 -- Authors:       Claude Opus 5

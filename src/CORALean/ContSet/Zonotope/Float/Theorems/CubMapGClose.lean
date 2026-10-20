@@ -12,6 +12,18 @@ public import CORALean.ContSet.Zonotope.Real.Operations.CubMap
 Generator `l` of the stored zonotope, rounded down, is off the exact generator of
 `Real.Zonotope.cubMap` on the read-back operand by at most `cubMapGDiff`: the exact one is between
 the two roundings (`cubFold_bracket`, halved at the pure squares, zero off the sorted triples).
+
+## Inputs
+* `T` – cubic tensor
+* `Z` – zonotope
+* `i` – output coordinate
+* `l` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* stored generator is within its gap of the exact one
 -/
 
 -- Authors:       Claude Opus 5.5

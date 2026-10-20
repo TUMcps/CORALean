@@ -17,16 +17,21 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeVPolytopeContain
 /-!
 # A constrained zonotope as vertices, over a floating-point scalar
 
-Through its box, and named `vPolytopeBox` for it — the exact layer's
-`ConZonotope.vPolytope` enumerates the coefficient domain's vertices, and that
-route asks which rows of the domain are tight, which is an equality test on
-reals.
-
-Deciding it in floating point means solving each square subsystem with directed
-rounding and keeping an enclosure of the solution, which is verified interval
-linear algebra and an algorithm in its own right rather than a rounding of this
-one. Until that exists, the box is what a definition can give, exactly as for
+Through its box, and named `vPolytopeBox` for it: the exact layer's `ConZonotope.vPolytope`
+enumerates the coefficient domain's vertices, which asks which rows of the domain are tight, an
+equality test on reals. Deciding it in floating point means solving each square subsystem with
+directed rounding and keeping an enclosure of the solution, an algorithm in its own right (verified
+interval linear algebra). Until that exists, the box is what a definition can give, exactly as for
 `HPolytope.vPolytopeBox` at this layer.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its box vertex polytope
 -/
 
 -- Authors:       Claude Opus 5

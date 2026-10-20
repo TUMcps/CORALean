@@ -14,6 +14,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 
 /-!
 # A zonotope as its corners, over a floating-point scalar
+
+## Inputs
+* `Z` – zonotope
+* `σ` – sign per generator
+* `i` – coordinate
+* `j` – generator index
+
+## Output
+* contribution of generator `j` to the corner
 -/
 
 -- Authors:       Claude Opus 5

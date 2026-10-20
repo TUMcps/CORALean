@@ -19,6 +19,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeIntervalContain
 Via the bounding box: `Capsule.interval`, then the box's own conversion. An outer enclosure,
 coarser than CORA's conversion, as over ℝ: the capsule is first replaced by its axis-aligned box,
 which loses the rounded ends and the slant of the segment.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* capsule is contained in its vertex polytope
 -/
 
 -- Authors:       Claude Opus 5.5

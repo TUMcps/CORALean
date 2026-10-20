@@ -10,16 +10,21 @@ public import CORALean.ContSet.Conversion.Real.Operations.Basic
 /-!
 # A zonotope as halfspaces
 
-`Zonotope.supportBound` answers a direction without a linear program, exactly,
-at one dot product per generator — which is why it is where the two
-representations meet.
+`Zonotope.supportBound` answers a direction without a linear program, exactly, at one dot product
+per generator, which is where the two representations meet. The rows are the caller's. Exact when
+they are the zonotope's own facet normals, of which there are `2·C(h, n-1)`, the reason CORA does
+not convert a zonotope to halfspaces unless it has to. `supportBound` is the `d̃` of [1, Prop. 4],
+where a halfspace description absorbs a zonotope without enumerating either one's vertices.
 
-The rows are the caller's, as always. Exact when they are the zonotope's own
-facet normals, of which there are `2·C(h, n-1)` — the reason CORA does not
-convert a zonotope to halfspaces unless it has to.
+## Inputs
+* `Z` – zonotope
+* `Aq` – direction functionals
 
-`supportBound` is the `d̃` of [1, Prop. 4], where a halfspace description
-absorbs a zonotope without enumerating either one's vertices.
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is contained in its halfspace polytope
 
 ## References
 

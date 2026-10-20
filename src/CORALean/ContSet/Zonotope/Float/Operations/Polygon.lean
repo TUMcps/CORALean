@@ -17,14 +17,18 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 CORA's `@zonotope/polygon` for a planar zonotope: the `2 h` vertices from the generators sorted by
 angle, `c - Σ g + 2 Σ_{j<k} g` and its mirror image through the center, in place of the `2ʰ` corners
-of `Zonotope.vPolytope`. Generators are flipped into the half-plane `y > 0 ∨ (y = 0 ∧ x ≥ 0)` (a
-zonotope is symmetric), sorted by the sign of their cross product, and each walk corner is rounded
-down with the gap to its rounded-up value, plus the zonotope's own box, as the error box.
+of `Zonotope.vPolytope`. Generators are flipped into the half-plane `y > 0 ∨ (y = 0 ∧ x ≥ 0)`,
+sorted by the sign of their cross product, and each walk corner is rounded down with the gap to its
+rounded-up value, plus the zonotope's own box, as the error box. The sort is `List.mergeSort` on the
+float comparison, which rounding can get wrong, so the result is *checked*: the half-plane and the
+pairwise `cross(g_i, g_j) ≥ 0` for `i < j`, rounded down. If a check fails the box's four corners
+are returned instead, which encloses all the same.
 
-The sort is `List.mergeSort` on the float comparison, which rounding can get wrong, so the result
-is *checked*: the half-plane and the pairwise `cross(g_i, g_j) ≥ 0` for `i < j`, with the cross
-product rounded down. If a check fails the box's four corners are returned instead, which encloses
-all the same; there is nothing to tune.
+## Inputs
+* `Z` – planar zonotope
+
+## Output
+* corners of the sorted generator walk, or of the box
 -/
 
 -- Authors:       Claude Sonnet 5.5

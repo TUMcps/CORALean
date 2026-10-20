@@ -8,6 +8,12 @@ public import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
 
 /-!
 # An ellipsoid as a spectrahedral shadow, over a floating-point scalar
+
+## Inputs
+* `E` – ellipsoid
+
+## Output
+* Schur-form spectrahedral shadow of the ellipsoid
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -22,6 +22,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 generators `dotDown_le`/`le_dotUp` bracket; `af` and `e(z + f)` are
 `Interval.mtimesIntervalMat_outer` at the boxes `matInterval_contains` and
 `interval_contains` supply.
+
+## Inputs
+* `M` – matrix zonotope
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* images under every member matrix are contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

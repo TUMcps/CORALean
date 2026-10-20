@@ -12,6 +12,15 @@ public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsConstructI
 
 /-!
 # A hull as a constrained zonotope, over a floating-point scalar: `mem_simplex_iff`
+
+## Inputs
+* `β` – coefficient vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership in simplex means nonnegative and sum one
 -/
 
 -- Authors:       Claude Opus 5

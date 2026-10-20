@@ -11,6 +11,15 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.AbsorbRoundingOuter
 `levelSet` reads the rows, not the box. A polytope with a box is converted after its box has been
 folded into its rows: the result contains the polytope. For an error-free one the rows are the
 set (`levelSet_exact`).
+
+## Inputs
+* `P` – halfspace polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* polytope is contained in the level set of its rounding-absorbed form
 -/
 
 -- Authors:       Claude Sonnet 5.5

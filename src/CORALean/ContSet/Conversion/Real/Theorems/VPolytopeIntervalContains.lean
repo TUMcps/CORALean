@@ -16,6 +16,15 @@ points never leaves a box all of them are in.
 With no vertices the bounds are whatever `⨅` and `⨆` give over an empty index,
 which is sound however it lands: the polytope is `∅` then, and `∅` sits inside
 any box.
+
+## Inputs
+* `P` – vertex polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* polytope is contained in its interval
 -/
 
 -- Authors:       Claude Opus 5

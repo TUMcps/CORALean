@@ -13,6 +13,12 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Point
 `plus` at a time, as the loops of [1] add their terms. Each partial sum is materialised, so a
 long sum does not pay for its history on every read.
 
+## Inputs
+* `f` – zonotope per index
+
+## Output
+* Minkowski sum of the first terms of `f`
+
 ## References
 
 * [1] `hybridDynamics/@location/guardIntersect_hyperplaneMap.m`, `aux_abstractionError`

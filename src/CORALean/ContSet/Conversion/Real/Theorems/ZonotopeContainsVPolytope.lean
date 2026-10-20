@@ -14,6 +14,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 # A zonotope as its corners
 
 `Zonotope.contains_vPolytope`: it contains its `vPolytope`.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* vertex polytope is contained in the zonotope
 -/
 
 -- Authors:       Claude Opus 5

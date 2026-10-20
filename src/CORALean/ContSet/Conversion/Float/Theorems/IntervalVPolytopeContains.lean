@@ -15,6 +15,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeVPolytopeContai
 The one place a float layer does nothing at all: a corner is a stored bound
 copied, so the error box stays at zero and the nominal vertex list is exactly the
 exact layer's corners of the nominal box.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* interval is contained in its vertex polytope
 -/
 
 -- Authors:       Claude Opus 5

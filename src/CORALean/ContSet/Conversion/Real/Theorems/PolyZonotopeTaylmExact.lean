@@ -22,6 +22,16 @@ no remainder. Exact: the box of variables is the box of factors.
 This is the equivalence of polynomial zonotopes and Taylor models of
 [1, Fig. 1 (Polynomial Zonotopes ↔ Taylor Models)].
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `N` – Taylor order
+
+## Hypotheses
+* none
+
+## Conclusion
+* Taylor model equals the polynomial zonotope
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

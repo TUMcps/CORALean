@@ -12,6 +12,16 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.AbsorbRoundingNominal
 Every point of the operand, box included, is a point of the nominal set of `absorbRounding`
 (`absorbRounding_nominal`), whose cubic image is held by `cubMapDep` (`cubMapDep_coeff`). Outer
 only: the monomials `β_k β_j β_c` of the factors are tied to each other, and a zonotope frees them.
+
+## Inputs
+* `T` – cubic tensor
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* cubic image is contained in the computed zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

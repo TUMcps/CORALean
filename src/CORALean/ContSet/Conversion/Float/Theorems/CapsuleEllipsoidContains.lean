@@ -15,6 +15,17 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 Via the bounding box: `Capsule.interval`, then the box's own conversion. An outer enclosure,
 coarser than CORA's conversion, as over ℝ: the capsule is first replaced by its axis-aligned box,
 which loses the rounded ends and the slant of the segment.
+
+## Inputs
+* `C` – capsule
+* `σ` – scaling factor
+
+## Hypotheses
+* `hσ` – scaling factor positive
+* `hn` – squared scaling factor at least dimension
+
+## Conclusion
+* capsule is contained in its ellipsoid
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -15,6 +15,12 @@ CORA's `@matPolytope/intervalMatrix`: the entrywise minimum and maximum over the
 as an interval matrix from their center `½ (min + max)` and radius `½ (max - min)`. The vertex array
 of a matrix polytope with no vertex is empty in CORA; here the infimum over no vertex is `0`, and
 the theorem holds vacuously, the polytope having no member.
+
+## Inputs
+* `P` – matrix vertex polytope
+
+## Output
+* smallest interval matrix around the vertices
 -/
 
 -- Authors:       Claude Sonnet 5.5

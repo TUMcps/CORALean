@@ -9,6 +9,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleSpectraShadowExac
 # A capsule lies in its spectrahedral shadow
 
 Exact for `0 ≤ r` (`Capsule.spectraShadow_exact`); a negative radius is the empty capsule.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* capsule is contained in its spectrahedral shadow
 -/
 
 -- Authors:       Claude Opus 5.5

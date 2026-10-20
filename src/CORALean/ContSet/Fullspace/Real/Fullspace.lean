@@ -8,19 +8,12 @@ public import Mathlib.Data.Real.Basic
 /-!
 # The full space: the representation
 
-CORA's `fullspace`, the counterpart of `emptySet` and the other set class that
-carries no data: everything in `n` dimensions. `HPolytope.fullspace` says the
-same thing with no rows, which is a polytope's way of saying it and not a
-representation of its own.
-
-The dimension is the index rather than a field, exactly as in `EmptySet`, so
-that `ContSet (Fullspace n) (Vec ℝ n)` pins the ambient type.
-
-What it is for: the unit an intersection starts from, and the outer
-approximation that assumes nothing. It is unbounded at `0 < n`, so `CompactSet`
-is missing from its instances rather than proved.
-
-Real layer only: it holds no scalar, so a float layer would be the same type.
+CORA's `fullspace`, the counterpart of `emptySet` and the other set class that carries no data:
+everything in `n` dimensions. `HPolytope.fullspace` says the same with no rows, a polytope's way of
+saying it. The dimension is the index rather than a field, exactly as in `EmptySet`, so that
+`ContSet (Fullspace n) (Vec ℝ n)` pins the ambient type. It is the unit an intersection starts from,
+and the outer approximation that assumes nothing. It is unbounded at `0 < n`, so `CompactSet` is
+missing from its instances rather than proved. Real layer only: it holds no scalar.
 -/
 
 -- Authors:       Claude Opus 5

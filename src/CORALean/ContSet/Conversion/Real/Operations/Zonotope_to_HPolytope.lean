@@ -11,17 +11,19 @@ public import Mathlib.Data.List.Sublists
 # A zonotope as halfspaces, as CORA's `polytope(Z)` computes the facets
 
 `@zonotope/polytope.m` at its default `'exact'`: a zonotope without generators is the box rows
-`[I; -I] x ≤ [c; -c]`; otherwise every combination of `n - 1` generators (`combinator(nrGen, n-1,
-'c')`) gives the normal `ndimCross` of those generators, normalized, the zero normals (MATLAB's
-`NaN` rows) dropped, and the rows `±C` at `±C c + Σ |C G|` ([1, Thm. 2]). At `n = 1` the one
-combination is empty and its cross product is `1`, CORA's `C = 1`.
+`[I; -I] x ≤ [c; -c]`; otherwise every combination of `n - 1` generators gives the normalized
+`ndimCross` normal, zero normals dropped, and the rows `±C` at `±C c + Σ |C G|` ([1, Thm. 2]). At
+`n = 1` the one combination is empty and its cross product is `1`. Departures: CORA first removes
+the zero generators (`compact_`), which only removes zero normals here; the combinations come in the
+order `List.sublistsLen` lists them; CORA's degenerate branch (`rank G < n`) is not here: these rows
+still enclose a degenerate zonotope, and exactness asks for spanning generators
+(`Zonotope.hPolytopeFacets_exact`).
 
-Departures. CORA first removes the zero generators (`compact_`), which only removes zero normals
-here, and tests "no generators" after that, which is the test that every generator is zero. The
-combinations come in the order `List.sublistsLen` lists them, not CORA's, and a row set is
-unordered. CORA's degenerate branch (`rank G < n`, an SVD projection) is not here: these rows
-still enclose a degenerate zonotope but need not describe it, and exactness asks for generators
-that span (`Zonotope.hPolytopeFacets_exact`).
+## Inputs
+* `Z` – zonotope
+
+## Output
+* facet halfspace polytope of the zonotope
 
 ## References
 

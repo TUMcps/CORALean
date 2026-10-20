@@ -13,22 +13,14 @@ public import CORALean.ContSet.Interval.Float.Interval
 /-!
 # Halfspace descriptions over a floating-point scalar: the representation
 
-CORA's `polytope` [1, Def. 2] with `isHRep` set, its constraint matrices held in `𝕋`, plus three
-errors, each where its rounding lives: `b_error` the slack of the inequality rows,
-`A x ≤ b + |b_error|`; `be_error` that of the equality rows, `|Aₑ x - bₑ| ≤ |be_error|`; and the
-state-space box `I_error`, as every float representation has one. A slack is a magnitude, read
-through `|·|`, since rounding only ever widens a row. The nominal part is the exact polytope the
-stored floats describe, slacks included (an equality with slack is the slab it then is);
-`construct` adds the box, through `InflatedContSet`. Separate from the box because a slack is a
-constraint-space quantity, one number per row, which no state-space box expresses without loss.
-
-An operation that rounds a right-hand side stores a bound and writes the rounding into that row's
-slack (`HPolytope.setRhs`, #218), so a rounded equality stays an equality; one that stacks rows
-moves the box into the slacks first (`HPolytope.boxToSlack`); one that reads the rows first folds
-all three into them (`HPolytope.absorbRounding`), the one place a slack enters `b`; and one that
-moves or pads the description carries them along.
-
-It stays at `Vec`, the only place either layer pairs a row with a point.
+CORA's `polytope` [1, Def. 2] with `isHRep` set, its matrices held in `𝕋`, plus three errors, each
+where its rounding lives: `b_error` the slack of the inequality rows, `A x ≤ b + |b_error|`;
+`be_error` that of the equality rows, `|Aₑ x - bₑ| ≤ |be_error|`; and the state-space box `I_error`.
+A slack is a magnitude, since rounding only widens a row. The nominal part is the exact polytope the
+stored floats describe, slacks included; `construct` adds the box. An operation that rounds a
+right-hand side writes the rounding into that row's slack (`HPolytope.setRhs`, #218); one that
+stacks rows moves the box into the slacks (`HPolytope.boxToSlack`); one that reads the rows folds
+all three into them (`HPolytope.absorbRounding`).
 
 ## References
 

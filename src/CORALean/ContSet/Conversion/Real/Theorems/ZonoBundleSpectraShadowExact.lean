@@ -18,6 +18,15 @@ Exact. CORA converts every member (`Zonotope.spectraShadow`) and intersects the 
 side with the points forced equal. An empty family, which denotes the whole space here, is
 `SpectraShadow.Inf`; CORA returns an empty `spectraShadow()` object there instead. The flags CORA
 caches on the result (`bounded`, `emptySet`, `fullDim`, `center`) are not part of the denotation.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* none
+
+## Conclusion
+* bundle equals its spectrahedral shadow
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -18,6 +18,15 @@ A polytope is a convex hull of finitely many points, and the closed unit disc is
 `V.construct`, every unit vector `d` would be a convex combination of the vertices, so one vertex
 `v` would have `d · v ≥ 1`; a vertex lies in the disc, so `|v - d|² ≤ 1 - 2 d · v + 1 ≤ 0` and `v =
 d`. Every unit vector would then be a vertex, and there are infinitely many of them.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* some planar ellipsoid is no vertex polytope
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

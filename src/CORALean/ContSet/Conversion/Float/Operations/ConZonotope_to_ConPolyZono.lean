@@ -18,6 +18,12 @@ coefficient polytope one constraint row, held to its enclosure over the unit cub
 right-hand side, the lower end, and a slack, the width above it rounded up. The slack reads the
 enclosure wider still, which an outer conversion may; the exact layer instead adds a slack factor
 per row (`Real.ConZonotope.conPolyZono`).
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Output
+* inequality rows followed by equality rows, entries copied
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5, Claude Opus 5.5

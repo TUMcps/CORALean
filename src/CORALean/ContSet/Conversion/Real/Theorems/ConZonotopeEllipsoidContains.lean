@@ -16,6 +16,15 @@ throwing them away is a separate piece of mathematics.
 
 Loses whatever both steps lose: the constraints, then the cube-to-ball
 inflation.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its ellipsoid
 -/
 
 -- Authors:       Claude Opus 5

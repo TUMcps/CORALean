@@ -19,6 +19,16 @@ in that row added on top.
 The rows are copied unchanged into the result, so the halfspace description says
 something about the *float* rows it stores rather than about rounded versions of
 the caller's intent — which is why nothing here has to round the matrix.
+
+## Inputs
+* `P` – vertex polytope
+* `Aq` – direction matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* polytope is contained in its halfspace polytope
 -/
 
 -- Authors:       Claude Opus 5

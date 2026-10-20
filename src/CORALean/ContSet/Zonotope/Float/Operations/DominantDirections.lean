@@ -10,15 +10,21 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 # `Zonotope.dominantDirections`, over a floating-point scalar
 
 CORA's `dominantDirections(Z, filterLength1, filterLength2)` [1] in rounded arithmetic: the
-generators go through the length filter (`filterLength1 = n + 5` of the longest), the generator
-volume filter (`filterLength2 = n + 3` subsets of largest `|det|`), and `priv_volumeFilter` picks
-the subset of least `dominantScore`, the first on a tie. Both lengths are clamped to the number of
-non-zero generators.
+generators go through the length filter (`filterLength1 = n + 5` of the longest), the volume filter
+(`filterLength2 = n + 3` subsets of largest `|det|`), and `priv_volumeFilter` picks the subset of
+least `dominantScore`, the first on a tie. Both lengths are clamped to the number of non-zero
+generators. Every ranking runs on rounded numbers, so the subset picked need not be the exact
+layer's. What does not depend on the ranking is what is returned: columns that are stored generators
+(`dominantDirections_mem`), whose parallelotope encloses the zonotope whenever they are invertible
+(`dominantDirections_outer`). `none` where fewer than `n` generators are left.
 
-Every ranking runs on rounded numbers, so the subset picked need not be the one the exact layer
-picks. What does not depend on the ranking is what is returned: columns that are stored
-generators (`dominantDirections_mem`), whose parallelotope encloses the zonotope whenever they are
-invertible (`dominantDirections_outer`). `none` where fewer than `n` generators are left.
+## Inputs
+* `Z` – zonotope
+* `filterLength₁` – length of the long-generator filter
+* `filterLength₂` – length of the shortlist
+
+## Output
+* generators of least dominant score as columns, if any
 
 ## References
 

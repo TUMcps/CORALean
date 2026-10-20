@@ -11,6 +11,15 @@ public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaPointSound
 
 A `true` answer makes every generator `0`, so the nominal part is the single point `c`, and the
 error box is a point: the zonotope is their sum, a point.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* `h` – test returns true
+
+## Conclusion
+* zonotope is a single point
 -/
 
 -- Authors:       Claude Sonnet 5.5

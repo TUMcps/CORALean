@@ -13,6 +13,16 @@ so `lowerDot` is at most the support function in direction `a`. The point is the
 support formula names: each generator at the sign of `aᵀGⱼ`, and the error box at the end of
 each coordinate that makes `aᵢ eᵢ` smallest — `lowerDot` rounds every term down, so it stays
 below the value at that point.
+
+## Inputs
+* `Z` – zonotope
+* `a` – direction
+
+## Hypotheses
+* `hE` – error box ordered
+
+## Conclusion
+* some point of the zonotope is above the lower bound
 -/
 
 -- Authors:       Claude Sonnet 5.5

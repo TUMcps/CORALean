@@ -14,13 +14,18 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 CORA's `@zonotope/enclosePoints.m` at `method = 'stursberg'`, on the stored floats: the points are
 centered on their mean, rotated by `Uᵀ`, boxed per rotated coordinate by the minimum and maximum
-over the points, and the box is rotated back by `U` and moved to the mean.
+over the points, and the box is rotated back by `U` and moved to the mean. The mean is rounded up
+from the sum, and each centered point is held in the interval between its two directed differences,
+so the rotation `Uᵀ` is the interval `mtimes`. Nothing in the enclosure depends on the mean or on
+the basis being the SVD's: the points lie in the result whenever `U Uᵀ = 1` over the reals. As at
+the real layer `U` is an argument, and at least one point is required.
 
-The mean is rounded up from the sum (the count is the float sum of ones), and each centered point
-is held in the interval between its two directed differences, so the rotation `Uᵀ` is the interval
-`mtimes`. Nothing in the enclosure depends on the mean or on the basis being the SVD's: the
-points lie in the result whenever `U Uᵀ = 1` over the reals. As at the real layer `U` is an
-argument, and at least one point is required.
+## Inputs
+* `pts` – points to enclose
+* `U` – basis matrix
+
+## Output
+* zonotope enclosing the points in the basis
 -/
 
 -- Authors:       Claude Opus 5.5

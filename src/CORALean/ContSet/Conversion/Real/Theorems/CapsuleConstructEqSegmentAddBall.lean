@@ -14,6 +14,15 @@ CORA builds `spectraShadow(C)` and `conPolyZono(C)` as `zonotope(c, g)` plus the
 `ellipsoid(r² I)`, both exact; this is why. The ball is `ellipsoid(r² I)` as CORALean writes it,
 `Ellipsoid.ofFactor (r • 1) 0`, the points `r u` with `‖u‖₂ ≤ 1`. A nonnegative radius is needed:
 a negative one is CORALean's empty capsule, while `r² I` is the ball of radius `|r|`.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* `hr` – radius nonnegative
+
+## Conclusion
+* capsule equals its segment plus the ball
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -8,6 +8,16 @@ public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 
 /-!
 # A box as a zonotope, over a floating-point scalar: `reaches`
+
+## Inputs
+* `I` – interval
+* `i` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* center plus or minus the radius reaches both ends
 -/
 
 -- Authors:       Claude Opus 5

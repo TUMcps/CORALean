@@ -11,6 +11,15 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 
 The matrix polytope of the vertices denotes the box: its vertex list enumerates `Interval.vertices`,
 and `convexHull_vertices` gives the box for a nonempty one.
+
+## Inputs
+* `A` – interval matrix
+
+## Hypotheses
+* `hA` – lower end below upper end per entry
+
+## Conclusion
+* matrix polytope equals the interval matrix
 -/
 
 -- Authors:       Claude Sonnet 5.5

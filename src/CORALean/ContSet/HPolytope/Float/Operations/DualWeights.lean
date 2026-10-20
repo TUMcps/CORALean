@@ -10,22 +10,14 @@ public import CORALean.Global.LinProg.Simplex
 /-!
 # `HPolytope.dualWeights`
 
-The float layer's linear-program driver, and deliberately part of no proof. It reads the stored
-rows back into ℚ through `ToRat`, so the simplex sees exactly the program the floats denote,
-solves its dual there with `dualCandidate`, and rounds the weights into `𝕋` with `ratUp`.
-
-The program is `max dᵀβ` over the polytope within the unit box `|βⱼ| ≤ 1`, a constrained
-zonotope's coefficient domain. The box rows keep it bounded, so the dual is feasible; their
-weights are then dropped, the checker paying for the box by the residual against `Σ |rⱼ|`. An
-equality row is two inequalities, `Ae β ≤ beU` and `-Ae β ≤ beLN`, a weight each, the
-right-hand sides carrying the error box (`bU`, `beU`, `beLN`).
-
-Nothing here is trusted: a negative, badly rounded or missing (`none`, the pivot
-budget ran out) weight costs tightness only, because the checker clamps every
-weight at zero and encloses the residual it actually has, in rounded arithmetic.
-
-A NaN in the stored data reads through `ToRat` as `1.5 · 2 ^ 1024`: another program, at the
-cost of tightness.
+The float layer's linear-program driver, and deliberately part of no proof. It reads the stored rows
+back into ℚ through `ToRat`, solves the dual of `max dᵀβ` over the polytope within the unit box
+`|βⱼ| ≤ 1` there with `dualCandidate`, and rounds the weights into `𝕋` with `ratUp`. The box rows
+keep it bounded, so the dual is feasible; their weights are dropped, the checker paying for the box
+by the residual. An equality row is two inequalities, a weight each, the right-hand sides carrying
+the error box (`bU`, `beU`, `beLN`). Nothing here is trusted: a negative, badly rounded or missing
+weight (`none`, the pivot budget ran out) costs tightness only, the checker clamping every weight at
+zero. A NaN reads through `ToRat` as `1.5 · 2 ^ 1024`: another program, at the cost of tightness.
 
 ## Inputs
 * `P` – H-polytope

@@ -13,6 +13,14 @@ The exit step of `boundaryPoint`, as an upper bound: the least of the facet rows
 generator a zero row, which has no certified positive denominator. Every row bounds the exact step,
 so the minimum does, whichever rows are present. `none` where no subset gives a row. Only the upper
 side is computed: the lower side would need a feasible point of the linear program.
+
+## Inputs
+* `Z` – zonotope
+* `dir` – direction
+* `start` – starting point
+
+## Output
+* least bound on the exit step over the facet rows, if any
 -/
 
 -- Authors:       Claude Sonnet 5.5

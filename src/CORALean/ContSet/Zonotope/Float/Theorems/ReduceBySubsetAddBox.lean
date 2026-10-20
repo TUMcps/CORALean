@@ -9,17 +9,22 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
 /-!
 # `reduceBy` reaches no further than its operand plus `reduceByBox`
 
-The reverse of `reduceBy_outer`, and `Real`'s own `reduceBy_subset_add_box`
-argument carried across, now computed in `𝕋`: the kept coefficients read back
-onto `Z`, the dropped ones set to `0`, and what is left is the diagonal block —
-rounded up here via `radius`, which is also what `reduceBy`'s own diagonal
-block stores, so the two match exactly rather than merely bound one another.
-`reduceByBox`'s own error box is degenerately `0`, so its membership costs
-nothing beyond the nominal part.
+The reverse of `reduceBy_outer`, and `Real`'s own `reduceBy_subset_add_box` argument carried across,
+now computed in `𝕋`: the kept coefficients read back onto `Z`, the dropped ones set to `0`, and what
+is left is the diagonal block, rounded up via `radius`, which is also what `reduceBy`'s own diagonal
+block stores, so the two match exactly. `reduceByBox`'s own error box is degenerately `0`.
+`reduceBy` never touches the box (`I_error := Z.I_error`), so `y₂` witnesses membership in `Z`'s own
+error box directly, with no `0`-in-the-box hypothesis as `plus` and `mtimes` need.
 
-`reduceBy` never touches the box — `I_error := Z.I_error` — so `y₂` witnesses membership in
-`Z`'s own error box directly, with no need of a `0`-in-the-box hypothesis the
-way `plus` and `mtimes` do.
+## Inputs
+* `Z` – zonotope
+* `part` – split into kept and reduced generators
+
+## Hypotheses
+* none
+
+## Conclusion
+* reduction is contained in the zonotope plus the reduction box
 -/
 
 -- Authors:       Claude Opus 5

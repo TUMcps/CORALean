@@ -9,13 +9,11 @@ public import CORALean.ContSet.EmptySet.Real.EmptySet
 # `LevelSet.compact_`
 
 CORA's `@levelSet/compact_`: for a level set of exactly two equations, merge the pair when the
-second is the first (`simplify(eq(1) - eq(2)) == 0`) or its negation (`simplify(eq(1) + eq(2)) ==
-0`), by their operators; the pair can also be recognised as empty (`emptySet(n)`, the second
-summand). Any other level set is returned as it is.
-
-CORA tests the equalities with `simplify`, which is incomplete: it can miss an equal pair. The
-test here is the equality of the two functions, the thing `simplify` approximates, so a `true`
-of CORA's is a `true` here and not conversely. `compact_` is therefore noncomputable (a
+second is the first (`simplify(eq(1) - eq(2)) == 0`) or its negation
+(`simplify(eq(1) + eq(2)) == 0`), by their operators; the pair can also be recognised as empty
+(`emptySet(n)`). Any other level set is returned as it is. CORA tests with `simplify`, which is
+incomplete and can miss an equal pair; the test here is the equality of the two functions, so a
+`true` of CORA's is a `true` here and not conversely. `compact_` is therefore noncomputable (a
 classical decision on function equality), and `Theorems/CompactExact` says that it preserves the
 denoted set whichever way the test falls.
 -/

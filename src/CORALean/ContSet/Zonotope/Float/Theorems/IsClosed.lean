@@ -11,6 +11,15 @@ Read off compactness, as over ℝ: the sum of the nominal set and the error box
 is an affine image of a product of cubes, and an affine image of a merely
 closed set need not be closed. Closedness on its own is what a bundle's
 compactness asks of each member.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is closed
 -/
 
 -- Authors:       Claude Opus 5

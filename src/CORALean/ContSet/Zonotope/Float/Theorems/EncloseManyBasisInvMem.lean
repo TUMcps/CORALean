@@ -13,11 +13,18 @@ When the entry of `newGen` at the dropped axis is provably nonzero, the matrix `
 quotients `1/g_d` and `-g_{i_j}/g_d` and the exact unit entries lies in the box
 `Zonotope.encloseManyBasisInv`, and it inverts the matrix `Zonotope.encloseManyBasis` reads as,
 `R (A x) = x` for every `x`: the first coordinate `x_d / g_d` of `A x` scales `newGen` to give the
-`d`-th coordinate back, and the other coordinates of `A x` are what is left of `x` after
-subtracting that multiple, which the axes then add back. So an image under `R⁻¹` is an image under
-a member of the box.
+`d`-th coordinate back, and the other coordinates of `A x` are what is left of `x` after subtracting
+that multiple, which the axes then add back. So an image under `R⁻¹` is an image under a member of
+the box. Source: [1].
 
-Source: [1].
+## Inputs
+* `newGen` – new first generator
+
+## Hypotheses
+* `hg` – dropped entry provably nonzero
+
+## Conclusion
+* exact inverse lies in the box and inverts the basis
 
 ## References
 

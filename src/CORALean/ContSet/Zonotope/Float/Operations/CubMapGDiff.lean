@@ -10,6 +10,13 @@ public import CORALean.ContSet.Zonotope.Float.Operations.CubMapGUp
 
 How far a stored generator of `Zonotope.cubMap` can be from the exact one: the gap between its two
 roundings, which a coefficient in `[-1, 1]` then spreads either way.
+
+## Inputs
+* `T` – cubic tensor
+* `Z` – zonotope
+
+## Output
+* gap between the two roundings of each generator
 -/
 
 -- Authors:       Claude Opus 5.5

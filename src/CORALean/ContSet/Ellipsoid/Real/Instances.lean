@@ -18,22 +18,14 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.PlusOuter
 /-!
 # What `Ellipsoid` instantiates
 
-`ContSet` and `Mtimes` by instance search, `OfPoint` at the degenerate case —
-`G` with no columns — and `Plus` only once a caller has named the parameter it
-carries. Otherwise closed under a linear image alone: a Minkowski sum of two
-ellipsoids is not one, nor is a `linComb`. `Reduce` is the identity, as CORA's
-`reduce` body is empty.
-
-`Ellipsoid.plus_outer` holds at a fixed pair of scalings for every pair of
-ellipsoids, so fixing `s₁` and `s₂` — with the inequality they owe — yields a
-lawful `Plus`. It is a `def` and not an `instance` on purpose: instance search
-must not make a precision choice, so a caller writes
-`letI := Ellipsoid.plusInstance hne₁ hne₂ hs`, fixing the pair for a whole
-run, where the tightest depends on the operands and the direction; per-call
-precision names `Ellipsoid.plus` instead.
-
-At `Vec ℝ n` only: an ellipsoid is described by a Euclidean norm, which a
-general real module has none of.
+`ContSet` and `Mtimes` by instance search, `OfPoint` at the degenerate case (`G` with no columns),
+and `Plus` only once a caller has named the parameter it carries. Otherwise closed under a linear
+image alone: a Minkowski sum of two ellipsoids is not one, nor is a `linComb`. `Reduce` is the
+identity, as CORA's `reduce` body is empty. `Ellipsoid.plus_outer` holds at a fixed pair of
+scalings, so fixing `s₁` and `s₂`, with the inequality they owe, yields a lawful `Plus`. It is a
+`def` and not an `instance`, since instance search must not make a precision choice: a caller writes
+`letI := Ellipsoid.plusInstance hne₁ hne₂ hs`; per-call precision names `Ellipsoid.plus`. At
+`Vec ℝ n` only: the Euclidean norm needs coordinates.
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

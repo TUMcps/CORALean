@@ -17,6 +17,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeIntervalContain
 Through a box, as in the exact layer: `2n` certified bounds, then `2ⁿ` corners.
 The rounding has all been paid by the time the bounds arrive, and copying them
 into corners costs nothing more.
+
+## Inputs
+* none
+
+## Hypotheses
+* `up` – float upper bound per coordinate
+* `lo` – float lower bound per coordinate
+
+## Conclusion
+* polytope is contained in its box vertex polytope
 -/
 
 -- Authors:       Claude Opus 5

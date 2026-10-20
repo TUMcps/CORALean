@@ -10,6 +10,19 @@ public import Mathlib.Analysis.Normed.Module.FiniteDimension
 
 The open box of radius `B` around the center lies in the nominal set (`Zonotope.box_subset`), so
 a point strictly inside it is an interior point.
+
+## Inputs
+* `Z` – zonotope
+* `H` – candidate right inverse
+* `B` – box radius
+* `y` – point
+
+## Hypotheses
+* `hc` – certificate returns true
+* `hy` – point strictly within the radius of the center
+
+## Conclusion
+* point is interior to the nominal set
 -/
 
 -- Authors:       Claude Opus 5.5

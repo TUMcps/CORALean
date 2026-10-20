@@ -14,6 +14,15 @@ The exact layer's `zonotopeEven_contains` at the nominal polynomial zonotope giv
 `c + s + Σ βⱼ G'ⱼ` with `s` the center's shift; the float generators read as the exact layer's
 `G'` (a halved float is exactly half), and `s` lies between the sums of the exact shift terms
 rounded down and up, so `s` plus the error box's point lies in the new error box.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its even-column zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

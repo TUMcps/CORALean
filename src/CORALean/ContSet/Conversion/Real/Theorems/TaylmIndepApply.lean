@@ -11,6 +11,17 @@ public import CORALean.ContSet.Conversion.Real.Operations.Taylm_to_PolyZonotope
 
 /-!
 # An array of Taylor models as a polynomial zonotope: `indep_apply`
+
+## Inputs
+* `T` – Taylor models, one per coordinate
+* `β` – independent factor vector
+* `i` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* independent part equals factor times half remainder width
 -/
 
 -- Authors:       Claude Opus 5.5

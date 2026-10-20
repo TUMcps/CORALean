@@ -14,6 +14,12 @@ public import CORALean.ContSet.Taylm.Float.Operations.Basic
 
 Every term of every coordinate a generator along that coordinate, and the remainder with the
 model's error box absorbed (`Taylm.absorbRounding`) the polynomial zonotope's error box.
+
+## Inputs
+* `T` – Taylor models, one per coordinate
+
+## Output
+* every term, tagged with its coordinate
 -/
 
 -- Authors:       Claude Opus 5.5

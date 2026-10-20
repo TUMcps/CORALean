@@ -16,6 +16,15 @@ public import CORALean.Global.Block
 The witness is `Fin.append β γ`: the old coefficients, then one coefficient per coordinate placing
 that coordinate's error in its new generator. `errorBound` rounds nothing, so the coefficient
 always fits. As `ConZonotope.absorbRounding_nominal`, without the constraints.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is contained in the nominal part of its absorbed form
 -/
 
 -- Authors:       Claude Opus 5.5

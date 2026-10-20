@@ -13,6 +13,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotop
 Through the zonotope, which loses nothing either time: a box is a zonotope with
 axis-aligned generators, and a zonotope is a constrained one with nothing to
 satisfy.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* interval is contained in its constrained zonotope
 -/
 
 -- Authors:       Claude Opus 5

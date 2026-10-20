@@ -11,22 +11,14 @@ public import CORALean.ContSet.PolyLevelSet.Float.PolyLevelSet
 /-!
 # Constrained polynomial zonotopes over a floating-point scalar: the representation
 
-CORA's `conPolyZono` [1, Def. 5] with its three counts, its two generator blocks and its
-constraint `cons`, a float `PolyLevelSet` with `=` in every row (`cons_eq`) on the unit box
-(`cons_dom`), as in the exact layer, plus the error box that makes it an `InflatedContSet`. It is
-generic over its ambient type,
-generators a family, as the exact layer's is; `𝕋` stays, the constraint being scalar. The
-constraint's `A` and `b` are in `𝕋` and read back exactly: the nominal set is *defined* as what the
-stored floats describe.
-
-Rounding has two channels. The center and the generators go into the ambient error box
-`I_error`; a constraint row, an equation with no interior to absorb an error, records its own in
-the constraint's per-row slack `cons.b_error`, row `i` holding `|(A μ_R(α))ᵢ - bᵢ| ≤ |b_errorᵢ|`
-(`Float.PolyLevelSet.construct`), as a float `HPolytope` records its rows'. The nominal set is the
-exact `ConPolyZono` with `=` rows that slack denotes, one slack factor per row
-(`Real.ConPolyZono.relax`); with no slack it is the stored fields' own
-(`Real.ConPolyZono.relax_zero_construct`). `plus` and `mtimes` copy the constraint and pay nothing;
-`intersection` and `compact` need both channels at once.
+CORA's `conPolyZono` [1, Def. 5] with its counts, two generator blocks and constraint `cons`, a
+float `PolyLevelSet` with `=` in every row (`cons_eq`) on the unit box (`cons_dom`), plus the error
+box that makes it an `InflatedContSet`. The constraint's `A` and `b` are read back exactly. Rounding
+has two channels: the center and generators go into `I_error`; a constraint row records its own in
+the per-row slack `cons.b_error`, `|(A μ_R(α))ᵢ - bᵢ| ≤ |b_errorᵢ|`. The nominal set is the exact
+`ConPolyZono` that slack denotes (`Real.ConPolyZono.relax`; with no slack the stored fields' own,
+`Real.ConPolyZono.relax_zero_construct`). `plus` and `mtimes` pay nothing into the constraint;
+`intersection` and `compact` need both channels.
 
 ## References
 

@@ -13,6 +13,16 @@ nothing about the ranking does either, which leaves `le`'s comparator free.
 
 Girard's rule admits the identical bound; it is not stated here, since this
 addition is scoped to Combastel's rule alone.
+
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* generator count is at most the order times the dimension
 -/
 
 -- Authors:       Claude Opus 5

@@ -15,6 +15,12 @@ carrying that entry's radius there and zero elsewhere, so that a product of matr
 zonotopes keeps each entry's dependence on itself. The center is `centerMat`, whose
 rounding the radius absorbs: the radius is the larger magnitude of `I - center`'s
 bounds (`matResidual`), and `maximum`/`absolute` are exact, so the box stays zero.
+
+## Inputs
+* `I` – interval matrix
+
+## Output
+* center matrix with one radius generator per entry
 -/
 
 -- Authors:       Claude Opus 5.5

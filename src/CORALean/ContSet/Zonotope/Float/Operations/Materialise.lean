@@ -8,16 +8,19 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 /-!
 # `Zonotope.materialise`
 
-Every field is a function type, so the zonotope an operation returns is a closure
-over the one it was given, and a loop that iterates operations pays for its whole
-history on every entry read. `materialise` stores the four fields; it is the
-identity, which `materialise_eq` states and every proof downstream rewrites with,
-so what it changes is only what running the definition costs. `Global/Tensor`
-says why the vectors are built here rather than by a helper.
+Every field is a function type, so the zonotope an operation returns is a closure over the one it
+was given, and a loop that iterates operations pays for its whole history on every entry read.
+`materialise` stores the four fields; it is the identity (`materialise_eq`, which every proof
+downstream rewrites with), so what it changes is only what running the definition costs.
+`Global/Tensor` says why the vectors are built here rather than by a helper. `Instances.lean` is
+where it is applied: an algorithm reaches a representation through the operation classes and nowhere
+else, so materialising there bounds every loop at once.
 
-`Instances.lean` is where it is applied — an algorithm reaches a representation
-through the operation classes and nowhere else, so materialising there bounds
-every loop at once without a single operation or guarantee knowing about it.
+## Inputs
+* `Z` – zonotope
+
+## Output
+* zonotope with its four fields stored
 -/
 
 -- Authors:       Claude Opus 5

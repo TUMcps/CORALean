@@ -21,6 +21,15 @@ along one block-diagonal matrix. The first block is the zonotope's own and the s
 coefficient polytope's, as for the exact layer, with the stored `zero` between them; the center,
 generators and error box are carried over. Nothing rounds, so nothing is paid. The shadow
 contains the constrained zonotope.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its spectrahedral shadow
 -/
 
 -- Authors:       Claude Opus 5.5

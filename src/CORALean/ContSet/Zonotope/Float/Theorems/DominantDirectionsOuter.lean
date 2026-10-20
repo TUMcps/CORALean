@@ -14,6 +14,19 @@ spans a parallelotope `P box(P⁻¹ Z)` holding the zonotope the stored floats d
 chose `P` cost tightness only. As over ℝ the condition is not automatic: nothing tests that the
 answer has full rank. The statement is about the nominal zonotope, as CORA's `G` has no error term.
 
+## Inputs
+* `Z` – zonotope
+* `a` – length of the long-generator filter
+* `b` – length of the shortlist
+* `P` – returned directions
+
+## Hypotheses
+* `_` – directions are the computed answer
+* `hP` – directions form an invertible matrix
+
+## Conclusion
+* zonotope is contained in the parallelotope along the directions
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid

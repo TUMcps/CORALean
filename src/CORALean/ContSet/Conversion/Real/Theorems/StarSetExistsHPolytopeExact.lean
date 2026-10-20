@@ -16,6 +16,15 @@ found, not computed. It is reached through the constrained zonotope the star set
 (`StarSet.conZonotope_exact`) and the theorem that these are the bounded halfspace descriptions
 (`ConZonotope.exists_construct_eq_iff_hPolytope`); a crossed factor box denotes `∅`, which one
 row cuts out.
+
+## Inputs
+* `s` – halfspace-predicate star set
+
+## Hypotheses
+* none
+
+## Conclusion
+* some halfspace polytope equals the star set
 -/
 
 -- Authors:       Claude Sonnet 5.5

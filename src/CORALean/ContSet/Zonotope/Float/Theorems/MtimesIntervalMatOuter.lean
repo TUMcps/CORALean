@@ -24,6 +24,16 @@ covers the first; the third is the box-times-box product
 `|A - mid(M)| (|c| + Σ|G|)` per coordinate, which is the rounded-up radius of
 the new diagonal generators, so a coefficient in `[-1, 1]` reaches it
 (`Real.Zonotope.coefficient`).
+
+## Inputs
+* `IM` – interval matrix
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* images under every matrix of the box are contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

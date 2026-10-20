@@ -15,18 +15,23 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 /-!
 # A halfspace description as a constrained zonotope
 
-Exact, and the conversion that shows what constrained zonotopes are for: any
-bounded halfspace description is one, with the rows kept rather than
-approximated.
-
-The generators come from a box enclosure — anything containing the polytope
-would do — and the rows are then carried onto the coefficients by composing with
-the generator map, after shifting by the center. What the coefficients must
-satisfy is exactly what the original rows said, so nothing is lost; the box is
-only there to supply generators, and drops out.
-
-This is the equivalence of polytopes and constrained zonotopes of
+Exact, and the conversion that shows what constrained zonotopes are for: any bounded halfspace
+description is one, with the rows kept rather than approximated. The generators come from a box
+enclosure (anything containing the polytope would do) and the rows are carried onto the coefficients
+by composing with the generator map, after shifting by the center. What the coefficients must
+satisfy is exactly what the original rows said; the box only supplies generators. This is the
+equivalence of polytopes and constrained zonotopes of
 [1, Fig. 1 (Polytopes ↔ Constrained Zonotopes)].
+
+## Inputs
+* none
+
+## Hypotheses
+* `up` – certified upper bound per coordinate
+* `lo` – certified lower bound per coordinate
+
+## Conclusion
+* constrained zonotope equals the polytope
 
 ## References
 

@@ -8,17 +8,20 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MinnormOffset
 # `Zonotope.minnorm`, over a floating-point scalar
 
 CORA's `minnorm(Z)` [2]: the smallest offset of the facets of `polytope(Z - c)`, rows normalized to
-unit length, which is the distance from the center to the boundary. Rounded up, it is an upper
-bound on the radius of every Euclidean ball around the center inside the zonotope the stored
-floats describe (`Zonotope.minnorm_ball`), and on the exact `minnorm` when the generators span
-(`Zonotope.minnorm_le`). Only the upper side is computed: the lower side would need the facet
-normals exactly.
+unit length, the distance from the center to the boundary. Rounded up, it is an upper bound on the
+radius of every Euclidean ball around the center inside the zonotope the stored floats describe
+(`Zonotope.minnorm_ball`), and on the exact `minnorm` when the generators span
+(`Zonotope.minnorm_le`). The minimum runs over the `n`-subsets of generators in increasing index
+order (`List.sublistsLen`), where the exact layer's runs over every selection `Fin n → Fin h`; a
+repeated generator gives a zero row, which CORA removes as `NaN`. `none` where no subset gives a
+row. The facet rows are cross products of `n` generators [1, Thm. 2].
 
-The minimum runs over the `n`-subsets of generators in increasing index order
-(`List.sublistsLen`), where the exact layer's runs over every selection `Fin n → Fin h`; a
-permutation of a subset gives the same row up to sign, and a repeated generator a zero row, which
-CORA removes as `NaN`. `none` where no subset gives a row. The facet rows are the cross products of
-`n` generators [1, Thm. 2]. The second output of CORA, the foot point `x`, is not computed.
+## Inputs
+* `p` – Newton steps for the root
+* `Z` – zonotope
+
+## Output
+* upper bound on the least facet offset, if any
 
 ## References
 

@@ -16,6 +16,16 @@ The nominal part is the exact layer's `split_union` at the nominal zonotope. A r
 differs from the stored half only in its center, by the rounding of `c ∓ g_j/2`; that
 difference lies in the `centerResidual`, which the half's box has absorbed. The generators
 match entry by entry, the halved one because halving is exact (`toReal_half`).
+
+## Inputs
+* `Z` – zonotope
+* `j` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is covered by the two halves
 -/
 
 -- Authors:       Claude Opus 5.5

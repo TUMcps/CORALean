@@ -16,6 +16,16 @@ polynomial zonotope with one factor per generator. Whichever component `i`
 names already throws away every other one the bundle intersects against — the
 whole point of a bundle being that the intersection is tighter than any one
 member — so all the loss here is that choice.
+
+## Inputs
+* `zB` – zonotope bundle
+* `i` – member index
+
+## Hypotheses
+* none
+
+## Conclusion
+* bundle is contained in its polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5

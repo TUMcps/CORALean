@@ -19,6 +19,19 @@ Whatever the stored weights, the point `x` is `(I - Λ C) x + Λ (C x)`, with `(
 of the interval matrix `Zonotope.mtimesIntervalMat` takes and `C x` a point of the box-shaped
 strip zonotope, `y + φ ⊙ γ` with `γ ∈ [-1, 1]^p`. The strips are read as real numbers
 `|C x - y| ≤ φ` at the stored values.
+
+## Inputs
+* `C` – measurement matrix
+* `φ` – strip half-widths
+* `y` – measurement
+* `Λ` – weight matrix
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* intersection with the strip is contained in the computed zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

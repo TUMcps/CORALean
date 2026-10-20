@@ -13,6 +13,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 Through the hull's own box's zonotope, then `Zonotope.zonoBundle` — the
 single-member bundle, exact by `Set.iInter_const`. All the loss is the box
 route's, so this is no worse than `VPolytope → Zonotope` already is.
+
+## Inputs
+* `P` – vertex polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* polytope is contained in its zonotope bundle
 -/
 
 -- Authors:       Claude Opus 5

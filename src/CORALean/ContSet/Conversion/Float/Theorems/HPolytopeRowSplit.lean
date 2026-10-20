@@ -12,6 +12,20 @@ public import CORALean.ContSet.Conversion.Float.Operations.HPolytope_to_ConZonot
 
 /-!
 # A halfspace description as a constrained zonotope, over a floating-point scalar: `rowSplit`
+
+## Inputs
+* `M` – matrix
+* `G` – generator matrix
+* `c` – center
+* `β` – factor vector
+* `x` – point
+* `i` – row index
+
+## Hypotheses
+* `hx` – point is center plus generators
+
+## Conclusion
+* row reads as center part plus generator part
 -/
 
 -- Authors:       Claude Opus 5

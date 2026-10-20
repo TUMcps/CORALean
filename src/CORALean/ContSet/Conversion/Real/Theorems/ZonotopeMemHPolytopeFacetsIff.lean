@@ -11,6 +11,16 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 With some generator nonzero, the rows `[C; -C]` at `±C c + Σ |C G|` say exactly that every row
 `v` of `C` has `|v ⬝ (x - c)| ≤ Σⱼ |v ⬝ Gⱼ|`: the two rows of a pair are the two sides of one
 absolute value.
+
+## Inputs
+* `Z` – zonotope
+* `x` – point
+
+## Hypotheses
+* `hG` – some generator is nonzero
+
+## Conclusion
+* point is in the facet polytope iff it meets every row bound
 -/
 
 -- Authors:       Claude Opus 5.5

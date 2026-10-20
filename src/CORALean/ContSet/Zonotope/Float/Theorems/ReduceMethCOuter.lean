@@ -20,6 +20,16 @@ generators, being rounded down, fall short of them by what `generatorError` hold
 fails, or the order is already low, the zonotope is returned and there is nothing to show.
 
 Outer, never exact: the parallelotope contains the zonotope.
+
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is contained in its parallelotope reduction
 -/
 
 -- Authors:       Claude Opus 5.5

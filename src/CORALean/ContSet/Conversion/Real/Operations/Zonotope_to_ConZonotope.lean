@@ -7,6 +7,12 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Fullspace
 
 /-!
 # A zonotope is a constrained one with nothing to satisfy
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* constrained zonotope of the zonotope
 -/
 
 -- Authors:       Claude Opus 5

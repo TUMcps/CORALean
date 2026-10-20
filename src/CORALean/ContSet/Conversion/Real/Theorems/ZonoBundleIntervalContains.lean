@@ -15,6 +15,16 @@ Through `ZonoBundle.zonotope i`: the choice of component is free, and it already
 throws away every other one the bundle intersects against — the whole point of
 a bundle being that the intersection is tighter than any one member. The box
 step then loses nothing further.
+
+## Inputs
+* `zB` – zonotope bundle
+* `i` – member index
+
+## Hypotheses
+* none
+
+## Conclusion
+* bundle is contained in its interval
 -/
 
 -- Authors:       Claude Opus 5

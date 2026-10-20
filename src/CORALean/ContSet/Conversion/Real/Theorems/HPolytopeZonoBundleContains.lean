@@ -23,19 +23,24 @@ public import CORALean.ContSet.Conversion.Real.Operations.Basic
 /-!
 # A halfspace description as a bundle of one
 
-Through the zonotope the box gives, then `Zonotope.zonoBundle` — the
-single-member bundle, exact by `Set.iInter_const`. All the loss is the box
-route's, so this is no worse than `HPolytope → Zonotope` already is.
+Through the zonotope the box gives, then `Zonotope.zonoBundle`, the single-member bundle, exact by
+`Set.iInter_const`; all the loss is the box route's. `zonoBundleRows` is what CORA's
+`@polytope/zonoBundle` builds, and it loses nothing: for every row `aᵢ` of `[A; Ae; -Ae]`, an
+orthogonal basis `Bᵢ` whose first axis is `aᵢ` (`gramSchmidt(aᵢ')`), and the box of the vertices `V`
+in the coordinates `Bᵢ` spans, mapped back by `Bᵢ`. Each zonotope contains the polytope, and its
+first axis is cut at the largest value of `aᵢ` over `V`, at most the right-hand side, so the
+intersection is the polytope. `V` and the `Bᵢ` are arguments, as `vertices(P)` and `gramSchmidt`
+are.
 
-`zonoBundleRows` is what CORA's `@polytope/zonoBundle` actually builds, and it loses nothing: for
-every row `aᵢ` of `[A; Ae; -Ae]`, an orthogonal basis `Bᵢ` whose first axis is `aᵢ`
-(`Bᵢ = gramSchmidt(aᵢ')`), and the box of the vertices `V` in the coordinates `Bᵢ` spans, mapped
-back by `Bᵢ`. Each zonotope contains the polytope (it holds every vertex), and its first axis is
-cut at the largest value of `aᵢ` over the vertices, which is at most the right-hand side: the
-intersection is inside every halfspace, so it is the polytope. The vertex list `V` and the bases
-`Bᵢ` are arguments, as `vertices(P)` and `gramSchmidt` are: the theorem takes a `V` that spans the
-polytope and bases with `Bᵢ Bᵢᵀ = 1` and `aᵢ x = ‖aᵢ‖ (Bᵢᵀ x)₀`, which Gram-Schmidt of `aᵢ`
-gives. (A zero row has `‖aᵢ‖ = 0` and constrains nothing.)
+## Inputs
+* none
+
+## Hypotheses
+* `up` – certified upper bound per coordinate
+* `lo` – certified lower bound per coordinate
+
+## Conclusion
+* polytope is contained in its zonotope bundle
 -/
 
 -- Authors:       Claude Opus 5

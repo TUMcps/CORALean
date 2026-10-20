@@ -16,11 +16,24 @@ The real statement first: if every row of `1 - G H` has absolute sum at most `κ
 is `G β` for a `β` with `|βⱼ| ≤ (∑ₖ |Hⱼₖ|) ε / (1 - κ)`. This is the Neumann bound
 `‖(G H)⁻¹‖ ≤ 1 / (1 - κ)` in the sup norm, without the series: `G H` is injective
 (`mulVec_injective_of_residual`), so invertible, and its solution `w` of `G H w = d` satisfies
-`w = d + (1 - G H) w`, which at the largest coordinate gives `|w| ≤ ε + κ |w|`. Then `β = H w`.
+`w = d + (1 - G H) w`, giving `|w| ≤ ε + κ |w|`; then `β = H w`. Read as reals, an accepted
+certificate is its hypothesis: the row sums are below `κ = rightInvQ G H`, and `1 - κ` is above the
+positive `d` the check saw.
 
-Read as reals, an accepted certificate is its hypothesis: the row sums of `|1 - G H|` are below
-`κ = rightInvQ G H`, and `1 - κ` is above the positive `d` the check saw. The bound is then below
-`γ ε`, the row sum below the largest one and `1 - κ` above `d`.
+## Inputs
+* `G` – matrix
+* `H` – approximate right inverse
+* `κ` – residual row-sum bound
+* `ε` – bound on the right-hand side
+* `d` – right-hand side
+
+## Hypotheses
+* `hκ` – residual bound below one
+* `hK` – absolute row sums of the residual within the bound
+* `hd` – right-hand side within the bound
+
+## Conclusion
+* some solution exists with the gain-bounded coefficients
 -/
 
 -- Authors:       Claude Opus 5.5

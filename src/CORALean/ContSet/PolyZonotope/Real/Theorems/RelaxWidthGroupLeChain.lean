@@ -7,19 +7,13 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidthGroup
 /-!
 # A group merge pays no more width than the pairwise merges it replaces
 
-What issue #72 asks of a group merge: does bounding the group's errors together
-beat accumulating them pairwise? At the width it does. `eDiff` obeys the
-triangle inequality — two exponents of unequal parity are `2` apart, and
-whatever lies between them differs in parity from one of the two — so the
-direct width from a member to the target is at most the total of any chain of
-steps between them, and a run of pairwise merges is such a chain: a merge
-copies exponent columns, so every intermediate column is a column of `pZ.E`.
-
-The saving is per member and per member only: this weighs the widths two
-schemes pay on one generator, not the sets they produce. A chain pays its later
-widths on the partial *sums* it has already built, where a group merge pays
-each member alone, and `relaxExpGroup_not_always_tighter` is where that leaves
-the group merge enclosing strictly more.
+What issue #72 asks of a group merge: does bounding the group's errors together beat accumulating
+them pairwise? At the width it does. `eDiff` obeys the triangle inequality (two exponents of unequal
+parity are `2` apart), so the direct width from a member to the target is at most the total of any
+chain of steps between them, and a run of pairwise merges is such a chain, every intermediate column
+being a column of `pZ.E`. The saving is per member only: this weighs the widths two schemes pay on
+one generator, not the sets they produce; a chain pays its later widths on the partial *sums* it has
+built, and `relaxExpGroup_not_always_tighter` is where the group merge encloses strictly more.
 -/
 
 -- Authors:       Claude Opus 5

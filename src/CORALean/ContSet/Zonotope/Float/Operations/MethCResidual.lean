@@ -11,6 +11,13 @@ What a candidate inverse `H` of a basis `P` is held to: an upper bound on `|1 - 
 entry by entry. The product's entries are dot products, each in both directions, so
 `1 - (H P)ᵢⱼ` lies between the two differences, and the larger magnitude of those bounds the entry
 whichever sign it has.
+
+## Inputs
+* `H` – candidate right inverse
+* `P` – basis matrix
+
+## Output
+* entrywise upper bound on the residual
 -/
 
 -- Authors:       Claude Opus 5.5

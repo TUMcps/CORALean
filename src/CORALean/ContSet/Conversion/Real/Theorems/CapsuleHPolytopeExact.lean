@@ -23,6 +23,16 @@ reaching `'outer'`: an empty capsule, `n = 1` (`aux_1D`), a point, and a segment
 orthogonal (`gramSchmidtVec_transpose_mul_self`) with first column `g / ‖g‖₂`, so `x - c` with no
 component along the other columns is its component along `g / ‖g‖₂`, a multiple `t g`, and the
 two inequality rows say `|t| ≤ 1`.
+
+## Inputs
+* `n` – dimension
+* `C` – capsule
+
+## Hypotheses
+* `h` – dimension at most one or radius not positive
+
+## Conclusion
+* halfspace polytope equals the capsule
 -/
 
 -- Authors:       Claude Opus 5.5

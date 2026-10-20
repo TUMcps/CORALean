@@ -16,6 +16,14 @@ hull `mulLo`/`mulHi`, and the box is scaled by `Interval.smul`. At `cLo = cHi` t
 rounded scaling by one exact scalar, which is what `1/i!` and `Δt` need; for a wide
 `[cLo, cHi]` the brackets widen with it, and the width lands in the box rather than in a
 new generator.
+
+## Inputs
+* `cLo` – lower end of the scalar
+* `cHi` – upper end of the scalar
+* `Z` – matrix zonotope
+
+## Output
+* matrix zonotope scaled by the bracketed scalar
 -/
 
 -- Authors:       Claude Opus 5.5

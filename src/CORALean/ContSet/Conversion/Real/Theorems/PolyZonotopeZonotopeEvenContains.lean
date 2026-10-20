@@ -14,22 +14,23 @@ public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonoto
 /-!
 # A polynomial zonotope as a zonotope
 
-Two enclosures, the cheaper first. `zonotope` reads every dependent generator as
-an independent one — [1, Prop. 2.6] — since a monomial in factors of `[-1,1]`
-is itself in `[-1,1]`. What is lost is the *sharing*, which is the whole
-representation: the dependent generators are freed to move independently, so
-every non-convexity goes and so does the exactness of a quadratic map.
+Two enclosures, the cheaper first. `zonotope` reads every dependent generator as an independent one
+([1, Prop. 2.6]), a monomial in factors of `[-1,1]` being itself in `[-1,1]`; what is lost is the
+*sharing*, so every non-convexity goes and so does the exactness of a quadratic map. `zonotopeEven`
+is [2, Prop. 1], restated as [3, Prop. 5], and CORA's own `zonotope(polyZonotope)`: an all-even
+column has its monomial in `[0,1]`, so half of that generator moves into the center. A column of
+zeros is the paper's `N`; CORA reads it as merely even. That freeing is why `zonotope_not_mono`
+holds: the result is a function of the representation, not of the set, so [4]'s property (6),
+assumed by [4, Lemma 3], is false here.
 
-`zonotopeEven` is [2, Prop. 1], restated as [3, Prop. 5], and is CORA's own
-`zonotope(polyZonotope)`: an all-even column has its monomial in `[0,1]` rather
-than `[-1,1]`, so half of that generator moves into the center and only the other
-half is left free. A column of zeros is the paper's `N`, whose monomial is `1`
-exactly; CORA reads it as merely even and pays half a generator for it. Neither
-keeps anything of the exponent matrix but the generators it indexed.
+## Inputs
+* `pZ` – polynomial zonotope
 
-That freeing is why `zonotope_not_mono` holds: the result is a function of the
-representation, not of the set, so [4]'s property (6) — which [4, Lemma 3] assumes
-of it — is false here, two equal sets having enclosures that differ.
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its even-column zonotope
 
 ## References
 

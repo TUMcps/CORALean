@@ -17,18 +17,22 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalVPolytopeContain
 /-!
 # A bundle's corners, at one component
 
-Through `ZonoBundle.zonotope i`, then that zonotope's own `2ʰ` sign corners.
-Whichever component `i` names already throws away every other one the bundle
-intersects against — the whole point of a bundle being that the intersection is
-tighter than any one member. The corner step is exact, so all the loss is the
-choice of component.
+Through `ZonoBundle.zonotope i`, then that zonotope's own `2ʰ` sign corners. Whichever component `i`
+names throws away every other one the bundle intersects against; the corner step is exact, so all
+the loss is the choice of component. `vPolytopeAll` keeps every member, as CORA's `vertices_` of a
+bundle does (through `polytope(zB)`): the vertices of the exact `conZonotope(zB)`
+(`conZonotopeAll`). It needs a nonempty bundle, where CORA returns an empty vertex list; the list
+may hold interior points, but its hull is the bundle, which `vPolytopeAll_exact` proves.
 
-`vPolytopeAll` keeps every member, as CORA's `vertices_` of a bundle does (through
-`polytope(zB)`, the intersection of the members' polytopes): the vertices of the exact
-`conZonotope(zB)` (`conZonotopeAll`), whose vertex list spans it. It needs a nonempty bundle, where
-CORA returns an empty vertex list; and the vertices listed are the corners of the coefficient
-polytope's vertices carried through the generators, not only the extreme points of the bundle, so
-the list may hold interior points: the hull is the bundle, which `vPolytopeAll_exact` proves.
+## Inputs
+* `zB` – zonotope bundle
+* `i` – member index
+
+## Hypotheses
+* none
+
+## Conclusion
+* bundle is contained in its vertex polytope
 -/
 
 -- Authors:       Claude Opus 5

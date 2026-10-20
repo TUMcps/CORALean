@@ -10,6 +10,12 @@ public import Mathlib.LinearAlgebra.Matrix.PosDef
 
 /-!
 # A polytope as a spectrahedral shadow
+
+## Inputs
+* `P` – halfspace polytope
+
+## Output
+* stacked inequality and both equality rows
 -/
 
 -- Authors:       Claude Opus 5.5

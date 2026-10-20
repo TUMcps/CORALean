@@ -16,6 +16,17 @@ public import CORALean.ContSet.Conversion.Float.Theorems.IntervalEllipsoidContai
 
 Through its polynomial zonotope, as over ℝ; `σ` is checked against the generator count
 of that polynomial zonotope's zonotope.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `σ` – scaling factor
+
+## Hypotheses
+* `hσ` – scaling factor positive
+* `hh` – squared scaling factor at least generator count
+
+## Conclusion
+* set is contained in its ellipsoid
 -/
 
 -- Authors:       Claude Opus 5.5

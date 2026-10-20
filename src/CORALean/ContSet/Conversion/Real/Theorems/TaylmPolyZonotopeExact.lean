@@ -16,14 +16,21 @@ public import CORALean.ContSet.Conversion.Real.Theorems.TaylmPolyZonotopeContain
 # An array of Taylor models as a polynomial zonotope
 
 CORA's `polyZonotope(taylm)`: the variables are the dependent factors, every term of every
-coordinate a generator along that coordinate with the term's exponents, and each remainder
-an independent generator about its center. CORA also folds the constant terms into the
-center; here they stay generators at the zero exponent, the same set. Exact when every
-remainder is a nonempty interval (`polyZonotope_exact`); the range set is always contained
-(`polyZonotope_contains`), a point of it having a remainder value in each interval.
+coordinate a generator along that coordinate with the term's exponents, and each remainder an
+independent generator about its center. CORA also folds the constant terms into the center; here
+they stay generators at the zero exponent, the same set. Exact when every remainder is a nonempty
+interval (`polyZonotope_exact`); the range set is always contained (`polyZonotope_contains`). This
+is [1, Prop. 4] and, with `PolyZonotope.taylm_exact`, the equivalence of polynomial zonotopes and
+Taylor models of [1, Fig. 1 (Polynomial Zonotopes ↔ Taylor Models)].
 
-This is [1, Prop. 4] and, with `PolyZonotope.taylm_exact`, the equivalence of polynomial zonotopes
-and Taylor models of [1, Fig. 1 (Polynomial Zonotopes ↔ Taylor Models)].
+## Inputs
+* `T` – Taylor models, one per coordinate
+
+## Hypotheses
+* `hT` – remainder ordered per coordinate
+
+## Conclusion
+* polynomial zonotope equals the Taylor models
 
 ## References
 

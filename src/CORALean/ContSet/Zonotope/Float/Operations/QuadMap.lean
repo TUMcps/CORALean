@@ -17,6 +17,13 @@ A zonotope is a polynomial zonotope whose exponent matrix is the identity, so th
 `PolyZonotope.quadMap` there, whose rounded generators `Gᵢᵀ Q Gⱼ` are charged to its error box,
 read back as a zonotope. The factors of a zonotope are free in `[-1, 1]`, so the cross products
 `αᵢαⱼ` are enclosed rather than tracked, which is why the result is an outer enclosure.
+
+## Inputs
+* `Q` – quadratic form per output coordinate
+* `Z` – zonotope
+
+## Output
+* zonotope enclosing the quadratic image
 -/
 
 -- Authors:       Claude Opus 5.5

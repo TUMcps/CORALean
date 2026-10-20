@@ -11,6 +11,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalCapsuleAlongCont
 # A box as a capsule
 
 `Interval.capsule_contains`: its `capsule` contains it.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* interval is contained in its capsule
 -/
 
 -- Authors:       Claude Opus 5.5

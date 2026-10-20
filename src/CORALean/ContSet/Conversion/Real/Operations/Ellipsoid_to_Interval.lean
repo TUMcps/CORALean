@@ -8,6 +8,12 @@ public import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
 
 /-!
 # An ellipsoid as a box
+
+## Inputs
+* `E` – ellipsoid
+
+## Output
+* interval of per-coordinate extents of the ellipsoid
 -/
 
 -- Authors:       Claude Opus 5

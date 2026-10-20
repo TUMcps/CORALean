@@ -18,6 +18,15 @@ convex and so denoted by it.
 This is the arrow from ellipsoids to support functions of
 [1, Fig. 1 (Ellipsoids → Support Functions)].
 
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* support function equals the ellipsoid
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

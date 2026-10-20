@@ -14,6 +14,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidPosSemidefSpect
 `Ellipsoid.spectraShadow_exact`: its `spectraShadow` is exactly it. The free variables are the
 point itself (`c = 0`, `G = I`), and the Schur form at a point is positive semi-definite iff the
 point is in the ellipsoid (`posSemidef_spectraShadow_iff`).
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* ellipsoid equals its spectrahedral shadow
 -/
 
 -- Authors:       Claude Opus 5.5

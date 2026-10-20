@@ -8,6 +8,12 @@ public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 /-!
 # A zonotope as a box
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* interval of the zonotope
 -/
 
 -- Authors:       Claude Opus 5

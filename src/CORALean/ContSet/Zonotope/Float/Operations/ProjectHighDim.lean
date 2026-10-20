@@ -12,6 +12,14 @@ The center and every generator row written into the coordinates `proj` of a zero
 length `N`, and the error box padded with `Interval.projectHighDim_`. A coordinate outside the
 range of `proj` reads `zero`; one inside reads the first source coordinate mapped to it, which
 for an injective `proj` is the only one. Nothing is computed, so nothing rounds.
+
+## Inputs
+* `Z` – zonotope
+* `N` – target dimension
+* `proj` – coordinate map into the target
+
+## Output
+* zonotope written into the chosen coordinates of zeros
 -/
 
 -- Authors:       Claude Opus 5.5

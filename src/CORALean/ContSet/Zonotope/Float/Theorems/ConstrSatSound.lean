@@ -13,6 +13,17 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 The rounded image `Zonotope.mtimes C Z` contains the real image (`mtimes_outer`), its rounded
 box contains that (`interval_contains`), and `ltStrict` on the box's upper bound is a strict
 inequality between the real values.
+
+## Inputs
+* `Z` – zonotope
+* `C` – constraint matrix
+* `d` – constraint bounds
+
+## Hypotheses
+* `h` – test returns true
+
+## Conclusion
+* every point satisfies every constraint strictly
 -/
 
 -- Authors:       Claude Opus 5.5

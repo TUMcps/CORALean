@@ -12,6 +12,13 @@ A matrix zonotope times an interval matrix, CORA's `mtimes(matZonotope, interval
 the interval matrix converted by `ofIntervalMat`, one generator per entry, and then
 `matMul`, so each entry of the interval factor stays a dependency of the product rather
 than a box.
+
+## Inputs
+* `M` – matrix zonotope
+* `I` – interval matrix
+
+## Output
+* matrix zonotope of the product
 -/
 
 -- Authors:       Claude Opus 5.5

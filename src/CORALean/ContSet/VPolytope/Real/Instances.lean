@@ -19,15 +19,12 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.PlusExact
 /-!
 # What `VPolytope` instantiates
 
-`reduce` is the identity: there is no order to reduce to, and dropping a vertex
-shrinks the set, which is not what `reduce` may return.
-
-No `Recenter`: there is no center to pick at `k = 0`, where `construct` is `∅`
-and no choice of one can put `0` inside the recentered polytope either.
-
+`reduce` is the identity: there is no order to reduce to, and dropping a vertex shrinks the set,
+which `reduce` may not do. No `Recenter`: there is no center to pick at `k = 0`, where `construct`
+is `∅` and no choice of one can put `0` inside the recentered polytope either.
 `VPolytope.intersectionInstance` fixes two direction families for a whole run, as
-`Ellipsoid.plusInstance` fixes its scalings — a `def`, not an `instance`,
-since choosing the directions is a precision decision search must not make.
+`Ellipsoid.plusInstance` fixes its scalings: a `def`, not an `instance`, since choosing the
+directions is a precision decision search must not make.
 -/
 
 -- Authors:       Claude Opus 5

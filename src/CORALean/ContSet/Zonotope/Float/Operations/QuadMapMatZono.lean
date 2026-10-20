@@ -23,6 +23,14 @@ The map is taken at the lower ends `D̲⁽ⁱ⁾`, and what the rest of the box 
 (`absBoundError`) and `w = D̄⁽ⁱ⁾ − D̲⁽ⁱ⁾` rounded up, a box the sum takes as a zonotope. Each
 `Z_K(j)` and `Z_D` is the float `quadMap`; the `ν` products and the box are added by `plus`.
 
+## Inputs
+* `D` – interval matrix per output coordinate
+* `K` – matrix per generator and coordinate
+* `Z` – zonotope
+
+## Output
+* zonotope enclosing the quadratic image
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

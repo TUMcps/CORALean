@@ -11,17 +11,12 @@ public import CORALean.ContSet.InflatedContSet.InflatedContSet
 
 The exact layer's shape matrix `Q` and center `q` [1, Def. 4] held in `𝕋`, plus the error box that
 makes it an `InflatedContSet`. The nominal part is the stored floats read as reals, unchecked
-(`Real.Ellipsoid.Unchecked`), and denotes what CORA's constructor `ellipsoid(Q, q)` makes of them
-(`Real.Ellipsoid.ofShape`): the ellipsoid of `Q` when `Q` is positive semi-definite, and where
-CORA's constructor refuses, the center alone. No float operation trusts
-`Q` to be positive semi-definite. One that only encloses splits on it in its proof (a refused
-`Q` leaves the center, which every result keeps), and its result is positive semi-definite
-whenever its argument is, because rounding is paid into `Q` itself (`Operations/Inflate`). One
-whose answer claims points of the set (`containsPoint`, `isBigger`, `isFullDim`) runs the check
-`isPsd`, a factor `L` from an unverified Cholesky decomposition and `Q - L Lᵀ` certified
-diagonally dominant in outward rounding, and answers `false` where it fails.
-`Ellipsoid.absorbRounding` moves the box into `Q`, by an outer ellipsoid of the sum with a ball
-holding the box.
+(`Real.Ellipsoid.Unchecked`), denoting what CORA's constructor makes of them
+(`Real.Ellipsoid.ofShape`): the ellipsoid of `Q` when `Q` is positive semi-definite, else the center
+alone. No operation trusts `Q`: rounding is paid into `Q` itself (`Operations/Inflate`), and one
+claiming points of the set (`containsPoint`, `isBigger`, `isFullDim`) runs `isPsd`, an unverified
+Cholesky factor `L` with `Q - L Lᵀ` certified diagonally dominant, and answers `false` where it
+fails.
 
 ## References
 

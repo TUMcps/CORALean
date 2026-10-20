@@ -10,6 +10,12 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 
 /-!
 # A zonotope as a polynomial zonotope, over a floating-point scalar
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* polynomial zonotope of the zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

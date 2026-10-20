@@ -11,6 +11,16 @@ public import CORALean.ContSet.Conversion.Float.Theorems.HPolytopeConZonotopeCon
 
 `conPolyZono(conZonotope(P))`: the float constrained zonotope holds the polytope
 (`HPolytope.conZonotope_contains`), and its constrained polynomial zonotope holds it in turn.
+
+## Inputs
+* none
+
+## Hypotheses
+* `up` – float upper bound per coordinate
+* `lo` – float lower bound per coordinate
+
+## Conclusion
+* polytope is contained in its constrained polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

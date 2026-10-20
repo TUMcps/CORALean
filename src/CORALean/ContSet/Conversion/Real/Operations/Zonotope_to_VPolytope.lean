@@ -11,6 +11,13 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!
 # A zonotope as its corners
+
+## Inputs
+* `Z` – zonotope
+* `σ` – sign per generator
+
+## Output
+* vertex picked out by the signs
 -/
 
 -- Authors:       Claude Opus 5

@@ -6,6 +6,18 @@ public import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
 
 /-!
 # What the generators `reduceBy` absorbs contribute, so what the block must cover
+
+## Inputs
+* `Z` – zonotope
+* `part` – split into kept and absorbed generators
+* `β` – factor vector
+* `i` – coordinate
+
+## Hypotheses
+* `hβ` – factors in the unit box
+
+## Conclusion
+* absorbed contribution is bounded by the row radius
 -/
 
 -- Authors:       Claude Opus 5

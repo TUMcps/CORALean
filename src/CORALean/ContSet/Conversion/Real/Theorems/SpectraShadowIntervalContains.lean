@@ -15,15 +15,21 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # A spectrahedral shadow's interval hull
 
 CORA's `interval(SpS)`: `interval.empty` for an empty set, otherwise per coordinate the range
-`supportFunc_(SpS, eᵢ, 'range')` of the two semidefinite programs, `[inf, sup]`. Here the
-coordinate bounds are the support values `-supportFunc(-eᵢ)` and `supportFunc(eᵢ)`, taken as
-reals: an unbounded coordinate has an infinite support value, which a real `Interval` cannot
-carry, so the statements assume `isBounded`.
+`supportFunc_(SpS, eᵢ, 'range')` of the two semidefinite programs. Here the coordinate bounds are
+the support values `-supportFunc(-eᵢ)` and `supportFunc(eᵢ)`, taken as reals: an unbounded
+coordinate has an infinite support value, which a real `Interval` cannot carry, so the statements
+assume `isBounded`. Then the box encloses the set (`SpectraShadow.interval_contains`) and is the
+tightest one: each bound is the least upper (greatest lower) bound of the coordinate over a nonempty
+set (`SpectraShadow.interval_isLUB`, `SpectraShadow.interval_isGLB`).
 
-Under `isBounded` the box encloses the set (`SpectraShadow.interval_contains`) and is the
-tightest one: each bound is the least upper (greatest lower) bound of the coordinate over the
-set (`SpectraShadow.interval_isLUB`, `SpectraShadow.interval_isGLB`) for a nonempty set. That is
-the interval hull, not an enclosure with slack.
+## Inputs
+* `S` – spectrahedral shadow
+
+## Hypotheses
+* `hb` – shadow bounded
+
+## Conclusion
+* shadow is contained in its interval
 -/
 
 -- Authors:       Claude Opus 5.5

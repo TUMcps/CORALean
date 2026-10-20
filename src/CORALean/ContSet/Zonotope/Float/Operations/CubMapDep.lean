@@ -16,6 +16,13 @@ the enclosing zonotope of `Real.Zonotope.cubMap`, with center and generators rou
 that leaves to pay in the box (the center's gap to its upper rounding, the generators' gaps, which
 a coefficient in `[-1, 1]` spreads either way). Sound only where the operand's own box is empty,
 so nothing outside `cubMap` calls it.
+
+## Inputs
+* `T` – cubic tensor
+* `Z` – zonotope
+
+## Output
+* zonotope enclosing the cubic image of a set with empty box
 -/
 
 -- Authors:       Claude Opus 5.5

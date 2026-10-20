@@ -10,6 +10,16 @@ public import CORALean.Global.Float.FloatOps
 An upper bound on `|A - G Γ|` entrywise, for `A` (`n × m`), `G` (`n × h`) and `Γ` (`h × m`): the
 larger of the two directed roundings of each entry's distance. `Zonotope.aux_rightInvResidual` is
 the case `A = 1`.
+
+## Inputs
+* `m` – number of columns
+* `h` – number of generators
+* `A` – target matrix
+* `G` – generator matrix
+* `Γ` – coefficient matrix
+
+## Output
+* entrywise upper bound on the residual
 -/
 
 -- Authors:       Claude Opus 5.5

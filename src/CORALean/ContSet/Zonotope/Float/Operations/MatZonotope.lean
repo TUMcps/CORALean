@@ -10,6 +10,12 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 CORA's `zonotope/matZonotope`: the center and each generator reshaped to an `n × 1` matrix,
 which the matrix zonotope's product with a matrix zonotope of conforming shape then consumes.
 Nothing is rounded: the entries, and the error box with them, are moved as stored.
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* one-column matrix zonotope with the same entries
 -/
 
 -- Authors:       Claude Opus 5.5

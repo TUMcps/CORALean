@@ -17,6 +17,20 @@ the way that enlarges the bound.
 
 Source: [1, Thm. 2].
 
+## Inputs
+* `Z` – zonotope
+* `dir` – direction
+* `start` – starting point
+* `S` – generator selection
+* `t` – step length
+
+## Hypotheses
+* `ht` – step nonnegative
+* `hmem` – stepped point lies in the nominal zonotope
+
+## Conclusion
+* step is at most every returned bound
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

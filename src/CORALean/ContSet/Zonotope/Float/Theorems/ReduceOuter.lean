@@ -10,6 +10,16 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceGirardOuter
 
 Girard's is the rule `reduce` runs, and this is the whole of that choice: any
 other rule would discharge it too.
+
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is contained in its reduction
 -/
 
 -- Authors:       Claude Opus 5

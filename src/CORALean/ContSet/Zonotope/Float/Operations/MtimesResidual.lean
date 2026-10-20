@@ -10,6 +10,13 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 
 What `mtimes` owes beyond its nominal part: the center, rounded, and the
 generators, each entry known only to within `matMulDiff`'s rounding gap.
+
+## Inputs
+* `M` – matrix
+* `Z` – zonotope
+
+## Output
+* box of what the product owes beyond its nominal part
 -/
 
 -- Authors:       Claude Opus 5

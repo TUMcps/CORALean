@@ -14,6 +14,15 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.PlusExact
 The capsule is its segment plus its ball (`Capsule.construct_eq_segment_add_ball`, for `0 ≤ r`),
 each conversion is exact, and so is the sum (`ConPolyZono.plus_exact`), taken here in the order
 CORA takes it (segment, ball).
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* `hr` – radius nonnegative
+
+## Conclusion
+* capsule equals its constrained polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

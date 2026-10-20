@@ -16,6 +16,17 @@ public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeZonotopeCont
 CORA's `polyZonotope(zonotope(SpS))`: the certified zonotope enclosure
 (`SpectraShadow.zonotope`, the base spectrahedron's dual certificates the caller's) converted by
 the float `Zonotope.polyZonotope`. `none` when a certificate fails. An enclosure, as over ℝ.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `Yup` – upper certificate matrices per generator
+* `Ylo` – lower certificate matrices per generator
+
+## Hypotheses
+* none
+
+## Conclusion
+* shadow is contained in every returned polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

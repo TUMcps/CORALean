@@ -13,6 +13,15 @@ public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
 `Real.Zonotope.absBound` is a function of the representation, not of the set, so the
 comparison is at the nominal zonotope: `|cⱼ| + Σₗ|Gⱼₗ|` is under `absBoundError`'s first two
 terms, its error-box term nonnegative, and an upward sum stays above the exact one.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* sum of exact reaches is at most the rounded-up sum
 -/
 
 -- Authors:       Claude Sonnet 5.5

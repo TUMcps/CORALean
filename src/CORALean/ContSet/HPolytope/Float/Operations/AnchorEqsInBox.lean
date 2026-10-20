@@ -12,20 +12,12 @@ public import CORALean.ContSet.Zonotope.Float.Operations.RightInvGain
 
 The coefficient polytope of a constrained zonotope lives in the unit box `[-1, 1]ʰ`. Moving a point
 onto the stored hyperplanes by a certified right inverse of `Ae` (`Zonotope.rightInvGain`) may leave
-the box, and the box is not a row whose slack can grow. A strictly feasible point brings it back (a
-Slater point). The candidate is `β₀ = M be`, for the candidate right inverse `M` of `Ae`; its
-residual `r` on the stored equalities is removed by a step of at most `σ = γ maxᵢ rᵢ`
-(`Zonotope.rightInvGain`), so an exact solution `β̂` lies within `1 - s` of the origin in every
-coordinate, `s = 1 - (maxⱼ |β₀ⱼ| + σ)` rounded down, and the check is `s > 0`.
-
-A coefficient vector `β` in the box that satisfies the stored inequalities up to their slack and
-reads within `εᵢ` of `beᵢ` is then moved onto the hyperplanes, `β' = β + δ` with `|δⱼ| ≤ ρ = γ maxᵢ
-εᵢ`, and pulled back into the box along the segment to `β̂`: `β'' = (1 - λ) β' + λ β̂` with `λ = ρ /
-(ρ + s)` keeps every equality and every `|β''ⱼ| ≤ 1`. In total `β` moves by at most `τ = ρ + (ρ / s)
-(2 + ρ)`, rounded up. The result is `P` with every inequality's slack grown by what it reads on such
-a move (`∑ⱼ |Aᵢⱼ| τ`), its `b` kept (#218), the equalities without slack, and `τ`, which the caller
-pays into the point's error box. `none`, when the certificate or the slack fails, leaves the
-fallback to the caller (`anchorEqsInBox_sound`).
+the box, whose rows have no slack to grow. A strictly feasible point `β̂` (a Slater point, from a
+candidate right inverse `M` of `Ae`) brings it back; the check is `s > 0`. A `β` in the box meeting
+the stored inequalities up to slack is moved onto the hyperplanes and pulled back along the segment
+to `β̂`, by at most `τ`. The result is `P` with each slack grown by what it reads on such a move,
+`b` kept (#218), and `τ`, paid into the point's error box. `none` leaves the fallback to the caller
+(`anchorEqsInBox_sound`).
 
 ## Inputs
 * `P` – H-polytope

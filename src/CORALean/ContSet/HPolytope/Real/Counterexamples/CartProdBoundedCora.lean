@@ -8,32 +8,16 @@ public import Mathlib.Tactic.Positivity
 @[expose] public section
 
 /-!
-# `HPolytope.cartProdBoundedCora`: the boundedness flag of `cartProd_` as CORA's code sets it
-
-`aux_cartProd_polytope_properties` of `@polytope/cartProd_.m` (l. 167-174) infers the cached
-`bounded` flag of `P1 x P2` from the flags of the factors:
-
-```
-if (~isempty(P1.bounded.val) && P1.bounded.val) ...
-        || (~isempty(P2.bounded.val) && P2.bounded.val)
-    P_out.bounded.val = true;
-elseif (~isempty(P1.bounded.val) && ~P1.bounded.val) ...
-        && (~isempty(P2.bounded.val) && ~P2.bounded.val)
-    P_out.bounded.val = false;
-```
-
-The product is bounded when EITHER factor is. `isBounded` returns the cached `P.bounded.val` first.
-A flag is `some b` when set and `none` when empty (unknown); the result `none` leaves the flag
-empty. The flags `emptySet`, `fullDim` are handled in the lines above and below and are not
-modelled. Read from the source, not run.
-
 # CORA's `cartProd_` marks a product with an unbounded factor as bounded
 
-`polytope([0 1])` (one-dimensional, in vertex representation) has `bounded.val = true` set by the
-constructor (`aux_computeHiddenProperties`), and `polytope(-1,0)` (`x ≥ 0`) is unbounded with the
-flag unset. Their product is `[0,1] × [0,∞)`, which contains points of every height, and
-`cartProd(P1,P2)` stores `bounded.val = true`, so `isBounded` answers `true`. Read from the
-source, not run.
+`aux_cartProd_polytope_properties` of `@polytope/cartProd_.m` (l. 167-174) sets the cached
+`bounded.val` of `P1 x P2` to `true` when EITHER factor's flag is `true`, and to `false` when both
+are `false`; a flag is `some b` when set and `none` when empty, and `isBounded` returns the cached
+flag first. `polytope([0 1])` has `bounded.val = true` from the constructor
+(`aux_computeHiddenProperties`), and `polytope(-1,0)` (`x ≥ 0`) is unbounded with the flag unset.
+Their product `[0,1] × [0,∞)` contains points of every height, yet `cartProd(P1,P2)` stores
+`bounded.val = true`, so `isBounded` answers `true`. The flags `emptySet`, `fullDim` are not
+modelled. Read from the source, not run.
 
 ## Inputs
 * none

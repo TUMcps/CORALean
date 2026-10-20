@@ -16,6 +16,15 @@ axis-aligned generators, and a zonotope is a spectrahedral shadow.
 Only the enclosing direction is stated, for `Interval.zonotope`'s reason: a box
 whose `sup` falls below its `inf` denotes nothing, while the set built from it
 denotes the box with the two swapped.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* interval is contained in its spectrahedral shadow
 -/
 
 -- Authors:       Claude Opus 5.5

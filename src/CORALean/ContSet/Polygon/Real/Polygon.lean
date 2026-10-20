@@ -8,21 +8,14 @@ public import CORALean.ContSet.VPolytope.Real.VPolytope
 /-!
 # Polygons: finite unions of convex 2-D polytopes
 
-CORA's `polygon` (`contSet/@polygon`) is a possibly non-convex region of the plane, held
-through MATLAB's `polyshape`: a list of boundary vertices, with holes and several regions. A
-`Polygon` here is `SetUnion (VPolytope (Vec ℝ 2))`: a finite list of convex polygons, each given
-by its vertices, denoting their union. A region with holes is such a union too.
-
-What is **not** formalized is the conversion from CORA's `polyshape` (boundary vertex lists with
-holes) into convex pieces, a triangulation. A polygon is built here from convex pieces
-(`Polygon.ofPieces`), never from a boundary. Methods that read the boundary
+CORA's `polygon` (`contSet/@polygon`) is a possibly non-convex region of the plane held through
+MATLAB's `polyshape`: boundary vertices, with holes and several regions. A `Polygon` here is
+`SetUnion (VPolytope (Vec ℝ 2))`, a finite list of convex polygons denoting their union. **Not**
+formalized is the conversion from `polyshape` into convex pieces, a triangulation: a polygon is
+built from convex pieces (`Polygon.ofPieces`), never from a boundary. Methods reading the boundary
 (`removeCollinearPoints`, `compact_`, ...) have no counterpart (R-PG in
 `references/coverage/README.md`); those a region-level statement captures are stated against the
-region the pieces denote, among them `triangulation` (a cover by vertex triangles) and the
-difference `subtract` (a region). `minus` by a vector is `Polygon.minus`.
-
-The semantics is the union, so `SetUnion`'s `Plus` and `Reduce` instances are `Polygon`'s.
-`Float/` is the same alias at the float polytope.
+region the pieces denote (`triangulation`, `subtract`).
 
 ## Inputs
 * none

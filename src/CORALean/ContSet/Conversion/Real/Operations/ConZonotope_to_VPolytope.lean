@@ -11,6 +11,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 
 /-!
 # A constrained zonotope as its vertices
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* `hne` – domain is nonempty
+
+## Output
+* vertex polytope of the constrained zonotope
 -/
 
 -- Authors:       Claude Opus 5

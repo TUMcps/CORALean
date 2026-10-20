@@ -13,6 +13,16 @@ The identity map on the factors: the star set `{α | A α ≤ b, A_e α = b_e, l
 polytope itself as its predicate. A star set is bounded, so the conversion takes the bounds the
 polytope's coordinates satisfy as certificates, as `HPolytope.conZonotope` does, and they enter as
 the coefficient box `[l, u]`.
+
+## Inputs
+* `P` – halfspace polytope
+
+## Hypotheses
+* `up` – certified upper bound per coordinate
+* `lo` – certified lower bound per coordinate
+
+## Output
+* star set with identity generators and the polytope as predicate
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -18,6 +18,15 @@ and the constant terms stay generators at the zero exponent. The remainder with 
 box absorbed (`Taylm.absorbRounding`, the sum of the two rounded outward) is carried over as the
 polynomial zonotope's error box, so no midpoint is formed. The range set is contained; an inverted
 remainder is `∅` on both sides, so no hypothesis is needed here.
+
+## Inputs
+* `T` – Taylor models, one per coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* Taylor models are contained in their polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

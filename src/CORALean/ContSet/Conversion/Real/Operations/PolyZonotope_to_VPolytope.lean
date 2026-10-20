@@ -9,6 +9,12 @@ public import CORALean.Global.Corners
 /-!
 # A polynomial zonotope as its corners
 
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* vertex polytope of the polynomial zonotope
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

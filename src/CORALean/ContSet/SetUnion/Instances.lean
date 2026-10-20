@@ -9,22 +9,14 @@ public import CORALean.ContSet.SetUnion.Theorems.ReduceOuter
 /-!
 # What `SetUnion` instantiates
 
-`ContSet` is already at `SetUnion.lean`, since the type's own docstring needs
-what it denotes. `Mtimes`, `Plus` and `Reduce` follow whenever the member
-type `S` has them, each the branch-wise operation from `Operations/` paired
-with the guarantee `Theorems/` proves for it.
-
-`OfPoint` is a one-member union.
-`Contains`/`IsDisjoint` lift both ways. As the *computed* set, `S := SetUnion
-S'`: exact, checking every member. As the *container*, `T := SetUnion T'`:
-`contains` by any member (conservative), `isDisjoint` by every member
-(exact). Both instantiate `Contains (SetUnion T') (SetUnion S')` at once, so
-the container pair carries `(priority := low)`: the computed-set reading is
-tried first, the same rule `SetIntersection` uses for its own two pairs.
-
-Computable throughout: every field here is `List.map`/`List.all`/`List.any` over whatever `S`'s
-own instance computes, so a float member type makes every instance compute in turn, with nothing
-rounded and no error box to carry.
+`ContSet` is already at `SetUnion.lean`. `Mtimes`, `Plus` and `Reduce` follow whenever the member
+type `S` has them, each the branch-wise operation from `Operations/` with the guarantee `Theorems/`
+proves. `OfPoint` is a one-member union. `Contains`/`IsDisjoint` lift both ways. As the *computed*
+set, `S := SetUnion S'`: exact, checking every member. As the *container*, `T := SetUnion T'`:
+`contains` by any member (conservative), `isDisjoint` by every member (exact). Both instantiate
+`Contains (SetUnion T') (SetUnion S')` at once, so the container pair carries `(priority := low)`,
+the rule `SetIntersection` uses. Computable throughout: a float member type makes every instance
+compute in turn, with nothing rounded and no error box to carry.
 -/
 
 -- Authors:       Claude Sonnet 5

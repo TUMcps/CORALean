@@ -19,6 +19,17 @@ those coefficients the stored zonotope's nominal point differs from the exact on
 of the stored center and, per coefficient, that of the stored generators, which the box
 `cubMapDep` returns holds. The linear block is stated for `ConZonotope.cubMap`, which ties it to
 the constraints.
+
+## Inputs
+* `T` – cubic tensor
+* `Z` – zonotope
+* `p` – factor vector
+
+## Hypotheses
+* `hp` – factors in the unit box
+
+## Conclusion
+* cubic image has coefficients in the unit box matching the factors
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,19 @@ public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_Zonotope
 /-!
 # An ellipsoid as a zonotope
 
+## Inputs
+* `E` – ellipsoid
+* `m` – number of generators
+* `S` – generators
+* `l` – squared ball radius
+
+## Hypotheses
+* `hl` – squared radius positive
+* `hball` – ball of that radius lies in the zonotope
+
+## Conclusion
+* ellipsoid is contained in the scaled zonotope
+
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean

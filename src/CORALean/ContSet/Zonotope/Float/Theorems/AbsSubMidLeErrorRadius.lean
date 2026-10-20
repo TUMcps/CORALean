@@ -6,6 +6,17 @@ public import CORALean.ContSet.Zonotope.Float.Operations.AbsorbError
 
 /-!
 # The new generators of `absorbError` reach every point the box did
+
+## Inputs
+* `Z` – zonotope
+* `e` – error box point
+* `i` – coordinate
+
+## Hypotheses
+* `he` – point lies in the error box
+
+## Conclusion
+* distance from the box midpoint is within the error radius
 -/
 
 -- Authors:       Claude Opus 5

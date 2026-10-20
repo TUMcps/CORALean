@@ -19,6 +19,16 @@ The equality rows are the pair `Ae x ≤ be`, `-Ae x ≤ -be` the float polytope
 stacked right-hand side is `[b; be; -be]`, each entry widened by its row's slack and rounded up.
 Every other entry is an existing entry, a negation or a `zero`, `one`, and the error box is the
 polytope's own. The shadow contains the polytope.
+
+## Inputs
+* `P` – halfspace polytope
+* `x` – point
+
+## Hypotheses
+* `hx` – point lies in the nominal polytope
+
+## Conclusion
+* stored linear matrix inequality is positive semidefinite at `x`
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

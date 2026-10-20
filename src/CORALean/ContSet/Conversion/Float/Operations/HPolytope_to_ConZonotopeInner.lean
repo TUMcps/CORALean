@@ -20,6 +20,13 @@ no room to tighten into (a rounded one names another hyperplane, and a full-dime
 point on it), so a polytope with an equality is carried as the empty set, which is inside it. The
 error box is not read by the rows: `conZonotopeInnerOf` carries it as the constrained zonotope's
 own.
+
+## Inputs
+* `P` – halfspace polytope
+* `Z` – zonotope
+
+## Output
+* inequality rows on the coefficients, tightened by rounding
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

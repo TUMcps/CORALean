@@ -8,18 +8,12 @@ public import CORALean.ContSet.Interval.Real.Interval
 /-!
 # Intervals over a floating-point scalar: the representation
 
-CORA's `interval` with the same `inf` and `sup`, held in `𝕋` rather than ℝ.
-
-Indexed by the ambient type it stores, as the exact layer's `Interval α` is:
-`Interval (Vec 𝕋 n)` is a box, and `Interval (Mat 𝕋 m n)` is CORA's
-`intervalMatrix` with no separate representation. `RealImage` says which real
-ambient type a stored one denotes, `Vec 𝕋 n` reading as `Vec ℝ n` and `Mat 𝕋 m n`
-as `Mat ℝ m n`, and that is all `nominal` needs. The exact layer's `Entrywise`
-then reads the result: nothing here is read coordinatewise in `𝕋`, so the float
-layer needs no counterpart of that class.
-
-What it denotes is the exact layer's `construct` of `nominal`, fixed by
-definition rather than by a lemma. Each operation then owes only enclosure.
+CORA's `interval` with the same `inf` and `sup`, held in `𝕋` rather than ℝ. Indexed by the ambient
+type it stores, as the exact layer's `Interval α` is: `Interval (Vec 𝕋 n)` is a box, and
+`Interval (Mat 𝕋 m n)` is CORA's `intervalMatrix`. `RealImage` says which real ambient type a stored
+one denotes, and that is all `nominal` needs; the exact layer's `Entrywise` reads the result, so the
+float layer needs no counterpart of that class. What it denotes is the exact layer's `construct` of
+`nominal`, fixed by definition rather than by a lemma. Each operation then owes only enclosure.
 -/
 
 -- Authors:       Claude Opus 5

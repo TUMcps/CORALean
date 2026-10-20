@@ -14,6 +14,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 This is the arrow from intervals to zonotopes of [1, Fig. 1 (Intervals → Zonotopes)].
 
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* `hI` – lower end below upper end per coordinate
+
+## Conclusion
+* zonotope equals the interval
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

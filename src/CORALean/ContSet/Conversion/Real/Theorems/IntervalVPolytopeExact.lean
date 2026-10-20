@@ -13,6 +13,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalContainsVPolytop
 
 /-!
 # A box as its corners
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* `hI` – lower end below upper end per coordinate
+
+## Conclusion
+* corner polytope equals the interval
 -/
 
 -- Authors:       Claude Opus 5

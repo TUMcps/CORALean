@@ -12,6 +12,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.Basic
 /-!
 # A polynomial zonotope as a box
 
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its tighter even-exponent interval
+
 ## References
 
 * [1] N. Kochdumper et al. "Open- and Closed-Loop Neural Network Verification

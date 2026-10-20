@@ -15,6 +15,13 @@ within `1/2` of the identity in every absolute row sum (`Zonotope.ballCert`, pro
 upward) then every vector in a box of positive radius around the center is `G β` with
 `|βⱼ| ≤ 1`, a box inside the zonotope. The error box must be nonempty (`inf ≤ sup` by `le`).
 `true` proves an interior point; `false` refutes nothing.
+
+## Inputs
+* `Z` – zonotope
+* `H` – candidate right inverse
+
+## Output
+* true when the right inverse certifies full dimension
 -/
 
 -- Authors:       Claude Opus 5.5

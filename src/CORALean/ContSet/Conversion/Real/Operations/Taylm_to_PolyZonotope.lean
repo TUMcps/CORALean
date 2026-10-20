@@ -10,6 +10,12 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 
 /-!
 # An array of Taylor models as a polynomial zonotope
+
+## Inputs
+* `T` – Taylor models, one per coordinate
+
+## Output
+* every term, tagged with its coordinate
 -/
 
 -- Authors:       Claude Opus 5.5

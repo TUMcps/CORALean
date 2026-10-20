@@ -7,6 +7,14 @@ public import CORALean.ContSet.Interval.Float.Interval
 
 /-!
 # A spectrahedral shadow's interval hull, over a floating-point scalar
+
+## Inputs
+* `S` – spectrahedral shadow
+* `Yup` – upper certificate matrices per coordinate
+* `Ylo` – lower certificate matrices per coordinate
+
+## Output
+* interval enclosing the shadow, if the certificates hold
 -/
 
 -- Authors:       Claude Opus 5.5

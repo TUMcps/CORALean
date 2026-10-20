@@ -15,6 +15,13 @@ stay in their own order.
 
 Source: [1].
 
+## Inputs
+* `Z` – zonotope
+* `k` – number of generators kept
+
+## Output
+* indices of the longest generators, in increasing order
+
 ## References
 
 * [1] `contSet/@zonotope/dominantDirections.m` and its private helpers, CORA (Sep. 2025), by

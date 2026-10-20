@@ -15,6 +15,21 @@ public import Mathlib.LinearAlgebra.BilinearMap
 At one scalar `c` in the range, the nominal part scales inside the exact
 `Zonotope.map (c • ·)` (`map_exact`), whose center and generators `mul_between_corners`
 brackets entry by entry; the box scales by `Interval.smul_outer`.
+
+## Inputs
+* `cLo` – lower end of the scalar
+* `cHi` – upper end of the scalar
+* `c` – scalar
+* `Z` – matrix zonotope
+* `A` – member matrix
+
+## Hypotheses
+* `hcLo` – scalar above the lower end
+* `hcHi` – scalar below the upper end
+* `hA` – matrix lies in the zonotope
+
+## Conclusion
+* scaled member lies in the computed matrix zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

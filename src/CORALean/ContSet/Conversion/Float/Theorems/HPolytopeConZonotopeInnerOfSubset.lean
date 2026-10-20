@@ -18,6 +18,16 @@ the stored rows meets the exact ones: the stored center and generators are used 
 with the polytope's own error box, and whatever box they are taken at, every point stays in the
 polytope. (A polytope with an equality row is carried as the empty set.) The
 box decides only how much of the polytope is covered.
+
+## Inputs
+* `P` – halfspace polytope
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* tightened conversion is contained in the polytope
 -/
 
 -- Authors:       Claude Opus 5.5

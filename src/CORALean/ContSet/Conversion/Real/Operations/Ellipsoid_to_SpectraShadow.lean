@@ -16,6 +16,12 @@ ellipsoid for every positive semi-definite `Q`, degenerate ones included
 (`Theorems/EllipsoidPosSemidefSpectraShadowIff`). No inverse and no square root, so the float
 layer stores the same matrices exactly. CORA's `spectraShadow` writes the set as
 `{x | 1 - (x-q)ᵀ Q⁻¹ (x-q) ≥ 0}` from `chol(inv(Q))`, and by an SVD when `Q` is singular.
+
+## Inputs
+* `E` – ellipsoid
+
+## Output
+* Schur-form spectrahedral shadow of the ellipsoid
 -/
 
 -- Authors:       Claude Opus 5.5

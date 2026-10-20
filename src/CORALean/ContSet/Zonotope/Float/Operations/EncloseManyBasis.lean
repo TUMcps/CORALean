@@ -16,6 +16,12 @@ alignment; the enclosure `R box(R⁻¹ ·)` does not depend on the order of `R`'
 
 Source: [1].
 
+## Inputs
+* `newGen` – new first generator
+
+## Output
+* matrix with `newGen` first, then the standard axes but the dropped one
+
 ## References
 
 * [1] `contSet/@zonotope/encloseMany.m`, CORA (Sep. 2025). No paper behind the

@@ -21,6 +21,15 @@ side is `one`.
 
 The unit box a constrained zonotope also imposes costs nothing, a nonnegative
 coefficient in a family summing to one being at most one already.
+
+## Inputs
+* `P` – vertex polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* polytope is contained in its constrained zonotope
 -/
 
 -- Authors:       Claude Opus 5

@@ -14,6 +14,14 @@ The generators of `tensorMultiplication` on the stored floats, rounded down: col
 is the sum of `tildeH`, the product of three generators through `M`, over the permutations `p` that
 `map` sends to `cInd`. The product is `cubContractDown` with the tensor's slices `M iDim ind1` as
 the matrices.
+
+## Inputs
+* `M` – third-order tensor
+* `Z` – zonotope
+* `L` – permutation lists
+
+## Output
+* tensor generator columns, rounded down
 -/
 
 -- Authors:       Claude Opus 5.5

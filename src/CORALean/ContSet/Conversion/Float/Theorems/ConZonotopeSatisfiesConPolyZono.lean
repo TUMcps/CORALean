@@ -19,6 +19,17 @@ A coefficient vector in the cube that the polytope admits meets every row of
 `ConZonotope.conPolyZono` within its slack: each row value lies in the row's enclosure `conB`, an
 inequality's above the free lower bound `-Σ|aⱼ|`, and so within the enclosure's width of its lower
 end (`abs_sub_le_subUp`).
+
+## Inputs
+* `cZ` – constrained zonotope
+* `β` – factor vector
+
+## Hypotheses
+* `hβ` – factors in the unit box
+* `hP` – factors satisfy the constraint polytope
+
+## Conclusion
+* factors satisfy the constraint of the constrained polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5, Claude Opus 5.5

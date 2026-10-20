@@ -15,6 +15,15 @@ zonotope in `n` dimensions with `l` generators has up to `2 · (l choose n-1)` f
 
 This is the arrow from zonotopes to polytopes of [1, Fig. 1 (Zonotopes → Polytopes)].
 
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* some halfspace polytope equals the zonotope
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

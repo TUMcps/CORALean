@@ -10,15 +10,21 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeHPolytopeContain
 /-!
 # A constrained polynomial zonotope as halfspaces
 
-Through `ConPolyZono.polyZonotope`, then that polynomial zonotope's own halfspace
-description. A two-hop composition, and precision is lost twice: the constraints
-go first, freeing every factor the equalities were confining, and then the
-sharing goes, at `PolyZonotope.zonotope`, before the caller's rows are read off
-the result. For a representation whose whole point is the constraints, that is a
-lot to give up, and neither loss is recovered by the other.
+Through `ConPolyZono.polyZonotope`, then that polynomial zonotope's own halfspace description.
+Precision is lost twice: the constraints go first, freeing every factor the equalities were
+confining, and then the sharing goes, at `PolyZonotope.zonotope`, before the caller's rows are read
+off the result. Neither loss is recovered by the other. A direct halfspace description is a separate
+piece of mathematics, and no tighter enclosure is attempted here.
 
-A direct halfspace description from a constrained polynomial zonotope is a
-separate piece of mathematics and no tighter enclosure is attempted here.
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `Aq` – direction functionals
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its halfspace polytope
 -/
 
 -- Authors:       Claude Opus 5

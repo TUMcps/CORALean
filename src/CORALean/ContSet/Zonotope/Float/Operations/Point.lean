@@ -12,6 +12,12 @@ A single stored point: no generators and the error box at zero. Nothing is
 computed, so nothing rounds — which is why this takes a stored point and the
 exact layer's `ofPoint`, which asks for an arbitrary real one, has no float
 counterpart.
+
+## Inputs
+* `c` – stored point
+
+## Output
+* zonotope without generators and zero error box
 -/
 
 -- Authors:       Claude Opus 5.5

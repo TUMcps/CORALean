@@ -10,6 +10,16 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 
 The nominal part keeps its coefficients, the center leaving it exactly, and the
 error point stays where it was, inside the widened box.
+
+## Inputs
+* `Z` – zonotope
+* `y` – point
+
+## Hypotheses
+* `hy` – point lies in the zonotope
+
+## Conclusion
+* point less the center lies in the recentered zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

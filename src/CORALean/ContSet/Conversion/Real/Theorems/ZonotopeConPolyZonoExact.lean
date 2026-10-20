@@ -15,6 +15,15 @@ generator its own factor, and `PolyZonotope.conPolyZono_exact` then adds an empt
 constraint system that says nothing. Neither hop loses anything, so the equality
 survives the composition whole, unlike every other representation's route to
 `ConPolyZono` through the same two lemmas.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope equals its constrained polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5

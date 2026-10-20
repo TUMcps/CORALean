@@ -17,6 +17,15 @@ generator. A direct polynomial zonotope from an ellipsoid is a separate piece
 of mathematics, and its dependent structure would go unused here regardless.
 
 Loses whatever the box route loses and nothing further.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* ellipsoid is contained in its polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5

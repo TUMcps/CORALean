@@ -15,6 +15,16 @@ square root is checked rather than taken: `Qᵢᵢ ≤ sᵢ²` rounded down is a
 and then `|xᵢ - qᵢ| ≤ √Qᵢᵢ ≤ |sᵢ|` for every point of the nominal part
 (`abs_sub_le_of_mem_nominalSet`). Tight only up to the certificate: over ℝ the box touches the
 ellipsoid on every face, here it touches whatever `s` was worth.
+
+## Inputs
+* `E` – ellipsoid
+* `s` – per-coordinate scale
+
+## Hypotheses
+* `hs` – squared scale bounds each diagonal entry
+
+## Conclusion
+* ellipsoid is contained in its interval
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

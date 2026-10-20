@@ -14,6 +14,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 # A bundle's constrained zonotope, at one component, over a floating-point scalar
 
 `ZonoBundle.conZonotopeAll_contains`: its `conZonotopeAll` contains it.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hk` – bundle is nonempty
+
+## Conclusion
+* bundle is contained in its constrained zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

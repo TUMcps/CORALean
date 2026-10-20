@@ -15,6 +15,16 @@ design: a cell covered only by several cells together is kept.
 
 Source: [1].
 
+## Inputs
+* `Zs` – cells
+* `ind` – cell index
+
+## Hypotheses
+* `hint` – cell has interior beyond the others
+
+## Conclusion
+* cell is kept
+
 ## References
 
 * [1] `contSet/@zonotope/filterOut.m`, CORA (Sep. 2025), by M. Althoff (2008). No paper behind the

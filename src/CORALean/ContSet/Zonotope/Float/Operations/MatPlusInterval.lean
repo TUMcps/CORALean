@@ -11,6 +11,13 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 An interval matrix added to a matrix zonotope goes straight into the box, which is an
 interval matrix already: the nominal part is untouched and only the box's bounds round.
 How the exponential's remainder joins its Taylor sum.
+
+## Inputs
+* `Z` – matrix zonotope
+* `I` – interval matrix
+
+## Output
+* matrix zonotope with the interval added to its box
 -/
 
 -- Authors:       Claude Opus 5.5

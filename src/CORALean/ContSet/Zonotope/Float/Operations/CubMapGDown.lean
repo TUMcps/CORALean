@@ -11,6 +11,13 @@ public import CORALean.ContSet.Zonotope.Real.Operations.CubIdx
 The generators of `Zonotope.cubMap` on the stored floats, rounded down, indexed by all ordered
 triples (`Real.Zonotope.cubIdx`): `cubFoldDown` at the sorted triples `k ≤ j ≤ c` other than the
 center's `(0, 0, 0)`, zero elsewhere, halved where it is a pure square `(0, j, j)`.
+
+## Inputs
+* `T` – cubic tensor
+* `Z` – zonotope
+
+## Output
+* generators of the cubic image, rounded down
 -/
 
 -- Authors:       Claude Opus 5.5

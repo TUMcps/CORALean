@@ -22,22 +22,25 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 /-!
 # A halfspace description as a constrained zonotope, over a floating-point scalar
 
-The rows are carried onto the coefficients by composing with the generators,
-which is a matrix product and so rounds. That is the difficulty this pair has
-and the others do not: a rounded product does not merely shift a bound, it says
-something *different* about the coefficients, and a constraint that says
-something different can cut off points the original kept.
+The rows are carried onto the coefficients by composing with the generators, a matrix product, so it
+rounds: a rounded product says something *different* about the coefficients and can cut off points
+the original kept. The composed rows are stored rounded down and the bounds widened by what the
+rounding can reach: `matMulDiff` records the gap entrywise, `radius` sums it over a row. An equality
+row without an error box reads between two such bounds, and `ConZonotope.anchorSlab` keeps it an
+equality where it can certify one (`ConZonotope.anchorSlab_outer`); with an error box each equality
+is carried as two inequalities, both moved outward. The lemma holds for any zonotope containing the
+polytope; `conZonotope` uses the box the certificates give.
 
-So the composed rows are stored rounded down and the bounds are widened by what
-the rounding can reach — `matMulDiff` records the gap entrywise, and `radius`
-sums it over a row, which is the most a coefficient vector in the unit box can
-turn that gap into. An equality row of a polytope without an error box reads between two such
-bounds, and `ConZonotope.anchorSlab` keeps it an equality where it can certify one
-(`ConZonotope.anchorSlab_outer`); a polytope with an error box is carried with the box folded
-into its rows, each equality as the two inequalities it stands for, both moved outward.
+## Inputs
+* `P` – halfspace polytope
+* `Z` – zonotope
 
-The lemma holds for any zonotope containing the polytope; `conZonotope` uses the
-box because that is what the certificates already give.
+## Hypotheses
+* `hZ` – polytope lies in the nominal zonotope
+* `h0` – error box contains the origin
+
+## Conclusion
+* polytope is contained in its constrained zonotope on `Z`
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

@@ -19,6 +19,16 @@ matrix is positive semidefinite exactly when its entries are nonnegative, so the
 holds exactly on the polytope. The center is `0` and the generators are the unit vectors.
 With no rows the matrices are `0 × 0`, trivially positive semidefinite, and the shadow is the
 whole space, which is what CORA's `spectraShadow.Inf(n)` branch returns.
+
+## Inputs
+* `P` – halfspace polytope
+* `β` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* linear matrix inequality is positive semidefinite iff `β` lies in the polytope
 -/
 
 -- Authors:       Claude Opus 5.5

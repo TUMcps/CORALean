@@ -13,6 +13,12 @@ CORA's `@zonotope/norm_` at `type = 2` and `mode = 'ub'`: the norm of `interval(
 no float square root, so as for `Interval.normSq` the root is a certificate: this is the
 squared length of the box, rounded up, and `normSq_le` takes a caller's `σ` with
 `normSq ≤ σ·σ`. An upper bound only, not the norm.
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* squared length of the zonotope, rounded up
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,6 +11,17 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 
 Each entry is bounded by `aux_rightInvResidual`, a row of them is summed upward, and the largest of
 the sums is taken exactly.
+
+## Inputs
+* `G` – generator matrix
+* `H` – candidate right inverse
+* `i` – row index
+
+## Hypotheses
+* none
+
+## Conclusion
+* absolute row sum of the residual is bounded
 -/
 
 -- Authors:       Claude Opus 5.5

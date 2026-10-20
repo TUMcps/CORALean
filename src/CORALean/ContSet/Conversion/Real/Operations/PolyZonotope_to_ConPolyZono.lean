@@ -7,6 +7,12 @@ public import CORALean.ContSet.Interval.Real.Operations.Point
 
 /-!
 # A polynomial zonotope as a constrained one
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* constrained polynomial zonotope without constraints
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

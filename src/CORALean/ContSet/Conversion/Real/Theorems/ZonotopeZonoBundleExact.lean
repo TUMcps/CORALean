@@ -12,6 +12,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Basic
 Exact: a single-zonotope family intersects nothing but itself, so the
 intersection it denotes is the zonotope's own set, `Set.iInter_const` at the
 one-element index type `Fin 1`.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope equals its zonotope bundle
 -/
 
 -- Authors:       Claude Opus 5

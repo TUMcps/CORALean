@@ -13,15 +13,21 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MulResidual
 # `Zonotope.containsZonotope`, over a floating-point scalar
 
 CORA's `'approx:st'` containment (Sadraddini and Tedrake): `Z₁ ⊆ Z₂` if `G₁ = G₂ Γ`,
-`c₁ - c₂ = G₂ β₀` and the row sums of `|Γ|` plus `|β₀|` are at most one. Rounding cannot confirm
-the two equalities, so approximate `Γ = H G₁` and `β₀ = H (c₁ - c₂ - e₂)` are formed with a right
-inverse `H` of `G₂` the caller proposes, and what they leave over is absorbed: the residuals
-`G₁ - G₂ Γ`, `c₁ - e₂ - c₂ - G₂ β₀` and the first set's error box, each bounded by directed
-roundings, must fit in the box of radius `B` that `Zonotope.ballCert` reaches with coefficients of
-size at most `δ`, and the budget `|β₀ₖ| + ∑ⱼ |Γₖⱼ| + δ` must stay at most one. `e₂` is the second
-set's error box's lower corner, whose box must be nonempty. `δ` is half the slack the first two
-terms leave, so a set touching the boundary of the other is not accepted. `true` proves
-`Z₁ ⊆ Z₂`; `false` refutes nothing.
+`c₁ - c₂ = G₂ β₀` and the row sums of `|Γ|` plus `|β₀|` are at most one. Rounding cannot confirm the
+equalities, so approximate `Γ = H G₁` and `β₀ = H (c₁ - c₂ - e₂)` are formed with a right inverse
+`H` of `G₂` the caller proposes, and what they leave over is absorbed: the residuals and the first
+set's error box must fit in the box of radius `B` that `Zonotope.ballCert` reaches with coefficients
+of size at most `δ`, and `|β₀ₖ| + ∑ⱼ |Γₖⱼ| + δ` must stay at most one. `e₂` is the second error
+box's lower corner (the box must be nonempty); `δ` is half the slack. `true` proves `Z₁ ⊆ Z₂`;
+`false` refutes nothing.
+
+## Inputs
+* `Z₂` – outer zonotope
+* `Z₁` – inner zonotope
+* `H` – candidate right inverse of the outer generators
+
+## Output
+* true when the inner zonotope is certified inside the outer
 -/
 
 -- Authors:       Claude Opus 5.5

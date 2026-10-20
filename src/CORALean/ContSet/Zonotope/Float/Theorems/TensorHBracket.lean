@@ -14,6 +14,19 @@ public import CORALean.ContSet.Zonotope.Real.Operations.TensorMultiplication
 slices (`cubContract_bracket`, the triple sum regrouped); the column sums it over the permutations
 mapped to it, each sum rounded the same way, so the exact column of the exact layer's
 `tensorMultiplication` on the read-back operand lies between the two stored ones.
+
+## Inputs
+* `M` – third-order tensor
+* `Z` – zonotope
+* `L` – permutation lists
+* `iDim` – output coordinate
+* `cInd` – column index
+
+## Hypotheses
+* none
+
+## Conclusion
+* exact column lies between the two roundings
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,14 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 CORA's test on the rounded box `interval(C*Z)`: every upper bound strictly below `d`, by
 `ltStrict`, which is exact. `true` is certain, `false` only says "not shown".
+
+## Inputs
+* `Z` – zonotope
+* `C` – constraint matrix
+* `d` – constraint bounds
+
+## Output
+* true when every upper bound lies strictly below `d`
 -/
 
 -- Authors:       Claude Opus 5.5

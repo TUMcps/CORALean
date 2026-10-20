@@ -12,6 +12,12 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotop
 
 /-!
 # A polynomial zonotope as a zonotope, and a constrained one as a constrained
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* constrained zonotope enclosing the polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

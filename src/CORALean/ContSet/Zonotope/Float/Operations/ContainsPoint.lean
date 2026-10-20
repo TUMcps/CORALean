@@ -12,6 +12,14 @@ A point certified inside, by a right inverse `H` the caller proposes: `Zonotope.
 box of radius `B` around the center part of the nominal zonotope, and the point, moved by the error
 box's lower corner, is checked to lie in it (`Zonotope.deviation`, rounded upward). No exact solve
 `G β = p - c` is needed; the box absorbs the rounding. Sufficient only: `true` proves membership.
+
+## Inputs
+* `Z` – zonotope
+* `H` – candidate right inverse
+* `p` – point
+
+## Output
+* true when the point is certified inside the zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

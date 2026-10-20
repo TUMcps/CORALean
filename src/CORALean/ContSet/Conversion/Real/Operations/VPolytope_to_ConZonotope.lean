@@ -7,6 +7,12 @@ public import CORALean.ContSet.VPolytope.Real.VPolytope
 
 /-!
 # A hull as a constrained zonotope
+
+## Inputs
+* `k` – number of vertices
+
+## Output
+* standard simplex as halfspace constraints
 -/
 
 -- Authors:       Claude Opus 5

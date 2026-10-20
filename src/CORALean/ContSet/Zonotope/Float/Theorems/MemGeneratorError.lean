@@ -10,6 +10,18 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 Immediate from `abs_sum_le_radius`, the same bound `reduce` uses: what a matrix
 reaches on the unit ball is its row sums of absolute values, whether the
 generators are exact or known only to within `G` entrywise.
+
+## Inputs
+* `G` – stored bound matrix
+* `Δ` – generator error matrix
+* `β` – factor vector
+
+## Hypotheses
+* `hG` – error entries within the stored bounds
+* `hβ` – factors in the unit box
+
+## Conclusion
+* total error lies in the generator error zonotope
 -/
 
 -- Authors:       Claude Opus 5

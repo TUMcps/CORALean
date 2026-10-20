@@ -10,6 +10,17 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 
 `Real.Zonotope.abs_le_absBound` at the nominal part, `addUp`-rounded, plus
 whichever corner of the box is farther out — the two summed by `abs_add_le`.
+
+## Inputs
+* `Z` – zonotope
+* `x` – point
+* `j` – coordinate
+
+## Hypotheses
+* `hx` – point lies in the zonotope
+
+## Conclusion
+* coordinate of `x` is bounded by the absolute reach
 -/
 
 -- Authors:       Claude Opus 5.5

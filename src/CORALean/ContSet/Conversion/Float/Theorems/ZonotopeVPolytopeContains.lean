@@ -27,6 +27,15 @@ a whole list at once, since one box has to cover every column.
 The zonotope's own error box is added to that gap rather than replacing it: the
 corner enclosure and the incoming error are separate debts and both have to be
 paid.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is contained in its vertex polytope
 -/
 
 -- Authors:       Claude Opus 5

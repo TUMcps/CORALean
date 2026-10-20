@@ -10,18 +10,12 @@ public import CORALean.ContSet.OptEmpty.OptEmpty
 /-!
 # What `Fullspace` instantiates
 
-Everything whose obligation `Set.univ` on the right meets, which is every class
-here bar one: convexity, a sum, a combination, a difference, a reduction, a
-product and a point all land in the whole space, and `Recenter` has the origin
-to hand as well.
-
-No `CompactSet`: the whole of `Vec ℝ n` is unbounded at `0 < n`, so the class's
-unconditional obligation is false. `ZonoBundle` refuses it for the same reason,
-an empty family of zonotopes denoting `Set.univ` too.
-
-`Reindex` is the one that needs an argument, `reindexLin_exact`, because its
-obligation is an equality and the image of everything has to be shown to be
-everything again.
+Everything whose obligation `Set.univ` on the right meets, which is every class here bar one:
+convexity, a sum, a combination, a difference, a reduction, a product and a point all land in the
+whole space, and `Recenter` has the origin to hand as well. No `CompactSet`: the whole of `Vec ℝ n`
+is unbounded at `0 < n`; `ZonoBundle` refuses it for the same reason. `Reindex` is the one that
+needs an argument, `reindexLin_exact`, because its obligation is an equality and the image of
+everything has to be shown to be everything again.
 -/
 
 -- Authors:       Claude Opus 5

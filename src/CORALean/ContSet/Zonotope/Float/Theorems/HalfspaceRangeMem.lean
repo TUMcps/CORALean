@@ -11,6 +11,18 @@ public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 
 A point is `c + ∑ⱼ βⱼgⱼ + e`: `nᵀc − d` is within its directed brackets, `|∑ⱼ βⱼ nᵀgⱼ|` is at
 most `∑ⱼ |nᵀgⱼ| ≤ ρ`, and each `nᵢeᵢ` is between the corner products (`mul_between_corners`).
+
+## Inputs
+* `nv` – halfspace normal
+* `d` – halfspace offset
+* `Z` – zonotope
+* `x` – point
+
+## Hypotheses
+* `hx` – point lies in the zonotope
+
+## Conclusion
+* halfspace function at `x` lies in the range
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,21 +11,13 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.ReindexExact
 /-!
 # What `Ellipsoid` instantiates
 
-`Mtimes` by instance search, and `Plus` once a caller has named the two
-scalings — the same pair of classes as over ℝ, and for the same reasons. An
-ellipsoid is closed under a linear image and under nothing else the interface
-names, and every enclosure of a sum or a combination carries a free
-parameter; `Reduce` is the identity, as CORA's `reduce` body is empty.
-
-`ContSet` is not among them: `InflatedContSet` supplies it, which is what makes
-this the same interface as over ℝ.
-
-`plusInstance` is the exact layer's, with the parameter it really has: two
-floats and the certificate `1/s₁² + 1/s₂² ≤ 1` rather than one real `l`. That
-widens the family — `l`'s derived pair meets the condition with equality, so the
-pairs `l` reaches are a proper subset of the admissible ones — which is the
-reverse of the usual direction between the layers. It is a `def` and not an
-`instance` for the same reason as over ℝ.
+`Mtimes` by instance search, and `Plus` once a caller has named the two scalings, the same pair of
+classes as over ℝ and for the same reasons. An ellipsoid is closed under a linear image and under
+nothing else the interface names, and every enclosure of a sum or a combination carries a free
+parameter; `Reduce` is the identity, as CORA's `reduce` body is empty. `ContSet` is supplied by
+`InflatedContSet`. `plusInstance` is the exact layer's, with the parameter it really has: two floats
+and the certificate `1/s₁² + 1/s₂² ≤ 1` rather than one real `l`, which widens the family. It is a
+`def` and not an `instance` for the same reason as over ℝ.
 -/
 
 -- Authors:       Claude Opus 5

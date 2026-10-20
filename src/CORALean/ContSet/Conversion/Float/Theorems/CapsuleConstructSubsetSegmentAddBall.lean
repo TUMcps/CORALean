@@ -15,6 +15,15 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 The float layer's form of `Capsule.construct_eq_segment_add_ball`: the segment `zonotope(c, g)`
 takes the capsule's error box along, and the ball is `Ellipsoid.ball`, whose shape is rounded up
 (`Ellipsoid.ball_contains`). A negative stored radius denotes the empty capsule.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* capsule is contained in segment plus ball
 -/
 
 -- Authors:       Claude Opus 5.5

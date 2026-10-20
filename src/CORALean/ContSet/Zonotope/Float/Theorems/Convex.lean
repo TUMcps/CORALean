@@ -17,6 +17,15 @@ independently.
 
 So the error box costs the property nothing, which is why no operation has to
 restate it after paying a rounding into that box.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is convex
 -/
 
 -- Authors:       Claude Opus 5

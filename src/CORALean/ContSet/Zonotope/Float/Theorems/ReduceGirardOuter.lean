@@ -10,6 +10,16 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByOuter
 
 Below the order the zonotope is returned untouched, above it the claim is
 `reduceBy_outer` at the partition Girard's rule chose.
+
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is contained in its Girard reduction
 -/
 
 -- Authors:       Claude Opus 5

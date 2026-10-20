@@ -15,6 +15,15 @@ capsule's error box, plus a vector `y` of length at most `r`, whose coordinates 
 in absolute value, so `y` is in the box `[-r, r]ⁿ`, that box is in its zonotope
 (`Interval.zonotope_contains`), and `Zonotope.plus_outer` joins the two. Where `le` finds `r`
 zero, `y` is zero and the segment is all there is.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* capsule is contained in its zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

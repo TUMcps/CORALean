@@ -12,6 +12,15 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.AbsNominal
 
 The corner `|c| + Σ |gⱼ|` of the stored floats is a point of the nominal part of `abs Z`, as at
 the real layer.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* absolute-value corner lies in the nominal part of the absolute zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

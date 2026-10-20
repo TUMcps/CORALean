@@ -10,6 +10,17 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsZonotopeSound
 
 A returned zonotope passed `Zonotope.containsZonotope`, so its set lies in the input's
 (`containsZonotope_sound`). Inner only: nothing is claimed about order or optimality.
+
+## Inputs
+* `opt` – solver proposing reduced generators
+* `Z` – zonotope
+* `H` – candidate right inverse
+
+## Hypotheses
+* none
+
+## Conclusion
+* every returned zonotope is contained in the input
 -/
 
 -- Authors:       Claude Opus 5.5

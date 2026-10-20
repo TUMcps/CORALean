@@ -11,6 +11,12 @@ A candidate right inverse of a generator matrix `G` (`n × h`): `Gᵀ (G Gᵀ)�
 formed with upward roundings and inverted by `Zonotope.basisInverse`. It is not trusted:
 `Zonotope.ballCert` checks `G H` against the identity, so a rank-deficient `G`, a zero pivot or a
 rounding that spoils the inverse costs the `true` and nothing else.
+
+## Inputs
+* `G` – generator matrix
+
+## Output
+* candidate right inverse from the Gram matrix
 -/
 
 -- Authors:       Claude Opus 5.5

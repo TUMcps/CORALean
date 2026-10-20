@@ -15,6 +15,13 @@ per coordinate: `∑ⱼ ‖Gⱼ‖₂ + ‖err‖₂`, and `‖rowSum |G| + err�
 half-width norm when the error box is zero and the center is the midpoint, as it is for a
 box with no error. The roots are `normUp` (`Global/Float/Sqrt`, `k` Newton steps), the sums
 `addUp`, so the radius is rounded up.
+
+## Inputs
+* `k` – Newton steps for the norm
+* `Z` – zonotope
+
+## Output
+* radius of a ball about the center enclosing the zonotope
 -/
 
 -- Authors:       Claude Sonnet 5.5

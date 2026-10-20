@@ -16,6 +16,15 @@ The arrow of [1, Fig. 1 (Support Functions → Star Sets)] is strict: the star s
 and not their midpoint, while what a support function denotes is convex
 (`SupportFunction.convex_construct`).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* some level-set star set is no support function
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

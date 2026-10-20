@@ -13,6 +13,13 @@ box a reduction to order `o` absorbs the dropped generators into. `reduceGirardB
 box, and `errUp` bounds its Euclidean `err` from above, so a float `ε^r_k` is never smaller
 than the exact one it stands for.
 
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Output
+* upper bound on the error of the absorbing box
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

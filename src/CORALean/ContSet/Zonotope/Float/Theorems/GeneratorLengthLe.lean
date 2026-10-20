@@ -10,6 +10,17 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Basic
 
 The nominal zonotope's generator `j` has Euclidean length at most the rounded-up
 `Zonotope.generatorLength`: an outer statement, the stored number is never below the length.
+
+## Inputs
+* `k` – Newton steps for the norm
+* `Z` – zonotope
+* `j` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* real length is at most the rounded-up length
 -/
 
 -- Authors:       Claude Opus 5.5

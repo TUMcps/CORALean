@@ -12,6 +12,13 @@ CORA's `aux_splitOneDim`: `c1 = c - G(:,dim)/2`, `c2 = c + G(:,dim)/2` and the `
 generator halved in both. Halving is exact in a binary format, so only the two centers round;
 each half stores the lower directed sum and pays the `centerResidual` into its error box, which
 leaves the generator count unchanged as over ℝ. The halves cover `Z` only after that inflation.
+
+## Inputs
+* `Z` – zonotope
+* `j` – generator index
+
+## Output
+* two halves of the zonotope along generator `j`
 -/
 
 -- Authors:       Claude Opus 5.5

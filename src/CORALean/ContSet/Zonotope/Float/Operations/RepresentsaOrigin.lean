@@ -10,6 +10,12 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 CORA's `@zonotope/representsa_` at type `origin` with tolerance `0`: every generator and the
 center are `0`, and the error box is `{0}`. A `true` is sound, a `false` decides nothing.
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* true when everything is certified zero
 -/
 
 -- Authors:       Claude Sonnet 5.5

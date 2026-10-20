@@ -12,6 +12,20 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.CubContractBracket
 By linearity in `k`: for `a < b` the symmetrized `quadMat k a b + quadMat k b a` sums against
 `Zext j k` to the contraction at `(j, a, b)` plus the one at `(j, b, a)`, for `a = b` to the one at
 `(j, a, a)`, and below the diagonal it is `0`.
+
+## Inputs
+* `T` – cubic tensor
+* `Zext` – extended columns
+* `i` – output coordinate
+* `j` – first index
+* `a` – second index
+* `b` – third index
+
+## Hypotheses
+* none
+
+## Conclusion
+* exact symmetrized contraction lies between the two roundings
 -/
 
 -- Authors:       Claude Opus 5.5

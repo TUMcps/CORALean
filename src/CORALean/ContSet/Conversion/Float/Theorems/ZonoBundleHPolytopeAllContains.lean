@@ -13,6 +13,16 @@ public import CORALean.ContSet.ZonoBundle.Float.Theorems.ConstructEqIInter
 Each member lies in its facet polytope (`Zonotope.hPolytopeFacets_contains`), the whole space holds
 every point, and an intersection holds what both its operands hold (`intersection_outer`), so a
 point of every member is a point of the fold.
+
+## Inputs
+* `p` – Newton steps per row length
+* `zB` – zonotope bundle
+
+## Hypotheses
+* none
+
+## Conclusion
+* bundle is contained in its intersected facet polytopes
 -/
 
 -- Authors:       Claude Opus 5.5

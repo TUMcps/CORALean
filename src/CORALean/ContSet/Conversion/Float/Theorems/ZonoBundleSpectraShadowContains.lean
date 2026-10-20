@@ -18,6 +18,15 @@ As over ℝ: every member through the float `Zonotope.spectraShadow`, the result
 order by the float `SpectraShadow.inter`, an empty family (the whole space) as
 `SpectraShadow.Inf`. Each member's conversion and each intersection is outer, so the result
 encloses the bundle; it is not claimed to equal it.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* none
+
+## Conclusion
+* bundle is contained in its spectrahedral shadow
 -/
 
 -- Authors:       Claude Opus 5.5

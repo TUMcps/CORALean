@@ -11,6 +11,17 @@ public import CORALean.ContSet.Zonotope.Float.Operations.ListQuadUp
 The coefficient `Zonotope.cubFold` of the sorted triple of extended columns `[c, G]`, in `𝕋`,
 rounded up: the accumulation over identical factors of `Zonotope.listQuadUp`, every sum rounded
 the same way.
+
+## Inputs
+* `T` – cubic tensor
+* `Z` – zonotope
+* `i` – output coordinate
+* `x` – first column index
+* `y` – second column index
+* `z` – third column index
+
+## Output
+* coefficient of the sorted column triple, rounded up
 -/
 
 -- Authors:       Claude Opus 5.5

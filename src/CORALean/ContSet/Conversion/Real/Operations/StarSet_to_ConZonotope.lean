@@ -15,6 +15,12 @@ The coefficient box `[l, u]` is rescaled to `[-1, 1]`: `α_k = mid_k + rad_k β_
 `mid = (l + u) / 2` and `rad = (u - l) / 2`. The center moves by `G · mid`, the generators are
 scaled by `rad`, and the predicate is read at the rescaled factors with `HPolytope`'s own
 operations: `translate` by `-mid`, then `comap` along `β ↦ rad ⊙ β`.
+
+## Inputs
+* `s` – halfspace-predicate star set
+
+## Output
+* constrained zonotope of the star set
 -/
 
 -- Authors:       Claude Sonnet 5.5

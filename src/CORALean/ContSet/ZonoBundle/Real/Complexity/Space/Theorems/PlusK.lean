@@ -11,19 +11,12 @@ public import Mathlib.Tactic.Positivity
 /-!
 # `ZonoBundle.plus`'s counts
 
-`plus`'s bundle size: every zonotope of one bundle paired with every zonotope
-of the other, so the count multiplies rather than adds — the reason it, not
-`intersection`, carries this directory's `O`-notation statement, in `PlusKIsBigO.lean`.
-
-The second-order count also comes out cleanly: each paired component is
-`Zonotope.plus` of the two it came from, so its own generator count is theirs
-added, by `Zonotope.plus_h`. `rfl` against both structure instances.
-
-## `ZonoBundle.plus`'s bundle size is `O(m ^ 2)`
-
-Not a bare arithmetic fact about `m * m`, but one tied to `plus` through a
-family of bundles whose sizes grow as `m`. `plus_k` reduces the left side to
-that product outright, which `m ^ 2` dominates for every `m`.
+`plus`'s bundle size: every zonotope of one bundle paired with every zonotope of the other, so the
+count multiplies rather than adds, the reason it, not `intersection`, carries this directory's
+`O`-notation statement, in `PlusKIsBigO.lean`. The second-order count comes out cleanly: each paired
+component is `Zonotope.plus` of the two it came from, so its generator count is theirs added, by
+`Zonotope.plus_h` (`rfl`). The bundle size is `O(m ^ 2)`, tied to `plus` through a family of bundles
+whose sizes grow as `m`: `plus_k` reduces the left side to `m * m`, which `m ^ 2` dominates.
 -/
 
 -- Authors:       Claude Opus 5

@@ -17,6 +17,16 @@ matrix, `Interval.matMul` of the two stored matrices and one directed subtractio
 identity, so `Zonotope.mtimesIntervalMat` pays what rounding cost into extra generators and
 the error box; the strip part `Λ (y ⊕ diag(φ) [-1, 1]^p)` is `Zonotope.mtimes` of the
 box-shaped zonotope. The choice of `Λ` is not modelled, as over ℝ.
+
+## Inputs
+* `C` – measurement matrix
+* `φ` – strip half-widths
+* `y` – measurement
+* `Λ` – weight matrix
+* `Z` – zonotope
+
+## Output
+* zonotope enclosing the intersection with the strip
 -/
 
 -- Authors:       Claude Opus 5.5

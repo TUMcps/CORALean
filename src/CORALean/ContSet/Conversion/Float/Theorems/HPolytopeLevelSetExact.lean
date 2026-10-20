@@ -14,6 +14,15 @@ component `<= 0`. A float equality row carries an interval right-hand side, so i
 components, `Ae x - be.sup <= 0` and `be.inf - Ae x <= 0`, where the exact layer has one `=`.
 The level set holds its constraint function as data and nothing is rounded: the stored numbers
 are read as reals, and the conversion denotes exactly the float polytope's set.
+
+## Inputs
+* `P` – halfspace polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* level set equals the nominal part of the polytope
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

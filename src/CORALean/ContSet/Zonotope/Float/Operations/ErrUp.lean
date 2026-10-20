@@ -14,6 +14,12 @@ bounded by `normUp`, the sum of squares rounded up and a rounded-up square root.
 `errOp` (`Zonotope.errOp`) is the sup-norm radius of the same box, at most the Euclidean one;
 this is the Euclidean one itself.
 
+## Inputs
+* `Z` – zonotope
+
+## Output
+* upper bound on the Euclidean radius of the error box
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

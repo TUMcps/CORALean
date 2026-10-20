@@ -8,18 +8,20 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
 /-!
 # `Zonotope.mtimesBox`
 
-A box that holds everything `mtimes M Z` may contain beyond `M` applied to `Z`.
+A box that holds everything `mtimes M Z` may contain beyond `M` applied to `Z`. The float `mtimes`
+rounds the center and every generator of the result; this box collects those errors, in `𝕋` with
+directed rounding, as the sum of three parts: the rounding error of the new center, bounded as in
+`plusBox`; the rounding error of the new generators, each entry off by at most `matMulDiff`, which
+`generatorError` turns into a box as `mtimesResidual` does; and the error box of `mtimes M Z`. It is
+not a reduction, for the reason `plusBox` is not: only the definition of `mtimes` says how far the
+result can stray from `M Z`.
 
-The float `mtimes` rounds the center and every generator of the result. This box collects
-those rounding errors. It adds up three parts.
+## Inputs
+* `M` – matrix
+* `Z` – zonotope
 
-* The rounding error of the new center, bounded as in `plusBox`.
-* The rounding error of the new generators. Each entry is off by at most `matMulDiff`, and
-  `generatorError` turns these bounds into a box, as `mtimesResidual` does.
-* The error box of `mtimes M Z`.
-
-It is computed in `𝕋` with directed rounding. It is not a reduction, for the reason `plusBox`
-is not: only the definition of `mtimes` says how far the result can stray from `M Z`.
+## Output
+* box holding the rounding errors of the product
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

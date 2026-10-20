@@ -11,6 +11,13 @@ public import CORALean.Global.Partition
 CORA's reduction at a given partition, unchanged in shape and sound for every
 one of them. Nothing is charged to the box: the center and kept generators are
 copied exactly, and the diagonal block rounds *up*, which only enlarges.
+
+## Inputs
+* `Z` – zonotope
+* `part` – split into kept and reduced generators
+
+## Output
+* zonotope with the reduced generators absorbed in a diagonal block
 -/
 
 -- Authors:       Claude Opus 5

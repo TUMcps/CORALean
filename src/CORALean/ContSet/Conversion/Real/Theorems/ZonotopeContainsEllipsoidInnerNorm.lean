@@ -14,6 +14,18 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
 /-!
 # A zonotope as an ellipsoid
 
+## Inputs
+* `Z` – zonotope
+* `F` – transformation matrix
+* `l` – squared ball radius
+
+## Hypotheses
+* `hF` – transformation invertible
+* `hball` – ball around the transformed center lies in the zonotope
+
+## Conclusion
+* inner ellipsoid is contained in the zonotope
+
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean

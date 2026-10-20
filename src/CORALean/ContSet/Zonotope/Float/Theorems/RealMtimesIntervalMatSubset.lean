@@ -30,6 +30,22 @@ The exact layer's `Real.Zonotope.mtimesIntervalMat IMr Zr` is `mid(IMr) w` plus 
 under that, because both ends of `IMr` are matrices of `IMf` and so lie in the float residual:
 `|mid - C| + rad = max(|inf - C|, |sup - C|)`. The float `V` is asked to have error box `{0}`, so
 that its points are its nominal part and the exact `absBound` is at most the float reach.
+
+## Inputs
+* `IMr` – real interval matrix
+* `IMf` – float interval matrix
+* `Zr` – real zonotope
+* `V` – float zonotope
+
+## Hypotheses
+* `hlo` – lower end lies in the float interval matrix
+* `hhi` – upper end lies in the float interval matrix
+* `hle` – real interval matrix ordered
+* `hE` – float error box is zero
+* `hZ` – real zonotope lies in the float one
+
+## Conclusion
+* exact interval matrix product is contained in the float one
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,14 @@ CORA's `@zonotope/tensorMultiplication_zono.m`: the tensor is a matrix zonotope
 space `Tensor3 𝕋 n`, of which the center and the generators are read (its box is not: a
 caller passes the stored tensors). The result is `tensorMultiplication(Z, M.center)` plus, in a
 loop over the generators, `tensorMultiplication(Z, M.generator{i})` with Minkowski sums.
+
+## Inputs
+* `Z` – zonotope
+* `M` – tensor zonotope
+* `L` – permutation lists
+
+## Output
+* zonotope enclosing the tensor image
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -21,6 +21,17 @@ The absolute value is where a rounding mode has to be chosen twice. A generator'
 exact contribution lies between its rounded-down and rounded-up dot products, so
 what bounds its magnitude is the larger of the up one and the negated down one —
 neither alone would do, the exact value being free to have either sign.
+
+## Inputs
+* `Z` – zonotope
+* `c` – linear functional
+* `a` – coefficient vector
+
+## Hypotheses
+* `hc` – functional equals the dot product with `a`
+
+## Conclusion
+* functional on the zonotope is bounded by the float bound
 -/
 
 -- Authors:       Claude Opus 5

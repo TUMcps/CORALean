@@ -12,6 +12,16 @@ The matrix of CORA's `@zonotope/rotate(Z, dims, angle)` at a float angle: the 2x
 `[cos -sin; sin cos]` on the coordinates `dims = (i, j)`, the identity elsewhere, with every
 `cos`/`sin` entry the interval `cosDown`/`cosUp` (`sinDown`/`sinUp`) of `Global/Float/SinCos`, and
 the exact entries `0` and `1` degenerate intervals. `p` is the number of halvings.
+
+## Inputs
+* `p` – Newton steps for the trigonometry
+* `n` – dimension
+* `i` – first rotation axis
+* `j` – second rotation axis
+* `angle` – rotation angle
+
+## Output
+* interval matrix of the plane rotation
 -/
 
 -- Authors:       Claude Opus 5.5

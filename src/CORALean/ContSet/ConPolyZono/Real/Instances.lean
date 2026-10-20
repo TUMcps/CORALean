@@ -20,18 +20,11 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 `ContSet`, `CompactSet`, `Plus`, `LinComb`, `Mtimes`, `Reduce`, `Intersection` and `OfPoint`, each
 obligation a theorem from `Theorems` read in the `⊆` direction.
 
-No `ConvexSet`: the sets are generally not convex, which is the point of the
-representation. `CompactSet` holds all the same, and on the constraints rather
-than in spite of them — a constraint row is a polynomial in the factors, so it
-cuts the coefficient cube down to a closed subset of it.
-
-`Reduce` ranks both generator blocks together and boxes what it drops, leaving
-the constraint block alone; `compact`, which it runs first, is what bounds the
-constraint counts. `LinComb` is `PolyZonotope`'s on the generators with both
-constraint systems carried along, outer for the reason that one is.
-
-`quadMap` alone has no class to instantiate, so a caller names
-`ConPolyZono.quadMap` directly — the one operation `Intersection` (#10) does not cover.
+No `ConvexSet`: the sets are generally not convex. `CompactSet` holds all the same, since a
+constraint row cuts the coefficient cube down to a closed subset. `Reduce` ranks both generator
+blocks together and boxes what it drops, leaving the constraint block alone; `compact` runs first
+and bounds the constraint counts. `quadMap` alone has no class, so a caller names
+`ConPolyZono.quadMap` directly (`Intersection` (#10) does not cover it).
 -/
 
 -- Authors:       Claude Opus 5

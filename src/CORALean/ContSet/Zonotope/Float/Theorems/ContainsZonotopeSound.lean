@@ -20,6 +20,17 @@ residual, the row of `|G₁ - G₂ Γ|`, the error box) is at most `B`, a box th
 with coefficients of size at most `δ` (`Zonotope.ballCert_reach`), and the budget
 `|β₀ₖ| + ∑ⱼ |Γₖⱼ| + δ` is at most one. The result is a nominal point of the second set moved by the
 second error box's lower corner, a member of that box.
+
+## Inputs
+* `Z₂` – outer zonotope
+* `Z₁` – inner zonotope
+* `H` – candidate right inverse
+
+## Hypotheses
+* `h` – test returns true
+
+## Conclusion
+* inner zonotope is contained in the outer
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,14 @@ public import CORALean.ContSet.Zonotope.Real.Operations.TensorLists
 # `Zonotope.tensorHUp`
 
 `Zonotope.tensorHDown` rounded up, for the gap that the box is charged.
+
+## Inputs
+* `M` – third-order tensor
+* `Z` – zonotope
+* `L` – permutation lists
+
+## Output
+* tensor generator columns, rounded up
 -/
 
 -- Authors:       Claude Opus 5.5

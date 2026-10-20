@@ -10,6 +10,13 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Midpoint
 
 Split out of `LinComb.lean` (issue #62): used again by `ConZonotope.linComb`
 and by `MidpointMemResidual.lean`, both outside this file.
+
+## Inputs
+* `a` – first center
+* `b` – second center
+
+## Output
+* box of what storing the lower midpoint leaves to pay
 -/
 
 -- Authors:       Claude Opus 5

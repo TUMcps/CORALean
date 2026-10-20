@@ -9,6 +9,13 @@ public import CORALean.ContSet.HPolytope.Float.Operations.StackRows
 
 /-!
 # A box as halfspaces, over a floating-point scalar
+
+## Inputs
+* `𝕋` – scalar type
+* `n` – dimension
+
+## Output
+* identity matrix, as a constraint matrix
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

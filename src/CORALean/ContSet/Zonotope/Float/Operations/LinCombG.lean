@@ -11,6 +11,15 @@ public import CORALean.ContSet.Zonotope.Float.Operations.PairSum
 Split out of `LinComb.lean` (issue #62): `linCombGDiff` calls this at both
 roundings, and `Theorems/LinCombOuter.lean` reads it directly, both outside
 this file.
+
+## Inputs
+* `add` – addition rounding
+* `sub` – subtraction rounding
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+
+## Output
+* generator matrix at one rounding
 -/
 
 -- Authors:       Claude Opus 5

@@ -10,6 +10,15 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 `Recenter.center` reads the stored center as reals. It lies in the nominal part
 at the zero coefficients, and in the whole set once the error box holds `0`,
 which a box built by the operations does and an arbitrary one need not.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* `h0` – error box contains zero
+
+## Conclusion
+* stored center lies in the zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

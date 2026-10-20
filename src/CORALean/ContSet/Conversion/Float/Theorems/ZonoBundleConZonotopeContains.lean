@@ -22,6 +22,16 @@ zonotope intersected, one `ConZonotope.intersection` at a time, with each of the
 others, which is CORA's `conZonotope(zB)` — every member's generators side by
 side, tied together by agreement rows. Outer, as each intersection is, so the
 whole bundle lies inside it; needs a first member, `0 < k`.
+
+## Inputs
+* `zB` – zonotope bundle
+* `i` – member index
+
+## Hypotheses
+* none
+
+## Conclusion
+* bundle is contained in its constrained zonotope from member `i`
 -/
 
 -- Authors:       Claude Opus 5.5

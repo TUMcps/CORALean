@@ -13,19 +13,23 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # A polynomial zonotope as a box
 
-Two routes, the looser one first. `interval` frees every dependent generator
-before boxing — [1, Prop. 2.7] — cheap, and loose in one particular way: the
-freeing is what costs precision, the box that follows being tight for what it
-is given.
+Two routes, the looser one first. `interval` frees every dependent generator before boxing
+([1, Prop. 2.7]): cheap, and loose in one way, the freeing costing the precision. `intervalEven`
+goes through `zonotopeEven`, splitting generators on their exponents' parity before boxing
+([2, Prop. 1]), and is CORA's own `interval(polyZonotope)`; tighter wherever an even-exponent
+generator exists, since half of it moves into the center. Both boxes come out ordered, which the
+type does not say: a polynomial zonotope is never empty, and a box enclosing a point cannot have its
+`sup` below its `inf`. Anything reading a box as a radius needs that.
 
-`intervalEven` goes through `zonotopeEven` instead, splitting generators on
-their exponents' parity before boxing — [2, Prop. 1], and CORA's own
-`interval(polyZonotope)`. Tighter wherever an even-exponent generator exists,
-since half of it moves into the center rather than being boxed whole.
+## Inputs
+* `pZ` – polynomial zonotope
+* `i` – coordinate
 
-Both boxes come out ordered, which the type does not say: a polynomial
-zonotope is never empty, and a box enclosing a point cannot have its `sup`
-below its `inf`. Anything reading a box as a radius needs that.
+## Hypotheses
+* none
+
+## Conclusion
+* lower end of the interval is below its upper end
 
 ## References
 

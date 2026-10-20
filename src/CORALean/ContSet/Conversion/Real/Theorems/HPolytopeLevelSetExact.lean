@@ -12,6 +12,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Basic
 CORA's `levelSet(polytope)`: the affine function `A x - b`, every component `<= 0`. CORA throws
 `notSupported` when the polytope has equality constraints; a level set carries `=` components, so
 here they become `Ae x - be = 0` and the conversion is total.
+
+## Inputs
+* `P` – halfspace polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* level set equals the polytope
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -14,6 +14,15 @@ Through `PolyZonotope.zonotope`, which reads every dependent generator as an
 independent one, then `Zonotope.zonoBundle` — the single-member bundle, exact by
 `Set.iInter_const`. All the loss is the first leg's, so this is no worse than
 `PolyZonotope → Zonotope` already is.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its zonotope bundle
 -/
 
 -- Authors:       Claude Opus 5

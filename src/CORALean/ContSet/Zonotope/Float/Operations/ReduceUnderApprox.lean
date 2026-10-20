@@ -15,6 +15,14 @@ zonotope has `Z`'s center, the generators `Gr` and a zero error box. It is kept 
 certifies it inside `Z` (the float replacement of (43)'s containment row, with rounding absorbed);
 else the center alone if that is certified, else `none`. Sufficient only: `some` proves the result
 inner, `none` refutes nothing; the solver's order and Hausdorff optimality are not checked.
+
+## Inputs
+* `opt` – solver proposing reduced generators
+* `Z` – zonotope
+* `H` – candidate right inverse
+
+## Output
+* proposed zonotope, if certified inside the input
 -/
 
 -- Authors:       Claude Opus 5.5

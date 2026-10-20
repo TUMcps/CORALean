@@ -18,6 +18,16 @@ public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeMatIntervalCont
 `Zonotope.matMul` (`matMul_outer`), whose center and generators the directed products
 bracket, entry by entry, as `dotDown_le`/`le_dotUp` state them; `af` and `e(b + f)` are
 `Interval.matMul_outer` at the two boxes `matInterval_contains` supplies.
+
+## Inputs
+* `M` – left matrix zonotope
+* `N` – right matrix zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* every product is contained in the computed matrix zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

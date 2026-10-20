@@ -15,6 +15,15 @@ coarser than CORA's conversion. CORA's `polyZonotope(capsule)` parametrizes the 
 models of the spherical angles and linearly combines the two end balls. Here the capsule is
 first replaced by its axis-aligned box, which loses the rounded ends and the slant of the
 segment.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* capsule is contained in its polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,15 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
 
 `zero` reads as `0`, so the stored center is the exact layer's origin and the
 point theorem gives `{0}`.
+
+## Inputs
+* `n` – dimension
+
+## Hypotheses
+* none
+
+## Conclusion
+* origin zonotope denotes the zero vector only
 -/
 
 -- Authors:       Claude Opus 5.5

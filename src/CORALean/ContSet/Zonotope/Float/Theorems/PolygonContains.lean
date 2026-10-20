@@ -35,6 +35,15 @@ checks pass, the sorted nominal zonotope lies in the hull of its exact walk corn
 each exact corner lies between its two stored roundings, so in the stored vertex plus the
 column-gap box (`VPolytope.mem_columnGap`); the zonotope's own box is added. If a check fails the
 result is the box's corners, which enclose by `Zonotope.interval_contains`.
+
+## Inputs
+* `Z` – planar zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is contained in its polygon
 -/
 
 -- Authors:       Claude Sonnet 5.5

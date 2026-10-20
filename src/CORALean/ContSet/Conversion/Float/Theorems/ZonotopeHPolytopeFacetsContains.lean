@@ -10,6 +10,16 @@ public import CORALean.ContSet.Conversion.Float.Theorems.Basic
 
 Both branches are `Zonotope.hPolytope` at some rows, which holds the zonotope for any rows
 (`Zonotope.hPolytope_contains`).
+
+## Inputs
+* `p` – Newton steps per row length
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is contained in its facet polytope
 -/
 
 -- Authors:       Claude Opus 5.5

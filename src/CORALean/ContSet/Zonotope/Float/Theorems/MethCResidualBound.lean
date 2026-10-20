@@ -10,6 +10,18 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 
 Each entry of `H P` lies between its two directed dot products, so `1 - (H P)ᵢⱼ` lies between
 the two differences, and `methCResidual` takes the larger magnitude of their bounds.
+
+## Inputs
+* `H` – candidate right inverse
+* `P` – basis matrix
+* `i` – row index
+* `j` – column index
+
+## Hypotheses
+* none
+
+## Conclusion
+* residual entry is bounded by the computed bound
 -/
 
 -- Authors:       Claude Opus 5.5

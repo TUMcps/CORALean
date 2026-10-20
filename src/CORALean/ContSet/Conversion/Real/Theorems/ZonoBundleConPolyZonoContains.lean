@@ -17,6 +17,16 @@ constrained polynomial zonotope with an empty constraint system. Whichever
 component `i` names already throws away every other one the bundle intersects
 against — the whole point of a bundle being that the intersection is tighter
 than any one member — so all the loss here is that choice.
+
+## Inputs
+* `zB` – zonotope bundle
+* `i` – member index
+
+## Hypotheses
+* none
+
+## Conclusion
+* bundle is contained in its constrained polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5

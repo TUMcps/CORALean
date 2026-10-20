@@ -11,6 +11,12 @@ public import CORALean.ContSet.Zonotope.Float.Operations.RightInvCandidate
 `Zonotope.isFullDimWith` at the default candidate right inverse `Zonotope.rightInvCandidate`, the
 Gram-matrix inverse of the generators, which needs no help from the caller. Only `true` is
 certain.
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* true when the zonotope is certified full-dimensional
 -/
 
 -- Authors:       Claude Opus 5.5

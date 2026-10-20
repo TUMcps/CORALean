@@ -14,6 +14,19 @@ encloses `D + Z₂` (`plus_outer`), and the check puts that sum inside `Z₁`
 (`containsZonotope_sound`). So every point of `D` has all of `Z₂` added into `Z₁`, which is
 membership in the Minkowski difference. Inner only, the direction `MinkDiff` owes: no claim that it
 is `Real.Zonotope.minkDiffRep`'s result.
+
+## Inputs
+* `Z₁` – minuend zonotope
+* `Z₂` – subtrahend zonotope
+* `M` – representation of the subtrahend
+* `ρ` – margin shrink factor
+* `H` – candidate right inverse
+
+## Hypotheses
+* none
+
+## Conclusion
+* every returned zonotope is inside the Minkowski difference
 -/
 
 -- Authors:       Claude Sonnet 5.5

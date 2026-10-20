@@ -10,6 +10,12 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 The box midpoint added to the center, rounded down. The exact midpoint need
 not be a float — `[5, 6]` gives 5.5 — so the gap between the two roundings is
 what `absorbError` leaves behind.
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* center plus box midpoint, rounded down
 -/
 
 -- Authors:       Claude Opus 5

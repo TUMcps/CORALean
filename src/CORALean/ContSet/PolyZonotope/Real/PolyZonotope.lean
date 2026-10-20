@@ -7,21 +7,14 @@ public import CORALean.Global.Entrywise
 /-!
 # Sparse polynomial zonotopes: the representation
 
-CORA's `polyZonotope`, and [1, Def. 1]: a center, dependent generators `G` scaled by
-monomials in factors `α ∈ [-1,1]ᵖ` read off the exponent matrix `E`, and
-independent generators `GI` scaled by their own `β ∈ [-1,1]ᵍ`. The `α` are
-*shared*, so the denoted set is generally neither convex nor a zonotope and a
-quadratic map stays inside the class. Sparsity is a property of how `E` is
-stored, not of what it denotes, so nothing here mentions it.
-
-CORA carries an identifier vector `id` naming each factor. Here identity is
-positional — a factor *is* its row index — which is why `plus` lays the two
-exponent matrices out block-diagonally rather than overlaying them.
-
-Instantiated at a matrix ambient type, `α = Mat ℝ n m`, this is [2, Def. 7]'s
-matrix polynomial zonotope with nothing added: `G : Fin h → Mat ℝ n m` already
-is its 3D generator tensor, and `construct`'s sum is its set expression
-unchanged. `NN/Graph` is where every use makes that instantiation.
+CORA's `polyZonotope`, and [1, Def. 1]: a center, dependent generators `G` scaled by monomials in
+factors `α ∈ [-1,1]ᵖ` read off the exponent matrix `E`, and independent generators `GI` scaled by
+their own `β ∈ [-1,1]ᵍ`. The `α` are *shared*, so the set is generally neither convex nor a zonotope
+and a quadratic map stays inside the class. Sparsity is a property of how `E` is stored, not of what
+it denotes. CORA carries an identifier vector `id` naming each factor; here identity is positional,
+which is why `plus` lays the two exponent matrices out block-diagonally. At a matrix ambient type,
+`α = Mat ℝ n m`, this is [2, Def. 7]'s matrix polynomial zonotope with nothing added; `NN/Graph` is
+where every use makes that instantiation.
 
 ## References
 

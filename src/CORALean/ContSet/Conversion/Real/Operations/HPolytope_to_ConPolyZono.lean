@@ -11,6 +11,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_ConZonoto
 `@polytope/conPolyZono.m` is `conPolyZono(conZonotope(P))`: the polytope's constrained zonotope,
 whose box comes from the support bounds `up`, `lo` (CORA's `'exact:supportFunc'` with
 `B = interval(P)`), read as a constrained polynomial zonotope. Both steps are exact.
+
+## Inputs
+* none
+
+## Hypotheses
+* `up` – certified upper bound per coordinate
+* `lo` – certified lower bound per coordinate
+
+## Output
+* constrained polynomial zonotope of the polytope
 -/
 
 -- Authors:       Claude Opus 5.5

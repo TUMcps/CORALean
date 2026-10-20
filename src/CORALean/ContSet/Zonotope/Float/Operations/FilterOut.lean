@@ -10,15 +10,18 @@ public import CORALean.ContSet.Zonotope.Float.Operations.RightInvCandidate
 
 CORA's `@zonotope/filterOut(Z)` [1]: from a list of parallelotopes, delete those "covered by other
 parallelotopes". CORA keeps a cell when it has a remainder after the set differences with all the
-others (`chebyball` of the differences). A rounded layer cannot decide whether a union of
-polytopes covers a cell, but it can certify the easiest cover: the cell lies in *one* other cell,
-which `Zonotope.containsZonotope` checks (`'approx:st'` containment, with `rightInvCandidate` as
-the proposed right inverse). A cell is kept unless some other cell is certified to contain it.
+others. A rounded layer cannot decide whether a union of polytopes covers a cell, but it can certify
+the easiest cover: the cell lies in *one* other cell, which `Zonotope.containsZonotope` checks
+(`rightInvCandidate` the proposed right inverse). A cell is kept unless some other cell is certified
+to contain it, so the cells kept are a superset of those whose remainder has nonempty interior
+(`Zonotope.filterOut_keeps`). As in CORA, two equal cells delete each other; the sort by volume only
+orders CORA's output list and is not modelled.
 
-So the cells kept here are a superset of the cells whose remainder has nonempty interior
-(`Zonotope.filterOut_keeps`): nothing the criterion keeps is deleted, but a cell covered only by
-a union of several cells is kept, which the criterion deletes. As in CORA, two equal cells delete
-each other. The sort by volume only orders CORA's output list and is not modelled.
+## Inputs
+* `Zs` – cells
+
+## Output
+* cells that no other cell is certified to contain
 
 ## References
 

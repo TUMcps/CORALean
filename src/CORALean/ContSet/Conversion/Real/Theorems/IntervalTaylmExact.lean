@@ -23,6 +23,16 @@ swapped interval, as CORA's does short of its own emptiness check.
 [1, Eq. 11]: `T = 0.5(a̅ + a̲) + 0.5(a̅ - a̲)x + [0, 0]` with `x ∈ [-1, 1]`, whose range is the
 interval (`taylm_exact`).
 
+## Inputs
+* `I` – interval
+* `N` – Taylor order
+
+## Hypotheses
+* `hI` – lower end below upper end per coordinate
+
+## Conclusion
+* Taylor model equals the interval
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

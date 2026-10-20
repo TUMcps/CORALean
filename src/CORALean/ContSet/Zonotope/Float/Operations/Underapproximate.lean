@@ -14,6 +14,15 @@ the real definition `Real.Zonotope.underapproximate`), and rounding may move it 
 it is returned only if `Zonotope.containsPoint`, with a right inverse `H` of the generators the
 caller proposes, certifies it inside the zonotope, else `none`. Sufficient only: `some` proves the
 point is a member, `none` refutes nothing.
+
+## Inputs
+* `Z` – zonotope
+* `H` – candidate right inverse
+* `s` – direction
+* `b` – plus or minus vertex
+
+## Output
+* vertex in the direction, if certified inside
 -/
 
 -- Authors:       Claude Opus 5.5

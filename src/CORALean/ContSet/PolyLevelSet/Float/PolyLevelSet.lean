@@ -12,16 +12,12 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 
 The rows `(A μ_R(x) - b)ᵢ ⋈ᵢ 0` of [1, Def. 5]'s constraint and of `Real.PolyLevelSet`, on the
 domain box `dom`, with `A`, `b` and the box stored in `𝕋` and read back exactly (`nominalCore`),
-plus the slack each row records for its rounding: row `i` holds to within `|b_errorᵢ|`
-(`CompOp.IsMetWithin`), so an equation is `|(A μ_R(x) - b)ᵢ| ≤ |b_errorᵢ|`, as a float `HPolytope`
-records its rows'. The slack is a constraint-space quantity, one number per row. The exponent
-matrix `R` and the operators are exact data and stay as they are.
+plus the slack each row records: row `i` holds to within `|b_errorᵢ|` (`CompOp.IsMetWithin`).
 
 There is no `I_error` and no `absorbRounding`: every operation rounds the rows' coefficients, which
-the slack records, and none moves a point, so an error box on the variables would always be zero;
-the box would also need a range bound of every row over `dom` to be absorbed, and an equation has no
-interior to take its slack back into `b`. `relax` turns each row's slack into a variable of its own,
-which a constrained polynomial zonotope can afford as a factor (`ConPolyZono.absorbRounding`).
+the slack records, and none moves a point; an equation has no interior to take its slack back into
+`b`. `relax` turns each row's slack into a variable, which a constrained polynomial zonotope can
+afford as a factor (`ConPolyZono.absorbRounding`).
 
 ## References
 

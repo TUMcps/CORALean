@@ -16,6 +16,13 @@ this, which is the reverse of `reduceGirard_outer`.
 Not a `Reduce` operation and no class instantiates it: `Reduce` obliges the
 outer direction only, while a box for the reverse one is a fact about the
 particular rule `reduce` runs.
+
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Output
+* box absorbing the generators Girard's rule drops
 -/
 
 -- Authors:       Claude Opus 5

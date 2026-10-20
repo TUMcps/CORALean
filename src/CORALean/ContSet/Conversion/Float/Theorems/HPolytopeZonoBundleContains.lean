@@ -13,6 +13,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 Through the zonotope the box gives, then `Zonotope.zonoBundle`, exact. All the
 loss is the box route's; the caller supplies the coordinate bounds.
+
+## Inputs
+* none
+
+## Hypotheses
+* `up` – float upper bound per coordinate
+* `lo` – float lower bound per coordinate
+
+## Conclusion
+* polytope is contained in its zonotope bundle
 -/
 
 -- Authors:       Claude Opus 5.5

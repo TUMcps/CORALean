@@ -14,6 +14,17 @@ denotes the star set's. The level set is found, not computed: eliminating the co
 `x = c + G α` and the predicate is no operation of either representation. The other direction is
 `LevelSet.starSet_exact`, so the two classes denote the same sets.
 
+## Inputs
+* `P` – predicate family
+* `n` – dimension
+* `s` – star set
+
+## Hypotheses
+* none
+
+## Conclusion
+* some level set equals the star set
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

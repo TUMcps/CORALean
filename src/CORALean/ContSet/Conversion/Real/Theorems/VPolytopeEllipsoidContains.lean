@@ -17,6 +17,15 @@ this composition is not it.
 
 Loses whatever the zonotope route loses on top of the box the hull already
 loses to.
+
+## Inputs
+* `P` – vertex polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* polytope is contained in its ellipsoid
 -/
 
 -- Authors:       Claude Opus 5

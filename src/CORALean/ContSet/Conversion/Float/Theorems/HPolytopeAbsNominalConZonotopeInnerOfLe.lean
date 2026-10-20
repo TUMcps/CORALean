@@ -8,6 +8,18 @@ public import CORALean.ContSet.Conversion.Float.Operations.HPolytope_to_ConZonot
 
 /-!
 # A halfspace description as a constrained zonotope from the inside, over a floating-point scalar
+
+## Inputs
+* `P` – halfspace polytope
+* `Z` – zonotope
+* `y` – point
+* `k` – coordinate
+
+## Hypotheses
+* `hy` – point lies in the tightened conversion
+
+## Conclusion
+* coordinate of `y` is bounded by center plus generator sums
 -/
 
 -- Authors:       Claude Opus 5.5

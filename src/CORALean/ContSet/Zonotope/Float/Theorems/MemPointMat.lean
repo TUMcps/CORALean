@@ -9,6 +9,15 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 # A stored matrix lies in its point matrix zonotope
 
 The empty generator sum and the zero box each add nothing.
+
+## Inputs
+* `A` – stored matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* matrix lies in its point matrix zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -18,6 +18,15 @@ list is empty.
 Not routed through the exact layer's version — the float `fullspace` reads as an
 empty inequality block and an empty slab, which denotes everything but is not the
 exact layer's `fullspace` term. Membership is the shorter argument anyway.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is contained in its constrained zonotope
 -/
 
 -- Authors:       Claude Opus 5

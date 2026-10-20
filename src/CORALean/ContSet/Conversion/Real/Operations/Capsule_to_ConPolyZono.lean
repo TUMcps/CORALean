@@ -17,6 +17,12 @@ exponent one, plus the ball `conPolyZono(ellipsoid(r² I))`, plus `c`. Here the 
 ball is `Ellipsoid.ofFactor (r • 1) 0`. Both sums are exact, and so is the conversion for `0 ≤ r`.
 CORA's branches for an empty radius or generator (`isempty(C.r)`, `isempty(C.g)`) concern empty
 MATLAB fields, which a Lean capsule does not have; the last of them adds an undefined `s`.
+
+## Inputs
+* `C` – capsule
+
+## Output
+* constrained polynomial zonotope of the segment plus the ball
 -/
 
 -- Authors:       Claude Opus 5.5

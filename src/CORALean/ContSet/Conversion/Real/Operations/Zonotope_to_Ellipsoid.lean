@@ -12,6 +12,12 @@ public import Mathlib.LinearAlgebra.Matrix.DotProduct
 /-!
 # A zonotope as an ellipsoid
 
+## Inputs
+* `Z` – zonotope
+
+## Output
+* ellipsoid with the factor scaled by root of generator count
+
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean

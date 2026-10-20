@@ -12,21 +12,23 @@ public import Mathlib.Analysis.Convex.Join
 /-!
 # A hull as a polynomial zonotope
 
-Two readings. `polyZonotope` goes through the hull's own box and that box's
-zonotope, then the zonotope's exact reading with one factor per generator:
-cheap, and it loses whatever the box route loses and nothing further.
-
-`exists_polyZonotope_exact` is [1, Thm. 1] and loses nothing. A vertex is a
-polynomial zonotope with no generators at all; polynomial zonotopes without an
-independent block are closed under the convex hull, which is `linComb` and
-[1, Prop. 14]; and folding that over the vertex list reaches the hull of them
-all. Existence rather than a conversion of its own, as [1] states it: the
-counts grow with the vertex list, so the construction is a recursion and no one
-type holds its results.
-
-`0 < P.k` is what *bounded polytope* means here, a vertex list of length zero
-denoting `∅` where a polynomial zonotope always has a point. The arrow of
+Two readings. `polyZonotope` goes through the hull's own box and that box's zonotope, then the
+zonotope's exact reading with one factor per generator: cheap, and it loses what the box route
+loses. `exists_polyZonotope_exact` is [1, Thm. 1] and loses nothing: a vertex is a polynomial
+zonotope with no generators; polynomial zonotopes without an independent block are closed under the
+convex hull, which is `linComb` and [1, Prop. 14]; and folding that over the vertex list reaches the
+hull. Existence, as [1] states it, since the counts grow with the vertex list. `0 < P.k` is what
+*bounded polytope* means here, a vertex list of length zero denoting `∅`. The arrow of
 [1, Fig. 1 (Polytopes → Polynomial Zonotopes)].
+
+## Inputs
+* `P` – vertex polytope
+
+## Hypotheses
+* `hk` – polytope has a vertex
+
+## Conclusion
+* some polynomial zonotope equals the polytope
 
 ## References
 

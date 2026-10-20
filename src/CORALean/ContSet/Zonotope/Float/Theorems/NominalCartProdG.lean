@@ -11,6 +11,17 @@ public import CORALean.Global.AppendLinear
 
 Column by column, the stored generators of the product, read as reals, are the exact layer's
 block-diagonal columns appended.
+
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+* `j` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* nominal generator of the product is the appended block-diagonal one
 -/
 
 -- Authors:       Claude Sonnet 5.5

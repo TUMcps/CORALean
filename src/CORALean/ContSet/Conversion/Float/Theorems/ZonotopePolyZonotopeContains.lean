@@ -15,6 +15,15 @@ public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_PolyZonot
 Nothing rounds. The generators are copied, each factor gets the exponent matrix's
 identity column so every monomial is the factor itself, and the error box is
 carried across.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is contained in its polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

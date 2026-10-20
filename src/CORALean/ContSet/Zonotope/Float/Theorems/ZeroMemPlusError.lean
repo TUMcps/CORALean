@@ -7,15 +7,23 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Plus
 /-!
 # `plus` keeps the origin in the error box
 
-An invariant the growth bounds in `PlusSubsetAddBox` and the whole
-`reachErrorFloat` recursion lean on: if both operands already bracket `0` in
-their own box, so does the sum's. `centerResidual` brackets `0` on its own —
-`subDown` of two equal arguments is at most `0`, and `subUp` of the two
-directed roundings of one addition is at least their gap — and `Interval.plus`
-carries the property through, each bound rounding the way that keeps it.
+An invariant the growth bounds in `PlusSubsetAddBox` and the whole `reachErrorFloat` recursion lean
+on: if both operands already bracket `0` in their own box, so does the sum's. `centerResidual`
+brackets `0` on its own (`subDown` of two equal arguments is at most `0`, and `subUp` of the two
+directed roundings of one addition is at least their gap) and `Interval.plus` carries the property
+through, each bound rounding the way that keeps it. Not a fact about `plus` specifically: any two
+boxes that bracket `0`, added, bracket `0`. Stated at `plus` because that is the one call site.
 
-Not a fact about `plus` specifically: any two boxes that bracket `0`, added,
-bracket `0`. Stated at `plus` because that is the one call site.
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+
+## Hypotheses
+* `h₁` – first error box contains zero
+* `h₂` – second error box contains zero
+
+## Conclusion
+* sum error box contains zero
 -/
 
 -- Authors:       Claude Opus 5

@@ -11,6 +11,21 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 
 Each entry of `G Γ` lies between its two directed dot products, so the entry of `A - G Γ` lies
 between the two differences, and `mulResidual` takes the larger magnitude of their bounds.
+
+## Inputs
+* `m` – number of columns
+* `h` – number of generators
+* `A` – target matrix
+* `G` – generator matrix
+* `Γ` – coefficient matrix
+* `i` – row index
+* `j` – column index
+
+## Hypotheses
+* none
+
+## Conclusion
+* residual entry is bounded by the computed bound
 -/
 
 -- Authors:       Claude Opus 5.5

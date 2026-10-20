@@ -21,6 +21,16 @@ Not routed through the exact layer's set — the stored matrices read as reals o
 up to `toReal_one`, `toReal_neg` and `toReal_zero` — but through its *nominal*
 reading, which is the exact conversion of the zonotope the stored floats describe,
 and that shares the exactness proof.
+
+## Inputs
+* `Z` – zonotope
+* `β` – factor vector
+
+## Hypotheses
+* `hβ` – factors in the unit box
+
+## Conclusion
+* stored linear matrix inequality is positive semidefinite at `β`
 -/
 
 -- Authors:       Claude Opus 5.5

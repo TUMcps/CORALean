@@ -8,6 +8,12 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 
 /-!
 # A zonotope as a spectrahedral shadow
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* spectrahedral shadow of the zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

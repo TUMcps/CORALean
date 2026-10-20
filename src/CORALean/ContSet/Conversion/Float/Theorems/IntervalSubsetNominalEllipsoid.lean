@@ -10,6 +10,17 @@ public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 
 /-!
 # A box as an ellipsoid, over a floating-point scalar: `subset_nominal_ellipsoid`
+
+## Inputs
+* `I` – interval
+* `σ` – scaling factor
+
+## Hypotheses
+* `hσ` – scaling factor positive
+* `hn` – squared scaling factor at least dimension
+
+## Conclusion
+* interval is contained in the nominal ellipsoid
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

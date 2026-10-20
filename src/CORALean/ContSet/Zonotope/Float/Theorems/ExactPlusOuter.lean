@@ -16,6 +16,17 @@ The exact layer's `exactPlus` of the stored operands' nominal parts, plus the tw
 in the rounded `exactPlus`. The shared columns' stored sums sit within the gap `subUp` computes of
 the exact sums, the copied columns are exact, and the center's rounding is its residual, as in
 `Zonotope.plus_outer`.
+
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+* `k` – number of paired generators
+
+## Hypotheses
+* none
+
+## Conclusion
+* exact sum with the boxes is contained in the computed sum
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -20,6 +20,15 @@ index out of `Fin.append`, which does not reduce on a variable.
 
 This is the operation that needed `one` in the scalar: a constraint matrix
 cannot name a coordinate without it.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* halfspace polytope equals the interval
 -/
 
 -- Authors:       Claude Opus 5

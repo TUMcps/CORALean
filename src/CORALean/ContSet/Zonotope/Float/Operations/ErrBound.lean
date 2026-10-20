@@ -8,6 +8,12 @@ public import CORALean.ContSet.Interval.Float.Interval
 # `Zonotope.errBound`
 
 The largest magnitude in each entry of a float box: the larger of the two ends' absolute values.
+
+## Inputs
+* `E` – error box
+
+## Output
+* larger absolute end per entry of the box
 -/
 
 -- Authors:       Claude Opus 5.5

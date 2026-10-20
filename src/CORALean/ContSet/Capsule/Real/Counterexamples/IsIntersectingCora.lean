@@ -9,34 +9,15 @@ public import Mathlib.Topology.Algebra.Module.FiniteDimension
 @[expose] public section
 
 /-!
-# CORA's capsule–capsule `isIntersecting_`, as printed
-
-`aux_isIntersecting_capsule` of `@capsule/isIntersecting_.m` (l. 103-143): the quadratic programme
-in `(t₁, t₂)` with `H = 0.5*[g1'*g1 -g1'*g2; -g1'*g2 g2'*g2]` and `f = 2*[(c1-c2)'*g1;
--(c1-c2)'*g2]` over `[-1, 1]²`, the axis points `p1 = c1 + g1 x(1)`, `p2 = c2 + g2 x(2)`, and the
-verdict `dist < r1 + r2 | withinTol(dist, r1 + r2)` (default tolerance `1e-8`; `withinTol`'s
-relative test `|a-b|/min(|a|,|b|) <= tol` multiplied out). `CORAquadprog` (MOSEK's `mskqpopt` or
-MATLAB's `quadprog`, both minimising `½ xᵀHx + fᵀx`) is the argument `quadprog H f lb ub`; the
-theorems assume only that its output minimises that objective over the box. Kept only so that
-`Capsule.isIntersecting_cora_counterexample` can state that it is unsound: the squared axis
-distance is `xᵀMx + 2·(the linear term)` with `M` the bracket, so `H` needs `2 M`, not `½ M`.
-`Capsule.isIntersecting_` is the sound test.
-
 # CORA's capsule–capsule `isIntersecting_` misses an intersection
 
-`aux_isIntersecting_capsule` of `@capsule/isIntersecting_.m` poses `H = ½ M` where the squared axis
-distance `‖(c₁ + t₁ g₁) - (c₂ + t₂ g₂)‖² = tᵀ M t + fᵀ t + ‖c₁ - c₂‖²` needs `H = 2 M` in the
-solvers' `½ tᵀ H t + fᵀ t`. With `H` four times too small the linear term dominates and the
-minimiser drifts away. For `C₁ = capsule([0;0],[1;0],0.1)` and `C₂ = capsule([0.5;0],[0;1],0.1)`,
-`M = I` and `f = (-1, 0)`, so CORA minimises `¼ (t₁² + t₂²) - t₁` over `[-1, 1]²`, whose unique
-minimiser is `(1, 0)` (the unconstrained `t₁ = 2` clipped). Every minimiser has `t₁ = 1`, so
-`p1 = (1, 0)`, `p2 = (0.5, t₂)`, `dist ≥ 0.5 > 0.2` and CORA answers `false`, though `(0.5, 0)`
-lies in both capsules.
-
-The solver is any function returning a minimiser of `½ xᵀHx + fᵀx` over a nonempty box — the
-contract of `CORAquadprog` (MOSEK or MATLAB `quadprog`); the second conjunct shows such a function
-exists, so the statement is not vacuous. Read from the source, not run. `isIntersecting` reaches
-this branch for two capsules of equal precedence, `type` `'exact'` or `'approx'` alike.
+`aux_isIntersecting_capsule` of `@capsule/isIntersecting_.m` (l. 103-143) poses the quadratic
+programme in `(t₁, t₂)` over `[-1, 1]²` with `H = ½ M`, where the squared axis distance needs
+`H = 2 M` in the solvers' `½ xᵀHx + fᵀx`. For `C₁ = capsule([0;0],[1;0],0.1)` and
+`C₂ = capsule([0.5;0],[0;1],0.1)` every minimiser has `t₁ = 1`, so `dist ≥ 0.5 > 0.2` and CORA
+answers `false`, though `(0.5, 0)` lies in both. The solver `quadprog H f lb ub` is any minimiser of
+the objective over the box (`CORAquadprog`). Read from the source, not run.
+`Capsule.isIntersecting_` is the sound test.
 
 ## Inputs
 * none

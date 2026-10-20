@@ -10,6 +10,17 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
 
 CORA's `@zonotope/rotate`, `rotMat * Z`, with the rotation known only to within the sine and
 cosine enclosures: the interval matrix `rotMat` times the zonotope, `mtimesIntervalMat`.
+
+## Inputs
+* `p` – Newton steps for the trigonometry
+* `n` – dimension
+* `Z` – zonotope
+* `i` – first rotation axis
+* `j` – second rotation axis
+* `angle` – rotation angle
+
+## Output
+* zonotope rotated in the plane of the two axes
 -/
 
 -- Authors:       Claude Opus 5.5

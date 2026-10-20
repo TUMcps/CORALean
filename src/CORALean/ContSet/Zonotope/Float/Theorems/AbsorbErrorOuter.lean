@@ -21,6 +21,15 @@ midpoint need not be one, which is why the box does not become `[0, 0]`.
 The witness is `Fin.append β γ`: the old coefficients, then one per coordinate
 placing that coordinate's error in its new generator. `coefficient` supplies it,
 and the radius rounds up so it always fits.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is contained in its error-absorbed form
 -/
 
 -- Authors:       Claude Opus 5

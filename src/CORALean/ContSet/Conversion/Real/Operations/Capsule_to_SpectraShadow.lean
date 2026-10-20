@@ -16,6 +16,12 @@ public import CORALean.ContSet.SpectraShadow.Real.Operations.Plus
 being the ellipsoid of shape `r² I`. Both conversions and the sum are exact, so the shadow is the
 capsule for `0 ≤ r`. CORA also sets the shadow's cached properties (bounded, empty,
 full-dimensional, center), which a Lean shadow does not carry.
+
+## Inputs
+* `C` – capsule
+
+## Output
+* spectrahedral shadow of the ball plus the segment
 -/
 
 -- Authors:       Claude Opus 5.5

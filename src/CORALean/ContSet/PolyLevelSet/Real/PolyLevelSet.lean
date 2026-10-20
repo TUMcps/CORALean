@@ -11,18 +11,13 @@ public import Mathlib.Data.Matrix.Mul
 # Polynomial level sets: the representation
 
 A `LevelSet` whose function is a polynomial, over a domain box, stored by its data: the points `x`
-of the box `dom` with `(A μ_R(x))ᵢ - bᵢ ⋈ᵢ 0` in every row, `μ_R(x)` the monomials
-`∏ₖ xₖ^{R[k,j]}` read off the exponent matrix `R`, `A` the coefficients of each row on those
-monomials and `⋈ᵢ ∈ {≤, <, =}`. At `=` in every row and the box `[-1, 1]ᵖ` this is [1, Def. 7]'s
-`constrDom`, the constraint `Σⱼ (∏ₖ αₖ^{R[k,j]}) A_(·,j) = b` of [1, Def. 5] on the factors' domain:
-what a constrained polynomial zonotope's factors satisfy (`ConPolyZono.cons`, whose `cons_dom` fixes
-the box), as a constrained zonotope's satisfy an `HPolytope`. The rows `≤` and `<` are [2, Eq. 2]'s
-invariants, at a polynomial `s`. The box is a library `Interval`, whose ends are finite.
-
-CORA has no class for it: its `levelSet` stores the symbolic equation, which a polynomial is one
-kind of. `PolyLevelSet.levelSet` (`Conversion/`) is that reading, the box written as `2n` rows of
-its own, with the same set, so whatever is proved of a `LevelSet` holds here; the stored data are
-what an operation can compute with.
+of the box `dom` with `(A μ_R(x))ᵢ - bᵢ ⋈ᵢ 0` in every row, `μ_R(x)` the monomials `∏ₖ xₖ^{R[k,j]}`
+read off the exponent matrix `R`, and `⋈ᵢ ∈ {≤, <, =}`. At `=` in every row and the box `[-1, 1]ᵖ`
+this is [1, Def. 7]'s `constrDom`, the constraint of [1, Def. 5] on the factors' domain: what a
+constrained polynomial zonotope's factors satisfy (`ConPolyZono.cons`, whose `cons_dom` fixes the
+box). The rows `≤` and `<` are [2, Eq. 2]'s invariants, at a polynomial `s`. CORA has no class for
+it; `PolyLevelSet.levelSet` (`Conversion/`) is that reading, the box written as `2n` rows, with the
+same set, so whatever is proved of a `LevelSet` holds here.
 
 ## References
 

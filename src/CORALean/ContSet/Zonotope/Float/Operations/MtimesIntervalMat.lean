@@ -10,15 +10,20 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
 /-!
 # `Zonotope.mtimesIntervalMat`, over a floating-point scalar
 
-CORA's `mtimes` at an interval matrix, `mid(M) Z ⊕ box(rad(M) |Z|)`, rounded.
-`Zonotope.mtimes` handles the center matrix `Interval.centerMat`, paying its
-rounding into the box as it does for a plain matrix. What any member of `M`
-does beyond it is a matrix known only to within `Interval.matResidual`: on the
-nominal part `c + G β` that is at most `|M - mid(M)| (|c| + Σ|G|)` per
-coordinate, rounded up and kept as `m` new diagonal generators, as CORA keeps
-it; on the error box it is a box-times-box product, `Interval.mtimesIntervalMat`,
-and joins `mid(M) E` in the box. So the box carries rounding and nothing of the
-interval matrix's width — a long product chain wraps only what rounding cost.
+CORA's `mtimes` at an interval matrix, `mid(M) Z ⊕ box(rad(M) |Z|)`, rounded. `Zonotope.mtimes`
+handles the center matrix `Interval.centerMat`, paying its rounding into the box. What any member of
+`M` does beyond it is a matrix known only to within `Interval.matResidual`: on the nominal part
+`c + G β` that is at most `|M - mid(M)| (|c| + Σ|G|)` per coordinate, rounded up and kept as `m` new
+diagonal generators, as CORA keeps it; on the error box it is a box-times-box product,
+`Interval.mtimesIntervalMat`, joining `mid(M) E` in the box. So the box carries rounding and nothing
+of the interval matrix's width: a long product chain wraps only what rounding cost.
+
+## Inputs
+* `IM` – interval matrix
+* `Z` – zonotope
+
+## Output
+* zonotope of the midpoint product with radius generators
 -/
 
 -- Authors:       Claude Opus 5.5

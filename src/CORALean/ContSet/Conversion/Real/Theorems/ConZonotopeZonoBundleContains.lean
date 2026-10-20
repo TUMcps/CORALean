@@ -13,6 +13,15 @@ Through `ConZonotope.zonotope`, which drops the constraints, then
 `Zonotope.zonoBundle` — the single-member bundle, exact by `Set.iInter_const`.
 All the loss is the first leg's, so this is no worse than
 `ConZonotope → Zonotope` already is.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its zonotope bundle
 -/
 
 -- Authors:       Claude Opus 5

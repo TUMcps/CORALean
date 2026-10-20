@@ -11,6 +11,13 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 coordinate `j` can reach from the origin over the whole `construct`, nominal
 part and box together — the center and the generators' absolute sum, `radius`, plus
 whichever corner of the box is farther out.
+
+## Inputs
+* `Z` – zonotope
+* `j` – coordinate
+
+## Output
+* reach of coordinate `j` from the origin, error box included
 -/
 
 -- Authors:       Claude Opus 5.5

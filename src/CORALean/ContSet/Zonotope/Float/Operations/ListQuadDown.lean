@@ -10,6 +10,17 @@ public import CORALean.ContSet.Zonotope.Float.Operations.CubContractDown
 CORA's `listQuad{j}(a, b)` of `aux_cubMapSingle`, for extended columns `Zext`, in `𝕋`, rounded
 down: the cubic contraction at `(j, a, b)`, plus the one at `(j, b, a)` for `a < b` (the
 symmetrized pair), the pure square `a = b` as it is, and `0` below the diagonal.
+
+## Inputs
+* `T` – cubic tensor
+* `Zext` – extended columns
+* `i` – output coordinate
+* `j` – first index
+* `a` – second index
+* `b` – third index
+
+## Output
+* symmetrized contraction at the triple, rounded down
 -/
 
 -- Authors:       Claude Opus 5.5

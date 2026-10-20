@@ -16,6 +16,13 @@ center `C c`, then `Gᵢ c`, `C gⱼ` and every cross product `Gᵢ gⱼ`, each 
 `mulVecDown`/`mulVecUp` and stored low by `ofEntryBounds`. The two error boxes are taken
 as interval products: for `(a + e)(z + f) = az + af + e(z + f)`, `a` in the box around
 the matrix zonotope's nominal part and `z + f` in the zonotope's `interval`.
+
+## Inputs
+* `M` – matrix zonotope
+* `Z` – zonotope
+
+## Output
+* zonotope of the matrix-vector product
 -/
 
 -- Authors:       Claude Opus 5.5

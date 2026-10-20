@@ -8,17 +8,22 @@ public import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBounds
 /-!
 # `Zonotope.minkDiffStretch`, over a floating-point scalar
 
-The float counterpart of `Real.Zonotope.minkDiffStretch`: the generator representation [1,
-Thm. 4] and [1, Thm. 5] share, the centers subtracted and each generator of the minuend stretched
-by its own factor `μᵢ`. Rounded *outward*, one named `let` per step: the center and every scaled
-generator entry are bracketed by their two directed roundings, and `ofEntryBounds` stores the
-lower bounds and pays the gaps into the box. So the result encloses the real stretched zonotope
-at the same `μ`, which is the direction [1, Thm. 5]'s over-approximation needs
-(`minkDiffStretch_outer`). The under-approximation [1, Thm. 4] needs the opposite direction,
-which no outward rounding gives: `minkDiffStretchInner` certifies this result instead.
+The float counterpart of `Real.Zonotope.minkDiffStretch`: the generator representation [1, Thm. 4]
+and [1, Thm. 5] share, the centers subtracted and each generator of the minuend stretched by its own
+factor `μᵢ`. Rounded *outward*: the center and every scaled generator entry are bracketed by their
+two directed roundings, and `ofEntryBounds` stores the lower bounds and pays the gaps into the box.
+So the result encloses the real stretched zonotope at the same `μ`, which [1, Thm. 5]'s
+over-approximation needs (`minkDiffStretch_outer`). The under-approximation [1, Thm. 4] needs the
+opposite direction, which no outward rounding gives: `minkDiffStretchInner` certifies this result
+instead. `μ` is an argument, as at the real layer; the guarantees ask only that it be feasible.
 
-`μ` is an argument, as at the real layer: CORA's `'inner'`, `'outer'` and `'outer:coarse'` pick it
-by a linear program, and the guarantees ask only that the `μ` used be feasible.
+## Inputs
+* `Z₁` – minuend zonotope
+* `Z₂` – subtrahend zonotope
+* `μ` – stretch per generator
+
+## Output
+* difference center with the stretched generators
 
 ## References
 

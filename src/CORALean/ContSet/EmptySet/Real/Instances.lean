@@ -11,17 +11,12 @@ public import Mathlib.Analysis.InnerProductSpace.Basic
 /-!
 # What `EmptySet` instantiates
 
-Everything whose obligation a subset of `∅` can meet, which is every class here
-that does not ask for a point: `∅` is convex and compact, and it is its own
-sum, combination, difference, reduction, image and relabelling — the last one
-exactly, `Reindex`'s obligation being the only equality among them.
-
-`Mtimes` and `Reindex` take the family `fun n => EmptySet n`, which is what
-lets an algorithm that changes dimension carry an empty set along.
-
-No `OfPoint` and no `Recenter`: each asks for a point of the set — a named one
-in the first case, the origin after recentering in the second — and this
-representation has none to give.
+Everything whose obligation a subset of `∅` can meet, which is every class here that does not ask
+for a point: `∅` is convex and compact, and it is its own sum, combination, difference, reduction,
+image and relabelling, the last exactly, `Reindex`'s obligation being the only equality among them.
+`Mtimes` and `Reindex` take the family `fun n => EmptySet n`, letting an algorithm that changes
+dimension carry an empty set along. No `OfPoint` and no `Recenter`: each asks for a point of the
+set, and this representation has none to give.
 -/
 
 -- Authors:       Claude Opus 5

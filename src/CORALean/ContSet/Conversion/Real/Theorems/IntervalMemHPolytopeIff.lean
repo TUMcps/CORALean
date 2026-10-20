@@ -8,6 +8,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_HPolytope
 
 /-!
 # A box as halfspaces: `mem_hPolytope_iff`
+
+## Inputs
+* `I` – interval
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership in the polytope means each coordinate lies between the ends
 -/
 
 -- Authors:       Claude Opus 5

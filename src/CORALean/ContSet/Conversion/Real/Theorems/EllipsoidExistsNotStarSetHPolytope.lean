@@ -11,7 +11,17 @@ public import CORALean.ContSet.Conversion.Real.Theorems.StarSetExistsHPolytopeEx
 A star set whose predicate is CORA's polytope `C α ≤ d`, on its box `l ≤ α ≤ u`, is a halfspace
 description (`StarSet.exists_hPolytope_exact`), which the unit disc is not
 (`Ellipsoid.exists_not_hPolytope`). So the linear predicate does not reach the ellipsoids; a star
-set with a level-set or support-function predicate does (`SupportFunction.starSet_exact`).-/
+set with a level-set or support-function predicate does (`SupportFunction.starSet_exact`).
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* some planar ellipsoid is no star set with polytope predicate
+-/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026

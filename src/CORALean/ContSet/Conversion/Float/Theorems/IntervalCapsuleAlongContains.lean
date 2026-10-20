@@ -18,17 +18,24 @@ public import CORALean.ContSet.Capsule.Float.Theorems.SmulMemSymmetric
 /-!
 # A box as a capsule, over a floating-point scalar
 
-CORA's `capsule(interval)`: the center, the segment along a widest edge, and a ball thick enough
-for the other half-widths. The stored center and generator are rounded, and what they miss of the
-exact ones (between the upward and downward roundings, per entry) is in the error box: the
-center's in the residual box, the generator's, at the segment parameter, in the symmetric box of
+CORA's `capsule(interval)`: the center, the segment along a widest edge, and a ball thick enough for
+the other half-widths. The stored center and generator are rounded, and what they miss of the exact
+ones is in the error box: the center's in the residual box, the generator's in the symmetric box of
 its gap. The radius is `‖hw‖₂` for the other half-widths, rounded up (`Global/Float/Sqrt`, `k`
-Newton steps).
+Newton steps). The axis is chosen as CORA does, the first of maximal width, by a left fold with `le`
+on the rounded-up widths. The enclosure holds for every axis, so the choice affects only tightness.
+For `n = 0` there is no axis, and the capsule is the point.
 
-The axis is chosen as CORA does, the first of maximal width, here by a left fold with `le` on the
-rounded-up widths. The enclosure holds for every axis, so the choice affects only how tight the
-capsule is, and the fold is computable. For `n = 0` there is no axis, and the capsule is the
-point.
+## Inputs
+* `k` – Newton steps for the norm
+* `I` – interval
+* `a` – axis of the segment
+
+## Hypotheses
+* none
+
+## Conclusion
+* interval is contained in its capsule along `a`
 -/
 
 -- Authors:       Claude Sonnet 5.5

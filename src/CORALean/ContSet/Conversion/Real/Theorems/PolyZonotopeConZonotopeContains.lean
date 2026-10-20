@@ -15,6 +15,15 @@ satisfy — that second leg is exact, so all the loss is the polynomial
 zonotope's own zonotope step. A polynomial zonotope's set is generally not even
 convex, so no constrained zonotope is exact for it: a direct construction would
 be tighter.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its constrained zonotope
 -/
 
 -- Authors:       Claude Opus 5

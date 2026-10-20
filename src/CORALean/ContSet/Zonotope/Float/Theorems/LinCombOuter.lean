@@ -18,18 +18,23 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
 /-!
 # `Zonotope.linComb` contains every segment between the two zonotopes
 
-`InflatedContSet.linComb_subset` reduces this to two obligations: the nominal
-part spills only by what rounded, and the box absorbs that spill along with the
-segment between the two incoming boxes.
+`InflatedContSet.linComb_subset` reduces this to two obligations: the nominal part spills only by
+what rounded, and the box absorbs that spill along with the segment between the two incoming boxes.
+The nominal obligation is the exact `linComb` argument at the same coefficients (`pairCoeffSum`,
+`pairCoeffDiff` and `2λ-1`) with every stored value displaced from the one ℝ would have. Nothing
+stored is unfolded: the center cancels against its own residual and the generators against
+`linCombGDiff`, leaving the identity the exact proof closes with, which `Zonotope.sum_pair`
+supplies. The count is still `h₁ + h₂ + 1`, every rounding having gone into the box.
 
-The nominal obligation is the exact `linComb` argument at the same coefficients
-— `pairCoeffSum`, `pairCoeffDiff` and `2λ-1` — with every stored value displaced
-from the one ℝ would have. Nothing stored is unfolded: the center cancels
-against its own residual and the generators against `linCombGDiff`, leaving the
-identity the exact proof closes with, which `Zonotope.sum_pair` supplies.
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
 
-The count is therefore still `h₁ + h₂ + 1`, every rounding having gone into the
-box.
+## Hypotheses
+* none
+
+## Conclusion
+* every segment between the two sets lies in the combination
 -/
 
 -- Authors:       Claude Opus 5

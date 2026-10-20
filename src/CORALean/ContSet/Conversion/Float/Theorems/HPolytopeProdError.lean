@@ -12,6 +12,18 @@ public import CORALean.ContSet.Conversion.Float.Operations.HPolytope_to_ConZonot
 
 /-!
 # A halfspace description as a constrained zonotope, over a floating-point scalar: `prodError`
+
+## Inputs
+* `M` – matrix
+* `G` – generator matrix
+* `β` – factor vector
+* `i` – row index
+
+## Hypotheses
+* `hβ` – factors in the unit box
+
+## Conclusion
+* stored product is off by at most the row radius
 -/
 
 -- Authors:       Claude Opus 5

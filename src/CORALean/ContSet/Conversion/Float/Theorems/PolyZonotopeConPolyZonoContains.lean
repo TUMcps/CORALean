@@ -14,6 +14,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPol
 
 Nothing rounds, and nothing is computed: no constraint rows, so the system is
 vacuous, and every other field is carried across.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its constrained polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

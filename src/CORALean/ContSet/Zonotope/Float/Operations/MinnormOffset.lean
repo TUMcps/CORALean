@@ -9,14 +9,20 @@ public import CORALean.Global.Float.Sqrt
 # `Zonotope.minnormOffset`, over a floating-point scalar
 
 One entry of the vector `b` that `minnorm` takes its minimum over: the offset `Δd = Σᵤ |C G⁽ᵘ⁾|` of
-`polytope(Z - c)` at a facet normal `C`, divided by `‖C‖₂` so the row is a unit row. Here it is
-rounded up: the numerator by `dotUp` and `dotDown` (the magnitude of a dot product is at most the
-larger of the upper end and the negated lower end), the length from below by `sqrtDown` of the
-rounded-down square sum. `none` where `ltStrict` cannot prove the length positive, which is where
-CORA's row is `NaN` (a zero normal). For any vector `C` the quotient bounds the radius of every
-ball around the center inside the zonotope (`minnormOffset_ge`), so `C` need not be the normal.
+`polytope(Z - c)` at a facet normal `C`, divided by `‖C‖₂` so the row is a unit row. Rounded up: the
+numerator by `dotUp` and `dotDown` (the magnitude of a dot product is at most the larger of the
+upper end and the negated lower end), the length from below by `sqrtDown` of the rounded-down square
+sum. `none` where `ltStrict` cannot prove the length positive, which is where CORA's row is `NaN` (a
+zero normal). For any vector `C` the quotient bounds the radius of every ball around the center
+inside the zonotope (`minnormOffset_ge`), so `C` need not be the normal. Source: [1].
 
-Source: [1].
+## Inputs
+* `p` – Newton steps for the root
+* `Z` – zonotope
+* `S` – generator selection
+
+## Output
+* offset of the unit facet row, rounded up
 
 ## References
 

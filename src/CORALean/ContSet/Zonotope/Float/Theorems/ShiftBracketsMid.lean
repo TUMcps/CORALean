@@ -6,6 +6,16 @@ public import CORALean.ContSet.Zonotope.Float.Operations.AbsorbError
 
 /-!
 # The stored shifted centers of `absorbError` bracket the exact one
+
+## Inputs
+* `Z` – zonotope
+* `i` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* shifted midpoint lies between the two rounded centers
 -/
 
 -- Authors:       Claude Opus 5

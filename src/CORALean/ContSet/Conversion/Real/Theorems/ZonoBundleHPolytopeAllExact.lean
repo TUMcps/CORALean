@@ -13,6 +13,15 @@ public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
 The fold of intersections holds a point exactly when every member's facet polytope does
 (`mem_foldl_intersection_iff`, the start being the whole space), and each of those is its member
 (`Zonotope.hPolytopeFacets_exact`).
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hspan` – generators of each member span the space
+
+## Conclusion
+* intersected facet polytopes equal the bundle
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -8,18 +8,13 @@ public import Mathlib.Analysis.Convex.Basic
 /-!
 # Representations that denote a convex set
 
-A property, not an operation: nothing is computed, so unlike `Plus` or `LinComb`
-the class has no data field and instantiating it costs a representation only the
-proof it already has.
+A property, not an operation: nothing is computed, so the class has no data field and instantiating
+it costs a representation only the proof it already has.
 
-Separate from `CompactSet` for the same reason the operation classes are
-separate from each other — the two are independent. An `HPolytope` is convex and
-not compact, and a polynomial zonotope would be compact and not convex, so a
-class demanding both would shut each of them out of the half it can supply.
-
-Only over a module: convexity needs the scaling and nothing topological. Stated
-over what a representation *denotes*, so an algorithm asking for it says exactly
-what it needs of the set rather than of the representation.
+Separate from `CompactSet`, the two being independent: an `HPolytope` is convex and not compact, and
+a polynomial zonotope compact and not convex, so a class demanding both would shut each out of the
+half it can supply. Only over a module: convexity needs the scaling and nothing topological. Stated
+over what a representation *denotes*, not the representation.
 -/
 
 -- Authors:       Claude Sonnet 5

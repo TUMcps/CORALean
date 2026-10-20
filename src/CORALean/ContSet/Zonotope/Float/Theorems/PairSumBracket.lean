@@ -9,6 +9,17 @@ public import CORALean.ContSet.Zonotope.Float.Operations.LinComb
 
 Halving is exact, so the directed addition is the only rounding, and a surplus
 column is copied and does not round at all.
+
+## Inputs
+* `g₁` – first generator block
+* `g₂` – second generator block
+* `k` – pairing index
+
+## Hypotheses
+* none
+
+## Conclusion
+* exact paired sum lies between the two roundings
 -/
 
 -- Authors:       Claude Opus 5

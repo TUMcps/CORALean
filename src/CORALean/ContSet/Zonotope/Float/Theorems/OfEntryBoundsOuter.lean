@@ -14,6 +14,21 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 The exact zonotope's coefficients are the witness: the stored generators reach the
 nominal part, the center's gap is `sub_mem_residual`, and each generator's gap, being
 nonnegative and below its width, is `mem_generatorError`.
+
+## Inputs
+* `Z` – exact zonotope
+* `cLo` – lower center bounds
+* `cHi` – upper center bounds
+* `GLo` – lower generator bounds
+* `GHi` – upper generator bounds
+* `E` – error box
+
+## Hypotheses
+* `hc` – center within its bounds
+* `hG` – generators within their bounds
+
+## Conclusion
+* exact zonotope plus box is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -9,22 +9,22 @@ public import CORALean.ContSet.Interval.Real.Theorems.Basic
 /-!
 # A constrained polynomial zonotope as a polynomial zonotope
 
-CORA's `polyZonotope(conPolyZono)` in its cheapest form: drop the constraints
-and keep everything else.
+CORA's `polyZonotope(conPolyZono)` in its cheapest form: drop the constraints and keep everything
+else. Enclosing, and what is lost is exactly the constraints: the factors, which the equalities were
+confining to a subvariety of the cube, are freed to range over the whole of it. The result contains
+the original set and is generally strictly larger, so a sequence of intersections must stay in this
+representation to mean anything. The generators, the exponent matrix and both counts are carried
+over unread. CORA also offers tighter enclosures that first eliminate constraints by solving for a
+factor; those are separate operations, not this one.
 
-Enclosing, and what is lost is exactly the constraints — the factors, which the
-equalities were confining to a subvariety of the cube, are freed to range over
-the whole of it. That is a genuine loss and not a rounding: the result contains
-the original set and is generally strictly larger, and no operation recovers the
-information. In particular it is what an intersection has to be undone by, so a
-sequence of intersections must stay in this representation to mean anything.
+## Inputs
+* `cPZ` – constrained polynomial zonotope
 
-Nothing else changes. The generators, the exponent matrix and both counts are
-carried over unread, which is why the proof is one line per direction and why
-the conversion costs nothing to compute.
+## Hypotheses
+* none
 
-CORA also offers tighter enclosures that first eliminate constraints by solving
-for a factor. Those are separate operations, not this one.
+## Conclusion
+* set is contained in its polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5

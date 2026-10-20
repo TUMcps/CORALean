@@ -12,6 +12,13 @@ public import CORALean.ContSet.HPolytope.Float.Operations.StackRows
 
 /-!
 # A hull as a constrained zonotope, over a floating-point scalar
+
+## Inputs
+* `𝕋` – scalar type
+* `k` – number of vertices
+
+## Output
+* halfspace polytope of the standard simplex
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

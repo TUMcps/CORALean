@@ -9,17 +9,12 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset
 /-!
 # Vertex descriptions over a floating-point scalar: the representation
 
-CORA's `polytope` [1, Def. 1] with `isVRep` set, its vertices held in `𝕋`, plus the error box
-that makes it an `InflatedContSet`.
-
-The box is the only sound place to pay. Rounding a vertex moves a point, and
-there is no direction to move it that enlarges the hull — a hull has no center
-to move away from — so what rounding costs cannot be absorbed into the vertices
-the way an interval absorbs it into its bounds.
-
-`VPolytope α` is generic over its ambient type, vertices a family, as the exact
-layer's `VPolytope α` is; `VPolytope (Vec 𝕋 n)` is the vector case, and the
-nominal reading copies the family.
+CORA's `polytope` [1, Def. 1] with `isVRep` set, its vertices held in `𝕋`, plus the error box that
+makes it an `InflatedContSet`. The box is the only sound place to pay. Rounding a vertex moves a
+point, and there is no direction to move it that enlarges the hull, a hull having no center to move
+away from, so what rounding costs cannot be absorbed into the vertices the way an interval absorbs
+it into its bounds. `VPolytope α` is generic over its ambient type, vertices a family, as the exact
+layer's is; `VPolytope (Vec 𝕋 n)` is the vector case, and the nominal reading copies the family.
 
 ## References
 

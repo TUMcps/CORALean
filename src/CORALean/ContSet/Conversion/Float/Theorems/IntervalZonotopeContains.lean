@@ -19,6 +19,15 @@ leave one edge short whenever the center moved.
 
 Nothing goes into the error box. The generators already cover the rounding, and
 paying for it twice would only widen the result.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* interval is contained in its zonotope
 -/
 
 -- Authors:       Claude Opus 5

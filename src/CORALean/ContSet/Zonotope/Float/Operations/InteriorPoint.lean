@@ -10,6 +10,14 @@ public import CORALean.ContSet.Zonotope.Float.Operations.ContainsPoint
 `Zonotope.containsPoint` with the point strictly inside the certified box (`ltStrict` on
 `Zonotope.deviation`): then the point is interior to the set, not merely in it. This is what a
 bundle of zonotopes needs, as it asks one point to be interior to every member.
+
+## Inputs
+* `Z` – zonotope
+* `H` – candidate right inverse
+* `p` – point
+
+## Output
+* true when the point is certified interior to the zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

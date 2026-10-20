@@ -20,20 +20,13 @@ public import Mathlib.Analysis.InnerProductSpace.Basic
 /-!
 # What `Interval` instantiates
 
-`reduce` is the identity: an interval holds two bounds per coordinate whatever
-order is asked for, so it has nothing to give up.
-
-`ConvexSet` and `CompactSet` are what carry a box to the reachability statements
-that read their topological hypotheses off the representation instead of taking
-them per use. Convexity holds at every ambient type with coordinates;
-compactness only at `Vec`, which is where boundedness is stated.
-
-No `Recenter`: it asks `0 ∈ construct (recenter s)` unconditionally, and a
-crossed box denotes `∅`, holding nothing at all. `Theorems/RecenterZeroMem`
-and `RecenterSubMem` carry the nonemptiness this class refuses to ask for.
-
-`Intersection` too, coordinatewise and exact: intersecting two boxes takes the pointwise
-max of the lower bounds and the pointwise min of the upper ones.
+`reduce` is the identity: an interval holds two bounds per coordinate whatever order is asked for.
+`ConvexSet` and `CompactSet` carry a box to the reachability statements that read their topological
+hypotheses off the representation; convexity holds at every ambient type with coordinates,
+compactness only at `Vec`, where boundedness is stated. No `Recenter`: it asks
+`0 ∈ construct (recenter s)` unconditionally, and a crossed box denotes `∅`
+(`Theorems/RecenterZeroMem` and `RecenterSubMem` carry the nonemptiness). `Intersection` is
+coordinatewise and exact: the pointwise max of the lower bounds and min of the upper ones.
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

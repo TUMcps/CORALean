@@ -10,7 +10,18 @@ public import Mathlib.Tactic.Linarith
 
 Exact: the star set whose generators are the identity, whose predicate is the polytope and whose
 coefficient box is any certified box around the polytope denotes the polytope. The box only supplies
-the bounds a star set must carry, and every point of the polytope is inside it.-/
+the bounds a star set must carry, and every point of the polytope is inside it.
+
+## Inputs
+* none
+
+## Hypotheses
+* `up` – certified upper bound per coordinate
+* `lo` – certified lower bound per coordinate
+
+## Conclusion
+* star set equals the polytope
+-/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026

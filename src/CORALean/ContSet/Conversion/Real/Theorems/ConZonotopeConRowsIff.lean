@@ -9,6 +9,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_ConPoly
 
 Over the unit cube a row `a β ≤ b` never falls below `-Σ|aⱼ|`, so the lower end `conLo` cuts
 nothing, and the interval rows say exactly what the polytope says.
+
+## Inputs
+* `cZ` – constrained zonotope
+* `β` – factor vector
+
+## Hypotheses
+* `hβ` – factors in the unit box
+
+## Conclusion
+* constraint rows hold iff the factors lie in the constraint polytope
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

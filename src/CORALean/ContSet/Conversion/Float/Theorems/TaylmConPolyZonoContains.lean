@@ -14,6 +14,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPol
 CORA's `conPolyZono(taylm)`: the polynomial zonotope of the models with no constraint. The
 composition of the two float conversions, so the remainder box is the error box and nothing
 rounds. The range set is contained.
+
+## Inputs
+* `T` – Taylor models, one per coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* Taylor models are contained in their constrained polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

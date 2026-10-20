@@ -15,6 +15,16 @@ factor of `√h` in the worst direction. Whichever component `i` names already
 throws away every other one the bundle intersects against — the whole point of
 a bundle being that the intersection is tighter than any one member — so the
 loss compounds with the zonotope step's.
+
+## Inputs
+* `zB` – zonotope bundle
+* `i` – member index
+
+## Hypotheses
+* none
+
+## Conclusion
+* bundle is contained in its ellipsoid
 -/
 
 -- Authors:       Claude Opus 5

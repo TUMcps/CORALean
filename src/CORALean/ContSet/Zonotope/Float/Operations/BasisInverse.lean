@@ -12,6 +12,12 @@ in the scalar's own arithmetic. It is not trusted: nothing about it is ever assu
 makes it usable is the check `methCQ` runs on `H P`, which an elimination that met a zero
 pivot, or rounded badly, simply fails. The rows are stored between steps, as the elimination would
 otherwise be a closure nested once per step.
+
+## Inputs
+* `P` – basis matrix
+
+## Output
+* inverse reached by elimination
 -/
 
 -- Authors:       Claude Opus 5.5

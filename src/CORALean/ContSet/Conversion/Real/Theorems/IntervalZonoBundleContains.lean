@@ -13,6 +13,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Basic
 Through the box's own zonotope, then `Zonotope.zonoBundle` — the single-member
 bundle, exact by `Set.iInter_const`. All the loss is the box-to-zonotope step's,
 so this is no worse than `Interval → Zonotope` already is.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* interval is contained in its zonotope bundle
 -/
 
 -- Authors:       Claude Opus 5

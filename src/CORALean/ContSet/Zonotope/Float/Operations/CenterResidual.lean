@@ -10,6 +10,13 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 
 Storing the lower of the two directed roundings of a center sum leaves this
 much to pay into the box.
+
+## Inputs
+* `a` – first summand
+* `b` – second summand
+
+## Output
+* box of what storing the lower rounding leaves to pay
 -/
 
 -- Authors:       Claude Opus 5

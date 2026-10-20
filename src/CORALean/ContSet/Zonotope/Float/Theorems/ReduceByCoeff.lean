@@ -16,6 +16,17 @@ witness for a point of `Z` at the coefficients `β` can be taken to agree with `
 generators, the fresh box coefficients rescaling what the dropped ones contributed to the
 rounded-up radius. This states that, as an equality of the whole generator sums, so that
 every coordinate of a lifted zonotope is read at once.
+
+## Inputs
+* `Z` – zonotope
+* `part` – split into kept and reduced generators
+* `β` – factor vector
+
+## Hypotheses
+* `hβ` – factors in the unit box
+
+## Conclusion
+* reduction represents the point with the kept factors unchanged
 -/
 
 -- Authors:       Claude Sonnet 5.5

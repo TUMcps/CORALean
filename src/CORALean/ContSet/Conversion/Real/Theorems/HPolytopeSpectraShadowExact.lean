@@ -15,6 +15,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopePosSemidefSpect
 # A polytope as a spectrahedral shadow
 
 `HPolytope.spectraShadow_exact`: its `spectraShadow` is exactly it.
+
+## Inputs
+* `P` – halfspace polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* polytope equals its spectrahedral shadow
 -/
 
 -- Authors:       Claude Opus 5.5

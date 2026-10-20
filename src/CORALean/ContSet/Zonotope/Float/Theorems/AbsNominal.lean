@@ -11,6 +11,15 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCornerMem
 
 Absolute value rounds nothing, so the nominal part of the float `abs` is the real `abs` of the
 nominal part of the input.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* nominal part of the absolute zonotope is the absolute of the nominal part
 -/
 
 -- Authors:       Claude Opus 5.5

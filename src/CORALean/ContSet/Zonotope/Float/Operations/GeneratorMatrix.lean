@@ -13,6 +13,13 @@ does not have `n` entries gives the zero matrix. Every entry is a stored float, 
 
 Source: [1].
 
+## Inputs
+* `Z` – zonotope
+* `T` – generator indices
+
+## Output
+* selected generators as columns, zero without `n` entries
+
 ## References
 
 * [1] `contSet/@zonotope/dominantDirections.m` and its private helpers, CORA (Sep. 2025), by

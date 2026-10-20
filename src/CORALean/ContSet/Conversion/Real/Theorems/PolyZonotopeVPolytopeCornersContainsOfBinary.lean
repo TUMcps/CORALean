@@ -9,6 +9,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_VPolyt
 
 /-!
 # A polynomial zonotope as its corners: `vPolytopeCorners_contains_of_binary`
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* `hE` – no exponent exceeds one
+
+## Conclusion
+* set is contained in its corner vertex polytope
 -/
 
 -- Authors:       Claude Opus 5

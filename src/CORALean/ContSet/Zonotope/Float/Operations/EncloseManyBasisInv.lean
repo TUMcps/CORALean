@@ -10,13 +10,17 @@ public import CORALean.ContSet.Zonotope.Float.Operations.EncloseManyBasis
 
 An interval matrix holding `rotMatrix⁻¹`, in closed form. With `d` the dropped axis,
 `R = [newGen | e_i, i ≠ d]` solves `R x = y` by `x₀ = y_d / g_d` and
-`x_{j+1} = y_{i_j} - g_{i_j} y_d / g_d` (`i_j` the `j`-th axis but `d`), so the inverse has
-`1` at `(j+1, i_j)`, the column `d` equal to `(1, -g_{i_j})_j / g_d`, and `0` elsewhere. The
-quotients are the only inexact entries, rounded outward by `Interval.mrdivide`; the divisor
-`g_d` must be provably nonzero, which `encloseMany` checks. This replaces the exact `R⁻¹` of the
-exact layer by a box that holds it, so a product with it over-approximates the exact image.
+`x_{j+1} = y_{i_j} - g_{i_j} y_d / g_d` (`i_j` the `j`-th axis but `d`), so the inverse has `1` at
+`(j+1, i_j)`, the column `d` equal to `(1, -g_{i_j})_j / g_d`, and `0` elsewhere. The quotients are
+the only inexact entries, rounded outward by `Interval.mrdivide`; the divisor `g_d` must be provably
+nonzero, which `encloseMany` checks. A box that holds the exact `R⁻¹`, so a product with it
+over-approximates the exact image. Source: [1].
 
-Source: [1].
+## Inputs
+* `newGen` – new first generator
+
+## Output
+* interval matrix containing the basis inverse
 
 ## References
 

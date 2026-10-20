@@ -16,6 +16,15 @@ the ellipsoid's closed-form support function denotes the unit disc
 This is the arrow from polytopes to support functions of
 [1, Fig. 1 (Polytopes → Support Functions)].
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* some planar support function is no halfspace polytope
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

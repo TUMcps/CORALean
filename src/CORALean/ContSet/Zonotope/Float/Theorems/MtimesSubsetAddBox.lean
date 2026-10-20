@@ -18,6 +18,16 @@ point of `Z`, and `M` maps it to a point of `M Z`. What is left over is the roun
 center and of each generator, and `mtimesBox` contains it. This is the argument of
 `mtimes_outer` read backwards, with the same `matMulDiff` bound at the opposite sign. The error
 box of `Z` is not needed here: its zero point is used, as in `plus_subset_add_box`.
+
+## Inputs
+* `M` – matrix
+* `Z` – zonotope
+
+## Hypotheses
+* `h` – error box contains zero
+
+## Conclusion
+* result is contained in the image plus the rounding box
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

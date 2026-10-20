@@ -13,6 +13,15 @@ Each entry of a member is a convex combination of the same entry of the vertices
 at the entry functional), so lies between the least and the greatest of them. The box is the
 smallest around the vertices, and so around the hull; the set of the polytope is in general a proper
 subset.
+
+## Inputs
+* `P` – matrix vertex polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* polytope is contained in its interval matrix
 -/
 
 -- Authors:       Claude Sonnet 5.5

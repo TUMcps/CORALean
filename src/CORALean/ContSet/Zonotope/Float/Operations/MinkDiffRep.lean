@@ -18,6 +18,16 @@ so it is returned only once `Zonotope.containsZonotope`, with a right inverse `H
 minuend's generators the caller proposes, certifies that the candidate plus the subtrahend lies in
 the minuend. A wrong `M`, `ρ` or `H` gives `none`, costing precision and never soundness. `some`
 proves the candidate lies in the difference; `none` refutes nothing.
+
+## Inputs
+* `Z₁` – minuend zonotope
+* `Z₂` – subtrahend zonotope
+* `M` – representation of the subtrahend
+* `ρ` – margin shrink factor
+* `H` – candidate right inverse
+
+## Output
+* difference at the representation, if the check passes
 -/
 
 -- Authors:       Claude Sonnet 5.5

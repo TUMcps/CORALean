@@ -18,6 +18,13 @@ enclosure `dominantDirections` returns is not read off this number.
 
 Source: [1].
 
+## Inputs
+* `Z` – zonotope
+* `P` – basis matrix
+
+## Output
+* rounded-up score, if the basis is provably nonsingular
+
 ## References
 
 * [1] `contSet/@zonotope/dominantDirections.m` and its private helpers, CORA (Sep. 2025), by

@@ -14,6 +14,15 @@ Via the bounding box: `Capsule.interval`, then the box's own conversion. An oute
 coarser than CORA's conversion. CORA has no capsule-to-vertex conversion: its
 `polytope(capsule)` is a halfspace description. Here the capsule is first replaced by its axis-
 aligned box, which loses the rounded ends and the slant of the segment.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* capsule is contained in its vertex polytope
 -/
 
 -- Authors:       Claude Opus 5.5

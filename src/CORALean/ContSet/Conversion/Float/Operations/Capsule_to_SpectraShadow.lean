@@ -15,6 +15,12 @@ CORA's `spectraShadow(C)` as over ℝ: the ball `ellipsoid(r² I)`, its shape `r
 (`Ellipsoid.ball`), as a shadow, plus the segment `zonotope(c, g)` as a shadow, the latter carrying
 the capsule's error box. Both conversions store their entries without rounding; the sum pays its
 center's rounding into the box.
+
+## Inputs
+* `C` – capsule
+
+## Output
+* spectrahedral shadow of the ball plus the segment
 -/
 
 -- Authors:       Claude Opus 5.5

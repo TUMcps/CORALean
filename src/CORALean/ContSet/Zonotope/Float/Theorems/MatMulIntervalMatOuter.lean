@@ -11,6 +11,16 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.OfIntervalMatOuter
 
 `ofIntervalMat_outer` places the interval factor's member in its matrix zonotope, and
 `matMul_outer` does the rest.
+
+## Inputs
+* `M` – matrix zonotope
+* `I` – interval matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* every product is contained in the computed matrix zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

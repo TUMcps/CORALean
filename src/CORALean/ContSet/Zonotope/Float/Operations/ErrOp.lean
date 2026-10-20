@@ -13,6 +13,12 @@ up. CORA and [1] take `r(box(·))`, the Euclidean radius of the same box; `Vec`
 carries the sup norm, and this is that norm's radius of the box, at most the
 Euclidean one.
 
+## Inputs
+* `Z` – zonotope
+
+## Output
+* sup-norm radius of the error box, rounded up
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

@@ -15,6 +15,15 @@ Exact, and the only conversion into a halfspace description that costs nothing.
 
 `HPolytope.unitBox` is this at `[-1, 1]ⁿ`, kept separate because a constrained
 zonotope's domain names it constantly and should not carry an interval around.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* halfspace polytope equals the interval
 -/
 
 -- Authors:       Claude Opus 5

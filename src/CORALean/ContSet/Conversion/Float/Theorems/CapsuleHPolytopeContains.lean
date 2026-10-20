@@ -13,6 +13,16 @@ public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 At `n ≤ 1` the box, which encloses the capsule (`Capsule.interval_contains`) and which its rows
 describe exactly; otherwise every row is bounded by `Capsule.boundDotUp`, for whatever basis the
 floats produced.
+
+## Inputs
+* `p` – Newton steps per row length
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* capsule is contained in its halfspace polytope
 -/
 
 -- Authors:       Claude Opus 5.5

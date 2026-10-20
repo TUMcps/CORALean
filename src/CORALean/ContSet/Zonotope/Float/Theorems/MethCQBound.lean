@@ -10,6 +10,17 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MethCQ
 
 The entries are bounded by `methCResidual`, a row of them is summed upward, and the largest of the
 sums is taken exactly.
+
+## Inputs
+* `H` – candidate right inverse
+* `P` – basis matrix
+* `i` – row index
+
+## Hypotheses
+* none
+
+## Conclusion
+* absolute row sum of the residual is bounded
 -/
 
 -- Authors:       Claude Opus 5.5

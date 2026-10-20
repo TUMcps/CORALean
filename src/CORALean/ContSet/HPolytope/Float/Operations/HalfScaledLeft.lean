@@ -9,22 +9,14 @@ public import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
 /-!
 # `HPolytope.halfScaledLeft`
 
-The constraints of `P` at the weight a trailing coefficient names, on a wider
-coefficient space: `P` reads the first block, the middle block answers to
-nothing, and the last coordinate `t` carries the weight `(t + 1) / 2` a
-convex combination gives the first of its two sides.
-
-Every right-hand side halves into the column that reads `t`, and halving is exact, so this
-computes nothing that rounds — the polytope it returns is as tight as the one it was given.
-
-An equality cannot be weighted by an inequality's rule, so a row leaves as the two inequalities
-it stands for, each weighted on its own. That is why the result carries no equalities at all.
-The rows are the nominal part's: the error box is not read, and the result carries none. Each row
-keeps its slack unweighted, which covers the weighted slack at a weight in `[0, 1]`, so the result
-holds every weighted point, exactly so for a slack-free `P` (`smul_mem_halfScaledLeft`).
-
-Padding and weighting are one operation rather than two: the weight lives in the new coordinate,
-which is not a block a `padLeft` could add.
+The constraints of `P` at the weight a trailing coefficient names, on a wider coefficient space: `P`
+reads the first block, the middle block answers to nothing, and the last coordinate `t` carries the
+weight `(t + 1) / 2` a convex combination gives the first of its two sides. Every right-hand side
+halves into the column that reads `t`, exactly, so nothing rounds. An equality leaves as the two
+inequalities it stands for, each weighted on its own, so the result has no equalities. The rows are
+the nominal part's: the error box is not read. Each row keeps its slack unweighted, which covers the
+weighted slack at a weight in `[0, 1]` (`smul_mem_halfScaledLeft`). Padding and weighting are one
+operation, the weight living in the new coordinate.
 
 ## Inputs
 * `P` – H-polytope

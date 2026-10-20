@@ -12,6 +12,16 @@ public import Mathlib.Data.Matrix.Basic
 
 A point of the zonotope, as a one-column matrix, is a point of the reshaped matrix zonotope:
 the same coefficients, and the error box moved with it.
+
+## Inputs
+* `Z` – zonotope
+* `z` – point
+
+## Hypotheses
+* `hz` – point lies in the zonotope
+
+## Conclusion
+* one-column matrix of the point lies in the matrix zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

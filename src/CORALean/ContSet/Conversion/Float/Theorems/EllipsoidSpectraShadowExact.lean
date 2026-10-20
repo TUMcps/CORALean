@@ -18,6 +18,15 @@ reads as its center alone, while its Schur form is empty, hence the hypothesis.
 
 Not routed through the exact layer's set but through its *nominal* reading, the exact conversion
 of the ellipsoid the stored floats describe, which shares the exactness proof.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* `hQ` – shape matrix positive semidefinite
+
+## Conclusion
+* ellipsoid equals its spectrahedral shadow
 -/
 
 -- Authors:       Claude Opus 5.5

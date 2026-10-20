@@ -13,6 +13,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 Through its box, which is what the `2n` certificates give, and then the box's own
 generators. Loses whatever the box lost and nothing further — a zonotope tight
 around a halfspace description would have to know its facets.
+
+## Inputs
+* none
+
+## Hypotheses
+* `up` – certified upper bound per coordinate
+* `lo` – certified lower bound per coordinate
+
+## Conclusion
+* polytope is contained in its zonotope
 -/
 
 -- Authors:       Claude Opus 5

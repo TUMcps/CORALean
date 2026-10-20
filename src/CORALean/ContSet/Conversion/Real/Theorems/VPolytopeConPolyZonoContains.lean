@@ -12,6 +12,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeConZonotopeExac
 CORA's `conPolyZono(conZonotope(P))`: the hull's constrained zonotope is exact
 (`VPolytope.conZonotope_exact`), and so is its reading as a constrained polynomial zonotope
 (`ConZonotope.conPolyZono_exact`), so the conversion is the hull itself.
+
+## Inputs
+* `P` – vertex polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* polytope is contained in its constrained polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

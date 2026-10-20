@@ -15,6 +15,12 @@ nonzero *there*, which is what `encloseMany` tests, so a misranking costs nothin
 
 Source: [1].
 
+## Inputs
+* `newGen` – new first generator
+
+## Output
+* index of the entry of largest magnitude
+
 ## References
 
 * [1] `contSet/@zonotope/encloseMany.m`, CORA (Sep. 2025). No paper behind the

@@ -8,22 +8,13 @@ public import CORALean.Global.LinProg.Simplex
 /-!
 # `HPolytope.supportBound`
 
-The bound a halfspace description can answer for itself, and the reason it can:
-`Simplex` proposes a weighting of the rows, this file *checks* it and hands the
-check to `boundOfDual`. A weighting that fails either test yields `none`, so the
-solver is not trusted with anything — replacing it by a random number generator
-would lose every bound and no theorem.
-
-An equality row is two inequalities, `Ae x ≤ be` and `-Ae x ≤ -be`, so the free
-dual variable comes back as the difference of two nonnegative ones and the
-solver never has to know that equalities exist.
-
-At `Vec ℝ n` alone: the simplex reads coefficients, and a functional only has
-those once there are coordinates. Noncomputable, and unavoidably so at this
-layer — whether two reals are equal is not decidable, so neither is whether a
-weighting reproduces `c`. `Float` is where this same bridge runs.
-
-The linear program [1, Def. 3] names, with the dual solution kept as a reason.
+The bound a halfspace description can answer for itself: `Simplex` proposes a weighting of the rows,
+this file *checks* it and hands the check to `boundOfDual`. A weighting that fails either test
+yields `none`, so the solver is trusted with nothing; a random number generator would lose every
+bound and no theorem. An equality row is two inequalities, `Ae x ≤ be` and `-Ae x ≤ -be`, so the
+free dual variable is a difference of two nonnegative ones. At `Vec ℝ n` alone: the simplex reads
+coefficients. Noncomputable, whether two reals are equal being undecidable; `Float` is where this
+same bridge runs. The linear program is [1, Def. 3], with the dual solution kept as a reason.
 
 ## Inputs
 * `P` – H-polytope

@@ -10,6 +10,17 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 
 `A` in the box `M` is `mid(M)` plus `A - mid(M)`, so `A x` is `mid(M) x + (A - mid(M)) x`: the
 split `mtimesIntervalMat` is built on, for a zonotope and a constrained zonotope alike.
+
+## Inputs
+* `IM` – interval matrix
+* `A` – member matrix
+* `x` – vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* action splits into the center part and the leftover
 -/
 
 -- Authors:       Claude Sonnet 5.5

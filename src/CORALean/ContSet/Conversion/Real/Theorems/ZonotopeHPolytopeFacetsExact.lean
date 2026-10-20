@@ -18,6 +18,15 @@ image, permuted, and a permutation changes the normal by a sign only
 (`abs_dot_facetNormal_comp_perm`). Dividing a nonzero normal by its length scales both sides of
 its bound by the same positive number.
 
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* `hspan` – generators span the space
+
+## Conclusion
+* facet polytope equals the zonotope
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

@@ -15,21 +15,23 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeContainsVPolytop
 /-!
 # A zonotope as its corners
 
-CORA's `polytope(zonotope)`: `2ʰ` vertices, one per choice of sign per
-generator. Exponential in the generator count, which is what makes it the
-conversion CORA avoids — but it loses nothing, every point of the zonotope being
-a convex combination of the sign corners, and every such combination lying back
-in the zonotope since it is convex — `vPolytope_exact` is [1, Eq. 9], read at
-any generator's larger (non-minimal) corner set, `Zonotope (Mat ℝ n n)` being
-[1, Eq. 8]'s matrix zonotope.
+CORA's `polytope(zonotope)`: `2ʰ` vertices, one per choice of sign per generator. Exponential in the
+generator count, the conversion CORA avoids, but it loses nothing: every point of the zonotope is a
+convex combination of the sign corners, and every such combination lies back in it.
+`vPolytope_exact` is [1, Eq. 9], with `Zonotope (Mat ℝ n n)` [1, Eq. 8]'s matrix zonotope. The
+weights are a box's corners', a box being the zonotope with axis-aligned generators: a coefficient
+`βⱼ ∈ [-1, 1]` sits a fraction `(βⱼ + 1)/2` of the way up, and a corner's weight is the product of
+those fractions and their complements. This is the arrow from zonotopes to polytopes of
+[2, Fig. 1 (Zonotopes → Polytopes)].
 
-The same weights as a box's corners, and for the same reason: a box *is* the
-zonotope with axis-aligned generators. A coefficient `βⱼ ∈ [-1, 1]` sits a
-fraction `(βⱼ + 1)/2` of the way from `-1` to `1`, a corner's weight is the
-product of those fractions and their complements, and every generator's weight
-sums back to its own coefficient while the rest sum away.
+## Inputs
+* `Z` – zonotope
 
-This is the arrow from zonotopes to polytopes of [2, Fig. 1 (Zonotopes → Polytopes)].
+## Hypotheses
+* none
+
+## Conclusion
+* vertex polytope equals the zonotope
 
 ## References
 

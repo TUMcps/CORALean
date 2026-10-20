@@ -10,6 +10,21 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 
 The first difference rounded upward is above `x - e - y` because `lo ≤ y`, the second above
 `y - (x - e)` because `y ≤ hi`, so the larger is above the magnitude.
+
+## Inputs
+* `x` – point
+* `e` – box corner
+* `lo` – lower bound of the entry
+* `hi` – upper bound of the entry
+* `y` – value between the bounds
+* `i` – entry
+
+## Hypotheses
+* `hlo` – lower bound holds
+* `hhi` – upper bound holds
+
+## Conclusion
+* deviation is bounded by the computed bound
 -/
 
 -- Authors:       Claude Opus 5.5

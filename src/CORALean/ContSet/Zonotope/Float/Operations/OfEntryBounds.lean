@@ -13,6 +13,17 @@ a matrix zonotope's product with a zonotope is one — rounds it: floats either 
 each exact coordinate of the center and of every generator, the lower ones stored. The
 center's gap is `residual`, the generators' is `generatorError` at their widths, and both
 join the box `I_error` the operation already owes; the generator count is the exact one's.
+
+## Inputs
+* `h` – number of generators
+* `cLo` – lower center bounds
+* `cHi` – upper center bounds
+* `GLo` – lower generator bounds
+* `GHi` – upper generator bounds
+* `E` – error box
+
+## Output
+* zonotope storing lower bounds, gaps paid into the box
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -7,19 +7,13 @@ public import CORALean.ContSet.ContSet.ContSet
 /-!
 # `OptEmpty`: what a representation denotes, or nothing at all
 
-An operation whose result can be empty has no answer inside a representation
-that denotes only nonempty sets: a zonotope always holds its center, so no
-`Zonotope → Zonotope → Zonotope` returns the Minkowski difference of `{0}` and
-`[-1, 1]`, which is `∅`. Wrapping the result is what gives it one.
-
-`Option S` in shape and deliberately not in meaning. An `Option` here says a
-*candidate the caller supplied* failed its check, as `Zonotope.minkDiffRep`'s
-does — a statement about the input. `OptEmpty.empty` is a statement about the
-set: it denotes `∅`, and a wrapper keeps the two from being read as one.
-
-A wrapper rather than a sum with `EmptySet`: `S` already fixes the ambient
-type, where `EmptySet n` fixes it to `Vec ℝ n`, so this extends the matrix and
-module ambient types too — every type `ContSet` is indexed by.
+An operation whose result can be empty has no answer inside a representation that denotes only
+nonempty sets: no `Zonotope → Zonotope → Zonotope` returns the Minkowski difference of `{0}` and
+`[-1, 1]`, which is `∅`. Wrapping the result gives it one. `Option S` in shape and deliberately not
+in meaning: an `Option` here says a *candidate the caller supplied* failed its check, as
+`Zonotope.minkDiffRep`'s does, a statement about the input; `OptEmpty.empty` is a statement about
+the set. A wrapper rather than a sum with `EmptySet`: `S` already fixes the ambient type, so this
+extends the matrix and module ambient types too.
 -/
 
 -- Authors:       Claude Opus 5

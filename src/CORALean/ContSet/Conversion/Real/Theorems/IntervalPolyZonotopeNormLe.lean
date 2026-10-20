@@ -11,22 +11,27 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonoto
 /-!
 # A box as a polynomial zonotope
 
-The box's zonotope, then that zonotope's factors: one dependent factor per
-coordinate and no independent generators. Nothing is lost by either step, but
-only the enclosing direction is stated, since `Interval.zonotope` states only
-that — a box whose `sup` falls below its `inf` denotes nothing while the
-zonotope built from it does not.
+The box's zonotope, then that zonotope's factors: one dependent factor per coordinate and no
+independent generators. Nothing is lost, but only the enclosing direction is stated, since
+`Interval.zonotope` states only that: a box whose `sup` falls below its `inf` denotes nothing while
+the zonotope built from it does not. `polyZonotope_norm_le` is the other direction in the only form
+that survives: a bound in the supremum norm, asking for *both* ends to be small rather than the box
+to be ordered, which is what a residual block contributes to a Minkowski inflation.
+`polyZonotope_mono` is monotone in the two ends, the narrower box having to be ordered.
 
-This is how a reachability run starts from a box without leaving the
-representation it will stay in.
+## Inputs
+* `I` – interval
+* `ε` – bound on the ends
+* `y` – point
 
-`polyZonotope_norm_le` is the other direction in the only form that survives the
-swap: not an inclusion in the box, but a bound in the supremum norm, and it asks
-for *both* ends to be small rather than for the box to be ordered. That is what
-a residual block contributes to a Minkowski inflation.
+## Hypotheses
+* `hε` – bound nonnegative
+* `hlo` – lower ends within the bound
+* `hhi` – upper ends within the bound
+* `hy` – point lies in the polynomial zonotope
 
-`polyZonotope_mono` is monotone in the two ends, the narrower box having to be
-ordered for the same reason.
+## Conclusion
+* norm of `y` is at most the bound
 -/
 
 -- Authors:       Claude Opus 5

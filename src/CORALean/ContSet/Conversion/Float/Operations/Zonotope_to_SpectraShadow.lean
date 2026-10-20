@@ -10,6 +10,14 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 
 /-!
 # A zonotope as a spectrahedral shadow, over a floating-point scalar
+
+## Inputs
+* `h` – number of generators
+* `s` – diagonal entry
+* `j` – position of the entry
+
+## Output
+* diagonal matrix holding `s` at `j`
 -/
 
 -- Authors:       Claude Opus 5.5
