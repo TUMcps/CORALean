@@ -10,6 +10,15 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.LeafNode
 `[1, Alg. 2]`, lines 4 and 5: the node `i` and target `j` that `leafNode` returns satisfy
 `g i = some j`, and no node's edge ends at `i`.
 
+## Inputs
+* `g` – parent map
+
+## Hypotheses
+* none
+
+## Conclusion
+* a returned leaf has an outgoing edge and no incoming one
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and Its

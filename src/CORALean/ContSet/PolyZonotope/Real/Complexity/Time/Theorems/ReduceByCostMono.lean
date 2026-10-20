@@ -11,6 +11,29 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceBy
 
 Monotone in the kept and the absorbed counts, so a bound on how many generators a split keeps
 and throws away gives a bound on the cost.
+
+## Inputs
+* `p` – number of factors
+* `p'` – larger factor count
+* `d` – kept dependent generators
+* `d'` – larger kept dependent count
+* `dI` – kept independent generators
+* `dI'` – larger kept independent count
+* `r` – dropped dependent generators
+* `r'` – larger dropped dependent count
+* `rI` – dropped independent generators
+* `rI'` – larger dropped independent count
+* `n` – dimension
+
+## Hypotheses
+* `hp` – factor count grows
+* `hd` – kept dependent count grows
+* `hdI` – kept independent count grows
+* `hr` – dropped dependent count grows
+* `hI` – dropped independent count grows
+
+## Conclusion
+* the cost does not decrease
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

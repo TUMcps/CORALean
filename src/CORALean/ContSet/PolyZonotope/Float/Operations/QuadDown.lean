@@ -9,6 +9,14 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 
 Split out of `QuadMap.lean` (issue #62): read again by
 `Theorems/QuadDownLe.lean`, outside this file.
+
+## Inputs
+* `g` – vector
+* `wlo` – lower bound of the second vector
+* `whi` – upper bound of the second vector
+
+## Output
+* lower bound of the dot product, rounded down
 -/
 
 -- Authors:       Claude Opus 5

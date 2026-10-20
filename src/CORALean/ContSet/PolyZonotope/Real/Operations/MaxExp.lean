@@ -16,6 +16,13 @@ substituted generator index and so has to be pronounceable in a statement.
 
 `Finset.sup` over an empty generator set is `0`, which is the right answer: a
 set with no dependent generators is constant in every factor.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+
+## Output
+* largest exponent of that factor
 -/
 
 -- Authors:       Claude Opus 5

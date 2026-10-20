@@ -9,6 +9,13 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsMul
 
 CORA's `Y{i,j}`: the `d`-th power of a sum of monomials, by repeated `priv_multiply`, the empty
 product being the term `1`.
+
+## Inputs
+* `p` – number of factors
+* `A` – term list
+
+## Output
+* function from the exponent to the term list of the power
 -/
 
 -- Authors:       Claude Opus 5.5

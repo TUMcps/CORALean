@@ -10,6 +10,19 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorIdx
 Split out of `Compact.lean` (issue #62): used again by
 `Theorems/CompactFactorsExact.lean` and by `ConPolyZono`'s own
 `MonomialFactorIdxLeft`/`Right.lean`, both outside this file.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `a` – factor values
+* `i` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* monomial over used factors equals the full monomial
 -/
 
 -- Authors:       Claude Opus 5

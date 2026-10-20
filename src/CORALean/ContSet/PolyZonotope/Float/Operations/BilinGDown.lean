@@ -10,6 +10,14 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadDown
 
 Generator `(i, j)` of the pairing of two sets over the same factors, `Gᵢᵀ Q Gⱼ`, with `Gᵢ` of the
 first and `Gⱼ` of the second. `quadMapGDown` is the self-pairing.
+
+## Inputs
+* `Q` – family of bilinear form matrices
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Output
+* generator matrix of the bilinear image, rounded down
 -/
 
 -- Authors:       Claude Sonnet 5.5

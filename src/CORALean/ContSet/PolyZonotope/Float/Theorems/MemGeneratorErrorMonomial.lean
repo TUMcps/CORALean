@@ -11,6 +11,19 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 `|∏ₖ αₖ^Eₖᵢ| ≤ 1` is what a zonotope's free coefficient satisfies, so a rounded
 dependent generator costs one `radius` of entrywise error, independent of the
 factor count and degree.
+
+## Inputs
+* `G` – generator matrix
+* `Δ` – real matrix of entry errors
+* `E` – exponent matrix
+* `a` – factor values
+
+## Hypotheses
+* `hG` – entry errors are bounded by the generators
+* `ha` – factor values are at most one
+
+## Conclusion
+* the monomial-weighted error sum lies in the error box
 -/
 
 -- Authors:       Claude Opus 5

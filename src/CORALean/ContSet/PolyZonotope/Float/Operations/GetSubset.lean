@@ -14,6 +14,15 @@ dependent generator binomially expanded into `maxExp k + 1` of them, the exponen
 substituted factor being the term's index. The coefficients are bracketed by directed arithmetic
 (`getSubsetCoef`), the stored generators are the rounded-down products, and what the rounding cost
 goes into the error box by `generatorError`, added to the box the set already had.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+* `cen` – subinterval center
+* `rad` – subinterval radius
+
+## Output
+* polynomial zonotope for the factor restricted to the subinterval
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,22 @@ public import Mathlib.Algebra.BigOperators.Fin
 Split out of `Operations/Plus.lean` (issue #62): the mirror of
 `MonomialPlusELeft.lean`, where the other set's factors contribute `1`, reused
 alongside it wherever `plusE` is unfolded.
+
+## Inputs
+* `p₁` – first factor count
+* `h₁` – first generator count
+* `p₂` – second factor count
+* `h₂` – second generator count
+* `E₁` – first exponent matrix
+* `E₂` – second exponent matrix
+* `a` – factor values
+* `i` – generator index of the second block
+
+## Hypotheses
+* none
+
+## Conclusion
+* the monomial reads only the second set's factors
 -/
 
 -- Authors:       Claude Opus 5

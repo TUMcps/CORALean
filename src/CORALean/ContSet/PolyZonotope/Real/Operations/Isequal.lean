@@ -14,6 +14,13 @@ data are compared as they are: the same factor, generator and independent-genera
 the same center, generators, exponent matrix and independent generators, in order. That is
 stricter than CORA, which neither reorders columns, compacts nor aligns identifiers here, so the
 test is sound, not exact.
+
+## Inputs
+* `Z` – first polynomial zonotope
+* `S` – second polynomial zonotope
+
+## Output
+* Prop that all stored data are equal
 -/
 
 -- Authors:       Claude Opus 5.5

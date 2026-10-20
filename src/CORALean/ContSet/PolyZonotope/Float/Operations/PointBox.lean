@@ -16,6 +16,13 @@ called on an interval, which is how `innerApproxImage` encloses `f(X_)` and `f(c
 The monomials come from `monoBox`, the stored generators multiply them by `Interval.mtimes`, the
 center is added by `Interval.plus`. The independent generators and the error box are not part of
 the map.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `X` – factor box
+
+## Output
+* interval enclosing the image of the box
 -/
 
 -- Authors:       Claude Opus 5.5

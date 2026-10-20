@@ -10,6 +10,13 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.BilinGDown
 Split out of `QuadMap.lean` (issue #62): read again by `quadMapGDiff` and
 `quadMapDep` in this directory and by `Theorems/QuadMapOuter.lean`, all
 outside this file.
+
+## Inputs
+* `Q` – family of quadratic form matrices
+* `pZ` – polynomial zonotope
+
+## Output
+* quadratic image generators, rounded down
 -/
 
 -- Authors:       Claude Opus 5

@@ -12,6 +12,12 @@ Asserted, not proved: `Operations/EDiff.lean` compares two exponents for
 equality, takes both modulo two and compares those: four operations on
 exponents, priced at unit like the scalar operations the model counts, and one write of the
 result.
+
+## Inputs
+* none
+
+## Output
+* operation count of an exponent difference
 -/
 
 -- Authors:       Claude Sonnet 5.5

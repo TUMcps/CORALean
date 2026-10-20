@@ -9,6 +9,12 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.SplitGen
 
 The pieces `containsPointSet` works with: `k` rounds, every piece replaced by the two halves
 `splitGen` gives.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* function from the number of rounds to the list of pieces
 -/
 
 -- Authors:       Claude Opus 5.5

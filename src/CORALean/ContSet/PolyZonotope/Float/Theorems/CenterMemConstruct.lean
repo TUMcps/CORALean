@@ -14,6 +14,16 @@ CORA's `center` returns the field `c`. The stored center, read as reals, lies in
 nominal part at the zero factors and zero independent coefficients once no exponent column is
 zero, so that every monomial vanishes there, and in the whole set once the error box holds
 `0`, which a box built by the operations does and an arbitrary one need not.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* `hE` – no exponent column is zero
+* `h0` – error box contains zero
+
+## Conclusion
+* the stored center lies in the set
 -/
 
 -- Authors:       Claude Sonnet 5.5

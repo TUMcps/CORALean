@@ -14,9 +14,15 @@ no float counterpart and `mtimes` is the operation.
 
 All three counts are untouched and the exponent matrix is copied, the rounding
 being paid into the box; the old box travels through the map as a box, by
-`Interval.mtimes`. The two generator blocks round separately and pay into the
-same kind of box for the same reason — a monomial is bounded by `1` exactly as
-an independent coefficient is.
+`Interval.mtimes`. The two generator blocks round separately into the same kind
+of box, a monomial being bounded by `1` as an independent coefficient is.
+
+## Inputs
+* `M` – matrix
+* `pZ` – polynomial zonotope
+
+## Output
+* polynomial zonotope enclosing the matrix image
 -/
 
 -- Authors:       Claude Opus 5

@@ -11,6 +11,12 @@ CORA's `@polyZonotope/noIndep`: `pZ.GI = zeros(dim(pZ), 0)`, the independent gen
 nothing else changed. This is *not* `PolyZonotope.dependent`, which turns the independent block
 into dependent generators (and denotes the same set): `noIndep` denotes the part of the set the
 dependent factors reach alone, a subset (see `noIndep_construct`, `noIndep_subset`).
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* the set with its independent generators removed
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,20 +11,20 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMid
 /-!
 # `PolyZonotope.relaxExpMid`
 
-The exact layer's `relaxExpMid`, rounded. The bracket `eDrift` reads is a pair
-of counts, so the midpoint and the half-width are halves of natural multiples of
-one stored generator: `half` is exact and the two layers shift and pay the same
-amount, as they already relax by the same width.
+The exact layer's `relaxExpMid`, rounded. The bracket `eDrift` reads is a pair of counts, so
+the midpoint and the half-width are halves of natural multiples of one stored generator: `half`
+is exact and the two layers shift and pay the same amount. The shift has no sign to case on, so
+it is stored at its lower rounding and added to the center downward; its gap is the distance up
+to the sum at the shift's *upper* rounding. Three sums round: the merged dependent column, the
+halved independent one and the shifted center, each gap charged by `generatorError`.
 
-The shift is a difference of two folds, so it has no sign to case on. It is
-stored at its lower rounding and added to the center downward, which keeps the
-stored center below the exact one; its gap is then the distance up to the same
-sum taken at the shift's *upper* rounding, one-sided like every other gap here.
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
+* `k₀` – factor index
 
-Three sums round, as in the all-even case: the merged dependent column, the
-halved independent one, and the shifted center. `generatorError` charges each
-gap at the coefficient that reads it — a monomial, a zonotope coefficient, and
-`1` for the center.
+## Output
+* relaxed polynomial zonotope with midpoint center shift
 -/
 
 -- Authors:       Claude Opus 5

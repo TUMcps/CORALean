@@ -7,16 +7,21 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceGirardOrderLe
 /-!
 # `PolyZonotope.reduce` bounds the generator count
 
-The order bound half of [1, Prop. 16] — `ReduceOuter.lean` carries the other
-half, the enclosure.
+The order bound half of [1, Prop. 16] (`ReduceOuter.lean` carries the enclosure). The half no
+`_outer` theorem sees: an enclosure the size of the state space is sound too, and so is one
+whose representation grows every step. `reduce o` returns at most `o·n` generators, dependent
+and independent together, whatever it is called on. Compacting first only lowers the count
+`reduceGirard_order_le` then bounds.
 
-The other half of what `reduce` is for, and the half no `_outer` theorem sees:
-an enclosure the size of the state space is sound too, and so is one whose
-representation grows every step. `reduce o` returns at most `o·n` generators,
-dependent and independent together, whatever it is called on.
+## Inputs
+* `pZ` – polynomial zonotope
+* `o` – target order
 
-Compacting first only lowers the count `reduceGirard_order_le` then bounds, so
-the bound reads off unchanged.
+## Hypotheses
+* `ho` – order is positive
+
+## Conclusion
+* the generator count is at most the order times the dimension
 
 ## References
 

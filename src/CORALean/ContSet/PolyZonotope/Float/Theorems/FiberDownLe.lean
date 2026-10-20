@@ -7,6 +7,18 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.SumMask
 
 /-!
 # The downward masked sum never overshoots the exact fibre sum
+
+## Inputs
+* `r` – map from generators to kept columns
+* `G` – generator matrix
+* `i` – row index
+* `j` – target column
+
+## Hypotheses
+* none
+
+## Conclusion
+* the rounded-down sum is at most the exact one
 -/
 
 -- Authors:       Claude Opus 5

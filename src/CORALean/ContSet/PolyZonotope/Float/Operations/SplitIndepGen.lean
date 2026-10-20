@@ -11,6 +11,13 @@ The independent branch of `aux_splitLongestGen_` in CORA's `@polyZonotope/contai
 independent generator `j` halved, one half with center `c + GI(:,j)/2`, the other with
 center `c - GI(:,j)/2`. Halving is exact; the two centers are rounded down and the gap to the
 upper rounding is added to the top of each error box.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `j` – independent generator index
+
+## Output
+* pair of polynomial zonotopes from halving that generator
 -/
 
 -- Authors:       Claude Opus 5.5

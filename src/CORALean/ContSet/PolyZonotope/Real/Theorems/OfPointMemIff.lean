@@ -10,6 +10,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.OfPointMem
 
 The converse to `mem_ofPoint`: no generator of either kind leaves nothing to add to
 the center.
+
+## Inputs
+* `v` – point
+* `x` – candidate point
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership means being that point
 -/
 
 -- Authors:       Claude Opus 5.5

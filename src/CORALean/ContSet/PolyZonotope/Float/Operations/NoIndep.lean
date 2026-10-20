@@ -11,6 +11,12 @@ CORA's `noIndep`: `GI = zeros(n, 0)`, the independent generators dropped and not
 changed, the error box included. Nothing rounds. It is not `PolyZonotope.absorbRounding`, which
 turns the independent block into dependent generators and keeps the set: `noIndep` keeps
 only what the dependent factors reach, a subset.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* the set with its independent generators removed
 -/
 
 -- Authors:       Claude Sonnet 5.5

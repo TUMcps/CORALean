@@ -12,6 +12,22 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.Subs
 
 A coefficient in a term's bracket times the original generator's entry is between the two directed
 products, which are `aux_subsGDiff` apart, so it is within that of the stored (rounded-down) one.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `nu` – number of substituted factors
+* `pZin` – polynomial zonotope substituted in
+* `idu` – indices of the substituted factors
+* `l` – term index
+* `r` – coordinate
+* `ρ` – coefficient value
+
+## Hypotheses
+* `h₁` – coefficient is at least the lower endpoint
+* `h₂` – coefficient is at most the upper endpoint
+
+## Conclusion
+* stored generator is within its gap of the exact one
 -/
 
 -- Authors:       Claude Opus 5.5

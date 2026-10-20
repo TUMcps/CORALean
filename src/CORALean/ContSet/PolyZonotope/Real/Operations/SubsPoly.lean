@@ -9,6 +9,14 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 
 Output `ii` of `pZin` as a sum of monomials: CORA's `Gin0 = [cin, Gin]` with `eMin0 = [0, eMin]`,
 the center being the term with exponent `0`.
+
+## Inputs
+* `nu` – number of substituted factors
+* `pZin` – polynomial zonotope substituted in
+* `ii` – substituted coordinate
+
+## Output
+* term list of that coordinate
 -/
 
 -- Authors:       Claude Opus 5.5

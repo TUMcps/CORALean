@@ -13,6 +13,15 @@ A coefficient `β ∈ [0,1]` of the halved generator is `(1 + β')/2` with `β' 
 the half whose center is `c + g/2`, and `β ∈ [-1,0]` is `(β' - 1)/2` with `β' = 2β + 1` in the
 other. Both halves also lie in the set, the same substitution read backwards; only the cover is
 needed and stated.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is covered by the two halves
 -/
 
 -- Authors:       Claude Opus 5.5

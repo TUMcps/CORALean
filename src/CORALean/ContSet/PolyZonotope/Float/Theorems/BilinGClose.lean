@@ -15,6 +15,19 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
 Generator `(i, j)` of the float pairing, rounded down, is off the exact `Gᵢᵀ Q Gⱼ` — read through
 `toReal` at the two operands' nominal sets — by at most `bilinGDiff`: the middle vector `Q *ᵥ Gⱼ`
 enters as a pair of bounds, picked per term, bracketing the form from both sides.
+
+## Inputs
+* `Q` – family of bilinear form matrices
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+* `i` – output coordinate
+* `l` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* stored generator is within its gap of the exact one
 -/
 
 -- Authors:       Claude Sonnet 5.5

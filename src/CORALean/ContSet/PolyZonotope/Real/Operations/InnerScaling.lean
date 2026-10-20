@@ -15,6 +15,14 @@ appended in `[-1, 1]` (line 4), its projection (line 5) and the box difference o
 stored as bounds (line 6, `boxDiffBounds`). The contractor is an argument, as [1] leaves it:
 any that [1, Def. 3] admits, `IsBoundsContractor`. `C(α̲, ᾱ)` is `pZ.subsetAt (Icc α̲ ᾱ)`.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `B` – list of boundary pieces
+* `contract` – bounds contractor
+
+## Output
+* lower and upper factor bounds of the scaling
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets

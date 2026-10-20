@@ -15,6 +15,15 @@ this into the nominal part and the box. The nominal part of the projection is th
 layer's `map` of the nominal part at the selection map, so `map_exact` gives the nominal
 obligation as an equality; the box is `Interval.project_outer`.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `dims` – selected dimensions
+
+## Hypotheses
+* none
+
+## Conclusion
+* the projection of the set lies in the result
 -/
 
 -- Authors:       Claude Sonnet 5.5

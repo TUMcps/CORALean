@@ -12,6 +12,13 @@ CORA's `@polyZonotope/cubMap`, `{ z = (xᵀ T x) * x | x ∈ pZ }` with `zᵢ = 
 `quadMap` is: independent generators and the error box are made dependent first (`absorbRounding`),
 then `cubMapDep`. CORA keeps independent generators independent and encloses their cubic terms by
 a zonotope; here the result is an enclosure of the image of the whole set, box included.
+
+## Inputs
+* `T` – family of cubic form tensors
+* `pZ` – polynomial zonotope
+
+## Output
+* polynomial zonotope enclosing the cubic image
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,18 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
 `Q *ᵥ Gⱼ` is known to an interval, and which endpoint of `Gᵢ(r) · [lo, hi]` is
 the lower depends on the sign of `Gᵢ(r)`; taking both and picking with `min` is
 how the layer avoids ever asking.
+
+## Inputs
+* `g` – vector
+* `wlo` – lower bound of the second vector
+* `whi` – upper bound of the second vector
+* `w` – point between the bounds
+
+## Hypotheses
+* `hw` – point lies between the bounds
+
+## Conclusion
+* the rounded-down bound is at most the exact dot product
 -/
 
 -- Authors:       Claude Opus 5

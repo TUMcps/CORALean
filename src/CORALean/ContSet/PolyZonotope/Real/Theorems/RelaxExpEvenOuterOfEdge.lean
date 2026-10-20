@@ -8,19 +8,25 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpEvenOuter
 /-!
 # An edge of the generator graph recenters
 
-What `[1, Def. 5]` is for, and the only thing soundness ever asks of a selection
-rule. `relaxExpEven_outer` wants three facts the drift's one-sidedness rests on,
-and `[1, Thm. 1]` states only one of them; an edge supplies two — the columns
-agree off `k₀`, and the exponent there falls — and turns the third, evenness of
-the survivor's exponent, into evenness of the relaxed column alone.
+What `[1, Def. 5]` is for, and the only thing soundness asks of a selection rule.
+`relaxExpEven_outer` wants three facts the drift's one-sidedness rests on, and `[1, Thm. 1]`
+states only one; an edge supplies two (the columns agree off `k₀`, the exponent there falls) and
+turns the third, evenness of the survivor's exponent, into evenness of the relaxed column
+alone: equal parity to an even exponent is even, and `E_{k₀,j} = 0` is even outright. CORA gates
+the halving on exactly this pair of tests. The relaxed column's evenness stays a hypothesis.
 
-That last step is the parity condition doing its second job: equal parity to an
-even exponent is even, and the alternative `E_{k₀,j} = 0` is even outright. CORA
-gates the halving on exactly this pair of tests, one in the graph and one at the
-merge, which is how the hypothesis went missing from `[1, Thm. 1]` on paper.
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
+* `η` – exponent threshold
+* `k₀` – factor index
 
-The evenness of the relaxed column stays a hypothesis: it is a fact about the
-whole column, which no edge of `[1, Def. 5]` reads.
+## Hypotheses
+* `hedge` – the pair is a relaxable edge at that factor
+* `heven` – first generator has even exponents
+
+## Conclusion
+* the set is contained in the result
 
 ## References
 

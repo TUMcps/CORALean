@@ -13,6 +13,13 @@ so no point and no denoted set changes.
 
 This is the right-hand half of a product over independent factors — the set
 whose own factors sit second in the joint numbering.
+
+## Inputs
+* `l` – number of added factors
+* `pZ` – polynomial zonotope
+
+## Output
+* polynomial zonotope with l unused factors prepended
 -/
 
 -- Authors:       Claude Opus 5

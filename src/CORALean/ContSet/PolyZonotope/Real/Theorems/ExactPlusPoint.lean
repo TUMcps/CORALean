@@ -10,17 +10,23 @@ public import Mathlib.Tactic.Abel
 /-!
 # `exactPlus` is the sum over shared factors
 
-What [1, Prop. 10] calls exactness, and what it cannot mean: `construct
-(exactPlus pZ₁ pZ₂ hp)` is not `construct pZ₁ + construct pZ₂`, which is what
-`plus` computes and is strictly larger. Both sets are functions of one shared
-factor vector, so the claim is about the evaluation map — the result's point at
-`a` is the sum of the two sets' points at that same `a`, with `pZ₂` read through
-`Fin.cast`, exactly as `mul_point` states it for a product.
+What [1, Prop. 10] calls exactness: `construct (exactPlus pZ₁ pZ₂ hp)` is not
+`construct pZ₁ + construct pZ₂`, which `plus` computes and is strictly larger. Both sets are
+functions of one shared factor vector, so the claim is about the evaluation map: the result's
+point at `a` is the sum of the two sets' points at that same `a`, with `pZ₂` read through
+`Fin.cast`, as `mul_point` states it for a product. The independent blocks take no part:
+`point` ignores them. The only thing Prop. 10 changes about `plus` is the exponent matrix.
 
-The independent blocks take no part: `point` ignores them, and `exactPlus`
-concatenates them the way `plus` does, there being no dependency in them to
-keep. So the only thing Prop. 10 changes about `plus` is the exponent matrix,
-and this is the theorem that says what that buys.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+* `a` – factor values
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Conclusion
+* the point is the sum of the two points
 
 ## References
 

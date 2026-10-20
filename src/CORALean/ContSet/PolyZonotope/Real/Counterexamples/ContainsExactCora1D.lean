@@ -25,6 +25,15 @@ outer enclosure only, and `contains_` of that zonotope decides (l. 186).
 `pZ = polyZonotope(0, [1 1], [], [1 2])` is `{α + α² : |α| ≤ 1} = [-1/4, 2]`, while
 `zonotope(pZ)` is `0.5 + [-1,1] + [-0.5,0.5] = [-1, 2]`. `contains(pZ, -0.5, 'exact')`
 returns `true`, yet `-0.5 ∉ pZ`, since `α² + α + 1/2 = (α + 1/2)² + 1/4 > 0`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's exact test accepts a point outside the set
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,12 @@ dependent and the independent ones, by `sum([G, GI].^2, 1)` rounded up and the f
 ones winning, is split, a dependent one by `splitLongestGen`, an independent one by
 `splitIndepGen`. With no generator at all the set is returned alone; CORA's `max` of an empty
 row errors there.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* list of polynomial zonotopes from splitting the longest generator
 -/
 
 -- Authors:       Claude Opus 5.5

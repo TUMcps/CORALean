@@ -7,22 +7,22 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidth
 /-!
 # `PolyZonotope.relaxExp`
 
-`[1, Thm. 1]`: two dependent generators whose exponent columns agree everywhere
-but at one index are merged into one, and what the merge costs is absorbed into
-a single new independent generator, of width `ξ_E = relaxWidth`, the maximum of `|x^a - x^b|` as
-CORA's `minMaxDiffPoly` computes it. One dependent generator is traded for one independent one,
-so no count grows and the set moves closer to a zonotope.
+`[1, Thm. 1]`: two dependent generators whose exponent columns agree everywhere but at one
+index are merged into one, and the cost is absorbed into one new independent generator of width
+`ξ_E = relaxWidth`, the maximum of `|x^a - x^b|` as CORA's `minMaxDiffPoly` computes it. The
+partition (a `Split`, `reduceBy`'s idiom) names the two; the index `k₀` is an argument, and
+`relaxExp_outer` asks that the columns agree off it. `ξ_G = ξ_E` throughout, where `[1]` halves
+it and shifts the center when every exponent of column `i` is even. That recentering is not done
+here, and `[1]` states it with two faults: the shift is `-ξ_E/2`, not `+ξ_E/2`, and it omits
+the evenness of `E_{k₀,j}`. CORA is unaffected.
 
-Which two are merged is a `Split` rather than a pair of indices, `reduceBy`'s idiom: the partition
-names the two and the `d` that stay as one object. The index `k₀` where the columns may differ is
-an argument, not an existential; `relaxExp_outer` asks that they agree off it, so a wrong `k₀`
-costs the theorem and not the definition.
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
+* `k₀` – factor index
 
-`ξ_G = ξ_E` throughout, where `[1]` halves it and shifts the center by the other
-half when every exponent of column `i` is even. That recentering is not done here,
-and `[1]` states it with two faults: the shift is `-ξ_E/2`, not `+ξ_E/2`, since
-`α^A - α^B ≤ 0` for even `A > B`; and it omits the evenness of `E_{k₀,j}`,
-without which the range is symmetric and the shift is zero. CORA is unaffected.
+## Output
+* polynomial zonotope with the two generators relaxed into one
 
 ## References
 

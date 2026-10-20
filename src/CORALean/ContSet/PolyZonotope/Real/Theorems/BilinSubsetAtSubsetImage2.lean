@@ -16,6 +16,18 @@ combination of an `pZ₁`-point at one factor vector with an `pZ₂`-point at an
 unrelated one, which no shared factor vector names. That gap is [1, Def. 4]'s whole
 point, and is not proved strict here — only crossed one way.
 
+## Inputs
+* `f` – bilinear map
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+* `B` – box of factor values
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Conclusion
+* subset at the box lies in the pairwise image
+
 ## References
 
 * [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to

@@ -16,6 +16,16 @@ generators gets its width over `p` factors and a scaling (`n`).
 
 The result is the center, the `d` kept dependent generators with their exponent columns, and the
 `q + k` independent generators: `n * (1 + d + q + k) + p * d` writes.
+
+## Inputs
+* `n` – dimension
+* `p` – number of factors
+* `d` – kept dependent generators
+* `q` – independent generator count
+* `k` – size of the relaxed group
+
+## Output
+* operation count of relaxing a group of generators
 -/
 
 -- Authors:       Claude Sonnet 5.5

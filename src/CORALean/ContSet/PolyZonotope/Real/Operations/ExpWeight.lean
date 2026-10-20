@@ -11,6 +11,16 @@ The weight of an edge `i → j` of `[1, Def. 5]`, summed over every factor so th
 ones contribute nothing: at an edge the columns differ at one index, so it is the single `eDiff`
 of the definition. Over a bare exponent matrix, as the edges are.
 
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `i` – first generator index
+* `j` – second generator index
+
+## Output
+* total exponent difference of the two generators
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and

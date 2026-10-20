@@ -13,6 +13,12 @@ block boxed away into one generator per coordinate, keeping every dependent gene
 dropping every independent one, and those boxes then made dependent. Only the boxing loses
 anything, and `reduceBy` there rounds its radius up.
 
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* polynomial zonotope with all generators boxed into the error box
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

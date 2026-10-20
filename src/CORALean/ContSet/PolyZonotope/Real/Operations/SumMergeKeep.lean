@@ -10,6 +10,18 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.MergeIdx
 `sum_compactKeep` at the columns `merge` keeps: the same reindexing, over a
 different `Finset`, and needed wherever a sum written over the result's `Fin h`
 has to meet one written over the operand's surviving columns.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `f` – function on columns
+
+## Hypotheses
+* none
+
+## Conclusion
+* sum over the kept set equals the sum over the plain count
 -/
 
 -- Authors:       Claude Opus 5

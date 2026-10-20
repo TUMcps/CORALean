@@ -13,6 +13,17 @@ factors *is* a polynomial zonotope (`bilin_exact`) — and `bilin_refines` puts 
 the nominal parts inside the float one. This reads it at the points `bilin_exact` names: at every
 factor vector in the cube, the exact pairing of the two nominal points is a point of the float
 pairing. Outer only.
+
+## Inputs
+* `Q` – family of bilinear form matrices
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Conclusion
+* the bilinear image of shared factor values lies in the result
 -/
 
 -- Authors:       Claude Sonnet 5.5

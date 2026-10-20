@@ -9,6 +9,13 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 
 Split out of `LinComb.lean` (issue #62): read again by
 `Theorems/LinCombOuter.lean`, outside this file.
+
+## Inputs
+* `a` – first center
+* `b` – second center
+
+## Output
+* half of the rounded-down sum
 -/
 
 -- Authors:       Claude Opus 5

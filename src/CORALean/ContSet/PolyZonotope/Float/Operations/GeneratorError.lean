@@ -16,6 +16,12 @@ with no cancellation either way, which is `radius`.
 Not `Zonotope.generatorError`, which is the same expression: the two
 representations stay independent of each other, and what they share is
 `abs_sum_le_radius` in `Global`.
+
+## Inputs
+* `G` – generator matrix
+
+## Output
+* symmetric interval vector spanned by the generators
 -/
 
 -- Authors:       Claude Opus 5

@@ -11,6 +11,15 @@ public import CORALean.ContSet.Zonotope.Float.Operations.PairSum
 
 Split out of `LinComb.lean` (issue #62): read again by `linCombGIDiff` in this
 directory and by `Theorems/LinCombOuter.lean`, both outside this file.
+
+## Inputs
+* `add` – rounded addition
+* `sub` – rounded subtraction
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Output
+* independent generators of the linear combination under that rounding
 -/
 
 -- Authors:       Claude Opus 5

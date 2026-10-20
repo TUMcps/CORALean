@@ -16,6 +16,15 @@ count and the generator count do not enter.
 The generators and the exponent columns that are kept are carried into the result, and the result's
 `n * (d + q + 3) + p * (d + 1)` entries are written: the center, the `d + 1`
 dependent and `q + 1` independent generators, and the `d + 1` exponent columns.
+
+## Inputs
+* `n` – dimension
+* `p` – number of factors
+* `d` – kept dependent generators
+* `q` – independent generator count
+
+## Output
+* operation count of one exponent relaxation
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -10,6 +10,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Resolve
 # `PolyZonotope.resolve` over-approximates the exact one
 
 `resolve` is `getSubset` at `[x, x]`, and `0` is exact in the scalar.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+* `x` – value of the factor
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact result plus the error box lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

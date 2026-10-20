@@ -11,6 +11,15 @@ public import Mathlib.Algebra.BigOperators.Fin
 Split out of `Operations/LinComb.lean` (issue #62): a proof device rather than
 an operation, hence in `Theorems/`, reused by `LinCombOuter.lean` at both
 layers.
+
+## Inputs
+* `a` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the center-difference generator reads only the fresh factor
 -/
 
 -- Authors:       Claude Opus 5

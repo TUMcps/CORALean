@@ -13,6 +13,15 @@ public import Mathlib.Order.Defs.Unbundled
 only its outgoing edge of smallest weight, `none` where it has no outgoing edge. The paper does
 not break ties between equal weights; the least target index is taken.
 
+## Inputs
+* `h` – number of generators
+* `G` – relation of admissible pairs
+* `w` – pair weights
+* `i` – generator index
+
+## Output
+* admissible partner of least weight, if any
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and

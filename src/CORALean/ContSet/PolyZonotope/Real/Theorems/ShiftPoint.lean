@@ -10,6 +10,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Shift
 
 The center is the first summand of `point`, so the translation comes straight
 back out; `add_right_comm` is the whole argument.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `v` – shift vector
+* `a` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point is the original point plus the vector
 -/
 
 -- Authors:       Claude Opus 5

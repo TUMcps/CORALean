@@ -7,15 +7,18 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
 /-!
 # `PolyZonotope.evalOn`: [1, (13)]'s evaluation function
 
-[1, Def. 3] at a polynomial zonotope is [1, (13)]: holding the dependent factors
-inside a sub-box `B` of their domain leaves the *whole* independent block free,
-so what the set denotes there is a zonotope and not a point.
+[1, Def. 3] at a polynomial zonotope is [1, (13)]: holding the dependent factors inside a
+sub-box `B` of their domain leaves the *whole* independent block free, so what the set denotes
+there is a zonotope and not a point. `subsetAt` is the dependent half of the same thing and
+coincides with this only at `q = 0`. Everything [1] says about `reach` needs the other half as
+well: every operation of its Alg. 1 grows the independent block.
 
-`subsetAt` is the dependent half of the same thing and coincides with this only
-at `q = 0`, which `subsetAt_unitBox` already has to assume. Everything [1] says
-about `reach` needs the other half as well: every operation of its Alg. 1 grows
-the independent block, so a dependency statement that drops it is false one step
-into the loop.
+## Inputs
+* `pZ` – polynomial zonotope
+* `B` – set of factor values
+
+## Output
+* set of points attained with factor values in that set
 
 ## References
 

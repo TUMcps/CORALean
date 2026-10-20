@@ -16,6 +16,17 @@ price `csel` is one here: a round costs at most `csel + aux_relaxExpMultiCost n 
 and the factor count `p` never changes, a merge keeping it. The generator count
 falls by one a round and the independent one grows by one, so every round is charged at the
 start's `h` dependent and at most `q + N` independent generators.
+
+## Inputs
+* `n` – dimension
+* `p` – number of factors
+* `h` – dependent generator count
+* `q` – independent generator count
+* `N` – number of relaxation steps
+* `csel` – cost of choosing a pair
+
+## Output
+* operation count of the greedy relaxation
 -/
 
 -- Authors:       Claude Sonnet 5.5

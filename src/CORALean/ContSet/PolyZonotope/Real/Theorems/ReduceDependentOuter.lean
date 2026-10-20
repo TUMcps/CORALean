@@ -13,6 +13,16 @@ Compaction, which is an equality, followed by the dependent-only rule. Sound on
 the same line as the bounded rule, which is the point of `reduceBy_outer`
 holding at every pair of partitions: what separates the two is the order bound
 and nothing here.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

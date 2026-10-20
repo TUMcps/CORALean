@@ -20,6 +20,15 @@ The witness is `Fin.append a (Fin.append β γ)`: the old factors, the old
 independent coefficients now dependent, and one coefficient per coordinate
 placing that coordinate's error in its new generator. `coefficient` supplies the
 last, and `errorBound` rounds nothing, so it always fits.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set lies in the nominal set of the absorbed one
 -/
 
 -- Authors:       Claude Opus 5

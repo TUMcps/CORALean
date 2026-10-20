@@ -9,6 +9,13 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.LinCombGI
 
 Split out of `LinComb.lean` (issue #62): read again by
 `Theorems/LinCombOuter.lean`, outside this file.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Output
+* gap between rounded-up and rounded-down independent generators
 -/
 
 -- Authors:       Claude Opus 5

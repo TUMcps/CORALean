@@ -13,6 +13,14 @@ identifier become one factor, their exponent rows added. An identifier is an ind
 sending each factor to its new identifier, and the new exponent row of an identifier is the sum of
 the old rows of the factors sent to it. CORA's replacement of a subset of the identifiers is `f`
 the identity elsewhere. The generators, the center and the independent block are untouched.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `p'` – new factor count
+* `f` – map from old to new factors
+
+## Output
+* polynomial zonotope with factors identified along the map
 -/
 
 -- Authors:       Claude Opus 5.5

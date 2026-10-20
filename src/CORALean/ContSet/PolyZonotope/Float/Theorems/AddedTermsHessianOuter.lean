@@ -18,6 +18,22 @@ At every factor vector `a` in the box `A` and weights `l` in `L`, the exact laye
 `∑ᵢ lᵢ pZᵢ` by `addedTermsHessian_hasDerivAt`) lies in the float entry: the exact coefficients lie
 between their two roundings, the twice-lowered monomials in `monoBox`, and their products summed in
 `Interval.mtimesIntervalMat`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `A` – interval of factor values
+* `L` – interval of the Lagrange point
+* `a` – factor values
+* `l` – Lagrange point
+* `j` – first factor index
+* `k` – second factor index
+
+## Hypotheses
+* `ha` – factor values lie in the interval
+* `hl` – Lagrange point lies in the interval
+
+## Conclusion
+* the exact Hessian entry lies between the interval endpoints
 -/
 
 -- Authors:       Claude Opus 5.5

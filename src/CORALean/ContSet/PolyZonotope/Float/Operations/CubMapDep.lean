@@ -17,6 +17,13 @@ exponent column `E_a + E_b + E_c` (the center has the zero column). The center o
 the gap to rounding up is charged to the error box. Every ordered triple is kept, CORA's
 symmetrized pairs and `removeRedundantExponents` leaving the polynomial unchanged. Sound only where
 the operand's independent block and error box are empty, so nothing outside `cubMap` calls it.
+
+## Inputs
+* `T` – family of cubic form tensors
+* `pZ` – polynomial zonotope
+
+## Output
+* polynomial zonotope of the cubic image, rounding error in the error box
 -/
 
 -- Authors:       Claude Opus 5.5

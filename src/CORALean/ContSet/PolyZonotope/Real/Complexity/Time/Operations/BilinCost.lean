@@ -8,19 +8,21 @@ public import CORALean.Global.Cost
 /-!
 # `PolyZonotope.bilinCost`
 
-Asserted, not proved, and the count the representation is expensive for:
-`Operations/Bilin.lean` builds one generator per *pair* of extended columns,
-`(h₁+1)(h₂+1)` of them, each one application of `f` and each carrying an
-exponent column that is `p` additions. Nothing else is computed — the
-independent block is empty and the center is zero.
+Asserted, not proved: `Operations/Bilin.lean` builds one generator per *pair* of extended
+columns, `(h₁+1)(h₂+1)` of them, each one application of `f` and an exponent column of `p`
+additions, each written (`2 * p` per column); the zero center is `nOut` writes. What one `f`
+costs is a parameter, as in `mapCost`: `f` is any bilinear map. `mulCost` is this at the
+entrywise product and `quadMapDepCost` at the quadratic form family.
 
-What one `f` costs is a parameter, as in `mapCost` and for the same reason: `f`
-is any bilinear map, so a caller with no bound on it has no bound here. `mulCost`
-is this at the entrywise product and `quadMapDepCost` at the quadratic form
-family.
+## Inputs
+* `cf` – cost of one bilinear form evaluation
+* `nOut` – output dimension
+* `p` – number of factors
+* `h₁` – first dependent generator count
+* `h₂` – second dependent generator count
 
-The `p` exponent additions are counted at unit price alongside the scalar work, each with its
-write (`2 * p` per column); the zero center is `nOut` writes.
+## Output
+* operation count of the bilinear image
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

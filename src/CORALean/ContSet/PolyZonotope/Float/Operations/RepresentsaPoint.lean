@@ -11,6 +11,12 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 CORA's `@polyZonotope/representsa_` at type `point`, tolerance `0`: every dependent and independent
 generator entry is `0` and the error box is a single point; `le` answers only `true` reliably, so a
 `true` is sound and a `false` decides nothing.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* Boolean, true only if all generators and the error box vanish
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,16 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 A point with independent coefficient `βⱼ ≥ 0` is in the first half at `2βⱼ - 1`, one with
 `βⱼ < 0` in the second at `2βⱼ + 1`; the halved generator is exact, and the center's rounding
 `c ± g - cᵢ ≥ 0` is at most the gap added to the top of the error box.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `j` – independent generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is covered by the two halves
 -/
 
 -- Authors:       Claude Opus 5.5

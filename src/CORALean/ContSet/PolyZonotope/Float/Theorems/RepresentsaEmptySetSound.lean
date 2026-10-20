@@ -10,6 +10,15 @@ public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaEmptySetSound
 # `PolyZonotope.representsa_emptySet` is sound
 
 `representsa_emptySet = true` means the set is empty: the error box is.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* `h` – the test returns true
+
+## Conclusion
+* the set is empty
 -/
 
 -- Authors:       Claude Opus 5.5

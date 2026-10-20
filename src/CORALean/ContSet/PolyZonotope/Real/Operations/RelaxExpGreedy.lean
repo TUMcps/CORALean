@@ -8,21 +8,18 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMulti
 # `PolyZonotope.relaxExpGreedy`
 
 The loop of `[1, Thm. 2]`: merge the two dependent generators a selection names, and repeat
-until it names none. `[1, Alg. 2]` walks the greedy subgraph of `[1, Def. 5]` — the smallest-weight
-outgoing edge of each node, merged along the forest that leaves — one selection among many.
+until it names none. `[1, Alg. 2]` walks the greedy subgraph of `[1, Def. 5]` (the smallest
+outgoing edge of each node) as one selection among many. The selection is a parameter and owes
+no proof: soundness holds wherever it points, so the edge, the threshold `η` and the tie-break
+decide precision alone. Steps are `relaxExpMulti`, which carries no similarity hypothesis. Fuel
+rather than a termination proof: each step drops one dependent generator, so `pZ.h` steps
+exhaust the set. The `O((h+q)hn + h²p)` of `[1, Thm. 2]` is a complexity claim, not made here.
 
-The selection is a parameter and owes no proof. Soundness holds wherever it points, so the
-greedy edge, the threshold `η` and the tie-break decide precision alone; `reduceBy` takes its
-ranking the same way. `none` is what an exhausted graph returns, and stops the loop.
+## Inputs
+* `sel` – chooser of the next pair of generators
 
-Steps are `relaxExpMulti` rather than `relaxExp`, which would carry a similarity
-hypothesis into every step; at a similar pair the summed width is the single
-`eDiff` anyway, so nothing is lost.
-
-Fuel rather than a termination proof: each step drops one dependent generator,
-so `pZ.h` steps exhaust the set and the caller says how many to take. The
-`O((h+q)hn + h²p)` of `[1, Thm. 2]` is a complexity claim, and belongs to a
-`Complexity/Space/` development that does not exist here yet.
+## Output
+* function from step count and set to the greedily relaxed set
 
 ## References
 

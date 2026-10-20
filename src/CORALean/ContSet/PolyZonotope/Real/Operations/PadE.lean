@@ -14,6 +14,15 @@ the matrix denotes what it did before.
 That is what makes an unshared product possible at all: `bilin` pairs two sets
 over one factor set, and two sets over independent factors reach it by each
 padding for the other's — this one for the set whose factors come first.
+
+## Inputs
+* `p` – number of factors
+* `s` – number of generators
+* `E` – exponent matrix
+* `r` – number of added factors
+
+## Output
+* exponent matrix with r zero rows appended
 -/
 
 -- Authors:       Claude Opus 5

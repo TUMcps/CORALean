@@ -13,6 +13,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
 `{ (xᵀ T x) * x | x ∈ pZ } = pZ.cubMap T`, `zᵢ = Σₖ xₖ (xᵀ T{i,k} x)`: the cubic map of a polynomial
 zonotope is a polynomial zonotope, with no enclosure. The pointwise form is `cubMapDepOn_point`:
 the point of the result at every factor vector is the cubic map of the original's point there.
+
+## Inputs
+* `T` – family of cubic form tensors
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the cubic image of the set equals the result
 -/
 
 -- Authors:       Claude Opus 5.5

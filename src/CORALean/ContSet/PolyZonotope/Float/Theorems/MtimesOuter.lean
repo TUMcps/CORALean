@@ -16,22 +16,22 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.MulVecSplit
 /-!
 # `PolyZonotope.mtimes` over-approximates the image under a linear map
 
-`InflatedContSet.map_subset` splits this into the nominal part and the box. The
-box is easy: the old one travels through the map as a box, by
-`Interval.mtimes_outer`, and the spill is added on.
+`InflatedContSet.map_subset` splits this into the nominal part and the box. The box is easy:
+the old one travels through the map by `Interval.mtimes_outer`, and the spill is added on. The
+nominal obligation is where the float layer pays for arithmetic: the center is wrong by a fixed
+vector, which `residual` holds; each generator block is wrong by an entrywise amount its
+coefficients scale, which `generatorError` sums. `mulVec_split` is stated at an arbitrary
+coefficient vector, the regrouping being linear algebra; it takes the three blocks loose.
 
-The nominal obligation is where the float layer pays for arithmetic rather than
-bookkeeping. The center is wrong by a fixed vector, which `residual` holds; each
-generator block is wrong by an entrywise amount its coefficients then scale,
-which `generatorError` sums. The dependent block's coefficients are monomials
-and the independent block's are free, and the two obligations differ only in
-which lemma supplies `|coefficient| ≤ 1`.
+## Inputs
+* `M` – matrix
+* `pZ` – polynomial zonotope
 
-`mulVec_split` is stated at an arbitrary coefficient vector `t` for the
-dependent block rather than at `monomial pZ.E a`: the regrouping is linear
-algebra and knows nothing about where the coefficients came from. It carries no
-`aux_` prefix and takes the three blocks loose, the constrained representation
-needing the same regrouping at its own fields.
+## Hypotheses
+* none
+
+## Conclusion
+* the matrix image of the set lies in the result
 -/
 
 -- Authors:       Claude Opus 5

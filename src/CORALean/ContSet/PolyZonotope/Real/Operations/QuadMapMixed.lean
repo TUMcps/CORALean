@@ -11,22 +11,21 @@ public import Mathlib.LinearAlgebra.Prod
 /-!
 # `PolyZonotope.quadMapMixed`
 
-CORA's `@polyZonotope/quadMap` at two operands, and the `mu(D, R₁, R₂)` a
-conservative polynomialization is written in: `{(x₁ᵀQ₁x₂, …) | x₁ ∈ pZ₁, x₂ ∈ pZ₂}`,
-the two arguments ranging *independently*. `quadMapDep` pairs a set with itself
-over shared factors; here nothing may be shared, or the two ranges would be tied
-together and the result would shrink below the set asked for.
+CORA's `@polyZonotope/quadMap` at two operands, and the `mu(D, R₁, R₂)` a conservative
+polynomialization is written in: `{(x₁ᵀQ₁x₂, …) | x₁ ∈ pZ₁, x₂ ∈ pZ₂}`, the arguments ranging
+*independently*. `quadMapDep` pairs a set with itself over shared factors; here nothing may be
+shared, or the ranges would be tied together. Independence is what `cartProd` buys (`[1, Prop.
+11]`'s block-diagonal layout); `bilin` then pairs that product with itself at the map reading
+the *first* component of one argument against the *second* of the other. `[1, Prop. 12]` is the
+same pairing where the operands are one set. `dependent` runs on each operand first.
 
-Independence is what `cartProd` buys — `[1, Prop. 11]`'s block-diagonal layout,
-in which a factor vector of the product names a point of each operand with no
-constraint between them. `bilin` then pairs that product with itself over those
-factors, at the map reading the *first* component of one argument against the
-*second* of the other; on the diagonal that is exactly `x₁ᵀQx₂`, with `x₁` and
-`x₂` free of one another. `[1, Prop. 12]` is the same pairing where the two
-operands are one set.
+## Inputs
+* `Q` – family of quadratic form matrices
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
 
-`dependent` runs on each operand first, for the reason `quadMap` runs it:
-`bilin` is a claim about `point`, which an independent block takes no part in.
+## Output
+* polynomial zonotope of the mixed quadratic image
 
 ## References
 

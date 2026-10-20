@@ -11,6 +11,17 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReplaceIdSubset
 # An injective renaming changes nothing, in float too
 
 Renaming factors injectively denotes the same set: equality, the error box as it was.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `p'` – new factor count
+* `f` – map from old to new factors
+
+## Hypotheses
+* `hf` – the map is injective
+
+## Conclusion
+* the renamed set equals the original
 -/
 
 -- Authors:       Claude Opus 5.5

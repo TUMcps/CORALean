@@ -15,6 +15,19 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.IndepFactorsPointMem
 every monomial vanish at the zero factors (`center_mem_construct`). Otherwise `innerGeneral`
 puts the point in the image of `[-1, 1]ᵖ⁺ᵍ` under the point map of `indepFactors`, which stays
 in the nominal set (`indepFactors_point_mem`); the error box holds `0`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `s` – point
+* `start` – starting point of the factor search
+* `inv` – matrix inverse routine
+* `iter` – number of iterations
+
+## Hypotheses
+* `h` – the test returns true
+
+## Conclusion
+* the point lies in the set
 -/
 
 -- Authors:       Claude Opus 5.5

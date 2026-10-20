@@ -11,6 +11,15 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitDepFactorUnion
 
 With a dependent factor to split it is `splitDepFactor_union`; without, the independent
 split, `splitLongestIndepGen_cover`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is covered by the two halves
 -/
 
 -- Authors:       Claude Opus 5.5

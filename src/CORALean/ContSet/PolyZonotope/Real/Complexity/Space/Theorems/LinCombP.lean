@@ -11,6 +11,16 @@ One fresh factor over the two operands' own, dependent generators tripled in
 the two doubled blocks plus the one fresh center-difference generator, and the
 independent block carried over at its combined count. `rfl` against the
 structure instance in `Operations/LinComb.lean`.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the factor count is the sum plus one
 -/
 
 -- Authors:       Claude Opus 5

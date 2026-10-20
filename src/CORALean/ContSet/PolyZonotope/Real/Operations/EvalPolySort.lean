@@ -7,21 +7,19 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortP
 /-!
 # `PolyZonotope.evalPolySort`
 
-[1, Alg. 2]: the polynomial evaluated by powers rather than by Horner's rule —
-`PZ^i` computed by repeated `sq`, each sorted and merged, and the `o` terms
-summed with `sortPlus`. Coefficients lowest degree first and one vector per
-degree, as `evalPoly` takes them, so every coordinate carries its own
-polynomial.
+[1, Alg. 2]: the polynomial evaluated by powers rather than by Horner's rule: `PZ^i` computed by
+repeated `sq`, each sorted and merged, and the `o` terms summed with `sortPlus`. Coefficients
+lowest degree first and one vector per degree, as `evalPoly` takes them. `evalPoly` reaches the
+same value by a different route; this one keeps the exponent matrix sorted throughout and never
+calls `compact`. The independent block is not part of the claim: [1, Alg. 2] assumes it empty,
+and a caller who needs those coefficients to count runs `dependent` on `pZ` first.
 
-`evalPoly` is Horner and reaches the same value by a different route, which is
-what [1, Alg. 2] buys: this one keeps the exponent matrix sorted throughout and
-never calls `compact`.
+## Inputs
+* `pZ` – polynomial zonotope
+* `coeffs` – coefficient vectors
 
-The independent block is not part of the claim: [1, Alg. 2] is given a
-`PZ = ⟨c, G, [], E⟩` and so assumes it empty, `point` ignores it, and of the
-terms here only the degree-one one carries it through at all. A caller who
-needs those coefficients to count runs `dependent` on `pZ` first, as
-`evalPoly`'s callers do.
+## Output
+* polynomial zonotope of the polynomial by the sorted algorithm
 
 ## References
 

@@ -10,6 +10,13 @@ public import Mathlib.Data.Real.Basic
 Split out of `EvalPolyExact.lean` (issue #62): read again by the float layer's
 own `Theorems/EvalPolyOuter.lean`, by `Theorems/EvalPolyRealOfFn.lean`, and by
 `NN.Layers.Theorems.ActivationPolySound`, all outside this file.
+
+## Inputs
+* `coeffs` – real coefficients
+* `x` – real argument
+
+## Output
+* value of the polynomial by Horner's rule
 -/
 
 -- Authors:       Claude Opus 5

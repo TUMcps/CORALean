@@ -14,6 +14,15 @@ without it the result can only be entered, never left.
 
 Two cases and no induction: the empty accumulator names `0` and a Horner step
 names `mul`'s field, so neither case looks at what is below it.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the evaluation has no independent generators
 -/
 
 -- Authors:       Claude Opus 5

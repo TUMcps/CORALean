@@ -18,6 +18,15 @@ the two directed masked sums, the lower is stored, and the gap is a
 `generatorError` — the merged column's coefficient being a monomial in
 `[-1,1]`. `sum_monomial_merge` is the exact layer's and knows nothing about a
 scalar.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

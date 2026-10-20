@@ -11,20 +11,19 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMulti
 /-!
 # `PolyZonotope.relaxExpMulti`
 
-The exact layer's `relaxExpMulti`, rounded. It rounds where `relaxExp` rounds
-and nowhere else: the merged dependent column is the same sum of two stored
-floats, so `mergedGen` is reused rather than restated, and the new independent
-column is again a fold of copies of one generator — only how many copies has
-changed.
+The exact layer's `relaxExpMulti`, rounded. It rounds where `relaxExp` rounds and nowhere else:
+the merged dependent column is the same sum of two stored floats (`mergedGen` is reused) and
+the new independent column is again a fold of copies of one generator, only the number of
+copies has changed. The count rounds nothing: `eDiff` is over ℕ in both layers, so a wider
+relaxation costs no extra box (one `nsmulDown` at the larger count). The center is untouched,
+so the box gets the same two gaps as `relaxExp`.
 
-The count itself rounds nothing. `eDiff` is over ℕ in both layers and the
-exponent matrix is copied, so the summed width is a natural number the two
-layers agree on exactly, however many factors it runs over. What that buys is
-that a wider relaxation costs no extra box: the fold is one `nsmulDown` at the
-larger count, not a chain of them.
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
 
-The center is untouched, `ξ_c` being zero at `ξ_G = ξ_E`, so this operation adds
-the same two gaps to the box that `relaxExp` does.
+## Output
+* polynomial zonotope relaxed over all factors
 -/
 
 -- Authors:       Claude Opus 5

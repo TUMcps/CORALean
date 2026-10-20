@@ -13,19 +13,23 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # `PolyZonotope.containsSetApprox`
 
 The set branch of CORA's `@polyZonotope/contains_` with `'approx'`, `aux_proveContainment`:
-the inner set `S` is split along its longest generator
-(`aux_splitLongestGen_`, `splitLongestGenAll`) for `splits = 8` rounds, one more while the list
-does not grow, and a piece
-is dropped once `aux_containsInterval` ([1, Alg. 3], `innerGeneral`) proves its interval
-enclosure inside the image of `[-1, 1]ᵖ⁺ᵍ` under `aux_funcPoly` (`indepFactors`); `true` when
-no piece is left (the rounds CORA still runs on the empty list change nothing, and are not run
-here). CORA starts each test from `x + pinv(J(x))·(Y - center(Y))`, `x` from
-`fmincon`; here that box is the caller's `guess`. `fuel` caps the rounds.
+the inner set `S` is split along its longest generator (`splitLongestGenAll`) for `splits = 8`
+rounds, and a piece is dropped once `aux_containsInterval` ([1, Alg. 3], `innerGeneral`) proves
+its enclosure inside the image of `[-1, 1]ᵖ⁺ᵍ` under `aux_funcPoly` (`indepFactors`); `true`
+when no piece is left. CORA's start box from `fmincon` is the caller's `guess`; `fuel` caps the
+rounds. CORA's `aux_disproveContainment` only returns `false` and is not formalized. `true` is
+only returned where the error box holds `0`.
 
-CORA first tries to disprove containment by a contractor (`aux_disproveContainment`), which only
-ever returns `false`, and then returns `false` for an `S` that `isFullDim` does not certify;
-the first is not formalized, the second is kept. `S` is a polynomial zonotope; CORA converts
-other sets first. `true` is only returned where the error box holds `0`.
+## Inputs
+* `pZ` – polynomial zonotope
+* `S` – inner polynomial zonotope
+* `guess` – factor-box guess for a split piece
+* `inv` – matrix inverse routine
+* `iter` – number of iterations
+* `fuel` – splitting depth bound
+
+## Output
+* Boolean, true only if the inner set is shown to lie in the set
 
 ## References
 

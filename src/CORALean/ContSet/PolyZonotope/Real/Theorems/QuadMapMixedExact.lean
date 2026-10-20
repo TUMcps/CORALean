@@ -12,16 +12,23 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
 /-!
 # `quadMapMixed` is exactly the pairing over two independent ranges
 
-Unlike `bilin`, whose claim is about the evaluation map because its two operands
-share their factors, this one is a claim about the two *sets*: the result is
-exactly the image of `pZ₁.construct ×ˢ pZ₂.construct` under `(x₁, x₂) ↦ x₁ᵀQx₂`.
-That is what the Cartesian product is there to buy, `[1, Prop. 11]` being exact.
+Unlike `bilin`, whose claim is about the evaluation map because its operands share factors,
+this is a claim about the two *sets*: the result is exactly the image of
+`pZ₁.construct ×ˢ pZ₂.construct` under `(x₁, x₂) ↦ x₁ᵀQx₂`, what the Cartesian product buys
+(`[1, Prop. 11]`). Three exact steps: `dependent_exact` empties the independent blocks,
+`cartProd_exact` turns the pair into the product set, and `bilin_exact` pairs the product with
+itself over its own factors, whose empty independent block `cartProd` preserves.
 
-Three steps, each exact on its own: `dependent_exact` empties the independent
-blocks, `cartProd_exact` turns the pair of sets into the product set, and
-`bilin_exact` pairs the product with itself over the product's own factors. The
-last needs the product's independent block to be empty, which the first supplies
-and `cartProd` preserves, so `construct` and the image of `point` coincide there.
+## Inputs
+* `Q` – family of quadratic form matrices
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the mixed quadratic image of the product equals the result
 
 ## References
 

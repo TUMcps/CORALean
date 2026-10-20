@@ -15,17 +15,23 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 /-!
 # The recentered relaxation over-approximates at any parity, at the stored fields
 
-The exact layer's argument at this layer's stored fields.
-`sub_monomial_mem_eDrift` is the exact layer's and is what brackets the drift;
-both ends of that bracket are natural numbers the two layers read off the same
-exponent matrix, so the midpoint and the half-width are the same halves here as
-there.
+The exact layer's argument at this layer's stored fields. `sub_monomial_mem_eDrift` is the
+exact layer's and brackets the drift; both ends of that bracket are natural numbers the two
+layers read off the same exponent matrix. Three gaps, as in the all-even case, and the
+center's is the one that changes: the shift has no sign to case on, so it is stored at its
+lower rounding and added downward; the gap up to the sum at the shift's upper rounding covers
+the center whichever way the shift went.
 
-Three gaps, as in the all-even case, and the center's is the one that changes.
-The shift has no sign to case on, being a difference of two folds, so it is
-stored at its lower rounding and added downward; the gap up to the same sum
-taken at the shift's upper rounding then covers the center whichever way the
-shift went.
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
+* `k₀` – factor index
+
+## Hypotheses
+* `hsim` – generators agree outside that factor
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

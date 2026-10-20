@@ -12,6 +12,15 @@ public import Mathlib.Tactic.FinCases
 
 `(3, 1)` and `(-3, 1)` are in the set, their midpoint `(0, 1)` is not: `a c = 1` forces
 `a = ±1`, and then `2a + b ≠ 0`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the counterexample set is not convex
 -/
 
 -- Authors:       Claude Opus 5.5

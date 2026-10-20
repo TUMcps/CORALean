@@ -15,6 +15,17 @@ generators and exponent columns are appended, the centers added. The float cente
 the directed sums and its rounding, with the error boxes of all the summands, goes into the error
 box (`sumErr`, `Interval.residual`). The correct sum, not CORA's loop (see the real layer's
 `sumCora`).
+
+## Inputs
+* `m` – number of summands
+* `pZ` – polynomial zonotope
+* `L` – family of further polynomial zonotopes
+
+## Hypotheses
+* `hp` – all have the same factor count
+
+## Output
+* polynomial zonotope of the sum
 -/
 
 -- Authors:       Claude Opus 5.5

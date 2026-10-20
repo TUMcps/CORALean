@@ -14,6 +14,14 @@ which substitutes the value into every monomial and keeps the factor as a column
 exponent matrix. Identity is positional, so a resolved factor is not removed from the list as
 CORA removes its `id`, and `compact` is the operation that folds and drops what is constant. A
 list of factors is the iteration.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+* `x` – value of the factor
+
+## Output
+* polynomial zonotope with that factor fixed
 -/
 
 -- Authors:       Claude Opus 5.5

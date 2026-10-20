@@ -7,21 +7,25 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.EDiff
 /-!
 # `PolyZonotope.ExpEdgeAt`
 
-The edge condition of `[1, Def. 5]`, read at the one index where the two
-exponent columns differ. Nodes are the dependent generators and an edge `i → j`
-says the pair may be merged: the columns agree off `k₀`, which is `[1, Def. 4]`;
-the exponents there have equal parity or the lower one is zero; and the lower
-one is still at least the threshold `η`. Its weight is `eDiff`, already defined.
+The edge condition of `[1, Def. 5]`, read at the one index where the two exponent columns
+differ. Nodes are the dependent generators and an edge `i → j` says the pair may be merged:
+the columns agree off `k₀` (`[1, Def. 4]`); the exponents there have equal parity or the lower
+one is zero; and the lower one is at least the threshold `η`. Its weight is `eDiff`. The parity
+condition keeps `eDiff` small and supplies `relaxExpEven_outer`'s hypotheses; soundness needs
+none, precision does. Over a bare exponent matrix, so both layers read it; decidable
+(`DecidableExpEdgeAt.lean`, `aux_` never marking an instance, issue #62).
 
-The parity condition is what keeps `eDiff` small — without it `x^a - x^b`
-reaches `2` at `x = -1`. Against an even column it also supplies
-`relaxExpEven_outer`'s hypotheses, which is what a selection rule is for here:
-soundness needs none, precision does.
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `η` – exponent threshold
+* `k₀` – factor index
+* `i` – first generator index
+* `j` – second generator index
 
-Stated over a bare exponent matrix rather than over a set, so both layers read
-it — the exponents are naturals in both. `Prop`-valued and decidable, every
-clause ℕ arithmetic or a bounded quantifier; the instance is
-`DecidableExpEdgeAt.lean`, `aux_` never marking an instance (issue #62).
+## Output
+* Prop that the pair is a relaxable edge at that factor
 
 ## References
 

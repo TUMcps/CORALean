@@ -14,6 +14,17 @@ well — hence an *equality* and not an enclosure. This is [1, Def. 4] at a line
 map: the property that makes it dependency preserving, discharged rather than
 assumed as [1]'s Sec. 2.3 does.
 
+## Inputs
+* `f` – linear map
+* `pZ` – polynomial zonotope
+* `B` – box of factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* evaluation of the image is the image of the evaluation
+
 ## References
 
 * [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to

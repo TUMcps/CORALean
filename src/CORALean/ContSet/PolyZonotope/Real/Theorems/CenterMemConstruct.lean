@@ -13,6 +13,15 @@ CORA's `center` returns the field `c` with no guarantee. The guarantee is `NoZer
 monomial then vanishes at the factor vector `0`, so `c` is the point of the zero factors and
 zero independent coefficients. Without it a column `0` is a constant monomial `1`, and `c`
 need not lie in the set (one generator `1` with exponent column `0` denotes `{c + 1}`).
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* `hE` – no exponent column is zero
+
+## Conclusion
+* the center lies in the set
 -/
 
 -- Authors:       Claude Opus 5.5

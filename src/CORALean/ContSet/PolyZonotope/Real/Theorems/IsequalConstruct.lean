@@ -8,6 +8,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Isequal
 # Polynomial zonotopes passing `isequal` denote the same set
 
 Sound, not exact: `isequal` compares the representation, and different data can denote one set.
+
+## Inputs
+* `Z` – first polynomial zonotope
+* `S` – second polynomial zonotope
+
+## Hypotheses
+* `h` – the equality test holds
+
+## Conclusion
+* the two sets are equal
 -/
 
 -- Authors:       Claude Opus 5.5

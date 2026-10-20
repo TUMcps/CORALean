@@ -11,20 +11,23 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 /-!
 # The recentered relaxation over-approximates, at any parity
 
-`[1, Thm. 1]` with one hypothesis, the similarity of `[1, Def. 4]`, and none of
-the evenness `relaxExpEven_outer` asks for. `sub_monomial_mem_eDrift` brackets
-the drift on both sides, and a bracket has a midpoint and a half-width whatever
-its ends are, so the center shift is sound at every exponent pair and only its
-size depends on parity.
+`[1, Thm. 1]` with one hypothesis, the similarity of `[1, Def. 4]`, and none of the evenness
+`relaxExpEven_outer` asks for. `sub_monomial_mem_eDrift` brackets the drift on both sides, and
+a bracket has a midpoint and a half-width whatever its ends are, so the center shift is sound
+at every exponent pair and only its size depends on parity. Here the operation goes past `[1]`
+and CORA, which shift only when every exponent of column `i` is even: `dc + [-d, d] = [dl, du]`
+is an identity. An edge of `[1, Def. 5]` with `E_{k₀,j} = 0` is the case they leave.
 
-That is where the operation goes past `[1]` and past CORA: both shift only when
-every exponent of column `i` is even, and `dc + [-d, d] = [dl, du]` is an
-identity, so the test decides how much is gained and never whether anything may
-be. An edge of `[1, Def. 5]` with `E_{k₀,j} = 0` is the case they leave on the
-table.
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
+* `k₀` – factor index
 
-`Zonotope.coefficient` answers for the drift at the new generator, half-width
-zero included, so nothing here needs the bracket to be non-degenerate.
+## Hypotheses
+* `hsim` – generators agree outside that factor
+
+## Conclusion
+* the set is contained in the result
 
 ## References
 

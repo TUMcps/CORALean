@@ -19,6 +19,19 @@ same factor values reach the stored generators, which differ from the exact ones
 lies in the box `generatorError` that was added. The substituted set `pZin` is taken as its stored
 nominal polynomial: its independent generators and error box are not modelled, as in the exact
 layer.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `nu` – number of substituted factors
+* `pZin` – polynomial zonotope substituted in
+* `idu` – indices of the substituted factors
+* `share` – map of shared factors
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact substitution plus the error box lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

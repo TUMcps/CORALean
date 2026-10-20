@@ -8,6 +8,15 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsXprod
 # `PolyZonotope.subsTerms`
 
 One term per generator of the result: the generator `i` of `pZ` and a term of its `Xprod`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `nu` – number of substituted factors
+* `pZin` – polynomial zonotope substituted in
+* `idu` – indices of the substituted factors
+
+## Output
+* list of terms tagged with their generator
 -/
 
 -- Authors:       Claude Opus 5.5

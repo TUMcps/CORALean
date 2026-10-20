@@ -12,6 +12,19 @@ output `ii` of `pZin`, over the unit box of the result's factors and of `pZ`'s i
 generators. This is an equality, and it is the one CORA's expansion into terms is meant to
 compute; the replaced value is not required to stay in `[-1, 1]`, so the set is not a subset of
 `pZ`'s unless `pZin` stays in the unit box.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `nu` – number of substituted factors
+* `pZin` – polynomial zonotope substituted in
+* `idu` – indices of the substituted factors
+* `share` – map of shared factors
+
+## Hypotheses
+* `hidu` – the indices are injective
+
+## Conclusion
+* the result is the set of substituted points
 -/
 
 -- Authors:       Claude Opus 5.5

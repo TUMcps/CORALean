@@ -15,6 +15,12 @@ over-approximates the polynomial zonotope, which `split` halves along its genera
 `PolyZonotope.zonotope` drops the exponents and carries the error box across, and the float
 `Zonotope.reduceMethC` boxes along a basis of generators with a checked candidate inverse; where
 that check fails the zonotope itself is returned, as at order one over ℝ with too few generators.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* parallelotope zonotope enclosing the set
 -/
 
 -- Authors:       Claude Opus 5.5

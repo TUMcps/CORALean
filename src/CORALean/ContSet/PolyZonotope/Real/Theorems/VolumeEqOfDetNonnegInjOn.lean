@@ -13,6 +13,18 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.Basic
 
 With `det J ≥ 0` on the factor cube and the factor map injective on it, CORA's value is the
 volume of the set, the area formula's equality case.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* `hq` – no independent generators
+* `h` – factor count equals the dimension
+* `hdet` – determinant is nonnegative on the cube
+* `hinj` – the point map is injective on the cube
+
+## Conclusion
+* volume of the set equals the integral of the determinant
 -/
 
 -- Authors:       Claude Opus 5.5

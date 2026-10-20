@@ -9,6 +9,16 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 
 The factor of the result that `pZin`'s factor `j` is: `pZ`'s own where the identifiers are shared,
 else a new one after `pZ`'s.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `nu` – number of substituted factors
+* `pZin` – polynomial zonotope substituted in
+* `share` – map of shared factors
+* `j` – inner factor index
+
+## Output
+* index of that factor in the combined factors
 -/
 
 -- Authors:       Claude Opus 5.5

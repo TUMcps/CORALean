@@ -15,6 +15,14 @@ weighted by how far each coordinate can reach, summed over the dependent block
 read as independent (`abs_monomial_le_one`) and the independent block itself —
 which is exactly `Zonotope.radiusReach` read at the enclosing zonotope, whose
 own generators are `G` and `GI` appended.
+
+## Inputs
+* `IM` – interval matrix
+* `pZ` – polynomial zonotope
+* `i` – coordinate
+
+## Output
+* radius reached by the interval matrix image in that coordinate
 -/
 
 -- Authors:       Claude Opus 5

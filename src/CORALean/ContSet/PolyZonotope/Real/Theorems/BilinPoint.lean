@@ -10,14 +10,22 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
 # `bilin`'s point is `f` at the two points
 
 The whole content of the construction, and the only place bilinearity is used:
-`sum_ext_eq_point` makes each point one sum, `f` distributes over both, and
-adding the two exponent columns — sound only because the factors are shared —
-turns each pair of monomials into one, at the flat index `finProdFinEquiv`
-matches to the pair.
+`sum_ext_eq_point` makes each point one sum, `f` distributes over both, and adding the two
+exponent columns (sound only because the factors are shared) turns each pair of monomials into
+one, at the flat index `finProdFinEquiv` matches to the pair. Stated over `point` rather than
+`construct`, since the recursion that raises the order needs it at each step.
 
-Stated over `point` rather than over `construct`, because the recursion that
-raises a polynomial abstraction one order needs it at each step and only
-`bilin_exact` needs it over the sets.
+## Inputs
+* `f` – bilinear map
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+* `a` – factor values
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Conclusion
+* the point is the bilinear map of the two points
 -/
 
 -- Authors:       Claude Opus 5

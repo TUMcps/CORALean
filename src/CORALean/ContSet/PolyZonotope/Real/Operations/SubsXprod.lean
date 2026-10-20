@@ -11,6 +11,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsPoly
 CORA's `Xprod` of generator `i`: what its monomial in the replaced factors becomes, the product over
 the outputs `ii` of `Y{ii, e}`, the `e`-th power of output `ii`'s polynomial, `e` the exponent of
 factor `idu ii` in the generator.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `nu` – number of substituted factors
+* `pZin` – polynomial zonotope substituted in
+* `idu` – indices of the substituted factors
+* `i` – generator index
+
+## Output
+* term list of the substituted monomial
 -/
 
 -- Authors:       Claude Opus 5.5

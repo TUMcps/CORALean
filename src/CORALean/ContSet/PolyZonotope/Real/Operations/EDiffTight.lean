@@ -15,6 +15,13 @@ drift is `|u^a - u^b|` on `u ∈ [0,1]`, largest at `u^c = l/h` for `l < h` the 
 exponent and `c = h - l`, where it is `(l/h)^(l/c) · (c/h)`, and `1` for `l = 0`. That is below
 `eDiff`'s `1` for every `l > 0` (`eDiffTight_le_eDiff`), `0.385` at `(3, 1)` for instance.
 
+## Inputs
+* `a` – first exponent
+* `b` – second exponent
+
+## Output
+* tight bound on the exponent difference
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and

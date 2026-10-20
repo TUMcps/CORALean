@@ -14,6 +14,13 @@ CORA's `@polyZonotope/cartProd_`: the factors of the two operands stay disjoint,
 matrix is block diagonal (`PolyZonotope.plusE`), the centers stack, and the dependent and the
 independent generators are each `genBlockDiag` of the two. The error boxes stack
 (`Interval.append`). Nothing is added or multiplied, so nothing rounds.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Output
+* Cartesian product as a polynomial zonotope
 -/
 
 -- Authors:       Claude Sonnet 5.5

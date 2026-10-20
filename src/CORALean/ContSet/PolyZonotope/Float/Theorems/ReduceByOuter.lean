@@ -17,6 +17,17 @@ The error box is untouched, so `mono_subset` reduces this to the nominal part.
 The dropped columns become one diagonal block, at the coefficient
 `abs_dropped_le_dropRadius` says reaches them, and the kept columns are the
 original ones.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `partD` – split of the dependent generators
+* `partI` – split of the independent generators
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

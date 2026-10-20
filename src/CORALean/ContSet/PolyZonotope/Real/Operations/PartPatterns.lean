@@ -11,6 +11,13 @@ public import Mathlib.Data.List.Dedup
 
 The distinct exponent patterns in the factors `V`, in order of first appearance
 (`unique(eM_v','rows','stable')`).
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `V` – selected factors
+
+## Output
+* duplicate-free exponent patterns on those factors
 -/
 
 -- Authors:       Claude Opus 5.5

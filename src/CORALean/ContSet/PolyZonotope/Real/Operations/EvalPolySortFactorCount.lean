@@ -11,6 +11,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySort
 recursion, so that a caller stating a point equation has a cast to write it
 with.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `coeffs` – coefficient vectors
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sorted evaluation keeps the factor count
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

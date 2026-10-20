@@ -11,6 +11,13 @@ public import Mathlib.Data.Finset.Sort
 Split out of `Compact.lean` (issue #62): read again by `mergedCol` and
 `mergedColUp` in this directory, and by `Theorems/CompactGensOuter.lean` and
 `ConPolyZono`'s own compaction, all outside this file.
+
+## Inputs
+* `E` – exponent matrix
+* `j` – kept column number
+
+## Output
+* the original index of that kept column
 -/
 
 -- Authors:       Claude Opus 5

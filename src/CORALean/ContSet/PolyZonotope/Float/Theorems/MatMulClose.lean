@@ -11,6 +11,19 @@ Off by at most the gap between the two directed roundings. Stated over a family
 of generators, as both polynomial representations store them; the gap is the
 matrix `matMulDiff` of the generators laid out as columns, which is what
 `generatorError` reads.
+
+## Inputs
+* `k` – number of columns
+* `M` – matrix
+* `A` – family of column vectors
+* `i` – row index
+* `l` – column index
+
+## Hypotheses
+* none
+
+## Conclusion
+* stored entry is within its gap of the exact product
 -/
 
 -- Authors:       Claude Opus 5

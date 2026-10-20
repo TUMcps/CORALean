@@ -11,6 +11,16 @@ public import Mathlib.Data.Finset.Sort
 Split out of `Compact.lean` (issue #62): used again by `sum_compactKeep` and
 `compactGens` below, and by `Theorems/CompactGensExact.lean`, both outside
 this file.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `G` – generators
+* `j` – kept column number
+
+## Output
+* the original index of that kept column
 -/
 
 -- Authors:       Claude Opus 5

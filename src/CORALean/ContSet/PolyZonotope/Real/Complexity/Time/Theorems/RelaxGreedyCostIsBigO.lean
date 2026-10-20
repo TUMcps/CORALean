@@ -14,6 +14,15 @@ public import Mathlib.Order.Filter.AtTopBot.Prod
 
 [1, Thm. 2 (complexity)]: `Alg. 2` is `O((h + q) h n + h² p)`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the cost grows at most like the product bound in the four sizes
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and Its

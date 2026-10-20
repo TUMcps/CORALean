@@ -12,6 +12,16 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.PrecondRegular
 `M C` lies between its two roundings, so `|(1 - M C)ᵢⱼ|` is at most the larger of the two
 roundings' distances from `1ᵢⱼ`, and a row of those summing below `1` gives
 `mulVec_injective_of_residual`.
+
+## Inputs
+* `M` – matrix
+* `C` – preconditioner
+
+## Hypotheses
+* `h` – the test returns true
+
+## Conclusion
+* the preconditioner is injective
 -/
 
 -- Authors:       Claude Opus 5.5

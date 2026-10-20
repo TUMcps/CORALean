@@ -12,6 +12,16 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceGirardDependent
 `compact` first, then `reduceGirardDependent` — the tighter rule is sound on the
 same line as the bounded one, what separates the two being the order bound and
 nothing here.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

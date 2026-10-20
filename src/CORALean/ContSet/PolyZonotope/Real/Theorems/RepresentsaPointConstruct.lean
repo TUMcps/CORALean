@@ -11,6 +11,15 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
 With every generator `0` the dependent part is `c` at every factor vector and the independent block
 adds nothing, so the set is `{c}` (nonempty: `point_mem_construct`). Sufficient only: a set can be
 a point with nonzero generators that cancel (`g α` and `-g α`).
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* `h` – all generators vanish
+
+## Conclusion
+* the set is the singleton of the center
 -/
 
 -- Authors:       Claude Opus 5.5

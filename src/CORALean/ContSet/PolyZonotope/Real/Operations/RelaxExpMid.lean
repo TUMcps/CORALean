@@ -7,20 +7,21 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxDrift
 /-!
 # `PolyZonotope.relaxExpMid`
 
-`[1, Thm. 1]` with the drift taken as an interval rather than as a radius: the
-center moves by its midpoint and the new independent generator carries its
-half-width. `[1]` shifts only when every exponent of column `i` is even, and
-CORA's other branch shifts not at all and pays the full width; the identity
-`mid + [-rad, rad] = [lo, hi]` holds whatever the exponents, so there is nothing
-for the evenness test to gate but tightness.
+`[1, Thm. 1]` with the drift taken as an interval rather than as a radius: the center moves
+by its midpoint and the new independent generator carries its half-width. `[1]` shifts only
+when every exponent of column `i` is even, and CORA's other branch not at all; the identity
+`mid + [-rad, rad] = [lo, hi]` holds whatever the exponents. At a symmetric drift this is
+`relaxExp`, at an all-even one `relaxExpEven`. It goes past both at an edge of `[1, Def. 5]`
+through its second disjunct, `E_{k₀,j} = 0`, one-sided at any parity of `E_{k₀,i}`. Otherwise
+`relaxExp`'s construction: one dependent generator traded for one independent one.
 
-At a symmetric drift the midpoint is zero and this is `relaxExp`; at an all-even
-one it is `-ξ_E/2` and this is `relaxExpEven`. Where it goes past both is an
-edge of `[1, Def. 5]` taken through its second disjunct, `E_{k₀,j} = 0`, which
-is one-sided at any parity of `E_{k₀,i}` and which the all-even test rejects.
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
+* `k₀` – factor index
 
-The construction is otherwise `relaxExp`'s: one dependent generator traded for
-one independent one, at the exponent column of the second of the pair.
+## Output
+* relaxed polynomial zonotope with midpoint center shift
 
 ## References
 

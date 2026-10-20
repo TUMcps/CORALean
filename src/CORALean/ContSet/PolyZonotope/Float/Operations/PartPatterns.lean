@@ -9,6 +9,13 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 
 The distinct exponent patterns of the generators in the factors `V`, first appearance first: the
 grouping of CORA's `partZonotope`. It reads the exponent matrix only, which holds naturals.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `V` – selected factors
+
+## Output
+* duplicate-free exponent patterns on those factors
 -/
 
 -- Authors:       Claude Opus 5.5

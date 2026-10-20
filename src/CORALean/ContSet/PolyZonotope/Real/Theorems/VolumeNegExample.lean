@@ -11,6 +11,15 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.VolumeOfQZero
 everywhere, which is nonzero (where CORA's comment promises an exact volume), and the integral
 over `[-1,1]` is `-2`. A volume is never negative, so the value is neither the volume nor an
 over-approximation of it.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's volume of an example set is negative
 -/
 
 -- Authors:       Claude Opus 5.5

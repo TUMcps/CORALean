@@ -14,6 +14,16 @@ of `absorbRounding` (`absorbRounding_nominal`), which has no independent generat
 its factors the stored result's nominal point plus the shortfalls in the error box is the cubic
 image (`cubMapDep_point`). The result is an enclosure, not the image: the rounding is paid into the
 box.
+
+## Inputs
+* `T` – family of cubic form tensors
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the cubic image of the set lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -7,16 +7,19 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubset
 /-!
 # `PolyZonotope.splitDepFactor`
 
-CORA's `@polyZonotope/splitDepFactor`: halve the domain of one dependent factor,
-`αₖ ∈ [-1, 0]` and `αₖ ∈ [0, 1]`, and re-express each half over the full domain `[-1, 1]` by
-substituting `αₖ ↦ (αₖ ∓ 1) / 2`, which expands every generator binomially. That substitution
-is `getSubset` at center `∓1/2` and radius `1/2`, the denoted sets are the same, and what
-differs is the order and merging of the generators CORA's closed form emits. CORA's optional
-`polyOrd` argument (expand only up to that exponent) is not modelled: the default is the
-largest exponent, which is all of them.
+CORA's `@polyZonotope/splitDepFactor`: halve the domain of one dependent factor, `αₖ ∈ [-1, 0]`
+and `αₖ ∈ [0, 1]`, and re-express each half over `[-1, 1]` by substituting `αₖ ↦ (αₖ ∓ 1) / 2`.
+That substitution is `getSubset` at center `∓1/2` and radius `1/2`; the denoted sets are the
+same, and what differs is the order and merging of the generators CORA's closed form emits.
+CORA's optional `polyOrd` argument is not modelled: the default is the largest exponent. A
+pair, as CORA returns both halves at once. Factor `k` is a position, CORA's `id` an identifier.
 
-A pair, as CORA returns both halves at once. Factor `k` is a position here, CORA's `id` being
-the identifier of a row of `E`.
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+
+## Output
+* pair of polynomial zonotopes for the two halves of that factor
 -/
 
 -- Authors:       Claude Opus 5.5

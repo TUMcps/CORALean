@@ -12,6 +12,12 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.SplitLongestIndepGe
 `containsPointSet` calls `splitLongestGen` and, when it throws (no dependent generator),
 `aux_splitLongestIndepGen`. `splitGen` is that `try ... catch`, as over ℝ: the halves along the
 factor of the longest dependent generator, else along the longest independent generator.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* pair of polynomial zonotopes from splitting the longest generator
 -/
 
 -- Authors:       Claude Opus 5.5

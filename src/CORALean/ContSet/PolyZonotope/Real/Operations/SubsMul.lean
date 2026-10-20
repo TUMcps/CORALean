@@ -10,6 +10,14 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 CORA's `priv_multiply`: the product of two sums of monomials, one term per pair. A term is a
 coefficient and an exponent vector over the factors of `pZin`; `subs` expands powers of the output
 polynomials with it.
+
+## Inputs
+* `p` – number of factors
+* `A` – first term list
+* `B` – second term list
+
+## Output
+* term list of their product
 -/
 
 -- Authors:       Claude Opus 5.5

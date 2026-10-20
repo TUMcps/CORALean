@@ -14,6 +14,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackPoint
 
 `padBack` preserves `p` only up to `(pZ.padBack r).p = pZ.p + r`, but that
 equation is `rfl` — a structure-literal field, as for `padFront`.
+
+## Inputs
+* `r` – number of added factors
+* `pZ` – polynomial zonotope
+* `B` – box of factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* subset at the box is the original subset at the restricted box
 -/
 
 -- Authors:       Claude Opus 5

@@ -11,6 +11,14 @@ public import CORALean.Global.Partition
 
 Split out of `RelaxExpMid.lean` (issue #62): read again by
 `Theorems/RelaxExpMidOuter.lean`, outside this file.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
+* `k₀` – factor index
+
+## Output
+* pair of exponent reaches of the drift
 -/
 
 -- Authors:       Claude Opus 5

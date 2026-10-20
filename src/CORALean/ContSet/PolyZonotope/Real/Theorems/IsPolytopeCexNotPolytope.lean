@@ -9,6 +9,15 @@ public import Mathlib.Analysis.Convex.Hull
 # `isPolytopeCex` is not a polytope
 
 A convex hull of finitely many points is convex, and `isPolytopeCex.construct` is not.
+
+## Inputs
+* `s` – finite set of points
+
+## Hypotheses
+* none
+
+## Conclusion
+* the counterexample set is not the hull of the points
 -/
 
 -- Authors:       Claude Opus 5.5

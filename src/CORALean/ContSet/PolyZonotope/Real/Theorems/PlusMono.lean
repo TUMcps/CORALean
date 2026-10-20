@@ -11,6 +11,19 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
 do, and a Minkowski sum is monotone in each side. Stated because an algorithm
 built out of `plus` needs it once per layer, and `plus_exact` read twice is not
 what a proof of monotonicity should look like at every one of them.
+
+## Inputs
+* `pZ₁` – first inner polynomial zonotope
+* `pZ₂` – first outer polynomial zonotope
+* `qZ₁` – second inner polynomial zonotope
+* `qZ₂` – second outer polynomial zonotope
+
+## Hypotheses
+* `h₁` – first inner set is contained in the outer
+* `h₂` – second inner set is contained in the outer
+
+## Conclusion
+* the inner sum is contained in the outer sum
 -/
 
 -- Authors:       Claude Opus 5

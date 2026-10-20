@@ -15,6 +15,19 @@ the point of the second is the derivative of that along factor `j`. So `H(a, l)�
 second partial `∂ⱼ∂ₖ F`, which is [CORA's documented output]: the Hessian of
 `l(1)·pZ₁ + l(2)·pZ₂ + …` in the differentiated factors, at fixed parameter factors.
 Both derivatives are real, one-variable `HasDerivAt`s along the factor's line.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `a` – factor values
+* `l` – Lagrange point
+* `j` – first factor index
+* `k` – second factor index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Hessian entry is the derivative of the gradient entry
 -/
 
 -- Authors:       Claude Opus 5.5

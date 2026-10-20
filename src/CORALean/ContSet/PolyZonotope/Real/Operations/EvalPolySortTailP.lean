@@ -19,6 +19,12 @@ each coefficient applied by `map` at the Hadamard multiplier (line 13, which is
 degree `k` down the list and the factor-count proof up, so no step needs one of
 its own.
 
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* evaluator of the sum over the powers, with its factor count
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

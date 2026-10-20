@@ -11,6 +11,15 @@ public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 
 `zero` reads as `0`, so the nominal part is the exact layer's point polynomial
 zonotope at the origin, and the error box is the origin box.
+
+## Inputs
+* `n` – dimension
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is exactly the origin
 -/
 
 -- Authors:       Claude Opus 5.5

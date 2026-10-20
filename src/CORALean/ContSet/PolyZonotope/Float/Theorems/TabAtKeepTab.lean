@@ -14,6 +14,16 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.TabAtFilter
 
 Reading `keepTab` of a `repTab` at `j` is `keepIdx`'s answer: the columns a
 `repTab` fixes are `repKeep`, listed in order.
+
+## Inputs
+* `E` – exponent matrix
+* `j` – kept column number
+
+## Hypotheses
+* none
+
+## Conclusion
+* the table entry is the kept column index
 -/
 
 -- Authors:       Claude Opus 5.5

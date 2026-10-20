@@ -20,6 +20,17 @@ Whichever pieces are refined, the pieces cover the set (`splitLongestGen_union`)
 in its enclosing zonotope, which is its polygon. An outer statement only: the polygon is the
 union of enclosures, larger than the set wherever the enclosures are, and nothing here says how
 much.
+
+## Inputs
+* `pZ` – two-dimensional polynomial zonotope
+* `splits` – number of splitting rounds
+* `pick` – chooser of the sets to split
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the polygon
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,14 @@ operand's factors travels into the sum untouched while the summand's are fresh
 and stay free in their own box. The bookkeeping [1, Lemma 4]'s (23) step does,
 named so a statement about one post step can be read.
 
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+* `B` – box of factor values of the first set
+
+## Output
+* box of factor values of the sum
+
 ## References
 
 * [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to

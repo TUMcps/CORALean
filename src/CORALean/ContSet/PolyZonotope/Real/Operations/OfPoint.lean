@@ -11,6 +11,12 @@ CORA's `polyZonotope` at a center and no generators of either block: a single
 point, as the representation. What `OfPoint` asks every representation with a
 point operation to supply — `PolyZonotope.point` runs the other way, reading a
 factor vector off an existing set, so it cannot stand in for this.
+
+## Inputs
+* `v` – point
+
+## Output
+* polynomial zonotope containing only that point
 -/
 
 -- Authors:       Claude Opus 5

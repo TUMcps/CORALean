@@ -13,6 +13,18 @@ entrywise has to rewrite with it rather than unfold three definitions.
 
 Its own file (#62) because the float layer's `Theorems/MulGClose.lean` is what
 reads it, and that is where the rounding of a product generator is priced.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+* `l` – generator index
+* `i` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* the entry is the product of the factors' entries
 -/
 
 -- Authors:       Claude Opus 5

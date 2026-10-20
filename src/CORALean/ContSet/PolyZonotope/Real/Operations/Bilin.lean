@@ -8,21 +8,24 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.BilinG
 /-!
 # `PolyZonotope.bilin`
 
-Any bilinear map applied to two polynomial zonotopes over the *same* factors.
-The result is again a polynomial zonotope, exactly, because `f` distributes
-over the two sums and the product of two monomials is the monomial at the added
-exponent column — which is what shared factors buy and what an unshared product
-cannot have.
+Any bilinear map applied to two polynomial zonotopes over the *same* factors. The result is
+again a polynomial zonotope, exactly, because `f` distributes over the two sums and the product
+of two monomials is the monomial at the added exponent column. Sharing is a hypothesis rather
+than a shape in the signature (`p` is a field): `Fin.cast` reads `pZ₂`'s exponent matrix at
+`pZ₁`'s factor indices, which moves no data. The independent blocks take no part, so `bilin`
+is a claim about `point`; a caller who needs those coefficients to count runs `dependent`
+first, and once, so that repeated pairings keep the freed ones identified.
 
-Sharing is a hypothesis rather than a shape in the signature: `p` is a field, so
-two `PolyZonotope`s cannot be made to share it definitionally without
-destructuring one of them. `Fin.cast` then reads `pZ₂`'s exponent matrix at
-`pZ₁`'s factor indices, which moves no data — identity here is positional.
+## Inputs
+* `f` – bilinear map
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
 
-The independent blocks take no part, a pairing of two free coefficients not
-being one, so `bilin` is a claim about `point`; a caller who needs those
-coefficients to count runs `dependent` first, and once, so that repeated
-pairings keep the freed ones identified.
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Output
+* polynomial zonotope of the bilinear image
 -/
 
 -- Authors:       Claude Opus 5

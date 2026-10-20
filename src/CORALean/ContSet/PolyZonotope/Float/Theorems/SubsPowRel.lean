@@ -10,6 +10,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsPow
 # `subsPow` keeps the bracket
 
 The empty product is `1` on both sides, a power is a product with the previous one (`subsMul_rel`).
+
+## Inputs
+* `A` – float term list
+* `A'` – real term list
+* `d` – power
+
+## Hypotheses
+* `hA` – the lists are related
+
+## Conclusion
+* the powers of the lists are related
 -/
 
 -- Authors:       Claude Opus 5.5

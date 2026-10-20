@@ -13,6 +13,13 @@ translation being the one map that needs no generator. CORA writes it `pZ + v`.
 `map` cannot do it — a translation is affine and not linear — and `plus`
 against a one-point set would append an empty generator block and a factor
 list to merge. So it is its own operation, as it is in CORA.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `v` – shift vector
+
+## Output
+* polynomial zonotope translated by the vector
 -/
 
 -- Authors:       Claude Opus 5

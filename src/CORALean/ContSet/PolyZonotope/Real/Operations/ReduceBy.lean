@@ -10,6 +10,18 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.DropRadius
 Split out of `Reduce.lean` (issue #62): read again by the float layer's own
 `reduceBy`, by `reduceGirard` and `reduceGirardDependent` in this directory, and
 by `Theorems/ReduceByOuter.lean`, all outside this file.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `d` – number of kept dependent generators
+* `r` – number of dropped dependent generators
+* `dI` – number of kept independent generators
+* `rI` – number of dropped independent generators
+* `partD` – split of the dependent generators
+* `partI` – split of the independent generators
+
+## Output
+* polynomial zonotope with the split-off generators boxed
 -/
 
 -- Authors:       Claude Opus 5

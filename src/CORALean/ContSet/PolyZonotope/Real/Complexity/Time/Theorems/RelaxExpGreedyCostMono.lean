@@ -12,6 +12,21 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMulti
 # `PolyZonotope.relaxExpGreedyCost_mono`
 
 Monotone in the round count.
+
+## Inputs
+* `N` – number of relaxation steps
+* `N'` – larger step count
+* `n` – dimension
+* `p` – number of factors
+* `h` – dependent generator count
+* `q` – independent generator count
+* `csel` – cost of choosing a pair
+
+## Hypotheses
+* `hN` – step count grows
+
+## Conclusion
+* the cost does not decrease
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -16,6 +16,16 @@ point at a common factor value rather than over all pairs as `plus` does.
 The shape is `plus`'s, and so is the rounding: the generators are copied and the
 exponents are over ℕ, so only the center rounds, and its `residual` goes into the
 box together with the two incoming boxes.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Output
+* polynomial zonotope of their sum with generators concatenated
 -/
 
 -- Authors:       Claude Sonnet 5.5

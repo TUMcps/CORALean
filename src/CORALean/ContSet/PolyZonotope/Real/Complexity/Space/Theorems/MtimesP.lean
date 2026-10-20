@@ -10,6 +10,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Mtimes
 `mtimes` is `map` at `A *ᵥ ·`: all three counts carry over exactly, the index
 types `Fin p`, `Fin h` and `Fin q` reused rather than grown or shrunk. `rfl`
 against the structure instance in `Operations/Mtimes.lean`.
+
+## Inputs
+* `M` – matrix
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the factor count is preserved
 -/
 
 -- Authors:       Claude Opus 5

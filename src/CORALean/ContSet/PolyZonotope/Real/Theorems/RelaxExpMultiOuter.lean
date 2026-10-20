@@ -12,20 +12,22 @@ public import Mathlib.Tactic.Abel
 # Relaxing the exponents of any two generators over-approximates
 
 `[1, Prop. 4]`. The proof is `relaxExp_outer`'s with one bound exchanged:
-`abs_sub_monomial_le_sum` replaces `abs_sub_monomial_le`, and it asks nothing of
-the two exponent columns, so neither does this. The factors are untouched, the
-same `a` reads both sides, and the whole cost of the merge is the drift between
-the two monomials, which the summed width bounds.
+`abs_sub_monomial_le_sum` replaces `abs_sub_monomial_le`, asking nothing of the two exponent
+columns. The factors are untouched, so the same `a` reads both sides, and the whole cost of the
+merge is the drift between the two monomials, bounded by the summed width. That the hypothesis
+is gone is the point of the multi-index width: at columns agreeing off `k₀` the sum collapses
+to the one `eDiff` `relaxExp` pays. The new generator asks one scalar of the drift,
+`Zonotope.coefficient`, degenerate `ξ_E = 0` included, so this holds over any module.
 
-That the hypothesis is gone is the point of the multi-index width rather than an
-accident of the proof: at columns agreeing off `k₀` the sum collapses to the one
-`eDiff` `relaxExp` pays, and at columns differing everywhere it is the price of
-merging them anyway.
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
 
-The new independent generator is the summed `ξ_E` times the first of the two, so
-the drift asks one scalar of it, `Zonotope.coefficient`, degenerate `ξ_E = 0`
-included — one scalar for the whole generator, which is why this holds over any
-module.
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 
 ## References
 

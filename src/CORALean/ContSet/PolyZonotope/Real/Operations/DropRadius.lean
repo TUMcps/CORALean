@@ -11,6 +11,18 @@ public import CORALean.Global.Partition
 Split out of `Reduce.lean` (issue #62): read again by the float layer's own
 `reduceBy` and by `Theorems/AbsDroppedLeDropRadius.lean`, both outside this
 file.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `d` – number of kept dependent generators
+* `r` – number of dropped dependent generators
+* `dI` – number of kept independent generators
+* `rI` – number of dropped independent generators
+* `partD` – split of the dependent generators
+* `partI` – split of the independent generators
+
+## Output
+* vector bounding the radius of the dropped generators
 -/
 
 -- Authors:       Claude Opus 5

@@ -14,6 +14,21 @@ guarantees put it inside the image of the domain `X` under the dependent point m
 search reached it, and whether `Y_` encloses the image of `X_`, does not matter. This is the
 inner half of [1, Alg. 1]: the union of the boxes of `LInside` lies in `range(f, x)`.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `X` – factor box
+* `tol` – tolerance
+* `inv` – matrix inverse routine
+* `iter` – number of iterations
+* `depth` – splitting depth
+* `X₀` – inner factor box
+
+## Hypotheses
+* none
+
+## Conclusion
+* every returned box lies in the image of the factor box
+
 ## References
 
 * [1] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued

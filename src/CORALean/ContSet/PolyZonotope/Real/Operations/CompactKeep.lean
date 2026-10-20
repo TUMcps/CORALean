@@ -11,6 +11,15 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Rep
 Split out of `Compact.lean` (issue #62): used again by `compactIdx` and
 `compactGens` below, by `Theorems/CompactGensExact.lean`, and by
 `ConPolyZono`'s own compaction over `R`, all outside this file.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `G` – generators
+
+## Output
+* set of columns whose gathered generator is nonzero
 -/
 
 -- Authors:       Claude Opus 5

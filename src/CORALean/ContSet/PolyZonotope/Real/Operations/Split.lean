@@ -14,6 +14,13 @@ CORA's `split(pZ, gen)`: over-approximate the polynomial zonotope by the paralle
 `gen` (`Zonotope.split`: the generator halved in both halves, the center moved by `∓g/2`); the
 halves are polynomial zonotopes `polyZonotope(c ∓ g/2, G', [])` with identity exponents and no
 independent generators (`Zonotope.polyZonotope`). `Theorems.SplitOuter` says the halves cover `pZ`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `j` – generator index
+
+## Output
+* pair of polynomial zonotopes covering the two halves
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -7,19 +7,20 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidthGroup
 /-!
 # `PolyZonotope.relaxExpGroup`
 
-A whole group merged at once, where `relaxExpMulti` merges a pair: the `k`
-generators `part.right` names are absorbed into the kept generator `t`, whose
-monomial they all take, and each member pays its own drift into its own
-independent generator. `k` dependent generators become `k` independent ones.
+A whole group merged at once, where `relaxExpMulti` merges a pair: the `k` generators
+`part.right` names are absorbed into the kept generator `t`, whose monomial they all take, and
+each member pays its own drift into its own independent generator. Whose monomial survives is
+the choice a pairwise merge never has to make, so the target is an argument. `k = 0` merges
+nothing and only renames the generators; `k = 1` is a merge of a pair. Any group may be merged:
+the grouping decides how wide the new generators are, never whether the result encloses.
 
-Whose monomial survives is the choice a pairwise merge never has to make, so
-the target is an argument rather than a convention. `k = 0` merges nothing and
-only renames the generators by `part.left`; `k = 1` moves one generator onto
-the target, which is a merge of a pair.
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split into kept generators and a group
+* `t` – target generator
 
-Any group may be merged, so the grouping decides how wide the new generators
-are and never whether the result encloses: `relaxExpGroup_outer` asks nothing
-of the partition.
+## Output
+* polynomial zonotope with the group merged onto the target
 -/
 
 -- Authors:       Claude Opus 5

@@ -7,15 +7,20 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 /-!
 # `PolyZonotope.jacobian`
 
-CORA's `@polyZonotope/jacobian`: the derivative of every dimension of the polynomial zonotope with
-respect to one of its identifiers, as a polynomial zonotope again. A dependent generator `Gᵢ αᴱⁱ`
-differentiates to `eₖᵢ Gᵢ αᴱⁱ⁻ᵉᵏ`: the generator is scaled by the exponent of the factor `k` and
-that exponent drops by one. The independent block does not depend on any factor and is dropped, and
-the center is `0` (CORA moves the generators whose exponents become all zero into the center; here
-they stay as constant generators, which changes the representation and not the point).
+CORA's `@polyZonotope/jacobian`: the derivative of every dimension of the polynomial zonotope
+with respect to one of its identifiers, as a polynomial zonotope again. A dependent generator
+`Gᵢ αᴱⁱ` differentiates to `eₖᵢ Gᵢ αᴱⁱ⁻ᵉᵏ`: scaled by the exponent of the factor `k`, which
+drops by one. The independent block does not depend on any factor and is dropped, and the center
+is `0` (CORA moves generators whose exponents become all zero into the center; here they stay as
+constant generators, which changes the representation and not the point). An identifier is an
+index `k` of `Fin p`; CORA's cell array is this family over the identifiers in `id_diff`.
 
-An identifier is an index `k` of `Fin p`; the cell array CORA returns is this family over the
-identifiers in `id_diff`.
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+
+## Output
+* polynomial zonotope of the partial derivative in that factor
 -/
 
 -- Authors:       Claude Opus 5.5

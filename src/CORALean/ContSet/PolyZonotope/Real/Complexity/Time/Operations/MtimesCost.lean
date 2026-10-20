@@ -16,6 +16,16 @@ carries.
 Written as `mapCost` at `Cost.matVec m n` rather than spelt out again, which is
 what `map` being the general form is worth: a second linear layer priced
 differently changes the argument and not the shape.
+
+## Inputs
+* `m` – output dimension
+* `n` – input dimension
+* `p` – number of factors
+* `h` – dependent generator count
+* `q` – independent generator count
+
+## Output
+* operation count of the matrix product
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

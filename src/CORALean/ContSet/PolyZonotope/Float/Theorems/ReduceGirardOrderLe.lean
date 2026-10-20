@@ -10,6 +10,16 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.Reduce
 Both budgets are clamped, to their block and to `K = (o-1)·n` between them, so
 `n·o` follows by arithmetic from the shape of `reduceBy` alone. Nothing about
 the scalar enters — the counts are the `ℕ` fields, which round-off cannot move.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `o` – target order
+
+## Hypotheses
+* `ho` – order is positive
+
+## Conclusion
+* the generator count is at most the order times the dimension
 -/
 
 -- Authors:       Claude Opus 5

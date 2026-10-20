@@ -10,6 +10,14 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 CORA's `@polyZonotope/replaceId`: factors are renamed by a map `f : Fin p → Fin p'`, the exponent
 row of a new factor being the sum of the rows of the factors sent to it (natural numbers, so
 exact). Center, generators and error box are copied; nothing rounds.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `p'` – new factor count
+* `f` – map from old to new factors
+
+## Output
+* polynomial zonotope with factors identified along the map
 -/
 
 -- Authors:       Claude Opus 5.5

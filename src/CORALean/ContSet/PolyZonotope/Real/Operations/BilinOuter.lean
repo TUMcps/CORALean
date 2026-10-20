@@ -13,6 +13,17 @@ product of the two points, exactly as `bilin` has it, and the cross terms with a
 coefficient as new independent generators (`bilinGI`). A product of two coefficients each in
 `[-1, 1]` is in `[-1, 1]` but is not independent of the others, so this is an enclosure, which
 `bilin_exact` is not.
+
+## Inputs
+* `f` – bilinear map
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Output
+* polynomial zonotope of the bilinear image including independent generators
 -/
 
 -- Authors:       Claude Opus 5.5

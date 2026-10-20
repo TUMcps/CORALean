@@ -17,6 +17,19 @@ box it was made from, the center being in the box and the radii no larger than t
 the bounds; that box is inside the image of the factor cube under the dependent point map
 (`innerApproxImage_subset_image`); the independent generators are the set's own, and the error
 box holds `0`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `tol` – tolerance
+* `inv` – matrix inverse routine
+* `iter` – number of iterations
+* `depth` – splitting depth
+
+## Hypotheses
+* none
+
+## Conclusion
+* every returned zonotope lies in the set
 -/
 
 -- Authors:       Claude Opus 5.5

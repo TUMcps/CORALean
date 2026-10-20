@@ -11,6 +11,21 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 `abs_sum_le_radius` takes either block's coefficients, needing only
 `|coefficient| ≤ 1` — a monomial for the dependent one, free for the
 independent one — so their two radii, added upward, bound the sum.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `partD` – split of the dependent generators
+* `partI` – split of the independent generators
+* `a` – factor values
+* `β` – independent factor values
+* `i` – coordinate
+
+## Hypotheses
+* `ha` – factor values are at most one
+* `hβ` – independent factor values are at most one
+
+## Conclusion
+* the dropped part is bounded by the drop radius
 -/
 
 -- Authors:       Claude Opus 5

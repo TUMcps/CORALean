@@ -10,6 +10,18 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
 Outside the fibre every summand is `zero`, which reads as `0`, so the masked
 sum's read-back is the fibre sum. What both directed bracketing sums need, one
 rounding down and the other up.
+
+## Inputs
+* `r` – map from generators to kept columns
+* `G` – generator matrix
+* `i` – row index
+* `j` – target column
+
+## Hypotheses
+* none
+
+## Conclusion
+* masked float sum reads back as the exact fibre sum
 -/
 
 -- Authors:       Claude Opus 5

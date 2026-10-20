@@ -16,6 +16,16 @@ generator `idx` has the coefficient `E[j, idx] · E[k, idx] · G idx` (the expon
 by the first derivative), rounded both ways into an interval; the monomials come from `monoBox`
 at the twice-lowered exponents, and `Interval.mtimesIntervalMat` multiplies the two. CORA's
 `tol`, `H_str` and the split into `id_diff` and `id_param` are not modelled, as in the real layer.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `A` – interval of factor values
+* `L` – interval of the Lagrange point
+* `j` – first factor index
+* `k` – second factor index
+
+## Output
+* interval enclosing the second derivative of the added terms
 -/
 
 -- Authors:       Claude Opus 5.5

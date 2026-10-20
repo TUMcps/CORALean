@@ -6,6 +6,15 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
 
 /-!
 # Without independent generators the set is the image of the factor cube
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* `hq` – no independent generators
+
+## Conclusion
+* the set is the image of the factor cube
 -/
 
 -- Authors:       Claude Opus 5.5

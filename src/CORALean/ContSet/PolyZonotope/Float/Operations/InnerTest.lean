@@ -11,19 +11,25 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.PrecondRegular
 /-!
 # `PolyZonotope.innerTest`
 
-The domain-inflation loop of [1, Alg. 3] as CORA's `aux_InnerGeneral` (in `innerApproxImage`)
-and `aux_containsInterval` (in `@polyZonotope/contains_`) run it for the dependent point map `f`:
-with the columns `ind` of the Jacobian as `u₁`, the box `Y` (`Y_`) is proved inside `f(X)` when
-`t = Diag⁻¹(J₁)(b - OffDiag(J₁)(U1_ - u1_)) - J₂(U2_ - u2_)` lands in `U1_`, `J = C·df(X_mod)`,
-`b = C·Y - C·f(x_)`; otherwise `U1_ ← u1_ + τt` while the distance contracts by `μ` and `U1_`
-stays in `X`; `innerStep` is the body. `ind` the identity is `aux_InnerSpecial`'s loop
-([1, Alg. 2]).
+The domain-inflation loop of [1, Alg. 3] as CORA's `aux_InnerGeneral` and `aux_containsInterval`
+run it for the dependent point map `f`: with the columns `ind` of the Jacobian as `u₁`, the box
+`Y` is proved inside `f(X)` when `t = Diag⁻¹(J₁)(b - OffDiag(J₁)(U1_ - u1_)) - J₂(U2_ - u2_)`
+lands in `U1_`; otherwise `U1_ ← u1_ + τt` while the distance contracts by `μ`; `innerStep` is
+the body. CORA's `while` has no bound; `iter` caps it. CORALean also checks that `C` is
+nonsingular (`precondRegular`), that `x_` lies in `X` and `X_` off `ind`, and `u1_ ∈ U1_`.
 
-CORA's `while` has no bound; `iter` caps it. The test proves a pre-image of `C·y` only, and the
-closed inclusion needs `u1_ ∈ U1_` and the slice in `X` and `X_`, so CORALean also checks that
-`C` is nonsingular (`precondRegular` against `M`, which `C` should invert), that `x_` lies in `X`
-and `X_` off `ind`, and that `u1_ ∈ U1_` at acceptance. Distances are compared squared. With
-`J₂(U2_ - u2_) ∋ 0`, the test is `exists_jacobiSlice_eq_of_jacobi` on the slice at `u2_`.
+## Inputs
+* `pZ` – polynomial zonotope
+* `X` – factor box
+* `X₀` – inner factor box
+* `Y` – target box
+* `ind` – selected factor indices
+* `M` – midpoint Jacobian
+* `C` – approximate inverse Jacobian
+* `iter` – number of iterations
+
+## Output
+* Boolean, true only if the inclusion test succeeds
 
 ## References
 

@@ -12,6 +12,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.MapExact
 `project` is a `map`, so `map_exact` says it: the image of the set under the
 coordinate functional, with nothing added and nothing lost.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `i` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* the coordinate image of the set equals the result
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

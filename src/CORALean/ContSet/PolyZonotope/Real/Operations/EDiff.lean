@@ -7,21 +7,19 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 /-!
 # `PolyZonotope.eDiff`
 
-How far two powers of the same factor can drift apart on `[-1,1]`: `[1]` defines
-it as `max_{x ∈ [-1,1]} |x^a - x^b|`, and a relaxation is sound at any *upper
-bound* on that maximum, never needing the maximum itself. This is the coarse
-bound parity alone gives — equal parity keeps `x^a` and `x^b` on one side of
-zero, where they differ by at most one, and otherwise each stays in `[-1,1]` and
-they differ by at most two.
+How far two powers of the same factor can drift apart on `[-1,1]`: [1] defines it as
+`max_{x ∈ [-1,1]} |x^a - x^b|`, and a relaxation is sound at any *upper bound* on that
+maximum. This is the coarse bound parity alone gives: equal parity keeps `x^a` and `x^b` on one
+side of zero, where they differ by at most one, and otherwise by at most two. The bound is
+integral, stated over ℕ, which keeps the float layer exact in it (a repeated sum). The maximum
+itself, real-valued, is `eDiffTight`; at `a = 3, b = 1` this bound is `1` where it is `≈ 0.385`.
 
-The bound is integral, so it is stated over ℕ and coerced where a scalar is
-wanted. That is what keeps the float layer exact in it: scaling a generator by a
-natural number is a repeated sum there, and the exponents it reads are exact in
-both layers. The maximum itself is real-valued, `eDiffTight`, which `relaxWidth`
-reads over ℝ; this bound stays where a count of copies is wanted.
+## Inputs
+* `a` – first exponent
+* `b` – second exponent
 
-The maximum itself is `(b/a)^{b/(a-b)} (1 - b/a)` on `[0,1]`, so at `a = 3,
-b = 1` this bound is `1` where the maximum is `≈ 0.385`.
+## Output
+* bound on the exponent difference
 
 ## References
 

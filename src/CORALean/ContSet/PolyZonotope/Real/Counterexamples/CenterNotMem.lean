@@ -15,6 +15,15 @@ With a zero exponent column the factor `0` does not reach the center: for
 CORA's `@polyZonotope/contains_` with `'approx'` nevertheless returns `true` for the point `c`
 (`withinTol(S(:,i), pZ.c)`), and `removeRedundantExponents` keeps the zero column; the float
 `containsPointApprox` takes the shortcut only where no column is zero.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the center of an explicit set lies outside the set
 -/
 
 -- Authors:       Claude Opus 5.5

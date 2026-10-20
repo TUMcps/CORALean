@@ -17,6 +17,15 @@ dependent) are put side by side with disjoint factors, `cartProd`, and the cubic
 three arguments off the projections. CORA's `mergeExpMatrix` instead unifies the factors by
 identifier, so two arguments built on a common factor stay tied in CORA; the product here lets
 them vary independently, which is what the set in the header is.
+
+## Inputs
+* `T` – family of cubic form tensors
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+* `pZ₃` – third polynomial zonotope
+
+## Output
+* polynomial zonotope of the mixed cubic image
 -/
 
 -- Authors:       Claude Opus 5.5

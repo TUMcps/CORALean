@@ -9,6 +9,15 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 
 Split out of `Compact.lean` (issue #62): read again by `mergedCol` in this
 directory and by `Theorems/FiberDownLe.lean`, both outside this file.
+
+## Inputs
+* `r` – map from generators to kept columns
+* `G` – generator matrix
+* `i` – row index
+* `j` – target column
+
+## Output
+* rounded-down sum of the entries mapped to that column
 -/
 
 -- Authors:       Claude Opus 5

@@ -7,18 +7,22 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
 /-!
 # A point at admissible factors is a member
 
-`construct` is the image of `point` widened by the independent block, so the
-inclusion one way is free: read the independent coefficients as zero, which is
-admissible whatever `q` is, and `point pZ a` is a member of `construct pZ`.
+`construct` is the image of `point` widened by the independent block, so the inclusion one way
+is free: read the independent coefficients as zero, admissible whatever `q` is, and
+`point pZ a` is a member of `construct pZ`. `mul_exact` does without this, `mul` setting
+`q := 0`. Chained back into a propagation it is the first thing wanted, since `mul` is stated
+against `point` and every enclosure downstream against `construct`. The converse fails as an
+equality: a set with a non-empty independent block has members no factor vector reaches.
 
-`mul_exact` does without this, `mul` setting `q := 0` so that the result's
-`construct` *is* the image of its dependent part alone. The moment a product is
-chained back into a propagation it is the first thing wanted, since `mul` is
-stated against `point` and every enclosure downstream is stated against
-`construct`.
+## Inputs
+* `pZ` – polynomial zonotope
+* `a` – factor values
 
-The converse fails as an equality: a set with a non-empty independent block has
-members no factor vector reaches.
+## Hypotheses
+* `ha` – factor values are at most one
+
+## Conclusion
+* the point lies in the set
 -/
 
 -- Authors:       Claude Opus 5

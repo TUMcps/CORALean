@@ -15,6 +15,13 @@ Split out of `QuadMap.lean` (issue #62): read again by
 `Theorems/QuadMapOuter.lean`, outside this file. Sound only where the
 independent block and the error box are both empty, so nothing outside
 `quadMap` calls it directly.
+
+## Inputs
+* `Q` – family of quadratic form matrices
+* `pZ` – polynomial zonotope
+
+## Output
+* quadratic image of the set, as a bilinear image with itself
 -/
 
 -- Authors:       Claude Opus 5

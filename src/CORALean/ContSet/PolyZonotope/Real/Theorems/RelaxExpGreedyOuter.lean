@@ -9,20 +9,24 @@ public import Mathlib.Order.BourbakiWitt
 /-!
 # Relaxing along a selection over-approximates
 
-`[1, Thm. 2]`, whose soundness content is one sentence — the greedy relaxation
-encloses because `[1, Thm. 1]` does — and whose remainder is a complexity claim
-that belongs to a `Complexity/Space/` development rather than here.
+`[1, Thm. 2]`, whose soundness content is one sentence (the greedy relaxation encloses
+because `[1, Thm. 1]` does) and whose remainder is a complexity claim that belongs to a
+`Complexity/Space/` development. So the whole of it is the loop, and that it encloses
+*whatever* the selection: each step is `relaxExpMulti_outer`, which asks nothing of the pair it
+merges. Nothing here could be made false by choosing differently, so the heuristic can be
+replaced without touching this file. `relaxExpMulti_outer` rather than `relaxExp_outer` makes
+the induction a line: the pairwise version would owe a similarity hypothesis per step.
 
-So the whole of it is the loop, and that the loop encloses *whatever* the
-selection: an enclosure composes with an enclosure, and each step is
-`relaxExpMulti_outer`, which asks nothing of the pair it merges. There is
-nothing to prove about the greedy edge, the threshold or the tie-break, and
-nothing here that could be made false by choosing differently — which is why the
-heuristic can be replaced without touching this file.
+## Inputs
+* `sel` – chooser of the next pair of generators
+* `n` – number of steps
+* `pZ` – polynomial zonotope
 
-`relaxExpMulti_outer` rather than `relaxExp_outer` is what makes the induction a
-line: under the pairwise version every step would owe a similarity hypothesis
-about a set the previous step built.
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 
 ## References
 

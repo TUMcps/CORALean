@@ -12,6 +12,14 @@ The tail of CORA's `outerApprox`: the `removed` dependent generators leave `G` a
 diagonal box appended to the independent block, which also covers the `taken` independent ones.
 The radius is `aux_boxOutRadius`, at least the exact one; center, error box and the kept columns are
 copied, the kept columns being read off in order by `orderEmbOfFin`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `removed` – mask of dependent generators removed
+* `taken` – mask of independent generators taken
+
+## Output
+* polynomial zonotope with the masked generators moved into a box
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,6 +16,15 @@ gets `C(e,j) = 0` and so a zero generator, which `compact` is free to drop.
 
 At `rad = 0` only `j = 0` survives and the coefficient is `cenᵉ`, which is
 exactly CORA's separate point branch `aux_getSubsetPoint`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+* `cen` – subinterval center
+* `rad` – subinterval radius
+
+## Output
+* generators of the restricted set
 -/
 
 -- Authors:       Claude Opus 5

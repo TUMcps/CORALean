@@ -16,6 +16,17 @@ generators reach at most the sum of their absolute values in a coordinate, the b
 that sum rounded up and the taken independent ones only widen it, so one coefficient per coordinate
 in `[-1, 1]` reproduces what they contributed; the kept columns, the center and the error box are
 as before.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `removed` – mask of dependent generators removed
+* `taken` – mask of independent generators taken
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

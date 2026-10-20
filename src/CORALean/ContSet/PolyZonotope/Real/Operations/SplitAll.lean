@@ -10,6 +10,12 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Split
 CORA's `split(pZ)` without `gen`: the pair of halves along every generator of the parallelotope.
 CORA loops over the `n` generators of `P` and errors when `methC` leaves fewer; here the loop
 runs over the generators there are.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* the pair of halves for every generator
 -/
 
 -- Authors:       Claude Opus 5.5

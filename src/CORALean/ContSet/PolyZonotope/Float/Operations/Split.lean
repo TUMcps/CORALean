@@ -15,6 +15,13 @@ CORA's `split(pZ, gen)`: the parallelotope `splitParallelotope` halved along its
 paying its rounding into the box), the halves read as polynomial zonotopes with identity exponents
 and no independent generators (`Zonotope.polyZonotope`). `Theorems.SplitOuter` says the halves
 cover `pZ`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `j` – generator index
+
+## Output
+* pair of polynomial zonotopes covering the two halves
 -/
 
 -- Authors:       Claude Opus 5.5

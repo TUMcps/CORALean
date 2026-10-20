@@ -18,6 +18,17 @@ original at the same factor vector: a monomial of `a ∈ [-1,1]ᵖ` is at most o
 and `Zonotope.coefficient` rescales into the box, the degenerate radius `0` included. The enclosure
 holds for any choice of the removed generators, which is what lets `outerApprox`'s scan be a
 heuristic. It is not an equality: the box is larger than what the removed generators reach.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `removed` – predicate of dependent generators removed
+* `taken` – predicate of independent generators taken
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

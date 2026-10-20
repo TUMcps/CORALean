@@ -11,6 +11,14 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.KeepIdx
 Split out of `Compact.lean` (issue #62): read again by `compactGap` and
 `compactGens` in this directory and by `Theorems/CompactGensOuter.lean`, all
 outside this file.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `i` – row index
+* `j` – kept column number
+
+## Output
+* merged generator entry, rounded down
 -/
 
 -- Authors:       Claude Opus 5

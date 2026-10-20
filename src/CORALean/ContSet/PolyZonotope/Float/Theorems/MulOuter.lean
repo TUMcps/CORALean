@@ -11,16 +11,21 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.MulExact
 /-!
 # `PolyZonotope.mul` encloses the exact product over shared factors
 
-The exact layer proves what the operation is — the image of the shared factors
-under `a ↦ point pZ₁ a ⊙ point pZ₂ a` — and this file adds only what rounding
-costs. The input is the two nominal sets: `mul` is an operation on sets whose
-independent block and error box `absorbRounding` has already emptied, and from there
-the two layers differ in their generator entries alone, which `generatorError`
-prices exactly as it does for `mtimes` and `quadMap`.
+The exact layer proves what the operation is, the image of the shared factors under
+`a ↦ point pZ₁ a ⊙ point pZ₂ a`; this file adds only what rounding costs. The input is the two
+nominal sets, `absorbRounding` having emptied the independent block and error box, so the
+layers differ in their generator entries alone, which `generatorError` prices as for `mtimes`.
+`mulG_close` prices one entry; unlike `quadMap`, a rounded product needs nothing bracketed.
 
-`mulG_close` prices one entry; the whole difference from `quadMap` is that a
-rounded product needs nothing bracketed in between, where `quadMap`'s bilinear
-form has to carry its middle vector as an interval.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Conclusion
+* the exact product over shared factors lies in the result
 -/
 
 -- Authors:       Claude Opus 5

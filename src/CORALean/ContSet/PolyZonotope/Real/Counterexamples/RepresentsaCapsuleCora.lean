@@ -18,19 +18,24 @@ res = n == 1 || isPoint && size(pZ.G,2) + size(pZ.GI) <= 1;
 
 `size(pZ.GI)` is the row `[n, size(pZ.GI,2)]`, not a number (`size(pZ.GI,2)` was meant), so the
 right operand of `&&` is a `1 × 2` logical array. MATLAB's `&&` accepts only operands
-convertible to a logical scalar, and raises `Operands to the || and && operators must be
-convertible to logical scalar values` once the left operand `isPoint` is true. The branch is
-reached for `n ≥ 2` (else `n == 1` short-circuits) and a point (`isPoint`: no generators after
-`compact_`); for any other set `isPoint` is false and the `&&` short-circuits. Read from the
-source, not run.
-
-`isPoint` is modelled as no stored generator, which is already compact.
+convertible to a logical scalar and raises an error once `isPoint` is true. The branch is
+reached for `n ≥ 2` and a point (`isPoint`: no generators after `compact_`), modelled as no
+stored generator, which is already compact. Read from the source, not run.
 
 # CORA's `polyZonotope/representsa_(pZ, 'capsule')` errors on a point in dimension two or more
 
 A polynomial zonotope without generators, `{c}` with `c ∈ ℝ²`, reaches the `&&` of l. 67 with a
-true left operand and the `1 × 2` array `size(pZ.G,2) + size(pZ.GI) <= 1` on the right, which
-MATLAB rejects. A point is a capsule, so the answer is `true`. Read from the source, not run.
+true left operand and the `1 × 2` array on the right, which MATLAB rejects. A point is a
+capsule, so the answer is `true`.
+
+## Inputs
+* `c` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's capsule test crashes on a point
 -/
 
 -- Authors:       Claude Sonnet 5.5

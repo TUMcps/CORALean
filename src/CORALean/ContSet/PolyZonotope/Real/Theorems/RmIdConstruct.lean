@@ -10,6 +10,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
 
 The set of `pZ.rmId S` is the set of `pZ` restricted to factor vectors whose coordinates in `S`
 are `1`: the removed factor scaled its generators by `1 ^ e`, and now scales nothing.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `S` – factors to remove
+
+## Hypotheses
+* none
+
+## Conclusion
+* result is the set with those factors fixed at one
 -/
 
 -- Authors:       Claude Opus 5.5

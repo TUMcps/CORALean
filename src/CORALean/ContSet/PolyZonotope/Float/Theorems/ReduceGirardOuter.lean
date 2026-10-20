@@ -10,6 +10,16 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceByOuter
 
 Sound at every pair of partitions, as over ℝ, so a selection rule owes no
 proof — `reduceGirard_outer` is `reduceBy_outer` at Girard's own partition.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

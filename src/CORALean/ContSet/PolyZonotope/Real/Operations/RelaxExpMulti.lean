@@ -7,22 +7,21 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidthMulti
 /-!
 # `PolyZonotope.relaxExpMulti`
 
-`[1, Prop. 4]`: `relaxExp` with the drift read at every factor rather than at
-one. The construction is unchanged — two dependent generators become one and
-what the merge costs becomes one independent generator — and only the width
-grows, from a single `eDiff` to their sum.
+`[1, Prop. 4]`: `relaxExp` with the drift read at every factor rather than at one. The
+construction is unchanged (two dependent generators become one, the cost one independent
+generator) and only the width grows, from a single `eDiff` to their sum. `[1]` sums over the
+indices where the columns differ; this sums over all, the same number since `eDiff a a = 0`, so
+the guarantee takes no hypothesis. The similarity of `[1, Def. 4]` is left to whatever chooses
+the pair: it decides how wide the generator is, never whether the result encloses. Kept beside
+`relaxExp`: the widths differ, and `relaxExpEven` halves the single-index width on a
+one-sidedness the multi-index drift lacks.
 
-`[1]` sums over the indices where the two columns differ; this sums over all of
-them, which is the same number since `eDiff a a = 0`, and is the reason the
-operation takes no index and its guarantee no hypothesis. Any two dependent
-generators may be merged, so the similarity of `[1, Def. 4]` is left to whatever
-chooses the pair, where it belongs: it decides how wide the new generator is,
-never whether the result encloses.
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
 
-Kept beside `relaxExp` rather than replacing it. The two compute different
-widths, so neither is the other's instance without a hypothesis carried into a
-structure equality, and `relaxExpEven` halves the single-index width on a
-one-sidedness that the multi-index drift does not have.
+## Output
+* polynomial zonotope relaxed over all factors
 
 ## References
 

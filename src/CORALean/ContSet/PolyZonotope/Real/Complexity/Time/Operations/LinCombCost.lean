@@ -8,22 +8,23 @@ public import CORALean.Global.Cost
 /-!
 # `PolyZonotope.linCombCost`
 
-Asserted, not proved, by reading `Operations/LinComb.lean`. The center
-`½(c₁+c₂)` is `n` additions and `n` scalings, and the one fresh dependent
-generator `½(c₁-c₂)` the same again. Each of the two dependent blocks scales
-every column of both operands, `n` scalings a column, and the second negates
-`pZ₂`'s as it scales — folded into the same `n`, a sign being part of the
-constant.
+Asserted, not proved, by reading `Operations/LinComb.lean`. The center `½(c₁+c₂)` is `n`
+additions and `n` scalings, and the fresh dependent generator `½(c₁-c₂)` the same again. Each
+of the two dependent blocks scales every column of both operands, `n` scalings a column. The
+independent block is `Zonotope.pairSum` and `pairDiff`: `n` additions and scalings per paired
+column, bounded by pairing every column of both. Every scalar of the result is also a write.
 
-The independent block is `Zonotope.pairSum` and `pairDiff`: `n` additions and
-`n` scalings per paired column, free where the longer block runs on alone,
-bounded above by pairing every column of both. `linCombE` writes zeros and ones
-and computes nothing.
+## Inputs
+* `n` – dimension
+* `p₁` – first factor count
+* `p₂` – second factor count
+* `h₁` – first dependent generator count
+* `h₂` – second dependent generator count
+* `q₁` – first independent generator count
+* `q₂` – second independent generator count
 
-Under `Global/Cost.lean`'s model every scalar of the result is also a write, one unit each, and the
-result has the center, `2 * (h₁ + h₂) + 1` dependent and
-`q₁ + q₂` independent generators of `n` entries, and a `p₁ + p₂ + 1` by `2 * (h₁ + h₂) + 1`
-exponent matrix.
+## Output
+* operation count of the linear combination
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

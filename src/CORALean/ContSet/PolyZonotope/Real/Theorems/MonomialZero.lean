@@ -9,6 +9,19 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 
 Every factor at exponent zero collapses the monomial to `1`: the shape a
 concatenation gives the generators it did not come from.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `a` – factor values
+* `i` – generator index
+
+## Hypotheses
+* `hE` – the exponent column is zero
+
+## Conclusion
+* the monomial equals one
 -/
 
 -- Authors:       Claude Opus 5

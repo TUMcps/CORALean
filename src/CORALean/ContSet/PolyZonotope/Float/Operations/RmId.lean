@@ -11,6 +11,13 @@ public import Mathlib.Data.Finset.Sort
 CORA's `@polyZonotope/rmId`: the exponent rows of the listed factors are deleted, which pins
 those factors at `1`. Center, generators and error box are copied, so nothing rounds. The
 factors that stay are read off in order by `orderIsoOfFin`, as at the real layer.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `S` – factors to remove
+
+## Output
+* polynomial zonotope without those factors
 -/
 
 -- Authors:       Claude Opus 5.5

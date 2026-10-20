@@ -17,6 +17,12 @@ equal columns are now adjacent.
 Neither is a hypothesis here: a permutation of the summation index is exact
 whatever the columns are, and regularity is what `merge` is for.
 
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* polynomial zonotope with generators in sorted order
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

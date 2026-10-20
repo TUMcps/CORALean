@@ -12,6 +12,13 @@ arithmetic and trusted for nothing, is nonsingular: every row of `|1 - M C|`, bo
 `M C` rounded both ways, sums to less than `1`. CORA takes `C = inv(df(x_))` and relies on
 MATLAB's `inv`; the test it feeds proves a pre-image of `C y` only, so a singular `C` would prove
 nothing about `y`, and this check is what replaces the trust in `inv`.
+
+## Inputs
+* `M` – matrix
+* `C` – preconditioner
+
+## Output
+* Boolean, true only if their product is shown to be regular
 -/
 
 -- Authors:       Claude Opus 5.5

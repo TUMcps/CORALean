@@ -8,19 +8,18 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.CompactGens
 /-!
 # `PolyZonotope.compact`
 
-The exact layer's `compact`, with the obstacles traded. The zero test on a
-merged generator is simply not made here, costing a column that denotes nothing
-rather than soundness; what appears instead is arithmetic, since merging two
-columns adds their entries and a directed sum owes an error box.
+The exact layer's `compact`, with the obstacles traded. The zero test on a merged generator is
+not made here, costing a column that denotes nothing rather than soundness; merging two columns
+adds their entries, and a directed sum owes an error box. Which columns survive is structural:
+the least index carrying each exponent column (`Real.PolyZonotope.rep`; `repKeep` is its fixed
+points). Both directions of each fibre sum are computed (`fiberDown`/`fiberUp`), the lower
+stored and the gap charged as a `generatorError`.
 
-Which columns survive is decided structurally: one per class, the least index
-carrying that exponent column, which is `Real.PolyZonotope.rep` — `repKeep` is
-its fixed points, and `card` of it is the monomial count `reduce` wanted.
+## Inputs
+* `pZ` – polynomial zonotope
 
-Both directions of each fibre sum are computed (`fiberDown`/`fiberUp`), the
-lower stored and the gap charged as a `generatorError`, the coefficient being a
-monomial. `compactFactors` changes `p` and the exponent matrix and nothing
-else, all over ℕ, so its nominal part is literally the exact layer's.
+## Output
+* polynomial zonotope with merged generators and dropped unused factors
 -/
 
 -- Authors:       Claude Opus 5

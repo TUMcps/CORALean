@@ -9,6 +9,13 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.ExtG
 
 Split out of `Mul.lean` (issue #62): read again by `Theorems/MulGClose.lean`,
 outside this file.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Output
+* product generators, rounded up
 -/
 
 -- Authors:       Claude Opus 5

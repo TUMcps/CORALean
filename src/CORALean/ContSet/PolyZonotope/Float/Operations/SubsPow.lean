@@ -9,6 +9,12 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsMul
 
 CORA's `Y{i,j}` on the stored floats: the `d`-th power of a sum of monomials, by repeated
 `subsMul`, the empty product being the term `1`.
+
+## Inputs
+* `A` – term list
+
+## Output
+* function from the exponent to the term list of the power
 -/
 
 -- Authors:       Claude Opus 5.5

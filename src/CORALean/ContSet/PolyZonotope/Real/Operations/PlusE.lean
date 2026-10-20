@@ -14,6 +14,17 @@ all outside this file.
 Two exponent matrices side by side, block-diagonally: neither set's factors
 reach the other's generators. Named so that its lemmas are stated at the plain
 counts `Fin (p₁ + p₂)` rather than at a projection of `plus`.
+
+## Inputs
+* `p₁` – first factor count
+* `h₁` – first generator count
+* `p₂` – second factor count
+* `h₂` – second generator count
+* `E₁` – first exponent matrix
+* `E₂` – second exponent matrix
+
+## Output
+* block-diagonal exponent matrix of the sum
 -/
 
 -- Authors:       Claude Opus 5

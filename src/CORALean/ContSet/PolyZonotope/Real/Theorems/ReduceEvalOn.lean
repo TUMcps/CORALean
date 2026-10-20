@@ -11,16 +11,23 @@ public import Mathlib.Order.BourbakiWitt
 /-!
 # CORA's `reduce` preserves dependencies, up to the factors it drops
 
-[1] leaves order reduction out of its Table 1, so nothing in it says the step of
-its Alg. 1 that reduces is dependency preserving, which [1, Lemma 4] needs; this
-says it. Both halves of
-`reduce` answer at the very same factor values — `compactGens` merges columns,
-`reduceBy` boxes generators into the *independent* block — so only
-`compactFactors` moves anything, and it only renumbers the factors still read.
+[1] leaves order reduction out of its Table 1, so nothing says the reducing step of its Alg. 1
+is dependency preserving, which [1, Lemma 4] needs; this says it. Both halves of `reduce`
+answer at the very same factor values (`compactGens` merges columns, `reduceBy` boxes
+generators into the *independent* block), so only `compactFactors` moves anything, renumbering
+the factors still read. The target box is therefore stated index by index: `factorIdx` is the
+order embedding of the surviving factors, and a factor vector carries over by reading it so.
 
-That renumbering is why the target box is stated index by index rather than by a
-cast: `factorIdx` is the order embedding of the surviving factors, and a factor
-vector carries over by reading it through that.
+## Inputs
+* `pZ` – polynomial zonotope
+* `o` – target order
+* `B` – box of factor values
+
+## Hypotheses
+* `hB` – factor values are at most one
+
+## Conclusion
+* evaluation on the box lies in the reduced evaluation on the mapped box
 
 ## References
 

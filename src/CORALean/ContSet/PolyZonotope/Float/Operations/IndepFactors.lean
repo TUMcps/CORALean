@@ -15,6 +15,12 @@ generators: the independent generators become dependent ones, each with a factor
 the first power, after the dependent factors. Nothing is rounded and the error box is kept, so
 the dependent point map of the result at `(α, β)` is the nominal set's point at `(α, β)`. Unlike
 `absorbRounding`, the error box is not turned into generators, which would enlarge the set.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* polynomial zonotope with independent generators turned into factors
 -/
 
 -- Authors:       Claude Opus 5.5

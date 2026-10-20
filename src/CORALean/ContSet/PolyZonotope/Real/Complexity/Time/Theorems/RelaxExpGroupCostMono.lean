@@ -10,6 +10,24 @@ public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.Rela
 # `PolyZonotope.relaxExpGroupCost_mono`
 
 Monotone in the factor and merged counts.
+
+## Inputs
+* `p` – number of factors
+* `p'` – larger factor count
+* `q` – independent generator count
+* `q'` – larger independent count
+* `k` – group size
+* `k'` – larger group size
+* `n` – dimension
+* `d` – kept dependent generators
+
+## Hypotheses
+* `hp` – factor count grows
+* `hq` – independent count grows
+* `hk` – group size grows
+
+## Conclusion
+* the cost does not decrease
 -/
 
 -- Authors:       Claude Sonnet 5.5

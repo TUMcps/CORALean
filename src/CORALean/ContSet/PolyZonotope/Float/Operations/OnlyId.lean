@@ -14,6 +14,13 @@ belongs to it when its exponent column is `0` outside `S`; it keeps the center a
 independent block) and the remainder (the other generators, center `0`, the independent block).
 The generator columns of the other part are zeroed, not deleted. The error box goes to the
 remainder, the first part carries the empty box `Interval.origin`. Nothing rounds.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `S` – selected factors
+
+## Output
+* pair: part using only those factors, and the rest
 -/
 
 -- Authors:       Claude Opus 5.5

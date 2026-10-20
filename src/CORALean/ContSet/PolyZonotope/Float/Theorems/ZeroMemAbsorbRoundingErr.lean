@@ -8,6 +8,15 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.AbsorbRounding
 # `absorbRounding`'s error box denotes the origin alone
 
 So nothing is left outside its nominal set.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zero lies in the error box of the absorbed set
 -/
 
 -- Authors:       Claude Opus 5

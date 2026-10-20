@@ -9,6 +9,15 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
 # A polynomial zonotope is never empty
 
 The point at the factors `0` (`point_mem_construct`) is a member.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the test is true exactly if the set is empty
 -/
 
 -- Authors:       Claude Opus 5.5

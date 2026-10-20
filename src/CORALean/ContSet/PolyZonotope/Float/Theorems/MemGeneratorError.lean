@@ -10,6 +10,18 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
 No monomial is ever computed: what the float layer stores of a monomial is its
 exponent column, over ℕ, so the monomial is an exact real, and this covers any
 coefficient family — a zonotope's free one included.
+
+## Inputs
+* `G` – generator matrix
+* `Δ` – real matrix of entry errors
+* `t` – coefficient vector
+
+## Hypotheses
+* `hG` – entry errors are bounded by the generators
+* `ht` – coefficients are at most one
+
+## Conclusion
+* the weighted error sum lies in the error box
 -/
 
 -- Authors:       Claude Opus 5

@@ -11,6 +11,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReplaceIdExact
 
 The stored floats are untouched and the nominal part is the exact layer's `replaceId` of the
 original's: the renamed set lies in the original (inner), the error box as it was.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `p'` – new factor count
+* `f` – map from old to new factors
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is contained in the original set
 -/
 
 -- Authors:       Claude Opus 5.5

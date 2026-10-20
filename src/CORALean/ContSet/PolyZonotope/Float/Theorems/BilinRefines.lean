@@ -14,6 +14,17 @@ The two representations differ in their generator entries alone, and `generatorE
 difference exactly as it does for `mtimes` and `quadMap`: the stored generators, rounded down,
 are within `bilinGDiff` of the exact ones (`bilinG_close`), so the exact pairing's point at any
 factors is the stored point plus a member of the error box. Outer only.
+
+## Inputs
+* `Q` – family of bilinear form matrices
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Conclusion
+* the exact bilinear image of the nominal parts lies in the result
 -/
 
 -- Authors:       Claude Sonnet 5.5

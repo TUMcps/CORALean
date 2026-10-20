@@ -17,6 +17,17 @@ plus the independent generators weighted by `b`: the coefficients become the fre
 order, after the old ones. `dependent_exact` says the sets agree; this is the same fact with the
 factors named, which a chain of steps that keeps one factor vector needs.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `a` – factor values
+* `b` – independent values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the dependent point is the original point plus the independent part
+
 ## References
 
 * [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to Obtain Subsets of

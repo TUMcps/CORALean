@@ -12,6 +12,22 @@ public import Mathlib.Algebra.BigOperators.GroupWithZero.Action
 Split out of `Compact.lean` (issue #62): mentions no set, so
 `Theorems/CompactGensExact.lean` reuses it unchanged for the constrained
 constraint matrix, outside this file.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `G` – generators
+* `a` – factor values
+* `r` – representative map
+* `s` – set of kept columns
+
+## Hypotheses
+* `hcol` – representatives have equal columns
+* `hs` – columns outside the set gather nothing
+
+## Conclusion
+* the generator sum regroups by exponent column
 -/
 
 -- Authors:       Claude Opus 5

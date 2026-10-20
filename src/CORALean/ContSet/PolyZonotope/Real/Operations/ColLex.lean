@@ -14,6 +14,15 @@ far as the first exponent that differs.
 A linear order on the columns is all that `sort` and `Sorted` ask of them, and
 carrying it in the type rather than in a comparator is what lets `Tuple.sort`
 supply the permutation and its monotonicity together.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `i` – generator index
+
+## Output
+* exponent column viewed in the lexicographic order
 -/
 
 -- Authors:       Claude Opus 5

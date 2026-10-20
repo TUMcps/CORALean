@@ -14,6 +14,16 @@ blocks, `pZ1t` with `n2` zero rows below and `pZ2t` with `n1` above, and added b
 so the factors they share stay shared. The padding is `PolyZonotope.map` at the two block
 embeddings. The shared factor list is `hp : pZ₁.p = pZ₂.p`, as for `exactPlus`; CORA's empty-set
 and empty-generator cases return the other padded set, which `exactPlus` already is.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Output
+* polynomial zonotope of the stacked coordinates
 -/
 
 -- Authors:       Claude Opus 5.5

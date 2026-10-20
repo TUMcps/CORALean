@@ -11,20 +11,21 @@ public import Mathlib.Tactic.FinCases
 /-!
 # A group merge is not always tighter than the pairwise merges it replaces
 
-`relaxWidthGroup_le_chain` weighs widths, and here is why that is all it weighs:
-a set where merging two generators pairwise and then onto the target encloses
-strictly less than merging them as a group.
+`relaxWidthGroup_le_chain` weighs widths, and here is why that is all it weighs: a set where
+merging two generators pairwise and then onto the target encloses strictly less than merging
+them as a group. Two generators share an exponent column and cancel, `1` and `-1`. The
+pairwise route merges those two first, at width `0`, and carries their sum, the zero generator,
+to the target. The group route never forms that sum: it pays width `2` on each separately, and
+its independent part is `[-4, 4]` where the pairwise one is `{0}`. Neither route dominates.
 
-The witness is as small as one gets. Two generators share an exponent column
-and cancel, `1` and `-1`. The pairwise route merges those two first, at width
-`0`, and what it carries to the target is their sum, the zero generator, on
-which any width pays nothing. The group route never forms that sum: it pays
-width `2` on each of the two separately, and its independent part is `[-4, 4]`
-where the pairwise one is `{0}`.
+## Inputs
+* none
 
-So neither route dominates the other. A group merge saves per member, and a
-chain can still be the sharper of the two by merging members into each other
-before it pays anything on them.
+## Hypotheses
+* none
+
+## Conclusion
+* a group merge can be looser than successive pair merges
 -/
 
 -- Authors:       Claude Opus 5

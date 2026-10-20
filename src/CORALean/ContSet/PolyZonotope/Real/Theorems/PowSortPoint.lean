@@ -18,6 +18,17 @@ Written as a `calc` rather than a chain of rewrites: the factor vector is read
 through `Fin.cast` at each level, and rewriting under that binder asks the
 elaborator to identify two index types it will not identify in tactic position.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – exponent less one
+* `a` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point is the coordinatewise power of the point
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

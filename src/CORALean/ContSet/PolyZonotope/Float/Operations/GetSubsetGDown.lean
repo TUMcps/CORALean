@@ -9,6 +9,15 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubsetCoef
 
 The generators of `getSubset`: the column's generator scaled by the bracketed coefficient, each
 entry rounded down. The exact entry is at most `getSubsetGDiff` above it.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+* `cen` – subinterval center
+* `rad` – subinterval radius
+
+## Output
+* subset generators, rounded down
 -/
 
 -- Authors:       Claude Opus 5.5

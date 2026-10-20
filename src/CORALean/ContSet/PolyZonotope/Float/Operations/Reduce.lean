@@ -8,15 +8,21 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.ReduceGirard
 /-!
 # `PolyZonotope.reduce`
 
-The exact layer's `reduce`, rounded — and the one operation the float layer
+The exact layer's `reduce`, rounded, and the one operation the float layer
 *runs* where the exact layer only specifies: `reduceGirard` is noncomputable
 over ℝ because `Tuple.sort` needs a `LinearOrder`, while `sortPerm` asks its
-comparator for nothing. It can afford to, `reduceBy_outer` holding at every pair
-of partitions, so a misranking costs precision and never soundness.
+comparator for nothing. `reduceBy_outer` holds at every pair of partitions, so a
+misranking costs precision and never soundness.
 
 `compact`, which `reduce` runs first, is the one place this operation charges
-the box: merging two columns adds their entries, and running it first is what
-makes the order bound count distinct monomials rather than stored columns.
+the box: it makes the order bound count distinct monomials, not stored columns.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `o` – target order
+
+## Output
+* compacted polynomial zonotope of reduced order
 -/
 
 -- Authors:       Claude Opus 5

@@ -18,6 +18,16 @@ generators stored rounded down (`matMulDown`) and the gap to the upper rounding 
 error box. The operands' own error boxes enter by interval-matrix products against hulls of the
 operands: `(N₁ + e₁)(N₂ + e₂) = N₁N₂ + N₁e₂ + e₁(N₂ + e₂)`, `N` bounded entrywise by the sum
 of its generators' absolute values.
+
+## Inputs
+* `pZ₁` – first matrix polynomial zonotope
+* `pZ₂` – second matrix polynomial zonotope
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Output
+* matrix polynomial zonotope of their product
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -17,6 +17,14 @@ finite comparison. So is `compact`, for the same kind of reason.
 The permutation is named on its own because `sort` applies it and `sort_sorted`
 argues about it, and because `reindex` is deliberately indifferent to which
 permutation it is given.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+
+## Output
+* permutation sorting the exponent columns
 -/
 
 -- Authors:       Claude Opus 5

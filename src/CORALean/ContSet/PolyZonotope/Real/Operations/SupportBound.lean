@@ -9,21 +9,21 @@ public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 /-!
 # `PolyZonotope.supportBound`
 
-[1, Prop. 7]: a direction sees the set as its dependent part plus its
-independent one. The independent block answers exactly — `∑ⱼ |c (GI j)|`, the
-sum of absolute values — and the dependent block is `point` over the factor box,
-a polynomial range with no closed form.
+[1, Prop. 7]: a direction sees the set as its dependent part plus its independent one. The
+independent block answers exactly, `∑ⱼ |c (GI j)|`, and the dependent block is `point` over
+the factor box, a polynomial range with no closed form. So the range bound is an argument:
+`u` bounds `subsetAt` over that box, what the paper's `B(w(α), [-1,1])` returns, and whatever
+produced it stays outside the trusted base as every `SupportBound` here does. Interval
+arithmetic, Bernstein polynomials and verified global optimization are admissible sources; the
+bound is exactly as tight as `u`. The value bounds the set and does not describe it.
 
-So the range bound is an argument, not a computation: `u` bounds `subsetAt` over
-that box, which is what the paper's `B(w(α), [-1,1])` returns, and whatever
-produced it stays outside the trusted base the way every `SupportBound` here
-does. Interval arithmetic, Bernstein polynomials and verified global
-optimization are all admissible sources; only the tightness tells them apart,
-and the bound below is exactly as tight as `u` is.
+## Inputs
+* `pZ` – polynomial zonotope
+* `c` – linear functional
+* `u` – support bound of the factor part
 
-The value bounds the set and does not describe it: a polynomial zonotope is
-generally not convex, so the halfspaces these bounds cut out enclose it strictly
-however tight each one is.
+## Output
+* support bound of the set
 
 ## References
 

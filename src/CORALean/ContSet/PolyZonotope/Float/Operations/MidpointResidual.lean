@@ -10,6 +10,13 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.Midpoint
 
 Split out of `LinComb.lean` (issue #62): read again by
 `Theorems/LinCombOuter.lean`, outside this file.
+
+## Inputs
+* `a` – first center
+* `b` – second center
+
+## Output
+* interval covering the rounding error of the stored midpoint
 -/
 
 -- Authors:       Claude Opus 5

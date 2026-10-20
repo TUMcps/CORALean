@@ -18,6 +18,17 @@ The two embeddings are linear, so `map_point` carries each operand's point into
 its own coordinate and `exactPlus_point` adds them; `pZ₂` is read at `pZ₁`'s
 factor indices through `Fin.cast`, as it is there.
 
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+* `a` – factor values
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Conclusion
+* the point is the pair of the two points
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

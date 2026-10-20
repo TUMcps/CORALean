@@ -8,6 +8,15 @@ public import CORALean.ContSet.PolyZonotope.Real.Counterexamples.IsPolytopeCexCo
 # The set of `isPolytopeCex`
 
 `isPolytopeCex.construct` is the map `(a, b, c) ↦ (2a + b, a c)` on the factor cube.
+
+## Inputs
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership means being the image of some factor values
 -/
 
 -- Authors:       Claude Opus 5.5

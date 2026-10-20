@@ -10,15 +10,24 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsetAtUnitBox
 # `getSubset` represents the subset a factor sub-box reaches
 
 Naming that subset is [1, Thm. 1]'s subject; this represents it. The sub-box restricting
-factor `k` to `cen ± rad` reaches *exactly* `getSubset`'s set — an equality, not
-an enclosure, and at every degree: the re-parametrization is affine in the
-factor, the monomials above degree one expand binomially, and that expansion is
-an identity.
+factor `k` to `cen ± rad` reaches *exactly* `getSubset`'s set, an equality and not an
+enclosure, at every degree: the re-parametrization is affine in the factor and the binomial
+expansion is an identity. `hq` is `subsetAt_unitBox`'s hypothesis, where an enclosure would
+otherwise creep in (`construct` widens by the independent block, which no factor names); `hrad`
+makes `cen ± rad` an interval rather than an empty set.
 
-`hq` is `subsetAt_unitBox`'s hypothesis and where an enclosure would otherwise
-creep in — `construct` widens by the independent block, which no factor names;
-`restructure_q` is how a caller gets there, at `restructure_outer`'s price.
-`hrad` is what makes `cen ± rad` an interval rather than an empty set.
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+* `cen` – subinterval center
+* `rad` – subinterval radius
+
+## Hypotheses
+* `hrad` – radius is nonnegative
+* `hq` – no independent generators
+
+## Conclusion
+* the result represents the subset over the sub-box
 
 ## References
 

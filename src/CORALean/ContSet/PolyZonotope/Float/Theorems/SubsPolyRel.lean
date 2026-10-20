@@ -10,6 +10,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsPoly
 # `subsPoly` is the stored polynomial of an output
 
 Each coefficient is the stored float, bracketed by itself.
+
+## Inputs
+* `nu` – number of substituted factors
+* `pZin` – polynomial zonotope substituted in
+* `ii` – substituted coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float term list brackets the exact one
 -/
 
 -- Authors:       Claude Opus 5.5

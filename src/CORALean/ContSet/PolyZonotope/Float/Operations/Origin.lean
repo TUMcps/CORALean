@@ -10,6 +10,12 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 The point `0` as a polynomial zonotope with no generators of either kind, the center
 stored as `zero` and the error box at zero.
+
+## Inputs
+* `n` – dimension
+
+## Output
+* the polynomial zonotope containing only the origin
 -/
 
 -- Authors:       Claude Opus 5.5

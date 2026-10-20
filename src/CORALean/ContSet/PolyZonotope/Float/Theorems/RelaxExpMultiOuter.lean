@@ -14,20 +14,22 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 /-!
 # `relaxExpMulti` over-approximates, merging any two generators
 
-The exact layer's argument at this layer's stored columns, with the same two
-roundings charged as in `relaxExp_outer`. `abs_sub_monomial_le_sum` is the exact
-layer's and is what bounds the drift between the two monomials, asking nothing
-of the exponent columns; the width bounding it is a natural number both layers
-read off the same exponent matrix, however many factors it sums over.
+The exact layer's argument at this layer's stored columns, with the same two roundings charged
+as in `relaxExp_outer`. `abs_sub_monomial_le_sum` is the exact layer's and bounds the drift
+between the two monomials, asking nothing of the exponent columns; the width is a natural
+number both layers read off the same exponent matrix. Each stored column is off by at most its
+gap to the upward rounding, read by a coefficient in `[-1,1]`; that is one `generatorError`
+with two columns. The independent column is stored collinear with the generator it relaxes.
 
-Each stored column is a sum rounded down, so each is off by at most its gap to
-the upward rounding, and the coefficient reading it — a monomial for the merged
-dependent column, `Zonotope.coefficient` for the new independent one — is in
-`[-1,1]`. That is one `generatorError` with two columns, exactly as at one index.
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
 
-The independent coefficient is one scalar for the whole column, so the column
-has to be stored collinear with the generator it relaxes: rounding each
-coordinate outward on its own would not be reachable by any single coefficient.
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

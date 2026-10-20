@@ -17,6 +17,18 @@ is why the reverse inclusion divides by `rad` only where it may.
 Its own file because both `getSubset_construct` and `getSubset_evalOn` name the
 sub-box this way, and the second is [1, Thm. 1]'s initial inclusion.
 
+## Inputs
+* `p` – number of factors
+* `k` – factor index
+* `cen` – subinterval center
+* `rad` – subinterval radius
+
+## Hypotheses
+* `hrad` – radius is nonnegative
+
+## Conclusion
+* the rescaled unit box is the box around the center in that factor
+
 ## References
 
 * [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to

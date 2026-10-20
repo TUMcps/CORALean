@@ -8,20 +8,19 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPoly
 /-!
 # `PolyZonotope.evalPoly`
 
-The exact layer's Horner step, `mul` then a center shift, rounded exactly as
-`mul`/`plus` round it — except one thing neither of those owes on its own:
-`R`, here, is itself only known to within its own error box, not exact, so
-multiplying it by `pZ` also multiplies that uncertainty by however large `pZ` can
-be. `evalPolyBoundS` bounds `|nominal pZ|` entrywise, and the extra box
-`errorBound R.err * evalPolyBoundS pZ` is what a plain `mul` call would drop.
+The exact layer's Horner step, `mul` then a center shift, rounded as `mul`/`plus` round it,
+except that `R` is itself only known to within its own error box, so multiplying it by `pZ`
+also multiplies that uncertainty. `evalPolyBoundS` bounds `|nominal pZ|` entrywise, and the
+extra box `errorBound R.err * evalPolyBoundS pZ` is what a plain `mul` would drop. `c` rounds
+down, matching `plus`. A coefficient is a vector, as over ℝ: the shift is entrywise, so the
+coordinates round independently.
 
-`c` rounds down, matching `plus`'s own center; `mul`'s box and this one and the
-center's residual all add through `Interval.plus`, never combined into fewer
-generators.
+## Inputs
+* `pZ` – polynomial zonotope
+* `coeffs` – coefficient vectors
 
-A coefficient is a vector, one entry per coordinate, as over ℝ: the shift is
-entrywise, so the coordinates round independently and each carries its own
-polynomial.
+## Output
+* polynomial zonotope of the polynomial evaluated at the set
 -/
 
 -- Authors:       Claude Opus 5

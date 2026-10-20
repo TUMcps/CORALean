@@ -8,16 +8,19 @@ public import Mathlib.Logic.Equiv.Fin.Basic
 /-!
 # The exponent matrix of `getSubset`
 
-Substituting `αₖ ↦ cen + rad·βₖ` and expanding turns one column of degree `e` in
-that factor into `e + 1` columns, of degrees `0 … e` in the new factor and
-unchanged in every other. The columns are laid out `d + 1` to an original one,
-`d` the largest exponent the factor carries, and `finProdFinEquiv` is what
-matches the flat index to the pair — the same layout `bilinE` uses for pairs of
-columns.
-
-Padding to a uniform `d + 1` rather than to each column's own `e + 1` is what
-keeps the index a product type; the surplus columns are the ones `getSubsetG`
+Substituting `αₖ ↦ cen + rad·βₖ` and expanding turns one column of degree `e` in that factor
+into `e + 1` columns, of degrees `0 … e` in the new factor and unchanged in every other. The
+columns are laid out `d + 1` to an original one, `d` the largest exponent the factor carries,
+and `finProdFinEquiv` matches the flat index to the pair, as `bilinE` does. Padding to a
+uniform `d + 1` keeps the index a product type; the surplus columns are the ones `getSubsetG`
 gives the coefficient `Nat.choose e j = 0`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+
+## Output
+* exponent matrix of the restricted set
 -/
 
 -- Authors:       Claude Opus 5

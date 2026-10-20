@@ -11,6 +11,12 @@ Not merged into `EvalPoly.lean`: every `mul` step needs the factor-count proof o
 step, so the recursion returns the set together with that proof, and `evalPoly` is its first
 projection. It has users of its own: the float layer's `evalPoly`, `EvalPolySortP`, `PowSort`,
 `Theorems/EvalPolyOuter.lean` and `Theorems/EvalPolyExact.lean`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* evaluator mapping coefficients to a set with the same factor count
 -/
 
 -- Authors:       Claude Opus 5

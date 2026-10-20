@@ -12,20 +12,24 @@ public import Mathlib.Tactic.Abel
 /-!
 # Relaxing the exponents of two similar generators over-approximates
 
-`[1, Thm. 1]` at `ξ_G = ξ_E`. The factors are untouched, so the same `a` reads
-both sides, and everything the merge costs sits in one term: the two monomials
-share every factor but the one at `k₀`, so their difference is
-`(a_{k₀}^{E_i} - a_{k₀}^{E_j})` times a product that never leaves `[-1,1]`, and
-`abs_sub_monomial_le` bounds that by `ξ_E`.
+`[1, Thm. 1]` at `ξ_G = ξ_E`. The factors are untouched, so the same `a` reads both sides,
+and everything the merge costs sits in one term: the two monomials share every factor but the
+one at `k₀`, so their difference is `(a_{k₀}^{E_i} - a_{k₀}^{E_j})` times a product that never
+leaves `[-1,1]`, which `abs_sub_monomial_le` bounds by `ξ_E`. The new independent generator is
+`ξ_E` times the first of the two, so the coefficient asked of it is `Zonotope.coefficient`,
+one scalar for the whole generator, which is why this holds over any module. The similarity of
+`[1, Def. 4]` enters as `hsim`, agreement off `k₀`: the operation needs `k₀` itself.
 
-The new independent generator is `ξ_E` times the first of the two, so the
-coefficient the difference asks of it is `Zonotope.coefficient`, degenerate
-`ξ_E = 0` included — and it is one scalar for the whole generator rather than
-one per coordinate, which is why this holds over any module.
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
+* `k₀` – factor index
 
-The similarity of `[1, Def. 4]` enters as `hsim`, agreement off `k₀`, rather
-than as a computed predicate: the operation needs `k₀` itself and not merely its
-existence, and agreement is all the proof spends.
+## Hypotheses
+* `hsim` – generators agree outside that factor
+
+## Conclusion
+* the set is contained in the result
 
 ## References
 

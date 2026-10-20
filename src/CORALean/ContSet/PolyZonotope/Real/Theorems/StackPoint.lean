@@ -13,6 +13,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
 At one factor vector, the two sets' points stacked: the first `n₁` coordinates are the first
 set's point, the last `n₂` the second's. Stated at the point, as `exactPlus_point` is, and not at
 the set: the factors are shared, so a set-level statement would need the pairing of values.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+* `a` – factor values
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Conclusion
+* the point is the concatenation of the two points
 -/
 
 -- Authors:       Claude Opus 5.5

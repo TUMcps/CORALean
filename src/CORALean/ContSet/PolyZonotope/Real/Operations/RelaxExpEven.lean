@@ -7,22 +7,21 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExp
 /-!
 # `PolyZonotope.relaxExpEven`
 
-`relaxExp` with the recentering of `[1, Thm. 1]`. `sub_monomial_nonpos` makes the
-drift between the two monomials one-sided, `[-ξ_E, 0]` rather than
-`[-ξ_E, ξ_E]`, so half of it is a constant the center absorbs and only the other
-half is paid into the new independent generator.
-
+`relaxExp` with the recentering of `[1, Thm. 1]`. `sub_monomial_nonpos` makes the drift
+between the two monomials one-sided, `[-ξ_E, 0]` rather than `[-ξ_E, ξ_E]`, so half of it is a
+constant the center absorbs and only the other half is paid into the independent generator.
 The shift is `-ξ_E/2` where `[1]` prints `+ξ_E/2`: at both exponents even and
-`E_{k₀,j} ≤ E_{k₀,i}`, `α^A - α^B = (α²)^{A/2} - (α²)^{B/2} ≤ 0`. Both even also
-forces equal parity, so `ξ_E` is at most `1`.
+`E_{k₀,j} ≤ E_{k₀,i}`, `α^A - α^B ≤ 0`; both even forces equal parity, so `ξ_E ≤ 1`. Separate
+from `relaxExp`, since what makes the shift sound is `relaxExpEven_outer`'s hypotheses. A
+mixed-parity drift reaches `-2` and `2`, so it has no midpoint to move.
 
-Separate from `relaxExp` rather than a branch in it: what makes the shift sound
-is `relaxExpEven_outer`'s hypotheses, which no definition can read.
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
+* `k₀` – factor index
 
-The evenness is about tightness, not soundness — a midpoint and a radius
-describe any drift interval, so CORA's unshifted branch is looser than it need
-be. It buys nothing here: a mixed-parity drift reaches `-2` and `2`, so it is
-bounded by the symmetric `[-2, 2]` and has no midpoint to move.
+## Output
+* relaxed polynomial zonotope with even-exponent center shift
 
 ## References
 

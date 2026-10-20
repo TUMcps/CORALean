@@ -10,6 +10,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Map
 A linear map touches the center and both generator blocks only: none of the
 three counts move, since the monomials are scalars a linear map commutes with.
 `rfl` against the structure instance in `Operations/Map.lean`.
+
+## Inputs
+* `f` – linear map
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the factor count is preserved
 -/
 
 -- Authors:       Claude Opus 5

@@ -8,16 +8,21 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepExact
 /-!
 # `PolyZonotope.quadMap` is exactly the image under a quadratic map
 
-The result is [1, Prop. 13], the general case.
+The result is [1, Prop. 13], the general case. The claim the representation exists for, and
+one no convex representation here can make. `quadMapDep` does the work under an empty
+independent block, and `dependent` empties it exactly, so nothing is lost on the way in. At
+`Zonotope.polyZonotope` (no independent generators, already dependent) this is the other half
+of [2, Thm. 1], the case [1] generalises: a zonotope's quadratic map is a polynomial zonotope.
 
-The claim the representation exists for, and one no convex representation here
-can make. `quadMapDep` does the work under an empty independent block, and
-`dependent` is what empties it — exactly, so nothing is lost on the way in
-either.
+## Inputs
+* `Q` – family of quadratic form matrices
+* `pZ` – polynomial zonotope
 
-At `Zonotope.polyZonotope` — no independent generators, and already dependent —
-this is the other half of [2, Thm. 1], the case [1] generalises: a zonotope's
-quadratic map is exactly a polynomial zonotope.
+## Hypotheses
+* none
+
+## Conclusion
+* the quadratic image of the set equals the result
 
 ## References
 

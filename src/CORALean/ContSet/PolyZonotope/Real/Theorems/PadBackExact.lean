@@ -7,21 +7,23 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackPoint
 /-!
 # Padding the factor list moves no set
 
-[1, Prop. 1] at positional factor identity. CORA's `mergeID` brings two SPZs to
-a common identifier vector before an operation reads both: it extends one
-exponent matrix with all-zero rows and permutes the other's rows into the merged
-order. Here a factor *is* its row index, so there is no identifier to look up
-and no order to restore — what is left of `mergeID` is the padding, and
-`padBack` is it.
+[1, Prop. 1] at positional factor identity. CORA's `mergeID` brings two SPZs to a common
+identifier vector: it extends one exponent matrix with all-zero rows and permutes the other's
+rows into the merged order. Here a factor *is* its row index, so what is left of `mergeID` is
+the padding, and `padBack` is it. The claim Prop. 1 attaches is that each adjusted SPZ denotes
+the original set. `padBack_point` is the forward half; the reverse inclusion is where the
+padding is paid for, an appended factor no monomial reads being free to take any value. `padFront`
+is the mirror image and needs no second statement.
 
-The claim Prop. 1 attaches to it is that each adjusted SPZ denotes the original
-set, which is this theorem. `padBack_point` is the forward half and says no
-point moves; the reverse inclusion is where the padding is paid for, an appended
-factor no monomial reads being free to take any value, and `0` the one supplied.
+## Inputs
+* `r` – number of added factors
+* `pZ` – polynomial zonotope
 
-`padFront` is the mirror image and needs no second statement: `mergeID` extends
-one list past the end of the other, and which of the two is padded is the only
-choice there is.
+## Hypotheses
+* none
+
+## Conclusion
+* the padded set equals the original
 
 ## References
 

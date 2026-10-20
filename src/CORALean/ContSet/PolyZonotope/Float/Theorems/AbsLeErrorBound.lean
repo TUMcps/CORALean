@@ -6,6 +6,17 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.AbsorbRounding
 
 /-!
 # One generator per coordinate reaches every point of a box
+
+## Inputs
+* `I` – interval vector
+* `e` – point
+* `i` – coordinate
+
+## Hypotheses
+* `he` – point lies in the interval
+
+## Conclusion
+* the coordinate is bounded by the error bound
 -/
 
 -- Authors:       Claude Opus 5

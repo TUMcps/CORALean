@@ -15,6 +15,13 @@ goes into the box. Both counts stay where they are over ℝ.
 
 The exponent matrix is the exact layer's `plusE`, reused rather than restated:
 it is a matrix of naturals and nothing about it rounds.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Output
+* polynomial zonotope enclosing the Minkowski sum
 -/
 
 -- Authors:       Claude Opus 5

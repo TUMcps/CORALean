@@ -17,6 +17,23 @@ summand's error box, lies in the float `sum`. The generator blocks and exponent 
 appended exactly as at the real layer, so the two points differ by the rounding of the center
 alone, which the `Interval.residual` of the directed sums holds; the error boxes are
 added (`sumErr`, `sumErr_mem`), a box having no factors to share.
+
+## Inputs
+* `m` – number of summands
+* `pZ` – polynomial zonotope
+* `L` – family of further polynomial zonotopes
+* `x` – point of the exact nominal sum
+* `e` – error point of the first set
+* `eL` – error points of the further sets
+
+## Hypotheses
+* `hp` – all have the same factor count
+* `hx` – point lies in the exact nominal sum
+* `he` – error point lies in its box
+* `heL` – each error point lies in its box
+
+## Conclusion
+* the point plus all error points lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

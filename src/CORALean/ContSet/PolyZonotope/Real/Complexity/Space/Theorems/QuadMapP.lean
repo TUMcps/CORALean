@@ -12,6 +12,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
 `dependent`'s own, `bilin`'s square then landing on `dependent`'s count rather
 than the operand's, and the independent block is again empty. `rfl` by
 unfolding `quadMapDep` rather than restating `bilin_h`.
+
+## Inputs
+* `Q` – family of quadratic form matrices
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the factor count is dependent plus independent generators
 -/
 
 -- Authors:       Claude Opus 5

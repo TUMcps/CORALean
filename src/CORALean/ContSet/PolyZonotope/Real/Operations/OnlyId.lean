@@ -16,6 +16,13 @@ has the other generators, the center `0`, all exponent rows and the independent 
 
 CORA deletes the generator columns that do not belong to a part; here they stay as zero generators,
 which changes the representation and not the set.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `S` – selected factors
+
+## Output
+* pair: part using only those factors, and the rest
 -/
 
 -- Authors:       Claude Opus 5.5

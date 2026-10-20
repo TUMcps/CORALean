@@ -10,18 +10,22 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
 # `convHull` contains both operands
 
 `PolyZonotope.convHull` is the chords of chords of the dependent parts, plus the generators of
-`enclose(Z1, Z2)` for the independent blocks. A point of either operand is a point of its dependent
-part plus a point of its independent zonotope. The first is a chord of the part with itself, which
-`linComb_outer` puts in the inner `linComb`, and a chord of that set with anything of the other
-side's, which puts it in the outer one (the parameter `1` for the first operand, `0` for the
-second).
-The second is a chord of the two zero-centered zonotopes, `Zonotope.linComb_outer`. The outer
-`linComb` has no independent generators, so replacing them by the zonotope's loses nothing.
+`enclose(Z1, Z2)` for the independent blocks. A point of either operand is a point of its
+dependent part plus a point of its independent zonotope. The first is a chord of the part with
+itself, which `linComb_outer` puts in the inner `linComb`, and a chord of that set with
+anything of the other side's, which puts it in the outer one (parameter `1` for the first
+operand, `0` for the second). The second is a chord of the two zero-centered zonotopes,
+`Zonotope.linComb_outer`. The statement is an enclosure of the *union*, not its hull.
 
-The statement is an enclosure of the *union*. It is not the convex hull of the union: the set the
-result denotes holds only combinations of two points per operand, and `enclose(Z1, Z2)` is an
-enclosure of the independent blocks, not their hull, so the result is neither contained in the hull
-of the union nor does it contain it in general.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* both sets are contained in the hull
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -10,6 +10,15 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.CompactExact
 
 Dropping unused factors is the exact layer's step verbatim: it changes `p` and
 the exponent matrix, both over ℕ, so nothing here rounds.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* dropping unused factors leaves the nominal set unchanged
 -/
 
 -- Authors:       Claude Opus 5

@@ -11,16 +11,18 @@ public import Mathlib.LinearAlgebra.BilinearMap
 /-!
 # The quadratic form family, bundled as a bilinear map
 
-`(x, y) ↦ (xᵀQ₁y, …, xᵀQₘy)`, which is bilinear because a dot product is linear
-in either vector and `mulVec` is linear in the one it moves. `PolyZonotope.bilin`
-at it is `quadMapDep`, so the exponent and generator bookkeeping of a pairing
-over shared factors is written once and specialised here rather than repeated.
+`(x, y) ↦ (xᵀQ₁y, …, xᵀQₘy)`, bilinear because a dot product is linear in either vector and
+`mulVec` is linear in the one it moves. `PolyZonotope.bilin` at it is `quadMapDep`, so the
+bookkeeping of a pairing over shared factors is written once and specialised here. Bundled as
+`→ₗ →ₗ` and not as a function with four side conditions, the only form `bilin` takes: nothing
+about `Q` is used beyond bilinearity. `quadEval` is this at a repeated argument,
+definitionally, so `quadMapDep_exact` reads off `bilin_exact` with no step between.
 
-Bundled as `→ₗ →ₗ` and not left as a function with four side conditions,
-because that is the only form `bilin` takes: nothing about `Q` is ever used
-beyond bilinearity. `quadEval` is this at a repeated argument, definitionally,
-which is what lets `quadMapDep_exact` read off `bilin_exact` with no step in
-between.
+## Inputs
+* `Q` – family of quadratic form matrices
+
+## Output
+* the bilinear map of the quadratic forms
 -/
 
 -- Authors:       Claude Opus 5

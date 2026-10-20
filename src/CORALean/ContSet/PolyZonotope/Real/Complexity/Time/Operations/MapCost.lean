@@ -8,18 +8,20 @@ public import CORALean.Global.Cost
 /-!
 # `PolyZonotope.mapCost`
 
-Asserted, not proved: `Operations/Map.lean` sends the center, each of the `h`
-dependent generators and each of the `q` independent ones through `f`, and
-touches nothing else — the exponent matrix is carried over whole.
+Asserted, not proved: `Operations/Map.lean` sends the center, each of the `h` dependent
+generators and each of the `q` independent ones through `f`, and touches nothing else; the
+exponent matrix is carried over whole, its `p * h` entries written like the rest. What one `f`
+costs is a parameter, `cf` a bound on one application, `f` being any linear map; `mtimesCost`
+is this at `cf := Cost.matVec m n`. A caller with no bound on `f` has no bound here either.
 
-What one `f` costs is not something this file can know, `f` being any linear
-map, so it is a parameter: `cf` is a bound on one application. That is what
-keeps the count an upper bound rather than a guess, and `mtimesCost` is this at
-`cf := Cost.matVec m n`. A caller with no bound on `f` has no bound here
-either, which is the honest reading of a cost at an arbitrary map.
+## Inputs
+* `cf` – cost of mapping one vector
+* `p` – number of factors
+* `h` – dependent generator count
+* `q` – independent generator count
 
-The exponent matrix is the operand's, but it is a part of the result, and its `p * h` entries are
-written like the rest.
+## Output
+* operation count of the linear map
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

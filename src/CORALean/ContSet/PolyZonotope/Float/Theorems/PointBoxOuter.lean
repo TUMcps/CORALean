@@ -15,6 +15,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
 At every factor vector of the box, the nominal set's point lies in `pointBox`: the monomials lie
 in `monoBox` (`monoBox_outer`), the generators applied to them in `Interval.mtimes`, and the
 center added in `Interval.plus`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `X` – factor box
+* `a` – factor values
+
+## Hypotheses
+* `ha` – factor values lie in the box
+
+## Conclusion
+* the nominal point lies in the point box
 -/
 
 -- Authors:       Claude Opus 5.5

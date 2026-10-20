@@ -22,6 +22,17 @@ and its error box are in the error box.
 
 Both operands must denote a point: the chord of a set with the empty one is empty, and CORA returns
 `pZ` when `S` is empty before it gets here.
+
+## Inputs
+* `P₁` – first polynomial zonotope
+* `P₂` – second polynomial zonotope
+
+## Hypotheses
+* `h₁` – first set is nonempty
+* `h₂` – second set is nonempty
+
+## Conclusion
+* both sets are contained in the result
 -/
 
 -- Authors:       Claude Sonnet 5.5

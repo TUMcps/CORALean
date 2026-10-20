@@ -10,6 +10,13 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 A set put into the first coordinates of a larger space, zero in the `n₂` below: the exact layer's
 `map` at the embedding `blockPadLeft`. A zero row has no rounding, so the center, the generators and
 the error box are only padded.
+
+## Inputs
+* `n₂` – number of appended zero coordinates
+* `pZ` – polynomial zonotope
+
+## Output
+* polynomial zonotope padded with zero coordinates on the right
 -/
 
 -- Authors:       Claude Opus 5.5

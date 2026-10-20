@@ -6,6 +6,18 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.SupportBound
 
 /-!
 # `PolyZonotope.supportBound` bounds the set, in float too
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `c` – linear functional
+* `a` – float coefficient vector of the functional
+* `u` – support bound of the nominal part
+
+## Hypotheses
+* `hc` – the vector represents the functional
+
+## Conclusion
+* the functional on the set is at most the bound
 -/
 
 -- Authors:       Claude Sonnet 5.5

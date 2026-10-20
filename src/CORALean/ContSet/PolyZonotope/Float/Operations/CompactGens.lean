@@ -11,6 +11,12 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
 
 Split out of `Compact.lean` (issue #62): read again by `compact` in this
 directory and by several `Theorems/` files, all outside this file.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* polynomial zonotope with equal-exponent generators merged
 -/
 
 -- Authors:       Claude Opus 5

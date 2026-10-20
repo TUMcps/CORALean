@@ -11,6 +11,12 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceMethC
 The first step of CORA's `split(pZ)`: the parallelotope `P = reduce(zonotope(pZ), 'methC', 1)`
 that over-approximates the polynomial zonotope (`PolyZonotope.zonotope`, then
 `Zonotope.reduceMethC`), which `split` halves along its generators.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* parallelotope zonotope enclosing the set
 -/
 
 -- Authors:       Claude Opus 5.5

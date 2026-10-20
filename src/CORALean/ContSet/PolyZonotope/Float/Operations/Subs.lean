@@ -15,6 +15,16 @@ CORA's `@polyZonotope/subs(pZ, pZin, idu)` on the stored floats: the dependent f
 with `pZ`'s through `share`). One generator per term of each `Xprod`, stored rounded down with the
 gap charged to the error box, as in `getSubset`; the replaced factors stay as zero rows, as in the
 exact layer. Sound only where `pZin` has no independent generators and no error box.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `nu` – number of substituted factors
+* `pZin` – polynomial zonotope substituted in
+* `idu` – indices of the substituted factors
+* `share` – map of shared factors
+
+## Output
+* polynomial zonotope after the substitution
 -/
 
 -- Authors:       Claude Opus 5.5

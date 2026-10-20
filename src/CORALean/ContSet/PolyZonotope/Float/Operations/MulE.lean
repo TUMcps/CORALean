@@ -9,6 +9,16 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.ExtE
 
 Split out of `Mul.lean` (issue #62): read again by `Theorems/EvalPolyOuter.lean`
 and `Theorems/MulOuter.lean`, both outside this file.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Output
+* exponent matrix of the product
 -/
 
 -- Authors:       Claude Opus 5

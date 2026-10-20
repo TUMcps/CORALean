@@ -9,6 +9,15 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.OfPoint
 
 `ofPoint v` states its own `p`, `h` and `q`, that count only up to unfolding,
 so both sums need a `show`.
+
+## Inputs
+* `v` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point lies in its own set
 -/
 
 -- Authors:       Claude Opus 5

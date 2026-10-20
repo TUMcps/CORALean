@@ -13,6 +13,15 @@ says nothing about what it denotes, which is the part worth stating: the
 permutation is applied to the generators and to their columns together, so the
 sum is the same sum and no hypothesis on the operand is needed.
 
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* sorting leaves the set unchanged
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

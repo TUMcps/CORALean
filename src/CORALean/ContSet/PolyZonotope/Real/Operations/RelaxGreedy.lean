@@ -13,15 +13,18 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMulti
 /-!
 # `PolyZonotope.relaxGreedy`
 
-`[1, Alg. 2]`, the greedy relaxation `relax(PZ, η)` that `[1, Thm. 2]` names: build the graph of
-`[1, Def. 5]`, keep each node's lightest outgoing edge, and while edges remain merge a leaf into its
-target. One dependent generator is gone per merge, so `fuel = h` suffices and `relaxGreedy` below
-takes it.
+`[1, Alg. 2]`, the greedy relaxation `relax(PZ, η)` that `[1, Thm. 2]` names: build the graph
+of `[1, Def. 5]`, keep each node's lightest outgoing edge, and while edges remain merge a leaf
+into its target. One dependent generator is gone per merge, so `fuel = h` suffices. The printed
+"Update `G`" is lines 1 and 2 run again on the relaxed set: the merge keeps the exponent column
+of `j` and drops that of `i`, a leaf, so the remaining nodes keep their lightest edges, up to
+which of equal weights is taken. The merge is `relaxExpMulti`, as in `relaxExpGreedy`.
 
-The printed "Update `G` (remove `(i,j)`, update indices)" is lines 1 and 2 run again on the relaxed
-set: the merge keeps the exponent column of `j` and drops that of `i`, a leaf with no incoming edge,
-so the remaining nodes keep their lightest edges — up to which of equal weights is taken, the paper
-breaking no ties. The merge is `relaxExpMulti`, as in `relaxExpGreedy`.
+## Inputs
+* `η` – exponent threshold
+
+## Output
+* function from fuel and set to the greedily relaxed set
 
 ## References
 

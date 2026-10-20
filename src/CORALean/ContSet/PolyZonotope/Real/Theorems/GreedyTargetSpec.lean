@@ -11,6 +11,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.GreedyTarget
 edge weight for each node. `greedyTarget` returns no edge exactly at a node that has none, and
 otherwise an edge of `G` no outgoing edge of the node undercuts.
 
+## Inputs
+* `G` – relation of admissible pairs
+* `w` – pair weights
+* `i` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* none exactly if no partner is admissible, else the lightest one
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and Its

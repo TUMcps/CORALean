@@ -11,6 +11,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
 Every point [1, Thm. 1]'s `subsetAt` names from a sub-box of admissible factors is a
 member of `construct`: `point_mem_construct` at each of `B`'s vectors.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `B` – box of factor values
+
+## Hypotheses
+* `hB` – factor values are at most one
+
+## Conclusion
+* the subset at the box lies in the set
+
 ## References
 
 * [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to

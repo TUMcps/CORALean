@@ -19,6 +19,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.SumMonomialMerge
 
 The center does not move, so the whole of it is that one sum.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `a` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* merging leaves the point unchanged
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

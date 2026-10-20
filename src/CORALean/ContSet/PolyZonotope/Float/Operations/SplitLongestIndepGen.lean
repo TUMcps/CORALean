@@ -11,6 +11,12 @@ The subfunction `aux_splitLongestIndepGen` of CORA's `@polyZonotope/containsPoin
 independent generator of largest `Σᵢ GI(i,j)²`, rounded up and the first of equal ones winning,
 halved by `splitIndepGen`; the set twice where there is no independent generator. Any generator
 is sound for the split, so a misranking costs precision alone.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* pair of polynomial zonotopes from halving the longest independent generator
 -/
 
 -- Authors:       Claude Opus 5.5

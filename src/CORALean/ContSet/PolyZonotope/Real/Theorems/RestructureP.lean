@@ -12,6 +12,15 @@ than freeing each independent generator directly: `dependent` alone would add
 `pZ.q` factors, however many that is, while boxing first fixes the count at the
 dimension. CORA's `order` argument buys the same bound on the *dependent
 generator* count, by pairing a stronger reduction with the same conversion.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the factor count grows by the dimension
 -/
 
 -- Authors:       Claude Opus 5

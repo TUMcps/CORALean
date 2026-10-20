@@ -12,6 +12,15 @@ The set lies in the translate by `c` of the span of the generators of both block
 proper subspace has no interior (`Submodule.eq_top_of_nonempty_interior'`). So a polynomial
 zonotope with an interior point passes `rank([G GI]) == n`: the test is necessary. The converse
 fails (`isFullDim_cora_counterexample`).
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* `h` – the set has nonempty interior
+
+## Conclusion
+* the generators span the whole space
 -/
 
 -- Authors:       Claude Opus 5.5

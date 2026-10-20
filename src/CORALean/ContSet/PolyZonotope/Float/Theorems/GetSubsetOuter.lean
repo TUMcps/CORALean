@@ -14,6 +14,18 @@ A point of the exact layer's `getSubset` of the stored set, plus a point of its 
 point of the float `getSubset`: the same factor values and coefficients reach the stored
 generators, which differ from the exact ones by at most `getSubsetGDiff` entrywise, and that
 difference, scaled by monomials in `[-1, 1]`, lies in the box `generatorError` that was added.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+* `cen` – subinterval center
+* `rad` – subinterval radius
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact subset plus the error box lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

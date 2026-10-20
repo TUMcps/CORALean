@@ -6,6 +6,18 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
 
 /-!
 # A directed sum of per-term maxima never undershoots a bilinear value
+
+## Inputs
+* `g` – vector
+* `wlo` – lower bound of the second vector
+* `whi` – upper bound of the second vector
+* `w` – point between the bounds
+
+## Hypotheses
+* `hw` – point lies between the bounds
+
+## Conclusion
+* the exact dot product is at most the rounded-up bound
 -/
 
 -- Authors:       Claude Opus 5

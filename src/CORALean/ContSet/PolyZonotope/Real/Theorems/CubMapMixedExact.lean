@@ -13,6 +13,18 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
 The result is exactly the image of the three sets taken independently,
 `{ (x₁ᵀ T x₂) * x₃ | x₁ ∈ pZ₁, x₂ ∈ pZ₂, x₃ ∈ pZ₃ }`, each argument ranging over its own set.
 The triple is read as `((x₁, x₂), x₃)`, the shape of the nested `cartProd`.
+
+## Inputs
+* `T` – family of cubic form tensors
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+* `pZ₃` – third polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the mixed cubic image of the product equals the result
 -/
 
 -- Authors:       Claude Opus 5.5

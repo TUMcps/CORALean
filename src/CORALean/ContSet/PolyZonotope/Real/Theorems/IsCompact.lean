@@ -13,6 +13,15 @@ A polynomial zonotope is the constrained one with no constraints
 (`conPolyZono_exact`), which is compact. Compactness, not only boundedness, is
 what a float polynomial zonotope inherits: its error box is compact and
 `IsCompact.add` carries the property across the sum.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is compact
 -/
 
 -- Authors:       Claude Opus 5.5

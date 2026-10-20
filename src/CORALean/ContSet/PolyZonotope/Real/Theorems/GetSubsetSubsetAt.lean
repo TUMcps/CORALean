@@ -16,6 +16,19 @@ degree.
 
 `getSubset` leaves `p` alone, so `B` needs no transport here, as with `map` and
 unlike a chain through `bilin` or `padFront`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+* `cen` – subinterval center
+* `rad` – subinterval radius
+* `B` – box of factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* subset at the box is the original subset at the rescaled box
 -/
 
 -- Authors:       Claude Opus 5

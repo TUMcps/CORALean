@@ -14,6 +14,19 @@ The hypothesis `sum_monomial_merge` asks for at the columns `merge` keeps: a
 column that is not its own representative is nobody's representative, so its
 fibre is empty and sums to zero. Empty, not merely zero-valued — which is why
 this holds for every generator family and needs no cancellation.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `G` – generators
+* `j` – column index
+
+## Hypotheses
+* `hj` – column is not a kept one
+
+## Conclusion
+* the fibre sum at that column is zero
 -/
 
 -- Authors:       Claude Opus 5

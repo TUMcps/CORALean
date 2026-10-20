@@ -11,6 +11,14 @@ public import Mathlib.Data.Finset.Sort
 the `j`-th element of the same finset many times builds its elements into an
 `Array` once and reads them back here (issue #61). The default stands for an
 index past the table's end, which a table of the right length never reaches.
+
+## Inputs
+* `s` – finite index set
+* `t` – table of indices
+* `j` – element number
+
+## Output
+* the table entry for that element
 -/
 
 -- Authors:       Claude Opus 5.5

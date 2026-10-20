@@ -10,6 +10,14 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 Split out of `Reduce.lean` (issue #62), no longer `aux_`: `reduceGirard` and
 `reduceGirardDependent` each need it from their own file, so neither can keep
 it file-local.
+
+## Inputs
+* `m` – number of generators
+* `G` – generators
+* `l` – generator index
+
+## Output
+* Girard ranking score of that generator
 -/
 
 -- Authors:       Claude Opus 5

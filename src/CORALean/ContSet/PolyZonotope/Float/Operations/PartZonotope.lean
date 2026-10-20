@@ -13,6 +13,13 @@ new factor standing for the monomial of those factors; an all-even pattern's gen
 (`FloatOps.half`, exact in a binary format) and a copy of the halves without the new factor is
 added. Nothing rounds; center, independent generators and error box are copied. The grouping
 outputs of CORA are not returned.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `V` – selected factors
+
+## Output
+* polynomial zonotope grouped by the exponent patterns
 -/
 
 -- Authors:       Claude Opus 5.5

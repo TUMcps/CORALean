@@ -10,22 +10,22 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.PairSplit
 /-!
 # `PolyZonotope.expGreedySel`
 
-A selection for `relaxExpGreedy` that runs: it searches the graph of
-`[1, Def. 5]` for the lightest edge and hands back the split naming its two
-generators, the relaxed one first. `[1, Thm. 2]` keeps the lightest outgoing
-edge of every node and merges along the forest that leaves; taking the lightest
-edge of the whole graph one step at a time is the same rule read one merge at a
-time, and either is a heuristic.
+A selection for `relaxExpGreedy` that runs: it searches the graph of `[1, Def. 5]` for the
+lightest edge and hands back the split naming its two generators, the relaxed one first.
+`[1, Thm. 2]` keeps the lightest outgoing edge of every node and merges along the forest that
+leaves; taking the lightest edge of the whole graph one step at a time is the same rule read
+one merge at a time, and either is a heuristic. It owes no proof: `relaxExpGreedy_outer` holds
+at every selection, so the threshold `η`, the weight and the tie-break decide precision only.
+The weight is summed over every factor, the single `eDiff` at a similar pair.
 
-It owes no proof. `relaxExpGreedy_outer` holds at every selection, so the
-threshold `η`, the weight and the tie-break decide precision and nothing else —
-which is also why the graph's decidability is a convenience here rather than
-part of any guarantee.
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `η` – exponent threshold
 
-Over a bare exponent matrix, not a set: the edges read nothing else, so one
-definition serves both layers. The weight is summed over every factor, which is
-the single `eDiff` of `[1, Def. 5]` at a similar pair and the width
-`relaxExpMulti` charges at any other.
+## Output
+* the lightest relaxable pair as a split, if any
 
 ## References
 

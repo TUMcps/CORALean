@@ -13,6 +13,16 @@ Both steps widen, and neither one's ranking shows: `reduce_outer` holds at every
 partition and `restructure_outer` at every set. Which generators the order
 argument spends is a question for `restructureReduce_order_le`, not for this
 line.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

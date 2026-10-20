@@ -12,17 +12,21 @@ public import Mathlib.Tactic.Abel
 /-!
 # Making the independent generators dependent loses nothing
 
-[1, Prop. 1]: every polynomial zonotope with independent generators can be
-written without them, by expanding the exponent matrix.
+[1, Prop. 1]: every polynomial zonotope with independent generators can be written without
+them, by expanding the exponent matrix. The fresh factors are what the independent
+coefficients were: each occurs in one generator, to the first power, and nowhere else, so it
+ranges over `[-1,1]` under no constraint the coefficient did not have (`monomial_identE`).
+Both directions are stated through `show`, the counts of the result being projections of a
+definition.
 
-The fresh factors are what the independent coefficients were: each occurs in one
-generator, to the first power, and nowhere else, so it ranges over `[-1,1]`
-under no constraint the coefficient did not already have. `monomial_identE` is
-the line that says so.
+## Inputs
+* `pZ` – polynomial zonotope
 
-Both directions are stated through `show`, since the counts of the result are
-projections of a definition and the sum lemmas match only in their reduced
-spelling.
+## Hypotheses
+* none
+
+## Conclusion
+* making generators dependent leaves the set unchanged
 
 ## References
 

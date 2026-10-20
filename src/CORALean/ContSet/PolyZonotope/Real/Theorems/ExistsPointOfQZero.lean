@@ -7,20 +7,23 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
 /-!
 # With no independent block, every member is a point
 
-`point_mem_construct` read backwards, and only available under the hypothesis:
-`construct` is the image of `point` *widened* by the independent block, so a
-member is a point exactly when that block is empty. `dependent` is what empties
-it without moving the set, and `mul` produces sets that are already empty there.
+`point_mem_construct` read backwards, and only available under the hypothesis: `construct` is
+the image of `point` *widened* by the independent block, so a member is a point exactly when
+that block is empty. `dependent` empties it without moving the set, and `mul` produces sets
+already empty there. Stated at `q = 0` rather than at `dependent` because both callers need
+it and neither has a `dependent` in hand. This is what `evalPoly` asks of a caller: running
+`dependent` once, on the base set, is the discipline, and this turns it into a factor vector.
 
-Stated at `q = 0` rather than at `dependent` because both callers need it and
-neither has a `dependent` in hand: the exact layer's activation layer holds
-`pZ.dependent`, whose `q` is `0` by definition, and the float layer holds the
-*nominal* of one, which is a different construction with the same empty block.
+## Inputs
+* `pZ` – polynomial zonotope
+* `x` – element of the set
 
-This is what `evalPoly` asks of a caller in place of a `dependent` wrapper. One
-wrapper per set would give unrelated free coefficients the same fresh factor
-indices; running `dependent` once, on the base set, is the discipline, and this
-theorem is what turns it into a usable factor vector.
+## Hypotheses
+* `hq` – no independent generators
+* `hx` – element lies in the set
+
+## Conclusion
+* the element is a point for some factor values
 -/
 
 -- Authors:       Claude Opus 5

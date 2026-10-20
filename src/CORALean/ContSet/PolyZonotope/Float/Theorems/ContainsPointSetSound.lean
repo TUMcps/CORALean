@@ -18,6 +18,20 @@ As over ℝ: every point is in some piece (`splitGen_cover`), whose zonotope
 (`hPolytope_contains`), which therefore cannot certify the point outside
 (`excludesPoint_sound`). Contrapositively, `false` proves that some point is outside the set.
 The converse fails and is not claimed: `true` says only that no enclosure excludes any point.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `N` – number of points
+* `points` – the points
+* `splits` – number of splits
+* `order` – zonotope reduction order
+* `dirs` – direction-matrix chooser
+
+## Hypotheses
+* `h` – every point lies in the set
+
+## Conclusion
+* the test returns true
 -/
 
 -- Authors:       Claude Opus 5.5

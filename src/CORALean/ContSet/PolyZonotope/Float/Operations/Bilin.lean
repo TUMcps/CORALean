@@ -11,14 +11,24 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
 # `PolyZonotope.bilin`, over a floating-point scalar
 
 The float counterpart of `Real.PolyZonotope.bilin` at a family of bilinear forms `x ↦ y ↦ xᵀ Qₖ y`
-(`Real.PolyZonotope.quadBilin`), which is all a bilinear map into `𝕋^m` is. Two polynomial
-zonotopes over the *same* factors, `hp` lining their counts up; the result is a polynomial
-zonotope again, with the `(h₁+1)(h₂+1)` generators `Gᵢᵀ Q Gⱼ` rounded down, the exponent column the
-added one, and the rounding paid into the error box.
+(`Real.PolyZonotope.quadBilin`). Two polynomial zonotopes over the *same* factors, `hp` lining
+their counts up; the result has the `(h₁+1)(h₂+1)` generators `Gᵢᵀ Q Gⱼ` rounded down, the exponent
+column the added one, and the rounding paid into the error box.
 
 Sound only where both operands have an empty independent block and an empty error box, a bilinear
 map being no more additive than a quadratic one, so `absorbRounding` comes first at every caller:
 `quadMapDep` is this at one set paired with itself, `quadMapMixed` at a product of two.
+
+## Inputs
+* `Q` – family of bilinear form matrices
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Output
+* polynomial zonotope enclosing the bilinear image
 -/
 
 -- Authors:       Claude Sonnet 5.5

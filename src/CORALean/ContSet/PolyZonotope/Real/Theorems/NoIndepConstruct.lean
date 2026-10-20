@@ -10,6 +10,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
 
 Exactly the image of the factor cube under `PolyZonotope.point` (the dependent part of the set,
 the independent block left aside).
+
+## Inputs
+* `α` – ambient type
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is the points over the unit factor box
 -/
 
 -- Authors:       Claude Opus 5.5

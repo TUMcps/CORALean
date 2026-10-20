@@ -8,20 +8,21 @@ public import CORALean.Global.Cost
 /-!
 # `PolyZonotope.compactCost`
 
-Asserted, not proved, by reading `Operations/Compact.lean` and the four files
-under it. `rep` finds each column's least equal column, which is `h` columns
-compared against `h` at `p` exponents each; `fiberSum` gathers each class, `h`
-index tests and at most `h` generator additions at `Vec ℝ n` per column;
-`compactKeep` tests each merged generator against zero, `n` comparisons a
-column; and `usedFactors` scans every exponent once, `p * h`.
+Asserted, not proved, by reading `Operations/Compact.lean` and the files under it. `rep` finds
+each column's least equal column, `h` columns against `h` at `p` exponents each; `fiberSum`
+gathers each class, at most `h` additions at `Vec ℝ n` per column; `compactKeep` tests each
+generator against zero; `usedFactors` scans every exponent once. Everything is bounded at the
+*full* width, which keeps it an upper bound without a hypothesis on collisions. The writes are
+those of the operand's size: the center, both generator blocks and the exponent matrix.
 
-Everything here is bounded at the *full* width rather than the class's, which
-is what keeps it an upper bound without a hypothesis on how the columns
-happen to collide. Quadratic in `h` either way: this is a pairwise merge, and a
-sorted or hashed one would be a different definition and a different count.
+## Inputs
+* `n` – dimension
+* `p` – number of factors
+* `h` – dependent generator count
+* `q` – independent generator count
 
-The result has at most as many generators as the operand, so the writes are those of the
-operand's size: the center, both generator blocks and the exponent matrix.
+## Output
+* operation count of compacting
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

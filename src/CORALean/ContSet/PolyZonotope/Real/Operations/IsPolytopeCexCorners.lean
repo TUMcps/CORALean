@@ -10,6 +10,12 @@ public import Mathlib.Data.Real.Basic
 
 The four factor assignments whose corner images `(±3, ±1)` `convhulln` keeps (see
 `PolyZonotope.isPolytopeCex`); recomputing the hull is not modelled.
+
+## Inputs
+* none
+
+## Output
+* the four hull vertices in factor space
 -/
 
 -- Authors:       Claude Opus 5.5

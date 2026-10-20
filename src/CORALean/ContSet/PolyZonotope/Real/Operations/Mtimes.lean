@@ -10,6 +10,13 @@ public import Mathlib.Data.Matrix.Mul
 
 CORA's `@polyZonotope/mtimes`: `map` at `A *ᵥ ·`, spelt with `*ᵥ` because that is
 the form every caller states its matrix in.
+
+## Inputs
+* `M` – matrix
+* `pZ` – polynomial zonotope
+
+## Output
+* polynomial zonotope of the matrix image
 -/
 
 -- Authors:       Claude Opus 5

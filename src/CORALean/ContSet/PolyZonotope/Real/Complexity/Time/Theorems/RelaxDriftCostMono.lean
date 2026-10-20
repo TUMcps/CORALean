@@ -10,6 +10,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.Rela
 # `PolyZonotope.relaxDriftCost_mono`
 
 Monotone in the factor count.
+
+## Inputs
+* `p` – number of factors
+* `p'` – larger factor count
+
+## Hypotheses
+* `h` – factor count grows
+
+## Conclusion
+* the cost does not decrease
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -13,6 +13,14 @@ Split out of `RelaxExp.lean` (issue #62). It is `eDiffTight` of the two exponent
 where the columns may differ: the maximum of `|x^a - x^b|` itself, which CORA computes by
 `minMaxDiffPoly` for each edge of its merge graph, and which is below the parity bound `eDiff` the
 float layer's own `relaxExp` still reads.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
+* `k₀` – factor index
+
+## Output
+* width paid into the independent generator
 -/
 
 -- Authors:       Claude Opus 5

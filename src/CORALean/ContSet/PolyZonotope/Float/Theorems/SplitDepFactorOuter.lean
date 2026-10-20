@@ -12,6 +12,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitDepFactorUnion
 The exact layer's halves of the stored set cover it exactly (`splitDepFactor_union`),
 `getSubset_outer` carries each half, with the error box, into the float half, and `∓1/2` and `1/2`
 read back as themselves. Outer, not exact.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is covered by the two halves
 -/
 
 -- Authors:       Claude Opus 5.5

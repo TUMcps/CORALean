@@ -8,22 +8,24 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.MulG
 /-!
 # `PolyZonotope.mul`
 
-The coordinatewise product of two polynomial zonotopes over the *same* factors,
-which at one dimension is [1, Prop. 2.9], and what raises a polynomial
-abstraction above order two: `quadMap` gives order two — the elementwise square
-is its case `Q k = eₖ eₖᵀ` — and every order above it is this operation applied
-again, [1, Prop. 2.10]. Generator `(i, j)` is `mulG`, at the exponent column
-`mulE`, a monomial again, which is what the shared factors buy.
+The coordinatewise product of two polynomial zonotopes over the *same* factors, at one
+dimension [1, Prop. 2.9], and what raises a polynomial abstraction above order two: `quadMap`
+gives order two and every order above it is this operation applied again, [1, Prop. 2.10].
+Generator `(i, j)` is `mulG`, at the exponent column `mulE`, a monomial again. Sharing is a
+hypothesis rather than a shape in the signature (`p` is a field): `Fin.cast` reads `pZ₂`'s
+exponent matrix at `pZ₁`'s factor indices. The independent blocks take no part, so `mul` is a
+claim about `point`; a caller who needs those coefficients to count runs `dependent` first,
+and once, so that repeated products keep the freed ones identified.
 
-Sharing is a hypothesis rather than a shape in the signature: `p` is a field, so
-two `PolyZonotope`s cannot be made to share it definitionally without
-destructuring one of them. `Fin.cast` then reads `pZ₂`'s exponent matrix at
-`pZ₁`'s factor indices, which moves no data — identity here is positional.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
 
-The independent blocks take no part, a product of two free coefficients not
-being one, so `mul` is a claim about `point`; a caller who needs those
-coefficients to count runs `dependent` first, and once, so that repeated
-products keep the freed ones identified.
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Output
+* polynomial zonotope of the entrywise product
 
 ## References
 

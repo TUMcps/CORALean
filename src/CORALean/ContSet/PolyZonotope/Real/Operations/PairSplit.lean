@@ -11,6 +11,17 @@ The split of `Fin m` naming `i` and `j` on the right, in that order, and every o
 the left: the form `relaxExpMulti` takes the two generators it merges in, as line 6 of `[1, Alg. 2]`
 names them.
 
+## Inputs
+* `m` – number of elements
+* `i` – first selected index
+* `j` – second selected index
+
+## Hypotheses
+* `h2` – at least two elements
+
+## Output
+* split of the indices into the two selected and the rest
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and

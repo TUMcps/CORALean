@@ -19,6 +19,13 @@ independent blocks (`Zonotope.linComb`).
 The zonotope's rounded center is not a generator, so it enters the error box as a point, with the
 zonotope's own error box: the generators `Z.G` replace the independent block and `Z.c` and `Z.E`
 widen the error.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Output
+* polynomial zonotope enclosing the convex hull of both
 -/
 
 -- Authors:       Claude Sonnet 5.5

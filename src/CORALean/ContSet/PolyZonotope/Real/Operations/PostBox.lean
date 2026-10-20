@@ -18,6 +18,16 @@ evaluates the result at.
 `mtimes` contributes nothing: it leaves the exponent matrix and the factor count
 exactly as they were.
 
+## Inputs
+* `M` – matrix
+* `X` – polynomial zonotope
+* `U` – polynomial zonotope added
+* `o` – target order
+* `B` – box of factor values of the first set
+
+## Output
+* box of factor values of the reduced sum
+
 ## References
 
 * [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to

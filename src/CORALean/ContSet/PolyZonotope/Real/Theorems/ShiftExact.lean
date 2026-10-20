@@ -9,6 +9,16 @@ public import Mathlib.Tactic.Abel
 # `PolyZonotope.shift` is exactly the translate
 
 The center is the only thing that moves, so the same factors reach `x + v` in both sets.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `v` – shift vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the translated set equals the result
 -/
 
 -- Authors:       Claude Opus 5.5

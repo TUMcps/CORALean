@@ -8,22 +8,18 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapDep
 /-!
 # `PolyZonotope.quadMap`
 
-The operation the representation exists for, rounded. The bookkeeping is the
-exact layer's and none of it rounds: `extE`, `quadMapE` and `finProdFinEquiv`
-are all over ℕ. Only the `(h+1)²` generators `Gᵢᵀ Q Gⱼ` are computed and only
-they are charged.
+The operation the representation exists for, rounded. The bookkeeping is the exact layer's and
+none of it rounds; only the `(h+1)²` generators `Gᵢᵀ Q Gⱼ` are computed and charged. Each is
+two rounded steps: `Q *ᵥ Gⱼ` comes back as an *interval*, and `quadDown`/`quadUp` take it as a
+pair of bounds and pick per term with `minimum`/`maximum`. `quadMapDep` needs an empty
+independent block and error box, which `absorbRounding` supplies, so it is done first.
 
-Each is a bilinear form and so two rounded steps, which is where a directed
-rounding stops composing: `Q *ᵥ Gⱼ` comes back as an *interval*, and multiplying
-an interval by `Gᵢ` cannot round in one direction without knowing the sign of
-`Gᵢ`. `quadDown`/`quadUp` therefore take the middle vector as a pair of bounds
-and pick per term with `minimum`/`maximum`, which is `Interval.mtimes`'s shape.
+## Inputs
+* `Q` – family of quadratic form matrices
+* `pZ` – polynomial zonotope
 
-`quadMapDep` needs an empty independent block *and* an empty error box — a
-quadratic map is not additive — which `absorbRounding` supplies, and which is why it
-is the first thing `quadMap` does. The error box then holds `(h+1)²` terms per
-coordinate where `mtimes` holds `h`, which is a reason to `compact` before
-mapping rather than after.
+## Output
+* polynomial zonotope enclosing the quadratic image
 -/
 
 -- Authors:       Claude Opus 5

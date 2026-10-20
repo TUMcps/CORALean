@@ -9,6 +9,19 @@ public import CORALean.ContSet.PolyZonotope.Float.Definitions.SubsRel
 
 Each product term of the float lists has the exact product coefficient between its two directed
 corner products (`Interval.mul_between_corners`), and the exponents add.
+
+## Inputs
+* `A` – first float term list
+* `B` – second float term list
+* `A'` – first real term list
+* `B'` – second real term list
+
+## Hypotheses
+* `hA` – first lists are related
+* `hB` – second lists are related
+
+## Conclusion
+* the product lists are related
 -/
 
 -- Authors:       Claude Opus 5.5

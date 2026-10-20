@@ -11,6 +11,13 @@ public import CORALean.Global.Partition
 
 Split out of `RelaxExpMulti.lean` (issue #62): read again by
 `Theorems/RelaxExpMultiOuter.lean`, outside this file.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
+
+## Output
+* exponent differences of the two generators summed over all factors
 -/
 
 -- Authors:       Claude Opus 5

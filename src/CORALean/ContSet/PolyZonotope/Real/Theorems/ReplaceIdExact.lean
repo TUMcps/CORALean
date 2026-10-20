@@ -9,6 +9,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReplaceIdSubset
 
 A map `f` that is injective only renames: every factor vector `a` of the original is the composite
 `a' ∘ f` of the extension of `a` by `0` off the range of `f`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `p'` – new factor count
+* `f` – map from old to new factors
+
+## Hypotheses
+* `hf` – the map is injective
+
+## Conclusion
+* the renamed set equals the original
 -/
 
 -- Authors:       Claude Opus 5.5

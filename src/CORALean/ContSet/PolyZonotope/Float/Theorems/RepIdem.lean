@@ -12,6 +12,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Rep
 
 Makes a non-representative's fibre empty: `rep` unfolds to a `min'` over a
 filter, and the least index of a class is the least index of its own class.
+
+## Inputs
+* `E` – exponent matrix
+* `i` – column index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the representative of a representative is itself
 -/
 
 -- Authors:       Claude Opus 5

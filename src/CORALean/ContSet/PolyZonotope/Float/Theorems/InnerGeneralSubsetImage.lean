@@ -11,6 +11,20 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerTestSubsetImage
 Both passes of `innerGeneral`, the preconditioned one and the one with `C = eye(n)`, are `innerTest`
 at the columns `aux_innerColumns` picked, so `innerTest_subset_image` is the guarantee of either;
 where no columns are found the answer is `false`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `X` – factor box
+* `X₀` – inner factor box
+* `Y` – target box
+* `inv` – matrix inverse routine
+* `iter` – number of iterations
+
+## Hypotheses
+* `hT` – the test returns true
+
+## Conclusion
+* the target box lies in the image of the factor box
 -/
 
 -- Authors:       Claude Opus 5.5

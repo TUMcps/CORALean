@@ -26,6 +26,27 @@ the dependent point at some factor vector of `X`: every real Jacobi step of
 `C·jacobianBox` (`jacobianBox_outer`, `matMul_outer`), `C(y - f(x_))` in `b` (a hypothesis), the
 step's interval operations outward (`recip_outer`, `times_outer`, `mtimesIntervalMat_outer`), and
 `J₂(U2_ - u2_) ∋ 0`; the slice lies in `X` because `U1_ ⊆ U1` and `x_` is in `X` off `ind`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `X` – factor box
+* `X₀` – inner factor box
+* `Y` – target box
+* `ind` – selected factor indices
+* `C` – approximate inverse Jacobian
+* `xc` – center of the factor box
+* `b` – residual box
+* `U` – candidate enclosure box
+
+## Hypotheses
+* `hC` – the matrix is injective
+* `hxc` – center lies in the box outside the selected factors
+* `hb` – the box covers the residuals
+* `hU` – candidate lies in the selected factor box
+* `hmem` – center lies in the candidate
+
+## Conclusion
+* an accepted step shows the target box lies in the image
 -/
 
 -- Authors:       Claude Opus 5.5

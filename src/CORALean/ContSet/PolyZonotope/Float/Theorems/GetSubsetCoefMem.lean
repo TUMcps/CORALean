@@ -14,6 +14,20 @@ public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
 
 The integer, the two powers and their products each lie between their directed roundings, so `C(e,
 j) · cenᵉ⁻ʲ · radʲ` lies between the two floats `getSubsetCoef` returns.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `k` – factor index
+* `cen` – subinterval center
+* `rad` – subinterval radius
+* `i` – dependent generator index
+* `j` – binomial term index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact term lies between the interval endpoints
 -/
 
 -- Authors:       Claude Opus 5.5

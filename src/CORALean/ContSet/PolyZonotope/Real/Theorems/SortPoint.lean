@@ -12,6 +12,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReindexPoint
 permutation, so `reindex_point` is the whole of it. This is the form
 [1, Alg. 2]'s induction needs, `sort_exact` the form a set statement does.
 
+## Inputs
+* `pZ` – polynomial zonotope
+* `a` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* sorting leaves the point unchanged
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

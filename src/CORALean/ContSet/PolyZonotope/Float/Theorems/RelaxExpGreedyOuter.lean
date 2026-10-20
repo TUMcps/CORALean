@@ -8,17 +8,22 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpMultiOuter
 /-!
 # Relaxing along a selection over-approximates at the stored columns
 
-The exact layer's induction, over this layer's steps. Each step is
-`relaxExpMulti_outer`, which already charges its two roundings to the box, so
-composing steps composes enclosures and the loop owes nothing further.
+The exact layer's induction, over this layer's steps. Each step is `relaxExpMulti_outer`, which
+already charges its two roundings to the box, so composing steps composes enclosures and the
+loop owes nothing further. The selection is as free here as over ℝ, and freer in practice: this
+is the layer where an edge weight can be compared. The guarantee holds at any selection and any
+number of steps.
 
-The selection is as free here as it is over ℝ, and freer in practice: this is
-the layer where an edge weight can actually be compared, so it is the layer a
-greedy rule runs in — and none of that reaches the guarantee, which holds at any
-selection and any number of steps.
+## Inputs
+* `sel` – chooser of the next pair of generators
+* `m` – number of steps
+* `pZ` – polynomial zonotope
 
-The box grows one interval per step and is never re-read by the loop, so a
-caller wanting fewer steps asks for fewer rather than for a different rule.
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

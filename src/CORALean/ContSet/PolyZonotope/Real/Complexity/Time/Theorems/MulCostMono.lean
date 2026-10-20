@@ -11,6 +11,21 @@ public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.MulC
 
 Monotone in both generator counts, so bounds on the operands' sizes give a
 bound on the cost.
+
+## Inputs
+* `h₁` – first dependent generator count
+* `h₁'` – larger first generator count
+* `h₂` – second dependent generator count
+* `h₂'` – larger second generator count
+* `n` – dimension
+* `p` – number of factors
+
+## Hypotheses
+* `h1` – first generator count grows
+* `h2` – second generator count grows
+
+## Conclusion
+* the cost does not decrease
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

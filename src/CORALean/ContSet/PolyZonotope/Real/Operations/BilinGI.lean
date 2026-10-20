@@ -14,6 +14,14 @@ every generator of the other, center included, and the dependent generators of o
 independent ones of the other. The three blocks, in this order: independent of the first with
 the extended generators of the second, independent with independent, extended generators of the
 first with the independent ones of the second. (CORA lists the same pairs as five blocks.)
+
+## Inputs
+* `f` – bilinear map
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Output
+* independent generators of the outer bilinear image
 -/
 
 -- Authors:       Claude Opus 5.5

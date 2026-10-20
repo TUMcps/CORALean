@@ -8,21 +8,19 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
 /-!
 # `PolyZonotope.dependent`
 
-The construction is [1, Prop. 1].
+The construction is [1, Prop. 1]. Every independent generator made dependent, by giving it a
+fresh factor that appears in it alone and to the first power. Exact, and cheaply so: a factor
+occurring in one generator only is as free as the coefficient it replaces. CORA's
+`restructure` is this paired with a reduction of the independent block. It is what `quadMap`
+needs, being stated on a set whose coefficients are all dependent. The exponent matrix is
+`plusE` against the identity: the fresh factors must not reach the original generators, nor
+the original factors the freed ones.
 
-Every independent generator made dependent, by giving it a fresh factor that
-appears in it alone and to the first power. Exact, and cheaply so: a factor
-occurring in one generator only is as free as the coefficient it replaces.
+## Inputs
+* `pZ` – polynomial zonotope
 
-CORA's `restructure` is this conversion paired with a reduction of the
-independent block, so this is the exact half of it. It is also what `quadMap`
-needs, being stated on a set whose coefficients are all dependent, which is what
-lets `quadMap` be total without pretending about the cross terms an independent
-block would contribute.
-
-The exponent matrix is `plusE` against the identity, which is exactly right: the
-fresh factors must not reach the original generators, and the original factors
-must not reach the freed ones.
+## Output
+* polynomial zonotope with independent generators turned into factors
 
 ## References
 

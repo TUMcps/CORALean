@@ -12,6 +12,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.SubsetAtUnitBox
 set's own factors appended after the first's. [1, Def. 2]'s sets have no independent block,
 `q = 0` here, and the stacked factor vector is the pair `(a, b)`. Exact, both ways.
 
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* `h₁` – first has no independent generators
+* `h₂` – second has no independent generators
+
+## Conclusion
+* the intersection is the set of points of the first matched by the second
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets

@@ -14,12 +14,15 @@ public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 CORA's `@polyZonotope/volume_`: the independent generators become dependent ones
 (`dependent`), and then, with exactly as many factors as dimensions, the integral of the
 Jacobian determinant over the factor cube `[-1,1]ᵖ`. With fewer factors than dimensions the
-volume is `0`; with more CORA throws `CORA:notSupported`, which is `none`.
+volume is `0`; with more CORA throws `CORA:notSupported`, which is `none`. The integrand is the
+*signed* determinant, the volume of the image only where the map is injective and the
+determinant does not change sign; CORA's comment claims more (see `volume_neg_example`).
 
-The integrand is the *signed* determinant. It is the volume of the image only where the
-map is injective and the determinant does not change sign, and CORA's own comment claims
-more (exactness where `det J ≠ 0`, an over-approximation otherwise); see
-`volume_neg_example`.
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* volume of the set, if the factor count permits
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -15,6 +15,13 @@ It exists for the product of two sets over *independent* factors, which `bilin`
 cannot take as it stands: pad the left set at the back by the right set's
 factors and the right set at the front by the left set's, and the two share one
 factor set of `p₁ + p₂` in which each still ignores the other's half.
+
+## Inputs
+* `r` – number of added factors
+* `pZ` – polynomial zonotope
+
+## Output
+* polynomial zonotope with r unused factors appended
 -/
 
 -- Authors:       Claude Opus 5

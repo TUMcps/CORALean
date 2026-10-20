@@ -15,6 +15,14 @@ here the matrix is over all pairs of factors and a caller reads the entries on `
 CORA drops the terms of degree `≤ 1` in the differentiated factors and fills the lower
 triangle by symmetry; both leave the value unchanged and are not modelled. The tolerance `tol`
 is `0`, and the structure matrix `H_str` is not modelled.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `a` – factor values
+* `l` – Lagrange point
+
+## Output
+* Hessian matrix of the added terms at those values
 -/
 
 -- Authors:       Claude Opus 5.5

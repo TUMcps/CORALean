@@ -14,6 +14,13 @@ It is what a product of two polynomial zonotopes is stated against. Both sets
 are functions of the *same* factors, so the exact claim is about
 `a ↦ point pZ₁ a ⊙ point pZ₂ a` and not about the product of the two sets, which
 is generally far larger.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `a` – factor values
+
+## Output
+* point of the set at those values
 -/
 
 -- Authors:       Claude Opus 5

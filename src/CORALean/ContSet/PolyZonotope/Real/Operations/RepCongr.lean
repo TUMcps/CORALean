@@ -11,6 +11,19 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Rep
 argument only through `col`. Splitting the two generators of a class is
 therefore impossible, which is what `merge` needs in both directions: a dropped
 column gathers nothing, and two kept columns differ.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `i` – first generator index
+* `j` – second generator index
+
+## Hypotheses
+* `hij` – their exponent columns are equal
+
+## Conclusion
+* both have the same representative
 -/
 
 -- Authors:       Claude Opus 5

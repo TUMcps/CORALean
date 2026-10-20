@@ -11,14 +11,16 @@ The exact layer's loop, over this layer's sets. Nothing here rounds: the loop
 only sequences `relaxExpMulti`, and every rounding a relaxation makes is already
 charged to the box by the step it makes it in.
 
-That is why the two layers' loops are the same recursion rather than one refining
-the other. What differs is what a selection can be — a machine scalar has the
-decidable order and equality that reading edge weights off the exponent matrix
-needs, where ℝ has neither — and the selection is a parameter, so that difference
-never reaches this file.
+The two layers' loops are the same recursion; what differs is what a selection
+can be (a machine scalar has the decidable order and equality that reading edge
+weights needs, where ℝ has neither), and the selection is a parameter. The box
+grows once per step, so the number of steps trades precision.
 
-The box grows once per step, so the number of steps is what a caller trades
-precision against here, as much as which pairs the selection picks.
+## Inputs
+* `sel` – chooser of the next pair of generators
+
+## Output
+* function from step count and set to the greedily relaxed set
 -/
 
 -- Authors:       Claude Opus 5

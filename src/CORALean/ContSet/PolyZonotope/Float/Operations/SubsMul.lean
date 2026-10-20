@@ -12,6 +12,13 @@ public import CORALean.ContSet.Interval.Float.Operations.MulHi
 CORA's `priv_multiply` on the stored floats: the product of two sums of monomials, one term per
 pair. A term is a bracket `(lo, hi)` of its coefficient, which rounding has left unknown, and an
 exponent vector; the product's bracket is the pair of directed corner products.
+
+## Inputs
+* `A` – first term list
+* `B` – second term list
+
+## Output
+* term list of their product
 -/
 
 -- Authors:       Claude Opus 5.5

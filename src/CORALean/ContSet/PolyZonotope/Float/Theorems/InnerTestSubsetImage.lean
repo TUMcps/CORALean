@@ -19,6 +19,22 @@ of `X`. The loop's answer is `true` only at a pass whose `innerStep` was accepte
 `u1_ ∈ U1_ ⊆ U1`, which `innerStep_subset_image` turns into the inclusion; what that needs of the
 set-up is that `C` is injective (`precondRegular_injective`), that `x_` lies in `X` and `X_` off
 `ind`, and that `b` holds `C(y - f(x_))` (`pointBox_outer`, `mtimes_outer`, `minus_outer`).
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `X` – factor box
+* `X₀` – inner factor box
+* `Y` – target box
+* `ind` – selected factor indices
+* `M` – midpoint Jacobian
+* `C` – approximate inverse Jacobian
+* `iter` – number of iterations
+
+## Hypotheses
+* `h` – the test returns true
+
+## Conclusion
+* the target box lies in the image of the factor box
 -/
 
 -- Authors:       Claude Opus 5.5

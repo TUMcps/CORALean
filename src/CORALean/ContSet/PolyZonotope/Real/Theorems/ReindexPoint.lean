@@ -12,6 +12,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Reindex
 the generator and its column are permuted together, so the monomial follows the
 generator. Stated over `point` because that is what a recursion at shared
 factors argues about; `reindex_exact` reads the same equation as sets.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `σ` – permutation of the dependent generators
+* `a` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* reordering leaves the point unchanged
 -/
 
 -- Authors:       Claude Opus 5

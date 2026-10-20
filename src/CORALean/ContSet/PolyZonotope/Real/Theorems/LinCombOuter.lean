@@ -9,22 +9,23 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
 /-!
 # `linComb` contains every segment between the two polynomial zonotopes
 
-The fresh factor takes `2λ - 1`, which is in `[-1,1]` exactly when `λ ∈ [0,1]`,
-and the two sets keep their own factors unchanged: the dependent part of the
-segment is reproduced, not enclosed.
+The fresh factor takes `2λ - 1`, in `[-1,1]` exactly when `λ ∈ [0,1]`, and the two sets keep
+their own factors, so the dependent part of the segment is reproduced, not enclosed. The
+independent block is where something is given away: its coefficients come out as
+`pairCoeffSum` and `pairCoeffDiff`, which record that the two sides share one `λ` but not that
+the same `λ` drives the dependent part. So the containment is one-way, `_outer` rather than
+`_exact` ([1, Prop. 15]); without an independent block it is the equality
+`linComb_exact_of_dependent`. Nothing asks for convexity. The witness's value is `linComb_value`.
 
-The independent block is where something is given away. Its coefficients come
-out as `pairCoeffSum` and `pairCoeffDiff`, the zonotope pairing's, which do
-record that the two sides share one `λ`; what they cannot record is that the
-same `λ` also drives the dependent part. So the containment is one-way and the
-statement is `_outer` rather than `_exact` — which is [1, Prop. 15]. Without an
-independent block it is the equality [1, Prop. 14], `linComb_exact_of_dependent`.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
 
-Nothing here asks for convexity, as nothing in `Set.linComb` does; a polynomial
-zonotope is generally not convex and this claim is still the right one.
+## Hypotheses
+* none
 
-What the witness evaluates to is `linComb_value`, stated apart so that
-`ConPolyZono.linComb` can reuse it; what is left here is the two box bounds.
+## Conclusion
+* every segment between the sets lies in the result
 
 ## References
 

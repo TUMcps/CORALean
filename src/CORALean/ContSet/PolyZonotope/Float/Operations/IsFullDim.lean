@@ -10,6 +10,12 @@ public import CORALean.ContSet.Zonotope.Float.Operations.RightInvCandidate
 
 `PolyZonotope.isFullDimWith` at the default candidate right inverse of the independent generators
 (`Zonotope.rightInvCandidate`). Only `true` is certain.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* Boolean, true only if the set is proven full-dimensional
 -/
 
 -- Authors:       Claude Opus 5.5

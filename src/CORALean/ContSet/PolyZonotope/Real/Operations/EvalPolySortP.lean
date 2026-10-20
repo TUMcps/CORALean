@@ -12,6 +12,12 @@ The constant term is line 15's `a_0 +`, a shift of the center, and everything
 above it is the tail. Split off from `evalPolySort` the way `evalPolyP` is, so
 that the factor count travels with the set rather than being reproved.
 
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* evaluator mapping coefficients to a set with the same factor count
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

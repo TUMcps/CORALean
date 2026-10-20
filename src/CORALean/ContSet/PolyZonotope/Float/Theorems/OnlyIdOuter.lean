@@ -12,6 +12,16 @@ public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 # `PolyZonotope.onlyId` encloses the original
 
 The original lies in the Minkowski sum of the two results, the error box being the second's.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `S` – selected factors
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the sum of the two parts
 -/
 
 -- Authors:       Claude Opus 5.5

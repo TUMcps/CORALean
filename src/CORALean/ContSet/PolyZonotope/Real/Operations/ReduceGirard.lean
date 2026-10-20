@@ -8,15 +8,18 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceBy
 /-!
 # `PolyZonotope.reduceGirard`
 
-Split out of `Reduce.lean` (issue #62): each `reduce`-family rule now earns its
-own file, as CORA gives each a file too.
+Split out of `Reduce.lean` (issue #62): each `reduce`-family rule earns its own file, as in
+CORA. The two blocks are ranked as one, which bounds the result: `(o-1)·n` of the concatenation
+are kept, so the `n` the box adds brings the total back to `n·o`, where ranking the dependent
+block alone leaves `q` free to grow. The joint ranking enters as one number,
+`aux_girardKeptDep`, and each block is cut at its share by the same metric.
 
-The two blocks are ranked as one, which is what bounds the result: `(o-1)·n` of
-the concatenation are kept, so the `n` the box adds brings the total back to
-`n·o`, where ranking the dependent block alone leaves `q` free to grow. The
-joint ranking enters as one number, `aux_girardKeptDep`, and each block is cut
-at its share of the budget by the same metric, selecting what the joint cut
-selects.
+## Inputs
+* `pZ` – polynomial zonotope
+* `o` – target order
+
+## Output
+* polynomial zonotope reduced by Girard's method
 -/
 
 -- Authors:       Claude Opus 5

@@ -10,6 +10,16 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyP
 
 Split out of `EvalPoly.lean` (issue #62): read again by
 `Theorems/EvalPolyOuter.lean`, outside this file.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `coeffs` – coefficient vectors
+
+## Hypotheses
+* none
+
+## Conclusion
+* evaluating the polynomial keeps the factor count
 -/
 
 -- Authors:       Claude Opus 5

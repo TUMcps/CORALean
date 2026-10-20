@@ -11,6 +11,12 @@ The subfunction `aux_splitLongestIndepGen` of CORA's `@polyZonotope/containsPoin
 the longest independent generator `g`, one half with center `c + g/2`, the other with
 center `c - g/2`, the generator `g/2` in both. With no independent generator both halves are
 the set itself, where CORA errors.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* pair of polynomial zonotopes from halving the longest independent generator
 -/
 
 -- Authors:       Claude Opus 5.5

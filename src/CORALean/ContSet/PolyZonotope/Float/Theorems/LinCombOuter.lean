@@ -10,22 +10,22 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombNominalAt
 /-!
 # `PolyZonotope.linComb` contains every segment between the two sets
 
-`InflatedContSet.linComb_subset` reduces this to two obligations: the nominal
-parts spill only by what rounded, and the box absorbs that spill along with the
-segment between the two incoming boxes.
+`InflatedContSet.linComb_subset` reduces this to two obligations: the nominal parts spill only
+by what rounded, and the box absorbs that spill along with the segment between the two
+incoming boxes. The nominal obligation is the exact `linComb` argument (`2λ-1` on the fresh
+factor, `pairCoeffSum` and `pairCoeffDiff` on the independent block) with the center, the
+sliding generator and the paired independent generators displaced; each cancels against its
+residual or `linCombGIDiff`. The dependent blocks contribute nothing. Only `_outer`, as over ℝ.
 
-The nominal obligation is the exact `linComb` argument — `2λ-1` on the fresh
-factor, `pairCoeffSum` and `pairCoeffDiff` on the independent block — with the
-center, the sliding generator and the paired independent generators displaced.
-No stored value is unfolded: each cancels against its own residual or against
-`linCombGIDiff`, so what remains is the exact identity.
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
 
-The three dependent blocks contribute nothing to the spill: halving and negation
-are exact, and the monomials are exponent data over ℕ throughout, so both counts
-are what they are over ℝ.
+## Hypotheses
+* none
 
-Only `_outer`, as over ℝ, and for the exact layer's reason rather than a
-rounding one: the independent coefficients cannot be tied to the same `λ`.
+## Conclusion
+* every segment between the sets lies in the result
 -/
 
 -- Authors:       Claude Opus 5

@@ -13,16 +13,26 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 /-!
 # The recentered relaxation over-approximates
 
-`relaxExp_outer` with the drift read as a midpoint and a radius instead of as a
-symmetric bound. `abs_sub_monomial_le` gives `|δ| ≤ ξ_E` and
-`sub_monomial_nonpos` gives `δ ≤ 0`, so `δ + ξ_E/2` is within `ξ_E/2` of zero
-and `Zonotope.coefficient` answers for it at half the generator.
+`relaxExp_outer` with the drift read as a midpoint and a radius. `abs_sub_monomial_le` gives
+`|δ| ≤ ξ_E` and `sub_monomial_nonpos` gives `δ ≤ 0`, so `δ + ξ_E/2` is within `ξ_E/2` of zero
+and `Zonotope.coefficient` answers for it at half the generator. The three extra hypotheses
+make the drift one-sided, and `[1, Thm. 1]` states only that column `i` be even. The generator
+graph of `[1, Def. 5]` supplies all three (equal parity, from the higher exponent to the
+lower), so the algorithm never meets the gap, only the theorem does.
 
-The three extra hypotheses are exactly what makes the drift one-sided, and they
-are what `[1, Thm. 1]` states incompletely: it asks only that column `i` be
-even. The generator graph of `[1, Def. 5]` supplies all three — it admits an edge
-only at equal parity and from the higher exponent to the lower — so the algorithm
-never meets the gap, only the theorem does.
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split with two selected generators
+* `k₀` – factor index
+
+## Hypotheses
+* `hsim` – generators agree outside that factor
+* `heven` – first generator has even exponents
+* `hevenj` – second exponent in that factor is even
+* `hle` – second exponent is at most the first
+
+## Conclusion
+* the set is contained in the result
 
 ## References
 

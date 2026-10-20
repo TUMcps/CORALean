@@ -16,6 +16,15 @@ each member separately.
 Beside `relaxExpGroup` as `relaxWidthMulti` sits beside `relaxExpMulti`: read
 again by `Theorems/RelaxExpGroupOuter.lean` and by the comparison with the
 pairwise merges, both outside this file.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split into kept generators and a group
+* `t` – target generator
+* `l` – group member index
+
+## Output
+* exponent difference from that member to the target
 -/
 
 -- Authors:       Claude Opus 5

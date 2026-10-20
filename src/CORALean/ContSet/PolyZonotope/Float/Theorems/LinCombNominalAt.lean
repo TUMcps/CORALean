@@ -21,6 +21,24 @@ Naming the dependent factors is what a constrained set needs: its constraints
 read those factors, so `ConPolyZono.linComb` can only check them if it knows
 which ones the segment point uses. The independent coefficients stay
 existential, nothing reading them but the box `[-1,1]`.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+* `a₁` – factor values of the first set
+* `a₂` – factor values of the second set
+* `β₁` – independent values of the first set
+* `β₂` – independent values of the second set
+* `lam` – convex weight
+
+## Hypotheses
+* `hβ₁` – first independent values are at most one
+* `hβ₂` – second independent values are at most one
+* `hl0` – weight is nonnegative
+* `hl1` – weight is at most one
+
+## Conclusion
+* the weighted point is attained by suitable independent values
 -/
 
 -- Authors:       Claude Sonnet 5.5

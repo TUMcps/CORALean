@@ -9,6 +9,14 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 
 The exponent pattern of a dependent generator in the factors `V` (`E(ind_v, :)` for the column),
 the rows outside `V` zeroed. `partZonotope` groups generators by it.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `V` – selected factors
+* `i` – generator index
+
+## Output
+* exponents of that generator on the selected factors
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
 
 Dropping the independent generators loses every point that needs a nonzero independent coefficient:
 the result is a subset of the original set, not the set itself.
+
+## Inputs
+* `α` – ambient type
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set without independent generators is contained in the set
 -/
 
 -- Authors:       Claude Opus 5.5

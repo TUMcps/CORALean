@@ -15,6 +15,16 @@ The padded sets denote the exact layer's padded nominal sets (`nominal_blockPadL
 `nominal_blockPadRight`), so the exact `stack` of the two nominal sets, plus the two error boxes
 padded the same way, is `exactPlus_outer` at the padded pair: the factors the two sets share stay
 shared, and only the center sum rounds. Outer, not exact.
+
+## Inputs
+* `pZ₁` – first polynomial zonotope
+* `pZ₂` – second polynomial zonotope
+
+## Hypotheses
+* `hp` – both have the same factor count
+
+## Conclusion
+* the exact stack plus the padded error boxes lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

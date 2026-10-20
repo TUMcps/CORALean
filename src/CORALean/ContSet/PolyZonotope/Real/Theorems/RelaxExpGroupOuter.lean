@@ -11,17 +11,23 @@ public import Mathlib.Tactic.Abel
 /-!
 # Merging any group of dependent generators over-approximates
 
-`relaxExpMulti_outer` once per group member. Each member drifts from the target
-monomial by at most the summed `ξ_E` between their columns, `[1, Prop. 4]`, and
-that drift is what its own independent generator carries; the target's monomial
-factors out of the group and the rest cancels.
+`relaxExpMulti_outer` once per group member. Each member drifts from the target monomial by at
+most the summed `ξ_E` between their columns, `[1, Prop. 4]`, and that drift is what its own
+independent generator carries; the target's monomial factors out of the group. Nothing relates
+the members to each other or to the target, so no hypothesis constrains the grouping, as
+`reduceBy_outer` holds at every partition. Each member asks one scalar of its generator,
+`Zonotope.coefficient`, degenerate width included, so this holds over any module.
 
-Nothing relates the members to each other or to the target, so no hypothesis
-constrains the grouping — as `reduceBy_outer` holds at every partition, and
-`k = 0` leaves a renamed set and an inclusion that is the identity.
+## Inputs
+* `pZ` – polynomial zonotope
+* `part` – split into kept generators and a group
+* `t` – target generator
 
-Each member asks one scalar of its generator, `Zonotope.coefficient`, degenerate
-width included, which is why this holds over any module.
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 
 ## References
 

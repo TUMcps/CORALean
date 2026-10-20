@@ -15,6 +15,17 @@ public import Mathlib.Tactic.Ring
 At the factor vector `(a, l)` the one-dimensional polynomial zonotope `addedTerms pZ` has the
 point `∑ᵢ lᵢ · (pZ.point a)ᵢ`: each dimension's block is its center and generators times the
 monomial of `a`, and the new factor `lᵢ` enters with exponent `1` and no other.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `a` – factor values
+* `l` – Lagrange point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the added terms' point is the weighted sum of the coordinates
 -/
 
 -- Authors:       Claude Opus 5.5
