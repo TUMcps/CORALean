@@ -14,6 +14,12 @@ covariance only, and the new generators give the covariance `G Gᵀ`
 (`ProbZonotope.ofGenerators`); `Theorems.ProbReduceLaws` says this is the same family of laws.
 CORA's `gauss` flag, which says whether the covariance or the generators `g` are the master
 copy, is not modelled: the covariance always is.
+
+## Inputs
+* `P` – probabilistic zonotope
+
+## Output
+* `P` with its probabilistic generators replaced by the `n` generators `V √W`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,13 @@ G-zonotopes whose mean lies in `Z`. The density of `N(μ, Σ)` is `gaussPdf μ �
 (`Theorems.GZonotopeLawDensity`, for invertible `Σ`), so the hull is the supremum of
 `gaussPdf μ Σ x` over `μ ∈ Z`.
 
+## Inputs
+* `P` – probabilistic zonotope
+* `x` – point
+
+## Output
+* the pointwise supremum over the means `μ` of the Gaussian densities at `x`
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

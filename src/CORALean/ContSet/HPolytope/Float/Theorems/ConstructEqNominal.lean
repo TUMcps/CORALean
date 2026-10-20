@@ -10,6 +10,15 @@ public import CORALean.ContSet.HPolytope.Float.HPolytope
 
 A box whose bounds all read `0` is the origin, and adding the origin changes nothing; the slacks
 are part of the nominal polytope, so this asks only for the box.
+
+## Inputs
+* `P` – H-polytope
+
+## Hypotheses
+* `h` – the error box is the origin
+
+## Conclusion
+* an error-free polytope denotes its nominal part
 -/
 
 -- Authors:       Claude Sonnet 5.5

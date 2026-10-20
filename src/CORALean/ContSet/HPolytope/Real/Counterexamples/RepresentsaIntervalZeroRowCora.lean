@@ -41,6 +41,15 @@ H-representation, whose emptiness `representsa_emptyObject` does not see: it has
 is flagged for the redundancy walk, and CORA returns `res = true` with `I = [-1,1]²`, though
 `P` is empty; the right interval is `interval.empty(2)`. (For `n = 1` the box is `(-Inf,Inf)`.)
 A wrong output of the conversion, not unsound. Read from the source, not run.
+
+## Inputs
+* `rest` – pair of extended-real bounds of the box CORA returns
+
+## Hypotheses
+* none
+
+## Conclusion
+* `P` is empty, yet CORA's `I` is a box containing the origin
 -/
 
 -- Authors:       Claude Sonnet 5.5

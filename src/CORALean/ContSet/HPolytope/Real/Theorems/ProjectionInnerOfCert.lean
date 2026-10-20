@@ -21,6 +21,40 @@ bounded by `ε h_Ball - H_Ball x̄ + H_Ball βₓ`, which `[1, Thm. 1]` applied 
 misprints are read the only way the dimensions allow: `H_B` is `H_Ball`, and `h_Ball` in
 `Λ₁ g ≤ h_Ball - Hₓ βₓ` is `1`, the right-hand side of `X₀`.
 
+## Inputs
+* `H` – `q × n` matrix
+* `F` – `q × m` matrix
+* `g` – vector of length `q`
+* `Hx` – `r × n` matrix
+* `xbar` – mean of length `n`
+* `HB` – `qB × n` matrix
+* `hB` – vector of length `qB`
+* `ε` – tolerance
+* `Λ₀` – `q × r` matrix
+* `Λ₁` – `r × q` matrix
+* `Λ₂` – `qB × q` matrix
+* `Γ` – `m × n` matrix
+* `βu` – vector of length `m`
+* `X₁` – `n × n` matrix
+* `X₂` – `n × m` matrix
+* `βx` – vector of length `n`
+
+## Hypotheses
+* `hΛ₀` – `Λ₀` has nonnegative entries
+* `hΛ₁` – `Λ₁` has nonnegative entries
+* `hΛ₂` – `Λ₂` has nonnegative entries
+* `e₀` – `Λ₀` carries `Hx` to `H + F Γ`
+* `f₀` – the bound of `Λ₀` is at most `g` shifted by `-H xbar + F βu`
+* `e₁` – `Λ₁` carries `H` to `Hx X₁`
+* `e₂` – `Λ₁` carries `F` to `Hx X₂`
+* `e₃` – `Λ₂` carries `H` to `HB - HB X₁`
+* `e₄` – `Λ₂` carries `F` to `-HB X₂`
+* `f₁` – the bound of `Λ₁` is at most `1 - Hx βx`
+* `f₂` – the bound of `Λ₂` is at most `ε hB` shifted by `HB (xbar + βx)`
+
+## Conclusion
+* an inner approximation of a projection, with a Hausdorff bound
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

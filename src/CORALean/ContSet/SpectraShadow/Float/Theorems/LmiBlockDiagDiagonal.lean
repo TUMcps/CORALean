@@ -11,6 +11,19 @@ Every operation that adds linear constraints to a shadow stores them as a diagon
 the old inequality, each matrix `blockDiag (X l) (diagonal (d l))`. At the variables `v` the
 whole inequality is then the old part at `v` beside the diagonal of the constraint values at `v`,
 so it holds exactly when the old part holds and every constraint value is nonnegative.
+
+## Inputs
+* `X₀` – `k × k` matrix
+* `X` – matrices indexed by `Fin m`
+* `d₀` – direction of length `b`
+* `d` – vectors indexed by `Fin m`
+* `v` – real numbers indexed by `Fin m`
+
+## Hypotheses
+* none
+
+## Conclusion
+* an inequality beside a diagonal block combined with `v` is the block diagonal of the combinations
 -/
 
 -- Authors:       Claude Opus 5.5

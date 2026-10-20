@@ -10,6 +10,15 @@ public import CORALean.ContSet.HPolytope.Real.Operations.AtoAeState
 Every row it appends as an equality has an inverted partner among the inequality rows, and
 every row it marks as moved is an appended row or the inverted partner of one: so each moved
 row is implied by an appended equality, and each appended equality by two inequalities.
+
+## Inputs
+* `Q` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* every moved row has an inverted partner, and every matched row is moved or inverted to a moved one
 -/
 
 -- Authors:       Claude Opus 5.5

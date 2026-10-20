@@ -10,6 +10,13 @@ public import CORALean.ContSet.HPolytope.Float.HPolytope
 CORA's `A(:,dims) = A`: column `j` of the result is column `k` of `M` where `dims k = j`, and `0`
 where no `k` does. Nothing is added, so nothing rounds. The search for `k` is `List.find?`, so the
 matrix computes; for an injective `dims` it is the one preimage.
+
+## Inputs
+* `dims` – indices indexed by `Fin n`
+* `M` – `m × n` matrix
+
+## Output
+* the matrix with column `k` of `M` moved to column `dims k` and zeros elsewhere
 -/
 
 -- Authors:       Claude Sonnet 5.5

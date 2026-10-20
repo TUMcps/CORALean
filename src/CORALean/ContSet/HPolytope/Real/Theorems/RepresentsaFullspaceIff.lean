@@ -11,6 +11,15 @@ public import Mathlib.Tactic.Linarith
 If every row is trivial the set is everything. Conversely, a row `aᵀx ≤ b` that holds at every
 point has `a = 0` (else scale a point with `aᵀx ≠ 0` past `b`) and `b ≥ 0` (at `0`), and an
 equality row `aᵀx = be` that holds at every point has `be = 0` (at `0`) and so `a = 0`.
+
+## Inputs
+* `P` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `representsaFullspace` is exactly "the set is the whole space"
 -/
 
 -- Authors:       Claude Opus 5.5

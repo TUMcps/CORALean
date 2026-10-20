@@ -12,6 +12,13 @@ An upper bound on the support function, which it equals for a nonempty polygon: 
 in the hull of its vertices (`Polygon.convexHull_vertices`) and the half-space under the largest
 vertex value is convex. A polygon without a vertex is empty, and then `0` is as good a bound as
 any (CORA gives `-Inf`, outside ℝ).
+
+## Inputs
+* `P` – polygon
+* `c` – center of length `2 →ₗ[ℝ] ℝ`
+
+## Output
+* the largest value of `c` over the vertices, seeded with the first one; `0` if there are none
 -/
 
 -- Authors:       Claude Sonnet 5.5

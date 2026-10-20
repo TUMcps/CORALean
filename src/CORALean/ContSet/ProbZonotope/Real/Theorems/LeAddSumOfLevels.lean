@@ -14,6 +14,15 @@ The pointwise step behind `pyramid`: take increasing levels `L 0 ≤ ... ≤ L k
 that is in layer `i` for some of the `i < k`. If the value `v` at the point is at most `L i`
 for every layer `i` it is not in, and at most `L k`, then `v ≤ L 0 + Σ_{i in} (L (i+1) - L i)`.
 The layers it is in need not form an initial segment. Induction on `k`, peeling layer `0`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* A value below every level that fails is below the telescoped layers
 -/
 
 -- Authors:       Claude Opus 5.5

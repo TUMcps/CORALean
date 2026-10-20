@@ -17,6 +17,19 @@ the realizations of `N(μ, Σ)` lie in `η(𝒵, m) = Z + (0, m g)` with probabi
 `μ + gβ` is in the set whenever `β` is in the cube `[-m, m]ⁿ`. The covariance must be positive
 semidefinite and `m > 0`.
 
+## Inputs
+* `P` – probabilistic zonotope
+* `m` – real number
+* `ν` – measure
+
+## Hypotheses
+* `hP` – `P.cov` is positive semidefinite
+* `hm` – `0 < m`
+* `hν` – `ν ∈ P.laws`
+
+## Conclusion
+* every law of a probabilistic zonotope puts `erf(m/√2)ⁿ` on its confidence set
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

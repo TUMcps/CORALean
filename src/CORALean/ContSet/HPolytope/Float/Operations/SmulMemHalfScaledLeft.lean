@@ -20,6 +20,22 @@ times the weight, and the halved right-hand side is what carries it.
 Stated for the whole appended coefficient vector rather than for the block
 alone: the weight multiplies the first block and not the second, so no
 membership of the concatenation says it.
+
+## Inputs
+* `P` – H-polytope
+* `y` – vector of length `n₁`
+* `z` – point of length `n₂`
+* `w` – real number
+* `t` – real number
+
+## Hypotheses
+* `hw` – `(t + 1) / 2 = w`
+* `hw0` – `0 ≤ w`
+* `hw1` – `w ≤ 1`
+* `hy` – `y` lies in `P.nominal`
+
+## Conclusion
+* A weighted block meets the weighted constraints, on the left
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5, Claude Opus 5.5

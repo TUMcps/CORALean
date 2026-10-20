@@ -12,6 +12,23 @@ For every symmetric `Σ` of the covariance interval and every mean `c`, when the
 returns `v`: the density of `N(c, Σ)` at every `x` on or outside the `m`-sigma ellipsoid,
 `m² ≤ (x - c)ᵀ Σ⁻¹ (x - c)`, is at most `v`. `Real.ProbZonotope.gaussPdf_le_max_iff` puts the
 density under the real `max`, and `max_le` the real `max` under `v`; an upper bound, not attained.
+
+## Inputs
+* `P` – probabilistic zonotope
+* `m` – scalar
+* `p` – natural number
+* `k` – natural number
+* `S` – `n × n` matrix
+* `c` – center of length `n`
+* `x` – point
+
+## Hypotheses
+* `hS` – `S` lies in `P.cov`
+* `hSh` – `S.IsHermitian`
+* `hx` – `x` is at least `m` sigmas from `c`
+
+## Conclusion
+* the float `max` bounds the density outside the `m`-sigma ellipsoid
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,15 @@ public import Mathlib.Analysis.SpecialFunctions.Gaussian.FourierTransform
 What normalizes the standard Gaussian density, read off Mathlib's complex Gaussian integrability
 by taking norms. Used for [1, Prop. 1]'s density and for its counterexample.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* `exp(-‖v‖²/2)` is integrable on Euclidean space
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

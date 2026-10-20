@@ -14,6 +14,13 @@ CORA's `@polytope/projectHighDim`, the halfspace branch: `lift_` writes the rows
 coordinates `dims` of the larger space, and one equality `xⱼ = 0` pins every coordinate that
 `dims` does not hit, as the lifted polytope would otherwise be unbounded there. The equalities
 are `HPolytope.eqs` over the unit rows, in the order of the new coordinates.
+
+## Inputs
+* `P` – H-polytope
+* `dims` – indices indexed by `Fin n`
+
+## Output
+* `P` in the coordinates `dims` of `ℝᴺ`, the other coordinates zero
 -/
 
 -- Authors:       Claude Opus 5.5

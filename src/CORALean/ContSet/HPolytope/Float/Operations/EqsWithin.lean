@@ -12,6 +12,14 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 and the origin box. What an operation builds when it computes equality rows whose right-hand
 sides, or the rows they came from, already carry a rounding (#218); at `e = 0` it denotes
 `HPolytope.eqs`.
+
+## Inputs
+* `Ae` – `q × n` matrix
+* `be` – vector of length `q`
+* `e` – vector of length `q`
+
+## Output
+* the equalities `Ae x = be`, each within the slack `e`
 -/
 
 -- Authors:       Claude Opus 5.5

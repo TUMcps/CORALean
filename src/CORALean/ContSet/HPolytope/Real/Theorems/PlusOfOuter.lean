@@ -8,16 +8,25 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 /-!
 # The certified Minkowski sum encloses
 
-One line: `plusOf` is `ofBounds` over directions the caller chose, `ofBounds`
-states exactly what its certificates say, and the certificates were composed to
-speak about the sum. The work is in `Global.SupportFunction`, and none of it is repeated
-here.
+One line: `plusOf` is `ofBounds` over directions the caller chose, `ofBounds` states exactly
+what its certificates say, and the certificates were composed to speak about the sum. The work
+is in `Global.SupportFunction`. Not exact, and the loss is not in the proof but in the choice
+of directions, which is the caller's, a precision knob rather than a correctness one.
 
-Not exact, and the loss is not in the proof but in the choice of directions —
-which is the caller's, and a precision knob rather than a correctness one.
+[1, Prop. 4] is the instance at `rows`: `P ⊕ Z` stays inside `P`'s own halfspaces with each
+offset raised by `Z`'s support value.
 
-[1, Prop. 4] is the instance at `rows`: `P ⊕ Z` stays inside `P`'s own
-halfspaces with each offset raised by `Z`'s support value.
+## Inputs
+* `P₁` – H-polytope
+* `P₂` – H-polytope
+* `Aq` – family indexed by `Fin q`
+
+## Hypotheses
+* `u₁` – a support bound of `P₁.construct` along each row
+* `u₂` – a support bound of `P₂.construct` along each row
+
+## Conclusion
+* the certified Minkowski sum encloses
 
 ## References
 

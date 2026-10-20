@@ -17,6 +17,17 @@ polytope with its error box folded into its rows (`absorbRounding_outer`): every
 polytope that lies in the domain meets the normalized rows. Outer over the domain,
 as `reduceOverDomain_outer` is; the exact layer's `normalizeRows_exact` says the real operation
 is the same set.
+
+## Inputs
+* `p` – natural number
+* `P` – H-polytope
+* `dom` – domain interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float `normalizeRows` keeps every point of the polytope in the domain
 -/
 
 -- Authors:       Claude Opus 5.5

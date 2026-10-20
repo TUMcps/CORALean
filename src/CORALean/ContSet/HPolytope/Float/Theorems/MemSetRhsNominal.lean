@@ -12,6 +12,25 @@ A point that reads every inequality within its slack of a value `rᵢ` between `
 and every equality within its slack of a value `rEᵢ` between `loEᵢ` and `hiEᵢ`, lies in the
 nominal part of the result: the stored bound is the lower end, and the width the slack gained
 covers the rest of the way, on either side of an equality.
+
+## Inputs
+* `P` – H-polytope
+* `lo` – vector of length `P.m`
+* `hi` – vector of length `P.m`
+* `loE` – vector of length `P.me`
+* `hiE` – vector of length `P.me`
+* `y` – vector of length `n`
+* `r` – real numbers indexed by `Fin P.m`
+* `rE` – real numbers indexed by `Fin P.me`
+
+## Hypotheses
+* `hr` – each `r i` lies between the bounds `lo i` and `hi i`
+* `hrE` – each `rE i` lies between the bounds `loE i` and `hiE i`
+* `hA` – `y` meets every inequality `r i` up to its slack
+* `hE` – `y` meets every equality `rE i` within its slack
+
+## Conclusion
+* `y` lies in the nominal part of `setRhs`
 -/
 
 -- Authors:       Claude Opus 5.5

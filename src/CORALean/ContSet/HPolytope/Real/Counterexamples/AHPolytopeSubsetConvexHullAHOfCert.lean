@@ -18,6 +18,15 @@ counterexample carries over: `P₁ = {0}`, `P₂ = {x₁ ≤ -1, -x₁ ≤ -1, x
 `Px = {0} × [-1, 0]`, `λ = (1, 0)`, `β = 0`, `Γ = (0, I)` meet `[1, Cor. 3, Eq. 28]`, while
 `conv((0 + I P₁) ∪ (0 + I P₂)) = {0}` misses `(0, -1)`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* `[1, Cor. 3]` fails at an empty circumbody
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

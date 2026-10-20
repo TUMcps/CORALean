@@ -14,6 +14,15 @@ Exactly: every returned piece has three vertices, and the union of the triangles
 boxes is what the float polygon denotes. A piece denotes its nominal hull plus the error box, the
 real cover `VPolytope.construct_eq_iUnion_triples` splits the hull, and the box sum distributes
 over the union. The statement is about the stored float polygon, not the real one.
+
+## Inputs
+* `P` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Polygon.triangulation` covers the float polygon's region
 -/
 
 -- Authors:       Claude Sonnet 5.5

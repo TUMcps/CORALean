@@ -14,6 +14,15 @@ The docstring promises the Hausdorff distance between a polygon and a point, and
 is the distance of a corner to the center, `√2 / 2`: it is at least that, as a corner of the
 square has to be within the bound of the point (`hausdorffDist₂_exists_mem_dist_le` with the point
 as the compact set). Entered in `references/coverage/contSet/polygon.md`, row `hausdorffDist`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's `polygon/hausdorffDist` is not the Hausdorff distance to a point
 -/
 
 -- Authors:       Claude Sonnet 5.5

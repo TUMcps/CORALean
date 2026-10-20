@@ -10,6 +10,12 @@ public import CORALean.ContSet.Polygon.Real.Polygon
 CORA's `polygon/vertices_`: the vertices of the pieces. For a polyshape CORA returns the
 boundary vertices; the vertices of the convex pieces are not those (a piece's vertex may lie in
 the interior of the union), but they hold the same hull, see `Polygon.convexHull_vertices`.
+
+## Inputs
+* `P` – polygon
+
+## Output
+* the vertices of every piece
 -/
 
 -- Authors:       Claude Opus 5.5

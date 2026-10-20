@@ -12,6 +12,16 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
 
 A point is in the result iff its coordinates `dims` form a point of `P` and every coordinate
 `dims` does not hit is zero. For an injective `dims` that is the zero-padded image of `P`.
+
+## Inputs
+* `P` – H-polytope
+* `dims` – indices indexed by `Fin n`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `projectHighDim` is the lift with the new coordinates zero, exactly
 -/
 
 -- Authors:       Claude Opus 5.5

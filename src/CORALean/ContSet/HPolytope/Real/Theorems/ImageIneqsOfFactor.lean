@@ -14,6 +14,23 @@ projection the paper hands to Fourier–Motzkin. The display prints `D ∈ ℝ^{
 the identity block of `S` and `U [I_r 0]` for an `m × n` map; the identity holds for any
 factorization `M = U E S Vᵀ` with `V` orthogonal and `S` invertible, so `U` and `E` are general.
 
+## Inputs
+* `A` – `q × n` matrix
+* `b` – offset vector of length `q`
+* `M` – `m × n` matrix
+* `U` – `m × m` matrix
+* `E` – `m × n` matrix
+* `S` – `n × n` matrix
+* `V` – `n × n` matrix
+
+## Hypotheses
+* `hS` – `IsUnit S.det`
+* `hV` – `V * Vᵀ = 1`
+* `hM` – `M` factors as `U E S Vᵀ`
+
+## Conclusion
+* the image under `M = U E S Vᵀ` is the image of `ineqs (A V S⁻¹) b` under `U E`
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

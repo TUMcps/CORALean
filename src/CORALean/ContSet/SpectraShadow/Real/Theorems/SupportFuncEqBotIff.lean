@@ -8,6 +8,16 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.Basic
 # `SpectraShadow.supportFunc_eq_bot_iff`
 
 The support function is `⊥`, that of the empty set, exactly for the empty set.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `c` – linear functional
+
+## Hypotheses
+* none
+
+## Conclusion
+* the support function is `⊥` iff the shadow is empty
 -/
 
 -- Authors:       Claude Opus 5.5

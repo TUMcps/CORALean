@@ -11,6 +11,14 @@ public import CORALean.ContSet.HPolytope.Float.Operations.NormalizeRows
 The inequality half of CORA's `compact_(P, 'aligned')`: the unit normalization of `compact_`
 (`normalizeRows`, which pays its rounding on the right-hand sides over the box `dom`), then the
 merging of rows with equal normals (`dropAligned`, which is exact).
+
+## Inputs
+* `p` – natural number
+* `P` – H-polytope
+* `dom` – domain interval
+
+## Output
+* the rows normalized, then the dominated rows with an equal normal dropped
 -/
 
 -- Authors:       Claude Opus 5.5

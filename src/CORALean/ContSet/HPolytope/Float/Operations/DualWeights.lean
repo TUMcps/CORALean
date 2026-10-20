@@ -26,6 +26,13 @@ weight at zero and encloses the residual it actually has, in rounded arithmetic.
 
 A NaN in the stored data reads through `ToRat` as `1.5 · 2 ^ 1024`: another program, at the
 cost of tightness.
+
+## Inputs
+* `P` – H-polytope
+* `d` – family indexed by `Fin h`
+
+## Output
+* weights `(y, zu, zl)` for the rows, proposed for the direction `d` within the unit box
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

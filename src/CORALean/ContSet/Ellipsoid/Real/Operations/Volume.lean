@@ -16,7 +16,7 @@ not arise (an `Ellipsoid` is never empty), and a singular `Q` gives `det Q = 0` 
 * `E` – ellipsoid
 
 ## Output
-* `π^(n/2) / Γ(n/2 + 1) · √(det Q)`
+* the volume of the unit ball times `√(det Q)`
 -/
 
 -- Authors:       Claude Opus 5.5

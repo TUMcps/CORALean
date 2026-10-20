@@ -7,19 +7,21 @@ public import CORALean.ContSet.HPolytope.Real.HPolytope
 /-!
 # `HPolytope.halfScaled`
 
-The constraints of `P` at the weight a parameter names. A coefficient ranges
-over `[-1, 1]`, so `(t x + 1) / 2` ranges over `[0, 1]`, which is what one side
-of a convex combination is scaled by; the row `A x ≤ b` becomes
-`A x - (b/2) t x ≤ b/2` and the pair `t`, `-t` gives the two complementary
-weights.
+The constraints of `P` at the weight a parameter names. A coefficient ranges over `[-1, 1]`, so
+`(t x + 1) / 2` ranges over `[0, 1]`, which is what one side of a convex combination is scaled
+by; the row `A x ≤ b` becomes `A x - (b/2) t x ≤ b/2` and the pair `t`, `-t` gives the two
+complementary weights. The parameter is a functional on the same space rather than a coordinate
+of its own, so a caller that has concatenated coefficient blocks names it with `comap` and
+nothing has to be padded. Scaling is what a cone does, not a translation: at weight zero the
+rows read `A x ≤ 0` and `Ae x = 0`, the only reading under which an endpoint of the combination
+stays reachable.
 
-The parameter is a functional on the same space rather than a coordinate of its
-own, so a caller that has already concatenated coefficient blocks names it with
-`comap` and nothing has to be padded.
+## Inputs
+* `t` – linear functional
+* `P` – H-polytope
 
-Scaling is what a cone does, not a translation: at weight zero the rows read
-`A x ≤ 0` and `Ae x = 0`, which is the only reading under which an endpoint of
-the combination stays reachable.
+## Output
+* the constraints of `P` at the weight `(t x + 1) / 2`: `A x - (b/2) t x ≤ b/2`
 -/
 
 -- Authors:       Claude Opus 5

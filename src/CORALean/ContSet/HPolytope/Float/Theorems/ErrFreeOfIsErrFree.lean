@@ -8,6 +8,15 @@ public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 # `HPolytope.isErrFree` proves the polytope error-free
 
 Each bound was certified equal to `zero` by `le` both ways, and `le` is sound.
+
+## Inputs
+* `P` – H-polytope
+
+## Hypotheses
+* `h` – `P` is error-free
+
+## Conclusion
+* `HPolytope.isErrFree` proves the polytope error-free
 -/
 
 -- Authors:       Claude Opus 5.5

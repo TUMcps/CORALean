@@ -14,6 +14,17 @@ stored bound having been rounded downward. Equality rows need the subtrahend in
 their kernel, as over ℝ. The error box rides along: a point of the result is a point of the
 nominal result plus a box point, and the nominal one shifted by the subtrahend is a nominal
 point of `P`.
+
+## Inputs
+* `P` – H-polytope
+* `T` – set of points
+
+## Hypotheses
+* `u` – a float bound of `T` along each row
+* `hker` – every point of `T` is in the kernel of the equality rows
+
+## Conclusion
+* the float certified Minkowski difference is inside the exact one
 -/
 
 -- Authors:       Claude Sonnet 5.5

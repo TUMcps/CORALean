@@ -14,6 +14,13 @@ addition of their `.val`s and nothing else, the certificates themselves being
 data this operation only reads.
 
 The result is `q` rows, each a functional of `d` coefficients and a right-hand side, all written.
+
+## Inputs
+* `d` – natural number
+* `q` – natural number
+
+## Output
+* one addition per row and `q * (d + 1)` writes for the result
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

@@ -16,6 +16,13 @@ pieces turned by a right angle (rounding is harmless, any direction is a valid t
 direction `d` separates when the upper bound of `d · x` over the first piece (`boundDot`,
 vertices and error box) is certified by `ltStrict` below the lower bound over the second. Only
 `true` is certain; CORA's tolerance and the point and other-set operands are not covered.
+
+## Inputs
+* `P` – polygon
+* `Q` – polygon
+
+## Output
+* `true` when every pair of pieces is separated by an edge normal
 -/
 
 -- Authors:       Claude Opus 5.5

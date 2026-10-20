@@ -13,6 +13,16 @@ A point of the product is a point whose left block is in `P₁` and whose right 
 `mem_stackRows_nominal_iff` splits the stacked rows, and `mem_padLeft_nominal_iff` and
 `mem_padRight_nominal_iff` read each half on its own block. The error box is the two boxes side by
 side, and the sum of a product is the product of the sums.
+
+## Inputs
+* `P₁` – H-polytope
+* `P₂` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `HPolytope.cartProd` is exactly the Cartesian product, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5.5

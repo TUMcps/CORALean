@@ -16,6 +16,16 @@ value `-∞` whenever it is not `0`, so "some feasible `y` with `bᵀ y < 0`" is
 "only if" half is Farkas' lemma, `exists_dual_of_forall_le_fintype` on the homogenised system
 `A x - t b ≤ 0`, `-t ≤ 0`, which forces `t ≤ 0` exactly when no `x / t` is a point.
 
+## Inputs
+* `A` – `q × n` matrix
+* `b` – offset vector of length `q`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `ineqs A b` is empty iff some nonnegative `y` has `Aᵀ y = 0` and `bᵀ y < 0`
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

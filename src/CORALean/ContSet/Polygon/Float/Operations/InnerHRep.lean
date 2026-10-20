@@ -25,6 +25,12 @@ the fan from `v₀`: every triangle `v₀ vᵢ vᵢ₊₁` is certified counterc
 A point left of every edge then lies in one of these triangles (`innerHRep_inner`). The
 piece's error box must hold `0`, certified by `le`, so the hull of the stored vertices lies in
 the piece. Anything uncertified, or fewer than three vertices, gives `none`.
+
+## Inputs
+* `p` – V-polytope
+
+## Output
+* the edge halfspaces of a piece, when they are certified to lie inside it
 -/
 
 -- Authors:       Claude Opus 5.5

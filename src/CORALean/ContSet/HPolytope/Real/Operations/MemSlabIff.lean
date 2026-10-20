@@ -8,6 +8,18 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
 
 /-!
 # Membership in `HPolytope.slab`
+
+## Inputs
+* `Ae` – `q × n` matrix
+* `lo` – vector of length `q`
+* `hi` – vector of length `q`
+* `x` – point of length `n`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the slab iff every row of `Ae x` is between `lo` and `hi`
 -/
 
 -- Authors:       Claude Opus 5

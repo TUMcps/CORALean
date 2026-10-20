@@ -16,6 +16,19 @@ within `ε` of the equalities is moved by `δ`, `|δⱼ| ≤ ρ`, onto them; and
 `(1 - λ) (1 + ρ) + λ (1 - s) = 1`, and is within `ρ + λ (2 + ρ) ≤ ρ + (ρ / s) (2 + ρ) ≤ τ` of `β`
 in every coordinate. The raised inequalities hold at `β''`, each reading at most `∑ⱼ |Aᵢⱼ| τ`
 more than at `β`.
+
+## Inputs
+* `P` – H-polytope
+* `ε` – vector of length `P.me`
+* `β` – vector of length `n`
+
+## Hypotheses
+* `hβ` – `∀ j, |β j| ≤ 1`
+* `hA` – `β` meets every inequality up to its slack
+* `hE` – `β` meets every equality within `ε`
+
+## Conclusion
+* `HPolytope.anchorEqsInBox` moves a coefficient vector onto the equalities, inside the box
 -/
 
 -- Authors:       Claude Opus 5.5

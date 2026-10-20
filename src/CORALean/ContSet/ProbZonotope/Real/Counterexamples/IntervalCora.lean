@@ -13,6 +13,12 @@ CORA's `interval(probZ)` as the code computes it (`@probZonotope/interval.m`): w
 the covariance, the box `c ± Σⱼ |G·ⱼ|`. The deterministic generators `probZ.Z(:,2:end)` are not
 read, although the help says it overapproximates the probabilistic zonotope
 (`Theorems.IntervalCoraNotMem`). `ProbZonotope.interval` is the box that does.
+
+## Inputs
+* `P` – probabilistic zonotope
+
+## Output
+* the box `c ± Σⱼ |G·ⱼ|` of the center and the covariance generators
 -/
 
 -- Authors:       Claude Opus 5.5

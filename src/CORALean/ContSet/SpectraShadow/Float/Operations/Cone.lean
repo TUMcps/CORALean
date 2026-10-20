@@ -16,6 +16,12 @@ generators and the center as columns of the homogenised point, and the arrowhead
 box is absorbed into the inequality first (`absorbRounding`), as the cone of a box-inflated shadow
 is not the cone of its nominal part. Every stored entry is a stored float, `zero` or `one`, so
 nothing rounds and the box left over is the origin.
+
+## Inputs
+* `T` – spectrahedral shadow
+
+## Output
+* the conic hull of `T`, with the matrices scaled by a free variable `s`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,18 @@ Cartesian product [1, Eq. 29] under the map adding the two blocks. The image is 
 the paper computes by Fourier–Motzkin elimination; it is stated here as an image, the existence of
 a halfspace form being `HPolytope.exists_construct_eq_image_fst`.
 
+## Inputs
+* `A₁` – `q₁ × n` matrix
+* `b₁` – offset vector of length `q₁`
+* `A₂` – `q₂ × n` matrix
+* `b₂` – offset vector of length `q₂`
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Minkowski sum of two H-polytopes, as a projection
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

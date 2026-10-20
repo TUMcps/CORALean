@@ -11,6 +11,13 @@ public import CORALean.ContSet.VPolytope.Float.Operations.EnclosePoints
 CORA's `@polygon/minus` with a vector subtrahend, `pgon + (-p)`: the sum with the one-piece
 polygon at the point `-p`. `neg` is exact, so the point is stored as given; the sum is
 `Polygon.plus`, whose rounding goes into each piece's error box.
+
+## Inputs
+* `P` – polygon
+* `p` – point of length `2`
+
+## Output
+* the sum of `P` with the one-piece polygon at the point `-p`
 -/
 
 -- Authors:       Claude Opus 5.5

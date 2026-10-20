@@ -12,6 +12,13 @@ public import CORALean.ContSet.SpectraShadow.Float.Operations.Plus
 CORA's `@spectraShadow/cartProd_`, as the exact layer has it: each shadow is put into its own
 coordinates of the product, zero in the other's, and the two are added. The padding stores
 exact zeros, so the only rounding is `plus`'s on the center, where one summand is zero.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `T` – spectrahedral shadow
+
+## Output
+* the Cartesian product, `S` and `T` padded with zeros and added
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -12,6 +12,13 @@ CORA's `@spectraShadow/plus`: centers add, generators concatenate, and the two
 linear matrix inequalities lie along the diagonal of one, each variable acting on
 its own block only. The first set's variables see a zero block in the second set's
 rows, and conversely, so the inequality holds exactly when both do.
+
+## Inputs
+* `S₁` – spectrahedral shadow
+* `S₂` – spectrahedral shadow
+
+## Output
+* the sum, centers added, generators concatenated and the inequalities on a block diagonal
 -/
 
 -- Authors:       Claude Opus 5.5

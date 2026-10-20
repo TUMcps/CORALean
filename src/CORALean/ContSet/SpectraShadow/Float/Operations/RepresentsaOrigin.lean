@@ -11,6 +11,15 @@ public import CORALean.ContSet.Conversion.Float.Operations.SpectraShadow_to_Inte
 CORA's `representsa_(SpS, 'origin')`: every axis support `0`, in a positive dimension. Here the
 certified singleton test (`SpectraShadow.representsa_point`) at a box whose corners are `0`
 (`le` both ways). Sufficient only.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `Yup` – matrices indexed by `Fin n`
+* `Ylo` – matrices indexed by `Fin n`
+* `β` – vector of length `S.m`
+
+## Output
+* `true` when the certified singleton test holds at a box with corners `0`
 -/
 
 -- Authors:       Claude Opus 5.5

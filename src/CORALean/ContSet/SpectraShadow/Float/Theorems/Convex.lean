@@ -16,6 +16,15 @@ bounded independently.
 
 So the error box costs the property nothing, which is why no operation has to
 restate it after paying a rounding into that box.
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* A float spectrahedral shadow is convex
 -/
 
 -- Authors:       Claude Opus 5.5

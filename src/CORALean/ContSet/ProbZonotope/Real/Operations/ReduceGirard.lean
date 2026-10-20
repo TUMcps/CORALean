@@ -14,6 +14,13 @@ for a `probZ` whose `gauss` flag is not set, only reorders the generators of the
 covariance). CORA's second option `'althoff'` ("order set to 1") is not formalized: the zonotope
 `reduce` it calls has no such method and throws (`references/coverage/contSet/probZonotope.md`, row
 `reduce`).
+
+## Inputs
+* `P` – probabilistic zonotope
+* `o` – natural number
+
+## Output
+* `P` with the mean zonotope reduced to order `o` and the covariance kept
 -/
 
 -- Authors:       Claude Opus 5.5

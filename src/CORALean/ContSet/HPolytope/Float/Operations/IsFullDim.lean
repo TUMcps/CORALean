@@ -13,6 +13,13 @@ there is no equality row (an equality pins the set to a hyperplane), every inequ
 strictly slack, `A x₀ < b`, with `A x₀` rounded upward and the gap certified by `ltStrict`, and the
 error box is not empty, `inf ≤ sup` in every coordinate. `true` proves an interior point; `false`
 refutes nothing.
+
+## Inputs
+* `P` – H-polytope
+* `x₀` – point of length `n`
+
+## Output
+* `true` when `x₀` lies strictly inside every inequality and there is no equality
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

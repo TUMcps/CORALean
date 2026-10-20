@@ -13,14 +13,20 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 CORA's `priv_normalizeConstraints` on the stored floats, with the divisors given: `sA i` for
 inequality row `i` and `sE i` for equality row `i`. Every entry of a scaled row is rounded down
 (`mulDown`), which names a slightly different halfspace, so the difference is absorbed on the
-right-hand side over a box `dom` of interest. On a point of the polytope in `dom`, a scaled row's
-exact bound is the scaled bound less the deviation `(s a - ã)ᵀ x`, which lies between `scaleDevLo`
-and `scaleDevHi`; `setRhs` stores the lower end of that enclosure and pays its width into the row's
-slack (#218). So an inequality's `b` is not raised and an equality stays an equality, a slab as
-wide as the enclosure. The scaled polytope contains the original one inside `dom`.
+right-hand side over a box `dom` of interest. A scaled row's exact bound is the scaled bound less
+the deviation `(s a - ã)ᵀ x`, between `scaleDevLo` and `scaleDevHi`; `setRhs` stores the lower
+end and pays the width into the row's slack (#218), so an equality stays an equality. The rows
+only are read: the error box and the slacks are not, and `absorbRounding` brings a polytope with
+either to this form first.
 
-The rows only are read: the error box and the slacks are not. A polytope with either is brought to
-this form by `absorbRounding` first.
+## Inputs
+* `P` – H-polytope
+* `sA` – scalars indexed by `Fin P.m`
+* `sE` – scalars indexed by `Fin P.me`
+* `dom` – domain interval
+
+## Output
+* row `i` multiplied by `sA i` (`sE i`), the rounding in the rows' slacks
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

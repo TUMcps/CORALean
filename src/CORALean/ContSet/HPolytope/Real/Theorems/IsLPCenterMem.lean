@@ -11,6 +11,16 @@ The center of `aux_center_LP` is feasible with a radius `r ≥ 0`, and a row nor
 `aᵢ x ≤ bᵢ - ‖aᵢ‖₂ r ≤ bᵢ`: the center satisfies every row, and every equality row is the
 program's own constraint. That is all the program promises about `x`; it is not a characterisation
 of which optimal `x` CORA returns.
+
+## Inputs
+* `P` – H-polytope
+* `x` – point of length `n`
+
+## Hypotheses
+* `h` – `P.IsLPCenter x`
+
+## Conclusion
+* A Chebyshev center lies in its polytope
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,13 @@ The structural test at tolerance `0`: the same numbers of inequalities and equal
 matrices, the right-hand sides, their slacks and the two ends of the error box equal entry by entry,
 each by the certified `le` in both directions. Certified in one direction only: `true` is a
 proof, `false` refutes nothing.
+
+## Inputs
+* `P` – H-polytope
+* `Q` – H-polytope
+
+## Output
+* `true` when sizes and all entries, slacks and error boxes match by certified `le`
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

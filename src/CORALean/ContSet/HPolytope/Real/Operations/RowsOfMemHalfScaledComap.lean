@@ -13,6 +13,20 @@ preimage satisfies `P`'s own rows against the weight, which is where a proof
 that the combination is *no larger* than the hull starts. It stops at the rows
 rather than going on to a member of `P`, since at weight zero there is nothing
 to divide by.
+
+## Inputs
+* `f` – `γ →ₗ[ℝ] α`
+* `t` – `γ →ₗ[ℝ] ℝ`
+* `P` – H-polytope
+* `x` – `γ`
+* `w` – real number
+
+## Hypotheses
+* `hw` – `w` is the weight `(t x + 1) / 2`
+* `hx` – `x` lies in `((P.comap f).halfScaled t)`
+
+## Conclusion
+* the weighted rows a scaled membership gives back
 -/
 
 -- Authors:       Claude Opus 5

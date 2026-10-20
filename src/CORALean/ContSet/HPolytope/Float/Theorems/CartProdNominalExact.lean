@@ -11,6 +11,16 @@ public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
 
 A point is in the stacked rows iff its left block meets the first polytope's rows and its right
 block the second's; the error box plays no part.
+
+## Inputs
+* `P₁` – H-polytope
+* `P₂` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the nominal part of `HPolytope.cartProd` is the Cartesian product of the nominal parts
 -/
 
 -- Authors:       Claude Sonnet 5.5

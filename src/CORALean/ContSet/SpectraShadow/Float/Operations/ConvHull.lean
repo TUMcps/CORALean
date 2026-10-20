@@ -19,6 +19,13 @@ both shadows at height `1` (`singletonOne`), their cones added, the sum cut with
 × {1}` (`hyperplaneOne`) and projected to the first `n` coordinates. The only rounding is `plus`'s
 on the center, which its box takes; the shadows' own boxes are absorbed by the cones. Each stage is
 `materialise`d (stored, `materialise_eq`), as the fields are function types.
+
+## Inputs
+* `SpS` – spectrahedral shadow
+* `S` – spectrahedral shadow
+
+## Output
+* the convex hull of the union, built from both shadows' cones cut with `ℝⁿ × {1}` and projected
 -/
 
 -- Authors:       Claude Opus 5.5

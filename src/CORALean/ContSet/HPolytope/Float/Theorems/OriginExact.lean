@@ -9,6 +9,15 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 # `HPolytope.origin` denotes exactly the origin, over a floating-point scalar
 
 The stored identity reads as ℝ's, so the equality rows pin every coordinate to `0`.
+
+## Inputs
+* `n` – natural number
+
+## Hypotheses
+* none
+
+## Conclusion
+* `HPolytope.origin` denotes exactly the origin, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5.5

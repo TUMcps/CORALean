@@ -12,6 +12,16 @@ Gaussian law with mean `c` and covariance `Σ = G Gᵀ`, for any number `q` of g
 Mathlib's `multivariateGaussian`, which needs no density. Proved by characteristic functions:
 `E[exp(i⟨c + Gβ, t⟩)] = exp(i⟨c, t⟩ - ‖Gᵀt‖²/2)` and `‖Gᵀt‖² = tᵀ G Gᵀ t`.
 
+## Inputs
+* `c` – center of length `n`
+* `G` – `n × q` matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* A G-zonotope with certain mean is the Gaussian `N(c, G Gᵀ)`
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

@@ -20,6 +20,13 @@ convex hull of the union. CORA assembles the cones from the SVD form of each sha
 (`generateESumRep`); the cone here works from the representation as stored. CORA's early returns for
 `isemptyobject` operands are not needed: the cone of an empty shadow is the origin, and the hull of
 `∅` and `S` is `S`.
+
+## Inputs
+* `SpS` – spectrahedral shadow
+* `S` – spectrahedral shadow
+
+## Output
+* the convex hull of the union, from both cones cut with `ℝⁿ × {1}` and projected
 -/
 
 -- Authors:       Claude Opus 5.5

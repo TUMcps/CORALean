@@ -21,6 +21,14 @@ the minuend with `subtract`. The boundary vertex loop `V` of the shifted minuend
 (a `polyshape` boundary, R-PG); the loop closes from the last vertex to the first, and the
 `NaN` separators of several regions and holes are not modelled. The result is the region,
 `Polygon.subtract`'s, not a polygon.
+
+## Inputs
+* `A` – polygon
+* `B` – polygon
+* `V` – `List (Vec ℝ 2)`
+
+## Output
+* the minuend with the swept region of the mirrored subtrahend cut out
 -/
 
 -- Authors:       Claude Sonnet 5.5

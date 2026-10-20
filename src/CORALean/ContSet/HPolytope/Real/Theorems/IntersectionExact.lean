@@ -13,6 +13,16 @@ tree converts to this representation to intersect.
 
 This is [1, Eq. 36]: the intersection of two H-polytopes stacks their constraints.
 
+## Inputs
+* `P₁` – H-polytope
+* `P₂` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `HPolytope.intersection` is exactly the intersection
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

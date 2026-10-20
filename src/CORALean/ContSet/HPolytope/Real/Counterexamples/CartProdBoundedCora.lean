@@ -34,6 +34,15 @@ constructor (`aux_computeHiddenProperties`), and `polytope(-1,0)` (`x ≥ 0`) is
 flag unset. Their product is `[0,1] × [0,∞)`, which contains points of every height, and
 `cartProd(P1,P2)` stores `bounded.val = true`, so `isBounded` answers `true`. Read from the
 source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA flags the product of `[0,1]` and `x ≥ 0` bounded, yet it has points of every height
 -/
 
 -- Authors:       Claude Sonnet 5.5

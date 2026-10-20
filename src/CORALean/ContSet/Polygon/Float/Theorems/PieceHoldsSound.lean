@@ -10,6 +10,16 @@ public import CORALean.ContSet.Polygon.Float.Theorems.InTriangleSound
 
 The triangle's barycentric coordinates (`Polygon.inTriangle_sound`), put on its three vertices
 and zero elsewhere, are the weights of a convex combination of the piece's vertices.
+
+## Inputs
+* `p` – V-polytope
+* `x` – point of length `2`
+
+## Hypotheses
+* `h` – `Polygon.pieceHolds p x` holds
+
+## Conclusion
+* A `true` from `Polygon.pieceHolds` is a point of the nominal piece
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,12 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 CORA's `polygon/interval`: the smallest box holding the polygon, here the hull of the pieces'
 boxes (`Interval.or`), the empty box for no pieces.
+
+## Inputs
+* `P` – polygon
+
+## Output
+* the box holding every piece
 -/
 
 -- Authors:       Claude Opus 5.5

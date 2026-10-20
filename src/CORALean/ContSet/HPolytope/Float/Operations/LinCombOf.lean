@@ -10,6 +10,16 @@ public import CORALean.ContSet.ContSet.Float.Operations.SupportBound
 
 What a float halfspace description cannot do exactly: the caller names
 directions and the bounds are composed, by segments between the two.
+
+## Inputs
+* `Aq` – `q × n` matrix
+
+## Hypotheses
+* `u₁` – a float bound of `P₁.construct` along each row
+* `u₂` – a float bound of `P₂.construct` along each row
+
+## Output
+* the polytope on the directions `Aq` bounded by the segment bound of `u₁` and `u₂`
 -/
 
 -- Authors:       Claude Opus 5

@@ -29,7 +29,7 @@ along which the inner shape fails to be a shape. Stated for `Q₁` of full rank,
 * `hr` – `E₁` has full rank
 * `hbig` – `E₁` is bigger than `E₂`
 * `hl` – `lᵀ Q₂ l` positive
-* `hp` – `p = √(lᵀ Q₁ l) / √(lᵀ Q₂ l)`
+* `hp` – `p` is the ratio of the two ellipsoids' radii along `l`
 
 ## Conclusion
 * `l` is bad iff the combined quadratic form is not nonnegative

@@ -15,6 +15,14 @@ This is what a float layer needs. An inequality absorbs its rounding by raising
 `b`; an equality has no slack of its own, since any rounding of `Ae` or `be`
 names a different hyperplane and a hyperplane has empty interior. Widening the
 right-hand side into an interval is where that rounding can go.
+
+## Inputs
+* `Ae` – `q × n` matrix
+* `lo` – vector of length `q`
+* `hi` – vector of length `q`
+
+## Output
+* the polytope `lo ≤ Ae x ≤ hi`, as `Ae x ≤ hi` and `-Ae x ≤ -lo`
 -/
 
 -- Authors:       Claude Opus 5

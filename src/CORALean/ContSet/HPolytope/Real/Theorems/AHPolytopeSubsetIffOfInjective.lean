@@ -18,6 +18,23 @@ every column of `X` and `ȳ - x̄` in `range Y`, giving `Γ` and `β`; injectivi
 turns the containment into `-β + Γ Px ⊆ Py`, an H-in-H containment, and
 `ineqs_subset_iff` supplies `Λ`.
 
+## Inputs
+* `xbar` – mean of length `n`
+* `ybar` – mean of length `n`
+* `X` – `n × nx` matrix
+* `Y` – `n × ny` matrix
+* `Hx` – `qx × nx` matrix
+* `hx` – vector of length `qx`
+* `Hy` – `qy × ny` matrix
+* `hy` – vector of length `qy`
+
+## Hypotheses
+* `hY` – `Y.mulVec` is injective
+* `hfull` – the polytope `ineqs Hx hx` has nonempty interior
+
+## Conclusion
+* AH-polytope in AH-polytope, exactly, when `Y` is injective
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

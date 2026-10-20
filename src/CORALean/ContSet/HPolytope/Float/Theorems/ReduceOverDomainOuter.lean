@@ -15,6 +15,17 @@ still does, and the scaled row is the reduced row plus the deviation that
 `reduceOverDomain_rows` bounds from below. So the reduced row stays under the upper end of the
 scaled right-hand sides less the lower end of the deviation, which is the stored bound. Outer
 over the domain, as over ℝ, for a polytope with a row.
+
+## Inputs
+* `p` – natural number
+* `P` – H-polytope
+* `dom` – domain interval
+
+## Hypotheses
+* `hm` – `0 < P.m`
+
+## Conclusion
+* the float `'outer'` reduction keeps every point of the polytope in the domain
 -/
 
 -- Authors:       Claude Opus 5.5

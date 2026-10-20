@@ -14,6 +14,16 @@ Selecting coordinates is linear and rounds nothing, so `InflatedContSet.image_su
 this into the nominal shadow and the box. The nominal shadow of the projection is
 definitionally the exact layer's `project` of the nominal shadow, so `project_exact` gives
 the nominal obligation as an equality; the box is `Interval.project_outer`.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `dims` – indices indexed by `Fin m`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `SpectraShadow.project` over-approximates the projection
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -12,6 +12,18 @@ A block-diagonal matrix of stored floats reads as the block-diagonal matrix of
 what its blocks read as, the zero between them being the stored `zero`, which
 `SoundFloatArithmetic` says reads as `0`. What lets the exact layer's statements
 about the inequality of a sum apply to the stored one.
+
+## Inputs
+* `a` – natural number
+* `b` – natural number
+* `M` – `a × a` matrix
+* `N` – `b × b` matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* reading a block diagonal matrix as reals gives the block diagonal of the readings
 -/
 
 -- Authors:       Claude Opus 5.5

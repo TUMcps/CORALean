@@ -8,15 +8,23 @@ public import CORALean.ContSet.ContSet.Operations.SupportBoundSetLinComb
 /-!
 # `HPolytope.linCombOf`
 
-CORA's `linComb`, on chosen directions: a point between the two polytopes is a
-weighted average of one from each, so it beats neither bound and the larger of
-the two serves.
-
-A halfspace description is convex, so here `linComb` and the convex hull agree;
-the distinction the interface keeps is for representations that are not.
+CORA's `linComb`, on chosen directions: a point between the two polytopes is a weighted average
+of one from each, so it beats neither bound and the larger of the two serves. A halfspace
+description is convex, so here `linComb` and the convex hull agree; the distinction the
+interface keeps is for representations that are not.
 
 This is the template enclosure of the convex hull of two H-polytopes, [1, Eq. 31], with any
 upper bounds in place of the support function values the paper takes.
+
+## Inputs
+* `Aq` – family indexed by `Fin q`
+
+## Hypotheses
+* `u₁` – a support bound of `P₁.construct` along each row
+* `u₂` – a support bound of `P₂.construct` along each row
+
+## Output
+* the polytope on the directions `Aq` bounded by the larger of the bounds of `u₁` and `u₂`
 
 ## References
 

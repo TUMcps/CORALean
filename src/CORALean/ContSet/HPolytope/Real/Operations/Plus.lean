@@ -8,17 +8,23 @@ public import CORALean.Global.SupportFunction.Composition
 /-!
 # `HPolytope.plusOf`
 
-CORA's `plus` on halfspace descriptions. Not exact, and it cannot be: the sum's
-facet normals are generally none of either summand's, so they would have to be
-enumerated first. Instead the caller names the directions and each row's bound
-is the two summands' extents in that direction, added.
+CORA's `plus` on halfspace descriptions. Not exact, and it cannot be: the sum's facet normals
+are generally none of either summand's, so they would have to be enumerated first. Instead the
+caller names the directions and each row's bound is the two summands' extents in that
+direction, added. Exact when the directions contain the sum's facet normals, so the enumeration
+is a precision question, not a soundness one.
 
-Exact when the directions happen to contain the sum's facet normals, which is
-what enumeration would have produced — so the enumeration is a precision
-question, not a soundness one.
+[1, Prop. 4] is this at the summand's own rows, the other summand's support values added on.
 
-[1, Prop. 4] is this at the summand's own rows, the other summand's support
-values added on.
+## Inputs
+* `Aq` – family indexed by `Fin q`
+
+## Hypotheses
+* `u₁` – a support bound of `P₁.construct` along each row
+* `u₂` – a support bound of `P₂.construct` along each row
+
+## Output
+* the polytope on the directions `Aq` bounded by the sum of the bounds `u₁` and `u₂`
 
 ## References
 

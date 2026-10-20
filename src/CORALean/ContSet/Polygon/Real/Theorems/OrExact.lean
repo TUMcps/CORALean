@@ -10,6 +10,16 @@ public import CORALean.ContSet.VPolytope.Real.Instances
 # `Polygon.or` is the union
 
 Exactly, unlike `VPolytope.or`, which hulls: a polygon holds the union as a list of pieces.
+
+## Inputs
+* `P` – polygon
+* `Q` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Polygon.or` is the union
 -/
 
 -- Authors:       Claude Opus 5.5

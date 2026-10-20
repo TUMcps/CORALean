@@ -11,6 +11,17 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.ErrFreeOfIsErrFree
 
 Then the rows are only stacked, and a point satisfies the stacked rows exactly when it satisfies
 each half (`HPolytope.mem_stackRows_construct_iff`), each polytope denoting its nominal part.
+
+## Inputs
+* `P₁` – H-polytope
+* `P₂` – H-polytope
+
+## Hypotheses
+* `h₁` – `P₁` is error-free
+* `h₂` – `P₂` is error-free
+
+## Conclusion
+* `HPolytope.intersection` is exact when both boxes are certified empty of error
 -/
 
 -- Authors:       Claude Opus 5.5

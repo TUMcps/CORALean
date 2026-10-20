@@ -12,6 +12,15 @@ At `N = 1`, `x̄ = 0`, `X₁ = I` the proposition is `[1, Lemma 1]`, and the sam
 (`ineqs_subset_iff_counterexample`) lies in the unit box with no `Λ₁` assembling the box's
 rows. So "only if" needs every `Pᵢ` nonempty (`sum_ahPolytope_subset_ineqs_iff`).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* `[1, Prop. 1]` fails at an empty summand
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

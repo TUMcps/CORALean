@@ -14,14 +14,16 @@ Weights proposing a Farkas certificate that a polytope within the unit box is em
 is the margin program `max t` over `A β + t ≤ bU`, `Ae β + t ≤ beU`, `-Ae β + t ≤ beLN`,
 `±βⱼ + t ≤ 1`: it is feasible and bounded, and its optimum is negative exactly when the polytope is
 empty. Its dual is bounded too, the weights summing to one, which is what lets the simplex return
-a certificate where the plain feasibility dual (unbounded for an empty polytope) returns nothing.
-The weights are read back as `dualWeights` reads its own.
+a certificate where the plain feasibility dual returns nothing. The weights are read back as
+`dualWeights` reads its own. Nothing here is trusted: `ConZonotope.boundDotWeights` clamps every
+weight at zero and encloses the residual it actually has, so a bad proposal costs the `true`
+only. A NaN among the stored data reads through `ToRat` as `1.5 · 2 ^ 1024`, costing tightness.
 
-Nothing here is trusted: `ConZonotope.boundDotWeights` clamps every weight at zero and encloses the
-residual it actually has, so a bad proposal costs the `true` only.
+## Inputs
+* `P` – H-polytope
 
-A NaN among the stored data reads through `ToRat` as `1.5 · 2 ^ 1024`, so the program solved
-is another one. That costs tightness only: the checker sees the NaN in rounded arithmetic.
+## Output
+* weights `(y, zu, zl)` for the rows `A`, `Ae ≤ beU` and `-Ae ≤ beLN`
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

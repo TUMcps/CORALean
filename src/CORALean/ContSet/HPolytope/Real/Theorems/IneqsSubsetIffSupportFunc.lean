@@ -13,6 +13,18 @@ public import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
 each offset of the second along that row's normal. The support function is extended-valued, so an
 empty inbody (`-∞`) and one unbounded in a direction (`+∞`) need no case of their own.
 
+## Inputs
+* `A₁` – `q₁ × n` matrix
+* `b₁` – offset vector of length `q₁`
+* `A₂` – `q₂ × n` matrix
+* `b₂` – offset vector of length `q₂`
+
+## Hypotheses
+* none
+
+## Conclusion
+* the first polytope lies in the second iff its support along each row of the second is bounded
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

@@ -12,6 +12,15 @@ public import CORALean.ContSet.VPolytope.Float.Theorems.Basic
 The convex hull of the union of the pieces sits inside the stored polytope: by induction on the
 list, each step is `VPolytope.convHull_outer` at a piece and the hull of the rest. Not exact, for
 the same reason as at two pieces.
+
+## Inputs
+* `P` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Polygon.convHull` contains the convex hull of the polygon
 -/
 
 -- Authors:       Claude Sonnet 5.5

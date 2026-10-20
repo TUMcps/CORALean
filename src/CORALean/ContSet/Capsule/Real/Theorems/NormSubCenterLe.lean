@@ -18,7 +18,7 @@ The segment contributes at most `‖g‖₂` (`t ∈ [-1, 1]`), the ball at most
 * `hx` – `x ∈ C`
 
 ## Conclusion
-* `‖x - C.c‖₂ ≤ C.radius`
+* the distance of `x` to the center is at most the radius
 -/
 
 -- Authors:       Claude Sonnet 5.5

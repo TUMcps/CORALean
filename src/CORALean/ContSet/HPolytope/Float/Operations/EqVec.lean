@@ -9,6 +9,13 @@ public import CORALean.ContSet.HPolytope.Float.Operations.EqScalar
 
 Every entry `eqScalar`: the exact test for equal (or, against a negated row, inverted) rows that
 `compact_` makes, where CORA's is `withinTol` at its tolerance.
+
+## Inputs
+* `u` – vector of length `n`
+* `v` – vector of length `n`
+
+## Output
+* all entries `eqScalar`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -15,6 +15,14 @@ CORA's `reduceOverDomain`: the constraints of `P` replaced by the single halfspa
 (`min`/`max` over the rows) and the right-hand sides by the interval `b`; `A_reduced` is the
 center of `A`, and `b_reduced = b - (A - A_reduced)' * dom`, an interval, of which type `'outer'`
 takes the supremum and the other type the infimum. Equality constraints are not read.
+
+## Inputs
+* `P` – H-polytope
+* `dom` – domain interval
+* `outer` – `Bool`
+
+## Output
+* the single halfspace `A_reduced' x ≤ b_reduced` replacing the constraints of `P`
 -/
 
 -- Authors:       Claude Opus 5.5

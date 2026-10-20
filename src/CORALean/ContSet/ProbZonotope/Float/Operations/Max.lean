@@ -18,6 +18,15 @@ The denominator `√((2π g)ⁿ)` is rounded down, `exp(-m²/2)` up (`expUp`), a
 `none` when `g`, `2π g` or the denominator is not certified positive: a covariance interval that
 reaches a singular matrix has no finite bound. `Theorems.MaxLe` says the real `max` is under it.
 
+## Inputs
+* `P` – probabilistic zonotope
+* `m` – scalar
+* `p` – natural number
+* `k` – natural number
+
+## Output
+* `max(probZ, m)`, rounded up, at fuel `p` (square roots, `acos`) and `k` (`exp`)
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

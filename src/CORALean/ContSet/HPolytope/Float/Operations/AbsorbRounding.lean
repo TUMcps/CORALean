@@ -13,6 +13,12 @@ A box is not a halfspace, but its effect on one is a number: the points of `N �
 becomes the two inequalities its slab and the box give, `Aₑ x ≤ bₑ + sup + |Aₑ| r` (`beU`) and
 `-Aₑ x ≤ -(bₑ + inf) + |Aₑ| r` (`beLN`): the equality rows move into the inequality part. The
 result has no box and no slack, so it is an ordinary description of a superset.
+
+## Inputs
+* `P` – H-polytope
+
+## Output
+* the inequalities `A x ≤ b + b_error + |A| r` and the equalities as inequality pairs, rounded up
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

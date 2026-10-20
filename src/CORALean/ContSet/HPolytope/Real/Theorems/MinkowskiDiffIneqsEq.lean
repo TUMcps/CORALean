@@ -16,6 +16,17 @@ public import Mathlib.Data.EReal.Operations
 gives `ℝⁿ`, an `S` unbounded along a row (`ρ = +∞`) gives `∅`. `HPolytope.minkDiffOf_inner` is
 the version with real bounds in place of `ρ`, inner only.
 
+## Inputs
+* `A` – `q × n` matrix
+* `b` – offset vector of length `q`
+* `S` – set of points
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Minkowski difference of an H-polytope, exactly
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

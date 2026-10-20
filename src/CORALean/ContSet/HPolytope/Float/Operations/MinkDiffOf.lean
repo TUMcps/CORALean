@@ -17,6 +17,16 @@ The support bounds are certificates, `FloatBound`s against the rows the stored
 matrix denotes, as `plusOf` takes them. The one subtraction rounds downward:
 a difference is a guarantee, so the shifted bound may only come out smaller,
 never larger, and the result stays inside the exact difference.
+
+## Inputs
+* `P` – H-polytope
+* `T` – set of points
+
+## Hypotheses
+* `u` – a float bound of `T` along each row
+
+## Output
+* `P` with each inequality bound lowered by the subtrahend's support bound in that row
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -10,6 +10,15 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
 
 Every point meets a row `0 = 0`, so dropping those rows leaves the set as it was
 (`HPolytope.restrict_construct` with every inequality and the other equalities kept).
+
+## Inputs
+* `P` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* dropping the equality rows `0 = 0` leaves the set unchanged
 -/
 
 -- Authors:       Claude Opus 5.5

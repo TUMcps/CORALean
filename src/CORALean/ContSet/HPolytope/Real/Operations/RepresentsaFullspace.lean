@@ -11,6 +11,12 @@ CORA's `representsa_(P, 'fullspace')` on an H-representation: "all constraints m
 fulfilled, that is, `A x ≤ a`, `a ≥ 0`, and `Ae x = 0`" — every inequality row is `0 ≤ b` with
 `b ≥ 0` (CORA: `b > 0` or `withinTol(b, 0)`), every equality row is `0 = 0`. The tolerance is `0`
 here. `Theorems.RepresentsaFullspaceIff` says this is the whole space.
+
+## Inputs
+* `P` – H-polytope
+
+## Output
+* every inequality row is `0 ≤ b` with `b ≥ 0` and every equality row is `0 = 0`
 -/
 
 -- Authors:       Claude Opus 5.5

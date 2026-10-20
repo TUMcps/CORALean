@@ -12,6 +12,13 @@ CORA decides emptiness with a semidefinite program; here its infeasibility certi
 caller's and is checked: `Y` symmetric and diagonally dominant (so `⪰ 0`), `tr(Aₗ Y) = 0` for
 every variable (`dualCertified` along the direction `0`) and `tr(A₀ Y) < 0`, both decided exactly
 in ℚ. Then no `β` makes the inequality hold. Sufficient only: `true` proves the set empty.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `Y` – `S.k × S.k` matrix
+
+## Output
+* `true` when `Y` certifies infeasibility: dual certified along `0` and `tr(A₀ Y) < 0`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -28,8 +28,16 @@ the set-level test. Read from the source, not run.
 `P = {x ≤ 0, -x ≤ -1}` in `ℝ²` (an H-representation, nonempty arrays, so
 `representsa_emptyObject` does not catch it) is empty. For `'point'` and `n ≥ 2`, CORA reads
 `[fulldim,subspace] = isFullDim(P)`, which for an empty polytope returns `false` and `[]`, and
-sets `res = ~fulldim && isempty(subspace) = true`. A wrong answer, not unsound. Read from the
-source, not run.
+sets `res = ~fulldim && isempty(subspace) = true`. A wrong answer, not unsound.
+
+## Inputs
+* `rest` – flag and subspace returned by the rest of `isFullDim`
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polytope is empty, yet CORA answers `'point'` with `true`
 -/
 
 -- Authors:       Claude Sonnet 5.5

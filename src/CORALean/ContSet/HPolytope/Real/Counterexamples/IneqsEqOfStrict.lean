@@ -14,6 +14,15 @@ public import Mathlib.Tactic.Linarith
 strictly. Removing `x ≤ 0` leaves `{x ≥ 1}`, which is not empty: the heuristic needs a nonempty
 polytope, which `ineqs_eq_of_strict` assumes.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* `[1, Sec. 4.1 (interval hull)]`'s interval-hull heuristic at an empty polytope
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

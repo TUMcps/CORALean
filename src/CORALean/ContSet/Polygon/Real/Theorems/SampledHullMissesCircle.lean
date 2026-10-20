@@ -11,6 +11,16 @@ public import Mathlib.Analysis.Real.Pi.Bounds
 For every finite `V` of points of the unit circle there is a point of the circle outside
 `convexHull V`: the circle is infinite, so pick `z ∉ V`; the open half-plane `{x | z·x < 1}` is
 convex and holds every `p ∈ V` (as `|p - z|² = 2 - 2 z·p > 0`), hence the hull, but not `z`.
+
+## Inputs
+* `V` – set of points
+
+## Hypotheses
+* `hV` – `V.Finite`
+* `hc` – every sample point lies on the unit circle
+
+## Conclusion
+* some point of the unit circle is outside the hull of any finite set of circle points
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,16 @@ public import CORALean.ContSet.SetUnion.Theorems.Basic
 
 Each piece of either polygon lies in a piece of the other (`Polygon.pieceSubset_sound`), so
 each region lies in the other.
+
+## Inputs
+* `P` – polygon
+* `Q` – polygon
+
+## Hypotheses
+* `h` – `Polygon.isequalPieces P Q` holds
+
+## Conclusion
+* `P` and `Q` have the same region
 -/
 
 -- Authors:       Claude Opus 5.5

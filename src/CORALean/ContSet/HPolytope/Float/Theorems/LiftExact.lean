@@ -16,6 +16,16 @@ The lifted polytope is the set of points whose selected coordinates lie in the o
 exact layer's `lift_exact` states it: nothing rounds, the stored right-hand sides are unchanged,
 and the error box is lifted with zeros in the free coordinates (`lift_errorBox`), so the lifted
 box plus the lifted rows is the lifted sum.
+
+## Inputs
+* `P` – H-polytope
+* `dims` – indices indexed by `Fin n`
+
+## Hypotheses
+* `hdims` – `dims` is injective
+
+## Conclusion
+* the lift is the set of points whose selected coordinates lie in `P`
 -/
 
 -- Authors:       Claude Sonnet 5.5

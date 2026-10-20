@@ -11,6 +11,12 @@ The constraint lists of a finite family laid end to end, rows of the first membe
 first: `HPolytope.intersection` for `s` members at once. It is the H-representation
 of a zonotope bundle whose members each come with their own [1, Prop. 4].
 
+## Inputs
+* `P` – H-polytopes indexed by `Fin s`
+
+## Output
+* the polytope with the constraint lists of all members laid end to end
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

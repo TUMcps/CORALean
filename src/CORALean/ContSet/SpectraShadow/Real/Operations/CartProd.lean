@@ -14,6 +14,13 @@ the product, zero in the other's, and the two are added. CORA assembles the same
 set by intersecting two lifts, which needs the intersection this representation
 does not compute; the sum of the two embeddings is also the block-diagonal
 inequality with the centers and generators stacked, and needs only `plus`.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `T` – spectrahedral shadow
+
+## Output
+* the Cartesian product, `S` and `T` embedded in their own coordinates and added
 -/
 
 -- Authors:       Claude Opus 5.5

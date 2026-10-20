@@ -16,6 +16,15 @@ The `2n` coordinate support values are finite exactly when the set is bounded: a
 each coordinate from above and below is a bound on the sup norm, and conversely. So CORA's test
 decides boundedness, up to the solver and the all-`Aᵢ`-zero shortcut of
 `references/coverage/contSet/spectraShadow.md`, row `isBounded`.
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* `isBounded` holds iff the shadow is bounded
 -/
 
 -- Authors:       Claude Opus 5.5

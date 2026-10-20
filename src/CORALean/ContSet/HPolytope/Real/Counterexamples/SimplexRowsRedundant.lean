@@ -16,6 +16,15 @@ In `ℝ¹` the simplex is `{x ≤ 1, -x ≤ 1}`; appending the unit direction `�
 will be non-redundant" is false; it holds for `ℓ` distinct from the rows present
 (`ineqs_unit_rows_minimal`).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a simplex row can be redundant: dropping the last row leaves the same polytope
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

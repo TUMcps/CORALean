@@ -11,6 +11,18 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemNominalIff
 A point of the nominal part whose dropped coordinates lie in `[-1, 1]` keeps its kept ones in the
 result: each row splits along the partition (`Partition.sum_split₂`), and the dropped part reads
 at most the row's absolute sum over the dropped columns either way, which the slack has gained.
+
+## Inputs
+* `P` – H-polytope
+* `part` – split of the coordinates into `q` kept and `r` dropped
+* `x` – point of length `n`
+
+## Hypotheses
+* `hP` – `x` lies in `P.nominal`
+* `hx` – the dropped coordinates of `x` lie in `[-1, 1]`
+
+## Conclusion
+* the kept coordinates of `x` lie in the nominal part of `keepCols`
 -/
 
 -- Authors:       Claude Opus 5.5

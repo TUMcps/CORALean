@@ -8,6 +8,16 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncNeTopIff
 # `SpectraShadow.supportFunc_eq_top_of_unbounded`
 
 A direction in which the functional exceeds every real number on the set gives `⊤`.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `c` – linear functional
+
+## Hypotheses
+* `h` – `c` is unbounded above on `S`
+
+## Conclusion
+* the support function is `⊤`
 -/
 
 -- Authors:       Claude Opus 5.5

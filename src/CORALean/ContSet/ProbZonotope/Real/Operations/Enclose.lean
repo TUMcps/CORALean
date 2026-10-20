@@ -18,6 +18,15 @@ when `trace(Ar) < 0` (CORA's `probZ.cov`, as `gauss` is set here). CORA's own co
 computation differs from the dissertation's. `Theorems.EncloseMeanOuter` is what the mean
 zonotope guarantees; the covariance is not claimed to enclose anything.
 
+## Inputs
+* `P` – probabilistic zonotope
+* `Ar` – `n × n` matrix
+* `m` – real number
+* `Rtrans` – vector of length `n`
+
+## Output
+* the probabilistic zonotope enclosing `P` and its image under `e^{Ar}`
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

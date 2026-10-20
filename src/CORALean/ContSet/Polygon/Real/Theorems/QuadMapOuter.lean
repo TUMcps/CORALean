@@ -18,6 +18,18 @@ in its polynomial zonotope; `quadMap_exact` maps it into the image polynomial zo
 `polygon_outer` into its polygon. Nothing is said of how much larger than the image the result
 is. CORA states the result as a tight enclosure and computes the boundary of the images
 (`polygon(pZ)`), which `polygon_outer` is the enclosure counterpart of.
+
+## Inputs
+* `P` – polygon
+* `Q` – matrices indexed by `Fin 2`
+* `splits` – number of splits
+* `pick` – refinement rule: whether to split a piece in a given round
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Polygon.quadMap` encloses the image of the region
 -/
 
 -- Authors:       Claude Sonnet 5.5

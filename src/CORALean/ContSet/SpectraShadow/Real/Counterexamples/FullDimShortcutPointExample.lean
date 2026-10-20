@@ -13,6 +13,15 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.PointExampleConstruct
 `representsa_(SpS, 'emptySet')` and `cartProd_` read that cache before computing anything, and the
 cache is a handle, so it outlives the call. The point `{0}` of `ℝ¹` (`pointExample`: `1 ⪰ 0`, `G =
 0`) is nonempty, and the test fires.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's `isFullDim` shortcut marks a point as empty
 -/
 
 -- Authors:       Claude Opus 5.5

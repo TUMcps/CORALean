@@ -11,6 +11,15 @@ public import CORALean.ContSet.VPolytope.Real.Instances
 
 Exactly, for the region: a finite union of closed sets has an interior point iff one of them has
 (a closed set with empty interior can be dropped from a union without changing its interior).
+
+## Inputs
+* `P` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* A polygon has an interior point iff some piece has affinely spanning vertices
 -/
 
 -- Authors:       Claude Opus 5.5

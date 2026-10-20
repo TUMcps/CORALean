@@ -13,6 +13,13 @@ The interval hull of the confidence set, `interval(zonotope(probZ, m))`: the box
 interval". CORA's code boxes only the covariance's eigen factor around the center and drops the
 deterministic generators (`intervalCora`); the confidence set `Z ⊕ m g [-1, 1]ⁿ` carries both,
 and every law puts probability at least `erf(m/√2)ⁿ` on its box (`Theorems.IntervalProb`).
+
+## Inputs
+* `P` – probabilistic zonotope
+* `m` – real number
+
+## Output
+* the interval hull of the confidence zonotope at `m`
 -/
 
 -- Authors:       Claude Opus 5.5

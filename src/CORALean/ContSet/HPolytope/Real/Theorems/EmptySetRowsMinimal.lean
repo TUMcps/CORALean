@@ -13,6 +13,15 @@ this holds of CORA's representation of `∅`, the single row `0 ≤ -1` (`HPolyt
 H-representation of `∅` has fewer rows: with no rows at all, every point satisfies the system. Not
 every H-representation of `∅` is minimal (`empty_redundant_counterexample`).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the one-row H-representation of `∅` has the fewest rows
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

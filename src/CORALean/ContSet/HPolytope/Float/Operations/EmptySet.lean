@@ -10,6 +10,13 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 The single constraint `0 ≤ -1`, which no point satisfies, as over ℝ. `neg one` is
 exact, so reading it back gives `-1` and nothing is rounded.
+
+## Inputs
+* `𝕋` – scalar type
+* `n` – natural number
+
+## Output
+* the polytope with the single row `0 ≤ -1`, which no point satisfies
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

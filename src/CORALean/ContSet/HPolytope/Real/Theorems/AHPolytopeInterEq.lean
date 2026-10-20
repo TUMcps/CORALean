@@ -19,6 +19,23 @@ also drops `H₂` from the `w` block and `x̄₁` from the result. With all thre
 inverse among them). Without the equality it fails
 (`ahPolytope_inter_eq_counterexample`).
 
+## Inputs
+* `x₁` – point of length `n`
+* `x₂` – point of length `n`
+* `X₁` – `n × n₁` matrix
+* `X₂` – `n × n₂` matrix
+* `H₁` – `q₁ × n₁` matrix
+* `h₁` – vector of length `q₁`
+* `H₂` – `q₂ × n₂` matrix
+* `h₂` – vector of length `q₂`
+* `X₂d` – `n₂ × n` matrix
+
+## Hypotheses
+* `hg` – `X₂d` is a generalized inverse of `X₂`
+
+## Conclusion
+* the intersection of two AH-polytopes is the set of points with preimages in both
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

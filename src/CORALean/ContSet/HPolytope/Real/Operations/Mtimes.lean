@@ -13,6 +13,16 @@ exactly; a singular map collapses the description and there is nothing to
 precompose with, so the image is enclosed on chosen directions instead. A
 direction on the target is pulled back through the map, and the source answers
 it.
+
+## Inputs
+* `M` – linear map
+* `Aq` – family indexed by `Fin q`
+
+## Hypotheses
+* `u` – a support bound of `P.construct` along each row
+
+## Output
+* the polytope on the directions `Aq` bounded by the image of the bounds `u`
 -/
 
 -- Authors:       Claude Opus 5

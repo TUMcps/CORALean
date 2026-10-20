@@ -18,6 +18,15 @@ in (1)" — and as CORA's `aux_isNonredundantConstraint` computes it: the row fa
 the support function without it exceeds its offset. The printed line 4, `ρ(…) = b₁(j)`, fails
 nowhere on minimal input (`isequalNondeg_printed_counterexample`).
 
+## Inputs
+* `A₁` – `q₁ × n` matrix
+* `b₁` – offset vector of length `q₁`
+* `A₂` – `q₂ × n` matrix
+* `b₂` – offset vector of length `q₂`
+
+## Output
+* `true` when every row of either polytope has an equal row in the other or is redundant
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

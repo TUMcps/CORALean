@@ -11,6 +11,12 @@ CORA's `probReduce(probZ)` replaces the probabilistic generators by the `n` gene
 covariance's eigendecomposition. The model stores the covariance and not the generators, and
 the real `probReduce` is the identity on it (`probReduce_eq`), so this is the identity too: the
 mean zonotope and the covariance interval are kept.
+
+## Inputs
+* `P` – probabilistic zonotope
+
+## Output
+* `P` itself, as the covariance is stored and not the generators
 -/
 
 -- Authors:       Claude Opus 5.5

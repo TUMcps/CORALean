@@ -10,6 +10,12 @@ public import Mathlib.Analysis.Real.Sqrt
 
 `‖aᵢ‖₂`, the 2-norm of the coefficients of a constraint row: `A_norm = sqrt(sum(A.^2, 2))` of
 `@polytope/center`'s `aux_center_LP`.
+
+## Inputs
+* `a` – vector of length `n →ₗ[ℝ] ℝ`
+
+## Output
+* the 2-norm of the coefficients of a row
 -/
 
 -- Authors:       Claude Opus 5.5

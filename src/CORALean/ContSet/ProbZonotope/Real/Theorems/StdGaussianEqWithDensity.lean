@@ -13,6 +13,15 @@ The product of [1, Prop. 1]'s proof, eq. (3), for `Σ = I`, as measures: Mathlib
 `stdGaussian` equals Lebesgue measure with that density. Both are finite and have the
 characteristic function `exp(-‖t‖²/2)`, the density's by Mathlib's Gaussian Fourier integral.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the standard Gaussian on `ℝⁿ` has density `(2π)^{-n/2} exp(-‖y‖²/2)`
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

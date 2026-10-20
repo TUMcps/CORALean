@@ -13,6 +13,15 @@ A deleted row is dominated by a row with the same normal and a right-hand side a
 That row may itself be deleted, but the dominating rows come down in the lexicographic order of
 `(b, index)`, so among the finitely many rows with that normal and `b` at most the deleted row's,
 the least is kept, and it implies the deleted row.
+
+## Inputs
+* `Q` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `dropAligned` denotes the same set, exactly
 -/
 
 -- Authors:       Claude Opus 5.5

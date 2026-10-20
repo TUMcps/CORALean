@@ -9,6 +9,16 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.PreimageAddImage
 # Membership in `HPolytope.padRight`
 
 The mirror statement for the right block.
+
+## Inputs
+* `P` – H-polytope
+* `x` – point of length `n₁ + n₂`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in `P` padded on the right iff its right block lies in `P`
 -/
 
 -- Authors:       Claude Opus 5

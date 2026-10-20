@@ -13,6 +13,17 @@ point of the region within `r` (`hausdorffDist₂_exists_mem_dist_le`, the regio
 which `Polygon.hausdorffDist_le_iff` turns into the value being at most `r`. CORA's value is the
 distance in one direction only, so it is a lower bound of the Hausdorff distance and not
 the distance (`Polygon.hausdorffDist_counterexample`).
+
+## Inputs
+* `P` – polygon
+* `S` – `List (Vec ℝ 2)`
+
+## Hypotheses
+* `hne` – `(ContSet P)` is nonempty
+* `hS` – `S ≠ []`
+
+## Conclusion
+* `Polygon.hausdorffDist` is at most the Hausdorff distance to the points
 -/
 
 -- Authors:       Claude Sonnet 5.5

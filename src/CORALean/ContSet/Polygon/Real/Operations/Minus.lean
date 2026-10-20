@@ -13,6 +13,13 @@ CORA's `@polygon/minus` for a numeric subtrahend: `pgon + (-p)`, which is `ContS
 polygon, the point entering as a union of one singleton (`OfPoint (SetUnion S)`). CORA throws
 for a polygon subtrahend (`minkDiff` is the Minkowski difference), so that case is not defined
 here either.
+
+## Inputs
+* `P` – polygon
+* `p` – point of length `2`
+
+## Output
+* the sum of `P` with the point `-p`
 -/
 
 -- Authors:       Claude Opus 5.5

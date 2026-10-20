@@ -12,6 +12,15 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 
 A pair `aᵀx ≤ b`, `-aᵀx ≤ -b` is the equality `aᵀx = b`, and the equalities appended imply the
 rows moved: a moved row is the lead of its pair or the negation of it.
+
+## Inputs
+* `Q` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `pairsToEq` denotes the same set, exactly
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,6 +16,18 @@ The converse of `smul_mem_halfScaledLeft`: a coefficient vector in the weighted 
 first block meeting `P`'s rows at the weight `(t + 1) / 2` its trailing coordinate names, an
 inequality's bound and an equality's right-hand side both scaled by it. Nothing is said of the
 middle block, which the polytope never reads.
+
+## Inputs
+* `P` – H-polytope
+* `y` – vector of length `n₁`
+* `z` – point of length `n₂`
+* `t` – real number
+
+## Hypotheses
+* `h` – the point `(y, z, t)` lies in `halfScaledLeft`
+
+## Conclusion
+* what a point of `halfScaledLeft` says about its first block
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

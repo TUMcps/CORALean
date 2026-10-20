@@ -11,6 +11,16 @@ public import Mathlib.Tactic.Linarith
 A constraint reads a sum as the sum of what it reads, so moving the bound by
 what it reads off `t` says the same thing about `x` that the original said about
 `x - t`.
+
+## Inputs
+* `t` – space
+* `P` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `HPolytope.translate` is exactly the shift
 -/
 
 -- Authors:       Claude Opus 5

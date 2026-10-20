@@ -17,6 +17,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 # `Polygon.interval` holds the polygon
 
 Each piece's box holds it (`VPolytope.interval_contains`) and `Interval.or` holds both boxes.
+
+## Inputs
+* `P` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Polygon.interval` holds the polygon
 -/
 
 -- Authors:       Claude Opus 5.5

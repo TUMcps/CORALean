@@ -12,6 +12,13 @@ of the Gaussian density `N(μ, Σ)` on its `m`-sigma bound `(x - μ)ᵀ Σ⁻¹ 
 for every mean `μ`. `Theorems.GaussPdfLeMaxIff` says it is the largest density value outside
 the `m`-sigma ellipsoid.
 
+## Inputs
+* `P` – probabilistic zonotope
+* `m` – real number
+
+## Output
+* the Gaussian density `exp(-m²/2) / ((2π)^{n/2} det(Σ)^{1/2})` on the `m`-sigma bound
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

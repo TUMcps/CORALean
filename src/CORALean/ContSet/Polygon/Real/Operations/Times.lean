@@ -10,6 +10,13 @@ public import CORALean.ContSet.Polygon.Real.Operations.Mtimes
 CORA's `@polygon/times`: `pgon = diag(M) * pgon`, so a diagonal matrix applied by `mtimes`. The
 factor is a vector `v` here, the diagonal's entries; a scalar factor is `v = (s, s)`. Not
 `ContSet.times`: a polygon is fixed at dimension two and has no `Mtimes` instance.
+
+## Inputs
+* `v` – vector of length `2`
+* `P` – polygon
+
+## Output
+* every piece scaled coordinatewise by `v`: `mtimes` at `diag(v)`
 -/
 
 -- Authors:       Claude Sonnet 5.5

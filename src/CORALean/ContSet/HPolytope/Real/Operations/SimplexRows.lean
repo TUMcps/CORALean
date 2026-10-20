@@ -13,6 +13,12 @@ public import Mathlib.Data.Fin.VecNotation
 vector, so the unit ball touches every facet — followed by one row per sampled direction `ℓⱼ`,
 all with offset `1`. The directions are inputs; sampling them is outside the formalization.
 
+## Inputs
+* `ℓ` – vectors indexed by `Fin m`
+
+## Output
+* the simplex rows `xᵢ ≤ 1`, `-(1/√n) ∑ xᵢ ≤ 1`, followed by one row per direction `ℓⱼ`
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

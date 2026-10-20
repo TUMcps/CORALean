@@ -10,6 +10,12 @@ public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
 
 `spectraShadow([1 0 -1 0; 0 -1 0 1])`: `diag(1 - β, β - 1) ⪰ 0`, the point `{1}` of `ℝ¹`, from
 `one`, `zero` and the exact negation of `one`. The box is the origin.
+
+## Inputs
+* none
+
+## Output
+* the point `{1}` of `ℝ¹`, the inequality `diag(1 - β, β - 1) ⪰ 0`
 -/
 
 -- Authors:       Claude Opus 5.5

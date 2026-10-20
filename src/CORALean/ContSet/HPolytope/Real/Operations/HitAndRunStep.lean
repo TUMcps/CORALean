@@ -14,6 +14,15 @@ chord `[t̲, t̄]` of `[2, Eq. 1]`, which for a bounded polytope is exact at an 
 the uniform draw is `x + (t̲ + u (t̄ - t̲)) d` for `u` uniform on `[0, 1]`. The two random inputs,
 `d` and `u`, are arguments; `none` is an unbounded chord, where no uniform draw exists.
 
+## Inputs
+* `P` – H-polytope
+* `x` – point
+* `d` – direction
+* `u` – real number
+
+## Output
+* one Hit-and-Run step from `x` along `d`, the uniform draw on the chord given by `u`
+
 ## References
 
 * [1] R. L. Smith. "Efficient Monte Carlo Procedures for Generating Points Uniformly Distributed

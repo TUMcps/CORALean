@@ -9,6 +9,12 @@ public import CORALean.ContSet.Polygon.Float.Polygon
 
 CORA's `polygon/representsa_` at `'emptySet'`: no piece has a vertex. Generic in the scalar, since
 a count of vertices is a natural number.
+
+## Inputs
+* `P` – polygon
+
+## Output
+* `true` when no piece has a vertex
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,6 +16,12 @@ there is one, mark all of them and `i` as moved (`idxMoveToEq`) and append `[aáµ
 equality rows. The state is the set of moved rows and the list of rows appended, in order. A row
 `i` that has an inverted partner already moved by an earlier row, but is not itself marked, is
 appended again, as CORA does.
+
+## Inputs
+* `Q` â€“ H-polytope
+
+## Output
+* the matched rows and the rows to turn into equalities
 -/
 
 -- Authors:       Claude Opus 5.5

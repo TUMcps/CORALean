@@ -11,6 +11,12 @@ Not the zero-generator case every other representation's singleton is: a
 halfspace description has no generators to drop, only rows to add, so a
 point costs `n` equality constraints, one per coordinate — why this
 representation was the one left without an `OfPoint` in the earlier round.
+
+## Inputs
+* `v` – vector of length `n`
+
+## Output
+* the polytope of `n` equality rows pinning each coordinate, no inequalities
 -/
 
 -- Authors:       Claude Opus 5

@@ -27,6 +27,15 @@ reads `cov` or `g * g`. Read from the source, not run.
 `probZonotope([0;0], eye(2))` has `cov = I`, `g = I`. `interval(2*eye(2)) * probZ` sets `g = 2I`
 and leaves `cov`, so `sigma` returns `I` and `zonotope(R, 2)` has generators `2I`, where the map
 `x ↦ 2x` gives `sigma = 4I`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's `sigma` is `1` for the map `x ↦ 2x`, whose covariance is `4`
 -/
 
 -- Authors:       Claude Sonnet 5.5

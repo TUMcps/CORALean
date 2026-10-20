@@ -15,6 +15,12 @@ right-hand side is certified farther from `0` than its slack, is infeasible and 
 the empty set. Otherwise the zero rows certified to hold (`0 ≤ b` by `le`, `be = 0` by
 `eqScalar`, either of which the slack only widens) are deleted by `restrict`; a row whose
 certificate fails is kept. Only the infeasibility test rounds, and the error box is kept.
+
+## Inputs
+* `Q` – H-polytope
+
+## Output
+* the empty set if a zero row is certified infeasible, else the rows not certified trivial
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

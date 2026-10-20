@@ -14,6 +14,14 @@ public import Mathlib.Data.Real.Basic
 `S_P(x) = max {0, η₁ x / h₁, …, η_s x / h_s}`. The `0` makes it a fold of `max` from `0`
 over the rows.
 
+## Inputs
+* `H` – `s × n` matrix
+* `h` – vector of length `s`
+* `x` – point of length `n`
+
+## Output
+* `S_P(x)`, `[1, Def. 3]`
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

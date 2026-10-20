@@ -10,6 +10,12 @@ public import CORALean.ContSet.HPolytope.Float.Operations.IsInvertedPair
 CORA's `priv_compact_toEquality`: every pair `aᵀx ≤ b`, `-aᵀx ≤ -b` becomes the equality
 `aᵀx = b`, appended after the existing equality rows with the right-hand side `b`; the rows in pairs
 are deleted from the inequalities. Nothing rounds, and the error box is kept.
+
+## Inputs
+* `Q` – H-polytope
+
+## Output
+* the rows outside an inverted pair, and the lead row of each pair as an equality
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

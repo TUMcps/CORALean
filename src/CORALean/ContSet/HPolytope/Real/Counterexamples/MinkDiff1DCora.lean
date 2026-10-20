@@ -19,10 +19,9 @@ position. `priv_compact_1D` ([2], l. 77-89) leaves two rows `[1; -1]` only for a
 sides; a subtrahend bounded on one side keeps the single row `1` or `-1`, and MATLAB broadcasts
 its one offset over both rows of the minuend, whatever that row's direction.
 
-The compacted operands `P_`, `S_` are the arguments; the compaction itself is
-`priv_compact_1D`'s, not modelled. `representsa_` reads as exact. MATLAB's `-` broadcasts a
-one-row operand, subtracts equal lengths entrywise and errors otherwise; `none` is an error.
-Read from the source, not run.
+The compacted operands `P_`, `S_` are the arguments; the compaction is `priv_compact_1D`'s, not
+modelled. `representsa_` reads as exact. MATLAB's `-` broadcasts a one-row operand, subtracts
+equal lengths entrywise and errors otherwise (`none`). Read from the source, not run.
 
 # CORA's 1-D polytope `minkDiff` with a one-sided subtrahend is not inner
 
@@ -31,6 +30,15 @@ compacts to its single row `x ≤ 0` (`priv_compact_1D`, l. 77-89: `b = [0; min(
 inequality, `A = 1`). `HPolytope.minkDiff1DCora` subtracts the offset `0` from both rows of the
 minuend and returns `[-1, 1]` again, while `P ⊖ S` is empty: `S` is unbounded below and `P` is
 not. So `0` is in CORA's result although `0 + (-2) ∉ P`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's 1-D difference contains `0` although `P ⊖ S` is empty
 
 ## References
 

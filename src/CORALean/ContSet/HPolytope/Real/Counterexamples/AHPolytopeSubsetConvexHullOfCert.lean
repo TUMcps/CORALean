@@ -19,6 +19,15 @@ and `ker H₂ = {0}`, as `[1, Def. 1]` asks). The inbody `Px = {0} × [-1, 0]`, 
 the second summand's `Γ₂ Px = Px` only has to satisfy `H₂ y ≤ 0`, which `x₁ = 0, x₂ ≤ 0`
 does. Yet `conv(P₁ ∪ P₂) = {0}` misses `(0, -1)`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* `[1, Prop. 3]` fails at an empty circumbody
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

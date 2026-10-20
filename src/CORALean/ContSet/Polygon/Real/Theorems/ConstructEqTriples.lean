@@ -15,6 +15,15 @@ Carathéodory's theorem in the plane: a point of the hull of finitely many point
 of at most three of them, so the hull is the union over all triples `(a, b, c)` of vertices of the
 triangle they span (a degenerate one, a segment or a point, when two coincide). The triangles
 overlap; this is a cover of the piece, not a partition.
+
+## Inputs
+* `p` – V-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* A planar vertex description is the union of its vertex triangles
 -/
 
 -- Authors:       Claude Sonnet 5.5

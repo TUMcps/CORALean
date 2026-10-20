@@ -11,6 +11,14 @@ CORA's `@spectraShadow/isBounded` asks whether every axis support is finite, `2n
 programs. Here their dual certificates are the caller's, and the test is whether all of them
 check, i.e. whether the certified interval hull exists. Sufficient only: `true` proves the set
 bounded, `false` says only that these certificates do not.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `Yup` – matrices indexed by `Fin n`
+* `Ylo` – matrices indexed by `Fin n`
+
+## Output
+* `true` when the certified interval hull exists, so every axis support is finite
 -/
 
 -- Authors:       Claude Opus 5.5

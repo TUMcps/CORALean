@@ -12,17 +12,22 @@ public import Mathlib.Tactic.FinCases
 # The edge halfspaces of `Polygon.innerHRep` lie inside the piece
 
 A point `x` left of every edge `vᵢ → vᵢ₊₁` lies in a triangle of the fan from `v₀`. The
-orientations `sᵢ = (vᵢ - v₀) × (x - v₀)` start nonnegative (`x` is left of the first edge) and
-end nonpositive (it is left of the closing edge `vₖ₋₁ → v₀`), so some `i` has `sᵢ ≥ 0 ≥ sᵢ₊₁`;
-with the edge `vᵢ → vᵢ₊₁` these are the three edge orientations of `x` in the triangle
-`v₀ vᵢ vᵢ₊₁`, all nonnegative, and that triangle is certified counterclockwise, so they are
-barycentric coordinates. No convex position is needed: for vertices out of convex position the
-halfspaces cut out less, never more.
+orientations `sᵢ = (vᵢ - v₀) × (x - v₀)` start nonnegative and end nonpositive (`x` is left of
+the closing edge `vₖ₋₁ → v₀`), so some `i` has `sᵢ ≥ 0 ≥ sᵢ₊₁`; with the edge `vᵢ → vᵢ₊₁` these
+are the three edge orientations of `x` in the triangle `v₀ vᵢ vᵢ₊₁`, all nonnegative, and that
+triangle is certified counterclockwise, so they are barycentric coordinates. No convex position
+is needed: out of convex position the halfspaces cut out less, never more. The certified checks
+read as reals: the stored normal is the real one and the stored bound is at most `aᵀvᵢ`. The
+hull of the stored vertices lies in the piece since its error box holds `0`.
 
-The certified checks read as reals: each stored edge difference equals the real one (rounded
-down, and no larger rounded up), so the stored normal is the real one, and the stored bound is
-at most `aᵀvᵢ`, so a point of the halfspace is left of the edge. The hull of the stored vertices
-lies in the piece since its error box holds `0`.
+## Inputs
+* `p` – V-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the edge halfspaces of `Polygon.innerHRep` lie inside the piece
 -/
 
 -- Authors:       Claude Opus 5.5

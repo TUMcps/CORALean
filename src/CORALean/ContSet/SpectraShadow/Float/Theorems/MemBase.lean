@@ -11,6 +11,16 @@ public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 
 At `β` the base shadow's inequality is the shadow's own, its point is `β` (identity generators,
 center `0`), and its box is the origin.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `β` – vector of length `S.m`
+
+## Hypotheses
+* `hP` – `(toRealMat S.A₀ + ∑ i, β i • toRealMat (S.A i))` is positive semidefinite
+
+## Conclusion
+* the base spectrahedron holds every feasible `β`
 -/
 
 -- Authors:       Claude Opus 5.5

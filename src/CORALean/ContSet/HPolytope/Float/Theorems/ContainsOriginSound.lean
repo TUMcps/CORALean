@@ -10,6 +10,15 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemNominalIff
 
 Every row reads the origin as `0`: an inequality's bound with its slack is at least the rounded-down
 sum the test certified nonnegative, and an equality's right-hand side is within its slack of `0`.
+
+## Inputs
+* `P` – H-polytope
+
+## Hypotheses
+* `h` – `P.containsOrigin` holds
+
+## Conclusion
+* A passed test puts the origin in the nominal part
 -/
 
 -- Authors:       Claude Opus 5.5

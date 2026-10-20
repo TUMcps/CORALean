@@ -6,6 +6,20 @@ public import CORALean.ContSet.HPolytope.Float.HPolytope
 
 /-!
 # A row of a concatenated constraint matrix, on the left block
+
+## Inputs
+* `m₁` – natural number
+* `m₂` – natural number
+* `A₁` – `m₁ × n` matrix
+* `A₂` – `m₂ × n` matrix
+* `x` – point of length `n`
+* `j` – index below `m₁`
+
+## Hypotheses
+* none
+
+## Conclusion
+* a row of the concatenated matrix from `A₁` gives the same value at `x` as in `A₁`
 -/
 
 -- Authors:       Claude Opus 5

@@ -9,17 +9,21 @@ public import CORALean.ContSet.Polygon.Float.Operations.InnerHRep
 /-!
 # `Polygon.minkDiff`
 
-CORA's `polygon/minkDiff(pgon, subtrahend)` over a floating-point scalar, by a different
-route from CORA's sweep (`Polygon.minkDiff` of the exact layer): every minuend piece with a
-certified inner halfspace description (`Polygon.innerHRep`; a piece without one is dropped)
-has each of its rows shifted inward by a float upper bound of the subtrahend's support in that
-row's direction (`Polygon.boundDot`, at the stored row, which is the exact normal), the shift
-rounded so the bound only shrinks (`HPolytope.minkDiffOf`). A halfspace minus any set is the
-halfspace shifted by the set's support, so the subtrahend need not be convex, and no boundary
-loop is read. The result is the union of these halfspace pieces: inside the Minkowski
-difference of the two regions, not equal to it, since a point whose translate of the
-subtrahend straddles two minuend pieces is never found, and nor is anything of a dropped
-piece.
+CORA's `polygon/minkDiff(pgon, subtrahend)` over a floating-point scalar, by a different route
+from CORA's sweep (`Polygon.minkDiff` of the exact layer): every minuend piece with a certified
+inner halfspace description (`Polygon.innerHRep`; a piece without one is dropped) has each row
+shifted inward by a float upper bound of the subtrahend's support in that row's direction
+(`Polygon.boundDot`), the shift rounded so the bound only shrinks (`HPolytope.minkDiffOf`). The
+subtrahend need not be convex, and no boundary loop is read. The result is the union of these
+pieces: inside the Minkowski difference, not equal to it, since a point whose translate of the
+subtrahend straddles two minuend pieces is never found, nor is anything of a dropped piece.
+
+## Inputs
+* `P` – polygon
+* `Q` – polygon
+
+## Output
+* each certified minuend piece, its edge rows shifted inward by the subtrahend's support
 -/
 
 -- Authors:       Claude Opus 5.5

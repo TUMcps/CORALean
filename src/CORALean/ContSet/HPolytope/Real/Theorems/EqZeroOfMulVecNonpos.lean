@@ -14,6 +14,19 @@ public import Mathlib.Data.Matrix.Mul
 `p + t d` with `H d ≤ 0` and `t ≥ 0` stays inside. This is what makes `{H y ≤ 0 · h}` the
 set `0 · P`, the reading a convex-hull encoding gives a zero weight; for an empty `P` it
 fails, `{H y ≤ 0}` being any cone the rows leave open.
+
+## Inputs
+* `H` – `q × n` matrix
+* `h` – vector of length `q`
+* `d` – direction of length `n`
+
+## Hypotheses
+* `hne` – the polytope `ineqs H h` is nonempty
+* `hb` – `(HPolytope.ineqs H h)` is bounded
+* `hd` – `H *ᵥ d ≤ 0`
+
+## Conclusion
+* A bounded nonempty H-polytope has no recession direction
 -/
 
 -- Authors:       Claude Opus 5.5

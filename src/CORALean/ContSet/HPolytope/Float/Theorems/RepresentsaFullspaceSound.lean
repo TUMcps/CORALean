@@ -12,6 +12,15 @@ public import CORALean.ContSet.Interval.Float.Theorems.Basic
 When `representsaFullspace` answers `true`, every stored row is `0` read as reals, every
 right-hand side admits `0`, so every point meets every row. One-sided: `false` decides
 nothing, since a `le` may fail on numbers it could have certified.
+
+## Inputs
+* `P` – H-polytope
+
+## Hypotheses
+* `h` – `P.representsaFullspace` holds
+
+## Conclusion
+* A float polytope the `'fullspace'` test accepts is the whole space
 -/
 
 -- Authors:       Claude Opus 5.5

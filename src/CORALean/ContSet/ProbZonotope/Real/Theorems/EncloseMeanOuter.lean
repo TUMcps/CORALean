@@ -15,6 +15,21 @@ contains `a μ + (1 - a)(e^{Ar} μ + Rtrans)`: the sampled points of the set
 `{a x₁ + (1 - a) x₂ | x₁ ∈ probZ, x₂ ∈ e^{Ar} probZ + Rtrans}` of CORA's header, on the means.
 An over-approximation of the means, not equal to them; what it says of the covariance is
 nothing.
+
+## Inputs
+* `P` – probabilistic zonotope
+* `Ar` – `n × n` matrix
+* `m` – real number
+* `Rtrans` – vector of length `n`
+* `μ` – mean of length `n`
+* `a` – real number
+
+## Hypotheses
+* `hμ` – `μ` lies in `P.Z`
+* `ha` – `a` lies in `[0, 1]`
+
+## Conclusion
+* the mean zonotope of `enclose` contains the segments from `μ` to `e^{Ar} μ + Rtrans`
 -/
 
 -- Authors:       Claude Opus 5.5

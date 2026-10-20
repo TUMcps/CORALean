@@ -10,6 +10,15 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncEqBotIff
 
 Every axis support is `0` exactly when the set is `{0}`, in a positive dimension: in dimension
 `0` the loop is empty and CORA's `representsa_emptyObject` answers first.
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Hypotheses
+* `hn` – `0 < n`
+
+## Conclusion
+* `representsa_origin` holds iff the shadow is `{0}`
 -/
 
 -- Authors:       Claude Opus 5.5

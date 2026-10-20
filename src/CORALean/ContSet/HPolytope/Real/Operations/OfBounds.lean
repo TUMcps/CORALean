@@ -15,6 +15,15 @@ directions — and the right-hand side is whatever the certificates say, so
 soundness never depends on the choice and only precision does.
 
 Nothing here solves a linear program. It consumes the answers.
+
+## Inputs
+* `Aq` – family indexed by `Fin q`
+
+## Hypotheses
+* `u` – a support bound of `S` along each row
+
+## Output
+* the polytope with rows `Aq` and right-hand sides the certified bounds `u`
 -/
 
 -- Authors:       Claude Opus 5

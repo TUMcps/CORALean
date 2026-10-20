@@ -11,6 +11,15 @@ public import CORALean.ContSet.ProbZonotope.Real.Counterexamples.UnitMeanInterva
 factor, so a probabilistic zonotope without covariance is boxed to its center: in `ℝ¹` the mean
 zonotope `[-1, 1]` with covariance `0` has the mean `1`, outside the box `{0}`. The help says it
 overapproximates the probabilistic zonotope.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* some mean `μ` of a probabilistic zonotope lies outside CORA's interval
 -/
 
 -- Authors:       Claude Opus 5.5

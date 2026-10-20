@@ -11,6 +11,16 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 
 The first nominal piece is the hull of its vertices, all of them in the second, convex,
 nominal piece; and the first box is in the second. A sum of subsets is a subset of the sum.
+
+## Inputs
+* `p` – V-polytope
+* `q` – V-polytope
+
+## Hypotheses
+* `h` – `Polygon.pieceSubset p q` holds
+
+## Conclusion
+* the piece `p` lies in the piece `q`
 -/
 
 -- Authors:       Claude Opus 5.5

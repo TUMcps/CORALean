@@ -9,6 +9,17 @@ public import CORALean.ContSet.Polygon.Float.Operations.OrientBounds
 
 Each of the six products lies between its two roundings, and the rounded sums bracket the sums,
 so the orientation of the points read as reals lies between the two stored bounds.
+
+## Inputs
+* `p` – point of length `2`
+* `q` – vector of length `2`
+* `r` – vector of length `2`
+
+## Hypotheses
+* none
+
+## Conclusion
+* the bounds of `orientBounds` bracket the real orientation of `p`, `q`, `r`
 -/
 
 -- Authors:       Claude Opus 5.5

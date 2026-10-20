@@ -11,6 +11,17 @@ public import CORALean.ContSet.ProbZonotope.Real.Theorems.MapMultivariateGaussia
 
 Outer: the image of a law of `P` under the coordinate projection is a law of `P.project dims`,
 through the selection matrix: `Σ(dims, dims) = S Σ Sᵀ`.
+
+## Inputs
+* `m` – natural number
+* `P` – probabilistic zonotope
+* `dims` – indices indexed by `Fin m`
+
+## Hypotheses
+* none
+
+## Conclusion
+* the coordinate projections of the laws of `P` are laws of `P.project dims`
 -/
 
 -- Authors:       Claude Opus 5.5

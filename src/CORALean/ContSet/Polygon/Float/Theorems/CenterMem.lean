@@ -21,6 +21,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 CORA's `polygon/center` for a float polygon: the centroid of the region the float polygon denotes
 (`Polygon.regionCenter`, the real average) lies in the box `Polygon.interval` computes, since the
 box is convex and holds the region. A box, not the point; the area must be positive.
+
+## Inputs
+* `P` – polygon
+
+## Hypotheses
+* `h0` – the region has nonzero volume
+
+## Conclusion
+* the centroid of a float polygon lies in its interval hull
 -/
 
 -- Authors:       Claude Sonnet 5.5

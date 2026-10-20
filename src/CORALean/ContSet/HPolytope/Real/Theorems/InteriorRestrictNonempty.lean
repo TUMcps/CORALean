@@ -15,6 +15,20 @@ injective, its range the direction of the hull — and `c ∈ P`, the polytope `
 ⊆ ℝʳ` has an interior, "by definition of `B`": the directions `P'` spans are mapped by `B` onto
 the directions `P` spans, which are all of `range B`, so `P'` spans all of `ℝʳ`.
 
+## Inputs
+* `A` – `q × n` matrix
+* `b` – offset vector of length `q`
+* `B` – `n × r` matrix
+* `c` – center of length `n`
+
+## Hypotheses
+* `hc` – `c` lies in `(HPolytope.ineqs A b)`
+* `hB` – `B` is injective as a linear map
+* `hspan` – the range of `B` is the vector span of the polytope
+
+## Conclusion
+* the restriction of a polytope to its affine hull is non-degenerate
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

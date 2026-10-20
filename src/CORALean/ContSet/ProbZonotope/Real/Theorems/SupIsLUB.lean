@@ -14,6 +14,16 @@ The box of a zonotope attains its bounds in every coordinate (`Zonotope.interval
 the larger sup-norm of the two bounds is not only an upper bound of `‖x‖∞` over
 `zonotope(probZ, m)` but its least one. Exact, as CORA's help for `sup` says; CORA's code reads
 the box that ignores the deterministic generators (`supCora_lt`).
+
+## Inputs
+* `P` – probabilistic zonotope
+* `m` – real number
+
+## Hypotheses
+* none
+
+## Conclusion
+* `ProbZonotope.sup` is the supremum of the sup-norm over the confidence set
 -/
 
 -- Authors:       Claude Opus 5.5

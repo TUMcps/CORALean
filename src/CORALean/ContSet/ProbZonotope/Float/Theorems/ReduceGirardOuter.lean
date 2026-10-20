@@ -10,6 +10,16 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceGirardOuter
 
 Outer: every law of `P` is a law of the reduced model, as the mean zonotope grows and the
 covariance is kept.
+
+## Inputs
+* `P` – probabilistic zonotope
+* `o` – natural number
+
+## Hypotheses
+* none
+
+## Conclusion
+* `ProbZonotope.reduceGirard` keeps the laws
 -/
 
 -- Authors:       Claude Opus 5.5

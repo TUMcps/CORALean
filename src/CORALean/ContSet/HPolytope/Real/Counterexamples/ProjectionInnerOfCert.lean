@@ -20,6 +20,15 @@ as printed — the `Λ₂` line with its `- H_Ball x̄` — yet `d_H(X, F_proj) 
 `-4` is `4` from `[0, 2]`. With the sign corrected (`projection_inner_of_cert`) the same
 weights fail that line.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* `[1, Prop. 7]` fails as printed
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

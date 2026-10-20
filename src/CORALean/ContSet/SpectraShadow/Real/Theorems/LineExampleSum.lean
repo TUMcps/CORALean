@@ -8,6 +8,15 @@ public import CORALean.ContSet.SpectraShadow.Real.Operations.LineExample
 # `SpectraShadow.lineExample_sum`
 
 The combination of the line example's generators is the diagonal point `(β₁, β₁)`.
+
+## Inputs
+* `β` – real numbers indexed by `Fin 2`
+
+## Hypotheses
+* none
+
+## Conclusion
+* the combination of the generators is the diagonal point `(β₀, β₀)`
 -/
 
 -- Authors:       Claude Opus 5.5

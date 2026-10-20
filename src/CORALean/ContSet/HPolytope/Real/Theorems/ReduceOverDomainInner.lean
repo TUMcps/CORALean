@@ -12,6 +12,16 @@ For the type that takes the infimum: every point of the domain satisfying the re
 satisfies every normalized row `i`, `a_i' x ≤ A_reduced' x + sup (A - A_reduced)' * dom`, and
 the infimum of `b` is below `b_i`. Only for a `P` without equality constraints, which
 `reduceOverDomain` does not read. An inner approximation over the domain.
+
+## Inputs
+* `P` – H-polytope
+* `dom` – domain interval
+
+## Hypotheses
+* `hme` – `P.me = 0`
+
+## Conclusion
+* `HPolytope.reduceOverDomain` of the other type lies in `P` over the domain
 -/
 
 -- Authors:       Claude Opus 5.5

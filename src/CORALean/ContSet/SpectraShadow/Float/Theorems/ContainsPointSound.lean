@@ -13,6 +13,17 @@ Read as reals, the stored matrices are symmetric, so the combination at `β` is;
 entries lies between the roundings the test compared, so it is diagonally dominant and positive
 semidefinite (`SpectraShadow.posSemidef_of_diagDominant`). The point `c + G β` is then in the
 nominal shadow, and the remainder `p - c - G β` in the error box.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `p` – point of length `n`
+* `β` – vector of length `S.m`
+
+## Hypotheses
+* `h` – `S.containsPoint p β` holds
+
+## Conclusion
+* the point `p` lies in the shadow
 -/
 
 -- Authors:       Claude Opus 5.5

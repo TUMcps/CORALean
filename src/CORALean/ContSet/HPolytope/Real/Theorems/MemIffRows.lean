@@ -10,6 +10,16 @@ public import Mathlib.Tactic.Linarith
 
 `rows` lists the inequality rows and each equality row once with either sign, `rowsRhs` their
 right-hand sides: `x ∈ P` iff `rowᵢ x ≤ rhsᵢ` for every `i`.
+
+## Inputs
+* `P` – H-polytope
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* A point is in a polytope iff every row holds
 -/
 
 -- Authors:       Claude Opus 5.5

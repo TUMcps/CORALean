@@ -14,6 +14,23 @@ there exist `Γ`, `β` and `Λ ≥ 0` with `X = Y Γ`, `ȳ - x̄ = Y β`, `Λ Hx
 from a given certificate with no full-dimensionality at all; this is the printed statement,
 hypothesis and existential included, read off it.
 
+## Inputs
+* `xbar` – mean of length `n`
+* `ybar` – mean of length `n`
+* `X` – `n × nx` matrix
+* `Y` – `n × ny` matrix
+* `Hx` – `qx × nx` matrix
+* `hx` – vector of length `qx`
+* `Hy` – `qy × ny` matrix
+* `hy` – vector of length `qy`
+* `_hfull` – full-dimensionality of the first polytope, unused
+
+## Hypotheses
+* `h` – a certificate `Γ`, `β`, `Λ` of the conditions (12) exists
+
+## Conclusion
+* `x̄ + X Px ⊆ ȳ + Y Py` for a full-dimensional `Px`, as printed in [1, Thm. 1]
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

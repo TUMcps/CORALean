@@ -11,6 +11,16 @@ public import CORALean.ContSet.ProbZonotope.Real.Theorems.GZonotopeLawEq
 [1, Def. 4]'s G-zonotope with uncertain mean `Z ⊞ (0, g)`: its laws are exactly the laws of
 the G-zonotopes `μ + g N` with certain mean `μ ∈ Z` (`gZonotopeLaw_eq`).
 
+## Inputs
+* `Z` – zonotope
+* `g` – `n × q` matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the laws of `ofGenerators` are those of `μ + g N`
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

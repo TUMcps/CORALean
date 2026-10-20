@@ -15,6 +15,16 @@ reads `Aᵢ x ≤ loᵢ + |b_errorᵢ| + (hiᵢ - loᵢ)`, at least `rᵢ + |b_e
 does. So no bound is raised, an equality stays an equality, and the rows and the error box are
 kept; `HPolytope.mem_setRhs_nominal` is the guarantee. The enclosures may depend on the point
 read, which is how `scaleRows` pays the rounding of its scaled rows.
+
+## Inputs
+* `P` – H-polytope
+* `lo` – vector of length `P.m`
+* `hi` – vector of length `P.m`
+* `loE` – vector of length `P.me`
+* `hiE` – vector of length `P.me`
+
+## Output
+* `P` with right-hand sides `lo`, `loE` and each slack grown by the width to `hi`, `hiE`
 -/
 
 -- Authors:       Claude Opus 5.5

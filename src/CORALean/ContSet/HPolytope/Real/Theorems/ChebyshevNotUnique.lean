@@ -15,6 +15,15 @@ public import Mathlib.Tactic.Linarith
 for this is a rectangle". For `[0, 2] × [0, 1]` the largest radius is `1/2` — the two rows
 bounding the second coordinate allow no more — and both `(1/2, 1/2)` and `(3/2, 1/2)` attain it.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Chebyshev center is not unique
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

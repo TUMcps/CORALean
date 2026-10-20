@@ -12,6 +12,13 @@ A float point lies in the hull of a piece's stored vertices (the nominal piece, 
 error box): in the plane a point of a hull lies in a triangle of three of the vertices
 (Carathéodory), so every triple of vertices is tried with `Polygon.inTriangle`. Only `true` is
 certain; a point on an edge or too close to one for the rounding answers `false`.
+
+## Inputs
+* `p` – V-polytope
+* `x` – point of length `2`
+
+## Output
+* `true` when `x` lies in a triangle of three stored vertices of the piece `p`
 -/
 
 -- Authors:       Claude Opus 5.5

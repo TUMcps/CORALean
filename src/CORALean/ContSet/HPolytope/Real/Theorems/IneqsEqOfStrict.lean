@@ -18,6 +18,20 @@ walking from a point of the polytope towards `x` would reach a point of the poly
 removed halfspace's boundary, which `T` does not touch. At an empty polytope it fails; see
 `ineqs_eq_of_strict_counterexample`.
 
+## Inputs
+* `A` – `q × n` matrix
+* `b` – offset vector of length `q`
+* `J` – `Finset (Fin q)`
+* `T` – set of points
+
+## Hypotheses
+* `hne` – the polytope `ineqs A b` is nonempty
+* `hT` – `(HPolytope.ineqs A b)` lies in `T`
+* `hJ` – the rows in `J` are strict on all of `T`
+
+## Conclusion
+* halfspaces strictly containing an enclosure are redundant
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

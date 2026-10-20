@@ -13,6 +13,14 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 `x ↦ M x + z` (line 7). The image is written in halfspaces, `⟨A M⁻¹, 1 + A M⁻¹ z⟩`, which is the
 image when `M` is invertible — what line 6 samples, and what `generateRandomH_isBounded` asks.
 
+## Inputs
+* `ℓ` – vectors indexed by `Fin m`
+* `M` – `n × n` matrix
+* `z` – point of length `n`
+
+## Output
+* the simplex rows `A` with offset `1`, mapped by `x ↦ M x + z`: `⟨A M⁻¹, 1 + A M⁻¹ z⟩`
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

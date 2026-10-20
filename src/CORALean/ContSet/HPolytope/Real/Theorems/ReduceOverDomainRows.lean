@@ -13,6 +13,18 @@ On the domain, the reduced row `A_reduced' x` differs from a normalized row `a_i
 `(a_i - A_reduced)' x`, which lies between the infimum and the supremum of
 `(A - A_reduced)' * dom`, the corner sums of `reduceOverDomain`. Written against the reduced
 right-hand sides: the outer one is `sup b - prodInf`, the inner one `inf b - prodSup`.
+
+## Inputs
+* `P` – H-polytope
+* `dom` – domain interval
+* `x` – point of length `n`
+* `i` – index below `P.m`
+
+## Hypotheses
+* `hx` – `x` lies in `dom`
+
+## Conclusion
+* each normalized row lies between the reduced inner and outer rows, up to the offset bounds
 -/
 
 -- Authors:       Claude Opus 5.5

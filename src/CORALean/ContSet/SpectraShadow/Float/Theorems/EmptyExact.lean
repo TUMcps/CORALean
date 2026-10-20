@@ -11,6 +11,15 @@ public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
 
 The stored constant reads as `-1`, and `-1 ⪰ 0` is met by no coefficient family, its diagonal
 being negative; the nominal part is `∅`, and so is its sum with the error box.
+
+## Inputs
+* `n` – natural number
+
+## Hypotheses
+* none
+
+## Conclusion
+* `SpectraShadow.empty` denotes the empty set
 -/
 
 -- Authors:       Claude Sonnet 5.5

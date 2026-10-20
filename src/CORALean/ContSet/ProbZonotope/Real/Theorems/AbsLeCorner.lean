@@ -13,6 +13,17 @@ corner `|c| + Σ |gⱼ|` of the new mean zonotope, which bounds the entrywise ab
 possible mean: the box around the result's means contains `|μ|` for every mean `μ`, the covariance
 untouched.
 Outer, as a box.
+
+## Inputs
+* `P` – probabilistic zonotope
+* `μ` – mean of length `n`
+* `i` – index below `n`
+
+## Hypotheses
+* `hμ` – `μ` lies in `P.Z`
+
+## Conclusion
+* what `ProbZonotope.abs` keeps of its input
 -/
 
 -- Authors:       Claude Opus 5.5

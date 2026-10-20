@@ -17,6 +17,33 @@ nonempty and bounded: at `λᵢ = 0` it is the recession cone, `{0}` exactly the
 (`eq_zero_of_mulVec_nonpos`). The printed statement asks neither, and is false for an
 empty `Pᵢ` (`ahPolytope_subset_convexHull_of_cert_counterexample`).
 
+## Inputs
+* `qy` – natural numbers indexed by `Fin N`
+* `xbar` – mean of length `n`
+* `X` – `n × nx` matrix
+* `Hx` – `qx × nx` matrix
+* `hx` – vector of length `qx`
+* `Hy` – matrices indexed by `Fin N`
+* `hy` – vectors indexed by `Fin N`
+* `Λ` – matrices indexed by `Fin N`
+* `lam` – real numbers indexed by `Fin N`
+* `β` – vectors indexed by `Fin N`
+* `Γ` – matrices indexed by `Fin N`
+
+## Hypotheses
+* `hne` – each polytope is nonempty
+* `hb` – each polytope is bounded
+* `hΛ` – `Λ` has nonnegative entries
+* `hlam` – `∀ i, 0 ≤ lam i`
+* `h1` – each `Λ i` carries `Hx` to `Hy i Γ i`
+* `h2` – each bound of `Λ i` is at most the bound of `Hy i` shifted by `β i`
+* `hsum` – `∑ i, lam i = 1`
+* `hc` – the shifts `-β i` sum to `xbar`
+* `hX` – `∑ i, Γ i = X`
+
+## Conclusion
+* an AH-polytope in a convex hull of H-polytopes, sufficiently
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

@@ -13,6 +13,12 @@ symmetrized, `Σ ← (Σ + Σᵀ)/2`, "for numerical stability", and its eigende
 are Mathlib's, `V` orthogonal; MATLAB's `eig` picks its own, and any choice gives the same
 `G Gᵀ` (`Theorems.GeneratorsMulTranspose`). `√` is the real square root, which for a negative
 eigenvalue is `0` where MATLAB's is imaginary: a covariance has none.
+
+## Inputs
+* `P` – probabilistic zonotope
+
+## Output
+* the probabilistic generators `G = V √W` of the symmetrized covariance
 -/
 
 -- Authors:       Claude Opus 5.5

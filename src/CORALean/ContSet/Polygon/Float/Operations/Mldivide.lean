@@ -10,6 +10,13 @@ public import CORALean.ContSet.Polygon.Float.Operations.Subtract
 CORA's `polygon/mldivide(pgon, S)` subtracts the converted operand `polygon(S)`: it is
 `Polygon.subtract` at the converted float polygon, which the caller supplies (the conversions
 are the rows of the other classes).
+
+## Inputs
+* `P` – polygon
+* `Sp` – polygon
+
+## Output
+* the difference with the polygon `Sp` standing for the second operand
 -/
 
 -- Authors:       Claude Opus 5.5

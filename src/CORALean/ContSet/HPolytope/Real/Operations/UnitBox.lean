@@ -10,6 +10,12 @@ public import CORALean.ContSet.HPolytope.Real.HPolytope
 The supremum-norm unit ball as `2n` constraints, `±xⱼ ≤ 1`. This is the
 coefficient domain a zonotope ranges over, so a constrained zonotope's domain is
 this intersected with its constraints.
+
+## Inputs
+* `n` – natural number
+
+## Output
+* the supremum-norm unit ball as the `2n` constraints `±xⱼ ≤ 1`
 -/
 
 -- Authors:       Claude Opus 5

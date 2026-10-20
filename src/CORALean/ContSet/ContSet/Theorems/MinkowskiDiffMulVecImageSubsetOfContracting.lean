@@ -26,7 +26,7 @@ needs neither the bound nor `Ē` invertible (`minkowskiDiff_mulVec_image_subset_
 
 ## Hypotheses
 * `hĒ` – `Ē` invertible
-* `hK` – `‖Ē⁻¹ (E - Ē)‖ < 1`
+* `hK` – `Ē⁻¹ (E - Ē)` is a contraction
 * `hX` – `X` closed
 * `hXne` – `X` nonempty
 * `hB` – `B` covers `Ē x - E x` on `X`

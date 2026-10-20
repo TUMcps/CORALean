@@ -10,6 +10,16 @@ public import CORALean.ContSet.VPolytope.Float.Theorems.LinCombOuter
 # `Polygon.linComb` encloses the segments
 
 Pair by pair (`VPolytope.linComb_outer`).
+
+## Inputs
+* `P` – polygon
+* `Q` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Polygon.linComb` encloses the segments
 -/
 
 -- Authors:       Claude Opus 5.5

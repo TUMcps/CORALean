@@ -10,6 +10,16 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.RowsOfMemConstruct
 
 The rounded dot product is on the far side of the exact one (`dotDown_le`, `le_dotUp`), and
 `ltStrict`'s `true` is a strict real inequality, so the violated row holds for the exact point.
+
+## Inputs
+* `P` – H-polytope
+* `x` – point of length `n`
+
+## Hypotheses
+* `h` – `P.excludesPoint x` holds
+
+## Conclusion
+* `HPolytope.excludesPoint` proves the point outside
 -/
 
 -- Authors:       Claude Opus 5.5

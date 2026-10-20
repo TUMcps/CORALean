@@ -15,6 +15,13 @@ equal. Equality is not an inequality, so it is two: `e ⪰ 0` and `-e ⪰ 0` for
 `S₁`'s; the second's variables carry no generator.
 
 Over `Vec ℝ n`: the equality is stated per coordinate.
+
+## Inputs
+* `S₁` – spectrahedral shadow
+* `S₂` – spectrahedral shadow
+
+## Output
+* the intersection: both inequalities side by side and the two points forced equal
 -/
 
 -- Authors:       Claude Opus 5.5

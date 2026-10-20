@@ -9,6 +9,16 @@ public import CORALean.ContSet.HPolytope.Float.Operations.Isequal
 
 A `true` answer says the stored numbers agree as real numbers, so the nominal polytopes are the
 same, and so are the denoted sets. `false` refutes nothing.
+
+## Inputs
+* `P` – H-polytope
+* `Q` – H-polytope
+
+## Hypotheses
+* `h` – `P.isequal Q` holds
+
+## Conclusion
+* `P` and `Q` have the same nominal part
 -/
 
 -- Authors:       Claude Opus 5.5

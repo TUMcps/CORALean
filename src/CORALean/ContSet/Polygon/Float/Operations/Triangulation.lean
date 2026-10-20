@@ -10,6 +10,12 @@ public import CORALean.ContSet.Polygon.Float.Polygon
 The vertex triangles of every float piece, as over ℝ: for each triple `(a, b, c)` of a piece's
 vertices the piece with those three vertices and the piece's own error box. Nothing is computed
 on the vertices, so nothing rounds, and the box stays what it was.
+
+## Inputs
+* `P` – polygon
+
+## Output
+* the vertex triangles of every piece, each with its piece's error box
 -/
 
 -- Authors:       Claude Sonnet 5.5

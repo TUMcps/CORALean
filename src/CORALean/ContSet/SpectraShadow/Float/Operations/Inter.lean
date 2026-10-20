@@ -12,6 +12,13 @@ CORA's `@spectraShadow/and_`, `'exact'` branch, over a floating-point scalar: ea
 error box absorbed into its inequality (`absorbRounding`), then the two tied to one point
 (`tieInter`). Nothing is computed: every stored entry is a stored float, its exact negation,
 `zero` or `one`. Stated as an enclosure only; the error box of the result is the origin.
+
+## Inputs
+* `S₁` – spectrahedral shadow
+* `S₂` – spectrahedral shadow
+
+## Output
+* the intersection of both shadows with absorbed error boxes, tied to one point
 -/
 
 -- Authors:       Claude Opus 5.5

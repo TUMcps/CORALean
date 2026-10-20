@@ -17,7 +17,7 @@ the rewriting of [1, Eq. 18] as `β² ∑ λᵢ/(1+βλᵢ) = ∑ 1/(1+βλᵢ)`
 * `β` – positive weight
 
 ## Output
-* `∑ λᵢ / (1 + β λᵢ)`
+* the sum over eigenvalues of `λᵢ / (1 + β λᵢ)`
 
 ## References
 

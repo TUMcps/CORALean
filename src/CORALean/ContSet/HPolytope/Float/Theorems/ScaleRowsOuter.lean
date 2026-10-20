@@ -18,6 +18,19 @@ term is at most `s b` (for an equality it is `s bₑ`), and the second lies betw
 a value between the two ends `setRhs` is given (`HPolytope.mem_setRhs_nominal`). Outer over the
 domain: the rounding of the rows, which names other halfspaces, is paid in the slacks there, as
 `reduceOverDomain_outer` pays it on the right-hand side.
+
+## Inputs
+* `P` – H-polytope
+* `sA` – scalars indexed by `Fin P.m`
+* `sE` – scalars indexed by `Fin P.me`
+* `dom` – domain interval
+
+## Hypotheses
+* `hP` – `P.ErrFree`
+* `hA` – every inequality scaling `sA i` is positive
+
+## Conclusion
+* inside `dom`, the scaled polytope contains the error-free one
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

@@ -15,6 +15,13 @@ mean, `η(𝒵, m) = Z + η(𝒵̲, m)`: the mean zonotope plus `m` times `n` pr
 `g` with `g gᵀ = Σ` spans the same Gaussian, and the symmetric square root of `Σ` is used here.
 `Theorems.ZonotopeProb` is its probability.
 
+## Inputs
+* `P` – probabilistic zonotope
+* `m` – real number
+
+## Output
+* the confidence zonotope: the mean zonotope plus `m` times the generators of `Σ`
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

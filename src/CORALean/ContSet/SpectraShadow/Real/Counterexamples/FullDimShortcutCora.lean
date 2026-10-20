@@ -14,6 +14,12 @@ writes the cache of the object, `fullDim.val = false`, `bounded.val = true` and
 nonempty interior (`Theorems.IsFullDimIffAffineSpan`); the tolerance is not part of it, and the
 shortcut contradicts it, see `fullDimShortcut_pointExample_counterexample` and
 `fullDimShortcut_thinLine_counterexample`.
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Output
+* `norm(SpS.G, 'fro') < 1e-8`, the test on the generator matrix alone
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,15 +11,24 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 # A halfspace description's shadow is one
 
 Fourier–Motzkin elimination: the projection of `{(x, y) | rows}` onto `x`, `y ∈ ℝᵏ`, is again
-the solution set of finitely many inequalities in `x`. One variable at a time, the rows that
-do not mention it are kept, and each row bounding it from above is added to each row bounding
-it from below, scaled so it cancels; a point satisfies all of those exactly when the largest
-lower bound is under the smallest upper one, which is when a value exists. Equalities enter
-as two inequalities each, so the shadow has none.
+the solution set of finitely many inequalities in `x`. One variable at a time, the rows that do
+not mention it are kept, and each row bounding it from above is added to each row bounding it
+from below, scaled so it cancels. Equalities enter as two inequalities each.
 
 What [1, Thm. 1]'s "clearly, every constrained zonotope is a convex polytope" rests on: a
 constrained zonotope is the shadow of the polytope `{(x, ξ) | x = c + Gξ, ‖ξ‖∞ ≤ 1, ξ ∈ P}`.
 An existence theorem, not an algorithm: the elimination squares the row count per variable.
+
+## Inputs
+* `α` – type
+* `k` – natural number
+* `P` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* A halfspace description's shadow is one
 
 ## References
 

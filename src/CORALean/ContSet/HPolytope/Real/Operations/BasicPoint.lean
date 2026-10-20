@@ -7,18 +7,20 @@ public import CORALean.ContSet.HPolytope.Real.HPolytope
 /-!
 # `HPolytope.basicPoint`
 
-Choose some of the inequality rows and demand they hold with equality; the
-equalities hold anyway. If exactly one point does that, this is it, and
-otherwise the choice names nothing and the value is junk — which callers filter
-by feasibility rather than by inspecting it.
+Choose some of the inequality rows and demand they hold with equality; the equalities hold
+anyway. If exactly one point does that, this is it, and otherwise the choice names nothing and
+the value is junk, which callers filter by feasibility rather than by inspecting it.
+No matrix is inverted and no basis is extracted. Uniqueness is stated rather than computed: a
+second solution differs from the first by a direction every chosen row and every equality fails
+to see, and at an extreme point there is no such direction. Noncomputable, since whether two
+reals are equal is not decidable, so which rows are tight is not either.
 
-No matrix is inverted and no basis is extracted. Uniqueness is stated rather
-than computed, which is what makes the argument short: a second solution differs
-from the first by a direction every chosen row and every equality fails to see,
-and at an extreme point there is no such direction.
+## Inputs
+* `P` – H-polytope
+* `σ` – Booleans indexed by `Fin P.m`
 
-Noncomputable, and unavoidably so at this layer — whether two reals are equal is
-not decidable, so which rows are tight is not either.
+## Output
+* the one point meeting the rows chosen by `σ` with equality, or `0` when none is unique
 -/
 
 -- Authors:       Claude Opus 5

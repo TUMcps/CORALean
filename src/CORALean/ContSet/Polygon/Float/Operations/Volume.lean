@@ -15,6 +15,12 @@ An upper bound on CORA's `@polygon/volume_` (the area of the region): the area o
 interval hull of the polygon, every width and the product rounded up. Not the area: CORA reads
 it off the polyshape boundary (R-PG), and the real layer bounds it by the sum of the piece
 areas; this bound is coarser still.
+
+## Inputs
+* `P` – polygon
+
+## Output
+* the area of the float interval hull of the polygon, rounded up
 -/
 
 -- Authors:       Claude Opus 5.5

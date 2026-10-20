@@ -11,6 +11,16 @@ public import CORALean.ContSet.ContSet.Float.Operations.SupportBound
 What a float halfspace description cannot do exactly: the map is a float
 matrix, so a direction on the target is pulled back through what that matrix
 denotes.
+
+## Inputs
+* `M` – `p × n` matrix
+* `Aq` – `q × p` matrix
+
+## Hypotheses
+* `u` – float bounds of `P` along the pulled-back directions
+
+## Output
+* the polytope on the directions `Aq` bounded by the pulled-back bounds `u`
 -/
 
 -- Authors:       Claude Opus 5

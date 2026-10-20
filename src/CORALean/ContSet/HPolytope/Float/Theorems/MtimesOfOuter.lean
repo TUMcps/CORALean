@@ -11,6 +11,16 @@ public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 The same line again, with the direction pulled back through the matrix before
 the bound is asked for. The matrix is read at its real value, so the rounding
 that produced its entries is not this theorem's business.
+
+## Inputs
+* `M` – `p × n` matrix
+* `Aq` – `q × p` matrix
+
+## Hypotheses
+* `u` – float bounds of `P` along the pulled-back directions
+
+## Conclusion
+* the float certified linear image encloses
 -/
 
 -- Authors:       Claude Opus 5

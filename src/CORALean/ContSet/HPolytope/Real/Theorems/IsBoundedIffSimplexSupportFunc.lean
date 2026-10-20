@@ -16,6 +16,15 @@ public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 `-∑ xᵢ ≤ a₀` bound every coordinate from both sides. Nothing about the polyhedron is used, so
 this holds for every `P`, equality rows included.
 
+## Inputs
+* `P` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polytope is bounded iff its support is finite along the `n + 1` simplex normals
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

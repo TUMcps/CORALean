@@ -11,6 +11,16 @@ public import CORALean.ContSet.SetUnion.Theorems.Basic
 A common point lies in a piece of each polygon; the separating direction of that pair bounds
 `d · x` above by the first piece's bound and below by the negated bound of the second along
 `-d`, and the certified gap between the two is a contradiction.
+
+## Inputs
+* `P` – polygon
+* `Q` – polygon
+
+## Hypotheses
+* `h` – `Polygon.isDisjoint P Q` holds
+
+## Conclusion
+* the regions of `P` and `Q` are disjoint
 -/
 
 -- Authors:       Claude Opus 5.5

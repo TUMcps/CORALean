@@ -7,6 +7,15 @@ public import Mathlib.Tactic.Linarith
 
 /-!
 # `HPolytope.emptySet` denotes `∅`
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polytope `emptySet` denotes `∅`
 -/
 
 -- Authors:       Claude Opus 5

@@ -25,6 +25,13 @@ weighting reproduces `c`. `Float` is where this same bridge runs.
 
 The linear program [1, Def. 3] names, with the dual solution kept as a reason.
 
+## Inputs
+* `P` – H-polytope
+* `c` – center of length `n →ₗ[ℝ] ℝ`
+
+## Output
+* a bound in direction `c`, or `none` where no weighting passed the checks
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

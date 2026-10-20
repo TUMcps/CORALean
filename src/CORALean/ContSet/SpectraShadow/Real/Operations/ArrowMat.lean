@@ -13,6 +13,14 @@ public import Mathlib.LinearAlgebra.Matrix.PosDef
 shadow that forces `s ≥ 0` and, when `s = 0`, the point `w = 0`. It is linear in `(s, t, w)`;
 `SpectraShadow.cone` combines it with the shadow's own inequality. CORA writes the same condition as
 one `2 × 2` block `[[s, wᵢ], [wᵢ, t]] ⪰ 0` per coordinate.
+
+## Inputs
+* `s` – real number
+* `t` – real number
+* `w` – weights of length `N`
+
+## Output
+* the arrowhead matrix `[[t, wᵀ], [w, s I]]` of size `N + 1`
 -/
 
 -- Authors:       Claude Opus 5.5

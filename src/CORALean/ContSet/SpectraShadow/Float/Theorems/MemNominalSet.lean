@@ -15,6 +15,16 @@ point read coordinatewise.
 Proofs use it rather than going through `nominal` because through it every size is
 `S.m` and `S.k`, where the instance gives the equal-but-distinct `(nominal S).m`
 that `rw` reads apart.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `x` – point of length `n`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the nominal shadow iff some `β` makes the combination positive semidefinite
 -/
 
 -- Authors:       Claude Opus 5.5

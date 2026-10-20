@@ -14,6 +14,12 @@ every inequality row `aᵀx ≤ b` with `b ≠ 0` is divided by `|b|`, so that i
 (a nonzero one, for an equality), so the set is the same (`normalizeConstraints_exact`).
 
 The other types, `'A'` and `'Ae'`, divide a row by its 2-norm: that is `normalizeRows`.
+
+## Inputs
+* `P` – H-polytope
+
+## Output
+* every row with a nonzero right-hand side divided by it, up to sign
 -/
 
 -- Authors:       Claude Opus 5.5

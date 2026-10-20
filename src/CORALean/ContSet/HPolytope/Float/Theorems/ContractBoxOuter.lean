@@ -12,6 +12,16 @@ public import CORALean.ContSet.Interval.Float.Theorems.ContractHalfspaceOuter
 
 A point of both satisfies every row the fold cuts with, an equality row's two
 halves included, and `Interval.contractHalfspace_outer` keeps it at each.
+
+## Inputs
+* `P` – H-polytope
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* `HPolytope.contractBox` holds the box's intersection with the polytope
 -/
 
 -- Authors:       Claude Opus 5.5

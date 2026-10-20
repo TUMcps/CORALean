@@ -13,6 +13,16 @@ Read in one `Vec`, as the product ambient type is here: a pair `(x, y)` is
 `Fin.append x y`. The two embeddings are linear and their sum puts `x` and `y` in
 their own coordinates, so `map_exact` and `plus_exact` give the product with no
 argument of its own.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `T` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* `SpectraShadow.cartProd` is exactly the Cartesian product
 -/
 
 -- Authors:       Claude Opus 5.5

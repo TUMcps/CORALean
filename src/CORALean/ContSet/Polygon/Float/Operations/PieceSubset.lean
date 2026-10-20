@@ -11,6 +11,13 @@ A float piece lies inside another: every stored vertex of the first is in the se
 hull (`Polygon.pieceHolds`), and the first's error box lies in the second's (`le` on the
 corners). Sufficient only: a piece covered with the help of the second box's slack is not
 recognised.
+
+## Inputs
+* `p` – V-polytope
+* `q` – V-polytope
+
+## Output
+* `true` when the vertices and the error box of `p` lie inside `q`
 -/
 
 -- Authors:       Claude Opus 5.5

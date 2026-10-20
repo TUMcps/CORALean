@@ -11,6 +11,13 @@ The constraint lists concatenate. Nothing is computed, so nothing rounds: the no
 intersect exactly, as over ℝ. The error boxes are not read: the result carries none, so it
 denotes the intersection of the two nominal parts and no more. `HPolytope.intersection` is
 this after each box has been folded into its rows.
+
+## Inputs
+* `P₁` – H-polytope
+* `P₂` – H-polytope
+
+## Output
+* the polytope with the constraint lists of `P₁` and `P₂` concatenated
 -/
 
 -- Authors:       Claude Opus 5

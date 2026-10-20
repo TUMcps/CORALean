@@ -15,6 +15,15 @@ which is why the certificates are `FloatBound`s.
 
 No equality rows, so `be` stays empty, and the error box is the origin. An enclosure has no
 equalities to state: it is slack by construction.
+
+## Inputs
+* `Aq` – `q × n` matrix
+
+## Hypotheses
+* `u` – a float bound of `S` along each row
+
+## Output
+* the polytope with rows `Aq` and right-hand sides the certified bounds `u`
 -/
 
 -- Authors:       Claude Opus 5

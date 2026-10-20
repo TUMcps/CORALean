@@ -13,6 +13,13 @@ for an invertible matrix — it is this at `M⁻¹`.
 
 The direction a halfspace description goes. A vertex description goes the other
 way, which is `VPolytope.map`.
+
+## Inputs
+* `f` – linear map
+* `P` – H-polytope
+
+## Output
+* the preimage of `P` under `f`, every constraint precomposed with `f`
 -/
 
 -- Authors:       Claude Opus 5

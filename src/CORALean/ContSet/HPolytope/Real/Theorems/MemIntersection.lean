@@ -13,6 +13,17 @@ Both constraint lists have to hold, which is what concatenating them says.
 Stated as an `iff` on points rather than as the set equality it implies, because
 that is the form its users need: a constrained zonotope reads its coefficient
 polytope this way, and so does the float halfspace description.
+
+## Inputs
+* `P₁` – H-polytope
+* `P₂` – H-polytope
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the intersection iff it lies in both polytopes
 -/
 
 -- Authors:       Claude Opus 5

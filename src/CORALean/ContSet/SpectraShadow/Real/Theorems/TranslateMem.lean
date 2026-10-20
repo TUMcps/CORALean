@@ -9,6 +9,17 @@ public import CORALean.ContSet.SpectraShadow.Real.Operations.Basic
 
 `x` is in `S.translate v` exactly when `x - v` is in `S`: the same inequality, the point moved by
 `v`. Exact.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `v` – point
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* A translated shadow is the shifted set
 -/
 
 -- Authors:       Claude Opus 5.5

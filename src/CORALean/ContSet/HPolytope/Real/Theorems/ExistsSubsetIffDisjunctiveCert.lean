@@ -19,6 +19,23 @@ public import Mathlib.Algebra.BigOperators.Pi
 printed statement asks neither; `exists_subset_iff_disjunctive_cert_counterexample` breaks
 "if" at an empty `Pᵢ`, and the `[1, Lemma 1]` counterexample breaks "only if" at `N = 1`.
 
+## Inputs
+* `qy` – natural numbers indexed by `Fin N`
+* `xbar` – mean of length `n`
+* `X` – `n × nx` matrix
+* `Hx` – `qx × nx` matrix
+* `hx` – vector of length `qx`
+* `Hy` – matrices indexed by `Fin N`
+* `hy` – vectors indexed by `Fin N`
+
+## Hypotheses
+* `hnex` – the polytope `ineqs Hx hx` is nonempty
+* `hne` – each polytope is nonempty
+* `hb` – each polytope is bounded
+
+## Conclusion
+* the AH-polytope lies in some `Pᵢ` iff a mixed-integer certificate with binary `δ` exists
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

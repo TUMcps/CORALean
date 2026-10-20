@@ -12,6 +12,15 @@ coordinates are independent standard Gaussians. [1, Prop. 2]'s proof, "choosing 
 the event that a value lies in the set spanned by them is `erf(m/√2)ⁿ`", at the level of the
 coefficients; `erf(m/√2)` is the one-dimensional mass, which [1] quotes as well known.
 
+## Inputs
+* `m` – real number
+
+## Hypotheses
+* none
+
+## Conclusion
+* the standard Gaussian mass of the cube `[-m, m]ⁿ` is the one-dimensional mass to the power `n`
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

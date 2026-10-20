@@ -14,6 +14,15 @@ A point `c + Gβ + e`, `e` in the box, is the absorbed shadow's nominal point at
 `(β, e)`: the old inequality holds at `β`, and the box constraints at `e` are the box's own
 bounds. So the set lies in the nominal part alone, and (the box being the origin) in the
 absorbed set.
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* `SpectraShadow.absorbRounding` holds the whole set in its nominal shadow
 -/
 
 -- Authors:       Claude Opus 5.5

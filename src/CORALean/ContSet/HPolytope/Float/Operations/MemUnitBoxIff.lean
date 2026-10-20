@@ -12,6 +12,15 @@ public import CORALean.ContSet.HPolytope.Float.Operations.UnitBox
 
 The two constraint halves read back as a bound on the magnitude, as over ℝ. A
 row is one coordinate: the sum collapses at the single entry that is not zero.
+
+## Inputs
+* `x` – point of length `n`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the unit box iff every coordinate has absolute value at most `1`
 -/
 
 -- Authors:       Claude Opus 5

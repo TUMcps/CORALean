@@ -18,6 +18,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 The region lies in its interval hull (`Polygon.interval_contains`), whose Lebesgue measure the
 rounded-up product bounds (`Interval.volume_le`). An upper bound only.
+
+## Inputs
+* `P` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Polygon.volume` bounds the area
 -/
 
 -- Authors:       Claude Opus 5.5

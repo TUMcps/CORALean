@@ -11,6 +11,16 @@ public import CORALean.ContSet.HPolytope.Float.Definitions.Basic
 Where both slacks read `0`, every inequality is read at its stored `b` and every slab closes to
 its hyperplane, so membership is the stored rows read exactly: the form every constructor's
 result, and every result that carries no slack, is read in.
+
+## Inputs
+* `P` – H-polytope
+* `x` – point of length `n`
+
+## Hypotheses
+* `h` – `P.IsSlackFree`
+
+## Conclusion
+* with both slacks reading `0`, the nominal part is the stored rows read exactly
 -/
 
 -- Authors:       Claude Opus 5.5

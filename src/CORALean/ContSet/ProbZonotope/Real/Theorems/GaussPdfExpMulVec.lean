@@ -15,6 +15,19 @@ parallelotope-volume argument needs `det(e^{At}) = e^{tr(A)t}` (`MatExp.det_exp_
 normalization gives `det(e^{At} Σ e^{Aᵀt})^{-1/2} = e^{-tr(A)t} det(Σ)^{-1/2}` and the quadratic
 form is invariant. `Σ` has positive determinant.
 
+## Inputs
+* `A` – `n × n` matrix
+* `t` – real number
+* `c` – center of length `n`
+* `S` – `n × n` matrix
+* `x` – point
+
+## Hypotheses
+* `hS` – `0 < S.det`
+
+## Conclusion
+* under `exp(tA)` the Gaussian density at the image point is `exp(-t tr A)` times the density at `x`
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

@@ -15,6 +15,22 @@ plus `D P_Ball`. At the supremum norm — `P_Ball` the unit box, the norm of eve
 `{H_B x ≤ D h_B}`, the closed ball of radius `D`, by scaling at `D > 0` and because the
 ball's rows admit no recession direction at `D = 0`.
 
+## Inputs
+* `S` – set of points
+* `T` – set of points
+* `HB` – `qB × n` matrix
+* `hB` – vector of length `qB`
+* `D` – real number
+
+## Hypotheses
+* `hD` – `0 ≤ D`
+* `hPB` – the polytope `HB` is the unit ball
+* `h₁` – `S` lies in `T + ineqs HB (D • hB)`
+* `h₂` – `T` lies in `S + ineqs HB (D • hB)`
+
+## Conclusion
+* the Hausdorff distance of `S` and `T` is at most `D`
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

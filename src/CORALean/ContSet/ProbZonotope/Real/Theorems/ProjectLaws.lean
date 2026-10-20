@@ -12,6 +12,16 @@ The images of the laws of `P` under `x ↦ (x (dims k))ₖ` are exactly the laws
 (the marginals on the selected coordinates, for any `dims`, repeats and reorderings included):
 `project` is `mtimes` at the selection matrix, and `Theorems.MtimesLaws` applies. The covariance
 must be positive semidefinite.
+
+## Inputs
+* `P` – probabilistic zonotope
+* `dims` – indices indexed by `Fin m`
+
+## Hypotheses
+* `h` – `P.cov` is positive semidefinite
+
+## Conclusion
+* `ProbZonotope.project` maps the laws by the coordinate projection
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -14,6 +14,16 @@ For `B` square with `det B ≠ 0`, the law of `c + B N` is Lebesgue measure with
 `x = c + Bβ`, whose Jacobian `|det B|` is Mathlib's image of Lebesgue measure under a matrix.
 The step from here to [1, Prop. 1]'s density is `GZonotopeLawDensity`.
 
+## Inputs
+* `c` – center of length `n`
+* `B` – `n × n` matrix
+
+## Hypotheses
+* `hB` – `B.det ≠ 0`
+
+## Conclusion
+* A G-zonotope with an invertible square generator matrix has a density
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

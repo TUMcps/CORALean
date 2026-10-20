@@ -23,6 +23,23 @@ an interior point towards a point the row cuts off; some row `a'` of the other r
 tight at `z` too, or a step along `a` would stay inside; and `a'` then bounds every direction `a`
 bounds, so the unit vectors agree.
 
+## Inputs
+* `A₁` – `q₁ × n` matrix
+* `b₁` – offset vector of length `q₁`
+* `A₂` – `q₂ × n` matrix
+* `b₂` – offset vector of length `q₂`
+
+## Hypotheses
+* `h₁` – `∀ j, A₁ j ≠ 0`
+* `h₂` – `∀ k, A₂ k ≠ 0`
+* `hint₁` – the polytope `ineqs A₁ b₁` has nonempty interior
+* `hint₂` – the polytope `ineqs A₂ b₂` has nonempty interior
+* `hmin₁` – no row of the first polytope is redundant
+* `hmin₂` – no row of the second polytope is redundant
+
+## Conclusion
+* `isequalNondeg` answers `true` iff the two polytopes are equal
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

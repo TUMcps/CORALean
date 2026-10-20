@@ -15,6 +15,15 @@ In `ℝ¹` with the two generators `G = [1 0]` (`q = 2 > n = 1`, `Σ = 1`), [1, 
 probability measure, so it is not Lebesgue measure with that density. The exponent of `2π` has
 to be the dimension `n`, not the number of generators `q` (`GZonotopeLawDensity`).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* [1, Prop. 1]'s printed density is not a density
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

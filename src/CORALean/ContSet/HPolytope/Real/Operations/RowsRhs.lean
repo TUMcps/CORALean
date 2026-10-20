@@ -10,6 +10,12 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Rows
 The right-hand sides of `HPolytope.rows`: `b`, then `be`, then `-be`. A point lies in the
 polytope exactly when every row, with its right-hand side, holds (`mem_construct_iff_rows`): an
 equality is the pair of opposite inequalities.
+
+## Inputs
+* `P` – H-polytope
+
+## Output
+* the right-hand side of each row of `rows`
 -/
 
 -- Authors:       Claude Opus 5.5

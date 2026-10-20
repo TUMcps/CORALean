@@ -12,6 +12,15 @@ public import Mathlib.Tactic.Linarith
 An intersection of halfspaces and hyperplanes, each cut by one linear
 functional, so a weighted average satisfies every constraint the two endpoints
 do. Holds for any constraints, the infeasible case included.
+
+## Inputs
+* `P` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* A halfspace description is convex
 -/
 
 -- Authors:       Claude Opus 5

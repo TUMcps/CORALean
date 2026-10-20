@@ -31,6 +31,15 @@ nonempty. Every `CORAlinprog` that returns `-2` only on an infeasible program th
 `isIntersecting(P1,P2)` (default `'exact'`) answer `true`; no earlier branch of
 `isIntersecting_.m` intercepts (neither set is a fullspace or a halfspace, `n = 2`, no equality).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* for disjoint `P1` and `P2` CORA's intersection test answers `true`
+
 ## References
 
 * [1] `contSet/@polytope/isIntersecting_.m`, CORA, ll. 161-183, 197-229.

@@ -8,17 +8,21 @@ public import CORALean.Global.Cost
 /-!
 # `HPolytope.halfScaledCost`
 
-Asserted, not proved: `Operations/HalfScaled.lean` rewrites every one of the
-`m + me` rows `A x ≤ b` as `A x - (b/2) t x ≤ b/2`. Rows are functionals and the
-definition does not fix how they are held, so this count **reads each row as a
-dense vector of length `d`**, the dimension of the coefficient space, and is
-exactly as good as that reading. Per row, `b / 2` is one division, `(b/2) • t`
-is `d` products and the subtraction from `A` is `d` more: `2 * d + 1`.
+Asserted, not proved: `Operations/HalfScaled.lean` rewrites every one of the `m + me` rows
+`A x ≤ b` as `A x - (b/2) t x ≤ b/2`. Rows are functionals and the definition does not fix how
+they are held, so this count **reads each row as a dense vector of length `d`**, the dimension
+of the coefficient space. Per row, `b / 2` is one division, `(b/2) • t` is `d` products and the
+subtraction from `A` is `d` more: `2 * d + 1`. A row held as an unevaluated composition would
+pay nothing here and more when read; that cost is the reader's. Each row is also written,
+`d + 1` entries: the new functional and the new right-hand side.
 
-A row held as an unevaluated composition would pay nothing here and more when
-read; that cost is the reader's, not this operation's.
+## Inputs
+* `m` – natural number
+* `me` – natural number
+* `d` – natural number
 
-Each row is also written, `d + 1` entries: the new functional and the new right-hand side.
+## Output
+* the cost of `halfScaled` on `m` and `me` dense rows over dimension `d`
 -/
 
 -- Authors:       Claude Sonnet 5.5

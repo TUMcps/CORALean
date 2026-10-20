@@ -10,6 +10,13 @@ public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
 A shadow put into the last `m` coordinates of a product, zero in the first `n`. Only zeros
 are stored beside the stored floats, and the error box gets exact zeros there, so nothing
 rounds.
+
+## Inputs
+* `n` – natural number
+* `S` – spectrahedral shadow
+
+## Output
+* `S` in the last `m` coordinates of the product, zero in the first `n`
 -/
 
 -- Authors:       Claude Sonnet 5.5

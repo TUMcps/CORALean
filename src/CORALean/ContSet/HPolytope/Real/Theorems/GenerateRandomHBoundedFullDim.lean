@@ -18,6 +18,19 @@ ball stays inside; an invertible affine map keeps both. Line 3 samples from the 
 this is the guarantee at that reading; non-redundancy of the appended rows is a separate matter
 (`ineqs_unit_rows_minimal`, `simplexRows_redundant_counterexample`).
 
+## Inputs
+* `ℓ` – vectors indexed by `Fin m`
+* `M` – `n × n` matrix
+* `z` – point of length `n`
+
+## Hypotheses
+* `hn` – `0 < n`
+* `hM` – `IsUnit M.det`
+* `hℓ` – `∀ j, ‖ℓ j‖₂ ≤ 1`
+
+## Conclusion
+* what `HPolytope.generateRandomH` returns
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

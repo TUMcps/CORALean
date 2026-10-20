@@ -13,6 +13,21 @@ For a positive definite covariance and a mean `μ` of `P`, every `y` with
 `Σ`, `u = g⁻¹ (y - μ)` has `‖u‖² = (y - μ)ᵀ Σ⁻¹ (y - μ) < m²`, so every coefficient is
 within `m`, and `y = μ + g u`. The confidence zonotope is therefore at least as large as the
 ellipsoid whose boundary `max(probZ, m)` measures.
+
+## Inputs
+* `P` – probabilistic zonotope
+* `μ` – mean of length `n`
+* `m` – real number
+* `y` – vector of length `n`
+
+## Hypotheses
+* `hP` – `P.cov.PosDef`
+* `hμ` – `μ` lies in `P.Z`
+* `hm` – `0 ≤ m`
+* `hy` – `y` is less than `m` sigmas from `μ`
+
+## Conclusion
+* the open `m`-sigma ellipsoid around a mean lies in the confidence set
 -/
 
 -- Authors:       Claude Opus 5.5

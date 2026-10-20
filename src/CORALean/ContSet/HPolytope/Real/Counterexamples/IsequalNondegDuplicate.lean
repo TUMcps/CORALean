@@ -18,6 +18,15 @@ requires a minimal representation, which rules this out; CORA's `aux_isequal_non
 `@polytope/isequal.m` runs the same test on the constraints as given (see
 `references/coverage/contSet/polytope.md`, row `isequal`).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* `isequalNondeg` answers `true` for two different polytopes when one has a duplicate row
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

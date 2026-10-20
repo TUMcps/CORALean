@@ -10,6 +10,15 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.EqBlockSum
 
 `generateESumRep S` stands for exactly the set of `S`: its inequality is the shadow's, side by side
 with the diagonal pair `x - c - G β ⪰ 0`, `-(x - c - G β) ⪰ 0`, which holds only at `x = c + G β`.
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* the existential sum representation denotes the same set
 -/
 
 -- Authors:       Claude Opus 5.5

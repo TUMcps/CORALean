@@ -11,6 +11,18 @@ public import Mathlib.Analysis.Matrix.Order
 For `N ≥ 1`, a positive semidefinite `arrowMat s t w` has `s ≥ 0`, and `w = 0` if `s = 0`: the
 diagonal gives the first, and for the second a nonzero `wᵢ` lets the cross term `2 a b wᵢ` beat `t
 a²`.
+
+## Inputs
+* `s` – real number
+* `t` – real number
+* `w` – weights of length `N`
+
+## Hypotheses
+* `hN` – `0 < N`
+* `h` – `(arrowMat s t w)` is positive semidefinite
+
+## Conclusion
+* `s` is nonnegative and `w` vanishes when `s = 0`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -15,6 +15,17 @@ when the support function in the direction of its normal is the same with and wi
 or not, degenerate or not, empty or not, as the paper says: the extended reals take the
 unbounded and the empty case.
 
+## Inputs
+* `A` – `q × n` matrix
+* `b` – offset vector of length `q`
+* `j` – index below `q`
+
+## Hypotheses
+* none
+
+## Conclusion
+* dropping row `j` keeps the polytope iff the support function along row `j` is unchanged
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

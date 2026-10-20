@@ -11,6 +11,17 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 [1, Eq. 24], first case: `M ⟨A, b⟩ = ⟨A M⁻¹, b⟩` for square invertible `M`, since `y = M x`
 exactly when `x = M⁻¹ y`.
 
+## Inputs
+* `A` – `q × n` matrix
+* `b` – offset vector of length `q`
+* `M` – `n × n` matrix
+
+## Hypotheses
+* `hM` – `IsUnit M.det`
+
+## Conclusion
+* the image under an invertible `M` is `ineqs (A M⁻¹) b`
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

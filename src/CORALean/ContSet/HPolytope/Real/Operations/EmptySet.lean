@@ -12,6 +12,12 @@ halfspace description says when it has nothing.
 
 Stated with a row rather than with no points at all, because a representation
 has to denote `∅` by data a machine can hold.
+
+## Inputs
+* `α` – type
+
+## Output
+* the polytope with the single unsatisfiable row `0 ≤ -1`
 -/
 
 -- Authors:       Claude Opus 5

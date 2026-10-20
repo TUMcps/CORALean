@@ -13,6 +13,18 @@ public import Mathlib.Data.Matrix.Mul
 own block of coordinates. The product is read as the paper writes it, stacked:
 `[s₁; s₂] = Fin.append s₁ s₂`.
 
+## Inputs
+* `A₁` – `q₁ × n₁` matrix
+* `b₁` – offset vector of length `q₁`
+* `A₂` – `q₂ × n₂` matrix
+* `b₂` – offset vector of length `q₂`
+
+## Hypotheses
+* none
+
+## Conclusion
+* the block-diagonal polytope is the product of the two polytopes, coordinates concatenated
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

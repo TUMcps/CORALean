@@ -13,6 +13,20 @@ point, any direction `d` and any `u ∈ [0, 1]`, the point `HPolytope.hitAndRunS
 satisfies every inequality. The point lies on the chord, which `MemAddSmulIffChord` identifies
 with `{t | x + t d ∈ S}`.
 
+## Inputs
+* `P` – H-polytope
+* `x` – point
+* `d` – direction
+* `u` – real number
+
+## Hypotheses
+* `hx` – `x` is strictly inside every inequality
+* `hu₀` – `0 ≤ u`
+* `hu₁` – `u ≤ 1`
+
+## Conclusion
+* hit-and-Run never leaves the polytope
+
 ## References
 
 * [1] R. L. Smith. "Efficient Monte Carlo Procedures for Generating Points Uniformly Distributed

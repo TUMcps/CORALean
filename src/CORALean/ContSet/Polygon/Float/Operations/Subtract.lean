@@ -15,6 +15,13 @@ dropped, and one with a certified inner halfspace description (`Polygon.innerHRe
 along its edges, so the pieces exclude the inner description's interior; any other piece is
 kept whole. The cut pieces are box hulls, so they may leave the minuend, and the result is an
 outer approximation of the region `closure (interior P₁ \ P₂)`, not a subset of `P₁`.
+
+## Inputs
+* `P` – polygon
+* `Q` – polygon
+
+## Output
+* the pieces of `P`, each cut by every piece of `Q` in turn
 -/
 
 -- Authors:       Claude Opus 5.5

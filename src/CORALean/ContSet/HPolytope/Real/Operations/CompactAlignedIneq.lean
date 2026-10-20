@@ -26,6 +26,12 @@ wrong when an equality row is zero (`references/coverage/contSet/polytope.md`). 
 `Ae(i,:) - (Ae*Ae(i,:)')*Ae(i,:) = 0` holds for every row `j` once `Ae(i,:) = 0`, so a zero row is
 "aligned" with all rows; `Ae = [0 0; 1 0]`, `be = [0; 1]`, the set `x₁ = 1`, comes out empty.
 `'all'` removes zero rows first (`compactZeros`).
+
+## Inputs
+* `P` – H-polytope
+
+## Output
+* `P` normalized, rows with a common normal merged into the one with smallest bound
 -/
 
 -- Authors:       Claude Opus 5.5

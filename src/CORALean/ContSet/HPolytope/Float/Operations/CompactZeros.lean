@@ -11,6 +11,14 @@ public import CORALean.ContSet.HPolytope.Float.Operations.NormalizeRows
 CORA's `compact_(P, 'zeros')`: the unit normalization of `compact_` (`normalizeRows`, which pays
 its rounding on the right-hand sides over the box `dom`), then the zero-row step (`dropZeros`,
 which is exact).
+
+## Inputs
+* `p` – natural number
+* `P` – H-polytope
+* `dom` – domain interval
+
+## Output
+* the rows normalized, then the zero rows dropped or the empty set returned
 -/
 
 -- Authors:       Claude Opus 5.5

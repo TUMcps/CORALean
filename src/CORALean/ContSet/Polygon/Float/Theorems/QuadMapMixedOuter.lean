@@ -17,6 +17,19 @@ public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopePolyZonotopeCon
 # `Polygon.quadMapMixed` encloses the image of the product of the float polygons
 
 Outer, as `Polygon.quadMap_outer`, with the pair of triangles that holds the pair of points.
+
+## Inputs
+* `P₁` – polygon
+* `P₂` – polygon
+* `Q` – matrices indexed by `Fin 2`
+* `splits` – number of splits
+* `pick` – refinement rule: whether to split a piece in a given round
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Polygon.quadMapMixed` encloses the image of the product of the float polygons
 -/
 
 -- Authors:       Claude Sonnet 5.5

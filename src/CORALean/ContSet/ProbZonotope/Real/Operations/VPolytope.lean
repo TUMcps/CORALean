@@ -13,6 +13,12 @@ CORA's `polytope` and `vertices_` of a probabilistic zonotope (`@probZonotope/po
 vertices of the matrix `Z`, so the covariance plays no part. The polytope here is the
 zonotope's corner polytope (`Zonotope.vPolytope`): its hull is the zonotope of possible means,
 exact (`Theorems.VPolytopeExact`).
+
+## Inputs
+* `P` – probabilistic zonotope
+
+## Output
+* the corner polytope of the mean zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

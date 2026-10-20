@@ -13,6 +13,13 @@ Asserted, not proved, and no longer zero: `Operations/Mtimes.lean` builds each r
 `M` before the certificate is ever asked for, so nothing here recomputes a bound. The result is
 `q` inequality rows, each a functional of `d` coefficients and a right-hand side, and writing them
 is the cost.
+
+## Inputs
+* `d` – natural number
+* `q` – natural number
+
+## Output
+* one write for each of the `q * (d + 1)` entries of the result
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

@@ -9,6 +9,15 @@ public import CORALean.ContSet.Polygon.Real.Theorems.VerticesHull
 # `Polygon.convHull` is the convex hull
 
 Exactly.
+
+## Inputs
+* `P` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Polygon.convHull` is the convex hull
 -/
 
 -- Authors:       Claude Opus 5.5

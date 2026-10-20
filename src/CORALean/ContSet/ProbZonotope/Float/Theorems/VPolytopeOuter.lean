@@ -17,6 +17,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeVPolytopeContain
 
 Outer: the corner polytope contains the mean zonotope, the corners rounded outward; the covariance
 plays no part.
+
+## Inputs
+* `P` – probabilistic zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `ProbZonotope.vPolytope` contains the mean zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

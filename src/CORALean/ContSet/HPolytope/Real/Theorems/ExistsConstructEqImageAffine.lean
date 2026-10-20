@@ -14,6 +14,17 @@ coordinate of `y`, and the image is its shadow on `y`, a polyhedron by Fourier�
 (`exists_construct_eq_image_fst`). The polyhedra are possibly unbounded, as the paper's are:
 `HPolytope` asks for no bound. An existence theorem, as elimination is.
 
+## Inputs
+* `W` – `m × n` matrix
+* `b` – offset vector of length `m`
+* `P` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* an affine image of a polyhedron is a polyhedron
+
 ## References
 
 * [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:

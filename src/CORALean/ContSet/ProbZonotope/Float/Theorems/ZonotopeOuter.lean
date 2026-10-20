@@ -22,6 +22,24 @@ probabilistic zonotope with the point mean `μ` and covariance `Σ` lies in the 
 with `g` the square root of `Σ`, whose coordinate `i` reaches `m √(n Σᵢᵢ)` at most
 (`abs_sqrt_mulVec_le`), under the rounded-up radius `confidenceRadius`; the box of that radius is
 inside its diagonal-generator zonotope, and the sum with the mean zonotope is `plus_outer`.
+
+## Inputs
+* `p` – natural number
+* `P` – probabilistic zonotope
+* `M` – scalar
+* `μ` – mean of length `n`
+* `S` – `n × n` matrix
+* `m` – real number
+
+## Hypotheses
+* `hμ` – `μ` lies in `P.Z`
+* `hS` – `S` lies in `P.cov`
+* `hpsd` – `S.PosSemidef`
+* `hm` – `0 ≤ m`
+* `hmM` – `m ≤ toReal M`
+
+## Conclusion
+* the float confidence zonotope contains the exact one
 -/
 
 -- Authors:       Claude Sonnet 5.5

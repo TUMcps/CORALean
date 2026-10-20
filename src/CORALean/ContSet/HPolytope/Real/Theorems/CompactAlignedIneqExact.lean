@@ -10,6 +10,15 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
 # `compactAlignedIneq` denotes the same set, exactly
 
 Rows with the same normal vector `a` say `aᵀx ≤ b` for several `b`, which is the smallest one.
+
+## Inputs
+* `P` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `compactAlignedIneq` denotes the same set, exactly
 -/
 
 -- Authors:       Claude Opus 5.5

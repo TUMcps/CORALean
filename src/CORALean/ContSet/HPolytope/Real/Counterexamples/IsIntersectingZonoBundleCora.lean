@@ -32,8 +32,16 @@ and constrains only `x = cᵢ + Gᵢ aᵢ`, `aᵢ ∈ [-1, 1]`: it is feasible a
 zero objective. Every `CORAlinprog` that reports success with value `0` on a feasible program
 with zero objective makes `isIntersecting(P, zB)` (default `'exact'`) answer `true`. The
 shortcut of l. 93-98 (one equality row: range of the support function must contain `be`) would
-reject it, but is skipped for a `zonoBundle`. Read from the source, not run. A wrong `true`, the
-conservative side for a safety check, so a wrong verdict, not unsound.
+reject it, but is skipped for a `zonoBundle`. Read from the source, not run. A wrong `true`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* for a line and a disjoint bundle, CORA's intersection test answers `true`
 
 ## References
 

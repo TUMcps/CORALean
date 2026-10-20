@@ -17,6 +17,52 @@ misprinted and are read as `[1, Prop. 2]` gives them: `Λ₃ H₄ = H_B Γ₄` i
 and `Λ₃ h₂ ≤ h₂ + H₁ β₃` is `Λ₃ h₂ ≤ h₁ + H₁ β₃`. `ahPolytope_hausdorffDist_le_of_cert`
 reads the inclusions as a distance at `P_Ball` the supremum-norm ball.
 
+## Inputs
+* `x₁` – point of length `n`
+* `x₂` – point of length `n`
+* `X₁` – `n × n₁` matrix
+* `X₂` – `n × n₂` matrix
+* `H₁` – `q₁ × n₁` matrix
+* `h₁` – vector of length `q₁`
+* `H₂` – `q₂ × n₂` matrix
+* `h₂` – vector of length `q₂`
+* `HB` – `qB × n` matrix
+* `hB` – vector of length `qB`
+* `D` – real number
+* `Λ₁` – `q₂ × q₁` matrix
+* `Λ₂` – `qB × q₁` matrix
+* `Λ₃` – `q₁ × q₂` matrix
+* `Λ₄` – `qB × q₂` matrix
+* `Γ₁` – `n₂ × n₁` matrix
+* `Γ₂` – `n × n₁` matrix
+* `Γ₃` – `n₁ × n₂` matrix
+* `Γ₄` – `n × n₂` matrix
+* `β₁` – vector of length `n₂`
+* `β₂` – vector of length `n`
+* `β₃` – vector of length `n₁`
+* `β₄` – vector of length `n`
+
+## Hypotheses
+* `hΛ₁` – `Λ₁` has nonnegative entries
+* `hΛ₂` – `Λ₂` has nonnegative entries
+* `hΛ₃` – `Λ₃` has nonnegative entries
+* `hΛ₄` – `Λ₄` has nonnegative entries
+* `e₁` – `Λ₁` carries `H₁` to `H₂ Γ₁`
+* `e₂` – `Λ₂` carries `H₁` to `HB Γ₂`
+* `f₁` – the bound of `Λ₁` is at most `h₂ + H₂ β₁`
+* `f₂` – the bound of `Λ₂` is at most `D hB + HB β₂`
+* `e₃` – `Λ₃` carries `H₂` to `H₁ Γ₃`
+* `e₄` – `Λ₄` carries `H₂` to `HB Γ₄`
+* `f₃` – the bound of `Λ₃` is at most `h₁ + H₁ β₃`
+* `f₄` – the bound of `Λ₄` is at most `D hB + HB β₄`
+* `c₁` – `x₂` is `x₁` shifted by `X₂ β₁ + β₂`
+* `g₁` – `X₁` is `X₂ Γ₁ + Γ₂`
+* `c₂` – `x₁` is `x₂` shifted by `X₁ β₃ + β₄`
+* `g₂` – `X₂` is `X₁ Γ₃ + Γ₄`
+
+## Conclusion
+* two AH-polytopes within `D` of each other
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

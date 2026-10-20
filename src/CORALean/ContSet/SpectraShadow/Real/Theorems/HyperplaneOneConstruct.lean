@@ -9,6 +9,15 @@ public import CORALean.ContSet.SpectraShadow.Real.Operations.Basic
 
 The inequality `0 ⪰ 0` holds for every `β`, and the point is `(β, 1)`: the set is the points of
 `ℝⁿ⁺¹` whose last coordinate is `1`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* `hyperplaneOne` is the hyperplane at height `1`
 -/
 
 -- Authors:       Claude Opus 5.5

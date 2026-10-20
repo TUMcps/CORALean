@@ -11,6 +11,16 @@ public import CORALean.ContSet.VPolytope.Float.Theorems.IntersectionOuter
 
 A common point lies in a piece of each polygon, so in their pair's intersection
 (`VPolytope.intersection_outer`), which is a piece of the result. Outer only.
+
+## Inputs
+* `P` – polygon
+* `Q` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Polygon.and` encloses the intersection
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,21 @@ values have a maximum for `t = 0` or `t = r`". For `t ∈ [0, r]` the hull of `e
 `e^{Ar} x`: the factor `e^{-tr(A)t}` is below `1` if `tr(A) ≥ 0` and below its value at `r`
 otherwise. The covariance has positive determinant, which makes every density nonnegative.
 
+## Inputs
+* `P` – probabilistic zonotope
+* `A` – `n × n` matrix
+* `r` – radius
+* `t` – real number
+* `x` – point
+
+## Hypotheses
+* `hP` – `0 < P.cov.det`
+* `ht0` – `0 ≤ t`
+* `htr` – `t ≤ r`
+
+## Conclusion
+* the hull's values over `[0, r]` peak at `t = 0` or `t = r`
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

@@ -24,7 +24,7 @@ invertible because `Q(β)` is, its determinant being a factor of `det Q(β)`.
 * `hβ` – `0 < β`
 
 ## Conclusion
-* `Q(β)⁻¹ = β/(1+β) · (I + βR)⁻¹ Q₁⁻¹`
+* the inverse of `Q(β)` is `β/(1+β)` times `(I + βR)⁻¹ Q₁⁻¹`
 
 ## References
 

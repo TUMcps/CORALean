@@ -13,6 +13,12 @@ A sufficient test for a convex region: no piece at all, or one piece that holds 
 convex piece. Only `true` is certain; a convex region split into several pieces none of which
 holds the others answers `false`. CORA's comparison of boundary vertex counts (R-PG) is not
 what is tested.
+
+## Inputs
+* `P` – polygon
+
+## Output
+* `true` when the polygon has no piece or one piece holding all pieces
 -/
 
 -- Authors:       Claude Opus 5.5

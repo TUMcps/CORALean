@@ -12,6 +12,15 @@ For a positive semidefinite covariance the `n` generators `V √W` give back the
 (`generators_mul_transpose`), so `probReduce` is the identity on `ProbZonotope`, which stores
 the covariance and not the generators; in particular it keeps the family of laws. What CORA's
 `probReduce` changes is the representation: the number of single Gaussians, to the dimension.
+
+## Inputs
+* `P` – probabilistic zonotope
+
+## Hypotheses
+* `h` – `P.cov` is positive semidefinite
+
+## Conclusion
+* `probReduce` changes the generators, not the probabilistic zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

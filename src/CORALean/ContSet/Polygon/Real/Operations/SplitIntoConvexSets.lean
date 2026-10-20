@@ -12,6 +12,12 @@ while their union stays convex. A polygon here is already a list of convex piece
 are a convex split of the region (`Polygon.splitIntoConvexSets_exact`). The pieces CORA returns
 (a triangulation, greedily merged) differ from the stored ones; the region they cover is the
 same (R-PG).
+
+## Inputs
+* `P` – polygon
+
+## Output
+* the stored convex pieces
 -/
 
 -- Authors:       Claude Opus 5.5

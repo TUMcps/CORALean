@@ -14,6 +14,31 @@ public import Mathlib.Data.Matrix.Basic
 image `-βᵢ + Γᵢ Px ⊆ Pᵢ` (`mem_ineqs_of_cert`), and the images add up to the inbody. Only
 sufficient: deciding `P = P₁ ⊕ P₂` is NP-complete.
 
+## Inputs
+* `ny` – natural numbers indexed by `Fin N`
+* `qy` – natural numbers indexed by `Fin N`
+* `xbar` – mean of length `n`
+* `X` – `n × nx` matrix
+* `Hx` – `qx × nx` matrix
+* `hx` – vector of length `qx`
+* `ybar` – vectors indexed by `Fin N`
+* `Y` – matrices indexed by `Fin N`
+* `Hy` – matrices indexed by `Fin N`
+* `hy` – vectors indexed by `Fin N`
+* `Λ` – matrices indexed by `Fin N`
+* `Γ` – matrices indexed by `Fin N`
+* `β` – vectors indexed by `Fin N`
+
+## Hypotheses
+* `hΛ` – `Λ` has nonnegative entries
+* `h1` – each `Λ i` carries `Hx` to `Hy i Γ i`
+* `h2` – each bound of `Λ i` is at most the bound of `Hy i` shifted by `β i`
+* `hc` – the centers minus `Y β` sum to `xbar`
+* `hX` – the generators `Y i Γ i` sum to `X`
+
+## Conclusion
+* an AH-polytope in a Minkowski sum of AH-polytopes, sufficiently
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

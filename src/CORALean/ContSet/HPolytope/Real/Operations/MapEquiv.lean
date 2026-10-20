@@ -11,6 +11,13 @@ The image under an invertible linear map, which is the preimage under its
 inverse. Exact, and this is what CORA's `mtimes` on a halfspace description
 amounts to: a general matrix would need the image of a polytope, which is a
 projection and so vertex enumeration, but an invertible one costs nothing.
+
+## Inputs
+* `e` – `α ≃ₗ[ℝ] β`
+* `P` – H-polytope
+
+## Output
+* the image of `P` under `e`, the preimage under `e.symm`
 -/
 
 -- Authors:       Claude Opus 5

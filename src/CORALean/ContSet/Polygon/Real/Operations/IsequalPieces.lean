@@ -13,6 +13,13 @@ lies inside a single piece of the other (`Polygon.isequalPieces_sound`). It is o
 cannot see that a convex piece is covered by several pieces of the other polygon, so it can say
 no for equal regions (two halves of a square against the square; not proved here). The
 boundary comparison (R-PG) is not formalized.
+
+## Inputs
+* `P` – polygon
+* `Q` – polygon
+
+## Output
+* every piece of each polygon lies inside one piece of the other
 -/
 
 -- Authors:       Claude Opus 5.5

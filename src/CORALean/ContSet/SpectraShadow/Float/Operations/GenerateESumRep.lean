@@ -13,6 +13,12 @@ eliminated but written out, as `x - c - G β ⪰ 0` and its negation along the d
 shadow's inequality, the existential variables being all of `β`. Only blocks are rearranged and
 entries negated, which is exact, so nothing rounds. The stored shadow's error box is not part of an
 existential sum representation and is not read.
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Output
+* the existential sum representation, with `x = c + G β` written out beside the inequality
 -/
 
 -- Authors:       Claude Opus 5.5

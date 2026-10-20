@@ -14,6 +14,13 @@ and so inexact: the shifted bound is known between its two roundings. `setRhs` s
 one and pays the gap into the row's slack (#218), so an inequality's `b` is the shifted bound
 rounded down and an equality stays an equality, a slab as wide as its slack and the gap; the
 error box moves with the polytope unchanged.
+
+## Inputs
+* `t` – vector of length `n`
+* `P` – H-polytope
+
+## Output
+* `P` shifted by `t`, each bound moved by its row's dot product with `t`, rounding in the slacks
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5, Claude Opus 5.5

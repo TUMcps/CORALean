@@ -14,6 +14,13 @@ rows ignore, or a point that is zero off `sel`, gives, the selected rows read th
 coordinates as the full rows read the point (`HPolytope.mem_selectCols_nominal_iff`). The error box
 is not read and the result's is the origin, as for a constrained zonotope's constraint, which has
 none.
+
+## Inputs
+* `P` – H-polytope
+* `sel` – indices indexed by `Fin k`
+
+## Output
+* the rows at the coordinates `sel`, bounds and slacks kept
 -/
 
 -- Authors:       Claude Opus 5.5

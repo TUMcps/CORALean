@@ -15,6 +15,15 @@ In `ℝ¹`: the inbody `E₂(G, c) = 1 + [-1, 1] = [0, 2]` (`G = 1`, `c = 1`; ev
 `-x ≤ 1`. The containment radius `max_{|α| ≤ 1} S(α + 1)` is `2`, at `α = 1`. The printed
 formula gives, for either facet, `‖G'ᵀλᵢ‖₂ / |bᵢ| = ‖(±1, ±1)‖₂ = √2`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polyhedral norm peaks at `2` over the example, where the printed formula gives `√2`
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

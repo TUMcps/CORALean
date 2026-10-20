@@ -9,6 +9,15 @@ public import CORALean.ContSet.HPolytope.Real.Operations.OfBoundsOpt
 
 The unanswered directions are exactly the ones that constrain nothing, so the
 enclosure holds without any assumption about how many were answered.
+
+## Inputs
+* `Aq` – family indexed by `Fin q`
+
+## Hypotheses
+* `u` – an optional support bound of `S` along each row
+
+## Conclusion
+* `S` is contained in `ofBoundsOpt Aq u`
 -/
 
 -- Authors:       Claude Opus 5

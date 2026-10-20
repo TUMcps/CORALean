@@ -11,6 +11,18 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
 [1, Eq. 13]: they do exactly when the stacked system [1, Eq. 36] is not empty — a single
 emptiness check, [1, Eq. 9], rather than any intersection being computed.
 
+## Inputs
+* `A₁` – `q₁ × n` matrix
+* `b₁` – offset vector of length `q₁`
+* `A₂` – `q₂ × n` matrix
+* `b₂` – offset vector of length `q₂`
+
+## Hypotheses
+* none
+
+## Conclusion
+* do two H-polytopes intersect?
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

@@ -18,13 +18,25 @@ public import Mathlib.Analysis.Convex.PathConnected
 
 For a convex subtrahend whose center lies in it, and a vertex loop `V` that runs along the
 boundary of the shifted minuend, the region swept by the mirrored subtrahend along the loop is
-exactly the mirror plus the boundary (`linComb` of two shifts of a convex set is the set plus the
-segment). So the points of the shifted minuend off that region are those whose translate of the
-subtrahend does not meet the boundary, and a convex set that meets no boundary and starts inside
-stays inside. Hence `Polygon.minkDiff` lies in the Minkowski difference `{x | x + B ⊆ A}` and
-contains its interior: exact up to boundary points, an inner approximation as it stands.
+exactly the mirror plus the boundary. So the points of the shifted minuend off that region are
+those whose translate of the subtrahend does not meet the boundary, and a convex set that meets
+no boundary and starts inside stays inside. Hence `Polygon.minkDiff` lies in the Minkowski
+difference `{x | x + B ⊆ A}` and contains its interior: an inner approximation as it stands.
 A non-convex subtrahend is not covered: `linComb` then also fills its gaps
 (`references/coverage/contSet/polygon.md`, row `minkDiff`).
+
+## Inputs
+* `A` – polygon
+* `B` – polygon
+* `V` – `List (Vec ℝ 2)`
+
+## Hypotheses
+* `hB` – `B` is convex
+* `hc` – the center of `B` lies in `B`
+* `hV` – the edges of `V` form the boundary of the shifted `A`
+
+## Conclusion
+* `Polygon.minkDiff` is the Minkowski difference up to its boundary
 -/
 
 -- Authors:       Claude Sonnet 5.5

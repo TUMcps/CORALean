@@ -9,6 +9,15 @@ public import CORALean.ContSet.SpectraShadow.Real.Counterexamples.FullDimShortcu
 
 The shortcut reads the generator matrix alone: `A₀ = 1`, `A₁ = 0`, `c = 0` and `G = 10⁻⁹` is all of
 `ℝ¹`, with an interior, and `norm(G, 'fro') < 1e-8` fires, so CORA caches `emptySet.val = true`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's `isFullDim` shortcut marks a full-dimensional shadow as empty
 -/
 
 -- Authors:       Claude Opus 5.5

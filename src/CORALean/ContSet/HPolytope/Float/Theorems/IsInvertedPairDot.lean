@@ -10,6 +10,18 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.Basic
 
 At every point, row `j` takes the negative of row `i`'s value, and its right-hand side is the
 negative of `i`'s.
+
+## Inputs
+* `Q` – H-polytope
+* `i` – index below `Q.m`
+* `j` – index below `Q.m`
+* `x` – point of length `n`
+
+## Hypotheses
+* `h` – rows `i` and `j` of `Q` are an inverted pair
+
+## Conclusion
+* an inverted pair of rows has opposite values
 -/
 
 -- Authors:       Claude Opus 5.5

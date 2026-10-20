@@ -12,6 +12,15 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.ConstructEmptySet
 
 A zero row `0 ≤ b` with `b ≥ 0` or `0 = be` holds at every point, so deleting it changes
 nothing; a certified infeasible one empties the set, and the empty set is what is returned.
+
+## Inputs
+* `Q` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `dropZeros` denotes the same set, exactly
 -/
 
 -- Authors:       Claude Opus 5.5

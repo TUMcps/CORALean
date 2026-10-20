@@ -9,6 +9,17 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 # Membership in `HPolytope.eqs`, over a floating-point scalar
 
 Membership at each shape, the block that is absent discharged by `Fin.elim0`.
+
+## Inputs
+* `Ae` – `q × n` matrix
+* `be` – vector of length `q`
+* `x` – point of length `n`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in `eqs Ae be` iff every row of `Ae x` equals `be`
 -/
 
 -- Authors:       Claude Opus 5

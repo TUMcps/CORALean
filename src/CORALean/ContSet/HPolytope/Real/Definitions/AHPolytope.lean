@@ -14,6 +14,14 @@ H-polytopes are all cheap to write down and expensive to put back into halfspace
 A set, not a representation: `ConZonotope` is the representation, and
 `ConZonotope.eq_construct_iff_isAffineImage` says the two describe the same sets.
 
+## Inputs
+* `xbar` – mean of length `n`
+* `X` – `n × m` matrix
+* `P` – H-polytope
+
+## Output
+* `x̄ + X P`, `[1, Def. 2]`
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

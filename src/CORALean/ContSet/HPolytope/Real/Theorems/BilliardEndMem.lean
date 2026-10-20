@@ -18,6 +18,20 @@ points the new direction inward, `(aᵢ, d') = -(aᵢ, d) < 0` by the reflection
 the walk is checked for corners: at a point on two hyperplanes the reflected direction can
 point out of the second.
 
+## Inputs
+* `P` – H-polytope
+* `R` – natural number
+* `x` – point
+* `d` – direction
+* `ℓ` – real number
+
+## Hypotheses
+* `hx` – `x` is strictly inside every inequality
+* `hℓ` – `0 ≤ ℓ`
+
+## Conclusion
+* the billiard walk never leaves the polytope
+
 ## References
 
 * [1] B. T. Polyak and E. N. Gryazina. "Billiard walk - a new sampling algorithm for control

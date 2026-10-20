@@ -17,6 +17,13 @@ ones by the equalities `zᵢ = cᵢ + Σⱼ Gᵢⱼ βⱼ` (two diagonal entries
 whose entries are stored floats or their exact negations), and the result is `M z` with
 generators `[0 | M]`. No entry is computed, so the nominal shadow is exact; only the error box
 is multiplied, by `Interval.mtimes`.
+
+## Inputs
+* `M` – `m × n` matrix
+* `S` – spectrahedral shadow
+
+## Output
+* the image of `S` under `M`, written without a product of two stored matrices
 -/
 
 -- Authors:       Claude Sonnet 5.5

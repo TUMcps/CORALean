@@ -14,6 +14,15 @@ admits the ball of radius `1/2` around `1/2`, so the optimal radius of [1, Eq. 1
 yet the interval has an interior. The text beside the display has it right — radius `0` means
 degenerate — which is `HPolytope.ineqs_interior_nonempty_iff`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* `[1, Eq. 18]` as printed reads the Chebyshev radius the wrong way round
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

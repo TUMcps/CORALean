@@ -11,6 +11,15 @@ public import CORALean.ContSet.VPolytope.Real.Instances
 
 Every vertex is in the polygon, and the polygon is in the hull of its vertices; hence the two
 hulls agree.
+
+## Inputs
+* `P` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* the hull of the stored vertices equals the hull of the polygon
 -/
 
 -- Authors:       Claude Opus 5.5

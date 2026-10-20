@@ -10,6 +10,16 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 
 `comap` already gives the preimage, and for an equivalence the image under `e` is
 the preimage under `e.symm`.
+
+## Inputs
+* `e` – `α ≃ₗ[ℝ] β`
+* `P` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `HPolytope.mapEquiv` is exactly the image
 -/
 
 -- Authors:       Claude Opus 5

@@ -13,6 +13,18 @@ public import Mathlib.Tactic.FinCases
 The certified orientations, read as reals, are the triangle's `D > 0` and the point's three
 edge orientations, all nonnegative; divided by `D` they are barycentric coordinates: nonnegative,
 summing to `1` (the three orientations add up to `D`), and combining the corners to the point.
+
+## Inputs
+* `a` – vector of length `2`
+* `b` – offset vector of length `2`
+* `c` – center of length `2`
+* `x` – point of length `2`
+
+## Hypotheses
+* `h` – `Polygon.inTriangle a b c x` holds
+
+## Conclusion
+* A `true` from `Polygon.inTriangle` is a convex combination
 -/
 
 -- Authors:       Claude Opus 5.5

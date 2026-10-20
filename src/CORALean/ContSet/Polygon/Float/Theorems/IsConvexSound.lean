@@ -13,6 +13,15 @@ public import CORALean.ContSet.VPolytope.Float.Theorems.Basic
 With no piece the region is empty. Otherwise the piece that holds every piece
 (`Polygon.pieceSubset_sound`) is the whole region, and a float piece is convex
 (`VPolytope.convex_construct`).
+
+## Inputs
+* `P` – polygon
+
+## Hypotheses
+* `h` – `Polygon.isConvex P` holds
+
+## Conclusion
+* A `true` from `Polygon.isConvex` proves the region convex
 -/
 
 -- Authors:       Claude Opus 5.5

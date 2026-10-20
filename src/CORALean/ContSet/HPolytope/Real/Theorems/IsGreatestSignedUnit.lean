@@ -13,6 +13,15 @@ public import Mathlib.Data.Matrix.Mul
 `±eᵢᵀ x`, which is what lets the paper solve `2n` linear programs instead. For `n ≥ 1`; at
 `n = 0` there is no direction and `‖x‖∞ = 0`.
 
+## Inputs
+* `x` – point of length `n`
+
+## Hypotheses
+* `hn` – `0 < n`
+
+## Conclusion
+* the sup norm of `x` is the greatest dot product with a signed unit vector `±eᵢ`
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

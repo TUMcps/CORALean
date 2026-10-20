@@ -9,6 +9,16 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 # `HPolytope.ofPoint` denotes exactly one point
 
 The converse to `mem_ofPoint`: the `n` equality rows pin every coordinate.
+
+## Inputs
+* `v` – vector of length `n`
+* `x` – point of length `n`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `HPolytope.ofPoint` denotes exactly one point
 -/
 
 -- Authors:       Claude Opus 5.5

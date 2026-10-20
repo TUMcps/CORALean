@@ -11,13 +11,17 @@ public import Mathlib.Analysis.Convex.Hull
 `@ellipsoid/polygon.m` (documented "inner-approximative") takes `N = 1000` boundary points
 `V = priv_boundary(E,N)` and returns `polygon(V)`; `@polygon/contains_.m` l. 69 and
 `@polygon/isIntersecting_.m` l. 49 apply that conversion to an ellipsoid operand `S`.
+Abstracted, not modelled: `polygon(V)` is the convex hull of the finite point set `V`; `N` and
+the positions are not modelled, so the results hold for every finite sample. The two tests are
+on regions: `contains_` l. 71-78 accepts when `withinTol(area(P), area(union(P, S')), tol)`
+(an absolute tolerance), `isIntersecting_` l. 52 returns `overlaps(P, S')`, here that the
+regions share a point.
 
-Abstracted, not modelled: `polygon(V)` is `polyshape(V)`; for boundary points of a convex body in
-angular order it is their convex hull, taken here for every finite point set. `N` and the point
-positions are not modelled: the results hold for every finite sample. The two tests are on
-regions: `contains_` l. 71-78 accepts when `withinTol(area(P), area(union(P, S')), tol)` (taken as
-an absolute tolerance), `isIntersecting_` l. 52 returns `overlaps(P, S')`, here that the regions
-share a point.
+## Inputs
+* `V` – set of points
+
+## Output
+* the region of `polygon(V)` for the sampled boundary points `V`
 -/
 
 -- Authors:       Claude Opus 5.5

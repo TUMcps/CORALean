@@ -8,6 +8,15 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.LineExampleSum
 # `SpectraShadow.lineExample_not_mem`
 
 No coefficient reaches `(1, 0)`: the line example's points are diagonal.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* no coefficients `β` combine the generators to give the point `(1, 0)`
 -/
 
 -- Authors:       Claude Opus 5.5

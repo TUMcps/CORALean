@@ -10,6 +10,16 @@ public import CORALean.ContSet.VPolytope.Real.Instances
 # The intersection of two polygons, piece by piece
 
 Exactly: the intersection of two unions is the union of the pairwise piece intersections.
+
+## Inputs
+* `P` – polygon
+* `Q` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* the intersection of two polygons is the union of the intersections of their pieces
 -/
 
 -- Authors:       Claude Opus 5.5

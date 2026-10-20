@@ -10,6 +10,16 @@ public import CORALean.ContSet.HPolytope.Float.Operations.TranslateOuter
 
 Every point of the polytope less the subtrahend lies in the result: negation is
 exact, so this is `translate_outer` at `-v`.
+
+## Inputs
+* `P` – H-polytope
+* `v` – vector of length `n`
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image of `P` shifted by `-v` is contained in `P.minus v`
 -/
 
 -- Authors:       Claude Opus 5.5

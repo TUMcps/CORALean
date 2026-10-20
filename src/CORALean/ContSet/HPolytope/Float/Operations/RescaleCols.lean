@@ -12,11 +12,18 @@ The substitution [1, Prop. 4] makes in a constrained zonotope's coefficients: a 
 `ξ = ξm + diag(ξr) δ` is the row `a diag(ξr)` read at `δ` plus the constant `a ξm`, so the rows
 become `A diag(ξr)` and `Ae diag(ξr)` and the bounds `b - A ξm` and `be - Ae ξm`. Each entry of a
 scaled row is rounded down, which names a slightly different halfspace; against `δ` in the unit
-box it is off by at most the row's summed gaps (`abs_sum_mulDown_gap_le`). So a row's new bound,
-read at a point, lies between `b - A ξm` with its two roundings and that gap either way, and
-`setRhs` stores the lower end and pays the width into the row's slack (#218): an equality stays
+box it is off by at most the row's summed gaps (`abs_sum_mulDown_gap_le`). So `setRhs` stores the
+lower end of a row's new bound and pays the width into the row's slack (#218): an equality stays
 an equality. The slacks are carried, the error box is not read (a constrained zonotope's
 constraint has none).
+
+## Inputs
+* `P` – H-polytope
+* `ξm` – vector of length `n`
+* `ξr` – vector of length `n`
+
+## Output
+* the rows at `ξm + diag(ξr) δ`, rounding against the unit box paid into the slacks
 
 ## References
 

@@ -12,6 +12,18 @@ public import CORALean.ContSet.ProbZonotope.Real.Operations.Abs
 Outer: for a real probabilistic zonotope whose mean zonotope is the nominal part of `P.Z` and
 whose covariance is a positive semidefinite matrix of the covariance interval, every law of the
 real `abs` is a law of the float `abs`, provided the error box of the means holds `0`.
+
+## Inputs
+* `P` – probabilistic zonotope
+* `S` – `n × n` matrix
+
+## Hypotheses
+* `h0` – the error box of the mean zonotope contains the origin
+* `hS` – `S` lies in `P.cov`
+* `hp` – `S.PosSemidef`
+
+## Conclusion
+* `ProbZonotope.abs` holds the real `abs`'s laws
 -/
 
 -- Authors:       Claude Opus 5.5

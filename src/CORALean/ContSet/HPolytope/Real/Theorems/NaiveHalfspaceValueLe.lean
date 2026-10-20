@@ -14,6 +14,26 @@ norm of the pair `(Gᵀλ, λᵀ(c - d))` is at most the sum of the two (`Eq. 11
 function), and the sum over a facet and its mirror is the exact radius
 (`HPolytope.isGreatest_polyNorm_ellipsotope`), so the printed quantity is below the radius.
 
+## Inputs
+* `p` – `ℝ≥0∞`
+* `G` – linear map
+* `c` – center of length `n`
+* `d` – direction of length `n`
+* `Λ` – `s × n` matrix
+* `b` – offset vector of length `s`
+* `r` – radius
+* `N` – natural number
+* `j` – indices indexed by `Fin N`
+
+## Hypotheses
+* `hb` – `∀ i, 0 < b i`
+* `hsym` – every row has an opposite row with the same bound
+* `hr` – `r` is the greatest value of the norm over the unit ball
+* `hN` – `0 < N`
+
+## Conclusion
+* the naive halfspace value is at most `r`
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

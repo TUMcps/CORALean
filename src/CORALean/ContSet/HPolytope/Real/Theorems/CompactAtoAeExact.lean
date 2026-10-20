@@ -12,6 +12,15 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeRowsExact
 
 A pair `aᵀx ≤ b`, `-aᵀx ≤ -b` is the equality `aᵀx = b`, and the equalities appended by the loop
 imply the rows that were moved.
+
+## Inputs
+* `P` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `compactAtoAe` denotes the same set, exactly
 -/
 
 -- Authors:       Claude Opus 5.5

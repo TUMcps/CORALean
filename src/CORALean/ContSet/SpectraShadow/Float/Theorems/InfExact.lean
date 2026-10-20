@@ -13,6 +13,15 @@ public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
 The stored constant reads as `1`, the generators as the unit vectors, and the error box is the
 origin box. The inequality `1 ⪰ 0` is met by every coefficient family, whose variables are then
 read off the point.
+
+## Inputs
+* `n` – natural number
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float `Inf` shadow is the whole space
 -/
 
 -- Authors:       Claude Sonnet 5.5

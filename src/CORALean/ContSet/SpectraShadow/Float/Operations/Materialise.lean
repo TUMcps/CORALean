@@ -11,6 +11,12 @@ public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
 Every field is a function type, so the shadow an operation returns is a closure
 over the one it was given. `materialise` stores them and `materialise_eq` says it
 is the identity; `Global/Tensor` says why the vectors are built here.
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Output
+* `S` with its fields stored as vectors, the same shadow
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,12 @@ The error box moved into the slacks, the rows as stored. A box point adds to row
 grows by the larger of `errUp Aeᵢ` and `errUp (-Aeᵢ)`, since the box can move its reading either
 way. Unlike `absorbRounding` it keeps `b`, `be` and every equality as stored: the result is the
 same rows with wider slacks and the origin box, which is what `intersection` stacks.
+
+## Inputs
+* `P` – H-polytope
+
+## Output
+* `P` with its error box paid into the slacks, rounded up, and the origin box
 -/
 
 -- Authors:       Claude Opus 5.5

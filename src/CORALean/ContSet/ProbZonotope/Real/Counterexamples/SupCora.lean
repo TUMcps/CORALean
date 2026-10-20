@@ -18,6 +18,15 @@ means it does not bound.
 `sup.m` takes its norms from `interval`, which ignores the deterministic generators: for the mean
 zonotope `[-1, 1]` with covariance `0` it returns `0`, while the means reach norm `1`. The help says
 `sup(‖x‖∞), x ∈ Z`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* some mean `μ` of a probabilistic zonotope has norm above CORA's `sup`
 -/
 
 -- Authors:       Claude Opus 5.5

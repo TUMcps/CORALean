@@ -14,6 +14,17 @@ The vertices are the points `v` of `SpS - c` that the support function returns, 
 of the shadow. A shadow is convex, so their hull is inside it. Inner: the hull of finitely many
 boundary points is not the shadow. The theorem asks only that each `v` be a point of `SpS - c`,
 as the solver's maximisers are.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `c` – center of length `n`
+* `v` – vectors indexed by `Fin N`
+
+## Hypotheses
+* `hv` – every `v i` lies in the shadow shifted by `-c`
+
+## Conclusion
+* the inner polytope of a shadow is inside it
 -/
 
 -- Authors:       Claude Opus 5.5

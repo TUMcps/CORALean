@@ -13,6 +13,16 @@ public import CORALean.Global.Block
 
 The product's points are the sums of the two embeddings, each inside its padded shadow, and
 `plus_outer` takes the sum of the padded shadows into the result.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `T` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* `SpectraShadow.cartProd` contains the Cartesian product
 -/
 
 -- Authors:       Claude Sonnet 5.5

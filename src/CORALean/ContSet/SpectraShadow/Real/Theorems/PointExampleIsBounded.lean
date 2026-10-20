@@ -10,6 +10,15 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.PointExampleConstruct
 
 The point `{0}` is bounded, so CORA's `+Inf` support (`supportFuncCoraAllZero_ne_supportFunc`)
 calls a bounded set unbounded.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point example `{0}` is bounded
 -/
 
 -- Authors:       Claude Opus 5.5

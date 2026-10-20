@@ -26,6 +26,15 @@ across the sectors `y < 0`, `y = 0 ∧ x ≥ 0`, `y > 0`, `y = 0 ∧ x < 0` abou
 sector (a span of at most `π`) `a` precedes `b` iff `cross a b ≥ 0`; `Complex.arg` is not
 evaluated. The region of a vertex list is its even-odd (crossing number) region, as for MATLAB's
 `polyshape` of a simple polygon; a `Polygon` of convex pieces has no boundary reading (R-PG).
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* `removeCollinearPoints` changes the polygon: the angular sort is not the boundary order
 -/
 
 -- Authors:       Claude Opus 5.5

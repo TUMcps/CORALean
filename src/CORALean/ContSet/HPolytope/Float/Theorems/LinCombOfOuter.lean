@@ -11,6 +11,16 @@ public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 The same line as `plusOf_outer` at a different composition of bounds, and it
 holds for the same reason: `ofBounds` says exactly what the bounds handed to it
 say, rounding included.
+
+## Inputs
+* `Aq` – `q × n` matrix
+
+## Hypotheses
+* `u₁` – a float bound of `P₁.construct` along each row
+* `u₂` – a float bound of `P₂.construct` along each row
+
+## Conclusion
+* the float certified convex combination encloses
 -/
 
 -- Authors:       Claude Opus 5

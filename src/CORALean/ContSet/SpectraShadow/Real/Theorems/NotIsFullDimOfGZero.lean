@@ -10,6 +10,16 @@ public import Mathlib.Analysis.Normed.Affine.AddTorsorBases
 
 With every generator zero the shadow is inside the point `{c}`, which has no interior in a space of
 positive dimension: the case CORA's `norm(G, 'fro') < 1e-8` shortcut means to catch.
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Hypotheses
+* `hn` – `0 < n`
+* `hG` – `∀ j, S.G j = 0`
+
+## Conclusion
+* A shadow with every generator zero has no interior
 -/
 
 -- Authors:       Claude Opus 5.5

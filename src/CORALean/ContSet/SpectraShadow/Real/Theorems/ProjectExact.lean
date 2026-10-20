@@ -10,6 +10,16 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.MapExact
 
 Reading the same coordinates of every member, no hypothesis on `dims`: a linear map is exact on a
 spectrahedral shadow, so nothing is added and nothing lost.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `dims` – indices indexed by `Fin m`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `SpectraShadow.project` is exactly the projected set
 -/
 
 -- Authors:       Claude Opus 5.5

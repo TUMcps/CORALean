@@ -15,6 +15,18 @@ from above, so it stays under the lower end of the scaled right-hand sides, whic
 `i`'s own scaled right-hand side; dividing by the scale gives the row. Inner over the domain,
 as over ℝ, for a polytope without equality rows and without an error box: a box would enlarge the
 polytope, and an inner statement cannot read it as an outer one.
+
+## Inputs
+* `p` – natural number
+* `P` – H-polytope
+* `dom` – domain interval
+
+## Hypotheses
+* `hP` – `P.ErrFree`
+* `hme` – `P.me = 0`
+
+## Conclusion
+* A point under the float inner reduction meets every row of the polytope in the domain
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

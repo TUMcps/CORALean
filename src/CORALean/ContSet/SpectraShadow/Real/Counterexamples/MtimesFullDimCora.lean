@@ -28,6 +28,15 @@ Read from the source, not run.
 `SpS = spectraShadow.Inf(1)` (the real line, `fullDim.val = true` set by `Inf.m`) and
 `M = [1; 0]` (rank `1 = dim(SpS)`): `M * SpS` is the first axis of `R^2`, with empty interior,
 and `isFullDim(M * SpS)` returns `true`. Read from the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA flags `M * SpS` full-dimensional, yet the image `{(x, 0)}` has no interior in `R^2`
 -/
 
 -- Authors:       Claude Sonnet 5.5

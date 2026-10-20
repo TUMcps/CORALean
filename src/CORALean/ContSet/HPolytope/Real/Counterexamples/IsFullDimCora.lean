@@ -17,6 +17,15 @@ unit square with that row added is non-degenerate, yet every feasible `r` is at 
 reports it degenerate. [1, Eq. 19] multiplies `r` by the row's norm, which is `0` there
 (`HPolytope.ineqs_interior_nonempty_iff`).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a full-dimensional polytope has no point with positive margin in CORA's zero-row program
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

@@ -12,6 +12,17 @@ public import Mathlib.Analysis.Convex.Hull
 CORA's `'exact'` branch of `contains_` for a set operand `T` (a zonotope, interval, polytope,
 conZonotope or zonoBundle): the point test on each of its `vertices`. A convex hull of points lies
 in a spectrahedral shadow exactly when the points do, since the shadow is convex.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `T` – set of points
+* `V` – set of points
+
+## Hypotheses
+* `hT` – `T` is the convex hull of `V`
+
+## Conclusion
+* `T` lies in the shadow iff its vertices `V` do
 -/
 
 -- Authors:       Claude Opus 5.5

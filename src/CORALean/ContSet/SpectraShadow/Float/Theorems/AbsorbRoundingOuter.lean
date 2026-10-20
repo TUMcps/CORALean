@@ -11,6 +11,15 @@ public import CORALean.ContSet.SpectraShadow.Float.Theorems.AbsorbRoundingNomina
 
 Read back through `ContSet`: the set lies in the nominal set of `absorbRounding`, and that box is
 the origin, so it lies in the whole.
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* `absorbRounding` contains the set
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -15,6 +15,16 @@ public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_PolyZonot
 The float counterpart of `Real.Polygon.quadMapMixed`: every pair of vertex triangles of the two
 float polygons, mapped by the float `PolyZonotope.quadMapMixed` and enclosed by
 `PolyZonotope.polygon`.
+
+## Inputs
+* `P₁` – polygon
+* `P₂` – polygon
+* `Q` – matrices indexed by `Fin 2`
+* `splits` – number of splits
+* `pick` – refinement rule: whether to split a piece in a given round
+
+## Output
+* the union of the polygons of the images of the pairs of triangles
 -/
 
 -- Authors:       Claude Sonnet 5.5

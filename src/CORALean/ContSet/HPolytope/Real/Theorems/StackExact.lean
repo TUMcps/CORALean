@@ -11,6 +11,15 @@ Every row of the stack is a row of one member, and every row of a member is a ro
 stack, so a point satisfies all of the one exactly when it satisfies all of the other.
 Used by [1, Prop. 4].
 
+## Inputs
+* `P` – H-polytopes indexed by `Fin s`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `HPolytope.stack` is exactly the intersection
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

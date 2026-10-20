@@ -11,6 +11,17 @@ A linear function of one coordinate is largest at one end of the coordinate's ra
 term of `a · e` is bounded by the end the sign of `aⱼ` picks, and `errUp` sums those bounds
 upward. This is how every operation that moves the box into the rows (`absorbRounding`,
 `boxToSlack`) bounds what a box point adds to a row.
+
+## Inputs
+* `P` – H-polytope
+* `a` – vector of length `n`
+* `e` – vector of length `n`
+
+## Hypotheses
+* `he` – `e` lies in `P.I_error`
+
+## Conclusion
+* what a row reads on the error box, at most
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

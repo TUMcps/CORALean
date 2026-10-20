@@ -10,6 +10,15 @@ public import CORALean.ContSet.VPolytope.Real.Instances
 # A polygon is empty iff no piece has a vertex
 
 Exactly: a polytope is empty iff it has no vertex.
+
+## Inputs
+* `P` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* A polygon is empty iff no piece has a vertex
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,12 @@ public import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
 The diagonal `{(t, t)}` of `ℝ²`: `A₀ = I`, `A₁ = 0`, `A₂ = diag(1, 0)`, `G₁ = (1, 1)`, `G₂ = 0`,
 the counterexample set of `SpectraShadow.representsa_fullspaceCora_line` and
 `SpectraShadow.containsPointCora_line`. `A₂` is nonzero, so CORA's solver branch runs.
+
+## Inputs
+* none
+
+## Output
+* the diagonal `{(t, t)}` of `ℝ²`, with `A₀ = I`, `A₂ = diag(1, 0)` and `G₁ = (1, 1)`
 -/
 
 -- Authors:       Claude Opus 5.5

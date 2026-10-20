@@ -10,6 +10,13 @@ public import CORALean.ContSet.VPolytope.Real.Operations.Mtimes
 
 CORA's `polygon/mtimes` at a `2 × 2` matrix: every piece mapped by it. CORA maps the vertices of
 the polyshape.
+
+## Inputs
+* `M` – `2 × 2` matrix
+* `P` – polygon
+
+## Output
+* every piece mapped by `M`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,15 @@ public import CORALean.ContSet.SetUnion.Theorems.Basic
 A piece with no vertex has an empty nominal polytope, so the piece, its sum with the error box, is
 empty. Only this direction: a piece with vertices whose error box is empty is empty too, and the
 test says `false` of it.
+
+## Inputs
+* `P` – polygon
+
+## Hypotheses
+* `h` – `Polygon.representsaEmptySet P` holds
+
+## Conclusion
+* the region of `P` is empty
 -/
 
 -- Authors:       Claude Opus 5.5

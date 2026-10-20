@@ -11,6 +11,12 @@ public import CORALean.ContSet.HPolytope.Float.HPolytope
 inequality row is `0 ≤ b` with `b ≥ 0`, every equality row is `0 x = be` with `be = 0`, and the
 error box is not empty (otherwise the polytope would be). Each comparison is a `le`, certified
 when it answers `true` only, so the test is sound when `true` and says nothing when `false`.
+
+## Inputs
+* `P` – H-polytope
+
+## Output
+* `true` when every row is `0 ≤ b` with `b ≥ 0` or `0 = 0` and the error box is nonempty
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

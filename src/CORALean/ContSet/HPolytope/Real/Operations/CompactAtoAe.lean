@@ -17,6 +17,12 @@ inequalities and the equalities are appended (`moveToEq`).
 The test for an inverted pair is exact equality of `[a, b]` and `-[a', b']`; CORA's is
 `withinTol(sum, 0, tol)` entrywise, at the default `tol = 1e-9`. The emptiness and fullspace
 exits at the end of CORA's `compact_` are not needed here, an empty row set being the fullspace.
+
+## Inputs
+* `P` – H-polytope
+
+## Output
+* `P` normalized, with each inverted inequality pair turned into an equality
 -/
 
 -- Authors:       Claude Opus 5.5

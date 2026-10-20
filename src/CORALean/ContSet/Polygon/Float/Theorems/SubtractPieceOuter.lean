@@ -22,6 +22,15 @@ A point of `r` outside `q` is not covered by `q`, so `pieceSubset` did not drop 
 it is outside the inner description `H ⊆ q`, so some row `aᵢᵀx ≤ bᵢ` fails, and the point
 survives the cut to `-aᵢᵀx ≤ -bᵢ`, which the box hull of `r` and the box-to-polytope
 conversion keep. Outer.
+
+## Inputs
+* `p` – V-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `innerHRep` returns the plain inequalities its edges give, with no error box
 -/
 
 -- Authors:       Claude Opus 5.5

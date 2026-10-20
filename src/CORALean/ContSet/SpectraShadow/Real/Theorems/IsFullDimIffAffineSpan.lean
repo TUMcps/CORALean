@@ -10,6 +10,15 @@ public import Mathlib.Analysis.Normed.Affine.AddTorsorBases
 
 A shadow is convex, so it has an interior point exactly when its affine hull is the whole space
 (`ContSet.IsFullDim` read at `construct`).
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* A spectrahedral shadow is full-dimensional iff its affine hull is everything
 -/
 
 -- Authors:       Claude Opus 5.5

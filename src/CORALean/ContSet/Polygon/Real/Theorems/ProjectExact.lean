@@ -11,6 +11,16 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
 # `Polygon.project` is the image
 
 Exactly, piece by piece (`VPolytope.project_exact`).
+
+## Inputs
+* `P` – polygon
+* `dims` – indices indexed by `Fin 2`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Polygon.project` is the image
 -/
 
 -- Authors:       Claude Opus 5.5

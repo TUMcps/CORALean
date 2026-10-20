@@ -24,6 +24,11 @@ difference `subtract` (a region). `minus` by a vector is `Polygon.minus`.
 The semantics is the union, so `SetUnion`'s `Plus` and `Reduce` instances are `Polygon`'s.
 `Float/` is the same alias at the float polytope.
 
+## Inputs
+* none
+
+## Output
+* A polygon: a finite list of convex polygons, denoting their union
 -/
 
 -- Authors:       Claude Opus 5.5

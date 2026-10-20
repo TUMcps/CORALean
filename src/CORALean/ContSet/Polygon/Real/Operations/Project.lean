@@ -12,6 +12,13 @@ CORA's `polygon/project` at two coordinates, `V(dims,:)`, and `projectHighDim_`/
 2`, which CORA reduces to it. Every piece is projected. With one coordinate CORA projects the
 interval hull instead; that case is `Polygon.interval` followed by `Interval.project`, not given
 here.
+
+## Inputs
+* `P` – polygon
+* `dims` – indices indexed by `Fin 2`
+
+## Output
+* every piece read at the coordinates `dims`
 -/
 
 -- Authors:       Claude Opus 5.5

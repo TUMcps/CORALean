@@ -15,6 +15,17 @@ Weak duality, as over ℝ (`CORALean.Real.SpectraShadow.supportBound`): `Y ⪰ 0
 dominant) and the inequality's matrix at `β` give `tr(M(β) Y) ≥ 0`, which with the exact
 equalities is `aᵀ G β ≤ tr(A₀ Y)`. The rounded-up sums bound the nominal part, and each
 coordinate of the error lies between its corners, where `aᵣ eᵣ` is largest.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `a` – vector of length `n`
+* `Y` – `S.k × S.k` matrix
+
+## Hypotheses
+* `h` – `S.dualCertified a Y` holds
+
+## Conclusion
+* A certified `Y` bounds the shadow along `a`
 -/
 
 -- Authors:       Claude Opus 5.5

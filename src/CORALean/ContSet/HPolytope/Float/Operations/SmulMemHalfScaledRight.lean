@@ -15,6 +15,22 @@ public import CORALean.ContSet.HPolytope.Float.Operations.MulVecPadRight
 The mirror of the left one, at the complementary weight `(1 - t) / 2`: the same
 three row groups, each reading the second block, and the weighting column
 entering with the other sign.
+
+## Inputs
+* `P` – H-polytope
+* `y` – vector of length `n₂`
+* `z` – point of length `n₁`
+* `w` – real number
+* `t` – real number
+
+## Hypotheses
+* `hw` – `(1 - t) / 2 = w`
+* `hw0` – `0 ≤ w`
+* `hw1` – `w ≤ 1`
+* `hy` – `y` lies in `P.nominal`
+
+## Conclusion
+* A weighted block meets the weighted constraints, on the right
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5, Claude Opus 5.5

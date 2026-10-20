@@ -9,6 +9,13 @@ public import CORALean.ContSet.HPolytope.Real.HPolytope
 
 The rows tight at a point, as the choice that names it. Noncomputable, and
 unavoidably so at this layer — whether two reals are equal is not decidable.
+
+## Inputs
+* `P` – H-polytope
+* `x` – point of length `n`
+
+## Output
+* the rows tight at `x`, as the choice that names `x`
 -/
 
 -- Authors:       Claude Opus 5

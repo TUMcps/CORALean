@@ -17,6 +17,17 @@ pairwise distinct unit rows it holds for every row: `A(j,·)` itself satisfies e
 strictly, `A(i,·) A(j,·) < 1` for distinct unit vectors, so a small step past it along `A(j,·)`
 breaks row `j` alone.
 
+## Inputs
+* `A` – `q × n` matrix
+* `j` – index below `q`
+
+## Hypotheses
+* `hA` – every row of `A` has unit norm
+* `hinj` – `A` is injective
+
+## Conclusion
+* distinct unit rows with offset one are all non-redundant
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

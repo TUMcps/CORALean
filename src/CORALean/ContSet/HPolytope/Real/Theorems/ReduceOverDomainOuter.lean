@@ -12,6 +12,16 @@ For type `'outer'`: every point of the domain in `P` satisfies the single reduce
 Any normalized row `i` gives `A_reduced' x ≤ b_i - (a_i - A_reduced)' x`, and `b_i` is at most the
 supremum of `b`, `(a_i - A_reduced)' x` at least the infimum of `(A - A_reduced)' * dom`.
 Needs a row to read from. An outer approximation over the domain, not the set `P` itself.
+
+## Inputs
+* `P` – H-polytope
+* `dom` – domain interval
+
+## Hypotheses
+* `hm` – `0 < P.m`
+
+## Conclusion
+* `HPolytope.reduceOverDomain` encloses `P` over the domain
 -/
 
 -- Authors:       Claude Opus 5.5

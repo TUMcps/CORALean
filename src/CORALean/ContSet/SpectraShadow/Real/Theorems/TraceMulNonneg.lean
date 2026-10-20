@@ -10,6 +10,18 @@ public import Mathlib.Analysis.Matrix.Order
 
 The trace of a product of two positive semidefinite matrices is nonnegative: with `Z = √Y`,
 `tr(M Y) = tr(Z M Zᴴ)`. Half of weak duality for `SpectraShadow`.
+
+## Inputs
+* `k` – natural number
+* `M` – `k × k` matrix
+* `Y` – `k × k` matrix
+
+## Hypotheses
+* `hM` – `M.PosSemidef`
+* `hY` – `Y.PosSemidef`
+
+## Conclusion
+* the trace of `M Y` is nonnegative
 -/
 
 -- Authors:       Claude Opus 5.5

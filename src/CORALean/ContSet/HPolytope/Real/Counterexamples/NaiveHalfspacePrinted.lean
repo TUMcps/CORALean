@@ -16,6 +16,15 @@ The corollary says that when `r_hs ≤ 1`, `Ê ⊆ Ẑ` "with a probability of a
 facet `x₂ ≤ 1` gives `r_hs = ‖(0, 1/10, 0)‖₁ = 1/10 ≤ 1`, so `P_S(9/10) > 0`. But `Ê ⊆ Ẑ` is
 false, an event of probability `0` under any measure on the samples.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* `[1, Cor. 4.8]`'s probability claim fails
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

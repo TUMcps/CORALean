@@ -13,6 +13,15 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
 The area of the region is at most the sum of the piece areas, and equal to it when the pieces are
 pairwise almost-everywhere disjoint (interior-disjoint pieces qualify: a polytope's boundary is
 null, which is not used here, the hypothesis is stated on the measure).
+
+## Inputs
+* `P` – polygon
+
+## Hypotheses
+* `h` – the pieces are pairwise disjoint almost everywhere
+
+## Conclusion
+* exact when the pieces overlap in null sets only
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,12 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # `Polygon.intervalOfList`
 
 The hull of a list of pieces' boxes (`Interval.or`), the empty box for none.
+
+## Inputs
+* none
+
+## Output
+* the hull of a list of pieces' boxes
 -/
 
 -- Authors:       Claude Opus 5.5

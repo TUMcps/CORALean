@@ -26,6 +26,15 @@ every piece is compared with the origin at tolerance `0`. Read from the source, 
 (and `S = [0;0]`) for `polygon.empty()`, which denotes `∅`, not `{0}`. A wrong answer, not
 unsound. Read from the source, not run. The same file answers `'emptySet'` by
 `isempty(vertices_(pgon))`, so the empty polygon is reported both empty and the origin.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA answers `'origin'` with `true` for the empty polygon, which is not `{0}`
 -/
 
 -- Authors:       Claude Sonnet 5.5

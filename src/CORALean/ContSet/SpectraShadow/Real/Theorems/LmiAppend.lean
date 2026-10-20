@@ -12,6 +12,23 @@ At the appended fields rather than at `plus`, so that every dimension is a plain
 sum and `simp` reads the entries: the first block of the combination is the first
 set's inequality at the first half of the variables, the second the second's at the
 second half, and the off-diagonal blocks vanish.
+
+## Inputs
+* `k₁` – natural number
+* `k₂` – natural number
+* `m₁` – natural number
+* `m₂` – natural number
+* `A₀` – `k₁ × k₁` matrix
+* `B₀` – `k₂ × k₂` matrix
+* `A` – matrices indexed by `Fin m₁`
+* `B` – matrices indexed by `Fin m₂`
+* `β` – coefficients of both shadows' variables
+
+## Hypotheses
+* none
+
+## Conclusion
+* the inequality of a sum is the two inequalities
 -/
 
 -- Authors:       Claude Opus 5.5

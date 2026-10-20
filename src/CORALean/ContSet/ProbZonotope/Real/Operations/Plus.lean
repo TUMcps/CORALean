@@ -12,6 +12,13 @@ CORA's `plus` of two probabilistic zonotopes and [1, Eq. 4]'s sum
 `Z₁ + Z₂ = (c₁ + c₂, g⁽¹…ᵖ⁾, h⁽¹…ᑫ⁾, Σ₁ + Σ₂)`: the mean zonotopes are added as zonotopes, the
 covariances as matrices. `Theorems.PlusLaws` says what it means for the laws.
 
+## Inputs
+* `P₁` – probabilistic zonotope
+* `P₂` – probabilistic zonotope
+
+## Output
+* the sum of the mean zonotopes and of the covariances
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

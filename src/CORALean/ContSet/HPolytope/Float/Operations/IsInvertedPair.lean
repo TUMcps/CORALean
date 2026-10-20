@@ -11,6 +11,14 @@ Rows `i` and `j` with `[aⱼ, bⱼ] = -[aᵢ, bᵢ]`, certified entry by entry (
 directions, so the test is symmetric as a `Bool`: CORA's `idxInverted`, at tolerance zero. The
 row `0 ≤ 0` is inverted with itself. Both slacks must be certified `zero` as well: a pair with
 slack is a slab, not the equality `pairsToEq` writes it as.
+
+## Inputs
+* `Q` – H-polytope
+* `i` – index below `Q.m`
+* `j` – index below `Q.m`
+
+## Output
+* `[aⱼ, bⱼ] = -[aᵢ, bᵢ]` and `[aᵢ, bᵢ] = -[aⱼ, bⱼ]`, each certified
 -/
 
 -- Authors:       Claude Opus 5.5

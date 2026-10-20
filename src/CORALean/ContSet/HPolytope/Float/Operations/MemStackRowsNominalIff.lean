@@ -11,6 +11,17 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 # Membership in the nominal part of `HPolytope.stackRows`, over a floating-point scalar
 
 Membership splits with the rows, each half read on the nominal part it came from.
+
+## Inputs
+* `P₁` – H-polytope
+* `P₂` – H-polytope
+* `x` – point of length `n`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the nominal part of the stacked rows iff it lies in both nominal parts
 -/
 
 -- Authors:       Claude Opus 5

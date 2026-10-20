@@ -18,6 +18,13 @@ the right-hand sides over the box `dom`. A polytope whose box is certified empty
 equalities, rescaled by `scaleRows`; one with a box has it folded into the rows first, the
 equalities written as inequality pairs (`absorbRounding`). The divisor is positive, so a row with a
 negative right-hand side keeps its sign (`-1` where CORA's is `1`), the same set.
+
+## Inputs
+* `P` – H-polytope
+* `dom` – domain interval
+
+## Output
+* every row multiplied by `1 / |right-hand side|`, rounded up, the rounding in the right-hand sides
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

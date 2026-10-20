@@ -17,6 +17,15 @@ of `T.absorbRounding`: every stored entry is a stored float, `zero` or `one`, an
 `Real.SpectraShadow.cone_construct` describes it, and the box is the origin. Every point `s x` of
 `T`'s set, `s > 0`, and the origin are in it: outer, as the set of `T` is inside the absorbed
 nominal shadow.
+
+## Inputs
+* `T` – spectrahedral shadow
+
+## Hypotheses
+* `hN` – `0 < N`
+
+## Conclusion
+* the float cone encloses the perspective cone
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,12 @@ public import CORALean.ContSet.Conversion.Real.Operations.Basic
 # `Polygon.intervalOfList`, over a floating-point scalar
 
 The hull of a list of pieces' boxes (`Interval.or`), the empty box for none.
+
+## Inputs
+* none
+
+## Output
+* the hull of a list of pieces' boxes
 -/
 
 -- Authors:       Claude Opus 5.5

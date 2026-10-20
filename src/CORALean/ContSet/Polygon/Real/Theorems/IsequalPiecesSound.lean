@@ -10,6 +10,16 @@ public import CORALean.ContSet.VPolytope.Real.Instances
 # `Polygon.isequalPieces` implies equal regions
 
 Sound only; the converse is not claimed (the note on `Polygon.isequalPieces`).
+
+## Inputs
+* `P` – polygon
+* `Q` – polygon
+
+## Hypotheses
+* `h` – `isequalPieces` answers `true` for `P` and `Q`
+
+## Conclusion
+* `Polygon.isequalPieces` implies equal regions
 -/
 
 -- Authors:       Claude Opus 5.5

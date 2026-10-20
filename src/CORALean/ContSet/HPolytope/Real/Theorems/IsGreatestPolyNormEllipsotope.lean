@@ -9,16 +9,27 @@ public import CORALean.Global.EllipsotopeSupport
 /-!
 # An ellipsotope's distance from a zonotope, facet by facet
 
-`[1, Eq. 11]`: for an ellipsotope inbody `E_p(G, c)` and a non-degenerate
-zonotope circumbody `Ẑ = d + Z(H)` with facets `{Λ x ≤ b}` of `Z(H)`, the containment
-radius is a maximum over facets. Its first equality is the zonotope norm as the polyhedral
-norm (Kulmburg and Althoff's `Cor. 2`); the second, as printed, is
-`maxᵢ ‖G'ᵀ λᵢ‖_{p*} / |bᵢ|` with `G' = [G, c - d]`, which is false
-(`isGreatest_polyNorm_ellipsotope_counterexample`): a functional's sup over
-`c + G B_p` is `‖Gᵀλ‖_{p*} + λᵀ(c - d)`, a sum, not the `p*`-norm of the pair. With that sum
-it is exact, here for every `bᵢ > 0` and any norm on the coefficients:
-`max(0, maxᵢ (‖λᵢ ∘ G‖ + λᵢ(c - d)) / bᵢ)`, which for a representation closed under
-`λ ↦ -λ` is `maxᵢ (‖λᵢ ∘ G‖ + |λᵢ(c - d)|) / bᵢ`.
+`[1, Eq. 11]`: for an ellipsotope inbody `E_p(G, c)` and a non-degenerate zonotope circumbody
+`Ẑ = d + Z(H)` with facets `{Λ x ≤ b}` of `Z(H)`, the containment radius is a maximum over
+facets. Its first equality is the zonotope norm as the polyhedral norm (Kulmburg and Althoff's
+`Cor. 2`); the second, as printed, is `maxᵢ ‖G'ᵀ λᵢ‖_{p*} / |bᵢ|` with `G' = [G, c - d]`, which
+is false (`isGreatest_polyNorm_ellipsotope_counterexample`): a functional's sup over `c + G B_p`
+is `‖Gᵀλ‖_{p*} + λᵀ(c - d)`, a sum. With that sum it is exact for every `bᵢ > 0` and any norm
+on the coefficients: `max(0, maxᵢ (‖λᵢ ∘ G‖ + λᵢ(c - d)) / bᵢ)`, which for a representation
+closed under `λ ↦ -λ` is `maxᵢ (‖λᵢ ∘ G‖ + |λᵢ(c - d)|) / bᵢ`.
+
+## Inputs
+* `G` – linear map
+* `c` – center of length `n`
+* `d` – direction of length `n`
+* `Λ` – `s × n` matrix
+* `b` – offset vector of length `s`
+
+## Hypotheses
+* `hb` – `∀ i, 0 < b i`
+
+## Conclusion
+* the largest polyhedral norm over the ellipsotope is the maximum over facets of corrected ratios
 
 ## References
 

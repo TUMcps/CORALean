@@ -11,6 +11,16 @@ public import CORALean.ContSet.VPolytope.Float.Theorems.EnclosePointsExact
 
 The one-piece polygon holds `-p` read as reals (`enclosePoints_exact`, `neg` exact), so every
 `x - p` is a sum `plus_outer` takes into the result. Outer, as the sum is.
+
+## Inputs
+* `P` – polygon
+* `p` – point of length `2`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Polygon.minus` encloses the translate
 -/
 
 -- Authors:       Claude Opus 5.5

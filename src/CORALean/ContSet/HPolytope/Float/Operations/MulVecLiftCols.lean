@@ -10,6 +10,17 @@ public import Mathlib.Data.Matrix.Mul
 
 For an injective `dims`, a row of the lifted matrix against `x` is the row of `M` against
 `x ∘ dims`: each stored column is read once, and the columns off the range of `dims` are `0`.
+
+## Inputs
+* `dims` – indices indexed by `Fin n`
+* `M` – `m × n` matrix
+* `x` – point of length `N`
+
+## Hypotheses
+* `hdims` – `dims` is injective
+
+## Conclusion
+* the lifted matrix applied to `x` equals `M` applied to the selected coordinates
 -/
 
 -- Authors:       Claude Sonnet 5.5

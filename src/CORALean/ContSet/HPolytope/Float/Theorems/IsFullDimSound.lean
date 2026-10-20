@@ -14,6 +14,16 @@ Read as reals, the proposed point satisfies every inequality strictly. The set o
 is open (finitely many strict inequalities between continuous functions) and inside the nominal
 part, so the point is interior to it; shifted by a point of the (non-empty) error box it is
 interior to the sum.
+
+## Inputs
+* `P` – H-polytope
+* `x₀` – point of length `n`
+
+## Hypotheses
+* `h` – `P.isFullDim x₀` holds
+
+## Conclusion
+* A `true` from `HPolytope.isFullDim` proves an interior point
 -/
 
 -- Authors:       Claude Opus 5.5

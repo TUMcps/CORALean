@@ -9,6 +9,13 @@ public import CORALean.ContSet.HPolytope.Float.HPolytope
 
 Two scalars with `le` both ways. `le` is sound when `true`, so `true` here says the two read
 as the same real; `false` says nothing. The exact test `compact_` needs for "equal rows".
+
+## Inputs
+* `a` – scalar
+* `b` – scalar
+
+## Output
+* both `le a b` and `le b a`
 -/
 
 -- Authors:       Claude Opus 5.5

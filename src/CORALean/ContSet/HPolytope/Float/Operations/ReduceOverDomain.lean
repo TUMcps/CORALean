@@ -11,16 +11,23 @@ public import CORALean.ContSet.Interval.Float.Operations.MulHi
 /-!
 # `HPolytope.reduceOverDomain` over a floating-point scalar
 
-CORA's `reduceOverDomain` on the stored floats: the constraints replaced by the single
-halfspace `A_reduced' x ≤ b_reduced`. Each row is scaled by its `rowScale` (CORA's 2-norm
-normalization), every scaled entry and right-hand side rounded both ways; `A` is the interval
-hull of the scaled rows (`min`/`max` over the rows) and `b` that of the scaled right-hand sides;
-`A_reduced` is the rounded midpoint of `A`, and `b_reduced = b - (A - A_reduced)' * dom` is
-bounded by corner products rounded outward, of which type `'outer'` takes the upper end and the
-other type the lower. Equality constraints are not read; the Newton steps `p` of the norm are an
-argument. Type `'outer'` reads the rows with the error box folded into them (`absorbRounding`),
-which also writes an equality as two inequalities; the inner type reads the rows as stored, and
-so is sound for a polytope without a box.
+CORA's `reduceOverDomain` on the stored floats: the constraints replaced by the single halfspace
+`A_reduced' x ≤ b_reduced`. Each row is scaled by its `rowScale` (CORA's 2-norm normalization),
+every scaled entry and right-hand side rounded both ways; `A` is the interval hull of the scaled
+rows and `b` that of the scaled right-hand sides; `A_reduced` is the rounded midpoint of `A`, and
+`b_reduced = b - (A - A_reduced)' * dom` is bounded by corner products rounded outward. Type
+`'outer'` takes the upper end and reads the rows with the error box folded in (`absorbRounding`);
+the inner type takes the lower and reads the rows as stored. Equality constraints are not read;
+the Newton steps `p` of the norm are an argument.
+
+## Inputs
+* `p` – natural number
+* `P` – H-polytope
+* `dom` – domain interval
+* `outer` – `Bool`
+
+## Output
+* the single halfspace `A_reduced' x ≤ b_reduced` with rounded scaled rows, outer or inner
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
