@@ -11,6 +11,21 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveLamAMul
 [1, Sec. 4.2]: with `Λ_G` and `Λ_A` of eq. 29, `G̃` and `Ã` have identically zero `j`-th
 columns, "due to the elimination of `ξ_j`".
 
+## Inputs
+* `n` – dimension
+* `q` – number of constraints
+* `h` – number of generators
+* `G` – generators
+* `A` – constraint matrix
+* `r` – constraint row to solve
+* `j` – coefficient to eliminate
+
+## Hypotheses
+* `hAj` – pivot entry nonzero
+
+## Conclusion
+* the generator and constraint columns of that coefficient vanish
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

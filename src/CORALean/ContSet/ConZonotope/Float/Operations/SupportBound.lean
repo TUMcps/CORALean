@@ -8,17 +8,25 @@ public import CORALean.ContSet.HPolytope.Float.Operations.DualWeights
 /-!
 # `ConZonotope.boundDot`: a float constrained zonotope answers a direction
 
-`boundDotWeights` at the weights `HPolytope.dualWeights` proposes for `Gᵀa`, the
-exact simplex at ℚ on the floats' own values. With all weights zero (the budget
-ran out) this is the zonotope bound `aᵀc + Σⱼ |aᵀGⱼ|`, the constraints ignored;
-with the simplex's optimal weights it is the program's value up to rounding.
-Either way an upper bound only, never claimed to be the support function.
-
-CORA's `supportFunc_` of a `conZonotope` solves the same program with `linprog`
-and returns its value: this is that, read as a bound.
+`boundDotWeights` at the weights `HPolytope.dualWeights` proposes for `Gᵀa`, the exact simplex at ℚ
+on the floats' own values. With all weights zero (the budget ran out) this is the zonotope bound
+`aᵀc + Σⱼ |aᵀGⱼ|`, the constraints ignored; with the simplex's optimal weights it is the program's
+value up to rounding. Either way an upper bound only. CORA's `supportFunc_` of a `conZonotope`
+solves the same program with `linprog` and returns its value: this is that, read as a bound.
 
 A NaN among the stored data reads through `ToRat` as `1.5 · 2 ^ 1024`, so the program solved
 is another one. That costs tightness only: the checker sees the NaN in rounded arithmetic.
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `c` – linear functional
+* `a` – float weights of the functional
+
+## Hypotheses
+* `hc` – the functional is the weighted sum
+
+## Output
+* float upper bound of the functional over the set
 -/
 
 -- Authors:       Claude Opus 5.5

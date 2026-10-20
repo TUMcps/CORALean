@@ -13,6 +13,12 @@ The error box made into coefficients: one fresh generator per coordinate, as lon
 larger endpoint (`errorBound`, which rounds nothing), on a coefficient the constraints leave
 free. A quadratic map is not additive, so a nominal part and a box cannot travel through it
 separately; emptying the box first is what `quadMap` needs, as for `PolyZonotope.absorbRounding`.
+
+## Inputs
+* `cZ` – float constrained zonotope
+
+## Output
+* the same set with the error box turned into generators
 -/
 
 -- Authors:       Claude Opus 5.5

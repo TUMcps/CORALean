@@ -11,6 +11,16 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Space.Theorems.Basic
 `mtimes`'s bundle size: the same `k`, each component mapped on its own. The
 second-order count also carries over: `Zonotope.mtimes_h` says the image keeps
 each component's generator count too. `rfl` against both structure instances.
+
+## Inputs
+* `M` – matrix
+* `zB` – zonotope bundle
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image keeps the member count
 -/
 
 -- Authors:       Claude Opus 5

@@ -16,6 +16,17 @@ The `box(Λ⁻¹ Z_∩)` of [1, Eq. 2] must contain `Λ⁻¹ Z_∩`, and does: t
 contains it (`SetIntersection.memberwise_outer` at `Zonotope.mtimes_exact`, [1, Prop. 1]) and
 one member's box contains that member (`interval_contains`, [1, Prop. 6]).
 
+## Inputs
+* `Λ` – direction matrix
+* `zB` – zonotope bundle
+* `i` – member index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the transformed bundle is contained in the enclosing box
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

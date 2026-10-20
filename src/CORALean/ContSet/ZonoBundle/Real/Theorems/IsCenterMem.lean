@@ -11,6 +11,17 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleConZonotopeAll
 
 The center is `c + G β` for a coefficient vector `β` feasible in the domain of `conZonotope(zB)`,
 which denotes the bundle exactly (`conZonotopeAll_exact`).
+
+## Inputs
+* `zB` – zonotope bundle
+* `x` – candidate center
+
+## Hypotheses
+* `hk` – the bundle has a member
+* `hx` – the point is a center
+
+## Conclusion
+* the center lies in the bundle
 -/
 
 -- Authors:       Claude Opus 5.5

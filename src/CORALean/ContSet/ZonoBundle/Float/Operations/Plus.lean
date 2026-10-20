@@ -14,6 +14,13 @@ each bundle, summed by `Zonotope.plus` and indexed through `finProdFinEquiv`.
 Two losses, and only the first is the float layer's: each pairwise sum rounds
 its center into the member's own error box, and — already over ℝ — a sum of
 intersections is not an intersection of sums.
+
+## Inputs
+* `zB₁` – first summand
+* `zB₂` – second summand
+
+## Output
+* enclosure of the Minkowski sum
 -/
 
 -- Authors:       Claude Opus 5

@@ -17,6 +17,16 @@ At whichever basis and candidate inverse the check leaves: a point of the bundle
 under `H` in the box of the mapped bundle (`SetIntersection.memberwise_outer` at
 `Zonotope.mtimes_outer`, then `intervalAll_contains`) and its coordinates within the bundle's
 box, which is all `parallelotope_contains` asks.
+
+## Inputs
+* `zB` – float zonotope bundle
+* `Γ` – edge directions
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Conclusion
+* the bundle is contained in the parallelotope
 -/
 
 -- Authors:       Claude Opus 5.5

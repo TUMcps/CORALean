@@ -19,6 +19,19 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 `Z_∩ ∩ Ψ = Z_∩`, and `Zonotope.split_union` covers `Ψ` by its halves.
 The printed `Z_∩¹ ∩ Z_∩² = ∅` is false; `split_inter` says what the halves share.
 
+## Inputs
+* `Λ` – edge directions
+* `B` – box in the transformed coordinates
+* `j` – dimension to cut along
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hΛ` – the directions are invertible
+* `hB` – the box encloses the transformed bundle
+
+## Conclusion
+* the two halves together are exactly the bundle
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

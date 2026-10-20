@@ -21,6 +21,17 @@ Unlike `MinkDiff.minkDiff_inner`'s obligation, an under-approximation for a tota
 holds with no enclosure loss at all — [1]'s two-line derivation via `⋂ᵢ (Z − vᵢ)` costs nothing to
 carry through here.
 
+## Inputs
+* `k` – number of extra vertices
+* `Z` – zonotope
+* `v` – vertex list of the polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is exactly the Minkowski difference
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

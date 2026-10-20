@@ -15,6 +15,12 @@ lower center is `0`, not `-bₑ`, because the right-hand side `bₑ` is an inter
 `Aₑ β ∈ bₑ` keeps it on the constraint, where the lifted coordinate is `Aₑ β` itself. The
 error box is the first operand's, with `0` below, and `reduceBy` never reads it.
 
+## Inputs
+* `cZ` – float constrained zonotope
+
+## Output
+* zonotope with the equality rows as extra coordinates
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

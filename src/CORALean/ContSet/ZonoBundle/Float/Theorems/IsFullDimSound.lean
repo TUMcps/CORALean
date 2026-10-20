@@ -11,6 +11,17 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.InteriorPointSound
 
 The bundle is the intersection of its members. A point interior to every member is interior to the
 intersection of finitely many of them (`interior_iInter_of_finite`).
+
+## Inputs
+* `zB` – float zonotope bundle
+* `H` – right inverse of each member's generator matrix
+* `x₀` – candidate interior point
+
+## Hypotheses
+* `h` – the test answers true
+
+## Conclusion
+* the bundle has an interior point
 -/
 
 -- Authors:       Claude Opus 5.5

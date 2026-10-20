@@ -11,16 +11,20 @@ public import Mathlib.Data.Finset.Sort
 /-!
 # `ConZonotope.compact`
 
-CORA's `@conZonotope/compact_` with method `'zeros'`, which is also what `'all'` does: delete
-the constraint rows that are `0 = 0`, then the generators whose column of `[G; A]` is zero.
-Both are exact (`compact_exact`): a zero row constrains nothing, and a generator that is zero
-and unconstrained adds nothing to the point whatever its coefficient. The tolerance is `0`;
-CORA's `eps` removes columns of size below it as well.
+CORA's `@conZonotope/compact_` with method `'zeros'`, which is also what `'all'` does: delete the
+constraint rows that are `0 = 0`, then the generators whose column of `[G; A]` is zero. Both are
+exact (`compact_exact`): a zero row constrains nothing, and a generator that is zero and
+unconstrained adds nothing. The tolerance is `0`; CORA's `eps` removes smaller columns too.
 
 Inequality rows stay, since CORA's constraint is an equality, and the kept generators keep their
-order. Both steps are the constraint's own operations (#174): the rows `0 = 0` go by
-`HPolytope.dropTrivialEqs`, and the rows are read on the kept generators by `HPolytope.comap`
-along `aux_compactEmbed`.
+order. Both steps are the constraint's own operations (#174): `HPolytope.dropTrivialEqs` and
+`HPolytope.comap` along `aux_compactEmbed`.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Output
+* the set without zero generators and trivial constraints
 -/
 
 -- Authors:       Claude Opus 5.5

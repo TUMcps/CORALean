@@ -12,6 +12,19 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.ConvHullExact
 `V = vertices([V1, V2])` of CORA's `encloseTight`: the vertices of the two bundles joined, which are
 those of the exact `conZonotope(zB)` (`vPolytopeAll`), as `vertices` does without discarding the
 interior ones. Both bundles must be nonempty and have a member.
+
+## Inputs
+* `zB₁` – first bundle
+* `zB₂` – second bundle
+
+## Hypotheses
+* `hk₁` – first bundle has a member
+* `hk₂` – second bundle has a member
+* `hne₁` – first bundle nonempty
+* `hne₂` – second bundle nonempty
+
+## Output
+* the vertices of the two bundles joined
 -/
 
 -- Authors:       Claude Opus 5.5

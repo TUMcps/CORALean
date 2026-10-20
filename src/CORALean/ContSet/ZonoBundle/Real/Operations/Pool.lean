@@ -12,6 +12,12 @@ The union of the generators of all zonotopes of the bundle, which is what the fi
 [1, Heuristic fil] picks its `n` directions from ("the union of generators of all zonotopes of the
 bundle is used"). One zonotope at the origin carrying them all, member after member.
 
+## Inputs
+* `zB` – zonotope bundle
+
+## Output
+* zonotope pooling all members' generators
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

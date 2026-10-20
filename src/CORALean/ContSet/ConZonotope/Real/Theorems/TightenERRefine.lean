@@ -14,6 +14,20 @@ widens either, so a further pass returns an `E` inside the one it started from, 
 inside its `R`. Together with `tightenER_outer`, which keeps `B∞(A, b)` inside every pass,
 that is the refinement: the boxes shrink and stay sound.
 
+## Inputs
+* `nc` – number of constraints
+* `ng` – number of generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `k` – number of passes
+* `j` – coefficient index
+
+## Hypotheses
+* none
+
+## Conclusion
+* one more pass never widens the box or narrows the bounds
+
 ## References
 
 * [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for

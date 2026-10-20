@@ -18,6 +18,20 @@ A point `x` with `H x` in the box and `|x| ≤ m` splits as `Λ (H x) + (1 - Λ 
 part is in `Λ * zonotope(B)` by `Zonotope.mtimes_outer`, and the second, at most `q m` per
 coordinate by `Zonotope.rightInvQ_bound`, joins the error box by `Interval.plus_outer`. Nothing
 about `H` is assumed.
+
+## Inputs
+* `Λ` – edge directions
+* `H` – approximate inverse of the directions
+* `B` – box in the transformed coordinates
+* `m` – bound on the coordinate magnitudes
+* `x` – point
+
+## Hypotheses
+* `hB` – the transformed point lies in the box
+* `hm` – the coordinates are bounded by the magnitude
+
+## Conclusion
+* the point lies in the parallelotope
 -/
 
 -- Authors:       Claude Opus 5.5

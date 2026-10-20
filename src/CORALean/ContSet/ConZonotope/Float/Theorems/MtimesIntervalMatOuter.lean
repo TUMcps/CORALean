@@ -26,6 +26,16 @@ of the set has coefficients `β` of the constraints; the center matrix `mid(M)` 
 beyond `mid(M)` is `R = A - mid(M)`, a matrix in `matResidual`. On the nominal part `R z` is
 within the new generators' radius, so one new coefficient per coordinate absorbs it, and those
 coefficients meet no constraint; on the error box `R e` is in the box-times-box product.
+
+## Inputs
+* `IM` – interval matrix
+* `cZ` – float constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* every image under a matrix of the interval is contained in the result
 -/
 
 -- Authors:       Claude Sonnet 5.5

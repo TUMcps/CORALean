@@ -13,6 +13,15 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.DropTrivialEqsExact
 kept generators, which loses nothing since the dropped ones add no point and no constraint reads
 them; a coefficient vector of the result is padded with zeros, which meets every constraint the
 original has, the dropped equality rows being `0 = 0`.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* compacting leaves the set unchanged
 -/
 
 -- Authors:       Claude Opus 5.5

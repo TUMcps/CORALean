@@ -15,6 +15,15 @@ The mixed form of CORA's `@conZonotope/cubMap` (`aux_cubMapMixed`): the generato
 `Zonotope.cubMapMixed`, with the constraints of each of the three sets on its own linear
 generators, `((0, 0), a)`, `((0, b), 0)` and `((j, 0), 0)`, and every other factor unconstrained.
 The remark on `removeRedundantExponents` in `ConZonotope.cubMap` applies here as well.
+
+## Inputs
+* `T` – cubic map tensor
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+* `cZ₃` – third constrained zonotope
+
+## Output
+* enclosure of the mixed cubic image
 -/
 
 -- Authors:       Claude Opus 5.5

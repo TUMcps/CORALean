@@ -10,6 +10,16 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.IsequalConstruct
 # Zonotope bundles passing `isequal` denote the same set
 
 Sound, not exact, as for `Zonotope.isequal`: the members are compared as representations.
+
+## Inputs
+* `zB` – first bundle
+* `S` – second bundle
+
+## Hypotheses
+* `h` – the two are equal member by member
+
+## Conclusion
+* the two sets are equal
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -20,6 +20,26 @@ solutions of the linear system" (A.7), block by block
 minimizer. A feasible `d` is `d̂ + e` with `Ae = 0`, `e_j = 0`, the cross term `2eᵀ(GᵀG + I)d̂`
 is `-2(Ae)ᵀλ̂ - 2μ̂e_j = 0`, and what is left is `‖Ge‖₂² + ‖e‖₂² ≥ 0`.
 
+## Inputs
+* `n` – dimension
+* `q` – number of constraints
+* `h` – number of generators
+* `G` – generator matrix
+* `A` – constraint matrix
+* `j` – coefficient to eliminate
+* `rj` – value of that coefficient
+* `dHat` – candidate minimiser
+* `lamHat` – constraint multiplier
+* `muHat` – pivot multiplier
+
+## Hypotheses
+* `h1` – the stationarity equation holds
+* `h2` – the candidate meets the constraints
+* `h3` – the candidate has the pivot value
+
+## Conclusion
+* the candidate minimises the estimate's quadratic program
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

@@ -16,6 +16,12 @@ filter for nearly parallel generators is not separate: a near-parallel subset ha
 determinant and loses the search. Where the best subset is singular, or fewer than `n` remain,
 `Λ = I`.
 
+## Inputs
+* `zB` – zonotope bundle
+
+## Output
+* direction matrix from the long generators
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

@@ -13,11 +13,17 @@ Above the requested order, the enclosing zonotope is reduced and the constraints
 dropped; at or below it, nothing happens and the constraints survive. Dropping a
 constraint enlarges the set, so both branches over-approximate.
 
-CORA reduces the generators and eliminates constraints by separate rules, each
-keeping the constraint block meaningful. Either would replace this without
-touching the guarantee, which is stated for the operation and not for the rule.
-`ConZonotope.reduceLift` is CORA's own, lifting the equality rows with the generators, and
-`ConZonotope.reduceKeep` the other alternative that keeps the constraints.
+CORA reduces the generators and eliminates constraints by separate rules, each keeping the
+constraint block meaningful. Either would replace this without touching the guarantee, which is for
+the operation, not the rule. `ConZonotope.reduceLift` is CORA's own, `ConZonotope.reduceKeep` the
+other alternative that keeps the constraints.
+
+## Inputs
+* `cZ` – constrained zonotope
+* `o` – target order
+
+## Output
+* enclosing constrained zonotope of reduced order
 -/
 
 -- Authors:       Claude Opus 5

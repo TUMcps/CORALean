@@ -12,6 +12,16 @@ public import CORALean.ContSet.ZonoBundle.Real.Theorems.IntervalAllContains
 support-function box is the least of those (`intervalSupportFunc_exact`): the support function of
 the intersection is never worse than CORA's member-wise box, and strictly tighter wherever the
 members' boxes overlap beyond the intersection.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hk` – the bundle has a member
+* `hne` – the bundle is nonempty
+
+## Conclusion
+* the support-function box is contained in the plain box
 -/
 
 -- Authors:       Claude Opus 5.5

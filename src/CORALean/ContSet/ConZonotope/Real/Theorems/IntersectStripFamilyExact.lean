@@ -13,6 +13,19 @@ other, `φ` the `r_j` repeated `p` times, `Λ = [λ_1 … λ_m]`, so `intersectS
 radii are nonnegative (`0 ≤ r_j`): the paper takes them as radii and does not say so, and at a
 negative radius the strip is empty while the new factor would still reach points.
 
+## Inputs
+* `cZ` – constrained zonotope
+* `H` – strip direction matrices
+* `r` – strip half-widths
+* `y` – strip centers
+* `lam` – gain matrices
+
+## Hypotheses
+* `hr` – half-widths nonnegative
+
+## Conclusion
+* the result is exactly the intersection with all the strips
+
 ## References
 
 * [1] A. Alanwar, V. Gaßmann, X. He, H. Said, H. Sandberg, K. H. Johansson and M. Althoff.

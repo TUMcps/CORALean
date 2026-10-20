@@ -14,6 +14,17 @@ lies in member `i` of the result, and the result is the intersection of those me
 (`construct_enlarge`). It is not a statement about the image of the intersection: the maps differ
 from member to member, so the image of the intersection need not lie in the intersection of the
 images, and nothing here claims it.
+
+## Inputs
+* `zB` – zonotope bundle
+* `f` – enlargement factor per coordinate
+* `i` – member index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the scaling of member i is contained in the enlarged member
 -/
 
 -- Authors:       Claude Opus 5.5

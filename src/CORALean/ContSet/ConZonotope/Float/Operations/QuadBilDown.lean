@@ -10,6 +10,14 @@ public import CORALean.ContSet.ConZonotope.Float.ConZonotope
 
 The bilinear form `u ⬝ᵥ (Q *ᵥ v)` rounded down: `Q *ᵥ v` in both directions first, then the
 products against `u` over that interval, as `PolyZonotope.quadMap` does for its generators.
+
+## Inputs
+* `Q` – quadratic form matrix
+* `u` – left vector
+* `v` – right vector
+
+## Output
+* the bilinear form rounded down
 -/
 
 -- Authors:       Claude Opus 5.5

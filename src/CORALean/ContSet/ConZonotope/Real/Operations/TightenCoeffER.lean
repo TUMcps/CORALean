@@ -17,6 +17,18 @@ Line 5's `E_j ← E_j ∩ R_j` is `tightenCoeff`'s `E_j` met with line 4's bound
 lies inside every earlier bound on `R_j`, so meeting it with the accumulated `R_j` or with
 the newest bound alone gives the same interval.
 
+## Inputs
+* `nc` – number of constraints
+* `ng` – number of generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `i` – constraint row
+* `j` – coefficient to tighten
+* `S` – current box and running bounds
+
+## Output
+* the state with coefficient j tightened by row i
+
 ## References
 
 * [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for

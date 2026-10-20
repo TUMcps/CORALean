@@ -15,8 +15,13 @@ latter: the support function of the intersection itself in `eᵢ` and `-eᵢ`, s
 largest `xᵢ` over the bundle and `infᵢ` the least. Over ℝ it is a specification, noncomputable;
 the float layer computes it by the bundle's linear program (`ZonoBundle.boundDotLP`).
 
-At `k = 0` the bundle is the whole space and the support function `+∞`, read as `0` by
-`EReal.toReal`: the theorems ask for a member, and the exact one for a point.
+At `k = 0` the support function is `+∞`, read as `0` by `EReal.toReal`.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Output
+* the box from the support function in the axis directions
 -/
 
 -- Authors:       Claude Opus 5.5

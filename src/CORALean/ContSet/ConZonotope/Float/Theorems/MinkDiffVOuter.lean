@@ -17,6 +17,17 @@ public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeConZonotopeCont
 Every point `x` of `Z ⊖ ⟨v⟩_V` has `x + vᵢ ∈ Z` for each vertex, so `x` lies in `Z + {−vᵢ}`,
 which the float sum encloses (`plus_outer`), and in every intersection of those
 (`intersection_outer`). Outer only, where the exact layer's `minkDiffV_exact` is an equality.
+
+## Inputs
+* `k` – number of extra vertices
+* `Z` – zonotope
+* `v` – vertex list of the polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Minkowski difference is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

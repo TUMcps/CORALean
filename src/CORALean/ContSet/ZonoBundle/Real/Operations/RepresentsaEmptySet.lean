@@ -12,6 +12,15 @@ CORA's `@zonoBundle/representsa_` for the type `'emptySet'`: `representsa_(conZo
 'emptySet')`. (`aux_emptySet` also answers `true` for no members and when some member is empty; no
 `Zonotope` is empty, and a bundle of no members denotes the whole space here, so both shortcuts are
 outside `0 < k`.)
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Output
+* the bundle is empty
 -/
 
 -- Authors:       Claude Opus 5.5

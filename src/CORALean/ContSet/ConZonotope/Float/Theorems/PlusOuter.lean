@@ -19,6 +19,16 @@ The zonotope's argument with one step added, and that step costs nothing: the
 concatenated coefficients satisfy the padded constraints exactly when each half
 satisfies its own, which is `mem_stackRows_nominal_iff` composed with `blockLeft_append`. Only
 the center rounds, and its residual is what the box absorbs.
+
+## Inputs
+* `cZ₁` – first summand
+* `cZ₂` – second summand
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Minkowski sum is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

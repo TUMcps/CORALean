@@ -18,6 +18,14 @@ by its (nonempty) vertex list `v : Fin (k+1) → Vec ℝ n`: intersect the trans
 Not stated against the block matrix `[1]` prints: `ConZonotope.P` is an `HPolytope`, not a bare
 equality system, so assembling `[1]`'s `A` and `b` by hand would not even typecheck here.
 
+## Inputs
+* `k` – number of extra vertices
+* `Z` – zonotope
+* `v` – vertex list of the polytope
+
+## Output
+* the Minkowski difference of the zonotope and the polytope
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

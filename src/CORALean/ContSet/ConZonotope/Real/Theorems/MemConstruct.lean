@@ -14,6 +14,17 @@ generators point into.
 
 The float layer inherits it — its `mem_nominalSet_iff` is this theorem at the
 nominal constrained zonotope.
+
+## Inputs
+* `n` – dimension
+* `cZ` – constrained zonotope
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership means coordinatewise unit-box coefficients meeting the constraints
 -/
 
 -- Authors:       Claude Opus 5

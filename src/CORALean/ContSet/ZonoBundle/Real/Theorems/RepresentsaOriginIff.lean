@@ -11,6 +11,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleConZonotopeAll
 
 `conZonotopeAll` denotes the bundle (`conZonotopeAll_exact`), so what a constrained zonotope's
 `representsa_origin` decides, exactly (`representsa_origin_iff`), it decides for the bundle.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Conclusion
+* the bundle is the origin iff it represents the origin
 -/
 
 -- Authors:       Claude Opus 5.5

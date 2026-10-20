@@ -16,6 +16,15 @@ improves on CORA's box of the members' boxes (`intervalAll`), `minimum` and `max
 exact: the result is never larger than CORA's box and is its support function up to rounding
 where the simplex's weights are optimal. `2n` linear programs, against CORA's `O(n·p)` sum per
 member, so this is the tight and slow box beside CORA's cheap one.
+
+## Inputs
+* `zB` – float zonotope bundle
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Output
+* the box from the support function in the axis directions
 -/
 
 -- Authors:       Claude Opus 5.5

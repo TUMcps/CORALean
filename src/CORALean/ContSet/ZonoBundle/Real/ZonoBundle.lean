@@ -8,22 +8,14 @@ public import CORALean.ContSet.SetIntersection.SetIntersection
 /-!
 # Zonotope bundles: the representation
 
-CORA's `zonoBundle` [1, Def. 4]: a finite family of zonotopes, denoting their
-*intersection*. Two zonotopes generally do not intersect in a zonotope, so a
-bundle is what lets an algorithm keep such an intersection exact instead of
-enclosing it back into a single one.
-
-`k = 0` denotes an intersection over an empty family, which is `univ` — the *whole space*, not
-`∅`, the opposite of `VPolytope`'s zero vertices — and is why `CompactSet` cannot be an
-unconditional instance: `univ` is compact only in the trivial ambient type.
-
-A bundle is the general `SetIntersection` of its members (`toSetIntersection`, the members
-listed in CORA's order), and `construct` is that intersection by definition: what holds of every
-intersection is proved once there, and `Theorems/` states only what CORA's own algorithms give
-beyond it. The fields stay CORA's, `parallelSets` as `k` and the cell array `Z` as `Fin k → _`.
-
-Over any real module, as `Zonotope` is: nothing about an intersection of sets
-mentions coordinates either.
+CORA's `zonoBundle` [1, Def. 4]: a finite family of zonotopes, denoting their *intersection*, which
+two zonotopes generally do not form a zonotope; a bundle keeps it exact instead of enclosing it.
+`k = 0` denotes the empty intersection, `univ`, the whole space and not `∅` (unlike `VPolytope`'s
+zero vertices), which is why `CompactSet` cannot be an unconditional instance. A bundle is the
+general `SetIntersection` of its members (`toSetIntersection`, in CORA's order), and `construct` is
+that intersection by definition, so what holds of every intersection is proved once there. The
+fields stay CORA's, `parallelSets` as `k` and the cell array `Z` as `Fin k → _`. Over any real
+module, as `Zonotope` is.
 
 ## References
 

@@ -18,6 +18,17 @@ ends from the float midpoint. The point at `ξ` is then the rescaled nominal poi
 the old error, the center's rounding and the generators' rounding against `δ`, which is what
 the new error box holds; and `δ` meets the rescaled rows (`HPolytope.mem_rescaleCols_nominal`).
 Outer: the exact layer's `rescale_exact` is an equality, this is not.
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `ξL` – lower coefficient bounds
+* `ξU` – upper coefficient bounds
+
+## Hypotheses
+* `hB` – every feasible coefficient vector lies in the box
+
+## Conclusion
+* the set is contained in the rescaled set
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

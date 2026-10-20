@@ -15,6 +15,16 @@ unchanged, so it pays `h + 1` matrix-vector products and the writes of the polyt
 The same count as `Zonotope.mtimesCost` plus the polytope's writes, which stay: a linear map
 needs no computation on the constraints, because they live over the coefficients and a linear
 map does not move those.
+
+## Inputs
+* `m` – rows
+* `n` – columns
+* `h` – number of generators
+* `r` – number of inequalities
+* `re` – number of equalities
+
+## Output
+* the cost of multiplying by a matrix
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

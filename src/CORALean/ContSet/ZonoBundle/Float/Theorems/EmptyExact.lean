@@ -10,6 +10,15 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.OriginExact
 # `ZonoBundle.empty` denotes the empty set
 
 The two members are the points `0` and `e₀`, which differ in the first coordinate.
+
+## Inputs
+* `n` – dimension
+
+## Hypotheses
+* `hn` – the dimension is positive
+
+## Conclusion
+* the empty bundle denotes the empty set
 -/
 
 -- Authors:       Claude Opus 5.5

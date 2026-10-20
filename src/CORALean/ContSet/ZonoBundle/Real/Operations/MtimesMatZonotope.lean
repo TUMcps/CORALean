@@ -17,6 +17,13 @@ intersection maps into the intersection of the images, and on top of that
 matrix is used in every component, but nothing here records that — each
 component encloses on its own, so a correlation across components is lost.
 
+## Inputs
+* `M` – matrix zonotope
+* `zB` – zonotope bundle
+
+## Output
+* enclosure of the image under every matrix in the matrix zonotope
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

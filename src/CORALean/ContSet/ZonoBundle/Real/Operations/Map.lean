@@ -12,6 +12,13 @@ A linear map applied to every zonotope in the family [1, Prop. 1], the count `k`
 `construct` reads only the family, so moving each member is all a bundle needs
 to move.
 
+## Inputs
+* `f` – linear map
+* `zB` – zonotope bundle
+
+## Output
+* the image under the map
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

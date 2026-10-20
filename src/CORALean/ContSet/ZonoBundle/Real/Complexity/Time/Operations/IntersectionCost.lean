@@ -13,10 +13,19 @@ families of members and computes nothing at all. The result is a new family all 
 every entry of each member is a write.
 
 This is still what the representation is for: an intersection a zonotope cannot represent costs a
-bundle no arithmetic to *take* — the members are kept side by side and the set they denote is
-their intersection by definition. What it costs beyond the copy is paid later and elsewhere, in
-the `k₁ + k₂` members every subsequent operation then runs over, which is exactly what `plusCost`
-and `mtimesCost` charge for.
+bundle no arithmetic to *take*, the members being kept side by side. What it costs beyond the copy
+is paid later, in the `k₁ + k₂` members every subsequent operation runs over, which `plusCost` and
+`mtimesCost` charge for.
+
+## Inputs
+* `n` – dimension
+* `k₁` – members of the first bundle
+* `k₂` – members of the second bundle
+* `h₁` – generators per member of the first
+* `h₂` – generators per member of the second
+
+## Output
+* the cost of the intersection
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

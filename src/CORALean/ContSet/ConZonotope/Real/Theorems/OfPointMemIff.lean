@@ -9,6 +9,16 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.OfPointMem
 # `ConZonotope.ofPoint` denotes exactly one point
 
 The converse to `mem_ofPoint`: no generator leaves no coefficient to spend.
+
+## Inputs
+* `v` – point
+* `x` – point to test
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership holds iff the point equals the center
 -/
 
 -- Authors:       Claude Opus 5.5

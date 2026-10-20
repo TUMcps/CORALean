@@ -10,6 +10,16 @@ public import CORALean.ContSet.ZonoBundle.Real.Operations.FlowIndex
 What `flowIndex` is chosen for: the axis it returns aligns with the flow at least as well as every
 other [1, Heuristic flow]. Mathlib's `List.le_of_mem_argmax`, at the list of all axes.
 
+## Inputs
+* `f` – flow direction
+* `k` – axis
+
+## Hypotheses
+* none
+
+## Conclusion
+* the chosen axis aligns with the flow at least as well as axis k
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

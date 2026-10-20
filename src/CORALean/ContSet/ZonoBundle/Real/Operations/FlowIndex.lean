@@ -14,6 +14,12 @@ the flow direction `f`". The columns are the unit vectors, whose alignment with 
 up to the common factor `‖f‖⁻¹`, so it is the first index of largest `|fᵢ|`. A list `argmax`, so it
 runs; `none` only for no axes at all.
 
+## Inputs
+* `f` – flow direction
+
+## Output
+* the index of the largest coordinate in magnitude
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

@@ -19,6 +19,23 @@ From a coefficient vector `β` of `Z̃`, `ξ = β + s·e_j`, with `s` the slack 
 satisfies every row of `Aξ = b` and gives the same point. Back from `ξ`, `β = ξ - ξ_j·e_j` is a
 coefficient vector of `Z̃`. Column `j` of `Z̃`'s system is zero, so `β_j` does not matter.
 
+## Inputs
+* `n` – dimension
+* `q` – number of constraints
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `r` – constraint row to solve
+* `j` – coefficient to eliminate
+
+## Hypotheses
+* `hAj` – pivot entry nonzero
+
+## Conclusion
+* the partial solve is the set without the bound on that coefficient
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

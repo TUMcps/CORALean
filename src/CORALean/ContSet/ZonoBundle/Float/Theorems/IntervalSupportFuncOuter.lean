@@ -13,6 +13,15 @@ public import CORALean.ContSet.Interval.Float.Theorems.Basic
 Every point of the bundle lies in CORA's box (`intervalAll_contains`) and reads at most each
 certified support bound in its direction (`boundDotLP_le`), at `eᵢ` from above and at `-eᵢ` from
 below; the minimum and the maximum of two sound ends are sound, both being exact.
+
+## Inputs
+* `zB` – float zonotope bundle
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Conclusion
+* the bundle is contained in the support-function box
 -/
 
 -- Authors:       Claude Opus 5.5

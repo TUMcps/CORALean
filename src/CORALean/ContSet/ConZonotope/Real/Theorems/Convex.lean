@@ -11,6 +11,15 @@ The affine image of a polytope. Read off the coefficients: a weighted average of
 two admissible ones stays in the unit box, and stays in `P` because a polytope is
 convex — that second half is all the constraints add over a zonotope, and it is
 `HPolytope.convex_construct` rather than an argument of its own.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is convex
 -/
 
 -- Authors:       Claude Opus 5

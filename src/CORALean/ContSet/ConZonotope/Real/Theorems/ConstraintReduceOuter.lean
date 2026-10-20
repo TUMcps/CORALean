@@ -13,6 +13,23 @@ whose constraint is the polytope `Aξ = b` on the coefficients; the proof is the
 `z = Gξ + c` and `0 = b − Aξ` added back through `Λ_G` and `Λ_A`. The remark that `Λ_A = I`
 leaves a zonotope is `constraintReduce_one_mem_iff`.
 
+## Inputs
+* `n` – dimension
+* `q` – number of constraints
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `ΛG` – generator multiplier
+* `ΛA` – constraint multiplier
+
+## Hypotheses
+* none
+
+## Conclusion
+* the original set is contained in the reduced set
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

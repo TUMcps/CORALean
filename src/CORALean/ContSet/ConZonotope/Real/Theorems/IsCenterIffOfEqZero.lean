@@ -9,6 +9,19 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.IsCenter
 
 `isempty(cZ.A)` is CORA's first branch of `center`: the center is the stored `c`, and nothing else
 is a center, the other branches needing a constraint row.
+
+## Inputs
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `x` – candidate center
+
+## Hypotheses
+* none
+
+## Conclusion
+* with no constraint rows the center is the stored center
 -/
 
 -- Authors:       Claude Opus 5.5

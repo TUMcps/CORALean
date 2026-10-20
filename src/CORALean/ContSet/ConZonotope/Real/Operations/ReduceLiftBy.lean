@@ -10,18 +10,21 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Intersection
 /-!
 # `ConZonotope.reduceLiftBy`
 
-CORA's `@conZonotope/reduce` [1, Sec. 4.3] at a given partition of the generators. The
-equality rows `Aₑ β = bₑ` are lifted with the generators to the zonotope `[G; Aₑ]` with
-center `[c; -bₑ]` (`liftEq`), that zonotope is reduced by `reduceBy`'s box, and the lower
-rows of the result are read back as the new equality system, `bₑ` unchanged because the
-reduction keeps the center. The boxed coefficients therefore enter the equalities through
-the diagonal block, as in CORA, and an equality survives as a relaxed row rather than
-being given up.
+CORA's `@conZonotope/reduce` [1, Sec. 4.3] at a given partition of the generators. The equality rows
+`Aₑ β = bₑ` are lifted with the generators to the zonotope `[G; Aₑ]` with center `[c; -bₑ]`
+(`liftEq`), that zonotope is reduced by `reduceBy`'s box, and the lower rows of the result are read
+back as the new equality system, `bₑ` unchanged because the reduction keeps the center.
 
-CORA's representation has no inequalities; this one does, and they are handled as
-`reduceKeepBy` handles every row: each is read at the kept coefficients and loosened by what
-the dropped ones can add (`keepRows`), the fresh box coefficients being unconstrained. Both
-parts are outer, so the result is.
+CORA's representation has no inequalities; this one does, and they are handled as `reduceKeepBy`
+handles every row: read at the kept coefficients and loosened by what the dropped ones can add
+(`keepRows`), the fresh box coefficients unconstrained. Both parts are outer, so the result is.
+
+## Inputs
+* `cZ` – constrained zonotope
+* `part` – generator partition
+
+## Output
+* enclosing constrained zonotope reduced along the partition
 
 ## References
 

@@ -11,6 +11,20 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveLamAMulVec
 [1, Sec. 4.2]: with `Λ_A` of eq. 29, `[Ã | b̃]` has an identically zero `r`-th row (the paper's
 first), the trivial constraint `0ᵀξ = 0` from substituting eq. 28 into row `r`.
 
+## Inputs
+* `q` – number of constraints
+* `h` – number of generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `r` – constraint row to solve
+* `j` – coefficient to eliminate
+
+## Hypotheses
+* `hAj` – pivot entry nonzero
+
+## Conclusion
+* the constraint row r of the partial solve is zero
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

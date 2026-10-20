@@ -13,6 +13,16 @@ row depends on its own row alone, so lifting the stack and stacking the lifted m
 are the same constraint list read in two groupings. `facetLift_stack_exact` is
 the equation; `FacetLiftStackOuter` combines it with Prop. 3.
 
+## Inputs
+* `P` – family of polytopes
+* `Zadd` – zonotope added
+
+## Hypotheses
+* none
+
+## Conclusion
+* lifting the stacked facets is lifting each polytope's facets
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

@@ -15,6 +15,13 @@ Computable, unlike the exact layer's, which is `noncomputable` only because
 `Zonotope.linComb` halves a center in ℝ. The interpolation weight is still
 shared across every pair — only the endpoints vary — which is what
 `Theorems.LinCombOuter` turns into the enclosure.
+
+## Inputs
+* `zB₁` – first bundle
+* `zB₂` – second bundle
+
+## Output
+* enclosure of the convex hull
 -/
 
 -- Authors:       Claude Opus 5

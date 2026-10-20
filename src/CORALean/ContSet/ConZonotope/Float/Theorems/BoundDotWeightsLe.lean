@@ -10,6 +10,20 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.BoundDotWeights
 Whatever the weights — optimal, rounded, negative, or arbitrary — every point of
 the float constrained zonotope reads at most the bound. This is the theorem that
 makes the simplex untrusted: `boundDot` is this at one particular weight vector.
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `c` – linear functional
+* `a` – float weights of the functional
+* `y` – dual certificate for the inequalities
+* `zu` – upper dual certificate for the equalities
+* `zl` – lower dual certificate for the equalities
+
+## Hypotheses
+* `hc` – the functional is the weighted sum
+
+## Conclusion
+* every point of the set stays below the bound
 -/
 
 -- Authors:       Claude Opus 5.5

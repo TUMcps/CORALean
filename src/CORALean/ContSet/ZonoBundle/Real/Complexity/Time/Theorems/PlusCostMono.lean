@@ -13,6 +13,26 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Plus
 
 Monotone in both member counts and both generator bounds, so bounds on the operands' sizes
 give a bound on the cost.
+
+## Inputs
+* `k₁` – members of the first bundle
+* `k₁'` – larger member count of the first
+* `k₂` – members of the second bundle
+* `k₂'` – larger member count of the second
+* `h₁` – generators per member of the first
+* `h₁'` – larger generator count of the first
+* `h₂` – generators per member of the second
+* `h₂'` – larger generator count of the second
+* `n` – dimension
+
+## Hypotheses
+* `hk₁` – `k₁ ≤ k₁'`
+* `hk₂` – `k₂ ≤ k₂'`
+* `hh₁` – `h₁ ≤ h₁'`
+* `hh₂` – `h₂ ≤ h₂'`
+
+## Conclusion
+* the cost of the Minkowski sum is monotone in all sizes
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

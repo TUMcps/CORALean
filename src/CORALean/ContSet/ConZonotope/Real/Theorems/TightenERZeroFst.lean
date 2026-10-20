@@ -12,6 +12,18 @@ The `E` half of [1, Alg. 1 (iteration)] ([2, Alg. 1]), run once, is the box `tig
 computes: `R` is carried beside `E` and never read by it. So everything proved of `tighten` is a
 fact about `tightenER`'s `E` at `k = 0`.
 
+## Inputs
+* `nc` – number of constraints
+* `ng` – number of generators
+* `A` – constraint matrix
+* `b` – constraint offset
+
+## Hypotheses
+* none
+
+## Conclusion
+* the box after one pass is the tightened box
+
 ## References
 
 * [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for

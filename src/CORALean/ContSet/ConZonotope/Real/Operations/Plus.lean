@@ -16,6 +16,13 @@ along the projection onto its block, then intersect. No matrix rows are
 assembled and no sum has to be split, which is what carrying the constraints as
 a polytope buys.
 
+## Inputs
+* `cZ₁` – first summand
+* `cZ₂` – second summand
+
+## Output
+* the Minkowski sum
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

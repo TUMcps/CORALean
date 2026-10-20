@@ -15,6 +15,18 @@ the polytope from two `comap`s along the block embeddings `blockLeft` and `block
 `intersection`. A block embedding copies a row into a longer one, `h₁ + h₂ + 1` entries with its
 right-hand side, which `HPolytope.comapCost` charges as the writes of the row. The count is
 `Zonotope.plusCost`, the two `comap`s and the `intersection`'s writes, rows read dense.
+
+## Inputs
+* `n` – dimension
+* `h₁` – generators of the first set
+* `h₂` – generators of the second set
+* `r₁` – inequalities of the first set
+* `re₁` – equalities of the first set
+* `r₂` – inequalities of the second set
+* `re₂` – equalities of the second set
+
+## Output
+* the cost of the Minkowski sum
 -/
 
 -- Authors:       Claude Sonnet 5.5

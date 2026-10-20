@@ -14,6 +14,17 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
 [1, Prop. 1]. Each block keeps its own polytope, and the new rows say that the image of the
 first point and the second point agree coordinate by coordinate, which is what `M z ∈ cZ₂` means.
 
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+* `M` – map from the first into the second space
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is exactly the constrained intersection
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

@@ -10,6 +10,15 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaOrigin
 
 CORA's `@zonoBundle/representsa_` for the type `'origin'`:
 `representsa_(conZonotope(zB), 'origin')`, decided on the constrained zonotope of the bundle.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Output
+* the bundle is the origin point
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,12 @@ The kept coefficients of a partition, put back into the full coefficient space w
 zero in every dropped coordinate. Composing a constraint with it reads the
 constraint at a point whose dropped coefficients are zero, which is the first half
 of what `keepRows` does to each row.
+
+## Inputs
+* `part` – partition of the generators
+
+## Output
+* the map putting kept coefficients back into the full space
 -/
 
 -- Authors:       Claude Opus 5.5

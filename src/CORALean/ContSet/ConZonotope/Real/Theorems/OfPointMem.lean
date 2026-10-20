@@ -10,6 +10,15 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.OfPoint
 `ofPoint v` states its own `h` and `P`, that count only up to unfolding, so
 the coefficient carries a `show` before the sum and the constraint discharges
 on no row at all — `HPolytope.fullspace` has none.
+
+## Inputs
+* `v` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point lies in its own constrained zonotope
 -/
 
 -- Authors:       Claude Opus 5

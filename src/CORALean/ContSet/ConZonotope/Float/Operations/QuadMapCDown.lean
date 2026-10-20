@@ -11,6 +11,13 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.Basic
 The center of [1, Lemma 1], `cᵀQ c + ½ Σⱼ gⱼᵀQ gⱼ`, rounded down; the sum is
 accumulated downward and halved exactly.
 
+## Inputs
+* `Q` – quadratic form matrices
+* `cZ` – float constrained zonotope
+
+## Output
+* center of the quadratic image rounded down
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

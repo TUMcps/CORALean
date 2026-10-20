@@ -16,6 +16,23 @@ does their hull. With `V` the vertices of the two bundles (`vPolytopeAll_exact`,
 bundle), both are inside: an outer enclosure of the union, and of its convex hull. An enclosure,
 not an exact statement: the result is a bundle of boxes in the chosen coordinates, larger than the
 convex hull in general.
+
+## Inputs
+* `zB₁` – first bundle
+* `zB₂` – second bundle
+* `W` – transformation matrices
+* `U` – orthogonal matrix of the Stursberg enclosure
+
+## Hypotheses
+* `hk₁` – first bundle has a member
+* `hk₂` – second bundle has a member
+* `hne₁` – first bundle nonempty
+* `hne₂` – second bundle nonempty
+* `hW` – each transformation is invertible
+* `hU` – the matrix is orthogonal
+
+## Conclusion
+* the convex hull of the union is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -9,6 +9,13 @@ public import CORALean.ContSet.ConZonotope.Real.ConZonotope
 
 CORA's `@conZonotope/mtimes`: `map` at `A *ᵥ ·`, spelt with `*ᵥ` because that is
 the form every caller states its matrix in.
+
+## Inputs
+* `M` – matrix
+* `cZ` – constrained zonotope
+
+## Output
+* the image under the matrix
 -/
 
 -- Authors:       Claude Opus 5

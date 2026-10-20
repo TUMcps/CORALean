@@ -19,6 +19,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 Each half contains the set intersected with a box (`intersection_outer`), and the set lies in
 its bounding box, which the two half boxes cover (`splitAt_cover`). Outer, not exact: the
 float `intersection` is an enclosure.
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `d` – dimension to cut along
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is covered by the two halves
 -/
 
 -- Authors:       Claude Opus 5.5

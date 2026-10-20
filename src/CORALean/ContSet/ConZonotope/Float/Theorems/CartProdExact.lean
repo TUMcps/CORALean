@@ -17,6 +17,16 @@ rounds. The nominal part is the exact layer's `cartProd` mapped through the appe
 generators are `Zonotope.cartProd`'s, and its coefficient polytope has the same points as the
 exact product of the two (`HPolytope.cartProd_nominal_exact`). The error box is the stack of the
 two.
+
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the product's set is the pairing of the two sets
 -/
 
 -- Authors:       Claude Sonnet 5.5

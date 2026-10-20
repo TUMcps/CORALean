@@ -16,6 +16,18 @@ of the members' bounds and costs no width.
 
 Needs `0 < zB.k`, as `SetIntersection.isCompact_construct` needs a member, and for the same
 reason: at `k = 0` the bundle is the whole space, unbounded in every nonzero direction.
+
+## Inputs
+* `zB` – float zonotope bundle
+* `c` – linear functional
+* `a` – float weights of the functional
+
+## Hypotheses
+* `hk` – the bundle has a member
+* `hc` – the functional is the weighted sum
+
+## Output
+* the tightest of the members' upper bounds
 -/
 
 -- Authors:       Claude Opus 5

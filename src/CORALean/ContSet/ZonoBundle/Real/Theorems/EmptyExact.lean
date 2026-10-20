@@ -10,7 +10,14 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 /-!
 # `ZonoBundle.empty` denotes the empty set
 
+## Inputs
+* `n` – dimension
 
+## Hypotheses
+* `hn` – the dimension is positive
+
+## Conclusion
+* the empty bundle denotes the empty set
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -15,6 +15,16 @@ The second-order count also comes out cleanly: each paired component is
 `Zonotope.linComb` of the two it came from, so its own generator count is
 theirs added plus the one fresh generator, by `Zonotope.linComb_h`. `rfl`
 against both structure instances.
+
+## Inputs
+* `zB₁` – first bundle
+* `zB₂` – second bundle
+
+## Hypotheses
+* none
+
+## Conclusion
+* the hull has the product of the member counts
 -/
 
 -- Authors:       Claude Opus 5

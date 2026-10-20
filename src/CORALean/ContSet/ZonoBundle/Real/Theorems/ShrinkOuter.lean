@@ -14,6 +14,15 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceMethCOuter
 `methC` encloses each member, so the bundle lies in the intersection of the reduced members;
 `enclosingParallelotope` encloses that intersection, whichever edges it is given, so each new
 member holds the bundle, and so does their intersection.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Conclusion
+* the bundle is contained in the shrunk bundle
 -/
 
 -- Authors:       Claude Opus 5.5

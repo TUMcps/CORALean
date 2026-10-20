@@ -15,6 +15,13 @@ public import CORALean.ContSet.HPolytope.Float.Operations.StackRows
 Generators concatenate exactly and the constraints are padded onto the wider
 coefficient space, so only the center rounds and its `residual` goes into the
 box — exactly as for a zonotope, the constraints adding nothing to pay for.
+
+## Inputs
+* `cZ₁` – first summand
+* `cZ₂` – second summand
+
+## Output
+* enclosure of the Minkowski sum
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

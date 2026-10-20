@@ -10,6 +10,15 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsConstructEqIffHPo
 
 `representsa_(zB, 'polytope')` is `true`: constrained zonotopes are the bounded halfspace
 descriptions (Scott et al.), and a bundle with a member is one.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Conclusion
+* the bundle has a halfspace description
 -/
 
 -- Authors:       Claude Opus 5.5

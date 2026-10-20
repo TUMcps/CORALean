@@ -12,22 +12,14 @@ public import CORALean.Global.Block
 /-!
 # Constrained zonotopes: the representation
 
-CORA's `conZonotope` [1, Def. 3]: a zonotope whose coefficients are cut down further. The
-cutting is an `HPolytope` over the coefficient space rather than the matrix
-equation `A β = b`, so the constraints *are* a polytope rather than merely
-denoting one, and every polytope operation applies to them directly —
-`ofMat` recovers CORA's form, and `plus` and `mtimesIntervalMat` state their
-constraints by `comap` and `intersection` instead of assembling matrix rows.
-
-That generalizes CORA, which admits equalities only. Inequalities cost nothing
-here and a halfspace description carries both.
-
-The unit box stays outside `P`, imposed by `construct`: it is what makes the
-coefficients a zonotope's, and keeping it separate is what lets `zonotope` be an
-enclosure whatever `P` says.
-
-Over any real module, as a zonotope is: the constraints live on the coefficient
-space `Vec ℝ h`, whatever the generators point into.
+CORA's `conZonotope` [1, Def. 3]: a zonotope whose coefficients are cut down further. The cutting is
+an `HPolytope` over the coefficient space rather than the matrix equation `A β = b`, so the
+constraints are a polytope and every polytope operation applies to them directly: `ofMat` recovers
+CORA's form, and `plus` and `mtimesIntervalMat` state their constraints by `comap` and
+`intersection`. That generalizes CORA, which admits equalities only; a halfspace description carries
+both. The unit box stays outside `P`, imposed by `construct`, which is what lets `zonotope` be an
+enclosure whatever `P` says. Over any real module, as a zonotope is: the constraints live on the
+coefficient space `Vec ℝ h`, whatever the generators point into.
 
 ## References
 

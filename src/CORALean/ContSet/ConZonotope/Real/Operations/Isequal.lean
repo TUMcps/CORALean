@@ -13,6 +13,13 @@ of the columns (`compareMatrices`), else the vertices are compared. Here the tol
 the data are compared as they are, which is stricter than CORA: the generators and the constraint
 polytope must be equal field by field, in order, and neither the vertex comparison nor the
 point and emptiness cases are modelled. So the test is sound, not exact.
+
+## Inputs
+* `Z` – first constrained zonotope
+* `S` – second constrained zonotope
+
+## Output
+* the two agree in every field
 -/
 
 -- Authors:       Claude Opus 5.5

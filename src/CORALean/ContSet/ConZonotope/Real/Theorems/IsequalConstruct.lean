@@ -8,6 +8,16 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.Isequal
 # Constrained zonotopes passing `isequal` denote the same set
 
 Sound, not exact: `isequal` compares the representation, and different data can denote one set.
+
+## Inputs
+* `Z` – first constrained zonotope
+* `S` – second constrained zonotope
+
+## Hypotheses
+* `h` – the two agree in every field
+
+## Conclusion
+* the two sets are equal
 -/
 
 -- Authors:       Claude Opus 5.5

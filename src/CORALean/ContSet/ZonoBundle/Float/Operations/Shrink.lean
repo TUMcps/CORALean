@@ -13,10 +13,18 @@ members are intersected, and each member is replaced by the parallelotope along 
 member's own edges that encloses the intersection. The intersection is the bundle of the reduced
 members; the parallelotope is `enclosingParallelotope`, its `Γ⁻¹` a checked candidate.
 
-As at the exact layer: the box of `Γ⁻¹ P` is the intersection of the reduced members' boxes, not
-the polytope's own; the empty case is not decided; the edges are the reduced member's first `n`
-generators, zeros where it has fewer. The float `reduceMethC` returns a member unchanged where its
-own check fails, and its first `n` generators are then the edges.
+As at the exact layer: the box of `Γ⁻¹ P` is the intersection of the reduced members' boxes; the
+empty case is not decided; the edges are the reduced member's first `n` generators, zeros where it
+has fewer. Where its own check fails, the float `reduceMethC` returns a member unchanged.
+
+## Inputs
+* `zB` – float zonotope bundle
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Output
+* the bundle with each member reduced and enclosed
 
 ## References
 

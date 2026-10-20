@@ -13,6 +13,12 @@ zonotope is not full-dimensional (its generators do not span the ambient space),
 `Zonotope.isFullDim`. Its last step, `isFullDim(polytope(zB))`, tests the intersection itself
 and is not formalized. CORA also answers `false` for a bundle without members, whose `construct`
 here is the whole space.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Output
+* every member's generators span the space
 -/
 
 -- Authors:       Claude Opus 5.5

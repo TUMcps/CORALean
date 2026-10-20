@@ -11,6 +11,12 @@ CORA's `@conZonotope/representsa_` at type `emptySet` (`aux_isEmptySet`): the zo
 is never empty, so without constraints the answer is `false`; otherwise `representsa` of the
 polytope `[-1, 1]^m ∩ {A ξ = b}`, which CORA decides by a linear program. The coefficient
 polytope is `ConZonotope.domain`.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Output
+* the set is empty
 -/
 
 -- Authors:       Claude Opus 5.5

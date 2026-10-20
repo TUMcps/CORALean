@@ -8,22 +8,14 @@ public import CORALean.ContSet.SetIntersection.SetIntersection
 /-!
 # Zonotope bundles over a floating-point scalar: the representation
 
-CORA's `zonoBundle` [1, Def. 4] at float zonotopes: the family is stored and the
-intersection is what it denotes, each member already inflated by its own error
-box. So there is no `InflatedContSet` instance and `Instances` gives `ContSet`
-directly — one ambient box cannot stand in for the members': `⋂ᵢ (Nᵢ + Eᵢ)` can be nonempty
-where `⋂ᵢ Nᵢ` is empty, and no `E` then makes `(⋂ᵢ Nᵢ) + E` contain it.
-
-`ZonoBundle α` is indexed by the ambient type its members store, as the exact
-layer's `ZonoBundle α` is, each member a `Zonotope α`, and what it denotes is the
-general `SetIntersection` of the members' generic sets (`toSetIntersection`), by definition,
-so the facts of every intersection come from that class. The vector case is
-`ZonoBundle (Vec 𝕋 n)`, and an algorithm generic over the dimension takes the
-family `fun k => ZonoBundle (Vec 𝕋 k)`.
-
-`k = 0` denotes an intersection over an empty family, which is `univ` — the
-whole space, not `∅` — exactly as over ℝ, and every degenerate case below is
-read against that rather than against `Zonotope`'s.
+CORA's `zonoBundle` [1, Def. 4] at float zonotopes: the family is stored and the intersection is
+what it denotes, each member already inflated by its own error box. So there is no `InflatedContSet`
+instance and `Instances` gives `ContSet` directly: `⋂ᵢ (Nᵢ + Eᵢ)` can be nonempty where `⋂ᵢ Nᵢ` is
+empty, and no single `E` then makes `(⋂ᵢ Nᵢ) + E` contain it. `ZonoBundle α` is indexed by the
+ambient type its members store, as the exact layer's is, and denotes the general `SetIntersection`
+of its members (`toSetIntersection`), so the facts of every intersection come from that class.
+`k = 0` denotes `univ`, the whole space and not `∅`, exactly as over ℝ. The vector case is
+`ZonoBundle (Vec 𝕋 n)`.
 
 ## References
 

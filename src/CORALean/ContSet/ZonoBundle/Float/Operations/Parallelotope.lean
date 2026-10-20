@@ -19,6 +19,15 @@ has no exact `Λ⁻¹`: `H` is any candidate, `B` a box around `H x`, and the po
 bound on `|x|`, and is paid into the error box. Nothing is assumed of `H`: a poor one costs
 precision alone.
 
+## Inputs
+* `Λ` – edge directions
+* `H` – approximate inverse of the directions
+* `B` – box in the transformed coordinates
+* `m` – bound on the coordinate magnitudes
+
+## Output
+* the parallelotope along the directions enclosing the box
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

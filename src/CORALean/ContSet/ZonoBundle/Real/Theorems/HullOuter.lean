@@ -13,6 +13,16 @@ public import Mathlib.Analysis.Convex.Hull
 linear `L`. Convex hull is monotone and `Z_∩ ⊆ Zᵢ`; the printed proof goes through
 scalings and Minkowski sums, which this does not need.
 
+## Inputs
+* `zB` – zonotope bundle
+* `L` – linear map
+
+## Hypotheses
+* none
+
+## Conclusion
+* the hull of the bundle and its image lies in the members' hulls
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

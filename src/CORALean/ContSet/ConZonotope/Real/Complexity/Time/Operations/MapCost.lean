@@ -8,19 +8,23 @@ public import CORALean.Global.Cost
 /-!
 # `ConZonotope.mapCost`
 
-Asserted, not proved: `Operations/Map.lean` sends the center and each of the
-`h` generators through `f` and carries the constraint polytope over as the
-field it already is — `P := cZ.P`, untouched. The polytope is a part of the result, so its
-`(r + re) * (h + 1)` entries, rows read dense over the `h` coefficients and a right-hand side,
+Asserted, not proved: `Operations/Map.lean` sends the center and each of the `h` generators through
+`f` and carries the constraint polytope over untouched, `P := cZ.P`; it is part of the result, so
+its `(r + re) * (h + 1)` entries, rows read dense over the `h` coefficients and a right-hand side,
 are written.
 
-`plus`, `intersection` and `linComb` each *build* a polytope, and what building one costs depends
-on how its rows are represented; `HPolytope` stores them as linear functionals and fixes nothing,
-so they are counted under the dense-row reading of `HPolytope.halfScaledCost`.
-`Complexity/Time/API.lean` says so at length.
+`plus`, `intersection` and `linComb` each *build* a polytope, counted under the dense-row reading of
+`HPolytope.halfScaledCost` (`Complexity/Time/API.lean`). What one `f` costs is a parameter, as in
+`PolyZonotope.mapCost`.
 
-What one `f` costs is a parameter, as in `PolyZonotope.mapCost` and for the same
-reason: `f` is any linear map.
+## Inputs
+* `cf` – cost of the map on one vector
+* `h` – number of generators
+* `r` – number of inequalities
+* `re` – number of equalities
+
+## Output
+* the cost of mapping a constrained zonotope
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

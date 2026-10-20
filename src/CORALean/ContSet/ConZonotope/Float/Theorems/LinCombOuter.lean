@@ -17,21 +17,24 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MidpointMemResidual
 /-!
 # `ConZonotope.linComb` encloses every segment between the two
 
-`InflatedContSet.linComb_subset` reduces this to two obligations: the nominal
-part spills only by what rounded, and the box absorbs that spill along with the
-segment between the two incoming boxes.
+`InflatedContSet.linComb_subset` reduces this to two obligations: the nominal part spills only by
+what rounded, and the box absorbs that spill along with the segment between the two incoming boxes.
+The nominal obligation is the exact argument at the same coefficients, `λ β₁`, `(1 - λ) β₂` and
+`2λ - 1`; the constraints cost nothing to carry, since the weighted rows are the incoming rows
+against a nonnegative weight (`smul_mem_halfScaledLeft` and its mirror). Only the center and the
+center generator are displaced from what ℝ would have, so only they are charged. `aux_linCombCoeff`
+and `aux_linCombGReal` are `noncomputable`: they name real numbers only to state what this file
+proves, and `ConZonotope.linComb` stores no real.
 
-The nominal obligation is the exact argument at the same coefficients — `λ β₁`,
-`(1 - λ) β₂` and `2λ - 1` — and the constraints cost nothing to carry: the
-weighted rows are the incoming rows against a nonnegative weight, which is what
-`smul_mem_halfScaledLeft` and its mirror say. Only the center and the center
-generator are displaced from what ℝ would have, so only they are charged.
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
 
-`aux_linCombCoeff` and `aux_linCombGReal` are `noncomputable`: both name a real
-number — a real-scaled coefficient, a real-halved center gap — only to state
-what this file proves about it, and neither is read back into
-`ConZonotope.linComb`, which stores no real. Inherent to arguing about ℝ, not a
-gap in what runs.
+## Hypotheses
+* none
+
+## Conclusion
+* the segments between the two sets are contained in the result
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

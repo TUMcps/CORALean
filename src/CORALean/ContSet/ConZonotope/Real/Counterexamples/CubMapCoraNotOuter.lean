@@ -10,17 +10,23 @@ public import Mathlib.LinearAlgebra.Matrix.Notation
 /-!
 # CORA's `conZonotope/cubMap` loses the constraint on a factor it does not see
 
-`aux_cubMapSingle` rebuilds the constraint matrix from the *linear* monomials of the exponent
-matrix of `polyZonotope/cubMap(polyZonotope(zonotope(c, G)))`, but that runs
-`removeRedundantExponents`, which first deletes every all-zero generator column (`any(G,1)`): a
-factor the cubic map does not depend on keeps no linear monomial, its column of `A` stays zero,
-and `A β = b` is imposed on the remaining factors alone.
+`aux_cubMapSingle` rebuilds the constraint matrix from the *linear* monomials of the exponent matrix
+of `polyZonotope/cubMap(...)`, which deletes every all-zero generator column
+(`removeRedundantExponents`): a factor the cubic map does not depend on keeps no linear monomial,
+its column of `A` stays zero, and `A β = b` is imposed on the others alone.
+For `z = x₁² · x₁` and `c = (1, 0)`, `G = I`, `A = [1 1]`, `b = 0` the image is
+`(1 + β₁)³ = [0, 8]`. CORA's polynomial zonotope keeps the linear monomial `β₁` alone, so
+`A = [1 0 0]`, and `β₁²` moves half into the center, `c = 5/2`: the set `[0, 5]` misses `z = 8` at
+`β₁ = 1` (read from the source, not run).
 
-For `z = x₁² · x₁` and `c = (1, 0)`, `G = I`, `A = [1 1]`, `b = 0` (`rescale` is the identity: both
-factors reach `±1`) the image is `(1 + β₁)³ = [0, 8]`. CORA's polynomial zonotope is
-`1 + 3β₁ + 3β₁² + β₁³`, the linear monomial `β₁` alone, so `A = [1 0 0]`, and `β₁²` moves half into
-the center: `c = 5/2`, `G = (3, 3/2, 1)`, `γ₁ = 0`: the set `[0, 5]`, which misses `z = 8` at
-`β₁ = 1` (read from the source, not run). `ConZonotope.cubMap` keeps every linear generator.
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's cubic map misses a point of the exact image
 -/
 
 -- Authors:       Claude Opus 5.5

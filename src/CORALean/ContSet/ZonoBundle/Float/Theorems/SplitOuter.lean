@@ -20,6 +20,18 @@ encloses `Λ⁻¹ Z_∩`), every point of it lies in the float parallelotope (`m
 `zonotope_contains`), so in one of its float halves (`split_outer`), and the halves are the
 bundle cut with them (`intersection_exact`). Outer only: the exact layer's halves cover the
 bundle exactly, the float ones also hold the rounding.
+
+## Inputs
+* `Λ` – edge directions
+* `B` – box in the transformed coordinates
+* `j` – dimension to cut along
+* `zB` – float zonotope bundle
+
+## Hypotheses
+* `hB` – the bundle lies in the image of the box
+
+## Conclusion
+* the bundle is covered by the two halves
 -/
 
 -- Authors:       Claude Opus 5.5

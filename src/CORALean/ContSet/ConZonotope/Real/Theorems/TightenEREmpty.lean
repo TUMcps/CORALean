@@ -14,6 +14,22 @@ the test may be made in any iteration. Every point of `Z_c` has a coefficient ve
 `B∞(A, b)`, which `tightenER_outer` places in both `E_j` and `R_j`, so the two cannot be
 disjoint while `Z_c` has a point.
 
+## Inputs
+* `nc` – number of constraints
+* `ng` – number of generators
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `k` – number of extra passes
+* `j` – coefficient index
+
+## Hypotheses
+* `hj` – the two bounds on that coefficient do not overlap
+
+## Conclusion
+* the constrained zonotope is empty
+
 ## References
 
 * [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for

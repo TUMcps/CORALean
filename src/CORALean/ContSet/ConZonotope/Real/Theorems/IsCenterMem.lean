@@ -13,6 +13,19 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.IsLPCenterMem
 Every branch of `ConZonotope.IsCenter` names a coefficient vector `β` with `|β| ≤ 1` and `A β = b`
 and puts the center at `c + G β`: an optimum of a program over the coefficient polytope is feasible
 in it. With no constraint rows the center is `c`.
+
+## Inputs
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `x` – candidate center
+
+## Hypotheses
+* `hx` – the point is a center
+
+## Conclusion
+* the center lies in the constrained zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

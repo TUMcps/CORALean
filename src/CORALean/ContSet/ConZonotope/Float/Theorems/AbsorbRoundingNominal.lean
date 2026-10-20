@@ -18,6 +18,15 @@ The witness is `Fin.append β γ`: the old coefficients, which keep meeting the 
 coefficient per coordinate placing that coordinate's error in its new generator. The new block is
 free, so the padded constraints ask nothing of it, and `errorBound` rounds nothing, so the
 coefficient always fits.
+
+## Inputs
+* `cZ` – float constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set lies in the nominal set of the absorbed zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,23 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
 `Z` is `ofMat c G A b` and `Z⁺` is `lift`; the partition is the first `m₁` rows against the last
 `m₂`. At `m₂ = 0`, `Z⁺` is a zonotope: see `mem_lift_zero_iff`.
 
+## Inputs
+* `n` – dimension
+* `m₁` – constraints moved into coordinates
+* `m₂` – constraints kept
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `z` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point is in the set iff its padding is in the lifted set
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

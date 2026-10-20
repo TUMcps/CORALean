@@ -14,9 +14,23 @@ a polytope whose halfspaces and vertices CORA gets from a convex-hull routine, a
 is `HPolytope.zonoBundleRows` on them (`polytope/zonoBundle`).
 
 The halfspace description `P` of the hull and the orthogonal bases `B` (Gram-Schmidt of the rows)
-are arguments; the vertices are those of the two bundles joined (`encloseTightVertices`), which span
-the hull. CORA returns the other operand when one is empty, which is not modelled: both bundles
-are nonempty and have a member.
+are arguments; the vertices are those of the two bundles joined (`encloseTightVertices`). CORA
+returns the other operand when one is empty, which is not modelled.
+
+## Inputs
+* `zB₁` – first bundle
+* `zB₂` – second bundle
+* `P` – halfspace description of the hull
+* `B` – orthogonal bases of the halfspace rows
+
+## Hypotheses
+* `hk₁` – first bundle has a member
+* `hk₂` – second bundle has a member
+* `hne₁` – first bundle nonempty
+* `hne₂` – second bundle nonempty
+
+## Output
+* bundle enclosing the convex hull
 -/
 
 -- Authors:       Claude Opus 5.5

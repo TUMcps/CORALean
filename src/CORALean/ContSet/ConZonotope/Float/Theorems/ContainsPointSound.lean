@@ -14,6 +14,18 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.DeviationBound
 A point within `B` of `y₀ = c + G β₀` after the error box's lower corner is subtracted is in the
 nominal set (`ConZonotope.box_subset`); adding the corner, a member of the nonempty box, gives
 the point.
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `H` – right inverse of the generator matrix
+* `β₀` – coefficient point
+* `p` – point to test
+
+## Hypotheses
+* `h` – the test answers true
+
+## Conclusion
+* the point lies in the set
 -/
 
 -- Authors:       Claude Opus 5.5

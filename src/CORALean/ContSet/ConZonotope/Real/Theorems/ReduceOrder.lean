@@ -16,6 +16,16 @@ branch condition itself is the bound.
 Unlike `ZonoBundle.reduce_order_le`, `0 < o` is needed: the bound is inherited
 from Girard's rule, which reserves `n` of its budget for the box it adds. A
 bundle's reduction adds nothing, so it needs no budget and no hypothesis.
+
+## Inputs
+* `cZ` – constrained zonotope
+* `o` – target order
+
+## Hypotheses
+* `ho` – the order is positive
+
+## Conclusion
+* the reduced set has at most o * n generators
 -/
 
 -- Authors:       Claude Opus 5

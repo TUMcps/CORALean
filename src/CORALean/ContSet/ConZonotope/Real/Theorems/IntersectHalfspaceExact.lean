@@ -15,9 +15,19 @@ itself — `Z.interHalfspace h f` denotes exactly `Z.construct ∩ {x | h x ≤ 
 
 `aux_dm_nonneg` is the paper's own first step: the hypothesis, the definition of `dm`, and the
 triangle inequality over `Z`'s generators force `dm ≥ 0`. From there both inclusions are a single
-linear combination of `dm ≥ 0` with the fresh coefficient's own bound `|t| ≤ 1` — no case split on
-`dm = 0` is needed, since `t`'s bound already absorbs it (and, on the `⊇` side, Lean's own
-`x / 0 = 0` makes the paper's formula for `t` land on a valid witness there too).
+linear combination of `dm ≥ 0` with the fresh coefficient's own bound `|t| ≤ 1`; no case split on
+`dm = 0` is needed.
+
+## Inputs
+* `Z` – zonotope
+* `h` – halfspace normal functional
+* `f` – halfspace offset
+
+## Hypotheses
+* `hZH` – the zonotope meets the hyperplane
+
+## Conclusion
+* the result is exactly the halfspace intersection
 
 ## References
 

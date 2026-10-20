@@ -11,6 +11,15 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Volume
 
 CORA takes `volume(polytope(zB))`: the bundle's polytope has the bundle's volume
 (`exists_hPolytope`).
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Conclusion
+* some polytope has the bundle's volume
 -/
 
 -- Authors:       Claude Opus 5.5

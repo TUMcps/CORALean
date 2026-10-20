@@ -10,15 +10,26 @@ public import CORALean.ContSet.HPolytope.Real.Complexity.Time.Operations.Interse
 /-!
 # `ConZonotope.intersectionCost`
 
-Asserted, not proved: `Operations/Intersection.lean` keeps the first center and generator block,
-pads the second block with zeros, builds the polytope as in `plus` and adds the equalities `G₁ β₁ -
-G₂ β₂ = c₂ - c₁`. Assembling `aux_agreeMat` negates the `n * h₂` entries of the second block, and
-the right-hand side is `n` subtractions. No linear program is solved: emptiness is not decided here.
+Asserted, not proved: `Operations/Intersection.lean` keeps the first center and generator block
+and adds the equalities `G₁ β₁ - G₂ β₂ = c₂ - c₁`. Assembling `aux_agreeMat` negates the `n * h₂`
+entries of the second block; the right-hand side is `n` subtractions.
 
-Everything is written. The zonotope part is the center and the `h₁ + h₂` generators of `n`
-entries, the second block's padding zeros included. The polytope is two `comap`s and an
-`intersection` as in `plus`, the `n` equality rows of `aux_agreeMat` with their right-hand sides
-(`n * (h₁ + h₂ + 1)` writes, rows dense), and a second `intersection` adding them.
+Everything is written: the center and the `h₁ + h₂` generators of `n` entries, the second block's
+padding zeros included. The polytope is two `comap`s and an `intersection` as in `plus`, the `n`
+equality rows of `aux_agreeMat` with their right-hand sides (`n * (h₁ + h₂ + 1)` writes, rows
+dense), and a second `intersection` adding them.
+
+## Inputs
+* `n` – dimension
+* `h₁` – generators of the first set
+* `h₂` – generators of the second set
+* `r₁` – inequalities of the first set
+* `re₁` – equalities of the first set
+* `r₂` – inequalities of the second set
+* `re₂` – equalities of the second set
+
+## Output
+* the cost of the intersection
 -/
 
 -- Authors:       Claude Sonnet 5.5

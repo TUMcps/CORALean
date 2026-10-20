@@ -14,6 +14,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 Each member's box holds the whole bundle (`interval_contains`), and the fold keeps whatever every
 box held: `Interval.intersection_exact` at each step.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Conclusion
+* the bundle is contained in its box
 -/
 
 -- Authors:       Claude Opus 5.5

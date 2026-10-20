@@ -13,14 +13,26 @@ public import CORALean.ContSet.Interval.Float.Operations.Magnitude
 # `ZonoBundle.encloseTight`, over a floating-point scalar
 
 CORA's `@zonoBundle/encloseTight(zB1, zB2, W)`: for each `W{i}` the zonotope
-`W{i} * zonotope(interval.enclosePoints(pinv(W{i}) V))`, `V` the vertices of the two bundles,
-and one more, `zonotope.enclosePoints(V, 'stursberg')`. Without vertex enumeration the box of
-`pinv(W{i}) V` is taken as the hull of the two bundles' boxes in those coordinates
-(`intervalAll` of each mapped bundle), which holds it. `pinv(W{i})` is a candidate
-`Zonotope.basisInverse` and the Stursberg basis `U` is undone by `Uᵀ`; `parallelotope` pays what
-either inverse misses, for points within the two bundles' boxes, so neither an invertible `W{i}`
-nor an orthogonal `U` is assumed. The Stursberg box centered on the points' mean is the same set
-as the box in `U`'s coordinates, so the mean is not formed.
+`W{i} * zonotope(interval.enclosePoints(pinv(W{i}) V))`, `V` the vertices of the two bundles, and
+one more, `zonotope.enclosePoints(V, 'stursberg')`. Without vertex enumeration the box of
+`pinv(W{i}) V` is taken as the hull of the two bundles' boxes in those coordinates (`intervalAll` of
+each mapped bundle), which holds it. `pinv(W{i})` is a candidate `Zonotope.basisInverse` and the
+Stursberg basis `U` is undone by `Uᵀ`; `parallelotope` pays what either inverse misses, so neither
+an invertible `W{i}` nor an orthogonal `U` is assumed. The Stursberg box centered on the points'
+mean is the box in `U`'s coordinates, so the mean is not formed.
+
+## Inputs
+* `zB₁` – first bundle
+* `zB₂` – second bundle
+* `W` – transformation matrices
+* `U` – extra transformation matrix
+
+## Hypotheses
+* `hk₁` – first bundle has a member
+* `hk₂` – second bundle has a member
+
+## Output
+* enclosure of both bundles
 -/
 
 -- Authors:       Claude Opus 5.5

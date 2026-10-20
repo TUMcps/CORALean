@@ -15,6 +15,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 A point of the bundle lies in every member, so in every member's box, and the fold intersects
 nothing but boxes that hold it.
+
+## Inputs
+* `zB` – float zonotope bundle
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Conclusion
+* the bundle is contained in its box
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,17 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.TightenCoeff
 [1, Alg. 1], [2, Alg. 1], lines 2, 6-8: the inner loop over columns, for row `i` fixed — every
 coefficient met in turn with row `i`'s own bound.
 
+## Inputs
+* `nc` – number of constraints
+* `ng` – number of generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `i` – constraint row
+* `E` – current coefficient box
+
+## Output
+* the box tightened by row i at every coefficient
+
 ## References
 
 * [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for

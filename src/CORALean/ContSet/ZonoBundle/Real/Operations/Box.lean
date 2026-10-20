@@ -12,6 +12,12 @@ The smallest box containing the bundle's intersection, `box(Z_∩)` of [1, Prop.
 intersection of every interval that contains it. Nothing is computed — this is the
 tight box the proposition bounds, not an algorithm for it.
 
+## Inputs
+* `zB` – zonotope bundle
+
+## Output
+* the smallest box containing the bundle
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

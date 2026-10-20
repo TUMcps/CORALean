@@ -16,6 +16,13 @@ The paper's `Z = {x | Ex ≤ d}` has inequality rows only, so the lift has none 
 equality rows of `P` are dropped, which only enlarges the set and keeps the
 inclusion below.
 
+## Inputs
+* `P` – halfspace polytope
+* `Zadd` – zonotope added
+
+## Output
+* the polytope with every facet pushed outwards
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

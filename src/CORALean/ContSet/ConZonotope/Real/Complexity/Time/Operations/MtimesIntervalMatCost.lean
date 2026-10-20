@@ -13,6 +13,16 @@ conversion that repackages fields and writes its `n * (1 + h)` scalars, and pull
 along `blockLeft`, a block embedding, writing its `(r + re) * (h + m + 1)` entries. The count is
 `Zonotope.mtimesIntervalMatCost`'s plus those writes. The bound the constraints could tighten is
 not computed, which is why this is no dearer than the unconstrained case.
+
+## Inputs
+* `m` – rows
+* `n` – columns
+* `h` – number of generators
+* `r` – number of inequalities
+* `re` – number of equalities
+
+## Output
+* the cost of multiplying by an interval matrix
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,6 +11,13 @@ public import CORALean.ContSet.ConZonotope.Float.ConZonotope
 Center, generator rows and error box relabelled, and nothing rounds: a permutation
 moves stored floats without arithmetic. The constraints live on the coefficient
 space, which a relabelling of the coordinates does not touch, so `P` is kept.
+
+## Inputs
+* `e` – coordinate permutation
+* `cZ` – float constrained zonotope
+
+## Output
+* the set with permuted coordinates
 -/
 
 -- Authors:       Claude Opus 5.5

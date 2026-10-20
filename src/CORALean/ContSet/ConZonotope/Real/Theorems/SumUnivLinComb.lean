@@ -11,6 +11,18 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
 projection because that is the form a goal about the result has, and simp will
 not rewrite a binder's type. Both directions of the guarantee sum over the
 result, so it is not file-local to either.
+
+## Inputs
+* `M` – additive monoid
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+* `f` – function on the generator indices
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sum splits into the two operands' indices and the extra one
 -/
 
 -- Authors:       Claude Opus 5

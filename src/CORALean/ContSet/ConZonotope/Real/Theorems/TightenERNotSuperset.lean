@@ -18,8 +18,16 @@ the running `E`, and `E` was tightened by earlier steps that used `|ξ_j| ≤ 1`
 The one-row system is `-2ξ₁ + ξ₂ = 0`. The first step solves for `ξ₁` and gets
 `E₁ = [-½, ½]`, using `|ξ₂| ≤ 1`. The second solves for `ξ₂ = 2ξ₁` from `E₁` and gets
 `R₂ = [-1, 1]`. But `ξ = (1, 2)` satisfies the row with `|ξ₁| ≤ 1`, and `ξ₂ = 2 ∉ R₂`.
-What `R` does contain is `B∞(A, b)`'s own projection (`tightenER_outer`), which is all the
-emptiness test needs.
+`R` does contain `B∞(A, b)`'s own projection (`tightenER_outer`), all the emptiness test needs.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a feasible coefficient can lie outside the running bound
 
 ## References
 

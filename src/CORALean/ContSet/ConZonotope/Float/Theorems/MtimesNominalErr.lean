@@ -15,6 +15,17 @@ A coefficient vector of the rounded product names the same coefficients in `cZ`,
 they name there is mapped by the matrix: the rounded center and the rounded generators are each
 within a directed rounding of the exact ones, the generators' over the unit box
 (`HPolytope.prodError`).
+
+## Inputs
+* `M` – matrix
+* `cZ` – float constrained zonotope
+* `p` – point of the rounded product
+
+## Hypotheses
+* `hp` – the point lies in the nominal set of the rounded product
+
+## Conclusion
+* it is near the exact image of a nominal point
 -/
 
 -- Authors:       Claude Opus 5.5

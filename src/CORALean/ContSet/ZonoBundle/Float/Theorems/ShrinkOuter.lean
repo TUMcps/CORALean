@@ -12,6 +12,15 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceMethCOuter
 
 A point of the bundle is in every reduced member (`Zonotope.reduceMethC_outer`), so in their
 bundle, and each new member encloses that bundle (`enclosingParallelotope_outer`).
+
+## Inputs
+* `zB` – float zonotope bundle
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Conclusion
+* the bundle is contained in the shrunk bundle
 -/
 
 -- Authors:       Claude Opus 5.5

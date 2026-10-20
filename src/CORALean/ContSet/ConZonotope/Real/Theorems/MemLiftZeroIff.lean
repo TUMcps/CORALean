@@ -11,6 +11,22 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
 [1, Prop. 3] at `m₂ = 0`: the constraint of `Z⁺ = {[G; A], [c; −b]}` is empty, so `Z⁺` is the
 zonotope its generators span, and membership is a zonotope's.
 
+## Inputs
+* `n` – dimension
+* `m` – number of constraints
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership means unit-box coefficients on the lifted generators
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

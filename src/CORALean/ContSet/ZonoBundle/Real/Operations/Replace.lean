@@ -9,6 +9,14 @@ public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
 
 CORA's `zonoBundle`/`replace(zB, index, Z)`: the `index`-th zonotope of the bundle is overwritten by
 `Z` (`zB.Z{index} = Z`), the others kept and the count unchanged.
+
+## Inputs
+* `zB` – zonotope bundle
+* `index` – member to overwrite
+* `Z` – replacement zonotope
+
+## Output
+* the bundle with that member replaced
 -/
 
 -- Authors:       Claude Opus 5.5

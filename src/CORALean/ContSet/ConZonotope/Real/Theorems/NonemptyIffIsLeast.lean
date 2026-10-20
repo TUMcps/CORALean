@@ -11,6 +11,21 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsFeasibleIffIsLeas
 constraint is the polytope `Aξ = b` on the coefficients, and `‖·‖` on `Vec` is the sup norm. The
 minimum is an `IsLeast`: an infeasible program has none, which is the paper's empty `min`.
 
+## Inputs
+* `α` – ambient space
+* `q` – number of constraints
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+
+## Hypotheses
+* none
+
+## Conclusion
+* nonempty iff a linear program has minimum norm at most one
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

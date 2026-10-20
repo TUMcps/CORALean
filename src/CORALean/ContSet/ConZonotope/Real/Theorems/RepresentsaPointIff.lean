@@ -12,6 +12,15 @@ The set is the image `ξ ↦ c + G ξ` of `ConZonotope.domain` (`construct_eq_im
 point exactly when that image is one: the polytope is nonempty and `G ξ` takes one value on it.
 The point need not be the center `c`: with `c = 0`, `G = [1 0]`, `A = [1 1]`, `b = 2` the set is
 `{1}`.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is a single point iff it represents a point
 -/
 
 -- Authors:       Claude Opus 5.5

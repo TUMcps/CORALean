@@ -15,6 +15,12 @@ on its own block; and one block of `n` rows per further set pinning its point to
 `G₁ β₁ - Gⱼ βⱼ = cⱼ - c₁` (eqs. 33-34). The blocks' lengths differ, so the later ones are
 indexed by the sigma type of the sets, `finSigmaFinEquiv` order.
 
+## Inputs
+* `cs` – the d + 1 constrained zonotopes
+
+## Output
+* the intersection of all of them
+
 ## References
 
 * [1] A. Alanwar, V. Gaßmann, X. He, H. Said, H. Sandberg, K. H. Johansson and M. Althoff.

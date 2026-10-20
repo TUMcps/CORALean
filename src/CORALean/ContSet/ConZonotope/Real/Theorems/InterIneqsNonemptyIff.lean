@@ -13,14 +13,21 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 `(x, α)` are `ConZonotope.construct`, so the program's feasible objective values are the `δ` some
 point of `CZ` keeps every halfspace slack under, and that is the set `ν` is least in.
 
-Printed as a one-way `if`, and it is in fact an equivalence: `ν ≤ 0` is the paper's own argument,
-and the converse only needs `δ = 0` to be feasible at a point of the intersection. So the
-equivalence is stated, and the `if` direction is the half the verification algorithm calls.
+`ν` is a hypothesis (`IsLeast`), as the paper's own `min` presupposes an optimum; with `CZ` empty
+the program has no optimum, while a junk value for `min ∅` would read as `ν = 0` and claim an
+intersection that is not there.
 
-`ν` is a hypothesis (`IsLeast`), exactly as the paper's own `min` presupposes an optimum rather
-than producing one. The presupposition is not idle here: with `CZ` empty the program is infeasible
-and has no optimum, while a junk value for `min ∅` would read as `ν = 0` and claim an intersection
-that is not there.
+## Inputs
+* `cZ` – constrained zonotope
+* `C` – halfspace normals
+* `d` – halfspace offsets
+* `ν` – optimal worst violation
+
+## Hypotheses
+* `hν` – it is the least worst violation over the set
+
+## Conclusion
+* the intersection is nonempty iff the optimum is nonpositive
 
 ## References
 

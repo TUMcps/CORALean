@@ -12,6 +12,16 @@ The coefficients of [1, Lemma 1], `βⱼ`, `2βⱼ² - 1` and `βⱼβₖ`, are 
 The first block is the point's own coefficient vector, so it meets the constraints, and the
 two new blocks are unconstrained.
 
+## Inputs
+* `Q` – quadratic form matrices
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the quadratic image is contained in the result
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

@@ -15,6 +15,17 @@ a bilinear form plus half a sum of them. Each is bracketed (`quadBil_bracket`), 
 `sumDown_le_sum` and `sum_le_sumUp`, and halving is exact. The stored center is the lower end, and
 the gap to the upper is what the box is charged.
 
+## Inputs
+* `Q` – quadratic form matrices
+* `cZ` – float constrained zonotope
+* `i` – output coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact center lies between the two stored roundings
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

@@ -11,6 +11,14 @@ public import CORALean.ContSet.Zonotope.Float.Operations.ContainsPoint
 A point is in a bundle when it is in every member: each is certified by `Zonotope.containsPoint`,
 with one right inverse `Hᵢ` per member that the caller proposes. `true` proves membership; `false`
 refutes nothing.
+
+## Inputs
+* `zB` – float zonotope bundle
+* `H` – right inverse of each member's generator matrix
+* `p` – point to test
+
+## Output
+* whether the point is certified in every member
 -/
 
 -- Authors:       Claude Opus 5.5

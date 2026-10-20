@@ -13,6 +13,17 @@ text uses: once one member misses the unsafe set the check is over.
 `intersects_of_intersects` is that direction; `NotIntersectsImp` is the other one
 failing.
 
+## Inputs
+* `zB` – zonotope bundle
+* `S` – set
+* `i` – member index
+
+## Hypotheses
+* `h` – the bundle meets the set
+
+## Conclusion
+* member i meets the set
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

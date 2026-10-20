@@ -10,16 +10,28 @@ public import Mathlib.Data.Matrix.Mul
 /-!
 # `ConZonotope.tighten` is sound
 
-Every feasible coefficient vector — one satisfying `Aξ = b` and `‖ξ‖∞ ≤ 1` — lies in the
-box Algorithm 1 [2, Alg. 1] returns. This is the guarantee `Thm. 2`'s `E_k` (eq. 12) draws on: a
-tightened bound is never so tight that it excludes a point the constraints actually
-admit.
+Every feasible coefficient vector, one satisfying `Aξ = b` and `‖ξ‖∞ ≤ 1`, lies in the box Algorithm
+1 [2, Alg. 1] returns. This is the guarantee `Thm. 2`'s `E_k` (eq. 12) draws on: a tightened bound
+never excludes a point the constraints admit.
 
-`aux_tightenCoeff_outer` is one row's step: it solves that row of `Aξ = b` for
-coefficient `j`, bounding the rest of the sum by `mul_between_endpoints` the way
-`Interval.mtimes_outer` does, then reads `βⱼ` back out of the product by
-`div_between_endpoints`. `aux_tightenRow_outer` and `tighten_outer` carry that across a
-row and across every row, by `Fin.foldl_induction`.
+`aux_tightenCoeff_outer` is one row's step: it solves that row of `Aξ = b` for coefficient `j`,
+bounds the rest of the sum by `mul_between_endpoints` as `Interval.mtimes_outer` does, and reads
+`βⱼ` back by `div_between_endpoints`; `aux_tightenRow_outer` and `tighten_outer` carry it across a
+row and every row by `Fin.foldl_induction`.
+
+## Inputs
+* `nc` – number of constraints
+* `ng` – number of generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `β` – feasible coefficient vector
+
+## Hypotheses
+* `hbox` – the vector lies in the unit box
+* `heq` – the vector solves the equations
+
+## Conclusion
+* the vector lies in the tightened box
 
 ## References
 

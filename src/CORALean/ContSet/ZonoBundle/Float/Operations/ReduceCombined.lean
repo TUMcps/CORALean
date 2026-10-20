@@ -17,6 +17,15 @@ where the exact layer runs method C's filters; which basis is taken costs precis
 `enclosingParallelotope_outer` holds at any. `order` and `filterLength` are not arguments, as at
 the exact layer.
 
+## Inputs
+* `zB` – float zonotope bundle
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Output
+* zonotope enclosing the bundle
+
 ## References
 
 * [1] `contSet/@zonoBundle/reduceCombined.m` and `private/priv_reduceMethC.m`, CORA (Sep. 2025).

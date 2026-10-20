@@ -10,6 +10,21 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.ConstraintReduce
 The generator correction of [1, Prop. 5]: `Σ_j β_j Λ_G a_j = Λ_G (Aβ)`, with `a_j` the `j`-th
 column of `A`. It is what lets `Λ_G (b − Aξ)` be added to `z = Gξ + c` in `constraintReduce_outer`.
 
+## Inputs
+* `n` – dimension
+* `q` – number of constraints
+* `h` – number of generators
+* `ΛG` – generator multiplier
+* `A` – constraint matrix
+* `β` – coefficient vector
+* `i` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* the correction on the columns equals the multiplier applied to the constraint
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

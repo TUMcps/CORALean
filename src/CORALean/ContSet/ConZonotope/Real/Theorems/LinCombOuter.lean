@@ -15,6 +15,16 @@ The coefficients a point `λ y₁ + (1 - λ) y₂` needs are the two sets' own,
 weighted: `λ β₁` and `(1 - λ) β₂`, with `2λ - 1` on the interpolation
 generator. Every row of a scaled constraint is then its unscaled row times a
 nonnegative weight, which is the whole argument.
+
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the segments between the two sets are contained in the result
 -/
 
 -- Authors:       Claude Opus 5

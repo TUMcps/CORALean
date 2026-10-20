@@ -19,6 +19,13 @@ therefore the operand's, padded by the two new blocks. The box holds what storin
 generators from below leaves to pay. Sound only where the operand's own box is empty, so nothing
 outside `quadMap` calls it.
 
+## Inputs
+* `Q` – quadratic form matrices
+* `cZ` – float constrained zonotope
+
+## Output
+* enclosure of the quadratic image keeping the dependency
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

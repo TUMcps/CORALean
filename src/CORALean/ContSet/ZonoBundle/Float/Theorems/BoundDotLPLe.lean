@@ -10,6 +10,18 @@ public import CORALean.ContSet.ZonoBundle.Float.Operations.BoundDotLP
 Every point of the bundle reads at most the bound in the direction. An upper
 bound only: the linear program's value is reached only up to rounding and only
 where the simplex's weights are optimal, which is not claimed.
+
+## Inputs
+* `zB` – float zonotope bundle
+* `c` – linear functional
+* `a` – float weights of the functional
+
+## Hypotheses
+* `hk` – the bundle has a member
+* `hc` – the functional is the weighted sum
+
+## Conclusion
+* every point of the bundle stays below the bound
 -/
 
 -- Authors:       Claude Opus 5.5

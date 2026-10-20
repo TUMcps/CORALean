@@ -13,6 +13,24 @@ public import CORALean.ContSet.Conversion.Real.Theorems.Basic
 `zonoBundle(P)` of a polytope loses nothing (`HPolytope.zonoBundleRows_exact`), so the bundle
 `convHull_` returns denotes exactly the convex hull of the union, given a halfspace description `P`
 of the hull (it exists, `exists_hPolytope_convHull`) and Gram-Schmidt bases of its rows.
+
+## Inputs
+* `zB₁` – first bundle
+* `zB₂` – second bundle
+* `P` – halfspace description of the hull
+* `B` – orthogonal bases of the halfspace rows
+
+## Hypotheses
+* `hk₁` – first bundle has a member
+* `hk₂` – second bundle has a member
+* `hne₁` – first bundle nonempty
+* `hne₂` – second bundle nonempty
+* `hP` – the polytope describes the convex hull
+* `hB` – the bases are orthogonal
+* `hrow` – each row is its norm times the basis coordinate
+
+## Conclusion
+* the result is exactly the convex hull
 -/
 
 -- Authors:       Claude Opus 5.5

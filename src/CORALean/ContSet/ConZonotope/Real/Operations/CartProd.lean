@@ -12,6 +12,13 @@ CORA's `@conZonotope/cartProd_`: centers pair, generators are block-diagonal, an
 constraints stack block-diagonally. As for `plus`, each half of the concatenated coefficient
 vector answers only to its own polytope, so the constraints are `comap` and `intersection`;
 every generator embeds into the product ambient type at zero in the other coordinate.
+
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+
+## Output
+* the Cartesian product
 -/
 
 -- Authors:       Claude Opus 5.5

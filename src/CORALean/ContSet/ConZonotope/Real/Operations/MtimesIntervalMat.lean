@@ -19,6 +19,13 @@ original coefficients, which is what says the fresh ones answer to nothing.
 `radiusReach` is read off the enclosing zonotope. Using the constraints to
 tighten it is possible and is not done: the bound only has to hold, and a looser
 one keeps this an enclosure.
+
+## Inputs
+* `IM` – interval matrix
+* `cZ` – constrained zonotope
+
+## Output
+* enclosure of the image under every matrix in the interval matrix
 -/
 
 -- Authors:       Claude Opus 5

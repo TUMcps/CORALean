@@ -11,6 +11,15 @@ Read back through `ContSet`, for a caller that only wants the inclusion:
 `absorbRounding_nominal` places every point in the nominal set, and the result's box denotes the
 origin alone. The box of the result is exactly zero, so nothing of the absorption step's rounding
 is left outside the nominal set.
+
+## Inputs
+* `cZ` – float constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the absorbed zonotope
 -/
 
 -- Authors:       Claude Sonnet 5.5

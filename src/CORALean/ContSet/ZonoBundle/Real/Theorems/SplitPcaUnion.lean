@@ -11,6 +11,19 @@ public import CORALean.ContSet.ZonoBundle.Real.Operations.DirPca
 [1, Heuristic pca] claims no property of its axes beyond their variance. What the split needs of
 `Λ` is invertibility, which holds because Mathlib's eigenvector matrix is unitary.
 
+## Inputs
+* `m` – number of vertices
+* `V` – vertices
+* `zB` – zonotope bundle
+* `i` – member index
+* `j` – dimension to cut along
+
+## Hypotheses
+* none
+
+## Conclusion
+* the two halves together are exactly the bundle
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

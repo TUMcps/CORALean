@@ -14,6 +14,14 @@ result.
 
 `h` bounds *every* member's generator count, as in `ZonoBundle.mtimesCost`,
 since the structure carries a family with no common width.
+
+## Inputs
+* `cf` – cost of the map on one vector
+* `k` – number of members
+* `h` – generators per member
+
+## Output
+* the cost of mapping a bundle
 -/
 
 -- Authors:       Claude Opus 5.5

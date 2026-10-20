@@ -15,6 +15,20 @@ and `ŵ` stacking `d̂` and the multipliers of `Ad = 0`. The first block row of 
 `Qŵ + μ̂e_j = 0`, and multiplying it by `Q⁻¹`, or back by `Q`, gives (A.8)'s `ŵ + μ̂Q⁻¹e_j = 0`. The
 last row is the same in both. This is why one factorization of `Q` serves every `j`.
 
+## Inputs
+* `m` – system size
+* `Q` – upper-left block
+* `e` – coupling vector
+* `w` – unknown vector
+* `μ` – multiplier
+* `r` – pivot value
+
+## Hypotheses
+* `hQ` – the block is invertible
+
+## Conclusion
+* the two linear systems have the same solutions
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

@@ -10,6 +10,19 @@ public import CORALean.ContSet.Conversion.Real.Theorems.Basic
 
 The vertex polytope `encloseTightVertices` denotes the convex hull of the two bundles' union
 (`VPolytope.convHull_exact`), which holds a point of the first.
+
+## Inputs
+* `zB₁` – first bundle
+* `zB₂` – second bundle
+
+## Hypotheses
+* `hk₁` – first bundle has a member
+* `hk₂` – second bundle has a member
+* `hne₁` – first bundle nonempty
+* `hne₂` – second bundle nonempty
+
+## Conclusion
+* the joined vertices denote a nonempty set
 -/
 
 -- Authors:       Claude Opus 5.5

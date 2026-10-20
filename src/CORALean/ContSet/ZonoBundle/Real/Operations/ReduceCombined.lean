@@ -8,17 +8,23 @@ public import CORALean.ContSet.Zonotope.Real.Operations.MethCBasis
 /-!
 # `ZonoBundle.reduceCombined`
 
-CORA's `@zonoBundle/reduceCombined(zB, 'methC')`: the bundle reduced as a whole, to one
-zonotope, rather than member by member. `priv_reduceMethC` [1] stacks the generators of every
-member, selects `n` of them by the length and volume filters of method C, and returns the
-parallelotope along them around the bundle: the selected edges `Γ`, then `Γ box(Γ⁻¹ Z_∩)`, which
-is `enclosingParallelotope`. The result is a zonotope, not a bundle, whatever the documentation
-says.
+CORA's `@zonoBundle/reduceCombined(zB, 'methC')`: the bundle reduced as a whole, to one zonotope,
+rather than member by member. `priv_reduceMethC` [1] stacks the generators of every member, selects
+`n` of them by the length and volume filters of method C, and returns the parallelotope along them
+around the bundle, `Γ box(Γ⁻¹ Z_∩)`, which is `enclosingParallelotope`. The result is a zonotope,
+not a bundle, whatever the documentation says.
 
-The selection is `Zonotope.methCBasis` at the stacked generators, every one a candidate: its
-`rem = 1` path of the filters, as for `Zonotope.reduceMethC`. CORA's own scaling `W` cancels,
-as there. `order`, which CORA's `reduceCombined` takes and never reads, and `filterLength`, the
-tuning of the filters, are not arguments.
+The selection is `Zonotope.methCBasis` at the stacked generators, every one a candidate (its
+`rem = 1` path), CORA's scaling `W` cancelling. `order` and `filterLength` are not arguments.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Output
+* zonotope enclosing the bundle
 
 ## References
 

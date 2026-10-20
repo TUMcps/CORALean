@@ -13,6 +13,13 @@ untouched and the error box the point `0`. The set it describes is not `M cZ` �
 product is a different number — but is within `mtimesNominalErr` of it at each coefficient
 vector (`mtimesNominal_err`), which is all an inner approximation asks of it: the caller then
 makes room for that distance in the set it maps, rather than the result absorbing it in a box.
+
+## Inputs
+* `M` – matrix
+* `cZ` – float constrained zonotope
+
+## Output
+* the matrix applied to the stored numbers, without error box
 -/
 
 -- Authors:       Claude Opus 5.5

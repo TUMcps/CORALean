@@ -11,6 +11,16 @@ The same coefficients work in both directions [1, Prop. 1] and satisfy the same 
 which the map never sees. So a constrained zonotope propagates through a linear
 system as exactly as a zonotope does.
 
+## Inputs
+* `f` – linear map
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is exactly the image under the map
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

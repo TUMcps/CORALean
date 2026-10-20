@@ -11,6 +11,13 @@ public import CORALean.ContSet.Zonotope.Float.Operations.CartProd
 CORA's `@zonoBundle/cartProd_`: the Cartesian product of two intersections is the intersection of
 the products of all pairs of members, `k₁ · k₂` of them, member `(i, j)` at index
 `i * k₂ + j` (`finProdFinEquiv`). Each product is `Zonotope.cartProd`, which does not round.
+
+## Inputs
+* `zB₁` – first bundle
+* `zB₂` – second bundle
+
+## Output
+* the Cartesian product
 -/
 
 -- Authors:       Claude Sonnet 5.5

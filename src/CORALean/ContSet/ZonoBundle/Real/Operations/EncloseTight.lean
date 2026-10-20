@@ -12,6 +12,21 @@ public import CORALean.ContSet.VPolytope.Real.Operations.KNeZeroOfNonempty
 CORA's `@zonoBundle/encloseTight(zB1, zB2, W)`: `encloseTightPoints` of the vertices of the two
 bundles (`V = vertices([V1, V2])`, `encloseTightVertices`). Both bundles must be nonempty and have
 a member; `W` the transformations and `U` the Stursberg basis, as in `encloseTightPoints`.
+
+## Inputs
+* `zB₁` – first bundle
+* `zB₂` – second bundle
+* `W` – transformation matrices
+* `U` – orthogonal matrix of the Stursberg enclosure
+
+## Hypotheses
+* `hk₁` – first bundle has a member
+* `hk₂` – second bundle has a member
+* `hne₁` – first bundle nonempty
+* `hne₂` – second bundle nonempty
+
+## Output
+* bundle enclosing both
 -/
 
 -- Authors:       Claude Opus 5.5

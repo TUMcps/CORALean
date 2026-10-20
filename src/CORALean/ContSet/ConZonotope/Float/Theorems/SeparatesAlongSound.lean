@@ -10,6 +10,17 @@ public import CORALean.ContSet.ConZonotope.Float.Theorems.BoundDotLe
 
 A direction along which the first set's upper bound lies strictly below the
 second's lower bound leaves no point for both, whichever direction it is.
+
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+* `a` – direction
+
+## Hypotheses
+* `h` – the test answers true
+
+## Conclusion
+* the two sets are disjoint
 -/
 
 -- Authors:       Claude Opus 5.5

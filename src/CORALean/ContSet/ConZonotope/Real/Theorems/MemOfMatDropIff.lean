@@ -12,6 +12,27 @@ A generator column that is zero in both `G` and `A`, and a constraint row that i
 `b`, change nothing in `ofMat`'s set: the column's coefficient is free and the row is `0 = 0`.
 This is the "removing these columns and rows" of [1, Sec. 4.2].
 
+## Inputs
+* `α` – ambient space
+* `q` – number of constraints
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `r` – constraint row
+* `j` – generator index
+* `x` – point
+
+## Hypotheses
+* `hG` – the generator is zero
+* `hA` – its constraint column is zero
+* `hr` – the constraint row is zero
+* `hb` – its offset is zero
+
+## Conclusion
+* membership is unchanged by dropping the row and the column
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

@@ -13,6 +13,12 @@ zonotope ranges over, intersected with what `P` adds.
 The box is kept outside `P` in the structure, so that `zonotope` is an enclosure
 whatever `P` says; this is where the two are put back together, and it is what
 lets a constrained zonotope be read as an affine image of a polytope.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Output
+* the polytope of admissible coefficients
 -/
 
 -- Authors:       Claude Opus 5

@@ -19,6 +19,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeZonotopeCont
 
 Above the order it is the zonotope's `reduce` composed with forgetting the
 constraints, both enclosures; at or below it, the identity.
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the reduced set
 -/
 
 -- Authors:       Claude Opus 5

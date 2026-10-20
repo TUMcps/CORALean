@@ -12,6 +12,17 @@ direction, whatever weights the simplex proposed: the certificate is checked
 (`boundDotWeights_le`). An upper bound only; not claimed to be the support
 function, which it reaches only up to rounding and only when the simplex's
 weights are optimal.
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `c` – linear functional
+* `a` – float weights of the functional
+
+## Hypotheses
+* `hc` – the functional is the weighted sum
+
+## Conclusion
+* every point of the set stays below the bound
 -/
 
 -- Authors:       Claude Opus 5.5

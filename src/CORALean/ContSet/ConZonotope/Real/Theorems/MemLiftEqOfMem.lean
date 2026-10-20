@@ -12,6 +12,16 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
 coefficients with the equality rows read as the lower coordinates. Each lower coordinate is
 `-bₑ i + Σⱼ Aₑ i e_j βⱼ = -bₑ i + Aₑ i β = 0`.
 
+## Inputs
+* `cZ` – constrained zonotope
+* `x` – point
+
+## Hypotheses
+* `hx` – the point lies in the set
+
+## Conclusion
+* its padding lies in the lifted set
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

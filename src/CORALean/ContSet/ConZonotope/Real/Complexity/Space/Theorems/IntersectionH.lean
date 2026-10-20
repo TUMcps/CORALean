@@ -13,6 +13,16 @@ concatenates too, `comap` and `intersection` costing nothing beyond what each op
 pinning the two generator blocks together coordinate by coordinate — the one
 constraint list `intersection` builds beyond what `plus` needs. `rfl` against the
 structure instance in `Operations/Intersection.lean`.
+
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the intersection has the sum of the generator counts
 -/
 
 -- Authors:       Claude Opus 5

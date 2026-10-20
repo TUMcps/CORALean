@@ -12,6 +12,13 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
 CORA's `zonoBundle`/`quadMap(zB, Q)`: every member `Z{i}` is replaced by `quadMap(Z{i}, Q)`, the
 zonotope quadratic map, which is `Zonotope.bilin` at the quadratic-form family
 `PolyZonotope.quadBilin Q` (`x ↦ y ↦ (xᵀ Q_k y)_k`) applied to the member with itself.
+
+## Inputs
+* `Q` – quadratic form matrices
+* `zB` – zonotope bundle
+
+## Output
+* enclosure of the quadratic image
 -/
 
 -- Authors:       Claude Opus 5.5

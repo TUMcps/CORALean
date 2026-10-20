@@ -14,6 +14,15 @@ point of every member, whose generators then span (`Zonotope.isFullDim_iff`). He
 early answers `false` of `@zonoBundle/isFullDim` are correct; the converse fails (two
 full-dimensional zonotopes can meet in a lower-dimensional set), which is why CORA ends with the
 test of the intersection polytope.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `h` – the bundle has an interior point
+
+## Conclusion
+* every member is full dimensional
 -/
 
 -- Authors:       Claude Opus 5.5

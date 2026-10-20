@@ -12,6 +12,16 @@ turn, and within a row every column `j = 1..n_g`, the printed double loop. Start
 line 1's `E = [-1, 1]`, `R = [-∞, +∞]` it is the algorithm itself (`tightenER` at `0`);
 started from its own output it is the algorithm "applied iteratively to further refine E".
 
+## Inputs
+* `nc` – number of constraints
+* `ng` – number of generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `S` – current box and running bounds
+
+## Output
+* the state after tightening every row and coefficient once
+
 ## References
 
 * [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for

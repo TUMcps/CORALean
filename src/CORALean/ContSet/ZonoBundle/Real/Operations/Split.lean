@@ -15,6 +15,15 @@ respectively `Ψ₂`, appended: `Z_∩¹ = Z_∩ ∩ Ψ₁`, `Z_∩² = Z_∩ �
 had.
 The box `B` is an argument; `Zonotope.split` is the halving of one generator.
 
+## Inputs
+* `Λ` – edge directions
+* `B` – box in the transformed coordinates
+* `j` – dimension to cut along
+* `zB` – zonotope bundle
+
+## Output
+* the two halves of the bundle
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

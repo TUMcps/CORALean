@@ -15,6 +15,16 @@ The intersection sits inside every component, so any component's
 this way. Needs the index nonempty, which is exactly
 `SetIntersection.isCompact_construct`'s hypothesis and for the same reason: at
 `k = 0` the bundle is the whole space, unbounded in every nonzero direction.
+
+## Inputs
+* `zB` – zonotope bundle
+* `c` – linear functional
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Output
+* the tightest of the members' upper bounds
 -/
 
 -- Authors:       Claude Opus 5

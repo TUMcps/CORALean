@@ -9,17 +9,21 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.AnchorSlab
 /-!
 # `ConZonotope.conIntersect` over a floating-point scalar
 
-CORA's `@conZonotope/conIntersect` [1, Prop. 1] on the stored floats: the points of `cZ₁`
-whose image under `M` lies in `cZ₂`. As over ℝ the coefficient vectors are stacked, each set
-keeping its own constraints, the first set's center and generators kept and the second block of
-generators zero; the agreement rows `M G₁ β₁ - G₂ β₂ = c₂ - M c₁` are built from the float
-image `Zonotope.mtimes M` of the first set's zonotope part (center and generators rounded down,
-the rest of `M (c₁ + G₁ β₁ + e₁)` in its error box), and, as in the float `intersection`, their
-right-hand side is an interval holding `c₂ - M c₁` plus every difference of the two error boxes,
-rounded outward. The rows stay equalities, at its upper end, where `ConZonotope.anchorSlab`
-certifies that every coefficient vector can be moved onto them inside the unit box, the point's
-move paid into the error box; otherwise they become the slab between the two ends. So the
-result is outer, not exact.
+CORA's `@conZonotope/conIntersect` [1, Prop. 1] on the stored floats: the points of `cZ₁` whose
+image under `M` lies in `cZ₂`. As over ℝ the coefficient vectors are stacked, each set keeping its
+own constraints, and the agreement rows `M G₁ β₁ - G₂ β₂ = c₂ - M c₁` are built from the float image
+`Zonotope.mtimes M` of the first set's zonotope part. As in the float `intersection`, the right-hand
+side is an interval holding `c₂ - M c₁` plus every difference of the two error boxes, rounded
+outward; the rows stay equalities at its upper end where `ConZonotope.anchorSlab` certifies it, else
+become the slab between the two ends. The result is outer, not exact.
+
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+* `M` – map from the first into the second space
+
+## Output
+* the points of the first whose image lies in the second
 
 ## References
 

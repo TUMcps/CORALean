@@ -11,6 +11,13 @@ CORA's `zonoBundle`/`and`, the whole point of the representation: appending the
 two families of zonotopes [1, Sec. III]. `Theorems.AndExact` is why appending denotes the
 intersection of what each bundle denoted.
 
+## Inputs
+* `zB₁` – first bundle
+* `zB₂` – second bundle
+
+## Output
+* the intersection of the two bundles
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

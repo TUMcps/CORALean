@@ -14,6 +14,13 @@ the directions `Λ` as a zonotope of order 1. The paper says the split below is 
 tightly the box is obtained, so the box is what a caller supplies, and
 `ZonoBundle.enclosingBox` is one way to obtain it.
 
+## Inputs
+* `Λ` – edge directions
+* `B` – box in the transformed coordinates
+
+## Output
+* the parallelotope along the directions enclosing the box
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

@@ -13,6 +13,12 @@ Every field is a function type, so the representation an operation returns is a
 closure over the one it was given. `materialise` stores them and `materialise_eq`
 says it is the identity; `Global/Tensor` says why the vectors are built here. The
 constraint polytope goes through its own `materialise`.
+
+## Inputs
+* `cZ` – float constrained zonotope
+
+## Output
+* the same set with all fields stored
 -/
 
 -- Authors:       Claude Opus 5

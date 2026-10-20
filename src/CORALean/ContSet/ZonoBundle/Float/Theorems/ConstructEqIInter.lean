@@ -12,6 +12,15 @@ public import CORALean.ContSet.SetIntersection.Theorems.Basic
 at any ambient type; this reads it back over `Fin k` with each member's own inflated set,
 through the general `SetIntersection.construct_ofFn`. It is the form a proof about one of CORA's
 algorithms, which names members by their index, starts from.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* none
+
+## Conclusion
+* the bundle denotes the intersection of its members
 -/
 
 -- Authors:       Claude Opus 5.5

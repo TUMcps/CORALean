@@ -13,6 +13,16 @@ The witness is `Fin.append β₁ β₂`, as for `plus_exact`: the concatenated c
 the combined polytope exactly when each half satisfies its own
 (`HPolytope.mem_intersection_iff`), and the generator sum splits along `Prod.fst` and
 `Prod.snd` because each generator sits at zero in the other coordinate.
+
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the product of the two sets is the set of the product
 -/
 
 -- Authors:       Claude Opus 5.5

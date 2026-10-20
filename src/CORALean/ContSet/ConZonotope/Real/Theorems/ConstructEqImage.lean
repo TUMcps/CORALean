@@ -12,6 +12,15 @@ The zonotope's own map applied to `domain` rather than to a box. Every guarantee
 about the representation is one of the two halves of this: convexity and
 compactness come from the polytope through the map, and the operations state
 their enclosures as inclusions between the images.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is the affine image of its coefficient polytope
 -/
 
 -- Authors:       Claude Opus 5

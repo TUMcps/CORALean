@@ -18,8 +18,17 @@ gives coefficients `ξ` that agree with `β` on the kept generators and reproduc
 coordinate of the lifted sum. The upper coordinates are `y`, so the point is the result's
 nominal point at `ξ` plus the same `e`. The lower coordinates are `Aₑ β`, which the new
 equality rows read at `ξ` as the same number, within the carried slack of the unchanged `bₑ`. The
-inequality rows at `ξ` are the rows at `β` on the kept generators, the padded zeros reading the
-fresh ones as nothing, which `HPolytope.mem_keepCols_nominal` covers.
+inequality rows at `ξ` are those at `β` on the kept generators (`HPolytope.mem_keepCols_nominal`).
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `part` – generator partition
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the reduced set
 
 ## References
 

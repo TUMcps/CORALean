@@ -15,6 +15,12 @@ rows, proposed by the exact simplex at ℚ on the margin program (`HPolytope.emp
 verified in rounded arithmetic, bound `0ᵀβ` above by the combination of the right-hand sides, and
 a certified negative bound (`ltStrict`) leaves no point (Farkas). One-sided: `true` proves the set
 empty; `false` decides nothing, a nonempty set and an exhausted simplex budget alike.
+
+## Inputs
+* `cZ` – float constrained zonotope
+
+## Output
+* whether emptiness is certified
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -14,6 +14,17 @@ As for a zonotope: what a float constrained zonotope denotes is a nominal one pl
 both convex, so for two nonempty ones the segments are the convex hull of the union and
 `linComb_outer` puts that in the result. Outer only at float; the exact layer's
 `ConZonotope.linComb_eq_convexHull` says the hull is all there is.
+
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+
+## Hypotheses
+* `h₁` – first set nonempty
+* `h₂` – second set nonempty
+
+## Conclusion
+* the union is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

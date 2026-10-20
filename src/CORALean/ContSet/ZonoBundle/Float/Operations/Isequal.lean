@@ -12,6 +12,13 @@ The quick check at tolerance `0`, as over ℝ: the same number of members, and e
 `Zonotope.isequal`. Certified in one direction only: `true` is a proof, `false` refutes nothing.
 Not CORA's test, whose mutual-containment step is not modelled, and which answers `true` for
 different member counts (see `ZonoBundle.isequalCora`).
+
+## Inputs
+* `zB` – first bundle
+* `S` – second bundle
+
+## Output
+* whether the two are equal member by member
 -/
 
 -- Authors:       Claude Opus 5.5

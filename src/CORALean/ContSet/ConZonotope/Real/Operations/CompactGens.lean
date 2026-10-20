@@ -13,6 +13,12 @@ that is, a generator that is nonzero or that some constraint reads. A constraint
 row of `P`, equality or inequality, read at the coefficient's unit vector, which the constraint's
 own `HPolytope.colWeight` measures (zero exactly when no row reads it,
 `HPolytope.colWeight_eq_zero_iff`).
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Output
+* indices of the generators kept
 -/
 
 -- Authors:       Claude Opus 5.5

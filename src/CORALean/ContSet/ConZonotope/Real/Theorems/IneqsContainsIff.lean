@@ -10,20 +10,24 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 
 [1, Prop. 7]: `CZ ⊆ ⟨C,d⟩_H ⇔ max(ν₁,…,ν_a) ≤ 0`, where `νᵢ` is the optimum of eq. (45)'s linear
 program `max C(i,·)c + C(i,·)Gα − d(i)` over `α ∈ [−1,1]`, `Aα = b`. That feasible region, read
-through `x = c + Gα`, is `ConZonotope.construct` itself, so the objective is taken over
-`cZ.construct` here and the program needs no separate coefficient-space form.
+through `x = c + Gα`, is `ConZonotope.construct` itself, so the objective is taken over it.
+`max(ν₁,…,ν_a) ≤ 0` is `∀ i, νᵢ ≤ 0`, also the right test when there are no halfspaces at all. `νᵢ`
+is a hypothesis (`IsGreatest`), as the paper's own `max` presupposes an optimum;
+`ConZonotope.exists_isGreatest_ineqs` supplies it whenever `CZ` is nonempty. `⇒` needs the optimum
+attained, `⇐` needs it to be an upper bound. The claim is about `⟨C,d⟩_H`, not a general
+`HPolytope`, whose equality rows a family of maxima cannot test.
 
-`max(ν₁,…,ν_a) ≤ 0` is `∀ i, νᵢ ≤ 0`, which is also the right test when there are no halfspaces
-at all, where a `max` over an empty family has nothing to mean.
+## Inputs
+* `cZ` – constrained zonotope
+* `C` – halfspace normals
+* `d` – halfspace offsets
+* `ν` – optimal violations
 
-`νᵢ` is a hypothesis (`IsGreatest`), exactly as the paper's own `max` presupposes an optimum
-rather than producing one; `ConZonotope.exists_isGreatest_ineqs` supplies it whenever `CZ` is
-nonempty. Both halves of `IsGreatest` do work, one per direction: `⇒` needs the optimum to be
-*attained*, at a point the containment already bounds, and `⇐` needs it to be an upper bound.
+## Hypotheses
+* `hν` – each violation is the maximum over the set
 
-The equivalence is a claim about `⟨C,d⟩_H` and not about a general `HPolytope`, which may carry
-equality rows too: those a family of maxima cannot test, one bounded direction saying nothing
-about the opposite one.
+## Conclusion
+* the set lies in the polytope iff every optimum is nonpositive
 
 ## References
 

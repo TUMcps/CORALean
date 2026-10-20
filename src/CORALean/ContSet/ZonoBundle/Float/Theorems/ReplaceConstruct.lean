@@ -10,6 +10,17 @@ public import CORALean.ContSet.ZonoBundle.Float.Operations.Replace
 
 Exact: the family is only rearranged, so the denotation is `Z`'s inflated set intersected with
 the inflated sets of the members other than `index`.
+
+## Inputs
+* `zB` – float zonotope bundle
+* `index` – member to overwrite
+* `Z` – replacement zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is the replacement intersected with the other members
 -/
 
 -- Authors:       Claude Opus 5.5

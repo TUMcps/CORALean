@@ -14,6 +14,18 @@ directed roundings: the linear and the pair generators are sums of two bilinear 
 bounds add, the square's is half of one, halving being exact, and a pair off `j < k` is `0` on both
 sides. The stored one is the lower, so its error is at most the gap `quadMapGDiff` records.
 
+## Inputs
+* `Q` – quadratic form matrices
+* `cZ` – float constrained zonotope
+* `i` – output coordinate
+* `l` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the stored generator is within its gap of the exact one
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

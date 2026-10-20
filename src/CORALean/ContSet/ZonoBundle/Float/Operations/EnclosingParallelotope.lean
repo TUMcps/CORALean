@@ -18,6 +18,16 @@ bundle, which CORA's `shrink` and `reduceCombined` build. `Γ⁻¹` is a candida
 row-sum bound of `1 - Γ H` is above one half (`Γ` singular, or badly inverted), `Γ` is replaced by
 the identity, as the exact layer replaces a singular `Γ`; the result holds the bundle at any `Γ`.
 
+## Inputs
+* `zB` – float zonotope bundle
+* `Γ` – edge directions
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Output
+* parallelotope along the given directions enclosing the bundle
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

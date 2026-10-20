@@ -16,6 +16,16 @@ coordinate, which is what membership in both means.
 Exact [1, Prop. 1], and this is the whole case for constrained zonotopes — a zonotope
 intersected with a zonotope is not a zonotope.
 
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is exactly the intersection
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

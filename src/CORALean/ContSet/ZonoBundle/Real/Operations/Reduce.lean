@@ -7,17 +7,21 @@ public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
 /-!
 # `ZonoBundle.reduce`
 
-To a maximum order: keep the first `o` components, in `Z`'s existing order, and
-drop the rest. A bundle denotes an *intersection*, so dropping a component only
-enlarges the set — the intersection then runs over fewer factors. That is why
-this `reduce`, alone in the tree, carries no error box: every other
-representation's `reduce` pays for what it drops by absorbing the discarded
-content into what survives, while a bundle just forgets it, for free.
+To a maximum order: keep the first `o` components, in `Z`'s existing order, and drop the rest. A
+bundle denotes an *intersection*, so dropping a component only enlarges the set. That is why this
+`reduce`, alone in the tree, carries no error box: every other representation's `reduce` absorbs
+what it drops into what survives, while a bundle just forgets it, for free.
 
-Which components survive is a heuristic with no proof obligation of its own —
-the `Reduce` instance's `reduce_outer` (`SetIntersection.memberwise_outer` at the identity)
-holds at *any* choice of survivors, keeping the first `o` among them. A ranking would want to
-drop whichever component is nearly redundant given the others, but that is future work.
+Which components survive is a heuristic with no proof obligation of its own: the `Reduce` instance's
+`reduce_outer` holds at *any* choice of survivors. A ranking would want to drop whichever component
+is nearly redundant given the others, but that is future work.
+
+## Inputs
+* `zB` – zonotope bundle
+* `o` – maximal number of members
+
+## Output
+* the bundle keeping the first members
 -/
 
 -- Authors:       Claude Opus 5

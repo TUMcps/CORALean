@@ -11,15 +11,21 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 # `ConZonotope.rescale` over a floating-point scalar
 
 CORA's `conZonotope/rescale` and [1, Prop. 4]'s eq. 24 on the stored floats: the coefficient box
-`[ξL, ξU]` is mapped back onto `[-1, 1]` by `ξ = ξm + diag(ξr) δ`. Here `ξm` is the rounded midpoint
-and `ξr` a radius rounded up from it to both ends, so the box around `ξm` covers `[ξL, ξU]` whatever
-the rounding did. The new center `c + G ξm` and generators `G diag(ξr)` are rounded down, what that
-costs going into the error box (the center's as a residual, the generators' as a generator error
-against `|δ| ≤ 1`, entry by entry the gap `mulDown_gap` bounds). The constraint is
-`HPolytope.rescaleCols`, the same substitution in its rows: `A diag(ξr)` and `Ae diag(ξr)` rounded
-down, the bounds `b − A ξm` and `be − Ae ξm`, every rounding written into the rows' slacks (#218),
-so an equality stays an equality and every rescaled coefficient vector stays feasible. The interval
-is an argument, as over ℝ; the result is outer, never the exact rescaling.
+`[ξL, ξU]` is mapped back onto `[-1, 1]` by `ξ = ξm + diag(ξr) δ`, with `ξm` the rounded midpoint
+and `ξr` a radius rounded up from it to both ends. The new center `c + G ξm` and generators
+`G diag(ξr)` are rounded down, what that costs going into the error box (the center's as a residual,
+the generators' as a generator error against `|δ| ≤ 1`, the gap `mulDown_gap` bounds). The
+constraint is `HPolytope.rescaleCols`, the same substitution in its rows, every rounding written
+into the rows' slacks so an equality stays an equality and every rescaled coefficient vector stays
+feasible. The interval is an argument, as over ℝ; the result is outer, never the exact rescaling.
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `ξL` – lower coefficient bounds
+* `ξU` – upper coefficient bounds
+
+## Output
+* enclosure with the coefficient box mapped onto the unit box
 
 ## References
 

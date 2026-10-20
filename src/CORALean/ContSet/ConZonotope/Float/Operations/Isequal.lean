@@ -13,6 +13,13 @@ generators and the two ends of the error box equal entry by entry, each by the c
 both directions, and the constraint polytopes `HPolytope.isequal`. Certified in one direction
 only: `true` is a proof, `false` refutes nothing. Not CORA's test, which compares up to the order
 of the columns and falls back to the vertices.
+
+## Inputs
+* `Z` – first constrained zonotope
+* `S` – second constrained zonotope
+
+## Output
+* whether the two are structurally equal
 -/
 
 -- Authors:       Claude Opus 5.5

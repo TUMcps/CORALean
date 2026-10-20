@@ -10,6 +10,16 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceLiftByOuter
 
 Above the generator count it is `reduceLiftBy_outer` at the partition Girard's rule chose
 for the lifted zonotope; at or below it, the identity.
+
+## Inputs
+* `cZ` – constrained zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the reduced set
 -/
 
 -- Authors:       Claude Sonnet 5.5

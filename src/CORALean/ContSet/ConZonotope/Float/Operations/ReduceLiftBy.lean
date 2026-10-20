@@ -21,6 +21,13 @@ the dropped generators' reach into each row's slack (#218), `dropEqs` leaves the
 lifted zonotope, and `padLeft` puts zeros at the fresh generators. The error box is the operand's:
 nothing is charged to it.
 
+## Inputs
+* `cZ` – float constrained zonotope
+* `part` – generator partition
+
+## Output
+* enclosing constrained zonotope reduced along the partition
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

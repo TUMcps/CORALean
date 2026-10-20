@@ -13,6 +13,18 @@ The step behind [1, Prop. 2]: a feasible linear system `Mξ = v` has a minimum-n
 (the sublevel set of the sup norm is compact), and a feasible point of sup norm `≤ 1` exists iff
 that minimum exists and is `≤ 1`. An infeasible system has no `IsLeast`, which is the empty `min`.
 
+## Inputs
+* `ι` – row index type
+* `h` – number of unknowns
+* `M` – coefficient matrix
+* `v` – right-hand side
+
+## Hypotheses
+* none
+
+## Conclusion
+* a unit-box solution exists iff a minimum-norm solution has norm at most one
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

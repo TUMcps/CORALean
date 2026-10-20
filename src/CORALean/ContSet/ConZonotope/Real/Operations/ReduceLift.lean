@@ -15,9 +15,15 @@ is the degree-of-freedom order `o` of the constrained zonotope in the larger dim
 the quotient is rounded down, so the lifted zonotope never keeps more than `o n + mₑ`
 generators. At or below that count nothing happens and the set is returned as it is.
 
-With no equalities the lifted zonotope is the enclosing zonotope, the order is `o`, and the
-reduction is `Zonotope.reduceGirard`'s, the inequality rows kept on the kept generators.
-Beside `reduce`, not in place of it: that one forgets every constraint.
+With no equalities the lifted zonotope is the enclosing zonotope and the reduction is
+`Zonotope.reduceGirard`'s, the inequality rows kept. Beside `reduce`, which forgets them.
+
+## Inputs
+* `cZ` – constrained zonotope
+* `o` – target order
+
+## Output
+* enclosing constrained zonotope of reduced order
 
 ## References
 

@@ -15,6 +15,21 @@ A point `y` within `B` of `y₀ = c + G β₀` is `y₀ + G β'` for coefficient
 (`Zonotope.ballCert_reach`). The coefficients `β₀ + β'` stay in the unit box and in every row of
 the constraint polytope, since each row moves by at most `δ` times its absolute sum, which the
 check has charged.
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `H` – right inverse of the generator matrix
+* `β₀` – coefficient point
+* `δ` – ball radius in coefficient space
+* `B` – box radius around the center
+* `y` – point of the box
+
+## Hypotheses
+* `hc` – the interior certificate passes
+* `hy` – the point is within the box radius
+
+## Conclusion
+* the point lies in the nominal set
 -/
 
 -- Authors:       Claude Opus 5.5

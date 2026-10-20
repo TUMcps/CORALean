@@ -13,6 +13,18 @@ A coefficient vector in `P` whose dropped coordinates lie in `[-1, 1]` has its k
 coordinates in `keepRows`. A row `f` splits along the partition into the kept part,
 which is `f` at `keepEmbed`, and a dropped part `∑ₗ β_{right l} · f e_{right l}`
 bounded by `keepSlack`; the row's own bound then holds up to that slack.
+
+## Inputs
+* `P` – constraint polytope
+* `part` – partition of the generators
+* `β` – coefficient vector
+
+## Hypotheses
+* `hβ` – the vector lies in the polytope
+* `hbox` – the dropped coefficients lie in the unit box
+
+## Conclusion
+* its kept coordinates satisfy the kept constraints
 -/
 
 -- Authors:       Claude Opus 5.5

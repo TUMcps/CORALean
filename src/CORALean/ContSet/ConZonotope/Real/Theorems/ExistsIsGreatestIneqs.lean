@@ -17,6 +17,17 @@ into a fact, for the one objective the proposition is about. Nonemptiness is the
 left to ask: an infeasible program has no optimum, and a `CZ` with inconsistent constraints is
 contained in every polytope without any `νᵢ` existing to say so.
 
+## Inputs
+* `cZ` – constrained zonotope
+* `C` – halfspace normals
+* `d` – halfspace offsets
+
+## Hypotheses
+* `hne` – the set is nonempty
+
+## Conclusion
+* each halfspace violation attains a maximum over the set
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

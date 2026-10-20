@@ -11,6 +11,15 @@ public import CORALean.ContSet.Interval.Float.Theorems.Basic
 By construction: each end of the support-function box is the tighter of CORA's end and the
 certified support bound, `maximum` and `minimum` being exact, so it is never larger than CORA's
 box of the members' boxes, whatever the linear program returned.
+
+## Inputs
+* `zB` – float zonotope bundle
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Conclusion
+* the support-function box is contained in the plain box
 -/
 
 -- Authors:       Claude Opus 5.5

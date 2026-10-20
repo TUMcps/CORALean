@@ -7,21 +7,30 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.TightenOuter
 /-!
 # `ConZonotope.tighten` is sound at a dependency-closed set of coordinates
 
-`tighten_outer` needs the *whole* box `∀ j, |β j| ≤ 1`: Algorithm 1's Gauss-Seidel
-pass lets a row's bound on one coefficient read every other, so a coordinate left
-out of the box hypothesis can corrupt the bound derived for any coordinate whose
-row happens to read it — and from there, transitively, any coordinate reading
-*that* one. `[1, Thm. 2]`'s own `⊆` direction needs the opposite: soundness at
-every coordinate but the one being eliminated, with no hypothesis on that one at
-all, which the corruption above makes false in general (see the page's
-`## Findings` for a matrix witnessing it).
+`tighten_outer` needs the *whole* box `∀ j, |β j| ≤ 1`: Algorithm 1's Gauss-Seidel pass lets a row's
+bound on one coefficient read every other, so a coordinate left out of the box hypothesis can
+corrupt the bound for any coordinate whose row reads it, and transitively any reading that one. [1,
+Thm. 2]'s `⊆` direction needs soundness at every coordinate but the eliminated one, which this
+corruption makes false in general (see the page's `## Findings`). What survives is soundness on a
+set `S` closed under what a row reads: for `j ∈ S` and `a_{i,j} ≠ 0`, every other `l` with
+`a_{i,l} ≠ 0` is in `S`. `aux_tightenCoeff_outer_safe` and `aux_tightenRow_outer_safe` restrict the
+`_outer` lemmas to `S`; `tighten_outer_safe` carries it across every row, as `tighten_outer` does.
 
-What survives is soundness restricted to a set `S` closed under "what a row reads
-when it touches a coordinate in `S`": for every `j ∈ S` and row `i` with
-`a_{i,j} ≠ 0`, every other column `l` that row reads (`a_{i,l} ≠ 0`) is also in
-`S`. `aux_tightenCoeff_outer_safe` and `aux_tightenRow_outer_safe` are
-`aux_tightenCoeff_outer`/`aux_tightenRow_outer` restricted to `S` this way;
-`tighten_outer_safe` carries it across every row, exactly as `tighten_outer` does.
+## Inputs
+* `nc` – number of constraints
+* `ng` – number of generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `S` – set of coefficients closed under dependence
+* `β` – coefficient vector
+
+## Hypotheses
+* `hclosed` – the set is closed under shared constraints
+* `hbox` – the coefficients in the set lie in the unit box
+* `heq` – the vector solves the equations
+
+## Conclusion
+* each coefficient in the set lies in the tightened box
 
 ## References
 

@@ -12,14 +12,18 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
 CORA's `@conZonotope/and_` [1, Prop. 1], and the reason the representation exists: zonotopes
 are not closed under intersection and constrained zonotopes are, exactly.
 
-Both coefficient vectors are concatenated and each half keeps its own
-constraints, exactly as in `plus`; what intersection adds is one row per
-coordinate demanding that the two points agree, `G₁ β₁ - G₂ β₂ = c₂ - c₁`. Only
-the first generator block is then kept, the second having been pinned to it.
+Both coefficient vectors are concatenated and each half keeps its own constraints, exactly as in
+`plus`; what intersection adds is one row per coordinate demanding that the two points agree,
+`G₁ β₁ - G₂ β₂ = c₂ - c₁`. Only the first generator block is then kept, the second having been
+pinned to it. Those rows are the one place a matrix is still assembled, at `Vec` only, since they
+read a generator coordinate by coordinate.
 
-Those rows are the one place a matrix is still assembled, because they are the
-one constraint that reads both blocks at once. At `Vec` only, since they read a
-generator coordinate by coordinate.
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+
+## Output
+* the intersection of the two sets
 
 ## References
 

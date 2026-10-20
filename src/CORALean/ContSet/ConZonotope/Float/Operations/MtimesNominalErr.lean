@@ -10,6 +10,13 @@ public import CORALean.ContSet.ConZonotope.Float.ConZonotope
 At every coefficient vector in the unit box, in each coordinate: the center's rounding, the
 gap between the rounded-up and rounded-down dot product, plus the generators' rounding summed
 over a row, `radius (matMulDiff M G)`, all rounded up.
+
+## Inputs
+* `M` – matrix
+* `cZ` – float constrained zonotope
+
+## Output
+* per-coordinate bound on the rounding error of the nominal product
 -/
 
 -- Authors:       Claude Opus 5.5

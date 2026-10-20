@@ -14,6 +14,15 @@ CORA's `@zonoBundle/interval`: the intersection of every member's box, in order,
 of the whole bundle and tighter than any one member's (`ZonoBundle.interval`). It needs a member
 to start from, so the bundle is asked to have one; CORA returns the empty box for none, which
 here would be wrong, a bundle of no members being the whole space.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Output
+* the box of the whole bundle
 -/
 
 -- Authors:       Claude Opus 5.5

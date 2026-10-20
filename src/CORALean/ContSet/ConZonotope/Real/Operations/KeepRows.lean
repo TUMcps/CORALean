@@ -11,18 +11,21 @@ public import CORALean.ContSet.HPolytope.Real.Operations.ToIneqs
 /-!
 # `ConZonotope.keepRows`
 
-The constraints on the kept coefficients: every row of `P`, read at a point whose
-dropped coefficients are zero and loosened by what the dropped ones can add
-(`keepSlack`). An equality `a · β = b` becomes the pair `a · β ≤ b + s` and
-`-a · β ≤ -b + s`. Each step is the constraint's own (#174): `HPolytope.toIneqs` writes every
-equality as its two halves, `HPolytope.relax` loosens each row by its `keepSlack`
-(`HPolytope.mem_relax_iff`), and `HPolytope.comap` reads the rows along `keepEmbed`.
+The constraints on the kept coefficients: every row of `P`, read at a point whose dropped
+coefficients are zero and loosened by what the dropped ones can add (`keepSlack`). An equality
+`a · β = b` becomes the pair `a · β ≤ b + s` and `-a · β ≤ -b + s`, by `HPolytope.toIneqs`,
+`HPolytope.relax` and `HPolytope.comap` along `keepEmbed` (#174).
 
-Each row is projected on its own, so this is an outer approximation of the exact
-projection of `P` onto the kept coordinates, not the projection itself: the
-Fourier-Motzkin combination of rows is not formed. It is exact on a row the
-dropped coordinates do not enter, and in particular on a polytope that leaves them
-unconstrained, which is the case `reduceKeep`'s ranking drops first.
+Each row is projected on its own, so this is an outer approximation of the exact projection onto the
+kept coordinates, exact on a row the dropped coordinates do not enter, and in particular on a
+polytope that leaves them unconstrained, which `reduceKeep`'s ranking drops first.
+
+## Inputs
+* `P` – constraint polytope
+* `part` – partition of the generators
+
+## Output
+* the constraints on the kept coefficients
 -/
 
 -- Authors:       Claude Opus 5.5

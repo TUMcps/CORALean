@@ -18,17 +18,22 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConZonotopeExact
 # Constrained zonotopes are exactly the bounded polytopes
 
 [1, Thm. 1]: a set is a constrained zonotope iff it is a convex polytope, a bounded halfspace
-description. The "if" half is `HPolytope.conZonotope_exact`, [1]'s eq. 21, with the box it
-needs read off the boundedness. The "only if" half, which [1] dismisses with "clearly": a
-constrained zonotope `{c + Gξ | ‖ξ‖∞ ≤ 1, ξ ∈ P}` is the projection onto `x` of the polytope
-`{(x, ξ) | ‖ξ‖∞ ≤ 1, ξ ∈ P, x = c + Gξ}`, and a projection of a halfspace description is one
-(`HPolytope.exists_construct_eq_image_fst`, Fourier–Motzkin). Bounded it is, being compact.
-
-The constraint on the coefficients is any halfspace description, of which [1]'s `Aξ = b` is
-the equality-only case, so the theorem covers [1]'s Definition 3 and more.
+description. The "if" half is `HPolytope.conZonotope_exact`, [1]'s eq. 21, with the box read off the
+boundedness. The "only if" half, which [1] dismisses with "clearly": a constrained zonotope is the
+projection onto `x` of the polytope `{(x, ξ) | ‖ξ‖∞ ≤ 1, ξ ∈ P, x = c + Gξ}`
+(`HPolytope.exists_construct_eq_image_fst`, Fourier–Motzkin), and bounded, being compact.
 
 This is the equivalence of polytopes and constrained zonotopes of
 [2, Fig. 1 (Polytopes ↔ Constrained Zonotopes)].
+
+## Inputs
+* `S` – set
+
+## Hypotheses
+* none
+
+## Conclusion
+* it is a constrained zonotope iff it is a bounded polytope
 
 ## References
 

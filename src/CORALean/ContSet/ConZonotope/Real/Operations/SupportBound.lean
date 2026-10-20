@@ -17,6 +17,13 @@ or the program is unbounded, and a bound where CORA returns the value: the bound
 bound, equal to the supremum only when the dual solution is optimal, which is not claimed. CORA's
 `'lower'` and `'range'` types, and the point attaining the value, are not modelled.
 
+## Inputs
+* `cZ` – constrained zonotope
+* `c` – linear functional
+
+## Output
+* a certified upper bound of the functional, if one is found
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

@@ -10,6 +10,12 @@ public import CORALean.ContSet.HPolytope.Real.Operations.EmptySet
 
 CORA's `conZonotope.empty(n)`: no generators, and the unsatisfiable row `0 ≤ -1` on the (empty)
 coefficient vector, so no coefficient vector is admitted.
+
+## Inputs
+* `n` – dimension
+
+## Output
+* the empty constrained zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

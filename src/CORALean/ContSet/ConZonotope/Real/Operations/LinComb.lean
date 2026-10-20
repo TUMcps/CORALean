@@ -8,22 +8,21 @@ public import CORALean.ContSet.HPolytope.Real.Operations.HalfScaled
 /-!
 # `ConZonotope.linComb`
 
-The convex hull of the two sets, and exact between two nonempty ones. One fresh
-coefficient carries the interpolation parameter, the generator blocks are
-concatenated, and each block's coefficients answer to its own constraints *at
-the weight the parameter names* — `λ` for the first block and `1 - λ` for the
-second, which is `halfScaled` at `t` and at `-t`.
+The convex hull of the two sets, and exact between two nonempty ones. One fresh coefficient carries
+the interpolation parameter, the generator blocks are concatenated, and each block's coefficients
+answer to its own constraints at the weight the parameter names, `λ` and `1 - λ` (`halfScaled` at
+`t` and `-t`). Scaling `domain` rather than `P` carries the unit box along: `|βⱼ| ≤ λ` makes a block
+collapse as its weight vanishes. The blocks are not paired as a zonotope's are, since each block's
+constraints have to read its coefficients apart. [1, Thm. 5] spends `2(h₁ + h₂)` slack coefficients
+stating `|βⱼ| ≤ λ` as an equality, which a halfspace description states directly, so the count here
+is `h₁ + h₂ + 1`.
 
-Scaling `domain` rather than `P` is what carries the unit box along with the
-constraints: `|βⱼ| ≤ λ` is what makes a block collapse as its weight vanishes,
-and without it the hull would be the enclosing zonotope's again.
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
 
-The blocks are not paired the way a zonotope's are: pairing merges two
-coefficients into one, and each block's constraints have to read them apart.
-
-`[1, Thm. 5]` spends `2(h₁ + h₂)` slack coefficients stating `|βⱼ| ≤ λ` as an
-equality, which a halfspace description states directly, so the count here is
-`h₁ + h₂ + 1`.
+## Output
+* the convex hull of the two sets
 
 ## References
 

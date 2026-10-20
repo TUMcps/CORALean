@@ -10,6 +10,13 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.Basic
 
 The generators of `quadMapGDown` rounded up. Their gap to the lower ones is what the stored
 generators can be wrong by.
+
+## Inputs
+* `Q` – quadratic form matrices
+* `cZ` – float constrained zonotope
+
+## Output
+* generators of the quadratic image rounded up
 -/
 
 -- Authors:       Claude Opus 5.5

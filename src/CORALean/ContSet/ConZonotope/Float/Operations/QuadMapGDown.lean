@@ -12,6 +12,13 @@ The generators of [1, Lemma 1] on the stored center and generators, rounded down
 block `cᵀQ gⱼ + gⱼᵀQ c`, the squares `½ gⱼᵀQ gⱼ` (halving is exact) and one generator per pair
 `j < k`, `gⱼᵀQ gₖ + gₖᵀQ gⱼ`, zero elsewhere. The blocks are the exact layer's, in its order.
 
+## Inputs
+* `Q` – quadratic form matrices
+* `cZ` – float constrained zonotope
+
+## Output
+* generators of the quadratic image rounded down
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

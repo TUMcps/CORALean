@@ -11,16 +11,24 @@ public import CORALean.ContSet.HPolytope.Real.Operations.RowsOfMemHalfScaledComa
 /-!
 # `ConZonotope.linComb` is no larger than the hull
 
-The reverse of `linComb_outer`, and with it the operation is exactly the convex
-hull of the two sets. What a weighted coefficient block gives back is a point of
-its own set: above weight zero by dividing through, and at weight zero because
-the weighted box pins the block to the origin, leaving the other side's point
-alone.
+The reverse of `linComb_outer`, and with it the operation is exactly the convex hull of the two
+sets. What a weighted coefficient block gives back is a point of its own set: above weight zero by
+dividing through, and at weight zero because the weighted box pins the block to the origin.
 
-Both sets have to be nonempty, and that is not a technicality: at weight zero
-the combination is a point of the second set, which is a *segment* only if the
-first has a point to run from. `linComb_outer` needs neither hypothesis, so the
-`LinComb` instance is unaffected.
+Both sets have to be nonempty: at weight zero the combination is a point of the second set, which is
+a *segment* only if the first has a point to run from. `linComb_outer` needs neither hypothesis, so
+the `LinComb` instance is unaffected.
+
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+
+## Hypotheses
+* `h₁` – first set nonempty
+* `h₂` – second set nonempty
+
+## Conclusion
+* the result is contained in the segments between the two sets
 -/
 
 -- Authors:       Claude Opus 5

@@ -10,6 +10,21 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 
 Reads the constraint back as the matrix equation, which is the form a caller
 coming from CORA states it in.
+
+## Inputs
+* `q` – number of constraints
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership means unit-box coefficients solving the equation system
 -/
 
 -- Authors:       Claude Opus 5

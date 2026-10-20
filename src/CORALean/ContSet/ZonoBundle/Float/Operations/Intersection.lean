@@ -11,6 +11,13 @@ CORA's `zonoBundle`/`and` at float zonotopes: appending the two families, as
 over ℝ. No arithmetic runs, so nothing rounds and each member keeps the error
 box it arrived with — which is why this stays *exact* in the float layer too,
 per `Theorems.AndExact`.
+
+## Inputs
+* `zB₁` – first bundle
+* `zB₂` – second bundle
+
+## Output
+* the intersection of the two bundles
 -/
 
 -- Authors:       Claude Opus 5

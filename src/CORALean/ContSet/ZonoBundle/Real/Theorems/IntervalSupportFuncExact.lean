@@ -13,6 +13,16 @@ any box holding the bundle has its upper end above it, and likewise below: the s
 box lies in every box that holds the bundle, and holds the bundle itself
 (`intervalSupportFunc_outer`). It is therefore the least such box, `ZonoBundle.box`. For a
 nonempty bundle: the support function of the empty set is `-∞`, read as `0`.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hk` – the bundle has a member
+* `hne` – the bundle is nonempty
+
+## Conclusion
+* the support-function box is the tightest box of the bundle
 -/
 
 -- Authors:       Claude Opus 5.5

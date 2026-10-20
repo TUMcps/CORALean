@@ -12,6 +12,13 @@ What a constraint can gain from the coefficients a partition drops: they range
 over `[-1, 1]`, so a row `a · β` moves by at most `∑ |aₗ|` over the dropped
 coordinates `l`. Zero exactly when the row does not see them, which is when
 dropping them costs the row nothing.
+
+## Inputs
+* `part` – partition of the generators
+* `f` – constraint functional
+
+## Output
+* the slack the dropped coefficients can contribute
 -/
 
 -- Authors:       Claude Opus 5.5

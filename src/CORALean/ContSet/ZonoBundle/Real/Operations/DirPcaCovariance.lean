@@ -14,6 +14,13 @@ vertices of the bundle, `∑ₗ (vₗ - μ)(vₗ - μ)ᵀ` with `μ` their mean,
 sample covariance divides by. The paper says this needs vertex computation, which the bundle's
 representation does not provide, so the vertices come in as an argument.
 
+## Inputs
+* `m` – number of vertices
+* `V` – vertices
+
+## Output
+* the covariance matrix of the vertices
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

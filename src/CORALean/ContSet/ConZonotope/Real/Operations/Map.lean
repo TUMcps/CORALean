@@ -11,6 +11,13 @@ A linear map applies to center and generators [1, Prop. 1]; the constraints are 
 coefficients and so are untouched. This is why every multiplication a
 constrained zonotope carries is as exact as a zonotope's.
 
+## Inputs
+* `f` – linear map
+* `cZ` – constrained zonotope
+
+## Output
+* the image under the map
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

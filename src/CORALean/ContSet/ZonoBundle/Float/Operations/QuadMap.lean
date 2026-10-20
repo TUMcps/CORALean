@@ -10,6 +10,13 @@ public import CORALean.ContSet.Zonotope.Float.Operations.QuadMap
 
 CORA's `zonoBundle`/`quadMap(zB, Q)`: every member is replaced by its zonotope quadratic map,
 the count unchanged.
+
+## Inputs
+* `Q` – quadratic form matrices
+* `zB` – float zonotope bundle
+
+## Output
+* enclosure of the quadratic image
 -/
 
 -- Authors:       Claude Opus 5.5
