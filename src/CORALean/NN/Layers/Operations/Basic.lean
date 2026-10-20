@@ -59,7 +59,7 @@ def bracketShift (lo hi : 𝕋) : 𝕋 := half (addUp lo hi)
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      20-October-2026 (Tobias Ladner)
 
 /-- `max (α a) a - m a`, rounded up.
 

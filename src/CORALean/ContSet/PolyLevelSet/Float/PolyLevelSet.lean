@@ -28,7 +28,7 @@ afford as a factor (`ConPolyZono.absorbRounding`).
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
 -- Last update:   19-October-2026
--- Reviewed:      ---
+-- Reviewed:      20-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

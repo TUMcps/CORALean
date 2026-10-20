@@ -30,7 +30,7 @@ subtraction, where CORA refuses it, and every guarantee here is stated at `tStar
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5
 -- Written:       18-August-2026
 -- Last update:   14-October-2026
--- Reviewed:      ---
+-- Reviewed:      20-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

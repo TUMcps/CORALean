@@ -31,7 +31,7 @@ equation only. The factors' box `[-1, 1]ᵖ` is the constraint's domain (`cons_d
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   19-October-2026
--- Reviewed:      ---
+-- Reviewed:      20-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

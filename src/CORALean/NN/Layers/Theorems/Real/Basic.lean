@@ -48,7 +48,7 @@ theorem antitone_invSqrt : Antitone invSqrt := by
 -- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      20-October-2026 (Tobias Ladner)
 
 /-- ℝ-only, as `Enclosure.exact` is: only ℝ stores `σ`'s values. Both ends are `σ`, and reading ℝ
 is the identity, so the bracket is two equalities. -/
