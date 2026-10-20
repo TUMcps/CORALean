@@ -41,7 +41,7 @@ variable {i : ℕ}
 
 /-- The coefficient of the interpolation error, in `[-1, 0]` and so bounded by
 `1` either way. -/
-theorem MatExp.abs_corrCoeff_le_one (hi : 2 ≤ i) :
+theorem MatExp.abs_corrCoeff_le_one (hi : 2 ≤ i) : -- --- CONCL ---
     |MatExp.corrCoeff i| ≤ 1 := by -- --- PROOF ---
   have hi2 : (2:ℝ) ≤ (i : ℝ) := by exact_mod_cast hi
   have hipos : (0:ℝ) < (i : ℝ) := by linarith

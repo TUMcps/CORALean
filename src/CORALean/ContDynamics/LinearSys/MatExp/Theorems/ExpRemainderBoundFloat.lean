@@ -53,7 +53,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- The real bound, at `toReal nrm` rather than `‖x‖`, with the geometric
 factor collapsed to the constant `2`. -/
 theorem aux_expRemainderBound_real {n : ℕ} {x : Mat ℝ n n} {r : ℝ} (η : ℕ) (hx : ‖x‖ ≤ r)
-    (hε : r / ((η : ℝ) + 2) ≤ 1 / 2) :
+    (hε : r / ((η : ℝ) + 2) ≤ 1 / 2) : -- --- CONCL ---
     Real.MatExp.expRemainderBound x η
       ≤ (r ^ (η + 1) / (Nat.factorial (η + 1) : ℝ)) * 2 := by -- --- PROOF ---
   have hxnn : (0 : ℝ) ≤ ‖x‖ := norm_nonneg x
@@ -75,7 +75,8 @@ theorem aux_expRemainderBound_real {n : ℕ} {x : Mat ℝ n n} {r : ℝ} (η : �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.expRemainderBound_le {n : ℕ} {x : Mat ℝ n n} {nrm : 𝕋} (η : ℕ)
-    (hx : ‖x‖ ≤ toReal nrm) (hnn : 0 ≤ toReal nrm) (hε : toReal nrm / ((η : ℝ) + 2) ≤ 1 / 2) :
+    (hx : ‖x‖ ≤ toReal nrm) (hnn : 0 ≤ toReal nrm)
+    (hε : toReal nrm / ((η : ℝ) + 2) ≤ 1 / 2) : -- --- CONCL ---
     Real.MatExp.expRemainderBound x η
       ≤ toReal (MatExp.expRemainderBound nrm η) := by -- --- PROOF ---
   have hfactpos : (0 : ℝ) < (Nat.factorial (η + 1) : ℝ) := by

@@ -35,7 +35,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.representsa_emptySet_iff (pZ : PolyZonotope α) :
+theorem PolyZonotope.representsa_emptySet_iff (pZ : PolyZonotope α) : -- --- CONCL ---
     pZ.representsa_emptySet = true ↔ pZ.construct = ∅ := by -- --- PROOF ---
   have hne : pZ.construct ≠ ∅ := fun h => by
     have := pZ.point_mem_construct (a := fun _ => 0) fun _ => by simp

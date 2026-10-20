@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.invFactorialBounds_mem (k : ℕ) :
+theorem MatExp.invFactorialBounds_mem (k : ℕ) : -- --- CONCL ---
     toReal (MatExp.invFactorialBounds (𝕋 := 𝕋) k).inf ≤ (Nat.factorial k : ℝ)⁻¹
       ∧ (Nat.factorial k : ℝ)⁻¹
         ≤ toReal (MatExp.invFactorialBounds (𝕋 := 𝕋) k).sup := by -- --- PROOF ---

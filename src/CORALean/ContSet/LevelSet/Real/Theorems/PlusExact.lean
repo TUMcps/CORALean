@@ -35,7 +35,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LevelSet.plus_exact (L : LevelSet n) (v : Vec ℝ n) :
+theorem LevelSet.plus_exact (L : LevelSet n) (v : Vec ℝ n) : -- --- CONCL ---
     (L.plus v).construct = (· + v) '' L.construct := by -- --- PROOF ---
   ext y
   constructor

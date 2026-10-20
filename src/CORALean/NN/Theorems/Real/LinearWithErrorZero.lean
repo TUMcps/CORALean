@@ -53,7 +53,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 
 /-- ℝ-only, the sum `b + 0` being exact only there: at `[0, 0]` the adapted layer is the plain
 one. -/
-theorem Layer.linearWithError_zero (W : Mat ℝ m n) (b : Vec ℝ m) :
+theorem Layer.linearWithError_zero (W : Mat ℝ m n) (b : Vec ℝ m) : -- --- CONCL ---
     Layer.linearWithError (S := S) W b (Float.Interval.point 0)
       = Layer.linear (S := S) W b := by -- --- PROOF ---
   -- a point box added to a point box is the point box of the sum, exactly at ℝ

@@ -66,7 +66,8 @@ theorem Zonotope.aux_mem_span_face_efs (Z : Zonotope (Vec ℝ n)) (l : Vec ℝ n
 /-- A functional vanishing on the generators `l` annihilates vanishes on their span. -/
 theorem Zonotope.aux_apply_eq_zero_efs (Z : Zonotope (Vec ℝ n)) (l m : Vec ℝ n →ₗ[ℝ] ℝ)
     (hm : ∀ j, l (Z.G j) = 0 → m (Z.G j) = 0) {w : Vec ℝ n}
-    (hw : w ∈ Submodule.span ℝ (Set.range (Z.face l).G)) : m w = 0 := by -- --- PROOF ---
+    (hw : w ∈ Submodule.span ℝ (Set.range (Z.face l).G)) : -- --- CONCL ---
+    m w = 0 := by -- --- PROOF ---
   have hle : Submodule.span ℝ (Set.range (Z.face l).G) ≤ LinearMap.ker m := by
     rw [Submodule.span_le]
     rintro _ ⟨j, rfl⟩
@@ -78,7 +79,8 @@ theorem Zonotope.aux_apply_eq_zero_efs (Z : Zonotope (Vec ℝ n)) (l m : Vec ℝ
 /-- A functional vanishing on spanning generators vanishes. -/
 theorem Zonotope.aux_eq_zero_efs (Z : Zonotope (Vec ℝ n))
     (hfull : Submodule.span ℝ (Set.range Z.G) = ⊤) (m : Vec ℝ n →ₗ[ℝ] ℝ)
-    (hm : ∀ j, m (Z.G j) = 0) (y : Vec ℝ n) : m y = 0 := by -- --- PROOF ---
+    (hm : ∀ j, m (Z.G j) = 0) (y : Vec ℝ n) : -- --- CONCL ---
+    m y = 0 := by -- --- PROOF ---
   have hle : Submodule.span ℝ (Set.range Z.G) ≤ LinearMap.ker m := by
     rw [Submodule.span_le]
     rintro _ ⟨j, rfl⟩
@@ -94,7 +96,7 @@ theorem Zonotope.aux_sign_eq_efs {a b : ℝ} (h : 0 < a * b) : Real.sign a = Rea
 
 /-- A functional agreeing in sign with `l` wherever it is nonzero has a face containing `l`'s. -/
 theorem Zonotope.aux_argmax_subset_efs (Z : Zonotope (Vec ℝ n)) (l l' : Vec ℝ n →ₗ[ℝ] ℝ)
-    (h : ∀ j, l' (Z.G j) ≠ 0 → 0 < l (Z.G j) * l' (Z.G j)) :
+    (h : ∀ j, l' (Z.G j) ≠ 0 → 0 < l (Z.G j) * l' (Z.G j)) : -- --- CONCL ---
     {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, l y ≤ l x}
       ⊆ {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, l' y ≤ l' x} := by -- --- PROOF ---
   intro x hx

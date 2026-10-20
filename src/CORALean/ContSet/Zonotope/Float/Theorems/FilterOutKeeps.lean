@@ -49,7 +49,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.filterOut_keeps (Zs : Fin m → Zonotope (Vec 𝕋 n)) (ind : Fin m)
-    (hint : (interior ((Zs ind).construct \ ⋃ j ∈ {j | j ≠ ind}, (Zs j).construct)).Nonempty) :
+    (hint : (interior ((Zs ind).construct \ ⋃ j ∈ {j | j ≠ ind}, (Zs j).construct)).Nonempty)
+    : -- --- CONCL ---
     ind ∈ Zonotope.filterOut Zs := by -- --- PROOF ---
   by_contra hout
   -- the cell lies in another cell, so nothing is left once that cell is removed

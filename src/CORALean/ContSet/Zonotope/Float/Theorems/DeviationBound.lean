@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.deviation_bound (x e lo hi : Vec 𝕋 n) (y : Vec ℝ n)
-    (hlo : ∀ i, toReal (lo i) ≤ y i) (hhi : ∀ i, y i ≤ toReal (hi i)) (i : Fin n) :
+    (hlo : ∀ i, toReal (lo i) ≤ y i) (hhi : ∀ i, y i ≤ toReal (hi i)) (i : Fin n) : -- --- CONCL ---
     |toReal (x i) - toReal (e i) - y i|
       ≤ toReal (Zonotope.deviation x e lo hi) := by -- --- PROOF ---
   refine le_trans ?_ (le_maximumOver _ i)

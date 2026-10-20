@@ -53,7 +53,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The image's nominal part, with the center's rounding charged to a box. -/
-theorem Ellipsoid.aux_mtimes_nominal (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) :
+theorem Ellipsoid.aux_mtimes_nominal (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) : -- --- CONCL ---
     (toRealMat M *ᵥ ·) '' nominalSet E ⊆
       nominalSet (Ellipsoid.mtimes M E)
         + (Ellipsoid.mtimesResidual M E).construct := by -- --- PROOF ---

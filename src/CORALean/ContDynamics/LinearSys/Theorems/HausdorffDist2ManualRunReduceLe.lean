@@ -70,7 +70,8 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 /-- The unreduced accumulation is a finite Minkowski sum of propagated zonotopes, so it is
 compact and nonempty at every step — what the triangle inequality asks of it. -/
-theorem aux_isCompact_sum_range_mulVec (Z : Zonotope (Vec ℝ n)) (Φ : ℕ → Mat ℝ n n) (k : ℕ) :
+theorem aux_isCompact_sum_range_mulVec (Z : Zonotope (Vec ℝ n)) (Φ : ℕ → Mat ℝ n n)
+    (k : ℕ) : -- --- CONCL ---
     IsCompact (∑ j ∈ Finset.range k, (fun x => Φ j *ᵥ x) '' Z.construct) ∧
       (∑ j ∈ Finset.range k, (fun x => Φ j *ᵥ x) '' Z.construct).Nonempty := by -- --- PROOF ---
   induction k with

@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.zonotope_contains (E : Ellipsoid 𝕋 n) :
+theorem Ellipsoid.zonotope_contains (E : Ellipsoid 𝕋 n) : -- --- CONCL ---
     E.construct ⊆ E.zonotope.construct := by -- --- PROOF ---
   rintro _ ⟨x, hx, e, he, rfl⟩
   by_cases hok : Ellipsoid.isOuterFactor E.Q (Ellipsoid.outerFactor E.Q) = true

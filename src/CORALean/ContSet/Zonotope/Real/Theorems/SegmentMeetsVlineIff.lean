@@ -47,7 +47,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.segment_meets_vline_iff (P Q : Vec ℝ 2) (γ : ℝ) :
+theorem Zonotope.segment_meets_vline_iff (P Q : Vec ℝ 2) (γ : ℝ) : -- --- CONCL ---
     (segment ℝ P Q ∩ {z | z 0 = γ}).Nonempty ↔
       min (P 0) (Q 0) ≤ γ ∧ γ ≤ max (P 0) (Q 0) := by -- --- PROOF ---
   -- `P + t (Q - P)` for `t ∈ [0, 1]`

@@ -53,7 +53,8 @@ variable {n : ℕ}
 
 /-- [1, Eq. 2]: `f(z) = f(z*) + ∇f(z*)(z - z*) + ½ (z - z*)ᵀ ∇²f(ξ) (z - z*)` for some `ξ` on
 the segment from `z*` to `z`. -/
-theorem taylor_lagrange_segment {f : Vec ℝ n → ℝ} (hf : ContDiff ℝ 2 f) (zs z : Vec ℝ n) :
+theorem taylor_lagrange_segment {f : Vec ℝ n → ℝ} (hf : ContDiff ℝ 2 f)
+    (zs z : Vec ℝ n) : -- --- CONCL ---
     ∃ ξ ∈ segment ℝ zs z, f z = f zs + fderiv ℝ f zs (z - zs)
       + iteratedFDeriv ℝ 2 f ξ (fun _ => z - zs) / 2 := by -- --- PROOF ---
   obtain ⟨ξ, hξ, h⟩ := taylor_lagrange_convex (N := 1) hf (convex_segment zs z)

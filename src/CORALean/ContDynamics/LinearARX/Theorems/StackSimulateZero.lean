@@ -41,7 +41,8 @@ variable {𝕋 : Type} [Scalar 𝕋] {dy du p : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearARX.stack_simulate_zero (sys : LinearARX 𝕋 dy du p) (y₀ : Vec ℝ (p * dy))
-    (u : ℕ → Vec ℝ du) : LinearARX.stack p (sys.simulate y₀ u) 0 = y₀ := by -- --- PROOF ---
+    (u : ℕ → Vec ℝ du) : -- --- CONCL ---
+    LinearARX.stack p (sys.simulate y₀ u) 0 = y₀ := by -- --- PROOF ---
   funext r
   have hlt : (0 + (finProdFinEquiv.symm r).1 : ℕ) < p := by
     simpa using (finProdFinEquiv.symm r).1.isLt

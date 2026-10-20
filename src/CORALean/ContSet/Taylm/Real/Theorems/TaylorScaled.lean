@@ -65,7 +65,7 @@ variable {n : ℕ}
 
 /-- `T - c` at a center no larger than `C` weighs at most twice `T`. -/
 theorem Taylm.aux_minus_const_scaled {T : Taylm n} {h C : ℝ} (c : ℝ) (hc : |c| ≤ C)
-    (hT : T.Scaled h C) :
+    (hT : T.Scaled h C) : -- --- CONCL ---
     (T.minus (Taylm.const n c T.maxOrder)).Scaled h (2 * C) := by -- --- PROOF ---
   obtain ⟨w, i, s⟩ := hT
   have hC : 0 ≤ C := le_trans (abs_nonneg _) hc

@@ -38,7 +38,7 @@ variable {k : ℕ} {n : Fin k → ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.stackProd_exact (zs : ∀ i, Zonotope (Vec ℝ (n i))) :
+theorem Zonotope.stackProd_exact (zs : ∀ i, Zonotope (Vec ℝ (n i))) : -- --- CONCL ---
     (Zonotope.stackProd zs).construct =
       {z | ∀ i, unstack z i ∈ (zs i).construct} := by -- --- PROOF ---
   classical

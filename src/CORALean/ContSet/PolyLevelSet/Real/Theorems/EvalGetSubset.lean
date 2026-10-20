@@ -57,7 +57,8 @@ theorem PolyLevelSet.aux_mulVec_eq_point {m : ℕ} (Z : PolyZonotope (Vec ℝ m)
 
 /-- The re-parametrized rows at `x` are the original ones at `xᵣ ↦ cen + rad xᵣ`. -/
 theorem PolyLevelSet.eval_getSubset (P : PolyLevelSet n) (r : Fin n) (cen rad : ℝ)
-    (x : Vec ℝ n) : (P.getSubset r cen rad).eval x
+    (x : Vec ℝ n) : -- --- CONCL ---
+    (P.getSubset r cen rad).eval x
       = P.eval (Function.update x r (cen + rad * x r)) := by -- --- PROOF ---
   have h : (P.getSubset r cen rad).A *ᵥ PolyZonotope.monomial (P.getSubset r cen rad).R x
       = P.A *ᵥ PolyZonotope.monomial P.R (Function.update x r (cen + rad * x r)) :=

@@ -73,7 +73,7 @@ theorem MatExp.aux_foldl_plus_mem_poly (f : ℕ → VPolytope (Mat ℝ n n)) (x 
 
 /-- `e^M` of every member `M` of the matrix polytope lies in `expmInd`. -/
 theorem MatExp.expmIndPolytope_outer (P : VPolytope (Mat ℝ n n)) (η : ℕ) {M : Mat ℝ n n}
-    (hM : M ∈ P.construct) :
+    (hM : M ∈ P.construct) : -- --- CONCL ---
     exp M ∈ (MatExp.expmIndPolytope P η).construct := by -- --- PROOF ---
   -- the running product `ePpow` encloses the powers of the member
   have hpow : ∀ i, M ^ i ∈ ((fun Q => VPolytope.matMul Q P)^[i] (VPolytope.point 1)).construct := by

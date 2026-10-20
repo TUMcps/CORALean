@@ -40,7 +40,7 @@ open scoped Pointwise
 
 /-- `plusNum` denotes `I` shifted by `c`. -/
 theorem STLInterval.set_plusNum (I : STLInterval) (c : ℝ)
-    (hc : I ≠ .empty → 0 ≤ I.lowerBound + c) :
+    (hc : I ≠ .empty → 0 ≤ I.lowerBound + c) : -- --- CONCL ---
     (I.plusNum c hc).set = (fun t => t + c) '' I.set := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.plusNum, STLInterval.set]

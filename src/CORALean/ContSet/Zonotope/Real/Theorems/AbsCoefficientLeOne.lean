@@ -36,7 +36,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.abs_coefficient_le_one {R D : ℝ} (hR : 0 ≤ R) (hDR : |D| ≤ R) :
+theorem Zonotope.abs_coefficient_le_one {R D : ℝ} (hR : 0 ≤ R) (hDR : |D| ≤ R) : -- --- CONCL ---
     |Zonotope.coefficient R D| ≤ 1 := by -- --- PROOF ---
   rw [Zonotope.coefficient]
   split

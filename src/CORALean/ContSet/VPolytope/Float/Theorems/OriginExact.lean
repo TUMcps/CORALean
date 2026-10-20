@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.origin_exact (n : ℕ) :
+theorem VPolytope.origin_exact (n : ℕ) : -- --- CONCL ---
     (VPolytope.origin n : VPolytope (Vec 𝕋 n)).construct = {0} := by -- --- PROOF ---
   -- the stored zero reads as ℝ's
   have h : InflatedContSet.nominal (VPolytope.origin n : VPolytope (Vec 𝕋 n))

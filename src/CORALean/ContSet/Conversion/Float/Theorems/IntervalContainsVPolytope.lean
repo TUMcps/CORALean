@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 the point `0`, and the nominal corners are the exact layer's, whose hull
 `Real.Interval.vPolytope_exact` shows to be the box. -/
 theorem Interval.contains_vPolytope (I : Interval (Vec 𝕋 n))
-    (hI : ∀ i, toReal (I.inf i) ≤ toReal (I.sup i)) :
+    (hI : ∀ i, toReal (I.inf i) ≤ toReal (I.sup i)) : -- --- CONCL ---
     (Interval.vPolytope I).construct ⊆ I.construct := by -- --- PROOF ---
   rintro y ⟨x, hx, e, he, rfl⟩
   have hV : (fun (l : Fin (2 ^ n)) (i : Fin n) =>

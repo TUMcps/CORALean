@@ -42,7 +42,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.corner_eq_bottom (Z : Zonotope (Vec ℝ 2)) (s : Fin Z.h → Bool) (k : Fin 2) :
+theorem Zonotope.corner_eq_bottom (Z : Zonotope (Vec ℝ 2)) (s : Fin Z.h → Bool)
+    (k : Fin 2) : -- --- CONCL ---
     Z.corner s k =
       Z.corner (fun _ => false) k + 2 * ∑ j, (if s j then Z.G j k else 0) := by -- --- PROOF ---
   rw [Zonotope.corner_apply, Zonotope.corner_apply, Finset.mul_sum, add_assoc,

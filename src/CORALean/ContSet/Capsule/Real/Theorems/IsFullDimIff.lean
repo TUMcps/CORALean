@@ -43,7 +43,8 @@ variable {n : ℕ}
 
 
 /-- A thin capsule is its segment. -/
-private lemma Capsule.mem_construct_of_r_eq_zero {C : Capsule n} (hr : C.r = 0) {x : Vec ℝ n} :
+private lemma Capsule.mem_construct_of_r_eq_zero {C : Capsule n} (hr : C.r = 0)
+    {x : Vec ℝ n} : -- --- CONCL ---
     x ∈ C.construct ↔ ∃ t ∈ Set.Icc (-1 : ℝ) 1, ∀ i, x i = C.c i + t * C.g i := by -- --- PROOF ---
   unfold Capsule.construct
   simp only [Set.mem_setOf_eq, hr]
@@ -68,7 +69,7 @@ private lemma Capsule.mem_construct_of_r_eq_zero {C : Capsule n} (hr : C.r = 0) 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.isFullDim_iff (C : Capsule n) :
+theorem Capsule.isFullDim_iff (C : Capsule n) : -- --- CONCL ---
     (interior C.construct).Nonempty ↔
       0 < C.r ∨ (0 ≤ C.r ∧ (n = 0 ∨ (n = 1 ∧ C.g ≠ 0))) := by -- --- PROOF ---
   constructor

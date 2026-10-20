@@ -46,7 +46,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.boundaryPoint_outer (Z : Zonotope (Vec 𝕋 (n + 1))) (dir start : Vec 𝕋 (n + 1)) :
+theorem Zonotope.boundaryPoint_outer (Z : Zonotope (Vec 𝕋 (n + 1)))
+    (dir start : Vec 𝕋 (n + 1)) : -- --- CONCL ---
     ∀ J ∈ Z.boundaryPoint dir start,
       CORALean.Real.Zonotope.boundaryPoint (nominal Z) (toRealVec dir) (toRealVec start)
         ∈ J.construct := by -- --- PROOF ---

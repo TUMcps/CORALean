@@ -69,7 +69,8 @@ theorem ConZonotope.aux_mulVec_diagonal {q h : ℕ} (A : Mat ℝ q h) (ξr δ : 
 
 /-- Whatever the order of the endpoints, `ξm + ξr δ` is a convex combination of them. -/
 theorem ConZonotope.aux_abs_midpoint_le {a u δ : ℝ} (ha : |a| ≤ 1) (hu : |u| ≤ 1)
-    (hδ : |δ| ≤ 1) : |(u + a) / 2 + (u - a) / 2 * δ| ≤ 1 := by -- --- PROOF ---
+    (hδ : |δ| ≤ 1) : -- --- CONCL ---
+    |(u + a) / 2 + (u - a) / 2 * δ| ≤ 1 := by -- --- PROOF ---
   obtain ⟨ha1, ha2⟩ := abs_le.mp ha
   obtain ⟨hu1, hu2⟩ := abs_le.mp hu
   obtain ⟨hδ1, hδ2⟩ := abs_le.mp hδ

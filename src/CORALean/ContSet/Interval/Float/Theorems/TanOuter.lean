@@ -42,7 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 theorem Interval.tan_outer [SoundFloatArithmetic 𝕋] (p : ℕ) (I : Interval (Vec 𝕋 n))
     (hI : ∀ i, -(Real.pi / 2) < toReal (I.inf i) ∧ toReal (I.sup i) < Real.pi / 2)
-    (hc : ∀ i, 0 < toReal (cosDown p (I.inf i)) ∧ 0 < toReal (cosDown p (I.sup i))) :
+    (hc : ∀ i, 0 < toReal (cosDown p (I.inf i)) ∧ 0 < toReal (cosDown p (I.sup i)))
+    : -- --- CONCL ---
     (fun x i => Real.tan (x i)) '' I.construct ⊆ (I.tan p).construct := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩ i
   have hx' : toReal (I.inf i) ≤ x i ∧ x i ≤ toReal (I.sup i) := hx i

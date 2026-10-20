@@ -85,7 +85,7 @@ private theorem SyntaxTree.exists_cos_branch {s lo hi : ℝ} (h₁ : lo ≤ Real
     constructor <;> linarith
 
 /-- `aux_cos_` is sound for `cos`. -/
-theorem SyntaxTree.cos_sound (prev : Dom) :
+theorem SyntaxTree.cos_sound (prev : Dom) : -- --- CONCL ---
     UnarySound Unary.cos.fn prev (Real.Interval.cos prev) funHanCos := by -- --- PROOF ---
   intro int _ s hs hi
   have h : int.inf 0 ≤ Real.cos s ∧ Real.cos s ≤ int.sup 0 := hi

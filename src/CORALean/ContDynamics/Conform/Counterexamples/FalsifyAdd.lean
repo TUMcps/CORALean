@@ -49,7 +49,7 @@ open Pointwise
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Sec. 2.2]'s `y ∉ R ⊕ V` holds at a measurement that does not falsify. -/
-theorem Conform.falsify_add_counterexample :
+theorem Conform.falsify_add_counterexample : -- --- CONCL ---
     ∃ (R V : Set ℝ) (y : ℝ), ¬ Disjoint ({y} + V) R ∧ y ∉ R + V := by -- --- PROOF ---
   refine ⟨{0}, Set.Icc 0 1, -1, fun h => ?_, ?_⟩
   · -- `-1 + 1 = 0` is a possible exact output

@@ -60,7 +60,8 @@ variable {n m q : ℕ}
 /-- The state in closed form: (3a) unrolled. -/
 theorem LinearARX.aux_ss_closed (A : Mat ℝ n n) (B : Mat ℝ n m) {x : ℕ → Vec ℝ n}
     {u : ℕ → Vec ℝ m} {w : ℕ → Vec ℝ n} (hx : ∀ i, x (i + 1) = A *ᵥ x i + B *ᵥ u i + w i)
-    (k : ℕ) : x k = A ^ k *ᵥ x 0
+    (k : ℕ) : -- --- CONCL ---
+    x k = A ^ k *ᵥ x 0
       + ∑ i ∈ Finset.range k, A ^ i *ᵥ (B *ᵥ u (k - 1 - i) + w (k - 1 - i)) := by -- --- PROOF ---
   induction k with
   | zero => simp

@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- Under a complete `le`, every chunk of the result is ascending at the real values. -/
 theorem groupSortFloat_sorted {g : ℕ} (hg : 0 < g) (x : Vec 𝕋 n)
-    (hle : ∀ a b : 𝕋, toReal a ≤ toReal b → FloatOps.le a b = true) (k : ℕ) :
+    (hle : ∀ a b : 𝕋, toReal a ≤ toReal b → FloatOps.le a b = true) (k : ℕ) : -- --- CONCL ---
     ((aux_groupSortChunkFloat g (groupSortFloat g x) k).map toReal).Pairwise
       (· ≤ ·) := by -- --- PROOF ---
   rw [groupSortChunkFloat_groupSortFloat hg]

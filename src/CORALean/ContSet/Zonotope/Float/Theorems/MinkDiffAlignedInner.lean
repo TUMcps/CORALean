@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.minkDiffAligned_inner {Z₁ Z₂ : Zonotope (Vec 𝕋 n)} {hh : Z₁.h = Z₂.h} {ρ : 𝕋}
-    {H : Mat 𝕋 Z₁.h n} :
+    {H : Mat 𝕋 Z₁.h n} : -- --- CONCL ---
     ∀ D ∈ Z₁.minkDiffAligned Z₂ hh ρ H,
       D.construct ⊆ minkowskiDiff Z₁.construct Z₂.construct := by -- --- PROOF ---
   intro D (h : Z₁.minkDiffAligned Z₂ hh ρ H = some D)

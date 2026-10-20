@@ -47,7 +47,7 @@ variable {n : ℕ}
 /-- One more order never costs precision: raising `η` never raises the bound,
 given the side condition the lower order already needs. -/
 theorem MatExp.expRemainderBound_antitone_succ {x : Mat ℝ n n} (η : ℕ)
-    (hx : ‖x‖ / ((η : ℝ) + 2) < 1) :
+    (hx : ‖x‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
     MatExp.expRemainderBound x (η + 1) ≤ MatExp.expRemainderBound x η := by -- --- PROOF ---
   have hnn : (0 : ℝ) ≤ ‖x‖ := norm_nonneg _
   have h2pos : (0 : ℝ) < (η : ℝ) + 2 := by positivity

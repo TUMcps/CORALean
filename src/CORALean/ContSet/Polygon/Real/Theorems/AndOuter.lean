@@ -27,7 +27,8 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 open scoped Classical in
-theorem Polygon.and_outer {q : ℕ} (P Q : Polygon) (Aq : Fin q → (Vec ℝ 2 →ₗ[ℝ] ℝ)) :
+theorem Polygon.and_outer {q : ℕ} (P Q : Polygon)
+    (Aq : Fin q → (Vec ℝ 2 →ₗ[ℝ] ℝ)) : -- --- CONCL ---
     ContSet.construct P ∩ ContSet.construct Q ⊆
       ContSet.construct (Polygon.and P Q Aq) := by -- --- PROOF ---
   rw [Polygon.and_region]

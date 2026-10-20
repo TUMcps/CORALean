@@ -45,7 +45,7 @@ variable {n : ℕ}
 
 /-- Both outputs of `dependentTerms` contain the true value for every member of the box. -/
 theorem MatExp.dependentTerms_outer (A : Interval (Mat ℝ n n)) (r : ℝ) {M : Mat ℝ n n}
-    (hM : M ∈ A.construct) :
+    (hM : M ∈ A.construct) : -- --- CONCL ---
     r ^ 2 • (M * M) ∈ (MatExp.dependentTerms A r).intSq.construct ∧
       1 + MatExp.expW M r ∈ (MatExp.dependentTerms A r).intH.construct := by -- --- PROOF ---
   refine ⟨?_, ?_⟩

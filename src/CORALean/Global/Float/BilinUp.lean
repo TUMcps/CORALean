@@ -45,7 +45,7 @@ def bilinUp (a : Vec 𝕋 d) (P : Mat 𝕋 d d) (b : Vec 𝕋 d) : 𝕋 := dotUp
 /-- Entrywise bounds on the magnitudes bound the form's. -/
 theorem abs_bilin_le_bilinUp [SoundFloatArithmetic 𝕋] {a b : Vec 𝕋 d} {P : Mat 𝕋 d d}
     {v w : Vec ℝ d} {M : Mat ℝ d d} (hv : ∀ j, |v j| ≤ toReal (a j))
-    (hw : ∀ k, |w k| ≤ toReal (b k)) (hM : ∀ j k, |M j k| ≤ toReal (P j k)) :
+    (hw : ∀ k, |w k| ≤ toReal (b k)) (hM : ∀ j k, |M j k| ≤ toReal (P j k)) : -- --- CONCL ---
     |v ⬝ᵥ (M *ᵥ w)| ≤ toReal (bilinUp a P b) := by -- --- PROOF ---
   -- the inner sums first: `|(M w)ⱼ| ≤ (P b)ⱼ`, rounded up
   have hrow : ∀ j, |(M *ᵥ w) j| ≤ toReal (mulVecUp P b j) := fun j =>

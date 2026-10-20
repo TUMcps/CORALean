@@ -49,7 +49,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.isGreatest_dot (E : Ellipsoid n) (l : Vec ℝ n) :
+theorem Ellipsoid.isGreatest_dot (E : Ellipsoid n) (l : Vec ℝ n) : -- --- CONCL ---
     IsGreatest ((l ⬝ᵥ ·) '' E.construct) (l ⬝ᵥ E.q + √(l ⬝ᵥ (E.Q *ᵥ l))) := by -- --- PROOF ---
   -- the ellipsoid as `q + G u`, `‖u‖₂ ≤ 1`
   simp only [Ellipsoid.construct_eq_sqrt] at *

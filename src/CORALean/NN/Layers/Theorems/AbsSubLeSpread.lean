@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- An offset chosen freely and the distance to each end rounded up. -/
 theorem abs_sub_le_spread {lo hi c : 𝕋} {y : ℝ}
-    (h1 : toReal lo ≤ y) (h2 : y ≤ toReal hi) :
+    (h1 : toReal lo ≤ y) (h2 : y ≤ toReal hi) : -- --- CONCL ---
     |y - toReal c| ≤ toReal (maximum (subUp hi c) (subUp c lo)) := by -- --- PROOF ---
   have hA := sub_le_subUp hi c
   have hB := sub_le_subUp c lo

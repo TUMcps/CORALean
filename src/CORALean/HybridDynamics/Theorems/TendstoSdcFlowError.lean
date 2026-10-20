@@ -103,7 +103,7 @@ theorem GuardMap.aux_sdcFlow_eq (A : Mat ℝ n n) (x₀ uc : Vec ℝ n) (t : ℝ
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Prop. 1]: `e(t̃_h) = x(t̃_h) - y(t̃_h) → 0` as `η → ∞`. -/
-theorem GuardMap.tendsto_sdcFlow_error (A : Mat ℝ n n) (x₀ uc : Vec ℝ n) (t : ℝ) :
+theorem GuardMap.tendsto_sdcFlow_error (A : Mat ℝ n n) (x₀ uc : Vec ℝ n) (t : ℝ) : -- --- CONCL ---
     Tendsto (fun η : ℕ => (exp (t • A) *ᵥ x₀ + Real.MatExp.expIntegral A t *ᵥ uc)
         - GuardMap.sdcFlow A (GuardMap.sdcInput A uc t η x₀) x₀ t)
       atTop (𝓝 0) := by -- --- PROOF ---

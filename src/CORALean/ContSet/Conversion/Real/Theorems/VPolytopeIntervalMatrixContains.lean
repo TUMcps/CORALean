@@ -40,7 +40,7 @@ variable {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every member of the matrix polytope lies in its interval matrix. -/
-theorem VPolytope.intervalMatrix_contains (P : VPolytope (Mat ℝ m n)) :
+theorem VPolytope.intervalMatrix_contains (P : VPolytope (Mat ℝ m n)) : -- --- CONCL ---
     P.construct ⊆ P.intervalMatrix.construct := by -- --- PROOF ---
   intro x hx
   refine Interval.mem_mat_iff.mpr fun i j => ?_

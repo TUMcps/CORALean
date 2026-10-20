@@ -42,7 +42,7 @@ variable {p h : ℕ}
 /-- The least index of a class is the least index of its own class, which makes
 a non-representative's fibre empty. The two finsets are named rather than left
 to unification, `rep` unfolding to a `min'` over a filter. -/
-theorem PolyZonotope.rep_idem (E : Fin p → Fin h → ℕ) (i : Fin h) :
+theorem PolyZonotope.rep_idem (E : Fin p → Fin h → ℕ) (i : Fin h) : -- --- CONCL ---
     Real.PolyZonotope.rep E (Real.PolyZonotope.rep E i)
       = Real.PolyZonotope.rep E i := by -- --- PROOF ---
   have hcol : Real.PolyZonotope.col E (Real.PolyZonotope.rep E (Real.PolyZonotope.rep E i))

@@ -68,7 +68,7 @@ theorem prod_rep {M : Type} [CommMonoid M] {a r : ℕ} (F : Fin (a * r) → M) :
 /-- Block `j`'s column of `repBlockDiag 0 a E` names `E`'s column over block `j`'s own
 variables. -/
 theorem prod_repBlockDiag {a p h : ℕ} (E : Fin p → Fin h → ℕ) (v : Fin (a * p) → ℝ)
-    (j : Fin a) (i : Fin h) :
+    (j : Fin a) (i : Fin h) : -- --- CONCL ---
     (∏ x, v x ^ repBlockDiag 0 a E x (finProdFinEquiv (j, i)))
       = ∏ k, v (finProdFinEquiv (j, k)) ^ E k i := by -- --- PROOF ---
   rw [prod_rep (fun x => v x ^ repBlockDiag 0 a E x (finProdFinEquiv (j, i)))]

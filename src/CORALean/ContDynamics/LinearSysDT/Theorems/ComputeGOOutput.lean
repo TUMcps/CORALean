@@ -49,7 +49,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.computeGO_output {sys : LinearSysDT 𝕋 n} {R₀ U : S n} {x u : ℕ → Vec ℝ n}
-    (h : sys.IsCanonicalTrajectory R₀ U x u) (out : OutputEq 𝕋 n n r) {nk : ℕ} (k : Fin nk) :
+    (h : sys.IsCanonicalTrajectory R₀ U x u) (out : OutputEq 𝕋 n n r) {nk : ℕ}
+    (k : Fin nk) : -- --- CONCL ---
     out.eval (x k.val) (u k.val) = (sys.computeGO out nk).C k *ᵥ x 0
       + ∑ j : Fin nk, (sys.computeGO out nk).D k j *ᵥ u j + toRealVec out.k := by -- --- PROOF ---
   -- the output is `C x(k) + D u(k)`, with `x(k)` in closed form

@@ -44,7 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.inTriangle_sound {a b c x : Vec 𝕋 2} (h : Polygon.inTriangle a b c x = true) :
+theorem Polygon.inTriangle_sound {a b c x : Vec 𝕋 2}
+    (h : Polygon.inTriangle a b c x = true) : -- --- CONCL ---
     ∃ α β γ : ℝ, 0 ≤ α ∧ 0 ≤ β ∧ 0 ≤ γ ∧ α + β + γ = 1 ∧
       toRealVec x = α • toRealVec a + β • toRealVec b + γ • toRealVec c := by -- --- PROOF ---
   simp only [Polygon.inTriangle, Bool.and_eq_true] at h

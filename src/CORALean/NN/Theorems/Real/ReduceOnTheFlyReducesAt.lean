@@ -69,7 +69,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 
 /-- The loop from one `k` on reduces the original frozen at any bias `c` the box of the
 pending layer `L̂_{k-1}` admits. -/
-theorem aux_reduceOnTheFlyFrom_reducesAt : -- --- CONCL ---
+theorem aux_reduceOnTheFlyFrom_reducesAt :
     ∀ {n n₁ m : ℕ} (rest : ReducibleNetwork ℝ n₁ m) (H : S n) (L : ReducedLinear ℝ n n₁)
       (R : Relaxation ℝ) (hτ : ∃ σ : ℝ → ℝ, R.Sound σ) {σ : ℝ → ℝ} (_hR : R.Sound σ)
       (B : MergeBuckets ℝ)

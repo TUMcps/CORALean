@@ -103,7 +103,8 @@ theorem realImage_mat (M : Mat 𝕋 m n) : RealImage.realImage M = toRealMat M :
 
 /-! ## What the derived operations inherit -/
 
-theorem toReal_strictMargin_pos : 0 < toReal (strictMargin : 𝕋) := by -- --- PROOF ---
+theorem toReal_strictMargin_pos : -- --- CONCL ---
+    0 < toReal (strictMargin : 𝕋) := by -- --- PROOF ---
   have h : ∀ k : ℕ, 0 < toReal (half^[k] (one : 𝕋)) := by
     intro k
     induction k with
@@ -147,7 +148,8 @@ theorem one_div_le_divUp {d : 𝕋} {y : ℝ} (h1 : 1 ≤ toReal d) (h2 : toReal
 
 /-- `maximumOver` bounds every entry, which is what lets one box cover a whole
 list of roundings. -/
-theorem le_maximumOver : ∀ {k : ℕ} (f : Fin k → 𝕋) (l : Fin k),
+theorem le_maximumOver : -- --- CONCL ---
+    ∀ {k : ℕ} (f : Fin k → 𝕋) (l : Fin k),
     toReal (f l) ≤ toReal (maximumOver f) := by -- --- PROOF ---
   intro k
   induction k with
@@ -170,14 +172,15 @@ theorem minimumOver_le {k : ℕ} (f : Fin k → 𝕋) (l : Fin k) :
   exact le_maximumOver (-f) l
 
 /-- A fold of `addUp`, so each partial sum pays one rounding in the same direction. -/
-theorem sum_le_sumUp (f : Fin n → 𝕋) : ∑ i, toReal (f i) ≤ toReal (sumUp f) := by -- --- PROOF ---
+theorem sum_le_sumUp (f : Fin n → 𝕋) : -- --- CONCL ---
+    ∑ i, toReal (f i) ≤ toReal (sumUp f) := by -- --- PROOF ---
   induction n with
   | zero => rw [Finset.univ_eq_empty, Finset.sum_empty, sumUp, toReal_zero]
   | succ n ih =>
     rw [Fin.sum_univ_succ, sumUp]
     exact le_trans (add_le_add (le_refl _) (ih _)) (add_le_addUp _ _)
 
-theorem sumDown_le_sum (f : Fin n → 𝕋) :
+theorem sumDown_le_sum (f : Fin n → 𝕋) : -- --- CONCL ---
     toReal (sumDown f) ≤ ∑ i, toReal (f i) := by -- --- PROOF ---
   induction n with
   | zero => rw [Finset.univ_eq_empty, Finset.sum_empty, sumDown, toReal_zero]
@@ -186,7 +189,7 @@ theorem sumDown_le_sum (f : Fin n → 𝕋) :
     exact le_trans (addDown_le_add _ _) (add_le_add (le_refl _) (ih _))
 
 /-- A count of copies, each addition rounding the way the fold does. -/
-theorem le_nsmulUp (k : ℕ) (a : 𝕋) :
+theorem le_nsmulUp (k : ℕ) (a : 𝕋) : -- --- CONCL ---
     (k : ℝ) * toReal a ≤ toReal (nsmulUp k a) := by -- --- PROOF ---
   induction k with
   | zero => rw [nsmulUp, toReal_zero, Nat.cast_zero, zero_mul]
@@ -194,7 +197,7 @@ theorem le_nsmulUp (k : ℕ) (a : 𝕋) :
     rw [nsmulUp, Nat.cast_add, Nat.cast_one, add_mul, one_mul]
     exact le_trans (by linarith) (add_le_addUp a (nsmulUp k a))
 
-theorem nsmulDown_le (k : ℕ) (a : 𝕋) :
+theorem nsmulDown_le (k : ℕ) (a : 𝕋) : -- --- CONCL ---
     toReal (nsmulDown k a) ≤ (k : ℝ) * toReal a := by -- --- PROOF ---
   induction k with
   | zero => rw [nsmulDown, toReal_zero, Nat.cast_zero, zero_mul]

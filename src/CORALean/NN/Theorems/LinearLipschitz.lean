@@ -44,7 +44,7 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Layer.lipschitzWith_linear_eval (W : Mat ℝ m n) (b : Vec ℝ m) :
+theorem Layer.lipschitzWith_linear_eval (W : Mat ℝ m n) (b : Vec ℝ m) : -- --- CONCL ---
     LipschitzWith (Finset.univ.sup fun i => ∑ j, ‖W i j‖₊)
       (fun x : Vec ℝ n => W *ᵥ x + b) := by -- --- PROOF ---
   refine LipschitzWith.of_dist_le_mul fun x y => ?_

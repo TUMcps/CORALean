@@ -60,7 +60,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.zonotope_contains {S : SpectraShadow 𝕋 (Vec 𝕋 n)}
-    {Yup Ylo : Fin S.m → Mat 𝕋 S.k S.k} :
+    {Yup Ylo : Fin S.m → Mat 𝕋 S.k S.k} : -- --- CONCL ---
     ∀ Z ∈ S.zonotope Yup Ylo,
       S.construct ⊆ Z.construct := by -- --- PROOF ---
   intro Z (h : S.zonotope Yup Ylo = some Z)

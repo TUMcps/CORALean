@@ -38,7 +38,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `contains_` of a time `t` at `tol = 0` iff `t` is in the interval. -/
-theorem STLInterval.containsPoint_zero_iff (I : STLInterval) (t : ℝ) :
+theorem STLInterval.containsPoint_zero_iff (I : STLInterval) (t : ℝ) : -- --- CONCL ---
     I.containsPoint 0 t ↔ t ∈ I.set := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.containsPoint, STLInterval.set]

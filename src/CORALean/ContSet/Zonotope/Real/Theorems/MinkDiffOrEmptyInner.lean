@@ -45,7 +45,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.minkDiffOrEmpty_inner (Z₁ Z₂ : Zonotope α) {D : Zonotope α}
-    (hD : Z₁.minkDiffOrEmpty Z₂ = .of D) :
+    (hD : Z₁.minkDiffOrEmpty Z₂ = .of D) : -- --- CONCL ---
     D.construct ⊆ minkowskiDiff Z₁.construct Z₂.construct := by -- --- PROOF ---
   unfold Zonotope.minkDiffOrEmpty at hD
   split_ifs at hD with h

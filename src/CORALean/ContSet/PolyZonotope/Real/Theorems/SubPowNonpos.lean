@@ -47,7 +47,8 @@ namespace CORALean.Real
 /-- `α^A ≤ α^B` on `[-1,1]` when `B` is zero, or when both are even and `B` is
 the smaller. -/
 theorem PolyZonotope.sub_pow_nonpos {x : ℝ} (hx : |x| ≤ 1) {A B : ℕ}
-    (hcase : B = 0 ∨ (Even A ∧ Even B ∧ B ≤ A)) : x ^ A - x ^ B ≤ 0 := by -- --- PROOF ---
+    (hcase : B = 0 ∨ (Even A ∧ Even B ∧ B ≤ A)) : -- --- CONCL ---
+    x ^ A - x ^ B ≤ 0 := by -- --- PROOF ---
   rcases hcase with hB | ⟨hA, hB, hle⟩
   -- against the empty product, every power of a factor in `[-1,1]` is below one
   · have habs : |x ^ A| ≤ 1 := by

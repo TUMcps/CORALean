@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {f g : ℝ �
 
 -- `ra ≥ 0` is what lets the outer rounding preserve the inner one's direction
 theorem aux_conjSlopeLow_le (R : Relaxation 𝕋) {A B : ScaleRounding 𝕋}
-    (hA : A.Sound ra) (hB : B.Sound rb) (ha : 0 ≤ ra) (l u : 𝕋) :
+    (hA : A.Sound ra) (hB : B.Sound rb) (ha : 0 ≤ ra) (l u : 𝕋) : -- --- CONCL ---
     toReal (Relaxation.conjSlopeLow R A B l u)
       ≤ ra * rb * toReal (R.slope (B.down l) (B.up u)) := by -- --- PROOF ---
   rw [Relaxation.conjSlopeLow]
@@ -62,7 +62,7 @@ theorem aux_conjSlopeLow_le (R : Relaxation 𝕋) {A B : ScaleRounding 𝕋}
     _ = ra * rb * toReal (R.slope (B.down l) (B.up u)) := by ring
 
 theorem aux_le_conjSlopeHigh (R : Relaxation 𝕋) {A B : ScaleRounding 𝕋}
-    (hA : A.Sound ra) (hB : B.Sound rb) (ha : 0 ≤ ra) (l u : 𝕋) :
+    (hA : A.Sound ra) (hB : B.Sound rb) (ha : 0 ≤ ra) (l u : 𝕋) : -- --- CONCL ---
     ra * rb * toReal (R.slope (B.down l) (B.up u))
       ≤ toReal (Relaxation.conjSlopeHigh R A B l u) := by -- --- PROOF ---
   rw [Relaxation.conjSlopeHigh]
@@ -92,7 +92,8 @@ theorem aux_le_conjOffsetHigh (R : Relaxation 𝕋) {A : ScaleRounding 𝕋}
   have h2 := add_le_addUp (A.up (R.offset (B.down l) (B.up u))) c
   linarith
 
-theorem aux_abs_le_conjTBound {l u : 𝕋} {t : ℝ} (hl : toReal l ≤ t) (hu : t ≤ toReal u) :
+theorem aux_abs_le_conjTBound {l u : 𝕋} {t : ℝ} (hl : toReal l ≤ t)
+    (hu : t ≤ toReal u) : -- --- CONCL ---
     |t| ≤ toReal (Relaxation.conjTBound l u) := by -- --- PROOF ---
   rw [Relaxation.conjTBound, toReal_maximum, toReal_absolute, toReal_absolute, abs_le]
   have hnl : -toReal l ≤ |toReal l| := by rw [← abs_neg]; exact le_abs_self _
@@ -110,7 +111,7 @@ theorem aux_abs_le_conjTBound {l u : 𝕋} {t : ℝ} (hl : toReal l ≤ t) (hu :
 arrive: `ofAffineConj` itself stores only scalars. -/
 theorem Relaxation.ofAffineConj_sound {R : Relaxation 𝕋} {A B : ScaleRounding 𝕋} {c : 𝕋}
     (hR : R.Sound f) (hA : A.Sound ra) (hB : B.Sound rb) (ha : 0 < ra) (hb : 0 < rb)
-    (hg : ∀ t, g t = ra * f (rb * t) + toReal c) :
+    (hg : ∀ t, g t = ra * f (rb * t) + toReal c) : -- --- CONCL ---
     (Relaxation.ofAffineConj R A B c).Sound g := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
   show |g t - (toReal (Relaxation.conjSlope R A B l u) * t

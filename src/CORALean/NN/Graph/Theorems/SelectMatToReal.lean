@@ -37,7 +37,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {N K : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem GNN.selectMat_toReal (κ : Fin K → Fin N) :
+theorem GNN.selectMat_toReal (κ : Fin K → Fin N) : -- --- CONCL ---
     toRealMat (GNN.selectMat 𝕋 κ) = Real.GNN.select κ := by -- --- PROOF ---
   funext k i
   rw [Scalar.toRealMat_apply]

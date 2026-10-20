@@ -101,7 +101,7 @@ theorem aux_valueAt_cellsFrom {T V : Type} [LinearOrder T] (d t : T) : -- --- CO
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FiniteSignal.at?_spec {T V : Type} [LinearOrder T] [Zero T] (s : FiniteSignal T V)
-    (hs : s.IsValid) (t : T) (v : V) :
+    (hs : s.IsValid) (t : T) (v : V) : -- --- CONCL ---
     s.at? t = some v ↔ 0 ≤ t ∧ t ≤ s.duration ∧ ∃ c ∈ s.cells, c.2 = v ∧ c.1.1 ≤ t ∧
       (t < c.1.2 ∨ (t = c.1.2 ∧ c.1.2 = s.duration)) := by -- --- PROOF ---
   obtain ⟨hmem, hle⟩ := FiniteSignal.time_le_duration s hs

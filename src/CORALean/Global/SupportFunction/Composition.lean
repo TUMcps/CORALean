@@ -127,7 +127,7 @@ def SupportWitness.smul {r : ℝ} (hr : 0 ≤ r) (u : SupportWitness S c) :
 /-- A set that is enclosed carries none of the enclosure's bounds: `{0}` is
 bounded along `id` and the line containing it is not. Why no operation class
 composes a bound — each guarantees only that the computed set is the larger. -/
-theorem exists_outer_without_supportBound :
+theorem exists_outer_without_supportBound : -- --- CONCL ---
     ∃ X Y : Set ℝ, X ⊆ Y ∧ Nonempty (SupportBound X LinearMap.id) ∧
       IsEmpty (SupportBound Y LinearMap.id) := by -- --- PROOF ---
   refine ⟨{0}, Set.univ, Set.subset_univ _, ⟨⟨0, ?_⟩⟩, ⟨fun u => ?_⟩⟩
@@ -139,7 +139,8 @@ theorem exists_outer_without_supportBound :
 
 /-- The sublevel set of a linear functional, which is the halfspace a bound
 names. -/
-theorem convex_le (c : α →ₗ[ℝ] ℝ) (v : ℝ) : Convex ℝ {w : α | c w ≤ v} := by -- --- PROOF ---
+theorem convex_le (c : α →ₗ[ℝ] ℝ) (v : ℝ) : -- --- CONCL ---
+    Convex ℝ {w : α | c w ≤ v} := by -- --- PROOF ---
   intro p hp q hq a b ha hb hab
   show c (a • p + b • q) ≤ v
   rw [map_add, map_smul, map_smul, smul_eq_mul, smul_eq_mul]

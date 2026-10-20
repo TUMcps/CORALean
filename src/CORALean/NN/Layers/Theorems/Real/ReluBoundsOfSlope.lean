@@ -49,7 +49,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem relu_bounds_of_slope {lam l u t : ℝ} (h0 : 0 ≤ lam) (h1 : lam ≤ 1)
-    (hl : l ≤ t) (hu : t ≤ u) :
+    (hl : l ≤ t) (hu : t ≤ u) : -- --- CONCL ---
     0 ≤ relu t - lam * t ∧ relu t - lam * t ≤ reluGapOfSlope lam l u := by -- --- PROOF ---
   rcases le_total 0 t with ht | ht
   · have hrt : relu t = t := max_eq_left ht

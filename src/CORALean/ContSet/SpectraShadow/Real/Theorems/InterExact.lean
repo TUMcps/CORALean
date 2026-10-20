@@ -114,7 +114,7 @@ theorem SpectraShadow.aux_posSemidef_inter_iff (S₁ S₂ : SpectraShadow (Vec �
 
 /-- The point of `inter` is `S₁`'s, read at the first half of the variables. -/
 theorem SpectraShadow.aux_gen_inter (S₁ S₂ : SpectraShadow (Vec ℝ n))
-    (β : Fin (S₁.m + S₂.m) → ℝ) :
+    (β : Fin (S₁.m + S₂.m) → ℝ) : -- --- CONCL ---
     (S₁.inter S₂).c + ∑ i : Fin (S₁.inter S₂).m, β i • (S₁.inter S₂).G i
       = S₁.c + ∑ i, β (Fin.castAdd S₂.m i) • S₁.G i := by -- --- PROOF ---
   have h : ∑ i : Fin (S₁.inter S₂).m, β i • (S₁.inter S₂).G i
@@ -127,7 +127,7 @@ theorem SpectraShadow.aux_gen_inter (S₁ S₂ : SpectraShadow (Vec ℝ n))
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.inter_exact (S₁ S₂ : SpectraShadow (Vec ℝ n)) :
+theorem SpectraShadow.inter_exact (S₁ S₂ : SpectraShadow (Vec ℝ n)) : -- --- CONCL ---
     S₁.construct ∩ S₂.construct = (S₁.inter S₂).construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro x ⟨⟨β₁, h₁, hx₁⟩, ⟨β₂, h₂, hx₂⟩⟩

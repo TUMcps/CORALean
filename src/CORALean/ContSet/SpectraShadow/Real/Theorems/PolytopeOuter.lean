@@ -60,7 +60,7 @@ theorem aux_polytopeOuter_row (S : SpectraShadow (Vec ℝ n)) (c : Vec ℝ n)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.polytopeOuter_outer (S : SpectraShadow (Vec ℝ n)) (c : Vec ℝ n)
-    (dirs : Fin N → (Vec ℝ n →ₗ[ℝ] ℝ)) :
+    (dirs : Fin N → (Vec ℝ n →ₗ[ℝ] ℝ)) : -- --- CONCL ---
     S.construct ⊆ (S.polytopeOuter c dirs).construct := by -- --- PROOF ---
   intro x hx
   have hne : S.construct ≠ ∅ := Set.nonempty_iff_ne_empty.1 ⟨x, hx⟩

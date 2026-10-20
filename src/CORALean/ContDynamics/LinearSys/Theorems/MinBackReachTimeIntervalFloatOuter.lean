@@ -94,7 +94,8 @@ theorem LinearSys.minBackReachTimeIntervalFloat_outer (sys : LinearSys 𝕋 n) {
     -- (46), (49): each `p_(j)` is a support value of some trajectory's own set
     (hp : ∀ j : Fin q, ∃ i : Fin q,
       ∀ x ∈ sys.timeIntervalBackReachSetOfInputExact T U W Xend τ (û i),
-        (toRealMat N *ᵥ x) j ≤ toReal (sys.minBackReachPFloat CZ W₀ U₀ Zw N t₀ Δt η ν (ω - 1) j)) :
+        (toRealMat N *ᵥ x) j ≤ toReal (sys.minBackReachPFloat CZ W₀ U₀ Zw N t₀ Δt η ν (ω - 1) j))
+    : -- --- CONCL ---
     sys.timeIntervalBackReachSetForallExistsExact T U W Xend τ ⊆
       ⋃ k < ω, ((sys.minBackReachRunFloat CZ W₀ U₀ Zw t₀ Δt η ν k).R.construct ∩
         (HPolytope.ineqs N

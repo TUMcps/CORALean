@@ -108,7 +108,7 @@ theorem LinParamSys.IsNullZono.plus {Z₁ Z₂ : Zonotope (Vec ℝ 1)} (h₁ : I
     simp [Fin.append_left, Fin.append_right, h₁.2, h₂.2]
 
 theorem LinParamSys.IsNullZono.mtimesInterval {Z : Zonotope (Vec ℝ 1)} (hZ : IsNullZono Z)
-    (IM : Interval (Mat ℝ 1 1)) :
+    (IM : Interval (Mat ℝ 1 1)) : -- --- CONCL ---
     IsNullZono (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) IM Z) := by -- --- PROOF ---
   refine ⟨by show IM.center *ᵥ Z.c = 0; rw [hZ.1]; simp, fun l => ?_⟩
   show Fin.append (fun l => IM.center *ᵥ Z.G l)
@@ -120,7 +120,7 @@ theorem LinParamSys.IsNullZono.mtimesInterval {Z : Zonotope (Vec ℝ 1)} (hZ : I
     simp [Matrix.diagonal_apply, Zonotope.radiusReach, Zonotope.absBound, hZ.1, hZ.2]
 
 theorem LinParamSys.IsNullZono.mtimesMatZonotope {Z : Zonotope (Vec ℝ 1)} (hZ : IsNullZono Z)
-    (M : Zonotope (Mat ℝ 1 1)) :
+    (M : Zonotope (Mat ℝ 1 1)) : -- --- CONCL ---
     IsNullZono (Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵) M Z) := by -- --- PROOF ---
   refine ⟨by simp [Mtimes.mtimes, Zonotope.mtimesMatZonotope, Zonotope.bilin, hZ.1], fun l => ?_⟩
   simp only [Mtimes.mtimes, Zonotope.mtimesMatZonotope, Zonotope.bilin]
@@ -130,7 +130,7 @@ theorem LinParamSys.IsNullZono.mtimesMatZonotope {Z : Zonotope (Vec ℝ 1)} (hZ 
   · simp [Fin.append_right, hZ.2]
 
 theorem LinParamSys.IsNullZono.mtimesMatZonotope_zero {Z : Zonotope (Vec ℝ 1)}
-    {M : Zonotope (Mat ℝ 1 1)} (hc : M.c = 0) (hh : M.h = 0) :
+    {M : Zonotope (Mat ℝ 1 1)} (hc : M.c = 0) (hh : M.h = 0) : -- --- CONCL ---
     IsNullZono (Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵) M Z) := by -- --- PROOF ---
   refine ⟨by simp [Mtimes.mtimes, Zonotope.mtimesMatZonotope, Zonotope.bilin, hc], fun l => ?_⟩
   simp only [Mtimes.mtimes, Zonotope.mtimesMatZonotope, Zonotope.bilin]

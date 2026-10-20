@@ -46,7 +46,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- Where `R` has no independent generators, a point of `R` and a point of a zero-centered zonotope
 add to a point of `R` with the zonotope's generators in its independent block. -/
 theorem PolyZonotope.aux_replaceGI_mem (R : PolyZonotope α) (hq : R.q = 0) (Z : Zonotope α)
-    (hc : Z.c = 0) {d z : α} (hd : d ∈ R.construct) (hz : z ∈ Z.construct) :
+    (hc : Z.c = 0) {d z : α} (hd : d ∈ R.construct) (hz : z ∈ Z.construct) : -- --- CONCL ---
     d + z ∈ ({ R with q := Z.h, GI := Z.G } : PolyZonotope α).construct := by -- --- PROOF ---
   haveI : IsEmpty (Fin R.q) := by rw [hq]; infer_instance
   obtain ⟨a, -, ha, -, rfl⟩ := hd
@@ -73,7 +73,7 @@ theorem PolyZonotope.aux_mem_linComb_right {Z₁ Z₂ : Zonotope α} (h₁ : (0 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.union_subset_convHull (pZ₁ pZ₂ : PolyZonotope α) :
+theorem PolyZonotope.union_subset_convHull (pZ₁ pZ₂ : PolyZonotope α) : -- --- CONCL ---
     pZ₁.construct ∪ pZ₂.construct ⊆ (pZ₁.convHull pZ₂).construct := by -- --- PROOF ---
   -- the dependent parts, the independent zonotopes
   set A := pZ₁.noIndep with hA

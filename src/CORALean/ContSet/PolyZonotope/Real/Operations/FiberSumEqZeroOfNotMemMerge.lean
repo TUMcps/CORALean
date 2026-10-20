@@ -45,7 +45,7 @@ variable {α : Type} [AddCommGroup α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.fiberSum_eq_zero_of_notMem_merge {p h : ℕ} (E : Fin p → Fin h → ℕ)
-    (G : Fin h → α) {j : Fin h} (hj : j ∉ PolyZonotope.mergeKeep E) :
+    (G : Fin h → α) {j : Fin h} (hj : j ∉ PolyZonotope.mergeKeep E) : -- --- CONCL ---
     PolyZonotope.fiberSum (PolyZonotope.rep E) G j = 0 := by -- --- PROOF ---
   rw [PolyZonotope.fiberSum]
   refine Finset.sum_eq_zero fun l hl => ?_

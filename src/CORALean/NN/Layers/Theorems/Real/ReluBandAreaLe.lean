@@ -53,7 +53,7 @@ namespace CORALean.Real
 
 /-- Every sound band over a crossing box is at least as large as DeepZ's. -/
 theorem relu_band_area_le {l u lam c d : ℝ} (hl : l < 0) (hu : 0 < u)
-    (hband : ∀ t, l ≤ t → t ≤ u → lam * t + c ≤ relu t ∧ relu t ≤ lam * t + d) :
+    (hband : ∀ t, l ≤ t → t ≤ u → lam * t + c ≤ relu t ∧ relu t ≤ lam * t + d) : -- --- CONCL ---
     (deepZRelu.error l u + deepZRelu.error l u) * (u - l)
       ≤ (d - c) * (u - l) := by -- --- PROOF ---
   have herr : deepZRelu.error l u = -(u * l) / (2 * (u - l)) := by

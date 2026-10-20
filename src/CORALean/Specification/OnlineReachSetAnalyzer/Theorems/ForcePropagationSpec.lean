@@ -37,7 +37,8 @@ variable {S : ℕ → Type} {d : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem OnlineReachSetAnalyzer.forcePropagation_spec (eps : ℝ) (obj : OnlineReachSetAnalyzer S d) :
+theorem OnlineReachSetAnalyzer.forcePropagation_spec (eps : ℝ)
+    (obj : OnlineReachSetAnalyzer S d) : -- --- CONCL ---
     obj.forcePropagation eps = obj.propagate eps (STLInterval.stlInterval 0 ⊤ true true le_rfl) ∧
       (STLInterval.stlInterval 0 ⊤ true true le_rfl).set = Set.Ici 0 := by -- --- PROOF ---
   refine ⟨rfl, ?_⟩

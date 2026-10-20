@@ -44,7 +44,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Thm. 5.2]'s step `∫₀^τ e^{-t z̃}dt ≤ τe^{-τz̃}` fails at `z̃ = τ = 1`. -/
-theorem Krylov.wang_ye_integral_step_counterexample :
+theorem Krylov.wang_ye_integral_step_counterexample : -- --- CONCL ---
     ∃ z τ : ℝ, 0 < z ∧ 0 < τ ∧
       τ * Real.exp (-(τ * z)) < ∫ s in (0 : ℝ)..τ, Real.exp (-(s * z)) := by -- --- PROOF ---
   -- at `z = τ = 1` the integral is `1 - e^{-1}`

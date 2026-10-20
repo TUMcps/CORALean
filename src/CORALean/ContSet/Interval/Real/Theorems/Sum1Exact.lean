@@ -42,7 +42,7 @@ variable {m n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem aux_exists_sum {ι : Type} [Fintype ι] {a b : ι → ℝ} (hab : ∀ i, a i ≤ b i) {y : ℝ}
-    (h₁ : ∑ i, a i ≤ y) (h₂ : y ≤ ∑ i, b i) :
+    (h₁ : ∑ i, a i ≤ y) (h₂ : y ≤ ∑ i, b i) : -- --- CONCL ---
     ∃ x : ι → ℝ, (∀ i, a i ≤ x i ∧ x i ≤ b i) ∧ ∑ i, x i = y := by -- --- PROOF ---
   have hW : 0 ≤ ∑ i, (b i - a i) := Finset.sum_nonneg fun i _ => sub_nonneg.2 (hab i)
   have hWe : ∑ i, (b i - a i) = ∑ i, b i - ∑ i, a i := by rw [Finset.sum_sub_distrib]
@@ -65,7 +65,7 @@ theorem aux_exists_sum {ι : Type} [Fintype ι] {a b : ι → ℝ} (hab : ∀ i,
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.sum₁_exact {I : Interval (Mat ℝ m n)} (hI : I.IsNonempty) :
+theorem Interval.sum₁_exact {I : Interval (Mat ℝ m n)} (hI : I.IsNonempty) : -- --- CONCL ---
     I.sum₁.construct =
       (fun A : Mat ℝ m n => fun j => ∑ i, A i j) '' I.construct := by -- --- PROOF ---
   ext y

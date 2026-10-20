@@ -37,7 +37,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem setLinComb_eq_convexJoin (X Y : Set α) :
+theorem setLinComb_eq_convexJoin (X Y : Set α) : -- --- CONCL ---
     Set.linComb X Y = convexJoin ℝ X Y := by -- --- PROOF ---
   ext x
   simp only [Set.linComb, Set.mem_setOf_eq, mem_convexJoin, segment_eq_image, Set.mem_image,

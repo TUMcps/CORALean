@@ -49,7 +49,7 @@ variable {m : ℕ}
 
 -- the proof is a single partition-of-the-ball argument, not worth splitting into files
 theorem l1Ball_orthant_volume (vol : Measure (Fin m → ℝ)) [vol.IsAddHaarMeasure]
-    (s : Fin m → ℝ) (hs : ∀ j, s j = 1 ∨ s j = -1) :
+    (s : Fin m → ℝ) (hs : ∀ j, s j = 1 ∨ s j = -1) : -- --- CONCL ---
     vol {x | (∑ j, |x j|) ≤ 1 ∧ ∀ j, 0 < s j * x j} * 2 ^ m
       = vol {x | ∑ j, |x j| ≤ 1} := by -- --- PROOF ---
   set K : Set (Fin m → ℝ) := {x | ∑ j, |x j| ≤ 1} with hK

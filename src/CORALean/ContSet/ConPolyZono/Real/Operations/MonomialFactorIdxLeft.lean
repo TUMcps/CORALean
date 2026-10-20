@@ -44,7 +44,7 @@ namespace CORALean.Real
 /-- A generator monomial reads the kept factors and no others: it is a monomial
 of `appendE`'s left half, and `monomial_factorIdx` holds of the whole. -/
 theorem ConPolyZono.monomial_factorIdx_left {p h q : ℕ} (E : Fin p → Fin h → ℕ)
-    (R : Fin p → Fin q → ℕ) (a : Fin p → ℝ) (i : Fin h) : -- --- CONCL ---
+    (R : Fin p → Fin q → ℕ) (a : Fin p → ℝ) (i : Fin h) :
     PolyZonotope.monomial (fun k i => E (ConPolyZono.factorIdx E R k) i)
         (fun k => a (ConPolyZono.factorIdx E R k)) i
       = PolyZonotope.monomial E a i :=

@@ -49,7 +49,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.reduceLineCl_order_le (Z : Zonotope (Vec ℝ n)) {o : ℕ} (ho : 0 < o) (ξ : ℝ)
-    (fuel runs : ℕ) : (Z.reduceLineCl o ξ fuel runs).h ≤ o * n := by -- --- PROOF ---
+    (fuel runs : ℕ) : -- --- CONCL ---
+    (Z.reduceLineCl o ξ fuel runs).h ≤ o * n := by -- --- PROOF ---
   have hK : (o - 1) * n + n = o * n := by
     rw [Nat.sub_one_mul, Nat.sub_add_cancel (Nat.le_mul_of_pos_left n ho)]
   unfold Zonotope.reduceLineCl

@@ -56,7 +56,7 @@ variable {n : ℕ}
 /-- An ellipsoid with a square generator `F` around the parallelotope has `nⁿ det(G)² ≤ det(F)²`. -/
 theorem aux_parallelotope_det_sq_le {G F : Mat ℝ n n} (hG : IsUnit G.det) {z q : Vec ℝ n}
     (hsub : {x | ∃ β : Vec ℝ n, (∀ j, |β j| ≤ 1) ∧ x = z + G *ᵥ β} ⊆
-      (Ellipsoid.ofFactor F q).construct) :
+      (Ellipsoid.ofFactor F q).construct) : -- --- CONCL ---
     (n : ℝ) ^ n * G.det ^ 2 ≤ F.det ^ 2 := by -- --- PROOF ---
   rcases Nat.eq_zero_or_pos n with rfl | hn
   · simp

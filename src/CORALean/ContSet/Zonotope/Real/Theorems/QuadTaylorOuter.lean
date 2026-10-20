@@ -185,7 +185,7 @@ theorem Zonotope.aux_quadTaylor_pairblock {n h : ℕ} (G : Fin h → Mat ℝ n n
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.quadTaylor_outer {n : ℕ} (A_Z : Zonotope (Mat ℝ n n)) (t : ℝ) :
+theorem Zonotope.quadTaylor_outer {n : ℕ} (A_Z : Zonotope (Mat ℝ n n)) (t : ℝ) : -- --- CONCL ---
     (fun A => (1 : Mat ℝ n n) + t • A + (t ^ 2 / 2) • (A * A)) '' A_Z.construct
       ⊆ (A_Z.quadTaylor t).construct := by -- --- PROOF ---
   rintro _ ⟨A, ⟨p, hp, rfl⟩, rfl⟩

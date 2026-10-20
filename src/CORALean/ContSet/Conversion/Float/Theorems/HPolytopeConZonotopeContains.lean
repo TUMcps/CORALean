@@ -64,7 +64,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q h : ℕ}
 covers the carrying error, and so does the point, with its error-box point `0`. -/
 private theorem HPolytope.subset_conZonotopeOf (P : HPolytope 𝕋 (Vec 𝕋 n))
     (Z : Zonotope (Vec 𝕋 n)) (hZ : P.construct ⊆ nominalSet Z)
-    (h0 : (0 : Vec ℝ n) ∈ Z.I_error.construct) :
+    (h0 : (0 : Vec ℝ n) ∈ Z.I_error.construct) : -- --- CONCL ---
     P.construct ⊆ (P.conZonotopeOf Z).construct := by -- --- PROOF ---
   intro x hx
   obtain ⟨β, hβ, hval⟩ := Zonotope.mem_nominalSet_iff.mp (hZ hx)
@@ -116,7 +116,7 @@ private theorem HPolytope.subset_conZonotopeOf (P : HPolytope 𝕋 (Vec 𝕋 n))
 
 theorem HPolytope.conZonotope_contains {P : HPolytope 𝕋 (Vec 𝕋 n)}
     (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) :
+    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : -- --- CONCL ---
     P.construct ⊆ (HPolytope.conZonotope up lo).construct := by -- --- PROOF ---
   refine HPolytope.subset_conZonotopeOf P _ (fun y hy =>
     Interval.subset_nominal_zonotope _ (HPolytope.interval_contains up lo hy)) fun i => ?_

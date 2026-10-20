@@ -84,7 +84,7 @@ private theorem SyntaxTree.exists_sin_branch {s lo hi : ℝ}
     constructor <;> linarith
 
 /-- `aux_sin_` is sound for `sin`. -/
-theorem SyntaxTree.sin_sound (prev : Dom) :
+theorem SyntaxTree.sin_sound (prev : Dom) : -- --- CONCL ---
     UnarySound Unary.sin.fn prev (Real.Interval.sin prev) funHanSin := by -- --- PROOF ---
   intro int _ s hs hi
   have h : int.inf 0 ≤ Real.sin s ∧ Real.sin s ≤ int.sup 0 := hi

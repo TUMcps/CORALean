@@ -50,7 +50,8 @@ namespace CORALean
 
 /-- A flow with derivative one moves the state by the dwell time. -/
 theorem aux_flows_one {x x' t : ℝ}
-    (h : (DiffInclAutomaton.singleMode ({0} : Set ℝ) (fun _ => (1 : ℝ))).Flows () x t x') :
+    (h : (DiffInclAutomaton.singleMode ({0} : Set ℝ) (fun _ => (1 : ℝ))).Flows () x t x')
+    : -- --- CONCL ---
     x' = x + t := by -- --- PROOF ---
   obtain ⟨ht, g, hd, h0, htt, hg⟩ := h
   -- the mean value theorem for `g δ - δ`, whose derivative vanishes on the interior
@@ -87,7 +88,7 @@ theorem aux_flows_unit (x : ℝ) :
     simp [DiffInclAutomaton.singleMode, this]⟩
 
 -- The scaled automaton, at `g ≡ 1` and `t_begin = t_scaling = 1`, runs `x` up to `x + 1` in a mode.
-theorem aux_scaling_flow {k : Fin 3} (hk : k = 0 ∨ k = 1) (x : ℝ) :
+theorem aux_scaling_flow {k : Fin 3} (hk : k = 0 ∨ k = 1) (x : ℝ) : -- --- CONCL ---
     (DiffInclAutomaton.scalingConversion ({0} : Set ℝ) (fun _ => (1 : ℝ)) (fun _ => (1 : ℝ))
       1 1).Flows k (x, 0) 1 (x + 1, 0 + 1) := by -- --- PROOF ---
   refine DiffInclAutomaton.flows_timer (c := 1) (aux_flows_unit x) ?_ ?_ (by norm_num)
@@ -98,7 +99,7 @@ theorem aux_scaling_flow {k : Fin 3} (hk : k = 0 ∨ k = 1) (x : ℝ) :
     rcases hk with rfl | rfl <;> simp [DiffInclAutomaton.scalingConversion, hτ]
 
 /-- The scaled automaton reaches `2` in duration `2`. -/
-theorem aux_reaches_two :
+theorem aux_reaches_two : -- --- CONCL ---
     (2 : ℝ) ∈ Prod.fst '' (DiffInclAutomaton.scalingConversion ({0} : Set ℝ) (fun _ => (1 : ℝ))
       (fun _ => (1 : ℝ)) 1 1).reachLE (1 + 1) := by -- --- PROOF ---
   set H := DiffInclAutomaton.scalingConversion ({0} : Set ℝ) (fun _ => (1 : ℝ))
@@ -118,7 +119,7 @@ theorem aux_reaches_two :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- At `ẋ = 1`, `g ≡ 1`, `t_begin = t_scaling = T = 1` the error against `Reach≤T` is not zero. -/
-theorem DiffInclAutomaton.scalingConversion_not_zeroError :
+theorem DiffInclAutomaton.scalingConversion_not_zeroError : -- --- CONCL ---
     ¬ (DiffInclAutomaton.singleMode ({0} : Set ℝ) (fun _ => (1 : ℝ))).OverapproxErrorLE 1
       (DiffInclAutomaton.scalingConversion ({0} : Set ℝ) (fun _ => (1 : ℝ)) (fun _ => (1 : ℝ))
         1 1) Prod.fst (1 + 1) 0 := by -- --- PROOF ---

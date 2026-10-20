@@ -48,7 +48,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.mem_shear_construct (Z : Zonotope (Vec ℝ 2)) (κ : ℝ) (p : Vec ℝ 2) :
+theorem Zonotope.mem_shear_construct (Z : Zonotope (Vec ℝ 2)) (κ : ℝ)
+    (p : Vec ℝ 2) : -- --- CONCL ---
     p ∈ (Z.shear κ).construct ↔
       (![p 0 + κ * p 1, p 1] : Vec ℝ 2) ∈ Z.construct := by -- --- PROOF ---
   -- the unshear undoes the shear

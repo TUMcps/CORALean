@@ -64,7 +64,7 @@ def insertIdx {n : ℕ} (r : Fin n) {M : Sort*} (a : M) (f : Fin (n - 1) → M) 
   simp [insertIdx, dropIdx]
 
 /-- A property holding everywhere splits the same way a sum does. -/
-theorem forall_dropIdx_iff {n : ℕ} (r : Fin n) {P : Fin n → Prop} :
+theorem forall_dropIdx_iff {n : ℕ} (r : Fin n) {P : Fin n → Prop} : -- --- CONCL ---
     (∀ l, P l) ↔ P r ∧ ∀ i, P (dropIdx r i) := by -- --- PROOF ---
   have h : n - 1 + 1 = n := Nat.succ_pred_eq_of_pos r.pos
   refine ⟨fun hP => ⟨hP r, fun i => hP (dropIdx r i)⟩, fun ⟨hr, hi⟩ l => ?_⟩

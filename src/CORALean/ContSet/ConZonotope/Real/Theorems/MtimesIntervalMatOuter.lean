@@ -62,7 +62,7 @@ theorem ConZonotope.aux_sum_univ_mtimesIntervalMat {IM : Interval (Mat ℝ m n)}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
-    (cZ : ConZonotope (Vec ℝ n)) :
+    (cZ : ConZonotope (Vec ℝ n)) : -- --- CONCL ---
     (⋃ A ∈ IM.construct, (A *ᵥ ·) '' cZ.construct)
       ⊆ (ConZonotope.mtimesIntervalMat IM cZ).construct := by -- --- PROOF ---
   rintro y hy

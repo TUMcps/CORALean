@@ -45,7 +45,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.mem_liftEq_of_mem (cZ : ConZonotope (Vec ℝ n)) {x : Vec ℝ n}
-    (hx : x ∈ cZ.construct) :
+    (hx : x ∈ cZ.construct) : -- --- CONCL ---
     (Fin.append x (0 : Vec ℝ cZ.P.me) : Vec ℝ (n + cZ.P.me)) ∈
       cZ.liftEq.construct := by -- --- PROOF ---
   obtain ⟨β, hβ, hP, hxi⟩ := ConZonotope.mem_construct_iff.mp hx

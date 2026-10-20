@@ -44,7 +44,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ContSet.enclose_outer (s : S n) (M : Mat 𝕋 n n) (s₂ : S n) :
+theorem ContSet.enclose_outer (s : S n) (M : Mat 𝕋 n n) (s₂ : S n) : -- --- CONCL ---
     Set.linComb (construct s)
         ((fun y : Vec ℝ n => (toRealMat M).mulVec y) '' construct s + construct s₂) ⊆
       construct (ContSet.enclose s M s₂) := by -- --- PROOF ---

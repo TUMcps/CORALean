@@ -39,7 +39,7 @@ variable {T : Type} [LinearOrder T] [Zero T]
 
 /-- A prefix of a valid signal is valid. -/
 theorem PointSegmentSignal.isValid_take (s : PointSegmentSignal T) (hs : s.IsValid) (m : ℕ)
-    (hm1 : 1 ≤ m) (hm2 : m ≤ s.timePoints.length) :
+    (hm1 : 1 ≤ m) (hm2 : m ≤ s.timePoints.length) : -- --- CONCL ---
     (PointSegmentSignal.mk (s.timePoints.take m) (s.values.take (2 * m))).IsValid
       := by -- --- PROOF ---
   obtain ⟨h1, h2, h3, h4, h5⟩ := hs

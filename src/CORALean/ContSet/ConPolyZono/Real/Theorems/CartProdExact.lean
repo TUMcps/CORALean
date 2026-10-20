@@ -73,7 +73,7 @@ theorem ConPolyZono.aux_sum_univ_cartProd_qI {cPZ₁ : ConPolyZono α} {cPZ₂ :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.cartProd_exact (cPZ₁ : ConPolyZono α) (cPZ₂ : ConPolyZono β) :
+theorem ConPolyZono.cartProd_exact (cPZ₁ : ConPolyZono α) (cPZ₂ : ConPolyZono β) : -- --- CONCL ---
     cPZ₁.construct ×ˢ cPZ₂.construct = (cPZ₁.cartProd cPZ₂).construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro ⟨x₁, x₂⟩ ⟨⟨a₁, β₁, hβ₁, hs₁, hx₁⟩, ⟨a₂, β₂, hβ₂, hs₂, hx₂⟩⟩

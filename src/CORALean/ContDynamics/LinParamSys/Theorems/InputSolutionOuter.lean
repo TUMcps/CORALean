@@ -108,7 +108,8 @@ theorem LinParamSys.inputSolution_outer (sys : LinParamSys ℐ n)
       (MatExp.intervalInputRemainder sys.A r η) U)))
     {u : ℝ → Vec ℝ n}
     (hu : ∀ τ ∈ Set.Ioc (0:ℝ) r, u (r - τ) ∈ construct U)
-    (hmeas : AEStronglyMeasurable (fun τ => u (r - τ)) (volume.restrict (Set.Ioc 0 r))) :
+    (hmeas : AEStronglyMeasurable (fun τ => u (r - τ)) (volume.restrict (Set.Ioc 0 r)))
+    : -- --- CONCL ---
     (∫ s in (0:ℝ)..r, exp ((r - s) • A) *ᵥ u s)
       ∈ construct (sys.inputSolution r η U) := by -- --- PROOF ---
   -- the condition is checkable from the box; the member's own is what the tail needs

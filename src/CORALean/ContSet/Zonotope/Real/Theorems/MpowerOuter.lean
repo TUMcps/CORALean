@@ -42,7 +42,8 @@ variable {n : ℕ}
 
 /-- Every power `M ^ k` of a member lies in the `k`-th matrix-zonotope power. -/
 theorem Zonotope.mpower_outer (Z : Zonotope (Mat ℝ n n)) {M : Mat ℝ n n} (hM : M ∈ Z.construct)
-    (k : ℕ) : M ^ k ∈ (Zonotope.mpower Z k).construct := by -- --- PROOF ---
+    (k : ℕ) : -- --- CONCL ---
+    M ^ k ∈ (Zonotope.mpower Z k).construct := by -- --- PROOF ---
   rcases k with _ | k
   · rw [pow_zero]
     exact Zonotope.center_mem_construct (Zonotope.ofPoint 1)

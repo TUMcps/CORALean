@@ -88,7 +88,7 @@ theorem CoeffDom.X_mul {P A : ℝ[X]} (h : CoeffDom P A) : CoeffDom (X * P) (X *
     rw [coeff_X]; split_ifs <;> simp).mul h
 
 -- the value at `y` is bounded by the dominating polynomial at `|y|`
-theorem CoeffDom.of_abs_le {P A : ℝ[X]} (h : CoeffDom P A) (y : ℝ) :
+theorem CoeffDom.of_abs_le {P A : ℝ[X]} (h : CoeffDom P A) (y : ℝ) : -- --- CONCL ---
     |P.eval y| ≤ A.eval |y| := by -- --- PROOF ---
   have hdeg : P.natDegree ≤ A.natDegree := by
     rw [natDegree_le_iff_coeff_eq_zero]

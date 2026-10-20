@@ -46,7 +46,7 @@ open scoped MatrixOrder
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The points of the unit ellipsoid in the plane: the closed unit disc. -/
-theorem Ellipsoid.aux_mem_disc (x : Vec ℝ 2) :
+theorem Ellipsoid.aux_mem_disc (x : Vec ℝ 2) : -- --- CONCL ---
     x ∈ (⟨1, 0, .one⟩ : Ellipsoid 2).construct ↔ x 0 ^ 2 + x 1 ^ 2 ≤ 1 := by -- --- PROOF ---
   have hG : (⟨1, 0, .one⟩ : Ellipsoid 2).G = 1 := CFC.sqrt_one
   have hball : x ∈ (⟨1, 0, .one⟩ : Ellipsoid 2).construct ↔ ‖x‖₂ ≤ 1 :=
@@ -62,7 +62,7 @@ theorem Ellipsoid.aux_mem_disc (x : Vec ℝ 2) :
     nlinarith [norm₂_nonneg x]
 
 /-- The unit vectors `((1 - t²)/(1 + t²), 2t/(1 + t²))`, one for each natural number `t`. -/
-theorem Ellipsoid.aux_unit_family (t : ℕ) :
+theorem Ellipsoid.aux_unit_family (t : ℕ) : -- --- CONCL ---
     ∃ d : Vec ℝ 2, d 0 ^ 2 + d 1 ^ 2 = 1 ∧
       d 0 = (1 - (t : ℝ) ^ 2) / (1 + (t : ℝ) ^ 2) := by -- --- PROOF ---
   have hpos : (1 : ℝ) + (t : ℝ) ^ 2 ≠ 0 := by positivity
@@ -75,7 +75,7 @@ theorem Ellipsoid.aux_unit_family (t : ℕ) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.exists_not_vPolytope :
+theorem Ellipsoid.exists_not_vPolytope : -- --- CONCL ---
     ∃ E : Ellipsoid 2, ¬ ∃ V : VPolytope (Vec ℝ 2), V.construct = E.construct := by -- --- PROOF ---
   refine ⟨⟨1, 0, .one⟩, ?_⟩
   rintro ⟨V, hV⟩

@@ -42,7 +42,7 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.cartProdVec_exact (E : Ellipsoid n) (v : Vec ℝ m) :
+theorem Ellipsoid.cartProdVec_exact (E : Ellipsoid n) (v : Vec ℝ m) : -- --- CONCL ---
     (E.cartProdVec v).construct =
       (fun x : Vec ℝ n => (Fin.append x v : Vec ℝ (n + m))) '' E.construct := by -- --- PROOF ---
   rw [E.construct_eq_sqrt]

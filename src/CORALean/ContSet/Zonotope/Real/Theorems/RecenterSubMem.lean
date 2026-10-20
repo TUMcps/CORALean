@@ -37,7 +37,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.sub_center_mem_recenter {Z : Zonotope α} {y : α} (hy : y ∈ Z.construct) :
+theorem Zonotope.sub_center_mem_recenter {Z : Zonotope α} {y : α}
+    (hy : y ∈ Z.construct) : -- --- CONCL ---
     y - Z.c ∈ Z.recenter.construct := by -- --- PROOF ---
   obtain ⟨β, hβ, hy⟩ := hy
   refine ⟨β, hβ, ?_⟩

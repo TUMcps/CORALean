@@ -49,7 +49,8 @@ namespace CORALean
 
 /-- `merge` takes `other` wherever it is not inconclusive, `obj` elsewhere. -/
 theorem FourValuedSignal.merge_spec (obj other : FourValuedSignal ℝ) (ho : obj.IsValid)
-    (ht : other.IsValid) : (obj.merge other).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
+    (ht : other.IsValid) : -- --- CONCL ---
+    (obj.merge other).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (other.at t ≠ FourValued.ii → (obj.merge other).at t = other.at t) ∧
       (other.at t = FourValued.ii → (obj.merge other).at t = obj.at t) := by -- --- PROOF ---
   -- setting the intervals where `other` has a value `w` to `w`, in one step

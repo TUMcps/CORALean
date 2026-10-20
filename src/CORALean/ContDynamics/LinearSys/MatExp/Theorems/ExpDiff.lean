@@ -54,7 +54,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.expDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0) :
+theorem MatExp.expDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0) : -- --- CONCL ---
     exp (t • A) - 1 - (t / r) • (exp (r • A) - 1)
       = ∑' i : ℕ, (((Nat.factorial (i + 2) : ℝ))⁻¹
           * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 2) := by -- --- PROOF ---

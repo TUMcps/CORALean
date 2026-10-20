@@ -63,7 +63,7 @@ private theorem aux_mem_of_r_eq_zero {n : ℕ} {C : Capsule n} (hr : C.r = 0) (x
   rw [aux_norm₂_nonpos_iff, sub_eq_zero]
 
 /-- A displacement `d` is `t a` plus at most `r`, `|t| ≤ 1`, exactly when `|d| ≤ |a| + r`. -/
-private theorem aux_exists_abs_sub_le_iff {d a r : ℝ} (hr : 0 ≤ r) :
+private theorem aux_exists_abs_sub_le_iff {d a r : ℝ} (hr : 0 ≤ r) : -- --- CONCL ---
     (∃ t ∈ Set.Icc (-1 : ℝ) 1, |d - t * a| ≤ r) ↔ |d| ≤ |a| + r := by -- --- PROOF ---
   constructor
   · rintro ⟨t, ht, hle⟩
@@ -109,7 +109,7 @@ private theorem aux_exists_abs_sub_le_iff {d a r : ℝ} (hr : 0 ≤ r) :
     constructor <;> linarith
 
 /-- `aux_1D` is exact: the capsule on the line is the interval `c ± (|g| + r)`. -/
-private theorem aux_hPolytope_1D (C : Capsule (0 + 1)) (hr : 0 ≤ C.r) :
+private theorem aux_hPolytope_1D (C : Capsule (0 + 1)) (hr : 0 ≤ C.r) : -- --- CONCL ---
     C.interval.hPolytope.construct = C.construct := by -- --- PROOF ---
   rw [Interval.hPolytope_exact]
   ext x
@@ -130,7 +130,8 @@ private theorem aux_hPolytope_1D (C : Capsule (0 + 1)) (hr : 0 ≤ C.r) :
     constructor <;> linarith
 
 /-- CORA's `aux_exactLineConversion` is exact at `r = 0`, `g ≠ 0`. -/
-private theorem aux_hPolytope_line (C : Capsule (m + 1)) (hr : C.r = 0) (hg : C.g ≠ 0) :
+private theorem aux_hPolytope_line (C : Capsule (m + 1)) (hr : C.r = 0)
+    (hg : C.g ≠ 0) : -- --- CONCL ---
     C.hPolytopeOfLine.construct = C.construct := by -- --- PROOF ---
   set Q := gramSchmidtVec C.g with hQdef
   set q : Fin (m + 1) → Vec ℝ (m + 1) := Qᵀ with hqdef
@@ -212,7 +213,7 @@ private theorem aux_hPolytope_line (C : Capsule (m + 1)) (hr : C.r = 0) (hg : C.
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Where CORA's `polytope(C)` returns before `'outer'` — `n ≤ 1`, or no radius — it is exact. -/
-theorem Capsule.hPolytope_exact {n : ℕ} (C : Capsule n) (h : n ≤ 1 ∨ C.r ≤ 0) :
+theorem Capsule.hPolytope_exact {n : ℕ} (C : Capsule n) (h : n ≤ 1 ∨ C.r ≤ 0) : -- --- CONCL ---
     C.hPolytope.construct = C.construct := by -- --- PROOF ---
   cases n with
   | zero =>

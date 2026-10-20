@@ -44,7 +44,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.sq_norm₂_le_maxNormSq (Z : Zonotope (Vec ℝ n)) {β : Fin Z.h → ℝ}
-    (hβ : ∀ j, |β j| ≤ 1) : ‖∑ j, β j • Z.G j‖₂ ^ 2 ≤ Z.maxNormSq := by -- --- PROOF ---
+    (hβ : ∀ j, |β j| ≤ 1) : -- --- CONCL ---
+    ‖∑ j, β j • Z.G j‖₂ ^ 2 ≤ Z.maxNormSq := by -- --- PROOF ---
   refine le_csSup ⟨(∑ j, ‖Z.G j‖₂) ^ 2, ?_⟩ ⟨β, hβ, rfl⟩
   rintro _ ⟨γ, hγ, rfl⟩
   -- the triangle inequality, each coefficient at most `1`

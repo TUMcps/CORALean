@@ -52,7 +52,8 @@ variable {m l : ℕ} {W : Type} [AddCommGroup W] [Module ℝ W]
 
 /-- The `q`-norm is monotone in the absolute values of the entries. -/
 theorem aux_piLp_norm_le (q : ℝ≥0∞) [Fact (1 ≤ q)] (a b : Fin l → ℝ)
-    (h : ∀ i, |a i| ≤ b i) : ‖WithLp.toLp q a‖ ≤ ‖WithLp.toLp q b‖ := by -- --- PROOF ---
+    (h : ∀ i, |a i| ≤ b i) : -- --- CONCL ---
+    ‖WithLp.toLp q a‖ ≤ ‖WithLp.toLp q b‖ := by -- --- PROOF ---
   have hb : ∀ i, 0 ≤ b i := fun i => (abs_nonneg _).trans (h i)
   by_cases hq : q = ∞
   · -- the supremum norm: each entry is below the corresponding one

@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.volume_le {E : Ellipsoid 𝕋 n} {s : Vec 𝕋 n} :
+theorem Ellipsoid.volume_le {E : Ellipsoid 𝕋 n} {s : Vec 𝕋 n} : -- --- CONCL ---
     ∀ v ∈ E.volume s,
       MeasureTheory.volume E.construct ≤ ENNReal.ofReal (toReal v) := by -- --- PROOF ---
   intro v (h : E.volume s = some v)

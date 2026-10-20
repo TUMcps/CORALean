@@ -70,7 +70,7 @@ theorem aux_scatter_dot {n : ℕ} (σ : Fin n → Fin N) (v : Fin n → ℝ) (x 
 /-- Scattering the entries of a vector read at the coordinates gives the vector back, if it
 vanishes off the coordinates. -/
 theorem aux_scatter_apply {n : ℕ} (σ : Fin n → Fin N) (hσ : Function.Injective σ) (f : Fin N → ℝ)
-    (hf : ∀ a, f a ≠ 0 → ∃ r, σ r = a) (a : Fin N) :
+    (hf : ∀ a, f a ≠ 0 → ∃ r, σ r = a) (a : Fin N) : -- --- CONCL ---
     scatter σ (fun r => f (σ r)) a = f a := by -- --- PROOF ---
   unfold scatter
   by_cases h : ∃ r, σ r = a

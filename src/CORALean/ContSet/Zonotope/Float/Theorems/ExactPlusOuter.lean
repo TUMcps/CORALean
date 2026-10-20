@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A pairwise sum stored rounded down is within the gap `subUp` of the sum rounded up. -/
-theorem Zonotope.aux_pairSum_gap (a b : 𝕋) :
+theorem Zonotope.aux_pairSum_gap (a b : 𝕋) : -- --- CONCL ---
     |toReal a + toReal b - toReal (addDown a b)| ≤
       toReal (subUp (addUp a b) (addDown a b)) := by -- --- PROOF ---
   have h1 := addDown_le_add a b
@@ -109,7 +109,7 @@ theorem Zonotope.aux_exactPlus_gap (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.exactPlus_outer (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) :
+theorem Zonotope.exactPlus_outer (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) : -- --- CONCL ---
     (Real.Zonotope.exactPlus (nominal Z₁) (nominal Z₂) k).construct
       + (Z₁.I_error.construct + Z₂.I_error.construct) ⊆ (Z₁.exactPlus Z₂ k).construct
         := by -- --- PROOF ---

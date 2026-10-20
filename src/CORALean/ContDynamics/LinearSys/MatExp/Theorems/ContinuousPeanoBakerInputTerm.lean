@@ -45,7 +45,7 @@ variable {n : ℕ}
 
 theorem MatExp.continuous_peanoBakerInputTerm {A : ℝ → Mat ℝ n n}
     (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b) {u : ℝ → Vec ℝ n}
-    (hu : ∀ a b, IntervalIntegrable u volume a b) (k : ℕ) :
+    (hu : ∀ a b, IntervalIntegrable u volume a b) (k : ℕ) : -- --- CONCL ---
     Continuous (MatExp.peanoBakerInputTerm A u k) := by -- --- PROOF ---
   induction k with
   | zero => exact intervalIntegral.continuous_primitive hu 0

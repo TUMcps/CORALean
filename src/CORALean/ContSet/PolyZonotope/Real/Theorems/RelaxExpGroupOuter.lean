@@ -53,7 +53,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d k : ℕ}
 /-- Merging any group of dependent generators onto any kept one
 over-approximates, whichever partition names the group. -/
 theorem PolyZonotope.relaxExpGroup_outer (pZ : PolyZonotope α)
-    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin k)) (t : Fin d) :
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin k)) (t : Fin d) : -- --- CONCL ---
     pZ.construct ⊆ (pZ.relaxExpGroup part t).construct := by -- --- PROOF ---
   rintro x ⟨a, β, ha, hβ, rfl⟩
   -- every member drifts from the target by at most the width it pays

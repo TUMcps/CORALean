@@ -39,7 +39,8 @@ namespace CORALean
 
 /-- The minimal refinement is `true` at `True`, the maximal one except at `False`. -/
 theorem KleeneSignal.toBoolSignal_at_iff (s : KleeneSignal ℝ) (hs : s.IsValid) (t : ℝ)
-    (ht : 0 ≤ t) : ((s.toBoolSignal false).at t = true ↔ s.at t = Kleene.tt) ∧
+    (ht : 0 ≤ t) : -- --- CONCL ---
+    ((s.toBoolSignal false).at t = true ↔ s.at t = Kleene.tt) ∧
       ((s.toBoolSignal true).at t = true ↔ s.at t ≠ Kleene.ff) := by -- --- PROOF ---
   obtain ⟨h1, h2⟩ := (KleeneSignal.toBoolSignal_spec s hs false).2 t ht
   obtain ⟨g1, g2⟩ := (KleeneSignal.toBoolSignal_spec s hs true).2 t ht

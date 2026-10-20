@@ -44,7 +44,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.le_untilRob_nonstrict_iff {N : ℕ} {A B : ℕ → ℝ} (m : ℝ) :
+theorem STL.le_untilRob_nonstrict_iff {N : ℕ} {A B : ℕ → ℝ} (m : ℝ) : -- --- CONCL ---
     ∀ i, (m ≤ STL.untilRob N true A B i ↔
       STL.untilEnc N true (fun s => m ≤ A s) (fun s => m ≤ B s) i) := by -- --- PROOF ---
   intro i

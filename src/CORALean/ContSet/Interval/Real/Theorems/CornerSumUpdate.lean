@@ -45,7 +45,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.corner_sum_update {b : Vec ℝ n} {l : Fin n → Bool} {m : Fin n}
-    (hlm : l m = false) :
+    (hlm : l m = false) : -- --- CONCL ---
     ∑ i, (⟨0, b⟩ : Interval (Vec ℝ n)).corner (Function.update l m true) i =
       ∑ i, (⟨0, b⟩ : Interval (Vec ℝ n)).corner l i + b m := by -- --- PROOF ---
   have hsum : ∑ i, (⟨0, b⟩ : Interval (Vec ℝ n)).corner l i + b m =

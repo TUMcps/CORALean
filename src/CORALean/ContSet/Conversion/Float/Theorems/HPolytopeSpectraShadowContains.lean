@@ -46,7 +46,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.spectraShadow_contains (P : HPolytope 𝕋 (Vec 𝕋 n)) :
+theorem HPolytope.spectraShadow_contains (P : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     P.construct ⊆ P.spectraShadow.construct := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩
   -- the error box is the polytope's own, the nominal part carries the point

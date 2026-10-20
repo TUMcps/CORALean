@@ -45,7 +45,8 @@ namespace CORALean.Real
 /-- In the half-plane, a generator parallel to one that `f` is positive on is not negative. -/
 theorem Zonotope.aux_par (p q : ℝ) (u w : Vec ℝ 2) (hu : 0 ≤ u 1 ∧ (0 < u 1 ∨ 0 ≤ u 0))
     (hw : 0 ≤ w 1 ∧ (0 < w 1 ∨ 0 ≤ w 0)) (hc : u 0 * w 1 - u 1 * w 0 = 0)
-    (hf : 0 < p * u 0 + q * u 1) : 0 ≤ p * w 0 + q * w 1 := by -- --- PROOF ---
+    (hf : 0 < p * u 0 + q * u 1) : -- --- CONCL ---
+    0 ≤ p * w 0 + q * w 1 := by -- --- PROOF ---
   by_cases hu1 : 0 < u 1
   · -- `w` is a nonnegative multiple of `u`
     have key : (p * w 0 + q * w 1) * u 1 = (p * u 0 + q * u 1) * w 1 := by
@@ -110,7 +111,7 @@ theorem Zonotope.aux_noalt (p q : ℝ) (gi gj gl : Vec ℝ 2) (hi : 0 ≤ gi 1 �
 
 /-- With no positive before a negative, the values are `≤ 0` then `≥ 0`. -/
 theorem Zonotope.aux_pattern1 {h : ℕ} (a : Fin h → ℝ)
-    (hP : ∀ p n : Fin h, 0 < a p → a n < 0 → ¬ p < n) :
+    (hP : ∀ p n : Fin h, 0 < a p → a n < 0 → ¬ p < n) : -- --- CONCL ---
     ∃ k : ℕ, k ≤ h ∧ (∀ j : Fin h, j.val < k → a j ≤ 0) ∧
       (∀ j : Fin h, k ≤ j.val → 0 ≤ a j) := by -- --- PROOF ---
   classical
@@ -169,7 +170,7 @@ theorem Zonotope.aux_pattern {h : ℕ} (a : Fin h → ℝ)
 
 theorem Zonotope.construct_subset_walk (Z : Zonotope (Vec ℝ 2))
     (h1 : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0))
-    (h2 : ∀ i j : Fin Z.h, i < j → 0 ≤ Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0) :
+    (h2 : ∀ i j : Fin Z.h, i < j → 0 ≤ Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0) : -- --- CONCL ---
     Z.construct ⊆ convexHull ℝ (Set.range Z.walk) := by -- --- PROOF ---
   intro x hx
   by_contra hnot

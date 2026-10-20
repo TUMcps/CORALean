@@ -40,7 +40,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.fRadius_gradient_counterexample :
+theorem Zonotope.fRadius_gradient_counterexample : -- --- CONCL ---
     ∃ Y : Zonotope (Vec ℝ 2), 0 < Y.fRadius ∧
       Y.gradient Zonotope.fRadius ≠
         { h := Y.h, c := 0, G := fun j i => Y.G j i / (2 * Y.fRadius) } := by -- --- PROOF ---

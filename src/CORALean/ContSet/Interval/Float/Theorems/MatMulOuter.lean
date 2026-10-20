@@ -45,7 +45,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n p : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Interval.aux_matMul_outer_refines (A : Interval (Mat 𝕋 m n)) (B : Interval (Mat 𝕋 n p)) :
+theorem Interval.aux_matMul_outer_refines (A : Interval (Mat 𝕋 m n))
+    (B : Interval (Mat 𝕋 n p)) : -- --- CONCL ---
     (Real.Interval.matMul A.nominal B.nominal).construct
       ⊆ (Interval.matMul A B).construct := by -- --- PROOF ---
   intro X hX

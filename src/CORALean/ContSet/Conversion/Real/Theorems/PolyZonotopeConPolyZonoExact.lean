@@ -44,7 +44,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- with no constraint rows the system is vacuous, so both inclusions are the identity
-theorem PolyZonotope.conPolyZono_exact (pZ : PolyZonotope α) :
+theorem PolyZonotope.conPolyZono_exact (pZ : PolyZonotope α) : -- --- CONCL ---
     pZ.construct = pZ.conPolyZono.construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨a, b, ha, hb, rfl⟩

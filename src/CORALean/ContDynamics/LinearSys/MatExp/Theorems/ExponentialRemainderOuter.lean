@@ -57,7 +57,7 @@ variable {n : ℕ}
 
 /-- The Taylor remainder of `e^M` of every `M` in the box lies in `exponentialRemainder`. -/
 theorem MatExp.exponentialRemainder_outer (A : Interval (Mat ℝ n n)) (η : ℕ) {M : Mat ℝ n n}
-    (hM : M ∈ A.construct) :
+    (hM : M ∈ A.construct) : -- --- CONCL ---
     exp M - MatExp.expTaylor M η ∈
       (MatExp.exponentialRemainder A η).construct := by -- --- PROOF ---
   -- the bound matrix `N = abs(intMat)` is nonnegative and equals its own absolute value

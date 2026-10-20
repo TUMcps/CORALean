@@ -51,7 +51,7 @@ variable {n : ℕ}
 /-- [1, Alg. 2] lines 19-22: the order the sweep settles on costs a `Δε^r_k(ρ_k)` inside
 eq. (35)'s admissible share, that being the check line 22 stops on. -/
 theorem Zonotope.autoTuneSetOrder_le {le : ℝ → ℝ → Bool} (hle : ∀ a b : ℝ, le a b = true → a ≤ b)
-    (Z : Zonotope (Vec ℝ n)) {εrτ : ℝ} :
+    (Z : Zonotope (Vec ℝ n)) {εrτ : ℝ} : -- --- CONCL ---
     ∀ (k ρ ρ' : ℕ), Zonotope.autoTuneSetOrder le Z εrτ ρ k = some ρ' →
       Z.reduceBoxError ρ' ≤ εrτ := by -- --- PROOF ---
   intro k

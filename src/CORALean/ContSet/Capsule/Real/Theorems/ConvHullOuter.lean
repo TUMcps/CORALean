@@ -43,7 +43,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every point on a segment between the two capsules lies in `Capsule.convHull`. -/
-theorem Capsule.convHull_outer (C S : Capsule n) :
+theorem Capsule.convHull_outer (C S : Capsule n) : -- --- CONCL ---
     Set.linComb C.construct S.construct ⊆ (C.convHull S).construct := by -- --- PROOF ---
   rintro _ ⟨x, hx, y, hy, l, ⟨hl0, hl1⟩, rfl⟩
   have h1 := Capsule.norm₂_sub_center_le hx

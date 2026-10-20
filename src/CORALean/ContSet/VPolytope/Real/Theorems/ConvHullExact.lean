@@ -36,7 +36,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.convHull_exact {α : Type} [AddCommGroup α] [Module ℝ α] (P Q : VPolytope α) :
+theorem VPolytope.convHull_exact {α : Type} [AddCommGroup α] [Module ℝ α]
+    (P Q : VPolytope α) : -- --- CONCL ---
     (P.convHull Q).construct = convexHull ℝ (P.construct ∪ Q.construct) := by -- --- PROOF ---
   rw [VPolytope.construct_eq_convexHull, VPolytope.construct_eq_convexHull,
     VPolytope.construct_eq_convexHull, convexHull_convexHull_union_left,

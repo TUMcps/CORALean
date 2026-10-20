@@ -46,7 +46,8 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Lemma 1 (generators)]: `σ = C(p + 2, 2) - 1`. -/
-theorem Zonotope.quadMapTri_h {n m : ℕ} (Q : Fin m → Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) :
+theorem Zonotope.quadMapTri_h {n m : ℕ} (Q : Fin m → Mat ℝ n n)
+    (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (Z.quadMapTri Q).h = (Z.h + 2).choose 2 - 1 := by -- --- PROOF ---
   show Z.h + Z.h + Z.h.choose 2 = (Z.h + 2).choose 2 - 1
   -- Pascal's rule twice

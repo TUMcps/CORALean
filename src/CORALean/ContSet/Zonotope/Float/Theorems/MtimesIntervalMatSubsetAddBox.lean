@@ -78,7 +78,8 @@ theorem Zonotope.aux_abs_le_construct {Z : Zonotope (Vec 𝕋 n)} {z e : Vec ℝ
 
 /-- `∑ⱼ |Rᵢⱼ| |xⱼ|` stays below the rounded-up `∑ⱼ rᵢⱼ ξⱼ` once each factor does. -/
 theorem Zonotope.aux_abs_mulVec_le {R : Mat ℝ m n} {x : Vec ℝ n} {r : Mat 𝕋 m n} {ξ : Vec 𝕋 n}
-    (hr : ∀ i j, |R i j| ≤ toReal (r i j)) (hx : ∀ j, |x j| ≤ toReal (ξ j)) (i : Fin m) :
+    (hr : ∀ i j, |R i j| ≤ toReal (r i j)) (hx : ∀ j, |x j| ≤ toReal (ξ j))
+    (i : Fin m) : -- --- CONCL ---
     |(R *ᵥ x) i| ≤ toReal (sumUp fun j => mulUp (r i j) (ξ j)) := by -- --- PROOF ---
   show |∑ j, R i j * x j| ≤ _
   refine le_trans (Finset.abs_sum_le_sum_abs _ _) (le_trans ?_ (sum_le_sumUp _))

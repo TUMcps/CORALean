@@ -35,7 +35,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `split` of the segment `zonotope([0;0],[1;0])`: `N = 1` works, `N = 2` errors. -/
-theorem Zonotope.split_cora_segment_crash :
+theorem Zonotope.split_cora_segment_crash : -- --- CONCL ---
     let Z : Zonotope (Vec ℝ 2) := ⟨1, fun _ => 0, fun _ i => if i = 0 then 1 else 0⟩
     (Z.splitCora 1).isSome ∧ Z.splitCora 2 = none := by -- --- PROOF ---
   intro Z

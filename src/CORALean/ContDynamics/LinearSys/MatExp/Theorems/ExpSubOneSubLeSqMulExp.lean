@@ -43,7 +43,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The exponential's second-order remainder, at most `x²/2` times the exponential. -/
-theorem exp_sub_one_sub_le_sq_mul_exp {x : ℝ} (hx : 0 ≤ x) :
+theorem exp_sub_one_sub_le_sq_mul_exp {x : ℝ} (hx : 0 ≤ x) : -- --- CONCL ---
     Real.exp x - 1 - x ≤ x ^ 2 / 2 * Real.exp x := by -- --- PROOF ---
   have h : HasSum (fun n : ℕ => x ^ n / (n.factorial : ℝ)) (Real.exp x) := by
     rw [Real.exp_eq_exp_ℝ]; exact NormedSpace.expSeries_div_hasSum_exp x

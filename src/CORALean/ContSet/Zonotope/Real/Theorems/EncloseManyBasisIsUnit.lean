@@ -45,7 +45,8 @@ variable {m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.encloseManyBasis_isUnit (direction : Vec ℝ (m + 1)) (hd : direction ≠ 0) :
+theorem Zonotope.encloseManyBasis_isUnit (direction : Vec ℝ (m + 1))
+    (hd : direction ≠ 0) : -- --- CONCL ---
     IsUnit (Matrix.det (Zonotope.encloseManyBasis direction)) := by -- --- PROOF ---
   set s := (Real.sqrt (direction ⬝ᵥ direction))⁻¹ with hs
   set newGen : Vec ℝ (m + 1) := s • direction with hng

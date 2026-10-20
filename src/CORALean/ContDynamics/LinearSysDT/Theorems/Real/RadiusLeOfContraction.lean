@@ -56,7 +56,7 @@ namespace CORALean
 
 theorem LinearSysDT.radius_le_of_contraction (ϱ ℓ : ℕ → ℝ) (α γ ℓd : ℝ) (hα0 : 0 ≤ α)
     (hα1 : α < 1) (hℓd : 0 ≤ ℓd) (h21a : ∀ k, ϱ (k + 1) ≤ α * ϱ k + (1 - α) * ℓd)
-    (h21b : ∀ k, ℓ k ≤ γ ^ 2 * ϱ k) (k : ℕ) :
+    (h21b : ∀ k, ℓ k ≤ γ ^ 2 * ϱ k) (k : ℕ) : -- --- CONCL ---
     ℓ k ≤ γ ^ 2 * α ^ k * ϱ 0 + γ ^ 2 * ℓd := by -- --- PROOF ---
   have h1 : 0 < 1 - α := by linarith
   -- Eq. 32 of [1, Thm. 3]: `ϱ_k ≤ αᵏ ϱ₀ + ℓ_d`

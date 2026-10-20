@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `Σⱼ absBound(nominal Z)ⱼ ≤ sumUp absBoundError`. -/
-theorem Zonotope.sum_absBound_le_sumUp_absBoundError (Z : Zonotope (Vec 𝕋 n)) :
+theorem Zonotope.sum_absBound_le_sumUp_absBoundError (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     ∑ j, Real.Zonotope.absBound (nominal Z) j
       ≤ toReal (sumUp fun j => Zonotope.absBoundError Z j) := by -- --- PROOF ---
   refine le_trans (Finset.sum_le_sum fun j _ => ?_) (sum_le_sumUp _)

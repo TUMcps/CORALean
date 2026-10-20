@@ -40,7 +40,8 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 
 /-- `prod` of sound trees is sound. -/
 theorem SyntaxTree.sound_prod (h : Sound B t) (rest : List (SyntaxTree n))
-    (hs : ∀ u ∈ rest, Sound B u) : Sound B (prod t rest) := by -- --- PROOF ---
+    (hs : ∀ u ∈ rest, Sound B u) : -- --- CONCL ---
+    Sound B (prod t rest) := by -- --- PROOF ---
   induction rest generalizing t with
   | nil => exact h
   | cons u us ih =>

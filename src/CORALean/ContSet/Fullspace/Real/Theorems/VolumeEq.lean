@@ -35,7 +35,7 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Fullspace.volume_eq (hn : 0 < n) (F : Fullspace n) :
+theorem Fullspace.volume_eq (hn : 0 < n) (F : Fullspace n) : -- --- CONCL ---
     MeasureTheory.volume (F.construct) = F.volume := by -- --- PROOF ---
   change MeasureTheory.volume (Set.univ : Set (Vec ℝ n)) = ⊤
   have h : (Set.univ : Set (Vec ℝ n)) = Set.univ.pi fun _ : Fin n => (Set.univ : Set ℝ) := by

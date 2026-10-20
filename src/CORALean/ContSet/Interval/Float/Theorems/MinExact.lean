@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.min_exact {I₁ I₂ : Interval (Vec 𝕋 n)} (h₁ : I₁.nominal.IsNonempty)
-    (h₂ : I₂.nominal.IsNonempty) :
+    (h₂ : I₂.nominal.IsNonempty) : -- --- CONCL ---
     (I₁.min I₂).construct = Set.image2 (fun x y : Vec ℝ n => fun i => Min.min (x i) (y i))
       I₁.construct I₂.construct := by -- --- PROOF ---
   have h : (I₁.min I₂).nominal = I₁.nominal.min I₂.nominal := by

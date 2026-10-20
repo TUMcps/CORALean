@@ -45,7 +45,7 @@ namespace CORALean.Real
 
 /-- Coordinate `i` of the cube's generator sum is `ρ βᵢ`. -/
 theorem Zonotope.aux_cube_sum_apply {n : ℕ} (ρ : ℝ) (β : Fin (Zonotope.cube n ρ).h → ℝ)
-    (i : Fin n) :
+    (i : Fin n) : -- --- CONCL ---
     ∑ j, (Zonotope.cube n ρ).G j i * β j = ρ * β i := by -- --- PROOF ---
   show ∑ j : Fin n, (Pi.single j ρ : Vec ℝ n) i * β j = ρ * β i
   rw [Finset.sum_eq_single i]
@@ -59,7 +59,7 @@ theorem Zonotope.aux_cube_sum_apply {n : ℕ} (ρ : ℝ) (β : Fin (Zonotope.cub
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Lemma 1]: `□(ρ)`, the sup-norm ball of radius `ρ ≥ 0`, is the zonotope `cube n ρ`. -/
-theorem Zonotope.cube_exact (n : ℕ) {ρ : ℝ} (hρ : 0 ≤ ρ) :
+theorem Zonotope.cube_exact (n : ℕ) {ρ : ℝ} (hρ : 0 ≤ ρ) : -- --- CONCL ---
     (Zonotope.cube n ρ).construct = Metric.closedBall (0 : Vec ℝ n) ρ := by -- --- PROOF ---
   ext x
   rw [Zonotope.mem_construct_iff, Metric.mem_closedBall, dist_zero_right,

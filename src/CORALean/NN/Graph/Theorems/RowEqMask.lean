@@ -59,7 +59,8 @@ masking to `S` or by swapping `X` for `Y`, since both changes only ever touch
 what lies past the larger ball. -/
 theorem GNN.row_eq_mask {N F : ℕ} (A : Mat ℝ N N) (v : Fin N) (S : Finset (Fin N)) (L : ℕ)
     (hS : GNN.ball A v (L + 1) ⊆ S) (X Y : Mat ℝ N F)
-    (hXY : ∀ u ∈ GNN.ball A v (L + 1), X u = Y u) {u : Fin N} (hu : u ∈ GNN.ball A v L) :
+    (hXY : ∀ u ∈ GNN.ball A v (L + 1), X u = Y u) {u : Fin N}
+    (hu : u ∈ GNN.ball A v L) : -- --- CONCL ---
     (GNN.messagePassing A * X) u = (GNN.mask S (GNN.messagePassing A) * Y) u := by -- --- PROOF ---
   have huS : u ∈ S := hS (GNN.ball_subset_succ A v L hu)
   funext f

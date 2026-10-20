@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m q : ℕ}
 theorem NonlinParamSys.FloatModel.linearizeFloat_jacobianU_mem
     {sys : NonlinParamSys n m q} {fm : NonlinParamSys.FloatModel 𝕋 n m q}
     (h : fm.Encloses sys) (xs : Vec 𝕋 n) (us : Vec 𝕋 m) (P : Interval (Vec 𝕋 q))
-    {p : Vec ℝ q} (hp : p ∈ construct P) : -- --- CONCL ---
+    {p : Vec ℝ q} (hp : p ∈ construct P) :
     jacobianMat (fun u => sys.f (toRealVec xs) u p) (toRealVec us) ∈
       construct (fm.linearizeFloat xs us P).1.B :=
   h.jacU_mem _ _ _ _ (Interval.mem_point xs) _ (Interval.mem_point us) p hp

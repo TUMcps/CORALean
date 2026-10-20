@@ -38,7 +38,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.continuous_polyOf (L : List (ℝ × (Fin n → ℕ))) :
+theorem Taylm.continuous_polyOf (L : List (ℝ × (Fin n → ℕ))) : -- --- CONCL ---
     Continuous fun t : Vec ℝ n => Taylm.polyOf L t := by -- --- PROOF ---
   induction L with
   | nil => simp only [Taylm.polyOf_nil]; exact continuous_const

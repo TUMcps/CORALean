@@ -45,7 +45,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.ellipsoidNorm_le_one_iff (E : Ellipsoid n) (hr : E.rank = n) (p : Vec ℝ n) :
+theorem Ellipsoid.ellipsoidNorm_le_one_iff (E : Ellipsoid n) (hr : E.rank = n)
+    (p : Vec ℝ n) : -- --- CONCL ---
     E.ellipsoidNorm p ≤ 1 ↔ E.q + p ∈ E.construct := by -- --- PROOF ---
   have hU := E.isUnit_shape hr
   -- the minimum-norm solution `u = Gᵀ Q⁻¹ p` of `G u = p`

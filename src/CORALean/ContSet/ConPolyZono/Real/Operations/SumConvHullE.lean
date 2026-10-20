@@ -57,7 +57,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- A weight column names its own factor and nothing else. -/
 theorem ConPolyZono.aux_monomial_cen {a p h : ℕ} (E : Fin p → Fin h → ℕ)
-    (v : Fin (a * p + a) → ℝ) (j : Fin a) :
+    (v : Fin (a * p + a) → ℝ) (j : Fin a) : -- --- CONCL ---
     PolyZonotope.monomial (ConPolyZono.convHullE a E) v (Fin.castAdd (a * h + a * h) j)
       = v (Fin.natAdd (a * p) j) := by -- --- PROOF ---
   have h₁ : (∏ x : Fin (a * p), v (Fin.castAdd a x)

@@ -38,7 +38,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem KleeneSignal.eq_not_complete :
+theorem KleeneSignal.eq_not_complete : -- --- CONCL ---
     ∃ a b : KleeneSignal ℝ, a.IsValid ∧ b.IsValid ∧ (∀ t : ℝ, 0 ≤ t → a.at t = b.at t) ∧
       a.eq b = false := by -- --- PROOF ---
   -- the signal that is `Unknown` throughout, and its negation

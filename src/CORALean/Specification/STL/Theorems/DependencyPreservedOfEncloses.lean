@@ -49,7 +49,7 @@ variable {X Y : Type} [AddCommGroup X]
 
 theorem STL.dependencyPreserved_of_encloses (ξ : ℝ → X → (ℝ → Y) → X) (X₀ : Set X)
     (𝒰 : Set (ℝ → Y)) (R : ℝ → Set X) (tEnd : ℝ)
-    (h : ∀ t ∈ Set.Icc (0 : ℝ) tEnd, ∀ x₀ ∈ X₀, ∀ u ∈ 𝒰, ξ t x₀ u ∈ R t) :
+    (h : ∀ t ∈ Set.Icc (0 : ℝ) tEnd, ∀ x₀ ∈ X₀, ∀ u ∈ 𝒰, ξ t x₀ u ∈ R t) : -- --- CONCL ---
     STL.DependencyPreservedBy ξ X₀ 𝒰 R tEnd ξ (fun _ => {0}) := by -- --- PROOF ---
   refine ⟨fun t _ _ hE => ⟨0, hE.symm⟩, fun t ht x₀ hx₀ u hu => ⟨?_, ?_⟩⟩
   · exact ⟨0, rfl, by simp⟩

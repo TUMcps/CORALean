@@ -49,7 +49,7 @@ open Matrix
 
 /-- `Λ_G` applied to the columns of `A`, weighted by `β`, is `Λ_G A β`. -/
 theorem ConZonotope.sum_smul_mulVec_columns {n q h : ℕ} (ΛG : Mat ℝ n q) (A : Mat ℝ q h)
-    (β : Vec ℝ h) (i : Fin n) :
+    (β : Vec ℝ h) (i : Fin n) : -- --- CONCL ---
     (∑ j, β j • (ΛG *ᵥ fun k => A k j)) i = (ΛG *ᵥ (A *ᵥ β)) i := by -- --- PROOF ---
   simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Matrix.mulVec, dotProduct]
   simp only [Finset.mul_sum]

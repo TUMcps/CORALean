@@ -48,7 +48,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 omit [AddCommGroup α] in
 /-- The inequality holds when both blocks' do: the box and the polytope. -/
-theorem ConZonotope.aux_posSemidef_spectraShadow_iff (cZ : ConZonotope α) (β : Fin cZ.h → ℝ) :
+theorem ConZonotope.aux_posSemidef_spectraShadow_iff (cZ : ConZonotope α)
+    (β : Fin cZ.h → ℝ) : -- --- CONCL ---
     (cZ.spectraShadow.A₀ + ∑ j, β j • cZ.spectraShadow.A j).PosSemidef
       ↔ (∀ j, |β j| ≤ 1) ∧ β ∈ cZ.P.construct := by -- --- PROOF ---
   change (blockDiag 0 (Zonotope.spectraShadow ⟨cZ.h, cZ.c, cZ.G⟩).A₀ cZ.P.spectraShadow.A₀
@@ -62,7 +63,7 @@ theorem ConZonotope.aux_posSemidef_spectraShadow_iff (cZ : ConZonotope α) (β :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.spectraShadow_exact (cZ : ConZonotope α) :
+theorem ConZonotope.spectraShadow_exact (cZ : ConZonotope α) : -- --- CONCL ---
     cZ.construct = cZ.spectraShadow.construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨β, hβ, hP, rfl⟩

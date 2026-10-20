@@ -53,7 +53,7 @@ open Matrix
 /-- Row `v` of an `L`-step layered chain equals `ballEnumIdx`'s row of the chain run on the
 subgraph the ball itself enumerates. -/
 theorem GNN.evalStepsLayers_row_ball_enum {N F : ℕ} (A : Mat ℝ N N) (v : Fin N) (L : ℕ)
-    (g : Fin L → Vec ℝ F → Vec ℝ F) (X : Mat ℝ N F) : -- --- CONCL ---
+    (g : Fin L → Vec ℝ F → Vec ℝ F) (X : Mat ℝ N F) :
     GNN.evalStepsLayers (GNN.messagePassing A) L g X v
       = GNN.evalStepsLayers ((GNN.messagePassing A).submatrix (GNN.ballEnum A v L)
           (GNN.ballEnum A v L)) L g (X.submatrix (GNN.ballEnum A v L) id)

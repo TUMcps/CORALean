@@ -46,7 +46,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.interior_eq_empty_iff_rank_lt (P : VPolytope (Vec ℝ n)) (hk : 0 < P.k) :
+theorem VPolytope.interior_eq_empty_iff_rank_lt (P : VPolytope (Vec ℝ n))
+    (hk : 0 < P.k) : -- --- CONCL ---
     interior P.construct = ∅ ↔
       (Matrix.of fun i l => P.V l i - (∑ m, P.V m i) / P.k :
         Mat ℝ n P.k).rank < n := by -- --- PROOF ---

@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.uminus_exact (I : Interval (Vec 𝕋 n)) :
+theorem Interval.uminus_exact (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
     -I.construct = I.uminus.construct := by -- --- PROOF ---
   have h : I.uminus.nominal = I.nominal.uminus := by
     unfold Interval.nominal Interval.uminus Real.Interval.uminus

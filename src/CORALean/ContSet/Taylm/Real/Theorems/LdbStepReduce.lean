@@ -51,7 +51,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.ldbStep_reduce {T : Taylm n} {g : Vec ℝ n → ℝ} (h : T.Encloses g) {s : Vec ℝ n}
-    (hs : s ∈ Taylm.box n) (hR : ¬ Taylm.InBox T.ldbStep.2 s) :
+    (hs : s ∈ Taylm.box n) (hR : ¬ Taylm.InBox T.ldbStep.2 s) : -- --- CONCL ---
     T.ldbStep.1.sup < g s := by -- --- PROOF ---
   have hr := h s hs
   have hdec := Taylm.polyOf_eq_lin_add_higher T.terms s

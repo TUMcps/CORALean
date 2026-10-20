@@ -38,7 +38,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LevelSet.construct_eq_of_isequal (L S : LevelSet n) (h : L.isequal S) :
+theorem LevelSet.construct_eq_of_isequal (L S : LevelSet n) (h : L.isequal S) : -- --- CONCL ---
     L.construct = S.construct := by -- --- PROOF ---
   -- the compactions denote the original sets
   have e1 := LevelSet.compact_exact L

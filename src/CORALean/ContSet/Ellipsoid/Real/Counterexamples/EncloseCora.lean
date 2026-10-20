@@ -45,7 +45,7 @@ open Matrix Pointwise
 
 /-- The documented set `Set.linComb E (M E + Eplus)` is not inside the segments between `E` and the
 `E2 = M Eplus` the code uses. -/
-theorem Ellipsoid.enclose_cora_counterexample :
+theorem Ellipsoid.enclose_cora_counterexample : -- --- CONCL ---
     ∃ (E Eplus : Ellipsoid 1) (M : Mat ℝ 1 1),
       ¬ Set.linComb E.construct ((M *ᵥ ·) '' E.construct + Eplus.construct) ⊆
         Set.linComb E.construct ((Ellipsoid.mtimes M Eplus).construct) := by -- --- PROOF ---

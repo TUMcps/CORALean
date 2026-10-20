@@ -53,7 +53,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- The face a bounding direction cuts out of a zonotope is symmetric about a
 point of its own. -/
 theorem Zonotope.face_centrally_symmetric (Z : Zonotope α) (u : α →ₗ[ℝ] ℝ) (t : ℝ)
-    (ht : ∀ x ∈ Z.construct, u x ≤ t) :
+    (ht : ∀ x ∈ Z.construct, u x ≤ t) : -- --- CONCL ---
     ∃ m : α, ∀ x ∈ Z.construct, u x = t →
       (2 : ℝ) • m - x ∈ Z.construct ∧ u ((2 : ℝ) • m - x) = t := by -- --- PROOF ---
   classical

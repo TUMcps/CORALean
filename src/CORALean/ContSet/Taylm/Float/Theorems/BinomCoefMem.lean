@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.binomCoef_mem (e j : ℕ) (m r : 𝕋) :
+theorem Taylm.binomCoef_mem (e j : ℕ) (m r : 𝕋) : -- --- CONCL ---
     toReal (Taylm.binomCoef e j m r).inf ≤ (e.choose j : ℝ) * toReal m ^ (e - j) * toReal r ^ j ∧
       (e.choose j : ℝ) * toReal m ^ (e - j) * toReal r ^ j ≤
         toReal (Taylm.binomCoef e j m r).sup := by -- --- PROOF ---

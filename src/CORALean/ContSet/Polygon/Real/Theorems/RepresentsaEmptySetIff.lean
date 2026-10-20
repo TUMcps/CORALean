@@ -34,7 +34,7 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Polygon.aux_construct_eq_empty_iff (p : VPolytope (Vec ℝ 2)) :
+theorem Polygon.aux_construct_eq_empty_iff (p : VPolytope (Vec ℝ 2)) : -- --- CONCL ---
     VPolytope.construct p = ∅ ↔ p.k = 0 := by -- --- PROOF ---
   constructor
   · intro h
@@ -53,7 +53,7 @@ theorem Polygon.aux_construct_eq_empty_iff (p : VPolytope (Vec ℝ 2)) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.representsaEmptySet_iff (P : Polygon) :
+theorem Polygon.representsaEmptySet_iff (P : Polygon) : -- --- CONCL ---
     Polygon.representsaEmptySet P = true ↔ ContSet.construct P = ∅ := by -- --- PROOF ---
   simp only [Polygon.representsaEmptySet, List.all_eq_true, beq_iff_eq,
     Set.eq_empty_iff_forall_notMem, SetUnion.mem_construct, not_exists, not_and]

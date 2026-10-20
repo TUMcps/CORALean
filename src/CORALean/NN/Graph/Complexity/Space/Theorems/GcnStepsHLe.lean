@@ -62,7 +62,7 @@ variable {N F m : ℕ}
 
 /-- `L` message-passing steps at one uncertain graph multiply the generator
 count by at most `P.h + 2` each. -/
-theorem GNN.gcnSteps_h_le (P : PolyZonotope (Mat ℝ N N)) (L : ℕ) :
+theorem GNN.gcnSteps_h_le (P : PolyZonotope (Mat ℝ N N)) (L : ℕ) : -- --- CONCL ---
     ∀ (W : Fin L → Mat ℝ F F) (H : PolyZonotope (Mat ℝ N F)) (hp : P.p = H.p),
       (GNN.gcnSteps P L W H hp).h + 1 ≤ (P.h + 2) ^ L * (H.h + 1) := by -- --- PROOF ---
   induction L with

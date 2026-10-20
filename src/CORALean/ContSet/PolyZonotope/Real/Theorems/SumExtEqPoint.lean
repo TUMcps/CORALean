@@ -45,7 +45,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- A point of the set as one sum, the center being generator zero at the
 all-zero exponent column. -/
-theorem PolyZonotope.sum_ext_eq_point (pZ : PolyZonotope α) (a : Fin pZ.p → ℝ) :
+theorem PolyZonotope.sum_ext_eq_point (pZ : PolyZonotope α) (a : Fin pZ.p → ℝ) : -- --- CONCL ---
     ∑ l, extM pZ a l • extG pZ l = pZ.c + ∑ i, monomial pZ.E a i • pZ.G i := by -- --- PROOF ---
   have h0 : extM pZ a 0 = 1 := by
     show ∏ k, a k ^ PolyZonotope.extE pZ k 0 = 1

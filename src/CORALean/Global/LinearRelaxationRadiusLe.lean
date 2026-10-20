@@ -62,7 +62,7 @@ noncomputable def aux_lrNorm (q : ℝ≥0∞) (X : Fin l → Fin m → ℝ) : �
   ‖WithLp.toLp q (fun i => ∑ j, |X i j|)‖
 
 /-- It bounds the supremum norm of the entries. -/
-theorem aux_norm_le_lrNorm (q : ℝ≥0∞) [Fact (1 ≤ q)] (X : Fin l → Fin m → ℝ) :
+theorem aux_norm_le_lrNorm (q : ℝ≥0∞) [Fact (1 ≤ q)] (X : Fin l → Fin m → ℝ) : -- --- CONCL ---
     ‖X‖ ≤ aux_lrNorm q X := by -- --- PROOF ---
   have h0 : 0 ≤ aux_lrNorm q X := norm_nonneg _
   refine (pi_norm_le_iff_of_nonneg h0).mpr fun i => (pi_norm_le_iff_of_nonneg h0).mpr fun j => ?_

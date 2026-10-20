@@ -58,7 +58,7 @@ theorem aux_zero_mem_point :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.taylorTail_mem_expIntervalTaylorTail (B : Interval (Mat 𝕋 n n))
-    {N : Mat ℝ n n} (hN : N ∈ B.construct) (κ : ℕ) :
+    {N : Mat ℝ n n} (hN : N ∈ B.construct) (κ : ℕ) : -- --- CONCL ---
     (∑ i ∈ Finset.Ico 3 (κ + 1), ((Nat.factorial i : ℝ)⁻¹) • N ^ i)
       ∈ (MatExp.expIntervalTaylorTail B κ).construct := by -- --- PROOF ---
   induction κ with

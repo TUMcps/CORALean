@@ -53,7 +53,7 @@ variable {X : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Samp.sat_toCNF (c : ℝ≥0) (s : STL.Samp X) (pos : Bool) (ξ : ℝ≥0 → X) :
+theorem STL.Samp.sat_toCNF (c : ℝ≥0) (s : STL.Samp X) (pos : Bool) (ξ : ℝ≥0 → X) : -- --- CONCL ---
     ((s.toCNF pos).toFormula c).Sat ξ ↔
       if pos then (s.toFormula c).Sat ξ else ¬ (s.toFormula c).Sat ξ := by -- --- PROOF ---
   induction s generalizing pos ξ with

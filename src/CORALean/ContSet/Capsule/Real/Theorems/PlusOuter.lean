@@ -43,7 +43,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The sum of two capsules lies in `Capsule.plus`. -/
-theorem Capsule.plus_outer (C₁ C₂ : Capsule n) :
+theorem Capsule.plus_outer (C₁ C₂ : Capsule n) : -- --- CONCL ---
     C₁.construct + C₂.construct ⊆ (C₁.plus C₂).construct := by -- --- PROOF ---
   rintro _ ⟨x₁, h₁, x₂, h₂, rfl⟩
   unfold Capsule.plus

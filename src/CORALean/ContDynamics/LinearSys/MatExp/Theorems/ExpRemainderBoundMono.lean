@@ -49,7 +49,7 @@ variable {n : ℕ}
 /-- Monotone in the norm of its argument, which is what lets one bound taken at
 the end of a step stand for every time inside it. -/
 theorem MatExp.expRemainderBound_mono {x y : Mat ℝ n n} (η : ℕ) (hxy : ‖x‖ ≤ ‖y‖)
-    (hy : ‖y‖ / ((η : ℝ) + 2) < 1) :
+    (hy : ‖y‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
     MatExp.expRemainderBound x η ≤ MatExp.expRemainderBound y η := by -- --- PROOF ---
   have h2 : (0:ℝ) < (η : ℝ) + 2 := by positivity
   have hfrac : ‖x‖ / ((η : ℝ) + 2) ≤ ‖y‖ / ((η : ℝ) + 2) := by gcongr

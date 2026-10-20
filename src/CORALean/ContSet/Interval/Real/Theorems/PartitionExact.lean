@@ -42,7 +42,7 @@ variable {n : ℕ}
 
 /-- One coordinate: a point of `[a, b]` lies in one of the `s` equal pieces. -/
 theorem Interval.aux_partition_exists (a b x : ℝ) (s : ℕ) (hs : 0 < s) (h1 : a ≤ x)
-    (h2 : x ≤ b) :
+    (h2 : x ≤ b) : -- --- CONCL ---
     ∃ k : Fin s, a + (k : ℝ) * ((b - a) / s) ≤ x ∧
       x ≤ a + ((k : ℝ) + 1) * ((b - a) / s) := by -- --- PROOF ---
   have hs' : (0 : ℝ) < s := Nat.cast_pos.mpr hs
@@ -79,7 +79,7 @@ theorem Interval.aux_partition_exists (a b x : ℝ) (s : ℕ) (hs : 0 < s) (h1 :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.partition_exact (I : Interval (Vec ℝ n)) (splits : ℕ)
-    (hs : 0 < splits) :
+    (hs : 0 < splits) : -- --- CONCL ---
     (⋃ ind : Fin n → Fin splits, (I.partition splits ind).construct) =
       I.construct := by -- --- PROOF ---
   have hs' : (0 : ℝ) < splits := Nat.cast_pos.mpr hs

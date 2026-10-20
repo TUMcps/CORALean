@@ -54,7 +54,7 @@ theorem aux_cot_eq_tan (x : ℝ) : Real.cot x = Real.tan (Real.pi / 2 - x) := by
   rw [Real.tan_pi_div_two_sub, Real.tan_eq_sin_div_cos, Real.cot_eq_cos_div_sin, inv_div]
 
 /-- The cotangent's values, poles left out, are the tangent's on the reflected range. -/
-theorem aux_image_cot_eq (a b : ℝ) :
+theorem aux_image_cot_eq (a b : ℝ) : -- --- CONCL ---
     Real.cot '' (Set.Icc a b ∩ {x | Real.sin x ≠ 0}) =
       Real.tan '' (Set.Icc (Real.pi / 2 - b) (Real.pi / 2 - a) ∩
         {x | Real.cos x ≠ 0}) := by -- --- PROOF ---
@@ -75,7 +75,7 @@ theorem aux_cot_sub_int_mul_pi (x : ℝ) (k : ℤ) : Real.cot (x - Real.pi * k) 
 
 /-- Between two consecutive poles of the tangent it rises: its range is the end values. -/
 theorem aux_image_tan_between {c d : ℝ} (k : ℤ) (hcd : c ≤ d)
-    (hc : -(Real.pi / 2) < c + k * Real.pi) (hd : d + k * Real.pi < Real.pi / 2) :
+    (hc : -(Real.pi / 2) < c + k * Real.pi) (hd : d + k * Real.pi < Real.pi / 2) : -- --- CONCL ---
     Real.tan '' (Set.Icc c d ∩ {x | Real.cos x ≠ 0}) =
       Set.Icc (Real.tan c) (Real.tan d) := by -- --- PROOF ---
   have hin : ∀ x ∈ Set.Icc c d, x + k * Real.pi ∈ Set.Ioo (-(Real.pi / 2)) (Real.pi / 2) :=

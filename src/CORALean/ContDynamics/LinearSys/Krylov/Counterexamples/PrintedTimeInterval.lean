@@ -56,7 +56,8 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The exponential of a matrix with `A³ = 0` is its Taylor polynomial of degree two. -/
-theorem Krylov.aux_exp_smul_of_pow_three {n : ℕ} (A : Mat ℝ n n) (hA : A ^ 3 = 0) (s : ℝ) :
+theorem Krylov.aux_exp_smul_of_pow_three {n : ℕ} (A : Mat ℝ n n) (hA : A ^ 3 = 0)
+    (s : ℝ) : -- --- CONCL ---
     exp (s • A) = 1 + s • A + (s ^ 2 / 2) • A ^ 2 := by -- --- PROOF ---
   rw [Real.exp_smul_tsum, tsum_eq_sum (s := Finset.range 3)]
   · simp only [Finset.sum_range_succ, Finset.sum_range_zero, zero_add, Nat.factorial,

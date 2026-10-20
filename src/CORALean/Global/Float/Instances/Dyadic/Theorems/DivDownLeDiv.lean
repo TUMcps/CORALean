@@ -43,7 +43,7 @@ namespace CORALean.Float.Dyadic
 variable {p : ℕ}
 
 /-- Integer division truncates toward zero, which for a positive divisor is down. -/
-private theorem quotDown_le_div (a b : Dyadic p) (hb : 0 < toReal b) :
+private theorem quotDown_le_div (a b : Dyadic p) (hb : 0 < toReal b) : -- --- CONCL ---
     toReal (quotDown a b) ≤ toReal a / toReal b := by -- --- PROOF ---
   have hm : 0 < b.mantissa := mantissa_pos hb
   have hmR : (0 : ℝ) < (b.mantissa : ℝ) := Int.cast_pos.mpr hm

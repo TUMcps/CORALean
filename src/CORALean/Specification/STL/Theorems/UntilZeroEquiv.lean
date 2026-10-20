@@ -44,7 +44,7 @@ variable {X : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.until_zero_equiv (φ₁ φ₂ : STL.Formula X) (ξ : ℝ≥0 → X) :
+theorem STL.until_zero_equiv (φ₁ φ₂ : STL.Formula X) (ξ : ℝ≥0 → X) : -- --- CONCL ---
     (STL.Formula.until 0 0 φ₁ φ₂).Sat ξ ↔ φ₂.Sat ξ := by -- --- PROOF ---
   simp only [STL.Formula.Sat]
   constructor

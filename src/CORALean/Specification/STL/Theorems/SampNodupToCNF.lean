@@ -43,7 +43,7 @@ variable {X : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Samp.nodup_toCNF (s : STL.Samp X) (pos : Bool) :
+theorem STL.Samp.nodup_toCNF (s : STL.Samp X) (pos : Bool) : -- --- CONCL ---
     ∀ clause ∈ s.toCNF pos, (clause.map STL.Branch.j).Nodup := by -- --- PROOF ---
   -- the clauses of a disjunction are merges, those of a conjunction are the two lists'
   have hor : ∀ a b : STL.CNF X, (∀ clause ∈ a, (clause.map STL.Branch.j).Nodup) →

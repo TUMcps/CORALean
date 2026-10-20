@@ -62,7 +62,7 @@ variable {n : ℕ}
 
 /-- The operator-norm bound iterated: `Mᵖ` moves a vector no further than
 `‖M‖ᵖ` does. -/
-theorem aux_norm_pow_mulVec_le (M : Mat ℝ n n) (p : ℕ) (v : Vec ℝ n) :
+theorem aux_norm_pow_mulVec_le (M : Mat ℝ n n) (p : ℕ) (v : Vec ℝ n) : -- --- CONCL ---
     ‖M ^ p *ᵥ v‖ ≤ ‖M‖ ^ p * ‖v‖ := by -- --- PROOF ---
   induction p with
   | zero => simp
@@ -77,7 +77,7 @@ theorem aux_norm_pow_mulVec_le (M : Mat ℝ n n) (p : ℕ) (v : Vec ℝ n) :
 
 /-- `[1, (32)]`'s terms are dominated by the exponential series: `hᵖ⁺¹/(p+1)!
 aᵖR` sits under `hR·(ha)ᵖ/p!`. -/
-theorem aux_summable_majorant {h a R : ℝ} (hh : 0 ≤ h) (ha : 0 ≤ a) (hR : 0 ≤ R) :
+theorem aux_summable_majorant {h a R : ℝ} (hh : 0 ≤ h) (ha : 0 ≤ a) (hR : 0 ≤ R) : -- --- CONCL ---
     Summable (fun p : ℕ =>
       h ^ (p + 1) / (Nat.factorial (p + 1) : ℝ) * (a ^ p * R)) := by -- --- PROOF ---
   refine Summable.of_nonneg_of_le (fun p => ?_) (fun p => ?_)
@@ -101,7 +101,8 @@ theorem aux_summable_majorant {h a R : ℝ} (hh : 0 ≤ h) (ha : 0 ≤ a) (hR : 
 
 /-- A zonotope reaches no further than its center plus all of its generators. -/
 theorem aux_norm_le_of_mem_construct {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
-    (hx : x ∈ Z.construct) : ‖x‖ ≤ ‖Z.c‖ + ∑ j, ‖Z.G j‖ := by -- --- PROOF ---
+    (hx : x ∈ Z.construct) : -- --- CONCL ---
+    ‖x‖ ≤ ‖Z.c‖ + ∑ j, ‖Z.G j‖ := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hx
   refine (norm_add_le _ _).trans (add_le_add le_rfl ?_)
   -- each coefficient is at most one, so each generator contributes at most its norm

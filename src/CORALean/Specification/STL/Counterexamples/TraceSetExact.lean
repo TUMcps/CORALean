@@ -43,7 +43,7 @@ variable {X : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ReachSequence.exists_exact_traceSet_ne :
+theorem ReachSequence.exists_exact_traceSet_ne : -- --- CONCL ---
     ∃ (Traces : Set (ℝ≥0 → Bool)) (R : ℝ≥0 → Set Bool),
       ReachSequence.IsExact R Traces ∧ ReachSequence.traceSet R ≠ Traces := by -- --- PROOF ---
   -- the two constant traces, and the full set of values at each time

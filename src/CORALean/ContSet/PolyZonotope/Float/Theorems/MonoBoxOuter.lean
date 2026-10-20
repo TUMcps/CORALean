@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.monoBox_outer {p h : ℕ} (E : Fin p → Fin h → ℕ) (X : Interval (Vec 𝕋 p))
-    {a : Vec ℝ p} (ha : a ∈ X.construct) :
+    {a : Vec ℝ p} (ha : a ∈ X.construct) : -- --- CONCL ---
     (fun l => Real.PolyZonotope.monomial E a l) ∈
       (PolyZonotope.monoBox E X).construct := by -- --- PROOF ---
   rw [PolyZonotope.monoBox, Interval.materialise_eq]

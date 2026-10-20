@@ -43,7 +43,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.levelSet_exact (E : Ellipsoid n) (hQ : IsUnit E.Q.det) :
+theorem Ellipsoid.levelSet_exact (E : Ellipsoid n) (hQ : IsUnit E.Q.det) : -- --- CONCL ---
     E.levelSet.construct = E.construct := by -- --- PROOF ---
   have hQQ : E.Q = E.G * E.Gᵀ := E.G_mul_transpose.symm
   set Q := E.G * E.Gᵀ with hQdef

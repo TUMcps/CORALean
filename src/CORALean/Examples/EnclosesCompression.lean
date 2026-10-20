@@ -76,7 +76,7 @@ identity. -/
 noncomputable def Example.compressW : Mat ℝ 3 3 :=
   tapMat Example.compressTap Example.compressK
 
-theorem Example.compressW_apply (v : Vec ℝ 3) :
+theorem Example.compressW_apply (v : Vec ℝ 3) : -- --- CONCL ---
     Example.compressW *ᵥ v = v := by -- --- PROOF ---
   funext j
   have h := tapMat_mulVec Example.compressTap Example.compressK
@@ -104,7 +104,7 @@ noncomputable def Example.compressNetwork : NeuralNetwork 𝒵 3 3 :=
 
 /-- The kernel computes the identity on both sides, so the whole network
 computes `relu` alone. -/
-theorem Example.compressNetwork_encloses :
+theorem Example.compressNetwork_encloses : -- --- CONCL ---
     Example.compressNetwork.Encloses (fun x i => Real.relu (x i)) := by -- --- PROOF ---
   -- each convolution is its stencil matrix, a single tap of weight `1`, i.e. `id`
   have hconv : (Enclose.toLayer (S := 𝒵) (LinearLayer.mk Example.compressW
@@ -124,7 +124,7 @@ theorem Example.compressNetwork_encloses :
 split of its hidden layer keeps every point of a nonnegative "uncertain image"
 `X` inside the reduced network's enclosure. -/
 theorem Example.exists_compressed_network_contains (X : 𝒵 3)
-    (hX : ∀ x ∈ construct X, ∀ i, 0 ≤ x i) :
+    (hX : ∀ x ∈ construct X, ∀ i, 0 ≤ x i) : -- --- CONCL ---
     ∃ nn' : NeuralNetwork 𝒵 3 3, construct X ⊆ construct (nn'.enclose X) := by -- --- PROOF ---
   -- the identity's output on `X` is `X` itself, so its interval box bounds it
   have hY : ∀ x ∈ construct X, (fun i => Real.relu ((Example.compressW *ᵥ x + 0) i))

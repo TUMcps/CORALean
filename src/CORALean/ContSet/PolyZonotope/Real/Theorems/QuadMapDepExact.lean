@@ -53,7 +53,7 @@ variable {n m : ℕ}
 
 /-- Exact where every coefficient is dependent, which `quadMap` arranges. -/
 theorem PolyZonotope.quadMapDep_exact (Q : Fin m → Mat ℝ n n) (pZ : PolyZonotope (Vec ℝ n))
-    (hq : pZ.q = 0) :
+    (hq : pZ.q = 0) : -- --- CONCL ---
     quadEval Q '' pZ.construct = (quadMapDep Q pZ).construct := by -- --- PROOF ---
   -- with nothing independent the set is exactly the points, which is what `bilin_exact` pairs
   have hc : pZ.construct = pZ.point '' {a : Fin pZ.p → ℝ | ∀ k, |a k| ≤ 1} := by

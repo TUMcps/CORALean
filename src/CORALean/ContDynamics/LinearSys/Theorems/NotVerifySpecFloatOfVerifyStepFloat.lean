@@ -63,7 +63,8 @@ theorem LinearSys.not_verifySpecFloat_of_verifyStepFloat
     (G : Fin (r + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (F : Fin (w + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (εmax : 𝕋)
     (hfalse :
       0 < toReal (LinearSys.verifyStepFloat reachFn innerApprox distG distF G F εmax).1.νGin ∨
-      toReal (LinearSys.verifyStepFloat reachFn innerApprox distG distF G F εmax).1.νFin ≤ 0) :
+      toReal (LinearSys.verifyStepFloat reachFn innerApprox distG distF G F εmax).1.νFin ≤ 0)
+    : -- --- CONCL ---
     ¬ LinearSys.VerifySpecFloat G F Reach := by -- --- PROOF ---
   rintro ⟨hGspec, hFspec⟩
   simp only [LinearSys.verifyStepFloat, LinearSys.toReal_maximumFold,

@@ -62,7 +62,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.representsa_fullspaceCora_line :
+theorem SpectraShadow.representsa_fullspaceCora_line : -- --- CONCL ---
     SpectraShadow.lineExample.representsa_fullspaceCora
       ∧ SpectraShadow.lineExample.construct ≠ Set.univ := by -- --- PROOF ---
   refine ⟨fun i => ⟨?_, ?_⟩, ?_⟩

@@ -46,7 +46,7 @@ theorem LinearSys.IsCanonicalTrajectory.reach_outer {sys : LinearSys 𝕋 n} {T 
     {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hΔt : 0 ≤ Δt)
     (hT : Set.Ici 0 ⊆ T) (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o)
-    (k : ℕ) : -- --- CONCL ---
+    (k : ℕ) :
     x (k * Δt) ∈ construct ((sys.discretize Δt).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) :=
   LinearSysDT.reach_outer _ ho R₀ Ud (traj.discretize hΔt hT hU hUd) k
 

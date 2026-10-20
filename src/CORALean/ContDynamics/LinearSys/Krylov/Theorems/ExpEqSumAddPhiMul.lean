@@ -47,7 +47,7 @@ open NormedSpace
 
 /-- [1, Remark 2]'s step: `e^z = Σ_{j<N} zʲ/j! + φ_N(z)z^N`, `φ_N` the series (4.1a). -/
 theorem Krylov.exp_eq_sum_add_phi_mul {𝔸 : Type*} [NormedRing 𝔸] [NormedAlgebra ℝ 𝔸]
-    [CompleteSpace 𝔸] (z : 𝔸) (N : ℕ) :
+    [CompleteSpace 𝔸] (z : 𝔸) (N : ℕ) : -- --- CONCL ---
     exp z = ∑ j ∈ Finset.range N, ((Nat.factorial j : ℝ)⁻¹) • z ^ j +
       (∑' i : ℕ, ((Nat.factorial (i + N) : ℝ)⁻¹) • z ^ i) * z ^ N := by -- --- PROOF ---
   have hs := expSeries_summable' (𝕂 := ℝ) z

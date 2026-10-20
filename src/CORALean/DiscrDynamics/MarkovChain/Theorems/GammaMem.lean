@@ -35,7 +35,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- For `γ > 0` the normalized input weights are column-stochastic. -/
-theorem MarkovChain.gamma_mem (m : ℕ) {γ : ℝ} (hγ : 0 < γ) :
+theorem MarkovChain.gamma_mem (m : ℕ) {γ : ℝ} (hγ : 0 < γ) : -- --- CONCL ---
     MarkovChain.gamma m γ ∈ Matrix.colStochastic ℝ (Fin m) := by -- --- PROOF ---
   rw [Matrix.mem_colStochastic_iff_sum]
   have hg : ∀ a b : Fin m, 0 < 1 / (((a : ℕ) - (b : ℕ) : ℝ) ^ 2 + γ) := fun a b => by positivity

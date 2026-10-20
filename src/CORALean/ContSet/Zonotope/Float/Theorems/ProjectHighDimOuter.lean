@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n N : ℕ}
 
 /-- The exact padding map reads the first (only) preimage, as `projectHighDim_` does. -/
 theorem Zonotope.aux_embed_find (proj : Fin n → Fin N) (hproj : Function.Injective proj)
-    (y : Vec ℝ n) (j : Fin N) :
+    (y : Vec ℝ n) (j : Fin N) : -- --- CONCL ---
     Real.Zonotope.embed proj y j = if h : ∃ k, proj k = j then
       y (Fin.find (fun k => proj k = j) h) else 0 := by -- --- PROOF ---
   classical
@@ -65,7 +65,7 @@ theorem Zonotope.aux_embed_find (proj : Fin n → Fin N) (hproj : Function.Injec
     rw [if_neg fun hk => h ⟨k, hk⟩, zero_mul]
 
 theorem Zonotope.aux_nominal_projectHighDim_ (Z : Zonotope (Vec 𝕋 n)) (proj : Fin n → Fin N)
-    (hproj : Function.Injective proj) :
+    (hproj : Function.Injective proj) : -- --- CONCL ---
     nominal (Z.projectHighDim_ N proj)
       = Real.Zonotope.projectHighDim_ (nominal Z) proj := by -- --- PROOF ---
   show Real.Zonotope.mk _ _ _ = Real.Zonotope.mk _ _ _
@@ -86,7 +86,8 @@ theorem Zonotope.aux_nominal_projectHighDim_ (Z : Zonotope (Vec 𝕋 n)) (proj :
 
 /-- Padding reads as the exact layer's `embed`. -/
 theorem Zonotope.aux_extend_eq_embed (proj : Fin n → Fin N) (hproj : Function.Injective proj)
-    (y : Vec ℝ n) : Function.extend proj y 0 = Real.Zonotope.embed proj y := by -- --- PROOF ---
+    (y : Vec ℝ n) : -- --- CONCL ---
+    Function.extend proj y 0 = Real.Zonotope.embed proj y := by -- --- PROOF ---
   funext j
   rw [Zonotope.aux_embed_find proj hproj]
   by_cases h : ∃ k, proj k = j
@@ -101,7 +102,7 @@ theorem Zonotope.aux_extend_eq_embed (proj : Fin n → Fin N) (hproj : Function.
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.projectHighDim_outer (Z : Zonotope (Vec 𝕋 n)) (proj : Fin n → Fin N)
-    (hproj : Function.Injective proj) :
+    (hproj : Function.Injective proj) : -- --- CONCL ---
     (fun x => Function.extend proj x 0) '' Z.construct ⊆
       (Z.projectHighDim_ N proj).construct := by -- --- PROOF ---
   have hext : (fun x : Vec ℝ n => Function.extend proj x 0) = Real.Zonotope.embed proj :=

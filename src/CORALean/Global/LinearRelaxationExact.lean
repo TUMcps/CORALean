@@ -67,7 +67,8 @@ variable {n m l : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Hölder: `Σ aᵢ bᵢ ≤ ‖a‖_{q'} ‖b‖_q`, endpoints included. -/
-theorem aux_lrExact_holder (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q'] (a b : Fin l → ℝ) :
+theorem aux_lrExact_holder (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
+    (a b : Fin l → ℝ) : -- --- CONCL ---
     ∑ i, a i * b i ≤ ‖WithLp.toLp q' a‖ * ‖WithLp.toLp q b‖ := by -- --- PROOF ---
   by_cases hq : q = ∞
   · -- `q' = 1`

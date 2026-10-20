@@ -46,7 +46,7 @@ variable {a c : ℝ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.arcsin_eq_add_arcsinShift_iff (ha : a ∈ Set.Icc (-1 : ℝ) 1)
-    (hc : c ∈ Set.Icc (-1 : ℝ) 1) :
+    (hc : c ∈ Set.Icc (-1 : ℝ) 1) : -- --- CONCL ---
     Real.arcsin a = Real.arcsin c + Real.arcsin (Taylm.arcsinShift c a)
       ↔ |Real.arcsin a - Real.arcsin c| ≤ Real.pi / 2 := by -- --- PROOF ---
   -- `g` is the sine of the difference of the two angles

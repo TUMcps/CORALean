@@ -34,7 +34,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.degree_eq_one {e : Fin n → ℕ} (h : Taylm.degree e = 1) :
+theorem Taylm.degree_eq_one {e : Fin n → ℕ} (h : Taylm.degree e = 1) : -- --- CONCL ---
     ∃ k, e = Pi.single k 1 := by -- --- PROOF ---
   unfold Taylm.degree at h
   obtain ⟨k, -, hk⟩ : ∃ k ∈ Finset.univ, e k ≠ 0 := by

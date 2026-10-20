@@ -46,7 +46,8 @@ variable {n : ℕ}
 
 /-- The exact count: `pZ.h + 1` times the geometric sum of `coeffs.length` of its
 own powers, `mul_h`'s step for step. -/
-theorem PolyZonotope.evalPoly_h (pZ : PolyZonotope (Vec ℝ n)) (coeffs : List (Vec ℝ n)) :
+theorem PolyZonotope.evalPoly_h (pZ : PolyZonotope (Vec ℝ n))
+    (coeffs : List (Vec ℝ n)) : -- --- CONCL ---
     (pZ.evalPoly coeffs).h
       = (pZ.h + 1) * ∑ i ∈ Finset.range coeffs.length, (pZ.h + 1) ^ i := by -- --- PROOF ---
   induction coeffs with

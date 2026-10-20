@@ -38,7 +38,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A point of the copies is a point of `P`, box and rows, in every block of its variables. -/
-theorem PolyLevelSet.mem_copies_iff (P : PolyLevelSet n) (a : ℕ) (x : Vec ℝ (a * n)) :
+theorem PolyLevelSet.mem_copies_iff (P : PolyLevelSet n) (a : ℕ)
+    (x : Vec ℝ (a * n)) : -- --- CONCL ---
     x ∈ (P.copies a).construct
       ↔ ∀ j, (fun k => x (finProdFinEquiv (j, k))) ∈ P.construct := by -- --- PROOF ---
   have hop : ∀ j i, (P.copies a).op (finProdFinEquiv (j, i)) = P.op i := fun j i => by

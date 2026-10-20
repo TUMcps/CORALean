@@ -58,7 +58,7 @@ variable {n p N r : ℕ}
 
 theorem dmdCandidate_mul_eq (X1 : Mat ℝ p N) (X2 : Mat ℝ n N) (V : Mat ℝ p r) (s : Fin r → ℝ)
     (W : Mat ℝ N r) (hX1 : X1 = V * Matrix.diagonal s * Wᵀ) (hV : Vᵀ * V = 1)
-    (hW : Wᵀ * W = 1) (hs : ∀ i, s i ≠ 0) (G : Mat ℝ n p) (hG : X2 = G * X1) :
+    (hW : Wᵀ * W = 1) (hs : ∀ i, s i ≠ 0) (G : Mat ℝ n p) (hG : X2 = G * X1) : -- --- CONCL ---
     dmdCandidate X2 V s W r * X1 = X2 := by -- --- PROOF ---
   -- at full rank the cut-off is vacuous, so the middle factor is the inverse of `diag s`
   have hdiag : Matrix.diagonal (fun i : Fin r => if (i : ℕ) < r then (s i)⁻¹ else 0)

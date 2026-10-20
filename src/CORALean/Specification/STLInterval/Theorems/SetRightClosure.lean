@@ -44,7 +44,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `rightClosure` adds the supremum of `I` to its set of times. -/
-theorem STLInterval.set_rightClosure (I : STLInterval) :
+theorem STLInterval.set_rightClosure (I : STLInterval) : -- --- CONCL ---
     I.rightClosure.set =
       I.set ∪ {t : ℝ | I.supremum.value = some (t : EReal)} := by -- --- PROOF ---
   cases I with

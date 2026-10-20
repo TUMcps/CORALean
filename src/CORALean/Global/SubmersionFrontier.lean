@@ -55,7 +55,7 @@ variable {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace
 /-- [1, Lemma 3.1]: `∂(g(E)) ⊆ g(∂E)` for `E` compact and `g` a submersion inside `E`. -/
 theorem frontier_image_subset_image_frontier {g : E → F} {g' : E → E →L[ℝ] F} {K : Set E}
     (hK : IsCompact K) (hg : ∀ x ∈ interior K, HasStrictFDerivAt g (g' x) x)
-    (hsurj : ∀ x ∈ interior K, (g' x).range = ⊤) (hcont : ContinuousOn g K) :
+    (hsurj : ∀ x ∈ interior K, (g' x).range = ⊤) (hcont : ContinuousOn g K) : -- --- CONCL ---
     frontier (g '' K) ⊆ g '' frontier K := by -- --- PROOF ---
   intro y hy
   -- the image is compact, hence closed, so its frontier lies in it

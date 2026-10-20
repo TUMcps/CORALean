@@ -41,7 +41,7 @@ namespace CORALean.Real
 
 theorem PolyZonotope.factorExtend_factorIdx {p h : ℕ} (E : Fin p → Fin h → ℕ)
     (a : Fin (PolyZonotope.usedFactors E).card → ℝ)
-    (k : Fin (PolyZonotope.usedFactors E).card) :
+    (k : Fin (PolyZonotope.usedFactors E).card) : -- --- CONCL ---
     PolyZonotope.factorExtend E a (PolyZonotope.factorIdx E k) = a k := by -- --- PROOF ---
   have hmem : PolyZonotope.factorIdx E k ∈ PolyZonotope.usedFactors E :=
     ((PolyZonotope.usedFactors E).orderIsoOfFin rfl k).2

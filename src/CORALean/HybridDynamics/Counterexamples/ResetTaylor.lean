@@ -50,7 +50,7 @@ open ContinuousLinearMap
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The derivative of the example's reset, coordinate by coordinate. -/
-theorem aux_fderiv_reset (ξ w : Vec ℝ 2) :
+theorem aux_fderiv_reset (ξ w : Vec ℝ 2) : -- --- CONCL ---
     fderiv ℝ (fun x : Vec ℝ 2 => ![x 0 ^ 2 - x 0, x 0 ^ 3]) ξ w
       = ![(2 * ξ 0 - 1) * w 0, 3 * ξ 0 ^ 2 * w 0] := by -- --- PROOF ---
   let φ : Fin 2 → Vec ℝ 2 → ℝ := ![fun x => x 0 ^ 2 - x 0, fun x => x 0 ^ 3]

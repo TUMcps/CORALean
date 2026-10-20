@@ -42,7 +42,7 @@ variable {n m : ℕ}
 
 /-- `L N(a, Σ) = N(La, LΣLᵀ)`. -/
 theorem map_multivariateGaussian (M : Mat ℝ m n) (a : EuclideanSpace ℝ (Fin n))
-    {S : Mat ℝ n n} (hS : S.PosSemidef) :
+    {S : Mat ℝ n n} (hS : S.PosSemidef) : -- --- CONCL ---
     (multivariateGaussian a S).map (fun x => toLp 2 (M *ᵥ ofLp x))
       = multivariateGaussian (toLp 2 (M *ᵥ ofLp a)) (M * S * Mᵀ) := by -- --- PROOF ---
   have hmeas : Measurable (fun x : EuclideanSpace ℝ (Fin n) => toLp 2 (M *ᵥ ofLp x)) := by

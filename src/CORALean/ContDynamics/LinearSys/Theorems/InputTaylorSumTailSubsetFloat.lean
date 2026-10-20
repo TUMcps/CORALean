@@ -68,7 +68,8 @@ attribute [local instance] aux_setPlusTail aux_setMtimesTail
 
 /-- At `r ≥ 0`, every order count `i`: the exact tail at plain sets is in the float tail. -/
 theorem LinearSys.inputTaylorSumTail_subset_float (sys : LinearSys 𝕋 n) {r : 𝕋}
-    (hr : 0 ≤ toReal r) (U : Zonotope (Vec 𝕋 n)) : ∀ i,
+    (hr : 0 ≤ toReal r) (U : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
+    ∀ i,
     construct (sys.inputTaylorSumTail (S := 𝒮) (toReal r) U.construct i)
       ⊆ (sys.inputTaylorSumTailFloat r U i).construct := by -- --- PROOF ---
   -- a matrix in a float box maps `U` into the float product

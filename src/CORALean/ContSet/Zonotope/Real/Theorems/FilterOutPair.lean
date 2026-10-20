@@ -45,7 +45,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.filterOut_pair (Z : Zonotope (Vec ℝ n)) :
+theorem Zonotope.filterOut_pair (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     Zonotope.filterOut ![Z, Z] = ∅ := by -- --- PROOF ---
   ext i
   have hdiff : Z.construct \ ⋃ j, ⋃ (_ : j ≠ i), (![Z, Z] j).construct = ∅ := by

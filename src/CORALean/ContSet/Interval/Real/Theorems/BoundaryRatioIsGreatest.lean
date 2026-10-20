@@ -45,7 +45,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.boundaryRatio_isGreatest (I : Interval (Vec ℝ n)) (dir start : Vec ℝ n)
-    (hdir : ∃ i, dir i ≠ 0) (hs : start ∈ I.construct) :
+    (hdir : ∃ i, dir i ≠ 0) (hs : start ∈ I.construct) : -- --- CONCL ---
     IsGreatest {s : ℝ | s • dir + start ∈ I.construct}
       (I.boundaryRatio dir start hdir) := by -- --- PROOF ---
   have hs' : ∀ i, I.inf i ≤ start i ∧ start i ≤ I.sup i := fun i => hs i

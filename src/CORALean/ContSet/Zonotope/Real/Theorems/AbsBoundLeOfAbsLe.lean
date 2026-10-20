@@ -52,7 +52,8 @@ theorem aux_absLe_mul_sign (x : ℝ) : x * (if 0 ≤ x then (1 : ℝ) else -1) =
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.absBound_le_of_abs_le {Z : Zonotope (Vec ℝ n)} {r : ℝ} {j : Fin n}
-    (h : ∀ x ∈ Z.construct, |x j| ≤ r) : Z.absBound j ≤ r := by -- --- PROOF ---
+    (h : ∀ x ∈ Z.construct, |x j| ≤ r) : -- --- CONCL ---
+    Z.absBound j ≤ r := by -- --- PROOF ---
   -- the center's sign on every generator at coordinate `j`
   set t : ℝ := if 0 ≤ Z.c j then (1 : ℝ) else -1 with ht
   set β : Fin Z.h → ℝ := fun l => t * (if 0 ≤ Z.G l j then (1 : ℝ) else -1) with hβdef

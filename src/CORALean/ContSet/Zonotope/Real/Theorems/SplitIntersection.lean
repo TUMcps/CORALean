@@ -54,7 +54,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The two halves of a split meet in the zonotope the split generator is
 dropped from, exactly. -/
-theorem Zonotope.split_intersection (Z : Zonotope α) (j : Fin Z.h) :
+theorem Zonotope.split_intersection (Z : Zonotope α) (j : Fin Z.h) : -- --- CONCL ---
     (Z.split j).fst.construct ∩ (Z.split j).snd.construct
       = ({Z with G := Function.update Z.G j 0} : Zonotope α).construct := by -- --- PROOF ---
   -- all three sets read over `Fin Z.h`, which they are only up to unfolding

@@ -61,7 +61,7 @@ noncomputable def aux_encloseNotMonotone_R : Relaxation ℝ where
 
 /-- Both branches are sound: the deviation from the chosen line never exceeds half the box's
 width. -/
-theorem aux_encloseNotMonotone_R_sound :
+theorem aux_encloseNotMonotone_R_sound : -- --- CONCL ---
     aux_encloseNotMonotone_R.Sound aux_encloseNotMonotone_sigma := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
   show |0 - ((if u - l < 2 then (1 : ℝ) else 0) * t + (if u - l < 2 then -(l + u) / 2 else 0))|
@@ -103,7 +103,7 @@ theorem aux_encloseNotMonotone_enclose (I : Real.Interval (Vec ℝ 1)) : -- --- 
   rfl
 
 /-- The constant `1` vector lies in the narrow box's own propagation, `[-1, 1]`. -/
-theorem aux_encloseNotMonotone_mem_s :
+theorem aux_encloseNotMonotone_mem_s : -- --- CONCL ---
     (fun _ : Fin 1 => (1 : ℝ)) ∈ construct
       ((Layer.activation (S := ℐ𝒱)
         aux_encloseNotMonotone_R).enclose aux_encloseNotMonotone_s) := by -- --- PROOF ---
@@ -116,7 +116,7 @@ theorem aux_encloseNotMonotone_mem_s :
 
 /-- The wide box's own propagation is the single point `0`: slope `0` drops every
 dependence on the input, so nothing at `1` survives. -/
-theorem aux_encloseNotMonotone_not_mem_t :
+theorem aux_encloseNotMonotone_not_mem_t : -- --- CONCL ---
     (fun _ : Fin 1 => (1 : ℝ)) ∉ construct
       ((Layer.activation (S := ℐ𝒱)
         aux_encloseNotMonotone_R).enclose aux_encloseNotMonotone_t) := by -- --- PROOF ---

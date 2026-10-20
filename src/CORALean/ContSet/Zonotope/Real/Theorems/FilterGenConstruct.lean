@@ -37,7 +37,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.filterGen_construct (Z : Zonotope α) (keep : Fin Z.h → Bool)
-    (hz : ∀ j, keep j = false → Z.G j = 0) :
+    (hz : ∀ j, keep j = false → Z.G j = 0) : -- --- CONCL ---
     (Z.filterGen keep).construct = Z.construct := by -- --- PROOF ---
   set S := Finset.univ.filter fun j => keep j = true with hS
   -- a sum over all generators is the sum over the kept ones, the dropped terms being zero

@@ -57,7 +57,7 @@ theorem aux_norm₂_le_one_iff {k : ℕ} (u : Vec ℝ k) : ‖u‖₂ ≤ 1 ↔ 
   rw [dotProduct_self, pow_le_one_iff_of_nonneg (norm₂_nonneg u) two_ne_zero]
 
 /-- The projection `I - w wᵀ / s` applied. -/
-theorem aux_proj_mulVec {k : ℕ} (w z : Vec ℝ k) (s : ℝ) :
+theorem aux_proj_mulVec {k : ℕ} (w z : Vec ℝ k) (s : ℝ) : -- --- CONCL ---
     ((1 : Mat ℝ k k) - s⁻¹ • vecMulVec w w) *ᵥ z = z - (s⁻¹ * (w ⬝ᵥ z)) • w := by -- --- PROOF ---
   funext i
   rw [Matrix.sub_mulVec, Matrix.one_mulVec, Matrix.smul_mulVec]
@@ -70,7 +70,7 @@ theorem aux_proj_mulVec {k : ℕ} (w z : Vec ℝ k) (s : ℝ) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.inter_hyperplane_eq (E : Ellipsoid n) (v : Vec ℝ n) (c : ℝ)
-    (hne : (E.construct ∩ {x | v ⬝ᵥ x = c}).Nonempty) :
+    (hne : (E.construct ∩ {x | v ⬝ᵥ x = c}).Nonempty) : -- --- CONCL ---
     ∃ E' : Ellipsoid n, E.construct ∩ {x | v ⬝ᵥ x = c} = E'.construct := by -- --- PROOF ---
   obtain ⟨w, hw⟩ : ∃ w : Vec ℝ n, w = E.Gᵀ *ᵥ v := ⟨_, rfl⟩
   obtain ⟨t, ht⟩ : ∃ t : ℝ, t = c - v ⬝ᵥ E.q := ⟨_, rfl⟩

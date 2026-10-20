@@ -49,7 +49,7 @@ theorem GridPartition.aux_sum_getD_eq (l : List ℝ) {N : ℕ} (h : l.length = N
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `nrOfCells + 1` entries of `iProp` sum to `1`. -/
-theorem GridPartition.exactIntersectingCells_sum (P : GridPartition n) (X : S n) :
+theorem GridPartition.exactIntersectingCells_sum (P : GridPartition n) (X : S n) : -- --- CONCL ---
     ∑ s : Fin (P.nrOfCells + 1), (P.exactIntersectingCells X).iProp.getD s 0 = 1
       := by -- --- PROOF ---
   unfold GridPartition.exactIntersectingCells

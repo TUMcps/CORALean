@@ -46,7 +46,7 @@ variable {X : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Clause.holds_merge (c : ℝ≥0) (cl₁ cl₂ : STL.Clause X) (ξ : ℝ≥0 → X) :
+theorem STL.Clause.holds_merge (c : ℝ≥0) (cl₁ cl₂ : STL.Clause X) (ξ : ℝ≥0 → X) : -- --- CONCL ---
     (∃ b ∈ STL.Clause.merge cl₁ cl₂, b.Holds c ξ) ↔
       (∃ b ∈ cl₁, b.Holds c ξ) ∨ ∃ b ∈ cl₂, b.Holds c ξ := by -- --- PROOF ---
   induction cl₂ with

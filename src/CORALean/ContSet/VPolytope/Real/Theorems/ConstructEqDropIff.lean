@@ -44,7 +44,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.construct_eq_drop_iff (P : VPolytope α) (j : Fin P.k) :
+theorem VPolytope.construct_eq_drop_iff (P : VPolytope α) (j : Fin P.k) : -- --- CONCL ---
     P.construct = (⟨P.k - 1, fun i => P.V (dropIdx j i)⟩ : VPolytope α).construct ↔
       P.V j ∈ (⟨P.k - 1, fun i => P.V (dropIdx j i)⟩ : VPolytope α).construct := by -- --- PROOF ---
   constructor

@@ -56,7 +56,7 @@ through the projection because that is the form the goal has and simp will not
 rewrite a binder's type. -/
 theorem ConPolyZono.aux_sum_univ_reduceBy_qI {cPZ : ConPolyZono (Vec ℝ n)}
     {partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r)}
-    {partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) : -- --- CONCL ---
+    {partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) :
     ∑ j : Fin (cPZ.reduceBy partD partI).qI, f j
       = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd dI j) :=
   Fin.sum_univ_add f
@@ -94,7 +94,7 @@ theorem ConPolyZono.aux_abs_droppedDep_le (cPZ : ConPolyZono (Vec ℝ n))
 already free. -/
 theorem ConPolyZono.aux_abs_droppedInd_le (cPZ : ConPolyZono (Vec ℝ n))
     (partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)) {β : Fin cPZ.qI → ℝ}
-    (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) : -- --- CONCL ---
+    (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
     |∑ j, cPZ.GI (partI.right j) i * β (partI.right j)|
       ≤ ∑ j, |cPZ.GI (partI.right j) i| :=
   calc |∑ j, cPZ.GI (partI.right j) i * β (partI.right j)|
@@ -112,7 +112,7 @@ theorem ConPolyZono.aux_abs_droppedInd_le (cPZ : ConPolyZono (Vec ℝ n))
 they are. -/
 theorem ConPolyZono.reduceBy_outer (cPZ : ConPolyZono (Vec ℝ n))
     (partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r))
-    (partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)) :
+    (partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)) : -- --- CONCL ---
     cPZ.construct ⊆ (cPZ.reduceBy partD partI).construct := by -- --- PROOF ---
   intro x hxmem
   obtain ⟨a, β, hβ, hsat, hx⟩ := ConPolyZono.mem_construct_iff.mp hxmem

@@ -135,7 +135,7 @@ def HPolytope.aux_boxZeroRow : HPolytope (Fin 2 → ℝ) where
   Ae := Fin.elim0
   be := Fin.elim0
 
-theorem HPolytope.aux_boxZeroRow_construct :
+theorem HPolytope.aux_boxZeroRow_construct : -- --- CONCL ---
     HPolytope.aux_boxZeroRow.construct = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]

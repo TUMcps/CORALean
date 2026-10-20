@@ -35,7 +35,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.empty_exact (n : ℕ) : (ConPolyZono.empty n).construct = ∅ := by -- --- PROOF ---
+theorem ConPolyZono.empty_exact (n : ℕ) : -- --- CONCL ---
+    (ConPolyZono.empty n).construct = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
   rintro ⟨a, β, -, hsat, -⟩

@@ -61,7 +61,7 @@ theorem NeuralNetwork.minSuffExplanationAbstract_of_refined (nnAbs nnRef : Neura
       construct (nnRef.enclose (ofInterval (explainBox x ε E')))
         ⊆ construct (nnAbs.enclose (ofInterval (explainBox x ε E'))))
     (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l)
-    (hmin : nnRef.IsMinSuffExplanationAbstract x ε E l) : -- --- CONCL ---
+    (hmin : nnRef.IsMinSuffExplanationAbstract x ε E l) :
     nnAbs.IsMinSuffExplanationAbstract x ε E l :=
   ⟨hsuffAbs, fun i hi hdrop =>
     hmin.2 i hi (NeuralNetwork.suffExplanationAbstract_of_refined nnAbs nnRef x ε (E \ {i}) l

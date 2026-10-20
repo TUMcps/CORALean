@@ -49,7 +49,8 @@ def IsPinv (X : Mat ℝ p N) (P : Mat ℝ N p) : Prop :=
   X * P * X = X ∧ P * X * P = P ∧ (X * P)ᵀ = X * P ∧ (P * X)ᵀ = P * X
 
 /-- The pseudo-inverse is unique. -/
-theorem IsPinv.unique {X : Mat ℝ p N} {P Q : Mat ℝ N p} (hP : IsPinv X P) (hQ : IsPinv X Q) :
+theorem IsPinv.unique {X : Mat ℝ p N} {P Q : Mat ℝ N p} (hP : IsPinv X P)
+    (hQ : IsPinv X Q) : -- --- CONCL ---
     P = Q := by -- --- PROOF ---
   obtain ⟨hP1, hP2, hP3, hP4⟩ := hP
   obtain ⟨hQ1, hQ2, hQ3, hQ4⟩ := hQ
@@ -81,7 +82,7 @@ theorem IsPinv.unique {X : Mat ℝ p N} {P Q : Mat ℝ N p} (hP : IsPinv X P) (h
 /-- `W S⁻¹ Vᵀ` is the pseudo-inverse of `X = V S Wᵀ` for orthonormal `V`, `W` and `s ≠ 0`. -/
 theorem isPinv_svd (X : Mat ℝ p N) (V : Mat ℝ p r) (s : Fin r → ℝ) (W : Mat ℝ N r)
     (hX : X = V * Matrix.diagonal s * Wᵀ) (hV : Vᵀ * V = 1) (hW : Wᵀ * W = 1)
-    (hs : ∀ i, s i ≠ 0) :
+    (hs : ∀ i, s i ≠ 0) : -- --- CONCL ---
     IsPinv X (W * Matrix.diagonal (fun i => (s i)⁻¹) * Vᵀ) := by -- --- PROOF ---
   -- the diagonal factors are inverse to each other
   have hDD : Matrix.diagonal s * Matrix.diagonal (fun i => (s i)⁻¹) = 1 := by
@@ -120,7 +121,7 @@ theorem isPinv_svd (X : Mat ℝ p N) (V : Mat ℝ p r) (s : Fin r → ℝ) (W : 
 /-- [1, Eq. 4] with [1, Eq. 7] at full rank: `X' Ṽ Σ̃⁻¹ Ũᵀ = X' X†`. -/
 theorem dmdCandidate_eq_mul_pinv (X2 : Mat ℝ n N) (X : Mat ℝ p N) (V : Mat ℝ p r)
     (s : Fin r → ℝ) (W : Mat ℝ N r) (hX : X = V * Matrix.diagonal s * Wᵀ) (hV : Vᵀ * V = 1)
-    (hW : Wᵀ * W = 1) (hs : ∀ i, s i ≠ 0) (P : Mat ℝ N p) (hP : IsPinv X P) :
+    (hW : Wᵀ * W = 1) (hs : ∀ i, s i ≠ 0) (P : Mat ℝ N p) (hP : IsPinv X P) : -- --- CONCL ---
     dmdCandidate X2 V s W r = X2 * P := by -- --- PROOF ---
   rw [← IsPinv.unique (isPinv_svd X V s W hX hV hW hs) hP]
   unfold dmdCandidate

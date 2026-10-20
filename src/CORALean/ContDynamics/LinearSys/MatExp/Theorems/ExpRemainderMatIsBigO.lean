@@ -55,7 +55,7 @@ variable {n : ℕ}
 
 /-- [1, Lemma 1], the rate half: the entrywise exponential remainder is
 `O(Δtᵂ⁺¹)` as the step shrinks to `0`, at any fixed order. -/
-theorem MatExp.expRemainderMat_isBigO (A : Mat ℝ n n) (η : ℕ) :
+theorem MatExp.expRemainderMat_isBigO (A : Mat ℝ n n) (η : ℕ) : -- --- CONCL ---
     (fun Δt : ℝ => MatExp.expRemainderMat A Δt η)
       =O[𝓝[>] (0 : ℝ)] fun Δt : ℝ => Δt ^ (η + 1) := by -- --- PROOF ---
   refine IsBigO.of_bound (2 * ‖MatExp.absMat A‖ ^ (η + 1) / (Nat.factorial (η + 1) : ℝ)) ?_

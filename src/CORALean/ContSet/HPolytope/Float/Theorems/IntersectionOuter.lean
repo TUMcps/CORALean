@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The intersection contains every point of both operands. -/
-theorem HPolytope.intersection_outer (P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)) :
+theorem HPolytope.intersection_outer (P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     P₁.construct ∩ P₂.construct ⊆ (P₁.intersection P₂).construct := by -- --- PROOF ---
   rintro x ⟨hx₁, hx₂⟩
   by_cases hc : (P₁.isErrFree && P₂.isErrFree) = true

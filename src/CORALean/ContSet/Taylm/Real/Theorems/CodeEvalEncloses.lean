@@ -53,7 +53,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.codeEval_encloses {m : ℕ} {N : ℕ} {F : Fin m → Taylm n}
-    {f : Fin m → Vec ℝ n → ℝ} (hF : ∀ i, (F i).Encloses (f i)) :
+    {f : Fin m → Vec ℝ n → ℝ} (hF : ∀ i, (F i).Encloses (f i)) : -- --- CONCL ---
     ∀ (e : Taylm.CodeList ℝ m) {T : Taylm n}, Taylm.codeEval N F e = some T →
       T.Encloses fun t => e.eval fun i => f i t := by -- --- PROOF ---
   intro e

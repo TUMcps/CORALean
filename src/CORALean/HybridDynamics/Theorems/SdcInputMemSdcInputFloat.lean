@@ -62,7 +62,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- [1, Prop. 1]: `b` is in the box, for `t ≥ 0`. -/
 theorem GuardMap.sdcInput_mem_sdcInputFloat (A : Mat 𝕋 n n) (uc : Vec 𝕋 n) {t : 𝕋} (η : ℕ)
-    (x₀ : Vec 𝕋 n) (ht : 0 ≤ toReal t) :
+    (x₀ : Vec 𝕋 n) (ht : 0 ≤ toReal t) : -- --- CONCL ---
     GuardMap.sdcInput (toRealMat A) (toRealVec uc) (toReal t) η (toRealVec x₀)
       ∈ (GuardMap.sdcInputFloat A uc t η x₀).construct := by -- --- PROOF ---
   -- `tᵖ/q!` between the corner products

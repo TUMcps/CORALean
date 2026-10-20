@@ -51,7 +51,7 @@ variable {n : ℕ}
 
 /-- [1, Thm. 2]: `r ≥ ⌈Z(S, 0)⌉²` puts the scaled zonotope in the ellipsoid. -/
 theorem Ellipsoid.contains_zonotopeInnerNorm (E : Ellipsoid n) {m : ℕ} (S : Fin m → Vec ℝ n)
-    {r : ℝ} (hr : 0 < r) (hS : (⟨m, 0, S⟩ : Zonotope (Vec ℝ n)).maxNormSq ≤ r) :
+    {r : ℝ} (hr : 0 < r) (hS : (⟨m, 0, S⟩ : Zonotope (Vec ℝ n)).maxNormSq ≤ r) : -- --- CONCL ---
     (E.zonotopeInnerNorm S r).construct ⊆ E.construct := by -- --- PROOF ---
   rintro _ ⟨β, hβ, rfl⟩
   change ∀ j : Fin m, |β j| ≤ 1 at hβ

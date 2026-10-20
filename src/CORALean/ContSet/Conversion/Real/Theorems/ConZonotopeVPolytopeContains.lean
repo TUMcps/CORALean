@@ -42,7 +42,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.vPolytope_contains (cZ : ConZonotope α) (hne : cZ.domain.construct.Nonempty) :
+theorem ConZonotope.vPolytope_contains (cZ : ConZonotope α)
+    (hne : cZ.domain.construct.Nonempty) : -- --- CONCL ---
     cZ.construct ⊆ (cZ.vPolytope hne).construct := by -- --- PROOF ---
   rintro _ ⟨β, hβ, hP, rfl⟩
   obtain ⟨lam, hlam0, hlam1, hlamv⟩ :=

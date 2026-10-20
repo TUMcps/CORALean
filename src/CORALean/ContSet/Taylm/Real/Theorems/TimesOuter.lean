@@ -54,7 +54,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.times_outer {T₁ T₂ : Taylm n} {f g : Vec ℝ n → ℝ} (h₁ : T₁.Encloses f)
-    (h₂ : T₂.Encloses g) : (T₁.times T₂).Encloses fun t => f t * g t := by -- --- PROOF ---
+    (h₂ : T₂.Encloses g) : -- --- CONCL ---
+    (T₁.times T₂).Encloses fun t => f t * g t := by -- --- PROOF ---
   intro t ht
   -- the product list split into what is kept and what is bounded
   have hsplit := Taylm.polyOf_filter (Taylm.mulTerms T₁.terms T₂.terms)

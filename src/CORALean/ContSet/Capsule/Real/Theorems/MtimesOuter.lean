@@ -43,7 +43,7 @@ variable {m n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The Frobenius norm bounds the Euclidean operator norm. -/
-theorem aux_norm₂_mulVec_le_frobenius (M : Mat ℝ m n) (y : Vec ℝ n) :
+theorem aux_norm₂_mulVec_le_frobenius (M : Mat ℝ m n) (y : Vec ℝ n) : -- --- CONCL ---
     ‖M.mulVec y‖₂ ≤ Real.sqrt (∑ i, ∑ j, M i j ^ 2) * ‖y‖₂ := by -- --- PROOF ---
   have hF : 0 ≤ ∑ i, ∑ j, M i j ^ 2 :=
     Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => sq_nonneg _
@@ -62,7 +62,7 @@ theorem aux_norm₂_mulVec_le_frobenius (M : Mat ℝ m n) (y : Vec ℝ n) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The linear image of a capsule lies in `Capsule.mtimes`. -/
-theorem Capsule.mtimes_outer (M : Mat ℝ m n) (C : Capsule n) :
+theorem Capsule.mtimes_outer (M : Mat ℝ m n) (C : Capsule n) : -- --- CONCL ---
     (fun x => M.mulVec x) '' C.construct ⊆ (C.mtimes M).construct := by -- --- PROOF ---
   rintro _ ⟨x, ⟨t, ht, hx⟩, rfl⟩
   refine ⟨t, ht, ?_⟩

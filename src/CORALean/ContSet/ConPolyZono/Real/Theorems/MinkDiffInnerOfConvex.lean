@@ -41,7 +41,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.minkDiff_inner_of_convex (cPZ₁ : ConPolyZono (Vec ℝ n))
-    (Z : Zonotope (Vec ℝ n)) (hP : Convex ℝ cPZ₁.construct) :
+    (Z : Zonotope (Vec ℝ n)) (hP : Convex ℝ cPZ₁.construct) : -- --- CONCL ---
     (cPZ₁.minkDiff Z).construct ⊆
       {x | ∀ z ∈ Z.construct, x + z ∈ cPZ₁.construct} := by -- --- PROOF ---
   -- the affine map of coefficients to the shifted points

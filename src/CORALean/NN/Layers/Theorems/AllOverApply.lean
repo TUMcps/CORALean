@@ -32,7 +32,8 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem allOver_apply : ∀ {k : ℕ} (f : Fin k → Bool),
+theorem allOver_apply : -- --- CONCL ---
+    ∀ {k : ℕ} (f : Fin k → Bool),
     allOver f = true → ∀ i, f i = true := by -- --- PROOF ---
   intro k
   induction k with

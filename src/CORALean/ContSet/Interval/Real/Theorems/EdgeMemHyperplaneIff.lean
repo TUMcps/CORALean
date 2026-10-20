@@ -48,7 +48,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.edge_mem_hyperplane_iff {v u : Vec ℝ n} {α t : ℝ}
-    (hden : ∑ i, (u i - v i) ≠ 0) :
+    (hden : ∑ i, (u i - v i) ≠ 0) : -- --- CONCL ---
     v + t • (u - v) ∈ Interval.hyperplane 1 α ↔
       t = (α - ∑ i, v i) / ∑ i, (u i - v i) := by -- --- PROOF ---
   -- the sum along the edge is affine in `t`

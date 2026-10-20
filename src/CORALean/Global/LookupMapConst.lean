@@ -37,7 +37,8 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem lookup_map_const {α β : Type} (l : List (String × α)) (v : β) (p : String × α)
-    (hp : p ∈ l) : (l.map fun q => (q.1, v)).lookup p.1 = some v := by -- --- PROOF ---
+    (hp : p ∈ l) : -- --- CONCL ---
+    (l.map fun q => (q.1, v)).lookup p.1 = some v := by -- --- PROOF ---
   induction l with
   | nil => simp at hp
   | cons q l ih =>

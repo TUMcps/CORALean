@@ -47,7 +47,7 @@ variable {n : ℕ}
 
 /-- [1, Sec. III-B]: the reduced zonotope is inside `Z`. -/
 theorem Zonotope.reduceUnderApproxRaghuraman_inner (Z : Zonotope (Vec ℝ n)) (r : ℕ)
-    (hr : r ≤ Z.h) :
+    (hr : r ≤ Z.h) : -- --- CONCL ---
     (Z.reduceUnderApproxRaghuraman r hr).construct ⊆ Z.construct := by -- --- PROOF ---
   -- the result is `Z_s T`, and `Z_s` is `Z` with its generators permuted
   rw [← Zonotope.sortByLength_construct Z]

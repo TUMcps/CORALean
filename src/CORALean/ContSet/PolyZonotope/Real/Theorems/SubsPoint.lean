@@ -56,7 +56,8 @@ noncomputable def PolyZonotope.aux_evalTerms {p : ℕ} (l : List (ℝ × (Fin p 
   (l.map fun t => t.1 * ∏ j, β j ^ t.2 j).sum
 
 /-- The value of a product of sums of monomials is the product of the values. -/
-theorem PolyZonotope.aux_evalTerms_subsMul {p : ℕ} (A B : List (ℝ × (Fin p → ℕ))) (β : Fin p → ℝ) :
+theorem PolyZonotope.aux_evalTerms_subsMul {p : ℕ} (A B : List (ℝ × (Fin p → ℕ)))
+    (β : Fin p → ℝ) : -- --- CONCL ---
     PolyZonotope.aux_evalTerms (PolyZonotope.subsMul A B) β
       = PolyZonotope.aux_evalTerms A β * PolyZonotope.aux_evalTerms B β := by -- --- PROOF ---
   -- induction on the first factor, one term at a time
@@ -86,7 +87,7 @@ theorem PolyZonotope.aux_evalTerms_subsPow {p : ℕ} (A : List (ℝ × (Fin p �
 
 /-- The value of output `ii`'s polynomial is `pZin`'s point there. -/
 theorem PolyZonotope.aux_evalTerms_subsPoly {nu : ℕ} (pZin : PolyZonotope (Vec ℝ nu))
-    (β : Fin pZin.p → ℝ) (ii : Fin nu) :
+    (β : Fin pZin.p → ℝ) (ii : Fin nu) : -- --- CONCL ---
     PolyZonotope.aux_evalTerms (pZin.subsPoly ii) β = pZin.point β ii := by -- --- PROOF ---
   -- the center term, then the generators one by one
   unfold PolyZonotope.aux_evalTerms PolyZonotope.subsPoly PolyZonotope.point

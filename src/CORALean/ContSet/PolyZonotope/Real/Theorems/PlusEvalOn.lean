@@ -86,7 +86,8 @@ theorem PolyZonotope.aux_plus_eval (pZ₁ pZ₂ : PolyZonotope α) (a₁ : Fin p
 
 /-- What the summand adds to an evaluated set is reached by leaving the
 summand's own factors free. -/
-theorem PolyZonotope.plus_evalOn (pZ₁ pZ₂ : PolyZonotope α) (B : Set (Fin pZ₁.p → ℝ)) :
+theorem PolyZonotope.plus_evalOn (pZ₁ pZ₂ : PolyZonotope α)
+    (B : Set (Fin pZ₁.p → ℝ)) : -- --- CONCL ---
     pZ₁.evalOn B + pZ₂.construct
       ⊆ (pZ₁.plus pZ₂).evalOn (PolyZonotope.plusBox pZ₁ pZ₂ B) := by -- --- PROOF ---
   rintro _ ⟨_, ⟨a₁, ha₁, β₁, hβ₁, rfl⟩, _, ⟨a₂, β₂, ha₂, hβ₂, rfl⟩, rfl⟩

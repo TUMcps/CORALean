@@ -36,7 +36,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `toLeft` denotes the times `≥ 0` outside `I` and no later than all of `I`. -/
-theorem STLInterval.set_toLeft (I : STLInterval) (hI : I ≠ .empty) :
+theorem STLInterval.set_toLeft (I : STLInterval) (hI : I ≠ .empty) : -- --- CONCL ---
     ∃ J, I.toLeft = some J ∧
       J.set = {t | 0 ≤ t ∧ t ∉ I.set ∧ ∀ s ∈ I.set, t ≤ s} := by -- --- PROOF ---
   cases I with

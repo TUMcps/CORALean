@@ -54,7 +54,7 @@ variable {n : ℕ}
 
 /-- The Taylor sum `Σ_{i ≤ k+2} Mⁱ/i!` of order `k + 2` is in `expmTerms` of that order. -/
 theorem MatExp.expmTerms_mem (A : Interval (Mat ℝ n n)) {r : ℝ} (hr : r ≠ 0) (k : ℕ)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) :
+    {M : Mat ℝ n n} (hM : M ∈ A.construct) : -- --- CONCL ---
     MatExp.expTaylor M (k + 2) ∈ (MatExp.expmTerms A r (k + 2)).construct := by -- --- PROOF ---
   -- the member scaled by `1 / r` is in the scaled box, and `dependentTerms` encloses its terms
   have hM' : r⁻¹ • M ∈ (Interval.smul (1 / r) A).construct := by

@@ -38,7 +38,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.vertices_exact (E : Ellipsoid 1) :
+theorem Ellipsoid.vertices_exact (E : Ellipsoid 1) : -- --- CONCL ---
     convexHull ℝ {x | x ∈ E.vertices} = E.construct := by -- --- PROOF ---
   obtain ⟨xh, hxh, hxh0⟩ := E.supportBound_attained (LinearMap.proj 0)
   obtain ⟨xl, hxl, hxl0⟩ := E.supportBound_attained (-LinearMap.proj 0)

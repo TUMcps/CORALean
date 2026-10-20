@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.pointBox_outer (pZ : PolyZonotope (Vec 𝕋 n)) (X : Interval (Vec 𝕋 pZ.p))
-    {a : Vec ℝ pZ.p} (ha : a ∈ X.construct) :
+    {a : Vec ℝ pZ.p} (ha : a ∈ X.construct) : -- --- CONCL ---
     (PolyZonotope.nominal pZ).point a ∈
       (PolyZonotope.pointBox pZ X).construct := by -- --- PROOF ---
   have hm := PolyZonotope.monoBox_outer pZ.E X ha

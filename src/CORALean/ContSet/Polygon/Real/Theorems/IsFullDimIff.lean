@@ -35,7 +35,7 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Polygon.aux_interior_union (s t : Set (Vec ℝ 2)) (hs : IsClosed s) :
+theorem Polygon.aux_interior_union (s t : Set (Vec ℝ 2)) (hs : IsClosed s) : -- --- CONCL ---
     (interior (s ∪ t)).Nonempty ↔
       (interior s).Nonempty ∨ (interior t).Nonempty := by -- --- PROOF ---
   constructor
@@ -48,7 +48,7 @@ theorem Polygon.aux_interior_union (s t : Set (Vec ℝ 2)) (hs : IsClosed s) :
     · exact h.mono (interior_mono Set.subset_union_left)
     · exact h.mono (interior_mono Set.subset_union_right)
 
-theorem Polygon.aux_interior_nonempty_iff (l : List (VPolytope (Vec ℝ 2))) :
+theorem Polygon.aux_interior_nonempty_iff (l : List (VPolytope (Vec ℝ 2))) : -- --- CONCL ---
     (interior (⋃ p ∈ l, VPolytope.construct p)).Nonempty ↔
       ∃ p ∈ l, (interior (VPolytope.construct p)).Nonempty := by -- --- PROOF ---
   induction l with

@@ -41,7 +41,7 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.mtimes_outer (M : Mat ℝ m n) (I : Interval (Vec ℝ n)) :
+theorem Interval.mtimes_outer (M : Mat ℝ m n) (I : Interval (Vec ℝ n)) : -- --- CONCL ---
     (M *ᵥ ·) '' I.construct ⊆ (Interval.mtimes M I).construct := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩ i
   -- `entry` at a vector is the coordinate, definitionally

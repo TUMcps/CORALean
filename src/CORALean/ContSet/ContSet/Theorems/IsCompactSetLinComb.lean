@@ -45,7 +45,7 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The set of all segments running from one compact set to another is compact. -/
-theorem isCompact_setLinComb {X Y : Set α} (hX : IsCompact X) (hY : IsCompact Y) :
+theorem isCompact_setLinComb {X Y : Set α} (hX : IsCompact X) (hY : IsCompact Y) : -- --- CONCL ---
     IsCompact (Set.linComb X Y) := by -- --- PROOF ---
   have himg : Set.linComb X Y
       = (fun p : (α × α) × ℝ => p.2 • p.1.1 + (1 - p.2) • p.1.2)

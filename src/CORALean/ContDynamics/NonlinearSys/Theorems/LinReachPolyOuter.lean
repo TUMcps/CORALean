@@ -88,7 +88,8 @@ theorem NonlinearSys.IsTrajectory.linReachPoly_outer {sys : NonlinearSys n m} {T
     (hT : Set.Icc 0 Δt ⊆ T) (hR : ∀ t ∈ Set.Icc 0 Δt, x t ∈ step.R) (hΔt : 0 ≤ Δt)
     (hU : Bornology.IsBounded (construct step.linInput))
     (hUd : (NonlinearSys.linearize A).stepInput
-      (fun t => sys.f (x t) (u t) - A *ᵥ x t) Δt 0 ∈ construct Ud) {o : ℕ} (ho : 0 < o) :
+      (fun t => sys.f (x t) (u t) - A *ᵥ x t) Δt 0 ∈ construct Ud) {o : ℕ} (ho : 0 < o)
+    : -- --- CONCL ---
     x Δt ∈ construct (((NonlinearSys.linearize A).discretize Δt).reach (S := 𝒫𝒵)
       ⟨Rinit, Ud, 0, 1⟩ ⟨o, ho⟩) := by -- --- PROOF ---
   -- the step is the linearization at the `A`, `B`, `xs`, `us` the run was handed

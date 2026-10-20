@@ -56,7 +56,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem PolyZonotope.innerTest_subset_image (pZ : PolyZonotope (Vec 𝕋 n))
     (X X₀ : Interval (Vec 𝕋 pZ.p)) (Y : Interval (Vec 𝕋 n)) (ind : Fin n ↪ Fin pZ.p)
-    (M C : Mat 𝕋 n n) (iter : ℕ) (h : PolyZonotope.innerTest pZ X X₀ Y ind M C iter = true) :
+    (M C : Mat 𝕋 n n) (iter : ℕ)
+    (h : PolyZonotope.innerTest pZ X X₀ Y ind M C iter = true) : -- --- CONCL ---
     Y.construct ⊆ (PolyZonotope.nominal pZ).point '' X.construct := by -- --- PROOF ---
   unfold PolyZonotope.innerTest at h
   simp only [Bool.and_eq_true, beq_iff_eq] at h

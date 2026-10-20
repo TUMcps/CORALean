@@ -59,7 +59,7 @@ variable {n : ℕ}
 `B` covering `Ē x - E x` on `X`. -/
 theorem minkowskiDiff_mulVec_image_subset_of_contracting (Ē E : Mat ℝ n n) (hĒ : IsUnit Ē.det)
     (hK : ‖Ē⁻¹ * (E - Ē)‖ < 1) {X : Set (Vec ℝ n)} (hX : IsClosed X) (hXne : X.Nonempty)
-    {B : Set (Vec ℝ n)} (hB : ∀ x ∈ X, Ē *ᵥ x - E *ᵥ x ∈ B) :
+    {B : Set (Vec ℝ n)} (hB : ∀ x ∈ X, Ē *ᵥ x - E *ᵥ x ∈ B) : -- --- CONCL ---
     minkowskiDiff ((Ē *ᵥ ·) '' X) B ⊆ (E *ᵥ ·) '' X := by -- --- PROOF ---
   -- `Ē⁻¹` undoes `Ē` on either side
   have hleft : ∀ x : Vec ℝ n, Ē⁻¹ *ᵥ (Ē *ᵥ x) = x := fun x => by

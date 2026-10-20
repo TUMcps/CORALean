@@ -45,7 +45,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The Euclidean unit ball of `Vec ℝ n` has the volume of the unit `n`-ball. -/
-theorem Ellipsoid.aux_volume_unitBall :
+theorem Ellipsoid.aux_volume_unitBall : -- --- CONCL ---
     MeasureTheory.volume {u : Vec ℝ n | ‖u‖₂ ≤ 1} =
       ENNReal.ofReal (Real.pi ^ ((n : ℝ) / 2) / Real.Gamma ((n : ℝ) / 2 + 1)) := by -- --- PROOF ---
   rcases Nat.eq_zero_or_pos n with rfl | hn
@@ -74,7 +74,7 @@ theorem Ellipsoid.aux_volume_unitBall :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The Lebesgue volume of the ellipsoid is CORA's `volume_`, `V_n √det Q`. -/
-theorem Ellipsoid.volume_eq (E : Ellipsoid n) :
+theorem Ellipsoid.volume_eq (E : Ellipsoid n) : -- --- CONCL ---
     MeasureTheory.volume E.construct = E.volume := by -- --- PROOF ---
   -- the ellipsoid is a translate of the image of the unit ball
   have hcon : E.construct =

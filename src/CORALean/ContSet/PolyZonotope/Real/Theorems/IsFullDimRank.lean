@@ -39,7 +39,8 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.isFullDimCora_of_interior (pZ : PolyZonotope α)
-    (h : (interior pZ.construct).Nonempty) : pZ.isFullDimCora := by -- --- PROOF ---
+    (h : (interior pZ.construct).Nonempty) : -- --- CONCL ---
+    pZ.isFullDimCora := by -- --- PROOF ---
   set W := Submodule.span ℝ (Set.range pZ.G ∪ Set.range pZ.GI) with hW
   -- the set lies in a translate of `W`
   have hsub : pZ.construct ⊆ (fun v => pZ.c + v) '' (W : Set α) := by

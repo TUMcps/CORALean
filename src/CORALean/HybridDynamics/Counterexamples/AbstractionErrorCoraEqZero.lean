@@ -68,7 +68,7 @@ theorem aux_absErrCora_mtimes_zero (Z : Zonotope (Vec ℝ n)) :
 
 /-- An interval matrix applied to `{0}`: `IM.center 0` and radii `rad(IM)|0| = 0`. -/
 theorem aux_absErrCora_mtimesIM (IM : Interval (Mat ℝ n n)) {Z : Zonotope (Vec ℝ n)}
-    (h : aux_absErrCora_Zero Z) :
+    (h : aux_absErrCora_Zero Z) : -- --- CONCL ---
     aux_absErrCora_Zero (Zonotope.mtimesIntervalMat IM Z) := by -- --- PROOF ---
   have hr : ∀ i, Zonotope.radiusReach IM Z i = 0 := fun i => by
     simp [Zonotope.radiusReach, Zonotope.absBound, h.1, h.2]
@@ -80,7 +80,7 @@ theorem aux_absErrCora_mtimesIM (IM : Interval (Mat ℝ n n)) {Z : Zonotope (Vec
 
 /-- The interval matrix `[0, 0]` applied to any zonotope. -/
 theorem aux_absErrCora_mtimesIM_zero {IM : Interval (Mat ℝ n n)} (hi : IM.inf = 0)
-    (hs : IM.sup = 0) (Z : Zonotope (Vec ℝ n)) :
+    (hs : IM.sup = 0) (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     aux_absErrCora_Zero (Zonotope.mtimesIntervalMat IM Z) := by -- --- PROOF ---
   have hr : ∀ i, Zonotope.radiusReach IM Z i = 0 := fun i => by
     simp [Zonotope.radiusReach, Interval.radius, hi, hs]

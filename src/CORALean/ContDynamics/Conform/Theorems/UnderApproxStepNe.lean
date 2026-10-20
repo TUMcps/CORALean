@@ -56,7 +56,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The nilpotent `A = [0 1; 0 0]`: `e^{sA} = I + s A`. -/
-theorem aux_exp_nil (s : ℝ) :
+theorem aux_exp_nil (s : ℝ) : -- --- CONCL ---
     exp (s • !![(0 : ℝ), 1; 0, 0]) = 1 + s • !![(0 : ℝ), 1; 0, 0] := by -- --- PROOF ---
   have hA2 : !![(0 : ℝ), 1; 0, 0] ^ 2 = 0 := by
     ext i j; fin_cases i <;> fin_cases j <;> simp [sq, Matrix.mul_apply, Fin.sum_univ_two]
@@ -74,7 +74,7 @@ theorem aux_nil_mulVec (a b : ℝ) : !![(0 : ℝ), 1; 0, 0] *ᵥ ![a, b] = ![b, 
   funext i; fin_cases i <;> simp [Matrix.mulVec, dotProduct, Fin.sum_univ_two]
 
 /-- `Υ(t) w = t w + (t²/2) A w` for the nilpotent `A`. -/
-theorem aux_upsilon (t : ℝ) (w : Vec ℝ 2) :
+theorem aux_upsilon (t : ℝ) (w : Vec ℝ 2) : -- --- CONCL ---
     ∫ τ in (0 : ℝ)..t, exp ((t - τ) • !![(0 : ℝ), 1; 0, 0]) *ᵥ w
       = t • w + (t ^ 2 / 2) • (!![(0 : ℝ), 1; 0, 0] *ᵥ w) := by -- --- PROOF ---
   have hint : ∀ τ : ℝ, exp ((t - τ) • !![(0 : ℝ), 1; 0, 0]) *ᵥ w

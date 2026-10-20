@@ -63,7 +63,7 @@ theorem Zonotope.aux_sum_univ_add3 {δ : Type} [AddCommMonoid δ] {m n : ℕ}
 /-- The same split, read through `bilin`'s own generator count, stated at the
 projection because that is the form `rw` meets in the goal below. -/
 theorem Zonotope.aux_sum_univ_bilin (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (Z₁ : Zonotope α) (Z₂ : Zonotope β)
-    {δ : Type} [AddCommMonoid δ] (g : Fin (Zonotope.bilin f Z₁ Z₂).h → δ) : -- --- CONCL ---
+    {δ : Type} [AddCommMonoid δ] (g : Fin (Zonotope.bilin f Z₁ Z₂).h → δ) :
     ∑ k, g k = ∑ i, g (Fin.castAdd (Z₁.h * Z₂.h) (Fin.castAdd Z₂.h i))
       + ∑ j, g (Fin.castAdd (Z₁.h * Z₂.h) (Fin.natAdd Z₁.h j))
       + ∑ i, ∑ j, g (Fin.natAdd (Z₁.h + Z₂.h) (finProdFinEquiv (i, j))) :=
@@ -85,7 +85,8 @@ theorem Zonotope.aux_bilin_right (g : β →ₗ[ℝ] γ) {h : ℕ} (c : β) (G :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.bilin_outer (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (Z₁ : Zonotope α) (Z₂ : Zonotope β) :
+theorem Zonotope.bilin_outer (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (Z₁ : Zonotope α)
+    (Z₂ : Zonotope β) : -- --- CONCL ---
     (⋃ a ∈ Z₁.construct, (f a ·) '' Z₂.construct)
       ⊆ (Zonotope.bilin f Z₁ Z₂).construct := by -- --- PROOF ---
   rintro y hy

@@ -42,7 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.isFullDim_sound {C : Capsule 𝕋 n} (h : Capsule.isFullDim C = true) :
+theorem Capsule.isFullDim_sound {C : Capsule 𝕋 n}
+    (h : Capsule.isFullDim C = true) : -- --- CONCL ---
     (interior C.construct).Nonempty := by -- --- PROOF ---
   simp only [Capsule.isFullDim, Bool.or_eq_true, Bool.and_eq_true, decide_eq_true_eq,
     List.any_eq_true, List.all_eq_true, List.mem_finRange, true_and, forall_const] at h

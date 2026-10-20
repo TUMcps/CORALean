@@ -50,7 +50,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- [1, Prop. 6]: replacing `gᵢ`, `gⱼ` by `gᵢ ± gⱼ` gives a subset. -/
 theorem Zonotope.combineGens_inner (Z : Zonotope α) {m : ℕ} (hm : Z.h = m + 2)
-    (i : Fin (m + 2)) (j : Fin (m + 1)) (add : Bool) :
+    (i : Fin (m + 2)) (j : Fin (m + 1)) (add : Bool) : -- --- CONCL ---
     (Z.combineGens hm i j add).construct ⊆ Z.construct := by -- --- PROOF ---
   rintro _ ⟨β, hβ, rfl⟩
   set s : ℝ := if add then 1 else -1 with hs

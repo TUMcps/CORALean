@@ -40,7 +40,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.reduce_outer (cZ : ConZonotope (Vec ℝ n)) (o : ℕ) :
+theorem ConZonotope.reduce_outer (cZ : ConZonotope (Vec ℝ n)) (o : ℕ) : -- --- CONCL ---
     cZ.construct ⊆ (cZ.reduce o).construct := by -- --- PROOF ---
   unfold ConZonotope.reduce
   split_ifs with hlt

@@ -77,7 +77,7 @@ theorem PolyZonotope.aux_sum_univ_mtimesIntervalMat_dep {IM : Interval (Mat ℝ 
 
 -- the image sits in the center's polynomial zonotope widened by what the radius can reach
 theorem PolyZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
-    (pZ : PolyZonotope (Vec ℝ n)) :
+    (pZ : PolyZonotope (Vec ℝ n)) : -- --- CONCL ---
     (⋃ A ∈ IM.construct, (A *ᵥ ·) '' pZ.construct)
       ⊆ (PolyZonotope.mtimesIntervalMat IM pZ).construct := by -- --- PROOF ---
   rintro y hy

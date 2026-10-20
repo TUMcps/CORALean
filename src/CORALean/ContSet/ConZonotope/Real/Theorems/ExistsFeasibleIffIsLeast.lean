@@ -50,7 +50,7 @@ open Matrix
 /-- A point of `Mξ = v` with `‖ξ‖∞ ≤ 1` exists iff the minimum of `‖ξ‖∞` over `Mξ = v` does
 and is `≤ 1`. -/
 theorem ConZonotope.exists_feasible_iff_isLeast {ι : Type} [Fintype ι] {h : ℕ}
-    (M : Matrix ι (Fin h) ℝ) (v : ι → ℝ) :
+    (M : Matrix ι (Fin h) ℝ) (v : ι → ℝ) : -- --- CONCL ---
     (∃ ξ : Fin h → ℝ, M *ᵥ ξ = v ∧ ∀ j, |ξ j| ≤ 1) ↔
       ∃ m, IsLeast {t | ∃ ξ : Fin h → ℝ, M *ᵥ ξ = v ∧ t = ‖ξ‖} m ∧ m ≤ 1 := by -- --- PROOF ---
   -- `‖ξ‖ ≤ 1` is the box `|ξⱼ| ≤ 1` the coefficients satisfy

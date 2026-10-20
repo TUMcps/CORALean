@@ -39,7 +39,8 @@ namespace CORALean
 
 /-- Past the first breakpoint, the value is that of the others (if there are any). -/
 theorem FiniteSignal.valueAt_cons_of_ge {T V : Type} [LinearOrder T] (p : T × V) (q : List (T × V))
-    (t : T) (h : ¬ t < p.1) (hq : q ≠ []) : FiniteSignal.valueAt (p :: q) t =
+    (t : T) (h : ¬ t < p.1) (hq : q ≠ []) : -- --- CONCL ---
+    FiniteSignal.valueAt (p :: q) t =
       FiniteSignal.valueAt q t := by -- --- PROOF ---
   obtain ⟨x, xs, rfl⟩ := List.exists_cons_of_ne_nil hq
   obtain ⟨b, v⟩ := p

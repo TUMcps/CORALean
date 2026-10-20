@@ -56,7 +56,7 @@ namespace CORALean.Real
 
 theorem Interval.exists_zero_iff_extrema {Y : Type} [TopologicalSpace Y] {S : Set Y}
     (hS : IsPreconnected S) {g : Y → ℝ} (hg : ContinuousOn g S) {lo hi : ℝ}
-    (hlo : IsLeast (g '' S) lo) (hhi : IsGreatest (g '' S) hi) :
+    (hlo : IsLeast (g '' S) lo) (hhi : IsGreatest (g '' S) hi) : -- --- CONCL ---
     (∃ y ∈ S, g y = 0) ↔ (0 : ℝ) ∈ Set.Icc lo hi := by -- --- PROOF ---
   constructor
   · -- necessary: the zero is a value, so it lies between the least and the greatest

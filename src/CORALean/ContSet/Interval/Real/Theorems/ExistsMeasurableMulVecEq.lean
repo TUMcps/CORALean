@@ -74,7 +74,7 @@ noncomputable def aux_select (B : Interval (Mat ℝ n n)) (y w : Vec ℝ n) : Ma
 
 /-- Every member's row lies between the corner rows against `y`. -/
 theorem aux_corner_between {B : Interval (Mat ℝ n n)} {M : Mat ℝ n n} (hM : M ∈ B.construct)
-    (y : Vec ℝ n) (i : Fin n) :
+    (y : Vec ℝ n) (i : Fin n) : -- --- CONCL ---
     ∑ l, aux_cornerLo B y i l * y l ≤ (M *ᵥ y) i ∧
       (M *ᵥ y) i ≤ ∑ l, aux_cornerHi B y i l * y l := by -- --- PROOF ---
   have h := Interval.mem_mat_iff.mp hM
@@ -89,7 +89,7 @@ theorem aux_corner_between {B : Interval (Mat ℝ n n)} {M : Mat ℝ n n} (hM : 
 /-- The weight lies in `[0, 1]` whenever `w i` lies between the corner values. -/
 theorem aux_weight_mem {B : Interval (Mat ℝ n n)} {y w : Vec ℝ n} {i : Fin n}
     (hlo : ∑ l, aux_cornerLo B y i l * y l ≤ w i)
-    (hhi : w i ≤ ∑ l, aux_cornerHi B y i l * y l) :
+    (hhi : w i ≤ ∑ l, aux_cornerHi B y i l * y l) : -- --- CONCL ---
     0 ≤ aux_weight B y w i ∧ aux_weight B y w i ≤ 1 := by -- --- PROOF ---
   unfold aux_weight
   split_ifs with heq
@@ -100,7 +100,8 @@ theorem aux_weight_mem {B : Interval (Mat ℝ n n)} {y w : Vec ℝ n} {i : Fin n
 
 /-- The selection maps `y` to `w`, `w` between the corner values row by row. -/
 theorem aux_select_mulVec {B : Interval (Mat ℝ n n)} {y w : Vec ℝ n}
-    (hw : ∀ i, ∑ l, aux_cornerLo B y i l * y l ≤ w i ∧ w i ≤ ∑ l, aux_cornerHi B y i l * y l) :
+    (hw : ∀ i, ∑ l, aux_cornerLo B y i l * y l ≤ w i ∧ w i ≤ ∑ l, aux_cornerHi B y i l * y l)
+    : -- --- CONCL ---
     aux_select B y w *ᵥ y = w := by -- --- PROOF ---
   funext i
   have hsum : (aux_select B y w *ᵥ y) i = ∑ l, aux_cornerLo B y i l * y l
@@ -121,7 +122,8 @@ theorem aux_select_mulVec {B : Interval (Mat ℝ n n)} {y w : Vec ℝ n}
 /-- The selection lies in the box, the box being non-empty. -/
 theorem aux_select_mem {B : Interval (Mat ℝ n n)} {M : Mat ℝ n n} (hM : M ∈ B.construct)
     {y w : Vec ℝ n}
-    (hw : ∀ i, ∑ l, aux_cornerLo B y i l * y l ≤ w i ∧ w i ≤ ∑ l, aux_cornerHi B y i l * y l) :
+    (hw : ∀ i, ∑ l, aux_cornerLo B y i l * y l ≤ w i ∧ w i ≤ ∑ l, aux_cornerHi B y i l * y l)
+    : -- --- CONCL ---
     aux_select B y w ∈ B.construct := by -- --- PROOF ---
   have hB : ∀ i l, B.inf i l ≤ B.sup i l := fun i l =>
     (Interval.mem_mat_iff.mp hM i l).1.trans (Interval.mem_mat_iff.mp hM i l).2
@@ -135,7 +137,7 @@ theorem aux_select_mem {B : Interval (Mat ℝ n n)} {M : Mat ℝ n n} (hM : M �
 
 /-- Measurable in time, given measurable `y` and `w`. -/
 theorem aux_select_measurable (B : Interval (Mat ℝ n n)) {y w : ℝ → Vec ℝ n}
-    (hy : Measurable y) (hw : Measurable w) (i l : Fin n) :
+    (hy : Measurable y) (hw : Measurable w) (i l : Fin n) : -- --- CONCL ---
     Measurable fun s => aux_select B (y s) (w s) i l := by -- --- PROOF ---
   have hyl : ∀ l, Measurable fun s => y s l := fun l => (measurable_pi_apply l).comp hy
   have hwi : ∀ i, Measurable fun s => w s i := fun i => (measurable_pi_apply i).comp hw

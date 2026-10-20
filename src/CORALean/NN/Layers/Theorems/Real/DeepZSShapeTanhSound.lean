@@ -43,7 +43,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem deepZSShape_tanh_sound :
+theorem deepZSShape_tanh_sound : -- --- CONCL ---
     (deepZSShape Real.tanh fun t => 1 - Real.tanh t ^ 2).Sound Real.tanh := by -- --- PROOF ---
   -- `4 σ'(2t) = 1 - (2 σ(2t) - 1)²`
   have hd : ∀ t, HasDerivAt Real.tanh (1 - Real.tanh t ^ 2) t := fun t => by

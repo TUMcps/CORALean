@@ -50,7 +50,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the vertices become generators at a zero center, so the two sets coincide
-theorem VPolytope.conZonotope_exact (P : VPolytope α) :
+theorem VPolytope.conZonotope_exact (P : VPolytope α) : -- --- CONCL ---
     P.construct = P.conZonotope.construct := by -- --- PROOF ---
   ext x
   constructor

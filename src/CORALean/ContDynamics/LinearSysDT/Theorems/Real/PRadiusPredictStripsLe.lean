@@ -85,7 +85,7 @@ def aux_stripsUpTo (C : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Mat ℝ n p) (Z : 
 
 /-- The deviation of a strip chain depends only on the coefficients it uses. -/
 theorem aux_stripDev_congr (κ : ℕ → Mat ℝ n n) (u : ℕ → Vec ℝ n) (η η' : ℕ → ℝ) (d : Vec ℝ n)
-    (s : ℕ) (h : ∀ r < s, η r = η' r) :
+    (s : ℕ) (h : ∀ r < s, η r = η' r) : -- --- CONCL ---
     aux_stripDev κ u η s d = aux_stripDev κ u η' s d := by -- --- PROOF ---
   induction s with
   | zero => rfl
@@ -95,7 +95,8 @@ theorem aux_stripDev_congr (κ : ℕ → Mat ℝ n n) (u : ℕ → Vec ℝ n) (�
 
 /-- The deviation of a strip chain is the product form of the recursion. -/
 theorem aux_stripDev_eq (κ : ℕ → Mat ℝ n n) (u : ℕ → Vec ℝ n) (η : ℕ → ℝ) (d : Vec ℝ n)
-    (s : ℕ) : aux_stripDev κ u η s d = Conform.prodJac κ s s *ᵥ d
+    (s : ℕ) : -- --- CONCL ---
+    aux_stripDev κ u η s d = Conform.prodJac κ s s *ᵥ d
       + ∑ i ∈ Finset.range s, η i • (Conform.prodJac κ s (s - i - 1) *ᵥ u i) := by -- --- PROOF ---
   have h := Conform.unroll_affine κ (fun s => aux_stripDev κ u η s d) (fun s => η s • u s)
     (fun s => rfl) s

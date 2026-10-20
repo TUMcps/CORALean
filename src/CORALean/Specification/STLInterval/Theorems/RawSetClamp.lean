@@ -37,7 +37,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `rawSet lb ub lc rc ∩ [0,∞)` replaces a negative `lb` by the closed `0`. -/
-theorem STLInterval.rawSet_clamp (lb ub : EReal) (lc rc : Bool) :
+theorem STLInterval.rawSet_clamp (lb ub : EReal) (lc rc : Bool) : -- --- CONCL ---
     rawSet lb ub lc rc ∩ Set.Ici 0 =
       if lb < 0 then rawSet 0 ub true rc else rawSet lb ub lc rc := by -- --- PROOF ---
   ext t

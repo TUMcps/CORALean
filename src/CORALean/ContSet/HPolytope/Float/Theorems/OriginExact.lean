@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.origin_exact (n : ℕ) :
+theorem HPolytope.origin_exact (n : ℕ) : -- --- CONCL ---
     (HPolytope.origin n : HPolytope 𝕋 (Vec 𝕋 n)).construct = {0} := by -- --- PROOF ---
   -- the stored identity reads as ℝ's
   have hA : toRealMat (HPolytope.origin n : HPolytope 𝕋 (Vec 𝕋 n)).Ae = (1 : Mat ℝ n n) := by

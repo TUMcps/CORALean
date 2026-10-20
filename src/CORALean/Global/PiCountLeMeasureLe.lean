@@ -41,7 +41,7 @@ variable {ι Δ : Type} [MeasurableSpace Δ]
 
 -- the subsets of at most `k` indices, summed by size
 theorem aux_sum_powerset_card_le [DecidableEq ι] (m k : ℕ) (g : ℕ → ℝ) (s : Finset ι)
-    (hs : s.card = m) :
+    (hs : s.card = m) : -- --- CONCL ---
     ∑ I ∈ s.powerset with I.card ≤ k, g I.card =
       ∑ i ∈ Finset.range (k + 1), (m.choose i : ℝ) * g i := by -- --- PROOF ---
   rw [Finset.sum_filter, Finset.sum_powerset_apply_card (fun i => if i ≤ k then g i else 0), hs]

@@ -51,7 +51,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem confidenceZonotope_prob (G : Mat ℝ n n) (hG : G.det ≠ 0) {m : ℝ} (hm : 0 < m) :
+theorem confidenceZonotope_prob (G : Mat ℝ n n) (hG : G.det ≠ 0) {m : ℝ}
+    (hm : 0 < m) : -- --- CONCL ---
     gZonotopeLaw 0 G (toLp 2 '' (confidenceZonotope G m).construct)
       = (gaussianReal 0 1 (Set.Icc (-m) m)) ^ n := by -- --- PROOF ---
   have hS : MeasurableSet (toLp 2 '' (confidenceZonotope G m).construct) := by

@@ -56,7 +56,7 @@ open ContSet
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem StarSet.coraRowBounds_unsound :
+theorem StarSet.coraRowBounds_unsound : -- --- CONCL ---
     ∃ (s : StarSet ℋ𝒫 2) (x : Vec ℝ 2), x ∈ construct s ∧
       (Function.update x 0 (Real.relu (x 0)) : Vec ℝ 2)
         ∉ construct (s.reluNeuron 0 (s.coraRowBounds 0)) := by -- --- PROOF ---

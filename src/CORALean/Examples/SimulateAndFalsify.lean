@@ -50,7 +50,7 @@ def SAF.U : Interval (Vec ℝ 2) := Interval.point (0 : Vec ℝ 2)
 def SAF.spec : Specification (Set (Vec ℝ 2)) := Specification.safeSet {x | x 0 ≤ 3}
 
 /-- After `k` steps the run is at position `k`, speed `1`. -/
-theorem SAF.sim_eq (k : ℕ) :
+theorem SAF.sim_eq (k : ℕ) : -- --- CONCL ---
     SAF.sys.simulate SAF.x0 (fun _ => (0 : Vec ℝ 2)) k = ![(k : ℝ), 1] := by -- --- PROOF ---
   induction k with
   | zero => ext i; fin_cases i <;> simp [LinearSysDT.simulate, SAF.x0]

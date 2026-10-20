@@ -36,7 +36,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `isMin` holds iff the infimum is attained by a time of the interval. -/
-theorem STLInterval.infimum_closed_iff (I : STLInterval) (hI : I ≠ .empty) :
+theorem STLInterval.infimum_closed_iff (I : STLInterval) (hI : I ≠ .empty) : -- --- CONCL ---
     I.infimum.closed = true ↔ ∃ t ∈ I.set, I.infimum.value = some (t : EReal) := by -- --- PROOF ---
   cases I with
   | empty => exact absurd rfl hI

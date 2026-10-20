@@ -50,7 +50,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.linComb_exact_of_dependent (pZ₁ pZ₂ : PolyZonotope α)
-    (h₁ : pZ₁.q = 0) (h₂ : pZ₂.q = 0) :
+    (h₁ : pZ₁.q = 0) (h₂ : pZ₂.q = 0) : -- --- CONCL ---
     Set.linComb pZ₁.construct pZ₂.construct = (pZ₁.linComb pZ₂).construct := by -- --- PROOF ---
   refine Set.eq_of_subset_of_subset (PolyZonotope.linComb_outer pZ₁ pZ₂) ?_
   rintro x ⟨a, β, ha, hβ, rfl⟩

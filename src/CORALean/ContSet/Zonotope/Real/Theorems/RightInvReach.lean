@@ -51,7 +51,7 @@ variable {n h : ℕ}
 
 theorem Zonotope.rightInv_reach (G : Mat ℝ n h) (H : Mat ℝ h n) {q B δ : ℝ} (hq : q ≤ 1 / 2)
     (hK : ∀ i, ∑ j, |((1 : Mat ℝ n n) - G * H) i j| ≤ q)
-    (hδ : ∀ j, 2 * B * ∑ k, |H j k| ≤ δ) (d : Vec ℝ n) (hd : ∀ i, |d i| ≤ B) :
+    (hδ : ∀ j, 2 * B * ∑ k, |H j k| ≤ δ) (d : Vec ℝ n) (hd : ∀ i, |d i| ≤ B) : -- --- CONCL ---
     ∃ β : Vec ℝ h, G *ᵥ β = d ∧ ∀ j, |β j| ≤ δ := by -- --- PROOF ---
   have hK' : ∀ i, ∑ j, |((1 : Mat ℝ n n) - (1 : Mat ℝ n n) * (G * H)) i j| ≤ q := fun i => by
     simpa only [Matrix.one_mul] using hK i

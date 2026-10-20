@@ -69,7 +69,8 @@ theorem Zonotope.diffusionStrip_outer [∀ i, NeZero (m i)] (F : Mat ℝ n n) (Q
     (hxs : ∀ k, x (k + 1) = F *ᵥ x k + Q k *ᵥ β k)
     (hy : ∀ k i j, |(Γ i *ᵥ x k - yb k i) j| ≤ r k i j)
     (hα : ∀ k i a, 0 < ∑ s, ∑ l, ((Zonotope.diffusionStripMeasurement Γ (r k) (yb k)
-      (Zonotope.diffusionStrip F Q Γ r yb nb o Z₀ k) (nb i a)).G l s) ^ 2) (k : ℕ) (i : Fin N) :
+      (Zonotope.diffusionStrip F Q Γ r yb nb o Z₀ k) (nb i a)).G l s) ^ 2) (k : ℕ) (i : Fin N)
+    : -- --- CONCL ---
     x k ∈ (Zonotope.diffusionStrip F Q Γ r yb nb o Z₀ k i).construct := by -- --- PROOF ---
   induction k generalizing i with
   | zero => exact h0

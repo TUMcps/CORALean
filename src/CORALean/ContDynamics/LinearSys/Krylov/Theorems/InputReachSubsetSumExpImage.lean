@@ -64,7 +64,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A matrix maps a finite Minkowski sum into the sum of the images. -/
-theorem Krylov.aux_image_sum_subset (M : Mat ℝ n n) (F : ℕ → Set (Vec ℝ n)) (p : ℕ) :
+theorem Krylov.aux_image_sum_subset (M : Mat ℝ n n) (F : ℕ → Set (Vec ℝ n))
+    (p : ℕ) : -- --- CONCL ---
     (M *ᵥ ·) '' (∑ i ∈ Finset.range p, F i)
       ⊆ ∑ i ∈ Finset.range p, (M *ᵥ ·) '' F i := by -- --- PROOF ---
   induction p with

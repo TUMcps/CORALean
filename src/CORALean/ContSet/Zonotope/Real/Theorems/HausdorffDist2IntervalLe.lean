@@ -63,7 +63,8 @@ theorem aux_norm₂_le_of_abs_le {x y : Vec ℝ n} (h : ∀ i, |x i| ≤ |y i|) 
 coordinatewise it is within their columnwise magnitude sum, and that vector is
 no longer than the generators are. -/
 theorem aux_norm₂_sub_center_le {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
-    (hx : x ∈ Z.interval.construct) : ‖x - Z.c‖₂ ≤ ∑ p, ‖Z.G p‖₂ := by -- --- PROOF ---
+    (hx : x ∈ Z.interval.construct) : -- --- CONCL ---
+    ‖x - Z.c‖₂ ≤ ∑ p, ‖Z.G p‖₂ := by -- --- PROOF ---
   -- one vector per generator, read entrywise in magnitude
   let A : Fin Z.h → Vec ℝ n := fun j i => |Z.G j i|
   have hA : ∀ i, (∑ j, A j) i = ∑ j, |Z.G j i| := fun i => Finset.sum_apply i Finset.univ A
@@ -87,7 +88,7 @@ theorem aux_norm₂_sub_center_le {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
 
 /-- [1, Thm. 1], the `ω_rad` bound: the box is never further from the zonotope
 than the generators reach, measured in the `‖·‖₂` the paper writes. -/
-theorem Zonotope.hausdorffDist₂_interval_le (Z : Zonotope (Vec ℝ n)) :
+theorem Zonotope.hausdorffDist₂_interval_le (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     hausdorffDist₂ Z.construct Z.interval.construct ≤ ∑ p, ‖Z.G p‖₂ := by -- --- PROOF ---
   have hr : (0 : ℝ) ≤ ∑ p, ‖Z.G p‖₂ := Finset.sum_nonneg fun _ _ => norm₂_nonneg _
   refine hausdorffDist₂_le_of_mem_dist hr

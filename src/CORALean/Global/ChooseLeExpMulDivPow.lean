@@ -43,7 +43,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem two_mul_choose_le (m r : ℕ) :
+theorem two_mul_choose_le (m r : ℕ) : -- --- CONCL ---
     (2 * (m.choose r : ℝ)) ≤ 2 * (Real.exp 1 * m / r) ^ r := by -- --- PROOF ---
   rcases Nat.eq_zero_or_pos r with rfl | hr
   · simp

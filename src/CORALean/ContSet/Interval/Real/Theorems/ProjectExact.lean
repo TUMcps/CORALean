@@ -41,7 +41,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.project_exact (I : Interval (Vec ℝ n)) (dims : Fin m → Fin n)
-    (hdims : Function.Injective dims) (hI : I.IsNonempty) :
+    (hdims : Function.Injective dims) (hI : I.IsNonempty) : -- --- CONCL ---
     (I.project dims).construct = (fun x k => x (dims k)) '' I.construct := by -- --- PROOF ---
   refine Set.Subset.antisymm (fun y hy => ?_) (Interval.project_outer I dims)
   refine ⟨Function.extend dims y I.inf, fun j => ?_, funext fun k => hdims.extend_apply _ _ _⟩

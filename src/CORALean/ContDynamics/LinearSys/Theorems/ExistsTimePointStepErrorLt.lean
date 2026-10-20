@@ -59,7 +59,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- A step whose whole enclosure error is under `ε`, sound because its own side
 condition holds too. -/
 theorem LinearSys.exists_timePointStepError_lt (sys : LinearSys 𝕋 n) (U : Zonotope (Vec ℝ n))
-    (η : ℕ) {ε : ℝ} (hε : 0 < ε) :
+    (η : ℕ) {ε : ℝ} (hε : 0 < ε) : -- --- CONCL ---
     ∃ r : ℝ, 0 < r ∧ sys.timePointStepError r η U < ε ∧
       ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1 := by -- --- PROOF ---
   set A := toRealMat sys.A with hA

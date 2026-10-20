@@ -50,7 +50,7 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The ordered pairs split into the diagonal and one term per unordered pair `a < b`. -/
-theorem Zonotope.aux_cubMap_pairs {N : ℕ} (g : Fin N → Fin N → ℝ) :
+theorem Zonotope.aux_cubMap_pairs {N : ℕ} (g : Fin N → Fin N → ℝ) : -- --- CONCL ---
     ∑ a, ∑ b, g a b
       = ∑ a, ∑ b,
           (if a < b then g a b + g b a else if a = b then g a a else 0) := by -- --- PROOF ---
@@ -165,7 +165,8 @@ theorem Zonotope.aux_cubMap_regroup {N : ℕ} (β : Fin N → ℝ) (L : Fin N �
   ring
 
 /-- The quadratic form of a combination of the extended columns. -/
-theorem Zonotope.aux_cubMap_dot {N : ℕ} (A : Mat ℝ n n) (β : Fin N → ℝ) (u : Fin N → Vec ℝ n) :
+theorem Zonotope.aux_cubMap_dot {N : ℕ} (A : Mat ℝ n n) (β : Fin N → ℝ)
+    (u : Fin N → Vec ℝ n) : -- --- CONCL ---
     (∑ a, β a • u a) ⬝ᵥ (A *ᵥ ∑ b, β b • u b)
       = ∑ a, ∑ b, β a * β b * (u a ⬝ᵥ (A *ᵥ u b)) := by -- --- PROOF ---
   simp only [sum_dotProduct, mulVec_sum, dotProduct_sum, smul_dotProduct, mulVec_smul,
@@ -176,7 +177,7 @@ theorem Zonotope.aux_cubMap_dot {N : ℕ} (A : Mat ℝ n n) (β : Fin N → ℝ)
 
 /-- The cubic map of a combination of the extended columns, as a sum over the ordered triples. -/
 theorem Zonotope.aux_cubMap_expand (T : Fin m → Fin n → Mat ℝ n n) {N : ℕ} (β : Fin N → ℝ)
-    (u : Fin N → Vec ℝ n) (i : Fin m) :
+    (u : Fin N → Vec ℝ n) (i : Fin m) : -- --- CONCL ---
     PolyZonotope.cubEval T (∑ a, β a • u a) i
       = ∑ c, ∑ a, ∑ b, β c * β a * β b * ∑ k, (u a ⬝ᵥ (T i k *ᵥ u b)) * u c k := by -- --- PROOF ---
   unfold PolyZonotope.cubEval

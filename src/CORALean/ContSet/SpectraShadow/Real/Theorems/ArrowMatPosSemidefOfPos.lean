@@ -42,7 +42,8 @@ variable {N : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem arrowMat_posSemidef_of_pos {s t : ℝ} {w : Vec ℝ N} (hs : 0 < s)
-    (ht : w ⬝ᵥ w ≤ s * t) : (arrowMat s t w).PosSemidef := by -- --- PROOF ---
+    (ht : w ⬝ᵥ w ≤ s * t) : -- --- CONCL ---
+    (arrowMat s t w).PosSemidef := by -- --- PROOF ---
   refine PosSemidef.of_dotProduct_mulVec_nonneg (arrowMat_isHermitian s t w) fun x => ?_
   rw [star_trivial, arrowMat_quadForm]
   set a := x 0

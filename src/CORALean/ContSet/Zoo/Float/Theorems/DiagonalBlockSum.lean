@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zoo.diagonalBlock_sum (I : Interval (Vec 𝕋 n)) (i : Fin n) (t : Vec ℝ n) :
+theorem Zoo.diagonalBlock_sum (I : Interval (Vec 𝕋 n)) (i : Fin n) (t : Vec ℝ n) : -- --- CONCL ---
     ∑ j : Fin n, toReal (diagonalBlock I.radiusFrom j i) * t j
       = toReal (I.radiusFrom i) * t i := by -- --- PROOF ---
   rw [Finset.sum_eq_single i]

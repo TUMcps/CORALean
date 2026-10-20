@@ -46,7 +46,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A star set, with a level-set predicate, that no support function denotes. -/
-theorem StarSet.exists_not_supportFunction :
+theorem StarSet.exists_not_supportFunction : -- --- CONCL ---
     ∃ s : StarSet LevelSet 1, ¬ ∃ S : SupportFunction (Vec ℝ 1), S.construct = s.construct
     := by -- --- PROOF ---
   -- `{-1, 1}` lies in the unit box, which is the star set's box

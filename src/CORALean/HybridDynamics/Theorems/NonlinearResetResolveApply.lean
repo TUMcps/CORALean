@@ -56,7 +56,8 @@ theorem NonlinearReset.resolve_apply (r : NonlinearReset N (∑ i, m i) N)
     (hg : ∀ i j a, inputBinds i j = .global a → w (finSigmaFinEquiv ⟨i, j⟩) = v a)
     (ho : ∀ i j c' l, inputBinds i j = .output c' l →
       w (finSigmaFinEquiv ⟨i, j⟩) =
-        out c' (fun s => x (stateBinds c' s)) (fun jj => w (finSigmaFinEquiv ⟨c', jj⟩)) l) :
+        out c' (fun s => x (stateBinds c' s)) (fun jj => w (finSigmaFinEquiv ⟨c', jj⟩)) l)
+    : -- --- CONCL ---
     (r.resolve out stateBinds inputBinds).f x v = r.f x w := by -- --- PROOF ---
   have : (fun col : Fin (∑ i, m i) =>
       match inputBinds (finSigmaFinEquiv.symm col).1 (finSigmaFinEquiv.symm col).2 with

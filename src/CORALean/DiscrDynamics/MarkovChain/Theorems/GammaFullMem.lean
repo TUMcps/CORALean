@@ -36,7 +36,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- For `γ > 0`, `GammaFull` is column-stochastic. -/
-theorem MarkovChain.gammaFull_mem (N m : ℕ) {γ : ℝ} (hγ : 0 < γ) :
+theorem MarkovChain.gammaFull_mem (N m : ℕ) {γ : ℝ} (hγ : 0 < γ) : -- --- CONCL ---
     MarkovChain.gammaFull N m γ ∈ Matrix.colStochastic ℝ (Fin (N + 1) × Fin m)
       := by -- --- PROOF ---
   have h := MarkovChain.gamma_mem m hγ

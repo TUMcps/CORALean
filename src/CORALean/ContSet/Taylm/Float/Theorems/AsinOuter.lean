@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Taylm.asin_outer (p q : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
     (hc : 0 < toReal (sqrtDown q (subDown one (mulUp T.constCoef T.constCoef))))
-    (hm : 0 < toReal (sqrtDown q (subDown one (mulUp T.magUp T.magUp)))) :
+    (hm : 0 < toReal (sqrtDown q (subDown one (mulUp T.magUp T.magUp)))) : -- --- CONCL ---
     (T.asin p q).Encloses fun t => Real.arcsin (f t) := by -- --- PROOF ---
   have hM1 : toReal T.magUp < 1 := by
     have := (invSqrtOneSub_mem q T.magUp hm).1

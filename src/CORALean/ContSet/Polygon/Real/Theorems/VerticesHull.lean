@@ -44,7 +44,7 @@ theorem Polygon.aux_vertex_mem_construct (P : Polygon) {v : Vec ℝ 2} (hv : v �
   obtain ⟨p, hp, j, rfl⟩ := (Polygon.aux_mem_vertices_iff P v).mp hv
   exact SetUnion.mem_construct.mpr ⟨p, hp, VPolytope.vertex_mem p j⟩
 
-theorem Polygon.aux_construct_subset_convexHull_vertices (P : Polygon) :
+theorem Polygon.aux_construct_subset_convexHull_vertices (P : Polygon) : -- --- CONCL ---
     ContSet.construct P ⊆ convexHull ℝ {v | v ∈ P.vertices} := by -- --- PROOF ---
   intro x hx
   obtain ⟨p, hp, hx⟩ := SetUnion.mem_construct.mp hx

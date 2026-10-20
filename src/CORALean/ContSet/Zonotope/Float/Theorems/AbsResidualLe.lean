@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 /-- A point of the nominal zonotope reaches no further than `|c| + Σ|G|`, rounded up. -/
 theorem Zonotope.aux_abs_le_nominal {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}
-    (hz : z ∈ nominalSet Z) (j : Fin n) :
+    (hz : z ∈ nominalSet Z) (j : Fin n) : -- --- CONCL ---
     |z j| ≤ toReal (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j)) := by -- --- PROOF ---
   obtain ⟨β, hβ, hzβ⟩ := Zonotope.mem_nominalSet_iff.mp hz
   have hgen := abs_sum_le_radius (d := fun i j => Z.G j i) (Δ := fun i j => toReal (Z.G j i))

@@ -38,7 +38,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.zonotope_subset_of_isNonempty {I : Interval (Vec ℝ n)}
-    (hI : I.IsNonempty (ι := Fin n)) : I.zonotope.construct ⊆ I.construct := by -- --- PROOF ---
+    (hI : I.IsNonempty (ι := Fin n)) : -- --- CONCL ---
+    I.zonotope.construct ⊆ I.construct := by -- --- PROOF ---
   rintro x ⟨β, hβ, rfl⟩
   intro i
   -- only the diagonal generator `i` contributes to coordinate `i`

@@ -51,7 +51,7 @@ open scoped RealInnerProductSpace NNReal
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `E|g|^k = γ_k^k` for a standard normal `g`. -/
-theorem aux_integral_abs_rpow_gaussianReal {k : ℝ} (hk : 0 < k) :
+theorem aux_integral_abs_rpow_gaussianReal {k : ℝ} (hk : 0 < k) : -- --- CONCL ---
     ∫ x, |x| ^ k ∂(gaussianReal 0 1) = gaussMomentRoot k ^ k := by -- --- PROOF ---
   rw [integral_gaussianReal_eq_integral_smul one_ne_zero]
   -- the integrand is even
@@ -84,7 +84,7 @@ theorem aux_integral_abs_rpow_gaussianReal {k : ℝ} (hk : 0 < k) :
 
 theorem integral_abs_inner_rpow_stdGaussian {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
-    (a : E) {k : ℝ} (hk : 0 < k) :
+    (a : E) {k : ℝ} (hk : 0 < k) : -- --- CONCL ---
     ∫ g, |⟪a, g⟫| ^ k ∂(stdGaussian E) = ‖a‖ ^ k * gaussMomentRoot k ^ k := by -- --- PROOF ---
   -- `⟨a, g⟩` is `N(0, ‖a‖²)`, the image of `N(0, 1)` under `x ↦ ‖a‖ x`
   have hmap : (stdGaussian E).map (innerSL ℝ a) = (gaussianReal 0 1).map (‖a‖ * ·) := by

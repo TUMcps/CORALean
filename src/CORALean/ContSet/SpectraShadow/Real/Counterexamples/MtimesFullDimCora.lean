@@ -70,7 +70,7 @@ namespace CORALean.Real
 
 /-- For `M = [1; 0]` (not a scalar, rank `1`) on a one-dimensional full-dimensional shadow the
 flag is `true`, yet the image `{(x, 0)}` has no interior point in `R^2`. -/
-theorem SpectraShadow.mtimesFullDim_cora_counterexample :
+theorem SpectraShadow.mtimesFullDim_cora_counterexample : -- --- CONCL ---
     SpectraShadow.mtimesFullDimCora false 1 1 (some true) = some true ∧
       ∀ p : Fin 2 → ℝ, p ∉ interior {q : Fin 2 → ℝ | q 1 = 0} := by -- --- PROOF ---
   refine ⟨by simp [SpectraShadow.mtimesFullDimCora], fun p hp => ?_⟩

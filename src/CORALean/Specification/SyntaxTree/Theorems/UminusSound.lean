@@ -41,7 +41,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `aux_uminus_` is sound for `uminus`. -/
-theorem SyntaxTree.uminus_sound (prev : Dom) :
+theorem SyntaxTree.uminus_sound (prev : Dom) : -- --- CONCL ---
     UnarySound Unary.uminus.fn prev (Real.Interval.uminus prev) funHanUminus := by -- --- PROOF ---
   intro int _ s hs hi
   refine ⟨_, rfl, ?_, ?_⟩ <;>

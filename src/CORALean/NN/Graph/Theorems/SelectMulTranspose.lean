@@ -43,7 +43,7 @@ variable {N K : ℕ}
 
 /-- `H' = M H` restricts rows; `P' = M P Mᵀ` restricts rows and columns together, the
 subgraph's own message-passing matrix. -/
-theorem GNN.select_mul_transpose (κ : Fin K → Fin N) (P : Mat ℝ N N) :
+theorem GNN.select_mul_transpose (κ : Fin K → Fin N) (P : Mat ℝ N N) : -- --- CONCL ---
     GNN.select κ * P * (GNN.select κ)ᵀ = P.submatrix κ κ := by -- --- PROOF ---
   -- the row selection collapses first, exactly as `select_mul` says
   rw [GNN.select_mul]

@@ -50,7 +50,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [OfInterval S �
 /-- `f(x,u) - A x` lies in `linInput` wherever the step's certificate holds. -/
 theorem NonlinearSysDT.LinStep.linInput_outer {sys : NonlinearSysDT n m} {U : S m}
     (step : sys.LinStep 𝕋 U) {x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ step.R)
-    (hu : u ∈ construct U) :
+    (hu : u ∈ construct U) : -- --- CONCL ---
     sys.f x u - Scalar.toRealMat step.A *ᵥ x ∈ construct step.linInput := by -- --- PROOF ---
   -- the real readings of the step's data
   set A := Scalar.toRealMat step.A

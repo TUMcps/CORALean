@@ -41,7 +41,7 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem image_add (f : Vec ℝ n →ₗ[ℝ] Vec ℝ m) (A B : Set (Vec ℝ n)) :
+theorem image_add (f : Vec ℝ n →ₗ[ℝ] Vec ℝ m) (A B : Set (Vec ℝ n)) : -- --- CONCL ---
     f '' (A + B) = f '' A + f '' B := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨_, ⟨a, ha, b, hb, rfl⟩, rfl⟩

@@ -57,7 +57,7 @@ theorem aux_norm_exp_tail_term_le (x : Mat ℝ n n) (i : ℕ) :
 
 /-- `exp x` sits at most `Real.exp ‖x‖ - 1` away from the identity: the matrix
 series is dominated termwise by the real exponential's own. -/
-theorem norm_exp_sub_one_le_exp_norm (x : Mat ℝ n n) :
+theorem norm_exp_sub_one_le_exp_norm (x : Mat ℝ n n) : -- --- CONCL ---
     ‖exp x - 1‖ ≤ Real.exp ‖x‖ - 1 := by -- --- PROOF ---
   -- `exp x`'s own series, and its `i = 0` term split off
   set f : ℕ → Mat ℝ n n := fun i => ((Nat.factorial i : ℝ)⁻¹) • x ^ i with hf

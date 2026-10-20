@@ -36,7 +36,8 @@ namespace CORALean.Real
 noncomputable abbrev aux_thinLine : SpectraShadow (Vec ℝ 1) :=
   ⟨1, 1, 1, fun _ => 0, 0, fun _ => fun _ => 1 / 10 ^ 9⟩
 
-theorem aux_thinLine_construct : aux_thinLine.construct = Set.univ := by -- --- PROOF ---
+theorem aux_thinLine_construct : -- --- CONCL ---
+    aux_thinLine.construct = Set.univ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_univ, iff_true]
   refine ⟨fun _ => x 0 * 10 ^ 9, ?_, ?_⟩
@@ -49,7 +50,7 @@ theorem aux_thinLine_construct : aux_thinLine.construct = Set.univ := by -- --- 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.fullDimShortcut_thinLine_counterexample :
+theorem SpectraShadow.fullDimShortcut_thinLine_counterexample : -- --- CONCL ---
     aux_thinLine.fullDimShortcutCora ∧
       (interior aux_thinLine.construct).Nonempty := by -- --- PROOF ---
   refine ⟨?_, ?_⟩

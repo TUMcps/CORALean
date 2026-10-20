@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.precondRegular_injective {M C : Mat 𝕋 n n}
-    (h : PolyZonotope.precondRegular M C = true) :
+    (h : PolyZonotope.precondRegular M C = true) : -- --- CONCL ---
     Function.Injective (toRealMat C).mulVec := by -- --- PROOF ---
   refine mulVec_injective_of_residual (toRealMat M) (toRealMat C) fun i => ?_
   have hi := List.all_eq_true.mp h i (List.mem_finRange i)

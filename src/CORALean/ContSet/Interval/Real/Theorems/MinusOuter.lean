@@ -41,7 +41,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- `minus` is `plus` of the negation, bound for bound
-theorem Interval.minus_outer (I₁ I₂ : Interval α) :
+theorem Interval.minus_outer (I₁ I₂ : Interval α) : -- --- CONCL ---
     I₁.construct - I₂.construct ⊆ (I₁.minus I₂).construct := by -- --- PROOF ---
   rintro _ ⟨a, ha, b, hb, rfl⟩
   have hb' : -b ∈ I₂.uminus.construct := Interval.uminus_exact I₂ ▸ Set.neg_mem_neg.2 hb

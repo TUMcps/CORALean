@@ -33,7 +33,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.representsa_origin_iff (cZ : ConZonotope α) :
+theorem ConZonotope.representsa_origin_iff (cZ : ConZonotope α) : -- --- CONCL ---
     cZ.construct = {0} ↔ cZ.representsa_origin := by -- --- PROOF ---
   rw [ConZonotope.construct_eq_image]
   constructor

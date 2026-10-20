@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zoo.encloses_iff {Z : Zoo 𝕋 n} {f : Vec ℝ n → ℝ} :
+theorem Zoo.encloses_iff {Z : Zoo 𝕋 n} {f : Vec ℝ n → ℝ} : -- --- CONCL ---
     Z.Encloses f ↔ (∀ T, Z.taylm = some T → T.Encloses f) ∧
       ∀ I, Z.ivl = some I → ∀ t ∈ Real.Taylm.box n,
         (fun _ => f t : Vec ℝ 1) ∈ I.construct := by -- --- PROOF ---

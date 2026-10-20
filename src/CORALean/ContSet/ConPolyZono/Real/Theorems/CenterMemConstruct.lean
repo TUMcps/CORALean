@@ -47,7 +47,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 theorem ConPolyZono.center_mem_construct (cPZ : ConPolyZono α)
     (hE : ConPolyZono.NoZeroCol cPZ.E) (hR : ConPolyZono.NoZeroCol cPZ.cons.R)
-    (h0 : cPZ.cons.b = 0) :
+    (h0 : cPZ.cons.b = 0) : -- --- CONCL ---
     cPZ.center ∈ cPZ.construct := by -- --- PROOF ---
   refine ⟨fun _ => 0, fun _ => 0, fun j => by simp,
     (PolyLevelSet.mem_construct_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom).mpr

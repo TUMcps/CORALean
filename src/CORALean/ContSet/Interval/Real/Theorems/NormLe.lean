@@ -39,7 +39,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.norm_le {I : Interval (Vec ℝ n)} {x : Vec ℝ n} (hx : x ∈ construct I) :
+theorem Interval.norm_le {I : Interval (Vec ℝ n)} {x : Vec ℝ n}
+    (hx : x ∈ construct I) : -- --- CONCL ---
     ‖x‖₂ ≤ I.norm := by -- --- PROOF ---
   unfold Interval.norm norm₂
   refine Real.sqrt_le_sqrt (Finset.sum_le_sum fun i _ => ?_)

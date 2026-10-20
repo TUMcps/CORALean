@@ -52,7 +52,7 @@ variable {qx qy n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.ineqs_subset_iff {Hx : Mat ℝ qx n} {hx : Vec ℝ qx} {Hy : Mat ℝ qy n}
-    {hy : Vec ℝ qy} (hne : (HPolytope.ineqs Hx hx).construct.Nonempty) :
+    {hy : Vec ℝ qy} (hne : (HPolytope.ineqs Hx hx).construct.Nonempty) : -- --- CONCL ---
     (HPolytope.ineqs Hx hx).construct ⊆ (HPolytope.ineqs Hy hy).construct ↔
       ∃ Λ : Mat ℝ qy qx, (∀ i j, 0 ≤ Λ i j) ∧ Λ * Hx = Hy ∧ Λ *ᵥ hx ≤ hy := by -- --- PROOF ---
   have hrl : ∀ {q : ℕ} (M : Mat ℝ q n) i x, HPolytope.rowLin M i x = (M *ᵥ x) i :=

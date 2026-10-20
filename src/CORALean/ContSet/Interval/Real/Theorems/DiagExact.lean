@@ -35,7 +35,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.diag_exact (I : Interval (Vec ℝ n)) :
+theorem Interval.diag_exact (I : Interval (Vec ℝ n)) : -- --- CONCL ---
     I.diag.construct = Matrix.diagonal '' I.construct := by -- --- PROOF ---
   ext B
   constructor

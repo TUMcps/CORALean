@@ -42,7 +42,7 @@ abbrev PolyZonotope.aux_negAlpha : PolyZonotope (Vec ℝ 1) :=
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.volume_neg_example :
+theorem PolyZonotope.volume_neg_example : -- --- CONCL ---
     PolyZonotope.aux_negAlpha.volume = some (-2) := by -- --- PROOF ---
   -- the derivative along the one factor is the constant `-1`
   have hconst : ∀ (k : Fin 1) (a : Fin 1 → ℝ),

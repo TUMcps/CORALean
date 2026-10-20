@@ -68,7 +68,8 @@ theorem Zonotope.aux_sumUnivReduceByBasis {Z : Zonotope (Vec ℝ n)}
 /-- Boxing what a partition drops along an invertible `P`'s columns
 over-approximates, whichever partition and whichever `P`. -/
 theorem Zonotope.reduceByBasis_outer (Z : Zonotope (Vec ℝ n))
-    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) {P : Mat ℝ n n} (hP : IsUnit P.det) :
+    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) {P : Mat ℝ n n}
+    (hP : IsUnit P.det) : -- --- CONCL ---
     Z.construct ⊆ (Z.reduceByBasis part P).construct := by -- --- PROOF ---
   intro x hxmem
   obtain ⟨β, hβ, hx⟩ := Zonotope.mem_construct_iff.mp hxmem

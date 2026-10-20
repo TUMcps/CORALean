@@ -55,7 +55,8 @@ variable {n : ℕ}
 
 /-- A pass keeps the vectors stored before it. -/
 theorem Krylov.aux_arnoldi_fst_le (C : Mat ℝ n n) (v : Vec ℝ n) {p q i : ℕ} (hpq : p ≤ q)
-    (hi : i ≤ p) : (Krylov.arnoldi C v q).1 i = (Krylov.arnoldi C v p).1 i := by -- --- PROOF ---
+    (hi : i ≤ p) : -- --- CONCL ---
+    (Krylov.arnoldi C v q).1 i = (Krylov.arnoldi C v p).1 i := by -- --- PROOF ---
   induction q, hpq using Nat.le_induction with
   | base => rfl
   | succ q hpq ih =>
@@ -65,7 +66,7 @@ theorem Krylov.aux_arnoldi_fst_le (C : Mat ℝ n n) (v : Vec ℝ n) {p q i : ℕ
 
 /-- A pass keeps the Hessenberg columns stored before it. -/
 theorem Krylov.aux_arnoldi_snd_le (C : Mat ℝ n n) (v : Vec ℝ n) {p q k : ℕ} (hpq : p ≤ q)
-    (hk : k < p) (i : ℕ) :
+    (hk : k < p) (i : ℕ) : -- --- CONCL ---
     (Krylov.arnoldi C v q).2 i k = (Krylov.arnoldi C v p).2 i k := by -- --- PROOF ---
   induction q, hpq using Nat.le_induction with
   | base => rfl

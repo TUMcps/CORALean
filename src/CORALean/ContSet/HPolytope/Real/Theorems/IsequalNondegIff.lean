@@ -67,7 +67,7 @@ variable {q q' q₁ q₂ n : ℕ}
 
 /-- A row tight at an interior point would let a step along it leave the polytope. -/
 theorem aux_strict_of_interior (A : Mat ℝ q n) (b : Vec ℝ q) (hA : ∀ i, A i ⬝ᵥ A i = 1)
-    {x : Vec ℝ n} (hx : x ∈ interior (HPolytope.ineqs A b).construct) (i : Fin q) :
+    {x : Vec ℝ n} (hx : x ∈ interior (HPolytope.ineqs A b).construct) (i : Fin q) : -- --- CONCL ---
     (A *ᵥ x) i < b i := by -- --- PROOF ---
   obtain ⟨ε, hε, hball⟩ := Metric.mem_nhds_iff.mp (mem_interior_iff_mem_nhds.mp hx)
   set t := ε / (2 * (‖A i‖ + 1)) with ht
@@ -87,7 +87,8 @@ theorem aux_strict_of_interior (A : Mat ℝ q n) (b : Vec ℝ q) (hA : ∀ i, A 
 
 /-- Unit vectors bounding the same directions are equal. -/
 theorem aux_eq_of_dir {a a' : Vec ℝ n} (ha : a ⬝ᵥ a = 1) (ha' : a' ⬝ᵥ a' = 1)
-    (h : ∀ d : Vec ℝ n, a ⬝ᵥ d ≤ 0 → a' ⬝ᵥ d ≤ 0) : a' = a := by -- --- PROOF ---
+    (h : ∀ d : Vec ℝ n, a ⬝ᵥ d ≤ 0 → a' ⬝ᵥ d ≤ 0) : -- --- CONCL ---
+    a' = a := by -- --- PROOF ---
   set μ := a' ⬝ᵥ a with hμ
   have hμ' : a ⬝ᵥ a' = μ := dotProduct_comm _ _
   -- `a' - μ a` is orthogonal to `a`, so `a'` vanishes on it from both sides
@@ -211,7 +212,7 @@ theorem aux_facet (A : Mat ℝ q n) (b : Vec ℝ q) (A' : Mat ℝ q' n) (b' : Ve
   rw [hkj]
 
 /-- Line 1 leaves the set alone. -/
-theorem aux_normalize (A : Mat ℝ q n) (b : Vec ℝ q) (hA : ∀ i, A i ≠ 0) :
+theorem aux_normalize (A : Mat ℝ q n) (b : Vec ℝ q) (hA : ∀ i, A i ≠ 0) : -- --- CONCL ---
     (HPolytope.ineqs (Matrix.of fun j => ‖A j‖₂⁻¹ • A j) fun j => b j / ‖A j‖₂).construct =
       (HPolytope.ineqs A b).construct := by -- --- PROOF ---
   have hpos : ∀ j, 0 < ‖A j‖₂ := fun j => by
@@ -230,7 +231,7 @@ theorem aux_normalize (A : Mat ℝ q n) (b : Vec ℝ q) (hA : ∀ i, A i ≠ 0) 
   rw [this, div_eq_inv_mul, mul_le_mul_iff_of_pos_left (inv_pos.mpr (hpos j))]
 
 /-- Normalized rows have unit length. -/
-theorem aux_unit (A : Mat ℝ q n) (hA : ∀ i, A i ≠ 0) (j : Fin q) :
+theorem aux_unit (A : Mat ℝ q n) (hA : ∀ i, A i ≠ 0) (j : Fin q) : -- --- CONCL ---
     (Matrix.of fun j => ‖A j‖₂⁻¹ • A j : Mat ℝ q n) j ⬝ᵥ
       (Matrix.of fun j => ‖A j‖₂⁻¹ • A j : Mat ℝ q n) j = 1 := by -- --- PROOF ---
   have hpos : 0 < ‖A j‖₂ := by
@@ -274,7 +275,8 @@ theorem HPolytope.isequalNondeg_iff (A₁ : Mat ℝ q₁ n) (b₁ : Vec ℝ q₁
     (hmin₁ : ∀ j, (HPolytope.ineqs A₁ b₁).construct ≠
       (HPolytope.ineqs (A₁.submatrix (dropIdx j) id) fun i => b₁ (dropIdx j i)).construct)
     (hmin₂ : ∀ k, (HPolytope.ineqs A₂ b₂).construct ≠
-      (HPolytope.ineqs (A₂.submatrix (dropIdx k) id) fun i => b₂ (dropIdx k i)).construct) :
+      (HPolytope.ineqs (A₂.submatrix (dropIdx k) id) fun i => b₂ (dropIdx k i)).construct)
+    : -- --- CONCL ---
     HPolytope.isequalNondeg A₁ b₁ A₂ b₂ = true ↔
       (HPolytope.ineqs A₁ b₁).construct = (HPolytope.ineqs A₂ b₂).construct := by -- --- PROOF ---
   -- the normalized polytopes, and their dropped versions, are the originals

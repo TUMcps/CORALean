@@ -60,7 +60,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The remainder at `t • B`, entry `(j, k)`, as the exponential series from order `η + 1`. -/
-theorem MatExp.aux_expRemainder_entry_eq (B : Mat ℝ n n) (t : ℝ) (η : ℕ) (j k : Fin n) :
+theorem MatExp.aux_expRemainder_entry_eq (B : Mat ℝ n n) (t : ℝ) (η : ℕ)
+    (j k : Fin n) : -- --- CONCL ---
     (exp (t • B) - MatExp.expTaylor (t • B) η) j k
       = ∑' i : ℕ, (((Nat.factorial (i + (η + 1)) : ℝ)⁻¹ * t ^ (i + (η + 1)))
           • B ^ (i + (η + 1))) j k := by -- --- PROOF ---
@@ -78,7 +79,7 @@ theorem MatExp.aux_expRemainder_entry_eq (B : Mat ℝ n n) (t : ℝ) (η : ℕ) 
 
 /-- [1, Prop. 11], eq. (18): `|(e^{Aτ} − Σ_{i≤η}(Aτ)ⁱ/i!)_{jk}| ≤ E(Δt,η)_{jk}` for `0 ≤ τ ≤ Δt`. -/
 theorem MatExp.abs_expRemainder_entry_le (A : Mat ℝ n n) {τ Δt : ℝ} (hτ : 0 ≤ τ)
-    (hτΔt : τ ≤ Δt) (η : ℕ) (j k : Fin n) :
+    (hτΔt : τ ≤ Δt) (η : ℕ) (j k : Fin n) : -- --- CONCL ---
     |(exp (τ • A) - MatExp.expTaylor (τ • A) η) j k|
       ≤ (MatExp.expRemainderMat A Δt η) j k := by -- --- PROOF ---
   set B := MatExp.absMat A with hB

@@ -53,7 +53,8 @@ variable {n : ℕ}
 
 /-- [1, Sec. 5.2], corrected: `ω̲ > 0` keeps `Z` out of `{x | nᵀx ≤ d}`, and `ω̄ ≤ 0` puts
 it inside. -/
-theorem Zonotope.halfspaceRange_sound (nv : Vec ℝ n) (d : ℝ) (Z : Zonotope (Vec ℝ n)) :
+theorem Zonotope.halfspaceRange_sound (nv : Vec ℝ n) (d : ℝ)
+    (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (0 < (Z.halfspaceRange nv d).inf → ∀ x ∈ Z.construct, d < nv ⬝ᵥ x) ∧
       ((Z.halfspaceRange nv d).sup ≤ 0 → ∀ x ∈ Z.construct, nv ⬝ᵥ x ≤ d) := by -- --- PROOF ---
   -- `nᵀx - d = ω_c + Σᵢ βᵢω⁽ⁱ⁾`, the sum within `Σᵢ |ω⁽ⁱ⁾|`

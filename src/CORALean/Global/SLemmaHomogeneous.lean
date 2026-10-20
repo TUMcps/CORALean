@@ -54,7 +54,7 @@ variable {V : Type*} [AddCommGroup V] [Module ℝ V]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Of two vectors of the plane, some unit vector makes a non-positive product with both. -/
-theorem aux_exists_unit_nonpos (p q r s : ℝ) :
+theorem aux_exists_unit_nonpos (p q r s : ℝ) : -- --- CONCL ---
     ∃ κ μ : ℝ, κ ^ 2 + μ ^ 2 = 1 ∧ p * κ + q * μ ≤ 0 ∧ r * κ + s * μ ≤ 0 := by -- --- PROOF ---
   by_cases h0 : p ^ 2 + q ^ 2 = 0
   · have hp : p = 0 := by nlinarith [sq_nonneg p, sq_nonneg q]
@@ -79,7 +79,7 @@ theorem aux_exists_unit_nonpos (p q r s : ℝ) :
       rw [this]; linarith
 
 /-- A point `(κ, μ)` of the unit circle is `(u² - 1, u v)` on the circle `u² + v² = 2`. -/
-theorem aux_exists_uv {κ μ : ℝ} (h : κ ^ 2 + μ ^ 2 = 1) :
+theorem aux_exists_uv {κ μ : ℝ} (h : κ ^ 2 + μ ^ 2 = 1) : -- --- CONCL ---
     ∃ u v : ℝ, u ^ 2 = 1 + κ ∧ v ^ 2 = 1 - κ ∧ u * v = μ := by -- --- PROOF ---
   have hκ : -1 ≤ κ := by nlinarith [sq_nonneg μ, sq_nonneg (κ + 1)]
   rcases hκ.lt_or_eq with hlt | heq
@@ -103,7 +103,8 @@ theorem aux_map_smul (P : V → ℝ) (pP : V → V → ℝ)
 theorem aux_exists_le_add (P Q : V → ℝ) (pP pQ : V → V → ℝ)
     (hP : ∀ (u v : ℝ) (x y : V), P (u • x + v • y) = u ^ 2 * P x + v ^ 2 * P y + u * v * pP x y)
     (hQ : ∀ (u v : ℝ) (x y : V), Q (u • x + v • y) = u ^ 2 * Q x + v ^ 2 * Q y + u * v * pQ x y)
-    (x y : V) : ∃ z, P z ≤ P x + P y ∧ Q z ≤ Q x + Q y := by -- --- PROOF ---
+    (x y : V) : -- --- CONCL ---
+    ∃ z, P z ≤ P x + P y ∧ Q z ≤ Q x + Q y := by -- --- PROOF ---
   obtain ⟨κ, μ, hc, h1, h2⟩ := aux_exists_unit_nonpos (P x - P y) (pP x y) (Q x - Q y) (pQ x y)
   obtain ⟨u, v, hu, hv, huv⟩ := aux_exists_uv hc
   -- `z = u x + v y`: each form moves by `κ (F x - F y) + μ · pF x y ≤ 0`

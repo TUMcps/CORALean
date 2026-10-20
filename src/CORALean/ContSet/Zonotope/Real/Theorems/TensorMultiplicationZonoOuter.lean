@@ -62,7 +62,7 @@ theorem Zonotope.aux_smul_mem {Z : Zonotope (Vec ℝ n)} (hc : Z.c = 0) {z : Vec
 
 /-- The fold of Minkowski sums holds the sum of one point from each summand. -/
 theorem Zonotope.aux_foldl_plus_mem {ι : Type} (l : List ι) (Zs : ι → Zonotope (Vec ℝ n))
-    (ys : ι → Vec ℝ n) (hys : ∀ i ∈ l, ys i ∈ (Zs i).construct) :
+    (ys : ι → Vec ℝ n) (hys : ∀ i ∈ l, ys i ∈ (Zs i).construct) : -- --- CONCL ---
     ∀ (acc : Zonotope (Vec ℝ n)) (y : Vec ℝ n), y ∈ acc.construct →
       y + (l.map ys).sum ∈ (l.foldl (fun A i => A.plus (Zs i)) acc).construct := by -- --- PROOF ---
   induction l with

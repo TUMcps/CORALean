@@ -43,7 +43,7 @@ variable {n : ℕ}
 
 theorem STL.Tree.sat_nnfWith (ng : STL.Cmp → STL.Cmp)
     (hng : ∀ op a b, (ng op).rel a b ↔ ¬ op.rel a b) (φ : STL.Tree n) (neg : Bool)
-    (ξ : ℝ≥0 → Fin n → ℝ) :
+    (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
     (φ.nnfWith ng neg).Sat ξ ↔ (φ.Sat ξ ↔ neg = false) := by -- --- PROOF ---
   induction φ generalizing neg ξ with
   | tt => cases neg <;> simp [STL.Tree.nnfWith, STL.Tree.Sat]

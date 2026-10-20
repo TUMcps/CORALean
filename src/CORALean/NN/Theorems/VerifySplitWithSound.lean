@@ -53,7 +53,7 @@ theorem NeuralNetwork.verifySplitWith_sound (nn : NeuralNetwork S n m)
     (hcheck : ∀ s, check s → spec.Holds (construct s))
     (splitter : S n → S n × S n)
     (hcov : ∀ Y : S n, construct Y ⊆ construct (splitter Y).1 ∪ construct (splitter Y).2)
-    (d : ℕ) (X : S n) (hverify : nn.verifySplitWith check splitter d X) : -- --- CONCL ---
+    (d : ℕ) (X : S n) (hverify : nn.verifySplitWith check splitter d X) :
     spec.Holds (nn.eval.out '' construct X) :=
   (NeuralNetwork.encloses_eval nn).verifySplitWith_sound spec check hcheck splitter hcov d X hverify
 

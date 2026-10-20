@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 /-- The product's rows, read back, are the product of the read-back rows. -/
 theorem PolyLevelSet.aux_nominalCore_cartProd (P₁ : PolyLevelSet 𝕋 n₁)
-    (P₂ : PolyLevelSet 𝕋 n₂) :
+    (P₂ : PolyLevelSet 𝕋 n₂) : -- --- CONCL ---
     (P₁.cartProd P₂).nominalCore = P₁.nominalCore.cartProd P₂.nominalCore := by -- --- PROOF ---
   show (⟨_, _, toRealMat (P₁.cartProd P₂).A, _, toRealVec (P₁.cartProd P₂).b, _,
     (P₁.dom.append P₂.dom).nominal⟩ : Real.PolyLevelSet (n₁ + n₂)) = _
@@ -141,7 +141,7 @@ theorem ConPolyZono.aux_nominal_cartProd (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n�
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.cartProd_exact (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
-    (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂)) :
+    (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂)) : -- --- CONCL ---
     (cPZ₁.cartProd cPZ₂).construct = (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
       (cPZ₁.construct ×ˢ cPZ₂.construct) := by -- --- PROOF ---
   -- the nominal part: the exact product, mapped through the append

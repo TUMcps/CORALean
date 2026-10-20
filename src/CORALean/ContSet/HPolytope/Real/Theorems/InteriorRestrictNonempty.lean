@@ -57,7 +57,8 @@ variable {q n r : ℕ}
 theorem HPolytope.interior_restrict_nonempty (A : Mat ℝ q n) (b : Vec ℝ q) (B : Mat ℝ n r)
     (c : Vec ℝ n) (hc : c ∈ (HPolytope.ineqs A b).construct)
     (hB : Function.Injective (Matrix.mulVecLin B))
-    (hspan : LinearMap.range (Matrix.mulVecLin B) = vectorSpan ℝ (HPolytope.ineqs A b).construct) :
+    (hspan : LinearMap.range (Matrix.mulVecLin B) = vectorSpan ℝ (HPolytope.ineqs A b).construct)
+    : -- --- CONCL ---
     (interior (HPolytope.ineqs (A * B) (b - A *ᵥ c)).construct).Nonempty := by -- --- PROOF ---
   set P := (HPolytope.ineqs A b).construct
   set P' := (HPolytope.ineqs (A * B) (b - A *ᵥ c)).construct

@@ -52,7 +52,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.split_outer (Λ : Mat 𝕋 n n) (B : Interval (Vec 𝕋 n)) (j : Fin n)
-    (zB : ZonoBundle (Vec 𝕋 n)) (hB : zB.construct ⊆ (toRealMat Λ *ᵥ ·) '' B.construct) :
+    (zB : ZonoBundle (Vec 𝕋 n))
+    (hB : zB.construct ⊆ (toRealMat Λ *ᵥ ·) '' B.construct) : -- --- CONCL ---
     zB.construct ⊆
       (zB.split Λ B j).1.construct ∪ (zB.split Λ B j).2.construct := by -- --- PROOF ---
   intro x hx

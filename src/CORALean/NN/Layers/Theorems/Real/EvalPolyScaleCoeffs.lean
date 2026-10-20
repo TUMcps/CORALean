@@ -39,7 +39,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem evalPoly_scaleCoeffs {n : ℕ} (c : Fin (n + 1) → ℝ) (a b t : ℝ) :
+theorem evalPoly_scaleCoeffs {n : ℕ} (c : Fin (n + 1) → ℝ) (a b t : ℝ) : -- --- CONCL ---
     evalPoly (scaleCoeffs c a b) t = a * evalPoly c (b * t) := by -- --- PROOF ---
   show ∑ i : Fin (n + 1), a * c i * b ^ (i : ℕ) * t ^ (i : ℕ)
     = a * ∑ i : Fin (n + 1), c i * (b * t) ^ (i : ℕ)

@@ -34,7 +34,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.singletonOne_construct :
+theorem SpectraShadow.singletonOne_construct : -- --- CONCL ---
     SpectraShadow.singletonOne.construct = {fun _ => 1} := by -- --- PROOF ---
   ext x
   constructor

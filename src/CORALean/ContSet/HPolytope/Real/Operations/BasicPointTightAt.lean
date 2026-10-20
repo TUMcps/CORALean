@@ -40,7 +40,8 @@ variable {n : ℕ}
 /-- A point no direction is free at is the one its own tight rows name. -/
 theorem HPolytope.basicPoint_tightAt (P : HPolytope (Vec ℝ n)) {x : Vec ℝ n}
     (hx : x ∈ P.construct)
-    (hpin : ∀ d : Vec ℝ n, (∀ i, P.A i x = P.b i → P.A i d = 0) → (∀ i, P.Ae i d = 0) → d = 0) :
+    (hpin : ∀ d : Vec ℝ n, (∀ i, P.A i x = P.b i → P.A i d = 0) → (∀ i, P.Ae i d = 0) → d = 0)
+    : -- --- CONCL ---
     P.basicPoint (P.tightAt x) = x := by -- --- PROOF ---
   have hspec : ∀ y : Vec ℝ n,
       ((∀ i, P.tightAt x i = true → P.A i y = P.b i) ∧ ∀ i, P.Ae i y = P.be i) → y = x := by

@@ -35,7 +35,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.sum_outer : ∀ {m : ℕ} {T : Fin m → Taylm 𝕋 n} {f : Fin m → Vec ℝ n → ℝ},
+theorem Taylm.sum_outer : -- --- CONCL ---
+    ∀ {m : ℕ} {T : Fin m → Taylm 𝕋 n} {f : Fin m → Vec ℝ n → ℝ},
     (∀ i, (T i).Encloses (f i)) → (Taylm.sum T).Encloses fun t => ∑ i, f i t := by -- --- PROOF ---
   intro m
   induction m with

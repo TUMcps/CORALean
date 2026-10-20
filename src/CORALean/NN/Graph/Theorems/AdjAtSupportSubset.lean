@@ -59,7 +59,8 @@ variable {N m : ℕ}
 /-- A nonzero entry of an admissible `adjAt` is a nonzero entry of `adjMax`. -/
 theorem GNN.adjAt_support_subset (A : Mat ℝ N N) (U : Fin m → Fin N × Fin N)
     (hA : ∀ i j, 0 ≤ A i j) {lam : Fin m → ℝ} (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1)
-    (i j : Fin N) : GNN.adjAt A U lam i j ≠ 0 → GNN.adjMax A U i j ≠ 0 := by -- --- PROOF ---
+    (i j : Fin N) : -- --- CONCL ---
+    GNN.adjAt A U lam i j ≠ 0 → GNN.adjMax A U i j ≠ 0 := by -- --- PROOF ---
   have hle : GNN.adjAt A U lam i j ≤ GNN.adjMax A U i j := by
     simp only [GNN.adjMax, GNN.adjAt, Matrix.add_apply, Matrix.sum_apply, Matrix.smul_apply,
       smul_eq_mul, one_mul]

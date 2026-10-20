@@ -39,7 +39,7 @@ variable {q n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.mem_slab_iff {Ae : Mat ℝ q n} {lo hi : Vec ℝ q} {x : Vec ℝ n} :
+theorem HPolytope.mem_slab_iff {Ae : Mat ℝ q n} {lo hi : Vec ℝ q} {x : Vec ℝ n} : -- --- CONCL ---
     x ∈ (HPolytope.slab Ae lo hi).construct ↔
       ∀ i, lo i ≤ (Ae *ᵥ x) i ∧ (Ae *ᵥ x) i ≤ hi i := by -- --- PROOF ---
   have hand : x ∈ (HPolytope.slab Ae lo hi).construct ↔

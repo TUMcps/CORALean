@@ -82,7 +82,7 @@ def ConZonotope.aux_infeasibleZeroRow : ConZonotope (Vec ℝ 1) where
       Ae := fun _ => 0
       be := fun _ => 1 }
 
-theorem ConZonotope.aux_infeasibleZeroRow_construct :
+theorem ConZonotope.aux_infeasibleZeroRow_construct : -- --- CONCL ---
     ConZonotope.aux_infeasibleZeroRow.construct = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]

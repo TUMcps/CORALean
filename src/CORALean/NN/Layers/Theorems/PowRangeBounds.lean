@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem powRange_bounds (t : 𝕋) (k : ℕ) :
+theorem powRange_bounds (t : 𝕋) (k : ℕ) : -- --- CONCL ---
     toReal (powRange t k).inf ≤ toReal t ^ k
       ∧ toReal t ^ k ≤ toReal (powRange t k).sup := by -- --- PROOF ---
   induction k with

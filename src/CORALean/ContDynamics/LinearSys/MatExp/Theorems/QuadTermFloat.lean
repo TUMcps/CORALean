@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.quadTerm_mem (t a : 𝕋) :
+theorem MatExp.quadTerm_mem (t a : 𝕋) : -- --- CONCL ---
     toReal (MatExp.quadTerm t a).inf ≤ Real.MatExp.quadTerm (toReal t) (toReal a)
       ∧ Real.MatExp.quadTerm (toReal t) (toReal a) ≤
         toReal (MatExp.quadTerm t a).sup := by -- --- PROOF ---

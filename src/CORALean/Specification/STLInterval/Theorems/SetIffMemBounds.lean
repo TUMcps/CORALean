@@ -38,7 +38,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STLInterval.set_iff_memBounds (I : STLInterval) (t : ℝ) :
+theorem STLInterval.set_iff_memBounds (I : STLInterval) (t : ℝ) : -- --- CONCL ---
     t ∈ I.set ↔ STLInterval.memBounds I.lowerBound I.upperBound I.lowerClosed I.upperClosed t
       := by -- --- PROOF ---
   induction I with

@@ -66,7 +66,7 @@ theorem aux_abs_sign (x : ℝ) : |if 0 ≤ x then (1 : ℝ) else -1| = 1 := by
 at most `r`: the point that puts the center's own sign on every generator at
 that coordinate attains `|x j| = absBound j` exactly, and the ball bounds it. -/
 theorem Zonotope.absBound_le_of_subset_closedBall {Z : Zonotope (Vec ℝ n)} {r : ℝ}
-    (h : Z.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r) (j : Fin n) :
+    (h : Z.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r) (j : Fin n) : -- --- CONCL ---
     Z.absBound j ≤ r := by -- --- PROOF ---
   -- `t` and `β` put the center's own sign on every generator, `x` the point that names
   set t : ℝ := if 0 ≤ Z.c j then (1 : ℝ) else -1 with ht

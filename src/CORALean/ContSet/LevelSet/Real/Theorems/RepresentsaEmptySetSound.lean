@@ -41,7 +41,8 @@ variable {n : ℕ}
 
 theorem LevelSet.representsa_emptySet_sound (L : LevelSet n) (O : Fin L.m → Interval EReal)
     (hO : ∀ i x, (O i).inf ≤ ((L.f x i : ℝ) : EReal) ∧ ((L.f x i : ℝ) : EReal) ≤ (O i).sup)
-    (hm : 0 < L.m) (h : L.representsa_emptySet O) : L.construct = ∅ := by -- --- PROOF ---
+    (hm : 0 < L.m) (h : L.representsa_emptySet O) : -- --- CONCL ---
+    L.construct = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
   intro hx

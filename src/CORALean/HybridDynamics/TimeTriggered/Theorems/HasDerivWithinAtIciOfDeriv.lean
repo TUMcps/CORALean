@@ -53,7 +53,7 @@ variable {X : Type} [NormedAddCommGroup X] [NormedSpace ℝ X]
 /-- The right derivative of a solution on `[0, t)`, the left endpoint included. -/
 theorem hasDerivWithinAt_Ici_of_deriv_eq {V : X → X} (hV : Continuous V) {h : ℝ → X} {t : ℝ}
     (ht : 0 < t) (hd : DifferentiableOn ℝ h (Icc 0 t))
-    (hder : ∀ u ∈ Ioo 0 t, deriv h u = V (h u)) :
+    (hder : ∀ u ∈ Ioo 0 t, deriv h u = V (h u)) : -- --- CONCL ---
     ∀ u ∈ Ico 0 t, HasDerivWithinAt h (V (h u)) (Ici u) u := by -- --- PROOF ---
   intro u hu
   rcases hu.1.eq_or_lt with rfl | hpos

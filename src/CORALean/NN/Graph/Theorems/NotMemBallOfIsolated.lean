@@ -48,7 +48,8 @@ open Matrix
 
 /-- No edge points at `w` and `w` is not the center, so `w` never joins the ball. -/
 theorem GNN.not_mem_ball_of_isolated {N : ℕ} (A : Mat ℝ N N) (v : Fin N) {w : Fin N}
-    (hw : ∀ i, A i w = 0) (hwv : w ≠ v) (r : ℕ) : w ∉ GNN.ball A v r := by -- --- PROOF ---
+    (hw : ∀ i, A i w = 0) (hwv : w ≠ v) (r : ℕ) : -- --- CONCL ---
+    w ∉ GNN.ball A v r := by -- --- PROOF ---
   induction r with
   | zero => simpa [GNN.ball] using hwv
   | succ r ih =>

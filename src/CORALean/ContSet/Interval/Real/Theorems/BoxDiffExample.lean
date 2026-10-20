@@ -46,7 +46,7 @@ open Set
 
 /-- [1, Example 4]: `[0, 4] × [0, 6]` minus `[2, 3] × [1, 3]` by [1, Prop. 3] is
 `[0, 4] × ]3, 6]`. -/
-theorem boxDiff_example :
+theorem boxDiff_example : -- --- CONCL ---
     boxDiff ![0, 0] ![4, 6] ![2, 1] ![3, 3] =
       {x | x 0 ∈ Icc 0 4 ∧ x 1 ∈ Ioc 3 6} := by -- --- PROOF ---
   -- the second axis wins, `max(1, 3) > max(2, 1)`

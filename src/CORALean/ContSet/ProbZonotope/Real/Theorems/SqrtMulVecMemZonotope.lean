@@ -47,7 +47,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.add_sqrt_mulVec_mem_zonotope (P : ProbZonotope n) {μ : Vec ℝ n}
-    (hμ : μ ∈ P.Z.construct) {m : ℝ} (hm : 0 < m) {β : Vec ℝ n} (hβ : ∀ j, |β j| ≤ m) :
+    (hμ : μ ∈ P.Z.construct) {m : ℝ} (hm : 0 < m) {β : Vec ℝ n}
+    (hβ : ∀ j, |β j| ≤ m) : -- --- CONCL ---
     μ + CFC.sqrt P.cov *ᵥ β ∈ (P.zonotope m).construct := by -- --- PROOF ---
   rw [ProbZonotope.zonotope, ← Zonotope.plus_exact]
   refine Set.add_mem_add hμ ⟨fun j => β j / m, fun j => ?_, ?_⟩

@@ -48,7 +48,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem ConPolyZono.aux_mtimes_nominal (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
+theorem ConPolyZono.aux_mtimes_nominal (M : Mat 𝕋 k n)
+    (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     (toRealMat M *ᵥ ·) '' nominalSet cPZ ⊆
       nominalSet (ConPolyZono.mtimes M cPZ)
         + (ConPolyZono.mtimesResidual M cPZ).construct := by -- --- PROOF ---

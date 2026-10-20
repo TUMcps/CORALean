@@ -53,7 +53,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The zero matrix lies in the float remainder interval, at `r ≥ 0` and an admissible order. -/
 theorem LinearSys.zero_mem_intervalInputRemainder (sys : LinearSys 𝕋 n) {r : 𝕋}
-    (hr : 0 ≤ toReal r) {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) :
+    (hr : 0 ≤ toReal r) {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) : -- --- CONCL ---
     (0 : Mat ℝ n n) ∈
       (MatExp.intervalInputRemainder (Interval.point sys.A) r η).construct := by -- --- PROOF ---
   have hA : Scalar.toRealMat sys.A ∈ (Interval.point sys.A).construct := Interval.mem_point sys.A

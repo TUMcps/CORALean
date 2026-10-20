@@ -52,7 +52,8 @@ variable {N m : ℕ}
 /-- The cubic bound [1, Thm. 1] carries into the message-passing steps, with the
 node count in the constant. -/
 theorem GNN.messagePassingEnclosure_h_le (R : Relaxation ℝ) (A : Mat ℝ N N)
-    (U : Fin m → Fin N × Fin N) (hm : 1 ≤ m) : (GNN.messagePassingEnclosure R A U).h
+    (U : Fin m → Fin N × Fin N) (hm : 1 ≤ m) : -- --- CONCL ---
+    (GNN.messagePassingEnclosure R A U).h
       ≤ ((N + 2) * (N + 2) + 1) * (N + 2) * m ^ 3 := by -- --- PROOF ---
   rw [GNN.messagePassingEnclosure_h]
   -- at one edge or more, every factor of the padded set fits inside `(N + 2) * m`

@@ -40,7 +40,7 @@ variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSet S α] [Plus S 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SetIntersection.plus_outer (I J : SetIntersection S) :
+theorem SetIntersection.plus_outer (I J : SetIntersection S) : -- --- CONCL ---
     ContSet.construct I + ContSet.construct J ⊆
       ContSet.construct (SetIntersection.plus I J) := by -- --- PROOF ---
   rintro _ ⟨a, ha, b, hb, rfl⟩

@@ -49,7 +49,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.ldbLoop_le {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) (ε : ℝ) :
+theorem Taylm.ldbLoop_le {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
+    (ε : ℝ) : -- --- CONCL ---
     ∀ (fuel : ℕ) (B : Fin n → Interval ℝ), (∀ k, -1 ≤ (B k).inf ∧ (B k).sup ≤ 1) →
       ∀ t, Taylm.InBox B t → Taylm.ldbLoop T ε fuel B ≤ f t := by -- --- PROOF ---
   intro fuel

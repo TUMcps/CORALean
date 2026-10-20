@@ -43,7 +43,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.supportBoundEntrywise_attained [Fintype ι] [DecidableEq ι]
-    (I : Interval α) (c : α →ₗ[ℝ] ℝ) (hI : I.IsNonempty) :
+    (I : Interval α) (c : α →ₗ[ℝ] ℝ) (hI : I.IsNonempty) : -- --- CONCL ---
     ∃ x ∈ I.construct, c x = (I.supportBoundEntrywise c).val := by -- --- PROOF ---
   classical
   -- the weight each coordinate carries; the far endpoint is the one its sign picks

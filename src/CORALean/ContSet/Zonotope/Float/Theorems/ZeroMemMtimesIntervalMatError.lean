@@ -50,7 +50,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 matrix `A`. -/
 theorem Zonotope.zero_mem_mtimesIntervalMat_error {IM : Interval (Mat 𝕋 m n)}
     {Z : Zonotope (Vec 𝕋 n)}
-    {A : Mat ℝ m n} (hA : A ∈ IM.construct) (h : (0 : Vec ℝ n) ∈ Z.I_error.construct) :
+    {A : Mat ℝ m n} (hA : A ∈ IM.construct)
+    (h : (0 : Vec ℝ n) ∈ Z.I_error.construct) : -- --- CONCL ---
     (0 : Vec ℝ m) ∈ (Zonotope.mtimesIntervalMat IM Z).I_error.construct := by -- --- PROOF ---
   set C := Interval.centerMat IM
   set Rs := Interval.matResidual IM.inf IM.sup C

@@ -49,7 +49,8 @@ variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
 
 -- the other way: `contains_of_pinned` asks only that every extreme point be listed
 theorem HPolytope.vPolytope_contains (P : HPolytope (Vec ℝ n)) (hc : IsCompact P.construct)
-    (hne : P.construct.Nonempty) : P.construct ⊆ (P.vPolytope hne).construct := by -- --- PROOF ---
+    (hne : P.construct.Nonempty) : -- --- CONCL ---
+    P.construct ⊆ (P.vPolytope hne).construct := by -- --- PROOF ---
   refine HPolytope.contains_of_pinned hc _ fun x hx hpin => ?_
   refine ⟨(signEquiv P.m).symm (P.tightAt x), ?_⟩
   show (if P.basicPoint (signEquiv P.m ((signEquiv P.m).symm (P.tightAt x))) ∈ P.construct then

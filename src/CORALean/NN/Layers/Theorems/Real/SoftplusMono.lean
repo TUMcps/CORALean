@@ -33,7 +33,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem softplus_mono {β : ℝ} (hβ : 0 < β) : Monotone (softplus β) := by -- --- PROOF ---
+theorem softplus_mono {β : ℝ} (hβ : 0 < β) : -- --- CONCL ---
+    Monotone (softplus β) := by -- --- PROOF ---
   intro a b hab
   have hpos : ∀ t, 0 < 1 + Real.exp (β * t) := fun t => by positivity
   unfold softplus

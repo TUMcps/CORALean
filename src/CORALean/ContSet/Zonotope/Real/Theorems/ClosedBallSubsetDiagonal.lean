@@ -44,7 +44,7 @@ variable {n : ℕ}
 
 /-- The closed ball of radius `ε` lies in the zonotope whose generators are
 `ε` times the unit vectors. -/
-theorem Zonotope.closedBall_subset_diagonal (ε : ℝ) :
+theorem Zonotope.closedBall_subset_diagonal (ε : ℝ) : -- --- CONCL ---
     Metric.closedBall (0 : Vec ℝ n) ε
       ⊆ (⟨n, 0, Matrix.diagonal fun _ => ε⟩ : Zonotope (Vec ℝ n)).construct := by -- --- PROOF ---
   intro x hx

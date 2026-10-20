@@ -42,7 +42,7 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.cartProd_exact (zB₁ : ZonoBundle α) (zB₂ : ZonoBundle β)
-    (h₁ : 0 < zB₁.k) (h₂ : 0 < zB₂.k) :
+    (h₁ : 0 < zB₁.k) (h₂ : 0 < zB₂.k) : -- --- CONCL ---
     zB₁.construct ×ˢ zB₂.construct = (zB₁.cartProd zB₂).construct := by -- --- PROOF ---
   ext ⟨x, y⟩
   simp only [ZonoBundle.construct_eq_iInter, ZonoBundle.cartProd, Set.mem_prod, Set.mem_iInter,

@@ -46,7 +46,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.squaringsFloat_spec {sys : LinearSys 𝕋 n} {Δt tLo tHi : 𝕋} {η : ℕ} (h2 : 2 ≤ η) :
+theorem LinearSys.squaringsFloat_spec {sys : LinearSys 𝕋 n} {Δt tLo tHi : 𝕋} {η : ℕ}
+    (h2 : 2 ≤ η) : -- --- CONCL ---
     ∀ s ∈ sys.squaringsFloat Δt tLo tHi η,
       sys.OrderAdmissibleFloat (half^[s] tLo) (half^[s] tHi) η := by -- --- PROOF ---
   intro s (h : sys.squaringsFloat Δt tLo tHi η = some s)

@@ -56,7 +56,7 @@ theorem Zonotope.aux_sum_univ_linComb {Z₁ Z₂ : Zonotope α}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.linComb_outer (Z₁ Z₂ : Zonotope α) :
+theorem Zonotope.linComb_outer (Z₁ Z₂ : Zonotope α) : -- --- CONCL ---
     Set.linComb Z₁.construct Z₂.construct ⊆ (Z₁.linComb Z₂).construct := by -- --- PROOF ---
   rintro x ⟨y₁, ⟨β₁, hβ₁, rfl⟩, y₂, ⟨β₂, hβ₂, rfl⟩, lam, ⟨hl0, hl1⟩, rfl⟩
   refine ⟨Fin.append (Fin.append (Zonotope.pairCoeffSum β₁ β₂ lam)

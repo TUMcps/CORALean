@@ -37,7 +37,8 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Fullspace.construct_ne_singleton (hn : 0 < n) (F : Fullspace n) (v : Vec ℝ n) :
+theorem Fullspace.construct_ne_singleton (hn : 0 < n) (F : Fullspace n)
+    (v : Vec ℝ n) : -- --- CONCL ---
     F.construct ≠ {v} := by -- --- PROOF ---
   intro h
   have h1 : (v + Pi.single ⟨0, hn⟩ 1 : Vec ℝ n) ∈ F.construct := Set.mem_univ _

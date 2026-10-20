@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.centerLo_le (I : Interval (Vec 𝕋 n)) (i : Fin n) :
+theorem Interval.centerLo_le (I : Interval (Vec 𝕋 n)) (i : Fin n) : -- --- CONCL ---
     toReal (I.centerLo i) ≤ I.nominal.center i := by -- --- PROOF ---
   have h : I.nominal.center i = (toReal (I.inf i) + toReal (I.sup i)) / 2 := by
     show (2:ℝ)⁻¹ * (toReal (I.inf i) + toReal (I.sup i)) = _

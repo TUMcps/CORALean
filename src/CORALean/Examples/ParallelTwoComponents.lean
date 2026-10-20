@@ -100,7 +100,8 @@ theorem PTC.flow_entries : -- --- CONCL ---
     ParallelHybridAutomaton.sys, PTC.parallel, PTC.decay, PTC.integrator, PTC.binds]
 
 /-- A slab is inside the box of the same bounds. -/
-theorem PTC.range_subset (lo hi : ℝ) {v : Vec ℝ 1} (hv : v ∈ (PTC.range lo hi).construct) :
+theorem PTC.range_subset (lo hi : ℝ) {v : Vec ℝ 1}
+    (hv : v ∈ (PTC.range lo hi).construct) : -- --- CONCL ---
     v ∈ (⟨![lo], ![hi]⟩ : Interval (Vec ℝ 1)).construct := by -- --- PROOF ---
   have h := HPolytope.mem_slab_iff.mp hv
   intro j
@@ -163,7 +164,7 @@ theorem PTC.isRun_toProduct {ℓ ℓ' : ∀ _ : Fin 2, Unit} {x y : ∀ _ : Fin 
     ParallelHybridAutomaton.boxLifting run
 
 /-- Every tuple of states the parallel automaton reaches from the box, stacked, is in the box. -/
-theorem PTC.reachSetExact_subset (ℓ₀ ℓ : ∀ _ : Fin 2, Unit) :
+theorem PTC.reachSetExact_subset (ℓ₀ ℓ : ∀ _ : Fin 2, Unit) : -- --- CONCL ---
     stack '' PTC.parallel.reachSetExact PTC.box ℓ₀ ℓ ⊆ construct (PTC.R ℓ) := by -- --- PROOF ---
   refine ParallelHybridAutomaton.reachSetExact_subset_invariant
     (P := PTC.parallel) PTC.feedthroughFree (lift := ParallelHybridAutomaton.boxLifting)

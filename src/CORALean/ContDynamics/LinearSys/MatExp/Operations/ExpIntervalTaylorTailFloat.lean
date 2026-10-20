@@ -78,7 +78,7 @@ def MatExp.aux_expIntervalTaylorTailImpl (B : Interval (Mat 𝕋 n n)) (k : ℕ)
     Interval (Mat 𝕋 n n) :=
   (MatExp.aux_expIntervalTaylorTailPair B k).2
 
-@[csimp] theorem MatExp.aux_expIntervalTaylorTail_eq_impl :
+@[csimp] theorem MatExp.aux_expIntervalTaylorTail_eq_impl : -- --- CONCL ---
     @MatExp.expIntervalTaylorTail = @MatExp.aux_expIntervalTaylorTailImpl := by -- --- PROOF ---
   funext 𝕋 _ n B k
   have hpair : ∀ k, MatExp.aux_expIntervalTaylorTailPair B k

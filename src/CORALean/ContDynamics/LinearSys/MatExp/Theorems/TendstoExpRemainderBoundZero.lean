@@ -46,7 +46,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The remainder bound vanishes as the step does, at a fixed order. -/
-theorem MatExp.tendsto_expRemainderBound_zero (A : Mat ℝ n n) (η : ℕ) :
+theorem MatExp.tendsto_expRemainderBound_zero (A : Mat ℝ n n) (η : ℕ) : -- --- CONCL ---
     Tendsto (fun r : ℝ => MatExp.expRemainderBound (r • A) η)
       (𝓝[>] (0 : ℝ)) (𝓝 0) := by -- --- PROOF ---
   have hnorm : Tendsto (fun r : ℝ => ‖r • A‖) (𝓝[>] (0 : ℝ)) (𝓝 0) := by

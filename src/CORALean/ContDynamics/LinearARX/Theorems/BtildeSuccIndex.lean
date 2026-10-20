@@ -43,7 +43,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearARX.Btilde_succ_index (sys : LinearARX 𝕋 dy du p) (k : ℕ) (i : ℤ) :
+theorem LinearARX.Btilde_succ_index (sys : LinearARX 𝕋 dy du p) (k : ℕ) (i : ℤ) : -- --- CONCL ---
     sys.Btilde k (i + 1)
       = sys.Aext * sys.Btilde k i + sys.Bext (i + 1)
         - sys.Aext ^ k * sys.Bext (i + 1 - k) := by -- --- PROOF ---

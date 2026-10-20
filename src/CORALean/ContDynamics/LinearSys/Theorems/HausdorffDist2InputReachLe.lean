@@ -66,7 +66,7 @@ particular solution and eq. (20)'s outer-approximation, given only that the latt
 theorem LinearSys.hausdorffDist₂_inputReach_le (sys : LinearSys 𝕋 n) (tk : ℝ) {U : S n}
     (hU : Bornology.IsBounded (construct U)) {Δt : ℝ} (hΔt : 0 < Δt) (η : ℕ)
     (houter : sys.inputReach U Δt
-      ⊆ MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt η) : -- --- CONCL ---
+      ⊆ MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt η) :
     hausdorffDist₂
         ((fun x => (exp (tk • toRealMat sys.A)).mulVec x) '' sys.inputReach U Δt)
         ((fun x => (exp (tk • toRealMat sys.A)).mulVec x)

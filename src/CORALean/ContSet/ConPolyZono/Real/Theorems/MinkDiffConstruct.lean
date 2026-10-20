@@ -45,7 +45,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One step: `x` is in `(P + g) ∩ (P - g)` iff both `x - g` and `x + g` are in `P`. -/
-theorem ConPolyZono.aux_mem_minkDiffStep (X : ConPolyZono (Vec ℝ n)) (g x : Vec ℝ n) :
+theorem ConPolyZono.aux_mem_minkDiffStep (X : ConPolyZono (Vec ℝ n))
+    (g x : Vec ℝ n) : -- --- CONCL ---
     x ∈ ((X.plus (ConPolyZono.ofPoint g)).intersection
         (X.plus (ConPolyZono.ofPoint (-g)))).construct
       ↔ x - g ∈ X.construct ∧ x + g ∈ X.construct := by -- --- PROOF ---
@@ -112,7 +113,8 @@ theorem ConPolyZono.aux_foldl_minkDiff {m : ℕ} (G : Fin m → Vec ℝ n)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.minkDiff_construct (cPZ₁ : ConPolyZono (Vec ℝ n)) (Z : Zonotope (Vec ℝ n)) :
+theorem ConPolyZono.minkDiff_construct (cPZ₁ : ConPolyZono (Vec ℝ n))
+    (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (cPZ₁.minkDiff Z).construct
       = {x | ∀ s : Fin Z.h → Bool,
           x + (Z.c + ∑ j, (if s j then Z.G j else -Z.G j)) ∈ cPZ₁.construct} := by -- --- PROOF ---

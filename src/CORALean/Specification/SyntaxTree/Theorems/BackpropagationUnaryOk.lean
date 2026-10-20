@@ -46,7 +46,8 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 /-- A unary `backpropagation` that returns a box passed through its `funHan`. -/
 theorem SyntaxTree.backpropagation_unary_ok {op : Unary} {w : Dom}
     {f : Dom → Dom → Outcome Dom} {t : SyntaxTree n} {v : Dom}
-    {B r : Real.Interval (Vec ℝ n)} (h : backpropagation (.unary op w f t) v B = .ok r) :
+    {B r : Real.Interval (Vec ℝ n)}
+    (h : backpropagation (.unary op w f t) v B = .ok r) : -- --- CONCL ---
     ∃ val, f v t.value = .ok val ∧ backpropagation t val B = .ok r := by -- --- PROOF ---
   simp only [backpropagation] at h
   rcases hf : f v t.value with val | _ | _

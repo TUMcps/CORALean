@@ -56,7 +56,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {q n : ℕ}
 /-- The real statement: a checked approximate right inverse solves, with a bound. -/
 private theorem exists_mulVec_eq_of_residual (G : Mat ℝ q n) (H : Mat ℝ n q)
     {κ ε : ℝ} (hκ : κ < 1) (hK : ∀ i, ∑ j, |((1 : Mat ℝ q q) - G * H) i j| ≤ κ)
-    (d : Vec ℝ q) (hd : ∀ i, |d i| ≤ ε) :
+    (d : Vec ℝ q) (hd : ∀ i, |d i| ≤ ε) : -- --- CONCL ---
     ∃ β : Vec ℝ n, G *ᵥ β = d ∧ ∀ j, |β j| ≤ (∑ k, |H j k|) * (ε / (1 - κ)) := by -- --- PROOF ---
   -- `G H` is invertible: injective, and square
   set Pm := G * H with hPm
@@ -108,7 +108,7 @@ private theorem exists_mulVec_eq_of_residual (G : Mat ℝ q n) (H : Mat ℝ n q)
 
 
 theorem Zonotope.rightInvGain_solve {G : Mat 𝕋 q n} {H : Mat 𝕋 n q} {γ : 𝕋}
-    (hγ : Zonotope.rightInvGain G H = some γ) :
+    (hγ : Zonotope.rightInvGain G H = some γ) : -- --- CONCL ---
     0 ≤ toReal γ ∧ ∀ (d : Vec ℝ q) {ε : ℝ}, 0 ≤ ε → (∀ i, |d i| ≤ ε) →
       ∃ β : Vec ℝ n, toRealMat G *ᵥ β = d ∧ ∀ j, |β j| ≤ toReal γ * ε := by -- --- PROOF ---
   unfold Zonotope.rightInvGain at hγ

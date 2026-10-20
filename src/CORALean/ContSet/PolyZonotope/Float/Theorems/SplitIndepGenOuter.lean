@@ -63,7 +63,8 @@ theorem PolyZonotope.aux_sum_update (pZ : PolyZonotope (Vec 𝕋 n)) (j : Fin pZ
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.splitIndepGen_outer (pZ : PolyZonotope (Vec 𝕋 n)) (j : Fin pZ.q) :
+theorem PolyZonotope.splitIndepGen_outer (pZ : PolyZonotope (Vec 𝕋 n))
+    (j : Fin pZ.q) : -- --- CONCL ---
     pZ.construct ⊆
       (pZ.splitIndepGen j).1.construct ∪ (pZ.splitIndepGen j).2.construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩

@@ -44,7 +44,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.gaussPdf_le_max_iff (P : ProbZonotope n) (hd : 0 < P.cov.det) (c : Vec ℝ n)
-    (x : EuclideanSpace ℝ (Fin n)) (m : ℝ) :
+    (x : EuclideanSpace ℝ (Fin n)) (m : ℝ) : -- --- CONCL ---
     gaussPdf c P.cov x ≤ P.max m
       ↔ m ^ 2 ≤ (ofLp x - c) ⬝ᵥ P.cov⁻¹ *ᵥ (ofLp x - c) := by -- --- PROOF ---
   have h2π : (0 : ℝ) < 2 * π := by positivity

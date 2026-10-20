@@ -38,7 +38,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.empty_exact (hn : 0 < n) : Taylm.construct (Taylm.empty n) = ∅ := by -- --- PROOF ---
+theorem Taylm.empty_exact (hn : 0 < n) : -- --- CONCL ---
+    Taylm.construct (Taylm.empty n) = ∅ := by -- --- PROOF ---
   refine Set.eq_empty_of_forall_notMem fun x hx => ?_
   obtain ⟨t, _, h⟩ := hx
   have := h ⟨0, hn⟩

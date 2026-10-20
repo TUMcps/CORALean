@@ -53,7 +53,8 @@ variable {n : ℕ}
 /-- [1, Thm. 1]: `r` bounding `⌈F⁻¹ Z⌉²` makes `E(r F Fᵀ, z̄)` enclose `Z`. -/
 theorem Zonotope.ellipsoidNorm_contains (Z : Zonotope (Vec ℝ n)) (F : Mat ℝ n n) (r : ℝ)
     (hF : IsUnit F.det)
-    (hr : (⟨Z.h, F⁻¹ *ᵥ Z.c, fun j => F⁻¹ *ᵥ Z.G j⟩ : Zonotope (Vec ℝ n)).maxNormSq ≤ r) :
+    (hr : (⟨Z.h, F⁻¹ *ᵥ Z.c, fun j => F⁻¹ *ᵥ Z.G j⟩ : Zonotope (Vec ℝ n)).maxNormSq ≤ r)
+    : -- --- CONCL ---
     Z.construct ⊆ (Z.ellipsoidNorm F r).construct := by -- --- PROOF ---
   rw [Zonotope.ellipsoidNorm, Ellipsoid.construct_ofFactor]
   rintro _ ⟨β, hβ, rfl⟩

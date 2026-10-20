@@ -113,7 +113,7 @@ open Entrywise
 /-- The unit square `[0,1]²`. -/
 def Interval.aux_unitSquare : Interval (Vec ℝ 2) := ⟨![0, 0], ![1, 1]⟩
 
-theorem Interval.aux_mem_unitSquare (x : Vec ℝ 2) :
+theorem Interval.aux_mem_unitSquare (x : Vec ℝ 2) : -- --- CONCL ---
     x ∈ Interval.aux_unitSquare.construct ↔
       (0 ≤ x 0 ∧ x 0 ≤ 1) ∧ (0 ≤ x 1 ∧ x 1 ≤ 1) := by -- --- PROOF ---
   unfold Interval.construct Interval.aux_unitSquare
@@ -147,7 +147,7 @@ theorem Interval.aux_lines (g0 g1 d0 d1 : ℝ) (h1 : d0 * g0 = 1) (h2 : d1 * g0 
   simp at h3
 
 /-- No capsule is the unit square. -/
-theorem Interval.aux_unitSquare_not_capsule (C : Capsule 2) :
+theorem Interval.aux_unitSquare_not_capsule (C : Capsule 2) : -- --- CONCL ---
     C.construct ≠ Interval.aux_unitSquare.construct := by -- --- PROOF ---
   intro h
   have hmem : ∀ x : Vec ℝ 2, x ∈ C.construct ↔
@@ -231,7 +231,7 @@ theorem Interval.aux_face_unique {k : ℕ} (a u v : Fin k → ℝ) (q1 : ℝ)
   exact sub_eq_zero.mp ((mul_eq_zero.mp this).resolve_right hmpos.ne')
 
 /-- No ellipsoid is the unit square. -/
-theorem Interval.aux_unitSquare_not_ellipsoid (E : Ellipsoid 2) :
+theorem Interval.aux_unitSquare_not_ellipsoid (E : Ellipsoid 2) : -- --- CONCL ---
     E.construct ≠ Interval.aux_unitSquare.construct := by -- --- PROOF ---
   intro h
   -- membership in the ellipsoid is membership in the square

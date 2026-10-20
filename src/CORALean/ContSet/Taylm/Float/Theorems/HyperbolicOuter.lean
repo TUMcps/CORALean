@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The derivatives of `sinh` and `cosh` by parity. -/
-private theorem aux_iteratedDeriv_hyp_parity (k : ℕ) :
+private theorem aux_iteratedDeriv_hyp_parity (k : ℕ) : -- --- CONCL ---
     iteratedDeriv k Real.sinh = (if k % 2 = 0 then Real.sinh else Real.cosh) ∧
     iteratedDeriv k Real.cosh = (if k % 2 = 0 then Real.cosh else Real.sinh) := by -- --- PROOF ---
   induction k with

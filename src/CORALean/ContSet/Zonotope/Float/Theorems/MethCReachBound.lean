@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.methCReach_bound (H : Mat 𝕋 n n) (G : Mat 𝕋 n h) {β : Vec ℝ h}
-    (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
+    (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) : -- --- CONCL ---
     |(toRealMat H *ᵥ fun l => ∑ j, toReal (G l j) * β j) i|
       ≤ toReal (Zonotope.methCReach H G) := by -- --- PROOF ---
   -- the product, regrouped by generator

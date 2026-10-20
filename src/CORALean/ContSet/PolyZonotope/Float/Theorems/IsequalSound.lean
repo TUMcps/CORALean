@@ -39,7 +39,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.isequal_sound {Z S : PolyZonotope (Vec 𝕋 n)} (h : Z.isequal S = true) :
+theorem PolyZonotope.isequal_sound {Z S : PolyZonotope (Vec 𝕋 n)}
+    (h : Z.isequal S = true) : -- --- CONCL ---
     Z.construct = S.construct := by -- --- PROOF ---
   unfold PolyZonotope.isequal at h
   split at h

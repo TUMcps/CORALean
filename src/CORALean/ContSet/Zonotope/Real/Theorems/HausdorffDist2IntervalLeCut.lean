@@ -54,7 +54,7 @@ variable {n : ℕ}
 
 /-- What the projection leaves of a generator, before dividing by its length:
 the symmetrised double sum, whose diagonal drops out. -/
-theorem aux_sq_bound (g nu : Vec ℝ n) (hnu : ∀ i, |nu i| ≤ 1) :
+theorem aux_sq_bound (g nu : Vec ℝ n) (hnu : ∀ i, |nu i| ≤ 1) : -- --- CONCL ---
     (∑ i, g i ^ 2) * (∑ i, nu i ^ 2 * g i ^ 2) - (∑ i, nu i * g i ^ 2) ^ 2
       ≤ 2 * ((∑ i, g i ^ 2) ^ 2 - ∑ i, g i ^ 4) := by -- --- PROOF ---
   -- the double sum of squared coefficient differences is twice the left side
@@ -101,7 +101,7 @@ theorem aux_sq_bound (g nu : Vec ℝ n) (hnu : ∀ i, |nu i| ≤ 1) :
 
 /-- One generator taken at the coefficient that projects the displacement onto
 it: what the projection cuts off is the paper's per-generator term. -/
-theorem aux_exists_coeff_cut (g lam : Vec ℝ n) (hlam : ∀ i, |lam i| ≤ 1) :
+theorem aux_exists_coeff_cut (g lam : Vec ℝ n) (hlam : ∀ i, |lam i| ≤ 1) : -- --- CONCL ---
     ∃ a : ℝ, |a| ≤ 1 ∧ ‖(fun i => lam i * |g i| - a * g i : Vec ℝ n)‖₂
       ≤ Real.sqrt 2 * (‖g‖₂ * Real.sqrt (1 - (∑ i, g i ^ 4) / ‖g‖₂ ^ 4)) := by -- --- PROOF ---
   have hrnn : 0 ≤ Real.sqrt 2 * (‖g‖₂ * Real.sqrt (1 - (∑ i, g i ^ 4) / ‖g‖₂ ^ 4)) :=
@@ -177,7 +177,7 @@ theorem aux_exists_coeff_cut (g lam : Vec ℝ n) (hlam : ∀ i, |lam i| ≤ 1) :
 
 /-- [1, Thm. 1], the `ω_cut` bound: the box is never further from the zonotope
 than what projecting onto each generator in turn cuts off, at `‖·‖₂`. -/
-theorem Zonotope.hausdorffDist₂_interval_le_cut (Z : Zonotope (Vec ℝ n)) :
+theorem Zonotope.hausdorffDist₂_interval_le_cut (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     hausdorffDist₂ Z.construct Z.interval.construct
       ≤ Real.sqrt 2 * ∑ p, ‖Z.G p‖₂
           * Real.sqrt (1 - (∑ i, Z.G p i ^ 4) / ‖Z.G p‖₂ ^ 4) := by -- --- PROOF ---

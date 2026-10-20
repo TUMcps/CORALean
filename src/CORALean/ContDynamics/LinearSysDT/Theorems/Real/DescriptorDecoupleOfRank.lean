@@ -50,7 +50,7 @@ variable {nx ny nd : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.descriptorDecouple_of_rank (E : Mat ℝ nx nx) (Dd : Mat ℝ nx nd)
-    (C : Mat ℝ ny nx) (h : LinearSysDT.DescriptorDecoupleRank E Dd C) :
+    (C : Mat ℝ ny nx) (h : LinearSysDT.DescriptorDecoupleRank E Dd C) : -- --- CONCL ---
     ∃ (T : Mat ℝ nx nx) (N : Mat ℝ nx ny), T * E + N * C = 1 ∧ T * Dd = 0 := by -- --- PROOF ---
   unfold LinearSysDT.DescriptorDecoupleRank at h
   simp only at h

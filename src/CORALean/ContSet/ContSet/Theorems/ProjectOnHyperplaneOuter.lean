@@ -42,7 +42,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ContSet.projectOnHyperplane_outer (s : S n) (c : Vec ℝ n) (d : ℝ) :
+theorem ContSet.projectOnHyperplane_outer (s : S n) (c : Vec ℝ n) (d : ℝ) : -- --- CONCL ---
     (fun x : Vec ℝ n => x - (c ⬝ᵥ x - d) • c) '' construct s ⊆
       construct (ContSet.projectOnHyperplane s c d) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩

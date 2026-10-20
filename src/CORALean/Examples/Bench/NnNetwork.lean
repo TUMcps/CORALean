@@ -116,7 +116,8 @@ def network (W₁ : Mat 𝕋 h n) (b₁ : Vec 𝕋 h) (W₂ : Mat 𝕋 1 h) (b�
 
 /-- What `network` encloses: the exact affine maps its stored weights denote,
 around the exact ReLU. -/
-theorem network_encloses (W₁ : Mat 𝕋 h n) (b₁ : Vec 𝕋 h) (W₂ : Mat 𝕋 1 h) (b₂ : Vec 𝕋 1) :
+theorem network_encloses (W₁ : Mat 𝕋 h n) (b₁ : Vec 𝕋 h) (W₂ : Mat 𝕋 1 h)
+    (b₂ : Vec 𝕋 1) : -- --- CONCL ---
     (network (S := S) W₁ b₁ W₂ b₂).Encloses fun x =>
       Scalar.toRealMat W₂ *ᵥ (fun i => Real.relu ((Scalar.toRealMat W₁ *ᵥ x
         + Scalar.toRealVec b₁) i)) + Scalar.toRealVec b₂ := by -- --- PROOF ---
@@ -132,7 +133,7 @@ theorem network_encloses (W₁ : Mat 𝕋 h n) (b₁ : Vec 𝕋 h) (W₂ : Mat �
 /-- The soundness corollary `nn-float32` reports on: every exact output over the
 input set lies in the computed enclosure, whatever the precision. -/
 theorem network_mem_enclose (W₁ : Mat 𝕋 h n) (b₁ : Vec 𝕋 h) (W₂ : Mat 𝕋 1 h)
-    (b₂ : Vec 𝕋 1) (X : S n) {x : Vec ℝ n} (hx : x ∈ construct X) : -- --- CONCL ---
+    (b₂ : Vec 𝕋 1) (X : S n) {x : Vec ℝ n} (hx : x ∈ construct X) :
     Scalar.toRealMat W₂ *ᵥ (fun i => Real.relu ((Scalar.toRealMat W₁ *ᵥ x
         + Scalar.toRealVec b₁) i)) + Scalar.toRealVec b₂
       ∈ construct ((network (S := S) W₁ b₁ W₂ b₂).enclose X) :=

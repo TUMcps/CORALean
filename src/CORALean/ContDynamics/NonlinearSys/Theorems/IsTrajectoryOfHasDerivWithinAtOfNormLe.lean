@@ -55,7 +55,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- A derivative within a convex `T ∋ 0`, bounded on `[0, t]`, is integrable from `0` to `t`. -/
 theorem aux_intervalIntegrable_of_hasDerivWithinAt {T : Set ℝ} {x g : ℝ → Vec ℝ n} {C : ℝ}
     (hTconv : Convex ℝ T) (h0T : (0:ℝ) ∈ T) (hd : ∀ t ∈ T, HasDerivWithinAt x (g t) T t)
-    {t : ℝ} (ht : t ∈ T) (hC : ∀ s ∈ Set.uIcc 0 t, ‖g s‖ ≤ C) :
+    {t : ℝ} (ht : t ∈ T) (hC : ∀ s ∈ Set.uIcc 0 t, ‖g s‖ ≤ C) : -- --- CONCL ---
     IntervalIntegrable g volume 0 t := by -- --- PROOF ---
   have hsub : Set.uIoc (0:ℝ) t ⊆ T :=
     Set.uIoc_subset_uIcc.trans (hTconv.ordConnected.uIcc_subset h0T ht)
@@ -78,7 +78,7 @@ theorem NonlinearSys.IsTrajectory.of_hasDerivWithinAt_of_norm_le {sys : Nonlinea
     (hTconv : Convex ℝ T) (h0T : (0:ℝ) ∈ T) (init : x 0 ∈ construct R₀)
     (input : ∀ t ∈ T, u t ∈ construct U)
     (hd : ∀ t ∈ T, HasDerivWithinAt x (sys.f (x t) (u t)) T t)
-    (hC : ∀ t ∈ T, ‖sys.f (x t) (u t)‖ ≤ C) : -- --- CONCL ---
+    (hC : ∀ t ∈ T, ‖sys.f (x t) (u t)‖ ≤ C) :
     sys.IsTrajectory T R₀ U x u (fun t => sys.g (x t) (u t)) :=
   .of_hasDerivWithinAt hTconv h0T init input hd fun _ ht =>
     aux_intervalIntegrable_of_hasDerivWithinAt hTconv h0T hd ht fun s hs =>

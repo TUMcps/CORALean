@@ -35,7 +35,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem mapM_option_spec {α β : Type} (f : α → Option β) :
+theorem mapM_option_spec {α β : Type} (f : α → Option β) : -- --- CONCL ---
     ∀ (l : List α) (L : List β), l.mapM f = some L →
       (∀ r ∈ L, ∃ a ∈ l, f a = some r) ∧ (∀ a ∈ l, ∃ r ∈ L, f a = some r) := by -- --- PROOF ---
   intro l

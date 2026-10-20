@@ -36,7 +36,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.representsa_emptySet_iff (S : SpectraShadow α) :
+theorem SpectraShadow.representsa_emptySet_iff (S : SpectraShadow α) : -- --- CONCL ---
     S.representsa_emptySet ↔ S.construct = ∅ := by -- --- PROOF ---
   unfold SpectraShadow.representsa_emptySet
   constructor

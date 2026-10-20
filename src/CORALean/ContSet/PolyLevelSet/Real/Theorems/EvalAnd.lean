@@ -41,7 +41,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Both operands' constraint values, stacked. -/
-theorem PolyLevelSet.eval_and_ (P₁ P₂ : PolyLevelSet n) (x : Vec ℝ n) :
+theorem PolyLevelSet.eval_and_ (P₁ P₂ : PolyLevelSet n) (x : Vec ℝ n) : -- --- CONCL ---
     (P₁.and_ P₂).eval x = Fin.append (P₁.eval x) (P₂.eval x) := by -- --- PROOF ---
   -- the stacked monomial vector is the two operands' side by side
   have hμ : PolyZonotope.monomial (P₁.and_ P₂).R x

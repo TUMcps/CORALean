@@ -48,7 +48,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.support_dotProduct (Z : Zonotope (Vec ℝ n)) (c : Vec ℝ n) :
+theorem Zonotope.support_dotProduct (Z : Zonotope (Vec ℝ n)) (c : Vec ℝ n) : -- --- CONCL ---
     IsGreatest ((fun x => c ⬝ᵥ x) '' Z.construct) (c ⬝ᵥ Z.c + Z.supportRadius c) ∧
     IsLeast ((fun x => c ⬝ᵥ x) '' Z.construct) (c ⬝ᵥ Z.c - Z.supportRadius c) := by -- --- PROOF ---
   -- the value of `cᵀx` at the coefficients `β`

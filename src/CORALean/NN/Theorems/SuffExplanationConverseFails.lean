@@ -94,7 +94,7 @@ noncomputable def aux_suffExplanationConverseFails_nnAbs :
     (fun k => if k = 1 then (1 : ℝ) else 0) aux_suffExplanationConverseFails_box)
 
 -- the box's error is committed at its own center, `0`, so the exact networks agree
-theorem aux_suffExplanationConverseFails_nnAbs_sound :
+theorem aux_suffExplanationConverseFails_nnAbs_sound : -- --- CONCL ---
     aux_suffExplanationConverseFails_nnAbs.Encloses
       aux_suffExplanationConverseFails_f := by -- --- PROOF ---
   refine (NeuralNetwork.ofLayer_encloses (S := ℐ𝒱)

@@ -41,7 +41,7 @@ variable {f : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem toReal_exactAdd (a b : FixedPoint f) :
+theorem toReal_exactAdd (a b : FixedPoint f) : -- --- CONCL ---
     toReal (exactAdd a b) = toReal a + toReal b := by -- --- PROOF ---
   have ha : (10 : ℝ) ^ a.d ≠ 0 := by positivity
   have hb : (10 : ℝ) ^ b.d ≠ 0 := by positivity

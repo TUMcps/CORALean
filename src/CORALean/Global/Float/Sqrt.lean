@@ -83,7 +83,7 @@ variable [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- AM-GM: `√a ≤ (s + a/s)/2` for a positive `s`. -/
-private theorem sqrt_le_newton {a s : ℝ} (ha : 0 ≤ a) (hs : 0 < s) :
+private theorem sqrt_le_newton {a s : ℝ} (ha : 0 ≤ a) (hs : 0 < s) : -- --- CONCL ---
     Real.sqrt a ≤ (s + a / s) / 2 := by -- --- PROOF ---
   have hr := Real.sq_sqrt ha
   have hr0 := Real.sqrt_nonneg a
@@ -97,7 +97,8 @@ private theorem sqrt_max_zero (x : ℝ) : Real.sqrt (max 0 x) = Real.sqrt x := b
   · rw [max_eq_right h]
   · rw [max_eq_left h, Real.sqrt_zero, Real.sqrt_eq_zero_of_nonpos h]
 
-private theorem sqrtStep_ge {a s : 𝕋} (ha : 0 ≤ toReal a) (h : Real.sqrt (toReal a) ≤ toReal s) :
+private theorem sqrtStep_ge {a s : 𝕋} (ha : 0 ≤ toReal a)
+    (h : Real.sqrt (toReal a) ≤ toReal s) : -- --- CONCL ---
     Real.sqrt (toReal a) ≤ toReal (sqrtStep a s) := by -- --- PROOF ---
   unfold sqrtStep
   split_ifs with hl
@@ -125,7 +126,7 @@ private theorem toReal_maximum_zero_nonneg (a : 𝕋) : 0 ≤ toReal (maximum ze
   exact le_max_left _ _
 
 /-- The computed root is above the real one, whatever the fuel. -/
-theorem le_sqrtUp (p : ℕ) (a : 𝕋) :
+theorem le_sqrtUp (p : ℕ) (a : 𝕋) : -- --- CONCL ---
     Real.sqrt (toReal a) ≤ toReal (sqrtUp p a) := by -- --- PROOF ---
   have ha := toReal_maximum_zero_nonneg a
   have hsq : Real.sqrt (toReal (maximum zero a)) = Real.sqrt (toReal a) := by
@@ -139,7 +140,7 @@ theorem le_sqrtUp (p : ℕ) (a : 𝕋) :
   nlinarith [sq_nonneg (Real.sqrt (toReal (maximum zero a)) - 1)]
 
 /-- The computed root from below is under the real one, whatever the fuel. -/
-theorem sqrtDown_le (p : ℕ) (a : 𝕋) :
+theorem sqrtDown_le (p : ℕ) (a : 𝕋) : -- --- CONCL ---
     toReal (sqrtDown p a) ≤ Real.sqrt (toReal a) := by -- --- PROOF ---
   have ha := toReal_maximum_zero_nonneg a
   have hsq : Real.sqrt (toReal (maximum zero a)) = Real.sqrt (toReal a) := by

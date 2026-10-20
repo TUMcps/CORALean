@@ -36,7 +36,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Reach.steps_spec {tStart tFinal timeStep : ℚ} :
+theorem Reach.steps_spec {tStart tFinal timeStep : ℚ} : -- --- CONCL ---
     ∀ N ∈ Reach.steps tStart tFinal timeStep,
       0 < timeStep ∧ (N : ℚ) * timeStep = tFinal - tStart := by -- --- PROOF ---
   intro N (h : Reach.steps tStart tFinal timeStep = some N)

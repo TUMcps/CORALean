@@ -88,7 +88,7 @@ theorem aux_feasible_succ (Θ₀ : Set (Vec ℝ n)) (r : ℕ → Vec ℝ n) (y :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem feasibleSolutionSet_eq_predicted (Θ₀ : Set (Vec ℝ n)) (r : ℕ → Vec ℝ n) (y : ℕ → ℝ)
-    (σ : ℝ) (γ : Vec ℝ n) (N : ℕ) :
+    (σ : ℝ) (γ : Vec ℝ n) (N : ℕ) : -- --- CONCL ---
     feasibleSolutionSet Θ₀ r y σ γ (N + 1) = predictedSolutionSet Θ₀ r y σ γ N ∩
       {θ | |r (N + 1) ⬝ᵥ θ - y (N + 1)| ≤ σ} := by -- --- PROOF ---
   induction N with

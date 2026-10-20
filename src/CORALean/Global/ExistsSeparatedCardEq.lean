@@ -58,7 +58,7 @@ theorem aux_sep_of_mod_eq {a b M : ℕ} (hab : a < b) (h : a % (M + 1) = b % (M 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem exists_separated_card_eq (N M : ℕ) (H : Finset (Fin N)) :
+theorem exists_separated_card_eq (N M : ℕ) (H : Finset (Fin N)) : -- --- CONCL ---
     ∃ J : Finset (Fin N), J.card = ⌈((N : ℝ) - H.card * (2 * M + 1)) / (M + 1)⌉₊ ∧
       ∀ j ∈ J, (∀ h ∈ H, h.val + M < j.val ∨ j.val + M < h.val) ∧
         ∀ j' ∈ J, j' ≠ j → j'.val + M < j.val ∨ j.val + M < j'.val := by -- --- PROOF ---

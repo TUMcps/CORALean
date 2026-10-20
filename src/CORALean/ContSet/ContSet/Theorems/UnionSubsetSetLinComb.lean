@@ -49,7 +49,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem union_subset_setLinComb {X Y : Set α} (hX : X.Nonempty) (hY : Y.Nonempty) :
+theorem union_subset_setLinComb {X Y : Set α} (hX : X.Nonempty) (hY : Y.Nonempty) : -- --- CONCL ---
     X ∪ Y ⊆ Set.linComb X Y := by -- --- PROOF ---
   rintro x (hx | hx)
   · obtain ⟨y, hy⟩ := hY

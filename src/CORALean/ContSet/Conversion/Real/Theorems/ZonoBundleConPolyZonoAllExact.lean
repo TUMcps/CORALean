@@ -37,7 +37,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `conPolyZono(conZonotope(zB))` denotes the intersection of the members. -/
-theorem ZonoBundle.conPolyZonoAll_exact (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k) :
+theorem ZonoBundle.conPolyZonoAll_exact (zB : ZonoBundle (Vec ℝ n))
+    (hk : 0 < zB.k) : -- --- CONCL ---
     (zB.conPolyZonoAll hk).construct = zB.construct := by -- --- PROOF ---
   -- `conZonotope(zB)` is the bundle
   have h₁ := zB.conZonotopeAll_exact hk

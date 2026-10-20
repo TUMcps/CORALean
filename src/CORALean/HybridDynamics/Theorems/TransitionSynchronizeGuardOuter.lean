@@ -58,7 +58,7 @@ theorem aux_synchronizeGuard_fold (g : Fin q → HPolytope 𝕋 (Vec 𝕋 n)) (l
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The synchronized guard contains the intersection of the guards. -/
-theorem Transition.synchronizeGuard_outer (g : Fin q → HPolytope 𝕋 (Vec 𝕋 n)) :
+theorem Transition.synchronizeGuard_outer (g : Fin q → HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     ⋂ i, (g i).construct ⊆ (Transition.synchronizeGuard g).construct := by -- --- PROOF ---
   unfold Transition.synchronizeGuard
   intro x hx

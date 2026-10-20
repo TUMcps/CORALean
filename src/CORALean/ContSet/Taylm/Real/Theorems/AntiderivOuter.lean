@@ -52,7 +52,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.antideriv_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) (i : Fin n)
-    (hf : ∀ t ∈ Taylm.box n, ContinuousOn (fun s => f (Function.update t i s)) (Set.Icc (-1) 1)) :
+    (hf : ∀ t ∈ Taylm.box n, ContinuousOn (fun s => f (Function.update t i s)) (Set.Icc (-1) 1))
+    : -- --- CONCL ---
     (T.antideriv i).Encloses fun t =>
       ∫ s in (0 : ℝ)..t i, f (Function.update t i s) := by -- --- PROOF ---
   intro t ht

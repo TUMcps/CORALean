@@ -34,7 +34,7 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Polygon.aux_le_foldr_max (l : List ℝ) (s : ℝ) {a : ℝ} (h : a ∈ l) :
+theorem Polygon.aux_le_foldr_max (l : List ℝ) (s : ℝ) {a : ℝ} (h : a ∈ l) : -- --- CONCL ---
     a ≤ l.foldr max s := by -- --- PROOF ---
   induction l with
   | nil => exact absurd h (List.not_mem_nil)

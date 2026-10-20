@@ -58,7 +58,7 @@ namespace CORALean.Real
 
 /-- With the flags of `[0,1]` (`true`) and of `x ≥ 0` (unset), CORA's product is flagged bounded,
 yet `[0,1] × [0,∞)` has points of every height. -/
-theorem HPolytope.cartProd_bounded_cora_counterexample :
+theorem HPolytope.cartProd_bounded_cora_counterexample : -- --- CONCL ---
     HPolytope.cartProdBoundedCora (some true) none = some true ∧
       ∀ R : ℝ, ∃ x : Vec ℝ 2, x 0 ∈ Set.Icc (0 : ℝ) 1 ∧ 0 ≤ x 1 ∧ R < x 1 := by -- --- PROOF ---
   refine ⟨by simp [HPolytope.cartProdBoundedCora], fun R => ?_⟩

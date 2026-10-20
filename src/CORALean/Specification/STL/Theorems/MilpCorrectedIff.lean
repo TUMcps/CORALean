@@ -47,7 +47,8 @@ variable {s p : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.milpCorrected_iff (C : Matrix (Fin s) (Fin p) ℝ) (d : Fin s → ℝ) (α : Fin p → ℝ) :
+theorem STL.milpCorrected_iff (C : Matrix (Fin s) (Fin p) ℝ) (d : Fin s → ℝ)
+    (α : Fin p → ℝ) : -- --- CONCL ---
     STL.milpCorrected C d α ↔
       (∀ i, -1 ≤ α i ∧ α i ≤ 1) ∧ ∃ k, d k < ∑ i, C k i * α i := by -- --- PROOF ---
   constructor

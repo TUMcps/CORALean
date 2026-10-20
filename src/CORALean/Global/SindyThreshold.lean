@@ -75,7 +75,7 @@ noncomputable def sindyBig (lam : ℝ) (Ξ : Mat ℝ p n) : Finset (Fin p × Fin
 /-- A pass keeps only entries that were not thresholded, so for `λ > 0` it only removes
 nonzero entries. -/
 theorem sindyBig_step_subset (lam : ℝ) (hlam : 0 < lam)
-    (solve : Fin n → Finset (Fin p) → Fin p → ℝ) (Ξ : Mat ℝ p n) :
+    (solve : Fin n → Finset (Fin p) → Fin p → ℝ) (Ξ : Mat ℝ p n) : -- --- CONCL ---
     sindyBig lam (sindyStep lam solve Ξ) ⊆ sindyBig lam Ξ := by -- --- PROOF ---
   intro jc hjc
   simp only [sindyBig, Finset.mem_filter, Finset.mem_univ, true_and] at hjc ⊢
@@ -87,7 +87,7 @@ theorem sindyBig_step_subset (lam : ℝ) (hlam : 0 < lam)
 
 /-- A pass depends on its argument only through the entries at least `λ` in magnitude. -/
 theorem sindyStep_congr (lam : ℝ) (solve : Fin n → Finset (Fin p) → Fin p → ℝ)
-    (Ξ Ξ' : Mat ℝ p n) (h : sindyBig lam Ξ = sindyBig lam Ξ') :
+    (Ξ Ξ' : Mat ℝ p n) (h : sindyBig lam Ξ = sindyBig lam Ξ') : -- --- CONCL ---
     sindyStep lam solve Ξ = sindyStep lam solve Ξ' := by -- --- PROOF ---
   have hiff : ∀ j c, (|Ξ j c| < lam) ↔ (|Ξ' j c| < lam) := fun j c => by
     have := Finset.ext_iff.mp h (j, c)
@@ -116,7 +116,7 @@ theorem sindyStep_fixed_of_big_eq (lam : ℝ) (solve : Fin n → Finset (Fin p) 
 /-- [1, Sec. 3.1]: for `λ > 0`, `K ≥ p · n + 1` passes of `Code 1` reach a fixed point, whatever
 the solver and the number of passes beyond. -/
 theorem sindy_fixed (lam : ℝ) (hlam : 0 < lam) (solve : Fin n → Finset (Fin p) → Fin p → ℝ)
-    (K : ℕ) (hK : p * n + 1 ≤ K) :
+    (K : ℕ) (hK : p * n + 1 ≤ K) : -- --- CONCL ---
     sindyStep lam solve (sindy lam solve K) = sindy lam solve K := by -- --- PROOF ---
   set f := sindyStep lam solve with hf
   set Ξ₀ : Mat ℝ p n := Matrix.of fun j c => solve c Finset.univ j with hΞ₀

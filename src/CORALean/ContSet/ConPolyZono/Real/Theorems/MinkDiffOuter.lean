@@ -38,7 +38,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Outer: `P ⊖ Z ⊆ minkDiff P Z`. -/
-theorem ConPolyZono.minkDiff_outer (cPZ₁ : ConPolyZono (Vec ℝ n)) (Z : Zonotope (Vec ℝ n)) :
+theorem ConPolyZono.minkDiff_outer (cPZ₁ : ConPolyZono (Vec ℝ n))
+    (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     {x | ∀ z ∈ Z.construct, x + z ∈ cPZ₁.construct} ⊆
       (cPZ₁.minkDiff Z).construct := by -- --- PROOF ---
   intro x hx

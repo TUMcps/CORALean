@@ -52,7 +52,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Sec. 3 (search for x₀)]: `P₂(x + v) - P₂(x) = ∇P₂(x) ⬝ v + ½ v ⬝ Hv`, `H` symmetric. -/
-theorem Taylm.qfb_quad_expand {H : Mat ℝ n n} (hH : H.IsSymm) (c : ℝ) (g x v : Vec ℝ n) :
+theorem Taylm.qfb_quad_expand {H : Mat ℝ n n} (hH : H.IsSymm) (c : ℝ)
+    (g x v : Vec ℝ n) : -- --- CONCL ---
     c + g ⬝ᵥ (x + v) + (x + v) ⬝ᵥ (H *ᵥ (x + v)) / 2
       = c + g ⬝ᵥ x + x ⬝ᵥ (H *ᵥ x) / 2 + (g + H *ᵥ x) ⬝ᵥ v
         + v ⬝ᵥ (H *ᵥ v) / 2 := by -- --- PROOF ---

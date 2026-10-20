@@ -41,7 +41,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem noiseCovariance_printed_counterexample :
+theorem noiseCovariance_printed_counterexample : -- --- CONCL ---
     noiseCovariance (diagonal fun _ : Fin 1 => (1 : ℝ)) (1 : Mat ℝ 1 1) 1 0 0
       ≠ ((1 : Mat ℝ 1 1) * (1 : Mat ℝ 1 1).transpose) 0 0 / (1 + 1)
         * (1 - Real.exp (-(1 + 1) * 1)) := by -- --- PROOF ---

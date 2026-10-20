@@ -42,7 +42,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.uminus_scaled {T : Taylm n} {h C : ℝ} (hT : T.Scaled h C) :
+theorem Taylm.uminus_scaled {T : Taylm n} {h C : ℝ} (hT : T.Scaled h C) : -- --- CONCL ---
     T.uminus.Scaled h C := by -- --- PROOF ---
   obtain ⟨w, i, s⟩ := hT
   refine ⟨?_, by simpa [Taylm.uminus] using s, by simpa [Taylm.uminus] using i⟩

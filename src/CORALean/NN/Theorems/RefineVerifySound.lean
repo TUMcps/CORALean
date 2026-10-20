@@ -57,7 +57,7 @@ theorem RefinableNetwork.refineVerify_sound (rn : RefinableNetwork S n m) (ρ : 
     {Su : Set (Vec ℝ m)} {isDisjoint : S m → Bool}
     (hdis : ∀ Y, isDisjoint Y = true → ∀ y ∈ construct Y, y ∉ Su)
     (refineStep : Schedule → Schedule) {I : ℕ}
-    (h : rn.refineVerify ρ X isDisjoint refineStep I = true) : -- --- CONCL ---
+    (h : rn.refineVerify ρ X isDisjoint refineStep I = true) :
     ∀ x ∈ construct X, rn.eval x ∉ Su :=
   rn.refineVerifyFrom_sound ρ hdis refineStep I _ h
 

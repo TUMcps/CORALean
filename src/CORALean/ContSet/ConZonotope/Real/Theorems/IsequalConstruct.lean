@@ -35,7 +35,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.isequal_construct {Z S : ConZonotope α} (h : Z.isequal S) :
+theorem ConZonotope.isequal_construct {Z S : ConZonotope α} (h : Z.isequal S) : -- --- CONCL ---
     Z.construct = S.construct := by -- --- PROOF ---
   obtain ⟨e, hc, hG, hP⟩ := h
   obtain ⟨h₁, c₁, G₁, P₁⟩ := Z

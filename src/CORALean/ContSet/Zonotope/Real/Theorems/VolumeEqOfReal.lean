@@ -43,7 +43,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Sec. IV-D]: with `n` generators, (7) is `2ⁿ |det Ĝ_b|`. -/
-theorem Zonotope.volume_eq_ofReal (c : Vec ℝ n) (Gb : Fin n → Vec ℝ n) :
+theorem Zonotope.volume_eq_ofReal (c : Vec ℝ n) (Gb : Fin n → Vec ℝ n) : -- --- CONCL ---
     (⟨n, c, Gb⟩ : Zonotope (Vec ℝ n)).volume
       = ENNReal.ofReal
         (2 ^ n * |(Matrix.of fun i k => Gb k i : Mat ℝ n n).det|) := by -- --- PROOF ---

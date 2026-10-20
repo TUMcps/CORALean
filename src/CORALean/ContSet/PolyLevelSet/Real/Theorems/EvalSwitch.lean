@@ -46,7 +46,7 @@ variable {n : ℕ}
 
 /-- Row `i` of the switched system is `P`'s plus `(1 - σᵢ x^e) bᵢ / 2`. -/
 theorem PolyLevelSet.eval_switch (P : PolyLevelSet n) (e : Fin n → ℕ) (s : Fin P.m → Bool)
-    (x : Vec ℝ n) (i : Fin P.m) :
+    (x : Vec ℝ n) (i : Fin P.m) : -- --- CONCL ---
     (P.switch e s).eval x i = P.eval x i
       + 2⁻¹ * (1 - (if s i then 1 else -1) * ∏ k, x k ^ e k) * P.b i := by -- --- PROOF ---
   show (∑ l : Fin (P.q + 1), (P.switch e s).A i l * PolyZonotope.monomial (P.switch e s).R x l)

@@ -49,7 +49,7 @@ theorem ConZonotope.aux_sum_kept {M : Type} [AddCommMonoid M] {h : ℕ} (S : Fin
 
 /-- The embedding puts a kept coefficient where its generator is. -/
 theorem ConZonotope.aux_embed_apply {h : ℕ} (S : Finset (Fin h)) (v : Vec ℝ S.card)
-    (l : Fin S.card) :
+    (l : Fin S.card) : -- --- CONCL ---
     ConZonotope.aux_compactEmbed S v (S.orderIsoOfFin rfl l).1 = v l := by -- --- PROOF ---
   show (∑ l', v l' • (Pi.single (S.orderIsoOfFin rfl l').1 (1 : ℝ) : Vec ℝ h))
     (S.orderIsoOfFin rfl l).1 = _
@@ -67,7 +67,8 @@ theorem ConZonotope.aux_embed_apply {h : ℕ} (S : Finset (Fin h)) (v : Vec ℝ 
 
 /-- A dropped coordinate is zero. -/
 theorem ConZonotope.aux_embed_off {h : ℕ} (S : Finset (Fin h)) (v : Vec ℝ S.card) (j : Fin h)
-    (hj : j ∉ S) : ConZonotope.aux_compactEmbed S v j = 0 := by -- --- PROOF ---
+    (hj : j ∉ S) : -- --- CONCL ---
+    ConZonotope.aux_compactEmbed S v j = 0 := by -- --- PROOF ---
   show (∑ l', v l' • (Pi.single (S.orderIsoOfFin rfl l').1 (1 : ℝ) : Vec ℝ h)) j = 0
   rw [Finset.sum_apply]
   refine Finset.sum_eq_zero fun l' _ => ?_
@@ -77,7 +78,7 @@ theorem ConZonotope.aux_embed_off {h : ℕ} (S : Finset (Fin h)) (v : Vec ℝ S.
 
 /-- A functional that ignores the dropped coordinates reads the embedded kept ones alike. -/
 theorem ConZonotope.aux_functional_embed {h : ℕ} (S : Finset (Fin h)) (φ : Vec ℝ h →ₗ[ℝ] ℝ)
-    (hφ : ∀ j, j ∉ S → φ (Pi.single j (1 : ℝ) : Vec ℝ h) = 0) (β : Vec ℝ h) :
+    (hφ : ∀ j, j ∉ S → φ (Pi.single j (1 : ℝ) : Vec ℝ h) = 0) (β : Vec ℝ h) : -- --- CONCL ---
     φ (ConZonotope.aux_compactEmbed S fun l => β (S.orderIsoOfFin rfl l).1)
       = φ β := by -- --- PROOF ---
   have hβ : β = ∑ j, β j • (Pi.single j (1 : ℝ) : Vec ℝ h) := by
@@ -91,7 +92,7 @@ theorem ConZonotope.aux_functional_embed {h : ℕ} (S : Finset (Fin h)) (φ : Ve
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.compact_exact (cZ : ConZonotope α) :
+theorem ConZonotope.compact_exact (cZ : ConZonotope α) : -- --- CONCL ---
     cZ.compact.construct = cZ.construct := by -- --- PROOF ---
   -- what a dropped generator is: zero, and read by no constraint
   have hdrop : ∀ j, j ∉ cZ.compactGens → cZ.G j = 0

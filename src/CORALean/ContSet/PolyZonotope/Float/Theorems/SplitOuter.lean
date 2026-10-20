@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.split_outer (pZ : PolyZonotope (Vec 𝕋 n))
-    (j : Fin pZ.splitParallelotope.h) :
+    (j : Fin pZ.splitParallelotope.h) : -- --- CONCL ---
     pZ.construct ⊆ (pZ.split j).fst.construct ∪ (pZ.split j).snd.construct := by -- --- PROOF ---
   intro x hx
   -- the parallelotope holds the zonotope, which holds the set

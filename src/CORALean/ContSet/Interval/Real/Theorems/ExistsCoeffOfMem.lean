@@ -38,7 +38,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.exists_coeff_of_mem (I : Interval (Vec ℝ n)) {x : Vec ℝ n}
-    (hx : x ∈ I.construct) :
+    (hx : x ∈ I.construct) : -- --- CONCL ---
     ∃ β : Fin n → ℝ, (∀ i, |β i| ≤ 1) ∧
       ∀ i, x i = I.center i + β i * I.radius i := by -- --- PROOF ---
   -- each coordinate is within the radius of the center

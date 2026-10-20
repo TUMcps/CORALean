@@ -40,7 +40,8 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem IntervalChain.backprop_adjoint : ∀ {n k : ℕ} (c : IntervalChain n k)
+theorem IntervalChain.backprop_adjoint : -- --- CONCL ---
+    ∀ {n k : ℕ} (c : IntervalChain n k)
     (p δ : Vec ℝ n × Vec ℝ n) (g : Vec ℝ k × Vec ℝ k),
     (c.backprop p g).1 ⬝ᵥ δ.1 + (c.backprop p g).2 ⬝ᵥ δ.2
       = g.1 ⬝ᵥ (c.jvp p δ).1 + g.2 ⬝ᵥ (c.jvp p δ).2 := by -- --- PROOF ---

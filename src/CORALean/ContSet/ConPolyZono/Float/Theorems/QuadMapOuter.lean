@@ -64,7 +64,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k : ℕ}
 /-- A stored generator of the float `quadMapDep` is off the exact bilinear form by at most its
 gap. -/
 theorem ConPolyZono.aux_quadMapG_close (Q : Fin k → Mat 𝕋 n n) (pZ : PolyZonotope (Vec 𝕋 n))
-    (i : Fin k) (l : Fin ((pZ.h + 1) * (pZ.h + 1))) : -- --- CONCL ---
+    (i : Fin k) (l : Fin ((pZ.h + 1) * (pZ.h + 1))) :
     |Real.PolyZonotope.quadMapG (fun k => toRealMat (Q k)) (nominal pZ) l i
         - toReal (PolyZonotope.quadMapGDown Q pZ i l)|
       ≤ toReal (PolyZonotope.quadMapGDiff Q pZ i l) :=
@@ -104,7 +104,8 @@ theorem ConPolyZono.aux_dependent_point (pZ : PolyZonotope (Vec 𝕋 n)) (a : Fi
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.quadMap_outer (Q : Fin k → Mat 𝕋 n n) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
+theorem ConPolyZono.quadMap_outer (Q : Fin k → Mat 𝕋 n n)
+    (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     Real.PolyZonotope.quadEval (fun i => toRealMat (Q i)) '' cPZ.construct
       ⊆ (cPZ.quadMap Q).construct := by -- --- PROOF ---
   rintro _ ⟨_, ⟨z, hz', e, he, rfl⟩, rfl⟩

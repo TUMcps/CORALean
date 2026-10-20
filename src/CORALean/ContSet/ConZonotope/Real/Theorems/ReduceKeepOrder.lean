@@ -37,7 +37,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.reduceKeep_order_le (cZ : ConZonotope (Vec ℝ n)) {o : ℕ} (ho : 0 < o) :
+theorem ConZonotope.reduceKeep_order_le (cZ : ConZonotope (Vec ℝ n)) {o : ℕ}
+    (ho : 0 < o) : -- --- CONCL ---
     (cZ.reduceKeep o).h ≤ o * n := by -- --- PROOF ---
   unfold ConZonotope.reduceKeep
   split_ifs with hlt

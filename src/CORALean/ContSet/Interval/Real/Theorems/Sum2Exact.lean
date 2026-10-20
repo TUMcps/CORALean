@@ -37,7 +37,7 @@ variable {m n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.sum₂_exact {I : Interval (Mat ℝ m n)} (hI : I.IsNonempty) :
+theorem Interval.sum₂_exact {I : Interval (Mat ℝ m n)} (hI : I.IsNonempty) : -- --- CONCL ---
     I.sum₂.construct =
       (fun A : Mat ℝ m n => fun i => ∑ j, A i j) '' I.construct := by -- --- PROOF ---
   have hT : I.transpose.IsNonempty := fun p => hI (p.2, p.1)

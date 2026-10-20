@@ -88,7 +88,7 @@ theorem SpectraShadow.aux_posSemidef_plus (S₁ S₂ : SpectraShadow 𝕋 (Vec �
   exact (Iff.of_eq (congrArg Matrix.PosSemidef e)).trans (posSemidef_blockDiag_iff _ _)
 
 /-- The concatenated generators account for everything but the center rounding. -/
-theorem SpectraShadow.aux_plus_nominal (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) :
+theorem SpectraShadow.aux_plus_nominal (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     (nominalSet S₁) + (nominalSet S₂) ⊆
       (nominalSet (S₁.plus S₂))
         + (SpectraShadow.centerResidual S₁.c S₂.c).construct := by -- --- PROOF ---

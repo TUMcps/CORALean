@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 /-- The product's rows, read back, take the values of the product of the read-back rows. -/
 theorem PolyLevelSet.eval_nominalCore_cartProd (P₁ : PolyLevelSet 𝕋 n₁) (P₂ : PolyLevelSet 𝕋 n₂)
-    (x : Vec ℝ (n₁ + n₂)) :
+    (x : Vec ℝ (n₁ + n₂)) : -- --- CONCL ---
     (P₁.cartProd P₂).nominalCore.eval x
       = (P₁.nominalCore.cartProd P₂.nominalCore).eval x := by -- --- PROOF ---
   have hb : toRealVec (P₁.cartProd P₂).b = (P₁.nominalCore.cartProd P₂.nominalCore).b :=

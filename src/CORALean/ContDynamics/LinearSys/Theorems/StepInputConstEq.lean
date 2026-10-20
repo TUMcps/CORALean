@@ -72,7 +72,7 @@ theorem aux_stepInputConst_eq_shifted (sys : LinearSys 𝕋 n) (c : Vec ℝ n) {
 rather than to every point of a set, at every instant of the step. -/
 theorem LinearSys.stepInput_const (sys : LinearSys 𝕋 n) (c : Vec ℝ n) {Δt : ℝ}
     (hΔt : 0 ≤ Δt) (u : ℝ → Vec ℝ n) (k : ℕ)
-    (hu : ∀ s ∈ Set.Icc ((k:ℝ) * Δt) (((k:ℝ) + 1) * Δt), u s = c) :
+    (hu : ∀ s ∈ Set.Icc ((k:ℝ) * Δt) (((k:ℝ) + 1) * Δt), u s = c) : -- --- CONCL ---
     sys.stepInput u Δt k = sys.stepInputConst c Δt := by -- --- PROOF ---
   rw [sys.stepInput_eq_shifted, aux_stepInputConst_eq_shifted sys c hΔt]
   -- the shifted input collapses to `c` on the step, so the integrands agree

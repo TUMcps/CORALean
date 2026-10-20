@@ -59,7 +59,7 @@ variable {n : ℕ}
 
 /-- [1, Prop. 2]: `∂y_{h,i}/∂x₀_l = L_il(x₀)`, wherever `Λ(x₀) = nᵀ(Ax₀ + b) ≠ 0`. -/
 theorem GuardMap.hasDerivAt_hitPoint {A : Mat ℝ n n} {b nv x₀ : Vec ℝ n} {d : ℝ}
-    (hΛ : nv ⬝ᵥ (A *ᵥ x₀ + b) ≠ 0) (i l : Fin n) :
+    (hΛ : nv ⬝ᵥ (A *ᵥ x₀ + b) ≠ 0) (i l : Fin n) : -- --- CONCL ---
     HasDerivAt (fun s : ℝ => GuardMap.hitPoint A b nv d (x₀ + s • Pi.single l 1) i)
       (GuardMap.hitJacobian A b nv d x₀ i l) 0 := by -- --- PROOF ---
   set f : Vec ℝ n := A *ᵥ x₀ + b with hfdef

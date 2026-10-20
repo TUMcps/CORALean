@@ -44,7 +44,7 @@ variable {X : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.DFormula.rob_sound (x : ℕ → X) :
+theorem STL.DFormula.rob_sound (x : ℕ → X) : -- --- CONCL ---
     ∀ (φ : STL.DFormula X) (t : ℕ),
       (0 < φ.rob x t → φ.Sat x t) ∧ (φ.Sat x t → 0 ≤ φ.rob x t) := by -- --- PROOF ---
   intro φ

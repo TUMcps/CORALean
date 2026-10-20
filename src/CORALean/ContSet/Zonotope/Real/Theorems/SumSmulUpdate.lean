@@ -47,7 +47,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {h : ℕ}
 /-- A generator sum with the `j`-th coefficient and the `j`-th generator both
 replaced: that term written out, and everything off `j` untouched. -/
 theorem Zonotope.sum_smul_update (β : Fin h → ℝ) (G : Fin h → α) (j : Fin h)
-    (t : ℝ) (a : α) :
+    (t : ℝ) (a : α) : -- --- CONCL ---
     ∑ k, Function.update β j t k • Function.update G j a k
       = t • a + ∑ k ∈ Finset.univ.erase j, β k • G k := by -- --- PROOF ---
   have hoff : ∀ k ∈ Finset.univ.erase j,

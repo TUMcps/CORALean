@@ -42,7 +42,8 @@ variable {ContSet α : Type} [CORALean.ContSet ContSet α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Specification.holds_iUnion {ι : Type} (spec : Specification ContSet) {X : ι → Set α}
-    (h : ∀ i, spec.Holds (X i)) : spec.Holds (⋃ i, X i) := by -- --- PROOF ---
+    (h : ∀ i, spec.Holds (X i)) : -- --- CONCL ---
+    spec.Holds (⋃ i, X i) := by -- --- PROOF ---
   obtain ⟨s, k⟩ := spec
   cases k
   · exact Set.iUnion_subset h

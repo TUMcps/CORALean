@@ -47,7 +47,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.zonotopeNorm_ball_eq (Z : Zonotope (Vec ℝ n))
-    (hG : Function.Surjective Z.genMap) :
+    (hG : Function.Surjective Z.genMap) : -- --- CONCL ---
     {x | Z.zonotopeNorm (x - Z.c) ≤ 1} = Z.construct ∧
       {x | Z.zonotopeNorm (x - Z.c) = 1} = frontier Z.construct := by -- --- PROOF ---
   -- `x ∈ Z` iff some `γ` with `‖γ‖∞ ≤ 1` reaches `x - c`

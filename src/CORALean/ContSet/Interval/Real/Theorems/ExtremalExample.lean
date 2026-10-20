@@ -53,7 +53,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `0.84147 < sin 1 < 0.84148`, from ten terms of the exponential series at `i`. -/
-theorem aux_sin_one_bounds :
+theorem aux_sin_one_bounds : -- --- CONCL ---
     (0.84147 : ℝ) < Real.sin 1 ∧ Real.sin 1 < 0.84148 := by -- --- PROOF ---
   have h := Complex.exp_bound (x := Complex.I) (by simp) (n := 10) (by norm_num)
   have hs : Real.sin 1 = (Complex.exp Complex.I).im := by
@@ -74,7 +74,7 @@ theorem aux_sin_one_bounds :
 
 /-- `sin` maps `[1, 2]` onto `[sin 1, 1]`: it rises to `1` at `π/2`, and `sin 2 = sin (π - 2)`
 is at least `sin 1`, `π - 2` lying in `[1, π/2]`. -/
-theorem aux_image_sin_one_two :
+theorem aux_image_sin_one_two : -- --- CONCL ---
     Real.sin '' Set.Icc 1 2 = Set.Icc (Real.sin 1) 1 := by -- --- PROOF ---
   have hpi3 := Real.pi_gt_three
   have hpi4 := Real.pi_lt_four

@@ -43,7 +43,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.pow_eq_sum_bernsteinEntry (N e : ℕ) (he : e ≤ N) (x : ℝ) :
+theorem Taylm.pow_eq_sum_bernsteinEntry (N e : ℕ) (he : e ≤ N) (x : ℝ) : -- --- CONCL ---
     x ^ e = ∑ j ∈ Finset.range (N + 1),
       Taylm.bernsteinEntry N e j * Taylm.bernsteinBasis N j ((x + 1) / 2) := by -- --- PROOF ---
   -- `x = 2u + (-1)`, expanded in powers of `u`

@@ -55,7 +55,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.representsaPolytopeCora_ne_construct :
+theorem Zonotope.representsaPolytopeCora_ne_construct : -- --- CONCL ---
     let Z : Zonotope (Vec ℝ 2) := ⟨2, 0, ![![1, 0], ![0, 1]]⟩
     Z.representsaPolytopeCora ≠ Z.construct := by -- --- PROOF ---
   intro Z h

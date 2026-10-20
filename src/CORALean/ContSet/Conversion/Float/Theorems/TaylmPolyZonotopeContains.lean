@@ -49,7 +49,7 @@ variable [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The dependent part of the polynomial zonotope is the polynomial of each coordinate. -/
-theorem Taylm.aux_dep_apply (T : Fin m → Taylm 𝕋 n) (t : Vec ℝ n) (i : Fin m) :
+theorem Taylm.aux_dep_apply (T : Fin m → Taylm 𝕋 n) (t : Vec ℝ n) (i : Fin m) : -- --- CONCL ---
     ∑ l, toReal ((Taylm.polyZonotope T).G l i) *
         Real.PolyZonotope.monomial (Taylm.polyZonotope T).E t l
       = (T i).nominal.poly t := by -- --- PROOF ---
@@ -94,7 +94,7 @@ theorem Taylm.aux_dep_apply (T : Fin m → Taylm 𝕋 n) (t : Vec ℝ n) (i : Fi
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.polyZonotope_contains (T : Fin m → Taylm 𝕋 n) :
+theorem Taylm.polyZonotope_contains (T : Fin m → Taylm 𝕋 n) : -- --- CONCL ---
     Taylm.construct T ⊆ (Taylm.polyZonotope T).construct := by -- --- PROOF ---
   rintro x ⟨t, ht, hx⟩
   -- the polynomial values are the nominal part, the rest of `x` is in the absorbed error box

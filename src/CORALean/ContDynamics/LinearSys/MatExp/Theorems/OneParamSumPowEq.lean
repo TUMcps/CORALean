@@ -51,7 +51,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.oneParam_sum_pow_eq (C G : Mat ℝ n n) (a : ℕ → ℝ) (β : ℝ) (η : ℕ) :
+theorem MatExp.oneParam_sum_pow_eq (C G : Mat ℝ n n) (a : ℕ → ℝ) (β : ℝ) (η : ℕ) : -- --- CONCL ---
     ∑ i ∈ Finset.range (η + 1), a i • (C + β • G) ^ i = ∑ k ∈ Finset.range (η + 1), β ^ k •
       (if k = 0 then ∑ i ∈ Finset.range (η + 1), a i • MatExp.oneParamD C i
       else ∑ i ∈ Finset.Icc k η, a i • MatExp.oneParamF C G i k) := by -- --- PROOF ---

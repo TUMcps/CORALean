@@ -53,7 +53,7 @@ variable {q n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A real number below `b - ρ` in the extended reals: `ρ` below `b - a`, read on the reals. -/
-theorem aux_coe_le_sub_iff (a b : ℝ) (ρ : EReal) :
+theorem aux_coe_le_sub_iff (a b : ℝ) (ρ : EReal) : -- --- CONCL ---
     (a : EReal) ≤ (b : EReal) - ρ ↔ ρ ≤ ((b - a : ℝ) : EReal) := by -- --- PROOF ---
   induction ρ using EReal.rec with
   | bot => simp
@@ -67,7 +67,8 @@ theorem aux_coe_le_sub_iff (a b : ℝ) (ρ : EReal) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.minkowskiDiff_ineqs_eq (A : Mat ℝ q n) (b : Vec ℝ q) (S : Set (Vec ℝ n)) :
+theorem HPolytope.minkowskiDiff_ineqs_eq (A : Mat ℝ q n) (b : Vec ℝ q)
+    (S : Set (Vec ℝ n)) : -- --- CONCL ---
     minkowskiDiff (HPolytope.ineqs A b).construct S =
       {x | ∀ j, (((A *ᵥ x) j : ℝ) : EReal) ≤
         (b j : EReal) - supportFunc S (HPolytope.rowLin A j)} := by -- --- PROOF ---

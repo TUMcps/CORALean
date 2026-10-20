@@ -35,7 +35,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `representsa_ point` at `tol = 0` iff the set of times is a singleton. -/
-theorem STLInterval.representsa_point_zero_iff (I : STLInterval) :
+theorem STLInterval.representsa_point_zero_iff (I : STLInterval) : -- --- CONCL ---
     I.representsa_ 0 .point ↔ ∃ x : ℝ, I.set = {x} := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.representsa_, STLInterval.set]

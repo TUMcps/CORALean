@@ -42,7 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.invBound_ge (m : 𝕋) (hm : 0 < toReal m) (N : ℕ) {ξ : ℝ} (hξ : toReal m ≤ |ξ|) :
+theorem Taylm.invBound_ge (m : 𝕋) (hm : 0 < toReal m) (N : ℕ) {ξ : ℝ}
+    (hξ : toReal m ≤ |ξ|) : -- --- CONCL ---
     |iteratedDeriv (N + 1) (fun x : ℝ => x⁻¹) ξ| ≤
       toReal (Taylm.invBound m N) := by -- --- PROOF ---
   have hξ0 : 0 < |ξ| := lt_of_lt_of_le hm hξ

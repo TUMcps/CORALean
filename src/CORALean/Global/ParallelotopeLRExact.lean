@@ -72,7 +72,7 @@ theorem aux_abs_sgn (x : ℝ) : |aux_sgnPM x| = 1 := by
   unfold aux_sgnPM; split_ifs <;> simp
 
 /-- `Σⱼ Z_{kj} M_{kj} ≤ (Σⱼ |M_{kj}|) maxⱼ |Z_{kj}|`, row by row. -/
-theorem aux_row_le (M Z : Matrix (Fin n) (Fin m) ℝ) (k : Fin n) :
+theorem aux_row_le (M Z : Matrix (Fin n) (Fin m) ℝ) (k : Fin n) : -- --- CONCL ---
     ∑ j, M k j * Z k j ≤ (∑ j, |M k j|) * ⨆ j, |Z k j| := by -- --- PROOF ---
   rw [Finset.sum_mul]
   refine Finset.sum_le_sum fun j _ => ?_
@@ -82,7 +82,7 @@ theorem aux_row_le (M Z : Matrix (Fin n) (Fin m) ℝ) (k : Fin n) :
 
 /-- At an invertible `H`, the norm of `G α` is `‖H⁻¹ G α‖_∞`: the preimage is unique. -/
 theorem aux_coeffNorm_eq (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin n) ℝ)
-    (hH : IsUnit H.det) (α : Fin m → ℝ) :
+    (hH : IsUnit H.det) (α : Fin m → ℝ) : -- --- CONCL ---
     coeffNorm ((Matrix.mulVecLin H) ∘ₗ (WithLp.linearEquiv ∞ ℝ (Fin n → ℝ)).toLinearMap)
       (G *ᵥ α) = ‖(H⁻¹ * G) *ᵥ α‖ := by -- --- PROOF ---
   set Hl := (Matrix.mulVecLin H) ∘ₗ (WithLp.linearEquiv ∞ ℝ (Fin n → ℝ)).toLinearMap
@@ -101,7 +101,7 @@ theorem aux_coeffNorm_eq (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (F
 
 /-- On the cube, `‖M α‖_∞` is at most the largest row sum. -/
 theorem aux_norm_mulVec_le_rowSum (M : Matrix (Fin n) (Fin m) ℝ) {R : ℝ} (hR0 : 0 ≤ R)
-    (hk : ∀ i, ∑ j, |M i j| ≤ R) (α : Fin m → ℝ) (hα : ‖α‖ ≤ 1) :
+    (hk : ∀ i, ∑ j, |M i j| ≤ R) (α : Fin m → ℝ) (hα : ‖α‖ ≤ 1) : -- --- CONCL ---
     ‖M *ᵥ α‖ ≤ R := by -- --- PROOF ---
   refine (pi_norm_le_iff_of_nonneg hR0).mpr fun i => ?_
   rw [Real.norm_eq_abs, Matrix.mulVec, dotProduct]

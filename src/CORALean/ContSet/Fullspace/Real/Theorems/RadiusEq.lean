@@ -36,7 +36,7 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Fullspace.radius_eq (hn : 0 < n) (F : Fullspace n) :
+theorem Fullspace.radius_eq (hn : 0 < n) (F : Fullspace n) : -- --- CONCL ---
     ⨆ x ∈ F.construct, (‖x‖₊ : ENNReal) = F.radius := by -- --- PROOF ---
   refine ENNReal.eq_top_of_forall_nnreal_le fun r => ?_
   refine le_iSup₂_of_le (Pi.single ⟨0, hn⟩ (r : ℝ) : Vec ℝ n) (Set.mem_univ _) ?_

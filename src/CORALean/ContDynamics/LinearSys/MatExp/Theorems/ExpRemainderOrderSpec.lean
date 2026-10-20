@@ -52,7 +52,7 @@ variable {n : ℕ}
 /-- One more order keeps both halves: the bound falls, and the side condition
 only has a larger denominator to divide by. -/
 theorem aux_expRemainderBound_lt_succ {x : Mat ℝ n n} {ε : ℝ} {η : ℕ}
-    (h : MatExp.expRemainderBound x η < ε ∧ ‖x‖ / ((η : ℝ) + 2) < 1) :
+    (h : MatExp.expRemainderBound x η < ε ∧ ‖x‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
     MatExp.expRemainderBound x (η + 1) < ε ∧
       ‖x‖ / (((η + 1 : ℕ) : ℝ) + 2) < 1 := by -- --- PROOF ---
   obtain ⟨hb, hs⟩ := h
@@ -72,7 +72,7 @@ theorem aux_expRemainderBound_lt_succ {x : Mat ℝ n n} {ε : ℝ} {η : ℕ}
 
 /-- The order chosen for `ε` is admissible for `ε`: under the bound, and sound,
 with no side condition left for the caller to discharge. -/
-theorem MatExp.expRemainderOrder_spec (x : Mat ℝ n n) {ε : ℝ} (hε : 0 < ε) :
+theorem MatExp.expRemainderOrder_spec (x : Mat ℝ n n) {ε : ℝ} (hε : 0 < ε) : -- --- CONCL ---
     MatExp.OrderAdmissible x ε (MatExp.expRemainderOrder x ε) := by -- --- PROOF ---
   obtain ⟨η, hη⟩ := MatExp.exists_expRemainderBound_lt x hε
   -- two orders up is admissible outright, `2 ≤ η + 2` needing nothing of `η`

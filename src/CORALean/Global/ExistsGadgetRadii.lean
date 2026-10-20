@@ -48,7 +48,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem exists_gadget_radii (n : ℕ) (hn : 2 ≤ n) (p : ℝ) (hp : 1 < p) :
+theorem exists_gadget_radii (n : ℕ) (hn : 2 ≤ n) (p : ℝ) (hp : 1 < p) : -- --- CONCL ---
     ∃ L ϱ : ℝ, n - 1 < L ∧ L < n ∧ 0 < ϱ ∧ ϱ < 1 ∧ 1 - ϱ ^ p = ((n - ϱ) / L) ^ p ∧
       L = (1 - ((n - ϱ) / L) ^ p) ^ (1 / p - 1) * ((n - ϱ) / L) ^ (p - 1) := by -- --- PROOF ---
   have ha : (2 : ℝ) ≤ n := by exact_mod_cast hn

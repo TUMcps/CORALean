@@ -53,7 +53,7 @@ variable {lam : ι → ℝ}
 
 /-- [1, Eq. 19]: the root of [1, Eq. 18] minimises the criterion of [1, Eq. 14] on `(0, ∞)`. -/
 theorem Ellipsoid.halderLogDet_isMinOn [Nonempty ι] (hlam : ∀ i, 0 < lam i) {r : ℝ}
-    (hr : 0 < r) (hroot : Ellipsoid.halderStationarity lam r = 0) :
+    (hr : 0 < r) (hroot : Ellipsoid.halderStationarity lam r = 0) : -- --- CONCL ---
     IsMinOn (Ellipsoid.halderLogDet lam) (Set.Ioi 0) r := by -- --- PROOF ---
   have hanti := Ellipsoid.halderStationarity_strictAntiOn hlam
   have hd := fun β (hβ : 0 < β) => Ellipsoid.halderLogDet_hasDerivAt hlam hβ

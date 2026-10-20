@@ -61,7 +61,7 @@ theorem isMinSuffExplanation_greedyAbstractExplanation
     (habs : ∀ k E, absSuff k E = true → IsSuffExplanation f x ε E l)
     (hgen : ∀ k E, genuine k E = true → ¬ IsSuffExplanation f x ε E l)
     (hlast : ∀ E, IsSuffExplanation f x ε E l → absSuff N E = true)
-    (hl : IsSuffExplanation f x ε Finset.univ l) : -- --- CONCL ---
+    (hl : IsSuffExplanation f x ε Finset.univ l) :
     IsMinSuffExplanation f x ε (greedyAbstractExplanation n absSuff genuine N) l :=
   isMinSuffExplanation_greedyMinimalExplanation hε
     (explanationRefineLoop_iff habs hgen hlast N 0 (Nat.zero_add N)) hl

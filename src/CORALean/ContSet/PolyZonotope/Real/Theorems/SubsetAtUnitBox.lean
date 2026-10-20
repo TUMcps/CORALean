@@ -47,7 +47,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- With no independent block, the factor unit box reaches everything `construct`
 does. -/
-theorem PolyZonotope.subsetAt_unitBox (pZ : PolyZonotope α) (hq : pZ.q = 0) :
+theorem PolyZonotope.subsetAt_unitBox (pZ : PolyZonotope α) (hq : pZ.q = 0) : -- --- CONCL ---
     pZ.subsetAt {a | ∀ k, |a k| ≤ 1} = pZ.construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨a, ha, rfl⟩

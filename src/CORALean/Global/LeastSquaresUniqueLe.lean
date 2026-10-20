@@ -57,7 +57,8 @@ variable {n v N : ℕ}
 `w ≥ ⌈(v - 1)/2⌉`. -/
 theorem le_of_leastSquares_unique (Xd : Mat ℝ n N) (Φ : Mat ℝ v N) (A : Mat ℝ n v) (hn : 0 < n)
     (huniq : ∀ B : Mat ℝ n v,
-      ∑ i, ∑ a, ((Xd - B * Φ) a i) ^ 2 = ∑ i, ∑ a, ((Xd - A * Φ) a i) ^ 2 → B = A) :
+      ∑ i, ∑ a, ((Xd - B * Φ) a i) ^ 2 = ∑ i, ∑ a, ((Xd - A * Φ) a i) ^ 2 → B = A)
+    : -- --- CONCL ---
     v ≤ N ∧ ∀ w : ℕ, (v : ℤ) ≤ 2 * w + 1 ↔ ⌈((v : ℝ) - 1) / 2⌉ ≤ w := by -- --- PROOF ---
   refine ⟨?_, fun w => ?_⟩
   · by_contra hlt

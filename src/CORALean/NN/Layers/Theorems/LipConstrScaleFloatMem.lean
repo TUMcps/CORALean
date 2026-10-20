@@ -39,7 +39,8 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Layer.lipConstrScaleFloat_mem (W : Mat 𝕋 m n) (lam : 𝕋) (hl : 0 < toReal lam) :
+theorem Layer.lipConstrScaleFloat_mem (W : Mat 𝕋 m n) (lam : 𝕋)
+    (hl : 0 < toReal lam) : -- --- CONCL ---
     Layer.lipConstrScale (toRealMat W) (toReal lam)
       ∈ (Layer.lipConstrScaleFloat W lam).construct := by -- --- PROOF ---
   intro i

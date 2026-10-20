@@ -37,7 +37,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SupportFunction.convex_construct (S : SupportFunction α) :
+theorem SupportFunction.convex_construct (S : SupportFunction α) : -- --- CONCL ---
     Convex ℝ S.construct := by -- --- PROOF ---
   intro x hx y hy a b ha hb hab ℓ
   have hxd := hx ℓ

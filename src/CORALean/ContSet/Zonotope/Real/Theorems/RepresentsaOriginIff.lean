@@ -35,7 +35,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.representsa_origin_iff (Z : Zonotope α) :
+theorem Zonotope.representsa_origin_iff (Z : Zonotope α) : -- --- CONCL ---
     Z.construct = {0} ↔ Z.representsa_origin := by -- --- PROOF ---
   constructor
   · intro h

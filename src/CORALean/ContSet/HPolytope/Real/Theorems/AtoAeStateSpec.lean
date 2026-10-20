@@ -38,7 +38,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.atoAeState_spec (Q : HPolytope α) :
+theorem HPolytope.atoAeState_spec (Q : HPolytope α) : -- --- CONCL ---
     (∀ k ∈ Q.atoAeState.2, ∃ j, Q.A j = -Q.A k ∧ Q.b j = -Q.b k) ∧
     ∀ i ∈ Q.atoAeState.1, ∃ k ∈ Q.atoAeState.2,
       i = k ∨ (Q.A i = -Q.A k ∧ Q.b i = -Q.b k) := by -- --- PROOF ---

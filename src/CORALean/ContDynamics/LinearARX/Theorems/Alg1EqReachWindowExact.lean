@@ -64,7 +64,7 @@ theorem LinearARX.aux_Icc_sub_one (a b : ℕ) (hb : 0 < b) :
 
 /-- A matrix applied to a sum of linear images of sets, exactly. -/
 theorem LinearARX.aux_image_sum {n m : ℕ} (M : Mat ℝ m n) (s : Finset ℕ)
-    (B : ℕ → Mat ℝ n du) (V : ℕ → Set (Vec ℝ du)) (a : Vec ℝ n) :
+    (B : ℕ → Mat ℝ n du) (V : ℕ → Set (Vec ℝ du)) (a : Vec ℝ n) : -- --- CONCL ---
     (M *ᵥ ·) '' ({a} + ∑ i ∈ s, (B i *ᵥ ·) '' V i)
       = {M *ᵥ a} + ∑ i ∈ s, ((M * B i) *ᵥ ·) '' V i := by -- --- PROOF ---
   have hM : (M *ᵥ · : Vec ℝ n → Vec ℝ m) = ⇑(Matrix.mulVecLin M) := rfl
@@ -139,7 +139,7 @@ theorem LinearARX.aux_alg1State_inv (sys : LinearARX 𝕋 dy du p) (yinit : Vec 
 
 theorem LinearARX.alg1_eq_reachWindowExact (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ (p * dy))
     {U : ℕ → Set (Vec ℝ du)} (hU : ∀ i, (U i).Nonempty) {kinit : ℕ} (hp : 0 < p)
-    (hk : p ≤ kinit) (m : ℕ) :
+    (hk : p ≤ kinit) (m : ℕ) : -- --- CONCL ---
     sys.alg1 yinit U kinit m = sys.reachWindowExact yinit U (kinit + m * p) := by -- --- PROOF ---
   obtain ⟨h1, h2, h3⟩ := sys.aux_alg1State_inv yinit U hp hk m
   simp only [LinearARX.alg1]

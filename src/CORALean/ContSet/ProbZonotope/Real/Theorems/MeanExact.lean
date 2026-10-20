@@ -36,7 +36,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ProbZonotope.mean_exact (P : ProbZonotope n) :
+theorem ProbZonotope.mean_exact (P : ProbZonotope n) : -- --- CONCL ---
     (fun m => ∫ x, x ∂m) '' P.laws = toLp 2 '' P.mean.construct := by -- --- PROOF ---
   ext y
   constructor

@@ -50,7 +50,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.activation_sensitivity {σ σ' : ℝ → ℝ} (hd : ∀ t, HasDerivAt σ (σ' t) t)
-    (x : Vec ℝ n) :
+    (x : Vec ℝ n) : -- --- CONCL ---
     layerSensitivity (fun (y : Vec ℝ n) i => σ (y i)) x
       = Matrix.diagonal fun i => σ' (x i) := by -- --- PROOF ---
   refine Layer.sensitivity_eq_of_hasFDerivAt ?_

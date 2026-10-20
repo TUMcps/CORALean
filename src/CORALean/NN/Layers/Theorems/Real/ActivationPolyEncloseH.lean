@@ -61,7 +61,7 @@ variable {σ : ℝ → ℝ} {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.activationPoly_enclose_h (P : LayerRelaxation ℝ n m)
-    (s : PolyZonotope (Vec ℝ n)) :
+    (s : PolyZonotope (Vec ℝ n)) : -- --- CONCL ---
     ((Layer.activationPoly P).enclose s).h = (s.h + s.q + 1) *
       (∑ i ∈ Finset.range (m + 1), (s.h + s.q + 1) ^ i) + n := by -- --- PROOF ---
   show (PolyZonotope.plus

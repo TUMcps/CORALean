@@ -48,7 +48,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Prop. 2]: `Z ⊆ Box_S(Z)`, and along each `s ∈ S` both bounds are attained in `Z`. -/
-theorem Zonotope.boxS_tight (Z : Zonotope (Vec ℝ n)) (S : Finset (Vec ℝ n)) :
+theorem Zonotope.boxS_tight (Z : Zonotope (Vec ℝ n)) (S : Finset (Vec ℝ n)) : -- --- CONCL ---
     Z.construct ⊆ Z.boxS S ∧
       ∀ s ∈ S, (∃ x ∈ Z.construct, x ⬝ᵥ s = Z.c ⬝ᵥ s - ∑ j, |Z.G j ⬝ᵥ s|) ∧
         ∃ x ∈ Z.construct, x ⬝ᵥ s = Z.c ⬝ᵥ s + ∑ j, |Z.G j ⬝ᵥ s| := by -- --- PROOF ---

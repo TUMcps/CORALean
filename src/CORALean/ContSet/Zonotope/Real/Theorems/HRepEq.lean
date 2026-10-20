@@ -57,7 +57,7 @@ namespace CORALean.Real
 /-- [1, Thm. 2]: a zonotope whose generators span is exactly the halfspaces
 their cross products cut out. -/
 theorem Zonotope.hRep_eq {n : ℕ} (Z : Zonotope (Vec ℝ (n + 1)))
-    (hspan : Submodule.span ℝ (Set.range Z.G) = ⊤) :
+    (hspan : Submodule.span ℝ (Set.range Z.G) = ⊤) : -- --- CONCL ---
     Z.construct = {x | ∀ S : Fin n → Fin Z.h,
       |Z.facetNormal S ⬝ᵥ (x - Z.c)| ≤ ∑ υ, |Z.facetNormal S ⬝ᵥ Z.G υ|} := by -- --- PROOF ---
   classical

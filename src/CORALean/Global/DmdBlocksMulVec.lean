@@ -47,7 +47,7 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem dmdBlocks_mulVec (M : Mat ℝ n (n + 1 + m)) (x : Vec ℝ n) (u : Vec ℝ m) :
+theorem dmdBlocks_mulVec (M : Mat ℝ n (n + 1 + m)) (x : Vec ℝ n) (u : Vec ℝ m) : -- --- CONCL ---
     M *ᵥ dmdRegressor x u
       = (dmdBlocks M).1 *ᵥ x + (dmdBlocks M).2.1 *ᵥ u + (dmdBlocks M).2.2 := by -- --- PROOF ---
   funext i

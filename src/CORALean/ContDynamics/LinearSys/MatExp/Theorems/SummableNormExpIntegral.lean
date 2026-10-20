@@ -50,7 +50,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The integrated series is dominated by `|t|` times the exponential's own. -/
-theorem MatExp.summable_norm_expIntegral (A : Mat ℝ n n) (t : ℝ) :
+theorem MatExp.summable_norm_expIntegral (A : Mat ℝ n n) (t : ℝ) : -- --- CONCL ---
     Summable (fun i : ℕ => ‖(((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1))
       • A ^ i‖) := by -- --- PROOF ---
   have hg : Summable

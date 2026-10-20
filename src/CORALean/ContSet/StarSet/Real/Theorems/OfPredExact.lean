@@ -40,7 +40,7 @@ open ContSet
 
 /-- `ofPred D p` denotes the set `p` denotes in the box `D`. -/
 theorem StarSet.ofPred_exact {P : ℕ → Type} [∀ m, ContSet (P m) (Vec ℝ m)] {n : ℕ}
-    (D : Interval (Vec ℝ n)) (p : P n) :
+    (D : Interval (Vec ℝ n)) (p : P n) : -- --- CONCL ---
     (StarSet.ofPred D p).construct = D.construct ∩ ContSet.construct p := by -- --- PROOF ---
   -- the point of the identity basis at `α` is `α`
   have hpt : ∀ (α : Fin n → ℝ) (i : Fin n),

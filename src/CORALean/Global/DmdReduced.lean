@@ -74,7 +74,7 @@ theorem dmd_mode_matrix (K : Mat ℝ n r) (Z : Mat ℝ r n) (W : Mat ℝ r k) (�
 /-- [1, Eq. 13], [1, Eq. 24]: one eigenpair `Ã w = λ w`; the mode `K w` is an eigenvector of `Ā`,
 and nonzero when `λ ≠ 0` and `w ≠ 0`. -/
 theorem dmd_mode_vec (K : Mat ℝ n r) (Z : Mat ℝ r n) (w : Vec ℝ r) (lam : ℝ)
-    (h : (Z * K) *ᵥ w = lam • w) :
+    (h : (Z * K) *ᵥ w = lam • w) : -- --- CONCL ---
     (K * Z) *ᵥ (K *ᵥ w) = lam • (K *ᵥ w) ∧ (lam ≠ 0 → w ≠ 0 → K *ᵥ w ≠ 0) := by -- --- PROOF ---
   refine ⟨?_, fun hl hw hKw => ?_⟩
   · rw [Matrix.mulVec_mulVec, Matrix.mul_assoc, ← Matrix.mulVec_mulVec, h, Matrix.mulVec_smul]

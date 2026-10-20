@@ -38,7 +38,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.representsa_emptySet_sound {cZ : ConZonotope 𝕋 (Vec 𝕋 n)}
-    (h : cZ.representsa_emptySet = true) : cZ.construct = ∅ := by -- --- PROOF ---
+    (h : cZ.representsa_emptySet = true) : -- --- CONCL ---
+    cZ.construct = ∅ := by -- --- PROOF ---
   refine Set.eq_empty_of_forall_notMem fun x hx => ?_
   have hlt := toReal_lt_of_ltStrict h
   rw [toReal_zero] at hlt

@@ -71,7 +71,8 @@ theorem aux_zsr_two_sub_one : (2 : ℝ≥0∞) - 1 = 1 := by
 
 /-- `q / (2 - q)` and `q* / 2` are Hölder conjugates for `q ∈ (1, 2]`. -/
 theorem aux_zsr_holderConjugate {q q' : ℝ≥0∞} [q.HolderConjugate q'] (hq1 : 1 < q)
-    (hq2 : q ≤ 2) : (q / (2 - q)).HolderConjugate (q' / 2) := by -- --- PROOF ---
+    (hq2 : q ≤ 2) : -- --- CONCL ---
+    (q / (2 - q)).HolderConjugate (q' / 2) := by -- --- PROOF ---
   have hq0 : q ≠ 0 := (zero_lt_one.trans hq1).ne'
   have hqT : q ≠ ∞ := ne_top_of_le_ne_top (by norm_num) hq2
   rw [ENNReal.holderConjugate_iff, ENNReal.inv_div (Or.inl (by simp)) (Or.inr hq0),
@@ -92,7 +93,7 @@ theorem aux_zsr_holderConjugate {q q' : ℝ≥0∞} [q.HolderConjugate q'] (hq1 
   rw [add_comm, tsub_add_tsub_cancel h2 h1]
   exact aux_zsr_two_sub_one
 
-theorem aux_zsr_one_le {q : ℝ≥0∞} (hq1 : 1 < q) (hq2 : q ≤ 2) :
+theorem aux_zsr_one_le {q : ℝ≥0∞} (hq1 : 1 < q) (hq2 : q ≤ 2) : -- --- CONCL ---
     1 ≤ q / (2 - q) := by -- --- PROOF ---
   rcases eq_or_lt_of_le hq2 with rfl | hlt
   · rw [tsub_self, ENNReal.div_zero two_ne_zero]
@@ -105,7 +106,8 @@ theorem aux_zsr_one_le {q : ℝ≥0∞} (hq1 : 1 < q) (hq2 : q ≤ 2) :
       _ ≤ q := hq1.le
 
 /-- `‖(tᵢ²)ᵢ‖_{x/2} = ‖t‖_x²` for `2 ≤ x < ∞`. -/
-theorem aux_zsr_norm_sq {k : ℕ} {x : ℝ≥0∞} (hx : 2 ≤ x) (hxT : x ≠ ∞) (t : Fin k → ℝ) :
+theorem aux_zsr_norm_sq {k : ℕ} {x : ℝ≥0∞} (hx : 2 ≤ x) (hxT : x ≠ ∞)
+    (t : Fin k → ℝ) : -- --- CONCL ---
     ‖WithLp.toLp (x / 2) (fun i => t i ^ 2)‖ = ‖WithLp.toLp x t‖ ^ 2 := by -- --- PROOF ---
   have hc : 2 ≤ x.toReal := by
     have := ENNReal.toReal_mono hxT hx

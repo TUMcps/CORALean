@@ -38,7 +38,7 @@ variable {m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The first column of CORA's `gramSchmidt(g)` is `g / ‖g‖₂`. -/
-theorem gramSchmidtVec_col_zero (g : Vec ℝ (m + 1)) :
+theorem gramSchmidtVec_col_zero (g : Vec ℝ (m + 1)) : -- --- CONCL ---
     (gramSchmidtVec g)ᵀ 0 = (‖g‖₂)⁻¹ • g := by -- --- PROOF ---
   funext i
   simp only [transpose_apply, gramSchmidtVec, gramSchmidt, InnerProductSpace.gramSchmidtNormed,

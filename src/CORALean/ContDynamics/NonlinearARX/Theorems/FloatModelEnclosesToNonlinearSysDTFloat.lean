@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {dy du p : �
 
 theorem NonlinearARX.FloatModel.Encloses.toNonlinearSysDTFloat
     {fm : NonlinearARX.FloatModel 𝕋 dy du p} {sys : NonlinearARX dy du p}
-    (h : fm.Encloses sys) :
+    (h : fm.Encloses sys) : -- --- CONCL ---
     fm.toNonlinearSysDTFloat.Encloses sys.toNonlinearSysDT := by -- --- PROOF ---
   -- a vector is in a float box when every coordinate is between the real bounds
   have mem_iff : ∀ {k : ℕ} (I : Interval (Vec 𝕋 k)) (v : Vec ℝ k),

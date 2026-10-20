@@ -34,7 +34,7 @@ namespace CORALean.Real
 
 /-- For `im z < 0`: `arg z = -(π/2) - arctan (re z / im z)`, the mirror image of the upper
 half-plane form under conjugation. -/
-theorem arg_eq_neg_pi_div_two_sub_arctan_of_im_neg {z : ℂ} (h : z.im < 0) :
+theorem arg_eq_neg_pi_div_two_sub_arctan_of_im_neg {z : ℂ} (h : z.im < 0) : -- --- CONCL ---
     Complex.arg z = -(Real.pi / 2) - Real.arctan (z.re / z.im) := by -- --- PROOF ---
   have hne : Complex.arg z ≠ Real.pi := fun e => by
     rw [Complex.arg_eq_pi_iff] at e; exact absurd e.2 h.ne

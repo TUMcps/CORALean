@@ -38,7 +38,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.isDnf_dnfLoop (φ : STL.Tree n) : φ.dnfLoop.IsDnf := by -- --- PROOF ---
+theorem STL.Tree.isDnf_dnfLoop (φ : STL.Tree n) : -- --- CONCL ---
+    φ.dnfLoop.IsDnf := by -- --- PROOF ---
   induction φ using STL.Tree.dnfLoop.induct with
   | case1 φ cnt hc =>
     rw [STL.Tree.dnfLoop, dif_pos hc]

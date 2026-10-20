@@ -52,7 +52,7 @@ variable {n : ℕ}
 /-- [1, Alg. 4], eqs. 10 and 13: `Σⱼ |(M gⱼ)ᵢ| ≤ 1` for a right inverse `M` of `C` puts
 `Z` inside the parallelotope `(c | C)`. -/
 theorem Zonotope.subset_of_mul_eq_one_of_sum_abs_le (Z : Zonotope (Vec ℝ n)) {C M : Mat ℝ n n}
-    (hCM : C * M = 1) (h : ∀ i, ∑ j, |(M *ᵥ Z.G j) i| ≤ 1) :
+    (hCM : C * M = 1) (h : ∀ i, ∑ j, |(M *ᵥ Z.G j) i| ≤ 1) : -- --- CONCL ---
     Z.construct
       ⊆ (⟨n, Z.c, fun k i => C i k⟩ : Zonotope (Vec ℝ n)).construct := by -- --- PROOF ---
   rintro _ ⟨β, hβ, rfl⟩

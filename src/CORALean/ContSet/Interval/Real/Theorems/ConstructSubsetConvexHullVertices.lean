@@ -45,7 +45,7 @@ variable {n p : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.construct_subset_convexHull_vertices (IM : Interval (Mat ℝ n p)) :
+theorem Interval.construct_subset_convexHull_vertices (IM : Interval (Mat ℝ n p)) : -- --- CONCL ---
     IM.construct ⊆ convexHull ℝ
       {M : Mat ℝ n p | ∀ i j, M i j = IM.inf i j ∨ M i j = IM.sup i j} := by -- --- PROOF ---
   intro M hM

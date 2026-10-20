@@ -44,7 +44,7 @@ variable {α β γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [
 
 /-- The `h` count of `bilin`'s result in `O`-notation. -/
 theorem Zonotope.bilin_h_isBigO (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (Z : ℕ → Zonotope α) (W : ℕ → Zonotope β)
-    (hZ : ∀ m, (Z m).h = m) (hW : ∀ m, (W m).h = m) :
+    (hZ : ∀ m, (Z m).h = m) (hW : ∀ m, (W m).h = m) : -- --- CONCL ---
     (fun m : ℕ => (((Zonotope.bilin f (Z m) (W m)).h : ℕ) : ℝ))
       =O[Filter.atTop] fun m : ℕ => ((m : ℝ)) ^ 2 := by -- --- PROOF ---
   apply Asymptotics.IsBigO.of_bound 3

@@ -51,7 +51,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.expRemainderMat_mono (A : Mat ℝ n n) {t tmax : ℝ} (ht : 0 ≤ t)
-    (htm : t ≤ tmax) (η : ℕ) (j k : Fin n) :
+    (htm : t ≤ tmax) (η : ℕ) (j k : Fin n) : -- --- CONCL ---
     MatExp.expRemainderMat A t η j k ≤ MatExp.expRemainderMat A tmax η j k := by -- --- PROOF ---
   -- the tails, termwise: `t^i ≤ t_max^i` against the nonnegative entries of `|A|^i`
   refine hasSum_le (fun i => ?_) (MatExp.hasSum_expRemainderMat_entry A t η j k)

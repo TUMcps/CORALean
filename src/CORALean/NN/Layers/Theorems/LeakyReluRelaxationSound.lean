@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_leakyReluEndUp_ge (α m a : 𝕋) :
+theorem aux_leakyReluEndUp_ge (α m a : 𝕋) : -- --- CONCL ---
     Real.leakyRelu (toReal α) (toReal a) - toReal m * toReal a ≤
       toReal (leakyReluEndUp α m a) := by -- --- PROOF ---
   have h1 := sub_le_subUp (maximum (mulUp α a) a) (mulDown m a)
@@ -55,7 +55,7 @@ theorem aux_leakyReluEndUp_ge (α m a : 𝕋) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem leakyReluRelaxation_sound (α : 𝕋) (hα : toReal α ≤ 1) (lam : 𝕋 → 𝕋 → 𝕋) :
+theorem leakyReluRelaxation_sound (α : 𝕋) (hα : toReal α ≤ 1) (lam : 𝕋 → 𝕋 → 𝕋) : -- --- CONCL ---
     (leakyReluRelaxation α lam).Sound (Real.leakyRelu (toReal α)) := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
   set m := maximum α (minimum one (lam l u)) with hm

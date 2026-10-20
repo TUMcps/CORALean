@@ -45,7 +45,7 @@ open CORALean.Real
 /-- The step bound against `C * n ^ 3`, in ℕ, with `C` written out: every term
 loses its lower powers of `n` to `1 ≤ n` and its `hU` to `hU ≤ hU * n`, and the
 sort enters as `Cost.sort_le_mul_succ` rather than as its definition. -/
-theorem LinearSysDT.aux_reachStepBound_ops_le (n hU o : ℕ) (hn : 1 ≤ n) :
+theorem LinearSysDT.aux_reachStepBound_ops_le (n hU o : ℕ) (hn : 1 ≤ n) : -- --- CONCL ---
     (LinearSysDT.reachStepBound n hU o).ops
       ≤ (3 * (o + 1) + (2 + o + hU) + 6 * (o + hU) + ((o + hU) * (o + hU) + (o + hU))
           + (2 * (o + hU) + (2 + (o + hU)))) * n ^ 3 := by -- --- PROOF ---
@@ -123,7 +123,7 @@ theorem LinearSysDT.aux_reachStepBound_ops_le (n hU o : ℕ) (hn : 1 ≤ n) :
 
 /-- One step of `reach` at `𝒵`, in the dimension alone: cubic, the `mtimes`
 against `o * n` generators dominating. -/
-theorem LinearSysDT.reachStepBound_isBigO (hU o : ℕ) :
+theorem LinearSysDT.reachStepBound_isBigO (hU o : ℕ) : -- --- CONCL ---
     (fun n : ℕ => ((LinearSysDT.reachStepBound n hU o).ops : ℝ))
       =O[Filter.atTop] fun n : ℕ => (n : ℝ) ^ 3 := by -- --- PROOF ---
   apply Asymptotics.IsBigO.of_bound

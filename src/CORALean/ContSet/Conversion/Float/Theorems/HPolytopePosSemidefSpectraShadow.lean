@@ -51,7 +51,8 @@ variable [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A diagonal inequality read as reals: the diagonal of the slacks. -/
-theorem HPolytope.aux_lmi_diag {k : ℕ} (d : Fin k → 𝕋) (C : Fin n → Fin k → 𝕋) (x : Vec ℝ n) :
+theorem HPolytope.aux_lmi_diag {k : ℕ} (d : Fin k → 𝕋) (C : Fin n → Fin k → 𝕋)
+    (x : Vec ℝ n) : -- --- CONCL ---
     (toRealMat (fun p q => if p = q then d p else zero) +
       ∑ i, x i • toRealMat (fun p q => if p = q then neg (C i p) else zero) : Mat ℝ k k)
       = diagonal fun p => toReal (d p) - ∑ i, x i * toReal (C i p) := by -- --- PROOF ---
@@ -67,7 +68,7 @@ theorem HPolytope.aux_lmi_diag {k : ℕ} (d : Fin k → 𝕋) (C : Fin n → Fin
 
 /-- At a point of the polytope's nominal part the stored inequality is positive semidefinite. -/
 theorem HPolytope.posSemidef_spectraShadow (P : HPolytope 𝕋 (Vec 𝕋 n)) {x : Vec ℝ n}
-    (hx : x ∈ P.nominal.construct) :
+    (hx : x ∈ P.nominal.construct) : -- --- CONCL ---
     (toRealMat P.spectraShadow.A₀
       + ∑ i, x i • toRealMat (P.spectraShadow.A i)).PosSemidef := by -- --- PROOF ---
   -- the matrix is the diagonal of the slacks

@@ -64,7 +64,7 @@ theorem aux_hasDerivAt_exp_entry (A : Mat ℝ n n) (i j : Fin n) :
   exact (hasDerivAt_pi.mp hi) j
 
 /-- `d/dt det(e^{tA}) = tr(A)` at `t = 0`. -/
-theorem aux_hasDerivAt_det_exp (A : Mat ℝ n n) :
+theorem aux_hasDerivAt_det_exp (A : Mat ℝ n n) : -- --- CONCL ---
     HasDerivAt (fun t : ℝ => det (exp (t • A))) (trace A) 0 := by -- --- PROOF ---
   simp only [det_apply']
   have hterm : ∀ σ : Equiv.Perm (Fin n), HasDerivAt
@@ -110,7 +110,7 @@ theorem aux_hasDerivAt_det_exp (A : Mat ℝ n n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.det_exp_smul (A : Mat ℝ n n) (t : ℝ) :
+theorem MatExp.det_exp_smul (A : Mat ℝ n n) (t : ℝ) : -- --- CONCL ---
     det (exp (t • A)) = Real.exp (t * trace A) := by -- --- PROOF ---
   set g : ℝ → ℝ := fun t => det (exp (t • A)) with hg
   -- multiplicative: the exponents commute

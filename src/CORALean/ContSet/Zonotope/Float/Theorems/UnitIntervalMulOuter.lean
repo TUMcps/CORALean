@@ -43,7 +43,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.unitIntervalMul_outer (Z : Zonotope (Vec 𝕋 n)) {s : ℝ} (hs : |s| ≤ 1) {z : Vec ℝ n}
-    (hz : z ∈ Z.construct) : s • z ∈ Z.unitIntervalMul.construct := by -- --- PROOF ---
+    (hz : z ∈ Z.construct) : -- --- CONCL ---
+    s • z ∈ Z.unitIntervalMul.construct := by -- --- PROOF ---
   obtain ⟨a, ha, e, he, rfl⟩ := hz
   obtain ⟨β, hβ, ha⟩ := Zonotope.mem_nominalSet_iff.mp ha
   refine ⟨s • a, Zonotope.mem_nominalSet_iff.mpr ⟨Fin.cons s (fun j => s * β j), fun j => ?_,

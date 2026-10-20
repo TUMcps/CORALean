@@ -53,7 +53,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.times_outer {T₁ T₂ : Taylm 𝕋 n} {f g : Vec ℝ n → ℝ} (h₁ : T₁.Encloses f)
-    (h₂ : T₂.Encloses g) : (T₁.times T₂).Encloses fun t => f t * g t := by -- --- PROOF ---
+    (h₂ : T₂.Encloses g) : -- --- CONCL ---
+    (T₁.times T₂).Encloses fun t => f t * g t := by -- --- PROOF ---
   intro t ht
   -- the pairs, their exact products, and the split by degree
   set N := max T₁.maxOrder T₂.maxOrder

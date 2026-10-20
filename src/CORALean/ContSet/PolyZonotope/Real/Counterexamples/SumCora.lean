@@ -61,7 +61,8 @@ namespace CORALean.Real
 
 /-- With no generators of either kind the set is its center. -/
 theorem PolyZonotope.aux_mem_of_noGens (Z : PolyZonotope ℝ) (hh : Z.h = 0) (hq : Z.q = 0)
-    (x : ℝ) : x ∈ Z.construct ↔ x = Z.c := by -- --- PROOF ---
+    (x : ℝ) : -- --- CONCL ---
+    x ∈ Z.construct ↔ x = Z.c := by -- --- PROOF ---
   haveI : IsEmpty (Fin Z.h) := by rw [hh]; infer_instance
   haveI : IsEmpty (Fin Z.q) := by rw [hq]; infer_instance
   constructor
@@ -75,7 +76,7 @@ theorem PolyZonotope.aux_mem_of_noGens (Z : PolyZonotope ℝ) (hh : Z.h = 0) (hq
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- CORA's center is not the sum's, and the sets differ: `{2}` against `{3}`. -/
-theorem PolyZonotope.sum_cora_counterexample :
+theorem PolyZonotope.sum_cora_counterexample : -- --- CONCL ---
     ∃ (pZ : PolyZonotope ℝ) (L : Fin 2 → PolyZonotope ℝ) (hp : ∀ i, (L i).p = pZ.p),
       (pZ.sumCora L hp).construct ≠ (pZ.sum L hp).construct := by -- --- PROOF ---
   refine ⟨.ofPoint 0, ![.ofPoint 1, .ofPoint 2], fun i => by fin_cases i <;> rfl, fun h => ?_⟩

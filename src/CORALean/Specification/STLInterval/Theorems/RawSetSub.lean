@@ -46,7 +46,7 @@ open scoped Pointwise
 
 /-- `rawSet (l₁-u₂) (u₁-l₂) (lc₁&&rc₂) (rc₁&&lc₂)` is the difference of two nonempty `rawSet`s. -/
 theorem STLInterval.rawSet_sub {l₁ u₁ l₂ u₂ : EReal} {lc₁ rc₁ lc₂ rc₂ : Bool}
-    (h₁ : (rawSet l₁ u₁ lc₁ rc₁).Nonempty) (h₂ : (rawSet l₂ u₂ lc₂ rc₂).Nonempty) :
+    (h₁ : (rawSet l₁ u₁ lc₁ rc₁).Nonempty) (h₂ : (rawSet l₂ u₂ lc₂ rc₂).Nonempty) : -- --- CONCL ---
     rawSet (l₁ - u₂) (u₁ - l₂) (lc₁ && rc₂) (rc₁ && lc₂) =
       rawSet l₁ u₁ lc₁ rc₁ - rawSet l₂ u₂ lc₂ rc₂ := by -- --- PROOF ---
   rw [sub_eq_add_neg (rawSet l₁ u₁ lc₁ rc₁), rawSet_neg]

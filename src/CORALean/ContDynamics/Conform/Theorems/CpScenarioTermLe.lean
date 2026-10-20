@@ -47,7 +47,7 @@ namespace CORALean
 
 /-- [1, Sec. 2.3]: at `n_θ = 1` and `n_out` of (4), the term (9) subtracts is at most `ε`. -/
 theorem Conform.cp_scenario_term_le (nm nout : ℕ) (ε : ℝ)
-    (h4 : (nout : ℤ) = nm - ⌈((nm : ℝ) + 1) * (1 - ε)⌉) :
+    (h4 : (nout : ℤ) = nm - ⌈((nm : ℝ) + 1) * (1 - ε)⌉) : -- --- CONCL ---
     (Nat.choose (nout + 1 - 1) nout : ℝ) * (nout + 1) / (nm + 1) ≤ ε := by -- --- PROOF ---
   rw [Nat.add_sub_cancel, Nat.choose_self, Nat.cast_one, one_mul,
     div_le_iff₀ (by positivity : (0 : ℝ) < nm + 1)]

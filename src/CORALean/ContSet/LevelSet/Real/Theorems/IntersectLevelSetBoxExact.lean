@@ -50,7 +50,7 @@ variable {n : ℕ}
 
 theorem intersectLevelSetBox_exact (I : Interval (Vec ℝ n)) (k : Fin n) (p : Vec ℝ n → ℝ)
     (h4 : ∀ x ∈ I.construct, I.inf k ≤ p x ∧ p x ≤ I.sup k)
-    (hind : ∀ x t, p (Function.update x k t) = p x) :
+    (hind : ∀ x t, p (Function.update x k t) = p x) : -- --- CONCL ---
     I.construct ∩ {x | x k = p x} = (intersectLevelSetBox I k p).construct := by -- --- PROOF ---
   apply Set.Subset.antisymm
   · rintro x ⟨hxI, hxk⟩

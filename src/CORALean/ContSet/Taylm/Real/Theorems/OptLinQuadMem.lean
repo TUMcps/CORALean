@@ -50,7 +50,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.optLinQuad_mem {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) (ε : ℝ)
-    (ldbFuel fuel : ℕ) {t : Vec ℝ n} (ht : t ∈ Taylm.box n) :
+    (ldbFuel fuel : ℕ) {t : Vec ℝ n} (ht : t ∈ Taylm.box n) : -- --- CONCL ---
     (T.optLinQuad ε ldbFuel fuel).inf ≤ f t ∧
       f t ≤ (T.optLinQuad ε ldbFuel fuel).sup := by -- --- PROOF ---
   have hX : Taylm.GoodBox (fun _ : Fin n => ⟨(-1 : ℝ), (1 : ℝ)⟩) := fun _ => by norm_num

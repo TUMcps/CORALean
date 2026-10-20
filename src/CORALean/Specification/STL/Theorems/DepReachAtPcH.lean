@@ -49,7 +49,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.depReachAt_Pc_h (A : Mat ℝ n n) (Δt : ℝ) (cs : STL.DepReachConsts n)
-    (X₀ : Zonotope (Vec ℝ n)) (i : ℕ) :
+    (X₀ : Zonotope (Vec ℝ n)) (i : ℕ) : -- --- CONCL ---
     (STL.depReachAt A Δt cs X₀ i).Pc.h = i * cs.U₀.h := by -- --- PROOF ---
   induction i with
   | zero => simp [STL.depReachAt, STL.depReachInit, Zonotope.ofPoint]

@@ -54,7 +54,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Whatever `tuneOrder` returns is admissible for `ε`. -/
-theorem MatExp.tuneOrder_spec {x : Mat ℝ n n} {nrm ε : 𝕋} {fuel : ℕ} (hx : ‖x‖ ≤ toReal nrm) :
+theorem MatExp.tuneOrder_spec {x : Mat ℝ n n} {nrm ε : 𝕋} {fuel : ℕ}
+    (hx : ‖x‖ ≤ toReal nrm) : -- --- CONCL ---
     ∀ η ∈ MatExp.tuneOrder nrm ε fuel,
       Real.MatExp.OrderAdmissible x (toReal ε) η := by -- --- PROOF ---
   intro η (h : MatExp.tuneOrder nrm ε fuel = some η)

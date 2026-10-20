@@ -46,7 +46,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.corner_sum_mono {b : Vec ℝ n} (hb0 : ∀ i, 0 ≤ b i) {l w : Fin n → Bool}
-    (hlw : ∀ i, l i = true → w i = true) :
+    (hlw : ∀ i, l i = true → w i = true) : -- --- CONCL ---
     ∑ i, (⟨0, b⟩ : Interval (Vec ℝ n)).corner l i ≤
       ∑ i, (⟨0, b⟩ : Interval (Vec ℝ n)).corner w i := by -- --- PROOF ---
   refine Finset.sum_le_sum fun i _ => ?_

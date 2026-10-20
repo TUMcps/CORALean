@@ -44,7 +44,8 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Prop. 15]: `O(n² q)`, at most `(cNeuron + 17) n² q` for `n, q ≥ 1`. -/
-theorem Zonotope.imageEnclosureCost_le (n q : ℕ) (cNeuron : Cost) (hn : 1 ≤ n) (hq : 1 ≤ q) :
+theorem Zonotope.imageEnclosureCost_le (n q : ℕ) (cNeuron : Cost) (hn : 1 ≤ n)
+    (hq : 1 ≤ q) : -- --- CONCL ---
     (Zonotope.imageEnclosureCost n q cNeuron).ops ≤
       (cNeuron.ops + 17) * (n * n * q) := by -- --- PROOF ---
   simp only [Zonotope.imageEnclosureCost, Zonotope.mtimesCost, Zonotope.plusCost, Cost.matVec,

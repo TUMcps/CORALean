@@ -94,7 +94,7 @@ variable {Zw : ℝ → Zonotope (Vec ℝ n)} {Δt : ℝ} {η : ℕ}
 
 /-- The `k`-th iteration starts at `t_k = t₀ + k Δt`, line 7 read off the
 recursion. -/
-theorem LinearSys.aux_maxBackReachRun_t (sys : LinearSys 𝕋 n) (t₀ : ℝ) (k : ℕ) :
+theorem LinearSys.aux_maxBackReachRun_t (sys : LinearSys 𝕋 n) (t₀ : ℝ) (k : ℕ) : -- --- CONCL ---
     (sys.maxBackReachRun ρ P₁ P₂ Uz W₀ Zw t₀ Δt η k).t = t₀ + k * Δt := by -- --- PROOF ---
   induction k with
   | zero => simp [LinearSys.maxBackReachRun, LinearSys.maxBackReachInit]
@@ -246,7 +246,8 @@ theorem LinearSys.maxBackReachTimeInterval_inner (sys : LinearSys 𝕋 n) {U W X
           minkowskiDiff (construct Xend) (sys.inputReach W t))
     -- (25)-(29): the inner input particular solution, carried to `t_{k+1}`
     (hZU : ∀ k < ω, ∀ t ∈ Set.Icc (st k).t ((st k).t + Δt), (st k).ZU.construct ⊆
-      (exp (((st k).t + Δt - t) • toRealMat sys.A)).mulVecLin '' sys.inputReach U t) :
+      (exp (((st k).t + Δt - t) • toRealMat sys.A)).mulVecLin '' sys.inputReach U t)
+    : -- --- CONCL ---
     sys.maxBackReachTimeInterval ρ P₁ P₂ Uz W₀ Zw t₀ tend η ω ⊆
       sys.timeIntervalBackReachSetExistsForallExact
         (Set.Icc 0 tend) U W Xend τ := by -- --- PROOF ---

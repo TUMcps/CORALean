@@ -65,7 +65,7 @@ variable {n : ℕ}
 
 theorem MatExp.exp_mem_expMatZonoEnclosure (M : Zonotope (Mat ℝ n n)) (η : ℕ)
     {A : Mat ℝ n n} (hA : A ∈ M.construct)
-    (hε : ‖M.interval.absMax‖ / ((η : ℝ) + 2) < 1) :
+    (hε : ‖M.interval.absMax‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
     exp A ∈ (MatExp.expMatZonoEnclosure M η).construct := by -- --- PROOF ---
   have hnorm : ‖A‖ ≤ ‖M.interval.absMax‖ :=
     Interval.norm_le_absMax (Zonotope.interval_contains M hA)

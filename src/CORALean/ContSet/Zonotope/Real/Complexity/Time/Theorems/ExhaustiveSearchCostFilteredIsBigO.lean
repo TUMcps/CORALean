@@ -45,7 +45,7 @@ namespace CORALean.Real
 
 /-- [1, Prop. 11]: for fixed `n`, the search over the `n + κ` longest generators is
 `O(κⁿ⁺¹)` in `κ`. -/
-theorem Zonotope.exhaustiveSearchCost_filtered_isBigO (n : ℕ) :
+theorem Zonotope.exhaustiveSearchCost_filtered_isBigO (n : ℕ) : -- --- CONCL ---
     (fun κ : ℕ => ((Zonotope.exhaustiveSearchCost n (n + κ)).ops : ℝ))
       =O[Filter.atTop] fun κ : ℕ => (κ : ℝ) ^ (n + 1) := by -- --- PROOF ---
   apply Asymptotics.IsBigO.of_bound ((4 * 2 ^ (n + 1) : ℕ) : ℝ)

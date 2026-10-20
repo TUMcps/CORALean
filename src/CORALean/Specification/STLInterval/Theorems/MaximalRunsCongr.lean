@@ -36,7 +36,7 @@ namespace CORALean
 
 /-- Properties that agree at times `≥ 0` have the same maximal runs. -/
 theorem STLInterval.maximalRuns_congr (L : List STLInterval) (P Q : ℝ → Prop)
-    (h : ∀ t : ℝ, 0 ≤ t → (P t ↔ Q t)) :
+    (h : ∀ t : ℝ, 0 ≤ t → (P t ↔ Q t)) : -- --- CONCL ---
     STLInterval.MaximalRuns L P ↔ STLInterval.MaximalRuns L Q := by -- --- PROOF ---
   unfold STLInterval.MaximalRuns
   refine and_congr (forall_congr' fun t => forall_congr' fun ht => ?_)

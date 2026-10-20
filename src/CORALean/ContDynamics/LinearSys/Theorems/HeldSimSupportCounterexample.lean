@@ -64,7 +64,8 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 /-- Line 8 in closed form: `d_k = ℓ ∘ e^{AΔt k}`. -/
 theorem aux_supportLower_d (sys : LinearSys 𝕋 n) (Δt : ℝ)
-    (ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n) (c : Vec ℝ n) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) :
+    (ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n) (c : Vec ℝ n) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ)
+    (k : ℕ) : -- --- CONCL ---
     (sys.supportLower Δt ν₀ νU c ℓ k).d
       = ℓ.comp (mulVecLin (exp (Δt • toRealMat sys.A) ^ k)) := by -- --- PROOF ---
   induction k with

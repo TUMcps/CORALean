@@ -40,7 +40,7 @@ open scoped Pointwise
 
 /-- `plusInterval` denotes the sum with the closed interval `[inf, sup]`. -/
 theorem STLInterval.set_plusInterval (I : STLInterval) (J : Real.Interval (Vec ℝ 1))
-    (hc : I ≠ .empty → ¬ J.sup 0 < J.inf 0 → 0 ≤ I.lowerBound + J.inf 0) :
+    (hc : I ≠ .empty → ¬ J.sup 0 < J.inf 0 → 0 ≤ I.lowerBound + J.inf 0) : -- --- CONCL ---
     (I.plusInterval J hc).set = I.set + Set.Icc (J.inf 0) (J.sup 0) := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.plusInterval, STLInterval.set]

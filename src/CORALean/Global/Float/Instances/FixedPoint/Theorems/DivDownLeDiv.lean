@@ -43,7 +43,7 @@ variable {f : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem divDown_le_div (a b : FixedPoint f) (hb : 0 < toReal b) :
+theorem divDown_le_div (a b : FixedPoint f) (hb : 0 < toReal b) : -- --- CONCL ---
     toReal (divDown a b) ≤ toReal a / toReal b := by -- --- PROOF ---
   have hm : 0 < b.m := mantissa_pos hb
   have hDZ : (0 : ℤ) < 10 ^ a.d * b.m := by positivity

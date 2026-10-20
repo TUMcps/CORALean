@@ -54,7 +54,7 @@ namespace CORALean
 def aux_IsLast {T : Type} [LinearOrder T] (e : T) (l : List T) : Prop := e ∈ l ∧ ∀ x ∈ l, x ≤ e
 
 theorem aux_isLast_tail {T : Type} [LinearOrder T] (e a : T) (as : List T)
-    (hs : ∀ y ∈ as, a < y) (h : aux_IsLast e (a :: as)) (hne : as ≠ []) :
+    (hs : ∀ y ∈ as, a < y) (h : aux_IsLast e (a :: as)) (hne : as ≠ []) : -- --- CONCL ---
     aux_IsLast e as := by -- --- PROOF ---
   obtain ⟨hm, hle⟩ := h
   obtain ⟨y, hy⟩ := List.exists_mem_of_ne_nil as hne
@@ -298,7 +298,8 @@ theorem aux_zip_map_fst_snd {α β : Type} (O : List (α × β)) :
 
 /-- The pairs of a valid signal are a non-empty list with sorted times ending at the duration. -/
 theorem aux_valid_pairs {T V : Type} [LinearOrder T] [Zero T] (s : FiniteSignal T V)
-    (hs : s.IsValid) : ∃ p ps, s.pairs = p :: ps ∧ ((p :: ps).map Prod.fst).Pairwise (· < ·) ∧
+    (hs : s.IsValid) : -- --- CONCL ---
+    ∃ p ps, s.pairs = p :: ps ∧ ((p :: ps).map Prod.fst).Pairwise (· < ·) ∧
       aux_IsLast s.duration ((p :: ps).map Prod.fst) ∧ 0 ≤ p.1 := by -- --- PROOF ---
   obtain ⟨hmem, hle⟩ := FiniteSignal.time_le_duration s hs
   obtain ⟨hne, hl, hp, -, hnn⟩ := hs

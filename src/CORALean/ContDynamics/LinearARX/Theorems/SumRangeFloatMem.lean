@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearARX.sumRangeFloat_mem (f : ℕ → Interval (Mat 𝕋 m n)) (M : ℕ → Mat ℝ m n)
-    (h : ∀ t, M t ∈ (f t).construct) (k : ℕ) :
+    (h : ∀ t, M t ∈ (f t).construct) (k : ℕ) : -- --- CONCL ---
     ∑ t ∈ Finset.range k, M t ∈ (LinearARX.sumRangeFloat f k).construct := by -- --- PROOF ---
   induction k with
   | zero =>

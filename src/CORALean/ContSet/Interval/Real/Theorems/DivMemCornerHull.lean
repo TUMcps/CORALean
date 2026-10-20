@@ -46,7 +46,8 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_div_between {k d₁ d₂ d : ℝ} (hd₁ : 0 < d₁) (hd₁' : d₁ ≤ d) (hd₂ : d ≤ d₂) :
+theorem aux_div_between {k d₁ d₂ d : ℝ} (hd₁ : 0 < d₁) (hd₁' : d₁ ≤ d)
+    (hd₂ : d ≤ d₂) : -- --- CONCL ---
     min (k / d₁) (k / d₂) ≤ k / d ∧ k / d ≤ max (k / d₁) (k / d₂) := by -- --- PROOF ---
   have hd : 0 < d := lt_of_lt_of_le hd₁ hd₁'
   have u1 : 1 / d ≤ 1 / d₁ := one_div_le_one_div_of_le hd₁ hd₁'
@@ -62,7 +63,7 @@ theorem aux_div_between {k d₁ d₂ d : ℝ} (hd₁ : 0 < d₁) (hd₁' : d₁ 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem div_mem_corner_hull {n₁ n₂ d₁ d₂ n d : ℝ} (hd₁ : 0 < d₁) (hn₁ : n₁ ≤ n) (hn₂ : n ≤ n₂)
-    (hd₁' : d₁ ≤ d) (hd₂ : d ≤ d₂) :
+    (hd₁' : d₁ ≤ d) (hd₂ : d ≤ d₂) : -- --- CONCL ---
     min (min (n₁ / d₁) (n₁ / d₂)) (min (n₂ / d₁) (n₂ / d₂)) ≤ n / d ∧
       n / d ≤ max (max (n₁ / d₁) (n₁ / d₂)) (max (n₂ / d₁) (n₂ / d₂)) := by -- --- PROOF ---
   have hd : 0 < d := lt_of_lt_of_le hd₁ hd₁'

@@ -47,7 +47,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- A convex combination of two coefficients each bounded by `1` stays bounded
 by `1` — the bound `enclose`'s average block needs. -/
 theorem ConZonotope.aux_abs_convComb_le_one {lam p q : ℝ} (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1)
-    (hp : |p| ≤ 1) (hq : |q| ≤ 1) : |lam * p + (1 - lam) * q| ≤ 1 := by -- --- PROOF ---
+    (hp : |p| ≤ 1) (hq : |q| ≤ 1) : -- --- CONCL ---
+    |lam * p + (1 - lam) * q| ≤ 1 := by -- --- PROOF ---
   have hm0 : (0:ℝ) ≤ 1 - lam := by linarith
   calc |lam * p + (1 - lam) * q| ≤ |lam * p| + |(1 - lam) * q| := abs_add_le _ _
     _ = lam * |p| + (1 - lam) * |q| := by
@@ -58,7 +59,8 @@ theorem ConZonotope.aux_abs_convComb_le_one {lam p q : ℝ} (hl0 : 0 ≤ lam) (h
 /-- The same bound with a difference instead of a sum — `enclose`'s other
 fresh block. -/
 theorem ConZonotope.aux_abs_convComb_sub_le_one {lam p q : ℝ} (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1)
-    (hp : |p| ≤ 1) (hq : |q| ≤ 1) : |lam * p - (1 - lam) * q| ≤ 1 := by -- --- PROOF ---
+    (hp : |p| ≤ 1) (hq : |q| ≤ 1) : -- --- CONCL ---
+    |lam * p - (1 - lam) * q| ≤ 1 := by -- --- PROOF ---
   have hm0 : (0:ℝ) ≤ 1 - lam := by linarith
   rw [sub_eq_add_neg]
   calc |lam * p + -((1 - lam) * q)| ≤ |lam * p| + |-((1 - lam) * q)| := abs_add_le _ _
@@ -70,7 +72,7 @@ theorem ConZonotope.aux_abs_convComb_sub_le_one {lam p q : ℝ} (hl0 : 0 ≤ lam
 /-- The restatement `Fin.sum_univ_add` needs: `enclose`'s generator count is not
 syntactically `cZ₁.h + cZ₁.h + 1` until this unfolds it. -/
 theorem ConZonotope.aux_sum_univ_enclose {M : Type} [AddCommMonoid M] {cZ₁ cZ₂ : ConZonotope α}
-    {hh : cZ₁.h = cZ₂.h} (f : Fin (cZ₁.h + cZ₁.h + 1) → M) : -- --- CONCL ---
+    {hh : cZ₁.h = cZ₂.h} (f : Fin (cZ₁.h + cZ₁.h + 1) → M) :
     ∑ j : Fin (cZ₁.enclose cZ₂ hh).h, f j
       = ∑ i : Fin (cZ₁.h + cZ₁.h), f (Fin.castAdd 1 i)
         + ∑ i : Fin 1, f (Fin.natAdd (cZ₁.h + cZ₁.h) i) :=
@@ -80,7 +82,7 @@ theorem ConZonotope.aux_sum_univ_enclose {M : Type} [AddCommMonoid M] {cZ₁ cZ�
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.enclose_outer (cZ₁ cZ₂ : ConZonotope α) (hh : cZ₁.h = cZ₂.h)
-    (hP : cZ₂.P = cZ₁.P.comap (reindexLin (Fin.castOrderIso hh).toEquiv)) :
+    (hP : cZ₂.P = cZ₁.P.comap (reindexLin (Fin.castOrderIso hh).toEquiv)) : -- --- CONCL ---
     Set.linComb cZ₁.construct cZ₂.construct ⊆ (cZ₁.enclose cZ₂ hh).construct := by -- --- PROOF ---
   rintro x ⟨y₁, ⟨β₁, hβ₁, hP₁, rfl⟩, y₂, ⟨β₂, hβ₂, hP₂, rfl⟩, lam, ⟨hl0, hl1⟩, rfl⟩
   have hm0 : (0:ℝ) ≤ 1 - lam := by linarith

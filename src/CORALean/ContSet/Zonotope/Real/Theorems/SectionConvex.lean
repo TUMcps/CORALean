@@ -44,7 +44,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.section_convex (Z : Zonotope (Vec ℝ 2)) (γ : ℝ) :
+theorem Zonotope.section_convex (Z : Zonotope (Vec ℝ 2)) (γ : ℝ) : -- --- CONCL ---
     Convex ℝ {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.construct} := by -- --- PROOF ---
   intro y₁ hy₁ y₂ hy₂ a b ha hb hab
   have := Z.convex_construct hy₁ hy₂ ha hb hab

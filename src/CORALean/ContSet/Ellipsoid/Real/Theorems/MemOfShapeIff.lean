@@ -51,7 +51,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [2, Sec. 1.1 (ellipse)]: `x ∈ E(Q, q)` iff `(x − q)ᵀ Q⁻¹ (x − q) ≤ 1`. -/
-theorem Ellipsoid.mem_ofShape_iff {Q : Mat ℝ n n} (hQ : Q.PosDef) (q x : Vec ℝ n) :
+theorem Ellipsoid.mem_ofShape_iff {Q : Mat ℝ n n} (hQ : Q.PosDef) (q x : Vec ℝ n) : -- --- CONCL ---
     x ∈ (Ellipsoid.ofShape Q q).construct ↔ (x - q) ⬝ᵥ Q⁻¹ *ᵥ (x - q) ≤ 1 := by -- --- PROOF ---
   -- the ellipsoid as `q + G u`, `‖u‖₂ ≤ 1`
   simp only [Ellipsoid.construct_eq_sqrt] at *

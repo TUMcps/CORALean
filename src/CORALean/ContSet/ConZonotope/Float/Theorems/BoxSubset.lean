@@ -51,7 +51,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ConZonotope.box_subset {cZ : ConZonotope 𝕋 (Vec 𝕋 n)} {H : Mat 𝕋 cZ.h n} {β₀ : Vec 𝕋 cZ.h}
     {δ B : 𝕋} (hc : cZ.interiorCert H β₀ δ B = true) (y : Vec ℝ n)
-    (hy : ∀ i, |y i - (toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * toReal (β₀ j))| ≤ toReal B) :
+    (hy : ∀ i, |y i - (toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * toReal (β₀ j))| ≤ toReal B)
+    : -- --- CONCL ---
     y ∈ nominalSet cZ := by -- --- PROOF ---
   simp only [ConZonotope.interiorCert, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const, beq_iff_eq] at hc

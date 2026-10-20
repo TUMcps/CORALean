@@ -57,7 +57,7 @@ variable {α : Type} [NormedAddCommGroup α]
 /-- One direction: a point of `S + V` has a point of `S + W` within `d_H(V, W)`
 of it, the summand from `S` kept and only the other one moved. -/
 theorem aux_exists_mem_add_dist_le {S V W : Set α} (hW : IsCompact W) (hWne : W.Nonempty)
-    (hfin : Metric.hausdorffEDist V W ≠ ⊤) {x : α} (hx : x ∈ S + V) :
+    (hfin : Metric.hausdorffEDist V W ≠ ⊤) {x : α} (hx : x ∈ S + V) : -- --- CONCL ---
     ∃ y ∈ S + W, dist x y ≤ Metric.hausdorffDist V W := by -- --- PROOF ---
   obtain ⟨s, hs, v, hv, rfl⟩ := Set.mem_add.mp hx
   obtain ⟨w, hw, hvw⟩ := hW.exists_infDist_eq_dist hWne v
@@ -71,7 +71,7 @@ theorem aux_exists_mem_add_dist_le {S V W : Set α} (hW : IsCompact W) (hWne : W
 /-- [1, Lemma 1]: the same set added to both sides can only bring them
 together. -/
 theorem hausdorffDist_add_le {S V W : Set α} (hV : IsCompact V) (hVne : V.Nonempty)
-    (hW : IsCompact W) (hWne : W.Nonempty) :
+    (hW : IsCompact W) (hWne : W.Nonempty) : -- --- CONCL ---
     Metric.hausdorffDist (S + V) (S + W) ≤ Metric.hausdorffDist V W := by -- --- PROOF ---
   have hfin : Metric.hausdorffEDist V W ≠ ⊤ :=
     Metric.hausdorffEDist_ne_top_of_nonempty_of_bounded hVne hWne hV.isBounded hW.isBounded

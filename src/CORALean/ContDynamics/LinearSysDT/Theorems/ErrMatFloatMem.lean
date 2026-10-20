@@ -41,7 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.errMatFloat_mem (A : Mat 𝕋 n n) (L : Mat 𝕋 n p) (C : Mat 𝕋 p n) :
+theorem LinearSysDT.errMatFloat_mem (A : Mat 𝕋 n n) (L : Mat 𝕋 n p)
+    (C : Mat 𝕋 p n) : -- --- CONCL ---
     toRealMat A - toRealMat L * toRealMat C ∈
       (LinearSysDT.errMatFloat A L C).construct := by -- --- PROOF ---
   have hLC : toRealMat L * toRealMat C ∈

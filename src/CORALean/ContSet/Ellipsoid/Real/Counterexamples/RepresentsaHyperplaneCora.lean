@@ -92,7 +92,7 @@ theorem Ellipsoid.aux_one_mem : (fun _ => (1 : ℝ)) ∈ Ellipsoid.aux_unitSegme
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The set is a segment of positive length, no hyperplane; CORA answers `true`. -/
-theorem Ellipsoid.representsa_hyperplane_cora_counterexample :
+theorem Ellipsoid.representsa_hyperplane_cora_counterexample : -- --- CONCL ---
     (¬ ∃ (f : (Fin 1 → ℝ) →ₗ[ℝ] ℝ) (c : ℝ), f ≠ 0 ∧
         Ellipsoid.aux_unitSegment.construct = {x | f x = c}) ∧
       Ellipsoid.aux_unitSegment.representsaHyperplaneCora = true := by -- --- PROOF ---

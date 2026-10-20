@@ -46,7 +46,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- Adding `T` and taking the Minkowski difference by `T` are adjoint: `X` fits
 inside `minkowskiDiff S T` exactly when `X + T` fits inside `S`. -/
-theorem subset_minkowskiDiff_iff (X S T : Set α) :
+theorem subset_minkowskiDiff_iff (X S T : Set α) : -- --- CONCL ---
     X ⊆ minkowskiDiff S T ↔ X + T ⊆ S := by -- --- PROOF ---
   constructor
   · -- a point of `X` already answers for every `y ∈ T` by definition

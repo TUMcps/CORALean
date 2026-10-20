@@ -47,7 +47,7 @@ variable {ι : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Sec. 5.2]: `{α | ∃ β ∈ C, |β| ≤ α}` is convex for convex `C`. -/
-theorem Conform.convex_fitsUnder {C : Set (ι → ℝ)} (hC : Convex ℝ C) :
+theorem Conform.convex_fitsUnder {C : Set (ι → ℝ)} (hC : Convex ℝ C) : -- --- CONCL ---
     Convex ℝ {α | Conform.FitsUnder C α} := by -- --- PROOF ---
   rintro α ⟨β, hβC, hβ⟩ α' ⟨β', hβ'C, hβ'⟩ a b ha hb hab
   refine ⟨a • β + b • β', hC hβC hβ'C ha hb hab, fun j => ?_⟩

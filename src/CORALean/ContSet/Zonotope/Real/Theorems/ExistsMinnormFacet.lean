@@ -46,7 +46,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.exists_minnormFacet (Z : Zonotope (Vec ℝ (n + 1)))
-    (hspan : Submodule.span ℝ (Set.range Z.G) = ⊤) :
+    (hspan : Submodule.span ℝ (Set.range Z.G) = ⊤) : -- --- CONCL ---
     ∃ S : Fin n → Fin Z.h,
       Z.facetNormal S ≠ 0 ∧ Z.minnormOffset S = Z.minnorm := by -- --- PROOF ---
   have hne : ∃ S : Fin n → Fin Z.h, Z.facetNormal S ≠ 0 := by

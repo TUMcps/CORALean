@@ -40,7 +40,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem coeffNorm_ball_eq_counterexample :
+theorem coeffNorm_ball_eq_counterexample : -- --- CONCL ---
     {x : ℝ | coeffNorm (LinearMap.id : ℝ →ₗ[ℝ] ℝ) x = 1}
       ≠ (LinearMap.id : ℝ →ₗ[ℝ] ℝ) '' Metric.closedBall 0 1 := by -- --- PROOF ---
   intro h

@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.zonotope_contains (C : Capsule 𝕋 n) :
+theorem Capsule.zonotope_contains (C : Capsule 𝕋 n) : -- --- CONCL ---
     C.construct ⊆ C.zonotope.construct := by -- --- PROOF ---
   rintro _ ⟨x, ⟨t, ht, hle⟩, e, he, rfl⟩
   -- what the segment point `c + t g` leaves of `x`, and the segment with the error box

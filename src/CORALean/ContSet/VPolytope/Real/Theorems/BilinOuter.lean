@@ -53,7 +53,8 @@ theorem VPolytope.aux_bilin_V (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (P : VPolyt
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.bilin_outer (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (P : VPolytope α) (Q : VPolytope β) :
+theorem VPolytope.bilin_outer (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (P : VPolytope α)
+    (Q : VPolytope β) : -- --- CONCL ---
     (⋃ a ∈ P.construct, (f a ·) '' Q.construct)
       ⊆ (VPolytope.bilin f P Q).construct := by -- --- PROOF ---
   rintro y hy

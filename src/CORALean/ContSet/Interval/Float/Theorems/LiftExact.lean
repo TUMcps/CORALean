@@ -43,7 +43,8 @@ variable {m N : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Interval.aux_lift_find (proj : Fin m → Fin N) (hp : Function.Injective proj) (j : Fin m) :
+theorem Interval.aux_lift_find (proj : Fin m → Fin N) (hp : Function.Injective proj)
+    (j : Fin m) : -- --- CONCL ---
     ∀ l : List (Fin m), j ∈ l → l.find? (fun k => proj k = proj j) = some j := by -- --- PROOF ---
   intro l
   induction l with
@@ -62,7 +63,7 @@ theorem Interval.aux_lift_find (proj : Fin m → Fin N) (hp : Function.Injective
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.lift_exact (I : Interval (Vec 𝕋 m)) (N : ℕ) (proj : Fin m → Fin N)
-    (hp : Function.Injective proj) :
+    (hp : Function.Injective proj) : -- --- CONCL ---
     (I.lift_ N proj).construct = {x | (fun i => x (proj i)) ∈ I.construct} := by -- --- PROOF ---
   -- every source coordinate is found at its own image
   have hfind : ∀ i, (List.finRange m).find? (fun j => proj j = proj i) = some i := fun i =>

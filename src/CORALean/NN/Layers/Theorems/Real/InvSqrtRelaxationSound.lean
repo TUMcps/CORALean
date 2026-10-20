@@ -51,7 +51,7 @@ namespace CORALean.Real
 theorem aux_invSqrtRelaxationRange_sound : invSqrtRelaxationRange.Sound invSqrt :=
   Relaxation.ofAntitone_sound antitone_invSqrt (enclosure_exact_sound invSqrt)
 
-theorem aux_invSqrtRelaxationDeriv_sound :
+theorem aux_invSqrtRelaxationDeriv_sound : -- --- CONCL ---
     invSqrtRelaxationDeriv.Sound invSqrt := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
   show |invSqrt t - (invSqrtRelaxationDeriv.slope l u * t + invSqrtRelaxationDeriv.offset l u)|

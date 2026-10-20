@@ -43,7 +43,7 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.map_exact (f : α →ₗ[ℝ] β) (pZ : PolyZonotope α) :
+theorem PolyZonotope.map_exact (f : α →ₗ[ℝ] β) (pZ : PolyZonotope α) : -- --- CONCL ---
     f '' pZ.construct = (pZ.map f).construct := by -- --- PROOF ---
   have hf : ∀ (a : Fin pZ.p → ℝ) (b : Fin pZ.q → ℝ),
       f (pZ.c + ∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i + ∑ j, b j • pZ.GI j)

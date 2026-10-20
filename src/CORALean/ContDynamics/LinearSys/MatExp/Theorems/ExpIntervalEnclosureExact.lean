@@ -66,7 +66,7 @@ variable {n : ℕ}
 /-- `e^{At}` of every member of the box sits in `e^{At}_[κ]`. -/
 theorem MatExp.exp_mem_expIntervalEnclosureExact (A : Interval (Mat ℝ n n)) (t : ℝ)
     {M : Mat ℝ n n} (hM : M ∈ A.construct) {κ : ℕ} (hκ : 2 ≤ κ)
-    (hε : ‖(Interval.smul t A).absMax‖ / ((κ : ℝ) + 2) < 1) :
+    (hε : ‖(Interval.smul t A).absMax‖ / ((κ : ℝ) + 2) < 1) : -- --- CONCL ---
     exp (t • M) ∈ (MatExp.expIntervalEnclosureExact A t κ).construct := by -- --- PROOF ---
   refine Interval.mem_mat_iff.mpr fun i j => ?_
   have hMB : t • M ∈ (Interval.smul t A).construct := Interval.smul_outer t A hM

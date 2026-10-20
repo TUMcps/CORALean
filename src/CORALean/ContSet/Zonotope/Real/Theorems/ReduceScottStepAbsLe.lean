@@ -52,7 +52,7 @@ open Matrix
 /-- [1, Sec. 4.3 (new reduction)]: `|R_li| ≤ 1` everywhere before the update gives the same after
 it. -/
 theorem Zonotope.reduceScottStep_abs_le {n k : ℕ} (T : Mat ℝ n n) (R : Fin (k + 1) → Vec ℝ n)
-    (ind : Fin (k + 1)) (hR : ∀ l i, |R l i| ≤ 1) (l : Fin k) (i : Fin n) :
+    (ind : Fin (k + 1)) (hR : ∀ l i, |R l i| ≤ 1) (l : Fin k) (i : Fin n) : -- --- CONCL ---
     |(Zonotope.reduceScottStep T R ind).2 l i| ≤ 1 := by -- --- PROOF ---
   show |((diagonal fun i => (1 + |R ind i|)⁻¹) *ᵥ R (ind.succAbove l)) i| ≤ 1
   have hpos : (0 : ℝ) < 1 + |R ind i| := by positivity

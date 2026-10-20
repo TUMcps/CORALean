@@ -38,7 +38,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.termBounds_mem (a : ℝ × (Fin n → ℕ)) {t : Vec ℝ n} (ht : t ∈ Taylm.box n) :
+theorem Taylm.termBounds_mem (a : ℝ × (Fin n → ℕ)) {t : Vec ℝ n}
+    (ht : t ∈ Taylm.box n) : -- --- CONCL ---
     (Taylm.termBounds a).inf ≤ a.1 * Taylm.monomial a.2 t ∧
       a.1 * Taylm.monomial a.2 t ≤ (Taylm.termBounds a).sup := by -- --- PROOF ---
   have hm := abs_le.1 (Taylm.abs_monomial_le_one ht a.2)

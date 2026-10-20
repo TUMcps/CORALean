@@ -50,7 +50,7 @@ variable {n p : ℕ} {ι : Type} [Fintype ι]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem trace_gain_le (W : Mat ℝ n n) (hW : ∀ v, 0 ≤ v ⬝ᵥ (W *ᵥ v)) (s : ι → Vec ℝ p)
-    (L Λs Λ : Mat ℝ n p) (hΛs : Λs * ∑ k, vecMulVec (s k) (s k) = L) :
+    (L Λs Λ : Mat ℝ n p) (hΛs : Λs * ∑ k, vecMulVec (s k) (s k) = L) : -- --- CONCL ---
     trace (W * (Λs * (∑ k, vecMulVec (s k) (s k)) * Λsᵀ - Λs * Lᵀ - L * Λsᵀ)) ≤
       trace (W * (Λ * (∑ k, vecMulVec (s k) (s k)) * Λᵀ - Λ * Lᵀ - L * Λᵀ)) := by -- --- PROOF ---
   set S : Mat ℝ p p := ∑ k, vecMulVec (s k) (s k) with hSdef

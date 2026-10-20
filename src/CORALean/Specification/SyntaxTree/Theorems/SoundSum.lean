@@ -40,7 +40,8 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 
 /-- `sum` of sound trees is sound. -/
 theorem SyntaxTree.sound_sum (h : Sound B t) (rest : List (SyntaxTree n))
-    (hs : ∀ u ∈ rest, Sound B u) : Sound B (sum t rest) := by -- --- PROOF ---
+    (hs : ∀ u ∈ rest, Sound B u) : -- --- CONCL ---
+    Sound B (sum t rest) := by -- --- PROOF ---
   induction rest generalizing t with
   | nil => exact h
   | cons u us ih =>

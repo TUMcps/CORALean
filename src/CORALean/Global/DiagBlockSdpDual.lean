@@ -70,7 +70,8 @@ theorem aux_dbs_quad {ι : Type*} [Fintype ι] (X : Matrix ι ι ℝ) (x : ι �
 
 /-- A positive semidefinite real matrix has `|Xᵢⱼ| ≤ (Xᵢᵢ + Xⱼⱼ) / 2`. -/
 theorem aux_dbs_abs_le {ι : Type*} [Fintype ι] [DecidableEq ι] {X : Matrix ι ι ℝ}
-    (hX : X.PosSemidef) (i j : ι) : |X i j| ≤ (X i i + X j j) / 2 := by -- --- PROOF ---
+    (hX : X.PosSemidef) (i j : ι) : -- --- CONCL ---
+    |X i j| ≤ (X i i + X j j) / 2 := by -- --- PROOF ---
   by_cases hij : i = j
   · subst hij
     rw [abs_of_nonneg hX.diag_nonneg]; linarith
@@ -89,7 +90,7 @@ theorem aux_dbs_abs_le {ι : Type*} [Fintype ι] [DecidableEq ι] {X : Matrix ι
 
 /-- A continuous linear functional on matrices is `X ↦ Σ Xᵢⱼ f(Eᵢⱼ)`. -/
 theorem aux_dbs_functional {ι : Type*} [Fintype ι] [DecidableEq ι]
-    (f : Matrix ι ι ℝ →L[ℝ] ℝ) (X : Matrix ι ι ℝ) :
+    (f : Matrix ι ι ℝ →L[ℝ] ℝ) (X : Matrix ι ι ℝ) : -- --- CONCL ---
     f X = ∑ i, ∑ j, X i j * f (single i j 1) := by -- --- PROOF ---
   conv_lhs => rw [matrix_eq_sum_single X]
   simp only [map_sum]
@@ -98,7 +99,7 @@ theorem aux_dbs_functional {ι : Type*} [Fintype ι] [DecidableEq ι]
     rw [smul_single, smul_eq_mul, mul_one], map_smul, smul_eq_mul]
 
 /-- The uniformly positive definite matrices form an open set. -/
-theorem aux_dbs_isOpen {ι : Type*} [Fintype ι] :
+theorem aux_dbs_isOpen {ι : Type*} [Fintype ι] : -- --- CONCL ---
     IsOpen {X : Matrix ι ι ℝ |
       ∃ δ > 0, ∀ x : ι → ℝ, δ * (x ⬝ᵥ x) ≤ x ⬝ᵥ (X *ᵥ x)} := by -- --- PROOF ---
   rw [isOpen_iff_forall_mem_open]
@@ -155,7 +156,7 @@ theorem aux_dbs_isOpen {ι : Type*} [Fintype ι] :
 `‖u‖_{s*} ≤ 1`. -/
 theorem aux_dbs_dual_le_one (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
     (u : Fin l → ℝ) (hu : ∀ i, 0 ≤ u i)
-    (h : ∀ w : Fin l → ℝ, (∀ i, 0 ≤ w i) → ∑ i, w i * u i ≤ ‖WithLp.toLp q w‖) :
+    (h : ∀ w : Fin l → ℝ, (∀ i, 0 ≤ w i) → ∑ i, w i * u i ≤ ‖WithLp.toLp q w‖) : -- --- CONCL ---
     ‖WithLp.toLp q' u‖ ≤ 1 := by -- --- PROOF ---
   -- `q = ∞`: test with `w = 1`
   by_cases hq : q = ∞
@@ -207,7 +208,7 @@ theorem aux_dbs_dual_le_one (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjug
 /-- A bound `Σ vⱼ dⱼ ≤ 2a` on the ball `‖v‖_s ≤ 2t`, `d ≥ 0`, bounds `‖(t/a) d‖_{s*}` by `1`. -/
 theorem aux_dbs_scaled_dual_le_one (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
     (d : Fin l → ℝ) (hd : ∀ i, 0 ≤ d i) {a t : ℝ} (ha : 0 < a) (ht : 0 < t)
-    (h : ∀ v : Fin l → ℝ, ‖WithLp.toLp q v‖ ≤ 2 * t → ∑ i, v i * d i ≤ 2 * a) :
+    (h : ∀ v : Fin l → ℝ, ‖WithLp.toLp q v‖ ≤ 2 * t → ∑ i, v i * d i ≤ 2 * a) : -- --- CONCL ---
     ‖WithLp.toLp q' (fun i => t / a * d i)‖ ≤ 1 := by -- --- PROOF ---
   refine aux_dbs_dual_le_one q q' _ (fun i => by have := hd i; positivity) fun w hw => ?_
   -- scale `w` onto the sphere of radius `2t`
@@ -236,7 +237,8 @@ theorem aux_dbs_scaled_dual_le_one (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.Holde
 /-- A bound `Σ vⱼ dⱼ ≤ 0` near `v = 0`, `d ≥ 0`, forces `d = 0`. -/
 theorem aux_dbs_eq_zero (q : ℝ≥0∞) [Fact (1 ≤ q)] (d : Fin l → ℝ) (hd : ∀ i, 0 ≤ d i) {t : ℝ}
     (ht : 0 < t)
-    (h : ∀ v : Fin l → ℝ, ‖WithLp.toLp q v‖ ≤ 2 * t → ∑ i, v i * d i ≤ 0) (i : Fin l) :
+    (h : ∀ v : Fin l → ℝ, ‖WithLp.toLp q v‖ ≤ 2 * t → ∑ i, v i * d i ≤ 0)
+    (i : Fin l) : -- --- CONCL ---
     d i = 0 := by -- --- PROOF ---
   set e : Fin l → ℝ := Pi.single i 1
   set c := 2 * t / (‖WithLp.toLp q e‖ + 1)
@@ -262,7 +264,7 @@ theorem aux_dbs_symm (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l
   split_ifs with h <;> simp [h]
 
 /-- The uniformly positive definite matrices form a convex set. -/
-theorem aux_dbs_convex_cone {ι : Type*} [Fintype ι] :
+theorem aux_dbs_convex_cone {ι : Type*} [Fintype ι] : -- --- CONCL ---
     Convex ℝ {X : Matrix ι ι ℝ |
       ∃ δ > 0, ∀ x : ι → ℝ, δ * (x ⬝ᵥ x) ≤ x ⬝ᵥ (X *ᵥ x)} := by -- --- PROOF ---
   rintro X ⟨δ₁, hδ₁, h₁⟩ Y ⟨δ₂, hδ₂, h₂⟩ a b ha hb hab
@@ -506,7 +508,8 @@ theorem aux_dbs_certificate (s₁ s₁' s₂ s₂' : ℝ≥0∞) [Fact (1 ≤ s�
 `H` onto, is `0`. -/
 theorem aux_dbs_W_zero (H : Matrix (Fin n) (Fin l) ℝ) (hH : Function.Surjective H.mulVec)
     (W : Matrix (Fin m ⊕ Fin n) (Fin m ⊕ Fin n) ℝ) (hWpsd : W.PosSemidef)
-    (hd₁ : ∀ j, W (Sum.inl j) (Sum.inl j) = 0) (hd₂ : ∀ i, (Hᵀ * W.toBlocks₂₂ * H) i i = 0) :
+    (hd₁ : ∀ j, W (Sum.inl j) (Sum.inl j) = 0)
+    (hd₂ : ∀ i, (Hᵀ * W.toBlocks₂₂ * H) i i = 0) : -- --- CONCL ---
     ∀ p q, W p q = 0 := by -- --- PROOF ---
   set N : Matrix (Fin l) (Fin l) ℝ := Hᵀ * W.toBlocks₂₂ * H with hNdef
   have hNpsd : N.PosSemidef := by

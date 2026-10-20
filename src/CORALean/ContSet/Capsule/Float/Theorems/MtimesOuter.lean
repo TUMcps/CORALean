@@ -67,7 +67,7 @@ private theorem aux_frobenius_le (k : ℕ) (M : Mat 𝕋 m n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.mtimes_outer (k : ℕ) (M : Mat 𝕋 m n) (C : Capsule 𝕋 n) :
+theorem Capsule.mtimes_outer (k : ℕ) (M : Mat 𝕋 m n) (C : Capsule 𝕋 n) : -- --- CONCL ---
     (toRealMat M *ᵥ ·) '' C.construct ⊆ (C.mtimes k M).construct := by -- --- PROOF ---
   rintro _ ⟨_, ⟨y, hy, e, he, rfl⟩, rfl⟩
   -- the exact layer's enclosure, and a point of a capsule has a nonnegative radius

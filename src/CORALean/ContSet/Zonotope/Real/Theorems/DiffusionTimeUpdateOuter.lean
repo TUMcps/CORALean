@@ -53,7 +53,7 @@ variable {n nq : ℕ}
 
 theorem Zonotope.diffusionTimeUpdate_outer (F : Mat ℝ n n) (Q : Mat ℝ n nq)
     (Zt : Zonotope (Vec ℝ n)) (x : Vec ℝ n) (hx : x ∈ Zt.construct) (β : Vec ℝ nq)
-    (hβ : ∀ j, |β j| ≤ 1) :
+    (hβ : ∀ j, |β j| ≤ 1) : -- --- CONCL ---
     F *ᵥ x + Q *ᵥ β ∈ (Zonotope.diffusionTimeUpdate F Q Zt).construct := by -- --- PROOF ---
   obtain ⟨α, hα, rfl⟩ := hx
   have hcol : ∀ {k : ℕ} (M : Mat ℝ n k) (v : Vec ℝ k), ∑ j, v j • (fun i => M i j) = M *ᵥ v :=

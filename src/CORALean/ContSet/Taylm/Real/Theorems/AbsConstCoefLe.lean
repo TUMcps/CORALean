@@ -35,7 +35,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.abs_constCoef_le (T : Taylm n) {h : ℝ} (h0 : 0 < h) :
+theorem Taylm.abs_constCoef_le (T : Taylm n) {h : ℝ} (h0 : 0 < h) : -- --- CONCL ---
     |T.constCoef| ≤ Taylm.weight T.terms h := by -- --- PROOF ---
   unfold Taylm.constCoef
   induction T.terms with

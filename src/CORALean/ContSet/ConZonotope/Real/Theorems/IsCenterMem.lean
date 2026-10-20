@@ -46,7 +46,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {q h : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.IsCenter.mem {c : α} {G : Fin h → α} {A : Mat ℝ q h} {b : Vec ℝ q} {x : α}
-    (hx : ConZonotope.IsCenter c G A b x) :
+    (hx : ConZonotope.IsCenter c G A b x) : -- --- CONCL ---
     x ∈ (ConZonotope.ofMat c G A b).construct := by -- --- PROOF ---
   rw [ConZonotope.mem_ofMat_iff]
   rcases hx with ⟨hq, rfl⟩ | ⟨-, hLP | hN | hK⟩

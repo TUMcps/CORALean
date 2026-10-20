@@ -39,7 +39,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The count itself: at most four times `C(p, n) · p`, from `p = 1` on. -/
-theorem Zonotope.exhaustiveSearchCost_ops_le (n p : ℕ) (hp : 1 ≤ p) :
+theorem Zonotope.exhaustiveSearchCost_ops_le (n p : ℕ) (hp : 1 ≤ p) : -- --- CONCL ---
     (Zonotope.exhaustiveSearchCost n p).ops ≤ 4 * (p.choose n * p) := by -- --- PROOF ---
   -- `log₂ C(p, n) ≤ p`, the binomial being at most `2ᵖ`
   have hlog : Nat.log 2 (p.choose n) ≤ p :=

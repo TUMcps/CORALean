@@ -47,7 +47,8 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Shifting the range by a multiple of the period does not move its image. -/
-theorem aux_image_sin_shift (lo hi : ℝ) (k : ℤ) : Real.sin '' Set.Icc lo hi =
+theorem aux_image_sin_shift (lo hi : ℝ) (k : ℤ) : -- --- CONCL ---
+    Real.sin '' Set.Icc lo hi =
     Real.sin '' Set.Icc (lo - 2 * Real.pi * k) (hi - 2 * Real.pi * k) := by -- --- PROOF ---
   ext v
   constructor
@@ -60,7 +61,7 @@ theorem aux_image_sin_shift (lo hi : ℝ) (k : ℤ) : Real.sin '' Set.Icc lo hi 
     ring_nf
 
 /-- Every value of the sine is taken within one period of any point. -/
-theorem aux_sin_exists_period (lo t : ℝ) :
+theorem aux_sin_exists_period (lo t : ℝ) : -- --- CONCL ---
     ∃ c ∈ Set.Icc lo (lo + 2 * Real.pi), Real.sin c = Real.sin t := by -- --- PROOF ---
   have hpi := Real.pi_pos
   -- the first point `t + 2πk` at or above `lo`
@@ -86,7 +87,7 @@ theorem aux_sin_monoOn_zero : MonotoneOn Real.sin (Set.Icc 0 (Real.pi / 2)) :=
   Real.strictMonoOn_sin.monotoneOn.mono
     (Set.Icc_subset_Icc (by linarith [Real.pi_pos]) le_rfl)
 
-theorem aux_sin_monoOn_one :
+theorem aux_sin_monoOn_one : -- --- CONCL ---
     MonotoneOn Real.sin (Set.Icc (3 * Real.pi / 2) (5 * Real.pi / 2)) := by -- --- PROOF ---
   intro x hx y hy hxy
   -- one period down, onto `[-π/2, π/2]`
@@ -100,7 +101,7 @@ theorem aux_sin_antiOn_zero : AntitoneOn Real.sin (Set.Icc (Real.pi / 2) (3 * Re
   exact Real.strictAntiOn_cos.antitoneOn ⟨by linarith [hx.1], by linarith [hx.2]⟩
     ⟨by linarith [hy.1], by linarith [hy.2]⟩ (by linarith)
 
-theorem aux_sin_antiOn_one :
+theorem aux_sin_antiOn_one : -- --- CONCL ---
     AntitoneOn Real.sin (Set.Icc (5 * Real.pi / 2) (7 * Real.pi / 2)) := by -- --- PROOF ---
   intro x hx y hy hxy
   rw [← Real.sin_sub_two_pi x, ← Real.sin_sub_two_pi y, ← Real.cos_sub_pi_div_two,
@@ -110,7 +111,7 @@ theorem aux_sin_antiOn_one :
 
 /-- A range holding a point where the sine is `1` and one where it is `-1`. -/
 theorem aux_sin_full {a b c d : ℝ} (hc : c ∈ Set.Icc a b) (hd : d ∈ Set.Icc a b)
-    (h1 : Real.sin c = 1) (h2 : Real.sin d = -1) :
+    (h1 : Real.sin c = 1) (h2 : Real.sin d = -1) : -- --- CONCL ---
     Real.sin '' Set.Icc a b = Set.Icc (-1) 1 := by -- --- PROOF ---
   refine Set.Subset.antisymm ?_ ?_
   · rintro _ ⟨x, _, rfl⟩
@@ -318,7 +319,7 @@ theorem aux_sinByRegions_last {yl yu : ℝ} (hyl : 0 ≤ yl ∧ yl < 2 * Real.pi
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Eq. 12]: every case is the sine's exact range on `[lo, hi]`. -/
-theorem Interval.sinByRegions_exact {lo hi : ℝ} (hle : lo ≤ hi) :
+theorem Interval.sinByRegions_exact {lo hi : ℝ} (hle : lo ≤ hi) : -- --- CONCL ---
     Real.sin '' Set.Icc lo hi =
       Set.Icc (Interval.sinByRegions lo hi).inf
         (Interval.sinByRegions lo hi).sup := by -- --- PROOF ---

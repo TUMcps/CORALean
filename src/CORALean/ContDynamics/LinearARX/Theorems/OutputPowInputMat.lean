@@ -47,7 +47,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 
 /-- `A_ext` carries block `r+1` into block `r`, for `r+1 < p`. -/
 theorem LinearARX.aux_shift (sys : LinearARX 𝕋 dy du p) (w : Vec ℝ (p * dy)) (r : ℕ)
-    (hr : r + 1 < p) (b : Fin dy) :
+    (hr : r + 1 < p) (b : Fin dy) : -- --- CONCL ---
     (toRealMat sys.toLinearSysDT.A *ᵥ w) (finProdFinEquiv (⟨r, by omega⟩, b))
       = w (finProdFinEquiv (⟨r + 1, hr⟩, b)) := by -- --- PROOF ---
   rw [Matrix.mulVec, dotProduct, LinearARX.sum_block]
@@ -66,7 +66,8 @@ theorem LinearARX.aux_shift (sys : LinearARX 𝕋 dy du p) (w : Vec ℝ (p * dy)
   · simp
 
 /-- `A_ext^a` carries block `r+a` into block `r`, for `r + a < p`. -/
-theorem LinearARX.aux_pow_shift (sys : LinearARX 𝕋 dy du p) (w : Vec ℝ (p * dy)) (a : ℕ) :
+theorem LinearARX.aux_pow_shift (sys : LinearARX 𝕋 dy du p) (w : Vec ℝ (p * dy))
+    (a : ℕ) : -- --- CONCL ---
     ∀ (r : ℕ) (hr : r + a < p) (b : Fin dy),
       (toRealMat sys.toLinearSysDT.A ^ a *ᵥ w) (finProdFinEquiv (⟨r, by omega⟩, b))
         = w (finProdFinEquiv (⟨r + a, hr⟩, b)) := by -- --- PROOF ---
@@ -83,7 +84,7 @@ theorem LinearARX.aux_pow_shift (sys : LinearARX 𝕋 dy du p) (w : Vec ℝ (p *
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearARX.outputC_pow_mulVec_inputMat (sys : LinearARX 𝕋 dy du p) (hp : 0 < p) {a : ℕ}
-    (ha : a + 1 < p) (j : Fin (p + 1)) (v : Vec ℝ du) :
+    (ha : a + 1 < p) (j : Fin (p + 1)) (v : Vec ℝ du) : -- --- CONCL ---
     toRealMat sys.outputEq.C *ᵥ (toRealMat sys.toLinearSysDT.A ^ a
       *ᵥ (toRealMat (sys.inputMat j) *ᵥ v)) = 0 := by -- --- PROOF ---
   funext r

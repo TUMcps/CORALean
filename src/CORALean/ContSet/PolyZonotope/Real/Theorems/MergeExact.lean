@@ -46,7 +46,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- so both inclusions hold at the very same coefficients
-theorem PolyZonotope.merge_exact (pZ : PolyZonotope α) :
+theorem PolyZonotope.merge_exact (pZ : PolyZonotope α) : -- --- CONCL ---
     pZ.construct = pZ.merge.construct := by -- --- PROOF ---
   have key : ∀ (a : Fin pZ.p → ℝ) (β : Fin pZ.q → ℝ),
       pZ.c + (∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i) + ∑ j, β j • pZ.GI j

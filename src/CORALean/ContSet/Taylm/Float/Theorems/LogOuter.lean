@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.log_outer (q s : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    (hpos : 0 < toReal (minimum T.constCoef T.bounds.inf)) :
+    (hpos : 0 < toReal (minimum T.constCoef T.bounds.inf)) : -- --- CONCL ---
     (T.log q s).Encloses fun t => Real.log (f t) := by -- --- PROOF ---
   set c := T.constCoef
   set N := T.maxOrder

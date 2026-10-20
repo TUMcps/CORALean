@@ -39,7 +39,7 @@ variable {S : ℕ → Type} {n : ℕ}
 
 theorem ReachSetAnalyzer.branch_proper (R : List (ReachSetAnalyzer.Entry S n))
     (hR : ∀ e ∈ R, ∀ s ∈ e.timeInterval, s.time.inf < s.time.sup) (w : List ℕ)
-    (hw : ReachSetAnalyzer.Branch (ReachSetAnalyzer.children R) 0 w) : -- --- CONCL ---
+    (hw : ReachSetAnalyzer.Branch (ReachSetAnalyzer.children R) 0 w) :
     ∀ j ∈ w, ∃ e, R[j - 1]? = some e ∧
       ∀ s ∈ e.timeInterval, s.time.inf < s.time.sup := fun j hj => by
   obtain ⟨e, he⟩ := ReachSetAnalyzer.branch_entries R 0 w hw (Or.inl rfl) j hj

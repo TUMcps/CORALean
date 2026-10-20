@@ -76,7 +76,7 @@ noncomputable def LinearSys.verifyRAOuterVerdictCora (Z F : Set ℝ) : Bool :=
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The verdict is `true` although `1 ∈ Z` lies in the unsafe set `x ≥ 1`. -/
-theorem LinearSys.verifyRAOuterVerdictCora_touch_counterexample :
+theorem LinearSys.verifyRAOuterVerdictCora_touch_counterexample : -- --- CONCL ---
     LinearSys.verifyRAOuterVerdictCora (Set.Icc (-1) 1) (Set.Ici 1) = true ∧
       (1 : ℝ) ∈ Set.Icc (-1 : ℝ) 1 ∩ Set.Ici 1 := by -- --- PROOF ---
   have hS : Set.Icc (-1 : ℝ) 1 ∩ Set.Ici 1 = {1} := by

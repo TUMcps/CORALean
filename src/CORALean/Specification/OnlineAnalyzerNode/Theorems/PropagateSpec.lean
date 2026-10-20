@@ -47,7 +47,7 @@ variable {A : Type}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A successful `mapM` in `Option` relates each element to its image. -/
-theorem aux_mapM_forall₂ {α β : Type} (f : α → Option β) : -- --- CONCL ---
+theorem aux_mapM_forall₂ {α β : Type} (f : α → Option β) :
     ∀ (l : List α) (l' : List β), l.mapM f = some l' → List.Forall₂ (fun a b => f a = some b) l l'
   | [], l', h => by
     simp only [List.mapM_nil, Option.pure_def, Option.some.injEq] at h

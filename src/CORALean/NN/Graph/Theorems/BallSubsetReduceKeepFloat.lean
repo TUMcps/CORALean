@@ -48,7 +48,7 @@ variable {N : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem GNN.ball_subset_reduceKeepFloat (A : Mat ℝ N N) (E : Fin N → Fin N → Bool)
-    (hE : ∀ i j, A i j ≠ 0 → E i j = true) (v : Fin N) (L k : ℕ) (hk : k ≤ L) :
+    (hE : ∀ i j, A i j ≠ 0 → E i j = true) (v : Fin N) (L k : ℕ) (hk : k ≤ L) : -- --- CONCL ---
     Real.GNN.ball A v (L - k) ⊆ GNN.reduceKeepFloat E v L k := by -- --- PROOF ---
   unfold GNN.reduceKeepFloat
   split_ifs with h

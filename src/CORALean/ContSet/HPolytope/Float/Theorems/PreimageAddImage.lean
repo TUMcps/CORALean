@@ -47,7 +47,8 @@ variable {α β : Type} [AddCommGroup α] [AddCommGroup β]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.preimage_inter_add_image (L : α →+ β) (S : β →+ α)
-    (hLS : ∀ e, L (S e) = e) (N E : Set β) (C : Set α) (hC : ∀ x e, x + S e ∈ C ↔ x ∈ C) :
+    (hLS : ∀ e, L (S e) = e) (N E : Set β) (C : Set α)
+    (hC : ∀ x e, x + S e ∈ C ↔ x ∈ C) : -- --- CONCL ---
     (L ⁻¹' N ∩ C) + S '' E = L ⁻¹' (N + E) ∩ C := by -- --- PROOF ---
   ext x
   constructor

@@ -42,7 +42,8 @@ variable {n m : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real
 
 /-- Summing a weighted `zipWith` over the index summing each term. -/
 theorem MarkovChain.aux_sum_comm_zipWith {α ι : Type} [Fintype ι] (a : α → ι → ℝ) (R : List α)
-    (F : List ℝ) : ∑ s, (List.zipWith (fun r f => f * a r s) R F).sum =
+    (F : List ℝ) : -- --- CONCL ---
+    ∑ s, (List.zipWith (fun r f => f * a r s) R F).sum =
       (List.zipWith (fun r f => f * ∑ s, a r s) R F).sum := by -- --- PROOF ---
   induction R generalizing F with
   | nil => simp
@@ -57,7 +58,7 @@ theorem MarkovChain.aux_sum_comm_zipWith {α ι : Type} [Fintype ι] (a : α →
 
 /-- The entries of `tp.T` sum to the sum of the weights used. -/
 theorem MarkovChain.reachProbability_T_sum (field : GridPartition n)
-    (R : List (MarkovChain.ReachEntry S n)) (tranFrac : List ℝ) :
+    (R : List (MarkovChain.ReachEntry S n)) (tranFrac : List ℝ) : -- --- CONCL ---
     ∑ s, (MarkovChain.reachProbability field R tranFrac).T s = (tranFrac.take R.length).sum
       := by -- --- PROOF ---
   unfold MarkovChain.reachProbability

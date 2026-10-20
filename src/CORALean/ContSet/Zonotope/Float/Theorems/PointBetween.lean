@@ -40,7 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.point_between (Z : Zonotope (Vec 𝕋 n)) (β : Vec 𝕋 Z.h) (i : Fin n) :
+theorem Zonotope.point_between (Z : Zonotope (Vec 𝕋 n)) (β : Vec 𝕋 Z.h)
+    (i : Fin n) : -- --- CONCL ---
     toReal (Z.pointLo β i) ≤ toReal (Z.c i) + ∑ j, toReal (Z.G j i) * toReal (β j)
       ∧ toReal (Z.c i) + ∑ j, toReal (Z.G j i) * toReal (β j)
         ≤ toReal (Z.pointHi β i) := by -- --- PROOF ---

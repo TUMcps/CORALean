@@ -67,7 +67,8 @@ noncomputable def Interval.rdivideNumeratorCora (c lo hi : ℝ) : Interval EReal
 
 /-- For `c < 0` and `lo < 0`, the value at `lo / 2 ∈ [lo, 0)` lies above CORA's upper bound
 `c / lo` of `c ./ interval(lo, 0)`; `c = -1`, `lo = -2` is the witness. -/
-theorem Interval.rdivideNumeratorCora_counterexample {c lo : ℝ} (hc : c < 0) (hlo : lo < 0) :
+theorem Interval.rdivideNumeratorCora_counterexample {c lo : ℝ} (hc : c < 0)
+    (hlo : lo < 0) : -- --- CONCL ---
     lo ≤ lo / 2 ∧ lo / 2 < 0 ∧
       (Interval.rdivideNumeratorCora c lo 0).sup <
         ((c / (lo / 2) : ℝ) : EReal) := by -- --- PROOF ---

@@ -40,7 +40,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.spectraShadow_exact (Z : Zonotope α) :
+theorem Zonotope.spectraShadow_exact (Z : Zonotope α) : -- --- CONCL ---
     Z.construct = Z.spectraShadow.construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨β, hβ, rfl⟩

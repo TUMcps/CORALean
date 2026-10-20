@@ -43,7 +43,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.spectraShadow_exact (P : HPolytope (Vec ℝ n)) :
+theorem HPolytope.spectraShadow_exact (P : HPolytope (Vec ℝ n)) : -- --- CONCL ---
     P.construct = P.spectraShadow.construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · intro x hx

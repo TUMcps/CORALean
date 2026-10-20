@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.prod_outer :
+theorem Taylm.prod_outer : -- --- CONCL ---
     ∀ {m : ℕ} {T : Fin (m + 1) → Taylm 𝕋 n} {f : Fin (m + 1) → Vec ℝ n → ℝ},
     (∀ i, (T i).Encloses (f i)) →
     (Taylm.prod T).Encloses fun t => ∏ i, f i t := by -- --- PROOF ---

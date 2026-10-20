@@ -52,7 +52,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `k` passes of a loop that maps its state and appends the result. -/
-theorem aux_foldl_iterate {α : Type} (f : α → α) (a : α) (k : ℕ) :
+theorem aux_foldl_iterate {α : Type} (f : α → α) (a : α) (k : ℕ) : -- --- CONCL ---
     (List.range k).foldl (fun (QR : α × List α) (_ : ℕ) => (f QR.1, QR.2 ++ [f QR.1])) (a, [a])
       = (f^[k] a, (List.range (k + 1)).map fun i => f^[i] a) := by -- --- PROOF ---
   induction k with

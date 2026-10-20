@@ -40,7 +40,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.reduceOverDomain_outer (P : HPolytope (Vec ℝ n)) (hm : 0 < P.m)
-    (dom : Interval (Vec ℝ n)) :
+    (dom : Interval (Vec ℝ n)) : -- --- CONCL ---
     P.construct ∩ dom.construct ⊆
       (P.reduceOverDomain dom true).construct ∩ dom.construct := by -- --- PROOF ---
   -- the point satisfies the first normalized row, and that row is below the supremum of `b`

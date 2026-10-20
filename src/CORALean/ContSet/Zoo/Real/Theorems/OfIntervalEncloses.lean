@@ -41,7 +41,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zoo.ofInterval_encloses (I : Interval (Vec ℝ n)) (N : ℕ) (i : Fin n)
-    (hI : I.inf i ≤ I.sup i) :
+    (hI : I.inf i ≤ I.sup i) : -- --- CONCL ---
     (Zoo.ofInterval I N i).Encloses fun t => (I.inf i + I.sup i) / 2 + (I.sup i - I.inf i) / 2 * t i
     := by -- --- PROOF ---
   rw [Zoo.encloses_iff]

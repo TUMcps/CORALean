@@ -87,7 +87,7 @@ theorem Zonotope.aux_corner_mem (Z : Zonotope (Vec 𝕋 n)) (l : Fin (2 ^ Z.h))
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.vPolytope_contains (Z : Zonotope (Vec 𝕋 n)) :
+theorem Zonotope.vPolytope_contains (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     Z.construct ⊆ Z.vPolytope.construct := by -- --- PROOF ---
   -- the exact corners, and the rounded ones actually stored
   have hstep : (InflatedContSet.nominal Z).vPolytope.construct

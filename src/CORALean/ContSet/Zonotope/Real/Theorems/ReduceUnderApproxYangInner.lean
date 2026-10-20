@@ -48,7 +48,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- [1, Prop. 6], iterated: the reduced zonotope is inside `Z`, for every selection. -/
 theorem Zonotope.reduceUnderApproxYang_inner
     (sel : (Z : Zonotope α) → {m : ℕ} → Z.h = m + 2 → Fin (m + 2) × Fin (m + 1) × Bool)
-    (N : ℕ) (Z : Zonotope α) :
+    (N : ℕ) (Z : Zonotope α) : -- --- CONCL ---
     (Z.reduceUnderApproxYang sel N).construct ⊆ Z.construct := by -- --- PROOF ---
   -- by induction on the remaining steps, for every start
   suffices h : ∀ k (Z : Zonotope α),

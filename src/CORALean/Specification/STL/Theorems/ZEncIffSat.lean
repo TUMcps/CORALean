@@ -48,7 +48,7 @@ variable {X : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.DFormula.zEnc_iff_sat {N : ℕ} (x : ℕ → X) :
+theorem STL.DFormula.zEnc_iff_sat {N : ℕ} (x : ℕ → X) : -- --- CONCL ---
     ∀ (φ : STL.DFormula X) (t : ℕ), t + φ.bound ≤ N →
       (φ.zEnc N true x t ↔ φ.Sat x t) := by -- --- PROOF ---
   intro φ

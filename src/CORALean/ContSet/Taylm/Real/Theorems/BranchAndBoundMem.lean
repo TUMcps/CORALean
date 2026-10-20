@@ -53,7 +53,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.branchAndBound_mem (P : List (ℝ × (Fin n → ℕ))) (X : Fin n → Interval ℝ) (ε : ℝ)
-    (adv : Bool) (fuel : ℕ) {t : Vec ℝ n} (ht : Taylm.InBox X t) :
+    (adv : Bool) (fuel : ℕ) {t : Vec ℝ n} (ht : Taylm.InBox X t) : -- --- CONCL ---
     (Taylm.branchAndBound P X ε adv fuel).inf ≤ Taylm.polyOf P t ∧
       Taylm.polyOf P t ≤ (Taylm.branchAndBound P X ε adv fuel).sup := by -- --- PROOF ---
   refine Taylm.bnbLoop_mem (fun B t hB => ?_) ε ht fuel [X] fun t' h' => ⟨X, by simp, h'⟩

@@ -42,7 +42,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `aux_plus_` is sound for `+`. -/
-theorem SyntaxTree.plus_sound (prev₁ prev₂ : Dom) :
+theorem SyntaxTree.plus_sound (prev₁ prev₂ : Dom) : -- --- CONCL ---
     BinarySound Binary.plus.fn prev₁ prev₂ (Real.Interval.plus prev₁ prev₂)
       funHanPlus := by -- --- PROOF ---
   intro int _ s₁ s₂ h₁ h₂ hi

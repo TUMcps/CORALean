@@ -50,7 +50,7 @@ variable {n : ℕ}
 
 /-- [1, Prop. 11], eq. (20): `0 ∈ ⊕_{i₀≤i≤η} ÃᵢU₀ ⊕ E(Δt,η)ΔtU₀` whenever `0 ∈ U₀`. -/
 theorem MatExp.zero_mem_particularSolutionOuter (A : Mat ℝ n n) {U0 : Set (Vec ℝ n)}
-    (h0 : (0 : Vec ℝ n) ∈ U0) (i0 : ℕ) (Δt : ℝ) (η : ℕ) :
+    (h0 : (0 : Vec ℝ n) ∈ U0) (i0 : ℕ) (Δt : ℝ) (η : ℕ) : -- --- CONCL ---
     (0 : Vec ℝ n) ∈ MatExp.particularSolutionOuter A U0 i0 Δt η := by -- --- PROOF ---
   rw [MatExp.particularSolutionOuter]
   have hsum := Set.finsetSum_mem_finsetSum (Finset.Ico i0 (η + 1))

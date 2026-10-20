@@ -47,7 +47,8 @@ open scoped Manifold ContDiff
 /-- The `C¹` case: a `C¹` self-map of the closed unit ball has a fixed point. -/
 theorem aux_exists_fixedPoint_of_contDiff {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [FiniteDimensional ℝ E] {g : E → E} (hg : ContDiff ℝ 1 g)
-    (hgB : ∀ x, ‖x‖ ≤ 1 → ‖g x‖ ≤ 1) : ∃ x, ‖x‖ ≤ 1 ∧ g x = x := by -- --- PROOF ---
+    (hgB : ∀ x, ‖x‖ ≤ 1 → ‖g x‖ ≤ 1) : -- --- CONCL ---
+    ∃ x, ‖x‖ ≤ 1 ∧ g x = x := by -- --- PROOF ---
   by_contra hno
   simp only [not_exists, not_and] at hno
   -- where the ray from `g x` through `x` leaves the ball: `σ` the larger root of `a σ² + 2bσ + c`
@@ -140,7 +141,7 @@ theorem aux_exists_fixedPoint_of_contDiff {E : Type} [NormedAddCommGroup E] [Inn
 /-- Brouwer: a continuous map taking the closed unit ball into itself has a fixed point there. -/
 theorem exists_fixedPoint_closedBall {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [FiniteDimensional ℝ E] {f : E → E} (hf : Continuous f)
-    (hfB' : Set.MapsTo f (closedBall (0 : E) 1) (closedBall 0 1)) :
+    (hfB' : Set.MapsTo f (closedBall (0 : E) 1) (closedBall 0 1)) : -- --- CONCL ---
     ∃ x ∈ closedBall (0 : E) 1, f x = x := by -- --- PROOF ---
   have hfB : ∀ x, ‖x‖ ≤ 1 → ‖f x‖ ≤ 1 := fun x hx =>
     mem_closedBall_zero_iff.mp (hfB' (mem_closedBall_zero_iff.mpr hx))

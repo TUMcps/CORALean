@@ -56,7 +56,7 @@ theorem aux_classMat_mulVec (c : Fin ny) (z : Vec ℝ ny) (i : Fin ny) :
   simp [Conform.classMat, mulVec, dotProduct, sub_mul, Finset.sum_sub_distrib]
 
 /-- `classes(e_c) = {c}`. -/
-theorem aux_classesVec_single (c : Fin ny) :
+theorem aux_classesVec_single (c : Fin ny) : -- --- CONCL ---
     Conform.classesVec (Pi.single c 1 : Vec ℝ ny) = {c} := by -- --- PROOF ---
   ext i
   simp only [Conform.classesVec, Set.mem_setOf_eq, Set.mem_singleton_iff]

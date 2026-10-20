@@ -55,7 +55,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 the projection because that is the form the goal has. Only the outermost split
 needs it; every block it produces has a plain count. -/
 theorem PolyZonotope.aux_sum_univ_linComb_h {pZ₁ pZ₂ : PolyZonotope α}
-    (f : Fin (pZ₁.h + pZ₂.h + (pZ₁.h + pZ₂.h + 1)) → α) : -- --- CONCL ---
+    (f : Fin (pZ₁.h + pZ₂.h + (pZ₁.h + pZ₂.h + 1)) → α) :
     ∑ i : Fin (pZ₁.linComb pZ₂).h, f i
       = ∑ i, f (Fin.castAdd (pZ₁.h + pZ₂.h + 1) i)
         + ∑ i, f (Fin.natAdd (pZ₁.h + pZ₂.h) i) :=
@@ -71,7 +71,8 @@ theorem PolyZonotope.aux_sum_scaled {k : ℕ} (s : ℝ) (m : Fin k → ℝ) (G :
 
 /-- The same where the coefficients also carry a common factor, which is the
 shape the second dependent block has. -/
-theorem PolyZonotope.aux_sum_scaled_mul {k : ℕ} (t s : ℝ) (m : Fin k → ℝ) (G : Fin k → α) :
+theorem PolyZonotope.aux_sum_scaled_mul {k : ℕ} (t s : ℝ) (m : Fin k → ℝ)
+    (G : Fin k → α) : -- --- CONCL ---
     ∑ i, (t * m i) • (s • G i) = (t * s) • ∑ i, m i • G i := by -- --- PROOF ---
   rw [Finset.smul_sum]
   refine Finset.sum_congr rfl fun i _ => ?_

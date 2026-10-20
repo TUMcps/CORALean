@@ -37,7 +37,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem hasDerivAt_sigmoid (t : ℝ) : HasDerivAt sigmoid (sigmoidDeriv t) t := by -- --- PROOF ---
+theorem hasDerivAt_sigmoid (t : ℝ) : -- --- CONCL ---
+    HasDerivAt sigmoid (sigmoidDeriv t) t := by -- --- PROOF ---
   have hEpos : (0:ℝ) < Real.exp (-t) := Real.exp_pos _
   have hden : (1:ℝ) + Real.exp (-t) ≠ 0 := by positivity
   have hexp : HasDerivAt (fun x : ℝ => Real.exp (-x)) (Real.exp (-t) * -1) t :=

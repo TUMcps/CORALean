@@ -37,7 +37,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.supportFunc_ne_top_iff (S : SpectraShadow α) (c : α →ₗ[ℝ] ℝ) :
+theorem SpectraShadow.supportFunc_ne_top_iff (S : SpectraShadow α)
+    (c : α →ₗ[ℝ] ℝ) : -- --- CONCL ---
     S.supportFunc c ≠ ⊤ ↔ ∃ M : ℝ, ∀ x ∈ S.construct, c x ≤ M := by -- --- PROOF ---
   constructor
   · -- read the value as `⊥` (any bound serves), a real (it bounds) or `⊤` (excluded)

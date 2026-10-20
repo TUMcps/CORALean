@@ -98,7 +98,8 @@ theorem aux_det_eval_one {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
 /-- A derivative of a map into the unit sphere is singular. -/
 theorem aux_det_eq_zero {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [FiniteDimensional ℝ E] {r : E → E} {r' : E →L[ℝ] E} {x : E} (hr : HasFDerivAt r r' x)
-    (hn : ∀ᶠ y in nhds x, ‖r y‖ = 1) : r'.det = 0 := by -- --- PROOF ---
+    (hn : ∀ᶠ y in nhds x, ‖r y‖ = 1) : -- --- CONCL ---
+    r'.det = 0 := by -- --- PROOF ---
   have h1 : HasFDerivAt (fun y => ‖r y‖ ^ 2) (2 • (innerSL ℝ (r x)).comp r') x := hr.norm_sq
   have h2 : HasFDerivAt (fun y => ‖r y‖ ^ 2) (0 : E →L[ℝ] ℝ) x :=
     (hasFDerivAt_const (1 : ℝ) x).congr_of_eventuallyEq (hn.mono fun y hy => by simp [hy])
@@ -119,7 +120,8 @@ theorem aux_det_eq_zero {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ
 
 /-- `1 + t A` has a positive determinant while `t ‖A‖ < 1`. -/
 theorem aux_det_pos {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
-    (A : E →L[ℝ] E) {C : ℝ} (hA : ‖A‖ ≤ C) {t : ℝ} (ht0 : 0 ≤ t) (htC : t * C < 1) :
+    (A : E →L[ℝ] E) {C : ℝ} (hA : ‖A‖ ≤ C) {t : ℝ} (ht0 : 0 ≤ t)
+    (htC : t * C < 1) : -- --- CONCL ---
     0 < (ContinuousLinearMap.id ℝ E + t • A).det := by -- --- PROOF ---
   set φ : ℝ → ℝ := fun s => (ContinuousLinearMap.id ℝ E + s • A).det
   have hφc : Continuous φ :=

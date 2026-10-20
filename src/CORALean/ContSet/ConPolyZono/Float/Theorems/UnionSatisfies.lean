@@ -59,7 +59,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The stored operand rows, read back, are the exact layer's at the read-back operands. -/
 theorem ConPolyZono.aux_eval_nominalCore_unionLower {p₁ p₂ : ℕ} (P₁ : PolyLevelSet 𝕋 p₁)
-    (P₂ : PolyLevelSet 𝕋 p₂) (a : Fin (p₁ + p₂ + 2) → ℝ) :
+    (P₂ : PolyLevelSet 𝕋 p₂) (a : Fin (p₁ + p₂ + 2) → ℝ) : -- --- CONCL ---
     (ConPolyZono.unionLower P₁ P₂).nominalCore.eval a
       = (Real.ConPolyZono.unionLower P₁.nominalCore P₂.nominalCore).eval a := by -- --- PROOF ---
   funext i

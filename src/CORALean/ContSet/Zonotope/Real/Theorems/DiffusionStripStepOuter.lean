@@ -68,7 +68,8 @@ theorem Zonotope.diffusionStripStep_outer [∀ i, NeZero (m i)] (F : Mat ℝ n n
     (Zh : Fin N → Zonotope (Vec ℝ n)) (x : Vec ℝ n) (β : Vec ℝ nq) (hβ : ∀ j, |β j| ≤ 1)
     (hx : ∀ i, x ∈ (Zh i).construct) (hy : ∀ i j, |(Γ i *ᵥ x - yb i) j| ≤ r i j)
     (hα : ∀ i a, 0 < ∑ s, ∑ l,
-      ((Zonotope.diffusionStripMeasurement Γ r yb Zh (nb i a)).G l s) ^ 2) (i : Fin N) :
+      ((Zonotope.diffusionStripMeasurement Γ r yb Zh (nb i a)).G l s) ^ 2) (i : Fin N)
+    : -- --- CONCL ---
     F *ᵥ x + Q *ᵥ β ∈
       (Zonotope.diffusionStripStep F Q Γ r yb nb o Zh i).construct := by -- --- PROOF ---
   unfold Zonotope.diffusionStripStep

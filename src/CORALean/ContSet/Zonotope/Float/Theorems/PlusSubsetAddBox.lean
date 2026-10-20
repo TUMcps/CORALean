@@ -59,7 +59,8 @@ theorem Zonotope.aux_sum_univ_plus_box {Z₁ Z₂ : Zonotope (Vec 𝕋 n)} (f : 
 /-- `plus` reaches no further than `Z₁.construct + Z₂.construct`, widened by
 `plusBox`, provided both operands already bracket `0` in their own box. -/
 theorem Zonotope.plus_subset_add_box (Z₁ Z₂ : Zonotope (Vec 𝕋 n))
-    (h₁ : (0 : Vec ℝ n) ∈ Z₁.I_error.construct) (h₂ : (0 : Vec ℝ n) ∈ Z₂.I_error.construct) :
+    (h₁ : (0 : Vec ℝ n) ∈ Z₁.I_error.construct)
+    (h₂ : (0 : Vec ℝ n) ∈ Z₂.I_error.construct) : -- --- CONCL ---
     (Z₁.plus Z₂).construct ⊆
       Z₁.construct + Z₂.construct + (Zonotope.plusBox Z₁ Z₂).construct := by -- --- PROOF ---
   rintro _ ⟨y₁, hy₁, y₂, hy₂, rfl⟩

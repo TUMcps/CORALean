@@ -61,7 +61,7 @@ variable {n : ℕ}
 /-- [1, Eq. 15]: a state `x₀ + (Ax₀ + b)t + e` on `nᵀx = d`, `e ∈ E`, lies in `R_h(x₀)`. -/
 theorem GuardMap.mem_hitSet {A : Mat ℝ n n} {b nv x₀ e : Vec ℝ n} {d t : ℝ}
     {E : Set (Vec ℝ n)} (hf : nv ⬝ᵥ (A *ᵥ x₀ + b) ≠ 0) (he : e ∈ E)
-    (hhit : nv ⬝ᵥ (x₀ + t • (A *ᵥ x₀ + b) + e) = d) :
+    (hhit : nv ⬝ᵥ (x₀ + t • (A *ᵥ x₀ + b) + e) = d) : -- --- CONCL ---
     x₀ + t • (A *ᵥ x₀ + b) + e ∈ GuardMap.hitSet A b nv d E x₀ := by -- --- PROOF ---
   -- the hitting time, read off the hyperplane
   have ht : t = (d - nv ⬝ᵥ x₀ - nv ⬝ᵥ e) / (nv ⬝ᵥ (A *ᵥ x₀ + b)) := by

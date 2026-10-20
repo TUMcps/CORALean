@@ -51,7 +51,7 @@ theorem NeuralNetwork.Encloses.verifySplit_sound [Contains ContSet (S m)] [IsDis
     {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m} (hf : nn.Encloses f)
     (spec : Specification ContSet) (splitter : S n → S n × S n)
     (hcov : ∀ Y : S n, construct Y ⊆ construct (splitter Y).1 ∪ construct (splitter Y).2)
-    (d : ℕ) (X : S n) (hverify : nn.verifySplit spec splitter d X) : -- --- CONCL ---
+    (d : ℕ) (X : S n) (hverify : nn.verifySplit spec splitter d X) :
     spec.Holds (f '' construct X) :=
   hf.verifySplitWith_sound spec spec.check spec.check_sound splitter hcov d X hverify
 

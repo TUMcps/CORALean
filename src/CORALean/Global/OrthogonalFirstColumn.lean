@@ -44,7 +44,8 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem exists_orthogonal_firstCol {n : ℕ} [NeZero n] (u : Vec ℝ n) (hu : u ⬝ᵥ u = 1) :
+theorem exists_orthogonal_firstCol {n : ℕ} [NeZero n] (u : Vec ℝ n)
+    (hu : u ⬝ᵥ u = 1) : -- --- CONCL ---
     ∃ B : Mat ℝ n n, B * Bᵀ = 1 ∧ ∀ j, B j 0 = u j := by -- --- PROOF ---
   classical
   -- the first unit vector

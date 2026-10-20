@@ -37,7 +37,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LevelSet.compact_exact (L : LevelSet n) :
+theorem LevelSet.compact_exact (L : LevelSet n) : -- --- CONCL ---
     Sum.elim LevelSet.construct EmptySet.construct L.compact_ = L.construct := by -- --- PROOF ---
   classical
   unfold LevelSet.compact_

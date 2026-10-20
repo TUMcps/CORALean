@@ -50,7 +50,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 /-- `reach` contains every trajectory of a run known only up to step `K`, at
 every step within it. -/
 theorem LinParamSysDT.reach_outer_on (sys : LinParamSysDT 𝕄 n) {o : ℕ} (ho : 0 < o) (R₀ U : S n)
-    {K : ℕ} {x u : ℕ → Vec ℝ n} (traj : sys.IsCanonicalTrajectoryOn R₀ U K x u) :
+    {K : ℕ} {x u : ℕ → Vec ℝ n} (traj : sys.IsCanonicalTrajectoryOn R₀ U K x u) : -- --- CONCL ---
     ∀ k ≤ K, x k ∈ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
   intro k
   induction k with

@@ -38,7 +38,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.replaceId_subset (pZ : PolyZonotope α) {p' : ℕ} (f : Fin pZ.p → Fin p') :
+theorem PolyZonotope.replaceId_subset (pZ : PolyZonotope α) {p' : ℕ}
+    (f : Fin pZ.p → Fin p') : -- --- CONCL ---
     (pZ.replaceId f).construct ⊆ pZ.construct := by -- --- PROOF ---
   rintro _ ⟨a', β, ha', hβ, rfl⟩
   refine ⟨fun k => a' (f k), β, fun k => ha' (f k), hβ, ?_⟩

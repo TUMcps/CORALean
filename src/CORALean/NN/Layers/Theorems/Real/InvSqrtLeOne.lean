@@ -32,7 +32,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem invSqrt_le_one (x : ℝ) : invSqrt x ≤ 1 := by -- --- PROOF ---
+theorem invSqrt_le_one (x : ℝ) : -- --- CONCL ---
+    invSqrt x ≤ 1 := by -- --- PROOF ---
   unfold invSqrt
   rw [inv_le_one_iff₀]
   right

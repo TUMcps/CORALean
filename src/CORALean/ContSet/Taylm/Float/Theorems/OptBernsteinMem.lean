@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.optBernstein_mem (T : Taylm 𝕋 n) {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    {t : Vec ℝ n} (ht : t ∈ Real.Taylm.box n) :
+    {t : Vec ℝ n} (ht : t ∈ Real.Taylm.box n) : -- --- CONCL ---
     toReal (Taylm.optBernstein T).inf ≤ f t ∧ f t ≤ toReal (Taylm.optBernstein T).sup
     := by -- --- PROOF ---
   -- the exact bound, and the exact degree the float degree reads as

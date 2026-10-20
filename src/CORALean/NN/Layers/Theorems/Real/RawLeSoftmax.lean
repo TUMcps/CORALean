@@ -48,7 +48,8 @@ theorem aux_one_add_exp_sum_pos (v : Vec ℝ n) (i : Fin n) (a : ℝ) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- And largest at the opposite corner, which is the lower bound on `softmax`. -/
-theorem raw_le_softmax {lo hi x : Vec ℝ n} (hx : ∀ i, lo i ≤ x i ∧ x i ≤ hi i) (i : Fin n) :
+theorem raw_le_softmax {lo hi x : Vec ℝ n} (hx : ∀ i, lo i ≤ x i ∧ x i ≤ hi i)
+    (i : Fin n) : -- --- CONCL ---
     (1 + ∑ j ∈ Finset.univ.erase i, Real.exp (hi j - lo i))⁻¹ ≤ softmax x i := by -- --- PROOF ---
   have hmono : ∑ j ∈ Finset.univ.erase i, Real.exp (x j - x i)
       ≤ ∑ j ∈ Finset.univ.erase i, Real.exp (hi j - lo i) :=

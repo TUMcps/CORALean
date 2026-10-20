@@ -48,7 +48,8 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ProbZonotope.mtimes_laws (M : Mat ℝ m n) (P : ProbZonotope n) (h : P.cov.PosSemidef) :
+theorem ProbZonotope.mtimes_laws (M : Mat ℝ m n) (P : ProbZonotope n)
+    (h : P.cov.PosSemidef) : -- --- CONCL ---
     (fun μ => μ.map (fun x => toLp 2 (M *ᵥ ofLp x))) '' P.laws
       = (P.mtimes M).laws := by -- --- PROOF ---
   ext ν

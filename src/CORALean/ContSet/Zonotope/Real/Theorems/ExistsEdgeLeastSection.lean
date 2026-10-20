@@ -130,7 +130,7 @@ theorem Zonotope.aux_pick {ι : Type} [Fintype ι] (r : ι → ℤ) (hr : Functi
 
 /-- The corner after `a` is the corner before it plus `2 g_a`. -/
 theorem Zonotope.aux_step (Z : Zonotope (Vec ℝ 2)) {r : Fin Z.h → ℤ} (hr : Function.Injective r)
-    (a : Fin Z.h) (k : Fin 2) :
+    (a : Fin Z.h) (k : Fin 2) : -- --- CONCL ---
     Z.corner (fun j => decide (r j ≤ r a)) k
       = Z.corner (fun j => decide (r j < r a)) k + 2 * Z.G a k := by -- --- PROOF ---
   classical

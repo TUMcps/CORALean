@@ -44,7 +44,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Sec. 3 (minimal representation)]: a V-representation of `∅` lists no points. -/
-theorem VPolytope.k_eq_zero_of_construct_eq_empty (P : VPolytope α) (hP : P.construct = ∅) :
+theorem VPolytope.k_eq_zero_of_construct_eq_empty (P : VPolytope α)
+    (hP : P.construct = ∅) : -- --- CONCL ---
     P.k = 0 := by -- --- PROOF ---
   by_contra hk
   -- the first point is a convex combination of the points, weight one on itself

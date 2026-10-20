@@ -48,7 +48,8 @@ variable {ny nu : ℕ} {ι : Type} [Fintype ι]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Lemma 3]: `Y_ZCP(x) = ⟨f(x), D̄(x) G_u diag(α)⟩`. -/
-theorem Conform.zcpSet_eq (fx : Vec ℝ ny) (D : Mat ℝ ny nu) (Gu : ι → Vec ℝ nu) (α : ι → ℝ) :
+theorem Conform.zcpSet_eq (fx : Vec ℝ ny) (D : Mat ℝ ny nu) (Gu : ι → Vec ℝ nu)
+    (α : ι → ℝ) : -- --- CONCL ---
     Conform.zcpSet fx D Gu α = Conform.templateZono fx (fun j => D *ᵥ Gu j) α := by -- --- PROOF ---
   ext y
   constructor

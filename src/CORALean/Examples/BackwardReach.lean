@@ -50,7 +50,8 @@ def BReach.U : Zonotope (Vec ℝ 1) := ⟨1, ![(0:ℝ)], fun _ => ![(0.2:ℝ)]�
 checks: `0.2 = 0.2 · 1`, at every pair it is handed. -/
 def BReach.M (Z₁ Z₂ : Zonotope (Vec ℝ 1)) : Fin Z₁.h → Fin Z₂.h → ℝ := fun _ _ => 0.2
 
-theorem BReach.hA : BReach.sys.A * BReach.Ainv = 1 := by -- --- PROOF ---
+theorem BReach.hA : -- --- CONCL ---
+    BReach.sys.A * BReach.Ainv = 1 := by -- --- PROOF ---
   ext i j
   fin_cases i
   fin_cases j
@@ -63,7 +64,8 @@ noncomputable def BReach.D : Zonotope (Vec ℝ 1) :=
   { h := BReach.T.h, c := BReach.T.c - BReach.U.c,
     G := fun i => (1 - ∑ j : Fin BReach.U.h, |BReach.M BReach.T BReach.U i j|) • BReach.T.G i }
 
-theorem BReach.step : BReach.T.minkDiffRep BReach.U (BReach.M BReach.T BReach.U) =
+theorem BReach.step : -- --- CONCL ---
+    BReach.T.minkDiffRep BReach.U (BReach.M BReach.T BReach.U) =
     some BReach.D := by -- --- PROOF ---
   -- the two halves of the check, at the one generator each set has
   have hcond : (∀ j, BReach.U.G j = ∑ i, BReach.M BReach.T BReach.U i j • BReach.T.G i) ∧
@@ -93,7 +95,7 @@ theorem BReach.run : BReach.sys.backReachForall (S := 𝒵)
 
 /-- `0.3` is in the computed set: `0.75` of its one generator, which is `0.4`
 long — half of what the difference left, the inverse having halved it. -/
-theorem BReach.mem :
+theorem BReach.mem : -- --- CONCL ---
     (![(0.3:ℝ)] : Vec ℝ 1) ∈ (Zonotope.mtimes BReach.Ainv BReach.D).construct := by -- --- PROOF ---
   refine ⟨fun _ => 0.75, fun j => by norm_num, ?_⟩
   show (![(0.3:ℝ)] : Vec ℝ 1) =
@@ -113,7 +115,8 @@ theorem BReach.backOne :
 
 /-- `0.3` is in the target itself as well, which is what lets one run start
 there: `simulate_isTrajectory` asks for a set the start lies in. -/
-theorem BReach.memT : (![(0.3:ℝ)] : Vec ℝ 1) ∈ BReach.T.construct := by -- --- PROOF ---
+theorem BReach.memT : -- --- CONCL ---
+    (![(0.3:ℝ)] : Vec ℝ 1) ∈ BReach.T.construct := by -- --- PROOF ---
   refine ⟨fun _ => 0.3, fun j => by norm_num, ?_⟩
   show (![(0.3:ℝ)] : Vec ℝ 1) = ![(0:ℝ)] + ∑ _i : Fin 1, (0.3:ℝ) • (![(1:ℝ)] : Vec ℝ 1)
   simp only [Finset.sum_const, Finset.card_univ, Fintype.card_fin, one_smul]

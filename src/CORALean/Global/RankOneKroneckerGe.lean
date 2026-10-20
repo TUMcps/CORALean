@@ -41,7 +41,7 @@ variable {ι m n : Type} [Fintype ι] [DecidableEq ι] [Fintype n]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem rank_one_kronecker_ge (M : Matrix m n ℝ) :
+theorem rank_one_kronecker_ge (M : Matrix m n ℝ) : -- --- CONCL ---
     Fintype.card ι * M.rank ≤ ((1 : Matrix ι ι ℝ) ⊗ₖ M).rank := by -- --- PROOF ---
   set S : Submodule ℝ (m → ℝ) := LinearMap.range M.mulVecLin with hS
   -- `k` copies of the range of `M`, read into the range of `I ⊗ M` block by block

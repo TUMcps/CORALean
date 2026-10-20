@@ -66,7 +66,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ} {
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.activationPoly_encloses {P : LayerRelaxation 𝕋 n m}
-    (hP : ∀ i, (P i).Sound σ) :
+    (hP : ∀ i, (P i).Sound σ) : -- --- CONCL ---
     (Layer.activationPoly P).Encloses (fun x i => σ (x i)) := by -- --- PROOF ---
   refine ⟨fun s x hx => ?_⟩
   have hbox := PolyZonotope.interval_contains s hx

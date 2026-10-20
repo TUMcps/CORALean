@@ -41,7 +41,7 @@ variable {n k : ℕ}
 
 /-- The `h` count of `quadMap`'s result in `O`-notation. -/
 theorem ConPolyZono.quadMap_h_isBigO (Q : Fin k → Mat ℝ n n) (cPZ : ℕ → ConPolyZono (Vec ℝ n))
-    (hC : ∀ m, (cPZ m).h + (cPZ m).qI = m) :
+    (hC : ∀ m, (cPZ m).h + (cPZ m).qI = m) : -- --- CONCL ---
     (fun m : ℕ => (((ConPolyZono.quadMap Q (cPZ m)).h : ℕ) : ℝ))
       =O[Filter.atTop] fun m : ℕ => ((m : ℝ)) ^ 2 := by -- --- PROOF ---
   apply Asymptotics.IsBigO.of_bound 4

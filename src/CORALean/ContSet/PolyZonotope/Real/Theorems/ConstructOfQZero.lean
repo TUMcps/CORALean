@@ -33,7 +33,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- With no independent generators the set is the image of the factor cube. -/
-theorem PolyZonotope.construct_of_q_zero (pZ : PolyZonotope (Vec ℝ n)) (hq : pZ.q = 0) :
+theorem PolyZonotope.construct_of_q_zero (pZ : PolyZonotope (Vec ℝ n))
+    (hq : pZ.q = 0) : -- --- CONCL ---
     pZ.construct
       = pZ.point '' Set.Icc (fun _ : Fin pZ.p => (-1 : ℝ)) (fun _ => 1) := by -- --- PROOF ---
   -- there is no independent coefficient to choose

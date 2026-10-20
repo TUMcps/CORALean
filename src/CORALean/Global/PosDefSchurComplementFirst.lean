@@ -45,7 +45,7 @@ variable {m k : Type} [Fintype m] [Fintype k] [DecidableEq m]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem posDef_fromBlocks_first_iff (A : Matrix m m ℝ) (B : Matrix m k ℝ) (D : Matrix k k ℝ)
-    (hA : A.PosDef) :
+    (hA : A.PosDef) : -- --- CONCL ---
     (fromBlocks A B Bᵀ D).PosDef ↔ (D - Bᵀ * A⁻¹ * B).PosDef := by -- --- PROOF ---
   haveI : Invertible A := hA.isUnit.invertible
   have hB : Bᴴ = Bᵀ := conjTranspose_eq_transpose_of_trivial B

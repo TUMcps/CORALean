@@ -51,7 +51,7 @@ variable {n : ℕ}
 
 theorem Zonotope.le_minnorm_of_ball_subset (Z : Zonotope (Vec ℝ (n + 1)))
     (hspan : Submodule.span ℝ (Set.range Z.G) = ⊤) (r : ℝ) (hr : 0 ≤ r)
-    (hball : ∀ y : Vec ℝ (n + 1), y ⬝ᵥ y ≤ r ^ 2 → Z.c + y ∈ Z.construct) :
+    (hball : ∀ y : Vec ℝ (n + 1), y ⬝ᵥ y ≤ r ^ 2 → Z.c + y ∈ Z.construct) : -- --- CONCL ---
     r ≤ Z.minnorm := by -- --- PROOF ---
   obtain ⟨S, hC, hoff⟩ := Zonotope.exists_minnormFacet Z hspan
   have hCC := Zonotope.facetNormal_dotProduct_self_pos Z S hC

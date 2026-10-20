@@ -51,7 +51,7 @@ variable {m n : ℕ}
 than `r`: the image of a ball under `M` sits inside the ball scaled by `M`'s
 operator norm. -/
 theorem Zonotope.mtimes_subset_closedBall (M : Mat ℝ m n) {Z : Zonotope (Vec ℝ n)} {r : ℝ}
-    (h : Z.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r) :
+    (h : Z.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r) : -- --- CONCL ---
     (Zonotope.mtimes M Z).construct
       ⊆ Metric.closedBall (0 : Vec ℝ m) (‖M‖ * r) := by -- --- PROOF ---
   rw [← Zonotope.mtimes_exact]

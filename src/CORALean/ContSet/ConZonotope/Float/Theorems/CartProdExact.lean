@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.cartProd_exact (cZ₁ : ConZonotope 𝕋 (Vec 𝕋 n₁))
-    (cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n₂)) :
+    (cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n₂)) : -- --- CONCL ---
     (cZ₁.cartProd cZ₂).construct = (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
       (cZ₁.construct ×ˢ cZ₂.construct) := by -- --- PROOF ---
   -- the zonotope parts, whose nominal center and generators the product shares

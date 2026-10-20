@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.empty_exact (hn : 0 < n) :
+theorem Interval.empty_exact (hn : 0 < n) : -- --- CONCL ---
     (Interval.empty n : Interval (Vec 𝕋 n)).construct = ∅ := by -- --- PROOF ---
   have h : (Interval.empty n : Interval (Vec 𝕋 n)).nominal = Real.Interval.empty n := by
     unfold Interval.nominal Interval.empty Real.Interval.empty

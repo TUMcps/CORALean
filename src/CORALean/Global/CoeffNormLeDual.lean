@@ -53,7 +53,8 @@ variable {n l : ℕ}
 
 /-- A `q`-norm depends only on the absolute values of the entries. -/
 theorem aux_cnd_norm_congr_abs (q : ℝ≥0∞) [Fact (1 ≤ q)] (a b : Fin l → ℝ)
-    (h : ∀ i, |a i| = |b i|) : ‖WithLp.toLp q a‖ = ‖WithLp.toLp q b‖ := by -- --- PROOF ---
+    (h : ∀ i, |a i| = |b i|) : -- --- CONCL ---
+    ‖WithLp.toLp q a‖ = ‖WithLp.toLp q b‖ := by -- --- PROOF ---
   by_cases hq : q = ∞
   · subst hq
     simp [PiLp.norm_eq_ciSup, Real.norm_eq_abs, h]

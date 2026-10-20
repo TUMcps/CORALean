@@ -43,7 +43,7 @@ namespace CORALean
 
 theorem List.length_takeWhile_eq_of_pairwise_lt {T : Type} [LinearOrder T] (l : List T)
     (hl : l.Pairwise (· < ·)) (t a : T) (m : ℕ) (hm : l[m]? = some a) (h1 : a ≤ t)
-    (h2 : ∀ b, l[m + 1]? = some b → t < b) :
+    (h2 : ∀ b, l[m + 1]? = some b → t < b) : -- --- CONCL ---
     (l.takeWhile (· ≤ t)).length = m + 1 := by -- --- PROOF ---
   induction l generalizing m with
   | nil => simp at hm

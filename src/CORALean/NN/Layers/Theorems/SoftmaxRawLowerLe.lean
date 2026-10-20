@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_expUpLimit_le (k : ℕ) :
+theorem aux_expUpLimit_le (k : ℕ) : -- --- CONCL ---
     toReal (aux_expUpLimit (𝕋 := 𝕋) k) ≤ 2 ^ k / 2 := by -- --- PROOF ---
   induction k with
   | zero => rw [aux_expUpLimit, toReal_half, toReal_one]; norm_num
@@ -54,7 +54,7 @@ theorem aux_expUpLimit_le (k : ℕ) :
     linarith
 
 theorem aux_softmaxExpInRange_le (k : ℕ) (I : Interval (Vec 𝕋 n)) {i j : Fin n}
-    (h : aux_softmaxExpInRange k I i = true) (hj : j ≠ i) :
+    (h : aux_softmaxExpInRange k I i = true) (hj : j ≠ i) : -- --- CONCL ---
     Real.exp (toReal (I.sup j) - toReal (I.inf i))
       ≤ toReal (expUp k (subUp (I.sup j) (I.inf i))) := by -- --- PROOF ---
   have hall := List.all_eq_true.mp h j (List.mem_finRange j)
@@ -67,7 +67,7 @@ theorem aux_softmaxExpInRange_le (k : ℕ) (I : Interval (Vec 𝕋 n)) {i j : Fi
   exact le_expUp_of_le k _ _ (aux_expUpLimit_le k) hle
 
 theorem aux_one_add_sum_le_softmaxDenomUp (k : ℕ) (I : Interval (Vec 𝕋 n)) {i : Fin n}
-    (h : aux_softmaxExpInRange k I i = true) :
+    (h : aux_softmaxExpInRange k I i = true) : -- --- CONCL ---
     1 + ∑ j ∈ Finset.univ.erase i, Real.exp (toReal (I.sup j) - toReal (I.inf i))
       ≤ toReal (aux_softmaxDenomUp k I i) := by -- --- PROOF ---
   have hsum := sum_erase_le_sumOffUp i fun j => expUp k (subUp (I.sup j) (I.inf i))
@@ -84,7 +84,7 @@ theorem aux_one_add_sum_le_softmaxDenomUp (k : ℕ) (I : Interval (Vec 𝕋 n)) 
 
 /-- Below `softmax` at every point of the box. -/
 theorem softmaxRawLower_le (k : ℕ) (I : Interval (Vec 𝕋 n)) {x : Vec ℝ n}
-    (hx : ∀ i, toReal (I.inf i) ≤ x i ∧ x i ≤ toReal (I.sup i)) (i : Fin n) :
+    (hx : ∀ i, toReal (I.inf i) ≤ x i ∧ x i ≤ toReal (I.sup i)) (i : Fin n) : -- --- CONCL ---
     toReal (softmaxRawLower k I i) ≤ Real.softmax x i := by -- --- PROOF ---
   unfold softmaxRawLower
   split_ifs with h

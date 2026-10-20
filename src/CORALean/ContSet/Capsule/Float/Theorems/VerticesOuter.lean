@@ -57,7 +57,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.vertices_outer (p k : ℕ) (C : Capsule 𝕋 2) (hr : 0 ≤ toReal C.r)
-    (hnp : ¬ Real.Capsule.representsa_point C.nominal) (hI : C.I_error.construct = {0}) :
+    (hnp : ¬ Real.Capsule.representsa_point C.nominal)
+    (hI : C.I_error.construct = {0}) : -- --- CONCL ---
     ∀ B ∈ C.vertices p k, ∃ x ∈ B.construct, x ∈ frontier C.construct := by -- --- PROOF ---
   -- the box is the origin, so the set is the nominal capsule
   rw [Capsule.construct_eq_nominal hI]

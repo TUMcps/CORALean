@@ -37,7 +37,7 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] [FiniteDimensi
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.rank_eq_finrank_iff (Z : Zonotope α) :
+theorem Zonotope.rank_eq_finrank_iff (Z : Zonotope α) : -- --- CONCL ---
     Z.rank = Module.finrank ℝ α ↔ (interior Z.construct).Nonempty := by -- --- PROOF ---
   rw [Zonotope.isFullDim_iff]
   constructor

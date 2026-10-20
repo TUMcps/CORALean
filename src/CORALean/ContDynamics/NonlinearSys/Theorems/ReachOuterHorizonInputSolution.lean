@@ -92,7 +92,7 @@ theorem NonlinearSys.IsTrajectory.reach_outer_horizon_inputSolution [Mtimes ℐ 
       (MatExp.inputRemainder A Δt η) (linInput sys.f A B xs us U L))))
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder A Δt η) (linInput sys.f A B xs us U L)))) {o : ℕ}
-    (ho : 0 < o) : -- --- CONCL ---
+    (ho : 0 < o) :
     ∀ k ≤ K, x ((k : ℝ) * Δt) ∈ construct
       (((NonlinearSys.linearize A).discretize Δt).reach
         ⟨R₀, (NonlinearSys.linearize A).inputSolution Δt η (linInput sys.f A B xs us U L), 0, k⟩

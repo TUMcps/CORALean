@@ -37,7 +37,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem hasDerivAt_evalPoly {n : ℕ} (c : Fin (n + 1) → ℝ) (t : ℝ) :
+theorem hasDerivAt_evalPoly {n : ℕ} (c : Fin (n + 1) → ℝ) (t : ℝ) : -- --- CONCL ---
     HasDerivAt (evalPoly c) (evalPolyDeriv c t) t := by -- --- PROOF ---
   -- termwise, the power rule scaled by the coefficient
   have hterm : ∀ i : Fin (n + 1), i ∈ Finset.univ →

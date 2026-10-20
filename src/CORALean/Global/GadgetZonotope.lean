@@ -63,7 +63,7 @@ theorem aux_norm_le_sum_abs (y : Vec ℝ n) : ‖y‖ ≤ ∑ i, |y i| :=
       (Finset.single_le_sum (f := fun i => |y i|) (fun _ _ => abs_nonneg _) (Finset.mem_univ i))
 
 /-- Membership in `Z(½H, n e_{n+1})` through the closed-form norm. -/
-theorem aux_mem_iff (hn : 1 ≤ n) (y : Vec ℝ n) (t : ℝ) :
+theorem aux_mem_iff (hn : 1 ≤ n) (y : Vec ℝ n) (t : ℝ) : -- --- CONCL ---
     (∃ β : Vec ℝ n × Vec ℝ n, ‖β‖ ≤ 1 ∧ (y, t) = ((0 : Vec ℝ n), (n : ℝ)) +
         ((1 / 2 : ℝ) • gadgetH n) β) ↔
       ‖y‖ ≤ 1 ∧ ∑ i, |y i| + |t - n| ≤ n := by -- --- PROOF ---

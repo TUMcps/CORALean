@@ -45,7 +45,7 @@ variable {n : ℕ}
 
 /-- The monomial of the block `(i, g)`: the original column's monomial times `lᵢ`. -/
 theorem PolyZonotope.aux_monomial_addedTerms (pZ : PolyZonotope (Vec ℝ n)) (a : Fin pZ.p → ℝ)
-    (l : Fin n → ℝ) (i : Fin n) (g : Fin (pZ.h + 1)) :
+    (l : Fin n → ℝ) (i : Fin n) (g : Fin (pZ.h + 1)) : -- --- CONCL ---
     PolyZonotope.monomial pZ.addedTerms.E (Fin.append a l) (finProdFinEquiv (i, g))
       = PolyZonotope.extM pZ a g * l i := by -- --- PROOF ---
   unfold PolyZonotope.monomial
@@ -63,7 +63,7 @@ theorem PolyZonotope.aux_monomial_addedTerms (pZ : PolyZonotope (Vec ℝ n)) (a 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.addedTerms_point (pZ : PolyZonotope (Vec ℝ n)) (a : Fin pZ.p → ℝ)
-    (l : Fin n → ℝ) :
+    (l : Fin n → ℝ) : -- --- CONCL ---
     pZ.addedTerms.point (Fin.append a l) = ∑ i, l i * pZ.point a i := by -- --- PROOF ---
   unfold PolyZonotope.point
   show (0 : ℝ) + ∑ idx : Fin (n * (pZ.h + 1)),

@@ -36,7 +36,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.linComb_outer (P Q : Polygon) :
+theorem Polygon.linComb_outer (P Q : Polygon) : -- --- CONCL ---
     Set.linComb (ContSet.construct P) (ContSet.construct Q) ⊆
       ContSet.construct (Polygon.linComb P Q) := by -- --- PROOF ---
   rintro _ ⟨y₁, hy₁, y₂, hy₂, lam, hlam, rfl⟩

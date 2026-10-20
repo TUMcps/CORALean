@@ -43,7 +43,8 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem KleeneSignal.toBoolSignal_at (s : KleeneSignal ℝ) (hs : s.IsValid) (t : ℝ) (ht : 0 ≤ t) :
+theorem KleeneSignal.toBoolSignal_at (s : KleeneSignal ℝ) (hs : s.IsValid) (t : ℝ)
+    (ht : 0 ≤ t) : -- --- CONCL ---
     (s.toBoolSignal false).at t = (s.at t).floor ∧
       (s.toBoolSignal true).at t = (s.at t).ceil := by -- --- PROOF ---
   obtain ⟨h1, h2⟩ := (KleeneSignal.toBoolSignal_spec s hs false).2 t ht

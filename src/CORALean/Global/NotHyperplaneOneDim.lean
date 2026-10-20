@@ -45,7 +45,7 @@ namespace CORALean
 
 /-- A set of the line `ℝ¹ = Fin 1 → ℝ` with two different points is no hyperplane. -/
 theorem not_hyperplane_of_two_points_fin1 {S : Set (Fin 1 → ℝ)} {x y : Fin 1 → ℝ} (hx : x ∈ S)
-    (hy : y ∈ S) (hxy : x ≠ y) :
+    (hy : y ∈ S) (hxy : x ≠ y) : -- --- CONCL ---
     ¬ ∃ (f : (Fin 1 → ℝ) →ₗ[ℝ] ℝ) (c : ℝ), f ≠ 0 ∧ S = {z | f z = c} := by -- --- PROOF ---
   rintro ⟨f, c, hf, rfl⟩
   have key : ∀ z : Fin 1 → ℝ, f z = z 0 * f (fun _ => 1) := fun z => by

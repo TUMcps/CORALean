@@ -33,7 +33,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.sum_outer : ∀ {m : ℕ} {T : Fin m → Taylm n} {f : Fin m → Vec ℝ n → ℝ},
+theorem Taylm.sum_outer : -- --- CONCL ---
+    ∀ {m : ℕ} {T : Fin m → Taylm n} {f : Fin m → Vec ℝ n → ℝ},
     (∀ i, (T i).Encloses (f i)) → (Taylm.sum T).Encloses fun t => ∑ i, f i t := by -- --- PROOF ---
   intro m
   induction m with

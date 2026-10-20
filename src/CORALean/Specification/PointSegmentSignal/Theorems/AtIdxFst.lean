@@ -42,7 +42,7 @@ variable {T : Type} [LinearOrder T] [Zero T]
 
 /-- The value `atIdx` returns is the value at the time. -/
 theorem PointSegmentSignal.atIdx_fst (s : PointSegmentSignal T) (hs : s.IsValid) (u : T)
-    (h0 : 0 ≤ u) :
+    (h0 : 0 ≤ u) : -- --- CONCL ---
     (s.atIdx (u : WithTop T)).1 = s.at u := by -- --- PROOF ---
   obtain ⟨hi1, hi2, ⟨a, ha, hale⟩, hnext⟩ := PointSegmentSignal.takeWhile_le_pos s hs u h0
   have hg : s.timePoints.getD ((s.timePoints.takeWhile (· ≤ u)).length - 1) 0 = a := by

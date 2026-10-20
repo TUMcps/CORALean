@@ -58,7 +58,8 @@ def Bbox : Fin 1 → Interval D := ![⟨d 7 0, d 17 0⟩]
 
 set_option maxRecDepth 4096 in
 /-- No point of the disc lies in the box. -/
-theorem disc_box_disjoint : levelDisc.construct ∩ box.construct = ∅ := by -- --- PROOF ---
+theorem disc_box_disjoint : -- --- CONCL ---
+    levelDisc.construct ∩ box.construct = ∅ := by -- --- PROOF ---
   -- the test returns `false`; no `=` row, tolerance `0`, and `[7, 17]` bounds the row over the box
   refine LevelSet.isIntersecting_cell_outer (𝕋 := D) levelDisc (fun i => ?_) box Bbox
     (tol := d 0 0) ?_ ?_ rfl

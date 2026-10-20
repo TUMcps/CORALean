@@ -140,7 +140,7 @@ theorem aux_pv_min (s : PointSegmentSignal T) (hs : s.IsValid) (idx : ℕ) (hidx
 /-- A signal not consumed at this time contributes the interval value before its next point. -/
 theorem aux_pv_nonmin (s : PointSegmentSignal T) (hs : s.IsValid) (idx : ℕ) (hidx : 2 ≤ idx)
     (τ a : T) (ha : s.timePoints[idx - 2]? = some a) (haτ : a < τ)
-    (h2 : ∀ b, s.timePoints[idx - 1]? = some b → τ < b) :
+    (h2 : ∀ b, s.timePoints[idx - 1]? = some b → τ < b) : -- --- CONCL ---
     s.precIntervalValue idx = s.at τ := by -- --- PROOF ---
   have := s.at_between hs (idx - 2) a τ ha haτ
     (by rw [show idx - 2 + 1 = idx - 1 by omega]; exact h2)
@@ -236,7 +236,7 @@ theorem aux_loop_facts [Nonempty ι] (sig : ι → PointSegmentSignal T) (hv : �
 
 /-- The next time is nonnegative. -/
 theorem aux_zero_le_loopTime (sig : ι → PointSegmentSignal T) (hv : ∀ k, (sig k).IsValid)
-    (inIdx : ι → ℕ) (hge : ∀ k, 1 ≤ inIdx k) :
+    (inIdx : ι → ℕ) (hge : ∀ k, 1 ≤ inIdx k) : -- --- CONCL ---
     (0 : WithTop T) ≤ aux_loopTime sig inIdx := by -- --- PROOF ---
   refine Finset.le_inf fun j _ => ?_
   by_cases hj : inIdx j ≤ (sig j).length
@@ -498,7 +498,7 @@ theorem aux_combineLoop_spec [Nonempty ι] (op : (ι → Bool) → Bool) (sig : 
 
 /-- The invariant holds at the start. -/
 theorem aux_loopInv_init [Nonempty ι] (op : (ι → Bool) → Bool) (sig : ι → PointSegmentSignal T)
-    (hv : ∀ k, (sig k).IsValid) :
+    (hv : ∀ k, (sig k).IsValid) : -- --- CONCL ---
     aux_LoopInv op sig (∑ k, (sig k).length + 1) (fun _ => 1) [] [] := by -- --- PROOF ---
   have hN : aux_loopTime sig (fun _ => 1) ≤ ((0 : T) : WithTop T) := by
     have hk0 : (sig (Classical.arbitrary ι)).timeOrInf 1 = ((0 : T) : WithTop T) := by

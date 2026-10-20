@@ -51,7 +51,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.depBox_subset_closedBall {Z : Zonotope (Vec ℝ n)} {r : ℝ} (hr : 0 ≤ r)
-    (h : Z.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r) :
+    (h : Z.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r) : -- --- CONCL ---
     (STL.depBox Z).construct ⊆ Metric.closedBall (0 : Vec ℝ n) r := by -- --- PROOF ---
   refine Zonotope.subset_closedBall_of_absBound_le hr fun j => ?_
   refine le_trans (le_of_eq ?_) (Zonotope.absBound_le_of_subset_closedBall h j)

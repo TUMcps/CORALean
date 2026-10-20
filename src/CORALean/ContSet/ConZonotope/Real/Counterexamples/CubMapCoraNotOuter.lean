@@ -64,7 +64,7 @@ noncomputable def ConZonotope.aux_cubCexCora : ConZonotope (Vec ℝ 1) where
   P := HPolytope.eqs (!![1, 0, 0] : Mat ℝ 1 3) ![0]
 
 /-- The point `β = (1, -1)` of the input, `x = (2, -1)`. -/
-theorem ConZonotope.aux_cubCex_mem :
+theorem ConZonotope.aux_cubCex_mem : -- --- CONCL ---
     (![(2 : ℝ), -1] : Vec ℝ 2) ∈ ConZonotope.aux_cubCexIn.construct := by -- --- PROOF ---
   refine ⟨![1, -1], ?_, ?_, ?_⟩
   -- both factors lie in `[-1, 1]`
@@ -94,7 +94,7 @@ theorem ConZonotope.aux_cubMap_cex_mem :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- CORA's result does not contain the cubic image `z = 8` of the point `x = (2, -1)`. -/
-theorem ConZonotope.cubMapCora_not_outer :
+theorem ConZonotope.cubMapCora_not_outer : -- --- CONCL ---
     ∃ x ∈ ConZonotope.aux_cubCexIn.construct,
       PolyZonotope.cubEval ConZonotope.aux_cubCexTensor x
         ∉ ConZonotope.aux_cubCexCora.construct := by -- --- PROOF ---

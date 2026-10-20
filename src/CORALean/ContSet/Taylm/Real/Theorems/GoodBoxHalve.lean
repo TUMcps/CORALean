@@ -37,7 +37,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.goodBox_halve {B : Fin n → Interval ℝ} (hB : Taylm.GoodBox B) (β : Fin n) :
+theorem Taylm.goodBox_halve {B : Fin n → Interval ℝ} (hB : Taylm.GoodBox B)
+    (β : Fin n) : -- --- CONCL ---
     Taylm.GoodBox (Taylm.halveBox B β).1 ∧
       Taylm.GoodBox (Taylm.halveBox B β).2 := by -- --- PROOF ---
   have hm := hB β

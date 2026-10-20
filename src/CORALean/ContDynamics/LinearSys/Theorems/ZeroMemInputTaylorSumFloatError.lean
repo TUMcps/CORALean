@@ -52,7 +52,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- Every partial float Taylor sum keeps `0` in its error box, given `U` does, at `r ≥ 0`. -/
 theorem LinearSys.zero_mem_inputTaylorSumFloat_error (sys : LinearSys 𝕋 n) {r : 𝕋}
-    (hr : 0 ≤ toReal r) {U : Zonotope (Vec 𝕋 n)} (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) :
+    (hr : 0 ≤ toReal r) {U : Zonotope (Vec 𝕋 n)}
+    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) : -- --- CONCL ---
     ∀ i, (0 : Vec ℝ n) ∈ (sys.inputTaylorSumFloat r U i).I_error.construct := by -- --- PROOF ---
   have hterm : ∀ i, (0 : Vec ℝ n) ∈
     (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])

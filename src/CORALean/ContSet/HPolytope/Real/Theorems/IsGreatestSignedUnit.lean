@@ -47,7 +47,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.isGreatest_signed_unit (x : Vec ℝ n) (hn : 0 < n) :
+theorem HPolytope.isGreatest_signed_unit (x : Vec ℝ n) (hn : 0 < n) : -- --- CONCL ---
     IsGreatest {t | ∃ (i : Fin n) (s : ℝ), (s = 1 ∨ s = -1) ∧
       t = (s • (Pi.single i 1 : Vec ℝ n)) ⬝ᵥ x} ‖x‖ := by -- --- PROOF ---
   have hdot : ∀ (i : Fin n) (s : ℝ), (s • (Pi.single i 1 : Vec ℝ n)) ⬝ᵥ x = s * x i :=

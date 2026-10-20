@@ -50,7 +50,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.powSort_point (pZ : PolyZonotope (Vec ℝ n)) (k : ℕ) (a : Fin pZ.p → ℝ) :
+theorem PolyZonotope.powSort_point (pZ : PolyZonotope (Vec ℝ n)) (k : ℕ)
+    (a : Fin pZ.p → ℝ) : -- --- CONCL ---
     (pZ.powSort k).1.point (fun l => a (Fin.cast (pZ.powSort k).2 l))
       = fun i => pZ.point a i ^ (k + 1) := by -- --- PROOF ---
   induction k with

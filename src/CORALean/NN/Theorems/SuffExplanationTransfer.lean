@@ -63,7 +63,7 @@ theorem suffExplanation_of_abstract (f : Vec ℝ n → Vec ℝ m) (nnAbs : Neura
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
     (hcontain : f '' construct (ofInterval (explainBox x ε E) : S n)
       ⊆ construct (nnAbs.enclose (ofInterval (explainBox x ε E))))
-    (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l) : -- --- CONCL ---
+    (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l) :
     IsSuffExplanation f x ε E l :=
   suffExplanation_of_exact f x ε E l
     ((Specification.unsafeSet (misclassified m l)).holds_of_outer hcontain hsuffAbs)

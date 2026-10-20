@@ -53,7 +53,7 @@ def Zonotope.vec2matCora (len : ℕ) : Option (ℕ × ℕ) :=
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The vertices of an `n × m` matrix zonotope come back with the wrong shape if `n ≠ m`. -/
-theorem Zonotope.vec2mat_cora_ne {n m : ℕ} (hnm : n ≠ m) :
+theorem Zonotope.vec2mat_cora_ne {n m : ℕ} (hnm : n ≠ m) : -- --- CONCL ---
     Zonotope.vec2matCora (n * m) ≠ some (n, m) := by -- --- PROOF ---
   unfold Zonotope.vec2matCora
   split_ifs with h

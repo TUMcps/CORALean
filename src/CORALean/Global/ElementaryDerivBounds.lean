@@ -91,7 +91,8 @@ theorem one_add_sq_dom : CoeffDom (1 + X ^ 2 : ℝ[X]) (1 + X ^ 2) := fun j => b
   split_ifs <;> simp_all
 
 -- `atanDom` dominates `atanPoly`
-theorem atanPoly_dom (j : ℕ) : CoeffDom (atanPoly j) (atanDom j) := by -- --- PROOF ---
+theorem atanPoly_dom (j : ℕ) : -- --- CONCL ---
+    CoeffDom (atanPoly j) (atanDom j) := by -- --- PROOF ---
   induction j with
   | zero => exact one_dom
   | succ j ih =>
@@ -99,7 +100,8 @@ theorem atanPoly_dom (j : ℕ) : CoeffDom (atanPoly j) (atanDom j) := by -- --- 
     exact (ih.derivative.mul one_add_sq_dom).add ((ih.X_mul.smul_nat _ (by positivity)).neg)
 
 -- `asinDom` dominates `asinPoly`
-theorem asinPoly_dom (j : ℕ) : CoeffDom (asinPoly j) (asinDom j) := by -- --- PROOF ---
+theorem asinPoly_dom (j : ℕ) : -- --- CONCL ---
+    CoeffDom (asinPoly j) (asinDom j) := by -- --- PROOF ---
   induction j with
   | zero => exact one_dom
   | succ j ih =>
@@ -107,7 +109,7 @@ theorem asinPoly_dom (j : ℕ) : CoeffDom (asinPoly j) (asinDom j) := by -- --- 
     exact (ih.derivative.mul one_sub_sq_dom).add (ih.X_mul.smul_nat _ (by positivity))
 
 -- each derivative of `sin` is `sin` shifted by a quarter period
-theorem iteratedDeriv_sin_eq (k : ℕ) :
+theorem iteratedDeriv_sin_eq (k : ℕ) : -- --- CONCL ---
     iteratedDeriv k Real.sin = fun x => Real.sin (x + k * (Real.pi / 2)) := by -- --- PROOF ---
   induction k with
   | zero => simp
@@ -123,7 +125,7 @@ theorem iteratedDeriv_sin_eq (k : ℕ) :
     ring
 
 -- each derivative of `cos` is `cos` shifted by a quarter period
-theorem iteratedDeriv_cos_eq (k : ℕ) :
+theorem iteratedDeriv_cos_eq (k : ℕ) : -- --- CONCL ---
     iteratedDeriv k Real.cos = fun x => Real.cos (x + k * (Real.pi / 2)) := by -- --- PROOF ---
   induction k with
   | zero => simp
@@ -140,7 +142,7 @@ theorem iteratedDeriv_cos_eq (k : ℕ) :
     ring_nf
 
 -- the derivatives of `sinh` and `cosh` alternate between the two
-theorem iteratedDeriv_sinh_cosh (k : ℕ) :
+theorem iteratedDeriv_sinh_cosh (k : ℕ) : -- --- CONCL ---
     (iteratedDeriv k Real.sinh = Real.sinh ∧ iteratedDeriv k Real.cosh = Real.cosh) ∨
     (iteratedDeriv k Real.sinh = Real.cosh ∧
       iteratedDeriv k Real.cosh = Real.sinh) := by -- --- PROOF ---
@@ -160,7 +162,7 @@ theorem abs_sinh_le_cosh (x : ℝ) : |Real.sinh x| ≤ Real.cosh x := by
   constructor <;> nlinarith [Real.exp_pos x, Real.exp_pos (-x)]
 
 -- `tanh' = 1 - tanh²`, from the quotient `sinh / cosh`
-theorem hasDerivAt_tanh (x : ℝ) :
+theorem hasDerivAt_tanh (x : ℝ) : -- --- CONCL ---
     HasDerivAt Real.tanh (1 - Real.tanh x ^ 2) x := by -- --- PROOF ---
   have h := (Real.hasDerivAt_sinh x).div (Real.hasDerivAt_cosh x)
     (Real.cosh_pos x).ne'
@@ -182,7 +184,7 @@ theorem contDiff_tanh {k : WithTop ℕ∞} : ContDiff ℝ k Real.tanh := by
 
 -- where `g' = q(g)`, the `k`-th derivative is `odePoly q k` at `g`
 theorem iteratedDeriv_of_ode {g : ℝ → ℝ} {U : Set ℝ} (hU : IsOpen U) {q : ℝ[X]}
-    (hg : ∀ x ∈ U, HasDerivAt g (q.eval (g x)) x) (k : ℕ) :
+    (hg : ∀ x ∈ U, HasDerivAt g (q.eval (g x)) x) (k : ℕ) : -- --- CONCL ---
     ∀ x ∈ U, iteratedDeriv k g x = (odePoly q k).eval (g x) := by -- --- PROOF ---
   induction k with
   | zero => intro x _; simp [odePoly]
@@ -198,7 +200,7 @@ theorem iteratedDeriv_of_ode {g : ℝ → ℝ} {U : Set ℝ} (hU : IsOpen U) {q 
     rw [h2.deriv, odePoly, eval_mul]
 
 -- `tanh⁽ᵏ⁾` is at most `odePoly (1 + X²) k` at one
-theorem abs_iteratedDeriv_tanh_le (k : ℕ) (x : ℝ) :
+theorem abs_iteratedDeriv_tanh_le (k : ℕ) (x : ℝ) : -- --- CONCL ---
     |iteratedDeriv k Real.tanh x| ≤ (odePoly (1 + X ^ 2) k).eval 1 := by -- --- PROOF ---
   have h := iteratedDeriv_of_ode (g := Real.tanh) (U := Set.univ) isOpen_univ
     (q := 1 - X ^ 2) (fun x _ => by simpa using hasDerivAt_tanh x) k x trivial
@@ -208,7 +210,7 @@ theorem abs_iteratedDeriv_tanh_le (k : ℕ) (x : ℝ) :
   exact (div_le_one (Real.cosh_pos x)).2 (abs_sinh_le_cosh x)
 
 -- `|tan x| ≤ tan m` for `|x| ≤ m < π/2`, by monotonicity and oddness
-theorem abs_tan_le {x m : ℝ} (hx : |x| ≤ m) (hm : m < Real.pi / 2) :
+theorem abs_tan_le {x m : ℝ} (hx : |x| ≤ m) (hm : m < Real.pi / 2) : -- --- CONCL ---
     |Real.tan x| ≤ Real.tan m := by -- --- PROOF ---
   have hm0 : 0 ≤ m := le_trans (abs_nonneg x) hx
   have hmono : ∀ y z : ℝ, 0 ≤ y → y ≤ z → z < Real.pi / 2 → Real.tan y ≤ Real.tan z :=
@@ -222,7 +224,8 @@ theorem abs_tan_le {x m : ℝ} (hx : |x| ≤ m) (hm : m < Real.pi / 2) :
     exact hmono _ _ (by linarith) (by linarith) hm
 
 -- `tan⁽ᵏ⁾` is at most `odePoly (1 + X²) k` at `tan m`
-theorem abs_iteratedDeriv_tan_le (k : ℕ) {x m : ℝ} (hx : |x| ≤ m) (hm : m < Real.pi / 2) :
+theorem abs_iteratedDeriv_tan_le (k : ℕ) {x m : ℝ} (hx : |x| ≤ m)
+    (hm : m < Real.pi / 2) : -- --- CONCL ---
     |iteratedDeriv k Real.tan x| ≤ (odePoly (1 + X ^ 2) k).eval (Real.tan m) := by -- --- PROOF ---
   have hxm : x ∈ Set.Ioo (-(Real.pi / 2)) (Real.pi / 2) := by
     rw [abs_le] at hx; constructor <;> linarith [hx.1, hx.2]
@@ -235,7 +238,7 @@ theorem abs_iteratedDeriv_tan_le (k : ℕ) {x m : ℝ} (hx : |x| ≤ m) (hm : m 
   exact abs_tan_le hx hm
 
 -- derivatives of `(1 + x²)⁻¹` are `atanPoly j` times a power of it
-theorem iteratedDeriv_inv_one_add_sq (j : ℕ) :
+theorem iteratedDeriv_inv_one_add_sq (j : ℕ) : -- --- CONCL ---
     iteratedDeriv j (fun x : ℝ => (1 + x ^ 2)⁻¹)
       = fun x => (atanPoly j).eval x * ((1 + x ^ 2)⁻¹) ^ (j + 1) := by -- --- PROOF ---
   induction j with
@@ -269,7 +272,7 @@ theorem iteratedDeriv_atan (j : ℕ) (x : ℝ) :
   exact congrFun (iteratedDeriv_inv_one_add_sq j) x
 
 -- the power is at most one, the polynomial is bounded by `atanDom`
-theorem abs_iteratedDeriv_atan_le (j : ℕ) {x m : ℝ} (hx : |x| ≤ m) :
+theorem abs_iteratedDeriv_atan_le (j : ℕ) {x m : ℝ} (hx : |x| ≤ m) : -- --- CONCL ---
     |iteratedDeriv (j + 1) Real.arctan x| ≤ (atanDom j).eval m := by -- --- PROOF ---
   rw [iteratedDeriv_atan, abs_mul, abs_pow]
   have h := (atanPoly_dom j).abs_eval_le hx
@@ -281,7 +284,7 @@ theorem abs_iteratedDeriv_atan_le (j : ℕ) {x m : ℝ} (hx : |x| ≤ m) :
     _ = _ := mul_one _
 
 -- `((1 - x²)^(1/2))⁻¹` has derivative `x` times its cube
-theorem hasDerivAt_inv_sqrt {x : ℝ} (hx : x ∈ Set.Ioo (-1 : ℝ) 1) :
+theorem hasDerivAt_inv_sqrt {x : ℝ} (hx : x ∈ Set.Ioo (-1 : ℝ) 1) : -- --- CONCL ---
     HasDerivAt (fun y : ℝ => (√(1 - y ^ 2))⁻¹) (x * ((√(1 - x ^ 2))⁻¹) ^ 3) x := by -- --- PROOF ---
   have h1 : 0 < 1 - x ^ 2 := by nlinarith [hx.1, hx.2]
   have hs : 0 < √(1 - x ^ 2) := Real.sqrt_pos.2 h1
@@ -292,7 +295,7 @@ theorem hasDerivAt_inv_sqrt {x : ℝ} (hx : x ∈ Set.Ioo (-1 : ℝ) 1) :
   field_simp
 
 -- its `j`-th derivative on `(-1, 1)` is `asinPoly j` times a power of it
-theorem iteratedDeriv_inv_sqrt (j : ℕ) :
+theorem iteratedDeriv_inv_sqrt (j : ℕ) : -- --- CONCL ---
     ∀ x ∈ Set.Ioo (-1 : ℝ) 1, iteratedDeriv j (fun y : ℝ => (√(1 - y ^ 2))⁻¹) x
       = (asinPoly j).eval x * ((√(1 - x ^ 2))⁻¹) ^ (2 * j + 1) := by -- --- PROOF ---
   induction j with
@@ -319,7 +322,8 @@ theorem iteratedDeriv_inv_sqrt (j : ℕ) :
     linear_combination (-(eval x (derivative (asinPoly j)) * v ^ (2 * j + 1))) * hq
 
 -- bounded on `|x| ≤ m < 1` by `asinDom` and the power at `m`
-theorem abs_iteratedDeriv_inv_sqrt_le (j : ℕ) {x m : ℝ} (hx : |x| ≤ m) (hm : m < 1) :
+theorem abs_iteratedDeriv_inv_sqrt_le (j : ℕ) {x m : ℝ} (hx : |x| ≤ m)
+    (hm : m < 1) : -- --- CONCL ---
     |iteratedDeriv j (fun y : ℝ => (√(1 - y ^ 2))⁻¹) x|
       ≤ (asinDom j).eval m * ((√(1 - m ^ 2))⁻¹) ^ (2 * j + 1) := by -- --- PROOF ---
   have hxm : x ∈ Set.Ioo (-1 : ℝ) 1 := by
@@ -344,7 +348,7 @@ theorem abs_iteratedDeriv_asin_le (j : ℕ) {x m : ℝ} (hx : |x| ≤ m) (hm : m
   exact abs_iteratedDeriv_inv_sqrt_le j hx hm
 
 -- `acos⁽ʲ⁺¹⁾` is its negation, the same magnitude
-theorem abs_iteratedDeriv_acos_le (j : ℕ) {x m : ℝ} (hx : |x| ≤ m) (hm : m < 1) :
+theorem abs_iteratedDeriv_acos_le (j : ℕ) {x m : ℝ} (hx : |x| ≤ m) (hm : m < 1) : -- --- CONCL ---
     |iteratedDeriv (j + 1) Real.arccos x|
       ≤ (asinDom j).eval m * ((√(1 - m ^ 2))⁻¹) ^ (2 * j + 1) := by -- --- PROOF ---
   rw [iteratedDeriv_succ', Real.deriv_arccos]

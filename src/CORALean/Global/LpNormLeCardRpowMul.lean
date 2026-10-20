@@ -49,7 +49,7 @@ variable {m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem lpNorm_le_card_rpow_mul {p q : ℝ≥0∞} [Fact (1 ≤ p)] [Fact (1 ≤ q)] (hpq : p ≤ q)
-    (hp : p ≠ ∞) (x : Fin m → ℝ) :
+    (hp : p ≠ ∞) (x : Fin m → ℝ) : -- --- CONCL ---
     ‖toLp p x‖ ≤ (m : ℝ) ^ (p⁻¹ - q⁻¹).toReal * ‖toLp q x‖ := by -- --- PROOF ---
   have hp1 : 1 ≤ p.toReal := by
     simpa using ENNReal.toReal_mono hp (Fact.out : 1 ≤ p)

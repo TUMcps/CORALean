@@ -51,7 +51,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.rdivide_exact {I J : Interval (Vec ℝ n)} (hI : I.IsNonempty)
-    (hJ : J.IsNonempty) (h0 : ∀ i, 0 < J.inf i ∨ J.sup i < 0) :
+    (hJ : J.IsNonempty) (h0 : ∀ i, 0 < J.inf i ∨ J.sup i < 0) : -- --- CONCL ---
     (I.rdivide J).construct =
       Set.image2 (fun x y i => x i / y i) I.construct J.construct := by -- --- PROOF ---
   -- the reciprocal box is nonempty because the denominator's signs are fixed

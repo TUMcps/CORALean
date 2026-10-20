@@ -54,7 +54,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- [1, Def. 3.2]: the reachable set over `[0, r]` is the union of the
 point-in-time reachable sets at every time in it. -/
 theorem LinearSys.timeIntervalReachSetExact_eq_iUnion (sys : LinearSys 𝕋 n) (T : Set ℝ) (R₀ U : S n)
-    (r : ℝ) :
+    (r : ℝ) : -- --- CONCL ---
     sys.timeIntervalReachSetExact T R₀ U r
       = ⋃ t ∈ Set.Icc (0:ℝ) r, sys.reachSetExact T R₀ U t := by -- --- PROOF ---
   ext y

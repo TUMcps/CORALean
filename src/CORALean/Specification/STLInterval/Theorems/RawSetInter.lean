@@ -38,7 +38,8 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The two lower tests together are the test of the larger bound. -/
-private theorem STLInterval.rawSet_lower_and (l₁ l₂ : EReal) (lc₁ lc₂ : Bool) (t : EReal) :
+private theorem STLInterval.rawSet_lower_and (l₁ l₂ : EReal) (lc₁ lc₂ : Bool)
+    (t : EReal) : -- --- CONCL ---
     ((l₁ < t ∨ (lc₁ = true ∧ l₁ = t)) ∧ (l₂ < t ∨ (lc₂ = true ∧ l₂ = t))) ↔
       (max l₁ l₂ < t ∨ ((if l₂ < l₁ then lc₁ else if l₁ < l₂ then lc₂ else lc₁ && lc₂) = true ∧
         max l₁ l₂ = t)) := by -- --- PROOF ---
@@ -81,7 +82,8 @@ private theorem STLInterval.rawSet_lower_and (l₁ l₂ : EReal) (lc₁ lc₂ : 
       · exact Or.inl h
 
 /-- The two upper tests together are the test of the smaller bound. -/
-private theorem STLInterval.rawSet_upper_and (u₁ u₂ : EReal) (rc₁ rc₂ : Bool) (t : EReal) :
+private theorem STLInterval.rawSet_upper_and (u₁ u₂ : EReal) (rc₁ rc₂ : Bool)
+    (t : EReal) : -- --- CONCL ---
     ((t < u₁ ∨ (rc₁ = true ∧ t = u₁)) ∧ (t < u₂ ∨ (rc₂ = true ∧ t = u₂))) ↔
       (t < min u₁ u₂ ∨ ((if u₁ < u₂ then rc₁ else if u₂ < u₁ then rc₂ else rc₁ && rc₂) = true ∧
         t = min u₁ u₂)) := by -- --- PROOF ---

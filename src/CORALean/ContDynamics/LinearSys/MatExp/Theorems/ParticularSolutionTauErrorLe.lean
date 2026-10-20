@@ -58,7 +58,7 @@ variable {n : ℕ}
 of the origin: `norm₂_mulVec_le` carries `norm₂_le_of_mem_particularSolutionOuter`'s bound through
 the fixed matrix `e^{Atk}`, and `Finset.Ico 0 (η+1) = Finset.range (η+1)` matches `bPU` to it. -/
 theorem aux_norm₂_le_of_mem_particularSolutionTauError_set (A : Mat ℝ n n) (tk : ℝ)
-    {U0 : Set (Vec ℝ n)} (hU0 : Bornology.IsBounded U0) (Δt : ℝ) (η : ℕ) :
+    {U0 : Set (Vec ℝ n)} (hU0 : Bornology.IsBounded U0) (Δt : ℝ) (η : ℕ) : -- --- CONCL ---
     ∀ z ∈ (fun x => (exp (tk • A)).mulVec x) '' MatExp.particularSolutionOuter A U0 0 Δt η,
       ‖z‖₂ ≤ MatExp.particularSolutionTauErrorBound A tk U0 Δt η := by -- --- PROOF ---
   rintro _ ⟨y, hy, rfl⟩
@@ -73,7 +73,7 @@ theorem aux_norm₂_le_of_mem_particularSolutionTauError_set (A : Mat ℝ n n) (
 
 /-- `particularSolutionTauError` is within `√n` times its own explicit bound. -/
 theorem MatExp.particularSolutionTauError_le (A : Mat ℝ n n) (tk : ℝ) {U0 : Set (Vec ℝ n)}
-    (hU0 : Bornology.IsBounded U0) (Δt : ℝ) (η : ℕ) :
+    (hU0 : Bornology.IsBounded U0) (Δt : ℝ) (η : ℕ) : -- --- CONCL ---
     MatExp.particularSolutionTauError A tk U0 Δt η
       ≤ Real.sqrt n * MatExp.particularSolutionTauErrorBound A tk U0 Δt η := by -- --- PROOF ---
   have hr : (0:ℝ) ≤ MatExp.particularSolutionTauErrorBound A tk U0 Δt η := by

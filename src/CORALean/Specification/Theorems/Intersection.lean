@@ -60,7 +60,8 @@ theorem aux_zero_mem_sub_of_convex (hO : Convex ℝ O) (hU : Convex ℝ U) (hV :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Specification.not_holds_unsafeSet_of_zero_mem_convexHull
-    (hO : Convex ℝ O) (hU : Convex ℝ U) (hV : V ⊆ O - U) (h0 : (0 : α) ∈ convexHull ℝ V) :
+    (hO : Convex ℝ O) (hU : Convex ℝ U) (hV : V ⊆ O - U)
+    (h0 : (0 : α) ∈ convexHull ℝ V) : -- --- CONCL ---
     ¬ (Specification.unsafeSet U).Holds O := by -- --- PROOF ---
   rw [Specification.holds_unsafeSet]
   intro h

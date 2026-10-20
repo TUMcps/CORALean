@@ -36,7 +36,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.center_mem (P : VPolytope α) (hk : 0 < P.k) :
+theorem VPolytope.center_mem (P : VPolytope α) (hk : 0 < P.k) : -- --- CONCL ---
     P.center ∈ P.construct := by -- --- PROOF ---
   -- every weight is `1/k`, non-negative and summing to one
   have hk' : (0 : ℝ) < P.k := by exact_mod_cast hk

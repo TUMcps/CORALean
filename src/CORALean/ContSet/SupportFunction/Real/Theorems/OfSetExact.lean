@@ -43,7 +43,8 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SupportFunction.ofSet_exact {S : Set α} (hconv : Convex ℝ S) (hcl : IsClosed S) :
+theorem SupportFunction.ofSet_exact {S : Set α} (hconv : Convex ℝ S)
+    (hcl : IsClosed S) : -- --- CONCL ---
     (SupportFunction.ofSet S).construct = S := by -- --- PROOF ---
   ext x
   constructor

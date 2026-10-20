@@ -48,7 +48,8 @@ variable {m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem lpNorm_le_lpNorm {p q : ℝ≥0∞} [Fact (1 ≤ p)] [Fact (1 ≤ q)] (hpq : p ≤ q) (hp : p ≠ ∞)
-    (x : Fin m → ℝ) : ‖toLp q x‖ ≤ ‖toLp p x‖ := by -- --- PROOF ---
+    (x : Fin m → ℝ) : -- --- CONCL ---
+    ‖toLp q x‖ ≤ ‖toLp p x‖ := by -- --- PROOF ---
   have hp1 : 1 ≤ p.toReal := by
     simpa using ENNReal.toReal_mono hp (Fact.out : 1 ≤ p)
   have hp0 : 0 < p.toReal := by linarith

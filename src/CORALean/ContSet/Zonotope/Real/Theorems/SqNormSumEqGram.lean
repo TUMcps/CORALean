@@ -45,7 +45,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.sq_norm₂_sum_eq_gram (Z : Zonotope (Vec ℝ n)) (β : Fin Z.h → ℝ) :
+theorem Zonotope.sq_norm₂_sum_eq_gram (Z : Zonotope (Vec ℝ n)) (β : Fin Z.h → ℝ) : -- --- CONCL ---
     ‖∑ j, β j • Z.G j‖₂ ^ 2 =
       β ⬝ᵥ ((Matrix.of fun j k => Z.G j ⬝ᵥ Z.G k) *ᵥ β) := by -- --- PROOF ---
   rw [← dotProduct_self, sum_dotProduct]

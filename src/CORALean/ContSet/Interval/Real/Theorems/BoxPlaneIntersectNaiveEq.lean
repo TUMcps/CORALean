@@ -60,7 +60,7 @@ theorem aux_edge_apply {I : Interval (Vec ℝ n)} {l : Fin n → Bool} {j : Fin 
 
 /-- The edge's length is the denominator of `t⋆`. -/
 theorem aux_edge_den {I : Interval (Vec ℝ n)} {l : Fin n → Bool} {j : Fin n}
-    (hlj : l j = false) :
+    (hlj : l j = false) : -- --- CONCL ---
     ∑ i, (I.corner (Function.update l j true) i - I.corner l i) =
       I.sup j - I.inf j := by -- --- PROOF ---
   have : ∀ i, I.corner (Function.update l j true) i - I.corner l i =
@@ -75,7 +75,7 @@ theorem aux_edge_den {I : Interval (Vec ℝ n)} {l : Fin n → Bool} {j : Fin n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.boxPlaneIntersectNaive_eq {I : Interval (Vec ℝ n)} (hn : 0 < n)
-    (hI : ∀ i, I.inf i < I.sup i) (α : ℝ) :
+    (hI : ∀ i, I.inf i < I.sup i) (α : ℝ) : -- --- CONCL ---
     ↑(I.boxPlaneIntersectNaive α) =
       Set.extremePoints ℝ (I.construct ∩ Interval.hyperplane 1 α) := by -- --- PROOF ---
   classical

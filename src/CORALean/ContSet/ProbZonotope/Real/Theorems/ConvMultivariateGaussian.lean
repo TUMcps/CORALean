@@ -44,7 +44,7 @@ variable {n : ℕ}
 
 /-- `N(a, Σ₁) ∗ N(b, Σ₂) = N(a + b, Σ₁ + Σ₂)`. -/
 theorem conv_multivariateGaussian (a b : EuclideanSpace ℝ (Fin n)) {S₁ S₂ : Mat ℝ n n}
-    (h₁ : S₁.PosSemidef) (h₂ : S₂.PosSemidef) :
+    (h₁ : S₁.PosSemidef) (h₂ : S₂.PosSemidef) : -- --- CONCL ---
     multivariateGaussian a S₁ ∗ multivariateGaussian b S₂
       = multivariateGaussian (a + b) (S₁ + S₂) := by -- --- PROOF ---
   apply Measure.ext_of_charFun

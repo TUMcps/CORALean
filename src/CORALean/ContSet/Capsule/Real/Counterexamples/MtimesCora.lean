@@ -64,7 +64,7 @@ variable {m n : ℕ}
 /-- For `M = ½` in dimension one, `M Mᵀ = ¼`, so `lam = ¼`, and CORA's capsule misses the image
 of the capsule with center `0`, no segment and radius `1` (the point `1` maps to `½`, outside the
 ball of radius `¼`). -/
-theorem Capsule.mtimes_cora_counterexample :
+theorem Capsule.mtimes_cora_counterexample : -- --- CONCL ---
     ∃ (M : Mat ℝ 1 1) (C : Capsule 1), M * M.transpose = Matrix.of (fun _ _ => (1 / 4 : ℝ)) ∧
       ¬ (fun x => M.mulVec x) '' C.construct ⊆
         (C.mtimesCora M (1 / 4)).construct := by -- --- PROOF ---

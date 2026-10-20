@@ -49,7 +49,8 @@ variable {q n : ℕ}
 theorem HPolytope.eq_zero_of_mulVec_nonpos {H : Mat ℝ q n} {h : Vec ℝ q}
     (hne : (HPolytope.ineqs H h).construct.Nonempty)
     (hb : Bornology.IsBounded (HPolytope.ineqs H h).construct) {d : Vec ℝ n}
-    (hd : H *ᵥ d ≤ 0) : d = 0 := by -- --- PROOF ---
+    (hd : H *ᵥ d ≤ 0) : -- --- CONCL ---
+    d = 0 := by -- --- PROOF ---
   obtain ⟨p, hp⟩ := hne
   obtain ⟨R, hR⟩ := isBounded_iff_forall_norm_le.mp hb
   -- the whole ray `p + t d` lies in the polytope

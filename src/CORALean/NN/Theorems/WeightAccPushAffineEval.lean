@@ -40,7 +40,8 @@ variable {α : Type} [Semiring α] {n m k d : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The pushed accumulator is the accumulated map followed by `x ↦ s ⊙ x + o`. -/
-theorem WeightAcc.pushAffine_eval (acc : WeightAcc α n d) (s o : Fin d → α) (x : Fin n → α) :
+theorem WeightAcc.pushAffine_eval (acc : WeightAcc α n d) (s o : Fin d → α)
+    (x : Fin n → α) : -- --- CONCL ---
     (acc.pushAffine s o).eval x = fun i => s i * acc.eval x i + o i := by -- --- PROOF ---
   cases acc with
   | id => ext i; simp [WeightAcc.pushAffine, WeightAcc.eval, Matrix.mulVec_diagonal]

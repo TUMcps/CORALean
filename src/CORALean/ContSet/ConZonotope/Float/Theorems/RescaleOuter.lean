@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ConZonotope.rescale_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (ξL ξU : Vec 𝕋 cZ.h)
     (hB : ∀ ξ : Vec ℝ cZ.h, (∀ j, |ξ j| ≤ 1) → ξ ∈ cZ.P.nominal.construct →
-      ∀ j, toReal (ξL j) ≤ ξ j ∧ ξ j ≤ toReal (ξU j)) :
+      ∀ j, toReal (ξL j) ≤ ξ j ∧ ξ j ≤ toReal (ξU j)) : -- --- CONCL ---
     cZ.construct ⊆ (cZ.rescale ξL ξU).construct := by -- --- PROOF ---
   rintro _ ⟨y, hy', e, he, rfl⟩
   obtain ⟨ξ, hξ, hP, hy⟩ := ConZonotope.mem_nominalSet_iff.mp hy'

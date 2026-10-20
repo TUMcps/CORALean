@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.vertices_outer (k : ℕ) (E : Ellipsoid 𝕋 1) :
+theorem Ellipsoid.vertices_outer (k : ℕ) (E : Ellipsoid 𝕋 1) : -- --- CONCL ---
     E.construct ⊆ convexHull ℝ {y | ∃ v ∈ E.vertices k, toRealVec v = y} := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩
   show y + e ∈ _

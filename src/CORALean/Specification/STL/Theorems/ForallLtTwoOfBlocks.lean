@@ -43,7 +43,8 @@ open scoped NNReal
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Time.forall_lt_two_of_blocks (P : ℝ≥0 → Prop) (hG : ∀ u, 0 < u → u < 1 → P u) (h₁ : P 1)
-    (hG' : ∀ u, 0 < u → u < 1 → P (u + 1)) : ∀ p, 0 < p → p < 2 → P p := by -- --- PROOF ---
+    (hG' : ∀ u, 0 < u → u < 1 → P (u + 1)) : -- --- CONCL ---
+    ∀ p, 0 < p → p < 2 → P p := by -- --- PROOF ---
   intro p hp₀ hp₂
   rcases lt_trichotomy p 1 with hp | rfl | hp
   · exact hG p hp₀ hp

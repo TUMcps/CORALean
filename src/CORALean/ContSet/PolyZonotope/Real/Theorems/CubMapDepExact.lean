@@ -42,7 +42,7 @@ variable {n m : ℕ}
 
 /-- Exact where every coefficient is dependent, which `cubMap` arranges. -/
 theorem PolyZonotope.cubMapDep_exact (T : Fin m → Fin n → Mat ℝ n n)
-    (pZ : PolyZonotope (Vec ℝ n)) (hq : pZ.q = 0) :
+    (pZ : PolyZonotope (Vec ℝ n)) (hq : pZ.q = 0) : -- --- CONCL ---
     cubEval T '' pZ.construct = (cubMapDep T pZ).construct := by -- --- PROOF ---
   -- with nothing independent the set is exactly the points
   have hc : pZ.construct = pZ.point '' {a : Fin pZ.p → ℝ | ∀ k, |a k| ≤ 1} := by

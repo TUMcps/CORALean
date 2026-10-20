@@ -38,7 +38,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.prodBounds_mem : ∀ {m : ℕ} (f : Fin m → Interval 𝕋) (x : Fin m → ℝ),
+theorem Taylm.prodBounds_mem : -- --- CONCL ---
+    ∀ {m : ℕ} (f : Fin m → Interval 𝕋) (x : Fin m → ℝ),
     (∀ i, toReal (f i).inf ≤ x i ∧ x i ≤ toReal (f i).sup) →
       toReal (Taylm.prodBounds f).inf ≤ ∏ i, x i ∧
         ∏ i, x i ≤ toReal (Taylm.prodBounds f).sup := by -- --- PROOF ---

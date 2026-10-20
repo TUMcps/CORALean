@@ -46,7 +46,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.backReachSetExistsExact_preimage (sys : LinearSysDT 𝕋 n) (T U : S n) (k : ℕ) :
+theorem LinearSysDT.backReachSetExistsExact_preimage (sys : LinearSysDT 𝕋 n) (T U : S n)
+    (k : ℕ) : -- --- CONCL ---
     sys.backReachSetExistsExact T U (k + 1) = mulVecLin (toRealMat sys.A) ⁻¹'
       (sys.backReachSetExistsExact T U k + -construct U) := by -- --- PROOF ---
   ext x

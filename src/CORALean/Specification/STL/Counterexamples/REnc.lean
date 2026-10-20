@@ -43,7 +43,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.DFormula.rEnc_counterexample :
+theorem STL.DFormula.rEnc_counterexample : -- --- CONCL ---
     let x : ℕ → ℝ × ℝ := fun t => if t = 0 then (1, -1) else (-1, 1)
     let φ : STL.DFormula (ℝ × ℝ) := .until 0 1 (by norm_num) (.pred Prod.fst) (.pred Prod.snd)
     φ.bound ≤ 1 ∧ 0 < φ.rEnc 1 false x 0 ∧ φ.rob x 0 < 0 := by -- --- PROOF ---

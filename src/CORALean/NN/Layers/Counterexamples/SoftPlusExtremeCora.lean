@@ -69,7 +69,7 @@ namespace CORALean.Real
 
 /-- At sharpness `1` on `[-1, 1]` there is a point whose deviation `f(x) - m x` is below CORA's
 lower error `el`; `x = 0` is one. -/
-theorem Layer.softplusExtreme_cora_counterexample :
+theorem Layer.softplusExtreme_cora_counterexample : -- --- CONCL ---
     ∃ x ∈ Set.Icc (-1 : ℝ) 1,
       softplus 1 x - (softplus 1 1 - softplus 1 (-1)) / (1 - (-1)) * x <
         Layer.softplusErrorLowerCora 1 (-1) 1 := by -- --- PROOF ---

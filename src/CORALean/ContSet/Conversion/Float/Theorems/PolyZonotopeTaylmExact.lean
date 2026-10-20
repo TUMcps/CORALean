@@ -69,7 +69,7 @@ theorem PolyZonotope.aux_taylm_poly (pZ : PolyZonotope (Vec 𝕋 n)) (N : ℕ) (
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.taylm_exact (pZ : PolyZonotope (Vec 𝕋 n)) (N : ℕ) :
+theorem PolyZonotope.taylm_exact (pZ : PolyZonotope (Vec 𝕋 n)) (N : ℕ) : -- --- CONCL ---
     Taylm.construct (pZ.taylm N) = pZ.construct := by -- --- PROOF ---
   ext x
   constructor

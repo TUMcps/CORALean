@@ -45,7 +45,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- Holding the factors in their whole box is holding them nowhere: the
 evaluation is the set. -/
-theorem PolyZonotope.evalOn_unitBox (pZ : PolyZonotope α) :
+theorem PolyZonotope.evalOn_unitBox (pZ : PolyZonotope α) : -- --- CONCL ---
     pZ.evalOn {a | ∀ k, |a k| ≤ 1} = pZ.construct := by -- --- PROOF ---
   ext x
   constructor

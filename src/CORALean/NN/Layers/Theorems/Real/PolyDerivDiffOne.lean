@@ -40,7 +40,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem polyDerivDiff_one (lo hi : ℝ) (c : Fin 2 → ℝ) (l u : ℝ) :
+theorem polyDerivDiff_one (lo hi : ℝ) (c : Fin 2 → ℝ) (l u : ℝ) : -- --- CONCL ---
     polyDerivDiff lo hi (polyDerivCenter c) (polyDerivRadius c l u)
       = max |lo - c 1| |hi - c 1| := by -- --- PROOF ---
   have hctr : polyDerivCenter c = c 1 := by

@@ -55,7 +55,7 @@ variable {q n : ℕ}
 
 /-- [1, Eq. 6]: `B_r ⊆ {A x ≤ b}` iff `r ≤ bᵢ` for every `i`, for unit rows. -/
 theorem HPolytope.ball_subset_ineqs_iff (A : Mat ℝ q n) (b : Vec ℝ q) (hA : ∀ i, ‖A i‖₂ = 1)
-    {r : ℝ} (hr : 0 ≤ r) :
+    {r : ℝ} (hr : 0 ≤ r) : -- --- CONCL ---
     (∀ x : Vec ℝ n, ‖x‖₂ ≤ r → x ∈ (HPolytope.ineqs A b).construct)
       ↔ ∀ i, r ≤ b i := by -- --- PROOF ---
   constructor

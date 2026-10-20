@@ -71,7 +71,8 @@ theorem Zonotope.aux_abs_gap_le {h : ℕ} {GLo GHi : Fin h → Mat 𝕋 m n}
 theorem Zonotope.ofEntryBoundsMat_outer (Z : CORALean.Real.Zonotope (Mat ℝ m n))
     {cLo cHi : Mat 𝕋 m n} {GLo GHi : Fin Z.h → Mat 𝕋 m n} (E : Interval (Mat 𝕋 m n))
     (hc : ∀ i j, toReal (cLo i j) ≤ Z.c i j ∧ Z.c i j ≤ toReal (cHi i j))
-    (hG : ∀ k i j, toReal (GLo k i j) ≤ Z.G k i j ∧ Z.G k i j ≤ toReal (GHi k i j)) :
+    (hG : ∀ k i j, toReal (GLo k i j) ≤ Z.G k i j ∧ Z.G k i j ≤ toReal (GHi k i j))
+    : -- --- CONCL ---
     Z.construct + E.construct
       ⊆ (Zonotope.ofEntryBoundsMat cLo cHi GLo GHi E).construct := by -- --- PROOF ---
   rintro _ ⟨_, ⟨β, hβ, rfl⟩, e, he, rfl⟩

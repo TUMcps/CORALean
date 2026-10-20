@@ -43,7 +43,7 @@ namespace CORALean
 
 /-- Every `t ∈ [0, tFinal]` is in a window `[k Δt, k Δt + Δt]` that `reach` keeps. -/
 theorem LinearSys.exists_reach_window {tFinal Δt t : ℝ} (hΔt : 0 < Δt)
-    (ht : t ∈ Set.Icc 0 tFinal) :
+    (ht : t ∈ Set.Icc 0 tFinal) : -- --- CONCL ---
     ∃ k < max 1 ⌈tFinal / Δt⌉₊, (k : ℝ) * Δt ≤ t ∧ t - k * Δt ≤ Δt := by -- --- PROOF ---
   -- `k = c - 1`, the window whose right end `c Δt` is the first to reach `t`
   obtain ⟨c, hc⟩ : ∃ c, c = ⌈t / Δt⌉₊ := ⟨_, rfl⟩

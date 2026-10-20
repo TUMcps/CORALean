@@ -39,7 +39,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.isFullDim_iff (I : Interval (Vec ℝ n)) :
+theorem Interval.isFullDim_iff (I : Interval (Vec ℝ n)) : -- --- CONCL ---
     ContSet.IsFullDim I ↔ ∀ i, I.inf i < I.sup i := by -- --- PROOF ---
   have hc : construct I = Icc I.inf I.sup := by
     ext x

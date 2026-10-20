@@ -44,7 +44,8 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FourValuedSignal.toKleeneSignal_at (s : FourValuedSignal ℝ) (hs : s.IsValid) (t : ℝ)
-    (ht : 0 ≤ t) : (s.toKleeneSignal Kleene.ff).at t = (s.at t).floor ∧
+    (ht : 0 ≤ t) : -- --- CONCL ---
+    (s.toKleeneSignal Kleene.ff).at t = (s.at t).floor ∧
       (s.toKleeneSignal Kleene.tt).at t = (s.at t).ceil := by -- --- PROOF ---
   obtain ⟨h1, h2⟩ := (s.toKleeneSignal_spec hs Kleene.ff).2 t ht
   obtain ⟨g1, g2⟩ := (s.toKleeneSignal_spec hs Kleene.tt).2 t ht

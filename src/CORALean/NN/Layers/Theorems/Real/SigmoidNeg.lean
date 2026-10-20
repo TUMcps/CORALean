@@ -33,7 +33,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem sigmoid_neg (t : ℝ) : sigmoid (-t) = 1 - sigmoid t := by -- --- PROOF ---
+theorem sigmoid_neg (t : ℝ) : -- --- CONCL ---
+    sigmoid (-t) = 1 - sigmoid t := by -- --- PROOF ---
   have hden : (1:ℝ) + Real.exp t ≠ 0 := by positivity
   have hden' : (1:ℝ) + Real.exp (-t) ≠ 0 := by positivity
   rw [sigmoid, sigmoid, neg_neg, Real.exp_neg]

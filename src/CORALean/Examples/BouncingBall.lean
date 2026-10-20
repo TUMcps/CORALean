@@ -98,7 +98,7 @@ noncomputable def Example.bounceCut (v : ℝ) : Zonotope (Vec ℝ 2) :=
 /-- The reset image of the cut set, in coordinates: the floor, left with an
 upward velocity of at most `d v`. -/
 theorem Example.mem_bounce_jump_cut {x : Vec ℝ 2}
-    (hx : x ∈ construct ((Example.bounce d).jump (S := 𝒵) (Example.bounceCut v))) :
+    (hx : x ∈ construct ((Example.bounce d).jump (S := 𝒵) (Example.bounceCut v))) : -- --- CONCL ---
     ∃ s : ℝ, |s| ≤ 1 ∧ x = ![0, d * v / 2 - d * v / 2 * s] := by -- --- PROOF ---
   replace hx : x ∈ (Zonotope.mtimes (Example.bounce d).W (Example.bounceCut v)).construct
       + ((Interval.point (toRealVec (Example.bounce d).w)).zonotope).construct := by
@@ -114,7 +114,7 @@ theorem Example.mem_bounce_jump_cut {x : Vec ℝ 2}
 
 /-- The invariant said as a slab sits inside the same box said as a zonotope:
 the two representations, related where the criterion needs them related. -/
-theorem Example.ballZono_contains_ballBox (hp : 0 < p) (hv : 0 < v) :
+theorem Example.ballZono_contains_ballBox (hp : 0 < p) (hv : 0 < v) : -- --- CONCL ---
     construct (Example.ballBox p v) ⊆ construct (Example.ballZono p v) := by -- --- PROOF ---
   intro x hx
   -- the slab's rows, read back as the four scalar bounds
@@ -141,7 +141,7 @@ theorem Example.ballZono_contains_ballBox (hp : 0 < p) (hv : 0 < v) :
 
 /-- The `hand` bargain discharged at this automaton: the box met by the floor is
 the cut set, an inclusion stated across the two representations. -/
-theorem Example.ballZono_inter_guard (hv : 0 < v) :
+theorem Example.ballZono_inter_guard (hv : 0 < v) : -- --- CONCL ---
     construct (Example.ballZono p v) ∩ construct Example.floorGuard
       ⊆ construct (Example.bounceCut v) := by -- --- PROOF ---
   rintro x ⟨hz, hg⟩
@@ -175,7 +175,7 @@ theorem Example.ballZono_inter_guard (hv : 0 < v) :
 /-- The criterion at this automaton: the box is an inductive invariant, the flow
 half discharged by the cut and the jump half by the damping being at most one. -/
 theorem Example.bouncingBall_invariant (g : ℝ) (hp : 0 < p) (hv : 0 < v)
-    (hd0 : 0 ≤ d) (hd1 : d ≤ 1) :
+    (hd0 : 0 ≤ d) (hd1 : d ≤ 1) : -- --- CONCL ---
     (Example.bouncingBall g d p v).Invariant
       (fun _ => Example.ballZono p v) := by -- --- PROOF ---
   refine HybridAutomaton.invariant_of_enclosure_cut _ _ (fun ℓ τ _ => ?_) (fun ℓ e he => ?_)

@@ -52,7 +52,8 @@ variable {n : ℕ}
 
 /-- [1, Sec. 3 (search for x₀)]: the step stays in the box and is the projection of `x - α∇P₂(x)`
 onto it. -/
-theorem Taylm.qfbSearchStep_variational (H : Mat ℝ n n) (g : Vec ℝ n) (α : ℝ) (x : Vec ℝ n) :
+theorem Taylm.qfbSearchStep_variational (H : Mat ℝ n n) (g : Vec ℝ n) (α : ℝ)
+    (x : Vec ℝ n) : -- --- CONCL ---
     Taylm.qfbSearchStep H g α x ∈ Taylm.box n ∧
       ∀ z ∈ Taylm.box n, (x - α • (g + H *ᵥ x) - Taylm.qfbSearchStep H g α x)
         ⬝ᵥ (z - Taylm.qfbSearchStep H g α x) ≤ 0 := by -- --- PROOF ---

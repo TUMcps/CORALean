@@ -36,7 +36,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.construct_point (v : α) :
+theorem VPolytope.construct_point (v : α) : -- --- CONCL ---
     (VPolytope.point v).construct = {v} := by -- --- PROOF ---
   ext x
   constructor

@@ -41,7 +41,7 @@ variable {T : Type} [LinearOrder T] [Zero T]
 
 /-- The elements the prefix takes satisfy the predicate. -/
 theorem aux_tw_get {α : Type} (p : α → Bool) (l : List α) (k : ℕ)
-    (hk : k < (l.takeWhile p).length) :
+    (hk : k < (l.takeWhile p).length) : -- --- CONCL ---
     ∃ a, l[k]? = some a ∧ p a = true := by -- --- PROOF ---
   induction l generalizing k with
   | nil => simp at hk
@@ -55,7 +55,7 @@ theorem aux_tw_get {α : Type} (p : α → Bool) (l : List α) (k : ℕ)
 
 /-- The element after the prefix fails the predicate. -/
 theorem aux_tw_next {α : Type} (p : α → Bool) (l : List α) (b : α)
-    (hb : l[(l.takeWhile p).length]? = some b) :
+    (hb : l[(l.takeWhile p).length]? = some b) : -- --- CONCL ---
     p b = false := by -- --- PROOF ---
   induction l with
   | nil => simp at hb

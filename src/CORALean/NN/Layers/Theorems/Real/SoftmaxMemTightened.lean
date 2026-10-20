@@ -41,7 +41,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem softmax_mem_tightened (x rl ru : Vec ℝ n)
-    (hl : ∀ i, rl i ≤ softmax x i) (hu : ∀ i, softmax x i ≤ ru i) (i : Fin n) :
+    (hl : ∀ i, rl i ≤ softmax x i) (hu : ∀ i, softmax x i ≤ ru i) (i : Fin n) : -- --- CONCL ---
     max (rl i) (1 - ∑ j ∈ Finset.univ.erase i, ru j) ≤ softmax x i ∧
       softmax x i ≤ min (ru i) (1 - ∑ j ∈ Finset.univ.erase i, rl j) := by -- --- PROOF ---
   have hsplit : softmax x i + ∑ j ∈ Finset.univ.erase i, softmax x j = 1 := by

@@ -51,7 +51,7 @@ variable {n : ℕ} {ι : Type}
 
 theorem STL.tendsto_sSup_norm_of_eventually_subset_closedBall {l : Filter ι}
     {S : ι → Set (Vec ℝ n)}
-    (h : ∀ ε > 0, ∀ᶠ x in l, S x ⊆ Metric.closedBall (0 : Vec ℝ n) ε) :
+    (h : ∀ ε > 0, ∀ᶠ x in l, S x ⊆ Metric.closedBall (0 : Vec ℝ n) ε) : -- --- CONCL ---
     Tendsto (fun x => sSup ((fun v => ‖v‖) '' S x)) l (𝓝 0) := by -- --- PROOF ---
   rw [Metric.tendsto_nhds]
   intro ε hε

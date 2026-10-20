@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- The loop's result fits `[l, u]` if the fit it starts from does. -/
 theorem lowerRegionOrder_fits {σ : ℝ → ℝ} {F : (o : ℕ) → PolyRelaxation 𝕋 o}
-    (hF : ∀ o, (F o).Sound σ) (tol l u : 𝕋) :
+    (hF : ∀ o, (F o).Sound σ) (tol l u : 𝕋) : -- --- CONCL ---
     ∀ (k : ℕ) (cur : RegionPoly 𝕋), cur.Fits σ tol l u →
       (lowerRegionOrder F tol l u k cur).Fits σ tol l u := by -- --- PROOF ---
   intro k

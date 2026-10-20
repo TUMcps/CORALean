@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zoo.plus_outer {Z₁ Z₂ : Zoo 𝕋 n} {f g : Vec ℝ n → ℝ} (h₁ : Z₁.Encloses f)
-    (h₂ : Z₂.Encloses g) :
+    (h₂ : Z₂.Encloses g) : -- --- CONCL ---
     (Z₁.plus Z₂).Encloses fun t => f t + g t := by -- --- PROOF ---
   rw [Zoo.encloses_iff] at h₁ h₂ ⊢
   refine ⟨fun T hT => ?_, fun I hI t ht => ?_⟩

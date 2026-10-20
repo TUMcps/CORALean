@@ -91,7 +91,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `s v ∈ [a, b] Z` for `s ∈ [a, b]` and `v ∈ Z`, `[a, b]` the interval matrix `[a, b] I`. -/
 theorem aux_absErrFloat_smul_mem {a b : 𝕋} {s : ℝ} (h₁ : toReal a ≤ s) (h₂ : s ≤ toReal b)
-    {Z : Zonotope (Vec 𝕋 n)} {v : Vec ℝ n} (hv : v ∈ Z.construct) :
+    {Z : Zonotope (Vec 𝕋 n)} {v : Vec ℝ n} (hv : v ∈ Z.construct) : -- --- CONCL ---
     s • v ∈ (Zonotope.mtimesIntervalMat (Interval.smul a b
       (Interval.point (diagonalBlock fun _ => (one : 𝕋)))) Z).construct := by -- --- PROOF ---
   have hone : (1 : Mat ℝ n n) ∈
@@ -124,7 +124,8 @@ theorem GuardMap.abstractionErrorFloat_outer (A : Mat 𝕋 n n)
       (half (nsmulDown (η + 2) one)) = true)
     {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ R₀.construct) (hU : U.construct.Nonempty) {u : ℝ → Vec ℝ n}
     (hu : ∀ τ ∈ Set.Ioc (0:ℝ) t, u (t - τ) ∈ U.construct)
-    (hmeas : AEStronglyMeasurable (fun τ => u (t - τ)) (volume.restrict (Set.Ioc 0 t))) :
+    (hmeas : AEStronglyMeasurable (fun τ => u (t - τ)) (volume.restrict (Set.Ioc 0 t)))
+    : -- --- CONCL ---
     exp (t • toRealMat A) *ᵥ x₀ + (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat A) *ᵥ u s)
         - GuardMap.sdcFlow (toRealMat A) (GuardMap.sdcInput (toRealMat A) (toRealVec U.c)
           (toReal th) η (toRealVec R₀.c)) x₀ t

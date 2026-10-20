@@ -41,7 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.representsa_origin_sound (hn : 0 < n) {C : Capsule 𝕋 n}
-    (h : Capsule.representsa_origin C = true) : C.construct = {0} := by -- --- PROOF ---
+    (h : Capsule.representsa_origin C = true) : -- --- CONCL ---
+    C.construct = {0} := by -- --- PROOF ---
   simp only [Capsule.representsa_origin, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨hc, hp⟩ := h

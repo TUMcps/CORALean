@@ -98,7 +98,8 @@ theorem aux_extend {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f) {h T : �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A solution of `ẋ = f(x)` from `x₀`, with a two-sided derivative on `[0, T]`, [1, Def. 2]. -/
-theorem lipschitzSolution {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f) (x₀ : E) (T : ℝ) :
+theorem lipschitzSolution {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f) (x₀ : E)
+    (T : ℝ) : -- --- CONCL ---
     ∃ γ : ℝ → E, γ 0 = x₀ ∧ ∀ u ∈ Icc 0 T, HasDerivAt γ (f (γ u)) u := by -- --- PROOF ---
   set h : ℝ := 1 / (2 * (K : ℝ) + 2) with hh
   have hpos : 0 < h := by positivity

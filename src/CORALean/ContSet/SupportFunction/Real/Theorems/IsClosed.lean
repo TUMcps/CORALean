@@ -40,7 +40,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SupportFunction.isClosed_construct (S : SupportFunction (Vec ℝ n)) :
+theorem SupportFunction.isClosed_construct (S : SupportFunction (Vec ℝ n)) : -- --- CONCL ---
     IsClosed S.construct := by -- --- PROOF ---
   -- the set is the intersection over the functionals of the preimage of `(-∞, h ℓ]`
   have : S.construct = ⋂ ℓ : Vec ℝ n →ₗ[ℝ] ℝ, (fun x => (ℓ x : EReal)) ⁻¹' Set.Iic (S.h ℓ) := by

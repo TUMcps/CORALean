@@ -45,7 +45,7 @@ variable {n : ℕ}
 /-- Folding `intersection` over a family `g` computes the intersection of every set it denotes,
 starting from `init`. -/
 theorem ConZonotope.construct_foldl_intersection_eq {m : ℕ} (init : ConZonotope (Vec ℝ n))
-    (g : Fin m → ConZonotope (Vec ℝ n)) :
+    (g : Fin m → ConZonotope (Vec ℝ n)) : -- --- CONCL ---
     (Fin.foldl m (fun cZ i => cZ.intersection (g i)) init).construct
       = init.construct ∩ ⋂ i, (g i).construct := by -- --- PROOF ---
   induction m generalizing init with

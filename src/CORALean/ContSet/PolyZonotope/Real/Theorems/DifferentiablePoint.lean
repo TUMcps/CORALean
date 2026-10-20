@@ -40,7 +40,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.differentiable_point (pZ : PolyZonotope (Vec ℝ n)) :
+theorem PolyZonotope.differentiable_point (pZ : PolyZonotope (Vec ℝ n)) : -- --- CONCL ---
     Differentiable ℝ pZ.point := by -- --- PROOF ---
   have hm : ∀ i, Differentiable ℝ (fun a : Fin pZ.p → ℝ => PolyZonotope.monomial pZ.E a i) := by
     intro i a

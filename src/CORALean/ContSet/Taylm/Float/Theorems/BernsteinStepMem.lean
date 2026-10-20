@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.bernsteinStep_mem (N e j i : ℕ) (hj : j ≤ N) :
+theorem Taylm.bernsteinStep_mem (N e j i : ℕ) (hj : j ≤ N) : -- --- CONCL ---
     let step := Taylm.bernsteinStep (𝕋 := 𝕋) N e j i
     let term := ((j.choose i : ℝ) / (N.choose i : ℝ)) * ((e.choose i : ℝ) * 2 ^ i * (-1) ^ (e - i))
     toReal step.inf ≤ term ∧ term ≤ toReal step.sup := by -- --- PROOF ---

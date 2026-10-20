@@ -53,7 +53,8 @@ namespace CORALean.Real
 
 theorem Zonotope.cross_neg_of_horizontal {σ : ℝ} (hσ : σ = 1 ∨ σ = -1) {u w : Vec ℝ 2}
     (hu : 0 ≤ u 1 ∧ (0 < u 1 ∨ 0 ≤ u 0)) (hw : 0 ≤ w 1 ∧ (0 < w 1 ∨ 0 ≤ w 0))
-    (hwx : 0 < σ * w 0) (hux : σ * u 0 < 0) : σ * (u 0 * w 1 - u 1 * w 0) < 0 := by -- --- PROOF ---
+    (hwx : 0 < σ * w 0) (hux : σ * u 0 < 0) : -- --- CONCL ---
+    σ * (u 0 * w 1 - u 1 * w 0) < 0 := by -- --- PROOF ---
   rcases hσ with rfl | rfl
   · simp only [one_mul] at *
     have hu1 : 0 < u 1 := hu.2.resolve_right (not_le.mpr hux)

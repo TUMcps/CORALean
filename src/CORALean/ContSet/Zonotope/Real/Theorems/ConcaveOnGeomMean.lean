@@ -43,7 +43,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Sec. IV-B]: the geometric mean is concave on the nonnegative orthant. -/
-theorem Zonotope.concaveOn_geomMean {n : ℕ} (hn : 0 < n) :
+theorem Zonotope.concaveOn_geomMean {n : ℕ} (hn : 0 < n) : -- --- CONCL ---
     ConcaveOn ℝ {γ : Fin n → ℝ | ∀ i, 0 ≤ γ i}
       (fun γ => (∏ i, γ i) ^ (1 / (n : ℝ))) := by -- --- PROOF ---
   -- the geometric mean, positively homogeneous

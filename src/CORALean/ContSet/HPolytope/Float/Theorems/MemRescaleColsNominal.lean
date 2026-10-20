@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A unit-box `δ` whose image `ξm + diag(ξr) δ` is in the nominal part is in the rescaled one. -/
 theorem HPolytope.mem_rescaleCols_nominal (P : HPolytope 𝕋 (Vec 𝕋 n)) (ξm ξr : Vec 𝕋 n)
     {δ ξ : Vec ℝ n} (hδ : ∀ j, |δ j| ≤ 1) (hξ : ∀ j, ξ j = toReal (ξm j) + toReal (ξr j) * δ j)
-    (hP : ξ ∈ P.nominal.construct) :
+    (hP : ξ ∈ P.nominal.construct) : -- --- CONCL ---
     δ ∈ (P.rescaleCols ξm ξr).nominal.construct := by -- --- PROOF ---
   obtain ⟨hin, heq⟩ := HPolytope.mem_nominal_iff.mp hP
   -- the rounding of a scaled row against `δ`

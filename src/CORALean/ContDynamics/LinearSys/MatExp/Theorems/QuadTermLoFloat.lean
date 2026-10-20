@@ -74,7 +74,7 @@ theorem aux_not_straddle_right {t a b : ℝ} (h : t + b * t ^ 2 < 0) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.quadTermLo_le (t a b : 𝕋) :
+theorem MatExp.quadTermLo_le (t a b : 𝕋) : -- --- CONCL ---
     toReal (MatExp.quadTermLo t a b)
       ≤ Real.MatExp.quadTermLo (toReal t) (toReal a) (toReal b) := by -- --- PROOF ---
   -- `a t²` and `b t²` are bracketed by the corner hull of the directed `t²`

@@ -51,7 +51,8 @@ theorem Capsule.aux_abs_le_norm₂ (v : Vec ℝ n) (i : Fin n) : |v i| ≤ ‖v�
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.isDisjoint_sound (k : ℕ) {C₁ C₂ : Capsule 𝕋 n} (h : C₁.isDisjoint k C₂ = true) :
+theorem Capsule.isDisjoint_sound (k : ℕ) {C₁ C₂ : Capsule 𝕋 n}
+    (h : C₁.isDisjoint k C₂ = true) : -- --- CONCL ---
     Disjoint C₁.construct C₂.construct := by -- --- PROOF ---
   rw [Set.disjoint_left]
   intro x hx₁ hx₂

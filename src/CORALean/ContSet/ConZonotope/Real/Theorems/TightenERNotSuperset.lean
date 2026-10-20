@@ -55,7 +55,7 @@ open Matrix
 
 /-- [1, Alg. 1 (R)], [2, Alg. 1] fail: a feasible `ξ` with `|ξ_i| ≤ 1` for `i ≠ j` whose
 `ξ_j` lies above Algorithm 1's `R_j`. -/
-theorem ConZonotope.tightenER_not_superset :
+theorem ConZonotope.tightenER_not_superset : -- --- CONCL ---
     ∃ (A : Mat ℝ 1 2) (b : Vec ℝ 1) (ξ : Vec ℝ 2) (j : Fin 2),
       (∀ i, (A *ᵥ ξ) i = b i) ∧ (∀ i, i ≠ j → |ξ i| ≤ 1) ∧
         (ConZonotope.tightenER A b 0).2.2 j < (ξ j : EReal) := by -- --- PROOF ---

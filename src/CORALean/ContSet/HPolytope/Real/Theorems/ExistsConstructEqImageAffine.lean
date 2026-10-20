@@ -50,7 +50,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.exists_construct_eq_image_affine (W : Mat ℝ m n) (b : Vec ℝ m)
-    (P : HPolytope (Vec ℝ n)) :
+    (P : HPolytope (Vec ℝ n)) : -- --- CONCL ---
     ∃ Q : HPolytope (Vec ℝ m),
       Q.construct = (fun x => W *ᵥ x + b) '' P.construct := by -- --- PROOF ---
   -- the graph: `P`'s rows on the second factor, and `yᵣ - (W x)ᵣ = bᵣ` for every `r`

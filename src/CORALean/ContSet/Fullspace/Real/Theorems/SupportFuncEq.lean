@@ -40,7 +40,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Fullspace.supportFunc_eq (F : Fullspace n) (c : Vec ℝ n →ₗ[ℝ] ℝ) :
+theorem Fullspace.supportFunc_eq (F : Fullspace n) (c : Vec ℝ n →ₗ[ℝ] ℝ) : -- --- CONCL ---
     F.supportFunc c = ⨆ x ∈ F.construct, ((c x : ℝ) : EReal) := by -- --- PROOF ---
   by_cases hc : c = 0
   · subst hc

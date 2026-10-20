@@ -38,7 +38,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.convex_construct (P : HPolytope α) : Convex ℝ P.construct := by -- --- PROOF ---
+theorem HPolytope.convex_construct (P : HPolytope α) : -- --- CONCL ---
+    Convex ℝ P.construct := by -- --- PROOF ---
   rintro x ⟨hx, hex⟩ y ⟨hy, hey⟩ a b ha hb hab
   refine ⟨fun i => ?_, fun i => ?_⟩
   · have h1 := mul_le_mul_of_nonneg_left (hx i) ha

@@ -56,7 +56,8 @@ variable {n : ℕ}
 /-- [1, Eq. 7], corrected: `|A⁻¹(e^{Ar} - I)| L̂ ≤ θ r` puts `A⁻¹(e^{Ar} - I)[-L̂, L̂]`
 inside `[-θ r, θ r]`. -/
 theorem NonlinearSys.errReach_subset_of_abs_le (A : Mat ℝ n n) (r : ℝ) (θ L : Vec ℝ n)
-    (h : ∀ i, (Real.MatExp.absMat (A⁻¹ * (NormedSpace.exp (r • A) - 1)) *ᵥ L) i ≤ (r • θ) i) :
+    (h : ∀ i, (Real.MatExp.absMat (A⁻¹ * (NormedSpace.exp (r • A) - 1)) *ᵥ L) i ≤ (r • θ) i)
+    : -- --- CONCL ---
     (fun x => (A⁻¹ * (NormedSpace.exp (r • A) - 1)) *ᵥ x) ''
         (⟨-L, L⟩ : Real.Interval (Vec ℝ n)).construct
       ⊆ (⟨-(r • θ), r • θ⟩ : Real.Interval (Vec ℝ n)).construct := by -- --- PROOF ---

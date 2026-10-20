@@ -51,7 +51,8 @@ namespace CORALean.Real
 
 theorem Zonotope.walkEdges_subset_frontier (Z : Zonotope (Vec ℝ 2))
     (h2 : ∀ i j : Fin Z.h, i < j → 0 ≤ Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0)
-    (hne : ∀ j, Z.G j ≠ 0) : Z.walkEdges ⊆ frontier Z.construct := by -- --- PROOF ---
+    (hne : ∀ j, Z.G j ≠ 0) : -- --- CONCL ---
+    Z.walkEdges ⊆ frontier Z.construct := by -- --- PROOF ---
   intro x hx
   refine ⟨subset_closure (Z.walkEdges_subset_construct hx), ?_⟩
   obtain ⟨k, hk | hk⟩ := (Z.mem_walkEdges_iff x).mp hx

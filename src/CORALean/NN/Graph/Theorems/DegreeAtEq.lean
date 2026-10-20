@@ -48,7 +48,7 @@ variable {N m : ℕ}
 /-- The degree at `λ` is the fixed one plus what the weighted edges add, which
 is the affine form every bound and every relaxation is read off. -/
 theorem GNN.degreeAt_eq (A : Mat ℝ N N) (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ)
-    (j : Fin N) :
+    (j : Fin N) : -- --- CONCL ---
     GNN.degreeAt A U lam j
       = GNN.degree A j + ∑ e, ∑ i, lam e * GNN.edgeMat (U e) i j := by -- --- PROOF ---
   simp only [GNN.degreeAt, GNN.degree, GNN.adjAt, Matrix.add_apply, Matrix.sum_apply,

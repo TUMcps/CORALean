@@ -49,7 +49,8 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.affine_image_exact (A : Mat ℝ m n) (b : Vec ℝ m) (E : Ellipsoid n) :
+theorem Ellipsoid.affine_image_exact (A : Mat ℝ m n) (b : Vec ℝ m)
+    (E : Ellipsoid n) : -- --- CONCL ---
     (fun x => A *ᵥ x + b) '' E.construct =
       (⟨A * E.Q * Aᵀ, A *ᵥ E.q + b, (E.mtimes A).psd⟩ : Ellipsoid m).construct
     := by -- --- PROOF ---

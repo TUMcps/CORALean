@@ -72,7 +72,7 @@ theorem Ellipsoid.aux_mul_mem_corners {a b c d : 𝕋} {y x : ℝ} (hy₁ : toRe
 /-- A quotient of bracketed numerator by a positive bracketed divisor lies between the corner
 quotients of the numerator's ends. -/
 theorem Ellipsoid.aux_div_between {aLo a aHi sLo s sHi : ℝ} (hs₀ : 0 < sLo) (hs₁ : sLo ≤ s)
-    (hs₂ : s ≤ sHi) (ha₁ : aLo ≤ a) (ha₂ : a ≤ aHi) :
+    (hs₂ : s ≤ sHi) (ha₁ : aLo ≤ a) (ha₂ : a ≤ aHi) : -- --- CONCL ---
     min (aLo / sLo) (aLo / sHi) ≤ a / s
       ∧ a / s ≤ max (aHi / sLo) (aHi / sHi) := by -- --- PROOF ---
   have hs : 0 < s := lt_of_lt_of_le hs₀ hs₁
@@ -93,7 +93,8 @@ theorem Ellipsoid.aux_div_between {aLo a aHi sLo s sHi : ℝ} (hs₀ : 0 < sLo) 
 
 /-- `S ≤ r² a` from a rounded-up quotient and a rounded-up root of it. -/
 theorem Ellipsoid.aux_le_sq_mul {S a q r : ℝ} (ha : 0 < a) (hq : S / a ≤ q)
-    (hr : Real.sqrt q ≤ r) : S ≤ r ^ 2 * a := by -- --- PROOF ---
+    (hr : Real.sqrt q ≤ r) : -- --- CONCL ---
+    S ≤ r ^ 2 * a := by -- --- PROOF ---
   rcases le_or_gt S 0 with hS | hS
   · nlinarith [sq_nonneg r]
   have h0 : 0 ≤ S / a := (div_pos hS ha).le
@@ -111,7 +112,8 @@ the rounding gap of `δ`. -/
 theorem Ellipsoid.aux_strip_widen (E : Ellipsoid 𝕋 n) (c : Vec 𝕋 n) (φ y : 𝕋) {G : Mat ℝ n n}
     (hG : Gᵀ = G) {u e : Vec ℝ n}
     (he : ∀ i, toReal (E.I_error.inf i) ≤ e i ∧ e i ≤ toReal (E.I_error.sup i))
-    (hx : |∑ i, toReal (c i) * (toReal (E.q i) + (G *ᵥ u) i + e i) - toReal y| ≤ toReal φ) :
+    (hx : |∑ i, toReal (c i) * (toReal (E.q i) + (G *ᵥ u) i + e i) - toReal y| ≤ toReal φ)
+    : -- --- CONCL ---
     let box := dotUp (fun i => absolute (c i))
       (fun i => maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i)))
     let δs := subDown y (dotUp c E.q)
@@ -304,7 +306,7 @@ theorem Ellipsoid.aux_strip_shape {G Q : Mat ℝ n n} (hG : Gᵀ = G) (hGG : G *
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.intersectStripGollamudi_outer (steps : ℕ) (E : Ellipsoid 𝕋 n) (c : Vec 𝕋 n)
-    (φ y lam : 𝕋) :
+    (φ y lam : 𝕋) : -- --- CONCL ---
     E.construct ∩ {x | |∑ i, toReal (c i) * x i - toReal y| ≤ toReal φ}
       ⊆ (Ellipsoid.intersectStripGollamudi steps E c φ y lam).construct := by -- --- PROOF ---
   rintro x ⟨hxE, hxS⟩

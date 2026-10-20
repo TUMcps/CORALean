@@ -43,7 +43,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.vertices_point (p k : ℕ) {C : Capsule 𝕋 2} (h : C.representsa_point = true) :
+theorem Capsule.vertices_point (p k : ℕ) {C : Capsule 𝕋 2}
+    (h : C.representsa_point = true) : -- --- CONCL ---
     C.vertices p k = [Interval.point C.c] ∧
       ∃ x ∈ (Interval.point C.c).construct, x ∈ frontier C.construct := by -- --- PROOF ---
   refine ⟨by simp [Capsule.vertices, h], ?_⟩

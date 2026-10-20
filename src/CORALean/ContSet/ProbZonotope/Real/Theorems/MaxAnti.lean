@@ -42,7 +42,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.max_anti (P : ProbZonotope n) (hd : 0 ≤ P.cov.det) {m m' : ℝ}
-    (h0 : 0 ≤ m) (h : m ≤ m') : P.max m' ≤ P.max m := by -- --- PROOF ---
+    (h0 : 0 ≤ m) (h : m ≤ m') : -- --- CONCL ---
+    P.max m' ≤ P.max m := by -- --- PROOF ---
   unfold ProbZonotope.max
   have hK : 0 ≤ 1 / ((2 * π) ^ ((n : ℝ) / 2) * P.cov.det ^ ((1 : ℝ) / 2)) := by
     have : 0 < 2 * π := by positivity

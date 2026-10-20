@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem le_sigmoidDerivHi {E : Enclosure 𝕋} (hE : E.Sound Real.sigmoid) (l u : 𝕋) (x : ℝ)
-    (hl : toReal l ≤ x) (hu : x ≤ toReal u) :
+    (hl : toReal l ≤ x) (hu : x ≤ toReal u) : -- --- CONCL ---
     Real.sigmoidDeriv x ≤ toReal (sigmoidDerivHi E l u) := by -- --- PROOF ---
   -- upward the sign needs no floor: an upper bound on a positive value is positive
   have h₁ : Real.sigmoid x ≤ toReal (E.hi u) := le_trans (Real.sigmoid_mono hu) (hE.le_hi u)

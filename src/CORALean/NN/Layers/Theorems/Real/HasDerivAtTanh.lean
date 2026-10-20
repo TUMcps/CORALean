@@ -35,7 +35,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem hasDerivAt_tanh (t : ℝ) :
+theorem hasDerivAt_tanh (t : ℝ) : -- --- CONCL ---
     HasDerivAt Real.tanh (4 * sigmoidDeriv (2 * t)) t := by -- --- PROOF ---
   have hinner : HasDerivAt (fun s : ℝ => 2 * s) 2 t := by
     simpa using (hasDerivAt_id t).const_mul (2:ℝ)

@@ -51,7 +51,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.minnorm_ball (p : ℕ) (Z : Zonotope (Vec 𝕋 (n + 1))) (r : ℝ) (hr : 0 ≤ r)
-    (hball : ∀ y : Vec ℝ (n + 1), y ⬝ᵥ y ≤ r ^ 2 → toRealVec Z.c + y ∈ nominalSet Z) :
+    (hball : ∀ y : Vec ℝ (n + 1), y ⬝ᵥ y ≤ r ^ 2 → toRealVec Z.c + y ∈ nominalSet Z)
+    : -- --- CONCL ---
     ∀ U ∈ Z.minnorm p,
       r ≤ toReal U := by -- --- PROOF ---
   intro U (hU : Z.minnorm p = some U)

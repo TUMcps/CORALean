@@ -51,7 +51,8 @@ theorem Zonotope.aux_splitHalf_mem (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) (s 
     {zn e : Vec ℝ n}
     (he : e ∈ Z.I_error.construct) (β : Vec ℝ Z.h) (hβ : ∀ k, |β k| ≤ 1)
     (hzn : ∀ i, zn i = toReal (Z.c i) + toReal (s i)
-      + ∑ k, β k * Function.update (fun k => toReal (Z.G k i)) j (toReal (Z.G j i) / 2) k) :
+      + ∑ k, β k * Function.update (fun k => toReal (Z.G k i)) j (toReal (Z.G j i) / 2) k)
+    : -- --- CONCL ---
     zn + e ∈ (Z.aux_splitHalf j s).construct := by -- --- PROOF ---
   -- the stored generators read as the real halved ones, entry by entry
   have hG : ∀ (i : Fin n) (k : Fin Z.h), toReal ((Z.aux_splitHalf j s).G k i)
@@ -84,7 +85,7 @@ theorem Zonotope.aux_splitHalf_mem (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) (s 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.split_outer (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) :
+theorem Zonotope.split_outer (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) : -- --- CONCL ---
     Z.construct ⊆ (Z.split j).fst.construct ∪ (Z.split j).snd.construct := by -- --- PROOF ---
   rintro _ ⟨zn, hzn, e, he, rfl⟩
   -- the nominal point lies in one of the real halves

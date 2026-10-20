@@ -75,7 +75,8 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 /-- The geometric sequence of steps the sweep walks reaches into the punctured
 neighbourhood both convergence facts are stated over. -/
-theorem aux_tendsto_geometric_nhdsGT {Δt μ : ℝ} (hΔt : 0 < Δt) (hμ0 : 0 < μ) (hμ1 : μ < 1) :
+theorem aux_tendsto_geometric_nhdsGT {Δt μ : ℝ} (hΔt : 0 < Δt) (hμ0 : 0 < μ)
+    (hμ1 : μ < 1) : -- --- CONCL ---
     Tendsto (fun k : ℕ => Δt * μ ^ k) atTop (𝓝[>] (0 : ℝ)) := by -- --- PROOF ---
   refine tendsto_nhdsWithin_of_tendsto_nhds_of_eventually_within _ ?_ ?_
   · have hpow : Tendsto (fun k : ℕ => μ ^ k) atTop (𝓝 0) :=

@@ -52,7 +52,7 @@ def Zonotope.aux_zeroZonotope : Zonotope (Vec 𝕋 n) :=
 
 /-- `0` lies in it: its nominal set at coefficients all `0`, plus its `0`
 error box. -/
-theorem Zonotope.aux_zero_mem_zeroZonotope :
+theorem Zonotope.aux_zero_mem_zeroZonotope : -- --- CONCL ---
     (0 : Vec ℝ n) ∈ (Zonotope.aux_zeroZonotope (𝕋 := 𝕋) (n := n)).construct := by -- --- PROOF ---
   have hnom : (0 : Vec ℝ n) ∈ nominalSet (Zonotope.aux_zeroZonotope (𝕋 := 𝕋) (n := n)) :=
     Zonotope.mem_nominalSet_iff.mpr ⟨0, fun _ => by norm_num, fun i => by
@@ -73,7 +73,7 @@ theorem Zonotope.aux_zero_mem_zeroZonotope :
 /-- `reduce` reaches no further than `Z.construct` widened by
 `reduceGirardBox` — the reverse of `reduce_outer`, and what a float run's own
 accumulated error needs. -/
-theorem Zonotope.reduce_subset_add_box (Z : Zonotope (Vec 𝕋 n)) (o : ℕ) :
+theorem Zonotope.reduce_subset_add_box (Z : Zonotope (Vec 𝕋 n)) (o : ℕ) : -- --- CONCL ---
     (Z.reduce o).construct ⊆
       Z.construct + (Zonotope.reduceGirardBox Z o).construct := by -- --- PROOF ---
   unfold Zonotope.reduce Zonotope.reduceGirard Zonotope.reduceGirardBox

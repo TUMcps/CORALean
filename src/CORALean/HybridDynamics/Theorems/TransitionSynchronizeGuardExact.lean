@@ -55,7 +55,7 @@ theorem aux_isErrFree_of_origin (h0 : HPolytope.eqScalar (FloatOps.zero : 𝕋) 
 omit [SoundFloatArithmetic 𝕋] in
 /-- Two vectors certified zero, appended, are certified zero. -/
 theorem aux_isZeroVec_append {k l : ℕ} {u : Vec 𝕋 k} {v : Vec 𝕋 l}
-    (hu : HPolytope.isZeroVec u = true) (hv : HPolytope.isZeroVec v = true) :
+    (hu : HPolytope.isZeroVec u = true) (hv : HPolytope.isZeroVec v = true) : -- --- CONCL ---
     HPolytope.isZeroVec (Fin.append u v) = true := by -- --- PROOF ---
   simp only [HPolytope.isZeroVec, List.all_eq_true, List.mem_finRange, true_implies] at hu hv ⊢
   intro j
@@ -91,7 +91,7 @@ theorem aux_synchronizeGuard_fold_eq
 /-- The synchronized guard denotes the intersection of the guards: exact. -/
 theorem Transition.synchronizeGuard_exact
     (h0 : HPolytope.eqScalar (FloatOps.zero : 𝕋) FloatOps.zero = true)
-    (g : Fin q → HPolytope 𝕋 (Vec 𝕋 n)) (hg : ∀ i, (g i).isErrFree = true) :
+    (g : Fin q → HPolytope 𝕋 (Vec 𝕋 n)) (hg : ∀ i, (g i).isErrFree = true) : -- --- CONCL ---
     (Transition.synchronizeGuard g).construct = ⋂ i, (g i).construct := by -- --- PROOF ---
   unfold Transition.synchronizeGuard
   rw [aux_synchronizeGuard_fold_eq h0 g hg _ _ (aux_isErrFree_of_origin h0 rfl

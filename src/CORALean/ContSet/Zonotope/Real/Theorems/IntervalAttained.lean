@@ -48,7 +48,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.interval_attained (Z : Zonotope (Vec ℝ n)) (i : Fin n) :
+theorem Zonotope.interval_attained (Z : Zonotope (Vec ℝ n)) (i : Fin n) : -- --- CONCL ---
     (∃ z ∈ Z.construct, z i = Z.interval.sup i) ∧
       ∃ z ∈ Z.construct, z i = Z.interval.inf i := by -- --- PROOF ---
   -- the sign of each generator's `i`-th entry

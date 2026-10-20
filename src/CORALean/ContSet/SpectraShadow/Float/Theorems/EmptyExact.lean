@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.empty_exact (n : ℕ) :
+theorem SpectraShadow.empty_exact (n : ℕ) : -- --- CONCL ---
     (SpectraShadow.empty n : SpectraShadow 𝕋 (Vec 𝕋 n)).construct = ∅ := by -- --- PROOF ---
   -- the nominal part is empty: its inequality has a negative diagonal
   have hN : InflatedContSet.nominalSet (SpectraShadow.empty n : SpectraShadow 𝕋 (Vec 𝕋 n)) = ∅ := by

@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zoo.ofInterval_attains (I : Interval (Vec 𝕋 n)) (i : Fin n) {x : Vec ℝ n}
-    (hx : x ∈ I.construct) :
+    (hx : x ∈ I.construct) : -- --- CONCL ---
     ∃ t ∈ Real.Taylm.box n,
       x i = toReal (I.center i) + toReal (I.radiusFrom i) * t i := by -- --- PROOF ---
   obtain ⟨β, hβ, hxβ⟩ := Zonotope.mem_nominalSet_iff.mp (I.subset_nominal_zonotope hx)

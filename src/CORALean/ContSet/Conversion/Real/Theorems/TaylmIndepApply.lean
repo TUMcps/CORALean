@@ -40,7 +40,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.indep_apply (T : Fin m → Taylm n) (β : Fin (Taylm.polyZonotope T).q → ℝ)
-    (i : Fin m) :
+    (i : Fin m) : -- --- CONCL ---
     (∑ l, β l • (Taylm.polyZonotope T).GI l) i
       = β i * (((T i).rem.sup - (T i).rem.inf) / 2) := by -- --- PROOF ---
   change (∑ l : Fin m, β l • (Pi.single l (((T l).rem.sup - (T l).rem.inf) / 2) : Vec ℝ m)) i = _

@@ -43,7 +43,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.supportBound_attained (Z : Zonotope α) (c : α →ₗ[ℝ] ℝ) :
+theorem Zonotope.supportBound_attained (Z : Zonotope α) (c : α →ₗ[ℝ] ℝ) : -- --- CONCL ---
     ∃ x ∈ Z.construct, c x = (Z.supportBound c).val := by -- --- PROOF ---
   have hsign : ∀ j, Real.sign (c (Z.G j)) * c (Z.G j) = |c (Z.G j)| := fun j => by
     rcases lt_trichotomy (c (Z.G j)) 0 with h | h | h

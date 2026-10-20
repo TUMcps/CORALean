@@ -59,7 +59,7 @@ theorem aux_norm₂_neg (x : Vec ℝ n) : ‖-x‖₂ = ‖x‖₂ := by
   simp
 
 /-- The least value of `lᵀ x` on an ellipsoid, from the largest of `-lᵀ x`. -/
-theorem aux_isLeast_dot (E : Ellipsoid n) (l : Vec ℝ n) :
+theorem aux_isLeast_dot (E : Ellipsoid n) (l : Vec ℝ n) : -- --- CONCL ---
     IsLeast ((l ⬝ᵥ ·) '' E.construct) (l ⬝ᵥ E.q - √(l ⬝ᵥ (E.Q *ᵥ l))) := by -- --- PROOF ---
   obtain ⟨⟨x, hx, hxv⟩, hub⟩ := E.isGreatest_dot (-l)
   have hsq : (-l) ⬝ᵥ (E.Q *ᵥ -l) = l ⬝ᵥ (E.Q *ᵥ l) := by

@@ -54,7 +54,8 @@ variable {n : ℕ}
 theorem Zonotope.reduceUnderApproxBox_inner (Z : Zonotope (Vec ℝ n)) (o : ℕ)
     (hlt : o * n < Z.h) (U : Mat ℝ n n) (γ : Vec ℝ n) (hU : U * U.transpose = 1)
     (hB : (⟨n, 0, Matrix.diagonal γ⟩ : Zonotope (Vec ℝ n)).construct ⊆
-      (Zonotope.mtimes U.transpose (Z.splitDropped (Z.girardSplit o hlt))).construct) :
+      (Zonotope.mtimes U.transpose (Z.splitDropped (Z.girardSplit o hlt))).construct)
+    : -- --- CONCL ---
     (Z.reduceUnderApproxBox o hlt U γ).construct ⊆ Z.construct := by -- --- PROOF ---
   -- `U B ⊆ Z_b`: a point of `B` is `Uᵀ z` for `z ∈ Z_b`, and `U Uᵀ z = z`
   have hUB : (Zonotope.mtimes U ⟨n, 0, Matrix.diagonal γ⟩).construct ⊆

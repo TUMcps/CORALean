@@ -54,7 +54,7 @@ namespace CORALean.Real
 
 /-- At sharpness `1` the derivative of the activation at `1` is `exp 1 / (1 + exp 1)`, and CORA's
 `df` returns another value. -/
-theorem Layer.softplusDf_cora_counterexample :
+theorem Layer.softplusDf_cora_counterexample : -- --- CONCL ---
     HasDerivAt (softplus 1) (Real.exp 1 / (1 + Real.exp 1)) 1 ∧
       Layer.softplusDfCora 1 1 ≠ Real.exp 1 / (1 + Real.exp 1) := by -- --- PROOF ---
   have he : 1 < Real.exp 1 := by linarith [Real.add_one_le_exp (1 : ℝ)]

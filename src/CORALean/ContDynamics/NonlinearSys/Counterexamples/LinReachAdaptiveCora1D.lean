@@ -259,7 +259,7 @@ theorem aux_linReachAdaptiveCora1D_firstMin (g : ℕ → ℝ) (h : ∀ j, g 0 �
 
 /-- With every later factor at least `1`, `cumprod` is at least its first two. -/
 theorem aux_linReachAdaptiveCora1D_varphiprod (φ : ℕ → ℝ) (h1 : ∀ i, 1 ≤ i → 1 ≤ φ i)
-    (h0 : 0 ≤ φ 0) :
+    (h0 : 0 ≤ φ 0) : -- --- CONCL ---
     ∀ j, 1 ≤ j → φ 0 * φ 1 ≤ ∏ i ∈ Finset.range (j + 1), φ i := by -- --- PROOF ---
   intro j hj
   induction j with
@@ -276,7 +276,7 @@ theorem aux_linReachAdaptiveCora1D_varphiprod (φ : ℕ → ℝ) (h1 : ∀ i, 1 
 /-- `aux_optimaldeltat` from a point start (`rR = 0`) at `zetaP = 1` keeps the finite horizon when
 the gain is at least `3`: no shorter step lowers the estimate. -/
 theorem aux_linReachAdaptiveCora1D_optimal (rerr1 deltat varphimin : ℝ) (hr : 0 ≤ rerr1)
-    (hd : deltat ≠ 0) (hv : 3 ≤ varphimin) :
+    (hd : deltat ≠ 0) (hv : 3 ≤ varphimin) : -- --- CONCL ---
     NonlinearSys.optimalDeltatCora 0 rerr1 deltat varphimin 1 (9 / 10) (5 / 10000)
       = deltat := by -- --- PROOF ---
   unfold NonlinearSys.optimalDeltatCora
@@ -392,7 +392,8 @@ theorem aux_linReachAdaptiveCora1D_mono (A B c u v : ℝ) (hA : 0 ≤ A) (hB : 0
 theorem aux_linReachAdaptiveCora1D_horizon (G : ℝ → ℝ)
     (hG : G = fun ae => 1 / 2 * (165961 / 165480 + 2 * ae)
       * (468559 / 7880 * (-(481 / 165480 + 2 * ae)) ^ 4
-        - 122853 / 1970 * (-(481 / 165480 + 2 * ae)) ^ 5) * (165961 / 165480 + 2 * ae)) :
+        - 122853 / 1970 * (-(481 / 165480 + 2 * ae)) ^ 5) * (165961 / 165480 + 2 * ae))
+    : -- --- CONCL ---
     0 < G 0 ∧ 11 / 10 * G 0 ≤ 3 / 10 ^ 9 ∧ G (3 / 10 ^ 9) ≤ 11 / 10 * G 0 ∧
       G (3 / 10 ^ 9) ≤ 22 / 10 ^ 10 := by -- --- PROOF ---
   subst hG
@@ -413,7 +414,8 @@ theorem aux_linReachAdaptiveCora1D_decr (G : ℝ → ℝ)
 theorem aux_linReachAdaptiveCora1D_horizonLoop (Φ : ℝ → ℝ)
     (hΦ : ∀ ae : ℝ, 0 ≤ ae → ae ≤ 1 / 1000 → Φ ae = 1 / 2 * (165961 / 165480 + 2 * ae)
       * (468559 / 7880 * (-(481 / 165480 + 2 * ae)) ^ 4
-        - 122853 / 1970 * (-(481 / 165480 + 2 * ae)) ^ 5) * (165961 / 165480 + 2 * ae)) :
+        - 122853 / 1970 * (-(481 / 165480 + 2 * ae)) ^ 5) * (165961 / 165480 + 2 * ae))
+    : -- --- CONCL ---
     ∃ eh, NonlinearSys.adaptErrLoopCora1D Φ 2 1 0 0 = some eh ∧ 0 < eh ∧
       eh ≤ 22 / 10 ^ 10 := by -- --- PROOF ---
   obtain ⟨G, hG⟩ : ∃ G : ℝ → ℝ, G = fun ae => 1 / 2 * (165961 / 165480 + 2 * ae)

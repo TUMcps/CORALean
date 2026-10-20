@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The mixed form at an appended pair is the bilinear form of its blocks. -/
-theorem PolyZonotope.aux_mixedForm_eval (Q : Fin m → Mat 𝕋 n n) (x y : Vec ℝ n) :
+theorem PolyZonotope.aux_mixedForm_eval (Q : Fin m → Mat 𝕋 n n) (x y : Vec ℝ n) : -- --- CONCL ---
     Real.PolyZonotope.quadEval (fun k => toRealMat (PolyZonotope.aux_mixedForm Q k))
       (Fin.append x y)
       = Real.PolyZonotope.quadBilin (fun k => toRealMat (Q k)) x y := by -- --- PROOF ---
@@ -61,7 +61,8 @@ theorem PolyZonotope.aux_mixedForm_eval (Q : Fin m → Mat 𝕋 n n) (x y : Vec 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.quadMapMixed_outer (Q : Fin m → Mat 𝕋 n n) (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
+theorem PolyZonotope.quadMapMixed_outer (Q : Fin m → Mat 𝕋 n n)
+    (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) : -- --- CONCL ---
     (fun x : Vec ℝ n × Vec ℝ n => Real.PolyZonotope.quadBilin (fun k => toRealMat (Q k)) x.1 x.2)
         '' (pZ₁.construct ×ˢ pZ₂.construct)
       ⊆ (PolyZonotope.quadMapMixed Q pZ₁ pZ₂).construct := by -- --- PROOF ---

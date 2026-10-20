@@ -43,7 +43,7 @@ variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ContSet.projectHighDim_outer (s : S n) (N : ℕ) {proj : Fin n → Fin N}
-    (hp : Function.Injective proj) :
+    (hp : Function.Injective proj) : -- --- CONCL ---
     (fun x : Vec ℝ n => Function.extend proj x (0 : Vec ℝ N)) '' construct s ⊆
       construct (ContSet.projectHighDim_ (𝕋 := 𝕋) s N proj) := by -- --- PROOF ---
   -- the padded point is the selection matrix applied to `x`, so `mtimes_outer` covers it

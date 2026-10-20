@@ -36,7 +36,8 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FiniteSignal.time_le_duration {T V : Type} [LinearOrder T] [Zero T] (s : FiniteSignal T V)
-    (hs : s.IsValid) : s.duration ∈ s.time ∧ ∀ x ∈ s.time, x ≤ s.duration := by -- --- PROOF ---
+    (hs : s.IsValid) : -- --- CONCL ---
+    s.duration ∈ s.time ∧ ∀ x ∈ s.time, x ≤ s.duration := by -- --- PROOF ---
   obtain ⟨hne, -, hp, -, -⟩ := hs
   rcases List.eq_nil_or_concat s.time with h | ⟨init, last, h⟩
   · exact absurd h hne

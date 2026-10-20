@@ -39,7 +39,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.mem_ofPoint_iff (v x : α) :
+theorem ZonoBundle.mem_ofPoint_iff (v x : α) : -- --- CONCL ---
     x ∈ (ZonoBundle.ofPoint v).construct ↔ x = v := by -- --- PROOF ---
   constructor
   · intro h

@@ -37,7 +37,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.capsule_contains (I : Interval (Vec ℝ n)) :
+theorem Interval.capsule_contains (I : Interval (Vec ℝ n)) : -- --- CONCL ---
     I.construct ⊆ I.capsule.construct := by -- --- PROOF ---
   unfold Interval.capsule
   cases h : (List.finRange n).argmax (fun i => I.sup i - I.inf i) with

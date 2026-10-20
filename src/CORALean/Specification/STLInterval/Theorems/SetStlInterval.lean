@@ -37,7 +37,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STLInterval.set_stlInterval (lb ub : EReal) (lc rc : Bool) (hlb : 0 ≤ lb) :
+theorem STLInterval.set_stlInterval (lb ub : EReal) (lc rc : Bool) (hlb : 0 ≤ lb) : -- --- CONCL ---
     (STLInterval.stlInterval lb ub lc rc hlb).set =
       STLInterval.rawSet lb ub lc rc := by -- --- PROOF ---
   unfold STLInterval.stlInterval

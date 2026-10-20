@@ -54,7 +54,7 @@ theorem SpectraShadow.aux_sum_single {m : ℕ} (γ : Fin m → ℝ) :
   simp [Finset.sum_apply, Pi.single_apply]
 
 omit [AddCommGroup α] [Module ℝ α] in
-theorem SpectraShadow.aux_mem_base_iff (S : SpectraShadow α) (β : Vec ℝ S.m) :
+theorem SpectraShadow.aux_mem_base_iff (S : SpectraShadow α) (β : Vec ℝ S.m) : -- --- CONCL ---
     β ∈ S.base.construct ↔ (S.A₀ + ∑ i, β i • S.A i).PosSemidef := by -- --- PROOF ---
   constructor
   · rintro ⟨γ, hγ, hx⟩
@@ -65,7 +65,8 @@ theorem SpectraShadow.aux_mem_base_iff (S : SpectraShadow α) (β : Vec ℝ S.m)
     exact ⟨β, h, (SpectraShadow.aux_sum_single (m := S.m) β).symm⟩
 
 /-- The coordinates of the zonotope of a box. -/
-theorem Interval.aux_zonotope_coord {n : ℕ} (I : Interval (Vec ℝ n)) (γ : Fin n → ℝ) (i : Fin n) :
+theorem Interval.aux_zonotope_coord {n : ℕ} (I : Interval (Vec ℝ n)) (γ : Fin n → ℝ)
+    (i : Fin n) : -- --- CONCL ---
     (I.zonotope.c + ∑ j : Fin n, γ j • I.zonotope.G j) i
       = (I.inf i + I.sup i) / 2 + γ i * ((I.sup i - I.inf i) / 2) := by -- --- PROOF ---
   have hsum : (∑ j : Fin n, γ j • I.zonotope.G j) i = γ i * ((I.sup i - I.inf i) / 2) := by
@@ -81,7 +82,8 @@ theorem Interval.aux_zonotope_coord {n : ℕ} (I : Interval (Vec ℝ n)) (γ : F
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.zonotope_contains (S : SpectraShadow α) (hb : S.base.isBounded) :
+theorem SpectraShadow.zonotope_contains (S : SpectraShadow α)
+    (hb : S.base.isBounded) : -- --- CONCL ---
     S.construct ⊆ S.zonotope.construct := by -- --- PROOF ---
   -- a variable vector `β` of the shadow's point lies in the base spectrahedron
   rintro _ ⟨β, hβ, rfl⟩

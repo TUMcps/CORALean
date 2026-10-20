@@ -37,7 +37,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem exists_sampleGrid_close {l u t : ℝ} {N : ℕ} (hN : 0 < N) (hl : l ≤ t) (hu : t ≤ u) :
+theorem exists_sampleGrid_close {l u t : ℝ} {N : ℕ} (hN : 0 < N) (hl : l ≤ t)
+    (hu : t ≤ u) : -- --- CONCL ---
     ∃ i : Fin (N + 1), |t - sampleGrid l u N i| ≤ (u - l) / N := by -- --- PROOF ---
   have hNpos : (0 : ℝ) < N := Nat.cast_pos.mpr hN
   have hfull : (N : ℝ) * ((u - l) / N) = u - l := by

@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- `Interval.plus` of two boxes that bracket `0` brackets `0`: each rounded
 bound sits on the sound side of the sum of the two exact ones. -/
 theorem Zonotope.aux_zero_mem_interval_plus {I J : Interval (Vec 𝕋 n)}
-    (hI : (0 : Vec ℝ n) ∈ I.construct) (hJ : (0 : Vec ℝ n) ∈ J.construct) :
+    (hI : (0 : Vec ℝ n) ∈ I.construct) (hJ : (0 : Vec ℝ n) ∈ J.construct) : -- --- CONCL ---
     (0 : Vec ℝ n) ∈ (I.plus J).construct := by -- --- PROOF ---
   intro i
   have hI1 : toReal (I.inf i) ≤ (0:ℝ) := (hI i).1
@@ -62,7 +62,7 @@ theorem Zonotope.aux_zero_mem_interval_plus {I J : Interval (Vec 𝕋 n)}
 /-- `centerResidual` always brackets `0`: its lower bound is a directed
 subtraction of one value from itself, and its upper bound is at least the gap
 between the two directed roundings of the same addition. -/
-theorem Zonotope.aux_zero_mem_centerResidual (a b : Vec 𝕋 n) :
+theorem Zonotope.aux_zero_mem_centerResidual (a b : Vec 𝕋 n) : -- --- CONCL ---
     (0 : Vec ℝ n) ∈ (Zonotope.centerResidual a b).construct := by -- --- PROOF ---
   intro i
   have hle : toReal (addDown (a i) (b i)) ≤ toReal (addUp (a i) (b i)) :=

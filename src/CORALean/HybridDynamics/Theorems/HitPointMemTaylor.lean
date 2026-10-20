@@ -70,7 +70,7 @@ variable {n : ℕ}
 
 /-- Taylor's theorem of order one with Lagrange remainder on `[0, 1]`. -/
 theorem aux_hitPoint_taylor_one {g g' g'' : ℝ → ℝ} (hg : ∀ t ∈ Icc (0 : ℝ) 1, HasDerivAt g (g' t) t)
-    (hg' : ∀ t ∈ Icc (0 : ℝ) 1, HasDerivAt g' (g'' t) t) :
+    (hg' : ∀ t ∈ Icc (0 : ℝ) 1, HasDerivAt g' (g'' t) t) : -- --- CONCL ---
     ∃ e ∈ Ioo (0 : ℝ) 1, g 1 = g 0 + g' 0 + g'' e / 2 := by -- --- PROOF ---
   have hlin : ∀ t : ℝ, HasDerivAt (fun s : ℝ => s * g' 0) (g' 0) t := fun t => by
     simpa using (hasDerivAt_id t).mul_const (g' 0)

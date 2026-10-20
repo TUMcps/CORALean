@@ -38,7 +38,8 @@ namespace CORALean
 
 /-- If `g r f = 0` for all `r ∈ R`, the sum of `zipWith g R F` is zero. -/
 theorem MarkovChain.sum_zipWith_eq_zero {α β : Type} (g : α → β → ℝ) (R : List α) (F : List β)
-    (h : ∀ r ∈ R, ∀ f, g r f = 0) : (List.zipWith g R F).sum = 0 := by -- --- PROOF ---
+    (h : ∀ r ∈ R, ∀ f, g r f = 0) : -- --- CONCL ---
+    (List.zipWith g R F).sum = 0 := by -- --- PROOF ---
   induction R generalizing F with
   | nil => simp
   | cons a R ih =>

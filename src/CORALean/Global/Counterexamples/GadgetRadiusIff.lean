@@ -57,7 +57,8 @@ theorem aux_mulVec (w : Fin 1 → ℝ) : aux_A27 *ᵥ w = ![w 0, 0] := by
   fin_cases i <;> simp [aux_A27, mulVec, dotProduct]
 
 /-- Every point of the inbody is `H β` with `‖β‖ ≤ 3/4`. -/
-theorem aux_value_le (α : WithLp ∞ (PiLp ∞ (fun _ : Fin 1 => ℝ) × ℝ)) (hα : ‖α‖ ≤ 1) :
+theorem aux_value_le (α : WithLp ∞ (PiLp ∞ (fun _ : Fin 1 => ℝ) × ℝ))
+    (hα : ‖α‖ ≤ 1) : -- --- CONCL ---
     coeffNorm (gadgetH 2) (gadgetGA ∞ aux_A27 1 α) ≤ 3 / 4 := by -- --- PROOF ---
   rw [WithLp.prod_norm_eq_sup, max_le_iff, Real.norm_eq_abs] at hα
   set a := α.fst 0

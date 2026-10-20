@@ -49,7 +49,7 @@ open Matrix
 
 /-- [1, Sec. 4.3 (new reduction)]: `T'r'_l = T r_l`, the kept generators unchanged by the update. -/
 theorem Zonotope.reduceScottStep_mulVec {n k : ℕ} (T : Mat ℝ n n) (R : Fin (k + 1) → Vec ℝ n)
-    (ind : Fin (k + 1)) (l : Fin k) :
+    (ind : Fin (k + 1)) (l : Fin k) : -- --- CONCL ---
     (Zonotope.reduceScottStep T R ind).1 *ᵥ (Zonotope.reduceScottStep T R ind).2 l
       = T *ᵥ R (ind.succAbove l) := by -- --- PROOF ---
   show (T * diagonal fun i => 1 + |R ind i|)

@@ -58,7 +58,7 @@ variable {n m : ℕ}
 /-- [1, Eq. 8.3]: `‖V_me^{-itT_m}e₁‖₂² = 1` for Hermitian `T_m` and `V_m*V_m = I`, here with
 `m + 1` columns. -/
 theorem Krylov.krylovApprox_mass_conserved (V : Mat ℂ n (m + 1)) (T : Mat ℂ (m + 1) (m + 1))
-    (hT : Tᴴ = T) (hV : Vᴴ * V = 1) (t : ℝ) :
+    (hT : Tᴴ = T) (hV : Vᴴ * V = 1) (t : ℝ) : -- --- CONCL ---
     let y := V *ᵥ (exp ((-Complex.I * t) • T) *ᵥ Pi.single 0 1)
     star y ⬝ᵥ y = 1 := by -- --- PROOF ---
   intro y

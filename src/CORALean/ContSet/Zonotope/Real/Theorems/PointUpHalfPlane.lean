@@ -41,7 +41,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.pointUp_half_plane (Z : Zonotope (Vec ℝ 2)) (j : Fin Z.h) :
+theorem Zonotope.pointUp_half_plane (Z : Zonotope (Vec ℝ 2)) (j : Fin Z.h) : -- --- CONCL ---
     0 ≤ Z.pointUp.G j 1 ∧ (0 < Z.pointUp.G j 1 ∨ 0 ≤ Z.pointUp.G j 0) := by -- --- PROOF ---
   by_cases h : Z.G j 1 < 0 ∨ (Z.G j 1 = 0 ∧ Z.G j 0 < 0)
   · simp only [Zonotope.pointUp, h, if_true, Pi.neg_apply]

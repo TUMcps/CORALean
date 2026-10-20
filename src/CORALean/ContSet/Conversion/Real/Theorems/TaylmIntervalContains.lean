@@ -43,7 +43,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.interval_contains {m : ℕ} (T : Fin m → Taylm n) :
+theorem Taylm.interval_contains {m : ℕ} (T : Fin m → Taylm n) : -- --- CONCL ---
     Taylm.construct T ⊆ (Taylm.interval T).construct := by -- --- PROOF ---
   intro x hx i
   obtain ⟨f, hf, t, ht, hxf⟩ := (Taylm.mem_construct_iff T x).1 hx

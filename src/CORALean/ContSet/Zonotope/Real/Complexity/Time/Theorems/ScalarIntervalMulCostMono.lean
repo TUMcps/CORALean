@@ -38,7 +38,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Monotone in the generator count. -/
-theorem Zonotope.scalarIntervalMulCost_mono {h h' : ℕ} (n : ℕ) (hh : h ≤ h') :
+theorem Zonotope.scalarIntervalMulCost_mono {h h' : ℕ} (n : ℕ) (hh : h ≤ h') : -- --- CONCL ---
     Zonotope.scalarIntervalMulCost n h ≤ Zonotope.scalarIntervalMulCost n h' := by -- --- PROOF ---
   have := Zonotope.mtimesCost_mono n n hh
   simp only [Zonotope.scalarIntervalMulCost, Zonotope.plusCost, Zonotope.aux_unitIntervalMulCost,

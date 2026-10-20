@@ -35,7 +35,7 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Polygon.aux_union_le (l : List (VPolytope (Vec ℝ 2))) :
+theorem Polygon.aux_union_le (l : List (VPolytope (Vec ℝ 2))) : -- --- CONCL ---
     MeasureTheory.volume (⋃ p ∈ l, VPolytope.construct p) ≤
       (l.map fun p => MeasureTheory.volume (VPolytope.construct p)).sum := by -- --- PROOF ---
   induction l with

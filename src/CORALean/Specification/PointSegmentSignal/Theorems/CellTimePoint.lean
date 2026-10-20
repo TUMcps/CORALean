@@ -45,7 +45,8 @@ namespace CORALean
 /-- The point value of the `k`-th time point. -/
 theorem PointSegmentSignal.cell_timePoint {T : Type} [LinearOrder T] [Zero T]
     (s : PointSegmentSignal T) (hs : s.IsValid) (k : ℕ) (hk : k < s.timePoints.length)
-    (h0 : 0 ≤ s.timePoints[k]) : s.cell s.timePoints[k] = 2 * k := by -- --- PROOF ---
+    (h0 : 0 ≤ s.timePoints[k]) : -- --- CONCL ---
+    s.cell s.timePoints[k] = 2 * k := by -- --- PROOF ---
   have hlen := hs.2.1
   have hb : 2 * k < s.values.length := by omega
   have hk' : (2 * k) / 2 < s.timePoints.length := by omega

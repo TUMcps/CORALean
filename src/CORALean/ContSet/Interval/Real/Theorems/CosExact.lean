@@ -37,7 +37,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.cos_exact (I : Interval (Vec ℝ n)) (hI : ∀ i, I.inf i ≤ I.sup i) :
+theorem Interval.cos_exact (I : Interval (Vec ℝ n)) (hI : ∀ i, I.inf i ≤ I.sup i) : -- --- CONCL ---
     I.cos.construct = (fun x i => Real.cos (x i)) '' I.construct := by -- --- PROOF ---
   ext y
   constructor

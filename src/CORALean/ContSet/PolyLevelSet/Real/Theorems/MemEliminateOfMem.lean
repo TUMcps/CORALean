@@ -54,7 +54,7 @@ variable {n : ℕ}
 
 /-- A point meeting the equation `r` and every other row meets the eliminated system. -/
 theorem PolyLevelSet.mem_eliminate_of_mem (P : PolyLevelSet n) (r : Fin P.m) (t : Fin P.q)
-    (hr : P.op r = .eq) (hA : P.A r t ≠ 0) {x : Vec ℝ n} (hx : x ∈ P.construct) :
+    (hr : P.op r = .eq) (hA : P.A r t ≠ 0) {x : Vec ℝ n} (hx : x ∈ P.construct) : -- --- CONCL ---
     x ∈ (P.eliminate r t).construct := by -- --- PROOF ---
   set μ := PolyZonotope.monomial P.R x with hμ
   have hrow : ∑ i, P.A r i * μ i = P.b r := by

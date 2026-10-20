@@ -38,7 +38,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.splitDepFactor_union (cPZ : ConPolyZono α) (r : Fin cPZ.p) :
+theorem ConPolyZono.splitDepFactor_union (cPZ : ConPolyZono α) (r : Fin cPZ.p) : -- --- CONCL ---
     (cPZ.splitDepFactor r).1.construct ∪ (cPZ.splitDepFactor r).2.construct
       = cPZ.construct := by -- --- PROOF ---
   simp only [ConPolyZono.splitDepFactor]

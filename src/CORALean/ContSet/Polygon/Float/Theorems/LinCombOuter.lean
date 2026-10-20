@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.linComb_outer (P Q : Polygon 𝕋) :
+theorem Polygon.linComb_outer (P Q : Polygon 𝕋) : -- --- CONCL ---
     Set.linComb (ContSet.construct P) (ContSet.construct Q) ⊆
       ContSet.construct (Polygon.linComb P Q) := by -- --- PROOF ---
   rintro _ ⟨y₁, hy₁, y₂, hy₂, lam, hlam, rfl⟩

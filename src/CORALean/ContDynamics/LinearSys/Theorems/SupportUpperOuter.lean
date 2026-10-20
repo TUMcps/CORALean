@@ -79,7 +79,7 @@ variable [∀ n, Recenter (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 /-- Line 8 in closed form: `d_k = ℓ ∘ e^{AΔt k}`. -/
 theorem aux_supportUpper_d (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (X₀ U : S n)
-    (ρ : S n → (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) :
+    (ρ : S n → (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) : -- --- CONCL ---
     (sys.supportUpper Δt η X₀ U ρ ℓ k).d
       = ℓ.comp (mulVecLin (exp (Δt • toRealMat sys.A) ^ k)) := by -- --- PROOF ---
   induction k with

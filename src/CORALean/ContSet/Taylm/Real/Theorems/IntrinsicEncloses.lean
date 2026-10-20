@@ -58,7 +58,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.intrinsic_encloses {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    (s : Taylm.Intrinsic) :
+    (s : Taylm.Intrinsic) : -- --- CONCL ---
     ∀ T' ∈ T.intrinsic s,
       T'.Encloses fun t => s.fn (f t) := by -- --- PROOF ---
   intro T' (hs : T.intrinsic s = some T')

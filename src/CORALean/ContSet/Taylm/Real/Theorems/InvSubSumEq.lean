@@ -45,7 +45,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.inv_sub_sum_eq {c x : ℝ} (hc : c ≠ 0) (hx : x ≠ 0) (N : ℕ) :
+theorem Taylm.inv_sub_sum_eq {c x : ℝ} (hc : c ≠ 0) (hx : x ≠ 0) (N : ℕ) : -- --- CONCL ---
     x⁻¹ - ∑ k ∈ Finset.range (N + 1), (-1) ^ k * (x - c) ^ k / c ^ (k + 1)
       = (-1) ^ (N + 1) * (x - c) ^ (N + 1) / (x * c ^ (N + 1)) := by -- --- PROOF ---
   induction N with

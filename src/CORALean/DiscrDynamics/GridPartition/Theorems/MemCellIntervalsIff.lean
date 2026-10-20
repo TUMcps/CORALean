@@ -38,7 +38,7 @@ variable {n : ℕ}
 
 /-- `B` is in `cellIntervals P cs` iff it is the box of an in-range cell of `cs`. -/
 theorem GridPartition.mem_cellIntervals_iff (P : GridPartition n) (cs : List ℕ)
-    (B : Real.Interval (Vec ℝ n)) :
+    (B : Real.Interval (Vec ℝ n)) : -- --- CONCL ---
     B ∈ P.cellIntervals cs ↔ ∃ c ∈ cs, 1 ≤ c ∧ c ≤ P.nrOfCells ∧ B = P.cellInterval c
       := by -- --- PROOF ---
   unfold GridPartition.cellIntervals

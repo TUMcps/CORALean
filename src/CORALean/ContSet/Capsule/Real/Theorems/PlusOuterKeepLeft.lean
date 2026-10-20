@@ -46,7 +46,7 @@ variable {n : ℕ}
 
 /-- The sum, against the generator of `C₁`, when it is the longer one. -/
 theorem Capsule.plus_outer_keep_left (C₁ C₂ : Capsule n) {x₁ x₂ : Vec ℝ n}
-    (h₁ : x₁ ∈ C₁.construct) (h₂ : x₂ ∈ C₂.construct) :
+    (h₁ : x₁ ∈ C₁.construct) (h₂ : x₂ ∈ C₂.construct) : -- --- CONCL ---
     x₁ + x₂ ∈ (Capsule.mk (C₁.c + C₂.c) C₁.g
       (C₁.r + C₂.r + Real.sqrt (∑ i, C₂.g i ^ 2))).construct := by -- --- PROOF ---
   obtain ⟨t₁, ht₁, hb₁⟩ := h₁

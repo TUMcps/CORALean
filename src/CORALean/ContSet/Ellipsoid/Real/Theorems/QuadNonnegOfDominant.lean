@@ -44,7 +44,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.quad_nonneg_of_dominant {n : ℕ} (M : Mat ℝ n n) (hsymm : ∀ i j, M i j = M j i)
-    (hdom : ∀ i, ∑ j, (if i = j then 0 else |M i j|) ≤ M i i) (v : Vec ℝ n) :
+    (hdom : ∀ i, ∑ j, (if i = j then 0 else |M i j|) ≤ M i i) (v : Vec ℝ n) : -- --- CONCL ---
     0 ≤ v ⬝ᵥ (M *ᵥ v) := by -- --- PROOF ---
   -- `W i j` is the absolute off-diagonal entry, zero on the diagonal
   set W : Fin n → Fin n → ℝ := fun i j => if i = j then 0 else |M i j| with hW

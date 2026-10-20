@@ -49,7 +49,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Eq. 3]: data with `X' = A X` need not satisfy `X = A X'`. -/
-theorem dmd_eq3_counterexample :
+theorem dmd_eq3_counterexample : -- --- CONCL ---
     ∃ (A X X' : Mat ℝ 1 1), X' = A * X ∧ X ≠ A * X' := by -- --- PROOF ---
   refine ⟨!![2], !![1], !![2], ?_, ?_⟩
   · ext i j; fin_cases i; fin_cases j; simp

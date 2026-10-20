@@ -41,7 +41,8 @@ include inst
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.intervalMatrix_eq (I : Interval α) : I.intervalMatrix = I := by -- --- PROOF ---
+theorem Interval.intervalMatrix_eq (I : Interval α) : -- --- CONCL ---
+    I.intervalMatrix = I := by -- --- PROOF ---
   cases I with
   | mk lo hi =>
     have h₁ := Interval.center_sub_radius (⟨lo, hi⟩ : Interval α)

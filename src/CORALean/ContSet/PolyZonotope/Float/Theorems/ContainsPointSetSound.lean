@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Every point of the set is in some piece after any number of rounds. -/
-theorem PolyZonotope.aux_splitMany_cover (pZ : PolyZonotope (Vec 𝕋 n)) (k : ℕ) :
+theorem PolyZonotope.aux_splitMany_cover (pZ : PolyZonotope (Vec 𝕋 n)) (k : ℕ) : -- --- CONCL ---
     ∀ x ∈ pZ.construct, ∃ q ∈ pZ.splitMany k, x ∈ q.construct := by -- --- PROOF ---
   induction k with
   | zero => exact fun x hx => ⟨pZ, List.mem_singleton_self _, hx⟩
@@ -68,7 +68,7 @@ theorem PolyZonotope.aux_splitMany_cover (pZ : PolyZonotope (Vec 𝕋 n)) (k : �
 
 theorem PolyZonotope.containsPointSet_sound (pZ : PolyZonotope (Vec 𝕋 n)) {N : ℕ}
     (points : Fin N → Vec 𝕋 n) (splits order : ℕ) (dirs : Zonotope (Vec 𝕋 n) → Σ m, Mat 𝕋 m n)
-    (h : ∀ i, toRealVec (points i) ∈ pZ.construct) :
+    (h : ∀ i, toRealVec (points i) ∈ pZ.construct) : -- --- CONCL ---
     pZ.containsPointSet points splits order dirs = true := by -- --- PROOF ---
   unfold PolyZonotope.containsPointSet
   refine List.all_eq_true.mpr fun i _ => List.any_eq_true.mpr ?_

@@ -53,7 +53,7 @@ theorem ConZonotope.aux_conLo_le_conHi (cZ : ConZonotope (Vec ℝ n))
   · simp only [ConZonotope.conLo, ConZonotope.conHi, Fin.append_right, le_refl]
 
 /-- Within the radius of the midpoint is within the interval. -/
-theorem ConZonotope.aux_abs_sub_mid_le_iff {lo hi v : ℝ} (h : lo ≤ hi) :
+theorem ConZonotope.aux_abs_sub_mid_le_iff {lo hi v : ℝ} (h : lo ≤ hi) : -- --- CONCL ---
     |v - (lo + hi) / 2| ≤ |(hi - lo) / 2| ↔ lo ≤ v ∧ v ≤ hi := by -- --- PROOF ---
   rw [abs_of_nonneg (by linarith : (0:ℝ) ≤ (hi - lo) / 2), abs_le]
   constructor
@@ -65,7 +65,7 @@ theorem ConZonotope.aux_abs_sub_mid_le_iff {lo hi v : ℝ} (h : lo ≤ hi) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.conPolyZono_exact (cZ : ConZonotope (Vec ℝ n)) :
+theorem ConZonotope.conPolyZono_exact (cZ : ConZonotope (Vec ℝ n)) : -- --- CONCL ---
     cZ.construct = cZ.conPolyZono.construct := by -- --- PROOF ---
   have hμ : ∀ β : Vec ℝ cZ.h, PolyZonotope.monomial (PolyZonotope.identE cZ.h) β = β :=
     fun β => funext fun j => PolyZonotope.monomial_identE β j

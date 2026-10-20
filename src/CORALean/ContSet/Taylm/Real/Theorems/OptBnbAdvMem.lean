@@ -49,7 +49,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.optBnbAdv_mem {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) (ε : ℝ) (fuel : ℕ)
-    {t : Vec ℝ n} (ht : t ∈ Taylm.box n) :
+    {t : Vec ℝ n} (ht : t ∈ Taylm.box n) : -- --- CONCL ---
     (T.optBnbAdv ε fuel).inf ≤ f t ∧ f t ≤ (T.optBnbAdv ε fuel).sup := by -- --- PROOF ---
   have hb := Taylm.branchAndBound_mem T.terms (fun _ => ⟨-1, 1⟩) ε true fuel (t := t)
     fun k => abs_le.1 (ht k)

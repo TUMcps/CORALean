@@ -67,7 +67,7 @@ theorem NonlinearSys.IsTrajectory.linearize_horizon {sys : NonlinearSys n m} {T 
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)} {L : S n} {τ : ℝ}
     {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory T R₀ U x u y)
     (cert : AbstractionError sys.f A B xs us R (construct U) L)
-    (hT : Set.Icc 0 τ ⊆ T) (hR : ∀ t ∈ Set.Icc (0 : ℝ) τ, x t ∈ R) : -- --- CONCL ---
+    (hT : Set.Icc 0 τ ⊆ T) (hR : ∀ t ∈ Set.Icc (0 : ℝ) τ, x t ∈ R) :
     (NonlinearSys.linearize A).IsCanonicalTrajectory (Set.Icc 0 τ) R₀
         (linInput sys.f A B xs us U L) x
       (fun t => sys.f (x t) (u t) - A *ᵥ x t) :=

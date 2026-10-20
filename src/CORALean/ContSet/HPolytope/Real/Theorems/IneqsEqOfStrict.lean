@@ -59,7 +59,8 @@ variable {q n : ℕ}
 
 theorem HPolytope.ineqs_eq_of_strict (A : Mat ℝ q n) (b : Vec ℝ q) (J : Finset (Fin q))
     (T : Set (Vec ℝ n)) (hne : (HPolytope.ineqs A b).construct.Nonempty)
-    (hT : (HPolytope.ineqs A b).construct ⊆ T) (hJ : ∀ x ∈ T, ∀ j ∈ J, (A *ᵥ x) j < b j) :
+    (hT : (HPolytope.ineqs A b).construct ⊆ T)
+    (hJ : ∀ x ∈ T, ∀ j ∈ J, (A *ᵥ x) j < b j) : -- --- CONCL ---
     {x | ∀ i, i ∉ J → (A *ᵥ x) i ≤ b i} = (HPolytope.ineqs A b).construct := by -- --- PROOF ---
   obtain ⟨p, hp⟩ := hne
   have hpr := HPolytope.mem_ineqs_iff.mp hp

@@ -63,7 +63,7 @@ theorem ConPolyZono.aux_sum_dependent (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.nominalSet_dependent (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
+theorem ConPolyZono.nominalSet_dependent (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     nominalSet cPZ.dependent = nominalSet cPZ := by -- --- PROOF ---
   ext x
   rw [ConPolyZono.mem_nominalSet_iff, ConPolyZono.mem_nominalSet_iff]

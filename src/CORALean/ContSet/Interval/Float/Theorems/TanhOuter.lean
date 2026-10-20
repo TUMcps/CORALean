@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.tanh_outer (p : ℕ) (I : Interval (Vec 𝕋 n))
-    (hI : ∀ i, toReal (I.sup i) ≤ 2 ^ p / 2) :
+    (hI : ∀ i, toReal (I.sup i) ≤ 2 ^ p / 2) : -- --- CONCL ---
     (fun x i => Real.tanh (x i)) '' I.construct ⊆ (I.tanh p).construct := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩ i
   -- the real layer's exact image holds `tanh x` between the tanh of the two corners

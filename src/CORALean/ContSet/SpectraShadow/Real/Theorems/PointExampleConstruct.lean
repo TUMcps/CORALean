@@ -35,7 +35,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.pointExample_construct :
+theorem SpectraShadow.pointExample_construct : -- --- CONCL ---
     SpectraShadow.pointExample.construct = {0} := by -- --- PROOF ---
   ext x
   constructor

@@ -54,7 +54,8 @@ theorem STL.Formula.aux_shift_scale (c t : ℝ≥0) (ξ : ℝ≥0 → X) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Formula.sat_scale {c : ℝ≥0} (hc : 0 < c) (φ : STL.Formula X) (ξ : ℝ≥0 → X) :
+theorem STL.Formula.sat_scale {c : ℝ≥0} (hc : 0 < c) (φ : STL.Formula X)
+    (ξ : ℝ≥0 → X) : -- --- CONCL ---
     (φ.scale c).Sat ξ ↔ φ.Sat (fun t => ξ (t * c)) := by -- --- PROOF ---
   induction φ generalizing ξ with
   | atom p => simp [STL.Formula.scale, STL.Formula.Sat]

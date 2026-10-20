@@ -38,7 +38,7 @@ variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ}
 
 /-- Every `-x` with `x` in `S` is in `uminus S`: `mtimes_outer` at `-1`, which reads as
 `-1` because `0`, `1` and negation are exact. -/
-theorem ContSet.uminus_outer (s : S n) :
+theorem ContSet.uminus_outer (s : S n) : -- --- CONCL ---
     (fun y : Vec ℝ n => -y) '' construct s ⊆
       construct (ContSet.uminus (𝕋 := 𝕋) s) := by -- --- PROOF ---
   rintro _ ⟨y, hy, rfl⟩

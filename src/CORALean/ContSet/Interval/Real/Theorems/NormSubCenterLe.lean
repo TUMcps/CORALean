@@ -41,7 +41,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.norm₂_sub_center_le {I : Interval (Vec ℝ n)} {x : Vec ℝ n}
-    (hx : x ∈ construct I) : ‖x - I.center‖₂ ≤ I.radius₂ := by -- --- PROOF ---
+    (hx : x ∈ construct I) : -- --- CONCL ---
+    ‖x - I.center‖₂ ≤ I.radius₂ := by -- --- PROOF ---
   unfold Interval.radius₂ norm₂
   refine Real.sqrt_le_sqrt (Finset.sum_le_sum fun i _ => ?_)
   have h := Interval.abs_sub_center_le hx i

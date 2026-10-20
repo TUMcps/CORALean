@@ -40,7 +40,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.tan_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    (hdom : T.mag < Real.pi / 2) :
+    (hdom : T.mag < Real.pi / 2) : -- --- CONCL ---
     T.tan.Encloses fun t => Real.tan (f t) := by -- --- PROOF ---
   refine Taylm.taylor_outer h _ _ _ (fun ξ hξ => ?_) fun ξ hξ =>
     abs_iteratedDeriv_tan_le _ (T.abs_le_mag hξ) hdom

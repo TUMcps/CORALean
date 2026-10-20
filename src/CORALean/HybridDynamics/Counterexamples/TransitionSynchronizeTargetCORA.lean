@@ -37,7 +37,7 @@ open Transition
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- CORA's loop gives `(7, 7)`, not `(5, 7)`. -/
-theorem Transition.synchronizeTargetCORA_counterexample :
+theorem Transition.synchronizeTargetCORA_counterexample : -- --- CONCL ---
     synchronizeTargetCORA (q := 2) ![1, 1] ![0, 1] ![5, 7] = ![7, 7] ∧
       synchronizeTargetCORA (q := 2) ![1, 1] ![0, 1] ![5, 7] ≠ ![5, 7] := by -- --- PROOF ---
   have h : synchronizeTargetCORA (q := 2) ![1, 1] ![0, 1] ![5, 7] = ![7, 7] := by

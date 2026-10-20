@@ -44,7 +44,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.reexpand_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    {B : Fin n → Interval ℝ} (hB : ∀ k, -1 ≤ (B k).inf ∧ (B k).inf ≤ (B k).sup ∧ (B k).sup ≤ 1) :
+    {B : Fin n → Interval ℝ}
+    (hB : ∀ k, -1 ≤ (B k).inf ∧ (B k).inf ≤ (B k).sup ∧ (B k).sup ≤ 1) : -- --- CONCL ---
     (T.reexpand B).Encloses fun s =>
       f fun k => Taylm.boxMid B k + Taylm.boxRad B k * s k := by -- --- PROOF ---
   intro s hs

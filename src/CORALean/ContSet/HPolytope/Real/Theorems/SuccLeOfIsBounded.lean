@@ -53,7 +53,8 @@ variable {q n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- With at most `n` rows, some nonzero direction no row increases along. -/
-theorem aux_exists_ne_zero_mulVec_nonpos (A : Mat ℝ q n) (hn : 0 < n) (hq : q ≤ n) :
+theorem aux_exists_ne_zero_mulVec_nonpos (A : Mat ℝ q n) (hn : 0 < n)
+    (hq : q ≤ n) : -- --- CONCL ---
     ∃ d : Vec ℝ n, d ≠ 0 ∧ A *ᵥ d ≤ 0 := by -- --- PROOF ---
   by_cases hs : ∃ d : Vec ℝ n, A *ᵥ d = -1
   · obtain ⟨d, hd⟩ := hs

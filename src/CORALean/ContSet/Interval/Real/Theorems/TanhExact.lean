@@ -46,7 +46,8 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_tanh_strictMono : StrictMono Real.tanh := by -- --- PROOF ---
+theorem aux_tanh_strictMono : -- --- CONCL ---
+    StrictMono Real.tanh := by -- --- PROOF ---
   intro a b hab
   rw [Real.tanh_eq_sinh_div_cosh, Real.tanh_eq_sinh_div_cosh,
     div_lt_div_iff₀ (Real.cosh_pos a) (Real.cosh_pos b)]

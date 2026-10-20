@@ -42,7 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.plus_outer {T₁ T₂ : Taylm 𝕋 n} {f g : Vec ℝ n → ℝ} (h₁ : T₁.Encloses f)
-    (h₂ : T₂.Encloses g) : (T₁.plus T₂).Encloses fun t => f t + g t := by -- --- PROOF ---
+    (h₂ : T₂.Encloses g) : -- --- CONCL ---
+    (T₁.plus T₂).Encloses fun t => f t + g t := by -- --- PROOF ---
   intro t ht
   have a₁ := h₁ t ht
   have a₂ := h₂ t ht

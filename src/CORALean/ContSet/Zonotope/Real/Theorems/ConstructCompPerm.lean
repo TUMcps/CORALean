@@ -42,7 +42,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.construct_comp_perm (Z : Zonotope α) (π : Equiv.Perm (Fin Z.h)) :
+theorem Zonotope.construct_comp_perm (Z : Zonotope α) (π : Equiv.Perm (Fin Z.h)) : -- --- CONCL ---
     (⟨Z.h, Z.c, Z.G ∘ π⟩ : Zonotope α).construct = Z.construct := by -- --- PROOF ---
   ext x
   constructor

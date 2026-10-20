@@ -39,7 +39,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `aaux_sinh_` is sound for `asinh`. -/
-theorem SyntaxTree.funHanAsinh_sound (prev : Dom) :
+theorem SyntaxTree.funHanAsinh_sound (prev : Dom) : -- --- CONCL ---
     UnarySound Unary.asinh.fn prev (Real.Interval.asinh prev) funHanAsinh := by -- --- PROOF ---
   intro int _ s hs hi
   have h : int.inf 0 ≤ Real.arsinh s ∧ Real.arsinh s ≤ int.sup 0 := hi

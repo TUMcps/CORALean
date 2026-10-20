@@ -28,7 +28,7 @@ namespace CORALean.Real
 
 set_option simprocs false in
 /-- The corner images of the example: `(2a + b, a c)`. -/
-theorem PolyZonotope.isPolytopeCex_coraVertex (I : Fin 3 → ℝ) :
+theorem PolyZonotope.isPolytopeCex_coraVertex (I : Fin 3 → ℝ) : -- --- CONCL ---
     PolyZonotope.isPolytopeCex.coraVertex I = ![2 * I 0 + I 1, I 0 * I 2] := by -- --- PROOF ---
   -- sum over the three generators, then entry by entry
   unfold PolyZonotope.coraVertex

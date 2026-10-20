@@ -57,7 +57,7 @@ theorem ConZonotope.aux_sum_kept {h : ℕ} (S : Finset (Fin h)) (f : Fin h → �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.compact_exact (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
+theorem ConZonotope.compact_exact (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     cZ.compact.construct = cZ.construct := by -- --- PROOF ---
   set S : Finset (Fin cZ.h) := Finset.univ.filter fun j : Fin cZ.h =>
     !(HPolytope.isZeroVec (cZ.G j) && cZ.P.isZeroCol j) with hS

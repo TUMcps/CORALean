@@ -65,7 +65,7 @@ variable {n m l : ℕ}
 
 /-- A `PiLp` norm is the `q`-norm of the components' norms. -/
 theorem aux_lrDual_norm_eq {β : Fin l → Type*} [∀ i, SeminormedAddCommGroup (β i)]
-    (q : ℝ≥0∞) [Fact (1 ≤ q)] (x : PiLp q β) :
+    (q : ℝ≥0∞) [Fact (1 ≤ q)] (x : PiLp q β) : -- --- CONCL ---
     ‖x‖ = ‖WithLp.toLp q (fun i => ‖x i‖)‖ := by -- --- PROOF ---
   by_cases hq : q = ∞
   · subst hq
@@ -77,7 +77,7 @@ theorem aux_lrDual_norm_eq {β : Fin l → Type*} [∀ i, SeminormedAddCommGroup
 /-- The converse for `u ≥ 0`: `Σ wᵢ uᵢ ≤ ‖w‖_q` for every `w ≥ 0` gives `‖u‖_{q'} ≤ 1`. -/
 theorem aux_lrDual_dual_le_one (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
     (u : Fin l → ℝ) (hu : ∀ i, 0 ≤ u i)
-    (h : ∀ w : Fin l → ℝ, (∀ i, 0 ≤ w i) → ∑ i, w i * u i ≤ ‖WithLp.toLp q w‖) :
+    (h : ∀ w : Fin l → ℝ, (∀ i, 0 ≤ w i) → ∑ i, w i * u i ≤ ‖WithLp.toLp q w‖) : -- --- CONCL ---
     ‖WithLp.toLp q' u‖ ≤ 1 := by -- --- PROOF ---
   by_cases hq : q = ∞
   · -- `q' = 1`: test with `w = 1`

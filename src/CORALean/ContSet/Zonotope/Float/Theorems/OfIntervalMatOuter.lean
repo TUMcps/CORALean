@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.ofIntervalMat_outer (I : Interval (Mat 𝕋 m n)) :
+theorem Zonotope.ofIntervalMat_outer (I : Interval (Mat 𝕋 m n)) : -- --- CONCL ---
     I.construct ⊆ (Zonotope.ofIntervalMat I).construct := by -- --- PROOF ---
   intro X hX
   set C := Interval.centerMat I

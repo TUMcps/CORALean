@@ -43,7 +43,7 @@ def listSumDown : List 𝕋 → 𝕋
   | [] => zero
   | a :: l => addDown a (listSumDown l)
 
-theorem sum_le_listSumUp [SoundFloatArithmetic 𝕋] (l : List 𝕋) :
+theorem sum_le_listSumUp [SoundFloatArithmetic 𝕋] (l : List 𝕋) : -- --- CONCL ---
     (l.map toReal).sum ≤ toReal (listSumUp l) := by -- --- PROOF ---
   induction l with
   | nil => simp [listSumUp, toReal_zero]
@@ -51,7 +51,7 @@ theorem sum_le_listSumUp [SoundFloatArithmetic 𝕋] (l : List 𝕋) :
     simp only [List.map_cons, List.sum_cons, listSumUp]
     exact le_trans (by linarith) (add_le_addUp _ _)
 
-theorem listSumDown_le [SoundFloatArithmetic 𝕋] (l : List 𝕋) :
+theorem listSumDown_le [SoundFloatArithmetic 𝕋] (l : List 𝕋) : -- --- CONCL ---
     toReal (listSumDown l) ≤ (l.map toReal).sum := by -- --- PROOF ---
   induction l with
   | nil => simp [listSumDown, toReal_zero]

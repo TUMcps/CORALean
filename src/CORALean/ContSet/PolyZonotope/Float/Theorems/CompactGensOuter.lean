@@ -106,7 +106,7 @@ theorem PolyZonotope.aux_compactGap (pZ : PolyZonotope (Vec 𝕋 n)) (i : Fin n)
   constructor <;> linarith
 
 -- the merged column is stored downward, and that gap is what the box pays for
-theorem PolyZonotope.aux_compactGens_nominal (pZ : PolyZonotope (Vec 𝕋 n)) :
+theorem PolyZonotope.aux_compactGens_nominal (pZ : PolyZonotope (Vec 𝕋 n)) : -- --- CONCL ---
     nominalSet pZ ⊆ nominalSet pZ.compactGens
       + (PolyZonotope.generatorError (PolyZonotope.compactGap pZ)).construct := by -- --- PROOF ---
   intro x hx
@@ -143,7 +143,7 @@ theorem PolyZonotope.aux_compactGens_nominal (pZ : PolyZonotope (Vec 𝕋 n)) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.compactGens_outer (pZ : PolyZonotope (Vec 𝕋 n)) :
+theorem PolyZonotope.compactGens_outer (pZ : PolyZonotope (Vec 𝕋 n)) : -- --- CONCL ---
     pZ.construct ⊆ pZ.compactGens.construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨z', hz', d, hd, hsum⟩ := PolyZonotope.aux_compactGens_nominal pZ hz

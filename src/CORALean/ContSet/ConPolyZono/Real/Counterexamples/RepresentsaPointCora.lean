@@ -55,7 +55,7 @@ def ConPolyZono.aux_pinned : ConPolyZono ℝ :=
       fun _ => .eq, Interval.unit 1⟩,
       fun _ => rfl, rfl⟩
 
-theorem ConPolyZono.aux_infeasible_construct :
+theorem ConPolyZono.aux_infeasible_construct : -- --- CONCL ---
     ConPolyZono.aux_infeasible.construct = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
@@ -67,7 +67,7 @@ theorem ConPolyZono.aux_infeasible_construct :
   rw [h4] at h3
   norm_num [abs_of_pos] at h3
 
-theorem ConPolyZono.aux_pinned_construct :
+theorem ConPolyZono.aux_pinned_construct : -- --- CONCL ---
     ConPolyZono.aux_pinned.construct = {0} := by -- --- PROOF ---
   ext x
   constructor

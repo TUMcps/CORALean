@@ -52,7 +52,8 @@ variable [InflatedContSet S₁ N₁ (Vec 𝕋 n) (Vec ℝ n)]
 theorem plus_subset {s₁ : S₁} {s₂ : S₂} {t : T} {D : Set (Vec ℝ n)}
     (hnominal : nominalSet s₁ + nominalSet s₂ ⊆
       nominalSet t + D)
-    (herror : (I_error s₁).construct + (I_error s₂).construct + D ⊆ (I_error t).construct) :
+    (herror : (I_error s₁).construct + (I_error s₂).construct + D ⊆ (I_error t).construct)
+    : -- --- CONCL ---
     construct s₁ + construct s₂ ⊆ construct t := by -- --- PROOF ---
   show nominalSet s₁ + (I_error s₁).construct
       + (nominalSet s₂ + (I_error s₂).construct) ⊆

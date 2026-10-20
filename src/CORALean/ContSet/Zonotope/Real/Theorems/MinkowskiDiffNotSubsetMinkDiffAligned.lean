@@ -54,7 +54,7 @@ namespace CORALean.Real
 abbrev aux_hex : Zonotope (Vec ℝ 2) := ⟨3, 0, ![![1, 0], ![0, 1], ![1, 1]]⟩
 
 /-- A point of the hexagon has `|z₀|, |z₁|, |z₀ - z₁| ≤ 2`. -/
-theorem aux_hex_bounds {z : Vec ℝ 2} (hz : z ∈ aux_hex.construct) :
+theorem aux_hex_bounds {z : Vec ℝ 2} (hz : z ∈ aux_hex.construct) : -- --- CONCL ---
     -2 ≤ z 0 ∧ z 0 ≤ 2 ∧ -2 ≤ z 1 ∧ z 1 ≤ 2 ∧ -2 ≤ z 0 - z 1 ∧ z 0 - z 1 ≤ 2 := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hz
   have h0 := abs_le.mp (hβ 0)
@@ -67,7 +67,8 @@ theorem aux_hex_bounds {z : Vec ℝ 2} (hz : z ∈ aux_hex.construct) :
 
 /-- Conversely `|z₀|, |z₁|, |z₀ - z₁| ≤ 2` puts `z` in the hexagon, with
 `θ₂ = max(z₀, z₁, 0) - 1`. -/
-theorem aux_hex_mem {z : Vec ℝ 2} (h0 : |z 0| ≤ 2) (h1 : |z 1| ≤ 2) (h01 : |z 0 - z 1| ≤ 2) :
+theorem aux_hex_mem {z : Vec ℝ 2} (h0 : |z 0| ≤ 2) (h1 : |z 1| ≤ 2)
+    (h01 : |z 0 - z 1| ≤ 2) : -- --- CONCL ---
     z ∈ aux_hex.construct := by -- --- PROOF ---
   obtain ⟨h0l, h0u⟩ := abs_le.mp h0
   obtain ⟨h1l, h1u⟩ := abs_le.mp h1

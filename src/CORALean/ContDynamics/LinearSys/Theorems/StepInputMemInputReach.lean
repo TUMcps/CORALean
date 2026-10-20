@@ -55,7 +55,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- Translating by `c` carries `Icc (a-c) (b-c)` onto `Icc a b` and preserves
 Lebesgue measure. -/
 theorem aux_aestronglyMeasurable_shift {f : ℝ → Vec ℝ n} {a b c : ℝ}
-    (hf : AEStronglyMeasurable f (volume.restrict (Set.Icc a b))) :
+    (hf : AEStronglyMeasurable f (volume.restrict (Set.Icc a b))) : -- --- CONCL ---
     AEStronglyMeasurable (fun σ => f (c + σ))
       (volume.restrict (Set.Icc (a - c) (b - c))) := by -- --- PROOF ---
   have hpre : (fun σ : ℝ => c + σ) ⁻¹' Set.Icc a b = Set.Icc (a - c) (b - c) := by
@@ -75,7 +75,7 @@ theorem aux_aestronglyMeasurable_shift {f : ℝ → Vec ℝ n} {a b c : ℝ}
 that step alone. -/
 theorem LinearSys.IsCanonicalTrajectory.stepInput_mem_inputReach {sys : LinearSys 𝕋 n} {T : Set ℝ}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.IsCanonicalTrajectory T R₀ U x u) (k : ℕ)
-    (hT : Set.Icc ((k : ℝ) * Δt) (((k : ℝ) + 1) * Δt) ⊆ T) :
+    (hT : Set.Icc ((k : ℝ) * Δt) (((k : ℝ) + 1) * Δt) ⊆ T) : -- --- CONCL ---
     sys.stepInput u Δt k ∈ sys.inputReach U Δt := by -- --- PROOF ---
   rw [show ((k : ℝ) + 1) * Δt = (k : ℝ) * Δt + Δt from by ring] at hT
   refine ⟨fun σ => u ((k : ℝ) * Δt + σ), fun σ hσ => traj.input _ (hT ⟨?_, ?_⟩), ?_,

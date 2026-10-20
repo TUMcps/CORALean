@@ -44,7 +44,7 @@ variable {m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A nonzero vector is nonzero at its pivot, the first largest `|gᵢ|`. -/
-theorem aux_gramSchmidtPivot_ne_zero {g : Vec ℝ (m + 1)} (hg : g ≠ 0) :
+theorem aux_gramSchmidtPivot_ne_zero {g : Vec ℝ (m + 1)} (hg : g ≠ 0) : -- --- CONCL ---
     g (gramSchmidtPivot g) ≠ 0 := by -- --- PROOF ---
   obtain ⟨i, hi⟩ : ∃ i, g i ≠ 0 := by
     by_contra h
@@ -65,7 +65,8 @@ theorem aux_gramSchmidtPivot_ne_zero {g : Vec ℝ (m + 1)} (hg : g ≠ 0) :
 
 /-- The completed columns are independent once `g` is nonzero at the dropped index `p`. -/
 theorem aux_gramSchmidtVec_cols_independent {g : Vec ℝ (m + 1)} {p : Fin (m + 1)}
-    (hgp : g p ≠ 0) : LinearIndependent ℝ (Matrix.of fun i j => Fin.cases (motive := fun _ => ℝ)
+    (hgp : g p ≠ 0) : -- --- CONCL ---
+    LinearIndependent ℝ (Matrix.of fun i j => Fin.cases (motive := fun _ => ℝ)
       (g i) (fun l => (Pi.single (p.succAbove l) 1 : Vec ℝ (m + 1)) i) j)ᵀ := by -- --- PROOF ---
   rw [Fintype.linearIndependent_iff]
   intro c hc
@@ -99,7 +100,7 @@ theorem aux_gramSchmidtVec_cols_independent {g : Vec ℝ (m + 1)} {p : Fin (m + 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- CORA's `gramSchmidt(g)` is an orthogonal matrix when `g ≠ 0`: `Qᵀ Q = 1`. -/
-theorem gramSchmidtVec_transpose_mul_self {g : Vec ℝ (m + 1)} (hg : g ≠ 0) :
+theorem gramSchmidtVec_transpose_mul_self {g : Vec ℝ (m + 1)} (hg : g ≠ 0) : -- --- CONCL ---
     (gramSchmidtVec g)ᵀ * gramSchmidtVec g = 1 := by -- --- PROOF ---
   -- the completed columns, independent, read into `EuclideanSpace`
   have hcols := aux_gramSchmidtVec_cols_independent (aux_gramSchmidtPivot_ne_zero hg)

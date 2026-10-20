@@ -69,7 +69,7 @@ theorem aux_coord_eq (Z : Zonotope (Vec ℝ d)) (β : Fin Z.h → ℝ) (zs : Vec
 /-- `γ` grows with the set and not with the representation: the point attaining it on the
 left is a point of the right. -/
 theorem aux_radius_le {Z₁ Z₂ : Zonotope (Vec ℝ d)} (hZ : Z₁.construct ⊆ Z₂.construct)
-    (zs : Vec ℝ d) (j : Fin d) :
+    (zs : Vec ℝ d) (j : Fin d) : -- --- CONCL ---
     |Z₁.c j - zs j| + ∑ k, |Z₁.G k j|
       ≤ |Z₂.c j - zs j| + ∑ k, |Z₂.G k j| := by -- --- PROOF ---
   -- that point is in `Z₁`, hence in `Z₂`, where the same coordinate is bounded by `γ₂`
@@ -85,7 +85,7 @@ theorem aux_radius_le {Z₁ Z₂ : Zonotope (Vec ℝ d)} (hZ : Z₁.construct �
 /-- An entrywise nonnegative form is nonnegative, and monotone, at nonnegative
 arguments. -/
 theorem aux_quad_le {M : Mat ℝ d d} (hM : ∀ k l, 0 ≤ M k l) {γ₁ γ₂ : Vec ℝ d}
-    (h0 : ∀ j, 0 ≤ γ₁ j) (h : ∀ j, γ₁ j ≤ γ₂ j) :
+    (h0 : ∀ j, 0 ≤ γ₁ j) (h : ∀ j, γ₁ j ≤ γ₂ j) : -- --- CONCL ---
     0 ≤ γ₁ ⬝ᵥ (M *ᵥ γ₁) ∧ γ₁ ⬝ᵥ (M *ᵥ γ₁) ≤ γ₂ ⬝ᵥ (M *ᵥ γ₂) := by -- --- PROOF ---
   have hrow : ∀ (γ : Vec ℝ d), (∀ j, 0 ≤ γ j) → ∀ k, 0 ≤ ∑ l, M k l * γ l :=
     fun γ hγ k => Finset.sum_nonneg fun l _ => mul_nonneg (hM k l) (hγ l)
@@ -103,7 +103,8 @@ theorem aux_quad_le {M : Mat ℝ d d} (hM : ∀ k l, 0 ≤ M k l) {γ₁ γ₂ :
 /-- A larger region gives a larger remainder box, once `E` is read as the
 entrywise bound it is. -/
 theorem lagrangeRemainder_mono {E : Fin n → Fin d → Mat ℝ d d} (hE : ∀ i j k l, 0 ≤ E i j k l)
-    {Z₁ Z₂ : Zonotope (Vec ℝ d)} (hZ : Z₁.construct ⊆ Z₂.construct) (zs : Vec ℝ d) :
+    {Z₁ Z₂ : Zonotope (Vec ℝ d)} (hZ : Z₁.construct ⊆ Z₂.construct)
+    (zs : Vec ℝ d) : -- --- CONCL ---
     (lagrangeRemainder E Z₁ zs).polyZonotope.construct
       ⊆ (lagrangeRemainder E Z₂ zs).polyZonotope.construct := by -- --- PROOF ---
   set γ₁ : Vec ℝ d := fun j => |Z₁.c j - zs j| + ∑ k, |Z₁.G k j| with hγ₁

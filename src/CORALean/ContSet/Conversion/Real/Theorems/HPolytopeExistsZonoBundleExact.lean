@@ -56,7 +56,7 @@ variable {n : ℕ}
 
 /-- An orthogonal matrix whose first column is the row's normal direction: the row is its norm
 times the first coordinate of `Bᵀ x`. -/
-theorem HPolytope.aux_exists_orthogonal_row [NeZero n] (f : Vec ℝ n →ₗ[ℝ] ℝ) :
+theorem HPolytope.aux_exists_orthogonal_row [NeZero n] (f : Vec ℝ n →ₗ[ℝ] ℝ) : -- --- CONCL ---
     ∃ B : Mat ℝ n n, B * Bᵀ = 1 ∧
       ∀ x, f x = HPolytope.rowNorm f * ((Bᵀ *ᵥ x) 0) := by -- --- PROOF ---
   -- the coefficients of the functional, and the functional as their dot product
@@ -97,7 +97,7 @@ theorem HPolytope.aux_exists_orthogonal_row [NeZero n] (f : Vec ℝ n →ₗ[ℝ
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.exists_zonoBundle_exact [NeZero n] (P : HPolytope (Vec ℝ n))
-    (hbd : Bornology.IsBounded P.construct) :
+    (hbd : Bornology.IsBounded P.construct) : -- --- CONCL ---
     ∃ zB : ZonoBundle (Vec ℝ n), zB.construct = P.construct := by -- --- PROOF ---
   by_cases hne : P.construct.Nonempty
   · -- a vertex form of the polytope, through the constrained zonotope it is

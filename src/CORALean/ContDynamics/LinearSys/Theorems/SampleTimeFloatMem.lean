@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.sampleTimeFloat_mem (Δt : 𝕋) (k : ℕ) :
+theorem LinearSys.sampleTimeFloat_mem (Δt : 𝕋) (k : ℕ) : -- --- CONCL ---
     toReal (LinearSys.sampleTimeFloat Δt k).inf ≤ k * toReal Δt
       ∧ k * toReal Δt ≤ toReal (LinearSys.sampleTimeFloat Δt k).sup := by -- --- PROOF ---
   induction k using Nat.strong_induction_on with

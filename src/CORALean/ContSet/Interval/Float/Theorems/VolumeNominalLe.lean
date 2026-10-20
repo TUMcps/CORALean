@@ -40,7 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_prod_le_prodUp : ∀ {k : ℕ} (f : Fin k → 𝕋), (∀ i, 0 ≤ toReal (f i)) →
+theorem aux_prod_le_prodUp : -- --- CONCL ---
+    ∀ {k : ℕ} (f : Fin k → 𝕋), (∀ i, 0 ≤ toReal (f i)) →
     ∏ i, toReal (f i) ≤ toReal (prodUp f) := by -- --- PROOF ---
   intro k
   induction k with
@@ -69,7 +70,7 @@ theorem Interval.aux_widthUp_ge (I : Interval (Vec 𝕋 n)) (i : Fin n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.volume_nominal_le (I : Interval (Vec 𝕋 n)) :
+theorem Interval.volume_nominal_le (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
     I.nominal.volume ≤ ENNReal.ofReal (toReal I.volume) := by -- --- PROOF ---
   have hW : ∀ i, 0 ≤ toReal (I.aux_widthUp i) := I.aux_widthUp_nonneg
   calc I.nominal.volume

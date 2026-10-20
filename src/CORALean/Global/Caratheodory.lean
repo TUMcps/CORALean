@@ -46,7 +46,7 @@ open Module
 /-- The convex hull of `T`, as the convex combinations of exactly `a` of its
 points, for any `a` at least one past the dimension. -/
 theorem convexHull_eq_fin {E : Type} [AddCommGroup E] [Module ℝ E] [FiniteDimensional ℝ E]
-    {a : ℕ} (ha : finrank ℝ E + 1 ≤ a) (T : Set E) :
+    {a : ℕ} (ha : finrank ℝ E + 1 ≤ a) (T : Set E) : -- --- CONCL ---
     convexHull ℝ T = {x | ∃ y : Fin a → E, ∃ lam : Fin a → ℝ, (∀ j, y j ∈ T)
       ∧ (∀ j, 0 ≤ lam j) ∧ ∑ j, lam j = 1 ∧ x = ∑ j, lam j • y j} := by -- --- PROOF ---
   classical

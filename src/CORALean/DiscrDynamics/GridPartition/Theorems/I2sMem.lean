@@ -39,7 +39,8 @@ variable {n : ℕ}
 
 /-- The subscripts `i2s` gives a cell in `1 … N` lie in `1 … siz i`. -/
 theorem GridPartition.i2s_mem (siz : Fin n → ℕ) {c : ℕ} (h2 : c ≤ ∏ j, siz j) (h1 : 1 ≤ c)
-    (i : Fin n) : 0 < GridPartition.i2s siz c i ∧ GridPartition.i2s siz c i ≤ siz i
+    (i : Fin n) : -- --- CONCL ---
+    0 < GridPartition.i2s siz c i ∧ GridPartition.i2s siz c i ≤ siz i
       := by -- --- PROOF ---
   have hpos : 0 < siz i := by
     rcases Nat.eq_zero_or_pos (siz i) with h | h

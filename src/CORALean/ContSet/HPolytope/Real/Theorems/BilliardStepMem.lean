@@ -55,7 +55,7 @@ variable {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDime
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.billiardStep_mem (P : HPolytope E) (R : ℕ) (τ : ℝ) (x : E) (η : ℝ) (ξ : E)
-    (hx : ∀ i, P.A i x < P.b i) (hτ : 0 ≤ τ) (hη₀ : 0 < η) (hη₁ : η ≤ 1) :
+    (hx : ∀ i, P.A i x < P.b i) (hτ : 0 ≤ τ) (hη₀ : 0 < η) (hη₁ : η ≤ 1) : -- --- CONCL ---
     ∀ y ∈ P.billiardStep R τ x η ξ,
       ∀ i, P.A i y ≤ P.b i := by -- --- PROOF ---
   intro y (hy : P.billiardStep R τ x η ξ = some y)

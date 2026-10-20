@@ -47,7 +47,7 @@ theorem aux_one_le_softmaxDenomDown (k : ℕ) (I : Interval (Vec 𝕋 n)) (i : F
   rw [softmaxDenomDown, toReal_maximum, toReal_one]
   exact le_max_left _ _
 
-theorem aux_softmaxDenomDown_le (k : ℕ) (I : Interval (Vec 𝕋 n)) (i : Fin n) :
+theorem aux_softmaxDenomDown_le (k : ℕ) (I : Interval (Vec 𝕋 n)) (i : Fin n) : -- --- CONCL ---
     toReal (softmaxDenomDown k I i)
       ≤ 1 + ∑ j ∈ Finset.univ.erase i,
           Real.exp (toReal (I.inf j) - toReal (I.sup i)) := by -- --- PROOF ---

@@ -48,7 +48,8 @@ variable {m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.extremalLo_isLeast (C : Interval (Vec ℝ m)) (hC : C.IsNonempty) (h : Vec ℝ m) :
+theorem Interval.extremalLo_isLeast (C : Interval (Vec ℝ m)) (hC : C.IsNonempty)
+    (h : Vec ℝ m) : -- --- CONCL ---
     IsLeast {s | ∃ c ∈ C.construct, s = ∑ i, c i * h i} (C.extremalLo h) := by -- --- PROOF ---
   constructor
   · -- the corner the signs select is a coefficient vector in `C`

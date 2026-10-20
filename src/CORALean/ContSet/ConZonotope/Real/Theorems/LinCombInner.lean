@@ -50,7 +50,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 there is something to divide by, and the origin where there is not. -/
 theorem ConZonotope.aux_smul_mem (cZ : ConZonotope α) (hne : cZ.construct.Nonempty) {w : ℝ}
     (hw : 0 ≤ w) {u : Vec ℝ cZ.h} (hrows : ∀ i, cZ.domain.A i u ≤ w * cZ.domain.b i)
-    (heqs : ∀ i, cZ.domain.Ae i u = w * cZ.domain.be i) :
+    (heqs : ∀ i, cZ.domain.Ae i u = w * cZ.domain.be i) : -- --- CONCL ---
     ∃ y ∈ cZ.construct, w • y = w • cZ.c + ∑ j, u j • cZ.G j := by -- --- PROOF ---
   rcases eq_or_lt_of_le hw with hzero | hpos
   -- weight zero: the box rows of `domain` are the ones that pin the block
@@ -87,7 +87,7 @@ theorem ConZonotope.aux_smul_mem (cZ : ConZonotope α) (hne : cZ.construct.Nonem
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.linComb_inner (cZ₁ cZ₂ : ConZonotope α) (h₁ : cZ₁.construct.Nonempty)
-    (h₂ : cZ₂.construct.Nonempty) :
+    (h₂ : cZ₂.construct.Nonempty) : -- --- CONCL ---
     (cZ₁.linComb cZ₂).construct ⊆ Set.linComb cZ₁.construct cZ₂.construct := by -- --- PROOF ---
   rintro x ⟨β, hβ, hP, rfl⟩
   set lam : ℝ := (β (Fin.natAdd (cZ₁.h + cZ₂.h) 0) + 1) / 2 with hlam

@@ -45,7 +45,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Under the `l∞` operator norm an entry never exceeds the whole norm. -/
-theorem abs_entry_le_norm {m k : ℕ} (M : Mat ℝ m k) (i : Fin m) (j : Fin k) :
+theorem abs_entry_le_norm {m k : ℕ} (M : Mat ℝ m k) (i : Fin m) (j : Fin k) : -- --- CONCL ---
     |M i j| ≤ ‖M‖ := by -- --- PROOF ---
   have h : ‖M i j‖₊ ≤ ‖M‖₊ := by
     rw [Matrix.linfty_opNNNorm_def]

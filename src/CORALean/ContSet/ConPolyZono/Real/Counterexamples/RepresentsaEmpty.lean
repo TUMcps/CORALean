@@ -61,7 +61,7 @@ def ConPolyZono.aux_emptyWithGI : ConPolyZono ℝ :=
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The set is empty although `GI` is nonempty, and CORA's printed check answers "not empty". -/
-theorem ConPolyZono.representsa_empty_counterexample :
+theorem ConPolyZono.representsa_empty_counterexample : -- --- CONCL ---
     0 < ConPolyZono.aux_emptyWithGI.qI ∧ ConPolyZono.aux_emptyWithGI.construct = ∅ ∧
       ConPolyZono.aux_isEmptySetPrinted ConPolyZono.aux_emptyWithGI
         = some false := by -- --- PROOF ---

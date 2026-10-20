@@ -80,7 +80,7 @@ theorem ConZonotope.aux_strip_regroup {h : ℕ} (M : Mat 𝕋 s n) (c : Vec 𝕋
           (Finset.sum_mul _ _ _).symm)) rfl
 
 /-- A product rounded down is off by at most the rounded gap to the one rounded up. -/
-theorem ConZonotope.aux_strip_mulDown_gap (a r : 𝕋) :
+theorem ConZonotope.aux_strip_mulDown_gap (a r : 𝕋) : -- --- CONCL ---
     |toReal a * toReal r - toReal (mulDown a r)|
       ≤ toReal (subUp (mulUp a r) (mulDown a r)) := by -- --- PROOF ---
   have h1 := mulDown_le_mul a r

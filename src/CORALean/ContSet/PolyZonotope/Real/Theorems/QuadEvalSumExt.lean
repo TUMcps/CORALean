@@ -53,7 +53,7 @@ variable {n m : ℕ}
 /-- The map of a sum, expanded over pairs: `bilin_point` at `quadBilin`, whose
 point is the same sum with an empty center. -/
 theorem PolyZonotope.quadEval_sum_ext (Q : Fin m → Mat ℝ n n) (pZ : PolyZonotope (Vec ℝ n))
-    (a : Fin pZ.p → ℝ) :
+    (a : Fin pZ.p → ℝ) : -- --- CONCL ---
     quadEval Q (∑ l, extM pZ a l • extG pZ l)
       = ∑ l, monomial (quadMapE pZ) a l • quadMapG Q pZ l := by -- --- PROOF ---
   -- the ascription is `bilin_point`'s statement with `quadMapDep`'s fields unfolded

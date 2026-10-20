@@ -40,7 +40,7 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem jacobianMat_affine (c : Vec ℝ m) (M : Mat ℝ m n) (x : Vec ℝ n) :
+theorem jacobianMat_affine (c : Vec ℝ m) (M : Mat ℝ m n) (x : Vec ℝ n) : -- --- CONCL ---
     jacobianMat (fun z => c + M *ᵥ z) x = M := by -- --- PROOF ---
   -- the map is a constant plus a linear map, whose derivative is itself
   have h : HasFDerivAt (fun z : Vec ℝ n => c + M *ᵥ z)

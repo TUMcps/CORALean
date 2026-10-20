@@ -45,7 +45,7 @@ variable [Mtimes (Mat ℝ) S] [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, OfPoint (S
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Location.inputSet_outer (ℓ : Location S G L 𝕋 n) {u : Vec ℝ ℓ.dynamics.m}
-    {w : Vec ℝ ℓ.dynamics.r} (hu : u ∈ construct ℓ.U) (hw : w ∈ construct ℓ.W) :
+    {w : Vec ℝ ℓ.dynamics.r} (hu : u ∈ construct ℓ.U) (hw : w ∈ construct ℓ.W) : -- --- CONCL ---
     toRealMat ℓ.dynamics.B *ᵥ u + toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w ∈
       construct ℓ.inputSet := by -- --- PROOF ---
   -- a real matrix is the singleton of itself, so `mtimes_outer` puts `M v` in `M V`

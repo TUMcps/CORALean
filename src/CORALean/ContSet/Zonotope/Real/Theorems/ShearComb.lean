@@ -46,7 +46,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.shear_comb (Z : Zonotope (Vec ℝ 2)) (κ : ℝ) (β : Fin Z.h → ℝ) :
+theorem Zonotope.shear_comb (Z : Zonotope (Vec ℝ 2)) (κ : ℝ) (β : Fin Z.h → ℝ) : -- --- CONCL ---
     (Z.shear κ).c + ∑ j, β j • (Z.shear κ).G j
       = ![(Z.c + ∑ j, β j • Z.G j) 0 - κ * (Z.c + ∑ j, β j • Z.G j) 1,
           (Z.c + ∑ j, β j • Z.G j) 1] := by -- --- PROOF ---

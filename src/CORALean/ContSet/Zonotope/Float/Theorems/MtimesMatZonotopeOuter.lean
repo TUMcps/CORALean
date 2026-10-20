@@ -61,7 +61,8 @@ theorem Zonotope.aux_mulVec_bounds (A : Mat 𝕋 m n) (v : Vec 𝕋 n) (i : Fin 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.mtimesMatZonotope_outer (M : Zonotope (Mat 𝕋 m n)) (Z : Zonotope (Vec 𝕋 n)) :
+theorem Zonotope.mtimesMatZonotope_outer (M : Zonotope (Mat 𝕋 m n))
+    (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     (⋃ A ∈ M.construct, (A *ᵥ ·) '' Z.construct)
       ⊆ (Zonotope.mtimesMatZonotope M Z).construct := by -- --- PROOF ---
   intro y hy

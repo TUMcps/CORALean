@@ -55,7 +55,7 @@ open Matrix
 is multiplying the restrictions. -/
 theorem GNN.submatrix_mul_of_closed {N K F : ℕ} (P : Mat ℝ N N) (X : Mat ℝ N F)
     (κ : Fin K → Fin N) (hinj : Function.Injective κ)
-    (hclosed : ∀ k i, (∀ l, κ l ≠ i) → P (κ k) i = 0) :
+    (hclosed : ∀ k i, (∀ l, κ l ≠ i) → P (κ k) i = 0) : -- --- CONCL ---
     (P * X).submatrix κ id = P.submatrix κ κ * X.submatrix κ id := by -- --- PROOF ---
   funext k j
   simp only [Matrix.submatrix_apply, Matrix.mul_apply, id_eq]

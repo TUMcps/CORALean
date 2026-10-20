@@ -72,7 +72,8 @@ theorem aux_blocks_form (C : Mat ℝ n n) (c : Fin n → ℝ) (γ : ℝ) (x : Fi
   ring
 
 /-- A symmetric `[[C, c], [cᵀ, γ]]` is positive semidefinite iff `xᵀCx + 2cᵀx + γ ≥ 0`. -/
-theorem aux_blocks_posSemidef_iff (C : Mat ℝ n n) (hC : C.IsSymm) (c : Fin n → ℝ) (γ : ℝ) :
+theorem aux_blocks_posSemidef_iff (C : Mat ℝ n n) (hC : C.IsSymm) (c : Fin n → ℝ)
+    (γ : ℝ) : -- --- CONCL ---
     (fromBlocks C (replicateCol (Fin 1) c) (replicateRow (Fin 1) c)
         (of fun _ _ => γ)).PosSemidef ↔
       ∀ x, 0 ≤ x ⬝ᵥ C *ᵥ x + 2 * (c ⬝ᵥ x) + γ := by -- --- PROOF ---

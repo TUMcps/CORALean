@@ -40,7 +40,7 @@ variable {n N : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem Zonotope.aux_embed_apply (proj : Fin n → Fin N) (hproj : Function.Injective proj)
-    (y : Vec ℝ n) (i : Fin N) :
+    (y : Vec ℝ n) (i : Fin N) : -- --- CONCL ---
     Zonotope.embed proj y i = if h : ∃ k, proj k = i then y h.choose else 0 := by -- --- PROOF ---
   classical
   simp only [Zonotope.embed, Matrix.mulVecLin_apply, Matrix.mulVec, dotProduct, Matrix.of_apply]
@@ -60,7 +60,7 @@ theorem Zonotope.aux_embed_apply (proj : Fin n → Fin N) (hproj : Function.Inje
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.projectHighDim_exact (Z : Zonotope (Vec ℝ n)) (proj : Fin n → Fin N)
-    (hproj : Function.Injective proj) :
+    (hproj : Function.Injective proj) : -- --- CONCL ---
     (Z.projectHighDim_ proj).construct = {x | ∃ y ∈ Z.construct, (∀ k, x (proj k) = y k) ∧
       ∀ i, i ∉ Set.range proj → x i = 0} := by -- --- PROOF ---
   show (Z.map (Zonotope.embed proj)).construct = _

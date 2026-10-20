@@ -41,7 +41,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- back: each listed vertex is a corner, and every corner lies in the zonotope
-theorem Zonotope.contains_vPolytope (Z : Zonotope α) :
+theorem Zonotope.contains_vPolytope (Z : Zonotope α) : -- --- CONCL ---
     Z.vPolytope.construct ⊆ Z.construct := by -- --- PROOF ---
   rw [VPolytope.construct_eq_convexHull]
   refine convexHull_min ?_ Z.convex_construct

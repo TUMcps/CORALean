@@ -43,7 +43,7 @@ namespace CORALean
 
 /-- The signal is `true` strictly between `t` and `t'` iff one interval reaches both. -/
 theorem PointSegmentSignal.findIntervals_stretch (s : PointSegmentSignal ℝ) (hs : s.IsValid)
-    (t t' : ℝ) (ht : 0 ≤ t) (htt : t < t') :
+    (t t' : ℝ) (ht : 0 ≤ t) (htt : t < t') : -- --- CONCL ---
     (∀ x, t < x → x < t' → s.at x = true) ↔
       ∃ I ∈ s.findIntervals, t ∈ I.leftClosure.set ∧ t' ∈ I.rightClosure.set := by -- --- PROOF ---
   obtain ⟨h1, h2⟩ := s.findIntervals_spec hs id

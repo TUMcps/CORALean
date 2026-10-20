@@ -51,7 +51,7 @@ open Matrix
 /-- [1, Sec. 4.3 (new reduction)]: `2ⁿ(|det T| + Σᵢ|det[t₁ ⋯ v ⋯ tₙ]|) = 2ⁿ|det T|(1 + Σᵢ|rᵢ|)`,
 `r = T⁻¹v`. -/
 theorem Zonotope.reduceScott_volume_sum {n : ℕ} (T : Mat ℝ n n) (hT : T.det ≠ 0)
-    (v : Vec ℝ n) :
+    (v : Vec ℝ n) : -- --- CONCL ---
     2 ^ n * (|T.det| + ∑ i, |(T.updateCol i v).det|)
       = 2 ^ n * |T.det| * (1 + ∑ i, |(T⁻¹ *ᵥ v) i|) := by -- --- PROOF ---
   -- Cramer's rule: column `i` replaced by `v` scales the determinant by `(T⁻¹v)ᵢ`

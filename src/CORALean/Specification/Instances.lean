@@ -106,7 +106,8 @@ theorem aux_zonoBound_le (Z : Zonotope (Vec 𝕋 n)) :
 def aux_containsBox (I B : Interval (Vec 𝕋 n)) : Bool :=
   (List.finRange n).all fun j => le (I.inf j) (B.inf j) && le (B.sup j) (I.sup j)
 
-theorem aux_containsBox_sound {I B : Interval (Vec 𝕋 n)} (h : aux_containsBox I B = true) :
+theorem aux_containsBox_sound {I B : Interval (Vec 𝕋 n)}
+    (h : aux_containsBox I B = true) : -- --- CONCL ---
     B.construct ⊆ I.construct := by -- --- PROOF ---
   simp only [aux_containsBox, List.all_eq_true, List.mem_finRange, Bool.and_eq_true,
     forall_const] at h
@@ -119,7 +120,8 @@ theorem aux_containsBox_sound {I B : Interval (Vec 𝕋 n)} (h : aux_containsBox
 def aux_disjointBox (I B : Interval (Vec 𝕋 n)) : Bool :=
   (List.finRange n).any fun j => ltStrict (B.sup j) (I.inf j) || ltStrict (I.sup j) (B.inf j)
 
-theorem aux_disjointBox_sound {I B : Interval (Vec 𝕋 n)} (h : aux_disjointBox I B = true) :
+theorem aux_disjointBox_sound {I B : Interval (Vec 𝕋 n)}
+    (h : aux_disjointBox I B = true) : -- --- CONCL ---
     Disjoint B.construct I.construct := by -- --- PROOF ---
   simp only [aux_disjointBox, List.any_eq_true, List.mem_finRange, Bool.or_eq_true,
     true_and] at h
@@ -154,7 +156,8 @@ def aux_containsRows (P : HPolytope 𝕋 (Vec 𝕋 n)) (bnd : Vec 𝕋 n → �
 
 theorem aux_containsRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
     (hb : ∀ a, ∀ x ∈ X, ∑ j, toReal (a j) * x j ≤ toReal (bnd a))
-    (h : aux_containsRows P bnd = true) : X ⊆ P.construct := by -- --- PROOF ---
+    (h : aux_containsRows P bnd = true) : -- --- CONCL ---
+    X ⊆ P.construct := by -- --- PROOF ---
   simp only [aux_containsRows, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   intro x hx
@@ -179,7 +182,8 @@ def aux_disjointRows (P : HPolytope 𝕋 (Vec 𝕋 n)) (bnd : Vec 𝕋 n → �
 
 theorem aux_disjointRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
     (hb : ∀ a, ∀ x ∈ X, ∑ j, toReal (a j) * x j ≤ toReal (bnd a))
-    (h : aux_disjointRows P bnd = true) : Disjoint X P.construct := by -- --- PROOF ---
+    (h : aux_disjointRows P bnd = true) : -- --- CONCL ---
+    Disjoint X P.construct := by -- --- PROOF ---
   simp only [aux_disjointRows, List.any_eq_true, List.mem_finRange, true_and] at h
   obtain ⟨i, hi⟩ := h
   rw [Set.disjoint_left]
@@ -218,7 +222,7 @@ def aux_disjointBundleBox (zB : ZonoBundle (Vec 𝕋 n)) (B : Interval (Vec 𝕋
   (List.finRange zB.k).any fun i => aux_disjointBox (Zonotope.interval (zB.Z i)) B
 
 theorem aux_disjointBundleBox_sound {zB : ZonoBundle (Vec 𝕋 n)} {B : Interval (Vec 𝕋 n)}
-    (h : aux_disjointBundleBox zB B = true) :
+    (h : aux_disjointBundleBox zB B = true) : -- --- CONCL ---
     Disjoint B.construct zB.construct := by -- --- PROOF ---
   simp only [aux_disjointBundleBox, List.any_eq_true, List.mem_finRange, true_and] at h
   obtain ⟨i, hi⟩ := h
@@ -231,7 +235,7 @@ def aux_disjointBundles (zB zB' : ZonoBundle (Vec 𝕋 n)) : Bool :=
   (List.finRange zB'.k).any fun j => aux_disjointBundleBox zB (Zonotope.interval (zB'.Z j))
 
 theorem aux_disjointBundles_sound {zB zB' : ZonoBundle (Vec 𝕋 n)}
-    (h : aux_disjointBundles zB zB' = true) :
+    (h : aux_disjointBundles zB zB' = true) : -- --- CONCL ---
     Disjoint zB'.construct zB.construct := by -- --- PROOF ---
   simp only [aux_disjointBundles, List.any_eq_true, List.mem_finRange, true_and] at h
   obtain ⟨j, hj⟩ := h

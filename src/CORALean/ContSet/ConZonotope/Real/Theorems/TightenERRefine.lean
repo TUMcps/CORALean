@@ -66,7 +66,7 @@ theorem ConZonotope.aux_tighter_trans {ng : ℕ}
 /-- Lines 3-5 only ever meet `E_j` and `R_j` with something. -/
 theorem ConZonotope.aux_tightenCoeffER_tighter {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     (i : Fin nc) (j : Fin ng)
-    (S : Interval (Vec ℝ ng) × ((Fin ng → EReal) × (Fin ng → EReal))) :
+    (S : Interval (Vec ℝ ng) × ((Fin ng → EReal) × (Fin ng → EReal))) : -- --- CONCL ---
     ConZonotope.aux_Tighter (ConZonotope.tightenCoeffER A b i j S) S := by -- --- PROOF ---
   intro k
   unfold ConZonotope.tightenCoeffER
@@ -82,7 +82,7 @@ theorem ConZonotope.aux_tightenCoeffER_tighter {nc ng : ℕ} (A : Mat ℝ nc ng)
 
 /-- A whole pass of lines 2-10 is no wider than its start. -/
 theorem ConZonotope.aux_tightenPassER_tighter {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
-    (S : Interval (Vec ℝ ng) × ((Fin ng → EReal) × (Fin ng → EReal))) :
+    (S : Interval (Vec ℝ ng) × ((Fin ng → EReal) × (Fin ng → EReal))) : -- --- CONCL ---
     ConZonotope.aux_Tighter (ConZonotope.tightenPassER A b S) S := by -- --- PROOF ---
   unfold ConZonotope.tightenPassER
   refine Fin.foldl_induction (P := fun S' => ConZonotope.aux_Tighter S' S) nc _ S

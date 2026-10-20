@@ -78,7 +78,7 @@ theorem LinearSysDT.aux_step_le (n hU o hIn : ℕ) (h : hIn ≤ o * n) :
 /-- `k` steps cost at most `k` worst-case steps. Assembled from the asserted
 per-operation counts and the proved size facts; nothing asserted here. -/
 theorem LinearSysDT.reachCost_le (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 < o)
-    (R₀ U : Zonotope (Vec ℝ n)) (hR₀ : R₀.h ≤ o * n) (k : ℕ) :
+    (R₀ U : Zonotope (Vec ℝ n)) (hR₀ : R₀.h ≤ o * n) (k : ℕ) : -- --- CONCL ---
     sys.reachCost o ho R₀ U k ≤ k • LinearSysDT.reachStepBound n U.h o := by -- --- PROOF ---
   induction k with
   | zero => simp [LinearSysDT.reachCost]

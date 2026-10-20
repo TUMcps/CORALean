@@ -75,7 +75,8 @@ theorem Ellipsoid.aux_pair {a b x y : ℝ} (ha : 0 < a) (hb : 0 < b) (hx : 0 ≤
   have hn : 0 ≤ (y - x) * (a - b) ^ 2 := mul_nonneg (sub_nonneg.2 hxy) (sq_nonneg (a - b))
   exact div_nonpos_of_nonpos_of_nonneg (by linarith) (by positivity)
 
-theorem Ellipsoid.aux_cross_le (hlam : ∀ i, 0 < lam i) {x y : ℝ} (hx : 0 ≤ x) (hxy : x ≤ y) :
+theorem Ellipsoid.aux_cross_le (hlam : ∀ i, 0 < lam i) {x y : ℝ} (hx : 0 ≤ x)
+    (hxy : x ≤ y) : -- --- CONCL ---
     Ellipsoid.halderInvSum lam x * Ellipsoid.halderLamSum lam y
       ≤ Ellipsoid.halderInvSum lam y * Ellipsoid.halderLamSum lam x := by -- --- PROOF ---
   unfold Ellipsoid.halderInvSum Ellipsoid.halderLamSum
@@ -99,7 +100,7 @@ theorem Ellipsoid.aux_cross_le (hlam : ∀ i, 0 < lam i) {x y : ℝ} (hx : 0 ≤
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The step [1, Eq. 26] is monotone on `[0, ∞)`, the fact [1, Thm. 3] iterates on. -/
-theorem Ellipsoid.halderStep_monotoneOn [Nonempty ι] (hlam : ∀ i, 0 < lam i) :
+theorem Ellipsoid.halderStep_monotoneOn [Nonempty ι] (hlam : ∀ i, 0 < lam i) : -- --- CONCL ---
     MonotoneOn (Ellipsoid.halderStep lam) (Set.Ici 0) := by -- --- PROOF ---
   intro x hx y hy hxy
   unfold Ellipsoid.halderStep

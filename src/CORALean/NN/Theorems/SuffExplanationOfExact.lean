@@ -55,7 +55,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval 
 /-- Separation on the exact image is sufficiency in the pointwise sense:
 every point of `explainBox` keeps `l` strictly ahead. -/
 theorem suffExplanation_of_exact (f : Vec ℝ n → Vec ℝ m) (x : Vec ℝ n) (ε : ℝ)
-    (E : Finset (Fin n)) (l : Fin m) (hexact : IsSuffExplanationExact S f x ε E l) :
+    (E : Finset (Fin n)) (l : Fin m)
+    (hexact : IsSuffExplanationExact S f x ε E l) : -- --- CONCL ---
     IsSuffExplanation f x ε E l := by -- --- PROOF ---
   intro x' hx' j hj
   have hmem : f x' ∈ f '' construct (ofInterval (explainBox x ε E) : S n) :=

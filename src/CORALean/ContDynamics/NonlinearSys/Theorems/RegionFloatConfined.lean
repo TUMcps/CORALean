@@ -67,7 +67,8 @@ theorem aux_maximumOver_nonneg : ∀ {k : ℕ} (g : Fin k → 𝕋), (∀ i, 0 �
   | succ k => exact fun g hg => le_trans (hg 0) (le_maximumOver g 0)
 
 /-- The sup norm of a point of a box is at most the box's `bound`. -/
-theorem aux_norm_le_bound {I : Interval (Vec 𝕋 n)} {y : Vec ℝ n} (hy : y ∈ I.construct) :
+theorem aux_norm_le_bound {I : Interval (Vec 𝕋 n)} {y : Vec ℝ n}
+    (hy : y ∈ I.construct) : -- --- CONCL ---
     ‖y‖ ≤ toReal (maximumOver fun i => maximum (absolute (I.inf i)) (absolute (I.sup i)))
       := by -- --- PROOF ---
   have hnn := aux_maximumOver_nonneg (fun i => maximum (absolute (I.inf i)) (absolute (I.sup i)))

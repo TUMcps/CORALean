@@ -41,7 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.representsa_point_sound {E : Ellipsoid 𝕋 n}
-    (h : E.representsa_point = true) : ∃ v, E.construct = {v} := by -- --- PROOF ---
+    (h : E.representsa_point = true) : -- --- CONCL ---
+    ∃ v, E.construct = {v} := by -- --- PROOF ---
   simp only [Ellipsoid.representsa_point, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨hG, hE⟩ := h

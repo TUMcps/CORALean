@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.atan2Lo_le (p k : ℕ) (a b : 𝕋) :
+theorem Interval.atan2Lo_le (p k : ℕ) (a b : 𝕋) : -- --- CONCL ---
     toReal (Interval.atan2Lo p k a b) ≤ Complex.arg ⟨toReal a, toReal b⟩ := by -- --- PROOF ---
   have hpm : toReal (acosDown p k (zero : 𝕋)) ≤ Real.pi / 2 := by
     have := acosDown_le p k (zero : 𝕋)

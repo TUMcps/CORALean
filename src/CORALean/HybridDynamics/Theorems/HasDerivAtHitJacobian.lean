@@ -64,7 +64,7 @@ variable {n : ℕ}
 
 /-- [1, Prop. 2]: `∂L_im/∂x₀_l = Q̃⁽ⁱ⁾_lm(x₀)`, wherever `Λ(x₀) ≠ 0`. -/
 theorem GuardMap.hasDerivAt_hitJacobian {A : Mat ℝ n n} {b nv x₀ : Vec ℝ n} {d : ℝ}
-    (hΛ : nv ⬝ᵥ (A *ᵥ x₀ + b) ≠ 0) (i l m : Fin n) :
+    (hΛ : nv ⬝ᵥ (A *ᵥ x₀ + b) ≠ 0) (i l m : Fin n) : -- --- CONCL ---
     HasDerivAt (fun s : ℝ => GuardMap.hitJacobian A b nv d (x₀ + s • Pi.single l 1) i m)
       (GuardMap.hitHessian A b nv d x₀ i l m) 0 := by -- --- PROOF ---
   set f : Vec ℝ n := A *ᵥ x₀ + b with hfdef

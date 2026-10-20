@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A point of the nominal part is within `√max(0, Qᵢᵢ)` of the center in coordinate `i`. -/
 theorem Ellipsoid.abs_sub_le_of_mem_nominalSet {E : Ellipsoid 𝕋 n} {x : Vec ℝ n}
-    (hx : x ∈ nominalSet E) (i : Fin n) :
+    (hx : x ∈ nominalSet E) (i : Fin n) : -- --- CONCL ---
     |x i - toReal (E.q i)| ≤ Real.sqrt (max 0 (toReal (E.Q i i))) := by -- --- PROOF ---
   by_cases hpsd : (toRealMat E.Q).PosSemidef
   · -- the ellipsoid of `Q`, in its box

@@ -35,7 +35,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `representsa_ origin` at `tol = 0` iff the set of times is `{0}`. -/
-theorem STLInterval.representsa_origin_zero_iff (I : STLInterval) :
+theorem STLInterval.representsa_origin_zero_iff (I : STLInterval) : -- --- CONCL ---
     I.representsa_ 0 .origin ↔ I.set = {0} := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.representsa_, STLInterval.set]

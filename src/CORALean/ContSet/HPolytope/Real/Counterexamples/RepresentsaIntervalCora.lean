@@ -84,7 +84,7 @@ def HPolytope.aux_squareCut : HPolytope (Fin 2 → ℝ) where
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The polytope is the interval `[0, 0]²`, yet CORA does not accept it as an interval. -/
-theorem HPolytope.representsa_interval_cora_counterexample :
+theorem HPolytope.representsa_interval_cora_counterexample : -- --- CONCL ---
     HPolytope.aux_squareCut.construct = Set.Icc (0 : Fin 2 → ℝ) 0 ∧
       ¬ HPolytope.aux_squareCut.representsaIntervalCora 0 (fun _ => 2) ![1, 1]
         0 := by -- --- PROOF ---

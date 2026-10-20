@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.sum_mem_sumTermsMat (f : ℕ → Interval (Mat 𝕋 m n)) (M : ℕ → Mat ℝ m n)
-    (N : ℕ) (h : ∀ k, k < N → M k ∈ (f k).construct) :
+    (N : ℕ) (h : ∀ k, k < N → M k ∈ (f k).construct) : -- --- CONCL ---
     ∑ k ∈ Finset.range N, M k ∈ (Interval.sumTermsMat f N).construct := by -- --- PROOF ---
   induction N with
   | zero =>

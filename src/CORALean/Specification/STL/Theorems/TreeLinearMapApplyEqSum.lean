@@ -40,7 +40,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.linearMap_apply_eq_sum (f : (Fin n → ℝ) →ₗ[ℝ] ℝ) (x : Fin n → ℝ) :
+theorem STL.Tree.linearMap_apply_eq_sum (f : (Fin n → ℝ) →ₗ[ℝ] ℝ) (x : Fin n → ℝ) : -- --- CONCL ---
     f x = ∑ j, f (Pi.single j 1) * x j := by -- --- PROOF ---
   conv_lhs => rw [LinearMap.pi_apply_eq_sum_univ f x]
   refine Finset.sum_congr rfl fun j _ => ?_

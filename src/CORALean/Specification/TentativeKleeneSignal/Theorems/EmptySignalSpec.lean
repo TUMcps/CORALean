@@ -34,7 +34,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem TentativeKleeneSignal.emptySignal_spec :
+theorem TentativeKleeneSignal.emptySignal_spec : -- --- CONCL ---
     TentativeKleeneSignal.emptySignal.IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       TentativeKleeneSignal.emptySignal.at t = FourValued.ii := by -- --- PROOF ---
   obtain ⟨hv, h⟩ := PointSegmentSignal.indicator_spec (STLInterval.stlInterval 0 ⊤ true true le_rfl)

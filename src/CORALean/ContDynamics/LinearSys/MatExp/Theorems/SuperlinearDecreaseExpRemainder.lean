@@ -58,7 +58,7 @@ variable {n : ℕ}
 /-- [1, Lemma 1]: the remainder's box shrinks by at least `φ` when the step
 does, at every order `η` and every `Δt` meeting the usual side condition. -/
 theorem MatExp.superlinearDecrease_expRemainder {A : Mat ℝ n n} {Δt : ℝ} (η : ℕ)
-    (hΔt : ‖Δt • A‖ / ((η : ℝ) + 2) < 1) :
+    (hΔt : ‖Δt • A‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
     SuperlinearDecrease (fun δ => (MatExp.expRemainder A δ η).construct) Δt := by -- --- PROOF ---
   intro φ hφ M hM
   obtain ⟨hφ0, hφ1⟩ := hφ

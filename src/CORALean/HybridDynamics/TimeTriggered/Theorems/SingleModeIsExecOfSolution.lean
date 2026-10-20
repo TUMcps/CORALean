@@ -52,7 +52,8 @@ variable {X : Type} [NormedAddCommGroup X] [NormedSpace ℝ X]
 
 /-- A solution of `ẋ = f(x)` on `[0, s]` from `I` ends an execution of duration `s`. -/
 theorem DiffInclAutomaton.singleMode_isExec_of_solution {I : Set X} {f : X → X} {s : ℝ}
-    (hs : 0 ≤ s) {z : ℝ → X} (hz0 : z 0 ∈ I) (hz : ∀ u ∈ Icc 0 s, HasDerivAt z (f (z u)) u) :
+    (hs : 0 ≤ s) {z : ℝ → X} (hz0 : z 0 ∈ I)
+    (hz : ∀ u ∈ Icc 0 s, HasDerivAt z (f (z u)) u) : -- --- CONCL ---
     (DiffInclAutomaton.singleMode I f).IsExec s () (z s) := by -- --- PROOF ---
   have e0 : (DiffInclAutomaton.singleMode I f).IsExec 0 () (z 0) :=
     DiffInclAutomaton.IsExec.init hz0

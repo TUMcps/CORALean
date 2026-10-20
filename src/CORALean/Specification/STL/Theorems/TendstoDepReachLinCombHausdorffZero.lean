@@ -65,7 +65,7 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Adding the point `w` is shifting the center by `w`. -/
-theorem aux_plus_ofPoint_eq_shift (Z : Zonotope (Vec ℝ n)) (w : Vec ℝ n) :
+theorem aux_plus_ofPoint_eq_shift (Z : Zonotope (Vec ℝ n)) (w : Vec ℝ n) : -- --- CONCL ---
     Z.plus (Zonotope.ofPoint w) = Z.shift (-w) := by -- --- PROOF ---
   obtain ⟨h, c, G⟩ := Z
   simp only [Zonotope.plus, Zonotope.shift, Zonotope.ofPoint, sub_neg_eq_add]
@@ -75,7 +75,7 @@ theorem aux_plus_ofPoint_eq_shift (Z : Zonotope (Vec ℝ n)) (w : Vec ℝ n) :
 
 /-- The generators of `H(t_i)` are those of `X₀` mapped by `e^{iAΔt}`. -/
 theorem aux_depReachAt_H_G (A : Mat ℝ n n) (Δt : ℝ) (cs : STL.DepReachConsts n)
-    (X₀ : Zonotope (Vec ℝ n)) (i : ℕ) (j : Fin (STL.depReachAt A Δt cs X₀ i).H.h) :
+    (X₀ : Zonotope (Vec ℝ n)) (i : ℕ) (j : Fin (STL.depReachAt A Δt cs X₀ i).H.h) : -- --- CONCL ---
     ∃ k : Fin X₀.h,
       (STL.depReachAt A Δt cs X₀ i).H.G j = (exp (Δt • A) ^ i) *ᵥ X₀.G k := by -- --- PROOF ---
   induction i with

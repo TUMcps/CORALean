@@ -72,7 +72,7 @@ theorem Zonotope.aux_one_sub_sum (ρ : Fin r → ℝ) (Λ : Fin r → Mat ℝ n 
 
 -- `(I - Λ(θ)C) T M(θ)` expanded over the vertices
 theorem Zonotope.aux_double_sum {k : ℕ} (T : Mat ℝ n n) (ρ : Fin r → ℝ) (Λ : Fin r → Mat ℝ n ny)
-    (C : Mat ℝ ny n) (M : Fin r → Mat ℝ n k) (hρ : ∑ i, ρ i = 1) :
+    (C : Mat ℝ ny n) (M : Fin r → Mat ℝ n k) (hρ : ∑ i, ρ i = 1) : -- --- CONCL ---
     ∑ i, ∑ j, (ρ i * ρ j) • ((1 - Λ i * C) * T * M j) =
       (1 - (∑ i, ρ i • Λ i) * C) * T * (∑ j, ρ j • M j) := by -- --- PROOF ---
   rw [← Zonotope.aux_one_sub_sum ρ Λ C hρ, Matrix.sum_mul, Matrix.sum_mul]

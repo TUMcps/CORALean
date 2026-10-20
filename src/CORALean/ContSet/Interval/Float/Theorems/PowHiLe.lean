@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.le_powHi (a : 𝕋) (k : ℕ) :
+theorem Interval.le_powHi (a : 𝕋) (k : ℕ) : -- --- CONCL ---
     toReal a ^ k ≤ toReal (Interval.powHi a k) := by -- --- PROOF ---
   have habs : toReal (absolute a) = |toReal a| := toReal_absolute a
   unfold Interval.powHi

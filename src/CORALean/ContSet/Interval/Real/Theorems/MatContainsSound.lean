@@ -44,7 +44,7 @@ variable {m n : ℕ}
 /-- A matrix accepted with tolerance `tol ≥ 0` is within `tol * max 1 |M i j|` of its entry's
 interval, and every column of the box is nonempty. -/
 theorem Interval.matContains_sound (A : Interval (Mat ℝ m n)) (M : Mat ℝ m n) {tol : ℝ}
-    (ht : 0 ≤ tol) (h : A.matContains M tol) (i : Fin m) (j : Fin n) :
+    (ht : 0 ≤ tol) (h : A.matContains M tol) (i : Fin m) (j : Fin n) : -- --- CONCL ---
     A.inf i j ≤ A.sup i j ∧ A.inf i j - tol * max 1 |M i j| ≤ M i j ∧
       M i j ≤ A.sup i j + tol * max 1 |M i j| := by -- --- PROOF ---
   obtain ⟨hne, h2⟩ := h j

@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n N : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.projectHighDim_outer (P : VPolytope (Vec 𝕋 n)) {dims : Fin n → Fin N}
-    (hdims : Function.Injective dims) :
+    (hdims : Function.Injective dims) : -- --- CONCL ---
     (fun x => Function.extend dims x 0) '' P.construct ⊆
       (P.projectHighDim dims).construct := by -- --- PROOF ---
   -- padding with zeros is the padding matrix, vertex by vertex

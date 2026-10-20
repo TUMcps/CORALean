@@ -30,7 +30,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [OfScalarPoint 𝕋 S]
 omit [ExactScalar 𝕋] [Mtimes (Mat 𝕋) S] in
 /-- Every `x - p`, `x` in `S` and `p` read as reals, is in `minusScalar S p`: `plus_outer`, the
 point `-p` reading as `-toRealVec p`. -/
-theorem ContSet.minusScalar_outer (s : S n) (p : Vec 𝕋 n) :
+theorem ContSet.minusScalar_outer (s : S n) (p : Vec 𝕋 n) : -- --- CONCL ---
     (fun x => x - toRealVec p) '' construct s ⊆
       construct (ContSet.minusScalar s p) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩

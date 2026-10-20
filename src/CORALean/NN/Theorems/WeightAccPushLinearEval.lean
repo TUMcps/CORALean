@@ -41,7 +41,7 @@ variable {α : Type} [Semiring α] {n m k d : ℕ}
 
 /-- The pushed accumulator is the accumulated map followed by `x ↦ W₂ x + b₂`. -/
 theorem WeightAcc.pushLinear_eval (acc : WeightAcc α n d) (W₂ : Mat α m d) (b₂ : Fin m → α)
-    (x : Fin n → α) :
+    (x : Fin n → α) : -- --- CONCL ---
     (acc.pushLinear W₂ b₂).eval x = W₂ *ᵥ acc.eval x + b₂ := by -- --- PROOF ---
   cases acc with
   | id => rfl

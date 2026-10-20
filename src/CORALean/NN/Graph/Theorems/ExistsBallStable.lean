@@ -46,7 +46,7 @@ open Matrix
 
 /-- The ball stops growing at some radius no larger than `N`, so a caller never
 needs more than `N` rounds to find its fixpoint. -/
-theorem GNN.exists_ball_stable {N : ℕ} (A : Mat ℝ N N) (v : Fin N) :
+theorem GNN.exists_ball_stable {N : ℕ} (A : Mat ℝ N N) (v : Fin N) : -- --- CONCL ---
     ∃ r ≤ N, GNN.ball A v (r + 1) = GNN.ball A v r := by -- --- PROOF ---
   by_contra hcon
   push Not at hcon

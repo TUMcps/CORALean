@@ -81,7 +81,7 @@ theorem aux_oneParamF_succ (C G : Mat ℝ n n) (i l : ℕ) (hl : 1 ≤ l) : -- -
       aux_oneParamF_eq_zero C G i l (Or.inr (by omega)), zero_mul, zero_mul, add_zero]
 
 /-- `(C + βG)ⁱ = Σ_{l=0}^i βˡ P_i^{(l)}`. -/
-theorem aux_pow_eq_sum_range (C G : Mat ℝ n n) (β : ℝ) (i : ℕ) :
+theorem aux_pow_eq_sum_range (C G : Mat ℝ n n) (β : ℝ) (i : ℕ) : -- --- CONCL ---
     (C + β • G) ^ i = ∑ l ∈ Finset.range (i + 1), β ^ l •
       (if l = 0 then MatExp.oneParamD C i else MatExp.oneParamF C G i l) := by -- --- PROOF ---
   induction i with

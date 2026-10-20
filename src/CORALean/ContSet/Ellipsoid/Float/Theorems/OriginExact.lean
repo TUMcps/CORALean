@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.origin_exact (n : ℕ) :
+theorem Ellipsoid.origin_exact (n : ℕ) : -- --- CONCL ---
     (Ellipsoid.origin n : Ellipsoid 𝕋 n).construct = {0} := by -- --- PROOF ---
   have hc : toRealVec (fun _ : Fin n => (zero : 𝕋)) = 0 := funext fun _ => toReal_zero
   have hQ : toRealMat (fun _ _ : Fin n => (zero : 𝕋)) = 0 :=

@@ -50,7 +50,7 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : �
 the guard; the reset image then lands in `jumpOfPoint Rg`. -/
 theorem Transition.jumpOfPoint_outer (e : Transition G L 𝕋 n) {R Rg : S n}
     (hinter : construct R ∩ construct e.guard ⊆ construct Rg) {z : Vec ℝ n}
-    (hz : z ∈ construct R) (hguard : z ∈ construct e.guard) :
+    (hz : z ∈ construct R) (hguard : z ∈ construct e.guard) : -- --- CONCL ---
     e.reset z ∈ construct (e.jumpOfPoint Rg) := by -- --- PROOF ---
   show toRealMat e.W *ᵥ z + toRealVec e.w ∈ construct (e.jumpOfPoint Rg)
   exact plus_outer _ _ (Set.add_mem_add

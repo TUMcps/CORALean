@@ -40,7 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.pieceHolds_sound {p : VPolytope (Vec 𝕋 2)} {x : Vec 𝕋 2}
-    (h : Polygon.pieceHolds p x = true) : toRealVec x ∈ nominalSet p := by -- --- PROOF ---
+    (h : Polygon.pieceHolds p x = true) : -- --- CONCL ---
+    toRealVec x ∈ nominalSet p := by -- --- PROOF ---
   simp only [Polygon.pieceHolds, List.any_eq_true, List.mem_finRange, true_and] at h
   obtain ⟨a, b, c, h⟩ := h
   obtain ⟨α, β, γ, hα, hβ, hγ, hsum, hx⟩ := Polygon.inTriangle_sound h

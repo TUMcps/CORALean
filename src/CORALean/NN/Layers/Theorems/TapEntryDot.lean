@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem tapEntry_dot {n : ℕ} :
+theorem tapEntry_dot {n : ℕ} : -- --- CONCL ---
     ∀ {k : ℕ} (t : Fin k → Fin n) (v : Fin k → 𝕋) (x : Vec ℝ n), Function.Injective t →
       ∑ i, toReal (tapEntry t v i) * x i = ∑ l, toReal (v l) * x (t l) := by -- --- PROOF ---
   intro k

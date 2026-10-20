@@ -48,7 +48,7 @@ theorem NonlinParamSys.linearize_jacobianX_mem (sys : NonlinParamSys n m q)
       = sys.f x u 0 + ∑ i, p i • (sys.f x u (Pi.single i 1) - sys.f x u 0))
     (xs : Vec ℝ n) (us : Vec ℝ m)
     (hd : ∀ p, DifferentiableAt ℝ (fun x => sys.f x us p) xs) (I : Interval (Vec ℝ q))
-    {p : Vec ℝ q} (hp : p ∈ I.construct) : -- --- CONCL ---
+    {p : Vec ℝ q} (hp : p ∈ I.construct) :
     jacobianMat (fun x => sys.f x us p) xs ∈ (sys.linearize xs us I).1.A.construct :=
   NonlinParamSys.jacobianFamily_mem (fun x p => sys.f x us p) (fun x p => hAff x us p) xs hd I hp
 

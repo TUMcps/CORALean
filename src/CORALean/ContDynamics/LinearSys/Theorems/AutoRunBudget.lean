@@ -114,7 +114,7 @@ theorem aux_autoTuneDeltaT_le (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Boo
     {tk tend εmax ζ εaAcc Δtprev : ℝ} (ηmax fuel : ℕ) (U₀ : Zonotope (Vec ℝ n))
     (hΔtprev : 0 < Δtprev) {Δtk : ℝ} {ηk : ℕ}
     (h : sys.autoTuneDeltaT le H ũ tk tend εmax ζ εaAcc Δtprev ηmax fuel U₀
-      = some (Δtk, ηk)) : -- --- CONCL ---
+      = some (Δtk, ηk)) :
     0 < Δtk ∧ MatExp.particularSolutionError (toRealMat sys.A) tk U₀.construct Δtk ηk
       ≤ (tk + Δtk) / tend * (1 - ζ) * εmax - εaAcc :=
   aux_autoTuneSearch_le sys hle H ũ ηmax U₀ fuel _ _ _ (by linarith) h

@@ -46,7 +46,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.supportFunc_eq (P : VPolytope α) (c : α →ₗ[ℝ] ℝ) (hk : 0 < P.k) :
+theorem VPolytope.supportFunc_eq (P : VPolytope α) (c : α →ₗ[ℝ] ℝ) (hk : 0 < P.k) : -- --- CONCL ---
     supportFunc P.construct c = ((⨆ l, c (P.V l) : ℝ) : EReal) := by -- --- PROOF ---
   refine le_antisymm (supportFunc_le_coe_iff.mpr fun x hx => (P.supportBound c).le x hx) ?_
   -- the bound is attained, so the supremum reaches it

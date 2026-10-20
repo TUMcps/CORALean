@@ -56,7 +56,7 @@ variable {n : ℕ}
 /-- A coordinate of the box is within the generators' total length of the
 center's, each generator entry being at most that generator's norm. -/
 theorem aux_abs_sub_center_le {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
-    (hx : x ∈ Z.interval.construct) (i : Fin n) :
+    (hx : x ∈ Z.interval.construct) (i : Fin n) : -- --- CONCL ---
     |x i - Z.c i| ≤ ∑ p, ‖Z.G p‖ := by -- --- PROOF ---
   have hb := hx i
   simp only [Zonotope.interval, entry_ofEntry] at hb
@@ -73,7 +73,7 @@ theorem aux_abs_sub_center_le {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
 
 /-- [1, Thm. 1], the `ω_rad` bound: the box is never further from the zonotope
 than the generators reach, measured in the norm `Vec ℝ n` carries. -/
-theorem Zonotope.hausdorffDist_interval_le (Z : Zonotope (Vec ℝ n)) :
+theorem Zonotope.hausdorffDist_interval_le (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     Metric.hausdorffDist Z.construct Z.interval.construct ≤ ∑ p, ‖Z.G p‖ := by -- --- PROOF ---
   have hr : (0 : ℝ) ≤ ∑ p, ‖Z.G p‖ := Finset.sum_nonneg fun _ _ => norm_nonneg _
   refine Metric.hausdorffDist_le_of_mem_dist hr

@@ -45,7 +45,7 @@ variable {n N : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.enclosePointsStursberg_mem [NeZero N] (pts : Fin N → Vec ℝ n) {U : Mat ℝ n n}
-    (hU : U * Uᵀ = 1) (j : Fin N) :
+    (hU : U * Uᵀ = 1) (j : Fin N) : -- --- CONCL ---
     pts j ∈ (Zonotope.enclosePointsStursberg pts U).construct := by -- --- PROOF ---
   set mean : Vec ℝ n := (1 / (N : ℝ)) • ∑ j, pts j with hmean
   set w : Fin N → Vec ℝ n := fun j => Uᵀ *ᵥ (pts j - mean) with hw

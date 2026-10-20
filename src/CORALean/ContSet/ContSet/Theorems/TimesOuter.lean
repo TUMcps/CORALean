@@ -40,7 +40,7 @@ variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ}
 
 /-- Every point of `S`, scaled coordinate by coordinate by `v` read as reals, is in
 `times v S`: `mtimes_outer` at `diag v`, whose real reading is `diag` of the read vector. -/
-theorem ContSet.times_outer (v : Vec 𝕋 n) (s : S n) :
+theorem ContSet.times_outer (v : Vec 𝕋 n) (s : S n) : -- --- CONCL ---
     (fun y : Vec ℝ n => fun i => toReal (v i) * y i) '' construct s ⊆
       construct (ContSet.times v s) := by -- --- PROOF ---
   rintro _ ⟨y, hy, rfl⟩

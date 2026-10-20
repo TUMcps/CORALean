@@ -37,7 +37,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.not_isFullDim_of_G_zero (hn : 0 < n) (S : SpectraShadow (Vec ℝ n))
-    (hG : ∀ j, S.G j = 0) : ¬ (interior S.construct).Nonempty := by -- --- PROOF ---
+    (hG : ∀ j, S.G j = 0) : -- --- CONCL ---
+    ¬ (interior S.construct).Nonempty := by -- --- PROOF ---
   haveI : Nonempty (Fin n) := ⟨⟨0, hn⟩⟩
   -- the shadow is in the point `{c}`
   have hsub : S.construct ⊆ {S.c} := by

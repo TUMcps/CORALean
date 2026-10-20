@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- A region `[l, b]` found next to the covered part `t ≤ l` extends it to `t ≤ b`. -/
 theorem aux_cover_left {σ : ℝ → ℝ} {tol b l u : 𝕋} {r : RegionPoly 𝕋}
     (hr : r.Fits σ tol l b) (ext acc : List (RegionPoly 𝕋))
-    (h : ∀ t, (t ≤ toReal l ∨ toReal u ≤ t) → ∃ q ∈ ext ++ acc, q.covers t) :
+    (h : ∀ t, (t ≤ toReal l ∨ toReal u ≤ t) → ∃ q ∈ ext ++ acc, q.covers t) : -- --- CONCL ---
     ∀ t, (t ≤ toReal b ∨ toReal u ≤ t) → ∃ q ∈ ext ++ r :: acc, q.covers t := by -- --- PROOF ---
   intro t ht
   have hmono : ∀ q ∈ ext ++ acc, q ∈ ext ++ r :: acc := fun q hq => by
@@ -73,7 +73,7 @@ theorem aux_cover_left {σ : ℝ → ℝ} {tol b l u : 𝕋} {r : RegionPoly �
 /-- A region `[a, u]` found next to the covered part `u ≤ t` extends it to `a ≤ t`. -/
 theorem aux_cover_right {σ : ℝ → ℝ} {tol a l u : 𝕋} {r : RegionPoly 𝕋}
     (hr : r.Fits σ tol a u) (ext acc : List (RegionPoly 𝕋))
-    (h : ∀ t, (t ≤ toReal l ∨ toReal u ≤ t) → ∃ q ∈ ext ++ acc, q.covers t) :
+    (h : ∀ t, (t ≤ toReal l ∨ toReal u ≤ t) → ∃ q ∈ ext ++ acc, q.covers t) : -- --- CONCL ---
     ∀ t, (t ≤ toReal l ∨ toReal a ≤ t) → ∃ q ∈ ext ++ r :: acc, q.covers t := by -- --- PROOF ---
   intro t ht
   have hmono : ∀ q ∈ ext ++ acc, q ∈ ext ++ r :: acc := fun q hq => by

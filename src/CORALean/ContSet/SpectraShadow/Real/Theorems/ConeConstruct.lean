@@ -60,7 +60,8 @@ theorem aux_arrowMat_zero : arrowMat 0 0 (0 : Vec ℝ N) = 0 := by
   refine Fin.cases ?_ (fun i => ?_) p <;> refine Fin.cases ?_ (fun j => ?_) q <;>
     simp [arrowMat]
 
-theorem aux_arrowMat_sum {ι : Type} (u : Finset ι) (a b : ι → ℝ) (w : ι → Vec ℝ N) :
+theorem aux_arrowMat_sum {ι : Type} (u : Finset ι) (a b : ι → ℝ)
+    (w : ι → Vec ℝ N) : -- --- CONCL ---
     arrowMat (∑ i ∈ u, a i) (∑ i ∈ u, b i) (∑ i ∈ u, w i)
       = ∑ i ∈ u, arrowMat (a i) (b i) (w i) := by -- --- PROOF ---
   classical
@@ -116,7 +117,7 @@ theorem SpectraShadow.aux_gen_cone (T : SpectraShadow (Vec ℝ N)) (s t : ℝ)
   rw [Fin.sum_univ_add, Fin.sum_univ_add]
   simp only [Fin.append_left, Fin.append_right, Fin.sum_univ_one, smul_zero, add_zero, zero_add]
 
-theorem aux_eq_append3 {m : ℕ} (b : Fin (1 + m + 1) → ℝ) :
+theorem aux_eq_append3 {m : ℕ} (b : Fin (1 + m + 1) → ℝ) : -- --- CONCL ---
     b = Fin.append (Fin.append (fun _ : Fin 1 => b (Fin.castAdd 1 (Fin.castAdd m 0)))
       (fun j => b (Fin.castAdd 1 (Fin.natAdd 1 j))))
       (fun _ : Fin 1 => b (Fin.natAdd (1 + m) 0)) := by -- --- PROOF ---
@@ -135,7 +136,7 @@ theorem aux_eq_append3 {m : ℕ} (b : Fin (1 + m + 1) → ℝ) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.cone_construct (hN : 0 < N) (T : SpectraShadow (Vec ℝ N)) :
+theorem SpectraShadow.cone_construct (hN : 0 < N) (T : SpectraShadow (Vec ℝ N)) : -- --- CONCL ---
     T.cone.construct
       = {z | z = 0 ∨ ∃ s : ℝ, 0 < s ∧ ∃ x ∈ T.construct, z = s • x} := by -- --- PROOF ---
   ext z

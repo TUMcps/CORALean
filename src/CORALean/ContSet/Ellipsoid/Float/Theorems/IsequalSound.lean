@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.isequal_sound {E S : Ellipsoid 𝕋 n} (h : E.isequal S = true) :
+theorem Ellipsoid.isequal_sound {E S : Ellipsoid 𝕋 n} (h : E.isequal S = true) : -- --- CONCL ---
     E.construct = S.construct := by -- --- PROOF ---
   unfold Ellipsoid.isequal at h
   simp only [List.all_eq_true, List.mem_finRange, Bool.and_eq_true, forall_const] at h

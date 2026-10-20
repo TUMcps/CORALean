@@ -52,7 +52,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- `Δd - Δd_trans` bounds the exact difference in the direction `c`, [1, Thm. 5]'s
 `b̃` at its most conservative admissible value. -/
 theorem Zonotope.minkowskiDiff_apply_le (Z₁ Z₂ : Zonotope α) (c : α →ₗ[ℝ] ℝ)
-    {x : α} (hx : x ∈ minkowskiDiff Z₁.construct Z₂.construct) :
+    {x : α} (hx : x ∈ minkowskiDiff Z₁.construct Z₂.construct) : -- --- CONCL ---
     c (x - (Z₁.c - Z₂.c)) ≤ (∑ υ, |c (Z₁.G υ)|) - ∑ υ, |c (Z₂.G υ)| := by -- --- PROOF ---
   -- the subtrahend's own farthest point in the direction `c`
   have hz : Z₂.c + ∑ j, (if 0 ≤ c (Z₂.G j) then (1:ℝ) else -1) • Z₂.G j ∈ Z₂.construct :=

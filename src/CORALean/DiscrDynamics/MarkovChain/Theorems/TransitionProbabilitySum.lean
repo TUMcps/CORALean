@@ -39,7 +39,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Counting each point under the first cell it lands in counts every point once. -/
-theorem MarkovChain.aux_count_sum (field : GridPartition n) (l : List (Vec ℝ n)) :
+theorem MarkovChain.aux_count_sum (field : GridPartition n) (l : List (Vec ℝ n)) : -- --- CONCL ---
     ∑ s : Fin (field.nrOfCells + 1),
       ((l.filter fun x => (field.intersectingCells ⟨x, x⟩).headD 0 = s).length : ℝ) = l.length
         := by -- --- PROOF ---
@@ -81,7 +81,8 @@ theorem MarkovChain.aux_count_sum (field : GridPartition n) (l : List (Vec ℝ n
 
 /-- The probabilities of the outside and each cell, from a nonempty set of points, sum to `1`. -/
 theorem MarkovChain.transitionProbability_sum (field : GridPartition n) {pts : List (Vec ℝ n)}
-    (h : pts ≠ []) : ∑ s, MarkovChain.transitionProbability field pts s = 1 := by -- --- PROOF ---
+    (h : pts ≠ []) : -- --- CONCL ---
+    ∑ s, MarkovChain.transitionProbability field pts s = 1 := by -- --- PROOF ---
   unfold MarkovChain.transitionProbability
   rw [← Finset.sum_div]
   have hlen : (0 : ℝ) < pts.length := by exact_mod_cast List.length_pos_iff.mpr h

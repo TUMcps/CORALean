@@ -39,7 +39,8 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem not_differentiableAt_relu_zero : ¬ DifferentiableAt ℝ Real.relu 0 := by -- --- PROOF ---
+theorem not_differentiableAt_relu_zero : -- --- CONCL ---
+    ¬ DifferentiableAt ℝ Real.relu 0 := by -- --- PROOF ---
   intro h
   have hd : HasDerivAt Real.relu (deriv Real.relu 0) 0 := h.hasDerivAt
   -- to the right `Real.relu` is the identity, to the left the constant zero

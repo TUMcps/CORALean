@@ -60,7 +60,7 @@ theorem PolyZonotope.aux_monomial_sum (pZ : PolyZonotope α) (L : Fin m → Poly
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.sum_point (pZ : PolyZonotope α) (L : Fin m → PolyZonotope α)
-    (hp : ∀ i, (L i).p = pZ.p) (a : Fin pZ.p → ℝ) :
+    (hp : ∀ i, (L i).p = pZ.p) (a : Fin pZ.p → ℝ) : -- --- CONCL ---
     (pZ.sum L hp).point a
       = pZ.point a + ∑ i, (L i).point fun k => a (Fin.cast (hp i) k) := by -- --- PROOF ---
   simp only [PolyZonotope.point, Finset.sum_add_distrib]

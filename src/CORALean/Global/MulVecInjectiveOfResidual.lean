@@ -45,7 +45,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem mulVec_injective_of_residual (M C : Matrix (Fin n) (Fin n) ℝ)
-    (h : ∀ i, ∑ j, |(1 - M * C) i j| < 1) : Function.Injective C.mulVec := by -- --- PROOF ---
+    (h : ∀ i, ∑ j, |(1 - M * C) i j| < 1) : -- --- CONCL ---
+    Function.Injective C.mulVec := by -- --- PROOF ---
   intro u w huw
   by_contra hne
   set z := u - w

@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem toReal_polyDerivCenter (c : Fin (n + 1) → 𝕋) :
+theorem toReal_polyDerivCenter (c : Fin (n + 1) → 𝕋) : -- --- CONCL ---
     toReal (polyDerivCenter c)
       = Real.polyDerivCenter (fun k => toReal (c k)) := by -- --- PROOF ---
   show toReal (if h : 1 < n + 1 then c ⟨1, h⟩ else zero)

@@ -39,7 +39,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- With `a < 0`, `a s² + b s + c < 0` for all `s ≥ s₀`. -/
-theorem exists_quad_neg {a : ℝ} (ha : a < 0) (b c : ℝ) :
+theorem exists_quad_neg {a : ℝ} (ha : a < 0) (b c : ℝ) : -- --- CONCL ---
     ∃ s₀ : ℝ, ∀ s, s₀ ≤ s → a * s ^ 2 + b * s + c < 0 := by -- --- PROOF ---
   refine ⟨max 1 ((|b| + |c| + 1) / -a), fun s hs => ?_⟩
   have h1 : 1 ≤ s := le_trans (le_max_left _ _) hs

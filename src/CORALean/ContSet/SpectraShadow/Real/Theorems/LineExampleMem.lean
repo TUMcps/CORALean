@@ -36,7 +36,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.lineExample_mem (t : ℝ) :
+theorem SpectraShadow.lineExample_mem (t : ℝ) : -- --- CONCL ---
     (fun _ => t : Vec ℝ 2) ∈ SpectraShadow.lineExample.construct := by -- --- PROOF ---
   refine ⟨fun j : Fin 2 => if j = 0 then t else 0, ?_, ?_⟩
   · -- `A₀ = I` and the second coefficient is `0`, where `A₁ = 0`

@@ -41,7 +41,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.radius₂_isLeast {I : Interval (Vec ℝ n)} (hI : I.IsNonempty) :
+theorem Interval.radius₂_isLeast {I : Interval (Vec ℝ n)} (hI : I.IsNonempty) : -- --- CONCL ---
     IsLeast {ρ : ℝ | construct I ⊆ {x | ‖x - I.center‖₂ ≤ ρ}}
       I.radius₂ := by -- --- PROOF ---
   refine ⟨fun x hx => Interval.norm₂_sub_center_le hx, fun ρ hρ => ?_⟩

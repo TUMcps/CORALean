@@ -43,7 +43,7 @@ variable {a c : ℝ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.arctan_eq_add_atanShift (h : 0 < 1 + c * a) :
+theorem Taylm.arctan_eq_add_atanShift (h : 0 < 1 + c * a) : -- --- CONCL ---
     Real.arctan a = Real.arctan c + Real.arctan (Taylm.atanShift c a) := by -- --- PROOF ---
   have hadd := Real.arctan_add (x := a) (y := -c) (by linarith)
   rw [Real.arctan_neg] at hadd

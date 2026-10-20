@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.sqrt_outer (q : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    (hpos : 0 < toReal (minimum T.constCoef T.bounds.inf)) :
+    (hpos : 0 < toReal (minimum T.constCoef T.bounds.inf)) : -- --- CONCL ---
     (T.sqrt q).Encloses fun t => Real.sqrt (f t) := by -- --- PROOF ---
   have hmin : toReal (minimum T.constCoef T.bounds.inf) =
       min (toReal T.constCoef) (toReal T.bounds.inf) := toReal_minimum _ _

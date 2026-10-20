@@ -48,7 +48,7 @@ theorem LinearSys.IsCanonicalTrajectory.discretize_inputSolution [Mtimes ℐ S]
     (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) Δt η) U))) : -- --- CONCL ---
+      (MatExp.inputRemainder (toRealMat sys.A) Δt η) U))) :
     (sys.discretize Δt).IsCanonicalTrajectory R₀ (sys.inputSolution Δt η U)
       (fun k : ℕ => x (k * Δt)) (sys.stepInput u Δt) :=
   traj.discretize hΔt.le hT hbdd

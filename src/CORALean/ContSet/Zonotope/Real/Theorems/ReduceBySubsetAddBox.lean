@@ -50,7 +50,7 @@ variable {n q r : ℕ}
 /-- Boxing what a partition drops also bounds the reduction from above: the
 reduced zonotope lies inside the original plus the box it introduced. -/
 theorem Zonotope.reduceBy_subset_add_box (Z : Zonotope (Vec ℝ n))
-    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) :
+    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) : -- --- CONCL ---
     (Z.reduceBy part).construct ⊆
       Z.construct + (Z.reduceByBox part).construct := by -- --- PROOF ---
   intro x hx

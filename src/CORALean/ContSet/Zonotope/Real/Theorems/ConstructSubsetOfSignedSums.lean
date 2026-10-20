@@ -47,7 +47,7 @@ variable {n L : ℕ}
 
 theorem Zonotope.iUnion_construct_subset_of_signedSums_subset (Z : Fin L → Zonotope (Vec ℝ n))
     {M : Set (Vec ℝ n)} (hM : Convex ℝ M)
-    (hP : ⋃ l, (fun x => (Z l).c + x) '' Zonotope.signedSums (Z l).G ⊆ M) :
+    (hP : ⋃ l, (fun x => (Z l).c + x) '' Zonotope.signedSums (Z l).G ⊆ M) : -- --- CONCL ---
     ⋃ l, (Z l).construct ⊆ M := by -- --- PROOF ---
   refine Set.iUnion_subset fun l => ?_
   rw [Zonotope.construct_eq_convexHull_corner]

@@ -50,7 +50,8 @@ variable {lam : ι → ℝ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Ellipsoid.aux_stationarity_hasDerivAt (hlam : ∀ i, 0 < lam i) {β : ℝ} (hβ : 0 < β) :
+theorem Ellipsoid.aux_stationarity_hasDerivAt (hlam : ∀ i, 0 < lam i) {β : ℝ}
+    (hβ : 0 < β) : -- --- CONCL ---
     HasDerivAt (Ellipsoid.halderStationarity lam)
       (-∑ i, lam i * (1 + 2 * β + β ^ 2 * lam i) / (1 + β * lam i) ^ 2) β := by -- --- PROOF ---
   unfold Ellipsoid.halderStationarity

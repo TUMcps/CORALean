@@ -55,7 +55,7 @@ variable {n : ℕ}
 /-- [1, Lemma 1]: the interval matrix `[−E_abs(Δt,η), E_abs(Δt,η)]` of eq. (15)-(16) shrinks by
 at least `φ` when the step does, for every step `Δt ≥ 0` and every order `η`. -/
 theorem MatExp.superlinearDecrease_expRemainderMat (A : Mat ℝ n n) (η : ℕ) {Δt : ℝ}
-    (hΔt : 0 ≤ Δt) :
+    (hΔt : 0 ≤ Δt) : -- --- CONCL ---
     SuperlinearDecrease (fun δ => MatExp.expRemainderInterval A δ η) Δt := by -- --- PROOF ---
   intro φ hφ M hM
   obtain ⟨hφ0, hφ1⟩ := hφ

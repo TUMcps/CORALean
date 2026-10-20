@@ -39,7 +39,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.IsLPCenter.mem {P : HPolytope (Vec ℝ n)} {x : Vec ℝ n}
-    (h : P.IsLPCenter x) : x ∈ P.construct := by -- --- PROOF ---
+    (h : P.IsLPCenter x) : -- --- CONCL ---
+    x ∈ P.construct := by -- --- PROOF ---
   obtain ⟨r, hr, hA, hAe, -⟩ := h
   refine ⟨fun i => ?_, hAe⟩
   have h0 : 0 ≤ HPolytope.rowNorm (P.A i) * r :=

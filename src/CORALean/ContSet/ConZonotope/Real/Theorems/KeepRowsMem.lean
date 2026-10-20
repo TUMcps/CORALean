@@ -75,7 +75,7 @@ theorem ConZonotope.aux_abs_dropped_le (part : Split (Fin h) into (Fin q) ⊕ (F
 
 theorem ConZonotope.keepRows_mem (P : HPolytope (Vec ℝ h))
     (part : Split (Fin h) into (Fin q) ⊕ (Fin r)) {β : Vec ℝ h} (hβ : β ∈ P.construct)
-    (hbox : ∀ l, |β (part.right l)| ≤ 1) :
+    (hbox : ∀ l, |β (part.right l)| ≤ 1) : -- --- CONCL ---
     (fun l => β (part.left l)) ∈ (ConZonotope.keepRows P part).construct := by -- --- PROOF ---
   -- every row, an equality as its two halves, holds at `β`
   have hrows := HPolytope.mem_construct_iff_rows.mp hβ

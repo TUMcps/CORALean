@@ -35,7 +35,8 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The restricted level set holds the constraints at the chosen indices. -/
-theorem LevelSet.restrict_construct {n : ℕ} (L : LevelSet n) (s : Finset (Fin L.m)) :
+theorem LevelSet.restrict_construct {n : ℕ} (L : LevelSet n)
+    (s : Finset (Fin L.m)) : -- --- CONCL ---
     (L.restrict s).construct = {x | ∀ i ∈ s, (L.op i).holds (L.f x i)} := by -- --- PROOF ---
   ext x
   constructor

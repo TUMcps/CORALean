@@ -39,7 +39,7 @@ variable {n : ℕ}
 
 /-- An evenly cut nonempty box with every dimension cut is a well-formed partition. -/
 theorem GridPartition.ofInterval_wellFormed (I : Real.Interval (Vec ℝ n)) {segs : Fin n → ℕ}
-    (h : ∀ j, 0 < segs j) (hI : ∀ j, I.inf j ≤ I.sup j) :
+    (h : ∀ j, 0 < segs j) (hI : ∀ j, I.inf j ≤ I.sup j) : -- --- CONCL ---
     (GridPartition.ofInterval I segs).WellFormed := by -- --- PROOF ---
   intro j
   refine ⟨h j, fun a b hab hb => ?_⟩

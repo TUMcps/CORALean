@@ -50,7 +50,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.isequalNondeg_duplicate_counterexample :
+theorem HPolytope.isequalNondeg_duplicate_counterexample : -- --- CONCL ---
     ∃ (A₁ : Mat ℝ 3 1) (b₁ : Vec ℝ 3) (A₂ : Mat ℝ 1 1) (b₂ : Vec ℝ 1),
       HPolytope.isequalNondeg A₁ b₁ A₂ b₂ = true ∧
         (HPolytope.ineqs A₁ b₁).construct ≠ (HPolytope.ineqs A₂ b₂).construct := by -- --- PROOF ---

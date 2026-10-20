@@ -42,7 +42,8 @@ namespace CORALean
 
 /-- A nonempty interval is `{t}` iff it is the closed `[t, t]`. -/
 theorem STLInterval.set_eq_singleton_iff {l u : EReal} {lc rc : Bool} (a : l = ⊥ → lc = false)
-    (b : u = ⊤ → rc = false) (c : l < u ∨ l = u ∧ lc = true ∧ rc = true) (z : 0 ≤ l) (t : ℝ) :
+    (b : u = ⊤ → rc = false) (c : l < u ∨ l = u ∧ lc = true ∧ rc = true) (z : 0 ≤ l)
+    (t : ℝ) : -- --- CONCL ---
     (STLInterval.nonempty l u lc rc a b c z).set = {t} ↔
       l = t ∧ u = t ∧ lc = true ∧ rc = true := by -- --- PROOF ---
   constructor

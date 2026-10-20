@@ -69,7 +69,7 @@ theorem aux_expRemainderMat_entry_nonneg (A : Mat ℝ n n) {Δt : ℝ} (hΔt : 0
 
 /-- `e^{At_i} E(φΔt,η) φΔt U ⊆ φ · e^{At_i} E(Δt,η) Δt U`, [1]'s set inclusion. -/
 theorem aux_particularRemainderSet_subset (A : Mat ℝ n n) (ti : ℝ) (U : Set (Vec ℝ n)) (η : ℕ)
-    {Δt : ℝ} (hΔt : 0 ≤ Δt) {φ : ℝ} (hφ : φ ∈ Set.Ioo (0 : ℝ) 1) :
+    {Δt : ℝ} (hΔt : 0 ≤ Δt) {φ : ℝ} (hφ : φ ∈ Set.Ioo (0 : ℝ) 1) : -- --- CONCL ---
     MatExp.particularRemainderSet A ti U (φ * Δt) η
       ⊆ φ • MatExp.particularRemainderSet A ti U Δt η := by -- --- PROOF ---
   rintro _ ⟨_, ⟨M, hM, _, ⟨u, hu, rfl⟩, rfl⟩, rfl⟩
@@ -95,7 +95,8 @@ theorem aux_particularRemainderSet_subset (A : Mat ℝ n n) (ti : ℝ) (U : Set 
 `ε_P = err(e^{At_i} E(Δt,η) Δt U)` of eq. (22), at every step start `t_i`, order `η` and step
 `Δt ≥ 0`. -/
 theorem MatExp.particularRemainderError_superlinear (A : Mat ℝ n n) (ti : ℝ)
-    {U : Set (Vec ℝ n)} (hU : Bornology.IsBounded U) (η : ℕ) {Δt : ℝ} (hΔt : 0 ≤ Δt) :
+    {U : Set (Vec ℝ n)} (hU : Bornology.IsBounded U) (η : ℕ) {Δt : ℝ}
+    (hΔt : 0 ≤ Δt) : -- --- CONCL ---
     ∀ φ ∈ Set.Ioo (0 : ℝ) 1, MatExp.particularRemainderError A ti U (φ * Δt) η
       ≤ φ * MatExp.particularRemainderError A ti U Δt η := by -- --- PROOF ---
   intro φ hφ

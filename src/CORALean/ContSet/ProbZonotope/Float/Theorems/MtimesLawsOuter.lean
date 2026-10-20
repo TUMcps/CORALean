@@ -43,7 +43,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ProbZonotope.mtimes_laws_outer {m : ℕ} (M : Mat 𝕋 m n) (P : ProbZonotope 𝕋 n) :
+theorem ProbZonotope.mtimes_laws_outer {m : ℕ} (M : Mat 𝕋 m n)
+    (P : ProbZonotope 𝕋 n) : -- --- CONCL ---
     (fun μ => μ.map (fun x => toLp 2 (toRealMat M *ᵥ ofLp x))) '' P.laws
       ⊆ (P.mtimes M).laws := by -- --- PROOF ---
   rintro _ ⟨_, ⟨a, ha, S, hS, hp, rfl⟩, rfl⟩

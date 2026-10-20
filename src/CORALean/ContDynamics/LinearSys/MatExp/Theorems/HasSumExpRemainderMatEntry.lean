@@ -71,7 +71,8 @@ theorem aux_continuous_expRemainderMatEntryHom (j k : Fin n) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- An entry of `E(Δt,η)` is the sum of the exponential series at `|A|Δt` past order `η`. -/
-theorem MatExp.hasSum_expRemainderMat_entry (A : Mat ℝ n n) (Δt : ℝ) (η : ℕ) (j k : Fin n) :
+theorem MatExp.hasSum_expRemainderMat_entry (A : Mat ℝ n n) (Δt : ℝ) (η : ℕ)
+    (j k : Fin n) : -- --- CONCL ---
     HasSum (fun i : ℕ => ((Nat.factorial (i + (η + 1)) : ℝ)⁻¹ * Δt ^ (i + (η + 1)))
         * ((MatExp.absMat A) ^ (i + (η + 1))) j k)
       (MatExp.expRemainderMat A Δt η j k) := by -- --- PROOF ---

@@ -37,7 +37,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.construct_emptySet : (HPolytope.emptySet 𝕋 n).construct = ∅ := by -- --- PROOF ---
+theorem HPolytope.construct_emptySet : -- --- CONCL ---
+    (HPolytope.emptySet 𝕋 n).construct = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
   intro hx

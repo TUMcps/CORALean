@@ -38,7 +38,7 @@ variable {fmt : IEEEFormat}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem le_roundUp (d : Dyadic fmt.p) :
+theorem le_roundUp (d : Dyadic fmt.p) : -- --- CONCL ---
     d.toReal ≤ (roundUp d : IEEE fmt).toReal := by -- --- PROOF ---
   have h : d.mantissa ≤ -(-d.mantissa / 2 ^ gridShift d) * 2 ^ gridShift d := by
     rw [neg_mul, le_neg]

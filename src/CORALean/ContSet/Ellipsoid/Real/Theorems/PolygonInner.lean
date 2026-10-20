@@ -42,7 +42,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.polygon_inner (E : Ellipsoid 2) (L : List (Vec ℝ 2)) :
+theorem Ellipsoid.polygon_inner (E : Ellipsoid 2) (L : List (Vec ℝ 2)) : -- --- CONCL ---
     ContSet.construct (E.polygon L) ⊆ E.construct := by -- --- PROOF ---
   rw [Ellipsoid.polygon, Polygon.construct_ofPieces]
   simp only [List.mem_singleton, Set.iUnion_iUnion_eq_left]

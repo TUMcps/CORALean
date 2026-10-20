@@ -56,7 +56,8 @@ theorem isHMatrix_of_dominant {mig mag : Matrix (Fin k) (Fin k) ℝ}
 /-- [1, Thm. 4.9]: every real matrix in an H-matrix is regular. -/
 theorem det_ne_zero_of_isHMatrix {mig mag : Matrix (Fin k) (Fin k) ℝ} (hH : IsHMatrix mig mag)
     (A : Matrix (Fin k) (Fin k) ℝ) (hmig : ∀ i, mig i i ≤ |A i i|)
-    (hmag : ∀ i j, i ≠ j → |A i j| ≤ mag i j) : A.det ≠ 0 := by -- --- PROOF ---
+    (hmag : ∀ i j, i ≠ j → |A i j| ≤ mag i j) : -- --- CONCL ---
+    A.det ≠ 0 := by -- --- PROOF ---
   obtain ⟨u, hu, hAu⟩ := hH
   -- `A diag(u)` is strictly row-dominant
   have hdom : ∀ i, ∑ j ∈ univ.erase i, ‖(A * diagonal u) i j‖ < ‖(A * diagonal u) i i‖ := by

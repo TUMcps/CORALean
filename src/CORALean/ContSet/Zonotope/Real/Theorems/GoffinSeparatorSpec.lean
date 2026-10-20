@@ -70,7 +70,8 @@ variable {k : ℕ}
 /-- A vector orthogonal to every member of a family is orthogonal to its span. -/
 theorem Zonotope.aux_dot_eq_zero_of_mem_span {ι : Type} (v : Vec ℝ (k + 1))
     (b : ι → Vec ℝ (k + 1)) (hb : ∀ i, v ⬝ᵥ b i = 0) {x : Vec ℝ (k + 1)}
-    (hx : x ∈ Submodule.span ℝ (Set.range b)) : v ⬝ᵥ x = 0 := by -- --- PROOF ---
+    (hx : x ∈ Submodule.span ℝ (Set.range b)) : -- --- CONCL ---
+    v ⬝ᵥ x = 0 := by -- --- PROOF ---
   let φ : Vec ℝ (k + 1) →ₗ[ℝ] ℝ :=
     { toFun := fun y => v ⬝ᵥ y
       map_add' := dotProduct_add v

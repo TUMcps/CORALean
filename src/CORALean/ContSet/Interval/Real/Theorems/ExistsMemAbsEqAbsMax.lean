@@ -39,7 +39,7 @@ variable {m n : ℕ}
 
 /-- The corner of larger magnitude in every entry has the absolute values `absMax`. -/
 theorem Interval.exists_mem_abs_eq_absMax (A : Interval (Mat ℝ m n))
-    (hA : ∀ p q, A.inf p q ≤ A.sup p q) :
+    (hA : ∀ p q, A.inf p q ≤ A.sup p q) : -- --- CONCL ---
     ∃ M ∈ A.construct, ∀ i j, |M i j| = A.absMax i j := by -- --- PROOF ---
   classical
   refine ⟨Matrix.of fun p q => if |A.inf p q| ≤ |A.sup p q| then A.sup p q else A.inf p q,

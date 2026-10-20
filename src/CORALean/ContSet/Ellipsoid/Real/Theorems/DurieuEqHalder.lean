@@ -47,7 +47,7 @@ variable {n : Type*}
 
 /-- [1, Eq. 13]: [1, Eq. 10] at `K = 2` is [1, Eq. 11] at `β = α₁ / (1 − α₁)`. -/
 theorem Ellipsoid.durieu_eq_halder {Q₁ Q₂ : Matrix n n ℝ} {α₁ : ℝ} (h₀ : 0 < α₁)
-    (h₁ : α₁ < 1) :
+    (h₁ : α₁ < 1) : -- --- CONCL ---
     α₁⁻¹ • Q₁ + (1 - α₁)⁻¹ • Q₂
       = (1 + 1 / (α₁ / (1 - α₁))) • Q₁ + (1 + α₁ / (1 - α₁)) • Q₂ := by -- --- PROOF ---
   have h : 1 - α₁ ≠ 0 := (sub_pos.2 h₁).ne'

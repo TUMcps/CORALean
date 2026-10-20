@@ -71,7 +71,7 @@ theorem LinearSys.IsCanonicalTrajectory.discretizeMatZonotope_mem_reach {sys : L
     (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {o : ℕ} (ho : 0 < o)
-    (k : ℕ) : -- --- CONCL ---
+    (k : ℕ) :
     x (k * Δt) ∈ construct ((sys.discretizeMatZonotope Δt η).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) :=
   (sys.discretizeMatZonotope Δt η).reach_outer ho R₀ Ud
     (traj.discretizeMatZonotope hΔt hT hU hUd hε) k

@@ -60,7 +60,7 @@ variable {n L : ℕ}
 feasible point of (max-in) puts the aligned zonotope inside `{x | Hx ≤ h}`. -/
 theorem Zonotope.aligned_subset_of_maxIn (Z : Zonotope (Vec ℝ n)) (H : Mat ℝ L n)
     (h : Vec ℝ L) (c : Vec ℝ n) (a : Fin Z.h → ℝ) (ha : ∀ i, 0 ≤ a i)
-    (hfeas : ∀ l, (H *ᵥ c) l + ∑ i, |(H *ᵥ Z.G i) l| * a i ≤ h l) :
+    (hfeas : ∀ l, (H *ᵥ c) l + ∑ i, |(H *ᵥ Z.G i) l| * a i ≤ h l) : -- --- CONCL ---
     (Z.aligned c a).construct ⊆ {x | ∀ l, (H *ᵥ x) l ≤ h l} := by -- --- PROOF ---
   rintro _ ⟨β, hβ, rfl⟩ l
   -- `H_ℓ(c + Σ βᵢαᵢgᵢ) = H_ℓc + Σ βᵢαᵢ H_ℓgᵢ`, and each term is at most `|H_ℓgᵢ| αᵢ`

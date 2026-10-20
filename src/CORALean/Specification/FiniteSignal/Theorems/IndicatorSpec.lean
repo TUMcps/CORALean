@@ -46,7 +46,8 @@ namespace CORALean
 theorem aux_indicator_finish (dur : ℝ) (L : List ℝ) (W : List Bool) (F : ℝ → Bool)
     (hv : (⟨L, W⟩ : FiniteSignal ℝ Bool).IsValid)
     (hd : (⟨L, W⟩ : FiniteSignal ℝ Bool).duration = dur)
-    (hat : ∀ t : ℝ, 0 ≤ t → t ≤ dur → FiniteSignal.valueAt (L.zip W) t = some (F t)) :
+    (hat : ∀ t : ℝ, 0 ≤ t → t ≤ dur → FiniteSignal.valueAt (L.zip W) t = some (F t))
+    : -- --- CONCL ---
     ∃ r, FiniteSignal.mk? L W = some r ∧ r.IsValid ∧ r.duration = dur ∧
       ∀ t : ℝ, 0 ≤ t → t ≤ dur → r.at? t = some (F t) := by -- --- PROOF ---
   refine ⟨⟨L, W⟩, (FiniteSignal.mk?_eq_some_iff _ _ _).mpr ⟨rfl, rfl, hv⟩, hv, hd,

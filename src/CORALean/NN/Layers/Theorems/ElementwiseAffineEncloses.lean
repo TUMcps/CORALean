@@ -43,7 +43,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Layer.elementwiseAffine_encloses (scale offset : Vec 𝕋 n) :
+theorem Layer.elementwiseAffine_encloses (scale offset : Vec 𝕋 n) : -- --- CONCL ---
     (Layer.elementwiseAffine (S := S) scale offset).Encloses
       fun x i => toReal (scale i) * x i + toReal (offset i) := by -- --- PROOF ---
   refine (Layer.linear_encloses _ _).congr fun x => funext fun i => ?_

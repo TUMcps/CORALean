@@ -47,7 +47,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.exploreBN_sort {b : Vec ℝ n} {α : ℝ} (hb0 : ∀ i, 0 < b i) (hα : 0 ≤ α) :
+theorem Interval.exploreBN_sort {b : Vec ℝ n} {α : ℝ} (hb0 : ∀ i, 0 < b i)
+    (hα : 0 ≤ α) : -- --- CONCL ---
     Set.extremePoints ℝ ((⟨0, b⟩ : Interval (Vec ℝ n)).construct ∩ Interval.hyperplane 1 α) =
       (fun y : Vec ℝ n => fun i => y ((Tuple.sort b).symm i)) ''
         ↑(Interval.exploreBN (fun i => b (Tuple.sort b i)) α) := by -- --- PROOF ---

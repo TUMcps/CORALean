@@ -50,7 +50,7 @@ variable {n q r : ℕ}
 
 /-- The basis line clustering returns is invertible. -/
 theorem Zonotope.lineClBasis_isUnit_det (Z : Zonotope (Vec ℝ n))
-    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) (ξ : ℝ) (fuel runs : ℕ) :
+    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) (ξ : ℝ) (fuel runs : ℕ) : -- --- CONCL ---
     IsUnit (Z.lineClBasis part ξ fuel runs).det := by -- --- PROOF ---
   unfold Zonotope.lineClBasis
   have key : ∀ (f : ℕ → Mat ℝ n n) (l : List ℕ) (acc : Option (Mat ℝ n n)),

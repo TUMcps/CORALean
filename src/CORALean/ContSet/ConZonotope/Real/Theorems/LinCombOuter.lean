@@ -42,7 +42,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.linComb_outer (cZ₁ cZ₂ : ConZonotope α) :
+theorem ConZonotope.linComb_outer (cZ₁ cZ₂ : ConZonotope α) : -- --- CONCL ---
     Set.linComb cZ₁.construct cZ₂.construct ⊆ (cZ₁.linComb cZ₂).construct := by -- --- PROOF ---
   rintro x ⟨y₁, ⟨β₁, hβ₁, hP₁, rfl⟩, y₂, ⟨β₂, hβ₂, hP₂, rfl⟩, lam, ⟨hl0, hl1⟩, rfl⟩
   have hd₁ : β₁ ∈ cZ₁.domain.construct := ConZonotope.mem_domain_iff.mpr ⟨hβ₁, hP₁⟩

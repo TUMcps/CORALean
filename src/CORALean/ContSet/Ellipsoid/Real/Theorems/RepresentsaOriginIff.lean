@@ -35,7 +35,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.representsa_origin_iff (E : Ellipsoid n) :
+theorem Ellipsoid.representsa_origin_iff (E : Ellipsoid n) : -- --- CONCL ---
     E.construct = {0} ↔ E.representsa_origin := by -- --- PROOF ---
   constructor
   · intro h

@@ -47,7 +47,7 @@ variable {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
 
 /-- The derivative `g` of `x` within a convex `T`, measurable on `T`. -/
 theorem aestronglyMeasurable_of_hasDerivWithinAt {T : Set ℝ} {x g : ℝ → E}
-    (hTconv : Convex ℝ T) (hd : ∀ t ∈ T, HasDerivWithinAt x (g t) T t) :
+    (hTconv : Convex ℝ T) (hd : ∀ t ∈ T, HasDerivWithinAt x (g t) T t) : -- --- CONCL ---
     AEStronglyMeasurable g (volume.restrict T) := by -- --- PROOF ---
   have hTm : MeasurableSet T := hTconv.ordConnected.measurableSet
   -- `T`'s greatest element, if it has one, is the only point the right derivative misses

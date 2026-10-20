@@ -38,7 +38,8 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem lookup_replaceKey {β : Type} (l : List (String × β)) (k : String) (v : β)
-    (k' : String) : (replaceKey l k v).lookup k' =
+    (k' : String) : -- --- CONCL ---
+    (replaceKey l k v).lookup k' =
       if k' = k then (if (l.lookup k).isSome then some v else none)
         else l.lookup k' := by -- --- PROOF ---
   induction l with

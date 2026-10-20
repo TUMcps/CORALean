@@ -56,7 +56,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 theorem LinearSysDT.output_outer (sys : LinearSysDT 𝕋 n) (out : OutputEq 𝕋 n n r) {o : ℕ}
     (ho : 0 < o) (R₀ U : S n) {x u : ℕ → Vec ℝ n} (traj : sys.IsCanonicalTrajectory R₀ U x u)
     (k : ℕ)
-        : -- --- CONCL ---
+        :
     out.eval (x k) (u k) ∈ construct (out.outputSet (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) U) :=
   out.outputSet_outer _ _ (sys.reach_outer ho R₀ U traj k) (traj.input k)
 

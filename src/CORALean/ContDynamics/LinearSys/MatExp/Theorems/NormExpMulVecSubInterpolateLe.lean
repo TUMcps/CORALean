@@ -58,7 +58,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Both `t^k` and `t r^{k-1}` lie in `[0, r^k]`, so they differ by at most `r^k`. -/
-theorem aux_abs_pow_sub_div_mul_pow_le {t r : ℝ} (ht : 0 ≤ t) (htr : t ≤ r) (k : ℕ) :
+theorem aux_abs_pow_sub_div_mul_pow_le {t r : ℝ} (ht : 0 ≤ t) (htr : t ≤ r)
+    (k : ℕ) : -- --- CONCL ---
     |t ^ k - t / r * r ^ k| ≤ r ^ k := by -- --- PROOF ---
   have hr : 0 ≤ r := ht.trans htr
   have h1 : 0 ≤ t ^ k := pow_nonneg ht k
@@ -76,7 +77,7 @@ theorem aux_abs_pow_sub_div_mul_pow_le {t r : ℝ} (ht : 0 ≤ t) (htr : t ≤ r
 
 /-- [1, Lemma 2], eq. 6: `e^{tA}z` against the segment from `z` to `e^{rA}z`. -/
 theorem MatExp.norm_exp_mulVec_sub_interpolate_le (A : Mat ℝ n n) {t r : ℝ} (ht : 0 ≤ t)
-    (htr : t ≤ r) (z : Vec ℝ n) :
+    (htr : t ≤ r) (z : Vec ℝ n) : -- --- CONCL ---
     ‖exp (t • A) *ᵥ z - z - (t / r) • (exp (r • A) *ᵥ z - z)‖
       ≤ (Real.exp (r * ‖A‖) - 1 - r * ‖A‖) * ‖z‖ := by -- --- PROOF ---
   set M : Mat ℝ n n := exp (t • A) - 1 - (t / r) • (exp (r • A) - 1) with hMdef

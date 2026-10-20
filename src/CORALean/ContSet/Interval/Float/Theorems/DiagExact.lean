@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.diag_exact (I : Interval (Vec 𝕋 n)) :
+theorem Interval.diag_exact (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
     I.diag.construct = Matrix.diagonal '' I.construct := by -- --- PROOF ---
   have h : I.diag.nominal = Real.Interval.diag I.nominal := by
     unfold Interval.nominal Interval.diag Real.Interval.diag

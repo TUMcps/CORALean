@@ -61,7 +61,7 @@ variable {X : Type}
 
 theorem STL.Nnf.hasSampledRewrite_release (i j : ℕ) {φ ψ : STL.Nnf X} (hφ : φ.HasSampledRewrite)
     (hψ : ψ.HasSampledRewrite) (hand : 1 ≤ j → (STL.Nnf.and φ ψ).HasSampledRewrite)
-    (hrec : ∀ j' < j, ∀ i', (STL.Nnf.release i' j' φ ψ).HasSampledRewrite) :
+    (hrec : ∀ j' < j, ∀ i', (STL.Nnf.release i' j' φ ψ).HasSampledRewrite) : -- --- CONCL ---
     (STL.Nnf.release i j φ ψ).HasSampledRewrite := by -- --- PROOF ---
   obtain ⟨⟨sTφ, hTφ⟩, ⟨sFφ, hFφ⟩, ⟨sGφ, hGφ⟩⟩ := hφ
   obtain ⟨⟨sTψ, hTψ⟩, ⟨sFψ, hFψ⟩, ⟨sGψ, hGψ⟩⟩ := hψ

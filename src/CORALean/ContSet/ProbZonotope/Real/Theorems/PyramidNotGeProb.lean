@@ -46,7 +46,7 @@ def aux_one : Fin 1 → ℝ := fun _ => 1
 /-- The point `0` with covariance `1` in `ℝ¹`. -/
 def aux_stdNormal : ProbZonotope 1 := ⟨⟨0, 0, Fin.elim0⟩, 1⟩
 
-theorem aux_stdNormal_zonotope_subset :
+theorem aux_stdNormal_zonotope_subset : -- --- CONCL ---
     (aux_stdNormal.zonotope 1).construct ⊆ {y | |y 0| ≤ 1} := by -- --- PROOF ---
   rw [ProbZonotope.zonotope, ← Zonotope.plus_exact]
   rintro _ ⟨a, ha, b, ⟨β, hβ, rfl⟩, rfl⟩
@@ -54,7 +54,7 @@ theorem aux_stdNormal_zonotope_subset :
   simp only [aux_stdNormal, confidenceZonotope, CFC.sqrt_one] at *
   simpa using hβ 0
 
-theorem aux_stdNormal_volume_le :
+theorem aux_stdNormal_volume_le : -- --- CONCL ---
     volume.real (toLp 2 '' (aux_stdNormal.zonotope 1).construct :
       Set (EuclideanSpace ℝ (Fin 1))) ≤ 2 := by -- --- PROOF ---
   have hsub : (toLp 2 '' (aux_stdNormal.zonotope 1).construct : Set (EuclideanSpace ℝ (Fin 1)))
@@ -79,7 +79,7 @@ theorem aux_stdNormal_volume_le :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ProbZonotope.pyramid_not_ge_prob :
+theorem ProbZonotope.pyramid_not_ge_prob : -- --- CONCL ---
     ∃ (P : ProbZonotope 1) (ν : Measure (EuclideanSpace ℝ (Fin 1))), ν ∈ P.laws ∧
       ν Set.univ = 1 ∧ P.pyramid aux_one Set.univ < 1 := by -- --- PROOF ---
   refine ⟨aux_stdNormal, multivariateGaussian (toLp 2 0) 1,

@@ -76,7 +76,7 @@ theorem hasDerivAt_lieDeriv_augField {f : E → E} {H : E × E → F} (hH : Diff
   (hH _).hasFDerivAt.comp_hasDerivAt t (hz.prodMk hv)
 
 /-- The Lie derivatives of a smooth field are smooth. -/
-theorem contDiff_lieIter {f : E → E} (hf : ContDiff ℝ ∞ f) (i : ℕ) :
+theorem contDiff_lieIter {f : E → E} (hf : ContDiff ℝ ∞ f) (i : ℕ) : -- --- CONCL ---
     ContDiff ℝ ∞ (lieIter f i) := by -- --- PROOF ---
   induction i with
   | zero => exact hf
@@ -86,7 +86,8 @@ theorem contDiff_lieIter {f : E → E} (hf : ContDiff ℝ ∞ f) (i : ℕ) :
 
 /-- One Lie derivative commutes with the Jacobian lift: `∇_z(Dg · f) = D(∇_z g) · F`, by the
 symmetry of `D²g`. -/
-theorem jacLift_lieDeriv {f g : E → E} (hf : ContDiff ℝ ∞ f) (hg : ContDiff ℝ ∞ g) :
+theorem jacLift_lieDeriv {f g : E → E} (hf : ContDiff ℝ ∞ f)
+    (hg : ContDiff ℝ ∞ g) : -- --- CONCL ---
     jacLift (lieDeriv f g) = lieDeriv (augField f) (jacLift g) := by -- --- PROOF ---
   have hDg : Differentiable ℝ (fderiv ℝ g) :=
     (hg.fderiv_right (m := ∞) (by norm_cast)).differentiable (by norm_cast)
@@ -110,7 +111,7 @@ theorem jacLift_lieDeriv {f g : E → E} (hf : ContDiff ℝ ∞ f) (hg : ContDif
 
 /-- [1, Sec. 3.3]: `∇_z(f⁽ⁱ⁾) = (∇_z f)⁽ⁱ⁾`, the Jacobian of the `i`-th Lie derivative of
 `f` is the `i`-th Lie derivative of the Jacobian along the augmented field. -/
-theorem jacLift_lieIter {f : E → E} (hf : ContDiff ℝ ∞ f) (i : ℕ) :
+theorem jacLift_lieIter {f : E → E} (hf : ContDiff ℝ ∞ f) (i : ℕ) : -- --- CONCL ---
     jacLift (lieIter f i) = (lieDeriv (augField f))^[i] (jacLift f) := by -- --- PROOF ---
   induction i with
   | zero => rfl

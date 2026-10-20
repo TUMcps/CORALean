@@ -45,7 +45,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.fRadius_eq_frobenius (Z : Zonotope (Vec ℝ n)) :
+theorem Zonotope.fRadius_eq_frobenius (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     Z.fRadius = (n : ℝ)⁻¹ *
       ‖(Matrix.of fun i j => Z.G j i : Matrix (Fin n) (Fin Z.h) ℝ)‖ := by -- --- PROOF ---
   rw [Zonotope.fRadius, Matrix.frobenius_norm_def]

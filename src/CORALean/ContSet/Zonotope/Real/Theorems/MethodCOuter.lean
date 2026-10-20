@@ -46,7 +46,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Method C's `Γ` is regular. -/
-theorem Zonotope.aux_methodCBasis_isUnit_det (Z : Zonotope (Vec ℝ n)) (κ κ' : ℕ) :
+theorem Zonotope.aux_methodCBasis_isUnit_det (Z : Zonotope (Vec ℝ n)) (κ κ' : ℕ) : -- --- CONCL ---
     IsUnit (Z.aux_methodCBasis κ κ').det := by -- --- PROOF ---
   simp only [Zonotope.aux_methodCBasis]
   split

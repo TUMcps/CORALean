@@ -52,7 +52,8 @@ variable {ι E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A neighbourhood of `z` holds a positive step along every direction. -/
-theorem Zonotope.aux_exists_pos_mem_rdr {U : Set E} {z : E} (hU : U ∈ nhds z) (v : E) :
+theorem Zonotope.aux_exists_pos_mem_rdr {U : Set E} {z : E} (hU : U ∈ nhds z)
+    (v : E) : -- --- CONCL ---
     ∃ s : ℝ, 0 < s ∧ z + s • v ∈ U := by -- --- PROOF ---
   obtain ⟨ε, hε, hball⟩ := Metric.mem_nhds_iff.mp hU
   have hv : 0 ≤ ‖v‖ := norm_nonneg v
@@ -64,7 +65,8 @@ theorem Zonotope.aux_exists_pos_mem_rdr {U : Set E} {z : E} (hU : U ∈ nhds z) 
 
 /-- A row some point breaks is strict at an interior point. -/
 theorem Zonotope.aux_strict_rdr (C : ι → E →ₗ[ℝ] ℝ) (d : ι → ℝ) {p : ι → Prop} {z y : E}
-    (hz : z ∈ interior {x | ∀ j, p j → C j x ≤ d j}) {j : ι} (hj : p j) (hy : d j < C j y) :
+    (hz : z ∈ interior {x | ∀ j, p j → C j x ≤ d j}) {j : ι} (hj : p j)
+    (hy : d j < C j y) : -- --- CONCL ---
     C j z < d j := by -- --- PROOF ---
   obtain ⟨s, hs, hmem⟩ := Zonotope.aux_exists_pos_mem_rdr (mem_interior_iff_mem_nhds.mp hz) (y - z)
   have h := hmem j hj
@@ -196,7 +198,8 @@ theorem Zonotope.rows_eq_drop_redundant (C : ι → E →ₗ[ℝ] ℝ) (d : ι �
     (p : ι → Prop) (hint : (interior {x | ∀ j, p j → C j x ≤ d j}).Nonempty)
     (hdist : ∀ j k, p j → p k → j ≠ k → {x | C j x ≤ d j} = {x | C k x ≤ d k} →
       {x : E | C j x ≤ d j} = Set.univ)
-    (hRed : ∀ j ∈ Red, p j → {x | ∀ k, p k → k ≠ j → C k x ≤ d k} ⊆ {x | C j x ≤ d j}) :
+    (hRed : ∀ j ∈ Red, p j → {x | ∀ k, p k → k ≠ j → C k x ≤ d k} ⊆ {x | C j x ≤ d j})
+    : -- --- CONCL ---
     {x | ∀ j, p j → C j x ≤ d j} = {x | ∀ j, p j → j ∉ Red → C j x ≤ d j} := by -- --- PROOF ---
   classical
   induction Red using Finset.induction_on generalizing p with

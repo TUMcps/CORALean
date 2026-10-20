@@ -38,7 +38,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.append_construct (I₁ : Interval (Vec 𝕋 n₁)) (I₂ : Interval (Vec 𝕋 n₂)) :
+theorem Interval.append_construct (I₁ : Interval (Vec 𝕋 n₁))
+    (I₂ : Interval (Vec 𝕋 n₂)) : -- --- CONCL ---
     (I₁.append I₂).construct = (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
       (I₁.construct ×ˢ I₂.construct) := by -- --- PROOF ---
   ext e

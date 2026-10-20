@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.log_outer [SoundFloatArithmetic 𝕋] (p k : ℕ) (I : Interval (Vec 𝕋 n))
-    (hI : ∀ i, 1 ≤ toReal (I.inf i) ∧ toReal (I.inf i) ≤ 2 ^ p / 2) :
+    (hI : ∀ i, 1 ≤ toReal (I.inf i) ∧ toReal (I.inf i) ≤ 2 ^ p / 2) : -- --- CONCL ---
     (fun x i => Real.log (x i)) '' I.construct ⊆ (I.log p k).construct := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩ i
   have hx' : toReal (I.inf i) ≤ x i ∧ x i ≤ toReal (I.sup i) := hx i

@@ -51,7 +51,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- The same statement from an arbitrary time `j`, which is what the induction
 on `k` needs: one step forward moves the start, not the target. -/
 theorem LinearSysDT.aux_backReachSetForallExact_from (sys : LinearSysDT 𝕋 n) (T U : S n)
-    {R₀ : S n} {x u : ℕ → Vec ℝ n} (traj : sys.IsCanonicalTrajectory R₀ U x u) (k : ℕ) :
+    {R₀ : S n} {x u : ℕ → Vec ℝ n} (traj : sys.IsCanonicalTrajectory R₀ U x u)
+    (k : ℕ) : -- --- CONCL ---
     ∀ j, x j ∈ sys.backReachSetForallExact T U k → x (j + k) ∈ construct T := by -- --- PROOF ---
   induction k with
   | zero => exact fun j hj => hj

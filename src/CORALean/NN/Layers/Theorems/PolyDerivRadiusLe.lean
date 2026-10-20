@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem polyDerivRadius_le (c : Fin (n + 1) → 𝕋) (l u : 𝕋) :
+theorem polyDerivRadius_le (c : Fin (n + 1) → 𝕋) (l u : 𝕋) : -- --- CONCL ---
     Real.polyDerivRadius (fun k => toReal (c k)) (toReal l) (toReal u)
       ≤ toReal (polyDerivRadiusUp c l u) := by -- --- PROOF ---
   show (∑ i : Fin (n + 1), if (i : ℕ) = 1 then (0 : ℝ)

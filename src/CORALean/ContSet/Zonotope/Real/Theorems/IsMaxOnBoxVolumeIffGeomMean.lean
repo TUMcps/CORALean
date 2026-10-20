@@ -45,7 +45,7 @@ namespace CORALean.Real
 
 /-- [1, Sec. IV-B]: `γ` maximizes `2ⁿ ∏ γ(i)` over `S` iff it maximizes `(∏ γ(i))^{1/n}`. -/
 theorem Zonotope.isMaxOn_boxVolume_iff_geomMean {n : ℕ} (hn : 0 < n) (S : Set (Fin n → ℝ))
-    (hS : ∀ γ ∈ S, ∀ i, 0 ≤ γ i) (γ : Fin n → ℝ) (hγ : γ ∈ S) :
+    (hS : ∀ γ ∈ S, ∀ i, 0 ≤ γ i) (γ : Fin n → ℝ) (hγ : γ ∈ S) : -- --- CONCL ---
     IsMaxOn (fun γ : Fin n → ℝ => 2 ^ n * ∏ i, γ i) S γ
       ↔ IsMaxOn (fun γ : Fin n → ℝ => (∏ i, γ i) ^ (1 / (n : ℝ))) S γ := by -- --- PROOF ---
   -- both are `∀ γ' ∈ S, f γ' ≤ f γ`, and the two orders agree on nonnegative products

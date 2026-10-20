@@ -53,7 +53,7 @@ theorem SpectraShadow.aux_entry (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (β : Vec 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.containsPoint_sound {S : SpectraShadow 𝕋 (Vec 𝕋 n)} {p : Vec 𝕋 n}
-    {β : Vec 𝕋 S.m} (h : S.containsPoint p β = true) :
+    {β : Vec 𝕋 S.m} (h : S.containsPoint p β = true) : -- --- CONCL ---
     toRealVec p ∈ S.construct := by -- --- PROOF ---
   simp only [SpectraShadow.containsPoint, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h

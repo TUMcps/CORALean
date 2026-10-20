@@ -45,7 +45,7 @@ variable {n : ℕ}
 
 /-- The derivative of the point map is the matrix of the derivatives along the factors. -/
 theorem PolyZonotope.hasFDerivAt_point (pZ : PolyZonotope (Vec ℝ n))
-    (a : Fin pZ.p → ℝ) :
+    (a : Fin pZ.p → ℝ) : -- --- CONCL ---
     HasFDerivAt pZ.point
       (LinearMap.toContinuousLinearMap (Matrix.toLin' (pZ.jacobianMat a))) a := by -- --- PROOF ---
   have hd : HasFDerivAt pZ.point (fderiv ℝ pZ.point a) a :=

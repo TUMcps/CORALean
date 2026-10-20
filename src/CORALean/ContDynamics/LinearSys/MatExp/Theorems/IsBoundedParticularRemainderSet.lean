@@ -52,7 +52,7 @@ variable {n : ℕ}
 /-- `e^{At_i} E(Δt,η) Δt U` is bounded whenever `U` is, which is what `err` needs of it to be
 the enclosing radius rather than a junk value. -/
 theorem MatExp.isBounded_particularRemainderSet (A : Mat ℝ n n) (ti : ℝ)
-    {U : Set (Vec ℝ n)} (hU : Bornology.IsBounded U) (Δt : ℝ) (η : ℕ) :
+    {U : Set (Vec ℝ n)} (hU : Bornology.IsBounded U) (Δt : ℝ) (η : ℕ) : -- --- CONCL ---
     Bornology.IsBounded (MatExp.particularRemainderSet A ti U Δt η) := by -- --- PROOF ---
   refine isBounded_iff_forall_norm_le.mpr ⟨(∑ i, ‖(fun j => (exp (ti • A)) i j)‖₂)
     * ((n : ℝ) ^ 2 * ‖MatExp.expRemainderMat A Δt η‖ * |Δt| * err U), fun y hy => ?_⟩

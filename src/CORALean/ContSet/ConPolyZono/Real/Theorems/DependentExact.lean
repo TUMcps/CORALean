@@ -68,7 +68,7 @@ theorem ConPolyZono.aux_sum_dependent (cPZ : ConPolyZono α)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.dependent_exact (cPZ : ConPolyZono α) :
+theorem ConPolyZono.dependent_exact (cPZ : ConPolyZono α) : -- --- CONCL ---
     cPZ.construct = cPZ.dependent.construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨a, b, hb, hsat, rfl⟩

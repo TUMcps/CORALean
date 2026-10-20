@@ -82,7 +82,7 @@ theorem Location.IsTrajectory.timeIntervalInv_outer [∀ n, OfPoint (S n) (Vec �
     (ht0 : 0 ≤ t) (htτ : t ≤ τ) (hU : Bornology.IsBounded (construct ℓ.inputSet))
     (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat ℓ.dynamics.A) *ᵥ
       (toRealMat ℓ.dynamics.B *ᵥ u s + toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w s))
-      ∈ construct Ud) : -- --- CONCL ---
+      ∈ construct Ud) :
     x t ∈ construct (ℓ.timeIntervalStepInv τ (m + 2) R₀ Ud) :=
   Intersection.intersection_outer _ _ ⟨traj.timeInterval_outer h₀ hτ hε ht0 htτ hU hUd,
     traj.invariant t ⟨ht0, htτ⟩⟩

@@ -116,7 +116,7 @@ theorem Taylm.aux_asinPoly_seven_one :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- At `x = 1` CORA's enclosure `[p(1), p(1) + R]` misses `asin 1`: its upper end is below. -/
-theorem Taylm.asin_remainder_cora_counterexample :
+theorem Taylm.asin_remainder_cora_counterexample : -- --- CONCL ---
     Taylm.asinPolyCora 7 1 + Taylm.asinRemainderUpperCora 7 1 < Real.arcsin 1 := by -- --- PROOF ---
   rw [Taylm.aux_asinPoly_seven_one, Taylm.asinRemainderUpperCora, Real.arcsin_one]
   -- `3.14 < π < 3.15`

@@ -64,7 +64,7 @@ theorem PolyZonotope.aux_sum_univ_plus_q {pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n
   Fin.sum_univ_add f
 
 /-- The concatenated blocks account for everything but the center rounding. -/
-theorem PolyZonotope.aux_plus_nominal (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
+theorem PolyZonotope.aux_plus_nominal (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) : -- --- CONCL ---
     nominalSet pZ₁ + nominalSet pZ₂ ⊆
       nominalSet (pZ₁.plus pZ₂)
         + (PolyZonotope.centerResidual pZ₁.c pZ₂.c).construct := by -- --- PROOF ---

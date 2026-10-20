@@ -42,7 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A point in a piece of the list and outside every `q` stays in the folded list. -/
-theorem aux_mem_foldl_subtractPiece {x : Vec ℝ 2} (qs L : List (VPolytope (Vec 𝕋 2))) :
+theorem aux_mem_foldl_subtractPiece {x : Vec ℝ 2}
+    (qs L : List (VPolytope (Vec 𝕋 2))) : -- --- CONCL ---
     (∃ r ∈ L, x ∈ r.construct) → (∀ q ∈ qs, x ∉ q.construct) →
       ∃ s ∈ qs.foldl (fun L q => L.flatMap (Polygon.subtractPiece q)) L,
       x ∈ s.construct := by -- --- PROOF ---
@@ -59,7 +60,7 @@ theorem aux_mem_foldl_subtractPiece {x : Vec ℝ 2} (qs L : List (VPolytope (Vec
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.subtract_outer (P Q : Polygon 𝕋) :
+theorem Polygon.subtract_outer (P Q : Polygon 𝕋) : -- --- CONCL ---
     ContSet.construct P \ ContSet.construct Q ⊆
     ContSet.construct (Polygon.subtract P Q) := by -- --- PROOF ---
   rintro x ⟨hP, hQ⟩

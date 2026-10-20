@@ -54,7 +54,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n r : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.encloseTight_outer (zB₁ zB₂ : ZonoBundle (Vec 𝕋 n)) (hk₁ : 0 < zB₁.k)
-    (hk₂ : 0 < zB₂.k) (W : Fin r → Mat 𝕋 n n) (U : Mat 𝕋 n n) :
+    (hk₂ : 0 < zB₂.k) (W : Fin r → Mat 𝕋 n n) (U : Mat 𝕋 n n) : -- --- CONCL ---
     convexHull ℝ (zB₁.construct ∪ zB₂.construct)
       ⊆ (zB₁.encloseTight zB₂ hk₁ hk₂ W U).construct := by -- --- PROOF ---
   -- the bundle is convex, so the hull of the union is inside once the union is

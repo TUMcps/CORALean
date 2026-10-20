@@ -37,7 +37,7 @@ variable {n : ℕ} (x : Fin n → ℝ)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `prod` denotes the product of the entries. -/
-theorem SyntaxTree.eval_prod (t : SyntaxTree n) (rest : List (SyntaxTree n)) :
+theorem SyntaxTree.eval_prod (t : SyntaxTree n) (rest : List (SyntaxTree n)) : -- --- CONCL ---
     (prod t rest).eval x = t.eval x * (rest.map (fun u => u.eval x)).prod := by -- --- PROOF ---
   induction rest generalizing t with
   | nil => simp [prod]

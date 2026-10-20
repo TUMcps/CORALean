@@ -56,7 +56,7 @@ variable {n k : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `Σᵢ Σⱼ` of a pair function, its diagonal and its `i < j` pairs. -/
-theorem aux_lowOrder_diag_add {V : Type} [AddCommGroup V] (f : Fin k → Fin k → V) :
+theorem aux_lowOrder_diag_add {V : Type} [AddCommGroup V] (f : Fin k → Fin k → V) : -- --- CONCL ---
     ∑ i, ∑ j, f i j = ∑ i, f i i
       + ∑ ij : Fin k × Fin k,
           (if ij.1 < ij.2 then f ij.1 ij.2 + f ij.2 ij.1 else 0) := by -- --- PROOF ---

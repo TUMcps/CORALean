@@ -37,7 +37,7 @@ variable {n : ℕ} (x : Fin n → ℝ)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `sum` denotes the sum of the entries. -/
-theorem SyntaxTree.eval_sum (t : SyntaxTree n) (rest : List (SyntaxTree n)) :
+theorem SyntaxTree.eval_sum (t : SyntaxTree n) (rest : List (SyntaxTree n)) : -- --- CONCL ---
     (sum t rest).eval x = t.eval x + (rest.map (fun u => u.eval x)).sum := by -- --- PROOF ---
   induction rest generalizing t with
   | nil => simp [sum]

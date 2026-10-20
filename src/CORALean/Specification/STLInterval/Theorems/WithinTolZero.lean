@@ -34,7 +34,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `withinTol 0 a b` iff `a = b`. -/
-theorem STLInterval.withinTol_zero (a b : EReal) :
+theorem STLInterval.withinTol_zero (a b : EReal) : -- --- CONCL ---
     STLInterval.withinTol 0 a b ↔ a = b := by -- --- PROOF ---
   constructor
   · rintro (⟨x, y, rfl, rfl, h | h⟩ | ⟨h, _⟩)

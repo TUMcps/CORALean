@@ -40,7 +40,8 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `aaux_cos_` is sound for `acos` on an operand inside `[-1,1]`. -/
-theorem SyntaxTree.funHanAcos_sound (prev : Dom) (hd₁ : -1 ≤ prev.inf 0) (hd₂ : prev.sup 0 ≤ 1) :
+theorem SyntaxTree.funHanAcos_sound (prev : Dom) (hd₁ : -1 ≤ prev.inf 0)
+    (hd₂ : prev.sup 0 ≤ 1) : -- --- CONCL ---
     UnarySound Unary.acos.fn prev (Real.Interval.acos prev) funHanAcos := by -- --- PROOF ---
   intro int hw s hs hi
   have h : int.inf 0 ≤ Real.arccos s ∧ Real.arccos s ≤ int.sup 0 := hi

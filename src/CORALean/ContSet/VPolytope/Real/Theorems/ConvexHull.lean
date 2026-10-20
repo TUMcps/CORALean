@@ -42,7 +42,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.construct_eq_convexHull (P : VPolytope α) :
+theorem VPolytope.construct_eq_convexHull (P : VPolytope α) : -- --- CONCL ---
     P.construct = convexHull ℝ (Set.range P.V) := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro x ⟨β, hβ, hsum, rfl⟩

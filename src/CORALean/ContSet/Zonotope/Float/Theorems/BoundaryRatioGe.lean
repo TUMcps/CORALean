@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.boundaryRatio_ge (Z : Zonotope (Vec 𝕋 (n + 1))) (dir start : Vec 𝕋 (n + 1)) (t : ℝ)
-    (ht : 0 ≤ t) (hmem : toRealVec start + t • toRealVec dir ∈ nominalSet Z) :
+    (ht : 0 ≤ t) (hmem : toRealVec start + t • toRealVec dir ∈ nominalSet Z) : -- --- CONCL ---
     ∀ U ∈ Z.boundaryRatio dir start,
       t ≤ toReal U := by -- --- PROOF ---
   intro U (hU : Z.boundaryRatio dir start = some U)

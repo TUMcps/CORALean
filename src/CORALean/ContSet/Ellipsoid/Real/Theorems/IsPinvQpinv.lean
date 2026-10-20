@@ -44,7 +44,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `Q⁺` is the Moore-Penrose pseudo-inverse of `Q`. -/
-theorem Ellipsoid.isPinv_Qpinv (E : Ellipsoid n) : IsPinv E.Q E.Qpinv := by -- --- PROOF ---
+theorem Ellipsoid.isPinv_Qpinv (E : Ellipsoid n) : -- --- CONCL ---
+    IsPinv E.Q E.Qpinv := by -- --- PROOF ---
   have ha : IsSelfAdjoint E.Q := E.psd.isHermitian
   have hm : ∀ f g : ℝ → ℝ, cfc f E.Q * cfc g E.Q = cfc (fun x => f x * g x) E.Q := fun f g =>
     (cfc_mul f g E.Q (Matrix.finite_real_spectrum.continuousOn _)

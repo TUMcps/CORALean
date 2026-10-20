@@ -40,7 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.isequal_sound {Z S : ConPolyZono 𝕋 (Vec 𝕋 n)} (h : Z.isequal S = true) :
+theorem ConPolyZono.isequal_sound {Z S : ConPolyZono 𝕋 (Vec 𝕋 n)}
+    (h : Z.isequal S = true) : -- --- CONCL ---
     Z.construct = S.construct := by -- --- PROOF ---
   unfold ConPolyZono.isequal at h
   split at h

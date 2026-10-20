@@ -74,7 +74,7 @@ omit [Module ℝ α] in
 /-- A column from the right operand keeps its own monomial, read at `pZ₂`'s
 factor indices: the two products run over one factor set renamed. -/
 theorem PolyZonotope.aux_monomial_exactPlus_right (pZ₁ pZ₂ : PolyZonotope α)
-    (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ) (i : Fin pZ₂.h) :
+    (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ) (i : Fin pZ₂.h) : -- --- CONCL ---
     monomial (pZ₁.exactPlus pZ₂ hp).E a (Fin.natAdd pZ₁.h i)
       = monomial pZ₂.E (fun k => a (Fin.cast hp.symm k)) i := by -- --- PROOF ---
   show ∏ k, a k ^ (pZ₁.exactPlus pZ₂ hp).E k (Fin.natAdd pZ₁.h i)
@@ -90,7 +90,7 @@ theorem PolyZonotope.aux_monomial_exactPlus_right (pZ₁ pZ₂ : PolyZonotope α
 
 /-- `exactPlus`'s point: the two sets' points at the same factor vector, added. -/
 theorem PolyZonotope.exactPlus_point (pZ₁ pZ₂ : PolyZonotope α) (hp : pZ₁.p = pZ₂.p)
-    (a : Fin pZ₁.p → ℝ) :
+    (a : Fin pZ₁.p → ℝ) : -- --- CONCL ---
     (pZ₁.exactPlus pZ₂ hp).point a
       = pZ₁.point a + pZ₂.point (fun k => a (Fin.cast hp.symm k)) := by -- --- PROOF ---
   simp only [PolyZonotope.point]

@@ -40,7 +40,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.mem_construct_iff {n : ℕ} {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n} :
+theorem Zonotope.mem_construct_iff {n : ℕ} {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n} : -- --- CONCL ---
     x ∈ Z.construct ↔
       ∃ β : Fin Z.h → ℝ, (∀ j, |β j| ≤ 1) ∧ ∀ i, x i = Z.c i + ∑ j,
         Z.G j i * β j := by -- --- PROOF ---

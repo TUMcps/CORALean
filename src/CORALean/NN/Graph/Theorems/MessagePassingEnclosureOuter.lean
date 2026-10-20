@@ -98,7 +98,7 @@ theorem GNN.aux_sum_univ_uncertainAdjPad {β : Type} [AddCommMonoid β] {A : Mat
 through a different projection. -/
 theorem GNN.aux_sum_univ_sqrtBroadcast {β : Type} [AddCommMonoid β] {R : Relaxation ℝ}
     {A : Mat ℝ N N} {U : Fin m → Fin N × Fin N} {idx : Fin N → Fin N → Fin N}
-    (f : Fin (m + N) → β) : -- --- CONCL ---
+    (f : Fin (m + N) → β) :
     ∑ k : Fin (GNN.aux_sqrtBroadcast R A U idx).h, f k
       = ∑ e, f (Fin.castAdd N e) + ∑ t, f (Fin.natAdd m t) :=
   Fin.sum_univ_add f
@@ -131,7 +131,7 @@ theorem GNN.aux_error_mul_resFactor (R : Relaxation ℝ) (hR : R.Sound invSqrt) 
 factor because its numerator is bounded by its denominator. -/
 theorem GNN.aux_factors_abs_le (R : Relaxation ℝ) (hR : R.Sound invSqrt) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1)
-    (hA : ∀ a b, 0 ≤ A a b) (k : Fin (m + N)) :
+    (hA : ∀ a b, 0 ≤ A a b) (k : Fin (m + N)) : -- --- CONCL ---
     |GNN.aux_factors R A U lam k| ≤ 1 := by -- --- PROOF ---
   refine Fin.addCases (fun e => ?_) (fun t => ?_) k
   · -- an edge factor is its weight rescaled to the unit interval around zero
@@ -151,7 +151,7 @@ theorem GNN.aux_factors_abs_le (R : Relaxation ℝ) (hR : R.Sound invSqrt) (A : 
 /-- The padded adjacency at those factors is `Ã` itself: the residual half of
 the generators is zero, and the edge half is `smul_edge_half` again. -/
 theorem GNN.aux_padPoint (R : Relaxation ℝ) (A : Mat ℝ N N)
-    (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) :
+    (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) : -- --- CONCL ---
     (GNN.aux_uncertainAdjPad A U).point (GNN.aux_factors R A U lam)
       = GNN.adjAt A U lam + 1 := by -- --- PROOF ---
   rw [PolyZonotope.point, GNN.aux_sum_univ_uncertainAdjPad]

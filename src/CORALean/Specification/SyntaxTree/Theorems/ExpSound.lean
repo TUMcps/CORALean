@@ -56,7 +56,7 @@ private theorem SyntaxTree.le_logE {a s : ℝ} (ha : 0 < a) (h : Real.exp s ≤ 
   exact Real.le_log_iff_exp_le ha |>.2 h
 
 /-- `aux_exp_` is sound for `exp`. -/
-theorem SyntaxTree.exp_sound (prev : Dom) :
+theorem SyntaxTree.exp_sound (prev : Dom) : -- --- CONCL ---
     UnarySound Unary.exp.fn prev (Real.Interval.exp prev) funHanExp := by -- --- PROOF ---
   intro int _ s hs hi
   have h : int.inf 0 ≤ Real.exp s ∧ Real.exp s ≤ int.sup 0 := hi

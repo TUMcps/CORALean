@@ -41,7 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.splitAt_covers {X : Fin n → Interval 𝕋} {l : List (Fin n → Interval 𝕋)} (i : ℕ)
-    (h : Taylm.Covers X l) : Taylm.Covers X (Taylm.splitAt i l) := by -- --- PROOF ---
+    (h : Taylm.Covers X l) : -- --- CONCL ---
+    Taylm.Covers X (Taylm.splitAt i l) := by -- --- PROOF ---
   intro t ht
   obtain ⟨B', hB', htB'⟩ := h t ht
   unfold Taylm.splitAt

@@ -44,7 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `s / k` is above the smaller of `sD / kU` and `sD / kD` for `sD ≤ s` and `0 < kD ≤ k ≤ kU`. -/
 theorem VPolytope.aux_div_ge {s sD k kD kU : ℝ} (hs : sD ≤ s) (hD : 0 < kD) (hDk : kD ≤ k)
-    (hkU : k ≤ kU) : min (sD / kU) (sD / kD) ≤ s / k := by -- --- PROOF ---
+    (hkU : k ≤ kU) : -- --- CONCL ---
+    min (sD / kU) (sD / kD) ≤ s / k := by -- --- PROOF ---
   have hk : 0 < k := lt_of_lt_of_le hD hDk
   refine le_trans ?_ (div_le_div_of_nonneg_right hs hk.le)
   rcases le_total 0 sD with h | h
@@ -55,7 +56,8 @@ theorem VPolytope.aux_div_ge {s sD k kD kU : ℝ} (hs : sD ≤ s) (hD : 0 < kD) 
 
 /-- `s / k` is below the larger of `sU / kU` and `sU / kD` for `s ≤ sU` and `0 < kD ≤ k ≤ kU`. -/
 theorem VPolytope.aux_div_le {s sU k kD kU : ℝ} (hs : s ≤ sU) (hD : 0 < kD) (hDk : kD ≤ k)
-    (hkU : k ≤ kU) : s / k ≤ max (sU / kU) (sU / kD) := by -- --- PROOF ---
+    (hkU : k ≤ kU) : -- --- CONCL ---
+    s / k ≤ max (sU / kU) (sU / kD) := by -- --- PROOF ---
   have hk : 0 < k := lt_of_lt_of_le hD hDk
   have := VPolytope.aux_div_ge (s := -s) (sD := -sU) (neg_le_neg hs) hD hDk hkU
   rw [neg_div, neg_div, neg_div, min_le_iff] at this
@@ -66,7 +68,7 @@ theorem VPolytope.aux_div_le {s sU k kD kU : ℝ} (hs : s ≤ sU) (hD : 0 < kD) 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.centerBox_meets (P : VPolytope (Vec 𝕋 n)) (hk : 0 < P.k) :
+theorem VPolytope.centerBox_meets (P : VPolytope (Vec 𝕋 n)) (hk : 0 < P.k) : -- --- CONCL ---
     ∃ x ∈ P.centerBox.construct, {x} + P.I_error.construct ⊆ P.construct := by -- --- PROOF ---
   -- the exact mean of the nominal vertices
   refine ⟨(InflatedContSet.nominal P).center, ?_, ?_⟩

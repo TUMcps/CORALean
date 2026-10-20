@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.mulVec_single {a : 𝕋} (x : Vec ℝ n) (j : Fin n) :
+theorem HPolytope.mulVec_single {a : 𝕋} (x : Vec ℝ n) (j : Fin n) : -- --- CONCL ---
     (toRealMat (fun j' k => if j' = k then a else zero) *ᵥ x) j
       = toReal a * x j := by -- --- PROOF ---
   show ∑ k, toReal (if j = k then a else zero) * x k = _

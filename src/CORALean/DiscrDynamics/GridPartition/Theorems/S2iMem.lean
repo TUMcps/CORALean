@@ -37,7 +37,7 @@ variable {n : ℕ}
 
 /-- Subscripts in range give a cell number in `1 … N`. -/
 theorem GridPartition.s2i_mem (siz : Fin n → ℕ) {sub : Fin n → ℕ}
-    (h : ∀ i, 0 < sub i ∧ sub i ≤ siz i) :
+    (h : ∀ i, 0 < sub i ∧ sub i ≤ siz i) : -- --- CONCL ---
     1 ≤ GridPartition.s2i siz sub ∧ GridPartition.s2i siz sub ≤ ∏ j, siz j := by -- --- PROOF ---
   unfold GridPartition.s2i
   rw [if_pos h]

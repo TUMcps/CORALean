@@ -46,7 +46,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 
 /-- `aux_signed_` is an interval `lo..hi` with `lo ≤ s ≤ hi`. -/
 theorem SyntaxTree.signedRoots_spec {prev : Dom} {t₁ t₂ s : ℝ} (hs : Dom.contains prev s)
-    (h₁ : t₁ ≤ |s|) (h₂ : |s| ≤ t₂) :
+    (h₁ : t₁ ≤ |s|) (h₂ : |s| ≤ t₂) : -- --- CONCL ---
     ∃ lo hi, signedRoots prev t₁ t₂ = interval lo hi ∧ lo ≤ s ∧ s ≤ hi := by -- --- PROOF ---
   unfold signedRoots
   split_ifs with hc hp

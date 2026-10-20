@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.ofPoint_exact (p : Vec 𝕋 n) :
+theorem Ellipsoid.ofPoint_exact (p : Vec 𝕋 n) : -- --- CONCL ---
     (Ellipsoid.ofPoint p).construct = {toRealVec p} := by -- --- PROOF ---
   have hQ : toRealMat (fun _ _ : Fin n => (zero : 𝕋)) = 0 :=
     funext fun _ => funext fun _ => toReal_zero

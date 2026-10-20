@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem SpectraShadow.aux_singletonOne_mem :
+theorem SpectraShadow.aux_singletonOne_mem : -- --- CONCL ---
     (fun _ : Fin 1 => (1 : ℝ))
       ∈ (SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).construct := by -- --- PROOF ---
   -- the one-dimensional set `{1}`, named once
@@ -70,7 +70,7 @@ theorem SpectraShadow.aux_singletonOne_mem :
     exact Matrix.PosSemidef.zero
   · simp [S1, SpectraShadow.singletonOne, toReal_zero, toReal_one]
 
-theorem SpectraShadow.aux_hyperplaneOne_mem (y : Vec ℝ n) :
+theorem SpectraShadow.aux_hyperplaneOne_mem (y : Vec ℝ n) : -- --- CONCL ---
     (Fin.append y (fun _ : Fin 1 => (1 : ℝ)) : Vec ℝ (n + 1))
       ∈ (SpectraShadow.hyperplaneOne 𝕋 n).construct := by -- --- PROOF ---
   have hE : (0 : Vec ℝ (n + 1)) ∈ (SpectraShadow.hyperplaneOne 𝕋 n).I_error.construct := by
@@ -94,7 +94,7 @@ theorem SpectraShadow.aux_hyperplaneOne_mem (y : Vec ℝ n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.convHull_outer (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) :
+theorem SpectraShadow.convHull_outer (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     convexHull ℝ (S₁.construct ∪ S₂.construct) ⊆ (S₁.convHull_ S₂).construct := by -- --- PROOF ---
   unfold SpectraShadow.convHull_
   simp only [SpectraShadow.materialise_eq]

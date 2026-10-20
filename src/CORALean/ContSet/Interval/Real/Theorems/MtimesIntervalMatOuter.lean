@@ -48,7 +48,7 @@ variable {m n : ℕ}
 
 -- and a sum of such products lies between the two corner sums, term by term
 theorem Interval.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
-    (I : Interval (Vec ℝ n)) :
+    (I : Interval (Vec ℝ n)) : -- --- CONCL ---
     (⋃ A ∈ IM.construct, (A *ᵥ ·) '' I.construct)
       ⊆ (Interval.mtimesIntervalMat IM I).construct := by -- --- PROOF ---
   rintro y hy

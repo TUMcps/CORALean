@@ -46,7 +46,7 @@ variable {n N : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.enclosePointsMaiga_mem [NeZero N] (dir : (Fin N → Vec ℝ n) → Vec ℝ n)
-    (pts : Fin N → Vec ℝ n) (j : Fin N) :
+    (pts : Fin N → Vec ℝ n) (j : Fin N) : -- --- CONCL ---
     pts j ∈ (Zonotope.enclosePointsMaiga dir pts).construct := by -- --- PROOF ---
   unfold Zonotope.enclosePointsMaiga
   generalize List.range' 2 99 = is

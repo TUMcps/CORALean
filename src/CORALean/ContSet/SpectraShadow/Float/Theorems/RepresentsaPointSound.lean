@@ -44,7 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 theorem SpectraShadow.representsa_point_sound {S : SpectraShadow 𝕋 (Vec 𝕋 n)}
     {Yup Ylo : Fin n → Mat 𝕋 S.k S.k} {β : Vec 𝕋 S.m}
-    (h : S.representsa_point Yup Ylo β = true) : ∃ p, S.construct = {p} := by -- --- PROOF ---
+    (h : S.representsa_point Yup Ylo β = true) : -- --- CONCL ---
+    ∃ p, S.construct = {p} := by -- --- PROOF ---
   unfold SpectraShadow.representsa_point at h
   split at h
   · rename_i I hI

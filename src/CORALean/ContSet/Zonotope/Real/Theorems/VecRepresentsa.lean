@@ -42,7 +42,7 @@ variable {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Stacking the entries does not change whether the zonotope is a point or the origin. -/
-theorem Zonotope.vec_representsa (Z : Zonotope (Mat ℝ m n)) :
+theorem Zonotope.vec_representsa (Z : Zonotope (Mat ℝ m n)) : -- --- CONCL ---
     (Z.vec.representsa_point ↔ Z.representsa_point) ∧
     (Z.vec.representsa_origin ↔ Z.representsa_origin) := by -- --- PROOF ---
   have hG : ∀ j, Z.vec.G j = 0 ↔ Z.G j = 0 := fun j =>

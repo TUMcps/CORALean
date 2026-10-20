@@ -48,7 +48,7 @@ theorem aux_sq_sub_smul (v g : Vec ℝ n) (t : ℝ) :
     dotProduct_comm g v]
   ring
 
-theorem aux_norm₂_le_iff (x : Vec ℝ n) (r : ℝ) :
+theorem aux_norm₂_le_iff (x : Vec ℝ n) (r : ℝ) : -- --- CONCL ---
     ‖x‖₂ ≤ r ↔ 0 ≤ r ∧ ‖x‖₂ ^ 2 ≤ r ^ 2 := by -- --- PROOF ---
   constructor
   · exact fun h => ⟨(norm₂_nonneg x).trans h, pow_le_pow_left₀ (norm₂_nonneg x) h 2⟩
@@ -60,7 +60,7 @@ theorem aux_norm₂_le_iff (x : Vec ℝ n) (r : ℝ) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.containsPoint_iff (C : Capsule n) (p : Vec ℝ n) :
+theorem Capsule.containsPoint_iff (C : Capsule n) (p : Vec ℝ n) : -- --- CONCL ---
     C.containsPoint p ↔ p ∈ C.construct := by -- --- PROOF ---
   rw [Capsule.mem_construct_iff_norm₂]
   simp only [Capsule.containsPoint]

@@ -40,7 +40,8 @@ variable {m n : ℕ}
 
 /-- The norm of `type` is monotone in the entrywise absolute value. -/
 theorem Interval.NormType.eval_mono (p : Interval.NormType) {M N : Mat ℝ m n}
-    (h : ∀ i j, |M i j| ≤ |N i j|) : p.eval M ≤ p.eval N := by -- --- PROOF ---
+    (h : ∀ i j, |M i j| ≤ |N i j|) : -- --- CONCL ---
+    p.eval M ≤ p.eval N := by -- --- PROOF ---
   cases p with
   | one =>
     exact ciSup_mono (Set.finite_range _).bddAbove fun j =>

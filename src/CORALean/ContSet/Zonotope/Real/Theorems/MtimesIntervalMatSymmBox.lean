@@ -54,7 +54,8 @@ variable {m n : ℕ}
 /-- A leading block of all-zero generators changes nothing a zonotope denotes:
 its coefficients are free, and every one of them contributes nothing either
 way. -/
-theorem aux_construct_append_zero_left {j k : ℕ} (c : Vec ℝ m) (G : Fin k → Vec ℝ m) :
+theorem aux_construct_append_zero_left {j k : ℕ} (c : Vec ℝ m)
+    (G : Fin k → Vec ℝ m) : -- --- CONCL ---
     (⟨j + k, c, Fin.append (fun _ => (0 : Vec ℝ m)) G⟩ : Zonotope (Vec ℝ m)).construct
       = (⟨k, c, G⟩ : Zonotope (Vec ℝ m)).construct := by -- --- PROOF ---
   ext x
@@ -74,7 +75,7 @@ theorem aux_construct_append_zero_left {j k : ℕ} (c : Vec ℝ m) (G : Fin k �
 /-- `Z.interval.zonotope` reaches exactly as far from the origin as `Z` does,
 coordinate by coordinate: its one nonzero generator per coordinate is `Z`'s own
 reach there, read off `Zonotope.interval`'s width. -/
-theorem aux_absBound_interval_zonotope (Z : Zonotope (Vec ℝ n)) :
+theorem aux_absBound_interval_zonotope (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (Z.interval.zonotope).absBound = Z.absBound := by -- --- PROOF ---
   -- `Zonotope.interval`/`Interval.zonotope` unfold to these by `rfl`
   have hsup : Z.interval.sup = fun i => Z.c i + ∑ k, |Z.G k i| := rfl
@@ -109,7 +110,7 @@ theorem aux_absBound_interval_zonotope (Z : Zonotope (Vec ℝ n)) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.mtimesIntervalMat_symm_box {IM : Interval (Mat ℝ m n)}
-    (hIM : IM.inf = -IM.sup) (Z : Zonotope (Vec ℝ n)) :
+    (hIM : IM.inf = -IM.sup) (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (Zonotope.mtimesIntervalMat IM Z).construct
       = (Zonotope.mtimesIntervalMat IM Z.interval.zonotope).construct := by -- --- PROOF ---
   have hIMc : IM.center = 0 := by

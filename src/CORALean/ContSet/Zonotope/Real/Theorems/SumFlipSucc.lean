@@ -41,7 +41,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.sum_flip_succ (Z : Zonotope (Vec ℝ 2)) (k : Fin Z.h) :
+theorem Zonotope.sum_flip_succ (Z : Zonotope (Vec ℝ 2)) (k : Fin Z.h) : -- --- CONCL ---
     (∑ j, if decide (j.val < k.val + 1) = true then Z.G j else 0)
       = (∑ j, if decide (j.val < k.val) = true then Z.G j else 0) + Z.G k := by -- --- PROOF ---
   classical

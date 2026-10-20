@@ -50,7 +50,7 @@ theorem Zonotope.aux_polar (u : Vec ℝ 2) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.cross_eq_norm_mul_sin (u w : Vec ℝ 2) :
+theorem Zonotope.cross_eq_norm_mul_sin (u w : Vec ℝ 2) : -- --- CONCL ---
     u 0 * w 1 - u 1 * w 0 = ‖(⟨u 0, u 1⟩ : ℂ)‖ * ‖(⟨w 0, w 1⟩ : ℂ)‖ *
       Real.sin (Complex.arg ⟨w 0, w 1⟩ - Complex.arg ⟨u 0, u 1⟩) := by -- --- PROOF ---
   obtain ⟨hu0, hu1⟩ := Zonotope.aux_polar u

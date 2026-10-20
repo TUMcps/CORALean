@@ -91,7 +91,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.raghuramanCora_zeroDivision :
+theorem Zonotope.raghuramanCora_zeroDivision : -- --- CONCL ---
     let Z : Zonotope (Vec ℝ 2) := ⟨3, 0, ![![3, 0], ![2, 0], ![0, 1]]⟩
     ∃ hr : 2 ≤ Z.h, (∀ i, Z.raghuramanGProdCora 2 hr ⟨0, by norm_num [Z]⟩ i = 0) ∧
       Z.raghuramanAlphaMaxCora 2 hr ⟨0, by norm_num [Z]⟩ = 0 := by -- --- PROOF ---

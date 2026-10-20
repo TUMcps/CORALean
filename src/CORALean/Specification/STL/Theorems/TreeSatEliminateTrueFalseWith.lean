@@ -44,7 +44,7 @@ variable {n : ℕ}
 
 theorem STL.Tree.sat_eliminateTrueFalseWith (ut : ℝ≥0 → ℝ≥0 → STL.Tree n → STL.Tree n)
     (hut : ∀ a b φ ξ, (ut a b φ).Sat ξ ↔ (STL.Tree.until a b φ .tt).Sat ξ)
-    (φ : STL.Tree n) (hφ : φ.WellFormed) (ξ : ℝ≥0 → Fin n → ℝ) :
+    (φ : STL.Tree n) (hφ : φ.WellFormed) (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
     (φ.eliminateTrueFalseWith ut).Sat ξ ↔ φ.Sat ξ := by -- --- PROOF ---
   induction φ generalizing ξ with
   | tt | ff | cmp => rfl

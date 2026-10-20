@@ -52,7 +52,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Shifting the range by a multiple of the period moves neither the values nor the poles. -/
-theorem aux_image_tan_shift (lo hi : ℝ) (k : ℤ) :
+theorem aux_image_tan_shift (lo hi : ℝ) (k : ℤ) : -- --- CONCL ---
     Real.tan '' (Set.Icc lo hi ∩ {x | Real.cos x ≠ 0}) =
       Real.tan '' (Set.Icc (lo - Real.pi * k) (hi - Real.pi * k) ∩
         {x | Real.cos x ≠ 0}) := by -- --- PROOF ---
@@ -72,7 +72,7 @@ theorem aux_image_tan_shift (lo hi : ℝ) (k : ℤ) :
 
 /-- Between two consecutive poles the tangent rises: its range is the end values. -/
 theorem aux_image_tan_piece {a b : ℝ} (j : ℤ) (hab : a ≤ b) (ha : j * Real.pi - Real.pi / 2 < a)
-    (hb : b < j * Real.pi + Real.pi / 2) :
+    (hb : b < j * Real.pi + Real.pi / 2) : -- --- CONCL ---
     Real.tan '' (Set.Icc a b ∩ {x | Real.cos x ≠ 0}) =
       Set.Icc (Real.tan a) (Real.tan b) := by -- --- PROOF ---
   rw [aux_image_tan_shift a b j]
@@ -126,7 +126,8 @@ theorem aux_tanByRegions_some {lo hi zl zu : ℝ}
       Real.tan '' (Set.Icc zl (zl + (hi - lo)) ∩ {x | Real.cos x ≠ 0}))
     (hzl2 : zl ≠ Real.pi / 2) (hb1 : zl ≤ zu → zl + (hi - lo) = zu)
     (h : (zl ∈ Set.Ico 0 (Real.pi / 2) ∧ zu ∈ Set.Ico 0 (Real.pi / 2) ∧ zl ≤ zu) ∨
-      (zl ∈ Set.Ico (Real.pi / 2) Real.pi ∧ zu ∈ Set.Ico (Real.pi / 2) Real.pi ∧ zl ≤ zu)) :
+      (zl ∈ Set.Ico (Real.pi / 2) Real.pi ∧ zu ∈ Set.Ico (Real.pi / 2) Real.pi ∧ zl ≤ zu))
+    : -- --- CONCL ---
     Real.tan '' (Set.Icc lo hi ∩ {x | Real.cos x ≠ 0}) =
       Set.Icc (Real.tan zl) (Real.tan zu) := by -- --- PROOF ---
   rw [hshift]
@@ -145,7 +146,8 @@ theorem aux_tanByRegions_wrap {zl zu : ℝ} (hzl : 0 ≤ zl ∧ zl < Real.pi)
       (zl ∈ Set.Ico (Real.pi / 2) Real.pi ∧ zu ∈ Set.Ico (Real.pi / 2) Real.pi ∧ zu < zl) ∨
       (zl ∈ Set.Ico 0 (Real.pi / 2) ∧ zu ∈ Set.Ico (Real.pi / 2) Real.pi)))
     (hB : ¬((zl ∈ Set.Ico 0 (Real.pi / 2) ∧ zu ∈ Set.Ico 0 (Real.pi / 2) ∧ zl ≤ zu) ∨
-      (zl ∈ Set.Ico (Real.pi / 2) Real.pi ∧ zu ∈ Set.Ico (Real.pi / 2) Real.pi ∧ zl ≤ zu))) :
+      (zl ∈ Set.Ico (Real.pi / 2) Real.pi ∧ zu ∈ Set.Ico (Real.pi / 2) Real.pi ∧ zl ≤ zu)))
+    : -- --- CONCL ---
     Real.pi / 2 < zl ∧ zu < Real.pi / 2 := by -- --- PROOF ---
   have hl : Real.pi / 2 < zl := by
     by_contra h

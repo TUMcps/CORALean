@@ -46,7 +46,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.minkowskiDiff_nonempty_iff (E₁ E₂ : Ellipsoid n) :
+theorem Ellipsoid.minkowskiDiff_nonempty_iff (E₁ E₂ : Ellipsoid n) : -- --- CONCL ---
     (minkowskiDiff E₁.construct E₂.construct).Nonempty ↔
       (⟨E₂.Q, 0, E₂.psd⟩ : Ellipsoid n).construct ⊆
         (⟨E₁.Q, 0, E₁.psd⟩ : Ellipsoid n).construct := by -- --- PROOF ---

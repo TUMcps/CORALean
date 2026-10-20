@@ -41,7 +41,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Tree.sat_congr_getVariables (φ : STL.Tree n) (ξ ξ' : ℝ≥0 → Fin n → ℝ)
-    (h : ∀ t, ∀ i ∈ φ.getVariables, ξ t i = ξ' t i) : φ.Sat ξ ↔ φ.Sat ξ' := by -- --- PROOF ---
+    (h : ∀ t, ∀ i ∈ φ.getVariables, ξ t i = ξ' t i) : -- --- CONCL ---
+    φ.Sat ξ ↔ φ.Sat ξ' := by -- --- PROOF ---
   induction φ generalizing ξ ξ' with
   | tt | ff => rfl
   -- a comparison reads its expressions at time `0`

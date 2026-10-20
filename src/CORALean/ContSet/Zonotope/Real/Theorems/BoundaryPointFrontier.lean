@@ -71,7 +71,7 @@ private theorem aux_boundaryPoint_mem (Z : Zonotope α) {dir start : α} (hdir :
 
 /-- Nothing further along the ray is in the zonotope. -/
 private theorem aux_boundaryPoint_not_mem (Z : Zonotope α) {dir start : α} (hdir : dir ≠ 0)
-    (hs : start ∈ Z.construct) {ε : ℝ} (hε : 0 < ε) :
+    (hs : start ∈ Z.construct) {ε : ℝ} (hε : 0 < ε) : -- --- CONCL ---
     Z.boundaryPoint dir start + ε • dir ∉ Z.construct := by -- --- PROOF ---
   intro h
   obtain ⟨hmem, hbdd⟩ := aux_step_props Z hdir hs
@@ -85,7 +85,7 @@ private theorem aux_boundaryPoint_not_mem (Z : Zonotope α) {dir start : α} (hd
 
 /-- The boundary point is on the frontier of the zonotope. -/
 theorem Zonotope.boundaryPoint_mem_frontier (Z : Zonotope α) {dir start : α}
-    (hdir : dir ≠ 0) (hs : start ∈ Z.construct) :
+    (hdir : dir ≠ 0) (hs : start ∈ Z.construct) : -- --- CONCL ---
     Z.boundaryPoint dir start ∈ frontier Z.construct := by -- --- PROOF ---
   refine ⟨by rw [Z.isClosed_construct.closure_eq]; exact aux_boundaryPoint_mem Z hdir hs,
     ?_⟩

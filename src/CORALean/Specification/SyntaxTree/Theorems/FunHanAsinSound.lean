@@ -41,7 +41,8 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `aaux_sin_` is sound for `asin` on an operand inside `[-1,1]`. -/
-theorem SyntaxTree.funHanAsin_sound (prev : Dom) (hd₁ : -1 ≤ prev.inf 0) (hd₂ : prev.sup 0 ≤ 1) :
+theorem SyntaxTree.funHanAsin_sound (prev : Dom) (hd₁ : -1 ≤ prev.inf 0)
+    (hd₂ : prev.sup 0 ≤ 1) : -- --- CONCL ---
     UnarySound Unary.asin.fn prev (Real.Interval.asin prev) funHanAsin := by -- --- PROOF ---
   intro int hw s hs hi
   have h : int.inf 0 ≤ Real.arcsin s ∧ Real.arcsin s ≤ int.sup 0 := hi

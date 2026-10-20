@@ -41,7 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.representsaFullspace_sound {P : HPolytope 𝕋 (Vec 𝕋 n)}
-    (h : P.representsaFullspace = true) : P.construct = Set.univ := by -- --- PROOF ---
+    (h : P.representsaFullspace = true) : -- --- CONCL ---
+    P.construct = Set.univ := by -- --- PROOF ---
   unfold HPolytope.representsaFullspace at h
   simp only [Bool.and_eq_true, List.all_eq_true, List.mem_finRange, forall_const] at h
   obtain ⟨⟨hin, heq⟩, hbox⟩ := h

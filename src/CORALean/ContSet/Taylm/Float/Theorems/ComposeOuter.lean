@@ -57,7 +57,8 @@ theorem Taylm.compose_outer {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.En
     (c : 𝕋) (lo hi : ℕ → 𝕋) (N : ℕ) (ρ : 𝕋) (a : ℕ → ℝ)
     (ha : ∀ k ≤ N, toReal (lo k) ≤ a k ∧ a k ≤ toReal (hi k))
     (hg : ∀ t ∈ Real.Taylm.box n,
-      |g (f t) - ∑ k ∈ Finset.range (N + 1), a k * (f t - toReal c) ^ k| ≤ toReal ρ) :
+      |g (f t) - ∑ k ∈ Finset.range (N + 1), a k * (f t - toReal c) ^ k| ≤ toReal ρ)
+    : -- --- CONCL ---
     (T.compose c lo hi N ρ).Encloses fun t => g (f t) := by -- --- PROOF ---
   have hc := Taylm.minus_outer h (Taylm.const_outer (n := n) c T.maxOrder)
   have hs := Taylm.sum_outer (T := fun k : Fin (N + 1) =>

@@ -56,7 +56,8 @@ open Filter Topology
 
 theorem sShape_band_area_le {f : ℝ → ℝ} {dfl dfu lam l u : ℝ} (hlu : l < u)
     (hdl : HasDerivAt f dfl l) (hdu : HasDerivAt f dfu u)
-    (hband : ∀ t, l ≤ t → t ≤ u → f l + lam * (t - l) ≤ f t ∧ f t ≤ f u + lam * (t - u)) :
+    (hband : ∀ t, l ≤ t → t ≤ u → f l + lam * (t - l) ≤ f t ∧ f t ≤ f u + lam * (t - u))
+    : -- --- CONCL ---
     (f u - f l - min dfl dfu * (u - l)) * (u - l)
       ≤ (f u - f l - lam * (u - l)) * (u - l) := by -- --- PROOF ---
   -- the lower line's slope is at most the right derivative at `l`

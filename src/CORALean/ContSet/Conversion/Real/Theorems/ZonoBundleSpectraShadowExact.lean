@@ -46,7 +46,7 @@ variable {n : ℕ}
 
 /-- A left fold of `inter` is the intersection of what it starts from and what it folds in. -/
 theorem ZonoBundle.aux_foldl_inter (Ss : List (SpectraShadow (Vec ℝ n)))
-    (S : SpectraShadow (Vec ℝ n)) :
+    (S : SpectraShadow (Vec ℝ n)) : -- --- CONCL ---
     (Ss.foldl SpectraShadow.inter S).construct
       = S.construct ∩ {x | ∀ T ∈ Ss, x ∈ T.construct} := by -- --- PROOF ---
   induction Ss generalizing S with
@@ -60,7 +60,7 @@ theorem ZonoBundle.aux_foldl_inter (Ss : List (SpectraShadow (Vec ℝ n)))
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.spectraShadow_exact (zB : ZonoBundle (Vec ℝ n)) :
+theorem ZonoBundle.spectraShadow_exact (zB : ZonoBundle (Vec ℝ n)) : -- --- CONCL ---
     zB.construct = zB.spectraShadow.construct := by -- --- PROOF ---
   have hmem : ∀ x, x ∈ zB.construct ↔ ∀ T ∈ List.ofFn (fun i => (zB.Z i).spectraShadow),
       x ∈ T.construct := by

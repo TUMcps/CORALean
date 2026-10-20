@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.mem_pointMat (A : Mat 𝕋 m n) :
+theorem Zonotope.mem_pointMat (A : Mat 𝕋 m n) : -- --- CONCL ---
     toRealMat A ∈ (Zonotope.pointMat A).construct := by -- --- PROOF ---
   refine ⟨toRealMat A, ⟨fun k => k.elim0, fun k => k.elim0, ?_⟩, 0, ?_, add_zero _⟩
   · -- no generators, so the sum is empty

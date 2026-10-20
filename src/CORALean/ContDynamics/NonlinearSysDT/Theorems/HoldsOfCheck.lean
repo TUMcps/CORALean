@@ -60,7 +60,7 @@ theorem NonlinearSysDT.holds_of_check [Contains ContSet (S n)] [IsDisjoint ContS
     (sys : NonlinearSysDT n m) {U : S m} {o : ℕ} (ho : 0 < o) (steps : ℕ → sys.LinStep 𝕋 U)
     (R₀ : S n) (spec : Specification ContSet) {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m}
     {y : ℕ → Vec ℝ sys.q} (traj : sys.IsTrajectory R₀ U x u y) (hR : ∀ k, x k ∈ (steps k).R)
-    (k : ℕ) : -- --- CONCL ---
+    (k : ℕ) :
     spec.check (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) → (spec.Holds {x k}) :=
   fun h => sys.holds_of_reach ho steps R₀ spec traj hR k (spec.check_sound _ h)
 

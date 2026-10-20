@@ -50,7 +50,7 @@ variable {N F₁ F₂ : ℕ}
 /-- One shared-factor convolution at a factor vector is the matrix product the
 two sets take there, times the weight. -/
 theorem GNN.gcnShared_point (W : Mat ℝ F₁ F₂) (P : PolyZonotope (Mat ℝ N N))
-    (H : PolyZonotope (Mat ℝ N F₁)) (hp : P.p = H.p) (a : Fin P.p → ℝ) :
+    (H : PolyZonotope (Mat ℝ N F₁)) (hp : P.p = H.p) (a : Fin P.p → ℝ) : -- --- CONCL ---
     (GNN.gcnShared W P H hp).point a
       = P.point a * H.point (fun k => a (Fin.cast hp.symm k)) * W := by -- --- PROOF ---
   have h := PolyZonotope.map_point (matMulRight W)

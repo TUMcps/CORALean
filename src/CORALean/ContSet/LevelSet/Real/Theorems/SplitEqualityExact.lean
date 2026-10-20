@@ -35,7 +35,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Exact: `L` is the equality part intersected with the rest. -/
-theorem LevelSet.splitEquality_exact {n : ℕ} (L : LevelSet n) :
+theorem LevelSet.splitEquality_exact {n : ℕ} (L : LevelSet n) : -- --- CONCL ---
     L.construct = L.splitEquality.1.construct ∩ L.splitEquality.2.construct := by -- --- PROOF ---
   ext x
   show x ∈ L.construct ↔ x ∈ (L.restrict _).construct ∩ (L.restrict _).construct

@@ -60,7 +60,7 @@ variable {n : ℕ}
 
 /-- [1, Prop. 4], eq. (29) at an order: one reduction to order `ρ` moves a zonotope by at
 most `Δε^r_k(ρ)`, the `err` of the box it absorbs the dropped generators into. -/
-theorem Zonotope.hausdorffDist₂_reduce_le (Z : Zonotope (Vec ℝ n)) (o : ℕ) :
+theorem Zonotope.hausdorffDist₂_reduce_le (Z : Zonotope (Vec ℝ n)) (o : ℕ) : -- --- CONCL ---
     hausdorffDist₂ Z.construct (Z.reduce o).construct ≤ Z.reduceBoxError o := by -- --- PROOF ---
   refine hausdorffDist₂_le_of_mem_dist (norm₂_nonneg _) (fun x hx => ?_) (fun y hy => ?_)
   · exact ⟨x, Z.reduce_outer o hx, by rw [sub_self, norm₂_zero]; exact norm₂_nonneg _⟩

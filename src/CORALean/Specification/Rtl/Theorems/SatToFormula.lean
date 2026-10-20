@@ -43,7 +43,7 @@ variable {L X : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Rtl.sat_toFormula (f : L → Pform X) :
+theorem Rtl.sat_toFormula (f : L → Pform X) : -- --- CONCL ---
     ∀ (ψ : Rtl L) (φ : RTL.Formula X), ψ.toFormula f = some φ → ∀ R : ℝ≥0 → Set X,
       (ψ.Sat (fun l r => (f l).Sat r) R ↔ φ.Sat R) := by -- --- PROOF ---
   intro ψ

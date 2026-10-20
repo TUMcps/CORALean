@@ -54,7 +54,7 @@ variable {n : ℕ}
 
 /-- [1, Lemma 4.4]: `det E ≤ exp(2/√(1+ε) − 2 + ε/(1+ε))` at `γ = 1/√(n(1+ε))`. -/
 theorem Ellipsoid.cutShape_det_le {c : Vec ℝ n} (hc : c ⬝ᵥ c = 1) (hn : 2 ≤ n) {ε : ℝ}
-    (hε : 0 < ε) :
+    (hε : 0 < ε) : -- --- CONCL ---
     (Ellipsoid.cutShape n c (1 / Real.sqrt ((n : ℝ) * (1 + ε)))).det
       ≤ Real.exp (2 * (1 / Real.sqrt (1 + ε)) - 2 + ε / (1 + ε)) := by -- --- PROOF ---
   have hn' : (2 : ℝ) ≤ n := by exact_mod_cast hn

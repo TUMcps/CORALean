@@ -47,7 +47,7 @@ namespace CORALean.Real
 /-- Monotone in the generator count and the row counts, so a bound on the operand's size gives a
 bound on the cost. -/
 theorem ConZonotope.reduceCost_mono {h h' r r' re re' : ℕ} (n : ℕ) (hh : h ≤ h') (hr : r ≤ r')
-    (he : re ≤ re') :
+    (he : re ≤ re') : -- --- CONCL ---
     ConZonotope.reduceCost n h r re ≤ ConZonotope.reduceCost n h' r' re' := by -- --- PROOF ---
   have := Cost.le_iff.mp (Zonotope.reduceGirardCost_mono n hh)
   simp only [ConZonotope.reduceCost, Cost.le_iff, Cost.ops_add]

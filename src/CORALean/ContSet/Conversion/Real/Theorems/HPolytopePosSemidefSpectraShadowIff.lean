@@ -49,7 +49,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The inequality's matrix is the diagonal of the slacks `d_j - C_j β`. -/
-theorem HPolytope.aux_lmi_spectraShadow (P : HPolytope (Vec ℝ n)) (β : Fin n → ℝ) :
+theorem HPolytope.aux_lmi_spectraShadow (P : HPolytope (Vec ℝ n)) (β : Fin n → ℝ) : -- --- CONCL ---
     (diagonal P.stackedBounds + ∑ i, β i • diagonal fun j =>
         -(P.stackedRows j (Pi.single i 1 : Fin n → ℝ)) : Mat ℝ (P.m + P.me + P.me) _)
       = diagonal fun j => P.stackedBounds j - P.stackedRows j β := by -- --- PROOF ---
@@ -63,7 +63,7 @@ theorem HPolytope.aux_lmi_spectraShadow (P : HPolytope (Vec ℝ n)) (β : Fin n 
   · simp [Matrix.sum_apply, hjk]
 
 /-- The slacks are all nonnegative exactly on the polytope. -/
-theorem HPolytope.aux_slack_iff (P : HPolytope (Vec ℝ n)) (β : Fin n → ℝ) :
+theorem HPolytope.aux_slack_iff (P : HPolytope (Vec ℝ n)) (β : Fin n → ℝ) : -- --- CONCL ---
     (∀ j, 0 ≤ P.stackedBounds j - P.stackedRows j β) ↔ β ∈ P.construct := by -- --- PROOF ---
   simp only [HPolytope.stackedBounds, HPolytope.stackedRows, Fin.forall_fin_add, Fin.append_left,
     Fin.append_right, LinearMap.neg_apply, sub_nonneg]

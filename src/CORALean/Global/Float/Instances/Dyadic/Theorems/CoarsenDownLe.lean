@@ -39,7 +39,7 @@ variable {p : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem coarsenDown_le (e : ℤ) (d : Dyadic p) :
+theorem coarsenDown_le (e : ℤ) (d : Dyadic p) : -- --- CONCL ---
     toReal (coarsenDown e d) ≤ toReal d := by -- --- PROOF ---
   have h : d.mantissa / 2 ^ (e - d.exponent).toNat * 2 ^ (e - d.exponent).toNat ≤ d.mantissa :=
     Int.ediv_mul_le _ (pow_ne_zero _ two_ne_zero)

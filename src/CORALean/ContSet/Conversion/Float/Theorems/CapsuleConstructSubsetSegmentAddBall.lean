@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The float capsule lies in its segment, with the error box, plus the float ball. -/
-theorem Capsule.construct_subset_segment_add_ball (C : Capsule 𝕋 n) :
+theorem Capsule.construct_subset_segment_add_ball (C : Capsule 𝕋 n) : -- --- CONCL ---
     C.construct ⊆ (⟨1, C.c, fun _ => C.g, C.I_error⟩ : Zonotope (Vec 𝕋 n)).construct
       + (Ellipsoid.ball n C.r).construct := by -- --- PROOF ---
   rintro x ⟨y, hy, e, he, rfl⟩

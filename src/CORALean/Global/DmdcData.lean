@@ -62,7 +62,7 @@ def dmdcBlocks (G : Mat ℝ n (n + l)) : Mat ℝ n n × Mat ℝ n l :=
 
 /-- [1, Eq. 16]: the recursion at every snapshot is `X' = A X + B Υ`. -/
 theorem dmdc_data_matrix (x xNext : Fin N → Vec ℝ n) (u : Fin N → Vec ℝ l) (A : Mat ℝ n n)
-    (B : Mat ℝ n l) :
+    (B : Mat ℝ n l) : -- --- CONCL ---
     (∀ k, xNext k = A *ᵥ x k + B *ᵥ u k) ↔
       dmdcCols xNext = A * dmdcCols x + B * dmdcCols u := by -- --- PROOF ---
   constructor

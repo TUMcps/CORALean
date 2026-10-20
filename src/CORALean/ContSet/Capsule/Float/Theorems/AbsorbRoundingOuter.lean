@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `absorbRounding` contains the set. -/
-theorem Capsule.absorbRounding_outer (k : ℕ) (C : Capsule 𝕋 n) :
+theorem Capsule.absorbRounding_outer (k : ℕ) (C : Capsule 𝕋 n) : -- --- CONCL ---
     C.construct ⊆ (C.absorbRounding k).construct := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩
   obtain ⟨t, ht, w, hw, rfl⟩ := Capsule.exists_split_of_mem hy

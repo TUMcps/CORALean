@@ -40,7 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `absorbRounding` encloses what the model encloses. -/
-theorem Taylm.absorbRounding_outer {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) :
+theorem Taylm.absorbRounding_outer {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ}
+    (h : T.Encloses f) : -- --- CONCL ---
     T.absorbRounding.Encloses f := by -- --- PROOF ---
   intro t ht
   have a := Taylm.absorbRounding_nominal h t ht

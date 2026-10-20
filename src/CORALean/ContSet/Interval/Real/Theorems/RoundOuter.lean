@@ -37,7 +37,8 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_roundAway_monotone : Monotone roundAway := by -- --- PROOF ---
+theorem aux_roundAway_monotone : -- --- CONCL ---
+    Monotone roundAway := by -- --- PROOF ---
   intro a b hab
   unfold roundAway
   by_cases ha : 0 ≤ a

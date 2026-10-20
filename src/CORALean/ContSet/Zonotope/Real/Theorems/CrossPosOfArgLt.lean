@@ -47,7 +47,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A nonzero vector has positive norm as a complex number. -/
-theorem Zonotope.aux_norm_pos {u : Vec ℝ 2} (hu : u ≠ 0) :
+theorem Zonotope.aux_norm_pos {u : Vec ℝ 2} (hu : u ≠ 0) : -- --- CONCL ---
     0 < ‖(⟨u 0, u 1⟩ : ℂ)‖ := by -- --- PROOF ---
   rw [norm_pos_iff]
   intro hc
@@ -62,7 +62,7 @@ theorem Zonotope.aux_norm_pos {u : Vec ℝ 2} (hu : u ≠ 0) :
 
 theorem Zonotope.cross_pos_of_arg_lt {u w : Vec ℝ 2} (hu : 0 ≤ u 1)
     (hw : 0 ≤ w 1 ∧ (0 < w 1 ∨ 0 ≤ w 0)) (hu0 : u ≠ 0) (hw0 : w ≠ 0)
-    (h : Complex.arg ⟨u 0, u 1⟩ < Complex.arg ⟨w 0, w 1⟩) :
+    (h : Complex.arg ⟨u 0, u 1⟩ < Complex.arg ⟨w 0, w 1⟩) : -- --- CONCL ---
     0 < u 0 * w 1 - u 1 * w 0 := by -- --- PROOF ---
   rw [Zonotope.cross_eq_norm_mul_sin]
   have h0 : 0 ≤ Complex.arg ⟨u 0, u 1⟩ := Complex.arg_nonneg_iff.mpr hu

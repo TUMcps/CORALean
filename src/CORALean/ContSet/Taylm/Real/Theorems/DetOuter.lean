@@ -41,7 +41,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.det_outer : ∀ {d : ℕ} {A : Fin (d + 1) → Fin (d + 1) → Taylm n}
+theorem Taylm.det_outer : -- --- CONCL ---
+    ∀ {d : ℕ} {A : Fin (d + 1) → Fin (d + 1) → Taylm n}
     {f : Fin (d + 1) → Fin (d + 1) → Vec ℝ n → ℝ}, (∀ i j, (A i j).Encloses (f i j)) →
     (Taylm.det A).Encloses fun t => (Matrix.of fun i j => f i j t).det := by -- --- PROOF ---
   intro d

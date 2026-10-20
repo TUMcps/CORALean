@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.taylorCoeffBounds_mem {r : 𝕋} (hr : 0 ≤ toReal r) (k : ℕ) :
+theorem MatExp.taylorCoeffBounds_mem {r : 𝕋} (hr : 0 ≤ toReal r) (k : ℕ) : -- --- CONCL ---
     toReal (MatExp.taylorCoeffBounds r k).inf ≤ toReal r ^ k / (Nat.factorial k : ℝ)
       ∧ toReal r ^ k / (Nat.factorial k : ℝ)
         ≤ toReal (MatExp.taylorCoeffBounds r k).sup := by -- --- PROOF ---

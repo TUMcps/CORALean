@@ -42,7 +42,7 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.polyZonotope_contains (T : Fin m → Taylm n) :
+theorem Taylm.polyZonotope_contains (T : Fin m → Taylm n) : -- --- CONCL ---
     Taylm.construct T ⊆ (Taylm.polyZonotope T).construct := by -- --- PROOF ---
   rintro x ⟨t, ht, hx⟩
   -- the remainder values form a point of the remainder box, which its zonotope reaches

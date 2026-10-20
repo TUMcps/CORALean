@@ -40,7 +40,7 @@ open scoped Pointwise
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `minus` denotes the differences of the two sets, at least `0`. -/
-theorem STLInterval.set_minus (I J : STLInterval) :
+theorem STLInterval.set_minus (I J : STLInterval) : -- --- CONCL ---
     (I.minus J).set = (I.set - J.set) ∩ Set.Ici 0 := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.minus, STLInterval.set]

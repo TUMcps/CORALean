@@ -75,7 +75,7 @@ theorem PolyZonotope.aux_linComb_nominal (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n
 
 /-- The box absorbs the two incoming boxes, both center roundings and the
 independent block's. -/
-theorem PolyZonotope.aux_linComb_error (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) : -- --- CONCL ---
+theorem PolyZonotope.aux_linComb_error (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
     Set.linComb pZ₁.I_error.construct pZ₂.I_error.construct
         + ((PolyZonotope.midpointResidual pZ₁.c pZ₂.c).construct
             + ((PolyZonotope.halfDiffError pZ₁.c pZ₂.c).construct

@@ -37,7 +37,7 @@ namespace CORALean.Float.Binary64
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem divDown_le_div (a b : Float) (hb : 0 < toReal b) :
+theorem divDown_le_div (a b : Float) (hb : 0 < toReal b) : -- --- CONCL ---
     toReal (divDown a b) ≤ toReal a / toReal b := by -- --- PROOF ---
   rw [divDown, trustedHardware.toReal_neg]
   -- the divisor is untouched, so the positivity hypothesis passes straight on

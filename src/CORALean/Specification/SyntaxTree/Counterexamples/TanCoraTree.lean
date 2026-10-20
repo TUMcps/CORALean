@@ -69,7 +69,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 
 /-- The upper bound the printed `aux_tan_` returns for the target `[0,√3]` over `[0,π/3]` is at
 most `π/4`. -/
-private theorem SyntaxTree.funHanTanCora_sup_le :
+private theorem SyntaxTree.funHanTanCora_sup_le : -- --- CONCL ---
     ∃ val, funHanTanCora (interval 0 (Real.sqrt 3)) (interval 0 (Real.pi / 3)) = .ok val ∧
       val.sup 0 ≤ Real.pi / 4 := by -- --- PROOF ---
   refine ⟨_, rfl, ?_⟩
@@ -100,7 +100,7 @@ private theorem SyntaxTree.funHanTanCora_sup_le :
     linarith
 
 /-- `backpropagation` of the printed `tan` loses the zero `(π/3, √3)`. -/
-theorem SyntaxTree.tanCora_counterexample :
+theorem SyntaxTree.tanCora_counterexample : -- --- CONCL ---
     ∃ (x : Fin 2 → ℝ) (B : Real.Interval (Vec ℝ 2)),
       InBox B x ∧ Dom.contains (interval 0 0) (tanCoraTree.eval x) ∧
       ¬ ∃ r, backpropagation tanCoraTree (interval 0 0) B = .ok r ∧ InBox r x := by -- --- PROOF ---

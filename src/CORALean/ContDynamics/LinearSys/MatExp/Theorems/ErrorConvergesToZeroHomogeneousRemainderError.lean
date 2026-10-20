@@ -67,7 +67,7 @@ theorem aux_norm₂_mulVec_le_of_abs_entry_le (M b : Mat ℝ n n) (hM : ∀ i j,
     (norm₂_le_sum_abs _).trans (Finset.sum_le_sum fun j _ => hM i j)
 
 /-- A Taylor interval `[c_k Δt^k, 0]` with `k ≥ 2`, scaling a fixed entry, vanishes with `Δt`. -/
-theorem aux_tendsto_taylor_term {k : ℕ} (hk : k ≠ 0) (b : ℝ) :
+theorem aux_tendsto_taylor_term {k : ℕ} (hk : k ≠ 0) (b : ℝ) : -- --- CONCL ---
     Tendsto (fun Δt : ℝ => |MatExp.corrCoeff k * Δt ^ k| * b) (𝓝[>] (0 : ℝ))
       (𝓝 0) := by -- --- PROOF ---
   have hc : Continuous fun Δt : ℝ => |MatExp.corrCoeff k * Δt ^ k| * b :=
@@ -83,7 +83,7 @@ theorem aux_tendsto_taylor_term {k : ℕ} (hk : k ≠ 0) (b : ℝ) :
 converges to `0` as `Δt → 0⁺`, at every step start `t_i`, order `η` and input center `c_u` —
 `Assumption 1` for `ε_H`. -/
 theorem MatExp.errorConvergesToZero_homogeneousRemainderError (A : Mat ℝ n n) (ti : ℝ)
-    {X₀ : Set (Vec ℝ n)} (hX₀ : Bornology.IsBounded X₀) (cu : Vec ℝ n) (η : ℕ) :
+    {X₀ : Set (Vec ℝ n)} (hX₀ : Bornology.IsBounded X₀) (cu : Vec ℝ n) (η : ℕ) : -- --- CONCL ---
     ErrorConvergesToZero
       (fun Δt => MatExp.homogeneousRemainderError A ti X₀ cu Δt η) := by -- --- PROOF ---
   set C := ∑ i, ‖(fun j => (exp (ti • A)) i j)‖₂ with hC

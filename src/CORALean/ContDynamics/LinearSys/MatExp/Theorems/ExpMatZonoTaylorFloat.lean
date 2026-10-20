@@ -55,7 +55,7 @@ theorem MatExp.aux_term_mem_expMatZonoTerm (M : Zonotope (Mat 𝕋 n n)) {A : Ma
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.expTaylor_mem_expMatZonoTaylor (M : Zonotope (Mat 𝕋 n n)) {A : Mat ℝ n n}
-    (hA : A ∈ M.construct) (η : ℕ) :
+    (hA : A ∈ M.construct) (η : ℕ) : -- --- CONCL ---
     Real.MatExp.expTaylor A η ∈ (MatExp.expMatZonoTaylor M η).construct := by -- --- PROOF ---
   induction η with
   | zero =>

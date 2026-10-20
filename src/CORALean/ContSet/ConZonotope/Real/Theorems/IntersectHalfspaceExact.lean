@@ -109,7 +109,7 @@ theorem Zonotope.aux_mem_interHalfspace_iff (Z : Zonotope (Vec ℝ n)) (h : Vec 
 generators' own total — the triangle inequality both `aux_interHalfspace_dm_nonneg` and the
 `⊇`-direction's witness for `t` at `dm = 0` need. -/
 theorem Zonotope.aux_sum_ge_neg_sum_abs (Z : Zonotope (Vec ℝ n)) (h : Vec ℝ n →ₗ[ℝ] ℝ)
-    (ξ : Fin Z.h → ℝ) (hξ : ∀ i, |ξ i| ≤ 1) :
+    (ξ : Fin Z.h → ℝ) (hξ : ∀ i, |ξ i| ≤ 1) : -- --- CONCL ---
     -∑ i, |h (Z.G i)| ≤ ∑ i, h (Z.G i) * ξ i := by -- --- PROOF ---
   have hterm : ∀ i ∈ Finset.univ, -|h (Z.G i)| ≤ h (Z.G i) * ξ i := by
     intro i _
@@ -122,7 +122,7 @@ theorem Zonotope.aux_sum_ge_neg_sum_abs (Z : Zonotope (Vec ℝ n)) (h : Vec ℝ 
 /-- The paper's own first step: `Z` meeting the hyperplane, with the triangle inequality over its
 generators, forces `dm ≥ 0`. -/
 theorem Zonotope.aux_interHalfspace_dm_nonneg (Z : Zonotope (Vec ℝ n)) (h : Vec ℝ n →ₗ[ℝ] ℝ)
-    (f : ℝ) (hZH : ∃ x ∈ Z.construct, h x = f) :
+    (f : ℝ) (hZH : ∃ x ∈ Z.construct, h x = f) : -- --- CONCL ---
     0 ≤ f - h Z.c + ∑ i, |h (Z.G i)| := by -- --- PROOF ---
   obtain ⟨x, ⟨ξ, hξ, rfl⟩, hx⟩ := hZH
   rw [map_add, map_sum] at hx
@@ -139,7 +139,7 @@ theorem Zonotope.aux_interHalfspace_dm_nonneg (Z : Zonotope (Vec ℝ n)) (h : Ve
 /-- [1, Thm. 1]: `Z.interHalfspace h f` denotes exactly `Z ∩ {x | h x ≤ f}`, given that `Z` meets
 the hyperplane `{x | h x = f}`. -/
 theorem Zonotope.interHalfspace_exact (Z : Zonotope (Vec ℝ n)) (h : Vec ℝ n →ₗ[ℝ] ℝ) (f : ℝ)
-    (hZH : ∃ x ∈ Z.construct, h x = f) :
+    (hZH : ∃ x ∈ Z.construct, h x = f) : -- --- CONCL ---
     (Z.interHalfspace h f).construct = Z.construct ∩ {x | h x ≤ f} := by -- --- PROOF ---
   have hdm0 := Zonotope.aux_interHalfspace_dm_nonneg Z h f hZH
   apply Set.eq_of_subset_of_subset

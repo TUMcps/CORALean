@@ -41,7 +41,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.eq_block_sum {ι : Type} (s : Finset ι) (β : ι → ℝ) (g : ι → Vec ℝ n) :
+theorem SpectraShadow.eq_block_sum {ι : Type} (s : Finset ι) (β : ι → ℝ)
+    (g : ι → Vec ℝ n) : -- --- CONCL ---
     ∑ i ∈ s, β i • blockDiag 0 (diagonal (g i)) (diagonal (-(g i)))
       = blockDiag 0 (diagonal (∑ i ∈ s, β i • g i))
         (diagonal (-(∑ i ∈ s, β i • g i))) := by -- --- PROOF ---

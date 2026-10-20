@@ -45,7 +45,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {d : 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Updating the leaves `ls` changes no node that is not one of them. -/
-theorem aux_updateNodes_getElem? {B : Type} (g : B → Option B) :
+theorem aux_updateNodes_getElem? {B : Type} (g : B → Option B) : -- --- CONCL ---
     ∀ (ls : List ℕ) (nodes nodes' : List B),
       ls.foldlM (fun ns l => OnlineReachSetAnalyzer.updateNode ns l g) nodes = some nodes' →
       ∀ j, (j + 1) ∉ ls → nodes'[j]? = nodes[j]? := by -- --- PROOF ---

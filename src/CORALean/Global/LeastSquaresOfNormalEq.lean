@@ -56,7 +56,7 @@ variable {n v N : ℕ}
 /-- [1, Eq. 4]: a solution of the normal equations `(Ẋ - A Φ) Φᵀ = 0` minimizes the
 least-squares cost. -/
 theorem leastSquares_le_of_normal_eq (Xd : Mat ℝ n N) (Φ : Mat ℝ v N) (A : Mat ℝ n v)
-    (hA : (Xd - A * Φ) * Φᵀ = 0) (B : Mat ℝ n v) :
+    (hA : (Xd - A * Φ) * Φᵀ = 0) (B : Mat ℝ n v) : -- --- CONCL ---
     ∑ i, ∑ a, ((Xd - A * Φ) a i) ^ 2 ≤ ∑ i, ∑ a, ((Xd - B * Φ) a i) ^ 2 := by -- --- PROOF ---
   set E := Xd - A * Φ
   set F := (A - B) * Φ

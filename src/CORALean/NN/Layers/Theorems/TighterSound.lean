@@ -39,7 +39,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {σ : ℝ →
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Both branches are sound, so a wrong answer costs precision and never soundness. -/
-theorem Relaxation.tighter_sound {R₁ R₂ : Relaxation 𝕋} (h₁ : R₁.Sound σ) (h₂ : R₂.Sound σ) :
+theorem Relaxation.tighter_sound {R₁ R₂ : Relaxation 𝕋} (h₁ : R₁.Sound σ)
+    (h₂ : R₂.Sound σ) : -- --- CONCL ---
     (Relaxation.tighter R₁ R₂).Sound σ := by -- --- PROOF ---
   refine ⟨fun {l u _t} hl hu => ?_⟩
   show |σ _t - (toReal (if le (R₁.error l u) (R₂.error l u) then _ else _) * _t

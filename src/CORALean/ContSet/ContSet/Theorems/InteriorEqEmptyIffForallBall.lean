@@ -48,7 +48,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A point is interior exactly when some Euclidean ball around it stays inside. -/
-theorem aux_mem_interior_iff (S : Set (Vec ℝ n)) (s : Vec ℝ n) :
+theorem aux_mem_interior_iff (S : Set (Vec ℝ n)) (s : Vec ℝ n) : -- --- CONCL ---
     s ∈ interior S ↔ ∃ ε > 0, ∀ x : Vec ℝ n, ‖x‖₂ ≤ ε → s + x ∈ S := by -- --- PROOF ---
   rw [mem_interior_iff_mem_nhds]
   -- the neighbourhoods of `s` are those of its Euclidean copy, pulled back
@@ -72,7 +72,7 @@ theorem aux_mem_interior_iff (S : Set (Vec ℝ n)) (s : Vec ℝ n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem interior_eq_empty_iff_forall_ball (S : Set (Vec ℝ n)) :
+theorem interior_eq_empty_iff_forall_ball (S : Set (Vec ℝ n)) : -- --- CONCL ---
     interior S = ∅ ↔ ∀ s ∈ S, ∀ ε > 0, ¬ ∀ x : Vec ℝ n, ‖x‖₂ ≤ ε → s + x ∈ S := by -- --- PROOF ---
   rw [Set.eq_empty_iff_forall_notMem]
   constructor

@@ -42,7 +42,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinProbSys.initReachCov_lt_noiseCovariance :
+theorem LinProbSys.initReachCov_lt_noiseCovariance : -- --- CONCL ---
     LinProbSys.initReachCov (fun _ : Fin 1 => (1 : ℝ)) (1 : Mat ℝ 1 1) 1 0 0
       < noiseCovariance (diagonal fun _ : Fin 1 => 1) (1 : Mat ℝ 1 1) 1 0 0 := by -- --- PROOF ---
   -- both sides in closed form: `(1 - e^{-2})/2 < (e^2 - 1)/2`

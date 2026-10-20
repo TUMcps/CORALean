@@ -48,7 +48,8 @@ namespace CORALean
 
 /-- Every value of a valid signal is read at some time. -/
 theorem PointSegmentSignal.exists_cell_eq {T : Type} [LinearOrder T] [Zero T] [DenselyOrdered T]
-    [NoMaxOrder T] (s : PointSegmentSignal T) (hs : s.IsValid) (m : ℕ) (hm : m < s.values.length) :
+    [NoMaxOrder T] (s : PointSegmentSignal T) (hs : s.IsValid) (m : ℕ)
+    (hm : m < s.values.length) : -- --- CONCL ---
     ∃ t, 0 ≤ t ∧ s.cell t = m := by -- --- PROOF ---
   have hlen := hs.2.1
   have hsort := hs.2.2.2.1

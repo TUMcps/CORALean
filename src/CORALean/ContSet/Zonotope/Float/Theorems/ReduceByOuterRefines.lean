@@ -58,7 +58,7 @@ theorem Zonotope.aux_sum_univ_reduceBy {Z : Zonotope (Vec 𝕋 n)}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.reduceBy_outer_refines (Z : Zonotope (Vec 𝕋 n))
-    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) :
+    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) : -- --- CONCL ---
     ((nominal Z).reduceBy part).construct ⊆ nominalSet (Z.reduceBy part) := by -- --- PROOF ---
   intro x hxmem
   obtain ⟨β, hβ, hx⟩ := Real.Zonotope.mem_construct_iff.mp hxmem

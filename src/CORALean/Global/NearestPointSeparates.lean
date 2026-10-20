@@ -59,7 +59,7 @@ theorem aux_inner_toEuclidean (x y : Vec ℝ n) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem nearest_point_separates (K : Set (Vec ℝ n)) (hK : IsClosed K) (hc : Convex ℝ K)
-    (hne : K.Nonempty) (a : Vec ℝ n) (ha : a ∉ K) :
+    (hne : K.Nonempty) (a : Vec ℝ n) (ha : a ∉ K) : -- --- CONCL ---
     ∃ p ∈ K, 0 < ‖a - p‖₂ ∧ IsLeast ((fun x => ‖a - x‖₂) '' K) ‖a - p‖₂ ∧
       ∀ x ∈ K, (a - p) ⬝ᵥ x ≤ (a - p) ⬝ᵥ p := by -- --- PROOF ---
   set e := (toEuclidean : Vec ℝ n ≃L[ℝ] _)

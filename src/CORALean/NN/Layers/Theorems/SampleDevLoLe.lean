@@ -39,7 +39,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {σ : ℝ →
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem sampleDevLo_le {E : Enclosure 𝕋} (hE : E.Sound σ) (c : Fin (m + 1) → 𝕋) (x : 𝕋) :
+theorem sampleDevLo_le {E : Enclosure 𝕋} (hE : E.Sound σ) (c : Fin (m + 1) → 𝕋)
+    (x : 𝕋) : -- --- CONCL ---
     toReal (sampleDevLo E c x)
       ≤ σ (toReal x) - Real.evalPoly (fun k => toReal (c k)) (toReal x) := by -- --- PROOF ---
   have h1 := subDown_le_sub (E.lo x) (evalPolyUp c x)

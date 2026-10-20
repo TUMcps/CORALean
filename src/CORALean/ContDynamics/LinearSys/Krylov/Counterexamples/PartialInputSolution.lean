@@ -55,7 +55,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The exponential of a `1 × 1` matrix is the exponential of its entry. -/
-theorem Krylov.aux_exp_one_by_one (M : Mat ℝ 1 1) :
+theorem Krylov.aux_exp_one_by_one (M : Mat ℝ 1 1) : -- --- CONCL ---
     exp M 0 0 = Real.exp (M 0 0) := by -- --- PROOF ---
   have hM : M = diagonal fun _ => M 0 0 := by
     ext i j
@@ -65,7 +65,8 @@ theorem Krylov.aux_exp_one_by_one (M : Mat ℝ 1 1) :
   rfl
 
 /-- `e^{1/3} < 1.4`, since `1.4³ = 2.744 > e`. -/
-theorem Krylov.aux_exp_third_lt : Real.exp (1 / 3) < 1.4 := by -- --- PROOF ---
+theorem Krylov.aux_exp_third_lt : -- --- CONCL ---
+    Real.exp (1 / 3) < 1.4 := by -- --- PROOF ---
   by_contra h
   have h3 : (1.4 : ℝ) ^ 3 ≤ Real.exp (1 / 3) ^ 3 := pow_le_pow_left₀ (by norm_num) (not_lt.1 h) 3
   rw [← Real.exp_nat_mul] at h3

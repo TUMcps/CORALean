@@ -48,7 +48,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.mem_shear_walkEdges (Z : Zonotope (Vec ℝ 2)) (κ : ℝ) (x : Vec ℝ 2) :
+theorem Zonotope.mem_shear_walkEdges (Z : Zonotope (Vec ℝ 2)) (κ : ℝ)
+    (x : Vec ℝ 2) : -- --- CONCL ---
     x ∈ (Z.shear κ).walkEdges ↔
       (![x 0 + κ * x 1, x 1] : Vec ℝ 2) ∈ Z.walkEdges := by -- --- PROOF ---
   -- the shear and its inverse, as maps of the plane

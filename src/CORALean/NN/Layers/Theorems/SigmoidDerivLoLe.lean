@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem sigmoidDerivLo_le {E : Enclosure 𝕋} (hE : E.Sound Real.sigmoid) (l u : 𝕋) (x : ℝ)
-    (hl : toReal l ≤ x) (hu : x ≤ toReal u) :
+    (hl : toReal l ≤ x) (hu : x ≤ toReal u) : -- --- CONCL ---
     toReal (sigmoidDerivLo E l u) ≤ Real.sigmoidDeriv x := by -- --- PROOF ---
   have h₁ : toReal (maximum zero (E.lo l)) ≤ Real.sigmoid x := by
     rw [toReal_maximum, toReal_zero]

@@ -41,7 +41,8 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FourValuedSignal.toKleeneSignal_isRefinedBy (s : FourValuedSignal ℝ) (hs : s.IsValid)
-    (v : Kleene) : s.IsRefinedBy (s.toKleeneSignal v) := by -- --- PROOF ---
+    (v : Kleene) : -- --- CONCL ---
+    s.IsRefinedBy (s.toKleeneSignal v) := by -- --- PROOF ---
   intro t ht
   obtain ⟨h1, h2⟩ := (s.toKleeneSignal_spec hs v).2 t ht
   intro hne

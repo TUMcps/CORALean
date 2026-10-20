@@ -53,7 +53,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The level one neuron needs: past both ends of its own box, and past `2 / ε`. -/
-theorem aux_exists_level_one (l u : ℝ) {ε : ℝ} (hε : 0 < ε) :
+theorem aux_exists_level_one (l u : ℝ) {ε : ℝ} (hε : 0 < ε) : -- --- CONCL ---
     ∃ o : ℕ, (-(o : ℝ) ≤ l ∧ u ≤ (o : ℝ)) ∧ 2 * (1 / ((o : ℝ) + 1)) ≤ ε := by -- --- PROOF ---
   obtain ⟨M, hM⟩ := exists_nat_gt (2 / ε)
   -- one level past `M` and past both ceilings serves this neuron
@@ -85,7 +85,7 @@ theorem aux_exists_level (s : PolyZonotope (Vec ℝ n)) {ε : ℝ} (hε : 0 < ε
 
 /-- Raising the pattern puts the enclosed set inside any inflation of the exact image. -/
 theorem Layer.activationPolyRefinable_convergent {σ σ' : ℝ → ℝ} {Mσ : ℝ}
-    (hd : ∀ x, HasDerivAt σ (σ' x) x) (hσ : ∀ x, |σ' x| ≤ Mσ) :
+    (hd : ∀ x, HasDerivAt σ (σ' x) x) (hσ : ∀ x, |σ' x| ≤ Mσ) : -- --- CONCL ---
     (Layer.activationPolyRefinable (n := n) (polyRelaxationFamily hd hσ)
       (polyRelaxationFamily_sound hd hσ)).Convergent := by -- --- PROOF ---
   intro s ε hε

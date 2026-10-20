@@ -43,7 +43,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.isCompact_construct (C : Capsule n) : IsCompact C.construct := by -- --- PROOF ---
+theorem Capsule.isCompact_construct (C : Capsule n) : -- --- CONCL ---
+    IsCompact C.construct := by -- --- PROOF ---
   rcases lt_or_ge C.r 0 with hr | hr
   · rw [Capsule.construct_eq_empty hr]
     exact isCompact_empty

@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.intersectStrip_outer (C : Mat 𝕋 p n) (φ y : Vec 𝕋 p) (Λ : Mat 𝕋 n p)
-    (Z : Zonotope (Vec 𝕋 n)) :
+    (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     Z.construct ∩ {x | ∀ i, |(toRealMat C *ᵥ x - toRealVec y) i| ≤ toReal (φ i)} ⊆
       (Z.intersectStrip C φ y Λ).construct := by -- --- PROOF ---
   rintro x ⟨hx, hs⟩

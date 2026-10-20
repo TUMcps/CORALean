@@ -47,7 +47,7 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
 /-- One monomial along the line is `tᵉ` times the other factors' powers. -/
 theorem PolyZonotope.aux_monomial_update {p h : ℕ} (E : Fin p → Fin h → ℕ) (a : Fin p → ℝ)
-    (k : Fin p) (t : ℝ) (i : Fin h) :
+    (k : Fin p) (t : ℝ) (i : Fin h) : -- --- CONCL ---
     PolyZonotope.monomial E (Function.update a k t) i
       = t ^ E k i * ∏ k' ∈ Finset.univ.erase k, a k' ^ E k' i := by -- --- PROOF ---
   unfold PolyZonotope.monomial
@@ -58,7 +58,7 @@ theorem PolyZonotope.aux_monomial_update {p h : ℕ} (E : Fin p → Fin h → �
 
 /-- The lowered exponent matrix's monomial is the derivative's factor. -/
 theorem PolyZonotope.aux_monomial_jacobian {p h : ℕ} (E : Fin p → Fin h → ℕ) (a : Fin p → ℝ)
-    (k : Fin p) (i : Fin h) :
+    (k : Fin p) (i : Fin h) : -- --- CONCL ---
     PolyZonotope.monomial (fun k' i => if k' = k then E k i - 1 else E k' i) a i
       = a k ^ (E k i - 1) * ∏ k' ∈ Finset.univ.erase k, a k' ^ E k' i := by -- --- PROOF ---
   unfold PolyZonotope.monomial
@@ -72,7 +72,7 @@ theorem PolyZonotope.aux_monomial_jacobian {p h : ℕ} (E : Fin p → Fin h → 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.jacobian_hasDerivAt (pZ : PolyZonotope α) (k : Fin pZ.p)
-    (a : Fin pZ.p → ℝ) :
+    (a : Fin pZ.p → ℝ) : -- --- CONCL ---
     HasDerivAt (fun t => pZ.point (Function.update a k t)) ((pZ.jacobian k).point a)
       (a k) := by -- --- PROOF ---
   -- each term of the sum is a monomial `tᵉ R` times a fixed generator

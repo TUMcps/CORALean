@@ -56,7 +56,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `e^x - 1 ≤ x e^x` for every real `x`, read off `1 - x ≤ e^{-x}` multiplied by `e^x`. -/
-theorem aux_real_exp_sub_one_le_mul_exp (x : ℝ) :
+theorem aux_real_exp_sub_one_le_mul_exp (x : ℝ) : -- --- CONCL ---
     Real.exp x - 1 ≤ x * Real.exp x := by -- --- PROOF ---
   have h1 : 1 + (-x) ≤ Real.exp (-x) := by linarith [Real.add_one_le_exp (-x)]
   have h2 : Real.exp x * (1 - x) ≤ Real.exp x * Real.exp (-x) := by
@@ -70,7 +70,7 @@ theorem aux_real_exp_sub_one_le_mul_exp (x : ℝ) :
 
 /-- `e^{tA}` stays within `t‖A‖e^{t‖A‖}` of the identity, for every `t ≥ 0` and
 with no bound on `t‖A‖` at all. -/
-theorem norm_exp_smul_sub_one_le (A : Mat ℝ n n) {t : ℝ} (ht : 0 ≤ t) :
+theorem norm_exp_smul_sub_one_le (A : Mat ℝ n n) {t : ℝ} (ht : 0 ≤ t) : -- --- CONCL ---
     ‖exp (t • A) - 1‖ ≤ t * ‖A‖ * Real.exp (t * ‖A‖) := by -- --- PROOF ---
   have h1 : ‖exp (t • A) - 1‖ ≤ Real.exp ‖t • A‖ - 1 := norm_exp_sub_one_le_exp_norm (t • A)
   have h2 : ‖t • A‖ = t * ‖A‖ := by rw [norm_smul, Real.norm_eq_abs, abs_of_nonneg ht]

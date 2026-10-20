@@ -56,7 +56,7 @@ variable [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.ellipsoid_contains (Z : Zonotope (Vec 𝕋 n)) (σ : 𝕋) (hσ : 0 < toReal σ)
-    (hh : (Z.h : ℝ) ≤ toReal (mulDown σ σ)) :
+    (hh : (Z.h : ℝ) ≤ toReal (mulDown σ σ)) : -- --- CONCL ---
     Z.construct ⊆ (Z.ellipsoid σ).construct := by -- --- PROOF ---
   rintro _ ⟨z, hzmem, e, he, rfl⟩
   obtain ⟨β, hβ, hz⟩ := Zonotope.mem_nominalSet_iff.mp hzmem

@@ -95,7 +95,8 @@ theorem NonlinearSys.IsTrajectory.relinReach_evalOn {sys : NonlinearSys n m} {T 
     (h0 : construct R₀ ⊆ X₀.evalOn (Bs 0))
     (hunit : ∀ i, ∀ a ∈ Bs i, ∀ k, |a k| ≤ 1)
     (hnext : ∀ i, PolyZonotope.postBox ((NonlinearSys.linearize (steps i).A).discretize Δt).A
-      (sys.relinReach (S := 𝒫𝒵) ⟨X₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud) (Ud i) o (Bs i) ⊆ Bs (i + 1)) :
+      (sys.relinReach (S := 𝒫𝒵) ⟨X₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud) (Ud i) o (Bs i) ⊆ Bs (i + 1))
+    : -- --- CONCL ---
     ∀ i ≤ N, x ((i : ℝ) * Δt)
       ∈ (sys.relinReach (S := 𝒫𝒵) ⟨X₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud).evalOn
         (Bs i) := by -- --- PROOF ---

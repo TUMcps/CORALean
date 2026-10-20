@@ -35,7 +35,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.representsa_origin_iff (hn : 0 < n) (C : Capsule n) :
+theorem Capsule.representsa_origin_iff (hn : 0 < n) (C : Capsule n) : -- --- CONCL ---
     C.construct = {0} ↔ C.representsa_origin := by -- --- PROOF ---
   constructor
   · intro h

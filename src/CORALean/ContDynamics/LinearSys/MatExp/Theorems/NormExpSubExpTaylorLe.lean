@@ -54,7 +54,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The same estimate at a matrix, reached through the norm of its powers. -/
-theorem aux_term_le (x : Mat ℝ n n) (η i : ℕ) :
+theorem aux_term_le (x : Mat ℝ n n) (η i : ℕ) : -- --- CONCL ---
     ‖((Nat.factorial (i + (η + 1)) : ℝ)⁻¹) • x ^ (i + (η + 1))‖
       ≤ (‖x‖ ^ (η + 1) / Nat.factorial (η + 1)) * (‖x‖ / ((η : ℝ) + 2)) ^ i := by -- --- PROOF ---
   rw [Nat.add_comm i (η + 1)]
@@ -79,7 +79,7 @@ theorem aux_term_le (x : Mat ℝ n n) (η i : ℕ) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem norm_exp_sub_expTaylor_le (x : Mat ℝ n n) (η : ℕ)
-    (hε : ‖x‖ / ((η : ℝ) + 2) < 1) :
+    (hε : ‖x‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
     ‖exp x - MatExp.expTaylor x η‖ ≤ MatExp.expRemainderBound x η := by -- --- PROOF ---
   show ‖exp x - ∑ i ∈ Finset.range (η + 1), ((Nat.factorial i : ℝ)⁻¹) • x ^ i‖
       ≤ (‖x‖ ^ (η + 1) / Nat.factorial (η + 1)) * (1 - ‖x‖ / ((η : ℝ) + 2))⁻¹

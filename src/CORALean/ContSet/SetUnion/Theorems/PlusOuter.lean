@@ -40,7 +40,7 @@ variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSet S α] [Plus S 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SetUnion.plus_outer (u v : SetUnion S) :
+theorem SetUnion.plus_outer (u v : SetUnion S) : -- --- CONCL ---
     ContSet.construct u + ContSet.construct v ⊆
       ContSet.construct (SetUnion.plus u v) := by -- --- PROOF ---
   rintro _ ⟨a, ha, b, hb, rfl⟩

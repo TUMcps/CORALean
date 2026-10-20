@@ -57,7 +57,7 @@ abbrev PolyZonotope.aux_aff : PolyZonotope (Vec ℝ 1) :=
 
 /-- [1]'s property (6) fails for `zonotope`: `α²` and `1 + α` denote `[0,1]` and
 `[0,2]`, whose enclosures are `[-1,1]` and `[0,2]`. -/
-theorem PolyZonotope.zonotope_not_mono :
+theorem PolyZonotope.zonotope_not_mono : -- --- CONCL ---
     ¬ ∀ pZ₁ pZ₂ : PolyZonotope (Vec ℝ 1), pZ₁.construct ⊆ pZ₂.construct →
       pZ₁.zonotope.construct ⊆ pZ₂.zonotope.construct := by -- --- PROOF ---
   intro hmono

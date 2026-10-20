@@ -39,7 +39,7 @@ variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSet S α] [Reduce 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SetIntersection.reduce_outer (I : SetIntersection S) (o : ℕ) :
+theorem SetIntersection.reduce_outer (I : SetIntersection S) (o : ℕ) : -- --- CONCL ---
     ContSet.construct I ⊆
       ContSet.construct (SetIntersection.reduce I o) := by -- --- PROOF ---
   intro x hx

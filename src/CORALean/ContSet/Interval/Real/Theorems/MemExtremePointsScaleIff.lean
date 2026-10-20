@@ -50,7 +50,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One coordinate: `x ∈ [0, b]` iff `βx` lies between `0` and `βb`, and at a bound iff `βx` is. -/
-theorem aux_scale_coord {β bb x : ℝ} (hβ : β ≠ 0) (hbb : 0 ≤ bb) :
+theorem aux_scale_coord {β bb x : ℝ} (hβ : β ≠ 0) (hbb : 0 ≤ bb) : -- --- CONCL ---
     ((0 ≤ x ∧ x ≤ bb) ↔ (min 0 (β * bb) ≤ β * x ∧ β * x ≤ max 0 (β * bb))) ∧
     ((x = 0 ∨ x = bb) ↔
       (β * x = min 0 (β * bb) ∨ β * x = max 0 (β * bb))) := by -- --- PROOF ---

@@ -44,7 +44,7 @@ variable {m n : ℕ}
 
 /-- Every member of the matrix polytope lies in the matrix zonotope enclosing its vertices. -/
 theorem VPolytope.matZonotope_contains (P : VPolytope (Mat ℝ m n)) [NeZero P.k]
-    (dir : (Fin P.k → Vec ℝ (n * m)) → Vec ℝ (n * m)) :
+    (dir : (Fin P.k → Vec ℝ (n * m)) → Vec ℝ (n * m)) : -- --- CONCL ---
     P.construct ⊆ (P.matZonotope dir).construct := by -- --- PROOF ---
   rw [VPolytope.construct_eq_convexHull]
   refine convexHull_min (Set.range_subset_iff.mpr fun l => ?_) (Zonotope.convex_construct _)

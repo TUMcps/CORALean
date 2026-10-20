@@ -47,7 +47,8 @@ variable {n : ℕ}
 
 /-- A vector no longer than `‖v‖ R` is `E v` for an `E` with entries within `R`:
 put it in the column where `v` attains its sup norm. -/
-theorem exists_mulVec_eq_of_norm_le {ρ v : Vec ℝ n} {R : ℝ} (hR : 0 ≤ R) (h : ‖ρ‖ ≤ ‖v‖ * R) :
+theorem exists_mulVec_eq_of_norm_le {ρ v : Vec ℝ n} {R : ℝ} (hR : 0 ≤ R)
+    (h : ‖ρ‖ ≤ ‖v‖ * R) : -- --- CONCL ---
     ∃ E : Mat ℝ n n, (∀ i j, |E i j| ≤ R) ∧ E *ᵥ v = ρ := by -- --- PROOF ---
   by_cases hv : v = 0
   · subst hv

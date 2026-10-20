@@ -51,7 +51,8 @@ theorem SpectraShadow.aux_pad_add (x : Vec ℝ n) (y : Vec ℝ m) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.cartProd_exact (S : SpectraShadow (Vec ℝ n)) (T : SpectraShadow (Vec ℝ m)) :
+theorem SpectraShadow.cartProd_exact (S : SpectraShadow (Vec ℝ n))
+    (T : SpectraShadow (Vec ℝ m)) : -- --- CONCL ---
     (fun p : Vec ℝ n × Vec ℝ m => (Fin.append p.1 p.2 : Vec ℝ (n + m)))
         '' (S.construct ×ˢ T.construct) = (S.cartProd T).construct := by -- --- PROOF ---
   rw [SpectraShadow.cartProd, ← SpectraShadow.plus_exact, ← SpectraShadow.map_exact,

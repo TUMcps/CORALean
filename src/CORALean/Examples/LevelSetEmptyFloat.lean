@@ -57,7 +57,8 @@ def O : Fin 1 → Interval D := ![⟨d 1 0, d 2 0⟩]
 
 set_option maxRecDepth 4096 in
 /-- The test refutes the one row, so the level set is empty. -/
-theorem levelEmpty_eq : levelEmpty.construct = ∅ := by -- --- PROOF ---
+theorem levelEmpty_eq : -- --- CONCL ---
+    levelEmpty.construct = ∅ := by -- --- PROOF ---
   -- the sign test is `true` by evaluation; the bounds `[1, 2]` enclose `1 + sin² x`
   refine LevelSet.representsa_emptySet_sound (𝕋 := D) levelEmpty O ?_ (by norm_num [levelEmpty]) rfl
   intro i x

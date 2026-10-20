@@ -45,7 +45,8 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem norm_two_transpose_mulVec_eq (M : Mat ℝ n m) (hM : M * Mᵀ = 1) (y : Fin n → ℝ) :
+theorem norm_two_transpose_mulVec_eq (M : Mat ℝ n m) (hM : M * Mᵀ = 1)
+    (y : Fin n → ℝ) : -- --- CONCL ---
     ‖toLp 2 (Mᵀ *ᵥ y)‖ = ‖toLp 2 y‖ := by -- --- PROOF ---
   have hadj : ∀ (u : Fin m → ℝ) (v : Fin n → ℝ), (M *ᵥ u) ⬝ᵥ v = u ⬝ᵥ (Mᵀ *ᵥ v) := fun u v => by
     rw [dotProduct_comm, dotProduct_mulVec, dotProduct_comm, mulVec_transpose]

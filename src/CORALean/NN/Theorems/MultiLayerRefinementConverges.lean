@@ -65,7 +65,7 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem sigmoidLinearSigmoidNetwork_convergent (W : Mat ℝ m n) (b : Vec ℝ m) :
+theorem sigmoidLinearSigmoidNetwork_convergent (W : Mat ℝ m n) (b : Vec ℝ m) : -- --- CONCL ---
     (Real.sigmoidLinearSigmoidNetwork W b).Convergent := by -- --- PROOF ---
   -- the last activation on its own, which is where the tail bound bottoms out
   have h₂ : (RefinableNetwork.cons (S := 𝒫𝒵)

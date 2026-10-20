@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.lowerDot_le (Z : Zonotope (Vec 𝕋 n)) (a : Vec 𝕋 n)
-    (hE : ∀ i, toReal (Z.I_error.inf i) ≤ toReal (Z.I_error.sup i)) :
+    (hE : ∀ i, toReal (Z.I_error.inf i) ≤ toReal (Z.I_error.sup i)) : -- --- CONCL ---
     ∃ x ∈ Z.construct, toReal (Z.lowerDot a) ≤ ∑ i, toReal (a i) * x i := by -- --- PROOF ---
   -- the generator signs and the box corner the support formula names
   set s : Fin Z.h → ℝ := fun j => ∑ i, toReal (a i) * toReal (Z.G j i) with hs

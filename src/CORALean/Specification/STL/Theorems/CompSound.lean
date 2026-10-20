@@ -51,7 +51,8 @@ variable {X : Type}
 
 theorem STL.Comp.aux_sat_eval_of {n : ℕ} {φ φ' : Fin n → STL.Formula X}
     (h : ∀ i ξ, (φ' i).Sat ξ → (φ i).Sat ξ) (f : STL.Comp n) (ξ : ℝ≥0 → X)
-    (hf : (f.eval φ').Sat ξ) : (f.eval φ).Sat ξ := by -- --- PROOF ---
+    (hf : (f.eval φ').Sat ξ) : -- --- CONCL ---
+    (f.eval φ).Sat ξ := by -- --- PROOF ---
   induction f generalizing ξ with
   | hole i => exact h i ξ hf
   | and f g ihf ihg =>

@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A combination of the stored independent generators is their matrix applied to the weights. -/
-theorem PolyZonotope.aux_sum_gi (pZ : PolyZonotope (Vec 𝕋 n)) (β : Vec ℝ pZ.q) :
+theorem PolyZonotope.aux_sum_gi (pZ : PolyZonotope (Vec 𝕋 n)) (β : Vec ℝ pZ.q) : -- --- CONCL ---
     (∑ j, β j • (nominal pZ).GI j)
       = toRealMat (fun i j => pZ.GI j i) *ᵥ β := by -- --- PROOF ---
   funext i
@@ -76,7 +76,8 @@ theorem PolyZonotope.aux_box_subset {pZ : PolyZonotope (Vec 𝕋 n)} {H : Mat �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.isFullDim_sound {pZ : PolyZonotope (Vec 𝕋 n)} {H : Mat 𝕋 pZ.q n}
-    (h : pZ.isFullDimWith H = true) : (interior pZ.construct).Nonempty := by -- --- PROOF ---
+    (h : pZ.isFullDimWith H = true) : -- --- CONCL ---
+    (interior pZ.construct).Nonempty := by -- --- PROOF ---
   simp only [PolyZonotope.isFullDimWith, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨hc, hE⟩ := h

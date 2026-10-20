@@ -47,7 +47,7 @@ variable {n m : ℕ} {V : Type} [AddCommGroup V] [Module ℝ V]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.cubMapDepOn_point (π₁ π₂ π₃ : V →ₗ[ℝ] Vec ℝ n)
-    (T : Fin m → Fin n → Mat ℝ n n) (P : PolyZonotope V) (a : Fin P.p → ℝ) :
+    (T : Fin m → Fin n → Mat ℝ n n) (P : PolyZonotope V) (a : Fin P.p → ℝ) : -- --- CONCL ---
     (cubMapDepOn π₁ π₂ π₃ T P).point a
       = cubEvalMixed T (π₁ (P.point a)) (π₂ (P.point a)) (π₃ (P.point a)) := by -- --- PROOF ---
   unfold cubMapDepOn

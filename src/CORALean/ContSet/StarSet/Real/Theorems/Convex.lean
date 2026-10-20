@@ -46,7 +46,7 @@ open ContSet
 
 /-- A star set over a convex predicate is convex, its box being convex. -/
 theorem StarSet.convex_construct {P : ℕ → Type} [∀ m, ContSet (P m) (Vec ℝ m)]
-    [∀ m, ConvexSet (P m) (Vec ℝ m)] {n : ℕ} (s : StarSet P n) :
+    [∀ m, ConvexSet (P m) (Vec ℝ m)] {n : ℕ} (s : StarSet P n) : -- --- CONCL ---
     Convex ℝ s.construct := by -- --- PROOF ---
   -- two points, with their coefficients; the convex combination of the coefficients is the witness
   rintro x ⟨α, hα, hxα⟩ y ⟨β, hβ, hyβ⟩ a b ha hb hab

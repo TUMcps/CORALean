@@ -60,7 +60,8 @@ theorem PolyZonotope.aux_map_eval (f : α →ₗ[ℝ] β) (pZ : PolyZonotope α)
 
 /-- `map`'s evaluation at `B` is `f`'s image of the original's. -/
 theorem PolyZonotope.map_evalOn (f : α →ₗ[ℝ] β) (pZ : PolyZonotope α)
-    (B : Set (Fin pZ.p → ℝ)) : (pZ.map f).evalOn B = f '' pZ.evalOn B := by -- --- PROOF ---
+    (B : Set (Fin pZ.p → ℝ)) : -- --- CONCL ---
+    (pZ.map f).evalOn B = f '' pZ.evalOn B := by -- --- PROOF ---
   ext x
   constructor
   · -- forwards: the same factors and the same coefficients name the preimage

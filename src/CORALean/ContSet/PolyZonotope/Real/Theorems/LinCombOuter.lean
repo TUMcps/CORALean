@@ -49,7 +49,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.linComb_outer (pZ₁ pZ₂ : PolyZonotope α) :
+theorem PolyZonotope.linComb_outer (pZ₁ pZ₂ : PolyZonotope α) : -- --- CONCL ---
     Set.linComb pZ₁.construct pZ₂.construct ⊆ (pZ₁.linComb pZ₂).construct := by -- --- PROOF ---
   rintro x ⟨y₁, ⟨a₁, β₁, ha₁, hβ₁, rfl⟩, y₂, ⟨a₂, β₂, ha₂, hβ₂, rfl⟩,
     lam, ⟨hl0, hl1⟩, rfl⟩

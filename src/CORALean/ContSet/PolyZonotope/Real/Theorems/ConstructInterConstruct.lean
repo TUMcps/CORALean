@@ -47,7 +47,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- [1, Prop. 2]: `PZ₁ ∩ PZ₂ = {PZ₁(a) | a, b ∈ [-1, 1], PZ₁(a) - PZ₂(b) = 0}`. -/
 theorem PolyZonotope.construct_inter_construct (pZ₁ pZ₂ : PolyZonotope α) (h₁ : pZ₁.q = 0)
-    (h₂ : pZ₂.q = 0) :
+    (h₂ : pZ₂.q = 0) : -- --- CONCL ---
     pZ₁.construct ∩ pZ₂.construct = {x | ∃ a b, (∀ k, |a k| ≤ 1) ∧ (∀ k, |b k| ≤ 1) ∧
       pZ₁.point a - pZ₂.point b = 0 ∧ x = pZ₁.point a} := by -- --- PROOF ---
   rw [← pZ₁.subsetAt_unitBox h₁, ← pZ₂.subsetAt_unitBox h₂]

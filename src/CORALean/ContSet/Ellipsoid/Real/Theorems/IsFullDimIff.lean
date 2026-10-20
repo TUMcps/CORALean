@@ -45,7 +45,7 @@ open Matrix Set
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `isFullDim`: nonempty interior iff the rank is the ambient dimension. -/
-theorem Ellipsoid.isFullDim_iff {n : ℕ} (E : Ellipsoid n) :
+theorem Ellipsoid.isFullDim_iff {n : ℕ} (E : Ellipsoid n) : -- --- CONCL ---
     (interior E.construct).Nonempty ↔ E.rank = n := by -- --- PROOF ---
   -- the generator map, and the rank as the dimension of its range
   let L : Vec ℝ n →ₗ[ℝ] Vec ℝ n := Matrix.mulVecLin E.G

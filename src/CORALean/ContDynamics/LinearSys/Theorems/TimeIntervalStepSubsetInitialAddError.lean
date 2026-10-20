@@ -65,7 +65,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A point of a zonotope, and its generators, against its `ℓ¹` reach. -/
-theorem aux_norm_add_sum_le_absBound_sum (Z : Zonotope (Vec ℝ n)) :
+theorem aux_norm_add_sum_le_absBound_sum (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     ‖Z.c‖ + ∑ j, ‖Z.G j‖ ≤ ∑ i, Z.absBound i := by -- --- PROOF ---
   have hpi : ∀ v : Vec ℝ n, ‖v‖ ≤ ∑ i, |v i| := by
     intro v

@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.interval_contains {m : ℕ} (T : Fin m → Taylm 𝕋 n) :
+theorem Taylm.interval_contains {m : ℕ} (T : Fin m → Taylm 𝕋 n) : -- --- CONCL ---
     Taylm.construct T ⊆ (Taylm.interval T).construct := by -- --- PROOF ---
   intro x hx i
   obtain ⟨f, hf, t, ht, hxf⟩ := (Real.Taylm.mem_construct_iff _ x).1 hx

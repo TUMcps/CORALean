@@ -44,7 +44,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.abs_le_of_unitBox_rows {u : Vec ℝ n} {w : ℝ} (hw : 0 ≤ w)
-    (h : ∀ i, (HPolytope.unitBox n).A i u ≤ w * (HPolytope.unitBox n).b i) (j : Fin n) :
+    (h : ∀ i, (HPolytope.unitBox n).A i u ≤ w * (HPolytope.unitBox n).b i)
+    (j : Fin n) : -- --- CONCL ---
     |u j| ≤ w := by -- --- PROOF ---
   refine le_of_forall_pos_le_add fun ε hε => ?_
   have hpos : (0:ℝ) < w + ε := by linarith

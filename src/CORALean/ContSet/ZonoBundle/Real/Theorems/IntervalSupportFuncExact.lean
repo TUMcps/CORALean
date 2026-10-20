@@ -42,7 +42,8 @@ variable {n : ℕ}
 
 /-- The support-function box of a nonempty bundle is its bounding box, exactly. -/
 theorem ZonoBundle.intervalSupportFunc_exact (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k)
-    (hne : zB.construct.Nonempty) : zB.intervalSupportFunc.construct = zB.box := by -- --- PROOF ---
+    (hne : zB.construct.Nonempty) : -- --- CONCL ---
+    zB.intervalSupportFunc.construct = zB.box := by -- --- PROOF ---
   obtain ⟨y₀, hy₀⟩ := hne
   -- a bound on a coordinate over the bundle bounds its support value, the bundle having a point
   have hle : ∀ (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (b : ℝ), (∀ y ∈ zB.construct, ℓ y ≤ b) →

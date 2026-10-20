@@ -44,7 +44,7 @@ variable {n : ℕ}
 /-- Some slack in `[-1, 1]ᵐ` completes `x` to a point of the relaxed equations exactly when `x`
 is in `P`'s box and every row of `x` is met to within `|sᵢ|`. -/
 theorem PolyLevelSet.exists_relax_iff {P : PolyLevelSet n} (h : ∀ i, P.op i = .eq)
-    (s : Vec ℝ P.m) (x : Vec ℝ n) :
+    (s : Vec ℝ P.m) (x : Vec ℝ n) : -- --- CONCL ---
     (∃ y : Vec ℝ P.m, Fin.append x y ∈ (P.relax s (Interval.unit P.m)).construct)
       ↔ x ∈ P.dom.construct ∧ ∀ i, |P.eval x i| ≤ |s i| := by -- --- PROOF ---
   have key : ∀ y : Vec ℝ P.m, Fin.append x y ∈ (P.relax s (Interval.unit P.m)).construct

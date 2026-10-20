@@ -58,7 +58,8 @@ variable {lam : ι → ℝ}
 theorem Ellipsoid.aux_limit_root [Nonempty ι] (hlam : ∀ i, 0 < lam i) {r L : ℝ} (hr : 0 < r)
     (hroot : Ellipsoid.halderStationarity lam r = 0) (hL : 0 < L) {b : ℕ → ℝ}
     (hb : ∀ n, b (n + 1) = Ellipsoid.halderStep lam (b n))
-    (hlim : Filter.Tendsto b Filter.atTop (nhds L)) : L = r := by -- --- PROOF ---
+    (hlim : Filter.Tendsto b Filter.atTop (nhds L)) : -- --- CONCL ---
+    L = r := by -- --- PROOF ---
   -- the limit is fixed by the step, since the step is continuous there
   have hg : Filter.Tendsto (fun n => Ellipsoid.halderStep lam (b n)) Filter.atTop
       (nhds (Ellipsoid.halderStep lam L)) :=

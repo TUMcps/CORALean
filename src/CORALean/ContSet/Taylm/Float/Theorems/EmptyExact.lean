@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.empty_exact (hn : 0 < n) :
+theorem Taylm.empty_exact (hn : 0 < n) : -- --- CONCL ---
     Taylm.construct (Taylm.empty n : Fin n → Taylm 𝕋 n) = ∅ := by -- --- PROOF ---
   have h : (fun i => (Taylm.empty n i : Taylm 𝕋 n).inflated) = Real.Taylm.empty n := by
     funext i

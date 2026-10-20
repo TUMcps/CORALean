@@ -41,7 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.intervalAll_contains (zB : ZonoBundle (Vec 𝕋 n)) (hk : 0 < zB.k) :
+theorem ZonoBundle.intervalAll_contains (zB : ZonoBundle (Vec 𝕋 n))
+    (hk : 0 < zB.k) : -- --- CONCL ---
     zB.construct ⊆ (zB.intervalAll hk).construct := by -- --- PROOF ---
   intro x hx
   have hmem : ∀ i, x ∈ (Zonotope.interval (zB.Z i)).construct := fun i =>

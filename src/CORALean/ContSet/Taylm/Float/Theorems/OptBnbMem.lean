@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.optBnb_mem {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) (ε : 𝕋) (fuel : ℕ)
-    {t : Vec ℝ n} (ht : t ∈ Real.Taylm.box n) :
+    {t : Vec ℝ n} (ht : t ∈ Real.Taylm.box n) : -- --- CONCL ---
     toReal (T.optBnb ε fuel).inf ≤ f t ∧ f t ≤ toReal (T.optBnb ε fuel).sup := by -- --- PROOF ---
   -- the normalized box as a float box
   have hX : Taylm.InBox (fun _ => ⟨neg one, one⟩ : Fin n → Interval 𝕋) t := fun k => by

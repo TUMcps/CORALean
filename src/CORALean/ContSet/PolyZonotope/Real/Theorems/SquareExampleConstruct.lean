@@ -40,7 +40,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.squareExample_construct :
+theorem PolyZonotope.squareExample_construct : -- --- CONCL ---
     PolyZonotope.squareExample.construct =
       (Interval.mk (fun _ => 0) (fun _ => 1)).construct := by -- --- PROOF ---
   ext x

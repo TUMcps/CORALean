@@ -50,7 +50,7 @@ namespace CORALean.Real
 
 /-- A differentiable `F` has the derivative `DF v` along the line `t ↦ p + t v` at `0`. -/
 theorem aux_hasDerivAt_line {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
-    (F : E → ℝ) (p v : E) (hF : DifferentiableAt ℝ F p) :
+    (F : E → ℝ) (p v : E) (hF : DifferentiableAt ℝ F p) : -- --- CONCL ---
     HasDerivAt (fun t : ℝ => F (p + t • v)) (fderiv ℝ F p v) 0 := by -- --- PROOF ---
   have hline : HasDerivAt (fun t : ℝ => p + t • v) v 0 := by
     simpa using ((hasDerivAt_id (0 : ℝ)).smul_const v).const_add p

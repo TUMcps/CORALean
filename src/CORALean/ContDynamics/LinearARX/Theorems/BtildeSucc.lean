@@ -43,7 +43,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearARX.Btilde_succ (sys : LinearARX 𝕋 dy du p) (k : ℕ) (i : ℤ) :
+theorem LinearARX.Btilde_succ (sys : LinearARX 𝕋 dy du p) (k : ℕ) (i : ℤ) : -- --- CONCL ---
     sys.Btilde (k + 1) i = sys.Bext i + sys.Aext * sys.Btilde k (i - 1) := by -- --- PROOF ---
   unfold LinearARX.Btilde
   rw [Finset.sum_range_succ', Matrix.mul_sum, add_comm]

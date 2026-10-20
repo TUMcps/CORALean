@@ -55,7 +55,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.qfbLower_le {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) {H : Mat ℝ n n}
-    (hH : H.PosSemidef) (x0 : Vec ℝ n) {t : Vec ℝ n} (ht : t ∈ Taylm.box n) :
+    (hH : H.PosSemidef) (x0 : Vec ℝ n) {t : Vec ℝ n} (ht : t ∈ Taylm.box n) : -- --- CONCL ---
     T.qfbLower H x0 ≤ f t := by -- --- PROOF ---
   have hQ : (Taylm.aux_quadForm H x0 T.maxOrder).Encloses
       fun t => (t - x0) ⬝ᵥ (H *ᵥ (t - x0)) / 2 := by

@@ -81,7 +81,7 @@ theorem ConPolyZono.aux_unionCon_close (p₁ p₂ : ℕ) (a : Fin (p₁ + p₂ +
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.holds_unionUpper_of_real (p₁ p₂ : ℕ) (a : Fin (p₁ + p₂ + 2) → ℝ)
-    (ha : ∀ k, |a k| ≤ 1) (h : a ∈ (Real.ConPolyZono.unionUpper p₁ p₂).construct) :
+    (ha : ∀ k, |a k| ≤ 1) (h : a ∈ (Real.ConPolyZono.unionUpper p₁ p₂).construct) : -- --- CONCL ---
     a ∈ (ConPolyZono.unionUpper (𝕋 := 𝕋) p₁ p₂).construct := by -- --- PROOF ---
   -- both stacks split into their two rows, each an equation
   rw [Real.ConPolyZono.unionUpper, Real.PolyLevelSet.mem_andRows_iff,

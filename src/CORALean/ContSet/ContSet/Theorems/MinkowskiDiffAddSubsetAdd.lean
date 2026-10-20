@@ -51,7 +51,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- [1, Prop. 3]: shifting a Minkowski difference by `B` stays inside the
 difference of the shifted minuend. -/
-theorem minkowskiDiff_add_subset_add (A B C : Set α) :
+theorem minkowskiDiff_add_subset_add (A B C : Set α) : -- --- CONCL ---
     minkowskiDiff A C + B ⊆ minkowskiDiff (A + B) C := by -- --- PROOF ---
   intro z hz c hc
   obtain ⟨a, ha, b, hb, rfl⟩ := Set.mem_add.mp hz

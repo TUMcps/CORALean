@@ -94,7 +94,7 @@ private theorem SyntaxTree.funHanTimes_operand {int prev other : Dom} {a b : ℝ
     exact ⟨⟨max_le ha.1 hqa.1, le_min ha.2 hqa.2⟩, le_max_left _ _, min_le_left _ _⟩
 
 /-- `aux_times_` is sound for `*`. -/
-theorem SyntaxTree.times_sound (prev₁ prev₂ : Dom) :
+theorem SyntaxTree.times_sound (prev₁ prev₂ : Dom) : -- --- CONCL ---
     BinarySound Binary.times.fn prev₁ prev₂ (Real.Interval.times prev₁ prev₂)
       funHanTimes := by -- --- PROOF ---
   intro int _ s₁ s₂ h₁ h₂ hi

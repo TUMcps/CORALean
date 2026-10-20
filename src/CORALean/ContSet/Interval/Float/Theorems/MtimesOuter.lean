@@ -43,7 +43,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Interval.aux_mtimes_outer_refines (M : Mat 𝕋 m n) (I : Interval (Vec 𝕋 n)) :
+theorem Interval.aux_mtimes_outer_refines (M : Mat 𝕋 m n)
+    (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
     (Real.Interval.mtimes (toRealMat M) I.nominal).construct ⊆
       (Interval.mtimes M I).construct := by -- --- PROOF ---
   intro x hx i

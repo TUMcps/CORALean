@@ -46,7 +46,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Fullspace.construct_eq_iUnion_truncatedVertices (F : Fullspace (n + 1)) :
+theorem Fullspace.construct_eq_iUnion_truncatedVertices (F : Fullspace (n + 1)) : -- --- CONCL ---
     F.construct = ⋃ t : ℝ, (F.truncatedVertices t).construct := by -- --- PROOF ---
   refine Set.eq_of_subset_of_subset (fun x _ => ?_) (fun _ _ => Set.mem_univ _)
   rw [Set.mem_iUnion]

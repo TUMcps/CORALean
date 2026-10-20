@@ -46,7 +46,7 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem RTL.Formula.sat_bigOr {β : Type} (l : List β) (g : β → RTL.Formula X) (R : ℝ≥0 → Set X)
-    (h : (R 0).Nonempty) :
+    (h : (R 0).Nonempty) : -- --- CONCL ---
     (RTL.Formula.bigOr (l.map g)).Sat R ↔ ∃ b ∈ l, (g b).Sat R := by -- --- PROOF ---
   induction l with
   | nil =>

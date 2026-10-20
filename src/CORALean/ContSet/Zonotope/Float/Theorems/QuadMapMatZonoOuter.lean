@@ -63,7 +63,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m ν : ℕ
 
 /-- `|xᵀΔx| ≤ ∑ₗₖ rₗ wₗₖ rₖ`, rounded up, for `|xₗ| ≤ rₗ` and `0 ≤ Δₗₖ ≤ wₗₖ`. -/
 theorem aux_quadMapMatZono_abs_le {x : Vec ℝ n} {Δ : Mat ℝ n n} {r : Vec 𝕋 n} {w : Mat 𝕋 n n}
-    (hx : ∀ l, |x l| ≤ toReal (r l)) (hΔ : ∀ l k, 0 ≤ Δ l k ∧ Δ l k ≤ toReal (w l k)) :
+    (hx : ∀ l, |x l| ≤ toReal (r l))
+    (hΔ : ∀ l k, 0 ≤ Δ l k ∧ Δ l k ≤ toReal (w l k)) : -- --- CONCL ---
     |x ⬝ᵥ (Δ *ᵥ x)| ≤
     toReal (sumUp fun l => sumUp fun k => mulUp (mulUp (r l) (w l k)) (r k)) := by -- --- PROOF ---
   -- one term `|xₗ| Δₗₖ |xₖ|`, under its rounded product

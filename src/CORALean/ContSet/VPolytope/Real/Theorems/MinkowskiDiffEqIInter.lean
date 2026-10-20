@@ -51,7 +51,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Prop. 6]'s `Z ⊖ P = ⋂ᵢ (Z − vᵢ)`, for any convex minuend. -/
-theorem VPolytope.minkowskiDiff_eq_iInter {S : Set α} (hS : Convex ℝ S) (P : VPolytope α) :
+theorem VPolytope.minkowskiDiff_eq_iInter {S : Set α} (hS : Convex ℝ S)
+    (P : VPolytope α) : -- --- CONCL ---
     minkowskiDiff S P.construct = ⋂ i, {y | y + P.V i ∈ S} := by -- --- PROOF ---
   ext x
   simp only [minkowskiDiff, Set.mem_setOf_eq, Set.mem_iInter]

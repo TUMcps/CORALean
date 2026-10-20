@@ -59,7 +59,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Ellipsoid.aux_quad' (b l : ℝ) (c x : Vec ℝ n) :
+theorem Ellipsoid.aux_quad' (b l : ℝ) (c x : Vec ℝ n) : -- --- CONCL ---
     x ⬝ᵥ ((b • (1 + l • vecMulVec c c : Mat ℝ n n)) *ᵥ x)
       = b * (x ⬝ᵥ x + l * (c ⬝ᵥ x) ^ 2) := by -- --- PROOF ---
   rw [Matrix.smul_mulVec, Matrix.add_mulVec, Matrix.smul_mulVec, Matrix.one_mulVec,
@@ -73,7 +73,7 @@ theorem Ellipsoid.aux_quad' (b l : ℝ) (c x : Vec ℝ n) :
 
 /-- [1, Lemma 4.3 (containment)]: `B ∩ {|cᵀx| ≤ γ}` lies in the ellipsoid of shape [1, Eq. 16]. -/
 theorem Ellipsoid.cutShape_contains {c : Vec ℝ n} (hc : c ⬝ᵥ c = 1) {γ : ℝ}
-    (hn : 2 ≤ n) (hγ : 0 < γ) (hγn : (n : ℝ) * γ ^ 2 < 1) :
+    (hn : 2 ≤ n) (hγ : 0 < γ) (hγn : (n : ℝ) * γ ^ 2 < 1) : -- --- CONCL ---
     {x : Vec ℝ n | ‖x‖₂ ≤ 1 ∧ |c ⬝ᵥ x| ≤ γ}
       ⊆ (Ellipsoid.ofShape (Ellipsoid.cutShape n c γ) 0).construct := by -- --- PROOF ---
   have hn' : (2 : ℝ) ≤ n := by exact_mod_cast hn

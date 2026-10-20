@@ -50,7 +50,8 @@ variable {E F : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
 /-- A continuous linear map's image of one compact set is no further from its image of another
 than its operator norm times the distance between them. -/
 theorem hausdorffDist_image_le (f : E →L[ℝ] F) {S1 S2 : Set E}
-    (hS1 : IsCompact S1) (hS1ne : S1.Nonempty) (hS2 : IsCompact S2) (hS2ne : S2.Nonempty) :
+    (hS1 : IsCompact S1) (hS1ne : S1.Nonempty) (hS2 : IsCompact S2)
+    (hS2ne : S2.Nonempty) : -- --- CONCL ---
     Metric.hausdorffDist (f '' S1) (f '' S2)
       ≤ ‖f‖ * Metric.hausdorffDist S1 S2 := by -- --- PROOF ---
   have hfin : Metric.hausdorffEDist S1 S2 ≠ ⊤ :=

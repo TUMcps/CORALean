@@ -48,7 +48,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Layer.softmax_encloses :
+theorem Layer.softmax_encloses : -- --- CONCL ---
     (Layer.softmax (S := S) (n := n)).Encloses _root_.CORALean.Real.softmax := by -- --- PROOF ---
   refine ⟨fun s x hx => ?_⟩
   have hbox : ∀ i, (interval s).inf i ≤ x i ∧ x i ≤ (interval s).sup i :=

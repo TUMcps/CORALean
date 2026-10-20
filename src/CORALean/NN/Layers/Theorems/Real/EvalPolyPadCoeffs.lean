@@ -39,7 +39,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem evalPoly_padCoeffs {k M : ℕ} (c : Fin (k + 1) → ℝ) (h : k ≤ M) (t : ℝ) :
+theorem evalPoly_padCoeffs {k M : ℕ} (c : Fin (k + 1) → ℝ) (h : k ≤ M) (t : ℝ) : -- --- CONCL ---
     evalPoly (padCoeffs c M) t = evalPoly c t := by -- --- PROOF ---
   -- both sides are one sum over ℕ, cut at a different length
   have hL : evalPoly (padCoeffs c M) t

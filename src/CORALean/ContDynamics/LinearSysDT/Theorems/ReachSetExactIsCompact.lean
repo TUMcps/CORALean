@@ -52,7 +52,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- The exact set reached in `k` steps is compact whenever the initial and input
 sets are. -/
 theorem LinearSysDT.reachSetExact_isCompact (sys : LinearSysDT 𝕋 n) {R₀ U : S n}
-    (hR₀ : IsCompact (construct R₀)) (hU : IsCompact (construct U)) (k : ℕ) :
+    (hR₀ : IsCompact (construct R₀)) (hU : IsCompact (construct U)) (k : ℕ) : -- --- CONCL ---
     IsCompact (sys.reachSetExact R₀ U k) := by -- --- PROOF ---
   induction k with
   | zero => exact hR₀

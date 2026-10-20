@@ -42,7 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.containsPoint_sound {Z : Zonotope (Vec 𝕋 n)} {H : Mat 𝕋 Z.h n} {p : Vec 𝕋 n}
-    (h : Z.containsPoint H p = true) : toRealVec p ∈ Z.construct := by -- --- PROOF ---
+    (h : Z.containsPoint H p = true) : -- --- CONCL ---
+    toRealVec p ∈ Z.construct := by -- --- PROOF ---
   simp only [Zonotope.containsPoint, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨⟨hc, hd⟩, hE⟩ := h

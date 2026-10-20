@@ -44,7 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.contractHalfspace_outer (I : Interval (Vec 𝕋 n)) (a : Vec 𝕋 n) (b : 𝕋)
-    {x : Vec ℝ n} (hx : x ∈ I.construct) (hab : ∑ j, toReal (a j) * x j ≤ toReal b) :
+    {x : Vec ℝ n} (hx : x ∈ I.construct)
+    (hab : ∑ j, toReal (a j) * x j ≤ toReal b) : -- --- CONCL ---
     x ∈ (I.contractHalfspace a b).construct := by -- --- PROOF ---
   have hlo : ∀ k, toReal (I.inf k) ≤ x k := fun k => (hx k).1
   have hhi : ∀ k, x k ≤ toReal (I.sup k) := fun k => (hx k).2

@@ -44,7 +44,7 @@ variable {X : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ReachSequence.disjoint_blocks {j j' : ℕ} (h : j ≠ j') (c : ℝ≥0) :
+theorem ReachSequence.disjoint_blocks {j j' : ℕ} (h : j ≠ j') (c : ℝ≥0) : -- --- CONCL ---
     Disjoint (Set.Ico (j * c) (j * c + c)) (Set.Ico (j' * c) (j' * c + c)) := by -- --- PROOF ---
   -- the earlier block ends at `(j + 1) c`, which is no later than the other starts
   have key : ∀ a b : ℕ, a < b →

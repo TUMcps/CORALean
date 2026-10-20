@@ -40,7 +40,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.exists_not_hPolytope :
+theorem Ellipsoid.exists_not_hPolytope : -- --- CONCL ---
     ∃ E : Ellipsoid 2, ¬ ∃ P : HPolytope (Vec ℝ 2), P.construct = E.construct := by -- --- PROOF ---
   obtain ⟨E, hE⟩ := Ellipsoid.exists_not_vPolytope
   refine ⟨E, ?_⟩

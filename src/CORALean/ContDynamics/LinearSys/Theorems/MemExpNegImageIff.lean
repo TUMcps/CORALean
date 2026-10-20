@@ -57,7 +57,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `x₀` is in the `e^{-At}`-image of `M` exactly when `e^{At} x₀` is in `M`. -/
-theorem mem_expNeg_image_iff (A : Mat ℝ n n) (t : ℝ) (M : Set (Vec ℝ n)) (x₀ : Vec ℝ n) :
+theorem mem_expNeg_image_iff (A : Mat ℝ n n) (t : ℝ) (M : Set (Vec ℝ n))
+    (x₀ : Vec ℝ n) : -- --- CONCL ---
     x₀ ∈ (exp ((-t) • A)).mulVecLin '' M ↔ exp (t • A) *ᵥ x₀ ∈ M := by -- --- PROOF ---
   have hcomm : Commute (t • A) ((-t) • A) := ((Commute.refl A).smul_left t).smul_right (-t)
   -- `exact` and not `rw`: the goal's `*` resolves through a different instance path

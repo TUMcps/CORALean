@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem toReal_tapEntry {n : ℕ} :
+theorem toReal_tapEntry {n : ℕ} : -- --- CONCL ---
     ∀ {k : ℕ} (t : Fin k → Fin n) (v : Fin k → 𝕋) (i : Fin n),
       toReal (tapEntry t v i) = tapEntry t (fun l => toReal (v l)) i := by -- --- PROOF ---
   intro k

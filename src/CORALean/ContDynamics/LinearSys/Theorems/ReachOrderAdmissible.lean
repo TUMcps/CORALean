@@ -45,7 +45,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.reachOrder_admissible (sys : LinearSys 𝕋 n) (r : ℝ) {η : ℕ}
-    (hη : sys.reachOrder r + 2 ≤ η) :
+    (hη : sys.reachOrder r + 2 ≤ η) : -- --- CONCL ---
     ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1 := by -- --- PROOF ---
   have hle : ‖r • toRealMat sys.A‖ ≤ (sys.reachOrder r : ℝ) := Nat.le_ceil _
   have hη' : ((sys.reachOrder r + 2 : ℕ) : ℝ) ≤ η := by exact_mod_cast hη

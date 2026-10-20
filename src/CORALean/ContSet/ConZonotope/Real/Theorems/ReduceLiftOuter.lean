@@ -37,7 +37,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.reduceLift_outer (cZ : ConZonotope (Vec ℝ n)) (o : ℕ) :
+theorem ConZonotope.reduceLift_outer (cZ : ConZonotope (Vec ℝ n)) (o : ℕ) : -- --- CONCL ---
     cZ.construct ⊆ (cZ.reduceLift o).construct := by -- --- PROOF ---
   unfold ConZonotope.reduceLift
   simp only []

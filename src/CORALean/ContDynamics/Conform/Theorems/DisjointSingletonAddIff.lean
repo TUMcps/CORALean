@@ -49,7 +49,8 @@ open Pointwise
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Sec. 2.2], corrected: `y ⊕ V` misses `R` iff `y ∉ R ⊕ (-V)`. -/
-theorem Conform.disjoint_singleton_add_iff {α : Type} [AddCommGroup α] (R V : Set α) (y : α) :
+theorem Conform.disjoint_singleton_add_iff {α : Type} [AddCommGroup α] (R V : Set α)
+    (y : α) : -- --- CONCL ---
     Disjoint ({y} + V) R ↔ y ∉ R + -V := by -- --- PROOF ---
   rw [Set.disjoint_left]
   constructor

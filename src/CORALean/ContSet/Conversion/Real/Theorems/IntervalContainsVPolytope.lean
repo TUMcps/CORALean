@@ -38,7 +38,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every corner of a nonempty box lies in the box, and the box is convex. -/
-theorem Interval.contains_vPolytope (I : Interval (Vec ℝ n)) (hI : ∀ j, I.inf j ≤ I.sup j) :
+theorem Interval.contains_vPolytope (I : Interval (Vec ℝ n))
+    (hI : ∀ j, I.inf j ≤ I.sup j) : -- --- CONCL ---
     I.vPolytope.construct ⊆ I.construct := by -- --- PROOF ---
   rw [VPolytope.construct_eq_convexHull]
   refine convexHull_min ?_ I.convex_construct

@@ -173,7 +173,8 @@ theorem aux_clm_sum_single2 {H : Type} [NormedAddCommGroup H] [NormedSpace ℝ H
 /-- The thesis's `|z - z✱|ᵀ |Jᵢ| |z - z✱| ≤ γᵀ Mᵢ γ`: an entrywise bound on a
 bilinear map is a bound on the quadratic form it takes at anything `γ` covers. -/
 theorem aux_abs_quad_le (T : Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] ℝ) (v γ : Vec ℝ d) (M : Mat ℝ d d)
-    (hM : ∀ j k, |T (Pi.single j 1) (Pi.single k 1)| ≤ M j k) (hv : ∀ j, |v j| ≤ γ j) :
+    (hM : ∀ j k, |T (Pi.single j 1) (Pi.single k 1)| ≤ M j k)
+    (hv : ∀ j, |v j| ≤ γ j) : -- --- CONCL ---
     |T v v| ≤ γ ⬝ᵥ (M *ᵥ γ) := by -- --- PROOF ---
   have hexp : T v v = ∑ j, ∑ k, v j * v k * T (Pi.single j 1) (Pi.single k 1) := by
     rw [aux_clm_sum_single T v, _root_.sum_apply]
@@ -220,7 +221,7 @@ theorem aux_abs_cubic_le (T : Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] Vec ℝ d 
 /-- The thesis's `max_{z ∈ Ẑ} |z - z✱| ≤ |c - z✱| + Σⱼ |g⁽ʲ⁾|`, which is the `γ`
 that `lagrangeRemainder` computes. -/
 theorem aux_abs_sub_le_radius (Z : Zonotope (Vec ℝ d)) (zs : Vec ℝ d) {z : Vec ℝ d}
-    (hz : z ∈ Z.construct) (j : Fin d) :
+    (hz : z ∈ Z.construct) (j : Fin d) : -- --- CONCL ---
     |z j - zs j| ≤ |Z.c j - zs j| + ∑ k, |Z.G k j| := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hz
   have hco : (Z.c + ∑ k, β k • Z.G k) j - zs j = Z.c j - zs j + ∑ k, β k * Z.G k j := by

@@ -37,7 +37,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.isequal_construct {zB S : ZonoBundle α} (h : zB.isequal S) :
+theorem ZonoBundle.isequal_construct {zB S : ZonoBundle α} (h : zB.isequal S) : -- --- CONCL ---
     zB.construct = S.construct := by -- --- PROOF ---
   obtain ⟨e, hZ⟩ := h
   obtain ⟨k₁, Z₁⟩ := zB

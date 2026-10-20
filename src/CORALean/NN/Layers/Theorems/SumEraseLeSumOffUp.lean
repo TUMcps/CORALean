@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem sum_erase_le_sumOffUp (i : Fin n) (v : Fin n → 𝕋) :
+theorem sum_erase_le_sumOffUp (i : Fin n) (v : Fin n → 𝕋) : -- --- CONCL ---
     ∑ j ∈ Finset.univ.erase i, toReal (v j) ≤ toReal (sumOffUp i v) := by -- --- PROOF ---
   have h : ∑ j, toReal (if j = i then zero else v j)
       = ∑ j ∈ Finset.univ.erase i, toReal (v j) := by

@@ -47,7 +47,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- Three points of the plane with a nonzero cross product span it affinely. -/
 theorem Polygon.aux_affineSpan_eq_top {k : ℕ} (V : Fin k → Vec ℝ 2) (a b c : Fin k)
-    (hD : (V b 0 - V a 0) * (V c 1 - V a 1) - (V b 1 - V a 1) * (V c 0 - V a 0) ≠ 0) :
+    (hD : (V b 0 - V a 0) * (V c 1 - V a 1) - (V b 1 - V a 1) * (V c 0 - V a 0) ≠ 0)
+    : -- --- CONCL ---
     affineSpan ℝ (Set.range V) = ⊤ := by -- --- PROOF ---
   set u : Vec ℝ 2 := V b - V a
   set w : Vec ℝ 2 := V c - V a
@@ -88,7 +89,7 @@ theorem Polygon.aux_cross_ne_zero {p : VPolytope (Vec 𝕋 2)} {a b c : Fin p.k}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.isFullDim_sound {P : Polygon 𝕋} (h : Polygon.isFullDim P = true) :
+theorem Polygon.isFullDim_sound {P : Polygon 𝕋} (h : Polygon.isFullDim P = true) : -- --- CONCL ---
     ContSet.IsFullDim P := by -- --- PROOF ---
   simp only [Polygon.isFullDim, List.any_eq_true, Bool.and_eq_true, List.all_eq_true,
     List.mem_finRange, true_and, forall_const] at h

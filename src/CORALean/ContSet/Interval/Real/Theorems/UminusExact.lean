@@ -36,7 +36,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.uminus_exact (I : Interval α) :
+theorem Interval.uminus_exact (I : Interval α) : -- --- CONCL ---
     -I.construct = I.uminus.construct := by -- --- PROOF ---
   ext x
   constructor

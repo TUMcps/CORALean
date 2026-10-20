@@ -61,7 +61,7 @@ variable {n : ℕ}
 /-- [1, Eq. 2.8]: `y' = My + D`, `y(0) = 0` give `y(t) = ∫₀ᵗ e^{(t-s)M}D(s) ds`; [1] takes
 `M = σA`, `y = L_m(·)v` and `D = D_m(·)v`. -/
 theorem Krylov.error_eq_integral_defect (M : Mat ℂ n n) (y D : ℝ → Fin n → ℂ) (hy0 : y 0 = 0)
-    (hy : ∀ s, HasDerivAt y (M *ᵥ y s + D s) s) (hD : Continuous D) (t : ℝ) :
+    (hy : ∀ s, HasDerivAt y (M *ᵥ y s + D s) s) (hD : Continuous D) (t : ℝ) : -- --- CONCL ---
     y t = ∫ s in (0 : ℝ)..t, exp ((t - s) • M) *ᵥ D s := by -- --- PROOF ---
   -- `B ↦ (x ↦ Bx)`, continuous and ℝ-linear, for the product rule
   let Φ : Mat ℂ n n →L[ℝ] ((Fin n → ℂ) →L[ℝ] (Fin n → ℂ)) :=

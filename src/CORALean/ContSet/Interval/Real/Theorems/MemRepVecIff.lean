@@ -38,7 +38,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A point of the repeated box is one whose every block lies in the box. -/
-theorem Interval.mem_repVec_iff (a : ℕ) (I : Interval (Vec ℝ n)) (x : Vec ℝ (a * n)) :
+theorem Interval.mem_repVec_iff (a : ℕ) (I : Interval (Vec ℝ n))
+    (x : Vec ℝ (a * n)) : -- --- CONCL ---
     x ∈ (I.repVec a).construct
       ↔ ∀ j, (fun k => x (finProdFinEquiv (j, k))) ∈ I.construct := by -- --- PROOF ---
   constructor

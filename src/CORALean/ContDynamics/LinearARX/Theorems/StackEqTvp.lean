@@ -50,7 +50,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 
 /-- The lags `0..p` of (11), summed over a longer range, are `feed`. -/
 theorem LinearARX.aux_sum_Bext_eq_feed (sys : LinearARX 𝕋 dy du p) (u : ℕ → Vec ℝ du)
-    (k : ℕ) :
+    (k : ℕ) : -- --- CONCL ---
     ∑ i ∈ Finset.range (k + p + 1), sys.Bext i *ᵥ u (k + p - i)
       = sys.feed u k := by -- --- PROOF ---
   rw [← Finset.sum_subset (Finset.range_subset_range.mpr (by omega : p + 1 ≤ k + p + 1))

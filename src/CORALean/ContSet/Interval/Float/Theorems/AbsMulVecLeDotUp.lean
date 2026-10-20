@@ -44,7 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem abs_mulVec_le_dotUp {M : Mat ℝ m n} {R : Mat 𝕋 m n} {x : Vec ℝ n} {ξ : Vec 𝕋 n}
-    (hM : ∀ i k, |M i k| ≤ toReal (R i k)) (hx : ∀ k, |x k| ≤ toReal (ξ k)) (i : Fin m) :
+    (hM : ∀ i k, |M i k| ≤ toReal (R i k)) (hx : ∀ k, |x k| ≤ toReal (ξ k))
+    (i : Fin m) : -- --- CONCL ---
     |((M *ᵥ x) i)| ≤ toReal (dotUp (R i) ξ) := by -- --- PROOF ---
   show |∑ k, M i k * x k| ≤ toReal (sumUp fun k => mulUp (R i k) (ξ k))
   refine le_trans (Finset.abs_sum_le_sum_abs _ _) (le_trans ?_ (sum_le_sumUp _))

@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.intersection_exact (I₁ I₂ : Interval (Vec 𝕋 n)) :
+theorem Interval.intersection_exact (I₁ I₂ : Interval (Vec 𝕋 n)) : -- --- CONCL ---
     (I₁.intersection I₂).construct = I₁.construct ∩ I₂.construct := by -- --- PROOF ---
   have key : ∀ (x : Vec ℝ n) (j : Fin n),
       (toReal (maximum (I₁.inf j) (I₂.inf j)) ≤ x j

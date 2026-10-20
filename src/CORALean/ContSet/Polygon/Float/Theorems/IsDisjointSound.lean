@@ -40,7 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.isDisjoint_sound {P Q : Polygon 𝕋} (h : Polygon.isDisjoint P Q = true) :
+theorem Polygon.isDisjoint_sound {P Q : Polygon 𝕋}
+    (h : Polygon.isDisjoint P Q = true) : -- --- CONCL ---
     Disjoint (ContSet.construct P) (ContSet.construct Q) := by -- --- PROOF ---
   simp only [Polygon.isDisjoint, List.all_eq_true, List.any_eq_true] at h
   rw [Set.disjoint_left]

@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.separatesAlong_sound {cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)} {a : Vec 𝕋 n}
-    (h : ConZonotope.separatesAlong cZ₁ cZ₂ a = true) :
+    (h : ConZonotope.separatesAlong cZ₁ cZ₂ a = true) : -- --- CONCL ---
     Disjoint cZ₁.construct cZ₂.construct := by -- --- PROOF ---
   rw [Set.disjoint_left]
   intro x hx₁ hx₂

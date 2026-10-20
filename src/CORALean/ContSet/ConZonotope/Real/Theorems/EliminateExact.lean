@@ -161,7 +161,7 @@ theorem ConZonotope.aux_eliminate_row {ng nc : ℕ} (A : Mat ℝ nc ng) (b : Vec
 `j`, to a feasible point of the eliminated one — routine algebra, needing only
 `a_{r,j} ≠ 0`. -/
 theorem ConZonotope.aux_eliminate_subset {ng nc : ℕ} (c : α) (G : Fin ng → α)
-    (A : Mat ℝ nc ng) (b : Vec ℝ nc) (r : Fin nc) (j : Fin ng) (hAj : A r j ≠ 0) :
+    (A : Mat ℝ nc ng) (b : Vec ℝ nc) (r : Fin nc) (j : Fin ng) (hAj : A r j ≠ 0) : -- --- CONCL ---
     (ConZonotope.ofMat c G A b).construct
       ⊆ (ConZonotope.eliminate c G A b r j).construct := by -- --- PROOF ---
   intro x hx

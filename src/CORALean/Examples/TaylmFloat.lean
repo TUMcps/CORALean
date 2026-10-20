@@ -89,7 +89,7 @@ def E : Taylm D 2 := XY.exp 53
 theorem box_subset : box.construct ⊆ Taylm.construct (box.taylm 3) := Interval.taylm_contains box 3
 
 /-- A converted box encloses its coordinate function: center plus generator times `t`. -/
-theorem taylm_encloses (i : Fin 2) :
+theorem taylm_encloses (i : Fin 2) : -- --- CONCL ---
     ((box.taylm 3) i).Encloses fun t =>
       toReal (box.zonotope.c i) + ∑ j, toReal (box.zonotope.G j i) * t j := by -- --- PROOF ---
   intro t _
@@ -126,7 +126,7 @@ theorem E_encloses : E.Encloses fun t => Real.exp
   norm_num
 
 /-- Their ranges on the normalized domain, as the `bounds` the run printed. -/
-theorem S_range {t : Vec ℝ 2} (ht : t ∈ Real.Taylm.box 2) : -- --- CONCL ---
+theorem S_range {t : Vec ℝ 2} (ht : t ∈ Real.Taylm.box 2) :
     toReal S.bounds.inf ≤ ((toReal (box.zonotope.c 0) + ∑ j, toReal (box.zonotope.G j 0) * t j) *
     (toReal (box.zonotope.c 1) + ∑ j, toReal (box.zonotope.G j 1) * t j) +
     (toReal (box.zonotope.c 0) + ∑ j, toReal (box.zonotope.G j 0) * t j)) ∧

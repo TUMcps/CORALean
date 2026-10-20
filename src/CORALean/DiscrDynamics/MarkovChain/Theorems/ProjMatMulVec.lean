@@ -38,7 +38,8 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `projMat p` at cell `s` is the sum of `p (s, i)` over the inputs `i`. -/
-theorem MarkovChain.projMat_mulVec (N m : ℕ) (p : Fin (N + 1) × Fin m → ℝ) (s : Fin (N + 1)) :
+theorem MarkovChain.projMat_mulVec (N m : ℕ) (p : Fin (N + 1) × Fin m → ℝ)
+    (s : Fin (N + 1)) : -- --- CONCL ---
     (MarkovChain.projMat N m *ᵥ p) s = ∑ i, p (s, i) := by -- --- PROOF ---
   unfold MarkovChain.projMat Matrix.mulVec dotProduct
   rw [Fintype.sum_prod_type, Finset.sum_eq_single s]

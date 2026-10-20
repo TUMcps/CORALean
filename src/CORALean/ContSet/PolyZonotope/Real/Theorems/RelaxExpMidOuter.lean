@@ -54,7 +54,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
 over-approximates, with the drift's midpoint moved into the center. -/
 theorem PolyZonotope.relaxExpMid_outer (pZ : PolyZonotope α)
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p)
-    (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) :
+    (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) : -- --- CONCL ---
     pZ.construct ⊆ (pZ.relaxExpMid part k₀).construct := by -- --- PROOF ---
   rintro x ⟨a, β, ha, hβ, rfl⟩
   obtain ⟨hlo, hhi⟩ := Set.mem_Icc.mp

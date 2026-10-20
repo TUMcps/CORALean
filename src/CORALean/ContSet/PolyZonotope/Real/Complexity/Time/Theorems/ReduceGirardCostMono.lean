@@ -44,7 +44,8 @@ namespace CORALean.Real
 
 /-- Monotone in both generator counts, so bounds on the operand's sizes give a
 bound on the cost. -/
-theorem PolyZonotope.reduceGirardCost_mono {h h' q q' : ℕ} (n p : ℕ) (hh : h ≤ h') (hq : q ≤ q') :
+theorem PolyZonotope.reduceGirardCost_mono {h h' q q' : ℕ} (n p : ℕ) (hh : h ≤ h')
+    (hq : q ≤ q') : -- --- CONCL ---
     PolyZonotope.reduceGirardCost n p h q
       ≤ PolyZonotope.reduceGirardCost n p h' q' := by -- --- PROOF ---
   -- the joint width is what every term but the last is stated in

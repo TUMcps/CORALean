@@ -71,7 +71,7 @@ variable {n p q : ℕ}
 
 /-- `|Q β|ₐ ≤ ∑ⱼ |Qₐⱼ| ρⱼ` when `|βⱼ| ≤ ρⱼ`. -/
 theorem aux_abs_comb_le {m : ℕ} {ι : Type} [Fintype ι] (G : ι → Vec ℝ m) (β ρ : ι → ℝ)
-    (hβ : ∀ j, |β j| ≤ ρ j) (a : Fin m) :
+    (hβ : ∀ j, |β j| ≤ ρ j) (a : Fin m) : -- --- CONCL ---
     |(∑ j, β j • G j) a| ≤ ∑ j, |G j a| * ρ j := by -- --- PROOF ---
   rw [Finset.sum_apply]
   refine le_trans (Finset.abs_sum_le_sum_abs _ _) (Finset.sum_le_sum fun j _ => ?_)

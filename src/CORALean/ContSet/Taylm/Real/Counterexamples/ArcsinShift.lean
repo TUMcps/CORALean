@@ -40,7 +40,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.arcsinShift_counterexample :
+theorem Taylm.arcsinShift_counterexample : -- --- CONCL ---
     ∃ a ∈ Set.Ioo (-1 : ℝ) 1, ∃ c ∈ Set.Ioo (-1 : ℝ) 1,
       Real.arcsin a ≠ Real.arcsin c + Real.arcsin (Taylm.arcsinShift c a) := by -- --- PROOF ---
   have hs : Real.sin (Real.pi / 3) < 1 := by

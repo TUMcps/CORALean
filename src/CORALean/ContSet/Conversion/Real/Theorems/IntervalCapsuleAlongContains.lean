@@ -42,7 +42,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.capsuleAlong_contains (I : Interval (Vec ℝ n)) (k : Fin n) :
+theorem Interval.capsuleAlong_contains (I : Interval (Vec ℝ n)) (k : Fin n) : -- --- CONCL ---
     I.construct ⊆ (I.capsuleAlong k).construct := by -- --- PROOF ---
   intro x hx
   -- every coordinate lies within its half-width of the center

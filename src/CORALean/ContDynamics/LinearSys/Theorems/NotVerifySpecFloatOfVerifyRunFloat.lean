@@ -60,7 +60,8 @@ theorem LinearSys.not_verifySpecFloat_of_verifyRunFloat
     (h : LinearSys.VerifySoundFloat Reach reachFn innerApprox distG distF)
     (G : Fin (r + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (F : Fin (w + 1) → HPolytope 𝕋 (Vec 𝕋 n))
     (εmax : 𝕋) (fuel : ℕ)
-    (hrun : LinearSys.verifyRunFloat reachFn innerApprox distG distF G F εmax fuel = some false) :
+    (hrun : LinearSys.verifyRunFloat reachFn innerApprox distG distF G F εmax fuel = some false)
+    : -- --- CONCL ---
     ¬ LinearSys.VerifySpecFloat G F Reach := by -- --- PROOF ---
   induction fuel generalizing εmax with
   | zero => simp [LinearSys.verifyRunFloat] at hrun

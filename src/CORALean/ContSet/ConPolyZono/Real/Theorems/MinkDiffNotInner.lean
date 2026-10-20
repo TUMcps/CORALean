@@ -41,7 +41,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The result need not lie in the difference. -/
-theorem ConPolyZono.minkDiff_not_inner :
+theorem ConPolyZono.minkDiff_not_inner : -- --- CONCL ---
     ∃ (cPZ : ConPolyZono (Vec ℝ 1)) (Z : Zonotope (Vec ℝ 1)),
       ¬ (cPZ.minkDiff Z).construct ⊆
         {x | ∀ z ∈ Z.construct, x + z ∈ cPZ.construct} := by -- --- PROOF ---

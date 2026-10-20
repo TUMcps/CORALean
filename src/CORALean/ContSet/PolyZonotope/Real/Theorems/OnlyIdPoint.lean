@@ -44,7 +44,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 omit [Module ℝ α] in
 /-- A column with exponent `0` outside `S` has the monomial of the factors of `S` alone. -/
 theorem PolyZonotope.aux_monomial_onlyId (pZ : PolyZonotope α) (S : Finset (Fin pZ.p))
-    (a : Fin pZ.p → ℝ) (i : Fin pZ.h) (hi : ∀ k, k ∉ S → pZ.E k i = 0) :
+    (a : Fin pZ.p → ℝ) (i : Fin pZ.h) (hi : ∀ k, k ∉ S → pZ.E k i = 0) : -- --- CONCL ---
     PolyZonotope.monomial (pZ.onlyId S).1.E (fun k' => a (S.orderIsoOfFin rfl k').1) i
       = PolyZonotope.monomial pZ.E a i := by -- --- PROOF ---
   unfold PolyZonotope.monomial
@@ -57,7 +57,7 @@ theorem PolyZonotope.aux_monomial_onlyId (pZ : PolyZonotope α) (S : Finset (Fin
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.onlyId_point (pZ : PolyZonotope α) (S : Finset (Fin pZ.p))
-    (a : Fin pZ.p → ℝ) :
+    (a : Fin pZ.p → ℝ) : -- --- CONCL ---
     pZ.point a = (pZ.onlyId S).1.point (fun k' => a (S.orderIsoOfFin rfl k').1)
       + (pZ.onlyId S).2.point a := by -- --- PROOF ---
   -- each generator is in exactly one of the two parts

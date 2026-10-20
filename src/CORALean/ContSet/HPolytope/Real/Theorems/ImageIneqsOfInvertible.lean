@@ -48,7 +48,7 @@ variable {q n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.image_ineqs_of_invertible (A : Mat ℝ q n) (b : Vec ℝ q) (M : Mat ℝ n n)
-    (hM : IsUnit M.det) :
+    (hM : IsUnit M.det) : -- --- CONCL ---
     (M *ᵥ ·) '' (HPolytope.ineqs A b).construct = (HPolytope.ineqs (A * M⁻¹)
     b).construct := by -- --- PROOF ---
   ext y

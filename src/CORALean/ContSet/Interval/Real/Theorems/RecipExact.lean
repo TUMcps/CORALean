@@ -41,7 +41,8 @@ variable {n : ℕ}
 
 /-- Conversely, a value between the reciprocals is the reciprocal of a point between. -/
 theorem Interval.aux_inv_mem {a b z : ℝ} (hab : a ≤ b) (h : 0 < a ∨ b < 0) (h₁ : b⁻¹ ≤ z)
-    (h₂ : z ≤ a⁻¹) : ∃ y, (a ≤ y ∧ y ≤ b) ∧ y⁻¹ = z := by -- --- PROOF ---
+    (h₂ : z ≤ a⁻¹) : -- --- CONCL ---
+    ∃ y, (a ≤ y ∧ y ≤ b) ∧ y⁻¹ = z := by -- --- PROOF ---
   rcases h with ha | hb
   · have hz : 0 < z := lt_of_lt_of_le (inv_pos.mpr (ha.trans_le hab)) h₁
     refine ⟨z⁻¹, ⟨?_, ?_⟩, inv_inv z⟩
@@ -57,7 +58,7 @@ theorem Interval.aux_inv_mem {a b z : ℝ} (hab : a ≤ b) (h : 0 < a ∨ b < 0)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.recip_exact (J : Interval (Vec ℝ n)) (hne : J.IsNonempty)
-    (hJ : ∀ i, 0 < J.inf i ∨ J.sup i < 0) :
+    (hJ : ∀ i, 0 < J.inf i ∨ J.sup i < 0) : -- --- CONCL ---
     J.recip.construct = (fun y i => (y i)⁻¹) '' J.construct := by -- --- PROOF ---
   ext z
   constructor

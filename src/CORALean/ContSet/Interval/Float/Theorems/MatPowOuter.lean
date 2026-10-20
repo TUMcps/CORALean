@@ -55,7 +55,8 @@ theorem aux_toRealMat_diagonalBlock_one :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.matPow_outer (A : Interval (Mat 𝕋 n n)) {M : Mat ℝ n n}
-    (hM : M ∈ A.construct) (k : ℕ) : M ^ k ∈ (Interval.matPow A k).construct := by -- --- PROOF ---
+    (hM : M ∈ A.construct) (k : ℕ) : -- --- CONCL ---
+    M ^ k ∈ (Interval.matPow A k).construct := by -- --- PROOF ---
   induction k with
   | zero =>
     rw [pow_zero, ← aux_toRealMat_diagonalBlock_one (𝕋 := 𝕋)]

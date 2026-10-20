@@ -41,7 +41,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.isClosed_construct (P : HPolytope (Vec ℝ n)) :
+theorem HPolytope.isClosed_construct (P : HPolytope (Vec ℝ n)) : -- --- CONCL ---
     IsClosed P.construct := by -- --- PROOF ---
   have hinter : P.construct = (⋂ i, {x : Vec ℝ n | P.A i x ≤ P.b i})
       ∩ ⋂ i, {x : Vec ℝ n | P.Ae i x = P.be i} := by

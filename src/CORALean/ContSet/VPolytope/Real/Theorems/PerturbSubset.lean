@@ -48,7 +48,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.construct_subset_add {k : ℕ} (V W : Fin k → α) {D : Set α}
-    (hD : Convex ℝ D) (h : ∀ l, V l - W l ∈ D) :
+    (hD : Convex ℝ D) (h : ∀ l, V l - W l ∈ D) : -- --- CONCL ---
     (VPolytope.mk k V).construct ⊆ (VPolytope.mk k W).construct + D := by -- --- PROOF ---
   rintro _ ⟨β, hβ, hsum, rfl⟩
   refine ⟨∑ l, β l • W l, ⟨β, hβ, hsum, rfl⟩, ∑ l, β l • (V l - W l), ?_, ?_⟩

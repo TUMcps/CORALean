@@ -37,7 +37,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zoo.encloses_iff {Z : Zoo n} {f : Vec ℝ n → ℝ} :
+theorem Zoo.encloses_iff {Z : Zoo n} {f : Vec ℝ n → ℝ} : -- --- CONCL ---
     Z.Encloses f ↔ (∀ T, Z.taylm = some T → T.Encloses f) ∧
       ∀ I, Z.ivl = some I → ∀ t ∈ Taylm.box n,
         (fun _ => f t : Vec ℝ 1) ∈ I.construct := by -- --- PROOF ---

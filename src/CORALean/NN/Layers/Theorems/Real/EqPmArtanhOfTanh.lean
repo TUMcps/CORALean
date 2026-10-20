@@ -44,7 +44,8 @@ namespace CORALean.Real
 
 /-- `tanh x = ±s` with `s ∈ [0, 1)` puts `x` at `±artanh s`. -/
 theorem eq_pm_artanh_of_tanh (x s : ℝ) (hs : 0 ≤ s) (hs1 : s < 1)
-    (h : Real.tanh x ^ 2 = s ^ 2) : x = Real.artanh s ∨ x = -Real.artanh s := by -- --- PROOF ---
+    (h : Real.tanh x ^ 2 = s ^ 2) : -- --- CONCL ---
+    x = Real.artanh s ∨ x = -Real.artanh s := by -- --- PROOF ---
   rcases sq_eq_sq_iff_eq_or_eq_neg.mp h with h | h
   · left
     rw [← Real.artanh_tanh x, h]

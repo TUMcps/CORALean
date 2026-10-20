@@ -45,7 +45,7 @@ namespace CORALean
 
 /-- [1, Prop. 2] as printed: the linear `ε_P(Δt) = Δt` decreases superlinearly in the sense of
 Def. 1, and no partition of `[0, 2]` keeps its errors below `1`. -/
-theorem exists_finPartition_sum_particularError_le_counterexample :
+theorem exists_finPartition_sum_particularError_le_counterexample : -- --- CONCL ---
     ∃ εP : ℝ → ℝ, (∀ Δt, SuperlinearDecrease (fun d => ({εP d} : Set ℝ)) Δt) ∧
       ¬ ∃ (M : ℕ) (Δt : Fin (M + 1) → ℝ), (∀ i, 0 < Δt i) ∧ (∑ i, Δt i = 2) ∧
         (∑ i, εP (Δt i) ≤ 1) := by -- --- PROOF ---

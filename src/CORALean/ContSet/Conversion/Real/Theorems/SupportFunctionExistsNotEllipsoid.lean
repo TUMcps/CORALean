@@ -44,7 +44,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SupportFunction.exists_not_ellipsoid :
+theorem SupportFunction.exists_not_ellipsoid : -- --- CONCL ---
     ∃ S : SupportFunction (Vec ℝ 1),
       ¬ ∃ E : Ellipsoid 1, E.construct = S.construct := by -- --- PROOF ---
   refine ⟨⟨fun _ => ⊤⟩, ?_⟩

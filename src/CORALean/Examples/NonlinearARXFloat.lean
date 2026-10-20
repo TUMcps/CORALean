@@ -63,7 +63,8 @@ def model : NonlinearARX.FloatModel D 1 1 2 where
       ![addUp (subUp (half (Y.sup 0)) (half (half (sqLo (Y.inf 1) (Y.sup 1))))) (V.sup 0)]⟩
 
 /-- The extension encloses `f_ARX` over every pair of boxes. -/
-theorem model_encloses : model.Encloses arxSys := by -- --- PROOF ---
+theorem model_encloses : -- --- CONCL ---
+    model.Encloses arxSys := by -- --- PROOF ---
   -- the bounds on the arguments, and the roundings of each interval operation
   refine ⟨fun Y V y hy v hv => ?_⟩
   have hy0 : toReal (Y.inf 0) ≤ y 0 ∧ y 0 ≤ toReal (Y.sup 0) := hy 0

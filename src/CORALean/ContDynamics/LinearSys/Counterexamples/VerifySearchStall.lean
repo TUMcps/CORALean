@@ -65,7 +65,8 @@ variable [∀ n, Recenter (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 /-- No list on one open side of a hyperplane through the origin has it in its hull. -/
 theorem aux_inHull_false {inHull : List (Vec ℝ n) → Bool}
     (hhull : ∀ V, inHull V = true → (0 : Vec ℝ n) ∈ convexHull ℝ {v | v ∈ V})
-    (φ : Vec ℝ n →ₗ[ℝ] ℝ) (V : List (Vec ℝ n)) (hV : (∀ v ∈ V, φ v < 0) ∨ ∀ v ∈ V, 0 < φ v) :
+    (φ : Vec ℝ n →ₗ[ℝ] ℝ) (V : List (Vec ℝ n))
+    (hV : (∀ v ∈ V, φ v < 0) ∨ ∀ v ∈ V, 0 < φ v) : -- --- CONCL ---
     inHull V = false := by -- --- PROOF ---
   by_contra h
   have h0 := hhull V (by simpa using h)

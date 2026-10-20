@@ -48,7 +48,8 @@ variable {n : ℕ}
 /-- A non-empty real box has a member as long as its dominating matrix: each
 entry at the endpoint of larger absolute value. -/
 theorem Interval.exists_norm_eq_absMax {X : Real.Interval (Mat ℝ n n)} {M₀ : Mat ℝ n n}
-    (hM₀ : M₀ ∈ X.construct) : ∃ M ∈ X.construct, ‖M‖ = ‖X.absMax‖ := by -- --- PROOF ---
+    (hM₀ : M₀ ∈ X.construct) : -- --- CONCL ---
+    ∃ M ∈ X.construct, ‖M‖ = ‖X.absMax‖ := by -- --- PROOF ---
   classical
   have hw : ∀ i j, X.inf i j ≤ X.sup i j := fun i j =>
     (Interval.mem_mat_iff.mp hM₀ i j).1.trans (Interval.mem_mat_iff.mp hM₀ i j).2

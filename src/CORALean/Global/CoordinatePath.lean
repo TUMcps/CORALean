@@ -61,7 +61,7 @@ variable {m : ℕ}
 
 /-- Splitting the threshold sum at `k`: the coordinates from `k` on are coordinate `k` and
 those from `k + 1` on. -/
-theorem aux_sum_ite_succ (L : Fin m → ℝ) (k : ℕ) (hk : k < m) :
+theorem aux_sum_ite_succ (L : Fin m → ℝ) (k : ℕ) (hk : k < m) : -- --- CONCL ---
     ∑ j : Fin m, (if k ≤ j.val then L j else 0)
       = (∑ j : Fin m, if k + 1 ≤ j.val then L j else 0) + L ⟨k, hk⟩ := by -- --- PROOF ---
   have h : ∀ j : Fin m, (if k ≤ j.val then L j else 0)
@@ -86,7 +86,8 @@ theorem hasDerivAt_comp_update {f : (Fin m → ℝ) → ℝ} (hf : Differentiabl
 
 /-- Points of a box with one coordinate replaced inside its bounds stay in the box. -/
 theorem update_mem_Icc {lo hi p : Fin m → ℝ} (hp : p ∈ Icc lo hi) (i : Fin m) {t : ℝ}
-    (ht : t ∈ Icc (lo i) (hi i)) : Function.update p i t ∈ Icc lo hi := by -- --- PROOF ---
+    (ht : t ∈ Icc (lo i) (hi i)) : -- --- CONCL ---
+    Function.update p i t ∈ Icc lo hi := by -- --- PROOF ---
   refine ⟨fun j => ?_, fun j => ?_⟩ <;> by_cases h : j = i
   · subst h; simpa using ht.1
   · simpa [Function.update_of_ne h] using hp.1 j
@@ -100,7 +101,7 @@ theorem update_mem_Icc {lo hi p : Fin m → ℝ} (hp : p ∈ Icc lo hi) (i : Fin
 `g c + L r`, on whichever side `g'`'s constant sign points to. -/
 theorem exists_ge_add_of_abs_deriv_ge {g g' : ℝ → ℝ} {c r L : ℝ} (hr : 0 ≤ r)
     (hg : ∀ t ∈ Icc (c - r) (c + r), HasDerivAt g (g' t) t)
-    (hL : ∀ t ∈ Icc (c - r) (c + r), L ≤ |g' t|) :
+    (hL : ∀ t ∈ Icc (c - r) (c + r), L ≤ |g' t|) : -- --- CONCL ---
     ∃ t ∈ Icc (c - r) (c + r), g c + L * r ≤ g t := by -- --- PROOF ---
   have hc : c ∈ Icc (c - r) (c + r) := ⟨by linarith, by linarith⟩
   by_cases hLr : L * r ≤ 0

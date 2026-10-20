@@ -35,7 +35,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.normalizeConstraints_exact (P : HPolytope α) :
+theorem HPolytope.normalizeConstraints_exact (P : HPolytope α) : -- --- CONCL ---
     P.normalizeConstraints.construct = P.construct := by -- --- PROOF ---
   ext x
   -- an inequality row, scaled by `|b|⁻¹ > 0`, and an equality row by `be⁻¹`

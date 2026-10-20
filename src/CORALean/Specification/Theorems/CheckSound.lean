@@ -41,7 +41,7 @@ variable {ContSet S α : Type} [CORALean.ContSet ContSet α] [CORALean.ContSet S
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Specification.check_sound [Contains ContSet S] [IsDisjoint ContSet S]
-    (spec : Specification ContSet) (s : S) (h : spec.check s) :
+    (spec : Specification ContSet) (s : S) (h : spec.check s) : -- --- CONCL ---
     spec.Holds (construct s) := by -- --- PROOF ---
   obtain ⟨t, k⟩ := spec
   cases k

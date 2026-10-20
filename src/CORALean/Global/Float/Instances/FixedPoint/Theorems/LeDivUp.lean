@@ -41,7 +41,7 @@ variable {f : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem le_divUp (a b : FixedPoint f) (hb : 0 < toReal b) :
+theorem le_divUp (a b : FixedPoint f) (hb : 0 < toReal b) : -- --- CONCL ---
     toReal a / toReal b ≤ toReal (divUp a b) := by -- --- PROOF ---
   have hm : 0 < b.m := mantissa_pos hb
   have hDZ : (0 : ℤ) < 10 ^ a.d * b.m := by positivity

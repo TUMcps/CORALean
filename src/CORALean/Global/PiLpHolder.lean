@@ -48,7 +48,7 @@ open scoped ENNReal
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem piLp_sum_mul_le_norm_mul_norm {k : ℕ} (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
-    (a b : Fin k → ℝ) :
+    (a b : Fin k → ℝ) : -- --- CONCL ---
     ∑ i, a i * b i ≤ ‖WithLp.toLp q' a‖ * ‖WithLp.toLp q b‖ := by -- --- PROOF ---
   -- `q = ∞`, `q' = 1`: termwise
   by_cases hq : q = ∞

@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 /-- At every factor vector in the cube, the exact pairing of the two nominal points is a point of
 the float pairing. -/
 theorem PolyZonotope.bilin_outer (Q : Fin m → Mat 𝕋 n n) (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n))
-    (hp : pZ₁.p = pZ₂.p) : -- --- CONCL ---
+    (hp : pZ₁.p = pZ₂.p) :
     (fun a : Fin pZ₁.p → ℝ =>
         Real.PolyZonotope.quadBilin (fun k => toRealMat (Q k))
           ((nominal pZ₁).point a) ((nominal pZ₂).point fun k => a (Fin.cast hp.symm k)))

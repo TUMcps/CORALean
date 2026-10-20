@@ -54,7 +54,7 @@ variable {n : ℕ}
 
 /-- A Minkowski sum's box diameter is at most the sum of its summands' own. -/
 theorem boxDiameter_add_le {X Y : Set (Vec ℝ n)} (hXne : X.Nonempty) (hYne : Y.Nonempty)
-    (hX : Bornology.IsBounded X) (hY : Bornology.IsBounded Y) :
+    (hX : Bornology.IsBounded X) (hY : Bornology.IsBounded Y) : -- --- CONCL ---
     ‖boxDiameter (X + Y)‖ ≤ ‖boxDiameter X‖ + ‖boxDiameter Y‖ := by -- --- PROOF ---
   have hne : (X + Y).Nonempty := hXne.add hYne
   -- read `X + Y`'s coordinate `i` as a sum-of-projections image over `X ×ˢ Y`

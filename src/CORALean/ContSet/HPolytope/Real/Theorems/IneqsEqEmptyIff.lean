@@ -51,7 +51,7 @@ variable {q n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.ineqs_eq_empty_iff (A : Mat ℝ q n) (b : Vec ℝ q) :
+theorem HPolytope.ineqs_eq_empty_iff (A : Mat ℝ q n) (b : Vec ℝ q) : -- --- CONCL ---
     (HPolytope.ineqs A b).construct = ∅ ↔
       ∃ y : Vec ℝ q, 0 ≤ y ∧ Aᵀ *ᵥ y = 0 ∧ b ⬝ᵥ y < 0 := by -- --- PROOF ---
   constructor

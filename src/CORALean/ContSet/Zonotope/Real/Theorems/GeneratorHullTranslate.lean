@@ -50,7 +50,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Eq. 10]: `Z(s + v; g) = Z(s; g) + v`. -/
-theorem Zonotope.generatorHull_translate (s v : Vec ℝ n) (m : ℕ) (g : Fin m → Vec ℝ n) :
+theorem Zonotope.generatorHull_translate (s v : Vec ℝ n) (m : ℕ)
+    (g : Fin m → Vec ℝ n) : -- --- CONCL ---
     Zonotope.generatorHull (s + v) m g
       = (fun y => y + v) '' Zonotope.generatorHull s m g := by -- --- PROOF ---
   rw [Zonotope.generatorHull_eq, Zonotope.generatorHull_eq]

@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.descProd_outer (A : ℕ → Interval (Mat 𝕋 n n)) {M : ℕ → Mat ℝ n n}
-    (hM : ∀ k, M k ∈ (A k).construct) (hi d : ℕ) :
+    (hM : ∀ k, M k ∈ (A k).construct) (hi d : ℕ) : -- --- CONCL ---
     CORALean.descProd M hi d ∈ (Interval.descProd A hi d).construct := by -- --- PROOF ---
   induction d generalizing hi with
   | zero =>

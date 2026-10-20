@@ -40,7 +40,8 @@ variable {f : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem roundDown_le (x : FixedPoint f) : toReal (roundDown x) ≤ toReal x := by -- --- PROOF ---
+theorem roundDown_le (x : FixedPoint f) : -- --- CONCL ---
+    toReal (roundDown x) ≤ toReal x := by -- --- PROOF ---
   rw [roundDown]
   split
   · next h => rw [toReal_mk]; exact (toReal_align x h).symm.le

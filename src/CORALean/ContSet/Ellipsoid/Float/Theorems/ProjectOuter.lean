@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 /-- At a positive semi-definite `Q` the projection's nominal ellipsoid is the exact projection. -/
 theorem Ellipsoid.aux_nominal_project (E : Ellipsoid 𝕋 n) (dims : Fin m → Fin n)
-    (h : (toRealMat E.Q).PosSemidef) :
+    (h : (toRealMat E.Q).PosSemidef) : -- --- CONCL ---
     (nominal (E.project dims)).ellipsoid = Real.Ellipsoid.project (nominal E).ellipsoid dims
     := by -- --- PROOF ---
   have hsel :=
@@ -66,7 +66,7 @@ theorem Ellipsoid.aux_nominal_project (E : Ellipsoid 𝕋 n) (dims : Fin m → F
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.project_outer (E : Ellipsoid 𝕋 n) (dims : Fin m → Fin n) :
+theorem Ellipsoid.project_outer (E : Ellipsoid 𝕋 n) (dims : Fin m → Fin n) : -- --- CONCL ---
     (fun x k => x (dims k)) '' E.construct ⊆ (E.project dims).construct := by -- --- PROOF ---
   refine image_subset (fun _ _ => rfl) ?_ (Interval.project_outer E.I_error dims)
   by_cases h : (toRealMat E.Q).PosSemidef

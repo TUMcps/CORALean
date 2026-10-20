@@ -40,7 +40,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.powBounds_mem {l u t : ℝ} (hl : l ≤ t) (hu : t ≤ u) (k : ℕ) :
+theorem Taylm.powBounds_mem {l u t : ℝ} (hl : l ≤ t) (hu : t ≤ u) (k : ℕ) : -- --- CONCL ---
     (Taylm.powBounds l u k).inf ≤ t ^ k ∧ t ^ k ≤ (Taylm.powBounds l u k).sup := by -- --- PROOF ---
   unfold Taylm.powBounds
   by_cases hk : k = 0

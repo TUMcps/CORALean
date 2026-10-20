@@ -41,7 +41,8 @@ variable {ContSet α : Type} [CORALean.ContSet ContSet α] {X O : Set α}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Specification.holds_of_outer (spec : Specification ContSet) (h : X ⊆ O)
-    (hO : spec.Holds O) : spec.Holds X := by -- --- PROOF ---
+    (hO : spec.Holds O) : -- --- CONCL ---
+    spec.Holds X := by -- --- PROOF ---
   obtain ⟨s, k⟩ := spec
   cases k
   · exact subset_trans h hO

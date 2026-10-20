@@ -83,7 +83,8 @@ theorem ifNoNaN_eq_some {x y : α} (h : ifNoNaN (𝕋 := 𝕋) x = some y) :
   exact ⟨(Option.some.inj h).symm, hx⟩
 
 /-- A `some` of the checked call is the unchecked call's `some`, with no NaN in it. -/
-theorem checkNoNaN_eq_some {r : Option α} {y : α} (h : checkNoNaN (𝕋 := 𝕋) r = some y) :
+theorem checkNoNaN_eq_some {r : Option α} {y : α}
+    (h : checkNoNaN (𝕋 := 𝕋) r = some y) : -- --- CONCL ---
     r = some y ∧ noNaN (𝕋 := 𝕋) y = true := by -- --- PROOF ---
   unfold checkNoNaN at h
   cases r with

@@ -60,7 +60,7 @@ theorem aux_rowSum_diagonal_inv_mul (s : Fin m → ℝ) (hs : ∀ j, 0 < s j)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem rowSumNorm_infty_le_one_iff (s : Fin m → ℝ) (hs : ∀ j, 0 < s j)
-    (Z' : Matrix (Fin m) (Fin n) ℝ) :
+    (Z' : Matrix (Fin m) (Fin n) ℝ) : -- --- CONCL ---
     ‖WithLp.toLp ∞ (fun j => ∑ i, |(Matrix.diagonal (fun j => (s j)⁻¹) * Z') j i|)‖ ≤ 1 ↔
       ∀ j, ∑ i, |Z' j i| ≤ s j := by -- --- PROOF ---
   simp only [aux_rowSum_diagonal_inv_mul s hs Z', PiLp.norm_eq_ciSup, Real.norm_eq_abs]
@@ -78,7 +78,7 @@ theorem rowSumNorm_infty_le_one_iff (s : Fin m → ℝ) (hs : ∀ j, 0 < s j)
     exact h j
 
 theorem rowSumNorm_two_le_one_iff (s : Fin m → ℝ) (hs : ∀ j, 0 < s j)
-    (Z' : Matrix (Fin m) (Fin n) ℝ) :
+    (Z' : Matrix (Fin m) (Fin n) ℝ) : -- --- CONCL ---
     ‖WithLp.toLp 2 (fun j => ∑ i, |(Matrix.diagonal (fun j => (s j)⁻¹) * Z') j i|)‖ ≤ 1 ↔
       ∑ j, (∑ i, |Z' j i|) ^ 2 / s j ^ 2 ≤ 1 := by -- --- PROOF ---
   -- the squared Euclidean norm is the sum of the squared entries
@@ -92,7 +92,7 @@ theorem rowSumNorm_two_le_one_iff (s : Fin m → ℝ) (hs : ∀ j, 0 < s j)
   rw [← sq_le_one_iff₀ (norm_nonneg _), hsq]
 
 theorem rowSumNorm_two_le_one_of_le (s : Fin m → ℝ) (hs : ∀ j, 0 < s j)
-    (Z' : Matrix (Fin m) (Fin n) ℝ) (h : ∀ j, ∑ i, |Z' j i| ≤ s j / Real.sqrt m) :
+    (Z' : Matrix (Fin m) (Fin n) ℝ) (h : ∀ j, ∑ i, |Z' j i| ≤ s j / Real.sqrt m) : -- --- CONCL ---
     ∑ j, (∑ i, |Z' j i|) ^ 2 / s j ^ 2 ≤ 1 := by -- --- PROOF ---
   rcases Nat.eq_zero_or_pos m with rfl | hm
   · simp

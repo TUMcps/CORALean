@@ -79,7 +79,7 @@ theorem ConZonotope.aux_mem (t : ℝ) (ht : |t| ≤ 1) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The set is a segment of positive length, no hyperplane; CORA answers `true`. -/
-theorem ConZonotope.representsa_hyperplane_cora_counterexample :
+theorem ConZonotope.representsa_hyperplane_cora_counterexample : -- --- CONCL ---
     (¬ ∃ (f : (Fin 1 → ℝ) →ₗ[ℝ] ℝ) (c : ℝ), f ≠ 0 ∧
         ConZonotope.aux_unitSegment.construct = {x | f x = c}) ∧
       ConZonotope.aux_unitSegment.representsaHyperplaneCora = true := by -- --- PROOF ---

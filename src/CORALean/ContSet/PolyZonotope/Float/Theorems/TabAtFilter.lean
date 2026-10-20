@@ -41,7 +41,7 @@ variable {h : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.tabAt_filter (s : Finset (Fin h)) (P : Fin h → Bool)
-    (hP : ∀ x, P x = true ↔ x ∈ s) (j : Fin s.card) :
+    (hP : ∀ x, P x = true ↔ x ∈ s) (j : Fin s.card) : -- --- CONCL ---
     PolyZonotope.tabAt s ((List.finRange h).filter P).toArray j
       = s.orderIsoOfFin rfl j := by -- --- PROOF ---
   set L := (List.finRange h).filter P with hL

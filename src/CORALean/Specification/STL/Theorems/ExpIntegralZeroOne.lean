@@ -44,7 +44,8 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.expIntegral_zero_one : MatExp.expIntegral (0 : Mat ℝ 1 1) 1 = 1 := by -- --- PROOF ---
+theorem STL.expIntegral_zero_one : -- --- CONCL ---
+    MatExp.expIntegral (0 : Mat ℝ 1 1) 1 = 1 := by -- --- PROOF ---
   unfold MatExp.expIntegral
   rw [tsum_eq_single 0]
   · simp

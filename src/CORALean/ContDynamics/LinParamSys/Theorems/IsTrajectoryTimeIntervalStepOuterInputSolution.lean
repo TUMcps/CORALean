@@ -85,7 +85,8 @@ theorem aux_hull_subset_inputTerm (sys : LinParamSys ℐ n) {U : S n} {M₀ : Ma
     (hconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U)))
     (hclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U)))
     {y : Vec ℝ n} (hy : y ∈ (t ^ (k + 1) / (Nat.factorial (k + 1) : ℝ)) • closure (convexHull ℝ
-      {z | ∃ N ∈ (Interval.matPow sys.A k).construct, ∃ v ∈ construct U, z = N *ᵥ v})) :
+      {z | ∃ N ∈ (Interval.matPow sys.A k).construct, ∃ v ∈ construct U, z = N *ᵥ v}))
+    : -- --- CONCL ---
     y ∈ construct (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U) := by -- --- PROOF ---
   set K := closure (convexHull ℝ
     {z | ∃ N ∈ (Interval.matPow sys.A k).construct, ∃ v ∈ construct U, z = N *ᵥ v}) with hK

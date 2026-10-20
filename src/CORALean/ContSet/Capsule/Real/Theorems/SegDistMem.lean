@@ -37,7 +37,7 @@ variable {n : ℕ}
 
 /-- Some pair of parameters in `[-1, 1]²` realises `segDist`: a continuous function on a compact
 set, so CORA's quadratic programme has a minimiser. -/
-theorem Capsule.segDist_mem (C₁ C₂ : Capsule n) :
+theorem Capsule.segDist_mem (C₁ C₂ : Capsule n) : -- --- CONCL ---
     ∃ t₁ ∈ Set.Icc (-1 : ℝ) 1, ∃ t₂ ∈ Set.Icc (-1 : ℝ) 1,
       ‖(C₁.c + t₁ • C₁.g) - (C₂.c + t₂ • C₂.g)‖₂ = Capsule.segDist C₁ C₂ := by -- --- PROOF ---
   have hc : Continuous fun t : ℝ × ℝ => ‖(C₁.c + t.1 • C₁.g) - (C₂.c + t.2 • C₂.g)‖₂ :=

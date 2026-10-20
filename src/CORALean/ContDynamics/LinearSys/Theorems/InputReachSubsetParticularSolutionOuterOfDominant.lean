@@ -64,7 +64,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- With a dominating point `w`, the interval product of `E` with `Δt • U` is the box
 `|y_j| ≤ Σ_k |E_jk| Δt |w_k|`. -/
 theorem aux_intervalMulVecSet_eq_box (E : Mat ℝ n n) {U : Set (Vec ℝ n)} {Δt : ℝ}
-    (hΔt : 0 ≤ Δt) {w : Vec ℝ n} (hw : w ∈ U) (hdom : ∀ v ∈ U, ∀ k, |v k| ≤ |w k|) :
+    (hΔt : 0 ≤ Δt) {w : Vec ℝ n} (hw : w ∈ U)
+    (hdom : ∀ v ∈ U, ∀ k, |v k| ≤ |w k|) : -- --- CONCL ---
     MatExp.intervalMulVecSet E (Δt • U)
       = {y | ∀ j, |y j| ≤ ∑ k, |E j k| * (Δt * |w k|)} := by -- --- PROOF ---
   ext y

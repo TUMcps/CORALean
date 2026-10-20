@@ -56,7 +56,7 @@ variable {q n : ℕ}
 /-- [1, Prop. 8]: the intersection check, `ν` the optimum of the paper's linear program. -/
 theorem ConZonotope.inter_ineqs_nonempty_iff (cZ : ConZonotope (Vec ℝ n)) (C : Mat ℝ q n)
     (d : Vec ℝ q) (ν : ℝ)
-    (hν : IsLeast {δ : ℝ | ∃ x ∈ cZ.construct, ∀ i, (C *ᵥ x) i - d i ≤ δ} ν) :
+    (hν : IsLeast {δ : ℝ | ∃ x ∈ cZ.construct, ∀ i, (C *ᵥ x) i - d i ≤ δ} ν) : -- --- CONCL ---
     (cZ.construct ∩ (HPolytope.ineqs C d).construct).Nonempty ↔ ν ≤ 0 := by -- --- PROOF ---
   constructor
   -- a shared point makes `δ = 0` feasible, so the least feasible `δ` is no larger

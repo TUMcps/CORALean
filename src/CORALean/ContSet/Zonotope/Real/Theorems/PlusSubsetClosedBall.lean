@@ -45,7 +45,7 @@ variable {n : ℕ}
 further than its own radius. -/
 theorem Zonotope.plus_subset_closedBall {Z₁ Z₂ : Zonotope (Vec ℝ n)} {r₁ r₂ : ℝ}
     (h₁ : Z₁.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r₁)
-    (h₂ : Z₂.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r₂) :
+    (h₂ : Z₂.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r₂) : -- --- CONCL ---
     (Z₁.plus Z₂).construct ⊆ Metric.closedBall (0 : Vec ℝ n) (r₁ + r₂) := by -- --- PROOF ---
   rw [← Zonotope.plus_exact]
   rintro _ ⟨x₁, hx₁, x₂, hx₂, rfl⟩

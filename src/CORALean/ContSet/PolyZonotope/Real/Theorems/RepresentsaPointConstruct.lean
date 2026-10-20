@@ -38,7 +38,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.construct_eq_of_representsa_point (pZ : PolyZonotope α)
-    (h : pZ.representsa_point) : pZ.construct = {pZ.c} := by -- --- PROOF ---
+    (h : pZ.representsa_point) : -- --- CONCL ---
+    pZ.construct = {pZ.c} := by -- --- PROOF ---
   ext x
   constructor
   · -- every term is `0`, so the point is the center

@@ -55,7 +55,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The width of the example: `2h(1 - h)` on `[0,1)`. -/
-theorem aux_boxDiameter_gainDerivExample {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t < 1) :
+theorem aux_boxDiameter_gainDerivExample {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t < 1) : -- --- CONCL ---
     boxDiameter (abstrSolInf (fun _ => (0 : Mat ℝ 1 1))
       (fun s => (⟨1, 0, fun _ => fun _ => 1 - s⟩ : Zonotope (Vec ℝ 1)).construct) t) 0
       = 2 * (t * (1 - t)) := by -- --- PROOF ---

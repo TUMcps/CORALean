@@ -35,7 +35,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem FiniteSignal.cellsFrom_bounds {T V : Type} [LinearOrder T] : -- --- CONCL ---
+theorem FiniteSignal.cellsFrom_bounds {T V : Type} [LinearOrder T] :
     ∀ (a : T) (L : List (T × V)), (L.map Prod.fst).Pairwise (· < ·) → (∀ x ∈ L, a ≤ x.1) →
       ∀ c ∈ FiniteSignal.cellsFrom a L, a ≤ c.1.1 ∧ c.1.1 ≤ c.1.2
   | _, [], _, _, c, hc => by simp [FiniteSignal.cellsFrom] at hc

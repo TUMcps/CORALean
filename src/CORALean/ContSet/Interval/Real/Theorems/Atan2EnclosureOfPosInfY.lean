@@ -46,7 +46,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.atan2_enclosure_of_pos_inf_y {I₁ I₂ : Interval (Vec ℝ n)}
-    (hy₀ : ∀ i, 0 < I₁.inf i) {y x : Vec ℝ n} (hy : y ∈ I₁.construct) (hxm : x ∈ I₂.construct) :
+    (hy₀ : ∀ i, 0 < I₁.inf i) {y x : Vec ℝ n} (hy : y ∈ I₁.construct)
+    (hxm : x ∈ I₂.construct) : -- --- CONCL ---
     (fun i => Complex.arg ⟨x i, y i⟩) ∈ (I₁.atan2 I₂).construct := by -- --- PROOF ---
   intro i
   obtain ⟨hy₁, hy₂⟩ : I₁.inf i ≤ y i ∧ y i ≤ I₁.sup i := hy i

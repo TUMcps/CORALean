@@ -44,7 +44,7 @@ open Set Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Example 4.2]: (2) holds for `C f = id`, `J = I` and `C y = [-ε, ε]²`, `ε < 2`. -/
-theorem gammaTest_preconditioned_example {ε : ℝ} (hε : ε < 2) :
+theorem gammaTest_preconditioned_example {ε : ℝ} (hε : ε < 2) : -- --- CONCL ---
     gammaTest (fun x : Fin 2 → ℝ => x) 0 (fun _ => -2) (fun _ => 2) 1 1 (fun _ => -ε)
       (fun _ => ε) := by -- --- PROOF ---
   intro y hy J hJ v _ i

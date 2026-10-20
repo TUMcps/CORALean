@@ -48,7 +48,7 @@ variable {v N : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Eq. 5]: `det(Φᵀ Φ) = 0` for `Φ` with fewer rows than columns. -/
-theorem det_transpose_mul_self_eq_zero (Φ : Mat ℝ v N) (hvN : v < N) :
+theorem det_transpose_mul_self_eq_zero (Φ : Mat ℝ v N) (hvN : v < N) : -- --- CONCL ---
     (Φᵀ * Φ).det = 0 := by -- --- PROOF ---
   -- a unit would have rank `N`, but `Φᵀ Φ` has rank at most `v`
   by_contra h

@@ -49,7 +49,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 /-- The value committed to is the center of the box `E` denotes, which is why `E` has to be
 nonempty: an empty box has a center no point of it. -/
 theorem Layer.linearWithError_encloses (W : Mat 𝕋 m n) (b : Vec 𝕋 m) (E : Interval (Vec 𝕋 m))
-    (hE : E.nominal.IsNonempty) :
+    (hE : E.nominal.IsNonempty) : -- --- CONCL ---
     (Layer.linearWithError (S := S) W b E).Encloses
       fun x => toRealMat W *ᵥ x + toRealVec b + E.nominal.center := by -- --- PROOF ---
   refine ⟨fun s x hx => ?_⟩

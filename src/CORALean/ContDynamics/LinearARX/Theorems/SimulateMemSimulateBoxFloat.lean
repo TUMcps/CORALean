@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {dy du p : �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearARX.simulate_mem_simulateBox (sys : LinearARX 𝕋 dy du p) (y₀ : Vec 𝕋 (p * dy))
-    (u : ℕ → Vec 𝕋 du) (k : ℕ) :
+    (u : ℕ → Vec 𝕋 du) (k : ℕ) : -- --- CONCL ---
     LinearARX.stack p (sys.simulate (Scalar.toRealVec y₀) fun j => Scalar.toRealVec (u j)) k ∈
       construct (sys.simulateBox y₀ u k) := by -- --- PROOF ---
   -- the ARX recursion for `k ≥ p` is `simulate`'s definition

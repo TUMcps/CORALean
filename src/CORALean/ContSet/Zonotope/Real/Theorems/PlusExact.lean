@@ -63,7 +63,7 @@ theorem Zonotope.aux_sum_univ_plus {Z₁ Z₂ : Zonotope α} (f : Fin (Z₁.h + 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.plus_exact (Z₁ Z₂ : Zonotope α) :
+theorem Zonotope.plus_exact (Z₁ Z₂ : Zonotope α) : -- --- CONCL ---
     Z₁.construct + Z₂.construct = (Z₁.plus Z₂).construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨x₁, ⟨β₁, hβ₁, rfl⟩, x₂, ⟨β₂, hβ₂, rfl⟩, rfl⟩

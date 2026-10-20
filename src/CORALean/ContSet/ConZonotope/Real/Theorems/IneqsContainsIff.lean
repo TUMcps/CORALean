@@ -56,7 +56,7 @@ variable {q n : ℕ}
 /-- [1, Prop. 7]: the containment check, with each `νᵢ` the optimum of eq. (45). -/
 theorem ConZonotope.ineqs_contains_iff (cZ : ConZonotope (Vec ℝ n)) (C : Mat ℝ q n) (d : Vec ℝ q)
     (ν : Fin q → ℝ)
-    (hν : ∀ i, IsGreatest ((fun x => (C *ᵥ x) i - d i) '' cZ.construct) (ν i)) :
+    (hν : ∀ i, IsGreatest ((fun x => (C *ᵥ x) i - d i) '' cZ.construct) (ν i)) : -- --- CONCL ---
     cZ.construct ⊆ (HPolytope.ineqs C d).construct ↔ ∀ i, ν i ≤ 0 := by -- --- PROOF ---
   constructor
   -- forward: the optimum is attained, at a point the halfspace already bounds

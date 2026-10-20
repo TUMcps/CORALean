@@ -44,7 +44,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.split_union (cZ : ConZonotope (Vec ℝ n)) (d : Fin n) :
+theorem ConZonotope.split_union (cZ : ConZonotope (Vec ℝ n)) (d : Fin n) : -- --- CONCL ---
     (cZ.split d).fst.construct ∪ (cZ.split d).snd.construct = cZ.construct := by -- --- PROOF ---
   unfold ConZonotope.split
   dsimp only

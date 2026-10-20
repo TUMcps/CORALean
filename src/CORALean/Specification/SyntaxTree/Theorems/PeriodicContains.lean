@@ -52,7 +52,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 
 /-- A copy of a branch below `b` is below `b`, or contains it. -/
 private theorem SyntaxTree.periodic_branch_upper {p b i s' s : ℝ} (hp : 0 < p) (hsb : s ≤ b) (k : ℤ)
-    (h₁ : i + k * p ≤ s) (h₂ : s ≤ s' + k * p) :
+    (h₁ : i + k * p ≤ s) (h₂ : s ≤ s' + k * p) : -- --- CONCL ---
     (i + (⌈(b - s') / p⌉ : ℝ) * p ≤ b ∧ b ≤ s' + (⌈(b - s') / p⌉ : ℝ) * p) ∨
       s ≤ s' + ((⌈(b - s') / p⌉ : ℝ) - 1) * p := by -- --- PROOF ---
   have c := Int.le_ceil ((b - s') / p)
@@ -68,7 +68,7 @@ private theorem SyntaxTree.periodic_branch_upper {p b i s' s : ℝ} (hp : 0 < p)
 
 /-- A copy of a branch above `a` is above `a`, or contains it. -/
 private theorem SyntaxTree.periodic_branch_lower {p a i s' s : ℝ} (hp : 0 < p) (has : a ≤ s) (k : ℤ)
-    (h₁ : i + k * p ≤ s) (h₂ : s ≤ s' + k * p) :
+    (h₁ : i + k * p ≤ s) (h₂ : s ≤ s' + k * p) : -- --- CONCL ---
     (i + (⌊(a - i) / p⌋ : ℝ) * p ≤ a ∧ a ≤ s' + (⌊(a - i) / p⌋ : ℝ) * p) ∨
       i + ((⌊(a - i) / p⌋ : ℝ) + 1) * p ≤ s := by -- --- PROOF ---
   have c := Int.floor_le ((a - i) / p)

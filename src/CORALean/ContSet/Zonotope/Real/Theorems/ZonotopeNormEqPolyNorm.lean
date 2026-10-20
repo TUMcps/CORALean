@@ -55,7 +55,8 @@ variable {n s : ℕ}
 
 theorem Zonotope.zonotopeNorm_eq_polyNorm (Z : Zonotope (Vec ℝ n)) (hc : Z.c = 0)
     (hG : Function.Surjective Z.genMap) {H : Mat ℝ s n} {h : Vec ℝ s}
-    (hrep : (HPolytope.ineqs H h).construct = Z.construct) (hne : ∀ i, h i ≠ 0) (x : Vec ℝ n) :
+    (hrep : (HPolytope.ineqs H h).construct = Z.construct) (hne : ∀ i, h i ≠ 0)
+    (x : Vec ℝ n) : -- --- CONCL ---
     Z.zonotopeNorm x = HPolytope.polyNorm H h x := by -- --- PROOF ---
   obtain ⟨hball, -⟩ := Z.zonotopeNorm_ball_eq hG
   -- `0 ∈ Z` makes every right-hand side positive

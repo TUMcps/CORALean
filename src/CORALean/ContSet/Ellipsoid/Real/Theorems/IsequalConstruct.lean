@@ -35,7 +35,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.isequal_construct {E S : Ellipsoid n} (h : E.isequal S) :
+theorem Ellipsoid.isequal_construct {E S : Ellipsoid n} (h : E.isequal S) : -- --- CONCL ---
     E.construct = S.construct := by -- --- PROOF ---
   obtain ⟨hQ, hq⟩ := h
   obtain ⟨Q₁, q₁, h₁⟩ := E

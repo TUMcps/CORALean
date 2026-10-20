@@ -60,7 +60,7 @@ theorem aux_measurePreserving_sub_left (c : ℝ) :
 /-- Reflecting about `c` carries `Icc a b` onto `Icc (c-b) (c-a)` and preserves
 Lebesgue measure. -/
 theorem aux_aestronglyMeasurable_comp_sub_left {f : ℝ → Vec ℝ n} {a b c : ℝ}
-    (hf : AEStronglyMeasurable f (volume.restrict (Set.Icc a b))) :
+    (hf : AEStronglyMeasurable f (volume.restrict (Set.Icc a b))) : -- --- CONCL ---
     AEStronglyMeasurable (fun σ => f (c - σ))
       (volume.restrict (Set.Icc (c - b) (c - a))) := by -- --- PROOF ---
   have hpre : (fun σ : ℝ => c - σ) ⁻¹' Set.Icc a b = Set.Icc (c - b) (c - a) := by

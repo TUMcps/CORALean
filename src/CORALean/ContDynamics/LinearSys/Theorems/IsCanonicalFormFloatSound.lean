@@ -44,7 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- One-sided: `true` gives the real system in canonical form. -/
 theorem LinearSys.isCanonicalFormFloat_sound {sys : LinearSys 𝕋 n}
-    (h : sys.isCanonicalFormFloat = true) : sys.IsCanonicalForm := by -- --- PROOF ---
+    (h : sys.isCanonicalFormFloat = true) : -- --- CONCL ---
+    sys.IsCanonicalForm := by -- --- PROOF ---
   unfold LinearSys.isCanonicalFormFloat at h
   simp only [Bool.and_eq_true, beq_iff_eq, List.all_eq_true, List.mem_finRange,
     forall_const] at h

@@ -52,7 +52,7 @@ variable {n : ℕ}
 in the number of steps taken, unlike `reach_order_le`'s `o * n`, which does
 not. -/
 theorem LinearSysDT.reachError_h_le (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 < o)
-    (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) :
+    (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) : -- --- CONCL ---
     (sys.reachError ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).h ≤ k * n := by -- --- PROOF ---
   induction k with
   | zero =>

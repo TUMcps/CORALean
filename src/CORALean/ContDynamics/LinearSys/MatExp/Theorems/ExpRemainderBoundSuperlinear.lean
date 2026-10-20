@@ -53,7 +53,7 @@ variable {n : ℕ}
 
 /-- Scaling the argument by `φ ∈ (0,1)` scales the bound down by at least `φ`. -/
 theorem MatExp.expRemainderBound_superlinear {x : Mat ℝ n n} (η : ℕ) {φ : ℝ}
-    (hφ0 : 0 < φ) (hφ1 : φ < 1) (hx : ‖x‖ / ((η : ℝ) + 2) < 1) :
+    (hφ0 : 0 < φ) (hφ1 : φ < 1) (hx : ‖x‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
     MatExp.expRemainderBound (φ • x) η ≤ φ * MatExp.expRemainderBound x η := by -- --- PROOF ---
   have hnormx : (0 : ℝ) ≤ ‖x‖ := norm_nonneg _
   have hnormsmul : ‖φ • x‖ = φ * ‖x‖ := by rw [norm_smul, Real.norm_eq_abs, abs_of_pos hφ0]

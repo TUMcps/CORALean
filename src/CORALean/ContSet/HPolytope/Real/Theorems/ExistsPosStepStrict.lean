@@ -47,7 +47,7 @@ variable {q n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.exists_pos_step_strict (A : Mat ℝ q n) (c : Vec ℝ q) (z d : Vec ℝ n)
-    (hz : ∀ i, (A *ᵥ z) i < c i) :
+    (hz : ∀ i, (A *ᵥ z) i < c i) : -- --- CONCL ---
     ∃ s : ℝ, 0 < s ∧ ∀ i, (A *ᵥ (z + s • d)) i < c i := by -- --- PROOF ---
   set T := 1 + ∑ i, (|(A *ᵥ d) i| + 1) / (c i - (A *ᵥ z) i) with hT
   have hterm : ∀ i, 0 ≤ (|(A *ᵥ d) i| + 1) / (c i - (A *ᵥ z) i) := fun i =>

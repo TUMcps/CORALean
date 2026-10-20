@@ -40,7 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.abs_le_errBound (E : Interval (Vec 𝕋 n)) {e : Vec ℝ n} (he : e ∈ E.construct)
-    (i : Fin n) : |e i| ≤ toReal (Zonotope.errBound E i) := by -- --- PROOF ---
+    (i : Fin n) : -- --- CONCL ---
+    |e i| ≤ toReal (Zonotope.errBound E i) := by -- --- PROOF ---
   have h1 : toReal (E.inf i) ≤ e i := (he i).1
   have h2 : e i ≤ toReal (E.sup i) := (he i).2
   simp only [Zonotope.errBound, toReal_maximum, toReal_absolute]

@@ -41,7 +41,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.generators_mul_transpose (E : Ellipsoid n) :
+theorem Ellipsoid.generators_mul_transpose (E : Ellipsoid n) : -- --- CONCL ---
     E.generators * E.generatorsᵀ = E.Q := by -- --- PROOF ---
   have hQ : E.Q.IsHermitian := E.psd.isHermitian
   have hnn : ∀ i, 0 ≤ hQ.eigenvalues i := E.psd.eigenvalues_nonneg

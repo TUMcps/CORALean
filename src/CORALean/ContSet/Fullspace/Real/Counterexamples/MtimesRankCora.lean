@@ -53,7 +53,7 @@ def Fullspace.mtimesRankCora {m n : ℕ} (M : Matrix (Fin m) (Fin n) ℝ) : Set 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- For `M = [1 1; 1 1]` CORA's result contains `(1, 0)`, which the image `{M x}` does not. -/
-theorem Fullspace.mtimesRank_cora_counterexample :
+theorem Fullspace.mtimesRank_cora_counterexample : -- --- CONCL ---
     (![1, 0] : Fin 2 → ℝ) ∈ Fullspace.mtimesRankCora !![(1 : ℝ), 1; 1, 1] ∧
       (![1, 0] : Fin 2 → ℝ) ∉ Set.range (Matrix.mulVec !![(1 : ℝ), 1; 1, 1]) := by -- --- PROOF ---
   constructor

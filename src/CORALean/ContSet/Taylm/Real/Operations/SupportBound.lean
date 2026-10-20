@@ -43,7 +43,7 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The direction `c` as a coefficient vector: its value at each unit vector. -/
-theorem Taylm.aux_linearMap_eq_sum (c : Vec ℝ m →ₗ[ℝ] ℝ) (x : Vec ℝ m) :
+theorem Taylm.aux_linearMap_eq_sum (c : Vec ℝ m →ₗ[ℝ] ℝ) (x : Vec ℝ m) : -- --- CONCL ---
     c x = ∑ j, c (Pi.single j 1) * x j := by -- --- PROOF ---
   conv_lhs => rw [pi_eq_sum_univ x]
   simp only [map_sum, map_smul, smul_eq_mul]

@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `abs` is exact on the nominal part. -/
-theorem Zonotope.abs_nominal (Z : Zonotope (Vec 𝕋 n)) :
+theorem Zonotope.abs_nominal (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     nominal Z.abs = CORALean.Real.Zonotope.abs (nominal Z) := by -- --- PROOF ---
   show (⟨Z.h, toRealVec fun i => absolute (Z.c i), fun j i => toReal (absolute (Z.G j i))⟩ :
       CORALean.Real.Zonotope (Vec ℝ n)) = _

@@ -58,7 +58,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- An orthogonal `K` (`KᵀK = I`) keeps `‖·‖₂`. -/
-theorem aux_norm₂_mulVec_of_orth {K : Mat ℝ n n} (hK : Kᵀ * K = 1) (v : Vec ℝ n) :
+theorem aux_norm₂_mulVec_of_orth {K : Mat ℝ n n} (hK : Kᵀ * K = 1) (v : Vec ℝ n) : -- --- CONCL ---
     ‖K *ᵥ v‖₂ = ‖v‖₂ := by -- --- PROOF ---
   have hsq : ∀ x : Vec ℝ n, ∑ i, x i ^ 2 = x ⬝ᵥ x := fun x => by
     simp [dotProduct, sq]

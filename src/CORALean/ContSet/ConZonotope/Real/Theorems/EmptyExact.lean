@@ -33,7 +33,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.empty_exact (n : ℕ) : (ConZonotope.empty n).construct = ∅ := by -- --- PROOF ---
+theorem ConZonotope.empty_exact (n : ℕ) : -- --- CONCL ---
+    (ConZonotope.empty n).construct = ∅ := by -- --- PROOF ---
   ext x
   simp only [ConZonotope.construct, Set.mem_setOf_eq, Set.mem_empty_iff_false, iff_false]
   rintro ⟨β, -, hβ, -⟩

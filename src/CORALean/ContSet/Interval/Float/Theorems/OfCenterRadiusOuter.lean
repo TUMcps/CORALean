@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.ofCenterRadius_outer (c r : Mat 𝕋 m n) :
+theorem Interval.ofCenterRadius_outer (c r : Mat 𝕋 m n) : -- --- CONCL ---
     (Real.Interval.ofCenterRadius (toRealMat c) (toRealMat r)).construct
       ⊆ (Interval.ofCenterRadius c r).construct := by -- --- PROOF ---
   intro A hA

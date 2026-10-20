@@ -50,7 +50,8 @@ variable {lam : ι → ℝ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Eq. 18]: the derivative of the criterion is `−1/(β(1+β))` times the stationarity sum. -/
-theorem Ellipsoid.halderLogDet_hasDerivAt (hlam : ∀ i, 0 < lam i) {β : ℝ} (hβ : 0 < β) :
+theorem Ellipsoid.halderLogDet_hasDerivAt (hlam : ∀ i, 0 < lam i) {β : ℝ}
+    (hβ : 0 < β) : -- --- CONCL ---
     HasDerivAt (Ellipsoid.halderLogDet lam)
       (-(1 / (β * (1 + β))) * Ellipsoid.halderStationarity lam β) β := by -- --- PROOF ---
   unfold Ellipsoid.halderLogDet Ellipsoid.halderStationarity

@@ -100,7 +100,7 @@ theorem ConZonotope.aux_image_coord (cZ : ConZonotope (Vec ℝ n)) (M : Mat ℝ 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.conIntersect_exact (cZ₁ : ConZonotope (Vec ℝ n)) (cZ₂ : ConZonotope (Vec ℝ m))
-    (M : Mat ℝ m n) :
+    (M : Mat ℝ m n) : -- --- CONCL ---
     {x | x ∈ cZ₁.construct ∧ M *ᵥ x ∈ cZ₂.construct}
       = (cZ₁.conIntersect cZ₂ M).construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset

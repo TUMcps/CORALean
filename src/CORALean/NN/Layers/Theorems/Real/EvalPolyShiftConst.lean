@@ -35,7 +35,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem evalPoly_shiftConst {n : ℕ} (c : Fin (n + 1) → ℝ) (s t : ℝ) :
+theorem evalPoly_shiftConst {n : ℕ} (c : Fin (n + 1) → ℝ) (s t : ℝ) : -- --- CONCL ---
     evalPoly (shiftConst c s) t = evalPoly c t + s := by -- --- PROOF ---
   have hterm : ∀ i : Fin (n + 1), shiftConst c s i * t ^ (i : ℕ)
       = c i * t ^ (i : ℕ) + (if i = 0 then s else 0) := by

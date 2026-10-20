@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h : ℕ}
 /-- The masked sum is the fibre sum: outside the fibre every summand is `zero`,
 which reads as `0`. -/
 theorem PolyZonotope.sum_mask (r : Fin h → Fin h) (G : Mat 𝕋 n h) (i : Fin n)
-    (j : Fin h) :
+    (j : Fin h) : -- --- CONCL ---
     (∑ l, toReal (if r l = j then G i l else zero))
       = Real.PolyZonotope.fiberSum r (fun l => toReal (G i l)) j := by -- --- PROOF ---
   rw [Real.PolyZonotope.fiberSum, Finset.sum_filter]

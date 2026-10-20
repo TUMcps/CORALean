@@ -76,7 +76,7 @@ theorem LinearSys.IsCanonicalTrajectory.reach_outer_inputSolution [Mtimes ℐ S]
       (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) Δt η) U))) {o : ℕ} (ho : 0 < o)
-    (k : ℕ) : -- --- CONCL ---
+    (k : ℕ) :
     x (k * Δt) ∈ construct
       ((sys.discretize Δt).reach ⟨R₀, sys.inputSolution Δt η U, 0, k⟩ ⟨o, ho⟩) :=
   LinearSysDT.reach_outer _ ho R₀ _

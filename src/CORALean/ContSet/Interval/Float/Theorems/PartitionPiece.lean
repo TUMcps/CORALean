@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A numerator rounded down over a count rounded up is below the ratio. -/
-theorem Interval.aux_ratioLo_le (k s : ℕ) (hs : 0 < s) :
+theorem Interval.aux_ratioLo_le (k s : ℕ) (hs : 0 < s) : -- --- CONCL ---
     toReal (divDown (nsmulDown k (one : 𝕋)) (nsmulUp s (one : 𝕋))) ≤
       (k : ℝ) / s := by -- --- PROOF ---
   -- the denominator is at least `s`, the numerator at most `k`
@@ -62,7 +62,7 @@ theorem Interval.aux_ratioLo_le (k s : ℕ) (hs : 0 < s) :
     _ ≤ (k : ℝ) / s := by gcongr
 
 /-- The ratio is below `1` less the lower bound of its complement. -/
-theorem Interval.aux_le_ratioHi (k s : ℕ) (hs : 0 < s) (hk : k ≤ s) :
+theorem Interval.aux_le_ratioHi (k s : ℕ) (hs : 0 < s) (hk : k ≤ s) : -- --- CONCL ---
     (k : ℝ) / s ≤ toReal (subUp (one : 𝕋)
       (divDown (nsmulDown (s - k) (one : 𝕋)) (nsmulUp s (one : 𝕋)))) := by -- --- PROOF ---
   have hs' : (0 : ℝ) < s := Nat.cast_pos.mpr hs
@@ -123,7 +123,7 @@ theorem Interval.aux_partition_piece (a b : 𝕋) (s k : ℕ) (hs : 0 < s)
 
 /-- Each real piece is inside the float piece with the same index. -/
 theorem Interval.partition_piece (I : Interval (Vec 𝕋 n)) (splits : ℕ)
-    (ind : Fin n → Fin splits) :
+    (ind : Fin n → Fin splits) : -- --- CONCL ---
     (I.nominal.partition splits ind).construct ⊆
       (I.partition splits ind).construct := by -- --- PROOF ---
   -- coordinate by coordinate, the piece of the one index

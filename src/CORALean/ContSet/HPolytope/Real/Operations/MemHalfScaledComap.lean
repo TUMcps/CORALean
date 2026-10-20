@@ -52,7 +52,8 @@ variable {α γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup γ] [Mod
 
 theorem HPolytope.mem_halfScaled_comap {f : γ →ₗ[ℝ] α} {t : γ →ₗ[ℝ] ℝ} {P : HPolytope α}
     {x : γ} {w : ℝ} {y : α} (hw : (t x + 1) / 2 = w) (hw0 : 0 ≤ w) (hy : y ∈ P.construct)
-    (hf : f x = w • y) : x ∈ ((P.comap f).halfScaled t).construct := by -- --- PROOF ---
+    (hf : f x = w • y) : -- --- CONCL ---
+    x ∈ ((P.comap f).halfScaled t).construct := by -- --- PROOF ---
   refine HPolytope.mem_halfScaled_iff.mpr ⟨fun i => ?_, fun i => ?_⟩
   -- the rows of the preimage are `P`'s own, read at the block
   · show P.A i (f x) ≤ (t x + 1) / 2 * P.b i

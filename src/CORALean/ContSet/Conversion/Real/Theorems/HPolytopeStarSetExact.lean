@@ -39,7 +39,7 @@ variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.starSet_exact (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) :
+    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : -- --- CONCL ---
     (P.starSet up lo).construct = P.construct := by -- --- PROOF ---
   ext x
   constructor

@@ -48,7 +48,8 @@ variable {α β γ : Type}
 /-- The result's monomial at a pair of columns: the two sets' monomials,
 multiplied. -/
 theorem PolyZonotope.aux_bilin_monomial (pZ₁ : PolyZonotope α) (pZ₂ : PolyZonotope β)
-    (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ) (l₁ : Fin (pZ₁.h + 1)) (l₂ : Fin (pZ₂.h + 1)) :
+    (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ) (l₁ : Fin (pZ₁.h + 1))
+    (l₂ : Fin (pZ₂.h + 1)) : -- --- CONCL ---
     monomial (bilinE pZ₁ pZ₂ hp) a (finProdFinEquiv (l₁, l₂))
       = extM pZ₁ a l₁ * extM pZ₂ (fun k => a (Fin.cast hp.symm k)) l₂ := by -- --- PROOF ---
   -- `pZ₂`'s factor index is `pZ₁`'s renamed, so the two products run over one set
@@ -92,7 +93,7 @@ theorem PolyZonotope.aux_bilin_pair (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (pZ�
 /-- `bilin`'s point, read off the expansion above rather than `construct`: `f`
 at the two points, `pZ₂` read at `pZ₁`'s factors through `Fin.cast`. -/
 theorem PolyZonotope.bilin_point (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (pZ₁ : PolyZonotope α)
-    (pZ₂ : PolyZonotope β) (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ) :
+    (pZ₂ : PolyZonotope β) (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ) : -- --- CONCL ---
     (pZ₁.bilin f pZ₂ hp).point a
       = f (pZ₁.point a) (pZ₂.point fun k => a (Fin.cast hp.symm k)) := by -- --- PROOF ---
   -- the pairs and the flat generator index are the same sum, reindexed

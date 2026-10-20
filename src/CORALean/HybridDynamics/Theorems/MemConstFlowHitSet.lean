@@ -61,7 +61,8 @@ variable {n : ℕ}
 /-- [1, Eq. 1]: a state `x₀ + bt + e` on `nᵀx = d`, `e ∈ E`, lies in
 `(Cx₀ + w) ⊕ (-bnᵀ/(nᵀb) ⊗ E) ⊕ E`. -/
 theorem GuardMap.mem_constFlowHitSet {x₀ b nv : Vec ℝ n} {d t : ℝ} {E : Set (Vec ℝ n)}
-    {e : Vec ℝ n} (hb : nv ⬝ᵥ b ≠ 0) (he : e ∈ E) (hhit : nv ⬝ᵥ (x₀ + t • b + e) = d) :
+    {e : Vec ℝ n} (hb : nv ⬝ᵥ b ≠ 0) (he : e ∈ E)
+    (hhit : nv ⬝ᵥ (x₀ + t • b + e) = d) : -- --- CONCL ---
     x₀ + t • b + e ∈ GuardMap.constFlowHitSet x₀ b nv d E := by -- --- PROOF ---
   -- the hitting time, read off the hyperplane
   have ht : t = (d - nv ⬝ᵥ x₀ - nv ⬝ᵥ e) / (nv ⬝ᵥ b) := by

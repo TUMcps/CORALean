@@ -45,7 +45,8 @@ variable {X : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Formula.sat_bigAnd {β : Type} (l : List β) (g : β → STL.Formula X) (ξ : ℝ≥0 → X) :
+theorem STL.Formula.sat_bigAnd {β : Type} (l : List β) (g : β → STL.Formula X)
+    (ξ : ℝ≥0 → X) : -- --- CONCL ---
     (STL.Formula.bigAnd (l.map g)).Sat ξ ↔ ∀ b ∈ l, (g b).Sat ξ := by -- --- PROOF ---
   induction l with
   | nil => simp [STL.Formula.bigAnd, STL.Formula.tt, STL.Formula.Sat]

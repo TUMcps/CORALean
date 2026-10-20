@@ -63,7 +63,7 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The tangent of `t ↦ tᵠ` at `c > 0` lies below it, `q ≥ 1`. -/
-theorem aux_rpow_tangent_le {q c u : ℝ} (hq : 1 ≤ q) (hc : 0 < c) (hu : 0 ≤ u) :
+theorem aux_rpow_tangent_le {q c u : ℝ} (hq : 1 ≤ q) (hc : 0 < c) (hu : 0 ≤ u) : -- --- CONCL ---
     c ^ q + q * c ^ (q - 1) * (u - c) ≤ u ^ q := by -- --- PROOF ---
   have hb := one_add_mul_self_le_rpow_one_add (s := u / c - 1) (by
     have : 0 ≤ u / c := div_nonneg hu hc.le
@@ -128,7 +128,7 @@ theorem aux_norm_le_sum_abs' (y : Vec ℝ n) : ‖y‖ ≤ ∑ i, |y i| :=
 /-- `‖A v‖₁ ≤ ξ ‖v‖_p` for `ξ` the maximum on the unit ball. -/
 theorem aux_sum_abs_le {p : ℝ≥0∞} [Fact (1 ≤ p)] (A : Mat ℝ n m) {ξ : ℝ}
     (hξ : IsGreatest ((fun v : PiLp p (fun _ : Fin m => ℝ) => ∑ i, |(A *ᵥ WithLp.ofLp v) i|) ''
-      Metric.closedBall 0 1) ξ) (v : PiLp p (fun _ : Fin m => ℝ)) :
+      Metric.closedBall 0 1) ξ) (v : PiLp p (fun _ : Fin m => ℝ)) : -- --- CONCL ---
     ∑ i, |(A *ᵥ WithLp.ofLp v) i| ≤ ξ * ‖v‖ := by -- --- PROOF ---
   rcases eq_or_ne v 0 with rfl | hv
   · simp
@@ -150,7 +150,8 @@ def aux_Radii (n : ℕ) (p : ℝ≥0∞) (L ϱ : ℝ) : Prop :=
 
 /-- Every coefficient in the ball has `‖α'‖ ≤ 1`, `|s| ≤ 1` and `‖α'‖ + L|s| ≤ n`. -/
 theorem aux_cons (hn : 2 ≤ n) {p : ℝ≥0∞} [Fact (1 ≤ p)] (hp : 1 < p) {L ϱ : ℝ}
-    (hL : aux_Radii n p L ϱ) (α : WithLp p (PiLp p (fun _ : Fin m => ℝ) × ℝ)) (hα : ‖α‖ ≤ 1) :
+    (hL : aux_Radii n p L ϱ) (α : WithLp p (PiLp p (fun _ : Fin m => ℝ) × ℝ))
+    (hα : ‖α‖ ≤ 1) : -- --- CONCL ---
     ‖α.fst‖ ≤ 1 ∧ |α.snd| ≤ 1 ∧ ‖α.fst‖ + L * |α.snd| ≤ n := by -- --- PROOF ---
   have hnr : (2 : ℝ) ≤ n := by exact_mod_cast hn
   rcases hL with ⟨rfl, rfl, -⟩ | ⟨hpt, hL1, -, hϱ, hϱ1, h66, h67⟩

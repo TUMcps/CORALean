@@ -55,7 +55,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 omit [ToRat 𝕋] in
 /-- The generator-free zonotope at `v` holds `v`. -/
-theorem aux_oneStep_mem_pt {k : ℕ} (v : Vec 𝕋 k) :
+theorem aux_oneStep_mem_pt {k : ℕ} (v : Vec 𝕋 k) : -- --- CONCL ---
     toRealVec v ∈ (⟨0, v, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
       Zonotope (Vec 𝕋 k)).construct := by -- --- PROOF ---
   refine ⟨toRealVec v, Zonotope.mem_nominalSet_iff.mpr ⟨fun j => j.elim0, fun j => j.elim0,

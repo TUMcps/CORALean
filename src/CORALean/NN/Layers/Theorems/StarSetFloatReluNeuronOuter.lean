@@ -156,7 +156,7 @@ theorem StarSet.aux_reluNeuron_nominal (s : StarSet 𝕋 n) (j : Fin n) (b : Int
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem StarSet.reluNeuron_outer (s : StarSet 𝕋 n) (j : Fin n) (b : Interval 𝕋)
-    (hb : ∀ x ∈ nominalSet s, toReal b.inf ≤ x j ∧ x j ≤ toReal b.sup) :
+    (hb : ∀ x ∈ nominalSet s, toReal b.inf ≤ x j ∧ x j ≤ toReal b.sup) : -- --- CONCL ---
     (fun (x : Vec ℝ n) => (Function.update x j (Real.relu (x j)) : Vec ℝ n)) '' s.construct
       ⊆ (s.reluNeuron j b).construct := by -- --- PROOF ---
   rintro _ ⟨_, ⟨x, hx, e, he, rfl⟩, rfl⟩

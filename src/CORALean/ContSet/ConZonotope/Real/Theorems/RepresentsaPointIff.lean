@@ -38,7 +38,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.representsa_point_iff (cZ : ConZonotope α) :
+theorem ConZonotope.representsa_point_iff (cZ : ConZonotope α) : -- --- CONCL ---
     (∃ p, cZ.construct = {p}) ↔ cZ.representsa_point := by -- --- PROOF ---
   rw [ConZonotope.construct_eq_image]
   constructor

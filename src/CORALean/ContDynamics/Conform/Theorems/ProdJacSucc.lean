@@ -46,7 +46,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `∏_{l=1}^{m+1} A_{k+1-l} = A_k ∏_{l=1}^m A_{k-l}`. -/
-theorem Conform.prodJac_succ (A : ℕ → Mat ℝ n n) (k m : ℕ) :
+theorem Conform.prodJac_succ (A : ℕ → Mat ℝ n n) (k m : ℕ) : -- --- CONCL ---
     Conform.prodJac A (k + 1) (m + 1) = A k * Conform.prodJac A k m := by -- --- PROOF ---
   simp only [Conform.prodJac]
   rw [List.range_succ_eq_map, List.map_cons, List.prod_cons, List.map_map]

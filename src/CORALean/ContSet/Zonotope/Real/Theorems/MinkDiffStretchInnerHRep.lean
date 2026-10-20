@@ -60,7 +60,7 @@ theorem Zonotope.minkDiffStretch_inner_hRep {n : ℕ} {ι : Type} (Z₁ Z₂ : Z
       (∀ y, C i₂ y = -(lam * (Z₁.facetNormal S ⬝ᵥ y))))
     (μ : Fin Z₁.h → ℝ) (hμ0 : ∀ υ, 0 ≤ μ υ)
     (hμ : ∀ i, ∑ υ, |C i (Z₁.G υ)| * μ υ
-            ≤ (∑ υ, |C i (Z₁.G υ)|) - ∑ υ, |C i (Z₂.G υ)|) : -- --- CONCL ---
+            ≤ (∑ υ, |C i (Z₁.G υ)|) - ∑ υ, |C i (Z₂.G υ)|) :
     (Z₁.minkDiffStretch Z₂ μ).construct
       ⊆ minkowskiDiff Z₁.construct Z₂.construct :=
   Z₁.minkDiffStretch_inner Z₂ C μ hμ0 (Z₁.hRep_lin_subset C hspan hC) hμ

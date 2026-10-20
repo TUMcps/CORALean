@@ -103,7 +103,7 @@ theorem Zonotope.aux_oblique (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
 
 theorem Zonotope.frontier_subset_walkEdges (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
     (h1 : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0))
-    (h2 : ∀ i j : Fin Z.h, i < j → 0 ≤ Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0) :
+    (h2 : ∀ i j : Fin Z.h, i < j → 0 ≤ Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0) : -- --- CONCL ---
     frontier Z.construct ⊆ Z.walkEdges := by -- --- PROOF ---
   intro q hq
   by_contra hnE

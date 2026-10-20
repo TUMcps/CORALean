@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A point of `P.andRows Q` is a point of `P` at which `Q`'s rows hold within their slacks. -/
-theorem PolyLevelSet.mem_andRows_iff (P Q : PolyLevelSet 𝕋 n) (x : Vec ℝ n) :
+theorem PolyLevelSet.mem_andRows_iff (P Q : PolyLevelSet 𝕋 n) (x : Vec ℝ n) : -- --- CONCL ---
     x ∈ (P.andRows Q).construct ↔ x ∈ P.construct
       ∧ ∀ i, (Q.op i).IsMetWithin (Q.nominalCore.eval x i)
         |toReal (Q.b_error i)| := by -- --- PROOF ---

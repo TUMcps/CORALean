@@ -65,7 +65,7 @@ variable {N : ℕ}
 
 /-- The count against the printed bound, for one uncertain-edge count and one input size. -/
 theorem aux_alg1Graph_le_bound (K L ν E μ k y : ℕ) (hk : 1 ≤ k)
-    (h : y + 1 ≤ K ^ L * μ ^ (3 * L) * (k + 1 + L * ν) + E) :
+    (h : y + 1 ≤ K ^ L * μ ^ (3 * L) * (k + 1 + L * ν) + E) : -- --- CONCL ---
     y ≤ (K ^ L * (L + 2) + 1) * (μ ^ (3 * L) * (k + ν) + E) := by -- --- PROOF ---
   -- `k + 1 + L ν ≤ (L + 2)(k + ν)` once there is an input generator
   have h1 : k + 1 + L * ν ≤ (L + 2) * (k + ν) := by nlinarith

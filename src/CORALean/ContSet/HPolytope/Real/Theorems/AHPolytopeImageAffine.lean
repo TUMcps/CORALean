@@ -50,7 +50,7 @@ variable {n m k : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.image_affine_ahPolytope (G : Mat ℝ k n) (g : Vec ℝ k) (xbar : Vec ℝ n)
-    (X : Mat ℝ n m) (P : HPolytope (Vec ℝ m)) :
+    (X : Mat ℝ n m) (P : HPolytope (Vec ℝ m)) : -- --- CONCL ---
     (fun x => G *ᵥ x + g) '' HPolytope.ahPolytope xbar X P
       = HPolytope.ahPolytope (G *ᵥ xbar + g) (G * X) P := by -- --- PROOF ---
   ext y

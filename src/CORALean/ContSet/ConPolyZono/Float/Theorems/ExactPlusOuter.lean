@@ -101,7 +101,8 @@ theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.exactPlus_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) (hp : cPZ₁.p = cPZ₂.p) :
+theorem ConPolyZono.exactPlus_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
+    (hp : cPZ₁.p = cPZ₂.p) : -- --- CONCL ---
     ((Real.ConPolyZono.exactPlus cPZ₁.nominalCore cPZ₂.nominalCore hp).relax
         (toRealVec cPZ₁.cons.b_error)).construct + (cPZ₁.I_error.construct + cPZ₂.I_error.construct)
       ⊆ (cPZ₁.exactPlus cPZ₂ hp).construct := by -- --- PROOF ---

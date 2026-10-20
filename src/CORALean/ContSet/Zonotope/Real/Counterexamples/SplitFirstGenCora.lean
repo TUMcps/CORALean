@@ -74,7 +74,7 @@ theorem Zonotope.aux_splitFirstGenCora_of_argmax {n : â„•} {Z : Zonotope (Vec â„
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `splitFirstGen` picks the generator `(1,1)` and `split` errors on it. -/
-theorem Zonotope.splitFirstGen_cora_crash :
+theorem Zonotope.splitFirstGen_cora_crash : -- --- CONCL ---
     Zonotope.aux_three.splitFirstGenCora = none := by -- --- PROOF ---
   -- the box has two generators
   have hlen : Zonotope.aux_three.boxCora.h = 2 := by

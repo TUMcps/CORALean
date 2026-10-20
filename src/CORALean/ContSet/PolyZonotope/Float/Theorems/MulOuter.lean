@@ -47,7 +47,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem PolyZonotope.aux_mul_refines (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (hp : pZ₁.p = pZ₂.p) :
+theorem PolyZonotope.aux_mul_refines (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n))
+    (hp : pZ₁.p = pZ₂.p) : -- --- CONCL ---
     (Real.PolyZonotope.mul (nominal pZ₁) (nominal pZ₂) hp).construct
       ⊆ (PolyZonotope.mul pZ₁ pZ₂ hp).construct := by -- --- PROOF ---
   intro x hx
@@ -89,7 +90,7 @@ theorem PolyZonotope.aux_mul_refines (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (
 
 -- the exact statement, read through the refinement: the same image, rounded outward
 theorem PolyZonotope.mul_outer (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n))
-    (hp : pZ₁.p = pZ₂.p) : -- --- CONCL ---
+    (hp : pZ₁.p = pZ₂.p) :
     (fun a : Fin pZ₁.p → ℝ => Real.PolyZonotope.point (nominal pZ₁) a
         * Real.PolyZonotope.point (nominal pZ₂) (fun k => a (Fin.cast hp.symm k)))
         '' {a | ∀ k, |a k| ≤ 1}

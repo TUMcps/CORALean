@@ -53,7 +53,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.not_exists_polyNorm_of_degenerate (Z : Zonotope (Vec ℝ n)) (hc : Z.c = 0)
-    (hdeg : interior Z.construct = ∅) :
+    (hdeg : interior Z.construct = ∅) : -- --- CONCL ---
     ¬ ∃ (s : ℕ) (H : Mat ℝ s n) (h : Vec ℝ s), (∀ i, h i ≠ 0) ∧
       (HPolytope.ineqs H h).construct = Z.construct := by -- --- PROOF ---
   rintro ⟨s, H, h, hne, hrep⟩

@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.ballCert_reach {G : Mat 𝕋 n h} {H : Mat 𝕋 h n} {B δ : 𝕋}
-    (hc : Zonotope.ballCert G H B δ = true) :
+    (hc : Zonotope.ballCert G H B δ = true) : -- --- CONCL ---
     0 < toReal B ∧ ∀ d : Vec ℝ n, (∀ i, |d i| ≤ toReal B) →
       ∃ β : Vec ℝ h, toRealMat G *ᵥ β = d ∧ ∀ j, |β j| ≤ toReal δ := by -- --- PROOF ---
   simp only [Zonotope.ballCert, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,

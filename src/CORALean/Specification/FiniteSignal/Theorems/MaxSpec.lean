@@ -45,7 +45,7 @@ namespace CORALean
 
 /-- The fold of `max` over the entries satisfying `P` is the largest of the start and those. -/
 theorem aux_foldl_max {α V : Type} [LinearOrder V] (P : α → Prop) [DecidablePred P]
-    (f : α → V) : -- --- CONCL ---
+    (f : α → V) :
     ∀ (l : List α) (v0 : V),
       v0 ≤ l.foldl (fun v j => if P j then Max.max v (f j) else v) v0 ∧
       (∀ j ∈ l, P j → f j ≤ l.foldl (fun v j => if P j then Max.max v (f j) else v) v0) ∧

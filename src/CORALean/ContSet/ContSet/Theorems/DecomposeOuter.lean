@@ -44,7 +44,7 @@ variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n b : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ContSet.decompose_outer (s : S n) (lo len : Fin b → ℕ) (h : ∀ i, lo i + len i ≤ n)
-    (i : Fin b) : -- --- CONCL ---
+    (i : Fin b) :
     (fun x : Vec ℝ n =>
         (fun j : Fin (len i) => x ⟨lo i + j, by have := h i; omega⟩ : Vec ℝ (len i))) ''
         construct s ⊆ construct (ContSet.decompose (𝕋 := 𝕋) s lo len h i) :=

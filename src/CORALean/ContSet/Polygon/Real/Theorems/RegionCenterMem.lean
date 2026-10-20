@@ -45,7 +45,7 @@ open MeasureTheory
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.regionCenter_mem {S C : Set (Vec ℝ 2)} (hS : IsCompact S) (hC : Convex ℝ C)
-    (hCc : IsClosed C) (hSC : S ⊆ C) (h0 : MeasureTheory.volume S ≠ 0) :
+    (hCc : IsClosed C) (hSC : S ⊆ C) (h0 : MeasureTheory.volume S ≠ 0) : -- --- CONCL ---
     Polygon.regionCenter S ∈ C := by -- --- PROOF ---
   haveI : IsFiniteMeasure (MeasureTheory.volume.restrict S) := ⟨by
     rw [Measure.restrict_apply_univ]; exact hS.measure_lt_top⟩

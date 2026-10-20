@@ -86,7 +86,7 @@ theorem LinearSys.aux_sum_mulVec_mem (sys : LinearSys 𝕋 n) {U : S n} (Δt : �
 them. -/
 theorem LinearSys.inputSolutionInner_subset_inputSolutionSet (sys : LinearSys 𝕋 n) {U : S n}
     {Δt : ℝ} (hΔt : 0 ≤ Δt) (η : ℕ)
-    (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) :
+    (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
     sys.inputSolutionInner U Δt ⊆ sys.inputSolutionSet U Δt η := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
   rintro _ ⟨s, hs, rfl⟩

@@ -69,7 +69,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Lines 10, 11 and 13 are the reduced layers' `enclose`, so `Y = H_κ` is `Φ̂_ρ`'s. -/
-theorem aux_reduceOnTheFlyFrom_enclose : -- --- CONCL ---
+theorem aux_reduceOnTheFlyFrom_enclose :
     ∀ {n n₁ m : ℕ} (rest : ReducibleNetwork 𝕋 n₁ m) (H : S n) (L : ReducedLinear 𝕋 n n₁)
       (R : Relaxation 𝕋) (hτ : ∃ σ : ℝ → ℝ, R.Sound σ) (B : MergeBuckets 𝕋)
       {Φhat : ReducibleNetwork 𝕋 n m} {Y : S m},
@@ -92,7 +92,7 @@ theorem aux_reduceOnTheFlyFrom_enclose : -- --- CONCL ---
           exact hY
 
 /-- The loop from one `k` on, for every bias `c` the pending layer `L̂_{k-1}`'s box admits. -/
-theorem aux_reduceOnTheFlyFrom_outer : -- --- CONCL ---
+theorem aux_reduceOnTheFlyFrom_outer :
     ∀ {n n₁ m : ℕ} (rest : ReducibleNetwork 𝕋 n₁ m) (H : S n) (L : ReducedLinear 𝕋 n n₁)
       (R : Relaxation 𝕋) (hτ : ∃ σ : ℝ → ℝ, R.Sound σ) (B : MergeBuckets 𝕋)
       {σ : ℝ → ℝ} (_hR : R.Sound σ) {c : Vec ℝ n₁}
@@ -171,7 +171,7 @@ theorem aux_reduceOnTheFlyFrom_outer : -- --- CONCL ---
 /-- [1, Alg. 2]: every instance of `Φ` maps `X` into the `Y` computed, and `Y` is
 the reduced network's enclosure of `X`. -/
 theorem reduceOnTheFly_outer {n m : ℕ} {X : S n} {Φ : ReducibleNetwork 𝕋 n m}
-    {f : Vec ℝ n → Vec ℝ m} (hΦ : Φ.Instance f) :
+    {f : Vec ℝ n → Vec ℝ m} (hΦ : Φ.Instance f) : -- --- CONCL ---
     ∀ Φhat Y, (Φhat, Y) ∈ reduceOnTheFly le tol fuel X ρ Φ →
       f '' construct X ⊆ construct Y ∧ Y = Φhat.toNetwork.enclose X := by -- --- PROOF ---
   intro Φhat Y (hrun : reduceOnTheFly le tol fuel X ρ Φ = some (Φhat, Y))

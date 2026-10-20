@@ -44,7 +44,8 @@ open Pointwise
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Conform.templateZono_add {m : ℕ} {ι₁ ι₂ : Type} [Fintype ι₁] [Fintype ι₂]
-    (c₁ c₂ : Vec ℝ m) (G₁ : ι₁ → Vec ℝ m) (G₂ : ι₂ → Vec ℝ m) (α₁ : ι₁ → ℝ) (α₂ : ι₂ → ℝ) :
+    (c₁ c₂ : Vec ℝ m) (G₁ : ι₁ → Vec ℝ m) (G₂ : ι₂ → Vec ℝ m) (α₁ : ι₁ → ℝ)
+    (α₂ : ι₂ → ℝ) : -- --- CONCL ---
     Conform.templateZono c₁ G₁ α₁ + Conform.templateZono c₂ G₂ α₂
       = Conform.templateZono (c₁ + c₂) (Sum.elim G₁ G₂) (Sum.elim α₁ α₂) := by -- --- PROOF ---
   ext y

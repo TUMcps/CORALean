@@ -60,7 +60,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- A measurable parameter inside a box is integrable over every window. -/
 theorem aux_intervalIntegrable_param {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
     (hA : ∀ i j, Measurable fun s => A s i j) (hAB : ∀ s, A s ∈ B.construct) (i j : Fin n)
-    (a b : ℝ) : IntervalIntegrable (fun s => A s i j) volume a b := by -- --- PROOF ---
+    (a b : ℝ) : -- --- CONCL ---
+    IntervalIntegrable (fun s => A s i j) volume a b := by -- --- PROOF ---
   rw [intervalIntegrable_iff]
   refine Measure.integrableOn_of_bounded (M := |B.inf i j| + |B.sup i j|)
     measure_Ioc_lt_top.ne (hA i j).aestronglyMeasurable

@@ -58,7 +58,8 @@ variable {m : ℕ}
 theorem Zonotope.volume_intersectStrip (Z : Zonotope (Vec ℝ (m+1))) (c l : Vec ℝ (m+1))
     (σ d : ℝ) (hσ : 0 ≤ σ)
     (v : (T : Finset (Fin Z.h)) → T.card = m → Vec ℝ (m+1))
-    (hv : ∀ T hT, v T hT ⬝ᵥ v T hT = 1 ∧ ∀ k, v T hT ⬝ᵥ Z.G (T.orderEmbOfFin hT k) = 0) :
+    (hv : ∀ T hT, v T hT ⬝ᵥ v T hT = 1 ∧ ∀ k, v T hT ⬝ᵥ Z.G (T.orderEmbOfFin hT k) = 0)
+    : -- --- CONCL ---
     (Zonotope.intersectStrip (Matrix.of fun _ j => c j : Mat ℝ 1 (m+1)) (fun _ => σ) (fun _ => d)
         (Matrix.of fun i _ => l i : Mat ℝ (m+1) 1) Z).volume =
       ENNReal.ofReal (

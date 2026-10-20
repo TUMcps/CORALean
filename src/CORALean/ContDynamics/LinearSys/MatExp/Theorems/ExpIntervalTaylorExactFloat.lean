@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.expTaylor_mem_expIntervalTaylorExact (A : Interval (Mat 𝕋 n n)) (t : 𝕋)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) {κ : ℕ} (hκ : 2 ≤ κ) :
+    {M : Mat ℝ n n} (hM : M ∈ A.construct) {κ : ℕ} (hκ : 2 ≤ κ) : -- --- CONCL ---
     Real.MatExp.expTaylor (toReal t • M) κ
       ∈ (MatExp.expIntervalTaylorExact A t κ).construct := by -- --- PROOF ---
   -- the truncation splits at order three, which is where the exact part stops

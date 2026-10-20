@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 from `R` under inputs in `U` is in `R(τ)` over the step and in `R(t₁)` at its end. -/
 theorem NonlinearSys.FloatModel.Encloses.relinStepFloat_outer {fm : NonlinearSys.FloatModel 𝕋 n m}
     {sys : NonlinearSys n m} (h : fm.Encloses sys) {U : Zonotope (Vec 𝕋 m)}
-    {options : LinearSys.ReachOptions 𝕋} {R : Zonotope (Vec 𝕋 n)} : -- --- CONCL ---
+    {options : LinearSys.ReachOptions 𝕋} {R : Zonotope (Vec 𝕋 n)} :
     ∀ Rτ Rt, (Rτ, Rt) ∈ fm.relinStepFloat U options R →
       0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
         sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))

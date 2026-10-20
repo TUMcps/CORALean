@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The generators alone already cover the box, before the error box is even
 consulted — which is what lets a caller read off coefficients directly. -/
-theorem Interval.subset_nominal_zonotope (I : Interval (Vec 𝕋 n)) :
+theorem Interval.subset_nominal_zonotope (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
     I.construct ⊆ InflatedContSet.nominalSet I.zonotope := by -- --- PROOF ---
   intro x hx
   have hlo : ∀ i, toReal (I.inf i) ≤ x i := fun i => (hx i).1

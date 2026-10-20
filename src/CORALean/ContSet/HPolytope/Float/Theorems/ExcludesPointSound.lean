@@ -40,7 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.excludesPoint_sound (P : HPolytope 𝕋 (Vec 𝕋 n)) (x : Vec 𝕋 n)
-    (h : P.excludesPoint x = true) : toRealVec x ∉ P.construct := by -- --- PROOF ---
+    (h : P.excludesPoint x = true) : -- --- CONCL ---
+    toRealVec x ∉ P.construct := by -- --- PROOF ---
   intro hx
   obtain ⟨hA, hAe⟩ := HPolytope.rows_of_mem_construct hx
   -- a row of the stored matrix at the stored point, read exactly

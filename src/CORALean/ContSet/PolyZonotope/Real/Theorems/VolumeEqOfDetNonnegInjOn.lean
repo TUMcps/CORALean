@@ -50,7 +50,8 @@ theorem PolyZonotope.volume_eq_of_det_nonneg_injOn (pZ : PolyZonotope (Vec ℝ n
     (hdet : ∀ a ∈ Set.Icc (fun _ : Fin pZ.p => (-1 : ℝ)) (fun _ => 1),
       0 ≤ (Matrix.of fun (i k : Fin n) => pZ.jacobianMat a i (Fin.cast h.symm k)
         : Mat ℝ n n).det)
-    (hinj : Set.InjOn pZ.point (Set.Icc (fun _ : Fin pZ.p => (-1 : ℝ)) (fun _ => 1))) :
+    (hinj : Set.InjOn pZ.point (Set.Icc (fun _ : Fin pZ.p => (-1 : ℝ)) (fun _ => 1)))
+    : -- --- CONCL ---
     MeasureTheory.volume pZ.construct
       = ENNReal.ofReal (pZ.aux_jacobianDetIntegral h) := by -- --- PROOF ---
   -- destructure, so that `p = n` and `q = 0` can be substituted

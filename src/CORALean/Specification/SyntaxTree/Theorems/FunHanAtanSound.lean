@@ -39,7 +39,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `aaux_tan_` is sound for `atan`. -/
-theorem SyntaxTree.funHanAtan_sound (prev : Dom) :
+theorem SyntaxTree.funHanAtan_sound (prev : Dom) : -- --- CONCL ---
     UnarySound Unary.atan.fn prev (Real.Interval.atan prev) funHanAtan := by -- --- PROOF ---
   intro int hw s hs hi
   have h : int.inf 0 ≤ Real.arctan s ∧ Real.arctan s ≤ int.sup 0 := hi

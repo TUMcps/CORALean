@@ -53,7 +53,7 @@ theorem PolyZonotope.aux_sum_univ_zonotope {pZ : PolyZonotope α} (f : Fin (pZ.h
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.zonotope_contains (pZ : PolyZonotope α) :
+theorem PolyZonotope.zonotope_contains (pZ : PolyZonotope α) : -- --- CONCL ---
     pZ.construct ⊆ pZ.zonotope.construct := by -- --- PROOF ---
   rintro _ ⟨a, b, ha, hb, rfl⟩
   refine ⟨Fin.append (PolyZonotope.monomial pZ.E a) b, ?_, ?_⟩

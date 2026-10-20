@@ -107,7 +107,8 @@ theorem LinearSysDT.aux_hMinusPhi_form (A : Mat ℝ n n) (C : Mat ℝ ny n) (E :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.hMinusStepPositive_iff_phi (A : Mat ℝ n n) (C : Mat ℝ ny n)
-    (E : Mat ℝ ny nf) (L : Mat ℝ n ny) (Q : Mat ℝ n n) (M : Mat ℝ ny ny) (β : ℝ) (hQ : Qᵀ = Q) :
+    (E : Mat ℝ ny nf) (L : Mat ℝ n ny) (Q : Mat ℝ n n) (M : Mat ℝ ny ny) (β : ℝ)
+    (hQ : Qᵀ = Q) : -- --- CONCL ---
     LinearSysDT.HMinusStepPositive A C E L Q M β ↔
       LinearSysDT.HMinusLmiPhi A C E L Q M β := by -- --- PROOF ---
   unfold LinearSysDT.HMinusStepPositive LinearSysDT.HMinusLmiPhi

@@ -35,7 +35,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.isequal_construct {Z S : ConPolyZono α} (h : Z.isequal S) :
+theorem ConPolyZono.isequal_construct {Z S : ConPolyZono α} (h : Z.isequal S) : -- --- CONCL ---
     Z.construct = S.construct := by -- --- PROOF ---
   obtain ⟨ep, eh, eq, em, es, hc, hG, hE, hGI, hA, hb, hR⟩ := h
   obtain ⟨p₁, h₁, qI₁, c₁, G₁, E₁, GI₁, ⟨m₁, q₁, A₁, R₁, b₁, op₁, dom₁⟩, hop₁, hdom₁⟩ := Z

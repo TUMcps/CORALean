@@ -75,7 +75,7 @@ theorem dmdcKnownB_fit (x xNext : Fin N → Vec ℝ n) (u : Fin N → Vec ℝ l)
 theorem dmdcKnownB_leastSquares (x xNext : Fin N → Vec ℝ n) (u : Fin N → Vec ℝ l)
     (B : Mat ℝ n l) (V : Mat ℝ n r) (s : Fin r → ℝ) (W : Mat ℝ N r)
     (hX : dmdcCols x = V * Matrix.diagonal s * Wᵀ) (hV : Vᵀ * V = 1) (hW : Wᵀ * W = 1)
-    (hs : ∀ i, s i ≠ 0) (A : Mat ℝ n n) : -- --- CONCL ---
+    (hs : ∀ i, s i ≠ 0) (A : Mat ℝ n n) :
     ∑ i, ∑ a, ((dmdcCols xNext - B * dmdcCols u
         - dmdCandidate (dmdcCols xNext - B * dmdcCols u) V s W r * dmdcCols x) a i) ^ 2
       ≤ ∑ i, ∑ a, ((dmdcCols xNext - B * dmdcCols u - A * dmdcCols x) a i) ^ 2 :=
@@ -85,7 +85,8 @@ theorem dmdcKnownB_leastSquares (x xNext : Fin N → Vec ℝ n) (u : Fin N → V
 theorem dmdCandidate_eq_of_square (X1 X2 : Mat ℝ n N) (V : Mat ℝ n r) (s : Fin r → ℝ)
     (W : Mat ℝ N r) (hX : X1 = V * Matrix.diagonal s * Wᵀ)
     (hVV : V * Vᵀ = 1) (hW : Wᵀ * W = 1) (hs : ∀ i, s i ≠ 0) (A' : Mat ℝ n n)
-    (hdata : X2 = A' * X1) : dmdCandidate X2 V s W r = A' := by -- --- PROOF ---
+    (hdata : X2 = A' * X1) : -- --- CONCL ---
+    dmdCandidate X2 V s W r = A' := by -- --- PROOF ---
   have hDD : Matrix.diagonal s * Matrix.diagonal (fun i : Fin r => if (i : ℕ) < r then (s i)⁻¹
       else 0) = 1 := by
     rw [Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
@@ -121,7 +122,7 @@ theorem dmdcUnknownB_fit (x xNext : Fin N → Vec ℝ n) (u : Fin N → Vec ℝ 
 theorem dmdcUnknownB_leastSquares (x xNext : Fin N → Vec ℝ n) (u : Fin N → Vec ℝ l)
     (V : Mat ℝ (n + l) r) (s : Fin r → ℝ) (W : Mat ℝ N r)
     (hΩ : dmdcCols (fun k => dmdcRegressor (x k) (u k)) = V * Matrix.diagonal s * Wᵀ)
-    (hV : Vᵀ * V = 1) (hW : Wᵀ * W = 1) (hs : ∀ i, s i ≠ 0) (G : Mat ℝ n (n + l)) : -- --- CONCL ---
+    (hV : Vᵀ * V = 1) (hW : Wᵀ * W = 1) (hs : ∀ i, s i ≠ 0) (G : Mat ℝ n (n + l)) :
     ∑ i, ∑ a, ((dmdcCols xNext - dmdCandidate (dmdcCols xNext) V s W r
         * dmdcCols (fun k => dmdcRegressor (x k) (u k))) a i) ^ 2
       ≤ ∑ i, ∑ a, ((dmdcCols xNext

@@ -46,7 +46,7 @@ namespace CORALean
 variable {E V : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
 
 /-- A functional attains its norm on the closed unit ball. -/
-theorem isGreatest_apply_closedBall (f : E →L[ℝ] ℝ) :
+theorem isGreatest_apply_closedBall (f : E →L[ℝ] ℝ) : -- --- CONCL ---
     IsGreatest (f '' Metric.closedBall 0 1) ‖f‖ := by -- --- PROOF ---
   obtain ⟨x₀, hx₀, hmax⟩ := (isCompact_closedBall (0 : E) 1).exists_isMaxOn
     ⟨0, Metric.mem_closedBall_self zero_le_one⟩ f.continuous.continuousOn
@@ -82,7 +82,7 @@ variable [AddCommGroup V] [Module ℝ V] [TopologicalSpace V] [IsTopologicalAddG
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `[1, Eq. 19]`: `max_{x ∈ E_p(G, c)} z x = ‖z ∘ G‖ + z c`. -/
-theorem isGreatest_support_ellipsotope (G : E →ₗ[ℝ] V) (c : V) (z : V →L[ℝ] ℝ) :
+theorem isGreatest_support_ellipsotope (G : E →ₗ[ℝ] V) (c : V) (z : V →L[ℝ] ℝ) : -- --- CONCL ---
     IsGreatest ((fun x => z x) '' {x | ∃ α : E, ‖α‖ ≤ 1 ∧ x = c + G α})
       (‖z.comp (LinearMap.toContinuousLinearMap G)‖ + z c) := by -- --- PROOF ---
   obtain ⟨⟨α₀, hα₀, he⟩, hub⟩ :=

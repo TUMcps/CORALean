@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem reluGapOfSlope_le (lam l u : 𝕋) :
+theorem reluGapOfSlope_le (lam l u : 𝕋) : -- --- CONCL ---
     Real.reluGapOfSlope (toReal lam) (toReal l) (toReal u)
       ≤ toReal (reluGapUp lam l u) := by -- --- PROOF ---
   have hexp : (1 - toReal lam) * toReal u = toReal u - toReal lam * toReal u := by ring

@@ -44,7 +44,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem minkowskiDiff_properties_counterexample (hn : 0 < n) :
+theorem minkowskiDiff_properties_counterexample (hn : 0 < n) : -- --- CONCL ---
     ∃ S₁ S₂ : Set (Vec ℝ n), S₁ = ∅ ∧ Bornology.IsBounded S₁ ∧ interior S₂ = ∅ ∧
       Bornology.IsBounded S₂ ∧ minkowskiDiff S₁ S₂ ≠ ∅ ∧
       ¬ Bornology.IsBounded (minkowskiDiff S₁ S₂) := by -- --- PROOF ---

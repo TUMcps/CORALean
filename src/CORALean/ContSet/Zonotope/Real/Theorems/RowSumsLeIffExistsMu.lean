@@ -49,7 +49,8 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Sec. II-B]: `‖T‖∞ ≤ α` iff each row is a point of the `L1`-ball encoded by `μ±`. -/
-theorem Zonotope.rowSums_le_iff_exists_mu {m r : ℕ} (T : Mat ℝ m r) (α : ℝ) (hr : 0 < r) :
+theorem Zonotope.rowSums_le_iff_exists_mu {m r : ℕ} (T : Mat ℝ m r) (α : ℝ)
+    (hr : 0 < r) : -- --- CONCL ---
     (∀ i, ∑ j, |T i j| ≤ α) ↔ ∀ i, ∃ μp μm : Fin r → ℝ, (∀ j, 0 ≤ μp j) ∧ (∀ j, 0 ≤ μm j) ∧
       (∀ j, T i j = μp j - μm j) ∧ ∑ j, (μp j + μm j) = α := by -- --- PROOF ---
   constructor

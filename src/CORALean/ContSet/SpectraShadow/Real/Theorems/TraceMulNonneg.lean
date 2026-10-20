@@ -41,7 +41,8 @@ open scoped MatrixOrder
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.trace_mul_nonneg {k : ℕ} {M Y : Mat ℝ k k} (hM : M.PosSemidef)
-    (hY : Y.PosSemidef) : 0 ≤ (M * Y).trace := by -- --- PROOF ---
+    (hY : Y.PosSemidef) : -- --- CONCL ---
+    0 ≤ (M * Y).trace := by -- --- PROOF ---
   -- the square root of `Y`, positive semidefinite and Hermitian
   have hY0 : (0 : Mat ℝ k k) ≤ Y := Matrix.nonneg_iff_posSemidef.mpr hY
   have hZ' : (CFC.sqrt Y).PosSemidef := Matrix.nonneg_iff_posSemidef.mp (CFC.sqrt_nonneg Y)

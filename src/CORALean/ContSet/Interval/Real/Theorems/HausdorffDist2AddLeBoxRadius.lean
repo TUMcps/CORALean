@@ -79,7 +79,8 @@ theorem aux_boxRadius_norm₂_le_of_mem {B : Interval (Vec ℝ n)} {p : Vec ℝ 
 /-- [1, Prop. 1]: the sum `S ⊕ S+` never moves past `S` by more than `S+`'s box
 reaches from the origin, whenever `0 ∈ S+`. -/
 theorem hausdorffDist₂_add_le_box_radius {S SPlus : Set (Vec ℝ n)}
-    (h0 : (0 : Vec ℝ n) ∈ SPlus) (B : Interval (Vec ℝ n)) (hB : SPlus ⊆ B.construct) :
+    (h0 : (0 : Vec ℝ n) ∈ SPlus) (B : Interval (Vec ℝ n))
+    (hB : SPlus ⊆ B.construct) : -- --- CONCL ---
     hausdorffDist₂ S (S + SPlus) ≤ ‖fun i => max |B.inf i| |B.sup i|‖₂ := by -- --- PROOF ---
   refine hausdorffDist₂_le_of_mem_dist (norm₂_nonneg _) (fun x hx => ⟨x, ?_, ?_⟩) ?_
   · have := Set.add_mem_add hx h0

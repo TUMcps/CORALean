@@ -152,7 +152,7 @@ private theorem le_clampOne {a : 𝕋} {v : ℝ} (h : v ≤ toReal a) (hv : |v| 
   exact le_max_of_le_right (le_min hv.2 h)
 
 /-- The half-angle formula, `tan (t/2) = sin t / (1 + cos t)`, as an arctangent. -/
-private theorem arctan_half_angle {t : ℝ} (h1 : -Real.pi < t) (h2 : t < Real.pi) :
+private theorem arctan_half_angle {t : ℝ} (h1 : -Real.pi < t) (h2 : t < Real.pi) : -- --- CONCL ---
     Real.arctan (Real.sin t / (1 + Real.cos t)) = t / 2 := by -- --- PROOF ---
   have hc : 0 < Real.cos (t / 2) :=
     Real.cos_pos_of_mem_Ioo ⟨by linarith, by linarith⟩
@@ -165,7 +165,7 @@ private theorem arctan_half_angle {t : ℝ} (h1 : -Real.pi < t) (h2 : t < Real.p
     field_simp
   rw [heq, Real.arctan_tan (by linarith) (by linarith)]
 
-private theorem arctan_eq_two_mul (y : ℝ) :
+private theorem arctan_eq_two_mul (y : ℝ) : -- --- CONCL ---
     Real.arctan y = 2 * Real.arctan (y / (1 + Real.sqrt (1 + y ^ 2))) := by -- --- PROOF ---
   have hS : 0 < Real.sqrt (1 + y ^ 2) := Real.sqrt_pos.2 (by positivity)
   have h := arctan_half_angle (t := Real.arctan y)
@@ -179,7 +179,7 @@ private theorem arctan_eq_two_mul (y : ℝ) :
   rw [heq] at h
   rw [h]; ring
 
-private theorem arcsin_eq_two_mul {x : ℝ} (h1 : -1 ≤ x) (h2 : x ≤ 1) :
+private theorem arcsin_eq_two_mul {x : ℝ} (h1 : -1 ≤ x) (h2 : x ≤ 1) : -- --- CONCL ---
     Real.arcsin x = 2 * Real.arctan (x / (1 + Real.sqrt (1 - x ^ 2))) := by -- --- PROOF ---
   have h := arctan_half_angle (t := Real.arcsin x)
     (by linarith [Real.neg_pi_div_two_le_arcsin x, Real.pi_pos])
@@ -187,7 +187,7 @@ private theorem arcsin_eq_two_mul {x : ℝ} (h1 : -1 ≤ x) (h2 : x ≤ 1) :
   rw [Real.sin_arcsin h1 h2, Real.cos_arcsin] at h
   rw [h]; ring
 
-private theorem arccos_eq_two_mul {x : ℝ} (h1 : -1 ≤ x) (h2 : x ≤ 1) :
+private theorem arccos_eq_two_mul {x : ℝ} (h1 : -1 ≤ x) (h2 : x ≤ 1) : -- --- CONCL ---
     Real.arccos x = 2 * Real.arcsin (Real.sqrt ((1 - x) / 2)) := by -- --- PROOF ---
   set t := Real.arccos x
   have ht0 := Real.arccos_nonneg x
@@ -206,7 +206,7 @@ private theorem arccos_eq_two_mul {x : ℝ} (h1 : -1 ≤ x) (h2 : x ≤ 1) :
   ring
 
 /-- `k x` lies between its values at the ends of `[c, d]`. -/
-private theorem mul_between {k c d x : ℝ} (h1 : c ≤ x) (h2 : x ≤ d) :
+private theorem mul_between {k c d x : ℝ} (h1 : c ≤ x) (h2 : x ≤ d) : -- --- CONCL ---
     min (k * c) (k * d) ≤ k * x ∧ k * x ≤ max (k * c) (k * d) := by -- --- PROOF ---
   rcases le_total 0 k with hk | hk
   · exact ⟨min_le_of_left_le (mul_le_mul_of_nonneg_left h1 hk),
@@ -219,7 +219,8 @@ private def Brackets (z : ℝ) (b : Interval 𝕋) : Prop :=
   toReal b.inf ≤ Real.arctan z ∧ Real.arctan z ≤ toReal b.sup
 
 private theorem atanStep_brackets (n : ℕ) {z : 𝕋} {b : Interval 𝕋}
-    (h : Brackets (toReal z) b) : Brackets (toReal z) (atanStep n z b) := by -- --- PROOF ---
+    (h : Brackets (toReal z) b) : -- --- CONCL ---
+    Brackets (toReal z) (atanStep n z b) := by -- --- PROOF ---
   set m := clampOne (half (addUp b.inf b.sup))
   have hm := abs_clampOne_le (half (addUp b.inf b.sup))
   rw [abs_le] at hm
@@ -260,7 +261,7 @@ private theorem atanIter_brackets (n : ℕ) {z : 𝕋} :
   | succ j ih => exact fun b h => ih _ (atanStep_brackets n h)
 
 /-- The bracket of the clamped argument holds `arctan` of it. -/
-private theorem atanBracket_brackets (n k : ℕ) (z : 𝕋) :
+private theorem atanBracket_brackets (n k : ℕ) (z : 𝕋) : -- --- CONCL ---
     Brackets (toReal (clampOne z)) (atanBracket n k z) := by -- --- PROOF ---
   refine atanIter_brackets n k _ ?_
   have hz := abs_clampOne_le z
@@ -277,7 +278,7 @@ private theorem atanBracket_brackets (n k : ℕ) (z : 𝕋) :
 
 /-- `num / D` between the quotients by the two bounds on `D`. -/
 private theorem quot_mem {num dl du : 𝕋} {D : ℝ} (hl1 : 1 ≤ toReal dl) (hl : toReal dl ≤ D)
-    (hu : D ≤ toReal du) :
+    (hu : D ≤ toReal du) : -- --- CONCL ---
     toReal (quotLo num dl du) ≤ toReal num / D ∧
       toReal num / D ≤ toReal (quotHi num dl du) := by -- --- PROOF ---
   have hdl : 0 < toReal dl := by linarith
@@ -294,7 +295,7 @@ private theorem quot_mem {num dl du : 𝕋} {D : ℝ} (hl1 : 1 ≤ toReal dl) (h
     rw [max_comm]
     exact max_le_max (div_le_divUp _ _ hdl) (div_le_divUp _ _ hdu)
 
-private theorem atanDen_mem (k : ℕ) (y : 𝕋) :
+private theorem atanDen_mem (k : ℕ) (y : 𝕋) : -- --- CONCL ---
     1 ≤ toReal (atanDenLo k y) ∧ toReal (atanDenLo k y) ≤ 1 + Real.sqrt (1 + toReal y ^ 2) ∧
       1 + Real.sqrt (1 + toReal y ^ 2) ≤ toReal (atanDenHi k y) := by -- --- PROOF ---
   have hr1 : toReal (addDown one (mulDown y y)) ≤ 1 + toReal y ^ 2 := by
@@ -316,7 +317,7 @@ private theorem atanDen_mem (k : ℕ) (y : 𝕋) :
   · have := add_le_addUp (one : 𝕋) (sqrtUp k (addUp one (mulUp y y)))
     rw [toReal_one] at this; rw [atanDenHi]; linarith
 
-private theorem asinDen_mem (k : ℕ) (x : 𝕋) :
+private theorem asinDen_mem (k : ℕ) (x : 𝕋) : -- --- CONCL ---
     1 ≤ toReal (asinDenLo k x) ∧ toReal (asinDenLo k x) ≤ 1 + Real.sqrt (1 - toReal x ^ 2) ∧
       1 + Real.sqrt (1 - toReal x ^ 2) ≤ toReal (asinDenHi k x) := by -- --- PROOF ---
   have hr1 : toReal (subDown one (mulUp x x)) ≤ 1 - toReal x ^ 2 := by
@@ -396,7 +397,7 @@ theorem le_atanUp (n k : ℕ) (y : 𝕋) : Real.arctan (toReal y) ≤ toReal (at
   exact twice_upper (quot_mem hd.1 hd.2.1 hd.2.2).2
     (abs_div_one_add_le (abs_le_one_add_sqrt_one_add _) (Real.sqrt_nonneg _)) n k
 
-theorem asinDown_le (n k : ℕ) (x : 𝕋) :
+theorem asinDown_le (n k : ℕ) (x : 𝕋) : -- --- CONCL ---
     toReal (asinDown n k x) ≤ Real.arcsin (toReal x) := by -- --- PROOF ---
   have hc := clampOne_mem x
   have hd := asinDen_mem k (clampOne x)
@@ -404,7 +405,7 @@ theorem asinDown_le (n k : ℕ) (x : 𝕋) :
   exact twice_lower (quot_mem hd.1 hd.2.1 hd.2.2).1
     (abs_div_one_add_le (abs_le_one_add_sqrt_one_sub hc.1 hc.2) (Real.sqrt_nonneg _)) n k
 
-theorem le_asinUp (n k : ℕ) (x : 𝕋) :
+theorem le_asinUp (n k : ℕ) (x : 𝕋) : -- --- CONCL ---
     Real.arcsin (toReal x) ≤ toReal (asinUp n k x) := by -- --- PROOF ---
   have hc := clampOne_mem x
   have hd := asinDen_mem k (clampOne x)
@@ -412,7 +413,7 @@ theorem le_asinUp (n k : ℕ) (x : 𝕋) :
   exact twice_upper (quot_mem hd.1 hd.2.1 hd.2.2).2
     (abs_div_one_add_le (abs_le_one_add_sqrt_one_sub hc.1 hc.2) (Real.sqrt_nonneg _)) n k
 
-theorem acosDown_le (n k : ℕ) (x : 𝕋) :
+theorem acosDown_le (n k : ℕ) (x : 𝕋) : -- --- CONCL ---
     toReal (acosDown n k x) ≤ Real.arccos (toReal x) := by -- --- PROOF ---
   have hc := clampOne_mem x
   have hac : Real.arccos (toReal x) = Real.arccos (toReal (clampOne x)) := by
@@ -429,7 +430,7 @@ theorem acosDown_le (n k : ℕ) (x : 𝕋) :
   simp only [acosDown]
   linarith
 
-theorem le_acosUp (n k : ℕ) (x : 𝕋) :
+theorem le_acosUp (n k : ℕ) (x : 𝕋) : -- --- CONCL ---
     Real.arccos (toReal x) ≤ toReal (acosUp n k x) := by -- --- PROOF ---
   have hc := clampOne_mem x
   have hac : Real.arccos (toReal x) = Real.arccos (toReal (clampOne x)) := by

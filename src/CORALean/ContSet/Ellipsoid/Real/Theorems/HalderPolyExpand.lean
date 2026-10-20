@@ -50,7 +50,7 @@ variable {ι : Type*} [Fintype ι]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Ellipsoid.aux_poly_identity [DecidableEq ι] (x : ι → ℝ) :
+theorem Ellipsoid.aux_poly_identity [DecidableEq ι] (x : ι → ℝ) : -- --- CONCL ---
     ∑ i, (X ^ 2 - C (x i)) * ∏ j ∈ univ.erase i, (X + C (x j))
       = (X ^ 2 + X) * derivative (∏ j, (X + C (x j)))
         - C (Fintype.card ι : ℝ) * ∏ j, (X + C (x j)) := by -- --- PROOF ---
@@ -78,7 +78,7 @@ theorem Ellipsoid.aux_poly_identity [DecidableEq ι] (x : ι → ℝ) :
         exact sum_congr rfl fun i _ => by ring
     _ = _ := by rw [hx, hP']; ring
 
-theorem Ellipsoid.aux_vieta (x : ι → ℝ) :
+theorem Ellipsoid.aux_vieta (x : ι → ℝ) : -- --- CONCL ---
     ∏ j, (X + C (x j)) = ∑ k ∈ range (Fintype.card ι + 1),
       C (Ellipsoid.halderElemSymm x k) * X ^ (Fintype.card ι - k) := by -- --- PROOF ---
   have h := Multiset.prod_X_add_C_eq_sum_esymm (univ.val.map x)

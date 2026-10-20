@@ -51,7 +51,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 theorem NonlinDASys.IsTrajectory.toNonlinearSys {sys : NonlinDASys n p m} (red : sys.ReducedModel)
     {τ : ℝ} {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n} {y : ℝ → Vec ℝ p} {u : ℝ → Vec ℝ m}
-    {z : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (Set.Icc 0 τ) R₀ U x y u z) :
+    {z : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (Set.Icc 0 τ) R₀ U x y u z) : -- --- CONCL ---
     red.toNonlinearSys.IsTrajectory (Set.Icc 0 τ) R₀ U x u z := by -- --- PROOF ---
   have he : Set.EqOn (fun s => sys.f (x s) (y s) (u s)) (fun s => red.toNonlinearSys.f (x s) (u s))
       (Set.Icc 0 τ) := fun s hs => by

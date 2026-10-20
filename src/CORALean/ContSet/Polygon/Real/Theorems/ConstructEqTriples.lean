@@ -38,7 +38,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.construct_eq_iUnion_triples (p : VPolytope (Vec ℝ 2)) :
+theorem VPolytope.construct_eq_iUnion_triples (p : VPolytope (Vec ℝ 2)) : -- --- CONCL ---
     p.construct = ⋃ (a : Fin p.k) (b : Fin p.k) (c : Fin p.k),
       (⟨3, ![p.V a, p.V b, p.V c]⟩ : VPolytope (Vec ℝ 2)).construct := by -- --- PROOF ---
   ext x

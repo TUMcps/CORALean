@@ -50,7 +50,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.supportFunction_exact (E : Ellipsoid n) :
+theorem Ellipsoid.supportFunction_exact (E : Ellipsoid n) : -- --- CONCL ---
     E.supportFunction.construct = E.construct := by -- --- PROOF ---
   -- the closed form is the support function of the set: it bounds it, and is attained
   have h : E.supportFunction = SupportFunction.ofSet E.construct := by

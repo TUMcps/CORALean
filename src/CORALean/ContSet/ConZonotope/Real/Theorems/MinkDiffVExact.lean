@@ -55,7 +55,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Prop. 6]: the constrained zonotope `minkDiffV Z v` denotes exactly `Z ⊖ ⟨v⟩_V`. -/
-theorem ConZonotope.minkDiffV_exact {k : ℕ} (Z : Zonotope (Vec ℝ n)) (v : Fin (k + 1) → Vec ℝ n) :
+theorem ConZonotope.minkDiffV_exact {k : ℕ} (Z : Zonotope (Vec ℝ n))
+    (v : Fin (k + 1) → Vec ℝ n) : -- --- CONCL ---
     (ConZonotope.minkDiffV Z v).construct = minkowskiDiff Z.construct
       (⟨k + 1, v⟩ : VPolytope (Vec ℝ n)).construct := by -- --- PROOF ---
   rw [VPolytope.minkowskiDiff_eq_iInter Z.convex_construct]

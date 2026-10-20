@@ -41,7 +41,7 @@ namespace CORALean.Real
 
 /-- A monomial is the product of its part outside `V` and its part in `V`. -/
 theorem PolyZonotope.monomial_split {p h : ℕ} (E : Fin p → Fin h → ℕ) (V : Finset (Fin p))
-    (a : Fin p → ℝ) (i : Fin h) :
+    (a : Fin p → ℝ) (i : Fin h) : -- --- CONCL ---
     PolyZonotope.monomial E a i
       = (∏ k, a k ^ (if k ∈ V then 0 else E k i)) * ∏ k ∈ V, a k ^ E k i := by -- --- PROOF ---
   unfold PolyZonotope.monomial

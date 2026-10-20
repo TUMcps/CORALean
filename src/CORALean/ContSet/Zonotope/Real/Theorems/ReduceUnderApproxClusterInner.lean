@@ -47,7 +47,7 @@ variable {n : ℕ}
 
 /-- [1, Sec. IV-A]: the reduced zonotope is inside `Z`, for every partition. -/
 theorem Zonotope.reduceUnderApproxCluster_inner [NeZero n] (Z : Zonotope (Vec ℝ n)) {r : ℕ}
-    (cl : Fin Z.h → Fin r) :
+    (cl : Fin Z.h → Fin r) : -- --- CONCL ---
     (Z.reduceUnderApproxCluster cl).construct ⊆ Z.construct := by -- --- PROOF ---
   -- the result is `G T` for `T(i,k) = sign(gᵢ(1))` if `gᵢ` is in `C_k`, else `0`
   let T : Mat ℝ Z.h r := fun i k => if cl i = k then (if Z.G i 0 < 0 then -1 else 1) else 0

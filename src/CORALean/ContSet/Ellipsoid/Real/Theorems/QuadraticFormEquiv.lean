@@ -50,7 +50,8 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Eq. 5], [1, Eq. 6]: the shape form and the `(A, b, c)` form denote the same ellipsoid. -/
-theorem Ellipsoid.quadratic_form_equiv {Q : Matrix n n ℝ} (hQ : Q.PosDef) (q x : n → ℝ) :
+theorem Ellipsoid.quadratic_form_equiv {Q : Matrix n n ℝ} (hQ : Q.PosDef)
+    (q x : n → ℝ) : -- --- CONCL ---
     ((x - q) ⬝ᵥ Q⁻¹ *ᵥ (x - q) ≤ 1
       ↔ x ⬝ᵥ Q⁻¹ *ᵥ x + 2 * (x ⬝ᵥ (-(Q⁻¹ *ᵥ q))) + (q ⬝ᵥ Q⁻¹ *ᵥ q - 1) ≤ 0)
     ∧ (Q⁻¹)⁻¹ = Q ∧ -(Q *ᵥ (-(Q⁻¹ *ᵥ q))) = q := by -- --- PROOF ---

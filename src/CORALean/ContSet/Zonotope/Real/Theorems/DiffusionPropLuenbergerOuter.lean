@@ -57,7 +57,7 @@ variable {n nq N : ℕ} {p : Fin N → ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- the strip residual as noise coefficients of the diagonal `R = diag r`
-theorem Zonotope.aux_stripCoeff {k : ℕ} (a r : Vec ℝ k) (h : ∀ j, |a j| ≤ r j) :
+theorem Zonotope.aux_stripCoeff {k : ℕ} (a r : Vec ℝ k) (h : ∀ j, |a j| ≤ r j) : -- --- CONCL ---
     ∃ γ : Vec ℝ k, (∀ j, |γ j| ≤ 1) ∧
       Matrix.diagonal r *ᵥ γ = a := by -- --- PROOF ---
   refine ⟨fun j => a j / r j, fun j => ?_, ?_⟩

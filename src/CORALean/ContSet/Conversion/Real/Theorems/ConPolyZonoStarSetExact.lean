@@ -109,7 +109,7 @@ theorem ConPolyZono.aux_starSet_point (cPZ : ConPolyZono (Vec ℝ n))
 
 /-- The star set with the polynomial level set predicate denotes the constrained polynomial
 zonotope. -/
-theorem ConPolyZono.starSet_exact (cPZ : ConPolyZono (Vec ℝ n)) :
+theorem ConPolyZono.starSet_exact (cPZ : ConPolyZono (Vec ℝ n)) : -- --- CONCL ---
     cPZ.starSet.construct = cPZ.construct := by -- --- PROOF ---
   ext x
   rw [ConPolyZono.mem_construct_iff]

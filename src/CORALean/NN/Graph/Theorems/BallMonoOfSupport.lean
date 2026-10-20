@@ -47,7 +47,8 @@ variable {N : ℕ}
 /-- A matrix whose support contains another's has an only-larger ball, at every
 radius. -/
 theorem GNN.ball_mono_of_support {A A' : Mat ℝ N N} (h : ∀ i j, A i j ≠ 0 → A' i j ≠ 0)
-    (v : Fin N) (r : ℕ) : GNN.ball A v r ⊆ GNN.ball A' v r := by -- --- PROOF ---
+    (v : Fin N) (r : ℕ) : -- --- CONCL ---
+    GNN.ball A v r ⊆ GNN.ball A' v r := by -- --- PROOF ---
   induction r with
   | zero => exact subset_refl _
   | succ r ih =>

@@ -58,7 +58,7 @@ variable {n p q : ℕ}
 
 /-- The run from `x0 + x̃` is the nominal run from `x0` plus the deviation. -/
 theorem Conform.Plant.state_add_dev (sys : Conform.Plant n p q) (x0 xt : Vec ℝ n)
-    (u : ℕ → Vec ℝ p) (w : ℕ → Vec ℝ n) (k : ℕ) :
+    (u : ℕ → Vec ℝ p) (w : ℕ → Vec ℝ n) (k : ℕ) : -- --- CONCL ---
     sys.state (x0 + xt) u w k = sys.state x0 u 0 k
       + ((sys.A ^ k) *ᵥ xt + ∑ i : Fin k, (sys.A ^ (i : ℕ)) *ᵥ w (k - 1 - i)) := by -- --- PROOF ---
   induction k with

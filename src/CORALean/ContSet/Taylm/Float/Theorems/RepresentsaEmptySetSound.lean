@@ -39,7 +39,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.representsa_emptySet_sound {T : Fin m → Taylm 𝕋 n}
-    (h : Taylm.representsa_emptySet T = true) : Taylm.construct T = ∅ := by -- --- PROOF ---
+    (h : Taylm.representsa_emptySet T = true) : -- --- CONCL ---
+    Taylm.construct T = ∅ := by -- --- PROOF ---
   obtain ⟨i, -, hi⟩ := List.any_eq_true.1 h
   have hlt := toReal_lt_of_ltStrict hi
   refine Set.eq_empty_of_forall_notMem fun x hx => ?_

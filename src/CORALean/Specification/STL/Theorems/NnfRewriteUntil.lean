@@ -59,7 +59,7 @@ variable {X : Type}
 
 theorem STL.Nnf.hasSampledRewrite_until (i j : ℕ) {φ ψ : STL.Nnf X} (hφ : φ.HasSampledRewrite)
     (hψ : ψ.HasSampledRewrite)
-    (hrec : ∀ j' < j, ∀ i', (STL.Nnf.until i' j' φ ψ).HasSampledRewrite) :
+    (hrec : ∀ j' < j, ∀ i', (STL.Nnf.until i' j' φ ψ).HasSampledRewrite) : -- --- CONCL ---
     (STL.Nnf.until i j φ ψ).HasSampledRewrite := by -- --- PROOF ---
   obtain ⟨⟨sTφ, hTφ⟩, ⟨sFφ, hFφ⟩, ⟨sGφ, hGφ⟩⟩ := hφ
   obtain ⟨⟨sTψ, hTψ⟩, ⟨sFψ, hFψ⟩, ⟨sGψ, hGψ⟩⟩ := hψ

@@ -43,7 +43,8 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PointSegmentSignal.at_snoc_eq {T : Type} [LinearOrder T] (tp : List T) (val : List Bool)
-    (N : T) (pv iv : Bool) (hlen : val.length = 2 * tp.length) (hlt : ∀ x ∈ tp, x < N) :
+    (N : T) (pv iv : Bool) (hlen : val.length = 2 * tp.length)
+    (hlt : ∀ x ∈ tp, x < N) : -- --- CONCL ---
     (PointSegmentSignal.mk (tp ++ [N]) (val ++ [pv, iv])).at N = pv := by -- --- PROOF ---
   have h : (tp ++ [N]).takeWhile (· ≤ N) = tp ++ [N] := by
     rw [List.takeWhile_eq_self_iff]

@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.isFullDim_sound {E : Ellipsoid 𝕋 n} (h : E.isFullDim = true) :
+theorem Ellipsoid.isFullDim_sound {E : Ellipsoid 𝕋 n} (h : E.isFullDim = true) : -- --- CONCL ---
     (interior E.construct).Nonempty := by -- --- PROOF ---
   simp only [Ellipsoid.isFullDim, List.all_eq_true, List.mem_finRange, forall_const,
     Bool.and_eq_true] at h

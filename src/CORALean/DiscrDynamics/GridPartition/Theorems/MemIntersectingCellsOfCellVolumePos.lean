@@ -45,7 +45,7 @@ variable {n : ℕ}
 /-- A cell holding positive volume of `K ⊆ I` is among `intersectingCells P I`. -/
 theorem GridPartition.mem_intersectingCells_of_cellVolume_pos (P : GridPartition n)
     (I : Real.Interval (Vec ℝ n)) (hn : n ≠ 0) {K : Set (Vec ℝ n)} (hK : K ⊆ I.construct)
-    {c : ℕ} (h1 : 1 ≤ c) (h2 : c ≤ P.nrOfCells) (hv : 0 < P.cellVolume K c) :
+    {c : ℕ} (h1 : 1 ≤ c) (h2 : c ≤ P.nrOfCells) (hv : 0 < P.cellVolume K c) : -- --- CONCL ---
     c ∈ P.intersectingCells I := by -- --- PROOF ---
   -- positive volume means the intersection is not empty
   have hne : (K ∩ (P.cellInterval c).construct).Nonempty := by

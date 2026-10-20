@@ -54,7 +54,8 @@ theorem aux_derivDenom_mono {s t : ℝ} (hs : 0 ≤ s) (hst : s ≤ t) :
   unfold aux_derivDenom
   linarith
 
-theorem aux_sigmoidDeriv_eq (t : ℝ) : sigmoidDeriv t = (aux_derivDenom t)⁻¹ := by -- --- PROOF ---
+theorem aux_sigmoidDeriv_eq (t : ℝ) : -- --- CONCL ---
+    sigmoidDeriv t = (aux_derivDenom t)⁻¹ := by -- --- PROOF ---
   show (1 + Real.exp (-t))⁻¹ * (1 + Real.exp (-(-t)))⁻¹ = _
   rw [neg_neg, ← mul_inv, aux_derivDenom, Real.cosh_eq]
   congr 1

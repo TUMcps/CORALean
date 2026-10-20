@@ -54,7 +54,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n p : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The least corner product is attained at a pair of endpoints. -/
-theorem aux_mulLo_attained {a b c d : ℝ} (hab : a ≤ b) (hcd : c ≤ d) :
+theorem aux_mulLo_attained {a b c d : ℝ} (hab : a ≤ b) (hcd : c ≤ d) : -- --- CONCL ---
     ∃ y x, (a ≤ y ∧ y ≤ b) ∧ (c ≤ x ∧ x ≤ d) ∧
       y * x = Real.Interval.mulLo a b c d := by -- --- PROOF ---
   unfold Real.Interval.mulLo
@@ -67,7 +67,7 @@ theorem aux_mulLo_attained {a b c d : ℝ} (hab : a ≤ b) (hcd : c ≤ d) :
     · exact ⟨b, d, ⟨hab, le_rfl⟩, ⟨hcd, le_rfl⟩, rfl⟩
 
 /-- The greatest likewise. -/
-theorem aux_mulHi_attained {a b c d : ℝ} (hab : a ≤ b) (hcd : c ≤ d) :
+theorem aux_mulHi_attained {a b c d : ℝ} (hab : a ≤ b) (hcd : c ≤ d) : -- --- CONCL ---
     ∃ y x, (a ≤ y ∧ y ≤ b) ∧ (c ≤ x ∧ x ≤ d) ∧
       y * x = Real.Interval.mulHi a b c d := by -- --- PROOF ---
   unfold Real.Interval.mulHi

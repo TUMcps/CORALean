@@ -49,7 +49,7 @@ theorem aux_normUpperBound_nonneg (A : Interval (Mat 𝕋 n n)) :
   rw [MatExp.normUpperBound, toReal_maximum, toReal_zero]
   exact le_max_left _ _
 
-theorem aux_row_le_normUpperBound (A : Interval (Mat 𝕋 n n)) (i : Fin n) :
+theorem aux_row_le_normUpperBound (A : Interval (Mat 𝕋 n n)) (i : Fin n) : -- --- CONCL ---
     (∑ j, A.nominal.absMax i j) ≤ toReal (MatExp.normUpperBound A) := by -- --- PROOF ---
   set d : Mat 𝕋 n n := fun i j => maximum (absolute (A.inf i j)) (absolute (A.sup i j)) with hd
   have heq : ∀ j, |toReal (d i j)| = A.nominal.absMax i j := fun j => by
@@ -66,7 +66,7 @@ theorem aux_row_le_normUpperBound (A : Interval (Mat 𝕋 n n)) (i : Fin n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.norm_absMax_le_normUpperBound (A : Interval (Mat 𝕋 n n)) :
+theorem MatExp.norm_absMax_le_normUpperBound (A : Interval (Mat 𝕋 n n)) : -- --- CONCL ---
     ‖A.nominal.absMax‖ ≤ toReal (MatExp.normUpperBound A) := by -- --- PROOF ---
   have hnn := aux_normUpperBound_nonneg A
   have hNN : ‖A.nominal.absMax‖₊ ≤ (toReal (MatExp.normUpperBound A)).toNNReal := by

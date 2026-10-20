@@ -53,7 +53,8 @@ variable {X : Type} [NormedAddCommGroup X] [NormedSpace ℝ X]
 
 /-- A solution of `ẋ = F(x)` on `[a, t]` through a zero of `F` at `a` is constant there. -/
 theorem lipschitzSolution_const_of_zero {F : X → X} {K : ℝ≥0} (hF : LipschitzWith K F)
-    {y : ℝ → X} {a t : ℝ} (hy : ∀ u ∈ Icc a t, HasDerivAt y (F (y u)) u) (hFa : F (y a) = 0) :
+    {y : ℝ → X} {a t : ℝ} (hy : ∀ u ∈ Icc a t, HasDerivAt y (F (y u)) u)
+    (hFa : F (y a) = 0) : -- --- CONCL ---
     ∀ u ∈ Icc a t, y u = y a := by -- --- PROOF ---
   intro u hu
   have := lipschitzSolution_unique hF (z := fun v => y (a + v)) (w := fun _ => y a) (M := t - a)

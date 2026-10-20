@@ -60,7 +60,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem MatExp.exp_mem_expMatZonoEnclosure (M : Zonotope (Mat 𝕋 n n)) (η : ℕ)
     {A : Mat ℝ n n} (hA : A ∈ M.construct)
-    (hε : toReal (MatExp.normUpperBound M.matInterval) / ((η : ℝ) + 2) ≤ 1 / 2) :
+    (hε : toReal (MatExp.normUpperBound M.matInterval) / ((η : ℝ) + 2) ≤ 1 / 2) : -- --- CONCL ---
     exp A ∈ (MatExp.expMatZonoEnclosure M η).construct := by -- --- PROOF ---
   have hnorm : ‖A‖ ≤ toReal (MatExp.normUpperBound M.matInterval) :=
     le_trans (Real.Interval.norm_le_absMax (Zonotope.matInterval_contains M hA))

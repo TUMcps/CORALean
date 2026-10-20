@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.expW_mem (M : Mat 𝕋 n n) (t : 𝕋) :
+theorem MatExp.expW_mem (M : Mat 𝕋 n n) (t : 𝕋) : -- --- CONCL ---
     Real.MatExp.expW (toRealMat M) (toReal t) ∈ (MatExp.expW M t).construct := by -- --- PROOF ---
   refine Interval.mem_mat_iff.mpr fun i j => ?_
   have hh := MatExp.halfSqBounds_mem t

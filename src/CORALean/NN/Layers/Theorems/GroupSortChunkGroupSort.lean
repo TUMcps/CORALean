@@ -37,7 +37,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem groupSortChunk_groupSort {g : ℕ} (hg : 0 < g) (x : Vec ℝ n) (k : ℕ) :
+theorem groupSortChunk_groupSort {g : ℕ} (hg : 0 < g) (x : Vec ℝ n) (k : ℕ) : -- --- CONCL ---
     groupSortChunk g (groupSort g x) k =
       (groupSortChunk g x k).mergeSort (fun a b => decide (a ≤ b)) := by -- --- PROOF ---
   apply List.ext_getElem

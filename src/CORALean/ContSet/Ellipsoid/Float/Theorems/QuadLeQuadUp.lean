@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `aᵀ Q a ≤ quadUp a`, `Q` and `a` the stored floats read as reals. -/
-theorem Ellipsoid.quad_le_quadUp (E : Ellipsoid 𝕋 n) (a : Vec 𝕋 n) :
+theorem Ellipsoid.quad_le_quadUp (E : Ellipsoid 𝕋 n) (a : Vec 𝕋 n) : -- --- CONCL ---
     toRealVec a ⬝ᵥ (toRealMat E.Q *ᵥ toRealVec a) ≤ toReal (E.quadUp a) := by -- --- PROOF ---
   refine le_trans ?_ (sum_le_sumUp _)
   refine Finset.sum_le_sum fun i _ => ?_

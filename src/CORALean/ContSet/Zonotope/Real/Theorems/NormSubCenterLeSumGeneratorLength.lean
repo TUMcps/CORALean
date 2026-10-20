@@ -39,7 +39,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.norm₂_sub_center_le_sum_generatorLength {Z : Zonotope (Vec ℝ n)}
-    {x : Vec ℝ n} (hx : x ∈ Z.construct) :
+    {x : Vec ℝ n} (hx : x ∈ Z.construct) : -- --- CONCL ---
     ‖x - Z.c‖₂ ≤ ∑ j, Z.generatorLength j := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hx
   rw [add_sub_cancel_left]

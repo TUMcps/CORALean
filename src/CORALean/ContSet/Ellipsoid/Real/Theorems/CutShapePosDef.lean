@@ -54,7 +54,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Ellipsoid.aux_quad (a κ : ℝ) (c x : Vec ℝ n) :
+theorem Ellipsoid.aux_quad (a κ : ℝ) (c x : Vec ℝ n) : -- --- CONCL ---
     x ⬝ᵥ ((a • (1 - κ • vecMulVec c c : Mat ℝ n n)) *ᵥ x)
       = a * (x ⬝ᵥ x - κ * (c ⬝ᵥ x) ^ 2) := by -- --- PROOF ---
   rw [Matrix.smul_mulVec, Matrix.sub_mulVec, Matrix.smul_mulVec, Matrix.one_mulVec,
@@ -74,7 +74,7 @@ theorem Ellipsoid.aux_cs (c x : Vec ℝ n) (hc : c ⬝ᵥ c = 1) : (c ⬝ᵥ x) 
 
 /-- [1, Eq. 16]'s shape matrix is positive definite. -/
 theorem Ellipsoid.cutShape_posDef {c : Vec ℝ n} (hc : c ⬝ᵥ c = 1) {γ : ℝ}
-    (hn : 2 ≤ n) (hγ : 0 < γ) (hγn : (n : ℝ) * γ ^ 2 < 1) :
+    (hn : 2 ≤ n) (hγ : 0 < γ) (hγn : (n : ℝ) * γ ^ 2 < 1) : -- --- CONCL ---
     (Ellipsoid.cutShape n c γ).PosDef := by -- --- PROOF ---
   have hn' : (2 : ℝ) ≤ n := by exact_mod_cast hn
   have h1 : 0 < 1 - γ ^ 2 := by nlinarith [sq_nonneg γ]

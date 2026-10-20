@@ -69,7 +69,7 @@ theorem aux_l2_opNorm_nonneg {m h : ℕ} (A : Matrix (Fin m) (Fin h) ℝ) :
 /-- The spectral norm is at most the root of the sum of the squared entries: the operator norm
 of the Euclidean map is bounded by Cauchy-Schwarz on each output coordinate. -/
 theorem aux_l2_opNorm_le {m h : ℕ} (A : Matrix (Fin m) (Fin h) ℝ) {s : ℝ} (hs0 : 0 ≤ s)
-    (hs : ∑ i, ∑ j, A i j ^ 2 ≤ s ^ 2) :
+    (hs : ∑ i, ∑ j, A i j ^ 2 ≤ s ^ 2) : -- --- CONCL ---
     (Matrix.instL2OpNormedAddCommGroup (𝕜 := ℝ)).toNorm.norm A ≤ s := by -- --- PROOF ---
   -- the norm is the operator norm of the Euclidean map, so bound it on each vector
   have hdef : (Matrix.instL2OpNormedAddCommGroup (𝕜 := ℝ)).toNorm.norm A
@@ -105,7 +105,7 @@ theorem aux_l2_opNorm_le {m h : ℕ} (A : Matrix (Fin m) (Fin h) ℝ) {s : ℝ} 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.maxBackReachMu_le_muFloat (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η : ℕ}
-    (hη : sys.OrderAdmissibleFloat Δt Δt η) (p : ℕ) (B : Zonotope (Vec 𝕋 n)) :
+    (hη : sys.OrderAdmissibleFloat Δt Δt η) (p : ℕ) (B : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     sys.maxBackReachMu (toReal Δt) (InflatedContSet.nominal B)
       ≤ toReal (sys.maxBackReachMuFloat Δt η p B) := by -- --- PROOF ---
   set EI := Interval.matPlus (sys.expIntervalFloat Δt Δt η)

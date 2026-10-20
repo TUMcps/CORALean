@@ -44,7 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.isFullDim_sound {Z : Zonotope (Vec 𝕋 n)} {H : Mat 𝕋 Z.h n}
-    (h : Z.isFullDimWith H = true) : (interior Z.construct).Nonempty := by -- --- PROOF ---
+    (h : Z.isFullDimWith H = true) : -- --- CONCL ---
+    (interior Z.construct).Nonempty := by -- --- PROOF ---
   simp only [Zonotope.isFullDimWith, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨hc, hE⟩ := h

@@ -39,7 +39,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Capsule plus vector is exactly the translate. -/
-theorem Capsule.plusVec_exact (C : Capsule n) (v : Vec ℝ n) :
+theorem Capsule.plusVec_exact (C : Capsule n) (v : Vec ℝ n) : -- --- CONCL ---
     (C.plusVec v).construct = (fun x => x + v) '' C.construct := by -- --- PROOF ---
   have key : ∀ (x : Vec ℝ n) (t : ℝ), (x + v) - (C.c + v + t • C.g) = x - (C.c + t • C.g) := by
     intro x t; abel

@@ -59,7 +59,7 @@ noncomputable def SyntaxTree.funHanPowerOddCora (e : ℤ) (int prev : Dom) : Out
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `aux_power_` for `exp = -1` loses `x = 1`, a solution of `x^(-1) ∈ [-1,2]` in `[-2,2]`. -/
-theorem SyntaxTree.powerOddCora_counterexample :
+theorem SyntaxTree.powerOddCora_counterexample : -- --- CONCL ---
     ∃ (int prev : Dom) (s : ℝ), Dom.contains prev s ∧ Dom.contains int (s ^ (-1 : ℤ)) ∧
       ∀ val, funHanPowerOddCora (-1) int prev = .ok val →
         ¬ Dom.contains val s := by -- --- PROOF ---

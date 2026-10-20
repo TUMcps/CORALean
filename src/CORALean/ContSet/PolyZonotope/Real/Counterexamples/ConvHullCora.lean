@@ -47,7 +47,7 @@ namespace CORALean.Real
 
 /-- The curve `(t, t², t⁴)`, `t ∈ [-1, 1]`, as a polynomial zonotope: one factor, three
 generators, and no independent ones. -/
-theorem PolyZonotope.aux_curve_mem (x : Fin 3 → ℝ) :
+theorem PolyZonotope.aux_curve_mem (x : Fin 3 → ℝ) : -- --- CONCL ---
     x ∈ (⟨1, 3, 0, 0, ![Pi.single 0 1, Pi.single 1 1, Pi.single 2 1],
         fun _ j => ![1, 2, 4] j, Fin.elim0⟩ : PolyZonotope (Fin 3 → ℝ)).construct
       ↔ ∃ t : ℝ, |t| ≤ 1 ∧ x = ![t, t ^ 2, t ^ 4] := by -- --- PROOF ---
@@ -65,7 +65,8 @@ theorem PolyZonotope.aux_curve_mem (x : Fin 3 → ℝ) :
 `-1`, `0` or `1`, and then the first two coordinates cannot match. -/
 theorem PolyZonotope.aux_no_chord (s t lam : ℝ) (hs : |s| ≤ 1) (ht : |t| ≤ 1) (h0 : 0 ≤ lam)
     (h1 : lam ≤ 1) (hx : lam * s + (1 - lam) * t = 0) (hy : lam * s ^ 2 + (1 - lam) * t ^ 2 = 2 / 3)
-    (hz : lam * s ^ 4 + (1 - lam) * t ^ 4 = 2 / 3) : False := by -- --- PROOF ---
+    (hz : lam * s ^ 4 + (1 - lam) * t ^ 4 = 2 / 3) : -- --- CONCL ---
+    False := by -- --- PROOF ---
   have hs2 : s ^ 2 ≤ 1 := by nlinarith [abs_le.mp hs]
   have ht2 : t ^ 2 ≤ 1 := by nlinarith [abs_le.mp ht]
   -- `y - z` is a sum of two nonnegative terms, so both vanish
@@ -123,7 +124,7 @@ theorem PolyZonotope.aux_no_chord (s t lam : ℝ) (hs : |s| ≤ 1) (ht : |t| ≤
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The chord set `linComb(pZ, pZ)` is not convex, so it is not the convex hull of `pZ`. -/
-theorem PolyZonotope.convHull_cora_counterexample :
+theorem PolyZonotope.convHull_cora_counterexample : -- --- CONCL ---
     ∃ pZ : PolyZonotope (Fin 3 → ℝ), ¬ Convex ℝ (pZ.linComb pZ).construct
       ∧ (pZ.linComb pZ).construct ≠ convexHull ℝ pZ.construct := by -- --- PROOF ---
   set pZ : PolyZonotope (Fin 3 → ℝ) := ⟨1, 3, 0, 0, ![Pi.single 0 1, Pi.single 1 1, Pi.single 2 1],

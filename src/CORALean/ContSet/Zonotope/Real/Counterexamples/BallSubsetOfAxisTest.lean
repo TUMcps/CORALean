@@ -46,7 +46,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.ball_subset_of_axis_test_counterexample :
+theorem Zonotope.ball_subset_of_axis_test_counterexample : -- --- CONCL ---
     ∃ (Z : Zonotope (Vec ℝ 1)) (ν : ℝ), 0 ≤ ν ∧
       (∀ i : Fin 1, ν • (Pi.single i 1 : Vec ℝ 1) ∈ Z.construct) ∧
       ¬ ∀ x : Vec ℝ 1, ‖x‖₂ ≤ √(ν ^ 2 / 1) → Z.c + x ∈ Z.construct := by -- --- PROOF ---

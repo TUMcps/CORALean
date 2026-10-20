@@ -62,7 +62,8 @@ theorem LinearSys.not_verifySpec_of_verifyStep {Reach : Set (Vec ℝ n)}
     (G : Fin (r + 1) → HPolytope (Vec ℝ n)) (F : Fin (w + 1) → HPolytope (Vec ℝ n)) (εmax : ℝ)
     (hfalse :
       0 < (LinearSys.verifyStep reachFn innerApprox distG distF G F le εmax).1.νGin ∨
-      (LinearSys.verifyStep reachFn innerApprox distG distF G F le εmax).1.νFin ≤ 0) :
+      (LinearSys.verifyStep reachFn innerApprox distG distF G F le εmax).1.νFin ≤ 0)
+    : -- --- CONCL ---
     ¬ LinearSys.VerifySpec G F Reach := by -- --- PROOF ---
   rintro ⟨hGspec, hFspec⟩
   simp only [LinearSys.verifyStep] at hfalse

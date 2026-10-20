@@ -57,7 +57,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.zonotope_prob (p : ℕ) (P : ProbZonotope 𝕋 n) (M : 𝕋) {m : ℝ} (hm : 0 < m)
-    (hmM : m ≤ toReal M) {ν : Measure (EuclideanSpace ℝ (Fin n))} (hν : ν ∈ P.laws) :
+    (hmM : m ≤ toReal M) {ν : Measure (EuclideanSpace ℝ (Fin n))}
+    (hν : ν ∈ P.laws) : -- --- CONCL ---
     (gaussianReal 0 1 (Set.Icc (-m) m)) ^ n
       ≤ ν (toLp 2 '' (P.zonotope p M).construct) := by -- --- PROOF ---
   obtain ⟨μ, hμ, S, hS, hpsd, rfl⟩ := hν

@@ -40,7 +40,7 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.cartProd_outer (E₁ : Ellipsoid n) (E₂ : Ellipsoid m) :
+theorem Ellipsoid.cartProd_outer (E₁ : Ellipsoid n) (E₂ : Ellipsoid m) : -- --- CONCL ---
     (fun p : Vec ℝ n × Vec ℝ m => (Fin.append p.1 p.2 : Vec ℝ (n + m))) ''
         (E₁.construct ×ˢ E₂.construct) ⊆ (E₁.cartProd E₂).construct := by -- --- PROOF ---
   rintro _ ⟨⟨x, y⟩, ⟨hx, hy⟩, rfl⟩

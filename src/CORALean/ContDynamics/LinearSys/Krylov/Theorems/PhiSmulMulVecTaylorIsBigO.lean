@@ -57,7 +57,8 @@ variable {k : ℕ}
 
 /-- [1, Remark 4]'s step: `φ_j(tN)x - Σ_{i<q} tⁱ/(i + j)! Nⁱx = O(t^q)` as `t → 0`, `φ_j` the
 series (4.1a), for a complex matrix `N`. -/
-theorem Krylov.phi_smul_mulVec_taylor_isBigO (N : Mat ℂ k k) (x : Fin k → ℂ) (j q : ℕ) :
+theorem Krylov.phi_smul_mulVec_taylor_isBigO (N : Mat ℂ k k) (x : Fin k → ℂ)
+    (j q : ℕ) : -- --- CONCL ---
     (fun t : ℝ => (∑' i : ℕ, ((Nat.factorial (i + j) : ℝ)⁻¹) • (t • N) ^ i) *ᵥ x -
         ∑ i ∈ Finset.range q, ((t ^ i * ((Nat.factorial (i + j) : ℝ)⁻¹) : ℝ)) • (N ^ i *ᵥ x))
       =O[𝓝 0] fun t => t ^ q := by -- --- PROOF ---

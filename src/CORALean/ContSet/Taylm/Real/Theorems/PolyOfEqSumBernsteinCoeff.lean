@@ -48,7 +48,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.polyOf_eq_sum_bernsteinCoeff (L : List (ℝ × (Fin n → ℕ))) (N : ℕ)
-    (hL : ∀ a ∈ L, ∀ k, a.2 k ≤ N) (t : Vec ℝ n) :
+    (hL : ∀ a ∈ L, ∀ k, a.2 k ≤ N) (t : Vec ℝ n) : -- --- CONCL ---
     Taylm.polyOf L t = ∑ β : Fin n → Fin (N + 1), Taylm.bernsteinCoeff L N β *
       ∏ k, Taylm.bernsteinBasis N (β k) ((t k + 1) / 2) := by -- --- PROOF ---
   induction L with

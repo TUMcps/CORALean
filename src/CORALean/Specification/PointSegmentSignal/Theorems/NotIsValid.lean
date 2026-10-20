@@ -37,7 +37,8 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PointSegmentSignal.not_isValid {T : Type} [LinearOrder T] [Zero T]
-    (s : PointSegmentSignal T) (hs : s.IsValid) : s.not.IsValid := by -- --- PROOF ---
+    (s : PointSegmentSignal T) (hs : s.IsValid) : -- --- CONCL ---
+    s.not.IsValid := by -- --- PROOF ---
   obtain ⟨h1, h2, h3, h4, h5⟩ := hs
   refine ⟨h1, by simpa [PointSegmentSignal.not] using h2, h3, h4, ?_⟩
   intro i hi hi'

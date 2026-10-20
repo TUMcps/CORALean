@@ -55,7 +55,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The guard is that `x P` dominates every `x (g q)`. -/
-theorem aux_holds_foldr_ge {N : ℕ} (P : Fin N) (x : Vec ℝ N) :
+theorem aux_holds_foldr_ge {N : ℕ} (P : Fin N) (x : Vec ℝ N) : -- --- CONCL ---
     ∀ {j : ℕ} (g : Fin j → Fin N),
       x ∈ (Fin.foldr j (fun q acc => (CatCond.ge P (g q)).and_ acc) (CatCond.ge P P)).construct
         ↔ ∀ q, x (g q) ≤ x P := by -- --- PROOF ---

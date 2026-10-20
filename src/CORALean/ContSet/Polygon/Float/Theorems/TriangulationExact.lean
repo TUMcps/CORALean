@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.triangulation_exact (P : Polygon 𝕋) :
+theorem Polygon.triangulation_exact (P : Polygon 𝕋) : -- --- CONCL ---
     (∀ t ∈ (Polygon.triangulation P).sets, t.k = 3) ∧
       ContSet.construct (Polygon.triangulation P) = ContSet.construct P := by -- --- PROOF ---
   constructor

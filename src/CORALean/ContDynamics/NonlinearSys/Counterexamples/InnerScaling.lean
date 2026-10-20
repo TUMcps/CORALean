@@ -52,7 +52,7 @@ open Set CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A box minus itself, by [1, Prop. 3] as line 6 stores it: the face `α₁ = l₁`. -/
-private theorem aux_boxDiffBounds_self (l u : Fin 2 → ℝ) :
+private theorem aux_boxDiffBounds_self (l u : Fin 2 → ℝ) : -- --- CONCL ---
     boxDiffBounds l u l u = (l, Function.update u 0 (l 0)) := by -- --- PROOF ---
   have harg : ((List.finRange 2).argmax fun i => max ((l - l) i) ((u - u) i)) = some 0 := by
     simp [List.argmax, List.finRange_succ, List.argAux]

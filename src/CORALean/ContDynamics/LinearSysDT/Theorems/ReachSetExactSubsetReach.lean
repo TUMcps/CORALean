@@ -50,7 +50,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.reachSetExact_subset_reach (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o)
-    (R₀ U : S n) (k : ℕ) :
+    (R₀ U : S n) (k : ℕ) : -- --- CONCL ---
     sys.reachSetExact R₀ U k ⊆ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
   induction k with
   | zero => exact subset_rfl

@@ -56,7 +56,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
 over-approximates, whichever partition names them. -/
 theorem PolyZonotope.relaxExp_outer (pZ : PolyZonotope α)
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p)
-    (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) :
+    (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) : -- --- CONCL ---
     pZ.construct ⊆ (pZ.relaxExp part k₀).construct := by -- --- PROOF ---
   rintro x ⟨a, β, ha, hβ, rfl⟩
   have habs : |PolyZonotope.monomial pZ.E a (part.right 0)

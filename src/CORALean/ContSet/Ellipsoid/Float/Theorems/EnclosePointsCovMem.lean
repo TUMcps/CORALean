@@ -94,7 +94,7 @@ theorem Ellipsoid.aux_mem_of_remainder (E : Ellipsoid 𝕋 n) (G : Mat 𝕋 n n)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.enclosePointsCov_mem (steps : ℕ) (pts : Fin N → Vec 𝕋 n) (T U : Mat 𝕋 n n)
-    (j : Fin N) :
+    (j : Fin N) : -- --- CONCL ---
     toRealVec (pts j) ∈ (Ellipsoid.enclosePointsCov steps pts T U).construct := by -- --- PROOF ---
   unfold Ellipsoid.enclosePointsCov
   extract_lets cV c OV orientedMatrix ntV nt maxDist r D TUV GV G shrink uV u lo hi err

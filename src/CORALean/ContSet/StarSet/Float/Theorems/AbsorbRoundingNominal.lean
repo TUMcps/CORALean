@@ -42,7 +42,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every point of the set, box included, is a nominal point of `absorbRounding`. -/
-theorem StarSet.absorbRounding_nominal (s : StarSet 𝕋 n) :
+theorem StarSet.absorbRounding_nominal (s : StarSet 𝕋 n) : -- --- CONCL ---
     s.construct ⊆ nominalSet s.absorbRounding := by -- --- PROOF ---
   -- a point is a nominal point plus an error within the box
   rintro _ ⟨y, hy, e, he, rfl⟩

@@ -52,7 +52,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem Ellipsoid.aux_upper {a c r : ℝ} (ha : 0 < a) (hc : 0 < c) (hr : 0 < r)
-    (hp : 2 * (a * c) * r ^ 3 + (a + c) * r ^ 2 - (a + c) * r - 2 = 0) :
+    (hp : 2 * (a * c) * r ^ 3 + (a + c) * r ^ 2 - (a + c) * r - 2 = 0) : -- --- CONCL ---
     r < (a + Real.sqrt (a * (a + 8))) / (2 * a) := by -- --- PROOF ---
   -- `ρ` is the positive zero of the parabola `a x² − a x − 2`, and exceeds `1`
   set S := Real.sqrt (a * (a + 8)) with hS

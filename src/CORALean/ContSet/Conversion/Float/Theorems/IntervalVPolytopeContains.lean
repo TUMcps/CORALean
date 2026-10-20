@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.vPolytope_contains (I : Interval (Vec 𝕋 n)) :
+theorem Interval.vPolytope_contains (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
     I.construct ⊆ (Interval.vPolytope I).construct := by -- --- PROOF ---
   intro x hx
   have hnom : x ∈ InflatedContSet.nominalSet (Interval.vPolytope I) := by

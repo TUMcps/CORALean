@@ -45,7 +45,7 @@ variable {n : ℕ}
 
 /-- At most `o·n` generators survive the reduction, and the boxing adds `n`. -/
 theorem PolyZonotope.restructureReduce_order_le (pZ : PolyZonotope (Vec ℝ n)) {o : ℕ}
-    (ho : 0 < o) :
+    (ho : 0 < o) : -- --- CONCL ---
     (pZ.restructureReduce o).h + (pZ.restructureReduce o).q
       ≤ (o + 1) * n := by -- --- PROOF ---
   have hred : (pZ.reduce o).h ≤ o * n :=

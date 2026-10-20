@@ -44,7 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_softplus_lo_le {β : 𝕋} {k nl kl : ℕ} {l u : 𝕋} (h : IsSoftplusBox β k nl l u) :
+theorem aux_softplus_lo_le {β : 𝕋} {k nl kl : ℕ} {l u : 𝕋}
+    (h : IsSoftplusBox β k nl l u) : -- --- CONCL ---
     toReal ((softplusEnclosure β k nl kl).lo l) ≤
       Real.softplus (toReal β) (toReal l) := by -- --- PROOF ---
   obtain ⟨hβ, -, hD⟩ := h
@@ -68,7 +69,8 @@ theorem aux_softplus_lo_le {β : 𝕋} {k nl kl : ℕ} {l u : 𝕋} (h : IsSoftp
   show toReal (divDown (logDown nl kl D) β) ≤ _
   exact le_trans hdiv (div_le_div_of_nonneg_right hlog hβ.le)
 
-theorem aux_softplus_le_hi {β : 𝕋} {k nl kl : ℕ} {l u : 𝕋} (h : IsSoftplusBox β k nl l u) :
+theorem aux_softplus_le_hi {β : 𝕋} {k nl kl : ℕ} {l u : 𝕋}
+    (h : IsSoftplusBox β k nl l u) : -- --- CONCL ---
     Real.softplus (toReal β) (toReal u) ≤
       toReal ((softplusEnclosure β k nl kl).hi u) := by -- --- PROOF ---
   obtain ⟨hβ, hU, -⟩ := h

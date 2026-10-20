@@ -44,7 +44,7 @@ noncomputable def EIM.A : Interval (Mat ℝ 2 2) :=
 
 /-- `A.absMax` is the same diagonal matrix at `0.01`: the two endpoints agree in
 absolute value on the diagonal, and off it both endpoints are already `0`. -/
-theorem EIM.absMax_eq :
+theorem EIM.absMax_eq : -- --- CONCL ---
     EIM.A.absMax = Matrix.diagonal (fun _ : Fin 2 => (0.01:ℝ)) := by -- --- PROOF ---
   funext i j
   rcases eq_or_ne i j with h | h

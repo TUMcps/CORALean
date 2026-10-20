@@ -58,7 +58,7 @@ even and `E_{k₀,j} ≤ E_{k₀,i}`, drift in one direction only. -/
 theorem PolyZonotope.sub_monomial_nonpos {p h : ℕ} (E : Fin p → Fin h → ℕ)
     {a : Fin p → ℝ} (ha : ∀ k, |a k| ≤ 1) {i j : Fin h} {k₀ : Fin p}
     (hsim : ∀ k, k ≠ k₀ → E k i = E k j) (heven : ∀ k, Even (E k i))
-    (hevenj : Even (E k₀ j)) (hle : E k₀ j ≤ E k₀ i) : -- --- CONCL ---
+    (hevenj : Even (E k₀ j)) (hle : E k₀ j ≤ E k₀ i) :
     PolyZonotope.monomial E a i - PolyZonotope.monomial E a j ≤ 0 :=
   -- both exponents at `k₀` even and ordered is the second disjunct of the sign fact
   PolyZonotope.sub_monomial_nonpos_of_pow E hsim (fun k _ => heven k)

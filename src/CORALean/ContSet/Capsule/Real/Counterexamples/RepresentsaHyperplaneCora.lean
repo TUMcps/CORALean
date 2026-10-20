@@ -78,7 +78,7 @@ theorem Capsule.aux_one_mem : (fun _ => (1 : ℝ)) ∈ Capsule.aux_unitSegment.c
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The set is a segment of positive length, no hyperplane; CORA answers `true`. -/
-theorem Capsule.representsa_hyperplane_cora_counterexample :
+theorem Capsule.representsa_hyperplane_cora_counterexample : -- --- CONCL ---
     (¬ ∃ (f : (Fin 1 → ℝ) →ₗ[ℝ] ℝ) (c : ℝ), f ≠ 0 ∧
         Capsule.aux_unitSegment.construct = {x | f x = c}) ∧
       Capsule.aux_unitSegment.representsaHyperplaneCora = true := by -- --- PROOF ---

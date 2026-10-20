@@ -53,7 +53,8 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Formula.exists_nnf (c : ℝ≥0) (φ : STL.Formula X) (hstl : φ.IsStl)
-    (hdiv : φ.CDivisible c) : ∃ n n' : STL.Nnf X,
+    (hdiv : φ.CDivisible c) : -- --- CONCL ---
+    ∃ n n' : STL.Nnf X,
       (∀ ξ, (n.toFormula.scale c).Sat ξ ↔ φ.Sat ξ) ∧
         ∀ ξ, (n'.toFormula.scale c).Sat ξ ↔ ¬ φ.Sat ξ := by -- --- PROOF ---
   induction φ with

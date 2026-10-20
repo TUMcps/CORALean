@@ -37,7 +37,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Dropping the equality rows `0 = 0` leaves the set unchanged. -/
-theorem HPolytope.dropTrivialEqs_exact (P : HPolytope α) :
+theorem HPolytope.dropTrivialEqs_exact (P : HPolytope α) : -- --- CONCL ---
     P.dropTrivialEqs.construct = P.construct := by -- --- PROOF ---
   classical
   rw [HPolytope.dropTrivialEqs, HPolytope.restrict_construct]

@@ -47,7 +47,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.reach_eq_toLinParam (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o)
-    (R₀ U : S n) (k : ℕ) :
+    (R₀ U : S n) (k : ℕ) : -- --- CONCL ---
     sys.toLinParam.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ =
       sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ := by -- --- PROOF ---
   induction k with

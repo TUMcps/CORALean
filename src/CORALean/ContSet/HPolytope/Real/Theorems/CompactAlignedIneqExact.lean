@@ -38,7 +38,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.compactAlignedIneq_exact (P : HPolytope (Vec ℝ n)) :
+theorem HPolytope.compactAlignedIneq_exact (P : HPolytope (Vec ℝ n)) : -- --- CONCL ---
     P.compactAlignedIneq.construct = P.construct := by -- --- PROOF ---
   rw [← P.normalizeRows_exact]
   unfold HPolytope.compactAlignedIneq

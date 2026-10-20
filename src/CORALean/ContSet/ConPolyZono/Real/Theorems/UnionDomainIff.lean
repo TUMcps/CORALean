@@ -61,7 +61,8 @@ theorem ConPolyZono.aux_meanSq_nonneg {p : ℕ} (a : Fin p → ℝ) :
   exact Finset.sum_nonneg fun k _ => sq_nonneg _
 
 /-- Over the unit cube it is at most one, the empty block giving `0`. -/
-theorem ConPolyZono.aux_meanSq_le_one {p : ℕ} {a : Fin p → ℝ} (ha : ∀ k, |a k| ≤ 1) :
+theorem ConPolyZono.aux_meanSq_le_one {p : ℕ} {a : Fin p → ℝ}
+    (ha : ∀ k, |a k| ≤ 1) : -- --- CONCL ---
     ConPolyZono.unionMeanSq a ≤ 1 := by -- --- PROOF ---
   rcases Nat.eq_zero_or_pos p with hp | hp
   · subst hp; simp [ConPolyZono.unionMeanSq]
@@ -78,7 +79,8 @@ theorem ConPolyZono.aux_meanSq_le_one {p : ℕ} {a : Fin p → ℝ} (ha : ∀ k,
 
 /-- It vanishes only where the whole block does. -/
 theorem ConPolyZono.aux_meanSq_eq_zero {p : ℕ} {a : Fin p → ℝ}
-    (h : ConPolyZono.unionMeanSq a = 0) (k : Fin p) : a k = 0 := by -- --- PROOF ---
+    (h : ConPolyZono.unionMeanSq a = 0) (k : Fin p) : -- --- CONCL ---
+    a k = 0 := by -- --- PROOF ---
   rcases Nat.eq_zero_or_pos p with hp | hp
   · exact absurd k.isLt (by omega)
   -- the count is invertible, so the square sum itself is zero

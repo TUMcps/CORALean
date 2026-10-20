@@ -44,7 +44,7 @@ namespace CORALean.Real
 
 /-- At most one nonzero entry, each of modulus at most `1`: the absolute sum is at most `1`. -/
 theorem Zonotope.sum_abs_le_one_of_subsingleton_support {r : ℕ} (f : Fin r → ℝ)
-    (hu : ∀ i i', f i ≠ 0 → f i' ≠ 0 → i = i') (hb : ∀ i, |f i| ≤ 1) :
+    (hu : ∀ i i', f i ≠ 0 → f i' ≠ 0 → i = i') (hb : ∀ i, |f i| ≤ 1) : -- --- CONCL ---
     ∑ i, |f i| ≤ 1 := by -- --- PROOF ---
   by_cases h : ∃ i0, f i0 ≠ 0
   · -- the only term that can be nonzero

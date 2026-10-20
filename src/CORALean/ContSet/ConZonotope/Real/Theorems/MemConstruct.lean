@@ -40,7 +40,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.mem_construct_iff {n : ℕ} {cZ : ConZonotope (Vec ℝ n)} {x : Vec ℝ n} :
+theorem ConZonotope.mem_construct_iff {n : ℕ} {cZ : ConZonotope (Vec ℝ n)}
+    {x : Vec ℝ n} : -- --- CONCL ---
     x ∈ cZ.construct ↔ ∃ β : Fin cZ.h → ℝ, (∀ j, |β j| ≤ 1) ∧ β ∈ cZ.P.construct
       ∧ ∀ i, x i = cZ.c i + ∑ j, cZ.G j i * β j := by -- --- PROOF ---
   constructor

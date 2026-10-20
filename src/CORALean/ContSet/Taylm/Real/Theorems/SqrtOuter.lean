@@ -48,7 +48,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.sqrt_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    (hpos : 0 < min T.constCoef T.bounds.inf) :
+    (hpos : 0 < min T.constCoef T.bounds.inf) : -- --- CONCL ---
     T.sqrt.Encloses fun t => Real.sqrt (f t) := by -- --- PROOF ---
   refine Taylm.taylor_outer h _ _ _ (fun ξ hξ => Real.contDiffAt_sqrt
     (ne_of_gt (lt_of_lt_of_le hpos hξ.1))) fun ξ hξ => ?_

@@ -63,7 +63,7 @@ theorem NeuralNetwork.minSuffExplanationAbstract_of_min (f : Vec ℝ n → Vec �
     (hcontain : ∀ E' : Finset (Fin n), f '' construct (ofInterval (explainBox x ε E') : S n)
       ⊆ construct (nnAbs.enclose (ofInterval (explainBox x ε E'))))
     (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l)
-    (hmin : IsMinSuffExplanation f x ε E l) : -- --- CONCL ---
+    (hmin : IsMinSuffExplanation f x ε E l) :
     nnAbs.IsMinSuffExplanationAbstract x ε E l :=
   ⟨hsuffAbs, fun i hi hdrop =>
     hmin.2 i hi (suffExplanation_of_abstract f nnAbs x ε (E \ {i}) l (hcontain _) hdrop)⟩

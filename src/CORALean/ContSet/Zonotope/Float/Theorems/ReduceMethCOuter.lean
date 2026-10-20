@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.reduceMethC_outer (Z : Zonotope (Vec 𝕋 n)) (o : ℕ) :
+theorem Zonotope.reduceMethC_outer (Z : Zonotope (Vec 𝕋 n)) (o : ℕ) : -- --- CONCL ---
     Z.construct ⊆ (Z.reduceMethC o).construct := by -- --- PROOF ---
   by_cases hlt : o * n < Z.h
   swap

@@ -42,7 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem LevelSet.containsPoint_sound (L : CORALean.Real.LevelSet n) (B : Fin L.m → Interval 𝕋)
     (x : Vec ℝ n) (hB : ∀ i, toReal (B i).inf ≤ L.f x i ∧ L.f x i ≤ toReal (B i).sup)
-    (h : LevelSet.containsPoint L B = true) : x ∈ L.construct := by -- --- PROOF ---
+    (h : LevelSet.containsPoint L B = true) : -- --- CONCL ---
+    x ∈ L.construct := by -- --- PROOF ---
   simp only [LevelSet.containsPoint, List.all_eq_true, List.mem_finRange, forall_const] at h
   intro i
   have hi := h i

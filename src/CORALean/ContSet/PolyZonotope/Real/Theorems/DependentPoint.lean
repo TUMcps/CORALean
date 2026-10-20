@@ -52,7 +52,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- The point of `dependent` at `(a, b)` is the old point at `a` plus the weighted independent
 generators. -/
 theorem PolyZonotope.dependent_point (pZ : PolyZonotope α) (a : Fin pZ.p → ℝ)
-    (b : Fin pZ.q → ℝ) :
+    (b : Fin pZ.q → ℝ) : -- --- CONCL ---
     pZ.dependent.point (Fin.append a b) = pZ.point a + ∑ j, b j • pZ.GI j := by -- --- PROOF ---
   show pZ.c + ∑ i : Fin (pZ.h + pZ.q), PolyZonotope.monomial
       (PolyZonotope.plusE pZ.E (PolyZonotope.identE pZ.q)) (Fin.append a b) i

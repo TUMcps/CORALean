@@ -92,7 +92,7 @@ theorem aux_parse_leaf (dp : Bool) (st st1 : OnlineReachSetAnalyzer.ParseState S
     (k : OnlineAnalyzerNode.Kind) (hi1 : OnlineReachSetAnalyzer.NodesInv dp st1.nodes)
     (he1 : OnlineReachSetAnalyzer.Ext st.nodes st1.nodes)
     (hnode : ∃ node, st1.nodes[st.nodes.length]? = some node ∧ node.kind = k ∧
-      node.parents = [parent]) : -- --- CONCL ---
+      node.parents = [parent]) :
     OnlineReachSetAnalyzer.NodesInv dp st1.nodes ∧ OnlineReachSetAnalyzer.Ext st.nodes st1.nodes ∧
       (st.nodes = [] → ∃ root, st1.nodes[0]? = some root ∧ root.kind = k ∧
         root.parents.head? = some parent) :=
@@ -108,7 +108,7 @@ theorem aux_parse_chain (dp : Bool) (st st1 st2 st' : OnlineReachSetAnalyzer.Par
       node.parents = [parent])
     (he2 : OnlineReachSetAnalyzer.Ext st1.nodes st2.nodes)
     (he3 : OnlineReachSetAnalyzer.Ext st2.nodes st'.nodes)
-    (hi3 : OnlineReachSetAnalyzer.NodesInv dp st'.nodes) : -- --- CONCL ---
+    (hi3 : OnlineReachSetAnalyzer.NodesInv dp st'.nodes) :
     OnlineReachSetAnalyzer.NodesInv dp st'.nodes ∧ OnlineReachSetAnalyzer.Ext st.nodes st'.nodes ∧
       (st.nodes = [] → ∃ root, st'.nodes[0]? = some root ∧ root.kind = k ∧
         root.parents.head? = some parent) :=

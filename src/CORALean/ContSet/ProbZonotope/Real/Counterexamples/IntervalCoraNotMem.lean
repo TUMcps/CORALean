@@ -34,7 +34,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ProbZonotope.intervalCora_not_mem :
+theorem ProbZonotope.intervalCora_not_mem : -- --- CONCL ---
     ∃ (P : ProbZonotope 1) (μ : Vec ℝ 1),
       μ ∈ P.Z.construct ∧ μ ∉ P.intervalCora.construct := by -- --- PROOF ---
   -- the mean `1` is the generator

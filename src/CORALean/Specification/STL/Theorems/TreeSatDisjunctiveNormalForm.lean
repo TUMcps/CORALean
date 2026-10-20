@@ -41,7 +41,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.sat_disjunctiveNormalForm (φ : STL.Tree n) (nnf : Bool) (ξ : ℝ≥0 → Fin n → ℝ) :
+theorem STL.Tree.sat_disjunctiveNormalForm (φ : STL.Tree n) (nnf : Bool)
+    (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
     (φ.disjunctiveNormalForm nnf).Sat ξ ↔ φ.Sat ξ := by -- --- PROOF ---
   unfold STL.Tree.disjunctiveNormalForm
   rw [STL.Tree.sat_dnfLoop]

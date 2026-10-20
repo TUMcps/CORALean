@@ -40,7 +40,7 @@ variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n k : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ContSet.project_outer (s : S n) (dims : Fin k → Fin n) :
+theorem ContSet.project_outer (s : S n) (dims : Fin k → Fin n) : -- --- CONCL ---
     (fun x : Vec ℝ n => (fun i => x (dims i) : Vec ℝ k)) '' construct s ⊆
       construct (ContSet.project (𝕋 := 𝕋) s dims) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩

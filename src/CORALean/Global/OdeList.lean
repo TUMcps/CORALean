@@ -56,7 +56,7 @@ noncomputable def toPolyL : List ℤ → ℝ[X]
   | [] => 0
   | a :: l => C (a : ℝ) + X * toPolyL l
 
-theorem toPolyL_add (a b : List ℤ) :
+theorem toPolyL_add (a b : List ℤ) : -- --- CONCL ---
     toPolyL (addL a b) = toPolyL a + toPolyL b := by -- --- PROOF ---
   induction a generalizing b with
   | nil => simp [addL, toPolyL]
@@ -71,7 +71,7 @@ theorem toPolyL_smul (c : ℤ) (l : List ℤ) :
   | nil => simp [toPolyL]
   | cons a l ih => simp only [List.map, toPolyL, ih]; push_cast; simp only [map_mul]; ring
 
-theorem toPolyL_mul (q l : List ℤ) :
+theorem toPolyL_mul (q l : List ℤ) : -- --- CONCL ---
     toPolyL (mulL q l) = toPolyL q * toPolyL l := by -- --- PROOF ---
   induction q with
   | nil => simp [mulL, toPolyL]
@@ -80,7 +80,7 @@ theorem toPolyL_mul (q l : List ℤ) :
     simp only [Int.cast_zero, map_zero, zero_add]
     ring
 
-theorem toPolyL_der (l : List ℤ) :
+theorem toPolyL_der (l : List ℤ) : -- --- CONCL ---
     derivative (toPolyL l) = toPolyL (derL l) := by -- --- PROOF ---
   induction l with
   | nil => simp [derL, toPolyL]
@@ -101,7 +101,8 @@ def odeL (q : List ℤ) : ℕ → List ℤ
   | k + 1 => mulL (derL (odeL q k)) q
 
 theorem eval_odePoly_odeL {q : List ℤ} {Q : ℝ[X]} (hQ : ∀ x, Q.eval x = evalL q x) (k : ℕ)
-    (x : ℝ) : (odePoly Q k).eval x = evalL (odeL q k) x := by -- --- PROOF ---
+    (x : ℝ) : -- --- CONCL ---
+    (odePoly Q k).eval x = evalL (odeL q k) x := by -- --- PROOF ---
   have hQ' : Q = toPolyL q :=
     Polynomial.funext fun x => by rw [hQ, eval_toPolyL]
   have key : ∀ k, odePoly Q k = toPolyL (odeL q k) := by

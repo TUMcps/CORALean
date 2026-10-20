@@ -52,7 +52,7 @@ open Float Float.FloatOps
 
 /-- [1, Alg. 1] returns nothing, at any `fuel`, on a single neuron fixed at `1` against the
 bucket at `0`, whenever `ρ < 1`. -/
-theorem bucketTolerance_eq_none_of_point {tol ρ : ℝ} (hρ : ρ < 1) (fuel : ℕ) :
+theorem bucketTolerance_eq_none_of_point {tol ρ : ℝ} (hρ : ρ < 1) (fuel : ℕ) : -- --- CONCL ---
     bucketTolerance (fun a b => decide (a ≤ b)) tol fuel (.static [0])
       (Float.Interval.point (fun _ => (1 : ℝ)) : Float.Interval (Vec ℝ 1)) ρ
       = none := by -- --- PROOF ---

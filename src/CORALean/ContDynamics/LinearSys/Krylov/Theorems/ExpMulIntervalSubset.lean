@@ -73,7 +73,8 @@ def Krylov.aux_entryHom (j k : Fin n) : Mat ℝ n n →+ ℝ where
   map_add' _ _ := rfl
 
 /-- Reading one entry carries summability across. -/
-theorem Krylov.aux_summable_entry {f : ℕ → Mat ℝ n n} (hf : Summable f) (j k : Fin n) :
+theorem Krylov.aux_summable_entry {f : ℕ → Mat ℝ n n} (hf : Summable f)
+    (j k : Fin n) : -- --- CONCL ---
     Summable (fun i => (f i) j k) := by -- --- PROOF ---
   have hlip : LipschitzWith 1 (Krylov.aux_entryHom (n := n) j k) := by
     refine LipschitzWith.of_dist_le_mul fun M N => ?_
@@ -83,7 +84,8 @@ theorem Krylov.aux_summable_entry {f : ℕ → Mat ℝ n n} (hf : Summable f) (j
   exact hf.map (Krylov.aux_entryHom j k) hlip.continuous
 
 /-- `|e^{At}| ≤ e^{|A|t}` entrywise, for `t ≥ 0`. -/
-theorem Krylov.aux_abs_exp_entry_le (A : Mat ℝ n n) {t : ℝ} (ht : 0 ≤ t) (j k : Fin n) :
+theorem Krylov.aux_abs_exp_entry_le (A : Mat ℝ n n) {t : ℝ} (ht : 0 ≤ t)
+    (j k : Fin n) : -- --- CONCL ---
     |(exp (t • A)) j k| ≤ (exp (t • MatExp.absMat A)) j k := by -- --- PROOF ---
   have hsA := summable_exp_smul A t
   have hsB := summable_exp_smul (MatExp.absMat A) t

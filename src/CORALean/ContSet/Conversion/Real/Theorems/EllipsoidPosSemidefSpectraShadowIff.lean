@@ -55,7 +55,7 @@ private def aux_M (Q : Mat ℝ n n) (q u : Vec ℝ n) : Mat ℝ (n + 1) (n + 1) 
     if (p = 0 ∧ r = i.succ) ∨ (p = i.succ ∧ r = 0) then (1 : ℝ) else 0
 
 /-- The inequality's matrix entry by entry: `1`, `y = u - q` on the border, `Q` inside. -/
-private theorem aux_M_apply (Q : Mat ℝ n n) (q u : Vec ℝ n) (p r : Fin (n + 1)) :
+private theorem aux_M_apply (Q : Mat ℝ n n) (q u : Vec ℝ n) (p r : Fin (n + 1)) : -- --- CONCL ---
     aux_M Q q u p r = Fin.cases (Fin.cases 1 (fun j => u j - q j) r)
       (fun i => Fin.cases (u i - q i) (fun j => Q i j) r) p := by -- --- PROOF ---
   simp only [aux_M, Matrix.add_apply, Matrix.sum_apply, Matrix.smul_apply, smul_eq_mul,
@@ -70,7 +70,7 @@ private theorem aux_M_apply (Q : Mat ℝ n n) (q u : Vec ℝ n) (p r : Fin (n + 
   · simp [Fin.succ_ne_zero]
 
 /-- The quadratic form at `(a, z)`: `a² + 2a (y·z) + zᵀ Q z`. -/
-private theorem aux_M_form (Q : Mat ℝ n n) (q u : Vec ℝ n) (x : Fin (n + 1) → ℝ) :
+private theorem aux_M_form (Q : Mat ℝ n n) (q u : Vec ℝ n) (x : Fin (n + 1) → ℝ) : -- --- CONCL ---
     x ⬝ᵥ (aux_M Q q u *ᵥ x)
       = x 0 ^ 2 + 2 * x 0 * ((u - q) ⬝ᵥ fun i => x i.succ)
         + (fun i => x i.succ) ⬝ᵥ (Q *ᵥ fun i => x i.succ) := by -- --- PROOF ---
@@ -89,7 +89,7 @@ private theorem aux_M_form (Q : Mat ℝ n n) (q u : Vec ℝ n) (x : Fin (n + 1) 
   ring
 
 /-- `(y·z)² ≤ zᵀ Q z` for every `z` is the point `q + y` in the ellipsoid. -/
-theorem Ellipsoid.aux_sq_le_iff (E : Ellipsoid n) (y : Vec ℝ n) :
+theorem Ellipsoid.aux_sq_le_iff (E : Ellipsoid n) (y : Vec ℝ n) : -- --- CONCL ---
     (∀ z : Vec ℝ n, (y ⬝ᵥ z) ^ 2 ≤ z ⬝ᵥ (E.Q *ᵥ z)) ↔ E.q + y ∈ E.construct := by -- --- PROOF ---
   rw [Ellipsoid.mem_construct_iff]
   have hGG : E.G * E.G = E.Q := by
@@ -146,7 +146,7 @@ theorem Ellipsoid.aux_sq_le_iff (E : Ellipsoid n) (y : Vec ℝ n) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The Schur form at `u` is positive semi-definite iff `u` is a point of the ellipsoid. -/
-theorem Ellipsoid.posSemidef_spectraShadow_iff (E : Ellipsoid n) (u : Vec ℝ n) :
+theorem Ellipsoid.posSemidef_spectraShadow_iff (E : Ellipsoid n) (u : Vec ℝ n) : -- --- CONCL ---
     (E.spectraShadow.A₀ + ∑ i, u i • E.spectraShadow.A i).PosSemidef ↔ u ∈ E.construct
     := by -- --- PROOF ---
   change (aux_M E.Q E.q u).PosSemidef ↔ _

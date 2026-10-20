@@ -52,7 +52,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The two halves of a split cover the zonotope they came from, exactly. -/
-theorem Zonotope.split_union (Z : Zonotope α) (j : Fin Z.h) :
+theorem Zonotope.split_union (Z : Zonotope α) (j : Fin Z.h) : -- --- CONCL ---
     (Z.split j).fst.construct ∪ (Z.split j).snd.construct = Z.construct := by -- --- PROOF ---
   have h₁ : (Z.split j).fst.construct = {x | ∃ β : Fin Z.h → ℝ, (∀ k, |β k| ≤ 1) ∧
       x = Z.c - (2 : ℝ)⁻¹ • Z.G j

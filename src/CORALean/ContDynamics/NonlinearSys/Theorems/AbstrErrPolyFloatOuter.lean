@@ -83,7 +83,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A matrix's negation, stored entrywise, is a point interval at the negated real one. -/
-theorem aux_polyErr_neg_mat {k l : ℕ} (A : Mat 𝕋 k l) :
+theorem aux_polyErr_neg_mat {k l : ℕ} (A : Mat 𝕋 k l) : -- --- CONCL ---
     -Scalar.toRealMat A ∈
       (Interval.point (α := Mat 𝕋 k l) (-A)).construct := by -- --- PROOF ---
   have h := Interval.mem_point (α := Mat 𝕋 k l) (-A)
@@ -95,7 +95,7 @@ theorem aux_polyErr_neg_mat {k l : ℕ} (A : Mat 𝕋 k l) :
 
 /-- `y - ys` lies in the box `Y - ys`. -/
 theorem aux_polyErr_sub_mem {k : ℕ} {Y : Interval (Vec 𝕋 k)} (ys : Vec 𝕋 k) {y : Vec ℝ k}
-    (hy : y ∈ Y.construct) :
+    (hy : y ∈ Y.construct) : -- --- CONCL ---
     y - toRealVec ys ∈
       (Interval.plus Y (Interval.point (-ys))).construct := by -- --- PROOF ---
   have hn : -toRealVec ys ∈ (Interval.point (α := Vec 𝕋 k) (-ys)).construct := by
@@ -147,7 +147,7 @@ theorem aux_polyErr_half_mem {q : ℝ} {L : 𝕋} (hq : |q| ≤ toReal L) :
 
 /-- Four magnitudes bounded, their sum bounded by the sum rounded up. -/
 theorem aux_polyErr_abs_sum4 {q₁ q₂ q₃ q₄ : ℝ} {b₁ b₂ b₃ b₄ : 𝕋} (h₁ : |q₁| ≤ toReal b₁)
-    (h₂ : |q₂| ≤ toReal b₂) (h₃ : |q₃| ≤ toReal b₃) (h₄ : |q₄| ≤ toReal b₄) :
+    (h₂ : |q₂| ≤ toReal b₂) (h₃ : |q₃| ≤ toReal b₃) (h₄ : |q₄| ≤ toReal b₄) : -- --- CONCL ---
     |q₁ + q₂ + (q₃ + q₄)| ≤ toReal (addUp (addUp b₁ b₂) (addUp b₃ b₄)) := by -- --- PROOF ---
   have e₁ := add_le_addUp b₁ b₂
   have e₂ := add_le_addUp b₃ b₄

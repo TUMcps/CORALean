@@ -52,7 +52,8 @@ variable {n : ℕ}
 
 /-- `det S = (tr S / n)ⁿ` for positive semidefinite `S`, `n ≥ 1`, forces `S = (tr S / n) I`. -/
 theorem eq_smul_one_of_det_eq_trace_div_pow {S : Mat ℝ n n} (hS : S.PosSemidef) (hn : 0 < n)
-    (h : S.det = (S.trace / n) ^ n) : S = (S.trace / n) • (1 : Mat ℝ n n) := by -- --- PROOF ---
+    (h : S.det = (S.trace / n) ^ n) : -- --- CONCL ---
+    S = (S.trace / n) • (1 : Mat ℝ n n) := by -- --- PROOF ---
   have hH := hS.1
   set ev := hH.eigenvalues with hevdef
   have hnn : ∀ i, 0 ≤ ev i := hS.eigenvalues_nonneg

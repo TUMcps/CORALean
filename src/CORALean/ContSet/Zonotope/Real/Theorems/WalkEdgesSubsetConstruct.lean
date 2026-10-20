@@ -44,7 +44,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.walkEdges_subset_construct (Z : Zonotope α) :
+theorem Zonotope.walkEdges_subset_construct (Z : Zonotope α) : -- --- CONCL ---
     Z.walkEdges ⊆ Z.construct := by -- --- PROOF ---
   -- an edge is a segment between two corners
   intro x hx

@@ -38,7 +38,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.representsaEmptySet_sound {P : ProbZonotope 𝕋 n}
-    (h : P.representsaEmptySet = true) : P.laws = ∅ := by -- --- PROOF ---
+    (h : P.representsaEmptySet = true) : -- --- CONCL ---
+    P.laws = ∅ := by -- --- PROOF ---
   obtain ⟨i, -, hi⟩ := List.any_eq_true.1 h
   obtain ⟨j, -, hj⟩ := List.any_eq_true.1 hi
   have hlt := toReal_lt_of_ltStrict hj

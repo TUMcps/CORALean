@@ -64,7 +64,7 @@ theorem NeuralNetwork.minSuffExplanationExact_of_refined (nnAbs : NeuralNetwork 
     (hrefine : ∀ E' : Finset (Fin n), f '' construct (ofInterval (explainBox x ε E') : S n)
       ⊆ construct (nnAbs.enclose (ofInterval (explainBox x ε E'))))
     (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l)
-    (hmin : IsMinSuffExplanationExact S f x ε E l) : -- --- CONCL ---
+    (hmin : IsMinSuffExplanationExact S f x ε E l) :
     nnAbs.IsMinSuffExplanationAbstract x ε E l :=
   ⟨hsuffAbs, fun i hi hdrop =>
     hmin.2 i hi (suffExplanationExact_of_refined nnAbs f x ε (E \ {i}) l

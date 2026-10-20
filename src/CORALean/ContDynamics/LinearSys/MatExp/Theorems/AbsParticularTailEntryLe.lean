@@ -73,7 +73,7 @@ def aux_entryHom (j k : Fin n) : Mat ℝ n n →+ ℝ where
 
 /-- Reading one entry is `1`-Lipschitz, hence continuous, so it carries summability across — the
 companion of `MatExp.tsum_entry_eq`, which needs the sum to exist. -/
-theorem aux_summable_entry {f : ℕ → Mat ℝ n n} (hf : Summable f) (j k : Fin n) :
+theorem aux_summable_entry {f : ℕ → Mat ℝ n n} (hf : Summable f) (j k : Fin n) : -- --- CONCL ---
     Summable (fun i => (f i) j k) := by -- --- PROOF ---
   have hlip : LipschitzWith 1 (aux_entryHom (n := n) j k) := by
     refine LipschitzWith.of_dist_le_mul fun M N => ?_
@@ -89,7 +89,8 @@ theorem aux_abs_tsum_le_tsum_abs {p : ℕ → ℝ} (hp : Summable fun i => |p i|
   simpa only [Real.norm_eq_abs] using h
 
 /-- `E(Δt,η)`'s entry is the exponential series at `|A|` from order `η+1` on. -/
-theorem aux_expRemainderMat_entry_eq (A : Mat ℝ n n) (Δt : ℝ) (η : ℕ) (j k : Fin n) :
+theorem aux_expRemainderMat_entry_eq (A : Mat ℝ n n) (Δt : ℝ) (η : ℕ)
+    (j k : Fin n) : -- --- CONCL ---
     (MatExp.expRemainderMat A Δt η) j k
       = ∑' i : ℕ, ((Nat.factorial (i + (η + 1)) : ℝ)⁻¹ * Δt ^ (i + (η + 1)))
           * ((MatExp.absMat A) ^ (i + (η + 1))) j k := by -- --- PROOF ---
@@ -105,7 +106,8 @@ theorem aux_expRemainderMat_entry_eq (A : Mat ℝ n n) (Δt : ℝ) (η : ℕ) (j
   exact tsum_congr fun i => rfl
 
 /-- `expIntegral`'s tail past order `η`, likewise read off one entry at a time. -/
-theorem aux_particularTail_entry_eq (A : Mat ℝ n n) (Δt : ℝ) (η : ℕ) (j k : Fin n) :
+theorem aux_particularTail_entry_eq (A : Mat ℝ n n) (Δt : ℝ) (η : ℕ)
+    (j k : Fin n) : -- --- CONCL ---
     (MatExp.expIntegral A Δt - ∑ i ∈ Finset.range (η + 1), MatExp.particularCoeff A Δt i) j k
       = ∑' i : ℕ, (MatExp.particularCoeff A Δt (i + (η + 1))) j k := by -- --- PROOF ---
   have hsum : Summable (fun i => MatExp.particularCoeff A Δt i) :=
@@ -149,7 +151,7 @@ theorem aux_abs_particularCoeff_entry_le (A : Mat ℝ n n) {Δt : ℝ} (hΔt : 0
 
 /-- [1]'s step `(18)`: `expIntegral`'s tail past order `η` is entrywise under `E(Δt,η)·Δt`. -/
 theorem MatExp.abs_particularTail_entry_le (A : Mat ℝ n n) {Δt : ℝ} (hΔt : 0 ≤ Δt) (η : ℕ)
-    (j k : Fin n) :
+    (j k : Fin n) : -- --- CONCL ---
     |(MatExp.expIntegral A Δt - ∑ i ∈ Finset.range (η + 1), MatExp.particularCoeff A Δt i) j k|
       ≤ Δt * (MatExp.expRemainderMat A Δt η) j k := by -- --- PROOF ---
   have hEsum : Summable fun i : ℕ => ((Nat.factorial (i + (η + 1)) : ℝ)⁻¹ * Δt ^ (i + (η + 1)))

@@ -38,7 +38,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The entries of `(l.take a).drop b` are those of `l` at the indices from `b` to before `a`. -/
-theorem List.mem_take_drop_iff {α : Type} (l : List α) (a b : ℕ) (x : α) :
+theorem List.mem_take_drop_iff {α : Type} (l : List α) (a b : ℕ) (x : α) : -- --- CONCL ---
     x ∈ (l.take a).drop b ↔ ∃ m, b ≤ m ∧ m < a ∧ ∃ h : m < l.length, l[m] = x := by -- --- PROOF ---
   rw [List.mem_iff_getElem?]
   constructor

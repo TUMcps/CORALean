@@ -41,7 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem le_mulRangeUp {a lo hi : 𝕋} {x : ℝ} (h1 : toReal lo ≤ x) (h2 : x ≤ toReal hi) :
+theorem le_mulRangeUp {a lo hi : 𝕋} {x : ℝ} (h1 : toReal lo ≤ x)
+    (h2 : x ≤ toReal hi) : -- --- CONCL ---
     toReal a * x ≤ toReal (mulRangeUp a lo hi) := by -- --- PROOF ---
   rw [mulRangeUp, toReal_maximum]
   -- the same case split, each end now reached from above

@@ -48,7 +48,7 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Cor. 3.5]: the center of a zonotope is in its relative interior. -/
-theorem Zonotope.center_mem_intrinsicInterior (Z : Zonotope α) :
+theorem Zonotope.center_mem_intrinsicInterior (Z : Zonotope α) : -- --- CONCL ---
     Z.c ∈ intrinsicInterior ℝ Z.construct := by -- --- PROOF ---
   let L : (Fin Z.h → ℝ) →ₗ[ℝ] α := Fintype.linearCombination ℝ Z.G
   have hL : ∀ β, L β = ∑ j, β j • Z.G j := fun β => by

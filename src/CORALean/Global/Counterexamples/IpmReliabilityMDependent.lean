@@ -62,7 +62,8 @@ theorem aux_rep_pos (y : UnitAddCircle) : 0 < aux_rep y := by
   have := (AddCircle.equivIoc 1 0 y).2; exact this.1
 
 -- the reading is additive while the sum stays in `(0, 1]`
-theorem aux_rep_add_nsmul (u v : UnitAddCircle) (t : ℕ) (h : aux_rep u + t * aux_rep v ≤ 1) :
+theorem aux_rep_add_nsmul (u v : UnitAddCircle) (t : ℕ)
+    (h : aux_rep u + t * aux_rep v ≤ 1) : -- --- CONCL ---
     aux_rep (u + t • v) = aux_rep u + t * aux_rep v := by -- --- PROOF ---
   have hu : ((aux_rep u : ℝ) : UnitAddCircle) = u := AddCircle.coe_equivIoc
   have hv : ((aux_rep v : ℝ) : UnitAddCircle) = v := AddCircle.coe_equivIoc
@@ -72,7 +73,7 @@ theorem aux_rep_add_nsmul (u v : UnitAddCircle) (t : ℕ) (h : aux_rep u + t * a
   exact aux_rep_coe ⟨by have := aux_rep_pos u; have := aux_rep_pos v; positivity, h⟩
 
 -- the reading is uniform: `{y : rep y ≤ c}` has measure `c`
-theorem aux_volume_rep_le {c : ℝ} (h1 : c ≤ 1) :
+theorem aux_volume_rep_le {c : ℝ} (h1 : c ≤ 1) : -- --- CONCL ---
     volume {y : UnitAddCircle | aux_rep y ≤ c} = ENNReal.ofReal c := by -- --- PROOF ---
   rw [AddCircle.add_projection_respects_measure 1 0
     (measurableSet_le aux_rep_measurable measurable_const)]
@@ -97,7 +98,7 @@ theorem aux_map_nsmul {s : ℕ} (hs : 1 ≤ s) :
     simp
 
 -- the shear `(u, v) ↦ (u + s v, v)` preserves the measure
-theorem aux_shear (s : ℕ) :
+theorem aux_shear (s : ℕ) : -- --- CONCL ---
     MeasurePreserving (fun ω : UnitAddCircle × UnitAddCircle => (ω.1 + s • ω.2, ω.2))
       volume volume := by -- --- PROOF ---
   have h := (MeasurePreserving.id (volume : Measure UnitAddCircle)).skew_product
@@ -112,7 +113,7 @@ theorem aux_shear (s : ℕ) :
   exact h2
 
 -- and so does `(u, v) ↦ (u, u + s v)` for `s ≥ 1`
-theorem aux_shear' {s : ℕ} (hs : 1 ≤ s) :
+theorem aux_shear' {s : ℕ} (hs : 1 ≤ s) : -- --- CONCL ---
     MeasurePreserving (fun ω : UnitAddCircle × UnitAddCircle => (ω.1, ω.1 + s • ω.2))
       volume volume := by -- --- PROOF ---
   refine (MeasurePreserving.id (volume : Measure UnitAddCircle)).skew_product
@@ -122,7 +123,7 @@ theorem aux_shear' {s : ℕ} (hs : 1 ≤ s) :
     map_add_left_eq_self]
 
 -- `U + tV` and `U + (t + s)V` are independent
-theorem aux_indep (t : ℕ) {s : ℕ} (hs : 1 ≤ s) :
+theorem aux_indep (t : ℕ) {s : ℕ} (hs : 1 ≤ s) : -- --- CONCL ---
     IndepFun (fun ω : UnitAddCircle × UnitAddCircle => ω.1 + t • ω.2)
       (fun ω => ω.1 + (t + s) • ω.2) volume := by -- --- PROOF ---
   haveI : IsProbabilityMeasure (volume : Measure UnitAddCircle) := ⟨UnitAddCircle.measure_univ⟩
