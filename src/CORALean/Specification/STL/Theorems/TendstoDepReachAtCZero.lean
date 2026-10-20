@@ -24,6 +24,20 @@ to `0` since the terms `[c_j Δt^j, 0] A^j/j!` are continuous and `0` at `Δt = 
 `E → 0`; then `C_i = e^{AΔt} C_{i-1}` multiplies the radius by at most `e^{T‖A‖}`
 (`STL.depReachAt_C_subset_closedBall`).
 
+## Inputs
+* `A` – dynamics matrix
+* `B` – input matrix
+* `X₀` – initial set
+* `U` – input set
+* `κ` – Taylor order
+* `T` – final time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the radius of the curvature sets tends to zero with the step
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

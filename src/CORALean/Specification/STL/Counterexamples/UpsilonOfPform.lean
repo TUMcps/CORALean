@@ -12,6 +12,15 @@ public import CORALean.Specification.STL.Definitions.Transformation
 is `Bool` everywhere but at time `1`, where it is empty, and `Υ(φ)` true or false as `C(R) ⊨ₜ φ`:
 it is sound and complete for `{R}`, `C(R)` is empty, so `Υ(⊥)` holds while `A ⊥` does not.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a sound and complete encoding of an atom differs when a reachable set is empty
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

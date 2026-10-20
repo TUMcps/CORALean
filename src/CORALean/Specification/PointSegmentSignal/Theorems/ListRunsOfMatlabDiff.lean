@@ -17,6 +17,21 @@ public import Mathlib.Tactic.Set
 starts of its runs of `true`: with a start added at `1` when `x(1)` holds, the starts paired with
 the ends, the last one open to the end of the array, are runs that are all `true`, begin after a
 `false` and end before one, and cover every `true`.
+
+## Inputs
+* `tk` – Boolean array
+* `F` – ends of runs
+* `R` – starts of runs after the first
+* `R'` – starts of runs
+
+## Hypotheses
+* `hne` – the array is nonempty
+* `hF` – the ends are found by `find` and `diff`
+* `hR` – the later starts are found by `find` and `diff`
+* `hR'` – the starts add the first index if the array starts true
+
+## Conclusion
+* starts and ends bound the maximal runs of true
 -/
 
 -- Authors:       Claude Sonnet 5.5

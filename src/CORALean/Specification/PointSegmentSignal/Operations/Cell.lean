@@ -11,6 +11,14 @@ public import Mathlib.Order.Basic
 `obj.at(time)` of `pointSegmentSignal` reads the point value at a time point and the following
 interval value elsewhere. `cell` is the zero-based index of that value in `values`: `2k` at the
 `k`-th time point and `2k + 1` between it and the next, the numbering `findIntervals` works in.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `time` – time
+
+## Output
+* the index of the stored value read at the time
 -/
 
 -- Authors:       Claude Sonnet 5.5

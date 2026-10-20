@@ -10,6 +10,16 @@ public import CORALean.Specification.STL.STL
 `ξ ⊨ₜ ¬φ ⇔ ξ ⊭ₜ φ`, the negation clause of [1, Sec. 2.2]. CORA's `not` builds a syntax-tree node
 and evaluates nothing, so this is the semantics the node is read with.
 
+## Inputs
+* `φ` – formula
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the negation holds iff the formula does not
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

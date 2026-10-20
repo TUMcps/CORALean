@@ -9,6 +9,16 @@ public import CORALean.Specification.STL.Theorems.TreeSatDnfRewrite
 # The DNF loop keeps the meaning
 
 Every pass keeps the satisfying traces (`STL.Tree.sat_dnfRewrite`), so the loop does.
+
+## Inputs
+* `φ` – formula
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the loop keeps the meaning
 -/
 
 -- Authors:       Claude Sonnet 5.5

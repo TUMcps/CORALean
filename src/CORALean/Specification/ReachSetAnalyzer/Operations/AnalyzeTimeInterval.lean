@@ -8,6 +8,16 @@ public import CORALean.Specification.ReachSetAnalyzer.Operations.AnalyzeKey
 # One set in one time interval
 
 `analyzeTimeInterval(obj,set,loc,int)`: iterate through all properties.
+
+## Inputs
+* `obj` – analyzer
+* `set` – reachable set
+* `loc` – location
+* `lo` – interval lower bound
+* `hi` – interval upper bound
+
+## Output
+* the analyzer after analyzing every proposition, or none
 -/
 
 -- Authors:       Claude Sonnet 5.5

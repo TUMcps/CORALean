@@ -20,10 +20,10 @@ catches up, and then it is checked by the same theorem everything else is.
 * `f` – map the network encloses
 * `X` – input set
 * `l` – target label
+* `u` – support bound of the enclosed set for each rival
 
 ## Hypotheses
 * `hf` – the network encloses the map
-* `u` – support bound of the enclosed set for each rival
 * `h` – every rival's bound is negative
 
 ## Conclusion

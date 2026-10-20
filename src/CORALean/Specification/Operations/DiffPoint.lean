@@ -14,6 +14,14 @@ point along `d`, fed into `P̲`.
 Real-only, a specification: it takes the difference of two witness points chosen by oracles that
 quantify over every direction.
 
+## Inputs
+* `wO` – witnesses of the reachable set
+* `wU` – witnesses of the unsafe set
+* `d` – direction
+
+## Output
+* the difference of the witness points along the direction
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

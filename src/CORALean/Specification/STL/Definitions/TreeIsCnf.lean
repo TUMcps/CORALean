@@ -11,6 +11,12 @@ A conjunction of clauses (`STL.Tree.IsClause`), the shape `conjunctiveNormalForm
 `|`
 has an `&` among its operands. Only the `&` and `|` nodes are looked into; a comparison, `~` or a
 temporal operator is a leaf, whatever it contains.
+
+## Inputs
+* none
+
+## Output
+* the formula is a conjunction of clauses
 -/
 
 -- Authors:       Claude Sonnet 5.5

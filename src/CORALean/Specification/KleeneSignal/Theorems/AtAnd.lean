@@ -16,6 +16,16 @@ one is `True`, and `False` iff one is `False`.
 
 This is the direct semantics of `∧` in [1, Eq. 2].
 
+## Inputs
+* `ι` – index type of the operands
+* `sigs` – three-valued signals
+
+## Hypotheses
+* `hv` – the signals are valid
+
+## Conclusion
+* the conjunction is valid and has Kleene's conjunction at each time
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

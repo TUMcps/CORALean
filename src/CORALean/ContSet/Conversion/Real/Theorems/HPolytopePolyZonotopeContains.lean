@@ -19,11 +19,11 @@ structure would go unused here regardless.
 Loses whatever the box route loses and nothing further.
 
 ## Inputs
-* none
-
-## Hypotheses
 * `up` – certified upper bound per coordinate
 * `lo` – certified lower bound per coordinate
+
+## Hypotheses
+* none
 
 ## Conclusion
 * polytope is contained in its polynomial zonotope

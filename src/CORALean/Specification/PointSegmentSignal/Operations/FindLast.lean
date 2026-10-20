@@ -11,6 +11,14 @@ public import CORALean.Specification.PointSegmentSignal.Operations.SuccTimeAtVal
 `[time,inclusive] = findLast(obj,value)` of `pointSegmentSignal`: the end of the last stored value
 equal to `value`, as a time (`inf` as `⊤`) and whether the signal still has the value at that time.
 If no value is `value`, it is `0` and not inclusive.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `value` – value to find
+
+## Output
+* the end of the last stretch with that value and whether it is inclusive
 -/
 
 -- Authors:       Claude Sonnet 5.5

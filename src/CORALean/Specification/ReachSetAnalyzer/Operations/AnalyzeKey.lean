@@ -19,6 +19,17 @@ where the proposition can be true (if `canBeTrue` of the set) and one where it c
 `canBeFalse`). The mask is `max(mask,int)`, true if the mask is true anywhere in the interval.
 CORA throws if the builder rejects the interval (a degenerate one) or a key has no builder; here
 `none`.
+
+## Inputs
+* `obj` – analyzer
+* `set` – reachable set
+* `loc` – location
+* `lo` – interval lower bound
+* `hi` – interval upper bound
+* `p` – proposition with its key
+
+## Output
+* the analyzer after marking the proposition, or none
 -/
 
 -- Authors:       Claude Sonnet 5.5

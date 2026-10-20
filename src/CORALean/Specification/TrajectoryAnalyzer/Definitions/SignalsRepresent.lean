@@ -12,6 +12,15 @@ public import CORALean.Specification.FiniteSignal.Operations.At
 For a duration `dur`, the signals `sigs` of the propositions `aps` say that proposition `k` holds at
 the times `τ` of `[0,dur]` with `M k τ`: there is a signal for each key, in the order of the keys,
 valid, of duration `dur`, and true at `τ` exactly when `M k τ`.
+
+## Inputs
+* `aps` – labelled atomic propositions
+* `dur` – signal duration
+* `sigs` – signal of each proposition
+* `M` – times marking each proposition
+
+## Output
+* the signals are valid and true exactly at the marked times
 -/
 
 -- Authors:       Claude Sonnet 5.5

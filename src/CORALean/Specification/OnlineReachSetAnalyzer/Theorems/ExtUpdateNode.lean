@@ -11,6 +11,17 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.UpdateNodeS
 
 If `f` keeps every node of the list it is applied to up to `Same`, updating one node gives a list of
 the same length that extends the old one.
+
+## Inputs
+* `nodes` – list of nodes
+* `i` – node index
+* `f` – node update
+
+## Hypotheses
+* `hf` – the update keeps each node's fixed fields
+
+## Conclusion
+* the updated list extends the original and has its length
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,6 +11,13 @@ CORA's `check`, for a computed set held in a representation: the specification's
 set is asked about it, `contains` for a safe set or an invariant, `isDisjoint` for an
 unsafe one. Both are the representation pair's instances, as `mtimes` is `Mtimes`'s,
 so `check` computes whenever they do; `Theorems.CheckSound` is what a `true` buys.
+
+## Inputs
+* `spec` – specification
+* `s` – computed set
+
+## Output
+* whether the set provably satisfies the specification
 -/
 
 -- Authors:       Claude Opus 5.5

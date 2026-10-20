@@ -10,6 +10,12 @@ public import CORALean.Specification.STLInterval.Operations.StlInterval
 `@stlInterval/and_.m`: the larger lower bound and the smaller upper bound, each end closed as the
 operand that supplies it, and both operands' flags `&&`-ed where the bounds agree. An empty operand
 gives `stlInterval()`.
+
+## Inputs
+* none
+
+## Output
+* the intersection of the two intervals
 -/
 
 -- Authors:       Claude Sonnet 5.5

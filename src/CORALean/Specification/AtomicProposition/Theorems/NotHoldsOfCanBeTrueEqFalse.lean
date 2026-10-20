@@ -9,6 +9,19 @@ public import CORALean.Specification.AtomicProposition.Theorems.CanBeTrueSound
 
 If `canBeTrue` is false, no point of the set satisfies the proposition: the contrapositive of
 `canBeTrue_sound`.
+
+## Inputs
+* `ap` – atomic proposition
+* `s` – set
+* `loc` – location
+* `x` – point of the set
+
+## Hypotheses
+* `h` – `canBeTrue` returns false
+* `hx` – the point lies in the set
+
+## Conclusion
+* the point does not satisfy the proposition
 -/
 
 -- Authors:       Claude Sonnet 5.5

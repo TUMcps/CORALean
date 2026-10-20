@@ -12,14 +12,18 @@ public import Mathlib.Data.Fin.VecNotation
 # The until of three-valued signals
 
 `sig = until(lhs,interval,rhs)` of `kleeneSignal.m`: the until of the minimal refinements (unknown
-as false) is the Boolean part, and the value is unknown where it differs from the until of the
-maximal refinements (unknown as true).
+as false) is the Boolean part, and the value is unknown where it differs from that of the maximal
+refinements (unknown as true). This is `Λ₁ U_I Λ₂` of [1, Sec. 4.2 (operators)]: the `⊔₁` of the
+untils of `⌊Λ⌋` and `⌈Λ⌉`.
+Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
 
-This is `Λ₁ U_I Λ₂` of [1, Sec. 4.2 (operators)]: the `⊔₁` of the untils of the under- and
-overapproximations `⌊Λ⌋` and `⌈Λ⌉`.
+## Inputs
+* `lhs` – left signal
+* `interval` – time interval
+* `rhs` – right signal
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
+## Output
+* the until signal
 
 ## References
 

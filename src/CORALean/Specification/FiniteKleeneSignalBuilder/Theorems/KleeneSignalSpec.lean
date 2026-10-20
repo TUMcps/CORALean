@@ -13,6 +13,18 @@ public import CORALean.Specification.FiniteSignal.Theorems.CombineSpec
 For a valid builder the three-valued signal is valid, has the builder's duration, and at every time
 `t` of `[0,dur]` is `comb` of the two Boolean values there: true where only the property can be
 true, false where it only can be false, unknown elsewhere.
+
+## Inputs
+* `b` – signal builder
+* `d` – duration
+* `PT` – times where the property can be true
+* `PF` – times where the property can be false
+
+## Hypotheses
+* `hb` – the builder represents `PT` and `PF`
+
+## Conclusion
+* a valid signal of duration `d`, true where only `PT` holds, false where only `PF`
 -/
 
 -- Authors:       Claude Sonnet 5.5

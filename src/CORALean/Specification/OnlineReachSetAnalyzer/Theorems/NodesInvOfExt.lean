@@ -10,6 +10,19 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Definitions.NodesInv
 
 If `nodes'` is `nodes` with edges added (an extension of the same length), it keeps the invariant
 of `nodes`.
+
+## Inputs
+* `dp` – drop propagated times flag
+* `nodes` – list of nodes
+* `nodes'` – extended list
+
+## Hypotheses
+* `hl` – both lists have equal length
+* `he` – the second list extends the first
+* `h` – the first list satisfies the invariant
+
+## Conclusion
+* the second list satisfies the invariant
 -/
 
 -- Authors:       Claude Sonnet 5.5

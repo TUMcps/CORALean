@@ -9,6 +9,19 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.Basic
 
 Updating the node with index `i` succeeds exactly for `i ≠ 0`, an existing node and a succeeding
 `f`, and replaces that node by `f` of it.
+
+## Inputs
+* `B` – node type
+* `nodes` – list of nodes
+* `i` – node index
+* `f` – node update
+* `nodes'` – updated list
+
+## Hypotheses
+* none
+
+## Conclusion
+* the update succeeds iff the node exists and the list changes there
 -/
 
 -- Authors:       Claude Sonnet 5.5

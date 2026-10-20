@@ -14,6 +14,17 @@ public import Mathlib.Tactic.Linarith
 the program [1, Eq. (26)], which as printed is infeasible; see `STL.not_milpPrinted_of_two_le`.
 The `λ_jk` select a row `k`, the other `α̃_jk` vanish and `α̃ = α̃_jk`.
 
+## Inputs
+* `C` – constraint matrix
+* `d` – offsets
+* `α` – factor vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the corrected program holds iff the factor lies in the box and outside the polytope
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

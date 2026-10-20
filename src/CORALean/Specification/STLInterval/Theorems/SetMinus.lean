@@ -12,6 +12,16 @@ public import CORALean.Specification.STLInterval.Theorems.Basic
 # `minus` denotes the nonnegative differences
 
 `I - J` denotes `{x - y | x ∈ I, y ∈ J}` met with `[0, ∞)`: a negative lower bound is cut to `0`.
+
+## Inputs
+* `I` – first interval
+* `J` – second interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the difference denotes the nonnegative differences of the times
 -/
 
 -- Authors:       Claude Sonnet 5.5

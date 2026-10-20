@@ -10,6 +10,16 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 # The value of `sinhCora`
 
 The node `sinhCora(obj)` builds denotes `sinhCora` of the operand.
+
+## Inputs
+* `t` – operand tree
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed sinh node evaluates to the hyperbolic sine of the operand
 -/
 
 -- Authors:       Claude Sonnet 5.5

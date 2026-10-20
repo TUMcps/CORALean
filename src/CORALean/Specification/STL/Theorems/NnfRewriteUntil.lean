@@ -20,6 +20,20 @@ public import CORALean.Specification.STL.Theorems.SatOr
 [1, Lemma 4]: `φ U[i,j] ψ` rewrites if `φ`, `ψ` and every `φ U[i',j'] ψ` with `j' < j` do, by [1,
 Table 1]'s `U` rows in the three contexts, `U[0,0] ≡ ψ` and, for an empty interval, `⊥`.
 
+## Inputs
+* `i` – interval lower bound
+* `j` – interval upper bound
+* `φ` – left formula
+* `ψ` – right formula
+
+## Hypotheses
+* `hφ` – the left formula rewrites to sampled time
+* `hψ` – the right formula rewrites to sampled time
+* `hrec` – smaller untils rewrite to sampled time
+
+## Conclusion
+* the until rewrites to sampled time
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

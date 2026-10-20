@@ -12,6 +12,15 @@ public import CORALean.Specification.SyntaxTree.Theorems.MeetContains
 # `aux_sinh_` is sound
 
 `aux_sinh_` (without the cut to `[-1,1]`) keeps every solution of `sinh s ∈ int`.
+
+## Inputs
+* `prev` – previous interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the inverse of the hyperbolic sine keeps every solution
 -/
 
 -- Authors:       Claude Sonnet 5.5

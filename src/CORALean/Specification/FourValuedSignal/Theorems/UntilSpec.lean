@@ -13,15 +13,24 @@ public import CORALean.Specification.STLInterval.Theorems.ZeroLeOfMemSet
 /-!
 # The until of four-valued signals
 
-For valid four-valued signals over `ℝ` and an until interval with lower bound `≥ 0`,
-`until(lhs,interval,rhs)` does not throw and is valid. At a time `t ≥ 0` it is inconclusive iff the
-untils of the two Kleene refinements (inconclusive as `False`, as `True`) differ, and their common
-value otherwise; it is `True` iff some `t'` with `t' - t` in the interval has the right-hand side
-`True` and the left-hand side `True` strictly between, and `False` iff at every such `t'` the
-right-hand side is `False` or the left-hand side is `False` somewhere strictly between.
-
-The `True` and `False` clauses are the direct semantics of `U_I` on four-valued signals that
+For valid four-valued signals over `ℝ` and an interval with lower bound `≥ 0`, `until` does not
+throw and is valid. At `t ≥ 0` it is inconclusive iff the untils of the two Kleene refinements
+differ, their common value otherwise; it is `True` iff some `t'` with `t' - t` in the interval has
+the right side `True` and the left side `True` strictly between, and `False` iff at every such `t'`
+the right side is `False` or the left side is `False` between: the direct semantics of `U_I` that
 [1, Sec. 4.3 (operators)] describes by the pattern of [1, Eq. 2].
+
+## Inputs
+* `lhs` – left signal
+* `rhs` – right signal
+* `U` – time interval
+
+## Hypotheses
+* `hl` – the left signal is valid
+* `hr` – the right signal is valid
+
+## Conclusion
+* a valid signal inconclusive where the refinements' untils differ
 
 ## References
 

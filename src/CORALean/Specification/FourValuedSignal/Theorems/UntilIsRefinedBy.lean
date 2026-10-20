@@ -16,6 +16,24 @@ If the Kleene signals `Λ₁`, `Λ₂` refine the four-valued `Λ̃₁`, `Λ̃�
 and `⌈Λ̃⌉` agree, they bound that of every refinement between them (`KleeneSignal.until_mono`),
 which is then their common value.
 
+## Inputs
+* `l` – left four-valued signal
+* `r` – right four-valued signal
+* `kl` – left three-valued signal
+* `kr` – right three-valued signal
+* `U` – time interval
+
+## Hypotheses
+* `hl` – the left four-valued signal is valid
+* `hr` – the right four-valued signal is valid
+* `hkl` – the left three-valued signal is valid
+* `hkr` – the right three-valued signal is valid
+* `h₁` – the left three-valued signal refines the left signal
+* `h₂` – the right three-valued signal refines the right signal
+
+## Conclusion
+* the until is valid and refined by the three-valued until
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

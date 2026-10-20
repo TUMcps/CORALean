@@ -16,6 +16,17 @@ propagation. Every leaf node observes the set, the observation is counted, and e
 `propagationFrequency`-th observation triggers the propagation. CORA converts a `zonoBundle`
 to a zonotope first (a change of the representation `S`, left to the caller) and throws where a leaf
 does (every throw is `none`). `eps` is MATLAB's `eps`.
+
+## Inputs
+* `eps` – machine epsilon
+* `obj` – analyzer
+* `set` – reachable set
+* `interval` – time interval of the set
+* `loc` – location
+* `makeValid` – interval to make final
+
+## Output
+* the analyzer after the observation, or none where CORA throws
 -/
 
 -- Authors:       Claude Sonnet 5.5

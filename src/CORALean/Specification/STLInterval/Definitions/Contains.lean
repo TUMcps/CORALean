@@ -11,6 +11,12 @@ public import CORALean.Specification.STLInterval.Definitions.WithinTol
 the container's end is closed or the contained one open. An empty container contains only the empty
 interval; `contains_` itself errors on an empty `S` over a nonempty container, `contains` (the
 `catch` of `@contSet/contains.m`) answers `true`.
+
+## Inputs
+* `tol` – tolerance
+
+## Output
+* the first interval contains the second up to the tolerance
 -/
 
 -- Authors:       Claude Sonnet 5.5

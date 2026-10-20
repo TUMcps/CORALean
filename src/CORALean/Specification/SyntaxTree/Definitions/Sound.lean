@@ -15,6 +15,13 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 `B` and has a `funHan` that is sound for it. The nodes the constructors of `syntaxTree.m` build are
 sound under the domain conditions of their operator (`sound_exp`, ...), except `sinhCora` and
 `tanCora`, whose printed `funHan` is not (`sinhCora_counterexample`, `tanCora_counterexample`).
+
+## Inputs
+* `n` – number of variables
+* `B` – box of the variables
+
+## Output
+* every node holds its function over the box and has a sound backpropagation
 -/
 
 -- Authors:       Claude Sonnet 5.5

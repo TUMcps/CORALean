@@ -10,6 +10,20 @@ public import CORALean.Specification.FiniteSignal.FiniteSignal
 The end of an iteration of the loop of `combine.m`: `val(k)` and `tim(k)` are set, and `k`
 advances only if both signals have a next breakpoint and the combined value there differs;
 otherwise the entry is overwritten by the next iteration, or is the last one.
+
+## Inputs
+* `T` – time type
+* `V` – value type of the inputs
+* `W` – value type of the result
+* `op` – binary operator on values
+* `t` – current breakpoint time
+* `v` – current combined value
+* `ls` – remaining left breakpoints
+* `rs` – remaining right breakpoints
+* `rest` – breakpoints of the remaining loop
+
+## Output
+* the breakpoints emitted by this step
 -/
 
 -- Authors:       Claude Sonnet 5.5

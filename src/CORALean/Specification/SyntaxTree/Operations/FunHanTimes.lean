@@ -17,6 +17,14 @@ numeric
 operand is a point interval, so `int / c` for a number `c ≠ 0`, and `intPrev2` for `c = 0` (CORA
 divides
 by `0` there, which `interval` leaves undefined).
+
+## Inputs
+* `int` – target interval
+* `prev₁` – first previous interval
+* `prev₂` – second previous interval
+
+## Output
+* the intervals of both operands of a product
 -/
 
 -- Authors:       Claude Sonnet 5.5

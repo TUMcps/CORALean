@@ -11,15 +11,21 @@ public import CORALean.Specification.STLInterval.Definitions.Isequal
 /-!
 # Recording what is propagated to a parent
 
-`setPropagated(obj,parent,int)` of `onlineAnalyzerNode.m`: the interval `int` is now propagated to
-the parent with this index, and, if `dropPropagated`, the signal is made inconclusive on
-everything propagated to all parents (it is no longer needed). CORA throws if the new interval is
-smaller than the old one, or (through an empty logical index) if `parent` is no parent; here
-`none`. `eps` is MATLAB's machine epsilon, the tolerance of the interval comparisons; the parents
-are assumed distinct.
+`setPropagated(obj,parent,int)` of `onlineAnalyzerNode.m`: `int` is now propagated to the parent
+with this index and, if `dropPropagated`, the signal is made inconclusive on everything propagated
+to all parents. CORA throws if the new interval is smaller than the old or `parent` is no parent;
+here `none`. `eps` is MATLAB's machine epsilon, the tolerance of the comparisons; the parents are
+assumed distinct.
+Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-intervals over `𝕋`, rounded outward) is not yet written.
+## Inputs
+* `eps` – machine epsilon
+* `n` – node
+* `parent` – parent index
+* `int` – propagated interval
+
+## Output
+* the node with the interval recorded, or none where CORA throws
 -/
 
 -- Authors:       Claude Sonnet 5.5

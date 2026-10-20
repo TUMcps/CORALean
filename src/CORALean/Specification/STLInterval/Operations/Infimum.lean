@@ -8,6 +8,12 @@ public import CORALean.Specification.STLInterval.Definitions.Endpoint
 # `infimum`
 
 `@stlInterval/infimum.m`: the lower bound (`[]` for the empty interval) and whether it is attained.
+
+## Inputs
+* none
+
+## Output
+* the infimum of the interval with its closedness
 -/
 
 -- Authors:       Claude Sonnet 5.5

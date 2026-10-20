@@ -11,6 +11,15 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 # A sound tree encloses its function
 
 `Sound` holds the enclosure of the root, whichever the root.
+
+## Inputs
+* none
+
+## Hypotheses
+* `h` – the tree is sound over the box
+
+## Conclusion
+* the tree encloses its function over the box
 -/
 
 -- Authors:       Claude Sonnet 5.5

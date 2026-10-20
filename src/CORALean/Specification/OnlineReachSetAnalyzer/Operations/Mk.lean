@@ -13,6 +13,14 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.OnlineReachSetAnalyz
 that are nobody's parent, `setdiff(1:length(obj.nodes),vertcat(obj.nodes.parents))`.
 `propagationFrequency` defaults to `1`, `dropPropagated` to `true` (turned off only for debugging
 and visualization).
+
+## Inputs
+* `φ` – formula to monitor
+* `propagationFrequency` – observations between propagations
+* `dropPropagated` – drop propagated times flag
+
+## Output
+* the analyzer, or none if parsing fails
 -/
 
 -- Authors:       Claude Sonnet 5.5

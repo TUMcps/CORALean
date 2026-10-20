@@ -8,6 +8,12 @@ public import CORALean.Specification.STLInterval.Definitions.Endpoint
 # `supremum`
 
 `@stlInterval/supremum.m`: the upper bound (`[]` for the empty interval) and whether it is attained.
+
+## Inputs
+* none
+
+## Output
+* the supremum of the interval with its closedness
 -/
 
 -- Authors:       Claude Sonnet 5.5

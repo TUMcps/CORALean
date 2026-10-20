@@ -10,6 +10,17 @@ public import CORALean.Specification.KleeneSignal.Theorems.ToBoolSignalAt
 For a valid three-valued signal `Λ`, `Λ(t) = ⌊Λ⌋(t) ⊔₁ ⌈Λ⌉(t)` at every time `t ≥ 0`
 ([1, Sec. 4.2 (refinements)]).
 
+## Inputs
+* `s` – three-valued signal
+* `t` – time
+
+## Hypotheses
+* `hs` – the signal is valid
+* `ht` – the time is nonnegative
+
+## Conclusion
+* the value is the join of the two refinements' values
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

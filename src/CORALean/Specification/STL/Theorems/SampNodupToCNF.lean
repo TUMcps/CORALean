@@ -12,6 +12,16 @@ public import CORALean.Specification.STL.Theorems.ClauseNodupMerge
 [1, Sec. 4.1]: every clause of `s.toCNF` has one branch per `j`, as [1, Lemma 2] reads its normal
 form.
 
+## Inputs
+* `s` – sampled time formula
+* `pos` – positive polarity
+
+## Hypotheses
+* none
+
+## Conclusion
+* every clause of the normal form has distinct powers
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

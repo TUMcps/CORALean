@@ -20,6 +20,16 @@ the signal elsewhere.
 With `False` and `True` this is the underapproximation `⌊Λ̃⌋` and the overapproximation `⌈Λ̃⌉` of
 [1, Sec. 4.3 (refinements)].
 
+## Inputs
+* `s` – four-valued signal
+* `v` – value for inconclusive times
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* a valid signal mapping inconclusive times to `v` and keeping the others
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

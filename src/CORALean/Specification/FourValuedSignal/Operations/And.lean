@@ -14,16 +14,19 @@ public import Mathlib.Data.Fin.VecNotation
 /-!
 # The conjunction of four-valued signals
 
-`sig = fourValuedSignal.and_(varargin)`: the Kleene conjunction of the refinements with inconclusive
-mapped to `False` is the Kleene part, and the value is inconclusive where it differs from the
-conjunction of the refinements with inconclusive mapped to `True`. `toBoolSignal()` throws if a
-value is unknown; `none` is that error, which `at_and` shows does not occur.
+`sig = fourValuedSignal.and_(varargin)`: the Kleene conjunction of the refinements with
+inconclusive mapped to `False` is the Kleene part, and the value is inconclusive where it differs
+from that with inconclusive mapped to `True`; `none` is the `toBoolSignal()` error, which `at_and`
+shows does not occur. This is `Λ̃₁ ∧ Λ̃₂` of [1, Sec. 4.3 (operators)], the `⊔₂` of the
+conjunctions of `⌊Λ̃⌋` and `⌈Λ̃⌉`.
+Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
 
-This is `Λ̃₁ ∧ Λ̃₂` of [1, Sec. 4.3 (operators)]: the `⊔₂` of the conjunctions of the under- and
-overapproximations `⌊Λ̃⌋` and `⌈Λ̃⌉`.
+## Inputs
+* `ι` – index type of the operands
+* `sigs` – four-valued signals to conjoin
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
+## Output
+* the conjunction signal, or none if CORA throws
 
 ## References
 

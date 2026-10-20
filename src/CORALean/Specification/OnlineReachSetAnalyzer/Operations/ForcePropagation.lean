@@ -13,6 +13,13 @@ observation final, `makeValid = stlInterval(0,inf)`.
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
 intervals over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `eps` – machine epsilon
+* `obj` – analyzer
+
+## Output
+* the analyzer after propagating everything, or none where CORA throws
 -/
 
 -- Authors:       Claude Sonnet 5.5

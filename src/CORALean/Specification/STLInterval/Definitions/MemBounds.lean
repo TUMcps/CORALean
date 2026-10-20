@@ -11,6 +11,17 @@ public import Mathlib.Order.WithBot
 The times `t` with `lb < t` (or `lb = t` when `lc`) and `t < ub` (or `t = ub` when `rc`), for real
 bounds and an upper bound that may be `inf` (`⊤`): the denotation of `stlInterval(lb,ub,lc,rc)` that
 the signals use, as `STLInterval.set` for bounds of type `EReal`.
+
+## Inputs
+* `T` – time type
+* `lb` – interval lower bound
+* `ub` – interval upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+* `t` – time
+
+## Output
+* the time lies between the bounds
 -/
 
 -- Authors:       Claude Sonnet 5.5

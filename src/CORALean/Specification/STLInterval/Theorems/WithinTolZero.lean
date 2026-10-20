@@ -8,6 +8,16 @@ public import CORALean.Specification.STLInterval.Definitions.WithinTol
 # `withinTol` at tolerance zero
 
 At `tol = 0` `withinTol` is equality.
+
+## Inputs
+* `a` – first value
+* `b` – second value
+
+## Hypotheses
+* none
+
+## Conclusion
+* without tolerance the values agree iff they are equal
 -/
 
 -- Authors:       Claude Sonnet 5.5

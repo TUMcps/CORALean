@@ -9,6 +9,16 @@ public import CORALean.Specification.STL.Operations.TreeDnfRewrite
 
 A pass of `disjunctiveNormalForm.m`'s `aux_rewrite` returns a formula satisfied by the same
 traces: distributing `&` over `|` is a propositional equivalence.
+
+## Inputs
+* `φ` – formula
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* one pass keeps the meaning
 -/
 
 -- Authors:       Claude Sonnet 5.5

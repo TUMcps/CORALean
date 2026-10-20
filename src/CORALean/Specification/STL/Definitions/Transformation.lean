@@ -13,6 +13,13 @@ public import CORALean.Specification.STL.Definitions.RTL
 `C(R) ⊨ₜ φ ⇒ R ⊨ᵣ Υ(φ)`, for the reach sequences the paper has in view, which `𝓡` names:
 [1, Eq. 10] takes any, [1, Lemma 2] the c-divisible finitely represented ones.
 
+## Inputs
+* `𝓡` – set of reach sequences
+* `Υ` – transformation of formulas
+
+## Output
+* the transformation is sound on every reach sequence
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

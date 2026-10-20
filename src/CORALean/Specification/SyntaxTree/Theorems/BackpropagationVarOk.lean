@@ -11,6 +11,19 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 
 If `backpropagation` of a variable returns a box, its upper bound at `id` is the smaller of
 `value`'s and `int(id)`'s.
+
+## Inputs
+* `i` – variable index
+* `w` – value interval
+* `v` – target interval
+* `B` – box
+* `r` – result box
+
+## Hypotheses
+* `h` – the backpropagation returns the result box
+
+## Conclusion
+* the upper bound is the smaller of the target's and the box's
 -/
 
 -- Authors:       Claude Sonnet 5.5

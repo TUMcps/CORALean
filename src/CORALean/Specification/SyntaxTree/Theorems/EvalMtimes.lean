@@ -11,6 +11,21 @@ public import CORALean.Specification.SyntaxTree.Theorems.EvalSum
 # The value of `mtimes`
 
 Entry `(i,j)` of `mtimes(obj1,obj2)` denotes the sum of the products `obj1(i,l) obj2(l,j)`.
+
+## Inputs
+* `m` – rows of the first matrix
+* `k` – inner dimension minus one
+* `p` – columns of the second matrix
+* `A` – first matrix of trees
+* `B` – second matrix of trees
+* `i` – row index
+* `j` – column index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the entry evaluates to the matrix product entry
 -/
 
 -- Authors:       Claude Sonnet 5.5

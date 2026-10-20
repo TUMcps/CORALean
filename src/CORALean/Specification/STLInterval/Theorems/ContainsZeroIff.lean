@@ -11,6 +11,16 @@ public import CORALean.Specification.STLInterval.Theorems.NonemptySetSubsetIff
 
 At `tol = 0` the `stlInterval` branch of `contains_` is inclusion of the sets of times; an empty
 `S` over a nonempty container is `true`, as `contains` answers it.
+
+## Inputs
+* `I` – first interval
+* `J` – second interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* containment without tolerance is inclusion of the times
 -/
 
 -- Authors:       Claude Sonnet 5.5

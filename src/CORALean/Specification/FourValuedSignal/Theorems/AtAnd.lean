@@ -17,6 +17,16 @@ public import CORALean.Specification.FourValued.Theorems.Basic
 For valid four-valued signals, `fourValuedSignal.and_(varargin)` does not throw, is valid and, at a
 time `t ≥ 0`, `True` iff every signal is `True`, `False` iff one is `False`, and `Inconclusive` iff
 none is `False` and one is `Inconclusive`; otherwise `Unknown`.
+
+## Inputs
+* `ι` – index type of the operands
+* `sigs` – four-valued signals
+
+## Hypotheses
+* `hv` – the signals are valid
+
+## Conclusion
+* the conjunction is valid and has the value of `fourValued.and` at each time
 -/
 
 -- Authors:       Claude Sonnet 5.5

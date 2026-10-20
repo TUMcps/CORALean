@@ -12,6 +12,20 @@ public import CORALean.Specification.STL.Theorems.SatNext
 [1, Lemma 3]: if `ξ ⊨ₜ φᵢ ⇐ ξ ⊨ₜ φ'ᵢ` for all `i` and `ξ`, then `M ⊨ₜ f(φ) ⇐ M ⊨ₜ f(φ')`, for `M =
 C(R)` and any other set of traces; the paper's induction over `∧`, `∨` and `X_c`.
 
+## Inputs
+* `n` – number of holes
+* `φ` – formulas filling the holes
+* `φ'` – stronger formulas
+* `f` – composition
+* `M` – set of traces
+
+## Hypotheses
+* `h` – each stronger formula implies the weaker one
+* `hM` – the composition with the stronger formulas holds on the set
+
+## Conclusion
+* the composition with the weaker formulas holds on the set
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

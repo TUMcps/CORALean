@@ -16,8 +16,6 @@ the coefficient box `[l, u]`.
 
 ## Inputs
 * `P` – halfspace polytope
-
-## Hypotheses
 * `up` – certified upper bound per coordinate
 * `lo` – certified lower bound per coordinate
 

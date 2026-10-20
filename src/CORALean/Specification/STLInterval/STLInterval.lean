@@ -7,22 +7,13 @@ public import Mathlib.Data.EReal.Operations
 /-!
 # CORA's `stlInterval`: time intervals with open and closed ends
 
-`specification/@stlInterval/stlInterval.m`: a one-dimensional interval of time with a lower and an
-upper bound, each open or closed, or the empty interval (`lower = []`). `STLInterval.nonempty`
-carries what the constructor `stlInterval(lb,ub,lc,rc)` establishes: an infinite bound is open,
-`lb > ub`, or `lb = ub` with an open end, is empty, and `lb ≥ 0`. `set` is the times denoted.
-
-Bounds are `EReal`, MATLAB's doubles with `±Inf`. The constructor throws on `lb < 0` when
-`CHECKS_ENABLED` (the default) and every operation builds through it, so no `stlInterval` has a
-negative lower bound: `zero_le` is a field of `nonempty`, and a construction CORA rejects needs
-the hypothesis `0 ≤ lb`. With `CHECKS_ENABLED` off CORA accepts one; that is not modelled.
-
-`rawSet` is the set of times between any two bounds, `set` that of an interval's own. They stay
-apart because operations compute bounds outside `[0, ∞]` before the constructor clamps or rejects
-them (`lower - upper'` in `minus`), and `rawSet_add`, `rawSet_sub` and `rawSet_clamp` are about
-those, before any `nonempty` exists.
-
-The intervals are those of [1, Sec. 2.1 (intervals)]: real or infinite bounds, infinite ones open.
+`specification/@stlInterval/stlInterval.m`: a time interval with open or closed ends, or the empty
+one. `STLInterval.nonempty` carries what `stlInterval(lb,ub,lc,rc)` establishes (an infinite bound
+is open, `lb > ub` or `lb = ub` with an open end is empty, `lb ≥ 0`); `set` is the times denoted.
+Bounds are `EReal`. CORA's constructor throws on `lb < 0` (`CHECKS_ENABLED`, not modelled when off),
+so `zero_le` is a field and a construction needs `0 ≤ lb`. `rawSet` is the times between any two
+bounds, as operations compute bounds outside `[0, ∞]` before clamping (`rawSet_add`, `rawSet_sub`,
+`rawSet_clamp`). The intervals are those of [1, Sec. 2.1 (intervals)].
 
 ## References
 

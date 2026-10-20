@@ -13,6 +13,19 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.ListLtOfPairwis
 
 At the `i`-th time point of a valid signal (counted from `1`) the signal has the point value
 stored for it.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `i` – time point index
+* `a` – the time point
+
+## Hypotheses
+* `hs` – the signal is valid
+* `ha` – the point is the one at that index
+
+## Conclusion
+* the value at the point is its point value
 -/
 
 -- Authors:       Claude Sonnet 5.5

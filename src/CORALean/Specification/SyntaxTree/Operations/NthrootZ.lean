@@ -12,6 +12,13 @@ so `nthroot(0,e) = Inf` for `e < 0` is not modelled: the value there is `0`.
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (interval
 arithmetic over `𝕋` with outward rounding) is not yet written.
+
+## Inputs
+* `x` – real number
+* `e` – integer degree
+
+## Output
+* the root of that degree, reciprocal for a negative degree
 -/
 
 -- Authors:       Claude Sonnet 5.5

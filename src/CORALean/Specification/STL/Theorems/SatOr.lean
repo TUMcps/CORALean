@@ -10,6 +10,17 @@ public import CORALean.Specification.STL.STL
 `ξ ⊨ₜ φ ∨ ψ ⇔ ξ ⊨ₜ φ ∨ ξ ⊨ₜ ψ`, [1, Sec. 2.2]'s clause for `∨`, as a rewrite that leaves the
 semantics of the operands folded.
 
+## Inputs
+* `φ` – left formula
+* `ψ` – right formula
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the disjunction holds iff one formula holds
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

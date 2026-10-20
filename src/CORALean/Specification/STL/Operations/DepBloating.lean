@@ -21,6 +21,15 @@ per `j`, and the third the interval matrix `E = [-E, E]` scaled by `2Δt` applie
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (a zonotope
 computation over `𝕋` with directed rounding) is not yet written.
 
+## Inputs
+* `A` – dynamics matrix
+* `U₀` – input zonotope
+* `Δt` – time step
+* `κ` – Taylor order
+
+## Output
+* the bloating zonotope of the input set
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

@@ -10,6 +10,18 @@ public import CORALean.Specification.STL.STL
 `ξ ⊨ₜ G[a,b] φ` holds iff `φ` holds on the trace shifted by every `t ∈ [a,b]`: the dual `¬F[a,b]
 ¬φ` of the eventuality `F[a,b]` of [1, Sec. 2.2] (the paper does not define `G`).
 
+## Inputs
+* `a` – interval lower bound
+* `b` – interval upper bound
+* `φ` – formula
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* always holds iff the formula holds at every shifted time of the interval
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

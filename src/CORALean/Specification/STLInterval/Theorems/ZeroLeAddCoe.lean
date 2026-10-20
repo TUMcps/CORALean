@@ -11,6 +11,22 @@ public import Mathlib.Data.EReal.Operations
 The lower bound of an `stlInterval` is a real number, so shifting it by a real `δ` whose real
 sum stays nonnegative keeps the `EReal` sum nonnegative: what `plus` with a number or an interval
 needs of `stlInterval(lb,ub,lc,rc)`'s check `lb ≥ 0`.
+
+## Inputs
+* `l` – lower bound
+* `u` – upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+* `δ` – real shift
+
+## Hypotheses
+* `hu` – an infinite upper bound is open
+* `hlt` – the bounds leave a time in the interval
+* `hz` – the lower bound is nonnegative
+* `h` – the shifted finite bound is nonnegative
+
+## Conclusion
+* the shifted lower bound is nonnegative
 -/
 
 -- Authors:       Claude Sonnet 5.5

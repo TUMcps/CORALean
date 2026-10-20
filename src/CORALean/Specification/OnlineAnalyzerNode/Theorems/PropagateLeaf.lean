@@ -8,6 +8,18 @@ public import CORALean.Specification.OnlineAnalyzerNode.Operations.Propagate
 # Propagating at a constant
 
 A `true` or `false` node propagates nothing: the node and its children stay as they are.
+
+## Inputs
+* `eps` – machine epsilon
+* `n` – node
+* `ch` – children
+* `I` – interval to make final
+
+## Hypotheses
+* `h` – the node is a constant
+
+## Conclusion
+* the node and its children stay unchanged
 -/
 
 -- Authors:       Claude Sonnet 5.5

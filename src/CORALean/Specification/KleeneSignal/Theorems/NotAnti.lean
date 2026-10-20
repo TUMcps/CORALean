@@ -12,6 +12,18 @@ public import CORALean.Specification.Kleene.Theorems.Basic
 If `Λ ⊑ₜ Λ'` at every time `t ≥ 0`, then `¬Λ' ⊑ₜ ¬Λ` there: `¬` on `U₁`-signals is antitone
 ([1, Lemma 3]).
 
+## Inputs
+* `s` – three-valued signal
+* `s'` – second three-valued signal
+
+## Hypotheses
+* `hs` – the first signal is valid
+* `hs'` – the second signal is valid
+* `h` – the first is below the second at all times
+
+## Conclusion
+* the negations are in reverse order at all times
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

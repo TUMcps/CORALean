@@ -13,6 +13,15 @@ public import CORALean.Specification.FourValuedSignal.Theorems.Basic
 `obj == other` compares the parts, so it is finer than equality of values: the Kleene part under
 `isInconclusive` is irrelevant to `at`, yet negation flips it, and `a` and `~a` for a signal `a`
 that is `Inconclusive` throughout have the same value everywhere but are not `==`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* two valid signals with equal values at all times compare unequal
 -/
 
 -- Authors:       Claude Sonnet 5.5

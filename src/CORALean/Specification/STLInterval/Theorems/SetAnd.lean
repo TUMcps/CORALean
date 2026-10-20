@@ -10,6 +10,16 @@ public import CORALean.Specification.STLInterval.Theorems.RawSetInter
 # `and_` denotes the intersection
 
 `I & J` denotes the intersection of the two sets of times.
+
+## Inputs
+* `I` – first interval
+* `J` – second interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the intersection denotes the intersection of the times
 -/
 
 -- Authors:       Claude Sonnet 5.5

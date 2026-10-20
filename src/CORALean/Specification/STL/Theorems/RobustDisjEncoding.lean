@@ -14,6 +14,17 @@ public import Mathlib.Algebra.BigOperators.Group.Finset.Piecewise
 [1, Sec. V (disjunction)]: conjunction's encoding with (4) replaced by `r ≥ rᵢ` enforces
 `r = maxᵢ rᵢ`: the one `pⱼ = 1` pins `r ≤ rⱼ`. Feasible for `M` at least the spread of the `rᵢ`.
 
+## Inputs
+* `m` – number of operands
+* `rs` – operand robustness values
+* `M` – big constant
+
+## Hypotheses
+* `hm` – there is an operand
+
+## Conclusion
+* the constraints force the maximum and it exists
+
 ## References
 
 * [1] V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and

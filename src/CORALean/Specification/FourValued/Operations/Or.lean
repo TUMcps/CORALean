@@ -9,6 +9,13 @@ public import CORALean.Specification.FourValued.FourValued
 
 `or` of `fourValued.m`: true if one is true, false if both are false, unknown if one is unknown
 and none is inconclusive, inconclusive otherwise.
+
+## Inputs
+* `lhs` – left operand
+* `rhs` – right operand
+
+## Output
+* the four-valued disjunction
 -/
 
 -- Authors:       Claude Sonnet 5.5

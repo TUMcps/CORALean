@@ -13,6 +13,16 @@ realization stands for the whole time interval `[t(l),t(l+1)]`, "an approximatio
 simulation results have no claim of correctness this inaccuracy is acceptable here" (CORA). The
 location is `loc(:,l)`, or `1` if the simulation has none. Every proposition that holds at the point
 is marked true in its signal on the interval.
+
+## Inputs
+* `obj` – analyzer
+* `s` – realization index
+* `dur` – signal duration
+* `sigs` – signal of each proposition
+* `l` – time point index
+
+## Output
+* the signals after marking the interval, or none
 -/
 
 -- Authors:       Claude Sonnet 5.5

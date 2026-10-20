@@ -18,6 +18,17 @@ If the signals of the atoms of `φ` are valid, so is `⟦φ⟧_R` of [1, Sec. 4.
 operators of `U₁`-signals keep a signal of finite variability (`KleeneSignal.not_isValid`,
 `at_and`, `until_spec`), as does `true`.
 
+## Inputs
+* `X` – state type
+* `φ` – formula
+* `S` – three-valued signal of each atom
+
+## Hypotheses
+* `hS` – the signals of the formula's atoms are valid
+
+## Conclusion
+* the three-valued satisfaction signal is valid
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

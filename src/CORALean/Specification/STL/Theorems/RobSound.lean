@@ -13,6 +13,15 @@ two directions that hold: `ρ > 0` implies satisfaction, and satisfaction implie
 `ρ < 0` implies violation. Not the equivalence: at `μ(xₜ) = 0`, `¬μ` holds and `ρ^{¬μ} = 0`,
 `STL.DFormula.rob_counterexample`. By induction, `min` and `max` passing both bounds through.
 
+## Inputs
+* `x` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* positive robustness implies satisfaction and satisfaction implies nonnegative robustness
+
 ## References
 
 * [1] V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and

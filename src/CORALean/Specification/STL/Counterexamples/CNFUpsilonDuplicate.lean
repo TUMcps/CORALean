@@ -13,6 +13,15 @@ public import CORALean.Specification.STL.Definitions.ReachSequence
 `j` break completeness: `F(0,1) x ∨ F(0,1) ¬x` holds of every trace of `R(t) = Bool`, yet `Υ` is
 `X_{1/2} A x ∨ X_{1/2} A ¬x`, false, where `Υ` of the merged `F(0,1)(x ∨ ¬x)` is true.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a clause with duplicate powers makes the encoding incomplete
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

@@ -14,6 +14,20 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 `intPrev & interval(lo,hi)` holds `s` and lies inside `intPrev` when `intPrev` holds `s` and `lo ≤
 s ≤ hi`.
+
+## Inputs
+* `prev` – previous interval
+* `lo` – lower bound
+* `hi` – upper bound
+* `s` – point
+
+## Hypotheses
+* `hs` – the previous interval contains the point
+* `h₁` – the lower bound is at most the point
+* `h₂` – the point is at most the upper bound
+
+## Conclusion
+* the meet contains the point and lies inside the previous interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

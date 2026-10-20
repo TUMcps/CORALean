@@ -9,17 +9,21 @@ public import CORALean.Specification.STL.Theorems.SatOr
 /-!
 # Eq. 12 fails: `tsupp(ϕ)` need not decide `ϕ`
 
-[1, Eq. 12] says a sound and complete `Υ` has `Υ(ϕ₁ ∨ ϕ₂) ≡ Υ(ϕ₁) ∨ Υ(ϕ₂)` if
-`tsupp(ϕ₁) ∩ tsupp(ϕ₂) = ∅`. Over `Bool`, let `p` be the atom `ξ(0) = true`, and
-* `ϕ₂ = F(0,1) ¬p`: some `ξ(s)`, `s ∈ (0,1)`, is false; `tsupp(ϕ₂) ⊆ (0,1)`;
-* `ϕ₁ = ¬X₁(p ∨ F(0,1) p) ∧ G(0,1) F(0,1) p`: `ξ` is false on `[1,2)`, and every `t ∈ (0,1)` has a
-  true `ξ(u)`, `u ∈ (t,t+1)`, which then is `u < 1`: the true points of `(0,1)` are cofinal in
-  `(0,1)`. Changing one point of `(0,1)` never changes that, so `tsupp(ϕ₁) ⊆ [1,2)`: the sets are
-  disjoint, but `ϕ₁` is not decided by `tsupp(ϕ₁)` (it depends on `(0,1)`).
+[1, Eq. 12] says a sound and complete `Υ` has `Υ(ϕ₁ ∨ ϕ₂) ≡ Υ(ϕ₁) ∨ Υ(ϕ₂)` if `tsupp(ϕ₁) ∩
+tsupp(ϕ₂) = ∅`. Over `Bool`, with the atom `p` = `ξ(0) = true`, take `ϕ₂ = F(0,1) ¬p`
+(`tsupp ⊆ (0,1)`) and `ϕ₁ = ¬X₁(p ∨ F(0,1) p) ∧ G(0,1) F(0,1) p` (true points of `(0,1)` cofinal,
+so `tsupp(ϕ₁) ⊆ [1,2)`): the supports are disjoint, but `ϕ₁` depends on `(0,1)`. For the reach
+sequence `R` that is `Bool` on `(0,1)` and `{false}` elsewhere, `C(R) ⊨ₜ ϕ₁ ∨ ϕ₂` while neither
+holds of all of `C(R)`, so the equivalence fails for the `Υ` that is `A ⊤` or `A ⊥` as `C(R) ⊨ₜ ϕ`.
 
-For the reach sequence `R` that is `Bool` on `(0,1)` and `{false}` elsewhere, `C(R) ⊨ₜ ϕ₁ ∨ ϕ₂`
-(if `ξ` is true on all of `(0,1)`, `ϕ₁` holds), while neither holds of all of `C(R)`. So for the
-`Υ` that is `A ⊤` or `A ⊥` as `C(R) ⊨ₜ ϕ`, sound and complete for `{R}`, the equivalence fails.
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the encoding of a disjunction is not the disjunction of the encodings
 
 ## References
 

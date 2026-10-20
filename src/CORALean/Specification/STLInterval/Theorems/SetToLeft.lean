@@ -11,6 +11,15 @@ public import CORALean.Specification.STLInterval.Theorems.RawSetUpperOfLe
 # `toLeft` denotes the times before
 
 `toLeft(I)` denotes the times at least `0` that are not in `I` and no later than every time of `I`.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* `hI` – the interval is nonempty
+
+## Conclusion
+* the left interval denotes the nonnegative times before all of the interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -18,6 +18,24 @@ public import CORALean.Specification.PointSegmentSignal.Operations.SuccTimeAtVal
 The times between the lower end of value `r` and the upper end of value `f` (one-based, as
 `precTimeAtValIdx` and `succTimeAtValIdx` take them) are those whose `cell` is among `r - 1, ..., f
 - 1`.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `r` – first value index
+* `f` – last value index
+* `t` – time
+
+## Hypotheses
+* `hs` – the signal is valid
+* `hr` – the first index is positive
+* `hrN` – the first index is in range
+* `hf` – the last index is positive
+* `hfN` – the last index is in range
+* `ht` – the time is nonnegative
+
+## Conclusion
+* a time lies in the interval iff its cell is in the run
 -/
 
 -- Authors:       Claude Sonnet 5.5

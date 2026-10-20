@@ -9,6 +9,18 @@ public import CORALean.Specification.STL.Theorems.CNFSatToFormula
 
 `ξ ⊨ₜ a ++ b ⇔ ξ ⊨ₜ a ∧ ξ ⊨ₜ b`: the `⋀ᵢ` of [1, Sec. 4.1] over two lists of clauses.
 
+## Inputs
+* `c` – time step
+* `a` – first normal form
+* `b` – second normal form
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the appended form holds iff both forms hold
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

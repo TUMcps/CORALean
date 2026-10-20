@@ -14,6 +14,16 @@ unsafe set each half avoids is avoided by their union, by `Disjoint.union_left`.
 
 The binary case a two-part split needs; `HoldsIUnion` is the indexed form
 `NeuralNetwork.holds_of_split` actually applies.
+
+## Inputs
+* `spec` – specification
+
+## Hypotheses
+* `hX` – the specification holds of the first set
+* `hY` – the specification holds of the second set
+
+## Conclusion
+* the specification holds of the union
 -/
 
 -- Authors:       Claude Opus 5

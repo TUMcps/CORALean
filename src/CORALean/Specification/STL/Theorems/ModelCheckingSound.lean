@@ -21,6 +21,18 @@ sequence of. The pipeline: negation normal form and the scaling by `c` (`Lemma 4
 to sampled time ([1, Table 1]), the normal form (`Sec. 4.1`) and `Υ` (`Lemma 2`). `ψ` is `Υ`'s
 output, which has the paper's shape up to distributing `X_a` over `∨`.
 
+## Inputs
+* `c` – time step
+* `φ` – formula
+
+## Hypotheses
+* `hc` – the time step is positive
+* `hstl` – the formula uses only the operators of STL
+* `hdiv` – the formula is divisible by the step
+
+## Conclusion
+* a normal form exists whose transformation implies the formula
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

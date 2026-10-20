@@ -14,6 +14,15 @@ public import CORALean.Specification.SyntaxTree.Theorems.ExpSound
 
 The node `exp` builds over a sound tree is sound: its interval encloses it (`encloses_exp`) and its
 `funHan` is sound.
+
+## Inputs
+* none
+
+## Hypotheses
+* `h` – the operand tree is sound
+
+## Conclusion
+* the exponential tree is sound
 -/
 
 -- Authors:       Claude Sonnet 5.5

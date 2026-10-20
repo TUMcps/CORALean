@@ -10,6 +10,17 @@ public import CORALean.Specification.STL.Theorems.SatAnd
 
 [1, Table 1] `G_I(φ₁ ∧ φ₂) ⇐ G_I φ₁ ∧ G_I φ₂`.
 
+## Inputs
+* `φ₁` – left formula
+* `φ₂` – right formula
+* `ξ` – trace
+
+## Hypotheses
+* `h` – always holds for both formulas
+
+## Conclusion
+* always of the conjunction holds
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

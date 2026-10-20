@@ -13,6 +13,15 @@ public import CORALean.Specification.SyntaxTree.Theorems.ContainsOfImage
 
 If the operand's interval encloses its value, the interval `Interval.atan` stores at the `atan`
 node encloses the node's value, exactly (`Interval.atan_exact`).
+
+## Inputs
+* none
+
+## Hypotheses
+* `h` – the operand's interval encloses its function
+
+## Conclusion
+* the interval of the inverse tangent encloses its function
 -/
 
 -- Authors:       Claude Sonnet 5.5

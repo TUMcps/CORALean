@@ -18,6 +18,16 @@ public import CORALean.Specification.TentativeKleeneSignal.Theorems.ToFourValued
 `t ≥ 0`, has the value of the tentative signal inside the interval and `Inconclusive` outside it:
 the times to the left and to the right of the interval are made invalid, and every time outside
 the interval is one of the two.
+
+## Inputs
+* `s` – tentative signal
+* `I` – time interval
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* a valid signal equal on the interval and inconclusive outside
 -/
 
 -- Authors:       Claude Sonnet 5.5

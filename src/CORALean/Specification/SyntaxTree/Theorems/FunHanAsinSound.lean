@@ -13,6 +13,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # `aaux_sin_` is sound
 
 `aaux_sin_` keeps every solution of `asin s ∈ int`, for a target inside the range of `asin`.
+
+## Inputs
+* `prev` – previous interval
+
+## Hypotheses
+* `hd₁` – the interval stays above minus one
+* `hd₂` – the interval stays below one
+
+## Conclusion
+* the inverse of the inverse sine keeps every solution
 -/
 
 -- Authors:       Claude Sonnet 5.5

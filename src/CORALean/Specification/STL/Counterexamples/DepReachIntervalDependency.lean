@@ -23,6 +23,15 @@ then `γ_u(i+1)` input generators), in 0-based indices. It fails for `ẋ = u`, 
 `U = [-1,1]`, `Δt = 1`, at `i = 0`, `t = 1/2`, and the factor `α_{u,1} = 1`: `ξ = 1/2` and
 `μ ⊕ E = {1}`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the time interval half of the dependency claim fails
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

@@ -19,6 +19,13 @@ public import CORALean.Specification.STL.Operations.DepBox
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (a zonotope
 computation over `𝕋` with directed rounding) is not yet written.
 
+## Inputs
+* `X₀` – initial set
+* `cs` – constants of the algorithm
+
+## Output
+* the algorithm state at time zero
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

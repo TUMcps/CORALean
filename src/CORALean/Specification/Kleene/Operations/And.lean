@@ -8,6 +8,13 @@ public import CORALean.Specification.Kleene.Kleene
 # Kleene conjunction
 
 `and` of `kleene.m`: true if both operands are true, false if one is false, unknown otherwise.
+
+## Inputs
+* `lhs` – left operand
+* `rhs` – right operand
+
+## Output
+* the Kleene conjunction
 -/
 
 -- Authors:       Claude Sonnet 5.5

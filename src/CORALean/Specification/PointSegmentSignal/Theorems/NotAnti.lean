@@ -10,6 +10,18 @@ public import Mathlib.Data.Real.Basic
 
 If `λ ⊑ₜ λ'` at every time `t ≥ 0`, then `¬λ' ⊑ₜ ¬λ` there ([1, Sec. 4.2 (monotonicity)]).
 
+## Inputs
+* `l` – Boolean signal
+* `l'` – larger signal
+
+## Hypotheses
+* `hl` – the signal is valid
+* `hl'` – the larger signal is valid
+* `h` – the signal is below the larger one at all times
+
+## Conclusion
+* the negations are in reverse order at all times
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

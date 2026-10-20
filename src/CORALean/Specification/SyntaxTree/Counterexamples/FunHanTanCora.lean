@@ -17,6 +17,13 @@ and
 the contraction misses the solutions where `tan x > 1`. `SyntaxTree.funHanTan` is the function
 without
 that line; `SyntaxTree.tanCora_counterexample` the tree where the difference shows.
+
+## Inputs
+* `int` – target interval
+* `prev` – previous interval
+
+## Output
+* the printed backpropagated interval of tan, or an empty outcome
 -/
 
 -- Authors:       Claude Sonnet 5.5

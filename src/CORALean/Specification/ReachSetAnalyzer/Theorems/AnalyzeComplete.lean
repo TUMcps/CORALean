@@ -14,6 +14,21 @@ For an analyzer made by the constructor and a tree of reach sets whose time inte
 every branch of the tree, from the root to a leaf, has an element in the result of
 `analyze(obj,R)` that is sound for it. CORA's `analyze` drops the branches after the first at
 every fork (`analyzeTreeCora`).
+
+## Inputs
+* `aps` – labelled atomic propositions
+* `dur` – signal duration
+* `masks` – masks of the propositions
+* `R` – tree of reach sets
+* `outs` – results of the analysis
+
+## Hypotheses
+* `hd` – the duration is nonnegative
+* `hnd` – the proposition keys are distinct
+* `hR` – all time intervals are proper
+
+## Conclusion
+* every branch contributes a result
 -/
 
 -- Authors:       Claude Sonnet 5.5

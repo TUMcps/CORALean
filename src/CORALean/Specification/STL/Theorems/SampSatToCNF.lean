@@ -18,6 +18,18 @@ public import CORALean.Specification.STL.Theorems.SatNext
 `c` and on every trace: `∧` appends clauses, `∨` merges them pairwise, `X_c` shifts the trace, a
 negation is pushed in.
 
+## Inputs
+* `c` – time step
+* `s` – sampled time formula
+* `pos` – positive polarity
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the normal form is equivalent to the formula or its negation
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

@@ -16,6 +16,15 @@ public import CORALean.Specification.TentativeKleeneSignal.Operations.ToFourValu
 `toFourValued(obj)` of a valid signal is valid and has, at every `t ≥ 0`, the value the tentative
 signal denotes: `Inconclusive` where neither value can hold, `Unknown` where both can, else the one
 that can.
+
+## Inputs
+* `s` – tentative signal
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* the four-valued signal is valid and agrees with the signal
 -/
 
 -- Authors:       Claude Sonnet 5.5

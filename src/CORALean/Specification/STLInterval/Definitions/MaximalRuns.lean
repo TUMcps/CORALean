@@ -12,6 +12,13 @@ A list of `STLInterval`s lists the maximal runs of a property `P` of times: thei
 `≥ 0`, a time `t ≥ 0` is in one of them exactly when `P t`, and each is closed under paths of times
 satisfying `P`: from a time in it, a time `t₂ ≥ 0` reached through times that all satisfy `P` is in
 it too (so two intervals never touch). It is what the `findIntervals` of the signal classes return.
+
+## Inputs
+* `L` – list of intervals
+* `P` – property of times
+
+## Output
+* the intervals are the maximal runs of times with the property
 -/
 
 -- Authors:       Claude Sonnet 5.5

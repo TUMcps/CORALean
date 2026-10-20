@@ -10,6 +10,17 @@ public import CORALean.Specification.STL.Theorems.ExprEvalCongrVariables
 
 Whether a trace satisfies a formula depends on the variables `getVariables` lists alone: two
 traces that agree on them at every time are satisfying together.
+
+## Inputs
+* `φ` – formula
+* `ξ` – trace
+* `ξ'` – second trace
+
+## Hypotheses
+* `h` – the traces agree on the formula's variables
+
+## Conclusion
+* the formula holds on both or neither
 -/
 
 -- Authors:       Claude Sonnet 5.5

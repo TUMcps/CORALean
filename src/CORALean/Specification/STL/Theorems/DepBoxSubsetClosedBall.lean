@@ -15,6 +15,17 @@ of `|G|`. The box has the same `absBound` as the zonotope it encloses, so a zono
 norm ball `B_r(0)` has its box inside `B_r(0)` as well (a coordinatewise statement, which the sup
 norm respects).
 
+## Inputs
+* `Z` – zonotope
+* `r` – ball radius
+
+## Hypotheses
+* `hr` – the radius is nonnegative
+* `h` – the zonotope lies in the ball
+
+## Conclusion
+* the interval hull lies in the same ball
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

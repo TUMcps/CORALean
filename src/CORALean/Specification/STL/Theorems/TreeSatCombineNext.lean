@@ -10,6 +10,16 @@ public import CORALean.Specification.STL.Theorems.ShiftShift
 
 `combineNext(obj)` is satisfied by the same traces as `obj`: `next` distributes over `&`, `|` and
 `~`, and two nested `next` add their times.
+
+## Inputs
+* `φ` – formula
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* moving next inwards keeps the meaning
 -/
 
 -- Authors:       Claude Sonnet 5.5

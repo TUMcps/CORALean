@@ -21,6 +21,15 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (a zonotope
 computation over `𝕋` with directed rounding) is not yet written.
 
+## Inputs
+* `A` – dynamics matrix
+* `Δt` – time step
+* `cs` – constants of the algorithm
+* `s` – algorithm state
+
+## Output
+* the algorithm state one step later
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

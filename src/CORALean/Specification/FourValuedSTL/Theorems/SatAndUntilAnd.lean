@@ -14,6 +14,20 @@ The strict until of [1, Sec. 2.5] does not require `φ₁` at `t` or `t'`; the u
 which does, is recovered as `φ₁ ∧ φ₁ U_I (φ₁ ∧ φ₂)`: it holds at `t` iff there is `t' ∈ t ⊕ I` with
 `φ₂` at `t'` and `φ₁` at every time of the closed interval `[t, t']`.
 
+## Inputs
+* `X` – state type
+* `φ₁` – left formula
+* `φ₂` – right formula
+* `I` – time interval
+* `ξ` – execution
+* `t` – time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the until holding the left formula at both ends is the usual until
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

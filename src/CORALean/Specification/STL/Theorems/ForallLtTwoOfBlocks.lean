@@ -10,6 +10,17 @@ public import Mathlib.Data.NNReal.Defs
 If `P` holds on `(0,1)`, at `1` and on `(1,2)`, written `P (u + 1)` for `u ∈ (0,1)`, it holds on
 all of `(0,2)`. How [1, Table 1] reads a window `(0,1)` followed by `X₁` of one.
 
+## Inputs
+* `P` – property of times
+
+## Hypotheses
+* `hG` – the property holds on the open first block
+* `h₁` – the property holds at one
+* `hG'` – the property holds on the open second block
+
+## Conclusion
+* the property holds on the open interval to two
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

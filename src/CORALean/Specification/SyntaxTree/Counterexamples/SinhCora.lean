@@ -12,6 +12,12 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 `sinh(obj)` of `syntaxTree.m` with its `funHan` as printed, `funHanSinhCora`, which is not sound
 (see
 `SyntaxTree.sinhCora_counterexample`). `SyntaxTree.sinh` is the node with the corrected `funHan`.
+
+## Inputs
+* `obj` – operand tree
+
+## Output
+* the printed sinh node
 -/
 
 -- Authors:       Claude Sonnet 5.5

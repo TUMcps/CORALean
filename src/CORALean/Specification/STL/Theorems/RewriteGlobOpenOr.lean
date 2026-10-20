@@ -9,6 +9,17 @@ public import CORALean.Specification.STL.STL
 
 [1, Table 1] `G_I(φ₁ ∨ φ₂) ⇐ G_I φ₁ ∨ G_I φ₂`.
 
+## Inputs
+* `φ₁` – left formula
+* `φ₂` – right formula
+* `ξ` – trace
+
+## Hypotheses
+* `h` – always holds for one of the formulas
+
+## Conclusion
+* always of the disjunction holds
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

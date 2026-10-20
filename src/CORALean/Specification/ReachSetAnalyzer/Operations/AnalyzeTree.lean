@@ -14,6 +14,16 @@ analyzed into (the analyzer), `α` what a leaf yields (its signals). CORA recurs
 a parent relation without cycles (every parent index below its child's) is finished after
 `length(R)+1` levels, so `fuel` of that size loses nothing, and exhausting it is `none`, as is
 a failing `analyzeSingle` or `signals` (CORA throws).
+
+## Inputs
+* `σ` – analyzer state type
+* `α` – result type
+* `children` – children of each entry
+* `analyzeSingle` – analysis of one entry
+* `signals` – result extracted from a state
+
+## Output
+* the results of every branch below the entry, or none
 -/
 
 -- Authors:       Claude Sonnet 5.5

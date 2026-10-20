@@ -10,6 +10,12 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Definitions.Formula
 
 `phi.type` of `parse`, as the type of node made for it: `true`, `false`, `AP`, `~`, `&`, `|`,
 `until`.
+
+## Inputs
+* none
+
+## Output
+* the node type made for the subformula
 -/
 
 -- Authors:       Claude Sonnet 5.5

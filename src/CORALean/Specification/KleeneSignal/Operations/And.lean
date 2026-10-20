@@ -10,15 +10,18 @@ public import Mathlib.Data.Fin.VecNotation
 /-!
 # The conjunction of three-valued signals
 
-`sig = kleeneSignal.and_(varargin)`: the Boolean combination `@all` of the minimal refinements
-(unknown as false) is the Boolean part, and the value is unknown where it differs from that of the
-maximal refinements (unknown as true).
+`sig = kleeneSignal.and_(varargin)`: the Boolean `@all` of the minimal refinements (unknown as
+false) is the Boolean part, and the value is unknown where it differs from that of the maximal
+refinements (unknown as true). This is `Λ₁ ∧ Λ₂` of [1, Sec. 4.2 (operators)]: the `⊔₁` of the
+conjunctions of `⌊Λ⌋` and `⌈Λ⌉`.
+Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
 
-This is `Λ₁ ∧ Λ₂` of [1, Sec. 4.2 (operators)]: the `⊔₁` of the conjunctions of the under- and
-overapproximations `⌊Λ⌋` and `⌈Λ⌉`.
+## Inputs
+* `ι` – index type of the operands
+* `sigs` – three-valued signals to conjoin
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
+## Output
+* the conjunction signal
 
 ## References
 

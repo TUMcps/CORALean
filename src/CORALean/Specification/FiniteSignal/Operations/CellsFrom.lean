@@ -9,6 +9,13 @@ public import CORALean.Specification.FiniteSignal.FiniteSignal
 
 The cell of a breakpoint `(b,v)` is `[a,b]` with `a` the previous breakpoint (`0` for the first):
 the times its value is valid, closed at both ends as `findIntervals.m` and `max.m` read them.
+
+## Inputs
+* `T` – time type
+* `V` – value type
+
+## Output
+* the cells between consecutive breakpoints
 -/
 
 -- Authors:       Claude Sonnet 5.5

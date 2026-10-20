@@ -11,18 +11,12 @@ public import Mathlib.Data.Bool.Basic
 /-!
 # `Kleene/Theorems`: small declarations
 
-One section per declaration, at most five code lines each; alphabetical, after the
-sections each one uses (CONTRIBUTING, "Small declarations").
-
-`le_iff_code`, `le_iff_tt_ff` and `truthOrder_spec` are the truth order of
-[1, Sec. 2.2 (order)] on the three values (`le_iff_tt_ff` is the form [1, Lemma 3] uses);
-`and_eq_join`, `or_eq_join` and `not_eq_join` are the `U₁` layer of [1, Fig. 3], and
-`join_floor_ceil`, `isRefinedBy_iff` and `isRefinedBy_iff_tt_ff` the characterization of `≺` in
-[1, Sec. 4.2 (refinements)].
-
-`code_and`, `code_or` and `code_not` say that on three values `&` is the minimum, `|` the maximum
-and `~` the reversal of the stored codes, which is the truth order ⊥ ⊑ₜ ⊣₁ ⊑ₜ ⊤ of
-[1, Sec. 2.2 (order)].
+One section per declaration, at most five code lines each (CONTRIBUTING, "Small declarations").
+`le_iff_code`, `le_iff_tt_ff` and `truthOrder_spec` are the truth order of [1, Sec. 2.2 (order)]
+(`le_iff_tt_ff` is the form [1, Lemma 3] uses); `and_eq_join`, `or_eq_join` and `not_eq_join` the
+`U₁` layer of [1, Fig. 3]; `join_floor_ceil`, `isRefinedBy_iff` and `isRefinedBy_iff_tt_ff` the
+characterization of `≺` in [1, Sec. 4.2 (refinements)]. `code_and`, `code_or` and `code_not` say
+`&` is the minimum, `|` the maximum and `~` the reversal of the stored codes.
 
 ## References
 

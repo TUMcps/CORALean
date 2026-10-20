@@ -56,22 +56,14 @@ public import CORALean.ContSet.Interval.Float.Theorems.Basic
 /-!
 # What a specification set can be checked against, computed
 
-`Contains` and `IsDisjoint` at float representations, generic over the scalar and so ℝ
-among them: a box against anything boxable (`IntervalOuter`), and a halfspace polytope
-against a box or a zonotope, both of which answer a direction with no solver.
-
-Box against box, `contains` is exact and `isDisjoint` exact up to one margin. A polytope `contains`
-by bounding the set along every row, exact up to rounding; `isDisjoint` looks for one row the set
-lies strictly beyond, so is exact only for a halfspace. Two boxable sets, or a zonotope bundle (one
-member's hull), are separated by their hulls: CORA's `'approx'` `isIntersecting_`.
-
-The box-against-`IntervalOuter` instance above is generic over a family `S : ℕ → Type`,
-which instance search cannot read off a real-layer family written as a lambda
-(`Real.Zonotope (Vec ℝ n)` does not unify with `S n`): fixing `S` to each exact real
-representation below is what makes those fire.
-
-`FullDimTest` at the float representations with a sound full-dimension test: a `true` is an
-interior point of the set, certified by `ltStrict`.
+`Contains` and `IsDisjoint` at float representations, generic over the scalar (so ℝ among them): a
+box against anything boxable (`IntervalOuter`), and a halfspace polytope against a box or a
+zonotope, both answering a direction with no solver. Box against box, `contains` is exact and
+`isDisjoint` exact up to one margin. A polytope `contains` by bounding the set along every row,
+exact up to rounding; `isDisjoint` looks for one row the set lies strictly beyond, so is exact only
+for a halfspace. Boxable sets and zonotope bundles are separated by their hulls (CORA's `'approx'`
+`isIntersecting_`). The box-against-`IntervalOuter` instance is generic over a family `S : ℕ → Type`
+that instance search cannot read off a lambda; fixing `S` to each real representation makes it fire.
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

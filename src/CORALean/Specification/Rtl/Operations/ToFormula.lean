@@ -13,6 +13,12 @@ the propositional formula `ϱ` it holds. The shift `a` of `Xₐ` is a nonnegativ
 `next` of CORA accepts every multiple of `0.5`, negative ones too, which have no counterpart, and
 `toFormula` is `none` for them.
 
+## Inputs
+* `f` – reading of a label as a predicate
+
+## Output
+* the paper's RTL formula, or none for a negative time shift
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

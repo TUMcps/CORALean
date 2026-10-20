@@ -14,6 +14,13 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 `aux_sin_(int,intPrev)` of `syntaxTree.m`: the branches `asin(int)` and `pi - asin(int)`, shifted by
 `2 pi k` (`aux_periodic_`).
+
+## Inputs
+* `int` – target interval
+* `prev` – previous interval
+
+## Output
+* the interval of operands whose sine lies in the target
 -/
 
 -- Authors:       Claude Sonnet 5.5

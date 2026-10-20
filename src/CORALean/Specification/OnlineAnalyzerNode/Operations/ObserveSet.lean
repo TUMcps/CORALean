@@ -19,6 +19,17 @@ observation of a time that was already propagated; a `true` or `false` node does
 an `AP` node derives the value of its proposition on the set (`apValue`) and either stores it for
 later in its tentative signal (`tentative`) or sets its satisfaction signal on the interval. Every
 throw is `none` here, and so is a node of kind `AP` without proposition or tentative signal.
+
+## Inputs
+* `eps` – machine epsilon
+* `n` – leaf node
+* `set` – observed set
+* `interval` – observed time interval
+* `loc` – location
+* `tentative` – observation is tentative
+
+## Output
+* the node after the observation, or none where CORA throws
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -9,6 +9,19 @@ public import Mathlib.Data.List.Basic
 # Membership in a slice of a list
 
 An entry of the slice `(l.take a).drop b` is an entry of `l` at an index from `b` up to before `a`.
+
+## Inputs
+* `α` – element type
+* `l` – list
+* `a` – upper index
+* `b` – lower index
+* `x` – entry
+
+## Hypotheses
+* none
+
+## Conclusion
+* the entry is in the slice iff it sits at an index in the range
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -13,6 +13,16 @@ public import Mathlib.Tactic.Linarith
 constraints `z ≤ z^{φᵢ}` and `z ≥ 1 - m + Σᵢ z^{φᵢ}` enforce `z = 1` if every operand holds and
 `z = 0` otherwise. Both: any feasible `z` is that Boolean value, and that value is feasible.
 
+## Inputs
+* `m` – number of operands
+* `zs` – operand values
+
+## Hypotheses
+* `hzs` – every value is zero or one
+
+## Conclusion
+* the constraints force the conjunction and it exists
+
 ## References
 
 * [1] V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and

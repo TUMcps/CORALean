@@ -10,6 +10,16 @@ public import Mathlib.Order.Basic
 # The cells are ordered
 
 The cells of strictly increasing breakpoints after `a` are intervals `[lo,hi]` with `a ≤ lo ≤ hi`.
+
+## Inputs
+* `T` – time type
+* `V` – value type
+
+## Hypotheses
+* none
+
+## Conclusion
+* each cell is an interval starting after the start time
 -/
 
 -- Authors:       Claude Sonnet 5.5

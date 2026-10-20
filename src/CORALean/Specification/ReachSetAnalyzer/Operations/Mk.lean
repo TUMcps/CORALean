@@ -14,6 +14,14 @@ builder's constructor for a negative `dur`; here `none`.
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
 intervals over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `aps` – labelled atomic propositions
+* `dur` – signal duration
+* `masks` – masks of the propositions
+
+## Output
+* the analyzer, or none for a negative duration
 -/
 
 -- Authors:       Claude Sonnet 5.5

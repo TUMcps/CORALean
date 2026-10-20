@@ -9,6 +9,12 @@ public import CORALean.Specification.STL.Definitions.Cmp
 
 `a < b` is `b > a` and `a ≤ b` is `b ≥ a`: the swap CORA's `lt`, `le`, `gt` and `ge` make when the
 number stands on the left of an `stl` operand.
+
+## Inputs
+* none
+
+## Output
+* the comparison with the sides swapped
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -12,6 +12,17 @@ public import CORALean.Specification.STLInterval.Theorems.Basic
 
 `indicator(interval,val,default)` of an `stlInterval` is a valid signal
 with value `val` at the times the interval denotes and `default` elsewhere.
+
+## Inputs
+* `I` – time interval
+* `val` – value on the interval
+* `default` – value elsewhere
+
+## Hypotheses
+* none
+
+## Conclusion
+* a valid signal that is `val` on the interval and `default` elsewhere
 -/
 
 -- Authors:       Claude Sonnet 5.5

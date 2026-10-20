@@ -14,6 +14,21 @@ children into its own: at every time `t ≥ 0` the new value is `delta`'s where 
 the old one where not; and every child gets the conclusive interval of the new signal through
 `setPropagated`. The signal `delta` is the negation (`FourValuedSignal.at_not`), conjunction
 (`at_and`), disjunction (`at_or`) or until (`until_spec`) of the children's signals.
+
+## Inputs
+* `eps` – machine epsilon
+* `n` – inner node
+* `ch` – children
+* `I` – interval to make final
+
+## Hypotheses
+* `hk1` – the node is not true
+* `hk2` – the node is not false
+* `hk3` – the node is not atomic
+* `hs` – the node's signal is valid
+
+## Conclusion
+* the signal takes the children's conclusive values and the children are notified
 -/
 
 -- Authors:       Claude Sonnet 5.5

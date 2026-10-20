@@ -10,6 +10,12 @@ public import CORALean.Specification.Rtl.Rtl
 Every `next` of the formula shifts by a time `≥ 0`, as the operator `Xₐ` of [1, Def. 1] does
 (`a ∈ ℝ≥0`).
 
+## Inputs
+* none
+
+## Output
+* every time shift of the formula is nonnegative
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

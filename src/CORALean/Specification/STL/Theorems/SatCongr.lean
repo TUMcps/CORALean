@@ -13,6 +13,15 @@ needs `N ≥ 10 + 6 = 16`. Whether `φ` holds at `t` depends only on the run on 
 the bound of the example is `16` for a predicate `φ`. That the bound takes time linear in the
 formula is the shape of its structural recursion, one step per operator.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a bounded formula is decided by the window of its bound
+
 ## References
 
 * [1] V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and

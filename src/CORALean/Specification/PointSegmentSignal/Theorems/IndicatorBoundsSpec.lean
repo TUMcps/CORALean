@@ -15,6 +15,21 @@ public import Mathlib.Data.List.TakeWhile
 `indicator(interval,val,default)` is a valid signal whose value at every time `t ≥ 0` is `val`
 inside the interval and `default` outside. The signal has at most three time points, so each
 case of the interval's ends is checked on an explicit list.
+
+## Inputs
+* `T` – time type
+* `lo` – interval lower bound
+* `up` – interval upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+* `val` – value on the interval
+* `default` – value elsewhere
+
+## Hypotheses
+* `hI` – the lower bound is nonnegative
+
+## Conclusion
+* a valid signal that is `val` on the interval and `default` elsewhere
 -/
 
 -- Authors:       Claude Sonnet 5.5

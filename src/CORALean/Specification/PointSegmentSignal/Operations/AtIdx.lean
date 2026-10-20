@@ -11,6 +11,14 @@ public import Mathlib.Order.WithBot
 `[val,i] = priv_atIdx(obj,time)` of `pointSegmentSignal`: `i` counts (from `1`) the time points `≤
 time` (`time` may be `inf`), `val` is the point value if the last of them is `time`, else the value
 of the interval after it.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `time` – time
+
+## Output
+* the value and index of the time point at the time
 -/
 
 -- Authors:       Claude Sonnet 5.5

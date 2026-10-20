@@ -12,6 +12,22 @@ on `(0,1)`, at `1`, on `(1,2)`, and from `1 + s` on for `s ∈ (0,1)` up to `t +
 on `[s, t + 1 + s)`: the offset `t'` is below `1` and `t' + s` lands in one of the first three
 blocks, or at least `1` and is one of the shifted ones.
 
+## Inputs
+* `P` – property of times
+* `s` – offset
+* `t` – bound
+
+## Hypotheses
+* `hs₀` – the offset is positive
+* `hs₁` – the offset is below one
+* `hG` – the property holds on the open first block
+* `h₁` – the property holds at one
+* `hG'` – the property holds on the open second block
+* `ht` – the property holds on the shifted third block
+
+## Conclusion
+* the property holds on the shifted times below the bound
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

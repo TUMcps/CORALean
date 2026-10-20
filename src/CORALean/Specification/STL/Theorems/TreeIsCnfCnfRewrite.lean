@@ -10,6 +10,15 @@ public import CORALean.Specification.STL.Definitions.TreeIsCnf
 
 If `aux_rewrite` of `conjunctiveNormalForm.m` counts no distribution, its result is a conjunction
 of clauses: no `|` is left with an `&` operand. The loop of the method stops at that pass.
+
+## Inputs
+* `φ` – formula
+
+## Hypotheses
+* `h` – the pass changes nothing
+
+## Conclusion
+* the pass result is in conjunctive normal form
 -/
 
 -- Authors:       Claude Sonnet 5.5

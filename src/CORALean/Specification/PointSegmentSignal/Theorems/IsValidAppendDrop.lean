@@ -10,6 +10,23 @@ public import Mathlib.Data.List.GetD
 
 A valid signal followed by the points of another valid signal from index `j` on, with their values,
 is valid when the points increase and the interval before point `j` agrees with the prefix's last.
+
+## Inputs
+* `s` – signal
+* `j` – index of the first dropped-to point
+* `tp'` – prefix time points
+* `vs'` – prefix values
+
+## Hypotheses
+* `hs` – the signal is valid
+* `hj1` – the index is positive
+* `hj2` – the index is in range
+* `hQ` – the prefix is a valid signal
+* `hlt` – the prefix points are before the tail
+* `hlast` – the prefix ends with the tail's preceding value
+
+## Conclusion
+* the prefix followed by the tail is valid
 -/
 
 -- Authors:       Claude Sonnet 5.5

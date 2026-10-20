@@ -9,6 +9,18 @@ public import CORALean.Specification.STL.Operations.TreeCompare
 
 `lt`, `le`, `gt` and `ge` build a node that holds of a trace exactly when the comparison holds of
 the two expressions at the state at time `0`, however the operands are swapped or subtracted.
+
+## Inputs
+* `op` – comparison
+* `e₁` – left expression
+* `e₂` – right expression
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the node holds iff the comparison holds at time zero
 -/
 
 -- Authors:       Claude Sonnet 5.5

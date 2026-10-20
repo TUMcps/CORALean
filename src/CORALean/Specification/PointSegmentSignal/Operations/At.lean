@@ -11,6 +11,14 @@ public import Mathlib.Order.Basic
 `at` of `pointSegmentSignal.m` (via `priv_atIdx`): take the last time point `≤ time`; the point
 value if it is `time`, else the value of the interval after it. The `find(...,'last')` is the
 number of points `≤ time`, as the times are sorted; `time ≥ 0` is a precondition (CORA throws).
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `time` – time
+
+## Output
+* the value of the signal at the time
 -/
 
 -- Authors:       Claude Sonnet 5.5

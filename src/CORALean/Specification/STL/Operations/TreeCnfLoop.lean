@@ -11,6 +11,12 @@ public import CORALean.Specification.STL.Operations.TreeCnfRewrite
 distribution. The loop ends because every pass that distributes lowers the weight of the formula
 (`&` adds and adds one, `|` multiplies, a leaf weighs two): distributing `(a & b) | c` replaces a
 product `(a + b + 1) * c` by a sum `a * c + b * c + 1`.
+
+## Inputs
+* `φ` – formula
+
+## Output
+* the formula rewritten until no change remains
 -/
 
 -- Authors:       Claude Sonnet 5.5

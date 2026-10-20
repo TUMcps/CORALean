@@ -13,6 +13,17 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # `aaux_cosh_` is sound
 
 `aaux_cosh_` keeps every solution of `acosh s ∈ int` for `s ≥ 1`.
+
+## Inputs
+* `a` – first number
+* `b` – second number
+
+## Hypotheses
+* `ha` – the first number is nonnegative
+* `hab` – the first is at most the second
+
+## Conclusion
+* the hyperbolic cosine is monotone on these numbers
 -/
 
 -- Authors:       Claude Sonnet 5.5

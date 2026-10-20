@@ -16,6 +16,15 @@ The part of `parse(phi,parent)` for a subformula without node: the next index `m
 it becomes a child of its `parent` (unless it is the root, whose `parent` is `0`), its node is
 made and entered into the cache. CORA throws if an index is out of range or the node cannot be
 made; here `none`.
+
+## Inputs
+* `dropPropagated` – drop propagated times flag
+* `φ` – subformula
+* `parent` – parent node index
+* `st` – parse state
+
+## Output
+* the parse state with the subformula's node added, or none
 -/
 
 -- Authors:       Claude Sonnet 5.5

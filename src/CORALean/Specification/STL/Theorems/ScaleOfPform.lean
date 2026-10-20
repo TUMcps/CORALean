@@ -9,6 +9,16 @@ public import CORALean.Specification.STL.Operations.FormulaScale
 
 [1, Table 1]: `(ϱ).scale c = ϱ`, only the bounds of temporal operators change.
 
+## Inputs
+* `c` – scaling factor
+* `ϱ` – predicate
+
+## Hypotheses
+* none
+
+## Conclusion
+* scaling does not change a non-temporal formula
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

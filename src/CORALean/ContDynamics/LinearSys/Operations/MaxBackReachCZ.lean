@@ -14,15 +14,12 @@ public import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
 by [1, Alg. 1]. The hull is taken in `LinearSys.maxBackReachStep`.
 
 ## Inputs
+* `ρ` – support oracle for polytopes
 * `P` – polytope
 * `ZW` – disturbance zonotope
 
-## Hypotheses
-* `ρ` – support oracle for polytopes
-
 ## Output
 * constrained zonotope of the eroded polytope
-
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

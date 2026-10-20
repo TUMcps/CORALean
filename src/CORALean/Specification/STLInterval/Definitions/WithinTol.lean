@@ -11,6 +11,14 @@ public import CORALean.Specification.STLInterval.STLInterval
 `tol`, absolutely or relative to the smaller magnitude (written without the division, which
 differs only where the smaller magnitude is `0` and the absolute test already decides), or both
 are the same infinity.
+
+## Inputs
+* `tol` – tolerance
+* `a` – first value
+* `b` – second value
+
+## Output
+* the values agree up to the tolerance
 -/
 
 -- Authors:       Claude Sonnet 5.5

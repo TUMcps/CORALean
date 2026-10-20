@@ -18,14 +18,11 @@ upper bounds in place of the support function values the paper takes.
 
 ## Inputs
 * `Aq` – family indexed by `Fin q`
-
-## Hypotheses
 * `u₁` – a support bound of `P₁.construct` along each row
 * `u₂` – a support bound of `P₂.construct` along each row
 
 ## Output
 * the polytope on the directions `Aq` bounded by the larger of the bounds of `u₁` and `u₂`
-
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

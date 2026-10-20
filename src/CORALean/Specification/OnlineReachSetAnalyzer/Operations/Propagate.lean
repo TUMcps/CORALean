@@ -13,6 +13,14 @@ node `1`, with the interval `makeValid` for which observations are final. `eps` 
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
 intervals over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `eps` – machine epsilon
+* `obj` – analyzer
+* `makeValid` – interval to make final
+
+## Output
+* the analyzer after propagating from the root, or none
 -/
 
 -- Authors:       Claude Sonnet 5.5

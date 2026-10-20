@@ -12,6 +12,16 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 The same for a binary node: for a target `int` inside `v`, every pair `s₁ ∈ prev₁`, `s₂ ∈ prev₂`
 with
 `f s₁ s₂ ∈ int` is held by the two intervals `funHan` returns, each inside its operand's.
+
+## Inputs
+* `f` – binary function
+* `prev₁` – first previous interval
+* `prev₂` – second previous interval
+* `v` – value interval
+* `funHan` – backpropagation of the function
+
+## Output
+* the backpropagation keeps every solution inside the target
 -/
 
 -- Authors:       Claude Sonnet 5.5

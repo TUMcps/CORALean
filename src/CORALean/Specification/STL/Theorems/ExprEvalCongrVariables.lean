@@ -8,6 +8,17 @@ public import CORALean.Specification.STL.Operations.ExprVariables
 # An expression reads only its variables
 
 Two states that agree on the variables of an expression give it the same value.
+
+## Inputs
+* `e` – expression
+* `x` – first assignment
+* `y` – second assignment
+
+## Hypotheses
+* `h` – the assignments agree on the variables
+
+## Conclusion
+* the expression has the same value under both assignments
 -/
 
 -- Authors:       Claude Sonnet 5.5

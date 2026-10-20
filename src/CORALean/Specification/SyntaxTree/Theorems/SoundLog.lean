@@ -14,6 +14,16 @@ public import CORALean.Specification.SyntaxTree.Theorems.LogSound
 
 The node `log` of a positive operand builds over a sound tree is sound: its interval encloses it
 (`encloses_log`) and its `funHan` is sound.
+
+## Inputs
+* none
+
+## Hypotheses
+* `h` – the operand tree is sound
+* `hd` – the operand is positive
+
+## Conclusion
+* the logarithm tree is sound
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,6 +11,19 @@ public import CORALean.Specification.STL.Operations.DepReachAt
 `H(t_i)` has the `γ_x` generators of `X₀` at every `i`: the first `γ_x` indices of `H_i` in
 [1, Prop. 1].
 
+## Inputs
+* `A` – dynamics matrix
+* `Δt` – time step
+* `cs` – constants of the algorithm
+* `X₀` – initial set
+* `i` – step index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the homogeneous solution has the generators of the initial set
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

@@ -11,6 +11,15 @@ public import CORALean.Specification.FourValued.Theorems.Basic
 `⊣₂` incomparable ([1, Sec. 2.2 (order)]). The order on `U₁` is the restriction of this one
 (`FourValued.fromKleene_le_iff`) and that of the stored codes (`Kleene.le_iff_code`).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* false is below unknown and inconclusive, which are below true and incomparable
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

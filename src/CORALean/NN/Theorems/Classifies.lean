@@ -18,12 +18,12 @@ the target's side of every margin.
 * `f` – map the network encloses
 * `X` – input set
 * `l` – target label
+* `u` – support bound of the output set for each rival
 * `x` – input point
 * `j` – rival label
 
 ## Hypotheses
 * `hf` – the network encloses the map
-* `u` – support bound of the output set for each rival
 * `h` – every rival's bound is negative
 * `hx` – point lies in the input set
 * `hj` – rival differs from the target

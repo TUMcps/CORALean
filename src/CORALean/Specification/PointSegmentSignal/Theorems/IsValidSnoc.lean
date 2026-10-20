@@ -10,6 +10,19 @@ public import Mathlib.Data.List.GetD
 
 Appending a point above all earlier ones keeps a valid signal valid, unless the point repeats the
 interval before and after it. To an empty signal only the point `0` can be appended.
+
+## Inputs
+* `tp` – time points
+* `val` – stored values
+* `τ` – appended time point
+* `pv` – point value of the new point
+* `iv` – interval value after the new point
+
+## Hypotheses
+* `h` – the signal is empty or valid with the new point not redundant
+
+## Conclusion
+* the extended signal is valid
 -/
 
 -- Authors:       Claude Sonnet 5.5

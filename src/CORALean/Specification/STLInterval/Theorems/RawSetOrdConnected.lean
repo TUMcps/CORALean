@@ -8,6 +8,18 @@ public import CORALean.Specification.STLInterval.STLInterval
 # An STL interval is order connected
 
 `rawSet` between two of its times holds every time between them.
+
+## Inputs
+* `l` – lower bound
+* `u` – upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set between the bounds is order connected
 -/
 
 -- Authors:       Claude Sonnet 5.5

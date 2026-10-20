@@ -19,11 +19,11 @@ Loses whatever the zonotope route loses on top of the box's own `2n` linear
 programs.
 
 ## Inputs
-* none
-
-## Hypotheses
 * `up` – certified upper bound per coordinate
 * `lo` – certified lower bound per coordinate
+
+## Hypotheses
+* none
 
 ## Conclusion
 * polytope is contained in its ellipsoid

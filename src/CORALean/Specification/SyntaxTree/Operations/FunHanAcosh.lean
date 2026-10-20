@@ -11,6 +11,13 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 
 `aaux_cosh_(int,intPrev)` of `syntaxTree.m`: `cosh` of `int` cut to `[0,∞)`, met with `intPrev`. An
 `int` below `0` throws `CORA:outOfDomain`.
+
+## Inputs
+* `int` – target interval
+* `prev` – previous interval
+
+## Output
+* the interval for the operand of the inverse hyperbolic cosine
 -/
 
 -- Authors:       Claude Sonnet 5.5

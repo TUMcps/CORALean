@@ -10,6 +10,20 @@ public import Mathlib.Order.Basic
 
 Every entry among those from index `m` on of a strictly increasing list is at least the entry at
 `m`.
+
+## Inputs
+* `l` – list
+* `m` – index
+* `b` – entry at the index
+* `x` – entry from the index on
+
+## Hypotheses
+* `hl` – the list strictly increases
+* `hb` – the entry is at the index
+* `hx` – the other entry is from the index on
+
+## Conclusion
+* the entry is at most the later one
 -/
 
 -- Authors:       Claude Sonnet 5.5

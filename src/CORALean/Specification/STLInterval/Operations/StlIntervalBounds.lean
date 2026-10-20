@@ -13,6 +13,15 @@ model returns `stlInterval()` for it, a case no valid signal reaches (its time p
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (bounds
 over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `lb` – lower bound
+* `ub` – upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+
+## Output
+* the interval of the real bounds, empty for a negative lower bound
 -/
 
 -- Authors:       Claude Sonnet 5.5

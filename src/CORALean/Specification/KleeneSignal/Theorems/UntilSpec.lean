@@ -19,6 +19,18 @@ right-hand side `True` and the left-hand side `True` strictly between, and `Fals
 
 This is the direct semantics of `U_I` in [1, Eq. 2], the unknown case being the remaining one.
 
+## Inputs
+* `lhs` – left signal
+* `rhs` – right signal
+* `U` – time interval
+
+## Hypotheses
+* `hl` – the left signal is valid
+* `hr` – the right signal is valid
+
+## Conclusion
+* the until is valid and true or false as Kleene's quantifiers say
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

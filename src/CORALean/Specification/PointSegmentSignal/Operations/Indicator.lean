@@ -16,6 +16,14 @@ constructor leaves them) are read off by `lowerBound`, `upperBound` and the clos
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
 stamps over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `I` – time interval
+* `val` – value on the interval
+* `default` – value elsewhere
+
+## Output
+* the signal that is `val` on the interval and `default` elsewhere
 -/
 
 -- Authors:       Claude Sonnet 5.5

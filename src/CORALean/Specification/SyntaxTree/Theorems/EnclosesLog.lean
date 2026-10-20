@@ -13,6 +13,16 @@ public import CORALean.Specification.SyntaxTree.Theorems.ContainsOfImage
 
 If the operand's interval encloses its value, the interval `Interval.log` stores at the `log` node
 encloses the node's value for a positive operand, exactly (`Interval.log_exact`).
+
+## Inputs
+* none
+
+## Hypotheses
+* `h` – the operand's interval encloses its function
+* `hd` – the operand is positive
+
+## Conclusion
+* the interval of the logarithm encloses its function
 -/
 
 -- Authors:       Claude Sonnet 5.5

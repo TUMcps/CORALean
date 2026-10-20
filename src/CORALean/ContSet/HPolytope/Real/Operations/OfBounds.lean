@@ -18,8 +18,6 @@ Nothing here solves a linear program. It consumes the answers.
 
 ## Inputs
 * `Aq` – family indexed by `Fin q`
-
-## Hypotheses
 * `u` – a support bound of `S` along each row
 
 ## Output

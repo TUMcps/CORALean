@@ -10,6 +10,16 @@ public import CORALean.Specification.STL.Operations.TreeTemporal
 
 For a formula with no temporal operator `maximumTime.m` returns `time` at once; the recursion of
 `STL.Tree.maximumTimeFrom` gives the same, so the test CORA makes first is not needed.
+
+## Inputs
+* `φ` – formula
+* `time` – offset
+
+## Hypotheses
+* `h` – the formula has no temporal operator
+
+## Conclusion
+* the latest time is the offset
 -/
 
 -- Authors:       Claude Sonnet 5.5

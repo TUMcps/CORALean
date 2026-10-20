@@ -13,6 +13,18 @@ public import Mathlib.Algebra.Group.Defs
 interval and `default` elsewhere. The interval's ends become the time points, each point taking
 `val` when its end is closed. The interval must start at a time `≥ 0` (the `stlInterval` constructor
 guarantees it).
+
+## Inputs
+* `T` – time type
+* `lb` – interval lower bound
+* `ub` – interval upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+* `val` – value on the interval
+* `default` – value elsewhere
+
+## Output
+* the signal that is `val` on the interval and `default` elsewhere
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -26,11 +26,11 @@ never tight unless the polytope was a box, but polynomial in the number of rows.
 facets: which subsets give vertices is a question of cost the enclosure does not depend on.
 
 ## Inputs
-* none
-
-## Hypotheses
 * `up` – certified upper bound per coordinate
 * `lo` – certified lower bound per coordinate
+
+## Hypotheses
+* none
 
 ## Conclusion
 * polytope is contained in its box vertex polytope

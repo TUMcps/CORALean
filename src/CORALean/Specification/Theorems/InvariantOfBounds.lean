@@ -11,6 +11,18 @@ public import CORALean.Global.SupportFunction.SupportFunction
 `Containment.lean` at `Specification.invariant` rather than `Specification.safeSet`: the two
 kinds are checked by the identical test (`Specification.holds_invariant`), so the same bound
 per halfspace direction discharges either.
+
+## Inputs
+* `ι` – index type of the directions
+* `c` – directions
+* `d` – offsets
+* `u` – support bounds of the set
+
+## Hypotheses
+* `h` – each bound is at most its offset
+
+## Conclusion
+* the invariant specification holds of the set
 -/
 
 -- Authors:       Claude Sonnet 5

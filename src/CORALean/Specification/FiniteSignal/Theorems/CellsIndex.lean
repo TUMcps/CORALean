@@ -10,6 +10,17 @@ public import CORALean.Specification.FiniteSignal.Operations.CellsFrom
 
 The `m`-th cell of breakpoints after `a` is `[a, time(0)]` for `m = 0`, else `[time(m-1),
 time(m)]`, with the value of the `m`-th breakpoint; there is one cell per breakpoint.
+
+## Inputs
+* `T` – time type
+* `V` – value type
+* `c` – cell
+
+## Hypotheses
+* none
+
+## Conclusion
+* the cell is the cell of some breakpoint index
 -/
 
 -- Authors:       Claude Sonnet 5.5

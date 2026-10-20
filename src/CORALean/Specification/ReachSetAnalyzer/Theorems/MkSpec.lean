@@ -13,6 +13,17 @@ public import CORALean.Specification.ReachSetAnalyzer.Operations.Mk
 `reachSetAnalyzer(aps,dur,masks)` fails for a negative duration (if there is any proposition).
 Otherwise it keeps the propositions and masks, and, the keys being distinct, represents the empty
 predicates: nothing is marked yet.
+
+## Inputs
+* `aps` – labelled atomic propositions
+* `dur` – signal duration
+* `masks` – masks of the propositions
+
+## Hypotheses
+* none
+
+## Conclusion
+* the constructor fails for a negative duration, else represents nothing marked
 -/
 
 -- Authors:       Claude Sonnet 5.5

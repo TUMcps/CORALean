@@ -11,6 +11,17 @@ public import Mathlib.Data.Matrix.Basic
 The generators of `MZ` are those of `Z` mapped by `M` ([1, Prop. 1]), so a weighted sum of them
 is `M` applied to the weighted sum over `Z`.
 
+## Inputs
+* `M` – matrix
+* `Z` – zonotope
+* `f` – generator weights
+
+## Hypotheses
+* none
+
+## Conclusion
+* the weighted generators of the image are the image of the weighted generators
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

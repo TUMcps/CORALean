@@ -12,14 +12,22 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 # [1, Prop. 2] is false for the time interval polytope `K_i2`
 
 A factor `α̃` outside `K_i2 = ⟨[C G_i2(·,N_i) 0], d - C c_i2 + Σ_{j∈M_i} |C G_i2(·,j)|⟩_P` of
-`R(τ_i)` of [1, Alg. 1] is claimed to have `ξ(t,x₀,u(·)) ∉ P` for all `t ∈ τ_i`, `ξ` the solution
-of the piecewise constant input of `α̃`. `N_i` is the layout of `R(τ_i)`: the generators of `X₀`,
-then the `γ_u(i+1)` input generators after the `2γ_x + 1` of the hull, `M_i` the others. For
-`ẋ = u`, `X₀ = {0}`, `U = [-1,1]`, `Δt = 1`, `i = 0`, `R(τ₀) = [-1,1]` has the generators
-`(0, 1, 0, 0)`, `N₀ = (2)`: for `P = {x ≤ 1/2}` the factor `α̃ = 1` is outside `K_i2`, which is
-`α̃ ≤ 1/2`, and `ξ(1/4) = 1/4` is in `P`. The cause is [1, Prop. 1] failing between the time points
-(`STL.depReachInterval_dependency_counterexample`); the half for `K_i1` holds,
-`STL.not_mem_of_not_mem_unsafeFactors_point`.
+`R(τ_i)`
+of [1, Alg. 1] is claimed to have `ξ(t,x₀,u(·)) ∉ P` for all `t ∈ τ_i`; `N_i` is the layout of
+`R(τ_i)` (the generators of `X₀`, then the input generators after those of the hull), `M_i` the
+others. For `ẋ = u`, `X₀ = {0}`, `U = [-1,1]`, `Δt = 1`, `i = 0`, `R(τ₀) = [-1,1]`, `P = {x ≤ 1/2}`
+the factor `α̃ = 1` is outside `K_i2` (`α̃ ≤ 1/2`), yet `ξ(1/4) = 1/4` is in `P`. The cause is [1,
+Prop. 1] failing between the time points (`STL.depReachInterval_dependency_counterexample`); the
+half for `K_i1` holds (`STL.not_mem_of_not_mem_unsafeFactors_point`).
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the unsafe factor claim fails for the time interval polytope
 
 ## References
 

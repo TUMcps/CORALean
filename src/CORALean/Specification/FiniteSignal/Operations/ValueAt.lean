@@ -10,6 +10,13 @@ public import Mathlib.Order.Basic
 
 The breakpoints `(time,value)` of a finite signal, read as in `at.m`: the value of the first
 breakpoint whose time exceeds `t`, the last value if there is none.
+
+## Inputs
+* `T` – time type
+* `V` – value type
+
+## Output
+* the value the breakpoints hold at the time
 -/
 
 -- Authors:       Claude Sonnet 5.5

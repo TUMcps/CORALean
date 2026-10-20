@@ -26,6 +26,20 @@ built so far agrees with `op` at every time below the next unconsumed time point
 
 With `¬` and `∧` as `op` this is their point-wise lift to Boolean signals of [1, Sec. 4.1].
 
+## Inputs
+* `T` – time type
+* `ι` – index type of the inputs
+* `κ` – index type of the outputs
+* `op` – pointwise operator on Boolean values
+* `sig` – input signals
+* `i` – output index
+
+## Hypotheses
+* `hv` – the input signals are valid
+
+## Conclusion
+* the output is valid and applies the operator at each time
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

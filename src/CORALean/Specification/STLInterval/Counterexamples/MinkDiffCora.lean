@@ -20,6 +20,15 @@ result is that of `STLInterval.minkDiff`. See `STLInterval.minkDiffCora_countere
 `ub = Inf - Inf = NaN`, so the object it returns contains no `t > 0`. See
 `STLInterval.minkDiffCora`; `STLInterval.minkDiff` takes the upper bound `+∞`, and `set_minkDiff`
 is the documented set.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's Minkowski difference omits a time that belongs to it
 -/
 
 -- Authors:       Claude Sonnet 5.5

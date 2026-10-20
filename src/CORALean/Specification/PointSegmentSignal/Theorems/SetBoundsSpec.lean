@@ -34,6 +34,21 @@ public import Mathlib.Data.List.GetD
 and the signal's own value elsewhere. The result is the part of the signal before `lb`, the new
 points at the two ends where needed (`aux_lowerPrefix` and the upper end), and the part after `ub`;
 each side is argued on its own, and the single-time case is `aux_setPoint`.
+
+## Inputs
+* `s` – signal
+* `lb` – interval lower bound
+* `up` – interval upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+* `value` – value to set
+
+## Hypotheses
+* `hs` – the signal is valid
+* `hI` – the lower bound is nonnegative
+
+## Conclusion
+* a valid signal with the value on the interval and unchanged elsewhere
 -/
 
 -- Authors:       Claude Sonnet 5.5

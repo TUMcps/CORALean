@@ -16,6 +16,23 @@ An analyzer made by the constructor, on entries whose time intervals are proper,
 (`SignalsSound`) after the entries of a branch were analyzed one after the other. This is the
 meaning of `canBeTrue` and `canBeFalse` carried through the builders: a time is true only if no set
 covering it can be false, and false only if none can be true.
+
+## Inputs
+* `obj` – analyzer
+* `d` – signal duration
+* `R` – tree of reach sets
+* `w` – branch entries
+* `obj'` – analyzer after the branch
+* `out` – signal of each proposition
+
+## Hypotheses
+* `hobj` – the analyzer represents nothing marked
+* `hw` – the branch's entries have proper time intervals
+* `hf` – analyzing the branch's entries gives the analyzer
+* `hs` – the signals are those of the analyzer
+
+## Conclusion
+* the signals are sound for the branch
 -/
 
 -- Authors:       Claude Sonnet 5.5

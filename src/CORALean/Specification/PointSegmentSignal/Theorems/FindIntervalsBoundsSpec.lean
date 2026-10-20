@@ -15,6 +15,17 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.AtEqCell
 
 For a valid signal, the intervals of `findIntervals(obj,cond)` have lower bounds `≥ 0`, and a time
 `t ≥ 0` lies in one of them exactly when `cond` holds of the value the signal has at `t`.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `cond` – condition on values
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* the intervals start nonnegative and cover the times where the condition holds
 -/
 
 -- Authors:       Claude Sonnet 5.5

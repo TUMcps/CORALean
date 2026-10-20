@@ -15,6 +15,15 @@ public import CORALean.Specification.STLInterval.Theorems.RawSetLowerOfGe
 
 This is the right-closure `clr(I)` of [1, Sec. 2.1 (intervals)].
 
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the right closure adds the supremum to the times
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

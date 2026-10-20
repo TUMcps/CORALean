@@ -20,6 +20,18 @@ signal is valid, `True` where both are `true` and `False` where both are `false`
 `mn` and `mx` are `⌊Λ⌋` and `⌈Λ⌉` of the result, which is their `⊔₁`, as
 [1, Sec. 4.2 (refinements)] recovers `Λ(t)`.
 
+## Inputs
+* `T` – time type
+* `mn` – minimal refinement
+* `mx` – maximal refinement
+
+## Hypotheses
+* `hmn` – the minimal refinement is valid
+* `hmx` – the maximal refinement is valid
+
+## Conclusion
+* the combined signal is valid, true where both hold and false where neither
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

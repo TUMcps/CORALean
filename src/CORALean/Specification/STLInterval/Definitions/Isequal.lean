@@ -9,6 +9,12 @@ public import CORALean.Specification.STLInterval.Definitions.WithinTol
 
 `@stlInterval/isequal.m`: two empty intervals are equal, an empty and a nonempty one are not,
 otherwise both bounds agree up to `tol` and both flags are the same.
+
+## Inputs
+* `tol` – tolerance
+
+## Output
+* the two intervals are equal up to the tolerance
 -/
 
 -- Authors:       Claude Sonnet 5.5

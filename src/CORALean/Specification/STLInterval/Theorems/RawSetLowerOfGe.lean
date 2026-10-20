@@ -8,6 +8,19 @@ public import CORALean.Specification.STLInterval.STLInterval
 # The lower end of an STL interval above a member
 
 A time at or above a time that passes the lower test passes it.
+
+## Inputs
+* `l` – lower bound
+* `lc` – lower bound is closed
+* `t` – time
+* `x` – member time
+
+## Hypotheses
+* `h` – the member is not above the time
+* `hx` – the member is past the lower bound
+
+## Conclusion
+* the time is past the lower bound
 -/
 
 -- Authors:       Claude Sonnet 5.5

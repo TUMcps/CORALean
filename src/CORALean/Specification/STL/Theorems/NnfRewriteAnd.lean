@@ -12,6 +12,17 @@ public import CORALean.Specification.STL.Theorems.SatAnd
 
 [1, Lemma 4]: `φ ∧ ψ` rewrites if `φ` and `ψ` do, by [1, Table 1]'s rows for `G_I` and `F_I` of `∧`.
 
+## Inputs
+* `φ` – left formula
+* `ψ` – right formula
+
+## Hypotheses
+* `hφ` – the left formula rewrites to sampled time
+* `hψ` – the right formula rewrites to sampled time
+
+## Conclusion
+* the conjunction rewrites to sampled time
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

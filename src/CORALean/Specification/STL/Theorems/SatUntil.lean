@@ -11,6 +11,19 @@ public import CORALean.Specification.STL.STL
 shift strictly before `t`: [1, Sec. 2.2] as `Sat` states it. CORA's `until` builds a syntax-tree
 node, and its `modelCheckTrace` reads it with `φ` required strictly before `t`.
 
+## Inputs
+* `a` – interval lower bound
+* `b` – interval upper bound
+* `φ` – holding formula
+* `ψ` – target formula
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the until holds iff the target holds at a time of the interval after the other
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

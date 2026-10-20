@@ -14,6 +14,24 @@ public import CORALean.Specification.STL.Operations.DepReachAt
 `iΔt ≤ T` the radius is at most `e^{T‖A‖} ρ`: the bound the printed proof of Prop. 4 does not give
 (it lets `Δt → 0` at a fixed `i`, where `iΔt = t_i` also moves).
 
+## Inputs
+* `A` – dynamics matrix
+* `Δt` – time step
+* `cs` – constants of the algorithm
+* `X₀` – initial set
+* `ρ` – initial ball radius
+* `T` – final time
+* `i` – step index
+
+## Hypotheses
+* `hΔt` – the time step is nonnegative
+* `hρ` – the radius is nonnegative
+* `h0` – the initial curvature set lies in the ball
+* `hi` – the step time is within the final time
+
+## Conclusion
+* the curvature set lies in a ball independent of the step
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

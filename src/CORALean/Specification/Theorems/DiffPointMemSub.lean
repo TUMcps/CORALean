@@ -10,6 +10,17 @@ public import CORALean.Specification.Operations.DiffPoint
 `diffPoint_mem_sub`: both witness points [1, Alg. 3 (exits), l. 10] reads lie in their own sets, so
 the difference lies in `O - U`.
 
+## Inputs
+* `wO` – witnesses of the reachable set
+* `wU` – witnesses of the unsafe set
+* `d` – direction
+
+## Hypotheses
+* none
+
+## Conclusion
+* the witness difference lies in the difference of the sets
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

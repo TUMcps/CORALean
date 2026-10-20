@@ -16,6 +16,17 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 `aux_power_` keeps every solution of `s^k ∈ int`: for an odd `k` the root is increasing, for an
 even `k`
 it is `|s|`, whose sign `intPrev` fixes (`aux_signed_`).
+
+## Inputs
+* `k` – exponent
+* `x` – number
+
+## Hypotheses
+* `hk` – the exponent is nonzero
+* `hx` – the number is nonnegative
+
+## Conclusion
+* the root of the power is the number
 -/
 
 -- Authors:       Claude Sonnet 5.5

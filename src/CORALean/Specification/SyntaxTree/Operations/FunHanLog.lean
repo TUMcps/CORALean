@@ -10,6 +10,13 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 # `aux_log_`: the contraction of `log`
 
 `aux_log_(int,intPrev)` of `syntaxTree.m`: `exp` of `int`, met with `intPrev`.
+
+## Inputs
+* `int` – target interval
+* `prev` – previous interval
+
+## Output
+* the interval of operands whose logarithm lies in the target
 -/
 
 -- Authors:       Claude Sonnet 5.5

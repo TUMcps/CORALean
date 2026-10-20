@@ -9,6 +9,16 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 # The value of `sum`
 
 `sum(obj)` denotes the sum of its entries.
+
+## Inputs
+* `t` – first tree
+* `rest` – remaining trees
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sum node evaluates to the sum of the entries
 -/
 
 -- Authors:       Claude Sonnet 5.5

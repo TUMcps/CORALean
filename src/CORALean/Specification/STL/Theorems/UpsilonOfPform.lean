@@ -12,6 +12,21 @@ public import CORALean.Specification.STL.Theorems.SatOfPform
 for. The paper's proof reads the values of `R(0)` off a trace through each, so every `R(t)` must
 be non-empty.
 
+## Inputs
+* `𝓡` – set of reach sequences
+* `Υ` – transformation of formulas
+* `ϱ` – predicate
+* `R` – reach sequence
+
+## Hypotheses
+* `hs` – the transformation is sound
+* `hc` – the transformation is complete
+* `hne` – all reach sets are nonempty
+* `hR` – the reach sequence is in the set
+
+## Conclusion
+* the transformation of a non-temporal formula is the atom
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

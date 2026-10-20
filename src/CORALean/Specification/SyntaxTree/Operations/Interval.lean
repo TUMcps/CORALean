@@ -11,6 +11,13 @@ The one-dimensional `interval` with the bounds `lb` and `ub`, as the nodes store
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (interval
 arithmetic over `𝕋` with outward rounding) is not yet written.
+
+## Inputs
+* `lb` – lower bound
+* `ub` – upper bound
+
+## Output
+* the one-dimensional interval with those bounds
 -/
 
 -- Authors:       Claude Sonnet 5.5

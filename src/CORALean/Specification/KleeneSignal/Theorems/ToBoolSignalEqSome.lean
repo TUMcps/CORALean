@@ -12,6 +12,16 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.AnyTrueEqFalseO
 
 `toBoolSignal(obj)` without argument throws if some value is unknown, and otherwise is the Boolean
 part: if the signal is nowhere unknown at times `t ≥ 0`, `toBoolSignal?` is `some` of it.
+
+## Inputs
+* `s` – three-valued signal
+
+## Hypotheses
+* `hs` – the signal is valid
+* `h` – the signal is never unknown
+
+## Conclusion
+* the conversion returns the Boolean part
 -/
 
 -- Authors:       Claude Sonnet 5.5

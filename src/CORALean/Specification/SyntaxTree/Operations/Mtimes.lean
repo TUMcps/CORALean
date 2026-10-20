@@ -11,6 +11,16 @@ public import CORALean.Specification.SyntaxTree.Operations.Basic
 `mtimes(obj1,obj2)` of `syntaxTree.m`: entry `(i,j)` is `sum(obj1(i,:).*obj2(:,j)')`: the entries
 multiplied with `.*` (`times`) and added (`sum`) in the order of the column index. A scalar operand
 makes it `times`.
+
+## Inputs
+* `m` – rows of the first matrix
+* `k` – inner dimension minus one
+* `p` – columns of the second matrix
+* `A` – first matrix of trees
+* `B` – second matrix of trees
+
+## Output
+* the matrix product of the trees
 -/
 
 -- Authors:       Claude Sonnet 5.5

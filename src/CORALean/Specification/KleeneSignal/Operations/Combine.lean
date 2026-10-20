@@ -13,6 +13,16 @@ public import CORALean.Specification.Kleene.Operations.Basic
 `pointSegmentSignal.combine` over the Boolean parts and unknown parts of the inputs, with `op`
 acting on Kleene values. Each Kleene output is returned as its Boolean and unknown part, which are
 two outputs of the underlying combination.
+
+## Inputs
+* `T` – time type
+* `ι` – index type of the inputs
+* `κ` – index type of the outputs
+* `op` – pointwise operator on Kleene values
+* `sig` – three-valued input signals
+
+## Output
+* the combined three-valued signals
 -/
 
 -- Authors:       Claude Sonnet 5.5

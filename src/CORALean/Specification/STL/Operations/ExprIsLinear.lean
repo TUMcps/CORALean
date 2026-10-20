@@ -10,6 +10,12 @@ public import CORALean.Specification.STL.Definitions.Expr
 `@stl/isLinearPredicate.m`, `aux_recursive`: a variable or number, a sum or difference of linear
 expressions, or a product of a number and a linear expression. A power is not linear (not even
 `x^1`), and a product of two non-numeric operands is not.
+
+## Inputs
+* none
+
+## Output
+* whether the expression is linear
 -/
 
 -- Authors:       Claude Sonnet 5.5

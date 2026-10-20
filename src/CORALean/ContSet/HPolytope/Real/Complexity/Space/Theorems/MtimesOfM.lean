@@ -16,9 +16,10 @@ does not otherwise touch.
 ## Inputs
 * `M` – linear map
 * `Aq` – family indexed by `Fin q`
+* `u` – a support bound of `P.construct` along each row
 
 ## Hypotheses
-* `u` – a support bound of `P.construct` along each row
+* none
 
 ## Conclusion
 * `mtimesOf` has one inequality per direction, `q` in all

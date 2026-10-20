@@ -17,6 +17,24 @@ In dense time without a last moment, an interval of `findIntervals(obj,cond)` is
 of times satisfying `cond`: from a time in it, a time reached through times that all satisfy `cond`
 is in it too. Two intervals therefore never touch, and a stretch of time satisfying `cond` lies in
 one interval.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `cond` – condition on values
+* `b` – interval bounds
+* `t₁` – first time
+* `t₂` – second time
+
+## Hypotheses
+* `hs` – the signal is valid
+* `hb` – the bounds are an interval of `findIntervals`
+* `ht₂` – the second time is nonnegative
+* `h₁` – the first time lies in the interval
+* `hpath` – the condition holds throughout between the times
+
+## Conclusion
+* the second time lies in the interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

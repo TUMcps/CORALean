@@ -11,6 +11,16 @@ public import CORALean.Specification.STLInterval.Theorems.Basic
 # `plus` with a number denotes a shift
 
 `I + c` denotes `I` shifted by `c`.
+
+## Inputs
+* `I` – interval
+* `c` – number
+
+## Hypotheses
+* `hc` – the lower bound stays nonnegative
+
+## Conclusion
+* the sum denotes the times shifted by the number
 -/
 
 -- Authors:       Claude Sonnet 5.5

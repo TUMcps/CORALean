@@ -23,6 +23,9 @@ correction term and on the particular solution may be handed in.
 * `U` – input set
 * `r` – step length
 * `m` – Taylor order offset
+* `b₀` – support bound on the initial set
+* `bC` – support bound on the correction term
+* `bP` – support bound on the particular solution
 * `c` – direction
 
 ## Hypotheses
@@ -36,13 +39,9 @@ correction term and on the particular solution may be handed in.
 * `hRclosed` – remainder image closed
 * `hRbdd` – remainder image bounded
 * `h0` – origin in the input set
-* `b₀` – support bound on the initial set
-* `bC` – support bound on the correction term
-* `bP` – support bound on the particular solution
 
 ## Output
 * support bound on the time-interval reachable set along the direction
-
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

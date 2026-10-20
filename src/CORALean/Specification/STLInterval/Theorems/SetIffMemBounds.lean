@@ -13,6 +13,16 @@ public import Mathlib.Data.EReal.Operations
 For an interval whose lower bound is `≥ 0` (CORA's constructor throws otherwise), `set` is the set
 `memBounds` of the real bounds and closedness flags read off the interval; the empty interval gets
 the empty `[0,0)`.
+
+## Inputs
+* `I` – interval
+* `t` – time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the time is in the interval iff it lies between the real bounds
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -15,6 +15,17 @@ public import Mathlib.Algebra.Order.AbsoluteValue.Basic
 `ε ≤ |μ(xₜ)| ≤ M - ε`: a run with `0 < |μ(xₜ)| < ε` is cut off, as "bound `μ(xₜ)` away from `0`"
 says.
 
+## Inputs
+* `μ` – predicate value
+* `M` – big constant
+* `ε` – tolerance
+
+## Hypotheses
+* `hε` – the tolerance is positive
+
+## Conclusion
+* the constraints decide whether the value is positive
+
 ## References
 
 * [1] V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and

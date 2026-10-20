@@ -10,6 +10,18 @@ public import CORALean.Specification.STL.Operations.DepBloating
 [1, Prop. 1]: every term of `D` is a map of `U₀` (by a matrix or an interval matrix), centered
 at the image of the center of `U₀`, so `D` is centered at `0` when `U₀` is, as `B(U ⊕ (-c_u))` is.
 
+## Inputs
+* `A` – dynamics matrix
+* `U₀` – input zonotope
+* `Δt` – time step
+* `κ` – Taylor order
+
+## Hypotheses
+* `hU` – the input zonotope is centered at the origin
+
+## Conclusion
+* the bloating is centered at the origin
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

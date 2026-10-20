@@ -18,6 +18,25 @@ The last sentence of [1, Cor. 1], "`⟦φ⟧_R̃(0) = ⊥` implies `H ⊭ φ`", 
 `H ⊭ φ` is `∃ ξ, ¬ ξ ⊨ φ`, which the covered executions all violating does not give for a system
 with none (`FourValuedSTL.not_holdsOn_of_ff_counterexample`). It is proved here for `E` nonempty.
 
+## Inputs
+* `X` – state type
+* `φ` – formula
+* `T` – times where the partial set is known
+* `Rp` – partial reachable set
+* `R` – extension of the partial set
+* `E` – executions of the system
+* `S` – three-valued signal of each atom
+* `S'` – four-valued signal of each atom
+
+## Hypotheses
+* `hext` – the set extends the partial set
+* `hcov` – the set covers every execution
+* `hS` – the three-valued atom signals are valid
+* `hS'` – the four-valued atom signals are valid
+
+## Conclusion
+* a true verdict means the formula holds on the system, a false one that it fails
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

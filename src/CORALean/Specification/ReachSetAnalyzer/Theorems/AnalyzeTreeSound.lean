@@ -11,6 +11,19 @@ public import CORALean.Specification.ReachSetAnalyzer.Theorems.MapMSpec
 
 Each element of `analyze(obj,R,i)` is the `signals` of the object after the entries of one branch
 below `i` were analyzed, one after the other.
+
+## Inputs
+* `σ` – analyzer state type
+* `α` – result type
+* `children` – children of each entry
+* `analyzeSingle` – analysis of one entry
+* `signals` – result extracted from a state
+
+## Hypotheses
+* none
+
+## Conclusion
+* every result comes from analyzing one branch
 -/
 
 -- Authors:       Claude Sonnet 5.5

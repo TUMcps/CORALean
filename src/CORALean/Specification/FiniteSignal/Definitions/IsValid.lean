@@ -12,6 +12,14 @@ public import Mathlib.Order.Basic
 
 The checks of `finiteSignal.m`: non-empty arrays of the same length, strictly increasing non-
 negative times, and no two consecutive equal values (so a signal has one representation).
+
+## Inputs
+* `T` – time type
+* `V` – value type
+* `s` – signal
+
+## Output
+* the constructor's five checks pass
 -/
 
 -- Authors:       Claude Sonnet 5.5

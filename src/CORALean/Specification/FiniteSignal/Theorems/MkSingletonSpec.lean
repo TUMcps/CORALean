@@ -12,6 +12,17 @@ public import Mathlib.Data.Real.Basic
 
 `finiteSignal(dur,v)` is the signal that is `v` on all of `[0,dur]`: the constructor fails for a
 negative `dur`, otherwise the signal is valid, lasts `dur` and is `v` at every time of `[0,dur]`.
+
+## Inputs
+* `V` – value type
+* `dur` – signal duration
+* `v` – constant value
+
+## Hypotheses
+* none
+
+## Conclusion
+* fails for negative duration, else a valid signal constantly `v`
 -/
 
 -- Authors:       Claude Sonnet 5.5

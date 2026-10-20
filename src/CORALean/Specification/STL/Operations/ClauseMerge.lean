@@ -10,6 +10,13 @@ public import CORALean.Specification.STL.Operations.ClauseInsert
 [1, Lemma 2]: `⋁ⱼ X_c^j(…) ∨ ⋁ⱼ X_c^j(…)` as one clause, the branches of the second added to the
 first.
 
+## Inputs
+* `cl₁` – first clause
+* `cl₂` – second clause
+
+## Output
+* the clause holding the branches of both
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

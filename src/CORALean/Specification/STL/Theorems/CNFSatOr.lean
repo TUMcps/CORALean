@@ -12,6 +12,18 @@ public import CORALean.Specification.STL.Theorems.ClauseHoldsMerge
 `ξ ⊨ₜ a ∨ b ⇔ ξ ⊨ₜ a ∨ ξ ⊨ₜ b` for `a.or b`: the distribution of [1, Sec. 4.1], a clause of the
 result being the merge of a clause of each.
 
+## Inputs
+* `c` – time step
+* `a` – first normal form
+* `b` – second normal form
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the disjunction holds iff one of the forms holds
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

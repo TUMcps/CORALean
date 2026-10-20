@@ -10,6 +10,15 @@ public import CORALean.Specification.STLInterval.Theorems.RawSetLowerReach
 # `infimum` is the infimum of the times
 
 For a nonempty interval `infimum` returns the greatest lower bound of its times (in `EReal`).
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* `hI` – the interval is nonempty
+
+## Conclusion
+* the bound returned is the infimum of the times
 -/
 
 -- Authors:       Claude Sonnet 5.5

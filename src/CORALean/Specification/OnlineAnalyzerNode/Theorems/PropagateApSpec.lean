@@ -14,6 +14,20 @@ For an `AP` node and a nonempty `makeValid` interval, `propagate` makes the tent
 on the interval final: the node's signal takes the tentative signal's value at every time `t ≥ 0`
 of the interval where that is conclusive, and keeps its value elsewhere; the tentative signal is
 made invalid on the interval.
+
+## Inputs
+* `eps` – machine epsilon
+* `n` – atomic node
+* `ch` – children
+* `I` – interval to make final
+
+## Hypotheses
+* `hk` – the node is atomic
+* `hs` – the node's signal is valid
+* `hne` – the interval is nonempty
+
+## Conclusion
+* the signal takes the conclusive tentative values on the interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

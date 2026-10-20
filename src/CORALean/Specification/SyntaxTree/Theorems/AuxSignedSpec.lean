@@ -13,6 +13,20 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 When `intPrev` holds `s` and `|s|` is between the two roots, `aux_signed_` is an interval whose
 bounds
 enclose `s`: the sign of `s` is the one `intPrev` allows.
+
+## Inputs
+* `prev` – previous interval
+* `t₁` – lower bound of the absolute value
+* `t₂` – upper bound of the absolute value
+* `s` – solution
+
+## Hypotheses
+* `hs` – the previous interval contains the solution
+* `h₁` – the lower bound is at most the absolute value
+* `h₂` – the absolute value is at most the upper bound
+
+## Conclusion
+* the signed roots form an interval containing the solution
 -/
 
 -- Authors:       Claude Sonnet 5.5

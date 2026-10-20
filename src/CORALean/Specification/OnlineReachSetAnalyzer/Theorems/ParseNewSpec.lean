@@ -15,6 +15,18 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.NodesInvOfE
 Creating the node of a new subformula keeps the invariant of the nodes and extends them; the
 new node is the next one: it is the node at the old length, of the subformula's type, with the
 `parent` as its only parent.
+
+## Inputs
+* `dp` – drop propagated times flag
+* `φ` – subformula
+* `parent` – parent node index
+* `st` – parse state
+
+## Hypotheses
+* `hinv` – the nodes satisfy the invariant
+
+## Conclusion
+* the invariant holds and the new node is appended with that parent
 -/
 
 -- Authors:       Claude Sonnet 5.5

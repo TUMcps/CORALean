@@ -9,6 +9,15 @@ public import CORALean.Specification.STLInterval.Theorems.NonemptySetSubsetIff
 
 Two intervals denoting the same set are equal: the bounds and the flags are those of the set. So
 the constructor's normal form (the empty interval, an infinite end open) is canonical.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* an interval is determined by its times
 -/
 
 -- Authors:       Claude Sonnet 5.5

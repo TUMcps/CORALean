@@ -14,6 +14,23 @@ public import CORALean.Specification.ReachSetAnalyzer.Theorems.RepresentsOfIff
 If the analyzer represents `PT` and `PF` and `lo < hi`, analyzing a set in `[lo,hi]` succeeds and
 leaves the analyzer representing the same plus the times the set marks (`TrueMark`, `FalseMark`) for
 the propositions it concerns. The propositions and masks are untouched.
+
+## Inputs
+* `obj` – analyzer
+* `d` – signal duration
+* `PT` – times where each proposition can be true
+* `PF` – times where each proposition can be false
+* `set` – reachable set
+* `loc` – location
+* `lo` – interval lower bound
+* `hi` – interval upper bound
+
+## Hypotheses
+* `hobj` – the analyzer represents `PT` and `PF`
+* `hlh` – the interval is proper
+
+## Conclusion
+* analysis succeeds and adds the set's marks in the interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

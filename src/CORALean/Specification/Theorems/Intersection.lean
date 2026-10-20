@@ -9,17 +9,23 @@ public import Mathlib.Analysis.Convex.Hull
 /-!
 # The origin in the hull of differences forces an intersection
 
-The falsification exit of a Gilbert-Johnson-Keerthi-style intersection check:
-[1, Alg. 3 (exits), l. 12] accumulates support vectors `vᵢ = xᵢ - yᵢ` with `xᵢ` in the
-reachable set and `yᵢ` in the unsafe set, and reports "unsafe" as soon as the
-convex hull of those points contains the origin. Sound because `O - U` is
-convex when `O` and `U` are, so `convexHull_min` puts the whole hull inside
-`O - U`; the origin there is `x - y` for some `x ∈ O`, `y ∈ U`, i.e. `x = y`,
-so the two sets meet after all.
+The falsification exit of a Gilbert-Johnson-Keerthi-style check: [1, Alg. 3 (exits), l. 12]
+accumulates `vᵢ = xᵢ - yᵢ` with `xᵢ` in the reachable and `yᵢ` in the unsafe set and reports
+"unsafe" once their convex hull contains the origin. Sound because `O - U` is convex when `O`
+and `U` are, so `convexHull_min` puts the hull inside it, and the origin there is `x = y`.
+Stated over the whole accumulated set `V ⊆ O - U` rather than an indexed family.
 
-Stated over the caller's whole accumulated set `V ⊆ O - U` rather than a
-finite indexed family: `conv(v₁,…,vᵢ)` is `convexHull ℝ (Set.range v)`, and
-instantiating one is the caller's business.
+## Inputs
+* none
+
+## Hypotheses
+* `hO` – the reachable set is convex
+* `hU` – the unsafe set is convex
+* `hV` – the points lie in the difference set
+* `h0` – the origin lies in the hull of the points
+
+## Conclusion
+* the unsafe set specification fails for the reachable set
 
 ## References
 

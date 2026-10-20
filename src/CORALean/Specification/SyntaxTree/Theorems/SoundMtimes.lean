@@ -13,6 +13,22 @@ public import CORALean.Specification.SyntaxTree.Theorems.Basic
 # `mtimes` of sound trees is sound
 
 Every entry of `mtimes` over sound trees is sound.
+
+## Inputs
+* `m` – rows of the first matrix
+* `k` – inner dimension minus one
+* `p` – columns of the second matrix
+* `A` – first matrix of trees
+* `C` – second matrix of trees
+* `i` – row index
+* `j` – column index
+
+## Hypotheses
+* `hA` – every entry of the first matrix is sound
+* `hC` – every entry of the second matrix is sound
+
+## Conclusion
+* the product entry is sound
 -/
 
 -- Authors:       Claude Sonnet 5.5

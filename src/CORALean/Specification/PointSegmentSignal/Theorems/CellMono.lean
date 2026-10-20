@@ -14,6 +14,20 @@ public import Mathlib.Order.Basic
 # The stored value a time reads moves forward
 
 `cell` is monotone on the times `≥ 0`.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `t` – earlier time
+* `t'` – later time
+
+## Hypotheses
+* `hs` – the signal is valid
+* `ht` – the earlier time is nonnegative
+* `htt` – the first time is not after the second
+
+## Conclusion
+* the later time reads a later cell
 -/
 
 -- Authors:       Claude Sonnet 5.5

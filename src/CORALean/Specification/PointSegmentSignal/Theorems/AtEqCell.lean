@@ -10,6 +10,17 @@ public import Mathlib.Order.Basic
 # The value a signal reads is the stored value at its index
 
 `at` reads the stored value at the index `cell`.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `t` – time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the value is the stored value at the cell index
 -/
 
 -- Authors:       Claude Sonnet 5.5

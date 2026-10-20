@@ -18,6 +18,13 @@ wrong number of children, and where `toBoolSignal()` of the four-valued operatio
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
 intervals over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `n` – node
+* `childNodes` – the node's children
+
+## Output
+* the signal derived from the children, or none for a leaf
 -/
 
 -- Authors:       Claude Sonnet 5.5

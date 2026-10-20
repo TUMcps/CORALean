@@ -21,6 +21,21 @@ public import CORALean.Specification.STL.Theorems.SatOr
 with `j' < j` do, by [1, Table 1]'s `R` rows in the three contexts, `R[0,0] ≡ ψ` and, for an empty
 interval, `⊥`. The `F_I` row of `R[0,j]` is the one that asks for `F_I(φ ∧ ψ)`.
 
+## Inputs
+* `i` – interval lower bound
+* `j` – interval upper bound
+* `φ` – left formula
+* `ψ` – right formula
+
+## Hypotheses
+* `hφ` – the left formula rewrites to sampled time
+* `hψ` – the right formula rewrites to sampled time
+* `hand` – the conjunction rewrites if the bound is positive
+* `hrec` – smaller releases rewrite to sampled time
+
+## Conclusion
+* the release rewrites to sampled time
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

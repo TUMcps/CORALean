@@ -26,6 +26,7 @@ none, the left-hand side would be empty whenever `U` holds two points.
 * `U` – input set
 * `W` – disturbance set
 * `Xend` – target set
+* `ρ` – support oracle for constrained zonotopes
 * `CZ` – target constrained zonotope
 * `W₀` – initial disturbance zonotope
 * `U₀` – initial input zonotope
@@ -40,7 +41,6 @@ none, the left-hand side would be empty whenever `U` holds two points.
 * `û` – per-direction input signals
 
 ## Hypotheses
-* `ρ` – support oracle for constrained zonotopes
 * `hΔt` – step is the horizon over the iteration count
 * `hu₀` – central input lies in the input set
 * `hmu₀` – central input measurable
@@ -51,7 +51,6 @@ none, the left-hand side would be empty whenever `U` holds two points.
 
 ## Conclusion
 * the union of the cut steps encloses the AE backward reachable set
-
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

@@ -17,6 +17,16 @@ being `max` and `min` on a finite trajectory. True for the non-strict unbounded 
 sides iff `φ₂` reaches `m` at some `t' ∈ [t+a, t+b]` and `φ₁` on `[t, t']`, by
 `STL.until_decomp_iff` for the predicates `m ≤ ·`.
 
+## Inputs
+* `N` – horizon
+* `x` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the robust encoding equals the robustness within the horizon
+
 ## References
 
 * [1] V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and

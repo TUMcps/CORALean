@@ -28,6 +28,7 @@ zonotope, so the result is a `Set`. `Zw` is (27), the constant center trajectory
 
 ## Inputs
 * `sys` – linear system
+* `ρ` – support oracle for polytopes
 * `Xend` – target polytope
 * `U` – input zonotope
 * `W₀` – initial disturbance zonotope
@@ -37,12 +38,8 @@ zonotope, so the result is a `Set`. `Zw` is (27), the constant center trajectory
 * `η` – Taylor order
 * `ω` – number of iterations
 
-## Hypotheses
-* `ρ` – support oracle for polytopes
-
 ## Output
 * union of the inner approximated time-interval backward reachable sets
-
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

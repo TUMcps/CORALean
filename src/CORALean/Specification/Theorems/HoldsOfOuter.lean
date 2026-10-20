@@ -7,21 +7,22 @@ public import CORALean.Specification.Specification
 /-!
 # An outer approximation is enough to check a specification against
 
-The exact set — the reachable set of a system, the image of a network — is
-not computable; what an algorithm returns is a superset of it. This is the step
-that makes that superset useful: a specification holding on the computed set
-holds on the exact one, in *both* directions of the definition and for opposite
-reasons.
+The exact set (a reachable set, the image of a network) is not computable; what an algorithm
+returns is a superset. A specification holding on the computed set holds on the exact one, in both
+directions of the definition: a safe set (and an invariant) is closed downward under `⊆`, and an
+unsafe set is avoided by everything a set that avoids it contains. Neither argument mentions how
+the sets were computed; `Specification.custom` is built as a safe set. The converse fails: a
+violation on the computed set says nothing, possibly lying in the approximation error alone.
 
-A safe set (and an invariant, checked the same way) is closed downward under
-`⊆`, so containment survives shrinking. An unsafe set is avoided by everything
-a set that avoids it contains. Neither argument mentions how either set was
-computed, which is why the check sits here rather than in any one algorithm.
-`Specification.custom` needs no case of its own: it is built as a safe set.
+## Inputs
+* `spec` – specification
 
-The converse fails, and that is the whole cost of the method: a specification
-violated on the computed set says nothing, the violation possibly lying in the
-approximation error alone.
+## Hypotheses
+* `h` – the set lies in the outer set
+* `hO` – the specification holds of the outer set
+
+## Conclusion
+* the specification holds of the set
 -/
 
 -- Authors:       Claude Opus 5

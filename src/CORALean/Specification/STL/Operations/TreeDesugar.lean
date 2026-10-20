@@ -12,6 +12,12 @@ public import CORALean.Specification.STL.Definitions.Tree
 `~until(true,~φ)` and `next` `until(true,φ)` on `[a,a]`. CORA desugars the rewritten formula again
 (`desugar(~until(~φ,~ψ))`); the recursion here is that call unfolded, since `desugar(~χ)` is
 `~desugar(χ)`.
+
+## Inputs
+* none
+
+## Output
+* the formula without syntactic sugar
 -/
 
 -- Authors:       Claude Sonnet 5.5

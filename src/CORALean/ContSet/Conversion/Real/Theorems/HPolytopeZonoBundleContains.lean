@@ -33,11 +33,11 @@ intersection is the polytope. `V` and the `Bᵢ` are arguments, as `vertices(P)`
 are.
 
 ## Inputs
-* none
-
-## Hypotheses
 * `up` – certified upper bound per coordinate
 * `lo` – certified lower bound per coordinate
+
+## Hypotheses
+* none
 
 ## Conclusion
 * polytope is contained in its zonotope bundle

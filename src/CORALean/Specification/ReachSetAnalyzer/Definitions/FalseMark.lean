@@ -12,6 +12,19 @@ public import CORALean.Specification.ReachSetAnalyzer.Operations.MaskOk
 Proposition `k` is marked as possibly false at the time `t` of a signal of duration `d` by the set
 `set` at location `loc` in the time interval `[lo,hi]` when the mask lets the proposition through,
 the proposition can be false on the set, and the interval covers `t`.
+
+## Inputs
+* `obj` – analyzer
+* `k` – proposition key
+* `set` – reachable set
+* `loc` – location
+* `lo` – interval lower bound
+* `hi` – interval upper bound
+* `d` – signal duration
+* `t` – time
+
+## Output
+* the set marks the time as possibly false for the proposition
 -/
 
 -- Authors:       Claude Sonnet 5.5

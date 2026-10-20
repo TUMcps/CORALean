@@ -12,6 +12,23 @@ public import Mathlib.Order.Basic
 
 Appending a time point `N` above all earlier ones, with its point value `pv` and interval value
 `iv`, leaves the signal unchanged below `N`, has value `pv` at `N` and `iv` above it.
+
+## Inputs
+* `T` – time type
+* `tp` – time points
+* `val` – stored values
+* `N` – appended time point
+* `pv` – point value of the new point
+* `iv` – interval value after the new point
+* `t` – time
+
+## Hypotheses
+* `hlen` – two values per time point
+* `hne` – there are earlier points
+* `ht` – the time is before the new point
+
+## Conclusion
+* appending leaves the value at the time unchanged
 -/
 
 -- Authors:       Claude Sonnet 5.5

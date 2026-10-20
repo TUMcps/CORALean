@@ -10,6 +10,16 @@ public import CORALean.Specification.STLInterval.Theorems.SetStlInterval
 
 `forcePropagation` is `propagate` with the interval `stlInterval(0,inf)`, which denotes every time
 `t ≥ 0`: every observation is final.
+
+## Inputs
+* `eps` – machine epsilon
+* `obj` – analyzer
+
+## Hypotheses
+* none
+
+## Conclusion
+* it propagates over all times from zero
 -/
 
 -- Authors:       Claude Sonnet 5.5

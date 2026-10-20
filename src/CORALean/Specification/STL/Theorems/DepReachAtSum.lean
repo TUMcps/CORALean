@@ -20,6 +20,22 @@ center and the weighted generators of `H(t_i)` and `P_c(t_i)` add up to the stat
 `u(j) = c_u + G_uα_{u,j+1}`: the dependency of the reachable state on `x₀` and `u(·)` that
 [1, Prop. 1] reads off.
 
+## Inputs
+* `A` – dynamics matrix
+* `B` – input matrix
+* `X₀` – initial set
+* `U` – input set
+* `Δt` – time step
+* `κ` – Taylor order
+* `α` – factor values
+* `i` – step index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the solution of the held input is the sum of the two parts factor by factor
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

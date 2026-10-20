@@ -16,6 +16,14 @@ otherwise the set projected to `dims` is tested for an intersection with the pro
 `true` only if the two sets share no point, so `canBeTrue` is conservative towards `true`. Which
 of the exact and the approximate algorithm runs, and the tolerance `tol = 1e-12`, are the
 instance's: the guarantee holds for both.
+
+## Inputs
+* `ap` – atomic proposition
+* `set` – set to test
+* `loc` – location
+
+## Output
+* whether the proposition can be true on the set
 -/
 
 -- Authors:       Claude Sonnet 5.5

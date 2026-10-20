@@ -17,6 +17,13 @@ others are found on the Kleene refinement that maps inconclusive to `False` for 
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
 stamps over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `s` – four-valued signal
+* `match_` – value to find
+
+## Output
+* the maximal intervals where the signal has that value
 -/
 
 -- Authors:       Claude Sonnet 5.5

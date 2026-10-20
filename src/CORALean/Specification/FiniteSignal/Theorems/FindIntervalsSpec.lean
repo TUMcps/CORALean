@@ -14,6 +14,18 @@ public import CORALean.Specification.FiniteSignal.Operations.FindIntervals
 The intervals found are the maximal runs of cells satisfying the condition, closed at both ends as
 the cells are: ordered, each with `start ≤ stop`, separated by a gap, and covering exactly the
 times of those cells.
+
+## Inputs
+* `T` – time type
+* `V` – value type
+* `s` – signal
+* `cond` – condition on values
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* the intervals are ordered, separated and cover the satisfying cells
 -/
 
 -- Authors:       Claude Sonnet 5.5

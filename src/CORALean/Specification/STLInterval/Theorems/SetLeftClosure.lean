@@ -15,6 +15,15 @@ public import CORALean.Specification.STLInterval.Theorems.RawSetUpperOfLe
 
 This is the left-closure `cll(I)` of [1, Sec. 2.1 (intervals)].
 
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the left closure adds the infimum to the times
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

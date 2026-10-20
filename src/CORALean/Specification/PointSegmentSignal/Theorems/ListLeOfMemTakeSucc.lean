@@ -9,6 +9,20 @@ public import Mathlib.Order.Basic
 # Entries up to an index of a strictly increasing list
 
 Every entry among the first `m + 1` of a strictly increasing list is at most the entry at `m`.
+
+## Inputs
+* `l` – list
+* `m` – index
+* `a` – entry at the index
+* `x` – entry up to the index
+
+## Hypotheses
+* `hl` – the list strictly increases
+* `ha` – the entry is at the index
+* `hx` – the other entry is among the first ones up to the index
+
+## Conclusion
+* the earlier entry is at most the one at the index
 -/
 
 -- Authors:       Claude Sonnet 5.5

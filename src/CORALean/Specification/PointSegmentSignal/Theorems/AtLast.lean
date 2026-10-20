@@ -11,6 +11,20 @@ public import Mathlib.Order.Basic
 # A signal is constant after its last point
 
 After its last time point a signal keeps the value of the interval stored for it.
+
+## Inputs
+* `T` – time type
+* `tp` – time points
+* `val` – stored values
+* `t` – time
+
+## Hypotheses
+* `hlen` – two values per time point
+* `hne` – there are time points
+* `ht` – the time is after all points
+
+## Conclusion
+* the value is the last stored interval value
 -/
 
 -- Authors:       Claude Sonnet 5.5

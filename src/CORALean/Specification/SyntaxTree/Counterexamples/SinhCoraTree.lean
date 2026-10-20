@@ -31,6 +31,16 @@ root
 target `[0,0]`, the target of the `sinh` node is `[0,3/2]`, cut to `[0,1]`, and `x₁` is narrowed to
 `[0, asinh 1]`: the zero `(1, sinh 1)` is lost. See `SyntaxTree.funHanSinhCora` and
 `SyntaxTree.funHanSinh`, which is sound (`funHanSinh_sound`).
+
+## Inputs
+* `int` – target interval
+* `prev` – previous interval
+
+## Hypotheses
+* `h` – the target starts at most at one
+
+## Conclusion
+* the printed upper bound is at most the inverse sinh of one
 -/
 
 -- Authors:       Claude Sonnet 5.5

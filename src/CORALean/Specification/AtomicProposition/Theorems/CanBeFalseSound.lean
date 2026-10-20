@@ -12,6 +12,19 @@ public import CORALean.Specification.AtomicProposition.Operations.CanBeFalse
 If a point of the set does not satisfy the proposition, `canBeFalse` says the proposition can be
 false on the set. Contrapositively, `canBeFalse = false` says that every point of the set
 satisfies it. The converse does not hold: the containment test is conservative.
+
+## Inputs
+* `ap` – atomic proposition
+* `s` – set
+* `loc` – location
+* `x` – point of the set
+
+## Hypotheses
+* `hx` – the point lies in the set
+* `h` – the point violates the proposition
+
+## Conclusion
+* `canBeFalse` returns true
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -8,6 +8,20 @@ public import CORALean.Specification.FiniteSignal.Operations.ValueAt
 # The value past the first breakpoint
 
 Past the first breakpoint, the value held is that of the others (if there are any).
+
+## Inputs
+* `T` – time type
+* `V` – value type
+* `p` – first breakpoint
+* `q` – remaining breakpoints
+* `t` – time
+
+## Hypotheses
+* `h` – the time is not before the first breakpoint
+* `hq` – there are further breakpoints
+
+## Conclusion
+* the value is that of the remaining breakpoints
 -/
 
 -- Authors:       Claude Sonnet 5.5

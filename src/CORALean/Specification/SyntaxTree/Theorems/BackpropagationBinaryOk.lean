@@ -12,6 +12,22 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 
 If `backpropagation` of a binary node returns a box, its first operand returned one that holds
 every point of it.
+
+## Inputs
+* `op` – binary operator
+* `w` – value interval
+* `f` – backpropagation of the operator
+* `t₁` – first operand tree
+* `t₂` – second operand tree
+* `v` – target interval
+* `B` – box
+* `r` – result box
+
+## Hypotheses
+* `h` – the backpropagation returns the result box
+
+## Conclusion
+* the first operand's backpropagation gives a box containing the result
 -/
 
 -- Authors:       Claude Sonnet 5.5

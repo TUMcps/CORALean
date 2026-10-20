@@ -13,6 +13,17 @@ With `s ≥ 2` rows, the binaries `λ_jk` sum to `1`, so one is `0`, and its `α
 infeasible, and [1, Alg. 3] never returns unsafe, for any polytope of two or more halfspaces, which
 a conjunction of two predicates gives. `STL.milpCorrected_iff` is the repair.
 
+## Inputs
+* `C` – constraint matrix
+* `d` – offsets
+* `α` – factor vector
+
+## Hypotheses
+* `hs` – there are at least two rows
+
+## Conclusion
+* the printed program has no solution
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

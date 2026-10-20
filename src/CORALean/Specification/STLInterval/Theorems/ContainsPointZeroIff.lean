@@ -12,6 +12,16 @@ public import CORALean.Specification.STLInterval.Theorems.RawSetLowerOfGe
 # `contains_` of a point is membership
 
 At `tol = 0` the numeric branch of `contains_` is membership in the set of times.
+
+## Inputs
+* `I` – interval
+* `t` – time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point test without tolerance is membership
 -/
 
 -- Authors:       Claude Sonnet 5.5

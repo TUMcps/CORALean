@@ -13,6 +13,14 @@ that
 has one (`log(0) = -Inf`, `atanh(1) = Inf`, `tan(pi/2) = Inf`), the bound clips to `intPrev`'s. An
 upper
 bound `-Inf` (or a lower one `+Inf`) leaves the empty interval, `[inf, inf - 1]`.
+
+## Inputs
+* `prev` – previous interval
+* `lo` – lower bound
+* `hi` – upper bound
+
+## Output
+* the previous interval cut to the extended bounds
 -/
 
 -- Authors:       Claude Sonnet 5.5

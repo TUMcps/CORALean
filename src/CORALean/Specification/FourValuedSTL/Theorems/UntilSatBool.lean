@@ -17,6 +17,24 @@ of `φ₁ U_I φ₂`: `⟦φ₁ U_I φ₂⟧_ξ = ⟦φ₁⟧_ξ U_I ⟦φ₂⟧
 of [1, Lemma 2]). It is `PointSegmentSignal.until_spec` read against the Boolean semantics of
 [1, Sec. 2.5].
 
+## Inputs
+* `X` – state type
+* `φ₁` – left formula
+* `φ₂` – right formula
+* `I` – time interval
+* `ξ` – execution
+* `l₁` – Boolean signal of the left formula
+* `l₂` – Boolean signal of the right formula
+
+## Hypotheses
+* `hl₁` – the left signal is valid
+* `hl₂` – the right signal is valid
+* `h₁` – the left signal is the left formula's satisfaction
+* `h₂` – the right signal is the right formula's satisfaction
+
+## Conclusion
+* the until of the signals is valid and is the until formula's satisfaction
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

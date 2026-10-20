@@ -14,6 +14,23 @@ its offset, so `holds_safeSet_of_bounds` closes each step and `holds_iUnion` mer
 whatever `r'`'s steps cover, `hcover` says, already subsumes `R`, with no fixed
 discretization assumed, only that *some* round's does.
 
+## Inputs
+* `ℓ` – directions
+* `d` – offsets
+* `S` – covering sets per round
+* `R` – reachable set
+* `bndLo` – lower bounds per round and step
+* `u` – support bounds of the covering sets
+* `r` – first round
+* `fuel` – number of rounds
+
+## Hypotheses
+* `hcover` – every round's sets cover the reachable set
+* `h` – the search answers safe
+
+## Conclusion
+* the safe set specification holds of the reachable set
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

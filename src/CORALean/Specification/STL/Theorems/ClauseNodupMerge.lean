@@ -11,6 +11,16 @@ public import CORALean.Specification.STL.Theorems.ClauseNodupInsert
 [1, Lemma 2]: if the `j` of the branches of `cl₁` are distinct, so are those of `cl₁.merge cl₂`,
 whatever `cl₂` is.
 
+## Inputs
+* `cl₁` – first clause
+* `cl₂` – second clause
+
+## Hypotheses
+* `h` – the powers of the first clause are distinct
+
+## Conclusion
+* the powers of the merged clause are distinct
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

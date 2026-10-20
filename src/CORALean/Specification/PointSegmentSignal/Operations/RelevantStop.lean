@@ -12,6 +12,15 @@ public import Mathlib.Order.WithBot
 `ub`: the index (from `1`) of the last stored value that the signal takes at a time of the
 interval. A point equal to the upper end counts only when that end is closed; an infinite end is
 never reached by a point.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `ub` – interval upper bound
+* `rc` – upper bound is closed
+
+## Output
+* the index of the last value in the interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

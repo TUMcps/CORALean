@@ -9,6 +9,15 @@ public import CORALean.Specification.STL.STL
 
 Every trace satisfies `true`, the `true` of [1, Sec. 2.2]'s `F` and `X`.
 
+## Inputs
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* true holds on every trace
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

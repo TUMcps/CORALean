@@ -9,6 +9,16 @@ public import CORALean.Specification.STL.Definitions.Shift
 
 `⟨f⟩₀ = f`: a trace shifted by zero is the trace, [1, Sec. 2.2].
 
+## Inputs
+* `α` – value type
+* `f` – function of time
+
+## Hypotheses
+* none
+
+## Conclusion
+* shifting by zero changes nothing
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

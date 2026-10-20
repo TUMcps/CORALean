@@ -14,6 +14,12 @@ comes from: [1, Table 1] is for `c = 1` "for readability".
 Real-only, a specification: it rewrites or builds formulas, whose time bounds and constants are
 part of the syntax and are copied or added exactly, never rounded.
 
+## Inputs
+* `c` – scaling factor
+
+## Output
+* the formula with every time bound multiplied by the factor
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

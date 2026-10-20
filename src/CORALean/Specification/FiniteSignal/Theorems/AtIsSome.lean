@@ -12,6 +12,20 @@ public import CORALean.Specification.FiniteSignal.Theorems.ValueAtConsOfGe
 
 For a valid signal, `at(sig,time)` returns a value for every time in `[0, duration]`: it throws
 exactly outside.
+
+## Inputs
+* `T` – time type
+* `V` – value type
+* `s` – signal
+* `t` – time
+
+## Hypotheses
+* `hs` – the signal is valid
+* `h0` – the time is nonnegative
+* `h1` – the time is within the duration
+
+## Conclusion
+* the signal has a value at the time
 -/
 
 -- Authors:       Claude Sonnet 5.5

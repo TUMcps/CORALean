@@ -16,6 +16,16 @@ horizon reaches every step the formula reads, `t + bound(φ) ≤ N` — the cond
 it fails, `STL.DFormula.zEnc_counterexample`. A step `i ≤ t + b` of an
 operator at `t` has `i + bound(φ) ≤ N` for its operand, which is the induction.
 
+## Inputs
+* `N` – horizon
+* `x` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Boolean encoding holds iff the formula is satisfied
+
 ## References
 
 * [1] V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and

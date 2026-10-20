@@ -16,14 +16,18 @@ public import Mathlib.Data.Fin.VecNotation
 
 `sig = until(lhs,interval,rhs)` of `fourValuedSignal.m`: the until of the Kleene refinements with
 inconclusive mapped to `False` is the Kleene part, and the value is inconclusive where it differs
-from the until of the refinements with inconclusive mapped to `True`. `toBoolSignal()` throws if a
-value is unknown; `none` is that error, which `until_spec` shows does not occur.
+from that with inconclusive mapped to `True`; `none` is the `toBoolSignal()` error, which
+`until_spec` shows does not occur. This is `Λ̃₁ U_I Λ̃₂` of [1, Sec. 4.3 (operators)], the `⊔₂` of
+the untils of `⌊Λ̃⌋` and `⌈Λ̃⌉`.
+Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
 
-This is `Λ̃₁ U_I Λ̃₂` of [1, Sec. 4.3 (operators)]: the `⊔₂` of the untils of the under- and
-overapproximations `⌊Λ̃⌋` and `⌈Λ̃⌉`.
+## Inputs
+* `lhs` – left signal
+* `interval` – time interval
+* `rhs` – right signal
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
+## Output
+* the until signal, or none if CORA throws
 
 ## References
 

@@ -12,6 +12,19 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 # The product of two intervals holds the product
 
 `I * J` holds `a * b`.
+
+## Inputs
+* `I` – first interval
+* `J` – second interval
+* `a` – point of the first interval
+* `b` – point of the second interval
+
+## Hypotheses
+* `ha` – the first interval contains its point
+* `hb` – the second interval contains its point
+
+## Conclusion
+* the product interval contains the product of the points
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -16,6 +16,26 @@ That needs `ϕᵢ` to be settled by the trace on its own time set `Tᵢ`, the tw
 (`DecidedOn`); the printed hypothesis is `tsupp(ϕ₁) ∩ tsupp(ϕ₂) = ∅`, which gives it only if
 `tsupp(ϕᵢ)` decides `ϕᵢ`.
 
+## Inputs
+* `𝓡` – set of reach sequences
+* `Υ` – transformation of formulas
+* `φ₁` – left formula
+* `φ₂` – right formula
+* `T₁` – time set deciding the left formula
+* `T₂` – time set deciding the right formula
+* `R` – reach sequence
+
+## Hypotheses
+* `hs` – the transformation is sound
+* `hc` – the transformation is complete
+* `hT` – the time sets are disjoint
+* `h₁` – the time set decides the left formula
+* `h₂` – the time set decides the right formula
+* `hR` – the reach sequence is in the set
+
+## Conclusion
+* the transformation of a disjunction is the disjunction of the transformations
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

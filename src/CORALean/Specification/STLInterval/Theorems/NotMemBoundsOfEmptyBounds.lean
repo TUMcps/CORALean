@@ -9,6 +9,20 @@ public import CORALean.Specification.STLInterval.Definitions.MemBounds
 # An empty interval contains no time
 
 If `isemptyobject(stlInterval(lb,ub,lc,rc))` holds, no time lies in it.
+
+## Inputs
+* `T` – time type
+* `lb` – interval lower bound
+* `ub` – interval upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+* `t` – time
+
+## Hypotheses
+* `h` – the bounds describe an empty interval
+
+## Conclusion
+* the time does not lie between the bounds
 -/
 
 -- Authors:       Claude Sonnet 5.5

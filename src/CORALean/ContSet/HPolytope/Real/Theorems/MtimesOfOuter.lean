@@ -16,9 +16,10 @@ certificate is asked for: a bound on `(Aq i) ∘ M` over the source is a bound o
 * `P` – H-polytope
 * `M` – linear map
 * `Aq` – family indexed by `Fin q`
+* `u` – a support bound of `P.construct` along each row
 
 ## Hypotheses
-* `u` – a support bound of `P.construct` along each row
+* none
 
 ## Conclusion
 * the certified linear image encloses

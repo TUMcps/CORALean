@@ -13,6 +13,17 @@ value `⌊Λ̃(t)⌋` with inconclusive replaced by `False`, and `toKleeneSignal
 `⌈Λ̃(t)⌉` with inconclusive replaced by `True`: the under- and the overapproximation of
 [1, Sec. 4.3 (refinements)].
 
+## Inputs
+* `s` – four-valued signal
+* `t` – time
+
+## Hypotheses
+* `hs` – the signal is valid
+* `ht` – the time is nonnegative
+
+## Conclusion
+* the two refinements are the floor and ceiling of the value
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

@@ -12,6 +12,20 @@ public import CORALean.Specification.ReachSetAnalyzer.Theorems.TrueMarkCongr
 If the analyzer represents `PT` and `PF` and every time interval of the entry `R` is proper
 (`lo < hi`), `analyzeSingle` succeeds and leaves the analyzer representing the same plus the times
 that any set of `R`, at the location of `R`, marks in its time interval.
+
+## Inputs
+* `obj` – analyzer
+* `d` – signal duration
+* `PT` – times where each proposition can be true
+* `PF` – times where each proposition can be false
+* `R` – reach set entry
+
+## Hypotheses
+* `hobj` – the analyzer represents `PT` and `PF`
+* `hR` – the entry's time intervals are proper
+
+## Conclusion
+* analysis succeeds and adds the entry's marks
 -/
 
 -- Authors:       Claude Sonnet 5.5

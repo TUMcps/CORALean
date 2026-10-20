@@ -13,6 +13,16 @@ throws if the lower bound becomes negative; here that is the hypothesis `hc` (se
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (bounds
 over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `I` – interval
+* `c` – number
+
+## Hypotheses
+* `hc` – the lower bound stays nonnegative
+
+## Output
+* the interval plus the number
 -/
 
 -- Authors:       Claude Sonnet 5.5

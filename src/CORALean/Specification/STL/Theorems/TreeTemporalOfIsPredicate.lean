@@ -10,6 +10,15 @@ public import CORALean.Specification.STL.Operations.TreeTemporal
 
 A formula that passes `isPredicate` is not temporal, so `isPredicate.m`'s first test
 (`obj.temporal`) is implied by its recursion.
+
+## Inputs
+* `φ` – formula
+
+## Hypotheses
+* `h` – the formula is a predicate
+
+## Conclusion
+* the formula has no temporal operator
 -/
 
 -- Authors:       Claude Sonnet 5.5

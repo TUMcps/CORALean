@@ -11,6 +11,18 @@ public import CORALean.Specification.STL.Definitions.BranchHolds
 `X_c^j(φ ∨ ϱ) ∨ X_c^j(φ' ∨ ϱ') ≡ X_c^j((φ ∨ φ') ∨ (ϱ ∨ ϱ'))`, for [1, Lemma 2]'s branches at the
 same `j`.
 
+## Inputs
+* `c` – clause time step
+* `b` – first branch
+* `b'` – second branch
+* `ξ` – trace
+
+## Hypotheses
+* `hj` – both branches have the same power
+
+## Conclusion
+* the merged branch holds iff one of the two holds
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

@@ -12,6 +12,19 @@ is `μ`, `E = {0}`: `ξ ∈ ξ ⊕ {0} ⊆ R` is `ξ ∈ R`, and `E = {0} = R` m
 nontriviality clause holds. The definition then excludes nothing: what [1] means is that `μ` is
 read off the representation of `R`, as [1, Prop. 1] does for Alg. 1.
 
+## Inputs
+* `ξ` – solution map
+* `X₀` – initial set
+* `𝒰` – set of inputs
+* `R` – reachable set enclosure
+* `tEnd` – final time
+
+## Hypotheses
+* `h` – the enclosure contains every solution
+
+## Conclusion
+* the enclosure preserves the dependency
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

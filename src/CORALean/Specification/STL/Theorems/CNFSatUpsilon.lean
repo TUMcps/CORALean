@@ -15,6 +15,18 @@ set `R(jc + c/2)`, or `ϱ_l ∨ ϱ'` does for some `l`, or `ϱᵢⱼ` of all of 
 each `R(jc + c/2)` must be non-empty, which is what makes the empty `⋁` of [1, Lemma 2], Eq. (17),
 false.
 
+## Inputs
+* `c` – time step
+* `cnf` – normal form
+* `R` – reach sequence
+
+## Hypotheses
+* `h₀` – the reach set at time zero is nonempty
+* `hne` – the reach sets at the branch times are nonempty
+
+## Conclusion
+* the transformation holds iff every clause has a branch holding on the sets
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

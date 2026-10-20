@@ -17,6 +17,7 @@ constant center trajectory's contribution over one interval.
 
 ## Inputs
 * `sys` – linear system
+* `ρ` – support oracle for polytopes
 * `P₁` – first eroded polytope
 * `P₂` – second eroded polytope
 * `U` – input zonotope
@@ -27,12 +28,8 @@ constant center trajectory's contribution over one interval.
 * `η` – Taylor order
 * `ω` – number of iterations
 
-## Hypotheses
-* `ρ` – support oracle for polytopes
-
 ## Output
 * union of the iterations' inner approximated time-interval solutions
-
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

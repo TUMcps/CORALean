@@ -14,6 +14,13 @@ circular functions, though `sinh` takes every real value: a target `int` beyond 
 and the
 contraction loses the solutions with `|sinh x| > 1`. `SyntaxTree.funHanSinh` is the function without
 that line; `SyntaxTree.sinhCora_counterexample` the tree where the difference shows.
+
+## Inputs
+* `int` – target interval
+* `prev` – previous interval
+
+## Output
+* the printed backpropagated interval of sinh, or an empty outcome
 -/
 
 -- Authors:       Claude Sonnet 5.5

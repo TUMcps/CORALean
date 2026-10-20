@@ -15,6 +15,17 @@ The bounds `findIntervals` builds are those of pairs `(r, f)` of one-based value
 `r, ..., f` satisfies `cond` throughout, is preceded and followed by a value that does not, and
 every value that satisfies `cond` lies in a run. The bounds are `precTimeAtValIdx r`,
 `succTimeAtValIdx f`.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `cond` – condition on values
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* the intervals are those of the maximal runs of satisfying values
 -/
 
 -- Authors:       Claude Sonnet 5.5

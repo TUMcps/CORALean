@@ -12,6 +12,16 @@ public import CORALean.Specification.STLInterval.Theorems.Basic
 # `minus` with an `interval` denotes a difference
 
 `I - J` for a box `J` denotes the nonnegative differences with the closed interval of `J`'s bounds.
+
+## Inputs
+* `I` – interval
+* `J` – real interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the difference denotes the nonnegative differences with the real interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

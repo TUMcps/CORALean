@@ -11,6 +11,16 @@ public import Mathlib.Data.Real.Basic
 
 A linear functional on `Fin n → ℝ` is `Σⱼ f(e_j) xⱼ`: the coefficient of `x(j)` in a row of a
 polytope is the functional at the unit vector.
+
+## Inputs
+* `f` – linear functional
+* `x` – state
+
+## Hypotheses
+* none
+
+## Conclusion
+* the functional is the sum of its rows weighted by the state
 -/
 
 -- Authors:       Claude Sonnet 5.5

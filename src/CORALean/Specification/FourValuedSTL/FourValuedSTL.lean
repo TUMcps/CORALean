@@ -8,17 +8,12 @@ public import Mathlib.Data.NNReal.Defs
 /-!
 # Signal temporal logic with the strict until
 
-[1, Sec. 2.5]: `φ ::= true ∣ a ∣ ¬φ ∣ φ₁ ∧ φ₂ ∣ φ₁ U_I φ₂` over executions `ξ : ℝ≥0 → X`, and the
-Boolean satisfaction signal `⟦φ⟧_ξ : ℝ≥0 → B`, here `φ.Sat ξ t` for `⟦φ⟧_ξ(t) = ⊤` (and `⊥`
-otherwise). The until is the strict one of [1, Sec. 2.5]: `φ₁` need not hold at `t` or at `t'`,
-only strictly between; it is not the `U` of `STL.Formula`, which is that of Roehm et al., and the
-two are different operators (`FourValuedSTL.Formula.sat_and_until_and` recovers the until that
-holds `φ₁` at `t` and `t'` too). `true` is syntax of its own, since the law of excluded middle does
-not transfer to the four-valued semantics.
-
-A formula is over a type `X` of states with atoms predicates `X → Prop`, as `STL.Formula`, and
-`I` is any interval over `ℝ≥0` (its lower bound `≥ 0`): the paper asks for rational endpoints,
-which nothing here uses.
+[1, Sec. 2.5]: `φ ::= true ∣ a ∣ ¬φ ∣ φ₁ ∧ φ₂ ∣ φ₁ U_I φ₂` over executions `ξ : ℝ≥0 → X`, with
+`φ.Sat ξ t` for `⟦φ⟧_ξ(t) = ⊤`. The until is the strict one: `φ₁` need not hold at `t` or `t'`,
+unlike the `U` of `STL.Formula` of Roehm et al. (`FourValuedSTL.Formula.sat_and_until_and` recovers
+that one). `true` is syntax of its own, as excluded middle fails in the four-valued semantics.
+Formulas are over states `X` with atoms `X → Prop`, as `STL.Formula`; `I` is any interval over
+`ℝ≥0`, the paper's rational endpoints being unused.
 
 ## References
 

@@ -16,6 +16,22 @@ public import CORALean.Specification.PointSegmentSignal.Operations.SuccTimeAtVal
 
 A time after the `k`-th time point and before the next one, if there is one, reads the interval
 value `2 k + 1`.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `k` – time point index
+* `t` – time
+
+## Hypotheses
+* `hs` – the signal is valid
+* `hk` – the index is in range
+* `h0` – the time is nonnegative
+* `h1` – the time is after that point
+* `h2` – the time is before the next point
+
+## Conclusion
+* the time reads the interval value after the point
 -/
 
 -- Authors:       Claude Sonnet 5.5

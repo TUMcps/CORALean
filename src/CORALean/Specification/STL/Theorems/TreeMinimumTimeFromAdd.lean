@@ -8,6 +8,16 @@ public import CORALean.Specification.STL.Operations.TreeMinimumTimeFrom
 # The offset of minimumTime is added
 
 Starting `minimumTime`'s recursion at the offset `time` adds `time` to the result.
+
+## Inputs
+* `φ` – formula
+* `time` – offset
+
+## Hypotheses
+* none
+
+## Conclusion
+* the offset is added to the earliest time
 -/
 
 -- Authors:       Claude Sonnet 5.5

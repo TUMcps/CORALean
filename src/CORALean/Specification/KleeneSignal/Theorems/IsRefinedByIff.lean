@@ -11,6 +11,16 @@ For a valid three-valued signal `Λ` and a Boolean signal `λ`, `λ ≺ Λ` iff 
 every time `t ≥ 0`, with `⌊Λ⌋ = toBoolSignal(Λ,false)` and `⌈Λ⌉ = toBoolSignal(Λ,true)`
 ([1, Sec. 4.2 (refinements)]); and `Λ` is recovered as `⌊Λ⌋ ⊔₁ ⌈Λ⌉`.
 
+## Inputs
+* `s` – three-valued signal
+* `l` – Boolean signal
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* refinement holds iff the Boolean signal lies between the two refinements
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

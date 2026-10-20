@@ -12,6 +12,17 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.TakeWhileLePos
 # The value atIdx returns is the value of the signal
 
 For a valid signal and `u ≥ 0`, the value `atIdx` returns at `u` is `obj.at(u)`.
+
+## Inputs
+* `s` – signal
+* `u` – time
+
+## Hypotheses
+* `hs` – the signal is valid
+* `h0` – the time is nonnegative
+
+## Conclusion
+* the value from `atIdx` is the value at the time
 -/
 
 -- Authors:       Claude Sonnet 5.5

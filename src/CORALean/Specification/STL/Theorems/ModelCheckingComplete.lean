@@ -14,6 +14,16 @@ by [1, Lemma 2] and the equivalence of the normal form. [1] says it for "`ϕ` eq
 sampled time formula", which the rewriting of Table 1, only an implication, does not give; this is
 the case of a sampled time `ϕ` itself.
 
+## Inputs
+* `c` – time step
+* `s` – sampled time formula
+
+## Hypotheses
+* `hc` – the time step is positive
+
+## Conclusion
+* a normal form exists whose transformation is equivalent to the formula
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

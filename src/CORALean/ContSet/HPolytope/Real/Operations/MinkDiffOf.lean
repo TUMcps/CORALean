@@ -20,8 +20,6 @@ own direction; the equality rows are copied unchanged.
 ## Inputs
 * `P` – H-polytope
 * `T` – set of points
-
-## Hypotheses
 * `u` – a support bound of `T` along each row
 
 ## Output

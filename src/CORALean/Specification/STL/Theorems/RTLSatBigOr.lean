@@ -10,6 +10,18 @@ public import CORALean.Specification.STL.Operations.RTLBigOr
 [1, Lemma 2]: `R ⊨ᵣ ⋁ (l.map g) ⇔ ∃ b ∈ l, R ⊨ᵣ g b`, given a state at time `0`: the empty `⋁` is
 `A ⊥`, which holds exactly of an empty `R(0)`.
 
+## Inputs
+* `β` – index type
+* `l` – list of indices
+* `g` – formula of each index
+* `R` – reach sequence
+
+## Hypotheses
+* `h` – the reach set at time zero is nonempty
+
+## Conclusion
+* the disjunction holds iff some formula holds
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

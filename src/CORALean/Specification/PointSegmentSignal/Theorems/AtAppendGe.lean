@@ -12,6 +12,22 @@ public import Mathlib.Order.Basic
 
 At a time `t` at or after the first point of an appended block (and after the earlier points), the
 value is the block's own.
+
+## Inputs
+* `A` – earlier time points
+* `r` – first appended time point
+* `R` – remaining appended time points
+* `VA` – values of the earlier points
+* `VR` – values of the appended points
+* `t` – time
+
+## Hypotheses
+* `hlen` – two values per earlier time point
+* `hA` – the earlier points are not after the time
+* `hr` – the first appended point is not after the time
+
+## Conclusion
+* the value at the time is that of the appended block
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,6 +11,15 @@ public import CORALean.Specification.ReachSetAnalyzer.ReachSetAnalyzer
 An analyzer says, for a duration `d`, that proposition `k` can be true at the times `t` of `[0,d]`
 with `PT k t` and can be false at those with `PF k t`: its keys are distinct and each one's builder
 says so (`FiniteKleeneSignalBuilder.Represents`).
+
+## Inputs
+* `obj` – analyzer
+* `d` – signal duration
+* `PT` – times where each proposition can be true
+* `PF` – times where each proposition can be false
+
+## Output
+* the builders mark `PT` and `PF` for the propositions
 -/
 
 -- Authors:       Claude Sonnet 5.5

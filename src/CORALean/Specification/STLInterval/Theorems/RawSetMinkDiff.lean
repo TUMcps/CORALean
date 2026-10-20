@@ -12,6 +12,24 @@ public import CORALean.Specification.STLInterval.Theorems.RawSetBoundsNe
 `{t | 0 ≤ t ∧ t + J ⊆ I}` for nonempty `rawSet`s is `rawSet (lb) (ub)`, `lb = l₁ - l₂`,
 `ub = u₁ - u₂` (`+∞` for two unbounded operands), an end closed when `I`'s is or `J`'s is open,
 and a negative `lb` cut to the closed `0`. The lower and the upper test are proved apart.
+
+## Inputs
+* `l₁` – lower bound of the first interval
+* `u₁` – upper bound of the first interval
+* `l₂` – lower bound of the second interval
+* `u₂` – upper bound of the second interval
+* `lc₁` – first lower bound is closed
+* `rc₁` – first upper bound is closed
+* `lc₂` – second lower bound is closed
+* `rc₂` – second upper bound is closed
+* `t` – time
+
+## Hypotheses
+* `h₁` – the first interval is nonempty
+* `h₂` – the second interval is nonempty
+
+## Conclusion
+* the shifted second interval stays above the first iff the time passes the difference
 -/
 
 -- Authors:       Claude Sonnet 5.5

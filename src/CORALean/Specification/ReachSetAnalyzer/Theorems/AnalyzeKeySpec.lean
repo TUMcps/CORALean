@@ -17,6 +17,25 @@ succeeds and leaves the analyzer representing the same plus, for `p` only, the t
 covers (`Covers`) when the mask allows the proposition there (`maskOk`): possibly true if
 `canBeTrue` of the set, possibly false if `canBeFalse` of the set. The propositions and masks are
 untouched.
+
+## Inputs
+* `obj` – analyzer
+* `d` – signal duration
+* `PT` – times where each proposition can be true
+* `PF` – times where each proposition can be false
+* `set` – reachable set
+* `loc` – location
+* `lo` – interval lower bound
+* `hi` – interval upper bound
+* `p` – proposition with its key
+
+## Hypotheses
+* `hobj` – the analyzer represents `PT` and `PF`
+* `hlh` – the interval is proper
+* `hp` – the proposition belongs to the analyzer
+
+## Conclusion
+* analysis succeeds and adds the set's marks for the proposition
 -/
 
 -- Authors:       Claude Sonnet 5.5

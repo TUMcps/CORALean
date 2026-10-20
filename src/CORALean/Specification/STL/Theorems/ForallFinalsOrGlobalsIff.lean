@@ -16,6 +16,22 @@ trace in `C(R)` satisfies `⋁_k F(0,c)ϱ_k ∨ ⋁_l G(0,c)ϱ_l` iff `S` satisf
 `ϱ_l ∨ ϱ'` for some `l`. The paper proves it for three disjuncts; the converse builds a trace that
 visits, for each `l`, a state refuting `ϱ_l ∨ ϱ'` at its own time `c / (l + 2)`.
 
+## Inputs
+* `R` – reach sequence
+* `a` – block start
+* `c` – block length
+* `S` – constant set on the block
+* `K` – predicates for eventually
+* `L` – predicates for always
+
+## Hypotheses
+* `hne` – all reach sets are nonempty
+* `hc` – the block length is positive
+* `hS` – the reach set is constant on the open block
+
+## Conclusion
+* eventually or always on the block holds for all traces iff a condition on the set
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

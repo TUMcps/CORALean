@@ -11,6 +11,18 @@ public import CORALean.Specification.STL.Theorems.BranchHoldsMerge
 [1, Lemma 2]: some branch of `insert b cl` holds of `ξ` iff `b` does or some branch of `cl` does:
 merging branches of one `j` keeps the disjunction.
 
+## Inputs
+* `c` – time step
+* `b` – branch
+* `cl` – clause
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the extended clause holds iff the branch or the clause holds
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

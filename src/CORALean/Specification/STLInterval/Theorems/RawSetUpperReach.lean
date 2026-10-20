@@ -9,6 +9,19 @@ public import CORALean.Specification.STLInterval.STLInterval
 
 A nonempty `rawSet` has an element at or above `s` exactly when `s` is below its upper bound; see
 `rawSet_lowerReach`.
+
+## Inputs
+* `l` – lower bound
+* `u` – upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+* `s` – time
+
+## Hypotheses
+* `hne` – the interval is nonempty
+
+## Conclusion
+* a member lies at or above the time iff the time is before the upper bound
 -/
 
 -- Authors:       Claude Sonnet 5.5

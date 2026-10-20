@@ -11,6 +11,12 @@ public import CORALean.Specification.STLInterval.Operations.StlInterval
 `I + I2 ⊆ I1`. An empty `I2` gives `[0, ∞)`, an empty `I1` the empty interval. CORA's
 `ub = obj.upper - sub.upper` is `Inf - Inf = NaN` for two unbounded operands; here that case is
 `+∞`, the Minkowski difference (see `STLInterval.minkDiffCora`).
+
+## Inputs
+* none
+
+## Output
+* the Minkowski difference of the two intervals
 -/
 
 -- Authors:       Claude Sonnet 5.5

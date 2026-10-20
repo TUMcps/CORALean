@@ -13,6 +13,20 @@ public import Mathlib.Order.Basic
 
 `a ≤ cell t` iff `t` lies after the time point `precTimeAtValIdx` gives for the `a`-th value
 (zero-based), or at it if the value is the point value.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `t` – time
+* `a` – value index
+
+## Hypotheses
+* `hs` – the signal is valid
+* `ht` – the time is nonnegative
+* `ha` – the index is in range
+
+## Conclusion
+* the cell reaches the index iff the time is past the value's lower end
 -/
 
 -- Authors:       Claude Sonnet 5.5

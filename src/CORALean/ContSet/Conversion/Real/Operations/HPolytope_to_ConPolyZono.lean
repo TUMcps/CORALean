@@ -13,9 +13,6 @@ whose box comes from the support bounds `up`, `lo` (CORA's `'exact:supportFunc'`
 `B = interval(P)`), read as a constrained polynomial zonotope. Both steps are exact.
 
 ## Inputs
-* none
-
-## Hypotheses
 * `up` – certified upper bound per coordinate
 * `lo` – certified lower bound per coordinate
 

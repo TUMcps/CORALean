@@ -15,6 +15,18 @@ producing a point outside that halfspace and so outside `S` itself. Since
 counterpart to `Specification.holds_safeSet_of_bounds`, one certifying
 safety, the other refuting it.
 
+## Inputs
+* `S` – safe set
+* `X` – set of points
+* `x` – point
+
+## Hypotheses
+* `hx` – the point lies in the set
+* `hS` – the point lies outside the safe set
+
+## Conclusion
+* the safe set specification fails for the set
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

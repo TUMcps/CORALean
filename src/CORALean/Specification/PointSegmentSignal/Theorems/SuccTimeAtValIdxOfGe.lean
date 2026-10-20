@@ -9,6 +9,17 @@ public import CORALean.Specification.PointSegmentSignal.Operations.SuccTimeAtVal
 # The time after the last stored value
 
 The time after the value `b` (zero-based) is `inf` when there is no further time point.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `b` – value index
+
+## Hypotheses
+* `hk` – there is no further time point
+
+## Conclusion
+* the time after the value is infinity, open iff the index is odd
 -/
 
 -- Authors:       Claude Sonnet 5.5

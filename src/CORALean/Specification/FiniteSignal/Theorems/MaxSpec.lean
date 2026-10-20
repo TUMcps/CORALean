@@ -14,6 +14,20 @@ For a valid signal and an interval within `[0,∞)`, `max` is the largest of `0`
 the cells that meet the interval: a cell `[lo_m, hi_m]`, closed at both ends, meets `[lo,hi]` if
 `lo ≤ hi_m` and `lo_m ≤ hi`. So at a breakpoint inside or at the end of the interval the values on
 both sides count.
+
+## Inputs
+* `V` – value type
+* `s` – signal
+* `lo` – interval lower bound
+* `hi` – interval upper bound
+
+## Hypotheses
+* `hs` – the signal is valid
+* `hlh` – the interval is proper
+* `h0` – the interval ends at or after zero
+
+## Conclusion
+* the maximum is the largest of zero and the values of cells meeting the interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

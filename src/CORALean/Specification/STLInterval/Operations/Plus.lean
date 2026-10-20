@@ -10,6 +10,12 @@ public import CORALean.Specification.STLInterval.Operations.StlInterval
 `@stlInterval/plus.m`, the `stlInterval + stlInterval` branch: bounds add, an end is closed when
 both are. An empty operand gives `stlInterval()`. The `interval` and numeric summands are
 `plusInterval` and `plusNum`.
+
+## Inputs
+* none
+
+## Output
+* the sum of the two intervals
 -/
 
 -- Authors:       Claude Sonnet 5.5

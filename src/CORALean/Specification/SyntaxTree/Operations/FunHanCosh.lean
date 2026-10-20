@@ -14,6 +14,13 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 `intPrev`
 allows (`[-m, m]` when it contains `0`), met with `intPrev`. An `int` below `1` throws
 `CORA:outOfDomain`.
+
+## Inputs
+* `int` – target interval
+* `prev` – previous interval
+
+## Output
+* the interval of operands whose hyperbolic cosine lies in the target
 -/
 
 -- Authors:       Claude Sonnet 5.5

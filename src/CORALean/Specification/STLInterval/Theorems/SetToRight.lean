@@ -11,6 +11,15 @@ public import CORALean.Specification.STLInterval.Theorems.RawSetLowerOfGe
 # `toRight` denotes the times after
 
 `toRight(I)` denotes the times not in `I` and no earlier than every time of `I`.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* `hI` – the interval is nonempty
+
+## Conclusion
+* the right interval denotes the times after all of the interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

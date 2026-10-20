@@ -9,6 +9,16 @@ public import CORALean.Specification.STLInterval.Theorems.Basic
 # `representsa_` as `emptySet`
 
 `representsa_(I,'emptySet')` holds iff `I` denotes no time.
+
+## Inputs
+* `tol` – tolerance
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the interval represents the empty set iff its times are empty
 -/
 
 -- Authors:       Claude Sonnet 5.5

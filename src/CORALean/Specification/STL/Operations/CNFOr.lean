@@ -10,6 +10,13 @@ public import CORALean.Specification.STL.Operations.ClauseMerge
 `X_c(ϕ₁ ∨ ϕ₂)`-free distribution of [1, Sec. 4.1]: `(⋀ᵢ cᵢ) ∨ (⋀ⱼ dⱼ)` is `⋀ᵢⱼ (cᵢ ∨ dⱼ)`, each
 `cᵢ ∨ dⱼ` one clause.
 
+## Inputs
+* `a` – first normal form
+* `b` – second normal form
+
+## Output
+* the disjunction of the normal forms
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

@@ -13,6 +13,16 @@ public import CORALean.Specification.STL.Theorems.SatOfPform
 point in time for all traces, which `F[0,1] ϱ` of STL does not ask. The `⇔` needs a state at every
 time, to put a trace through each state of `R(t)`.
 
+## Inputs
+* `R` – reach sequence
+* `ϱ` – predicate
+
+## Hypotheses
+* `hne` – all reach sets are nonempty
+
+## Conclusion
+* the RTL eventually matches eventually at some time of the traces
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

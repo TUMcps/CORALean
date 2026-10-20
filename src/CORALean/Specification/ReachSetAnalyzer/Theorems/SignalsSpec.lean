@@ -13,6 +13,18 @@ For an analyzer that represents `PT` and `PF`, `signals` succeeds and gives, for
 in order, a valid three-valued signal of duration `d` that is true at `t` exactly where the
 proposition can be true and cannot be false, and false exactly where it can be false and cannot be
 true (unknown elsewhere).
+
+## Inputs
+* `obj` – analyzer
+* `d` – signal duration
+* `PT` – times where each proposition can be true
+* `PF` – times where each proposition can be false
+
+## Hypotheses
+* `hobj` – the analyzer represents `PT` and `PF`
+
+## Conclusion
+* the signals are valid and true where only `PT` holds, false where only `PF`
 -/
 
 -- Authors:       Claude Sonnet 5.5

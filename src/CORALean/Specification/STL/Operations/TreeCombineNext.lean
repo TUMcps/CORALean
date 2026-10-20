@@ -12,6 +12,12 @@ public import CORALean.Specification.STL.Operations.TreeTemporal
 and two nested `next` become one with the sum of their times. Every other node is kept, and so is
 a `next` over a non-temporal `&` or `|`. CORA returns a non-temporal formula at once; here the
 clauses for `&`, `|` and `~` recurse, which leaves a formula without a `next` as it is.
+
+## Inputs
+* none
+
+## Output
+* the formula with next moved inwards
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -10,6 +10,17 @@ public import CORALean.Specification.FiniteSignal.Operations.Basic
 
 A valid signal has a first breakpoint `(b,v)` at a non-negative time, followed by the others, and
 its breakpoints' times are the times of the signal.
+
+## Inputs
+* `T` – time type
+* `V` – value type
+* `s` – signal
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* the breakpoints start at a nonnegative time and list the signal's times and values
 -/
 
 -- Authors:       Claude Sonnet 5.5

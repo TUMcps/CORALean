@@ -31,6 +31,15 @@ inequalities `A x <= b` of `P`; its equalities `Ae x = be` play no part
 The polytope `{x ∈ ℝ | x <= 5, x = 2}` has the equality row `1 * x = 2`. CORA's
 `polytope2stl` converts the `A`, `b` rows only, so its formula `x <= 5` is satisfied at `x = 0`,
 which is not in the polytope.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's conversion of a polytope ignores equalities and accepts outside points
 -/
 
 -- Authors:       Claude Sonnet 5.5

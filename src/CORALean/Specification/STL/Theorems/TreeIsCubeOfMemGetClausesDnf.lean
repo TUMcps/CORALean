@@ -10,6 +10,17 @@ public import CORALean.Specification.STL.Definitions.TreeIsDnf
 
 In a disjunctive normal form, the disjuncts `getClauses(obj,'dnf')` returns are cubes:
 conjunctions of leaves.
+
+## Inputs
+* `φ` – formula
+* `c` – subformula
+
+## Hypotheses
+* `h` – the formula is in disjunctive normal form
+* `hc` – the subformula is one of its cubes
+
+## Conclusion
+* the subformula is a cube
 -/
 
 -- Authors:       Claude Sonnet 5.5

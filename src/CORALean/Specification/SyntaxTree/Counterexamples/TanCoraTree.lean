@@ -29,6 +29,15 @@ takes every real value. For `tan(x₁) - x₂ = 0` over `[0,π/3] × [0,2]`, wit
 target of the `tan` node is `[0,√3]`, cut to `[0,1]`, and `x₁` is narrowed to `[0, π/4]`: the zero
 `(π/3, √3)` is lost. See `SyntaxTree.funHanTanCora` and `SyntaxTree.funHanTan`, which is sound
 (`tan_sound`).
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed upper bound is at most a quarter pi
 -/
 
 -- Authors:       Claude Sonnet 5.5

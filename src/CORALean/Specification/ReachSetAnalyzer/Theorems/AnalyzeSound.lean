@@ -15,6 +15,21 @@ each element of `analyze(obj,R)` is a list of signals that is sound (`SignalsSou
 sets of one branch of the tree, from the root to a leaf. A signal that is true at `t` says every
 state of every set of the branch that covers `t` satisfies the proposition, one that is false
 that none does.
+
+## Inputs
+* `aps` – labelled atomic propositions
+* `dur` – signal duration
+* `masks` – masks of the propositions
+* `R` – tree of reach sets
+* `outs` – results of the analysis
+
+## Hypotheses
+* `hd` – the duration is nonnegative
+* `hnd` – the proposition keys are distinct
+* `hR` – all time intervals are proper
+
+## Conclusion
+* every result is sound for its branch
 -/
 
 -- Authors:       Claude Sonnet 5.5

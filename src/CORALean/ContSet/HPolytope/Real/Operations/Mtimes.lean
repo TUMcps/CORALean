@@ -17,8 +17,6 @@ it.
 ## Inputs
 * `M` – linear map
 * `Aq` – family indexed by `Fin q`
-
-## Hypotheses
 * `u` – a support bound of `P.construct` along each row
 
 ## Output

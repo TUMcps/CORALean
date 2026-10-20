@@ -13,6 +13,16 @@ the radius of the interval matrix. Both are at most `(|inf| + |sup|)/2` entrywis
 radius `2 s Σ_j absBound_j(Z)`. This is the form in which [1, Prop. 4] lets `F` and `G` of
 Eq. (18) vanish: `s → 0` when the bounds do.
 
+## Inputs
+* `IM` – interval matrix
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the product lies in a ball bounded by the matrix and zonotope sizes
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

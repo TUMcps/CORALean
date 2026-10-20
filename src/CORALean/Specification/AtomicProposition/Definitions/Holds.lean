@@ -11,6 +11,14 @@ public import CORALean.Specification.AtomicProposition.Operations.Basic
 A point `x` of the ambient space satisfies the proposition at a location `loc` when the location
 is allowed and the coordinates `dims` of `x` lie in the proposition's set. This is what
 `evaluatePoint` decides for a point and what `canBeTrue` and `canBeFalse` bound over a set.
+
+## Inputs
+* `ap` – atomic proposition
+* `x` – point of the ambient space
+* `loc` – location
+
+## Output
+* the proposition holds at the point and location
 -/
 
 -- Authors:       Claude Sonnet 5.5

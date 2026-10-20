@@ -13,6 +13,21 @@ with the non-strict unbounded until: `φ₁` on `[t, t+a]`, `φ₂` somewhere in
 the unbounded until at `t + a` hold together iff `φ₂` holds at some `t' ∈ [t+a, t+b]` and `φ₁`
 on all of `[t, t']`. Of the two witnesses the earlier serves.
 
+## Inputs
+* `N` – horizon
+* `t` – time step
+* `a` – interval lower bound
+* `b` – interval upper bound
+* `P` – left operand values
+* `Q` – right operand values
+
+## Hypotheses
+* `hab` – the bounds are ordered
+* `hN` – the interval fits in the horizon
+
+## Conclusion
+* the bounded until decomposes into the unbounded one
+
 ## References
 
 * [1] V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and

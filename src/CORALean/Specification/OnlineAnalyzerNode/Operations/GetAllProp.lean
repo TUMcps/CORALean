@@ -16,6 +16,13 @@ parent at all `[0,∞)`.
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
 intervals over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `eps` – machine epsilon
+* `n` – node
+
+## Output
+* the interval up to which everything is propagated
 -/
 
 -- Authors:       Claude Sonnet 5.5

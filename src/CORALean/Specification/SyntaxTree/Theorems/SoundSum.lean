@@ -11,6 +11,16 @@ public import CORALean.Specification.SyntaxTree.Theorems.Basic
 # The sum of sound trees is sound
 
 `sum` over sound trees is sound.
+
+## Inputs
+* `rest` – remaining trees
+
+## Hypotheses
+* `h` – the first tree is sound
+* `hs` – the remaining trees are sound
+
+## Conclusion
+* the sum tree is sound
 -/
 
 -- Authors:       Claude Sonnet 5.5

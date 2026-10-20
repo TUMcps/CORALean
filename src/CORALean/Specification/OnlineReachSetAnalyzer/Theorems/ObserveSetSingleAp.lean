@@ -13,6 +13,28 @@ An analyzer with one node, an `AP` node that is the leaf and root, with propagat
 `1`, observing a set finally in a nonempty interval: the node takes the value of its proposition on
 the set (`apValue`) in its satisfaction signal, and the propagation that follows changes nothing,
 the node having no children.
+
+## Inputs
+* `eps` – machine epsilon
+* `obj` – analyzer
+* `N` – the single node
+* `set` – observed set
+* `loc` – location
+* `I` – observed time interval
+* `val` – value of the proposition on the set
+
+## Hypotheses
+* `hn` – the analyzer has only this node
+* `hl` – the node is the only leaf
+* `hf` – propagation happens at each observation
+* `hc` – nothing was observed yet
+* `hk` – the node is atomic
+* `hp` – nothing is propagated to its parent
+* `hch` – the node has no children
+* `hne` – the interval is nonempty
+
+## Conclusion
+* the node takes the proposition's value in its signal
 -/
 
 -- Authors:       Claude Sonnet 5.5

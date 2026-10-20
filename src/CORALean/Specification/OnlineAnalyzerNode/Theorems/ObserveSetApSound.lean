@@ -12,6 +12,25 @@ public import CORALean.Specification.OnlineAnalyzerNode.Theorems.ObserveSetApSpe
 After a final observation of a set, the satisfaction signal of an `AP` node is `True` at a time of
 the observed interval only if every state of the set satisfies the proposition, and `False` only if
 none does: the four-valued semantics of an atomic proposition on a set of states.
+
+## Inputs
+* `eps` – machine epsilon
+* `n` – atomic node
+* `set` – observed set
+* `interval` – observed time interval
+* `loc` – location
+* `val` – value of the proposition on the set
+* `t` – time
+
+## Hypotheses
+* `hk` – the node is atomic
+* `hnc` – no propagated time is observed again
+* `hs` – the node's signal is valid
+* `h0` – the time is nonnegative
+* `hti` – the time lies in the observed interval
+
+## Conclusion
+* the signal is true only if all states satisfy the proposition, false only if none
 -/
 
 -- Authors:       Claude Sonnet 5.5

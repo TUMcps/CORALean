@@ -10,37 +10,41 @@ public import Mathlib.Tactic.Linarith
 /-!
 # `robustnessReachSetGloballyCora`, CORA's robustness of `G_[0,T] x > 0` on a reach set
 
-CORA's `stl/robustness` (`specification/@stl/robustness.m`) for a `reachSet`, on the path this
-model fixes: one branch (`size(R,1) = 1`), numeric time points (`hybrid = false`), one state,
-and `globally(x(1) > 0, interval(0,T))`. Its predicate gives `sets{1} = {polytope(1,-eps)}`, the
-unsafe `x ≤ -eps` (`aux_reverseInequalityConstraints`, `polytope/not`). A set is the interval
-`[lo, hi]` (`zonotope(S)` is not a halfspace); `aux_robustnessSet` (l. 389-468) returns the
-quadratic program's `sqrt` of the squared distance when an intersection test fails, else the
-linear program's `-r` (the deepest ball in `x ≤ b`), both at their optima, written in closed form.
-`aux_robustnessReachSet` (l. 252-305), one `let` per step: `timeStepSize`, `tStart`, `tFinal`,
-the non-uniform `linspace` (l. 266-268; `none` on the uniform branch, which the model leaves),
-`consistentTimeStep` (globally arm), and per window `aux_findReachSets` (time points first, then
-time intervals, each kept when `meets` its time) and the loop of l. 292-297, which overwrites
-`r(j,i)` and breaks on `0`. `aux_robustnessTemporalLogic` at depth `0` (l. 136-150) takes the
-minimum over the windows `index`; `none` is its `-inf`. `meets` stands for `isIntersecting_(·,·,
-'exact',1e-8)` on times, `isectApprox`, `isectExact` for the two set tests of l. 403-404.
+CORA's `stl/robustness` (`specification/@stl/robustness.m`) for a `reachSet`, on the path this model
+fixes: one branch, numeric time points, one state and `globally(x(1) > 0, interval(0,T))`, whose
+predicate gives the unsafe set `x ≤ -eps`. A set is an interval `[lo, hi]`; `aux_robustnessSet`
+(l. 389-468) returns the quadratic program's distance when an intersection test fails, else the
+linear program's `-r`, both in closed form. `aux_robustnessReachSet` (l. 252-305) is one `let` per
+step (`linspace`, `consistentTimeStep`, `aux_findReachSets`, the loop of l. 292-297 that overwrites
+`r(j,i)`), `aux_robustnessTemporalLogic` takes the minimum over the windows (`none` is `-inf`).
+`meets`, `isectApprox` and `isectExact` stand for the time test and the two set tests (l. 403-404).
 
 # CORA's `stl/robustness` on a reach set is positive for a violated `G_[0,3/2] x > 0`
 
-`robustness(globally(x(1) > 0, interval(0,1.5)), R)` with `R` the reach set of `ẋ = 2` from
-`[-1, -1/2]` on the non-uniform steps `0, 1, 2, 4`: time-point sets `[-1,-1/2]`, `[1,3/2]`,
-`[3,7/2]`, `[7,15/2]` and time-interval sets `[-1,3/2]`, `[1,7/2]`, `[3,15/2]`, each the exact
-set of the flow (built directly; CORA's adaptive `reach` gives non-uniform steps, as does any
-`R` with several branches, which takes the same branch, l. 287). `min(dt) = 1`, so `t =
-linspace(0,1.5,2)` is a single window `[0,1.5]`; `aux_findReachSets` returns the time points `0`,
-`1` and the time intervals `[0,1]`, `[1,2]`, and the loop of l. 292-297 keeps the last one's
-robustness, the distance `1 + eps` of `[1,7/2]` from `x ≤ -eps`, where the minimum over the four
-is `-1 + eps`. CORA returns `1 + eps > 0`, satisfied ("val > 0 if satisfied"), while the run
-`x(s) = -1 + 2s` from `x(0) = -1` lies in the set of `[0,1]` and violates `x > 0` at `s = 0`.
-The time test `meets` is any one true on meeting intervals and false on intervals `1/2` apart
-(CORA's tolerance is `1e-8`); the set tests are true on meeting sets, the exact one false on sets
-`1/2` apart; `ε` is any shift in `[0, 1/2)`, CORA's `eps` among them. Real arithmetic; every
-comparison holds by a margin of at least `1/2`. Not run in MATLAB.
+`robustness(globally(x(1) > 0, interval(0,1.5)), R)` for `ẋ = 2` from `[-1, -1/2]` on the steps
+`0, 1, 2, 4` has `min(dt) = 1`, so one window `[0,1.5]`; the loop of l. 292-297 keeps the last
+set's robustness `1 + eps` of `[1,7/2]`, though the minimum is `-1 + eps`. CORA returns `1 + eps >
+0`, satisfied, while the run `x(s) = -1 + 2s` violates `x > 0` at `s = 0`. The tests are true on
+meeting sets and false `1/2` apart (CORA's tolerance is `1e-8`), `ε ∈ [0, 1/2)`. Real arithmetic,
+not run in MATLAB.
+
+## Inputs
+* `meets` – time interval intersection test
+* `isectApprox` – approximate set test
+* `isectExact` – exact set test
+* `ε` – CORA's epsilon shift
+
+## Hypotheses
+* `hmeets` – meeting intervals are reported as meeting
+* `hsep` – intervals half a unit apart do not meet
+* `happrox` – the approximate test accepts reaching sets
+* `hexact` – the exact test accepts reaching sets
+* `hexact'` – the exact test rejects sets half a unit apart
+* `hε` – the shift is nonnegative
+* `hε1` – the shift is below one half
+
+## Conclusion
+* CORA's robustness is positive though a run violates the formula
 -/
 
 -- Authors:       Claude Opus 5.5

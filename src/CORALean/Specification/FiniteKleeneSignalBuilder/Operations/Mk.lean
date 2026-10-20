@@ -14,6 +14,12 @@ nonnegative); here `none`.
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
 stamps over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `dur` – signal duration
+
+## Output
+* builder with both signals false, or none for a negative duration
 -/
 
 -- Authors:       Claude Sonnet 5.5

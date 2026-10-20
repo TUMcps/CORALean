@@ -16,6 +16,16 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 solution is the variation-of-constants formula `LinearSys.closedForm` for a measurable
 `u(·)`, with `B u` entering.
 
+## Inputs
+* `A` – dynamics matrix
+* `B` – input matrix
+* `X₀` – initial set
+* `U` – input set
+* `φ` – formula
+
+## Output
+* every trace of the system satisfies the formula
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

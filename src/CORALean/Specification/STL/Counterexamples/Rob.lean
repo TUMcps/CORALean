@@ -12,6 +12,15 @@ holds, `¬(μ(x₀) > 0)`, while `ρ^{¬μ}(x, 0) = -μ(x₀) = 0` is not positi
 the robust semantics cannot tell satisfaction from violation; `STL.DFormula.rob_sound` is what
 holds. The robust encoding inherits it, [1, Sec. V (correctness)]: `r^{¬μ}_0 = 0` there too.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a formula is satisfied although its robustness is not positive
+
 ## References
 
 * [1] V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and

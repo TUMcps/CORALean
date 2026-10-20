@@ -16,6 +16,20 @@ For a valid signal and a duration in `[0, duration]`, `cutoff` returns a valid s
 duration which agrees with the signal before the new end. At the new end it has the value of the
 cell ending there: the signal's own value if `dur` is no breakpoint, otherwise the value of the
 breakpoint at `dur` (not the next cell's).
+
+## Inputs
+* `T` – time type
+* `V` – value type
+* `s` – signal
+* `dur` – new duration
+
+## Hypotheses
+* `hs` – the signal is valid
+* `h0` – the new duration is nonnegative
+* `h1` – the new duration is within the signal's
+
+## Conclusion
+* a valid signal of the new duration agreeing with the signal
 -/
 
 -- Authors:       Claude Sonnet 5.5

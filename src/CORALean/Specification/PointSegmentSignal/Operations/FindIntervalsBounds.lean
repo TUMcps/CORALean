@@ -14,6 +14,14 @@ public import CORALean.Specification.PointSegmentSignal.Operations.SuccTimeAtVal
 `stlInterval(lb,ub,lc,rc)` it builds: the maximal runs of stored values satisfying `cond`, from the
 rising and falling edges of `diff(take)`. `findIntervals` is the same with the intervals as
 `STLInterval`s; the bounds are over any ordered time type, `ub = inf` as `⊤`.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `cond` – condition on values
+
+## Output
+* the bounds of the maximal intervals where the condition holds
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -12,6 +12,15 @@ public import CORALean.Specification.STL.Definitions.Halfspace
 b)` is `(-f) x < -b`, `>` and `≥` are those with the sign flipped, and `¬(ϱ₁ ∨ ϱ₂)` distributes
 over the two normal forms.
 
+## Inputs
+* `ϱ` – predicate
+
+## Hypotheses
+* `h` – the predicate is built from halfspaces
+
+## Conclusion
+* the predicate and its negation have disjunctive normal forms
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

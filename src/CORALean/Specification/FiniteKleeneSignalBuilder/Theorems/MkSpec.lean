@@ -13,6 +13,15 @@ public import CORALean.Specification.FiniteSignal.Theorems.MkSingletonSpec
 `finiteKleeneSignalBuilder(dur)` fails exactly for a negative duration. Otherwise both signals are
 valid, last `dur` and are false on all of `[0,dur]`: nothing is marked yet, so it represents
 the empty predicates.
+
+## Inputs
+* `dur` – signal duration
+
+## Hypotheses
+* none
+
+## Conclusion
+* fails for negative `dur`, else builds a builder marking nothing
 -/
 
 -- Authors:       Claude Sonnet 5.5

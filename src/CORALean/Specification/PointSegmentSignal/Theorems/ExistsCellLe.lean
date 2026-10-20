@@ -10,6 +10,20 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.ExistsCellEq
 
 In dense time without a last moment, for a valid signal and `t ≥ 0`, every index `c ≤ cell t` is
 `cell t'` for some time `0 ≤ t' ≤ t`.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `t` – time
+* `c` – value index
+
+## Hypotheses
+* `hs` – the signal is valid
+* `ht` – the time is nonnegative
+* `hc` – the index is at most the time's cell
+
+## Conclusion
+* some earlier nonnegative time reads that value
 -/
 
 -- Authors:       Claude Sonnet 5.5

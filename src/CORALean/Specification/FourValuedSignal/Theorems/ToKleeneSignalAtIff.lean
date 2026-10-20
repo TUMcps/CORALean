@@ -11,6 +11,17 @@ public import CORALean.Specification.FourValuedSignal.Theorems.ToKleeneSignalSpe
 Mapping inconclusive to `False` gives the signal that is `True` where the four-valued signal is
 `True`, `False` where it is `False` or inconclusive; mapping it to `True` is the other way round.
 `Unknown` is `Unknown` in both.
+
+## Inputs
+* `s` – four-valued signal
+* `t` – time
+
+## Hypotheses
+* `hs` – the signal is valid
+* `ht` – the time is nonnegative
+
+## Conclusion
+* each refinement value is read off the four-valued value
 -/
 
 -- Authors:       Claude Sonnet 5.5

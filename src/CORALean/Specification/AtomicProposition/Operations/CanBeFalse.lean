@@ -14,6 +14,14 @@ containment in the proposition's set, `contains(ap.set,set)` and with `'approx'`
 algorithm throws; the proposition can be false if the location is not allowed or the set is not
 shown to be contained. The test is `Contains`, which is conservative (`true` only if the set is
 contained), so `canBeFalse` is conservative towards `true`. Which algorithm runs is the instance's.
+
+## Inputs
+* `ap` – atomic proposition
+* `set` – set to test
+* `loc` – location
+
+## Output
+* whether the proposition can be false on the set
 -/
 
 -- Authors:       Claude Sonnet 5.5

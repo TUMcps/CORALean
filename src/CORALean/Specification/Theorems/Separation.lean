@@ -9,15 +9,21 @@ public import Mathlib.Tactic.Linarith
 /-!
 # A direction certifies that an unsafe set is avoided
 
-Checking `Disjoint O U` by inspecting the two sets is a feasibility problem;
-producing one direction along which they do not overlap turns it into two bounds
-that `Global.SupportFunction` already knows how to obtain and to compose. The bound on
-`U` runs against `-c`, a linear program bounding only from above, exactly as
-`Interval.ofBounds` takes its lower bounds.
+Checking `Disjoint O U` by inspecting the two sets is a feasibility problem; one direction along
+which they do not overlap turns it into two bounds that `Global.SupportFunction` already obtains
+and composes. The bound on `U` runs against `-c`, a linear program bounding only from above, as
+`Interval.ofBounds` takes its lower bounds. The certificate is one-sided: a separating direction
+proves disjointness, failing to find one proves nothing when neither set is convex.
 
-The certificate is one-sided by nature: a separating direction proves
-disjointness, and failing to find one proves nothing, the sets possibly being
-disjoint without a hyperplane between them when neither is convex.
+## Inputs
+* `u` – support bound of the reachable set
+* `v` – support bound of the unsafe set along the opposite direction
+
+## Hypotheses
+* `h` – the two bounds sum to a negative number
+
+## Conclusion
+* the unsafe set specification holds of the reachable set
 -/
 
 -- Authors:       Claude Opus 5

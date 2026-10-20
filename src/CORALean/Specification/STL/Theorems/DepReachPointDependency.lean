@@ -26,6 +26,23 @@ of `R(t_i)` weighted by `α̃` for the first `|H_i| = γ_x + γ_u i` indices and
 in [1, Prop. 1]. So `ξ ∈ μ ⊕ E(t_i)`, `E(t_i) = ⟨c_{i1}, G_{i1}(·,K_i)⟩_Z` at the factor `0` of
 its generators, and `μ ⊕ E(t_i) ⊆ R(t_i)` for any factors of `E` in `[-1,1]`: [1, Def. 4].
 
+## Inputs
+* `A` – dynamics matrix
+* `B` – input matrix
+* `X₀` – initial set
+* `U` – input set
+* `Δt` – time step
+* `κ` – Taylor order
+* `α` – factor values
+* `i` – step index
+
+## Hypotheses
+* `hΔt` – the time step is positive
+* `hα` – the factors lie in the unit interval
+
+## Conclusion
+* the solution at the time point is a dependency preserving point of the set
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

@@ -17,6 +17,17 @@ inconclusive.
 
 This is `Merge` in line 9 of [1, Alg. 2]: `n.signal` is overwritten where the new signal is not ⊣₂.
 
+## Inputs
+* `obj` – four-valued signal
+* `other` – signal whose known values override
+
+## Hypotheses
+* `ho` – the first signal is valid
+* `ht` – the second signal is valid
+
+## Conclusion
+* the merge is valid, taking the second signal where it is conclusive
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

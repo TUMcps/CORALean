@@ -9,6 +9,19 @@ public import CORALean.Specification.STLInterval.STLInterval
 
 The intersection of two `rawSet`s is `rawSet (max l₁ l₂) (min u₁ u₂)`, an end closed as the operand
 that supplies it, or both where the bounds agree (`@stlInterval/and_.m`).
+
+## Inputs
+* `l₁` – first lower bound
+* `l₂` – second lower bound
+* `lc₁` – first lower bound is closed
+* `lc₂` – second lower bound is closed
+* `t` – time
+
+## Hypotheses
+* none
+
+## Conclusion
+* both lower tests together are the test of the larger bound
 -/
 
 -- Authors:       Claude Sonnet 5.5

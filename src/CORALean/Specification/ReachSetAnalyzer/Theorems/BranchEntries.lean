@@ -10,6 +10,15 @@ public import CORALean.Specification.ReachSetAnalyzer.Theorems.ChildrenMem
 
 Every index on a branch of the tree of `R` that starts at the root or at an entry names an entry
 of `R`.
+
+## Inputs
+* `R` – tree of reach sets
+
+## Hypotheses
+* none
+
+## Conclusion
+* every index on a branch names an entry
 -/
 
 -- Authors:       Claude Sonnet 5.5

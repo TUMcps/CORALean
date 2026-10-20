@@ -10,6 +10,17 @@ public import Mathlib.Data.NNReal.Defs
 The blocks `[jc, jc + c)` of [1, Lemma 2]'s proof, one per power `j` of `X_c^j`: the different
 time supports that make its `∨` distribute.
 
+## Inputs
+* `j` – first block index
+* `j'` – second block index
+* `c` – block length
+
+## Hypotheses
+* `h` – the indices differ
+
+## Conclusion
+* the two time blocks are disjoint
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

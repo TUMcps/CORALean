@@ -11,6 +11,20 @@ public import CORALean.Specification.Theorems.VerifyConvexFoldInv
 `exists_convexHull_of_verifyConvex_eq_unsafe`: an `unsafe` answer from [1, Alg. 3 (exits)]
 came from a finite set of accumulated `O - U` points whose hull already reaches the origin.
 
+## Inputs
+* `bO` – bounds of the reachable set
+* `bU` – bounds of the unsafe set
+* `wO` – witnesses of the reachable set
+* `wU` – witnesses of the unsafe set
+* `ℓ` – sequence of directions
+* `fuel` – number of directions tried
+
+## Hypotheses
+* `h` – the search answers unsafe
+
+## Conclusion
+* some points of the difference set have the origin in their hull
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

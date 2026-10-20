@@ -13,6 +13,19 @@ public import Mathlib.Data.EReal.Operations
 
 The interval with a real lower bound and an upper bound that is real or `inf`, each end closed as
 its flag says, contains `t` exactly when `STLInterval.memBounds` holds.
+
+## Inputs
+* `lb` – lower bound
+* `ub` – upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+* `t` – time
+
+## Hypotheses
+* `hlb` – the lower bound is nonnegative
+
+## Conclusion
+* the time is in the interval iff it lies between the bounds
 -/
 
 -- Authors:       Claude Sonnet 5.5

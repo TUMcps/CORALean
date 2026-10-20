@@ -13,29 +13,27 @@ public import Mathlib.Tactic.NormNum
 # `distancePolyPointCora`: CORA's `aux_distancePolyPoint` as printed
 
 CORA's `aux_distancePolyPoint(C,d,p)` (`specification/@specification/robustness.m`, l. 189-224)
-gives the distance of a point `p` outside the polytope `C x ≤ d` (rows normalized by
-`normalizeConstraints`), under the comment "compute the norm 1 distance". It has three branches
-on `ind = find(C*p - d > 0)`, the violated rows:
-
-* one violated row: the value `C(i,:)*p - d(i)`, the Euclidean distance to that hyperplane;
-* `n` violated rows: `v = linsolve(C(ind,:),d(ind))` and `sqrt(sum((v-p).^2))`, the Euclidean
-  distance to the vertex `v` of the violated hyperplanes;
-* otherwise the linear program `min sum(u+w) s.t. x + u - w = p, C x ≤ d, u, w ≥ 0`, which is
-  `min ‖p - x‖₁ s.t. C x ≤ d`, the norm 1 distance.
-
-Points are functions `Fin n → ℝ`. `linsolve` is modelled by a solution of the square system when
-one exists (an arbitrary vector otherwise, the case MATLAB warns about), and the program by the
-infimum of `‖p - x‖₁` over the polytope. Read from the source, not run.
+gives the distance of a point `p` outside the polytope `C x ≤ d`, "the norm 1 distance". It
+branches on the violated rows `ind = find(C*p - d > 0)`: one row, the Euclidean distance to that
+hyperplane; `n` rows, the Euclidean distance to the vertex `linsolve(C(ind,:),d(ind))`; otherwise
+the linear program `min ‖p - x‖₁ s.t. C x ≤ d`. `linsolve` is a solution of the square system when
+one exists, the program the infimum of `‖p - x‖₁`. Read from the source, not run.
 
 # CORA's `aux_distancePolyPoint` mixes the Euclidean norm and the norm 1
 
-On the unit cube `[0,1]³` (six normalized rows `±e_j`), the point `p = (2,2,½)` violates two
-rows, which is neither one nor `n = 3`, so `aux_distancePolyPoint` solves the norm-1 program and
-returns `2`, while the point `q = (1,1,½)` of the cube is at Euclidean distance `√2 < 2`. The
-point `p' = (2,2,2)` violates three rows, `n`, and gets the Euclidean distance `√3` to the vertex
-`(1,1,1)`, so the point further out (`p'` is `p` moved by `3/2` away from the cube) is given the
-smaller distance `√3 < 2`. `robustness` of a safe set negates the value, so both stay negative:
-the sign is right, the magnitude is a wrong answer, not unsound. Read from the source, not run.
+On the unit cube `[0,1]³`, `p = (2,2,½)` violates two rows, so the norm-1 program returns `2`,
+though `(1,1,½)` of the cube is at Euclidean distance `√2 < 2`. `p' = (2,2,2)` violates three rows
+and gets the Euclidean `√3` to the vertex `(1,1,1)`, smaller although `p'` is further out. The
+`robustness` of a safe set negates the value, so the sign is right and the magnitude wrong.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the distance is the norm 1 for one point but Euclidean for a farther one
 -/
 
 -- Authors:       Claude Sonnet 5.5

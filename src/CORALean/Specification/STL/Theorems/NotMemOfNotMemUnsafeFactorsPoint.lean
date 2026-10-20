@@ -16,6 +16,28 @@ For `R(t_i) = ⟨c_i1, G_i1⟩_Z` of [1, Alg. 1] and `P = ⟨C, d⟩_P`, a facto
 `STL.not_mem_of_not_mem_unsafeFactors` is proved, with the uncertain part `β = 0`. The half
 for the time interval `K_i2` is false: `STL.unsafeFactors_interval_counterexample`.
 
+## Inputs
+* `A` – dynamics matrix
+* `B` – input matrix
+* `X₀` – initial set
+* `U` – input set
+* `Δt` – time step
+* `κ` – Taylor order
+* `α` – factor values
+* `i` – step index
+* `s` – number of polytope rows
+* `C` – polytope matrix
+* `d` – polytope offsets
+* `p` – factor dimension
+
+## Hypotheses
+* `hΔt` – the time step is positive
+* `hα` – the factors lie in the unit interval
+* `hp` – the dimension covers the initial and input generators
+
+## Conclusion
+* a factor outside the unsafe set reaches no point of the polytope
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

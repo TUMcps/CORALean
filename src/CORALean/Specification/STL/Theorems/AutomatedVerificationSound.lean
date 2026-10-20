@@ -15,6 +15,24 @@ then `some true` means no factor violates `φ` and `some false` that one does. T
 verdict of [1, Alg. 3] on all initial states and the piecewise constant inputs, which are inputs
 of `U`. Termination, [1, Thm. 1], needs the reachable sets to converge and is not claimed.
 
+## Inputs
+* `tuneκ` – choice of the Taylor order
+* `check` – check of the specification
+* `checkNeg` – check of the negated specification
+* `falsifiable` – test for a falsifying reach set
+* `box` – bounding box of the factors
+* `viol` – factor violates the specification
+* `fuel` – maximal number of halvings
+* `Δt` – initial time step
+
+## Hypotheses
+* `hcheck` – an empty check means no factor violates
+* `hneg` – a factor outside all negation polytopes violates
+* `hfals` – a falsifiable list leaves a factor outside all its polytopes
+
+## Conclusion
+* a safe verdict means no violation and an unsafe one means some violation
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

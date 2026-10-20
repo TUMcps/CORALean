@@ -9,6 +9,17 @@ public import CORALean.Specification.FiniteSignal.Operations.Basic
 # The duration is the last time
 
 For a valid signal the duration is one of the times and no time exceeds it.
+
+## Inputs
+* `T` – time type
+* `V` – value type
+* `s` – signal
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* the duration is a time and no time exceeds it
 -/
 
 -- Authors:       Claude Sonnet 5.5

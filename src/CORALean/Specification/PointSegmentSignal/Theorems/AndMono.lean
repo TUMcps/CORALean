@@ -12,6 +12,19 @@ public import Mathlib.Data.Bool.Basic
 The conjunction of Boolean signals is `combine` with `@all`: if every signal is `⊑ₜ` the primed
 one at every time `t ≥ 0`, so is the conjunction ([1, Sec. 4.2 (monotonicity)]).
 
+## Inputs
+* `ι` – index type of the operands
+* `sigs` – Boolean signals
+* `sigs'` – larger signals
+
+## Hypotheses
+* `hv` – the signals are valid
+* `hv'` – the larger signals are valid
+* `h` – each signal is below its larger one at all times
+
+## Conclusion
+* the conjunction is below the larger conjunction at all times
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

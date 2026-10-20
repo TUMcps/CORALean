@@ -10,6 +10,18 @@ public import CORALean.Specification.STLInterval.STLInterval
 The constructor of `@stlInterval/stlInterval.m` (`aux_computeProperties`): an infinite bound is
 open, and `lb > ub`, or `lb = ub` with an open end, gives the empty interval `stlInterval()`.
 `CHECKS_ENABLED`'s `lb < 0` error is the hypothesis `0 ≤ lb` (see `STLInterval`).
+
+## Inputs
+* `lb` – lower bound
+* `ub` – upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+
+## Hypotheses
+* `hlb` – the lower bound is nonnegative
+
+## Output
+* the interval with infinite bounds open
 -/
 
 -- Authors:       Claude Sonnet 5.5

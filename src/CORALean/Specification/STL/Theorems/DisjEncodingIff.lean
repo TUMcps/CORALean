@@ -13,6 +13,16 @@ public import Mathlib.Tactic.Linarith
 constraints `z ≥ z^{φᵢ}` and `z ≤ Σᵢ z^{φᵢ}` enforce `z = 1` if some operand holds and `z = 0`
 otherwise: any feasible `z` is that value, and that value is feasible.
 
+## Inputs
+* `m` – number of operands
+* `zs` – operand values
+
+## Hypotheses
+* `hzs` – every value is zero or one
+
+## Conclusion
+* the constraints force the disjunction and it exists
+
 ## References
 
 * [1] V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and

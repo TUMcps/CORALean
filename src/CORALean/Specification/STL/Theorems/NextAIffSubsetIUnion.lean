@@ -12,6 +12,18 @@ public import CORALean.Specification.STL.Definitions.RTL
 of the reachable set at `t` in the union of the polytopes, each `polyᵢ` a conjunction of
 halfspaces: what a polytope library checks.
 
+## Inputs
+* `R` – reach sequence
+* `t` – time
+* `ϱ` – predicate
+* `dnf` – disjunctive normal form
+
+## Hypotheses
+* `h` – the predicate and the normal form agree
+
+## Conclusion
+* next of the predicate holds iff the reach set lies in the polytope union
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

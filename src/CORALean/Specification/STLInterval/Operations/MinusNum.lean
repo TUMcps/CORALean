@@ -12,6 +12,12 @@ stay, a negative lower bound is cut to the closed `0`.
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (bounds
 over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* none
+
+## Output
+* the interval minus the number
 -/
 
 -- Authors:       Claude Sonnet 5.5

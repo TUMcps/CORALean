@@ -11,6 +11,19 @@ public import CORALean.Specification.STL.Definitions.DiscreteFormula
 step between `a` and `b`. With `⊤` the predicate `μ ≡ 1`, the until's `φ₁` holds everywhere and
 only the witness of `φ` remains.
 
+## Inputs
+* `a` – interval lower bound
+* `b` – interval upper bound
+* `φ` – formula
+* `x` – trace
+* `t` – time step
+
+## Hypotheses
+* `hab` – the bounds are ordered
+
+## Conclusion
+* eventually holds iff the until with true holds
+
 ## References
 
 * [1] V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and

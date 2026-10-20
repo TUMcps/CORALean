@@ -7,15 +7,12 @@ public import CORALean.ContSet.ContSet.ContSet
 /-!
 # Atomic propositions
 
-CORA's `atomicProposition` (`specification/atomicProposition.m`): a geometric representation `set`
-of the states for which a proposition holds, the coordinates `dims` of the ambient space it is a
-set of, and the locations `locs` of a hybrid automaton it is restricted to (empty: all of them).
-
-The set lives in `S k`, a representation of a `k`-dimensional set, and `dims` picks, for each of its
-`k` coordinates, a coordinate of the `n` of the ambient space: CORA keeps `dims` as a list of
-positive integers that is not checked against `dim(set)`, here the length is the type. `k` is a
-field, so propositions of different dimensions share a type, as the entries of a `containers.Map`
-do. `locs` is a list of location numbers.
+CORA's `atomicProposition` (`specification/atomicProposition.m`): a representation `set` of the
+states for which a proposition holds, the coordinates `dims` of the ambient space it is a set of,
+and the locations `locs` of a hybrid automaton it is restricted to (empty: all of them).
+`set` lives in `S k`, a `k`-dimensional representation, and `dims` picks a coordinate of the `n`
+ambient ones for each of its `k`; CORA does not check `dims` against `dim(set)`, here the length is
+the type. `k` is a field, so propositions of different dimensions share a type.
 -/
 
 -- Authors:       Claude Sonnet 5.5

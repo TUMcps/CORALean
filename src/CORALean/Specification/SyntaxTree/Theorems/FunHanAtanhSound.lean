@@ -12,6 +12,15 @@ public import CORALean.Specification.SyntaxTree.Theorems.MeetContains
 # `aaux_tanh_` is sound
 
 `aaux_tanh_` keeps every solution of `atanh s ∈ int` for `s` in `(-1,1)`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the hyperbolic tangent is monotone
 -/
 
 -- Authors:       Claude Sonnet 5.5

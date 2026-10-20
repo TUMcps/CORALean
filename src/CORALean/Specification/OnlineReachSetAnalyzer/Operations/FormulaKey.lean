@@ -9,6 +9,12 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Definitions.Formula
 
 `k = formattedDisplayText(phi)` of `parse`, the key of the cache of subformulas: the formula with
 the propositions erased to their labels.
+
+## Inputs
+* none
+
+## Output
+* the formula with its atomic data erased
 -/
 
 -- Authors:       Claude Sonnet 5.5

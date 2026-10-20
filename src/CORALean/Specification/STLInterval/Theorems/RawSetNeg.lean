@@ -8,6 +8,18 @@ public import CORALean.Specification.STLInterval.STLInterval
 # The negative of an STL interval
 
 `-{t | …}` swaps the two ends: `rawSet l u lc rc` negated is `rawSet (-u) (-l) rc lc`.
+
+## Inputs
+* `l` – lower bound
+* `u` – upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+
+## Hypotheses
+* none
+
+## Conclusion
+* the negated interval swaps and negates its bounds
 -/
 
 -- Authors:       Claude Sonnet 5.5

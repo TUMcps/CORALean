@@ -10,6 +10,17 @@ public import CORALean.Specification.PointSegmentSignal.Operations.SuccTimeAtVal
 
 The time point after the value `b` (zero-based) is the `(b + 1) / 2`-th time point, open if `b` is
 odd, when there is one.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `b` – value index
+
+## Hypotheses
+* `hk` – a further time point exists
+
+## Conclusion
+* the time after the value is that time point, open iff the index is odd
 -/
 
 -- Authors:       Claude Sonnet 5.5

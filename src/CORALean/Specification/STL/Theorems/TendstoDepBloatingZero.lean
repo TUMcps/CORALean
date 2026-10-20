@@ -18,6 +18,18 @@ norm ball of radius `‖Σ_{j≤κ} A^j Δt^{j+1}/(j+1)!‖ r + Σ_{j<κ} ‖A^{
 `2Δt E`) because `E → 0` (`MatExp.tendsto_expRemainderMat_zero`). "`→ 0`" is the radius
 `sup_{v ∈ 𝒟} ‖v‖` of the set in the sup norm of `Vec`, along `Δt → 0⁺`.
 
+## Inputs
+* `A` – dynamics matrix
+* `B` – input matrix
+* `U` – input set
+* `κ` – Taylor order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the bloating shrinks to zero with the step
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

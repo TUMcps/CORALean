@@ -11,6 +11,16 @@ public import CORALean.Specification.STLInterval.Theorems.SetInjective
 
 At `tol = 0` `isequal` holds iff the two intervals denote the same set of times; the flags and
 the empty case are compared as CORA compares them, and the set determines them.
+
+## Inputs
+* `I` – first interval
+* `J` – second interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* equality without tolerance is equality of the times
 -/
 
 -- Authors:       Claude Sonnet 5.5

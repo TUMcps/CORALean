@@ -20,17 +20,16 @@ set — can turn into a lower bound, and only the equality supplies one.
 * `R₀` – initial set
 * `U` – input set
 * `t` – time
+* `w₀` – support witness on the initial set
+* `wP` – support witness on the input reach
 * `c` – direction
 
 ## Hypotheses
 * `ht` – time nonnegative
 * `hU` – input set bounded
-* `w₀` – support witness on the initial set
-* `wP` – support witness on the input reach
 
 ## Output
 * support witness on the time-point reachable set along the direction
-
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

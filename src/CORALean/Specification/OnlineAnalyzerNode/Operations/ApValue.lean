@@ -13,6 +13,14 @@ The branch of `observeSet` for an `AP` node that turns `canBeTrue` and `canBeFal
 `True` if the proposition can only be true, `False` if it can only be false, `Unknown` if it can
 be both, and an error if it can be neither (`CORA:notDefined`, "AP can neither be true nor
 false"), here `none`.
+
+## Inputs
+* `ap` – atomic proposition
+* `set` – observed set
+* `loc` – location
+
+## Output
+* the Kleene value of the proposition on the set
 -/
 
 -- Authors:       Claude Sonnet 5.5

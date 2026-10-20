@@ -11,6 +11,15 @@ public import CORALean.Specification.STL.Definitions.ReachSequence
 traces (even if `R` is exact)". Two constant traces, `false` and `true`, have the exact reach
 sequence `R(t) = Bool`, which also holds every trace that switches.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* an exact reach sequence can have more traces than the system
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

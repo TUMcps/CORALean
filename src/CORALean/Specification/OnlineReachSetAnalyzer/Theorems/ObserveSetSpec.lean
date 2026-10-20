@@ -12,6 +12,19 @@ An empty interval changes nothing. Otherwise the observation is counted, the lea
 frequency and the nodes' graph are as before, and if the count is no multiple of the propagation
 frequency no propagation takes place: nothing is marked propagated and only the leaf nodes
 changed (they observed the set).
+
+## Inputs
+* `eps` – machine epsilon
+* `obj` – analyzer
+* `set` – observed set
+* `loc` – location
+* `mv` – interval to make final
+
+## Hypotheses
+* none
+
+## Conclusion
+* an empty interval changes nothing, else the observation is counted
 -/
 
 -- Authors:       Claude Sonnet 5.5

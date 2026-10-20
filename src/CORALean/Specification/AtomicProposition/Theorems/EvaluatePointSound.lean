@@ -11,6 +11,17 @@ public import CORALean.Specification.AtomicProposition.Operations.EvaluatePoint
 If `evaluatePoint` says a point satisfies the proposition, it does: the location is allowed and
 the coordinates `dims` of the point, read as reals, lie in the proposition's set. `false` claims
 nothing, the `Contains` test being conservative.
+
+## Inputs
+* `ap` – atomic proposition
+* `point` – floating-point point
+* `loc` – location
+
+## Hypotheses
+* `h` – `evaluatePoint` returns true
+
+## Conclusion
+* the point, read as reals, satisfies the proposition
 -/
 
 -- Authors:       Claude Sonnet 5.5

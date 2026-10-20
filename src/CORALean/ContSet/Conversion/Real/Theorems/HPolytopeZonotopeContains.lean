@@ -15,11 +15,11 @@ generators. Loses whatever the box lost and nothing further — a zonotope tight
 around a halfspace description would have to know its facets.
 
 ## Inputs
-* none
-
-## Hypotheses
 * `up` – certified upper bound per coordinate
 * `lo` – certified lower bound per coordinate
+
+## Hypotheses
+* none
 
 ## Conclusion
 * polytope is contained in its zonotope

@@ -13,6 +13,17 @@ public import CORALean.Specification.SyntaxTree.Theorems.ContainsOfImage
 
 If the operand's interval encloses its value, the interval `Interval.atanh` stores at the `atanh`
 node encloses the node's value for an operand inside `(-1,1)`, exactly (`Interval.atanh_exact`).
+
+## Inputs
+* none
+
+## Hypotheses
+* `h` – the operand's interval encloses its function
+* `hd₁` – the operand stays above minus one
+* `hd₂` – the operand stays below one
+
+## Conclusion
+* the interval of the inverse hyperbolic tangent encloses its function
 -/
 
 -- Authors:       Claude Sonnet 5.5

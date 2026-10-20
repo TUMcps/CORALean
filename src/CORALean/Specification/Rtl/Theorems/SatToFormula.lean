@@ -11,6 +11,15 @@ public import CORALean.Specification.Rtl.Operations.ToFormula
 If an `rtl` object is the formula `φ` of [1, Def. 1] (`toFormula`), its semantics (`Rtl.Sat`, the
 equations (4)-(7) of [1, Def. 2], leaf by leaf) is the semantics of `φ`.
 
+## Inputs
+* `f` – reading of a label as a predicate
+
+## Hypotheses
+* none
+
+## Conclusion
+* the semantics of the object and of its paper formula agree
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

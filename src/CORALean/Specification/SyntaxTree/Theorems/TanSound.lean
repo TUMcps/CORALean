@@ -15,6 +15,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 `aux_tan_` (without the cut to `[-1,1]`) keeps every solution of `tan s ∈ int` for `s` in `(-pi/2,
 pi/2)`.
+
+## Inputs
+* `prev` – previous interval
+
+## Hypotheses
+* `hd₁` – the interval stays above minus half pi
+* `hd₂` – the interval stays below half pi
+
+## Conclusion
+* the inverse of the tangent keeps every solution
 -/
 
 -- Authors:       Claude Sonnet 5.5

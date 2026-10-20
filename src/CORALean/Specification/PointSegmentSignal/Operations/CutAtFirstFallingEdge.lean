@@ -11,6 +11,13 @@ public import CORALean.Specification.PointSegmentSignal.Operations.Basic
 `false` after it; the signal itself if it has no falling edge. A falling edge is a stored value
 `true` followed by `false`, from a point to the interval after it, or from an interval to the next
 point.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+
+## Output
+* the signal up to its first falling edge
 -/
 
 -- Authors:       Claude Sonnet 5.5

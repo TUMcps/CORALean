@@ -12,6 +12,13 @@ public import Mathlib.Order.Basic
 The checks of `pointSegmentSignal.m`'s `aux_checkInputs`: non-empty arrays, two values per time
 point, first time point `0`, strictly increasing times, and no point whose value matches both its
 preceding and following interval (so a signal has one representation).
+
+## Inputs
+* `T` – time type
+* `s` – signal
+
+## Output
+* the constructor's input checks pass
 -/
 
 -- Authors:       Claude Sonnet 5.5

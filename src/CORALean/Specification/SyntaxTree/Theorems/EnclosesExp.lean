@@ -13,6 +13,15 @@ public import CORALean.Specification.SyntaxTree.Theorems.ContainsOfImage
 
 If the operand's interval encloses its value, the interval `Interval.exp` stores at the `exp` node
 encloses the node's value, exactly (`Interval.exp_exact`).
+
+## Inputs
+* none
+
+## Hypotheses
+* `h` – the operand's interval encloses its function
+
+## Conclusion
+* the interval of the exponential encloses its function
 -/
 
 -- Authors:       Claude Sonnet 5.5

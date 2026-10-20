@@ -10,6 +10,15 @@ public import CORALean.Specification.STL.Theorems.TreeIsCnfCnfRewrite
 
 The loop stops at a pass that counts no distribution, and the result of such a pass is a
 conjunction of clauses (`STL.Tree.isCnf_cnfRewrite_of_snd_eq_zero`).
+
+## Inputs
+* `φ` – formula
+
+## Hypotheses
+* none
+
+## Conclusion
+* the loop result is in conjunctive normal form
 -/
 
 -- Authors:       Claude Sonnet 5.5

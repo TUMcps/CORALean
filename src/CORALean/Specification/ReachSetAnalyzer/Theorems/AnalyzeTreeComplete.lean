@@ -11,6 +11,19 @@ public import CORALean.Specification.ReachSetAnalyzer.Theorems.MapMSpec
 
 If `analyze(obj,R,i)` succeeds, every branch below `i` contributes a result: the `signals` of the
 object after the entries of the branch were analyzed, one after the other.
+
+## Inputs
+* `σ` – analyzer state type
+* `α` – result type
+* `children` – children of each entry
+* `analyzeSingle` – analysis of one entry
+* `signals` – result extracted from a state
+
+## Hypotheses
+* none
+
+## Conclusion
+* every branch contributes a result
 -/
 
 -- Authors:       Claude Sonnet 5.5

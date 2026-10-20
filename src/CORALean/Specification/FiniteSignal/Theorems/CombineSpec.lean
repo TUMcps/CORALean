@@ -20,6 +20,21 @@ value is the operator applied to the values of the two signals. (At the end of t
 if the longer one has a breakpoint there, the value is that of the longer signal's cell ending
 there, not of the one starting there.) The loop on breakpoints is analysed first: its output is
 strictly increasing in time with no two consecutive values equal.
+
+## Inputs
+* `T` – time type
+* `V` – value type of the inputs
+* `W` – value type of the result
+* `op` – binary operator on values
+* `lhs` – left signal
+* `rhs` – right signal
+
+## Hypotheses
+* `hl` – the left signal is valid
+* `hr` – the right signal is valid
+
+## Conclusion
+* a valid signal of the shorter duration applying the operator pointwise
 -/
 
 -- Authors:       Claude Sonnet 5.5

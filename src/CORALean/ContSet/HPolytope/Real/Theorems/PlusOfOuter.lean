@@ -20,14 +20,14 @@ offset raised by `Z`'s support value.
 * `P₁` – H-polytope
 * `P₂` – H-polytope
 * `Aq` – family indexed by `Fin q`
-
-## Hypotheses
 * `u₁` – a support bound of `P₁.construct` along each row
 * `u₂` – a support bound of `P₂.construct` along each row
 
+## Hypotheses
+* none
+
 ## Conclusion
 * the certified Minkowski sum encloses
-
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

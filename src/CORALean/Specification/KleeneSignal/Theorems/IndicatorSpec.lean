@@ -12,6 +12,17 @@ public import CORALean.Specification.Kleene.Theorems.Basic
 
 `indicator(interval,val,default)` is a valid signal with value `val` at the times of the interval
 and `default` elsewhere: both parts are indicators, and `val` is recovered from its two parts.
+
+## Inputs
+* `I` – time interval
+* `val` – value on the interval
+* `default` – value elsewhere
+
+## Hypotheses
+* none
+
+## Conclusion
+* a valid signal with `val` on the interval and `default` off it
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -8,6 +8,18 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.Basic
 # `Ext` is transitive
 
 Extending an extension extends the original list.
+
+## Inputs
+* `a` – first node list
+* `b` – second node list
+* `c` – third node list
+
+## Hypotheses
+* `h1` – the second list extends the first
+* `h2` – the third list extends the second
+
+## Conclusion
+* the third list extends the first
 -/
 
 -- Authors:       Claude Sonnet 5.5

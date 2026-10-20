@@ -14,6 +14,17 @@ public import CORALean.Specification.SyntaxTree.Theorems.TanSound
 
 The node `tan` of an operand inside `(-pi/2, pi/2)` builds over a sound tree is sound: its interval
 encloses it (`encloses_tan`) and its `funHan` is sound.
+
+## Inputs
+* none
+
+## Hypotheses
+* `h` – the operand tree is sound
+* `hd₁` – the operand stays above minus half pi
+* `hd₂` – the operand stays below half pi
+
+## Conclusion
+* the tangent tree is sound
 -/
 
 -- Authors:       Claude Sonnet 5.5

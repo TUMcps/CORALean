@@ -14,6 +14,15 @@ public import CORALean.Specification.SyntaxTree.Theorems.EnclosesOfSound
 
 The node `cos` builds over a sound tree is sound: its interval encloses it (`encloses_cos`) and its
 `funHan` is sound.
+
+## Inputs
+* none
+
+## Hypotheses
+* `h` – the operand tree is sound
+
+## Conclusion
+* the cosine tree is sound
 -/
 
 -- Authors:       Claude Sonnet 5.5

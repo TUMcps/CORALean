@@ -11,6 +11,17 @@ public import Mathlib.Data.List.TakeWhile
 
 In a valid signal and for a time `u ≥ 0`, the number `i` of time points `≤ u` is at least `1` and at
 most the number of points, the `i`-th point is `≤ u` and the next one, if any, is `> u`.
+
+## Inputs
+* `s` – signal
+* `u` – time
+
+## Hypotheses
+* `hs` – the signal is valid
+* `h0` – the time is nonnegative
+
+## Conclusion
+* the count of points up to the time is the position of the last one
 -/
 
 -- Authors:       Claude Sonnet 5.5

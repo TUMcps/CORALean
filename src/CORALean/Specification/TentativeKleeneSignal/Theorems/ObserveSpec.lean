@@ -13,6 +13,17 @@ public import CORALean.Specification.TentativeKleeneSignal.Operations.Observe
 hold on the interval: `canBeTrue` holds at `t` iff it did or `t` is in the interval and the value
 is not `False`, `canBeFalse` iff it did or `t` is in the interval and the value is not `True`.
 Nothing is ever removed.
+
+## Inputs
+* `s` – tentative signal
+* `I` – time interval
+* `value` – observed value
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* a valid signal that gains the observed value on the interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

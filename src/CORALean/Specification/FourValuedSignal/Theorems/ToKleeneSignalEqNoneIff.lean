@@ -13,6 +13,15 @@ public import CORALean.Specification.STLInterval.Definitions.MemBounds
 
 `toKleeneSignal(obj)` without argument throws iff the signal is inconclusive at some time `t ≥ 0`;
 `toKleeneSignal?` is `none` exactly then, and the Kleene part otherwise.
+
+## Inputs
+* `s` – four-valued signal
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* conversion fails iff the signal is inconclusive at some time
 -/
 
 -- Authors:       Claude Sonnet 5.5

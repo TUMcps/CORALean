@@ -12,6 +12,13 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 
 `aux_tan_(int,intPrev)` of `syntaxTree.m` without its `int & interval(-1,1)` (`aux_tanCora_`): the
 branches `atan(int)` and `atan(int) + pi`, shifted by `2 pi k` (`aux_periodic_`).
+
+## Inputs
+* `int` – target interval
+* `prev` – previous interval
+
+## Output
+* the interval of operands whose tangent lies in the target
 -/
 
 -- Authors:       Claude Sonnet 5.5

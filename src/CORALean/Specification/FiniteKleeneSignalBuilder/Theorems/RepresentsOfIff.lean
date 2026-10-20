@@ -9,6 +9,22 @@ public import CORALean.Specification.FiniteKleeneSignalBuilder.Definitions.Repre
 
 If a builder represents `PT` and `PF` and these are equivalent to `PT'` and `PF'`, it represents
 those.
+
+## Inputs
+* `b` – signal builder
+* `d` – duration
+* `PT` – times where the property can be true
+* `PF` – times where the property can be false
+* `PT'` – equivalent true predicate
+* `PF'` – equivalent false predicate
+
+## Hypotheses
+* `h` – the builder represents `PT` and `PF`
+* `hT` – `PT` and `PT'` are equivalent
+* `hF` – `PF` and `PF'` are equivalent
+
+## Conclusion
+* the builder represents `PT'` and `PF'`
 -/
 
 -- Authors:       Claude Sonnet 5.5

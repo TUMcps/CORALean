@@ -24,6 +24,17 @@ public import CORALean.Specification.PointSegmentSignal.Operations.SuccTimeAtVal
 In dense time without a last moment, for a valid signal, `findLast(obj,value)` is the least upper
 bound of the times `t ≥ 0` at which the signal has the value `value`, and `inclusive` says whether
 some such time is that bound. If the signal never has the value, it is `0` and not inclusive.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `value` – value to find
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* the result is the supremum of the times with that value and whether it is attained
 -/
 
 -- Authors:       Claude Sonnet 5.5

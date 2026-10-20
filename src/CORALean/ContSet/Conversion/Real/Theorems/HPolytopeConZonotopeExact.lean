@@ -24,15 +24,14 @@ equivalence of polytopes and constrained zonotopes of
 [1, Fig. 1 (Polytopes ↔ Constrained Zonotopes)].
 
 ## Inputs
-* none
-
-## Hypotheses
 * `up` – certified upper bound per coordinate
 * `lo` – certified lower bound per coordinate
 
+## Hypotheses
+* none
+
 ## Conclusion
 * constrained zonotope equals the polytope
-
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

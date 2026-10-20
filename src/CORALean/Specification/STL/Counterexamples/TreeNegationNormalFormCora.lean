@@ -18,6 +18,15 @@ it differs, and `STL.Tree.negationNormalForm` the version with `Cmp.negate`.
 
 `negationNormalForm(~(x < 0))` is `x > 0` (`obj.lhs > obj.rhs`), not `x >= 0`: at `x = 0` the
 argument holds and the result does not. See `STL.Tree.negationNormalFormCora`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's negation normal form changes the meaning of a formula
 -/
 
 -- Authors:       Claude Sonnet 5.5

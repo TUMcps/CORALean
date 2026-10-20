@@ -9,6 +9,16 @@ public import CORALean.Specification.STL.Operations.TreeConjoin
 
 `res = res & c` over a list, starting from the empty `res = []`: the result is satisfied exactly
 when every member is.
+
+## Inputs
+* `L` – list of formulas
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the conjunction holds iff every member holds
 -/
 
 -- Authors:       Claude Sonnet 5.5

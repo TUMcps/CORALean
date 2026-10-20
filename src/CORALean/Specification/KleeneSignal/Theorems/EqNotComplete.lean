@@ -14,6 +14,15 @@ public import CORALean.Specification.STLInterval.Theorems.Basic
 `obj == other` compares the Boolean and unknown parts, so it is finer than equality of values: the
 Boolean part under `isUnknown` is irrelevant to `at`, yet negation flips it, and `a` and `~a` for a
 signal `a` that is `Unknown` throughout have the same value everywhere but are not `==`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* two valid signals with equal values at all times compare unequal
 -/
 
 -- Authors:       Claude Sonnet 5.5

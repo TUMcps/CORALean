@@ -10,6 +10,16 @@ public import CORALean.Specification.STL.Definitions.ReachSequence
 [1, Eq. 1]: `C(R)` contains the set of traces `Traces(S)` when `R` is a reach sequence of it,
 the first half of the remark after Eq. 1.
 
+## Inputs
+* `R` – reach sequence
+* `Traces` – traces of a system
+
+## Hypotheses
+* `h` – the reach sequence encloses the traces
+
+## Conclusion
+* the traces lie in the trace set of the reach sequence
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

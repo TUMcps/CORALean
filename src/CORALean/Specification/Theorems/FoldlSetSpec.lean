@@ -12,6 +12,25 @@ Folding a step over a list, where each step is valid and sets one set of times `
 keeps the value elsewhere, gives a valid signal that has `v` on the union of the sets and the old
 value elsewhere. `toBoolSignal`, `toKleeneSignal`, `merge` and `until` set the intervals they find
 in turn; the signal type is any `σ` with a validity predicate and a value at each time.
+
+## Inputs
+* `α` – element type
+* `σ` – state type
+* `β` – value type
+* `valid` – validity of a state
+* `val` – value of a state at a time
+* `l` – list of elements
+* `S` – set of times of each element
+* `v` – value to set
+* `step` – step of the fold
+* `s` – initial state
+
+## Hypotheses
+* `hstep` – each step sets its times to the value and keeps the rest
+* `hs` – the initial state is valid
+
+## Conclusion
+* the fold is valid and sets the union of the times to the value
 -/
 
 -- Authors:       Claude Sonnet 5.5

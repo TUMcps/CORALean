@@ -17,6 +17,15 @@ fails, and the printed semantics asks `μ₁` through that step), while the enco
 horizon, [1, Sec. IV-B.3 (temporal)]: with `N = 0` the window of `□[0,1] μ₁` is truncated to
 `[0, 0]`, and the encoding says true where the formula is false.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed Boolean encoding disagrees with the semantics
+
 ## References
 
 * [1] V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and

@@ -18,6 +18,17 @@ public import CORALean.Specification.STL.Theorems.SatRelease
 `c`-divisible STL formula has a normal form with natural bounds, scaled by `c`, and so has its
 negation: `¬(φ U ψ) ≡ ¬φ R ¬ψ`, `¬(φ ∨ ψ) ≡ ¬φ ∧ ¬ψ`.
 
+## Inputs
+* `c` – time step
+* `φ` – formula
+
+## Hypotheses
+* `hstl` – the formula uses only the operators of STL
+* `hdiv` – the formula is divisible by the step
+
+## Conclusion
+* the formula and its negation are scaled normal forms
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

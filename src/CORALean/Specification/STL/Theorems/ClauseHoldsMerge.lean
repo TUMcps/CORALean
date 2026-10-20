@@ -11,6 +11,18 @@ public import CORALean.Specification.STL.Theorems.ClauseHoldsInsert
 [1, Lemma 2]: some branch of `cl₁.merge cl₂` holds of `ξ` iff one of `cl₁` or one of `cl₂` does:
 `⋁ⱼ(…) ∨ ⋁ⱼ(…)` is one clause.
 
+## Inputs
+* `c` – time step
+* `cl₁` – first clause
+* `cl₂` – second clause
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the merged clause holds iff one of the clauses holds
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

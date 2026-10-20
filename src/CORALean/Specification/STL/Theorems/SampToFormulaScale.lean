@@ -12,6 +12,16 @@ public import CORALean.Specification.STL.Theorems.ScaleOfPform
 `(s.toFormula 1).scale c = s.toFormula c`: the time step of a sampled time formula is the scale of
 the unit step, which is how [1, Table 1]'s `c = 1` serves every `c`.
 
+## Inputs
+* `c` – time step
+* `s` – sampled time formula
+
+## Hypotheses
+* none
+
+## Conclusion
+* the formula at step one scaled equals the formula at the step
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

@@ -12,6 +12,13 @@ public import CORALean.Specification.STL.Operations.Basic
 is one), then the rewrite loop of `STL.Tree.dnfLoop`. The negation normal form is the corrected
 one
 (`STL.Tree.negationNormalForm`), since the printed one changes the meaning of the formula.
+
+## Inputs
+* `φ` – formula
+* `nnf` – formula is in negation normal form
+
+## Output
+* the formula in disjunctive normal form
 -/
 
 -- Authors:       Claude Sonnet 5.5

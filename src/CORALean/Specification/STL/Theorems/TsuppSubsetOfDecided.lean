@@ -10,6 +10,16 @@ public import CORALean.Specification.STL.Definitions.Tsupp
 [1, Eq. 12]: if the values of a trace on `T` settle `ϕ`, a change at a time outside `T` cannot
 flip it, so `tsupp(ϕ) ⊆ T`. The converse, that `tsupp(ϕ)` itself decides `ϕ`, is not here.
 
+## Inputs
+* `φ` – formula
+* `T` – set of times
+
+## Hypotheses
+* `h` – the set decides the formula
+
+## Conclusion
+* the time support lies in the set
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

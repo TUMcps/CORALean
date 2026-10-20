@@ -13,6 +13,15 @@ stop]` of the maximal runs of cells whose value satisfies `cond` (CORA returns `
 the empty array if there is none; here pairs of bounds and the empty list). The first interval
 starts at `0` if the first value satisfies `cond`; `start` is unset before, and set by a rising
 edge before it is first read.
+
+## Inputs
+* `T` – time type
+* `V` – value type
+* `s` – signal
+* `cond` – condition on values
+
+## Output
+* the maximal closed intervals where the condition holds
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -9,6 +9,17 @@ public import CORALean.Specification.STL.STL
 
 `ξ ⊨ₜ Xₐ φ ⇔ ⟨ξ⟩ₐ ⊨ₜ φ`, the first equivalence of [1, Sec. 2.2]'s definition of `Xₐ`.
 
+## Inputs
+* `a` – time shift
+* `φ` – formula
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* next holds iff the formula holds on the shifted trace
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

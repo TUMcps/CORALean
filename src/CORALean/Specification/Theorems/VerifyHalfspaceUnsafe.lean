@@ -14,6 +14,23 @@ lower bound past the offset: `SupportWitness.mem` hands back a point of `S r' k`
 `R`, by `hsub` — whose value in direction `i` already exceeds `d i`, outside the halfspace
 polytope, so `Specification.not_holds_safeSet_of_mem` refutes `Holds` for `R` outright.
 
+## Inputs
+* `ℓ` – directions
+* `d` – offsets
+* `S` – inner sets per round
+* `R` – reachable set
+* `bndUp` – upper bounds per round and step
+* `w` – support witnesses of the inner sets
+* `r` – first round
+* `fuel` – number of rounds
+
+## Hypotheses
+* `hsub` – every round's sets lie inside the reachable set
+* `h` – the search answers unsafe
+
+## Conclusion
+* the safe set specification fails for the reachable set
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

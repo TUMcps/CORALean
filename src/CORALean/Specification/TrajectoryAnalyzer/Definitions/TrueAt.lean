@@ -12,6 +12,17 @@ public import CORALean.Specification.TrajectoryAnalyzer.TrajectoryAnalyzer
 Proposition `k` is marked true at the time `τ` of a signal of duration `dur` by the time point with
 index `l` of the realization `s` when it holds at the point `x(:,l,s)`, at the location `loc(:,l)`
 (`1` without locations), and the interval `[t(l),t(l+1))` covers `τ` (`Covers`).
+
+## Inputs
+* `obj` – analyzer
+* `s` – realization index
+* `dur` – signal duration
+* `k` – proposition key
+* `l` – time point index
+* `τ` – time
+
+## Output
+* the time point marks the proposition true at the time
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -10,6 +10,15 @@ public import CORALean.Specification.STL.Theorems.TreeIsDnfDnfRewrite
 
 The loop stops at a pass that counts no distribution, and the result of such a pass is a
 disjunction of cubes (`STL.Tree.isDnf_dnfRewrite_of_snd_eq_zero`).
+
+## Inputs
+* `φ` – formula
+
+## Hypotheses
+* none
+
+## Conclusion
+* the loop result is in disjunctive normal form
 -/
 
 -- Authors:       Claude Sonnet 5.5

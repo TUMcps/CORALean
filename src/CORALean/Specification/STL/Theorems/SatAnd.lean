@@ -10,6 +10,17 @@ public import CORALean.Specification.STL.STL
 `φ ∧ ψ` is an abbreviation for `¬(¬φ ∨ ¬ψ)` ([1, Sec. 2.2] says only that the other operators are
 derived); this is that it means `∧`.
 
+## Inputs
+* `φ` – left formula
+* `ψ` – right formula
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the conjunction holds iff both formulas hold
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

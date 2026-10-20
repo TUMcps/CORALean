@@ -12,16 +12,21 @@ public import CORALean.Specification.TentativeKleeneSignal.Operations.GetInterva
 /-!
 # Propagating what is known to the parents
 
-`propagate(obj,childNodes,makeValid)` of `onlineAnalyzerNode.m`: a `true` or `false` node has
-nothing to do. An `AP` node makes the tentative observations on the interval `makeValid` final: it
-merges them into its signal and removes them from the tentative signal. Any other node merges the
-combination of its children's signals into its own, finds the interval up to which its signal is
-conclusive given what is already propagated to its parents, and tells the children
-(`setPropagated`). The nodes are values here: the result is the new node and the new children,
-`none` where CORA throws.
+`propagate(obj,childNodes,makeValid)` of `onlineAnalyzerNode.m`: a `true` or `false` node does
+nothing. An `AP` node makes its tentative observations on `makeValid` final. Any other node merges
+the combination of its children's signals into its own, finds the interval up to which it is
+conclusive given what its parents have, and tells the children (`setPropagated`). The result is
+the new node and children, `none` where CORA throws.
+Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-intervals over `𝕋`, rounded outward) is not yet written.
+## Inputs
+* `eps` – machine epsilon
+* `n` – node
+* `childNodes` – the node's children
+* `makeValid` – interval to make final
+
+## Output
+* the propagated node with its children, or none where CORA throws
 -/
 
 -- Authors:       Claude Sonnet 5.5

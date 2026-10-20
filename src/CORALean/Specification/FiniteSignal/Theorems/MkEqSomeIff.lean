@@ -11,6 +11,19 @@ public import CORALean.Specification.FiniteSignal.Operations.Mk
 `finiteSignal(time,value)` returns the signal with these arrays exactly when the checks pass: the
 arrays are non-empty and of one length, the times strictly increase and are non-negative, and no
 two consecutive values are equal.
+
+## Inputs
+* `T` – time type
+* `V` – value type
+* `time` – breakpoint times
+* `value` – values per breakpoint
+* `s` – signal
+
+## Hypotheses
+* none
+
+## Conclusion
+* the constructor returns the signal iff its arrays are these and it is valid
 -/
 
 -- Authors:       Claude Sonnet 5.5

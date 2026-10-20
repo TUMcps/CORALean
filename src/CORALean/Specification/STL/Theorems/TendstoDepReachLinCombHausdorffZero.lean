@@ -23,6 +23,20 @@ the generators of `H(t_i)` are those of `X₀` mapped by `e^{iAΔt}`, so that th
 The statement is uniform over the steps `i` up to a fixed final time `T`, with `H(t_i)` the
 homogeneous solution of the algorithm itself, not a set fixed while `Δt` varies.
 
+## Inputs
+* `A` – dynamics matrix
+* `B` – input matrix
+* `X₀` – initial set
+* `U` – input set
+* `κ` – Taylor order
+* `T` – final time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the convex hull enclosure converges in Hausdorff distance
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

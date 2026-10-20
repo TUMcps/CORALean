@@ -15,6 +15,13 @@ public import CORALean.Specification.STL.Definitions.SampledTime
 Real-only, a specification: it rewrites or builds formulas, whose time bounds and constants are
 part of the syntax and are copied or added exactly, never rounded.
 
+## Inputs
+* `c` – time step
+* `cnf` – normal form
+
+## Output
+* the RTL formula the normal form is transformed to
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

@@ -20,6 +20,13 @@ closed at the end if the signal is conclusive there, and open, or unbounded, oth
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
 stamps over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `obj` – four-valued signal
+* `ignore` – interval to disregard
+
+## Output
+* the initial interval where the signal is conclusive
 -/
 
 -- Authors:       Claude Sonnet 5.5

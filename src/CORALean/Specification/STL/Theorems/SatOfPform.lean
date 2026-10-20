@@ -9,6 +9,16 @@ public import CORALean.Specification.STL.STL
 
 `ξ ⊨ₜ ϱ ⇔ ξ(0) ⊨ₚ ϱ`, which is how [1, Eq. 10]'s proof reads a non-temporal formula.
 
+## Inputs
+* `ϱ` – predicate
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the formula holds iff the predicate holds at time zero
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

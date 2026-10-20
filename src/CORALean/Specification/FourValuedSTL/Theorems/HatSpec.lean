@@ -13,6 +13,18 @@ If `â(X')` is `⊤` every state of `X'` satisfies `a`, and if it is `⊥` none 
 ([1, Sec. 3 (predicate)]). This is the base case of [1, Thm. 1]: `â(R(t)) = ⊤` gives `a(ξ(t)) = ⊤`
 for every execution with `ξ(t) ∈ R(t)`.
 
+## Inputs
+* `X` – state type
+* `a` – atomic predicate
+* `S` – set of states
+* `x` – state
+
+## Hypotheses
+* `hx` – the state lies in the set
+
+## Conclusion
+* a true set-based predicate holds at the state, a false one fails
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

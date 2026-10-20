@@ -14,6 +14,16 @@ public import CORALean.Specification.SyntaxTree.Theorems.SqrtSound
 
 The node `sqrt` of a nonnegative operand builds over a sound tree is sound: its interval encloses
 it (`encloses_sqrt`) and its `funHan` is sound.
+
+## Inputs
+* none
+
+## Hypotheses
+* `h` – the operand tree is sound
+* `hd` – the operand is nonnegative
+
+## Conclusion
+* the square root tree is sound
 -/
 
 -- Authors:       Claude Sonnet 5.5

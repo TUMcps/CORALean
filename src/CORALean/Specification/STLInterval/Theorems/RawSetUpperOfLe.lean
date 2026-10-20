@@ -8,6 +8,19 @@ public import CORALean.Specification.STLInterval.STLInterval
 # The upper end of an STL interval below a member
 
 A time at or below a time that passes the upper test passes it.
+
+## Inputs
+* `u` – upper bound
+* `rc` – upper bound is closed
+* `t` – time
+* `x` – member time
+
+## Hypotheses
+* `h` – the time is not above the member
+* `hx` – the member is before the upper bound
+
+## Conclusion
+* the time is before the upper bound
 -/
 
 -- Authors:       Claude Sonnet 5.5

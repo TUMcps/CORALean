@@ -16,6 +16,12 @@ public import CORALean.Specification.STL.Operations.TreeConjoin
 
 Real-only, a specification: it builds a formula from the rows of a polytope, whose coefficients
 the formula stores as given, so nothing is rounded.
+
+## Inputs
+* `P` – polytope
+
+## Output
+* the formula for the polytope including its equalities
 -/
 
 -- Authors:       Claude Sonnet 5.5

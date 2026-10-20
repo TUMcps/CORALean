@@ -13,11 +13,11 @@ coefficient box is any certified box around the polytope denotes the polytope. T
 the bounds a star set must carry, and every point of the polytope is inside it.
 
 ## Inputs
-* none
-
-## Hypotheses
 * `up` – certified upper bound per coordinate
 * `lo` – certified lower bound per coordinate
+
+## Hypotheses
+* none
 
 ## Conclusion
 * star set equals the polytope

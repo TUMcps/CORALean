@@ -14,6 +14,20 @@ specification, one polytope list `V` per conjunction `h` of the reachset formula
 Lines 1-2, the reachable set and the conversion to RTL, are the arguments. Lines 6-13 loop over
 `j` and `k`, here over the list of pairs `(j, k)`, each pass `STL.factorStep`.
 
+## Inputs
+* `H` – last index of the outer loop
+* `J` – last index of the reach set loop
+* `K` – last index of the polytope loop
+* `box` – bounding box of the factors
+* `R` – reachable sets
+* `P` – polytopes of each reachable set
+* `unsafeSet` – unsafe factor set of a polytope
+* `meets` – set intersection test
+* `isEmpty` – emptiness test
+
+## Output
+* the polytopes of the factors that may violate the formula
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

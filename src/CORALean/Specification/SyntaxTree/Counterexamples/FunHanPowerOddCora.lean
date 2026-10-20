@@ -11,29 +11,28 @@ public import CORALean.Specification.SyntaxTree.Definitions.Basic
 /-!
 # `aux_power_` for an odd integer exponent, as printed
 
-`aux_power_(int,exp,intPrev)` of `syntaxTree.m` handles an odd `exp` by
-`res = interval(min(temp1,temp2),max(temp1,temp2))`, `temp1 = nthroot(infimum(int),exp)` and
-`temp2 = nthroot(supremum(int),exp)`, met with `intPrev`. For `exp > 0` the odd power is increasing
-and this is exact; for `exp < 0` it is decreasing on each side of `0` and maps `x < 0` to negative
-and `x > 0` to positive values. For a target `int` with `0` in its interior the solutions are two
-rays, `x ≤ nthroot(infimum int,exp)` and `x ≥ nthroot(supremum int,exp)`, and the printed interval
-`[temp1,temp2]` is the gap between them. `SyntaxTree.powerOddCora_counterexample` is a solution it
-loses.
-
-The real layer has no infinite bounds, so `nthroot(0,exp) = Inf` for `exp < 0` is not modelled:
-`SyntaxTree.nthrootZ x e` takes the value `0` there. The model is faithful when neither bound of
-`int` is `0`, which holds in the counterexample.
+`aux_power_(int,exp,intPrev)` of `syntaxTree.m` handles an odd `exp` by `interval(min(temp1,temp2),
+max(temp1,temp2))` with `temp1 = nthroot(infimum(int),exp)`, `temp2 = nthroot(supremum(int),exp)`,
+met with `intPrev`. For `exp > 0` this is exact; for `exp < 0` and a target with `0` in its
+interior the solutions are two rays and the printed interval is the gap between them.
+The real layer has no infinite bounds, so `SyntaxTree.nthrootZ x e` takes `0` where CORA has `Inf`;
+the model is faithful when neither bound of `int` is `0`, as in the counterexample.
 
 # CORA's `aux_power_` loses a solution for a negative odd exponent
 
-For `x^(-1) - y = 0` over `[-2,2] × [-1,2]` (`syntaxTree(x)^(-1) - syntaxTree(y)`), the forward
-value of `x^(-1)` is `1 ./ [-2,2] = [-Inf,Inf]`, so the target handed to `aux_power_` is
-`int = [-Inf,Inf] & ([0,0] + [-1,2]) = [-1,2]` with `intPrev = [-2,2]`. The odd branch computes
-`nthroot(-1,-1) = -1` and `nthroot(2,-1) = 1/2`, so `res = [-1,1/2]`: the zero `(1,1)` is lost,
-since `1^(-1) = 1 ∈ [-1,2]`. The statement is about the `funHan`, as the real layer holds no
-infinite bound for the forward value `[-Inf,Inf]` of the node. For a nonnegative exponent and for a
-negative even exponent the same function keeps every solution (sampled on the MATLAB lines, not
-proved).
+For `x^(-1) - y = 0` over `[-2,2] × [-1,2]` the target is `int = [-1,2]` with `intPrev = [-2,2]`;
+the odd branch gives `res = [-1,1/2]`, so the zero `(1,1)` is lost. The statement is about the
+`funHan`, as the real layer has no infinite forward value. Other exponents keep every solution
+(sampled on the MATLAB lines, not proved).
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed backpropagation loses a solution of an odd negative power
 -/
 
 -- Authors:       Claude Sonnet 5.5

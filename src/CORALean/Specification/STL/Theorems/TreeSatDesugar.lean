@@ -9,6 +9,16 @@ public import CORALean.Specification.STL.Operations.TreeDesugar
 
 `ξ ⊨ₜ desugar(φ) ⇔ ξ ⊨ₜ φ`: `release`, `finally`, `globally` and `next` are the `until` they are
 rewritten to.
+
+## Inputs
+* `φ` – formula
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* desugaring keeps the meaning
 -/
 
 -- Authors:       Claude Sonnet 5.5

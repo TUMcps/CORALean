@@ -17,6 +17,19 @@ For valid inputs, each output of `combine(op,varargin)` is a valid signal whose 
 time `t ≥ 0` is `op` applied to the four-valued values of the inputs at `t`. The unknown part of the
 inconclusive output is `false` throughout, so `toBoolSignal()` does not throw; this uses a time
 between any two points and one after the last (`DenselyOrdered`, `NoMaxOrder`).
+
+## Inputs
+* `ι` – index type of the inputs
+* `κ` – index type of the outputs
+* `op` – pointwise operator on four-valued values
+* `sig` – four-valued input signals
+* `i` – output index
+
+## Hypotheses
+* `hv` – the input signals are valid
+
+## Conclusion
+* the output is valid and applies the operator at each time
 -/
 
 -- Authors:       Claude Sonnet 5.5
