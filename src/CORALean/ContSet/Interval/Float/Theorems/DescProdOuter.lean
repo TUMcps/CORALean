@@ -11,6 +11,18 @@ public import CORALean.Global.DescProd
 
 Induction on the number of factors, against `matMul_outer`; the empty product is `mem_point` at
 the stored identity block, read back as `(1 : Mat ℝ n n)`.
+
+## Inputs
+* `A` – family of interval matrices
+* `M` – family of real matrices
+* `hi` – index of the first factor
+* `d` – number of factors
+
+## Hypotheses
+* `hM` – each `M k` lies in the box `A k`
+
+## Conclusion
+* the descending real product lies in the result box
 -/
 
 -- Authors:       Claude Opus 5.5

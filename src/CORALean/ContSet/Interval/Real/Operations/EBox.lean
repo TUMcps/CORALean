@@ -12,6 +12,12 @@ The bounds CORA's `interval.Inf`, `lift_` and `dirac` return: `inf` and `sup` in
 reals. `Interval` holds real bounds (`EReal` is no `AddCommGroup`, so it cannot be the ambient
 type of one), so this is not an interval type: only the bound pair, and (`EBox.construct`) the
 set it denotes, which the three operations need and nothing else does.
+
+## Inputs
+* `n` – dimension
+
+## Output
+* pairs of lower and upper bounds that may be infinite
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -9,6 +9,17 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 A point lies in `I₁.append I₂` iff its first block lies in `I₁` and its second in `I₂`: the box of
 a product is the product of the boxes, with no hypothesis.
+
+## Inputs
+* `I₁` – first interval box
+* `I₂` – second interval box
+* `x` – point of the concatenated space
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the appended box iff both parts lie in their boxes
 -/
 
 -- Authors:       Claude Opus 5.5

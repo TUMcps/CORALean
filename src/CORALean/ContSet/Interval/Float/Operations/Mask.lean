@@ -9,6 +9,13 @@ public import CORALean.ContSet.Interval.Float.Interval
 
 Entries outside the pattern become the float `zero`; the rest are moved, not computed on, so
 nothing is rounded.
+
+## Inputs
+* `keep` – predicate selecting the entries to keep
+* `I` – interval matrix
+
+## Output
+* interval matrix with the unkept entries set to zero
 -/
 
 -- Authors:       Claude Opus 5.5

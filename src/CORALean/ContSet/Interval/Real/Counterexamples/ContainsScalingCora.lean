@@ -21,6 +21,15 @@ Not modelled: the `n × 2` shapes in higher dimension, `NaN` or `Inf` for a dege
 For `I = interval(1, 3)` and `S = 0`: `c = 2`, `scaling = abs(0)./abs([-1 1]) = [0 0]`, so
 `res = [1 1]` although `0 ∉ [1, 3]`. Reached by `[res,cert,scaling] = contains(I, 0)`
 (`contSet/contains.m` l. 87-91). Read from the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's scaling test accepts a point that lies outside the box
 -/
 
 -- Authors:       Claude Opus 5.5

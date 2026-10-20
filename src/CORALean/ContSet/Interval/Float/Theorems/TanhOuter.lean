@@ -10,6 +10,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.TanhExact
 
 `tanhUp p a` holds only for `toReal a ≤ 2 ^ p / 2` (the range of `expUp`): the theorem takes
 that bound on every upper bound of the box as a hypothesis. `tanhDown` has none.
+
+## Inputs
+* `p` – precision of the exponentials
+* `I` – interval box
+
+## Hypotheses
+* `hI` – upper bounds within the exponential range
+
+## Conclusion
+* the hyperbolic tangent image of `I` lies in the result box
 -/
 
 -- Authors:       Claude Sonnet 5.5

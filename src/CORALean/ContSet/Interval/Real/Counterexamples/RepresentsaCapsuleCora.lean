@@ -29,23 +29,36 @@ width" is `nnz(~withinTol(rad(I),0,tol)) <= 1`. Tolerance `0`. Read from the sou
 # `Interval.representsaEllipsoidCora`: the `'ellipsoid'` test as CORA's code computes it
 
 `@interval/representsa_.m`, branch `'ellipsoid'` (l. 92-99), the same test as `'capsule'`
-(`Interval.representsaCapsuleCora`), under the comment "either 1D, a point, or at most one
-dimension has non-zero width": `n == 1 || isPoint || nnz(withinTol(rad(I),0,tol)) <= 1`, which
-counts the zero-width dimensions. Tolerance `0`. Read from the source, not run.
+(`Interval.representsaCapsuleCora`) under the same comment: `n == 1 || isPoint ||
+nnz(withinTol(rad(I),0,tol)) <= 1`, which counts the zero-width dimensions. Tolerance `0`. Read
+from the source, not run.
 
 # CORA's `interval/representsa_(I, 'capsule')` accepts the unit square
 
 For `I = [0,1]²` the radius is `(1/2, 1/2)`, no dimension has zero width, so
-`nnz(withinTol(rad(I),0,tol))` is `0 <= 1` and CORA answers `'capsule'` (and, by the same
-test, `'ellipsoid'`) with `true`. The unit square is no capsule: a capsule `{x | dist(x, segment)
-≤ r}` that lies in the square keeps the whole ball of radius `r` around each segment point in the
-square, so its segment stays at distance `≥ r` from the sides, and a corner at distance `≤ r`
-from such a point forces `r = 0`; a segment holds no three corners of the square. A wrong
-answer, not unsound. Read from the source, not run.
+`nnz(withinTol(rad(I),0,tol))` is `0 <= 1` and CORA answers `'capsule'` and `'ellipsoid'` with
+`true`. The unit square is no capsule: a capsule `{x | dist(x, segment) ≤ r}` that lies in the
+square keeps the whole ball of radius `r` around each segment point in the square, so its segment
+stays at distance `≥ r` from the sides, and a corner at distance `≤ r` from such a point forces `r =
+0`; a segment holds no three corners of the square. Read from the source, not run.
 
 The unit square is no ellipsoid either: the second coordinate of `q + G u` over `‖u‖ ≤ 1` has
 minimum `q₁ - ‖Gᵀe₂‖`, attained at one point of the ball only (or the coordinate is constant),
 while the corners `(0,0)` and `(1,0)` both attain the minimum `0` of the square.
+
+## Inputs
+* `r` – capsule radius
+* `s0` – first segment coordinate
+* `s1` – second segment coordinate
+
+## Hypotheses
+* `hr` – radius nonnegative
+* `h` – point within the radius of the origin
+* `a0` – first coordinate at least the radius
+* `a1` – second coordinate at least the radius
+
+## Conclusion
+* the radius is zero
 -/
 
 -- Authors:       Claude Sonnet 5.5

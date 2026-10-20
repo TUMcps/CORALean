@@ -14,6 +14,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 box they lie in the box, which is convex, so their hull lies in it; the other inclusion is
 `construct_subset_convexHull_vertices`. A crossed box has vertices outside the box, so
 nonemptiness is a hypothesis.
+
+## Inputs
+* `A` – interval matrix
+
+## Hypotheses
+* `hA` – `A` has ordered bounds
+
+## Conclusion
+* the convex hull of the vertices is the box
 -/
 
 -- Authors:       Claude Sonnet 5.5

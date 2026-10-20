@@ -9,6 +9,12 @@ public import CORALean.ContSet.Interval.Real.Interval
 
 CORA's `@interval/representsa_` at type `point` with tolerance `0`: every radius is zero, that is
 `inf = sup`. A crossed box has negative radius, so it is not a point.
+
+## Inputs
+* `I` – interval
+
+## Output
+* the interval is a single point
 -/
 
 -- Authors:       Claude Opus 5.5

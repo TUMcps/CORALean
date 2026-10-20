@@ -8,6 +8,15 @@ public import CORALean.ContSet.Interval.Float.Theorems.VolumeNominalLe
 # `Interval.volume` bounds the Lebesgue volume
 
 The denoted box's Lebesgue volume is at most the stored bound, `ofReal`-read.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Lebesgue volume of the box is at most the float volume
 -/
 
 -- Authors:       Claude Opus 5.5

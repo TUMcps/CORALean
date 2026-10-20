@@ -9,6 +9,12 @@ public import CORALean.ContSet.Interval.Float.Interval
 
 The larger of the two ends' absolute values, entry by entry: every matrix of the interval is
 below it entrywise in absolute value (`abs_mulVec_le_magnitudeMat`).
+
+## Inputs
+* `I` – interval matrix
+
+## Output
+* matrix of the entrywise largest absolute values
 -/
 
 -- Authors:       Claude Opus 5.5

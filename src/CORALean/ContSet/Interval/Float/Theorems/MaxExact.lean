@@ -10,6 +10,17 @@ public import CORALean.ContSet.Interval.Real.Theorems.MaxExact
 
 Nothing is rounded, so the stored box reads as exactly the exact layer's `max` of the readings, and
 `Real.Interval.max_exact` carries over, under the same nonemptiness of the readings.
+
+## Inputs
+* `I₁` – first interval box
+* `I₂` – second interval box
+
+## Hypotheses
+* `h₁` – nominal part of `I₁` is nonempty
+* `h₂` – nominal part of `I₂` is nonempty
+
+## Conclusion
+* the maximum box is exactly the set of entrywise maxima
 -/
 
 -- Authors:       Claude Opus 5.5

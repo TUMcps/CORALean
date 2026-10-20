@@ -13,6 +13,15 @@ public import Mathlib.Algebra.BigOperators.Fin
 For a nonempty box, the interval product of the rows is exactly the set of entrywise products of
 one row from each: each step `times` is exact (`times_exact`) and the rows are independent. This
 holds for the product of independent entries only; a matrix reused twice would not be exact.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the column-product box is exactly the set of column products
 -/
 
 -- Authors:       Claude Sonnet 5.5

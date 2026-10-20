@@ -10,6 +10,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.QuadMapMixedOuter
 
 CORA bounds `{(xᵀQ₁x, …, xᵀQₘx) | x ∈ I}` through the box's zonotope: the case `I₁ = I₂` of
 `Interval.quadMapMixed_outer`, an outer statement.
+
+## Inputs
+* `Q` – family of quadratic form matrices
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the quadratic map image of `I` lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

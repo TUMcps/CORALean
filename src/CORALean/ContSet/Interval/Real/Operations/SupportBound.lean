@@ -12,6 +12,13 @@ A one-line specialisation of `Interval.supportBoundEntrywise`: `Vec ℝ n`'s
 `ofEntry (Pi.single i 1)` reduces to `Pi.single i 1` by `rfl` and the general
 `val`/`le` match this type's exactly — checked, not assumed. Kept under its own
 name because `Zonotope_to_HPolytope` and others may already name it.
+
+## Inputs
+* `I` – interval box
+* `c` – linear functional
+
+## Output
+* support bound of the box in direction `c`
 -/
 
 -- Authors:       Claude Opus 5

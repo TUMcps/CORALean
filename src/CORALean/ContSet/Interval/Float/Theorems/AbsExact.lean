@@ -9,6 +9,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.AbsExact
 # `Interval.abs` is exactly the image under the absolute value
 
 Nothing is rounded, so the stored box reads as the exact layer's `abs` of the readings.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the absolute-value box is exactly the image of `I` under absolute value
 -/
 
 -- Authors:       Claude Opus 5.5

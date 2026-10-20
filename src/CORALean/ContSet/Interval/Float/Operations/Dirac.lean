@@ -13,6 +13,13 @@ elsewhere the delta's value at `0` is unbounded and that end is left open. At `n
 bound is `0` throughout (`δ ≥ 0`); at `n ≥ 1` both ends are open where `0` is not excluded. Not as
 sharp as CORA's sign case analysis, which closes one side when `0` is an endpoint: `le` only
 certifies a `true` answer, so an endpoint `0` is not told from a box straddling it.
+
+## Inputs
+* `n` – derivative order
+* `I` – box the delta is evaluated over
+
+## Output
+* extended box enclosing the `n`-th Dirac derivative over the box
 -/
 
 -- Authors:       Claude Opus 5.5

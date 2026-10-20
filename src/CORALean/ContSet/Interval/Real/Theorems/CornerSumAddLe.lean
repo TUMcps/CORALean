@@ -12,6 +12,21 @@ On the box `[0, b₁] × … × [0, bₙ]`, `b ≥ 0`, a vertex `w` raising ever
 one more, `m`, has `Σᵢ wᵢ ≥ Σᵢ lᵢ + bₘ`: the step behind [1, Lemma 6.1], where every vertex of an
 s-face but the lowest raises a coordinate `k > j` and so passes `α < b_{j+1} + Σ_{i≤j} vᵢ`.
 
+## Inputs
+* `b` – upper bound vector
+* `l` – lower corner labels
+* `w` – raised corner labels
+* `m` – raised coordinate
+
+## Hypotheses
+* `hb0` – bounds nonnegative
+* `hlw` – every label of `l` is also in `w`
+* `hlm` – `l` is unset at `m`
+* `hwm` – `w` is set at `m`
+
+## Conclusion
+* the corner sum plus the new bound is at most the raised corner sum
+
 ## References
 
 * [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection

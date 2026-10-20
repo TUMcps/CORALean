@@ -12,6 +12,17 @@ most each coordinate's lower end, its upper end at most each coordinate's upper 
 greatest real bound with that property: any `y` below every coordinate's upper end is below the
 result's. So a real ratio below every coordinate's upper bound is below the result's, and a real
 ratio below the result's lower end is below every coordinate's.
+
+## Inputs
+* `I` – interval box
+* `dir` – ray direction
+* `start` – ray start point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is none iff every coordinate gives none, else it is the least of the bounds
 -/
 
 -- Authors:       Claude Opus 5.5

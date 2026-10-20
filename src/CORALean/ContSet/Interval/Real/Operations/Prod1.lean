@@ -12,6 +12,12 @@ together entrywise with the interval product `.*` (`times`), `res = res .* I(i, 
 `i = 2 : m`. CORA keeps the result as a `1 × n` matrix; here it is the vector of the same entries.
 The fold starts at the point `1`, the empty product, where CORA starts at the first row; the two
 agree for `m ≥ 1` since `1 .* r = r`.
+
+## Inputs
+* `I` – interval matrix
+
+## Output
+* box of the entrywise product of the rows
 -/
 
 -- Authors:       Claude Sonnet 5.5

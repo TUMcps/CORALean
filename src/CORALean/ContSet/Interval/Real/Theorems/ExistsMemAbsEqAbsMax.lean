@@ -11,6 +11,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 In every entry the endpoint of larger magnitude is a member of that entry's interval, and the
 box is the product of its entries, so one matrix takes all of them at once. Every norm that
 depends on the absolute values of the entries alone is therefore attained at it.
+
+## Inputs
+* `A` – interval matrix
+
+## Hypotheses
+* `hA` – `A` has ordered bounds
+
+## Conclusion
+* some member has the largest absolute values entrywise
 -/
 
 -- Authors:       Claude Sonnet 5.5

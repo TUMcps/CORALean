@@ -10,6 +10,12 @@ public import CORALean.Global.Float.EuclideanNorm
 
 CORA's `radius`, the squared Euclidean norm of the stored half-widths `Interval.radius`, rounded up.
 The root is a caller's certificate, as for `Interval.normSq`.
+
+## Inputs
+* `I` – interval box
+
+## Output
+* upper bound of the squared Euclidean radius
 -/
 
 -- Authors:       Claude Opus 5.5

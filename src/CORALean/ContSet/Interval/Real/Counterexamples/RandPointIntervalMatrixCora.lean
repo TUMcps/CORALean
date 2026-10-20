@@ -24,6 +24,16 @@ Read from the source, not run.
 For `intervalMatrix(0, 1)`, the entry `[-1, 1]`: `'standard'` returns `-1 + u * 1 ∈ [-1, 0)`, the
 lower half, and `'extreme'` returns `±1/2`, no vertex. The containment tests pass, as every sample
 is inside the box.
+
+## Inputs
+* `lo` – lower bound
+* `hi` – upper bound
+
+## Hypotheses
+* `h` – bounds strictly ordered
+
+## Conclusion
+* CORA's sampling stays below the midpoint and never reaches either end
 -/
 
 -- Authors:       Claude Sonnet 5.5

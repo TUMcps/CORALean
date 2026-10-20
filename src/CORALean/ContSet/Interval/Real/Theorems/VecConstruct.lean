@@ -11,6 +11,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 A vector is in the stacked box exactly when it is the stacking of a matrix of the box: reshaping
 is a bijection of the entries, and the box is a product of its entries. Hence every `representsa`
 answer about the set of the vectorised interval is the answer for the matrix set.
+
+## Inputs
+* `A` – interval matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the vectorised box is exactly the set of column-wise vectorisations
 -/
 
 -- Authors:       Claude Sonnet 5.5

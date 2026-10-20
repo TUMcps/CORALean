@@ -11,6 +11,12 @@ public import CORALean.Global.Cost
 Asserted, not proved: `Operations/Intersection.lean` takes a `max` of the two
 lower bounds and a `min` of the two upper bounds entrywise, one comparison
 each, so at `Vec ℝ n` it is `2 * n` comparisons, and as many writes.
+
+## Inputs
+* `n` – dimension
+
+## Output
+* time cost of the intersection in dimension `n`
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

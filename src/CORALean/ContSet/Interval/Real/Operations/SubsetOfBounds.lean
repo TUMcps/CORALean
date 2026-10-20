@@ -9,6 +9,16 @@ public import CORALean.ContSet.Interval.Real.Operations.OfBounds
 
 The certified bounds are what says the box encloses the set they were computed
 for.
+
+## Inputs
+* none
+
+## Hypotheses
+* `up` – upper bounds of `S`, one per coordinate
+* `lo` – negated lower bounds of `S`, one per coordinate
+
+## Conclusion
+* `S` lies in the box built from the bounds
 -/
 
 -- Authors:       Claude Opus 5

@@ -13,6 +13,13 @@ CORA returns the other operand when one is empty; the definition does not branch
 
 [1, Eq. 1]: the interval hull `[min(x̲, y̲), max(x̅, y̅)]`, which is the union when the two meet.
 
+## Inputs
+* `I₁` – first interval
+* `I₂` – second interval
+
+## Output
+* interval hull of the two
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

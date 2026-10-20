@@ -10,6 +10,13 @@ public import CORALean.ContSet.Interval.Real.Interval
 CORA's `@interval/vertcat`: the two bound matrices are stacked. CORA's `cat(dim, I₁, …)` is
 `cat` of the two bound arrays; for `dim = 1` and `dim = 2` it is `vertcat` and `horzcat`
 (higher `dim` are `n`-d arrays, which CORA's own `interval` methods mostly reject).
+
+## Inputs
+* `I` – top interval matrix
+* `J` – bottom interval matrix
+
+## Output
+* interval matrix of the two stacked
 -/
 
 -- Authors:       Claude Opus 5.5

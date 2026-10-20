@@ -12,6 +12,19 @@ For `A` in the first box and `B` in the second, the Kronecker product `A ⊗ₖ 
 `Fin (m * p) × Fin (n * q)`) lies in the result. Only an outer statement: the entry `a_ij * b_kl`
 reuses `a_ij` across every `(k, l)` and `b_kl` across every `(i, j)`, so the result's box holds
 matrices that are no Kronecker product of members.
+
+## Inputs
+* `I` – left interval matrix
+* `J` – right interval matrix
+* `A` – member of the left matrix
+* `B` – member of the right matrix
+
+## Hypotheses
+* `hA` – `A` lies in `I`
+* `hB` – `B` lies in `J`
+
+## Conclusion
+* the Kronecker product of `A` and `B` lies in the result
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -12,6 +12,17 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 box that is `max |inf| |sup|` (`absMax`), and the corner of larger magnitude attains it, so it is
 the greatest value, not only an upper bound. The corners are chosen per entry, which is allowed
 because the box is a product of its entries.
+
+## Inputs
+* `A` – interval matrix
+* `i` – row index
+* `j` – column index
+
+## Hypotheses
+* `hA` – `A` has ordered bounds
+
+## Conclusion
+* the largest absolute value is the greatest absolute entry over the box
 -/
 
 -- Authors:       Claude Sonnet 5.5

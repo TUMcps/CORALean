@@ -15,6 +15,15 @@ For a nonempty interval matrix the column sums of the matrices in the box fill t
 entirely: the entries of a column vary independently, so a target between `∑ inf` and `∑ sup` is
 reached by moving every entry the same fraction of the way from `inf` to `sup` (`aux_exists_sum`).
 Nonemptiness is needed, an empty box having no sums.
+
+## Inputs
+* `I` – interval matrix
+
+## Hypotheses
+* `hI` – `I` nonempty
+
+## Conclusion
+* the column-sum box is exactly the set of column sums
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,17 @@ public import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
 For `d ≠ 0` each coordinate's two quotients bracket the quotients of the points between, and
 every value between them is reached. The sign of `d` decides which quotient is the lower one,
 which is what `min` and `max` absorb.
+
+## Inputs
+* `I` – interval box
+* `d` – divisor
+
+## Hypotheses
+* `hI` – `I` nonempty
+* `hd` – divisor nonzero
+
+## Conclusion
+* the quotient box is exactly the image of `I` under division by `d`
 -/
 
 -- Authors:       Claude Opus 5.5

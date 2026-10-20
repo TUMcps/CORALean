@@ -12,6 +12,13 @@ the exact layer's `Entrywise` class to state one addition generically over (see
 `Interval.lean`), so the
 matrix case gets its own name rather than overloading the `Vec` one. Each bound
 rounds away from the interval, `inf` down and `sup` up, exactly as `plus` does.
+
+## Inputs
+* `I₁` – first interval matrix
+* `I₂` – second interval matrix
+
+## Output
+* entrywise interval sum, rounded outward
 -/
 
 -- Authors:       Claude Sonnet 5

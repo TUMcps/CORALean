@@ -13,6 +13,13 @@ modulo the period `π`, and, the cotangent falling on all of `(0, π)`, two case
 (`none`) when the range is at least a period wide or the reduced bounds swapped, otherwise
 `[cot z̅, cot z̲]` (`some`). CORA has no `@interval/cot`.
 
+## Inputs
+* `lo` – lower end
+* `hi` – upper end
+
+## Output
+* range of the cotangent over `[lo, hi]`, none if unbounded
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

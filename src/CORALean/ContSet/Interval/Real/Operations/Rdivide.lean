@@ -11,6 +11,13 @@ public import CORALean.ContSet.Interval.Real.Operations.Times
 CORA's `@interval/rdivide` at two intervals: `y = 1 ./ denominator; res = numerator .* y`. A
 quotient of independent boxes is the product of the numerator with the reciprocal box, which
 is why this is `times` after `recip`.
+
+## Inputs
+* `numerator` – box of the numerators
+* `denominator` – box of the denominators
+
+## Output
+* entrywise quotient box
 -/
 
 -- Authors:       Claude Opus 5.5

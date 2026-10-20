@@ -10,6 +10,16 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 The sum rounds up and `half` is exact, so the stored `center` is at least the midpoint of the
 stored bounds read as reals.
+
+## Inputs
+* `I` – interval box
+* `i` – coordinate index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the rounded center is at least the real midpoint
 -/
 
 -- Authors:       Claude Opus 5.5

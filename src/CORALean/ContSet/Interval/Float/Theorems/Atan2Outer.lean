@@ -18,6 +18,21 @@ enclosure applies (`atan2_enclosure_of_pos_inf_x`, `_of_pos_inf_y`, `_of_neg_sup
 coordinate alone) and each float corner value lies beyond its exact one; elsewhere the result is
 `[-π, π]`, which holds every argument. Not exact, and not CORA's corner hull across the branch
 cut, which is no enclosure there.
+
+## Inputs
+* `p` – halving count
+* `k` – bisection and Newton steps
+* `I₁` – first interval box
+* `I₂` – second interval box
+* `y` – ordinate point of `I₁`
+* `x` – abscissa point of `I₂`
+
+## Hypotheses
+* `hy` – `y` lies in `I₁`
+* `hx` – `x` lies in `I₂`
+
+## Conclusion
+* the vector of arguments lies in the result box
 -/
 
 -- Authors:       Claude Opus 5.5

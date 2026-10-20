@@ -13,6 +13,13 @@ public import CORALean.ContSet.Interval.Float.Operations.PowLo
 that the box lies on one side of `0`, where the hull of the corners is the lower bound, as in CORA.
 `0` is always a lower bound of an even power, so the uncertified case is sound, and exactly
 CORA's value for a box crossing `0`. Negative and non-integer exponents are not covered.
+
+## Inputs
+* `I` – interval box
+* `k` – exponent
+
+## Output
+* box of coordinatewise powers
 -/
 
 -- Authors:       Claude Opus 5.5

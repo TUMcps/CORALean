@@ -8,6 +8,15 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 # `Interval.representsa_origin` is sound
 
 A `true` answer squeezes both bounds of every coordinate to `0`, so the box is `{0}`.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* `h` – test returned true
+
+## Conclusion
+* the box represents exactly the origin
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -19,6 +19,18 @@ plane (`exploreBNVisits_sum_le`); complete, as every extreme point lies on an ed
 which the search visits (`mem_exploreBNVisits`). Needs `b` ordered and positive, as the paper
 assumes, and `α ≥ 0`, which line 6 needs for its `k` and the paper does not state.
 
+## Inputs
+* `b` – upper bound vector
+* `α` – level of the plane
+
+## Hypotheses
+* `hb` – bounds nondecreasing
+* `hb0` – bounds positive
+* `hα` – level nonnegative
+
+## Conclusion
+* the returned set is exactly the vertices of the cut
+
 ## References
 
 * [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection

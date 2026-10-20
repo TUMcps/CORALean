@@ -14,6 +14,15 @@ here the domain is a hypothesis, both corners in `[-1, 1]`.
 
 [1, Eq. 6], its first case.
 
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* `hI` – bounds within `[-1, 1]`
+
+## Conclusion
+* the arccosine box is exactly the image of `I`
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

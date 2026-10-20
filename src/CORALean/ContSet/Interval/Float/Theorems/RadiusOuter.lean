@@ -10,6 +10,16 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 `half` is exact and the difference rounds up, so the stored radius is at least the real one, and
 the real one is `Real.Interval.radius`, the quantity every enclosure proof off a box reads.
+
+## Inputs
+* `I` – interval box
+* `i` – coordinate index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float radius is at least the real half-width of coordinate `i`
 -/
 
 -- Authors:       Claude Opus 5.5

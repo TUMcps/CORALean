@@ -9,6 +9,16 @@ public import CORALean.ContSet.Interval.Real.Operations.Recenter
 
 Unconditional: a member witnesses the box is nonempty on its own, so unlike
 `RecenterZeroMem` this needs no `IsNonempty` hypothesis at all.
+
+## Inputs
+* `I` – interval
+* `y` – member of the interval
+
+## Hypotheses
+* `hy` – `y` lies in the interval
+
+## Conclusion
+* `y` minus the center lies in the recentered interval
 -/
 
 -- Authors:       Claude Opus 5

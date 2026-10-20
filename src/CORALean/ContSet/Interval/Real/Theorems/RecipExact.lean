@@ -12,6 +12,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
 For a box that avoids `0` in every coordinate, the reciprocal is antitone on the side of `0` the
 coordinate lies on, so the corners swap and nothing between them is missed. The two signs of a
 coordinate are handled by one scalar lemma and its mirror, so a box may mix them.
+
+## Inputs
+* `J` – second interval box
+
+## Hypotheses
+* `hne` – `J` nonempty
+* `hJ` – no coordinate of `J` contains zero
+
+## Conclusion
+* the reciprocal box is exactly the image of `J`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,13 @@ CORA's `@interval/mrdivide` with a scalar denominator, which calls `rdivide` at 
 quotients swapping when `d` is negative. CORA's `±Inf` at `d = 0` has no counterpart in `ℝ`,
 so `d ≠ 0` is an assumption of the exactness theorem. A scalar interval denominator goes through
 `Interval.rdivide`.
+
+## Inputs
+* `numerator` – box to divide
+* `d` – divisor
+
+## Output
+* box divided by the nonzero scalar `d`
 -/
 
 -- Authors:       Claude Opus 5.5

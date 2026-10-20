@@ -15,6 +15,17 @@ interval nobody multiplies into.
 
 [1, Eq. 2]: the product is the hull of the four corner products, exactly.
 
+## Inputs
+* `I` – first interval box
+* `J` – second interval box
+
+## Hypotheses
+* `hI` – `I` nonempty
+* `hJ` – `J` nonempty
+
+## Conclusion
+* the product box is exactly the set of entrywise products
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

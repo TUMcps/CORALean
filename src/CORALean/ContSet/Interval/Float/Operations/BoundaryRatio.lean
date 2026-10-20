@@ -10,6 +10,14 @@ public import CORALean.ContSet.Interval.Float.Operations.BoundaryRatioAt
 The least of the coordinates' exit ratios, as bounds: the lower ends' least and the upper ends'
 least (`minimum`, exact), `none` when no coordinate is certified to have a nonzero direction.
 `ratio = min(bound ./ dir)` over the coordinates with `dir ≠ 0`.
+
+## Inputs
+* `I` – interval box
+* `dir` – ray direction
+* `start` – ray start point
+
+## Output
+* enclosure of the ray parameter at which the ray leaves the box, if any
 -/
 
 -- Authors:       Claude Opus 5.5

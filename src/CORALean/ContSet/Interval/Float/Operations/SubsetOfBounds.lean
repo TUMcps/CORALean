@@ -9,6 +9,16 @@ public import CORALean.ContSet.Interval.Float.Operations.OfBounds
 
 Nothing rounds: each bound was already rounded outward where it was computed,
 and negating a float is exact.
+
+## Inputs
+* none
+
+## Hypotheses
+* `up` – upper bounds of `S`, one per coordinate
+* `lo` – negated lower bounds of `S`, one per coordinate
+
+## Conclusion
+* `S` lies in the box built from the bounds
 -/
 
 -- Authors:       Claude Opus 5

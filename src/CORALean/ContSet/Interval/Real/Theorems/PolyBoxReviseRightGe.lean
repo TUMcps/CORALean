@@ -13,6 +13,25 @@ The mirror image of `Interval.polyBoxReviseLeft_le`, for [1, Sec. 3 (three cases
 "symmetric process": every `x ∈ [x̲, x̅]` with `g̲(x) ≤ 0 ≤ g̅(x)` lies left of the new right
 bound, by the intermediate value theorem on `[x, x̅]`.
 
+## Inputs
+* `gLo` – lower polynomial bound
+* `gHi` – upper polynomial bound
+* `root` – root search procedure
+* `xl` – lower end of the coordinate
+* `xu` – upper end of the coordinate
+* `x` – solution in the interval
+
+## Hypotheses
+* `hroot` – root search is a right root bound
+* `hLo` – lower bound continuous
+* `hHi` – upper bound continuous
+* `hx` – `x` lies in the interval
+* `hxLo` – lower bound nonpositive at `x`
+* `hxHi` – upper bound nonnegative at `x`
+
+## Conclusion
+* the solution `x` is at most the new upper end
+
 ## References
 
 * [1] G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor

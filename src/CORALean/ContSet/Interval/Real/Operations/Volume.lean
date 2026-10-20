@@ -10,6 +10,12 @@ public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 
 CORA's `@interval/volume_`: the product of the widths. `ENNReal.ofReal` clips a negative width
 to `0`, so a crossed box, which denotes `∅`, has volume `0` with no case split.
+
+## Inputs
+* `I` – interval box
+
+## Output
+* product of the coordinate widths
 -/
 
 -- Authors:       Claude Opus 5.5

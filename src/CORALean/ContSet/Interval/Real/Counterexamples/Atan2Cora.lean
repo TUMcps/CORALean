@@ -11,6 +11,15 @@ public import CORALean.ContSet.Interval.Real.Operations.Atan2
 `x = [-1, -1]` the corners give `[-3π/4, 3π/4]`, but `atan2(0, -1) = π`, which is not in it:
 `atan2` is not monotone on a box that crosses the negative real axis, and its extremum `π` is
 attained in the interior of the `y` range. Read from the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* boxes and points where CORA's arctangent result misses the true value
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -15,6 +15,12 @@ halves away from zero. The scalar's exact rational (`ToRat`) is rounded as an in
 (`roundAwayInt`), and the integer enters the scalar by `intDown` for the lower bound and `intUp`
 for the upper bound, so the box encloses the exact rounded box (an integer a scalar represents is
 kept exactly).
+
+## Inputs
+* `I` – interval box
+
+## Output
+* box rounded outward to integers
 -/
 
 -- Authors:       Claude Opus 5.5

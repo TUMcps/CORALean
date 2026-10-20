@@ -8,6 +8,15 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 # `Interval.representsa_emptySet` is sound
 
 A `true` answer names a coordinate with `toReal sup < toReal inf`, which no point satisfies.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* `h` – test returned true
+
+## Conclusion
+* the box represents the empty set
 -/
 
 -- Authors:       Claude Opus 5.5

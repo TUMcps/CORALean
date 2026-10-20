@@ -6,6 +6,17 @@ public import CORALean.ContSet.Interval.Float.Operations.Asinh
 
 /-!
 # `Interval.asinh` contains the image under `asinh`
+
+## Inputs
+* `p` – range exponent of `logDown`
+* `k` – bisection and Newton steps
+* `I` – interval box
+
+## Hypotheses
+* `hI` – nonnegative lower bounds within the exponential range
+
+## Conclusion
+* the inverse hyperbolic sine image of `I` lies in the result box
 -/
 
 -- Authors:       Claude Sonnet 5.5

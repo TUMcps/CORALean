@@ -11,6 +11,16 @@ public import CORALean.ContSet.Interval.Real.Operations.Smul
 The dominating matrix of `s • A` is `s` times `A`'s, at `s ≥ 0`: `smul` may
 swap a pair of endpoints, and `absMax` takes the larger absolute value of the
 pair whichever way round it comes.
+
+## Inputs
+* `A` – interval matrix
+* `s` – scalar factor
+
+## Hypotheses
+* `hs` – scalar nonnegative
+
+## Conclusion
+* the largest absolute value of a scaled box is the scaled one
 -/
 
 -- Authors:       Claude Opus 5.5

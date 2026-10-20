@@ -10,6 +10,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.ImageCosIcc
 
 Coordinate by coordinate, `Interval.image_cos_Icc`. A crossed coordinate (`ub < lb`) would give
 a nonempty box for an empty one, so the statement is for a nonempty box.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* `hI` – `I` has ordered bounds
+
+## Conclusion
+* the cosine box is exactly the image of `I`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,12 @@ public import CORALean.ContSet.Interval.Real.Interval
 CORA's `@interval/diag` on a matrix: `interval(diag(I.inf), diag(I.sup))`, the diagonal read
 off as a vector box. MATLAB's `diag` builds a matrix from a vector and reads the diagonal of a
 matrix, so the two are `diag` and `diagVec` here.
+
+## Inputs
+* `I` – interval matrix
+
+## Output
+* box of the diagonal entries
 -/
 
 -- Authors:       Claude Opus 5.5

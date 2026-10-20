@@ -11,6 +11,18 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 Each of the four corner products rounds up, and `maximum` is exact, so the
 float hull sits at or over the real one taken at the same four corners.
 Public rather than `aux_`, for the reason `MulLoLe` states.
+
+## Inputs
+* `a` – lower end of the first factor
+* `b` – upper end of the first factor
+* `c` – lower end of the second factor
+* `d` – upper end of the second factor
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact upper product end is at most the float one
 -/
 
 -- Authors:       Claude Sonnet 5

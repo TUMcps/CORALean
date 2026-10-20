@@ -9,6 +9,16 @@ public import CORALean.ContSet.Interval.Float.Operations.PowLo
 
 Even: `a ^ k = |a| ^ k`. Odd: `le zero a` makes `a` nonnegative (`powDown_le`); otherwise
 `a ^ k ≥ (-|a|) ^ k = -|a| ^ k` by monotonicity of an odd power.
+
+## Inputs
+* `a` – end point
+* `k` – exponent
+
+## Hypotheses
+* none
+
+## Conclusion
+* the lower bound is below the real power of the end point
 -/
 
 -- Authors:       Claude Opus 5.5

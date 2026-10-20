@@ -11,6 +11,20 @@ public import CORALean.ContSet.Interval.Real.Theorems.MatMulOuter
 Induction on `k` against `matMul_outer`, with `M₀ * M ^ (k + 1) = (M₀ * M ^ k) * M`. The default
 call of CORA (`P = A`, `initialOrder = 1`) is `M₀ := M`, giving `M ^ (k + 1)`; `expm` starts at the
 exact square (`initialOrder = 2`), whose members are the squares `M * M`.
+
+## Inputs
+* `A` – interval matrix
+* `P` – initial power
+* `M` – member of `A`
+* `M₀` – member of `P`
+* `k` – step count
+
+## Hypotheses
+* `hM` – `M` lies in `A`
+* `hM₀` – `M₀` lies in `P`
+
+## Conclusion
+* the product `M₀ M ^ k` lies in the result
 -/
 
 -- Authors:       Claude Sonnet 5.5

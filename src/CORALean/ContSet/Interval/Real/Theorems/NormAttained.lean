@@ -12,6 +12,15 @@ On a nonempty box the corner taking, in each coordinate, the endpoint of larger 
 member whose Euclidean norm is exactly `Interval.norm`. With `Interval.norm_le` this makes
 `Interval.norm` the maximum of `‖·‖₂` over the box. The nonemptiness hypothesis is needed: a crossed
 box holds no point to attain it.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* `h` – box nonempty
+
+## Conclusion
+* some point of the box has the norm of the box
 -/
 
 -- Authors:       Claude Opus 5.5

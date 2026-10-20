@@ -16,6 +16,16 @@ taken, and `g̲[Y](x)` is taken, at the corner the signs of `hᵢ(x)` select. Th
 `f(x, y)` from below whenever `[cᵢ]` encloses `fᵢ(y)` is the lower-bound half,
 [1, Sec. 3 (extremal bounds)].
 
+## Inputs
+* `C` – box of coefficients
+* `h` – weight vector
+
+## Hypotheses
+* `hC` – `C` is nonempty
+
+## Conclusion
+* the extremal lower value is the least value over the box
+
 ## References
 
 * [1] G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor

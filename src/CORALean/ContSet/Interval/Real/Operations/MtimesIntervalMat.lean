@@ -15,6 +15,13 @@ argument being allowed to vary independently of one another.
 Unlike `Zonotope.mtimesIntervalMat` no fresh generator is spent: a box has
 nowhere to put one, and the corner bounds are already the tightest a box can
 state per row.
+
+## Inputs
+* `IM` – interval matrix
+* `I` – box
+
+## Output
+* interval matrix times box
 -/
 
 -- Authors:       Claude Opus 5

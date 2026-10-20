@@ -11,6 +11,15 @@ public import Mathlib.LinearAlgebra.Matrix.ConjTranspose
 # `Interval.ctranspose` is exactly the conjugate-transposed set
 
 The conjugate transpose is the transpose over ℝ, so `transpose_exact` carries over.
+
+## Inputs
+* `I` – interval matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the conjugate-transposed box is exactly the set of conjugate transposes
 -/
 
 -- Authors:       Claude Opus 5.5

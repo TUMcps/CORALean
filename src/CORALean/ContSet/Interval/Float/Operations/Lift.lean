@@ -10,6 +10,14 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 CORA's `@interval/lift_`: the box placed into the coordinates `proj` of `𝕋ᴺ`, every other
 coordinate unbounded. The first `j` with `proj j = i` supplies coordinate `i` (the only one, for
 an injective `proj`).
+
+## Inputs
+* `I` – interval box
+* `N` – ambient dimension
+* `proj` – coordinate embedding
+
+## Output
+* extended box with the coordinates placed by `proj`
 -/
 
 -- Authors:       Claude Opus 5.5

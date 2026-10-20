@@ -13,6 +13,13 @@ public import CORALean.ContSet.Interval.Float.Operations.Point
 recursing on the right as the real `descProd` does, so `Theorems/DescProdOuter` unfolds both the
 same way. The empty product is the stored identity block `diagonalBlock fun _ => one`, as in
 `Interval.matPow`, and each step is `materialiseMat`d before the next multiplication reads it.
+
+## Inputs
+* `A` – family of interval matrices
+* `hi` – index of the first factor
+
+## Output
+* descending product from index `hi`, as a function of the factor count
 -/
 
 -- Authors:       Claude Opus 5.5

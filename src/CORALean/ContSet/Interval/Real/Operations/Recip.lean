@@ -10,6 +10,12 @@ public import CORALean.ContSet.Interval.Real.Interval
 CORA's `1 ./ denominator` for an interval denominator, `res.inf = 1 ./ sup`, `res.sup = 1 ./ inf`
 (the two reciprocals swap). It is meaningful away from `0`; CORA's `-Inf`/`+Inf`/`NaN` cases for a
 denominator containing `0` have no counterpart in `ℝ`.
+
+## Inputs
+* `J` – box to invert
+
+## Output
+* box of coordinatewise reciprocals
 -/
 
 -- Authors:       Claude Opus 5.5

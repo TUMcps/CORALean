@@ -13,6 +13,13 @@ is shifted by a multiple `2πk` of the period so that its lower end lands in `(-
 either the shifted upper end reaches `0`, a maximum of the cosine, and the value is `1` (CORA's
 `sign(b)`, which is `1` there or `0` at `b = 0`, where `cos b = 1`), or the shifted range lies in
 `(-2π, 0)`, where the cosine falls and then rises, so the maximum is at an end.
+
+## Inputs
+* `lb` – lower end
+* `ub` – upper end
+
+## Output
+* largest cosine over `[lb, ub]`
 -/
 
 -- Authors:       Claude Opus 5.5

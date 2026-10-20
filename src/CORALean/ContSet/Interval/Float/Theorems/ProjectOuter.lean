@@ -9,6 +9,16 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 Reading the same coordinates of a member. The stored box reads as the exact one's, so this is the
 exact layer's statement.
+
+## Inputs
+* `I` – interval box
+* `dims` – chosen coordinates
+
+## Hypotheses
+* none
+
+## Conclusion
+* every projected point lies in the result box
 -/
 
 -- Authors:       Claude Opus 5.5

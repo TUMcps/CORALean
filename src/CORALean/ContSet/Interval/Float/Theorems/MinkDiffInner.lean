@@ -14,6 +14,16 @@ Nothing about the Minkowski difference itself appears here — `Real` has alread
 proved it. The whole obligation is that each bound rounded the right way:
 `subUp` on the lower bound and `subDown` on the upper only shrink the box that
 `nominal.minkDiff` would give, so the float result stays inside it.
+
+## Inputs
+* `I₁` – first interval box
+* `I₂` – second interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float difference box lies inside the Minkowski difference
 -/
 
 -- Authors:       Claude Opus 5

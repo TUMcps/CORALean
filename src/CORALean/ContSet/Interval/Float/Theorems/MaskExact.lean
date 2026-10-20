@@ -10,6 +10,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.MaskExact
 
 `zero` reads as `0`, so the stored box denotes the exact layer's masked box of the reading, and
 the image statement carries over for a box with no empty entry.
+
+## Inputs
+* `keep` – predicate selecting the entries to keep
+* `I` – interval matrix
+
+## Hypotheses
+* `hI` – `I` has ordered bounds
+
+## Conclusion
+* the masked box is exactly the image with unkept entries zeroed
 -/
 
 -- Authors:       Claude Opus 5.5

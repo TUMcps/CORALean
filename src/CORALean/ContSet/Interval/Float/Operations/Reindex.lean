@@ -11,6 +11,13 @@ public import CORALean.ContSet.Interval.Float.Interval
 Both bounds relabelled, and nothing rounds: a permutation moves stored floats
 without arithmetic, so this is the exact layer's operation with the scalar
 swapped and no error to pay.
+
+## Inputs
+* `e` – coordinate bijection
+* `I` – interval box
+
+## Output
+* box with the coordinates permuted by `e`
 -/
 
 -- Authors:       Claude Opus 5

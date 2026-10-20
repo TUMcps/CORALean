@@ -13,6 +13,15 @@ public import Mathlib.Tactic.NormNum
 while `[0, -1]`, its bounds crossed, holds no point at all: the solution `c⋆ = -1/2` lies
 outside it. `Interval.mem_extremePoints_scale_iff` takes `[min(0, βᵢbᵢ), max(0, βᵢbᵢ)]`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a negative coefficient makes the printed scaled box empty although the point exists
+
 ## References
 
 * [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection

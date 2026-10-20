@@ -6,6 +6,17 @@ public import CORALean.ContSet.Interval.Float.Operations.Acosh
 
 /-!
 # `Interval.acosh` contains the image under `acosh`
+
+## Inputs
+* `p` – range exponent of `logDown`
+* `k` – bisection and Newton steps
+* `I` – interval box
+
+## Hypotheses
+* `hI` – lower bounds at least one, within the exponential range
+
+## Conclusion
+* the inverse hyperbolic cosine image of `I` lies in the result box
 -/
 
 -- Authors:       Claude Sonnet 5.5

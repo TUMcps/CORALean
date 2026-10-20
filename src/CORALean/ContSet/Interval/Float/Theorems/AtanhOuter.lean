@@ -13,6 +13,17 @@ domain, stated through the rounded quantities `atanhUp` and `atanhDown` divide b
 corner has `1 - sup` provably positive in `subDown`, the lower one has `1 + inf` provably positive
 (`subDown one (neg inf)`), and for a nonnegative lower corner the ratio `(1 + inf)/(1 - inf)`
 sits in `logDown`'s range `2 ^ p / 2`.
+
+## Inputs
+* `p` – range exponent of `logDown`
+* `k` – bisection steps
+* `I` – interval box
+
+## Hypotheses
+* `hI` – bounds certified strictly inside `(-1, 1)`, within the range
+
+## Conclusion
+* the inverse hyperbolic tangent image of `I` lies in the result box
 -/
 
 -- Authors:       Claude Sonnet 5.5

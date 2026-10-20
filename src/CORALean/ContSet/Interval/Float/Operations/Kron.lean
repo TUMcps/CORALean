@@ -13,6 +13,13 @@ The entry `(i, k), (j, l)` of the Kronecker product is `I(i, j) * J(k, l)`; its 
 least corner product rounded down (`mulLo`) and the greatest rounded up (`mulHi`), exactly as the
 real definition, entry by entry. The block `(i, j)` sits at row `i * p + k` and column
 `j * q + l` (`finProdFinEquiv`), CORA's layout.
+
+## Inputs
+* `I` – left factor
+* `J` – right factor
+
+## Output
+* interval Kronecker product
 -/
 
 -- Authors:       Claude Sonnet 5.5

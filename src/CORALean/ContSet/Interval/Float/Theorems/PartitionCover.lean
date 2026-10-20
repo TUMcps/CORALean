@@ -11,6 +11,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.PartitionExact
 The real pieces of the box's reading cover it (`Interval.partition_exact`), and each sits inside
 the float piece of the same index (`Interval.partition_piece`), so the float pieces cover the box.
 A cover and not a partition, and the pieces overlap by the rounding.
+
+## Inputs
+* `I` – interval box
+* `splits` – number of splits per coordinate
+
+## Hypotheses
+* `hs` – at least one split
+
+## Conclusion
+* the pieces together cover the box
 -/
 
 -- Authors:       Claude Sonnet 5.5

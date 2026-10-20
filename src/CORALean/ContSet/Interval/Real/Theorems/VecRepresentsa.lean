@@ -17,6 +17,15 @@ interval, so whatever the vector class answers is the answer. The library's thre
 bounds as on the matrices, entry for entry; they are generic over the ambient type and already
 hold at `Mat ℝ m n` directly. The other types CORA's `representsa` accepts (zonotope, hyperplane,
 ...) are not modelled for the interval class, so not here either.
+
+## Inputs
+* `A` – interval matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the vectorisation is empty, the origin or a point iff the matrix is
 -/
 
 -- Authors:       Claude Sonnet 5.5

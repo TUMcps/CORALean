@@ -15,6 +15,19 @@ read as the interval between them, `[min(0, βᵢbᵢ), max(0, βᵢbᵢ)]`, as 
 does, the vertices of the two cuts correspond exactly, by `c⋆ = (β₁c₁, …, βₙcₙ)`.
 `Interval.scale_box_counterexample` is the crossed reading.
 
+## Inputs
+* `b` – upper bound vector
+* `β` – scaling vector
+* `α` – level of the plane
+* `c` – candidate vertex
+
+## Hypotheses
+* `hb0` – bounds nonnegative
+* `hβ` – scaling entries nonzero
+
+## Conclusion
+* `c` is a vertex of the cut iff its scaled copy is a vertex of the unit-normal cut
+
 ## References
 
 * [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection

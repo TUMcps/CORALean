@@ -8,6 +8,15 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 # `Interval.sum₂` holds every member's sums
 
 The image of the members of the stored box under the sums lies in the stored result.
+
+## Inputs
+* `I` – interval matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the row sums of every member lie in the result box
 -/
 
 -- Authors:       Claude Opus 5.5

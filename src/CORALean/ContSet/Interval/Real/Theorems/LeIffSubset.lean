@@ -11,6 +11,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
 The converse of `le_subset`: a nonempty `I` has `inf` and `sup` as members, and containment puts
 them in `J`. For an empty `I` the inclusion is trivial and `le` need not hold, so the hypothesis
 is needed.
+
+## Inputs
+* `I` – first interval
+* `J` – second interval
+
+## Hypotheses
+* `hI` – `I` nonempty
+
+## Conclusion
+* the containment test holds iff the first set lies in the second
 -/
 
 -- Authors:       Claude Opus 5.5

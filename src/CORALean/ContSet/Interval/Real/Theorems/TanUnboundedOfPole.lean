@@ -13,6 +13,19 @@ its interval hull is `]-∞, ∞[`, which is what [1, Eq. 14] returns, and throu
 tan(π/2 - x)` what [1, Eq. 15] returns. The values themselves need not be all of `ℝ`: on
 `[π/4, 3π/4]` they leave out `(-1, 1)`, as `1/[y]` of [1, Eq. 3] does around `0`.
 
+## Inputs
+* `a` – lower end
+* `b` – upper end
+* `p` – pole of the tangent
+
+## Hypotheses
+* `hp` – cosine vanishes at `p`
+* `hap` – `a` below `p`
+* `hpb` – `p` below `b`
+
+## Conclusion
+* the tangent is unbounded above and below on `[a, b]`
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

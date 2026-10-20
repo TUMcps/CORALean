@@ -12,6 +12,12 @@ so the representation needs no separate one — which is why a bias, a jump rese
 and a linearisation offset all reach it through here.
 
 The membership fact is `Theorems/MemPoint.lean`.
+
+## Inputs
+* `v` – the point
+
+## Output
+* degenerate interval at `v`
 -/
 
 -- Authors:       Claude Opus 5

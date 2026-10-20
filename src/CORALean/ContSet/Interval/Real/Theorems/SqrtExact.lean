@@ -14,6 +14,15 @@ hypothesis, both corners nonnegative.
 
 [1, Eq. 5], its first case.
 
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* `hI` – bounds nonnegative
+
+## Conclusion
+* the square root box is exactly the image of `I`
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

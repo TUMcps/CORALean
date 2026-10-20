@@ -9,6 +9,15 @@ public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
 
 For `0 < re z` the argument lies in `(-π/2, π/2)` and has tangent `im z / re z`, so it is
 `arctan (im z / re z)`. This is `atan2 y x = arctan (y / x)` for `x > 0`.
+
+## Inputs
+* `z` – complex number
+
+## Hypotheses
+* `h` – real part positive
+
+## Conclusion
+* the argument equals the arctangent of the ratio
 -/
 
 -- Authors:       Claude Opus 5.5

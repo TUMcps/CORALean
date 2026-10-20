@@ -11,6 +11,14 @@ public import CORALean.ContSet.Interval.Float.Interval
 The upper bound of `cosh` over `[lb, ub]`, as the real `Interval.coshHi`: `cosh lb` if the range
 lies left of `0`, `cosh ub` if right of it, and `cosh` of the larger magnitude otherwise, which
 bounds `cosh` at every range.
+
+## Inputs
+* `p` – precision of the exponentials
+* `lb` – lower bound
+* `ub` – upper bound
+
+## Output
+* upper bound of the hyperbolic cosine over `[lb, ub]`
 -/
 
 -- Authors:       Claude Sonnet 5.5

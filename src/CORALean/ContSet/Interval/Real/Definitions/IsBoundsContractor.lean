@@ -14,6 +14,15 @@ is what lets [1, Alg. 1] subtract its answer with [1, Prop. 3]. `IsContractor` i
 definition at a scalar constraint and set inclusion, where an empty answer may carry any bounds;
 here the constraint is vector-valued, as [1, Prop. 2] produces it.
 
+## Inputs
+* `m` – dimension
+* `F` – codomain type with zero
+* `c` – function whose zeros are kept
+* `contract` – box contractor
+
+## Output
+* every box shrinks and keeps all zeros of `c`
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets

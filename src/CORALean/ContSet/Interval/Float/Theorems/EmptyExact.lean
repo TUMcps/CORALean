@@ -9,6 +9,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.EmptyExact
 # `Interval.empty` is exactly empty
 
 `one` reads as `1` and `zero` as `0`, so the stored box is the exact layer's empty one.
+
+## Inputs
+* none
+
+## Hypotheses
+* `hn` – dimension positive
+
+## Conclusion
+* the empty box represents the empty set
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -6,6 +6,17 @@ public import CORALean.ContSet.Interval.Float.Operations.Magnitude
 
 /-!
 # A point of an interval vector is within its magnitude of the origin
+
+## Inputs
+* `I` – interval box
+* `b` – point of the box
+* `i` – coordinate index
+
+## Hypotheses
+* `hb` – `b` lies in `I`
+
+## Conclusion
+* entry `i` of `b` is bounded in absolute value by the magnitude of `I`
 -/
 
 -- Authors:       Claude Opus 5.5

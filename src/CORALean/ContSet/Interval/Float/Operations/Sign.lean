@@ -13,6 +13,12 @@ CORA's `@interval/sign` is `interval(sign(I.inf), sign(I.sup))`. A float compari
 otherwise. Equal to CORA's whenever the comparison is exact and the bound is nonzero, an enclosure
 of
 it otherwise.
+
+## Inputs
+* `I` – interval box
+
+## Output
+* box of coordinatewise signs
 -/
 
 -- Authors:       Claude Opus 5.5

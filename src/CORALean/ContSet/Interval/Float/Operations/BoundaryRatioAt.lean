@@ -12,6 +12,15 @@ The bounds of `bound ᵢ / dir ᵢ` for one coordinate of CORA's `boundaryPoint`
 dir` for `dir > 0` and `(start - inf) / (-dir)` for `dir < 0`, each end rounded outward, `none`
 where `ltStrict` certifies neither sign (the coordinate is then left out, as CORA leaves out `dir
 = 0`).
+
+## Inputs
+* `I` – interval box
+* `dir` – ray direction
+* `start` – ray start point
+* `i` – coordinate index
+
+## Output
+* enclosure of the ray parameter at which coordinate `i` leaves the box, if any
 -/
 
 -- Authors:       Claude Opus 5.5

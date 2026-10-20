@@ -8,6 +8,15 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 # `Interval.stlInterval` is exact, over a floating-point scalar
 
 The set of times is the first coordinate of the box the stored floats denote; nothing rounds.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the scalar interval is exactly the image of the one-dimensional box
 -/
 
 -- Authors:       Claude Opus 5.5

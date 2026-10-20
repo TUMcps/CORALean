@@ -8,6 +8,15 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 # `Interval.representsa_point` is sound
 
 A `true` answer squeezes every coordinate to `toReal (inf j)`, so the box is that single point.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* `h` – test returned true
+
+## Conclusion
+* the box represents a single point
 -/
 
 -- Authors:       Claude Opus 5.5

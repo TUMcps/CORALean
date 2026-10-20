@@ -10,6 +10,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageOuter
 
 `roundAway` is monotone but a step function, so the image of a box is a finite set of integers,
 not a box: only the outer statement holds, with no hypothesis.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the rounded image of `I` lies in the result box
 -/
 
 -- Authors:       Claude Opus 5.5

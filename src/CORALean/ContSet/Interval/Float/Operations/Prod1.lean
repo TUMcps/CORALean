@@ -11,6 +11,12 @@ public import CORALean.ContSet.Interval.Float.Operations.Point
 CORA's `@interval/prod` of an interval matrix along dimension 1 at a floating-point scalar: the
 rows are multiplied together entrywise with the float `times`, which rounds each bound outward, so
 the stored box holds every column product the exact one does. The fold starts at the point `1`.
+
+## Inputs
+* `I` – interval matrix
+
+## Output
+* box of the entrywise product of the rows
 -/
 
 -- Authors:       Claude Sonnet 5.5

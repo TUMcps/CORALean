@@ -11,6 +11,12 @@ public import Mathlib.Data.Matrix.Diagonal
 CORA's `@interval/diag` on a vector: `interval(diag(I.inf), diag(I.sup))`, the diagonal
 matrices over the box. The box has the point `0` off the diagonal. CORA's optional offset `k` is
 not modelled.
+
+## Inputs
+* `I` – interval box
+
+## Output
+* diagonal interval matrix of the box
 -/
 
 -- Authors:       Claude Opus 5.5

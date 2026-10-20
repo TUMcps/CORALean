@@ -9,6 +9,15 @@ public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 # The nonempty hull is nonempty
 
 The raised upper bound is a maximum with the lower one, which `toReal_maximum` reads exactly.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the nominal part of the nonempty hull is nonempty
 -/
 
 -- Authors:       Claude Opus 5.5

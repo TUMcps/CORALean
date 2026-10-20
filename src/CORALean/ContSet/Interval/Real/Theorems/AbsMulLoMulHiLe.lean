@@ -9,6 +9,23 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 Every corner of `[a, b]·[c, d]` is at most `M·R` in magnitude when the ends of the first are at
 most `M` and those of the second at most `R`, so the least and the greatest corner are too.
+
+## Inputs
+* `a` – lower end of the first factor
+* `b` – upper end of the first factor
+* `c` – lower end of the second factor
+* `d` – upper end of the second factor
+* `M` – bound of the first factor
+* `R` – bound of the second factor
+
+## Hypotheses
+* `ha` – `a` bounded in absolute value by `M`
+* `hb` – `b` bounded in absolute value by `M`
+* `hc` – `c` bounded in absolute value by `R`
+* `hd` – `d` bounded in absolute value by `R`
+
+## Conclusion
+* both product ends are bounded in absolute value by the product of the bounds
 -/
 
 -- Authors:       Claude Opus 5.5

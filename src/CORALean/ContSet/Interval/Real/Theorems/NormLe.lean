@@ -10,6 +10,16 @@ public import CORALean.ContSet.Interval.Real.Operations.Norm
 
 Coordinatewise a member sits between the endpoints, so its magnitude is at most the larger
 endpoint magnitude (`aux_abs_le_max_abs`); the Euclidean norm is monotone in magnitudes.
+
+## Inputs
+* `I` – interval box
+* `x` – point of the box
+
+## Hypotheses
+* `hx` – `x` lies in the box
+
+## Conclusion
+* the norm of `x` is at most the norm of the box
 -/
 
 -- Authors:       Claude Opus 5.5

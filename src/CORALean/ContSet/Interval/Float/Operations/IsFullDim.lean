@@ -9,6 +9,12 @@ public import CORALean.ContSet.Interval.Float.Interval
 
 A test for full dimension at float: `ltStrict` on `inf i` and `sup i` in every coordinate, asking
 for a positive width, so `true` is certain and `false` only says "not shown".
+
+## Inputs
+* `I` – interval box
+
+## Output
+* `true` when every coordinate has positive width
 -/
 
 -- Authors:       Claude Opus 5.5

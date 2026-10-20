@@ -13,6 +13,15 @@ The arctangent is strictly increasing and continuous on all of `ℝ`, so
 
 [1, Eq. 6].
 
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the arctangent box is exactly the image of `I`
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

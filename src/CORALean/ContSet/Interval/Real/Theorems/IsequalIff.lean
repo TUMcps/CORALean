@@ -11,6 +11,17 @@ public import Mathlib.Order.BourbakiWitt
 
 For two nonempty boxes equal sets give equal bounds, so `isequal` holds exactly when the sets agree.
 Two crossed boxes are both `∅` and need not have equal bounds, so nonemptiness is needed.
+
+## Inputs
+* `I` – first interval
+* `J` – second interval
+
+## Hypotheses
+* `hI` – `I` nonempty
+* `hJ` – `J` nonempty
+
+## Conclusion
+* the equality test holds iff the two sets coincide
 -/
 
 -- Authors:       Claude Opus 5.5

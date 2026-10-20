@@ -11,6 +11,15 @@ public import CORALean.ContSet.Interval.Real.Instances
 The box is a product of its coordinate intervals, whose interior is the product of the open
 intervals; that is nonempty exactly when every one is. A crossed box is `∅`, so a crossed
 coordinate fails the right-hand side too.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the box is full-dimensional iff each lower bound is below its upper bound
 -/
 
 -- Authors:       Claude Opus 5.5

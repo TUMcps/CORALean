@@ -17,6 +17,16 @@ end, and `]-∞, ∞[` when `0` is inside. The first four are the set exactly; i
 answer [1] intends. The quotient `[x]/[y] = [x]·(1/[y])` is `x / y = x · y⁻¹`; on boxes away from
 `0` it is `Interval.rdivide_exact`.
 
+## Inputs
+* `lo` – lower end
+* `hi` – upper end
+
+## Hypotheses
+* `hle` – lower end at most upper end
+
+## Conclusion
+* the reciprocal image is empty, closed or a ray, depending on the signs of the ends
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

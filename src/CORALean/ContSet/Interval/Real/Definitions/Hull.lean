@@ -12,6 +12,12 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 `[inf_{s ∈ S} sᵢ, sup_{s ∈ S} sᵢ]`. Defined for every set, as `sInf`/`sSup` are; it is the
 smallest box only for a nonempty bounded `S`, which `hull_isLeast` assumes.
 
+## Inputs
+* `S` – set of points
+
+## Output
+* the smallest box containing `S`
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

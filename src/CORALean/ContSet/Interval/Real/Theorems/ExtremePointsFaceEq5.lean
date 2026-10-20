@@ -14,6 +14,21 @@ border vertex `w = (v₁, …, v_j, 0, …, 0)`: the vertices of `F ∩ {Σᵢ x
 points `w` with one coordinate `k > j` raised to `α - Σ_{i≤j} vᵢ`, and when that is `0`, `w`
 itself, the unique solution. Every free coordinate stays below `b_{j+1} ≤ b_k`, the box ordered.
 
+## Inputs
+* `b` – upper bound vector
+* `j` – index of the face
+* `p` – prefix labels
+* `α` – level of the plane
+
+## Hypotheses
+* `hb` – bounds nondecreasing
+* `hb0` – bounds nonnegative
+* `hj` – face index below the dimension
+* `h5` – corner sum at the prefix at most the level, below the next bound
+
+## Conclusion
+* the vertices of the cut are the border vertex with one free coordinate raised
+
 ## References
 
 * [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection

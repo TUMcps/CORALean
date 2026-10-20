@@ -11,6 +11,15 @@ A lower bound of `atan2(b, a)`, the argument of `a + b i`, at floats `a`, `b`. I
 half-plane it is `arctan (b / a)`, in the upper one `π/2 - arctan (a / b)`, in the lower one `-π/2
 - arctan (a / b)`, each half-plane certified by `ltStrict`; elsewhere it is `-π`. `π/2` is `arccos
 0`, its bounds from `acosDown`, `acosUp`; every end rounds down.
+
+## Inputs
+* `p` – halving count
+* `k` – bisection and Newton steps
+* `a` – abscissa
+* `b` – ordinate
+
+## Output
+* lower bound of the four-quadrant arctangent of `(b, a)`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.Basic
 `sign` is monotone but not continuous, so the image of a box is not a box (the image of `[-1, 1]`
 is `{-1, 0, 1}` and `[0, 1]` is the hull of `{0, 1}`): only the outer statement holds, with no
 hypothesis.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sign image of `I` lies in the result box
 -/
 
 -- Authors:       Claude Opus 5.5

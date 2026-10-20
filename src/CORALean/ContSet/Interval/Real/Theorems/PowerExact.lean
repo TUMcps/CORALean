@@ -17,6 +17,16 @@ continuous, so the intermediate value theorem fills everything between.
 
 [1, Eq. 9], all three cases, for `k ≥ 1`; at `k = 0` the range is `{1}`.
 
+## Inputs
+* `I` – interval box
+* `k` – exponent
+
+## Hypotheses
+* `hI` – `I` nonempty
+
+## Conclusion
+* the power box is exactly the image of `I` under the power
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

@@ -10,6 +10,17 @@ public import CORALean.ContSet.Interval.Real.Operations.NormTypeEval
 `1`, `Inf` and `'fro'` are built from `|M i j|` by sums, maxima and a square root, each of which
 is monotone, so `|M| ≤ |N|` entrywise gives `‖M‖ ≤ ‖N‖`. Hence two matrices with the same absolute
 values have the same norm, which is how the maximum over a box is attained at one corner.
+
+## Inputs
+* `p` – norm type
+* `M` – first matrix
+* `N` – second matrix
+
+## Hypotheses
+* `h` – absolute entries of `M` below those of `N`
+
+## Conclusion
+* the norm of `M` is at most the norm of `N`
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,6 +11,13 @@ public import CORALean.Global.Float.FloatBound
 A box answers a coordinate direction with its own bound, exactly. Every
 representation carrying an ambient error box charges its rounding through
 these.
+
+## Inputs
+* `I` – interval box
+* `j` – coordinate index
+
+## Output
+* float upper bound of coordinate `j` on the box
 -/
 
 -- Authors:       Claude Opus 5

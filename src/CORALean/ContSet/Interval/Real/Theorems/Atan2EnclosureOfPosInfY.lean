@@ -14,6 +14,20 @@ box lies between its corner quotients (`div_mem_corner_hull`) and `π/2 - arctan
 which swaps the corners the extremes sit at but not the four-corner hull. The box then misses the
 branch cut, `x ≤ 0 ∧ y = 0`, the one place CORA's rule fails
 (`Interval.atan2_cora_counterexample`).
+
+## Inputs
+* `I₁` – first interval box
+* `I₂` – second interval box
+* `y` – ordinate point
+* `x` – abscissa point
+
+## Hypotheses
+* `hy₀` – lower bounds of `I₁` positive
+* `hy` – `y` lies in `I₁`
+* `hxm` – `x` lies in `I₂`
+
+## Conclusion
+* the vector of arguments lies in the result box
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,13 @@ public import CORALean.Global.Float.IntRound
 Horner's rule for an integer coefficient list on the box `[lo, hi]`: each step multiplies the
 running enclosure by the box through the four corner products and adds the next coefficient,
 every operation rounded outward.
+
+## Inputs
+* `lo` – lower bound of the argument
+* `hi` – upper bound of the argument
+
+## Output
+* interval of the integer polynomial over `[lo, hi]`
 -/
 
 -- Authors:       Claude Opus 5.5

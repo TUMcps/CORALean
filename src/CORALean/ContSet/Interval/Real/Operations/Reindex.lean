@@ -14,6 +14,13 @@ about a change of coordinate order.
 At `Vec ℝ n` rather than at every ambient type with coordinates: the index type
 is what moves, and a permutation of an arbitrary `ι` would need the ambient type
 to be indexed by it.
+
+## Inputs
+* `e` – coordinate bijection
+* `I` – interval box
+
+## Output
+* box with the coordinates permuted by `e`
 -/
 
 -- Authors:       Claude Opus 5

@@ -12,6 +12,12 @@ CORA's `@intervalMatrix/exactSquare`, entry by entry as its loop writes it: off 
 Every matrix entry occurs once in each such expression, apart from the square of `A i i`, which
 is the interval power, so interval arithmetic loses nothing (`Theorems/ExactSquareEntryExact`).
 No reference is cited: the printed algorithm is in `matrixSet/@intervalMatrix/exactSquare.m`.
+
+## Inputs
+* `A` – interval matrix
+
+## Output
+* entrywise range of the matrix square over the box
 -/
 
 -- Authors:       Claude Sonnet 5.5

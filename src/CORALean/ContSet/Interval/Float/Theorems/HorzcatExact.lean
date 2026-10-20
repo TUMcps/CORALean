@@ -10,6 +10,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.HorzcatExact
 
 Concatenation commutes with reading the floats as reals, so the stored box denotes the exact
 layer's concatenation of the readings.
+
+## Inputs
+* `I` – left interval matrix
+* `J` – right interval matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the side-by-side interval matrix is exactly the set of side-by-side pairs
 -/
 
 -- Authors:       Claude Opus 5.5

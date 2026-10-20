@@ -16,6 +16,15 @@ no continuity lemma for `artanh`, so `aux_continuousOn_artanh` proves it from
 
 [1, Eq. 8], its first case.
 
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* `hI` – bounds strictly inside `(-1, 1)`
+
+## Conclusion
+* the inverse hyperbolic tangent box is exactly the image of `I`
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

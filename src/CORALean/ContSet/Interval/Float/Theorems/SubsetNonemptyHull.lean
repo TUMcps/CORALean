@@ -8,6 +8,15 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 # The nonempty hull contains the box
 
 Only the upper bound moves, and only up, so every point of the box stays inside.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the box lies in its nonempty hull
 -/
 
 -- Authors:       Claude Opus 5.5

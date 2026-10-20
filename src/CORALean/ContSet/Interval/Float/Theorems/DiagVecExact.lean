@@ -10,6 +10,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.DiagVecExact
 
 Reading the diagonal commutes with reading the floats as reals, so the stored box denotes the
 exact layer's diagonal box of the reading.
+
+## Inputs
+* `I` – interval matrix
+
+## Hypotheses
+* `hI` – `I` has ordered bounds
+
+## Conclusion
+* the diagonal vector box is exactly the image of the diagonals
 -/
 
 -- Authors:       Claude Opus 5.5

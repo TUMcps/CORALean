@@ -14,6 +14,15 @@ on that side moved onto `I`'s, `ᾱ(i*) = l₂(i*)` or `α̲(i*) = u₂(i*)`. Th
 `boxDiff`'s half-open slab, so it shares the face `α(i*) = l₂(i*)` (or `u₂(i*)`) with `I`.
 [1]'s Example 5 stores its bounds so. With no axis the box is kept.
 
+## Inputs
+* `l₁` – lower bound of the first box
+* `u₁` – upper bound of the first box
+* `l₂` – lower bound of the second box
+* `u₂` – upper bound of the second box
+
+## Output
+* closed bounds of the difference slab
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets

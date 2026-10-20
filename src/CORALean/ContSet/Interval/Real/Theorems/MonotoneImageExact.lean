@@ -13,6 +13,20 @@ corners in `D` onto exactly the box of its endpoint images, by the intermediate 
 coordinate by coordinate. An antitone one swaps the two corners. Without continuity (`sign`,
 `round`) only the outer statement holds: the image sits inside the box of endpoint images, with
 no hypothesis on `f` beyond `Monotone`.
+
+## Inputs
+* `f` – function applied coordinatewise
+* `D` – domain of `f`
+* `I` – interval box
+
+## Hypotheses
+* `hD` – domain an interval
+* `hf` – `f` strictly increasing on the domain
+* `hc` – `f` continuous on the domain
+* `hI` – bounds lie in the domain
+
+## Conclusion
+* the box of images of the bounds is exactly the image of `I`
 -/
 
 -- Authors:       Claude Opus 5.5

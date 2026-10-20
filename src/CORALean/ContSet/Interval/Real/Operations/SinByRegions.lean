@@ -16,6 +16,13 @@ and whether they swapped (`y̲ > y̅`, the range wrapping past `2π`). The resul
 `y̲ ≤ y̅`, being what is left. CORA's `@interval/sin` computes `cos(I - π/2)` instead
 (`Interval.sin`).
 
+## Inputs
+* `lo` – lower end
+* `hi` – upper end
+
+## Output
+* range of the sine over `[lo, hi]`, by regions
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

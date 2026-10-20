@@ -11,6 +11,15 @@ Split out from `Operations/Point.lean`, which used to carry both: one
 declaration per file (issue #62) does not make an exception for a fact this
 short, and the theorem still travels with `point` by import alone, `Point.lean`
 importing nothing from here.
+
+## Inputs
+* `v` – the point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point lies in its degenerate interval
 -/
 
 -- Authors:       Claude Opus 5

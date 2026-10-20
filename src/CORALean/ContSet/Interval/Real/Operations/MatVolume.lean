@@ -12,6 +12,12 @@ CORA's `@intervalMatrix/volume`: the volume of `interval(intMat)`, the product o
 `ENNReal.ofReal` clips a negative width to `0`, so a crossed box, which denotes `∅`, has volume
 `0`. CORA also answers `0` for a matrix with no entries, where the empty product here is `1`,
 the Lebesgue measure of the one point of `ℝ⁰`; this is `Interval.volume`'s convention at `n = 0`.
+
+## Inputs
+* `A` – interval matrix
+
+## Output
+* product of the entry widths
 -/
 
 -- Authors:       Claude Sonnet 5.5

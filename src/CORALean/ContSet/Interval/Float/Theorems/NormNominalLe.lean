@@ -11,6 +11,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.NormLe
 `normSq` rounds the squared length of the larger endpoint magnitudes up, and a caller-supplied
 `σ` with `normSq ≤ σ·σ` (the second rounded down) certifies `|σ|` as an upper bound of the exact
 layer's `Interval.norm`.
+
+## Inputs
+* `I` – interval box
+* `σ` – certified bound of the norm
+
+## Hypotheses
+* `hσ` – squared norm at most `σ` squared
+
+## Conclusion
+* the nominal norm is at most the certified bound
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,17 @@ public import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
 For a nonempty box and distinct coordinates: the coordinates not chosen are filled with `inf`,
 which is in range as the box is nonempty. With a repeated coordinate the box can be strictly
 larger than the image, so `Function.Injective dims` is needed.
+
+## Inputs
+* `I` – interval box
+* `dims` – chosen coordinates
+
+## Hypotheses
+* `hdims` – chosen coordinates distinct
+* `hI` – `I` nonempty
+
+## Conclusion
+* the projected box is exactly the projected set
 -/
 
 -- Authors:       Claude Opus 5.5

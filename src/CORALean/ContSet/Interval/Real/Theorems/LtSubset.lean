@@ -10,6 +10,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.LeSubset
 
 Strict inequalities are inequalities, so `lt` gives `le` and then `le_subset`. One direction only:
 containment can hold with faces touching, which `lt` excludes.
+
+## Inputs
+* `I` – first interval
+* `J` – second interval
+
+## Hypotheses
+* `h` – strict containment test holds
+
+## Conclusion
+* the first set is contained in the second
 -/
 
 -- Authors:       Claude Opus 5.5

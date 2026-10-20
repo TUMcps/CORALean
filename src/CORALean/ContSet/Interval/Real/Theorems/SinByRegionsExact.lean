@@ -16,6 +16,16 @@ its upper end is `y̅` when `y̲ ≤ y̅` and `y̅ + 2π` otherwise. Each case t
 pieces of the sine, `[0, π/2]`, `[π/2, 3π/2]`, `[3π/2, 5π/2]`, `[5π/2, 7π/2]`, or holds a point
 where it is `1` and one where it is `-1`, the argument the paper's Figs. 1-2 draw.
 
+## Inputs
+* `lo` – lower end
+* `hi` – upper end
+
+## Hypotheses
+* `hle` – lower end at most upper end
+
+## Conclusion
+* the sine range over `[lo, hi]` is exactly the returned interval
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

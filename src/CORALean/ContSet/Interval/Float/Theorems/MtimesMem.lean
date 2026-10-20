@@ -8,6 +8,21 @@ public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
 # A matrix-vector product is in the `Interval.mtimes` box
 `Interval.mtimes_outer` at a point: a real matrix equal to the float one read as reals, applied to a
 vector of the box.
+
+## Inputs
+* `m` – output dimension
+* `n` – input dimension
+* `M` – float matrix
+* `M'` – real matrix read from `M`
+* `I` – box
+* `x` – point of the box
+
+## Hypotheses
+* `hM` – `M'` is the real reading of `M`
+* `hx` – `x` lies in the box
+
+## Conclusion
+* the product `M' x` lies in the image box
 -/
 
 -- Authors:       Claude Opus 5.5

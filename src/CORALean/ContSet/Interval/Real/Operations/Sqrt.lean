@@ -10,6 +10,12 @@ public import Mathlib.Analysis.Real.Sqrt
 
 CORA's `@interval/sqrt`: the square root is increasing on `[0, ∞)`, so it acts on the two bounds,
 coordinate by coordinate.
+
+## Inputs
+* `I` – interval box
+
+## Output
+* box of the square roots of the bounds
 -/
 
 -- Authors:       Claude Opus 5.5

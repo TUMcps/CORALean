@@ -11,6 +11,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.SinhExact
 `sinhUp p a` holds only for `toReal a ≤ 2 ^ p / 2` and `sinhDown p a` only for
 `-toReal a ≤ 2 ^ p / 2` (the range of `expUp`, at `a` and at `-a`): the theorem takes both as a
 hypothesis on the box.
+
+## Inputs
+* `p` – precision of the exponentials
+* `I` – interval box
+
+## Hypotheses
+* `hI` – bounds within the exponential range
+
+## Conclusion
+* the hyperbolic sine image of `I` lies in the result box
 -/
 
 -- Authors:       Claude Sonnet 5.5

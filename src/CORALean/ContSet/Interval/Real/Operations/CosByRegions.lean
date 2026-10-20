@@ -15,6 +15,13 @@ the pair `(inf, sup)`; the cases are the printed ones in the printed order, the 
 `R_c1`, `R_c1`, `y̲ ≤ y̅`, being what is left. CORA's `@interval/cos` computes the same range
 another way (`Interval.cos`, through `Interval.maxCos`).
 
+## Inputs
+* `lo` – lower end
+* `hi` – upper end
+
+## Output
+* range of the cosine over `[lo, hi]`, by regions
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

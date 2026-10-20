@@ -11,6 +11,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.PlusOuter
 
 `[a, b] - [c, d]` is `[a, b] + (-[c, d])`, so this is `plus_outer` after `uminus_exact`. No
 hypothesis: a crossed box is where `plus_exact` needs one, and the inclusion does not.
+
+## Inputs
+* `I₁` – first interval
+* `I₂` – second interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the pointwise difference of the sets lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

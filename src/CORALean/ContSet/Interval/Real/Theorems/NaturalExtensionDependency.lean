@@ -18,6 +18,15 @@ and lies in `[-2, 2]`. Evaluated with CORALean's interval operations — `power`
 `smul`, `minus`, `plus` — at one coordinate, the two variables entering as the same
 interval, which interval arithmetic treats as independent: the dependency problem.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the natural extension gives the wider interval, the rewritten form the exact range
+
 ## References
 
 * [1] G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor

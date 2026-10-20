@@ -9,6 +9,16 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 The stacked box holds exactly the vectors whose first `n₁` coordinates lie in the first box and
 the last `n₂` in the second, which is the image of the pair of boxes under `Fin.append`.
+
+## Inputs
+* `I₁` – first interval box
+* `I₂` – second interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the appended box is the image of the product of the two sets under concatenation
 -/
 
 -- Authors:       Claude Sonnet 5.5

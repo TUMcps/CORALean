@@ -11,6 +11,16 @@ A cover, not a partition: the two halves share the slice at the midpoint of
 coordinate `j`, so this is `⊆`, not `=`. No `IsNonempty` is needed — an empty
 box is covered by two empty boxes just as well, `le_total` alone deciding
 which half a point's `j`-th coordinate falls into.
+
+## Inputs
+* `I` – interval
+* `j` – entry to split at
+
+## Hypotheses
+* none
+
+## Conclusion
+* the two halves together cover the interval
 -/
 
 -- Authors:       Claude Opus 5

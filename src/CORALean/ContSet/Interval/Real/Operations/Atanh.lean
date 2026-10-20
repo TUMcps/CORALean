@@ -11,6 +11,12 @@ public import Mathlib.Analysis.SpecialFunctions.Artanh
 CORA's `@interval/atanh`:
 the inverse hyperbolic tangent is increasing on `(-1, 1)`, so it acts on the two
 bounds, coordinate by coordinate.
+
+## Inputs
+* `I` – interval box
+
+## Output
+* box of the inverse hyperbolic tangents of the bounds
 -/
 
 -- Authors:       Claude Opus 5.5

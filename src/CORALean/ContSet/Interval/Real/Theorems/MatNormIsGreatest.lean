@@ -14,6 +14,16 @@ For the types CORA supports, `norm(|center| + rad, type)` bounds the norm of eve
 box, and the corner of larger magnitude in every entry attains it: the norms depend on the
 absolute values of the entries only and are monotone in them. The type `2` is excluded by
 construction; CORA refuses it because the maximum is NP-hard.
+
+## Inputs
+* `p` – norm type
+* `A` – interval matrix
+
+## Hypotheses
+* `hA` – `A` has ordered bounds
+
+## Conclusion
+* the matrix norm of the box is the greatest member norm
 -/
 
 -- Authors:       Claude Sonnet 5.5

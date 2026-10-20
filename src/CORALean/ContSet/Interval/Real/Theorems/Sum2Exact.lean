@@ -11,6 +11,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.TransposeExact
 
 The row sums of a matrix are the column sums of its transpose, so `sum₁_exact` at the transposed
 box gives it, again for a nonempty box.
+
+## Inputs
+* `I` – interval matrix
+
+## Hypotheses
+* `hI` – `I` nonempty
+
+## Conclusion
+* the row-sum box is exactly the set of row sums
 -/
 
 -- Authors:       Claude Opus 5.5

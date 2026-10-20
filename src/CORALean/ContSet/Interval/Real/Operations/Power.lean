@@ -15,6 +15,13 @@ has lower bound `0`.
 Not covered: a negative integer exponent (CORA reduces it to `(1 ./ base) .^ -k`,
 that is `Interval.recip` followed by this), a non-integer exponent (`NaN` below
 `0`, no real counterpart) and an interval exponent.
+
+## Inputs
+* `I` – interval box
+* `k` – exponent
+
+## Output
+* box of coordinatewise powers
 -/
 
 -- Authors:       Claude Opus 5.5

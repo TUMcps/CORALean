@@ -12,6 +12,20 @@ public import Mathlib.Data.Matrix.Basic
 
 Every matrix `A` of `M` has `|A i k| ≤ magnitudeMat M i k`, so a vector `x` with `|x k| ≤ ξ k`
 has `|(A x) i| ≤ dotUp (magnitudeMat M i) ξ`, the products and the sum rounded up.
+
+## Inputs
+* `M` – interval matrix
+* `A` – real matrix
+* `x` – real vector
+* `ξ` – float vector of entrywise bounds
+* `i` – row index
+
+## Hypotheses
+* `hA` – `A` lies in `M`
+* `hx` – entries of `x` bounded by those of `ξ`
+
+## Conclusion
+* entry `i` of `M x` is bounded in absolute value by the rounded-up dot product
 -/
 
 -- Authors:       Claude Opus 5.5

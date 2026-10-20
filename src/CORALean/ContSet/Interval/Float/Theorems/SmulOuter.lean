@@ -10,6 +10,21 @@ public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 
 `Interval.mul_between_corners` at every entry, `[cLo, cHi]` standing in for a
 scalar known only to lie in that range rather than an exact one.
+
+## Inputs
+* `cLo` – lower end of the scalar
+* `cHi` – upper end of the scalar
+* `c` – real scalar
+* `I` – interval matrix
+* `v` – matrix of the box
+
+## Hypotheses
+* `hcLo` – `c` at least the lower end
+* `hcHi` – `c` at most the upper end
+* `hv` – `v` lies in the box
+
+## Conclusion
+* the scaled matrix lies in the result box
 -/
 
 -- Authors:       Claude Sonnet 5

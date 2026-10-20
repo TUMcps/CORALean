@@ -10,6 +10,17 @@ public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 
 The counterpart of `Interval.max_exact`. Nonemptiness of both operands is needed for the same
 reason: an empty operand has no minima to fill the box.
+
+## Inputs
+* `I₁` – first interval
+* `I₂` – second interval
+
+## Hypotheses
+* `h₁` – `I₁` is nonempty
+* `h₂` – `I₂` is nonempty
+
+## Conclusion
+* the minimum interval is exactly the set of entrywise minima
 -/
 
 -- Authors:       Claude Opus 5.5

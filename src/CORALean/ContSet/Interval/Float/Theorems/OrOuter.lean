@@ -11,6 +11,16 @@ public import Mathlib.Order.BourbakiWitt
 # `Interval.or` contains the union
 
 Nothing is rounded, so the stored box reads as exactly the exact layer's `or` of the readings.
+
+## Inputs
+* `I₁` – first interval box
+* `I₂` – second interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the union of the two sets lies in the result box
 -/
 
 -- Authors:       Claude Opus 5.5

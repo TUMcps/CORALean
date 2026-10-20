@@ -13,6 +13,15 @@ Every member is within `radius₂` of the center in `‖·‖₂` (`norm₂_sub_
 box the corner `sup` is at exactly that distance (`sup_sub_center`), so no smaller ball about the
 center holds the box. It is the Euclidean ball about `center`; a ball about another point may be
 smaller still. Nonemptiness is needed, as a crossed box has no corner to reach it.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* `hI` – `I` nonempty
+
+## Conclusion
+* the radius norm is the least radius of a ball about the center containing the box
 -/
 
 -- Authors:       Claude Opus 5.5

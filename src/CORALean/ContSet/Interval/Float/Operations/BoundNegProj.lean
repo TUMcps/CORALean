@@ -10,6 +10,13 @@ public import CORALean.Global.Float.FloatBound
 
 A box answers the negated coordinate direction with its own lower bound,
 negated, exactly.
+
+## Inputs
+* `I` – interval box
+* `j` – coordinate index
+
+## Output
+* float upper bound of minus coordinate `j` on the box
 -/
 
 -- Authors:       Claude Opus 5

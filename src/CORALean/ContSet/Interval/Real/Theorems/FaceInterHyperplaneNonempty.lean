@@ -15,6 +15,18 @@ public import Mathlib.Tactic.FieldSimp
 lowest corner below the plane and its highest one not, and the segment between them crosses
 it. Eq. (5) is not needed.
 
+## Inputs
+* `b` – upper bound vector
+* `j` – index of the face
+* `p` – prefix labels
+* `α` – level of the plane
+
+## Hypotheses
+* `hb0` – bounds nonnegative
+
+## Conclusion
+* the face meets the plane when the level lies between its lowest and highest corner sums
+
 ## References
 
 * [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection

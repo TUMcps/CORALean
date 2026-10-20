@@ -12,6 +12,17 @@ On the box `[0, b₁] × … × [0, bₙ]`, raising coordinate `m` of a vertex a
 its sum: the vertex `(…, b_{k+1}, …)` that line 6 of [1, Alg. 2] rejects is `w` with one more
 coordinate raised, `Σᵢ wᵢ + b_{k+1} > α` — the right half of [1, Lemma 6.1]'s condition.
 
+## Inputs
+* `b` – upper bound vector
+* `l` – corner labels
+* `m` – raised coordinate
+
+## Hypotheses
+* `hlm` – `l` is unset at `m`
+
+## Conclusion
+* raising the label adds the bound to the corner sum
+
 ## References
 
 * [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection

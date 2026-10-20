@@ -10,6 +10,12 @@ public import CORALean.ContSet.Interval.Real.Interval
 CORA's `@interval/sum` of an interval matrix along dimension 2: the bounds are summed along each
 row, `sum(I.inf, 2)` and `sum(I.sup, 2)`. CORA keeps the result as an `m × 1` matrix; here it is
 the vector of the same entries.
+
+## Inputs
+* `I` – interval matrix
+
+## Output
+* box of the row sums
 -/
 
 -- Authors:       Claude Opus 5.5

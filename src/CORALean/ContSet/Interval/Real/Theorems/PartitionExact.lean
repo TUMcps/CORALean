@@ -12,6 +12,16 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 The `splits ^ n` sub-boxes have the box as their union, a cover and not a partition: neighbouring
 pieces share their common face. Each sub-box lies inside `I`, and a point of `I` falls in the piece
 of every coordinate whose range holds it, found by the floor of its relative position.
+
+## Inputs
+* `I` – interval box
+* `splits` – number of splits per coordinate
+
+## Hypotheses
+* `hs` – at least one split
+
+## Conclusion
+* the pieces together are exactly the box
 -/
 
 -- Authors:       Claude Opus 5.5

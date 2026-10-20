@@ -22,6 +22,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 The box's points are its zonotope's (`zonotope_contains`), the zonotope's quadratic map is
 enclosed by `Zonotope.quadMap_outer`, and the result is enclosed by its box
 (`interval_contains`).
+
+## Inputs
+* `Q` – family of float quadratic form matrices
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the quadratic map image of `I` lies in the result box
 -/
 
 -- Authors:       Claude Opus 5.5

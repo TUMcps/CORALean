@@ -14,9 +14,15 @@ the regions of the reduced bounds and whether they swapped. `none` is `]-∞, �
 interval `[a, b]`.
 
 The printed cases leave one combination out, `z̲ ∈ R_t2` and `z̅ ∈ R_t1`: the range wraps past a
-multiple of `π`, where the tangent is continuous and rising, and its range is
-`[tan z̲, tan z̅]`. That branch is supplied here, as CORA's `@interval/tan` header lists it
-(`inf >= pi/2` and `sup <= pi/2`).
+multiple of `π`, where the tangent is continuous and rising, so it is `[tan z̲, tan z̅]`. That
+branch, which CORA's `@interval/tan` header lists, is supplied here.
+
+## Inputs
+* `lo` – lower end
+* `hi` – upper end
+
+## Output
+* range of the tangent over `[lo, hi]`, none if unbounded
 
 ## References
 

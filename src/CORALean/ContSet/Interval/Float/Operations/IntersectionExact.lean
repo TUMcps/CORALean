@@ -9,6 +9,16 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 Nothing rounds: choosing the larger of two stored lower bounds, or the smaller
 of two upper ones, returns one of them, so the intersection is exact.
+
+## Inputs
+* `I₁` – first interval box
+* `I₂` – second interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the intersection box represents the intersection of the two sets
 -/
 
 -- Authors:       Claude Opus 5

@@ -11,6 +11,16 @@ public import CORALean.Global.Float.FloatBound
 A box read off `2n` certified float bounds, one per coordinate direction, the
 lower ones arriving against `-eⱼ`. Nothing rounds: each bound was already
 rounded outward where it was computed, and negating a float is exact.
+
+## Inputs
+* none
+
+## Hypotheses
+* `up` – upper bounds, one per coordinate
+* `lo` – negated lower bounds, one per coordinate
+
+## Output
+* box with the given upper bounds and negated lower bounds
 -/
 
 -- Authors:       Claude Opus 5

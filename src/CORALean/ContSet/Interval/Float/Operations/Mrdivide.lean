@@ -10,6 +10,13 @@ public import CORALean.ContSet.Interval.Float.Interval
 A scalar denominator `d`: each endpoint divided by `d` and rounded outward. `divUp` and
 `divDown` ask for a positive divisor, so a negative `d` negates both the box and `d`
 (`x / d = (-x) / (-d)`), which swaps the endpoints. The branch is `ltStrict`'s, as in `recip`.
+
+## Inputs
+* `numerator` – box to divide
+* `d` – divisor
+
+## Output
+* box divided by the nonzero scalar `d`
 -/
 
 -- Authors:       Claude Opus 5.5

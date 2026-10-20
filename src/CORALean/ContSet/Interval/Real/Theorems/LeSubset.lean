@@ -9,6 +9,16 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 Chaining the bounds, coordinate by coordinate. Needs no nonemptiness: an empty `I` is contained in
 everything.
+
+## Inputs
+* `I` – first interval
+* `J` – second interval
+
+## Hypotheses
+* `h` – containment test holds
+
+## Conclusion
+* the first set is contained in the second
 -/
 
 -- Authors:       Claude Opus 5.5

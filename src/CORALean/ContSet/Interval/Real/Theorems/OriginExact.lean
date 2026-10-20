@@ -9,6 +9,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemPoint
 # `Interval.origin` is exactly the origin
 
 Both bounds are `0`, so the only point is the origin.
+
+## Inputs
+* `n` – dimension
+
+## Hypotheses
+* none
+
+## Conclusion
+* the origin box represents exactly the origin
 -/
 
 -- Authors:       Claude Opus 5.5

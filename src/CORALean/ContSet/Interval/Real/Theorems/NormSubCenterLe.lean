@@ -11,6 +11,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
 
 In `‖·‖₂`: coordinatewise a member's distance to the center is at most the half-width
 (`abs_sub_center_le`), and the Euclidean norm is monotone in magnitudes.
+
+## Inputs
+* `I` – interval box
+* `x` – point of the box
+
+## Hypotheses
+* `hx` – `x` lies in the box
+
+## Conclusion
+* the distance of `x` to the center is at most the radius norm
 -/
 
 -- Authors:       Claude Opus 5.5

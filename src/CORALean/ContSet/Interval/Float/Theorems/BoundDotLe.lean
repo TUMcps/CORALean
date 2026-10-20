@@ -10,6 +10,17 @@ public import CORALean.ContSet.Interval.Float.Operations.BoundDot
 No point of the box reads more than the float value, which is an upper bound and
 nothing tighter: the real layer's `Interval.supportBound_attained` is the
 statement that the exact value is reached.
+
+## Inputs
+* `I` – interval box
+* `c` – linear functional
+* `a` – float coefficient vector of `c`
+
+## Hypotheses
+* `hc` – `c` is the dot product with `a`
+
+## Conclusion
+* every point of the box has `c` below the float bound
 -/
 
 -- Authors:       Claude Opus 5.5

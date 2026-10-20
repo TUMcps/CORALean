@@ -9,6 +9,18 @@ public import CORALean.ContSet.Interval.Real.Operations.Dirac
 
 Where `0` is outside the interval (`0 < inf` or `sup < 0`, on a nonempty coordinate), `δ⁽ⁿ⁾`
 vanishes on the whole interval and `dirac` returns the point `0`, for every `n`: exact there.
+
+## Inputs
+* `n` – derivative order
+* `I` – interval box
+* `i` – coordinate index
+
+## Hypotheses
+* `hne` – bounds ordered at `i`
+* `h` – the box misses zero at `i`
+
+## Conclusion
+* both bounds at coordinate `i` are zero
 -/
 
 -- Authors:       Claude Opus 5.5

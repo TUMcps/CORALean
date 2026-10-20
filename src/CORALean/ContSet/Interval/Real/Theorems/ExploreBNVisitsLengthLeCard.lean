@@ -20,6 +20,18 @@ vertex), so there are at most as many visits as solutions — when the plane mee
 `α ≤ Σᵢ bᵢ`; above it the root still runs once, for `m = 0`. The `O(n)` per iteration is a
 running cost, which a definition does not state.
 
+## Inputs
+* `b` – upper bound vector
+* `α` – level of the plane
+
+## Hypotheses
+* `hb0` – bounds positive
+* `hα` – level nonnegative
+* `hαb` – level at most the sum of the bounds
+
+## Conclusion
+* the number of loop visits is at most the number of solutions
+
 ## References
 
 * [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection

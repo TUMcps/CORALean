@@ -16,6 +16,13 @@ set of vectors, and this one ends in a set of matrices.
 
 [1, Eq. 16]: `([X][Y])ᵢⱼ = Σₖ [X]ᵢₖ[Y]ₖⱼ`.
 
+## Inputs
+* `A` – left factor
+* `B` – right factor
+
+## Output
+* interval matrix product
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

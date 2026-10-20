@@ -8,6 +8,15 @@ public import CORALean.ContSet.Interval.Real.Operations.StlInterval
 # `Interval.stlInterval` is exact
 
 The set of times of the STL interval is the set of values of the one coordinate over the box.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the scalar interval is exactly the image of the one-dimensional box
 -/
 
 -- Authors:       Claude Opus 5.5

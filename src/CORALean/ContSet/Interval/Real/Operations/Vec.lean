@@ -11,6 +11,12 @@ public import Mathlib.Logic.Equiv.Fin.Basic
 The reshape `reshape(interval(intMat), [], 1)` that `intervalMatrix` methods (`representsa`,
 `volume`, `vertices`) use to reuse the vector interval: the entries stacked column by column,
 MATLAB's order. Entry `(i, j)` of an `m × n` matrix is entry `i + m * j` of the vector.
+
+## Inputs
+* `A` – interval matrix
+
+## Output
+* box of the entries read column by column
 -/
 
 -- Authors:       Claude Sonnet 5.5

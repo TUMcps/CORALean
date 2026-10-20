@@ -13,6 +13,16 @@ process": the same three cases at `x̅`, the bound becoming the largest root of 
 extremal function in `[x]`. The search is the argument `root`, held to
 `Interval.IsRightRootBound`.
 
+## Inputs
+* `gLo` – lower polynomial bound
+* `gHi` – upper polynomial bound
+* `root` – root search procedure
+* `xl` – lower end of the coordinate
+* `xu` – upper end of the coordinate
+
+## Output
+* new upper end of the contracted coordinate
+
 ## References
 
 * [1] G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor

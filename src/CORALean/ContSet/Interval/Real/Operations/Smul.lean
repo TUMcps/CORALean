@@ -13,6 +13,13 @@ product is the low corner instead of carrying `c • inf` there blindly.
 
 `exp` of an interval matrix needs this for its Taylor term
 `t ^ i / i ! • matPow A i`; the enclosure is `Theorems/SmulOuter`.
+
+## Inputs
+* `c` – scalar factor
+* `I` – interval
+
+## Output
+* interval scaled by the real factor `c`
 -/
 
 -- Authors:       Claude Opus 5

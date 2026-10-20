@@ -9,6 +9,19 @@ public import Mathlib.Data.Real.Basic
 
 For `0 < a ≤ y ≤ b` or `a ≤ y ≤ b < 0` the reciprocal is antitone on the side of `0` the point
 lies on, so `b⁻¹ ≤ y⁻¹ ≤ a⁻¹`. The scalar fact behind `Interval.recip`, on both signs.
+
+## Inputs
+* `a` – lower bound
+* `b` – upper bound
+* `y` – point of the interval
+
+## Hypotheses
+* `h` – interval does not contain zero
+* `h₁` – lower bound below `y`
+* `h₂` – `y` below the upper bound
+
+## Conclusion
+* the reciprocal of `y` lies between the reciprocals of the bounds
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,13 @@ Increasing on `(-π/2, π/2)`, so `tanDown` at the lower bound and `tanUp` at th
 (`Global/Float/Tan`). The bounds are sound where the computed cosine at each corner is positive,
 which `Interval.tan_outer` takes as a hypothesis beside the principal-branch one. `p` is the number
 of halvings of the sine and cosine.
+
+## Inputs
+* `p` – halving count
+* `I` – interval box
+
+## Output
+* interval box enclosing the tangent of `I`
 -/
 
 -- Authors:       Claude Opus 5.5

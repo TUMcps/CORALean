@@ -10,6 +10,15 @@ public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 
 `inf` is the witness one way, transitivity through any point the other. Negated
 in `NotIsNonempty`, it is the claim that crossed bounds denote `∅`.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the interval is nonempty iff its set is nonempty
 -/
 
 -- Authors:       Claude Opus 5

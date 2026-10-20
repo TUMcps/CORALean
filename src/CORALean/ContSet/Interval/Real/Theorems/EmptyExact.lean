@@ -9,6 +9,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.Basic
 # `Interval.empty` denotes the empty set
 
 For `0 < n`: in dimension `0` there is a single point, and a box with no coordinates contains it.
+
+## Inputs
+* none
+
+## Hypotheses
+* `hn` – dimension positive
+
+## Conclusion
+* the empty box represents the empty set
 -/
 
 -- Authors:       Claude Opus 5.5

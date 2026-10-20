@@ -15,6 +15,13 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 CORA's `@interval/quadMap`: the quadratic map of a box, computed as the box of the zonotope
 quadratic map of the box's zonotope.
+
+## Inputs
+* `Q` – family of quadratic form matrices
+* `I` – interval box
+
+## Output
+* box enclosing the quadratic map of `I`
 -/
 
 -- Authors:       Claude Opus 5.5

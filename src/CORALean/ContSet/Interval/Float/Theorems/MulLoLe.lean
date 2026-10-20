@@ -12,6 +12,18 @@ Each of the four corner products rounds down, and `minimum` is exact, so the
 float hull sits at or under the real one taken at the same four corners.
 Public rather than `aux_`: `MatMulOuter` and `MtimesIntervalMatOuter` both
 need it, not only `MulBetweenCorners`.
+
+## Inputs
+* `a` – lower end of the first factor
+* `b` – upper end of the first factor
+* `c` – lower end of the second factor
+* `d` – upper end of the second factor
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float lower product end is at most the exact one
 -/
 
 -- Authors:       Claude Sonnet 5

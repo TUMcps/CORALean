@@ -10,6 +10,12 @@ public import CORALean.ContSet.Interval.Real.Interval
 CORA's `@interval/abs`: the lower bound is `0` when the interval contains `0`, else the smaller
 absolute value of its ends; the upper bound is the larger one. In maxima: `max 0 (inf, -sup)` and
 `max (-inf, sup)`.
+
+## Inputs
+* `I` – interval box
+
+## Output
+* box of the absolute values of the points
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.MinkDiffInner
 `I₂.construct`, and evaluating the difference hypothesis at those two points is
 the whole proof of the hard direction. `minkDiff_inner` is the easy half, and it
 needs no such hypothesis.
+
+## Inputs
+* `I₁` – first interval
+* `I₂` – second interval
+
+## Hypotheses
+* `h₂` – `I₂` nonempty
+
+## Conclusion
+* the difference interval is exactly the Minkowski difference
 -/
 
 -- Authors:       Claude Opus 5

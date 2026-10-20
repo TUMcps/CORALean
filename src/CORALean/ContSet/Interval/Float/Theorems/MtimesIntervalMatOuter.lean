@@ -13,6 +13,16 @@ public import Mathlib.Order.BourbakiWitt
 Nothing about a matrix in a box acting on a box appears here — `Real` has
 already proved that. The whole obligation is that each corner and each row sum
 rounds the right way, exactly as `MatMulOuter.lean`'s does.
+
+## Inputs
+* `IM` – interval matrix
+* `I` – box
+
+## Hypotheses
+* none
+
+## Conclusion
+* every matrix in the box applied to every vector lies in the result
 -/
 
 -- Authors:       Claude Sonnet 5

@@ -15,6 +15,20 @@ between its corner quotients (`div_mem_corner_hull`), and `arctan` is monotone. 
 (`x ≤ 0 ∧ y = 0`), the one place the code is wrong (`Interval.atan2_cora_counterexample`), so
 the rule is sound where the box does not reach it; a box meeting the upper or lower half-plane
 only is not covered here.
+
+## Inputs
+* `I₁` – first interval box
+* `I₂` – second interval box
+* `y` – ordinate point
+* `x` – abscissa point
+
+## Hypotheses
+* `hx` – lower bounds of `I₂` positive
+* `hy` – `y` lies in `I₁`
+* `hxm` – `x` lies in `I₂`
+
+## Conclusion
+* the vector of arguments lies in the result box
 -/
 
 -- Authors:       Claude Opus 5.5

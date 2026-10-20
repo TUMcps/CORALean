@@ -9,6 +9,12 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 # `Interval.centerBox` over floats
 
 The two roundings of the midpoint as a box, which holds the real midpoint (`Theorems/CenterOuter`).
+
+## Inputs
+* `I` – interval box
+
+## Output
+* box between the lower and upper rounded midpoints
 -/
 
 -- Authors:       Claude Opus 5.5

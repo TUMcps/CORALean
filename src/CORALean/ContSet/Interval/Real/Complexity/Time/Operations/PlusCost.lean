@@ -11,6 +11,12 @@ public import CORALean.Global.Cost
 Asserted, not proved: `Operations/Plus.lean` adds the two lower bounds and the
 two upper bounds entrywise, so at `Vec ℝ n` it is `2 * n` additions and `2 * n` writes. No rounding
 enters here — that is the float layer's cost, not this one's.
+
+## Inputs
+* `n` – dimension
+
+## Output
+* time cost of the Minkowski sum in dimension `n`
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

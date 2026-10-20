@@ -11,6 +11,15 @@ public import Mathlib.Analysis.Normed.Order.Lattice
 An intersection of closed half-spaces, one pair per coordinate, each the
 preimage of a closed ray under an evaluation map. Holds for any bounds: the
 degenerate `sup i < inf i` denotes `∅`, which is closed too.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the interval is closed
 -/
 
 -- Authors:       Claude Opus 5

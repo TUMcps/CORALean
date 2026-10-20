@@ -11,11 +11,19 @@ public import CORALean.ContSet.Interval.Real.Operations.Atan2
 function `ls.funHan` on `interval(S)` and reports no intersection for `'<='` when the infimum
 of the result is positive. `funHan` is the `matlabFunction` of the user's equation, so a guard
 `c - atan2(y, x) ≤ 0` calls `@interval/atan2.m` on the box. On `y ∈ [-1, 1]`, `x = -1` the
-box contains the point `(x, y) = (-1, 0)` with `atan2 = π`, but the corner hull
-`[-3π/4, 3π/4]` lies below some threshold `c ≤ π`, so the computed range of `c - atan2` is
-positive and the guard is reported as not intersected (read from the source, not run). This
-file states the interval part: the supremum of the corner hull is below a threshold `c` that
-a point of the box reaches.
+box contains the point `(x, y) = (-1, 0)` with `atan2 = π`, but the corner hull `[-3π/4, 3π/4]`
+lies below some threshold `c ≤ π`, so the computed range of `c - atan2` is positive and the guard
+is reported as not intersected (read from the source, not run). This file states the interval
+part: the supremum of the corner hull is below a threshold `c` that a point of the box reaches.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a threshold below the box result yet at most the argument at a box point
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -15,6 +15,16 @@ cosine on `[lo, hi]`. As for the sine (`Interval.sinByRegions_exact`), the range
 case then lies in monotone pieces of the cosine, `[0, π]`, `[π, 2π]`, `[2π, 3π]`, `[3π, 4π]`, or
 holds a point where it is `1` and one where it is `-1`.
 
+## Inputs
+* `lo` – lower end
+* `hi` – upper end
+
+## Hypotheses
+* `hle` – lower end at most upper end
+
+## Conclusion
+* the cosine range over `[lo, hi]` is exactly the returned interval
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

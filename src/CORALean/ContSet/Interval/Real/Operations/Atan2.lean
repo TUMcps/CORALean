@@ -15,6 +15,13 @@ argument of `x + i y`, in `(-π, π]`.
 This is **not an enclosure** across the branch cut, the negative real axis, where `atan2` jumps
 from `π` to `-π + ε`: see `Interval.atan2_cora_counterexample`. Formalized as CORA computes it,
 for that reason; no enclosure theorem is claimed.
+
+## Inputs
+* `I₁` – box of the ordinates
+* `I₂` – box of the abscissae
+
+## Output
+* hull of the four corner arguments, as CORA computes it
 -/
 
 -- Authors:       Claude Opus 5.5

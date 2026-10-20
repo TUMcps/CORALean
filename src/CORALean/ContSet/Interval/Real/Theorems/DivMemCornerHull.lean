@@ -13,6 +13,24 @@ For `n ∈ [n₁, n₂]` and `d ∈ [d₁, d₂]` with `0 < d₁`: for fixed `d`
 for fixed `n`, it is monotone, in one direction or the other, in `d`, so its extremes over the box
 are at corners. This is what makes the four-corner rule of `Interval.atan2` an enclosure off the
 branch cut.
+
+## Inputs
+* `n₁` – lower end of the numerator
+* `n₂` – upper end of the numerator
+* `d₁` – lower end of the denominator
+* `d₂` – upper end of the denominator
+* `n` – numerator
+* `d` – denominator
+
+## Hypotheses
+* `hd₁` – lower denominator end positive
+* `hn₁` – numerator above its lower end
+* `hn₂` – numerator below its upper end
+* `hd₁'` – denominator above its lower end
+* `hd₂` – denominator below its upper end
+
+## Conclusion
+* the quotient lies between the smallest and largest corner quotients
 -/
 
 -- Authors:       Claude Opus 5.5

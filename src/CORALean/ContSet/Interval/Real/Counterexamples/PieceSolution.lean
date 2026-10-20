@@ -16,6 +16,15 @@ public import Mathlib.Tactic.Linarith
 the plane, its sums being at most `1`; the solution `(1/2, 1)` lies on an edge leaving it, the
 reading `Interval.piece_has_border_vertex` proves.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a piece whose own face misses the plane though the corner sums straddle it
+
 ## References
 
 * [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection

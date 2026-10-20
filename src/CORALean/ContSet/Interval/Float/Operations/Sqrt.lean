@@ -11,6 +11,13 @@ public import CORALean.ContSet.Interval.Float.Interval
 Monotone, so `sqrtDown` at the lower bound and `sqrtUp` at the upper one. `p` is the number of
 Newton steps (`Global/Float/Sqrt`). CORA throws below `0`; the enclosure here is of `Real.sqrt`,
 which is `0` there, and needs no domain.
+
+## Inputs
+* `p` – Newton steps
+* `I` – interval box
+
+## Output
+* interval box enclosing the square root of `I`
 -/
 
 -- Authors:       Claude Sonnet 5.5

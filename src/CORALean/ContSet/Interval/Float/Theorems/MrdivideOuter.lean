@@ -9,6 +9,16 @@ public import CORALean.ContSet.Interval.Float.Operations.Mrdivide
 
 For positive `d` the quotient of an endpoint is bracketed by the directed division of the stored
 one; for negative `d` the negated box over `-d` is the same quotient, with the endpoints swapped.
+
+## Inputs
+* `I` – interval box
+* `d` – scalar divisor
+
+## Hypotheses
+* `hd` – divisor certified nonzero
+
+## Conclusion
+* every box point divided by the scalar lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

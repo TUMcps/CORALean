@@ -15,6 +15,13 @@ a splitter — the two halves cover `I`, overlapping exactly at the midpoint.
 
 Which coordinate to bisect is a heuristic this owes no proof to:
 `NeuralNetwork.holds_of_split` is sound for any choice of `j`.
+
+## Inputs
+* `I` – interval
+* `j` – entry to split at
+
+## Output
+* pair of intervals halving `I` at entry `j`
 -/
 
 -- Authors:       Claude Opus 5

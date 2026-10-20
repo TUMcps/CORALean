@@ -14,6 +14,17 @@ Induction on `k`, unfolding `matPow`'s right recursion with `pow_succ'` against
 `matMul_outer` and the induction hypothesis, exactly as `Real.Interval.
 matPow_outer` does; the base case is `mem_point` at the stored identity block,
 read back as `(1 : Mat ℝ n n)`.
+
+## Inputs
+* `A` – interval matrix
+* `M` – member of the box
+* `k` – exponent
+
+## Hypotheses
+* `hM` – `M` lies in `A`
+
+## Conclusion
+* the power `M ^ k` lies in the result
 -/
 
 -- Authors:       Claude Sonnet 5

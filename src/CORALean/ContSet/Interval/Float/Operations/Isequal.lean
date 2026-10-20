@@ -9,6 +9,13 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 The equality test at float: containment each way, by the certified `le`. Certified in one direction
 only, so `true` is a proof and `false` is no refutation.
+
+## Inputs
+* `I` – first interval box
+* `J` – second interval box
+
+## Output
+* `true` when each box contains the other
 -/
 
 -- Authors:       Claude Opus 5.5

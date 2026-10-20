@@ -18,6 +18,19 @@ which the `m`-fold sum follows by induction; [2, Eq. 3] prints it for every pair
 coordinate of the sum ranges over the sum of the coordinate ranges, whose supremum is the sum of
 the suprema (`csSup_add`).
 
+## Inputs
+* `S` – first set
+* `T` – second set
+
+## Hypotheses
+* `hS` – `S` nonempty
+* `hT` – `T` nonempty
+* `hbS` – `S` bounded
+* `hbT` – `T` bounded
+
+## Conclusion
+* the hull of a Minkowski sum is the sum of the hulls
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

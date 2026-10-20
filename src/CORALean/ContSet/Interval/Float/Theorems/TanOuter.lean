@@ -10,6 +10,17 @@ public import CORALean.ContSet.Interval.Float.Operations.Tan
 On the principal branch, as `Real.Interval.tan_exact`: both corners in `(-π/2, π/2)`, where the
 tangent increases; and where the computed cosine at both corners is positive, which
 `tanDown`/`tanUp` need and `cosDown` evaluates.
+
+## Inputs
+* `p` – halving count
+* `I` – interval box
+
+## Hypotheses
+* `hI` – bounds strictly inside `(-π/2, π/2)`
+* `hc` – the lower cosine bound is positive at both ends
+
+## Conclusion
+* the tangent image of `I` lies in the result box
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,13 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 CORA's `@intervalMatrix/norm`: for the types it supports, the matrix attaining the maximum norm
 is `A_max = |center| + rad` (entrywise), and the answer is `norm(A_max, type)`.
+
+## Inputs
+* `p` – norm type
+* `A` – interval matrix
+
+## Output
+* norm of the entrywise largest matrix of the box
 -/
 
 -- Authors:       Claude Sonnet 5.5

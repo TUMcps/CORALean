@@ -9,6 +9,18 @@ public import CORALean.ContSet.Interval.Real.Theorems.NormSubCenterLe
 # A member is within the certified bound of the center
 
 In `‖·‖₂`, from the certificate of `Radius2NominalLe`; a member forces the box nonempty.
+
+## Inputs
+* `I` – interval box
+* `σ` – certified bound of the radius
+* `x` – real point
+
+## Hypotheses
+* `hσ` – squared radius at most `σ` squared
+* `hx` – `x` lies in `I`
+
+## Conclusion
+* the distance of `x` to the center is at most the certified bound
 -/
 
 -- Authors:       Claude Opus 5.5

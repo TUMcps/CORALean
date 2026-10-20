@@ -9,6 +9,15 @@ public import CORALean.Global.Float.InverseTrig
 
 An upper bound of `atan2(b, a)` at floats `a`, `b`, as `atan2Lo` with the roundings reversed:
 outside the three certified half-planes it is `π`.
+
+## Inputs
+* `p` – halving count
+* `k` – bisection and Newton steps
+* `a` – abscissa
+* `b` – ordinate
+
+## Output
+* upper bound of the four-quadrant arctangent of `(b, a)`
 -/
 
 -- Authors:       Claude Opus 5.5

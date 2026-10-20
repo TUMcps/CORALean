@@ -23,6 +23,15 @@ images of the box; `sin` on `[1, 2]` has range `[sin 1, 1]` and `0.84147` is `si
 five places, so the printed constant interval encloses it. The extremal functions are those of
 `Interval.extremalLo`/`extremalHi` at the printed box, `h = (1, x, x²)`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image ranges and both extremal functions take the stated values
+
 ## References
 
 * [1] G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor

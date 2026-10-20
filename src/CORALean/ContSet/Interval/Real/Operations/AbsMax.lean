@@ -12,6 +12,12 @@ two endpoints' absolute values. `matPow`/`matMul` bound different members of
 `A` independently, so a uniform norm bound over the whole interval matrix has
 to go through one fixed dominating matrix rather than any one member of it —
 this is that matrix, and `Theorems/NormLeAbsMax` is what it is for.
+
+## Inputs
+* `A` – interval matrix
+
+## Output
+* matrix of the largest absolute value of each entry
 -/
 
 -- Authors:       Claude Opus 5

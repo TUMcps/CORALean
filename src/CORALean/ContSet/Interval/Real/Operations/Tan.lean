@@ -10,6 +10,12 @@ public import Mathlib.Analysis.Complex.Trigonometric
 
 CORA's `@interval/tan`: the tangent is increasing on `(-π/2, π/2)`, so it acts on the two bounds,
 coordinate by coordinate.
+
+## Inputs
+* `I` – interval box
+
+## Output
+* box of the tangents of the bounds
 -/
 
 -- Authors:       Claude Opus 5.5

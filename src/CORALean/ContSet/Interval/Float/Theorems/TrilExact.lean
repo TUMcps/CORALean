@@ -10,6 +10,16 @@ public import CORALean.ContSet.Interval.Float.Theorems.MaskExact
 
 `Interval.mask_exact` at the `tril` pattern: the stored box denotes the image of the reading under
 `tril`, for a box with no empty entry.
+
+## Inputs
+* `K` – diagonal offset
+* `I` – interval matrix
+
+## Hypotheses
+* `hI` – `I` has ordered bounds
+
+## Conclusion
+* the lower-triangular box is exactly the set of masked matrices
 -/
 
 -- Authors:       Claude Opus 5.5

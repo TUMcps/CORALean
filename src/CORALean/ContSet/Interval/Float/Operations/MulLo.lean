@@ -10,6 +10,15 @@ public import CORALean.ContSet.Interval.Float.Interval
 The least of the four corner products of `[a, b]` and `[c, d]`, each corner
 rounded down before the four are compared: `minimum` is exact, so only the four
 products themselves cost a rounding.
+
+## Inputs
+* `a` – lower end of the first factor
+* `b` – upper end of the first factor
+* `c` – lower end of the second factor
+* `d` – upper end of the second factor
+
+## Output
+* lower end of the interval product of `[a, b]` and `[c, d]`
 -/
 
 -- Authors:       Claude Sonnet 5

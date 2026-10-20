@@ -16,6 +16,12 @@ property of that root and no other: before it the function has no zero in `[x̲,
 and `IsRightRootBound` is its mirror image. A search returning the smallest root has it; one
 returning a value past `x̅` says the domain holds no root at all.
 
+## Inputs
+* `root` – root search procedure
+
+## Output
+* no zero lies to the left of the returned root
+
 ## References
 
 * [1] G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor

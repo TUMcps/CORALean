@@ -11,6 +11,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemCenter
 Read straight off `Interval.mem_center`: the center sitting between the
 original bounds is exactly what puts `0` between the shifted ones. A crossed
 box has no center inside it, so this carries no hypothesis beyond that one.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* `hI` – interval nonempty
+
+## Conclusion
+* the origin lies in the recentered interval
 -/
 
 -- Authors:       Claude Opus 5

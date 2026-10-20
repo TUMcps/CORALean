@@ -12,6 +12,15 @@ otherwise, in which case `y ≤ -inf`. Needs no nonemptiness.
 
 [1, Eq. 10], all three cases.
 
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the absolute-value box is exactly the image of `I` under absolute value
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

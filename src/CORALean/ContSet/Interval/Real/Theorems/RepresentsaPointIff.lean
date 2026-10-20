@@ -10,6 +10,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.SingletonOfInfEqSup
 # `Interval.representsa_point` is being a single point
 
 Both bounds equal is a single point, and a single point forces both bounds onto it.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the test holds iff the interval is a single point
 -/
 
 -- Authors:       Claude Opus 5.5

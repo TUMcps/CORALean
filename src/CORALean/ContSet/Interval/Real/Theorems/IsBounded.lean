@@ -16,6 +16,15 @@ term of it, and the rest are non-negative.
 
 At `Vec ℝ n`: a bound on the norm is not a coordinatewise statement, so it needs
 an ambient type whose norm the coordinates determine.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the interval is bounded
 -/
 
 -- Authors:       Claude Opus 5

@@ -16,6 +16,16 @@ combine to `M i j * (M i i + M j j)`, bounded by the corner products against the
 diagonal intervals, and the rest term by term; on the diagonal `M i i * M i i` is the interval
 power `pow_between`. The enclosure is entrywise, never a set equality
 (`Theorems/ExactSquareEntryExact`).
+
+## Inputs
+* `A` – interval matrix
+* `M` – member of the box
+
+## Hypotheses
+* `hM` – `M` lies in `A`
+
+## Conclusion
+* the square of `M` lies in the result
 -/
 
 -- Authors:       Claude Sonnet 5.5

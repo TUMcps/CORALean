@@ -16,6 +16,16 @@ That is what lets a computed image box be handed straight to a layer that
 commits to its center — `Layer.linearWithError` asks exactly this of the error
 box a neuron merge builds as `W(·,B) · Y(B)`. The fact is about `mtimes` and
 mentions no network, so it lives here rather than beside that layer.
+
+## Inputs
+* `M` – real matrix
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image box has ordered bounds
 -/
 
 -- Authors:       Claude Opus 5

@@ -11,6 +11,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.IsFullDimIff
 
 A `true` answer is a strict inequality for every coordinate, `toReal_lt_of_ltStrict`, which is the
 real characterisation `CORALean.Real.Interval.isFullDim_iff`.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* `h` – test returned true
+
+## Conclusion
+* the box is full-dimensional
 -/
 
 -- Authors:       Claude Opus 5.5

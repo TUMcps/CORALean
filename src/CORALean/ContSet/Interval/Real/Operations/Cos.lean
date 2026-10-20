@@ -11,6 +11,12 @@ public import CORALean.ContSet.Interval.Real.Operations.MaxCos
 CORA's `@interval/cos`, coordinate by coordinate: the upper bound is the largest cosine on the
 range, `maxCos`, and the lower bound the negated largest cosine on the range shifted by `π`, as
 `cos (x - π) = -cos x`.
+
+## Inputs
+* `I` – interval box
+
+## Output
+* box enclosing the cosine of the box
 -/
 
 -- Authors:       Claude Opus 5.5

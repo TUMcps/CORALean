@@ -27,6 +27,15 @@ as `EReal`; the `Inf - Inf` of a sum is not modelled, no entry of the example ne
 
 `supportFunc(interval([0; -Inf], [1; Inf]), [1; 0])` is `1*1 + 0*Inf = NaN` in CORA, while the
 second coordinate does not enter the support function and the answer is `1`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA returns NaN although the attained maximum is one
 -/
 
 -- Authors:       Claude Sonnet 5.5

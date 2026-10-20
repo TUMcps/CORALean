@@ -17,6 +17,15 @@ public import Mathlib.Algebra.BigOperators.Fin
 `(2, 0) ∈ [A a, A b] = [0, 2]²`. The hull equality holds (`hull_image_of_nonneg`), and is all
 the proof of [1, Thm. 7] needs.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image of a box under a nonnegative matrix differs from the corner box
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

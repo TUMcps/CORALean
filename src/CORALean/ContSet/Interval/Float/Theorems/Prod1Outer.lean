@@ -13,6 +13,15 @@ public import Mathlib.Algebra.BigOperators.Fin
 
 Each member of the exact layer's box has its column products in the stored box, by induction on
 the rows with `times_outer` at each step. Not exact: every `times` rounds outward.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the column products of the matrices in the box lie in the result box
 -/
 
 -- Authors:       Claude Sonnet 5.5

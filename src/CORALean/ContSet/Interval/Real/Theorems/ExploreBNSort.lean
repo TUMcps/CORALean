@@ -15,6 +15,17 @@ positive sides and `0 ≤ α`: a permutation of coordinates maps the box, the pl
 and the edges onto themselves. Translation and scaling, the paper's two mappings, reduce any
 box to this one.
 
+## Inputs
+* `b` – upper bound vector
+* `α` – level of the plane
+
+## Hypotheses
+* `hb0` – bounds positive
+* `hα` – level nonnegative
+
+## Conclusion
+* the vertices of the cut are the permuted result of the algorithm on the sorted box
+
 ## References
 
 * [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection

@@ -12,6 +12,18 @@ declaration per file (issue #62) does not make an exception for a fact this
 short. Nothing is rounded here; `mem_point` just reads the stored point back
 through `RealImage.realImage`, generic over the ambient type as `point` itself
 is, so it reaches `matPow`'s identity at `Mat 𝕋 n n` too.
+
+## Inputs
+* `α` – carrier type of the point
+* `β` – real image type
+* `ι` – index type
+* `v` – the point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point lies in its degenerate interval
 -/
 
 -- Authors:       Claude Opus 5

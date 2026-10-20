@@ -10,6 +10,13 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 CORA's `@interval/times` at two intervals: the entrywise product, each coordinate the hull of the
 four corner products (`mulLo`, `mulHi`). CORA's `NaN` convention for `0 * ∞` has no counterpart in
 `ℝ`.
+
+## Inputs
+* `I` – first interval box
+* `J` – second interval box
+
+## Output
+* coordinatewise interval product of the boxes
 -/
 
 -- Authors:       Claude Opus 5.5

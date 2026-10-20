@@ -11,6 +11,15 @@ The center plus the half-width is the upper bound: the split `center ± radius` 
 
 [1, Sec. 2] writes an interval as `mid([x]) ⊕ rad([x]) ⊗ [-1, 1]`; this is its upper end.
 
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* center plus radius is the upper bound
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

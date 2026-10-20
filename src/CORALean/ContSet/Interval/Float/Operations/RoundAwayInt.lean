@@ -9,6 +9,12 @@ public import Mathlib.Data.Rat.Floor
 
 The nearest integer, halves away from zero, as an integer: the computable counterpart of the exact
 layer's `roundAway`, taken on the rational a scalar decodes to.
+
+## Inputs
+* `q` – exact rational
+
+## Output
+* nearest integer, halves away from zero
 -/
 
 -- Authors:       Claude Opus 5.5

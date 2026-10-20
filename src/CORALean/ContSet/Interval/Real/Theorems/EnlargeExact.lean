@@ -17,6 +17,17 @@ the box to its center, which a nonempty box contains. Nonemptiness is needed: th
 empty box is empty, while its enlargement may not be (a crossed box has a negative half-width,
 and a negative half-width times a factor is again negative, but a factor of zero gives the
 point).
+
+## Inputs
+* `I` – interval
+* `f` – enlargement factor
+
+## Hypotheses
+* `hI` – every entry has ordered bounds
+* `hf` – factor nonnegative
+
+## Conclusion
+* the enlarged interval is exactly the original scaled about its center
 -/
 
 -- Authors:       Claude Opus 5.5

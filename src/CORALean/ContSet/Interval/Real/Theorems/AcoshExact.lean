@@ -14,6 +14,15 @@ domain is a hypothesis, both corners at least `1`.
 
 [1, Eq. 8], its first case.
 
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* `hI` – bounds at least one
+
+## Conclusion
+* the inverse hyperbolic cosine box is exactly the image of `I`
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

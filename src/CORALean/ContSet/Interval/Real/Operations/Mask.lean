@@ -10,6 +10,13 @@ public import CORALean.ContSet.Interval.Real.Interval
 The shared definition of `tril` and `triu`: CORA applies MATLAB's `tril`/`triu` to `I.inf` and
 `I.sup`, which keeps the entries of the pattern and sets the others to `0`. The box that results has
 the point `0` at every entry outside the pattern.
+
+## Inputs
+* `keep` – predicate selecting the entries to keep
+* `I` – interval matrix
+
+## Output
+* interval matrix with the unkept entries set to zero
 -/
 
 -- Authors:       Claude Opus 5.5

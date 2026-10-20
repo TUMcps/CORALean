@@ -10,6 +10,17 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 For distinct target coordinates, the result denotes the points whose `proj`-coordinates lie in the
 box; nothing rounds.
+
+## Inputs
+* `I` – interval box
+* `N` – ambient dimension
+* `proj` – coordinate embedding
+
+## Hypotheses
+* `hp` – embedding injective
+
+## Conclusion
+* the lifted box is exactly the set of points whose chosen coordinates lie in `I`
 -/
 
 -- Authors:       Claude Opus 5.5

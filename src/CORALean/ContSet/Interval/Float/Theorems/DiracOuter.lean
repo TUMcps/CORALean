@@ -12,6 +12,17 @@ public import Mathlib.Data.EReal.Basic
 Outer, at `n = 0`: the value of `δ` at every point of the box (`∞` at `0`, else `0`) lies in the
 result. At `n ≥ 1` the value at `0` is a distribution, not a number, and nothing is stated. No
 exactness is claimed where `0` is in the box.
+
+## Inputs
+* `I` – interval box
+* `x` – real point
+* `i` – coordinate index
+
+## Hypotheses
+* `hx` – `x` lies in the box
+
+## Conclusion
+* the open-ended bounds enclose the Dirac value at every coordinate
 -/
 
 -- Authors:       Claude Opus 5.5

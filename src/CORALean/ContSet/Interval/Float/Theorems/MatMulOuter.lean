@@ -13,6 +13,19 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 Nothing about products of matrices in boxes appears here — `Real` has already
 proved that. The whole obligation is that each corner and each row sum rounds
 the right way, exactly as `Mtimes.lean`'s does for a matrix acting on a box.
+
+## Inputs
+* `A` – left interval matrix
+* `B` – right interval matrix
+* `M` – member of the left matrix
+* `N` – member of the right matrix
+
+## Hypotheses
+* `hM` – `M` lies in `A`
+* `hN` – `N` lies in `B`
+
+## Conclusion
+* the product `M N` lies in the result
 -/
 
 -- Authors:       Claude Sonnet 5

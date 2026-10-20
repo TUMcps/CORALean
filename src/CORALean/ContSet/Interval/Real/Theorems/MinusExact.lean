@@ -13,6 +13,17 @@ the definition. `minus_outer` is the half that needs no such hypothesis.
 
 [1, Eq. 2]: `[x] - [y] = [x̲ - y̅, x̅ - y̲]`.
 
+## Inputs
+* `I₁` – first interval
+* `I₂` – second interval
+
+## Hypotheses
+* `h₁` – `I₁` is nonempty
+* `h₂` – `I₂` is nonempty
+
+## Conclusion
+* the difference interval is exactly the pointwise difference of the sets
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

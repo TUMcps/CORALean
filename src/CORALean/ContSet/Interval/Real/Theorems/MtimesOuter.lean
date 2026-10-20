@@ -12,6 +12,16 @@ public import Mathlib.Data.Matrix.Mul
 Each summand `M i k * x k` lies between the two endpoint products;
 `mul_between_endpoints` is where `min`/`max` absorb the sign of `M i k`,
 leaving one case split. Summing over `k` finishes it.
+
+## Inputs
+* `M` – real matrix
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image of `I` under `M` lies in the result box
 -/
 
 -- Authors:       Claude Opus 5

@@ -11,6 +11,12 @@ public import CORALean.Global.EuclideanNorm
 CORA's `@interval/norm_` at `type = 2`: the Euclidean norm of the entrywise larger of `|inf|` and
 `|sup|`. CORA answers `-Inf` for an interval whose bounds are empty arrays, which has no
 counterpart here: a box over `Vec ℝ 0` denotes the point, not `∅`.
+
+## Inputs
+* `I` – interval box
+
+## Output
+* Euclidean norm of the coordinatewise largest absolute values
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,12 @@ public import CORALean.ContSet.Interval.Real.Operations.AbsMax
 
 CORA's `@intervalMatrix/infNorm`: `norm(abs(A), Inf)`, the maximum absolute row sum of the matrix
 `abs(A)` (`absMax`) that dominates every member.
+
+## Inputs
+* `A` – interval matrix
+
+## Output
+* row sum norm of the largest absolute values
 -/
 
 -- Authors:       Claude Sonnet 5.5

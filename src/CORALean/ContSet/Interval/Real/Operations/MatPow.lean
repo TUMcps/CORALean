@@ -15,6 +15,12 @@ enclosure, so nothing here could be a lawful `Pow`.
 cosmetic: the two associations enclose different sets, since each product
 bounds its summands independently and so loses precision at a different place,
 and `Theorems/MatPowOuter` unfolds the left factor to match.
+
+## Inputs
+* `A` – interval matrix
+
+## Output
+* interval matrix power of `A`, as a function of the exponent
 -/
 
 -- Authors:       Claude Opus 5

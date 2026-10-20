@@ -7,6 +7,11 @@ public import CORALean.ContSet.Interval.Float.Interval
 /-!
 # `Interval.materialiseMat`
 
+## Inputs
+* `I` – interval matrix
+
+## Output
+* the same interval matrix with its entries stored as vectors
 -/
 
 -- Authors:       Claude Opus 5
