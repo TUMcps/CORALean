@@ -22,6 +22,19 @@ exactly where `mn` and `mx` differ and `mn`'s value elsewhere.
 `mn` and `mx` are `⌊Λ̃⌋` and `⌈Λ̃⌉` of the result, which is their `⊔₂`, as
 [1, Sec. 4.3 (refinements)] recovers `Λ̃(t)`.
 
+## Inputs
+* `mn` – minimal refinement
+* `mx` – maximal refinement
+* `K` – signal marking where they differ
+
+## Hypotheses
+* `hmn` – the minimal refinement is valid
+* `hmx` – the maximal refinement is valid
+* `hK` – `K` marks where the two differ
+
+## Conclusion
+* the pair is valid and inconclusive exactly where they differ
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

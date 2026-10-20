@@ -13,6 +13,12 @@ truth of `ϕ` is settled by a trace's values on `T`: two traces that agree there
 `tsupp` is the smallest set that can decide (`tsupp_subset_of_decided`); that it does decide is
 what [1, Eq. 12]'s proof uses and does not show.
 
+## Inputs
+* `φ` – formula
+
+## Output
+* the times at which changing one trace point can change the formula
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

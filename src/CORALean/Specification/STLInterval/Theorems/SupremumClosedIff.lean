@@ -11,6 +11,15 @@ public import CORALean.Specification.STLInterval.Theorems.RawSetLowerOfGe
 # `supremum` says whether the supremum is a time
 
 The flag `supremum` returns holds iff the supremum is itself one of the times.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* `hI` – the interval is nonempty
+
+## Conclusion
+* the supremum is closed iff a time of the interval attains it
 -/
 
 -- Authors:       Claude Sonnet 5.5

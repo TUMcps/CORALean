@@ -12,57 +12,49 @@ public import Mathlib.Analysis.Calculus.Deriv.Basic
 
 The `else` branch (`% union of unsafe sets`) of `aux_evaluatePredicate` in CORA's
 `@linearSys/private/priv_verifySTL_kochdumper.m` (l. 916-956, the program of [1]) for unsafe sets
-that are polytopes `{x | Aᵢx ≤ bᵢ}`, the only kind `aux_safe2unsafe` builds (`polytope(list{k}) &
-polytope(...)`, l. 849), one `let` per MATLAB step: `c = set{i}.A·R.c`, `G = set{i}.A·R.G`, `G =
-abs(G)`, `rad = sum(G,2)`, the quick checks (`any(c - rad > d)`: `1`; `all(c + rad <= d)`: `0`,
-returning at once; `all(c + sum(G(:,index),2) <= d)`: `3`), else `2`, lowered to `1` when
-`~isIntersecting(R,set{i})`, then `list(i) = res`; the branch ends `res = max(list(i))`, the last
-set's code. A polytope is the list of its rows `(Aⱼ, bⱼ)`; `isIntersecting` is a parameter, on the
-zonotope `R = Rc + Rg·[-1,1]^m` and the polytope as sets. The halfspace arm, which skips
-`isIntersecting`, is `STL.evaluatePredicateUnionCora`.
+that are polytopes `{x | Aᵢx ≤ bᵢ}`, one `let` per MATLAB step: `c = set{i}.A·R.c`, `G = abs(·)`,
+`rad = sum(G,2)`, the quick checks (`1`, `0`, `3`), else `2`, lowered to `1` when
+`~isIntersecting(R,set{i})`, `list(i) = res`; the branch ends `res = max(list(i))`, the last set's
+code. `isIntersecting` is a parameter; the halfspace arm is `STL.evaluatePredicateUnionCora`.
 
 # `safeToUnsafeCora`, CORA's complement of a union of safe polytopes
 
-`aux_safe2unsafe` with `aux_reverseHalfspaceConstraints` in CORA's
-`@linearSys/private/priv_verifySTL_kochdumper.m` (l. 827-870, the program of [1]), the union of
-unsafe sets that `aux_preprocessTemporalLogic` (l. 959-991) makes of a predicate whose disjunctive
-normal form has two or more clauses, one `let` per MATLAB step. A polytope is the list of its rows
-`(Aⱼ, bⱼ)`, `{x | Aⱼx ≤ bⱼ}`. Each row is reversed by `polytope/not` to the one-row polytope `(-Aⱼ,
--bⱼ - eps)`; the list starts with the reversed rows of the first clause, and each further clause
-replaces it by `list{k} & reversed{j}` (rows of `list{k}`, then the reversed row) for every reversed
-row `j` (outer loop) and every `k` (inner loop) with `isIntersecting(list{k}, reversed{j})`.
-`isIntersecting` is a parameter on the two polytopes as sets; `eps` is MATLAB's.
+`aux_safe2unsafe` with `aux_reverseHalfspaceConstraints` (l. 827-870, the program of [1]): the
+union of unsafe sets that `aux_preprocessTemporalLogic` (l. 959-991) makes of a predicate with two
+or more clauses. Each row is reversed by `polytope/not` to `(-Aⱼ, -bⱼ - eps)`; the list starts with
+the reversed rows of the first clause, and each further clause replaces it by `list{k} &
+reversed{j}` for every reversed row `j` and `k` with `isIntersecting(list{k}, reversed{j})`.
 
 # `verifySTLKochdumperGloballyCora`, CORA's STL verifier on `ẋ = 0` and `G_[0,T] (∨ clauses)`
 
-The first loop iteration of CORA's `priv_verifySTL_kochdumper` (`@linearSys/private/`, l. 1-96), the
-verifier of [1], up to its first `res = true; return` (l. 221), on the one path this model fixes: `A
-= 0`, `B = 0`, `U = {0}`, no `params.u`, `R0 = c₀ + G₀·[-1,1]^p`, and `spec.set = globally(φ,
-[0,T])` with `φ` non-temporal, the disjunction of the polytopes `clauses` (two or more, so `sets{1}`
-is the union of unsafe sets `aux_safe2unsafe` builds). Then `params.tFinal = T` (l. 52), `dt = T/2`
-(l. 1000; `A = 0` ends both step-size loops at once), `t = 0:dt:T+dt` has four entries (l. 110), and
-with `eAdt = I`, `T·u = 0`, `P_U = err = C = 0` every reachable set (l. 154-163) is `R0` up to zero
-generators, which add nothing to any sum of `aux_evaluatePredicate`; `p_u = 0` makes every `index`
-the `p` columns of `G₀`. `aux_modelCheckReachSet` (l. 176-221), one `let` per step: the interval
-codes, their copy into `predPoint` (l. 198-205), the point codes, `3 → 0`, and `sampledTime` on
-`globally(φ,[0,2])`, whose `evalPredicates` (l. 85-92) reads `predInt(1,1:2)` and
-`predPoint(1,1:3)`. `some true` is `res = true` (l. 221); `none` is any other way on, which the
-model leaves (`stl(false)` halves `dt`, an unchanged `φ` goes to the factor constraints).
+The first loop iteration of `priv_verifySTL_kochdumper` (l. 1-96), up to its first `res = true;
+return` (l. 221), on `A = 0`, `B = 0`, `U = {0}`, `R0 = c₀ + G₀·[-1,1]^p` and `spec.set =
+globally(φ, [0,T])` with `φ` the disjunction of the polytopes `clauses`. Then `tFinal = T`,
+`dt = T/2`, `t = 0:dt:T+dt`, every reachable set is `R0` up to zero generators.
+`aux_modelCheckReachSet`
+(l. 176-221), one `let` per step: the interval codes, their copy into `predPoint` (l. 198-205), the
+point codes, `3 → 0`, `sampledTime` on `globally(φ,[0,2])`. `some true` is `res = true` (l. 221).
 
 # CORA's STL verifier returns `verified` for a violated `G_[0,1] ((-1 ≤ x ≤ 1) ∨ x ≥ 10)`
 
-`linearSys/verify` with `options.verifyAlg = 'stl:kochdumper'` ([1]) on `ẋ = 0` (`A = 0`, `B = 0`,
-`U = zonotope(0)`, as in CORA's `test_linearSys_verify_01_temporalLogic`), `R0 = zonotope(-1,1)
-= [-2, 0]`, `tFinal = 1` and `globally((x(1) >= -1 & x(1) <= 1) | x(1) >= 10, interval(0,1))`.
-The run `x ≡ -2` starts in `R0` and violates the formula at every time. The two clauses make
-`sets{1}` a union of unsafe polytopes (`aux_safe2unsafe`, reversed rows shifted by `eps`):
-`x ≤ -1 - eps ∧ x ≤ 10 - eps` and then `x ≥ 1 + eps ∧ x ≤ 10 - eps`. The reachable set `[-2, 0]`
-meets the first (code `2`; the quick checks fail, `isIntersecting` is true) but `any(c - rad > d)`
-holds for the second (`0 > -1 - eps`), so `res = max(list(i))` (l. 955) is `1` on every time
-interval and point; `evalPredicates` turns `globally(φ,[0,2])` into `stl(true)` and
-`aux_modelCheckReachSet` returns `res = true` (l. 221): CORA reports the specification verified.
-`isIntersecting` is any test returning `true` on sets that meet (CORA's exact test does); `ε` is
-any shift in `[0, 1)`, CORA's `eps` among them; real arithmetic, every comparison by margin `≥ 1`.
+`linearSys/verify` with `'stl:kochdumper'` on `ẋ = 0`, `R0 = zonotope(-1,1) = [-2, 0]`, `tFinal = 1`
+(as `test_linearSys_verify_01_temporalLogic`): the run `x ≡ -2` violates the formula at every time.
+`sets{1}` is the union `x ≤ -1 - eps ∧ x ≤ 10 - eps`, `x ≥ 1 + eps ∧ x ≤ 10 - eps`; `[-2, 0]` meets
+the first (code `2`) but `any(c - rad > d)` holds for the second, so `res = max(list(i))` (l. 955)
+is `1` everywhere and `aux_modelCheckReachSet` returns `res = true`: CORA reports it verified.
+`isIntersecting` is any test true on meeting sets, `ε ∈ [0, 1)`; real arithmetic, margin `≥ 1`.
+
+## Inputs
+* `isIntersecting` – set intersection test
+* `ε` – CORA's epsilon shift
+
+## Hypotheses
+* `hsound` – the test accepts sets that meet
+* `hε` – the shift is nonnegative
+* `hε1` – the shift is below one
+
+## Conclusion
+* CORA's verifier reports a violated specification as verified
 
 ## References
 

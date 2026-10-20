@@ -14,6 +14,13 @@ public import CORALean.Specification.ReachSetAnalyzer.Operations.Signals
 loop analyzes the children `c(1),…,c(end-1)` on copies and then `c(1)` again on `obj`, so with two
 children the second never is analyzed; this is `analyzeTreeCora`. The definition here analyzes
 every child, as the comment ("use the current copy for last child") means.
+
+## Inputs
+* `obj` – analyzer
+* `R` – tree of reach sets
+
+## Output
+* the signals of every branch, or none where CORA throws
 -/
 
 -- Authors:       Claude Sonnet 5.5

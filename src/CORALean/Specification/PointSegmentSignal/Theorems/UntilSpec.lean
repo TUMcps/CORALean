@@ -19,6 +19,18 @@ left-hand side is not asked to hold at `t` itself.
 This is [1, Lemma 2] for signals of finite variability, with the strict until of [1, Sec. 2.5];
 it contains [1, Lemma 1], the unitary signals being among them.
 
+## Inputs
+* `lhs` – left signal
+* `rhs` – right signal
+* `U` – time interval
+
+## Hypotheses
+* `hl` – the left signal is valid
+* `hr` – the right signal is valid
+
+## Conclusion
+* the until is valid and true where the semantics of until says
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

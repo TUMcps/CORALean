@@ -12,6 +12,12 @@ public import CORALean.Specification.STL.Operations.ExprIsLinear
 temporal operator is not one, and neither is `true`, `false`, `~` or `|`. CORA tests
 `obj.temporal`
 first; the clauses below reject a temporal operator as well, so the test is not repeated.
+
+## Inputs
+* none
+
+## Output
+* whether the formula is a conjunction of linear comparisons
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -10,6 +10,12 @@ public import CORALean.Specification.STL.Definitions.Nnf
 A measure for [1, Lemma 4]'s rewriting: it falls from `φ U[i,j] ψ` to `φ`, `ψ` and `φ U[i-1,j-1]
 ψ`, which is why the iteration ends.
 
+## Inputs
+* none
+
+## Output
+* the weight of the normal form
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

@@ -14,6 +14,13 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 `aux_cos_(int,intPrev)` of `syntaxTree.m`: the branches `acos(int)` and `-acos(int)`, shifted by
 `2 pi k` (`aux_periodic_`).
+
+## Inputs
+* `int` – target interval
+* `prev` – previous interval
+
+## Output
+* the interval of operands whose cosine lies in the target
 -/
 
 -- Authors:       Claude Sonnet 5.5

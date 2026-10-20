@@ -9,6 +9,12 @@ public import CORALean.ContSet.Interval.Real.Interval
 
 The `interval` (CORA's class) a node of a `syntaxTree` stores: one-dimensional, over the real-layer
 `Interval`. It has no infinite bound, which `syntaxTree.m` allows for an unbounded domain.
+
+## Inputs
+* none
+
+## Output
+* the one-dimensional interval a node stores
 -/
 
 -- Authors:       Claude Sonnet 5.5

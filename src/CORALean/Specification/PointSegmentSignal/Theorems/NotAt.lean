@@ -12,6 +12,17 @@ public import Mathlib.Data.List.TakeWhile
 # Negation negates the value at every time
 
 `(~obj).at(t)` is `~obj.at(t)`, for every time and every valid signal.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `t` – time
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* the negated signal has the negated value at the time
 -/
 
 -- Authors:       Claude Sonnet 5.5

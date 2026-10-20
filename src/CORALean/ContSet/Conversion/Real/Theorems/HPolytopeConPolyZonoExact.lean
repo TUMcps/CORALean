@@ -12,11 +12,11 @@ public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeConZonotopeExac
 Both steps are exact: `HPolytope.conZonotope_exact` and `ConZonotope.conPolyZono_exact`.
 
 ## Inputs
-* none
-
-## Hypotheses
 * `up` – certified upper bound per coordinate
 * `lo` – certified lower bound per coordinate
+
+## Hypotheses
+* none
 
 ## Conclusion
 * constrained polynomial zonotope equals the polytope

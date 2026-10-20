@@ -12,6 +12,14 @@ public import CORALean.Specification.AtomicProposition.Operations.Basic
 the set contains the projection `point(ap.dims)` of the point. The point is given in the scalar
 `𝕋` the trajectory is stored in, and `contains(ap.set,point)` is `Contains` at the singleton of
 that point (`OfScalarPoint`), so the test is conservative like every `Contains`.
+
+## Inputs
+* `ap` – atomic proposition
+* `point` – point to evaluate
+* `loc` – location
+
+## Output
+* whether the point satisfies the proposition
 -/
 
 -- Authors:       Claude Sonnet 5.5

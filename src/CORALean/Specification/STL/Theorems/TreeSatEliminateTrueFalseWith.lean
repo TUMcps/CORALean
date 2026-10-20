@@ -10,6 +10,18 @@ public import CORALean.Specification.STL.Definitions.TreeWellFormed
 
 If the rewrite `ut` is the node `φ U[a,b] true` it replaces, up to meaning, and every time
 interval is non-empty, `eliminateTrueFalse` returns a formula satisfied by the same traces.
+
+## Inputs
+* `ut` – rewrite of an until with true
+* `φ` – formula
+* `ξ` – trace
+
+## Hypotheses
+* `hut` – the rewrite is the until with true
+* `hφ` – the formula is well formed
+
+## Conclusion
+* eliminating true and false keeps the meaning
 -/
 
 -- Authors:       Claude Sonnet 5.5

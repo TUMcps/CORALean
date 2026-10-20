@@ -9,6 +9,18 @@ public import CORALean.Specification.PointSegmentSignal.Operations.IsNewPointOk
 
 `isNewPointOk` unfolded: at a time point the point must be `0` or differ from the intervals around
 it, inside an interval some value must differ from the interval's.
+
+## Inputs
+* `s` – signal
+* `i` – index of the next time point
+* `p` – time of the new point
+* `vals` – point and interval values of the new point
+
+## Hypotheses
+* none
+
+## Conclusion
+* a new point is needed iff the stated conditions hold
 -/
 
 -- Authors:       Claude Sonnet 5.5

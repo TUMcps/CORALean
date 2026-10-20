@@ -10,6 +10,12 @@ public import CORALean.Specification.STL.Definitions.SampledTime
 `X_c(⋁ⱼ X_c^j …) ≡ ⋁ⱼ X_c^{j+1} …`: [1, Sec. 4.1]'s `X_c(ϕ₁ ∨ ϕ₂) ≡ X_cϕ₁ ∨ X_cϕ₂` raises every
 power.
 
+## Inputs
+* `a` – normal form
+
+## Output
+* the normal form with every shift raised by one
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

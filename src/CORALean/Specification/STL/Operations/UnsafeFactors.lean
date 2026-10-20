@@ -8,18 +8,26 @@ public import Mathlib.Data.Matrix.Mul
 /-!
 # The factors that may reach a polytope: `K`
 
-For a reachable set `⟨c, G⟩_Z` whose generators split into the tuple `H`, which carry the
-initial state and the inputs, and the set `K` of the generators that only carry uncertainty, and a
-polytope `⟨C, d⟩_P`, the polytope of [1, Prop. 2]
+For a reachable set `⟨c, G⟩_Z` whose generators split into the tuple `H` (initial state and
+inputs) and the set `K` of those carrying only uncertainty, and a polytope `⟨C, d⟩_P`, the polytope
+of [1, Prop. 2] `K = ⟨[C G(·,H) 0], d - C c + Σ_{j∈K} |C G(·,j)|⟩_P`. `[C G(·,H) 0] α̃`
+uses the first `|H|` entries of `α̃ ∈ ℝ^p`, in order as [1, Prop. 1]'s layout has it, hence
+`|H| ≤ p`; `K` is a `Finset`, only its members count.
+Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
 
-`K = ⟨[C G(·,H) 0], d - C c + Σ_{j∈K} |C G(·,j)|⟩_P`
+## Inputs
+* `C` – polytope matrix
+* `d` – polytope offsets
+* `c` – center of the reachable set
+* `G` – generator matrix
+* `H` – generator selection
+* `K` – generators carrying only uncertainty
 
-in factor space. `[C G(·,H) 0] α̃` uses the first `|H|` entries of `α̃ ∈ ℝ^p` for the generators of
-`H`, in order, as `[1, Prop. 1]`'s layout of `α̃` has it, hence `|H| ≤ p`. The reading of `K` as
-a tuple is a `Finset`: only its members count.
+## Hypotheses
+* `hp` – the selection fits the factor dimension
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (a zonotope
-computation over `𝕋` with directed rounding) is not yet written.
+## Output
+* the factors that may reach the polytope
 
 ## References
 

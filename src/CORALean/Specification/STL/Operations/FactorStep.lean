@@ -13,6 +13,17 @@ the empty polytopes (line 13). The test `R̃(jΔt/2) ∩ P ≠ ∅` is `meets`, 
 13 is `isEmpty`, and `unsafeSet` computes `K` by [1, Prop. 2]; each is a parameter, `meets` trusted
 when it answers `false` and `isEmpty` when it answers `true`.
 
+## Inputs
+* `Rj` – reachable set
+* `Pjk` – polytopes of the formula
+* `unsafeSet` – unsafe factor set of a polytope
+* `meets` – set intersection test
+* `isEmpty` – emptiness test
+* `V` – accumulated unsafe polytopes
+
+## Output
+* the accumulated polytopes met with the unsafe factors of the met polytopes
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

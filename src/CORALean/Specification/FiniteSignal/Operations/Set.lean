@@ -12,15 +12,21 @@ public import Mathlib.Data.Real.Basic
 # Setting the value on an interval
 
 `sig = set(obj,interval,value)` of `set.m`: the signal with `value` from the interval's lower
-bound (at least `0`) up to its upper bound (at most the duration), the boundaries merged with
-equal neighbours. The interval is given by its bounds `lo` and `hi` (`infimum` and `supremum`; the
-closedness flags are not read). CORA throws for an empty or singleton interval, and where the
-interval lies at or beyond the end of the signal the `find` that gives `startIdx` is empty and the
-comparison on `val(startIdx)` errors; both are `none`, and so is the constructor's failure. For an
-interval before `0` (`hi < 0`) CORA either throws or returns a signal with no change; here `none`.
+bound (at least `0`) up to its upper bound (at most the duration), boundaries merged with equal
+neighbours; the closedness flags are not read. CORA throws for an empty or singleton interval, for
+one at or beyond the end of the signal (`startIdx` is empty), or if the constructor fails; all are
+`none`, as is an interval before `0`.
+Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
+## Inputs
+* `V` – value type
+* `s` – signal
+* `lo` – interval lower bound
+* `hi` – interval upper bound
+* `value` – value to set
+
+## Output
+* the signal with the value set on the interval, or none
 -/
 
 -- Authors:       Claude Sonnet 5.5

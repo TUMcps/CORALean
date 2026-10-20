@@ -18,6 +18,14 @@ The corrected program requires `C_j(k,·) α̃_jk > d_j(k)` only where `λ_jk = 
 selection means: the printed one requires it for every `k`, where `λ_jk = 0` forces `α̃_jk = 0`
 and the inequality `0 > 0`.
 
+## Inputs
+* `C` – constraint matrix
+* `d` – offsets
+* `α` – factor vector
+
+## Output
+* the program is feasible with the strict inequality on the selected row
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

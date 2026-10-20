@@ -9,6 +9,18 @@ public import CORALean.Specification.STLInterval.STLInterval
 
 `rawSet` met with `[0, ∞)` is the interval with a negative lower bound replaced by the closed `0`,
 as `minus` and `minkDiff` do (`if lb < 0, lb = 0, lc = true`).
+
+## Inputs
+* `lb` – lower bound
+* `ub` – upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+
+## Hypotheses
+* none
+
+## Conclusion
+* cutting at zero replaces a negative lower bound by closed zero
 -/
 
 -- Authors:       Claude Sonnet 5.5

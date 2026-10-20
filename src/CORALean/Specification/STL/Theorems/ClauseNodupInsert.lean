@@ -10,6 +10,16 @@ public import CORALean.Specification.STL.Operations.ClauseInsert
 If the `j` of the branches of a clause are distinct, so are those of `insert b cl`: [1, Lemma 2]
 needs one disjunct per `j`, and merging is what provides it.
 
+## Inputs
+* `b` – branch
+* `cl` – clause
+
+## Hypotheses
+* `h` – the powers of the clause are distinct
+
+## Conclusion
+* the powers stay distinct after inserting
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

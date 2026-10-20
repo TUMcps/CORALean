@@ -13,6 +13,16 @@ public import CORALean.Specification.SyntaxTree.Theorems.ContainsOfImage
 
 If the operand's interval encloses its value, the interval `Interval.acosh` stores at the `acosh`
 node encloses the node's value for an operand `≥ 1`, exactly (`Interval.acosh_exact`).
+
+## Inputs
+* none
+
+## Hypotheses
+* `h` – the operand's interval encloses its function
+* `hd` – the operand stays at least one
+
+## Conclusion
+* the interval of the inverse hyperbolic cosine encloses its function
 -/
 
 -- Authors:       Claude Sonnet 5.5

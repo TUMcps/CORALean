@@ -10,6 +10,12 @@ public import CORALean.Specification.STLInterval.Operations.StlInterval
 `@stlInterval/minus.m`, the `stlInterval - stlInterval` branch: `lower - upper'` to
 `upper - lower'`, an end closed when both ends it is made of are, and a negative lower bound cut
 to the closed `0` (`if lb < 0`). An empty operand gives `stlInterval()`.
+
+## Inputs
+* none
+
+## Output
+* the difference of the two intervals
 -/
 
 -- Authors:       Claude Sonnet 5.5

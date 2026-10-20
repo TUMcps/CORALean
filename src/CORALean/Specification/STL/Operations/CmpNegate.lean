@@ -9,6 +9,12 @@ public import CORALean.Specification.STL.Definitions.Cmp
 
 `¬(a < b)` is `a ≥ b`, `¬(a ≤ b)` is `a > b`: the comparison that holds exactly where this one
 fails.
+
+## Inputs
+* none
+
+## Output
+* the comparison that holds exactly where this one fails
 -/
 
 -- Authors:       Claude Sonnet 5.5

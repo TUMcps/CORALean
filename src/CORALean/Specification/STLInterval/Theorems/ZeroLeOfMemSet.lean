@@ -9,6 +9,16 @@ public import Mathlib.Data.EReal.Operations
 # The times of an interval are nonnegative
 
 The lower bound of an interval is `≥ 0`, so are all its times.
+
+## Inputs
+* `I` – interval
+* `t` – time
+
+## Hypotheses
+* `ht` – the time lies in the interval
+
+## Conclusion
+* the time is nonnegative
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,6 +11,23 @@ public import CORALean.Specification.STL.Definitions.ReachSequence
 constant on every open block `(jc, jc + c)`, because no breakpoint of `T ⊆ ℕc` falls strictly
 inside one.
 
+## Inputs
+* `c` – block length
+* `T` – finite set of change times
+* `R` – reach sequence
+* `j` – block index
+* `s` – first time
+* `t` – second time
+
+## Hypotheses
+* `hT` – the reach sequence changes only at those times
+* `hdiv` – the times are divisible by the block length
+* `hs` – the first time lies strictly inside the block
+* `ht` – the second time lies strictly inside the block
+
+## Conclusion
+* the reach sets at both times are equal
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

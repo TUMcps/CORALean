@@ -14,6 +14,12 @@ A leaf `Aϱ` holds if `ϱ` holds of all states of `R(0)`; `sat l r` says that st
 leaf `l`. A negative shift of `next` is read as `0` (`Real.toNNReal`); `next` rejects no negative
 time, see `Rtl.toFormula`.
 
+## Inputs
+* `sat` – satisfaction of a label by a state
+
+## Output
+* the satisfaction relation of formulas on reach sequences
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

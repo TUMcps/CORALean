@@ -16,6 +16,30 @@ claim of [1, Sec. 5] that `L = []` verifies the specification is the case where 
 polytope, and of [1, Sec. 7.4] that the polytopes of `L` for `¬φ` hold the factors of all legal
 behaviours, the contrapositive. Only the pairs of `STL.factorMeet` give this; see its zip reading.
 
+## Inputs
+* `H` – last index of the outer loop
+* `J` – last index of the reach set loop
+* `K` – last index of the polytope loop
+* `box` – bounding box of the factors
+* `R` – reachable sets
+* `P` – polytopes of each reachable set
+* `unsafeSet` – unsafe factor set of a polytope
+* `meets` – set intersection test
+* `isEmpty` – emptiness test
+* `ξ` – solution for each factor
+* `α` – factor
+
+## Hypotheses
+* `hR` – solutions lie in the reachable sets
+* `hU` – a solution in a polytope puts its factor in the unsafe set
+* `hmeets` – a negative test means the sets are disjoint
+* `hempty` – a positive emptiness test means the set is empty
+* `hα` – the factor lies in the box
+* `hL` – the factor lies outside all returned polytopes
+
+## Conclusion
+* for every outer index some polytope list is avoided by the solution
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

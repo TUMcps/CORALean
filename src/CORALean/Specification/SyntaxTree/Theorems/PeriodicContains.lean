@@ -16,6 +16,23 @@ If `s` lies in `intPrev` and in one of the two branches shifted by `2 pi k`, `au
 the shifted copies nearest to `intPrev`'s ends are the largest and the smallest solution, or
 `intPrev`'s
 end itself where a copy contains it.
+
+## Inputs
+* `p` – period
+* `b` – upper bound
+* `i` – branch lower end
+* `s'` – branch upper end
+* `s` – point
+* `k` – shift count
+
+## Hypotheses
+* `hp` – the period is positive
+* `hsb` – the point is at most the bound
+* `h₁` – the point is above the shifted lower end
+* `h₂` – the point is below the shifted upper end
+
+## Conclusion
+* a shifted copy lies below the bound or contains it
 -/
 
 -- Authors:       Claude Sonnet 5.5

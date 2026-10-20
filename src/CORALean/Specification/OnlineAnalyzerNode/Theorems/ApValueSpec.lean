@@ -12,6 +12,17 @@ public import CORALean.Specification.OnlineAnalyzerNode.Operations.ApValue
 `apValue` is `True` only if every point of the set satisfies the proposition and `False` only if
 none does (the Kleene reading of a set of states); it is undefined only if the proposition can be
 neither true nor false, which a nonempty set never does.
+
+## Inputs
+* `ap` – atomic proposition
+* `set` – observed set
+* `loc` – location
+
+## Hypotheses
+* none
+
+## Conclusion
+* true only if every point satisfies the proposition, false only if none does
 -/
 
 -- Authors:       Claude Sonnet 5.5

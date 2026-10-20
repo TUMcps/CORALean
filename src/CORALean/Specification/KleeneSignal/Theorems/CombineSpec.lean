@@ -14,6 +14,20 @@ public import CORALean.Specification.Kleene.Theorems.Basic
 For valid inputs, each output of `combine(op,varargin)` is a valid signal whose value at every time
 `t ≥ 0` is `op` applied to the Kleene values of the inputs at `t`: the Boolean and unknown parts
 of an output are two outputs of the underlying Boolean combination.
+
+## Inputs
+* `T` – time type
+* `ι` – index type of the inputs
+* `κ` – index type of the outputs
+* `op` – pointwise operator on Kleene values
+* `sig` – three-valued input signals
+* `i` – output index
+
+## Hypotheses
+* `hv` – the input signals are valid
+
+## Conclusion
+* the output is valid and applies the operator at each time
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -17,9 +17,9 @@ to assume, and the right answer is not to silently return `∅`.
 ## Inputs
 * `P` – H-polytope
 * `T` – set of points
+* `u` – a support bound of `T` along each row
 
 ## Hypotheses
-* `u` – a support bound of `T` along each row
 * `hker` – every point of `T` is in the kernel of the equality rows
 
 ## Conclusion

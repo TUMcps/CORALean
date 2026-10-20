@@ -9,6 +9,17 @@ public import Mathlib.Data.List.Basic
 
 If `l.mapM f = some L` (no `f a` is `none`), then `L` consists of the values `f a` for `a` in `l`,
 and each `a` of `l` has its value in `L`.
+
+## Inputs
+* `α` – input type
+* `β` – output type
+* `f` – partial function
+
+## Hypotheses
+* none
+
+## Conclusion
+* the output list consists of the values of the function on the inputs
 -/
 
 -- Authors:       Claude Sonnet 5.5

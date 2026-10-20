@@ -11,6 +11,16 @@ For a valid four-valued signal `Λ̃` and a Kleene signal `Λ`, `Λ ≺ Λ̃` if
 every time `t ≥ 0`, with `⌊Λ̃⌋ = toKleeneSignal(Λ̃,False)` and `⌈Λ̃⌉ = toKleeneSignal(Λ̃,True)`
 ([1, Sec. 4.3 (refinements)]); and `Λ̃` is recovered as `⌊Λ̃⌋ ⊔₂ ⌈Λ̃⌉`.
 
+## Inputs
+* `s` – four-valued signal
+* `k` – three-valued signal
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* refinement holds iff the signal lies between the two refinements
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

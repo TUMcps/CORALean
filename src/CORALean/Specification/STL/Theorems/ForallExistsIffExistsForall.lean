@@ -12,6 +12,21 @@ of a disjunction depend on the trace at pairwise disjoint sets of times, a reach
 trace that falsifies all of them at once — each part's counterexample, glued — so `∀ξ ∃i` is `∃i
 ∀ξ`. Every `R t` must be non-empty, or `C(R)` is empty and the left side holds vacuously.
 
+## Inputs
+* `ι` – index type of the blocks
+* `R` – reach sequence
+* `T` – time set of each block
+* `s` – chosen blocks
+* `P` – property of each block
+
+## Hypotheses
+* `hne` – all reach sets are nonempty
+* `hT` – the time sets of the chosen blocks are disjoint
+* `hP` – each property depends only on its block
+
+## Conclusion
+* all traces satisfy some property iff some property holds for all traces
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

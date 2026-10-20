@@ -12,6 +12,18 @@ public import Mathlib.Order.Basic
 # The stored value a time reads exists
 
 For a valid signal and `t ≥ 0`, `cell t` is an index into `values`.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `t` – time
+
+## Hypotheses
+* `hs` – the signal is valid
+* `ht` – the time is nonnegative
+
+## Conclusion
+* the cell is an index of the stored values
 -/
 
 -- Authors:       Claude Sonnet 5.5

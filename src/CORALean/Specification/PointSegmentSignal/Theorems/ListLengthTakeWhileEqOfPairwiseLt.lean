@@ -10,6 +10,22 @@ public import Mathlib.Order.Basic
 
 In a strictly increasing list whose `m`-th entry `a ≤ t` and whose next entry exceeds `t`, exactly
 the first `m + 1` entries are `≤ t`.
+
+## Inputs
+* `T` – element type
+* `l` – list
+* `t` – bound
+* `a` – entry at the index
+* `m` – index
+
+## Hypotheses
+* `hl` – the list strictly increases
+* `hm` – the entry is at the index
+* `h1` – the entry is at most the bound
+* `h2` – the next entry exceeds the bound
+
+## Conclusion
+* exactly the first entries up to the index are at most the bound
 -/
 
 -- Authors:       Claude Sonnet 5.5

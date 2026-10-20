@@ -11,6 +11,16 @@ public import CORALean.Specification.STL.Theorems.ShiftShift
 
 [1, Lemma 4]: `G_I X₁ φ ≡ X₁ G_I φ`, the equivalence it uses beside Table 1.
 
+## Inputs
+* `φ` – formula
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* always over an open interval commutes with next
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

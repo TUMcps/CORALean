@@ -11,6 +11,12 @@ public import CORALean.Specification.STL.Definitions.DiscreteFormula
 nested upper bounds of its temporal operators, `□[0,10] □[1,6] φ` having `10 + 6 = 16`. One step
 per operator, so it takes time linear in the length of the formula.
 
+## Inputs
+* none
+
+## Output
+* the number of steps the formula reads ahead
+
 ## References
 
 * [1] V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and

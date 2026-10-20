@@ -11,6 +11,15 @@ public import CORALean.Specification.FiniteSignal.Operations.Basic
 
 `val = at(sig,time)` of `at.m`: CORA throws if the time is beyond the duration (or negative); here
 `none`.
+
+## Inputs
+* `T` – time type
+* `V` – value type
+* `s` – signal
+* `t` – time
+
+## Output
+* the value at the time, or none if out of range
 -/
 
 -- Authors:       Claude Sonnet 5.5

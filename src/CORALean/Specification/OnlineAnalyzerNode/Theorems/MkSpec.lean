@@ -12,6 +12,20 @@ public import CORALean.Specification.OnlineAnalyzerNode.Operations.Mk
 gets no interval or another node gets one. Otherwise the node has the given index, parents and
 kind, no children, nothing propagated to any parent, and a valid signal that is `True` for a
 `true` node, `False` for a `false` node and inconclusive at every time `t ≥ 0` for the others.
+
+## Inputs
+* `kind` – node kind
+* `idx` – node index
+* `parents` – parent indices
+* `dp` – drop propagated times from the signal
+* `interval` – interval of an until node
+* `ap` – proposition of an atomic node
+
+## Hypotheses
+* none
+
+## Conclusion
+* fails iff the arguments do not fit, else a fresh node with the given fields
 -/
 
 -- Authors:       Claude Sonnet 5.5

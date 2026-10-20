@@ -9,6 +9,17 @@ public import CORALean.Specification.ReachSetAnalyzer.Definitions.TrueMark
 # The marks depend on the propositions and the masks only
 
 `TrueMark` and `FalseMark` read the propositions and the masks of the analyzer, not its builders.
+
+## Inputs
+* `obj` – analyzer
+* `obj0` – second analyzer
+
+## Hypotheses
+* `ha` – both have the same propositions
+* `hm` – both have the same masks
+
+## Conclusion
+* both analyzers give the same true and false marks
 -/
 
 -- Authors:       Claude Sonnet 5.5

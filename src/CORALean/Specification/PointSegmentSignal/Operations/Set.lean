@@ -14,6 +14,14 @@ does the work.
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
 stamps over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `s` – signal
+* `I` – time interval
+* `value` – value to set
+
+## Output
+* the signal with the value set on the interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

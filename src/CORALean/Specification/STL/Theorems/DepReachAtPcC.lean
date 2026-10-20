@@ -12,6 +12,19 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 `P_c(t_{i+1}) = e^{AΔt}P_c(t_i) ⊕ T U₀` is at every `i`: the center of `R(t_i)` is that of `H(t_i)`,
 which is what lets [1, Prop. 1] put the whole of `R(t_i)`'s center in the error set `E(t)`.
 
+## Inputs
+* `A` – dynamics matrix
+* `Δt` – time step
+* `cs` – constants of the algorithm
+* `X₀` – initial set
+* `i` – step index
+
+## Hypotheses
+* `hU` – the input zonotope is centered at the origin
+
+## Conclusion
+* the particular solution is centered at the origin
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

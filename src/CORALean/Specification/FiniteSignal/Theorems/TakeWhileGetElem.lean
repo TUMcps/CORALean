@@ -9,6 +9,16 @@ public import Mathlib.Order.Basic
 # The entries a prefix takes
 
 The entries `takeWhile` takes satisfy the predicate, and the next one does not.
+
+## Inputs
+* `α` – element type
+* `p` – predicate
+
+## Hypotheses
+* none
+
+## Conclusion
+* taken entries satisfy the predicate and the next one does not
 -/
 
 -- Authors:       Claude Sonnet 5.5

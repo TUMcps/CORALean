@@ -11,6 +11,12 @@ public import CORALean.Specification.STL.STL
 [1, Lemma 4]: `n.toFormula` is the STL formula with natural bounds a negation normal form stands
 for.
 
+## Inputs
+* none
+
+## Output
+* the STL formula of the normal form
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

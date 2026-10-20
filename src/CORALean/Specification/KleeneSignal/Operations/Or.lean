@@ -16,6 +16,13 @@ maximal refinements (unknown as true).
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
 stamps over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `ι` – index type of the operands
+* `sigs` – three-valued signals to disjoin
+
+## Output
+* the disjunction signal
 -/
 
 -- Authors:       Claude Sonnet 5.5

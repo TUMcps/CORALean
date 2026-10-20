@@ -11,6 +11,15 @@ An `stlInterval` denotes a contiguous set of times: `Set.OrdConnected` (`rawSet_
 the nonempty ones). It is what makes a Boolean signal that is `true` exactly on one interval a
 unitary signal in the sense of [1, Sec. 2.3 (unitary)].
 
+## Inputs
+* `J` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the times of the interval are order connected
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

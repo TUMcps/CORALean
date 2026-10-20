@@ -18,6 +18,20 @@ which is true at `t ∈ [0, dur]` exactly if `t` is in the piece `[lo, hi)` (clo
 & rint(j)) - int) & lint(i)`, if that is not empty and has positive volume. The runs are the
 closed cells where the signal is true (`findIntervals_spec`), so a piece reaches the breakpoint
 that closes a run, and `&` has the tolerance `eps` of `and_`.
+
+## Inputs
+* `eps` – machine epsilon
+* `lsig` – left signal
+* `rsig` – right signal
+* `p` – interval lower bound
+* `q` – interval upper bound
+
+## Hypotheses
+* `hl` – the left signal is valid
+* `hd` – both signals have equal duration
+
+## Conclusion
+* a valid signal true exactly on the pieces of matching interval pairs
 -/
 
 -- Authors:       Claude Sonnet 5.5

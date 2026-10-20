@@ -13,6 +13,15 @@ public import CORALean.Specification.SyntaxTree.Theorems.ContainsOfImage
 
 If the operand's interval encloses its value, the interval `Interval.sin` stores at the `sin` node
 encloses the node's value, exactly (`Interval.sin_exact`).
+
+## Inputs
+* none
+
+## Hypotheses
+* `h` – the operand's interval encloses its function
+
+## Conclusion
+* the interval of the sine encloses its function
 -/
 
 -- Authors:       Claude Sonnet 5.5

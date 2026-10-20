@@ -14,6 +14,12 @@ generators of `H(t_i)`, then those of `P_c(t_i)`, then those of `D_i`.
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (a zonotope
 computation over `𝕋` with directed rounding) is not yet written.
 
+## Inputs
+* `s` – algorithm state
+
+## Output
+* the reachable set at the time point
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

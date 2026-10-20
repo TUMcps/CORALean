@@ -16,6 +16,17 @@ parts of `value`, and a value is recovered from its parts.
 
 This is `Set(c.irr, ⊣₂)` in line 12 of [1, Alg. 2], which drops the irrelevant prefix of a child.
 
+## Inputs
+* `s` – four-valued signal
+* `I` – time interval
+* `value` – value to set
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* a valid signal with `value` on the interval and unchanged elsewhere
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

@@ -11,28 +11,27 @@ public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 The `else` branch (`% union of unsafe sets`) of `aux_evaluatePredicate` in CORA's
 `@linearSys/private/priv_verifySTL_kochdumper.m` (l. 886-957), the program of [1]: the status of a
-reachable zonotope `R = (c, G)` against unsafe halfspaces `{x | cᵀx ≤ d}` (`set{i}.c'`,
-`set{i}.d`), as printed, one `let` per MATLAB step: `c = c'·R.c`, `G = c'·R.G`, `G = abs(G)`,
-`rad = sum(G,2)`, the quick checks (`1` disjoint, `0` contained, returning at once, `3` meeting on
-the initial and input factors, else `2`, where a polytope would call `isIntersecting`, which a
-halfspace skips), `list(i) = res`. The branch ends `res = max(list(i))`, the last set's entry and
-not `max(list)`: unless an earlier set returned `0`, the answer is the code of the last set alone.
-`index` is `ind.int{i}` or `ind.point{i}`, the columns of `R.G` for the initial and input factors.
+reachable zonotope `R = (c, G)` against unsafe halfspaces `{x | cᵀx ≤ d}`, one `let` per MATLAB
+step: `c = c'·R.c`, `G = abs(c'·R.G)`, `rad = sum(G,2)`, the quick checks (`1` disjoint, `0`
+contained, `3` meeting on the initial and input factors, else `2`), `list(i) = res`. It ends
+`res = max(list(i))`, the last set's entry and not `max(list)`.
 
 # CORA's `aux_evaluatePredicate` reports a set meeting an earlier unsafe set as disjoint
 
-`res = max(list(i))` ends the union branch of `aux_evaluatePredicate`
-(`@linearSys/private/priv_verifySTL_kochdumper.m`, l. 955) with `i` the last loop index, so only
-the last unsafe set's code is returned. In `ℝ¹` take `R = 0 + 1·[-1,1]` and the unsafe
-halfspaces `x ≤ 0` and `x ≤ -5`: `R` meets the first (at `x = 0`), whose code alone is `2`,
-but the second is disjoint from `R` (`c - rad = -1 > -5`), and CORA returns `1`, `disjoint`.
+Only the last unsafe set's code is returned (l. 955). In `ℝ¹` take `R = 0 + 1·[-1,1]` and the
+halfspaces `x ≤ 0` and `x ≤ -5`: `R` meets the first (code `2`), the second is disjoint, and CORA
+returns `1`. Downstream (read, not run), `aux_modelCheckReachSet` (l. 198-208) and `sampledTime`
+then replace the predicate by `true`, so the verifier can answer `verified` for a reachable set
+that meets an unsafe set. Only the helper is formalized here.
 
-Downstream (read, not run): `aux_modelCheckReachSet` (l. 198-208) copies every entry `< 2`
-of `pred` into the time point entries, and `sampledTime` (via `evalPredicates`, l. 68-69: `1` is
-`satisfied`) then replaces the predicate by `true`, so no constraint on the factors from the missed
-unsafe set is ever formed (`aux_getConstraints` is only reached for what is left of the formula):
-the verifier can answer `verified` for a reachable set that meets an unsafe set. Only the helper
-is formalized here, for the verifier of [1].
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA reports a set meeting an earlier unsafe set as disjoint
 
 ## References
 

@@ -13,6 +13,15 @@ public import CORALean.Specification.STLInterval.Definitions.MemBounds
 
 `toBoolSignal(obj)` without argument throws iff the signal is unknown at some time `t ≥ 0`;
 `toBoolSignal?` is `none` exactly then.
+
+## Inputs
+* `s` – three-valued signal
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* conversion fails iff the signal is unknown at some time
 -/
 
 -- Authors:       Claude Sonnet 5.5

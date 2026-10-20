@@ -14,6 +14,17 @@ public import CORALean.Specification.SyntaxTree.Theorems.FunHanAcosSound
 
 The node `acos` of an operand inside `[-1,1]` builds over a sound tree is sound: its interval
 encloses it (`encloses_acos`) and its `funHan` is sound.
+
+## Inputs
+* none
+
+## Hypotheses
+* `h` – the operand tree is sound
+* `hd₁` – the operand stays above minus one
+* `hd₂` – the operand stays below one
+
+## Conclusion
+* the inverse cosine tree is sound
 -/
 
 -- Authors:       Claude Sonnet 5.5

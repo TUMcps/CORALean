@@ -8,6 +8,17 @@ public import CORALean.Specification.STLInterval.Definitions.MaximalRuns
 # Maximal runs depend on a property only at times `≥ 0`
 
 Two properties that agree at all times `t ≥ 0` have the same maximal runs.
+
+## Inputs
+* `L` – list of intervals
+* `P` – property of times
+* `Q` – second property
+
+## Hypotheses
+* `h` – the properties agree at nonnegative times
+
+## Conclusion
+* the intervals are maximal runs of one iff of the other
 -/
 
 -- Authors:       Claude Sonnet 5.5

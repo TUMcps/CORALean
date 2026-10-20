@@ -11,6 +11,17 @@ public import CORALean.Specification.STL.Theorems.Basic
 
 `conjunctiveNormalForm(obj)` is satisfied by the same traces as `obj` (`Tree.Sat`, CORA's reading
 of `until`), with or without the negation normal form step.
+
+## Inputs
+* `φ` – formula
+* `nnf` – formula is in negation normal form
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the normal form keeps the meaning
 -/
 
 -- Authors:       Claude Sonnet 5.5

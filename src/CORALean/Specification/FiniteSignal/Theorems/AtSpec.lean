@@ -12,6 +12,19 @@ public import CORALean.Specification.FiniteSignal.Theorems.TimeLeDuration
 For a valid signal, `at(sig,time)` returns the value of the cell containing the time: the cells
 `[lo,hi)` between consecutive breakpoints, the last one closed at its right end. It throws exactly
 outside `[0, duration]`.
+
+## Inputs
+* `T` – time type
+* `V` – value type
+* `s` – signal
+* `t` – time
+* `v` – value to look up
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* `at` returns the value iff a cell containing the time holds it
 -/
 
 -- Authors:       Claude Sonnet 5.5

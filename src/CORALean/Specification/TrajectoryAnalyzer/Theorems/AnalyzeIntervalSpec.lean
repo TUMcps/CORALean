@@ -13,6 +13,21 @@ public import CORALean.Specification.TrajectoryAnalyzer.Theorems.SignalsRepresen
 If the signals represent `M` and the interval `[t(l),t(l+1))` is proper, `analyzeInterval`
 succeeds and the signals then represent `M` plus the times that the time point `l` marks true
 (`TrueAt`) for the propositions that hold at its point.
+
+## Inputs
+* `obj` – analyzer
+* `s` – realization index
+* `dur` – signal duration
+* `sigs` – signal of each proposition
+* `M` – times marking each proposition
+* `l` – time point index
+
+## Hypotheses
+* `h` – the signals represent the marked times
+* `hlh` – the interval is proper
+
+## Conclusion
+* the signals gain the marks of the interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

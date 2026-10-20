@@ -9,6 +9,17 @@ public import CORALean.Specification.TentativeKleeneSignal.TentativeKleeneSignal
 
 The value at a time is read off the two parts: `True` iff only `canBeTrue` holds, `False` iff only
 `canBeFalse`, `Unknown` iff both, `Inconclusive` iff neither.
+
+## Inputs
+* `T` – time type
+* `s` – tentative signal
+* `t` – time
+
+## Hypotheses
+* none
+
+## Conclusion
+* each value is read off the two Boolean parts
 -/
 
 -- Authors:       Claude Sonnet 5.5

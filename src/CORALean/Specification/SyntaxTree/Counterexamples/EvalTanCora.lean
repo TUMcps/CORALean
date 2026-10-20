@@ -10,6 +10,16 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 # The value of `tanCora`
 
 The node `tanCora(obj)` builds denotes `tanCora` of the operand.
+
+## Inputs
+* `t` – operand tree
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed tan node evaluates to the tangent of the operand
 -/
 
 -- Authors:       Claude Sonnet 5.5

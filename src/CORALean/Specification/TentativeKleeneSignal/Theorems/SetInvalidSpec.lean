@@ -11,6 +11,16 @@ public import CORALean.Specification.TentativeKleeneSignal.Operations.Basic
 
 `setInvalid(obj,interval)` of a valid signal is valid, `Inconclusive` at the times of the interval
 and unchanged elsewhere: neither value can hold on the interval.
+
+## Inputs
+* `s` – tentative signal
+* `I` – time interval
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* a valid signal inconclusive on the interval and unchanged outside
 -/
 
 -- Authors:       Claude Sonnet 5.5

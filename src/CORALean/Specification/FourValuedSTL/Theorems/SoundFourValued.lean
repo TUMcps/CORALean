@@ -17,16 +17,29 @@ public import CORALean.Specification.FourValuedSTL.Definitions.Basic
 /-!
 # Soundness of the four-valued semantics
 
-For a partial reachable set `R̃ : T → 2^X` and every reachable set `R` that extends it (`R ≺ R̃`,
-`R(t) = R̃(t)` on `T`), `⟦φ⟧_R ≺ ⟦φ⟧_R̃`: if `⟦φ⟧_R̃(t) = v ∈ U₁` then `⟦φ⟧_R(t) = v`
-([1, Thm. 2]). The paper sketches the proof as the one of [1, Thm. 1] with a direct semantics of
-the operators of `U₂`-signals; here the inductive cases are the three lemmas that each operator of
-`U₂`-signals respects refinement (`FourValuedSignal.not_isRefinedBy`, `and_isRefinedBy`,
-`until_isRefinedBy`), the
-last from the monotonicity of [1, Lemma 3] that [1, Sec. 4.3 (operators)] defines the operators by.
-
-The signals of the atoms are given and valid, as for [1, Thm. 1] (`FourValuedSTL.IsAtomSignal`,
+For a partial reachable set `R̃ : T → 2^X` and every extension `R ≺ R̃`, `⟦φ⟧_R ≺ ⟦φ⟧_R̃`: if
+`⟦φ⟧_R̃(t) = v ∈ U₁` then `⟦φ⟧_R(t) = v` ([1, Thm. 2]). The paper sketches the proof of [1, Thm. 1]
+with a direct semantics of the `U₂` operators; here the cases are the lemmas that each operator
+respects refinement (`FourValuedSignal.not_isRefinedBy`, `and_isRefinedBy`, `until_isRefinedBy`),
+the last from [1, Lemma 3]. The atom signals are given and valid (`FourValuedSTL.IsAtomSignal`,
 `IsPartialAtomSignal`): finite variability, which the paper does not ask of `R` and `R̃`.
+
+## Inputs
+* `X` – state type
+* `φ` – formula
+* `T` – times where the partial set is known
+* `Rp` – partial reachable set
+* `R` – extension of the partial set
+* `S` – three-valued signal of each atom
+* `S'` – four-valued signal of each atom
+
+## Hypotheses
+* `hext` – the set extends the partial set
+* `hS` – the three-valued atom signals are valid
+* `hS'` – the four-valued atom signals are valid
+
+## Conclusion
+* the four-valued signal is valid and refined by the three-valued one
 
 ## References
 

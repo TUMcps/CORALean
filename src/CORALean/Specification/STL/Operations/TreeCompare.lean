@@ -13,6 +13,14 @@ with a number on the right the node compares the `stl` operand with it, with a n
 the operands are swapped (`5 < x` is `x > 5`), and two `stl` operands are compared by their
 difference with `0`. Two numbers never reach the method in CORA (MATLAB compares them), and here
 give the comparison of the two.
+
+## Inputs
+* `op` – comparison
+* `e₁` – left expression
+* `e₂` – right expression
+
+## Output
+* the predicate node of the comparison
 -/
 
 -- Authors:       Claude Sonnet 5.5

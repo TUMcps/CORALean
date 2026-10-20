@@ -10,6 +10,17 @@ public import CORALean.Specification.STL.STL
 `ξ ⊨ₜ φ ⇒ ψ ⇔ (ξ ⊨ₜ φ → ξ ⊨ₜ ψ)`: the implication `¬φ ∨ ψ` CORA's `implies`
 builds, from the `¬` and `∨` of [1, Sec. 2.2], is the classical one.
 
+## Inputs
+* `φ` – antecedent formula
+* `ψ` – consequent formula
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the implication holds iff the antecedent implies the consequent
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

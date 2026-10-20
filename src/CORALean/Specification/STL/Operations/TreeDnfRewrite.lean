@@ -13,6 +13,12 @@ the left one `|`: two; the right one `|`: two, decided on the operand of `obj` (
 not on the rewritten one, as printed (the rewritten one is an `|` whenever the original is, so
 the two agree; an operand that only becomes an `|` is left for the next pass). Every other node
 (a comparison, `~`, a temporal operator) is a leaf and is not entered.
+
+## Inputs
+* none
+
+## Output
+* the formula after one rewrite pass and the number of changes
 -/
 
 -- Authors:       Claude Sonnet 5.5

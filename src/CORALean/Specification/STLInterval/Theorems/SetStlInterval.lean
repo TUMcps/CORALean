@@ -10,6 +10,18 @@ public import CORALean.Specification.STLInterval.Operations.StlInterval
 `stlInterval(lb,ub,lc,rc)` denotes the times between `lb` and `ub`, each end in when its
 flag is set: forcing an infinite bound open changes no real time, and the empty cases are exactly
 the empty set.
+
+## Inputs
+* `lb` – lower bound
+* `ub` – upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+
+## Hypotheses
+* `hlb` – the lower bound is nonnegative
+
+## Conclusion
+* the constructor denotes the set between its bounds
 -/
 
 -- Authors:       Claude Sonnet 5.5

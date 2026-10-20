@@ -19,6 +19,14 @@ order `j` of `A` computed as a point; the interval sum is the sum of the bounds.
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (a zonotope
 computation over `𝕋` with directed rounding) is not yet written.
 
+## Inputs
+* `A` – dynamics matrix
+* `Δt` – time step
+* `κ` – Taylor order
+
+## Output
+* the interval matrix of the curvature set
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

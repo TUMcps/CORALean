@@ -17,6 +17,12 @@ that does. Hybrid automata are not modelled: `Traces(S)` is any set of traces.
 between two of them and, at a breakpoint, free: the alternating points and open intervals, as a
 property of `R` rather than a list of sets. `CDivisible c T` is c-divisibility, `T ⊆ ℕc`.
 
+## Inputs
+* `R` – reach sequence
+
+## Output
+* the set of traces lying in the reach sequence at every time
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

@@ -10,6 +10,12 @@ public import Mathlib.Data.Finset.Basic
 
 The variables `x(i)` an expression mentions (the `variables` property of CORA's `stl` objects,
 which `getVariables` lists). A number has none; `x(i)*0` still mentions `x(i)`.
+
+## Inputs
+* none
+
+## Output
+* the indices of the variables occurring in the expression
 -/
 
 -- Authors:       Claude Sonnet 5.5

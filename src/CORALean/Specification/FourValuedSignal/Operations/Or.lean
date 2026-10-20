@@ -21,6 +21,13 @@ value is unknown; `none` is that error, which `at_or` shows does not occur.
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
 stamps over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `ι` – index type of the operands
+* `sigs` – four-valued signals to disjoin
+
+## Output
+* the disjunction signal, or none if CORA throws
 -/
 
 -- Authors:       Claude Sonnet 5.5

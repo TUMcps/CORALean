@@ -14,6 +14,15 @@ public import CORALean.Specification.SyntaxTree.Theorems.TanhSound
 
 The node `tanh` builds over a sound tree is sound: its interval encloses it (`encloses_tanh`) and
 its `funHan` is sound.
+
+## Inputs
+* none
+
+## Hypotheses
+* `h` – the operand tree is sound
+
+## Conclusion
+* the hyperbolic tangent tree is sound
 -/
 
 -- Authors:       Claude Sonnet 5.5

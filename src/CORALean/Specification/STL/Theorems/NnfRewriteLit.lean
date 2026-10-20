@@ -10,6 +10,15 @@ public import CORALean.Specification.STL.Definitions.NnfRewrite
 [1, Lemma 4]: a non-temporal literal `ϱ` is already sampled time, and so are `F(0,1) ϱ` and
 `G(0,1) ϱ`.
 
+## Inputs
+* `ϱ` – predicate
+
+## Hypotheses
+* none
+
+## Conclusion
+* the literal rewrites to sampled time
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

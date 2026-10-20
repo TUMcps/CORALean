@@ -9,6 +9,12 @@ public import CORALean.Specification.STLInterval.Definitions.WithinTol
 
 `@stlInterval/contains_.m`, the numeric branch: strictly between the bounds, or at a closed bound
 (up to `tol`). The empty interval contains nothing.
+
+## Inputs
+* `tol` – tolerance
+
+## Output
+* the interval contains the time up to the tolerance
 -/
 
 -- Authors:       Claude Sonnet 5.5

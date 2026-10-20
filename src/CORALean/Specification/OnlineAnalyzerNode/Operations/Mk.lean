@@ -14,6 +14,17 @@ type starts with, nothing propagated to any parent yet (`prop` is one empty inte
 and no children. An `until` node takes its interval as the extra argument, the other types none
 (`narginchk`), and an `AP` node takes its atomic proposition, which is not stored here; CORA
 throws otherwise, here `none`.
+
+## Inputs
+* `kind` – node kind
+* `idx` – node index
+* `parents` – parent indices
+* `dropPropagated` – drop propagated times from the signal
+* `interval` – interval of an until node
+* `ap` – proposition of an atomic node
+
+## Output
+* the new node, or none if the arguments do not fit its kind
 -/
 
 -- Authors:       Claude Sonnet 5.5

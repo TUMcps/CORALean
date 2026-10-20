@@ -13,6 +13,13 @@ proposition, of the duration `dur = t(:,end)` of the simulation, true on the tim
 first point satisfies the proposition. CORA's `analyze(obj,s,j)` also picks the `j`-th of an array
 of analyzers; that is plumbing. It throws for an empty simulation, a negative duration or a
 degenerate interval; here `none`.
+
+## Inputs
+* `obj` – analyzer
+* `s` – realization index
+
+## Output
+* the signal of each proposition, or none where CORA throws
 -/
 
 -- Authors:       Claude Sonnet 5.5

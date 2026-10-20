@@ -13,6 +13,27 @@ polytopes `P_hjkl`, then `α` is in a polytope of `STL.factorStep` (lines 7-13 o
 (`hU`), and a polytope holding `α` is not empty. `meets` answering `false` means no intersection,
 `isEmpty` answering `true` an empty polytope; neither is trusted otherwise.
 
+## Inputs
+* `Rj` – reachable set
+* `Pjk` – polytopes of the formula
+* `unsafeSet` – unsafe factor set of a polytope
+* `meets` – set intersection test
+* `isEmpty` – emptiness test
+* `V` – accumulated unsafe polytopes
+* `α` – factor
+* `ξ` – solution for the factor
+
+## Hypotheses
+* `hR` – the solution lies in the reachable set
+* `hU` – a solution in a polytope puts its factor in the unsafe set
+* `hmeets` – a negative test means the sets are disjoint
+* `hempty` – a positive emptiness test means the set is empty
+* `hP` – the solution lies in one of the polytopes
+* `hV` – the factor lies in one of the accumulated polytopes
+
+## Conclusion
+* the factor lies in a polytope after the pass
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

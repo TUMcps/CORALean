@@ -9,6 +9,12 @@ public import CORALean.Specification.STL.Definitions.RTL
 
 The `⋀` of a list of RTL formulas, as in [1, Lemma 2], Eq. (16); the empty `⋀` is `A ⊤`.
 
+## Inputs
+* `l` – list of formulas
+
+## Output
+* the conjunction of the formulas
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

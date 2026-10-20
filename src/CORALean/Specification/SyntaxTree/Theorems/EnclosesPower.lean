@@ -13,6 +13,15 @@ public import CORALean.Specification.SyntaxTree.Theorems.ContainsOfImage
 
 If the operand's interval encloses its value, `Interval.power` encloses the power
 (`Interval.power_exact`).
+
+## Inputs
+* `k` – exponent
+
+## Hypotheses
+* `h` – the operand's interval encloses its function
+
+## Conclusion
+* the interval of the power encloses its function
 -/
 
 -- Authors:       Claude Sonnet 5.5

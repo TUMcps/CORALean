@@ -12,6 +12,22 @@ public import Mathlib.Algebra.Order.Group.Nat
 
 Keeping the first `k` time points of a valid signal, with any values, a time `t ≥ 0` reads the same
 index as before while that index is among the first `2 k` values, and the last one afterwards.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `k` – number of kept time points
+* `vals` – values of the cut signal
+* `t` – time
+
+## Hypotheses
+* `hs` – the signal is valid
+* `hk1` – at least one point is kept
+* `hk2` – at most all points are kept
+* `ht` – the time is nonnegative
+
+## Conclusion
+* the cell is capped at the last stored value
 -/
 
 -- Authors:       Claude Sonnet 5.5

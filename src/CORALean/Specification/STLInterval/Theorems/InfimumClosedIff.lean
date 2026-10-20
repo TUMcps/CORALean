@@ -11,6 +11,15 @@ public import CORALean.Specification.STLInterval.Theorems.RawSetUpperOfLe
 # `infimum` says whether the infimum is a time
 
 The flag `infimum` returns holds iff the infimum is itself one of the times.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* `hI` – the interval is nonempty
+
+## Conclusion
+* the infimum is closed iff a time of the interval attains it
 -/
 
 -- Authors:       Claude Sonnet 5.5

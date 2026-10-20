@@ -9,6 +9,13 @@ public import CORALean.Specification.OnlineAnalyzerNode.OnlineAnalyzerNode
 
 Node `j` (from `0`) has index `j + 1`, and every node has the `dropPropagated` of the
 constructor and a first parent.
+
+## Inputs
+* `dropPropagated` – drop propagated times flag
+* `nodes` – list of nodes
+
+## Output
+* nodes are indexed consecutively and share the flag and a parent
 -/
 
 -- Authors:       Claude Sonnet 5.5

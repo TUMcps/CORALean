@@ -12,6 +12,15 @@ public import CORALean.Specification.SyntaxTree.Theorems.RestrictContains
 # `aaux_tan_` is sound
 
 `aaux_tan_` keeps every solution of `atan s ∈ int`; `tan(±pi/2) = ±Inf` is the extended bound.
+
+## Inputs
+* `prev` – previous interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the inverse of the inverse tangent keeps every solution
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -14,6 +14,26 @@ A reachable state `ξ = c + G(·,H) α̃ + G(·,K) β`, `|β| ≤ 1`, is what [1
 `P` in `K`, not an equality: a factor in `K` may still miss `P`, `K` being the box relaxation of
 the uncertainty. Used for the time interval reachable set `R(τ_i)` too, with `N_i`, `M_i`.
 
+## Inputs
+* `C` – polytope matrix
+* `d` – polytope offsets
+* `c` – center of the reachable set
+* `G` – generator matrix
+* `H` – generator selection
+* `K` – generators carrying only uncertainty
+* `α` – factor vector
+* `β` – uncertainty factors
+* `ξ` – reached point
+
+## Hypotheses
+* `hp` – the selection fits the factor dimension
+* `hβ` – the uncertainty factors lie in the unit interval
+* `hξ` – the point is given by the factors
+* `hα` – the factors lie outside the unsafe set
+
+## Conclusion
+* the point does not lie in the polytope
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

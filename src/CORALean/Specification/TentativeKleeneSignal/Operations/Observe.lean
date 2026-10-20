@@ -17,6 +17,14 @@ of.
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
 stamps over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `s` – tentative signal
+* `I` – time interval
+* `value` – observed value
+
+## Output
+* the signal after observing the value on the interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

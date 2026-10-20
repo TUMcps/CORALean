@@ -10,6 +10,17 @@ public import CORALean.Specification.STL.Operations.Basic
 
 `maximumTime(obj)` bounds the part of a trace the satisfaction of `obj` depends on: two traces
 that agree on `[0, maximumTime obj]` are satisfying together.
+
+## Inputs
+* `φ` – formula
+* `ξ` – trace
+* `ξ'` – second trace
+
+## Hypotheses
+* `h` – the traces agree up to the latest time
+
+## Conclusion
+* the formula holds on both or neither
 -/
 
 -- Authors:       Claude Sonnet 5.5

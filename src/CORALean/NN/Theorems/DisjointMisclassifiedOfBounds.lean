@@ -21,9 +21,9 @@ duplicated into each.
 ## Inputs
 * `O` – output set
 * `l` – target label
+* `u` – support bound of the output set for each rival
 
 ## Hypotheses
-* `u` – support bound of the output set for each rival
 * `h` – every rival's bound is negative
 
 ## Conclusion

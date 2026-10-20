@@ -16,6 +16,16 @@ supremum of the (one-dimensional) summand, the flags stay. An empty summand, `su
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (bounds
 over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `I` – interval
+* `J` – real interval
+
+## Hypotheses
+* `hc` – the lower bound stays nonnegative
+
+## Output
+* the interval plus the real interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

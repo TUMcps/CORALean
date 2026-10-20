@@ -17,14 +17,10 @@ public import CORALean.Specification.STLInterval.Operations.Supremum
 
 `out = aux_intervalUntil(lhsInt,untilInt,rhsInt)` of `pointSegmentSignal/until.m`: the signal that
 is `true` at the times `t` for which an interval of `lhsInt`, closed at the left, reaches an
-interval of `rhsInt`, closed at the right, at a time `t'` with `t' - t` in the until interval, minus
-zero; and, if the until interval contains `0`, at the times of `rhsInt`. `contains(0)` and
-`representsa` are taken at tolerance `0`; CORA's default tolerance of `contains` is a few `eps`.
-
-With one interval on each side this is the unitary until of [1, Eq. 1].
-
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
+interval of `rhsInt`, closed at the right, at a `t'` with `t' - t` in the until interval, minus
+zero; and, if that interval contains `0`, at the times of `rhsInt`. `contains(0)` and `representsa`
+use tolerance `0`. With one interval on each side this is the unitary until of [1, Eq. 1].
+Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
 
 ## References
 

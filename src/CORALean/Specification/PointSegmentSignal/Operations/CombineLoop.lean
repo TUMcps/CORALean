@@ -14,6 +14,15 @@ The `while` loop of `pointSegmentSignal.combine` for one output. Each pass takes
 unconsumed time among the inputs, evaluates `op` at the point and on the interval after it, and
 appends the point unless it repeats the interval before and after. CORA's `eps` tie tolerance
 becomes equality; the passes are bounded by `fuel` (the total number of time points suffices).
+
+## Inputs
+* `T` – time type
+* `ι` – index type of the inputs
+* `op` – pointwise operator on Boolean values
+* `sig` – input signals
+
+## Output
+* the time points and values of one combined output
 -/
 
 -- Authors:       Claude Sonnet 5.5

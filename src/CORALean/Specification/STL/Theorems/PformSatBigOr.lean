@@ -9,6 +9,16 @@ public import CORALean.Specification.STL.Definitions.Pform
 
 `r ⊨ₚ ⋁ K ⇔ ∃ ϱ ∈ K, r ⊨ₚ ϱ`, the `ϱ' = ⋁_k ϱ_k` of [1, Lemma 2], Eq. (17).
 
+## Inputs
+* `K` – list of predicates
+* `r` – state
+
+## Hypotheses
+* none
+
+## Conclusion
+* the disjunction holds at the state iff one predicate does
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

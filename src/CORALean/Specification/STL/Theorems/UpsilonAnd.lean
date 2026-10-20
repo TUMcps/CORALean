@@ -11,6 +11,21 @@ public import CORALean.Specification.STL.Theorems.SatAnd
 [1, Eq. 11]: `Υ(φ₁ ∧ φ₂) ≡ Υ(φ₁) ∧ Υ(φ₂)`, on every class of reach sequences `Υ` is sound
 and complete for.
 
+## Inputs
+* `𝓡` – set of reach sequences
+* `Υ` – transformation of formulas
+* `φ₁` – left formula
+* `φ₂` – right formula
+* `R` – reach sequence
+
+## Hypotheses
+* `hs` – the transformation is sound
+* `hc` – the transformation is complete
+* `hR` – the reach sequence is in the set
+
+## Conclusion
+* the transformation of a conjunction is the conjunction of the transformations
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

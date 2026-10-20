@@ -15,6 +15,13 @@ public import CORALean.Specification.SyntaxTree.Operations.Interval
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (interval
 arithmetic over `𝕋` with outward rounding) is not yet written.
+
+## Inputs
+* `int` – target interval
+* `prev` – previous interval
+
+## Output
+* the interval for the operand of the inverse tangent
 -/
 
 -- Authors:       Claude Sonnet 5.5

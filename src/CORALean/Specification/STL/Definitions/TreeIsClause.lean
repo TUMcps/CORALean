@@ -9,6 +9,12 @@ public import CORALean.Specification.STL.Definitions.Tree
 
 A formula with no `&` above a leaf: a leaf (a comparison, `true`, `false`, `~`, a temporal
 operator) or an `|` of clauses. The literals of `getClauses` for a CNF.
+
+## Inputs
+* none
+
+## Output
+* the formula is a disjunction of leaves
 -/
 
 -- Authors:       Claude Sonnet 5.5

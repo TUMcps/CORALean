@@ -14,6 +14,18 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # `aux_sin_` is sound
 
 `aux_sin_` keeps every solution of `sin s ∈ int`.
+
+## Inputs
+* `s` – point
+* `lo` – lower bound
+* `hi` – upper bound
+
+## Hypotheses
+* `h₁` – the sine is at least the lower bound
+* `h₂` – the sine is at most the upper bound
+
+## Conclusion
+* the point lies in a shifted branch of the inverse sine
 -/
 
 -- Authors:       Claude Sonnet 5.5

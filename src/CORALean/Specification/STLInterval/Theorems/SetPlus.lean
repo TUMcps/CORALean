@@ -11,6 +11,16 @@ public import CORALean.Specification.STLInterval.Theorems.Basic
 # `plus` denotes the sum
 
 `I + J` denotes the sum set `{x + y | x ∈ I, y ∈ J}`, empty operands included.
+
+## Inputs
+* `I` – first interval
+* `J` – second interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sum denotes the sum of the times
 -/
 
 -- Authors:       Claude Sonnet 5.5

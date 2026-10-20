@@ -11,6 +11,15 @@ public import Mathlib.Data.EReal.Basic
 `[0,dur]` exactly when the interval reaches into the signal (`0 < hi`, `lo < dur`) and `t` lies in
 it, its right end being open unless it reaches the end `dur` of the signal, where the signal is
 closed.
+
+## Inputs
+* `dur` – signal duration
+* `t` – time
+* `lo` – interval lower bound
+* `hi` – interval upper bound
+
+## Output
+* the interval marks the time
 -/
 
 -- Authors:       Claude Sonnet 5.5

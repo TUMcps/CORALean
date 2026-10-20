@@ -11,6 +11,17 @@ If the analyzer represents `PT` and `PF` and every entry named by the branch `w`
 `R(j)` for `j` in `w`) has proper time intervals, analyzing the entries one after the other
 succeeds and leaves the analyzer representing the same plus the times that any set of any of these
 entries marks in its time interval.
+
+## Inputs
+* `obj` – analyzer
+* `d` – signal duration
+* `R` – tree of reach sets
+
+## Hypotheses
+* none
+
+## Conclusion
+* analyzing a branch's entries extends what the analyzer represents
 -/
 
 -- Authors:       Claude Sonnet 5.5

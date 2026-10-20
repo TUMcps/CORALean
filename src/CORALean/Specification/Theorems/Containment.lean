@@ -11,6 +11,18 @@ public import CORALean.Global.SupportFunction.SupportFunction
 A safe set given by halfspaces is checked one halfspace at a time, and each is a
 bound in that halfspace's own direction — the same object `Global.SupportFunction`
 returns, so nothing new is needed to discharge the check.
+
+## Inputs
+* `ι` – index type of the directions
+* `c` – directions
+* `d` – offsets
+* `u` – support bounds of the set
+
+## Hypotheses
+* `h` – each bound is at most its offset
+
+## Conclusion
+* the safe set specification holds of the set
 -/
 
 -- Authors:       Claude Opus 5

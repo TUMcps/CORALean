@@ -11,6 +11,21 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 
 If `backpropagation` of a unary node returns a box, its `funHan` returned an interval and the
 operand returned that box.
+
+## Inputs
+* `op` – unary operator
+* `w` – value interval
+* `f` – backpropagation of the operator
+* `t` – operand tree
+* `v` – target interval
+* `B` – box
+* `r` – result box
+
+## Hypotheses
+* `h` – the backpropagation returns the result box
+
+## Conclusion
+* the operand's backpropagation of the operator's result gives the result box
 -/
 
 -- Authors:       Claude Sonnet 5.5

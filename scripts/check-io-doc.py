@@ -24,7 +24,7 @@ reported as stale.
 Which binder is a `Prop` is decided by a text proxy, since no elaboration happens here. A binder
 is a hypothesis when
   * its name is `h` alone or `h` followed by at least one more character (`hZ`, `hlt`, `h₁`,
-    `hΔt`) and its type does not begin with a data head (`ℕ ℤ ℝ ℚ ℂ Bool Fin Type Set Vec Mat
+    `hΔt`) and its type does not begin with a data head (`ℕ ℤ ℝ ℚ ℂ EReal Bool Fin Type Set Vec Mat
     List Finset Option String`, or the float scalar `𝕋`: `{lo hi : 𝕋}`; a function type `α → 𝕋` counts by its codomain) free of a depth-0 relation symbol (so `(hi : Fin k → Vec 𝕋 n)`
     is an input, `(hS : Set.Nonempty S)` and `(hS : Set α ⊆ T)` are hypotheses), or
   * its type, outer parentheses removed, contains at depth 0 one of
@@ -45,7 +45,7 @@ symbol. (Without this, `(f : α → ℝ≥0∞)` was sorted into the hypotheses.
 `(hy : (i : Fin N) → Vec ℝ (qy i))` is judged by its codomain, so it is data, not a hypothesis.
 A function type whose codomain is a data type (`(sel : (Z : Zonotope α) → Z.h = m + 2 → Fin m × Bool)`) is data, whatever its domain says. A function into a family, `(r : ℕ → ∀ i, Vec ℝ (p i))`, is judged by the family. A family binder `(A : ∀ a, Mat ℝ n (m a))` or `(X : ∀ a, Zonotope (Vec ℝ (m a)))` — a `∀` whose
 body ends in a data type (`Mat`, `Vec`, `Zonotope`, `Interval`, …, or a type variable `ι`; not `Option`) with no relation symbol — is data.
-A family into `PolyZonotope` or `GNN.ActLayer` (`(acts : ∀ s, GNN.ActLayer N (c s))`, `(f : ∀ t,
+A family into `SupportBound` or `SupportWitness` (structures, `(wO : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness O d)`), into `PolyZonotope` or `GNN.ActLayer` (`(acts : ∀ s, GNN.ActLayer N (c s))`, `(f : ∀ t,
 PolyZonotope (Vec ℝ (d t)) → PolyZonotope (Vec ℝ (d (t + 1))))`), or into `Cost` (`(LC : ∀ {a b : ℕ},
 Layer S a b → Cost)`), is data as well. A function binder `(contract : ∀ m : ℕ, A → B → (Fin m → ℝ) × (Fin m → ℝ))` — a `∀` whose body
 has no relation symbol and ends in a parenthesised codomain — is data (a contractor), not a statement.
@@ -153,10 +153,10 @@ def binders(sig):
     return out
 
 
-NN_DATA_HEADS = {"PolyZonotope", "ActLayer"}  # families `∀ t, PolyZonotope ..`, `∀ s, GNN.ActLayer ..`
+NN_DATA_HEADS = {"PolyZonotope", "ActLayer", "SupportBound", "SupportWitness"}  # families `∀ t, PolyZonotope ..`, `∀ s, GNN.ActLayer ..`
 TYPE_VARS = set("αβγδεζηθικλμνξπρστυφχψω")  # `ι`, `κ`, … : a universe variable names a data type
 DATA_HEADS = {"ℕ", "ℤ", "ℝ", "ℚ", "ℂ", "Bool", "Fin", "Type", "Type*", "Sort", "Prop", "String",
-              "List", "Finset", "Set", "Vec", "Mat", "Option", "𝕋"}
+              "List", "Finset", "Set", "Vec", "Mat", "Option", "𝕋", "EReal"}
 
 
 def is_prop(name, typ):

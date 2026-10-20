@@ -13,6 +13,24 @@ there in the primed one too), then `λ₁ U_I λ₂ ⊑ₜ λ₁' U_I λ₂'`: i
 times, the output is `true` more often. This is the monotonicity of `U_I` of
 [1, Sec. 4.2 (monotonicity)], which the paper derives from [1, Lemma 2] (`until_spec` here).
 
+## Inputs
+* `l` – left signal
+* `l'` – larger left signal
+* `r` – right signal
+* `r'` – larger right signal
+* `U` – time interval
+
+## Hypotheses
+* `hl` – the left signal is valid
+* `hl'` – the larger left signal is valid
+* `hr` – the right signal is valid
+* `hr'` – the larger right signal is valid
+* `h1` – the left signal is below its larger one
+* `h2` – the right signal is below its larger one
+
+## Conclusion
+* the until is below the larger until at all times
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

@@ -11,6 +11,13 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 
 `aaux_sin_(int,intPrev)` of `syntaxTree.m`: `sin` of `int` cut to `[-pi/2, pi/2]` below, met with
 `intPrev`. An `int` below `-pi/2` throws `CORA:outOfDomain`.
+
+## Inputs
+* `int` – target interval
+* `prev` – previous interval
+
+## Output
+* the interval for the operand of the inverse sine
 -/
 
 -- Authors:       Claude Sonnet 5.5

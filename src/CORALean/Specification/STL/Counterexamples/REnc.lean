@@ -14,6 +14,15 @@ public import CORALean.Specification.STL.Operations.DFormulaBound
 `r_t = max(r^{μ₂}_t, min(r^{μ₁}_t, r_{t+1}))` as printed, `r^φ_0 = 1 > 0` while
 `ρ^φ(x, 0) = -1 < 0` and the formula is false: not a boundary case but a sign error.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed robust encoding is positive though the robustness is negative
+
 ## References
 
 * [1] V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and

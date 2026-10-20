@@ -11,6 +11,17 @@ public import CORALean.Specification.STL.Definitions.Pform
 `(∀ ξ ∈ C(R), ϱ ⊨ₚ ξ(a)) ⇔ ∀ r ∈ R(a), r ⊨ₚ ϱ`: a trace passes through any state of `R(a)`, given a
 state at every other time. How [1, Lemma 2]'s proof, and the example of [1, Sec. 3], read `A ϱ`.
 
+## Inputs
+* `R` – reach sequence
+* `a` – time
+* `ϱ` – predicate
+
+## Hypotheses
+* `hne` – all reach sets are nonempty
+
+## Conclusion
+* the predicate holds for every trace at the time iff for the whole set
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

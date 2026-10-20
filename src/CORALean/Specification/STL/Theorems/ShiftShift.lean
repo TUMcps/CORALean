@@ -9,6 +9,18 @@ public import CORALean.Specification.STL.Definitions.Shift
 
 `⟨⟨f⟩ₐ⟩_b = ⟨f⟩_{b+a}`, which every row of [1, Table 1] that nests a shift needs.
 
+## Inputs
+* `α` – value type
+* `f` – function of time
+* `a` – first shift
+* `b` – second shift
+
+## Hypotheses
+* none
+
+## Conclusion
+* shifting twice equals shifting by the sum
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

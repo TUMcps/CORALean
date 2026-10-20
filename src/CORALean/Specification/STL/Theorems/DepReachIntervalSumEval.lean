@@ -20,6 +20,15 @@ sum of the generators of `R(τ₀)` of [1, Alg. 1] is `f(1)` times `1`: the hull
 `C₀` have the generator `0`, and `T B G_u = 1` is the second. Used for the example of the
 failure of [1, Prop. 1] and [1, Prop. 2] between the time points.
 
+## Inputs
+* `f` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* only the input generator of the first interval set is nonzero
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

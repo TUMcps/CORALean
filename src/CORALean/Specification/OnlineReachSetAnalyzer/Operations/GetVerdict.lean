@@ -10,6 +10,12 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.OnlineReachSetAnalyz
 
 `verdict = getVerdict(obj)`: the satisfaction signal of the root node at time `0`. CORA fails for
 an analyzer without nodes; here `none`.
+
+## Inputs
+* `obj` – analyzer
+
+## Output
+* the root's verdict at time zero, or none without nodes
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -12,6 +12,13 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 `aux_sinh_(int,intPrev)` of `syntaxTree.m` without its `int & interval(-1,1)` (`aux_sinhCora_`):
 `asinh`
 of `int`, met with `intPrev`.
+
+## Inputs
+* `int` – target interval
+* `prev` – previous interval
+
+## Output
+* the interval of operands whose hyperbolic sine lies in the target
 -/
 
 -- Authors:       Claude Sonnet 5.5

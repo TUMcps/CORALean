@@ -18,6 +18,13 @@ for signals of finite variability, which `FourValuedSTL.IsAtomSignal` asks of th
 Real-only, a specification: it denotes the satisfaction signal of a formula over a reachable set,
 a semantic object no machine runs.
 
+## Inputs
+* `X` – state type
+* `S` – three-valued signal of each atom
+
+## Output
+* the three-valued satisfaction signal
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

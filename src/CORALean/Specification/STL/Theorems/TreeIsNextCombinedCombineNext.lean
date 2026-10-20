@@ -10,6 +10,15 @@ public import CORALean.Specification.STL.Definitions.TreeIsNextCombined
 
 The result of `combineNext(obj)` is combined: no `next` is left over a `~`, over another `next`,
 or over an `&` or `|` with a temporal operand.
+
+## Inputs
+* `φ` – formula
+
+## Hypotheses
+* none
+
+## Conclusion
+* no next operator is left to move
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,6 +11,12 @@ The atomic predicates `a ∈ AP` a formula mentions: the satisfaction signals of
 (satisfaction)] and [1, Sec. 4.3 (satisfaction)] are built from those of the atoms, and only these
 need to be given.
 
+## Inputs
+* `X` – state type
+
+## Output
+* the set of atomic predicates the formula mentions
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

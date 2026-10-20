@@ -13,6 +13,17 @@ public import CORALean.Specification.SyntaxTree.Theorems.ContainsOfImage
 
 If the operand's interval encloses its value, the interval `Interval.tan` stores at the `tan` node
 encloses the node's value for an operand inside `(-pi/2, pi/2)`, exactly (`Interval.tan_exact`).
+
+## Inputs
+* none
+
+## Hypotheses
+* `h` – the operand's interval encloses its function
+* `hd₁` – the operand stays above minus half pi
+* `hd₂` – the operand stays below half pi
+
+## Conclusion
+* the interval of the tangent encloses its function
 -/
 
 -- Authors:       Claude Sonnet 5.5

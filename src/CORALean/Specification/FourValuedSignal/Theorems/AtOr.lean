@@ -17,6 +17,16 @@ public import CORALean.Specification.KleeneSignal.Theorems.AtOr
 For valid four-valued signals, `fourValuedSignal.or_(varargin)` does not throw, is valid and, at a
 time `t ≥ 0`, `True` iff one signal is `True`, `False` iff every one is `False`, and `Inconclusive`
 iff none is `True` and one is `Inconclusive`; otherwise `Unknown`.
+
+## Inputs
+* `ι` – index type of the operands
+* `sigs` – four-valued signals
+
+## Hypotheses
+* `hv` – the signals are valid
+
+## Conclusion
+* the disjunction is valid and has the value of `fourValued.or` at each time
 -/
 
 -- Authors:       Claude Sonnet 5.5

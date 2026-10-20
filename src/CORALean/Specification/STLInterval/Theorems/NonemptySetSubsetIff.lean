@@ -12,6 +12,29 @@ public import CORALean.Specification.STLInterval.Theorems.RawSetBoundsNe
 
 `J ⊆ I` for two nonempty intervals iff `I`'s lower bound is below `J`'s (or equal, `I`'s end closed
 or `J`'s open) and the same for the upper bounds: the test of `@stlInterval/contains_.m`.
+
+## Inputs
+* `l₁` – lower bound of the outer interval
+* `u₁` – upper bound of the outer interval
+* `l₂` – lower bound of the inner interval
+* `u₂` – upper bound of the inner interval
+* `lc₁` – outer lower bound is closed
+* `rc₁` – outer upper bound is closed
+* `lc₂` – inner lower bound is closed
+* `rc₂` – inner upper bound is closed
+
+## Hypotheses
+* `a₁` – an infinite outer lower bound is open
+* `b₁` – an infinite outer upper bound is open
+* `c₁` – the outer interval is nonempty
+* `a₂` – an infinite inner lower bound is open
+* `b₂` – an infinite inner upper bound is open
+* `c₂` – the inner interval is nonempty
+* `z₁` – the outer lower bound is nonnegative
+* `z₂` – the inner lower bound is nonnegative
+
+## Conclusion
+* the inner interval lies in the outer iff its bounds lie inside
 -/
 
 -- Authors:       Claude Sonnet 5.5

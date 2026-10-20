@@ -15,6 +15,12 @@ replaces `φ U[a,b] true`. CORA's is `true` (`eliminateTrueFalseCora`), which is
 
 Real-only, a specification: it rewrites or builds formulas, whose time bounds and constants are
 part of the syntax and are copied or added exactly, never rounded.
+
+## Inputs
+* `ut` – rewrite of an until with true
+
+## Output
+* the formula without true and false
 -/
 
 -- Authors:       Claude Sonnet 5.5

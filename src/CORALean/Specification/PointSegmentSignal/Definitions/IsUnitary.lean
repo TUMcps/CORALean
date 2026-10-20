@@ -13,6 +13,13 @@ A Boolean signal is unitary if it is `true` exactly on one contiguous interval `
 unitary with `I⁺_s = J`; the interval is determined by the signal (`STLInterval.set_injective`), and
 may be empty, the signal then `false` throughout.
 
+## Inputs
+* `s` – Boolean signal
+* `J` – interval
+
+## Output
+* the signal is true exactly on the interval
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

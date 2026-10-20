@@ -11,6 +11,18 @@ public import CORALean.Specification.OnlineAnalyzerNode.Operations.SetPropagated
 If `setPropagated` does not throw, the interval of that parent is replaced; and if the node drops
 what is propagated, its valid signal is inconclusive at every `t ≥ 0` in `getAllProp` of the new
 node and unchanged elsewhere.
+
+## Inputs
+* `eps` – machine epsilon
+* `n` – node
+* `parent` – parent index
+* `int` – propagated interval
+
+## Hypotheses
+* `hv` – the node's signal is valid
+
+## Conclusion
+* the parent's interval is replaced and propagated times are dropped if requested
 -/
 
 -- Authors:       Claude Sonnet 5.5

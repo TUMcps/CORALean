@@ -10,6 +10,22 @@ public import CORALean.Specification.ReachSetAnalyzer.Definitions.Represents
 
 If an analyzer represents `PT` and `PF` and these are equivalent to `PT'` and `PF'`, it
 represents those.
+
+## Inputs
+* `obj` – analyzer
+* `d` – signal duration
+* `PT` – times where each proposition can be true
+* `PF` – times where each proposition can be false
+* `PT'` – equivalent true predicate
+* `PF'` – equivalent false predicate
+
+## Hypotheses
+* `h` – the analyzer represents `PT` and `PF`
+* `hT` – `PT` and `PT'` are equivalent
+* `hF` – `PF` and `PF'` are equivalent
+
+## Conclusion
+* the analyzer represents `PT'` and `PF'`
 -/
 
 -- Authors:       Claude Sonnet 5.5

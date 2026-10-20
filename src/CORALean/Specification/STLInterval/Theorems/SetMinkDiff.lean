@@ -11,6 +11,16 @@ public import CORALean.Specification.STLInterval.Theorems.Basic
 # `minkDiff` denotes the Minkowski difference
 
 `minkDiff(I, J)` denotes the times `t ≥ 0` with `t + J ⊆ I`, as its documentation says.
+
+## Inputs
+* `I` – first interval
+* `J` – second interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Minkowski difference denotes the times whose shift of the second lies in the first
 -/
 
 -- Authors:       Claude Sonnet 5.5

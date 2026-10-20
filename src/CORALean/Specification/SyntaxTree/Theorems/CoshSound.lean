@@ -14,6 +14,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # `aux_cosh_` is sound
 
 `aux_cosh_` keeps every solution of `cosh s ∈ int`, with the sign `intPrev` allows.
+
+## Inputs
+* `prev` – previous interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the inverse of cosh keeps every solution
 -/
 
 -- Authors:       Claude Sonnet 5.5

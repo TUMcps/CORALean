@@ -12,6 +12,29 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.AtBetween
 Given a valid signal, an index `j` with the last point at or before `u` among its first `j`, and a
 prefix `A` that is, after `u`, the interval value of `j`, the prefix followed by the points from `j`
 on has the value of the signal at every time after `u`.
+
+## Inputs
+* `s` – signal
+* `j` – index of a time point
+* `u` – time
+* `A` – prefix time points
+* `VA` – prefix values
+* `after` – interval value after the prefix
+
+## Hypotheses
+* `hs` – the signal is valid
+* `hjle` – the first points are at most the time
+* `ha` – the last of them is at most the time
+* `hj1` – the index is positive
+* `hj2` – the index is in range
+* `hlen` – two values per prefix point
+* `hA` – the prefix is nonempty
+* `hAle` – the prefix points are at most the time
+* `hafter` – the value is the one after the signal's point
+* `hAat` – the prefix agrees with the signal after the time
+
+## Conclusion
+* the prefix followed by the tail is the signal after the time
 -/
 
 -- Authors:       Claude Sonnet 5.5

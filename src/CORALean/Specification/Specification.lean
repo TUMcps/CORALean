@@ -7,20 +7,13 @@ public import CORALean.ContSet.ContSet.ContSet
 /-!
 # What a computed set is checked against
 
-CORA's `specification`: a set, stored as any representation, together with what it
-means. A safe set is one every point must lie in, an unsafe set one no point may lie in,
-and an invariant is checked as a safe set is — `check.m` and `robustness.m` run the
-identical test for `'safeSet'` and `'invariant'`, differing only in use (a location's
-invariant, already `HybridDynamics.Location.inv`, not a goal). Three kinds, two
-definitions, why `Holds` is one match.
-
-Only the specification's set is a representation. What it is checked on stays a
-`Set α`: the exact image or reachable set has none, and `Theorems.HoldsOfOuter` carries
-a verdict on an outer approximation to it. A plain `Set α` is itself a representation
-(`construct := id`), which is what `custom` and every set with no data structure use.
-`custom` is not a fourth kind: CORA's is an arbitrary function with no guarantee it
-survives an outer approximation, so this one provably does, pinned down to a safe set.
-`logic`, signal temporal logic, is out of scope: satisfying one is model checking.
+CORA's `specification`: a set, stored as any representation, with what it means. A safe set is one
+every point must lie in, an unsafe set one no point may lie in; an invariant is checked as a safe
+set (`check.m` and `robustness.m` run the same test), so `Holds` is one match. Only the
+specification's set is a representation; what it is checked on stays a `Set α`, and
+`Theorems.HoldsOfOuter` carries a verdict on an outer approximation. `custom` is not a fourth kind:
+it provably survives an outer approximation, pinned down to a safe set. `logic` is out of scope:
+satisfying one is model checking.
 -/
 
 -- Authors:       Claude Opus 5

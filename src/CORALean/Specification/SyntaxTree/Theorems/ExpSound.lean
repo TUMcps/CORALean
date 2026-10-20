@@ -13,6 +13,17 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # `aux_exp_` is sound
 
 `aux_exp_` keeps every solution of `exp s ∈ int`; `log(0) = -Inf` is the extended bound.
+
+## Inputs
+* `a` – nonnegative bound
+* `s` – real exponent
+
+## Hypotheses
+* `ha` – the bound is nonnegative
+* `h` – the bound is at most the exponential
+
+## Conclusion
+* the extended logarithm of the bound is at most the exponent
 -/
 
 -- Authors:       Claude Sonnet 5.5

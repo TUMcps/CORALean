@@ -16,6 +16,17 @@ public import CORALean.Specification.STL.Theorems.ShiftShift
 [1, Lemma 2]: `ξ ⊨ₜ ⋀ᵢ ⋁ⱼ X_c^j (φᵢⱼ ∨ ϱᵢⱼ)` unfolded: each clause has a branch whose `F(0,c)` or
 `G(0,c)` holds on the window `(jc, jc + c)` or whose `ϱᵢⱼ` holds at `jc`.
 
+## Inputs
+* `c` – time step
+* `cnf` – normal form
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the formula holds iff every clause has a holding branch
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

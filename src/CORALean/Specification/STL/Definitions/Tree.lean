@@ -9,21 +9,12 @@ public import CORALean.Specification.STL.Definitions.Shift
 /-!
 # CORA's `stl` syntax tree and its semantics
 
-The logic formulas of CORA's `stl` class (`@stl/stl.m`): the node types `true`, `false`, a
-comparison of two expressions, `~`, `&`, `|`, `until`, `release`, `finally`, `globally` and
-`next`. `implies` is no node (CORA builds `~φ | ψ`). Time bounds are closed intervals `[a,b]` of
-`ℝ≥0`; an `stlInterval` with open ends is not modelled.
-
-`ξ ⊨ₜ φ` reads each node as `modelCheckTrace.m` does. `Tree.HasUntilWitness` is the one place the
-window is written: `φ U[a,b] ψ` needs `φ` at every step from `t` up to and including the witness.
-This is not the strict reading of `STL.Formula.Sat` (`φ` on `[0,t)`, the Roehm et al. semantics):
-the two semantics differ, and no theorem relates `Tree.Sat` to `Formula.Sat`. `release` is
-`~until(~φ,~ψ)`, `globally` is `~until(true,~φ)` and `finally` is `until(true,φ)`, each a call of
-`Tree.HasUntilWitness`.
-
-Not modelled: the finite sampled traces of `modelCheckTrace`, whose `release` is false where the
-window `[a,b]` outruns the trace (`ind = find(t >= obj.to,1)`); traces here are defined for all
-time.
+The logic formulas of CORA's `stl` class (`@stl/stl.m`): `true`, `false`, a comparison of two
+expressions, `~`, `&`, `|`, `until`, `release`, `finally`, `globally` and `next`; `implies` is no
+node. Time bounds are closed intervals `[a,b]` of `ℝ≥0`. `ξ ⊨ₜ φ` reads each node as
+`modelCheckTrace.m` does; `Tree.HasUntilWitness` writes the window once: `φ U[a,b] ψ`
+needs `φ` at every step up to and including the witness, not `[0,t)` as `STL.Formula.Sat` (Roehm
+et al.); no theorem relates the two. Not modelled: the finite sampled traces of `modelCheckTrace`.
 -/
 
 -- Authors:       Claude Sonnet 5.5

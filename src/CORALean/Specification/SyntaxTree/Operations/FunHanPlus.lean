@@ -13,6 +13,14 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 `aux_plus_(int,intPrev1,intPrev2)` of `syntaxTree.m`: from `x₁ + x₂ ∈ int`, `x₁ ∈ int - intPrev2`
 and `x₂ ∈ int - intPrev1`, each met with the operand's own interval. A numeric operand is a point
 interval; CORA returns `[]` for it, and the node uses only the other component.
+
+## Inputs
+* `int` – target interval
+* `prev₁` – first previous interval
+* `prev₂` – second previous interval
+
+## Output
+* the intervals of both operands of a sum
 -/
 
 -- Authors:       Claude Sonnet 5.5

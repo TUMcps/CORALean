@@ -12,6 +12,15 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.ParseNewSpe
 Parsing a subformula keeps the invariant of the nodes (node `j` has index `j + 1`, every node has
 the right `dropPropagated` and a first parent) and only extends them: the old nodes stay, up to
 the edges added to them, and new ones are appended.
+
+## Inputs
+* `dp` – drop propagated times flag
+
+## Hypotheses
+* none
+
+## Conclusion
+* parsing keeps the invariant and only extends the nodes
 -/
 
 -- Authors:       Claude Sonnet 5.5

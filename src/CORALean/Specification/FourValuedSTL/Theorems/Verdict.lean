@@ -16,6 +16,23 @@ does. A value `⊣₁` or `⊣₂` says no more than "unknown" and "inconclusive
 claim in these cases, and `⟦φ⟧_R̃(0)` is `⊣₂` exactly when `R̃` leaves it open. The proof is
 [1, Thm. 2] (`⟦φ⟧_R ≺ ⟦φ⟧_R̃`) and then [1, Thm. 1] (`⟦φ⟧_ξ ≺ ⟦φ⟧_R`).
 
+## Inputs
+* `X` – state type
+* `φ` – formula
+* `T` – times where the partial set is known
+* `Rp` – partial reachable set
+* `R` – extension of the partial set
+* `S` – three-valued signal of each atom
+* `S'` – four-valued signal of each atom
+
+## Hypotheses
+* `hext` – the set extends the partial set
+* `hS` – the three-valued atom signals are valid
+* `hS'` – the four-valued atom signals are valid
+
+## Conclusion
+* a verdict true or false carries over to every covered execution
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

@@ -11,6 +11,17 @@ public import CORALean.Specification.STL.Theorems.ShiftShift
 `X_c^{j+1}` of a branch at `ξ` is `X_c^j` of it at `⟨ξ⟩_c`: how [1, Sec. 4.1]'s `X_c(⋁ⱼ X_c^j …) ≡
 ⋁ⱼ X_c^{j+1} …` moves a clause.
 
+## Inputs
+* `c` – clause time step
+* `b` – branch
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the raised branch holds iff the original holds on the shifted trace
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

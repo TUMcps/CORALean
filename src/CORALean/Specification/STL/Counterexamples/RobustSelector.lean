@@ -17,6 +17,15 @@ public import Mathlib.Tactic.Linarith
 `r = 0` and `M = 1` satisfy (3)-(5), and `r = r₂` with `p₂ = 0`. `STL.robust_conj_encoding` does
 not need it: `r = minᵢ rᵢ` holds either way.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the minimum selector is not unique when two values tie
+
 ## References
 
 * [1] V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and

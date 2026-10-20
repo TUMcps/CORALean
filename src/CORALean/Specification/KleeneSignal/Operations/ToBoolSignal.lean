@@ -15,6 +15,13 @@ unknown; that call is `toBoolSignal?` (`none` for the error).
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
 stamps over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `s` – three-valued signal
+* `mapUnknownTo` – Boolean for unknown times
+
+## Output
+* the Boolean signal
 -/
 
 -- Authors:       Claude Sonnet 5.5

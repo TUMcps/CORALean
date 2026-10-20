@@ -16,6 +16,14 @@ too. A row with no nonzero entry makes CORA fail (`find` is empty); it is read h
 
 Real-only, a specification: it builds a comparison from the coefficients of a halfspace, which the
 formula stores as given, so nothing is rounded.
+
+## Inputs
+* `op` – comparison
+* `a` – normal vector
+* `b` – offset
+
+## Output
+* the halfspace as a comparison
 -/
 
 -- Authors:       Claude Sonnet 5.5

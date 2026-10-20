@@ -14,6 +14,15 @@ public import CORALean.Specification.SyntaxTree.Theorems.FunHanSinhSound
 
 The node `sinh` builds over a sound tree is sound: its interval encloses it (`encloses_sinh`) and
 its `funHan` is sound.
+
+## Inputs
+* none
+
+## Hypotheses
+* `h` – the operand tree is sound
+
+## Conclusion
+* the hyperbolic sine tree is sound
 -/
 
 -- Authors:       Claude Sonnet 5.5

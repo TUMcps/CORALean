@@ -12,6 +12,13 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 `aux_sqrt_(int,intPrev)` of `syntaxTree.m`: the squares of `int` cut to the nonnegative reals, met
 with
 `intPrev`. An `int` below `0` throws `CORA:outOfDomain`.
+
+## Inputs
+* `int` – target interval
+* `prev` – previous interval
+
+## Output
+* the interval of operands whose square root lies in the target
 -/
 
 -- Authors:       Claude Sonnet 5.5

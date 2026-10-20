@@ -24,6 +24,17 @@ its end if the property holds there.
 
 This is `ConclusiveInterval` in line 11 of [1, Alg. 2], with `ignore` the irrelevant prefix `n.irr`.
 
+## Inputs
+* `obj` – four-valued signal
+* `ignore` – interval to disregard
+* `t` – time
+
+## Hypotheses
+* `hobj` – the signal is valid
+
+## Conclusion
+* a time is in the interval iff no earlier time is inconclusive
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

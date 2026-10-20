@@ -13,6 +13,19 @@ public import Mathlib.Data.EReal.Operations
 For a valid signal over `ℝ` and times `0 ≤ t < t'`, the signal is `true` at every time strictly
 between them exactly when `t` is in the left closure and `t'` in the right closure of one interval
 of `findIntervals`: the interval, with its ends closed, reaches from `t` to `t'`.
+
+## Inputs
+* `s` – signal
+* `t` – start time
+* `t'` – end time
+
+## Hypotheses
+* `hs` – the signal is valid
+* `ht` – the start time is nonnegative
+* `htt` – the start is before the end
+
+## Conclusion
+* the signal is true strictly between iff one interval reaches both times
 -/
 
 -- Authors:       Claude Sonnet 5.5

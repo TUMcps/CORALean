@@ -16,6 +16,16 @@ CORA throws if there is no signal of key `k` or the interval is degenerate; here
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
 intervals over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `dur` – signal duration
+* `lo` – interval lower bound
+* `hi` – interval upper bound
+* `sigs` – signal of each proposition
+* `k` – proposition key
+
+## Output
+* the signals with the proposition marked true on the interval, or none
 -/
 
 -- Authors:       Claude Sonnet 5.5

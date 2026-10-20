@@ -14,6 +14,18 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.AtEqCell
 In dense time without a last moment, `cutAtFirstFallingEdge(obj)` is `true` at `t ≥ 0` iff the
 signal is `true` at `t` and no time up to `t` has the signal `true` and a later one up to `t`
 `false`.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `t` – time
+
+## Hypotheses
+* `hs` – the signal is valid
+* `ht` – the time is nonnegative
+
+## Conclusion
+* the cut signal is true iff the signal is true and has not fallen
 -/
 
 -- Authors:       Claude Sonnet 5.5

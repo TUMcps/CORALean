@@ -12,6 +12,13 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 `aaux_cos_(int,intPrev)` of `syntaxTree.m`: `cos` of `int` cut to `[0,∞)`, met with `intPrev`. An
 `int`
 below `0` throws `CORA:outOfDomain`.
+
+## Inputs
+* `int` – target interval
+* `prev` – previous interval
+
+## Output
+* the interval for the operand of the inverse cosine
 -/
 
 -- Authors:       Claude Sonnet 5.5

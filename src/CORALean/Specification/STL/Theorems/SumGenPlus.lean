@@ -12,6 +12,17 @@ The generators of `Z₁ ⊕ Z₂` are those of `Z₁` followed by those of `Z₂
 weighted sum of them is the weighted sum over `Z₁` plus that over `Z₂`, whose weights start at
 the index `Z₁.h`: the layout of the generators that [1, Prop. 1] indexes by tuples.
 
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+* `f` – generator weights
+
+## Hypotheses
+* none
+
+## Conclusion
+* the weighted generators of the sum are the sum of both parts
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

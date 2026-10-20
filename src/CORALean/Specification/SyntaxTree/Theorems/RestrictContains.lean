@@ -13,6 +13,18 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 `intPrev & interval(lo,hi)` with bounds in `EReal` (`restrict`) holds `s`, and lies inside
 `intPrev`, when
 `intPrev` holds `s` and `lo ≤ s ≤ hi`.
+
+## Inputs
+* `e` – extended real
+* `a` – lower bound
+* `b` – upper bound
+
+## Hypotheses
+* `h₁` – the lower bound is at most the extended real
+* `h₂` – the extended real is at most the upper bound
+
+## Conclusion
+* the real part lies between the bounds
 -/
 
 -- Authors:       Claude Sonnet 5.5

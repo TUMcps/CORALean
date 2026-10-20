@@ -12,6 +12,17 @@ An analyzer made from a formula has the given propagation frequency, no observat
 propagated; node `j` (numbered from `0`) has index `j + 1`; every node has the `dropPropagated`
 given; the first node is the root, of the type of the formula, and its first parent is `0`; and
 the leaves are indices of nodes.
+
+## Inputs
+* `φ` – formula to monitor
+* `f` – propagation frequency
+* `dp` – drop propagated times flag
+
+## Hypotheses
+* none
+
+## Conclusion
+* the analyzer has no observations and nothing propagated
 -/
 
 -- Authors:       Claude Sonnet 5.5

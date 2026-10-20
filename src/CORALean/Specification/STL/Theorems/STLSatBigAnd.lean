@@ -10,6 +10,18 @@ public import CORALean.Specification.STL.Theorems.SatAnd
 
 `ξ ⊨ₜ ⋀ (l.map g) ⇔ ∀ b ∈ l, ξ ⊨ₜ g b`, the `⋀ᵢ` of [1, Sec. 4.1].
 
+## Inputs
+* `β` – index type
+* `l` – list of indices
+* `g` – formula of each index
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the conjunction holds iff every formula holds
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

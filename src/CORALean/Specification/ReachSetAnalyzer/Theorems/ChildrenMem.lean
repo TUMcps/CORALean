@@ -9,6 +9,17 @@ public import CORALean.Specification.ReachSetAnalyzer.Operations.Basic
 
 An index `j` in `children(R,i)` names an entry: `R(j)` exists (CORA numbers from `1`), and its
 parent is `i`.
+
+## Inputs
+* `R` – tree of reach sets
+* `i` – parent index
+* `j` – child index
+
+## Hypotheses
+* `h` – the index is a child of the parent
+
+## Conclusion
+* the child is a positive index naming an entry with that parent
 -/
 
 -- Authors:       Claude Sonnet 5.5

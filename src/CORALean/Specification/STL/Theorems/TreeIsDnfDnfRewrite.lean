@@ -10,6 +10,15 @@ public import CORALean.Specification.STL.Definitions.TreeIsDnf
 
 If `aux_rewrite` of `disjunctiveNormalForm.m` counts no distribution, its result is a disjunction
 of cubes: no `&` is left with an `|` operand. The loop of the method stops at that pass.
+
+## Inputs
+* `φ` – formula
+
+## Hypotheses
+* `h` – the pass changes nothing
+
+## Conclusion
+* the pass result is in disjunctive normal form
 -/
 
 -- Authors:       Claude Sonnet 5.5

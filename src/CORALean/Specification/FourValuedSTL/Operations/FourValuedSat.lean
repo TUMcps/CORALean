@@ -19,6 +19,13 @@ does not happen for valid signals.
 Real-only, a specification: it denotes the satisfaction signal of a formula over a partial
 reachable set, a semantic object no machine runs.
 
+## Inputs
+* `X` – state type
+* `S` – four-valued signal of each atom
+
+## Output
+* the four-valued satisfaction signal, or none where CORA throws
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

@@ -10,6 +10,12 @@ public import CORALean.Specification.STL.Definitions.Tree
 Every `[a,b]` of the formula has `a ≤ b`. CORA's `stlInterval` does not demand it (an interval
 with `a > b` is empty); with an empty interval `finally(true)` is false and `globally(false)`
 true, which `eliminateTrueFalse` does not account for.
+
+## Inputs
+* none
+
+## Output
+* every time interval of the formula is nonempty
 -/
 
 -- Authors:       Claude Sonnet 5.5

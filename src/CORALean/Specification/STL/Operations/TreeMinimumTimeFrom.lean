@@ -8,14 +8,16 @@ public import CORALean.Specification.STL.Definitions.Tree
 # The earliest time a formula looks at
 
 `@stl/minimumTime.m`, `aux_recursive(obj,time)`: `time` is the offset accumulated by the `next`
-operators above. A `finally` or `globally` looks no earlier than its lower bound (CORA does not
-add the inner formula's own offset, so this is a lower bound that is not always attained), an
-`until` or `release` looks at the present (its left operand holds from time `0`), and `&`, `|`
-take the smaller of the two. As for `maximumTime` the test for a non-temporal sub-formula is
-folded into the clauses.
+operators above. A `finally` or `globally` looks no earlier than its lower bound (CORA does not add
+the inner formula's offset, so it is not always attained), an `until` or `release` looks at the
+present, and `&`, `|` take the smaller. As for `maximumTime` the non-temporal test is in the
+clauses. Real-only, a specification: the exact earliest time a formula reads.
 
-Real-only, a specification: it states the exact earliest time a formula reads, a property of the
-formula's syntax.
+## Inputs
+* none
+
+## Output
+* the earliest time the formula looks at
 -/
 
 -- Authors:       Claude Sonnet 5.5

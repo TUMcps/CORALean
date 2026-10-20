@@ -12,6 +12,12 @@ whether the sub-formula is under an odd number of them. `&` and `|`, `finally` a
 `until` and `release` swap under `neg`, `next` and `~` stay or vanish, `true` and `false` swap,
 and a comparison becomes `ng` of itself. CORA's `ng` is `Cmp.dual` (`negationNormalFormCora`), the
 negation is `Cmp.negate` (`negationNormalForm`).
+
+## Inputs
+* `ng` – negation of a comparison
+
+## Output
+* the formula in negation normal form
 -/
 
 -- Authors:       Claude Sonnet 5.5

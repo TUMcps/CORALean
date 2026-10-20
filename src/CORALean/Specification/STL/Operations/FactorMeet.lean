@@ -14,6 +14,13 @@ unions `⋃V` and `⋃W` it stands for: every `V(a) ∩ W(b)`, `|V| · |W|` poly
 `min(|V|, |W|)` of them are formed and unsafe factors are lost; `STL.factorMeet_zip_counterexample`.
 CORA's `aux_orConstraints` forms all pairs.
 
+## Inputs
+* `V` – first union of polytopes
+* `W` – second union of polytopes
+
+## Output
+* all pairwise intersections of the polytopes
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

@@ -18,6 +18,22 @@ represented `R` with breakpoints in `ℕc`. Three conditions the paper leaves im
 is non-empty, `c > 0`, and the `j` of the branches of a clause are distinct, for `X_c^j φ ∨ X_c^j ψ`
 is not `X_c^j (φ ∨ ψ)` at the level of `Υ`.
 
+## Inputs
+* `c` – time step
+* `T` – finite set of change times
+* `R` – reach sequence
+* `cnf` – normal form
+
+## Hypotheses
+* `hc` – the time step is positive
+* `hne` – all reach sets are nonempty
+* `hT` – the reach sequence changes only at those times
+* `hdiv` – the times are divisible by the step
+* `hnd` – the powers in each clause are distinct
+
+## Conclusion
+* the transformation holds iff the formula holds on all traces
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

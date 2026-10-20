@@ -17,6 +17,12 @@ rejects the result; here `none`.
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
 stamps over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `obj` – signal builder
+
+## Output
+* the three-valued signal, or none if the combination fails
 -/
 
 -- Authors:       Claude Sonnet 5.5

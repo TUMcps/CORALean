@@ -23,6 +23,19 @@ For a valid signal in dense time without a last moment and an upper end `ub ≥ 
 of `priv_relevantValueIdx` is within `values`; every time of the interval reads a value before it;
 and from any time of the interval there is a later one that reads the value `stop`, one-based, the
 last.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `ub` – interval upper bound
+* `rc` – upper bound is closed
+
+## Hypotheses
+* `hs` – the signal is valid
+* `hub0` – the upper bound is nonnegative
+
+## Conclusion
+* the stop index is in range and lies above the cells the interval reads
 -/
 
 -- Authors:       Claude Sonnet 5.5

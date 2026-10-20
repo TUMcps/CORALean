@@ -9,6 +9,16 @@ public import CORALean.Specification.STL.Operations.Basic
 
 The clauses `getClauses(obj,'dnf')` returns, the disjuncts of the formula, are satisfied by a
 trace exactly when one of them is.
+
+## Inputs
+* `φ` – formula
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the formula holds iff some disjunct holds
 -/
 
 -- Authors:       Claude Sonnet 5.5

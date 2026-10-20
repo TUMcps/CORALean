@@ -18,6 +18,21 @@ For a valid signal whose first cell is not empty (`time(1) > 0`) and an interval
 `max(lo,0) < min(hi,duration)`, `set` returns a valid signal of the same duration whose value is
 `value` on `[lb, ub)` (and at the duration if `ub` is the duration), where `lb = max(lo,0)` and
 `ub = min(hi,duration)`, and the signal's own value elsewhere.
+
+## Inputs
+* `V` – value type
+* `s` – signal
+* `lo` – interval lower bound
+* `hi` – interval upper bound
+* `value` – value to set
+
+## Hypotheses
+* `hs` – the signal is valid
+* `hpos` – the first time is positive
+* `hlt` – the clipped interval is nonempty
+
+## Conclusion
+* a valid signal of equal duration that is `value` on the clipped interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

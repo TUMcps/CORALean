@@ -10,6 +10,12 @@ public import CORALean.Specification.STL.Operations.TreeTemporal
 The shape `combineNext.m` produces: along the `~`, `&`, `|` and `next` nodes of the formula, no
 `next` has a `next` or a `~` below it, and none has an `&` or `|` with a temporal operand below
 it. The operands of `until`, `release`, `finally` and `globally` are not entered, as in CORA.
+
+## Inputs
+* none
+
+## Output
+* no next operator is left that could be rewritten
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -15,6 +15,18 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # `aux_cos_` is sound
 
 `aux_cos_` keeps every solution of `cos s ∈ int`.
+
+## Inputs
+* `s` – point
+* `lo` – lower bound
+* `hi` – upper bound
+
+## Hypotheses
+* `h₁` – the cosine is at least the lower bound
+* `h₂` – the cosine is at most the upper bound
+
+## Conclusion
+* the point lies in a shifted branch of the inverse cosine
 -/
 
 -- Authors:       Claude Sonnet 5.5

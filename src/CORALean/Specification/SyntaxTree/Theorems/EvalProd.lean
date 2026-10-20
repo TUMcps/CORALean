@@ -9,6 +9,16 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 # The value of `prod`
 
 `prod(obj)` denotes the product of its entries.
+
+## Inputs
+* `t` – first tree
+* `rest` – remaining trees
+
+## Hypotheses
+* none
+
+## Conclusion
+* the product node evaluates to the product of the entries
 -/
 
 -- Authors:       Claude Sonnet 5.5

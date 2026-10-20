@@ -13,6 +13,20 @@ public import Mathlib.Order.Basic
 For a valid signal and `t ≥ 0`, `p` time points are `≤ t`, the last one `a0`, and `cell t` is `2 (p
 - 1)` if `a0 = t` and `2 (p - 1) + 1` otherwise. Time point `j` is `≤ t` if `j < p`, `> t` if `p ≤
 j`, and `< t` if `j + 1 < p`; it is `a0` if `j + 1 = p`.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `t` – time
+* `j` – time point index
+
+## Hypotheses
+* `hs` – the signal is valid
+* `ht` – the time is nonnegative
+* `hj` – the index is in range
+
+## Conclusion
+* the cell is determined by the time points at or before the time
 -/
 
 -- Authors:       Claude Sonnet 5.5

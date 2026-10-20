@@ -9,6 +9,16 @@ public import CORALean.Specification.STL.Operations.Basic
 
 The clauses `getClauses(obj,'cnf')` returns, the conjuncts of the formula, are satisfied together
 exactly when the formula is.
+
+## Inputs
+* `φ` – formula
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the formula holds iff every conjunct holds
 -/
 
 -- Authors:       Claude Sonnet 5.5

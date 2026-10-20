@@ -16,6 +16,14 @@ with
 the sign of `intPrev` chosen for an even exponent (`[-m, m]` when `intPrev` contains `0`), met with
 `intPrev`. Negative and fractional exponents are not modelled; `exp = 0` returns `intPrev`. The
 `CORA:outOfDomain` error is `Outcome.outOfDomain`.
+
+## Inputs
+* `k` – exponent
+* `int` – target interval
+* `prev` – previous interval
+
+## Output
+* the interval of operands whose power lies in the target
 -/
 
 -- Authors:       Claude Sonnet 5.5

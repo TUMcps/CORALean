@@ -10,6 +10,15 @@ public import CORALean.Specification.STLInterval.Theorems.SetEqSingletonIff
 # `representsa_` as `origin`
 
 At `tol = 0` `representsa_(I,'origin')` holds iff `I` denotes `{0}`.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the interval represents the origin iff its times are zero alone
 -/
 
 -- Authors:       Claude Sonnet 5.5

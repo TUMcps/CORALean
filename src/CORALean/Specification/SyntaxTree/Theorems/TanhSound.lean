@@ -14,6 +14,17 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # `aux_tanh_` is sound
 
 `aux_tanh_` keeps every solution of `tanh s ∈ int`; `atanh(±1) = ±Inf` is the extended bound.
+
+## Inputs
+* `x` – bound
+* `s` – real argument
+
+## Hypotheses
+* `h` – the bound is at most the hyperbolic tangent
+* `h₁` – the bound is at least minus one
+
+## Conclusion
+* the extended inverse of the bound is at most the argument
 -/
 
 -- Authors:       Claude Sonnet 5.5

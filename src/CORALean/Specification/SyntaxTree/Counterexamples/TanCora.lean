@@ -11,6 +11,12 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 
 `tan(obj)` of `syntaxTree.m` with its `funHan` as printed, `funHanTanCora`, which is not sound (see
 `SyntaxTree.tanCora_counterexample`). `SyntaxTree.tan` is the node with the corrected `funHan`.
+
+## Inputs
+* `obj` – operand tree
+
+## Output
+* the printed tan node
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -21,6 +21,7 @@ interval.
 
 ## Inputs
 * `sys` – linear system
+* `ρ` – support oracle for polytopes
 * `P₁` – first eroded polytope
 * `P₂` – second eroded polytope
 * `U` – input zonotope
@@ -30,12 +31,8 @@ interval.
 * `η` – Taylor order
 * `s` – loop state
 
-## Hypotheses
-* `ρ` – support oracle for polytopes
-
 ## Output
 * next loop state with the step's backward reachable set
-
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

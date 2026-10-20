@@ -28,6 +28,7 @@ union is no constrained zonotope, so the result is a `Set`, as `tunedReach` retu
 
 ## Inputs
 * `sys` – linear system
+* `ρ` – support oracle for constrained zonotopes
 * `CZ` – target constrained zonotope
 * `W₀` – initial disturbance zonotope
 * `U₀` – initial input zonotope
@@ -38,12 +39,8 @@ union is no constrained zonotope, so the result is a `Set`, as `tunedReach` retu
 * `η` – Taylor order
 * `ω` – number of iterations
 
-## Hypotheses
-* `ρ` – support oracle for constrained zonotopes
-
 ## Output
 * union of the steps' sets, each cut by the polytope of the support functions
-
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

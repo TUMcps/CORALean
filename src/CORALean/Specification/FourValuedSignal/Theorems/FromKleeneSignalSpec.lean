@@ -12,6 +12,15 @@ public import CORALean.Specification.STLInterval.Theorems.Basic
 # A Kleene signal embeds as a four-valued signal
 
 `fromKleeneSignal(kSig)` is valid and has, at every time, the four-valued value of the Kleene one.
+
+## Inputs
+* `kSig` – three-valued signal
+
+## Hypotheses
+* `hk` – the signal is valid
+
+## Conclusion
+* the embedded signal is valid and has the embedded value at each time
 -/
 
 -- Authors:       Claude Sonnet 5.5

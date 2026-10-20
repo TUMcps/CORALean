@@ -9,16 +9,24 @@ public import Mathlib.Analysis.Convex.Hull
 /-!
 # [1, Alg. 3 (exits)]: a GJK-style search for a separating or an intersecting direction
 
-The two conclusive exits of `Alg. 3` — line 4-5 (`safe`) and line 12-13 (`unsafe`) — folded
-over a caller-supplied direction sequence `ℓ` and a fuel bound, since the search loop need not
-terminate. The Gram-Schmidt direction search of lines 18-25 and the `falsifiable`/`Δt`-halving
-restart of lines 7, 14-16, [1, Alg. 3 (search)], only ever change which direction is tried
-next, never whether a taken exit is sound, so neither is modelled here. `ℓ i` is read against
-one reachable set `O` and one unsafe set `U`: the paper's `R̂(t)` (a `SupportBound`, line 4)
-and `R̲(t)` (a `SupportWitness`, line 10) become one bound and one witness on the same `O`.
+The two conclusive exits of `Alg. 3` (line 4-5 `safe`, line 12-13 `unsafe`), folded over a given
+direction sequence `ℓ` and a fuel bound, since the loop need not terminate. The Gram-Schmidt
+direction search (lines 18-25) and the `falsifiable`/`Δt`-halving restart (lines 7, 14-16) only
+change which direction is tried, never whether an exit is sound, so they are not modelled. The
+paper's `R̂(t)` (a `SupportBound`, line 4) and `R̲(t)` (a `SupportWitness`, line 10) are one bound
+and one witness on the same `O`. Real-only, a specification: oracles over every direction, and the
+soundness is the theorem.
 
-Real-only, a specification: it decides from bounds and witnesses supplied as oracles over every
-direction, and its soundness is the theorem.
+## Inputs
+* `bO` – bounds of the reachable set
+* `bU` – bounds of the unsafe set
+* `wO` – witnesses of the reachable set
+* `wU` – witnesses of the unsafe set
+* `ℓ` – sequence of directions
+* `fuel` – number of directions tried
+
+## Output
+* safe, unsafe or undecided
 
 ## References
 

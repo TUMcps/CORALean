@@ -10,6 +10,13 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 # `aaux_sinh_`: the contraction of `asinh`
 
 `aaux_sinh_(int,intPrev)` of `syntaxTree.m`: `sinh` of `int`, met with `intPrev`.
+
+## Inputs
+* `int` – target interval
+* `prev` – previous interval
+
+## Output
+* the interval for the operand of the inverse hyperbolic sine
 -/
 
 -- Authors:       Claude Sonnet 5.5

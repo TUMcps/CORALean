@@ -12,6 +12,24 @@ For valid three-valued signals `Λ₁`, `Λ₂` and valid Boolean refinements `�
 at every time `t ≥ 0`: `⌊Λ₁⌋ U_I ⌊Λ₂⌋ ⊑ₜ λ₁ U_I λ₂ ⊑ₜ ⌈Λ₁⌉ U_I ⌈Λ₂⌉`, so the first underapproximates
 and the second overapproximates every `λ₁ U_I λ₂` ([1, Sec. 4.2 (monotonicity)]).
 
+## Inputs
+* `s₁` – left three-valued signal
+* `s₂` – right three-valued signal
+* `l₁` – left Boolean refinement
+* `l₂` – right Boolean refinement
+* `U` – time interval
+
+## Hypotheses
+* `h₁` – the left signal is valid
+* `h₂` – the right signal is valid
+* `hl₁` – the left refinement is valid
+* `hl₂` – the right refinement is valid
+* `hr₁` – the left refinement refines the left signal
+* `hr₂` – the right refinement refines the right signal
+
+## Conclusion
+* the refinements' until lies between the under- and overapproximation untils
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

@@ -13,6 +13,13 @@ MATLAB's `nthroot(x,k)`: the real `k`-th root, negative arguments allowed for od
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (interval
 arithmetic over `𝕋` with outward rounding) is not yet written.
+
+## Inputs
+* `x` – real number
+* `k` – degree
+
+## Output
+* the real root of that degree
 -/
 
 -- Authors:       Claude Sonnet 5.5

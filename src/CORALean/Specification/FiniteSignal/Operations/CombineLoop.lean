@@ -12,6 +12,15 @@ public import Mathlib.Order.Basic
 The `while` loop of `combine.m` on the breakpoints of the two signals, until one signal is used
 up. The two `if`s of the loop body, advancing the left signal if `ltime <= rtime` and the right
 one if `ltime >= rtime`, are the three cases `ltime < rtime`, `ltime = rtime` and `ltime > rtime`.
+
+## Inputs
+* `T` – time type
+* `V` – value type of the inputs
+* `W` – value type of the result
+* `op` – binary operator on values
+
+## Output
+* the combined breakpoints of the two lists
 -/
 
 -- Authors:       Claude Sonnet 5.5

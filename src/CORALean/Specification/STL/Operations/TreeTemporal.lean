@@ -11,6 +11,12 @@ The `temporal` property of CORA's `stl` objects (`@stl/stl.m`): `true` for a for
 `until`, `release`, `finally`, `globally` or `next` (the `next` constructor sets it), `false` for
 a
 comparison, `true`, `false`, and the `~`, `&`, `|` of such.
+
+## Inputs
+* none
+
+## Output
+* whether the formula has a temporal operator
 -/
 
 -- Authors:       Claude Sonnet 5.5

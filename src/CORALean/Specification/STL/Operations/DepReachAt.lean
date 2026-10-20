@@ -14,6 +14,15 @@ state at `t_i` to that at `t_{i+1}`; this is the state after `i` passes.
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (a zonotope
 computation over `𝕋` with directed rounding) is not yet written.
 
+## Inputs
+* `A` – dynamics matrix
+* `Δt` – time step
+* `cs` – constants of the algorithm
+* `X₀` – initial set
+
+## Output
+* the algorithm state after each number of steps
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

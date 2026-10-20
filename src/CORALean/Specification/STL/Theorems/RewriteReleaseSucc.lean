@@ -16,6 +16,21 @@ public import CORALean.Specification.STL.Theorems.ShiftZero
 The window is `I = (0,1)`, as the table assumes `c = 1`, and the bounds `i`, `j` are natural numbers
 with the side condition the subtraction needs.
 
+## Inputs
+* `φ₁` – left formula
+* `φ₂` – right formula
+* `i` – interval lower bound
+* `j` – interval upper bound
+* `ξ` – trace
+
+## Hypotheses
+* `hi` – the lower bound is positive
+* `hij` – the bounds are ordered
+* `h` – the rewritten formula holds
+
+## Conclusion
+* the release holds
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

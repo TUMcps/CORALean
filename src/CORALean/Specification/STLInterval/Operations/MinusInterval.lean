@@ -14,6 +14,12 @@ empty subtrahend, `sup < inf`, gives `stlInterval()`.
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (bounds
 over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* none
+
+## Output
+* the interval minus the real interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

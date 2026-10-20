@@ -14,9 +14,10 @@ Every row survives, inequalities and equalities alike — `minkDiffOf` only shif
 ## Inputs
 * `P` – H-polytope
 * `T` – set of points
+* `u` – a support bound of `T` along each row
 
 ## Hypotheses
-* `u` – a support bound of `T` along each row
+* none
 
 ## Conclusion
 * `minkDiffOf` keeps the number of inequalities of `P`

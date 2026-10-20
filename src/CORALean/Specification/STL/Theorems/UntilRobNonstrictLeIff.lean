@@ -12,6 +12,18 @@ of [1, Sec. IV-B.3 (until)]. In its non-strict reading, `m ≤ r_i` iff the Bool
 at `i` for the predicates `m ≤ r^{φ₁}` and `m ≤ r^{φ₂}`: the step that carries every Boolean fact
 about the encoding over to the robust one.
 
+## Inputs
+* `N` – horizon
+* `A` – left operand robustness
+* `B` – right operand robustness
+* `m` – threshold
+
+## Hypotheses
+* none
+
+## Conclusion
+* the threshold is below the robust until iff the until holds for the thresholds
+
 ## References
 
 * [1] V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and

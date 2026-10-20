@@ -14,6 +14,23 @@ public import CORALean.Specification.TrajectoryAnalyzer.Operations.MarkKey
 If the signals represent `M` and `lo < hi`, marking proposition `k` of the analyzer on the interval
 `[lo,hi)` succeeds and the signals then represent `M` plus, for `k` only, the times the interval
 covers (`Covers`).
+
+## Inputs
+* `aps` – labelled atomic propositions
+* `dur` – signal duration
+* `sigs` – signal of each proposition
+* `M` – times marking each proposition
+* `lo` – interval lower bound
+* `hi` – interval upper bound
+* `p` – proposition with its key
+
+## Hypotheses
+* `h` – the signals represent the marked times
+* `hlh` – the interval is proper
+* `hp` – the proposition belongs to the list
+
+## Conclusion
+* marking succeeds and adds the interval to the proposition's times
 -/
 
 -- Authors:       Claude Sonnet 5.5

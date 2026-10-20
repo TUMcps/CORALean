@@ -12,6 +12,19 @@ public import CORALean.Specification.Kleene.Theorems.Basic
 If every `Λₖ ⊑ₜ Λₖ'` at every time `t ≥ 0`, then `⋀ Λₖ ⊑ₜ ⋀ Λₖ'` there: `∧` on `U₁`-signals is
 monotone ([1, Lemma 3]), proved from the direct semantics of [1, Eq. 2] (`at_and`).
 
+## Inputs
+* `ι` – index type of the operands
+* `sigs` – three-valued signals
+* `sigs'` – larger signals
+
+## Hypotheses
+* `hv` – the signals are valid
+* `hv'` – the larger signals are valid
+* `h` – each signal is below its larger one at all times
+
+## Conclusion
+* the conjunction is below the larger conjunction at all times
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

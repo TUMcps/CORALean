@@ -22,6 +22,19 @@ specification satisfied (`res = true`), while a piece violates it. The documente
 `func` is that it holds of a set that satisfies the specification (`res - true/false whether
 set satisfies the specification`), and the safe-set and unsafe-set helpers require every
 piece. Read from the source, not run in MATLAB.
+
+## Inputs
+* `α` – type of the pieces
+* `func` – custom specification test
+* `sOk` – piece that passes
+* `sBad` – piece that fails
+
+## Hypotheses
+* `hOk` – `func` accepts `sOk`
+* `hBad` – `func` rejects `sBad`
+
+## Conclusion
+* CORA's check accepts the cell although one piece violates it
 -/
 
 -- Authors:       Claude Opus 5.5

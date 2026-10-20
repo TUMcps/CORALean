@@ -9,6 +9,18 @@ public import Mathlib.Order.Basic
 # The time points of a signal are nonnegative
 
 Every time point of a valid signal is `≥ 0`: the first is `0` and they increase.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `x` – time point
+
+## Hypotheses
+* `hs` – the signal is valid
+* `hx` – the point is a time point of the signal
+
+## Conclusion
+* the time point is nonnegative
 -/
 
 -- Authors:       Claude Sonnet 5.5

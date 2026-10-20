@@ -11,6 +11,16 @@ For a valid four-valued signal `Λ̃`, `toKleeneSignal(Λ̃,mapInconclusiveTo)` 
 sense of [1, Sec. 4.3 (refinements)], `Λ ≺ Λ̃`, for either value of `mapInconclusiveTo`: `⌊Λ̃⌋` and
 `⌈Λ̃⌉` are refinements of `Λ̃`.
 
+## Inputs
+* `s` – four-valued signal
+* `v` – value for inconclusive times
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* the signal is refined by its three-valued conversion
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

@@ -13,6 +13,17 @@ public import CORALean.Specification.STLInterval.Theorems.Basic
 `set(obj,interval,value)` of a valid signal and an `stlInterval` whose lower bound is `≥ 0` is valid
 and has `value` at the times the interval denotes, the signal's own value elsewhere: the interval's
 real bounds are those of `setBounds_spec`.
+
+## Inputs
+* `s` – signal
+* `I` – time interval
+* `value` – value to set
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* a valid signal with the value on the interval and unchanged elsewhere
 -/
 
 -- Authors:       Claude Sonnet 5.5

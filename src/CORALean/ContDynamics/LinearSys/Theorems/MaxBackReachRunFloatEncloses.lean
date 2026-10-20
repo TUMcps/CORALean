@@ -29,6 +29,7 @@ asked to hold `W₀r` with error box `{0}`. The lines are those of [1, Alg. 3].
 * `t₀` – float start time
 * `Δt` – float step length
 * `η` – Taylor order
+* `ρ` – support oracle for exact polytopes
 * `P₁r` – first exact polytope
 * `P₂r` – second exact polytope
 * `Ur` – exact input zonotope
@@ -37,7 +38,6 @@ asked to hold `W₀r` with error box `{0}`. The lines are those of [1, Alg. 3].
 * `k` – iteration count
 
 ## Hypotheses
-* `ρ` – support oracle for exact polytopes
 * `ht₀` – start time nonnegative
 * `hΔt` – step length positive
 * `hU0` – input error box contains zero
@@ -56,7 +56,6 @@ asked to hold `W₀r` with error box `{0}`. The lines are those of [1, Alg. 3].
 
 ## Conclusion
 * the float state after the iterations stands for the exact one
-
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

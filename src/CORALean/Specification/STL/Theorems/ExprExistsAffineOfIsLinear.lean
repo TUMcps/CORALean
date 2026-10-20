@@ -11,6 +11,15 @@ public import Mathlib.Tactic.Ring
 
 An expression that passes `isLinearPredicate`'s test is an affine function of the state:
 `e(x) = Σᵢ aᵢ xᵢ + b`.
+
+## Inputs
+* `e` – expression
+
+## Hypotheses
+* `h` – the expression is linear
+
+## Conclusion
+* the expression is an affine function of the variables
 -/
 
 -- Authors:       Claude Sonnet 5.5

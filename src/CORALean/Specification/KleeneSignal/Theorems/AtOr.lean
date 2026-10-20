@@ -13,6 +13,16 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.CombineSpec
 
 For valid three-valued signals, `or_(varargin)` is valid and, at a time `t ≥ 0`, `True` iff one is
 `True`, and `False` iff every one is `False`.
+
+## Inputs
+* `ι` – index type of the operands
+* `sigs` – three-valued signals
+
+## Hypotheses
+* `hv` – the signals are valid
+
+## Conclusion
+* the disjunction is valid and has Kleene's disjunction at each time
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -18,14 +18,11 @@ is a precision question, not a soundness one.
 
 ## Inputs
 * `Aq` – family indexed by `Fin q`
-
-## Hypotheses
 * `u₁` – a support bound of `P₁.construct` along each row
 * `u₂` – a support bound of `P₂.construct` along each row
 
 ## Output
 * the polytope on the directions `Aq` bounded by the sum of the bounds `u₁` and `u₂`
-
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

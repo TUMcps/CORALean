@@ -15,6 +15,16 @@ The measure of size used for the "`→ 0`" of [1, Prop. 3] (and Prop. 4): the ra
 family `S x` of sets of `Vec ℝ n` (the sup norm of `Vec`) tends to `0` along a filter iff, for
 every `ε > 0`, `S x ⊆ B_ε(0)` eventually. Here the direction the propositions need.
 
+## Inputs
+* `l` – filter
+* `S` – family of sets
+
+## Hypotheses
+* `h` – the sets eventually lie in every ball around zero
+
+## Conclusion
+* the radius of the sets tends to zero
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

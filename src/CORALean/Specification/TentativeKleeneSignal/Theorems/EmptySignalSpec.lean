@@ -10,6 +10,15 @@ public import CORALean.Specification.TentativeKleeneSignal.Operations.Basic
 # The empty tentative signal is inconclusive everywhere
 
 `emptySignal` is valid and, at every `t ≥ 0`, neither value can hold: the value is `Inconclusive`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the empty signal is valid and inconclusive everywhere
 -/
 
 -- Authors:       Claude Sonnet 5.5

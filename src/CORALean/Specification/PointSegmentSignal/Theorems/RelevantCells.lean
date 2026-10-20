@@ -17,6 +17,23 @@ public import Mathlib.Order.Interval.Set.Basic
 In dense time without a last moment, for a valid signal and a nonempty interval with lower bound `lb
 ≥ 0`, the stored values (zero-based) from `start - 1` up to before `stop`, the range of
 `priv_relevantValueIdx`, are exactly those read at some time of the interval.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `lb` – interval lower bound
+* `ub` – interval upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+* `m` – value index
+
+## Hypotheses
+* `hs` – the signal is valid
+* `h0` – the lower bound is nonnegative
+* `hne` – the interval is nonempty
+
+## Conclusion
+* the value lies between start and stop iff some time of the interval reads it
 -/
 
 -- Authors:       Claude Sonnet 5.5

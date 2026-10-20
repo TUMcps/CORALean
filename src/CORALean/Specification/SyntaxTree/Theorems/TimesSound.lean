@@ -17,6 +17,21 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 
 `aux_times_` keeps every solution of `x₁ x₂ ∈ int`: an operand whose interval contains `0` is left
 alone, the other is met with the quotient, exactly (`Interval.rdivide_exact`).
+
+## Inputs
+* `int` – target interval
+* `prev` – previous interval
+* `other` – interval of the other operand
+* `a` – point of the other interval
+* `b` – point of the previous interval
+
+## Hypotheses
+* `hb` – the previous interval contains its point
+* `ha` – the other interval contains its point
+* `hi` – the target contains the product
+
+## Conclusion
+* the operand interval contains the point and lies inside its interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -19,6 +19,19 @@ For a valid signal and `lb ≥ 0`, the index `start` of `priv_relevantValueIdx` 
 `values`, and `start - 1` is the least index a time of the interval reads: every time from `lb` on
 (`lb` itself only if the left end is closed) reads at least that index, a closed left end reads
 exactly it at `lb`, and an open one at the times just after `lb`.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `lb` – interval lower bound
+* `lc` – lower bound is closed
+
+## Hypotheses
+* `hs` – the signal is valid
+* `h0` – the lower bound is nonnegative
+
+## Conclusion
+* the start index is in range and lies below the cells the interval reads
 -/
 
 -- Authors:       Claude Sonnet 5.5

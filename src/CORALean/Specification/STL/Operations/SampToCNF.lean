@@ -14,6 +14,12 @@ X_c^j (φᵢⱼ ∨ ϱᵢⱼ)`, here computed: `X_c` raises each `j`, `∧` appe
 negation is pushed in by `¬X_cϕ ≡ X_c¬ϕ`, `¬F(0,c)ϱ ≡ G(0,c)¬ϱ`, `¬G(0,c)ϱ ≡ F(0,c)¬ϱ`. `toCNF
 true s` is `s`, `toCNF false s` is `¬s`.
 
+## Inputs
+* none
+
+## Output
+* the normal form of the sampled time formula or of its negation
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

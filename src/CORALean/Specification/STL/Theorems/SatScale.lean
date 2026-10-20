@@ -10,6 +10,17 @@ public import CORALean.Specification.STL.Operations.FormulaScale
 `ξ ⊨ₜ φ.scale c ⇔ (t ↦ ξ(tc)) ⊨ₜ φ` for `c > 0`: how a result for `c = 1`, like [1, Table 1], and
 [1, Lemma 4]'s `c`-divisible formulas are a result for every step `c`.
 
+## Inputs
+* `c` – scaling factor
+* `φ` – formula
+* `ξ` – trace
+
+## Hypotheses
+* `hc` – the factor is positive
+
+## Conclusion
+* the scaled formula holds iff the formula holds on the scaled trace
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

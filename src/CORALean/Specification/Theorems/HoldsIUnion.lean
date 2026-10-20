@@ -13,6 +13,17 @@ empty `ι` is `∅`, which sits inside every safe set (and every invariant, the
 same test) and misses every unsafe one, so `h`, vacuous, still closes the
 goal — no hypothesis on `ι` is dropped here for want of one, it is simply not
 needed.
+
+## Inputs
+* `ι` – index type of the parts
+* `spec` – specification
+* `X` – parts of the set
+
+## Hypotheses
+* `h` – the specification holds of each part
+
+## Conclusion
+* the specification holds of the union
 -/
 
 -- Authors:       Claude Opus 5

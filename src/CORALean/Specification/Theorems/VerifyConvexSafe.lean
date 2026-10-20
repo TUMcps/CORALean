@@ -14,6 +14,20 @@ stopped at; `Specification.holds_unsafeSet_of_separating` is exactly what a
 separating direction buys. Nothing about the search itself — which direction,
 or how many steps it took — survives into the statement.
 
+## Inputs
+* `bO` – bounds of the reachable set
+* `bU` – bounds of the unsafe set
+* `wO` – witnesses of the reachable set
+* `wU` – witnesses of the unsafe set
+* `ℓ` – sequence of directions
+* `fuel` – number of directions tried
+
+## Hypotheses
+* `h` – the search answers safe
+
+## Conclusion
+* the unsafe set specification holds of the reachable set
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

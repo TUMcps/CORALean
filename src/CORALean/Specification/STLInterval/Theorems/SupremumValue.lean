@@ -10,6 +10,15 @@ public import CORALean.Specification.STLInterval.Theorems.RawSetUpperReach
 # `supremum` is the supremum of the times
 
 For a nonempty interval `supremum` returns the least upper bound of its times (in `EReal`).
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* `hI` – the interval is nonempty
+
+## Conclusion
+* the bound returned is the supremum of the times
 -/
 
 -- Authors:       Claude Sonnet 5.5

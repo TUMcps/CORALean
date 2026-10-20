@@ -17,6 +17,16 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.AtEqCell
 For a valid signal, `cutAtFirstFallingEdge(obj)` is valid and, at a time `t ≥ 0`, `true` iff the
 signal is `true` at `t` and has not fallen before: any stored value up to the one `t` reads that is
 `true` is followed by `true` values up to it.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* the cut signal is valid and true where the signal is true and has not fallen
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -21,9 +21,6 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 # A halfspace description as a bundle of one
 
 ## Inputs
-* none
-
-## Hypotheses
 * `up` – certified upper bound per coordinate
 * `lo` – certified lower bound per coordinate
 

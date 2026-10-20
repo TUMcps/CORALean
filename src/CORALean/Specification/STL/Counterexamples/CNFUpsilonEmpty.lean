@@ -13,6 +13,15 @@ public import CORALean.Specification.STL.Definitions.ReachSequence
 empty and every formula holds of it, but `Υ` still asks for states: `R(t) = Bool` for `t ≠ 5` and
 the formula `X_0(F(0,1)⊥ ∨ ⊥)` is a counterexample, `R` finitely represented with breakpoint `5`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* an empty reachable set at some time makes the encoding incomplete
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

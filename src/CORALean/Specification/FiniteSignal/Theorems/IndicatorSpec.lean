@@ -14,6 +14,19 @@ For a non-negative duration and a proper interval, `indicator` returns a valid s
 duration that is `val` on the interval and false elsewhere: the right end of the interval is open
 (`[lo,hi)`) unless the interval reaches the end of the signal, where the signal is closed. An
 interval entirely before `0` or from `dur` on gives the constant false signal.
+
+## Inputs
+* `dur` – signal duration
+* `lo` – interval lower bound
+* `hi` – interval upper bound
+* `val` – value on the interval
+
+## Hypotheses
+* `h0` – the duration is nonnegative
+* `hlh` – the interval is proper
+
+## Conclusion
+* a valid signal of that duration that is `val` exactly on the interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

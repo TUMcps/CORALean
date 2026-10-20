@@ -14,6 +14,20 @@ public import CORALean.Specification.PointSegmentSignal.Operations.SuccTimeAtVal
 
 `cell t ≤ b` iff `t` lies before the time point `succTimeAtValIdx` gives for the `b`-th value
 (zero-based, `inf` past the last point), or at it if the value is the point value.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `t` – time
+* `b` – value index
+
+## Hypotheses
+* `hs` – the signal is valid
+* `ht` – the time is nonnegative
+* `hb` – the index is in range
+
+## Conclusion
+* the cell is at most the index iff the time is before the value's upper end
 -/
 
 -- Authors:       Claude Sonnet 5.5

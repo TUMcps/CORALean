@@ -16,6 +16,16 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.FindIntervalsSp
 For a valid four-valued signal, the intervals of `findIntervals(obj,match)` start at times `≥ 0`, a
 time `t ≥ 0` is in one of them exactly when the signal is `match` at `t`, and an interval cannot be
 extended through times where the signal is `match`.
+
+## Inputs
+* `s` – four-valued signal
+* `match_` – value to find
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* the intervals are the maximal runs of that value
 -/
 
 -- Authors:       Claude Sonnet 5.5

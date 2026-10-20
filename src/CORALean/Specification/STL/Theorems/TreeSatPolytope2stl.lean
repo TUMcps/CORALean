@@ -13,6 +13,16 @@ public import CORALean.Specification.STL.Theorems.TreeLinearMapApplyEqSum
 With the equalities kept, `polytope2stl(obj,P)` is satisfied by a trace exactly when its initial
 state lies in the polytope `{x | A x <= b, Ae x = be}` (`Real.HPolytope.construct`). By CORA's
 `in`, the same formula states membership in a polytope.
+
+## Inputs
+* `P` – polytope
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the formula holds iff the initial state lies in the polytope
 -/
 
 -- Authors:       Claude Sonnet 5.5

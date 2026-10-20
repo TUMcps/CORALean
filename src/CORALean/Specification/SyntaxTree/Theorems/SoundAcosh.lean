@@ -14,6 +14,16 @@ public import CORALean.Specification.SyntaxTree.Theorems.FunHanAcoshSound
 
 The node `acosh` of an operand `≥ 1` builds over a sound tree is sound: its interval encloses it
 (`encloses_acosh`) and its `funHan` is sound.
+
+## Inputs
+* none
+
+## Hypotheses
+* `h` – the operand tree is sound
+* `hd` – the operand is at least one
+
+## Conclusion
+* the inverse hyperbolic cosine tree is sound
 -/
 
 -- Authors:       Claude Sonnet 5.5

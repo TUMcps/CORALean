@@ -19,6 +19,18 @@ public import CORALean.Specification.PointSegmentSignal.Operations.SuccTimeAtVal
 
 In dense time without a last moment, every index of `values` is `cell t` for some `t ≥ 0`: the point
 values at the time points, the interval values at a time between two points or after the last.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `m` – value index
+
+## Hypotheses
+* `hs` – the signal is valid
+* `hm` – the index is in range
+
+## Conclusion
+* some nonnegative time reads that value
 -/
 
 -- Authors:       Claude Sonnet 5.5

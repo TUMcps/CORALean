@@ -14,6 +14,23 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.AtEqCell
 In dense time without a last moment, for a valid signal and a nonempty interval with lower bound `lb
 ≥ 0`, `anyTrue(obj,interval,cond)` is `true` iff `cond` holds of the signal's value at some time of
 the interval.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `lb` – interval lower bound
+* `ub` – interval upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+* `cond` – condition on values
+
+## Hypotheses
+* `hs` – the signal is valid
+* `h0` – the lower bound is nonnegative
+* `hne` – the interval is nonempty
+
+## Conclusion
+* `anyTrue` holds iff the condition holds at some time of the interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

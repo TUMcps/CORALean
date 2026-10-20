@@ -11,6 +11,15 @@ public import Mathlib.Order.WithBot
 `start` of `priv_relevantValueIdx(obj,interval)` in `pointSegmentSignal`, for the lower bound
 `lb`: the index (from `1`) of the first stored value that the signal takes at a time of the
 interval. A point equal to the lower end counts only when that end is closed.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `lb` – interval lower bound
+* `lc` – lower bound is closed
+
+## Output
+* the index of the first value in the interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

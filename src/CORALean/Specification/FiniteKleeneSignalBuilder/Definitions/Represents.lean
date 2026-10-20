@@ -11,6 +11,15 @@ public import CORALean.Specification.FiniteSignal.Operations.At
 A builder says, for a duration `d`, that the property can be true at the times `t` of `[0,d]` with
 `PT t` and can be false at those with `PF t`: it is valid, lasts `d`, and its two signals are true
 at `t` exactly there.
+
+## Inputs
+* `b` – signal builder
+* `d` – duration
+* `PT` – times where the property can be true
+* `PF` – times where the property can be false
+
+## Output
+* the builder is valid, lasts `d` and marks `PT` and `PF`
 -/
 
 -- Authors:       Claude Sonnet 5.5

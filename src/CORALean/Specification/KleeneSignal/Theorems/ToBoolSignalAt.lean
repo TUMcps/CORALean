@@ -13,6 +13,17 @@ value `⌊Λ(t)⌋` with unknown replaced by `false`, and `toBoolSignal(Λ,true)
 with unknown replaced by `true`: the under- and the overapproximation of
 [1, Sec. 4.2 (refinements)].
 
+## Inputs
+* `s` – three-valued signal
+* `t` – time
+
+## Hypotheses
+* `hs` – the signal is valid
+* `ht` – the time is nonnegative
+
+## Conclusion
+* the two refinements are the floor and ceiling of the value
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

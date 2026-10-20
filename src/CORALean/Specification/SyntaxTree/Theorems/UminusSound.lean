@@ -14,6 +14,15 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 # `aux_uminus_` is sound
 
 `aux_uminus_` keeps every solution of `-x ∈ int`.
+
+## Inputs
+* `prev` – previous interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the inverse of the negation keeps every solution
 -/
 
 -- Authors:       Claude Sonnet 5.5

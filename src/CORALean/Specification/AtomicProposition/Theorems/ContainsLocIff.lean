@@ -9,6 +9,16 @@ public import CORALean.Specification.AtomicProposition.Operations.Basic
 
 `containsLoc(ap,loc)` is true exactly when `locs` is empty (every location is allowed) or lists the
 location.
+
+## Inputs
+* `ap` – atomic proposition
+* `loc` – location
+
+## Hypotheses
+* none
+
+## Conclusion
+* the location is allowed iff `locs` is empty or lists it
 -/
 
 -- Authors:       Claude Sonnet 5.5

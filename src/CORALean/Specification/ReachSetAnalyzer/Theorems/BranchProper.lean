@@ -9,6 +9,17 @@ public import CORALean.Specification.ReachSetAnalyzer.Theorems.BranchEntries
 
 If all time intervals of the entries of `R` are proper (`lo < hi`), so are those of the entries
 a branch of the tree of `R` names.
+
+## Inputs
+* `R` – tree of reach sets
+* `w` – branch from the root
+
+## Hypotheses
+* `hR` – all time intervals are proper
+* `hw` – the indices form a branch from the root
+
+## Conclusion
+* the branch's entries have proper time intervals
 -/
 
 -- Authors:       Claude Sonnet 5.5

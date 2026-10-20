@@ -8,17 +8,20 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.OnlineReachSetAnalyz
 /-!
 # The recursion of the propagation
 
-`propagateRec(makeValid,idx)`: the node `idx` is propagated after its children that are not yet
-propagated, found when the node is entered: `setdiff(node.children,find(obj.propagated))`, the
-indices in ascending order without repeats. A child that an earlier sibling's recursion already
-propagated is propagated again. Then `node.propagate(obj.nodes(node.children),makeValid)` updates
-the node and its children (handle objects in CORA; written back here, a child listed twice
-by the last copy), and `obj.propagated(idx)` is set. The syntax graph has no cycles, so the
-recursion depth is at most the number of nodes; `fuel` of that size loses nothing and running out
-of it is `none`, as is every throw. `eps` is MATLAB's `eps`.
+`propagateRec(makeValid,idx)`: node `idx` is propagated after its not yet propagated children
+(`setdiff(node.children,find(obj.propagated))`, ascending, without repeats); a child an earlier
+sibling's recursion already propagated is propagated again. Then `node.propagate` updates the node
+and its children (handles in CORA, written back here) and `obj.propagated(idx)` is set. The syntax
+graph is acyclic, so `fuel` of the node count loses nothing; running out of it is `none`, as is
+every throw. `eps` is MATLAB's `eps`.
+Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-intervals over `𝕋`, rounded outward) is not yet written.
+## Inputs
+* `eps` – machine epsilon
+* `makeValid` – interval to make final
+
+## Output
+* the nodes and propagated flags after the recursion, or none
 -/
 
 -- Authors:       Claude Sonnet 5.5

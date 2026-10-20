@@ -9,6 +9,21 @@ public import Mathlib.Order.Basic
 # Consecutive entries of a strictly increasing list
 
 In a strictly increasing list the entry at `m` is below the entry at `m + 1`.
+
+## Inputs
+* `T` – element type
+* `l` – list
+* `m` – index
+* `a` – entry at the index
+* `b` – entry after it
+
+## Hypotheses
+* `hl` – the list strictly increases
+* `ha` – the first entry is at the index
+* `hb` – the second entry is at the next index
+
+## Conclusion
+* the first entry is below the second
 -/
 
 -- Authors:       Claude Sonnet 5.5

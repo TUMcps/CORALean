@@ -16,6 +16,13 @@ signal. `isemptyobject(interval)` is the case where `toLeft` has nothing to retu
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
 stamps over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `s` – tentative signal
+* `I` – time interval
+
+## Output
+* the four-valued signal on the interval, inconclusive outside
 -/
 
 -- Authors:       Claude Sonnet 5.5

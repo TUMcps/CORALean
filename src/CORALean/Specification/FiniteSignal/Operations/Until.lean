@@ -12,16 +12,21 @@ public import Mathlib.Data.EReal.Operations
 /-!
 # The until of two finite signals
 
-`sig = until(lsig,int,rsig)` of `until.m` with the default `low = false` and `up = true`: the
-signals must have the same duration (CORA throws, here `none`); the result starts as the constant
-false signal and, for every pair of a run of the left signal (`findIntervals(lsig,@(v) v >= up)`)
-and a run of the right one, is or-ed with the indicator of `((lint(i) & rint(j)) - int) &
-lint(i)`. The interval `int = [p,q]` is given by its bounds, `q` possibly infinite; `eps` is
-MATLAB's machine epsilon. The options `low` and `up` are not modelled. Every `none` of a step is a
-failure of a CORA call.
+`sig = until(lsig,int,rsig)` of `until.m` with the defaults `low = false`, `up = true`: the signals
+need the same duration (else CORA throws, here `none`); the result starts false and is or-ed, for
+each run of the left signal and each run of the right one, with the indicator of `((lint(i) &
+rint(j)) - int) & lint(i)`. `int = [p,q]` is given by its bounds, `eps` is MATLAB's `eps`.
+Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
+## Inputs
+* `eps` – machine epsilon
+* `lsig` – left signal
+* `p` – interval lower bound
+* `q` – interval upper bound
+* `rsig` – right signal
+
+## Output
+* the until signal, or none if the durations differ
 -/
 
 -- Authors:       Claude Sonnet 5.5

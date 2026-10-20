@@ -13,6 +13,12 @@ stops at every maximal non-temporal sub-formula, appends it to `list` and gives 
 identifier, the position in `list` counted from one. The identifier is a field of CORA's object
 that `STL.Tree` does not carry, so the result formula is the argument and only `list` is returned;
 the counter `cnt` is the length of `list` plus one.
+
+## Inputs
+* `list` – formulas numbered so far
+
+## Output
+* the list extended by the non-temporal subformulas
 -/
 
 -- Authors:       Claude Sonnet 5.5

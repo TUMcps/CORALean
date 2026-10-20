@@ -11,6 +11,16 @@ public import CORALean.Specification.PointSegmentSignal.Operations.Basic
 and interval values `vals`, replacing or inserted after the `i`-th point, is not redundant. At a
 time point it must differ from the interval before it (the point `0` is always kept); inside an
 interval it must differ from that interval.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `i` – index of the next time point
+* `p` – time of the new point
+* `vals` – point and interval values of the new point
+
+## Output
+* whether a new time point is needed
 -/
 
 -- Authors:       Claude Sonnet 5.5

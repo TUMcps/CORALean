@@ -16,6 +16,17 @@ public import Mathlib.Algebra.BigOperators.Group.Finset.Piecewise
 and (4) does the rest, whatever `M`. The minimum is feasible for `M` at least the spread of the
 `rᵢ`, the "sufficiently large" of the text. [1, Sec. V (disjunction)] is the mirror image.
 
+## Inputs
+* `m` – number of operands
+* `rs` – operand robustness values
+* `M` – big constant
+
+## Hypotheses
+* `hm` – there is an operand
+
+## Conclusion
+* the constraints force the minimum and it exists
+
 ## References
 
 * [1] V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and

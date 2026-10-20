@@ -9,6 +9,20 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Definitions.NodesInv
 
 A node with the next index, the right `dropPropagated` and a parent, appended to a list with the
 invariant, keeps it.
+
+## Inputs
+* `dp` – drop propagated times flag
+* `nodes` – list of nodes
+* `node` – node to append
+
+## Hypotheses
+* `h` – the list satisfies the invariant
+* `hidx` – the node has the next index
+* `hd` – the node has the same flag
+* `hp` – the node has a parent
+
+## Conclusion
+* the extended list satisfies the invariant
 -/
 
 -- Authors:       Claude Sonnet 5.5

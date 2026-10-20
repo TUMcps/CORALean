@@ -8,6 +8,18 @@ public import CORALean.Specification.STLInterval.STLInterval
 # A nonempty interval has a bounded lower and upper end
 
 The lower bound of a nonempty `rawSet` is not `+∞` and its upper bound is not `-∞`.
+
+## Inputs
+* `l` – lower bound
+* `u` – upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+
+## Hypotheses
+* `hne` – the interval is nonempty
+
+## Conclusion
+* the lower bound is not top and the upper bound not bottom
 -/
 
 -- Authors:       Claude Sonnet 5.5

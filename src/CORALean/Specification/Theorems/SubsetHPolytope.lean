@@ -14,6 +14,20 @@ bare family of directions. An equality row costs two bounds rather than one,
 its direction having to be answered from both sides; that is what makes it the
 expensive kind of constraint to verify against, not the expensive kind to
 state.
+
+## Inputs
+* `P` – polytope
+* `u` – support bounds along the inequality rows
+* `e` – support bounds along the equality rows
+* `f` – support bounds along the negated equality rows
+
+## Hypotheses
+* `hu` – each inequality bound is within its offset
+* `he` – each equality bound is within its offset
+* `hf` – each negated equality bound is within its offset
+
+## Conclusion
+* the set lies in the polytope
 -/
 
 -- Authors:       Claude Opus 5

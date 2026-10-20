@@ -12,6 +12,15 @@ public import Mathlib.Tactic.Linarith
 A formula that passes `isLinearPredicate` is satisfied by a trace exactly when its initial state
 meets finitely many constraints `op (Σᵢ aᵢ xᵢ) b`, one per comparison: the set of states it
 describes is an intersection of open and closed halfspaces.
+
+## Inputs
+* `φ` – formula
+
+## Hypotheses
+* `h` – the formula is a linear predicate
+
+## Conclusion
+* the formula is equivalent to a finite list of linear constraints
 -/
 
 -- Authors:       Claude Sonnet 5.5

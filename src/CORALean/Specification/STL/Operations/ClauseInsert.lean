@@ -10,6 +10,12 @@ public import CORALean.Specification.STL.Operations.BranchMerge
 [1, Lemma 2]: a branch joins the one of its own `j`, if the clause has one, and is appended
 otherwise.
 
+## Inputs
+* `b` – branch to add
+
+## Output
+* the clause with the branch merged in or appended
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

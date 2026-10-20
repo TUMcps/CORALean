@@ -16,6 +16,14 @@ negative one otherwise. `preInf` and `preSup` are the roots of the two bounds of
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (interval
 arithmetic over `𝕋` with outward rounding) is not yet written.
+
+## Inputs
+* `prev` – previous interval
+* `preInf` – lower root
+* `preSup` – upper root
+
+## Output
+* the interval of signed roots the previous interval allows
 -/
 
 -- Authors:       Claude Sonnet 5.5

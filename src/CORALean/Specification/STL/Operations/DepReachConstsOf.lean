@@ -21,6 +21,16 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Plus
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (a zonotope
 computation over `𝕋` with directed rounding) is not yet written.
 
+## Inputs
+* `A` – dynamics matrix
+* `B` – input matrix
+* `U` – input set
+* `Δt` – time step
+* `κ` – Taylor order
+
+## Output
+* the constants computed in the first line
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

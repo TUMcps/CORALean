@@ -10,6 +10,16 @@ public import CORALean.Specification.PointSegmentSignal.Operations.CombineLoop
 `combine(op,varargin)` of `pointSegmentSignal.m`: the signals `sig k` combined point-wise by `op`,
 which maps the values at a point to `o` output values; output `i` is a signal of its own. Each
 output runs the loop on its own, as CORA's outputs share only the traversal of the input times.
+
+## Inputs
+* `T` – time type
+* `ι` – index type of the inputs
+* `κ` – index type of the outputs
+* `op` – pointwise operator on Boolean values
+* `sig` – input signals
+
+## Output
+* the combined signals
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,6 +11,16 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.MkSpec
 
 The analyzer of the formula `true` has the verdict `True` and that of `false` the verdict `False`,
 before anything is observed.
+
+## Inputs
+* `f` – propagation frequency
+* `dp` – drop propagated times flag
+
+## Hypotheses
+* none
+
+## Conclusion
+* the verdict is true for true and false for false
 -/
 
 -- Authors:       Claude Sonnet 5.5

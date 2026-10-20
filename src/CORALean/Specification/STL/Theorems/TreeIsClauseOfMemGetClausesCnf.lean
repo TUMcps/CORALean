@@ -10,6 +10,17 @@ public import CORALean.Specification.STL.Definitions.TreeIsCnf
 
 In a conjunctive normal form, the conjuncts `getClauses(obj,'cnf')` returns are clauses:
 disjunctions of leaves.
+
+## Inputs
+* `φ` – formula
+* `c` – subformula
+
+## Hypotheses
+* `h` – the formula is in conjunctive normal form
+* `hc` – the subformula is one of its clauses
+
+## Conclusion
+* the subformula is a clause
 -/
 
 -- Authors:       Claude Sonnet 5.5

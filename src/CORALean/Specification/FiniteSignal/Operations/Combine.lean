@@ -13,6 +13,16 @@ public import CORALean.Specification.FiniteSignal.Operations.Mk
 `sig = combine(op,varargin)` of `combine.m`: the binary operator applied piecewise to two signals,
 trimmed to the shorter one and in normal form. CORA throws unless exactly two signals are given,
 and in the constructor if its checks fail; both are `none`.
+
+## Inputs
+* `T` – time type
+* `V` – value type of the inputs
+* `W` – value type of the result
+* `op` – binary operator on values
+* `sigs` – the two signals
+
+## Output
+* the pointwise combined signal, or none unless two signals are given
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -13,6 +13,18 @@ R(t)` for all `x₀ ∈ X₀` and `u(·) ∈ 𝒰`, the trivial solution `μ = 0
 singleton `R(t)`. "Can be used to construct" has no formal content in [1]: `μ` and `E` are
 quantified, not computed from `R`. `STL.dependencyPreserving_of_encloses` shows what that gives.
 
+## Inputs
+* `ξ` – solution map
+* `X₀` – initial set
+* `𝒰` – set of inputs
+* `R` – reachable set enclosure
+* `tEnd` – final time
+* `μ` – center map
+* `E` – error set
+
+## Output
+* the enclosure preserves the dependency on initial state and input
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

@@ -12,6 +12,16 @@ public import CORALean.Specification.SyntaxTree.Theorems.MeetContains
 # `aaux_cos_` is sound
 
 `aaux_cos_` keeps every solution of `acos s ∈ int`, for a target inside the range of `acos`.
+
+## Inputs
+* `prev` – previous interval
+
+## Hypotheses
+* `hd₁` – the interval stays above minus one
+* `hd₂` – the interval stays below one
+
+## Conclusion
+* the inverse of the inverse cosine keeps every solution
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -12,6 +12,17 @@ public import CORALean.Specification.STL.Theorems.BranchHoldsShift
 [1, Sec. 4.1]: `ξ ⊨ₜ X_c a ⇔ ⟨ξ⟩_c ⊨ₜ a` for `a.next`: raising every `j` reads the trace shifted
 by `c`.
 
+## Inputs
+* `c` – time step
+* `a` – normal form
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the raised form holds iff the form holds on the shifted trace
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

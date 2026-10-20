@@ -14,6 +14,21 @@ public import Mathlib.Order.Interval.Set.Basic
 
 If a valid signal is `false` at every time, `anyTrue` is `false` on every interval: every stored
 value is the value at some time (a time point, one strictly between two, or one after the last).
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `lb` – interval lower bound
+* `ub` – interval upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+
+## Hypotheses
+* `hs` – the signal is valid
+* `h` – the signal is false at all times
+
+## Conclusion
+* `anyTrue` returns false
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -30,6 +30,18 @@ public import Mathlib.Data.List.GetD
 For a valid signal and a time `p ≥ 0`, `aux_setPoint` gives a valid signal whose value is `value` at
 `p` and the signal's own value at every other time. A point is removed when it then matches both
 intervals, set when it exists, inserted when `p` lies inside an interval.
+
+## Inputs
+* `s` – signal
+* `p` – time to set
+* `value` – value to set
+
+## Hypotheses
+* `hs` – the signal is valid
+* `hp` – the time is nonnegative
+
+## Conclusion
+* a valid signal with the value at that time and unchanged elsewhere
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,6 +11,12 @@ public import CORALean.Specification.FiniteSignal.Operations.Basic
 
 Both signals are valid `finiteSignal`s of one duration, which is what
 `finiteKleeneSignalBuilder(dur)` makes them and what `setPossiblyTrue` and `setPossiblyFalse` keep.
+
+## Inputs
+* `b` – signal builder
+
+## Output
+* both signals are valid and last equally long
 -/
 
 -- Authors:       Claude Sonnet 5.5

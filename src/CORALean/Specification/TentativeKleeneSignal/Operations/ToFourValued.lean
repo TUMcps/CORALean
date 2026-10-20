@@ -14,6 +14,13 @@ public import Mathlib.Data.Fin.VecNotation
 `toFourValued(obj)` of `tentativeKleeneSignal.m` (a private method): the conjunction of the two
 parts is the unknown part, the negation of their disjunction the inconclusive part, the Kleene
 signal is `canBeTrue` with the unknown part.
+
+## Inputs
+* `T` – time type
+* `s` – tentative signal
+
+## Output
+* the four-valued signal
 -/
 
 -- Authors:       Claude Sonnet 5.5

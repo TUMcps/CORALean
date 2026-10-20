@@ -9,6 +9,12 @@ public import CORALean.Specification.STL.Definitions.Composition
 
 `f(φ₁, …, φ_n)`, the formula a composition builds from its parts [1, Lemma 3].
 
+## Inputs
+* `n` – number of holes
+
+## Output
+* the composition with the holes filled by formulas
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

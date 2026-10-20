@@ -12,6 +12,18 @@ public import CORALean.Specification.PointSegmentSignal.Operations.RelevantStop
 `allTrue(obj,interval,cond)` of `pointSegmentSignal.m`: `cond` holds of every stored value that the
 signal takes at a time of the interval, found as the values from `start` to `stop`
 (`priv_relevantValueIdx`). The defaults are the whole time axis and the identity.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `lb` – interval lower bound
+* `ub` – interval upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+* `cond` – condition on values
+
+## Output
+* whether every value in the interval satisfies the condition
 -/
 
 -- Authors:       Claude Sonnet 5.5

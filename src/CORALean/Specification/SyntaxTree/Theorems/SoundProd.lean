@@ -11,6 +11,16 @@ public import CORALean.Specification.SyntaxTree.Theorems.Basic
 # The product of sound trees is sound
 
 `prod` over sound trees is sound.
+
+## Inputs
+* `rest` – remaining trees
+
+## Hypotheses
+* `h` – the first tree is sound
+* `hs` – the remaining trees are sound
+
+## Conclusion
+* the product tree is sound
 -/
 
 -- Authors:       Claude Sonnet 5.5

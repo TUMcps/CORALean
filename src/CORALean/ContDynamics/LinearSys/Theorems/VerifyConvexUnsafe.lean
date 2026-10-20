@@ -26,6 +26,10 @@ and `inputReach_convex` handling the two halves.
 * `Uin` – input set
 * `t` – time
 * `L` – convex unsafe set
+* `bO` – support bound on the reach set
+* `bL` – support bound on the unsafe set
+* `wO` – support witness on the reach set
+* `wL` – support witness on the unsafe set
 * `ℓ` – direction sequence
 * `fuel` – number of iterations
 
@@ -35,15 +39,10 @@ and `inputReach_convex` handling the two halves.
 * `hUin` – input set convex
 * `hbdd` – input set bounded
 * `hL` – unsafe set convex
-* `bO` – support bound on the reach set
-* `bL` – support bound on the unsafe set
-* `wO` – support witness on the reach set
-* `wL` – support witness on the unsafe set
 * `h` – verification answers violated
 
 ## Conclusion
 * the reach set really meets the unsafe set
-
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

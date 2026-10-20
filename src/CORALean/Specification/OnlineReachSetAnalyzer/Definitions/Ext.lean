@@ -9,6 +9,13 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Definitions.Same
 
 `nodes'` extends `nodes`: it is at least as long, and each node of `nodes` is in `nodes'` at the
 same position up to its graph edges (`Same`).
+
+## Inputs
+* `nodes` – list of nodes
+* `nodes'` – extended list
+
+## Output
+* the second list is at least as long and keeps each node's fixed fields
 -/
 
 -- Authors:       Claude Sonnet 5.5

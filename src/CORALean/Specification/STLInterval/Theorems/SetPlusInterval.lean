@@ -11,6 +11,16 @@ public import CORALean.Specification.STLInterval.Theorems.Basic
 # `plus` with an `interval` denotes a sum
 
 `I + J` for a box `J` denotes `I` plus the closed interval of `J`'s bounds.
+
+## Inputs
+* `I` – interval
+* `J` – real interval
+
+## Hypotheses
+* `hc` – the lower bound stays nonnegative
+
+## Conclusion
+* the sum denotes the times plus the real interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

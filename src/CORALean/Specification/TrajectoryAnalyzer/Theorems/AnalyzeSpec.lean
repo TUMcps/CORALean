@@ -16,6 +16,19 @@ For a simulation with strictly increasing nonnegative time points and distinct p
 realization marks the proposition true at `τ` (`TrueAt`): it holds at the point `x(:,l,s)` and
 `τ` lies in `[t(l),t(l+1))` (closed at `dur`). Combined with `evaluatePoint_sound`: a signal that
 is true at `τ` means the proposition is satisfied by the sampled point of the interval around `τ`.
+
+## Inputs
+* `obj` – analyzer
+* `s` – realization index
+
+## Hypotheses
+* `hnd` – the proposition keys are distinct
+* `ht` – there are time points
+* `hsorted` – the time points strictly increase
+* `hnn` – the time points are nonnegative
+
+## Conclusion
+* the analysis succeeds and the signals represent the marked times
 -/
 
 -- Authors:       Claude Sonnet 5.5

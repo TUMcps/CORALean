@@ -13,6 +13,19 @@ If a point of the set satisfies the proposition, `canBeTrue` says the propositio
 the set. Contrapositively, `canBeTrue = false` says that no point of the set satisfies it. The
 converse does not hold: the intersection test is conservative, and `true` says only that no
 disjointness was shown.
+
+## Inputs
+* `ap` – atomic proposition
+* `s` – set
+* `loc` – location
+* `x` – point of the set
+
+## Hypotheses
+* `hx` – the point lies in the set
+* `h` – the point satisfies the proposition
+
+## Conclusion
+* `canBeTrue` returns true
 -/
 
 -- Authors:       Claude Sonnet 5.5

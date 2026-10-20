@@ -18,6 +18,15 @@ decomposition of [1, Sec. 2.3 (decomposition)] (Fig. 1). A competitor may have a
 unitary signals, `false` ones among them; each run needs a signal of its own, since a unitary
 signal lies inside one maximal run.
 
+## Inputs
+* `s` – Boolean signal
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* the signal is a minimal finite disjunction of unitary signals
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

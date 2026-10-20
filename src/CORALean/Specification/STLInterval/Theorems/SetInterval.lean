@@ -14,6 +14,23 @@ public import Mathlib.Topology.Order.DenselyOrdered
 
 For an interval with finite bounds the box `interval(I)` denotes the closure of the set of times:
 both ends closed, the same bounds.
+
+## Inputs
+* `l` – lower bound
+* `u` – upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+* `a` – an infinite lower bound is open
+* `b` – an infinite upper bound is open
+* `c` – the bounds leave a time in the interval
+* `z` – the lower bound is nonnegative
+
+## Hypotheses
+* `hl` – the lower bound is finite
+* `hu` – the upper bound is finite
+
+## Conclusion
+* the box of the interval is the closure of its times
 -/
 
 -- Authors:       Claude Sonnet 5.5

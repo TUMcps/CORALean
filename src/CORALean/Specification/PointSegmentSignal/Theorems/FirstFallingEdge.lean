@@ -13,6 +13,15 @@ public import Mathlib.Algebra.Order.Group.Nat
 `find(~x(2:end) & x(1:end-1),1,'first')` of a Boolean array is its first falling edge: with no edge,
 `x` never falls; otherwise the edge `i` has `x(i)` true and `x(i + 1)` false, and `x` does not fall
 before it.
+
+## Inputs
+* `v` – Boolean array
+
+## Hypotheses
+* none
+
+## Conclusion
+* the first falling edge is the first true followed by false
 -/
 
 -- Authors:       Claude Sonnet 5.5

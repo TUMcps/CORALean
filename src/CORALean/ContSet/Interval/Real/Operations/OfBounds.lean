@@ -16,9 +16,6 @@ This is what every representation's `interval` is once its bounds are in hand,
 so the enclosure is proved once here rather than per representation.
 
 ## Inputs
-* none
-
-## Hypotheses
 * `up` – upper bounds, one per coordinate
 * `lo` – negated lower bounds, one per coordinate
 

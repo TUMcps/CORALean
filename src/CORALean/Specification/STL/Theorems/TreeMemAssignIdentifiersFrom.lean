@@ -9,6 +9,17 @@ public import CORALean.Specification.STL.Operations.TreeAssignIdentifiersFrom
 
 Every formula `assignIdentifiers` adds to its list is non-temporal: the walk stops at a maximal
 non-temporal sub-formula and a temporal operator is always entered.
+
+## Inputs
+* `φ` – formula
+* `list` – formulas numbered so far
+* `ψ` – subformula
+
+## Hypotheses
+* `h` – the subformula is in the new list
+
+## Conclusion
+* the subformula was in the old list or is non-temporal
 -/
 
 -- Authors:       Claude Sonnet 5.5

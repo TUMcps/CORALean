@@ -9,6 +9,20 @@ public import CORALean.Specification.STLInterval.STLInterval
 
 The invariants of `STLInterval.nonempty` (an infinite bound is open, `lower < upper` or a closed
 point) leave a time in the set: a real between the bounds, or the point itself.
+
+## Inputs
+* `l` – lower bound
+* `u` – upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+
+## Hypotheses
+* `h1` – an infinite lower bound is open
+* `h2` – an infinite upper bound is open
+* `h3` – the bounds leave a time in the interval
+
+## Conclusion
+* the set between the bounds is nonempty
 -/
 
 -- Authors:       Claude Sonnet 5.5

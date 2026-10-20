@@ -9,6 +9,18 @@ public import CORALean.Specification.STL.STL
 
 `ξ ⊨ₜ ⋁ (l.map g) ⇔ ∃ b ∈ l, ξ ⊨ₜ g b`, the `⋁ⱼ` and `⋁_k` of [1, Sec. 4.1].
 
+## Inputs
+* `β` – index type
+* `l` – list of indices
+* `g` – formula of each index
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the disjunction holds iff some formula holds
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

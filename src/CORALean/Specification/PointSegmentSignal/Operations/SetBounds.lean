@@ -14,6 +14,18 @@ public import CORALean.Specification.STLInterval.Operations.Basic
 empty interval changes nothing and a single time is `aux_setPoint`. Otherwise the points of the
 signal inside the interval are replaced by new ones at its ends (`lb`, `ub`) with the values on
 either side, unless a new point would be redundant, and the signal keeps the part before and after.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `lb` – interval lower bound
+* `ub` – interval upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+* `value` – value to set
+
+## Output
+* the signal with the value set on the interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

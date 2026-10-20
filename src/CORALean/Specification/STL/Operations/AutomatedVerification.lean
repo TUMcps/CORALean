@@ -15,6 +15,15 @@ Alg. 2 on `φ` and `¬φ`, `tuneκ` is line 4's tuning of `κ` and `falsifiable`
 `repeat`, which may not stop, so here it runs `fuel` times and gives `none` after that. The result
 is `some true` for safe and `some false` for unsafe. `tEnd` of line 1 is the `Δt` it starts with.
 
+## Inputs
+* `tuneκ` – choice of the Taylor order
+* `check` – check of the specification
+* `checkNeg` – check of the negated specification
+* `falsifiable` – test for a falsifying reach set
+
+## Output
+* safe, unsafe or undecided after at most the given halvings
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

@@ -14,6 +14,15 @@ the
 node's own interval `v`, every `s` of the operand's interval `prev` with `f s ∈ int` survives:
 `funHan`
 does not throw, and returns an interval that holds `s` and lies inside `prev`.
+
+## Inputs
+* `f` – unary function
+* `prev` – previous interval
+* `v` – value interval
+* `funHan` – backpropagation of the function
+
+## Output
+* the backpropagation keeps every solution inside the target
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,6 +11,17 @@ public import CORALean.Specification.STL.Theorems.ShiftZero
 
 [1, Lemma 4]: `φ₁ R[0,0] φ₂ ≡ φ₂`, the equivalence it uses beside Table 1.
 
+## Inputs
+* `φ₁` – left formula
+* `φ₂` – right formula
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* a release on the zero interval is the right formula
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

@@ -10,6 +10,13 @@ public import CORALean.Specification.STL.Definitions.SampledTime
 `X_c^j(φ ∨ ϱ) ∨ X_c^j(φ' ∨ ϱ') ≡ X_c^j((φ ∨ φ') ∨ (ϱ ∨ ϱ'))`: two disjuncts at the same power `j`
 of [1, Lemma 2]'s normal form become one, which is what keeps the `j` of a clause distinct.
 
+## Inputs
+* `b` – first branch
+* `b'` – second branch
+
+## Output
+* the branch with the predicates and lists of both
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

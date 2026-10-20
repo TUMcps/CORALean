@@ -18,6 +18,14 @@ It is as printed: `C_j(·,k) α̃_jk > λ_jk d_j(k)` for every `k`, the strict i
 with the column `(·,k)` of the notation of [1, Sec. 2.1] read as the row `k`, which is its
 meaning.
 
+## Inputs
+* `C` – constraint matrix
+* `d` – offsets
+* `α` – factor vector
+
+## Output
+* the program as printed is feasible
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

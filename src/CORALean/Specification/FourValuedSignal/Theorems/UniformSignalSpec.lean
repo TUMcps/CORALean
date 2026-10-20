@@ -11,6 +11,15 @@ public import CORALean.Specification.STLInterval.Theorems.Basic
 # A uniform signal is constant
 
 `uniformSignal(val)` is a valid signal with value `val` at every time.
+
+## Inputs
+* `val` – constant value
+
+## Hypotheses
+* none
+
+## Conclusion
+* a valid signal with that value at every time
 -/
 
 -- Authors:       Claude Sonnet 5.5

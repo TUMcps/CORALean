@@ -11,6 +11,16 @@ public import CORALean.Specification.Operations.Check
 nothing more. Stated on `construct s`, not on the set `s` was computed to enclose:
 `HoldsOfOuter` is the step from one to the other, and `NN`'s `holds_of_check`, like
 every system's, takes both steps at once.
+
+## Inputs
+* `spec` – specification
+* `s` – computed set
+
+## Hypotheses
+* `h` – the check passes
+
+## Conclusion
+* the specification holds of the set the representation denotes
 -/
 
 -- Authors:       Claude Opus 5.5

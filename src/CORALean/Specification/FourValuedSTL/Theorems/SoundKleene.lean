@@ -17,15 +17,25 @@ public import CORALean.Specification.FourValuedSTL.Definitions.Atoms
 /-!
 # Soundness of the three-valued semantics
 
-For a reachable set `R` and every execution `ξ` covered by `R` (`ξ ≺ R`, `ξ(t) ∈ R(t)` for all `t`),
-`⟦φ⟧_ξ ≺ ⟦φ⟧_R`: if `⟦φ⟧_R(t) = v ∈ B` then `⟦φ⟧_ξ(t) = v` ([1, Thm. 1]). The proof is the
-paper's, by structural induction on `φ`, the inductive cases from the direct semantics of the
-operators on `U₁`-signals (`KleeneSignal.at_not`, `at_and`, `until_spec`, [1, Eq. 2]); the step
-for the until is the one that swaps an existential and a universal quantifier.
+For a reachable set `R` and every execution `ξ` covered by it (`ξ ≺ R`), `⟦φ⟧_ξ ≺ ⟦φ⟧_R`: if
+`⟦φ⟧_R(t) = v ∈ B` then `⟦φ⟧_ξ(t) = v` ([1, Thm. 1]), by structural induction on `φ` from the
+direct semantics of the `U₁` operators (`KleeneSignal.at_not`, `at_and`, `until_spec`, [1, Eq. 2]);
+the until swaps an existential and a universal quantifier. The atom signals `S a` must have finite
+variability (`FourValuedSTL.IsAtomSignal`): the `U₁` operators are defined for no other (`Lemma 2`).
 
-The satisfaction signal `⟦φ⟧_R` is built from the signals of the atoms, `S a` for `t ↦ â(R(t))`,
-which must have finite variability (`FourValuedSTL.IsAtomSignal`): the operators of `U₁`-signals,
-and the paper's until of Boolean signals under them, are defined for no other (`Lemma 2`).
+## Inputs
+* `X` – state type
+* `φ` – formula
+* `R` – reachable set
+* `S` – three-valued signal of each atom
+* `ξ` – execution
+
+## Hypotheses
+* `hS` – the atom signals are valid
+* `hξ` – the set covers the execution
+
+## Conclusion
+* the satisfaction signal is valid and refines to the execution's verdict
 
 ## References
 

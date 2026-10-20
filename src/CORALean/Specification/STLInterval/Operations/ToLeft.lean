@@ -9,6 +9,12 @@ public import CORALean.Specification.STLInterval.Operations.StlInterval
 
 `@stlInterval/toLeft.m`: `[0, lower)`, or `[0, lower]` when the lower end is open. `none` is CORA's
 `CORA:emptySet` error on the empty interval.
+
+## Inputs
+* none
+
+## Output
+* the interval to the left, or none if empty
 -/
 
 -- Authors:       Claude Sonnet 5.5

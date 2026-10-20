@@ -11,6 +11,17 @@ public import CORALean.Specification.KleeneSignal.Theorems.ToBoolSignalSpec
 
 Mapping unknown to false gives the signal that is `true` where the three-valued signal is `True`;
 mapping unknown to true gives the signal that is `true` where it is not `False`.
+
+## Inputs
+* `s` – three-valued signal
+* `t` – time
+
+## Hypotheses
+* `hs` – the signal is valid
+* `ht` – the time is nonnegative
+
+## Conclusion
+* the minimal refinement is true at true, the maximal except at false
 -/
 
 -- Authors:       Claude Sonnet 5.5

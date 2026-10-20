@@ -10,14 +10,19 @@ public import CORALean.Specification.STLInterval.Operations.Supremum
 # New observations for already propagated times
 
 The check at the start of `observeSet`: for every interval `prop(i)` propagated to a parent with
-upper bound `pUb` and closedness `pRc`, an observation from `lb` (closed if `lc`) on must not
-reach back before it, `pUb > lb || (withinTol(pUb,lb,eps) && pRc && lc)`; otherwise CORA throws
-`CORA:specialError` ("New observation for already propagated time is not allowed"). Empty intervals
-(`pUb` empty) are skipped. If the observed interval is empty its `lb` is empty too, and comparing
-with it is a MATLAB error. `some true` is the former throw, `none` the latter.
+upper bound `pUb` and closedness `pRc`, an observation from `lb` (closed if `lc`) must not reach
+back before it, `pUb > lb || (withinTol(pUb,lb,eps) && pRc && lc)`; otherwise CORA throws
+`CORA:specialError`. Empty intervals are skipped; an empty observed interval has an empty `lb`,
+which is a MATLAB error. `some true` is the former throw, `none` the latter.
+Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-intervals over `𝕋`, rounded outward) is not yet written.
+## Inputs
+* `eps` – machine epsilon
+* `lb` – lower bound of the observation
+* `lc` – lower bound is closed
+
+## Output
+* whether an observation conflicts with a propagated interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

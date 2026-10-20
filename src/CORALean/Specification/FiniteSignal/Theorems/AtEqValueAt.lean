@@ -10,6 +10,18 @@ public import CORALean.Specification.FiniteSignal.Operations.At
 
 For arrays of one length, `at` reads the value of the first breakpoint whose time exceeds the
 given one, the last if there is none: `valueAt` of the breakpoints, in the range of the signal.
+
+## Inputs
+* `T` – time type
+* `V` – value type
+* `s` – signal
+* `t` – time
+
+## Hypotheses
+* `hl` – times and values have one length
+
+## Conclusion
+* `at` reads the value of the breakpoints in the signal's range
 -/
 
 -- Authors:       Claude Sonnet 5.5

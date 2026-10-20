@@ -14,6 +14,21 @@ at a time not yet propagated: if the observation is final (`tentative = false`),
 signal becomes `val` on the interval and stays as it was elsewhere, and the tentative signal is
 untouched; if it is tentative, the satisfaction signal is untouched and the tentative signal
 observes `val` in the interval (`TentativeKleeneSignal.observe`).
+
+## Inputs
+* `eps` – machine epsilon
+* `n` – atomic node
+* `set` – observed set
+* `interval` – observed time interval
+* `loc` – location
+* `val` – value of the proposition on the set
+
+## Hypotheses
+* `hk` – the node is atomic
+* `hnc` – no propagated time is observed again
+
+## Conclusion
+* a final observation sets the signal, a tentative one the tentative signal
 -/
 
 -- Authors:       Claude Sonnet 5.5

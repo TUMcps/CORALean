@@ -12,6 +12,19 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 An interval op that is exact for a function `f` (`J.construct = f '' I.construct`) holds `f t`
 wherever `I`
 holds `t`, one coordinate: what the forward value of a node needs.
+
+## Inputs
+* `I` – interval
+* `J` – image interval
+* `f` – function
+* `t` – point
+
+## Hypotheses
+* `h` – the second interval is the image of the first
+* `ht` – the point lies in the first interval
+
+## Conclusion
+* the function value lies in the image interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

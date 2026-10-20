@@ -8,6 +8,18 @@ public import CORALean.Specification.PointSegmentSignal.Definitions.IsValid
 # A prefix of a valid signal is valid
 
 The first `m ≥ 1` points of a valid signal, with their values, form a valid signal.
+
+## Inputs
+* `s` – signal
+* `m` – number of kept points
+
+## Hypotheses
+* `hs` – the signal is valid
+* `hm1` – at least one point is kept
+* `hm2` – at most all points are kept
+
+## Conclusion
+* the prefix is a valid signal
 -/
 
 -- Authors:       Claude Sonnet 5.5

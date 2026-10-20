@@ -13,6 +13,16 @@ restricted to safe sets (or invariants, checked identically) it is exactly
 `X` inside their `SetIntersection`, the safe-set spec CORA names nothing but
 this tree already has a representation of. Stated for `safeSet`, and does
 not replace `HoldsAll`, which stays what a heterogeneous list still needs.
+
+## Inputs
+* `sets` – list of sets
+* `X` – set of points
+
+## Hypotheses
+* none
+
+## Conclusion
+* all listed safe sets hold iff the safe set of their intersection holds
 -/
 
 -- Authors:       Claude Sonnet 5

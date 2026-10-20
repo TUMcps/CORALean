@@ -12,6 +12,18 @@ public import CORALean.Specification.KleeneSignal.Theorems.Basic
 If the Kleene signal `Λ` refines the four-valued `Λ̃` (`Λ ≺ Λ̃`), then `¬Λ ≺ ¬Λ̃`: the step of the
 induction in [1, Thm. 2] (and [1, Sec. 4.3 (refinements)]) for `¬`.
 
+## Inputs
+* `s` – four-valued signal
+* `k` – three-valued signal
+
+## Hypotheses
+* `hs` – the four-valued signal is valid
+* `hk` – the three-valued signal is valid
+* `h` – the three-valued signal refines the four-valued one
+
+## Conclusion
+* the negation of the refinement refines the negated signal
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

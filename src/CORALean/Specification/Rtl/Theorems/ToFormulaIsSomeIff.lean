@@ -11,6 +11,15 @@ public import CORALean.Specification.Rtl.Operations.ToFormula
 An `rtl` object is a formula of [1, Def. 1] exactly when all its time shifts are nonnegative; the
 other `next` times that CORA accepts (negative multiples of `0.5`) have no counterpart there.
 
+## Inputs
+* `f` – reading of a label as a predicate
+
+## Hypotheses
+* none
+
+## Conclusion
+* conversion succeeds iff all time shifts are nonnegative
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

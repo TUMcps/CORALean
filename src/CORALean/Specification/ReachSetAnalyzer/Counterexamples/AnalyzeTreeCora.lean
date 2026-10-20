@@ -7,32 +7,28 @@ public import CORALean.Specification.ReachSetAnalyzer.Operations.AnalyzeTree
 /-!
 # `analyzeTreeCora`: CORA's `analyze` as printed
 
-CORA's `specification/reachSetAnalyzer.m`, `analyze` (l. 76-82), analyzes the branches below a node
-with
-
-```
-for j=1:length(c)-1
-    out = [out copy(obj).analyze(R,c(j))];
-end
-% use the current copy for last child
-out = [out obj.analyze(R,c(1))];
-```
-
-The comment says the last child `c(end)` is analyzed on `obj` itself, after the first
-`length(c)-1` on copies; the code analyzes `c(1)` instead. The loop covers `c(1),…,c(end-1)`, and
-`c(1)` follows once more, so with `length(c) ≥ 2` the child `c(end)` and everything below it is
-never analyzed, and the branch of `c(1)` is in the result twice. This is the recursion of
-`ReachSetAnalyzer.analyzeTree` with that one index changed.
+CORA's `specification/reachSetAnalyzer.m`, `analyze` (l. 76-82), runs `copy(obj).analyze(R,c(j))`
+for `j=1:length(c)-1` and then, under the comment "use the current copy for last child",
+`obj.analyze(R,c(1))`. The comment means `c(end)`; the code analyzes `c(1)` again, so for
+`length(c) ≥ 2` the last child and everything below it is never analyzed and the branch of `c(1)`
+appears twice. This is `ReachSetAnalyzer.analyzeTree` with that one index changed.
 
 # The second branch of a fork is lost
 
-A reach set `R(1)` (parent `0`) with two successors `R(2)` and `R(3)` (parent `1`) has the branches
-`[1,2]` and `[1,3]`. With the state "the entries analyzed so far", CORA's recursion returns
-`[[1,2],[1,2]]` and the one here `[[1,2],[1,3]]`: entry `3` is never analyzed. As `reachSet`
-arrays with forks come from `reach` of hybrid automata with several outgoing transitions or from
-splitting, `priv_modelCheckingSignals` and `verifySTL_seidl` then check the formula on one
-branch only, and may report `true` for a reach set one of whose branches violates it. Read from
-the source and transcribed literally to Python, which gives `[[1, 2], [1, 2]]`, not run in MATLAB.
+A reach set `R(1)` (parent `0`) with successors `R(2)` and `R(3)` has the branches `[1,2]` and
+`[1,3]`. CORA's recursion returns `[[1,2],[1,2]]`, the one here `[[1,2],[1,3]]`: entry `3` is never
+analyzed, so `priv_modelCheckingSignals` and `verifySTL_seidl` check one branch only and may report
+`true` for a reach set one of whose branches violates the formula. Read from the source and
+transcribed to Python, not run in MATLAB.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's analysis skips the last child and repeats the first
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -15,6 +15,15 @@ The last sentence of [1, Cor. 1], "`⟦φ⟧_R̃(0) = ⊥` implies `H ⊭ φ`", 
 execution: `⟦¬true⟧_R̃(0) = ¬⊤ = ⊥` for every partial reachable set `R̃`, while `H ⊨ ¬true` holds
 vacuously for `E = ∅` ([1, Sec. 2.5]); `FourValuedSTL.verdict_system` proves it for `E` nonempty.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a formula with verdict false holds on the system without executions
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

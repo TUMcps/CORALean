@@ -12,6 +12,19 @@ public import CORALean.Specification.Theorems.DiffPointMemSub
 already carries the origin in their hull, and a `safe` one already carries a separating
 direction — preserved by every further step of [1, Alg. 3 (exits)].
 
+## Inputs
+* `bO` – bounds of the reachable set
+* `bU` – bounds of the unsafe set
+* `wO` – witnesses of the reachable set
+* `wU` – witnesses of the unsafe set
+* `ℓ` – sequence of directions
+
+## Hypotheses
+* none
+
+## Conclusion
+* the fold keeps the invariant of its answer and accumulated points
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

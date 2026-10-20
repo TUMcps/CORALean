@@ -9,6 +9,18 @@ public import CORALean.Specification.OnlineAnalyzerNode.Operations.SetPropagated
 
 `setPropagated(obj,parent,int)` throws exactly when the parent is no parent, or the new interval
 is smaller than the old one: the old one contains it and they are not equal.
+
+## Inputs
+* `eps` – machine epsilon
+* `n` – node
+* `parent` – parent index
+* `int` – propagated interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* it fails iff the parent is unknown or the interval shrinks
 -/
 
 -- Authors:       Claude Sonnet 5.5

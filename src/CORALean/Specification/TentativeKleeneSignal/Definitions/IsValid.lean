@@ -10,6 +10,13 @@ public import CORALean.Specification.PointSegmentSignal.Definitions.IsValid
 
 Both parts of a `TentativeKleeneSignal` are valid `pointSegmentSignal`s (as CORA's
 constructor makes them).
+
+## Inputs
+* `T` – time type
+* `s` – tentative signal
+
+## Output
+* both parts are valid signals
 -/
 
 -- Authors:       Claude Sonnet 5.5

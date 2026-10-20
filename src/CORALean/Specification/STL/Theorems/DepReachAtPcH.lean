@@ -11,6 +11,19 @@ public import CORALean.Specification.STL.Operations.DepReachAt
 the mapped old ones, so `P_c(t_i)` has `iγ_u` of them: the indices `γ_x+1, ..., γ_x+γ_u i` of
 `H_i` in [1, Prop. 1], those of the input factors `α_{u,1}, ..., α_{u,i}` in this order.
 
+## Inputs
+* `A` – dynamics matrix
+* `Δt` – time step
+* `cs` – constants of the algorithm
+* `X₀` – initial set
+* `i` – step index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the particular solution has the input generators once per step
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

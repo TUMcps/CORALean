@@ -12,6 +12,17 @@ non-strict reading of [1, Sec. IV-B.3 (until)], holds at `i ≤ N` iff `φ₂` h
 `t₁ ∈ [i, N]` and `φ₁` on all of `[i, t₁]`: the unbounded until over the horizon, with the
 printed semantics' closed interval.
 
+## Inputs
+* `N` – horizon
+* `P` – left operand values
+* `Q` – right operand values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the unbounded until unrolls to a witness step
+
 ## References
 
 * [1] V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and

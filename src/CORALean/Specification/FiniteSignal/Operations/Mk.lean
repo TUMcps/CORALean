@@ -11,6 +11,15 @@ public import Mathlib.Data.List.Chain
 
 `sig = finiteSignal(time,value)`: CORA throws `wrongInputInConstructor` where a check fails, here
 `none`.
+
+## Inputs
+* `T` – time type
+* `V` – value type
+* `time` – breakpoint times
+* `value` – values per breakpoint
+
+## Output
+* the signal, or none if a constructor check fails
 -/
 
 -- Authors:       Claude Sonnet 5.5

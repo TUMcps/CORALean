@@ -13,6 +13,14 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 `aux_minus_(int,intPrev1,intPrev2)` of `syntaxTree.m`: from `x₁ - x₂ ∈ int`, `x₁ ∈ int + intPrev2`
 and
 `x₂ ∈ intPrev1 - int`, each met with the operand's own interval.
+
+## Inputs
+* `int` – target interval
+* `prev₁` – first previous interval
+* `prev₂` – second previous interval
+
+## Output
+* the intervals of both operands of a difference
 -/
 
 -- Authors:       Claude Sonnet 5.5

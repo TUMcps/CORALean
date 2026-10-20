@@ -10,6 +10,17 @@ public import CORALean.Specification.FourValuedSignal.Theorems.ToKleeneSignalAt
 For a valid four-valued signal `Λ̃`, `Λ̃(t) = ⌊Λ̃⌋(t) ⊔₂ ⌈Λ̃⌉(t)` at every time `t ≥ 0`
 ([1, Sec. 4.3 (refinements)]).
 
+## Inputs
+* `s` – four-valued signal
+* `t` – time
+
+## Hypotheses
+* `hs` – the signal is valid
+* `ht` – the time is nonnegative
+
+## Conclusion
+* the value is the join of the two refinements' values
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

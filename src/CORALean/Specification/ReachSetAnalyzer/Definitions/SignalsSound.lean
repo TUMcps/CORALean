@@ -19,6 +19,16 @@ reach sets) when each is a valid three-valued signal of duration `d` and, at eve
 whose time interval covers `t` satisfies the proposition, and where it is false, none does. This is
 the meaning of a Kleene value for a set of states: true if all of them satisfy the proposition,
 false if none does.
+
+## Inputs
+* `obj` – analyzer
+* `d` – signal duration
+* `R` – tree of reach sets
+* `w` – branch entries
+* `out` – signal of each proposition
+
+## Output
+* the signals are valid and sound for the branch's entries
 -/
 
 -- Authors:       Claude Sonnet 5.5

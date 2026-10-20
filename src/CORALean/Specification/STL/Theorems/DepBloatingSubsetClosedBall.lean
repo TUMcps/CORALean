@@ -16,6 +16,19 @@ Eq. (15) lie in the balls of radius `‖Σ_{j≤κ} A^j Δt^{j+1}/(j+1)!‖ r`, 
 Δt^{j+2}/(j+2)!‖ r` and `ρ Σ_j absBound_j(U₀)`, `ρ` the sum of the entries of `2Δt E` in magnitude,
 so `D` lies in the ball of the sum (the sup norm of `Vec`, the operator norm of `Mat`).
 
+## Inputs
+* `A` – dynamics matrix
+* `U₀` – input zonotope
+* `Δt` – time step
+* `κ` – Taylor order
+* `r` – ball radius
+
+## Hypotheses
+* `hU` – the input zonotope lies in the ball
+
+## Conclusion
+* the bloating lies in an explicit ball
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

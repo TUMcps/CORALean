@@ -10,6 +10,14 @@ public import CORALean.Specification.PointSegmentSignal.Operations.Basic
 `[time,atPoint] = succTimeAtValIdx(obj,i)` of `pointSegmentSignal.m`: for the `i`-th stored value
 (one-based), the time at which it ends, `inf` after the last time point, and whether that value is a
 point value, so that its end is included.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `i` – index of a stored value
+
+## Output
+* the time point after the value and whether it is a point value
 -/
 
 -- Authors:       Claude Sonnet 5.5

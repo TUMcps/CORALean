@@ -9,6 +9,13 @@ public import CORALean.Specification.OnlineAnalyzerNode.OnlineAnalyzerNode
 
 The fields of a node that parsing never changes once the node exists: its `idx`, `kind`,
 `dropPropagated` and the first of its `parents` (a parent is only added at the end of the list).
+
+## Inputs
+* `n` – first node
+* `n'` – second node
+
+## Output
+* the nodes agree in index, kind, flag and first parent
 -/
 
 -- Authors:       Claude Sonnet 5.5

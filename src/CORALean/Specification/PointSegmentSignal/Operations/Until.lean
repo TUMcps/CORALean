@@ -14,6 +14,14 @@ t` in the interval and the left-hand side holds strictly between `t` and `t'`.
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
 stamps over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `lhs` – left signal
+* `interval` – time interval
+* `rhs` – right signal
+
+## Output
+* the until signal
 -/
 
 -- Authors:       Claude Sonnet 5.5

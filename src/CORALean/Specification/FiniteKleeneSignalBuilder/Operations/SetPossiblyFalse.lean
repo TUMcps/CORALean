@@ -14,6 +14,14 @@ public import CORALean.Specification.FiniteSignal.Operations.Indicator
 signal `possiblyFalseSignal` by `|`, which is `finiteSignal.combine(@or,...)`. The interval `int`
 is given by its bounds `lo` and `hi`, extended reals as `interval(lb,ub)` allows `inf`. CORA throws
 for an empty or singleton interval (in `indicator`); here `none`.
+
+## Inputs
+* `obj` – signal builder
+* `lo` – interval lower bound
+* `hi` – interval upper bound
+
+## Output
+* builder with the property possibly false on the interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

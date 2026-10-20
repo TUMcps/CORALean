@@ -10,6 +10,13 @@ public import CORALean.Specification.ReachSetAnalyzer.Operations.AnalyzeTimeInte
 `analyzeSingle(obj,R)`: analyze all time intervals of a single reachable set. CORA converts a
 `zonoBundle` set to a zonotope first; that is a change of the representation `S`, which the entry
 already has.
+
+## Inputs
+* `obj` – analyzer
+* `R` – reach set entry
+
+## Output
+* the analyzer after all time intervals of the entry, or none
 -/
 
 -- Authors:       Claude Sonnet 5.5

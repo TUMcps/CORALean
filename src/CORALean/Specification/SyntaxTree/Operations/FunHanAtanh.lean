@@ -10,6 +10,13 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 # `aaux_tanh_`: the contraction of `atanh`
 
 `aaux_tanh_(int,intPrev)` of `syntaxTree.m`: `tanh` of `int`, met with `intPrev`.
+
+## Inputs
+* `int` – target interval
+* `prev` – previous interval
+
+## Output
+* the interval for the operand of the inverse hyperbolic tangent
 -/
 
 -- Authors:       Claude Sonnet 5.5

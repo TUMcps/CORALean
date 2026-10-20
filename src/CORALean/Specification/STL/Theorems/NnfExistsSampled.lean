@@ -18,6 +18,15 @@ which falls from `φ U[i,j] ψ` to its operands and to `φ U[i-1,j-1] ψ`; the c
 rewriting rules of [1, Table 1], one theorem each. This is the content of the iteration "until no
 rule matches anymore": that it ends is the induction.
 
+## Inputs
+* `n` – formula in negation normal form
+
+## Hypotheses
+* none
+
+## Conclusion
+* the normal form rewrites to sampled time
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

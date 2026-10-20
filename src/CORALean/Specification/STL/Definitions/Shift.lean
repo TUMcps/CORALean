@@ -10,6 +10,14 @@ public import Mathlib.Data.NNReal.Defs
 `⟨ξ⟩ₐ(t) := ξ(t + a)` of [1, Sec. 2.2] for a trace and of [1, Def. 2] for a reach sequence:
 one operator on any function of time, `ℝ≥0` being the paper's `ℝ≥0`.
 
+## Inputs
+* `α` – value type
+* `f` – function of time
+* `a` – shift amount
+
+## Output
+* the function shifted by that time
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

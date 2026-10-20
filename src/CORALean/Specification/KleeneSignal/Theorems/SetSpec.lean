@@ -13,6 +13,17 @@ public import CORALean.Specification.Kleene.Theorems.Basic
 For a valid signal, `set(obj,interval,value)` is valid and has `value` at the times of the interval
 and the signal's own value elsewhere: both parts are set to the parts of `value`, and a value is
 recovered from its parts.
+
+## Inputs
+* `s` – three-valued signal
+* `I` – time interval
+* `value` – value to set
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* a valid signal with `value` on the interval and unchanged elsewhere
 -/
 
 -- Authors:       Claude Sonnet 5.5

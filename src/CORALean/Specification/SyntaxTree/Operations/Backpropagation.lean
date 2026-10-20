@@ -10,16 +10,17 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 # `backpropagation`: contracting a box with a syntax tree
 
 `backpropagation(obj,value,int)` of `syntaxTree.m`: a variable leaf narrows its coordinate of the
-box to
-`value & int(id)` (and throws `CORA:emptySet` if they do not meet); a node asks its `funHan` for the
-interval each operand must take, narrows the box by each, and a binary node meets the two boxes. The
-errors `CORA:emptySet` and `CORA:outOfDomain` are `Outcome.emptySet` and `Outcome.outOfDomain`; the
-first operand's error comes first. A numeric operand is a point interval, so a numeric operand is
-not
-narrowed.
+box to `value & int(id)` (throwing `CORA:emptySet` if they do not meet); a node asks its `funHan`
+for the interval each operand must take, narrows the box by each, and a binary node meets the two
+boxes. The errors `CORA:emptySet` and `CORA:outOfDomain` are `Outcome.emptySet` and
+`Outcome.outOfDomain`, the first operand's first; a numeric operand is a point interval.
+Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (interval
-arithmetic over `𝕋` with outward rounding) is not yet written.
+## Inputs
+* none
+
+## Output
+* the box narrowed to where the tree takes the value, or an empty outcome
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -9,6 +9,17 @@ public import CORALean.Specification.PointSegmentSignal.Operations.Basic
 
 The time point before the value `a` (zero-based) is the `a / 2`-th time point, closed (a point
 value) if `a` is even.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `a` – value index
+
+## Hypotheses
+* `hk` – the index is in range
+
+## Conclusion
+* the time before the value is the half-index time point, closed iff even
 -/
 
 -- Authors:       Claude Sonnet 5.5

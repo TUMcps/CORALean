@@ -24,6 +24,7 @@ The lines are those of [1, Alg. 3].
 * `t₀` – float start time
 * `Δt` – float step length
 * `η` – Taylor order
+* `ρ` – support oracle for exact polytopes
 * `P₁r` – first exact polytope
 * `P₂r` – second exact polytope
 * `Ur` – exact input zonotope
@@ -32,7 +33,6 @@ The lines are those of [1, Alg. 3].
 * `k` – iteration count
 
 ## Hypotheses
-* `ρ` – support oracle for exact polytopes
 * `ht₀` – start time nonnegative
 * `hΔt` – step length positive
 * `hU0` – input error box contains zero
@@ -51,7 +51,6 @@ The lines are those of [1, Alg. 3].
 
 ## Conclusion
 * the float run's sets lie inside the exact run's
-
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

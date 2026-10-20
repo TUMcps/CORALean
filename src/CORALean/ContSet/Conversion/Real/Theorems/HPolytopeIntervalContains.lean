@@ -19,11 +19,11 @@ The only conversion here whose cost is not the enclosure but the bounds: the box
 is exact as soon as every certificate is tight.
 
 ## Inputs
-* none
-
-## Hypotheses
 * `up` – certified upper bound per coordinate
 * `lo` – certified lower bound per coordinate
+
+## Hypotheses
+* none
 
 ## Conclusion
 * polytope is contained in its interval

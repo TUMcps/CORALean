@@ -9,6 +9,18 @@ public import CORALean.Specification.STL.Operations.Basic
 
 A formula that passes `isPredicate` is satisfied by a trace according to its state at time `0`:
 two traces with the same initial state satisfy it together.
+
+## Inputs
+* `φ` – formula
+* `ξ` – trace
+* `ξ'` – second trace
+
+## Hypotheses
+* `h` – the formula is a predicate
+* `hξ` – the traces agree at time zero
+
+## Conclusion
+* the formula holds on both or neither
 -/
 
 -- Authors:       Claude Sonnet 5.5

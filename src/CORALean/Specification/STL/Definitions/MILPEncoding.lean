@@ -7,17 +7,23 @@ public import CORALean.Specification.STL.Definitions.DiscreteFormula
 /-!
 # The values the MILP encodings force
 
-[1, Sec. IV-B]: every subformula `φ` gets a variable `z^φ_t`, tied by constraints to the values of
-its operands, so that `z^φ_t = 1` iff `φ` holds at `t`; [1, Sec. V] does the same with `r^φ_t` and
-`ρ`. Each gadget forces its variable to a function of the operands' values — the theorems
-`STL.pred_encoding_iff`, `STL.conj_encoding_iff`, `STL.disj_encoding_iff` and
-`STL.robust_conj_encoding` — and these are those values: `zEnc` and `rEnc` along the printed
-recursion over the horizon `N`, `[t+a, t+b]` truncated to `[min(t+a, N), min(t+b, N)]`
-[1, Sec. IV-B.3 (temporal)], and until
-as `□[0,a] φ₁ ∧ ◇[a,b] φ₂ ∧ ◇[a,a](φ₁ U φ₂)` [1, Sec. IV-B.3 (until)], the unbounded until by
-`z_t = z^{φ₂}_t ∨ (z^{φ₁}_t ∧ z_{t+1})`, `z_N = z^{φ₂}_N` (printed for `t = 1, …, N-1`, read from
-`t = 0`). `nonstrict` replaces `z^{φ₂}_t` by `z^{φ₂}_t ∧ z^{φ₁}_t`, the recursion of the printed
-semantics, where `φ₁` holds through the step `φ₂` does.
+[1, Sec. IV-B]: every subformula `φ` gets a variable `z^φ_t`, tied by constraints to its operands
+so that `z^φ_t = 1` iff `φ` holds at `t`; [1, Sec. V] does the same with `r^φ_t` and `ρ`. Each
+gadget forces its variable (`STL.pred_encoding_iff`, `conj_encoding_iff`, `disj_encoding_iff`,
+`robust_conj_encoding`), and these are those values: `zEnc` and `rEnc` along the printed recursion
+over the horizon `N`, the window cut to `N` [1, Sec. IV-B.3 (temporal)], the unbounded until by
+`z_t = z^{φ₂}_t ∨ (z^{φ₁}_t ∧ z_{t+1})` [1, Sec. IV-B.3 (until)]; `nonstrict` replaces `z^{φ₂}_t`
+by `z^{φ₂}_t ∧ z^{φ₁}_t`, the recursion of the printed semantics.
+
+## Inputs
+* `N` – horizon
+* `nonstrict` – nonstrict until
+* `P` – values of the left operand
+* `Q` – values of the right operand
+* `i` – time step
+
+## Output
+* the value forced for the until at the time step
 
 ## References
 

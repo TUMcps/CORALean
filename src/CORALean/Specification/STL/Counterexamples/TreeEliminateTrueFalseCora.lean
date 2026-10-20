@@ -18,6 +18,16 @@ under that reading.)
 
 `eliminateTrueFalse(until(false, true, [0,1]))` is `true`, though `false U[0,1] true` needs
 `false` at time `0` and fails on every trace. See `STL.Tree.eliminateTrueFalseCora`.
+
+## Inputs
+* `n` – state dimension
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's rewriting of until with true changes the meaning of a formula
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -21,6 +21,23 @@ thrown, nor
 `CORA:outOfDomain`). So `contractForwardBackward`, which starts from `value = [0,0]` and `int =
 dom`,
 keeps every zero of the function in the domain.
+
+## Inputs
+* `B` – box of the variables
+* `t` – tree
+* `int` – current box
+* `x` – point
+* `v` – target interval
+
+## Hypotheses
+* `h` – the tree is sound over the box
+* `hv` – the target lies within the tree's value
+* `hB` – the point lies in the box
+* `hx` – the point lies in the current box
+* `hs` – the tree's value at the point lies in the target
+
+## Conclusion
+* backpropagation succeeds with a box containing the point
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -14,6 +14,12 @@ public import CORALean.Specification.STL.STL
 Real-only, a specification: it rewrites or builds formulas, whose time bounds and constants are
 part of the syntax and are copied or added exactly, never rounded.
 
+## Inputs
+* `c` – time step
+
+## Output
+* the STL formula of the sampled time formula
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

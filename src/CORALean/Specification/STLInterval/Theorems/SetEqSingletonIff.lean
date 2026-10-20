@@ -9,6 +9,22 @@ public import CORALean.Specification.STLInterval.Theorems.ZeroLeOfMemSet
 # An STL interval that is one time
 
 A nonempty interval denotes `{t}` iff both bounds are `t` and both ends are closed.
+
+## Inputs
+* `l` – lower bound
+* `u` – upper bound
+* `lc` – lower bound is closed
+* `rc` – upper bound is closed
+* `t` – time
+
+## Hypotheses
+* `a` – an infinite lower bound is open
+* `b` – an infinite upper bound is open
+* `c` – the bounds leave a time in the interval
+* `z` – the lower bound is nonnegative
+
+## Conclusion
+* the interval is the single time iff it is the closed interval of it
 -/
 
 -- Authors:       Claude Sonnet 5.5

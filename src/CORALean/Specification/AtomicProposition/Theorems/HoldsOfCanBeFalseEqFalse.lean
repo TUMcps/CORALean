@@ -9,6 +9,19 @@ public import CORALean.Specification.AtomicProposition.Theorems.CanBeFalseSound
 
 If `canBeFalse` is false, every point of the set satisfies the proposition: the contrapositive of
 `canBeFalse_sound`.
+
+## Inputs
+* `ap` – atomic proposition
+* `s` – set
+* `loc` – location
+* `x` – point of the set
+
+## Hypotheses
+* `h` – `canBeFalse` returns false
+* `hx` – the point lies in the set
+
+## Conclusion
+* the point satisfies the proposition
 -/
 
 -- Authors:       Claude Sonnet 5.5

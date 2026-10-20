@@ -13,6 +13,12 @@ if a key has no builder or the signal cannot be built; here `none`.
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
 intervals over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `obj` – analyzer
+
+## Output
+* the three-valued signal of every proposition, or none
 -/
 
 -- Authors:       Claude Sonnet 5.5

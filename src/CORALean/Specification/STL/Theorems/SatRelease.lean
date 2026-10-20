@@ -9,6 +9,19 @@ public import CORALean.Specification.STL.STL
 
 `φ R[a,b] ψ` is `¬(¬φ U[a,b] ¬ψ)`: the dual of the RTL semantics [1, Def. 2].
 
+## Inputs
+* `a` – interval lower bound
+* `b` – interval upper bound
+* `φ` – releasing formula
+* `ψ` – released formula
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the release holds iff the released formula holds until released
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

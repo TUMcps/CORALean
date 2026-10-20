@@ -17,6 +17,19 @@ public import CORALean.Specification.STL.Theorems.ForallLtAddOneOfBlocks
 The window is `I = (0,1)`, as the table assumes `c = 1`, and the bounds `i`, `j` are natural numbers
 with the side condition the subtraction needs.
 
+## Inputs
+* `φ₁` – left formula
+* `φ₂` – right formula
+* `j` – interval upper bound
+* `ξ` – trace
+
+## Hypotheses
+* `hj` – the bound is positive
+* `h` – the rewritten formula holds
+
+## Conclusion
+* eventually of the until from zero holds
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

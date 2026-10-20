@@ -9,14 +9,16 @@ public import CORALean.Specification.STL.Definitions.Tree
 
 `@stl/maximumTime.m`, `aux_recursive(obj,time)`: `time` is the offset accumulated by the `next`
 operators above; the bound of a `finally`, `globally`, `until` or `release` is added to the
-largest
-time its operands need. A formula with no temporal operator needs `time`. CORA first returns
-`time`
-for every non-temporal sub-formula; the clauses for `~`, `&` and `|` give the same value there, so
-the test is not repeated (`STL.Tree.maximumTimeFrom_of_not_temporal`).
+largest time its operands need. CORA first returns `time` for every non-temporal sub-formula; the
+clauses for `~`, `&` and `|` give the same value, so the test is not repeated
+(`STL.Tree.maximumTimeFrom_of_not_temporal`). Real-only, a specification: the exact latest time a
+formula reads.
 
-Real-only, a specification: it states the exact latest time a formula reads, a property of the
-formula's syntax.
+## Inputs
+* none
+
+## Output
+* the latest time the formula looks at
 -/
 
 -- Authors:       Claude Sonnet 5.5

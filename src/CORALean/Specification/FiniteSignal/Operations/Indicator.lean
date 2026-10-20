@@ -10,14 +10,19 @@ public import Mathlib.Data.EReal.Operations
 # The indicator signal of an interval
 
 `sig = indicator(dur,int,val)` of `indicator.m`: the signal of duration `dur` that is `val` on the
-interval `int` and false elsewhere, as one of five cases by how the interval lies in `[0,dur]`.
-The `interval` `int` is given by its bounds `lo` and `hi`, extended reals as `interval(lb,ub)`
-allows `inf`. CORA throws for an empty or singleton interval (`volume(int) == 0`) and in the
-constructor for a negative `dur`; both are `none`. `val` is a logical value (CORA's default
-`true`).
+interval `int` and false elsewhere, in one of five cases by how `int` lies in `[0,dur]`. `int` is
+given by its bounds `lo` and `hi` (extended reals). CORA throws for an empty or singleton interval
+and, in the constructor, for a negative `dur`; both are `none`.
+Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
+## Inputs
+* `dur` – signal duration
+* `lo` – interval lower bound
+* `hi` – interval upper bound
+* `val` – value on the interval
+
+## Output
+* the signal that is `val` on the interval, or none if the interval is degenerate
 -/
 
 -- Authors:       Claude Sonnet 5.5

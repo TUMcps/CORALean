@@ -12,6 +12,15 @@ public import CORALean.Specification.SyntaxTree.Theorems.MeetContains
 # `aux_log_` is sound
 
 `aux_log_` keeps every solution of `log s ∈ int` with `s > 0`.
+
+## Inputs
+* `prev` – previous interval
+
+## Hypotheses
+* `hd` – the interval is positive
+
+## Conclusion
+* the inverse of the logarithm keeps every solution
 -/
 
 -- Authors:       Claude Sonnet 5.5

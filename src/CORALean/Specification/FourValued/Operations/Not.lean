@@ -11,6 +11,12 @@ public import CORALean.Specification.FourValued.FourValued
 
 Both uncertain values stay as they are, as in [1, Fig. 3].
 
+## Inputs
+* none
+
+## Output
+* the four-valued negation
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

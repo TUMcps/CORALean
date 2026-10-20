@@ -11,6 +11,23 @@ public import Mathlib.Order.Basic
 For breakpoints `l :: ls` and `r :: rs` with strictly increasing times, the loop sets the value at
 the earlier time and moves on to the remaining breakpoints `ls'` and `rs'`: the later times are
 all strictly after it.
+
+## Inputs
+* `T` – time type
+* `V` – value type of the inputs
+* `W` – value type of the result
+* `op` – binary operator on values
+* `l` – head breakpoint of the left list
+* `r` – head breakpoint of the right list
+* `ls` – remaining left breakpoints
+* `rs` – remaining right breakpoints
+
+## Hypotheses
+* `hls` – left times strictly increase
+* `hrs` – right times strictly increase
+
+## Conclusion
+* the loop emits at the earlier time and continues on the remaining breakpoints
 -/
 
 -- Authors:       Claude Sonnet 5.5

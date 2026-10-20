@@ -17,6 +17,13 @@ throws if some value is inconclusive; that call is `toKleeneSignal?` (`none` for
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
 stamps over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `s` – four-valued signal
+* `mapInconclusiveTo` – value for inconclusive times
+
+## Output
+* the three-valued signal
 -/
 
 -- Authors:       Claude Sonnet 5.5

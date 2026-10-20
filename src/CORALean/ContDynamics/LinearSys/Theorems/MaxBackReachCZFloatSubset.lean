@@ -16,6 +16,7 @@ the float one, leave the float difference inside the exact.
 The lines are those of [1, Alg. 3].
 
 ## Inputs
+* `ρ` – support oracle for exact polytopes
 * `Bx` – conversion box
 * `P` – float polytope
 * `ZW` – float disturbance zonotope
@@ -23,7 +24,6 @@ The lines are those of [1, Alg. 3].
 * `ZWr` – exact disturbance zonotope
 
 ## Hypotheses
-* `ρ` – support oracle for exact polytopes
 * `hP` – float polytope inside the exact one
 * `hZ` – exact zonotope inside the float one
 * `hker` – equality rows of the float polytope vanish on the zonotope
@@ -31,7 +31,6 @@ The lines are those of [1, Alg. 3].
 
 ## Conclusion
 * the float conversion lies inside the exact layer's conversion
-
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

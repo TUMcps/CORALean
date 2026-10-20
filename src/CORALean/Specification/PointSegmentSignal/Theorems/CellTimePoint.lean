@@ -14,6 +14,19 @@ public import CORALean.Specification.PointSegmentSignal.Operations.SuccTimeAtVal
 # The stored value a time point reads
 
 The `k`-th time point of a valid signal reads the point value `2 k`.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `k` – time point index
+
+## Hypotheses
+* `hs` – the signal is valid
+* `hk` – the index is in range
+* `h0` – the time point is nonnegative
+
+## Conclusion
+* the time point reads its point value
 -/
 
 -- Authors:       Claude Sonnet 5.5

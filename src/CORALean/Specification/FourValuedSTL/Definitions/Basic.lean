@@ -11,15 +11,12 @@ public import CORALean.Specification.KleeneSignal.Definitions.IsValid
 /-!
 # `FourValuedSTL/Definitions`: small declarations
 
-One section per declaration, at most five code lines each; alphabetical, after the
-sections each one uses (CONTRIBUTING, "Small declarations").
-
-`HoldsOn` is `H ⊨ φ` of [1, Sec. 2.5], `satBool` the Boolean signal `⟦φ⟧_ξ`, `reachSet` the
-reachable set of [1, Sec. 2.4], `Covers` and `Extends` the relations `ξ ≺ R` of
-[1, Sec. 4.2 (satisfaction)] and `R ≺ R̃` of [1, Sec. 4.3 (satisfaction)]. `IsAtomSignal` says
-that a signal is the satisfaction signal of an atom over `R`, `IsPartialAtomSignal` (in a file of
-its own) over `R̃`: the paper's signals of these are arbitrary functions, and the operators that
-combine them need finite variability, which a valid signal has ([1, Sec. 2.3 (signals)]).
+One section per declaration, at most five code lines each (CONTRIBUTING, "Small declarations").
+`HoldsOn` is `H ⊨ φ` of [1, Sec. 2.5], `satBool` the signal `⟦φ⟧_ξ`, `reachSet` the reachable set
+of [1, Sec. 2.4], `Covers` and `Extends` the relations `ξ ≺ R` and `R ≺ R̃` of [1, Sec. 4.2, 4.3
+(satisfaction)]. `IsAtomSignal` says a signal is the satisfaction signal of an atom over `R`
+(`IsPartialAtomSignal` over `R̃`); the operators need finite variability, which a valid signal has
+([1, Sec. 2.3 (signals)]).
 
 ## References
 

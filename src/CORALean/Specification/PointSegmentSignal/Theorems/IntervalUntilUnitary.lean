@@ -21,6 +21,20 @@ For unitary Boolean signals `λ₁`, `λ₂` (with `I⁺` the intervals `J₁`, 
 proof is the paper's: `t ∈ cll(I⁺_{λ₁})` and `t' ∈ clr(I⁺_{λ₁})` for `t < t'` iff the open interval
 `(t,t')` lies in the contiguous `I⁺_{λ₁}`.
 
+## Inputs
+* `l₁` – left unitary signal
+* `l₂` – right unitary signal
+* `J₁` – interval of the left signal
+* `J₂` – interval of the right signal
+* `U` – until interval
+
+## Hypotheses
+* `h₁` – the left signal is unitary on its interval
+* `h₂` – the right signal is unitary on its interval
+
+## Conclusion
+* the unitary until is valid and true exactly where the until semantics says
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

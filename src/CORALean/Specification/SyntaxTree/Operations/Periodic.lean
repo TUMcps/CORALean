@@ -17,6 +17,14 @@ largest and the smallest solution `x + 2 pi k` inside `intPrev` and meets `intPr
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (interval
 arithmetic over `𝕋` with outward rounding) is not yet written.
+
+## Inputs
+* `resTemp₁` – interval of the first branch
+* `resTemp₂` – interval of the second branch
+* `prev` – previous interval
+
+## Output
+* the interval of shifted branch solutions closest to the previous interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

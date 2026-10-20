@@ -11,6 +11,17 @@ public import CORALean.Specification.Theorems.Basic
 
 A custom specification holds on `X` exactly when its predicate does: the predicate is downward
 closed and closed under unions, so the largest set it admits is the union of all of them.
+
+## Inputs
+* `p` – property of sets
+* `X` – set of points
+
+## Hypotheses
+* `mono` – the property is monotone
+* `iUnionClosed` – the property is closed under unions
+
+## Conclusion
+* the custom specification holds iff the property holds
 -/
 
 -- Authors:       Claude Opus 5

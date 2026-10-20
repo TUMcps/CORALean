@@ -12,6 +12,15 @@ public import CORALean.Specification.STLInterval.Theorems.Basic
 # A Boolean signal embeds as a Kleene signal
 
 `fromBoolSignal(bSig)` is valid and has, at every time, the Kleene value of the Boolean one.
+
+## Inputs
+* `bSig` – Boolean signal
+
+## Hypotheses
+* `hb` – the signal is valid
+
+## Conclusion
+* the embedded signal is valid and has the embedded value at each time
 -/
 
 -- Authors:       Claude Sonnet 5.5

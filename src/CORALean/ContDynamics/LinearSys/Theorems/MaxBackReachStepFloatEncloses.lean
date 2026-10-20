@@ -63,6 +63,7 @@ point is in the exact hull (`Lemma 1`'s segments, `linComb_outer`).
 * `Δt` – float step length
 * `η` – Taylor order
 * `s` – float loop state
+* `ρ` – support oracle for exact polytopes
 * `P₁r` – first exact polytope
 * `P₂r` – second exact polytope
 * `Ur` – exact input zonotope
@@ -71,7 +72,6 @@ point is in the exact hull (`Lemma 1`'s segments, `linComb_outer`).
 * `sr` – exact loop state
 
 ## Hypotheses
-* `ρ` – support oracle for exact polytopes
 * `hs` – float state stands for the exact state
 * `hΔt` – step length positive
 * `hU0` – input error box contains zero
@@ -90,7 +90,6 @@ point is in the exact hull (`Lemma 1`'s segments, `linComb_outer`).
 
 ## Conclusion
 * the float iteration's state stands for the exact iteration's
-
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

@@ -13,6 +13,15 @@ the factor `α̃ = 1 ∈ [-1, 1]` lies outside it: `1 > 1/2`. The program [1, Eq
 has no solution there, [1, Alg. 3] would not find the falsifying factor, while the corrected
 program is solved by it. By `STL.not_milpPrinted_of_two_le` and `STL.milpCorrected_iff`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed program is infeasible where the corrected one is feasible
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

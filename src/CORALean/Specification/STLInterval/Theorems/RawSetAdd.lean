@@ -14,6 +14,25 @@ public import Mathlib.Analysis.Convex.Basic
 For nonempty `rawSet`s the sum of the sets is `rawSet` of the sums of the bounds, an end closed
 when both are. The sum set is order connected, so it is enough that it reaches below and above each
 time between the new bounds (`aux_add_lowerReach`, `aux_add_upperReach`).
+
+## Inputs
+* `l₁` – lower bound of the first interval
+* `u₁` – upper bound of the first interval
+* `l₂` – lower bound of the second interval
+* `u₂` – upper bound of the second interval
+* `lc₁` – first lower bound is closed
+* `rc₁` – first upper bound is closed
+* `lc₂` – second lower bound is closed
+* `rc₂` – second upper bound is closed
+* `t` – time
+
+## Hypotheses
+* `h₁` – the first interval is nonempty
+* `h₂` – the second interval is nonempty
+* `h` – the time is past the summed lower bound
+
+## Conclusion
+* some sum of members lies at or below the time
 -/
 
 -- Authors:       Claude Sonnet 5.5

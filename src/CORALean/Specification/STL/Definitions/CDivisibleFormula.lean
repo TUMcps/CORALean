@@ -11,6 +11,12 @@ public import CORALean.Specification.STL.STL
 window operators of `Sec. 4.1`. `CDivisible c φ` is [1, Lemma 4]'s "`c` divides all bounds of
 temporal operators of `ϕ`": every bound is a natural multiple of `c`.
 
+## Inputs
+* none
+
+## Output
+* the formula uses only the operators of STL
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

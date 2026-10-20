@@ -16,6 +16,15 @@ polytopes: the formula fails for it, since neither disjunct holds, and `0` is in
 `STL.factorMeet` (all pairs) but in none of the zipped ones, so the zipped check would call it
 safe. The pairs of `V` and `W` are all of them, as CORA's `aux_orConstraints` forms.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* reading the factor intersection index by index loses unsafe factors
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

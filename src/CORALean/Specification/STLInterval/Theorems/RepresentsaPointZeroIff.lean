@@ -10,6 +10,15 @@ public import CORALean.Specification.STLInterval.Theorems.SetEqSingletonIff
 # `representsa_` as `point`
 
 At `tol = 0` `representsa_(I,'point')` holds iff `I` denotes a single time.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the interval represents a point iff its times are a singleton
 -/
 
 -- Authors:       Claude Sonnet 5.5

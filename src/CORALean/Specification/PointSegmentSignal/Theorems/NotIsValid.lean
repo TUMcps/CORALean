@@ -11,6 +11,16 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.Basic
 
 `~obj` of a valid signal is valid: the time points are those of `obj`, and a point is redundant
 in `~obj` exactly when it is in `obj`.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* the negated signal is valid
 -/
 
 -- Authors:       Claude Sonnet 5.5

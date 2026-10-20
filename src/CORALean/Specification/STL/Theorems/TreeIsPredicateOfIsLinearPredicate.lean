@@ -9,6 +9,15 @@ public import CORALean.Specification.STL.Operations.TreeIsLinearPredicate
 # A linear predicate is a predicate
 
 A formula that passes `isLinearPredicate` passes `isPredicate`.
+
+## Inputs
+* `φ` – formula
+
+## Hypotheses
+* `h` – the formula is a linear predicate
+
+## Conclusion
+* the formula is a predicate
 -/
 
 -- Authors:       Claude Sonnet 5.5

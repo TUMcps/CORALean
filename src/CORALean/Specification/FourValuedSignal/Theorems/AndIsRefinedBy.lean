@@ -12,6 +12,19 @@ If the Kleene signals `Λₖ` refine the four-valued `Λ̃ₖ` (`Λₖ ≺ Λ̃�
 of the induction in [1, Thm. 2] for `∧`. Proved from the direct semantics of `∧` on `U₂`-signals
 (`at_and`), the pattern of [1, Eq. 2] [1, Sec. 4.3 (operators)] describes.
 
+## Inputs
+* `ι` – index type of the operands
+* `sigs` – four-valued signals
+* `ks` – three-valued signals
+
+## Hypotheses
+* `hs` – the four-valued signals are valid
+* `hk` – the three-valued signals are valid
+* `h` – each three-valued signal refines its four-valued one
+
+## Conclusion
+* the conjunction is valid and refined by the three-valued conjunction
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

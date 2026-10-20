@@ -12,6 +12,16 @@ public import CORALean.Specification.STLInterval.Theorems.Basic
 # `minus` with a number denotes a shift down
 
 `I - c` denotes `I` shifted down by `c`, at least `0`.
+
+## Inputs
+* `I` – interval
+* `c` – number
+
+## Hypotheses
+* none
+
+## Conclusion
+* the difference denotes the nonnegative shift down by the number
 -/
 
 -- Authors:       Claude Sonnet 5.5

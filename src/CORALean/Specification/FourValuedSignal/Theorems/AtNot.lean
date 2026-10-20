@@ -11,6 +11,17 @@ public import CORALean.Specification.FourValued.Theorems.Basic
 # Negation negates the value at every time
 
 `(~obj).at(t)` is `~obj.at(t)` for every valid four-valued signal and every time.
+
+## Inputs
+* `T` – time type
+* `s` – four-valued signal
+* `t` – time
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* the negated signal has the negated value at the time
 -/
 
 -- Authors:       Claude Sonnet 5.5

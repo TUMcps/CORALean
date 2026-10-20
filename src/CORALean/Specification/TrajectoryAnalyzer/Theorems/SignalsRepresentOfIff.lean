@@ -8,6 +8,20 @@ public import CORALean.Specification.TrajectoryAnalyzer.Definitions.SignalsRepre
 # What signals say depends on the predicate only up to equivalence
 
 If signals represent `M` and `M` is equivalent to `M'`, they represent `M'`.
+
+## Inputs
+* `aps` – labelled atomic propositions
+* `dur` – signal duration
+* `sigs` – signal of each proposition
+* `M` – times marking each proposition
+* `M'` – equivalent times
+
+## Hypotheses
+* `h` – the signals represent the marked times
+* `hM` – the two predicates are equivalent
+
+## Conclusion
+* the signals represent the equivalent times
 -/
 
 -- Authors:       Claude Sonnet 5.5

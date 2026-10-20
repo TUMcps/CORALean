@@ -12,6 +12,12 @@ The test of `next`: `withinTol(mod(time,0.5),0)` with the default tolerance `1e-
 `mod(time,0.5)` is `time - floor(time/0.5)*0.5`, in `[0,0.5)`, so `withinTol` (`abs(a-b) <= tol`;
 its relative test divides by `min(abs(a),0) = 0`) holds exactly if it is at most `1e-8`: a time
 slightly above a multiple of `0.5` passes and one slightly below it does not.
+
+## Inputs
+* `time` – time
+
+## Output
+* the time is a multiple of one half within tolerance
 -/
 
 -- Authors:       Claude Sonnet 5.5

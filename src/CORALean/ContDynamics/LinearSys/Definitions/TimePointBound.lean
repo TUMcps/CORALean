@@ -22,6 +22,8 @@ hypotheses, as `timeIntervalBound` takes its three: any representation that answ
 * `U` – input set
 * `r` – step length
 * `η` – Taylor order
+* `b₀` – support bound on the initial set
+* `bP` – support bound on the particular solution
 * `c` – direction
 
 ## Hypotheses
@@ -34,12 +36,9 @@ hypotheses, as `timeIntervalBound` takes its three: any representation that answ
 * `hRconv` – remainder image convex
 * `hRclosed` – remainder image closed
 * `hRbdd` – remainder image bounded
-* `b₀` – support bound on the initial set
-* `bP` – support bound on the particular solution
 
 ## Output
 * support bound on the time-point reachable set along the direction
-
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

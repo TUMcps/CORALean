@@ -15,6 +15,15 @@ interval(lo,hi)`.
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
 intervals over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* `obj` – analyzer
+* `k` – proposition key
+* `lo` – interval lower bound
+* `hi` – interval upper bound
+
+## Output
+* whether the mask lets the proposition through
 -/
 
 -- Authors:       Claude Sonnet 5.5

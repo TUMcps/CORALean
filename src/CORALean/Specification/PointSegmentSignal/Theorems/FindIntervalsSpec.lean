@@ -14,6 +14,16 @@ public import CORALean.Specification.STLInterval.Theorems.SetStlIntervalBounds
 For a valid signal over `ℝ`, the intervals of `findIntervals(obj,cond)` start at times `≥ 0`, a time
 `t ≥ 0` is in one of them exactly when `cond` holds of the value of the signal at `t`, and an
 interval cannot be extended: a time reached from it through times that all satisfy `cond` is in it.
+
+## Inputs
+* `s` – signal
+* `cond` – condition on values
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* the intervals are the maximal intervals where the condition holds
 -/
 
 -- Authors:       Claude Sonnet 5.5

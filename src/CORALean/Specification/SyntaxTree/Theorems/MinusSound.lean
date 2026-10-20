@@ -14,6 +14,16 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 # `aux_minus_` is sound
 
 `aux_minus_` keeps every solution of `x₁ - x₂ ∈ int`.
+
+## Inputs
+* `prev₁` – first previous interval
+* `prev₂` – second previous interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the inverse of the difference keeps every solution
 -/
 
 -- Authors:       Claude Sonnet 5.5

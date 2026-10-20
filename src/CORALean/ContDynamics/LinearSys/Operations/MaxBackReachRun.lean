@@ -12,6 +12,7 @@ line 2's pre-loop state, so the `k`-th iteration's set is `run (k+1)`'s.
 
 ## Inputs
 * `sys` – linear system
+* `ρ` – support oracle for polytopes
 * `P₁` – first eroded polytope
 * `P₂` – second eroded polytope
 * `U` – input zonotope
@@ -21,12 +22,8 @@ line 2's pre-loop state, so the `k`-th iteration's set is `run (k+1)`'s.
 * `Δt` – step length
 * `η` – Taylor order
 
-## Hypotheses
-* `ρ` – support oracle for polytopes
-
 ## Output
 * loop state after a given number of iterations
-
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

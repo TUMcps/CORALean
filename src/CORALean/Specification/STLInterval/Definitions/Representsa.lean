@@ -12,6 +12,12 @@ public import CORALean.Specification.STLInterval.Definitions.WithinTol
 and an `'stlInterval'`, not a `'point'` or the `'origin'`; every interval is an `'stlInterval'`;
 any other type is answered by the closed box `interval(I)`, and is `false` for an interval with an
 open end. A point has `rad(I) = (upper - lower)/2` within `tol` of `0`, the origin both bounds.
+
+## Inputs
+* `tol` – tolerance
+
+## Output
+* the interval represents the given set type up to the tolerance
 -/
 
 -- Authors:       Claude Sonnet 5.5

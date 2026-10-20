@@ -12,6 +12,17 @@ recursion stopped at — has a step `k` and a direction `i` whose lower bound
 already exceeds the offset: line 9's test, fired. Both the refutation of the
 safe set and the counterexample run are read off that round.
 
+## Inputs
+* `bndUp` – upper bounds per round and step
+* `bndLo` – lower bounds per round and step
+* `d` – offsets
+
+## Hypotheses
+* none
+
+## Conclusion
+* an unsafe answer comes from a round whose lower bound crosses an offset
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

@@ -12,6 +12,17 @@ public import CORALean.Specification.STL.Operations.Basic
 traces that agree from `minimumTime obj` on are satisfying together. The bound is the one CORA
 computes, which for a `finally` or `globally` is its lower bound without the offset of the inner
 formula, so it is a lower bound that need not be attained.
+
+## Inputs
+* `φ` – formula
+* `ξ` – trace
+* `ξ'` – second trace
+
+## Hypotheses
+* `h` – the traces agree from the earliest time
+
+## Conclusion
+* the formula holds on both or neither
 -/
 
 -- Authors:       Claude Sonnet 5.5

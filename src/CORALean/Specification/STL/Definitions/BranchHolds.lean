@@ -11,6 +11,14 @@ public import Mathlib.Data.NNReal.Defs
 `Holds c b ξ`: `ξ` satisfies `X_c^j (φᵢⱼ ∨ ϱᵢⱼ)` of [1, Lemma 2], unfolded to the window `(jc, jc
 + c)` for the `F(0,c)` and `G(0,c)` and the point `jc` for `ϱᵢⱼ`.
 
+## Inputs
+* `c` – clause time step
+* `b` – branch
+* `ξ` – trace
+
+## Output
+* the trace satisfies the branch
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

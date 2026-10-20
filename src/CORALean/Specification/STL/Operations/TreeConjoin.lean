@@ -11,6 +11,12 @@ The idiom `res = []; for ..., res = res & c; end` of `polytope2stl.m`: `[] & c` 
 `res & c` the conjunction. The empty list leaves `res = []`, which stands for no constraint, and
 is
 `true` here.
+
+## Inputs
+* `L` – list of formulas
+
+## Output
+* the left-nested conjunction, true for an empty list
 -/
 
 -- Authors:       Claude Sonnet 5.5

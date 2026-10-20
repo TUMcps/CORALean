@@ -12,6 +12,22 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.ListLengthTakeW
 
 After the `i`-th time point of a valid signal and before the next one (or with no next one) the
 signal has the interval value stored for that point.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `i` – time point index
+* `a` – the time point
+* `t` – time
+
+## Hypotheses
+* `hs` – the signal is valid
+* `ha` – the point is the one at that index
+* `h1` – the time is after the point
+* `h2` – the time is before the next point
+
+## Conclusion
+* the value is the interval value after the point
 -/
 
 -- Authors:       Claude Sonnet 5.5

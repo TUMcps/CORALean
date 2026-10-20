@@ -16,6 +16,22 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.ObserveSetS
 The analyzer of the formula that is one atomic proposition `a`, after a final observation of a
 set in an interval that contains `0`: the verdict is the value of `a` on the set (`apValue`), so
 it is `True` only if every state of the set satisfies `a` and `False` only if none does.
+
+## Inputs
+* `label` – proposition label
+* `a` – atomic proposition
+* `dp` – drop propagated times flag
+* `eps` – machine epsilon
+* `set` – observed set
+* `loc` – location
+* `I` – observed time interval
+
+## Hypotheses
+* `hne` – the interval is nonempty
+* `h0` – the interval contains time zero
+
+## Conclusion
+* the verdict is the value of the proposition on the set
 -/
 
 -- Authors:       Claude Sonnet 5.5

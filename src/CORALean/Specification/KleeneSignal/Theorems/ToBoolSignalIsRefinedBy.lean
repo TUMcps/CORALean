@@ -11,6 +11,16 @@ For a valid three-valued signal `Λ`, `toBoolSignal(Λ,mapUnknownTo)` refines `�
 [1, Sec. 4.2 (refinements)], `λ ≺ Λ`, for either value of `mapUnknownTo`: `⌊Λ⌋` and `⌈Λ⌉` are
 refinements of `Λ`.
 
+## Inputs
+* `s` – three-valued signal
+* `v` – Boolean for unknown times
+
+## Hypotheses
+* `hs` – the signal is valid
+
+## Conclusion
+* the signal is refined by its Boolean conversion
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

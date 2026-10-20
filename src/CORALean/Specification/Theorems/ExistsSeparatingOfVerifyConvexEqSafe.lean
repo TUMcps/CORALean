@@ -11,6 +11,20 @@ public import CORALean.Specification.Theorems.VerifyConvexFoldInv
 `exists_separating_of_verifyConvex_eq_safe`: a `safe` answer from [1, Alg. 3 (exits)] came from the
 bounds already separating along some direction the search tried.
 
+## Inputs
+* `bO` – bounds of the reachable set
+* `bU` – bounds of the unsafe set
+* `wO` – witnesses of the reachable set
+* `wU` – witnesses of the unsafe set
+* `ℓ` – sequence of directions
+* `fuel` – number of directions tried
+
+## Hypotheses
+* `h` – the search answers safe
+
+## Conclusion
+* some direction separates the bounds of the two sets
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

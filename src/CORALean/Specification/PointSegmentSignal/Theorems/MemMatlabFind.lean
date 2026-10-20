@@ -9,6 +9,18 @@ public import CORALean.Specification.PointSegmentSignal.Operations.Basic
 
 An index is found by `find(x)` with a predicate exactly when it is a one-based index of an entry
 that satisfies it.
+
+## Inputs
+* `α` – element type
+* `p` – predicate
+* `l` – list
+* `j` – index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the index is found iff it is a one-based index of a satisfying entry
 -/
 
 -- Authors:       Claude Sonnet 5.5

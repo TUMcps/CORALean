@@ -8,6 +8,13 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 # An interval inside another
 
 `J` lies inside `I` when its bounds do; every `intPrev & ...` of `syntaxTree.m` yields such a `J`.
+
+## Inputs
+* `J` – inner interval
+* `I` – outer interval
+
+## Output
+* the inner interval lies inside the outer one
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -13,6 +13,24 @@ If `Λ₁ ⊑ₜ Λ₁'` and `Λ₂ ⊑ₜ Λ₂'` at every time `t ≥ 0`, then
 `U_I` on `U₁`-signals is monotone ([1, Lemma 3]), proved from the direct semantics of [1, Eq. 2]
 (`until_spec`).
 
+## Inputs
+* `l` – left signal
+* `l'` – larger left signal
+* `r` – right signal
+* `r'` – larger right signal
+* `U` – time interval
+
+## Hypotheses
+* `hl` – the left signal is valid
+* `hl'` – the larger left signal is valid
+* `hr` – the right signal is valid
+* `hr'` – the larger right signal is valid
+* `h1` – the left signal is below its larger one
+* `h2` – the right signal is below its larger one
+
+## Conclusion
+* the until is below the larger until at all times
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

@@ -10,6 +10,12 @@ public import CORALean.Specification.STLInterval.Definitions.Fields
 The numeric branch of `@stlInterval/contains_.m` at `tol = 0`, read off the stored fields: strictly
 between the bounds, or at a closed bound; a comparison with a `NaN` bound is false, and the empty
 object (`none`) contains nothing.
+
+## Inputs
+* none
+
+## Output
+* the interval given by its fields contains the time
 -/
 
 -- Authors:       Claude Sonnet 5.5

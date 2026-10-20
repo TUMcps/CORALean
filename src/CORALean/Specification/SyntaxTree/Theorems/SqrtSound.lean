@@ -13,6 +13,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # `aux_sqrt_` is sound
 
 `aux_sqrt_` keeps every solution of `sqrt s ∈ int` with `s ≥ 0`.
+
+## Inputs
+* `prev` – previous interval
+
+## Hypotheses
+* `hd` – the interval is nonnegative
+
+## Conclusion
+* the inverse of the square root keeps every solution
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -13,6 +13,13 @@ and none is inconclusive, inconclusive otherwise.
 The result is that of the Kleene conjunction on the under- and overapproximation of the operands,
 joined to inconclusive where they differ, as in [1, Fig. 3].
 
+## Inputs
+* `lhs` – left operand
+* `rhs` – right operand
+
+## Output
+* the four-valued conjunction
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

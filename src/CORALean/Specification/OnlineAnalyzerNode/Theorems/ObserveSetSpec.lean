@@ -10,6 +10,20 @@ public import CORALean.Specification.OnlineAnalyzerNode.Operations.ObserveSet
 `observeSet` throws for a node that is not a leaf and for an observation of a time that was already
 propagated to a parent; a `true` or `false` node, observing a set no earlier than that, is left
 as it is.
+
+## Inputs
+* `eps` – machine epsilon
+* `n` – leaf node
+* `set` – observed set
+* `interval` – observed time interval
+* `loc` – location
+* `tentative` – observation is tentative
+
+## Hypotheses
+* none
+
+## Conclusion
+* inner nodes and already propagated times fail, constants stay unchanged
 -/
 
 -- Authors:       Claude Sonnet 5.5

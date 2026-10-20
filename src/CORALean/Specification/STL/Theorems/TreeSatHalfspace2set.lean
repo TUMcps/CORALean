@@ -12,6 +12,18 @@ public import Mathlib.Algebra.BigOperators.Fin
 
 `aux_halfspace2set(x,A,b)` of `polytope2stl.m` builds a formula satisfied by a trace exactly when
 the initial state meets the halfspace: `op (Σⱼ aⱼ xⱼ) b`.
+
+## Inputs
+* `op` – comparison
+* `a` – normal vector
+* `b` – offset
+* `ξ` – trace
+
+## Hypotheses
+* none
+
+## Conclusion
+* the node holds iff the halfspace comparison holds at time zero
 -/
 
 -- Authors:       Claude Sonnet 5.5

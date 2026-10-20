@@ -12,6 +12,12 @@ public import CORALean.Specification.STL.Operations.SampToFormula
 = (0,1)`. The last two are the contexts [1, Table 1]'s rows create: they wrap a rewritten formula,
 not a rewritten formula's own temporal operators.
 
+## Inputs
+* `n` – formula in negation normal form
+
+## Output
+* the formula and its eventually and always have sampled time rewrites
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

@@ -14,6 +14,12 @@ the result is meant for a bounded interval; `stlInterval()` gives the empty box 
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (bounds
 over `𝕋`, rounded outward) is not yet written.
+
+## Inputs
+* none
+
+## Output
+* the closed interval hull
 -/
 
 -- Authors:       Claude Sonnet 5.5

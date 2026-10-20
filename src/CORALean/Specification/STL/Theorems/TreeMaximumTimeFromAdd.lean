@@ -9,6 +9,16 @@ public import CORALean.Specification.STL.Operations.TreeMaximumTimeFrom
 
 Starting `maximumTime`'s recursion at the offset `time` adds `time` to the result: every clause is
 increasing with slope one in `time`.
+
+## Inputs
+* `φ` – formula
+* `time` – offset
+
+## Hypotheses
+* none
+
+## Conclusion
+* the offset is added to the latest time
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,6 +11,12 @@ public import CORALean.Specification.STL.Operations.ExprVariables
 `@stl/getVariables.m`: the variables a formula mentions. CORA returns their names, sorted by
 length and then alphabetically; the variables here are the indices `i` of `x(i)`, so the result is
 the set of indices, whose order is not modelled.
+
+## Inputs
+* none
+
+## Output
+* the variables occurring in the formula
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -9,6 +9,18 @@ public import CORALean.Specification.STL.Operations.TreeNnfWith
 
 If `ng` negates a comparison (`ng op` holds where `op` does not), `aux_recursive(obj,neg)` returns
 a formula satisfied exactly when `obj` is (`neg = false`) or is not (`neg = true`).
+
+## Inputs
+* `ng` – negation of a comparison
+* `φ` – formula
+* `neg` – negate the formula
+* `ξ` – trace
+
+## Hypotheses
+* `hng` – the function negates comparisons correctly
+
+## Conclusion
+* the result holds iff the formula holds or fails as requested
 -/
 
 -- Authors:       Claude Sonnet 5.5

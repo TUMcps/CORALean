@@ -11,6 +11,15 @@ public import CORALean.Specification.PointSegmentSignal.Operations.Basic
 `aux_setPoint(obj,point,value)` of `pointSegmentSignal/set.m`: set the value at a single time. If it
 already has `value`, nothing changes; at a time point the point value is set, and the point is
 dropped when it then matches the intervals around it; elsewhere a new point is inserted.
+
+## Inputs
+* `T` – time type
+* `s` – signal
+* `point` – time to set
+* `value` – value to set
+
+## Output
+* the signal with the value set at that time
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -12,6 +12,15 @@ public import CORALean.Specification.FiniteSignal.Operations.Mk
 `sig = cutoff(sig,dur)` of `cutoff.m`: the signal up to the duration `dur`, which CORA requires
 not to exceed the signal's own. CORA throws there, and in the constructor if its checks fail (a
 negative `dur`); both are `none`.
+
+## Inputs
+* `T` – time type
+* `V` – value type
+* `s` – signal
+* `dur` – new duration
+
+## Output
+* the signal cut off at `dur`, or none if `dur` exceeds its duration
 -/
 
 -- Authors:       Claude Sonnet 5.5

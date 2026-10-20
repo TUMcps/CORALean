@@ -12,6 +12,14 @@ public import CORALean.Specification.STL.Definitions.RTL
 Real-only, a specification: it rewrites or builds formulas, whose time bounds and constants are
 part of the syntax and are copied or added exactly, never rounded.
 
+## Inputs
+* `a` – interval lower bound
+* `b` – interval upper bound
+* `ψ` – formula
+
+## Output
+* the formula holds at some time of the interval
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and
