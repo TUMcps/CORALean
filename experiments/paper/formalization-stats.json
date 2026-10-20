@@ -14,39 +14,39 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 97,
-    "papers_with_findings": 88,
-    "in_scope": 1269,
-    "formalized": 1213,
-    "not_formalized": 56,
-    "out_of_scope": 1096,
+    "papers": 99,
+    "papers_with_findings": 89,
+    "in_scope": 1292,
+    "formalized": 1219,
+    "not_formalized": 73,
+    "out_of_scope": 1142,
     "out_of_scope_by_reason": {
-      "restated": 409,
-      "mathlib": 23,
-      "not-a-claim": 559,
+      "restated": 430,
+      "mathlib": 24,
+      "not-a-claim": 581,
       "done-differently": 12,
-      "not-covered": 93
+      "not-covered": 95
     },
     "by_class": {
-      "correct": 808,
-      "underspecified": 253,
+      "correct": 813,
+      "underspecified": 254,
       "proof-gap": 35,
       "fixed": 106,
       "false": 11
     },
     "claims": {
-      "in_scope": 477,
-      "formalized": 453,
-      "correct": 270,
-      "underspecified": 92,
+      "in_scope": 487,
+      "formalized": 455,
+      "correct": 271,
+      "underspecified": 93,
       "proof-gap": 35,
       "fixed": 49,
       "false": 7
     },
     "definitions": {
-      "in_scope": 792,
-      "formalized": 760,
-      "correct": 538,
+      "in_scope": 805,
+      "formalized": 764,
+      "correct": 542,
       "underspecified": 161,
       "proof-gap": 0,
       "fixed": 57,
@@ -1621,7 +1621,7 @@
     },
     {
       "page": "2013/le-automatica-zonotopic-estimation.md",
-      "label": "Le 2013",
+      "label": "Le 2013 (automatica)",
       "year": 2013,
       "title": "Zonotopic guaranteed state estimation for uncertain systems",
       "in_scope": 14,
@@ -1655,6 +1655,49 @@
         "in_scope": 11,
         "formalized": 11,
         "correct": 11,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": []
+    },
+    {
+      "page": "2013/le-isic-multi-output-estimation.md",
+      "label": "Le 2013 (isic)",
+      "year": 2013,
+      "title": "Zonotope-based set-membership estimation for multi-output uncertain systems",
+      "in_scope": 10,
+      "formalized": 3,
+      "not_formalized": 7,
+      "out_of_scope": 21,
+      "out_of_scope_by_reason": {
+        "restated": 10,
+        "mathlib": 0,
+        "not-a-claim": 11,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 3,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 1,
+        "formalized": 1,
+        "correct": 1,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 9,
+        "formalized": 2,
+        "correct": 2,
         "underspecified": 0,
         "proof-gap": 0,
         "fixed": 0,
@@ -2078,6 +2121,55 @@
           "result": "Prop. 6",
           "class": "fixed",
           "reason": "false without `µ ≥ 0` (explicit pair in ℝ²); (23)'s normal is printed with the wrong sign"
+        }
+      ]
+    },
+    {
+      "page": "2015/combastel-automatica-zonotopes-kalman.md",
+      "label": "Combastel 2015",
+      "year": 2015,
+      "title": "Zonotopes and Kalman observers: Gain optimality under distinct uncertainty paradigms and robust convergence",
+      "in_scope": 13,
+      "formalized": 3,
+      "not_formalized": 10,
+      "out_of_scope": 25,
+      "out_of_scope_by_reason": {
+        "restated": 11,
+        "mathlib": 1,
+        "not-a-claim": 11,
+        "done-differently": 0,
+        "not-covered": 2
+      },
+      "by_class": {
+        "correct": 2,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 9,
+        "formalized": 1,
+        "correct": 0,
+        "underspecified": 1,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 4,
+        "formalized": 2,
+        "correct": 2,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Thm. 5 (F-radius)",
+          "class": "underspecified",
+          "reason": "`S = C P̄ Cᵀ + F Fᵀ` is inverted without being assumed invertible, and may be singular when `F Fᵀ` is (`F` with fewer columns than rows); the formalization supplies the invertibility"
         }
       ]
     },
@@ -6835,8 +6927,8 @@
         },
         "cora_issues": 16,
         "findings": {
-          "correct": 146,
-          "underspecified": 47,
+          "correct": 150,
+          "underspecified": 48,
           "proof-gap": 4,
           "fixed": 16,
           "false": 1
@@ -7024,7 +7116,7 @@
         },
         "cora_issues": 2,
         "findings": {
-          "correct": 40,
+          "correct": 41,
           "underspecified": 10,
           "proof-gap": 0,
           "fixed": 6,
@@ -8401,8 +8493,8 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 410,
-          "underspecified": 123,
+          "correct": 414,
+          "underspecified": 124,
           "proof-gap": 8,
           "fixed": 48,
           "false": 5
@@ -8426,7 +8518,7 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 188,
+          "correct": 189,
           "underspecified": 64,
           "proof-gap": 17,
           "fixed": 27,
@@ -8552,8 +8644,8 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 724,
-        "underspecified": 222,
+        "correct": 729,
+        "underspecified": 223,
         "proof-gap": 31,
         "fixed": 89,
         "false": 10

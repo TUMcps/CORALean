@@ -11,12 +11,14 @@ public import Mathlib.Tactic.Linarith
 /-!
 # The Luenberger gain minimizes the Frobenius norm
 
-[1, Prop. 2]: for the zonotope `⟨ĉ, Ĝ⟩`, `Λ = F Ĝ Ĝᵀ Γᵀ (Γ Ĝ Ĝᵀ Γᵀ + R Rᵀ)⁻¹` Eq. 31 of
-[1, Prop. 2] minimizes `‖Ḡ‖_F` of `Zonotope.luenbergerUpdate` over all gains `Λ'`. The paper sets
-the gradient of Eq. 32 to zero, Eq. 34, and calls the unconstrained norm convex; here the cost at
-`Λ'` is the cost at `Λ` plus `‖(Λ' - Λ) Γ Ĝ‖²_F + ‖(Λ' - Λ) R‖²_F`, because the stationarity
-`(F - Λ Γ) Ĝ Ĝᵀ Γᵀ = Λ R Rᵀ` kills the cross terms. `Γ Ĝ Ĝᵀ Γᵀ + R Rᵀ` must be invertible, as
-the formula writes its inverse.
+[1, Prop. 2]: for `⟨ĉ, Ĝ⟩`, `Λ = F Ĝ Ĝᵀ Γᵀ (Γ Ĝ Ĝᵀ Γᵀ + R Rᵀ)⁻¹` (Eq. 31) minimizes `‖Ḡ‖_F` of
+`Zonotope.luenbergerUpdate` over all gains `Λ'`. The paper sets the gradient of Eq. 32 to zero,
+Eq. 34; here the cost at `Λ'` is the cost at `Λ` plus `‖(Λ' - Λ) Γ Ĝ‖²_F + ‖(Λ' - Λ) R‖²_F`, as
+the stationarity `(F - Λ Γ) Ĝ Ĝᵀ Γᵀ = Λ R Rᵀ` kills the cross terms. [2, Thm. 5 (F-radius)] is
+the same theorem for Combastel's step `R₊ = [(A - G C) R̄, E, -G F]` and gain `G* = A P̄ Cᵀ S⁻¹`,
+`S = C P̄ Cᵀ + F Fᵀ`, `P̄ = R̄ R̄ᵀ` (Eqs. 21-22): `A, C, E, F, R̄` are `F, Γ, Q, R, Ĝ` here, and `Ḡ`
+lists the blocks of `R₊` in another order. Neither paper assumes `Γ Ĝ Ĝᵀ Γᵀ + R Rᵀ` invertible,
+though both write its inverse; `hS` supplies it.
 
 ## Inputs
 * `F` – dynamics matrix
@@ -38,6 +40,8 @@ the formula writes its inverse.
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based
       Observers Using Diffusion Strategies". Journal of the Franklin Institute,
       360(10):6976-6993, 2023. arXiv:2003.10347.
+* [2] C. Combastel. "Zonotopes and Kalman observers: Gain optimality under distinct uncertainty
+      paradigms and robust convergence". Automatica, 55:265-273, 2015.
 -/
 
 -- Authors:       Claude Sonnet 5.5

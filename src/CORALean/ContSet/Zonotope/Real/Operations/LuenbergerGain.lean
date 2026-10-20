@@ -12,8 +12,9 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 The set-propagation observer's gain of [1, Prop. 2], the minimizer of the Frobenius norm of
 `Ḡ` in `Zonotope.luenbergerUpdate`: `Λ = F Ĝ Ĝᵀ Γᵀ (Γ Ĝ Ĝᵀ Γᵀ + R Rᵀ)⁻¹` Eq. 31 of
 [1, Prop. 2], for the zonotope `⟨ĉ, Ĝ⟩`, the stacked measurement matrix `Γ` and the
-measurement-noise generators `R`. `Ĝ` is the matrix of the generator columns; the inverse is
-Mathlib's, `0` where `Γ Ĝ Ĝᵀ Γᵀ + R Rᵀ` is singular.
+measurement-noise generators `R`; it is Combastel's `G* = A P̄ Cᵀ (C P̄ Cᵀ + F Fᵀ)⁻¹`,
+`P̄ = R̄ R̄ᵀ`, of [2, Thm. 5 (F-radius)] with `A, C, F, R̄` as `F, Γ, R, Ĝ`. `Ĝ` is the matrix of
+the generator columns; the inverse is Mathlib's, `0` where `Γ Ĝ Ĝᵀ Γᵀ + R Rᵀ` is singular.
 
 ## Inputs
 * `F` – dynamics matrix
@@ -29,6 +30,8 @@ Mathlib's, `0` where `Γ Ĝ Ĝᵀ Γᵀ + R Rᵀ` is singular.
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based
       Observers Using Diffusion Strategies". Journal of the Franklin Institute,
       360(10):6976-6993, 2023. arXiv:2003.10347.
+* [2] C. Combastel. "Zonotopes and Kalman observers: Gain optimality under distinct uncertainty
+      paradigms and robust convergence". Automatica, 55:265-273, 2015.
 -/
 
 -- Authors:       Claude Sonnet 5.5

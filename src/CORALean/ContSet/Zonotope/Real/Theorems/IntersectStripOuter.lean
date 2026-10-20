@@ -11,14 +11,13 @@ public import Mathlib.Tactic.Abel
 /-!
 # `Zonotope.intersectStrip` encloses the zonotope's intersection with the strips
 
-For every weight matrix `Λ`; at a single strip and a gain column `λ` this is [1, Prop. 6], that is
-[3, Property 2]. A point `x = c + G β` with `|C x - y| ≤ φ` is `(I - Λ C) x + Λ (C x)`, and `C x =
-y + φ ⊙ γ` with `γ ∈ [-1, 1]^p`, so the coefficients `β` on the old generators and `γ` on the strip
-ones reach it. Outer only: the result in general holds more than the intersection, so no equality
-is claimed.
-
-[2, Eq. 3] and [2, Eq. 4] in one: the strips met all at once with the predicted set,
-over-approximated.
+For every weight matrix `Λ`: [4, Prop. 1] as printed, `p ⊕ H Bʳ` met with `|C x - d| ≤ φ` lies in
+`p̂(Λ) ⊕ Ĥ(Λ) Bʳ⁺ᵐ`, `p̂(Λ) = p + Λ (d - C p)`, `Ĥ(Λ) = [(I - Λ C) H, Λ diag(φ)]`; [4, Eq. 10] at
+the prediction, and [2, Eq. 3] with [2, Eq. 4], the strips met all at once with the predicted set.
+At one strip and a gain column `λ` this is [1, Prop. 6], that is [3, Property 2]. A point
+`x = c + G β` with `|C x - y| ≤ φ` is `(I - Λ C) x + Λ (C x)`, and `C x = y + φ ⊙ γ` with
+`γ ∈ [-1, 1]^p`, so the coefficients `β` on the old generators and `γ` on the strip ones reach it.
+Outer only: the result in general holds more than the intersection, so no equality is claimed.
 
 ## Inputs
 * `C` – output matrix
@@ -42,6 +41,9 @@ over-approximated.
       EPiC Series in Computing, vol. 80, pp. 161-175, 2021.
 * [3] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".
       Automatica, 41(6):1035-1043, 2005.
+* [4] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotope-based set-membership
+      estimation for multi-output uncertain systems". In Proc. of the IEEE International Symposium
+      on Intelligent Control (ISIC), pp. 212-217, 2013.
 -/
 
 -- Authors:       Claude Opus 5.5

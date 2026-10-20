@@ -11,14 +11,14 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 /-!
 # The set-propagation observer
 
-[1, Eq. 6], the set-based Luenberger observer
-`S_{k+1} = (A - L C) S_k ⊕ B u_k ⊕ L y_k ⊕ (-L) V ⊕ W`,
-as CORA runs it for `FRad-C` (`priv_observe_intersectionFreeAdaptive`, the gain computed from
-the current set's generators), `PRad-E` and `Nom-G` (`priv_observe_intersectionFree`, a gain
-fixed offline): each step then reduced to `order`. The gain is a function of the current set,
-which covers both. No intersection is taken, so no strip widths enter. `A`, `B`, `C` are the
-system's, the input `u` in input coordinates; as in CORA, neither `c` nor `E`, `D`, `k`, `F` enters
-(the counterexamples `observePropagation_state_offset_counterexample` and its siblings).
+[1, Eq. 6], the set-based Luenberger observer `S_{k+1} = (A - L C) S_k ⊕ B u_k ⊕ L y_k ⊕ (-L) V ⊕
+W`, as CORA runs it for `FRad-C` (`priv_observe_intersectionFreeAdaptive`, the gain from the
+current set's generators), `PRad-E` and `Nom-G` (`priv_observe_intersectionFree`, a fixed gain),
+each step reduced to `order`; the gain is a function of the current set, which covers both. No
+strip widths enter. As in CORA, neither `c` nor `E`, `D`, `k`, `F` enters (the counterexamples
+`observePropagation_state_offset_counterexample` and its siblings). [2, Sec. 5]: at the gain
+`Zonotope.luenbergerGain`, the sets of Combastel's zonotopic Kalman filter (Eqs. 29-30), reduced
+after the step where [2] applies `↓_{q,W}` before it; its covariation `P` is not computed.
 
 ## Inputs
 * `sys` – system
@@ -38,6 +38,8 @@ system's, the input `u` in input coordinates; as in CORA, neither `c` nor `E`, `
 * [1] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th
       International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH21),
       EPiC Series in Computing, vol. 80, pp. 161-175, 2021.
+* [2] C. Combastel. "Zonotopes and Kalman observers: Gain optimality under distinct uncertainty
+      paradigms and robust convergence". Automatica, 55:265-273, 2015.
 -/
 
 -- Authors:       Claude Opus 5.5
