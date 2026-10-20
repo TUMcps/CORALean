@@ -14,6 +14,23 @@ G(y - C x̂ - F υ)`: from `X = ⟨p̂, H̄⟩`, the outputs `y` and `y₊` and 
 Eq. 31 of [1, Thm. 5] gives `p̂₊(G) = (TA - GC) p̂ + TB u + G y + N y₊` and
 `Ĥ₊(G) = [(TA - GC) H̄  TD  -NF  -GF]`. `G` is any matrix.
 
+## Inputs
+* `T` – decoupling matrix
+* `N` – measurement decoupling matrix
+* `G` – observer gain
+* `A` – state matrix
+* `B` – input matrix
+* `D` – disturbance matrix
+* `C` – output matrix
+* `F` – noise matrix
+* `u` – control input
+* `y` – current output
+* `y_plus` – next output
+* `X` – state zonotope
+
+## Output
+* next state-estimate zonotope
+
 ## References
 
 * [1] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on

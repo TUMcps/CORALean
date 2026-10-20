@@ -8,20 +8,14 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBasis
 /-!
 # `Zonotope.reduceCoOptSVD`: [1, Alg. 4]
 
-CoOptSVD, reduction to a parallelotope `(c | C)` of least volume subject to `Z ⊆ (c | C)`,
-with `C = U S Vᵀ`. One `let` per line of the listing:
-
-1. `C₀` by PCA, [1, Alg. 2] over every generator: the principal axes `U₀` and the box radii
-   `S₀` of `U₀⁻¹ Z`, so `C₀ = U₀ diag(S₀)` and the PCA-reduced zonotope is
-   `reduceByBasis` at `U₀`;
-2. the decomposition `C₀ = U₀ diag(S₀) Iᵀ`, which PCA's output already is: no SVD routine
-   is needed for it;
-3. -5. the constrained minimization of eq. 11 subject to eq. 13, which [1] hands to MATLAB's
-   `fmincon`: `opt`, an argument, from the initial triple to a candidate `(U, S, V)`;
-6. `C = U diag(S) Vᵀ`;
-7. `(c | C)`, but only when the candidate satisfies eq. 13 — `U`, `V` orthogonal, every
-   `sᵢᵢ ≠ 0`, `Σⱼ |(V diag(1/s) Uᵀ G)ᵢⱼ| ≤ 1` — which a solver's return need not; otherwise the
-   PCA initialisation, which encloses `Z` regardless.
+CoOptSVD, reduction to a parallelotope `(c | C)` of least volume subject to `Z ⊆ (c | C)`, with
+`C = U S Vᵀ`. One `let` per line of the listing: `C₀` by PCA, [1, Alg. 2] over every generator
+(`C₀ = U₀ diag(S₀)`, whose decomposition PCA's output already is: no SVD routine is needed);
+lines 3-5, the constrained minimization of eq. 11 subject to eq. 13, handed to MATLAB's `fmincon`,
+are `opt`, an argument, from the initial triple to a candidate `(U, S, V)`; `C = U diag(S) Vᵀ`;
+and `(c | C)` only when the candidate satisfies eq. 13 — `U`, `V` orthogonal, every `sᵢᵢ ≠ 0`,
+`Σⱼ |(V diag(1/s) Uᵀ G)ᵢⱼ| ≤ 1` — which a solver's return need not; otherwise the PCA
+initialisation, which encloses `Z` regardless.
 
 ## References
 

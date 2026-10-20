@@ -14,6 +14,22 @@ The zonotope of the current-estimation-type observer of Eq. 37 of [1, Thm. 7] an
 ĜC)NF  -ĜF]`, which [1, Thm. 7] says is the intersection zonotope of Eq. 7 of [1, Thm. 1] at `Λ =
 Ĝ`.
 
+## Inputs
+* `T` – decoupling matrix
+* `N` – measurement decoupling matrix
+* `Ghat` – observer gain
+* `A` – state matrix
+* `B` – input matrix
+* `D` – disturbance matrix
+* `C` – output matrix
+* `F` – noise matrix
+* `u` – control input
+* `y_plus` – next output
+* `X` – state zonotope
+
+## Output
+* zonotope of the current-estimate observer
+
 ## References
 
 * [1] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on

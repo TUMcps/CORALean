@@ -7,17 +7,23 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceCombastel
 /-!
 # `Zonotope.reduceCombastel` bounds the generator count
 
-`reduceBy`'s shape is the whole argument: `h := q + n`, and at the split
-`aux_combastelSplit` builds, `q = (o-1)*n`, so the total is `o*n` outright —
-no clamping, since a `Zonotope` has one generator block, unlike `PolyZonotope`,
-where `PolyZonotope.reduceGirard_order_le` needs one to bound two blocks together.
+`reduceBy`'s shape is the whole argument: `h := q + n`, and at the split `aux_combastelSplit`
+builds, `q = (o-1)*n`, so the total is `o*n` outright — no clamping, since a `Zonotope` has one
+generator block, unlike `PolyZonotope`, where `PolyZonotope.reduceGirard_order_le` needs one to
+bound two blocks together. Girard's rule admits the identical bound by the identical argument,
+proved separately at `reduceGirard_order_le`: the two rules differ only in which generators the
+ranking keeps, never in what `reduceBy` does with the split. At `o = 0` there is nothing to state,
+as for `PolyZonotope`: CORA floors the reduced budget at nothing, so order zero lands at order one.
 
-Girard's rule admits the identical bound by the identical argument, proved
-separately at `reduceGirard_order_le`: the two rules differ only in which
-generators the ranking keeps, never in what `reduceBy` does with the split.
+## Inputs
+* `Z` – zonotope
+* `o` – target order
 
-At `o = 0` there is nothing to state, as for `PolyZonotope`: CORA floors the
-reduced budget at nothing, so order zero lands at order one in both tools.
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* the result has at most `o n` generators
 -/
 
 -- Authors:       Claude Opus 5

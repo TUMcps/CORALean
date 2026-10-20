@@ -12,6 +12,19 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
 The mirror of `matMulLeft_exact`, and a separate statement rather than a
 corollary of it: matrix multiplication does not commute, so neither side follows
 from the other.
+
+## Inputs
+* `p` – row count
+* `q` – inner dimension
+* `r` – column count
+* `M` – matrix
+* `Z` – matrix zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* right multiplication is exact
 -/
 
 -- Authors:       Claude Opus 5

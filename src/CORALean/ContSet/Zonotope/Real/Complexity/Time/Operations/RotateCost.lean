@@ -15,6 +15,13 @@ applied dense, the zeros of the rotation not being exploited.
 
 The rotation matrix is a result of its own, `n * n` writes, zeros included; the product writes
 its result inside `mtimesCost`.
+
+## Inputs
+* `n` – dimension
+* `h` – generator count
+
+## Output
+* cost of sine, cosine, rotation matrix and product
 -/
 
 -- Authors:       Claude Sonnet 5.5

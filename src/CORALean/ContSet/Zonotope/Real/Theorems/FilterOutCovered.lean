@@ -12,13 +12,20 @@ public import Mathlib.Analysis.Convex.Topology
 
 A cell with nonempty interior that `filterOut` deletes lies in the union of all the other cells,
 the deleted ones included. A point of the cell outside that closed union would have a
-neighbourhood outside it, and the cell, being the closure of its interior, meets that
-neighbourhood in an open set, which is a remainder of nonempty interior.
+neighbourhood outside it, and the cell, being the closure of its interior, meets that neighbourhood
+in an open set, a remainder of nonempty interior. Covered by *all* the others, not by the cells
+that are kept: `filterOut_pair` has two equal cells delete each other. Source: [1].
 
-Covered by *all* the others, not by the cells that are kept: `filterOut_pair` has two equal cells
-delete each other.
+## Inputs
+* `Zs` – cells
+* `ind` – cell index
 
-Source: [1].
+## Hypotheses
+* `hint` – cell has nonempty interior
+* `hout` – cell is filtered out
+
+## Conclusion
+* the cell is covered by the other cells
 
 ## References
 

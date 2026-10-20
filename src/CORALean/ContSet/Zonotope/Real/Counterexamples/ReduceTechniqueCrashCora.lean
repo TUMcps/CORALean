@@ -5,40 +5,37 @@ public import Mathlib.Data.List.Range
 @[expose] public section
 
 /-!
-# `Zonotope.reduceCrashCora`: reduction techniques that `validateOptions` accepts and `reduce`
-stops on
+# `Zonotope.reduceCrashCora`: techniques that `validateOptions` accepts and `reduce` stops on
 
-`getMembers('reductionTechnique')` lists `girard, combastel, pca, methA, methB, methC, methD, methE,
-methF, redistribute, cluster, scott, constOpt`, which is what `validateOptions` accepts for
-`options.reductionTechnique` of `linearSys` (`checkDynParameterOptions.m` l. 309-318). The
-algorithms call `reduce(S, options.reductionTechnique, options.zonotopeOrder)` with three
-arguments, so `@zonotope/reduce.m` (l. 98) leaves `filterLength = []` and `option = []`:
+`getMembers('reductionTechnique')` lists the techniques `validateOptions` accepts for `linearSys`
+(`checkDynParameterOptions.m` l. 309-318). The algorithms call `reduce(S, technique, order)` with
+three arguments, so `@zonotope/reduce.m` (l. 98) leaves `filterLength = []` and `option = []`:
 
-* `'methB'`: `priv_reduceMethB.m` reads `filterLength(1)` (l. 42), an index into `[]`; stops when a
-  reduction is needed (`methC` has the `isempty` guard);
-* `'cluster'`: `priv_reduceCluster.m` (l. 78-107) tests `clusterMethod == 1, ..., 10` against `[]`,
-  no branch runs, and the next line reads the unassigned `Cgen`; stops when a reduction is needed;
-* `'methD'`: no `case 'methD'` in `reduce.m` and no `priv_reduceMethD`: the `otherwise` branch
-  throws `CORA:wrongValue` at every call;
-* `'methE'`: `priv_reduceMethE.m` (l. 62) computes `Ztrans = Z\P`, and `zonotope` has no `mldivide`
-  (`P\Z` was meant): stops at every call that gets that far (it also returns a cell array of
-  parallelotopes, not a zonotope);
+* `'methB'`: `priv_reduceMethB.m` reads `filterLength(1)` (l. 42), an index into `[]`;
+* `'cluster'`: `priv_reduceCluster.m` tests `clusterMethod == 1, ..., 10` against `[]`, no branch
+  runs, and the next line reads the unassigned `Cgen`;
+* `'methD'`: no `case 'methD'` in `reduce.m`: the `otherwise` branch throws at every call;
+* `'methE'`: `priv_reduceMethE.m` (l. 62) computes `Ztrans = Z\P`, and `zonotope` has no `mldivide`;
 * `'redistribute'`: `priv_reduceRedistribute.m` takes `nrOfGens` (l. 36) before it deletes the
-generators   shorter than `1e-6 * max(max(G))` from `G` (l. 48-49), then indexes the shortened `G`
-by   `setdiff(1:nrOfGens, ind)` (l. 67-68): stops when a generator was deleted and more than
-`d*order` remain.
+  short generators (l. 48-49), then indexes the shortened `G` by `setdiff(1:nrOfGens, ind)`.
 
-Modelled: whether the call stops (`true`) for a reduction that is `needed` (more than `d*order`
-generators) and for a tiny generator being present; the other techniques are not claimed here.
-Read from the source, not run.
+Modelled: whether the call stops for a `needed` reduction (more than `d*order` generators) and a
+tiny generator being present. Read from the source, not run.
 
 # CORA's `reductionTechnique` accepts five techniques that `reduce` cannot run
 
-`reach(sys,params,options)` of a `linearSys` with `options.reductionTechnique = 'methD'` is
-accepted by `validateOptions` and stops at the first reduction; likewise `'methB'`, `'cluster'`
-and `'methE'`, and `'redistribute'` for a generator set with a zero generator. For
-`G = [1 0 1 0; 0 1 1 0]`, `order = 1` of `'redistribute'`: `nrOfGens = 4`, the zero generator is
-deleted, three remain (`> 2`), `ind = 1`, `setdiff(1:4, 1) = [2 3 4]` indexes a `2 x 3` matrix.
+`'methD'` stops at the first reduction; likewise `'methB'`, `'cluster'`, `'methE'`, and
+`'redistribute'` for a generator set with a zero generator: `G = [1 0 1 0; 0 1 1 0]`, `order = 1`
+gives `nrOfGens = 4`, three remain, `setdiff(1:4, 1) = [2 3 4]` indexes a `2 x 3` matrix.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's reduce stops on all five accepted techniques
 -/
 
 -- Authors:       Claude Sonnet 5.5

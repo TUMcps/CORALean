@@ -10,17 +10,23 @@ public import Mathlib.LinearAlgebra.Matrix.PosDef
 /-!
 # The printed P-radius condition does not bound the P-radius
 
-[1, Thm. 2] concludes `ϱ_k ≤ α ϱ_{k-1} + (1 - α) ℓ_d` (its Eq. 21a), `ℓ_d` its Eq. 22, from its
-Eq. 19, whose last block row carries `P(NF - ΛCNF + ΛF)` with a single coefficient. The
-intersection zonotope [1, Thm. 1] has `(I - ΛC)NF H_d` and `ΛF H_d` as separate generator blocks,
-which can add up where Eq. 19 lets them cancel. With `n_x = n_y = n_d = 1`, `E = 0`, `C = 1`,
-`T = 0`, `N = 1` (so `TE + NC = I`), `F = H_d = 1`, `A = B = D = 0` (`D(θ) = [D̄ 0]` with no
-disturbance, `F = [0 F̄]`), `Λ = 2`, `P = 1/5`, `α = β = 1/2`, `γ = 3` and `X̂_{k-1} = {0}`, Eq. 19
-holds (`NF - ΛCNF + ΛF = 1`), so does `I ≼ γ²P` (its Eq. 26), and the zonotope `⟨0, [-1  2]⟩` has
-P-radius `9/5`, above `α · 0 + (1 - α)(β · 1 + (1 - β) · 1) = 1/2`. Eq. 20 itself has no solution
-(`LinearSysDT.radiusLmi_infeasible`), so the theorem as printed is vacuous; with Eq. 26 for
-Eq. 20, as its proof derives, Eq. 21a fails. Splitting the block corrects it
-(`intersectDescriptorHd_pRadius_le`).
+[1, Thm. 2] concludes `ϱ_k ≤ α ϱ_{k-1} + (1 - α) ℓ_d` (its Eq. 21a) from its Eq. 19, whose last
+block row carries `P(NF - ΛCNF + ΛF)` with a single coefficient. The intersection zonotope
+[1, Thm. 1] has `(I - ΛC)NF H_d` and `ΛF H_d` as separate generator blocks, which can add up where
+Eq. 19 lets them cancel. With `n_x = n_y = n_d = 1`, `C = N = F = H_d = 1`, `E = T = A = B = D = 0`,
+`Λ = 2`, `P = 1/5`, `α = β = 1/2`, `γ = 3`, `X̂_{k-1} = {0}`, Eq. 19 and Eq. 26 hold, and
+`⟨0, [-1  2]⟩` has P-radius `9/5`, above `1/2`. Eq. 20 itself has no solution
+(`LinearSysDT.radiusLmi_infeasible`), so the theorem as printed is vacuous; with Eq. 26 for Eq. 20
+Eq. 21a fails. Splitting the block corrects it (`intersectDescriptorHd_pRadius_le`).
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed condition does not bound the P-radius
 
 ## References
 

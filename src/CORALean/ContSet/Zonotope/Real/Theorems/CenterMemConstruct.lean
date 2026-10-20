@@ -11,6 +11,15 @@ The zero coefficient vector, and nothing more. Small, and worth a name: it is
 what says a zonotope is *nonempty*, which is the hypothesis Rådström's
 cancellation asks of the set it cancels — so every inner approximation built by
 subtracting a zonotope off an enclosure goes through here.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the center lies in `Z`
 -/
 
 -- Authors:       Claude Opus 5

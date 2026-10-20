@@ -15,6 +15,19 @@ minimizes the Frobenius norm of `Ḡ = [(I - Λ Γ) Ĝ, Λ R]`, the generators o
 at `F = I` and no process noise, whose cost is the same up to the sign of the `Λ R` block; the
 invertibility of `Γ Ĝ Ĝᵀ Γᵀ + R Rᵀ` is the formula's.
 
+## Inputs
+* `Γ` – stacked measurement matrix
+* `φ` – strip radii
+* `y` – measurement
+* `X` – zonotope
+* `Λ'` – competing gain
+
+## Hypotheses
+* `hS` – innovation covariance invertible
+
+## Conclusion
+* the strip gain minimizes the generator Frobenius norm
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

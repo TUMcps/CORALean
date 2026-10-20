@@ -18,6 +18,19 @@ generators a subset of `H` picks out. The volume is `Zonotope.volume`, the sum o
 strip; the first sum's factor is `det (I - λcᵀ) = 1 - cᵀλ`, and in the second `I - λcᵀ` is dropped
 by column operations.
 
+## Inputs
+* `Z` – zonotope
+* `c` – strip direction
+* `l` – gain vector
+* `σ` – strip radius
+* `d` – strip offset
+
+## Hypotheses
+* none
+
+## Conclusion
+* the volume of the strip intersection is a sum of determinants
+
 ## References
 
 * [1] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".

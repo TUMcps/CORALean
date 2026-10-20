@@ -17,6 +17,13 @@ itself, the zero functional, and `∅`), and its dimension that of its affine hu
 its `vectorSpan`. Stated for any set, the zonotope being where [1] uses it; for `x ∉ Z` no face
 contains `x` and the minimum of the empty set is `0` here.
 
+## Inputs
+* `Z` – zonotope as a set
+* `x` – point of the zonotope
+
+## Output
+* least dimension of a face containing `x`
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

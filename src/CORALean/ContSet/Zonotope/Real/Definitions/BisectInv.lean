@@ -15,6 +15,15 @@ follow `B` and precede the others in the order of `σ·cross`, `s = ∑_G 2g`, a
 the abscissae of `P` and `P + s`. `B` is the part of the walk already taken; it makes the vertex
 `P` a vertex of the zonogon, and `G` a stretch of its boundary that the search narrows.
 
+## Inputs
+* `Z` – planar zonotope
+* `γ` – abscissa of the vertical line
+* `σ` – search direction, plus or minus one
+* `st` – loop state
+
+## Output
+* `Prop` that the loop invariant holds on the state
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

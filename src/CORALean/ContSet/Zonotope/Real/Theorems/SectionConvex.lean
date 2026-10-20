@@ -14,6 +14,16 @@ The intersection of a convex set with `x = γ` is convex in `y`: a weighted aver
 and `(γ, y₂)` is `(γ, a y₁ + b y₂)`. So the output of [1, Alg. 3] and [1, Alg. 4] being an
 interval `[m; M]` costs nothing, and the section is determined by its least and greatest `y`.
 
+## Inputs
+* `Z` – planar zonotope
+* `γ` – abscissa of the vertical line
+
+## Hypotheses
+* none
+
+## Conclusion
+* the section of `Z` is convex
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

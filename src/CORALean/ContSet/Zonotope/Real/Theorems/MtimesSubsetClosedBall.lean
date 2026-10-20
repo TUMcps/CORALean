@@ -14,6 +14,17 @@ interval matrix has no single matrix to appeal to; here `M` is one matrix, so
 the ordinary operator-norm inequality `‖M *ᵥ x‖ ≤ ‖M‖ * ‖x‖` carries the ball
 straight through, at the `l∞` operator norm `Vec ℝ n`'s own sup norm already
 pairs with.
+
+## Inputs
+* `M` – matrix
+* `Z` – zonotope
+* `r` – ball radius
+
+## Hypotheses
+* `h` – `Z` lies in the ball
+
+## Conclusion
+* the image lies in the ball scaled by the norm of `M`
 -/
 
 -- Authors:       Claude Opus 5

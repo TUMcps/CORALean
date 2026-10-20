@@ -17,6 +17,15 @@ enough: `Z₁ = [-1, 1]`, `Z₂ = [-2, 2]` and the two directions `±1`. Then (2
 is the closed form `(0, -1)`, `[-1, 1]`, and yet the difference is empty, since `0 + 2`
 leaves `[-1, 1]`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the stretched minuend is not the Minkowski difference
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

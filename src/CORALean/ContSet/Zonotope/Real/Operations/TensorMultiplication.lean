@@ -10,19 +10,22 @@ public import CORALean.ContSet.Zonotope.Real.Operations.TensorEval
 /-!
 # `Zonotope.tensorMultiplication`
 
-CORA's `@zonotope/tensorMultiplication.m` for a third-order tensor, `M = {M₁, ..., Mₙ}` with
-`Mᵢ` an `n × n × n` array (CORA's `tensorOrder = length(size(M{1})) = 3`): an enclosure of
-`{ Mᵢⱼₖₗ xⱼ xₖ xₗ | x ∈ Z }` by a zonotope, when the center of `Z` is the origin (otherwise CORA
-leaves `H` undefined and errors; the theorem assumes `Z.c = 0`).
+CORA's `@zonotope/tensorMultiplication.m` for a third-order tensor `M = {M₁, ..., Mₙ}`, `Mᵢ` an
+`n × n × n` array: an enclosure of `{ Mᵢⱼₖₗ xⱼ xₖ xₗ | x ∈ Z }` by a zonotope, when the center of
+`Z` is the origin (otherwise CORA leaves `H` undefined and errors; the theorem assumes `Z.c = 0`).
+For every permutation `p` of generator indices the product of the three generators through `M` is
+`tildeH`, added to the column `map p` of the generator matrix `H`; the result is `(0, H)`. CORA's
+`options.list.perm`, `.comb` and `.map` are arguments (no CORA code builds them); `comb` is only
+read for its row count. The second-order branch indexes the cell array `M` as `M(iDim, ind1, ind2)`
+while the order is read from `size(M{1})`, so it errors for every input and is not modelled.
 
-For every permutation `p` of generator indices `(perm p 0, perm p 1, perm p 2)` the product of the
-three generators through `M` is `tildeH`, `aux_generatorMultiplication_3d`, and `tildeH` is added
-to the column `map p` of the generator matrix `H`; the result is the zonotope `(0, H)`. CORA's
-`options.list.perm`, `.comb` and `.map` are arguments, no CORA code builds them (the lists are a
-leftover of its third-order reachability code); `comb` is only read for its row count, here the
-number `C` of columns. The second-order branch (`aux_generatorMultiplication_2d`) indexes the cell
-array `M` as `M(iDim, ind1, ind2)` while the order is read from `size(M{1})`, so it errors for
-every input and is not modelled.
+## Inputs
+* `Z` – zonotope
+* `M` – third-order tensor
+* `L` – term lists
+
+## Output
+* zonotope enclosing the tensor products
 -/
 
 -- Authors:       Claude Opus 5.5

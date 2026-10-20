@@ -17,6 +17,24 @@ have a ball in the zonogon: the point a little way across the line is not in it.
 of [1, Alg. 3]'s boundary description that says the edges are on the boundary, for an edge with a
 nonzero generator.
 
+## Inputs
+* `Z` – planar zonotope
+* `σ` – orientation sign
+* `s` – corner signs
+* `a` – generator index
+* `x` – point
+
+## Hypotheses
+* `hσ` – `σ` is plus or minus one
+* `ha` – sign of `a` is false
+* `hB` – positive-sign generators lie on the correct side
+* `hC` – other negative-sign generators lie on the correct side
+* `hga` – generator `a` nonzero
+* `hx` – `x` lies on the edge
+
+## Conclusion
+* the edge point is not in the interior
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

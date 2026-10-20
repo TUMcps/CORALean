@@ -11,6 +11,19 @@ Reordering the `n` generators a selection holds changes the cross product by the
 sign, so every pairing with it keeps its absolute value. This is what lets one canonical ordering of
 a generator subset stand for all of its `n!` selections.
 
+## Inputs
+* `n` – dimension minus one
+* `Z` – zonotope
+* `S` – selected generator indices
+* `σ` – permutation of the selection
+* `y` – vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* permuting the selection leaves the absolute dot product unchanged
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

@@ -11,14 +11,24 @@ public import Mathlib.Data.Matrix.Basic
 # `quadTaylor` encloses the second-order Taylor sum of every matrix a zonotope denotes
 
 [1, Prop. 3]: `{I + At + ½(At)² | A ∈ A_Z}` is enclosed by `quadTaylor`'s explicit matrix
-zonotope. `aux_quadTaylor_sq` is `A`'s own square expanded — `(c + Σ p i • G i)²` — via
-`Finset.sum_mul_sum`/`smul_mul_smul_comm`, `bilin_outer`'s own cross-block combinatorics.
-`aux_quadTaylor_diagpair` folds that expansion's diagonal and its `i ≠ j` half together into a
-single generator per unordered pair, and `aux_quadTaylor_diagfold` folds `p i²` into `q i := 2(p
-i)² - 1` and a constant half that joins the center — both exactly what [1]'s own proof does to
-the same expansion. The witness is `A`'s own coefficients `p`, plus `q` on the diagonal block
-and `p i * p j` on the pair block — [1]'s printed `L^(0)`, `L^(j)` and `L^(2κ+l)` are double
-these, a real erratum the page's own `## Findings` records and these coefficients do not repeat.
+zonotope. `aux_quadTaylor_sq` is `A`'s own square expanded via `Finset.sum_mul_sum` and
+`smul_mul_smul_comm`, `bilin_outer`'s own cross-block combinatorics. `aux_quadTaylor_diagpair`
+folds that expansion's diagonal and its `i ≠ j` half into a single generator per unordered pair,
+and `aux_quadTaylor_diagfold` folds `p i²` into `q i := 2(p i)² - 1` and a constant half that
+joins the center — both what [1]'s own proof does. The witness is `A`'s own coefficients `p`, plus
+`q` on the diagonal block and `p i * p j` on the pair block; [1]'s printed `L^(0)`, `L^(j)` and
+`L^(2κ+l)` are double these, a real erratum the page's `## Findings` records.
+
+## Inputs
+* `n` – dimension
+* `A_Z` – matrix zonotope
+* `t` – time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the second-order Taylor sums lie in the result
 
 ## References
 

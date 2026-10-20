@@ -12,22 +12,26 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 /-!
 # [1, Prop. 9]: the error of enclosing a linear combination of zonotopes by `linComb`
 
-Given `H = H(t_k) = ⟨c_h, G_h⟩_Z` and the propagated `H' = H(t_{k+1}) = e^{AΔt_k}H(t_k) +
-P^u(Δt_k)` (a matrix image of `H` shifted by the point `c_p`, exact by `Zonotope.mtimes`/`shift`),
-the exact linear combination is `S = comb(H,H') = Set.linComb H.construct H'.construct` — [1]'s own
-`Def. 7`, and the union of segments between two *convex* sets (every zonotope is convex) is their
-convex hull, so `S` is exactly [1]'s `comb`. `Zonotope.linComb_outer` already gives the "obvious
-containment" `S ⊆ Ŝ` [1]'s own proof leans on for `Ŝ := H.linComb H'`; the rest of this file is
-the other direction.
+Given `H = H(t_k)` and the propagated `H' = e^{AΔt_k}H + P^u(Δt_k)` (a matrix image of `H`
+shifted by `c_p`, exact by `Zonotope.mtimes`/`shift`), the exact linear combination is
+`S = comb(H,H') = Set.linComb H.construct H'.construct` — [1]'s `Def. 7`, the union of segments
+between two *convex* sets being their convex hull. `Zonotope.linComb_outer` already gives
+`S ⊆ Ŝ` for `Ŝ := H.linComb H'`; this file is the other direction. [1]'s bound is
+`√γ_h ‖G_h^{(-)}‖₂`, `G_h^{(-)} = (e^{AΔt_k} - I_n)G_h`, `‖·‖₂` the *matrix* norm (`genOpNorm₂`).
+The witness is elementary, not [1]'s Bauer-maximum-principle argument: the *same* `βSum` on both
+endpoints of `S`'s segment cancels every term but `v := βDiff - βExtra • βSum`, `‖v‖₂ ≤ 2√γ_h`.
 
-[1]'s bound is `√γ_h ‖G_h^{(-)}‖₂` with `G_h^{(-)} = (e^{AΔt_k} - I_n)G_h`, and `‖·‖₂` there is the
-*matrix* (induced operator) norm the bilinear-factor argument needs — `genOpNorm₂` reads that off
-`Mathlib.Analysis.CStarAlgebra.Matrix`'s `Matrix.Norms.L2Operator` instance. The witness for `Ŝ`'s
-far side is elementary rather than [1]'s own Bauer-maximum-principle argument: writing `Ŝ`'s
-coefficients as `βSum, βDiff` (`linComb`'s paired blocks; no surplus since `H.h = H'.h` here) and
-`βExtra` (the fresh center generator): `λ := (1+βExtra)/2` and the *same* `βSum` on both endpoints
-of `S`'s segment cancels every term but one, landing on `v := βDiff - βExtra • βSum` with
-`‖v‖₂ ≤ 2√γ_h` by the triangle inequality — the same constant [1]'s convexity argument reaches.
+## Inputs
+* `A` – state matrix
+* `Δtk` – time step
+* `H` – zonotope
+* `cp` – shift vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the linear-combination error is bounded by the generator operator norm
 
 ## References
 

@@ -12,6 +12,17 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ParallelotopeOuter
 keeps regular choices only, `List.argmin` returns one of them, and the fallback is `I`.
 So the enclosure needs no hypothesis — unlike CORA's, whose singular case a `pinv` hides.
 
+## Inputs
+* `Z` – zonotope
+* `κ` – length-filter size
+* `κ'` – volume-filter size
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Z` lies in the method-C parallelotope
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid

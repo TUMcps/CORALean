@@ -14,6 +14,13 @@ public import Mathlib.Data.Real.Sign
 [1, Prop. 2]. `sign` is `Real.sign`, zero at zero, so a generator orthogonal to `sᵢ`
 contributes nothing; either choice of its sign gives an extremal point.
 
+## Inputs
+* `Z` – zonotope
+* `s` – direction
+
+## Output
+* generator extremal along `s`
+
 ## References
 
 * [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of

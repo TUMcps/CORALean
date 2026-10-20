@@ -13,6 +13,18 @@ of the previous instant: the gain `Λ` of minimal `‖Ḡ‖_F` (`luenbergerGain
 2]) and the zonotope of [1, Thm. 2], `c̄ = Fĉ + Λ(ȳ - Γĉ)`, `Ḡ = [(F - ΛΓ)Ĝ, -ΛR, Q]`, Eqs. 28-29
 (`luenbergerUpdate`). `Γⁱ` and `ȳⁱ` are the stacked measurement matrix and output of the `m_i`
 neighbours, `Rⁱ = diag rⁱ` the stacked noise radii.
+
+## Inputs
+* `F` – dynamics matrix
+* `Q` – process-noise generators
+* `Γ` – stacked measurement matrices
+* `r` – noise radii
+* `yb` – outputs
+* `Zh` – previous zonotope of each node
+
+## Output
+* Luenberger-updated zonotope of each node
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

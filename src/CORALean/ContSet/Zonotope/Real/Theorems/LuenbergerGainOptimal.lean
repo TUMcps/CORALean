@@ -18,6 +18,21 @@ the gradient of Eq. 32 to zero, Eq. 34, and calls the unconstrained norm convex;
 `(F - Λ Γ) Ĝ Ĝᵀ Γᵀ = Λ R Rᵀ` kills the cross terms. `Γ Ĝ Ĝᵀ Γᵀ + R Rᵀ` must be invertible, as
 the formula writes its inverse.
 
+## Inputs
+* `F` – dynamics matrix
+* `Γ` – stacked measurement matrix
+* `Q` – process-noise generators
+* `R` – measurement-noise generators
+* `y` – stacked output
+* `X` – zonotope
+* `Λ'` – competing gain
+
+## Hypotheses
+* `hS` – innovation covariance invertible
+
+## Conclusion
+* the gain minimizes the generator Frobenius norm
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

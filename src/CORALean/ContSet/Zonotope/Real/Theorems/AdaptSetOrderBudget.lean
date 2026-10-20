@@ -11,17 +11,29 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxErrorEqZero
 # What `Alg. 3` returns is inside the budget it searched for
 
 The soundness of [1, Alg. 3] as written here: the order it settles on costs an
-`ε_S([t_i,t_{i+1}])` inside eq. (13)'s share of what is left of the `ε_S`
-budget, and the second component is eq. (12)'s accumulation.
+`ε_S([t_i,t_{i+1}])` inside eq. (13)'s share of what is left of the `ε_S` budget, and the second
+component is eq. (12)'s accumulation. The loop's invariant is that the order in hand is
+admissible, so the search needs a starting point that already is — and has one: at the order
+`Z.h` no generator is dropped, `reduceBox` is the origin and `err(·)` of the origin is `0`. That
+is what `0 < n` and a non-negative share buy. Nothing asks the check's converse, so a check that
+gives up early stops the search sooner and never lets a wider reduction through.
 
-The loop's invariant is that the order in hand is admissible, so the search
-needs a starting point that already is — and it has one for nothing: at the
-order `Z.h` no generator is dropped at all, `reduceBox` is the origin there and
-`err(·)` of the origin is `0`. That is what `0 < n` and a non-negative share
-buy, and they are the theorem's only hypotheses beyond the check's soundness.
+## Inputs
+* `le` – decidable comparison on reals
+* `Z` – zonotope
+* `εSmax` – total set-error budget
+* `εSacc` – error already accumulated
+* `tf` – final time
+* `ti` – current time
+* `Δt` – time step
 
-Nothing asks the check's converse, so a check that gives up early stops the
-search sooner and never lets a wider reduction through.
+## Hypotheses
+* `hle` – comparison implies the real order
+* `hn` – dimension positive
+* `hεSi` – error share nonnegative
+
+## Conclusion
+* order stays within the share and the accumulated error is updated
 
 ## References
 

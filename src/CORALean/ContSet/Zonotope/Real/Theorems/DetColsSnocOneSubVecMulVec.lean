@@ -14,6 +14,18 @@ columns `(I - λcᵀ) B_k = B_k - (cᵀB_k) λ` differ from `B_k` by multiples o
 Written as `[B σλ]` times `I + e_last wᵀ`, of determinant `1 + w_last = 1` (matrix determinant
 lemma), for `σ ≠ 0`; both determinants vanish at `σ = 0`.
 
+## Inputs
+* `c` – row vector
+* `l` – column vector
+* `σ` – scalar
+* `B` – list of columns
+
+## Hypotheses
+* none
+
+## Conclusion
+* the determinant is unchanged by the rank-one update
+
 ## References
 
 * [1] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".

@@ -17,6 +17,16 @@ there is a choice of signs `σᵢ ∈ {−1, 1}` such that `x + ∑ tᵢ gᵢ` i
 each `tᵢ ∈ {0, σᵢ}`; in particular `x + g` or `x − g` is in it for every generator `g`. With
 `x = c + ∑ yᵢ gᵢ`, take `σᵢ = 1` if `yᵢ ≤ 0` and `−1` otherwise: `yᵢ + tᵢ` stays in `[−1, 1]`.
 
+## Inputs
+* `Z` – zonotope
+* `x` – point of the zonotope
+
+## Hypotheses
+* `hx` – `x` lies in `Z`
+
+## Conclusion
+* suitable signs exist and `x ± gᵢ` meets `Z`
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

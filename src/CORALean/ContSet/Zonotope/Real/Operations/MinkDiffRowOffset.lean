@@ -11,6 +11,15 @@ public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRowNormal
 normal paired with the center difference, plus the minuend's reach in that direction less the
 subtrahend's.
 
+## Inputs
+* `n` – dimension minus two
+* `Zm` – minuend
+* `Zs` – subtrahend
+* `j` – signed row
+
+## Output
+* offset of the signed row
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

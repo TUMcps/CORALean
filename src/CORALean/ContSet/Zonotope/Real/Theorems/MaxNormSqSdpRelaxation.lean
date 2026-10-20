@@ -10,15 +10,21 @@ public import CORALean.Global.DiagSdpStrongDuality
 # The maximum zonotope norm as a rank-one semidefinite program, and its relaxation
 
 [1, Eq. 19]: `p* = max ⟨GᵀG, U⟩` s.t. `U ≽ 0`, `⟨diag(eᵢ), U⟩ = 1`, `rank(U) = 1`, where
-`U = u uᵀ`; dropping the rank constraint gives a relaxation whose dual is (18), and strong
-duality holds between the two. The rank constraint is read as the paper writes it, `U = u uᵀ`
-(a positive semidefinite matrix of rank one is `u uᵀ`, `u ≠ 0`, which `Uᵢᵢ = 1` forces anyway).
+`U = u uᵀ`; dropping the rank constraint gives a relaxation whose dual is (18), and strong duality
+holds between the two. With the rank constraint, `Uᵢᵢ = uᵢ² = 1` makes `u` a sign vector and
+`⟨GᵀG, u uᵀ⟩ = ‖G u‖₂²`, so the program is (17), whose optimum `⌈Z⌉²` is attained at a sign vector
+(`Zonotope.maxNormSq_eq_sign`). The relaxation and (18) attain the same optimum by
+`diag_sdp_strong_duality`; the dual's `λ ≥ 0` is free, the diagonal of `diag(λ) - GᵀG ≽ 0` being
+non-negative. So the gap of `Lemma 3` is the rank constraint's alone.
 
-With it, `Uᵢᵢ = uᵢ² = 1` makes `u` a sign vector and `⟨GᵀG, u uᵀ⟩ = ‖G u‖₂²`, so the program
-is (17), whose optimum `⌈Z⌉²` is attained at a sign vector (`Zonotope.maxNormSq_eq_sign`). The
-relaxation and (18) attain the same optimum by `diag_sdp_strong_duality`; the dual's `λ ≥ 0`
-of (18) is free, the diagonal of `diag(λ) - GᵀG ≽ 0` being non-negative and that of `GᵀG`
-too. So the gap of `Lemma 3` is the rank constraint's alone.
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the semidefinite relaxation has equal optimal and dual values
 
 ## References
 

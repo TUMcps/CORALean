@@ -12,6 +12,17 @@ A point of the zonotope is at most `∑ 2 max(σ g_x, 0)` beyond the lowest corn
 the total reach of the generators pointing along `σ`. It is what makes the line meet the chain of
 [1, Alg. 3] and [1, Alg. 4] when it meets the zonogon.
 
+## Inputs
+* `Z` – planar zonotope
+* `σ` – direction sign
+* `z` – point
+
+## Hypotheses
+* `hz` – `z` lies in `Z`
+
+## Conclusion
+* the reach of `z` along `σ` is at most the generator reach
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

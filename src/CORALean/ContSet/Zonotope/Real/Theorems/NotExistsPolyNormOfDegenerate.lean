@@ -19,6 +19,16 @@ degenerate `Z` centered at the origin has none: `0 ∈ Z` forces every `hᵢ > 0
 `{H x < h}` is an open set around `0` inside `Z`. No norm can serve either, a norm's unit
 ball having an interior.
 
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* `hc` – center at the origin
+* `hdeg` – `Z` has empty interior
+
+## Conclusion
+* no halfspace form with nonzero offsets describes `Z`
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

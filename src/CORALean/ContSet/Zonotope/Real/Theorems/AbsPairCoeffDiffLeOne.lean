@@ -11,6 +11,21 @@ public import CORALean.ContSet.Zonotope.Real.Operations.PairCoeffDiff
 The mirror of the sum bound, and a separate proof because the surplus branch
 differs: past the shorter block it is the second block's weight that is left,
 not the first's.
+
+## Inputs
+* `β₁` – first coefficients
+* `β₂` – second coefficients
+* `lam` – pairing weight
+* `j` – pair index
+
+## Hypotheses
+* `hβ₁` – first coefficients within the unit box
+* `hβ₂` – second coefficients within the unit box
+* `hl0` – weight nonnegative
+* `hl1` – weight at most one
+
+## Conclusion
+* the paired-difference coefficient has absolute value at most one
 -/
 
 -- Authors:       Claude Opus 5

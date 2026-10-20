@@ -9,6 +9,16 @@ public import CORALean.ContSet.Zonotope.Real.Operations.FilterGen
 
 If every generator the predicate drops is the zero vector, `Zonotope.filterGen` denotes the same
 set. Exact: a zero generator contributes `β • 0 = 0` whatever its coefficient.
+
+## Inputs
+* `Z` – zonotope
+* `keep` – generator selector
+
+## Hypotheses
+* `hz` – dropped generators are zero
+
+## Conclusion
+* filtering leaves the set unchanged
 -/
 
 -- Authors:       Claude Opus 5.5

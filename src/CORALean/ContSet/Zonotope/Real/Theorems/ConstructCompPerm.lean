@@ -10,6 +10,16 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 `c + ∑ βⱼ gⱼ` is a sum over the generators, so permuting them is permuting the coefficients.
 It is what lets [1, Alg. 3] sort the generators by angle (line 9) without changing the zonogon.
 
+## Inputs
+* `Z` – zonotope
+* `π` – generator permutation
+
+## Hypotheses
+* none
+
+## Conclusion
+* permuting the generators leaves the set unchanged
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

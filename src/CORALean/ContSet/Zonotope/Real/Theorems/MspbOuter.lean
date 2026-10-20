@@ -21,6 +21,20 @@ whose corners are exactly the potential vertices `A [r]± + [v]±` of `P` ([1, R
 `cloud2zonotope` encloses `P` for every ratio, so the one kept does, and a convex set holding the
 corners holds the zonotope ([1, Thm. 4]).
 
+## Inputs
+* `dir` – direction oracle
+* `L` – list of parallelotope triples
+* `l` – triple index
+* `r` – interval point
+* `v` – offset point
+
+## Hypotheses
+* `hr` – `r` lies in its interval
+* `hv` – `v` lies in its interval
+
+## Conclusion
+* the image point lies in the enclosing zonotope
+
 ## References
 
 * [1] M. Maïga, N. Ramdani, L. Travé-Massuyès and C. Combastel. "A Comprehensive Method for

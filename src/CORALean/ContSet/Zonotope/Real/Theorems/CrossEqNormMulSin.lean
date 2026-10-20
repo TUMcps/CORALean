@@ -11,6 +11,16 @@ public import CORALean.Global.Tensor
 `cross(u, w) = ‖u‖ ‖w‖ sin(θ_w - θ_u)` for the angles `θ = arg`, read through the complex number
 `x + i y`. It is what the angle order of [1, Alg. 3] and [1, Alg. 4] is turned into a sign by.
 
+## Inputs
+* `u` – first planar vector
+* `w` – second planar vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the cross product is the product of norms and the sine of the angle
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

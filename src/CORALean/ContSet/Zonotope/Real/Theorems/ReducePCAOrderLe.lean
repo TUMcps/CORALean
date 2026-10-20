@@ -14,6 +14,16 @@ the order test to split on.
 
 At `o = 0` there is nothing to state, as for the other three rules: CORA floors
 the reduced budget at nothing, so order zero lands at order one.
+
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* the result has at most `o n` generators
 -/
 
 -- Authors:       Claude Opus 5

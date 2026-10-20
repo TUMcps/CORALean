@@ -8,15 +8,19 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Bilin
 /-!
 # `Zonotope.matMul`
 
-CORA's `matZonotope * matZonotope`: `bilin` at matrix multiplication, the same
-construction `mtimesMatZonotope` is at `Matrix.mulVecBilin`. `Zonotope (Mat ℝ p q)`
-is CORA's `matZonotope`, so this needs no representation of its own.
+CORA's `matZonotope * matZonotope`: `bilin` at matrix multiplication, the same construction
+`mtimesMatZonotope` is at `Matrix.mulVecBilin`. `Zonotope (Mat ℝ p q)` is CORA's `matZonotope`.
+The cross generators keep the two factors' dependency, the reason a power of a matrix zonotope
+is worth carrying instead of a power of the interval matrix around it. Only an enclosure,
+though: a zonotope's coefficients are free in `[-1, 1]` and cannot record that a cross
+coefficient is a product — see `bilin`.
 
-The cross generators are what keeps the two factors' dependency, which is the
-whole reason a power of a matrix zonotope is worth carrying instead of a power
-of the interval matrix around it. Only an enclosure, though: a zonotope's
-coefficients are free in `[-1, 1]` and cannot record that a cross coefficient is
-a product — see `bilin`.
+## Inputs
+* `M` – first matrix zonotope
+* `N` – second matrix zonotope
+
+## Output
+* enclosure of the matrix products
 -/
 
 -- Authors:       Claude Opus 5

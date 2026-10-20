@@ -15,6 +15,16 @@ public import Mathlib.Tactic.Ring
 cᵀG_j` with `|β_j| ≤ 1`, at most `|cᵀG_j|`, and the coefficient `±sgn (cᵀG_j)` reaches it. Both are
 stated as `IsGreatest` and `IsLeast` of the image, so they are attained.
 
+## Inputs
+* `Z` – zonotope
+* `c` – direction
+
+## Hypotheses
+* none
+
+## Conclusion
+* the extreme values along `c` are the center value plus or minus the radius
+
 ## References
 
 * [1] J. M. Bravo, T. Alamo and E. F. Camacho. "Bounded error identification of systems with

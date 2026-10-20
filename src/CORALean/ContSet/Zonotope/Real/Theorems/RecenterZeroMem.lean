@@ -9,6 +9,15 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Recenter
 
 At zero coefficients. `recenter` states its own `h`, that counts only up to
 unfolding, so the sum needs a `show`.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the origin lies in the recentered zonotope
 -/
 
 -- Authors:       Claude Opus 5

@@ -12,6 +12,12 @@ generators that are not zero (every entry within `tol` of zero) are dropped. Her
 is `0`, the only one at which the operation is exact: with `tol > 0` CORA drops short non-zero
 generators, which shrinks the set. The method `'all'` (merging parallel generators) is not
 covered.
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* zonotope without zero generators
 -/
 
 -- Authors:       Claude Opus 5.5

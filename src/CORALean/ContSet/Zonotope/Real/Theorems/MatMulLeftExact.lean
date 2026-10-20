@@ -12,6 +12,19 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
 CORA's matZonotope times a matrix. `map_exact` at `matMulLeft M`, the whole of
 what the matrix case needs: left and right multiplication are two linear maps,
 and nothing about them is special.
+
+## Inputs
+* `p` – row count
+* `q` – inner dimension
+* `r` – column count
+* `M` – matrix
+* `Z` – matrix zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* left multiplication is exact
 -/
 
 -- Authors:       Claude Opus 5

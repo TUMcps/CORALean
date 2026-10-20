@@ -14,6 +14,12 @@ The index CORA's `splitLongestGen` splits at: `[~,ind] = max(sum(G.^2, 1))`, the
 of maximal squared Euclidean length. The choice is a computable `List.argmax` over the generator
 indices; only the real arithmetic is noncomputable. `none` when there is no generator, where CORA
 splits nothing either.
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* index of the first longest generator, if any
 -/
 
 -- Authors:       Claude Opus 5.5

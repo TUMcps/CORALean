@@ -13,6 +13,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 `corner (j < k + 1) = corner (j < k) + 2 g_k`: the edge `[W_k; W_{k+1}]` of [1, Alg. 3] is
 `[P; P + 2g]`.
 
+## Inputs
+* `Z` – planar zonotope
+* `k` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the next corner adds twice generator `k`
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

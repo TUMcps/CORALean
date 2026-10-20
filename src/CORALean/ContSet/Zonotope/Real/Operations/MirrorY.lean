@@ -13,6 +13,12 @@ public import Mathlib.Data.Fin.VecNotation
 the original, which is how [1, Alg. 4] finds the upper end `M` of the section: "the same thing
 starting from the upper vertex of `Z`" (line 29) is the lower search on the mirror image.
 
+## Inputs
+* `Z` – planar zonotope
+
+## Output
+* zonotope with the second coordinate negated
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

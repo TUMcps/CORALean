@@ -15,14 +15,28 @@ public import Mathlib.Analysis.Calculus.Deriv.Add
 
 [1, Prop. 12] and [1, Prop. 13 (nonlinear)]: through the image enclosure
 `H_k = Diag(m) H_{k-1} ⊕ [e, ē]` of a nonlinear layer (`Zonotope.imageEnclosure`) the gradient
-set of a set loss is `∇_{H_{k-1}} L = backpropEnclose(ϕ_k, 𝒢_k)` (`Zonotope.backpropEnclose`),
-`𝒢_k = ∇_{H_k} L` the output's. As in the paper's proof (Eq. 19-25), entry by entry the chain
-rule reads `Σᵢ c'(i) ∂c_k(i) + Σᵢ Σⱼ G'(i,j) ∂G_k(i,j)`; only row `i` of the output moves with
-an entry of row `i` of the input, through `m(i)` and the errors, which the product rule
-differentiates. That needs the loss differentiable at the layer's output in the center and
-generator entries together, and `m(i)`, `e(i)`, `ē(i)` differentiable in the row `H(i)`: the
-statement assumes neither, and the secant slope of Def. 7 is not differentiable where a
-generator entry is `0`, the bounds `c ∓ Σⱼ |G(i,j)|` having a kink there.
+set of a set loss is `∇_{H_{k-1}} L = backpropEnclose(ϕ_k, 𝒢_k)`, `𝒢_k = ∇_{H_k} L` the output's.
+As in the paper's proof (Eq. 19-25), the chain rule reads entry by entry
+`Σᵢ c'(i) ∂c_k(i) + Σᵢ Σⱼ G'(i,j) ∂G_k(i,j)`; only row `i` of the output moves with an entry of
+row `i` of the input, through `m(i)` and the errors. That needs the loss differentiable at the
+output and `m(i)`, `e(i)`, `ē(i)` differentiable in the row `H(i)`: the statement assumes neither,
+and the secant slope of Def. 7 is not differentiable where a generator entry is `0`.
+
+## Inputs
+* `ℒ` – loss on zonotopes
+* `m` – slope function
+* `eLo` – lower error function
+* `eUp` – upper error function
+* `H` – input zonotope
+
+## Hypotheses
+* `hF` – loss differentiable at the output
+* `hm` – slope differentiable on each row
+* `heL` – lower error differentiable on each row
+* `heU` – upper error differentiable on each row
+
+## Conclusion
+* the gradient through the enclosure is the backpropagated gradient
 
 ## References
 

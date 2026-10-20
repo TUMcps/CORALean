@@ -9,19 +9,21 @@ public import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrder
 /-!
 # `Alg. 2` lines 19-22: the zonotope order for one step
 
-Increase the order while `Δε^r_k(ρ)` still exceeds the admissible share `ε^{r,τ}_k`,
-returning the first order that clears it. `Δε^r_k(ρ) := err(⟨0,G_red⟩_Z)`, [1, Prop. 4]'s
-eq. (29) at Girard's own ranking, is exactly `reduceBoxError` — CDC'20's `Alg. 3`
-(`CORALean.Real.Zonotope.reduceBoxError`) already computes `err` of the very generators
-Girard's split drops, since `reduceBox` boxes them and nothing else, so this file adds no
-second copy of that formula.
+Increase the order while `Δε^r_k(ρ)` still exceeds the admissible share `ε^{r,τ}_k`, returning the
+first order that clears it. `Δε^r_k(ρ) := err(⟨0,G_red⟩_Z)`, [1, Prop. 4]'s eq. (29) at Girard's
+own ranking, is exactly `reduceBoxError`, so this file adds no second copy of that formula. No
+invented fuel: past order `Z.h`, `reduceBox` drops nothing (`reduceBoxError` reads `0` there), so
+`Z.h + 1` candidates always reach one — a bound the *set* supplies. Neither `Nat.find` nor
+`Classical.choose`: the sweep goes through the caller's `le`, as [1, Alg. 2] and
+`adaptSetOrderLoop` do.
 
-No invented fuel, as `AdaptSetOrder`'s own `Alg. 3` needs none, only in the other direction:
-past order `Z.h`, `reduceBox` drops nothing (`reduceBoxError` reads `0` there), so `Z.h + 1`
-candidates always reach one — a bound the *set* supplies, not one this file assumes.
+## Inputs
+* `le` – decidable comparison on reals
+* `Z` – zonotope
+* `εrτ` – admissible error share
 
-Neither `Nat.find` nor `Classical.choose`: the sweep goes through the caller's `le`, matching
-[1, Alg. 2]'s CDC'20 namesake `adaptSetOrderLoop`.
+## Output
+* coarsest order clearing the share, if any
 
 ## References
 

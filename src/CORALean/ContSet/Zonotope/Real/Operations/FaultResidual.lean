@@ -15,6 +15,17 @@ the output `y_{k+1}` and the weighting matrix `M`, `R_{k+1} = ⟨p^r_{k+1}, H^r_
 residuals `M(y_{k+1} - C x)` the fault-free outputs of the states in `X̂_{k+1}` can give, about
 the estimate `p_{k+1}`. The fault test [1, Eq. 31] asks whether `0` lies in it.
 
+## Inputs
+* `M` – weighting matrix
+* `C` – output matrix
+* `Dy` – noise matrix
+* `Hv` – noise generator matrix
+* `y` – measured output
+* `X` – state zonotope
+
+## Output
+* residual zonotope of the fault-free outputs
+
 ## References
 
 * [1] Y. Wang, M. Zhou, V. Puig, G. Cembrano and Z. Wang. "Zonotopic Fault Detection Observer

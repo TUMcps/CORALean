@@ -17,6 +17,26 @@ public import Mathlib.Analysis.Normed.Module.Basic
 any feasible point, so at the optimum `δ*` in particular; `0 ≤ δ` is automatic from
 `‖Δ‖∞ ≤ δ` in any positive dimension and is assumed for `n = 0`.
 
+## Inputs
+* `Z` – original zonotope
+* `Zr` – reduced zonotope
+* `Γ₀` – coefficient matrix of the original
+* `Γ₁` – coefficient matrix of the reduced
+* `Δ` – residual generators
+* `δ` – distance bound
+
+## Hypotheses
+* `hc` – centers agree
+* `hδ` – bound nonnegative
+* `h₀` – original generators expressed through the reduced
+* `h₁` – reduced generators expressed through the original
+* `hn₀` – first row sums at most one
+* `hn₁` – second row sums at most one
+* `hΔ` – residual sums at most `δ`
+
+## Conclusion
+* the original lies in the reduced one within distance `δ`
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

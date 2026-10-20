@@ -13,6 +13,16 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SumAbsLeOneOfSubsingletonS
 The reduced generators are `G_s T` with `T` having one entry per row, `1` for a kept
 generator and `±1` for a summed one, so `‖T‖∞ ≤ 1` and [1, Eq. (1)] puts the result in `Z`.
 
+## Inputs
+* `Z` – zonotope
+* `r` – kept generator count
+
+## Hypotheses
+* `hr` – at most all generators
+
+## Conclusion
+* the reduced zonotope lies in `Z`
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

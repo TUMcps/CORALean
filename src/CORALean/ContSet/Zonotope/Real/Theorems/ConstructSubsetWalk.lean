@@ -18,6 +18,16 @@ corner, and `f` is at its minimum there when the corner's signs are `-sign (f g_
 `cross(i,j) f_l + cross(j,l) f_i = cross(i,l) f_j` rules out `+ - +` and `- + -`, up to parallel
 generators, which the half-plane makes point the same way. So the signs are `+ … + - … -` or the
 reverse, which is the walk's pattern for some `k`.
+
+## Inputs
+* `Z` – planar zonotope
+
+## Hypotheses
+* `h1` – generators point upward
+* `h2` – generators sorted by angle
+
+## Conclusion
+* `Z` lies in the convex hull of the walk
 -/
 
 -- Authors:       Claude Sonnet 5.5

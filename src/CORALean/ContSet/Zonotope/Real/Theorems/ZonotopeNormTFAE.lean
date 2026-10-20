@@ -15,6 +15,15 @@ positive definite. Each is stated against "onto". Rank `n` is the range being ev
 the interior is `isFullDim_iff` (the generators span), and definiteness is `coeffNorm`'s
 at an attained minimum. The printed `m ≥ n` and center `0` are not needed.
 
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* full rank, nonempty interior and surjectivity are equivalent
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

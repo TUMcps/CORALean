@@ -10,6 +10,13 @@ public import CORALean.Global.Cost
 
 Asserted, not proved: `Operations/Shift.lean` subtracts `w` from the center,
 `n` subtractions at `Vec ℝ n`; the generators are untouched.
+
+## Inputs
+* `n` – dimension
+* `h` – generator count
+
+## Output
+* `n` subtractions plus `n(h+1)` writes
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -18,6 +18,15 @@ the extremum by a Lagrange multiplier and a bordered Hessian; here the objective
 `v` of sum one is the objective at `w` plus `Σⱼ αⱼ (vⱼ - wⱼ)²`, which is the same minimum
 without a second-order test. The traces must be positive: a zero generator matrix has no weight.
 
+## Inputs
+* `Z` – family of zonotopes
+
+## Hypotheses
+* `hα` – every trace positive
+
+## Conclusion
+* weights sum to one and minimize the generator Frobenius norm
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

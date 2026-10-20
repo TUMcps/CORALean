@@ -11,6 +11,19 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MulGensInner
 If the linear program's constraint holds, `G_o diag(λ) = G T` with `‖T‖∞ ≤ 1`, then
 [1, Eq. (1)] gives `Ẑ ⊆ Z`. That `Z ⊆ Z_o` (Step 1) is not used: the template may be any zonotope.
 
+## Inputs
+* `Z` – zonotope
+* `Zo` – zonotope supplying the generators
+* `lam` – generator scalings
+* `T` – recombination matrix
+
+## Hypotheses
+* `hG` – scaled generators recombine those of `Z`
+* `hT` – row sums at most one
+
+## Conclusion
+* the scaled zonotope lies in `Z`
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

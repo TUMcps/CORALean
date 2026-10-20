@@ -9,6 +9,15 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.RepresentsaPointIff
 # `Zonotope.representsa_origin_iff`
 
 The origin is the point whose center is `0`: `{c} = {0}` iff `c = 0`.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Z` is the origin iff `representsa_origin` holds
 -/
 
 -- Authors:       Claude Opus 5.5

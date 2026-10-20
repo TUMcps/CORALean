@@ -10,32 +10,34 @@ public import Mathlib.Tactic.FinCases
 /-!
 # `Zonotope.minkDiffDegenerateCora`, CORA's `minkDiff` at a degenerate minuend
 
-CORA's `@zonotope/minkDiff.m` for a minuend that is not full-dimensional (l. 153), a subtrahend
-that is not full-dimensional either (l. 154-159) and generator matrices of equal rank (l. 161):
-`[U, S] = svd(generators(minuend))` (l. 166), `newDim` the number of nonzero columns of `S`
-(l. 167), `P_minuend = U(1:newDim, :)` (l. 168), the same for the subtrahend (l. 171-173) only to
-check that both projections agree (l. 176-177, else an error, l. 188-192), then the difference of
-the projected sets in `ℝ^newDim` (l. 179-183) mapped back by `pinv(P_minuend)` (l. 186).
+CORA's `@zonotope/minkDiff.m` for a minuend and a subtrahend that are not full-dimensional and
+have generator matrices of equal rank (l. 153-161): `[U, S] = svd(generators(minuend))`, `newDim`
+the number of nonzero columns of `S`, `P_minuend = U(1:newDim, :)` (l. 168), the same for the
+subtrahend only to check that both projections agree, then the difference of the projected sets in
+`ℝ^newDim` mapped back by `pinv(P_minuend)` (l. 186).
 
 Two slips: `U(1:newDim, :)` takes the first rows of `U` where the range of the generators is
 spanned by its first columns, and the projection forgets the component of the minuend's center
 outside that range, which `pinv` cannot bring back: every result lies in the row space of
-`P_minuend`, a subspace through the origin, wherever the minuend lies.
-
-One `let` per line of the source. The recursive call is a parameter (any method, any result); the
-SVD factor `U` is a parameter that the theorems constrain. The rows of an orthogonal `U` are
-orthonormal, so `P_minuend * P_minuendᵀ = I` and `pinv(P_minuend) = P_minuendᵀ`, which is what the
-last line uses. Read from the source, not run.
+`P_minuend`, a subspace through the origin, wherever the minuend lies. The recursive call and the
+SVD factor `U` are parameters the theorems constrain; for orthogonal `U`,
+`pinv(P_minuend) = P_minuendᵀ`. Read from the source, not run.
 
 # CORA's `minkDiff` at a degenerate minuend misses the difference entirely
 
-The minuend is the segment `{(t, 1) | |t| ≤ 1}` (`c = (0, 1)`, `G = (1, 0)`), the subtrahend the
-segment `{(t, 0) | |t| ≤ ½}`; both are degenerate and of rank one, so `@zonotope/minkDiff.m` takes
-the SVD branch (`Zonotope.minkDiffDegenerateCora`). Whatever SVD `G = U S Vᵀ` the solver returns,
-`U`'s first column is `±e₁`, so its first row is `±e₁ᵀ` and `P_minuend = U(1, :) = ±e₁ᵀ`: the result
-`pinv(P_minuend) * Z_proj` lies on the line `x₂ = 0`, whatever the recursive 1-D call returns and
-whichever method is asked for. The difference is the segment `{(t, 1) | |t| ≤ ½}`, nonempty and on
-the line `x₂ = 1`: the result is neither inside it nor around it.
+The minuend is the segment `{(t, 1) | |t| ≤ 1}`, the subtrahend `{(t, 0) | |t| ≤ ½}`; both are
+of rank one, so `@zonotope/minkDiff.m` takes the SVD branch. Whatever SVD the solver returns,
+`P_minuend = U(1, :) = ±e₁ᵀ`, so the result lies on the line `x₂ = 0`, whatever the recursive 1-D
+call returns. The difference is the segment `{(t, 1) | |t| ≤ ½}`, nonempty and on `x₂ = 1`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's result misses the true Minkowski difference entirely
 
 ## References
 

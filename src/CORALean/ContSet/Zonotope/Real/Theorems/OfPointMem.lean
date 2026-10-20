@@ -9,6 +9,15 @@ public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
 
 `ofPoint v` states its own `h`, that counts only up to unfolding, so the sum
 needs a `show`.
+
+## Inputs
+* `v` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point lies in its zonotope
 -/
 
 -- Authors:       Claude Opus 5

@@ -18,6 +18,13 @@ encloses them for `ratio = 0, 0.1, ..., 1` with `s₁ = n`, `s₂ = 0`; the one 
 `[v]` of the result are not split off: the zonotope `c ⊕ Z(R)` is returned, from which they are its
 first `n` and last `n` generators and center.
 
+## Inputs
+* `dir` – direction oracle
+* `L` – list of parallelotope triples
+
+## Output
+* zonotope enclosing the parallelotopes
+
 ## References
 
 * [1] M. Maïga, N. Ramdani, L. Travé-Massuyès and C. Combastel. "A Comprehensive Method for

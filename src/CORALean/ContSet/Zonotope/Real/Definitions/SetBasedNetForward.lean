@@ -14,6 +14,12 @@ The set-based forward propagation of [1, Prop. 6] through a `SetBasedNet`: `H_k 
 (`Zonotope.imageEnclosure`) at a nonlinear one, from the input set `H_0` to the output set
 `Y = H_κ`.
 
+## Inputs
+* none
+
+## Output
+* output zonotope of the network on an input zonotope
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

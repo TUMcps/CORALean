@@ -17,6 +17,14 @@ A selection is an embedding `Fin n ↪ Fin (min (n + 8) r)`, so it names `n`
 distinct candidates. `|det|` is unchanged by reordering them, so ranking
 embeddings ranks the subsets CORA's `combinator(cols,rows,'c')` enumerates.
 
+## Inputs
+* `Z` – zonotope
+* `part` – split of the generators
+* `e` – selection of filtered generators
+
+## Output
+* volume spanned by the selected generators
+
 ## References
 
 * [1] `contSet/@zonotope/private/priv_generatorVolumeFilter.m:44`, CORA

@@ -10,20 +10,24 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 /-!
 # `Zonotope.minkDiffGenRec` computes the Minkowski difference exactly
 
-[1, Thm. 1]: the generator recursion is not an enclosure, it is the difference.
-The paper's own argument — write `Zₛ = c⁽ˢ⁾ ⊕ ⊕ᵢ [-1,1]⊗g⁽ˢ'ⁱ⁾`, recurse through
-`minkowskiDiff_add_assoc` (its eq. (6)), then read each single-generator
-difference off the two extreme coefficients (its eq. (8)) — is carried through by
-induction on the generator count, peeling one index at a time with `Fin.foldl_succ`
-on the fold and `Fin.sum_univ_succ` on the sum underneath `Zonotope.construct`.
+[1, Thm. 1]: the generator recursion is not an enclosure, it is the difference. The paper's own
+argument — write `Zₛ = c⁽ˢ⁾ ⊕ ⊕ᵢ [-1,1]⊗g⁽ˢ'ⁱ⁾`, recurse through `minkowskiDiff_add_assoc` (its
+eq. (6)), then read each single-generator difference off the two extreme coefficients (eq. (8)) —
+is carried through by induction on the generator count, peeling one index at a time with
+`Fin.foldl_succ` and `Fin.sum_univ_succ`. Convexity of the running set makes the two-extremes step
+exact, and the paper leaves it unsaid: eq. (8) is stated "for a set `A`", and at the non-convex
+`A = {-1, 1} ⊆ ℝ` with `g = 1` the left side is `∅` and the right `{0}`. Here the running set
+stays convex (intersections of translates of a zonotope), carried along the induction.
 
-Convexity of the running set is what makes the two-extremes step exact, and the
-paper leaves it unsaid: its eq. (8) is stated "for a set `A`", and at the
-non-convex `A = {-1, 1} ⊆ ℝ` with `g = 1` the left side is `∅` and the right
-`{0}`. Nothing is missing from the theorem, only from that line of its proof —
-here the running set starts at a zonotope and a translate and an intersection of
-convex sets stay convex, so convexity is carried along the induction instead of
-being assumed.
+## Inputs
+* `Zm` – minuend
+* `Zs` – subtrahend
+
+## Hypotheses
+* none
+
+## Conclusion
+* the generator recursion gives the Minkowski difference exactly
 
 ## References
 

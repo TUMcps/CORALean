@@ -8,18 +8,20 @@ public import CORALean.Global.Cost
 /-!
 # `Zonotope.quadMapCost`
 
-Asserted, not proved: `Operations/QuadMap.lean` at `Q : Fin m → Mat ℝ n n` and
-`h` generators evaluates, per output coordinate, a bilinear form `xᵀ Q y`
-(`Cost.matVec n n` plus a dot product, `2 * n * n + 2 * n`) for the center term
-(`h + 1` of them), twice for each of the `h` linear terms, once for each of the
-`h` squared terms and twice for each of the `h * h` index pairs, with `O(1)`
-additions or scalings around each. Summed, that is at most
-`m * (h + 1)^2 * (4 * n * n + 4 * n + 2)`; the count is the plain polynomial,
-the squared-terms and pair-terms share counted at the pair rate.
+Asserted, not proved: `Operations/QuadMap.lean` at `Q : Fin m → Mat ℝ n n` and `h` generators
+evaluates, per output coordinate, a bilinear form `xᵀ Q y` (`2 * n * n + 2 * n`) for the center
+term, twice for each of the `h` linear terms, once for each of the `h` squared terms and twice for
+each of the `h * h` index pairs, with `O(1)` operations around each: at most
+`m * (h + 1)^2 * (4 * n * n + 4 * n + 2)`, the squared and pair terms counted at the pair rate.
+The result's `m * (h + 1)^2` entries are also writes.
 
-Under `Global/Cost.lean`'s model every scalar of the result is also a write, one unit each, and the
-result's center and `(h + 1)^2 - 1` generators of
-`m` entries are `m * (h + 1)^2` of them.
+## Inputs
+* `m` – output dimension
+* `n` – input dimension
+* `h` – generator count
+
+## Output
+* cost of the arithmetic and `m(h+1)²` writes
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -18,6 +18,18 @@ dimension is below `n`, lies in a facet `F = Z.face u` (`exists_facet_superset`,
 `n = 0` the zonotope is a point and its own facet. "Found in polynomial time" is a running time,
 not stated here.
 
+## Inputs
+* `Z` – zonotope
+* `x` – point of the zonotope
+
+## Hypotheses
+* `hfull` – generators span the space
+* `hx` – `x` lies in `Z`
+* `hdeg` – degree of `x` below dimension
+
+## Conclusion
+* a facet through `x` has a relative-interior point
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

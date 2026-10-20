@@ -17,6 +17,17 @@ never empty and the order it names actually meets `B`.
 Needs `0 < n`: at `n = 0` no order drops `Z.h` generators unless `Z.h` already
 is `0`, `o * n` staying `0` throughout, so the witness below would not go
 through — a real restriction, not a formality dodged for convenience.
+
+## Inputs
+* `Z` – zonotope
+* `B` – admissible bound
+
+## Hypotheses
+* `hn` – dimension positive
+* `hB` – origin lies in `B`
+
+## Conclusion
+* the chosen order is admissible
 -/
 
 -- Authors:       Claude Opus 5

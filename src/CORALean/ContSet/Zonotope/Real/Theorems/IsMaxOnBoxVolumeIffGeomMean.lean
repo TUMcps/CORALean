@@ -11,6 +11,19 @@ public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 `2ⁿ ∏ᵢ γ(i)` of the box `⟨0, diag(γ)⟩` exactly when it maximizes `(∏ᵢ γ(i))^{1/n}`, as `x ↦ x^{1/n}`
 is strictly increasing on `[0, ∞)`. That the `n`-th root is concave is not proved here.
 
+## Inputs
+* `n` – dimension
+* `S` – feasible set
+* `γ` – candidate point
+
+## Hypotheses
+* `hn` – dimension positive
+* `hS` – feasible points nonnegative
+* `hγ` – candidate lies in `S`
+
+## Conclusion
+* maximizing the box volume is the same as maximizing the geometric mean
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

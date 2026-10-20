@@ -11,6 +11,19 @@ public import Mathlib.Analysis.Normed.Ring.Lemmas
 The triangle inequality, carried through `plus_exact`: a Minkowski sum of two
 balls sits inside the ball of the summed radius, and `Z₁.plus Z₂` denotes
 exactly that sum.
+
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+* `r₁` – first radius
+* `r₂` – second radius
+
+## Hypotheses
+* `h₁` – `Z₁` lies in its ball
+* `h₂` – `Z₂` lies in its ball
+
+## Conclusion
+* the sum lies in the ball of the summed radii
 -/
 
 -- Authors:       Claude Opus 5

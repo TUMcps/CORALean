@@ -22,6 +22,17 @@ are. So the loop, run on a stack of nodes with values at most `1`, answers wheth
 them are good, with fuel to spare: each step lowers `∑ (2^{m+1-|σ|} - 1)` by one. The
 leaves are the corners of the zonotope, the sort a permutation of the generators.
 
+## Inputs
+* `Z` – zonotope
+* `H` – surjective linear map
+* `d` – offset
+
+## Hypotheses
+* `hH` – `H` surjective
+
+## Conclusion
+* the test is true iff `Z` lies in the image of the unit ball
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

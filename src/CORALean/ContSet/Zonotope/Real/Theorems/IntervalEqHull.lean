@@ -16,6 +16,15 @@ attained (`interval_attained`), so they are the coordinates' supremum and infimu
 sums run from `j = 0`; the generators are `j = 1, …, m`. [1, Eq. 35] is this at the zonotope
 of the zonotope method, its sum printed over `i`.
 
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the bounding box is the interval hull of `Z`
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

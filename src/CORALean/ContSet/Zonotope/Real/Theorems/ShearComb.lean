@@ -15,6 +15,17 @@ public import Mathlib.Tactic.Ring
 `(c' + ∑ βⱼ g'ⱼ) = S (c + ∑ βⱼ gⱼ)` for the sheared center and generators: the shear is linear,
 which carries a section of the zonogon of [1, Alg. 3] to a vertical one.
 
+## Inputs
+* `Z` – planar zonotope
+* `κ` – shear factor
+* `β` – generator coefficients
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sheared point is the shear of the original point
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

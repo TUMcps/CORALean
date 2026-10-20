@@ -17,6 +17,16 @@ own weighted coefficient alone.
 
 Nothing here asks for convexity: the claim is about the segments themselves, so
 it is the statement a non-convex representation could also make.
+
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set linear combination lies in the result
 -/
 
 -- Authors:       Claude Opus 5

@@ -11,6 +11,12 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 unit cube, for the generators `R` as a family of columns. Centered; the center is added by the
 caller (`c + Z±(R)`, [1, Eq. 41]).
 
+## Inputs
+* `R` – family of vectors
+
+## Output
+* set of all signed sums
+
 ## References
 
 * [1] M. Maïga, N. Ramdani, L. Travé-Massuyès and C. Combastel. "A Comprehensive Method for

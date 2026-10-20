@@ -13,6 +13,18 @@ public import Mathlib.Tactic.Abel
 The two parts of a split sum to `Z`, [1, Sec. IV-B, Step 1)] and Sec. IV-D: `Z = Z_a ⊕ Z_b`, of
 which only `⊇` is used. Each part's coefficients are read back onto `Z`'s own indices.
 
+## Inputs
+* `Z` – zonotope
+* `q` – kept count
+* `r` – dropped count
+* `part` – split of the generator indices
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sum of the two parts lies in `Z`
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

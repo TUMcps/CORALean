@@ -20,6 +20,19 @@ is claimed.
 [2, Eq. 3] and [2, Eq. 4] in one: the strips met all at once with the predicted set,
 over-approximated.
 
+## Inputs
+* `C` – output matrix
+* `φ` – strip radii
+* `y` – measurement
+* `Λ` – weight matrix
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the intersection with the strip lies in the result
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state

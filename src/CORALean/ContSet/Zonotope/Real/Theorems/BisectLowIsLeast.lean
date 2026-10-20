@@ -23,6 +23,16 @@ each pass, so after `r` passes one generator `a` is left. Then `[P; P + 2 g_a]` 
 zonogon on one side (`edge_point_least`), and its point on the line is the lowest of the section.
 With no generator left the line passes through the lowest vertex.
 
+## Inputs
+* `Z` – planar zonotope
+* `γ` – abscissa of the vertical line
+
+## Hypotheses
+* `hne` – line meets `Z`
+
+## Conclusion
+* the bisection returns the least ordinate on the line
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

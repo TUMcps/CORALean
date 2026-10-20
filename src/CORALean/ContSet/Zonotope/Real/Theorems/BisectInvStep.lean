@@ -15,6 +15,21 @@ the line, or passed, and then the line is between the abscissae of `P + s₁` an
 the abscissa moves monotonically along `σ`; the order conditions carry over from the split. Each
 half is nonempty (`splitPivot_spec`), so `G` shrinks, and when `|G| ≤ 1` the pass changes nothing.
 
+## Inputs
+* `Z` – planar zonotope
+* `γ` – abscissa of the vertical line
+* `right` – direction flag
+* `σ` – search direction
+* `st` – loop state
+
+## Hypotheses
+* `hH` – generators point upward
+* `hσ` – direction matches the flag
+* `hinv` – invariant holds on the state
+
+## Conclusion
+* the step keeps the invariant and shrinks the generator set
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

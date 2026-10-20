@@ -10,6 +10,18 @@ public import Mathlib.Analysis.Convex.Hull
 # `underapproximate` is an inner approximation
 
 The points, and their convex hull, lie inside the zonotope: a subset, not a superset.
+
+## Inputs
+* `n` – dimension
+* `k` – direction count
+* `Z` – zonotope
+* `S` – directions
+
+## Hypotheses
+* none
+
+## Conclusion
+* the hull of the returned vertices lies in `Z`
 -/
 
 -- Authors:       Claude Opus 5.5

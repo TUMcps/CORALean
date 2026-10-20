@@ -13,6 +13,17 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 The image `C Z` is the zonotope `Zonotope.mtimes C Z` (`mtimes_exact`), its box contains it
 (`interval_contains`), and a point of the box lies below the box's `supremum`, which `constrSat`
 asks to be below `d`. One direction only: the box over-approximates, so `false` says nothing.
+
+## Inputs
+* `Z` – zonotope
+* `C` – constraint matrix
+* `d` – constraint offset
+
+## Hypotheses
+* `h` – constraints are satisfied
+
+## Conclusion
+* every point of `Z` satisfies the strict constraints
 -/
 
 -- Authors:       Claude Opus 5.5

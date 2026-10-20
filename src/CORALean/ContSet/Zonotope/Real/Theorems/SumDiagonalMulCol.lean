@@ -11,6 +11,17 @@ public import Mathlib.Data.Matrix.Diagonal
 Split out of `SumDiagonalMul.lean` (issue #62): the same fact read down a
 column instead of along a row, which is the form a diagonal block takes when
 generators carry the first index.
+
+## Inputs
+* `v` – diagonal entries
+* `g` – coefficients
+* `i` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* the column sum picks out one coefficient
 -/
 
 -- Authors:       Claude Opus 5

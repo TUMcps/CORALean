@@ -10,6 +10,13 @@ public import CORALean.Global.Cost
 
 Asserted, not proved: `Operations/Abs.lean` takes the absolute value of every entry of the
 center and of the generator matrix, `n * (h + 1)` of them, and writes each, `n * (h + 1)` more.
+
+## Inputs
+* `n` – dimension
+* `h` – generator count
+
+## Output
+* cost of taking absolute values, `2n(h+1)` operations
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -10,18 +10,21 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 /-!
 # `Zonotope.parallelotope`
 
-[1, Prop. 8]: the parallelotope `Ψ = Γ box(Γ⁻¹Z)` enclosing a zonotope, its edges along
-the columns of `Γ`. One `let` per step of the sketched proof: the coordinates changed by
-`Γ⁻¹`, the box there, `box()` of eq. (2)-(3) being `Zonotope.interval` read back as a
-zonotope, and the coordinates changed back.
+[1, Prop. 8]: the parallelotope `Ψ = Γ box(Γ⁻¹Z)` enclosing a zonotope, its edges along the
+columns of `Γ`. One `let` per step of the sketched proof: the coordinates changed by `Γ⁻¹`, the
+box there (`Zonotope.interval` read back as a zonotope), and the coordinates changed back. The
+proposition takes `Γ`'s columns from `Z`'s own generators and asks full rank;
+`parallelotope_outer` needs the rank alone, so any invertible `Γ` will do, the choice being a
+matter of tightness, `Zonotope.methodC`'s. At a singular `Γ`, Mathlib's `Γ⁻¹` is zero and the
+result encloses nothing. Real only for now: the float layer would round the inverse and both
+products apart.
 
-The proposition takes `Γ`'s columns from `Z`'s own generators and asks full rank;
-`parallelotope_outer` needs the rank alone, so any invertible `Γ` will do, the generator
-choice being a matter of tightness, `Zonotope.methodC`'s. At a singular `Γ`, Mathlib's
-`Γ⁻¹` is zero and the result encloses nothing.
+## Inputs
+* `Γ` – basis matrix
+* `Z` – zonotope
 
-Real only for now: the float layer would round the inverse and both products apart, each
-into an error box, and no caller asks for it yet.
+## Output
+* parallelotope `Γ box(Γ⁻¹Z)` enclosing `Z`
 
 ## References
 

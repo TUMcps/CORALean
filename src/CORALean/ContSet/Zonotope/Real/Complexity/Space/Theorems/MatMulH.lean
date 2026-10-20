@@ -13,6 +13,16 @@ than restating `bilin_h`.
 
 This is what a power of a matrix zonotope pays: `matPow M k` squares the count
 at every step, which is why a Taylor order is a cost as well as a tightness.
+
+## Inputs
+* `M` – zonotope of matrices
+* `N` – second zonotope of matrices
+
+## Hypotheses
+* none
+
+## Conclusion
+* result has `h₁ + h₂ + h₁h₂` generators
 -/
 
 -- Authors:       Claude Opus 5

@@ -11,6 +11,17 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.ScalarIn
 # `Zonotope.scalarIntervalMulCost_mono`
 
 Monotone in the generator count.
+
+## Inputs
+* `h` – smaller generator count
+* `h'` – larger generator count
+* `n` – dimension
+
+## Hypotheses
+* `hh` – generator counts ordered
+
+## Conclusion
+* cost is monotone in the generator count
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -12,6 +12,13 @@ public import Mathlib.Data.Matrix.Mul
 be obtained easily"; `supportRadius` is the `‖Hᵀc‖₁ = Σⱼ |cᵀGⱼ|` of it. That this is how far `cᵀx`
 reaches on either side of `cᵀp` is `support_dotProduct`.
 
+## Inputs
+* `Z` – zonotope
+* `c` – direction
+
+## Output
+* one-norm of the generators along `c`
+
 ## References
 
 * [1] J. M. Bravo, T. Alamo and E. F. Camacho. "Bounded error identification of systems with

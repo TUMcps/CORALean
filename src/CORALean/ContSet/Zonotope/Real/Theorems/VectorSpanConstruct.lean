@@ -14,6 +14,15 @@ difference of two points is a combination of generators, and each `gⱼ` is the 
 span of its generators, is that of its affine hull, which is how `Zonotope.degree` measures a
 face; with `construct_face`, a face's dimension is the rank of the generators `u` annihilates.
 
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the direction of the affine hull is the generator span
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

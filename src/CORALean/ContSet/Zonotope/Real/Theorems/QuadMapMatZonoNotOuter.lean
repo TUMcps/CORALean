@@ -16,6 +16,15 @@ matrix zonotope and so free of the others, while its proof, eq. (12), writes one
 `λ = (1, -1)`, while the enclosure is `[-1, 1] ⊗ {(1, 1)}`, the segment from `(-1, -1)` to
 `(1, 1)`. `quadMapMatZono_outer` is the statement that holds, factors shared.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed per-coordinate version does not enclose
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

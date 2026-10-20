@@ -7,16 +7,25 @@ public import CORALean.ContSet.Zonotope.Real.Definitions.Aligned
 /-!
 # The pairing `minkDiffAligned` runs on is [1, Def. 3]'s alignment
 
-`minkDiffAligned_exact` asks for `μ` pairing the two generator families index
-for index, which is [1, Prop. 5]'s "without loss of generality, we re-order the
-generators". That is a *choice* of witness for [1, Def. 3], and this is the
-record that it is one: the re-ordered hypothesis implies the printed relation,
-so the closed form is applied exactly where the definition says it may be.
+`minkDiffAligned_exact` asks for `μ` pairing the two generator families index for index, which is
+[1, Prop. 5]'s "without loss of generality, we re-order the generators". That is a *choice* of
+witness for [1, Def. 3], and this is the record that it is one: the re-ordered hypothesis implies
+the printed relation. Not an `iff`: the converse would have to produce the re-ordering, and
+`AlignedWith` allows two generators of `Z₂` to pick the same generator of `Z₁`, which no injection
+into `Fin Z₁.h` recovers — the paper rules that out with `NoAlignedGens` on `Z₂`, a hypothesis
+this direction does not need.
 
-Not an `iff`. The converse would have to produce the re-ordering, and
-`AlignedWith` allows two generators of `Z₂` to pick the same generator of `Z₁`,
-which no injection into `Fin Z₁.h` recovers — the paper rules that out with
-`NoAlignedGens` on `Z₂`, which is a hypothesis this direction does not need.
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+* `μ` – generator scalings
+
+## Hypotheses
+* `hh` – equal generator counts
+* `hG` – generators of `Z₂` scale those of `Z₁`
+
+## Conclusion
+* `Z₁` is aligned with `Z₂`
 
 ## References
 

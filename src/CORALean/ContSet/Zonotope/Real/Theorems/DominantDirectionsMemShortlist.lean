@@ -11,6 +11,17 @@ The answer is the matrix of one of the subsets the generator volume filter kept.
 
 Source: [1].
 
+## Inputs
+* `Z` – zonotope
+* `a` – length-filter size
+* `b` – volume-filter size
+
+## Hypotheses
+* none
+
+## Conclusion
+* every returned basis comes from the shortlist
+
 ## References
 
 * [1] `contSet/@zonotope/dominantDirections.m` and its private helpers, CORA (Sep. 2025), by

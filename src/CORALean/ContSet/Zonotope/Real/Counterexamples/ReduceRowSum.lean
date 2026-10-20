@@ -17,6 +17,15 @@ Without absolute values the row sum can cancel: `H = [1  -1]` in one dimension, 
 gives `H⁻ = 0`, and `⟨0, [0]⟩ = {0}` misses `2 = 1·1 + (-1)·(-1)`. With `|H̃_{i,j}|`, the
 interval hull of the boxed columns, the inclusion holds at every split (`Zonotope.reduceBy_outer`).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the row-sum reduction does not contain the original
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

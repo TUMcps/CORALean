@@ -11,6 +11,17 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Shear
 `y > 0 ∨ (y = 0 ∧ x ≥ 0)` stays there. The sorted zonogons of [1, Alg. 3] are sheared without
 leaving the hypotheses of the walk.
 
+## Inputs
+* `Z` – planar zonotope
+* `κ` – shear factor
+* `j` – generator index
+
+## Hypotheses
+* `hH` – generators point upward
+
+## Conclusion
+* sheared generators point upward
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

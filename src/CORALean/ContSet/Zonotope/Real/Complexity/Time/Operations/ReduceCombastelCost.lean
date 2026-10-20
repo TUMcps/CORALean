@@ -8,17 +8,19 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.ReduceBy
 /-!
 # `Zonotope.reduceCombastelCost`
 
-Asserted, not proved, by reading `Operations/ReduceCombastel.lean`. The metric is
-a squared length, `n` products and `n - 1` additions per generator, bounded by
-`2 * n`; then the `h` keys are sorted and `reduceBy` absorbs a block of at most
-`h`. Girard's metric costs `4 * n + 2` per generator, so this is the cheaper
-rule by a constant factor, not an order.
+Asserted, not proved, by reading `Operations/ReduceCombastel.lean`. The metric is a squared
+length, `n` products and `n - 1` additions per generator, bounded by `2 * n`; then the `h` keys
+are sorted and `reduceBy` absorbs a block of at most `h`, charged at `h` kept and `h` absorbed
+generators, and writing its own result. Girard's metric costs `4 * n + 2` per generator, so this
+is cheaper by a constant factor. No order argument: below order `o` the operation is the identity
+and costs nothing, and above it the absorbed block is at most `h` wide.
 
-No order argument: below order `o` the operation is the identity and costs
-nothing, and above it the absorbed block is at most `h` wide.
+## Inputs
+* `n` – dimension
+* `h` – generator count
 
-`reduceBy` is charged at `h` kept and `h` absorbed generators, each at most `h`, and writes its
-own result.
+## Output
+* cost of the sort and the block reduction
 -/
 
 -- Authors:       Claude Sonnet 5.5

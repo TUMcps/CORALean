@@ -12,6 +12,13 @@ public import Mathlib.Data.Fintype.Basic
 
 The set `{ M_{ijk...l} x_j x_k ... x_l | x ∈ Z }` of CORA's `tensorMultiplication` at one point: for
 a third-order tensor, component `iDim` is `Σ M{iDim}(a, b, c) xₐ x_b x_c`.
+
+## Inputs
+* `M` – third-order tensor
+* `x` – vector
+
+## Output
+* contraction of the tensor with `x` three times
 -/
 
 -- Authors:       Claude Opus 5.5

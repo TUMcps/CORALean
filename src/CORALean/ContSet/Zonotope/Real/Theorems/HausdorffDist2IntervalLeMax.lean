@@ -11,21 +11,21 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # The `ω_max` bound on how far a zonotope's box can be from the zonotope
 
 [1, Thm. 1]'s `ω_max`, at the `‖·‖₂` the paper states it in, beside
-`Zonotope.hausdorffDist₂_interval_le`, which is the same theorem's `ω_rad`; the
-same bound, unnamed, is [2, Thm. 3.2]. [2]'s Eq. (15) misprints the selector
-as `k ≠ i*` for `i ≠ i*`, per that paper's own reference page; followed here.
+`Zonotope.hausdorffDist₂_interval_le` (`ω_rad`); the same bound, unnamed, is [2, Thm. 3.2]. [2]'s
+Eq. (15) misprints the selector as `k ≠ i*` for `i ≠ i*`; followed here. `aux_ghat` is the paper's
+`ĝ`: a generator's entrywise magnitude with its first `‖·‖_∞`-attaining entry zeroed. The witness
+is the paper's: each generator is taken at the coefficient that cancels the displacement exactly
+in the entry `ĝ` zeroes, leaving at most twice the generator's magnitude in every other entry.
+Soundness never uses that the zeroed entry is the largest, only that one entry is zeroed.
 
-`aux_ghat` is the paper's `ĝ`: a generator's entrywise magnitude with its first
-`‖·‖_∞`-attaining entry zeroed. "First maximal entry" is a predicate here —
-maximal, and strictly above every earlier entry — rather than a chosen index,
-so `n = 0`, where there is no index to choose, needs no case of its own.
+## Inputs
+* `Z` – zonotope
 
-The witness is the paper's choice of coefficient: each generator is taken at the
-coefficient that cancels the displacement exactly in the entry `ĝ` zeroes, which
-leaves at most twice the generator's magnitude in every other entry. Soundness
-never uses that the zeroed entry is the largest, only that one entry is zeroed,
-so a generator with no maximal entry — which no generator has — is covered by
-taking it at coefficient `0`.
+## Hypotheses
+* none
+
+## Conclusion
+* the Hausdorff distance to the box is at most twice the trimmed sum
 
 ## References
 

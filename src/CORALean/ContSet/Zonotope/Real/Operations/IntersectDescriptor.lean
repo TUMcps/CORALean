@@ -10,13 +10,28 @@ public import Mathlib.Data.Matrix.Mul
 
 The intersection zonotope of [1, Thm. 1], one step of the set-membership estimator for the
 descriptor system `E x₊ = A x + B u + D ω + D_d d`, `y = C x + F υ` [1, Eq. 4]: from
-`X = ⟨p̂, H̄⟩` (already reduced, `H̄ = ↓(Ĥ)`), the measurement `y₊` and the correction matrix
-`Λ`, Eq. 7 of [1, Thm. 1] gives
+`X = ⟨p̂, H̄⟩` (already reduced), the measurement `y₊` and the correction matrix `Λ`, Eq. 7 gives
 `p̂₊ = (I - ΛC)TA p̂ + (I - ΛC)TB u + (N + Λ - ΛCN) y₊` and
-`Ĥ₊ = [(I - ΛC)TA H̄  (I - ΛC)TD  (I - ΛC)NF  ΛF]`,
-with `T`, `N` decoupling the unknown input, `TE + NC = I`, `TD_d = 0` [1, Eq. 6]. At `E = I`
-(`T = I`, `N = 0`) it is `intersectStrip` after the prediction, which is how CORA's `FRad-B`
-and `PRad-C` use it. `Λ` is any matrix; the enclosure holds for each.
+`Ĥ₊ = [(I - ΛC)TA H̄  (I - ΛC)TD  (I - ΛC)NF  ΛF]`, with `T`, `N` decoupling the unknown input,
+`TE + NC = I`, `TD_d = 0` [1, Eq. 6]. At `E = I` (`T = I`, `N = 0`) it is `intersectStrip` after
+the prediction, as CORA's `FRad-B` and `PRad-C` use it. `Λ` is any matrix; the enclosure holds
+for each.
+
+## Inputs
+* `T` – decoupling matrix
+* `N` – measurement decoupling matrix
+* `Λ` – correction matrix
+* `A` – state matrix
+* `B` – input matrix
+* `D` – disturbance matrix
+* `C` – output matrix
+* `F` – noise matrix
+* `u` – control input
+* `y` – measurement
+* `X` – reduced state zonotope
+
+## Output
+* enclosing intersection zonotope
 
 ## References
 

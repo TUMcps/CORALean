@@ -12,6 +12,19 @@ each instant `k = 1, 2, …` the nodes run Steps 1-2 (`diffusionPropStep`) with 
 radii `r_k` and the outputs `ȳ_k` of that instant. The value at `k` is `Ẑ_{v,k}`, and at `0` it is
 `Z₀`; the instant-`k` data are the arguments at `k`, those at `0` unused.
 
+## Inputs
+* `F` – dynamics matrix
+* `Q` – process-noise generators per instant
+* `Γ` – stacked measurement matrices
+* `r` – noise radii per instant
+* `yb` – outputs per instant
+* `nb` – neighbour indices of each node
+* `o` – reduction order
+* `Z₀` – initial zonotope
+
+## Output
+* zonotope of each node at each instant
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

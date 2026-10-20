@@ -16,6 +16,13 @@ same reason: `f` is any linear map. `mtimesCost` is this at `Cost.matVec m n`,
 the cost of `f := M *ᵥ ·`, though it is stated as its own `def` rather than
 through this one. `cf` counts everything one application does, the writes of the vector it
 returns included, so no write is added here.
+
+## Inputs
+* `cf` – cost of one application of the map
+* `h` – generator count
+
+## Output
+* one application per generator plus one for the center
 -/
 
 -- Authors:       Claude Opus 5.5

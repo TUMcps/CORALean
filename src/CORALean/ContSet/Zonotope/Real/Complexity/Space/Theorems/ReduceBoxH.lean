@@ -8,15 +8,20 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
 /-!
 # `Zonotope.reduceBox_h`
 
-`reduceBox`'s generator count, exactly: `n` where the reduction actually drops
-generators, the origin's `0` where it does not — the same condition
-`reduceBox` itself branches on, so the two sides of the `if` line up with the
-two definitions it calls. `reduceByBox` fixes its `h` at `n` regardless of how
-many generators it absorbs, which is what keeps this exact rather than a bound.
+`reduceBox`'s generator count, exactly: `n` where the reduction actually drops generators, the
+origin's `0` where it does not — the condition `reduceBox` itself branches on. `reduceByBox` fixes
+its `h` at `n` regardless of how many generators it absorbs, which keeps this exact rather than a
+bound: one absorbing generator per output *coordinate*, not per generator it replaces.
 
-Not `k * n` for some count `k` of dropped generators: `reduceByBox` pays one
-absorbing generator per output *coordinate*, not per generator it replaces, so
-the box is `n` generators however many were dropped.
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* result has `n` or no generators, by order
 -/
 
 -- Authors:       Claude Opus 5

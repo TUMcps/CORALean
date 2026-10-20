@@ -9,21 +9,22 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 /-!
 # `Zonotope.reduceByBasis`
 
-`reduceBy` with the box turned: what the partition drops is read in the
-coordinates a matrix `P` names, boxed there, and read back, so the error is a
-parallelotope along `P`'s columns instead of an axis-aligned box. At `P = 1`
-this is `reduceBy` itself.
+`reduceBy` with the box turned: what the partition drops is read in the coordinates a matrix `P`
+names, boxed there, and read back, so the error is a parallelotope along `P`'s columns instead of
+an axis-aligned box. At `P = 1` this is `reduceBy` itself. `P` is a choice exactly as the
+partition is: `reduceByBasis_outer` holds at every invertible `P`, so which one a rule picks is a
+matter of tightness alone. CORA's `methC` picks one [1]. `P⁻¹` is Mathlib's inverse, zero at a
+singular `P`, where CORA takes a pseudoinverse; a caller passes an invertible `P` or gets no
+enclosure, `reduceMethC`'s reason for testing the determinant. Kept and dropped are [2, Prop. 9]'s
+`Ž` and `Z̃`, the center going with `Ž`.
 
-`P` is a choice exactly as the partition is, and costs the same nothing:
-`reduceByBasis_outer` holds at every invertible `P`, so which one a rule picks
-is a matter of tightness alone. CORA's `methC` is what picks one [1]; no paper
-behind that rule was confirmed, so its source file is what is cited.
+## Inputs
+* `Z` – zonotope
+* `part` – split of the generator indices
+* `P` – basis matrix
 
-`P⁻¹` is Mathlib's inverse, zero at a singular `P`, where CORA takes a
-pseudoinverse; a caller passes an invertible `P` or gets no enclosure, which is
-`reduceMethC`'s reason for testing the determinant before it calls this.
-
-Kept and dropped are [2, Prop. 9]'s `Ž` and `Z̃`, the center going with `Ž`.
+## Output
+* zonotope keeping one side and enclosing the rest in `P`
 
 ## References
 

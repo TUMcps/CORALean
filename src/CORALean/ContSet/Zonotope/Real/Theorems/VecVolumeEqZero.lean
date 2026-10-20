@@ -12,6 +12,15 @@ public import CORALean.Global.MatVec
 CORA's early return of `volume_` for a rank-deficient `zonotope(matZ)`: its generators span less
 than the whole space of entries, so the stacked members are a null set and `Zonotope.volume` is `0`
 (`volume_eq_of_rank_lt`).
+
+## Inputs
+* `Z` – matrix zonotope
+
+## Hypotheses
+* `hr` – stacked rank below the entry count
+
+## Conclusion
+* the volume of the stacked members equals the stacked volume
 -/
 
 -- Authors:       Claude Sonnet 5.5

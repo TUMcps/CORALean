@@ -14,6 +14,15 @@ entries, so `Zonotope.volume` at `Zonotope.vec` is its definition and the theore
 class apply to it. With exactly `n * m` generators the Lebesgue volume of the set of stacked members
 is that number (`volume_eq_of_h_eq`); `volume_eq_of_rank_lt` is the other case, in
 `VecVolumeEqZero`.
+
+## Inputs
+* `Z` – matrix zonotope
+
+## Hypotheses
+* `hh` – as many generators as entries
+
+## Conclusion
+* the volume of the stacked members equals the stacked volume
 -/
 
 -- Authors:       Claude Sonnet 5.5

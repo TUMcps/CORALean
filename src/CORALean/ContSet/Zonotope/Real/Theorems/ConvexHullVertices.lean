@@ -12,6 +12,15 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 `vPolytope_exact` says the sign corners denote the zonotope, and a vertex polytope is the hull of
 its vertex list (`construct_eq_convexHull`); the list of `vertices` is that range, as `signEquiv`
 reaches every choice of signs.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the hull of the vertices is `Z`
 -/
 
 -- Authors:       Claude Sonnet 5.5

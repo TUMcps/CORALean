@@ -15,6 +15,15 @@ The corollary says that when `r_vs ≤ 1`, `Ẑ ⊆ Ê` "with a probability of a
 corner `(19/20, 1/10)` has norm `19/20`, so `r_vs ≤ 1` and `P_S(1/20) > 0`. But `Ẑ ⊆ Ê` is false,
 an event of probability `0` under any measure on the samples.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* naive vertex sampling fails with probability above the printed bound
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

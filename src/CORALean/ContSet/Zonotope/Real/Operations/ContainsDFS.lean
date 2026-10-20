@@ -18,6 +18,14 @@ sign choice `σ` for the first `k` of them, valued by `er_k(σ) = ‖c - d + ∑
 is `σ₊ :: σ₋ :: rest`. The `while` loop runs on `fuel`, `2^{m+1}` (one more than the nodes
 of the search tree), so it is total; with that fuel the exhausted branch is never taken.
 
+## Inputs
+* `Z` – zonotope
+* `H` – surjective linear map
+* `d` – offset
+
+## Output
+* `true` iff `Z` lies in the image of the unit box
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

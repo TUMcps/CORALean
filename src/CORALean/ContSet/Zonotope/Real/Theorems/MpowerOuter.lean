@@ -12,6 +12,17 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 The identity for the zero power, the zonotope for the first, and `matMul_outer` for each further
 factor on the right: `M ^ (k + 2) = M ^ (k + 1) * M`. An enclosure only, `matMul` keeping every
 cross term free.
+
+## Inputs
+* `Z` – matrix zonotope
+* `M` – matrix
+* `k` – exponent
+
+## Hypotheses
+* `hM` – `M` lies in `Z`
+
+## Conclusion
+* `M` to the `k` lies in the `k`-th power zonotope
 -/
 
 -- Authors:       Claude Sonnet 5.5

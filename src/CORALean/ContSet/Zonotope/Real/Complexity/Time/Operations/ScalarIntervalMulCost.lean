@@ -19,6 +19,13 @@ a scalar directly would pay less, which is not what this definition does.
 
 Each scaled identity is a result of its own, `n * n` writes; the `plus` joins the product's `h`
 generators to the `h + 1` of the unit-interval product.
+
+## Inputs
+* `n` – dimension
+* `h` – generator count
+
+## Output
+* cost of the scalars, scaled identities, products and sum
 -/
 
 -- Authors:       Claude Sonnet 5.5

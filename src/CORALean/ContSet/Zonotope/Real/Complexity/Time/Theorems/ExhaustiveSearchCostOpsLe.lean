@@ -13,6 +13,16 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.Exhausti
 # `Zonotope.exhaustiveSearchCost_ops_le`
 
 The count itself: at most four times `C(p, n) · p`, from `p = 1` on.
+
+## Inputs
+* `n` – dimension
+* `p` – generator count
+
+## Hypotheses
+* `hp` – at least one generator
+
+## Conclusion
+* operation count is at most four times `C(p, n) · p`
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

@@ -9,19 +9,22 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 /-!
 # `Zonotope.minkDiffApprox`
 
-CORA's `minkDiff(M, S)` at its default method `'approx'`, as [1]'s `aux_minkDiffZono` runs it
-for a full-dimensional minuend outside `n = 2` and a subtrahend with generators: the minuend's
-halfspaces `C x ≤ d` shifted inward by the subtrahend [2, Thm. 3], then [2, Prop. 6]'s closed
-form `|C G| α = Δd` solved by `pinv`, a least-squares solution, and the minuend's generators
-scaled by `α`. One `let` per line of the source.
+CORA's `minkDiff(M, S)` at its default method `'approx'`, as [1]'s `aux_minkDiffZono` runs it for
+a full-dimensional minuend outside `n = 2` and a subtrahend with generators: the minuend's
+halfspaces `C x ≤ d` shifted inward by the subtrahend [2, Thm. 3], then [2, Prop. 6]'s closed form
+`|C G| α = Δd` solved by `pinv`, and the minuend's generators scaled by `α`. `C` is an argument:
+the first half of `polytope(M).A`, the normalised cross products of every `n - 1` generators
+(`Zonotope.facetNormal`). `pinv` is written `(|C G|ᵀ |C G|)⁻¹ |C G|ᵀ`, which is `pinv` at full
+column rank; Mathlib's `⁻¹` is `0` otherwise. Not a `MinkDiff` instance: nothing checks `α`, and
+the result need not lie in the difference (`Zonotope.minkDiffApprox_not_inner`).
 
-`C` is an argument: the first half of `polytope(M).A`, which `polytope.m` builds as the
-normalised cross products of every `n - 1` generators (`Zonotope.facetNormal`). `pinv` is
-written `(|C G|ᵀ |C G|)⁻¹ |C G|ᵀ`, which is `pinv` when `|C G|` has full column rank; Mathlib's
-`⁻¹` is `0` otherwise, where MATLAB's `pinv` is not.
+## Inputs
+* `Z₁` – minuend
+* `Z₂` – subtrahend
+* `C` – halfspace normals of the minuend
 
-Not a `MinkDiff` instance: nothing checks `α`, and the result need not lie in the difference
-(`Zonotope.minkDiffApprox_not_inner`).
+## Output
+* approximate Minkowski difference zonotope
 
 ## References
 

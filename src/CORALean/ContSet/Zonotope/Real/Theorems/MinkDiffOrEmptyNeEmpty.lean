@@ -14,6 +14,16 @@ generator representation anywhere is enough to make the result a zonotope.
 Which zonotope it is stays open — the choice is the definition's, not the
 caller's — so this says the result is not empty and nothing about its size.
 `Examples/MinkowskiDifference` supplies a pair and an `M` that certifies.
+
+## Inputs
+* `Z₁` – minuend
+* `Z₂` – subtrahend
+
+## Hypotheses
+* `h` – some representation is accepted
+
+## Conclusion
+* the result is not the explicit empty set
 -/
 
 -- Authors:       Claude Opus 5

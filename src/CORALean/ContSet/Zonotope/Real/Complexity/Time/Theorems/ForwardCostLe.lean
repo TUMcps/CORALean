@@ -20,6 +20,20 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Theorems.Basic
 [1, Prop. 16], the running time: `O(n_max² q κ)`, `n_max` over every width the input's
 included and `q` the generator count, at most `(cNeuron + 17) N² Q κ`.
 
+## Inputs
+* `cNeuron` – cost of one neuron
+* `N` – width bound
+* `Q` – generator bound
+* `n` – input dimension
+* `k` – output dimension
+* `net` – set-based network
+
+## Hypotheses
+* `hN` – width bound positive
+
+## Conclusion
+* forward cost is at most `(cNeuron + 17) N² Q` times the depth
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

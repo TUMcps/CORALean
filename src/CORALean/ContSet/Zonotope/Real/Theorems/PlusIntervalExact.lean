@@ -17,6 +17,16 @@ The one hypothesis is `I.IsNonempty`: `Interval.zonotope` is the box with its bo
 swapped where they cross, and the swapped box is not empty, so without it the right
 side is strictly larger than an empty left side.
 
+## Inputs
+* `Z` – zonotope
+* `I` – box
+
+## Hypotheses
+* `hI` – box nonempty
+
+## Conclusion
+* adding the box equals concatenating its generators
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

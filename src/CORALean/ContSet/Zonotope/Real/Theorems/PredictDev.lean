@@ -14,6 +14,18 @@ public import Mathlib.Data.Matrix.Basic
 `p + θ` a point of the old estimate `X̂` (center `p`) and `γ` in the unit box. The first step of
 every P-radius bound of [1, Eq. 4] to [1, Alg. 2].
 
+## Inputs
+* `A` – state matrix
+* `F` – noise matrix
+* `X` – state zonotope
+* `z` – point of the prediction
+
+## Hypotheses
+* `hz` – `z` lies in the predicted zonotope
+
+## Conclusion
+* `z` is the center plus a state deviation and bounded noise
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state

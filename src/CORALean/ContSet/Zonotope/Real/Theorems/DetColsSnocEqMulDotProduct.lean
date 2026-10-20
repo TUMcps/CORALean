@@ -13,6 +13,18 @@ For a unit vector `v` normal to the columns `B`, `det [B x] = det [B v] · vᵀx
 = [B_i v_i]`. Here `x = (vᵀx) v + u` with `u` normal to `v`; the determinant is linear in the last
 column; and `[B u]` has `v` as a left null vector, so its determinant is zero.
 
+## Inputs
+* `v` – unit vector
+* `x` – appended column
+* `B` – list of columns
+
+## Hypotheses
+* `hv` – `v` has unit norm
+* `hB` – columns orthogonal to `v`
+
+## Conclusion
+* the determinant scales by the dot product with `v`
+
 ## References
 
 * [1] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".

@@ -15,19 +15,23 @@ public import CORALean.Global.Err
 # What one order reduction costs, as a Hausdorff distance
 
 [1, Prop. 4]'s eq. (29): reducing a zonotope by a partition moves it by at most
-`err(⟨0, G_red⟩_Z)`, the `err` of the dropped generators' own origin-centered
-zonotope. `Δε^r_k(ρ_k)` is that number, and the accumulation `ε^r_{k+1} = ε^r_k
-+ Δε^r_k(ρ_k)` in eq. (28) is eq. (21)'s generic error propagation applied to it,
-not a further fact about reduction.
+`err(⟨0, G_red⟩_Z)`, the `err` of the dropped generators' own origin-centered zonotope.
+`Δε^r_k(ρ_k)` is that number, and the accumulation in eq. (28) is eq. (21)'s generic error
+propagation applied to it. `reduceBy_outer` makes one direction free, and `reduceBy_subset_add_box`
+turns the other into a bound on a point of the substituted box. What is left is the step the
+paper leaves implicit — that `err` of the *dropped generators* already pays for the whole box —
+by attainment: coordinate `i`'s extreme `∑_l |G_red(i,l)|` is reached by the point whose
+coefficients are the signs of row `i`. Stated at `‖·‖₂` through `hausdorffDist₂` ([1, Def. 5]).
 
-`reduceBy_outer` makes one direction free, and `reduceBy_subset_add_box` turns
-the other into a bound on a point of the substituted box. What is left is the
-step the paper leaves implicit — that `err` of the *dropped generators* already
-pays for the whole box — and the reason is attainment: coordinate `i`'s extreme
-`∑_l |G_red(i,l)|` is reached by the point whose coefficients are the signs of
-row `i`, so it is under the supremum `err` reads, one coordinate at a time.
+## Inputs
+* `Z` – zonotope
+* `part` – split of the generator indices
 
-Stated at `‖·‖₂` through `hausdorffDist₂`, the norm [1, Def. 5] names.
+## Hypotheses
+* none
+
+## Conclusion
+* one reduction moves the zonotope by at most the dropped reach
 
 ## References
 

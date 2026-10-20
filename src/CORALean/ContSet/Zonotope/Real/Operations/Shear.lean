@@ -15,6 +15,13 @@ cross product is unchanged), and takes the line `x - κ y = γ` to the vertical 
 section of `Z` by that line is the vertical section of the sheared zonogon, which is how the
 boundary of a zonogon in the walk of [1, Alg. 3] is read off its vertical sections.
 
+## Inputs
+* `κ` – shear factor
+* `Z` – planar zonotope
+
+## Output
+* zonotope under the shear
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

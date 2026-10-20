@@ -13,6 +13,15 @@ normalization factor `1/n` the paper adds to Combastel's: `‖Z‖_F = ‖G‖_F
 Mathlib puts on matrices under `Matrix.Norms.Frobenius`. The matrix of `Z` has the generators as
 its columns, entry `(i, j)` the `i`-th coordinate of the `j`-th generator.
 
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the F-radius is the Frobenius norm over the dimension
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

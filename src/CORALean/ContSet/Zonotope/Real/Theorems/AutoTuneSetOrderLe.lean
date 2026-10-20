@@ -15,6 +15,17 @@ value returned and not merely of some candidate. That is what line 29's accumula
 Only the soundness direction of the check is asked, `le a b = true → a ≤ b`: a check that
 gives up early reports less often and never lets a wider reduction through.
 
+## Inputs
+* `le` – decidable comparison on reals
+* `Z` – zonotope
+* `εrτ` – admissible error share
+
+## Hypotheses
+* `hle` – comparison implies the real order
+
+## Conclusion
+* a returned order has box error within the share
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

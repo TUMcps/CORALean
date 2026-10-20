@@ -11,6 +11,17 @@ What [1, Alg. 3, lines 14-17] holds on to has an invertible matrix, whatever the
 volumes say: a candidate is kept only if its determinant is a unit, and otherwise
 the old best stays, which was one by induction.
 
+## Inputs
+* `V` – volume function
+* `best` – best basis so far
+* `L` – candidate basis
+
+## Hypotheses
+* `hbest` – the best basis is invertible
+
+## Conclusion
+* the kept basis is invertible
+
 ## References
 
 * [1] A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of

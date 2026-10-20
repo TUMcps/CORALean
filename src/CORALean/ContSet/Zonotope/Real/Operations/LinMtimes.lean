@@ -13,6 +13,13 @@ can compute with, and `LinMapSet` is what turns that into a map.
 
 At `Vec` this is `mtimes`; at `Mat` it is matrix multiplication of a matrix
 zonotope, from either side.
+
+## Inputs
+* `f` – linear map
+* `Z` – zonotope
+
+## Output
+* image of `Z` under `f`
 -/
 
 -- Authors:       Claude Opus 5

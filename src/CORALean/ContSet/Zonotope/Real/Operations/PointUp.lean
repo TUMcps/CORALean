@@ -13,6 +13,12 @@ and `x < 0`, by `-g`. This does not change the zonogon, since `[-1, 1]` is symme
 every generator lies in the half-plane `y > 0 ∨ (y = 0 ∧ x ≥ 0)`, the one the trigonometric order
 is taken in.
 
+## Inputs
+* `Z` – planar zonotope
+
+## Output
+* zonogon with every generator pointing upward
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

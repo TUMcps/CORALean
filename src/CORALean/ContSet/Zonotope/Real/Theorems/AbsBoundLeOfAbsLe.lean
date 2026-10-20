@@ -14,6 +14,17 @@ If every point of the zonotope has `|x j| ≤ r`, then `absBound j ≤ r`: the p
 center's own sign on every generator at that coordinate attains `|x j| = absBound j`. The
 coordinatewise form of `absBound_le_of_subset_closedBall`, which asks the same of all coordinates
 at one radius.
+
+## Inputs
+* `Z` – zonotope
+* `r` – bound
+* `j` – coordinate
+
+## Hypotheses
+* `h` – coordinate `j` is at most `r` in absolute value on `Z`
+
+## Conclusion
+* the absolute bound of coordinate `j` is at most `r`
 -/
 
 -- Authors:       Claude Opus 5.5

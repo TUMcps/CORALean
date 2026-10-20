@@ -11,6 +11,14 @@ public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
 What an interval matrix's radius can add to a coordinate, over every matrix the
 interval denotes: the radius weighted by the zonotope's own reach in each
 column.
+
+## Inputs
+* `IM` – interval matrix
+* `Z` – zonotope
+* `i` – coordinate
+
+## Output
+* largest amount the radius adds to the coordinate
 -/
 
 -- Authors:       Claude Opus 5

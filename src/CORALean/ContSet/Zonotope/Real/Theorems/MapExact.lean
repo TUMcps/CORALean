@@ -16,6 +16,16 @@ Every other image guarantee in this directory is this one at a particular linear
 map. No `map_outer`: the float `map` pays its rounding into the error box, so it
 reproves this alongside the spill rather than composing with it.
 
+## Inputs
+* `f` – linear map
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image of `Z` is the mapped zonotope
+
 ## References
 
 * [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid

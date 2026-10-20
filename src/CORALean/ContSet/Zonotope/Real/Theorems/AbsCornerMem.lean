@@ -13,6 +13,15 @@ public import Mathlib.Algebra.BigOperators.Pi
 `(2, 0)`, whose entrywise absolute value is not on the segment `abs` leaves. What it keeps is the
 box corner: the vertex `|c| + Σ |gⱼ|` of `abs Z` (all coefficients `1`) bounds every point's
 entrywise absolute value, and `abs` is idempotent and has the same corner.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the corner of absolute bounds lies in `abs Z`
 -/
 
 -- Authors:       Claude Opus 5.5

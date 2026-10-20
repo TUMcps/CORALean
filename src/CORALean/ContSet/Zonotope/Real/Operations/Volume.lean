@@ -19,6 +19,12 @@ approximations `'reduce'` and `'alamo'` are not modelled.
 
 The same sum is [1, Eq. 45], the size `µ` of a zonotope that `Zonotope.mspb` minimises.
 
+## Inputs
+* `Z` – zonotope
+
+## Output
+* exact volume of `Z`
+
 ## References
 
 * [1] M. Maïga, N. Ramdani, L. Travé-Massuyès and C. Combastel. "A Comprehensive Method for

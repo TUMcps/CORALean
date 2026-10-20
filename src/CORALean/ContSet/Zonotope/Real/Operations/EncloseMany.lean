@@ -15,17 +15,18 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 CORA's `@zonotope/encloseMany(Z, direction)` [1]: one oriented box around a list of zonotopes.
 Each cell is reduced to a parallelotope, its corners are taken to the frame `R` whose first axis
 is `direction`, the box of all corners there is the interval hull, and the box is rotated back.
-
 The reduction CORA names, `reduce(Z{i}, 'parallelpiped')`, does not exist
-(`references/coverage/contSet/zonotope.md`, row `encloseMany`): its `otherwise` branch throws, so
-the method errors on every input. What is formalized is the enclosure it was written for, with the
-parallelotope taken to be Girard's order-one reduction `reduceGirard 1`, which is a parallelotope
-(`n` generators) and an outer approximation. The corners of a zonotope fill its interval hull, so
-the box of the corners is `Zonotope.interval` of the rotated parallelotope, and the box of all cells
-is the componentwise `min`/`max`.
+(`references/coverage/contSet/zonotope.md`, row `encloseMany`): the method errors on every input.
+What is formalized is the enclosure it was written for, with the parallelotope taken to be
+Girard's order-one reduction `reduceGirard 1`. At least one cell is required (`Fin (q + 1)`):
+CORA's `enclosePoints` of an empty point list errors.
 
-At least one cell is required (`Fin (q + 1)`): CORA's `enclosePoints` of an empty point list
-errors.
+## Inputs
+* `Zs` – cells to enclose
+* `direction` – main direction
+
+## Output
+* oriented box around the parallelotope reductions
 
 ## References
 

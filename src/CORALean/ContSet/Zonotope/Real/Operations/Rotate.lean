@@ -10,6 +10,16 @@ public import CORALean.ContSet.Zonotope.Real.Operations.RotMat
 
 CORA's `@zonotope/rotate(Z, dims, angle)`: the rotation is applied to the center and the generators
 on the two coordinates `dims`, the others being left alone. That is `mtimes` at `rotMat`.
+
+## Inputs
+* `n` – dimension
+* `Z` – zonotope
+* `i` – first coordinate of the plane
+* `j` – second coordinate of the plane
+* `angle` – rotation angle
+
+## Output
+* zonotope rotated in the plane
 -/
 
 -- Authors:       Claude Opus 5.5

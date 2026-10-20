@@ -15,6 +15,13 @@ derivative of `f` along that one entry, the others held fixed, so the generator 
 of `Z`. `deriv` is zero where `f` is not differentiable along an entry, so what the gradient is
 at such a point is not claimed.
 
+## Inputs
+* `f` – real function on zonotopes
+* `Z` – zonotope
+
+## Output
+* zonotope of partial derivatives of `f`
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

@@ -11,6 +11,16 @@ public import Mathlib.Tactic.Module
 `x ↦ 2c - x` negates the coefficients, so a point of the zonotope is sent to a point of it
 ([1, Sec. 2.1]: "a zonotope is a centrally symmetric polytope").
 
+## Inputs
+* `Z` – zonotope
+* `x` – point
+
+## Hypotheses
+* `hx` – `x` lies in `Z`
+
+## Conclusion
+* the reflection of `x` through the center lies in `Z`
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

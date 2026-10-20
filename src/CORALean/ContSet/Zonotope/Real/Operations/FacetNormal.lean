@@ -8,19 +8,21 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # One row of [1, Thm. 2]'s `C`
 
-The normal the theorem attaches to a choice of `n` generators out of `p`: their
-`n`-dimensional cross product, [1, Def. 2]'s `nX`, taken at the matrix holding
-those generators as columns.
+The normal the theorem attaches to a choice of `n` generators out of `p`: their `n`-dimensional
+cross product, [1, Def. 2]'s `nX`, at the matrix holding those generators as columns.
+Unnormalized, where the printed `C⁽ⁱ⁾ = nX(...)ᵀ / ‖nX(...)‖₂` divides by the length: a halfspace
+is unchanged by scaling its normal and its offset together, and `Δd = ∑ |C G⁽ᵘ⁾|` scales with
+`C`, so the two describe the same set. The `2·C(p, n-1)` rows of the printed `C` are these
+`C(p, n-1)` normals and their negatives, which is why every statement over them takes an absolute
+value. The rows first appeared in [2, Thm. 7] and, at `p = n`, [2, Lemma 6].
 
-Unnormalized, where the printed `C⁽ⁱ⁾ = nX(...)ᵀ / ‖nX(...)‖₂` divides by the
-length. A halfspace is unchanged by scaling its normal and its offset together,
-and `Δd = ∑ |C G⁽ᵘ⁾|` scales with `C`, so the two describe the same set; the
-norm is there to make the rows comparable, which nothing here needs.
+## Inputs
+* `n` – dimension minus one
+* `Z` – zonotope
+* `S` – selected generator indices
 
-The `2·C(p, n-1)` rows of the printed `C` are these `C(p, n-1)` normals and
-their negatives, which is why every statement over them takes an absolute value.
-
-The rows first appeared in [2, Thm. 7] and, at `p = n`, [2, Lemma 6].
+## Output
+* cross product of the selected generators
 
 ## References
 

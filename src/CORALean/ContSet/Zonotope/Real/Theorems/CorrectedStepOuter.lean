@@ -16,6 +16,29 @@ public import Mathlib.Tactic.Abel
 [1, Prop. 1]: `x(k) = A x(k-1) + B u(k-1) + w`, and adding `Λ(y(k) - C x(k) - v) = 0` leaves `x(k)`
 at the zonotope's point with coefficients `(θ, ϖ, -σ)`, where `w = D_w ϖ` and `v = D_v σ`.
 
+## Inputs
+* `Λ` – correction matrix
+* `A` – state matrix
+* `B` – input matrix
+* `Dw` – disturbance generator matrix
+* `C` – output matrix
+* `Dv` – noise generator matrix
+* `u` – control input
+* `y` – measurement
+* `X` – state zonotope
+* `x` – state
+* `ϖ` – disturbance coefficients
+* `σ` – noise coefficients
+
+## Hypotheses
+* `hx` – state lies in `X`
+* `hϖ` – disturbance coefficients within the unit box
+* `hσ` – noise coefficients within the unit box
+* `hy` – measurement is consistent with the state
+
+## Conclusion
+* the next state lies in the corrected zonotope
+
 ## References
 
 * [1] Y. Wang, T. Alamo, V. Puig and G. Cembrano. "A distributed set-membership approach based on

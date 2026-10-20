@@ -11,6 +11,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 `corner s = (c - ∑ g) + 2 ∑_{s j} g_j`, the vector form of `corner_eq_bottom`: the walk of
 [1, Alg. 3] and [1, Alg. 4] starts at `P = c - ∑ g` (lines 1-8) and adds `2 g` per generator.
 
+## Inputs
+* `Z` – planar zonotope
+* `s` – corner signs
+
+## Hypotheses
+* none
+
+## Conclusion
+* the corner is the bottom plus twice the selected generators
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

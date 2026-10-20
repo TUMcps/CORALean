@@ -15,6 +15,14 @@ Neither `Nat.find` nor `Classical.choose`, unlike `reduceBoxOrder` beside it:
 `Z.h` decrements reach every order there is, so the bound is the set's own
 size — unlike `Alg. 2`, whose step sweep has none.
 
+## Inputs
+* `le` – decidable comparison on reals
+* `Z` – zonotope
+* `εSi` – admissible error share
+
+## Output
+* last order whose reduction clears the share
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

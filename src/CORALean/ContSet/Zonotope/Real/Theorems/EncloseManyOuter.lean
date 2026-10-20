@@ -18,6 +18,17 @@ so the round trip `R · R⁻¹` returns each point.
 
 Source: [1].
 
+## Inputs
+* `Zs` – cells to enclose
+* `direction` – main direction
+* `i` – cell index
+
+## Hypotheses
+* `hd` – direction nonzero
+
+## Conclusion
+* each cell lies in the enclosing box
+
 ## References
 
 * [1] `contSet/@zonotope/encloseMany.m`, CORA (Sep. 2025).

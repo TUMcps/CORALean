@@ -21,6 +21,17 @@ zonogon contains a stretch of the line on both sides. Two lines, `κ = 1` and `�
 four corners of a square about the point, and the zonogon is convex. Hence the frontier is among
 the edges of the two chains of [1, Alg. 3].
 
+## Inputs
+* `Z` – planar zonotope
+
+## Hypotheses
+* `hh` – at least one generator
+* `h1` – generators point upward
+* `h2` – generators sorted by angle
+
+## Conclusion
+* the frontier lies in the walk edges
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

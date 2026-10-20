@@ -13,20 +13,28 @@ public import Mathlib.Tactic.Positivity
 /-!
 # An interval matrix of small entries moves a zonotope only a little
 
-How far the result of `mtimesIntervalMat` reaches, measured against the entries
-of the interval matrix rather than against the matrices it denotes: a bound on
-the center and one on the radius, each against the operand's `ℓ¹` reach
-`∑ⱼ absBound j`, which is what both the boxed generators and the center's rows
-are summed over.
+How far the result of `mtimesIntervalMat` reaches, measured against the entries of the interval
+matrix rather than against the matrices it denotes: a bound on the center and one on the radius,
+each against the operand's `ℓ¹` reach `∑ⱼ absBound j`, which both the boxed generators and the
+center's rows are summed over. The direction is the one an error measure needs —
+`mtimesIntervalMat_outer` bounds the operation from below. The radius is what the boxed generators
+carry and the center what the ordinary ones do, so the two bounds enter the total additively:
+`inputRemainder` has center zero and pays only `ρr`, while `correctionMatrix` pays both.
 
-The direction is the one an error measure needs — `mtimesIntervalMat_outer`
-bounds the operation from below, and a caller asking how much an enclosure
-exceeds an exact set is asking how large this product is.
+## Inputs
+* `ρc` – center entry bound
+* `ρr` – radius entry bound
+* `IM` – interval matrix
+* `Z` – zonotope
 
-The radius is what the boxed generators carry and the center what the ordinary
-ones do, so the two bounds enter the total additively and neither is dropped:
-`inputRemainder` has center zero and pays only `ρr`, while `correctionMatrix`
-pays both.
+## Hypotheses
+* `hρc` – center bound nonnegative
+* `hρr` – radius bound nonnegative
+* `hc` – center entries bounded
+* `hr` – radius entries bounded
+
+## Conclusion
+* the product lies in a ball of the stated radius
 -/
 
 -- Authors:       Claude Opus 5

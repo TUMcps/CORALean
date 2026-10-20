@@ -14,6 +14,15 @@ fixed `n`, the proposition's chain. Read off `exhaustiveSearchCost` at `p = n + 
 through `exhaustiveSearchCost_ops_le`, then `C(n + κ, n) ≤ (n + κ)ⁿ` and
 `n + κ ≤ 2κ` once `κ ≥ n`.
 
+## Inputs
+* `n` – dimension
+
+## Hypotheses
+* none
+
+## Conclusion
+* filtered search cost is `O(κⁿ⁺¹)` in the extra generators `κ`
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid

@@ -13,6 +13,13 @@ Not `Plus.plus (Zonotope.ofPoint (-w))`, which only encloses — a plain field
 update is exact by construction and needs no theorem to say so at the call
 site.
 
+## Inputs
+* `Z` – zonotope
+* `w` – shift vector
+
+## Output
+* zonotope translated by `-w`
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

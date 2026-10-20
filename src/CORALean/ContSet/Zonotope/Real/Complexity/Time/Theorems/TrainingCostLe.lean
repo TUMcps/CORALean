@@ -13,6 +13,27 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Theorems.TrainingCo
 [1, Prop. 17]: `O(n_max² q κ)`, at most `2 C N² Q κ` for `κ ≥ 1`,
 `C = cNeuron + 2 cBack + 2 cGrad + 50`.
 
+## Inputs
+* `cNeuron` – cost of one neuron
+* `cGrad` – cost of one gradient step
+* `cBack` – cost of one backpropagation step
+* `N` – width bound
+* `Q` – generator bound
+* `n` – input dimension
+* `k` – output dimension
+* `net` – set-based network
+* `h` – input generator count
+
+## Hypotheses
+* `hN` – width bound positive
+* `hh` – input generators present
+* `hw` – network width within the bound
+* `hq` – generator total within the bound
+* `hκ` – depth positive
+
+## Conclusion
+* training cost is at most `2C N² Q` times the depth
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

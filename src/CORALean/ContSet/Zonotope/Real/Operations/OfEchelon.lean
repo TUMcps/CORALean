@@ -13,6 +13,16 @@ public import Mathlib.Data.Matrix.Mul
 `R = T⁻¹V`, so that `Z = {[T TR], c}`. This is that zonotope: the `n` columns of `T`, then
 `T r` for every column `r` of `R`. "`Z̃` can be recovered after the update as `{[T TR], c}`."
 
+## Inputs
+* `n` – dimension
+* `k` – column count
+* `c` – center
+* `T` – basis matrix
+* `R` – echelon columns
+
+## Output
+* zonotope with generators `T` and `T R`
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

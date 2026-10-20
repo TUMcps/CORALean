@@ -18,6 +18,12 @@ along the generators one after another, left to right. It is defined by recursio
 number `m` of generators, the last generator last (`Fin.init` drops it); `generatorHull_eq`
 and `generatorHull_symmetric` are its parametrizations.
 
+## Inputs
+* `s` – starting point
+
+## Output
+* set swept by adding the generators in order
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

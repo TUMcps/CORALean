@@ -15,6 +15,17 @@ allows.
 Needs no hypothesis on `B`: an admissible `o` in hand is itself the witness
 that the set is inhabited, so the empty-set branch of `sInf` cannot be the one
 taken — the same shape `MatExp.expRemainderOrder_le` has.
+
+## Inputs
+* `Z` – zonotope
+* `B` – admissible bound
+* `o` – admissible order
+
+## Hypotheses
+* `h` – `o` is admissible for `B`
+
+## Conclusion
+* the chosen order is at most `o`
 -/
 
 -- Authors:       Claude Opus 5

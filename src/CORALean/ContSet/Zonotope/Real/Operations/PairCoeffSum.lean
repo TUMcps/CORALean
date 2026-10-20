@@ -15,6 +15,15 @@ alone.
 A proof device rather than an operation, hence in `Theorems/`: it only ever
 witnesses an existential and is never run. The float layer and
 `PolyZonotope.linComb`'s independent block use the same one.
+
+## Inputs
+* `β₁` – first coefficients
+* `β₂` – second coefficients
+* `lam` – pairing weight
+* `j` – pair index
+
+## Output
+* coefficient of the paired-sum generator
 -/
 
 -- Authors:       Claude Opus 5

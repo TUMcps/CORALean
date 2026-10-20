@@ -11,6 +11,19 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceLineCl
 `(o - 1) * n + n = o * n` above the order and unchanged at or below it, the bound
 of `reducePCA_order_le`, here for [1, Alg. 3]. At `o = 0` there is nothing to state.
 
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+* `ξ` – convergence threshold
+* `fuel` – iteration budget
+* `runs` – number of restarts
+
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* the result has at most `o n` generators
+
 ## References
 
 * [1] A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of

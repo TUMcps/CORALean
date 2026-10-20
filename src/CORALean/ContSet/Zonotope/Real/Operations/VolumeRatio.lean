@@ -13,15 +13,18 @@ public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 CORA's `@zonotope/volumeRatio(Z, P, dims)` [1]: how much larger an over-approximating polytope
 `P` is than the zonotope `Z`, as the mean over the `n - dims + 1` windows of `dims` consecutive
 coordinates of the normalized ratio `(vol(P|window) / vol(Z|window))^(1/dims)` of the volumes of
-the two projections.
+the two projections. `n = d + k`, `dims = d`, the windows indexed by `i : Fin (k + 1)`. The volumes
+are Lebesgue measures of the projected sets, in `ENNReal`: `Zonotope.volume` for the zonotope (as
+far as `volume_eq_of_h_eq` and `volume_eq_of_rank_lt` reach), `HPolytope.volume` for the polytope.
+A zero projected zonotope volume gives `⊤` for a positive polytope volume where CORA divides by
+zero and gets `Inf`.
 
-`n = d + k`, `dims = d`, and the windows are indexed by `i : Fin (k + 1)`. The volumes are the
-Lebesgue measures of the projected sets, in `ENNReal`: for a zonotope this is the quantity
-CORA's `volume(Zproj)` computes (`Zonotope.volume` for it, as far as `volume_eq_of_h_eq` and
-`volume_eq_of_rank_lt` reach), and for the polytope `HPolytope.volume`, here at the projected set
-(the image of the polytope's set, which is what CORA's exact `project(P)` denotes). A zero
-projected zonotope volume gives `⊤` for a positive polytope volume where CORA divides by zero and
-gets `Inf`.
+## Inputs
+* `Z` – zonotope
+* `P` – polytope
+
+## Output
+* mean volume ratio over the coordinate windows
 
 ## References
 

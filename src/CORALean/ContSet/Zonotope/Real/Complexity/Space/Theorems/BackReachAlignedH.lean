@@ -10,6 +10,21 @@ public import CORALean.ContSet.Zonotope.Real.Operations.BackReachAligned
 [1, Sec. IV-B]: `N_{k+1} = N_k + N_U`, a step keeps `Z_k`'s generators (the aligned
 difference subtracts generator-wise) and adds `U`'s. `rfl` through the definition.
 
+## Inputs
+* `A` – state matrix
+* `B` – input matrix
+* `K` – constant offset vector
+* `U` – input zonotope
+* `Z₀` – initial zonotope
+* `σ` – alignment-direction selector
+* `k` – step count
+
+## Hypotheses
+* none
+
+## Conclusion
+* generator count grows by that of `U` per step
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

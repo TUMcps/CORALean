@@ -7,21 +7,21 @@ public import CORALean.ContSet.Zonotope.Real.Operations.MethCVolume
 /-!
 # `Zonotope.methCBasis`
 
-Stage two of `methC`: an exhaustive search over every `n`-selection of what the
-length filter left, answering with the one of largest spanned volume. Total and
-terminating without a fuel bound — `Fin n ↪ Fin (min (n + 8) r)` is a finite
-type, so the search is a maximum over a `Finset`, not a recursion. It is
-noncomputable, as every real-ranked choice in this development is.
+Stage two of `methC`: an exhaustive search over every `n`-selection of what the length filter
+left, answering with the one of largest spanned volume. Total and terminating without a fuel
+bound — `Fin n ↪ Fin (min (n + 8) r)` is a finite type, so the search is a maximum over a
+`Finset`, noncomputable as every real-ranked choice here. CORA keeps `filterLength(2) = n + 3`
+candidates and picks by zonotope volume [1]; this is its code path at `rem = 1`, a single-entry
+shortlist. `methC_volume_le` is what the search delivers; nothing claims the enclosure is
+tightest. Fewer than `n` candidates leaves nothing to select: the answer is `1`, which boxes along
+the axes (`reduceBy`).
 
-CORA runs the search at `filterLength(2) = n + 3`, keeps that many, and picks
-between them by the volume of the zonotope each would produce [1]. That second
-pass needs a zonotope volume this development does not have, so what is here is
-CORA's own code path at `rem = 1`: the shortlist is a single entry and
-`priv_volumeFilter` has nothing left to choose. `methC_volume_le` is what the
-search is proved to deliver; nothing claims the resulting enclosure is tightest.
+## Inputs
+* `Z` – zonotope
+* `part` – split of the generators
 
-Fewer than `n` candidates leaves nothing to select, and the answer is `1` —
-whereupon `reduceMethC` boxes along the axes, which is `reduceBy`.
+## Output
+* basis of the filtered generators of largest volume
 
 ## References
 

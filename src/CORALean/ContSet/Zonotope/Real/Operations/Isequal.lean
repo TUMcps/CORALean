@@ -13,6 +13,13 @@ generator matrices, each `compact_(.,'all')`ed, are equal up to the order of the
 column by column, which is stricter than CORA on both counts: neither the reordering of columns
 nor the merging of parallel generators is modelled. So the test is sound, not exact (the
 converse fails: the generator lists 1, 1 and 2 generate the same interval).
+
+## Inputs
+* `Z` – first zonotope
+* `S` – second zonotope
+
+## Output
+* `Prop` that center and generators agree in order
 -/
 
 -- Authors:       Claude Opus 5.5

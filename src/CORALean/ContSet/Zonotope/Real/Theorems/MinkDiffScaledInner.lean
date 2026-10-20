@@ -9,19 +9,32 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 # A diagonally-scaled zonotope, an inner-approximation of the Pontryagin difference
 
 `[1, Thm. 7]`: given zonotopes `Z1 = {G1, c1}`, `Z2 = {G2, c2}`, a sufficient condition for
-`Z̃d = {[G1 G2]Φ, cd}`, `Φ = diag(φ)`, `φₖ > 0`, to be an inner-approximation
-`Z̃d ⊆ Z1 ⊖ Z2` of the Pontryagin difference — `minkowskiDiff`, `[1, Def. 5]` — is the existence of
-`Γ`, `β` with
+`Z̃d = {[G1 G2]Φ, cd}`, `Φ = diag(φ)`, `φₖ > 0`, to be an inner-approximation `Z̃d ⊆ Z1 ⊖ Z2` of
+the Pontryagin difference (`minkowskiDiff`) is the existence of `Γ`, `β` with
+`φₖ • [G1 G2]ₖ = ∑ⱼ Γₐⱼₖ • G1ⱼ` and `G2ᵢ = ∑ⱼ Γᵦⱼᵢ • G1ⱼ` (`eq. (32a)`), `c1 - (cd + c2) =
+∑ⱼ βⱼ • G1ⱼ` (`eq. (32b)`), and `∑ₖ |Γₐⱼₖ| + ∑ᵢ |Γᵦⱼᵢ| + |βⱼ| ≤ 1` for every row `j`
+(`eq. (32c)`). `Γₐ`, `Γᵦ` are `[1]`'s single `Γ` split into the two column blocks `(32a)`
+concatenates. The paper's own proof reduces this to the Sadraddini–Tedrake containment condition
+(`Lemma 3`, not drawn on here) for `Z̃d ⊕ Z2 ⊆ Z1`; this file gives the direct argument.
 
-* `φₖ • [G1 G2]ₖ = ∑ⱼ Γₐⱼₖ • G1ⱼ`, every generator `k` of `[G1 G2]`        (`eq. (32a)`, left)
-* `G2ᵢ = ∑ⱼ Γᵦⱼᵢ • G1ⱼ`, every generator `i` of `G2`                     (`eq. (32a)`, right)
-* `c1 - (cd + c2) = ∑ⱼ βⱼ • G1ⱼ`                                          (`eq. (32b)`)
-* `∑ₖ |Γₐⱼₖ| + ∑ᵢ |Γᵦⱼᵢ| + |βⱼ| ≤ 1`, every row `j`                       (`eq. (32c)`)
+## Inputs
+* `Z1` – minuend
+* `Z2` – subtrahend
+* `φ` – generator scalings
+* `cd` – center of the difference
+* `ΓA` – coefficients of the scaled generators
+* `ΓB` – coefficients of the subtrahend generators
+* `β` – center coefficients
 
-`Γₐ`, `Γᵦ` are `[1]`'s single `Γ ∈ ℝ^{ng1×(ng1+2ng2)}` split into the two column blocks `(32a)`
-concatenates, not a different hypothesis. The paper's own proof reduces this to the
-Sadraddini–Tedrake containment condition (`Lemma 3`, not drawn on here — see the page) for
-`Z̃d ⊕ Z2 ⊆ Z1`; this file gives the direct argument that condition would give at `Γ := [Γₐ Γᵦ]`.
+## Hypotheses
+* `_hφ` – scalings positive
+* `hA` – scaled generators expressed through `Z1`
+* `hB` – subtrahend generators expressed through `Z1`
+* `hc` – center difference expressed through `Z1`
+* `hbound` – row sums at most one
+
+## Conclusion
+* the scaled zonotope lies in the Minkowski difference
 
 ## References
 

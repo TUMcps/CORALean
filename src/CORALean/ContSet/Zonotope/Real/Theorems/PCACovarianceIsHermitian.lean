@@ -17,6 +17,16 @@ It earns a file because of what it unlocks rather than what it says: Mathlib's
 spectral theorem for matrices is stated for `Matrix.IsHermitian`, so this is
 the term `pcaBasis` feeds to `Matrix.IsHermitian.eigenvectorUnitary` to get an
 eigenvector basis at all.
+
+## Inputs
+* `Z` – zonotope
+* `part` – split of the generators
+
+## Hypotheses
+* none
+
+## Conclusion
+* the scatter matrix is Hermitian
 -/
 
 -- Authors:       Claude Opus 5

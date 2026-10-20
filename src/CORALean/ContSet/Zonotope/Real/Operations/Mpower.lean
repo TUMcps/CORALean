@@ -12,6 +12,12 @@ CORA's `@matZonotope/mpower`: the zero power is the identity (center `eye`, no g
 first is the zonotope itself, and from the second on `matZ * matZ` is multiplied by `matZ` on the
 right, once per further exponent. Only for square matrices (`eye(dim(matZ))` of a rectangular
 zonotope is no identity, and the product needs a square one).
+
+## Inputs
+* `Z` – matrix zonotope
+
+## Output
+* enclosure of its powers
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -8,22 +8,31 @@ public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffStretch
 /-!
 # `Zonotope.minkDiffStretch` over-approximates the Minkowski difference
 
-[1, Thm. 5]. Same operation as `minkDiffStretch_inner`, opposite direction and
-a different `µ`: `hμ` is the printed constraint `-Âµ ≤ -b̃`, so the stretched
-minuend is pushed *out* until it covers the difference rather than in until it
-is covered.
+[1, Thm. 5]. Same operation as `minkDiffStretch_inner`, opposite direction and a different `µ`:
+`hμ` is the printed constraint `-Âµ ≤ -b̃`, so the stretched minuend is pushed *out* until it
+covers the difference. `b` is [1]'s `b̃`, a parameter rather than (18)'s optimum, with the only
+property the proof uses: that it bounds the exact difference in each direction.
+`minkowskiDiff_apply_le` proves `Δd - Δd_trans` is one such `b`, the most conservative value.
+`hCd` is the standing premise, as in `minkDiffStretch_inner` but read at the *stretched* minuend:
+(12b) is an equivalence only when `C` describes the set, and the over-approximation may not drop a
+halfspace where the under-approximation may; `hRep_lin_subset` discharges it at [1, Thm. 2]'s rows.
 
-`b` is [1]'s `b̃`, and is a parameter rather than (18)'s optimum, with the only
-property that proof uses asked of it: that it bounds the exact difference in
-each direction. `minkowskiDiff_apply_le` proves `Δd - Δd_trans` is one such
-`b`, the most conservative admissible value — (18) only lowers it, and lowering
-it weakens `hμ`, which is the whole point of that linear program.
+## Inputs
+* `ι` – direction index type
+* `Z₁` – minuend
+* `Z₂` – subtrahend
+* `C` – linear directions
+* `μ` – stretch factors
+* `b` – offset bounds
 
-`hCd` is the standing premise, as in `minkDiffStretch_inner` but read at the
-*stretched* minuend: (12b) is an equivalence only when `C` describes the set,
-and [1] notes in so many words that the over-approximation may not drop a
-halfspace where the under-approximation may. `hRep_lin_subset` discharges it at
-[1, Thm. 2]'s own normals, whose positive rescaling by `µ` that lemma allows.
+## Hypotheses
+* `hμ0` – factors nonnegative
+* `hb` – offsets bound the difference
+* `hμ` – factors reach the offset bounds
+* `hCd` – directions describe the stretched minuend
+
+## Conclusion
+* the Minkowski difference lies in the stretched minuend
 
 ## References
 

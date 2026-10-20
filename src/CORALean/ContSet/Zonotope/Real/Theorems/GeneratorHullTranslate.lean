@@ -17,6 +17,18 @@ public import Mathlib.Tactic.Ring
 zonotope is easily centered at 0 by taking `v = −(s + ½ ∑ gᵢ)`. Both are the cube's
 image, and the shift is the additive constant.
 
+## Inputs
+* `s` – starting point
+* `v` – translation
+* `m` – generator count
+* `g` – generators
+
+## Hypotheses
+* none
+
+## Conclusion
+* translating the start translates the hull
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

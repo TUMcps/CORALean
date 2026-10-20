@@ -17,6 +17,16 @@ and `sᵢᵢ ≠ 0` makes `diag(s) diag(1/s) = 1`, so `C · V diag(1/s) Uᵀ = 1
 Eq. 13 as printed omits `sᵢᵢ ≠ 0`, which its `1/sᵢᵢ` presumes. Nothing is claimed about the
 volume.
 
+## Inputs
+* `Z` – zonotope
+* `opt` – solver
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Z` lies in the reduced zonotope
+
 ## References
 
 * [1] A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of

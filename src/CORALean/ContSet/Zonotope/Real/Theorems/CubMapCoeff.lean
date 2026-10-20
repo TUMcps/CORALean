@@ -15,13 +15,21 @@ public import Mathlib.Tactic.Ring
 The point `x = c + Σⱼ pⱼ g⁽ʲ⁾` of a zonotope, with extended factors `β = (1, p₁, ..., p_h)`, is
 `x = Σₐ βₐ [c,G]ₐ`, so the `i`-th coordinate of `(xᵀ T x) * x` is the cubic polynomial
 `Σ_c Σₐ Σ_b β_c βₐ β_b t(a, b, c)`. CORA collects it over the sorted triples (`cubFold`), the
-pure squares `β_k²` of the constant monomial `β₀ β_k β_k` carried as `0.5 + 0.5 (2 β_k² - 1)`.
-The coefficients of the generators are `βₓ β_y β_z`, `2β_y² - 1` at `(0, y, y)`: all in `[-1, 1]`.
-That is the only place the enclosure is lost.
-
+pure squares `β_k²` carried as `0.5 + 0.5 (2 β_k² - 1)`. The coefficients of the generators are
+`βₓ β_y β_z`, `2β_y² - 1` at `(0, y, y)`: all in `[-1, 1]`, the only place the enclosure is lost.
 `aux_cubMap_regroup` is the combinatorial step: the ordered triples `(c; a ≤ b)` and the sorted
-triples `x ≤ y ≤ z` are the same sum, `(c; a, b)` landing on the sorted triple of `{c, a, b}`,
-`c ≤ a` on `(c, a, b)`, `a < c ≤ b` on `(a, c, b)`, `b < c` on `(a, b, c)`.
+triples `x ≤ y ≤ z` are the same sum.
+
+## Inputs
+* `T` – cubic tensor
+* `Z` – zonotope
+* `p` – generator coefficients
+
+## Hypotheses
+* `hp` – coefficients within the unit box
+
+## Conclusion
+* the cubic image has coefficients in the unit box
 -/
 
 -- Authors:       Claude Opus 5.5

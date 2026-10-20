@@ -30,6 +30,15 @@ generators. Here `⟨0, [(3,0), (2,0), (0,1)]⟩` with `eta_new = 2` (`order = 1
 `n·order < 3` and the reduction runs). Also, line 280 multiplies the unsorted `generators(Z)` by
 the `T` built for the sorted ones; since every row of `T` has `‖·‖₁ ≤ 1` the result stays inside
 `Z`, but it is not the paper's reduction. Only the `0/0` is stated.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA divides zero by zero in the Raghuraman reduction
 -/
 
 -- Authors:       Claude Opus 5.5

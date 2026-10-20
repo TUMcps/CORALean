@@ -16,6 +16,15 @@ span, which is the direction of the affine hull (`vectorSpan_construct`). Applie
 u`, its center `c + ∑ sign(u gⱼ)gⱼ` is a point "in the interior of `F`" as [1, Cor. 3.5] asks. Over
 any real normed space; `isFullDim_iff` is the full-dimensional case.
 
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the center lies in the relative interior of `Z`
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

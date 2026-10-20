@@ -9,16 +9,21 @@ public import CORALean.ContSet.Zonotope.Real.Operations.DominantScore
 # `Zonotope.dominantDirections`
 
 CORA's `dominantDirections(Z, filterLength1, filterLength2)` [1]: "the directions that span a
-parallelotope which tightly encloses a zonotope". The generators go through `nonzeroFilter`, the
-length filter (`filterLength1 = n + 5` of the longest), the generator volume filter
-(`filterLength2 = n + 3` subsets of largest `|det|`), and `priv_volumeFilter` picks the subset whose
-parallelotope `P box(P⁻¹ Z)` has the least volume; the answer is its `n` generators as columns.
-Both lengths are clamped to the number of non-zero generators, as CORA does.
+parallelotope which tightly encloses a zonotope". The generators go through the length filter
+(`filterLength1 = n + 5` of the longest), the volume filter (`filterLength2 = n + 3` subsets of
+largest `|det|`), and `priv_volumeFilter` picks the subset whose parallelotope `P box(P⁻¹ Z)` has
+the least volume; the answer is its `n` generators as columns. Both lengths are clamped to the
+number of non-zero generators. CORA errors where fewer than `n` generators are left; here that is
+`none`. "Encloses" holds only if the answer is invertible (`dominantDirections_outer`), which is
+not always the case (`references/coverage/contSet/zonotope.md`, row `dominantDirections`).
 
-CORA errors where fewer than `n` generators are left (`combinator` of more rows than columns);
-here that is `none`. The guarantee "encloses" holds only if the answer is invertible
-(`dominantDirections_outer`), which is not always the case
-(`references/coverage/contSet/zonotope.md`, row `dominantDirections`).
+## Inputs
+* `Z` – zonotope
+* `filterLength₁` – length-filter size
+* `filterLength₂` – volume-filter size
+
+## Output
+* generator basis of least parallelotope volume, if any
 
 ## References
 

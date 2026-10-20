@@ -15,6 +15,17 @@ zonotope inside the sup-norm ball of that radius, `Vec ℝ n`'s norm being the
 supremum one. What is new here is stating it for the zonotope alone, with no
 operation attached, so it composes with any bound on `absBound` rather than
 only the one that proof derives.
+
+## Inputs
+* `Z` – zonotope
+* `r` – ball radius
+
+## Hypotheses
+* `hr` – radius nonnegative
+* `h` – every coordinate bound at most `r`
+
+## Conclusion
+* `Z` lies in the ball of radius `r`
 -/
 
 -- Authors:       Claude Opus 5

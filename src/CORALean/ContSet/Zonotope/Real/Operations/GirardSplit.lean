@@ -18,6 +18,16 @@ A definition of its own rather than a helper inside `reduceGirard`: one
 partition says both what the reduction keeps and what its error box absorbs, so
 `reduceGirard` and `reduceBox` read the same one from here.
 
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Hypotheses
+* `hlt` – reduction needed
+
+## Output
+* split into kept and absorbed generators
+
 ## References
 
 * [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid

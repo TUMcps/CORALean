@@ -13,6 +13,18 @@ which is what `Ωᵢ` is (`LinearSysDT.glmReach_eq`). A point of `Box_S(Z)` on `
 `f_e` between `m_{n_e}` and `M_{n_e}`, and `Z`, being convex, reaches every value between
 the two (`Zonotope.inter_hyperplane_iff`); the converse is `Z ⊆ Box_S(Z)`.
 
+## Inputs
+* `Z` – zonotope
+* `S` – finite set of directions
+* `nₑ` – hyperplane normal
+* `fₑ` – hyperplane offset
+
+## Hypotheses
+* `hnₑ` – normal is one of the directions
+
+## Conclusion
+* the box meets the hyperplane iff `Z` does
+
 ## References
 
 * [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of

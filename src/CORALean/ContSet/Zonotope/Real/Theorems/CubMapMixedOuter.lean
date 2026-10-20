@@ -11,6 +11,18 @@ CORA's `@zonotope/cubMap` for three zonotopes:
 `{ (x₁ᵀ T x₂) * x₃ | x₁ ∈ Z₁, x₂ ∈ Z₂, x₃ ∈ Z₃ } ⊆ Z₁.cubMapMixed T Z₂ Z₃`. Outer only: the three
 families of factors are independent, but the generators `β₃ⱼ β₂ᵦ β₁ₐ` are products of them, tied to
 each other. The coefficients are `Zonotope.cubMapMixed_coeff`.
+
+## Inputs
+* `T` – cubic tensor
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+* `Z₃` – third zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the mixed cubic images lie in the result
 -/
 
 -- Authors:       Claude Opus 5.5

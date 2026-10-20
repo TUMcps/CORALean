@@ -13,6 +13,22 @@ and `Zonotope.minkDiffRowOffset`, where `hrows` is the theorem `Zonotope.minkows
 at [1, Thm. 2]'s own hypothesis that the minuend's generators span. The minimum H-representation
 `hmin`/`hirr` stays a hypothesis here; `gen_not_required_iff_of_fullDim` discharges it.
 
+## Inputs
+* `n` – dimension minus two
+* `Zm` – minuend
+* `Zs` – subtrahend
+* `Red` – redundant rows
+* `i` – generator index
+
+## Hypotheses
+* `hspan` – generators span the space
+* `hRed` – redundant rows have `n + 1` generators
+* `hmin` – non-redundant rows suffice
+* `hirr` – non-redundant rows irredundant
+
+## Conclusion
+* the count is reached iff the rows without generator `i` suffice
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

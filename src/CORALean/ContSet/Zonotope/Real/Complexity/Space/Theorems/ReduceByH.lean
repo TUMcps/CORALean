@@ -11,6 +11,16 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
 generator per output coordinate, `n` — never smaller than `n`, however small
 `q` is chosen. `Theorems/ReduceOrder.lean` turns this into a bound on the
 reduction order. `rfl`, since `Operations/ReduceBy.lean` states `h` directly.
+
+## Inputs
+* `Z` – zonotope
+* `part` – split of the generator indices
+
+## Hypotheses
+* none
+
+## Conclusion
+* result has `q + n` generators
 -/
 
 -- Authors:       Claude Opus 5

@@ -23,6 +23,18 @@ gradient set is the partial derivatives along single entries, and a direction is
 single-entry ones, `Df` being linear: the step the chain-rule proofs of [1, Prop. 13 (linear)] and
 [1, Prop. 14] take as `Σᵢ c'ₖ(i) ∇cₖ(i) + Σᵢ Σⱼ G'ₖ(i,j) ∇Gₖ(i,j)`.
 
+## Inputs
+* `ℒ` – real function on zonotopes
+* `Y` – zonotope
+* `u` – center direction
+* `U` – generator directions
+
+## Hypotheses
+* `hF` – `ℒ` differentiable at `Y`
+
+## Conclusion
+* the derivative is the pairing with the gradient zonotope
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

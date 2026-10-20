@@ -17,6 +17,20 @@ that entry of `W_k`. As in the paper's proof, `∂c_k(i)/∂W_k(i,j) = c_{k-1}(j
 ∂W_k(i,j) = G_{k-1}(j,l)`; the loss is differentiable at the layer's output in the center and
 generator entries together, which the paper takes for granted.
 
+## Inputs
+* `ℒ` – loss on zonotopes
+* `W` – weight matrix
+* `b` – bias vector
+* `H` – input zonotope
+* `i` – row index
+* `j` – column index
+
+## Hypotheses
+* `hF` – loss differentiable at the output
+
+## Conclusion
+* the weight derivative is built from center and generator gradients
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

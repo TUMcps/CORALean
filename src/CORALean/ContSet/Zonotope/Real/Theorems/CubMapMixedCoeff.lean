@@ -16,6 +16,23 @@ The three arguments of the mixed cubic map `(x₁ᵀ T x₂) * x₃` are points 
 three independent zonotopes, so the image is the trilinear polynomial
 `Σⱼ Σᵦ Σₐ β₃ⱼ β₂ᵦ β₁ₐ t(a, b, j)` in the extended factors `(1, p)` of each, one generator per
 triple. Each product is in `[-1, 1]`, which is the only place the enclosure is lost.
+
+## Inputs
+* `T` – cubic tensor
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+* `Z₃` – third zonotope
+* `p₁` – first coefficients
+* `p₂` – second coefficients
+* `p₃` – third coefficients
+
+## Hypotheses
+* `hp₁` – first coefficients within the unit box
+* `hp₂` – second coefficients within the unit box
+* `hp₃` – third coefficients within the unit box
+
+## Conclusion
+* the mixed cubic image has coefficients in the unit box
 -/
 
 -- Authors:       Claude Opus 5.5

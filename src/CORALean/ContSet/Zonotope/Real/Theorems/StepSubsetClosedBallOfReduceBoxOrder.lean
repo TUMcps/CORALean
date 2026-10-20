@@ -16,6 +16,23 @@ named, not one the reduction happened to produce. This is the missing half
 `reduceBoxOrder`'s own docstring named: a width bound to discharge it against,
 now supplied.
 
+## Inputs
+* `A` – state matrix
+* `Z` – zonotope
+* `U` – input zonotope
+* `r` – radius of `Z`
+* `rU` – radius of `U`
+* `ε` – box tolerance
+
+## Hypotheses
+* `hn` – dimension positive
+* `hZ` – `Z` lies in its ball
+* `hU` – `U` lies in its ball
+* `hε` – tolerance nonnegative
+
+## Conclusion
+* the step with the chosen order lies in the ball of radius `‖A‖ r + rU + ε`
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

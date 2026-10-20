@@ -14,6 +14,22 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ShiftMemIff
 `plus`, `mtimes` and `shift` are exact, and the image under `A⁻¹` is the preimage under
 `A`. Both directions of [1, Prop. 5] read the step through this.
 
+## Inputs
+* `A` – state matrix
+* `B` – input matrix
+* `K` – constant offset vector
+* `U` – input zonotope
+* `Z₀` – initial zonotope
+* `σ` – alignment-scaling selector
+* `k` – step count
+* `x` – point
+
+## Hypotheses
+* `hA` – `A` invertible
+
+## Conclusion
+* membership in the next set is a difference-plus-input condition
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

@@ -17,6 +17,16 @@ public import Mathlib.Tactic.Ring
 convex and holds `A` (at `α = 0`) and `A + x` (at `α = 1`), so it holds the hull; and
 `a + αx = (1 − α) a + α (a + x)` is in the hull. The paper states it without proof.
 
+## Inputs
+* `A` – convex set
+* `x` – vector
+
+## Hypotheses
+* `hA` – `A` convex
+
+## Conclusion
+* the segment sum is the set of `a` plus multiples of `x`
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

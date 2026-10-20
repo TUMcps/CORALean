@@ -14,6 +14,17 @@ and a point of `Z₂` (coefficients `γ`) whose coefficients agree on the first 
 two have in common. Equality, not enclosure: dropping the agreement is `plus`, of which this is a
 subset. The proof regroups the coefficients of the result, `[shared | rest of Z₁ | rest of Z₂]`,
 into `β` and `γ` and back.
+
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+* `k` – number of coupled leading generators
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set of sums with the first `k` coefficients shared
 -/
 
 -- Authors:       Claude Opus 5.5

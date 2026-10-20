@@ -8,22 +8,28 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedOuter
 /-!
 # `Zonotope.minkDiffAligned` computes the Minkowski difference exactly
 
-[1, Prop. 5] as it is printed: at aligned generators the difference is not
-approximated but *computed*, `c⁽ᵐ⁾ - c⁽ˢ⁾` and `G⁽ᵐ⁾ - G⁽ˢ⁾` and nothing else.
-Both inclusions are available — `minkDiffAligned_inner` splits a membership into
-one of each operand, `minkDiffAligned_outer` collapses [1, Thm. 1]'s recursion
-onto the same closed form — so this is their antisymmetry.
+[1, Prop. 5] as it is printed: at aligned generators the difference is *computed*,
+`c⁽ᵐ⁾ - c⁽ˢ⁾` and `G⁽ᵐ⁾ - G⁽ˢ⁾` and nothing else. Both inclusions are available —
+`minkDiffAligned_inner` splits a membership into one of each operand, `minkDiffAligned_outer`
+collapses [1, Thm. 1]'s recursion onto the same closed form — so this is their antisymmetry. The
+scaling `μ` is the alignment witness [1, Def. 3] asks to exist, explicit because the closed form
+is about a particular pairing of the two generator families, which `hh` alone does not fix.
+`0 ≤ μᵢ ≤ 1` is not in [1, Prop. 5], and is no convenience: outside it the equality fails in both
+directions (`minkDiffAligned_not_inner`). [2, Prop. 3] is the same for [2, Def. 1]'s zonotopes.
 
-The scaling `μ` is the alignment witness [1, Def. 3] asks to exist; it is
-explicit here because the closed form is a statement about a particular pairing
-of the two generator families, which `hh` alone does not fix.
+## Inputs
+* `Z₁` – minuend
+* `Z₂` – subtrahend
+* `μ` – generator scalings
 
-`0 ≤ μᵢ ≤ 1` is not in [1, Prop. 5], and is not a convenience: outside it the
-equality fails in both directions, and `minkDiffAligned_not_inner` is the
-witness. Inside it, no hypothesis beyond the paper's alignment is needed.
+## Hypotheses
+* `hh` – equal generator counts
+* `hμ0` – scalings nonnegative
+* `hμ1` – scalings at most one
+* `hG` – generators of `Z₂` scale those of `Z₁`
 
-[2, Prop. 3] is the same statement for [2, Def. 1]'s aligned zonotopes, `Z ⊖ Z' =
-([(1 - α₁)g₁, …, (1 - α_N)g_N], c - c')`, with `αᵢ ∈ [0, 1]` part of the definition.
+## Conclusion
+* the closed form equals the Minkowski difference
 
 ## References
 

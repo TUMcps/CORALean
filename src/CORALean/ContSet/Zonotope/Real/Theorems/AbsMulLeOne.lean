@@ -11,6 +11,18 @@ Scaling by a weight in `[0,1]` cannot leave the unit ball, which is the shape a
 convex combination of two zonotopes takes. Stated in both arithmetic layers'
 terms — it is arithmetic on `ℝ` and nothing else — though no proof in the tree
 reaches for it as it stands.
+
+## Inputs
+* `a` – first factor
+* `b` – second factor
+
+## Hypotheses
+* `ha0` – `a` nonnegative
+* `ha1` – `a` at most one
+* `hb` – `b` within the unit interval
+
+## Conclusion
+* the product has absolute value at most one
 -/
 
 -- Authors:       Claude Opus 5

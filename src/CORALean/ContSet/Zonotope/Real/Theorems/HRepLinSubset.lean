@@ -7,15 +7,25 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.HRepEq
 /-!
 # [1, Thm. 2] in the shape [1, Thm. 4] and [1, Thm. 5] ask for it
 
-Those two carry `hCm`/`hCd`, the premise that their directions `C` *describe*
-the minuend rather than only enclose it, as an explicit hypothesis. This is what
-discharges it: any family of linear forms carrying both signs of every
-cross-product normal — `C` of [1, Thm. 2], `2·C(p, n-1)` rows — cuts the
-zonotope out exactly.
+Those two carry `hCm`/`hCd`, the premise that their directions `C` *describe* the minuend rather
+than only enclose it, as an explicit hypothesis. This discharges it: any family of linear forms
+carrying both signs of every cross-product normal — `C` of [1, Thm. 2], `2·C(p, n-1)` rows — cuts
+the zonotope out exactly. A positive factor `lam` is allowed per normal because a halfspace is
+unchanged by scaling its normal and its offset together, which is what the printed `C`'s `1/‖nX‖₂`
+does, and what a stretched minuend's own normals differ by.
 
-A positive factor `lam` is allowed per normal because a halfspace is unchanged
-by scaling its normal and its offset together, which is what the printed `C`'s
-`1/‖nX‖₂` does, and what a stretched minuend's own normals differ by.
+## Inputs
+* `n` – dimension minus one
+* `ι` – index type
+* `Z` – zonotope
+* `C` – family of linear directions
+
+## Hypotheses
+* `hspan` – generators span the space
+* `hC` – directions carry both signs of every normal
+
+## Conclusion
+* the described set lies in `Z`
 
 ## References
 

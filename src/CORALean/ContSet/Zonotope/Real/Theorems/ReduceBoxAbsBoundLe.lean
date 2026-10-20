@@ -17,6 +17,17 @@ whole zonotope. Nothing here uses which generators `girardSplit` actually
 keeps — the bound holds however the partition is chosen, which is what lets a
 caller use `Z`'s own outer ball for the box term without knowing the order in
 advance.
+
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+* `j` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* the box bound is at most that of `Z`
 -/
 
 -- Authors:       Claude Opus 5

@@ -12,14 +12,20 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
 
 [1, Eq. 16] (equivalently [1, Eq. 17] at `W = PL`) is derived as sufficient for
 `ℓ_{k+1} ≤ γ ℓ_k + ε` [1, Eq. 14], `ℓ_k = max_b ‖H_k b‖²_P` [1, Eq. 13]. The next zonotope
-[1, Eq. 10] is built from `↓_q(H_k)`, whose P-radius can exceed `H_k`'s, and the derivation's
-`θ = H_k b` ranges over `H_k` only. In `ℝ²` with `A = (9/10) I`, `B = 0`, `C = 0`, `L = 0` (so
-`W = 0`), no disturbance or noise (`ε = 0`), `P = I`, `γ = 9/10` and
-`H_k = [(2, 0) (1, 1) (1, -1)]`: Eq. 17 holds (`a² = 81/100 < γ`), `ℓ_k = 16` (at most, attained at
-`b = (1, 1, 1)`), `↓_1(H_k) = [(2, 0) (2, 0) (0, 2)]` keeps the longest column and boxes the other
-two (`Zonotope.reduceBy` at `Partition.split 1 2`), and
-`ℓ_{k+1} = (81/100) · 20 = 81/5 > 72/5 = γ ℓ_k`.
-With `ℓ_k` read as the P-radius of `↓_q(H_k)` the bound holds (`Zonotope.faultObserve_pRadius_le`).
+[1, Eq. 10] is built from `↓_q(H_k)`, whose P-radius can exceed `H_k`'s. In `ℝ²` with
+`A = (9/10) I`, `B = C = L = 0`, no disturbance or noise, `P = I`, `γ = 9/10` and
+`H_k = [(2, 0) (1, 1) (1, -1)]`: Eq. 17 holds, `ℓ_k = 16`, `↓_1(H_k) = [(2, 0) (2, 0) (0, 2)]`
+(`Zonotope.reduceBy` at `Partition.split 1 2`), and `ℓ_{k+1} = 81/5 > 72/5 = γ ℓ_k`. With `ℓ_k`
+read as the P-radius of `↓_q(H_k)` the bound holds (`Zonotope.faultObserve_pRadius_le`).
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed P-radius contraction fails after a reduction
 
 ## References
 

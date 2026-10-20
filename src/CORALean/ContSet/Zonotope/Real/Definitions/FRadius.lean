@@ -14,6 +14,12 @@ generator matrix, from Combastel's F-radius with a normalization factor `1/n`. I
 center. At `n = 0` the factor `1/n` is zero in Lean, and so is the radius, as the zonotope is a
 point.
 
+## Inputs
+* `Z` – zonotope
+
+## Output
+* Frobenius radius, scaled by the dimension
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

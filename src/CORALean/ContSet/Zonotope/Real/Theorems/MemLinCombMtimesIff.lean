@@ -18,6 +18,17 @@ column since `Z` and `EZ` have the same number of generators. Its points are exa
 `(z + Ez)/2 + (z' - Ez')/2` for `z = c + Σ βⱼgⱼ` and `z' = m c + Σ γⱼgⱼ`, every coefficient in
 `[-1, 1]` — the reading [1]'s proof of Lemma 2 gives a point of `P`.
 
+## Inputs
+* `Z` – zonotope
+* `E` – matrix
+* `p` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership characterized by two coefficient families and a scalar
+
 ## References
 
 * [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid

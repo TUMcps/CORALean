@@ -14,6 +14,12 @@ origin. Not exact: `s(c + Σ βⱼg⁽ʲ⁾)` ties the center's coefficient `s` 
 
 Over any real module, like `Zonotope` itself: [1, Thm. 1] applies it to vectors.
 
+## Inputs
+* `Z` – zonotope
+
+## Output
+* zonotope enclosing the product with `[-1, 1]`
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

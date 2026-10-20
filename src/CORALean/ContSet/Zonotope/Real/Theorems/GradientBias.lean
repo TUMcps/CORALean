@@ -16,6 +16,19 @@ to the bias is `∇_{b_k} L = ∇_{H_k} L ⊙ ⟨1, 0⟩ᵀ`, with `Z₁ ⊙ Z�
 `i`. As in the paper's proof, `∂c_k(i)/∂b_k = e_i` and the generators do not depend on `b_k`; the
 loss is differentiable at the layer's output in the center and generator entries together.
 
+## Inputs
+* `ℒ` – loss on zonotopes
+* `W` – weight matrix
+* `b` – bias vector
+* `H` – input zonotope
+* `i` – bias index
+
+## Hypotheses
+* `hF` – loss differentiable at the output
+
+## Conclusion
+* the bias derivative is the center of the gradient
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

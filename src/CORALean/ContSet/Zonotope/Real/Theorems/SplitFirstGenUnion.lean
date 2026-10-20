@@ -9,6 +9,15 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
 # The halves of `Zonotope.splitFirstGen` are the zonotope
 
 Exact: `split_union` holds at every generator index, and with no generator the two halves are `Z`.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the two halves cover `Z`
 -/
 
 -- Authors:       Claude Opus 5.5

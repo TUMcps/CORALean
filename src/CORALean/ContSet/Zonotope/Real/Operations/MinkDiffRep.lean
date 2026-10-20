@@ -7,19 +7,22 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # `Zonotope.minkDiffRep`
 
-CORA's default `'approx'` scales the minuend's generators to fit halfspaces
-the subtrahend's support has shifted inward, [1, Thm. 3]. Two things stop that
-from being adopted: the scaling there is a pseudoinverse solution, checked
-against those halfspaces by nothing, and the argument needs the halfspaces to
-*equal* the minuend, which only its own facet normals do — this development
-has the enclosing direction alone.
+CORA's default `'approx'` scales the minuend's generators to fit halfspaces the subtrahend's
+support has shifted inward, [1, Thm. 3]. Two things stop that from being adopted: the scaling is
+a pseudoinverse solution checked by nothing, and the argument needs the halfspaces to *equal* the
+minuend, which only its own facet normals do. So the difference is computed from a generator
+representation instead. `M`, writing each subtrahend generator in the minuend's own, is the
+candidate and the two conditions are its check, as `HPolytope.supportBound` checks a simplex's
+weighting — a wrong `M` yields `none`. The budget decouples per generator, so `1 - ∑ⱼ |Mᵢⱼ|` is
+the largest the check admits, and at `G₂ = diag(μ) G₁` it is `minkDiffAligned` again.
 
-So the difference is computed from a generator representation instead. `M`,
-writing each subtrahend generator in the minuend's own, is the candidate and
-the two conditions are its check, the way `HPolytope.supportBound` checks a
-simplex's weighting — a wrong `M` yields `none`. The scaling is no further
-choice: the budget decouples per generator, so `1 - ∑ⱼ |Mᵢⱼ|` is the largest
-the check admits, and at `G₂ = diag(μ) G₁` it is `minkDiffAligned` again.
+## Inputs
+* `Z₁` – minuend
+* `Z₂` – subtrahend
+* `M` – generator representation matrix
+
+## Output
+* difference zonotope, or none if `M` fails
 
 ## References
 

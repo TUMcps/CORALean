@@ -12,6 +12,17 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SupportDotProduct
 `F`, "`F ∩ Z = F_S ∩ F ∩ Z = F_T ∩ Z`", because `Z ⊆ F_S` (by [1, Def. 7], `support_dotProduct`).
 Proved for every set `F`, which a strip is.
 
+## Inputs
+* `Z` – zonotope
+* `c` – direction
+* `F` – set
+
+## Hypotheses
+* none
+
+## Conclusion
+* adding the support strip does not change the intersection
+
 ## References
 
 * [1] J. M. Bravo, T. Alamo and E. F. Camacho. "Bounded error identification of systems with

@@ -12,6 +12,14 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 problems, (min-out) and (max-in), search over these; the definition asks `αᵢ ∈ [0, 1]`,
 which is a hypothesis of the theorems here rather than a field.
 
+## Inputs
+* `Z` – zonotope
+* `c` – new center
+* `a` – generator scalings
+
+## Output
+* zonotope aligned with `Z`
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

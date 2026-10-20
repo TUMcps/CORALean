@@ -12,6 +12,18 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Space.Theorems.BilinH
 # `Zonotope.bilin_h_isBigO`
 
 The `h` count of `bilin`'s result in `O`-notation.
+
+## Inputs
+* `f` – bilinear map
+* `Z` – family of zonotopes
+* `W` – second family of zonotopes
+
+## Hypotheses
+* `hZ` – `Z m` has `m` generators
+* `hW` – `W m` has `m` generators
+
+## Conclusion
+* generator count of the result is quadratic in `m`
 -/
 
 -- Authors:       Claude Opus 5

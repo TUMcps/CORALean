@@ -17,6 +17,17 @@ Bʳ⁺¹` ([1, Property 1]), and `AFSS_{k+1} = X̂(λ) ⊕ diag(γ) Bⁿ`. The g
 paper chooses `λ*` to minimise the volume, and the enclosure holds for every `λ`. The expansion `γ`
 is a vector, one bound per parameter, as in the paper's example.
 
+## Inputs
+* `X` – parameter zonotope
+* `r` – regressor vector
+* `y` – measurement
+* `σ` – measurement error bound
+* `l` – gain vector
+* `γ` – expansion bounds
+
+## Output
+* next parameter zonotope
+
 ## References
 
 * [1] J. M. Bravo, T. Alamo and E. F. Camacho. "Bounded error identification of systems with

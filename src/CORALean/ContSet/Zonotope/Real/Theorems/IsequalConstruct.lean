@@ -9,6 +9,16 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Isequal
 
 Sound, not exact: `isequal` compares the representation, and different generator lists can
 generate the same zonotope.
+
+## Inputs
+* `Z` – first zonotope
+* `S` – second zonotope
+
+## Hypotheses
+* `h` – the zonotopes are equal
+
+## Conclusion
+* the two zonotopes denote the same set
 -/
 
 -- Authors:       Claude Opus 5.5

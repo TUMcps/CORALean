@@ -15,6 +15,21 @@ halfspace representation `{H x ≤ h}` of `Z` with every `hᵢ ≠ 0`. Since `0 
 ball `Z` (`zonotopeNorm_ball_eq`, `polyNorm_isAsymmNorm`), so `ν(p) ≤ t ↔ S_Z(p) ≤ t` for
 every `t > 0`, and two nonnegative numbers with that property agree.
 
+## Inputs
+* `Z` – zonotope
+* `H` – facet matrix
+* `h` – facet offsets
+* `x` – vector
+
+## Hypotheses
+* `hc` – center at the origin
+* `hG` – generator map surjective
+* `hrep` – facets describe `Z`
+* `hne` – offsets nonzero
+
+## Conclusion
+* the zonotope norm equals the polytope norm
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

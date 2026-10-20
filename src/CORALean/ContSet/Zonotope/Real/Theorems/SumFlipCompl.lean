@@ -11,6 +11,16 @@ public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 
 `∑_{¬ s j} g_j + ∑_{s j} g_j = ∑ g_j`: the two blocks of the walk of [1, Alg. 3] are complementary.
 
+## Inputs
+* `Z` – planar zonotope
+* `s` – corner signs
+
+## Hypotheses
+* none
+
+## Conclusion
+* complementary signs sum to all generators
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

@@ -13,17 +13,34 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 /-!
 # The optimal Kalman observer gain
 
-[1, Thm. 6]: among all gains `G`, the state-bounding zonotope `⟨p̂₊(G), Ĥ₊(G)⟩` of Eq. 31 of [1,
-Thm. 5] has the least F_W-radius at `G* = TA K` Eq. 32 of [1, Thm. 6], `K = L̃ S̃⁻¹` Eq. 33 of [1,
-Thm. 6], `L̃ = P̃ Cᵀ` Eq. 34 of [1, Thm. 6], `S̃ = C P̃ Cᵀ + Q_v` Eq. 35 of [1, Thm. 6], `P̃ = H̄
-H̄ᵀ`, `Q_v = F Fᵀ`, for every weight `W` with `vᵀ W v ≥ 0`. `S̃` is inverted, so it must be
-invertible.
-
-The Gram matrix of the generators is
-`(TA - GC) P̃ (TA - GC)ᵀ + T Q_w Tᵀ + N Q_v Nᵀ + G Q_v Gᵀ`, which is the part free of `G` plus
+[1, Thm. 6]: among all gains `G`, the state-bounding zonotope `⟨p̂₊(G), Ĥ₊(G)⟩` of Eq. 31 of
+[1, Thm. 5] has the least F_W-radius at `G* = TA K` (Eq. 32), `K = L̃ S̃⁻¹`, `L̃ = P̃ Cᵀ`,
+`S̃ = C P̃ Cᵀ + Q_v` (Eq. 33-35), `P̃ = H̄ H̄ᵀ`, `Q_v = F Fᵀ`, for every weight `W` with
+`vᵀ W v ≥ 0`. `S̃` is inverted, so it must be invertible. The Gram matrix of the generators is
+`(TA - GC) P̃ (TA - GC)ᵀ + T Q_w Tᵀ + N Q_v Nᵀ + G Q_v Gᵀ`, the part free of `G` plus
 `G S̃ Gᵀ - G (TA L̃)ᵀ - (TA L̃) Gᵀ`, so `trace_gain_le` minimizes its trace against `W` at any `G`
-with `G S̃ = TA L̃`, which `TA L̃ S̃⁻¹` is; `S̃` is the Gram matrix of the `C h̄ⱼ` and the columns
-of `F`.
+with `G S̃ = TA L̃`, which `TA L̃ S̃⁻¹` is.
+
+## Inputs
+* `T` – decoupling matrix
+* `N` – measurement decoupling matrix
+* `A` – state matrix
+* `B` – input matrix
+* `D` – disturbance matrix
+* `C` – output matrix
+* `F` – noise matrix
+* `u` – control input
+* `y` – current output
+* `y_plus` – next output
+* `X` – state zonotope
+* `W` – weight matrix
+* `G` – competing gain
+
+## Hypotheses
+* `hW` – `W` positive semidefinite
+
+## Conclusion
+* the optimal gain minimizes the weighted Frobenius radius
 
 ## References
 

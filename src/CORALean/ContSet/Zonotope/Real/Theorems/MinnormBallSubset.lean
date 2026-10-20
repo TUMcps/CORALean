@@ -15,6 +15,17 @@ For a zonotope whose generators span the space, the Euclidean ball around the ce
 `minnorm Z` is inside `Z`: every point of it satisfies each facet inequality, by Cauchy-Schwarz
 against the unit row, and the facet inequalities are the zonotope (`hRep_eq` [1, Thm. 2]).
 
+## Inputs
+* `Z` – zonotope
+* `y` – offset from the center
+
+## Hypotheses
+* `hspan` – generators span the space
+* `hy` – `y` within the minimal norm
+
+## Conclusion
+* the center plus `y` lies in `Z`
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

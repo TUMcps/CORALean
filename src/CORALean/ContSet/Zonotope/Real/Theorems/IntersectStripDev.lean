@@ -16,6 +16,20 @@ sits at the new center plus `κ (z₁ - p) + φ η λ` with `κ = I - λ cᵀ`, 
 zonotope before it, center `p`, and a coefficient `η ∈ [-1, 1]` of the strip's own generator.
 The step the P-radius bounds of `[1, Eq. 4]` to `[1, Alg. 2]` are chains of.
 
+## Inputs
+* `c` – strip direction
+* `l` – gain vector
+* `φ` – strip radius
+* `y` – measurement
+* `Z` – zonotope
+* `z` – point of the intersection
+
+## Hypotheses
+* `hz` – `z` lies in the strip intersection
+
+## Conclusion
+* `z` deviates from a point of `Z` by a bounded multiple of the gain
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state

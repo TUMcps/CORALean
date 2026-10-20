@@ -12,6 +12,15 @@ In two dimensions the zonotope with the one generator `(1, 0)` has `‖Y‖_F = 
 of `‖Y‖_F` along the entry `G(0,0) = 1` is `(1/2) · 1 / 1 = 1/2`, where the printed formula gives
 `1 / (2 · 1/2) = 1`. The corrected gradient is `Zonotope.fRadius_gradient`, `G / (n² ‖Y‖_F)`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the F-radius gradient differs from the claimed scaled copy
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

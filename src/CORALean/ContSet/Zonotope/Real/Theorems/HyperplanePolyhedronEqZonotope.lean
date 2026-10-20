@@ -21,6 +21,18 @@ rows `ℓᵢ` of an orthogonal matrix `L`, it is a hyper-rectangle, hence a zono
 `∑ ((m + M)/2) ℓᵢ` and generators `((M − m)/2) ℓᵢ`. The paper chooses the normals so that the
 over-approximation can be used as the next initial set, which needs a zonotope.
 
+## Inputs
+* `L` – orthonormal-row matrix
+* `m` – lower bounds
+* `M` – upper bounds
+
+## Hypotheses
+* `hL` – rows orthonormal
+* `hmM` – lower bounds below upper bounds
+
+## Conclusion
+* the hyperplane polyhedron is a zonotope
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

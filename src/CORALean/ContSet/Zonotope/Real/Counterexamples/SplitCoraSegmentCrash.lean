@@ -10,6 +10,15 @@ public import CORALean.ContSet.Zonotope.Real.Counterexamples.SplitCora
 The loop `N = 1, 2` of `@zonotope/split.m` (l. 46-50) reaches `N = 2`, and the bounding box of
 the segment has one generator, so `G(:,2)` is out of bounds; the segment can be split. Read from
 the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* splitting at index two errors on a segment
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -14,6 +14,15 @@ public import Mathlib.Tactic.NormNum
 sends the boundary point `(1, 0)` to `1`, whose norm is `1/2`. The cube's boundary is
 the unit sphere of `‖·‖∞`, and is written so.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* unit-norm points are images of unit coefficients but not conversely
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

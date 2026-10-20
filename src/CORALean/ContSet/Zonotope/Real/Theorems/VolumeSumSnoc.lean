@@ -13,6 +13,15 @@ of them. Those not holding the last generator are the subsets of the first `r`, 
 it are the `m`-subsets of the first `r` followed by it, in this order as `orderEmbOfFin` lists
 them. This is the splitting [1, Sec. 6.1] uses when the strip generator `σλ` is appended last.
 
+## Inputs
+* `G` – generators
+
+## Hypotheses
+* none
+
+## Conclusion
+* the subset sum splits by the last generator
+
 ## References
 
 * [1] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".

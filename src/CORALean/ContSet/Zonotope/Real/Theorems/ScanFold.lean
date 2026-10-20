@@ -12,6 +12,22 @@ A loop `for j from 1 to r` that moves `P` by `d j` and scans the edge `[P; P + d
 the starting value or such a `y`: an induction over the loop, peeling the first edge, on the edge
 update `scanEdge_spec`. `step` is the move, `P ± 2 g_j`, given with the vector it adds.
 
+## Inputs
+* `n` – step count
+* `γ` – abscissa of the vertical line
+* `d` – edge vectors
+* `step` – position update
+* `P₀` – starting point
+* `mM₀` – starting interval
+* `s` – final state
+
+## Hypotheses
+* `hstep` – steps add the edge vectors
+* `hs` – `s` is the fold result
+
+## Conclusion
+* the fold ends at the summed point with the interval covering all edges
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

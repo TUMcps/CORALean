@@ -15,6 +15,15 @@ which has no interior (`Submodule.eq_top_of_nonempty_interior'`).
 
 Stated at `construct`, which is what `ContSet.IsFullDim` unfolds to: the `ContSet` instance is
 declared after the theorems. Over any finite-dimensional real normed space, in particular `Vec ℝ n`.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Z` has interior iff its generators span the space
 -/
 
 -- Authors:       Claude Opus 5.5

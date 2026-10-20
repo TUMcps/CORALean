@@ -11,6 +11,16 @@ public import Mathlib.Tactic.FieldSimp
 The other half of what makes `coefficient` a witness: scaled back up by the
 generator radius it returns the target exactly. At `R = 0` the hypothesis pins
 `D` to zero, which is what keeps the degenerate branch honest.
+
+## Inputs
+* `R` – generator radius
+* `D` – target offset
+
+## Hypotheses
+* `hDR` – offset at most the radius
+
+## Conclusion
+* the radius times the coefficient equals the offset
 -/
 
 -- Authors:       Claude Opus 5

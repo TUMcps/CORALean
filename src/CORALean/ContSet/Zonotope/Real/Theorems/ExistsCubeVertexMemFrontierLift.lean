@@ -13,18 +13,30 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 /-!
 # The largest cube in the lifted zonotope touches it low down
 
-`[1, Lemma 6]`: for linearly independent `z₁, …, zₙ`, `Π = {x | |zᵢᵀx| ≤ 1}` (`[1, Eq. 29]`, the
-reading its polar `conv(±zᵢ)` needs; see `Zonotope.parallelotope_eq_abs_mulVec_le_counterexample`),
-`α = 1/(2n²R∞(Π))` (the paper's (31)) and `Z* = ∑ᵢ [0, 1](vᵢ + αe_{n+1})` over `vᵢ = ±zᵢ` (its
-(33)), the largest cube `C` centered at `c = nαe_{n+1}` inside `Z*` exists and has a vertex `q` on
-`∂Z*` with `qᵀe_{n+1} ∈ [0, α]`. The lift is `Vec ℝ n × ℝ`, whose norm is the maximum norm, so `C`
-is a closed ball; a vertex is a point all of whose coordinates are `±r` off `c`.
+`[1, Lemma 6]`: for linearly independent `z₁, …, zₙ`, `Π = {x | |zᵢᵀx| ≤ 1}` (the reading its polar
+needs; see `Zonotope.parallelotope_eq_abs_mulVec_le_counterexample`), `α = 1/(2n²R∞(Π))` and
+`Z* = ∑ᵢ [0, 1](vᵢ + αe_{n+1})` over `vᵢ = ±zᵢ`, the largest cube `C` centered at `c = nαe_{n+1}`
+inside `Z*` exists and has a vertex `q` on `∂Z*` with `qᵀe_{n+1} ∈ [0, α]`. The lift is
+`Vec ℝ n × ℝ`, whose norm is the maximum norm, so `C` is a closed ball. Where the printed proof
+bounds `r∞(Z*)` above, the argument needs it below: the cube of radius `(n - 1)α` fits, so the
+lower vertices sit at height `nα - r∞(Z*) ∈ [0, α]`; an upper vertex on `∂Z*` mirrors through `c`
+to a lower one, `Z*` being symmetric about `c`.
 
-Where the printed proof bounds `r∞(Z*)` above, the argument needs it below: the cube of radius
-`(n - 1)α` fits, its horizontal part inside `Π^Δ` by `R₁(Π) ≤ nR∞(Π)` (`[1, Eq. 30]`), so the
-lower vertices sit at height `nα - r∞(Z*) ∈ [0, α]`. A maximal cube with every vertex inside
-`Z*`'s interior could grow, the cube being the hull of its vertices; an upper vertex on `∂Z*`
-mirrors through `c` to a lower one, `Z*` being symmetric about `c`.
+## Inputs
+* `z` – linearly independent vectors
+* `R` – largest norm
+* `α` – lift height
+* `Zs` – lifted polytope
+
+## Hypotheses
+* `hn` – dimension positive
+* `hz` – vectors independent
+* `hR` – `R` is the greatest norm
+* `hα` – `α` defined from `R`
+* `hZs` – `Zs` is the lifted zonotope
+
+## Conclusion
+* a largest cube exists with a vertex on the frontier
 
 ## References
 

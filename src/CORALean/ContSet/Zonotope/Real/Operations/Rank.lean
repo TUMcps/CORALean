@@ -11,6 +11,12 @@ public import Mathlib.LinearAlgebra.Dimension.Finrank
 CORA's `@zonotope/rank`: the rank of the generator matrix, here the dimension of the span of the
 generators. Exact, where CORA's `rank(Z.G, tol)` drops singular values below a tolerance (default
 `0`).
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* rank of the generators
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,16 @@ public import CORALean.Global.EuclideanNorm
 The squared length of a combination of the generators is the Gram quadratic form of the
 coefficients, the identity behind [1, Def. 3]'s `uᵀ Gᵀ G u`.
 
+## Inputs
+* `Z` – zonotope
+* `β` – generator coefficients
+
+## Hypotheses
+* none
+
+## Conclusion
+* the squared norm of the sum is a Gram form of the coefficients
+
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean

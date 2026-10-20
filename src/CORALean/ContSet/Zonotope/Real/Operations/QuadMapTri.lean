@@ -22,6 +22,13 @@ the `p` squares `h⁽ᵖ⁺ʲ⁾ᵢ = 0.5 g⁽ʲ⁾ᵀQ⁽ⁱ⁾g⁽ʲ⁾`, and 
 `aux_quadMapPairIdx`. That is `σ = C(p + 2, 2) - 1` generators. `Zonotope.quadMap` indexes the pair
 block by all of `Fin p × Fin p`, zero off `j < k`.
 
+## Inputs
+* `Q` – family of quadratic matrices
+* `Z` – zonotope
+
+## Output
+* enclosing zonotope with fewer pair generators
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

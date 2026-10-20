@@ -19,6 +19,15 @@ CORA's `@zonotope/representsa_.m` initialises its second output as `S = []` (lin
 For `Z = zonotope([0;0], eye(2))` the set CORA's `@zonotope/representsa_.m` returns as second
 output for `'polytope'` (`S = polytope(S)` with `S = []`, line 113) is empty, while `Z` contains its
 center. Wrong output, not a soundness issue: no caller in `~/CORA` reads it.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA returns a polytope different from `Z`
 -/
 
 -- Authors:       Claude Opus 5.5

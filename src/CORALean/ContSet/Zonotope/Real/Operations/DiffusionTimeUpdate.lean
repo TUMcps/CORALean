@@ -13,6 +13,15 @@ The time update, Step 3 of [1, Alg. 1]: the diffused zonotope `⟨ć, G̃⟩` is
 dynamics and the process noise `⟨0, Q⟩` is added, `ĉ = F ć` and `Ĝ = [F G̃, Q]`. It is the predicted
 set `F Ẑ ⊕ Z_Q` of [1, Def. 2], Eq. 9, up to the `+ 0` the sum puts on the center. `Q` is the matrix
 of the generator columns of `Z_Q = ⟨0, Q⟩`.
+
+## Inputs
+* `F` – dynamics matrix
+* `Q` – process-noise generators
+* `Zt` – diffused zonotope
+
+## Output
+* zonotope carried through the dynamics plus noise
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

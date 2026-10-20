@@ -10,6 +10,12 @@ public import CORALean.ContSet.Zonotope.Real.Definitions.SetBasedNet
 `κ`, the number of layers of a `SetBasedNet`, linear and nonlinear alike, against which
 [1, Prop. 16] and [1, Prop. 17] count running time.
 
+## Inputs
+* none
+
+## Output
+* depth of the network
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

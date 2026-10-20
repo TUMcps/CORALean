@@ -13,6 +13,16 @@ public import Mathlib.Algebra.Module.Prod
 The witness is `Fin.append β₁ β₂`, as for `plus_exact`; a generator of one set sits at zero in
 the other coordinate, so the assembled sum splits along `Prod.fst` and `Prod.snd` into the two
 sets' own sums.
+
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the product set equals the zonotope of `cartProd`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -15,6 +15,13 @@ trusted base: `opt` proposes generators `X_red` with a `Γ₀`, and what is kept
 condition for `⟨x̄, X_red⟩ ⊆ ⟨x̄, X⟩`. A missing or failing proposal costs the reduction,
 not soundness: the center alone is returned, which `Z` always contains.
 
+## Inputs
+* `opt` – optimization solver
+* `Z` – zonotope
+
+## Output
+* solver's reduced zonotope if it passes, else the center
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

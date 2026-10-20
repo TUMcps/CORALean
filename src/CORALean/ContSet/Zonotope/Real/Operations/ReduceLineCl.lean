@@ -14,6 +14,16 @@ clustering basis `lineClBasis` instead of along the axes. CORA's file dispatches
 `emLineMean`, which the repository does not ship, so the definition follows the
 paper; `lineClBasis` lists what it fixes where the listing is open.
 
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+* `ξ` – convergence threshold
+* `fuel` – iteration budget
+* `runs` – number of restarts
+
+## Output
+* zonotope with the dropped block boxed along the found basis
+
 ## References
 
 * [1] A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of

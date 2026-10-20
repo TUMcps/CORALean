@@ -15,6 +15,17 @@ as `= 2ⁿ|det T|(1 + Σᵢ|rᵢ|)`. The formula is Bravo et al.'s, restated. Th
 after it: replacing column `i` of `T` by `v` multiplies the determinant by `rᵢ`, which is Cramer's
 rule, `det[t₁ ⋯ v ⋯ tₙ] = (adj T · v)ᵢ = det T · (T⁻¹v)ᵢ`.
 
+## Inputs
+* `n` – dimension
+* `T` – basis matrix
+* `v` – replacement vector
+
+## Hypotheses
+* `hT` – `T` invertible
+
+## Conclusion
+* the volume sum equals `2ⁿ |det T|` times a coefficient sum
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

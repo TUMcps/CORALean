@@ -16,6 +16,15 @@ inverse of `G` (`exists_coeffNorm_le_mul_norm`); below, `‖x‖ = ‖G γ‖ �
 minimizer `γ`. Convexity is the triangle inequality with homogeneity, and almost-everywhere
 differentiability is Rademacher's theorem (`LipschitzWith.ae_differentiableAt`).
 
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* `hG` – generator map surjective
+
+## Conclusion
+* the norm is equivalent, convex, Lipschitz and almost everywhere differentiable
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

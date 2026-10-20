@@ -8,16 +8,21 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.ReduceBy
 /-!
 # `Zonotope.reduceByBasisCost`
 
-Asserted, not proved: `Operations/ReduceByBasis.lean` inverts the basis `P`, a
-numerical routine the definition names only as `P⁻¹`, so its price `inv` is a
-parameter, as `mapCost` takes what one application of `f` costs. Then each of
-the `r` absorbed generators goes through `P⁻¹ *ᵥ ·` (`Cost.matVec n n`), each
-of the `n` output rows sums `r` absolute values (`2 * n * r`), and each column
-of `P` is scaled by its sum (`n * n`).
+Asserted, not proved: `Operations/ReduceByBasis.lean` inverts the basis `P`, a numerical routine
+the definition names only as `P⁻¹`, so its price `inv` is a parameter. Then each of the `r`
+absorbed generators goes through `P⁻¹ *ᵥ ·` (`Cost.matVec n n`), each of the `n` output rows sums
+`r` absolute values (`2 * n * r`), and each column of `P` is scaled (`n * n`). The result is the
+center, the `q` kept and the `n * n` new generators, `n * (1 + q + n)` writes; the scalings are
+counted twice, as arithmetic and as the write of the entry.
 
-The result is the center, the `q` kept generators and the `n * n` new ones, `n * (1 + q + n)`
-writes; the `n * n` scalings are computed entries, so they are counted twice, once as arithmetic
-and once as the write of the entry.
+## Inputs
+* `n` – dimension
+* `q` – kept generator count
+* `r` – absorbed generator count
+* `inv` – cost of the basis inverse
+
+## Output
+* cost of the products, new generators and writes
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -17,6 +17,17 @@ One line of arithmetic once `Thm. 2` is available: `|A + H| ≤ Δ` and
 Translation is `Zonotope.shift`, whose sign convention makes `Z.shift w` the
 translate by `-w`, so `Z_o` is `Z.shift h` and `Z_t` is `Z.shift (-h)`.
 
+## Inputs
+* `n` – dimension minus one
+* `Z` – zonotope
+* `h` – shift vector
+
+## Hypotheses
+* `hspan` – generators span the space
+
+## Conclusion
+* the two translates meet in the halfspaces with lowered offsets
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

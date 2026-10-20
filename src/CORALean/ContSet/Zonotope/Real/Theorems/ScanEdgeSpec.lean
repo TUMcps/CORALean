@@ -15,6 +15,18 @@ to the greatest, and changes nothing when it does not: `m` stays below every `y`
 the line, `M` above, and each is its old value or such a `y`. The set of such `y` is a compact
 interval, so its infimum and supremum are attained.
 
+## Inputs
+* `γ` – abscissa of the vertical line
+* `P` – edge start
+* `Q` – edge end
+* `mM` – current interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the updated interval widens correctly to cover the edge
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

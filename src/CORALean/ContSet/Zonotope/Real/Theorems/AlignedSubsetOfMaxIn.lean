@@ -18,6 +18,20 @@ the zonotope is inside `EW`. That holds only when `(H, h)` describes `EW` itself
 with `W`'s own description it is false (`aligned_subset_of_maxIn_counterexample`, and
 the paper's page). Stated here for any `(H, h)`, so `EW`'s description gives `⊆ EW`.
 
+## Inputs
+* `Z` – zonotope
+* `H` – halfspace matrix
+* `h` – halfspace offsets
+* `c` – center
+* `a` – generator scalings
+
+## Hypotheses
+* `ha` – scalings nonnegative
+* `hfeas` – halfspace constraints satisfied
+
+## Conclusion
+* the aligned zonotope lies in the halfspace set
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

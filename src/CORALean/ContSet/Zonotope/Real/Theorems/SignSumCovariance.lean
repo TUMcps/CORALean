@@ -20,6 +20,15 @@ those of the initial guess `m G Gᵀ` of [1, Eq. 13]. Flipping one sign is a bij
 vectors that negates that coordinate and keeps the others, which is the orthogonality of the
 rows of `B` the paper states.
 
+## Inputs
+* `G` – generator matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* sign sums are centered with covariance `2^m G Gᵀ`
+
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean

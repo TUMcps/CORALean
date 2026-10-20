@@ -11,6 +11,12 @@ public import CORALean.ContSet.Zonotope.Real.Definitions.SetBasedNet
 the generators a forward propagation adds: a nonlinear layer adds `n_k` of them and a linear
 one none.
 
+## Inputs
+* none
+
+## Output
+* number of neurons in the network
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

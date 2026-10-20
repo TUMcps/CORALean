@@ -12,6 +12,17 @@ A selection that names the same generator twice has a cross product with two equ
 is `0`, and its row of [1, Thm. 2] holds trivially. This is what leaves only the injective
 selections, the generator subsets, for the `Bool × Finset` indexing.
 
+## Inputs
+* `n` – dimension minus one
+* `Z` – zonotope
+* `S` – selected generator indices
+
+## Hypotheses
+* `hS` – selection has a repeat
+
+## Conclusion
+* the facet normal is zero
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

@@ -17,6 +17,16 @@ convex hull of the corners is attained at a corner (`ConvexOn.exists_ge_of_mem_c
 `‖·‖_{Z₂}` being convex (`[1, Cor. 3]`). The printed `G₂ x` is `G₁ x`: the corners are the
 inbody's.
 
+## Inputs
+* `Z₁` – zonotope measured
+* `Z₂` – zonotope defining the norm
+
+## Hypotheses
+* `hG` – generator map of `Z₂` surjective
+
+## Conclusion
+* the largest zonotope norm is attained at a corner
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

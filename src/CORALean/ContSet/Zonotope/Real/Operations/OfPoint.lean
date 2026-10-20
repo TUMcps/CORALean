@@ -10,6 +10,12 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 CORA's `zonotope` at a center and no generators: a single point, as the
 representation. What `OfPoint` asks every representation with a point
 operation to supply.
+
+## Inputs
+* `v` – point
+
+## Output
+* zonotope with no generators
 -/
 
 -- Authors:       Claude Opus 5

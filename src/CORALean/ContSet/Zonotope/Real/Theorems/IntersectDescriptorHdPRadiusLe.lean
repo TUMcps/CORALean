@@ -15,17 +15,51 @@ public import Mathlib.Tactic.Abel
 # The P-radius contraction of the LPV estimator
 
 [1, Thm. 2], corrected. The intersection zonotope of [1, Thm. 1] has four generator blocks,
-`(I - ΛC)TA Ĥ`, `(I - ΛC)TD H_d`, `(I - ΛC)NF H_d` and `ΛF H_d` (its Eq. 10), each with its own
-coefficients. If `P ≻ 0` and the matrix inequality
-`[αP ⋆ ⋆ ⋆ ⋆; 0 (1-α)β₁I ⋆ ⋆ ⋆; 0 0 (1-α)β₂I ⋆ ⋆; 0 0 0 (1-α)β₃I ⋆;
-P(I-ΛC)TA  P(I-ΛC)TD  P(I-ΛC)NF  PΛF  P] ≻ 0` holds with `β₁ + β₂ + β₃ = 1`, then
-`ϱ_k ≤ α ϱ_{k-1} + (1 - α) ℓ_d` (its Eq. 21a), and if `I ≼ γ² P` (its Eq. 26) then
-`ℓ_k ≤ γ² ϱ_k` (its Eq. 21b); `ϱ` is the P-radius, `ℓ` the radius (`pRadius` at `I`), `ϱ_{k-1}`
-any bound of the P-radius of `X̂_{k-1}` and `ℓ_d` any bound of `‖H_d b‖²` on the unit box. The
-paper's Eq. 19 gives the last two blocks one coefficient and one weight `(1-α)(1-β)`, which
-fails (`intersectDescriptorHd_pRadius_counterexample`); its Eq. 20 has no solution
-(`LinearSysDT.radiusLmi_infeasible`). As in the paper's proof: a point's offset is `P⁻¹ R v`,
-`v = (Ĥz̄, H_d b₁, H_d b₂, H_d b₃)`, and the Schur complement of `P` bounds `vᵀRᵀP⁻¹Rv`.
+`(I - ΛC)TA Ĥ`, `(I - ΛC)TD H_d`, `(I - ΛC)NF H_d`, `ΛF H_d`, each with its own coefficients.
+If `P ≻ 0` and the matrix inequality `[αP ⋆ ⋆ ⋆ ⋆; 0 (1-α)β₁I ⋆ ⋆ ⋆; 0 0 (1-α)β₂I ⋆ ⋆;
+0 0 0 (1-α)β₃I ⋆; P(I-ΛC)TA  P(I-ΛC)TD  P(I-ΛC)NF  PΛF  P] ≻ 0` holds with `β₁ + β₂ + β₃ = 1`,
+then `ϱ_k ≤ α ϱ_{k-1} + (1 - α) ℓ_d` (Eq. 21a), and if `I ≼ γ² P` (Eq. 26) then `ℓ_k ≤ γ² ϱ_k`
+(Eq. 21b); `ϱ_{k-1}` and `ℓ_d` are any bounds of the P-radius of `X̂_{k-1}` and of `‖H_d b‖²`.
+The paper's Eq. 19 gives the last two blocks one coefficient, which fails
+(`intersectDescriptorHd_pRadius_counterexample`); its Eq. 20 has no solution.
+
+## Inputs
+* `T` – decoupling matrix
+* `N` – measurement decoupling matrix
+* `Λ` – correction matrix
+* `A` – state matrix
+* `B` – input matrix
+* `D` – disturbance matrix
+* `C` – output matrix
+* `F` – noise matrix
+* `Hd` – disturbance generator matrix
+* `u` – control input
+* `y` – measurement
+* `X` – state zonotope
+* `P` – weight matrix
+* `α` – contraction weight
+* `β₁` – first block share
+* `β₂` – second block share
+* `β₃` – third block share
+* `γ` – norm-equivalence constant
+* `ϱ` – P-radius bound of `X`
+* `ℓd` – disturbance bound
+
+## Hypotheses
+* `hP` – `P` positive definite
+* `hLMI` – linear matrix inequality holds
+* `hα0` – `α` nonnegative
+* `hα1` – `α` at most one
+* `hβ₁` – first share nonnegative
+* `hβ₂` – second share nonnegative
+* `hβ₃` – third share nonnegative
+* `hβ` – shares sum to one
+* `hϱ` – `X` has P-radius at most `ϱ`
+* `hℓd` – disturbance term bounded by `ℓd`
+* `hγ` – identity bounded by `γ²P`
+
+## Conclusion
+* the P-radius contracts and bounds the plain radius
 
 ## References
 

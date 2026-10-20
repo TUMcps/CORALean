@@ -13,6 +13,14 @@ public import Mathlib.Data.Matrix.Mul
 linear layer [1, Prop. 6]. Its generators are those of `Zonotope.mtimes W Z`, its center that
 shifted by `b`.
 
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+* `Z` – zonotope
+
+## Output
+* image of `Z` under the affine map
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

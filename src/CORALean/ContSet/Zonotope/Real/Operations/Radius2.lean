@@ -13,6 +13,12 @@ the generator lengths `∑ⱼ ‖Gⱼ‖₂`, the other the Euclidean norm of th
 (`Interval.radius₂`, CORA's `norm(rad(IH))`). Both are upper bounds on the distance of a member to
 the center, so the minimum is one too, but not the smallest such radius: that needs
 `max_β ‖∑ βⱼ Gⱼ‖₂`, which CORA does not compute.
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* radius of `Z`
 -/
 
 -- Authors:       Claude Opus 5.5

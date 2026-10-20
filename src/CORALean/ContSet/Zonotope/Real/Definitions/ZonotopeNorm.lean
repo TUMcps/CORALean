@@ -14,6 +14,13 @@ generator map's `coeffNorm` at the supremum norm of the coefficients. CORA's
 `‖p - c‖_Z`. It is a norm for a non-degenerate `Z` (`zonotopeNorm_isNorm`); off the range of
 the generators, where the paper leaves it undefined and CORA returns `Inf`, it reads `0`.
 
+## Inputs
+* `Z` – zonotope
+* `p` – point
+
+## Output
+* zonotope norm of `p`
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

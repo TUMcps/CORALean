@@ -13,6 +13,14 @@ increasing order, with the sign `b` — `true` is `+`, `false` is `-`. This is t
 over, where `Zonotope.facetNormal` is indexed by [1, Thm. 2]'s own selections `Fin n → Fin Z.h`. A
 subset of the wrong size has no normal, and gets `0`.
 
+## Inputs
+* `n` – dimension minus two
+* `Z` – zonotope
+* `j` – signed row
+
+## Output
+* normal of the signed row
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

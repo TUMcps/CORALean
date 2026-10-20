@@ -21,6 +21,19 @@ face maximizing `l` is `Z.face l` (`construct_face`), of dimension the rank `k` 
 `l gⱼ / v gⱼ` keeps every sign of `l` or zeroes it and annihilates one more independent generator,
 so its face contains `l`'s and has larger dimension. It stays `≠ 0`, the generators spanning.
 
+## Inputs
+* `Z` – zonotope
+* `F` – face
+
+## Hypotheses
+* `hfull` – generators span the space
+* `hF` – `F` is an exposed face
+* `hne` – `F` nonempty
+* `hproper` – `F` is not all of `Z`
+
+## Conclusion
+* `F` lies in an exposed face of codimension one
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

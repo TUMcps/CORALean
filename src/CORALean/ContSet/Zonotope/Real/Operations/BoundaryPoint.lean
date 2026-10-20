@@ -15,6 +15,14 @@ direction `dir` leaves the zonotope. For `n > 1` CORA solves the linear program
 `startPoint + t·dir` is in the zonotope. The two shortcuts (`n = 1`: `c ± Σ|gⱼ|`; the start at the
 center: `c + dir / ‖dir‖_Z`) are the same point. Here `t*` is the supremum, which the LP
 attains; the definition is not computable (the solver is replaced by the specification).
+
+## Inputs
+* `Z` – zonotope
+* `dir` – direction
+* `start` – starting point
+
+## Output
+* boundary point of `Z` along `dir`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -14,6 +14,16 @@ the `ν̂` large `i` and the small `j`, and add or subtract each small generator
 one `i` it is strictly most aligned with. `r = ν̂ ≤ ν`; indices count from `0`. Where the strict
 maximum is a `0` the printed `P/|P|` is `0/0`, which is `0` here.
 
+## Inputs
+* `Z` – zonotope
+* `r` – kept generator count
+
+## Hypotheses
+* `hr` – at most all generators
+
+## Output
+* under-approximating zonotope with `r` generators
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

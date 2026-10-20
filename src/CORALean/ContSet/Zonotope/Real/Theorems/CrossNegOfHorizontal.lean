@@ -16,6 +16,21 @@ and one `w` pointing along it (`σ w₀ > 0`) have `σ cross(u, w) < 0`. So in a
 left-pointing: the chain of [1, Alg. 3] and [1, Alg. 4] from the lowest vertex moves monotonically
 in `x`.
 
+## Inputs
+* `σ` – direction sign
+* `u` – first planar vector
+* `w` – second planar vector
+
+## Hypotheses
+* `hσ` – `σ` is plus or minus one
+* `hu` – `u` points upward
+* `hw` – `w` points upward
+* `hwx` – `w` points along `σ`
+* `hux` – `u` points against `σ`
+
+## Conclusion
+* the signed cross product is negative
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

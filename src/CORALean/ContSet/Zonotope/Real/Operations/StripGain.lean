@@ -15,6 +15,14 @@ predicted zonotope `⟨ĉ, Ĝ⟩`, the stacked measurement matrix `Γ` and the m
 generators `R`. `Ĝ` is the matrix of the generator columns; the inverse is Mathlib's, `0` where
 `Γ Ĝ Ĝᵀ Γᵀ + R Rᵀ` is singular.
 
+## Inputs
+* `Γ` – stacked measurement matrix
+* `R` – measurement-noise generators
+* `X` – zonotope
+
+## Output
+* gain minimizing the generator Frobenius norm
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

@@ -17,6 +17,17 @@ The witness pairs each admissible coefficient of `Z₁` with each of `Z₂`:
 `mul_le_one₀`, but taken free rather than tied to `p` and `q` — the
 enlargement that keeps this an enclosure and not an equality, unlike
 `PolyZonotope.bilin`.
+
+## Inputs
+* `f` – bilinear map
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* all bilinear images lie in the result
 -/
 
 -- Authors:       Claude Opus 5

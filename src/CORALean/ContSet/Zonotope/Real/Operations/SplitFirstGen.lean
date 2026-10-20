@@ -14,6 +14,12 @@ CORA's `@zonotope/splitFirstGen`: `h(j) = norm(G(:,j)'*G, 1)`, `[~,index] = max(
 `split(Z, index)`. The score `h j = Σₖ |⟨g_j, g_k⟩|` says how strongly generator `j` correlates
 with the others, and the first generator of maximal score is chosen by a computable
 `List.argmax`. A zonotope with no generator is its own two halves.
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* the two halves along the selected generator
 -/
 
 -- Authors:       Claude Opus 5.5

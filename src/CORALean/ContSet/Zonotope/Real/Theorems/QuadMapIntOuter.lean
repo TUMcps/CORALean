@@ -13,14 +13,26 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 # `quadint` encloses the quadratic map at every matrix of the interval
 
 [1, Prop. 3]: if each `H⁽ⁱ⁾` lies in the interval matrix `Hc⁽ⁱ⁾ ⊕ [-HΔ⁽ⁱ⁾, HΔ⁽ⁱ⁾]`, then
-`{φ | φᵢ = zᵀH⁽ⁱ⁾z, z ∈ Z} ⊆ quadint(H, Z)`. The factor `½` the proposition carries on both
-sides, `Lᵈ ⊆ ½ {…} ⊆ ½ quadint(…)`, is dropped, and its first inclusion is
-[1, Eq. 23]; this is the second. Each coordinate may take its own matrix of the interval.
+`{φ | φᵢ = zᵀH⁽ⁱ⁾z, z ∈ Z} ⊆ quadint(H, Z)`. The factor `½` the proposition carries on both sides
+is dropped, and its first inclusion is [1, Eq. 23]; this is the second. Each coordinate may take
+its own matrix of the interval. The printed proof bounds the interval center and generators by
+the subdistributivity of [1, Eq. 22]. Here the route is [1, Thm. 1]: `zᵀH⁽ⁱ⁾z = zᵀHc⁽ⁱ⁾z +
+zᵀ(H⁽ⁱ⁾ - Hc⁽ⁱ⁾)z`, the first in `quad(Hc, Z)` by [1, Lemma 1], the second at most
+`|z|ᵀHΔ⁽ⁱ⁾|z| ≤ |Z|ᵀHΔ⁽ⁱ⁾|Z|` in absolute value, so in the box `[-η, η]`.
 
-The printed proof bounds the interval center and generators by the subdistributivity of
-[1, Eq. 22]. Here the route is [1, Thm. 1]: `zᵀH⁽ⁱ⁾z = zᵀHc⁽ⁱ⁾z + zᵀ(H⁽ⁱ⁾ - Hc⁽ⁱ⁾)z`, the first
-in `quad(Hc, Z)` by [1, Lemma 1], the second at most `|z|ᵀHΔ⁽ⁱ⁾|z| ≤ |Z|ᵀHΔ⁽ⁱ⁾|Z|` in absolute
-value, so in the box `[-η, η]`, and `quad(Hc, Z) ⊕ [-η, η]` is `quadint(H, Z)`.
+## Inputs
+* `Hc` – center quadratic matrices
+* `HΔ` – radius quadratic matrices
+* `Z` – zonotope
+* `H` – actual quadratic matrices
+* `z` – point of the zonotope
+
+## Hypotheses
+* `hH` – matrices within the radius of the center
+* `hz` – `z` lies in `Z`
+
+## Conclusion
+* the quadratic image lies in the result
 
 ## References
 

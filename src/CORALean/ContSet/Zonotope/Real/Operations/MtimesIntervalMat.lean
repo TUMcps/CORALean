@@ -10,6 +10,13 @@ public import CORALean.ContSet.Zonotope.Real.Operations.RadiusReach
 CORA writes this as `mtimes` too, dispatching on the argument. The center acts
 exactly, as a matrix does, and everything the radius allows is boxed into one
 fresh generator per coordinate — so a step costs `n` generators and no more.
+
+## Inputs
+* `IM` – interval matrix
+* `Z` – zonotope
+
+## Output
+* zonotope enclosing the products
 -/
 
 -- Authors:       Claude Opus 5

@@ -9,6 +9,13 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 
 How far a coordinate of a zonotope can reach from the origin: the interval
 hull's bound, read off without building the hull.
+
+## Inputs
+* `Z` – zonotope
+* `j` – coordinate
+
+## Output
+* largest distance of coordinate `j` from the origin
 -/
 
 -- Authors:       Claude Opus 5

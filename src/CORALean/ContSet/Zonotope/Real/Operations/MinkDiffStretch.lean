@@ -7,21 +7,22 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # `Zonotope.minkDiffStretch`
 
-The generator representation [1, Thm. 4], [1, Thm. 5] and [1, Prop. 6] all
-return: the centers subtracted, and each generator of the minuend stretched by
-its own factor `μ`. They differ only in what picks `μ` — a linear program
-pushing it up until the halfspaces of the stretched minuend sit inside those of
-the difference, one pushing it down until they sit outside, or (22) solved
-exactly — so the operation is shared and the direction lives on the theorems.
+The generator representation [1, Thm. 4], [1, Thm. 5] and [1, Prop. 6] all return: the centers
+subtracted, and each generator of the minuend stretched by its own factor `μ`. They differ only
+in what picks `μ` — a linear program pushing it up until the halfspaces of the stretched minuend
+sit inside those of the difference, one pushing it down until they sit outside, or (22) solved
+exactly — so the direction lives on the theorems. `μ` is an argument: [1]'s `μ*` is an optimum,
+a choice of objective on top of the constraint, and `minkDiffStretch_inner` and `_outer` ask only
+for the constraint. Not a `MinkDiff` instance: feasibility of `μ` is a fact about the particular
+pair together with a halfspace description of the minuend.
 
-`μ` is an argument, not computed here. [1]'s own `μ*` is an optimum, and an
-optimum is a choice of objective (`ζ`, "a user-specified vector") on top of the
-constraint; `minkDiffStretch_inner` and `minkDiffStretch_outer` ask only for
-the constraint, so any feasible `μ` — optimal or not — carries the guarantee.
+## Inputs
+* `Z₁` – minuend
+* `Z₂` – subtrahend
+* `μ` – generator stretch factors
 
-Not a `MinkDiff` instance. Feasibility of `μ` is a fact about the particular
-pair of operands together with a halfspace description of the minuend, and
-`minkDiff : S → S → S` has no slot for either.
+## Output
+* minuend with stretched generators and shifted center
 
 ## References
 

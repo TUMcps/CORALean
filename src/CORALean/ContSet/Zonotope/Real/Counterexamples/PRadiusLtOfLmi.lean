@@ -15,6 +15,15 @@ public import Mathlib.Algebra.Order.Star.Real
 inequality fails. `M - ĤᵀWĤ = 1/4 > 0` bounds `zᵀĤᵀWĤz` by `zᵀMz = z²/2`, not by `‖Mz‖² = z²/4`:
 the corrected bound is `Zonotope.pRadius_lt_of_lmi`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed strict bound on the radius fails
+
 ## References
 
 * [1] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on

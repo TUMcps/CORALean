@@ -12,6 +12,17 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.CombineGensInner
 inside the zonotope it came from, whichever pair and sign the heuristic picks, so the
 reduced zonotope is inside `Z`.
 
+## Inputs
+* `sel` – pair selector
+* `N` – target generator count
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the reduced zonotope lies in `Z`
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

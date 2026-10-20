@@ -15,6 +15,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 corners and `Z₂` is convex, so `Z₁ ⊆ Z₂` iff every corner lies in `Z₂`, which is
 `‖v - c₂‖_{Z₂} ≤ 1` by `[1, Cor. 1]`.
 
+## Inputs
+* `Z₁` – zonotope tested
+* `Z₂` – containing zonotope
+
+## Hypotheses
+* `hG` – generator map of `Z₂` surjective
+
+## Conclusion
+* the test is true iff `Z₁` lies in `Z₂`
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

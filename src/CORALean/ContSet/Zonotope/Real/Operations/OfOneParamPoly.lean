@@ -14,6 +14,13 @@ power over `[0, 1]`, so `½ v_k` goes to the center and `½ v_k` is the generato
 belongs to the power `j + 1`; the center is `v_0 + Σ_{l=1}^{⌊N/2⌋} ½ v_{2l}`. The powers are
 treated as independent, which is where the enclosure gives something away.
 
+## Inputs
+* `v` – polynomial coefficients
+* `N` – polynomial degree
+
+## Output
+* zonotope enclosing the polynomial over `[-1, 1]`
+
 ## References
 
 * [1] M. Althoff and J. M. Dolan. "Reachability Computation of Low-Order Models for the Safety

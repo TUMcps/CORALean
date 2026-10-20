@@ -17,6 +17,15 @@ radius `6` around `6` reaches `12 ∉ Z`. Measured from the center the lemma hol
 (`ball_subset_of_axis_test`); [1, Thm. 3] applies it to a transformed zonotope whose center is
 generally not the origin.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* axis points lie in `Z` but the ball around its center does not
+
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean

@@ -10,18 +10,20 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # `Zonotope.enclosePolytopes`
 
-[1, Prop. 12]: one zonotope enclosing `μ` polytopes, `Z_encl = Λ box(Λ⁻¹P₁, ..., Λ⁻¹P_μ)`,
-the box computed as the proposition lists it: (1) the vertices of every `Λ⁻¹P_l`, (2) their
-least and greatest value in each dimension, (3) that interval in generator representation,
-`Interval.zonotope`. The polytopes enter by their vertices, `V l` those of `P_l`, the
-proposition's step (1) needing them and nothing else. `Λ` is the caller's; [1, Sec. 6.2]'s
-flow-aligned choice is `ZonoBundle.dirFlow`.
+[1, Prop. 12]: one zonotope enclosing `μ` polytopes, `Z_encl = Λ box(Λ⁻¹P₁, ..., Λ⁻¹P_μ)`, the
+box computed as the proposition lists it: (1) the vertices of every `Λ⁻¹P_l`, (2) their least and
+greatest value in each dimension, (3) that interval in generator representation. The polytopes
+enter by their vertices, `V l` those of `P_l`. `Λ` is the caller's; [1, Sec. 6.2]'s flow-aligned
+choice is `ZonoBundle.dirFlow`. `Λ⁻¹` is Mathlib's, zero at a singular `Λ`, where the result
+encloses nothing: the proposition asks full rank, and so does `enclosePolytopes_outer`. Real only
+for now: the float layer would round the inverse, the vertices and the product apart.
 
-`Λ⁻¹` is Mathlib's, zero at a singular `Λ`, where the result encloses nothing: the
-proposition asks full rank, and so does `enclosePolytopes_outer`.
+## Inputs
+* `Λ` – basis matrix
+* `V` – vertices of each polytope
 
-Real only for now: the float layer would round the inverse, the vertices and the product
-apart, each into an error box, and no caller asks for it yet.
+## Output
+* zonotope enclosing all the polytopes
 
 ## References
 

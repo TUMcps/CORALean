@@ -9,6 +9,20 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Underapproximate
 
 Every point `underapproximate` returns is a point of the zonotope: the coefficients are the signs
 `±1` or `0`.
+
+## Inputs
+* `n` – dimension
+* `k` – direction count
+* `Z` – zonotope
+* `S` – directions
+* `i` – direction index
+* `b` – sign
+
+## Hypotheses
+* none
+
+## Conclusion
+* every returned vertex lies in `Z`
 -/
 
 -- Authors:       Claude Opus 5.5

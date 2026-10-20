@@ -15,6 +15,21 @@ and `v_i` a unit vector normal to the columns of `B_i` (any such, one per subset
 al. that the papers quote; `σ ≥ 0` is the strip's half-width. The proof is
 `volume_intersectStrip_det` and the step `det [B_i σλ] = σ det [B_i v_i] (v_iᵀλ)`.
 
+## Inputs
+* `Z` – zonotope
+* `c` – strip direction
+* `l` – gain vector
+* `σ` – strip radius
+* `d` – strip offset
+* `v` – unit normals of generator subsets
+
+## Hypotheses
+* `hσ` – radius nonnegative
+* `hv` – normals unit and orthogonal to their generators
+
+## Conclusion
+* the volume of the strip intersection is a sum over generator subsets
+
 ## References
 
 * [1] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".

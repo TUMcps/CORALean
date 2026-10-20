@@ -11,6 +11,16 @@ public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 
 `∑_{j < k+1} g_j = ∑_{j < k} g_j + g_k`: one step of the walk of [1, Alg. 3] adds one generator.
 
+## Inputs
+* `Z` – planar zonotope
+* `k` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* one more generator adds exactly that generator
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

@@ -9,16 +9,7 @@ public import Mathlib.Tactic.FinCases
 # `Zonotope.liftCora`: `lift_` as CORA's code runs, for a `proj` of length `N`
 
 `@zonotope/lift_.m` (and the identical `lift_.m` of `conZonotope`, `zonoBundle`, `capsule` and
-`ellipsoid`):
-
-```
-if length(proj) == N
-    % use project
-    Z = project(Z,proj);
-else
-    throw(CORAerror('CORA:notDefined', ...))
-```
-
+`ellipsoid`) is `if length(proj) == N, Z = project(Z,proj); else throw(CORAerror(...))`.
 `contSet/lift.m` documents `proj` as the "states of the high-dimensional space that correspond to
 the states of the low-dimensional set": state `i` of the set becomes state `proj(i)`, which is
 how `@interval/lift_.m` (`lb(proj) = I.inf`) and `@polytope/lift_.m` (`A(:,dims) = P.A_.val`)
@@ -30,6 +21,15 @@ read it. `project(S,dims)` has the inverse meaning, state `i` of the result is s
 `lift(zonotope([1;2;3]),3,[2 3 1])` moves state 1 to position 2, state 2 to position 3 and state 3
 to position 1, giving the point `(3;1;2)`; `project(Z,[2 3 1])` is `(2;3;1)`. The same call on
 `interval([1;2;3])` gives `(3;1;2)`, so the classes disagree. Read from the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's lift differs from the permuted set
 -/
 
 -- Authors:       Claude Sonnet 5.5

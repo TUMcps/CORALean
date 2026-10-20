@@ -16,6 +16,15 @@ other parallelotopes" is used for. The statement is for CORA's intended criterio
 
 Source: [1].
 
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* filtering out two equal cells leaves none
+
 ## References
 
 * [1] `contSet/@zonotope/filterOut.m`, CORA (Sep. 2025).

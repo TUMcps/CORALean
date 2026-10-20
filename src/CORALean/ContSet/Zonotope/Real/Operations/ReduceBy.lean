@@ -11,6 +11,13 @@ public import CORALean.Global.Partition
 Keeps the generators a partition names and boxes the rest into a diagonal
 block, one entry per absorbed row's `1`-norm. CORA's twenty-odd reduction rules
 are this definition with a different partition.
+
+## Inputs
+* `Z` – zonotope
+* `part` – split of the generator indices
+
+## Output
+* zonotope keeping one side and boxing the other
 -/
 
 -- Authors:       Claude Opus 5

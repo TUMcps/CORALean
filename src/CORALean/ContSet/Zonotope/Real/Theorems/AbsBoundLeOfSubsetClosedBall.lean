@@ -16,6 +16,17 @@ zonotope sits inside the ball of radius `r`, then every coordinate's
 `absBound` is at most `r`, not just some aggregate of them. The witness point
 puts the sign of the center on every generator at that coordinate, so it
 attains `|x j| = Z.absBound j` exactly.
+
+## Inputs
+* `Z` – zonotope
+* `r` – ball radius
+* `j` – coordinate
+
+## Hypotheses
+* `h` – `Z` lies in the closed ball
+
+## Conclusion
+* the absolute bound of coordinate `j` is at most `r`
 -/
 
 -- Authors:       Claude Opus 5

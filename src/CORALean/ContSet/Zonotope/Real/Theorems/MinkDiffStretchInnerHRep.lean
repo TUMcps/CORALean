@@ -15,6 +15,23 @@ stretched minuend `(c⁽ᵐ⁾ - c⁽ˢ⁾, G⁽ᵐ⁾µ)` lies in `Z_m ⊖ Z_s`
 `Âµ ≤ b̂` — the linear program's optimum `µ*` among them, its objective `ζᵀµ` choosing between
 feasible points without bearing on the guarantee.
 
+## Inputs
+* `n` – dimension minus one
+* `ι` – direction index type
+* `Z₁` – minuend
+* `Z₂` – subtrahend
+* `C` – linear directions
+* `μ` – stretch factors
+
+## Hypotheses
+* `hspan` – generators span the space
+* `hC` – directions carry both signs of every normal
+* `hμ0` – factors nonnegative
+* `hμ` – factors satisfy the offset inequalities
+
+## Conclusion
+* the stretched minuend lies in the Minkowski difference
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

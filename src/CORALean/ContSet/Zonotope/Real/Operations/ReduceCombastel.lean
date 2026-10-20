@@ -18,6 +18,13 @@ The operator is that section's four steps: sort the generators by that metric
 smallest-norm blocks by one interval hull [1, Eq. 22], and read the reduced
 zonotope back off [1, Eq. 23].
 
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Output
+* zonotope keeping the largest generators and boxing the rest
+
 ## References
 
 * [1] C. Combastel. "A state bounding observer based on zonotopes". ECC 2003.

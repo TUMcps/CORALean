@@ -13,6 +13,18 @@ For a nonzero direction and a start point in the zonotope, the returned point is
 and no point further along the ray is: it is on the frontier. This is the guarantee CORA's
 documentation gives (`x` is the boundary point in direction `dir`); the LP's solution is not
 modelled, only what it must satisfy.
+
+## Inputs
+* `Z` – zonotope
+* `dir` – direction
+* `start` – starting point
+
+## Hypotheses
+* `hdir` – direction nonzero
+* `hs` – start lies in `Z`
+
+## Conclusion
+* the boundary point lies on the frontier of `Z`
 -/
 
 -- Authors:       Claude Opus 5.5

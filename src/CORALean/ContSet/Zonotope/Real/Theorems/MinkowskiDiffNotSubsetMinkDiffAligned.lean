@@ -21,6 +21,15 @@ generators `(1, 0)`, `(0, 1)`, `(1, 1)` and `EW` the triangle `(0, 0)`, `(1, 0)`
 triangle's three widths cannot all be matched by a centrally symmetric aligned
 zonotope. At `A = B = E = I`, `K = 0`, `x = 0` and `U = Z` that is (16) with `⊊`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* every aligned zonotope around the triangle misses a point of the difference
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

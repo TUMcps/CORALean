@@ -16,6 +16,18 @@ gives one of `quadMapTri`: keep the linear and square blocks, and give pair `l` 
 its `(j, k)`. The zero generators carry no weight. With `quadMap_outer` that is the lemma's
 enclosure.
 
+## Inputs
+* `n` – dimension
+* `m` – output dimension
+* `Q` – family of quadratic matrices
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the quadratic images lie in the triangular result
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

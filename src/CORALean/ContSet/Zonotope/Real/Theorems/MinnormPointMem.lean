@@ -13,6 +13,18 @@ inside the zonotope (`minnorm_ball_subset`).
 
 Source: [1].
 
+## Inputs
+* `Z` – zonotope
+* `S` – selected generator indices
+
+## Hypotheses
+* `hspan` – generators span the space
+* `hC` – facet normal nonzero
+* `hoff` – offset equals the minimal norm
+
+## Conclusion
+* the nearest facet point lies in `Z`
+
 ## References
 
 * [1] `contSet/@zonotope/minnorm.m`, CORA (Sep. 2025).

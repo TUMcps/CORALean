@@ -13,6 +13,14 @@ CORA's `@zonotope/tensorMultiplication_zono.m`: the tensor is a matrix zonotope
 `Tensor3 ℝ n` (a zonotope over any real module, as for the matrix zonotope). The result is
 `tensorMultiplication(Z, M.center)` plus, in a loop over the generators, `tensorMultiplication(Z,
 M.generator{i})` with Minkowski sums.
+
+## Inputs
+* `Z` – zonotope
+* `M` – tensor zonotope
+* `L` – term lists
+
+## Output
+* zonotope enclosing the tensor products
 -/
 
 -- Authors:       Claude Opus 5.5

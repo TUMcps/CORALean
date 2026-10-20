@@ -15,6 +15,15 @@ measure zero (`Measure.addHaar_submodule`). The `n`-subsets' determinants all va
 generators of a rank-`< n` family are dependent, so `Zonotope.volume` is `0` as well, which is
 CORA's early `vol = 0` return for `rank(G) < n` (and, as the rank is at most the count, for
 fewer than `n` generators).
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* `hr` – rank below the dimension
+
+## Conclusion
+* the volume of the set equals the zonotope volume
 -/
 
 -- Authors:       Claude Opus 5.5

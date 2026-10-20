@@ -12,6 +12,21 @@ less than one, since the elements of `(I + diag|r|)` are greater than one". Row 
 divided by `1 + |r_i| ≥ 1`, which never increases an absolute value. This is what lets the next step
 read `‖r‖∞ ≤ 1` off the state again without a new factorization.
 
+## Inputs
+* `n` – dimension
+* `k` – column count minus one
+* `T` – basis matrix
+* `R` – echelon columns
+* `ind` – removed column index
+* `l` – kept column index
+* `i` – coordinate
+
+## Hypotheses
+* `hR` – all entries at most one in absolute value
+
+## Conclusion
+* the updated entry is at most one in absolute value
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

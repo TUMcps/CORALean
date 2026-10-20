@@ -11,6 +11,17 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 With every generator in the upper half-plane (`y ≥ 0`), the corner `c - ∑ g` has the least `y` of
 the zonotope: the lowest vertex of [1, Alg. 3] and [1, Alg. 4] (lines 1-8).
 
+## Inputs
+* `Z` – planar zonotope
+* `z` – point
+
+## Hypotheses
+* `hH` – generators point upward
+* `hz` – `z` lies in `Z`
+
+## Conclusion
+* the bottom corner is the lowest point
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

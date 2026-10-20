@@ -13,6 +13,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 corner `s` to the corner `¬ s`, so it swaps the two blocks of the walk and maps the walk edges to
 themselves. [1, Alg. 3] and [1, Alg. 4] use it to get the upper end of a section from the lower.
 
+## Inputs
+* `Z` – zonotope
+* `x` – point on the walk edges
+
+## Hypotheses
+* `hx` – `x` lies on the walk edges
+
+## Conclusion
+* the reflection of `x` through the center lies on the walk edges
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

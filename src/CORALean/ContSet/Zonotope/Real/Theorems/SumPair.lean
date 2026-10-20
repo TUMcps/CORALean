@@ -17,6 +17,19 @@ block with column `j` of the other, so neither block sum closes on its own. Both
 are read over the common range `h₁ + h₂` with the summand padded by zero, where
 the identity is pointwise — a column both sets have, a column only one has, or
 neither.
+
+## Inputs
+* `G₁` – first generators
+* `G₂` – second generators
+* `β₁` – first coefficients
+* `β₂` – second coefficients
+* `lam` – pairing weight
+
+## Hypotheses
+* none
+
+## Conclusion
+* the paired blocks recombine into the weighted originals
 -/
 
 -- Authors:       Claude Opus 5

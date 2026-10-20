@@ -17,6 +17,18 @@ public import Mathlib.Tactic.Ring
 ("the operation ⊕ preserves central symmetry"): a point `y` is in it iff its reflection
 `2c − y` is. About the center the coefficients of `y` are `β`, and those of `2c − y` are `−β`.
 
+## Inputs
+* `s` – starting point
+* `m` – generator count
+* `g` – generators
+* `y` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* a point lies in the hull iff its reflection does
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

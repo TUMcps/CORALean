@@ -10,6 +10,12 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 CORA's `zonotope` with `c` zeroed: the same generators, moved to hold the
 origin instead of the center. What `Recenter` asks a representation with a
 center to supply, alongside `Zonotope.c` itself as `center`.
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* zonotope centered at the origin
 -/
 
 -- Authors:       Claude Opus 5

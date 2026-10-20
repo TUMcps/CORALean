@@ -12,6 +12,17 @@ Each candidate of [1, Alg. 5] does (`cloud2zonotope_mem`, for every `ratio`) and
 one of them. Outer only: the choice of `ratio` and of principal direction decides the size, not the
 enclosure.
 
+## Inputs
+* `dir` – principal-direction oracle
+* `pts` – points
+* `j` – point index
+
+## Hypotheses
+* none
+
+## Conclusion
+* each point lies in the enclosing zonotope
+
 ## References
 
 * [1] M. Maïga, N. Ramdani, L. Travé-Massuyès and C. Combastel. "A Comprehensive Method for

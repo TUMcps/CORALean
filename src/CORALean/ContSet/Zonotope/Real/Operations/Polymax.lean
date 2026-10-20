@@ -16,6 +16,16 @@ origin (`[1, Def. 3]` needs `0` inside for the signs to be right). The printed l
 `‖x - c₂‖` at the sign vector `x ∈ ℝ^{m₁}` itself and writes `νᵢ` for `ηᵢ`; it is the vertex
 `c₁ + G₁ x` that is tested here.
 
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+* `s` – facet count
+* `H` – facet normal matrix
+* `h` – facet offsets
+
+## Output
+* `true` iff the maximization certifies the test
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

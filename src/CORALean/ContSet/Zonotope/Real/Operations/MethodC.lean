@@ -21,6 +21,14 @@ halfspace conversion: [1, Prop. 8]'s `Γ box(Γ⁻¹Z)` at the `Γ` `aux_methodC
 CORA's `reduce(Z, 'methC', o)`, `Zonotope.reduceMethC`, is a relative: it boxes only what
 Girard's ranking drops, keeps `λ = 1`, and ranks lengths after its own row scaling.
 
+## Inputs
+* `Z` – zonotope
+* `κ` – length-filter size
+* `κ'` – volume-filter size
+
+## Output
+* parallelotope enclosing `Z`
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid

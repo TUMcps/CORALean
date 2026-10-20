@@ -13,18 +13,24 @@ public import Mathlib.Analysis.LocallyConvex.Separation
 /-!
 # [1, Thm. 2]: a zonotope is its cross-product halfspaces
 
-`C x ≤ d` at `C` the `2·C(p, n-1)` cross products of `n - 1` generators — here
-`n` of them in `Vec ℝ (n + 1)`, and the `±` pair read as an absolute value — and
-`d = C c + Δd` with `Δd = ∑ᵤ |C G⁽ᵘ⁾|`. Equality, not enclosure: the enclosing
-half is free, and the other is that those normals exhaust the facets.
+`C x ≤ d` at `C` the `2·C(p, n-1)` cross products of `n - 1` generators — here `n` of them in
+`Vec ℝ (n + 1)`, the `±` pair read as an absolute value — and `d = C c + Δd` with
+`Δd = ∑ᵤ |C G⁽ᵘ⁾|`. Equality, not enclosure: the enclosing half is free, and the other is that
+those normals exhaust the facets, through a separating direction. A point outside the zonotope has
+one; the signed generators make it a point of a pointed cone on which the separation is a positive
+linear form; `exists_edge_of_cone` moves it to an edge of that cone, which `n` independent
+generators annihilate; and `eq_smul_nCross` says the edge is a multiple of their cross product.
+First appeared as [2, Thm. 7], its parallelotope case as [2, Lemma 6].
 
-The exhaustion runs through a separating direction. A point outside the zonotope
-has one; the signed generators make it a point of a pointed cone on which the
-separation is a positive linear form; `exists_edge_of_cone` moves it to an edge
-of that cone, which `n` independent generators annihilate; and `eq_smul_nCross`
-says the edge is a multiple of their cross product.
+## Inputs
+* `n` – dimension minus one
+* `Z` – zonotope
 
-The theorem first appeared as [2, Thm. 7], and its parallelotope case as [2, Lemma 6].
+## Hypotheses
+* `hspan` – generators span the space
+
+## Conclusion
+* `Z` is the halfspace set cut out by the cross products
 
 ## References
 

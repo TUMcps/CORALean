@@ -8,19 +8,20 @@ public import CORALean.Global.Partition
 /-!
 # `Zonotope.pcaCovariance`
 
-The scatter matrix of the generators a partition drops: entry `(i, j)` is
-`∑ l, g_l i * g_l j`, which is `G Gᵀ` at the dropped block. Symmetric by
-construction, and that symmetry is the whole point of the definition — it is
-the hypothesis a spectral decomposition needs, and `pcaCovariance_isHermitian`
-is where it is discharged.
+The scatter matrix of the generators a partition drops: entry `(i, j)` is `∑ l, g_l i * g_l j`,
+which is `G Gᵀ` at the dropped block. Symmetric by construction, the hypothesis a spectral
+decomposition needs (`pcaCovariance_isHermitian`). CORA builds the point cloud `[G, -G]` and
+calls `cov` on its transpose [1], as [2, Alg. 2] does. That cloud has zero mean, so the centering
+subtracts nothing and what remains is `V Vᵀ / (2r - 1)`, `2 / (2r - 1)` times the matrix here. The
+factor is dropped: it is positive wherever CORA reaches this line (it returns early when nothing
+is dropped), and a positive scalar moves no eigenspace.
 
-CORA builds the point cloud `[G, -G]` and calls `cov` on its transpose [1], as
-[2, Alg. 2] does. That cloud has zero mean, as the file's own comment records, so the centering
-`cov` performs subtracts nothing and what remains is `V Vᵀ / (2r - 1)`, which
-is `2 / (2r - 1)` times the matrix here. The factor is dropped: it is positive
-wherever CORA reaches this line — CORA returns early when nothing is dropped —
-and a positive scalar moves no eigenspace, so the principal axes are the same
-axes.
+## Inputs
+* `Z` – zonotope
+* `part` – split of the generators
+
+## Output
+* scatter matrix of the dropped generators
 
 ## References
 

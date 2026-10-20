@@ -18,6 +18,17 @@ evolution `{s} ⊕ g₁ ⊕ ⋯ ⊕ (−g_M)` is `{s + G α | α ∈ [−1, 1]^M
 two coefficients of `gᵢ` and `−gᵢ`, both in `[0, 1]`, combine to `αᵢ − αᵢ'`, which ranges over
 all of `[−1, 1]`. The paper's shift is `0` ([1, Eq. 10]); it holds at any `s`.
 
+## Inputs
+* `s` – starting point
+* `M` – generator count
+* `g` – generators
+
+## Hypotheses
+* none
+
+## Conclusion
+* the hull of `g` and `-g` is the zonotope
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

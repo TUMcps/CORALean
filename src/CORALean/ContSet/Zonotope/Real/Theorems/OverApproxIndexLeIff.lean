@@ -12,6 +12,18 @@ exactly where `Θ` is, so the cheaper index may be searched instead. Both sides 
 the same `V(S_orig) > 0` and take the same `n`-th root, and `x ↦ (x / V)^{1/n}` is strictly
 increasing on `[0, ∞)` — which is the printed proof, one step at a time.
 
+## Inputs
+* `Sorig` – original zonotope
+* `S₁` – first enclosure
+* `S₂` – second enclosure
+
+## Hypotheses
+* `hn` – dimension nonzero
+* `hV` – original volume positive
+
+## Conclusion
+* the index orders enclosures like their volumes
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid

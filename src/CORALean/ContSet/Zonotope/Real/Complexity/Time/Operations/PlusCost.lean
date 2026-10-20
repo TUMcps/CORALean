@@ -16,6 +16,14 @@ operands.
 
 `Complexity/Space/Plus.lean` is the other half and the other kind of claim: how large
 the *result* is, which is `rfl` against the definition.
+
+## Inputs
+* `n` – dimension
+* `h₁` – first generator count
+* `h₂` – second generator count
+
+## Output
+* `n` additions plus `n(1+h₁+h₂)` writes
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

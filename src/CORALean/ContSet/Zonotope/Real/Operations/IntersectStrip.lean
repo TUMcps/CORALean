@@ -17,6 +17,16 @@ diag(φ)]` encloses, whatever `Λ` is. Only this branch is modelled: the named m
 `Λ` (`'normGen'`, `'svd'`, `'radius'`, `'alamo-volume'`, `'alamo-FRad'`, `'wang-FRad'`, `'bravo'`)
 are tuning, as `Λ` is any matrix here, and the soundness does not depend on it.
 
+## Inputs
+* `C` – output matrix
+* `φ` – strip radii
+* `y` – measurement
+* `Λ` – weight matrix
+* `Z` – zonotope
+
+## Output
+* zonotope enclosing the intersection with the strip
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state

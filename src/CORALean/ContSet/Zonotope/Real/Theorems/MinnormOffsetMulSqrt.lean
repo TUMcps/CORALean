@@ -10,6 +10,16 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.FacetNormalDotSelfPos
 
 `minnormOffset` divides `Δd = Σᵤ |C G⁽ᵘ⁾|` by `‖C‖₂`; multiplying back returns `Δd`, which is the
 bound the facet inequality of `hRep_eq` states.
+
+## Inputs
+* `Z` – zonotope
+* `S` – selected generator indices
+
+## Hypotheses
+* `hC` – facet normal nonzero
+
+## Conclusion
+* the offset times the normal length equals the generator reach
 -/
 
 -- Authors:       Claude Sonnet 5.5

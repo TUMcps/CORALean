@@ -13,6 +13,20 @@ public import Mathlib.Tactic.Abel
 [1, Alg. 1] Step 3, [1, Def. 2], Eq. 9: if `x ∈ ⟨ć, G̃⟩` and `n ∈ ⟨0, Q⟩`, then `F x + n` is in
 `⟨F ć, [F G̃, Q]⟩`. The coefficients of `x` and of the noise are stacked, `(F G̃) α + Q β`.
 
+## Inputs
+* `F` – dynamics matrix
+* `Q` – process-noise generators
+* `Zt` – diffused zonotope
+* `x` – state
+* `β` – process-noise coefficients
+
+## Hypotheses
+* `hx` – state lies in `Zt`
+* `hβ` – coefficients within the unit box
+
+## Conclusion
+* the next state lies in the updated zonotope
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

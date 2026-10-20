@@ -16,6 +16,16 @@ extremal offset along every direction is `gᵢ + g'ᵢ`, since `Z ⊕ Z'` concat
 generator lists and the offset sums over the generators one at a time. The sets
 `Zonotope.underS` of the two sides are then equal by rewriting.
 
+## Inputs
+* `Z` – first zonotope
+* `Z'` – second zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* center and extremal offsets of a sum add
+
 ## References
 
 * [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of

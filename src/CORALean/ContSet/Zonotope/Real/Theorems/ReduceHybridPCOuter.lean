@@ -14,6 +14,19 @@ HybridPC [1, Sec. III-C] returns one of two reductions, each boxed along an
 invertible basis: `lineClBasis_isUnit_det` and `pcaBasis_isUnit_det`. Whichever
 the volume picks, `reduceByBasis_outer` applies.
 
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+* `ξ` – convergence threshold
+* `fuel` – iteration budget
+* `runs` – number of restarts
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Z` lies in the reduced zonotope
+
 ## References
 
 * [1] A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of

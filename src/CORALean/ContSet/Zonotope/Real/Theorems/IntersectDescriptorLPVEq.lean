@@ -18,6 +18,27 @@ intersection zonotope [1, Thm. 1] at `A(θ) = Σⱼ ρⱼ Aⱼ`, `B(θ)`, `D(θ)
 sums come from expanding `(I - Λ(θ)C) T A(θ)` bilinearly, and `I = Σᵢ ρᵢ I` needs `Σᵢ ρᵢ = 1`
 [1, Eq. 2]; the weights need not be nonnegative here.
 
+## Inputs
+* `T` – decoupling matrix
+* `N` – measurement decoupling matrix
+* `ρ` – vertex weights
+* `Λ` – correction matrices
+* `A` – vertex state matrices
+* `B` – vertex input matrices
+* `D` – vertex disturbance matrices
+* `C` – output matrix
+* `F` – noise matrix
+* `Hd` – disturbance generator matrix
+* `u` – control input
+* `y` – measurement
+* `X` – state zonotope
+
+## Hypotheses
+* `hρ` – weights sum to one
+
+## Conclusion
+* the LPV zonotope equals the weighted-average descriptor zonotope
+
 ## References
 
 * [1] Y. Wang, Z. Wang, V. Puig and G. Cembrano. "Zonotopic set-membership state estimation for

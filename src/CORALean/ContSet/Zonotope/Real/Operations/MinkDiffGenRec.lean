@@ -8,20 +8,21 @@ public import Mathlib.Algebra.Group.Pointwise.Set.Basic
 /-!
 # `Zonotope.minkDiffGenRec`
 
-[1, Thm. 1]'s own procedure, and not an approximation: peel one generator of
-`Zₛ` off at a time, intersecting the running set with its translate either way
-along that generator, starting from `Zₘ` shifted by `-c⁽ˢ⁾`. `Fin.foldl` is
-exactly this recursion — its initial value is the paper's `Z_int⁽¹⁾`, its step
-is `Z_int⁽ⁱ⁺¹⁾`, and its result after all `pₛ` generators is `Z_int⁽ᵖˢ⁺¹⁾` — so
-no bespoke recursor is needed to state it.
+[1, Thm. 1]'s own procedure, and not an approximation: peel one generator of `Zₛ` off at a time,
+intersecting the running set with its translate either way along that generator, starting from
+`Zₘ` shifted by `-c⁽ˢ⁾`. `Fin.foldl` is exactly this recursion, so no bespoke recursor is
+needed. It returns a `Set α`, deliberately: [1, Prop. 1] gives a three-dimensional pair whose
+Minkowski difference is not a zonotope, so a zonotope-valued version could not be exact, and the
+intermediate intersections are not zonotopes either. This is a specification, not a computation —
+what a representation can run is `minkDiffRep`, which is inner; this one is proved equal to the
+difference in `MinkDiffGenRecExact.lean`.
 
-It returns a `Set α` and not a `Zonotope α`, deliberately: [1, Prop. 1] gives a
-three-dimensional pair whose Minkowski difference is not a zonotope, so a
-zonotope-valued version of this could not be exact, and exactness is the whole
-claim of [1, Thm. 1]. The intermediate intersections are not zonotopes either.
-So this is a specification and not a computation — what a representation can
-run is `minkDiffRep`, which is inner and asks for a certificate, while this one
-is proved equal to the difference in `MinkDiffGenRecExact.lean`.
+## Inputs
+* `Zm` – minuend
+* `Zs` – subtrahend
+
+## Output
+* set from folding over the subtrahend generators
 
 ## References
 

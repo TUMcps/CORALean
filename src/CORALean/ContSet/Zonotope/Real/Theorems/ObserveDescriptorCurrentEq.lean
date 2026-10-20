@@ -14,6 +14,25 @@ The centers are the same expression, and the generators agree up to the sign of 
 `-(I - ĜC)NF` and `-ĜF` against `(I - ĜC)NF` and `ΛF`, which "can be removed by definition of the
 zonotope": flipping the sign of a coefficient that ranges over `[-1, 1]` changes nothing.
 
+## Inputs
+* `T` – decoupling matrix
+* `N` – measurement decoupling matrix
+* `Ghat` – observer gain
+* `A` – state matrix
+* `B` – input matrix
+* `D` – disturbance matrix
+* `C` – output matrix
+* `F` – noise matrix
+* `u` – control input
+* `y_plus` – next output
+* `X` – state zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the observer zonotope equals the intersection zonotope
+
 ## References
 
 * [1] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on

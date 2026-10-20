@@ -11,6 +11,17 @@ public import Mathlib.Tactic.Module
 `x ∈ (Z.shift w).construct ↔ x + w ∈ Z.construct`: the generators are the same, so the only
 change to a member's defining equation is which point it is read from, `Z.c - w` rather than
 `Z.c` — the algebra `abel` closes both directions of.
+
+## Inputs
+* `Z` – zonotope
+* `w` – shift vector
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the shifted zonotope iff `x + w` lies in `Z`
 -/
 
 -- Authors:       Claude Opus 5

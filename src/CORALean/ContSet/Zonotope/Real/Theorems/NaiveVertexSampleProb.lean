@@ -18,6 +18,29 @@ The maximum is attained at one corner (`Sec. III`), which a sample is with proba
 `2⁻ᵐ ≥ (ε / (2 + ε))ᵐ`. The printed `Ẑ ⊆ Ê` with probability at least `P_S(1 - r_vs)` chooses
 `ε` after the samples are drawn and reads a statement about them as one about the sets.
 
+## Inputs
+* `Z` – zonotope
+* `H` – linear map
+* `d` – offset
+* `r` – greatest coefficient norm
+* `Ω` – sample space
+* `P` – probability measure
+* `a` – random corner signs
+* `ε` – tolerance
+
+## Hypotheses
+* `hH` – `H` surjective
+* `hr` – `r` is the greatest norm over `Z`
+* `hN` – at least one sample
+* `hm` – samples measurable
+* `hind` – samples independent
+* `hu` – corners uniformly distributed
+* `hε` – tolerance positive
+* `hε1` – tolerance at most one
+
+## Conclusion
+* the sample reaches `(1 - ε) r` with at least the stated probability
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

@@ -16,6 +16,15 @@ needs: an error stated as a radius may be replaced by this zonotope, which is
 what lets a Minkowski difference by it be computed at a representation.
 
 Nothing is asked of `ε`: a negative radius leaves the ball empty.
+
+## Inputs
+* `ε` – radius
+
+## Hypotheses
+* none
+
+## Conclusion
+* the closed ball lies in the diagonal-generator zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

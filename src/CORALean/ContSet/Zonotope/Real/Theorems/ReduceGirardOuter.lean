@@ -14,6 +14,16 @@ nothing to do, and above it the rule is a partition like any other, so
 `reduceBy_outer` closes it. Girard's metric appears
 nowhere — that is the point of stating the enclosure at an arbitrary partition.
 
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Z` lies in the reduced zonotope
+
 ## References
 
 * [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid

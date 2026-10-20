@@ -13,6 +13,13 @@ public import Mathlib.Data.Matrix.Mul
 weighted Frobenius norm of the generator matrix, `√Σⱼ gⱼᵀ W gⱼ` over the generators `gⱼ`. It
 ignores the center. At `W = I` it is the F-radius of Combastel's zonotopic Kalman filter.
 
+## Inputs
+* `W` – weight matrix
+* `Z` – zonotope
+
+## Output
+* weighted Frobenius radius of the generators
+
 ## References
 
 * [1] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on

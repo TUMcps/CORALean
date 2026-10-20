@@ -14,6 +14,12 @@ norm of the averaged zonotope's generators. `tr(Ḡ Ḡᵀ)` is the sum of the s
 the generator matrix; a zonotope with no generators has trace zero and `1 / 0 = 0` in Lean, so
 the weights are meaningful for generator matrices that are not zero.
 
+## Inputs
+* `Z` – family of zonotopes
+
+## Output
+* trace-based weights of the averaging
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

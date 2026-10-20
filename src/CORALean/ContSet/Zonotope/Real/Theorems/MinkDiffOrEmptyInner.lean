@@ -16,6 +16,17 @@ which keeps this file clear of the `ContSet` instance: that lives in
 `h.choose` is the certified representation the definition picked, and
 `Option.some_get` turns the `isSome` that came with it back into the equation
 `minkDiffRep_inner` asks for.
+
+## Inputs
+* `Z₁` – minuend
+* `Z₂` – subtrahend
+* `D` – returned zonotope
+
+## Hypotheses
+* `hD` – the result is the zonotope `D`
+
+## Conclusion
+* `D` lies in the Minkowski difference
 -/
 
 -- Authors:       Claude Opus 5

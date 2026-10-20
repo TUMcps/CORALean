@@ -12,6 +12,20 @@ The strict form of `Zonotope.cross_nonneg_of_arg_le`, for nonzero vectors of the
 [1, Alg. 4] progress: the sum of the cross products with the pivot is zero, so they cannot all be
 positive.
 
+## Inputs
+* `u` – first planar vector
+* `w` – second planar vector
+
+## Hypotheses
+* `hu` – `u` has nonnegative height
+* `hw` – `w` points upward
+* `hu0` – `u` nonzero
+* `hw0` – `w` nonzero
+* `h` – angle of `u` below that of `w`
+
+## Conclusion
+* the cross product is positive
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

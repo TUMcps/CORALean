@@ -17,6 +17,19 @@ generators along one axis and a few short transversal ones has this shape
 
 Source: [1].
 
+## Inputs
+* `Z` – zonotope
+* `a` – length-filter size
+* `b` – volume-filter size
+* `y` – direction
+
+## Hypotheses
+* `hy` – direction nonzero
+* `hort` – filtered generators orthogonal to `y`
+
+## Conclusion
+* every returned basis has determinant zero
+
 ## References
 
 * [1] `contSet/@zonotope/dominantDirections.m` and its private helpers, CORA (Sep. 2025).

@@ -13,6 +13,19 @@ public import Mathlib.Tactic.Module
 `gᵢ ± gⱼ` lies in the sum of the segments along `gᵢ` and `gⱼ`. A coefficient `β` of the
 new generator becomes `β` on `gᵢ` and `±β` on `gⱼ`; the others carry over.
 
+## Inputs
+* `Z` – zonotope
+* `m` – generator count minus two
+* `i` – first generator index
+* `j` – second generator index among the rest
+* `add` – sum if true, difference otherwise
+
+## Hypotheses
+* `hm` – generator count is `m + 2`
+
+## Conclusion
+* the combined zonotope lies in `Z`
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

@@ -19,6 +19,21 @@ AFSS_{k+1}`, at every gain `λ` (the paper's recursion `FSS_{k+1} = (FSS_k ∩ F
 (`support_dotProduct`), so the tight strip loses nothing; `intersectStrip_outer` and `plus_exact`
 do the rest.
 
+## Inputs
+* `X` – parameter zonotope
+* `r` – regressor vector
+* `y` – measurement
+* `σ` – measurement error bound
+* `l` – gain vector
+* `γ` – expansion bounds
+* `P` – parameter set
+
+## Hypotheses
+* `hP` – `P` lies in `X`
+
+## Conclusion
+* the expanded strip intersection lies in the next zonotope
+
 ## References
 
 * [1] J. M. Bravo, T. Alamo and E. F. Camacho. "Bounded error identification of systems with

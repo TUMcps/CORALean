@@ -13,6 +13,18 @@ public import Mathlib.Data.Matrix.Basic
 row, and `C` maps it back. `C⁻¹` is any right inverse `M` here, `C M = 1`: eq. 10 writes
 `C⁻¹`, eq. 13 writes `V diag(1/sᵢᵢ) Uᵀ`, and the two cases differ only in which `M` they name.
 
+## Inputs
+* `Z` – zonotope
+* `C` – basis matrix
+* `M` – right inverse of `C`
+
+## Hypotheses
+* `hCM` – `M` is a right inverse of `C`
+* `h` – row sums of the transformed generators at most one
+
+## Conclusion
+* `Z` lies in the parallelotope of `C`
+
 ## References
 
 * [1] A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of

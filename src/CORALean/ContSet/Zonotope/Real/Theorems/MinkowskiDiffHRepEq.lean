@@ -8,16 +8,24 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffApplyLe
 /-!
 # [1, Thm. 3]: the Minkowski difference's own halfspace representation
 
-`Z_m ⊖ Z_s = {x | C(x − (c⁽ᵐ⁾ − c⁽ˢ⁾)) ≤ Δd − Δd_trans}`, the same `C` as [1,
-Thm. 2] at the minuend `Z_m` alone, `Δd` its own reach and `Δd_trans` the
-subtrahend's — the printed `±` pair read, as at `Thm. 2` and `Lemma 2`, as one
-`|·|` row.
+`Z_m ⊖ Z_s = {x | C(x − (c⁽ᵐ⁾ − c⁽ˢ⁾)) ≤ Δd − Δd_trans}`, the same `C` as [1, Thm. 2] at the
+minuend `Z_m` alone, `Δd` its own reach and `Δd_trans` the subtrahend's — the printed `±` pair
+read, as at `Thm. 2` and `Lemma 2`, as one `|·|` row. `hspan` is `Thm. 2`'s own hypothesis at
+`Z_m`, needed to read off `hRep_eq` there; `Z_s` carries none. Enclosing:
+`minkowskiDiff_apply_le` at `Thm. 2`'s own normal and its negation. Exhausting: any point of `Z_s`
+displaces `Z_m`'s halfspaces by at most its own support value in that direction, so `hRep_eq` at
+the sum keeps `x` inside.
 
-`hspan` is `Thm. 2`'s own hypothesis at `Z_m`, needed to read off `hRep_eq`
-there; `Z_s` carries none, and needs none. Enclosing: `minkowskiDiff_apply_le`
-at `Thm. 2`'s own normal and its negation. Exhausting: any point of `Z_s`
-displaces `Z_m`'s halfspaces by at most its own support value in that
-direction, so `hRep_eq` at the sum keeps `x` inside.
+## Inputs
+* `n` – dimension minus one
+* `Zm` – minuend
+* `Zs` – subtrahend
+
+## Hypotheses
+* `hspan` – generators of the minuend span the space
+
+## Conclusion
+* the difference is the minuend's halfspaces with lowered offsets
 
 ## References
 

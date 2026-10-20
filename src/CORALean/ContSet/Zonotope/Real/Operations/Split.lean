@@ -7,21 +7,21 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # `Zonotope.split`
 
-Splitting a zonotope along its `j`-th generator [1, Prop. 3]: halve that
-generator and shift the center by `∓g_j/2`, which cuts the coefficient cube at
-`β_j = 0` and leaves every other coefficient alone.
+Splitting a zonotope along its `j`-th generator [1, Prop. 3]: halve that generator and shift the
+center by `∓g_j/2`, which cuts the coefficient cube at `β_j = 0` and leaves every other
+coefficient alone. A pair, as CORA's `split` returns both halves at once. The generator count does
+not change, so a split costs no order; what it costs is that the halves overlap, in `Z` with
+`g_j` dropped. Over any real module, like `Zonotope` itself, and `noncomputable` with it. `Real`
+only, since `FloatOps` carries no exact halving — `half` is `Dyadic`'s alone — so a float split
+rounds the center shift and the halved generator in opposite directions, and its halves cover only
+after an inflation that is a design choice.
 
-A pair, as CORA's `split` returns both halves at once and neither is meaningful
-without the other. The generator count does not change, so a split costs no
-order; what it costs is that the halves overlap, in `Z` with `g_j` dropped.
+## Inputs
+* `Z` – zonotope
+* `j` – generator index
 
-Over any real module, like `Zonotope` itself, and `noncomputable` with it: ℝ has
-no inverse that runs.
-
-`Real` only, since `FloatOps` carries no exact halving — `half` is `Dyadic`'s
-alone — so a float split rounds the center shift and the halved generator in
-opposite directions, and its halves cover only after an inflation that is a
-design choice rather than a translation of this one.
+## Output
+* the two halves along that generator
 
 ## References
 

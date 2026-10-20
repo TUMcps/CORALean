@@ -13,6 +13,15 @@ The zonotope is `c` plus the image of the cube `[-1, 1]^n` under the matrix of i
 so its volume is `|det G|` times the cube's, `2^n` (`Measure.addHaar_image_linearMap`). With
 exactly `n` generators the one `n`-subset is all of them. This is `Zonotope.volume` in the case
 `h = n`: the general sum (the tiling by parallelotopes) is not proved.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* `hh` – as many generators as dimensions
+
+## Conclusion
+* the volume of the set equals the zonotope volume
 -/
 
 -- Authors:       Claude Opus 5.5

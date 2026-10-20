@@ -10,14 +10,22 @@ public import Mathlib.Data.Matrix.Mul
 
 CORA's `aux_cubMapSingle` writes the point of a zonotope as a cubic polynomial in the extended
 factors `(1, β₁, ..., β_h)` and keeps one coefficient per sorted triple `k ≤ j ≤ c`, the unsorted
-ones added into it. Following the steps, for output `i` and `N = h + 1`:
+ones added into it. For output `i` and `N = h + 1`: `quadMat = [c,G]ᵀ T{i,k} [c,G]` folded onto its
+upper triangle (`symMat`); `listQuad{j} = Σₖ symMat · [c,G](k, j)`; and the accumulation over
+identical factors, the entries of `listQuad{k}` whose row `j` lies below `k` added into
+`listQuad{j}`. The loop writes only into rows `≥ j` of `listQuad{j}` and reads only rows `< k` of
+`listQuad{k}`, so the in-place loop is the closed form below.
 
-* `quadMat = [c,G]ᵀ T{i,k} [c,G]`, folded onto its upper triangle (`symMat`);
-* `listQuad{j} = Σₖ symMat · [c,G](k, j)`, one `N × N` matrix per extended column `j`;
-* the accumulation over identical factors: the entries of `listQuad{k}` whose row `j` lies below
-  `k` are added into `listQuad{j}`. The loop writes only into rows `≥ j` of `listQuad{j}` and
-  reads only rows `< k` of `listQuad{k}`, so every read sees the matrix as `listQuad` has it and
-  the in-place loop is the closed form below.
+## Inputs
+* `T` – cubic tensor
+* `Z` – zonotope
+* `i` – output index
+* `x` – first extended column
+* `y` – second extended column
+* `z` – third extended column
+
+## Output
+* folded coefficient of the sorted triple
 -/
 
 -- Authors:       Claude Opus 5.5

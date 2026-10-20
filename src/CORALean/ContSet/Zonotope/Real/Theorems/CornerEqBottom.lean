@@ -11,6 +11,17 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 In coordinates, `corner s = corner (all -) + 2 ∑_{s j} g_j`: the walk of [1, Alg. 3] adds `2 g`
 to the current vertex for each generator it passes.
 
+## Inputs
+* `Z` – planar zonotope
+* `s` – corner signs
+* `k` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* the corner is the bottom plus twice the selected generators
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

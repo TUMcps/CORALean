@@ -9,19 +9,28 @@ public import Mathlib.Algebra.BigOperators.Fin
 /-!
 # `Zonotope.correctedStepDistributed`
 
-The distributed state-bounding zonotope of [1, Prop. 1], one step of one agent `i` of the
-interconnected system `x_i(k+1) = Σ_{j ∈ N_i} A_ij x_j(k) + B_i u_i(k) + w_i(k)`,
-`y_i(k) = C_i x_i(k) + v_i(k)` [1, Eq. 4]: from the zonotopes `X_j = ⟨c_j, H_j⟩` of the agent's
-neighbours `j ∈ N_i`, its input `u_i`, its own measurement `y_i` and its correction matrix `Λ_i`,
-`c_i = (I - Λ_iC_i)(Σ_j A_ij c_j + B_i u_i) + Λ_i y_i` and
+The state-bounding zonotope of [1, Prop. 1], one step of agent `i` of the interconnected system
+`x_i(k+1) = Σ_{j ∈ N_i} A_ij x_j(k) + B_i u_i(k) + w_i(k)`, `y_i(k) = C_i x_i(k) + v_i(k)`
+[1, Eq. 4]: from the zonotopes `X_j = ⟨c_j, H_j⟩` of the neighbours, its input `u_i`, measurement
+`y_i` and correction matrix `Λ_i`, `c_i = (I - Λ_iC_i)(Σ_j A_ij c_j + B_i u_i) + Λ_i y_i` and
 `H_i = [(I - Λ_iC_i) cat_j {A_ij H_j}  (I - Λ_iC_i) D_{w_i}  Λ_i D_{v_i}]` Eq. 7 of [1, Prop. 1].
+The neighbours are `Fin q`, `X a` the zonotope of the `a`-th, `A a` its `A_ij`; the generator
+blocks sit side by side with independent coefficients. `Λ_i` is any matrix; the enclosure holds
+for each.
 
-The neighbours are enumerated as `Fin q` in the paper's increasing order, so `X a` is the
-zonotope of the `a`-th neighbour, of dimension `m a`, and `A a` is `A_ij` at that neighbour; the
-agent's own state is one of them, `N_i` containing `i`. The generator blocks `A_ij H_j` are laid
-side by side,
-each neighbour's own coefficients: `cat` is a concatenation and not a sum, so the coefficients of
-two neighbours are independent. `Λ_i` is any matrix; the enclosure holds for each.
+## Inputs
+* `Λ` – correction matrix
+* `A` – neighbour state matrices
+* `B` – input matrix
+* `Dw` – disturbance generator matrix
+* `C` – output matrix
+* `Dv` – noise generator matrix
+* `u` – control input
+* `y` – measurement
+* `X` – neighbour state zonotopes
+
+## Output
+* corrected state-bounding zonotope of the agent
 
 ## References
 

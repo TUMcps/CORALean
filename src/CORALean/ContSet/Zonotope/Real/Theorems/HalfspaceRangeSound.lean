@@ -15,6 +15,17 @@ halfspace `{x | nᵀx ≤ d}` is closed, and at `ω̲ = 0` the zonotope touches 
 `halfspaceRange_nonneg_not_disjoint` is the one-point example. Both halves rest on
 `|Σᵢ βᵢω⁽ⁱ⁾| ≤ Σᵢ |ω⁽ⁱ⁾|` for `|βᵢ| ≤ 1`.
 
+## Inputs
+* `nv` – halfspace normal
+* `d` – halfspace offset
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* a positive lower bound excludes `Z` and a nonpositive upper bound includes it
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

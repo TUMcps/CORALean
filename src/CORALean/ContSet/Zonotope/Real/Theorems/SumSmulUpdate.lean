@@ -7,19 +7,26 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # A generator sum with one term replaced
 
-Splitting a zonotope changes one coefficient and one generator and nothing
-else, so every sum on either side of a split is this one: the `j`-th term
-written out, plus a reach the split never touches.
+Splitting a zonotope changes one coefficient and one generator and nothing else, so every sum on
+either side of a split is this one: the `j`-th term written out, plus a reach the split never
+touches. Stated with both replacements at once, because `Function.update_eq_self` puts back
+whichever of the two is not replaced — so the original sum, each half's, and the overlap's are all
+this statement at different arguments, and the shared `∑ k ∈ univ.erase j` is what lets them be
+compared. A file of its own rather than a helper, `SplitUnion` and `SplitIntersection` both
+reading their sums off it. Over any real module, nothing here touching a coordinate.
 
-Stated with both replacements at once, because `Function.update_eq_self` puts
-back whichever of the two is not replaced — so the original sum, each half's,
-and the overlap's are all this statement at different arguments, and the shared
-`∑ k ∈ univ.erase j` is what lets them be compared at all.
+## Inputs
+* `β` – coefficients
+* `G` – generators
+* `j` – updated index
+* `t` – new coefficient
+* `a` – new generator
 
-A file of its own rather than a helper, `SplitUnion` and `SplitIntersection`
-both reading their sums off it.
+## Hypotheses
+* none
 
-Over any real module, nothing here touching a coordinate.
+## Conclusion
+* the updated sum is the new term plus the untouched rest
 -/
 
 -- Authors:       Claude Opus 5

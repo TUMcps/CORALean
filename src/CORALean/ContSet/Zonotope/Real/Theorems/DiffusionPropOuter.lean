@@ -14,6 +14,31 @@ node's strips at the state of the previous instant, `|Γⁱ x_{k-1} - ȳⁱ_k| �
 zonotope of every node at every instant (`diffusionProp`). Induction on `k` with
 `diffusionPropStep_outer`. The positivity of `tr(Ḡʲ Ḡʲᵀ)` of [1, Prop. 1] is assumed for the
 zonotopes the run produces.
+
+## Inputs
+* `F` – dynamics matrix
+* `Q` – process-noise generators per instant
+* `Γ` – stacked measurement matrices
+* `r` – noise radii per instant
+* `yb` – outputs per instant
+* `nb` – neighbour indices of each node
+* `o` – reduction order
+* `Z₀` – initial zonotope
+* `x` – state trajectory
+* `β` – process-noise coefficients per instant
+* `k` – instant
+* `i` – node
+
+## Hypotheses
+* `hβ` – coefficients within the unit box
+* `h0` – initial state lies in `Z₀`
+* `hxs` – trajectory follows the dynamics
+* `hy` – outputs consistent with the trajectory
+* `hα` – every neighbour trace positive
+
+## Conclusion
+* the true state lies in each node's zonotope
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

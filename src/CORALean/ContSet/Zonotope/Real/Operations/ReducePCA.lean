@@ -9,19 +9,20 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBasis
 /-!
 # `Zonotope.reducePCA`
 
-CORA's `reduce(Z, 'pca', o)` [1], which is [2, Alg. 2]. Its partition is Girard's — CORA reaches it
-through `pickedGenerators`, which ranks by `‖g‖₁ - ‖g‖∞` exactly as
-`girardSplit` does. What differs is the enclosure: the dropped block is boxed
-along the principal axes of the dropped generators themselves, instead of
-along the coordinate axes.
+CORA's `reduce(Z, 'pca', o)` [1], which is [2, Alg. 2]. Its partition is Girard's — CORA reaches
+it through `pickedGenerators`, which ranks by `‖g‖₁ - ‖g‖∞` as `girardSplit` does. What differs
+is the enclosure: the dropped block is boxed along the principal axes of the dropped generators
+themselves, instead of the coordinate axes. There is no fallback branch: `methC` has to test the
+answer, since a selection of generators can be singular; the principal axes cannot be, being
+orthonormal, so `pcaBasis_isUnit_det` holds outright and `reducePCA` is `reduceByBasis` and the
+order test. Noncomputable, because `pcaBasis` is.
 
-There is no fallback branch. `methC` searches for a basis and has to test the
-answer, since a selection of generators can be singular; the principal axes
-cannot be, being orthonormal, so `pcaBasis_isUnit_det` holds outright and
-`reducePCA` is `reduceByBasis` and the order test and nothing else.
+## Inputs
+* `Z` – zonotope
+* `o` – target order
 
-Noncomputable, because `pcaBasis` is. That is where the eigendecomposition
-sits, and the reason is recorded there.
+## Output
+* zonotope with the dropped block boxed along its principal axes
 
 ## References
 

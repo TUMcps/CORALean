@@ -11,6 +11,15 @@ public import CORALean.ContSet.Zonotope.Real.Operations.HalfspaceRange
 `n = 1` and `d = 0`, `ω̲ = 0`, yet `0` lies in `{x | x ≤ 0}`. `halfspaceRange_sound` is the
 strict version that holds.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed disjointness test fails for a zonotope meeting the halfspace
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

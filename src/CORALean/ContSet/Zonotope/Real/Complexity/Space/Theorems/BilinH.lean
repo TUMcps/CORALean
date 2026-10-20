@@ -10,21 +10,25 @@ public import Mathlib.Tactic.Positivity
 /-!
 # `Zonotope.bilin_h`
 
-`bilin`'s generator count: each operand's own, plus the cross block at their
-product — quadratic, not linear, in the operands' sizes. `rfl`, since
-`Operations/Bilin.lean` states `h` directly. `BilinHIsBigO.lean` puts this in
-`O`-notation, along a family of operands whose sizes grow.
+`bilin`'s generator count: each operand's own plus the cross block at their product — quadratic,
+not linear, in the operands' sizes. `rfl`, since `Operations/Bilin.lean` states `h` directly.
+`BilinHIsBigO.lean` puts this in `O`-notation.
 
 ## `bilin`'s cost is `O(m ^ 2)`
 
-The shape the rest of `Complexity/Space/` should eventually take: not a bare
-arithmetic fact about `m + m + m * m`, but one tied to `bilin` through a family
-of zonotopes whose sizes grow as `m`. `bilin_h` reduces the left side to that
-sum, which `3 * m ^ 2` dominates for every `m`, so the bound needs no filter
-condition — `IsBigO.of_bound` still asks for one only eventually.
+Tied to `bilin` through a family of zonotopes whose sizes grow as `m`: `bilin_h` reduces the left
+side to `m + m + m * m`, which `3 * m ^ 2` dominates for every `m`, so `IsBigO.of_bound` closes it.
 
-`Asymptotics.IsBigO.of_bound` closes it: it asks for domination by a fixed
-constant `∀ᶠ x in l`, which the whole range `m ≥ 1` clears with room to spare.
+## Inputs
+* `f` – bilinear map
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* result has `h₁ + h₂ + h₁h₂` generators
 -/
 
 -- Authors:       Claude Opus 5

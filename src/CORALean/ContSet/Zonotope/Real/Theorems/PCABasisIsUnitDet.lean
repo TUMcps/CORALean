@@ -7,16 +7,23 @@ public import CORALean.ContSet.Zonotope.Real.Operations.PCABasis
 /-!
 # The principal-axis basis is invertible
 
-`reduceByBasis_outer` holds at every `P` whose determinant is a unit, and this
-is that hypothesis for `pcaBasis` [1, Alg. 2], discharged once and for all rather than
-tested at each call as `reduceMethC` must test its search's answer.
+`reduceByBasis_outer` holds at every `P` whose determinant is a unit, and this is that hypothesis
+for `pcaBasis` [1, Alg. 2], discharged once and for all rather than tested at each call as
+`reduceMethC` must test its search's answer. Nothing about eigenvectors is needed: `pcaBasis` is
+the matrix underlying a member of Mathlib's unitary group, and a unitary matrix's determinant is a
+unit because `U * Uᵀ = 1` makes it one — over `ℝ` an orthogonal matrix, of determinant `±1`. So
+the proof is Mathlib's `Matrix.UnitaryGroup.det_isUnit` applied to the member `pcaBasis` unfolds
+to, and it would read the same for any Hermitian matrix.
 
-Nothing about eigenvectors is needed for it. `pcaBasis` is by definition the
-matrix underlying a member of Mathlib's unitary group, and a unitary matrix's
-determinant is a unit because `U * Uᵀ = 1` makes it one — over `ℝ` that is an
-orthogonal matrix, whose determinant is `±1`. So the proof is Mathlib's
-`Matrix.UnitaryGroup.det_isUnit` applied to the member `pcaBasis` unfolds to,
-and it would read the same for any Hermitian matrix whatever.
+## Inputs
+* `Z` – zonotope
+* `part` – split of the generators
+
+## Hypotheses
+* none
+
+## Conclusion
+* the principal axes form an invertible basis
 
 ## References
 

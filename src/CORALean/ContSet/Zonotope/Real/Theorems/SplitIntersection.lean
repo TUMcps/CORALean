@@ -10,20 +10,24 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 /-!
 # What a split costs: where the two halves overlap
 
-`Z₁ ∩ Z₂` is `Z` with the `j`-th generator gone [1, Prop. 3], written here as
-that generator set to `0` — the same set, and it keeps the generator index a
-`Fin Z.h`, which dropping a column would not.
+`Z₁ ∩ Z₂` is `Z` with the `j`-th generator gone [1, Prop. 3], written as that generator set to
+`0` — the same set, keeping the generator index a `Fin Z.h`. `⊇` is a coefficient each way, `±1`
+on the halved generator. `⊆` is not: a point of both halves is `c + s·g + r₁` with `s ≤ 0` and
+`c + s'·g + r₂` with `s' ≥ 0`, and the two reaches `r₁`, `r₂` need not agree, so the point is read
+as a convex combination of `c + r₁` and `c + r₂` at `s'/(s' - s)`, which is where it takes
+`convex_construct`. The thesis argues instead from `(-g/2; g/2) ∩ (g/2; g/2) = {0}` together with
+`A + (B ∩ C) = (A + B) ∩ (A + C)`, false for sets (at `A = [0,1]`, `B = {0}`, `C = {1}` in ℝ the
+left side is empty and the right is `{1}`); convexity is what the missing step needs.
 
-`⊇` is a coefficient each way, `±1` on the halved generator. `⊆` is not: a point
-of both halves is `c + s·g + r₁` with `s ≤ 0` and `c + s'·g + r₂` with `s' ≥ 0`,
-and the two reaches `r₁`, `r₂` need not agree, so the point is read as a convex
-combination of `c + r₁` and `c + r₂` at `s'/(s' - s)`, which is where it takes
-`convex_construct`.
+## Inputs
+* `Z` – zonotope
+* `j` – generator index
 
-The thesis argues instead from `(-g/2; g/2) ∩ (g/2; g/2) = {0}` together with
-`A + (B ∩ C) = (A + B) ∩ (A + C)`. That identity is false for sets: at
-`A = [0,1]`, `B = {0}`, `C = {1}` in ℝ the left side is empty and the right side
-is `{1}`, and convexity is what the missing step actually needs.
+## Hypotheses
+* none
+
+## Conclusion
+* the halves meet in `Z` without generator `j`
 
 ## References
 

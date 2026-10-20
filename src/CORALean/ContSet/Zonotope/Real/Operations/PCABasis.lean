@@ -8,22 +8,21 @@ public import Mathlib.Analysis.Matrix.Spectrum
 /-!
 # `Zonotope.pcaBasis`
 
-The principal axes of the dropped generators: an orthonormal eigenvector basis
-of `pcaCovariance`, as the matrix whose columns they are. Mathlib's
-`Matrix.IsHermitian.eigenvectorUnitary` is exactly that, and it comes as a
-member of the unitary group rather than a bare matrix, which is what makes
-`pcaBasis_isUnit_det` a one-liner and `reducePCA` free of the determinant
-branch `reduceMethC` needs.
+The principal axes of the dropped generators: an orthonormal eigenvector basis of
+`pcaCovariance`, as the matrix whose columns they are. Mathlib's
+`Matrix.IsHermitian.eigenvectorUnitary` is exactly that, as a member of the unitary group, which
+makes `pcaBasis_isUnit_det` a one-liner. Noncomputable, deliberately: the basis comes from the
+spectral theorem and carries no algorithm; a running PCA is a float-layer question. CORA reads the
+same axes off `svd(C)` [1], as [2, Alg. 2] does. On a positive-semidefinite `C` the left singular
+vectors are eigenvectors, sorted by eigenvalue; Mathlib's are not, and neither the order nor the
+signs of the columns changes the set `reduceByBasis` denotes.
 
-Noncomputable, and deliberately so: Mathlib's eigenvector basis is built from
-the spectral theorem for symmetric operators and carries no algorithm. Nothing
-at the `Real` layer is meant to run — a running PCA is a float-layer question,
-and would be a different definition with an error bound of its own.
+## Inputs
+* `Z` – zonotope
+* `part` – split of the generators
 
-CORA reads the same axes off `svd(C)` [1], as [2, Alg. 2] does. On a positive-semidefinite `C` the
-left singular vectors are eigenvectors, sorted by eigenvalue; Mathlib's are
-not sorted, and neither the order of the columns nor their signs changes the
-set `reduceByBasis` denotes.
+## Output
+* principal axes of the dropped generators
 
 ## References
 

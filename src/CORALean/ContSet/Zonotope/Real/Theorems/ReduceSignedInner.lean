@@ -9,17 +9,24 @@ public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 /-!
 # A `{-1,0,1}`-signed regrouping of generators is an inner-approximation
 
-`[1, Thm. 3]`: if every row of `T` has exactly one nonzero entry, itself `±1`
-(so `∑ⱼ |Tᵢⱼ| = 1` for every row `i`), then `Zr = {GT, c}` is an
-inner-approximation of `Z = {G, c}` — a signed regrouping of `Z`'s generators
-into fewer of `Zr`'s.
+`[1, Thm. 3]`: if every row of `T` has exactly one nonzero entry, itself `±1` (so `∑ⱼ |Tᵢⱼ| = 1`
+for every row `i`), then `Zr = {GT, c}` is an inner-approximation of `Z = {G, c}` — a signed
+regrouping of `Z`'s generators into fewer of `Zr`'s. The paper reaches this through the
+Sadraddini–Tedrake zonotope-containment condition (its `Lemma 3`, with `Γ := T`, `β := 0`),
+restated on the page but not drawn on here. This file proves the inclusion directly, by the same
+triangle-inequality argument `Lemma 3`'s own proof would give at that choice of `Γ`, `β`.
 
-The paper reaches this through the Sadraddini–Tedrake zonotope-containment
-condition (its own `Lemma 3`, with `Γ := T`, `β := 0`) — restated on the page
-but not drawn on here, since it is an external citation this tree does not
-otherwise carry. This file proves the inclusion directly instead, by the same
-triangle-inequality argument `Lemma 3`'s own proof would give at that choice
-of `Γ`, `β`.
+## Inputs
+* `nr` – reduced generator count
+* `Z` – zonotope
+* `T` – signed recombination matrix
+
+## Hypotheses
+* `_hT1` – entries are minus one, zero or one
+* `hT2` – each row has absolute sum one
+
+## Conclusion
+* the reduced zonotope lies in `Z`
 
 ## References
 

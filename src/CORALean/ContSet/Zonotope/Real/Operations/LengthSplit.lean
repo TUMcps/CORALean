@@ -12,6 +12,16 @@ public import Mathlib.Data.Fin.Tuple.Sort
 The split of [1, Sec. IV-D, Step 1)]: the `q` generators of largest 2-norm against the remaining
 `ν - q`. Sorting is ascending, so the lengths enter negated.
 
+## Inputs
+* `Z` – zonotope
+* `q` – kept count
+
+## Hypotheses
+* `hq` – at most all generators
+
+## Output
+* split into the `q` longest and the rest
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

@@ -21,6 +21,21 @@ reorderings of one another. Then `xₐ x_b x_c = Σ_{i,j,l} βᵢ βⱼ β_l G�
 monomial `βᵢ βⱼ β_l ∈ [-1, 1]` per column. The enclosure is not exact: the monomials of different
 columns are not independent. Without the two conditions on the lists the statement is false (a
 triple listed twice is counted twice).
+
+## Inputs
+* `Z` – zonotope
+* `M` – third-order tensor
+* `L` – term lists
+* `x` – point
+
+## Hypotheses
+* `hc` – center at the origin
+* `hperm` – term lists enumerate all triples
+* `hmap` – equal map entries have equal multisets
+* `hx` – `x` lies in `Z`
+
+## Conclusion
+* the tensor evaluation lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

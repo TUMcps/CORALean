@@ -14,6 +14,16 @@ and the statement is `bilin_outer`'s, with nothing to rewrite.
 
 The enclosure is strict in general: the cross generators are free, so a product
 of two matrix zonotopes holds pairs the two never take together.
+
+## Inputs
+* `M` – first matrix zonotope
+* `N` – second matrix zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* all matrix products lie in the result
 -/
 
 -- Authors:       Claude Opus 5

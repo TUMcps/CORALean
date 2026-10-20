@@ -10,6 +10,14 @@ public import Mathlib.Logic.Equiv.Fin.Basic
 `Fin (N₁ * N₂ * N₃)` read as the ordered triples `((k, j), c)`, lexicographically, through
 `finProdFinEquiv`: the index of the `N³` generators of `Zonotope.cubMap` (one factor index per
 extended column) and of the `N₃ N₂ N₁` generators of `Zonotope.cubMapMixed`.
+
+## Inputs
+* `N₁` – first factor size
+* `N₂` – second factor size
+* `N₃` – third factor size
+
+## Output
+* index equivalence with triples
 -/
 
 -- Authors:       Claude Opus 5.5

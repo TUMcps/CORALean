@@ -16,6 +16,13 @@ compact, so it is attained. `P` is any matrix here: what is proved about it says
 needs. It is also the P-radius `Prad(Z)` of [3, Eq. 47], one of the sizes whose least value
 picks the compression ratio of `cloud2zonotope`.
 
+## Inputs
+* `P` – weight matrix
+* `Z` – zonotope
+
+## Output
+* largest `P`-weighted squared distance to the center
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state

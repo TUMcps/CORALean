@@ -8,6 +8,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 # A sign corner lies in its zonotope
 
 `c + ∑ ±gⱼ` is the point of coefficients `±1`, so it is a point of `construct`.
+
+## Inputs
+* `Z` – zonotope
+* `σ` – corner signs
+
+## Hypotheses
+* none
+
+## Conclusion
+* every corner lies in `Z`
 -/
 
 -- Authors:       Claude Opus 5.5

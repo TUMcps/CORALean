@@ -17,6 +17,19 @@ public import Mathlib.Tactic.Abel
 For every set of gains `λ_j`; outer only, as the zonotope in general holds more than the
 intersection.
 
+## Inputs
+* `H` – strip matrices
+* `r` – strip radii
+* `y` – measurements
+* `lam` – weight matrices
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the intersection with all strips lies in the result
+
 ## References
 
 * [1] A. Alanwar, V. Gaßmann, X. He, H. Said, H. Sandberg, K. H. Johansson and M. Althoff.

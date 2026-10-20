@@ -14,6 +14,13 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 `s·x` over `Z`. At the coordinate vectors it is the interval hull, `Zonotope.interval`.
 The dot products are written `u ⬝ᵥ s`, the order `hyperplanePolyhedron` uses.
 
+## Inputs
+* `Z` – zonotope
+* `S` – finite set of directions
+
+## Output
+* box of the extreme values along each direction
+
 ## References
 
 * [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of

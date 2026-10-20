@@ -25,6 +25,16 @@ those of `Zonotope.walkEdges`: the first loop the first block of the walk, the s
 `section_eq_Icc_walkEdges` that the section is the interval between the extremes. `m = ∞`,
 `M = -∞` is the empty section.
 
+## Inputs
+* `Z` – planar zonotope
+* `γ` – abscissa of the vertical line
+
+## Hypotheses
+* `hh` – at least one generator
+
+## Conclusion
+* the intersection ordinates are exactly the scanned interval
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

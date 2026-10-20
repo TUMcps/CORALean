@@ -18,6 +18,23 @@ is the generator family of the aligned zonotope plus `EW`, which is how it is
 written here; `‖·‖∞` is the maximum row sum, one inequality per row. That `(17)`
 maximizes `Σαᵢ` is not used.
 
+## Inputs
+* `Z` – zonotope
+* `W` – disturbance zonotope
+* `E` – disturbance matrix
+* `c` – center
+* `a` – generator scalings
+* `Γ` – generator coefficient matrix
+* `γ` – center coefficients
+
+## Hypotheses
+* `hX` – generators expressed through `Γ`
+* `hγ` – center difference expressed through `γ`
+* `hn` – row sums at most one
+
+## Conclusion
+* the aligned zonotope lies in the Minkowski difference
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

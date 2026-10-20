@@ -14,6 +14,14 @@ partition keeps are the same for every `P` and are not part of the comparison
 the paper makes between candidates, so they are left out, as in the paper's
 order-one setting.
 
+## Inputs
+* `Z` – zonotope
+* `part` – split of the generators
+* `P` – candidate basis
+
+## Output
+* volume of the boxed candidate
+
 ## References
 
 * [1] A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of

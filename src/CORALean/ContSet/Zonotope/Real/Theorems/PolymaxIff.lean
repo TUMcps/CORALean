@@ -17,6 +17,20 @@ public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 sign of `ηᵢ gⱼ / hᵢ` is that of `ηᵢ gⱼ` — so `vᵢ` violates it too, and `‖vᵢ - c₂‖ > 1`.
 Conversely every `vᵢ` is a point of `Z₁`.
 
+## Inputs
+* `Z₁` – zonotope tested
+* `Z₂` – containing zonotope
+* `H` – facet matrix
+* `h` – facet offsets
+
+## Hypotheses
+* `hG` – generator map of `Z₂` surjective
+* `hrep` – facets describe `Z₂` around its center
+* `hne` – offsets nonzero
+
+## Conclusion
+* the test is true iff `Z₁` lies in `Z₂`
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

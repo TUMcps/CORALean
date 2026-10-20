@@ -8,19 +8,30 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
 /-!
 # A zonotope with stretched generators, cut out by its template's halfspaces
 
-`⟨c, G diag(α)⟩`, `α ≥ 0`, is the set the cross products of the *template* `G`
-cut out at offsets `∑ⱼ |n·gⱼ| αⱼ`, linear in `α` — which is what makes
-reachset-conformant identification a linear program [1, Thm. 1]. For `α > 0` the
-stretched zonotope's own normals are positive multiples of the template's, the
-cross product being multilinear in its columns, and [2, Thm. 7] applies to it
-directly. At `αⱼ = 0` a generator vanishes and every normal through it with it,
-so the template's normals are no longer the zonotope's; the statement holds all
-the same, by closure: the point lies in every stretch by `α + ε`, and these
-shrink onto `⟨c, G diag(α)⟩`, which is closed.
+`⟨c, G diag(α)⟩`, `α ≥ 0`, is the set the cross products of the *template* `G` cut out at offsets
+`∑ⱼ |n·gⱼ| αⱼ`, linear in `α` — which makes reachset-conformant identification a linear program
+[1, Thm. 1]. For `α > 0` the stretched zonotope's own normals are positive multiples of the
+template's, and [2, Thm. 7] applies directly. At `αⱼ = 0` a generator vanishes and every normal
+through it with it; the statement holds all the same, by closure: the point lies in every stretch
+by `α + ε`, and these shrink onto the closed `⟨c, G diag(α)⟩`. The template must span, as in
+[2, Thm. 7]. `N` may be any family carrying both signs of every template normal up to a positive
+factor — the printed normalized rows among them, and zero rows wherever generators are dependent.
 
-The template must span, as in [2, Thm. 7]. `N` may be any family carrying both
-signs of every template normal up to a positive factor — the normalized rows the
-papers print among them, and zero rows wherever `n` generators are dependent.
+## Inputs
+* `n` – dimension minus one
+* `κ` – index type
+* `Z` – zonotope
+* `N` – template directions
+* `α` – generator scalings
+* `y` – point
+
+## Hypotheses
+* `hspan` – generators span the space
+* `hN` – template carries both signs of every normal
+* `hα` – scalings nonnegative
+
+## Conclusion
+* membership in the scaled zonotope is a template halfspace condition
 
 ## References
 

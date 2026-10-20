@@ -28,16 +28,14 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 /-!
 # What `Zonotope` instantiates
 
-Each obligation is a theorem from `Theorems`, the exact ones read in the `⊆`
-direction.
+Each obligation is a theorem from `Theorems`, the exact ones read in the `⊆` direction.
+Noncomputable, as `reduce` is: it ranks generators, and ordering reals cannot be computed.
 
-Noncomputable, as `reduce` is: it ranks generators, and ordering reals cannot be
-computed.
+`MinkDiff` is the one instance not at `Zonotope` itself. Every zonotope holds its center and a
+difference can be empty, so no total operation into `Zonotope` meets that class's obligation; at
+`OptEmpty (Zonotope α)` it does, `empty` being the answer where no generator representation
+certifies one.
 
-`MinkDiff` is the one instance not at `Zonotope` itself. Every zonotope holds
-its center and a difference can be empty, so no total operation into `Zonotope`
-meets that class's obligation; at `OptEmpty (Zonotope α)` it does, `empty`
-being the answer where no generator representation certifies one.
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

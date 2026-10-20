@@ -17,6 +17,16 @@ second set is convex and holds every `u ± gᵢ` (`α = ±eᵢ`), so it holds th
 and of `u`, the midpoint of `u ± g₁`, with weight `1 - Σᵢ |αᵢ|`. That needs a direction:
 at `ℓ = 0` the hull is empty and the second set is `{u}`, so `0 < ℓ` is assumed.
 
+## Inputs
+* `Z` – zonotope
+* `s` – directions
+
+## Hypotheses
+* `hℓ` – at least one direction
+
+## Conclusion
+* the under-approximation is the hull of the extremal points
+
 ## References
 
 * [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of

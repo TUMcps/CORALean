@@ -13,6 +13,15 @@ vectors rather than by `Fin (2 ^ h)`. What every vertex-enumeration argument sta
 convex function attains its maximum over the zonotope at a corner, which is why
 `[1, Alg. 1]` need only test the corners.
 
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Z` is the convex hull of its corners
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

@@ -18,6 +18,21 @@ it is stated here, with `W` the convex hull of the vertices `V`.
 (min-out) as printed ranges its constraint over `i = 0, 1, …, N`; there is no `g₀`,
 and the index is read as `1, …, N`. The bound `αᵢ ≤ 1` is not needed for the inclusion.
 
+## Inputs
+* `Z` – zonotope
+* `E` – linear map
+* `V` – vertices
+* `θ` – coefficient matrix
+* `a` – generator scalings
+* `c` – center
+
+## Hypotheses
+* `hθ` – coefficients bounded by the scalings
+* `heq` – vertex images match the aligned generators
+
+## Conclusion
+* the image of the hull lies in the aligned zonotope
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

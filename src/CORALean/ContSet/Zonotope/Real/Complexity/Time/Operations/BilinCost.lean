@@ -15,6 +15,14 @@ generators: `1 + h₁ + h₂ + h₁ * h₂` applications. What one costs depends
 and is a parameter, the writes of the vector it returns inside it. `Complexity/Space/` states the
 matching size, and the existing
 `bilin_h_isBigO` there reads off the same product.
+
+## Inputs
+* `cf` – cost of one application of `f`
+* `h₁` – first generator count
+* `h₂` – second generator count
+
+## Output
+* `f` applied `1 + h₁ + h₂ + h₁h₂` times
 -/
 
 -- Authors:       Claude Sonnet 5.5

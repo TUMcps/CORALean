@@ -10,16 +10,21 @@ public import Mathlib.Data.Fin.Tuple.Sort
 /-!
 # `Zonotope.methCFilter`
 
-Stage one of CORA's `methC` [1]: before anything is searched, the dropped
-generators are ranked by length and only the longest `n + 8` are kept as
-candidates — `filterLength(1)`, CORA's default, clamped to how many there are.
-Without it stage two would search every `n`-subset of everything dropped.
-
-Length is measured after normalizing each coordinate by that row's `1`-norm
-over all generators — CORA's `W`, and `pinv(W)` where a row is identically
-zero, which division in Lean already is. Squaring it is monotone, so the
-ranking is `priv_lengthFilter`'s `vecnorm` and the float layer would need no
+Stage one of CORA's `methC` [1]: the dropped generators are ranked by length and only the
+longest `n + 8` are kept as candidates — `filterLength(1)`, CORA's default, clamped to how many
+there are. Without it stage two would search every `n`-subset of everything dropped. Length is
+measured after normalizing each coordinate by that row's `1`-norm over all generators — CORA's
+`W`, and `pinv(W)` where a row is identically zero, which division in Lean already is. Squaring
+is monotone, so the ranking is `priv_lengthFilter`'s `vecnorm` and the float layer would need no
 square root, as for Combastel's rule.
+
+## Inputs
+* `Z` – zonotope
+* `part` – split of the generators
+* `k` – rank in the filter
+
+## Output
+* index of the `k`-th longest dropped generator
 
 ## References
 

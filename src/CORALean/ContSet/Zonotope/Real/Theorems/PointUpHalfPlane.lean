@@ -11,6 +11,16 @@ public import CORALean.ContSet.Zonotope.Real.Operations.PointUp
 [1, Alg. 4] is taken: a generator with `y < 0`, or `y = 0` and `x < 0`, is negated, and the
 others are already there.
 
+## Inputs
+* `Z` – planar zonotope
+* `j` – generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* every generator points into the upper half plane
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

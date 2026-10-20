@@ -9,16 +9,21 @@ public import Mathlib.Logic.Equiv.Fin.Basic
 /-!
 # `Zonotope.bilin`
 
-Any bilinear map applied to two zonotopes over *different* ambient types, each
-kept in its own module. With `A = c₁ + Σᵢ αᵢ • g₁ᵢ` and `x = c₂ + Σⱼ βⱼ • g₂ⱼ`,
+Any bilinear map applied to two zonotopes over *different* ambient types, each kept in its own
+module. With `A = c₁ + Σᵢ αᵢ • g₁ᵢ` and `x = c₂ + Σⱼ βⱼ • g₂ⱼ`,
+`f A x = f c₁ c₂ + Σᵢ αᵢ f(g₁ᵢ, c₂) + Σⱼ βⱼ f(c₁, g₂ⱼ) + Σᵢⱼ αᵢβⱼ f(g₁ᵢ, g₂ⱼ)`, which is the
+center and the three generator blocks below, the cross block flattened by `finProdFinEquiv`.
+Unlike `PolyZonotope.bilin`, there is nowhere here to record that a cross coefficient really is
+`αᵢβⱼ`: a zonotope's coefficients are free in `[-1, 1]`, so the cross block only
+over-approximates — see `bilin_outer`. There is therefore no `bilin_exact` counterpart.
 
-    f A x = f c₁ c₂ + Σᵢ αᵢ f(g₁ᵢ, c₂) + Σⱼ βⱼ f(c₁, g₂ⱼ) + Σᵢⱼ αᵢβⱼ f(g₁ᵢ, g₂ⱼ)
+## Inputs
+* `f` – bilinear map
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
 
-which is the center and the three generator blocks below, the cross block
-flattened by `finProdFinEquiv`. Unlike `PolyZonotope.bilin`, there is nowhere
-here to record that a cross coefficient really is `αᵢβⱼ`: a zonotope's
-coefficients are free in `[-1, 1]`, so the cross block only over-approximates —
-see `bilin_outer`. There is therefore no `bilin_exact` counterpart.
+## Output
+* zonotope of the bilinear images
 -/
 
 -- Authors:       Claude Opus 5

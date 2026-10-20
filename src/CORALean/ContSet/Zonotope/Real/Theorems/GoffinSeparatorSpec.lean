@@ -25,6 +25,26 @@ direction space of its affine hull. `a` is orthogonal to the `n - 1` independent
 so `a = κw` with `κ = x₀ᵀw/wᵀw`; `κ > 0` because `0` is interior (full dimension, central
 symmetry), and `β* < 1` because `Z` is convex and `x₀ ∉ Z`.
 
+## Inputs
+* `Z` – zonotope
+* `x₀` – point outside `Z`
+* `βstar` – largest scaling inside `Z`
+* `w` – maximizing direction
+* `H` – basis of the facet directions
+
+## Hypotheses
+* `hc` – center at the origin
+* `hfull` – generators span the space
+* `hx₀` – `x₀` outside `Z`
+* `hβ` – `βstar` is the greatest scaling inside `Z`
+* `hw` – direction nonzero
+* `hmax` – `w` is maximal at the scaled point
+* `hH` – columns independent
+* `hHF` – columns span the facet directions
+
+## Conclusion
+* the separator contains `Z`, excludes `x₀` and meets `Z` in the facet
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

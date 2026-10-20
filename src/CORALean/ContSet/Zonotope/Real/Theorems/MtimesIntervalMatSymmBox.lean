@@ -12,19 +12,23 @@ public import Mathlib.Algebra.BigOperators.Fin
 /-!
 # A symmetric interval matrix map is `S · box(Z)`
 
-[1, Lemma 3.3], as [1, Remark 3.2] observes it. `Zonotope.mtimesIntervalMat` is
-already [1, Thm. 3.3]'s general interval-matrix map, and its diagonal generator
-block is already [1, Lemma 3.2]'s bound applied to `Z`'s own reach `|c| + Σ|g|`
-— exactly `radiusReach`. So Lemma 3.3 needs no new operation: what it adds is
-that mapping `Z` this way coincides with mapping `Z.interval.zonotope`, CORA's
-`S · box(Z)`. That is what this states.
+[1, Lemma 3.3], as [1, Remark 3.2] observes it. `Zonotope.mtimesIntervalMat` is already
+[1, Thm. 3.3]'s interval-matrix map, and its diagonal generator block is [1, Lemma 3.2]'s bound
+applied to `Z`'s own reach `|c| + Σ|g|` — exactly `radiusReach`. So what Lemma 3.3 adds is that
+mapping `Z` this way coincides with mapping `Z.interval.zonotope`, CORA's `S · box(Z)`. At a
+*symmetric* `IM` (`IM.inf = -IM.sup`), `IM.center = 0`, which turns the leading generators — the
+image of `Z`'s own — into an all-zero block on both sides; `aux_construct_append_zero_left` drops
+it, and `aux_absBound_interval_zonotope` is why the diagonal block is the same on both sides.
 
-At a *symmetric* `IM` (`IM.inf = -IM.sup`), `IM.center = 0`, which turns
-`mtimesIntervalMat`'s leading `Z.h` (resp. `n`) generators — the image of `Z`'s
-own, carried over unmapped — into an all-zero block on both sides.
-`aux_construct_append_zero_left` drops it either way, leaving the diagonal
-`radiusReach` block alone; `aux_absBound_interval_zonotope` is why that block is
-the same block on both sides.
+## Inputs
+* `IM` – interval matrix
+* `Z` – zonotope
+
+## Hypotheses
+* `hIM` – interval symmetric about zero
+
+## Conclusion
+* the product with `Z` equals the product with its bounding box
 
 ## References
 

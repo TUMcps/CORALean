@@ -11,6 +11,17 @@ public import Mathlib.Data.Matrix.Diagonal
 What moves an interval box into generators: off the diagonal every product
 vanishes, so a sum over the block collapses to a single term. The same fact
 read down a column is `SumDiagonalMulCol.lean`.
+
+## Inputs
+* `v` – diagonal entries
+* `g` – coefficients
+* `i` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* the diagonal product couples a coordinate to its own coefficient
 -/
 
 -- Authors:       Claude Opus 5

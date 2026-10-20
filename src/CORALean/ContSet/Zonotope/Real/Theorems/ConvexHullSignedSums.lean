@@ -13,6 +13,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 convex hull of the images of the cube's vertices. With a center `c`, translate both sides
 (`Zonotope.construct_eq_convexHull_corner`).
 
+## Inputs
+* `R` – family of vectors
+
+## Hypotheses
+* none
+
+## Conclusion
+* the hull of the signed sums is the zonotope
+
 ## References
 
 * [1] M. Maïga, N. Ramdani, L. Travé-Massuyès and C. Combastel. "A Comprehensive Method for

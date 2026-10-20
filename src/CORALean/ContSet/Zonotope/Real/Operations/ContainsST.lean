@@ -13,6 +13,14 @@ condition is a linear program in `(Γ, β)`, and the solver is an argument retur
 candidate or nothing; the candidate is checked here, so a wrong or missing one costs the
 answer `true` and never soundness. `false` says only that this condition was not shown.
 
+## Inputs
+* `lp` – linear-program solver
+* `Zy` – outer zonotope
+* `Zx` – inner zonotope
+
+## Output
+* `true` iff the solver's certificate shows containment
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

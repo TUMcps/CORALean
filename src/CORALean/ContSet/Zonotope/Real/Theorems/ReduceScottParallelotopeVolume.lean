@@ -17,6 +17,18 @@ and standard properties of the determinant, `v(X̃) = 2ⁿ|det T det(I + diag|r|
 under its generator matrix, translated by the center: the volume is `2ⁿ` times the absolute
 determinant, and `det(I + diag|r|) = Πᵢ(1 + |rᵢ|)`.
 
+## Inputs
+* `n` – dimension
+* `c` – center
+* `T` – basis matrix
+* `r` – echelon coefficients
+
+## Hypotheses
+* none
+
+## Conclusion
+* the volume is `2ⁿ |det T|` times a product of scalings
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

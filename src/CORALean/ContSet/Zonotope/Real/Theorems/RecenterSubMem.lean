@@ -10,6 +10,16 @@ public import Mathlib.Tactic.Abel
 
 Each states its own `h`, that counts only up to unfolding, so the sum needs a
 `show`.
+
+## Inputs
+* `Z` – zonotope
+* `y` – point
+
+## Hypotheses
+* `hy` – `y` lies in `Z`
+
+## Conclusion
+* `y` minus the center lies in the recentered zonotope
 -/
 
 -- Authors:       Claude Opus 5

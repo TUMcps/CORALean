@@ -16,6 +16,15 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Theorems.Exhaustive
 [1, Prop. 10]: for fixed `n`, the exhaustive search over `n` of `p` generators is
 `O(C(p, n) · p)` in `p`.
 
+## Inputs
+* `n` – dimension
+
+## Hypotheses
+* none
+
+## Conclusion
+* search cost is `O(C(p, n) · p)` in the generator count
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid

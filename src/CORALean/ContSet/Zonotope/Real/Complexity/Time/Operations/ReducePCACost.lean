@@ -9,16 +9,21 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.ReduceBy
 /-!
 # `Zonotope.reducePCACost`
 
-Asserted, not proved, by reading `Operations/ReducePCA.lean`. Girard's partition
-as in `reduceGirardCost` (metrics and sort); the scatter matrix `G Gᵀ` of the
-dropped block, `n * n` entries of `2 * r` operations, bounded at `r = h`; the
-eigendecomposition behind `pcaBasis`, which the definition takes from Mathlib's
-`eigenvectorUnitary` and so fixes no algorithm for — its price `eig` is a
-parameter, as is the inverse's inside `reduceByBasisCost`. A caller who runs a
-dense symmetric solver would pass an `O(n^3)` count for each. At order `o`
-or below the operation is the identity, so this bounds every `o` at once.
+Asserted, not proved, by reading `Operations/ReducePCA.lean`. Girard's partition as in
+`reduceGirardCost` (metrics and sort); the scatter matrix `G Gᵀ` of the dropped block, `n * n`
+entries of `2 * r` operations, bounded at `r = h`; the eigendecomposition behind `pcaBasis`, which
+Mathlib's `eigenvectorUnitary` fixes no algorithm for — its price `eig` is a parameter, as is the
+inverse's inside `reduceByBasisCost`. At order `o` or below the operation is the identity, so
+this bounds every `o` at once. `reduceByBasis` writes its own result.
 
-`reduceByBasis` writes its own result and is charged at `h` kept and `h` absorbed generators.
+## Inputs
+* `n` – dimension
+* `h` – generator count
+* `eig` – cost of the eigendecomposition
+* `inv` – cost of the basis inverse
+
+## Output
+* cost of PCA reduction
 -/
 
 -- Authors:       Claude Sonnet 5.5

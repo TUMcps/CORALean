@@ -10,15 +10,22 @@ public import CORALean.Global.Sort
 /-!
 # `Alg. 1`: which generators of the minuend have to enclose the subtrahend
 
-[1, Alg. 1] picks `Z_{m,encl} ⊇ Z_s` out of the minuend's own generators, so
-that [1, Prop. 4] can take the difference against the enclosing part alone and
-add the remainder back afterwards. Longest generators first, greedily, while
-the interval hulls' worst coordinate ratio is still above `µ̄`; then one at a
-time until the subtrahend actually fits.
+[1, Alg. 1] picks `Z_{m,encl} ⊇ Z_s` out of the minuend's own generators, so that [1, Prop. 4] can
+take the difference against the enclosing part alone and add the remainder back afterwards.
+Longest generators first, greedily, while the interval hulls' worst coordinate ratio is still above
+`µ̄`; then one at a time until the subtrahend actually fits. `sort` ranks by the squared length;
+`enclGenSel_subset` proves what holds whatever the caller's `encloses` answers.
 
-`sort` ranks by the squared length, which orders generators as `‖·‖₂` does
-without a square root; `enclGenSel_subset` proves what holds whatever the
-caller's `encloses` answers.
+## Inputs
+* `le` – decidable non-strict comparison
+* `lt` – decidable strict comparison
+* `encloses` – enclosure test
+* `Zm` – zonotope to select from
+* `Zs` – zonotope to enclose
+* `μbar` – ratio threshold
+
+## Output
+* zonotope with the kept generators
 
 ## References
 

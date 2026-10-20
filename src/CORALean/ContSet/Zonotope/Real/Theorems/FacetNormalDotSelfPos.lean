@@ -9,6 +9,16 @@ public import Mathlib.LinearAlgebra.Matrix.DotProduct
 # A nonzero facet normal has positive square length
 
 The step every unit-row argument starts with: dividing by `‖C‖₂ = sqrt (C ⬝ C)` needs `C ⬝ C > 0`.
+
+## Inputs
+* `Z` – zonotope
+* `S` – selected generator indices
+
+## Hypotheses
+* `hC` – facet normal nonzero
+
+## Conclusion
+* the facet normal has positive squared norm
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -12,6 +12,13 @@ The cosine of [1, Eq. (4)]: `dcos(gᵢ, gⱼ) = sign(gᵢ(1) gⱼ(1)) gᵢᵀg�
 `sign x = -1` if `x < 0` and `1` otherwise ([1, Sec. II-A]). The paper says it is the cosine
 of the angle between `sign(gᵢ(1)) gᵢ` and `sign(gⱼ(1)) gⱼ`; see `dcos_ne_cosSigned`.
 
+## Inputs
+* `gi` – first generator
+* `gj` – second generator
+
+## Output
+* sign-corrected cosine of the two generators
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

@@ -14,6 +14,18 @@ The nonlinear-programming method of [1, Sec. IV-D] in its fast form, Steps 1) to
 The program (6) that finds `Ĝ_b` (maximize `|det Ĝ_b|` subject to (1), by a gradient method that
 is not guaranteed to find its global maximum) is the argument `Gb'`.
 
+## Inputs
+* `Z` – zonotope
+* `r` – kept generator count
+* `Gb'` – optimized replacement generators
+
+## Hypotheses
+* `hn` – at least `n` kept
+* `hr` – fewer than all generators
+
+## Output
+* zonotope of the kept and replacement generators
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

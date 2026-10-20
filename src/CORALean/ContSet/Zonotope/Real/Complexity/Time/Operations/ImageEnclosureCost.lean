@@ -10,14 +10,19 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ImageEnclosure
 # `Zonotope.imageEnclosureCost`
 
 Asserted, not proved, as [1, Prop. 15]'s proof counts [1, Alg. 1]: the bounds `c ∓ |G| 1` of the
-input (line 2, Prop. 2) at `2n(q + 1)`; per neuron the slope and the approximation errors
-(lines 3-5, Def. 7 and Prop. 10) at a constant `cNeuron`; `Diag(m) H` (line 6) as Prop. 4's
-matrix product, `Zonotope.mtimesCost n n q`, and the `n` additions of the offset; and the sum
-with the interval (line 7, Prop. 3), `Zonotope.plusCost n q n`, after the `n * (n + 1)` writes
-of the interval as a zonotope, the diagonal of its `n` generators and its center.
-`Operations/ImageEnclosure.lean`
-reads the same per-row quantities. The proved part is the bound [1, Prop. 15] states,
-`O(n² q)` in `n` and `q`: at most `(cNeuron + 17) n² q` once `n, q ≥ 1`.
+input at `2n(q + 1)`; per neuron the slope and errors (lines 3-5) at `cNeuron`; `Diag(m) H`
+(line 6) as `Zonotope.mtimesCost n n q` and `n` additions; and the sum with the interval (line 7),
+`Zonotope.plusCost n q n`, after the `n * (n + 1)` writes of the interval as a zonotope.
+`Operations/ImageEnclosure.lean` reads the same per-row quantities. The proved part is
+`O(n² q)`: at most `(cNeuron + 17) n² q` once `n, q ≥ 1`.
+
+## Inputs
+* `n` – dimension
+* `q` – generator count
+* `cNeuron` – cost of one neuron
+
+## Output
+* cost of the image enclosure of Algorithm 1
 
 ## References
 

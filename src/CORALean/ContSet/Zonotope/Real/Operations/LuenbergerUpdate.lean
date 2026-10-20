@@ -16,6 +16,18 @@ process-noise generators `Q` (`n_k ∈ ⟨0, Q⟩`) and the measurement-noise ge
 `Ḡ = [(F - Λ Γ) Ĝ, -Λ R, Q]` Eq. 29 of [1, Thm. 2]. `Q` and `R` are matrices of generator
 columns, as the zonotopes `⟨0, Q⟩` and `⟨0, R⟩` have no center; `Λ` is any matrix.
 
+## Inputs
+* `F` – dynamics matrix
+* `Γ` – stacked measurement matrix
+* `Λ` – gain matrix
+* `Q` – process-noise generators
+* `R` – measurement-noise generators
+* `y` – stacked output
+* `X` – zonotope
+
+## Output
+* zonotope after the Luenberger update
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

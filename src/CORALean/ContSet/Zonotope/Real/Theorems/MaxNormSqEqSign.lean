@@ -21,6 +21,16 @@ vector `uᵀ u = m` turns `uᵀ GᵀG u` into `-uᵀ M u + λ m` for every `λ`.
 that `λ` bounds the Rayleigh quotient of `GᵀG`, which the largest eigenvalue is the least number
 to do.
 
+## Inputs
+* `Z` – zonotope
+* `lam` – scalar shift
+
+## Hypotheses
+* none
+
+## Conclusion
+* the maximum squared norm is a sign minimization
+
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean

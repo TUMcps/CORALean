@@ -13,6 +13,15 @@ is the answer. The two tests the library models for zonotopes (`representsa_poin
 `representsa_origin`) are the same on the stacked generators as on the matrices: the vectorisation
 is injective. The set itself is preserved by `vec_construct`; the other types of CORA's
 `representsa` are not modelled here.
+
+## Inputs
+* `Z` – matrix zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* stacking preserves being a point or the origin
 -/
 
 -- Authors:       Claude Sonnet 5.5

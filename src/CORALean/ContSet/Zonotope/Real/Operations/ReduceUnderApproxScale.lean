@@ -12,6 +12,14 @@ The scaling method of [1, Sec. IV-C], Step 2): scale each generator `g_{o,i}` of
 factors `λ` (the linear program, maximizing `Σ λ(i) ‖g_{o,i}‖₂`) are arguments; the factor is `lam`
 as `λ` is Lean's.
 
+## Inputs
+* `Z` – zonotope
+* `Zo` – zonotope supplying the generators
+* `lam` – generator scalings
+
+## Output
+* zonotope with the center of `Z` and scaled generators
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

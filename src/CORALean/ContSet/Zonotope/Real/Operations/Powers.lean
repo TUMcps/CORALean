@@ -13,6 +13,13 @@ order `initialOrder + k`; the default call has `P = Z` and `initialOrder = 1`, s
 `pow{k + 1}`. `maxOrder` only cuts the array, and is the caller's bound on `k`. Recurses on the
 right of the accumulated power, unlike `Zonotope.matPow`, which multiplies on the left: the two
 enclose different sets, `matMul` being only an outer product.
+
+## Inputs
+* `Z` – base matrix zonotope
+* `P` – starting matrix zonotope
+
+## Output
+* enclosure of `P` times `Z` repeatedly
 -/
 
 -- Authors:       Claude Sonnet 5.5

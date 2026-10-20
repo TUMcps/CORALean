@@ -13,6 +13,20 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 of the zonotope. Whatever the samples, random or not; `r` is the maximum of
 `[1, Sec. III]`.
 
+## Inputs
+* `Z` – zonotope
+* `H` – linear map
+* `d` – offset
+* `r` – greatest coefficient norm
+* `a` – sampled corner signs
+
+## Hypotheses
+* `hr` – `r` is the greatest norm over `Z`
+* `hN` – at least one sample
+
+## Conclusion
+* the sampled norm is at most `r`
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the
