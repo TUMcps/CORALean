@@ -19,9 +19,18 @@ The zonotope argument unchanged — the center acts exactly and the leftover
 projection onto the original coefficients, so the concatenated witness satisfies
 them exactly when the original half did, which is `blockLeft_append`.
 
-Outer and never exact, for the zonotope's reason: the boxed generators let
-different coordinates use the radius independently, which the matrices denoted
-do not.
+Outer and never exact, for the zonotope's reason: the boxed generators let different coordinates use
+the radius independently.
+
+## Inputs
+* `IM` – interval matrix
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* every image under a matrix of the interval is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

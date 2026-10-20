@@ -16,6 +16,16 @@ cell array `Fin.append` as the appended lists of members.
 Stays a plain theorem rather than an instance obligation: `Instances` is what
 turns it into the `Intersection (ZonoBundle α) α` instance.
 
+## Inputs
+* `zB₁` – first bundle
+* `zB₂` – second bundle
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is exactly the intersection
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

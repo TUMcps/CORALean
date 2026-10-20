@@ -13,6 +13,18 @@ running box `E` — a no-op where the row does not mention `j`. `rowBound` is li
 collapses to the one intersection here, since `Eⱼ` only ever narrows by meeting `Rⱼ` and
 both start at `[-1,1]`, so `Eⱼ` stays `Rⱼ` clipped to `[-1,1]` throughout.
 
+## Inputs
+* `nc` – number of constraints
+* `ng` – number of generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `i` – constraint row
+* `j` – coefficient to tighten
+* `E` – current coefficient box
+
+## Output
+* the box with coefficient j tightened by row i
+
 ## References
 
 * [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for

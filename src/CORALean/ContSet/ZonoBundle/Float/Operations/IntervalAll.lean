@@ -13,6 +13,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 The box of a whole bundle: the intersection of every member's box, starting from the first
 member's, as at the exact layer. Each member's box is rounded outward by `Zonotope.interval`,
 and the intersection of float boxes rounds nothing.
+
+## Inputs
+* `zB` – float zonotope bundle
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Output
+* the box of the whole bundle
 -/
 
 -- Authors:       Claude Opus 5.5

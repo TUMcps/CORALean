@@ -18,6 +18,13 @@ A pair, as CORA returns both halves at once.
 
 CORA's call without a dimension is this at every `d`, returned as a cell of pairs; that is the
 map `d ↦ split cZ d` and is not a separate definition.
+
+## Inputs
+* `cZ` – constrained zonotope
+* `d` – dimension to cut along
+
+## Output
+* the two halves of the set
 -/
 
 -- Authors:       Claude Opus 5.5

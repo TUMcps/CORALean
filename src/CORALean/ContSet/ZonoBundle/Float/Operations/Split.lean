@@ -16,6 +16,15 @@ by the float directions `Λ` (`Zonotope.mtimes`, its rounding in the error box),
 `j`-th generator by the float `Zonotope.split`, each half appended to the bundle. As over ℝ the
 box `B` is an argument: CORA's `box(Λ⁻¹ Z_∩)` needs the inverse, which is not computed here.
 
+## Inputs
+* `Λ` – edge directions
+* `B` – box in the transformed coordinates
+* `j` – dimension to cut along
+* `zB` – float zonotope bundle
+
+## Output
+* the two halves of the bundle
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

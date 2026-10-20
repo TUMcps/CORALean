@@ -9,6 +9,13 @@ public import CORALean.ContSet.ConZonotope.Float.ConZonotope
 
 Split out of `LinComb.lean` (issue #62): read again by
 `Theorems/LinCombOuter.lean`, outside this file.
+
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+
+## Output
+* generator matrix of the stored shortfall
 -/
 
 -- Authors:       Claude Opus 5

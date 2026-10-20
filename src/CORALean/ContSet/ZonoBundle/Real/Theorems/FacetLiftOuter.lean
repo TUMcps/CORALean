@@ -10,6 +10,16 @@ public import CORALean.ContSet.ZonoBundle.Real.Operations.FacetLift
 [1, Prop. 3]: `Z ⊕ Z_add ⊆ Z ↑ Z_add`. A sum point `x + y` has `eᵢ (x + y) ≤ dᵢ +
 eᵢ y ≤ dᵢ + max(eᵢ Z_add)`.
 
+## Inputs
+* `P` – halfspace polytope
+* `Zadd` – zonotope added
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Minkowski sum is contained in the lifted polytope
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

@@ -16,6 +16,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleZonotopeContai
 `Γ⁻¹` carries the bundle into the box, `Γ` carries the box back, and the two cancel at an
 invertible `Γ`: the same argument as `Zonotope.parallelotope_outer`, at the box of the whole
 bundle.
+
+## Inputs
+* `zB` – zonotope bundle
+* `Γ` – edge directions
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Conclusion
+* the bundle is contained in the parallelotope
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,16 +10,23 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 /-!
 # `ConZonotope.enclose` encloses every segment, when the constraints agree
 
-Not exact: even with `hP`, the construction gives every generator's block a
-symmetric `[-1,1]` weight, while the true segment ties the two sides' weights
-to a single `a ∈ [0,1]` — a zonotope's `enclose` already loses this much, and
-`hP` only carries that gap into the constraints as well. `hP` reads `cZ₂.P`
-back at `cZ₁`'s index, and `HPolytope.convex_construct` is what turns the two
-sides' membership in the *same* polytope into membership of their convex
-combination, `lam • β₁ + (1 - lam) • β₂'`.
+Not exact: even with `hP`, the construction gives every generator's block a symmetric `[-1,1]`
+weight, while the true segment ties the two sides' weights to a single `a ∈ [0,1]`, as a zonotope's
+`enclose` already loses. `hP` reads `cZ₂.P` back at `cZ₁`'s index, and `HPolytope.convex_construct`
+turns the two sides' membership in the *same* polytope into membership of their convex combination.
+The value equation reindexes `cZ₂`'s sum by `Fin.castOrderIso`, as `Zonotope.minkDiffAligned_inner`
+does.
 
-The value equation reindexes `cZ₂`'s sum onto `cZ₁`'s count by the same
-`Fin.castOrderIso` bijection `Zonotope.minkDiffAligned_inner` uses.
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+
+## Hypotheses
+* `hh` – both have the same generator count
+* `hP` – the constraints agree
+
+## Conclusion
+* the segments between the two sets are contained in the result
 -/
 
 -- Authors:       Claude Opus 5

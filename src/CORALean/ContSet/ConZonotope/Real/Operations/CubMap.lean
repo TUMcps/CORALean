@@ -10,19 +10,21 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Comap
 /-!
 # `ConZonotope.cubMap`
 
-CORA's `@conZonotope/cubMap` (`aux_cubMapSingle`): the generators of `Zonotope.cubMap` on the center
-and generators, with the constraint `A β = b` kept on the *linear* monomials, the generators
-`(0, 0, j)` whose factor is the old `βⱼ`, and every other monomial factor (`βⱼβₖ`, `2βⱼ² - 1`, the
-cubes, ...) unconstrained. CORA reaches this through the polynomial zonotope `cubMap` of
-`polyZonotope(zonotope(c, G))`, reading the linear monomials off its exponent matrix.
+CORA's `@conZonotope/cubMap` (`aux_cubMapSingle`): the generators of `Zonotope.cubMap`, with
+`A β = b` kept on the *linear* monomials (the generators `(0, 0, j)`, factor `βⱼ`) and every other
+factor unconstrained. CORA reaches this through the polynomial zonotope `cubMap`.
 
-**Where this differs from CORA.** That route runs `removeRedundantExponents`, which drops every
-generator column that is zero in all outputs. A linear monomial whose coefficient vanishes (a factor
-the cubic map does not depend on) disappears, and with it that factor's column of the constraint
-matrix: `A β = b` is imposed on the remaining factors alone, which is unsound
-(`ConZonotope.cubMapCora_not_outer`, `references/coverage/contSet/conZonotope.md`, row `cubMap`).
-Here every linear generator is kept, zero or not, as the single-set `quadMap` does. `rescale` (it
-only tightens) and `ind` are not modelled.
+**Where this differs from CORA.** That route runs `removeRedundantExponents`, which drops a linear
+monomial whose coefficient vanishes, and with it that factor's column of `A`, so `A β = b` is
+imposed on the remaining factors alone: unsound (`ConZonotope.cubMapCora_not_outer`). Here every
+linear generator is kept, as the single-set `quadMap` does; `rescale` and `ind` are not modelled.
+
+## Inputs
+* `T` – cubic map tensor
+* `cZ` – constrained zonotope
+
+## Output
+* enclosure of the cubic image
 -/
 
 -- Authors:       Claude Opus 5.5

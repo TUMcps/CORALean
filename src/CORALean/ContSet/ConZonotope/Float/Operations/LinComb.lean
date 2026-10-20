@@ -13,20 +13,21 @@ public import CORALean.ContSet.HPolytope.Float.Operations.StackRows
 /-!
 # `ConZonotope.linComb`
 
-The exact operation's shape, rounded, and almost nothing rounds: the generator
-blocks are copied, the constraint rows are copied and halved, and halving is
-exact. Only the center and the generator spanning the half-difference of the
-centers are arithmetic, so the box carries a midpoint residual and a generator
-error over that one column.
+The exact operation's shape, rounded, and almost nothing rounds: the generator blocks are copied,
+the constraint rows are copied and halved, and halving is exact. Only the center and the generator
+spanning the half-difference of the centers are arithmetic, so the box carries a midpoint residual
+and a generator error over that one column. Each block's constraints are weighted by the trailing
+coefficient, `λ` on the left and `1 - λ` on the right, and the unit box with them, which pins a
+block to zero as its weight vanishes. The float polytope has no `comap`, so the block a set of rows
+reads is fixed by where they are padded, which is why the two sides are two operations. The blocks
+are not paired as a zonotope's are: each block's constraints have to read its coefficients apart.
 
-Each block's constraints are weighted by the trailing coefficient — `λ` on the
-left and `1 - λ` on the right — and the unit box is weighted with them, which is
-what pins a block to zero as its weight vanishes. The float polytope has no
-`comap`, so the block a set of rows reads is fixed by where they are padded
-rather than by a map, which is why the two sides are two operations.
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
 
-The blocks are not paired the way a zonotope's are: pairing merges two
-coefficients into one, and each block's constraints have to read them apart.
+## Output
+* enclosure of the convex hull
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

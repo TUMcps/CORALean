@@ -25,6 +25,15 @@ The rank test `rank(G null(A)) == n` ignores that `|ξ| ≤ 1` together with `A 
 factors. With `c = 0`, `G = [1 0]`, `A = [1 1]`, `b = 2` in `ℝ¹` the only feasible factor vector is
 `ξ = (1, 1)`, so the set is the point `{1}`; but `null(A)` is spanned by `(1, -1)`, `G (1, -1) = 1`
 has rank `1 = n`, and CORA answers `true`. Read from the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's full-dimension test holds for a set with empty interior
 -/
 
 -- Authors:       Claude Opus 5.5

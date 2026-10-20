@@ -8,6 +8,16 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.Reduce
 # `ConZonotope.reduce_P_me_le`
 
 An upper bound on the `P_me` count of `reduce`'s result.
+
+## Inputs
+* `cZ` – constrained zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* reducing does not increase the equality count
 -/
 
 -- Authors:       Claude Opus 5

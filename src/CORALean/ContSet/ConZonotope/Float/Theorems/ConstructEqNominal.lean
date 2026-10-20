@@ -11,6 +11,15 @@ public import CORALean.ContSet.Interval.Float.Operations.Point
 The error box adds `e` with `0 ≤ e ≤ 0` to a point of the nominal part, which is the point
 itself. This is what an operation that keeps its nominal part exact and drops the box returns,
 and what lets its guarantee be read off the coefficients.
+
+## Inputs
+* `cZ` – float constrained zonotope
+
+## Hypotheses
+* `hE` – the error box is the zero point
+
+## Conclusion
+* the set equals its nominal part
 -/
 
 -- Authors:       Claude Opus 5.5

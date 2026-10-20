@@ -12,6 +12,14 @@ Whether direction `a` separates two float constrained zonotopes: the first set's
 `boundDot` in direction `a` lies strictly (`ltStrict`) below the negated
 `boundDot` of the second in direction `-a`, its lower bound along `a`. Any `a`
 may be asked; the check, not the direction, is what a `true` rests on.
+
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+* `a` – direction
+
+## Output
+* whether the direction certifies disjointness
 -/
 
 -- Authors:       Claude Opus 5.5

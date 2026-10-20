@@ -12,6 +12,13 @@ CORA's `zonoBundle`/`mtimes`: the same `k`, each component multiplied on its
 own [1, Prop. 1]. An enclosure, and a cheap one — exact when `M` is injective, though that
 is not proved here.
 
+## Inputs
+* `M` – matrix
+* `zB` – zonotope bundle
+
+## Output
+* the image under the matrix
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

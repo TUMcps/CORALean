@@ -8,16 +8,27 @@ public import CORALean.Global.DropIdx
 /-!
 # `ConZonotope.eliminate`
 
-[1, Thm. 2]'s own construction: row `r` of `Aξ = b` is solved for coefficient `j`, and
-that solution is substituted into every generator, every row and the center. `Λ_G` and
-`Λ_A` are the paper's rank-one correction matrices, kept here to their one nonzero
-column — the `r`-th — since every other column of both is zero by construction and
-never read.
+[1, Thm. 2]'s own construction: row `r` of `Aξ = b` is solved for coefficient `j`, and that solution
+is substituted into every generator, every row and the center. `Λ_G` and `Λ_A` are the paper's
+rank-one correction matrices, kept to their one nonzero column, the `r`-th, since every other column
+is zero by construction.
 
-Column `j` of `G − Λ_G A` and of `A − Λ_A A`, and row `r` of `A − Λ_A A`, come out zero
-this way (`eliminate_exact_of_dependClosed`'s proof establishes it); `dropIdx`, in place
-of the paper's "remove the zero row and column", is what turns a system with the same
-shape as `Zc` into one with one fewer generator and constraint.
+Column `j` of `G − Λ_G A` and of `A − Λ_A A`, and row `r` of `A − Λ_A A`, come out zero this way
+(`eliminate_exact_of_dependClosed`'s proof); `dropIdx`, in place of the paper's "remove the zero row
+and column", gives a system with one fewer generator and constraint.
+
+## Inputs
+* `ng` – number of generators
+* `nc` – number of constraints
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `r` – constraint row to solve
+* `j` – coefficient to eliminate
+
+## Output
+* the constrained zonotope without that coefficient
 
 ## References
 

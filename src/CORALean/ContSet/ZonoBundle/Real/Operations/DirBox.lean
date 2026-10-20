@@ -12,6 +12,12 @@ public import Mathlib.Data.Real.Basic
 The box method of [1, Heuristic box]: `Λ = I`, so the bundle is enclosed by an axis-aligned box and
 the dividing hyperplane is normal to a coordinate axis. No computation beyond the identity.
 
+## Inputs
+* `n` – dimension
+
+## Output
+* the identity direction matrix
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

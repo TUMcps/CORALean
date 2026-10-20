@@ -9,6 +9,21 @@ public import Mathlib.Analysis.Normed.Module.FiniteDimension
 # A point strictly inside the certified box is interior to the nominal set
 
 The open box of radius `B` around `c + G β₀` lies in the nominal set (`ConZonotope.box_subset`).
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `H` – right inverse of the generator matrix
+* `β₀` – coefficient point
+* `δ` – ball radius in coefficient space
+* `B` – box radius around the center
+* `y` – point of the open box
+
+## Hypotheses
+* `hc` – the interior certificate passes
+* `hy` – the point is strictly within the box radius
+
+## Conclusion
+* the point is interior to the nominal set
 -/
 
 -- Authors:       Claude Opus 5.5

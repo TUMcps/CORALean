@@ -11,6 +11,23 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.Map
 
 Monotone in the generator count and the row counts, so a bound on the operand's size gives a
 bound on the cost.
+
+## Inputs
+* `h` – generators
+* `h'` – larger generator count
+* `r` – inequalities
+* `r'` – larger inequality count
+* `re` – equalities
+* `re'` – larger equality count
+* `cf` – cost of the map on one vector
+
+## Hypotheses
+* `hh` – `h ≤ h'`
+* `hr` – `r ≤ r'`
+* `he` – `re ≤ re'`
+
+## Conclusion
+* the cost of mapping is monotone in the sizes
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

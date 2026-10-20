@@ -15,6 +15,16 @@ not read, its rounding having been paid into its rows.
 
 Proofs use it rather than going through `nominal` because through it every count
 is `cZ.h`, where the instance gives the equal-but-distinct `(nominal cZ).h`.
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership in the nominal set means a unit-box coefficient vector meeting the constraints
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

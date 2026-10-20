@@ -8,17 +8,22 @@ public import CORALean.Global.Cost
 /-!
 # `ZonoBundle.reduceCost`
 
-Asserted, not proved. CORA's `@zonoBundle/reduce.m` reduces each member by the method asked for,
-and a method *selects* the generators it keeps before it writes them: Girard's metric on each
-generator (at most `4 * n + 2` operations, as `Zonotope.reduceGirardCost` counts it) and the sort
-of the `h` keys, `Cost.sort h`. That selection is charged per member, `k` times, and then the
-kept members are written into the result, `n * (h + 1)` entries each.
+Asserted, not proved. CORA's `@zonoBundle/reduce.m` reduces each member by the method asked for, and
+a method *selects* the generators it keeps before it writes them: Girard's metric on each generator
+(at most `4 * n + 2` operations, as `Zonotope.reduceGirardCost` counts it) and the sort of the `h`
+keys, `Cost.sort h`. That selection is charged per member, `k` times, and the kept members are then
+written, `n * (h + 1)` entries each.
 
-`Operations/Reduce.lean` itself keeps the first `min k o` members and never looks inside one:
-it selects by position, with no comparison, so the count is an upper bound for it, stated at
-CORA's method. Worth saying because the name misleads: this `reduce` bounds the *member* count
-by truncation; a caller who wants the members reduced runs `Zonotope.reduce` on them and pays
-`Zonotope.reduceGirardCost` per member.
+`Operations/Reduce.lean` itself keeps the first `min k o` members and never looks inside one, so the
+count is an upper bound for it, stated at CORA's method; reducing members is `Zonotope.reduce`.
+
+## Inputs
+* `n` – dimension
+* `k` – number of members
+* `h` – generators per member
+
+## Output
+* the cost of the order reduction
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

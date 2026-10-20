@@ -16,6 +16,16 @@ the reduction contains it (`reduceKeepBy_outer`, whichever partition), and its c
 `ξ` satisfy the kept inequality rows and, read at the lower coordinates, `Anew ξ = bₑ`,
 which are the rows the result carries. The upper coordinates are the point itself.
 
+## Inputs
+* `cZ` – constrained zonotope
+* `part` – generator partition
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the reduced set
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

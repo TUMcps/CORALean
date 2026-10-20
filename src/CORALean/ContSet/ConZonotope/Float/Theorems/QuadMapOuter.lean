@@ -14,6 +14,16 @@ Every point of the operand, box included, is a point of the nominal set of `abso
 The result keeps the operand's constraints on the first block of coefficients and gives the squares
 and the products none, so it is an outer approximation: it contains the image, and need not equal
 it. Unlike `Zonotope.quadMap_outer` the guarantee is about the constrained set, not a zonotope's.
+
+## Inputs
+* `Q` – quadratic form matrices
+* `cZ` – float constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the quadratic image is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

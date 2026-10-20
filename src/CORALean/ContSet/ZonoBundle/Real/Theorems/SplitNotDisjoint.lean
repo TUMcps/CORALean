@@ -15,6 +15,15 @@ A counterexample to the `Z_∩¹ ∩ Z_∩² = ∅` printed in [1, Eq. 2]: the b
 dimension, `Λ = 1`, split along its only column. Both halves contain `0`, the cut. The enclosure
 hypothesis of `split_union` holds, so this is a split the exactness theorem covers.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the two halves of a split can overlap
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

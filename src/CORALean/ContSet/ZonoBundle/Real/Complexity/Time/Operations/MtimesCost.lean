@@ -16,6 +16,15 @@ one, each writing its result.
 since the structure carries a family of zonotopes and no common width. That is
 what keeps this an upper bound; a caller with a per-member count sums those
 instead, and gets something smaller and less composable.
+
+## Inputs
+* `m` – rows
+* `n` – columns
+* `k` – number of members
+* `h` – generators per member
+
+## Output
+* the cost of multiplying by a matrix
 -/
 
 -- Authors:       Claude Opus 5

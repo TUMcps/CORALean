@@ -14,6 +14,15 @@ public import CORALean.ContSet.Zonotope.Real.Instances
 A bundle of at least one member is compact, so every coordinate is bounded on it and its support
 function in `±eᵢ` is finite: each point reads at most the support value in `eᵢ` and at least the
 negated one in `-eᵢ`, which are the box's two ends.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Conclusion
+* the bundle is contained in the support-function box
 -/
 
 -- Authors:       Claude Opus 5.5

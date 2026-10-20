@@ -17,6 +17,19 @@ whose image lies in the strip (CORA's `aux_conZonotopeFromLambda`). The strip's 
 nonnegative (`0 ≤ φ`); with a negative width the strip `|C x - y| ≤ φ` is empty and the new factor
 `ν ∈ [-1, 1]` would still reach points.
 
+## Inputs
+* `cZ` – constrained zonotope
+* `C` – strip direction matrix
+* `φ` – strip half-widths
+* `y` – strip center
+* `Λ` – gain matrix
+
+## Hypotheses
+* `hφ` – half-widths nonnegative
+
+## Conclusion
+* the result is exactly the intersection with the strip
+
 ## References
 
 * [1] A. Alanwar, V. Gaßmann, X. He, H. Said, H. Sandberg, K. H. Johansson and M. Althoff.

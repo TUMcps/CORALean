@@ -19,6 +19,19 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConZonotopeExact
 
 The hull of the two bundles is the hull of the joined vertices, a vertex polytope, hence a
 constrained zonotope (`VPolytope.conZonotope_exact`), hence a bounded halfspace description.
+
+## Inputs
+* `zB₁` – first bundle
+* `zB₂` – second bundle
+
+## Hypotheses
+* `hk₁` – first bundle has a member
+* `hk₂` – second bundle has a member
+* `hne₁` – first bundle nonempty
+* `hne₂` – second bundle nonempty
+
+## Conclusion
+* the convex hull of the union has a halfspace description
 -/
 
 -- Authors:       Claude Opus 5.5

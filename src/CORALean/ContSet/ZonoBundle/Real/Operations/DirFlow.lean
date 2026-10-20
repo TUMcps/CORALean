@@ -15,6 +15,12 @@ for any `f ≠ 0`; at `f = 0` the replaced column is zero, which the paper does 
 The rule first appeared in [2, Sec. 6.2], with `f` normalized, which changes no
 enclosure.
 
+## Inputs
+* `f` – flow direction
+
+## Output
+* the identity with the most aligned column replaced by the flow
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

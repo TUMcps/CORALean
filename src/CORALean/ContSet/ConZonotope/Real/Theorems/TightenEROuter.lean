@@ -11,18 +11,29 @@ public import Mathlib.Data.Matrix.Mul
 /-!
 # `ConZonotope.tightenER` is sound for `B∞(A, b)`
 
-Every coefficient vector of `B∞(A, b) = {ξ | Aξ = b, ‖ξ‖∞ ≤ 1}` lies in the box `E` that
-Algorithm 1 returns ([1, Alg. 1 (R)], [1, Alg. 1 (iteration)], [2, Alg. 1]) and, coordinate by
-coordinate, in the intervals `R`, after any number of passes. That is what the emptiness test
-`E ∩ R = ∅ ⇒ Z = ∅` needs of `R`.
+Every coefficient vector of `B∞(A, b) = {ξ | Aξ = b, ‖ξ‖∞ ≤ 1}` lies in the box `E` that Algorithm 1
+returns ([1, Alg. 1 (R)], [1, Alg. 1 (iteration)], [2, Alg. 1]) and, coordinate by coordinate, in
+the intervals `R`, after any number of passes. That is what the emptiness test `E ∩ R = ∅ ⇒ Z = ∅`
+needs.
 
-It is not the property [1] and [2, Alg. 1] print for `R`, that `R_j` contains
-`{ξ_j | Aξ = b, |ξ_i| ≤ 1 ∀ i ≠ j}`: the bound on `R_j` is computed from the running `E`,
-whose earlier updates already used `|ξ_j| ≤ 1`, and `tightenER_not_superset` is the
-one-row system where `R_j` excludes such a `ξ_j`.
+It is not the property [1] and [2] print for `R`, that `R_j` contains
+`{ξ_j | Aξ = b, |ξ_i| ≤ 1 ∀ i ≠ j}`: `R_j` is computed from the running `E`, which already used
+`|ξ_j| ≤ 1`, and `tightenER_not_superset` is the one-row system where `R_j` excludes such a `ξ_j`.
 
-`aux_rowBound_mem` is one row solved for one coefficient; `aux_tightenCoeffER_outer` carries
-the pair `(E, R)` through lines 3-5, and the two folds and the iteration follow by induction.
+## Inputs
+* `nc` – number of constraints
+* `ng` – number of generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `k` – number of extra passes
+* `β` – feasible coefficient vector
+
+## Hypotheses
+* `hbox` – the vector lies in the unit box
+* `heq` – the vector solves the equations
+
+## Conclusion
+* the vector lies in the box and between the running bounds
 
 ## References
 

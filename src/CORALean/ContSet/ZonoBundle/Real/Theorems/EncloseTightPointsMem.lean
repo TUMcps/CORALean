@@ -15,6 +15,19 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 Every point of `V` lies in each zonotope collected: in `W{i} * zonotope(box)` because `pinv(W{i}) v`
 is in the box of the `pinv(W{i}) V` and `W{i} pinv(W{i}) v = v` for an invertible `W{i}`; and in
 the Stursberg zonotope for every orthogonal `U`.
+
+## Inputs
+* `V` – point family
+* `W` – transformation matrices
+* `U` – orthogonal matrix of the Stursberg enclosure
+* `j` – point index
+
+## Hypotheses
+* `hW` – each transformation is invertible
+* `hU` – the matrix is orthogonal
+
+## Conclusion
+* the point lies in the enclosing bundle
 -/
 
 -- Authors:       Claude Opus 5.5

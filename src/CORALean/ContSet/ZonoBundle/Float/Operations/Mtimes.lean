@@ -11,6 +11,13 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
 CORA's `zonoBundle`/`mtimes` at float zonotopes: the same `k`, each member
 multiplied on its own, so the rounding of the product lands in that member's
 error box and never in a bundle-wide one.
+
+## Inputs
+* `M` – matrix
+* `zB` – float zonotope bundle
+
+## Output
+* the image under the matrix
 -/
 
 -- Authors:       Claude Opus 5

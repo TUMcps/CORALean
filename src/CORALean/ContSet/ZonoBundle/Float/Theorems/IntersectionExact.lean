@@ -17,6 +17,16 @@ this is the one operation here that loses nothing over floats either.
 
 `Instances` is what turns it into the `Intersection (ZonoBundle (Vec 𝕋 n)) (Vec ℝ n)` instance,
 whose obligation is only the outer half.
+
+## Inputs
+* `zB₁` – first bundle
+* `zB₂` – second bundle
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is exactly the intersection
 -/
 
 -- Authors:       Claude Opus 5

@@ -8,6 +8,17 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.Basic
 # `ConZonotope.centerLo` and `centerHi` bracket `c + G β₀`
 
 The two ends are a rounded-down and a rounded-up evaluation of the same expression.
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `β₀` – coefficient point
+* `i` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* the evaluated center lies between its two roundings
 -/
 
 -- Authors:       Claude Opus 5.5

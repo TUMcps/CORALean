@@ -11,18 +11,23 @@ public import CORALean.ContSet.HPolytope.Float.Operations.StackRows
 /-!
 # `ConZonotope.anchorSlab`: new equality rows on the coefficients, kept as equalities
 
-An operation that adds coefficient equalities `A β = b` (an intersection's agreement rows, a
-strip's rows) knows `b` only up to rounding and the error boxes: every coefficient vector of the
-exact set reads between `lo` and `hi` on them. The rows are added as the equalities `A β = hi`,
-the gap `hi - lo` being the residual (an old equality's being its slack), and
-`HPolytope.anchorEqsInBox` moves each such coefficient
-vector onto them, inside the unit box, by at most `τ` in every coordinate. The point the
-coefficients describe then moves by at most `∑ⱼ |Gⱼᵢ| τ` in coordinate `i`, which the error box
-takes, rounded up.
+An operation that adds coefficient equalities `A β = b` (an intersection's agreement rows, a strip's
+rows) knows `b` only up to rounding and the error boxes: the exact set reads between `lo` and `hi`
+on them. The rows are added as the equalities `A β = hi`, and `HPolytope.anchorEqsInBox` moves each
+coefficient vector onto them, inside the unit box, by at most `τ` in every coordinate; the point
+moves by at most `∑ⱼ |Gⱼᵢ| τ` in coordinate `i`, which the error box takes, rounded up.
 
-Without a certificate for the stacked equalities, or without a strictly feasible point, the rows
-are added as the slab `lo ≤ A β ≤ hi` instead (`HPolytope.slab`) and nothing else changes. The
-choice is made at run time; `ConZonotope.anchorSlab_outer` covers both.
+Without a certificate for the stacked equalities, or a strictly feasible point, the rows are added
+as the slab `lo ≤ A β ≤ hi` instead (`HPolytope.slab`); `anchorSlab_outer` covers both.
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `A` – slab row matrix
+* `lo` – slab lower bound
+* `hi` – slab upper bound
+
+## Output
+* the constrained zonotope with the slab rows added as equalities
 -/
 
 -- Authors:       Claude Opus 5.5

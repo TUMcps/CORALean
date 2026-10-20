@@ -18,6 +18,14 @@ way CORA's `@conZonotope/minkDiff`, method `'exact'`, folds. The translation is 
 error box), and the intersection is the float `ConZonotope.intersection`, so the result is
 outer, not exact.
 
+## Inputs
+* `k` – number of extra vertices
+* `Z` – zonotope
+* `v` – vertex list of the polytope
+
+## Output
+* the Minkowski difference of the zonotope and the polytope
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

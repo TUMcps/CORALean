@@ -15,6 +15,18 @@ share the cut, so it is false (`split_not_disjoint`). What holds is that the hal
 bundle intersected with `Ψ` with its `j`-th generator dropped, which is
 `Zonotope.split_intersection`.
 
+## Inputs
+* `Λ` – edge directions
+* `B` – box in the transformed coordinates
+* `j` – dimension to cut along
+* `zB` – zonotope bundle
+
+## Hypotheses
+* none
+
+## Conclusion
+* the halves overlap exactly in the bundle's part of the cut face
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

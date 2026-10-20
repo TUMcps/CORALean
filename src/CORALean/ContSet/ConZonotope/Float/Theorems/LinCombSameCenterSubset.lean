@@ -15,19 +15,27 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemHalfScaledRight
 /-!
 # `linCombSameCenter` is no larger than the hull
 
-The nominal part of the hull of two constrained zonotopes at one center lies on the segments
-between their nominal parts. A coefficient vector `(γ₁, γ₂, ν)` of the hull meets the first
-block's rows at the weight `λ = (ν + 1) / 2` and the second's at `1 - λ`
-(`mem_halfScaledLeft`, `mem_halfScaledRight`), so each block is a point of its own set scaled by
-its weight: above weight zero by dividing through, and at weight zero because the weighted unit
-box pins the block to the origin, leaving the other set's point alone. Both sets have to be
-nonempty, as in the exact layer's `linComb_inner`: at weight zero the point is the second set's,
-which is a segment only if the first has a point to run from. Both constraint polytopes have to
-be slack-free: a slack is read once at every weight, so dividing a block by its weight would
-stretch it.
+The nominal part of the hull of two constrained zonotopes at one center lies on the segments between
+their nominal parts. A coefficient vector `(γ₁, γ₂, ν)` of the hull meets the first block's rows at
+the weight `λ = (ν + 1) / 2` and the second's at `1 - λ`, so each block is a point of its own set
+scaled by its weight: above zero by dividing through, at zero because the weighted unit box pins the
+block to the origin. Both sets must be nonempty, as in `linComb_inner`, and both polytopes
+slack-free: a slack is read once at every weight. The centers agree and the interpolation column is
+zero, so the point is `λ(c + G₁β₁) + (1 - λ)(c + G₂β₂)`.
 
-The centers are the same and the interpolation column is zero, so the point is
-`λ(c + G₁β₁) + (1 - λ)(c + G₂β₂)` without a remainder.
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+
+## Hypotheses
+* `hc` – the two centers agree
+* `hs₁` – first constraint slack free
+* `hs₂` – second constraint slack free
+* `hne₁` – first nominal set nonempty
+* `hne₂` – second nominal set nonempty
+
+## Conclusion
+* the nominal hull lies within the hull of the nominal sets
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

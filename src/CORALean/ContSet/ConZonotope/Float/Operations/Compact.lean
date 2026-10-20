@@ -10,15 +10,20 @@ public import CORALean.ContSet.HPolytope.Float.Operations.SelectCols
 /-!
 # `ConZonotope.compact` over a floating-point scalar
 
-CORA's `@conZonotope/compact_` with method `'zeros'` (also what `'all'` does) on the stored
-floats: delete the generators whose column of `[G; A; Ae]` is zero, then the zero constraint rows.
-Both steps on the constraint are its own operations (#174): `HPolytope.isZeroCol` tests a column,
-`HPolytope.selectCols` keeps the kept generators' columns, and `HPolytope.dropZeros`, the
-polytope's own `compact_ 'zeros'`, deletes the zero rows that hold (`0 x = be` with `be = 0`, and
-`0 ≤ b`) and returns the empty polytope when a zero row is certified infeasible. A row or column
-goes only when every entry is certified zero by `le` both ways, so nothing rounds but that
-infeasibility test, and the set is the same (`compact_exact`). The kept generators and rows keep
-their order. Tolerance `0`; CORA's `eps` removes columns below it as well.
+CORA's `@conZonotope/compact_` with method `'zeros'` (also what `'all'` does) on the stored floats:
+delete the generators whose column of `[G; A; Ae]` is zero, then the zero constraint rows. Both
+steps on the constraint are its own operations (#174): `HPolytope.isZeroCol`,
+`HPolytope.selectCols`, and `HPolytope.dropZeros`, which deletes the zero rows that hold (`0 x = be`
+with `be = 0`, and `0 ≤ b`) and returns the empty polytope when a zero row is certified infeasible.
+A row or column goes only when every entry is certified zero by `le` both ways, so nothing rounds
+but that infeasibility test, and the set is the same (`compact_exact`). The order is kept. Tolerance
+`0`; CORA's `eps` removes columns below it as well.
+
+## Inputs
+* `cZ` – float constrained zonotope
+
+## Output
+* the set without zero generators and zero constraint rows
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

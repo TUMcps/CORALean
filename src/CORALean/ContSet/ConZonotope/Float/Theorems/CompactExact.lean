@@ -17,6 +17,15 @@ alone, which is what `HPolytope.mem_selectCols_nominal_iff` asks, and the zero r
 changing the set (`HPolytope.dropZeros_exact`). A point of the set keeps its kept coefficients,
 and a point of the compacted set gets `0` at the dropped ones. Nothing is rounded, so this is the
 float set's own equality, not a claim about the exact layer's.
+
+## Inputs
+* `cZ` – float constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* compacting leaves the set unchanged
 -/
 
 -- Authors:       Claude Opus 5.5

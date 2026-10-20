@@ -20,6 +20,18 @@ certificate, `β` meets the stacked rows of the anchoring polytope, the old equa
 slack and the new ones within `hi - lo`, so `HPolytope.anchorEqsInBox_sound` moves it to a `β''` of
 the box on all of them, by at most `τ`; the point `y''` that `β''` describes is within `∑ⱼ |Gⱼᵢ| τ`
 of `y`, which the widened box takes. Without, the result is the slab version.
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `A` – slab row matrix
+* `lo` – slab lower bound
+* `hi` – slab upper bound
+
+## Hypotheses
+* none
+
+## Conclusion
+* the slab version is contained in the anchored one
 -/
 
 -- Authors:       Claude Opus 5.5

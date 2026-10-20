@@ -11,6 +11,12 @@ CORA's `@conZonotope/representsa_` at type `point`: `representsa_(interval(cZ),'
 (linear-program tight) interval hull of the set is a point, at tolerance `0`. The hull is a point
 exactly when the generator map `ξ ↦ G ξ` is constant on the coefficient polytope
 `ConZonotope.domain`, and the polytope is nonempty (CORA returns `[]` for an empty set).
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Output
+* the set is a single point
 -/
 
 -- Authors:       Claude Opus 5.5

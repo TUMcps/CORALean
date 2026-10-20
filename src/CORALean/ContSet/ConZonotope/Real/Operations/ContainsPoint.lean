@@ -11,6 +11,16 @@ The point branch of CORA's `@conZonotope/contains_` (`aux_containsPoint`, method
 scaling factor requested): `p` is contained exactly when the stacked point `[p; b]` lies in the
 stacked zonotope `ConZonotope.stack`. CORA hands the question to the zonotope's `contains_`, a
 linear program; here it is the membership that program decides.
+
+## Inputs
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `p` – point to test
+
+## Output
+* the point lies in the constrained zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

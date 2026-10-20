@@ -17,6 +17,16 @@ Only the program of `polytope/center` over the coefficient domain `cZ.domain` is
 bundle's constrained zonotope carries its constraints as a polytope `P`, not in the form
 `A β = b` that the null-space program of the full-dimensional branch of `conZonotope/center` is
 stated for, so that branch is not modelled. `0 < k`: CORA answers `[]` for no members.
+
+## Inputs
+* `zB` – zonotope bundle
+* `x` – candidate center
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Output
+* the point is a center of the bundle
 -/
 
 -- Authors:       Claude Opus 5.5

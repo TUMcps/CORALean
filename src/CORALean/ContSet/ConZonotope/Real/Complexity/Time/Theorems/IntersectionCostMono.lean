@@ -15,6 +15,22 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Intersection
 
 Monotone in the second operand's generator count, so a bound on its size
 gives a bound on the cost.
+
+## Inputs
+* `h₂` – generators of the second set
+* `h₂'` – larger generator count
+* `n` – dimension
+* `h₁` – generators of the first set
+* `r₁` – inequalities of the first set
+* `re₁` – equalities of the first set
+* `r₂` – inequalities of the second set
+* `re₂` – equalities of the second set
+
+## Hypotheses
+* `hh` – `h₂ ≤ h₂'`
+
+## Conclusion
+* the intersection cost is monotone in the second generator count
 -/
 
 -- Authors:       Claude Sonnet 5.5

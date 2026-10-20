@@ -15,6 +15,13 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 The set intersected with the two halves of its bounding box along dimension `d`, as over ℝ:
 the box is `ConZonotope.interval`, cut by `Interval.splitAt`, each half converted by
 `Interval.conZonotope` and intersected with the set by the float `intersection`.
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `d` – dimension to cut along
+
+## Output
+* the two halves of the set
 -/
 
 -- Authors:       Claude Opus 5.5

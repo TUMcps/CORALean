@@ -10,6 +10,17 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsPointSound
 # A `true` from `ZonoBundle.containsPoint` proves membership
 
 The bundle is the intersection of its members, and a point in every member is in it.
+
+## Inputs
+* `zB` – float zonotope bundle
+* `H` – right inverse of each member's generator matrix
+* `p` – point to test
+
+## Hypotheses
+* `h` – the test answers true
+
+## Conclusion
+* the point lies in the bundle
 -/
 
 -- Authors:       Claude Opus 5.5

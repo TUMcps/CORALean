@@ -11,6 +11,20 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
 `Λ_G ∈ ℝ^{n×nc}` and `Λ_A ∈ ℝ^{nc×nc}`. The system is the paper's `Aξ = b`, built with
 `ofMat`; column `j` of `Λ_G A` is `Λ_G` applied to column `j` of `A`.
 
+## Inputs
+* `n` – dimension
+* `q` – number of constraints
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `ΛG` – generator multiplier
+* `ΛA` – constraint multiplier
+
+## Output
+* the constrained zonotope with the constraints reduced
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

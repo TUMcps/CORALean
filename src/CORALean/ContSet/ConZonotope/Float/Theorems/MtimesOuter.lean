@@ -20,6 +20,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 `Zonotope.mtimes_outer`, whose regrouping lemma is stated again here for the stored center and
 generators. The constraint is on the coefficients, which the stored generators keep, so the
 witness is the same coefficient family and its membership in `P` is carried over unchanged.
+
+## Inputs
+* `M` – matrix
+* `cZ` – float constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image under the matrix is contained in the result
 -/
 
 -- Authors:       Claude Sonnet 5.5

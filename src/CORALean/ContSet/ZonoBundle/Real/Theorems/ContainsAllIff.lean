@@ -12,6 +12,16 @@ public import CORALean.ContSet.ZonoBundle.Real.Operations.ContainsAll
 A bundle denotes the intersection of its members, and `S` lies in an intersection exactly when it
 lies in each intersectand, so CORA's member-wise `'exact:zonotope'` check is exact for every
 operand `S`: nothing is lost, unlike the zonotope hull of a bundle.
+
+## Inputs
+* `zB` – zonotope bundle
+* `S` – set to test
+
+## Hypotheses
+* none
+
+## Conclusion
+* the bundle contains the set iff every member does
 -/
 
 -- Authors:       Claude Opus 5.5

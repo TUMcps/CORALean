@@ -10,6 +10,16 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepByOuter
 
 Above the order it is `reduceKeepBy` at `aux_keepSplit`, an over-approximation at every
 partition; at or below it, the identity.
+
+## Inputs
+* `cZ` – constrained zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the reduced set
 -/
 
 -- Authors:       Claude Opus 5.5

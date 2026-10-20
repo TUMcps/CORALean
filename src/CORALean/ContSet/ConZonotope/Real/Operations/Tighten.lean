@@ -17,6 +17,15 @@ what a single pass buys.
 The paper's own outer refinement — running Algorithm 1 again on its own output — is a
 separate procedure `Thm. 2` does not ask for; it is `tightenER`, which also returns `R`.
 
+## Inputs
+* `nc` – number of constraints
+* `ng` – number of generators
+* `A` – constraint matrix
+* `b` – constraint offset
+
+## Output
+* the tightened coefficient box
+
 ## References
 
 * [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for

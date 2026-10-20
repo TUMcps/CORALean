@@ -15,6 +15,13 @@ enclosure, but for a different reason: `plus`'s loss is that a sum of
 intersections is not an intersection of sums, while here the interpolation
 weight `lam` is genuinely shared across every pair — only the endpoints vary.
 Whether that makes this tighter than `plus` in practice is not claimed here.
+
+## Inputs
+* `zB₁` – first bundle
+* `zB₂` – second bundle
+
+## Output
+* enclosure of the convex hull
 -/
 
 -- Authors:       Claude Opus 5

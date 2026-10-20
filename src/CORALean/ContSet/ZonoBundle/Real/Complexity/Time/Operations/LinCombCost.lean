@@ -14,6 +14,16 @@ per pair of members, as `plus` does, and does nothing of its own; each writes it
 
 `h₁` and `h₂` bound every member of the respective bundle rather than naming
 one member's count, for the reason `mtimesCost` gives.
+
+## Inputs
+* `n` – dimension
+* `k₁` – members of the first bundle
+* `k₂` – members of the second bundle
+* `h₁` – generators per member of the first
+* `h₂` – generators per member of the second
+
+## Output
+* the cost of the convex hull
 -/
 
 -- Authors:       Claude Opus 5

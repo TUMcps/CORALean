@@ -15,6 +15,16 @@ Every point of the operand, box included, is a point of the nominal set of `abso
 `Zonotope.cubMapDep_coeff` gives coefficients whose linear block is `β`, so they meet the lifted
 constraints. The monomials are unconstrained, so the result is an outer approximation, not the
 image.
+
+## Inputs
+* `T` – cubic map tensor
+* `cZ` – float constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the cubic image is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

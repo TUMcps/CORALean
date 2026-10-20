@@ -14,6 +14,16 @@ Over `ℝ` the conjugate transpose is the transpose, so being Hermitian is being
 because Mathlib's spectral theorem takes this hypothesis, which `dirPca` feeds it
 [1, Heuristic pca].
 
+## Inputs
+* `m` – number of vertices
+* `V` – vertices
+
+## Hypotheses
+* none
+
+## Conclusion
+* the covariance matrix is symmetric
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

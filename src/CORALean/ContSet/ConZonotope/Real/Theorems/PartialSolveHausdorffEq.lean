@@ -14,6 +14,23 @@ the image of those `ξ` under `ξ ↦ Gξ + c` (`partialSolve_construct_eq`), `Z
 `B∞(A, b)`, and the center cancels in the difference. The `max` and `min` are `sSup` and `sInf`
 here, the same values whenever they are attained.
 
+## Inputs
+* `n` – dimension
+* `q` – number of constraints
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `r` – constraint row to solve
+* `j` – coefficient to eliminate
+
+## Hypotheses
+* `hAj` – pivot entry nonzero
+
+## Conclusion
+* the Hausdorff error equals the error over the coefficients
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

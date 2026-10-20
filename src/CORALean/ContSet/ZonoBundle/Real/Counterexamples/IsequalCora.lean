@@ -21,6 +21,15 @@ agree.
 The bundle `{[-1, 1]}` of one member against `{[-1, 1], {2}}` of two: the first denotes
 `[-1, 1]`, the second `[-1, 1] ∩ {2} = ∅`, yet the member counts differ, so the quick check
 returns `true` (`ZonoBundle.isequalCora`). Read from the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's quick equality test accepts two different bundles
 -/
 
 -- Authors:       Claude Opus 5.5

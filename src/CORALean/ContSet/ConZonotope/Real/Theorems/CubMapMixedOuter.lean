@@ -12,6 +12,18 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 
 The coefficients of `Zonotope.cubMapMixed_coeff` carry each set's own `p` on its linear generators,
 so each set's constraint holds there, and every other product factor is unconstrained. Outer only.
+
+## Inputs
+* `T` – cubic map tensor
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+* `cZ₃` – third constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the mixed cubic image is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

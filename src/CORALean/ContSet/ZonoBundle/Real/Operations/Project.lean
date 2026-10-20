@@ -11,6 +11,13 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Basic
 CORA's `@zonoBundle/project`: every member zonotope projected on its own,
 `zB.Z{i} = project(zB.Z{i},dims)`. `dims` may repeat or reorder coordinates. Reading coordinates
 is linear, so this is `map` at the selection map, member by member.
+
+## Inputs
+* `zB` – zonotope bundle
+* `dims` – retained dimensions
+
+## Output
+* the projection onto the retained dimensions
 -/
 
 -- Authors:       Claude Opus 5.5

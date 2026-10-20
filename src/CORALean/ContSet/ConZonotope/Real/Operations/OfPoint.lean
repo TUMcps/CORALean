@@ -11,6 +11,12 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Fullspace
 CORA's `conZonotope` at a center, no generators and no constraints: a single
 point, as the representation. What `OfPoint` asks every representation with a
 point operation to supply.
+
+## Inputs
+* `v` – point
+
+## Output
+* the single-point constrained zonotope
 -/
 
 -- Authors:       Claude Opus 5

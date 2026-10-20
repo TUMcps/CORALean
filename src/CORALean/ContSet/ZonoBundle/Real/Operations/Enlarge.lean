@@ -13,6 +13,13 @@ CORA's `@zonoBundle/enlarge.m`: each zonotope of the bundle is enlarged about it
 (`enlarge(zB.Z{i}, factor)`), so the result is the intersection of the enlarged members, not the
 enlargement of the intersection about a common center: the members' centers differ in general,
 and so do the maps `x ↦ cᵢ + f ⊙ (x - cᵢ)`.
+
+## Inputs
+* `zB` – zonotope bundle
+* `factor` – enlargement factor per coordinate
+
+## Output
+* the bundle with each member enlarged
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -24,6 +24,20 @@ when the enumerator's points `V` have `P` in their convex hull, `Λⱼ⁻¹ P` l
 `Λⱼ⁻¹ V`, hence in its box, and `P` in `Λⱼ box(Λⱼ⁻¹ V)` for every invertible `Λⱼ`. The
 paper claims no tightness, and none is claimed here.
 
+## Inputs
+* `zB` – zonotope bundle
+* `Aq` – directions for the halfspace conversion
+* `G` – guard polytope
+* `vert` – vertex enumerator
+* `Λ` – parallelotope direction matrices
+
+## Hypotheses
+* `hvert` – the vertices' hull covers the intersection polytope
+* `hΛ` – every direction matrix is invertible
+
+## Conclusion
+* the bundle intersected with the guard is contained in the result
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

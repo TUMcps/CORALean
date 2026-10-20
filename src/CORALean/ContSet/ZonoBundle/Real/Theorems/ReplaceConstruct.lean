@@ -10,6 +10,17 @@ public import CORALean.ContSet.ZonoBundle.Real.Operations.Replace
 
 Exact: the bundle after replacing member `index` by `Z` denotes `Z` intersected with the
 intersection of the other members (those with `i ≠ index`).
+
+## Inputs
+* `zB` – zonotope bundle
+* `index` – member to overwrite
+* `Z` – replacement zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is the replacement intersected with the other members
 -/
 
 -- Authors:       Claude Opus 5.5

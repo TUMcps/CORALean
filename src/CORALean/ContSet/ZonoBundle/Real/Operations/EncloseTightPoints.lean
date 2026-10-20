@@ -18,6 +18,14 @@ of the two bundles): for each transformation `W{i}` the zonotope
 `W{i}` spans, mapped back; and one more, `zonotope.enclosePoints(V, 'stursberg')`. `pinv(W{i})`
 is the matrix inverse, which is `pinv` for an invertible `W{i}`; the orthogonal `U` of the
 Stursberg enclosure is CORA's `svd(cov(.))`, an argument as in `Zonotope.enclosePointsStursberg`.
+
+## Inputs
+* `V` – point family
+* `W` – transformation matrices
+* `U` – orthogonal matrix of the Stursberg enclosure
+
+## Output
+* bundle enclosing the points
 -/
 
 -- Authors:       Claude Opus 5.5

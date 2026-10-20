@@ -13,17 +13,21 @@ public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_ConZonoto
 /-!
 # A constrained zonotope is exactly a bounded affine image of a polytope
 
-`[1, Thm. 4]`: a non-empty set is a constrained zonotope iff it is an
-"AH-polytope", an affine image `xbar + X·P` of an H-Rep polytope `P` (`[1, Def.
-1]`, itself restated from Sadraddini and Tedrake). Both halves are already
-here under other names: `construct_eq_image` reads a constrained zonotope this
-way with `X` its own generator map and `P` its `domain`; `HPolytope.conZonotope`
-is `[1]`'s "Theorem 1 of Scott et al." the other way, an H-Rep polytope as a
-constrained zonotope, composed here with `map` for the linear part and a
-center shift for the rest. `P` bounded (a `SupportBound` pair per coordinate)
-is `[1]`'s own assumption made explicit: its "polytope" is bounded, while an
-H-Rep `P` here need not be. Non-emptiness is not needed — the iff holds at `∅`
-too, which an infeasible constrained zonotope denotes.
+`[1, Thm. 4]`: a non-empty set is a constrained zonotope iff it is an "AH-polytope", an affine image
+`xbar + X·P` of an H-Rep polytope `P`. Both halves are already here under other names:
+`construct_eq_image` reads a constrained zonotope this way with `X` its generator map and `P` its
+`domain`; `HPolytope.conZonotope` is the other way, composed with `map` and a center shift. `P`
+bounded (a `SupportBound` pair per coordinate) is [1]'s own assumption made explicit. Non-emptiness
+is not needed: the iff holds at `∅` too.
+
+## Inputs
+* `S` – set
+
+## Hypotheses
+* none
+
+## Conclusion
+* it is a constrained zonotope iff it is a bounded affine image of a polytope
 
 ## References
 

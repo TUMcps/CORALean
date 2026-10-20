@@ -11,6 +11,16 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.IsequalSound
 
 A `true` answer says every member pair is `Zonotope.isequal`, so the members denote the same
 sets and so do the intersections. `false` refutes nothing.
+
+## Inputs
+* `zB` – first bundle
+* `S` – second bundle
+
+## Hypotheses
+* `h` – the test answers true
+
+## Conclusion
+* the two bundles are equal
 -/
 
 -- Authors:       Claude Opus 5.5

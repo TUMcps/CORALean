@@ -12,6 +12,16 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 The coefficients of `Zonotope.cubMap_coeff` are `βⱼ` on the linear generators `(0, 0, j)`, so the
 point's own coefficient vector meets the constraints there, and every other monomial factor is
 unconstrained. Outer only, as for the zonotope.
+
+## Inputs
+* `T` – cubic map tensor
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the cubic image is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

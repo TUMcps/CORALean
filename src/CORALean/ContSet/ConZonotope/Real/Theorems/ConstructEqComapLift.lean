@@ -16,8 +16,23 @@ converting `Z⁺`". Any halfspace description `P` of `Z⁺` gives one of `Z`. Si
 `P.comap` along `z ↦ [z; 0]`: the same right-hand sides, each row restricted to its first `n`
 coefficients.
 
-Where `Z⁺`'s generators span, `Zonotope.hRep_eq` (Althoff et al. NAHS'10 `Thm. 7`) is such a
-`P`.
+Where `Z⁺`'s generators span, `Zonotope.hRep_eq` (NAHS'10 `Thm. 7`) is such a `P`.
+
+## Inputs
+* `n` – dimension
+* `m` – number of constraints
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `P` – halfspace polytope
+
+## Hypotheses
+* `hP` – the polytope describes the lifted zonotope
+
+## Conclusion
+* the set is the polytope pulled back along the padding
 
 ## References
 

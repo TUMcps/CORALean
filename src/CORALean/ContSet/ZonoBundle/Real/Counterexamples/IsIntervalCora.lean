@@ -23,6 +23,15 @@ The bundle of the box `[-1, 1]²` and the diagonal segment `{(t, t) : |t| ≤ 1}
 which is not an axis-aligned box. `aux_isInterval` tests `zB.Z{1}`, the box, in every pass of its
 loop, never `zB.Z{2}`, so `representsa_(zB, 'interval')` answers `true`. Read from the source,
 not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's interval test accepts a bundle that is no box
 -/
 
 -- Authors:       Claude Opus 5.5

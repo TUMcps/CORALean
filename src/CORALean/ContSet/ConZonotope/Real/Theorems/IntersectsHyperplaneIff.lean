@@ -16,6 +16,20 @@ Forward is `IsLeast`/`IsGreatest`'s own bound halves. Back is the paper's own
 argument: a point at each extreme, and `convex_construct` puts the segment
 between them inside `Zc`, at the one weight `h` reads off as `f`.
 
+## Inputs
+* `cZ` – constrained zonotope
+* `h` – hyperplane normal functional
+* `f` – hyperplane offset
+* `fmin` – least value of the functional
+* `fmax` – greatest value of the functional
+
+## Hypotheses
+* `hmin` – the least value is attained over the set
+* `hmax` – the greatest value is attained over the set
+
+## Conclusion
+* the set meets the hyperplane iff the offset lies between the extremes
+
 ## References
 
 * [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for

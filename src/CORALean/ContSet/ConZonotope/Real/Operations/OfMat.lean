@@ -11,6 +11,17 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
 CORA's `conZonotope(c, G, A, b)`, whose constraints are an equality system
 `A β = b`. Here that system is one halfspace description among others, so the
 constructor is `HPolytope.eqs` and nothing more.
+
+## Inputs
+* `q` – number of constraints
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+
+## Output
+* the constrained zonotope with these fields
 -/
 
 -- Authors:       Claude Opus 5

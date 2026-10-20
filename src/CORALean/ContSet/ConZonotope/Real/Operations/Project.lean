@@ -10,6 +10,13 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.Map
 CORA's `@conZonotope/project`: the center and generators at the chosen coordinates, with the
 constraint untouched. `dims` may repeat or reorder coordinates. Reading coordinates is linear, so
 this is `map` at the selection map, and `project_exact` is `map_exact`.
+
+## Inputs
+* `cZ` – constrained zonotope
+* `dims` – retained dimensions
+
+## Output
+* the projection onto the retained dimensions
 -/
 
 -- Authors:       Claude Opus 5.5

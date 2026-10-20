@@ -12,6 +12,14 @@ the addition of exactly one generator and one equality constraint. `dm` is the p
 the orthogonal width of `Z` past `H₋`'s bounding hyperplane; `IntersectHalfspaceExact` is where
 `dm ≥ 0` gets used, from the hypothesis that `Z` actually meets the hyperplane.
 
+## Inputs
+* `Z` – zonotope
+* `h` – halfspace normal functional
+* `f` – halfspace offset
+
+## Output
+* the zonotope intersected with the halfspace
+
 ## References
 
 * [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for

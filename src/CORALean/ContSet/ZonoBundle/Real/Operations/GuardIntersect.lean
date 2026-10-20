@@ -14,17 +14,24 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # `ZonoBundle.guardIntersect`: [1, Sec. VI-A]
 
-The intersection of a reachable bundle with a polytopic guard set, as [1, Sec. VI-A] computes
-it: the members converted to halfspaces, `Zonotope.hPolytope` at the caller's directions `Aq`
-(the paper's "several parallelotope enclosures" are one choice of them), stacked, which is
-the bundle's halfspace description [1, Prop. 4]; intersected with the guard `G`, exactly; and
-back to generators by enclosing the intersection's vertices by parallelotopes, `Ψⱼ = Λⱼ
-box(Λⱼ⁻¹ V)`, as eq. 2 does with a box of vertices in place of a box of zonotopes.
+The intersection of a reachable bundle with a polytopic guard set, as [1, Sec. VI-A] computes it:
+the members converted to halfspaces (`Zonotope.hPolytope` at the directions `Aq`) and stacked, the
+bundle's halfspace description [1, Prop. 4]; intersected with the guard `G`, exactly; and back to
+generators by enclosing the intersection's vertices by parallelotopes `Ψⱼ = Λⱼ box(Λⱼ⁻¹ V)` (eq. 2).
 
-The vertices of the intersection need vertex enumeration, which the paper hands to "a
-standard toolbox" and which nothing here computes: `vert` is that enumerator, an argument,
-and the soundness theorem asks it to return points whose hull covers the polytope it is given.
-The directions `Λⱼ` are an argument too, as in eq. 2.
+The vertices of the intersection need vertex enumeration, which the paper hands to "a standard
+toolbox": `vert` is that enumerator, an argument, and soundness asks it to return points whose hull
+covers the polytope. The directions `Λⱼ` are an argument too, as in eq. 2.
+
+## Inputs
+* `zB` – zonotope bundle
+* `Aq` – directions for the halfspace conversion
+* `G` – guard polytope
+* `vert` – vertex enumerator
+* `Λ` – parallelotope direction matrices
+
+## Output
+* bundle enclosing the intersection with the guard
 
 ## References
 

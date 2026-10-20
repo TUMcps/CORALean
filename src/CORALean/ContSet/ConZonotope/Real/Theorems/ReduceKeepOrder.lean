@@ -10,6 +10,16 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeep
 Above the order the result has `(o - 1) * n + n` generators, which is `o * n` once
 `0 < o`: the same budget as Girard's rule, `n` of it for the box. At or below the
 order `cZ` passes through and the branch condition is the bound.
+
+## Inputs
+* `cZ` – constrained zonotope
+* `o` – target order
+
+## Hypotheses
+* `ho` – the order is positive
+
+## Conclusion
+* the reduced set has at most o * n generators
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,17 @@ public import CORALean.ContSet.ContSet.Theorems.EnlargeScalarOuter
 Per member, as over ℝ: the image of member `i` under `x ↦ cᵢ + f ⊙ (x - cᵢ)` (the center and `f`
 as the floats read) lies in member `i` of the result, and the result is the intersection of those
 members (`construct_enlarge`). Nothing is claimed for the image of the intersection.
+
+## Inputs
+* `zB` – float zonotope bundle
+* `f` – enlargement factor per coordinate
+* `i` – member index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the scaling of member i is contained in the enlarged member
 -/
 
 -- Authors:       Claude Opus 5.5

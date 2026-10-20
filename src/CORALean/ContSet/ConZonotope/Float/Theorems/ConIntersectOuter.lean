@@ -23,6 +23,17 @@ the float image's error box (`Interval.mtimes_outer`, `sub_mem_residual`,
 `mem_generatorError`). The agreement row then reads `yW - y₂ = e₂ - eW`, inside its slab, and
 `x` is the first set's nominal point at `[β₁; β₂]` plus `e₁` in the slab version, which the
 result contains (`ConZonotope.anchorSlab_outer`).
+
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+* `M` – map from the first into the second space
+
+## Hypotheses
+* none
+
+## Conclusion
+* the constrained intersection is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,6 +16,13 @@ is copied. Center and generators are rounded, and what that costs goes into the 
 exactly as for `Zonotope.mtimes`: the coefficients of a constrained zonotope lie in
 `[-1, 1]`, which is what lets a generator's rounding be a box. The old box travels through
 the map by `Interval.mtimes`.
+
+## Inputs
+* `M` – matrix
+* `cZ` – float constrained zonotope
+
+## Output
+* the image under the matrix
 -/
 
 -- Authors:       Claude Sonnet 5.5

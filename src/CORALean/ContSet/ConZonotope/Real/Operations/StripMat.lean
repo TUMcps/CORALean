@@ -10,6 +10,14 @@ public import CORALean.ContSet.ConZonotope.Real.ConZonotope
 The equality rows `C G ξ - φ ν = y - C c` that `ConZonotope.intersectStrip` appends, one per slab of
 the strip: the first block reads the old factors through `C G`, the second pins the new factor `ν`
 of slab `i` to `-φᵢ`.
+
+## Inputs
+* `cZ` – constrained zonotope
+* `C` – strip direction matrix
+* `φ` – strip half-widths
+
+## Output
+* the equality rows added for the strip
 -/
 
 -- Authors:       Claude Opus 5.5

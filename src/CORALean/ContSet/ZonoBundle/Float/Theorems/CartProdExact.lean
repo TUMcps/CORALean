@@ -13,6 +13,17 @@ For two nonempty bundles, the product's set is the pair of the two intersections
 `Fin.append`: a point lies in every pair `(i, j)`'s product iff its two halves lie in every
 member of their bundle. `Fin.append` is injective, so the halves are determined by the point, and
 the nonemptiness hypotheses are what let one member of the other bundle stand in for the pair.
+
+## Inputs
+* `zB₁` – first bundle
+* `zB₂` – second bundle
+
+## Hypotheses
+* `h₁` – first bundle has a member
+* `h₂` – second bundle has a member
+
+## Conclusion
+* the product's set is the pairing of the two sets
 -/
 
 -- Authors:       Claude Sonnet 5.5

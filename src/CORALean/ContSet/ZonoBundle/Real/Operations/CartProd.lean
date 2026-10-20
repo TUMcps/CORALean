@@ -12,6 +12,13 @@ public import Mathlib.Logic.Equiv.Fin.Basic
 CORA's `@zonoBundle/cartProd_` for two bundles: the list of all pairs, `cartProd_(zB.Z{i},
 S.Z{j},'exact')`, with `i` the outer and `j` the inner loop, which is the flattening
 `finProdFinEquiv` of the index pair.
+
+## Inputs
+* `zB₁` – first bundle
+* `zB₂` – second bundle
+
+## Output
+* the Cartesian product
 -/
 
 -- Authors:       Claude Opus 5.5

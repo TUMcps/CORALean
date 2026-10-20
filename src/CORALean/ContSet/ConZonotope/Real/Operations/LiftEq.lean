@@ -14,10 +14,14 @@ the generators and the center, `Z⁺ = [G; Aₑ]` with center `[c; -bₑ]` in `�
 each generator, so the lifted generator `j` is `[G j; (Aₑ i e_j)ᵢ]`.
 
 The inequality rows are not lifted, CORA's representation having none; they stay on `P`, whose
-equalities `HPolytope.dropEqs` removes (`HPolytope.construct_subset_dropEqs`),
-which is why the result is a constrained zonotope, with `mₑ = 0` equalities, and not a
-zonotope. Its set holds the points of `cZ` with the equalities forgotten (see
-`mem_liftEq_of_mem`), which `Aₑ β = bₑ` then cuts back to.
+equalities `HPolytope.dropEqs` removes, so the result is a constrained zonotope with `mₑ = 0`, not a
+zonotope. Its set holds the points of `cZ` with the equalities forgotten (`mem_liftEq_of_mem`).
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Output
+* the zonotope with the equality rows moved into coordinates
 
 ## References
 

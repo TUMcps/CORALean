@@ -15,6 +15,17 @@ As for a zonotope: the bundle is convex, so for two nonempty ones the segments a
 of the union and `SetIntersection.pairwise_outer` at `Zonotope.linComb_outer` puts that in the
 result. Outer only; CORA's `convHull_` of a bundle goes through polytopes and is exact, which
 this is not.
+
+## Inputs
+* `zB₁` – first bundle
+* `zB₂` – second bundle
+
+## Hypotheses
+* `h₁` – first bundle nonempty
+* `h₂` – second bundle nonempty
+
+## Conclusion
+* the union is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

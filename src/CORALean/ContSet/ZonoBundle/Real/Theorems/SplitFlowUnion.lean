@@ -13,6 +13,18 @@ public import CORALean.ContSet.ZonoBundle.Real.Theorems.FlowIndexMax
 (Cramer). With `i` the axis of largest `|fᵢ|` that is nonzero for any `f ≠ 0`, so the matrix is
 invertible and the split exact. At `f = 0` it is not, and the paper has no flow to follow there.
 
+## Inputs
+* `f` – flow direction
+* `zB` – zonotope bundle
+* `i` – member index
+* `j` – dimension to cut along
+
+## Hypotheses
+* `hf` – the flow is nonzero
+
+## Conclusion
+* the two halves together are exactly the bundle
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

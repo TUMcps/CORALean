@@ -15,6 +15,15 @@ monomial is a single old factor, `(0, 0, j)` for `cubMap`, and the `((0, 0), a)`
 `((j, 0), 0)` of the three families of `cubMapMixed`. `cubLinearAt t` reads the coefficients of
 the generators `t j` off a coefficient vector of the zonotope `cubMap`; the constraint polytope
 of the old factors, pulled back along it, is the constraint of the result.
+
+## Inputs
+* `N₁` – first cubic dimension
+* `N₂` – second cubic dimension
+* `N₃` – third cubic dimension
+* `t` – cubic indices of the generators
+
+## Output
+* the linear map reading the generator coefficients
 -/
 
 -- Authors:       Claude Opus 5.5

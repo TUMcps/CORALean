@@ -12,6 +12,23 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstraintReduceOuter
 does whenever `a_{rj} ≠ 0`. No bound on the other coefficients is needed for the enclosure;
 exactness (`eliminate_exact_of_dependClosed`) is Raghuraman and Koeln's Thm. 2.
 
+## Inputs
+* `n` – dimension
+* `q` – number of constraints
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `r` – constraint row to solve
+* `j` – coefficient to eliminate
+
+## Hypotheses
+* `hAj` – pivot entry nonzero
+
+## Conclusion
+* the original set is contained in the eliminated set
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

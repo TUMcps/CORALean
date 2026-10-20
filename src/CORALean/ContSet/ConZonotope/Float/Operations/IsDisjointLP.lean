@@ -7,19 +7,21 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.SeparatesAlong
 /-!
 # `ConZonotope.isDisjointLP`: disjointness by a separating direction
 
-CORA's `'exact'` `isIntersecting_` decides by a linear program whether the
-intersection is empty. Here that program is solved at ℚ for a *witness* only:
-the stacked coefficients `(β₁, β₂, s)` under both operands' boxes and constraints,
-`max -s` over `|(c₁ + G₁β₁) - (c₂ + G₂β₂)|ᵢ ≤ s`, whose dual weights on the `2n`
-gap rows combine into a direction `a` along which the nominal sets lie apart
-when the optimum is `s > 0`.
+CORA's `'exact'` `isIntersecting_` decides by a linear program whether the intersection is empty.
+Here that program is solved at ℚ for a *witness* only: the stacked coefficients `(β₁, β₂, s)` under
+both operands' boxes and constraints, `max -s` over `|(c₁ + G₁β₁) - (c₂ + G₂β₂)|ᵢ ≤ s`, whose dual
+weights on the `2n` gap rows combine into a direction `a` separating the nominal sets when `s > 0`.
 
-The verdict is `separatesAlong`'s, at `a` and at `-a` (so the sign need not be
-right), with the error boxes paid by `boundDot`. One-sided: `true` proves the
-sets disjoint whatever direction the simplex returned; `false` says nothing.
+The verdict is `separatesAlong`'s at `a` and `-a`, with the error boxes paid by `boundDot`: `true`
+proves the sets disjoint whatever direction the simplex returned; `false` says nothing.
+A NaN among the stored data reads through `ToRat` as `1.5 · 2 ^ 1024`, which costs tightness only.
 
-A NaN among the stored data reads through `ToRat` as `1.5 · 2 ^ 1024`, so the program solved
-is another one. That costs tightness only: the checker sees the NaN in rounded arithmetic.
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+
+## Output
+* whether a separating direction proves disjointness
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

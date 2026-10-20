@@ -12,16 +12,24 @@ public import CORALean.ContSet.HPolytope.Float.Operations.MemSlabNominalIff
 /-!
 # `ConZonotope.intersection` over-approximates the intersection
 
-A point of both sets is `y₁ + e₁ = y₂ + e₂` with `yₖ` nominal and `eₖ` in its box.
-The witness is `y₁` at the coefficients `[β₁; β₂]` with the first box's `e₁`:
-each half satisfies its own constraints, as for `plus`, and the agreement row
-reads `G₁ β₁ - G₂ β₂ = c₂ - c₁ + e₂ - e₁`, which the stored slab holds because
-its ends were rounded outward from the extreme values of `e₂ - e₁`. The result
-contains that slab version (`ConZonotope.anchorSlab_outer`).
+A point of both sets is `y₁ + e₁ = y₂ + e₂` with `yₖ` nominal and `eₖ` in its box. The witness is
+`y₁` at the coefficients `[β₁; β₂]` with the first box's `e₁`: each half satisfies its own
+constraints, as for `plus`, and the agreement row reads `G₁ β₁ - G₂ β₂ = c₂ - c₁ + e₂ - e₁`, which
+the stored slab holds because its ends were rounded outward from the extreme values of `e₂ - e₁`;
+the result contains that slab version (`ConZonotope.anchorSlab_outer`).
 
-Outer only. At zero error boxes the two ends still differ by the rounding of
-`c₂ - c₁`, which the result pays for in its rows or its box, so it can hold
-points of neither operand.
+Outer only. At zero error boxes the two ends still differ by the rounding of `c₂ - c₁`, which the
+result pays for in its rows or its box, so it can hold points of neither operand.
+
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the intersection is contained in the result
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

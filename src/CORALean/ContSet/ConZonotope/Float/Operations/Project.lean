@@ -11,6 +11,13 @@ public import CORALean.ContSet.ConZonotope.Float.ConZonotope
 The center and every generator row at the chosen coordinates, the constraint polytope untouched
 (it constrains the factors, not the coordinates), and the error box projected with
 `Interval.project`. Selecting coordinates does no arithmetic, so nothing rounds.
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `dims` – retained dimensions
+
+## Output
+* the projection onto the retained dimensions
 -/
 
 -- Authors:       Claude Opus 5.5

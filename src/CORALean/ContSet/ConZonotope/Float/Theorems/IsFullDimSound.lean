@@ -14,6 +14,17 @@ A passed `interiorCert` puts the open box of radius `B` around `y₀ = c + G β�
 (`ConZonotope.mem_interior`), so `y₀` is an interior point of it; moving by the error box's lower
 corner, a member of the nonempty box, carries that to the set itself. This certifies the real
 property `ContSet.IsFullDim`, not CORA's rank test (`rank(G null(A)) = n`), which is necessary only.
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `H` – right inverse of the generator matrix
+* `β₀` – coefficient point
+
+## Hypotheses
+* `h` – the test answers true
+
+## Conclusion
+* the set has an interior point
 -/
 
 -- Authors:       Claude Opus 5.5

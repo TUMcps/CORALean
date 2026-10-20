@@ -10,6 +10,12 @@ public import CORALean.ContSet.HPolytope.Float.Operations.EmptySet
 # `ConZonotope.empty`, over a floating-point scalar
 
 The center `zero`, no generators, and `HPolytope.emptySet` as constraint, as over ℝ.
+
+## Inputs
+* `n` – dimension
+
+## Output
+* the empty constrained zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

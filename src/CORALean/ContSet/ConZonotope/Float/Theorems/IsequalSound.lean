@@ -11,6 +11,16 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.IsequalNominal
 A `true` answer says the stored numbers agree as real numbers and the constraint polytopes are
 equal, so the nominal sets are the same and the error boxes are the same, and the denoted sets
 are equal. `false` refutes nothing.
+
+## Inputs
+* `Z` – first constrained zonotope
+* `S` – second constrained zonotope
+
+## Hypotheses
+* `h` – the test answers true
+
+## Conclusion
+* the two sets are equal
 -/
 
 -- Authors:       Claude Opus 5.5

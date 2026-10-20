@@ -11,6 +11,18 @@ public import CORALean.ContSet.ZonoBundle.Real.Theorems.EnclosingBoxContains
 `split_union` with its hypothesis on the box discharged: the box CORA computes, `enclosingBox`,
 always encloses `Λ⁻¹ Z_∩`. So [1, Eq. 2] as an algorithm needs only an invertible `Λ`.
 
+## Inputs
+* `Λ` – edge directions
+* `zB` – zonotope bundle
+* `i` – member index
+* `j` – dimension to cut along
+
+## Hypotheses
+* `hΛ` – the directions are invertible
+
+## Conclusion
+* the two halves together are exactly the bundle
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

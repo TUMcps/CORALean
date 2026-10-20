@@ -10,6 +10,15 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.ConstructEmptySet
 
 The constraint `HPolytope.emptySet` admits no coefficient family, so the nominal part
 is `∅`, and so is its sum with the error box.
+
+## Inputs
+* `n` – dimension
+
+## Hypotheses
+* none
+
+## Conclusion
+* the empty constrained zonotope denotes the empty set
 -/
 
 -- Authors:       Claude Opus 5.5

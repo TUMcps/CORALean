@@ -14,6 +14,16 @@ The paper takes `r = 1`; `E_{jr}` is zero but for a one at `(j, r)`. Dropping th
 and row is `ConZonotope.eliminate`. The choice of `j` by the Hausdorff-error estimate `H_j`
 (eqs. A.4-A.6) is a heuristic and is not formalized.
 
+## Inputs
+* `q` – number of constraints
+* `h` – number of generators
+* `A` – constraint matrix
+* `r` – constraint row to solve
+* `j` – coefficient to eliminate
+
+## Output
+* the constraint multiplier of the partial solve
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

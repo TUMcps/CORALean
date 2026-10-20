@@ -11,6 +11,12 @@ public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 CORA's `@zonoBundle/volume_`: `volume(polytope(zB))`, the volume of the bundle's polytope, which is
 the Lebesgue measure of the set the bundle denotes. So the definition is that measure; the vertex
 enumeration and convex hull CORA runs to compute it are not modelled.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Output
+* the volume of the bundle
 -/
 
 -- Authors:       Claude Opus 5.5

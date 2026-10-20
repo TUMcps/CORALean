@@ -19,6 +19,13 @@ midpoint is `c` and the half difference is `0`, and the hull is exactly
 `linComb` are copied, the center is `c` and the column of the interpolation parameter is `0`.
 Nothing is computed, so nothing rounds, and the error box is the point `0`: what this returns
 is exactly the set its stored numbers describe, which an inner approximation needs of it.
+
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+
+## Output
+* the convex hull of two sets with a common center
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

@@ -13,6 +13,17 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.LeQuadUp
 `quadBilDown` and `quadBilUp` enclose `u ⬝ᵥ (Q *ᵥ v)` read back through `toReal`: each entry of
 `Q *ᵥ v` is bracketed by `mulVecDown` and `mulVecUp`, and the per-term minima and maxima of
 `PolyZonotope.quadDown` and `quadUp` then bracket the sum whichever sign `u` has.
+
+## Inputs
+* `Q` – quadratic form matrix
+* `u` – left vector
+* `v` – right vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the bilinear form lies between its two roundings
 -/
 
 -- Authors:       Claude Opus 5.5

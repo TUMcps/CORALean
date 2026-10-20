@@ -14,6 +14,17 @@ to peel one `g i` off the family at a time.
 Generic in the family `g` rather than built around `Prop. 6`'s own one, since a fold over
 `intersection` is what any finite conjunction of constrained-zonotope memberships reduces to, not
 only a Minkowski difference by a polytope's vertices.
+
+## Inputs
+* `m` – number of sets folded
+* `init` – initial constrained zonotope
+* `g` – the constrained zonotopes to intersect
+
+## Hypotheses
+* none
+
+## Conclusion
+* the fold denotes the intersection of all of them
 -/
 
 -- Authors:       Claude Opus 5

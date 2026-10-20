@@ -12,6 +12,16 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
 
 The converse to `mem_ofPoint`: the bundle's one zonotope denotes exactly `v`, and the
 intersection of that one set is itself.
+
+## Inputs
+* `v` – point
+* `x` – point to test
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership holds iff the point equals v
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -20,7 +20,17 @@ exact, so the result is never worse than the members' own bounds and is the
 program's value up to rounding where the simplex's weights are optimal. An
 upper bound only.
 
-Needs `0 < zB.k`, as `boundDot` does.
+## Inputs
+* `zB` – float zonotope bundle
+* `c` – linear functional
+* `a` – float weights of the functional
+
+## Hypotheses
+* `hk` – the bundle has a member
+* `hc` – the functional is the weighted sum
+
+## Output
+* float upper bound of the functional over the bundle
 -/
 
 -- Authors:       Claude Opus 5.5

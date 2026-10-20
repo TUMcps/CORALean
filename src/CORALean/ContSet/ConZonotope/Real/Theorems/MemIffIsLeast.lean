@@ -11,6 +11,22 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsFeasibleIffIsLeas
 `Matrix.fromRows`, indexed by a sum type, with the generators as the first block of columns
 of `G`; `Z` and the minimum are as in `nonempty_iff_isLeast`.
 
+## Inputs
+* `n` – dimension
+* `q` – number of constraints
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `z` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership holds iff a stacked linear program has minimum norm at most one
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

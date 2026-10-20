@@ -14,6 +14,17 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
 convex nonempty sets the segments are the convex hull of the union. So CORA's exact `convHull_`
 (Raghuraman and Koeln) is `linComb` here, for nonempty operands; for an empty one CORA returns the
 other operand, which this does not claim.
+
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+
+## Hypotheses
+* `h₁` – first set nonempty
+* `h₂` – second set nonempty
+
+## Conclusion
+* the result is the convex hull of the union
 -/
 
 -- Authors:       Claude Opus 5.5

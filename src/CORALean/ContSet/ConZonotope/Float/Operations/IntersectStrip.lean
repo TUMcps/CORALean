@@ -12,21 +12,24 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.AnchorSlab
 /-!
 # `ConZonotope.intersectStrip` over a floating-point scalar
 
-CORA's `@conZonotope/intersectStrip` with a numeric gain (`aux_conZonotopeFromLambda`) on the
-stored floats: the strip `{x | |C x - y| ≤ φ}` enters as `s` new factors `ν` and `s` equality
-rows `C G ξ - φ ν = y - C c`, the center moves to `c + Λ (y - C c)` and the generators become
-`[(I - Λ C) G, φ₁ Λ₁, …, φₛ Λₛ]`, the old constraints acting on the old factors, as over ℝ.
+CORA's `@conZonotope/intersectStrip` with a numeric gain (`aux_conZonotopeFromLambda`) on the stored
+floats: the strip `{x | |C x - y| ≤ φ}` enters as `s` new factors `ν` and `s` equality rows
+`C G ξ - φ ν = y - C c`, the center moves to `c + Λ (y - C c)` and the generators become
+`[(I - Λ C) G, φ₁ Λ₁, …, φₛ Λₛ]`, the old constraints acting on the old factors, as over ℝ. The
+stored point's error `e` goes into the error box as `e - Λ (C e)`, each product an interval image.
+The strip rows come from the float image `Zonotope.mtimes C`, their right-hand side widened by its
+error box into an interval; they stay equalities at its upper end where `ConZonotope.anchorSlab`
+certifies it, else become the slab between the ends. The gain is an argument; the result is outer.
 
-At float the stored point carries an error `e`, which the exact construction would have to
-carry as `(I - Λ C) e`; it goes into the error box as `e - Λ (C e)`, each product an interval
-image. The strip rows are built from the float image `Zonotope.mtimes C` of the set (as the float
-`conIntersect` does), their right-hand side widened by that image's error box into an interval;
-they stay equalities, at its upper end, where `ConZonotope.anchorSlab` certifies that every
-coefficient vector can be moved onto them inside the unit box (the point's move paid into the
-error box), and become the slab between the two ends otherwise. The new center and
-the first generator block are rounded down from interval bounds (`Λ (y - C c)` and `Λ C G` as
-interval images), the second block entry by entry, and what each rounding costs goes into the
-error box. The gain is an argument, as over ℝ; the result is outer, never exact.
+## Inputs
+* `cZ` – float constrained zonotope
+* `C` – strip direction matrix
+* `φ` – strip half-widths
+* `y` – strip center
+* `Λ` – gain matrix
+
+## Output
+* enclosure of the set intersected with the strip
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

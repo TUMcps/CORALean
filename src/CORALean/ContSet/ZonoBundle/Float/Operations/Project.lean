@@ -11,6 +11,13 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Project
 The same `k`, each member projected on its own with `Zonotope.project`: selecting coordinates
 moves stored floats without arithmetic, so nothing rounds. `dims` may repeat or reorder
 coordinates.
+
+## Inputs
+* `zB` – float zonotope bundle
+* `dims` – retained dimensions
+
+## Output
+* the projection onto the retained dimensions
 -/
 
 -- Authors:       Claude Opus 5.5

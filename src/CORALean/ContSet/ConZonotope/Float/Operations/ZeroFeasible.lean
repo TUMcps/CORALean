@@ -13,6 +13,12 @@ A test on the constraint rows alone that coefficients `0` meet them, which is th
 every equality's right-hand side is within its slack of `0`. Then the center is a point of the
 nominal part, so the set is nonempty (`zeroFeasible_nonempty`). Sufficient, not necessary:
 `false` says only that the center may be outside.
+
+## Inputs
+* `cZ` – float constrained zonotope
+
+## Output
+* whether the zero coefficient vector meets the constraints
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

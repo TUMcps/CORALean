@@ -11,6 +11,17 @@ public import CORALean.ContSet.ZonoBundle.Real.Operations.DirBox
 [1, Heuristic box] states no property of `Λ = I` beyond being usable, and its use is
 `split_union_enclosingBox` at the identity, invertible with determinant `1`.
 
+## Inputs
+* `zB` – zonotope bundle
+* `i` – member index
+* `j` – dimension to cut along
+
+## Hypotheses
+* none
+
+## Conclusion
+* the two halves together are exactly the bundle
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

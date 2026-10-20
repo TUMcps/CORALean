@@ -11,6 +11,25 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveConstructEq
 result (see A.4)". By `partialSolve_construct_eq` both sets are
 `{Gξ + c : Aξ = b, |ξ_i| ≤ 1, ∀ i ≠ j}`, which names no row.
 
+## Inputs
+* `n` – dimension
+* `q` – number of constraints
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `r` – first constraint row
+* `r'` – second constraint row
+* `j` – coefficient to eliminate
+
+## Hypotheses
+* `hAj` – first pivot entry nonzero
+* `hAj'` – second pivot entry nonzero
+
+## Conclusion
+* the partial solve does not depend on the row used
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

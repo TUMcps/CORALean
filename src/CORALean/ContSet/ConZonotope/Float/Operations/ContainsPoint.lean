@@ -16,6 +16,15 @@ matrix that the caller proposes: `ConZonotope.interiorCert` makes the box of rad
 `y₀ = c + G β₀` part of the nominal set, and the point, moved by the error box's lower corner, is
 checked to lie in it (`Zonotope.deviation`, rounded upward). No exact solve `G β = p - c` is
 needed; the box absorbs the rounding. Sufficient only: `true` proves membership.
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `H` – right inverse of the generator matrix
+* `β₀` – coefficient point
+* `p` – point to test
+
+## Output
+* whether the point is certified inside
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -15,6 +15,14 @@ center and generators are kept, the second block of generators being zero.
 
 `intersection` is the case `M = I`; this takes the second set in the image space.
 
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
+* `M` – map from the first into the second space
+
+## Output
+* the points of the first whose image lies in the second
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

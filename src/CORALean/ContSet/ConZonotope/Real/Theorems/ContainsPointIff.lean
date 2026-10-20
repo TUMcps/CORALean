@@ -11,6 +11,19 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
 CORA's `aux_containsPoint` for `'exact'`: `p ∈ {c + G β : |β| ≤ 1, A β = b}` exactly when
 `[p; b] ∈ zonotope([c; 0], [G; A])`. The upper block of the stacked system is the generator
 equation `p = c + G β`, the lower block the constraint `A β = b`, with the same `β`.
+
+## Inputs
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `p` – point to test
+
+## Hypotheses
+* none
+
+## Conclusion
+* containment holds iff the stacked zonotope contains the stacked point
 -/
 
 -- Authors:       Claude Opus 5.5

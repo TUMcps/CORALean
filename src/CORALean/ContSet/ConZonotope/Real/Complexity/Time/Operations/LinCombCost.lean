@@ -11,20 +11,26 @@ public import CORALean.ContSet.HPolytope.Real.Complexity.Time.Operations.Interse
 /-!
 # `ConZonotope.linCombCost`
 
-Asserted, not proved, by reading `Operations/LinComb.lean`:
+Asserted, not proved, by reading `Operations/LinComb.lean`: the center `(1/2) • (c₁ + c₂)` and the
+fresh generator `(1/2) • (c₁ - c₂)` cost `4 * n`, as in `Zonotope.linCombCost`, and
+`n * (h₁ + h₂ + 2)` writes the center and generators; the two `domain`s (a unit box intersected with
+`P`) write `2 * hᵢ + mᵢ` inequality and `meᵢ` equality rows of `hᵢ` coefficients, rows dense; the
+`comap`s write each row at `d = h₁ + h₂ + 1` coefficients; negating `blockLast` is `d` negations;
+each domain goes through `halfScaled` at `HPolytope.halfScaledCost`; the final `intersection` writes
+the rows of both. The generator blocks are concatenated, not paired, so unlike `Zonotope` the count
+carries the constraint sizes `mᵢ`, `meᵢ`, which is what a constrained zonotope's hull pays for them.
 
-* the center `(1/2) • (c₁ + c₂)` and the fresh generator `(1/2) • (c₁ - c₂)`:
-  `4 * n`, as in `Zonotope.linCombCost`, and `n * (h₁ + h₂ + 2)` writes for the result's center
-  and generators;
-* the two `domain`s, a unit box intersected with `P`: `2 * hᵢ + mᵢ` inequality and `meᵢ` equality
-  rows of `hᵢ` coefficients, written (box rows, then the concatenation), rows dense;
-* the `comap`s along block embeddings write each row at `d = h₁ + h₂ + 1` coefficients;
-* negating the parameter functional `blockLast` is `d` negations;
-* each domain goes through `halfScaled` over the `d` coefficients, at `HPolytope.halfScaledCost`;
-* the final `intersection` writes the rows of both.
+## Inputs
+* `n` – dimension
+* `h₁` – generators of the first set
+* `m₁` – inequalities of the first set
+* `me₁` – equalities of the first set
+* `h₂` – generators of the second set
+* `m₂` – inequalities of the second set
+* `me₂` – equalities of the second set
 
-The generator blocks are concatenated and not paired, so unlike `Zonotope` the count carries the
-constraint sizes `mᵢ`, `meᵢ`, which is what a constrained zonotope's hull pays for them.
+## Output
+* the cost of the convex hull
 -/
 
 -- Authors:       Claude Sonnet 5.5

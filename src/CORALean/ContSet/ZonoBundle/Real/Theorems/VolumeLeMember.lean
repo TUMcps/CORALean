@@ -9,6 +9,16 @@ public import CORALean.ContSet.ZonoBundle.Real.Operations.Volume
 # A bundle is no larger than any member
 
 The bundle is the intersection of its members, so inside each, and Lebesgue measure is monotone.
+
+## Inputs
+* `zB` – zonotope bundle
+* `i` – member index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the bundle's volume is at most the member's
 -/
 
 -- Authors:       Claude Opus 5.5

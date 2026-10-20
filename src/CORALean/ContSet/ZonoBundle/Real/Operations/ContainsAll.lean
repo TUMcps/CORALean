@@ -11,6 +11,13 @@ The `'exact:zonotope'` branch of CORA's `@zonoBundle/contains_`: a set `S` is co
 bundle when every member zonotope contains it, `res = res & res_part` over the members. The
 members' own containment is each zonotope's `contains_`; here it is the proposition it decides,
 `S ⊆ Zᵢ`. The scaling factor, the maximum of the members' factors, is not modelled.
+
+## Inputs
+* `zB` – zonotope bundle
+* `S` – set to test
+
+## Output
+* the set lies in every member
 -/
 
 -- Authors:       Claude Opus 5.5

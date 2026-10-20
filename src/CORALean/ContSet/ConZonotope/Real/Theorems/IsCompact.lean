@@ -16,6 +16,15 @@ compact, and a continuous image of a compact set is compact.
 
 Stated at `Vec`, unlike the zonotope's: it is the coefficient space that has to
 be finite-dimensional, and `HPolytope.isClosed_construct` asks for that.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is compact
 -/
 
 -- Authors:       Claude Opus 5

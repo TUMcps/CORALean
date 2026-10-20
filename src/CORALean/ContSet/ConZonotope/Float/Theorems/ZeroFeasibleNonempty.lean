@@ -11,6 +11,15 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.ContainsOriginSound
 
 Coefficients `0` meet the unit box, and meet every row by the constraint's own
 `HPolytope.containsOrigin_sound`; the point they name is the center.
+
+## Inputs
+* `cZ` – float constrained zonotope
+
+## Hypotheses
+* `h` – the test answers true
+
+## Conclusion
+* the nominal set is nonempty
 -/
 
 -- Authors:       Claude Opus 5.5

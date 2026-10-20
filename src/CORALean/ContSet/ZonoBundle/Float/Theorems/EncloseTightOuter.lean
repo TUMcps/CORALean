@@ -21,6 +21,19 @@ Each member holds both bundles: a point of either has its image under the member
 the hull of the two mapped boxes and its coordinates within the hull of the two boxes, which is
 what `parallelotope_contains` asks. The result is convex, so it holds the convex hull. Unlike the
 exact layer, nothing is assumed of `W` or `U`, and the bundles may be empty.
+
+## Inputs
+* `zB₁` – first bundle
+* `zB₂` – second bundle
+* `W` – transformation matrices
+* `U` – extra transformation matrix
+
+## Hypotheses
+* `hk₁` – first bundle has a member
+* `hk₂` – second bundle has a member
+
+## Conclusion
+* the convex hull of the union is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

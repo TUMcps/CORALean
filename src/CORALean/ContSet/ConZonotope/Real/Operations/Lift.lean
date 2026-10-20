@@ -13,6 +13,19 @@ public import CORALean.Global.Block
 this one after permuting the rows, which does not change the set. At `m₂ = 0` the constraint is
 empty and `Z⁺` is a zonotope.
 
+## Inputs
+* `n` – dimension
+* `m₁` – constraints moved into coordinates
+* `m₂` – constraints kept
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+
+## Output
+* the lifted constrained zonotope
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

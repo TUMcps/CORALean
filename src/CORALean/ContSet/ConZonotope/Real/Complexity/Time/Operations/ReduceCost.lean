@@ -8,21 +8,23 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.ReduceGi
 /-!
 # `ConZonotope.reduceCost`
 
-Asserted, not proved: `Operations/Reduce.lean` past the order threshold drops
-to the enclosing zonotope, reduces *that*, and reads the result back as a
-constrained zonotope with no constraints. Both conversions repackage fields, and each writes its
-result, `n * (1 + h)` at most; the
-threshold branch returns the operand, `n * (1 + h) + (r + re) * (h + 1)` scalars. The count is
-`Zonotope.reduceGirardCost` and those writes.
+Asserted, not proved: `Operations/Reduce.lean` past the order threshold drops to the enclosing
+zonotope, reduces that, and reads the result back as a constrained zonotope with no constraints.
+Both conversions repackage fields, each writing `n * (1 + h)` at most; the threshold branch returns
+the operand, `n * (1 + h) + (r + re) * (h + 1)` scalars. The count is `Zonotope.reduceGirardCost`
+and those writes. No linear program anywhere in it: a reduction that kept the constraints would have
+to decide which coefficients they still admit, and this one throws them away first, a precision
+decision that `Theorems/` states. Below the threshold the operation is the identity, so this bounds
+every `o` at once.
 
-No linear program anywhere in it, which is the thing worth saying: a reduction
-that kept the constraints would have to decide which coefficients they still
-admit, and this one never asks, because it throws them away first. That is a
-precision decision, not a cost decision, and what it gives up is an enclosure
-`Theorems/` states rather than anything this file can see.
+## Inputs
+* `n` – dimension
+* `h` – number of generators
+* `r` – number of inequalities
+* `re` – number of equalities
 
-Below the threshold the operation is the identity, so this bounds every `o` at
-once.
+## Output
+* the cost of the order reduction
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

@@ -19,6 +19,16 @@ A singular `Γ` has no inverse to map by, and Mathlib's is `0`, which would encl
 is replaced by the identity, so the result holds the bundle at any `Γ`, and is the box when `Γ`
 is no basis.
 
+## Inputs
+* `zB` – zonotope bundle
+* `Γ` – edge directions
+
+## Hypotheses
+* `hk` – the bundle has a member
+
+## Output
+* parallelotope along the given directions enclosing the bundle
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

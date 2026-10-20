@@ -7,6 +7,15 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
 
 /-!
 # A constrained zonotope is the origin iff it is a point and the point is `0`
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is the origin iff it represents the origin
 -/
 
 -- Authors:       Claude Opus 5.5

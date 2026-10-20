@@ -13,6 +13,16 @@ each half satisfies its own — which is `HPolytope.mem_intersection_iff` compos
 preimage being a preimage, and holds by `rfl` once `comap` is what pulls a block
 back.
 
+## Inputs
+* `cZ₁` – first summand
+* `cZ₂` – second summand
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is exactly the Minkowski sum
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

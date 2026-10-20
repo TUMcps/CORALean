@@ -11,6 +11,17 @@ public import CORALean.ContSet.ZonoBundle.Real.Operations.DirFil
 [1, Heuristic fil] claims no property of the generators it picks. `dirFil` falls back to the
 identity where its pick is singular, so its `Λ` is always invertible and the split is exact.
 
+## Inputs
+* `zB` – zonotope bundle
+* `i` – member index
+* `j` – dimension to cut along
+
+## Hypotheses
+* none
+
+## Conclusion
+* the two halves together are exactly the bundle
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

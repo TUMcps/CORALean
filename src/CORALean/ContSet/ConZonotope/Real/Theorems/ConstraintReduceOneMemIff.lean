@@ -11,6 +11,23 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
 The remark after [1, Prop. 5]: with `Λ_A = I` every constraint is dualized, `Ã = 0` and `b̃ = 0`,
 and `Z̃` is the zonotope `{G − Λ_G A, c + Λ_G b}`.
 
+## Inputs
+* `n` – dimension
+* `q` – number of constraints
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `ΛG` – generator multiplier
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership means a unit-box coefficient vector on the dualized generators
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

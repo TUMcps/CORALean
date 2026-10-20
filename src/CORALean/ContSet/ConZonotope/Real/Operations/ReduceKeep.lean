@@ -16,11 +16,17 @@ A reduction that keeps the constraints. Above the requested order, `aux_keepSpli
 the generators, `reduceKeepBy` boxes the lowest ranked and projects the constraints
 onto what is kept; at or below it nothing happens.
 
-Beside `ConZonotope.reduce`, not in place of it: that one drops `P` and reduces by
-Girard's metric alone, this one ranks constrained generators first, so neither set
-contains the other in general. What this one buys is that every constraint on a
-kept coefficient survives, up to the slack `keepSlack` charges for a dropped one.
-No linear program runs in either.
+Beside `ConZonotope.reduce`, not in place of it: that one drops `P` and reduces by Girard's metric
+alone, this one ranks constrained generators first, so neither set contains the other in general.
+What this one buys is that every constraint on a kept coefficient survives, up to the slack
+`keepSlack` charges. No linear program runs in either.
+
+## Inputs
+* `cZ` – constrained zonotope
+* `o` – target order
+
+## Output
+* enclosing set of reduced order that keeps the constraints
 -/
 
 -- Authors:       Claude Opus 5.5

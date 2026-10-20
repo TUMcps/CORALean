@@ -15,6 +15,20 @@ public import CORALean.Global.Float.FloatBound
 `aux_nominalBoundWeights` for the nominal set, the error box's own reach added
 upward. Sound at every weight vector, so this is where a certificate from any
 source, trusted or not, becomes a bound on the stored set.
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `c` – linear functional
+* `a` – float weights of the functional
+* `y` – dual certificate for the inequalities
+* `zu` – upper dual certificate for the equalities
+* `zl` – lower dual certificate for the equalities
+
+## Hypotheses
+* `hc` – the functional is the weighted sum
+
+## Output
+* float upper bound of the functional over the set
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

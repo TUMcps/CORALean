@@ -13,9 +13,29 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveConstructEq
 `i ≠ j`, and `r_j = 0`, make the dropped bound `|ξ_j| ≤ 1` redundant. Then `Z̃`, which is `Z`
 without that bound (`partialSolve_construct_eq`), is `Z`.
 
-The hypothesis is the one Algorithm 1 does not deliver: its `R_j` need not satisfy (A.1)
-(`tightenER_not_superset`), and then `r_j = 0` does not give `Z = Z̃`
-(`partialSolve_rZero_counterexample`).
+Algorithm 1's `R_j` need not satisfy (A.1) (`tightenER_not_superset`), and then `r_j = 0` does not
+give `Z = Z̃` (`partialSolve_rZero_counterexample`).
+
+## Inputs
+* `n` – dimension
+* `q` – number of constraints
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `r` – constraint row to solve
+* `j` – coefficient to eliminate
+* `ρL` – lower bound of the coefficient
+* `ρU` – upper bound of the coefficient
+
+## Hypotheses
+* `hAj` – pivot entry nonzero
+* `hA1` – the bounds enclose every feasible coefficient
+* `hr` – the bounds lie in the unit interval
+
+## Conclusion
+* the partial solve leaves the set unchanged
 
 ## References
 

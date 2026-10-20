@@ -18,6 +18,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.Basic
 `Zonotope.reduceBy_outer`'s witness, with one more thing to check: the kept
 coefficients `β ∘ left` still satisfy the constraints, which is `keepRows_mem`,
 and the fresh ones are unconstrained. Whichever partition, as there.
+
+## Inputs
+* `cZ` – constrained zonotope
+* `part` – generator partition
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the reduced set
 -/
 
 -- Authors:       Claude Opus 5.5

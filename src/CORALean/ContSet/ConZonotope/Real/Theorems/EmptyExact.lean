@@ -8,7 +8,14 @@ public import CORALean.ContSet.HPolytope.Real.Operations.ConstructEmptySet
 /-!
 # `ConZonotope.empty` denotes the empty set
 
+## Inputs
+* `n` – dimension
 
+## Hypotheses
+* none
+
+## Conclusion
+* the empty constrained zonotope denotes the empty set
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,16 @@ times: line 1's `E = [-1, 1]`, `R = [-∞, +∞]`, then the pass of lines 2-10, 
 its own output `k` more times. At `k = 0` it is the algorithm as listed; [2] says it "can be applied
 iteratively to further refine E", and [1] repeats that, which is `k > 0`.
 
+## Inputs
+* `nc` – number of constraints
+* `ng` – number of generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `k` – number of extra passes
+
+## Output
+* the tightened box and the running bounds after k + 1 passes
+
 ## References
 
 * [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for

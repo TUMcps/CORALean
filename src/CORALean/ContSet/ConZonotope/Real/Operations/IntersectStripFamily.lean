@@ -15,6 +15,16 @@ the zonotopic case ([1, Lemma 1]), `m p` new factors `ν`, and one equality row 
 factors. It is `intersectStrip` at the stacked strip (`intersectStripFamily_exact`). The gains
 `λ_j` are arguments, as in [1] they are a degree of freedom.
 
+## Inputs
+* `cZ` – constrained zonotope
+* `H` – strip direction matrices
+* `r` – strip half-widths
+* `y` – strip centers
+* `lam` – gain matrices
+
+## Output
+* the set intersected with all the strips
+
 ## References
 
 * [1] A. Alanwar, V. Gaßmann, X. He, H. Said, H. Sandberg, K. H. Johansson and M. Althoff.

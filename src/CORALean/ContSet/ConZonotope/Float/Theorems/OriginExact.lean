@@ -11,6 +11,15 @@ public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 
 `zero` reads as `0` and no constraint restricts the empty coefficient family, so
 the nominal part is `{0}`; the error box is the origin box.
+
+## Inputs
+* `n` – dimension
+
+## Hypotheses
+* none
+
+## Conclusion
+* the origin constrained zonotope denotes the origin point
 -/
 
 -- Authors:       Claude Opus 5.5

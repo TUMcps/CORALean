@@ -12,6 +12,18 @@ coefficient `j`, `a_ij⁻¹bᵢ − a_ij⁻¹Σ_{k≠j}a_ik Eₖ`, as the two en
 (whichever way the sign of `a_ij` swaps them). `tightenCoeff` is where this meets the
 running box, and `tighten_outer` is why it is sound to.
 
+## Inputs
+* `nc` – number of constraints
+* `ng` – number of generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `i` – constraint row
+* `j` – coefficient to bound
+* `E` – current coefficient box
+
+## Output
+* the interval row i allows for coefficient j
+
 ## References
 
 * [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for

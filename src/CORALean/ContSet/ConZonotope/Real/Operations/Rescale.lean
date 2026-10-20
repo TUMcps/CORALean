@@ -13,6 +13,19 @@ The interval is an argument. CORA computes it by `2 n_g` linear programs (`'exac
 or by Gauss-Jordan preconditioning and Algorithm 1 (`'iter'`); neither is part of this
 operation, and the printed `R` rescaling (A.3) is not kept.
 
+## Inputs
+* `q` – number of constraints
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `ξL` – lower coefficient bounds
+* `ξU` – upper coefficient bounds
+
+## Output
+* the same set with the coefficient box mapped onto the unit box
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

@@ -11,13 +11,18 @@ public import CORALean.ContSet.Zonotope.Float.Operations.CubMapDep
 
 CORA's `@conZonotope/cubMap` (`aux_cubMapSingle`) for a single constrained zonotope on the stored
 floats: the error box made into coefficients (`absorbRounding`), then the generators of
-`Zonotope.cubMapDep` on the center and generators, with the constraints kept on the *linear*
-monomials, the generators `(0, 0, j)` whose factor is the old `βⱼ`, and every other monomial factor
-(`βⱼβₖ`, `2βⱼ² - 1`, the cubes, ...) unconstrained: `lift_` writes the operand's constraints on
-those coordinates. Every linear generator is kept, zero or not, where CORA's
-`removeRedundantExponents` drops the zero ones with their constraint columns
-(`Real.ConZonotope.cubMapCora_not_outer`). `rescale` (it only tightens) and `ind` are not
-modelled.
+`Zonotope.cubMapDep`, with the constraints kept on the *linear* monomials (the generators
+`(0, 0, j)`, factor `βⱼ`) and every other monomial factor unconstrained: `lift_` writes the
+operand's constraints on those coordinates. Every linear generator is kept, zero or not, where
+CORA's `removeRedundantExponents` drops the zero ones with their constraint columns
+(`Real.ConZonotope.cubMapCora_not_outer`). `rescale` and `ind` are not modelled.
+
+## Inputs
+* `T` – cubic map tensor
+* `cZ` – float constrained zonotope
+
+## Output
+* enclosure of the cubic image
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,15 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.OriginExact
 # `ZonoBundle.origin` is exactly the origin
 
 A one-member intersection is that member, which `Zonotope.origin_exact` says is `{0}`.
+
+## Inputs
+* `n` – dimension
+
+## Hypotheses
+* none
+
+## Conclusion
+* the origin bundle denotes the origin point
 -/
 
 -- Authors:       Claude Opus 5.5

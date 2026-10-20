@@ -13,6 +13,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.Basic
 
 Above the order it is the zonotope's `reduce` composed with forgetting the
 constraints, both enclosures; at or below it, the identity.
+
+## Inputs
+* `cZ` – constrained zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the reduced set
 -/
 
 -- Authors:       Claude Opus 5

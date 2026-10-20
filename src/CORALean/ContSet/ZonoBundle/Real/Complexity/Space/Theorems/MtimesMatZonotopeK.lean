@@ -13,6 +13,16 @@ The bundle size is unchanged, as `mtimes`'s is. The second-order count is not:
 `M.h * (zB.Z i).h` new generators on top of the two operands' own — the price
 of keeping the matrix's correlations instead of boxing them away. `rfl` against
 both structure instances.
+
+## Inputs
+* `M` – matrix zonotope
+* `zB` – zonotope bundle
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image keeps the member count
 -/
 
 -- Authors:       Claude Opus 5

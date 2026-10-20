@@ -12,6 +12,16 @@ public import CORALean.ContSet.ZonoBundle.Real.Theorems.FacetLiftStack
 Prop. 4, for members given as halfspaces: Prop. 3 member by member, then Prop. 4 to read
 the right side as the lift of the bundle.
 
+## Inputs
+* `P` – family of polytopes
+* `Zadd` – zonotope added
+
+## Hypotheses
+* none
+
+## Conclusion
+* the intersection of the sums is contained in the lifted stack
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

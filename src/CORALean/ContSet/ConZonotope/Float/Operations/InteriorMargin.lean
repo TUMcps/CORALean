@@ -14,6 +14,13 @@ own `HPolytope.ineqMargin` (#174), each inequality row's room over its absolute 
 of that radius in the supremum norm stays inside. An equality row has no
 ball inside it, so a polytope with one gets margin zero. Nothing is trusted about it:
 `ConZonotope.interiorCert` checks the margin it is given, and a bad candidate costs the `true`.
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `β₀` – coefficient point
+
+## Output
+* candidate interior margin
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

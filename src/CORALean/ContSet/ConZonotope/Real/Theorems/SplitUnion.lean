@@ -17,6 +17,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 Each half is the set intersected with a box, `intersection_exact`, so the union is inside the
 set; and the set is inside its box, which the two half boxes cover, each inside its
 constrained zonotope.
+
+## Inputs
+* `cZ` – constrained zonotope
+* `d` – dimension to cut along
+
+## Hypotheses
+* none
+
+## Conclusion
+* the two halves together are exactly the set
 -/
 
 -- Authors:       Claude Opus 5.5

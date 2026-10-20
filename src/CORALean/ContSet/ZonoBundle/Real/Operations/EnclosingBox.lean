@@ -14,6 +14,14 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 then the box of one member `i`, `ZonoBundle.interval`. The paper's `box` may be tighter, which
 only helps; `ZonoBundle.split_union` holds at any box that encloses.
 
+## Inputs
+* `Λ` – direction matrix
+* `zB` – zonotope bundle
+* `i` – member index
+
+## Output
+* the box enclosing the bundle in the transformed coordinates
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

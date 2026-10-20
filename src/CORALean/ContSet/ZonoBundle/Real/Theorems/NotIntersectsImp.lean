@@ -15,6 +15,15 @@ public import Mathlib.Tactic.FinCases
 that holds. `not_intersects_imp` is the `←` failing: `Z₁ = [0,1]`, `Z₂ = [2,3]` and
 `S = [0,3]` in `ℝ`, each member meets `S`, the bundle is empty.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* every member can meet a set that the bundle misses
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

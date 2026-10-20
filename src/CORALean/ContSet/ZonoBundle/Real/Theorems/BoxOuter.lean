@@ -15,6 +15,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 intersection, so the member's box `Zonotope.interval` is one of the intervals that
 `ZonoBundle.box` intersects. The paper skips the proof as obvious.
 
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* none
+
+## Conclusion
+* its box lies in every member's box
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

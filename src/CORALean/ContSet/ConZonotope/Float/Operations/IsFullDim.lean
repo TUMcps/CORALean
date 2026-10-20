@@ -15,6 +15,14 @@ coefficient point `β₀` and a right inverse `H` of the generator matrix that t
 `ConZonotope.interiorCert` puts a box of positive radius around `c + G β₀` inside the set, at the
 margin `ConZonotope.interiorMargin`. The error box must be nonempty. `true` proves an interior
 point; `false` refutes nothing.
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `H` – right inverse of the generator matrix
+* `β₀` – coefficient point
+
+## Output
+* whether full dimension is certified
 -/
 
 -- Authors:       Claude Opus 5.5

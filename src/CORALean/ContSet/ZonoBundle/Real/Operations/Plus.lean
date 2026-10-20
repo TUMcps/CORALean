@@ -14,6 +14,13 @@ summed and indexed through `finProdFinEquiv`. An *enclosure*, never exact — a
 sum of intersections is not an intersection of sums, and nothing here records
 that the same point of each intersection was the one summed in every pair.
 
+## Inputs
+* `zB₁` – first summand
+* `zB₂` – second summand
+
+## Output
+* enclosure of the Minkowski sum
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

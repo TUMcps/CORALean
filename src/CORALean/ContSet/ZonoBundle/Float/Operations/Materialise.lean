@@ -13,6 +13,12 @@ operation returns is a closure over the one it was given and a loop pays for its
 whole history on every entry read. `materialise` stores the family and every
 member in it; `materialise_eq` says it is the identity, which is what each proof
 in `Instances` rewrites with, exactly as `Zonotope`'s does.
+
+## Inputs
+* `zB` – float zonotope bundle
+
+## Output
+* the same bundle with all fields stored
 -/
 
 -- Authors:       Claude Opus 5

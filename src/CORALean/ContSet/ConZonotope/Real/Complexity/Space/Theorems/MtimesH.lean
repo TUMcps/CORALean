@@ -11,6 +11,16 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
 carried along untouched: the generator count survives as a zonotope's does,
 and the constraint counts survive because `P` itself is not rewritten at all.
 `rfl` against the structure instance in `Operations/Mtimes.lean`.
+
+## Inputs
+* `M` – matrix
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image keeps the generator count
 -/
 
 -- Authors:       Claude Opus 5

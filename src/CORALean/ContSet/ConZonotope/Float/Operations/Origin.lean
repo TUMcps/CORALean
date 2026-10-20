@@ -11,6 +11,12 @@ public import CORALean.ContSet.HPolytope.Float.Operations.Fullspace
 
 The point `0` as a constrained zonotope with no generators and no constraints, the
 center stored as `zero` and the error box at zero.
+
+## Inputs
+* `n` – dimension
+
+## Output
+* the origin as a constrained zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

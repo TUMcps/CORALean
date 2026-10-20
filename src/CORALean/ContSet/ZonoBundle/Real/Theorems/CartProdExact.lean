@@ -13,6 +13,17 @@ public import Mathlib.Logic.Equiv.Fin.Basic
 `(⋂ i, Aᵢ) ×ˢ (⋂ j, Bⱼ) = ⋂ (i, j), Aᵢ ×ˢ Bⱼ` needs both families nonempty: over an empty
 family the left intersection is `univ` while the pairs over a half-empty index are none, so
 the statement assumes `0 < k` for both bundles, as CORA's bundles always have.
+
+## Inputs
+* `zB₁` – first bundle
+* `zB₂` – second bundle
+
+## Hypotheses
+* `h₁` – first bundle has a member
+* `h₂` – second bundle has a member
+
+## Conclusion
+* the product of the two sets is the set of the product
 -/
 
 -- Authors:       Claude Opus 5.5

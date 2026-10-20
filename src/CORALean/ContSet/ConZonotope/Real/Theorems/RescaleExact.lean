@@ -17,6 +17,24 @@ uses: `ξm + diag(ξr) δ` is then a convex combination of the endpoints, whatev
 Read as a set inclusion it also admits an empty interval with endpoints outside `[-1, 1]`,
 where the statement fails.
 
+## Inputs
+* `q` – number of constraints
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `ξL` – lower coefficient bounds
+* `ξU` – upper coefficient bounds
+
+## Hypotheses
+* `hB` – the bounds enclose every feasible coefficient vector
+* `hL` – lower bounds lie in the unit interval
+* `hU` – upper bounds lie in the unit interval
+
+## Conclusion
+* rescaling leaves the set unchanged
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

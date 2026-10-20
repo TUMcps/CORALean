@@ -9,17 +9,24 @@ public import CORALean.ContSet.Zonotope.Float.Operations.BallCert
 /-!
 # `ConZonotope.interiorCert`
 
-The check that a float constrained zonotope contains a whole box of points around
-`y₀ = c + G β₀`, for a coefficient vector `β₀` and a right inverse `H` of the generator matrix the
-caller proposes. With a margin `δ`: the unit box and every inequality row keep their slack
-under a perturbation of `β₀` by at most `δ` in every coefficient (the rows by the constraint's
-own `HPolytope.ineqsContainBall`, #174), and `Zonotope.ballCert` reaches
-every vector within `B` with coefficients of size at most `δ`. Then every point whose distance to
-`y₀` is at most `B` in every entry is in the nominal set (`ConZonotope.aux_box_subset`).
+The check that a float constrained zonotope contains a whole box of points around `y₀ = c + G β₀`,
+for a coefficient vector `β₀` and a right inverse `H` of the generator matrix the caller proposes.
+With a margin `δ`: the unit box and every inequality row keep their slack under a perturbation of
+`β₀` by at most `δ` (`HPolytope.ineqsContainBall`, #174), and `Zonotope.ballCert` reaches every
+vector within `B` with coefficients of size at most `δ`; then every point within `B` of `y₀` is in
+the nominal set (`ConZonotope.aux_box_subset`).
 
-An equality row leaves no slack to perturb into, so a polytope with one fails the check, as
-does every result whose rounded rows `ConZonotope.anchorSlab` kept as equalities; those it
-wrote as inequality pairs (`HPolytope.slab`) keep their slack.
+An equality row leaves no slack to perturb into, so a polytope with one fails the check.
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `H` – right inverse of the generator matrix
+* `β₀` – coefficient point
+* `δ` – ball radius in coefficient space
+* `B` – box radius around the center
+
+## Output
+* whether the box around the point is certified inside
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

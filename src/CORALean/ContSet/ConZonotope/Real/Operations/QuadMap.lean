@@ -15,9 +15,15 @@ generators of `Zonotope.quadMap` [1, Lemma 1] on the center and generators, with
 the squares `2βⱼ² - 1` and the products `βⱼβₖ` unconstrained. The new factors do not satisfy the
 constraints on the old ones, which is what makes the result an outer approximation and no more.
 
-CORA first runs `rescale 'iter'` when there are constraints, which narrows the coefficient box
-before the squares are taken. That only tightens the result; it is not needed for the enclosure
-and is not part of this operation. The mixed form `quadMap(cZ1, cZ2, Q)` is not modelled.
+CORA first runs `rescale 'iter'` when there are constraints; that only tightens the result and is
+not modelled, nor is the mixed form `quadMap(cZ1, cZ2, Q)`.
+
+## Inputs
+* `Q` – quadratic form matrices
+* `cZ` – constrained zonotope
+
+## Output
+* enclosure of the quadratic image
 
 ## References
 

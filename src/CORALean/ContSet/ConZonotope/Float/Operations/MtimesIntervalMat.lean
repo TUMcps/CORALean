@@ -20,6 +20,13 @@ constraints are padded on the right, so the new coefficients answer to nothing, 
 The error box takes `mid(M) E` and the box-times-box product `(M - mid(M)) E`.
 
 The bound only has to hold: the constraints could tighten it, and are not used to.
+
+## Inputs
+* `IM` – interval matrix
+* `cZ` – float constrained zonotope
+
+## Output
+* enclosure of the image under every matrix in the interval matrix
 -/
 
 -- Authors:       Claude Sonnet 5.5

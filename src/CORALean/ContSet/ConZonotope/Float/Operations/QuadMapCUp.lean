@@ -10,6 +10,13 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.Basic
 
 The center of `quadMapCDown` rounded up; the box the stored center needs is the gap
 between the two.
+
+## Inputs
+* `Q` – quadratic form matrices
+* `cZ` – float constrained zonotope
+
+## Output
+* center of the quadratic image rounded up
 -/
 
 -- Authors:       Claude Opus 5.5

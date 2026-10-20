@@ -10,6 +10,21 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.PartialSolve
 `Λ_A` of [1, Sec. 4.2] is zero off column `r`, so `Λ_A b` is the same correction on the
 right-hand side: `(Λ_A b)_i = a_{ij} b_r / a_{rj}`.
 
+## Inputs
+* `q` – number of constraints
+* `h` – number of generators
+* `A` – constraint matrix
+* `r` – constraint row to solve
+* `j` – coefficient to eliminate
+* `b` – constraint offset
+* `i` – row index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the entry of the multiplier times the offset is a rank-one correction
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

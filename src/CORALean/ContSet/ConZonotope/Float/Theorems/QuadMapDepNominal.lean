@@ -21,6 +21,16 @@ constraints on their first block. At those same coefficients the stored zonotope
 differs from the exact one by the shortfall of the stored center and, per coefficient in `[-1,1]`,
 that of the stored generators, which the box `quadMapDep` returns holds. The constraints are the
 operand's padded by the two new blocks, so they hold at `β'` exactly.
+
+## Inputs
+* `Q` – quadratic form matrices
+* `cZ` – float constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the quadratic image of the nominal set lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

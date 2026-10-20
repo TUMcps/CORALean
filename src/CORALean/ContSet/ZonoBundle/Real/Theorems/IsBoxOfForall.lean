@@ -14,6 +14,16 @@ What `aux_isInterval` should test: the intersection of axis-aligned boxes is the
 coordinatewise largest lower bound and smallest upper bound, so a bundle all of whose members are
 boxes denotes a box. Testing the first member only (`ZonoBundle.isIntervalCora`) is not enough
 (`isIntervalCora_counterexample`).
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hk` – the bundle has a member
+* `h` – every member is a box
+
+## Conclusion
+* the bundle is a box
 -/
 
 -- Authors:       Claude Opus 5.5

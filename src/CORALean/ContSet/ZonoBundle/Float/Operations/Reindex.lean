@@ -15,6 +15,13 @@ box is carried across rather than grown, exactly as `Zonotope.reindex` does.
 The exact layer reaches this through `ZonoBundle.map` at `reindexLin e`; there
 is no `map` over floats, a general linear map having no float matrix to be
 applied by, so `reindex` is written out here instead.
+
+## Inputs
+* `e` – coordinate permutation
+* `zB` – float zonotope bundle
+
+## Output
+* the bundle with permuted coordinates
 -/
 
 -- Authors:       Claude Opus 5

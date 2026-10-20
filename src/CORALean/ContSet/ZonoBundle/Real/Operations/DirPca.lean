@@ -13,6 +13,13 @@ vertices, an orthonormal eigenvector basis of their scatter matrix, as Mathlib's
 eigenvector matrix. Noncomputable as Mathlib's spectral theorem is: a running PCA is a float-layer
 question. The vertices are an argument, since the paper's rule needs them computed first.
 
+## Inputs
+* `m` – number of vertices
+* `V` – vertices
+
+## Output
+* direction matrix of the principal axes
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

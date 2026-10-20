@@ -10,6 +10,16 @@ public import Mathlib.Analysis.Normed.Module.Basic
 
 `representsa_(zB, 'fullspace')` is `false` when there is a coordinate: a bundle with a member is
 bounded.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hk` – the bundle has a member
+* `hn` – the dimension is positive
+
+## Conclusion
+* the bundle is not the whole space
 -/
 
 -- Authors:       Claude Opus 5.5

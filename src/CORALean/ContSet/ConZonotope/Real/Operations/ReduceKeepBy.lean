@@ -14,13 +14,17 @@ public import CORALean.Global.Block
 the rest are boxed into `n` fresh generators, and the constraints on the kept
 coefficients are `keepRows`. The fresh coefficients are unconstrained.
 
-Where `ConZonotope.reduce` forgets `P` before reducing, this removes the dropped
-coefficients from the domain and boxes what they contributed. CORA's
-`@conZonotope/reduce` lifts the equality rows with the generators and reduces that
-zonotope; that is `ConZonotope.reduceLiftBy`, which uses this for the inequality rows and
-the lifted box. Here, with no lifting, every row is a polytope row projected on its own
-(`keepRows`), so that a row survives intact wherever the dropped generators are
-unconstrained. The two are not comparable as sets.
+Where `ConZonotope.reduce` forgets `P` before reducing, this removes the dropped coefficients from
+the domain and boxes what they contributed. CORA's `@conZonotope/reduce` lifts the equality rows
+with the generators first; that is `ConZonotope.reduceLiftBy`, which uses this for the inequality
+rows. Here every row is projected on its own (`keepRows`); the two are not comparable as sets.
+
+## Inputs
+* `cZ` – constrained zonotope
+* `part` – generator partition
+
+## Output
+* enclosing set reduced along the partition, constraints kept
 -/
 
 -- Authors:       Claude Opus 5.5

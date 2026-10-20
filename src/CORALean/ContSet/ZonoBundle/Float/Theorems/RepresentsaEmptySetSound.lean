@@ -12,6 +12,15 @@ public import CORALean.ContSet.Conversion.Float.Theorems.ZonoBundleConZonotopeAl
 
 The bundle's points are the enclosed program's (`ZonoBundle.conZonotopeAll_contains`), which a
 `true` proves empty.
+
+## Inputs
+* `zB` – float zonotope bundle
+
+## Hypotheses
+* `h` – the test answers true
+
+## Conclusion
+* the bundle is empty
 -/
 
 -- Authors:       Claude Opus 5.5

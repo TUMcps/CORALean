@@ -12,6 +12,13 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
 own by `Zonotope.mtimesIntervalMat`, so what the matrix's width costs lands in that member's
 generators and never in a bundle-wide box. This is what a step against an enclosure of
 `e^{Ar}` multiplies a bundle by.
+
+## Inputs
+* `IM` – interval matrix
+* `zB` – float zonotope bundle
+
+## Output
+* enclosure of the image under every matrix in the interval matrix
 -/
 
 -- Authors:       Claude Sonnet 5.5

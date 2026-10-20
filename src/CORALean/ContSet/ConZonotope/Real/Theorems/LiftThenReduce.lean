@@ -13,6 +13,24 @@ generators), and read `Z̃⁺` back as `Z̃ = {G̃, c, Ã, b}`: then `Z ⊂ Z̃`
 Prop. 3. The reduction itself is a hypothesis here; its construction, after Chisci et al., is not
 formalized.
 
+## Inputs
+* `n` – dimension
+* `m` – number of constraints
+* `h` – number of generators
+* `h'` – generators after reduction
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `G'` – reduced generators
+* `A'` – reduced constraint matrix
+
+## Hypotheses
+* `hlift` – the lifted set is contained in the reduced lifted set
+
+## Conclusion
+* the original set is contained in the reduced set
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

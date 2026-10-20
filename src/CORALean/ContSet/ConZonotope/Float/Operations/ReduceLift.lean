@@ -13,6 +13,13 @@ partition of the lifted zonotope at the order `max 1 ((o n + mₑ) / (n + mₑ))
 `reduceLiftBy`; at or below that generator count nothing happens. As over ℝ. The ranking is
 computed in `𝕋`, so the two layers may keep different generators.
 
+## Inputs
+* `cZ` – float constrained zonotope
+* `o` – target order
+
+## Output
+* enclosing constrained zonotope of reduced order
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

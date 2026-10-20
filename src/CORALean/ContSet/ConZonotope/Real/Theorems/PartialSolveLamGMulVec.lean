@@ -11,6 +11,22 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 `Λ_G` of [1, Sec. 4.2] is zero off column `r`, so it reads only entry `r` of its argument:
 `Λ_G v = v_r g_j / a_{rj}`.
 
+## Inputs
+* `n` – dimension
+* `q` – number of constraints
+* `h` – number of generators
+* `G` – generators
+* `A` – constraint matrix
+* `r` – constraint row to solve
+* `j` – coefficient to eliminate
+* `v` – vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the multiplier applied to the vector reads only entry r
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

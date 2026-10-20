@@ -13,6 +13,14 @@ and one right inverse `Hᵢ` per member are the caller's, and checked: every mem
 strictly inside a box it contains (`Zonotope.interiorPoint`). The members are open around `x₀`,
 so their finite intersection is, and `x₀` is an interior point. `true` proves it; `false` refutes
 nothing.
+
+## Inputs
+* `zB` – float zonotope bundle
+* `H` – right inverse of each member's generator matrix
+* `x₀` – candidate interior point
+
+## Output
+* whether the point is certified interior to every member
 -/
 
 -- Authors:       Claude Opus 5.5

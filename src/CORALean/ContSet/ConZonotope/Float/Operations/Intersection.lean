@@ -9,20 +9,21 @@ public import CORALean.ContSet.HPolytope.Float.Operations.PadRight
 /-!
 # `ConZonotope.intersection`
 
-CORA's `@conZonotope/and_` [1, Prop. 1] over a floating-point scalar. Both
-coefficient vectors are concatenated, each half keeps its own constraints, and
-one row per coordinate demands that the two points agree,
-`G₁ β₁ - G₂ β₂ = c₂ - c₁`; only the first generator block is then kept.
+CORA's `@conZonotope/and_` [1, Prop. 1] over a floating-point scalar. Both coefficient vectors are
+concatenated, each half keeps its own constraints, and one row per coordinate demands that the two
+points agree, `G₁ β₁ - G₂ β₂ = c₂ - c₁`; only the first generator block is then kept. Nothing rounds
+but the agreement rows' right-hand side, which has to hold every value the two nominal points can
+differ by once each sits in its error box: an interval, its ends rounded outward. The rows stay
+equalities at its upper end where `ConZonotope.anchorSlab` certifies them, else they become the slab
+between the two ends. The result keeps the first operand's box, so widened. CORA's closing
+`compact_(…,'zeros')` changes no point and is not done here, as at the exact layer.
 
-Nothing rounds but the agreement rows' right-hand side, which has to hold every
-value the two *nominal* points can differ by once each sits in its own error
-box, `c₂ - c₁ + e₂ - e₁`: an interval, its ends rounded outward. The rows stay
-equalities at its upper end where `ConZonotope.anchorSlab` certifies them (the
-point's certified move paid into the error box), else they become the slab
-between the two ends. The result keeps the first operand's box, so widened.
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
 
-CORA's closing `compact_(…,'zeros')` drops zero rows and columns and changes no
-point; it is not done here, as at the exact layer.
+## Output
+* the intersection of the two sets
 
 ## References
 

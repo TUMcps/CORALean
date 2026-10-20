@@ -13,6 +13,13 @@ error box made into coefficients (`absorbRounding`), then `quadMapDep`. The cons
 linear block of coefficients, the factors that are the old ones, so the squares and products
 are free and the result is an outer approximation, never the exact image. CORA's preliminary
 `rescale 'iter'` only tightens it and is not modelled.
+
+## Inputs
+* `Q` – quadratic form matrices
+* `cZ` – float constrained zonotope
+
+## Output
+* enclosure of the quadratic image
 -/
 
 -- Authors:       Claude Opus 5.5

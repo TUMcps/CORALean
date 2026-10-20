@@ -12,22 +12,35 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 /-!
 # `ConZonotope.eliminate`, exactly — under the closure [1, Thm. 2]'s own proof uses
 
-`Thm. 2` states an identity, `Zc = Zr`, from `a_{r,j} ≠ 0` and `R_{r,j} ⊆ [-1,1]` (eq. 12,
-at `E_k` from a full run of Algorithm 1 on `Zc`) alone. Its `⊇` direction is exactly those
-facts run through the substitution algebra — `aux_eliminate_subset` below. Its `⊆`
-direction solves row `r` for `ξ_j` from the *other* coordinates and bounds that solution by
-`[-1,1]` only if those other coordinates are already known inside their own `E_k`, not
-merely `[-1,1]`; the paper never says why they are, and its procedural remark — full-pivoted
-Gauss-Jordan before Algorithm 1 — is never connected back to the proof (see the page's
-`## Findings` for the counterexample showing the bound is false without some such
-condition).
+`Thm. 2` states an identity, `Zc = Zr`, from `a_{r,j} ≠ 0` and `R_{r,j} ⊆ [-1,1]` (eq. 12, at `E_k`
+from a full run of Algorithm 1 on `Zc`) alone. Its `⊇` direction is those facts run through the
+substitution algebra, `aux_eliminate_subset`. Its `⊆` direction bounds the solution for `ξ_j` by
+`[-1,1]` only if the other coordinates are already known inside their own `E_k`; the paper never
+says why they are (see the page's `## Findings` for the counterexample). `hclosed`/`hjS`/`hrS` name
+that condition in `tighten_outer_safe`'s `S`-closure shape: the coordinates row `r` reads besides
+`j` sit in `S`, which is closed under what every row reads, so `tighten_outer_safe` and
+`aux_rowBound_dep` land `ξ_j` inside `[-1,1]` exactly where `hR` says.
 
-`hclosed`/`hjS`/`hrS` name that condition directly, in `tighten_outer_safe`'s own
-`S`-closure shape: the coordinates row `r` reads besides `j` sit in `S`, `j` itself
-excluded, closed under what every row reads from `S`. Given that, `tighten_outer_safe`
-bounds every coordinate of `S` inside `tighten A b`, and row `r`'s own sandwich
-(`aux_rowBound_dep`) bounds `ξ_j` between `rowBound`'s endpoints from those — landing it
-inside `[-1,1]` exactly where `R_{r,j} ⊆ [-1,1]` says.
+## Inputs
+* `ng` – number of generators
+* `nc` – number of constraints
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `r` – constraint row to solve
+* `j` – coefficient to eliminate
+* `S` – set of coefficients closed under dependence
+
+## Hypotheses
+* `hAj` – pivot entry nonzero
+* `hjS` – the eliminated coefficient is outside the set
+* `hrS` – the row's other coefficients lie in the set
+* `hclosed` – the set is closed under shared constraints
+* `hR` – the row bound lies in the unit interval
+
+## Conclusion
+* eliminating the coefficient leaves the set unchanged
 
 ## References
 

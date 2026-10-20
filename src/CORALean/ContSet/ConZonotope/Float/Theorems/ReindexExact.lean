@@ -15,6 +15,16 @@ An equality, in the layer where every other guarantee is an enclosure, because a
 relabelling does no arithmetic. It is linear, so it distributes over the Minkowski
 sum that `InflatedContSet.construct` is: the relabelled nominal part plus the
 relabelled box, with no widening between them.
+
+## Inputs
+* `e` – coordinate permutation
+* `cZ` – float constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the reindexed set is the permuted image of the set
 -/
 
 -- Authors:       Claude Opus 5.5

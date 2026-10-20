@@ -13,6 +13,12 @@ CORA decides emptiness of the intersection with one linear program over the stac
 `ConZonotope.representsa_emptySet` certifies it empty by a Farkas certificate the exact simplex
 proposes and rounded arithmetic checks. One-sided: `true` proves the intersection
 empty; `false` decides nothing. A bundle without members is the whole space, so answers `false`.
+
+## Inputs
+* `zB` – float zonotope bundle
+
+## Output
+* whether emptiness is certified
 -/
 
 -- Authors:       Claude Opus 5.5

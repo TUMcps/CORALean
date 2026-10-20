@@ -12,14 +12,23 @@ public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
 # `ConZonotope.IsCenter`
 
 CORA's `@conZonotope/center` of `conZonotope(c, G, A, b)` as a specification: a linear-program
-optimum cannot be computed here, so `x` is a center when a branch of the method returns it.
+optimum cannot be computed here, so `x` is a center when a branch returns it (which applies depends
+on `isFullDim(cZ)`, not decided here).
 
 * `A` empty: the center `c`. * Otherwise `c + G β` for `β` a Chebyshev center of `{β : |β| ≤ 1, A β
 = b}`: the program of `HPolytope.IsLPCenter` on the domain (the set not full-dimensional); or in
 null-space coordinates, `N = null(A)`, `x0 = pinv(A) b` and `ConZonotope.aux_nullPolytope`
 (full-dimensional); or the unique solution, for a trivial kernel.
 
-Which branch applies depends on `isFullDim(cZ)`, not decided here: any branch's condition suffices.
+## Inputs
+* `c` – center
+* `G` – generators
+* `A` – constraint matrix
+* `b` – constraint offset
+* `x` – candidate center
+
+## Output
+* the point is a center of the constrained zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -7,22 +7,24 @@ public import CORALean.ContSet.ConZonotope.Real.ConZonotope
 /-!
 # `ConZonotope.enclose`
 
-CORA's `@conZonotope/enclose`: encloses `cZ₁` and an affine image `cZ₂` of it,
-the two carrying the *same* constraint system — `hh` lines up the coefficient
-counts, which is what lets `cZ₂`'s constraints be read at `cZ₁`'s index.
+CORA's `@conZonotope/enclose`: encloses `cZ₁` and an affine image `cZ₂` of it, the two carrying the
+*same* constraint system; `hh` lines up the coefficient counts so `cZ₂`'s constraints are read at
+`cZ₁`'s index. Unlike CORA, which throws otherwise, `hh` is a precondition of `enclose_outer` alone:
+the shape type-checks for any two constrained zonotopes of equal `h`, and only the soundness proof
+asks that `P` agree too. `P` carries no constraint on the two fresh blocks, as CORA's zero-padded
+`A` says. Not a `LinComb` instance, as `Zonotope.minkDiffAligned` is not a `MinkDiff` one: `hh` is a
+fact about the pair, and `linComb` covers every pair. Only an enclosure of the segment between the
+two sets, even where the constraints agree.
 
-Unlike CORA, which refuses the general case by throwing, the hypothesis here is
-a precondition of `enclose_outer` alone: the shape below type-checks for any two
-constrained zonotopes of equal `h`, and only the soundness proof asks that `P`
-agree too. `P` itself carries no constraint on the two fresh blocks the
-construction adds, which is what CORA's zero-padded `A` says as well.
+## Inputs
+* `cZ₁` – first constrained zonotope
+* `cZ₂` – second constrained zonotope
 
-Not a `LinComb` instance, for the same reason `Zonotope.minkDiffAligned` is not
-a `MinkDiff` one: `hh` is a fact about the particular pair of operands, and
-`linComb` already covers every pair, so this sits beside it as the cheaper
-construction for the aligned case. Only an enclosure of the segment between the
-two sets, even where the constraints agree — `enclose_outer` is as far as the
-guarantee goes.
+## Hypotheses
+* `hh` – both have the same generator count
+
+## Output
+* the constrained zonotope enclosing both
 -/
 
 -- Authors:       Claude Opus 5

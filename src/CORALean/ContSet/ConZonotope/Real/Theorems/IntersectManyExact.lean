@@ -17,6 +17,15 @@ own constraints, so a point of every set has coefficients for all of them, and c
 coefficient vector of the combined set gives each set its own block. "Unlike for zonotopes, Lemma 4
 computes the intersection exactly" ([1]): equality, not an enclosure.
 
+## Inputs
+* `cs` – the d + 1 constrained zonotopes
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result is exactly the intersection of all of them
+
 ## References
 
 * [1] A. Alanwar, V. Gaßmann, X. He, H. Said, H. Sandberg, K. H. Johansson and M. Althoff.

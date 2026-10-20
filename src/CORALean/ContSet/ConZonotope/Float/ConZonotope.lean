@@ -9,22 +9,14 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 /-!
 # Constrained zonotopes over a floating-point scalar: the representation
 
-CORA's `conZonotope` [1, Def. 3] with its center, generators and coefficient constraints all
-held in `𝕋`, plus the error box that makes it an `InflatedContSet`. `ConZonotope 𝕋 α`
-is generic over its ambient type, generators a family, as the exact layer's
-`ConZonotope α` is; `𝕋` stays, the constraints living on the coefficient space
-`Vec 𝕋 h` at every ambient type. The vector case is `ConZonotope 𝕋 (Vec 𝕋 n)`.
-
-Two roundings, in two different places, and the rule is the same one the other
-representations follow: pay where the representation already has slack of the
-same kind. The center and the generators have none — paying into them would grow
-the order at every operation — so their rounding goes into the ambient box. The
-constraints have slack in their bounds, so theirs goes into `P`'s rows; a rounded
-equality is kept where a certificate pays the move onto it into the ambient box
-(`ConZonotope.anchorSlab`), and becomes two inequalities (`HPolytope.slab`) otherwise.
-
-One box, therefore, not two: `P` is a float `HPolytope`, but only its nominal part is
-read, slacks included, and the operations leave its own box at the origin.
+CORA's `conZonotope` [1, Def. 3] with center, generators and coefficient constraints held in `𝕋`,
+plus the error box that makes it an `InflatedContSet`. `ConZonotope 𝕋 α` is generic over its ambient
+type, as the exact layer's is; the constraints live on `Vec 𝕋 h`. The vector case is
+`ConZonotope 𝕋 (Vec 𝕋 n)`. Rounding is paid where the representation has slack of the same kind: the
+center and generators have none, so theirs goes into the ambient box; the constraints have slack in
+their bounds, so theirs goes into `P`'s rows (an equality is kept where a certificate pays the move
+into the box, `ConZonotope.anchorSlab`, else it becomes two inequalities, `HPolytope.slab`). One
+box, not two: only `P`'s nominal part is read; its own box stays at the origin.
 
 ## References
 

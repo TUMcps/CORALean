@@ -14,6 +14,13 @@ quick check, that the members are pairwise `isequal`, here in the sense of `Zono
 quick check fails, is not modelled, so the test is sound but not exact. The quick check as CORA
 codes it also answers `true` for bundles with different member counts: see
 `ZonoBundle.isequalCora`.
+
+## Inputs
+* `zB` – first bundle
+* `S` – second bundle
+
+## Output
+* the two are equal member by member
 -/
 
 -- Authors:       Claude Opus 5.5

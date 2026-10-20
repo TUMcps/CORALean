@@ -10,6 +10,13 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapGUp
 
 How far a stored generator of `quadMap` can be from the exact one: the gap between its two
 roundings, which a coefficient in `[-1,1]` then spreads either way.
+
+## Inputs
+* `Q` – quadratic form matrices
+* `cZ` – float constrained zonotope
+
+## Output
+* gap between the two roundings of each generator
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -9,6 +9,15 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.RepresentsaEmptySet
 
 Every point of the set would satisfy `0 = c x ≤ val` for the certified bound `val`, and `val < 0`
 is what the check established.
+
+## Inputs
+* `cZ` – float constrained zonotope
+
+## Hypotheses
+* `h` – the test answers true
+
+## Conclusion
+* the set is empty
 -/
 
 -- Authors:       Claude Opus 5.5

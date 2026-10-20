@@ -24,6 +24,19 @@ The point is the new nominal point at `[ξ; ν]` plus the error the box holds: o
 `c' + (I - Λ C) G ξ + Λ φ ν = c + G ξ + Λ C e` exactly, because `C G ξ - φ ν = y - C c - C e`;
 so `x` is that plus `e - Λ C e`, plus the rounding of the new center and generators. For every
 gain `Λ`; outer only.
+
+## Inputs
+* `cZ` – float constrained zonotope
+* `C` – strip direction matrix
+* `φ` – strip half-widths
+* `y` – strip center
+* `Λ` – gain matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set intersected with the strip is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

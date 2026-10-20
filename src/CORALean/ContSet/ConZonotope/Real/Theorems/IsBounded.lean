@@ -10,6 +10,15 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompact
 Read off compactness rather than from the generator norms, as the zonotope's is:
 the constraints only shrink the coefficient set, so the bound would be the same
 one, and there is nothing to gain from proving it twice.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is bounded
 -/
 
 -- Authors:       Claude Opus 5

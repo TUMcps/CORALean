@@ -10,6 +10,14 @@ public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
 CORA's `zonoBundle`/`replace(zB, index, Z)`: the `index`-th zonotope is overwritten by `Z`, the
 others kept and the count unchanged. Nothing is computed, so nothing rounds: each member
 carries its own error box.
+
+## Inputs
+* `zB` – float zonotope bundle
+* `index` – member to overwrite
+* `Z` – replacement zonotope
+
+## Output
+* the bundle with that member replaced
 -/
 
 -- Authors:       Claude Opus 5.5
