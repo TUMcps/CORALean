@@ -40,7 +40,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- At full rank the shape matrix is invertible. -/
-theorem Ellipsoid.isUnit_shape (E : Ellipsoid n) (hr : E.rank = n) :
+theorem Ellipsoid.isUnit_shape (E : Ellipsoid n) (hr : E.rank = n) : -- --- CONCL ---
     IsUnit E.Q := by -- --- PROOF ---
   -- injective: `Q z = 0` gives `‖Gᵀ z‖₂ = 0`, so `z` is orthogonal to everything `G` reaches
   rw [← Matrix.mulVec_injective_iff_isUnit]

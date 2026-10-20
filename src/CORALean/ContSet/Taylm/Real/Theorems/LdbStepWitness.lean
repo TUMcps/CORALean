@@ -44,7 +44,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.ldbStep_witness {T : Taylm n} {g : Vec ℝ n → ℝ} (h : T.Encloses g) :
+theorem Taylm.ldbStep_witness {T : Taylm n} {g : Vec ℝ n → ℝ} (h : T.Encloses g) : -- --- CONCL ---
     ∃ q ∈ Taylm.box n, Taylm.InBox T.ldbStep.2 q ∧ g q ≤ T.ldbStep.1.sup := by -- --- PROOF ---
   set p : Vec ℝ n := fun k => if 0 < Taylm.linCoef T.terms k then -1 else 1
   have hp : p ∈ Taylm.box n := fun k => by simp only [p]; split_ifs <;> norm_num

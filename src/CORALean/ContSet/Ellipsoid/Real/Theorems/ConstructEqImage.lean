@@ -41,7 +41,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.construct_eq_image (E : Ellipsoid n) :
+theorem Ellipsoid.construct_eq_image (E : Ellipsoid n) : -- --- CONCL ---
     E.construct = (fun u : Vec ℝ n => E.q + E.G *ᵥ u) '' unitBall₂ n := by -- --- PROOF ---
   rw [E.construct_eq_sqrt]
   ext x

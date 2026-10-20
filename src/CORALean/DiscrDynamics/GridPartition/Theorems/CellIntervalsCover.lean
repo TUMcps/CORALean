@@ -38,7 +38,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The union of the cell boxes is the state space of a well-formed partition. -/
-theorem GridPartition.cellIntervals_cover (P : GridPartition n) (hP : P.WellFormed) :
+theorem GridPartition.cellIntervals_cover (P : GridPartition n)
+    (hP : P.WellFormed) : -- --- CONCL ---
     P.intervals.construct = {x | ∃ B ∈ P.cellIntervals, x ∈ B.construct} := by -- --- PROOF ---
   ext x
   constructor

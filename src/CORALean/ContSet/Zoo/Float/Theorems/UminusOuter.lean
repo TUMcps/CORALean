@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zoo.uminus_outer {Z : Zoo 𝕋 n} {f : Vec ℝ n → ℝ} (h : Z.Encloses f) :
+theorem Zoo.uminus_outer {Z : Zoo 𝕋 n} {f : Vec ℝ n → ℝ} (h : Z.Encloses f) : -- --- CONCL ---
     Z.uminus.Encloses fun t => -f t := by -- --- PROOF ---
   rw [Zoo.encloses_iff] at h ⊢
   refine ⟨fun T hT => ?_, fun I hI t ht => ?_⟩

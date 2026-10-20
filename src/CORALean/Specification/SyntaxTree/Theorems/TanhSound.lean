@@ -43,7 +43,8 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The extended `atanh` of a bound below `tanh s` is at most `s`. -/
-private theorem SyntaxTree.atanhE_le {x s : ℝ} (h : x ≤ Real.tanh s) (h₁ : -1 ≤ x) :
+private theorem SyntaxTree.atanhE_le {x s : ℝ} (h : x ≤ Real.tanh s)
+    (h₁ : -1 ≤ x) : -- --- CONCL ---
     (if x = -1 then ⊥ else if x = 1 then ⊤ else ↑(Real.artanh x) : EReal) ≤ s := by -- --- PROOF ---
   by_cases hx : x = -1
   · simp [hx]
@@ -54,7 +55,7 @@ private theorem SyntaxTree.atanhE_le {x s : ℝ} (h : x ≤ Real.tanh s) (h₁ :
       _ = s := Real.artanh_tanh s
 
 /-- The extended `atanh` of a bound above `tanh s` is at least `s`. -/
-private theorem SyntaxTree.le_atanhE {x s : ℝ} (h : Real.tanh s ≤ x) (h₁ : x ≤ 1) :
+private theorem SyntaxTree.le_atanhE {x s : ℝ} (h : Real.tanh s ≤ x) (h₁ : x ≤ 1) : -- --- CONCL ---
     (s : EReal) ≤ (if x = -1 then ⊥ else if x = 1 then ⊤ else ↑(Real.artanh x) :
       EReal) := by -- --- PROOF ---
   have hx : x ≠ -1 := (lt_of_lt_of_le (Real.neg_one_lt_tanh s) h).ne'
@@ -66,7 +67,7 @@ private theorem SyntaxTree.le_atanhE {x s : ℝ} (h : Real.tanh s ≤ x) (h₁ :
           (lt_of_le_of_ne h₁ hx1) h
 
 /-- `aux_tanh_` is sound for `tanh`. -/
-theorem SyntaxTree.tanh_sound (prev : Dom) :
+theorem SyntaxTree.tanh_sound (prev : Dom) : -- --- CONCL ---
     UnarySound Unary.tanh.fn prev (Real.Interval.tanh prev) funHanTanh := by -- --- PROOF ---
   intro int _ s hs hi
   have h : int.inf 0 ≤ Real.tanh s ∧ Real.tanh s ≤ int.sup 0 := hi

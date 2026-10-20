@@ -46,7 +46,7 @@ noncomputable def hausdorffDist₂ (S T : Set (Vec ℝ n)) : ℝ :=
 /-- `Metric.hausdorffDist_le_of_mem_dist` with both witnesses stated at `‖·‖₂`,
 which is what keeps `toEuclidean` out of the theorems that use it. -/
 theorem hausdorffDist₂_le_of_mem_dist {S T : Set (Vec ℝ n)} {r : ℝ} (hr : 0 ≤ r)
-    (h₁ : ∀ x ∈ S, ∃ y ∈ T, ‖x - y‖₂ ≤ r) (h₂ : ∀ x ∈ T, ∃ y ∈ S, ‖x - y‖₂ ≤ r) :
+    (h₁ : ∀ x ∈ S, ∃ y ∈ T, ‖x - y‖₂ ≤ r) (h₂ : ∀ x ∈ T, ∃ y ∈ S, ‖x - y‖₂ ≤ r) : -- --- CONCL ---
     hausdorffDist₂ S T ≤ r := by -- --- PROOF ---
   refine Metric.hausdorffDist_le_of_mem_dist hr ?_ ?_
   · rintro _ ⟨x, hx, rfl⟩
@@ -61,7 +61,7 @@ theorem hausdorffDist₂_le_of_mem_dist {S T : Set (Vec ℝ n)} {r : ℝ} (hr : 
 set the point is sought in is compact — only then is the infimum distance attained. -/
 theorem hausdorffDist₂_exists_mem_dist_le {S T : Set (Vec ℝ n)} {r : ℝ} (hS : IsCompact S)
     (hSne : S.Nonempty) (hT : Bornology.IsBounded T) (hTne : T.Nonempty)
-    (h : hausdorffDist₂ S T ≤ r) {x : Vec ℝ n} (hx : x ∈ T) :
+    (h : hausdorffDist₂ S T ≤ r) {x : Vec ℝ n} (hx : x ∈ T) : -- --- CONCL ---
     ∃ y ∈ S, ‖x - y‖₂ ≤ r := by -- --- PROOF ---
   have hSc : IsCompact (toEuclidean '' S) := hS.image toEuclidean.continuous
   have hSb : Bornology.IsBounded (toEuclidean '' S) := hSc.isBounded

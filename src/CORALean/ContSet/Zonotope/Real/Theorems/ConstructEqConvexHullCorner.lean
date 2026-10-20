@@ -43,7 +43,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.construct_eq_convexHull_corner (Z : Zonotope α) :
+theorem Zonotope.construct_eq_convexHull_corner (Z : Zonotope α) : -- --- CONCL ---
     Z.construct = convexHull ℝ (Set.range Z.corner) := by -- --- PROOF ---
   rw [← Z.vPolytope_exact, VPolytope.construct_eq_convexHull]
   congr 1

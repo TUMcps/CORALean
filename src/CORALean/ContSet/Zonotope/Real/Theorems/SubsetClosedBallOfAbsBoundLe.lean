@@ -46,7 +46,7 @@ variable {n : ℕ}
 /-- A zonotope reaches no further than `r`, in the sup norm, once every
 coordinate's `absBound` stays under `r`. -/
 theorem Zonotope.subset_closedBall_of_absBound_le {Z : Zonotope (Vec ℝ n)} {r : ℝ} (hr : 0 ≤ r)
-    (h : ∀ j, Z.absBound j ≤ r) :
+    (h : ∀ j, Z.absBound j ≤ r) : -- --- CONCL ---
     Z.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r := by -- --- PROOF ---
   intro x hx
   obtain ⟨β, hβ, hxeq⟩ := Zonotope.mem_construct_iff.mp hx

@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.compactFactors_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
+theorem ConPolyZono.compactFactors_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     nominalSet cPZ = nominalSet cPZ.compactFactors := by -- --- PROOF ---
   rw [ConPolyZono.compactFactors_eq_spec]
   ext x

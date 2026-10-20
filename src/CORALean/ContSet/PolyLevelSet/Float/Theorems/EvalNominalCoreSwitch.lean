@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The switched rows, read back, take the values of the read-back rows switched. -/
 theorem PolyLevelSet.eval_nominalCore_switch (P : PolyLevelSet 𝕋 n) (e : Fin n → ℕ)
-    (s : Fin P.m → Bool) (x : Vec ℝ n) :
+    (s : Fin P.m → Bool) (x : Vec ℝ n) : -- --- CONCL ---
     (P.switch e s).nominalCore.eval x = (P.nominalCore.switch e s).eval x := by -- --- PROOF ---
   have hA : toRealMat (P.switch e s).A = (P.nominalCore.switch e s).A := by
     funext i l

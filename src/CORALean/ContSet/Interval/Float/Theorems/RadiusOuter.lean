@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.radius_ge (I : Interval (Vec 𝕋 n)) (i : Fin n) :
+theorem Interval.radius_ge (I : Interval (Vec 𝕋 n)) (i : Fin n) : -- --- CONCL ---
     I.nominal.radius i ≤ toReal (I.radius i) := by -- --- PROOF ---
   have h : I.nominal.radius i = (toReal (I.sup i) - toReal (I.inf i)) / 2 := by
     show (2:ℝ)⁻¹ * (toReal (I.sup i) - toReal (I.inf i)) = _

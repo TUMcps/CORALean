@@ -52,7 +52,7 @@ theorem Zonotope.aux_interval_center (Z : Zonotope (Vec ℝ n)) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.construct_subset_ball_radius₂ (Z : Zonotope (Vec ℝ n)) :
+theorem Zonotope.construct_subset_ball_radius₂ (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     Z.construct ⊆ {x | ‖x - Z.c‖₂ ≤ Z.radius₂} := by -- --- PROOF ---
   intro x hx
   show ‖x - Z.c‖₂ ≤ min _ _

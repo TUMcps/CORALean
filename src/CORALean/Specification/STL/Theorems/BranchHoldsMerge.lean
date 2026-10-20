@@ -47,7 +47,8 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Branch.holds_merge (c : ℝ≥0) {b b' : STL.Branch X} (hj : b.j = b'.j)
-    (ξ : ℝ≥0 → X) : (b.merge b').Holds c ξ ↔ b.Holds c ξ ∨ b'.Holds c ξ := by -- --- PROOF ---
+    (ξ : ℝ≥0 → X) : -- --- CONCL ---
+    (b.merge b').Holds c ξ ↔ b.Holds c ξ ∨ b'.Holds c ξ := by -- --- PROOF ---
   -- the two branches read the trace at the same times
   unfold STL.Branch.Holds STL.Branch.merge
   simp only [← hj, List.mem_append, Pform.Sat, or_and_right, exists_or]

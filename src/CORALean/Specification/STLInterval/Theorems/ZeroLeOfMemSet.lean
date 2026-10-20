@@ -35,7 +35,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A time of an interval is `≥ 0`. -/
-theorem STLInterval.zero_le_of_mem_set (I : STLInterval) (t : ℝ) (ht : t ∈ I.set) :
+theorem STLInterval.zero_le_of_mem_set (I : STLInterval) (t : ℝ) (ht : t ∈ I.set) : -- --- CONCL ---
     0 ≤ t := by -- --- PROOF ---
   cases I with
   | empty => exact absurd ht (by simp [STLInterval.set])

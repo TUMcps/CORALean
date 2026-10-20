@@ -53,7 +53,7 @@ variable {n m : ℕ}
 /-- [1, Prop. 10], at `‖·‖₂`: perturbing a linear image of a compact set by another matrix moves
 it no further than that matrix's own image reaches from the origin. -/
 theorem hausdorffDist₂_mulVecLin_add_le {S : Set (Vec ℝ n)} (M1 M2 : Mat ℝ m n)
-    (hS : IsCompact S) :
+    (hS : IsCompact S) : -- --- CONCL ---
     hausdorffDist₂ (mulVecLin (M1 + M2) '' S) (mulVecLin M1 '' S)
       ≤ hausdorffDist₂ ({0} : Set (Vec ℝ m)) (mulVecLin M2 '' S) := by -- --- PROOF ---
   have hB : Bornology.IsBounded (mulVecLin M2 '' S) :=

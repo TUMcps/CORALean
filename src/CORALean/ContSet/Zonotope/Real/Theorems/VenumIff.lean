@@ -46,7 +46,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.venum_iff (Z₁ Z₂ : Zonotope (Vec ℝ n)) (hG : Function.Surjective Z₂.genMap) :
+theorem Zonotope.venum_iff (Z₁ Z₂ : Zonotope (Vec ℝ n))
+    (hG : Function.Surjective Z₂.genMap) : -- --- CONCL ---
     Z₁.venum Z₂ = true ↔ Z₁.construct ⊆ Z₂.construct := by -- --- PROOF ---
   have hball := (Z₂.zonotopeNorm_ball_eq hG).1
   -- the test is that every corner lies in `Z₂`

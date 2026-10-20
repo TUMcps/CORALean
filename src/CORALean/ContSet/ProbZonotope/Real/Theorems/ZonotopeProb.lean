@@ -55,7 +55,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.zonotope_prob (P : ProbZonotope n) (hP : P.cov.PosSemidef) {m : ℝ}
-    (hm : 0 < m) {ν : Measure (EuclideanSpace ℝ (Fin n))} (hν : ν ∈ P.laws) :
+    (hm : 0 < m) {ν : Measure (EuclideanSpace ℝ (Fin n))} (hν : ν ∈ P.laws) : -- --- CONCL ---
     (gaussianReal 0 1 (Set.Icc (-m) m)) ^ n
       ≤ ν (toLp 2 '' (P.zonotope m).construct) := by -- --- PROOF ---
   obtain ⟨μ, hμ, rfl⟩ := hν

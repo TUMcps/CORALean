@@ -49,7 +49,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {dy du p : �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearARX.computeGOFloat_outer (sys : LinearARX 𝕋 dy du p) (nk : ℕ) (k i : Fin nk) :
+theorem LinearARX.computeGOFloat_outer (sys : LinearARX 𝕋 dy du p) (nk : ℕ)
+    (k i : Fin nk) : -- --- CONCL ---
     let G := sys.computeGO nk
     let F := sys.computeGOFloat nk
     G.C k ∈ (F.C k).construct ∧ G.D k i ∈ (F.D k i).construct := by -- --- PROOF ---

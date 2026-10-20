@@ -68,7 +68,7 @@ def Bp : Fin 2 → Interval D := ![⟨d (-11) (-4), d (-11) (-4)⟩, ⟨d (-1) (
 
 set_option maxRecDepth 4096 in
 /-- `(1/2, 1/4)` is in the stack, by the float sign test. -/
-theorem stack_mem :
+theorem stack_mem : -- --- CONCL ---
     (![1 / 2, 1 / 4] : Vec ℝ 2) ∈ (andDisc.and_ andHalf).construct := by -- --- PROOF ---
   -- the sign test is `true` by evaluation; the bounds are the exact row values
   refine LevelSet.containsPoint_sound (𝕋 := D) (andDisc.and_ andHalf) Bp _ ?_ rfl

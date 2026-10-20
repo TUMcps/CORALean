@@ -37,7 +37,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem FourValuedSignal.eq_not_complete   :
+theorem FourValuedSignal.eq_not_complete : -- --- CONCL ---
     ∃ a b : FourValuedSignal ℝ, a.IsValid ∧ b.IsValid ∧ (∀ t : ℝ, 0 ≤ t → a.at t = b.at t) ∧
       a.eq b = false := by -- --- PROOF ---
   -- the signal that is `Inconclusive` throughout, and its negation

@@ -49,7 +49,7 @@ variable {m n : ℕ}
 
 /-- The dominating matrix of a generator-free matrix zonotope has the norm of
 its center. -/
-theorem Zonotope.norm_absMax_ofPoint (A : Mat ℝ m n) :
+theorem Zonotope.norm_absMax_ofPoint (A : Mat ℝ m n) : -- --- CONCL ---
     ‖(Zonotope.ofPoint A).interval.absMax‖ = ‖A‖ := by -- --- PROOF ---
   have hentry : ∀ i j, (Zonotope.ofPoint A).interval.absMax i j = |A i j| := by
     intro i j

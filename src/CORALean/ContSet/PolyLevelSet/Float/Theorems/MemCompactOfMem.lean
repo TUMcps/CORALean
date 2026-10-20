@@ -73,7 +73,7 @@ theorem PolyLevelSet.aux_compactGap (P : PolyLevelSet 𝕋 n) (i : Fin P.m)
 /-- The widened slack admits every point of the unit box the old one did: the row moved by at
 most one `radius` of its gaps, and the slack grew by exactly that. -/
 theorem PolyLevelSet.mem_compact_of_mem (P : PolyLevelSet 𝕋 n) (hP : ∀ i, P.op i = .eq)
-    {a : Fin n → ℝ} (ha : ∀ k, |a k| ≤ 1) (hsat : a ∈ P.construct) :
+    {a : Fin n → ℝ} (ha : ∀ k, |a k| ≤ 1) (hsat : a ∈ P.construct) : -- --- CONCL ---
     a ∈ P.compact.construct := by -- --- PROOF ---
   rw [PolyLevelSet.compact_eq_spec]
   -- the kept exponents, the monomials on them, and the exact fibre sums

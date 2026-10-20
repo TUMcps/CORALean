@@ -38,7 +38,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.reindex_exact {n m : ℕ} (e : Fin m ≃ Fin n) (C : Capsule n) :
+theorem Capsule.reindex_exact {n m : ℕ} (e : Fin m ≃ Fin n) (C : Capsule n) : -- --- CONCL ---
     (C.reindex e).construct = reindexLin e '' C.construct := by -- --- PROOF ---
   have key : ∀ (y : Vec ℝ m) (t : ℝ),
       ∑ i, (y i - ((C.reindex e).c i + t * (C.reindex e).g i)) ^ 2

@@ -62,7 +62,7 @@ variable {n p m : ℕ}
 `Δy = -F⁻¹(g(z*) + D Δx + E Δu) - F⁻¹ ℓᵃ`. -/
 theorem NonlinDASys.alg_deviation_eq {g₀ : Vec ℝ p} {D : Mat ℝ p n} {E : Mat ℝ p m}
     {F F_inv : Mat ℝ p p} (hF : F_inv * F = 1) {Δx : Vec ℝ n} {Δu : Vec ℝ m} {Δy ℓa : Vec ℝ p}
-    (hg : g₀ + D *ᵥ Δx + E *ᵥ Δu + F *ᵥ Δy + ℓa = 0) :
+    (hg : g₀ + D *ᵥ Δx + E *ᵥ Δu + F *ᵥ Δy + ℓa = 0) : -- --- CONCL ---
     Δy = -(F_inv *ᵥ (g₀ + D *ᵥ Δx + E *ᵥ Δu)) - F_inv *ᵥ ℓa := by -- --- PROOF ---
   -- `F Δy` is the rest of the constraint, negated, and `F⁻¹` undoes `F`
   have hFy : F *ᵥ Δy = -(g₀ + D *ᵥ Δx + E *ᵥ Δu) - ℓa := by

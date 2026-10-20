@@ -43,7 +43,7 @@ variable {T : Type} [LinearOrder T] [Zero T]
 /-- Appending a non-redundant larger point keeps a signal valid. -/
 theorem PointSegmentSignal.isValid_snoc (tp : List T) (val : List Bool) (τ : T) (pv iv : Bool) (h
     : (tp = [] ∧ val = [] ∧ τ = 0) ∨ ((PointSegmentSignal.mk tp val).IsValid ∧ (∀ x ∈ tp, x < τ) ∧
-    ¬ (pv = val.getD (val.length - 1) false ∧ pv = iv))) :
+    ¬ (pv = val.getD (val.length - 1) false ∧ pv = iv))) : -- --- CONCL ---
     (PointSegmentSignal.mk (tp ++ [τ]) (val ++ [pv, iv])).IsValid := by -- --- PROOF ---
   -- the empty start, or a valid output extended by a larger point
   rcases h with ⟨rfl, rfl, rfl⟩ | ⟨⟨hne, hlen, hhead, hsort, hnr⟩, hlt, hnew⟩

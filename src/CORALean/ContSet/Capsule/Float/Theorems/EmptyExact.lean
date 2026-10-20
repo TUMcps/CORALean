@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.empty_exact (n : ℕ) :
+theorem Capsule.empty_exact (n : ℕ) : -- --- CONCL ---
     (Capsule.empty n : Capsule 𝕋 n).construct = ∅ := by -- --- PROOF ---
   have h : (Capsule.empty n : Capsule 𝕋 n).nominal = Real.Capsule.empty n := by
     unfold Capsule.nominal Capsule.empty Real.Capsule.empty

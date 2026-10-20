@@ -41,7 +41,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem solvedGuardSin_of_ne_zero :
+theorem solvedGuardSin_of_ne_zero : -- --- CONCL ---
     {x : Vec ℝ 2 | x 1 * x 0 + Real.sin (x 0) = 0 ∧ x 0 ≠ 0}
       = {x | x 1 = -Real.sin (x 0) / x 0 ∧ x 0 ≠ 0} := by -- --- PROOF ---
   ext x

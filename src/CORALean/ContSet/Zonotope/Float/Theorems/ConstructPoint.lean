@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.construct_point (c : Vec 𝕋 n) :
+theorem Zonotope.construct_point (c : Vec 𝕋 n) : -- --- CONCL ---
     (Zonotope.point c).construct = {toRealVec c} := by -- --- PROOF ---
   have h : InflatedContSet.nominal (Zonotope.point c) = Real.Zonotope.ofPoint (toRealVec c) := by
     unfold Zonotope.point Real.Zonotope.ofPoint

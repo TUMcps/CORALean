@@ -33,7 +33,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 omit [Module ℝ α] in
 /-- The `k` count of `plus`'s result in `O`-notation. -/
 theorem ZonoBundle.plus_k_isBigO (zB W : ℕ → ZonoBundle α) (hB : ∀ m, (zB m).k = m)
-    (hW : ∀ m, (W m).k = m) :
+    (hW : ∀ m, (W m).k = m) : -- --- CONCL ---
     (fun m : ℕ => (((ZonoBundle.plus (zB m) (W m)).k : ℕ) : ℝ))
       =O[Filter.atTop] fun m : ℕ => ((m : ℝ)) ^ 2 := by -- --- PROOF ---
   apply Asymptotics.IsBigO.of_bound 1

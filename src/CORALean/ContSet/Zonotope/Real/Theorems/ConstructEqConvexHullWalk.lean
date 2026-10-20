@@ -46,7 +46,7 @@ namespace CORALean.Real
 
 theorem Zonotope.construct_eq_convexHull_walk (Z : Zonotope (Vec ℝ 2))
     (h1 : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0))
-    (h2 : ∀ i j : Fin Z.h, i < j → 0 ≤ Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0) :
+    (h2 : ∀ i j : Fin Z.h, i < j → 0 ≤ Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0) : -- --- CONCL ---
     Z.construct = convexHull ℝ (Set.range Z.walk) := by -- --- PROOF ---
   refine Set.Subset.antisymm (Z.construct_subset_walk h1 h2) (convexHull_min ?_ Z.convex_construct)
   rintro _ ⟨i, rfl⟩

@@ -58,7 +58,7 @@ theorem aux_intervalIntegrable_of_coord {f : ℝ → Vec ℝ n} {a b : ℝ}
 
 theorem MatExp.intervalIntegrable_mulVec {A : ℝ → Mat ℝ n n}
     (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b) {w : ℝ → Vec ℝ n}
-    {a b : ℝ} (hw : ContinuousOn w (Set.uIcc a b)) :
+    {a b : ℝ} (hw : ContinuousOn w (Set.uIcc a b)) : -- --- CONCL ---
     IntervalIntegrable (fun s => A s *ᵥ w s) volume a b := by -- --- PROOF ---
   refine aux_intervalIntegrable_of_coord fun i => ?_
   simp only [Matrix.mulVec, dotProduct]

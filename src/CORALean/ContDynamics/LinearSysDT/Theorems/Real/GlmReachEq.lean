@@ -57,7 +57,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 /-- `k` passes of a loop that steps its state by `f` and appends `g` of the new state. -/
 theorem LinearSysDT.aux_glmReach_foldl {α β : Type} (f : α → α) (g : α → β) (a : α)
-    (l : List β) (k : ℕ) :
+    (l : List β) (k : ℕ) : -- --- CONCL ---
     (List.range k).foldl (fun (s : α × List β) (_ : ℕ) => (f s.1, s.2 ++ [g (f s.1)])) (a, l)
       = (f^[k] a, l ++ (List.range k).map fun i => g (f^[i + 1] a)) := by -- --- PROOF ---
   induction k with
@@ -105,7 +105,8 @@ theorem LinearSysDT.aux_glmReach_inv (sys : LinearSysDT 𝕋 n) (Ω₀ U : Zonot
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Alg. 1]: the sets returned are `Ω₁, …, Ω_N` of `Ω_{i+1} = ΦΩᵢ ⊕ U`. -/
-theorem LinearSysDT.glmReach_eq (sys : LinearSysDT 𝕋 n) (Ω₀ U : Zonotope (Vec ℝ n)) (N : ℕ) :
+theorem LinearSysDT.glmReach_eq (sys : LinearSysDT 𝕋 n) (Ω₀ U : Zonotope (Vec ℝ n))
+    (N : ℕ) : -- --- CONCL ---
     (sys.glmReach Ω₀ U N).map Zonotope.construct
       = (List.range N).map fun i => sys.reachSetExact (S := 𝒵) Ω₀ U (i + 1) := by -- --- PROOF ---
   -- unroll the loop, then read each set off the invariant

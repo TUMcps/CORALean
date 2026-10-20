@@ -48,7 +48,7 @@ variable {n : ℕ}
 
 /-- A step of the selection keeps invertible matrices only. -/
 theorem Zonotope.lineClKeep_isUnit_det (V : Mat ℝ n n → ℝ) {best : Option (Mat ℝ n n)}
-    (hbest : ∀ M, best = some M → IsUnit M.det) (L : Mat ℝ n n) :
+    (hbest : ∀ M, best = some M → IsUnit M.det) (L : Mat ℝ n n) : -- --- CONCL ---
     ∀ M, Zonotope.lineClKeep V best L = some M → IsUnit M.det := by -- --- PROOF ---
   intro M hM
   unfold Zonotope.lineClKeep at hM

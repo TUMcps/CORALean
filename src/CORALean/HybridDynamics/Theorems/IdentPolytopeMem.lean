@@ -45,7 +45,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `x` is in the H-polytope of the rows `cs` iff `cᵀx ≤ d` for every row `(c, d)` of `cs`. -/
-theorem IdentHA.mem_polytope_construct_iff (cs : List (Vec ℝ n × ℝ)) (x : Vec ℝ n) :
+theorem IdentHA.mem_polytope_construct_iff (cs : List (Vec ℝ n × ℝ))
+    (x : Vec ℝ n) : -- --- CONCL ---
     x ∈ (IdentHA.polytope cs).construct ↔ ∀ p ∈ cs, p.1 ⬝ᵥ x ≤ p.2 := by -- --- PROOF ---
   constructor
   · rintro ⟨h, -⟩ p hp

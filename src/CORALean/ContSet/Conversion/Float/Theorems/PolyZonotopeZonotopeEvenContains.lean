@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The float polynomial zonotope lies in its even-column zonotope. -/
-theorem PolyZonotope.zonotopeEven_contains (pZ : PolyZonotope (Vec 𝕋 n)) :
+theorem PolyZonotope.zonotopeEven_contains (pZ : PolyZonotope (Vec 𝕋 n)) : -- --- CONCL ---
     pZ.construct ⊆ pZ.zonotopeEven.construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   set w := Real.PolyZonotope.evenWeight pZ.E with hw

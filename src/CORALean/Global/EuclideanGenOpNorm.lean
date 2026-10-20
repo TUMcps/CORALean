@@ -61,7 +61,8 @@ theorem genOpNorm₂_nonneg (G : Fin h → Vec ℝ n) : 0 ≤ genOpNorm₂ G := 
 
 /-- The Cauchy–Schwarz bound `genOpNorm₂` exists for: a linear combination of the generators
 never exceeds their operator norm times the coefficient vector's own `‖·‖₂`. -/
-theorem norm₂_sum_smul_le_genOpNorm₂_mul_norm₂ (G : Fin h → Vec ℝ n) (v : Vec ℝ h) :
+theorem norm₂_sum_smul_le_genOpNorm₂_mul_norm₂ (G : Fin h → Vec ℝ n)
+    (v : Vec ℝ h) : -- --- CONCL ---
     ‖∑ j, v j • G j‖₂ ≤ genOpNorm₂ G * ‖v‖₂ := by -- --- PROOF ---
   set M : Mat ℝ n h := Matrix.of fun i j => G j i with hM
   have hkey := Matrix.l2_opNorm_mulVec M (toEuclidean v)
@@ -79,7 +80,7 @@ theorem norm₂_sum_smul_le_genOpNorm₂_mul_norm₂ (G : Fin h → Vec ℝ n) (
 /-- And the bound in the other direction, which is what an error term shrinking to `0` needs: the
 generators' own Euclidean lengths, summed, dominate the operator norm. Loose by up to `√h` against
 the tight constant, and enough wherever the quantity bounded is an asymptotic one. -/
-theorem genOpNorm₂_le_sum_norm₂ (G : Fin h → Vec ℝ n) :
+theorem genOpNorm₂_le_sum_norm₂ (G : Fin h → Vec ℝ n) : -- --- CONCL ---
     genOpNorm₂ G ≤ ∑ j, ‖G j‖₂ := by -- --- PROOF ---
   have hnn : (0:ℝ) ≤ ∑ j, ‖G j‖₂ := Finset.sum_nonneg fun j _ => norm₂_nonneg _
   rw [genOpNorm₂, Matrix.l2_opNorm_def]

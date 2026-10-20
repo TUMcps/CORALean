@@ -68,7 +68,8 @@ theorem aux_guardIntersectUnsolvable_subset (I : Interval (Vec ℝ n)) (k : Fin 
     (hsplit : ∀ x, (-b + ∑ i, a i * c i - ∑ i ∈ Finset.univ.erase k, a i * x i - v x) / a k
       = pk x + Dp x)
     (Dl Du : ℝ)
-    (hD : ∀ x ∈ I.construct, ∀ r ∈ Set.Icc l u, Dl ≤ Dp x - r / a k ∧ Dp x - r / a k ≤ Du) :
+    (hD : ∀ x ∈ I.construct, ∀ r ∈ Set.Icc l u, Dl ≤ Dp x - r / a k ∧ Dp x - r / a k ≤ Du)
+    : -- --- CONCL ---
     I.construct ∩ {x | g x = 0} ⊆
       (guardIntersectUnsolvable I k pk Dl Du).construct := by -- --- PROOF ---
   rintro x ⟨hxI, hxg⟩
@@ -111,7 +112,7 @@ theorem guardIntersectUnsolvable_subset {I : Interval (Vec ℝ n)} {κ : ℕ} (k
         / taylorGrad g I.center k = pk x + Dp x)
     (Dl Du : ℝ) (hD : ∀ x ∈ I.construct, ∀ r ∈ Set.Icc T.l T.u,
       Dl ≤ Dp x - r / taylorGrad g I.center k ∧ Dp x - r / taylorGrad g I.center k ≤ Du)
-    : -- --- CONCL ---
+    :
     I.construct ∩ {x | g x = 0} ⊆ (guardIntersectUnsolvable I k pk Dl Du).construct :=
   aux_guardIntersectUnsolvable_subset I k _ _ _ _ _ _ (fun _ hx => T.mem hg hκ hx) ha pk Dp
     hsplit Dl Du hD

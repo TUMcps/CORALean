@@ -41,7 +41,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The support-function box contains the bundle. -/
-theorem ZonoBundle.intervalSupportFunc_outer (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k) :
+theorem ZonoBundle.intervalSupportFunc_outer (zB : ZonoBundle (Vec ℝ n))
+    (hk : 0 < zB.k) : -- --- CONCL ---
     zB.construct ⊆ zB.intervalSupportFunc.construct := by -- --- PROOF ---
   intro x hx i
   -- every linear functional is bounded above on the compact bundle

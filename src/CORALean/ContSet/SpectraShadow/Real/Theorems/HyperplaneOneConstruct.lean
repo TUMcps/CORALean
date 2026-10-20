@@ -36,7 +36,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.hyperplaneOne_construct :
+theorem SpectraShadow.hyperplaneOne_construct : -- --- CONCL ---
     (SpectraShadow.hyperplaneOne n).construct = {w | w (Fin.natAdd n 0) = 1} := by -- --- PROOF ---
   ext w
   constructor

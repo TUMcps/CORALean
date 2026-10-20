@@ -38,7 +38,7 @@ variable {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The vectorised box is the image of the matrix box under stacking the columns. -/
-theorem Interval.vec_construct (A : Interval (Mat ℝ m n)) :
+theorem Interval.vec_construct (A : Interval (Mat ℝ m n)) : -- --- CONCL ---
     A.vec.construct = (fun M : Mat ℝ m n => fun k : Fin (n * m) =>
       M (finProdFinEquiv.symm k).2 (finProdFinEquiv.symm k).1) '' A.construct := by -- --- PROOF ---
   ext x

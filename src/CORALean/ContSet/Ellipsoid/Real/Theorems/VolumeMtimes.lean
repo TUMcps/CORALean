@@ -55,7 +55,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Eq. 19]: `vol(M E) = |det M| vol(E)`, so ratios of volumes are unchanged by `M`. -/
-theorem Ellipsoid.volume_mtimes (M : Mat ℝ n n) (E : Ellipsoid n) :
+theorem Ellipsoid.volume_mtimes (M : Mat ℝ n n) (E : Ellipsoid n) : -- --- CONCL ---
     (Ellipsoid.mtimes M E).volume = ENNReal.ofReal |M.det| * E.volume := by -- --- PROOF ---
   have hS : 0 ≤ E.Q.det := E.psd.det_nonneg
   simp only [Ellipsoid.volume]

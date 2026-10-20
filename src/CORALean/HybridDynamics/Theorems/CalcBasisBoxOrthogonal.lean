@@ -38,7 +38,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `eye(n)` is `1`, so `B Bᵀ = Bᵀ B = 1`, for the real matrix the stored one denotes. -/
-theorem Location.calcBasisBox_orthogonal (n : ℕ) :
+theorem Location.calcBasisBox_orthogonal (n : ℕ) : -- --- CONCL ---
     toRealMat (calcBasisBox 𝕋 n) * (toRealMat (calcBasisBox 𝕋 n))ᵀ = 1 ∧
       (toRealMat (calcBasisBox 𝕋 n))ᵀ * toRealMat (calcBasisBox 𝕋 n) = 1 := by -- --- PROOF ---
   -- the stored matrix reads as the identity: `1` on the diagonal, `0` off it

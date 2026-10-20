@@ -46,7 +46,7 @@ variable {n : ℕ}
 
 /-- The exponential and its truncation are continuous in the time, so their
 difference is too. -/
-theorem MatExp.continuous_expDiff (A : Mat ℝ n n) (η : ℕ) :
+theorem MatExp.continuous_expDiff (A : Mat ℝ n n) (η : ℕ) : -- --- CONCL ---
     Continuous fun τ : ℝ => exp (τ • A) - MatExp.expTaylor (τ • A) η := by -- --- PROOF ---
   have hsmul : Continuous fun τ : ℝ => τ • A := continuous_id.smul continuous_const
   refine (exp_continuous.comp hsmul).sub ?_

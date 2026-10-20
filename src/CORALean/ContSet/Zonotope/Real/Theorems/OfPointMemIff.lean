@@ -38,7 +38,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.mem_ofPoint_iff (v x : α) :
+theorem Zonotope.mem_ofPoint_iff (v x : α) : -- --- CONCL ---
     x ∈ (Zonotope.ofPoint v).construct ↔ x = v := by -- --- PROOF ---
   constructor
   · rintro ⟨β, -, hxeq⟩

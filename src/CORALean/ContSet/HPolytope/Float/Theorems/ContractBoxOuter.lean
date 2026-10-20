@@ -57,7 +57,8 @@ theorem aux_mem_foldl_contractHalfspace {x : Vec ℝ n} :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.contractBox_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) (I : Interval (Vec 𝕋 n)) :
+theorem HPolytope.contractBox_outer (P : HPolytope 𝕋 (Vec 𝕋 n))
+    (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
     I.construct ∩ P.construct ⊆ (P.contractBox I).construct := by -- --- PROOF ---
   rintro x ⟨hI, hP⟩
   obtain ⟨hle, heq⟩ := HPolytope.rows_of_mem_construct hP

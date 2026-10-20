@@ -64,7 +64,7 @@ theorem SpectraShadow.aux_cross_term (M : Mat ℝ k k) (x : Fin k → ℝ)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.posSemidef_of_diagDominant (M : Mat ℝ k k) (hsym : ∀ i j, M j i = M i j)
-    (hdom : ∀ i, ∑ j, (if j = i then 0 else |M i j|) ≤ M i i) :
+    (hdom : ∀ i, ∑ j, (if j = i then 0 else |M i j|) ≤ M i i) : -- --- CONCL ---
     M.PosSemidef := by -- --- PROOF ---
   refine Matrix.PosSemidef.of_dotProduct_mulVec_nonneg
     (Matrix.IsHermitian.ext fun i j => by simp [hsym]) fun x => ?_

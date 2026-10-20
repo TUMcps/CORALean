@@ -93,7 +93,7 @@ theorem aux_taylor_split (B : Interval (Mat ℝ n n)) (m : ℕ) (i j : Fin n) : 
 /-- The cruder enclosure of [1, Sec. 3.3.1] contains the sharper one of
 [1, Thm. 3.2], entry by entry and at every order from two up. -/
 theorem MatExp.expIntervalEnclosure_contains_exact (A : Interval (Mat ℝ n n)) {t : ℝ}
-    (ht : t ≠ 0) (hA : ∀ p q, A.inf p q ≤ A.sup p q) {κ : ℕ} (hκ : 2 ≤ κ) :
+    (ht : t ≠ 0) (hA : ∀ p q, A.inf p q ≤ A.sup p q) {κ : ℕ} (hκ : 2 ≤ κ) : -- --- CONCL ---
     (MatExp.expIntervalEnclosureExact A t κ).construct
       ⊆ (MatExp.expIntervalEnclosure (Interval.smul t A) κ).construct := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ : ∃ m, κ = m + 2 := ⟨κ - 2, by omega⟩

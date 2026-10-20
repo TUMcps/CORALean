@@ -46,7 +46,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeurNetContrSys.project_outer (Z : S (n + m)) {z : Vec ℝ (n + m)}
-    (hz : z ∈ construct Z) :
+    (hz : z ∈ construct Z) : -- --- CONCL ---
     (fun k => z (Fin.castAdd m k)) ∈
       construct (NeurNetContrSys.project (n := n) Z) := by -- --- PROOF ---
   -- `[I 0] z` reads the first `n` coordinates

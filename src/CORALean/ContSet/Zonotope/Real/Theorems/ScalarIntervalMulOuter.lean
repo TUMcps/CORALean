@@ -54,7 +54,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.scalarIntervalMul_outer (a b : ℝ) (Z : Zonotope (Vec ℝ n)) {s : ℝ}
-    (hs : s ∈ Set.Icc a b) {z : Vec ℝ n} (hz : z ∈ Z.construct) :
+    (hs : s ∈ Set.Icc a b) {z : Vec ℝ n} (hz : z ∈ Z.construct) : -- --- CONCL ---
     s • z ∈ (Zonotope.scalarIntervalMul a b Z).construct := by -- --- PROOF ---
   -- the center's part `c z`
   have hmid : ((a + b) / 2) • z

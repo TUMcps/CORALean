@@ -109,7 +109,8 @@ def sumUpImpl {n : ℕ} (f : Fin n → 𝕋) : 𝕋 := Fin.foldr n (fun i acc =>
 
 def sumDownImpl {n : ℕ} (f : Fin n → 𝕋) : 𝕋 := Fin.foldr n (fun i acc => addDown (f i) acc) zero
 
-@[csimp] theorem sumUp_eq_impl : @sumUp = @sumUpImpl := by -- --- PROOF ---
+@[csimp] theorem sumUp_eq_impl : -- --- CONCL ---
+    @sumUp = @sumUpImpl := by -- --- PROOF ---
   funext 𝕋 _ n
   induction n with
   | zero => funext f; rw [sumUpImpl, Fin.foldr_zero]; rfl
@@ -119,7 +120,8 @@ def sumDownImpl {n : ℕ} (f : Fin n → 𝕋) : 𝕋 := Fin.foldr n (fun i acc 
     rw [sumUpImpl, Fin.foldr_succ, ← sumUpImpl, ← congrFun ih fun i => f i.succ]
     rfl
 
-@[csimp] theorem sumDown_eq_impl : @sumDown = @sumDownImpl := by -- --- PROOF ---
+@[csimp] theorem sumDown_eq_impl : -- --- CONCL ---
+    @sumDown = @sumDownImpl := by -- --- PROOF ---
   funext 𝕋 _ n
   induction n with
   | zero => funext f; rw [sumDownImpl, Fin.foldr_zero]; rfl
@@ -156,7 +158,8 @@ def maximumOverImpl {n : ℕ} (f : Fin n → 𝕋) : 𝕋 :=
   | 0, _ => zero
   | k + 1, f => Fin.foldr k (fun i acc => maximum (f i.castSucc) acc) (f (Fin.last k))
 
-@[csimp] theorem maximumOver_eq_impl : @maximumOver = @maximumOverImpl := by -- --- PROOF ---
+@[csimp] theorem maximumOver_eq_impl : -- --- CONCL ---
+    @maximumOver = @maximumOverImpl := by -- --- PROOF ---
   funext 𝕋 _ n
   induction n with
   | zero => funext f; rfl

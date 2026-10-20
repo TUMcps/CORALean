@@ -39,7 +39,7 @@ variable {k : ℕ} {n : Fin k → ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.stackProd_exact (gs : ∀ i, HPolytope (Vec ℝ (n i))) :
+theorem HPolytope.stackProd_exact (gs : ∀ i, HPolytope (Vec ℝ (n i))) : -- --- CONCL ---
     (HPolytope.stackProd gs).construct =
       {z | ∀ i, unstack z i ∈ (gs i).construct} := by -- --- PROOF ---
   ext z

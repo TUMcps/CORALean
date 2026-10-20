@@ -41,7 +41,7 @@ open Filter Topology
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `y` is a merge value iff `f` tends to `y` at one end. -/
-theorem ActivationKind.mergeValues_iff (k : ActivationKind) (y : ℝ) :
+theorem ActivationKind.mergeValues_iff (k : ActivationKind) (y : ℝ) : -- --- CONCL ---
     (∃ z ∈ k.mergeValues, (z : ℝ) = y) ↔
       (Tendsto k.fn atBot (𝓝 y) ∨ Tendsto k.fn atTop (𝓝 y)) := by -- --- PROOF ---
   -- the logistic function's limits, from `exp (-t)`

@@ -54,7 +54,7 @@ private noncomputable def aux_H (s₁ s₂ : ℝ) (E₁ E₂ : Ellipsoid n) : Ma
   Matrix.of fun i => Fin.append (fun j => s₁ * E₁.G i j) (fun j => s₂ * E₂.G i j)
 
 /-- `H Hᵀ = s₁² G₁ G₁ᵀ + s₂² G₂ G₂ᵀ`, block by block. -/
-private theorem aux_H_mul_transpose (s₁ s₂ : ℝ) (E₁ E₂ : Ellipsoid n) :
+private theorem aux_H_mul_transpose (s₁ s₂ : ℝ) (E₁ E₂ : Ellipsoid n) : -- --- CONCL ---
     aux_H s₁ s₂ E₁ E₂ * (aux_H s₁ s₂ E₁ E₂)ᵀ = (Ellipsoid.plus s₁ s₂ E₁ E₂).Q := by -- --- PROOF ---
   show _ = s₁ ^ 2 • E₁.Q + s₂ ^ 2 • E₂.Q
   rw [← E₁.G_mul_transpose, ← E₂.G_mul_transpose]
@@ -67,7 +67,7 @@ private theorem aux_H_mul_transpose (s₁ s₂ : ℝ) (E₁ E₂ : Ellipsoid n) 
 /-- The scalings cancel against the divisions, so the enclosure's ball point
 reproduces the summands exactly. -/
 private theorem aux_value_plus {s₁ s₂ : ℝ} (hne₁ : s₁ ≠ 0) (hne₂ : s₂ ≠ 0)
-    (E₁ E₂ : Ellipsoid n) (u₁ u₂ : Vec ℝ n) :
+    (E₁ E₂ : Ellipsoid n) (u₁ u₂ : Vec ℝ n) : -- --- CONCL ---
     (E₁.q + E₂.q) + aux_H s₁ s₂ E₁ E₂ *ᵥ Fin.append (fun j => u₁ j / s₁) (fun j => u₂ j / s₂)
       = (E₁.q + E₁.G *ᵥ u₁) + (E₂.q + E₂.G *ᵥ u₂) := by -- --- PROOF ---
   have hmul : aux_H s₁ s₂ E₁ E₂ *ᵥ Fin.append (fun j => u₁ j / s₁) (fun j => u₂ j / s₂)
@@ -88,7 +88,7 @@ private theorem aux_value_plus {s₁ s₂ : ℝ} (hne₁ : s₁ ≠ 0) (hne₂ :
 
 -- the enclosure holds at every admissible pair, the inequality being all that is used
 theorem Ellipsoid.plus_outer (s₁ s₂ : ℝ) (E₁ E₂ : Ellipsoid n) (hne₁ : s₁ ≠ 0)
-    (hne₂ : s₂ ≠ 0) (hs : 1 / s₁ ^ 2 + 1 / s₂ ^ 2 ≤ 1) :
+    (hne₂ : s₂ ≠ 0) (hs : 1 / s₁ ^ 2 + 1 / s₂ ^ 2 ≤ 1) : -- --- CONCL ---
     E₁.construct + E₂.construct ⊆ (Ellipsoid.plus s₁ s₂ E₁ E₂).construct := by -- --- PROOF ---
   rw [E₁.construct_eq_sqrt, E₂.construct_eq_sqrt]
   have hsq₁ : (0:ℝ) < s₁ ^ 2 := lt_of_le_of_ne (sq_nonneg _) (Ne.symm (pow_ne_zero 2 hne₁))

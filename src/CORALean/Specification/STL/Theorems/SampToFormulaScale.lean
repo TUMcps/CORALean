@@ -45,7 +45,7 @@ variable {X : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Samp.toFormula_scale (c : ℝ≥0) (s : STL.Samp X) :
+theorem STL.Samp.toFormula_scale (c : ℝ≥0) (s : STL.Samp X) : -- --- CONCL ---
     (s.toFormula 1).scale c = s.toFormula c := by -- --- PROOF ---
   induction s with
   | lit ϱ => exact STL.Formula.scale_ofPform c ϱ

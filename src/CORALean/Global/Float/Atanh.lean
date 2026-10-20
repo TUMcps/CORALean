@@ -60,7 +60,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-private theorem artanh_neg_eq {x : ℝ} (h1 : -1 < x) (h2 : x < 1) :
+private theorem artanh_neg_eq {x : ℝ} (h1 : -1 < x) (h2 : x < 1) : -- --- CONCL ---
     Real.artanh (-x) = -Real.artanh x := by -- --- PROOF ---
   rw [Real.artanh_eq_half_log ⟨by linarith, by linarith⟩,
     Real.artanh_eq_half_log ⟨h1.le, h2.le⟩]
@@ -70,7 +70,7 @@ private theorem artanh_neg_eq {x : ℝ} (h1 : -1 < x) (h2 : x < 1) :
   ring
 
 theorem le_atanhUp (p k : ℕ) (x : 𝕋) (h1 : -1 < toReal x)
-    (h2 : 0 < toReal (subDown one x)) :
+    (h2 : 0 < toReal (subDown one x)) : -- --- CONCL ---
     Real.artanh (toReal x) ≤ toReal (atanhUp p k x) := by -- --- PROOF ---
   have hD := subDown_le_sub (one : 𝕋) x
   have hN := add_le_addUp (one : 𝕋) x
@@ -91,7 +91,7 @@ theorem le_atanhUp (p k : ℕ) (x : 𝕋) (h1 : -1 < toReal x)
 
 theorem atanhDown_le (p k : ℕ) (x : 𝕋) (h1 : toReal x < 1)
     (h2 : 0 < toReal (subDown one (neg x)))
-    (hx : 0 ≤ toReal x → (1 + toReal x) / (1 - toReal x) ≤ 2 ^ p / 2) :
+    (hx : 0 ≤ toReal x → (1 + toReal x) / (1 - toReal x) ≤ 2 ^ p / 2) : -- --- CONCL ---
     toReal (atanhDown p k x) ≤ Real.artanh (toReal x) := by -- --- PROOF ---
   unfold atanhDown
   split_ifs with h

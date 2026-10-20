@@ -43,7 +43,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.sum_mem_sumTerms (f : ℕ → Zonotope α) (v : ℕ → α) (N : ℕ)
-    (h : ∀ m, m < N → v m ∈ (f m).construct) :
+    (h : ∀ m, m < N → v m ∈ (f m).construct) : -- --- CONCL ---
     ∑ m ∈ Finset.range N, v m ∈ (Zonotope.sumTerms f N).construct := by -- --- PROOF ---
   induction N with
   | zero =>

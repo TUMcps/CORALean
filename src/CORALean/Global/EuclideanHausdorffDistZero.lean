@@ -42,7 +42,8 @@ variable {n : ℕ}
 
 /-- Every member of a bounded set lies within `d_H(0,S)` of the origin, read at `‖·‖₂`. -/
 theorem norm₂_le_hausdorffDist₂_zero {S : Set (Vec ℝ n)} (hS : Bornology.IsBounded S)
-    {y : Vec ℝ n} (hy : y ∈ S) : ‖y‖₂ ≤ hausdorffDist₂ {0} S := by -- --- PROOF ---
+    {y : Vec ℝ n} (hy : y ∈ S) : -- --- CONCL ---
+    ‖y‖₂ ≤ hausdorffDist₂ {0} S := by -- --- PROOF ---
   have hSb : Bornology.IsBounded (toEuclidean '' S) := by
     obtain ⟨C, hC⟩ := isBounded_iff_forall_norm_le.mp hS
     refine isBounded_iff_forall_norm_le.mpr ⟨Real.sqrt n * C, ?_⟩

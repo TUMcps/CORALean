@@ -46,7 +46,7 @@ variable {n d : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.intersectWeighted_outer (w : Fin d → ℝ) (Zs : Fin d → Zonotope (Vec ℝ n))
-    (hw : ∑ i, w i ≠ 0) :
+    (hw : ∑ i, w i ≠ 0) : -- --- CONCL ---
     (⋂ i, (Zs i).construct) ⊆ (Zonotope.intersectWeighted w Zs).construct := by -- --- PROOF ---
   intro x hx
   -- every zonotope has its own coefficients for `x`

@@ -54,7 +54,7 @@ variable {n : ℕ}
 
 /-- [1, Lemma 3], the rate half: `Δε^h_k(Δt,η)` is `O(Δt)` as the step shrinks to `0`. -/
 theorem MatExp.affineDynamicsError_isBigO (A : Mat ℝ n n) (H : Zonotope (Vec ℝ n))
-    (ũ : Vec ℝ n) (η : ℕ) :
+    (ũ : Vec ℝ n) (η : ℕ) : -- --- CONCL ---
     (fun Δt => MatExp.affineDynamicsError A H ũ Δt η)
       =O[𝓝[>] (0 : ℝ)] fun Δt : ℝ => Δt := by -- --- PROOF ---
   obtain ⟨K, hK⟩ := MatExp.exists_affineDynamicsError_le_const_mul A H ũ η

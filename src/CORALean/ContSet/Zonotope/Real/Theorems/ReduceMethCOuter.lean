@@ -45,7 +45,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- CORA's `methC` over-approximates, at whatever basis its search returns. -/
-theorem Zonotope.reduceMethC_outer (Z : Zonotope (Vec ℝ n)) (o : ℕ) :
+theorem Zonotope.reduceMethC_outer (Z : Zonotope (Vec ℝ n)) (o : ℕ) : -- --- CONCL ---
     Z.construct ⊆ (Z.reduceMethC o).construct := by -- --- PROOF ---
   unfold Zonotope.reduceMethC
   simp only []

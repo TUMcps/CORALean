@@ -36,7 +36,8 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The same branches upward, which together put the slope in `[0,1]`. -/
-theorem reluSlope_le_one (l u : ℝ) : reluSlope l u ≤ 1 := by -- --- PROOF ---
+theorem reluSlope_le_one (l u : ℝ) : -- --- CONCL ---
+    reluSlope l u ≤ 1 := by -- --- PROOF ---
   show (if decide (u ≤ 0) = true then (0 : ℝ)
     else if decide (0 ≤ l) = true then 1 else u / (u + -l)) ≤ 1
   split

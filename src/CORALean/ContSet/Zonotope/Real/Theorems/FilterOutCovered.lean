@@ -48,7 +48,8 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.filterOut_covered (Zs : Fin m → Zonotope (Vec ℝ n)) (ind : Fin m)
-    (hint : (interior (Zs ind).construct).Nonempty) (hout : ind ∉ Zonotope.filterOut Zs) :
+    (hint : (interior (Zs ind).construct).Nonempty)
+    (hout : ind ∉ Zonotope.filterOut Zs) : -- --- CONCL ---
     (Zs ind).construct ⊆ ⋃ j ∈ {j | j ≠ ind}, (Zs j).construct := by -- --- PROOF ---
   intro x hx
   by_contra hxU

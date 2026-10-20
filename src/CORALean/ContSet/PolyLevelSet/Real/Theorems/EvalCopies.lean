@@ -44,7 +44,7 @@ variable {n : ℕ}
 
 /-- Block `j`'s row of `repBlockDiag 0 a A` pairs with block `j`'s entries alone. -/
 theorem PolyLevelSet.aux_mulVec_repBlockDiag {a m q : ℕ} (A : Mat ℝ m q) (u : Fin (a * q) → ℝ)
-    (j : Fin a) (i : Fin m) :
+    (j : Fin a) (i : Fin m) : -- --- CONCL ---
     (∑ y, repBlockDiag 0 a A (finProdFinEquiv (j, i)) y * u y)
       = ∑ l, A i l * u (finProdFinEquiv (j, l)) := by -- --- PROOF ---
   rw [sum_rep (fun y => repBlockDiag 0 a A (finProdFinEquiv (j, i)) y * u y)]
@@ -59,7 +59,7 @@ theorem PolyLevelSet.aux_mulVec_repBlockDiag {a m q : ℕ} (A : Mat ℝ m q) (u 
 
 /-- Copy `j`'s row `i` is `P`'s row `i` at block `j`. -/
 theorem PolyLevelSet.eval_copies (P : PolyLevelSet n) (a : ℕ) (x : Vec ℝ (a * n)) (j : Fin a)
-    (i : Fin P.m) :
+    (i : Fin P.m) : -- --- CONCL ---
     (P.copies a).eval x (finProdFinEquiv (j, i))
       = P.eval (fun k => x (finProdFinEquiv (j, k))) i := by -- --- PROOF ---
   show (∑ y, repBlockDiag 0 a P.A (finProdFinEquiv (j, i)) y

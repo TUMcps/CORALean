@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.canonicalFloat_input (A : Mat 𝕋 n n) :
+theorem LinearSys.canonicalFloat_input (A : Mat 𝕋 n n) : -- --- CONCL ---
     (fun u => Scalar.toRealMat (LinearSys.canonicalFloat A).B *ᵥ u +
       Scalar.toRealVec (LinearSys.canonicalFloat A).c) = id := by -- --- PROOF ---
   funext u i

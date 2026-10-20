@@ -51,7 +51,7 @@ namespace CORALean.Real
 /-- The column sum strictly drops across an edge: every other exponent is
 shared, and the one the edge moves falls. -/
 theorem PolyZonotope.aux_sum_lt_of_expEdge {p h : ℕ} (E : Fin p → Fin h → ℕ) {η : ℕ}
-    {i j : Fin h} (hij : PolyZonotope.ExpEdge E η i j) :
+    {i j : Fin h} (hij : PolyZonotope.ExpEdge E η i j) : -- --- CONCL ---
     ∑ k, E k j < ∑ k, E k i := by -- --- PROOF ---
   obtain ⟨k₀, hsim, -, -, hlt⟩ := hij
   refine Finset.sum_lt_sum (fun k _ => ?_) ⟨k₀, Finset.mem_univ k₀, hlt⟩

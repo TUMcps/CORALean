@@ -46,7 +46,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.ahPolytope_eq_of_leftInverse_counterexample :
+theorem HPolytope.ahPolytope_eq_of_leftInverse_counterexample : -- --- CONCL ---
     ∃ (X : Mat ℝ 2 1) (Xd : Mat ℝ 1 2) (H : Mat ℝ 2 1) (h : Vec ℝ 2), Xd * X = 1 ∧
       HPolytope.ahPolytope 0 X (HPolytope.ineqs H h)
         ≠ {y | (H * Xd) *ᵥ y ≤ h + (H * Xd) *ᵥ 0} := by -- --- PROOF ---

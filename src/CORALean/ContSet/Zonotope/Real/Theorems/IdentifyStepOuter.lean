@@ -58,7 +58,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.identifyStep_outer (X : Zonotope (Vec ℝ n)) (r : Vec ℝ n) (y σ : ℝ)
-    (l γ : Vec ℝ n) (P : Set (Vec ℝ n)) (hP : P ⊆ X.construct) :
+    (l γ : Vec ℝ n) (P : Set (Vec ℝ n)) (hP : P ⊆ X.construct) : -- --- CONCL ---
     (P ∩ {θ | |r ⬝ᵥ θ - y| ≤ σ}) + {b | ∀ i, |b i| ≤ γ i} ⊆
       (X.identifyStep r y σ l γ).construct := by -- --- PROOF ---
   rintro _ ⟨θ, ⟨hθP, hθF⟩, b, hb, rfl⟩

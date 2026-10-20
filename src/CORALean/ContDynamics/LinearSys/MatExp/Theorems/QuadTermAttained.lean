@@ -51,7 +51,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Both bounds of the parabola over `[a, b]` are attained inside `[a, b]`. -/
-theorem MatExp.quadTerm_attained {t a b : ℝ} (hab : a ≤ b) (ht : t ≠ 0) :
+theorem MatExp.quadTerm_attained {t a b : ℝ} (hab : a ≤ b) (ht : t ≠ 0) : -- --- CONCL ---
     (∃ x, a ≤ x ∧ x ≤ b ∧ MatExp.quadTerm t x = MatExp.quadTermLo t a b) ∧
       (∃ x, a ≤ x ∧ x ≤ b ∧ MatExp.quadTerm t x = MatExp.quadTermHi t a b) := by -- --- PROOF ---
   constructor

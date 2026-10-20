@@ -39,7 +39,7 @@ variable {m N : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.lift_exact (I : Interval (Vec ℝ m)) (N : ℕ) (proj : Fin m → Fin N)
-    (hp : Function.Injective proj) :
+    (hp : Function.Injective proj) : -- --- CONCL ---
     (I.lift_ N proj).construct = {x | (fun i => x (proj i)) ∈ I.construct} := by -- --- PROOF ---
   ext x
   simp only [Interval.EBox.construct, Interval.lift_, Set.mem_setOf_eq, Interval.construct]

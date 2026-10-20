@@ -77,7 +77,7 @@ theorem Zonotope.aux_sum_univ_reduceAndAbsorbBy {Z : Zonotope (Vec 𝕋 n)}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.reduceAndAbsorbBy_outer (Z : Zonotope (Vec 𝕋 n))
-    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) :
+    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) : -- --- CONCL ---
     Z.construct ⊆ (Z.reduceAndAbsorbBy part).construct := by -- --- PROOF ---
   rintro _ ⟨z, hz', e, he, rfl⟩
   obtain ⟨β, hβ, hz⟩ := Zonotope.mem_nominalSet_iff.mp hz'

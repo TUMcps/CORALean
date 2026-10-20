@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.interval_contains (Z : Zonotope (Vec 𝕋 n)) :
+theorem Zonotope.interval_contains (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     Z.construct ⊆ Z.interval.construct := by -- --- PROOF ---
   rintro _ ⟨z, hzmem, e, he, rfl⟩ i
   obtain ⟨β, hβ, hz⟩ := Zonotope.mem_nominalSet_iff.mp hzmem

@@ -40,7 +40,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.shrink_outer (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k) :
+theorem ZonoBundle.shrink_outer (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k) : -- --- CONCL ---
     zB.construct ⊆ (zB.shrink hk).construct := by -- --- PROOF ---
   intro x hx
   -- the bundle lies in the intersection of the reduced members

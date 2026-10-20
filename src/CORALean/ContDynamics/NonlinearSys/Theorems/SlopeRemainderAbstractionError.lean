@@ -56,7 +56,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 /-- A matrix's negation, stored entrywise, is a point interval at the negated
 real matrix. -/
-theorem aux_neg_mem_point {k l : ℕ} (A : Mat 𝕋 k l) :
+theorem aux_neg_mem_point {k l : ℕ} (A : Mat 𝕋 k l) : -- --- CONCL ---
     -Scalar.toRealMat A ∈
       (Interval.point (α := Mat 𝕋 k l) (-A)).construct := by -- --- PROOF ---
   have h := Interval.mem_point (α := Mat 𝕋 k l) (-A)
@@ -67,7 +67,7 @@ theorem aux_neg_mem_point {k l : ℕ} (A : Mat 𝕋 k l) :
   rwa [he] at h
 
 /-- The same for a vector. -/
-theorem aux_neg_mem_point_vec {k : ℕ} (v : Vec 𝕋 k) :
+theorem aux_neg_mem_point_vec {k : ℕ} (v : Vec 𝕋 k) : -- --- CONCL ---
     -toRealVec v ∈
       (Interval.point (α := Vec 𝕋 k) (-v)).construct := by -- --- PROOF ---
   have h := Interval.mem_point (α := Vec 𝕋 k) (-v)

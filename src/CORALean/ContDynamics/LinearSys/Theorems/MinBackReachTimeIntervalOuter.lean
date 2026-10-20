@@ -96,7 +96,8 @@ theorem LinearSys.minBackReachTimeInterval_outer (sys : LinearSys 𝕋 n) {T τ 
     -- (46), (49): each `p_(j)` is a support value of some trajectory's own set
     (hp : ∀ j : Fin q, ∃ i : Fin q,
       ∀ x ∈ sys.timeIntervalBackReachSetOfInputExact T U W Xend τ (û i),
-        HPolytope.rowLin N j x ≤ sys.aux_minBackReachP ρ CZ W₀ U₀ Zw N t₀ Δt η (ω - 1) j) :
+        HPolytope.rowLin N j x ≤ sys.aux_minBackReachP ρ CZ W₀ U₀ Zw N t₀ Δt η (ω - 1) j)
+    : -- --- CONCL ---
     sys.timeIntervalBackReachSetForallExistsExact T U W Xend τ ⊆
       sys.minBackReachTimeInterval ρ CZ W₀ U₀ Zw N t₀ tend η ω := by -- --- PROOF ---
   subst hΔt

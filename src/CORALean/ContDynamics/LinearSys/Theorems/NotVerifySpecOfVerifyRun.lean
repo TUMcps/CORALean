@@ -62,7 +62,8 @@ theorem LinearSys.not_verifySpec_of_verifyRun
     (h : LinearSys.VerifySound Reach reachFn innerApprox distG distF le)
     (G : Fin (r + 1) → HPolytope (Vec ℝ n)) (F : Fin (w + 1) → HPolytope (Vec ℝ n))
     (εmax : ℝ) (fuel : ℕ)
-    (hrun : LinearSys.verifyRun reachFn innerApprox distG distF G F le εmax fuel = some false) :
+    (hrun : LinearSys.verifyRun reachFn innerApprox distG distF G F le εmax fuel = some false)
+    : -- --- CONCL ---
     ¬ LinearSys.VerifySpec G F Reach := by -- --- PROOF ---
   induction fuel generalizing εmax with
   | zero => simp [LinearSys.verifyRun] at hrun

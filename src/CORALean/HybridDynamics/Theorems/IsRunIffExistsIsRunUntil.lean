@@ -58,7 +58,7 @@ theorem aux_runUntil_nonneg {HA : HybridAutomaton S G L 𝕋 n} {T : ℝ} {k : �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HybridAutomaton.isRun_iff_exists_isRunUntil {HA : HybridAutomaton S G L 𝕋 n} {ℓ ℓ' : L}
-    {x y : Vec ℝ n} :
+    {x y : Vec ℝ n} : -- --- CONCL ---
     HA.IsRun ℓ x ℓ' y ↔ ∃ (T : ℝ) (k : ℕ), HA.IsRunUntil T k ℓ x ℓ' y := by -- --- PROOF ---
   constructor
   · intro run

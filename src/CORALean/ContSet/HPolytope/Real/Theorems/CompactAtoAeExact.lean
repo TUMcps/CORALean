@@ -40,7 +40,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.compactAtoAe_exact (P : HPolytope (Vec ℝ n)) :
+theorem HPolytope.compactAtoAe_exact (P : HPolytope (Vec ℝ n)) : -- --- CONCL ---
     P.compactAtoAe.construct = P.construct := by -- --- PROOF ---
   rw [← P.normalizeRows_exact]
   unfold HPolytope.compactAtoAe

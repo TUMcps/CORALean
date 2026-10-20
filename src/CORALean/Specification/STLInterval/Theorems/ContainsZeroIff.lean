@@ -37,7 +37,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `contains_` at `tol = 0` iff the sets of times are included. -/
-theorem STLInterval.contains_zero_iff (I J : STLInterval) :
+theorem STLInterval.contains_zero_iff (I J : STLInterval) : -- --- CONCL ---
     I.contains_ 0 J ↔ J.set ⊆ I.set := by -- --- PROOF ---
   cases I with
   | empty =>

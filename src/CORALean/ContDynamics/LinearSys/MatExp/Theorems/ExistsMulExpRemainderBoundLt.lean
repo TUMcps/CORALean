@@ -51,7 +51,8 @@ variable {n : ℕ}
 
 /-- The step the tuning algorithm actually needs to name: a real bound under
 `ε`, sound because its own side condition holds too. -/
-theorem MatExp.exists_mul_expRemainderBound_lt (A : Mat ℝ n n) (η : ℕ) {ε : ℝ} (hε : 0 < ε) :
+theorem MatExp.exists_mul_expRemainderBound_lt (A : Mat ℝ n n) (η : ℕ) {ε : ℝ}
+    (hε : 0 < ε) : -- --- CONCL ---
     ∃ r : ℝ, 0 < r ∧ r * MatExp.expRemainderBound (r • A) η < ε ∧
       ‖r • A‖ / ((η : ℝ) + 2) < 1 := by -- --- PROOF ---
   have hev1 : ∀ᶠ r : ℝ in 𝓝[>] (0 : ℝ), r * MatExp.expRemainderBound (r • A) η < ε :=

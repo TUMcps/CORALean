@@ -47,7 +47,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem add_properties_counterexample (hn : 0 < n) :
+theorem add_properties_counterexample (hn : 0 < n) : -- --- CONCL ---
     ∃ S₁ S₂ : Set (Vec ℝ n), interior S₁ = ∅ ∧ Bornology.IsBounded S₁ ∧
       (interior S₂).Nonempty ∧ ¬ Bornology.IsBounded S₂ ∧
       interior (S₁ + S₂) = ∅ ∧ Bornology.IsBounded (S₁ + S₂) := by -- --- PROOF ---

@@ -38,7 +38,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.isequal_sound {zB S : ZonoBundle (Vec 𝕋 n)} (h : zB.isequal S = true) :
+theorem ZonoBundle.isequal_sound {zB S : ZonoBundle (Vec 𝕋 n)}
+    (h : zB.isequal S = true) : -- --- CONCL ---
     zB.construct = S.construct := by -- --- PROOF ---
   unfold ZonoBundle.isequal at h
   split at h

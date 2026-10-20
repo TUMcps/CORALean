@@ -62,7 +62,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `∫₀^τ e^{(τ-s)a} μ ds = (e^{τa} - 1)/a · μ`, by the fundamental theorem of calculus. -/
-theorem aux_integral_exp_sub_mul {a τ : ℝ} (ha : 0 < a) (μ : ℝ) :
+theorem aux_integral_exp_sub_mul {a τ : ℝ} (ha : 0 < a) (μ : ℝ) : -- --- CONCL ---
     ∫ s in (0:ℝ)..τ, Real.exp ((τ - s) * a) * μ
       = (Real.exp (τ * a) - 1) / a * μ := by -- --- PROOF ---
   have hderiv : ∀ s ∈ Set.uIcc (0:ℝ) τ,
@@ -86,7 +86,7 @@ theorem aux_integral_exp_sub_mul {a τ : ℝ} (ha : 0 < a) (μ : ℝ) :
 /-- eq. 3 of [1]: an input bounded by `μ` reaches no further than `(e^{τ‖A‖} - 1)/‖A‖ · μ`. -/
 theorem LinearSys.norm_le_of_mem_inputReach (sys : LinearSys 𝕋 n) {U : S n} {μ τ : ℝ}
     (hA : 0 < ‖toRealMat sys.A‖) (hτ : 0 ≤ τ) (hU : ∀ u ∈ construct U, ‖u‖ ≤ μ)
-    {v : Vec ℝ n} (hv : v ∈ sys.inputReach U τ) :
+    {v : Vec ℝ n} (hv : v ∈ sys.inputReach U τ) : -- --- CONCL ---
     ‖v‖ ≤ (Real.exp (τ * ‖toRealMat sys.A‖) - 1) / ‖toRealMat sys.A‖ * μ := by -- --- PROOF ---
   obtain ⟨u, hu, -, rfl⟩ := hv
   set a := ‖toRealMat sys.A‖

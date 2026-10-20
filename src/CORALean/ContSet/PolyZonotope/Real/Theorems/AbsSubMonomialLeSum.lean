@@ -58,7 +58,7 @@ theorem PolyZonotope.aux_abs_sub_prod_le {p : ℕ} {a : Fin p → ℝ} (ha : ∀
 /-- The hybrid that reads column `j` on `s` and column `i` off it is within the
 `eDiff`s of `s` of the monomial at `i`. -/
 theorem PolyZonotope.aux_abs_sub_hybrid_le {p h : ℕ} (E : Fin p → Fin h → ℕ)
-    {a : Fin p → ℝ} (ha : ∀ k, |a k| ≤ 1) (i j : Fin h) (s : Finset (Fin p)) :
+    {a : Fin p → ℝ} (ha : ∀ k, |a k| ≤ 1) (i j : Fin h) (s : Finset (Fin p)) : -- --- CONCL ---
     |PolyZonotope.monomial E a i - ∏ k, a k ^ (if k ∈ s then E k j else E k i)|
       ≤ ∑ k ∈ s, (PolyZonotope.eDiff (E k i) (E k j) : ℝ) := by -- --- PROOF ---
   induction s using Finset.induction_on with
@@ -94,7 +94,7 @@ theorem PolyZonotope.aux_abs_sub_hybrid_le {p h : ℕ} (E : Fin p → Fin h → 
 /-- Two monomials drift by at most the sum over every factor of the `eDiff` of
 their exponents there, whatever the two exponent columns are. -/
 theorem PolyZonotope.abs_sub_monomial_le_sum {p h : ℕ} (E : Fin p → Fin h → ℕ)
-    {a : Fin p → ℝ} (ha : ∀ k, |a k| ≤ 1) (i j : Fin h) :
+    {a : Fin p → ℝ} (ha : ∀ k, |a k| ≤ 1) (i j : Fin h) : -- --- CONCL ---
     |PolyZonotope.monomial E a i - PolyZonotope.monomial E a j|
       ≤ ∑ k, (PolyZonotope.eDiff (E k i) (E k j) : ℝ) := by -- --- PROOF ---
   have h1 : ∀ k, (if k ∈ (Finset.univ : Finset (Fin p)) then E k j else E k i) = E k j :=

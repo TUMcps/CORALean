@@ -68,7 +68,7 @@ theorem aux_dualVec_dotFun (d : Vec ℝ n) : dualVec (aux_dotFun d) = d := by
 
 /-- The support value of a sum is the sum of the support values. -/
 theorem aux_support_sum_eq (E E₁ E₂ : Ellipsoid n) (h : E₁.construct + E₂.construct = E.construct)
-    (c : Vec ℝ n →ₗ[ℝ] ℝ) :
+    (c : Vec ℝ n →ₗ[ℝ] ℝ) : -- --- CONCL ---
     (E.supportBound c).val =
       (E₁.supportBound c).val + (E₂.supportBound c).val := by -- --- PROOF ---
   obtain ⟨⟨x, hx, hcx⟩, hub⟩ := E.isGreatest_support c
@@ -93,7 +93,7 @@ theorem aux_pullback_sq (E : Ellipsoid n) (d : Vec ℝ n) :
   simp [Matrix.mulVec, dotProduct]
 
 /-- The parallelogram law for the squared support lengths. -/
-theorem aux_parallelogram (E : Ellipsoid n) (u v : Vec ℝ n) :
+theorem aux_parallelogram (E : Ellipsoid n) (u v : Vec ℝ n) : -- --- CONCL ---
     ‖E.pullback (aux_dotFun (u + v))‖₂ ^ 2 + ‖E.pullback (aux_dotFun (u - v))‖₂ ^ 2
       = 2 * ‖E.pullback (aux_dotFun u)‖₂ ^ 2
         + 2 * ‖E.pullback (aux_dotFun v)‖₂ ^ 2 := by -- --- PROOF ---
@@ -140,7 +140,7 @@ theorem aux_len₂ (d : Vec ℝ 2) :
 /-- The support length of the sum is the sum of the support lengths: the center cancels in
 `d` and `-d`. -/
 theorem aux_support_length_sum (d : Vec ℝ 2) (E : Ellipsoid 2)
-    (h : aux_E₁.construct + aux_E₂.construct = E.construct) :
+    (h : aux_E₁.construct + aux_E₂.construct = E.construct) : -- --- CONCL ---
     ‖E.pullback (aux_dotFun d)‖₂ =
       ‖aux_E₁.pullback (aux_dotFun d)‖₂ + ‖aux_E₂.pullback (aux_dotFun d)‖₂ := by -- --- PROOF ---
   have h1 := aux_support_sum_eq E aux_E₁ aux_E₂ h (aux_dotFun d)
@@ -164,7 +164,7 @@ theorem aux_support_length_sum (d : Vec ℝ 2) (E : Ellipsoid 2)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Sec. I (Fig. 1)]: the sum of two nondegenerate ellipses is no ellipsoid. -/
-theorem Ellipsoid.exists_sum_not_construct :
+theorem Ellipsoid.exists_sum_not_construct : -- --- CONCL ---
     ∃ E₁ E₂ : Ellipsoid 2, E₁.Q.PosDef ∧ E₂.Q.PosDef ∧
       ∀ E : Ellipsoid 2, E₁.construct + E₂.construct ≠ E.construct := by -- --- PROOF ---
   refine ⟨aux_E₁, aux_E₂, aux_posDef_41, aux_posDef_14, fun E h => ?_⟩

@@ -39,7 +39,8 @@ open Finset
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem le_add_sum_levels : ∀ {k : ℕ} (L : Fin (k + 1) → ℝ) (p : Fin k → Prop)
+theorem le_add_sum_levels : -- --- CONCL ---
+    ∀ {k : ℕ} (L : Fin (k + 1) → ℝ) (p : Fin k → Prop)
     [DecidablePred p] (v : ℝ), (∀ i : Fin k, L i.castSucc ≤ L i.succ) →
     (∀ i, ¬ p i → v ≤ L i.castSucc) → v ≤ L (Fin.last k) →
     v ≤ L 0 + ∑ i, if p i then L i.succ - L i.castSucc else 0 := by -- --- PROOF ---

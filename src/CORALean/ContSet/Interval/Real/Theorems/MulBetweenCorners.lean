@@ -48,7 +48,7 @@ namespace CORALean.Real
 /-- A product of two bounded factors never leaves the hull of the four corner
 products. -/
 theorem Interval.mul_between_corners {a b c d y x : ℝ} (hy₁ : a ≤ y) (hy₂ : y ≤ b)
-    (hx₁ : c ≤ x) (hx₂ : x ≤ d) :
+    (hx₁ : c ≤ x) (hx₂ : x ≤ d) : -- --- CONCL ---
     Interval.mulLo a b c d ≤ y * x ∧ y * x ≤ Interval.mulHi a b c d := by -- --- PROOF ---
   have hy := Interval.mul_between_endpoints (c := x) hy₁ hy₂
   have ha := Interval.mul_between_endpoints (c := a) hx₁ hx₂

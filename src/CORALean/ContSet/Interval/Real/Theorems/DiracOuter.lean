@@ -50,7 +50,7 @@ noncomputable def Interval.aux_diracValue (t : ℝ) : EReal := by
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.dirac_zero_outer (I : Interval (Vec ℝ m)) {x : Vec ℝ m} (hx : x ∈ I.construct)
-    (i : Fin m) :
+    (i : Fin m) : -- --- CONCL ---
     (Interval.dirac 0 I).1 i ≤ Interval.aux_diracValue (x i) ∧
       Interval.aux_diracValue (x i) ≤ (Interval.dirac 0 I).2 i := by -- --- PROOF ---
   classical

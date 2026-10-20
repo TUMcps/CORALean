@@ -43,7 +43,7 @@ variable {X : Type}
 
 /-- A power of `insert b cl` is `b`'s or one of `cl`'s. -/
 theorem STL.Clause.aux_mem_map_j_insert (b : STL.Branch X) (cl : STL.Clause X) (x : ℕ)
-    (h : x ∈ (STL.Clause.insert b cl).map STL.Branch.j) :
+    (h : x ∈ (STL.Clause.insert b cl).map STL.Branch.j) : -- --- CONCL ---
     x = b.j ∨ x ∈ cl.map STL.Branch.j := by -- --- PROOF ---
   induction cl with
   | nil => simpa [STL.Clause.insert] using h
@@ -63,7 +63,7 @@ theorem STL.Clause.aux_mem_map_j_insert (b : STL.Branch X) (cl : STL.Clause X) (
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Clause.nodup_insert (b : STL.Branch X) (cl : STL.Clause X)
-    (h : (cl.map STL.Branch.j).Nodup) :
+    (h : (cl.map STL.Branch.j).Nodup) : -- --- CONCL ---
     ((STL.Clause.insert b cl).map STL.Branch.j).Nodup := by -- --- PROOF ---
   induction cl with
   | nil => simp [STL.Clause.insert]

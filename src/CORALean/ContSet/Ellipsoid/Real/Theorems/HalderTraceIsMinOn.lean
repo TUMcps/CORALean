@@ -51,7 +51,7 @@ variable {n : Type*} [Fintype n]
 
 /-- [1, Sec. II-B]: `trace Q(β)` is minimal at `β = √(trace Q₁ / trace Q₂)`. -/
 theorem Ellipsoid.halder_trace_isMinOn {Q₁ Q₂ : Matrix n n ℝ} (h₁ : 0 < Q₁.trace)
-    (h₂ : 0 < Q₂.trace) :
+    (h₂ : 0 < Q₂.trace) : -- --- CONCL ---
     IsMinOn (fun β : ℝ => ((1 + 1 / β) • Q₁ + (1 + β) • Q₂).trace) (Set.Ioi 0)
       (Real.sqrt (Q₁.trace / Q₂.trace)) := by -- --- PROOF ---
   intro β hβ

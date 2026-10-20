@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {k : ℕ} {n 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.stackProd_exact (bs : ∀ i, Interval (Vec 𝕋 (n i))) :
+theorem Interval.stackProd_exact (bs : ∀ i, Interval (Vec 𝕋 (n i))) : -- --- CONCL ---
     (Interval.stackProd bs).construct =
       {z | ∀ i, unstack z i ∈ (bs i).construct} := by -- --- PROOF ---
   have h : (Interval.stackProd bs).nominal =

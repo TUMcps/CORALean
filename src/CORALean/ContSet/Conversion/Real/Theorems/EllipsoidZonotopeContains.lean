@@ -50,7 +50,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.zonotope_contains (E : Ellipsoid n) :
+theorem Ellipsoid.zonotope_contains (E : Ellipsoid n) : -- --- CONCL ---
     E.construct ⊆ E.zonotope.construct := by -- --- PROOF ---
   intro x hx
   obtain ⟨u, hu, rfl⟩ := Ellipsoid.mem_construct_iff.mp hx

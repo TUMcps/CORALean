@@ -40,7 +40,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every order but the constant one, summed and bounded. -/
-theorem sum_expTail_le {c : ℝ} (hc : 0 ≤ c) (η : ℕ) :
+theorem sum_expTail_le {c : ℝ} (hc : 0 ≤ c) (η : ℕ) : -- --- CONCL ---
     ∑ i ∈ Finset.range η, ((Nat.factorial (i + 1) : ℝ)⁻¹ * c ^ (i + 1))
       ≤ Real.exp c - 1 := by -- --- PROOF ---
   have hkey := Real.sum_le_exp_of_nonneg hc (η + 1)

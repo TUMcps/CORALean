@@ -56,7 +56,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Lemma 4.4]: `vol(E) ≤ κ_ε vol(B)`, `κ_ε ∈ (0, 1)` depending only on `ε`. -/
-theorem Ellipsoid.cut_volume_le {ε : ℝ} (hε : 0 < ε) :
+theorem Ellipsoid.cut_volume_le {ε : ℝ} (hε : 0 < ε) : -- --- CONCL ---
     ∃ κ : ℝ, 0 < κ ∧ κ < 1 ∧ ∀ (n : ℕ) (c : Vec ℝ n), 2 ≤ n → c ⬝ᵥ c = 1 →
       (Ellipsoid.ofShape (Ellipsoid.cutShape n c (1 / Real.sqrt ((n : ℝ) * (1 + ε)))) 0).volume
         ≤ ENNReal.ofReal κ * (Ellipsoid.ofShape (1 : Mat ℝ n n) 0).volume := by -- --- PROOF ---

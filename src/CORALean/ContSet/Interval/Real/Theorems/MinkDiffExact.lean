@@ -41,7 +41,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.minkDiff_exact (I₁ I₂ : Interval α) (h₂ : I₂.IsNonempty) :
+theorem Interval.minkDiff_exact (I₁ I₂ : Interval α) (h₂ : I₂.IsNonempty) : -- --- CONCL ---
     minkowskiDiff I₁.construct I₂.construct =
       (I₁.minkDiff I₂).construct := by -- --- PROOF ---
   refine Set.eq_of_subset_of_subset (fun x hx => ?_) (Interval.minkDiff_inner I₁ I₂)

@@ -48,7 +48,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.box_subset_interval (zB : ZonoBundle α) :
+theorem ZonoBundle.box_subset_interval (zB : ZonoBundle α) : -- --- CONCL ---
     zB.box ⊆ ⋂ i, (zB.Z i).interval.construct := by -- --- PROOF ---
   refine Set.subset_iInter fun i => ?_
   refine Set.iInter_subset_of_subset

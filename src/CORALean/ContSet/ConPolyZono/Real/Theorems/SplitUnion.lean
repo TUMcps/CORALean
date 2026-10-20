@@ -46,7 +46,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.split_union (cPZ : ConPolyZono (Vec ℝ n)) (d : Fin n) :
+theorem ConPolyZono.split_union (cPZ : ConPolyZono (Vec ℝ n)) (d : Fin n) : -- --- CONCL ---
     (cPZ.split d).fst.construct ∪ (cPZ.split d).snd.construct = cPZ.construct := by -- --- PROOF ---
   unfold ConPolyZono.split
   dsimp only

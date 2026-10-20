@@ -76,21 +76,24 @@ theorem aux_notTighter_width (l : Fin 2) :
   rw [Fin.sum_univ_one]
   fin_cases l <;> rfl
 
-theorem aux_notTighter_groupG : aux_notTighter_group.G (0 : Fin 1) = 0 := by -- --- PROOF ---
+theorem aux_notTighter_groupG : -- --- CONCL ---
+    aux_notTighter_group.G (0 : Fin 1) = 0 := by -- --- PROOF ---
   show aux_notTighter_pZ.G (aux_notTighter_part.left 0)
       + (if (0 : Fin 1) = 0 then ∑ j, aux_notTighter_pZ.G (aux_notTighter_part.right j) else 0) = 0
   rw [if_pos rfl, Fin.sum_univ_two]
   show (0 : ℝ) + (1 + -1) = 0
   norm_num
 
-theorem aux_notTighter_groupGI0 : aux_notTighter_group.GI (0 : Fin 2) = 2 := by -- --- PROOF ---
+theorem aux_notTighter_groupGI0 : -- --- CONCL ---
+    aux_notTighter_group.GI (0 : Fin 2) = 2 := by -- --- PROOF ---
   show ((aux_notTighter_pZ.relaxWidthGroup aux_notTighter_part 0 0 : ℕ) : ℝ)
       • aux_notTighter_pZ.G (aux_notTighter_part.right 0) = 2
   rw [aux_notTighter_width]
   show ((2 : ℕ) : ℝ) * (1 : ℝ) = 2
   norm_num
 
-theorem aux_notTighter_groupGI1 : aux_notTighter_group.GI (1 : Fin 2) = -2 := by -- --- PROOF ---
+theorem aux_notTighter_groupGI1 : -- --- CONCL ---
+    aux_notTighter_group.GI (1 : Fin 2) = -2 := by -- --- PROOF ---
   show ((aux_notTighter_pZ.relaxWidthGroup aux_notTighter_part 0 1 : ℕ) : ℝ)
       • aux_notTighter_pZ.G (aux_notTighter_part.right 1) = -2
   rw [aux_notTighter_width]
@@ -107,14 +110,16 @@ theorem aux_notTighter_mergedG :
   show (-1 : ℝ) + 1 = 0
   norm_num
 
-theorem aux_notTighter_chainG : aux_notTighter_chain.G (0 : Fin 1) = 0 := by -- --- PROOF ---
+theorem aux_notTighter_chainG : -- --- CONCL ---
+    aux_notTighter_chain.G (0 : Fin 1) = 0 := by -- --- PROOF ---
   show (aux_notTighter_pZ.relaxExpMulti aux_notTighter_part).G (aux_notTighter_part₂.right 1)
       + (aux_notTighter_pZ.relaxExpMulti aux_notTighter_part).G (aux_notTighter_part₂.right 0) = 0
   rw [aux_notTighter_mergedG]
   show (0 : ℝ) + 0 = 0
   norm_num
 
-theorem aux_notTighter_chainGI0 : aux_notTighter_chain.GI (0 : Fin 2) = 0 := by -- --- PROOF ---
+theorem aux_notTighter_chainGI0 : -- --- CONCL ---
+    aux_notTighter_chain.GI (0 : Fin 2) = 0 := by -- --- PROOF ---
   show ((aux_notTighter_pZ.relaxWidthMulti aux_notTighter_part : ℕ) : ℝ)
       • aux_notTighter_pZ.G (aux_notTighter_part.right 0) = 0
   -- the two share their exponent column, so the first step merges them for free
@@ -126,7 +131,8 @@ theorem aux_notTighter_chainGI0 : aux_notTighter_chain.GI (0 : Fin 2) = 0 := by 
   rw [hw]
   norm_num
 
-theorem aux_notTighter_chainGI1 : aux_notTighter_chain.GI (1 : Fin 2) = 0 := by -- --- PROOF ---
+theorem aux_notTighter_chainGI1 : -- --- CONCL ---
+    aux_notTighter_chain.GI (1 : Fin 2) = 0 := by -- --- PROOF ---
   show (((aux_notTighter_pZ.relaxExpMulti aux_notTighter_part).relaxWidthMulti
       aux_notTighter_part₂ : ℕ) : ℝ)
       • (aux_notTighter_pZ.relaxExpMulti aux_notTighter_part).G
@@ -135,7 +141,8 @@ theorem aux_notTighter_chainGI1 : aux_notTighter_chain.GI (1 : Fin 2) = 0 := by 
 
 /-- Everything the pairwise route encloses is the center: both its generators
 are zero. -/
-theorem aux_notTighter_chain_eq_zero {x : ℝ} (hx : x ∈ aux_notTighter_chain.construct) :
+theorem aux_notTighter_chain_eq_zero {x : ℝ}
+    (hx : x ∈ aux_notTighter_chain.construct) : -- --- CONCL ---
     x = 0 := by -- --- PROOF ---
   obtain ⟨a, β, -, -, rfl⟩ := hx
   show (0 : ℝ) + (∑ i : Fin 1, PolyZonotope.monomial aux_notTighter_chain.E a i
@@ -146,7 +153,7 @@ theorem aux_notTighter_chain_eq_zero {x : ℝ} (hx : x ∈ aux_notTighter_chain.
 
 /-- The group route's independent part is a genuine interval: the two widths
 are paid on the two generators separately. -/
-theorem aux_notTighter_mem_group {s u : ℝ} (hs : |s| ≤ 1) (hu : |u| ≤ 1) :
+theorem aux_notTighter_mem_group {s u : ℝ} (hs : |s| ≤ 1) (hu : |u| ≤ 1) : -- --- CONCL ---
     2 * s + -2 * u ∈ aux_notTighter_group.construct := by -- --- PROOF ---
   refine ⟨fun _ => 0, fun j => if (j : ℕ) = 0 then s else u, fun _ => by norm_num, ?_, ?_⟩
   · -- both coefficients are the ones handed in, whichever index asks

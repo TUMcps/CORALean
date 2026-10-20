@@ -58,7 +58,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 /-- [1, Prop. 3]: `ε_H` in eq. (21) satisfies `Assumption 1`. -/
 theorem LinearSys.errorConvergesToZero_timeIntervalStepCurvatureError (sys : LinearSys 𝕋 n)
-    (η : ℕ) (X₀ : Zonotope (Vec ℝ n)) :
+    (η : ℕ) (X₀ : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     ErrorConvergesToZero
       (fun r => sys.timeIntervalStepCurvatureError r η X₀) := by -- --- PROOF ---
   set A := toRealMat sys.A with hA

@@ -50,7 +50,8 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The unknown values become `mapUnknownTo`, the others stay. -/
-theorem KleeneSignal.toBoolSignal_spec (s : KleeneSignal ℝ) (hs : s.IsValid) (v : Bool) :
+theorem KleeneSignal.toBoolSignal_spec (s : KleeneSignal ℝ) (hs : s.IsValid)
+    (v : Bool) : -- --- CONCL ---
     (s.toBoolSignal v).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (s.at t = Kleene.uu → (s.toBoolSignal v).at t = v) ∧
       (s.at t ≠ Kleene.uu → (s.toBoolSignal v).at t = (s.at t).toBool) := by -- --- PROOF ---

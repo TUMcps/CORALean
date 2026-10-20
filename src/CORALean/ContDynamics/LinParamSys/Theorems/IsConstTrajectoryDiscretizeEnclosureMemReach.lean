@@ -80,7 +80,7 @@ theorem LinParamSys.IsCanonicalConstTrajectory.discretizeEnclosure_mem_reach {sy
     (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, (LinearSys.canonical A : LinearSys ℝ n).stepInput u Δt k ∈ construct Ud)
     (hε : ‖(Interval.smul Δt sys.A).absMax‖ / ((η : ℝ) + 2) < 1)
-    {o : ℕ} (ho : 0 < o) (k : ℕ) : -- --- CONCL ---
+    {o : ℕ} (ho : 0 < o) (k : ℕ) :
     x (k * Δt) ∈ construct ((sys.discretizeEnclosure Δt η).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) :=
   (sys.discretizeEnclosure Δt η).reach_outer ho R₀ Ud
     (traj.discretizeEnclosure hΔt hT hU hUd hε) k

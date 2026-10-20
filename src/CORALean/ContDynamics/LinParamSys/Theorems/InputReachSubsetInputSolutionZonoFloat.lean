@@ -94,7 +94,7 @@ attribute [local instance] aux_zonoSetPlus aux_zonoSetMtimes aux_zonoSetMtimesIn
 theorem LinParamSys.aux_image_subset_mtimes {𝕄 : ℕ → ℕ → Type}
     [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)] [Mtimes 𝕄 𝒵[𝕋]]
     {M : Mat ℝ n n} {X : 𝕄 n n}
-    (hM : M ∈ construct X) (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
+    (hM : M ∈ construct X) (V : Zonotope (Vec 𝕋 n)) :
     (M *ᵥ ·) '' V.construct ⊆ construct (Mtimes.mtimes (S := 𝒵[𝕋]) X V) :=
   (Set.subset_biUnion_of_mem (u := fun A => (A *ᵥ ·) '' V.construct) hM).trans
     (Mtimes.mtimes_outer (S := 𝒵[𝕋]) X V)

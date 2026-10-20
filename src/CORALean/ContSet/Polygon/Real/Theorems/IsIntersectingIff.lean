@@ -36,7 +36,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.isIntersecting_iff (P Q : Polygon) :
+theorem Polygon.isIntersecting_iff (P Q : Polygon) : -- --- CONCL ---
     (ContSet.construct P ∩ ContSet.construct Q).Nonempty ↔
       Polygon.isIntersecting P Q := by -- --- PROOF ---
   constructor

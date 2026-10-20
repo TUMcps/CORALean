@@ -68,7 +68,8 @@ theorem aux_interval_construct_subset_nominal_zonotope {n : ℕ} (I : Interval (
 
 /-- `y` in the degenerate `0` box's construct is `0`. -/
 theorem aux_mem_zeroInterval_eq_zero {n : ℕ} {y : Vec ℝ n}
-    (hy : y ∈ (⟨fun _ => (zero : 𝕋), fun _ => (zero : 𝕋)⟩ : Interval (Vec 𝕋 n)).construct) :
+    (hy : y ∈ (⟨fun _ => (zero : 𝕋), fun _ => (zero : 𝕋)⟩ : Interval (Vec 𝕋 n)).construct)
+    : -- --- CONCL ---
     y = 0 := by -- --- PROOF ---
   funext i
   have h1 : toReal (zero : 𝕋) ≤ y i := (hy i).1
@@ -78,7 +79,8 @@ theorem aux_mem_zeroInterval_eq_zero {n : ℕ} {y : Vec ℝ n}
 
 /-- `reduceGirardBox`'s own error box is the degenerate `0` one in either
 branch, so what its `construct` adds beyond its nominal reading is `0`. -/
-theorem aux_reduceGirardBox_construct_subset_nominal (Z : Zonotope (Vec 𝕋 n)) (o : ℕ) :
+theorem aux_reduceGirardBox_construct_subset_nominal (Z : Zonotope (Vec 𝕋 n))
+    (o : ℕ) : -- --- CONCL ---
     (Zonotope.reduceGirardBox Z o).construct
       ⊆ (nominal (Zonotope.reduceGirardBox Z o)).construct := by -- --- PROOF ---
   rintro _ ⟨y₁, hy₁, y₂, hy₂, rfl⟩

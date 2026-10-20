@@ -45,7 +45,7 @@ open MeasureTheory ProbabilityTheory
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem unsafe_prob_printed_counterexample :
+theorem unsafe_prob_printed_counterexample : -- --- CONCL ---
     let ν := gaussianReal 0 (1 / 10000)
     let B := Set.Icc (-(3 / 100) : ℝ) (3 / 100)
     1 - (ν B).toReal ^ 2 + volume.real B < (ν B).toReal := by -- --- PROOF ---

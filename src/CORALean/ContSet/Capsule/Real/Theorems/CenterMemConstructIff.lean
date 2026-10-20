@@ -36,7 +36,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.center_mem_construct_iff (C : Capsule n) :
+theorem Capsule.center_mem_construct_iff (C : Capsule n) : -- --- CONCL ---
     C.c ∈ C.construct ↔ 0 ≤ C.r := by -- --- PROOF ---
   constructor
   · rintro ⟨t, -, h⟩

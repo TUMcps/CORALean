@@ -40,7 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.sub_center_mem_recenter {Z : Zonotope (Vec 𝕋 n)} {y : Vec ℝ n}
-    (hy : y ∈ Z.construct) : y - toRealVec Z.c ∈ Z.recenter.construct := by -- --- PROOF ---
+    (hy : y ∈ Z.construct) : -- --- CONCL ---
+    y - toRealVec Z.c ∈ Z.recenter.construct := by -- --- PROOF ---
   obtain ⟨a, ha, e, he, rfl⟩ := hy
   obtain ⟨β, hβ, ha⟩ := Zonotope.mem_nominalSet_iff.mp ha
   refine ⟨a - toRealVec Z.c, Zonotope.mem_nominalSet_iff.mpr ⟨β, hβ, fun i => ?_⟩, e,

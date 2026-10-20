@@ -44,7 +44,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LevelSet.exists_not_polyZonotope :
+theorem LevelSet.exists_not_polyZonotope : -- --- CONCL ---
     ∃ L : LevelSet 1,
       ¬ ∃ pZ : PolyZonotope (Vec ℝ 1), pZ.construct = L.construct := by -- --- PROOF ---
   refine ⟨⟨1, fun x _ => -x 0, fun _ => .le⟩, ?_⟩

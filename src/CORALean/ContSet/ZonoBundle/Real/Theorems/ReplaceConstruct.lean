@@ -39,7 +39,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Exact: `Z` and every member other than `index`. -/
-theorem ZonoBundle.replace_construct (zB : ZonoBundle α) (index : Fin zB.k) (Z : Zonotope α) :
+theorem ZonoBundle.replace_construct (zB : ZonoBundle α) (index : Fin zB.k)
+    (Z : Zonotope α) : -- --- CONCL ---
     (zB.replace index Z).construct =
       Z.construct ∩ ⋂ i : {i : Fin zB.k // i ≠ index}, (zB.Z i).construct := by -- --- PROOF ---
   ext x

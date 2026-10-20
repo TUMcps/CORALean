@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.empty_exact (n : ℕ) :
+theorem ConPolyZono.empty_exact (n : ℕ) : -- --- CONCL ---
     (ConPolyZono.empty n : ConPolyZono 𝕋 (Vec 𝕋 n)).construct = ∅ := by -- --- PROOF ---
   have hN : InflatedContSet.nominalSet (ConPolyZono.empty n : ConPolyZono 𝕋 (Vec 𝕋 n)) = ∅ := by
     ext x

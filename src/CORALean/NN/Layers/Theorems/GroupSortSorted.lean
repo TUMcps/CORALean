@@ -37,7 +37,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem groupSort_sorted {g : ℕ} (hg : 0 < g) (x : Vec ℝ n) (k : ℕ) :
+theorem groupSort_sorted {g : ℕ} (hg : 0 < g) (x : Vec ℝ n) (k : ℕ) : -- --- CONCL ---
     (groupSortChunk g (groupSort g x) k).Pairwise (· ≤ ·) := by -- --- PROOF ---
   rw [groupSortChunk_groupSort hg]
   have h := List.pairwise_mergeSort (le := fun a b : ℝ => decide (a ≤ b))

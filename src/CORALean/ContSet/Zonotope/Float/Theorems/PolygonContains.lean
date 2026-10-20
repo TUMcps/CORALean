@@ -62,7 +62,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.polygon_contains (Z : Zonotope (Vec 𝕋 2)) :
+theorem Zonotope.polygon_contains (Z : Zonotope (Vec 𝕋 2)) : -- --- CONCL ---
     Z.construct ⊆ Z.polygon.construct := by -- --- PROOF ---
   unfold Zonotope.polygon
   extract_lets Zm hat cross order Zs halfPlane sorted lo hi

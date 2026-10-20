@@ -55,7 +55,8 @@ variable {n : ℕ}
 
 /-- `‖My‖₂ ≤ err(MT)` for every `y` in the closed convex hull of a bounded `T`. -/
 theorem norm₂_mulVec_le_err_of_mem_closure_convexHull (M : Mat ℝ n n) {T : Set (Vec ℝ n)}
-    (hT : Bornology.IsBounded T) {y : Vec ℝ n} (hy : y ∈ closure (convexHull ℝ T)) :
+    (hT : Bornology.IsBounded T) {y : Vec ℝ n}
+    (hy : y ∈ closure (convexHull ℝ T)) : -- --- CONCL ---
     ‖M *ᵥ y‖₂ ≤ err ((fun x => M *ᵥ x) '' T) := by -- --- PROOF ---
   set L := LinearMap.toContinuousLinearMap (Matrix.mulVecLin M) with hL
   set I := (fun x => M *ᵥ x) '' T with hI

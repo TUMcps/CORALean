@@ -44,7 +44,7 @@ variable {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem billiardReflect_reflect (s d : E) (hs : ‖s‖ = 1) :
+theorem billiardReflect_reflect (s d : E) (hs : ‖s‖ = 1) : -- --- CONCL ---
     billiardReflect s (billiardReflect s d) = d := by -- --- PROOF ---
   have hss : inner ℝ s s = 1 := by rw [real_inner_self_eq_norm_sq, hs]; norm_num
   -- the normal component of the reflected direction is the negated one

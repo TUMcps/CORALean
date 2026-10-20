@@ -43,7 +43,7 @@ def divFact (q : Interval 𝕋) : ℕ → Interval 𝕋
       divUp (divFact q k).sup (maximum one (nsmulDown (k + 1) one))⟩
 
 theorem divFact_mem [SoundFloatArithmetic 𝕋] (q : Interval 𝕋) {a : ℝ} (ha0 : 0 ≤ a)
-    (ha : toReal q.inf ≤ a ∧ a ≤ toReal q.sup) :
+    (ha : toReal q.inf ≤ a ∧ a ≤ toReal q.sup) : -- --- CONCL ---
     ∀ k : ℕ, toReal (divFact q k).inf ≤ a / (k.factorial : ℝ) ∧
       a / (k.factorial : ℝ) ≤ toReal (divFact q k).sup := by -- --- PROOF ---
   intro k

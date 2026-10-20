@@ -38,7 +38,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem StarSet.mem_nominalSet_iff (s : StarSet 𝕋 n) (x : Vec ℝ n) : -- --- CONCL ---
+theorem StarSet.mem_nominalSet_iff (s : StarSet 𝕋 n) (x : Vec ℝ n) :
     x ∈ nominalSet s ↔ ∃ α : Fin s.m → ℝ,
       ((∀ k, toReal (s.dom.inf k) ≤ α k ∧ α k ≤ toReal (s.dom.sup k))
         ∧ α ∈ s.pred.nominal.construct) ∧

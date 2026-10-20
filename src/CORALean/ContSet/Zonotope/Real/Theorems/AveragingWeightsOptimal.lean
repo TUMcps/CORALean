@@ -51,7 +51,7 @@ variable {n N : ℕ}
 
 /-- Eq. 20: at weights of sum one the squared Frobenius norm of `Ǵ` is `Σⱼ αⱼ (vʲ)²`. -/
 theorem Zonotope.aux_frobSq_andAveraging (Z : Fin N → Zonotope (Vec ℝ n)) (v : Fin N → ℝ)
-    (hv : ∑ j, v j = 1) :
+    (hv : ∑ j, v j = 1) : -- --- CONCL ---
     ∑ i, ∑ k, ((Zonotope.andAveraging Z v).G k i) ^ 2 =
       ∑ j, (∑ i, ∑ l, (Z j).G l i ^ 2) * v j ^ 2 := by -- --- PROOF ---
   let e : Fin (∑ j, (Z j).h) ≃ (Σ j, Fin (Z j).h) := (finSigmaFinEquiv (n := fun j => (Z j).h)).symm

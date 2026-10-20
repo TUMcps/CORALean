@@ -39,7 +39,7 @@ variable {n : ℕ}
 
 /-- Every point `cellCenter` returns lies in one of the cells asked for. -/
 theorem GridPartition.cellCenter_mem (P : GridPartition n) (hP : P.WellFormed) {cs : List ℕ}
-    (hcs : ∀ c ∈ cs, 0 < c ∧ c ≤ P.nrOfCells) :
+    (hcs : ∀ c ∈ cs, 0 < c ∧ c ≤ P.nrOfCells) : -- --- CONCL ---
     ∀ z ∈ P.cellCenter cs, ∃ c ∈ cs, z ∈ (P.cellInterval c).construct := by -- --- PROOF ---
   intro z hz
   unfold GridPartition.cellCenter at hz

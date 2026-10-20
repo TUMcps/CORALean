@@ -43,7 +43,7 @@ variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} {n : ℕ} [∀ k, ContSe
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem AtomicProposition.evaluatePoint_sound (ap : AtomicProposition S n) (point : Vec 𝕋 n)
-    (loc : ℕ) (h : ap.evaluatePoint point loc = true) :
+    (loc : ℕ) (h : ap.evaluatePoint point loc = true) : -- --- CONCL ---
     ap.Holds (toRealVec point) loc := by -- --- PROOF ---
   unfold AtomicProposition.evaluatePoint at h
   rw [Bool.and_eq_true] at h

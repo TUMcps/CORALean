@@ -49,7 +49,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.interval_contains (S : SpectraShadow (Vec ℝ n)) (hb : S.isBounded) :
+theorem SpectraShadow.interval_contains (S : SpectraShadow (Vec ℝ n))
+    (hb : S.isBounded) : -- --- CONCL ---
     S.construct ⊆ S.interval.construct := by -- --- PROOF ---
   intro x hx
   -- a member makes the set nonempty, so the `interval.empty` branch is not taken

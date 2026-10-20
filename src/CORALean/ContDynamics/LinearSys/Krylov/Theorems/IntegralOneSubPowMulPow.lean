@@ -43,7 +43,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Eq. 4.1]'s step: `∫₀¹(1 - θ)ᵖθᵏdθ = k!p!/(k + p + 1)!`. -/
-theorem Krylov.integral_one_sub_pow_mul_pow (p k : ℕ) :
+theorem Krylov.integral_one_sub_pow_mul_pow (p k : ℕ) : -- --- CONCL ---
     ∫ θ in (0 : ℝ)..1, (1 - θ) ^ p * θ ^ k =
       (Nat.factorial k * Nat.factorial p : ℝ) /
         (Nat.factorial (k + p + 1) : ℝ) := by -- --- PROOF ---

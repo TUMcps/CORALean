@@ -39,7 +39,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.center_not_mem_counterexample :
+theorem PolyZonotope.center_not_mem_counterexample : -- --- CONCL ---
     (⟨1, 2, 0, 0, ![![2], ![1]], ![![0, 1]], Fin.elim0⟩ : PolyZonotope (Vec ℝ 1)).c ∉
       (⟨1, 2, 0, 0, ![![2], ![1]], ![![0, 1]], Fin.elim0⟩ :
         PolyZonotope (Vec ℝ 1)).construct := by -- --- PROOF ---

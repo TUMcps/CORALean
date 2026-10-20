@@ -41,7 +41,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A point of `P.andRows Q` is a point of `P` at which `Q`'s rows hold. -/
-theorem PolyLevelSet.mem_andRows_iff (P Q : PolyLevelSet n) (x : Vec ℝ n) :
+theorem PolyLevelSet.mem_andRows_iff (P Q : PolyLevelSet n) (x : Vec ℝ n) : -- --- CONCL ---
     x ∈ (P.andRows Q).construct
       ↔ x ∈ P.construct ∧ ∀ i, (Q.op i).holds (Q.eval x i) := by -- --- PROOF ---
   show (x ∈ P.dom.construct ∧ ∀ i, ((P.and_ Q).op i).holds ((P.and_ Q).eval x i)) ↔ _

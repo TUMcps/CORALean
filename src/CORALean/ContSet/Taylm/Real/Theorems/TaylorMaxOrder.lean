@@ -41,7 +41,8 @@ variable {n : ℕ}
 
 /-- A nonempty sum of models of one order has that order. -/
 theorem Taylm.aux_sum_maxOrder {m N : ℕ} (T : Fin (m + 1) → Taylm n)
-    (hT : ∀ i, (T i).maxOrder = N) : (Taylm.sum T).maxOrder = N := by -- --- PROOF ---
+    (hT : ∀ i, (T i).maxOrder = N) : -- --- CONCL ---
+    (Taylm.sum T).maxOrder = N := by -- --- PROOF ---
   induction m with
   | zero => simp [Taylm.sum, Taylm.plus, hT 0]
   | succ m ih =>

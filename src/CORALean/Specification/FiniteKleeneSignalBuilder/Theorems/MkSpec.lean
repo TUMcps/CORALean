@@ -37,7 +37,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem FiniteKleeneSignalBuilder.mk?_spec (dur : ℝ) :
+theorem FiniteKleeneSignalBuilder.mk?_spec (dur : ℝ) : -- --- CONCL ---
     (dur < 0 → FiniteKleeneSignalBuilder.mk? dur = none) ∧
     (0 ≤ dur → ∃ b, FiniteKleeneSignalBuilder.mk? dur = some b ∧
       b.Represents dur (fun _ => False) (fun _ => False)) := by -- --- PROOF ---

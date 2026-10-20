@@ -46,7 +46,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.exists_not_interval :
+theorem Zonotope.exists_not_interval : -- --- CONCL ---
     ∃ Z : Zonotope (Vec ℝ 2),
       ¬ ∃ I : Interval (Vec ℝ 2), I.construct = Z.construct := by -- --- PROOF ---
   refine ⟨⟨1, 0, fun _ => fun _ => 1⟩, ?_⟩

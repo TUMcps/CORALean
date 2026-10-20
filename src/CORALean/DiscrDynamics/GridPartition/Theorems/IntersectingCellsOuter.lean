@@ -47,7 +47,7 @@ variable {n : ℕ}
 /-- Every cell that contains a point of `I` is among `intersectingCells P I`. -/
 theorem GridPartition.intersectingCells_outer (P : GridPartition n) (I : Real.Interval (Vec ℝ n))
     (hn : n ≠ 0) {c : ℕ} (h1 : 1 ≤ c) (h2 : c ≤ P.nrOfCells) {x : Vec ℝ n}
-    (hxI : x ∈ I.construct) (hxc : x ∈ (P.cellInterval c).construct) :
+    (hxI : x ∈ I.construct) (hxc : x ∈ (P.cellInterval c).construct) : -- --- CONCL ---
     c ∈ P.intersectingCells I := by -- --- PROOF ---
   rw [GridPartition.mem_interval_iff] at hxI hxc
   -- each subscript of `c` is a segment meeting `[inf - tol, sup + tol]`

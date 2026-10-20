@@ -57,7 +57,7 @@ theorem aux_vec_sup (A : Interval (Mat ℝ m n)) (i : Fin m) (j : Fin n) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Stacking the entries does not change whether the box is empty, the origin or a point. -/
-theorem Interval.vec_representsa (A : Interval (Mat ℝ m n)) :
+theorem Interval.vec_representsa (A : Interval (Mat ℝ m n)) : -- --- CONCL ---
     (A.vec.representsa_emptySet ↔ A.representsa_emptySet) ∧
     (A.vec.representsa_origin ↔ A.representsa_origin) ∧
     (A.vec.representsa_point ↔ A.representsa_point) := by -- --- PROOF ---

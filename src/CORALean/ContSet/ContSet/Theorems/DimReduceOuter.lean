@@ -53,7 +53,7 @@ variable {n : ℕ}
 /-- [1, Alg. 2]: the polyhedron contains `Z ∩ G`, for any `bound` meeting its specification. -/
 theorem ContSet.dimReduce_outer {bound : Set (ℝ × ℝ) → ℝ → Real.Interval ℝ}
     (hb : ContSet.IsBoundIntersect2D bound) (Z : Set (Vec ℝ n)) (nv : Vec ℝ n) (γ : ℝ)
-    (D : Finset (Vec ℝ n)) :
+    (D : Finset (Vec ℝ n)) : -- --- CONCL ---
     {x | x ∈ Z ∧ x ⬝ᵥ nv = γ} ⊆ ContSet.dimReduce bound Z nv γ D := by -- --- PROOF ---
   rintro x ⟨hx, hxn⟩ ℓ _
   -- the `y = x·ℓ` is in the slice of the projection, which is the segment `[m, M]`

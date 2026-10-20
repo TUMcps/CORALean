@@ -58,7 +58,8 @@ theorem Zonotope.aux_sum_univ_plus {Z₁ Z₂ : Zonotope (Vec 𝕋 n)} (f : Fin 
   Fin.sum_univ_add f
 
 /-- The concatenated generators account for everything but the center rounding. -/
-theorem Zonotope.aux_plus_nominal (Z₁ : Zonotope (Vec 𝕋 n)) (Z₂ : Zonotope (Vec 𝕋 n)) :
+theorem Zonotope.aux_plus_nominal (Z₁ : Zonotope (Vec 𝕋 n))
+    (Z₂ : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     (nominal Z₁).construct + (nominal Z₂).construct ⊆
       (nominal (Z₁.plus Z₂)).construct
         + (Zonotope.centerResidual Z₁.c Z₂.c).construct := by -- --- PROOF ---

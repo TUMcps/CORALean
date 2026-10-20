@@ -52,7 +52,8 @@ variable {X : Type}
 
 theorem STL.upsilon_ofPform {𝓡 : Set (ℝ≥0 → Set X)} {Υ : STL.Formula X → RTL.Formula X}
     (hs : STL.IsSound 𝓡 Υ) (hc : STL.IsComplete 𝓡 Υ)
-    (hne : ∀ R ∈ 𝓡, ∀ t, (R t).Nonempty) (ϱ : Pform X) {R : ℝ≥0 → Set X} (hR : R ∈ 𝓡) :
+    (hne : ∀ R ∈ 𝓡, ∀ t, (R t).Nonempty) (ϱ : Pform X) {R : ℝ≥0 → Set X}
+    (hR : R ∈ 𝓡) : -- --- CONCL ---
     (Υ (STL.Formula.ofPform ϱ)).Sat R ↔ (RTL.Formula.A ϱ).Sat R := by -- --- PROOF ---
   constructor
   · intro h r hr

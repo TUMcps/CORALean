@@ -60,7 +60,7 @@ variable {n : ℕ}
 /-- [1, Prop. 4]: `ε_P([t_i,t_i+Δt]) = err(e^{At_i} E(Δt,η) Δt U)` converges to `0` as `Δt → 0⁺`,
 at every step start `t_i` and every order `η` — `Assumption 1` for `ε_P`. -/
 theorem MatExp.errorConvergesToZero_particularRemainderError (A : Mat ℝ n n) (ti : ℝ)
-    {U : Set (Vec ℝ n)} (hU : Bornology.IsBounded U) (η : ℕ) :
+    {U : Set (Vec ℝ n)} (hU : Bornology.IsBounded U) (η : ℕ) : -- --- CONCL ---
     ErrorConvergesToZero
       (fun Δt => MatExp.particularRemainderError A ti U Δt η) := by -- --- PROOF ---
   set C := ∑ i, ‖(fun j => (exp (ti • A)) i j)‖₂ with hC

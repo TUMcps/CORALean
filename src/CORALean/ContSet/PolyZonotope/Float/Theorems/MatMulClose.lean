@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 /-- A stored generator of a rounded product is off by at most the gap between the
 two directed roundings. -/
 theorem PolyZonotope.matMul_close {k : ℕ} (M : Mat 𝕋 m n) (A : Fin k → Vec 𝕋 n)
-    (i : Fin m) (l : Fin k) :
+    (i : Fin m) (l : Fin k) : -- --- CONCL ---
     |(∑ r, toReal (M i r) * toReal (A l r)) - toReal (mulVecDown M (A l) i)|
       ≤ toReal (matMulDiff M (fun r l => A l r) i l) := by -- --- PROOF ---
   -- ascribed, so these are about `mulVecDown` and `matMulUp` rather than the `dot*` they unfold to

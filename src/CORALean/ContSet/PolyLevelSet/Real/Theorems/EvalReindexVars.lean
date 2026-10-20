@@ -48,7 +48,7 @@ variable {n : ℕ}
 outside its range is read by no monomial. -/
 theorem PolyLevelSet.eval_reindexVars (P : PolyLevelSet n) {n' : ℕ} {f : Fin n' → Fin n}
     (hf : Function.Injective f) (h0 : ∀ k, k ∉ Set.range f → ∀ l, P.R k l = 0)
-    (y : Vec ℝ n) :
+    (y : Vec ℝ n) : -- --- CONCL ---
     (P.reindexVars f).eval (fun k => y (f k)) = P.eval y := by -- --- PROOF ---
   have hμ : PolyZonotope.monomial (P.reindexVars f).R (fun k => y (f k))
       = PolyZonotope.monomial P.R y := by

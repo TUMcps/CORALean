@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The new generators reach every point the box did. -/
 theorem Zonotope.abs_sub_mid_le_errorRadius (Z : Zonotope (Vec 𝕋 n)) {e : Vec ℝ n}
-    (he : e ∈ Z.I_error.construct) (i : Fin n) :
+    (he : e ∈ Z.I_error.construct) (i : Fin n) : -- --- CONCL ---
     |e i - (toReal (Z.I_error.inf i) + toReal (Z.I_error.sup i)) / 2|
       ≤ toReal (Z.errorRadius i) := by -- --- PROOF ---
   have hwidth := sub_le_subUp (Z.I_error.sup i) (Z.I_error.inf i)

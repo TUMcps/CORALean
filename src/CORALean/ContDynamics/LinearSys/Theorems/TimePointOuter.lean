@@ -58,7 +58,8 @@ variable [Mtimes (Mat ℝ) S]
 
 /-- Every image of the initial set under the flow, at the sample time `k Δt`,
 is in `timePoint`'s set for it. -/
-theorem LinearSys.timePoint_outer (sys : LinearSys 𝕋 n) (Δt : ℝ) (X₀ : S n) (k : ℕ) :
+theorem LinearSys.timePoint_outer (sys : LinearSys 𝕋 n) (Δt : ℝ) (X₀ : S n)
+    (k : ℕ) : -- --- CONCL ---
     (fun x₀ => exp (((k : ℝ) * Δt) • toRealMat sys.A) *ᵥ x₀) '' construct X₀
       ⊆ construct (sys.timePoint Δt X₀ k) := by -- --- PROOF ---
   induction k with

@@ -43,7 +43,8 @@ variable {n l : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- For `H` onto, `H Hᵀ` has a unit determinant. -/
-theorem aux_isUnit_det_mul_transpose (H : Mat ℝ n l) (hH : Function.Surjective H.mulVec) :
+theorem aux_isUnit_det_mul_transpose (H : Mat ℝ n l)
+    (hH : Function.Surjective H.mulVec) : -- --- CONCL ---
     IsUnit (H * Hᵀ).det := by -- --- PROOF ---
   rw [← isUnit_iff_isUnit_det, ← mulVec_injective_iff_isUnit]
   intro a b hab
@@ -63,7 +64,7 @@ theorem aux_isUnit_det_mul_transpose (H : Mat ℝ n l) (hH : Function.Surjective
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- For `H` onto, `Hᵀ (H Hᵀ)⁻¹` is the Moore-Penrose pseudo-inverse of `H`. -/
-theorem isPinv_of_surjective (H : Mat ℝ n l) (hH : Function.Surjective H.mulVec) :
+theorem isPinv_of_surjective (H : Mat ℝ n l) (hH : Function.Surjective H.mulVec) : -- --- CONCL ---
     IsPinv H (Hᵀ * (H * Hᵀ)⁻¹) := by -- --- PROOF ---
   have hu := aux_isUnit_det_mul_transpose H hH
   have hone : H * (Hᵀ * (H * Hᵀ)⁻¹) = 1 := by rw [← Matrix.mul_assoc, mul_nonsing_inv _ hu]

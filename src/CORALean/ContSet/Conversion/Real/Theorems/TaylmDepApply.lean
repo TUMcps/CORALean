@@ -39,7 +39,7 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.dep_apply (T : Fin m → Taylm n) (a : Vec ℝ n) (i : Fin m) :
+theorem Taylm.dep_apply (T : Fin m → Taylm n) (a : Vec ℝ n) (i : Fin m) : -- --- CONCL ---
     (∑ j, PolyZonotope.monomial (Taylm.polyZonotope T).E a j • (Taylm.polyZonotope T).G j) i
       = (T i).poly a := by -- --- PROOF ---
   rw [Finset.sum_apply]

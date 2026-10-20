@@ -40,7 +40,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The sorted generator lengths are antitone. -/
-theorem Zonotope.antitone_generatorLength_sortByLength (Z : Zonotope (Vec ℝ n)) :
+theorem Zonotope.antitone_generatorLength_sortByLength (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     Antitone fun i => Z.sortByLength.generatorLength i := by -- --- PROOF ---
   -- `Tuple.sort` makes the negated lengths monotone
   intro i j hij

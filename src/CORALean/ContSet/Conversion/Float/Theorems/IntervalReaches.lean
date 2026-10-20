@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.reaches (I : Interval (Vec 𝕋 n)) (i : Fin n) :
+theorem Interval.reaches (I : Interval (Vec 𝕋 n)) (i : Fin n) : -- --- CONCL ---
     toReal (I.center i) - toReal (I.radiusFrom i) ≤ toReal (I.inf i)
       ∧ toReal (I.sup i) ≤ toReal (I.center i) + toReal (I.radiusFrom i) := by -- --- PROOF ---
   have hhi := sub_le_subUp (I.sup i) (I.center i)

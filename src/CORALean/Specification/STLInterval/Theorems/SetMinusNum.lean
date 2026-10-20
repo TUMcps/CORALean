@@ -40,7 +40,7 @@ open scoped Pointwise
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `minusNum` denotes `I` shifted down by `c`, at least `0`. -/
-theorem STLInterval.set_minusNum (I : STLInterval) (c : ℝ) :
+theorem STLInterval.set_minusNum (I : STLInterval) (c : ℝ) : -- --- CONCL ---
     (I.minusNum c).set = ((fun t => t - c) '' I.set) ∩ Set.Ici 0 := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.minusNum, STLInterval.set]

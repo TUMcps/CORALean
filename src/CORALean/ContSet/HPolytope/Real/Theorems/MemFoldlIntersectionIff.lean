@@ -40,7 +40,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- A point of the folded intersection is a point of the start and of every member. -/
 theorem HPolytope.mem_foldl_intersection_iff (L : List (HPolytope α)) (P₀ : HPolytope α)
-    (x : α) :
+    (x : α) : -- --- CONCL ---
     x ∈ (L.foldl HPolytope.intersection P₀).construct
       ↔ x ∈ P₀.construct ∧ ∀ P ∈ L, x ∈ P.construct := by -- --- PROOF ---
   induction L generalizing P₀ with

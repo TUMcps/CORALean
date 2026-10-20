@@ -43,7 +43,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.isIntersecting_iff {C₁ C₂ : Capsule n} (h₁ : 0 ≤ C₁.r) (h₂ : 0 ≤ C₂.r) :
+theorem Capsule.isIntersecting_iff {C₁ C₂ : Capsule n} (h₁ : 0 ≤ C₁.r)
+    (h₂ : 0 ≤ C₂.r) : -- --- CONCL ---
     C₁.isIntersecting_ C₂ ↔ (C₁.construct ∩ C₂.construct).Nonempty := by -- --- PROOF ---
   constructor
   · -- the nearest axis points `A`, `B` and the point a fraction `θ` of the way from `A` to `B`

@@ -46,7 +46,8 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Nnf.hasSampledRewrite_or {φ ψ : STL.Nnf X} (hφ : φ.HasSampledRewrite)
-    (hψ : ψ.HasSampledRewrite) : (STL.Nnf.or φ ψ).HasSampledRewrite := by -- --- PROOF ---
+    (hψ : ψ.HasSampledRewrite) : -- --- CONCL ---
+    (STL.Nnf.or φ ψ).HasSampledRewrite := by -- --- PROOF ---
   obtain ⟨⟨sT₁, hT₁⟩, ⟨sF₁, hF₁⟩, ⟨sG₁, hG₁⟩⟩ := hφ
   obtain ⟨⟨sT₂, hT₂⟩, ⟨sF₂, hF₂⟩, ⟨sG₂, hG₂⟩⟩ := hψ
   refine ⟨⟨.or sT₁ sT₂, fun ξ h => ?_⟩, ⟨.or sF₁ sF₂, fun ξ h => ?_⟩,

@@ -46,7 +46,7 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ReachSequence.forall_traceSet_sat_iff {R : ℝ≥0 → Set X} (hne : ∀ t, (R t).Nonempty)
-    (a : ℝ≥0) (ϱ : Pform X) :
+    (a : ℝ≥0) (ϱ : Pform X) : -- --- CONCL ---
     (∀ ξ ∈ ReachSequence.traceSet R, ϱ.Sat (ξ a)) ↔ ∀ r ∈ R a, ϱ.Sat r := by -- --- PROOF ---
   classical
   refine ⟨fun h r hr => ?_, fun h ξ hξ => h _ (hξ a)⟩

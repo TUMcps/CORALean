@@ -44,7 +44,7 @@ namespace CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The points of a prefix that are `≤ t` are a prefix of those of the list. -/
-theorem aux_takeWhile_take {α : Type} (p : α → Bool) (l : List α) (k : ℕ) :
+theorem aux_takeWhile_take {α : Type} (p : α → Bool) (l : List α) (k : ℕ) : -- --- CONCL ---
     ((l.take k).takeWhile p).length = min (l.takeWhile p).length k := by -- --- PROOF ---
   induction l generalizing k with
   | nil => simp

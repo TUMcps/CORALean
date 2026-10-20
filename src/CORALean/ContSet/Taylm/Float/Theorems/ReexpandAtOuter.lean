@@ -51,7 +51,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.reexpandAt_outer {T : Taylm 𝕋 n} {g : Vec ℝ n → ℝ} (h : T.Encloses g) (k : Fin n)
-    (m r : 𝕋) (hmr : |toReal m| + |toReal r| ≤ 1) :
+    (m r : 𝕋) (hmr : |toReal m| + |toReal r| ≤ 1) : -- --- CONCL ---
     (T.reexpandAt k m r).Encloses
       fun s => g (Function.update s k (toReal m + toReal r * s k)) := by -- --- PROOF ---
   intro s hs

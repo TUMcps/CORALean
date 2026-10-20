@@ -35,7 +35,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The entries the prefix takes satisfy the predicate, the next one does not. -/
-theorem List.takeWhile_getElem {α : Type} (p : α → Bool) : -- --- CONCL ---
+theorem List.takeWhile_getElem {α : Type} (p : α → Bool) :
     ∀ (l : List α), (∀ (m : ℕ) (hm : m < (l.takeWhile p).length),
         p (l[m]'(Nat.lt_of_lt_of_le hm (List.takeWhile_sublist p).length_le)) = true) ∧
       ∀ (hk : (l.takeWhile p).length < l.length), p (l[(l.takeWhile p).length]) = false

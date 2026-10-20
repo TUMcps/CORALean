@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem selectMat_mulVec (sel : Fin m → Fin n) (x : Vec ℝ n) (j : Fin m) :
+theorem selectMat_mulVec (sel : Fin m → Fin n) (x : Vec ℝ n) (j : Fin m) : -- --- CONCL ---
     (toRealMat (selectMat (𝕋 := 𝕋) sel) *ᵥ x) j = x (sel j) := by -- --- PROOF ---
   show ((toRealMat (tapMat (fun (j : Fin m) (_ : Fin 1) => sel j) fun _ _ => (one : 𝕋)))
     *ᵥ x) j = _

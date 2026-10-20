@@ -80,7 +80,7 @@ def HPolytope.aux_emptyStrip : HPolytope (Fin 2 → ℝ) where
   Ae := Fin.elim0
   be := Fin.elim0
 
-theorem HPolytope.aux_emptyStrip_construct :
+theorem HPolytope.aux_emptyStrip_construct : -- --- CONCL ---
     HPolytope.aux_emptyStrip.construct = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
@@ -95,7 +95,8 @@ theorem HPolytope.aux_emptyStrip_construct :
 
 /-- The polytope is empty, so no single point; CORA answers `'point'` with `true`, whatever the
 rest of `isFullDim` would compute. -/
-theorem HPolytope.representsa_point_cora_counterexample (rest : Bool × List (Fin 2 → ℝ)) :
+theorem HPolytope.representsa_point_cora_counterexample
+    (rest : Bool × List (Fin 2 → ℝ)) : -- --- CONCL ---
     HPolytope.aux_emptyStrip.construct = ∅ ∧
       (¬ ∃ p : Fin 2 → ℝ, HPolytope.aux_emptyStrip.construct = {p}) ∧
       HPolytope.aux_emptyStrip.representsaPointCora rest = true := by -- --- PROOF ---

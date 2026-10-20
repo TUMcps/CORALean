@@ -46,7 +46,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.interval_contains (C : Capsule 𝕋 n) :
+theorem Capsule.interval_contains (C : Capsule 𝕋 n) : -- --- CONCL ---
     C.construct ⊆ C.interval.construct := by -- --- PROOF ---
   rintro _ ⟨x, hx, e, he, rfl⟩ i
   have h := CORALean.Real.Capsule.interval_contains C.nominal hx i

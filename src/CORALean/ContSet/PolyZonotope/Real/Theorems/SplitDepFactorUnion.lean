@@ -56,7 +56,7 @@ theorem PolyZonotope.aux_mem_getSubset (pZ : PolyZonotope α) (k : Fin pZ.p) (ce
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.splitDepFactor_union (pZ : PolyZonotope α) (k : Fin pZ.p) :
+theorem PolyZonotope.splitDepFactor_union (pZ : PolyZonotope α) (k : Fin pZ.p) : -- --- CONCL ---
     (pZ.splitDepFactor k).1.construct ∪ (pZ.splitDepFactor k).2.construct
       = pZ.construct := by -- --- PROOF ---
   simp only [PolyZonotope.splitDepFactor]

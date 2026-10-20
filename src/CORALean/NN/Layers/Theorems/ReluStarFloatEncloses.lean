@@ -41,7 +41,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Layer.reluStarFloat_encloses (n : ℕ) :
+theorem Layer.reluStarFloat_encloses (n : ℕ) : -- --- CONCL ---
     (Layer.reluStarFloat 𝕋 n).Encloses fun x i => Real.relu (x i) := by -- --- PROOF ---
   -- the ReLU at the neurons of a list, applied one neuron at a time
   have key : ∀ (L : List (Fin n)) (t : Float.StarSet 𝕋 n) (x : Vec ℝ n), x ∈ construct t →

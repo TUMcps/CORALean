@@ -50,7 +50,7 @@ theorem LinearSys.IsCanonicalTrajectory.discretizeEnclosure_mem_reach {sys : Lin
     (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {o : ℕ} (ho : 0 < o)
-    (k : ℕ) : -- --- CONCL ---
+    (k : ℕ) :
     x (k * Δt) ∈ construct ((sys.discretizeEnclosure Δt η).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) :=
   (sys.discretizeEnclosure Δt η).reach_outer ho R₀ Ud
     (traj.discretizeEnclosure hΔt hT hU hUd hε) k

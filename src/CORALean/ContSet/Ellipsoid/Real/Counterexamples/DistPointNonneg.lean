@@ -47,7 +47,7 @@ open scoped MatrixOrder
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.dist_point_nonneg_counterexample :
+theorem Ellipsoid.dist_point_nonneg_counterexample : -- --- CONCL ---
     ∃ (E : Ellipsoid 1) (a l : Vec ℝ 1), a ∈ E.construct ∧ ‖l‖₂ = 1 ∧
       l ⬝ᵥ a - l ⬝ᵥ E.q - √(l ⬝ᵥ (E.Q *ᵥ l)) = 0 := by -- --- PROOF ---
   have hG : (⟨1, 0, .one⟩ : Ellipsoid 1).G = 1 := CFC.sqrt_one

@@ -52,7 +52,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- [1, Lemma 1]: against a minuend that is convex, subtracting a spanning set
 `V` point by point already gives the whole difference. -/
 theorem minkowskiDiff_eq_iInter (S T V : Set α) (hS : Convex ℝ S) (hVT : V ⊆ T)
-    (hT : T ⊆ convexHull ℝ V) :
+    (hT : T ⊆ convexHull ℝ V) : -- --- CONCL ---
     minkowskiDiff S T = ⋂ v ∈ V, minkowskiDiff S {v} := by -- --- PROOF ---
   ext x
   simp only [Set.mem_iInter, minkowskiDiff, Set.mem_setOf_eq, Set.mem_singleton_iff,

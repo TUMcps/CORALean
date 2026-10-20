@@ -43,7 +43,7 @@ variable {k n q : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem jacobianMat_sub (g h : Vec ℝ k → Vec ℝ n) (x : Vec ℝ k) (hg : DifferentiableAt ℝ g x)
-    (hh : DifferentiableAt ℝ h x) :
+    (hh : DifferentiableAt ℝ h x) : -- --- CONCL ---
     jacobianMat (fun z => g z - h z) x = jacobianMat g x - jacobianMat h x := by -- --- PROOF ---
   have h : HasFDerivAt (fun z => g z - h z) (fderiv ℝ g x - fderiv ℝ h x) x :=
     hg.hasFDerivAt.sub hh.hasFDerivAt

@@ -88,7 +88,7 @@ theorem Zonotope.aux_girardSplit_right_eq (Z : Zonotope (Vec ℝ n)) {o o' : ℕ
 /-- What the dropped-index nesting buys, per coordinate: boxing fewer
 generators at the smaller order `o` can only make the diagonal entry bigger. -/
 theorem Zonotope.aux_reduceByBox_diag_sum_le (Z : Zonotope (Vec ℝ n)) {o o' : ℕ}
-    (hlt : o * n < Z.h) (hlt' : o' * n < Z.h) (ho : o ≤ o') (i : Fin n) :
+    (hlt : o * n < Z.h) (hlt' : o' * n < Z.h) (ho : o ≤ o') (i : Fin n) : -- --- CONCL ---
     (∑ l', |Z.G ((Z.girardSplit o' hlt').right l') i|) ≤
       ∑ l, |Z.G ((Z.girardSplit o hlt).right l) i| := by -- --- PROOF ---
   have hle : (o - 1) * n ≤ Z.h :=
@@ -144,7 +144,8 @@ theorem Zonotope.aux_mem_reduceByBox_iff (Z : Zonotope (Vec ℝ n)) {q r : ℕ}
 
 /-- `reduceBox` shrinks as the order rises: raising `o` to `o'` gives a box
 contained in the smaller order's. -/
-theorem Zonotope.reduceBox_antitone (Z : Zonotope (Vec ℝ n)) {o o' : ℕ} (ho : o ≤ o') :
+theorem Zonotope.reduceBox_antitone (Z : Zonotope (Vec ℝ n)) {o o' : ℕ}
+    (ho : o ≤ o') : -- --- CONCL ---
     (Z.reduceBox o').construct ⊆ (Z.reduceBox o).construct := by -- --- PROOF ---
   unfold Zonotope.reduceBox
   split_ifs with hlt' hlt hlt

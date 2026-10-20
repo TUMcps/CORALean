@@ -51,7 +51,8 @@ variable {n : ℕ}
 
 /-- An order large enough to drop nothing costs nothing: `reduceBox` is the
 origin there, whose box reaches `0` from the origin. -/
-theorem Zonotope.reduceBoxError_eq_zero (Z : Zonotope (Vec ℝ n)) {o : ℕ} (h : Z.h ≤ o * n) :
+theorem Zonotope.reduceBoxError_eq_zero (Z : Zonotope (Vec ℝ n)) {o : ℕ}
+    (h : Z.h ≤ o * n) : -- --- CONCL ---
     Z.reduceBoxError o = 0 := by -- --- PROOF ---
   have hbox : Z.reduceBox o = Zonotope.ofPoint 0 := by
     rw [Zonotope.reduceBox, dif_neg (Nat.not_lt.mpr h)]

@@ -41,7 +41,8 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PointSegmentSignal.at_last {T : Type} [LinearOrder T] (tp : List T) (val : List Bool)
-    (hlen : val.length = 2 * tp.length) (hne : tp ≠ []) (t : T) (ht : ∀ x ∈ tp, x < t) :
+    (hlen : val.length = 2 * tp.length) (hne : tp ≠ []) (t : T)
+    (ht : ∀ x ∈ tp, x < t) : -- --- CONCL ---
     (PointSegmentSignal.mk tp val).at t = val.getD (val.length - 1) false := by -- --- PROOF ---
   have h : tp.takeWhile (· ≤ t) = tp := by
     rw [List.takeWhile_eq_self_iff]

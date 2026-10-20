@@ -51,7 +51,7 @@ variable {n : ℕ}
 /-- `e^{A t}` is in `expEnclosure t η` at every member `A` of `sys.A`, every `t`
 and every requested order. -/
 theorem LinParamSys.exp_mem_expEnclosure (sys : LinParamSys ℐ n) (t : ℝ) (η : ℕ)
-    {A : Mat ℝ n n} (hA : A ∈ construct sys.A) :
+    {A : Mat ℝ n n} (hA : A ∈ construct sys.A) : -- --- CONCL ---
     exp (t • A) ∈ construct (sys.expEnclosure t η) := by -- --- PROOF ---
   -- the raised order is at least the admissible one, so its denominator is larger
   have hadm := sys.reachOrder_admissible t

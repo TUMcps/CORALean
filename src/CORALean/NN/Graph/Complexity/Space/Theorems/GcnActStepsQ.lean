@@ -45,7 +45,7 @@ variable {N : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- With a first set free of independent generators, the chain's set is too. -/
-theorem GNN.gcnActSteps_q (L : ℕ) :
+theorem GNN.gcnActSteps_q (L : ℕ) : -- --- CONCL ---
     ∀ (c : ℕ → ℕ) (W : ∀ s, Mat ℝ (c s) (c (s + 1))) (acts : ∀ s, GNN.ActLayer N (c (s + 1)))
       (P : PolyZonotope (Mat ℝ N N)) (H : PolyZonotope (Mat ℝ N (c 0))) (hp : P.p = H.p),
       H.q = 0 → (GNN.gcnActSteps L c W acts P H hp).q = 0 := by -- --- PROOF ---

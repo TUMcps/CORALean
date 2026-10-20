@@ -45,7 +45,7 @@ variable {N : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem GNN.ball_subset_ballFloat (A : Mat ℝ N N) (E : Fin N → Fin N → Bool)
-    (hE : ∀ i j, A i j ≠ 0 → E i j = true) (v : Fin N) (r : ℕ) :
+    (hE : ∀ i j, A i j ≠ 0 → E i j = true) (v : Fin N) (r : ℕ) : -- --- CONCL ---
     Real.GNN.ball A v r ⊆ GNN.ballFloat E v r := by -- --- PROOF ---
   induction r with
   | zero => exact subset_refl _

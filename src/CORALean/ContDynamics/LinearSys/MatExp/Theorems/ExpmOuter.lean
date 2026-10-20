@@ -51,7 +51,7 @@ variable {n : ℕ}
 
 /-- For a nonzero step and order `η ≥ 2`, `expm` encloses `e^M` for every `M` in the box. -/
 theorem MatExp.expm_outer (A : Interval (Mat ℝ n n)) {r : ℝ} (hr : r ≠ 0) {η : ℕ}
-    (hη : 2 ≤ η) {M : Mat ℝ n n} (hM : M ∈ A.construct) :
+    (hη : 2 ≤ η) {M : Mat ℝ n n} (hM : M ∈ A.construct) : -- --- CONCL ---
     exp M ∈ (MatExp.expm A r η).construct := by -- --- PROOF ---
   obtain ⟨k, rfl⟩ : ∃ k, η = k + 2 := ⟨η - 2, by omega⟩
   have key : exp M = MatExp.expTaylor M (k + 2) + (exp M - MatExp.expTaylor M (k + 2)) := by

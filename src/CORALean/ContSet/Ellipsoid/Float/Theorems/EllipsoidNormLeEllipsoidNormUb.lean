@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.ellipsoidNorm_le_ellipsoidNormUb {prec : ℕ} {E : Ellipsoid 𝕋 n} {p w : Vec 𝕋 n}
-    (hr : (nominal E).ellipsoid.rank = n) :
+    (hr : (nominal E).ellipsoid.rank = n) : -- --- CONCL ---
     ∀ t ∈ E.ellipsoidNormUb prec p w,
       (nominal E).ellipsoid.ellipsoidNorm (toRealVec p) ≤ toReal t := by -- --- PROOF ---
   intro t (h : E.ellipsoidNormUb prec p w = some t)

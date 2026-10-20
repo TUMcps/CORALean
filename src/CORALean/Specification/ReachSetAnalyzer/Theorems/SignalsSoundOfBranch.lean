@@ -60,7 +60,8 @@ theorem ReachSetAnalyzer.signalsSound_of_branch (obj : ReachSetAnalyzer S n) (d 
     (hw : ∀ j ∈ w, ∃ e, R[j - 1]? = some e ∧ ∀ s ∈ e.timeInterval, s.time.inf < s.time.sup)
     (obj' : ReachSetAnalyzer S n)
     (hf : w.foldlM (fun o j => (R[j - 1]?).bind fun e => o.analyzeSingle (𝕋 := 𝕋) e) obj =
-      some obj') (out : List (String × FiniteSignal ℝ Kleene)) (hs : obj'.signals = some out) :
+      some obj') (out : List (String × FiniteSignal ℝ Kleene)) (hs : obj'.signals = some out)
+    : -- --- CONCL ---
     obj.SignalsSound d R w out := by -- --- PROOF ---
   -- what the analyzer says after the branch, and what its signals say
   obtain ⟨o2, hf2, ha, hm, hr⟩ := ReachSetAnalyzer.analyzeBranch_spec (𝕋 := 𝕋) obj d R w hw

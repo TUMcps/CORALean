@@ -49,7 +49,7 @@ theorem Zonotope.aux_pointUp_smul (Z : Zonotope (Vec ℝ 2)) (i : Fin Z.h) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.construct_pointUp (Z : Zonotope (Vec ℝ 2)) :
+theorem Zonotope.construct_pointUp (Z : Zonotope (Vec ℝ 2)) : -- --- CONCL ---
     Z.pointUp.construct = Z.construct := by -- --- PROOF ---
   choose e he hG using Zonotope.aux_pointUp_smul Z
   ext x

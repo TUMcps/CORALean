@@ -50,7 +50,7 @@ variable {𝕋 : Type} [Scalar 𝕋] {dy du p : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearARX.reachOutExact_eq_simulate (sys : LinearARX 𝕋 dy du p) (y₀ : Vec ℝ (p * dy))
-    (U : ℕ → Set (Vec ℝ du)) (k : ℕ) :
+    (U : ℕ → Set (Vec ℝ du)) (k : ℕ) : -- --- CONCL ---
     sys.reachOutExact y₀ U k
       = (fun u => sys.simulate y₀ u k) '' {u | ∀ i, u i ∈ U i} := by -- --- PROOF ---
   ext x

@@ -50,7 +50,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 theorem LinearARX.simulate_mem_reach (sys : LinearARX 𝕋 dy du p) {o : ℕ} (ho : 0 < o)
     (Y₀ : S (p * dy)) (U : S du) {y₀ : Vec ℝ (p * dy)} (hy₀ : y₀ ∈ construct Y₀)
-    {u : ℕ → Vec ℝ du} (hu : ∀ k, u k ∈ construct U) (k : ℕ) : -- --- CONCL ---
+    {u : ℕ → Vec ℝ du} (hu : ∀ k, u k ∈ construct U) (k : ℕ) :
     LinearARX.stack p (sys.simulate y₀ u) k ∈ construct
       (sys.toLinearSysDT.reach ⟨Y₀, sys.inputSet U, 0, k⟩ ⟨o, ho⟩) :=
   sys.reach_outer ho Y₀ U (sys.simulate_isTrajectory hy₀ hu) k

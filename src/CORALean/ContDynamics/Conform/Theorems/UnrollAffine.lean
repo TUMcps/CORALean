@@ -51,7 +51,7 @@ variable {n : ℕ}
 
 /-- The solution of `d_{m+1} = A_m d_m + w_m`, as a product of the latest factors. -/
 theorem Conform.unroll_affine (A : ℕ → Mat ℝ n n) (d w : ℕ → Vec ℝ n)
-    (h : ∀ m, d (m + 1) = A m *ᵥ d m + w m) (M : ℕ) :
+    (h : ∀ m, d (m + 1) = A m *ᵥ d m + w m) (M : ℕ) : -- --- CONCL ---
     d M = Conform.prodJac A M M *ᵥ d 0
       + ∑ i ∈ Finset.range M, Conform.prodJac A M (M - i - 1) *ᵥ w i := by -- --- PROOF ---
   induction M with

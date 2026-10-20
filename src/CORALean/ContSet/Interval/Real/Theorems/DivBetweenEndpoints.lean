@@ -48,7 +48,7 @@ namespace CORALean.Real
 /-- Solving a scaled point's bracket back out for the point, whichever way `c`'s sign
 swaps the two endpoints. -/
 theorem Interval.div_between_endpoints {c lo hi x : ℝ} (hc : c ≠ 0)
-    (h₁ : lo ≤ c * x) (h₂ : c * x ≤ hi) :
+    (h₁ : lo ≤ c * x) (h₂ : c * x ≤ hi) : -- --- CONCL ---
     min (lo / c) (hi / c) ≤ x ∧ x ≤ max (lo / c) (hi / c) := by -- --- PROOF ---
   have h₁' : lo ≤ x * c := by rw [mul_comm]; exact h₁
   have h₂' : x * c ≤ hi := by rw [mul_comm]; exact h₂

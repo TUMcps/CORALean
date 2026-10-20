@@ -40,7 +40,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.monomial_padE {p q : ℕ} (R : Fin p → Fin q → ℕ) (r : ℕ)
-    (a : Fin (p + r) → ℝ) (l : Fin q) :
+    (a : Fin (p + r) → ℝ) (l : Fin q) : -- --- CONCL ---
     PolyZonotope.monomial (ConPolyZono.padE R r) a l
       = PolyZonotope.monomial R (fun k => a (Fin.castAdd r k)) l := by -- --- PROOF ---
   rw [PolyZonotope.monomial, PolyZonotope.monomial, Fin.prod_univ_add]

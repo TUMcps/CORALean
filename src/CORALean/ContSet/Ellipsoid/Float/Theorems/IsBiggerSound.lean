@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A matrix of Frobenius norm at most `1` keeps the unit ball. -/
 theorem Ellipsoid.aux_norm₂_mulVec_le_one {a b : ℕ} (T : Mat ℝ a b) (u : Vec ℝ b)
-    (hT : ∑ i, ∑ j, T i j ^ 2 ≤ 1) (hu : ‖u‖₂ ≤ 1) :
+    (hT : ∑ i, ∑ j, T i j ^ 2 ≤ 1) (hu : ‖u‖₂ ≤ 1) : -- --- CONCL ---
     ‖fun i => ∑ j, T i j * u j‖₂ ≤ 1 := by -- --- PROOF ---
   -- each row's value is at most the row's length, by Cauchy–Schwarz
   have hrow : ∀ i, (∑ j, T i j * u j) ^ 2 ≤ ∑ j, T i j ^ 2 := fun i => by
@@ -65,7 +65,8 @@ theorem Ellipsoid.aux_norm₂_mulVec_le_one {a b : ℕ} (T : Mat ℝ a b) (u : V
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.isBigger_sound {E₁ E₂ : Ellipsoid 𝕋 n} (h : E₁.isBigger E₂ = true) :
+theorem Ellipsoid.isBigger_sound {E₁ E₂ : Ellipsoid 𝕋 n}
+    (h : E₁.isBigger E₂ = true) : -- --- CONCL ---
     (fun x => x - toRealVec E₂.q) '' E₂.construct
       ⊆ (fun x => x - toRealVec E₁.q) '' E₁.construct := by -- --- PROOF ---
   simp only [Ellipsoid.isBigger, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,

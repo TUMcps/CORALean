@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.sqrtBound_ge (q : ℕ) (m₀ : 𝕋) (hm : 0 < toReal m₀) (N : ℕ) {ξ : ℝ}
-    (hξ : toReal m₀ ≤ ξ) :
+    (hξ : toReal m₀ ≤ ξ) : -- --- CONCL ---
     |iteratedDeriv (N + 1) Real.sqrt ξ| ≤ toReal (Taylm.sqrtBound q m₀ N) := by -- --- PROOF ---
   have hξ0 : 0 < ξ := lt_of_lt_of_le hm hξ
   have hfun : Real.sqrt = fun x : ℝ => x ^ (1 / 2 : ℝ) := funext Real.sqrt_eq_rpow

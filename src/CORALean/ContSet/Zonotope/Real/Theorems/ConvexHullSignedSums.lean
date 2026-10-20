@@ -44,7 +44,7 @@ variable {n p : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.convexHull_signedSums (R : Fin p → Vec ℝ n) :
+theorem Zonotope.convexHull_signedSums (R : Fin p → Vec ℝ n) : -- --- CONCL ---
     convexHull ℝ (Zonotope.signedSums R) =
       (⟨p, 0, R⟩ : Zonotope (Vec ℝ n)).construct := by -- --- PROOF ---
   rw [Zonotope.construct_eq_convexHull_corner]

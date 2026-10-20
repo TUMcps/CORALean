@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.bernsteinEntryBounds_mem (N e j : ℕ) (hj : j ≤ N) :
+theorem Taylm.bernsteinEntryBounds_mem (N e j : ℕ) (hj : j ≤ N) : -- --- CONCL ---
     toReal (Taylm.bernsteinEntryBounds (𝕋 := 𝕋) N e j).inf ≤ Real.Taylm.bernsteinEntry N e j ∧
       Real.Taylm.bernsteinEntry N e j ≤ toReal (Taylm.bernsteinEntryBounds (𝕋 := 𝕋) N e j).sup
     := by -- --- PROOF ---

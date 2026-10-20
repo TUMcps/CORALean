@@ -75,7 +75,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `(e^{ra} - 1)/a` grows with `a > 0`: `e^{ra}` lies under the chord from `e^0` to `e^{rb}`. -/
-theorem aux_exp_sub_one_div_mono {r a b : ℝ} (ha : 0 < a) (hab : a ≤ b) :
+theorem aux_exp_sub_one_div_mono {r a b : ℝ} (ha : 0 < a) (hab : a ≤ b) : -- --- CONCL ---
     (Real.exp (r * a) - 1) / a ≤ (Real.exp (r * b) - 1) / b := by -- --- PROOF ---
   have hb : 0 < b := ha.trans_le hab
   have hl0 : 0 ≤ a / b := (div_pos ha hb).le
@@ -99,7 +99,7 @@ theorem aux_exp_sub_one_sub_mono {x y : ℝ} (hx : 0 ≤ x) (hxy : x ≤ y) :
 
 /-- A time in `[0, T]` lies in the window `[i r, (i+1) r]` of some `i < N`, `T ≤ N r`. -/
 theorem aux_exists_window_float {r T t : ℝ} {N : ℕ} (hr : 0 < r) (hN : T / r ≤ N)
-    (ht0 : 0 ≤ t) (htT : t ≤ T) :
+    (ht0 : 0 ≤ t) (htT : t ≤ T) : -- --- CONCL ---
     ∃ i < N - 1 + 1, (i : ℝ) * r ≤ t ∧ t ≤ ((i : ℝ) + 1) * r := by -- --- PROOF ---
   have hfl := Nat.floor_le (div_nonneg ht0 hr.le)
   have hlt := Nat.lt_floor_add_one (t / r)
@@ -119,7 +119,7 @@ theorem aux_exists_window_float {r T t : ℝ} {N : ℕ} (hr : 0 < r) (hN : T / r
         _ ≤ (((N - 1 : ℕ) : ℝ) + 1) * r := by gcongr
 
 /-- `k` passes of a loop that maps its state and appends the result. -/
-theorem aux_foldl_iterate_float {α : Type} (f : α → α) (a : α) (k : ℕ) :
+theorem aux_foldl_iterate_float {α : Type} (f : α → α) (a : α) (k : ℕ) : -- --- CONCL ---
     (List.range k).foldl (fun (QR : α × List α) (_ : ℕ) => (f QR.1, QR.2 ++ [f QR.1])) (a, [a])
       = (f^[k] a, (List.range (k + 1)).map fun i => f^[i] a) := by -- --- PROOF ---
   induction k with

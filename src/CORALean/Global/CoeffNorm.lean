@@ -61,7 +61,8 @@ theorem coeffNorm_le (G : E →ₗ[ℝ] V) (α : E) : coeffNorm G (G α) ≤ ‖
 
 /-- The minimum is attained: the fibre is closed, and cut down to a ball it is compact. -/
 theorem exists_coeffNorm_eq [FiniteDimensional ℝ E] (G : E →ₗ[ℝ] V) {x : V}
-    (hx : ∃ α, G α = x) : ∃ α, G α = x ∧ ‖α‖ = coeffNorm G x := by -- --- PROOF ---
+    (hx : ∃ α, G α = x) : -- --- CONCL ---
+    ∃ α, G α = x ∧ ‖α‖ = coeffNorm G x := by -- --- PROOF ---
   obtain ⟨α₀, hα₀⟩ := hx
   -- the fibre is `α₀ + ker G`, a closed set
   have hfib : {α | G α = x} = (fun β => α₀ + β) '' (LinearMap.ker G : Set E) := by
@@ -89,7 +90,8 @@ theorem exists_coeffNorm_eq [FiniteDimensional ℝ E] (G : E →ₗ[ℝ] V) {x :
   exact le_csInf ⟨_, α₀, hα₀, rfl⟩ (by rintro _ ⟨β, hβ, rfl⟩; exact hall β hβ)
 
 theorem coeffNorm_le_iff [FiniteDimensional ℝ E] (G : E →ₗ[ℝ] V) {x : V} (hx : ∃ α, G α = x)
-    {r : ℝ} : coeffNorm G x ≤ r ↔ ∃ α, G α = x ∧ ‖α‖ ≤ r := by -- --- PROOF ---
+    {r : ℝ} : -- --- CONCL ---
+    coeffNorm G x ≤ r ↔ ∃ α, G α = x ∧ ‖α‖ ≤ r := by -- --- PROOF ---
   constructor
   · intro h
     obtain ⟨α, hα, he⟩ := exists_coeffNorm_eq G hx
@@ -109,7 +111,8 @@ theorem coeffNorm_add_le [FiniteDimensional ℝ E] (G : E →ₗ[ℝ] V) {x y : 
   exact (coeffNorm_le G _).trans (norm_add_le α β)
 
 theorem coeffNorm_smul [FiniteDimensional ℝ E] (G : E →ₗ[ℝ] V) {x : V} (hx : ∃ α, G α = x)
-    (a : ℝ) : coeffNorm G (a • x) = |a| * coeffNorm G x := by -- --- PROOF ---
+    (a : ℝ) : -- --- CONCL ---
+    coeffNorm G (a • x) = |a| * coeffNorm G x := by -- --- PROOF ---
   obtain ⟨α, rfl, hα⟩ := exists_coeffNorm_eq G hx
   rcases eq_or_ne a 0 with rfl | ha
   · simp [coeffNorm_zero]
@@ -132,7 +135,8 @@ theorem coeffNorm_smul [FiniteDimensional ℝ E] (G : E →ₗ[ℝ] V) {x : V} (
       _ = coeffNorm G (G (a • α)) := by field_simp
 
 theorem coeffNorm_eq_zero_iff [FiniteDimensional ℝ E] (G : E →ₗ[ℝ] V) {x : V}
-    (hx : ∃ α, G α = x) : coeffNorm G x = 0 ↔ x = 0 := by -- --- PROOF ---
+    (hx : ∃ α, G α = x) : -- --- CONCL ---
+    coeffNorm G x = 0 ↔ x = 0 := by -- --- PROOF ---
   constructor
   · intro h
     obtain ⟨α, rfl, hα⟩ := exists_coeffNorm_eq G hx
@@ -144,7 +148,8 @@ theorem coeffNorm_eq_zero_iff [FiniteDimensional ℝ E] (G : E →ₗ[ℝ] V) {x
 /-- Through a surjective map the norm is bounded by a multiple of any norm on the target:
 a linear right inverse is continuous in finite dimension. -/
 theorem exists_coeffNorm_le_mul_norm [FiniteDimensional ℝ E] {W : Type} [NormedAddCommGroup W]
-    [NormedSpace ℝ W] [FiniteDimensional ℝ W] (G : E →ₗ[ℝ] W) (hG : Function.Surjective G) :
+    [NormedSpace ℝ W] [FiniteDimensional ℝ W] (G : E →ₗ[ℝ] W)
+    (hG : Function.Surjective G) : -- --- CONCL ---
     ∃ C, 0 ≤ C ∧ ∀ x, coeffNorm G x ≤ C * ‖x‖ := by -- --- PROOF ---
   obtain ⟨R, hR⟩ := LinearMap.exists_rightInverse_of_surjective G (LinearMap.range_eq_top.mpr hG)
   refine ⟨‖LinearMap.toContinuousLinearMap R‖, norm_nonneg _, fun x => ?_⟩
@@ -155,7 +160,8 @@ theorem exists_coeffNorm_le_mul_norm [FiniteDimensional ℝ E] {W : Type} [Norme
 
 /-- And so it is Lipschitz: `ν x ≤ ν y + ν (x - y) ≤ ν y + C ‖x - y‖`. -/
 theorem exists_lipschitzWith_coeffNorm [FiniteDimensional ℝ E] {W : Type} [NormedAddCommGroup W]
-    [NormedSpace ℝ W] [FiniteDimensional ℝ W] (G : E →ₗ[ℝ] W) (hG : Function.Surjective G) :
+    [NormedSpace ℝ W] [FiniteDimensional ℝ W] (G : E →ₗ[ℝ] W)
+    (hG : Function.Surjective G) : -- --- CONCL ---
     ∃ K : NNReal, LipschitzWith K (coeffNorm G) := by -- --- PROOF ---
   obtain ⟨C, hC0, hC⟩ := exists_coeffNorm_le_mul_norm G hG
   refine ⟨Real.toNNReal C, LipschitzWith.of_le_add_mul _ fun x y => ?_⟩

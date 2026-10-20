@@ -44,7 +44,7 @@ variable {α β γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [
 
 /-- The `k` count of `bilin`'s result in `O`-notation. -/
 theorem VPolytope.bilin_k_isBigO (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (P : ℕ → VPolytope α)
-    (Q : ℕ → VPolytope β) (hP : ∀ m, (P m).k = m) (hQ : ∀ m, (Q m).k = m) :
+    (Q : ℕ → VPolytope β) (hP : ∀ m, (P m).k = m) (hQ : ∀ m, (Q m).k = m) : -- --- CONCL ---
     (fun m : ℕ => (((VPolytope.bilin f (P m) (Q m)).k : ℕ) : ℝ))
       =O[Filter.atTop] fun m : ℕ => ((m : ℝ)) ^ 2 := by -- --- PROOF ---
   apply Asymptotics.IsBigO.of_bound 1

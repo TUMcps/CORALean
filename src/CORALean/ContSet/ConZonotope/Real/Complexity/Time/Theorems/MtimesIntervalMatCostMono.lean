@@ -48,7 +48,7 @@ namespace CORALean.Real
 /-- Monotone in the generator count and the row counts, so a bound on the operand's size gives a
 bound on the cost. -/
 theorem ConZonotope.mtimesIntervalMatCost_mono {h h' r r' re re' : ℕ} (m n : ℕ) (hh : h ≤ h')
-    (hr : r ≤ r') (he : re ≤ re') :
+    (hr : r ≤ r') (he : re ≤ re') : -- --- CONCL ---
     ConZonotope.mtimesIntervalMatCost m n h r re ≤
       ConZonotope.mtimesIntervalMatCost m n h' r' re' := by -- --- PROOF ---
   have := Cost.le_iff.mp (Zonotope.mtimesIntervalMatCost_mono m n hh)

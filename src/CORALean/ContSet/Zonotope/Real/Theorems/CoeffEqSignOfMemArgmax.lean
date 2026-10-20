@@ -77,7 +77,8 @@ theorem Zonotope.aux_term_le_cesm {b r : ℝ} (hb : |b| ≤ 1) : b * r ≤ |r| :
 theorem Zonotope.coeff_eq_sign_of_mem_argmax (Z : Zonotope α) (u : α →ₗ[ℝ] ℝ) {x : α}
     (hx : x ∈ {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, u y ≤ u x}) {β : Fin Z.h → ℝ}
     (hβ : ∀ j, |β j| ≤ 1) (hxβ : x = Z.c + ∑ j, β j • Z.G j) (j : Fin Z.h)
-    (hj : u (Z.G j) ≠ 0) : β j = Real.sign (u (Z.G j)) := by -- --- PROOF ---
+    (hj : u (Z.G j) ≠ 0) : -- --- CONCL ---
+    β j = Real.sign (u (Z.G j)) := by -- --- PROOF ---
   -- the farthest point, with the sign coefficients, bounds `u x` from below
   have hmem : Z.c + ∑ i, Real.sign (u (Z.G i)) • Z.G i ∈ Z.construct := by
     refine ⟨fun i => Real.sign (u (Z.G i)), fun i => ?_, rfl⟩

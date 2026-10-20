@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem sumOffDown_le (i : Fin n) (v : Fin n → 𝕋) (h : Fin n → ℝ)
-    (hv : ∀ j, j ≠ i → toReal (v j) ≤ h j) :
+    (hv : ∀ j, j ≠ i → toReal (v j) ≤ h j) : -- --- CONCL ---
     toReal (sumOffDown i v) ≤ ∑ j ∈ Finset.univ.erase i, h j := by -- --- PROOF ---
   refine le_trans (sumDown_le_sum _) ?_
   rw [Finset.sum_congr rfl fun j _ => toReal_ite_zero v i j, ← sum_ite_zero i h]

@@ -33,7 +33,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The set is the corner-image map applied to the factor cube. -/
-theorem PolyZonotope.isPolytopeCex_mem_construct (x : Vec ℝ 2) :
+theorem PolyZonotope.isPolytopeCex_mem_construct (x : Vec ℝ 2) : -- --- CONCL ---
     x ∈ PolyZonotope.isPolytopeCex.construct ↔
       ∃ a : Fin 3 → ℝ, (∀ k, |a k| ≤ 1) ∧ x = ![2 * a 0 + a 1, a 0 * a 2] := by -- --- PROOF ---
   have hz : ∀ β : Fin PolyZonotope.isPolytopeCex.q → ℝ,

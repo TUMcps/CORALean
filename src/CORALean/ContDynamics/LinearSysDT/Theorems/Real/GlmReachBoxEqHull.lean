@@ -55,7 +55,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 /-- `k` passes of a loop that steps its state by `f` and appends `g` of the new state. -/
 theorem LinearSysDT.aux_glmReachBox_foldl {α β : Type} (f : α → α) (g : α → β) (a : α)
-    (k : ℕ) :
+    (k : ℕ) : -- --- CONCL ---
     (List.range k).foldl (fun (s : α × List β) (_ : ℕ) => (f s.1, s.2 ++ [g (f s.1)])) (a, [])
       = (f^[k] a, (List.range k).map fun i => g (f^[i + 1] a)) := by -- --- PROOF ---
   induction k with
@@ -65,7 +65,7 @@ theorem LinearSysDT.aux_glmReachBox_foldl {α β : Type} (f : α → α) (g : α
     simp [Function.iterate_succ_apply']
 
 /-- The box of a zonotope sum is the sum of the boxes. -/
-theorem LinearSysDT.aux_interval_plus (Z₁ Z₂ : Zonotope (Vec ℝ n)) :
+theorem LinearSysDT.aux_interval_plus (Z₁ Z₂ : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (Z₁.plus Z₂).interval = Z₁.interval.plus Z₂.interval := by -- --- PROOF ---
   -- the generator sum splits at the concatenation, stated at `plus`'s own count
   have hs : ∀ i : Fin n, ∑ j : Fin (Z₁.plus Z₂).h, |Entrywise.entry ((Z₁.plus Z₂).G j) i|
@@ -84,7 +84,7 @@ theorem LinearSysDT.aux_interval_plus (Z₁ Z₂ : Zonotope (Vec ℝ n)) :
 
 /-- [1, Prop. 1]: `Ω̄ᵢ` is the interval hull of `Ωᵢ`, for every `i ∈ {1, …, N}`. -/
 theorem LinearSysDT.glmReachBox_eq_hull (sys : LinearSysDT 𝕋 n) (Ω₀ U : Zonotope (Vec ℝ n))
-    (N : ℕ) :
+    (N : ℕ) : -- --- CONCL ---
     sys.glmReachBox Ω₀ U N = (List.range N).map fun i =>
       Interval.hull (sys.reachSetExact (S := 𝒵) Ω₀ U (i + 1)) := by -- --- PROOF ---
   set Φ := toRealMat sys.A

@@ -39,7 +39,7 @@ theorem PolyZonotope.aux_eDiff_triangle (a b c : ℕ) :
 
 /-- Along a chain: a walk from `f 0` to `f n` never costs less than the step
 straight across. -/
-theorem PolyZonotope.aux_eDiff_chain (f : ℕ → ℕ) (n : ℕ) :
+theorem PolyZonotope.aux_eDiff_chain (f : ℕ → ℕ) (n : ℕ) : -- --- CONCL ---
     PolyZonotope.eDiff (f 0) (f n)
       ≤ ∑ s ∈ Finset.range n, PolyZonotope.eDiff (f s) (f (s + 1)) := by -- --- PROOF ---
   induction n with

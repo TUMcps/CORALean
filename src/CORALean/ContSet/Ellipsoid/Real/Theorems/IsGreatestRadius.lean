@@ -46,7 +46,8 @@ variable {n : ℕ}
 
 -- Rayleigh: no eigenvalue exceeds the first (sorted in decreasing order)
 theorem Ellipsoid.aux_rayleigh (A : Mat ℝ n n) (hA : A.IsHermitian) (h0 : 0 < Fintype.card (Fin n))
-    (v : Vec ℝ n) : v ⬝ᵥ (A *ᵥ v) ≤ hA.eigenvalues₀ ⟨0, h0⟩ * (v ⬝ᵥ v) := by -- --- PROOF ---
+    (v : Vec ℝ n) : -- --- CONCL ---
+    v ⬝ᵥ (A *ᵥ v) ≤ hA.eigenvalues₀ ⟨0, h0⟩ * (v ⬝ᵥ v) := by -- --- PROOF ---
   set U : Mat ℝ n n := (hA.eigenvectorUnitary : Matrix (Fin n) (Fin n) ℝ) with hU
   set D : Mat ℝ n n := Matrix.diagonal hA.eigenvalues with hD
   have hspec : A = U * D * Uᵀ := by
@@ -79,7 +80,7 @@ theorem Ellipsoid.aux_rayleigh (A : Mat ℝ n n) (hA : A.IsHermitian) (h0 : 0 < 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.isGreatest_radius (E : Ellipsoid n) (hn : 1 ≤ n) :
+theorem Ellipsoid.isGreatest_radius (E : Ellipsoid n) (hn : 1 ≤ n) : -- --- CONCL ---
     IsGreatest ((fun x => ‖x - E.q‖₂) '' E.construct)
       (E.radius 1 hn ⟨0, one_pos⟩) := by -- --- PROOF ---
   -- the shape matrix, its first eigenvalue `l0`

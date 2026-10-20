@@ -73,7 +73,8 @@ theorem err_nonneg (S : Set (Vec ℝ n)) : 0 ≤ err S := norm₂_nonneg _
 /-- A larger set has a no-smaller `err`, provided the larger one is bounded at all and the smaller
 one is not empty — [1]'s own use of `err` is always monotone in exactly this shape. -/
 theorem err_mono {S T : Set (Vec ℝ n)} (hne : S.Nonempty) (hT : Bornology.IsBounded T)
-    (hST : S ⊆ T) : err S ≤ err T := by -- --- PROOF ---
+    (hST : S ⊆ T) : -- --- CONCL ---
+    err S ≤ err T := by -- --- PROOF ---
   refine aux_err_norm₂_le_of_abs_le fun i => ?_
   set imS := (fun x : Vec ℝ n => x i) '' S
   set imT := (fun x : Vec ℝ n => x i) '' T
@@ -101,7 +102,8 @@ theorem err_mono {S T : Set (Vec ℝ n)} (hne : S.Nonempty) (hT : Bornology.IsBo
 /-- Every member of a bounded set is within `err`'s reach of the origin — [1]'s eq. (12),
 `d_H(0,S) ≤ err(S)`, read off a single witness rather than the Hausdorff distance. -/
 theorem norm₂_le_err_of_mem {S : Set (Vec ℝ n)} (hS : Bornology.IsBounded S) {x : Vec ℝ n}
-    (hx : x ∈ S) : ‖x‖₂ ≤ err S := by -- --- PROOF ---
+    (hx : x ∈ S) : -- --- CONCL ---
+    ‖x‖₂ ≤ err S := by -- --- PROOF ---
   refine aux_err_norm₂_le_of_abs_le fun i => ?_
   have h1 : sInf ((fun z : Vec ℝ n => z i) '' S) ≤ x i :=
     csInf_le (bddBelow_eval_image hS i) ⟨x, hx, rfl⟩
@@ -118,7 +120,7 @@ theorem norm₂_le_err_of_mem {S : Set (Vec ℝ n)} (hS : Bornology.IsBounded S)
 /-- `err` of a Minkowski sum is at most the sum of `err`'s — the triangle inequality [1, Lemma
 2]'s Appendix B proof takes for granted while combining a step's error terms. -/
 theorem err_add_le {S T : Set (Vec ℝ n)} (hSne : S.Nonempty) (hTne : T.Nonempty)
-    (hS : Bornology.IsBounded S) (hT : Bornology.IsBounded T) :
+    (hS : Bornology.IsBounded S) (hT : Bornology.IsBounded T) : -- --- CONCL ---
     err (S + T) ≤ err S + err T := by -- --- PROOF ---
   have himg : ∀ i : Fin n, (fun x : Vec ℝ n => x i) '' (S + T)
       = (fun x : Vec ℝ n => x i) '' S + (fun x : Vec ℝ n => x i) '' T := by
@@ -164,7 +166,7 @@ theorem err_add_le {S T : Set (Vec ℝ n)} (hSne : S.Nonempty) (hTne : T.Nonempt
 /-- `err` scales with a non-negative factor: the box of `c • S` is `c` times `S`'s, both
 endpoints scaling with it, and so is its farthest corner — what a superlinear-decrease argument
 uses to take a factor `φ` out of an error term. -/
-theorem err_smul_of_nonneg {c : ℝ} (hc : 0 ≤ c) (S : Set (Vec ℝ n)) :
+theorem err_smul_of_nonneg {c : ℝ} (hc : 0 ≤ c) (S : Set (Vec ℝ n)) : -- --- CONCL ---
     err (c • S) = c * err S := by -- --- PROOF ---
   have himg : ∀ i : Fin n, (fun x : Vec ℝ n => x i) '' (c • S)
       = c • ((fun x : Vec ℝ n => x i) '' S) := by
@@ -185,7 +187,8 @@ theorem err_smul_of_nonneg {c : ℝ} (hc : 0 ≤ c) (S : Set (Vec ℝ n)) :
 /-- `boxDiameter`'s own width is at most twice `err`'s reach, the two endpoints' magnitudes each
 bounding it. -/
 theorem norm_boxDiameter_le_two_mul_err (S : Set (Vec ℝ n)) (hSne : S.Nonempty)
-    (hS : Bornology.IsBounded S) : ‖boxDiameter S‖ ≤ 2 * err S := by -- --- PROOF ---
+    (hS : Bornology.IsBounded S) : -- --- CONCL ---
+    ‖boxDiameter S‖ ≤ 2 * err S := by -- --- PROOF ---
   refine pi_norm_le_iff_of_nonneg (mul_nonneg (by norm_num) (err_nonneg S)) |>.mpr fun i => ?_
   have hbd : boxDiameter S i
       = sSup ((fun x : Vec ℝ n => x i) '' S) - sInf ((fun x : Vec ℝ n => x i) '' S) := rfl
@@ -217,7 +220,8 @@ theorem norm_boxDiameter_le_two_mul_err (S : Set (Vec ℝ n)) (hSne : S.Nonempty
 since it always encloses `0`. Loose by a factor `√n` against the tight `err` bound: `boxDiameter`
 reads the box's own extent in the supremum norm, `err` in the Euclidean one. -/
 theorem err_le_sqrt_mul_norm_boxDiameter {S : Set (Vec ℝ n)} (h0 : (0 : Vec ℝ n) ∈ S)
-    (hS : Bornology.IsBounded S) : err S ≤ Real.sqrt n * ‖boxDiameter S‖ := by -- --- PROOF ---
+    (hS : Bornology.IsBounded S) : -- --- CONCL ---
+    err S ≤ Real.sqrt n * ‖boxDiameter S‖ := by -- --- PROOF ---
   have hcoord : ∀ i : Fin n,
       max |sSup ((fun x : Vec ℝ n => x i) '' S)| |sInf ((fun x : Vec ℝ n => x i) '' S)|
         ≤ ‖boxDiameter S‖ := by
@@ -251,7 +255,8 @@ theorem err_le_sqrt_mul_norm_boxDiameter {S : Set (Vec ℝ n)} (h0 : (0 : Vec �
 /-- If every point of `S` is within `r` of the origin, `err S` is within `√n · r` — the pointwise
 route to a bound on `err`, avoiding a second `boxDiameter` computation. -/
 theorem err_le_of_forall_norm₂_le {S : Set (Vec ℝ n)} {r : ℝ} (hr : 0 ≤ r)
-    (h : ∀ y ∈ S, ‖y‖₂ ≤ r) : err S ≤ Real.sqrt n * r := by -- --- PROOF ---
+    (h : ∀ y ∈ S, ‖y‖₂ ≤ r) : -- --- CONCL ---
+    err S ≤ Real.sqrt n * r := by -- --- PROOF ---
   have hcoord : ∀ i : Fin n,
       max |sSup ((fun x : Vec ℝ n => x i) '' S)| |sInf ((fun x : Vec ℝ n => x i) '' S)| ≤ r := by
     intro i
@@ -286,7 +291,8 @@ theorem err_le_of_forall_norm₂_le {S : Set (Vec ℝ n)} {r : ℝ} (hr : 0 ≤ 
 /-- Applying a matrix scales `err` by at most `√n` times the sum of its rows' own Euclidean
 norms — every point of `S` is within `err S` of the origin, and `norm₂_mulVec_le` carries that
 through `M`. -/
-theorem err_mulVec_le (M : Mat ℝ n n) {S : Set (Vec ℝ n)} (hS : Bornology.IsBounded S) :
+theorem err_mulVec_le (M : Mat ℝ n n) {S : Set (Vec ℝ n)}
+    (hS : Bornology.IsBounded S) : -- --- CONCL ---
     err (M.mulVec '' S) ≤ Real.sqrt n * (∑ i, ‖(fun j => M i j)‖₂) * err S := by -- --- PROOF ---
   have hr : (0:ℝ) ≤ (∑ i, ‖(fun j => M i j)‖₂) * err S :=
     mul_nonneg (Finset.sum_nonneg fun i _ => norm₂_nonneg _) (err_nonneg S)

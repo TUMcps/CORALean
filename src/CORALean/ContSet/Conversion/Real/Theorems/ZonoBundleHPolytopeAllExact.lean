@@ -41,7 +41,7 @@ variable {n : ℕ}
 
 /-- The members' facet polytopes, intersected, are the bundle. -/
 theorem ZonoBundle.hPolytopeAll_exact (zB : ZonoBundle (Vec ℝ (n + 1)))
-    (hspan : ∀ i, Submodule.span ℝ (Set.range (zB.Z i).G) = ⊤) :
+    (hspan : ∀ i, Submodule.span ℝ (Set.range (zB.Z i).G) = ⊤) : -- --- CONCL ---
     zB.hPolytopeAll.construct = zB.construct := by -- --- PROOF ---
   ext x
   rw [ZonoBundle.hPolytopeAll, HPolytope.mem_foldl_intersection_iff, ZonoBundle.construct_eq_iInter,

@@ -48,7 +48,8 @@ theorem STL.Tree.aux_le_add {s t x b : ℝ≥0} (hs : s ≤ x) (ht : t ≤ b) : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Tree.sat_congr_maximumTime (φ : STL.Tree n) (ξ ξ' : ℝ≥0 → Fin n → ℝ)
-    (h : ∀ s ≤ φ.maximumTime, ξ s = ξ' s) : φ.Sat ξ ↔ φ.Sat ξ' := by -- --- PROOF ---
+    (h : ∀ s ≤ φ.maximumTime, ξ s = ξ' s) : -- --- CONCL ---
+    φ.Sat ξ ↔ φ.Sat ξ' := by -- --- PROOF ---
   induction φ generalizing ξ ξ' with
   | tt | ff => rfl
   | cmp op e₁ e₂ => simp only [STL.Tree.Sat, h 0 (by simp)]

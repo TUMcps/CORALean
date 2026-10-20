@@ -56,7 +56,7 @@ namespace CORALean
 computed chain's own evaluation at that parameter, at every horizon. -/
 theorem DependencyPreserving.chain {D α : Type} {A : ℕ → Set α → Set α} {e : ℕ → D → Set α}
     (hA : ∀ i, Monotone (A i)) (hstep : ∀ i, DependencyPreserving (A i) (e i) (e (i + 1)))
-    {R : ℕ → Set α} (hR : ∀ i, R (i + 1) = A i (R i)) {d : D} (h0 : R 0 ⊆ e 0 d) :
+    {R : ℕ → Set α} (hR : ∀ i, R (i + 1) = A i (R i)) {d : D} (h0 : R 0 ⊆ e 0 d) : -- --- CONCL ---
     ∀ N, R N ⊆ e N d := by -- --- PROOF ---
   intro N
   induction N with

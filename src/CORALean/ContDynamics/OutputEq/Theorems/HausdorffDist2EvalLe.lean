@@ -94,7 +94,8 @@ theorem aux_hausdorffDist₂_add_le {S : Set (Vec ℝ r)} {V W : Set (Vec ℝ r)
     (hW.image toEuclidean.continuous) (hWne.image _)
 
 /-- [1]'s eq. (43): the output map splits into `C`'s part and the part `D` and `k` make, added. -/
-theorem aux_image2_eval_eq_add (out : OutputEq 𝕋 n m r) (X : Set (Vec ℝ n)) (V : Set (Vec ℝ m)) :
+theorem aux_image2_eval_eq_add (out : OutputEq 𝕋 n m r) (X : Set (Vec ℝ n))
+    (V : Set (Vec ℝ m)) : -- --- CONCL ---
     Set.image2 out.eval X V = mulVecLin (toRealMat out.C) '' X
       + (fun u => toRealMat out.D *ᵥ u + toRealVec out.k) '' V := by -- --- PROOF ---
   ext y

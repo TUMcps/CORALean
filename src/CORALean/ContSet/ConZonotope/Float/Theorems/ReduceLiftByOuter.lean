@@ -55,7 +55,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q r : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.reduceLiftBy_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
-    (part : Split (Fin cZ.h) into (Fin q) ⊕ (Fin r)) :
+    (part : Split (Fin cZ.h) into (Fin q) ⊕ (Fin r)) : -- --- CONCL ---
     cZ.construct ⊆ (cZ.reduceLiftBy part).construct := by -- --- PROOF ---
   rintro x ⟨y, hy', e, he, hx⟩
   obtain ⟨β, hβ, hP, hy⟩ := ConZonotope.mem_nominalSet_iff.mp hy'

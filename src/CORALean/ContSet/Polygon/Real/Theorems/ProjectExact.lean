@@ -36,7 +36,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.project_exact (P : Polygon) (dims : Fin 2 → Fin 2) :
+theorem Polygon.project_exact (P : Polygon) (dims : Fin 2 → Fin 2) : -- --- CONCL ---
     (fun x k => x (dims k)) '' ContSet.construct P =
       ContSet.construct (Polygon.project P dims) := by -- --- PROOF ---
   ext x

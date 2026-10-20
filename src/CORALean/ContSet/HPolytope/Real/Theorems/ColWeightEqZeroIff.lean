@@ -36,7 +36,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- No row reads `v` exactly when the rows' weight along `v` is zero. -/
-theorem HPolytope.colWeight_eq_zero_iff (P : HPolytope α) (v : α) :
+theorem HPolytope.colWeight_eq_zero_iff (P : HPolytope α) (v : α) : -- --- CONCL ---
     P.colWeight v = 0 ↔ (∀ i, P.A i v = 0) ∧ ∀ i, P.Ae i v = 0 := by -- --- PROOF ---
   have h1 : 0 ≤ ∑ i, |P.A i v| := Finset.sum_nonneg fun i _ => abs_nonneg _
   have h2 : 0 ≤ ∑ i, |P.Ae i v| := Finset.sum_nonneg fun i _ => abs_nonneg _

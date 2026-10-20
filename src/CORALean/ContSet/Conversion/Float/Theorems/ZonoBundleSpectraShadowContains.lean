@@ -56,7 +56,7 @@ theorem ZonoBundle.aux_mem_foldl_inter {x : Vec ℝ n} :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.spectraShadow_contains (zB : ZonoBundle (Vec 𝕋 n)) :
+theorem ZonoBundle.spectraShadow_contains (zB : ZonoBundle (Vec 𝕋 n)) : -- --- CONCL ---
     zB.construct ⊆ zB.spectraShadow.construct := by -- --- PROOF ---
   intro x hx
   -- every member's shadow holds the point

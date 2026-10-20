@@ -41,7 +41,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem encloseNonlinearPrinted_counterexample :
+theorem encloseNonlinearPrinted_counterexample : -- --- CONCL ---
     ∃ H : Zonotope (Vec ℝ 1), ∃ x ∈ H.construct,
       (fun _ : Fin 1 => (fun t : ℝ => t + 1) (x 0)) ∉
         (encloseNonlinearPrinted (fun t => t + 1) H).construct := by -- --- PROOF ---

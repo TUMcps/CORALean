@@ -41,7 +41,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.mem_intersection_iff {P₁ P₂ : HPolytope α} {x : α} :
+theorem HPolytope.mem_intersection_iff {P₁ P₂ : HPolytope α} {x : α} : -- --- CONCL ---
     x ∈ (P₁.intersection P₂).construct ↔ x ∈ P₁.construct ∧ x ∈ P₂.construct := by -- --- PROOF ---
   constructor
   · rintro ⟨hle, heq⟩

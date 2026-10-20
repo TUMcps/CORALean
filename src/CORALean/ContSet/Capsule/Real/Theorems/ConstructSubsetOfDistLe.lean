@@ -42,7 +42,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.construct_subset_of_dist_le {C C' : Capsule n}
-    (h : ‖C.c - C'.c‖₂ + ‖C.g - C'.g‖₂ + C.r ≤ C'.r) :
+    (h : ‖C.c - C'.c‖₂ + ‖C.g - C'.g‖₂ + C.r ≤ C'.r) : -- --- CONCL ---
     C.construct ⊆ C'.construct := by -- --- PROOF ---
   rintro x ⟨t, ht, hx⟩
   refine ⟨t, ht, ?_⟩

@@ -59,7 +59,7 @@ variable {n ny nw nv : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- `xᵀPx ≤ (Σᵢⱼ |Pᵢⱼ|) xᵀx`
-theorem LinearSysDT.aux_quad_le_sum_abs (P : Mat ℝ n n) (x : Vec ℝ n) :
+theorem LinearSysDT.aux_quad_le_sum_abs (P : Mat ℝ n n) (x : Vec ℝ n) : -- --- CONCL ---
     x ⬝ᵥ (P *ᵥ x) ≤ (∑ i, ∑ j, |P i j|) * (x ⬝ᵥ x) := by -- --- PROOF ---
   have hsq : ∀ i, x i * x i ≤ x ⬝ᵥ x := fun i =>
     Finset.single_le_sum (f := fun j => x j * x j) (fun j _ => mul_self_nonneg (x j))

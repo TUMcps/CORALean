@@ -47,7 +47,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The density's characteristic function. -/
-theorem aux_integral_stdGaussPdf (t : EuclideanSpace ℝ (Fin n)) :
+theorem aux_integral_stdGaussPdf (t : EuclideanSpace ℝ (Fin n)) : -- --- CONCL ---
     ∫ y : EuclideanSpace ℝ (Fin n), (stdGaussPdf n y : ℂ) * cexp (↑⟪y, t⟫ * I)
       = cexp (-(‖t‖ : ℂ) ^ 2 / 2) := by -- --- PROOF ---
   have h := GaussianFourier.integral_cexp_neg_mul_sq_norm_add (V := EuclideanSpace ℝ (Fin n))
@@ -72,7 +72,7 @@ theorem aux_integral_stdGaussPdf (t : EuclideanSpace ℝ (Fin n)) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem stdGaussian_eq_withDensity :
+theorem stdGaussian_eq_withDensity : -- --- CONCL ---
     stdGaussian (EuclideanSpace ℝ (Fin n))
       = volume.withDensity (fun y => ENNReal.ofReal (stdGaussPdf n y)) := by -- --- PROOF ---
   have hpos : ∀ y, 0 ≤ stdGaussPdf n y := fun y => by unfold stdGaussPdf; positivity

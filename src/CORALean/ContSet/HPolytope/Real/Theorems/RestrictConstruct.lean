@@ -38,7 +38,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.restrict_construct (P : HPolytope α) (S : Finset (Fin P.m))
-    (T : Finset (Fin P.me)) :
+    (T : Finset (Fin P.me)) : -- --- CONCL ---
     (P.restrict S T).construct
       = {x | (∀ i ∈ S, P.A i x ≤ P.b i) ∧ ∀ r ∈ T, P.Ae r x = P.be r} := by -- --- PROOF ---
   ext x

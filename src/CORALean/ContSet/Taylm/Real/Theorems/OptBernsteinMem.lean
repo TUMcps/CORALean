@@ -55,7 +55,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.optBernstein_mem {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    {t : Vec ℝ n} (ht : t ∈ Taylm.box n) :
+    {t : Vec ℝ n} (ht : t ∈ Taylm.box n) : -- --- CONCL ---
     T.optBernstein.inf ≤ f t ∧ f t ≤ T.optBernstein.sup := by -- --- PROOF ---
   set N := T.bernsteinDegree with hN
   set B := Taylm.bernsteinCoeff T.terms N with hB

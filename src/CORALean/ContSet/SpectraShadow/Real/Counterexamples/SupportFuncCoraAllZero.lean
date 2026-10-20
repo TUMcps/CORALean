@@ -61,7 +61,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.supportFuncCoraAllZero_ne_supportFunc :
+theorem SpectraShadow.supportFuncCoraAllZero_ne_supportFunc : -- --- CONCL ---
     SpectraShadow.pointExample.supportFuncCoraAllZero
       ≠ SpectraShadow.pointExample.supportFunc
         (LinearMap.proj 0 : Vec ℝ 1 →ₗ[ℝ] ℝ) := by -- --- PROOF ---

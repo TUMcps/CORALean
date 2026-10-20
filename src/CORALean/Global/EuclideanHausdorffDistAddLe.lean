@@ -67,7 +67,7 @@ theorem aux_exists_mem_add_add_dist_le {α : Type} [NormedAddCommGroup α] {S₁
   · exact h₂ ▸ Metric.infDist_le_hausdorffDist_of_mem hs₂ hf₂
 
 /-- `toEuclidean` is additive, so it carries a Minkowski sum to the Minkowski sum of the images. -/
-theorem aux_toEuclidean_image_add (X Y : Set (Vec ℝ n)) :
+theorem aux_toEuclidean_image_add (X Y : Set (Vec ℝ n)) : -- --- CONCL ---
     toEuclidean '' (X + Y) = toEuclidean '' X + toEuclidean '' Y := by -- --- PROOF ---
   ext z
   constructor

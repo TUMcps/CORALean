@@ -40,7 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.isequal_sound {Z S : Zonotope (Vec 𝕋 n)} (h : Z.isequal S = true) :
+theorem Zonotope.isequal_sound {Z S : Zonotope (Vec 𝕋 n)}
+    (h : Z.isequal S = true) : -- --- CONCL ---
     Z.construct = S.construct := by -- --- PROOF ---
   unfold Zonotope.isequal at h
   split at h

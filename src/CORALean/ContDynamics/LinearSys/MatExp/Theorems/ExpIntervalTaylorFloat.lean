@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.expTaylor_mem_expIntervalTaylor (A : Interval (Mat 𝕋 n n))
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) (η : ℕ) :
+    {M : Mat ℝ n n} (hM : M ∈ A.construct) (η : ℕ) : -- --- CONCL ---
     Real.MatExp.expTaylor M η ∈ (MatExp.expIntervalTaylor A η).construct := by -- --- PROOF ---
   induction η with
   | zero =>

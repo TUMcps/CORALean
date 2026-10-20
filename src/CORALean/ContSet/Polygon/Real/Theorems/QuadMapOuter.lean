@@ -45,7 +45,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.quadMap_outer (P : Polygon) (Q : Fin 2 → Mat ℝ 2 2) (splits : ℕ)
-    (pick : ℕ → PolyZonotope (Vec ℝ 2) → Bool) :
+    (pick : ℕ → PolyZonotope (Vec ℝ 2) → Bool) : -- --- CONCL ---
     PolyZonotope.quadEval Q '' ContSet.construct P
       ⊆ ContSet.construct (P.quadMap Q splits pick) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩

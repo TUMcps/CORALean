@@ -51,7 +51,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Alg. 4], CoOpt_dir: `Z ⊆ reduceCoOptDir Z opt` for every solver `opt`. -/
-theorem Zonotope.reduceCoOptDir_outer (Z : Zonotope (Vec ℝ n)) (opt : Mat ℝ n n → Mat ℝ n n) :
+theorem Zonotope.reduceCoOptDir_outer (Z : Zonotope (Vec ℝ n))
+    (opt : Mat ℝ n n → Mat ℝ n n) : -- --- CONCL ---
     Z.construct ⊆ (Z.reduceCoOptDir opt).construct := by -- --- PROOF ---
   unfold Zonotope.reduceCoOptDir
   dsimp only

@@ -37,7 +37,7 @@ namespace CORALean
 
 /-- A nonempty interval's lower bound is not `⊤`, its upper bound not `⊥`. -/
 theorem STLInterval.rawSet_bounds_ne {l u : EReal} {lc rc : Bool}
-    (hne : (rawSet l u lc rc).Nonempty) :
+    (hne : (rawSet l u lc rc).Nonempty) : -- --- CONCL ---
     l ≠ ⊤ ∧ u ≠ ⊥ := by -- --- PROOF ---
   obtain ⟨x, h1, h2⟩ := hne
   constructor

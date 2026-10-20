@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.enclosePoints_exact {N : ℕ} (pts : Fin N → Vec 𝕋 n) :
+theorem VPolytope.enclosePoints_exact {N : ℕ} (pts : Fin N → Vec 𝕋 n) : -- --- CONCL ---
     (VPolytope.enclosePoints pts).construct =
       convexHull ℝ
         (Set.range fun l : Fin N => (fun i => toReal (pts l i) : Vec ℝ n)) := by -- --- PROOF ---

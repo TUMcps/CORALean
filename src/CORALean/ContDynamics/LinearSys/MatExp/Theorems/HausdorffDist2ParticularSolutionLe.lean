@@ -88,7 +88,7 @@ theorem aux_norm₂_sub_le (x y : Vec ℝ n) : ‖x - y‖₂ ≤ ‖x‖₂ + �
 
 /-- Eq. (20)'s order-`0` block split off: `bPU(Δt) = ΔtU0 ⊕ bPU_∞(Δt)`, eq. (27). -/
 theorem aux_mem_particularSolutionOuter_zero {A : Mat ℝ n n} {U0 : Set (Vec ℝ n)} {Δt : ℝ}
-    {η : ℕ} {y : Vec ℝ n} (hy : y ∈ MatExp.particularSolutionOuter A U0 0 Δt η) :
+    {η : ℕ} {y : Vec ℝ n} (hy : y ∈ MatExp.particularSolutionOuter A U0 0 Δt η) : -- --- CONCL ---
     ∃ x₀ ∈ U0, ∃ r ∈ MatExp.particularSolutionOuter A U0 1 Δt η,
       y = Δt • x₀ + r := by -- --- PROOF ---
   rw [MatExp.particularSolutionOuter, Finset.sum_eq_sum_Ico_succ_bot (Nat.succ_pos η),
@@ -103,7 +103,7 @@ theorem aux_mem_particularSolutionOuter_zero {A : Mat ℝ n n} {U0 : Set (Vec �
 /-- The gap between `qP^U`'s point at `x₀` and eq. (27)'s `Δtx₀` is eq. (25)'s correlated summand:
 orders `1` to `η` exactly, and everything past `η` inside `E(Δt,η)Δt`. -/
 theorem aux_mem_particularSolutionOuterCorrelated (A : Mat ℝ n n) {U0 : Set (Vec ℝ n)} {Δt : ℝ}
-    (hΔt : 0 < Δt) (η : ℕ) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ U0) :
+    (hΔt : 0 < Δt) (η : ℕ) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ U0) : -- --- CONCL ---
     (MatExp.expIntegral A Δt - MatExp.particularCoeff A Δt 0).mulVec x₀
       ∈ MatExp.particularSolutionOuterCorrelated A U0 1 Δt η := by -- --- PROOF ---
   set T := MatExp.expIntegral A Δt - ∑ i ∈ Finset.range (η + 1), MatExp.particularCoeff A Δt i

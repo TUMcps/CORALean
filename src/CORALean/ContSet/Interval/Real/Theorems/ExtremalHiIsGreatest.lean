@@ -47,7 +47,7 @@ variable {m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.extremalHi_isGreatest (C : Interval (Vec ℝ m)) (hC : C.IsNonempty)
-    (h : Vec ℝ m) :
+    (h : Vec ℝ m) : -- --- CONCL ---
     IsGreatest {s | ∃ c ∈ C.construct, s = ∑ i, c i * h i} (C.extremalHi h) := by -- --- PROOF ---
   constructor
   · -- the corner the signs select is a coefficient vector in `C`

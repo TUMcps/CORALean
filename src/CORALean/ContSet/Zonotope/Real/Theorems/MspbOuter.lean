@@ -60,7 +60,8 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A corner of a box's zonotope is the box's corner. -/
-theorem Zonotope.aux_corner_interval_zonotope (I : Interval (Vec ℝ n)) (τ : Fin n → Bool) :
+theorem Zonotope.aux_corner_interval_zonotope (I : Interval (Vec ℝ n))
+    (τ : Fin n → Bool) : -- --- CONCL ---
     I.zonotope.corner τ = fun i => if τ i then I.sup i else I.inf i := by -- --- PROOF ---
   funext i
   simp only [Zonotope.corner, Interval.zonotope, Pi.add_apply, Finset.sum_apply, Pi.smul_apply,

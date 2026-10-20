@@ -65,7 +65,8 @@ theorem sindyModel_apply (θ : Vec ℝ n → Vec ℝ p) (Ξ : Mat ℝ p n) (x : 
 
 /-- [1, Eq. 7], [1, Eq. 9] and [1, Eq. 13]: `Y = Θ(X) Ξ` holds iff the model `f` of
 [1, Eq. 9] gives every row of `Y` (`Y = Ẋ` or `X₂`). -/
-theorem sindy_data_iff (θ : Vec ℝ n → Vec ℝ p) (x y : Fin m → Vec ℝ n) (Ξ : Mat ℝ p n) :
+theorem sindy_data_iff (θ : Vec ℝ n → Vec ℝ p) (x y : Fin m → Vec ℝ n)
+    (Ξ : Mat ℝ p n) : -- --- CONCL ---
     sindyRows y = sindyTheta θ x * Ξ ↔ ∀ k, y k = sindyModel θ Ξ (x k) := by -- --- PROOF ---
   constructor
   · intro h k
@@ -81,7 +82,7 @@ theorem sindy_data_iff (θ : Vec ℝ n → Vec ℝ p) (x y : Fin m → Vec ℝ n
 
 /-- [1, Eq. 14]: for a linear library `X₂ = X₁ Ξ` is `X₂ᵀ = Ξᵀ X₁ᵀ`, with the same squared
 error for every `Ξ`: a least-squares `Ξ` is the dynamic mode decomposition `Ξᵀ`. -/
-theorem sindy_linear_transpose (X₁ X₂ : Mat ℝ m n) (Ξ : Mat ℝ n n) :
+theorem sindy_linear_transpose (X₁ X₂ : Mat ℝ m n) (Ξ : Mat ℝ n n) : -- --- CONCL ---
     (X₂ = X₁ * Ξ ↔ X₂ᵀ = Ξᵀ * X₁ᵀ) ∧
       ∑ k, ∑ i, ((X₂ - X₁ * Ξ) k i) ^ 2
         = ∑ i, ∑ k, ((X₂ᵀ - Ξᵀ * X₁ᵀ) i k) ^ 2 := by -- --- PROOF ---

@@ -46,7 +46,8 @@ variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.I
 /-- A nonzero `iProp` entry at cell `s ≥ 1` puts `s` in `intersectingCellsOf P X`. -/
 theorem GridPartition.exactIntersectingCells_support (P : GridPartition n) (X : S n)
     (hn : n ≠ 0) {s : ℕ} (h1 : 1 ≤ s) (h2 : s ≤ P.nrOfCells)
-    (h : (P.exactIntersectingCells X).iProp.getD s 0 ≠ 0) : s ∈ P.intersectingCellsOf X
+    (h : (P.exactIntersectingCells X).iProp.getD s 0 ≠ 0) : -- --- CONCL ---
+    s ∈ P.intersectingCellsOf X
       := by -- --- PROOF ---
   by_cases hpos : 0 < GridPartition.volumeOf (construct X)
   · have hex := (GridPartition.exactIntersectingCells_exact P X hn hpos).2

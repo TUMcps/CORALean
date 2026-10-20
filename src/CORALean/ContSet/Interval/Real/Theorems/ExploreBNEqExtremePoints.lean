@@ -54,7 +54,8 @@ variable {n : ℕ}
 
 /-- Membership in the union line 8 accumulates. -/
 theorem aux_mem_foldr_union {β γ : Type} [DecidableEq γ] (f : β → Finset γ) (L : List β)
-    (x : γ) : x ∈ L.foldr (fun w acc => f w ∪ acc) ∅ ↔ ∃ w ∈ L, x ∈ f w := by -- --- PROOF ---
+    (x : γ) : -- --- CONCL ---
+    x ∈ L.foldr (fun w acc => f w ∪ acc) ∅ ↔ ∃ w ∈ L, x ∈ f w := by -- --- PROOF ---
   induction L with
   | nil => simp
   | cons w L ih =>
@@ -68,7 +69,7 @@ theorem aux_mem_foldr_union {β γ : Type} [DecidableEq γ] (f : β → Finset �
       · exact Or.inr ⟨w', hw', h⟩
 
 /-- Changing coordinate `i` of `v` from `0` to `a` adds `a` to the sum. -/
-theorem aux_sum_update_zero {v : Vec ℝ n} {i : Fin n} {a : ℝ} (hvi : v i = 0) :
+theorem aux_sum_update_zero {v : Vec ℝ n} {i : Fin n} {a : ℝ} (hvi : v i = 0) : -- --- CONCL ---
     ∑ k, Function.update v i a k = ∑ k, v k + a := by -- --- PROOF ---
   have : ∀ k, Function.update v i a k = v k + if k = i then a else 0 := fun k => by
     by_cases hk : k = i
@@ -80,7 +81,7 @@ theorem aux_sum_update_zero {v : Vec ℝ n} {i : Fin n} {a : ℝ} (hvi : v i = 0
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.exploreBN_eq_extremePoints {b : Vec ℝ n} {α : ℝ} (hb : Monotone b)
-    (hb0 : ∀ i, 0 < b i) (hα : 0 ≤ α) :
+    (hb0 : ∀ i, 0 < b i) (hα : 0 ≤ α) : -- --- CONCL ---
     ↑(Interval.exploreBN b α) = Set.extremePoints ℝ
       ((⟨0, b⟩ : Interval (Vec ℝ n)).construct ∩ Interval.hyperplane 1 α) := by -- --- PROOF ---
   classical

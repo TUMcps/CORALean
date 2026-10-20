@@ -45,7 +45,7 @@ noncomputable def linProbSys : LinProbSys 1 1 where
 
 
 /-- The noise covariance over time `t`, in closed form. -/
-theorem noiseCovariance_closed (t : ℝ) :
+theorem noiseCovariance_closed (t : ℝ) : -- --- CONCL ---
     noiseCovariance linProbSys.A linProbSys.C t 0 0 =
       (Real.exp (2 * t) - 1) / 2 := by -- --- PROOF ---
   -- at the diagonal `A = 1` the integral is the closed form
@@ -70,7 +70,7 @@ noncomputable def linProbInput : ProbZonotope 1 :=
 
 /-- After one `post` step both the state and the time-interval set carry the covariance over
 time `2`, which is `(e⁴ - 1)/2` by `noiseCovariance_closed`. -/
-theorem post_cov_two : -- --- CONCL ---
+theorem post_cov_two :
     (linProbSys.post 1 linProbInput linProbState).1.Rpar_prob.cov =
         noiseCovariance linProbSys.A linProbSys.C (1 + 1) ∧
       (linProbSys.post 1 linProbInput linProbState).2.cov =

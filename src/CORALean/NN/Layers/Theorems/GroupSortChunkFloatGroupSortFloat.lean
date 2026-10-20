@@ -38,7 +38,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem groupSortChunkFloat_groupSortFloat {g : ℕ} (hg : 0 < g) (x : Vec 𝕋 n) (k : ℕ) :
+theorem groupSortChunkFloat_groupSortFloat {g : ℕ} (hg : 0 < g) (x : Vec 𝕋 n)
+    (k : ℕ) : -- --- CONCL ---
     aux_groupSortChunkFloat g (groupSortFloat g x) k =
       (aux_groupSortChunkFloat g x k).mergeSort FloatOps.le := by -- --- PROOF ---
   apply List.ext_getElem

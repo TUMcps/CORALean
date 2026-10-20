@@ -1649,18 +1649,13 @@ END { if (nf > 0) checkfile() }
 ' | sort)
 report "$out"
 
-# The conclusion flag (#222). Where a signature runs to five lines or more (the PROOF flag's own
-# threshold, counted the same way: the `theorem`/`lemma` line to the `:= by` line, inclusive),
-# the colon that closes the binders ends its line with `-- --- CONCL ---`, so that what is given
-# sits above the flag and what should hold below it, as the PROOF flag marks where the claim stops.
-# Required there and refused on a shorter signature, on a line whose text before the flag does not
-# end with `:`, and on the `:= by` line itself (the conclusion starts below the flag). Theorems the
-# tree-wide pass could not place, because the colon line has no room for the flag, are listed in
-# `scripts/concl-marker-allowlist.txt` as `path::name`, one per line; the list only shrinks, and an
-# entry whose theorem carries the flag, is shorter or is gone is reported as stale.
-# Read from `$repo`: `--staged` runs inside a checkout of the staged files alone.
-out=$(awk -v MIN=5 -v LIST=scripts/concl-marker-allowlist.txt \
-    -v PATHLIST="$repo/scripts/concl-marker-allowlist.txt" -v STALE="${STAGED:-}" '
+# The conclusion flag (#222). Wherever a declaration carries `-- --- PROOF ---` it carries
+# `-- --- CONCL ---` too, and nowhere else: the colon that closes the binders ends its line with
+# the flag, so that what is given sits above it and what should hold below it, as the PROOF flag
+# marks where the claim stops. Exactly one per flagged declaration, none on any other, on a line
+# whose text before the flag ends with `:`, and never on the `:= by` line itself (the conclusion
+# starts below the flag). No list of exceptions: a signature with no room is rearranged.
+out=$(awk '
 function isdecl(s) {
   return s ~ /^(@\[[^]]*\][ \t]*)?(private |protected |noncomputable |scoped )*(theorem|lemma)[ \t]/
 }
@@ -1669,7 +1664,7 @@ function declname(s,   t) {
   t = substr(s, RSTART, RLENGTH); sub(/^(theorem|lemma)[ \t]+/, "", t)
   return t
 }
-function checkfile(   i, j, c, ch, depth, end, s, sig, m, nm, key, marks, legit) {
+function checkfile(   i, j, end, s, nm, marks, proof, legit) {
   split("", legit)
   i = 1
   while (i <= nf) {
@@ -1681,26 +1676,10 @@ function checkfile(   i, j, c, ch, depth, end, s, sig, m, nm, key, marks, legit)
       if (s ~ / where$/) break
       if (s ~ /:= by$/ || s ~ /:= by -- --- PROOF ---$/) { end = j; break }
     }
-    # A proof written as a term has no `:= by`: the signature ends at the first `:=` outside any
-    # bracket (a binder default such as `(k : ℕ := 3)` is inside one), and the flag is required
-    # there as well (#247: a term-mode theorem of eight signature lines carried none).
-    if (end == 0) {
-      depth = 0
-      for (j = i; j <= nf && j - i < 30; j++) {
-        if (j > i && L[j] ~ /^[^ \t]/) break
-        s = L[j]; sub(/ --.*$/, "", s)
-        if (s ~ / where$/) break
-        for (c = 1; c <= length(s); c++) {
-          ch = substr(s, c, 1)
-          if (ch == "(" || ch == "[" || ch == "{") depth++
-          else if (ch == ")" || ch == "]" || ch == "}") depth--
-          else if (ch == ":" && substr(s, c + 1, 1) == "=" && depth <= 0) { end = j; break }
-        }
-        if (end) break
-      }
-    }
     if (end == 0) { i++; continue }
-    sig = end - i + 1; nm = declname(L[i]); key = fname "::" nm
+    nm = declname(L[i])
+    s = L[end]; sub(/[ \t]+$/, "", s)
+    proof = (s ~ /:= by -- --- PROOF ---$/)
     marks = 0
     for (j = i; j <= end; j++)
       if (L[j] ~ /-- --- CONCL ---/) {
@@ -1710,38 +1689,24 @@ function checkfile(   i, j, c, ch, depth, end, s, sig, m, nm, key, marks, legit)
           print fname ":" j ": the conclusion flag reads `: -- --- CONCL ---` at the end of the line" \
                 " that closes the binders, with the conclusion starting below it"
       }
-    if (sig >= MIN && marks == 0) {
-      if (key in allow) hit[key] = 1
-      else
-        print fname ":" i ": a signature of " sig " lines needs `-- --- CONCL ---` after the colon" \
-              " that closes its binders (what is given above, what should hold below)"
-    }
-    if (sig >= MIN && marks > 1)
+    if (proof && marks == 0)
+      print fname ":" i ": a declaration with `-- --- PROOF ---` needs `-- --- CONCL ---` after the" \
+            " colon that closes its binders (what is given above, what should hold below)"
+    if (proof && marks > 1)
       print fname ":" i ": more than one conclusion flag in the signature of " nm
-    if (sig < MIN && marks > 0)
-      print fname ":" i ": the conclusion flag marks a signature of " sig " lines — it is for " MIN \
-            " or more"
+    if (!proof && marks > 0)
+      print fname ":" i ": the conclusion flag marks " nm ", which has no `-- --- PROOF ---` —" \
+            " it goes wherever the proof flag does, and nowhere else"
     i = end + 1
   }
   for (i = 1; i <= nf; i++)
     if (L[i] ~ /-- --- CONCL ---/ && !(i in legit))
-      print fname ":" i ": the conclusion flag belongs in the signature of a `theorem` or `lemma`"
+      print fname ":" i ": the conclusion flag belongs in the signature of a `theorem` or `lemma`" \
+            " carrying `-- --- PROOF ---`"
 }
-BEGIN {
-  while ((getline l < PATHLIST) > 0) { if (l ~ /^#/ || l == "") continue; allow[l] = 1; aln[l] = ++na }
-  close(PATHLIST)
-}
-FNR == 1 { if (nf > 0) checkfile(); split("", L); nf = 0; fname = FILENAME; seenf[FILENAME] = 1 }
+FNR == 1 { if (nf > 0) checkfile(); split("", L); nf = 0; fname = FILENAME }
 { L[++nf] = $0 }
-END {
-  if (nf > 0) checkfile()
-  if (STALE != "") exit
-  for (k in allow) {
-    split(k, kp, "::")
-    if (!(kp[1] in seenf)) print LIST ":" aln[k] ": stale entry `" k "` — no such file"
-    else if (!(k in hit)) print LIST ":" aln[k] ": stale entry `" k "` — the theorem carries the flag, is short or is gone; the list only shrinks"
-  }
-}
+END { if (nf > 0) checkfile() }
 ' $files | sort)
 report "$out"
 

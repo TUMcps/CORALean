@@ -61,7 +61,7 @@ def aux_greedyStep (G : Fin h → Fin h → Prop) [DecidableRel G] (w : Fin h �
 /-- One more target either leaves the best alone or replaces it. -/
 theorem aux_greedy_step (G : Fin h → Fin h → Prop) [DecidableRel G] (w : Fin h → Fin h → ℕ)
     (i : Fin h) (done : List (Fin h)) (best : Option (Fin h)) (j : Fin h)
-    (hinv : aux_GreedyInv G w i done best) :
+    (hinv : aux_GreedyInv G w i done best) : -- --- CONCL ---
     aux_GreedyInv G w i (done ++ [j]) (aux_greedyStep G w i best j) := by -- --- PROOF ---
   obtain ⟨hs, hn⟩ := hinv
   unfold aux_greedyStep
@@ -111,7 +111,7 @@ theorem aux_greedy_step (G : Fin h → Fin h → Prop) [DecidableRel G] (w : Fin
 /-- The invariant survives the whole fold. -/
 theorem aux_greedy_fold (G : Fin h → Fin h → Prop) [DecidableRel G] (w : Fin h → Fin h → ℕ)
     (i : Fin h) (l done : List (Fin h)) (best : Option (Fin h))
-    (hinv : aux_GreedyInv G w i done best) :
+    (hinv : aux_GreedyInv G w i done best) : -- --- CONCL ---
     aux_GreedyInv G w i (done ++ l) (l.foldl (aux_greedyStep G w i) best) := by -- --- PROOF ---
   induction l generalizing done best with
   | nil => simpa using hinv

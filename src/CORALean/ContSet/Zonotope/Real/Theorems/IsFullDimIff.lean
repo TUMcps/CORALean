@@ -43,7 +43,7 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] [FiniteDimensi
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.isFullDim_iff (Z : Zonotope α) :
+theorem Zonotope.isFullDim_iff (Z : Zonotope α) : -- --- CONCL ---
     (interior Z.construct).Nonempty ↔ Submodule.span ℝ (range Z.G) = ⊤ := by -- --- PROOF ---
   let L : (Fin Z.h → ℝ) →ₗ[ℝ] α := Fintype.linearCombination ℝ Z.G
   have hL : ∀ β, L β = ∑ j, β j • Z.G j := fun β => by

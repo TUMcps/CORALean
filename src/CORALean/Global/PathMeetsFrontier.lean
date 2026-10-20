@@ -52,7 +52,7 @@ variable {E : Type*} [TopologicalSpace E]
 
 /-- [1, Lemma A.1]: a continuous path from `int K` to the outside of `K` meets `∂K`. -/
 theorem path_meets_frontier {K : Set E} (hK : IsClosed K) {w : ℝ → E}
-    (hw : ContinuousOn w (Icc 0 1)) (h0 : w 0 ∈ interior K) (h1 : w 1 ∉ K) :
+    (hw : ContinuousOn w (Icc 0 1)) (h0 : w 0 ∈ interior K) (h1 : w 1 ∉ K) : -- --- CONCL ---
     ∃ t ∈ Icc (0 : ℝ) 1, w t ∈ frontier K := by -- --- PROOF ---
   by_contra hno
   simp only [not_exists, not_and] at hno

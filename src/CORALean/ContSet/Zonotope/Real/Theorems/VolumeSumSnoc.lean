@@ -71,7 +71,7 @@ theorem aux_orderEmbOfFin_insert (T : Finset (Fin r)) (hT : T.card = m)
         exact Fin.castSucc_lt_castSucc_iff.mpr ((T.orderEmbOfFin hT).strictMono
           (Fin.castSucc_lt_castSucc_iff.mp (by simpa using hab)))
 
-theorem aux_sum_powerset_map (g : Finset (Fin (r+1)) → ℝ) :
+theorem aux_sum_powerset_map (g : Finset (Fin (r+1)) → ℝ) : -- --- CONCL ---
     ∑ t ∈ (Finset.univ.map Fin.castSuccEmb : Finset (Fin (r+1))).powerset, g t =
       ∑ S : Finset (Fin r), g (S.map Fin.castSuccEmb) := by -- --- PROOF ---
   symm
@@ -83,7 +83,7 @@ theorem aux_sum_powerset_map (g : Finset (Fin (r+1)) → ℝ) :
   · obtain ⟨u, -, rfl⟩ := Finset.subset_map_iff.mp (Finset.mem_powerset.mp ht)
     exact ⟨u, Finset.mem_univ _, rfl⟩
 
-theorem aux_sum_split (f : Finset (Fin (r+1)) → ℝ) :
+theorem aux_sum_split (f : Finset (Fin (r+1)) → ℝ) : -- --- CONCL ---
     ∑ S : Finset (Fin (r+1)), f S =
       ∑ S : Finset (Fin r), f (S.map Fin.castSuccEmb) +
         ∑ S : Finset (Fin r), f (insert (Fin.last r) (S.map Fin.castSuccEmb)) := by -- --- PROOF ---

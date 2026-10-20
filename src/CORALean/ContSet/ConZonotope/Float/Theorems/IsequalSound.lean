@@ -40,7 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.isequal_sound {Z S : ConZonotope 𝕋 (Vec 𝕋 n)} (h : Z.isequal S = true) :
+theorem ConZonotope.isequal_sound {Z S : ConZonotope 𝕋 (Vec 𝕋 n)}
+    (h : Z.isequal S = true) : -- --- CONCL ---
     Z.construct = S.construct := by -- --- PROOF ---
   unfold ConZonotope.isequal at h
   split at h

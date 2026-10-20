@@ -61,7 +61,7 @@ open Matrix
 `Aξ = b` for `βⱼ` places it between the same endpoints `tightenCoeff` computes. -/
 theorem ConZonotope.aux_tightenCoeff_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     (i : Fin nc) (j : Fin ng) {E : Interval (Vec ℝ ng)} {β : Vec ℝ ng}
-    (hβ : β ∈ E.construct) (hrow : (A *ᵥ β) i = b i) :
+    (hβ : β ∈ E.construct) (hrow : (A *ᵥ β) i = b i) : -- --- CONCL ---
     β ∈ (ConZonotope.tightenCoeff A b i j E).construct := by -- --- PROOF ---
   unfold ConZonotope.tightenCoeff
   split_ifs with h0
@@ -130,7 +130,7 @@ theorem ConZonotope.aux_tightenRow_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b : 
 /-- [1, Alg. 1]'s soundness: every point of the feasible coefficient box `B∞(A,b)` lies
 in the interval enclosure `tighten` computes for it. -/
 theorem ConZonotope.tighten_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc) {β : Vec ℝ ng}
-    (hbox : ∀ j, |β j| ≤ 1) (heq : ∀ i, (A *ᵥ β) i = b i) :
+    (hbox : ∀ j, |β j| ≤ 1) (heq : ∀ i, (A *ᵥ β) i = b i) : -- --- CONCL ---
     β ∈ (ConZonotope.tighten A b).construct := by -- --- PROOF ---
   unfold ConZonotope.tighten
   have hE₀ : β ∈ (⟨fun _ => -1, fun _ => 1⟩ : Interval (Vec ℝ ng)).construct :=

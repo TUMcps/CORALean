@@ -76,7 +76,7 @@ theorem Location.IsTrajectory.timeIntervalInvFloat_outer
     (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • Scalar.toRealMat ℓ.dynamics.A) *ᵥ
       (Scalar.toRealMat ℓ.dynamics.B *ᵥ u s + Scalar.toRealVec ℓ.dynamics.c +
         Scalar.toRealMat ℓ.dynamics.E *ᵥ w s))
-      ∈ construct Ud) : -- --- CONCL ---
+      ∈ construct Ud) :
     x t ∈ construct (ℓ.timeIntervalStepInvFloat r η R₀ Ud) :=
   Interval.zonotope_contains _ (ℓ.inv.contractBox_outer _
     ⟨Zonotope.interval_contains _ (traj.timeIntervalFloat_outer h₀ hr hη ht0 htτ htr hUd),

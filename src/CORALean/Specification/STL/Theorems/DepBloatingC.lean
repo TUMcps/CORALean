@@ -48,7 +48,7 @@ variable {n : ℕ}
 
 /-- The center of the Minkowski sum of the images, folded from a center-`0` start. -/
 theorem STL.aux_foldl_c (A : Mat ℝ n n) (U₀ : Zonotope (Vec ℝ n)) (Δt : ℝ) (hU : U₀.c = 0)
-    (l : List ℕ) (Z : Zonotope (Vec ℝ n)) (hZ : Z.c = 0) :
+    (l : List ℕ) (Z : Zonotope (Vec ℝ n)) (hZ : Z.c = 0) : -- --- CONCL ---
     (l.foldl (fun Z j => Z.plus (Zonotope.mtimes (MatExp.particularCoeff A Δt (j + 1)) U₀))
       Z).c = 0 := by -- --- PROOF ---
   induction l generalizing Z with

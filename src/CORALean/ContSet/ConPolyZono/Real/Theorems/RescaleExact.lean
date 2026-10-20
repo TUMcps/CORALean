@@ -68,7 +68,7 @@ def ConPolyZono.aux_RescaleInv (cPZ acc : ConPolyZono α) (cen rad : ℕ → ℝ
       = cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E
           (fun k : Fin cPZ.p => ConPolyZono.aux_rescaleSub cen rad n a k) i • cPZ.G i)
 
-theorem ConPolyZono.aux_rescaleSub_succ (cen rad : ℕ → ℝ) (n : ℕ) (a : ℕ → ℝ) :
+theorem ConPolyZono.aux_rescaleSub_succ (cen rad : ℕ → ℝ) (n : ℕ) (a : ℕ → ℝ) : -- --- CONCL ---
     ConPolyZono.aux_rescaleSub cen rad (n + 1) a
       = ConPolyZono.aux_rescaleSub cen rad n
           (Function.update a n (cen n + rad n * a n)) := by -- --- PROOF ---
@@ -81,7 +81,7 @@ theorem ConPolyZono.aux_rescaleSub_succ (cen rad : ℕ → ℝ) (n : ℕ) (a : �
     rw [if_pos (by omega), if_neg (by omega), Function.update_self]
   · rw [if_neg (by omega), if_neg (by omega), Function.update_of_ne (by omega)]
 
-theorem ConPolyZono.aux_fin_update {m n : ℕ} (h : n < m) (a : ℕ → ℝ) (y : ℝ) :
+theorem ConPolyZono.aux_fin_update {m n : ℕ} (h : n < m) (a : ℕ → ℝ) (y : ℝ) : -- --- CONCL ---
     (fun k : Fin m => Function.update a n y (k : ℕ))
       = Function.update (fun k : Fin m => a k) ⟨n, h⟩ y := by -- --- PROOF ---
   -- the coordinate `n` is the updated one, the others are read off `a`
@@ -100,7 +100,7 @@ theorem ConPolyZono.aux_rescaleInv_zero (cPZ : ConPolyZono α) (cen rad : ℕ �
   · simp [ConPolyZono.aux_rescaleSub]
 
 theorem ConPolyZono.aux_rescaleInv_succ (cPZ acc : ConPolyZono α) (cen rad : ℕ → ℝ) (n : ℕ)
-    (hn : n < cPZ.p) (hinv : ConPolyZono.aux_RescaleInv cPZ acc cen rad n) :
+    (hn : n < cPZ.p) (hinv : ConPolyZono.aux_RescaleInv cPZ acc cen rad n) : -- --- CONCL ---
     ConPolyZono.aux_RescaleInv cPZ (ConPolyZono.rescaleStep cen rad acc n) cen rad
       (n + 1) := by -- --- PROOF ---
   obtain ⟨hp, hq, hGI, hsat, hpt⟩ := hinv
@@ -126,7 +126,7 @@ theorem ConPolyZono.aux_rescaleInv_succ (cPZ acc : ConPolyZono α) (cen rad : �
     exact h1.trans h2
 
 theorem ConPolyZono.aux_rescaleInv_fold (cPZ : ConPolyZono α) (cen rad : ℕ → ℝ) (n : ℕ)
-    (hn : n ≤ cPZ.p) :
+    (hn : n ≤ cPZ.p) : -- --- CONCL ---
     ConPolyZono.aux_RescaleInv cPZ ((List.range n).foldl (ConPolyZono.rescaleStep cen rad) cPZ)
       cen rad n := by -- --- PROOF ---
   induction n with

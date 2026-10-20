@@ -91,7 +91,8 @@ theorem aux_absErrDecomp_integral (A : Mat ℝ n n) {Us S : Set (Vec ℝ n)} (hU
     (hW : ∀ τ ∈ Set.Icc 0 tmax, ∀ j k, |(exp (τ • A) - MatExp.expTaylor (τ • A) η) j k| ≤ W j k)
     (hS : ∀ M : Mat ℝ n n, (∀ j k, |M j k| ≤ W j k) → ∀ v ∈ Us, tmax • (M *ᵥ v) ∈ S)
     {u : ℝ → Vec ℝ n} (hu : ∀ τ ∈ Set.Ioc (0:ℝ) t, u (t - τ) ∈ Us)
-    (hmeas : AEStronglyMeasurable (fun τ => u (t - τ)) (volume.restrict (Set.Ioc 0 t))) :
+    (hmeas : AEStronglyMeasurable (fun τ => u (t - τ)) (volume.restrict (Set.Ioc 0 t)))
+    : -- --- CONCL ---
     ∃ w : ℕ → Vec ℝ n, (∀ i, w i ∈ Us) ∧
       (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s)
         - ∑ i ∈ Finset.range (η + 1), (t ^ (i + 1) / ((i + 1).factorial : ℝ)) • (A ^ i *ᵥ w i)
@@ -261,7 +262,8 @@ theorem GuardMap.abstractionError_decomp (A : Mat ℝ n n) {Us S : Set (Vec ℝ 
       |(exp (τ • A) - MatExp.expTaylor (τ • A) (k + 1)) j l| ≤ W j l)
     (hS : ∀ M : Mat ℝ n n, (∀ j l, |M j l| ≤ W j l) → ∀ v ∈ Us, tmax • (M *ᵥ v) ∈ S)
     (x₀ : Vec ℝ n) {u : ℝ → Vec ℝ n} (hu : ∀ τ ∈ Set.Ioc (0:ℝ) t, u (t - τ) ∈ Us)
-    (hmeas : AEStronglyMeasurable (fun τ => u (t - τ)) (volume.restrict (Set.Ioc 0 t))) :
+    (hmeas : AEStronglyMeasurable (fun τ => u (t - τ)) (volume.restrict (Set.Ioc 0 t)))
+    : -- --- CONCL ---
     ∃ w : ℕ → Vec ℝ n, (∀ i, w i ∈ Us) ∧ ∃ ρ ∈ S,
       exp (t • A) *ᵥ x₀ + (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s)
           - GuardMap.sdcFlow A (GuardMap.sdcInput A uc th (k + 1) ξ) x₀ t

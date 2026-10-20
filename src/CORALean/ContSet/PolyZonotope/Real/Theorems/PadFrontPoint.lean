@@ -46,7 +46,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- The prepended factors sit at exponent zero, so each monomial is the one the
 original exponent matrix gives at the factors it already had. -/
 theorem PolyZonotope.aux_monomial_padFront {p s : ℕ} (l : ℕ) (E : Fin p → Fin s → ℕ)
-    (a : Fin (l + p) → ℝ) (i : Fin s) :
+    (a : Fin (l + p) → ℝ) (i : Fin s) : -- --- CONCL ---
     PolyZonotope.monomial (PolyZonotope.aux_padFrontE l E) a i
       = PolyZonotope.monomial E (a ∘ Fin.natAdd l) i := by -- --- PROOF ---
   rw [PolyZonotope.monomial, PolyZonotope.monomial, Fin.prod_univ_add]

@@ -43,7 +43,7 @@ theorem aux_one_le_onePlusExpDown (k : ℕ) (a : 𝕋) : 1 ≤ toReal (onePlusEx
   rw [onePlusExpDown, toReal_maximum, toReal_one]
   exact le_max_left _ _
 
-theorem aux_onePlusExpDown_le (k : ℕ) (a : 𝕋) :
+theorem aux_onePlusExpDown_le (k : ℕ) (a : 𝕋) : -- --- CONCL ---
     toReal (onePlusExpDown k a) ≤ 1 + Real.exp (toReal a) := by -- --- PROOF ---
   rw [onePlusExpDown, toReal_maximum]
   refine max_le ?_ (le_trans (addDown_le_add one (expDown k a)) ?_)
@@ -53,7 +53,8 @@ theorem aux_onePlusExpDown_le (k : ℕ) (a : 𝕋) :
     linarith [expDown_le k a]
 
 /-- `σ` written so that only a *lower* bound on `exp` is needed. -/
-theorem aux_sigmoid_eq (t : ℝ) : Real.sigmoid t = 1 - (1 + Real.exp t)⁻¹ := by -- --- PROOF ---
+theorem aux_sigmoid_eq (t : ℝ) : -- --- CONCL ---
+    Real.sigmoid t = 1 - (1 + Real.exp t)⁻¹ := by -- --- PROOF ---
   have hpos : (0:ℝ) < Real.exp t := Real.exp_pos t
   have hE : Real.exp t ≠ 0 := ne_of_gt hpos
   have h1 : (1:ℝ) + Real.exp t ≠ 0 := by positivity

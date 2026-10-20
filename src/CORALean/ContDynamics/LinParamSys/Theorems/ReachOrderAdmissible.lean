@@ -43,7 +43,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinParamSys.reachOrder_admissible (sys : LinParamSys ℐ n) (r : ℝ) :
+theorem LinParamSys.reachOrder_admissible (sys : LinParamSys ℐ n) (r : ℝ) : -- --- CONCL ---
     ‖(Interval.smul r sys.A).absMax‖
       / (((sys.reachOrder r + 2 : ℕ) : ℝ) + 2) < 1 := by -- --- PROOF ---
   have hle : ‖(Interval.smul r sys.A).absMax‖ ≤ (sys.reachOrder r : ℝ) := Nat.le_ceil _

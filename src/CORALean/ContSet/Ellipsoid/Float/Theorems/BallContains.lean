@@ -53,7 +53,7 @@ private theorem aux_toRealMat_ball_Q (r : 𝕋) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The real ball `ellipsoid((toReal r)² I)` lies in the float one. -/
-theorem Ellipsoid.ball_contains (r : 𝕋) :
+theorem Ellipsoid.ball_contains (r : 𝕋) : -- --- CONCL ---
     (Real.Ellipsoid.ofFactor (toReal r • (1 : Mat ℝ n n)) 0).construct
       ⊆ (Ellipsoid.ball n r).construct := by -- --- PROOF ---
   intro x hx

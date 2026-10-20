@@ -56,7 +56,7 @@ variable {n : ℕ}
 
 /-- A pointwise bound on finitely many Minkowski summands adds to a bound on their sum. -/
 theorem aux_norm₂_le_of_mem_sum {ι : Type} (f : ι → Set (Vec ℝ n)) (bound : ι → ℝ) (s : Finset ι)
-    (h : ∀ i ∈ s, ∀ y ∈ f i, ‖y‖₂ ≤ bound i) :
+    (h : ∀ i ∈ s, ∀ y ∈ f i, ‖y‖₂ ≤ bound i) : -- --- CONCL ---
     ∀ y ∈ ∑ i ∈ s, f i, ‖y‖₂ ≤ ∑ i ∈ s, bound i := by -- --- PROOF ---
   classical
   induction s using Finset.induction with
@@ -106,7 +106,7 @@ theorem aux_norm₂_le_of_mem_particularCoeff_image (A : Mat ℝ n n) {U0 : Set 
 /-- The interval-matrix summand of `bPU`, bounded pointwise by `n²` times the remainder's own
 operator norm, scaled by the step and `U0`'s size. -/
 theorem aux_norm₂_le_of_mem_intervalMulVecSet (A : Mat ℝ n n) {U0 : Set (Vec ℝ n)}
-    (hU0 : Bornology.IsBounded U0) (Δt : ℝ) (η : ℕ) :
+    (hU0 : Bornology.IsBounded U0) (Δt : ℝ) (η : ℕ) : -- --- CONCL ---
     ∀ y ∈ MatExp.intervalMulVecSet (MatExp.expRemainderMat A Δt η) (Δt • U0),
       ‖y‖₂ ≤ (n : ℝ) ^ 2 * ‖MatExp.expRemainderMat A Δt η‖ * |Δt| * err U0 := by -- --- PROOF ---
   rintro _ ⟨M, hM, x, hx, rfl⟩

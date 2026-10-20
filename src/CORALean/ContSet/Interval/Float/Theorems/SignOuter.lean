@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.sign_outer [SoundFloatArithmetic 𝕋] (I : Interval (Vec 𝕋 n)) :
+theorem Interval.sign_outer [SoundFloatArithmetic 𝕋] (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
     (fun x i => Real.sign (x i)) '' I.construct ⊆ I.sign.construct := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩ i
   have hx' : toReal (I.inf i) ≤ x i ∧ x i ≤ toReal (I.sup i) := hx i

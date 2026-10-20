@@ -50,7 +50,8 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.affine_exact (W : Mat ℝ m n) (b : Vec ℝ m) (Z : Zonotope (Vec ℝ n)) :
+theorem Zonotope.affine_exact (W : Mat ℝ m n) (b : Vec ℝ m)
+    (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (fun x => W *ᵥ x + b) '' Z.construct
       = ((Zonotope.mtimes W Z).plus (Zonotope.ofPoint b)).construct := by -- --- PROOF ---
   rw [← Zonotope.plus_exact, ← Zonotope.mtimes_exact]

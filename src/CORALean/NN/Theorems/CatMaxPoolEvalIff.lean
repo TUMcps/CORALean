@@ -48,7 +48,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m k : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Cat.maxPool_eval_iff (tap : Fin m → Fin (k + 1) → Fin n) (x : Vec ℝ n) (y : Vec ℝ m) :
+theorem Cat.maxPool_eval_iff (tap : Fin m → Fin (k + 1) → Fin n) (x : Vec ℝ n)
+    (y : Vec ℝ m) : -- --- CONCL ---
     (Cat.maxPool (𝕋 := 𝕋) tap).Eval x y ↔
       y = fun j => Real.windowMax fun q => x (tap j q) := by -- --- PROOF ---
   simp only [Cat.maxPool]

@@ -39,7 +39,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `aux_log_` is sound for `log` on a positive operand. -/
-theorem SyntaxTree.log_sound (prev : Dom) (hd : 0 < prev.inf 0) :
+theorem SyntaxTree.log_sound (prev : Dom) (hd : 0 < prev.inf 0) : -- --- CONCL ---
     UnarySound Unary.log.fn prev (Real.Interval.log prev) funHanLog := by -- --- PROOF ---
   intro int _ s hs hi
   have hs0 : 0 < s := hd.trans_le hs.1

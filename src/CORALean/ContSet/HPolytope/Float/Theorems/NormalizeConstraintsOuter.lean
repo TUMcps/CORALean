@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `recipUp` is positive: `1 / a` rounded up for a certified positive `a`, and `1` otherwise. -/
-private theorem HPolytope.recipUp_pos (a : 𝕋) :
+private theorem HPolytope.recipUp_pos (a : 𝕋) : -- --- CONCL ---
     0 < toReal (HPolytope.recipUp a) := by -- --- PROOF ---
   by_cases h : ltStrict zero a = true
   · simp only [HPolytope.recipUp, h, if_true]

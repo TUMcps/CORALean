@@ -26,7 +26,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 open Pointwise in
-theorem Polygon.minus_exact (P : Polygon) (p : Vec ℝ 2) :
+theorem Polygon.minus_exact (P : Polygon) (p : Vec ℝ 2) : -- --- CONCL ---
     (fun x => x - p) '' ContSet.construct P = ContSet.construct (P.minus p) := by -- --- PROOF ---
   -- the singleton `{-p}` is what `OfPoint` denotes
   have hQ : ContSet.construct (OfPoint.ofPoint (-p) : Polygon) = {-p} := by

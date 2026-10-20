@@ -87,7 +87,7 @@ noncomputable def HPolytope.compact1DEqCora {k : ℕ} (Ae be : Fin k → ℝ) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.compact1DEqCora_counterexample :
+theorem HPolytope.compact1DEqCora_counterexample : -- --- CONCL ---
     ∃ Q, HPolytope.compact1DEqCora ![2, 2] ![1, 1] = some (false, Q) ∧
       (fun _ => 1 / 2 : Vec ℝ 1) ∈ (HPolytope.ofEqs1D ![2, 2] ![1, 1]).construct ∧
       (fun _ => 1 / 2 : Vec ℝ 1) ∉ Q.construct := by -- --- PROOF ---

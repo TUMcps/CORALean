@@ -51,7 +51,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeuralNetwork.Encloses.enclose_outer {n m : ℕ} {nn : NeuralNetwork S n m}
-    {f : Vec ℝ n → Vec ℝ m} (hf : nn.Encloses f) :
+    {f : Vec ℝ n → Vec ℝ m} (hf : nn.Encloses f) : -- --- CONCL ---
     ∀ (s : S n) (x : Vec ℝ n), x ∈ construct s →
       f x ∈ construct (nn.enclose s) := by -- --- PROOF ---
   induction hf with

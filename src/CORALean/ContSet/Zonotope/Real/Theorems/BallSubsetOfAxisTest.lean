@@ -55,7 +55,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.ball_subset_of_axis_test (Z : Zonotope (Vec ℝ n)) {ν : ℝ} (hν : 0 ≤ ν)
-    (htest : ∀ i : Fin n, Z.c + ν • (Pi.single i 1 : Vec ℝ n) ∈ Z.construct) :
+    (htest : ∀ i : Fin n, Z.c + ν • (Pi.single i 1 : Vec ℝ n) ∈ Z.construct) : -- --- CONCL ---
     ∀ x : Vec ℝ n, ‖x‖₂ ≤ √(ν ^ 2 / n) → Z.c + x ∈ Z.construct := by -- --- PROOF ---
   intro x hx
   rcases hν.eq_or_lt with rfl | hνpos

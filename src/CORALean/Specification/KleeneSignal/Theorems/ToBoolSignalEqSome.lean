@@ -39,7 +39,7 @@ namespace CORALean
 
 /-- With nothing unknown, `toBoolSignal` is the Boolean part. -/
 theorem KleeneSignal.toBoolSignal?_eq_some (s : KleeneSignal ℝ) (hs : s.IsValid)
-    (h : ∀ t : ℝ, 0 ≤ t → s.at t ≠ Kleene.uu) :
+    (h : ∀ t : ℝ, 0 ≤ t → s.at t ≠ Kleene.uu) : -- --- CONCL ---
     s.toBoolSignal? = some s.signal := by -- --- PROOF ---
   -- nowhere unknown means the unknown part is `false` everywhere
   have hfalse : ∀ t : ℝ, 0 ≤ t → s.isUnknown.at t = false := fun t ht => by

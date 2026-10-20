@@ -43,7 +43,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The maximum is at most the parity bound. -/
-theorem PolyZonotope.eDiffTight_le_eDiff (a b : ℕ) :
+theorem PolyZonotope.eDiffTight_le_eDiff (a b : ℕ) : -- --- CONCL ---
     PolyZonotope.eDiffTight a b ≤ (PolyZonotope.eDiff a b : ℝ) := by -- --- PROOF ---
   unfold PolyZonotope.eDiffTight PolyZonotope.eDiff
   by_cases hab : a = b

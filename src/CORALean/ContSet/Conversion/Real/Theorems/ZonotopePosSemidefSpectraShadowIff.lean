@@ -37,7 +37,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The inequality, entry by entry: `1 + βⱼ` on the first block and `1 - βⱼ` on the
 second. Stated at plain dimensions, so every index is a sum and `simp` reads it. -/
-theorem Zonotope.aux_lmi_spectraShadow {h : ℕ} (β : Fin h → ℝ) :
+theorem Zonotope.aux_lmi_spectraShadow {h : ℕ} (β : Fin h → ℝ) : -- --- CONCL ---
     blockDiag 0 (1 : Mat ℝ h h) 1 + ∑ j, β j • blockDiag 0 (diagonal (Pi.single j 1))
         (diagonal (Pi.single j (-1) : Fin h → ℝ))
       = blockDiag 0 (diagonal fun i => 1 + β i) (diagonal fun i => 1 - β i) := by -- --- PROOF ---
@@ -53,7 +53,7 @@ theorem Zonotope.aux_lmi_spectraShadow {h : ℕ} (β : Fin h → ℝ) :
 
 omit [AddCommGroup α] [Module ℝ α] in
 /-- The cube is where both diagonals are nonnegative. -/
-theorem Zonotope.posSemidef_spectraShadow_iff (Z : Zonotope α) (β : Fin Z.h → ℝ) :
+theorem Zonotope.posSemidef_spectraShadow_iff (Z : Zonotope α) (β : Fin Z.h → ℝ) : -- --- CONCL ---
     (Z.spectraShadow.A₀ + ∑ j, β j • Z.spectraShadow.A j).PosSemidef
       ↔ ∀ j, |β j| ≤ 1 := by -- --- PROOF ---
   change (blockDiag 0 (1 : Mat ℝ Z.h Z.h) 1 + ∑ j, β j • blockDiag 0 (diagonal (Pi.single j 1))

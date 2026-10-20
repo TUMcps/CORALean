@@ -36,7 +36,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem softmax_eq_inv (x : Vec ℝ n) (i : Fin n) :
+theorem softmax_eq_inv (x : Vec ℝ n) (i : Fin n) : -- --- CONCL ---
     softmax x i = (1 + ∑ j ∈ Finset.univ.erase i, Real.exp (x j - x i))⁻¹ := by -- --- PROOF ---
   have hE0 : Real.exp (x i) ≠ 0 := ne_of_gt (Real.exp_pos (x i))
   have hsplit : ∑ j, Real.exp (x j)

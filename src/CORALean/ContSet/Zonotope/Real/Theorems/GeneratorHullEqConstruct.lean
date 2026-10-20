@@ -50,7 +50,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Sec. 3 (center)]: `{s} ⊕ g₁ ⊕ ⋯ ⊕ g_m` has center `s + ½ ∑ gᵢ`, generators `gᵢ/2`. -/
-theorem Zonotope.generatorHull_eq_construct (s : Vec ℝ n) (m : ℕ) (g : Fin m → Vec ℝ n) :
+theorem Zonotope.generatorHull_eq_construct (s : Vec ℝ n) (m : ℕ)
+    (g : Fin m → Vec ℝ n) : -- --- CONCL ---
     Zonotope.generatorHull s m g
       = (Zonotope.mk m (s + (1 / 2 : ℝ) • ∑ i, g i)
           (fun i => (1 / 2 : ℝ) • g i)).construct := by -- --- PROOF ---

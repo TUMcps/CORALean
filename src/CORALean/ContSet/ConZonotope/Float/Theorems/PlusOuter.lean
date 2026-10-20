@@ -57,7 +57,7 @@ theorem ConZonotope.aux_sum_univ_plus {cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 
       = ∑ j, f (Fin.castAdd cZ₂.h j) + ∑ j, f (Fin.natAdd cZ₁.h j) :=
   Fin.sum_univ_add f
 
-theorem ConZonotope.aux_plus_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) :
+theorem ConZonotope.aux_plus_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     nominalSet cZ₁ + nominalSet cZ₂ ⊆
       nominalSet (cZ₁.plus cZ₂)
         + (Zonotope.centerResidual cZ₁.c cZ₂.c).construct := by -- --- PROOF ---

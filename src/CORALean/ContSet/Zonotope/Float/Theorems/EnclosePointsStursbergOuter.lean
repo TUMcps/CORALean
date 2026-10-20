@@ -51,7 +51,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n N : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.enclosePointsStursberg_outer [NeZero N] (pts : Fin N → Vec 𝕋 n) (U : Mat 𝕋 n n)
-    (hU : toRealMat U * (toRealMat U)ᵀ = 1) (j : Fin N) :
+    (hU : toRealMat U * (toRealMat U)ᵀ = 1) (j : Fin N) : -- --- CONCL ---
     toRealVec (pts j) ∈ (Zonotope.enclosePointsStursberg pts U).construct := by -- --- PROOF ---
   unfold Zonotope.enclosePointsStursberg
   dsimp only

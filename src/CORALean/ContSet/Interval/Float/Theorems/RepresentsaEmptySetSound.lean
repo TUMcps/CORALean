@@ -37,7 +37,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.representsa_emptySet_sound {I : Interval (Vec 𝕋 n)}
-    (h : I.representsa_emptySet = true) : I.construct = ∅ := by -- --- PROOF ---
+    (h : I.representsa_emptySet = true) : -- --- CONCL ---
+    I.construct = ∅ := by -- --- PROOF ---
   simp only [Interval.representsa_emptySet, List.any_eq_true, List.mem_finRange, true_and] at h
   obtain ⟨j, hj⟩ := h
   refine Set.eq_empty_iff_forall_notMem.2 fun x hx => ?_

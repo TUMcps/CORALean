@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The stacked rows, read back, take the values of the stack of the read-back rows. -/
 theorem PolyLevelSet.eval_nominalCore_and_ (P₁ P₂ : PolyLevelSet 𝕋 n)
-    (x : Vec ℝ n) :
+    (x : Vec ℝ n) : -- --- CONCL ---
     (P₁.and_ P₂).nominalCore.eval x
       = (P₁.nominalCore.and_ P₂.nominalCore).eval x := by -- --- PROOF ---
   have hA : toRealMat (P₁.and_ P₂).A = (P₁.nominalCore.and_ P₂.nominalCore).A := by

@@ -68,7 +68,7 @@ theorem PolyZonotope.aux_dep_mem (P : PolyZonotope (Vec 𝕋 n)) {a : Fin P.p �
 
 /-- The independent value is a point of the zonotope of the independent block. -/
 theorem PolyZonotope.aux_ind_mem (P : PolyZonotope (Vec 𝕋 n)) {β : Fin P.q → ℝ}
-    (hβ : ∀ j, |β j| ≤ 1) :
+    (hβ : ∀ j, |β j| ≤ 1) : -- --- CONCL ---
     (fun i => ∑ j, toReal (P.GI j i) * β j)
       ∈ (PolyZonotope.aux_Z P).construct := by -- --- PROOF ---
   have h0 : (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).construct := by
@@ -118,7 +118,8 @@ theorem PolyZonotope.aux_zono_right (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) {z : Vec
 /-- A point of the chords of chords plus a point of `enclose(Z1, Z2)` is a point of the result. -/
 theorem PolyZonotope.aux_assemble (P₁ P₂ : PolyZonotope (Vec 𝕋 n)) {d z : Vec ℝ n}
     (hd : d ∈ ((P₁.noIndep.linComb P₁.noIndep).linComb (P₂.noIndep.linComb P₂.noIndep)).construct)
-    (hz : z ∈ ((PolyZonotope.aux_Z P₁).linComb (PolyZonotope.aux_Z P₂)).construct) :
+    (hz : z ∈ ((PolyZonotope.aux_Z P₁).linComb (PolyZonotope.aux_Z P₂)).construct)
+    : -- --- CONCL ---
     d + z ∈ (P₁.convHull P₂).construct := by -- --- PROOF ---
   obtain ⟨nR, hnR, eR, heR, rfl⟩ := hd
   obtain ⟨nZ, hnZ, eZ, heZ, rfl⟩ := hz
@@ -152,7 +153,8 @@ theorem PolyZonotope.aux_zero_mem (P : PolyZonotope (Vec 𝕋 n)) :
   exact h
 
 /-- A point of an operand is a dependent point with an error, plus an independent one. -/
-theorem PolyZonotope.aux_decomp (P : PolyZonotope (Vec 𝕋 n)) {x : Vec ℝ n} (hx : x ∈ P.construct) :
+theorem PolyZonotope.aux_decomp (P : PolyZonotope (Vec 𝕋 n)) {x : Vec ℝ n}
+    (hx : x ∈ P.construct) : -- --- CONCL ---
     ∃ d z : Vec ℝ n, x = d + z ∧ d ∈ P.noIndep.construct ∧
       z ∈ (PolyZonotope.aux_Z P).construct := by -- --- PROOF ---
   obtain ⟨nx, hn, e, he, rfl⟩ := Set.mem_add.mp hx
@@ -166,7 +168,7 @@ theorem PolyZonotope.aux_decomp (P : PolyZonotope (Vec 𝕋 n)) {x : Vec ℝ n} 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.convHull_outer (P₁ P₂ : PolyZonotope (Vec 𝕋 n)) (h₁ : P₁.construct.Nonempty)
-    (h₂ : P₂.construct.Nonempty) :
+    (h₂ : P₂.construct.Nonempty) : -- --- CONCL ---
     P₁.construct ∪ P₂.construct ⊆ (P₁.convHull P₂).construct := by -- --- PROOF ---
   -- a dependent point of the other operand to pair with
   obtain ⟨d₁, -, -, hd₁, -⟩ := PolyZonotope.aux_decomp P₁ h₁.some_mem

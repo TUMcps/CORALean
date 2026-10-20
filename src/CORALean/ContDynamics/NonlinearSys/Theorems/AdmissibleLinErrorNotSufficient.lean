@@ -55,7 +55,7 @@ open Matrix
 noncomputable def aux_A : Mat ℝ 2 2 := !![1, 1; 0, 2]
 
 /-- `e^{A}` in closed form, through `A = V diag(1, 2) V⁻¹`. -/
-theorem aux_exp_A :
+theorem aux_exp_A : -- --- CONCL ---
     NormedSpace.exp ((1 : ℝ) • aux_A)
       = !![Real.exp 1, Real.exp 1 ^ 2 - Real.exp 1; 0, Real.exp 1 ^ 2] := by -- --- PROOF ---
   set V : Mat ℝ 2 2 := !![1, 1; 0, 1]

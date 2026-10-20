@@ -48,7 +48,7 @@ namespace CORALean.Real
 /-- Monotone in both generator counts, so bounds on the operand's sizes give a
 bound on the cost. -/
 theorem ConPolyZono.quadMapCost_mono {h h' qI q' : ℕ} (m n p mC q : ℕ) (hh : h ≤ h')
-    (hq : qI ≤ q') :
+    (hq : qI ≤ q') : -- --- CONCL ---
     ConPolyZono.quadMapCost m n p h qI mC q ≤
       ConPolyZono.quadMapCost m n p h' q' mC q := by -- --- PROOF ---
   -- `dependent` writes the result; the comparison is the map's at the counts it leaves

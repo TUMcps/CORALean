@@ -47,7 +47,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `F` and `F Fᵀ` have the same range. -/
-private theorem aux_range_mul_transpose {k : ℕ} (F : Mat ℝ n k) :
+private theorem aux_range_mul_transpose {k : ℕ} (F : Mat ℝ n k) : -- --- CONCL ---
     LinearMap.range (F * Fᵀ).mulVecLin = LinearMap.range F.mulVecLin := by -- --- PROOF ---
   have hle : LinearMap.range (F * Fᵀ).mulVecLin ≤ LinearMap.range F.mulVecLin := by
     rw [Matrix.mulVecLin_mul]
@@ -59,7 +59,7 @@ private theorem aux_range_mul_transpose {k : ℕ} (F : Mat ℝ n k) :
 
 /-- A point of one factor's ball image is a point of the other's. -/
 private theorem aux_exists_of_gram_eq {k l : ℕ} (F : Mat ℝ n k) (H : Mat ℝ n l)
-    (h : F * Fᵀ = H * Hᵀ) {u : Vec ℝ k} (hu : ‖u‖₂ ≤ 1) :
+    (h : F * Fᵀ = H * Hᵀ) {u : Vec ℝ k} (hu : ‖u‖₂ ≤ 1) : -- --- CONCL ---
     ∃ v : Vec ℝ l, ‖v‖₂ ≤ 1 ∧ F *ᵥ u = H *ᵥ v := by -- --- PROOF ---
   -- `F u = F Fᵀ w` for some `w`
   have hmem : F *ᵥ u ∈ LinearMap.range (F * Fᵀ).mulVecLin := by
@@ -93,7 +93,7 @@ private theorem aux_exists_of_gram_eq {k l : ℕ} (F : Mat ℝ n k) (H : Mat ℝ
 
 /-- Any factor `F` of the shape matrix, `F Fᵀ = Q`, generates the ellipsoid. -/
 theorem Ellipsoid.construct_eq_of_factor (E : Ellipsoid n) {k : ℕ} (F : Mat ℝ n k)
-    (hF : F * Fᵀ = E.Q) :
+    (hF : F * Fᵀ = E.Q) : -- --- CONCL ---
     E.construct = {x | ∃ u : Vec ℝ k, ‖u‖₂ ≤ 1 ∧ x = E.q + F *ᵥ u} := by -- --- PROOF ---
   have hG : E.G * E.Gᵀ = F * Fᵀ := by rw [E.G_mul_transpose, hF]
   rw [E.construct_eq_sqrt]

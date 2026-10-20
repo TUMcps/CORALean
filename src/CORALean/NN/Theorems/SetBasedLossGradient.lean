@@ -55,7 +55,8 @@ variable {n : ℕ}
 
 theorem setBasedLoss_gradient (L : Vec ℝ n → Vec ℝ n → ℝ) (τ ε : ℝ) (t : Vec ℝ n)
     (Y : Zonotope (Vec ℝ n)) (hY : 0 < Y.fRadius)
-    (hL : ∀ i, DifferentiableAt ℝ (fun s => L t (Function.update Y.c i s)) (Y.c i)) :
+    (hL : ∀ i, DifferentiableAt ℝ (fun s => L t (Function.update Y.c i s)) (Y.c i))
+    : -- --- CONCL ---
     Y.gradient (setBasedLoss L τ ε t) =
       { h := Y.h
         c := fun i => (1 - τ) * deriv (fun s => L t (Function.update Y.c i s)) (Y.c i)

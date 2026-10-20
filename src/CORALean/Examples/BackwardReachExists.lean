@@ -46,7 +46,8 @@ def BReachE.T : Interval (Vec ℝ 1) := ⟨![(-1:ℝ)], ![(1:ℝ)]⟩
 
 def BReachE.U : Interval (Vec ℝ 1) := ⟨![(-0.2:ℝ)], ![(0.2:ℝ)]⟩
 
-theorem BReachE.hA : toRealMat BReachE.Ainv * toRealMat BReachE.sys.A = 1 := by -- --- PROOF ---
+theorem BReachE.hA : -- --- CONCL ---
+    toRealMat BReachE.Ainv * toRealMat BReachE.sys.A = 1 := by -- --- PROOF ---
   ext i j
   fin_cases i
   fin_cases j
@@ -55,7 +56,8 @@ theorem BReachE.hA : toRealMat BReachE.Ainv * toRealMat BReachE.sys.A = 1 := by 
 
 /-- The input set is symmetric about the origin, so it encloses its own
 negation and serves as `negU` unchanged. -/
-theorem BReachE.hneg : -construct BReachE.U ⊆ construct BReachE.U := by -- --- PROOF ---
+theorem BReachE.hneg : -- --- CONCL ---
+    -construct BReachE.U ⊆ construct BReachE.U := by -- --- PROOF ---
   intro x hx
   have h := Set.mem_neg.mp hx
   intro i
@@ -68,7 +70,7 @@ theorem BReachE.hneg : -construct BReachE.U ⊆ construct BReachE.U := by -- ---
 
 /-- `0.7` is outside the computed set: one `plus` and one `mtimes` give
 `[-0.6, 0.6]`, and the box excludes the point on its own. -/
-theorem BReachE.not_mem :
+theorem BReachE.not_mem : -- --- CONCL ---
     (![(0.7:ℝ)] : Vec ℝ 1) ∉ construct (BReachE.sys.backReachExists (S := ℐ𝒱)
       ⟨BReachE.T, BReachE.U, 0, 1⟩ ⟨BReachE.Ainv⟩) := by -- --- PROOF ---
   intro h
@@ -86,7 +88,7 @@ example (u : Vec ℝ 1) (hu : u ∈ construct BReachE.U) :
 
 /-- `0.3` is in the exact set, witnessed by the zero input: `2 · 0.3 = 0.6`,
 which is in `[-1, 1]`. -/
-theorem BReachE.mem :
+theorem BReachE.mem : -- --- CONCL ---
     (![(0.3:ℝ)] : Vec ℝ 1) ∈ BReachE.sys.backReachSetExistsExact (S := ℐ𝒱)
       BReachE.T BReachE.U 1 := by -- --- PROOF ---
   refine ⟨0, fun i => ?_, fun i => ?_⟩

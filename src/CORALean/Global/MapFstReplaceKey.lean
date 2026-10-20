@@ -35,7 +35,8 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem map_fst_replaceKey {β : Type} (l : List (String × β)) (k : String) (v : β) :
+theorem map_fst_replaceKey {β : Type} (l : List (String × β)) (k : String)
+    (v : β) : -- --- CONCL ---
     (replaceKey l k v).map Prod.fst = l.map Prod.fst := by -- --- PROOF ---
   induction l with
   | nil => rfl

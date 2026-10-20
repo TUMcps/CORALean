@@ -50,7 +50,7 @@ open Matrix
 
 /-- [1, Prop. 2, eq. 19]: `Z ≠ ∅` iff the minimum of `‖ξ‖∞` over `Aξ = b` exists and is `≤ 1`. -/
 theorem ConZonotope.nonempty_iff_isLeast {α : Type} [AddCommGroup α] [Module ℝ α] {q h : ℕ}
-    (c : α) (G : Fin h → α) (A : Mat ℝ q h) (b : Vec ℝ q) :
+    (c : α) (G : Fin h → α) (A : Mat ℝ q h) (b : Vec ℝ q) : -- --- CONCL ---
     (ConZonotope.ofMat c G A b).construct.Nonempty ↔
       ∃ m, IsLeast {t | ∃ ξ : Vec ℝ h, A *ᵥ ξ = b ∧ t = ‖ξ‖} m ∧ m ≤ 1 := by -- --- PROOF ---
   rw [← ConZonotope.exists_feasible_iff_isLeast A b]

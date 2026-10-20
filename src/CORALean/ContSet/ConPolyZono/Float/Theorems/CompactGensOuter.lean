@@ -71,7 +71,7 @@ theorem ConPolyZono.aux_compactGensGap (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i 
   constructor <;> linarith
 
 -- the merged column is stored downward, and that gap is what the box pays for
-theorem ConPolyZono.aux_compactGens_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
+theorem ConPolyZono.aux_compactGens_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     nominalSet cPZ ⊆ nominalSet cPZ.compactGensSpec
       + (PolyZonotope.generatorError
         (ConPolyZono.compactGensGap cPZ)).construct := by -- --- PROOF ---
@@ -116,7 +116,7 @@ theorem ConPolyZono.aux_compactGens_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.compactGens_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
+theorem ConPolyZono.compactGens_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     cPZ.construct ⊆ cPZ.compactGens.construct := by -- --- PROOF ---
   rw [ConPolyZono.compactGens_eq_spec]
   rintro _ ⟨z, hz, e, he, rfl⟩

@@ -46,7 +46,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.inv_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    (hside : 0 < min T.constCoef T.bounds.inf ∨ max T.constCoef T.bounds.sup < 0) :
+    (hside : 0 < min T.constCoef T.bounds.inf ∨ max T.constCoef T.bounds.sup < 0) : -- --- CONCL ---
     T.inv.Encloses fun t => (f t)⁻¹ := by -- --- PROOF ---
   set lo := min T.constCoef T.bounds.inf
   set hi := max T.constCoef T.bounds.sup

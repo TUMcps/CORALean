@@ -34,7 +34,8 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.lineExample_not_mem : ¬ ∃ β : Fin 2 → ℝ,
+theorem SpectraShadow.lineExample_not_mem : -- --- CONCL ---
+    ¬ ∃ β : Fin 2 → ℝ,
     SpectraShadow.lineExample.c + ∑ i : Fin 2, β i • SpectraShadow.lineExample.G i
       = (Pi.single 0 1 : Vec ℝ 2) := by -- --- PROOF ---
   rintro ⟨β, hx⟩

@@ -56,7 +56,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The first loop's vertices are the first block of the walk. -/
-theorem Zonotope.aux_up_vertex (Z : Zonotope (Vec ℝ 2)) (k : Fin Z.h) :
+theorem Zonotope.aux_up_vertex (Z : Zonotope (Vec ℝ 2)) (k : Fin Z.h) : -- --- CONCL ---
     (Z.c - ∑ j, Z.G j) + (∑ i, if i < k then (2 : ℝ) • Z.G i else 0)
       = Z.corner (fun j => decide (j.val < k.val)) := by -- --- PROOF ---
   rw [Zonotope.corner_eq_bottom_add, Finset.smul_sum]
@@ -67,7 +67,7 @@ theorem Zonotope.aux_up_vertex (Z : Zonotope (Vec ℝ 2)) (k : Fin Z.h) :
   · simp [h]
 
 /-- The second loop's vertices are the second block of the walk. -/
-theorem Zonotope.aux_down_vertex (Z : Zonotope (Vec ℝ 2)) (k : Fin Z.h) :
+theorem Zonotope.aux_down_vertex (Z : Zonotope (Vec ℝ 2)) (k : Fin Z.h) : -- --- CONCL ---
     ((Z.c - ∑ j, Z.G j) + ∑ i, (2 : ℝ) • Z.G i)
         + (∑ i, if i < k then -((2 : ℝ) • Z.G i) else 0)
       = Z.corner (fun j => !decide (j.val < k.val)) := by -- --- PROOF ---
@@ -179,7 +179,8 @@ theorem Zonotope.aux_scan_sorted (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.boundIntersect2DScan_spec (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h) (γ : ℝ) :
+theorem Zonotope.boundIntersect2DScan_spec (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
+    (γ : ℝ) : -- --- CONCL ---
     {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.construct} =
       {y : ℝ | (Z.boundIntersect2DScan γ).inf ≤ y ∧
         (y : EReal) ≤ (Z.boundIntersect2DScan γ).sup} := by -- --- PROOF ---

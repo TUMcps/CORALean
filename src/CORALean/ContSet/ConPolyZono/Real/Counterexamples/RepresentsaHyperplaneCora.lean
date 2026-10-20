@@ -84,7 +84,7 @@ theorem ConPolyZono.aux_mem (t : ℝ) (ht : |t| ≤ 1) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The set is a segment of positive length, no hyperplane; CORA answers `true`. -/
-theorem ConPolyZono.representsa_hyperplane_cora_counterexample :
+theorem ConPolyZono.representsa_hyperplane_cora_counterexample : -- --- CONCL ---
     (¬ ∃ (f : (Fin 1 → ℝ) →ₗ[ℝ] ℝ) (c : ℝ), f ≠ 0 ∧
         ConPolyZono.aux_unitSegment.construct = {x | f x = c}) ∧
       ConPolyZono.aux_unitSegment.representsaHyperplaneCora = true := by -- --- PROOF ---

@@ -57,7 +57,8 @@ variable {X : Type}
 theorem STL.rewrite_release_succ (φ₁ φ₂ : STL.Formula X) (i j : ℕ) (hi : 1 ≤ i) (hij : i ≤ j)
     (ξ : ℝ≥0 → X)
     (h : (φ₁.or ((STL.Formula.finOpen 1 φ₁).or (STL.Formula.next 1
-      (STL.Formula.release ((i - 1 : ℕ) : ℝ≥0) ((j - 1 : ℕ) : ℝ≥0) φ₁ φ₂)))).Sat ξ) :
+      (STL.Formula.release ((i - 1 : ℕ) : ℝ≥0) ((j - 1 : ℕ) : ℝ≥0) φ₁ φ₂)))).Sat ξ)
+    : -- --- CONCL ---
     (STL.Formula.release (i : ℝ≥0) (j : ℝ≥0) φ₁ φ₂).Sat ξ := by -- --- PROOF ---
   obtain ⟨i, rfl⟩ : ∃ i', i = i' + 1 := ⟨i - 1, by omega⟩
   obtain ⟨j, rfl⟩ : ∃ j', j = j' + 1 := ⟨j - 1, by omega⟩

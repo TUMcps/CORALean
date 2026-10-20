@@ -38,7 +38,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The rank test holds for the arc `(a, a²)` of `ℝ²`, whose set has empty interior. -/
-theorem ConPolyZono.isFullDim_cora_counterexample :
+theorem ConPolyZono.isFullDim_cora_counterexample : -- --- CONCL ---
     ∃ cPZ : ConPolyZono (Vec ℝ 2), cPZ.isFullDimCora ∧
       ¬ (interior cPZ.construct).Nonempty := by -- --- PROOF ---
   obtain ⟨pZ, hrank, hint⟩ := PolyZonotope.isFullDim_cora_counterexample

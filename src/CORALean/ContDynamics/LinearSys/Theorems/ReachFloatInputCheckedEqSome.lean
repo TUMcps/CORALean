@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 theorem LinearSys.reachFloatInputChecked_eq_some (sys : LinearSys 𝕋 n)
     (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ)
-    (options : LinearSys.ReachOptions 𝕋) : -- --- CONCL ---
+    (options : LinearSys.ReachOptions 𝕋) :
     ∀ Rs ∈ sys.reachFloatInputChecked params options,
       sys.reachFloatInput params options = some Rs ∧ noNaN (𝕋 := 𝕋) Rs = true := fun _ h =>
   checkNoNaN_eq_some h

@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.factorial_le_factorialUp (k : ℕ) :
+theorem MatExp.factorial_le_factorialUp (k : ℕ) : -- --- CONCL ---
     (Nat.factorial k : ℝ) ≤ toReal (MatExp.factorialUp (𝕋 := 𝕋) k) := by -- --- PROOF ---
   induction k with
   | zero => rw [MatExp.factorialUp, toReal_one, Nat.factorial_zero, Nat.cast_one]

@@ -40,7 +40,7 @@ variable {m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every zonotope lies in CORA's `polytope(Z)` rows. -/
-theorem Zonotope.hPolytopeFacets_contains (Z : Zonotope (Vec ℝ (m + 1))) :
+theorem Zonotope.hPolytopeFacets_contains (Z : Zonotope (Vec ℝ (m + 1))) : -- --- CONCL ---
     Z.construct ⊆ Z.hPolytopeFacets.construct := by -- --- PROOF ---
   rintro x ⟨β, hβ, rfl⟩
   by_cases hG : ∀ j, Z.G j = 0

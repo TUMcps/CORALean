@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.containsPoint_sound {cZ : ConZonotope 𝕋 (Vec 𝕋 n)} {H : Mat 𝕋 cZ.h n}
-    {β₀ : Vec 𝕋 cZ.h} {p : Vec 𝕋 n} (h : cZ.containsPoint H β₀ p = true) :
+    {β₀ : Vec 𝕋 cZ.h} {p : Vec 𝕋 n} (h : cZ.containsPoint H β₀ p = true) : -- --- CONCL ---
     toRealVec p ∈ cZ.construct := by -- --- PROOF ---
   simp only [ConZonotope.containsPoint, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h

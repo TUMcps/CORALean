@@ -52,7 +52,7 @@ variable {n : ℕ}
 
 /-- [1, Lemma 2], the limit half: `Δε^U_k(Δt,η) → 0` as the step shrinks to `0`. -/
 theorem MatExp.tendsto_particularSolutionError_zero (A : Mat ℝ n n) (tk : ℝ)
-    {U0 : Set (Vec ℝ n)} (hU0 : Bornology.IsBounded U0) (η : ℕ) :
+    {U0 : Set (Vec ℝ n)} (hU0 : Bornology.IsBounded U0) (η : ℕ) : -- --- CONCL ---
     Tendsto (fun Δt => MatExp.particularSolutionError A tk U0 Δt η)
       (𝓝[>] (0 : ℝ)) (𝓝 0) := by -- --- PROOF ---
   obtain ⟨K, hK⟩ := MatExp.exists_particularSolutionError_le_const_mul_sq A tk hU0 η

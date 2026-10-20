@@ -37,7 +37,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `isequal` at `tol = 0` iff the sets of times agree. -/
-theorem STLInterval.isequal_zero_iff (I J : STLInterval) :
+theorem STLInterval.isequal_zero_iff (I J : STLInterval) : -- --- CONCL ---
     I.isequal 0 J ↔ I.set = J.set := by -- --- PROOF ---
   cases I with
   | empty =>

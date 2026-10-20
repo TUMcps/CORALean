@@ -55,7 +55,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- Holding the input at one point of `U` is admissible, and what it contributes
 is the integrated exponential at that point. -/
 theorem LinearSys.expIntegral_mem_inputReach (sys : LinearSys 𝕋 n) {τ : ℝ} (hτ : 0 ≤ τ)
-    {U : S n} {v : Vec ℝ n} (hv : v ∈ construct U) :
+    {U : S n} {v : Vec ℝ n} (hv : v ∈ construct U) : -- --- CONCL ---
     MatExp.expIntegral (toRealMat sys.A) τ *ᵥ v
       ∈ sys.inputReach U τ := by -- --- PROOF ---
   refine ⟨fun _ => v, fun _ _ => hv, aestronglyMeasurable_const, ?_⟩

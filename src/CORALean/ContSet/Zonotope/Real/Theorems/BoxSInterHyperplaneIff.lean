@@ -50,7 +50,7 @@ variable {n : ℕ}
 
 /-- [1, Prop. 3]: for `n_e ∈ S`, `Box_S(Z) ∩ G_e ≠ ∅ ⟺ Z ∩ G_e ≠ ∅`. -/
 theorem Zonotope.boxS_inter_hyperplane_iff (Z : Zonotope (Vec ℝ n)) {S : Finset (Vec ℝ n)}
-    {nₑ : Vec ℝ n} (hnₑ : nₑ ∈ S) (fₑ : ℝ) :
+    {nₑ : Vec ℝ n} (hnₑ : nₑ ∈ S) (fₑ : ℝ) : -- --- CONCL ---
     (∃ x ∈ Z.boxS S, x ⬝ᵥ nₑ = fₑ) ↔ ∃ x ∈ Z.construct, x ⬝ᵥ nₑ = fₑ := by -- --- PROOF ---
   constructor
   · -- `m_{n_e} ≤ f_e ≤ M_{n_e}`, so `Z` reaches `f_e` along `n_e`

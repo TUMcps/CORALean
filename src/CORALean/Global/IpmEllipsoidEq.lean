@@ -52,7 +52,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- Cauchy-Schwarz in the inner products of `P⁻¹` and `P`
-theorem aux_abs_dotProduct_le_weighted (P : Mat ℝ n n) (hP : P.PosDef) (ρ ϕ : Vec ℝ n) :
+theorem aux_abs_dotProduct_le_weighted (P : Mat ℝ n n) (hP : P.PosDef)
+    (ρ ϕ : Vec ℝ n) : -- --- CONCL ---
     |ρ ⬝ᵥ ϕ| ≤ Real.sqrt (ρ ⬝ᵥ (P⁻¹ *ᵥ ρ)) * Real.sqrt (ϕ ⬝ᵥ (P *ᵥ ϕ)) := by -- --- PROOF ---
   haveI : Invertible P := hP.isUnit.invertible
   have hPT : Pᵀ = P := by rw [← conjTranspose_eq_transpose_of_trivial]; exact hP.isHermitian.eq
@@ -96,7 +97,7 @@ theorem aux_abs_dotProduct_le_weighted (P : Mat ℝ n n) (hP : P.PosDef) (ρ ϕ 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ipmEllipsoid_eq (c : Vec ℝ n) (P : Mat ℝ n n) (hP : P.PosDef) (γ : ℝ) (hγ : 0 ≤ γ)
-    (ϕ : Vec ℝ n) :
+    (ϕ : Vec ℝ n) : -- --- CONCL ---
     ipmEllipsoid c P γ ϕ = Set.Icc (c ⬝ᵥ ϕ - (Real.sqrt (ϕ ⬝ᵥ (P *ᵥ ϕ)) + γ))
       (c ⬝ᵥ ϕ + (Real.sqrt (ϕ ⬝ᵥ (P *ᵥ ϕ)) + γ)) := by -- --- PROOF ---
   haveI : Invertible P := hP.isUnit.invertible

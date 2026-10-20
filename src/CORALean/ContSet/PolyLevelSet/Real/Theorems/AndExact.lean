@@ -39,7 +39,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The stacked rows on the boxes' intersection denote the intersection of the two sets. -/
-theorem PolyLevelSet.and_exact (P₁ P₂ : PolyLevelSet n) :
+theorem PolyLevelSet.and_exact (P₁ P₂ : PolyLevelSet n) : -- --- CONCL ---
     (P₁.and_ P₂).construct = P₁.construct ∩ P₂.construct := by -- --- PROOF ---
   ext x
   show (x ∈ (P₁.dom.intersection P₂.dom).construct

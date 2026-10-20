@@ -51,7 +51,7 @@ open scoped NNReal
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FourValuedSTL.kleeneSat_isValid {X : Type} (φ : FourValuedSTL.Formula X)
-    (S : (X → Prop) → KleeneSignal ℝ) (hS : ∀ a ∈ φ.atoms, (S a).IsValid) :
+    (S : (X → Prop) → KleeneSignal ℝ) (hS : ∀ a ∈ φ.atoms, (S a).IsValid) : -- --- CONCL ---
     (φ.kleeneSat S).IsValid := by -- --- PROOF ---
   induction φ with
   | tt => exact (KleeneSignal.indicator_spec STLInterval.empty .tt .tt).1

@@ -37,7 +37,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.mem_construct_iff_rows {P : HPolytope α} {x : α} :
+theorem HPolytope.mem_construct_iff_rows {P : HPolytope α} {x : α} : -- --- CONCL ---
     x ∈ P.construct ↔ ∀ i, P.rows i x ≤ P.rowsRhs i := by -- --- PROOF ---
   -- the rows and right-hand sides, read off at each of the three blocks
   have r1 : ∀ j, P.rows (Fin.castAdd _ j) = P.A j := fun j => Fin.append_left _ _ j

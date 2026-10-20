@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 at one end of its range, so each term is bounded by the end its sign picks, and the terms are
 summed upward. -/
 theorem HPolytope.le_errUp (P : HPolytope 𝕋 (Vec 𝕋 n)) (a : Vec 𝕋 n) {e : Vec ℝ n}
-    (he : e ∈ P.I_error.construct) :
+    (he : e ∈ P.I_error.construct) : -- --- CONCL ---
     ∑ j, toReal (a j) * e j ≤ toReal (P.errUp a) := by -- --- PROOF ---
   refine le_trans (Finset.sum_le_sum fun j _ => ?_) (sum_le_sumUp _)
   have hlo : toReal (P.I_error.inf j) ≤ e j := (he j).1

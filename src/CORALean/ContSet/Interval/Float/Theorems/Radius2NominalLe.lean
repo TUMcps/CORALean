@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Interval.radius₂_nominal_le (I : Interval (Vec 𝕋 n))
     (hI : ∀ i, toReal (I.inf i) ≤ toReal (I.sup i)) {σ : 𝕋}
-    (hσ : toReal I.radiusSq ≤ toReal (mulDown σ σ)) :
+    (hσ : toReal I.radiusSq ≤ toReal (mulDown σ σ)) : -- --- CONCL ---
     I.nominal.radius₂ ≤ toReal (absolute σ) := by -- --- PROOF ---
   refine norm₂_le_of_sq_le (m := I.radius) (fun i => ?_) hσ
   have h0 : 0 ≤ I.nominal.radius i := by

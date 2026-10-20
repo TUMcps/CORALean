@@ -51,7 +51,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 /-- [1, Prop. 1]: the box built from a zonotope's center and generator widths
 contains it. -/
-theorem Zonotope.interval_contains (Z : Zonotope α) :
+theorem Zonotope.interval_contains (Z : Zonotope α) : -- --- CONCL ---
     Z.construct ⊆ Z.interval.construct := by -- --- PROOF ---
   rintro x ⟨β, hβ, rfl⟩
   intro i

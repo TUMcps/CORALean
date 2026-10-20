@@ -40,7 +40,8 @@ namespace CORALean
 /-- A nonempty interval reaches down to `s` iff `s` is past its lower bound. -/
 theorem STLInterval.rawSet_lowerReach {l u : EReal} {lc rc : Bool}
     (hne : (rawSet l u lc rc).Nonempty)
-    (s : ℝ) : (∃ a ∈ rawSet l u lc rc, a ≤ s) ↔ (l < s ∨ (lc = true ∧ l = s)) := by -- --- PROOF ---
+    (s : ℝ) : -- --- CONCL ---
+    (∃ a ∈ rawSet l u lc rc, a ≤ s) ↔ (l < s ∨ (lc = true ∧ l = s)) := by -- --- PROOF ---
   constructor
   · rintro ⟨a, ⟨h1 | ⟨hc, e⟩, _⟩, has⟩
     · exact Or.inl (h1.trans_le (EReal.coe_le_coe_iff.2 has))

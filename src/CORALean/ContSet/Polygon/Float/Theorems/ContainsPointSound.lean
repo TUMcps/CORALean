@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.containsPoint_sound {P : Polygon 𝕋} {x : Vec 𝕋 2}
-    (h : Polygon.containsPoint P x = true) :
+    (h : Polygon.containsPoint P x = true) : -- --- CONCL ---
     toRealVec x ∈ ContSet.construct P := by -- --- PROOF ---
   simp only [Polygon.containsPoint, List.any_eq_true, Bool.and_eq_true, List.all_eq_true,
     List.mem_finRange, forall_const] at h

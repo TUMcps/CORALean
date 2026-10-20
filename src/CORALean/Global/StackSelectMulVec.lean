@@ -37,7 +37,7 @@ variable {n r : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem stackFst_mulVec (a : Vec ℝ n) (b : Vec ℝ r) :
+theorem stackFst_mulVec (a : Vec ℝ n) (b : Vec ℝ r) : -- --- CONCL ---
     stackFst n r *ᵥ (Fin.append a b : Vec ℝ (n + r)) = a := by -- --- PROOF ---
   funext i
   -- split the sum over `Fin (n + r)` into its two halves
@@ -47,7 +47,7 @@ theorem stackFst_mulVec (a : Vec ℝ n) (b : Vec ℝ r) :
   -- the second half lies above `n`, the diagonal below it
   exact Finset.sum_eq_zero fun x _ => by rw [if_neg (by have := i.isLt; omega)]
 
-theorem stackSnd_mulVec (a : Vec ℝ n) (b : Vec ℝ r) :
+theorem stackSnd_mulVec (a : Vec ℝ n) (b : Vec ℝ r) : -- --- CONCL ---
     stackSnd n r *ᵥ (Fin.append a b : Vec ℝ (n + r)) = b := by -- --- PROOF ---
   funext i
   simp only [Matrix.mulVec, dotProduct, stackSnd, Matrix.of_apply, Fin.sum_univ_add,

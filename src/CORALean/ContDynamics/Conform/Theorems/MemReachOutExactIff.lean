@@ -75,7 +75,8 @@ theorem aux_output_sub_nominal (sys : Conform.Plant n p q) (x0 xt : Vec ℝ n)
 /-- [1, Eq. 15], [2, Eq. 8]: reachable exactly when the deviation from the nominal run
 lies in the deviation set. -/
 theorem Conform.Plant.mem_reachOutExact_iff (sys : Conform.Plant n p q) (x0 : Vec ℝ n)
-    (X0 W : Set (Vec ℝ n)) (V : Set (Vec ℝ q)) (u : ℕ → Vec ℝ p) (k : ℕ) (y : Vec ℝ q) :
+    (X0 W : Set (Vec ℝ n)) (V : Set (Vec ℝ q)) (u : ℕ → Vec ℝ p) (k : ℕ)
+    (y : Vec ℝ q) : -- --- CONCL ---
     y ∈ sys.reachOutExact ({x0} + X0) u W V k ↔
       y - sys.nominal x0 u k ∈ sys.devSet X0 W V k := by -- --- PROOF ---
   constructor

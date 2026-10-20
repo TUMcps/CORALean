@@ -59,7 +59,7 @@ theorem Zonotope.aux_finrank_vectorSpan_erd (Z : Zonotope (Vec ℝ n))
 
 /-- A functional is constant on its exposed face, so it vanishes on the face's affine hull. -/
 theorem Zonotope.aux_apply_eq_zero_erd (A : Set (Vec ℝ n)) (l : StrongDual ℝ (Vec ℝ n))
-    {w : Vec ℝ n} (hw : w ∈ vectorSpan ℝ {x | x ∈ A ∧ ∀ y ∈ A, l y ≤ l x}) :
+    {w : Vec ℝ n} (hw : w ∈ vectorSpan ℝ {x | x ∈ A ∧ ∀ y ∈ A, l y ≤ l x}) : -- --- CONCL ---
     l w = 0 := by -- --- PROOF ---
   have hle : vectorSpan ℝ {x | x ∈ A ∧ ∀ y ∈ A, l y ≤ l x}
       ≤ LinearMap.ker (l : Vec ℝ n →ₗ[ℝ] ℝ) := by
@@ -72,7 +72,8 @@ theorem Zonotope.aux_apply_eq_zero_erd (A : Set (Vec ℝ n)) (l : StrongDual ℝ
 
 /-- Replacing coefficient `j` by `s` moves the point by `(s - βⱼ)gⱼ`. -/
 theorem Zonotope.aux_update_erd (Z : Zonotope (Vec ℝ n)) (β : Fin Z.h → ℝ) (j : Fin Z.h)
-    (s : ℝ) : Z.c + ∑ i, (if i = j then s else β i) • Z.G i
+    (s : ℝ) : -- --- CONCL ---
+    Z.c + ∑ i, (if i = j then s else β i) • Z.G i
       = (Z.c + ∑ i, β i • Z.G i) + (s - β j) • Z.G j := by -- --- PROOF ---
   have h : ∀ i, (if i = j then s else β i) • Z.G i
       = β i • Z.G i + (if i = j then (s - β j) • Z.G j else 0) := fun i => by

@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem MatExp.sideCondition_of_le {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
     {nrm : 𝕋} {k : ℕ}
-    (h : le nrm (half (nsmulDown (k + 2) (one : 𝕋))) = true) :
+    (h : le nrm (half (nsmulDown (k + 2) (one : 𝕋))) = true) : -- --- CONCL ---
     toReal nrm / ((k : ℝ) + 2) ≤ 1 / 2 := by -- --- PROOF ---
   have hle := toReal_le_of_le h
   have hcount := nsmulDown_le (k + 2) (one : 𝕋)

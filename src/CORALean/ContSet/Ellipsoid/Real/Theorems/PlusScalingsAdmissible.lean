@@ -40,7 +40,7 @@ namespace CORALean.Real
 
 /-- The scalings `√(1+1/l)` and `√(1+l)` are non-zero and meet `plus_outer`'s
 bound with equality, at every positive `l`. -/
-theorem Ellipsoid.plus_scalings_admissible {l : ℝ} (hl : 0 < l) :
+theorem Ellipsoid.plus_scalings_admissible {l : ℝ} (hl : 0 < l) : -- --- CONCL ---
     Real.sqrt (1 + 1 / l) ≠ 0 ∧ Real.sqrt (1 + l) ≠ 0 ∧
       1 / Real.sqrt (1 + 1 / l) ^ 2
         + 1 / Real.sqrt (1 + l) ^ 2 = 1 := by -- --- PROOF ---

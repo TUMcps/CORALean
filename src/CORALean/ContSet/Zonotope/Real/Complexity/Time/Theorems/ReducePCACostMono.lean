@@ -40,7 +40,8 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Monotone in the generator count. -/
-theorem Zonotope.reducePCACost_mono {h h' : ℕ} (n : ℕ) (eig inv : Cost) (hle : h ≤ h') :
+theorem Zonotope.reducePCACost_mono {h h' : ℕ} (n : ℕ) (eig inv : Cost)
+    (hle : h ≤ h') : -- --- CONCL ---
     Zonotope.reducePCACost n h eig inv ≤
       Zonotope.reducePCACost n h' eig inv := by -- --- PROOF ---
   have a := Cost.sort_mono hle

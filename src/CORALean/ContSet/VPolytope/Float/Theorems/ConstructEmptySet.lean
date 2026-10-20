@@ -39,7 +39,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.construct_emptySet : (VPolytope.emptySet 𝕋 n).construct = ∅ := by -- --- PROOF ---
+theorem VPolytope.construct_emptySet : -- --- CONCL ---
+    (VPolytope.emptySet 𝕋 n).construct = ∅ := by -- --- PROOF ---
   have h : InflatedContSet.nominal (VPolytope.emptySet 𝕋 n)
       = Real.VPolytope.emptySet (Vec ℝ n) := by
     rw [VPolytope.nominal_eq]

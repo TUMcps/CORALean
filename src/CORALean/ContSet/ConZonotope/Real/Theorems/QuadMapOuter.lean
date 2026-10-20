@@ -117,7 +117,8 @@ theorem ConZonotope.aux_quadMap_pairblock {h : ℕ} (f : Fin h → Fin h → ℝ
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Outer only: the new factors are free. -/
-theorem ConZonotope.quadMap_outer (Q : Fin m → Mat ℝ n n) (cZ : ConZonotope (Vec ℝ n)) :
+theorem ConZonotope.quadMap_outer (Q : Fin m → Mat ℝ n n)
+    (cZ : ConZonotope (Vec ℝ n)) : -- --- CONCL ---
     (fun x : Vec ℝ n => fun i => x ⬝ᵥ (Q i *ᵥ x)) '' cZ.construct
       ⊆ (cZ.quadMap Q).construct := by -- --- PROOF ---
   -- the square's coefficient `2pⱼ² - 1`, `pⱼ²`'s image of `[-1, 1]`

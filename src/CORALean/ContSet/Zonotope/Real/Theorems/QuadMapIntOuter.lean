@@ -59,7 +59,7 @@ variable {n m : ℕ}
 
 /-- An entrywise bound `S` on `E` bounds the quadratic form at anything `a` covers. -/
 theorem Zonotope.aux_quadMapInt_abs_quad_le {E S : Mat ℝ n n} {x a : Vec ℝ n}
-    (hE : ∀ j k, |E j k| ≤ S j k) (hx : ∀ j, |x j| ≤ a j) :
+    (hE : ∀ j k, |E j k| ≤ S j k) (hx : ∀ j, |x j| ≤ a j) : -- --- CONCL ---
     |x ⬝ᵥ (E *ᵥ x)| ≤ a ⬝ᵥ (S *ᵥ a) := by -- --- PROOF ---
   have ha : ∀ j, 0 ≤ a j := fun j => (abs_nonneg _).trans (hx j)
   simp only [dotProduct, mulVec, Finset.mul_sum]
@@ -79,7 +79,7 @@ theorem Zonotope.aux_quadMapInt_abs_quad_le {E S : Mat ℝ n n} {x a : Vec ℝ n
 `quadint(H, Z)`. -/
 theorem Zonotope.quadMapInt_outer (Hc HΔ : Fin m → Mat ℝ n n) (Z : Zonotope (Vec ℝ n))
     {H : Fin m → Mat ℝ n n} (hH : ∀ i j k, |H i j k - Hc i j k| ≤ HΔ i j k)
-    {z : Vec ℝ n} (hz : z ∈ Z.construct) :
+    {z : Vec ℝ n} (hz : z ∈ Z.construct) : -- --- CONCL ---
     (fun i => z ⬝ᵥ (H i *ᵥ z)) ∈ (Z.quadMapInt Hc HΔ).construct := by -- --- PROOF ---
   rw [Zonotope.quadMapInt_eq, ← Zonotope.plus_exact]
   -- the midpoint part, in `quad(Hc, Z)` by [1, Lemma 1]

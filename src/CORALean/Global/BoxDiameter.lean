@@ -38,7 +38,8 @@ variable {n : ℕ}
 
 /-- The coordinate images of a bounded set are bounded above, which is what
 `sSup` needs to be the supremum rather than its junk value. -/
-theorem bddAbove_eval_image {S : Set (Vec ℝ n)} (hS : Bornology.IsBounded S) (i : Fin n) :
+theorem bddAbove_eval_image {S : Set (Vec ℝ n)} (hS : Bornology.IsBounded S)
+    (i : Fin n) : -- --- CONCL ---
     BddAbove ((fun x : Vec ℝ n => x i) '' S) := by -- --- PROOF ---
   obtain ⟨C, hC⟩ := hS.exists_norm_le
   refine ⟨C, ?_⟩
@@ -50,7 +51,8 @@ theorem bddAbove_eval_image {S : Set (Vec ℝ n)} (hS : Bornology.IsBounded S) (
     _ ≤ C := hC x hx
 
 /-- The same bound below, `sInf`'s side of `bddAbove_eval_image`. -/
-theorem bddBelow_eval_image {S : Set (Vec ℝ n)} (hS : Bornology.IsBounded S) (i : Fin n) :
+theorem bddBelow_eval_image {S : Set (Vec ℝ n)} (hS : Bornology.IsBounded S)
+    (i : Fin n) : -- --- CONCL ---
     BddBelow ((fun x : Vec ℝ n => x i) '' S) := by -- --- PROOF ---
   obtain ⟨C, hC⟩ := hS.exists_norm_le
   refine ⟨-C, ?_⟩
@@ -71,7 +73,7 @@ noncomputable def boxDiameter (S : Set (Vec ℝ n)) : Vec ℝ n :=
 /-- A larger set has a wider box, provided the larger one is bounded at all and
 the smaller one is not empty. -/
 theorem boxDiameter_mono {S T : Set (Vec ℝ n)} (hne : S.Nonempty)
-    (hT : Bornology.IsBounded T) (hST : S ⊆ T) (i : Fin n) :
+    (hT : Bornology.IsBounded T) (hST : S ⊆ T) (i : Fin n) : -- --- CONCL ---
     boxDiameter S i ≤ boxDiameter T i := by -- --- PROOF ---
   have himg : (fun x : Vec ℝ n => x i) '' S ⊆ (fun x : Vec ℝ n => x i) '' T :=
     Set.image_mono hST
@@ -83,7 +85,7 @@ theorem boxDiameter_mono {S T : Set (Vec ℝ n)} (hne : S.Nonempty)
 /-- Two points of a bounded `S` never differ, at any one coordinate, by more
 than `S`'s own box diameter there. -/
 theorem abs_sub_le_boxDiameter {S : Set (Vec ℝ n)} (hS : Bornology.IsBounded S)
-    {x y : Vec ℝ n} (hx : x ∈ S) (hy : y ∈ S) (i : Fin n) :
+    {x y : Vec ℝ n} (hx : x ∈ S) (hy : y ∈ S) (i : Fin n) : -- --- CONCL ---
     |x i - y i| ≤ boxDiameter S i := by -- --- PROOF ---
   rw [abs_sub_le_iff]
   refine ⟨?_, ?_⟩

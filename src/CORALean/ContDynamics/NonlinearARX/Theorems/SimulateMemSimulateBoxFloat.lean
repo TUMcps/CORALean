@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {dy du p : �
 
 /-- The first window of the run is the start window. -/
 theorem NonlinearARX.aux_stack_simulate_zero (sys : NonlinearARX dy du p) (y₀ : Vec ℝ (p * dy))
-    (u : ℕ → Vec ℝ du) :
+    (u : ℕ → Vec ℝ du) : -- --- CONCL ---
     NonlinearARX.stack p (sys.simulate y₀ u) 0 = y₀ := by -- --- PROOF ---
   funext r
   have hlt : (0 + (finProdFinEquiv.symm r).1 : ℕ) < p := by

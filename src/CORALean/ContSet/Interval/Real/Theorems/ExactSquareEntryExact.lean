@@ -55,7 +55,7 @@ theorem aux_corner_mem {lo hi v : ℝ} (h : v = lo ∨ v = hi) (hle : lo ≤ hi)
   · exact ⟨hle, le_rfl⟩
 
 /-- `mulLo` is the product of two corners. -/
-theorem aux_mulLo_corner (a b c d : ℝ) :
+theorem aux_mulLo_corner (a b c d : ℝ) : -- --- CONCL ---
     ∃ y x, (y = a ∨ y = b) ∧ (x = c ∨ x = d) ∧
       y * x = Interval.mulLo a b c d := by -- --- PROOF ---
   unfold Interval.mulLo
@@ -68,7 +68,7 @@ theorem aux_mulLo_corner (a b c d : ℝ) :
     · exact ⟨b, d, Or.inr rfl, Or.inr rfl, rfl⟩
 
 /-- `mulHi` is the product of two corners. -/
-theorem aux_mulHi_corner (a b c d : ℝ) :
+theorem aux_mulHi_corner (a b c d : ℝ) : -- --- CONCL ---
     ∃ y x, (y = a ∨ y = b) ∧ (x = c ∨ x = d) ∧
       y * x = Interval.mulHi a b c d := by -- --- PROOF ---
   unfold Interval.mulHi
@@ -81,7 +81,7 @@ theorem aux_mulHi_corner (a b c d : ℝ) :
     · exact ⟨b, d, Or.inr rfl, Or.inr rfl, rfl⟩
 
 /-- The least value of `x ^ 2` on `[a, b]` is taken. -/
-theorem aux_sq_lo {a b : ℝ} (hab : a ≤ b) :
+theorem aux_sq_lo {a b : ℝ} (hab : a ≤ b) : -- --- CONCL ---
     ∃ x, a ≤ x ∧ x ≤ b ∧
       x ^ 2 = if a < 0 ∧ 0 < b then 0 else min (a ^ 2) (b ^ 2) := by -- --- PROOF ---
   by_cases h : a < 0 ∧ 0 < b
@@ -188,7 +188,7 @@ theorem aux_diag_witness (A : Interval (Mat ℝ n n)) (hA : ∀ p q, A.inf p q �
 `[exactSquare.inf, exactSquare.sup]` of that entry: both ends are attained, and the members
 form a connected set. -/
 theorem Interval.exactSquare_entry_exact (A : Interval (Mat ℝ n n))
-    (hA : ∀ p q, A.inf p q ≤ A.sup p q) (i j : Fin n) :
+    (hA : ∀ p q, A.inf p q ≤ A.sup p q) (i j : Fin n) : -- --- CONCL ---
     (fun M : Mat ℝ n n => (M * M) i j) '' A.construct
       = Set.Icc (A.exactSquare.inf i j) (A.exactSquare.sup i j) := by -- --- PROOF ---
   classical

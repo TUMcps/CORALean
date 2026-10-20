@@ -48,7 +48,8 @@ variable {α : Type}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A constraint row is a polynomial in the factors. -/
-theorem ConPolyZono.aux_continuous_consRow (cPZ : ConPolyZono α) (i : Fin cPZ.cons.m) :
+theorem ConPolyZono.aux_continuous_consRow (cPZ : ConPolyZono α)
+    (i : Fin cPZ.cons.m) : -- --- CONCL ---
     Continuous fun ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) =>
       (cPZ.cons.A *ᵥ PolyZonotope.monomial cPZ.cons.R ab.1) i := by -- --- PROOF ---
   have hrow : (fun ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) =>
@@ -60,7 +61,7 @@ theorem ConPolyZono.aux_continuous_consRow (cPZ : ConPolyZono α) (i : Fin cPZ.c
 
 /-- Three families of conditions, each an inequality or an equation between continuous
 functions, so the domain is a finite intersection of closed sets. -/
-theorem ConPolyZono.aux_isClosed_domain (cPZ : ConPolyZono α) :
+theorem ConPolyZono.aux_isClosed_domain (cPZ : ConPolyZono α) : -- --- CONCL ---
     IsClosed cPZ.domain := by -- --- PROOF ---
   have hdom : cPZ.domain
       = (⋂ j, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) | |ab.2 j| ≤ 1})
@@ -84,7 +85,7 @@ theorem ConPolyZono.aux_isClosed_domain (cPZ : ConPolyZono α) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.isCompact_domain (cPZ : ConPolyZono α) :
+theorem ConPolyZono.isCompact_domain (cPZ : ConPolyZono α) : -- --- CONCL ---
     IsCompact cPZ.domain := by -- --- PROOF ---
   refine IsCompact.of_isClosed_subset
     ((isCompact_closedBall (0 : Fin cPZ.p → ℝ) 1).prod

@@ -51,7 +51,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem MatExp.exp_mem_expIntervalEnclosureExact (A : Interval (Mat 𝕋 n n)) (t : 𝕋)
     {M : Mat ℝ n n} (hM : M ∈ A.construct) {κ : ℕ} (hκ : 2 ≤ κ)
-    (hε : toReal (MatExp.normUpperBound (Interval.smul t t A)) / ((κ : ℝ) + 2) ≤ 1 / 2) :
+    (hε : toReal (MatExp.normUpperBound (Interval.smul t t A)) / ((κ : ℝ) + 2) ≤ 1 / 2)
+    : -- --- CONCL ---
     exp (toReal t • M) ∈
       (MatExp.expIntervalEnclosureExact A t κ).construct := by -- --- PROOF ---
   refine Interval.mem_mat_iff.mpr fun i j => ?_

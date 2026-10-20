@@ -41,7 +41,7 @@ variable {h : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Alg. 2]: `leafNode` returns a node with an outgoing edge to `j` and no incoming edge. -/
-theorem PolyZonotope.leafNode_spec (g : Fin h → Option (Fin h)) :
+theorem PolyZonotope.leafNode_spec (g : Fin h → Option (Fin h)) : -- --- CONCL ---
     ∀ i j, (i, j) ∈ PolyZonotope.leafNode g →
       g i = some j ∧ ∀ i', g i' ≠ some i := by -- --- PROOF ---
   intro i j (hl : PolyZonotope.leafNode g = some (i, j))

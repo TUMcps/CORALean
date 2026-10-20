@@ -44,7 +44,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `leftClosure` adds the infimum of `I` to its set of times. -/
-theorem STLInterval.set_leftClosure (I : STLInterval) :
+theorem STLInterval.set_leftClosure (I : STLInterval) : -- --- CONCL ---
     I.leftClosure.set = I.set ∪ {t : ℝ | I.infimum.value = some (t : EReal)} := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.leftClosure, STLInterval.infimum, STLInterval.set]

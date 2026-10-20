@@ -45,7 +45,7 @@ namespace CORALean.Real
 
 /-- Permuting the selection scales `Z.facetNormal` by a sign, so `|y ⬝ᵥ ·|` is unchanged. -/
 theorem Zonotope.abs_dot_facetNormal_comp_perm {n : ℕ} (Z : Zonotope (Vec ℝ (n + 1)))
-    (S : Fin n → Fin Z.h) (σ : Equiv.Perm (Fin n)) (y : Vec ℝ (n + 1)) :
+    (S : Fin n → Fin Z.h) (σ : Equiv.Perm (Fin n)) (y : Vec ℝ (n + 1)) : -- --- CONCL ---
     |y ⬝ᵥ Z.facetNormal (S ∘ σ)| = |y ⬝ᵥ Z.facetNormal S| := by -- --- PROOF ---
   unfold Zonotope.facetNormal
   -- pairing with the cross product is a determinant with `y` prepended

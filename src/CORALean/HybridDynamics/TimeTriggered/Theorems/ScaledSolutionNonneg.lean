@@ -58,7 +58,7 @@ variable {X : Type} [NormedAddCommGroup X] [NormedSpace ℝ X]
 /-- A solution of `ẏ = g(y) f(y)` that starts with `g ≥ 0` keeps `g(y) ≥ 0`. -/
 theorem scaledSolution_nonneg {f : X → X} {g : X → ℝ} (hg : Continuous g) {K' : ℝ≥0}
     (hF : LipschitzWith K' fun x => g x • f x) {y : ℝ → X} {t : ℝ}
-    (hy : ∀ u ∈ Icc 0 t, HasDerivAt y (g (y u) • f (y u)) u) (h0 : 0 ≤ g (y 0)) :
+    (hy : ∀ u ∈ Icc 0 t, HasDerivAt y (g (y u) • f (y u)) u) (h0 : 0 ≤ g (y 0)) : -- --- CONCL ---
     ∀ u ∈ Icc 0 t, 0 ≤ g (y u) := by -- --- PROOF ---
   intro u₁ hu₁
   by_contra hneg

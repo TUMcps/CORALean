@@ -40,7 +40,7 @@ variable {p : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem toReal_div_eq (a b : Dyadic p) (s : ℕ) (hb : (b.mantissa : ℝ) ≠ 0) :
+theorem toReal_div_eq (a b : Dyadic p) (s : ℕ) (hb : (b.mantissa : ℝ) ≠ 0) : -- --- CONCL ---
     toReal a / toReal b
       = ((a.mantissa * 2 ^ s : ℤ) : ℝ) / ((b.mantissa : ℤ) : ℝ)
           * 2 ^ (a.exponent - b.exponent - (s : ℤ)) := by -- --- PROOF ---

@@ -48,7 +48,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Lemma 1]: `(Z ⊕ Z')` has center `u + u'` and extremal offsets `gᵢ + g'ᵢ`. -/
-theorem Zonotope.extremalGen_plus (Z Z' : Zonotope (Vec ℝ n)) :
+theorem Zonotope.extremalGen_plus (Z Z' : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (Z.plus Z').c = Z.c + Z'.c ∧
       ∀ s : Vec ℝ n,
         (Z.plus Z').extremalGen s = Z.extremalGen s + Z'.extremalGen s := by -- --- PROOF ---

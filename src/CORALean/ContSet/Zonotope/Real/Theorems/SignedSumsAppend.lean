@@ -48,7 +48,7 @@ variable {n p q : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.signedSums_append (R₁ : Fin p → Vec ℝ n) (R₂ : Fin q → Vec ℝ n) :
+theorem Zonotope.signedSums_append (R₁ : Fin p → Vec ℝ n) (R₂ : Fin q → Vec ℝ n) : -- --- CONCL ---
     Zonotope.signedSums (Fin.append R₁ R₂) =
       Zonotope.signedSums R₁ + Zonotope.signedSums R₂ := by -- --- PROOF ---
   ext x

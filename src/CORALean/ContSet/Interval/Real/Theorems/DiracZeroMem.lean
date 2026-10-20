@@ -37,7 +37,7 @@ variable {m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.dirac_zero_mem (n : ℕ) (I : Interval (Vec ℝ m)) (i : Fin m) :
+theorem Interval.dirac_zero_mem (n : ℕ) (I : Interval (Vec ℝ m)) (i : Fin m) : -- --- CONCL ---
     (Interval.dirac n I).1 i ≤ 0 ∧ 0 ≤ (Interval.dirac n I).2 i := by -- --- PROOF ---
   unfold Interval.dirac
   by_cases h0 : n = 0

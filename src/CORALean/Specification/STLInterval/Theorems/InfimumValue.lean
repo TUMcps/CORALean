@@ -35,7 +35,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The bound `infimum` returns is the infimum of the set of times. -/
-theorem STLInterval.infimum_value (I : STLInterval) (hI : I ≠ .empty) :
+theorem STLInterval.infimum_value (I : STLInterval) (hI : I ≠ .empty) : -- --- CONCL ---
     I.infimum.value = some (⨅ t ∈ I.set, (t : EReal)) := by -- --- PROOF ---
   cases I with
   | empty => exact absurd rfl hI

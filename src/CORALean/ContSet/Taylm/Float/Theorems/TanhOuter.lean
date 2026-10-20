@@ -53,7 +53,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.tanh_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    (hp : toReal T.constCoef ≤ 2 ^ p / 2) :
+    (hp : toReal T.constCoef ≤ 2 ^ p / 2) : -- --- CONCL ---
     (T.tanh p).Encloses fun t => Real.tanh (f t) := by -- --- PROOF ---
   set c := T.constCoef
   set N := T.maxOrder

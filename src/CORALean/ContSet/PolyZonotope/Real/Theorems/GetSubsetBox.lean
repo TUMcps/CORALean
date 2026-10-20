@@ -52,7 +52,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The unit box, re-parametrized at factor `k`, is that box with `k`'s side
 replaced by `cen ± rad`. -/
-theorem PolyZonotope.getSubset_box {p : ℕ} (k : Fin p) {cen rad : ℝ} (hrad : 0 ≤ rad) :
+theorem PolyZonotope.getSubset_box {p : ℕ} (k : Fin p) {cen rad : ℝ}
+    (hrad : 0 ≤ rad) : -- --- CONCL ---
     (fun b : Fin p → ℝ => Function.update b k (cen + rad * b k)) '' {b | ∀ k', |b k'| ≤ 1}
       = {a | |a k - cen| ≤ rad ∧ ∀ k', k' ≠ k → |a k'| ≤ 1} := by -- --- PROOF ---
   ext a

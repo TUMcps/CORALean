@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.hPolytope_contains (p : ℕ) (C : Capsule 𝕋 n) :
+theorem Capsule.hPolytope_contains (p : ℕ) (C : Capsule 𝕋 n) : -- --- CONCL ---
     C.construct ⊆ (C.hPolytope p).construct := by -- --- PROOF ---
   -- the box, at `n ≤ 1`
   have hbox : C.construct ⊆ C.interval.hPolytope.construct :=

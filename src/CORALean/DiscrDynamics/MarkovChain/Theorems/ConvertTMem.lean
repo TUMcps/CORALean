@@ -39,7 +39,7 @@ variable {n m : ℕ}
 
 /-- The matrix `aux_convert` builds is column-stochastic if every `Phi i` is. -/
 theorem MarkovChain.convertT_mem {N : ℕ} (Phi : Fin m → Matrix (Fin (N + 1)) (Fin (N + 1)) ℝ)
-    (h : ∀ i, Phi i ∈ Matrix.colStochastic ℝ (Fin (N + 1))) :
+    (h : ∀ i, Phi i ∈ Matrix.colStochastic ℝ (Fin (N + 1))) : -- --- CONCL ---
     MarkovChain.convertT Phi ∈ Matrix.colStochastic ℝ (Fin (N + 1) × Fin m) := by -- --- PROOF ---
   rw [Matrix.mem_colStochastic_iff_sum]
   refine ⟨fun a b => ?_, fun b => ?_⟩

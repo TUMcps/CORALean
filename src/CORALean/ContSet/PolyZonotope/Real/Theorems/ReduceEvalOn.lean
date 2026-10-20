@@ -51,7 +51,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `compactGens`'s regrouping of the dependent sum, at one factor vector. -/
-theorem PolyZonotope.aux_compactGens_sum (pZ : PolyZonotope (Vec ℝ n)) (a : Fin pZ.p → ℝ) :
+theorem PolyZonotope.aux_compactGens_sum (pZ : PolyZonotope (Vec ℝ n))
+    (a : Fin pZ.p → ℝ) : -- --- CONCL ---
     (∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i)
       = ∑ j : Fin pZ.compactGens.h,
           PolyZonotope.monomial pZ.compactGens.E a j • pZ.compactGens.G j := by -- --- PROOF ---
@@ -115,7 +116,7 @@ theorem PolyZonotope.aux_reduceGirard_evalOn (pZ : PolyZonotope (Vec ℝ n)) (o 
 /-- Every evaluation of `pZ` lies inside the evaluation of its reduction at the
 factor vector `factorIdx` carries across. -/
 theorem PolyZonotope.reduce_evalOn (pZ : PolyZonotope (Vec ℝ n)) (o : ℕ)
-    {B : Set (Fin pZ.p → ℝ)} (hB : ∀ a ∈ B, ∀ k, |a k| ≤ 1) :
+    {B : Set (Fin pZ.p → ℝ)} (hB : ∀ a ∈ B, ∀ k, |a k| ≤ 1) : -- --- CONCL ---
     pZ.evalOn B ⊆ (pZ.reduce o).evalOn (PolyZonotope.reduceBox pZ o B) := by -- --- PROOF ---
   refine (PolyZonotope.aux_compact_evalOn pZ).trans
     ((PolyZonotope.aux_reduceGirard_evalOn pZ.compact o ?_).trans

@@ -59,7 +59,7 @@ theorem PolyZonotope.aux_binarize_E_le (pZ : PolyZonotope α) (k : Fin pZ.binari
   · exact h k
   · exact Nat.zero_le 1
 
-theorem PolyZonotope.aux_binarize_contains (pZ : PolyZonotope α) :
+theorem PolyZonotope.aux_binarize_contains (pZ : PolyZonotope α) : -- --- CONCL ---
     pZ.construct ⊆ pZ.binarize.construct := by -- --- PROOF ---
   rintro _ ⟨a, β, ha, hb, rfl⟩
   -- what the given-up columns and the independent block reach is a zonotope's

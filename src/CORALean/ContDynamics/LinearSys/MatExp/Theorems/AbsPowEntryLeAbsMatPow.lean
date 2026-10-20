@@ -55,7 +55,7 @@ variable {n : ℕ}
 
 /-- A matrix power's entry never exceeds, in magnitude, the same entry of the power of its own
 entrywise absolute value. -/
-theorem abs_pow_entry_le_absMat_pow_entry (A : Mat ℝ n n) (i : ℕ) (j k : Fin n) :
+theorem abs_pow_entry_le_absMat_pow_entry (A : Mat ℝ n n) (i : ℕ) (j k : Fin n) : -- --- CONCL ---
     |(A ^ i) j k| ≤ (MatExp.absMat A ^ i) j k := by -- --- PROOF ---
   induction i generalizing j k with
   | zero => simp only [pow_zero, Matrix.one_apply]; split <;> simp

@@ -44,7 +44,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.abs_sqrt_mulVec_le {S : Mat ℝ n n} (hS : S.PosSemidef) {γ : Vec ℝ n}
-    (hγ : ∀ j, |γ j| ≤ 1) (k : Fin n) :
+    (hγ : ∀ j, |γ j| ≤ 1) (k : Fin n) : -- --- CONCL ---
     |(CFC.sqrt S *ᵥ γ) k| ≤ Real.sqrt (n * S k k) := by -- --- PROOF ---
   set B := CFC.sqrt S
   have hBB : B * B = S := CFC.sqrt_mul_sqrt_self S hS.nonneg

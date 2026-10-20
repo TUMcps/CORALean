@@ -38,7 +38,8 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The reciprocal of a point between `a` and `b` is between their reciprocals, swapped. -/
-theorem Interval.inv_between {a b y : ℝ} (h : 0 < a ∨ b < 0) (h₁ : a ≤ y) (h₂ : y ≤ b) :
+theorem Interval.inv_between {a b y : ℝ} (h : 0 < a ∨ b < 0) (h₁ : a ≤ y)
+    (h₂ : y ≤ b) : -- --- CONCL ---
     b⁻¹ ≤ y⁻¹ ∧ y⁻¹ ≤ a⁻¹ := by -- --- PROOF ---
   rcases h with ha | hb
   · exact ⟨inv_anti₀ (ha.trans_le h₁) h₂, inv_anti₀ ha h₁⟩

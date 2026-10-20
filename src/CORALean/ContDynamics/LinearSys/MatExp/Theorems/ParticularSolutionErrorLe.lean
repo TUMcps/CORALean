@@ -87,7 +87,7 @@ theorem aux_norm₂_le_of_mem_particularSolutionError_set (A : Mat ℝ n n) (tk 
 
 /-- `particularSolutionError` is within its own explicit bound. -/
 theorem MatExp.particularSolutionError_le (A : Mat ℝ n n) (tk : ℝ) {U0 : Set (Vec ℝ n)}
-    (hU0 : Bornology.IsBounded U0) (Δt : ℝ) (η : ℕ) :
+    (hU0 : Bornology.IsBounded U0) (Δt : ℝ) (η : ℕ) : -- --- CONCL ---
     MatExp.particularSolutionError A tk U0 Δt η
       ≤ Real.sqrt n * MatExp.particularSolutionErrorBound A tk U0 Δt η := by -- --- PROOF ---
   obtain ⟨h1, h2⟩ := aux_norm₂_le_of_mem_particularSolutionError_set A tk hU0 Δt η

@@ -60,7 +60,7 @@ variable {ι : Type} [Fintype ι]
 -- the scalar form of the relaxation
 theorem aux_doubleSum_pos {r : ℕ} (q : Fin r → Fin r → ℝ) (μ : Fin r → ℝ)
     (hμ0 : ∀ i, 0 ≤ μ i) (hμ1 : ∑ i, μ i = 1) (hd : ∀ i, 0 < q i i)
-    (ho : ∀ i j, i ≠ j → 0 < 2 / ((r : ℝ) - 1) * q i i + q i j + q j i) :
+    (ho : ∀ i j, i ≠ j → 0 < 2 / ((r : ℝ) - 1) * q i i + q i j + q j i) : -- --- CONCL ---
     0 < ∑ i, ∑ j, μ i * μ j * q i j := by -- --- PROOF ---
   set c : ℝ := 2 / ((r : ℝ) - 1)
   set a : Fin r → ℝ := fun i => μ i * Real.sqrt (q i i)

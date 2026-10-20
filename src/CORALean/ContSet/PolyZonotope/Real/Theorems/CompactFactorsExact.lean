@@ -79,7 +79,7 @@ theorem PolyZonotope.aux_sum_compactFactors_extend (pZ : PolyZonotope α)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.compactFactors_exact (pZ : PolyZonotope α) :
+theorem PolyZonotope.compactFactors_exact (pZ : PolyZonotope α) : -- --- CONCL ---
     pZ.construct = pZ.compactFactors.construct := by -- --- PROOF ---
   have key : ∀ (a : Fin pZ.p → ℝ) (β : Fin pZ.q → ℝ),
       pZ.c + (∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i) + ∑ j, β j • pZ.GI j

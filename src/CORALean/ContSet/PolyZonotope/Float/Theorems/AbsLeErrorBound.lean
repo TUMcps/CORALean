@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- One generator per coordinate reaches every point of the box. -/
 theorem PolyZonotope.abs_le_errorBound {I : Interval (Vec 𝕋 n)} {e : Vec ℝ n}
-    (he : e ∈ I.construct) (i : Fin n) :
+    (he : e ∈ I.construct) (i : Fin n) : -- --- CONCL ---
     |e i| ≤ toReal (PolyZonotope.errorBound I i) := by -- --- PROOF ---
   have hlo : toReal (I.inf i) ≤ e i := (he i).1
   have hhi : e i ≤ toReal (I.sup i) := (he i).2

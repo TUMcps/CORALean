@@ -55,7 +55,8 @@ variable {X : Type}
 theorem STL.rewrite_until_zero (φ₁ φ₂ : STL.Formula X) (j : ℕ) (hj : 1 ≤ j) (ξ : ℝ≥0 → X)
     (h : (φ₂.or (φ₁.and ((STL.Formula.globOpen 1 φ₁).and
       ((STL.Formula.finOpen 1 φ₂).or
-        (STL.Formula.next 1 (STL.Formula.until 0 ((j - 1 : ℕ) : ℝ≥0) φ₁ φ₂)))))).Sat ξ) :
+        (STL.Formula.next 1 (STL.Formula.until 0 ((j - 1 : ℕ) : ℝ≥0) φ₁ φ₂)))))).Sat ξ)
+    : -- --- CONCL ---
     (STL.Formula.until 0 (j : ℝ≥0) φ₁ φ₂).Sat ξ := by -- --- PROOF ---
   obtain ⟨j, rfl⟩ : ∃ j', j = j' + 1 := ⟨j - 1, by omega⟩
   simp only [STL.Formula.sat_and, STL.Formula.sat_next, STL.Formula.Sat, Time.shift_shift,

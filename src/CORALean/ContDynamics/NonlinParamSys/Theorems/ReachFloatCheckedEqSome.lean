@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 theorem NonlinParamSys.reachFloatChecked_eq_some (_sys : NonlinParamSys n m q)
     (fm : NonlinearSys.FloatModel 𝕋 (n + q) m) (P : Zonotope (Vec 𝕋 q))
     (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ)
-    (options : LinearSys.ReachOptions 𝕋) : -- --- CONCL ---
+    (options : LinearSys.ReachOptions 𝕋) :
     ∀ Rs ∈ NonlinParamSys.reachFloatChecked _sys fm P params options,
       NonlinParamSys.reachFloat _sys fm P params options = some Rs ∧
       noNaN (𝕋 := 𝕋) Rs = true := fun _ h =>

@@ -47,7 +47,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem inter_guard_eq_empty_of_rangeBound (g : Vec ℝ n → ℝ) (R : Set (Vec ℝ n)) (l u : ℝ)
-    (hb : IsRangeBound g R l u) (h : ¬(l ≤ 0 ∧ 0 ≤ u)) :
+    (hb : IsRangeBound g R l u) (h : ¬(l ≤ 0 ∧ 0 ≤ u)) : -- --- CONCL ---
     R ∩ {x | g x = 0} = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_inter_iff, Set.mem_setOf_eq, Set.mem_empty_iff_false, iff_false, not_and]

@@ -54,7 +54,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A symmetric matrix whose Gershgorin discs lie right of `g ≥ 0` has determinant at least
 `gⁿ`: every eigenvalue lies in a disc, and the determinant is their product. -/
 theorem ProbZonotope.aux_pow_le_det {S : Mat ℝ n n} (hS : S.IsHermitian) {g : ℝ} (hg0 : 0 ≤ g)
-    (hg : ∀ i, g ≤ S i i - ∑ j ∈ Finset.univ.erase i, |S i j|) :
+    (hg : ∀ i, g ≤ S i i - ∑ j ∈ Finset.univ.erase i, |S i j|) : -- --- CONCL ---
     g ^ n ≤ S.det := by -- --- PROOF ---
   have hev : ∀ i, g ≤ hS.eigenvalues i := by
     intro i
@@ -111,7 +111,7 @@ theorem ProbZonotope.aux_max_le_of_bounds {S : Mat ℝ n n} (hS : S.IsHermitian)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.max_le (P : ProbZonotope 𝕋 n) (m : 𝕋) (p k : ℕ) (Z : Real.Zonotope (Vec ℝ n))
-    {S : Mat ℝ n n} (hS : S ∈ P.cov.construct) (hSh : S.IsHermitian) :
+    {S : Mat ℝ n n} (hS : S ∈ P.cov.construct) (hSh : S.IsHermitian) : -- --- CONCL ---
     ∀ v ∈ P.max m p k,
       0 < S.det ∧ (⟨Z, S⟩ : Real.ProbZonotope n).max (toReal m) ≤ toReal v := by -- --- PROOF ---
   intro v (hv : P.max m p k = some v)

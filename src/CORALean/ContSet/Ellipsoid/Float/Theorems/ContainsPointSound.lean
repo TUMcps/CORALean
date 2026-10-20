@@ -45,7 +45,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.containsPoint_sound {E : Ellipsoid 𝕋 n} {p w : Vec 𝕋 n}
-    (h : E.containsPoint p w = true) : toRealVec p ∈ E.construct := by -- --- PROOF ---
+    (h : E.containsPoint p w = true) : -- --- CONCL ---
+    toRealVec p ∈ E.construct := by -- --- PROOF ---
   simp only [Ellipsoid.containsPoint, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨⟨hpsd, hw⟩, hbox⟩ := h

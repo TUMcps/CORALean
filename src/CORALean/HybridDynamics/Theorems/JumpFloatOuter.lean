@@ -50,7 +50,7 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : �
 
 theorem Transition.jumpFloat_outer (e : Transition G L 𝕋 n) {R Rg : Zonotope (Vec 𝕋 n)}
     (hinter : construct R ∩ construct e.guard ⊆ construct Rg) {z : Vec ℝ n}
-    (hz : z ∈ construct R) (hguard : z ∈ construct e.guard) :
+    (hz : z ∈ construct R) (hguard : z ∈ construct e.guard) : -- --- CONCL ---
     e.reset z ∈ construct (e.jumpFloat Rg) := by -- --- PROOF ---
   show Scalar.toRealMat e.W *ᵥ z + Scalar.toRealVec e.w ∈ construct (e.jumpFloat Rg)
   exact Plus.plus_outer _ _ (Set.add_mem_add

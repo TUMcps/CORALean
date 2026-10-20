@@ -45,7 +45,7 @@ namespace CORALean.Real
 
 /-- Monotone in the factor, independent and merged counts. -/
 theorem PolyZonotope.relaxExpGroupCost_mono {p p' q q' k k' : ℕ} (n d : ℕ) (hp : p ≤ p')
-    (hq : q ≤ q') (hk : k ≤ k') :
+    (hq : q ≤ q') (hk : k ≤ k') : -- --- CONCL ---
     PolyZonotope.relaxExpGroupCost n p d q k ≤
       PolyZonotope.relaxExpGroupCost n p' d q' k' := by -- --- PROOF ---
   have a := PolyZonotope.relaxWidthGroupCost_mono hp

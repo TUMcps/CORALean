@@ -39,7 +39,7 @@ variable {m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.dirac_eq_zero_of_off (n : ℕ) (I : Interval (Vec ℝ m)) (i : Fin m)
-    (hne : I.inf i ≤ I.sup i) (h : 0 < I.inf i ∨ I.sup i < 0) :
+    (hne : I.inf i ≤ I.sup i) (h : 0 < I.inf i ∨ I.sup i < 0) : -- --- CONCL ---
     (Interval.dirac n I).1 i = 0 ∧ (Interval.dirac n I).2 i = 0 := by -- --- PROOF ---
   classical
   -- both bounds have the same strict sign, so the signs sum to `2` or `-2`

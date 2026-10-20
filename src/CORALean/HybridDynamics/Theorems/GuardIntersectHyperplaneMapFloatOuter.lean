@@ -107,7 +107,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {G : ℕ → 
 
 /-- `s v ∈ [a, b] Z` for `s ∈ [a, b]` and `v ∈ Z`, `[a, b]` the interval matrix `[a, b] I`. -/
 theorem aux_hpMapF_smul_mem {a b : 𝕋} {s : ℝ} (h₁ : toReal a ≤ s) (h₂ : s ≤ toReal b)
-    {Z : Zonotope (Vec 𝕋 n)} {v : Vec ℝ n} (hv : v ∈ Z.construct) :
+    {Z : Zonotope (Vec 𝕋 n)} {v : Vec ℝ n} (hv : v ∈ Z.construct) : -- --- CONCL ---
     s • v ∈ (Zonotope.mtimesIntervalMat (Interval.smul a b
       (Interval.point (diagonalBlock fun _ => (one : 𝕋)))) Z).construct := by -- --- PROOF ---
   have hone : (1 : Mat ℝ n n) ∈
@@ -123,7 +123,8 @@ theorem aux_hpMapF_smul_mem {a b : 𝕋} {s : ℝ} (h₁ : toReal a ≤ s) (h₂
   exact h
 
 /-- A float certificate that `[lo, hi]` excludes `0`, read as reals. -/
-theorem aux_hpMapF_sign {lo hi : 𝕋} (h : (ltStrict zero lo || ltStrict hi zero) = true) :
+theorem aux_hpMapF_sign {lo hi : 𝕋}
+    (h : (ltStrict zero lo || ltStrict hi zero) = true) : -- --- CONCL ---
     0 < toReal lo ∨ toReal hi < 0 := by -- --- PROOF ---
   rcases Bool.or_eq_true_iff.mp h with h | h
   · left
@@ -188,7 +189,7 @@ theorem aux_hpMapF_sq {lo hi : 𝕋} (h : (ltStrict zero lo || ltStrict hi zero)
     exact (one_div_le_one_div_of_le hq hqy).trans this
 
 /-- A point within `g` of `c` is `c + κg` for some `|κ| ≤ 1`. -/
-theorem aux_hpMapF_factor {y c g : ℝ} (h : |y - c| ≤ g) :
+theorem aux_hpMapF_factor {y c g : ℝ} (h : |y - c| ≤ g) : -- --- CONCL ---
     ∃ κ : ℝ, |κ| ≤ 1 ∧ y = c + κ * g := by -- --- PROOF ---
   rcases eq_or_lt_of_le ((abs_nonneg _).trans h) with h0 | hpos
   · refine ⟨0, by norm_num, ?_⟩
@@ -200,7 +201,8 @@ theorem aux_hpMapF_factor {y c g : ℝ} (h : |y - c| ≤ g) :
     exact h
 
 /-- A point of `[lo, hi]` is within `τ_g = max(⌈hi − τ_c⌉, ⌈τ_c − lo⌉)` of any float `τ_c`. -/
-theorem aux_hpMapF_center {lo hi c : 𝕋} {y : ℝ} (h1 : toReal lo ≤ y) (h2 : y ≤ toReal hi) :
+theorem aux_hpMapF_center {lo hi c : 𝕋} {y : ℝ} (h1 : toReal lo ≤ y)
+    (h2 : y ≤ toReal hi) : -- --- CONCL ---
     |y - toReal c| ≤ toReal (maximum (subUp hi c) (subUp c lo)) := by -- --- PROOF ---
   have e1 := sub_le_subUp hi c
   have e2 := sub_le_subUp c lo
@@ -337,7 +339,7 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer (ℓ : Location 𝒵[�
     (d : 𝕋) (R₀ : Zonotope (Vec 𝕋 n)) (tmax : 𝕋) {η : ℕ} (guardOrder zonotopeOrder p : ℕ)
     (hη : 1 ≤ η) {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.IsTrajectory τ x u w)
     (h₀ : x 0 ∈ R₀.construct) {t : ℝ} (ht : t ∈ Set.Icc 0 τ) (htmax : t ≤ toReal tmax)
-    (hhit : toRealVec nv ⬝ᵥ x t = toReal d) :
+    (hhit : toRealVec nv ⬝ᵥ x t = toReal d) : -- --- CONCL ---
     ∀ Z ∈ ℓ.guardIntersectHyperplaneMapFloat nv d R₀ tmax η guardOrder zonotopeOrder p,
       x t ∈ Z.construct := by -- --- PROOF ---
   intro Z (hZ : ℓ.guardIntersectHyperplaneMapFloat nv d R₀ tmax η guardOrder zonotopeOrder p = some

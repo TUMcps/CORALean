@@ -39,7 +39,7 @@ variable {p : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem le_coarsenUp (e : ℤ) (d : Dyadic p) :
+theorem le_coarsenUp (e : ℤ) (d : Dyadic p) : -- --- CONCL ---
     toReal d ≤ toReal (coarsenUp e d) := by -- --- PROOF ---
   have h : d.mantissa ≤
       -((-d.mantissa) / 2 ^ (e - d.exponent).toNat) * 2 ^ (e - d.exponent).toNat := by

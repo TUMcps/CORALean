@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.minkDiffPoint_outer (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n) :
+theorem Ellipsoid.minkDiffPoint_outer (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n) : -- --- CONCL ---
     (fun x => x - toRealVec s) '' E.construct ⊆ (E.minkDiffPoint s).construct := by -- --- PROOF ---
   rintro _ ⟨_, ⟨y, hy, e, he, rfl⟩, rfl⟩
   -- the center's rounding, which the residual box holds

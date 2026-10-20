@@ -60,7 +60,7 @@ def aux_dotL (u : Vec ℝ N) : Vec ℝ N →ₗ[ℝ] ℝ where
   map_smul' r v := smul_dotProduct r v u
 
 /-- Fewer than `N` constraints leave a direction annihilating every one. -/
-theorem aux_exists_annihilator {k : ℕ} (b : Fin k → Vec ℝ N) (hk : k < N) :
+theorem aux_exists_annihilator {k : ℕ} (b : Fin k → Vec ℝ N) (hk : k < N) : -- --- CONCL ---
     ∃ u : Vec ℝ N, u ≠ 0 ∧ ∀ i, b i ⬝ᵥ u = 0 := by -- --- PROOF ---
   have hsrc : finrank ℝ (Vec ℝ N) = N := by
     show finrank ℝ (Fin N → ℝ) = N

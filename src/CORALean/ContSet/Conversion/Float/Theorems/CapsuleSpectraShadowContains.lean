@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The float capsule lies in its shadow. -/
-theorem Capsule.spectraShadow_contains (C : Capsule 𝕋 n) :
+theorem Capsule.spectraShadow_contains (C : Capsule 𝕋 n) : -- --- CONCL ---
     C.construct ⊆ C.spectraShadow.construct := by -- --- PROOF ---
   refine subset_trans C.construct_subset_segment_add_ball ?_
   rw [add_comm]

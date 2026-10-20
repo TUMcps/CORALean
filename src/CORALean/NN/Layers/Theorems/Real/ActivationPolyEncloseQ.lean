@@ -56,7 +56,7 @@ variable {σ : ℝ → ℝ} {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.activationPoly_enclose_q (P : LayerRelaxation ℝ n m)
-    (s : PolyZonotope (Vec ℝ n)) :
+    (s : PolyZonotope (Vec ℝ n)) : -- --- CONCL ---
     ((Layer.activationPoly P).enclose s).q = 0 := by -- --- PROOF ---
   show (PolyZonotope.plus
       (s.dependent.evalPoly (P.coeffList

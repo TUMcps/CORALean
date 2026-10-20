@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.project_exact (C : Capsule 𝕋 n) {dims : Fin m → Fin n}
-    (hd : Function.Injective dims) (hI : C.I_error.nominal.IsNonempty) :
+    (hd : Function.Injective dims) (hI : C.I_error.nominal.IsNonempty) : -- --- CONCL ---
     (C.project dims).construct =
       (fun x : Vec ℝ n => fun i => x (dims i)) '' C.construct := by -- --- PROOF ---
   show InflatedContSet.nominalSet (C.project dims) + (C.I_error.project dims).construct

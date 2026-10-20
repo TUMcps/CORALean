@@ -42,7 +42,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Pform.exists_dnf (ϱ : Pform α) (h : ϱ.IsHalfspaceForm) :
+theorem Pform.exists_dnf (ϱ : Pform α) (h : ϱ.IsHalfspaceForm) : -- --- CONCL ---
     (∃ dnf : List (List (STL.Halfspace α)), ∀ x, ϱ.Sat x ↔ STL.Dnf.Holds dnf x) ∧
       ∃ dnf : List (List (STL.Halfspace α)), ∀ x, ¬ ϱ.Sat x ↔
         STL.Dnf.Holds dnf x := by -- --- PROOF ---

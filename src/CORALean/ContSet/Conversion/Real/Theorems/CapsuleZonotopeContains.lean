@@ -43,7 +43,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.zonotope_contains (C : Capsule n) :
+theorem Capsule.zonotope_contains (C : Capsule n) : -- --- CONCL ---
     C.construct ⊆ C.zonotope.construct := by -- --- PROOF ---
   rintro x ⟨t, ht, hle⟩
   -- what the segment point `c + t g` leaves of `x`

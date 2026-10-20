@@ -52,7 +52,8 @@ variable {n : ℕ}
 
 /-- The pseudo-inverse of a symmetric matrix is symmetric: its transpose meets the same four
 conditions. -/
-private theorem aux_pinv_transpose {Q P : Mat ℝ n n} (hQ : Qᵀ = Q) (hP : IsPinv Q P) :
+private theorem aux_pinv_transpose {Q P : Mat ℝ n n} (hQ : Qᵀ = Q)
+    (hP : IsPinv Q P) : -- --- CONCL ---
     Pᵀ = P := by -- --- PROOF ---
   obtain ⟨h1, h2, h3, h4⟩ := hP
   refine IsPinv.unique ⟨?_, ?_, ?_, ?_⟩ ⟨h1, h2, h3, h4⟩
@@ -70,7 +71,8 @@ private theorem aux_G_mul_G (E : Ellipsoid n) : E.G * E.G = E.Q := by
 
 /-- `G P G` fixes `G`: `A = G P G G - G` lies in the range of `G` and `G A = Q P Q - Q = 0`, so
 `Aᵀ A = 0`. -/
-private theorem aux_GPG_mul_G (E : Ellipsoid n) {P : Mat ℝ n n} (hP : IsPinv E.Q P) :
+private theorem aux_GPG_mul_G (E : Ellipsoid n) {P : Mat ℝ n n}
+    (hP : IsPinv E.Q P) : -- --- CONCL ---
     E.G * P * E.G * E.G = E.G := by -- --- PROOF ---
   set B : Mat ℝ n n := P * E.G * E.G - 1 with hB
   set A : Mat ℝ n n := E.G * B with hA
@@ -91,7 +93,7 @@ private theorem aux_GPG_mul_G (E : Ellipsoid n) {P : Mat ℝ n n} (hP : IsPinv E
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The ellipsoid is `{q + G u | ‖u‖₂ ≤ 1}`, `G = Q^(1/2)`. -/
-theorem Ellipsoid.construct_eq_sqrt (E : Ellipsoid n) :
+theorem Ellipsoid.construct_eq_sqrt (E : Ellipsoid n) : -- --- CONCL ---
     E.construct = {x | ∃ u : Vec ℝ n, ‖u‖₂ ≤ 1 ∧ x = E.q + E.G *ᵥ u} := by -- --- PROOF ---
   set P := E.Qpinv
   have hP : IsPinv E.Q P := E.isPinv_Qpinv

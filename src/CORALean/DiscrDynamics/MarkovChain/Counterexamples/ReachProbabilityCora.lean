@@ -64,7 +64,7 @@ noncomputable def MarkovChain.reachProbabilityCora (field : GridPartition n)
 /-- For a reachable set of volume zero, every entry of CORA's `tp.T` is the weight, so a column of
 `nrOfStates + 1 > 1` entries does not add up to it. -/
 theorem MarkovChain.reachProbabilityCora_counterexample (field : GridPartition n) (X : S n)
-    (hN : 0 < field.nrOfCells) (h : ¬ 0 < GridPartition.volumeOf (construct X)) :
+    (hN : 0 < field.nrOfCells) (h : ¬ 0 < GridPartition.volumeOf (construct X)) : -- --- CONCL ---
     (∀ s, MarkovChain.reachProbabilityCora field [⟨X, []⟩] [(1 : ℝ)] s = 1) ∧
       ∑ s, MarkovChain.reachProbabilityCora field [⟨X, []⟩] [(1 : ℝ)] s ≠ 1 := by -- --- PROOF ---
   have hs : ∀ s, MarkovChain.reachProbabilityCora field [⟨X, []⟩] [(1 : ℝ)] s = 1 := by

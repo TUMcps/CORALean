@@ -52,7 +52,8 @@ variable {n m : ℕ}
 /-- A point of `A X ⊕ F Bᵐ` is its center plus `A θ + F γ`. -/
 theorem Zonotope.predict_dev (A : Mat ℝ n n) (F : Mat ℝ n m) (X : Zonotope (Vec ℝ n))
     {z : Vec ℝ n}
-    (hz : z ∈ ((X.mtimes A).plus (⟨m, 0, fun j i => F i j⟩ : Zonotope (Vec ℝ n))).construct) :
+    (hz : z ∈ ((X.mtimes A).plus (⟨m, 0, fun j i => F i j⟩ : Zonotope (Vec ℝ n))).construct)
+    : -- --- CONCL ---
     ∃ θ : Vec ℝ n, ∃ γ : Vec ℝ m, X.c + θ ∈ X.construct ∧ (∀ j, |γ j| ≤ 1) ∧
       z - ((X.mtimes A).plus (⟨m, 0, fun j i => F i j⟩ : Zonotope (Vec ℝ n))).c
         = A *ᵥ θ + F *ᵥ γ := by -- --- PROOF ---

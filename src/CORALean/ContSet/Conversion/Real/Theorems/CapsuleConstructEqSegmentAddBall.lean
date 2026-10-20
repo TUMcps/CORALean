@@ -43,7 +43,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A capsule of nonnegative radius is `zonotope(c, g)` plus `ellipsoid(r² I)`. -/
-theorem Capsule.construct_eq_segment_add_ball (C : Capsule n) (hr : 0 ≤ C.r) :
+theorem Capsule.construct_eq_segment_add_ball (C : Capsule n) (hr : 0 ≤ C.r) : -- --- CONCL ---
     C.construct = (⟨1, C.c, fun _ => C.g⟩ : Zonotope (Vec ℝ n)).construct
       + (Ellipsoid.ofFactor (C.r • (1 : Mat ℝ n n)) 0).construct := by -- --- PROOF ---
   ext x

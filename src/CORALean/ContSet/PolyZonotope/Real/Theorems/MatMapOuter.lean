@@ -48,7 +48,7 @@ variable {n k m : ℕ}
 
 theorem PolyZonotope.matMap_outer (pZ₁ : PolyZonotope (Mat ℝ n k)) (pZ₂ : PolyZonotope (Mat ℝ k m))
     (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ) (ha : ∀ i, |a i| ≤ 1) (β₁ : Fin pZ₁.q → ℝ)
-    (β₂ : Fin pZ₂.q → ℝ) (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hβ₂ : ∀ j, |β₂ j| ≤ 1) : -- --- CONCL ---
+    (β₂ : Fin pZ₂.q → ℝ) (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hβ₂ : ∀ j, |β₂ j| ≤ 1) :
     (pZ₁.point a + ∑ j, β₁ j • pZ₁.GI j) *
         (pZ₂.point (fun i => a (Fin.cast hp.symm i)) + ∑ j, β₂ j • pZ₂.GI j)
       ∈ (pZ₁.matMap pZ₂ hp).construct :=

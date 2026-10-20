@@ -47,7 +47,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 /-- A reduction at `f` is one at every map agreeing with `f` everywhere. -/
 theorem NeuralNetwork.ReducesAt.congr {n m : ℕ} {s : S n} {nn nn' : NeuralNetwork S n m}
     {f f' : Vec ℝ n → Vec ℝ m} (h : NeuralNetwork.ReducesAt s nn nn' f)
-    (hff : ∀ x, f' x = f x) : NeuralNetwork.ReducesAt s nn nn' f' := by -- --- PROOF ---
+    (hff : ∀ x, f' x = f x) : -- --- CONCL ---
+    NeuralNetwork.ReducesAt s nn nn' f' := by -- --- PROOF ---
   -- each constructor carries its map in one equation, rewritten here and nowhere else
   cases h with
   | nil _ hf => exact .nil _ fun x => (hff x).trans (hf x)

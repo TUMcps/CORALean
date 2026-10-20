@@ -64,7 +64,7 @@ variable {n : ℕ}
 /-- An interval matrix whose two endpoints are both under `ρ` has center and radius under `ρ`
 too, which is the form `mtimesIntervalMat_subset_closedBall` asks for. -/
 theorem MatExp.aux_center_radius_le {m : ℕ} {ρ : ℝ} {IM : Interval (Mat ℝ m m)}
-    (h : ∀ j k, |IM.inf j k| ≤ ρ ∧ |IM.sup j k| ≤ ρ) :
+    (h : ∀ j k, |IM.inf j k| ≤ ρ ∧ |IM.sup j k| ≤ ρ) : -- --- CONCL ---
     (∀ j k, |IM.center j k| ≤ ρ) ∧ ∀ j k, |IM.radius j k| ≤ ρ := by -- --- PROOF ---
   constructor
   · intro j k
@@ -114,7 +114,8 @@ theorem MatExp.aux_norm₂_le_of_mem_curvatureEnclosure (A : Mat ℝ n n) (H : Z
 
 /-- `G^{(-)}_h`'s columns are each under `n‖e^{AΔt} - I‖` times their own generator's `ℓ¹`
 reach, and `genOpNorm₂_le_sum_norm₂` is what turns that into a bound on the operator norm. -/
-theorem MatExp.aux_genOpNorm₂_genMinus_le (A : Mat ℝ n n) (H : Zonotope (Vec ℝ n)) (Δt : ℝ) :
+theorem MatExp.aux_genOpNorm₂_genMinus_le (A : Mat ℝ n n) (H : Zonotope (Vec ℝ n))
+    (Δt : ℝ) : -- --- CONCL ---
     genOpNorm₂ (MatExp.genMinus A H Δt)
       ≤ (n : ℝ) * ‖exp (Δt • A) - 1‖ * ∑ l, ∑ j, |H.G l j| := by -- --- PROOF ---
   refine (genOpNorm₂_le_sum_norm₂ _).trans ?_
@@ -139,7 +140,7 @@ theorem MatExp.aux_genOpNorm₂_genMinus_le (A : Mat ℝ n n) (H : Zonotope (Vec
 
 /-- `affineDynamicsError` is under its own explicit `Δt`-polynomial bound. -/
 theorem MatExp.affineDynamicsError_le (A : Mat ℝ n n) (H : Zonotope (Vec ℝ n)) (ũ : Vec ℝ n)
-    {Δt : ℝ} (hΔt : 0 ≤ Δt) {η : ℕ} (hε : ‖Δt • A‖ / ((η : ℝ) + 2) < 1) :
+    {Δt : ℝ} (hΔt : 0 ≤ Δt) {η : ℕ} (hε : ‖Δt • A‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
     MatExp.affineDynamicsError A H ũ Δt η
       ≤ MatExp.affineDynamicsErrorBound A H ũ Δt η := by -- --- PROOF ---
   have hc : (0:ℝ) ≤ Δt * ‖A‖ := mul_nonneg hΔt (norm_nonneg _)

@@ -44,7 +44,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.polyOf_reexpTerms (m r : Vec ℝ n) (L : List (ℝ × (Fin n → ℕ))) (s : Vec ℝ n) :
+theorem Taylm.polyOf_reexpTerms (m r : Vec ℝ n) (L : List (ℝ × (Fin n → ℕ)))
+    (s : Vec ℝ n) : -- --- CONCL ---
     Taylm.polyOf (Taylm.reexpTerms m r L) s =
       Taylm.polyOf L fun k => m k + r k * s k := by -- --- PROOF ---
   induction L with

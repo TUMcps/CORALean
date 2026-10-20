@@ -56,7 +56,8 @@ variable {n : ℕ}
 
 theorem Taylm.goLowerBound_le {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) (ε : ℝ)
     (fuel : ℕ) {B : Fin n → Interval ℝ} (hB : Taylm.GoodBox B) {t : Vec ℝ n}
-    (ht : Taylm.InBox B t) : T.goLowerBound ε fuel B ≤ f t := by -- --- PROOF ---
+    (ht : Taylm.InBox B t) : -- --- CONCL ---
+    T.goLowerBound ε fuel B ≤ f t := by -- --- PROOF ---
   have hB' : ∀ k, -1 ≤ (B k).inf ∧ (B k).inf ≤ (B k).sup ∧ (B k).sup ≤ 1 := fun k =>
     ⟨(hB k).1, le_trans (ht k).1 (ht k).2, (hB k).2.2.2⟩
   have hE := Taylm.reexpand_outer h hB'

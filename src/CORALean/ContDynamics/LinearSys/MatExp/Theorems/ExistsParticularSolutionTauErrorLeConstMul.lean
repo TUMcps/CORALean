@@ -54,7 +54,7 @@ variable {n : ℕ}
 once `Δt ≤ 1` and `‖expRemainderMat A Δt η‖ ≤ 1` (`Lemma 1`'s limit half) cap every higher power
 in `particularSolutionTauErrorBound` at `Δt` itself, `K` is `√n` times its `Δt`-free factors. -/
 theorem MatExp.exists_particularSolutionTauError_le_const_mul (A : Mat ℝ n n) (tk : ℝ)
-    {U0 : Set (Vec ℝ n)} (hU0 : Bornology.IsBounded U0) (η : ℕ) :
+    {U0 : Set (Vec ℝ n)} (hU0 : Bornology.IsBounded U0) (η : ℕ) : -- --- CONCL ---
     ∃ K : ℝ, ∀ᶠ Δt : ℝ in 𝓝[>] (0:ℝ),
       MatExp.particularSolutionTauError A tk U0 Δt η ≤ K * Δt := by -- --- PROOF ---
   set CExp := ∑ i, ‖(fun j => (exp (tk • A)) i j)‖₂ with hCExp

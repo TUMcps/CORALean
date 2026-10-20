@@ -38,7 +38,7 @@ namespace CORALean.Real
 
 /-- `(3, 1)` and `(-3, 1)` are in the set, `(0, 1)` between them is not: `a c = 1` forces
 `a = ±1`, and then `2a + b ≠ 0`. -/
-theorem PolyZonotope.isPolytopeCex_not_convex :
+theorem PolyZonotope.isPolytopeCex_not_convex : -- --- CONCL ---
     ¬ Convex ℝ PolyZonotope.isPolytopeCex.construct := by -- --- PROOF ---
   intro hc
   -- both points are in the set, via the factors `(1, 1, 1)` and `(-1, -1, -1)`

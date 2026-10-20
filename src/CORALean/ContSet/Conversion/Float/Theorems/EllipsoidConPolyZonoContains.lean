@@ -55,7 +55,7 @@ variable [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The stored fields read as the exact layer's conversion of the chosen factor. -/
-private theorem Ellipsoid.aux_nominal_conPolyZono (E : Ellipsoid 𝕋 n) :
+private theorem Ellipsoid.aux_nominal_conPolyZono (E : Ellipsoid 𝕋 n) : -- --- CONCL ---
     E.conPolyZono.nominalCore = Real.Ellipsoid.conPolyZonoOfFactor
       (toRealMat (if Ellipsoid.isOuterFactor E.Q (Ellipsoid.outerFactor E.Q) then
         Ellipsoid.outerFactor E.Q else fun _ _ => zero)) (toRealVec E.q) := by -- --- PROOF ---
@@ -93,7 +93,7 @@ private theorem Ellipsoid.aux_mem_nominalSet_conPolyZono (E : Ellipsoid 𝕋 n) 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.conPolyZono_contains (E : Ellipsoid 𝕋 n) :
+theorem Ellipsoid.conPolyZono_contains (E : Ellipsoid 𝕋 n) : -- --- CONCL ---
     E.construct ⊆ E.conPolyZono.construct := by -- --- PROOF ---
   by_cases hok : Ellipsoid.isOuterFactor E.Q (Ellipsoid.outerFactor E.Q) = true
   · -- certified: `G Gᵀ ⪰ Q` dominates the nominal shape, and the error box is carried over

@@ -933,7 +933,8 @@ def vdpModel : NonlinearSys.FloatModel D 2 1 where
   jacU _ _ := ⟨!![zero; one], !![zero; one]⟩
 
 /-- `x²`'s enclosure, `1 - x²`'s from it. -/
-theorem vdp_one_sub_sq_mem {a b : D} {y : ℝ} (h1 : toReal a ≤ y) (h2 : y ≤ toReal b) :
+theorem vdp_one_sub_sq_mem {a b : D} {y : ℝ} (h1 : toReal a ≤ y)
+    (h2 : y ≤ toReal b) : -- --- CONCL ---
     toReal (subDown one (sqHi a b)) ≤ 1 - y * y ∧
       1 - y * y ≤ toReal (subUp one (sqLo a b)) := by -- --- PROOF ---
   obtain ⟨l, u⟩ := Float.Interval.mul_between_corners h1 h2 h1 h2
@@ -944,7 +945,8 @@ theorem vdp_one_sub_sq_mem {a b : D} {y : ℝ} (h1 : toReal a ≤ y) (h2 : y ≤
   exact ⟨by linarith, by linarith⟩
 
 /-- `vdpModel` encloses Van der Pol's field and its slopes over every box. -/
-theorem vdpModel_encloses : vdpModel.Encloses
+theorem vdpModel_encloses : -- --- CONCL ---
+    vdpModel.Encloses
     ⟨fun x u => ![x 1, (1 - x 0 * x 0) * x 1 - x 0 + u 0], 2, fun x _ => x⟩ := by -- --- PROOF ---
   refine ⟨fun X U x hx u hu => ?_, fun X U x hx x' hx' u hu u' hu' => ?_⟩
   -- the field: `x₂`, then `(1 - x₁²) x₂ - x₁ + u` in three interval steps
@@ -1062,7 +1064,7 @@ def vdpReachAlg (alg : NonlinearSys.LinReachAlg) : Option (List (Zonotope (Vec D
 
 /-- The slope matrix between two points of a box lies in the model's Jacobian box. -/
 theorem vdp_jacX_mem {X : Interval (Vec D 2)} {U : Interval (Vec D 1)} {x x' : Vec ℝ 2}
-    (hx : x ∈ X.construct) (hx' : x' ∈ X.construct) :
+    (hx : x ∈ X.construct) (hx' : x' ∈ X.construct) : -- --- CONCL ---
     !![0, 1; -(x' 1 * (x 0 + x' 0)) - 1, 1 - x 0 * x 0]
       ∈ (vdpModel.jacX X U).construct := by -- --- PROOF ---
   have hx0 : toReal (X.inf 0) ≤ (x 0 : ℝ) ∧ (x 0 : ℝ) ≤ toReal (X.sup 0) := hx 0
@@ -1095,7 +1097,7 @@ theorem vdp_jacX_mem {X : Interval (Vec D 2)} {U : Interval (Vec D 1)} {x x' : V
   · exact ⟨w1, w2⟩
 
 /-- `-2y ∈ [-2b, -2a]` for `y ∈ [a, b]`, each end rounded outward. -/
-theorem vdp_negTwo_mem {a b : D} {y : ℝ} (h1 : toReal a ≤ y) (h2 : y ≤ toReal b) :
+theorem vdp_negTwo_mem {a b : D} {y : ℝ} (h1 : toReal a ≤ y) (h2 : y ≤ toReal b) : -- --- CONCL ---
     toReal (vdpNegTwoLo b) ≤ -2 * y ∧ -2 * y ≤ toReal (vdpNegTwoHi a) := by -- --- PROOF ---
   have r1 := subDown_le_sub (neg b) b
   have r2 := sub_le_subUp (neg a) a

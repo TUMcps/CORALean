@@ -54,7 +54,7 @@ omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 /-- A matrix applied to a scaled point is the scaled matrix applied to it, which
 is how a constant in front of an integral is absorbed into the operation. -/
 theorem aux_smul_mtimes_mem {M : Mat ℝ n n} {c : ℝ} {U : S n} {y : Vec ℝ n}
-    (hy : y ∈ construct U) :
+    (hy : y ∈ construct U) : -- --- CONCL ---
     M *ᵥ (c • y) ∈ construct (Mtimes.mtimes (c • M) U) := by -- --- PROOF ---
   have hM : M *ᵥ (c • y) = (c • M) *ᵥ y := by
     rw [Matrix.mulVec_smul, Matrix.smul_mulVec]
@@ -98,7 +98,8 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
       (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
     {u : ℝ → Vec ℝ n}
     (hu : ∀ τ ∈ Set.Ioc (0:ℝ) r, u (r - τ) ∈ construct U)
-    (hmeas : AEStronglyMeasurable (fun τ => u (r - τ)) (volume.restrict (Set.Ioc 0 r))) :
+    (hmeas : AEStronglyMeasurable (fun τ => u (r - τ)) (volume.restrict (Set.Ioc 0 r)))
+    : -- --- CONCL ---
     (∫ s in (0:ℝ)..r, exp ((r - s) • toRealMat sys.A) *ᵥ u s)
       ∈ construct (sys.inputSolution r η U) := by -- --- PROOF ---
   set A := toRealMat sys.A with hA

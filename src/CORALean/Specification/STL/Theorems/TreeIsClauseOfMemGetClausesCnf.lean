@@ -41,7 +41,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Tree.isClause_of_mem_getClausesCnf (φ : STL.Tree n) (h : φ.IsCnf) (c : STL.Tree n)
-    (hc : c ∈ φ.getClausesCnf) : c.IsClause := by -- --- PROOF ---
+    (hc : c ∈ φ.getClausesCnf) : -- --- CONCL ---
+    c.IsClause := by -- --- PROOF ---
   induction φ with
   | and φ ψ ihφ ihψ =>
     rcases List.mem_append.1 hc with hc | hc

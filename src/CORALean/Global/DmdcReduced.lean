@@ -90,7 +90,7 @@ theorem dmdc_mode_proj (Ā : Mat ℝ n n) (Û : Mat ℝ n r) (W : Mat ℝ r k) (
 /-- [1, Eq. 32]: one eigenpair `Ã w = λ w`; the mode `Ā Û w` is an eigenvector of `Ā`, nonzero
 when `λ ≠ 0` and `w ≠ 0`. -/
 theorem dmdc_mode_proj_vec (Ā : Mat ℝ n n) (Û : Mat ℝ n r) (w : Vec ℝ r) (lam : ℝ)
-    (hspan : Û * Ûᵀ * Ā = Ā) (h : (Ûᵀ * Ā * Û) *ᵥ w = lam • w) :
+    (hspan : Û * Ûᵀ * Ā = Ā) (h : (Ûᵀ * Ā * Û) *ᵥ w = lam • w) : -- --- CONCL ---
     Ā *ᵥ ((Ā * Û) *ᵥ w) = lam • ((Ā * Û) *ᵥ w) ∧
       (lam ≠ 0 → w ≠ 0 → (Ā * Û) *ᵥ w ≠ 0) := by -- --- PROOF ---
   refine ⟨?_, fun hl hw hφ => ?_⟩

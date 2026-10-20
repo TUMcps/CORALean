@@ -89,7 +89,7 @@ theorem ConZonotope.aux_value_intersection (cZ₁ cZ₂ : ConZonotope (Vec ℝ n
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.intersection_exact (cZ₁ cZ₂ : ConZonotope (Vec ℝ n)) :
+theorem ConZonotope.intersection_exact (cZ₁ cZ₂ : ConZonotope (Vec ℝ n)) : -- --- CONCL ---
     cZ₁.construct ∩ cZ₂.construct = (cZ₁.intersection cZ₂).construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro x ⟨⟨β₁, hβ₁, hP₁, hx₁⟩, β₂, hβ₂, hP₂, hx₂⟩

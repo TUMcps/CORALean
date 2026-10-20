@@ -47,7 +47,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 /-- A box holds the segment between two of its points. -/
 theorem aux_segment_mem {k : ℕ} {I : Interval (Vec 𝕋 k)} {y y' : Vec ℝ k}
-    (hy : y ∈ I.construct) (hy' : y' ∈ I.construct) {s : ℝ} (hs : s ∈ Set.Icc (0 : ℝ) 1) :
+    (hy : y ∈ I.construct) (hy' : y' ∈ I.construct) {s : ℝ}
+    (hs : s ∈ Set.Icc (0 : ℝ) 1) : -- --- CONCL ---
     y' + s • (y - y') ∈ I.construct := by -- --- PROOF ---
   intro i
   have h1 : toReal (I.inf i) ≤ (y i : ℝ) := (hy i).1

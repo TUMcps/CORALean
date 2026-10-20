@@ -38,7 +38,8 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem FiniteSignal.mk?_singleton_spec {V : Type} [DecidableEq V] (dur : ℝ) (v : V) :
+theorem FiniteSignal.mk?_singleton_spec {V : Type} [DecidableEq V] (dur : ℝ)
+    (v : V) : -- --- CONCL ---
     (dur < 0 → FiniteSignal.mk? [dur] [v] = none) ∧
     (0 ≤ dur → ∃ s, FiniteSignal.mk? [dur] [v] = some s ∧ s.IsValid ∧ s.duration = dur ∧
       ∀ t : ℝ, 0 ≤ t → t ≤ dur → s.at? t = some v) := by -- --- PROOF ---

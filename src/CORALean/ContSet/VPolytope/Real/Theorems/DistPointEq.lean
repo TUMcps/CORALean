@@ -52,7 +52,7 @@ theorem aux_dist_sq (x y : Vec ℝ n) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.distPoint_eq {S : Set (Vec ℝ n)} (hc : IsCompact S) (hne : S.Nonempty)
-    (x : Vec ℝ n) :
+    (x : Vec ℝ n) : -- --- CONCL ---
     VPolytope.distPoint S x =
       Metric.infDist (toEuclidean x) (toEuclidean '' S) := by -- --- PROOF ---
   -- a nearest point `y₀` of the compact set

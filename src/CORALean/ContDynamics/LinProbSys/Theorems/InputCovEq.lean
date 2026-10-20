@@ -88,7 +88,7 @@ theorem LinProbSys.aux_noiseCovariance_diagonal_apply (l : Fin n → ℝ) (C : M
 
 /-- The noise covariance under a change of coordinates `A = V Λ V⁻¹`. -/
 theorem LinProbSys.aux_noiseCovariance_conj (V Λ : Mat ℝ n n) (hV : IsUnit V.det)
-    (C : Mat ℝ n n) (t : ℝ) :
+    (C : Mat ℝ n n) (t : ℝ) : -- --- CONCL ---
     noiseCovariance (V * Λ * V⁻¹) C t
       = V * noiseCovariance Λ (V⁻¹ * C) t * Vᵀ := by -- --- PROOF ---
   have hVu : IsUnit V := (Matrix.isUnit_iff_isUnit_det V).mpr hV
@@ -135,7 +135,8 @@ theorem LinProbSys.aux_noiseCovariance_conj (V Λ : Mat ℝ n n) (hV : IsUnit V.
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinProbSys.inputCov_eq_noiseCovariance (A V : Mat ℝ n n) (lambda : Fin n → ℝ)
-    (hV : IsUnit V.det) (hA : A = V * diagonal lambda * V⁻¹) (C : Mat ℝ n n) (r : ℝ) :
+    (hV : IsUnit V.det) (hA : A = V * diagonal lambda * V⁻¹) (C : Mat ℝ n n)
+    (r : ℝ) : -- --- CONCL ---
     LinProbSys.inputCov V lambda C r = noiseCovariance A C r := by -- --- PROOF ---
   -- in the eigenbasis the covariance is the diagonal one, entry by entry in closed form
   rw [hA, LinProbSys.aux_noiseCovariance_conj V _ hV C r]

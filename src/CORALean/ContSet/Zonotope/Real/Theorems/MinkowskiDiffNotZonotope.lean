@@ -39,7 +39,7 @@ namespace CORALean.Real
 set_option maxHeartbeats 100000 in
 /-- [1, Prop. 1]: at the paper's own three-dimensional pair, the Minkowski
 difference of two zonotopes is not a zonotope. -/
-theorem Zonotope.minkowskiDiff_not_zonotope :
+theorem Zonotope.minkowskiDiff_not_zonotope : -- --- CONCL ---
     ∃ Zm Zs : Zonotope (Vec ℝ 3),
       ¬ ∃ Z : Zonotope (Vec ℝ 3),
         minkowskiDiff Zm.construct Zs.construct = Z.construct := by -- --- PROOF ---

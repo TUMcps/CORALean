@@ -88,7 +88,7 @@ generators' own zonotope: each coordinate is under that coordinate's row sum,
 which `aux_dropped_le_sSup` puts under the box `err` reads. -/
 theorem Zonotope.aux_norm₂_le_err_reduceByDropped (Z : Zonotope (Vec ℝ n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) {x : Vec ℝ n}
-    (hx : x ∈ (Z.reduceByBox part).construct) :
+    (hx : x ∈ (Z.reduceByBox part).construct) : -- --- CONCL ---
     ‖x‖₂ ≤ err (Z.reduceByDropped part).construct := by -- --- PROOF ---
   obtain ⟨γ, hγ, hxi⟩ := Zonotope.mem_construct_iff.mp hx
   -- the box couples coordinate `i` to its own coefficient and no other
@@ -116,7 +116,7 @@ theorem Zonotope.aux_norm₂_le_err_reduceByDropped (Z : Zonotope (Vec ℝ n))
 /-- [1, Prop. 4], eq. (29): one order-reduction step moves a zonotope by at most
 `err(⟨0, G_red⟩_Z)`, the dropped generators' own reach. -/
 theorem Zonotope.hausdorffDist₂_reduceBy_le (Z : Zonotope (Vec ℝ n))
-    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) :
+    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) : -- --- CONCL ---
     hausdorffDist₂ Z.construct (Z.reduceBy part).construct
       ≤ err (Z.reduceByDropped part).construct := by -- --- PROOF ---
   refine hausdorffDist₂_le_of_mem_dist (err_nonneg _) (fun x hx => ?_) (fun y hy => ?_)

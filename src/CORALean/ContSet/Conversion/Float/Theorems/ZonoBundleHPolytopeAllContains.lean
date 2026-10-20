@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A point of the start and of every listed polytope is a point of the folded intersection. -/
 private theorem aux_mem_foldl (L : List (HPolytope 𝕋 (Vec 𝕋 (n + 1))))
     (P₀ : HPolytope 𝕋 (Vec 𝕋 (n + 1))) {x : Vec ℝ (n + 1)} (h₀ : x ∈ P₀.construct)
-    (hL : ∀ P ∈ L, x ∈ P.construct) :
+    (hL : ∀ P ∈ L, x ∈ P.construct) : -- --- CONCL ---
     x ∈ (L.foldl HPolytope.intersection P₀).construct := by -- --- PROOF ---
   induction L generalizing P₀ with
   | nil => exact h₀
@@ -57,7 +57,8 @@ private theorem aux_mem_foldl (L : List (HPolytope 𝕋 (Vec 𝕋 (n + 1))))
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The float bundle lies in its members' facet polytopes, intersected. -/
-theorem ZonoBundle.hPolytopeAll_contains (p : ℕ) (zB : ZonoBundle (Vec 𝕋 (n + 1))) :
+theorem ZonoBundle.hPolytopeAll_contains (p : ℕ)
+    (zB : ZonoBundle (Vec 𝕋 (n + 1))) : -- --- CONCL ---
     zB.construct ⊆ (zB.hPolytopeAll p).construct := by -- --- PROOF ---
   intro x hx
   rw [ZonoBundle.construct_eq_iInter, Set.mem_iInter] at hx

@@ -52,7 +52,7 @@ variable {n : ℕ}
 
 /-- [1, Lemma 4], the rate half: `Δε^{U,τ}_k(Δt,η)` is `O(Δt)` as the step shrinks to `0`. -/
 theorem MatExp.particularSolutionTauError_isBigO (A : Mat ℝ n n) (tk : ℝ) {U0 : Set (Vec ℝ n)}
-    (hU0 : Bornology.IsBounded U0) (η : ℕ) :
+    (hU0 : Bornology.IsBounded U0) (η : ℕ) : -- --- CONCL ---
     (fun Δt => MatExp.particularSolutionTauError A tk U0 Δt η)
       =O[𝓝[>] (0 : ℝ)] fun Δt : ℝ => Δt := by -- --- PROOF ---
   obtain ⟨K, hK⟩ := MatExp.exists_particularSolutionTauError_le_const_mul A tk hU0 η

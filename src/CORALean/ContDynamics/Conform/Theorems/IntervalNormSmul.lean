@@ -52,7 +52,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Conform.intervalNorm_smul {m : ℕ} {ι : Type} [Fintype ι] (σ : Vec ℝ m)
-    (G : ι → Vec ℝ m) (α : ι → ℝ) (hα : ∀ j, 0 ≤ α j) :
+    (G : ι → Vec ℝ m) (α : ι → ℝ) (hα : ∀ j, 0 ≤ α j) : -- --- CONCL ---
     Conform.intervalNorm σ (fun j => α j • G j)
       = ∑ j, (∑ a, σ a * |G j a|) * α j := by -- --- PROOF ---
   unfold Conform.intervalNorm

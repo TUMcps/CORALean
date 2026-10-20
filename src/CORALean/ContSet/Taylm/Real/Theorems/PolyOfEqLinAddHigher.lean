@@ -47,7 +47,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.polyOf_eq_lin_add_higher (L : List (ℝ × (Fin n → ℕ))) (s : Vec ℝ n) :
+theorem Taylm.polyOf_eq_lin_add_higher (L : List (ℝ × (Fin n → ℕ))) (s : Vec ℝ n) : -- --- CONCL ---
     Taylm.polyOf L s = ((L.filter fun a => Taylm.degree a.2 == 0).map Prod.fst).sum
       + ∑ k, Taylm.linCoef L k * s k + Taylm.polyOf (Taylm.higherTerms L) s := by -- --- PROOF ---
   induction L with

@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.origin_exact (n : ℕ) :
+theorem ConPolyZono.origin_exact (n : ℕ) : -- --- CONCL ---
     (ConPolyZono.origin n : ConPolyZono 𝕋 (Vec 𝕋 n)).construct = {0} := by -- --- PROOF ---
   -- the nominal part has no generators and no rows: its one point is the stored `zero`
   have hN : InflatedContSet.nominalSet (ConPolyZono.origin n : ConPolyZono 𝕋 (Vec 𝕋 n)) = {0} := by

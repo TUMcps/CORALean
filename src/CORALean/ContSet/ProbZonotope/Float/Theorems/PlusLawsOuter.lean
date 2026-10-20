@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ProbZonotope.plus_laws_outer (P₁ P₂ : ProbZonotope 𝕋 n) :
+theorem ProbZonotope.plus_laws_outer (P₁ P₂ : ProbZonotope 𝕋 n) : -- --- CONCL ---
     Set.image2 (· ∗ ·) P₁.laws P₂.laws ⊆ (P₁.plus P₂).laws := by -- --- PROOF ---
   rintro _ ⟨_, ⟨a, ha, S₁, hS₁, hp₁, rfl⟩, _, ⟨b, hb, S₂, hS₂, hp₂, rfl⟩, rfl⟩
   refine ⟨a + b, Zonotope.plus_outer P₁.Z P₂.Z (Set.add_mem_add ha hb), S₁ + S₂,

@@ -45,7 +45,7 @@ namespace CORALean
 
 /-- A later time reads a later value. -/
 theorem PointSegmentSignal.cell_mono {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal T)
-    (hs : s.IsValid) (t t' : T) (ht : 0 ≤ t) (htt : t ≤ t') :
+    (hs : s.IsValid) (t t' : T) (ht : 0 ≤ t) (htt : t ≤ t') : -- --- CONCL ---
     s.cell t ≤ s.cell t' := by -- --- PROOF ---
   -- the lower end of the value `t` reads is passed by `t`, hence by `t'`
   have ht' : 0 ≤ t' := ht.trans htt

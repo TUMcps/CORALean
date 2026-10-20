@@ -50,7 +50,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.matSmul_outer {cLo cHi : 𝕋} {c : ℝ} (hcLo : toReal cLo ≤ c)
-    (hcHi : c ≤ toReal cHi) (Z : Zonotope (Mat 𝕋 m n)) {A : Mat ℝ m n} (hA : A ∈ Z.construct) :
+    (hcHi : c ≤ toReal cHi) (Z : Zonotope (Mat 𝕋 m n)) {A : Mat ℝ m n}
+    (hA : A ∈ Z.construct) : -- --- CONCL ---
     c • A ∈ (Zonotope.matSmul cLo cHi Z).construct := by -- --- PROOF ---
   obtain ⟨a, ha, e, he, rfl⟩ := hA
   set Zc := CORALean.Real.Zonotope.map (LinearMap.lsmul ℝ (Mat ℝ m n) c) Z.nominal

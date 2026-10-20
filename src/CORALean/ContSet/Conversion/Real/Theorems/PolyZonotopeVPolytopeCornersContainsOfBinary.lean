@@ -39,7 +39,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 the point multilinear in the factors — and then nothing is lost, as nothing is
 lost at a zonotope's corners. -/
 theorem PolyZonotope.vPolytopeCorners_contains_of_binary (pZ : PolyZonotope α)
-    (hE : ∀ k i, pZ.E k i ≤ 1) :
+    (hE : ∀ k i, pZ.E k i ≤ 1) : -- --- CONCL ---
     pZ.construct ⊆ pZ.vPolytopeCorners.construct := by -- --- PROOF ---
   rintro _ ⟨a, β, ha, hb, rfl⟩
   -- how far from `-1` towards `1` each factor and each coefficient sits

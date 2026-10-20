@@ -82,7 +82,7 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : �
 
 /-- `nᵀx − d` of a point of `Z` lies in the range `Zonotope.halfspaceRange` computes. -/
 theorem aux_hpMap_range {v : Vec ℝ n} {d : ℝ} {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
-    (hx : x ∈ Z.construct) :
+    (hx : x ∈ Z.construct) : -- --- CONCL ---
     (Z.halfspaceRange v d).inf ≤ v ⬝ᵥ x - d ∧
       v ⬝ᵥ x - d ≤ (Z.halfspaceRange v d).sup := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hx
@@ -99,7 +99,8 @@ theorem aux_hpMap_range {v : Vec ℝ n} {d : ℝ} {Z : Zonotope (Vec ℝ n)} {x 
   constructor <;> linarith [(abs_le.mp hb).1, (abs_le.mp hb).2]
 
 /-- `1/y` of a point of an interval that excludes `0` lies in `[1/hi, 1/lo]`. -/
-theorem aux_hpMap_inv {lo hi y : ℝ} (h : 0 < lo ∨ hi < 0) (h1 : lo ≤ y) (h2 : y ≤ hi) :
+theorem aux_hpMap_inv {lo hi y : ℝ} (h : 0 < lo ∨ hi < 0) (h1 : lo ≤ y)
+    (h2 : y ≤ hi) : -- --- CONCL ---
     hi⁻¹ ≤ y⁻¹ ∧ y⁻¹ ≤ lo⁻¹ := by -- --- PROOF ---
   rcases h with h | h
   · exact ⟨inv_anti₀ (lt_of_lt_of_le h h1) h2, inv_anti₀ h h1⟩
@@ -109,7 +110,8 @@ theorem aux_hpMap_inv {lo hi y : ℝ} (h : 0 < lo ∨ hi < 0) (h1 : lo ≤ y) (h
 
 /-- `1/y²` of a point of an interval that excludes `0` lies in `[1/max, 1/min]` of the squared
 ends, CORA's `1/Lambda_int^2`. -/
-theorem aux_hpMap_sq {lo hi y : ℝ} (h : 0 < lo ∨ hi < 0) (h1 : lo ≤ y) (h2 : y ≤ hi) :
+theorem aux_hpMap_sq {lo hi y : ℝ} (h : 0 < lo ∨ hi < 0) (h1 : lo ≤ y)
+    (h2 : y ≤ hi) : -- --- CONCL ---
     1 / max (lo ^ 2) (hi ^ 2) ≤ 1 / y ^ 2 ∧
       1 / y ^ 2 ≤ 1 / min (lo ^ 2) (hi ^ 2) := by -- --- PROOF ---
   have hb : min (lo ^ 2) (hi ^ 2) ≤ y ^ 2 ∧ y ^ 2 ≤ max (lo ^ 2) (hi ^ 2) ∧
@@ -124,7 +126,7 @@ theorem aux_hpMap_sq {lo hi y : ℝ} (h : 0 < lo ∨ hi < 0) (h1 : lo ≤ y) (h2
     one_div_le_one_div_of_le hpos hlo⟩
 
 /-- A point of `[lo, hi]` is `(lo + hi)/2 + κ(hi − lo)/2` for some `|κ| ≤ 1`. -/
-theorem aux_hpMap_factor {lo hi y : ℝ} (h1 : lo ≤ y) (h2 : y ≤ hi) :
+theorem aux_hpMap_factor {lo hi y : ℝ} (h1 : lo ≤ y) (h2 : y ≤ hi) : -- --- CONCL ---
     ∃ κ : ℝ, |κ| ≤ 1 ∧ y = (lo + hi) / 2 + κ * ((hi - lo) / 2) := by -- --- PROOF ---
   rcases eq_or_lt_of_le (h1.trans h2) with heq | hlt
   · exact ⟨0, by norm_num, by rw [← heq] at h2 ⊢; linarith⟩
@@ -311,7 +313,7 @@ theorem aux_hpMap_res2 (A : Mat ℝ n n) (b nv : Vec ℝ n) (R₀ E : Zonotope (
 theorem Location.guardIntersectHyperplaneMap_outer (ℓ : Location 𝒵 G L ℝ n) (nv : Vec ℝ n) (d : ℝ)
     (R₀ : Zonotope (Vec ℝ n)) (tmax : ℝ) {η : ℕ} (guardOrder zonotopeOrder : ℕ) (hη : 1 ≤ η) {τ : ℝ}
     {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.IsTrajectory τ x u w) (h₀ : x 0 ∈ R₀.construct) {t : ℝ}
-    (ht : t ∈ Set.Icc 0 τ) (htmax : t ≤ tmax) (hhit : nv ⬝ᵥ x t = d) :
+    (ht : t ∈ Set.Icc 0 τ) (htmax : t ≤ tmax) (hhit : nv ⬝ᵥ x t = d) : -- --- CONCL ---
     ∀ Z ∈ ℓ.guardIntersectHyperplaneMap nv d R₀ tmax η guardOrder zonotopeOrder,
       x t ∈ Z.construct := by -- --- PROOF ---
   intro Z (hZ : ℓ.guardIntersectHyperplaneMap nv d R₀ tmax η guardOrder zonotopeOrder = some Z)

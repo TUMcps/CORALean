@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- A returned left region fits `[l, u']`. -/
 theorem findRegionLeft_fits {σ : ℝ → ℝ} {F : (o : ℕ) → PolyRelaxation 𝕋 o}
-    (hF : ∀ o, (F o).Sound σ) (order : ℕ) (tol l : 𝕋) :
+    (hF : ∀ o, (F o).Sound σ) (order : ℕ) (tol l : 𝕋) : -- --- CONCL ---
     ∀ (fuel : ℕ) (ui : 𝕋) (r : RegionPoly 𝕋) (u' : 𝕋),
       findRegionLeft F order tol l fuel ui = some (r, u') → r.Fits σ tol l u' := by -- --- PROOF ---
   intro fuel

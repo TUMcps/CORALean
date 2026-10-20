@@ -44,7 +44,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Layer.batchNorm_encloses (chan : Fin n → Fin c) (scale shift : Vec 𝕋 c) :
+theorem Layer.batchNorm_encloses (chan : Fin n → Fin c) (scale shift : Vec 𝕋 c) : -- --- CONCL ---
     (Layer.batchNorm (S := S) chan scale shift).Encloses
       fun x i => toReal (scale (chan i)) * x i + toReal (shift (chan i)) := by -- --- PROOF ---
   refine (Layer.linear_encloses _ _).congr fun x => funext fun i => ?_

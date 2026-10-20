@@ -33,7 +33,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem abs_sigmoidDeriv_le_one (t : ℝ) : |sigmoidDeriv t| ≤ 1 := by -- --- PROOF ---
+theorem abs_sigmoidDeriv_le_one (t : ℝ) : -- --- CONCL ---
+    |sigmoidDeriv t| ≤ 1 := by -- --- PROOF ---
   have h1 := sigmoid_pos t
   have h2 := sigmoid_pos (-t)
   have h3 := sigmoid_lt_one t

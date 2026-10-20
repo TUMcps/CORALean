@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- membership is those two halves read back as a bound on the magnitude
-theorem HPolytope.mem_unitBox_iff {x : Vec ℝ n} :
+theorem HPolytope.mem_unitBox_iff {x : Vec ℝ n} : -- --- CONCL ---
     x ∈ (HPolytope.unitBox 𝕋 n).construct ↔ ∀ j, |x j| ≤ 1 := by -- --- PROOF ---
   constructor
   · intro hmem j

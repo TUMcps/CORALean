@@ -50,7 +50,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.supportBound_attained (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ) :
+theorem Ellipsoid.supportBound_attained (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ) : -- --- CONCL ---
     ∃ x ∈ E.construct, c x = (E.supportBound c).val := by -- --- PROOF ---
   have hval : (E.supportBound c).val = c E.q + ‖E.pullback c‖₂ := by
     show c E.q + Real.sqrt _ = _

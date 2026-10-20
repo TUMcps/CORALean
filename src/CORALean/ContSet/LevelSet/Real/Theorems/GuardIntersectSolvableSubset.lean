@@ -58,7 +58,8 @@ variable {n : ℕ}
 theorem aux_guardIntersectSolvable_subset (I : Interval (Vec ℝ n)) (k : Fin n)
     {g D : Vec ℝ n → ℝ} (hG : {x | g x = 0} = {x | x k = D x}) (b : ℝ) (a c : Vec ℝ n)
     (v : Vec ℝ n → ℝ) (l u : ℝ)
-    (hT : ∀ x ∈ I.construct, D x - (b + ∑ i, a i * (x i - c i) + v x) ∈ Set.Icc l u) :
+    (hT : ∀ x ∈ I.construct, D x - (b + ∑ i, a i * (x i - c i) + v x) ∈ Set.Icc l u)
+    : -- --- CONCL ---
     I.construct ∩ {x | g x = 0} ⊆
       (guardIntersectSolvable I k b a c v l u).construct := by -- --- PROOF ---
   rintro x ⟨hxI, hxg⟩
@@ -87,7 +88,7 @@ theorem aux_guardIntersectSolvable_subset (I : Interval (Vec ℝ n)) (k : Fin n)
 
 theorem guardIntersectSolvable_subset {I : Interval (Vec ℝ n)} {κ : ℕ} (k : Fin n)
     {g D : Vec ℝ n → ℝ} (hG : {x | g x = 0} = {x | x k = D x}) (T : TaylorSeries D I κ)
-    (hD : ContDiff ℝ (κ + 1) D) (hκ : 1 ≤ κ) : -- --- CONCL ---
+    (hD : ContDiff ℝ (κ + 1) D) (hκ : 1 ≤ κ) :
     I.construct ∩ {x | g x = 0} ⊆ (guardIntersectSolvable I k (D I.center) (taylorGrad D I.center)
       I.center (taylorHigher D κ I.center) T.l T.u).construct :=
   aux_guardIntersectSolvable_subset I k hG _ _ _ _ _ _ fun _ hx => T.mem hD hκ hx

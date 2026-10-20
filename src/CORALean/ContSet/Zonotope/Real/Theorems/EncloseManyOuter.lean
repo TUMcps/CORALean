@@ -52,7 +52,7 @@ variable {m q : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.encloseMany_outer (Zs : Fin (q + 1) → Zonotope (Vec ℝ (m + 1)))
-    (direction : Vec ℝ (m + 1)) (hd : direction ≠ 0) (i : Fin (q + 1)) :
+    (direction : Vec ℝ (m + 1)) (hd : direction ≠ 0) (i : Fin (q + 1)) : -- --- CONCL ---
     (Zs i).construct ⊆ (Zonotope.encloseMany Zs direction).construct := by -- --- PROOF ---
   intro x hx
   have hunit := Zonotope.encloseManyBasis_isUnit direction hd

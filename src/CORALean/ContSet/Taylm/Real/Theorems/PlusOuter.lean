@@ -56,7 +56,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.plus_outer {T₁ T₂ : Taylm n} {f g : Vec ℝ n → ℝ} (h₁ : T₁.Encloses f)
-    (h₂ : T₂.Encloses g) : (T₁.plus T₂).Encloses fun t => f t + g t := by -- --- PROOF ---
+    (h₂ : T₂.Encloses g) : -- --- CONCL ---
+    (T₁.plus T₂).Encloses fun t => f t + g t := by -- --- PROOF ---
   intro t ht
   have := h₁ t ht
   have := h₂ t ht

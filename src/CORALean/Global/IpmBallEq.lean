@@ -51,7 +51,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- Cauchy-Schwarz for the dot product, in square roots
-theorem aux_abs_dotProduct_le (a b : Vec ℝ n) :
+theorem aux_abs_dotProduct_le (a b : Vec ℝ n) : -- --- CONCL ---
     |a ⬝ᵥ b| ≤ Real.sqrt (a ⬝ᵥ a) * Real.sqrt (b ⬝ᵥ b) := by -- --- PROOF ---
   have h := Finset.sum_mul_sq_le_sq_mul_sq Finset.univ a b
   have ha : 0 ≤ a ⬝ᵥ a := by
@@ -63,7 +63,8 @@ theorem aux_abs_dotProduct_le (a b : Vec ℝ n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ipmBall_eq (c : Vec ℝ n) (r γ : ℝ) (hr : 0 ≤ r) (hγ : 0 ≤ γ) (ϕ : Vec ℝ n) :
+theorem ipmBall_eq (c : Vec ℝ n) (r γ : ℝ) (hr : 0 ≤ r) (hγ : 0 ≤ γ)
+    (ϕ : Vec ℝ n) : -- --- CONCL ---
     ipmBall c r γ ϕ = Set.Icc (c ⬝ᵥ ϕ - (r * Real.sqrt (ϕ ⬝ᵥ ϕ) + γ))
       (c ⬝ᵥ ϕ + (r * Real.sqrt (ϕ ⬝ᵥ ϕ) + γ)) := by -- --- PROOF ---
   have hϕ : 0 ≤ ϕ ⬝ᵥ ϕ := by

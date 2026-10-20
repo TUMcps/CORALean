@@ -159,7 +159,7 @@ theorem aux_hpMapCoraCex_cube : aux_hpMapCoraCex_A ^ 3 = 0 := by
     simp [Matrix.mul_apply, Fin.sum_univ_three, aux_hpMapCoraCex_A]
 
 /-- `W = e^{2|A|} − T₃(2|A|) = 0`: `|A| = A` and `(2A)³ = 0`. -/
-theorem aux_hpMapCoraCex_W :
+theorem aux_hpMapCoraCex_W : -- --- CONCL ---
     MatExp.expRemainderMat aux_hpMapCoraCex_A 2 3 = 0 := by -- --- PROOF ---
   have habs : MatExp.absMat aux_hpMapCoraCex_A = aux_hpMapCoraCex_A := by
     ext i j; fin_cases i <;> fin_cases j <;> simp [MatExp.absMat, aux_hpMapCoraCex_A]
@@ -189,7 +189,8 @@ theorem aux_hpMapCoraCex_reduceGirard_c (Z : Zonotope (Vec ℝ n)) (o : ℕ) :
   split_ifs <;> rfl
 
 theorem aux_hpMapCoraCex_reduceGirard {Z : Zonotope (Vec ℝ n)} (h : ∀ j, Z.G j = 0)
-    (o : ℕ) : ∀ j, (Z.reduceGirard o).G j = 0 := by -- --- PROOF ---
+    (o : ℕ) : -- --- CONCL ---
+    ∀ j, (Z.reduceGirard o).G j = 0 := by -- --- PROOF ---
   by_cases hlt : o * n < Z.h
   · rw [show Z.reduceGirard o = Z.reduceBy (Z.girardSplit o hlt) from dif_pos hlt]
     intro j
@@ -212,7 +213,7 @@ theorem aux_hpMapCoraCex_mtimes (M : Mat ℝ n n) {Z : Zonotope (Vec ℝ n)}
 
 /-- An interval matrix applied to `{0}`, or `[0, 0]` applied to a point. -/
 theorem aux_hpMapCoraCex_mtimesIM (IM : Interval (Mat ℝ n n)) {Z : Zonotope (Vec ℝ n)}
-    (h : ∀ j, Z.G j = 0) (h0 : ∀ i j, IM.radius i j * |Z.c j| = 0) :
+    (h : ∀ j, Z.G j = 0) (h0 : ∀ i j, IM.radius i j * |Z.c j| = 0) : -- --- CONCL ---
     ∀ j, (Zonotope.mtimesIntervalMat IM Z).G j = 0 := by -- --- PROOF ---
   intro j
   have hr : ∀ i, Zonotope.radiusReach IM Z i = 0 := fun i => by
@@ -263,7 +264,8 @@ theorem aux_hpMapCoraCex_mem {Z : Zonotope (Vec ℝ n)} (h : ∀ j, Z.G j = 0)
 
 /-- The projection onto `cᵀx = d` of a zonotope whose generators are `0` is a point. -/
 theorem aux_hpMapCoraCex_proj {R : Zonotope (Vec ℝ n)} (h : ∀ j, R.G j = 0) (c : Vec ℝ n)
-    (d : ℝ) {x : Vec ℝ n} (hx : x ∈ (ContSet.projectOnHyperplane (S := 𝒵) R c d).construct) :
+    (d : ℝ) {x : Vec ℝ n}
+    (hx : x ∈ (ContSet.projectOnHyperplane (S := 𝒵) R c d).construct) : -- --- CONCL ---
     x = (1 - vecMulVec c c) *ᵥ R.c + d • c := by -- --- PROOF ---
   change x ∈ ((Zonotope.mtimes (1 - vecMulVec c c) R).plus (Zonotope.ofPoint (d • c))).construct
     at hx

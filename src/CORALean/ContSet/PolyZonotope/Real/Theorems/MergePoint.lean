@@ -52,7 +52,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- file-local: only `merge_point` below needs it
 /-- The dependent generator sum, regrouped onto the columns that survive. -/
-theorem PolyZonotope.aux_sum_merge (pZ : PolyZonotope α) (a : Fin pZ.p → ℝ) :
+theorem PolyZonotope.aux_sum_merge (pZ : PolyZonotope α) (a : Fin pZ.p → ℝ) : -- --- CONCL ---
     (∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i)
       = ∑ j : Fin pZ.merge.h,
           PolyZonotope.monomial pZ.merge.E a j • pZ.merge.G j := by -- --- PROOF ---

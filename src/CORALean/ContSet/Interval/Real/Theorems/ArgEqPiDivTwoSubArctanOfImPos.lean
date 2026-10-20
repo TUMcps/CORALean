@@ -32,7 +32,7 @@ namespace CORALean.Real
 
 /-- For `0 < im z`: `arg z = π/2 - arctan (re z / im z)`, the cotangent form of `atan2 y x` for
 `y > 0`. The argument lies in `(0, π)`, where `π/2 - arg z` has tangent `re z / im z`. -/
-theorem arg_eq_pi_div_two_sub_arctan_of_im_pos {z : ℂ} (h : 0 < z.im) :
+theorem arg_eq_pi_div_two_sub_arctan_of_im_pos {z : ℂ} (h : 0 < z.im) : -- --- CONCL ---
     Complex.arg z = Real.pi / 2 - Real.arctan (z.re / z.im) := by -- --- PROOF ---
   have h0 : 0 < Complex.arg z :=
     lt_of_le_of_ne (Complex.arg_nonneg_iff.mpr h.le) fun e => by

@@ -80,7 +80,8 @@ theorem ConPolyZono.aux_sum_univ_reduceCon (cPZ : ConPolyZono α) (r : Fin cPZ.c
 /-- Eliminating a constraint keeps every point: the same factors satisfy the
 reduced system and give the same value. -/
 theorem ConPolyZono.reduceCon_outer (cPZ : ConPolyZono α) (r : Fin cPZ.cons.m) (d : Fin cPZ.h)
-    (t : Fin cPZ.cons.q) (hE : ∀ k, cPZ.E k d = cPZ.cons.R k t) (hA : cPZ.cons.A r t ≠ 0) :
+    (t : Fin cPZ.cons.q) (hE : ∀ k, cPZ.E k d = cPZ.cons.R k t)
+    (hA : cPZ.cons.A r t ≠ 0) : -- --- CONCL ---
     cPZ.construct ⊆ (cPZ.reduceCon r d t).construct := by -- --- PROOF ---
   rintro x ⟨a, β, hβ, hsat, rfl⟩
   have hrows := ((PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mp hsat).2

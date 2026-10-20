@@ -50,7 +50,8 @@ variable {n : ℕ}
 
 /-- [1, Prop. 8]: at a full-rank `Γ`, `Z ⊆ Γ box(Γ⁻¹Z)`. -/
 theorem Zonotope.parallelotope_outer {Γ : Mat ℝ n n} (hΓ : IsUnit Γ.det)
-    (Z : Zonotope (Vec ℝ n)) : Z.construct ⊆ (Z.parallelotope Γ).construct := by -- --- PROOF ---
+    (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
+    Z.construct ⊆ (Z.parallelotope Γ).construct := by -- --- PROOF ---
   intro x hx
   -- `Γ⁻¹ x` lies in `Γ⁻¹Z`, hence in its box
   have hZ' : Γ⁻¹ *ᵥ x ∈ (Zonotope.mtimes Γ⁻¹ Z).construct := by

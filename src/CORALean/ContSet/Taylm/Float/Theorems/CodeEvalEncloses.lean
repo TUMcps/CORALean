@@ -58,7 +58,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.codeEval_encloses {m : ℕ} (p q s N : ℕ) {F : Fin m → Taylm 𝕋 n}
-    {f : Fin m → Vec ℝ n → ℝ} (hF : ∀ i, (F i).Encloses (f i)) :
+    {f : Fin m → Vec ℝ n → ℝ} (hF : ∀ i, (F i).Encloses (f i)) : -- --- CONCL ---
     ∀ (e : Real.Taylm.CodeList 𝕋 m) {T : Taylm 𝕋 n}, Taylm.codeEval p q s N F e = some T →
       T.Encloses fun t => (e.map toReal).eval fun i => f i t := by -- --- PROOF ---
   intro e

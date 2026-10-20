@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The sum of points of boxes is a point of the summed box. -/
 theorem PolyZonotope.sumErr_mem {m : ℕ} (f : Fin m → Interval (Vec 𝕋 n)) (e : Fin m → Vec ℝ n)
-    (he : ∀ i, e i ∈ (f i).construct) :
+    (he : ∀ i, e i ∈ (f i).construct) : -- --- CONCL ---
     ∑ i, e i ∈ (PolyZonotope.sumErr m f).construct := by -- --- PROOF ---
   induction m with
   | zero =>

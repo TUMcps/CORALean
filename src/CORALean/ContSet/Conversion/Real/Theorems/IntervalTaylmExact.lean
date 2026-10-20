@@ -55,7 +55,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.taylm_exact (I : Interval (Vec ℝ n)) (N : ℕ) (hI : ∀ i, I.inf i ≤ I.sup i) :
+theorem Interval.taylm_exact (I : Interval (Vec ℝ n)) (N : ℕ)
+    (hI : ∀ i, I.inf i ≤ I.sup i) : -- --- CONCL ---
     Taylm.construct (I.taylm N) = I.construct := by -- --- PROOF ---
   refine Set.Subset.antisymm ?_ (Interval.taylm_contains I N)
   rintro x ⟨t, ht, hx⟩ i

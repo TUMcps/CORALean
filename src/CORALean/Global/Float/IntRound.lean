@@ -43,7 +43,7 @@ def intDown (a : ℤ) : 𝕋 :=
 def intUp (a : ℤ) : 𝕋 :=
   if 0 ≤ a then nsmulUp a.toNat one else neg (nsmulDown (-a).toNat one)
 
-theorem intDown_le_intUp [SoundFloatArithmetic 𝕋] (a : ℤ) :
+theorem intDown_le_intUp [SoundFloatArithmetic 𝕋] (a : ℤ) : -- --- CONCL ---
     toReal (intDown a : 𝕋) ≤ a ∧ (a : ℝ) ≤ toReal (intUp a : 𝕋) := by -- --- PROOF ---
   by_cases h : 0 ≤ a
   · have h1 := nsmulDown_le a.toNat (one : 𝕋)

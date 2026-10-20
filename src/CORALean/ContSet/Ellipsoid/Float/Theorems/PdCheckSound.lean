@@ -50,7 +50,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem Ellipsoid.posDef_of_pdCheck {X : Interval (Mat 𝕋 n n)} {L : Mat 𝕋 n n}
     (h : Ellipsoid.pdCheck X L = true) {Xr : Mat ℝ n n}
     (hX : ∀ i j, toReal (X.inf i j) ≤ Xr i j ∧ Xr i j ≤ toReal (X.sup i j))
-    (hsym : ∀ i j, Xr i j = Xr j i) : Xr.PosDef := by -- --- PROOF ---
+    (hsym : ∀ i j, Xr i j = Xr j i) : -- --- CONCL ---
+    Xr.PosDef := by -- --- PROOF ---
   set Lr : Mat ℝ n n := toRealMat L with hLr
   set R : Mat ℝ n n := Xr - Lr * Lrᵀ with hR
   set lo : Mat 𝕋 n n := fun i j => subDown (X.inf i j) (dotUp (L i) (L j)) with hlo

@@ -71,7 +71,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `L w = Σ_j w_j L(e_j)`, one component at a time. -/
-theorem aux_apply_eq_sum_single (L : (Fin n → ℝ) →L[ℝ] (Fin n → ℝ)) (w : Fin n → ℝ) (i : Fin n) :
+theorem aux_apply_eq_sum_single (L : (Fin n → ℝ) →L[ℝ] (Fin n → ℝ)) (w : Fin n → ℝ)
+    (i : Fin n) : -- --- CONCL ---
     L w i = ∑ j, L (Pi.single j 1) i * w j := by -- --- PROOF ---
   have hw : w = ∑ j, w j • (Pi.single j 1 : Fin n → ℝ) := by
     ext k

@@ -59,7 +59,8 @@ variable {α : Type} [MeasurableSpace α]
 
 theorem unsafe_prob_le (μ : Measure α) (f : α → ℝ≥0∞) {E B : Set α} {k : ℕ}
     (Q : Fin k → Set α) (h : Fin k → ℝ≥0∞) (hB : MeasurableSet B)
-    (hQ : ∀ i, MeasurableSet (Q i)) (hE : E ⊆ ⋃ i, Q i) (hf : ∀ i, ∀ x ∈ Q i, f x ≤ h i) :
+    (hQ : ∀ i, MeasurableSet (Q i)) (hE : E ⊆ ⋃ i, Q i)
+    (hf : ∀ i, ∀ x ∈ Q i, f x ≤ h i) : -- --- CONCL ---
     μ.withDensity f B ≤ μ.withDensity f Eᶜ + ∑ i, h i * μ (Q i ∩ B) := by -- --- PROOF ---
   -- `B` lies outside `E` or in some `Qᵢ ∩ B`
   have hsub : B ⊆ Eᶜ ∪ ⋃ i, (Q i ∩ B) := by

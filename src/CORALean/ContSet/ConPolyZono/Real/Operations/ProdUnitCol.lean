@@ -36,7 +36,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.prod_unitCol {p : ℕ} (a : Fin p → ℝ) (i : Fin p) (e : ℕ) :
+theorem ConPolyZono.prod_unitCol {p : ℕ} (a : Fin p → ℝ) (i : Fin p) (e : ℕ) : -- --- CONCL ---
     (∏ k, a k ^ ConPolyZono.unitCol i e k) = a i ^ e := by -- --- PROOF ---
   rw [Finset.prod_eq_single i]
   · rw [ConPolyZono.unitCol, if_pos rfl]

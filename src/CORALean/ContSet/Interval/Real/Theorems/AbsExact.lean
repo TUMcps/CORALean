@@ -44,7 +44,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.abs_exact (I : Interval (Vec ℝ n)) :
+theorem Interval.abs_exact (I : Interval (Vec ℝ n)) : -- --- CONCL ---
     I.abs.construct = (fun x i => |x i|) '' I.construct := by -- --- PROOF ---
   ext y
   constructor

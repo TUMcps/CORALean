@@ -50,7 +50,7 @@ variable {n : ℕ}
 
 theorem HPolytope.eq_zero_of_extremePoint (P : HPolytope (Vec ℝ n)) {x : Vec ℝ n}
     (hx : x ∈ P.construct.extremePoints ℝ) {d : Vec ℝ n}
-    (htight : ∀ i, P.A i x = P.b i → P.A i d = 0) (heq : ∀ i, P.Ae i d = 0) :
+    (htight : ∀ i, P.A i x = P.b i → P.A i d = 0) (heq : ∀ i, P.Ae i d = 0) : -- --- CONCL ---
     d = 0 := by -- --- PROOF ---
   by_contra hd
   have hxmem : x ∈ P.construct := hx.1

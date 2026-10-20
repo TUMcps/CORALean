@@ -47,7 +47,8 @@ namespace CORALean
 
 /-- `t + J` stays above `I`'s lower end iff `t` passes `l₁ - l₂`. -/
 private theorem STLInterval.rawSet_minkDiff_lower {l₁ u₁ l₂ u₂ : EReal} {lc₁ rc₁ lc₂ rc₂ : Bool}
-    (h₁ : (rawSet l₁ u₁ lc₁ rc₁).Nonempty) (h₂ : (rawSet l₂ u₂ lc₂ rc₂).Nonempty) (t : ℝ) :
+    (h₁ : (rawSet l₁ u₁ lc₁ rc₁).Nonempty) (h₂ : (rawSet l₂ u₂ lc₂ rc₂).Nonempty)
+    (t : ℝ) : -- --- CONCL ---
     (∀ y ∈ rawSet l₂ u₂ lc₂ rc₂, l₁ < ↑(t + y) ∨ (lc₁ = true ∧ l₁ = ↑(t + y))) ↔
       (l₁ - l₂ < t ∨ ((lc₁ || !lc₂) = true ∧ l₁ - l₂ = t)) := by -- --- PROOF ---
   have n₁ := (rawSet_bounds_ne h₁).1

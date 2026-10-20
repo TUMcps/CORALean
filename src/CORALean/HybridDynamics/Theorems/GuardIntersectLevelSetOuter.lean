@@ -56,7 +56,7 @@ variable {n : ℕ}
 /-- What the start holds, and what any `h R` of the list holds, the fold of hulls holds. -/
 theorem Location.aux_mem_foldl_or (h : Real.Interval (Vec ℝ n) → Real.Interval (Vec ℝ n))
     (Rs : List (Real.Interval (Vec ℝ n))) (I : Real.Interval (Vec ℝ n)) {x : Vec ℝ n}
-    (hx : x ∈ I.construct ∨ ∃ R ∈ Rs, x ∈ (h R).construct) :
+    (hx : x ∈ I.construct ∨ ∃ R ∈ Rs, x ∈ (h R).construct) : -- --- CONCL ---
     x ∈ (Rs.foldl (fun I R => I.or (h R)) I).construct := by -- --- PROOF ---
   induction Rs generalizing I with
   | nil =>

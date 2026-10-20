@@ -44,7 +44,8 @@ variable {𝕄 : ℕ → ℕ → Type} {S : ℕ → Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SetIntersection.mtimes_outer {m n : ℕ} (M : 𝕄 m n) (I : SetIntersection (S n)) :
+theorem SetIntersection.mtimes_outer {m n : ℕ} (M : 𝕄 m n)
+    (I : SetIntersection (S n)) : -- --- CONCL ---
     (⋃ A ∈ ContSet.construct M, (A *ᵥ ·) '' ContSet.construct I) ⊆
       ContSet.construct (SetIntersection.mtimes M I) := by -- --- PROOF ---
   intro x hx

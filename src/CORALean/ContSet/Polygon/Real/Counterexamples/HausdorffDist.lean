@@ -37,7 +37,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.hausdorffDist_counterexample :
+theorem Polygon.hausdorffDist_counterexample : -- --- CONCL ---
     ∃ (P : Polygon) (S : List (Vec ℝ 2)),
       P.hausdorffDist S = 0 ∧
         0 < hausdorffDist₂ (ContSet.construct P) {s | s ∈ S} := by -- --- PROOF ---

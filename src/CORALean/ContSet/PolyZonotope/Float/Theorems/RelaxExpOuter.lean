@@ -165,7 +165,7 @@ theorem PolyZonotope.aux_relaxExp_nominal (pZ : PolyZonotope (Vec 𝕋 n))
 
 theorem PolyZonotope.relaxExp_outer (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p)
-    (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) :
+    (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) : -- --- CONCL ---
     pZ.construct ⊆ (pZ.relaxExp part k₀).construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨z', hz', g, hg, hsum⟩ := PolyZonotope.aux_relaxExp_nominal pZ part k₀ hsim hz

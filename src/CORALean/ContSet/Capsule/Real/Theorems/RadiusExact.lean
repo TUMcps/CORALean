@@ -43,7 +43,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A unit vector along `g`, with `g` its multiple by `‖g‖₂`. -/
-theorem aux_exists_unit_smul (g : Vec ℝ n) (hn : g ≠ 0 ∨ 0 < n) :
+theorem aux_exists_unit_smul (g : Vec ℝ n) (hn : g ≠ 0 ∨ 0 < n) : -- --- CONCL ---
     ∃ u : Vec ℝ n, ‖u‖₂ = 1 ∧ g = ‖g‖₂ • u := by -- --- PROOF ---
   by_cases hg : g = 0
   · subst hg
@@ -65,7 +65,8 @@ theorem aux_exists_unit_smul (g : Vec ℝ n) (hn : g ≠ 0 ∨ 0 < n) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The bound is attained, for a non-empty capsule whose far end can be pushed outward. -/
-theorem Capsule.radius_isGreatest {C : Capsule n} (hr : 0 ≤ C.r) (hn : C.g ≠ 0 ∨ 0 < n) :
+theorem Capsule.radius_isGreatest {C : Capsule n} (hr : 0 ≤ C.r)
+    (hn : C.g ≠ 0 ∨ 0 < n) : -- --- CONCL ---
     IsGreatest ((fun x => ‖x - C.c‖₂) '' C.construct) C.radius := by -- --- PROOF ---
   refine ⟨?_, fun d ⟨x, hx, hd⟩ => hd ▸ Capsule.norm₂_sub_center_le hx⟩
   obtain ⟨u, hu, hgu⟩ := aux_exists_unit_smul C.g hn

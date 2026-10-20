@@ -38,7 +38,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.intersectStripGollamudi1D_counterexample (lam : ℝ) (h0 : 0 < lam) (h1 : lam < 1) :
+theorem Ellipsoid.intersectStripGollamudi1D_counterexample (lam : ℝ) (h0 : 0 < lam)
+    (h1 : lam < 1) : -- --- CONCL ---
     (-1 : ℝ) ^ 2 / 1 ≤ 1 ∧ |(-1 : ℝ) - 2| ≤ 3 ∧
       1 < (-1 - (Ellipsoid.intersectStripGollamudi1D 1 0 1 3 2 lam).1) ^ 2 /
         (Ellipsoid.intersectStripGollamudi1D 1 0 1 3 2 lam).2 := by -- --- PROOF ---

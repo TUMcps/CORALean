@@ -45,7 +45,8 @@ variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.contains_vPolytope (P : HPolytope (Vec ℝ n)) (hne : P.construct.Nonempty) :
+theorem HPolytope.contains_vPolytope (P : HPolytope (Vec ℝ n))
+    (hne : P.construct.Nonempty) : -- --- CONCL ---
     (P.vPolytope hne).construct ⊆ P.construct := by -- --- PROOF ---
   rw [VPolytope.construct_eq_convexHull]
   refine convexHull_min ?_ P.convex_construct

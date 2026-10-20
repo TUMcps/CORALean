@@ -50,7 +50,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Both bounds are attained inside `[a, b]`. -/
-theorem Interval.aux_pow_attained {a b : ℝ} (hab : a ≤ b) (k : ℕ) :
+theorem Interval.aux_pow_attained {a b : ℝ} (hab : a ≤ b) (k : ℕ) : -- --- CONCL ---
     (∃ p, a ≤ p ∧ p ≤ b ∧ p ^ k =
       if k % 2 = 0 ∧ k ≠ 0 ∧ a < 0 ∧ 0 < b then 0 else min (a ^ k) (b ^ k)) ∧
     (∃ q, a ≤ q ∧ q ≤ b ∧ q ^ k = max (a ^ k) (b ^ k)) := by -- --- PROOF ---
@@ -68,7 +68,7 @@ theorem Interval.aux_pow_attained {a b : ℝ} (hab : a ≤ b) (k : ℕ) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.power_exact (I : Interval (Vec ℝ n)) (hI : I.IsNonempty) (k : ℕ) :
+theorem Interval.power_exact (I : Interval (Vec ℝ n)) (hI : I.IsNonempty) (k : ℕ) : -- --- CONCL ---
     (I.power k).construct = (fun x i => x i ^ k) '' I.construct := by -- --- PROOF ---
   ext z
   constructor

@@ -42,7 +42,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.sat_polytope2stl (P : Real.HPolytope (Fin n → ℝ)) (ξ : ℝ≥0 → Fin n → ℝ) :
+theorem STL.Tree.sat_polytope2stl (P : Real.HPolytope (Fin n → ℝ))
+    (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
     (STL.Tree.polytope2stl P).Sat ξ ↔ ξ 0 ∈ P.construct := by -- --- PROOF ---
   rw [STL.Tree.polytope2stl, STL.Tree.sat_conjoin]
   simp only [List.forall_mem_append, List.forall_mem_map, List.forall_mem_flatMap,

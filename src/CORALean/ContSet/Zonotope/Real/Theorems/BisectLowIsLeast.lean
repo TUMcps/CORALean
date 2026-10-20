@@ -225,7 +225,7 @@ theorem Zonotope.aux_bisect_least (Z : Zonotope (Vec ℝ 2))
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.bisectLow_isLeast (Z : Zonotope (Vec ℝ 2)) (γ : ℝ)
-    (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.construct) :
+    (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.construct) : -- --- CONCL ---
     IsLeast {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.construct} (Z.bisectLow γ) := by -- --- PROOF ---
   have hne' : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.pointUp.construct := by
     rwa [Z.construct_pointUp]

@@ -51,7 +51,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A functional given by a float vector is the dot product with it, so its
 `dualVec` is that vector read as reals. -/
 theorem Ellipsoid.aux_dualVec {c : Vec ℝ n →ₗ[ℝ] ℝ} {a : Vec 𝕋 n}
-    (hc : ∀ x : Vec ℝ n, c x = ∑ i, toReal (a i) * x i) :
+    (hc : ∀ x : Vec ℝ n, c x = ∑ i, toReal (a i) * x i) : -- --- CONCL ---
     Real.dualVec c = toRealVec a := by -- --- PROOF ---
   funext i
   rw [Real.dualVec, hc, Finset.sum_eq_single i]

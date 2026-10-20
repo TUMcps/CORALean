@@ -41,7 +41,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Tree.sat_congr_of_isPredicate (φ : STL.Tree n) (h : φ.isPredicate = true)
-    (ξ ξ' : ℝ≥0 → Fin n → ℝ) (hξ : ξ 0 = ξ' 0) : φ.Sat ξ ↔ φ.Sat ξ' := by -- --- PROOF ---
+    (ξ ξ' : ℝ≥0 → Fin n → ℝ) (hξ : ξ 0 = ξ' 0) : -- --- CONCL ---
+    φ.Sat ξ ↔ φ.Sat ξ' := by -- --- PROOF ---
   induction φ with
   | cmp op e₁ e₂ => simp [STL.Tree.Sat, hξ]
   | and φ ψ ihφ ihψ =>

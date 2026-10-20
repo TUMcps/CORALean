@@ -44,7 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.cubMap_outer (T : Fin m → Fin n → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
+theorem ConZonotope.cubMap_outer (T : Fin m → Fin n → Mat 𝕋 n n)
+    (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     Real.PolyZonotope.cubEval (fun i k => toRealMat (T i k)) '' cZ.construct
       ⊆ (cZ.cubMap T).construct := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩

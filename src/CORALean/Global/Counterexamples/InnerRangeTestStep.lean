@@ -46,7 +46,7 @@ open Set
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The constant `1` is on the frontier of `[-1, 1]` in `ℝ¹`. -/
-theorem aux_one_mem_frontier :
+theorem aux_one_mem_frontier : -- --- CONCL ---
     (fun _ => (1 : ℝ)) ∈
       frontier (Icc (fun _ : Fin 1 => (-1 : ℝ)) fun _ => 1) := by -- --- PROOF ---
   -- the frontier of a closed box is what its interior, the open box, leaves out

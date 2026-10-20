@@ -93,7 +93,7 @@ theorem NonlinearSysDT.aux_stepBound_mono (n o : ℕ) {hU hU' : ℕ} (h : hU ≤
 asserted here: it is `LinearSysDT.reachCost_le` at one step, `k` times. -/
 theorem NonlinearSysDT.reachCost_le (sys : NonlinearSysDT n m) {U : Zonotope (Vec ℝ m)}
     {o : ℕ} (ho : 0 < o) (steps : ℕ → sys.LinStep ℝ (S := 𝒵) U) (R₀ : Zonotope (Vec ℝ n))
-    (hU : ℕ) (hR₀ : R₀.h ≤ o * n) (hL : ∀ j, ((steps j).linInput).h ≤ hU) (k : ℕ) :
+    (hU : ℕ) (hR₀ : R₀.h ≤ o * n) (hL : ∀ j, ((steps j).linInput).h ≤ hU) (k : ℕ) : -- --- CONCL ---
     sys.reachCost o ho steps R₀ k ≤ k • LinearSysDT.reachStepBound n hU o := by -- --- PROOF ---
   induction k with
   | zero => simp [NonlinearSysDT.reachCost]

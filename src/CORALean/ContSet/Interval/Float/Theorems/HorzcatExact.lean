@@ -39,7 +39,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n₁ n₂ 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.horzcat_exact (I : Interval (Mat 𝕋 m n₁)) (J : Interval (Mat 𝕋 m n₂)) :
+theorem Interval.horzcat_exact (I : Interval (Mat 𝕋 m n₁))
+    (J : Interval (Mat 𝕋 m n₂)) : -- --- CONCL ---
     (I.horzcat J).construct =
       (fun p : Mat ℝ m n₁ × Mat ℝ m n₂ => fun i => Fin.append (p.1 i) (p.2 i)) ''
         (I.construct ×ˢ J.construct) := by -- --- PROOF ---

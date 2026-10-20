@@ -45,7 +45,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The mirrored combination is the mirror image of the combination. -/
-theorem Zonotope.aux_mirrorY_comb (Z : Zonotope (Vec ℝ 2)) (β : Fin Z.h → ℝ) :
+theorem Zonotope.aux_mirrorY_comb (Z : Zonotope (Vec ℝ 2)) (β : Fin Z.h → ℝ) : -- --- CONCL ---
     Z.mirrorY.c + ∑ j, β j • Z.mirrorY.G j
       = ![(Z.c + ∑ j, β j • Z.G j) 0, -(Z.c + ∑ j, β j • Z.G j) 1] := by -- --- PROOF ---
   ext k
@@ -57,7 +57,7 @@ theorem Zonotope.aux_mirrorY_comb (Z : Zonotope (Vec ℝ 2)) (β : Fin Z.h → �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.mem_mirrorY_construct (Z : Zonotope (Vec ℝ 2)) (p : Vec ℝ 2) :
+theorem Zonotope.mem_mirrorY_construct (Z : Zonotope (Vec ℝ 2)) (p : Vec ℝ 2) : -- --- CONCL ---
     p ∈ Z.mirrorY.construct ↔ (![p 0, -p 1] : Vec ℝ 2) ∈ Z.construct := by -- --- PROOF ---
   have inv : ∀ q : Vec ℝ 2, (![(![q 0, -q 1] : Vec ℝ 2) 0, -(![q 0, -q 1] : Vec ℝ 2) 1] : Vec ℝ 2)
       = q := fun q => by ext k; fin_cases k <;> simp

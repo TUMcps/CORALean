@@ -48,7 +48,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.smul_outer (a : ℝ) {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) :
+theorem Taylm.smul_outer (a : ℝ) {T : Taylm n} {f : Vec ℝ n → ℝ}
+    (h : T.Encloses f) : -- --- CONCL ---
     (T.smul a).Encloses fun t => a * f t := by -- --- PROOF ---
   intro t ht
   have h' := h t ht

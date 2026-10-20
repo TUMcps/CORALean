@@ -41,7 +41,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.volume_eq_of_h_eq (Z : Zonotope (Vec ℝ n)) (hh : Z.h = n) :
+theorem Zonotope.volume_eq_of_h_eq (Z : Zonotope (Vec ℝ n)) (hh : Z.h = n) : -- --- CONCL ---
     MeasureTheory.volume Z.construct = Z.volume := by -- --- PROOF ---
   obtain ⟨h, c, G⟩ := Z
   simp only at hh

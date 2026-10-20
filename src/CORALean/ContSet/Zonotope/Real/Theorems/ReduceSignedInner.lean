@@ -53,7 +53,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 whenever `T` has entries in `{-1, 0, 1}` with each row summing to `1` in
 absolute value. -/
 theorem Zonotope.reduceSigned_inner {nr : ℕ} (Z : Zonotope α) (T : Fin Z.h → Fin nr → ℝ)
-    (_hT1 : ∀ i j, T i j = -1 ∨ T i j = 0 ∨ T i j = 1) (hT2 : ∀ i, ∑ j, |T i j| = 1) :
+    (_hT1 : ∀ i j, T i j = -1 ∨ T i j = 0 ∨ T i j = 1)
+    (hT2 : ∀ i, ∑ j, |T i j| = 1) : -- --- CONCL ---
     (⟨nr, Z.c, fun j => ∑ i, T i j • Z.G i⟩ : Zonotope α).construct
       ⊆ Z.construct := by -- --- PROOF ---
   rintro x ⟨β, hβ, rfl⟩

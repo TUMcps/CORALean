@@ -56,7 +56,7 @@ variable {n m : ℕ}
 
 /-- `b(u + Σ vⱼ, u + Σ vⱼ)` expanded: constant, linear, and every ordered pair. -/
 theorem Zonotope.aux_quadMapInt_sq {h : ℕ} (b : LinearMap.BilinForm ℝ (Vec ℝ n)) (u : Vec ℝ n)
-    (v : Fin h → Vec ℝ n) :
+    (v : Fin h → Vec ℝ n) : -- --- CONCL ---
     b (u + ∑ j, v j) (u + ∑ j, v j)
       = b u u + ∑ j, (b u (v j) + b (v j) u) + ∑ j, ∑ k, b (v j) (v k) := by -- --- PROOF ---
   simp only [map_add, map_sum, LinearMap.add_apply, LinearMap.coe_sum, Finset.sum_apply]
@@ -66,7 +66,7 @@ theorem Zonotope.aux_quadMapInt_sq {h : ℕ} (b : LinearMap.BilinForm ℝ (Vec �
   ring
 
 /-- The ordered pairs split into the diagonal and one term per unordered pair `j < k`. -/
-theorem Zonotope.aux_quadMapInt_diagpair {h : ℕ} (f : Fin h → Fin h → ℝ) :
+theorem Zonotope.aux_quadMapInt_diagpair {h : ℕ} (f : Fin h → Fin h → ℝ) : -- --- CONCL ---
     ∑ j, ∑ k, f j k
       = ∑ j, f j j + ∑ j, ∑ k, (if j < k then f j k + f k j else 0) := by -- --- PROOF ---
   have hswap : ∑ j : Fin h, ∑ k, (if j < k then f k j else 0)
@@ -129,7 +129,8 @@ theorem Zonotope.aux_quadMapInt_radius (HΔ : Fin m → Mat ℝ n n) (Z : Zonoto
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Thm. 1]: `quadint(H, Z) = quad(Hc, Z) ⊕ [-η, η]`, `ηᵢ = |Z|ᵀ HΔ⁽ⁱ⁾ |Z|`. -/
-theorem Zonotope.quadMapInt_eq (Hc HΔ : Fin m → Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) :
+theorem Zonotope.quadMapInt_eq (Hc HΔ : Fin m → Mat ℝ n n)
+    (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     Z.quadMapInt Hc HΔ = (Z.quadMap Hc).plus
       (Interval.zonotope ⟨fun i => -(Z.absBound ⬝ᵥ (HΔ i *ᵥ Z.absBound)),
         fun i => Z.absBound ⬝ᵥ (HΔ i *ᵥ Z.absBound)⟩) := by -- --- PROOF ---

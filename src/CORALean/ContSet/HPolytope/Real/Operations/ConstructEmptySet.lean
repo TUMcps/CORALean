@@ -33,7 +33,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.construct_emptySet : (HPolytope.emptySet α).construct = ∅ := by -- --- PROOF ---
+theorem HPolytope.construct_emptySet : -- --- CONCL ---
+    (HPolytope.emptySet α).construct = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
   rintro ⟨hle, -⟩

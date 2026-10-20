@@ -47,7 +47,8 @@ variable {lam : ι → ℝ}
 
 /-- [1, Remark 1]: for `β > 0`, [1, Eq. 18] holds iff [1, Eq. 20] does. -/
 theorem Ellipsoid.halderStationarity_eq_zero_iff (hlam : ∀ i, 0 < lam i) {β : ℝ}
-    (hβ : 0 < β) : Ellipsoid.halderStationarity lam β = 0
+    (hβ : 0 < β) : -- --- CONCL ---
+    Ellipsoid.halderStationarity lam β = 0
       ↔ ∑ i, lam i / (1 + β * lam i) = Fintype.card ι / (β * (β + 1)) := by -- --- PROOF ---
   -- termwise, `(1 − β²λ)/(1 + βλ) = 1 − β(β+1) λ/(1 + βλ)`
   have hterm : Ellipsoid.halderStationarity lam β

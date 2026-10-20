@@ -43,7 +43,8 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The rows of `N W` have absolute sum at most `λ`. -/
-theorem Layer.lipConstrScale_rowSum_le (W : Mat ℝ m n) {lam : ℝ} (hl : 0 < lam) (i : Fin m) :
+theorem Layer.lipConstrScale_rowSum_le (W : Mat ℝ m n) {lam : ℝ} (hl : 0 < lam)
+    (i : Fin m) : -- --- CONCL ---
     ∑ j, |(Matrix.diagonal (Layer.lipConstrScale W lam) * W) i j| ≤ lam := by -- --- PROOF ---
   set s := ∑ j, |W i j| with hs
   have hs0 : 0 ≤ s := Finset.sum_nonneg fun _ _ => abs_nonneg _

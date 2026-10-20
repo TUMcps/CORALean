@@ -91,7 +91,8 @@ private theorem mid_le {lo hi : 𝕋} {B : ℝ} (hlo : toReal lo ≤ B) (hhi : t
 
 /-- The invariant carried down: `lo` is certified, and both ends stay inside
 `expUp`'s range, which is what lets the next midpoint be tested at all. -/
-private theorem logDownIter_le (n : ℕ) (a : 𝕋) : ∀ (k : ℕ) (lo hi : 𝕋),
+private theorem logDownIter_le (n : ℕ) (a : 𝕋) : -- --- CONCL ---
+    ∀ (k : ℕ) (lo hi : 𝕋),
     Real.exp (toReal lo) ≤ toReal a → toReal lo ≤ 2 ^ n / 2 → toReal hi ≤ 2 ^ n / 2 →
     Real.exp (toReal (logDownIter n a k lo hi)) ≤ toReal a := by -- --- PROOF ---
   intro k
@@ -112,7 +113,8 @@ private theorem logDownIter_le (n : ℕ) (a : 𝕋) : ∀ (k : ℕ) (lo hi : �
 
 /-- The invariant carried up is the shorter one: `expDown` needs no range, so
 only the certificate on `hi` travels. -/
-private theorem le_logUpIter (n : ℕ) (a : 𝕋) : ∀ (k : ℕ) (lo hi : 𝕋),
+private theorem le_logUpIter (n : ℕ) (a : 𝕋) : -- --- CONCL ---
+    ∀ (k : ℕ) (lo hi : 𝕋),
     toReal a ≤ Real.exp (toReal hi) →
     toReal a ≤ Real.exp (toReal (logUpIter n a k lo hi)) := by -- --- PROOF ---
   intro k
@@ -132,7 +134,8 @@ private theorem le_logUpIter (n : ℕ) (a : 𝕋) : ∀ (k : ℕ) (lo hi : 𝕋)
 
 /-- The lower enclosure. `1 ≤ a` is what certifies the left endpoint `zero`, and
 the range bound is `expUp`'s, which no candidate under `a` escapes. -/
-theorem logDown_le (n k : ℕ) (a : 𝕋) (h1 : 1 ≤ toReal a) (hn : toReal a ≤ 2 ^ n / 2) :
+theorem logDown_le (n k : ℕ) (a : 𝕋) (h1 : 1 ≤ toReal a)
+    (hn : toReal a ≤ 2 ^ n / 2) : -- --- CONCL ---
     toReal (logDown n k a) ≤ Real.log (toReal a) := by -- --- PROOF ---
   have hpos : (0:ℝ) < toReal a := lt_of_lt_of_le zero_lt_one h1
   have hz : Real.exp (toReal (zero : 𝕋)) ≤ toReal a := by

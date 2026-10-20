@@ -39,7 +39,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.hausdorffDist_le (P : Polygon) (hne : (ContSet.construct P).Nonempty)
-    (S : List (Vec ℝ 2)) (hS : S ≠ []) :
+    (S : List (Vec ℝ 2)) (hS : S ≠ []) : -- --- CONCL ---
     P.hausdorffDist S ≤ hausdorffDist₂ (ContSet.construct P) {s | s ∈ S} := by -- --- PROOF ---
   have hTne : ({s | s ∈ S} : Set (Vec ℝ 2)).Nonempty := ⟨S.head hS, List.head_mem hS⟩
   have hr : 0 ≤ hausdorffDist₂ (ContSet.construct P) {s | s ∈ S} := Metric.hausdorffDist_nonneg

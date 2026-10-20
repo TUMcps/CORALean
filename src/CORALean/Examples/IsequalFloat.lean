@@ -74,7 +74,8 @@ theorem Z₁_eq_Z₂ : Z₁.construct = Z₂.construct :=
   ContSet.eqBool_sound (S := Zonotope (Vec D 2)) (s := Z₁) (t := Z₂) rfl
 
 /-- `[0, 1] ≠ [0, 2]` as sets of reals, so `neBool` is `true` (as the run shows). -/
-theorem I₁_ne_I₂ : ContSet.neBool I₁ I₂ = true := by -- --- PROOF ---
+theorem I₁_ne_I₂ : -- --- CONCL ---
+    ContSet.neBool I₁ I₂ = true := by -- --- PROOF ---
   -- the point `3/2` is in the second box and not in the first
   refine ContSet.neBool_of_construct_ne (S := Interval (Vec D 1)) fun h => ?_
   have h2 : (![3 / 2] : Vec ℝ 1) ∈ ContSet.construct I₂ := by

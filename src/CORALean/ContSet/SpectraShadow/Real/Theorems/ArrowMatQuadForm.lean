@@ -39,7 +39,7 @@ variable {N : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem arrowMat_quadForm (s t : ℝ) (w : Vec ℝ N) (x : Vec ℝ (N + 1)) :
+theorem arrowMat_quadForm (s t : ℝ) (w : Vec ℝ N) (x : Vec ℝ (N + 1)) : -- --- CONCL ---
     x ⬝ᵥ arrowMat s t w *ᵥ x
       = t * x 0 ^ 2 + 2 * x 0 * (w ⬝ᵥ fun i : Fin N => x i.succ)
         + s * ((fun i : Fin N => x i.succ) ⬝ᵥ fun i : Fin N => x i.succ) := by -- --- PROOF ---

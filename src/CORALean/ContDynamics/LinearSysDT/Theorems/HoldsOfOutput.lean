@@ -60,7 +60,7 @@ theorem LinearSysDT.holds_of_output (sys : LinearSysDT 𝕋 n) (out : OutputEq �
     (ho : 0 < o) (R₀ U : S n) (spec : Specification ContSet) {x u : ℕ → Vec ℝ n}
     (traj : sys.IsCanonicalTrajectory R₀ U x u) (k : ℕ)
     (h : spec.Holds (construct (out.outputSet (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) U)))
-    : -- --- CONCL ---
+    :
     spec.Holds {out.eval (x k) (u k)} :=
   spec.holds_of_outer
     (Set.singleton_subset_iff.mpr (sys.output_outer out ho R₀ U traj k)) h

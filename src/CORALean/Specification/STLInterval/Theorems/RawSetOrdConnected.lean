@@ -36,7 +36,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `rawSet l u lc rc` is order connected. -/
-theorem STLInterval.rawSet_ordConnected (l u : EReal) (lc rc : Bool) :
+theorem STLInterval.rawSet_ordConnected (l u : EReal) (lc rc : Bool) : -- --- CONCL ---
     (rawSet l u lc rc).OrdConnected := by -- --- PROOF ---
   refine ⟨fun a ha b hb t ht => ⟨?_, ?_⟩⟩
   · rcases ha.1 with h | ⟨hc, h⟩

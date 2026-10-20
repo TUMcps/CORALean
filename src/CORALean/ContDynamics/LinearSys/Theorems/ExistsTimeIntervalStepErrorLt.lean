@@ -60,7 +60,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- A step whose whole time-interval enclosure error is under `ε`, sound because
 its own side condition holds too. -/
 theorem LinearSys.exists_timeIntervalStepError_lt (sys : LinearSys 𝕋 n)
-    (X₀ : Zonotope (Vec ℝ n)) (η : ℕ) {ε : ℝ} (hε : 0 < ε) :
+    (X₀ : Zonotope (Vec ℝ n)) (η : ℕ) {ε : ℝ} (hε : 0 < ε) : -- --- CONCL ---
     ∃ r : ℝ, 0 < r ∧ sys.timeIntervalStepError r η X₀ < ε ∧
       ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1 := by -- --- PROOF ---
   set A := toRealMat sys.A with hA

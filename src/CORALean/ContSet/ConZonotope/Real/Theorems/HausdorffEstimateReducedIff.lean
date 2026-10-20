@@ -53,7 +53,7 @@ open Matrix
 
 /-- [1, Sec. 4.2 (choice of j)]: at invertible `Q`, the two systems in `(ŵ, μ̂)` agree. -/
 theorem ConZonotope.hausdorffEstimate_reduced_iff {m : ℕ} (Q : Mat ℝ m m) (hQ : IsUnit Q.det)
-    (e w : Vec ℝ m) (μ r : ℝ) :
+    (e w : Vec ℝ m) (μ r : ℝ) : -- --- CONCL ---
     (Q *ᵥ w + μ • e = 0 ∧ e ⬝ᵥ w = r)
       ↔ (w + μ • (Q⁻¹ *ᵥ e) = 0 ∧ e ⬝ᵥ w = r) := by -- --- PROOF ---
   refine and_congr_left fun _ => ?_

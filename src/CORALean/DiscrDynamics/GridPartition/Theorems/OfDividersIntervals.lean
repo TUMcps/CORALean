@@ -37,7 +37,8 @@ variable {n : ℕ}
 
 /-- The state space of `partition(dividers)` has the first and last divider as its bounds. -/
 theorem GridPartition.ofDividers_intervals (v : Fin n → List ℝ) (h : ∀ j, v j ≠ [])
-    (j : Fin n) : (GridPartition.ofDividers v).intervals.inf j = (v j).head (h j) ∧
+    (j : Fin n) : -- --- CONCL ---
+    (GridPartition.ofDividers v).intervals.inf j = (v j).head (h j) ∧
       (GridPartition.ofDividers v).intervals.sup j = (v j).getLast (h j) := by -- --- PROOF ---
   obtain ⟨a, l, hl⟩ := List.exists_cons_of_ne_nil (h j)
   simp only [GridPartition.intervals, GridPartition.ofDividers]

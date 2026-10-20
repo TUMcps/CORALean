@@ -44,7 +44,8 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 
 /-- `I * J` holds `a * b`. -/
 theorem SyntaxTree.contains_times {I J : Dom} {a b : ℝ} (ha : Dom.contains I a)
-    (hb : Dom.contains J b) : Dom.contains (Real.Interval.times I J) (a * b) := by -- --- PROOF ---
+    (hb : Dom.contains J b) : -- --- CONCL ---
+    Dom.contains (Real.Interval.times I J) (a * b) := by -- --- PROOF ---
   have hI : I.IsNonempty := fun i => by
     obtain rfl : i = 0 := Subsingleton.elim i 0
     exact ha.1.trans ha.2

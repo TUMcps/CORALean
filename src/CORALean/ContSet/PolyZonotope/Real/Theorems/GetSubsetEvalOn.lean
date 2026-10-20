@@ -54,7 +54,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- `getSubset`'s evaluation at `B` is the original's at the re-parametrized
 `B`: `getSubset_subsetAt` with the independent block along for the ride. -/
 theorem PolyZonotope.aux_getSubset_evalOn (pZ : PolyZonotope α) (k : Fin pZ.p) (cen rad : ℝ)
-    (B : Set (Fin pZ.p → ℝ)) : (pZ.getSubset k cen rad).evalOn B
+    (B : Set (Fin pZ.p → ℝ)) : -- --- CONCL ---
+    (pZ.getSubset k cen rad).evalOn B
       = pZ.evalOn ((fun b => Function.update b k (cen + rad * b k)) '' B) := by -- --- PROOF ---
   ext x
   constructor

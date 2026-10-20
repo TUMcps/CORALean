@@ -39,7 +39,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.inputSetFloat_outer (sys : LinearSys 𝕋 n) (U : Zonotope (Vec 𝕋 sys.m)) :
+theorem LinearSys.inputSetFloat_outer (sys : LinearSys 𝕋 n)
+    (U : Zonotope (Vec 𝕋 sys.m)) : -- --- CONCL ---
     (fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) '' U.construct ⊆
       (sys.inputSetFloat U).construct := by -- --- PROOF ---
   rintro _ ⟨u, hu, rfl⟩

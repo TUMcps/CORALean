@@ -68,7 +68,8 @@ theorem Ellipsoid.aux_mulVec_eq_sum {m q : ℕ} (G : Mat ℝ m q) (u : Vec ℝ q
 
 /-- A diagonal exponent matrix's monomial is its one nonzero factor, to the
 diagonal's own power. -/
-theorem Ellipsoid.aux_monomial_conPolyZonoR {k : ℕ} (a : Fin (k + 1) → ℝ) (j : Fin (k + 1)) :
+theorem Ellipsoid.aux_monomial_conPolyZonoR {k : ℕ} (a : Fin (k + 1) → ℝ)
+    (j : Fin (k + 1)) : -- --- CONCL ---
     PolyZonotope.monomial (Ellipsoid.conPolyZonoR k) a j
       = a j ^ (if j.val < k then 2 else 1) := by -- --- PROOF ---
   rw [PolyZonotope.monomial, Finset.prod_eq_single j]
@@ -82,7 +83,7 @@ theorem Ellipsoid.aux_monomial_conPolyZonoR {k : ℕ} (a : Fin (k + 1) → ℝ) 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The CPZ of a factor `G` is the set `{q + G u | ‖u‖₂ ≤ 1}`, both directions. -/
-theorem Ellipsoid.conPolyZonoOfFactor_construct (G : Mat ℝ n n) (q : Vec ℝ n) :
+theorem Ellipsoid.conPolyZonoOfFactor_construct (G : Mat ℝ n n) (q : Vec ℝ n) : -- --- CONCL ---
     {x | ∃ u : Vec ℝ n, ‖u‖₂ ≤ 1 ∧ x = q + G *ᵥ u} =
       (Ellipsoid.conPolyZonoOfFactor G q).construct := by -- --- PROOF ---
   set P := Ellipsoid.conPolyZonoOfFactor G q with hP

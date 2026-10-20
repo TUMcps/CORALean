@@ -86,7 +86,8 @@ theorem aux_zip_trail {α : Type} (g : ℕ → ℕ → α) (trail : ℕ → α) 
 
 /-- The first point of a valid signal is `0`. -/
 theorem aux_prec_one {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal T)
-    (hs : s.IsValid) : s.precTimeAtValIdx 1 = (0, true) := by -- --- PROOF ---
+    (hs : s.IsValid) : -- --- CONCL ---
+    s.precTimeAtValIdx 1 = (0, true) := by -- --- PROOF ---
   have h := hs.2.2.1
   have : s.timePoints.getD 0 0 = 0 := by
     cases hp : s.timePoints with
@@ -96,7 +97,8 @@ theorem aux_prec_one {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal
 
 /-- Past the last value the time is `inf`, which is open. -/
 theorem aux_succ_len {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal T)
-    (hs : s.IsValid) : s.succTimeAtValIdx s.values.length = (⊤, false) := by -- --- PROOF ---
+    (hs : s.IsValid) : -- --- CONCL ---
+    s.succTimeAtValIdx s.values.length = (⊤, false) := by -- --- PROOF ---
   have h := hs.2.1
   simp only [PointSegmentSignal.succTimeAtValIdx, PointSegmentSignal.length]
   rw [if_pos (by omega)]

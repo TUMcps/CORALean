@@ -57,7 +57,8 @@ theorem Zonotope.aux_matMul_bounds (A : Mat 𝕋 p q) (B : Mat 𝕋 q r) (i : Fi
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.matMul_outer (M : Zonotope (Mat 𝕋 p q)) (N : Zonotope (Mat 𝕋 q r)) :
+theorem Zonotope.matMul_outer (M : Zonotope (Mat 𝕋 p q))
+    (N : Zonotope (Mat 𝕋 q r)) : -- --- CONCL ---
     (⋃ A ∈ M.construct, (A * ·) '' N.construct)
       ⊆ (Zonotope.matMul M N).construct := by -- --- PROOF ---
   intro y hy

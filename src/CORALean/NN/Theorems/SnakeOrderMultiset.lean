@@ -43,7 +43,7 @@ variable {α : Type}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A list written by `List.ofFn` is the sum of its singletons. -/
-private theorem aux_coe_ofFn {w : ℕ} (f : Fin w → α) :
+private theorem aux_coe_ofFn {w : ℕ} (f : Fin w → α) : -- --- CONCL ---
     ((List.ofFn f : List α) : Multiset α) = ∑ j, ({f j} : Multiset α) := by -- --- PROOF ---
   induction w with
   | zero => simp
@@ -54,7 +54,7 @@ private theorem aux_coe_ofFn {w : ℕ} (f : Fin w → α) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem snakeOrder_coe (h w : ℕ) (A : Fin h → Fin w → α) :
+theorem snakeOrder_coe (h w : ℕ) (A : Fin h → Fin w → α) : -- --- CONCL ---
     ((snakeOrder h w A : List α) : Multiset α) =
       ∑ p : Fin h × Fin w, ({A p.1 p.2} : Multiset α) := by -- --- PROOF ---
   match h, w, A with

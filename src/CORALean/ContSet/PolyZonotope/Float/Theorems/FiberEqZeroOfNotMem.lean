@@ -36,7 +36,7 @@ variable {p h : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.fiber_eq_zero_of_notMem (E : Fin p → Fin h → ℕ) (Gr : Fin h → ℝ)
-    {j : Fin h} (hj : j ∉ PolyZonotope.repKeep E) :
+    {j : Fin h} (hj : j ∉ PolyZonotope.repKeep E) : -- --- CONCL ---
     Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep E) Gr j = 0 := by -- --- PROOF ---
   rw [Real.PolyZonotope.fiberSum]
   refine Finset.sum_eq_zero fun l hl => ?_

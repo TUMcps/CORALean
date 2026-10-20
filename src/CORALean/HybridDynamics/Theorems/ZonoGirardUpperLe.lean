@@ -46,7 +46,7 @@ variable {n : ℕ}
 
 /-- Every state of the zonotope on the hyperplane is below `zonoGirardUpper` along `ℓ`. -/
 theorem Location.zonoGirardUpper_le (Z : Real.Zonotope (Vec ℝ n)) (nv : Vec ℝ n) (γ : ℝ)
-    (ℓ : Vec ℝ n) {x : Vec ℝ n} (hx : x ∈ Z.construct) (hg : x ⬝ᵥ nv = γ) :
+    (ℓ : Vec ℝ n) {x : Vec ℝ n} (hx : x ∈ Z.construct) (hg : x ⬝ᵥ nv = γ) : -- --- CONCL ---
     x ⬝ᵥ ℓ ≤ Location.zonoGirardUpper Z nv γ ℓ := by -- --- PROOF ---
   -- the dual bound at a multiplier `μ`
   have hdual : ∀ μ : ℝ, x ⬝ᵥ ℓ ≤

@@ -50,7 +50,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Sec. I (parameterizations)]: `‖Lᵀ(x − q)‖₂ ≤ 1` iff `(x − q)ᵀ Q⁻¹ (x − q) ≤ 1`, any `L`. -/
-theorem Ellipsoid.mem_iff_norm_factor {Q : Mat ℝ n n} (hQ : Q.PosDef) :
+theorem Ellipsoid.mem_iff_norm_factor {Q : Mat ℝ n n} (hQ : Q.PosDef) : -- --- CONCL ---
     (∀ L : Mat ℝ n n, L * Lᵀ = Q⁻¹ → ∀ q x : Vec ℝ n,
       ‖Lᵀ *ᵥ (x - q)‖₂ ≤ 1 ↔ (x - q) ⬝ᵥ Q⁻¹ *ᵥ (x - q) ≤ 1)
     ∧ ∃ N : Mat ℝ n n, Nᵀ = N ∧ N * Nᵀ = Q⁻¹ := by -- --- PROOF ---

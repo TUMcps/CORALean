@@ -63,7 +63,7 @@ theorem LinearARX.aux_Icc_pred (a b : ℕ) (hb : 0 < b) :
 
 /-- A matrix applied to a sum of linear images of one set, exactly. -/
 theorem LinearARX.aux_image_sum_set {n m : ℕ} (M : Mat ℝ m n) (s : Finset ℕ)
-    (B : ℕ → Mat ℝ n du) (V : Set (Vec ℝ du)) :
+    (B : ℕ → Mat ℝ n du) (V : Set (Vec ℝ du)) : -- --- CONCL ---
     (M *ᵥ ·) '' (∑ i ∈ s, (B i *ᵥ ·) '' V) = ∑ i ∈ s, ((M * B i) *ᵥ ·) '' V := by -- --- PROOF ---
   have hM : (M *ᵥ · : Vec ℝ n → Vec ℝ m) = ⇑(Matrix.mulVecLin M) := rfl
   rw [hM, Set.image_finsetSum]
@@ -87,7 +87,7 @@ theorem LinearARX.aux_shift_sum (sys : LinearARX 𝕋 dy du p) (k a b : ℕ) (ha
 
 /-- The same for the points of `s_v`. -/
 theorem LinearARX.aux_shift_sum_vec (sys : LinearARX 𝕋 dy du p) (k a b : ℕ) (hab : p ≤ a)
-    (v : ℕ → Vec ℝ du) :
+    (v : ℕ → Vec ℝ du) : -- --- CONCL ---
     ∑ i ∈ Finset.Ico a b, (sys.Aext ^ p * sys.Btilde k i) *ᵥ v i
       = ∑ i ∈ Finset.Ico (a + p) (b + p), sys.Btilde (k + p) i *ᵥ v (i - p) := by -- --- PROOF ---
   rw [← Finset.sum_Ico_add' (fun j : ℕ => sys.Btilde (k + p) j *ᵥ v (j - p))]
@@ -202,7 +202,8 @@ theorem LinearARX.aux_alg2State_inv (sys : LinearARX 𝕋 dy du p) (yinit : Vec 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearARX.alg2_eq_reachWindowExact (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ (p * dy))
-    {Uc : Set (Vec ℝ du)} (hUc : Uc.Nonempty) (uv : ℕ → Vec ℝ du) (hp : 0 < p) (m : ℕ) :
+    {Uc : Set (Vec ℝ du)} (hUc : Uc.Nonempty) (uv : ℕ → Vec ℝ du) (hp : 0 < p)
+    (m : ℕ) : -- --- CONCL ---
     sys.alg2 yinit Uc uv p m
       = sys.reachWindowExact yinit (fun i => Uc + {uv i}) (p + m * p) := by -- --- PROOF ---
   obtain ⟨h1, hSc, hTc1, -, hsv, hB⟩ := sys.aux_alg2State_inv yinit Uc uv hp m

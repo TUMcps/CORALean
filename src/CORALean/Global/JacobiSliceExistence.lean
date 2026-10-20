@@ -64,7 +64,7 @@ variable {m n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The selection matrix of `ind` applied to a unit vector is the unit vector at `ind j`. -/
-theorem aux_select_mulVec_single {ind : Fin n → Fin m} (j : Fin n) :
+theorem aux_select_mulVec_single {ind : Fin n → Fin m} (j : Fin n) : -- --- CONCL ---
     (Matrix.of fun k i => if ind i = k then (1 : ℝ) else 0) *ᵥ Pi.single j 1
       = Pi.single (ind j) 1 := by -- --- PROOF ---
   funext k
@@ -91,7 +91,8 @@ theorem exists_jacobiSlice_eq_of_jacobi {f : (Fin m → ℝ) → (Fin n → ℝ)
     (hstep : ∀ A : Fin n → Fin n → ℝ, (∀ i j, A i j ∈ Icc (Jlo i j) (Jhi i j)) →
       ∀ v ∈ Icc lo hi, ∀ i, A i i ≠ 0 ∧
         xc (ind i) + ((C *ᵥ (y - f xc)) i
-          - ∑ j ∈ Finset.univ.erase i, A i j * (v j - xc (ind j))) / A i i ∈ Icc (lo i) (hi i)) :
+          - ∑ j ∈ Finset.univ.erase i, A i j * (v j - xc (ind j))) / A i i ∈ Icc (lo i) (hi i))
+    : -- --- CONCL ---
     ∃ v ∈ Icc lo hi, f (jacobiSlice xc ind v) = y := by -- --- PROOF ---
   set P : Matrix (Fin m) (Fin n) ℝ := Matrix.of fun k i => if ind i = k then (1 : ℝ) else 0
   set F : (Fin n → ℝ) → (Fin n → ℝ) := fun v => C *ᵥ f (jacobiSlice xc ind v)

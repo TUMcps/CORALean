@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- `y ∘ f` is in the reindexed set when `y` is in `P`. -/
 theorem PolyLevelSet.mem_reindexVars_of_mem (P : PolyLevelSet 𝕋 n) {n' : ℕ} {f : Fin n' → Fin n}
     (hf : Function.Injective f) (h0 : ∀ k, k ∉ Set.range f → ∀ l, P.R k l = 0)
-    {y : Vec ℝ n} (hy : y ∈ P.construct) :
+    {y : Vec ℝ n} (hy : y ∈ P.construct) : -- --- CONCL ---
     (fun k => y (f k)) ∈ (P.reindexVars f).construct := by -- --- PROOF ---
   refine ⟨Real.Interval.project_outer P.dom.nominal f ⟨y, hy.1, rfl⟩, ?_⟩
   show ∀ i, (P.op i).IsMetWithin ((P.nominalCore.reindexVars f).eval (fun k => y (f k)) i)

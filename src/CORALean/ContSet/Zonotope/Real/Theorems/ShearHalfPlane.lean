@@ -43,7 +43,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.shear_half_plane (Z : Zonotope (Vec ℝ 2)) (κ : ℝ)
-    (hH : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0)) (j : Fin Z.h) :
+    (hH : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0)) (j : Fin Z.h) : -- --- CONCL ---
     0 ≤ (Z.shear κ).G j 1 ∧ (0 < (Z.shear κ).G j 1 ∨ 0 ≤ (Z.shear κ).G j 0) := by -- --- PROOF ---
   obtain ⟨h0, h1⟩ := hH j
   refine ⟨h0, ?_⟩

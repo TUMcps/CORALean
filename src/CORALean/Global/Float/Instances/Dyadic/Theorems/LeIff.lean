@@ -41,7 +41,8 @@ variable {p : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem le_iff (a b : Dyadic p) : le a b = true ↔ toReal a ≤ toReal b := by -- --- PROOF ---
+theorem le_iff (a b : Dyadic p) : -- --- CONCL ---
+    le a b = true ↔ toReal a ≤ toReal b := by -- --- PROOF ---
   rw [← leAligned_iff, le, leAligned]
   by_cases h : a.exponent ≤ b.exponent
   · rw [if_pos h, leShl_iff, min_eq_left h, decide_eq_true_eq]

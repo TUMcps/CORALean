@@ -42,7 +42,8 @@ variable {n : ℕ}
 
 /-- `q + Q w` lies in the ellipsoid when `wᵀ Q w ≤ 1`. -/
 theorem Ellipsoid.add_mulVec_mem_construct (E : Ellipsoid n) {w : Vec ℝ n}
-    (hw : w ⬝ᵥ (E.Q *ᵥ w) ≤ 1) : E.q + E.Q *ᵥ w ∈ E.construct := by -- --- PROOF ---
+    (hw : w ⬝ᵥ (E.Q *ᵥ w) ≤ 1) : -- --- CONCL ---
+    E.q + E.Q *ᵥ w ∈ E.construct := by -- --- PROOF ---
   -- the ellipsoid as `q + G u`, `‖u‖₂ ≤ 1`
   simp only [Ellipsoid.construct_eq_sqrt] at *
   have hGG : E.G * E.G = E.Q := by

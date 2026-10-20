@@ -77,7 +77,8 @@ theorem aux_sr_holderConjugate {x : ℝ≥0∞} (hx : 2 ≤ x) (hxT : x ≠ ∞)
     ENNReal.div_add_div_same, tsub_add_cancel_of_le hx, ENNReal.div_self hx0 hxT]
 
 /-- `‖(tᵢ²)ᵢ‖_{x/2} = ‖t‖_x²` for `2 ≤ x < ∞`. -/
-theorem aux_sr_norm_sq {k : ℕ} {x : ℝ≥0∞} (hx : 2 ≤ x) (hxT : x ≠ ∞) (t : Fin k → ℝ) :
+theorem aux_sr_norm_sq {k : ℕ} {x : ℝ≥0∞} (hx : 2 ≤ x) (hxT : x ≠ ∞)
+    (t : Fin k → ℝ) : -- --- CONCL ---
     ‖WithLp.toLp (x / 2) (fun i => t i ^ 2)‖ = ‖WithLp.toLp x t‖ ^ 2 := by -- --- PROOF ---
   have hc : 2 ≤ x.toReal := by
     have := ENNReal.toReal_mono hxT hx
@@ -306,7 +307,8 @@ theorem aux_sr_expect_le {d : ℕ} {P Q : ℝ} (hP : 2 ≤ P) (hQ : 2 ≤ Q)
 /-- The Gram vectors: `‖Σₖ H_{ki} cₖ‖² = (Hᵀ X₂₂ H)ᵢᵢ`. -/
 theorem aux_sr_gram {d : ℕ} (H : Matrix (Fin n) (Fin l) ℝ)
     (X : Matrix (Fin m ⊕ Fin n) (Fin m ⊕ Fin n) ℝ)
-    (c : Fin m ⊕ Fin n → EuclideanSpace ℝ (Fin d)) (hc : ∀ p q, X p q = ⟪c p, c q⟫) (i : Fin l) :
+    (c : Fin m ⊕ Fin n → EuclideanSpace ℝ (Fin d)) (hc : ∀ p q, X p q = ⟪c p, c q⟫)
+    (i : Fin l) : -- --- CONCL ---
     ‖∑ k, H k i • c (Sum.inr k)‖ ^ 2 = (Hᵀ * X.toBlocks₂₂ * H) i i := by -- --- PROOF ---
   rw [← real_inner_self_eq_norm_sq, sum_inner]
   simp only [inner_sum, real_inner_smul_left, real_inner_smul_right, ← hc, mul_apply,
@@ -317,7 +319,7 @@ theorem aux_sr_gram {d : ℕ} (H : Matrix (Fin n) (Fin l) ℝ)
 /-- A family whose squared norms have `x/2`-norm at most `1` has `(Σ ‖·‖^x)^{1/x} ≤ 1`. -/
 theorem aux_sr_family_le_one {d k : ℕ} {x : ℝ≥0∞} (hx : 2 ≤ x) (hxT : x ≠ ∞)
     (a : Fin k → EuclideanSpace ℝ (Fin d))
-    (h : ‖WithLp.toLp (x / 2) (fun i => ‖a i‖ ^ 2)‖ ≤ 1) :
+    (h : ‖WithLp.toLp (x / 2) (fun i => ‖a i‖ ^ 2)‖ ≤ 1) : -- --- CONCL ---
     (∑ i, ‖a i‖ ^ x.toReal) ^ (1 / x.toReal) ≤ 1 := by -- --- PROOF ---
   haveI : Fact (1 ≤ x) := ⟨le_trans (by norm_num) hx⟩
   rw [aux_sr_norm_sq hx hxT (fun i => ‖a i‖)] at h

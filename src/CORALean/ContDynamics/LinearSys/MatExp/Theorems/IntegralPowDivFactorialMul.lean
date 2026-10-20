@@ -37,7 +37,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.integral_pow_div_factorial_mul (k : ℕ) (s c : ℝ) :
+theorem MatExp.integral_pow_div_factorial_mul (k : ℕ) (s c : ℝ) : -- --- CONCL ---
     ∫ σ in (0:ℝ)..s, σ ^ k / (Nat.factorial k : ℝ) * c
       = s ^ (k + 1) / (Nat.factorial (k + 1) : ℝ) * c := by -- --- PROOF ---
   simp only [div_mul_eq_mul_div, intervalIntegral.integral_div,

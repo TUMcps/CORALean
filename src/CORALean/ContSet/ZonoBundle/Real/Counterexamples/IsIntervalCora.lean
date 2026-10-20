@@ -55,7 +55,7 @@ def ZonoBundle.isIntervalCora (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k) : Pr
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.isIntervalCora_counterexample :
+theorem ZonoBundle.isIntervalCora_counterexample : -- --- CONCL ---
     ∃ (zB : ZonoBundle (Vec ℝ 2)) (hk : 0 < zB.k), zB.isIntervalCora hk
       ∧ ¬ ∃ I : Interval (Vec ℝ 2), zB.construct = I.construct := by -- --- PROOF ---
   -- the box and the diagonal

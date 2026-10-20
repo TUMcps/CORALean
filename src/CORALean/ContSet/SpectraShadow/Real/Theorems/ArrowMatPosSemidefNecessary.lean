@@ -42,7 +42,8 @@ variable {N : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem arrowMat_posSemidef_necessary {s t : ℝ} {w : Vec ℝ N} (hN : 0 < N)
-    (h : (arrowMat s t w).PosSemidef) : 0 ≤ s ∧ (s = 0 → w = 0) := by -- --- PROOF ---
+    (h : (arrowMat s t w).PosSemidef) : -- --- CONCL ---
+    0 ≤ s ∧ (s = 0 → w = 0) := by -- --- PROOF ---
   have hQ := fun x => h.dotProduct_mulVec_nonneg x
   simp only [star_trivial] at hQ
   -- the form at `(0, e₀)` is `s`

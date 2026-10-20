@@ -36,7 +36,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `and_` denotes the intersection of the two sets. -/
-theorem STLInterval.set_and_ (I J : STLInterval) :
+theorem STLInterval.set_and_ (I J : STLInterval) : -- --- CONCL ---
     (I.and_ J).set = I.set ∩ J.set := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.and_, STLInterval.set]

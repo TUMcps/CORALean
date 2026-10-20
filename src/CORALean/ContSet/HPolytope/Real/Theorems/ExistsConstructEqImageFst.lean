@@ -53,7 +53,7 @@ open Classical in
 /-- Fourier–Motzkin, one variable: the rows not involving `t`, and every row bounding `t` from
 above against every row bounding it from below. -/
 theorem aux_fm {β ι : Type} [AddCommGroup β] [Module ℝ β] [Fintype ι]
-    (F : ι → (β × ℝ →ₗ[ℝ] ℝ)) (c : ι → ℝ) :
+    (F : ι → (β × ℝ →ₗ[ℝ] ℝ)) (c : ι → ℝ) : -- --- CONCL ---
     ∃ (κ : Type) (_ : Fintype κ) (A : κ → (β →ₗ[ℝ] ℝ)) (b : κ → ℝ),
       ∀ x, (∀ k, A k x ≤ b k) ↔ ∃ t : ℝ, ∀ i, F i (x, t) ≤ c i := by -- --- PROOF ---
   -- each row as `g x + a t`
@@ -123,7 +123,8 @@ theorem aux_fm {β ι : Type} [AddCommGroup β] [Module ℝ β] [Fintype ι]
       · simp
 
 /-- Fourier–Motzkin, `k` variables, one at a time. -/
-theorem aux_fm_vec (k : ℕ) : ∀ {β ι : Type} [AddCommGroup β] [Module ℝ β] [Fintype ι]
+theorem aux_fm_vec (k : ℕ) : -- --- CONCL ---
+    ∀ {β ι : Type} [AddCommGroup β] [Module ℝ β] [Fintype ι]
     (F : ι → (β × (Fin k → ℝ) →ₗ[ℝ] ℝ)) (c : ι → ℝ),
     ∃ (κ : Type) (_ : Fintype κ) (A : κ → (β →ₗ[ℝ] ℝ)) (b : κ → ℝ),
       ∀ x, (∀ j, A j x ≤ b j) ↔ ∃ y : Fin k → ℝ, ∀ i, F i (x, y) ≤ c i := by -- --- PROOF ---
@@ -168,7 +169,7 @@ theorem aux_fm_vec (k : ℕ) : ∀ {β ι : Type} [AddCommGroup β] [Module ℝ 
 /-- The projection of a halfspace description onto its first factor is a halfspace
 description, by Fourier–Motzkin elimination of the `k` coordinates of the second. -/
 theorem HPolytope.exists_construct_eq_image_fst {α : Type} [AddCommGroup α] [Module ℝ α]
-    {k : ℕ} (P : HPolytope (α × Vec ℝ k)) :
+    {k : ℕ} (P : HPolytope (α × Vec ℝ k)) : -- --- CONCL ---
     ∃ Q : HPolytope α, Q.construct = Prod.fst '' P.construct := by -- --- PROOF ---
   -- the rows, and each equality as two inequalities
   let F : Fin P.m ⊕ (Bool × Fin P.me) → (α × (Fin k → ℝ) →ₗ[ℝ] ℝ) := fun r => match r with

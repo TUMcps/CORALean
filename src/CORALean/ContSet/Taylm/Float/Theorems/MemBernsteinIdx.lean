@@ -36,7 +36,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.mem_bernsteinIdx (n N : ℕ) (β : Fin n → Fin (N + 1)) :
+theorem Taylm.mem_bernsteinIdx (n N : ℕ) (β : Fin n → Fin (N + 1)) : -- --- CONCL ---
     β ∈ Taylm.bernsteinIdx n N := by -- --- PROOF ---
   induction n with
   | zero =>

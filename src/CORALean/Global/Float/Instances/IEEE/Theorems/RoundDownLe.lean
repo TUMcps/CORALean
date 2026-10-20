@@ -38,7 +38,7 @@ variable {fmt : IEEEFormat}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem roundDown_le (d : Dyadic fmt.p) :
+theorem roundDown_le (d : Dyadic fmt.p) : -- --- CONCL ---
     (roundDown d : IEEE fmt).toReal ≤ d.toReal := by -- --- PROOF ---
   show Dyadic.toReal (⟨d.mantissa / 2 ^ gridShift d, d.exponent + (gridShift d : ℤ)⟩ :
     Dyadic fmt.p) ≤ d.toReal

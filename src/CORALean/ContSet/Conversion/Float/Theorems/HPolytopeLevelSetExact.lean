@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.levelSet_exact (P : HPolytope 𝕋 (Vec 𝕋 n)) :
+theorem HPolytope.levelSet_exact (P : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     P.levelSet.construct = P.nominal.construct := by -- --- PROOF ---
   ext x
   show (∀ i, Real.CompOp.holds (Fin.append (fun _ => .le) (Fin.append (fun _ => .le)

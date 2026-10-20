@@ -79,7 +79,7 @@ theorem Capsule.aux_plus_branch (k : ℕ) (C₁ C₂ : Capsule 𝕋 n) {g g' : V
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.plus_outer (k : ℕ) (C₁ C₂ : Capsule 𝕋 n) :
+theorem Capsule.plus_outer (k : ℕ) (C₁ C₂ : Capsule 𝕋 n) : -- --- CONCL ---
     C₁.construct + C₂.construct ⊆ (C₁.plus k C₂).construct := by -- --- PROOF ---
   rintro _ ⟨_, ⟨y₁, h₁, e₁, he₁, rfl⟩, _, ⟨y₂, h₂, e₂, he₂, rfl⟩, rfl⟩
   have he : e₁ + e₂ ∈ (C₁.I_error.plus C₂.I_error).construct :=

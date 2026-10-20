@@ -37,7 +37,7 @@ namespace CORALean.Real
 
 /-- Exact: `noIndep` denotes the dependent part, `point` over the factor cube. -/
 theorem PolyZonotope.noIndep_construct {α : Type} [AddCommGroup α] [Module ℝ α]
-    (pZ : PolyZonotope α) :
+    (pZ : PolyZonotope α) : -- --- CONCL ---
     pZ.noIndep.construct =
       {x | ∃ a : Fin pZ.p → ℝ, (∀ k, |a k| ≤ 1) ∧ x = pZ.point a} := by -- --- PROOF ---
   ext x

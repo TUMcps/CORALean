@@ -38,7 +38,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.levelSet_exact (P : HPolytope (Vec ℝ n)) :
+theorem HPolytope.levelSet_exact (P : HPolytope (Vec ℝ n)) : -- --- CONCL ---
     P.levelSet.construct = P.construct := by -- --- PROOF ---
   ext x
   refine (LevelSet.forall_append_holds (fun _ => .le) (fun _ => .eq)

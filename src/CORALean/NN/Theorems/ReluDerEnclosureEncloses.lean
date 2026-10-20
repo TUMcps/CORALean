@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem reluDerEnclosure_encloses :
+theorem reluDerEnclosure_encloses : -- --- CONCL ---
     ScalarEncloses (reluDerEnclosure (𝕋 := 𝕋))
       (fun x => if 0 < x then 1 else 0) := by -- --- PROOF ---
   intro I x hl hu

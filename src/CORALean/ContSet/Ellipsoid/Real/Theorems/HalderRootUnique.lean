@@ -48,7 +48,8 @@ variable {lam : ι → ℝ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Thm. 2]: [1, Eq. 18] has a unique positive root, whatever the dimension. -/
-theorem Ellipsoid.exists_unique_halderStationarity_root [Nonempty ι] (hlam : ∀ i, 0 < lam i) :
+theorem Ellipsoid.exists_unique_halderStationarity_root [Nonempty ι]
+    (hlam : ∀ i, 0 < lam i) : -- --- CONCL ---
     ∃! β : ℝ, 0 < β ∧ Ellipsoid.halderStationarity lam β = 0 := by -- --- PROOF ---
   have hcont : ContinuousOn (Ellipsoid.halderStationarity lam) (Set.Ici 0) := by
     unfold Ellipsoid.halderStationarity

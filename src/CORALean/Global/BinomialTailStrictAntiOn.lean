@@ -48,7 +48,7 @@ open Polynomial
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- the derivatives of the first `k + 1` Bernstein polynomials telescope
-theorem aux_derivative_sum_bernstein (m k : ℕ) :
+theorem aux_derivative_sum_bernstein (m k : ℕ) : -- --- CONCL ---
     derivative (∑ i ∈ Finset.range (k + 1), bernsteinPolynomial ℝ m i) =
       -(m : ℝ[X]) * bernsteinPolynomial ℝ (m - 1) k := by -- --- PROOF ---
   induction k with
@@ -66,7 +66,7 @@ theorem aux_eval_sum_bernstein (m k : ℕ) (p : ℝ) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem binomialTail_strictAntiOn {m k : ℕ} (hk : k < m) :
+theorem binomialTail_strictAntiOn {m k : ℕ} (hk : k < m) : -- --- CONCL ---
     StrictAntiOn (fun p : ℝ => ∑ i ∈ Finset.range (k + 1),
       (m.choose i : ℝ) * p ^ i * (1 - p) ^ (m - i)) (Set.Icc 0 1) := by -- --- PROOF ---
   set q := ∑ i ∈ Finset.range (k + 1), bernsteinPolynomial ℝ m i

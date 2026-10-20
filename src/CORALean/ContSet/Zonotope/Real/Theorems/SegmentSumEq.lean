@@ -48,7 +48,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Eq. 12]: for convex `A`, `A ⊕ x = {a + αx | a ∈ A, α ∈ [0, 1]}`. -/
-theorem Zonotope.segmentSum_eq {A : Set (Vec ℝ n)} (hA : Convex ℝ A) (x : Vec ℝ n) :
+theorem Zonotope.segmentSum_eq {A : Set (Vec ℝ n)} (hA : Convex ℝ A)
+    (x : Vec ℝ n) : -- --- CONCL ---
     Zonotope.segmentSum A x
       = {y | ∃ a ∈ A, ∃ t ∈ Set.Icc (0:ℝ) 1, y = a + t • x} := by -- --- PROOF ---
   unfold Zonotope.segmentSum

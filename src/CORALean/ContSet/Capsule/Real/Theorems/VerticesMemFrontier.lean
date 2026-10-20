@@ -46,7 +46,7 @@ variable {n : ℕ}
 behind, is on the frontier. -/
 theorem Capsule.aux_mem_frontier (C : Capsule n) (hr : 0 ≤ C.r) {t₀ : ℝ}
     (ht₀ : t₀ ∈ Set.Icc (-1 : ℝ) 1) (u : Vec ℝ n) (hu : ∑ i, u i ^ 2 = 1)
-    (hdir : ∀ t ∈ Set.Icc (-1 : ℝ) 1, 0 ≤ (t₀ - t) * ∑ i, C.g i * u i) :
+    (hdir : ∀ t ∈ Set.Icc (-1 : ℝ) 1, 0 ≤ (t₀ - t) * ∑ i, C.g i * u i) : -- --- CONCL ---
     (fun i => C.c i + t₀ * C.g i + C.r * u i) ∈ frontier C.construct := by -- --- PROOF ---
   -- the point is in the capsule: distance `r` at `t₀`
   have hmem : (fun i => C.c i + t₀ * C.g i + C.r * u i) ∈ C.construct := by
@@ -95,7 +95,7 @@ theorem Capsule.aux_mem_frontier (C : Capsule n) (hr : 0 ≤ C.r) {t₀ : ℝ}
   have hle := (Real.sqrt_le_iff.mp hdist).2
   nlinarith
 /-- The direction a half circle's point leaves in meets the generator at the angle `a - θ`. -/
-theorem Capsule.aux_dot_cos (C : Capsule 2) (a : ℝ) :
+theorem Capsule.aux_dot_cos (C : Capsule 2) (a : ℝ) : -- --- CONCL ---
     C.g 0 * Real.cos a + C.g 1 * Real.sin a =
       ‖(⟨C.g 0, C.g 1⟩ : ℂ)‖ * Real.cos (a - Complex.arg ⟨C.g 0, C.g 1⟩) := by -- --- PROOF ---
   rw [Real.cos_sub]
@@ -105,7 +105,7 @@ theorem Capsule.aux_dot_cos (C : Capsule 2) (a : ℝ) :
   linear_combination (-Real.cos a) * h1 + (-Real.sin a) * h2
 
 /-- The sampled angle stays within the half circle's range. -/
-theorem Capsule.aux_index_range (i : Fin 500) :
+theorem Capsule.aux_index_range (i : Fin 500) : -- --- CONCL ---
     0 ≤ (i : ℝ) * (Real.pi / 499) ∧ (i : ℝ) * (Real.pi / 499) ≤ Real.pi := by -- --- PROOF ---
   have h0 : (0 : ℝ) ≤ i := Nat.cast_nonneg _
   have h1 : (i : ℝ) ≤ 499 := by exact_mod_cast Nat.le_of_lt_succ i.isLt
@@ -118,7 +118,7 @@ theorem Capsule.aux_index_range (i : Fin 500) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.vertices_mem_frontier (C : Capsule 2) (hr : 0 ≤ C.r) :
+theorem Capsule.vertices_mem_frontier (C : Capsule 2) (hr : 0 ≤ C.r) : -- --- CONCL ---
     ∀ x ∈ C.vertices, x ∈ frontier C.construct := by -- --- PROOF ---
   intro x hx
   unfold Capsule.vertices at hx

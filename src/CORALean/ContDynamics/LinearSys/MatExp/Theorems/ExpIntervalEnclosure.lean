@@ -65,7 +65,7 @@ variable {n : ℕ}
 and the tail bound taken at the interval matrix's dominating matrix. -/
 theorem MatExp.exp_mem_expIntervalEnclosure (A : Interval (Mat ℝ n n)) (η : ℕ)
     {M : Mat ℝ n n} (hM : M ∈ A.construct)
-    (hε : ‖A.absMax‖ / ((η : ℝ) + 2) < 1) :
+    (hε : ‖A.absMax‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
     exp M ∈ (MatExp.expIntervalEnclosure A η).construct := by -- --- PROOF ---
   refine Interval.mem_mat_iff.mpr fun i j => ?_
   have hnorm : ‖M‖ ≤ ‖A.absMax‖ := Interval.norm_le_absMax hM

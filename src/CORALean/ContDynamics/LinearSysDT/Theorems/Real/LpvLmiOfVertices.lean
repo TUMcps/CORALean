@@ -85,7 +85,7 @@ theorem LinearSysDT.aux_sum_fromCols {a c d : Type} [Fintype c] [Fintype d]
 
 -- a double sum of `ρᵢρⱼ Kᵢ Mⱼ` factors
 theorem LinearSysDT.aux_sum_mul {k l : ℕ} (ρ : Fin r → ℝ) (K : Fin r → Mat ℝ n k)
-    (M : Fin r → Mat ℝ k l) :
+    (M : Fin r → Mat ℝ k l) : -- --- CONCL ---
     ∑ i, ∑ j, (ρ i * ρ j) • (K i * M j) =
       (∑ i, ρ i • K i) * (∑ j, ρ j • M j) := by -- --- PROOF ---
   rw [Matrix.sum_mul]

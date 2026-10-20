@@ -61,7 +61,7 @@ theorem HPolytope.aux_abs_dropped_le {k : ℕ} (M : Mat 𝕋 k n)
 result's nominal part. -/
 theorem HPolytope.mem_keepCols_nominal (P : HPolytope 𝕋 (Vec 𝕋 n))
     (part : Split (Fin n) into (Fin q) ⊕ (Fin r)) {x : Vec ℝ n}
-    (hP : x ∈ P.nominal.construct) (hx : ∀ l, |x (part.right l)| ≤ 1) :
+    (hP : x ∈ P.nominal.construct) (hx : ∀ l, |x (part.right l)| ≤ 1) : -- --- CONCL ---
     (fun l => x (part.left l)) ∈ (P.keepCols part).nominal.construct := by -- --- PROOF ---
   obtain ⟨hin, heq⟩ := HPolytope.mem_nominal_iff.mp hP
   -- a row splits along the partition

@@ -41,7 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.prod₁_outer : ∀ {m : ℕ} (I : Interval (Mat 𝕋 m n)),
+theorem Interval.prod₁_outer : -- --- CONCL ---
+    ∀ {m : ℕ} (I : Interval (Mat 𝕋 m n)),
     (fun A : Mat ℝ m n => fun j => ∏ i, A i j) '' I.nominal.construct ⊆
       I.prod₁.construct := by -- --- PROOF ---
   -- no rows: the point `1`, whose reading is the real `1`

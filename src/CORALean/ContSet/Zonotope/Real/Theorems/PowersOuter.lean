@@ -44,7 +44,7 @@ variable {n : ℕ}
 
 /-- The `k`-th entry of `powers Z P` contains `M₀ * M ^ k` for `M ∈ Z` and `M₀ ∈ P`. -/
 theorem Zonotope.powers_outer (Z P : Zonotope (Mat ℝ n n)) {M M₀ : Mat ℝ n n}
-    (hM : M ∈ Z.construct) (hM₀ : M₀ ∈ P.construct) (k : ℕ) :
+    (hM : M ∈ Z.construct) (hM₀ : M₀ ∈ P.construct) (k : ℕ) : -- --- CONCL ---
     M₀ * M ^ k ∈ (Zonotope.powers Z P k).construct := by -- --- PROOF ---
   induction k with
   | zero => rw [pow_zero, mul_one]; exact hM₀

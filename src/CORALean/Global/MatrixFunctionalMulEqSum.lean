@@ -41,7 +41,7 @@ variable {n m l : ℕ}
 
 /-- After `X ↦ H X`, it is `X ↦ Σ (Hᵀ Z)_{ij} X_{ij}` with `Z_{kj} = f(E_{kj})`. -/
 theorem functional_mul_eq_sum (f : Matrix (Fin n) (Fin m) ℝ →ₗ[ℝ] ℝ)
-    (H : Matrix (Fin n) (Fin l) ℝ) (X : Matrix (Fin l) (Fin m) ℝ) :
+    (H : Matrix (Fin n) (Fin l) ℝ) (X : Matrix (Fin l) (Fin m) ℝ) : -- --- CONCL ---
     f (H * X) = ∑ i, ∑ j,
       (Hᵀ * Matrix.of fun k j => f (single k j (1 : ℝ))) i j * X i j := by -- --- PROOF ---
   -- both sides are `tr((H X)ᵀ Z) = tr(Xᵀ (Hᵀ Z))`

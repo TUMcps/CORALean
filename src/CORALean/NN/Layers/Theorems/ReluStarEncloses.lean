@@ -42,7 +42,7 @@ open ContSet
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Layer.reluStar_encloses (n : ℕ) :
+theorem Layer.reluStar_encloses (n : ℕ) : -- --- CONCL ---
     (Layer.reluStar n).Encloses fun x i => Real.relu (x i) := by -- --- PROOF ---
   -- the ReLU at the neurons of a list, applied one neuron at a time
   have key : ∀ (L : List (Fin n)) (t : Real.StarSet ℋ𝒫 n) (x : Vec ℝ n),

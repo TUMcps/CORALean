@@ -80,7 +80,8 @@ open SoundFloatArithmetic
 
 variable [SoundFloatArithmetic 𝕋]
 
-private theorem abs_sub_mid_le {l u : 𝕋} {x : ℝ} (h1 : toReal l ≤ x) (h2 : x ≤ toReal u) :
+private theorem abs_sub_mid_le {l u : 𝕋} {x : ℝ} (h1 : toReal l ≤ x)
+    (h2 : x ≤ toReal u) : -- --- CONCL ---
     |x - toReal (midOf l u)| ≤ toReal (radOf l u) := by -- --- PROOF ---
   have hu := sub_le_subUp u (midOf l u)
   have hl := sub_le_subUp (midOf l u) l
@@ -91,7 +92,8 @@ private theorem abs_sub_mid_le {l u : 𝕋} {x : ℝ} (h1 : toReal l ≤ x) (h2 
 
 /-- A lower bound on `g` at the middle, less the radius, bounds a 1-Lipschitz `g` on the range. -/
 private theorem lip_lower {g : ℝ → ℝ} (hg : ∀ x y, |g x - g y| ≤ |x - y|) {l u : 𝕋} {b : 𝕋}
-    (hb : toReal b ≤ g (toReal (midOf l u))) {x : ℝ} (h1 : toReal l ≤ x) (h2 : x ≤ toReal u) :
+    (hb : toReal b ≤ g (toReal (midOf l u))) {x : ℝ} (h1 : toReal l ≤ x)
+    (h2 : x ≤ toReal u) : -- --- CONCL ---
     toReal (subDown b (radOf l u)) ≤ g x := by -- --- PROOF ---
   have hr := abs_sub_mid_le h1 h2
   have hgx := hg x (toReal (midOf l u))
@@ -100,7 +102,8 @@ private theorem lip_lower {g : ℝ → ℝ} (hg : ∀ x y, |g x - g y| ≤ |x - 
   linarith [hgx.1]
 
 private theorem lip_upper {g : ℝ → ℝ} (hg : ∀ x y, |g x - g y| ≤ |x - y|) {l u : 𝕋} {b : 𝕋}
-    (hb : g (toReal (midOf l u)) ≤ toReal b) {x : ℝ} (h1 : toReal l ≤ x) (h2 : x ≤ toReal u) :
+    (hb : g (toReal (midOf l u)) ≤ toReal b) {x : ℝ} (h1 : toReal l ≤ x)
+    (h2 : x ≤ toReal u) : -- --- CONCL ---
     g x ≤ toReal (addUp b (radOf l u)) := by -- --- PROOF ---
   have hr := abs_sub_mid_le h1 h2
   have hgx := hg x (toReal (midOf l u))
@@ -109,7 +112,8 @@ private theorem lip_upper {g : ℝ → ℝ} (hg : ∀ x y, |g x - g y| ≤ |x - 
   linarith [hgx.2]
 
 private theorem antitoneOn_of_nonneg {f f' : ℝ → ℝ} (hf : Continuous f)
-    (hd : ∀ x, HasDerivAt f (-f' x) x) {a b : ℝ} (h : ∀ x, a ≤ x → x ≤ b → 0 ≤ f' x) :
+    (hd : ∀ x, HasDerivAt f (-f' x) x) {a b : ℝ}
+    (h : ∀ x, a ≤ x → x ≤ b → 0 ≤ f' x) : -- --- CONCL ---
     AntitoneOn f (Set.Icc a b) := by -- --- PROOF ---
   refine antitoneOn_of_deriv_nonpos (convex_Icc a b) hf.continuousOn
     (fun x _ => (hd x).differentiableAt.differentiableWithinAt) fun x hx => ?_
@@ -118,7 +122,8 @@ private theorem antitoneOn_of_nonneg {f f' : ℝ → ℝ} (hf : Continuous f)
   linarith [h x hx.1.le hx.2.le]
 
 private theorem monotoneOn_of_nonneg {f f' : ℝ → ℝ} (hf : Continuous f)
-    (hd : ∀ x, HasDerivAt f (f' x) x) {a b : ℝ} (h : ∀ x, a ≤ x → x ≤ b → 0 ≤ f' x) :
+    (hd : ∀ x, HasDerivAt f (f' x) x) {a b : ℝ}
+    (h : ∀ x, a ≤ x → x ≤ b → 0 ≤ f' x) : -- --- CONCL ---
     MonotoneOn f (Set.Icc a b) := by -- --- PROOF ---
   refine monotoneOn_of_deriv_nonneg (convex_Icc a b) hf.continuousOn
     (fun x _ => (hd x).differentiableAt.differentiableWithinAt) fun x hx => ?_
@@ -140,7 +145,8 @@ private theorem midpoint_form {g : ℝ → ℝ} (hg : ∀ x y, |g x - g y| ≤ |
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem cosRange_mem (n : ℕ) {l u : 𝕋} {x : ℝ} (h1 : toReal l ≤ x) (h2 : x ≤ toReal u) :
+theorem cosRange_mem (n : ℕ) {l u : 𝕋} {x : ℝ} (h1 : toReal l ≤ x)
+    (h2 : x ≤ toReal u) : -- --- CONCL ---
     toReal (cosRange n l u).inf ≤ Real.cos x ∧
       Real.cos x ≤ toReal (cosRange n l u).sup := by -- --- PROOF ---
   have hl : toReal l ≤ toReal u := le_trans h1 h2
@@ -167,7 +173,8 @@ theorem cosRange_mem (n : ℕ) {l u : 𝕋} {x : ℝ} (h1 : toReal l ≤ x) (h2 
   · exact midpoint_form Real.abs_cos_sub_cos_le
       (fun z => ⟨Real.neg_one_le_cos z, Real.cos_le_one z⟩) (cosDown_le n _) (le_cosUp n _) h1 h2
 
-theorem sinRange_mem (n : ℕ) {l u : 𝕋} {x : ℝ} (h1 : toReal l ≤ x) (h2 : x ≤ toReal u) :
+theorem sinRange_mem (n : ℕ) {l u : 𝕋} {x : ℝ} (h1 : toReal l ≤ x)
+    (h2 : x ≤ toReal u) : -- --- CONCL ---
     toReal (sinRange n l u).inf ≤ Real.sin x ∧
       Real.sin x ≤ toReal (sinRange n l u).sup := by -- --- PROOF ---
   have hl : toReal l ≤ toReal u := le_trans h1 h2

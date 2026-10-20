@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Halving `s` times divides by `2^s`, exactly. -/
-theorem LinearSys.aux_toReal_half_iterate (a : 𝕋) :
+theorem LinearSys.aux_toReal_half_iterate (a : 𝕋) : -- --- CONCL ---
     ∀ s : ℕ, toReal (half^[s] a) = toReal a / 2 ^ s := by -- --- PROOF ---
   intro s
   induction s with

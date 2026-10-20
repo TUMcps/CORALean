@@ -61,7 +61,8 @@ theorem aux_norm_pow_le (x : Mat ℝ n n) (i : ℕ) : ‖x ^ i‖ ≤ ‖x‖ ^ 
 
 /-- The matrix exponential's series against the real exponential's, term by
 term. -/
-theorem aux_norm_exp_le (x : Mat ℝ n n) : ‖exp x‖ ≤ Real.exp ‖x‖ := by -- --- PROOF ---
+theorem aux_norm_exp_le (x : Mat ℝ n n) : -- --- CONCL ---
+    ‖exp x‖ ≤ Real.exp ‖x‖ := by -- --- PROOF ---
   set f : ℕ → Mat ℝ n n := fun i => ((Nat.factorial i : ℝ)⁻¹) • x ^ i with hf
   set g : ℕ → ℝ := fun i => ((Nat.factorial i : ℝ)⁻¹) • ‖x‖ ^ i with hg
   have hnorm : Summable (fun i => ‖f i‖) := norm_expSeries_summable' (𝕂 := ℝ) x

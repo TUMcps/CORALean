@@ -51,7 +51,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A `0`/`1` matrix read into ℝ, times `x`: the coordinates its diagonal keeps. -/
-theorem aux_mulVec_diag (p : Fin n → Prop) [DecidablePred p] (x : Vec ℝ n) :
+theorem aux_mulVec_diag (p : Fin n → Prop) [DecidablePred p] (x : Vec ℝ n) : -- --- CONCL ---
     toRealMat (fun r c => if r = c ∧ p r then (one : 𝕋) else zero) *ᵥ x
       = fun j => if p j then x j else 0 := by -- --- PROOF ---
   funext j
@@ -127,7 +127,7 @@ theorem aux_eval_step_iff (i : Fin n) (x y : Vec ℝ n) : -- --- CONCL ---
         exact Cat.Eval.affine _ _ x
 
 /-- Over a list, the coordinates it names. -/
-theorem aux_reluOn_eval_iff (l : List (Fin n)) (x y : Vec ℝ n) :
+theorem aux_reluOn_eval_iff (l : List (Fin n)) (x y : Vec ℝ n) : -- --- CONCL ---
     (Cat.reluOn (𝕋 := 𝕋) l).Eval x y
       ↔ y = fun j => if j ∈ l then Real.relu (x j) else x j := by -- --- PROOF ---
   induction l generalizing x y with

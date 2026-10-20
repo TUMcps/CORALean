@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.jacobianBox_outer (pZ : PolyZonotope (Vec 𝕋 n)) (X : Interval (Vec 𝕋 pZ.p))
-    {a : Vec ℝ pZ.p} (ha : a ∈ X.construct) :
+    {a : Vec ℝ pZ.p} (ha : a ∈ X.construct) : -- --- CONCL ---
     Real.PolyZonotope.jacobianMat (PolyZonotope.nominal pZ) a ∈
       (PolyZonotope.jacobianBox pZ X).construct := by -- --- PROOF ---
   rw [PolyZonotope.jacobianBox, Interval.materialiseMat_eq]

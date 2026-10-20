@@ -48,7 +48,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A vector reached by the bordered matrix has weights summing to zero and the vertex rows
 reached: the last row is the sum of the weights. -/
 theorem VPolytope.aux_weights (P : VPolytope (Vec 𝕋 n)) (z : Vec ℝ n) (w : Vec ℝ P.k)
-    (h : toRealMat P.bordered *ᵥ w = fun i => if hi : i.val < n then z ⟨i.val, hi⟩ else 0) :
+    (h : toRealMat P.bordered *ᵥ w = fun i => if hi : i.val < n then z ⟨i.val, hi⟩ else 0)
+    : -- --- CONCL ---
     ∑ j, w j = 0 ∧ ∀ i : Fin n, ∑ j, toReal (P.V j i) * w j = z i := by -- --- PROOF ---
   refine ⟨?_, fun i => ?_⟩
   · have := congrFun h (Fin.last n)
@@ -66,7 +67,8 @@ theorem VPolytope.aux_weights (P : VPolytope (Vec 𝕋 n)) (z : Vec ℝ n) (w : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.isFullDim_sound {P : VPolytope (Vec 𝕋 n)} {H : Mat 𝕋 P.k (n + 1)}
-    (h : P.isFullDimWith H = true) : (interior P.construct).Nonempty := by -- --- PROOF ---
+    (h : P.isFullDimWith H = true) : -- --- CONCL ---
+    (interior P.construct).Nonempty := by -- --- PROOF ---
   simp only [VPolytope.isFullDimWith, Bool.and_eq_true, Nat.ble_eq, List.all_eq_true,
     List.mem_finRange, forall_const] at h
   obtain ⟨⟨⟨hk, hkδ⟩, hc⟩, hE⟩ := h

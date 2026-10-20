@@ -40,7 +40,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.mrdivide_exact {I : Interval (Vec ℝ n)} (hI : I.IsNonempty) {d : ℝ}
-    (hd : d ≠ 0) :
+    (hd : d ≠ 0) : -- --- CONCL ---
     (I.mrdivide d).construct = (fun x i => x i / d) '' I.construct := by -- --- PROOF ---
   ext z
   constructor

@@ -63,7 +63,7 @@ theorem Zonotope.aux_sum_univ_mtimesIntervalMatBall {IM : Interval (Mat ℝ m n)
   Fin.sum_univ_add f
 
 /-- A diagonal block read down a column, under an absolute value. -/
-theorem Zonotope.aux_sum_diagonal_abs (v : Vec ℝ m) (i : Fin m) :
+theorem Zonotope.aux_sum_diagonal_abs (v : Vec ℝ m) (i : Fin m) : -- --- CONCL ---
     ∑ l, |Matrix.diagonal v l i| = |v i| := by -- --- PROOF ---
   rw [Finset.sum_eq_single i, Matrix.diagonal_apply_eq]
   · intro b _ hb
@@ -73,7 +73,7 @@ theorem Zonotope.aux_sum_diagonal_abs (v : Vec ℝ m) (i : Fin m) :
 
 /-- A row of the center against a vector, in terms of that vector's `ℓ¹` size. -/
 theorem Zonotope.aux_abs_center_mulVec_le {ρc : ℝ} {IM : Interval (Mat ℝ m n)}
-    (hc : ∀ i j, |IM.center i j| ≤ ρc) (v : Vec ℝ n) (i : Fin m) :
+    (hc : ∀ i j, |IM.center i j| ≤ ρc) (v : Vec ℝ n) (i : Fin m) : -- --- CONCL ---
     |(IM.center *ᵥ v) i| ≤ ρc * ∑ j, |v j| := by -- --- PROOF ---
   have hrow : (IM.center *ᵥ v) i = ∑ j, IM.center i j * v j := rfl
   calc |(IM.center *ᵥ v) i|

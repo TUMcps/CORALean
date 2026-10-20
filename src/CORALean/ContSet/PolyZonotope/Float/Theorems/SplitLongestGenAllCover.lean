@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.splitLongestGenAll_cover (pZ : PolyZonotope (Vec 𝕋 n)) {x : Vec ℝ n}
-    (hx : x ∈ pZ.construct) :
+    (hx : x ∈ pZ.construct) : -- --- CONCL ---
     ∃ T ∈ pZ.splitLongestGenAll, x ∈ T.construct := by -- --- PROOF ---
   unfold PolyZonotope.splitLongestGenAll
   dsimp only

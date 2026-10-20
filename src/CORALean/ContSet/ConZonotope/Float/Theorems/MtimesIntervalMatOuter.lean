@@ -65,7 +65,7 @@ theorem ConZonotope.aux_nominal_zonotope {cZ : ConZonotope 𝕋 (Vec 𝕋 n)} {z
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat 𝕋 m n))
-    (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
+    (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     (⋃ A ∈ IM.construct, (A *ᵥ ·) '' cZ.construct) ⊆
       (ConZonotope.mtimesIntervalMat IM cZ).construct := by -- --- PROOF ---
   -- a point of the set, split into its nominal part and its error

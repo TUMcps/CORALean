@@ -43,7 +43,8 @@ def allOver : {k : ℕ} → (Fin k → Bool) → Bool
 def aux_allOverImpl {k : ℕ} (f : Fin k → Bool) : Bool :=
   Fin.foldr k (fun i acc => f i && acc) true
 
-@[csimp] theorem aux_allOver_eq_impl : @allOver = @aux_allOverImpl := by -- --- PROOF ---
+@[csimp] theorem aux_allOver_eq_impl : -- --- CONCL ---
+    @allOver = @aux_allOverImpl := by -- --- PROOF ---
   funext k
   induction k with
   | zero => funext f; rw [aux_allOverImpl, Fin.foldr_zero]; rfl

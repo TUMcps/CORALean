@@ -59,7 +59,7 @@ theorem ConZonotope.aux_sum_univ_reduceKeepBy {cZ : ConZonotope (Vec ℝ n)}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.reduceKeepBy_outer (cZ : ConZonotope (Vec ℝ n))
-    (part : Split (Fin cZ.h) into (Fin q) ⊕ (Fin r)) :
+    (part : Split (Fin cZ.h) into (Fin q) ⊕ (Fin r)) : -- --- CONCL ---
     cZ.construct ⊆ (cZ.reduceKeepBy part).construct := by -- --- PROOF ---
   rintro x ⟨β, hβ, hP, rfl⟩
   have hbound : ∀ i, |∑ l, cZ.G (part.right l) i * β (part.right l)|

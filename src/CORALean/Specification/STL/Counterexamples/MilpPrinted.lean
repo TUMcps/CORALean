@@ -42,7 +42,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.milpPrinted_counterexample :
+theorem STL.milpPrinted_counterexample : -- --- CONCL ---
     ∃ (C : Matrix (Fin 2) (Fin 1) ℝ) (d : Fin 2 → ℝ) (α : Fin 1 → ℝ),
       STL.milpCorrected C d α ∧ ¬ STL.milpPrinted C d α := by -- --- PROOF ---
   refine ⟨fun k _ => if k = 0 then 1 else -1, fun _ => (1 : ℝ) / 2, fun _ => 1, ?_,

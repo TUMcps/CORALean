@@ -51,7 +51,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.polyZonotope_exact (Z : Zonotope α) :
+theorem Zonotope.polyZonotope_exact (Z : Zonotope α) : -- --- CONCL ---
     Z.construct = Z.polyZonotope.construct := by -- --- PROOF ---
   have hsum : ∀ a : Fin Z.h → ℝ,
       (∑ i : Fin Z.h, PolyZonotope.monomial (PolyZonotope.identE Z.h) a i • Z.G i)

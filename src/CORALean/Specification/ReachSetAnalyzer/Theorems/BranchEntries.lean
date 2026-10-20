@@ -36,7 +36,7 @@ variable {S : ℕ → Type} {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ReachSetAnalyzer.branch_entries (R : List (ReachSetAnalyzer.Entry S n)) :
+theorem ReachSetAnalyzer.branch_entries (R : List (ReachSetAnalyzer.Entry S n)) : -- --- CONCL ---
     ∀ (i : ℕ) (w : List ℕ), ReachSetAnalyzer.Branch (ReachSetAnalyzer.children R) i w →
       (i = 0 ∨ ∃ e, R[i - 1]? = some e) → ∀ j ∈ w, ∃ e, R[j - 1]? = some e := by -- --- PROOF ---
   intro i w hw

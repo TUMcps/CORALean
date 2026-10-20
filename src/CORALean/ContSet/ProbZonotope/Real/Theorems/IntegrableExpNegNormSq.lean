@@ -44,7 +44,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem integrable_exp_neg_norm_sq_half :
+theorem integrable_exp_neg_norm_sq_half : -- --- CONCL ---
     Integrable (fun v : EuclideanSpace ℝ (Fin n) => Real.exp (-‖v‖ ^ 2 / 2)) := by -- --- PROOF ---
   have h := (GaussianFourier.integrable_cexp_neg_mul_sq_norm_add
     (V := EuclideanSpace ℝ (Fin n)) (b := (1 / 2 : ℂ)) (by norm_num) 0 0).norm

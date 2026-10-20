@@ -42,7 +42,7 @@ variable {n : ℕ}
 
 /-- Inside one dimension: a point between the first and last divider is between two neighbours. -/
 theorem GridPartition.aux_exists_cell (d : ℕ → ℝ) {m : ℕ} (hm : 1 ≤ m)
-    (hd : ∀ a b, a ≤ b → b ≤ m → d a ≤ d b) {t : ℝ} (h0 : d 0 ≤ t) (h1 : t ≤ d m) :
+    (hd : ∀ a b, a ≤ b → b ≤ m → d a ≤ d b) {t : ℝ} (h0 : d 0 ≤ t) (h1 : t ≤ d m) : -- --- CONCL ---
     ∃ k, 1 ≤ k ∧ k ≤ m ∧ d (k - 1) ≤ t ∧ t ≤ d k := by -- --- PROOF ---
   induction m, hm using Nat.le_induction with
   | base => exact ⟨1, le_rfl, le_rfl, h0, h1⟩
@@ -58,7 +58,7 @@ theorem GridPartition.aux_exists_cell (d : ℕ → ℝ) {m : ℕ} (hm : 1 ≤ m)
 
 /-- Every point of the state space lies in a cell of a well-formed partition. -/
 theorem GridPartition.exists_mem_cell (P : GridPartition n) (hP : P.WellFormed) {x : Vec ℝ n}
-    (hx : x ∈ P.intervals.construct) :
+    (hx : x ∈ P.intervals.construct) : -- --- CONCL ---
     ∃ c, 1 ≤ c ∧ c ≤ P.nrOfCells ∧ x ∈ (P.cellInterval c).construct := by -- --- PROOF ---
   rw [GridPartition.mem_interval_iff] at hx
   have : ∀ j, ∃ k, 1 ≤ k ∧ k ≤ P.nrOfSegments j ∧

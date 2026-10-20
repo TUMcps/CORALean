@@ -69,7 +69,7 @@ theorem Zonotope.aux_mulVec_sum {m q : ℕ} {ι : Type} [Fintype ι] (M : Mat �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.intersectStrip_outer (C : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Mat ℝ n p)
-    (Z : Zonotope (Vec ℝ n)) :
+    (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     Z.construct ∩ {x | ∀ i, |(C *ᵥ x - y) i| ≤ φ i} ⊆
       (Z.intersectStrip C φ y Λ).construct := by -- --- PROOF ---
   rintro x ⟨⟨β, hβ, rfl⟩, hs⟩

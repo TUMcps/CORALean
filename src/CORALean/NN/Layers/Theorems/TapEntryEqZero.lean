@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem tapEntry_eq_zero {n : ℕ} :
+theorem tapEntry_eq_zero {n : ℕ} : -- --- CONCL ---
     ∀ {k : ℕ} (t : Fin k → Fin n) (v : Fin k → 𝕋) (i : Fin n),
       (∀ l, t l ≠ i) → tapEntry t v i = zero := by -- --- PROOF ---
   intro k

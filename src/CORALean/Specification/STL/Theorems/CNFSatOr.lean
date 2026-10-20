@@ -47,7 +47,7 @@ variable {X : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.CNF.sat_or (c : ℝ≥0) (a b : STL.CNF X) (ξ : ℝ≥0 → X) :
+theorem STL.CNF.sat_or (c : ℝ≥0) (a b : STL.CNF X) (ξ : ℝ≥0 → X) : -- --- CONCL ---
     ((a.or b).toFormula c).Sat ξ ↔
       (a.toFormula c).Sat ξ ∨ (b.toFormula c).Sat ξ := by -- --- PROOF ---
   rw [STL.CNF.sat_toFormula, STL.CNF.sat_toFormula, STL.CNF.sat_toFormula]

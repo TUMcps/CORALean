@@ -51,7 +51,8 @@ variable {i : ℕ}
 theorem aux_corrCritical_pos (hi : 2 ≤ i) : 0 < MatExp.corrCritical i :=
   Real.rpow_pos_of_pos (by exact_mod_cast Nat.lt_of_lt_of_le two_pos hi) _
 
-theorem aux_corrCritical_le_one (hi : 2 ≤ i) : MatExp.corrCritical i ≤ 1 := by -- --- PROOF ---
+theorem aux_corrCritical_le_one (hi : 2 ≤ i) : -- --- CONCL ---
+    MatExp.corrCritical i ≤ 1 := by -- --- PROOF ---
   have hi1 : (1:ℝ) ≤ (i : ℝ) := by exact_mod_cast Nat.one_le_of_lt hi
   have hsub : (0:ℝ) < (i : ℝ) - 1 := by
     have : (2:ℝ) ≤ (i:ℝ) := by exact_mod_cast hi
@@ -62,7 +63,7 @@ theorem aux_corrCritical_le_one (hi : 2 ≤ i) : MatExp.corrCritical i ≤ 1 := 
 
 /-- The stationary point is where `a ^ (i-1) = 1/i`, which is the whole reason
 the constant sum below comes to exactly `1`. -/
-theorem aux_corrCritical_pow (hi : 2 ≤ i) :
+theorem aux_corrCritical_pow (hi : 2 ≤ i) : -- --- CONCL ---
     MatExp.corrCritical i ^ (i - 1) = 1 / (i : ℝ) := by -- --- PROOF ---
   have hi1 : (1:ℝ) < (i : ℝ) := by exact_mod_cast hi.trans_lt' one_lt_two
   have hipos : (0:ℝ) < (i : ℝ) := by linarith
@@ -76,7 +77,7 @@ theorem aux_corrCritical_pow (hi : 2 ≤ i) :
   exact (one_div _).symm
 
 /-- The form [1] states the coefficient in. -/
-theorem aux_corrCoeff_eq (hi : 2 ≤ i) :
+theorem aux_corrCoeff_eq (hi : 2 ≤ i) : -- --- CONCL ---
     MatExp.corrCoeff i
       = (i : ℝ) ^ (-(i:ℝ) / ((i : ℝ) - 1))
         - (i : ℝ) ^ (-(1:ℝ) / ((i : ℝ) - 1)) := by -- --- PROOF ---
@@ -89,7 +90,7 @@ theorem aux_corrCoeff_eq (hi : 2 ≤ i) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.corrCoeff_le_sub (hi : 2 ≤ i) {s : ℝ} (hs0 : 0 ≤ s) :
+theorem MatExp.corrCoeff_le_sub (hi : 2 ≤ i) {s : ℝ} (hs0 : 0 ≤ s) : -- --- CONCL ---
     MatExp.corrCoeff i ≤ s ^ i - s := by -- --- PROOF ---
   rw [MatExp.corrCoeff]
   set a := MatExp.corrCritical i with ha

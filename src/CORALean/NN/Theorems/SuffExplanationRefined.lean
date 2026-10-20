@@ -63,7 +63,7 @@ theorem NeuralNetwork.suffExplanationAbstract_of_refined (nnAbs nnRef : NeuralNe
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
     (hrefine : construct (nnRef.enclose (ofInterval (explainBox x ε E)))
       ⊆ construct (nnAbs.enclose (ofInterval (explainBox x ε E))))
-    (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l) : -- --- CONCL ---
+    (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l) :
     nnRef.IsSuffExplanationAbstract x ε E l :=
   (Specification.unsafeSet (misclassified m l)).holds_of_outer hrefine hsuffAbs
 

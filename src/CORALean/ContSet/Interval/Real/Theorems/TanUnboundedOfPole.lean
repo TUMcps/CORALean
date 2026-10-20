@@ -59,7 +59,7 @@ theorem aux_tan_arctan_add (t : ℝ) (j : ℤ) :
 
 /-- A pole strictly inside `[a, b]`: the tangent's values there are unbounded both ways. -/
 theorem Interval.tan_unbounded_of_pole {a b p : ℝ} (hp : Real.cos p = 0) (hap : a < p)
-    (hpb : p < b) :
+    (hpb : p < b) : -- --- CONCL ---
     ¬BddAbove (Real.tan '' (Set.Icc a b ∩ {x | Real.cos x ≠ 0})) ∧
       ¬BddBelow (Real.tan '' (Set.Icc a b ∩ {x | Real.cos x ≠ 0})) := by -- --- PROOF ---
   have hpi := Real.pi_pos

@@ -36,7 +36,7 @@ namespace CORALean.Float.Binary64
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem mulDown_le_mul (a b : Float) :
+theorem mulDown_le_mul (a b : Float) : -- --- CONCL ---
     toReal (mulDown a b) ≤ toReal a * toReal b := by -- --- PROOF ---
   rw [mulDown, trustedHardware.toReal_neg]
   -- one negated factor, so the assumed bound arrives already carrying `-`

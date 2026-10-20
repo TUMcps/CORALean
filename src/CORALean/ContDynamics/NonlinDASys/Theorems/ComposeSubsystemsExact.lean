@@ -48,7 +48,7 @@ variable {ns n : ℕ} {d : Fin ns → ℕ}
 
 /-- The fold over any list of subsystems denotes the list's sum of sets. -/
 theorem NonlinDASys.aux_composeSubsystems_foldr (Φ : ∀ i, Mat ℝ n (d i))
-    (R : ∀ i, Zonotope (Vec ℝ (d i))) (l : List (Fin ns)) :
+    (R : ∀ i, Zonotope (Vec ℝ (d i))) (l : List (Fin ns)) : -- --- CONCL ---
     (l.foldr (fun i Z => (Zonotope.mtimes (Φ i) (R i)).plus Z) (Zonotope.ofPoint 0)).construct
       = (l.map fun i => (Φ i *ᵥ ·) '' (R i).construct).sum := by -- --- PROOF ---
   induction l with

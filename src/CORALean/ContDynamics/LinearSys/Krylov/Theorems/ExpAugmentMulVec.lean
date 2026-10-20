@@ -56,7 +56,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `P e^{C̃t} [0ₙ; 1] = ∫₀ᵗ e^{Aσ}dσ u`, coordinate by coordinate. -/
-theorem Krylov.exp_augment_mulVec_castSucc (A : Mat ℝ n n) (u : Vec ℝ n) (t : ℝ) (j : Fin n) :
+theorem Krylov.exp_augment_mulVec_castSucc (A : Mat ℝ n n) (u : Vec ℝ n) (t : ℝ)
+    (j : Fin n) : -- --- CONCL ---
     (exp (t • Krylov.augment A u) *ᵥ (Pi.single (Fin.last n) 1 : Fin (n + 1) → ℝ))
         (Fin.castSucc j)
       = (MatExp.expIntegral A t *ᵥ u) j := by -- --- PROOF ---

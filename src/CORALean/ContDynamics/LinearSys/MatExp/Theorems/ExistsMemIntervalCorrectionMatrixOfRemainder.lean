@@ -102,7 +102,8 @@ theorem MatExp.exists_mem_intervalCorrectionMatrix_of_remainder {B : Interval (M
     (hAB : ∀ s, A s ∈ B.construct) {r : ℝ} (hr : 0 < r) {m : ℕ}
     (hε : ‖(Interval.smul r B).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) (x₀ ρ : Vec ℝ n)
-    (hρ : ‖ρ‖ ≤ ‖x₀‖ * MatExp.expRemainderBound (Interval.smul t B).absMax (m + 2)) :
+    (hρ : ‖ρ‖ ≤ ‖x₀‖ * MatExp.expRemainderBound (Interval.smul t B).absMax (m + 2))
+    : -- --- CONCL ---
     ∃ Φ ∈ (MatExp.expIntervalEnclosure (Interval.smul r B) (m + 2)).construct,
       ∃ F ∈ (MatExp.intervalCorrectionMatrix B r (m + 2)).construct,
         ∑ k ∈ Finset.range (m + 2 + 1), MatExp.peanoBakerTerm A k t *ᵥ x₀ + ρ

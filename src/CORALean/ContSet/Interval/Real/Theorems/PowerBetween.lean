@@ -38,7 +38,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.pow_between {a b x : ℝ} (k : ℕ) (h₁ : a ≤ x) (h₂ : x ≤ b) :
+theorem Interval.pow_between {a b x : ℝ} (k : ℕ) (h₁ : a ≤ x) (h₂ : x ≤ b) : -- --- CONCL ---
     (if k % 2 = 0 ∧ k ≠ 0 ∧ a < 0 ∧ 0 < b then 0 else min (a ^ k) (b ^ k)) ≤ x ^ k ∧
       x ^ k ≤ max (a ^ k) (b ^ k) := by -- --- PROOF ---
   rcases Nat.even_or_odd k with he | ho

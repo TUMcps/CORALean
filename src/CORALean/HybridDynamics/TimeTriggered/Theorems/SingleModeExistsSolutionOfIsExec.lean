@@ -59,7 +59,7 @@ variable {X : Type} [NormedAddCommGroup X] [NormedSpace ℝ X] [CompleteSpace X]
 omit [CompleteSpace X] in
 /-- Every solution from the initial state of an execution is at its end after its duration. -/
 theorem aux_exec_unique {I : Set X} {f : X → X} {K : ℝ≥0} (hf : LipschitzWith K f) {s : ℝ}
-    {m : Unit} {x : X} (h : (DiffInclAutomaton.singleMode I f).IsExec s m x) :
+    {m : Unit} {x : X} (h : (DiffInclAutomaton.singleMode I f).IsExec s m x) : -- --- CONCL ---
     0 ≤ s ∧ ∃ x₀ ∈ I, ∀ z : ℝ → X, z 0 = x₀ → (∀ u ∈ Icc 0 s, HasDerivAt z (f (z u)) u) →
       z s = x := by -- --- PROOF ---
   -- the induction over the execution, the flow step by uniqueness of the shifted solution

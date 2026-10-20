@@ -54,7 +54,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- `|nominal pZ|` is at most its center plus every generator's magnitude, since
 every monomial is at most `1`. -/
 theorem PolyZonotope.aux_point_le_boundS (pZ : PolyZonotope (Vec 𝕋 n)) (b : Fin pZ.p → ℝ)
-    (hb : ∀ k, |b k| ≤ 1) (i : Fin n) :
+    (hb : ∀ k, |b k| ≤ 1) (i : Fin n) : -- --- CONCL ---
     |Real.PolyZonotope.point (nominal pZ) b i|
       ≤ toReal (PolyZonotope.evalPolyBoundS pZ i) := by -- --- PROOF ---
   -- unfold the point at `i`, `nominal pZ`'s fields read back as `pZ`'s own

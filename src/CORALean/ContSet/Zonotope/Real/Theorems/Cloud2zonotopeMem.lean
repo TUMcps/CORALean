@@ -59,7 +59,7 @@ variable {n : ℕ} {κ : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.cloud2zonotope_mem [Fintype κ] [Nonempty κ] (dir : (κ → Vec ℝ n) → Vec ℝ n)
-    (ratio : ℝ) (s₁ : ℕ) (s₂ : ℝ) (X : κ → Vec ℝ n) (j : κ) :
+    (ratio : ℝ) (s₁ : ℕ) (s₂ : ℝ) (X : κ → Vec ℝ n) (j : κ) : -- --- CONCL ---
     X j ∈ (Zonotope.cloud2zonotope dir ratio s₁ s₂ X).construct := by -- --- PROOF ---
   -- one round: recenter by `mid`, compress along `g`, add the segment `⟨mid, g⟩`
   have step : ∀ (Z : Zonotope (Vec ℝ n)) (Y : κ → Vec ℝ n) (mid g : Vec ℝ n),

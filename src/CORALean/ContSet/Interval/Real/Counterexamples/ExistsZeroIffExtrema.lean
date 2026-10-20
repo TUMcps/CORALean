@@ -44,7 +44,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.exists_zero_iff_extrema_counterexample :
+theorem Interval.exists_zero_iff_extrema_counterexample : -- --- CONCL ---
     let g : ℝ → ℝ := fun y => if y ≤ 0 then -1 else 1
     IsLeast (g '' Set.Icc (-1) 1) (-1) ∧ IsGreatest (g '' Set.Icc (-1) 1) 1 ∧
       (0 : ℝ) ∈ Set.Icc (-1 : ℝ) 1 ∧ ¬ ∃ y ∈ Set.Icc (-1 : ℝ) 1, g y = 0 := by -- --- PROOF ---

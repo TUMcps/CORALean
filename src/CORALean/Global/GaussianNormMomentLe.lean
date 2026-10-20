@@ -83,7 +83,8 @@ theorem aux_gnm_gaussMomentRoot_nonneg {p : ℝ} (hp : 0 < p) : 0 ≤ gaussMomen
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem gaussian_norm_moment_le {l : ℕ} (b : Fin l → E) {p s : ℝ} (hs : 0 < s) (hsp : s ≤ p) :
+theorem gaussian_norm_moment_le {l : ℕ} (b : Fin l → E) {p s : ℝ} (hs : 0 < s)
+    (hsp : s ≤ p) : -- --- CONCL ---
     Integrable (fun g => ((∑ i, |⟪b i, g⟫| ^ p) ^ (1 / p)) ^ s) (stdGaussian E) ∧
       ∫ g, ((∑ i, |⟪b i, g⟫| ^ p) ^ (1 / p)) ^ s ∂(stdGaussian E) ≤
         (gaussMomentRoot p * (∑ i, ‖b i‖ ^ p) ^ (1 / p)) ^ s := by -- --- PROOF ---

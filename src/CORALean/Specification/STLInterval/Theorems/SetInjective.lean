@@ -34,7 +34,8 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `STLInterval.set` is injective. -/
-theorem STLInterval.set_injective : Function.Injective STLInterval.set := by -- --- PROOF ---
+theorem STLInterval.set_injective : -- --- CONCL ---
+    Function.Injective STLInterval.set := by -- --- PROOF ---
   intro I J h
   -- an empty interval equals only an empty one
   cases I with

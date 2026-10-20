@@ -47,7 +47,8 @@ variable {lam : ι → ℝ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A positive `β` is fixed by [1, Eq. 26] iff it solves [1, Eq. 18]. -/
-theorem Ellipsoid.halderStep_eq_iff [Nonempty ι] (hlam : ∀ i, 0 < lam i) {β : ℝ} (hβ : 0 < β) :
+theorem Ellipsoid.halderStep_eq_iff [Nonempty ι] (hlam : ∀ i, 0 < lam i) {β : ℝ}
+    (hβ : 0 < β) : -- --- CONCL ---
     Ellipsoid.halderStep lam β = β ↔ Ellipsoid.halderStationarity lam β = 0 := by -- --- PROOF ---
   have h1 := Ellipsoid.lt_halderStep_iff hlam hβ.le
   have h2 := Ellipsoid.halderStep_lt_iff hlam hβ

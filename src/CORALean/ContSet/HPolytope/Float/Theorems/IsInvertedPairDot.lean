@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.isInvertedPair_dot {Q : HPolytope 𝕋 (Vec 𝕋 n)} {i j : Fin Q.m}
-    (h : HPolytope.isInvertedPair Q i j = true) (x : Vec ℝ n) :
+    (h : HPolytope.isInvertedPair Q i j = true) (x : Vec ℝ n) : -- --- CONCL ---
     (toRealMat Q.A *ᵥ x) j = -(toRealMat Q.A *ᵥ x) i ∧
       toReal (Q.b j) = -toReal (Q.b i) := by -- --- PROOF ---
   simp only [HPolytope.isInvertedPair, Bool.and_eq_true] at h

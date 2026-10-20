@@ -47,7 +47,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.interval_eq_hull (Z : Zonotope (Vec ℝ n)) :
+theorem Zonotope.interval_eq_hull (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     Z.interval = Interval.hull Z.construct := by -- --- PROOF ---
   -- each bound is attained, and bounds every point
   have hin := Z.interval_contains

@@ -49,7 +49,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.mul_expIntegral (A : Mat ℝ n n) (t : ℝ) :
+theorem MatExp.mul_expIntegral (A : Mat ℝ n n) (t : ℝ) : -- --- CONCL ---
     A * MatExp.expIntegral A t = exp (t • A) - 1 := by -- --- PROOF ---
   have hs := expSeries_summable' (𝕂 := ℝ) (t • A)
   rw [MatExp.expIntegral, ← (MatExp.summable_expIntegral A t).tsum_mul_left,

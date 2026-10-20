@@ -45,7 +45,8 @@ variable {n : ℕ} {κ : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.cloud2zonotopeCompress_mem (X : κ → Vec ℝ n) (g : Vec ℝ n) (j : κ) :
+theorem Zonotope.cloud2zonotopeCompress_mem (X : κ → Vec ℝ n) (g : Vec ℝ n)
+    (j : κ) : -- --- CONCL ---
     ∃ t : ℝ, |t| ≤ 1 ∧ X j = Zonotope.cloud2zonotopeCompress X g j + t • g := by -- --- PROOF ---
   simp only [Zonotope.cloud2zonotopeCompress]
   -- the clamped coordinate along `u`

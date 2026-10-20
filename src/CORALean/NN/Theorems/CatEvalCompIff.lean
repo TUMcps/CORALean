@@ -46,7 +46,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m l n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Cat.eval_comp_iff (f₂ : Cat 𝕋 l n) (f₁ : Cat 𝕋 m l) (x : Vec ℝ m) (y : Vec ℝ n) :
+theorem Cat.eval_comp_iff (f₂ : Cat 𝕋 l n) (f₁ : Cat 𝕋 m l) (x : Vec ℝ m)
+    (y : Vec ℝ n) : -- --- CONCL ---
     (Cat.comp f₂ f₁).Eval x y ↔ ∃ z, f₁.Eval x z ∧ f₂.Eval z y := by -- --- PROOF ---
   constructor
   · rintro (_ | _ | ⟨_, _, z, h₁, h₂⟩)

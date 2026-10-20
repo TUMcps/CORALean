@@ -51,7 +51,8 @@ theorem aux_norm₂_le_of_abs_le_err {x y : Vec ℝ n} (h : ∀ i, |x i| ≤ |y 
 
 /-- A coordinatewise bound on the magnitudes of `S` is a Euclidean bound on `err S`. -/
 theorem err_le_norm₂_of_forall_abs_le {S : Set (Vec ℝ n)} {m : Vec ℝ n}
-    (h : ∀ y ∈ S, ∀ i, |y i| ≤ |m i|) : err S ≤ ‖m‖₂ := by -- --- PROOF ---
+    (h : ∀ y ∈ S, ∀ i, |y i| ≤ |m i|) : -- --- CONCL ---
+    err S ≤ ‖m‖₂ := by -- --- PROOF ---
   refine aux_norm₂_le_of_abs_le_err fun i => ?_
   rw [abs_of_nonneg (le_max_of_le_left (abs_nonneg _))]
   rcases Set.eq_empty_or_nonempty S with hS | ⟨y0, hy0⟩

@@ -46,7 +46,7 @@ variable {m p n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinDASys.WithSteps.reachUnionExact_eq (sys : NonlinDASys.WithSteps S Rg m p n)
-    (tFinal : ℝ) (X : Set (Vec ℝ n)) :
+    (tFinal : ℝ) (X : Set (Vec ℝ n)) : -- --- CONCL ---
     sys.reachUnionExact tFinal X = sys.ode.reachUnionExact tFinal X := by -- --- PROOF ---
   ext z
   simp only [NonlinDASys.WithSteps.reachUnionExact, NonlinearSys.WithSteps.reachUnionExact,

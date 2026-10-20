@@ -40,7 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.mem_padLeft_iff {P : HPolytope 𝕋 (Vec 𝕋 n₁)} {x : Vec ℝ (n₁ + n₂)} :
+theorem HPolytope.mem_padLeft_iff {P : HPolytope 𝕋 (Vec 𝕋 n₁)}
+    {x : Vec ℝ (n₁ + n₂)} : -- --- CONCL ---
     x ∈ (P.padLeft n₂).construct ↔ blockLeft n₁ n₂ x ∈ P.construct := by -- --- PROOF ---
   -- the box is the padded box
   have hE : (P.padLeft n₂).I_error.construct = blockPadLeft n₁ n₂ '' P.I_error.construct := by

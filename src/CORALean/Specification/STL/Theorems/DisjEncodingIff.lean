@@ -43,7 +43,8 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.disj_encoding_iff {m : ℕ} (zs : Fin m → ℝ) (hzs : ∀ i, zs i = 0 ∨ zs i = 1) :
+theorem STL.disj_encoding_iff {m : ℕ} (zs : Fin m → ℝ)
+    (hzs : ∀ i, zs i = 0 ∨ zs i = 1) : -- --- CONCL ---
     (∀ z : ℝ, 0 ≤ z → z ≤ 1 → (∀ i, zs i ≤ z) → z ≤ ∑ i, zs i →
       (z = 0 ∨ z = 1) ∧ (z = 1 ↔ ∃ i, zs i = 1)) ∧
     ∃ z : ℝ, 0 ≤ z ∧ z ≤ 1 ∧ (∀ i, zs i ≤ z) ∧ z ≤ ∑ i, zs i := by -- --- PROOF ---

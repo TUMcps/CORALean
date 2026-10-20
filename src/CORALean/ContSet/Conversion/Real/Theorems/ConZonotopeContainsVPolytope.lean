@@ -43,7 +43,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- back: each listed vertex comes from a domain vertex, hence from a point of the set
-theorem ConZonotope.contains_vPolytope (cZ : ConZonotope α) (hne : cZ.domain.construct.Nonempty) :
+theorem ConZonotope.contains_vPolytope (cZ : ConZonotope α)
+    (hne : cZ.domain.construct.Nonempty) : -- --- CONCL ---
     (cZ.vPolytope hne).construct ⊆ cZ.construct := by -- --- PROOF ---
   rw [VPolytope.construct_eq_convexHull]
   refine convexHull_min ?_ cZ.convex_construct

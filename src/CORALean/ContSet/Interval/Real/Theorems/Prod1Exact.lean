@@ -55,7 +55,8 @@ theorem Interval.aux_nonempty_of_image {S : Set (Mat ℝ m n)} (hS : S.Nonempty)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.prod₁_exact : ∀ {m : ℕ} {I : Interval (Mat ℝ m n)}, I.IsNonempty →
+theorem Interval.prod₁_exact : -- --- CONCL ---
+    ∀ {m : ℕ} {I : Interval (Mat ℝ m n)}, I.IsNonempty →
     I.prod₁.construct =
       (fun A : Mat ℝ m n => fun j => ∏ i, A i j) '' I.construct := by -- --- PROOF ---
   -- no rows: the empty product is the point `1`

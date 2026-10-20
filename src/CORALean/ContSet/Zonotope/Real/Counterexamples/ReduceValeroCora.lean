@@ -108,7 +108,7 @@ def Zonotope.aux_zonotope (G : List (ℚ × ℚ)) : Set (ℚ × ℚ) :=
 
 /-- The result is `[(3,-2), (0,-2), (1,0)]`; `(-5, 4)` is a point of `Z` (support `9` in the
 direction `(-1,1)`) and not of the result (support `8`). -/
-theorem Zonotope.valeroCora_counterexample :
+theorem Zonotope.valeroCora_counterexample : -- --- CONCL ---
     valeroCora [(0, -1), (-1, 1), (3, -2), (1, 0)] 3 = [(3, -2), (0, -2), (1, 0)] ∧
       ((-5 : ℚ), (4 : ℚ)) ∈ aux_zonotope [(0, -1), (-1, 1), (3, -2), (1, 0)] ∧
       ((-5 : ℚ), (4 : ℚ)) ∉ aux_zonotope [(3, -2), (0, -2), (1, 0)] := by -- --- PROOF ---

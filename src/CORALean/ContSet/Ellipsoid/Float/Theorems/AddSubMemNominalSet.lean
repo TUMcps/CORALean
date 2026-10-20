@@ -49,7 +49,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `F` about the stored center lies in the nominal part when `Q` dominates it or it is a point. -/
 theorem Ellipsoid.add_sub_mem_nominalSet {E : Ellipsoid 𝕋 n} {F : Real.Ellipsoid n}
-    (hF : F.Q = 0 ∨ (toRealMat E.Q - F.Q).PosSemidef) {x : Vec ℝ n} (hx : x ∈ F.construct) :
+    (hF : F.Q = 0 ∨ (toRealMat E.Q - F.Q).PosSemidef) {x : Vec ℝ n}
+    (hx : x ∈ F.construct) : -- --- CONCL ---
     toRealVec E.q + (x - F.q) ∈ nominalSet E := by -- --- PROOF ---
   obtain ⟨u, hu, rfl⟩ := Real.Ellipsoid.mem_construct_iff.1 hx
   rw [add_sub_cancel_left]

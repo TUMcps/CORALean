@@ -37,7 +37,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.minimumTimeFrom_eq_add (φ : STL.Tree n) (time : ℝ≥0) :
+theorem STL.Tree.minimumTimeFrom_eq_add (φ : STL.Tree n) (time : ℝ≥0) : -- --- CONCL ---
     φ.minimumTimeFrom time = time + φ.minimumTimeFrom 0 := by -- --- PROOF ---
   induction φ generalizing time with
   | tt | ff | cmp => simp [STL.Tree.minimumTimeFrom]

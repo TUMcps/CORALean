@@ -38,7 +38,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.construct_eq_image (cZ : ConZonotope α) :
+theorem ConZonotope.construct_eq_image (cZ : ConZonotope α) : -- --- CONCL ---
     cZ.construct
       = (fun β : Vec ℝ cZ.h => cZ.c + ∑ j, β j • cZ.G j) ''
         cZ.domain.construct := by -- --- PROOF ---

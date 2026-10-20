@@ -57,7 +57,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 theorem Zonotope.construct_subset_of_cert (Zx Zy : Zonotope α) (Γ : Mat ℝ Zy.h Zx.h)
     (β : Vec ℝ Zy.h) (hX : ∀ j, Zx.G j = ∑ k, Γ k j • Zy.G k)
-    (hβ : Zy.c - Zx.c = ∑ k, β k • Zy.G k) (hn : ∀ k, ∑ j, |Γ k j| + |β k| ≤ 1) :
+    (hβ : Zy.c - Zx.c = ∑ k, β k • Zy.G k) (hn : ∀ k, ∑ j, |Γ k j| + |β k| ≤ 1) : -- --- CONCL ---
     Zx.construct ⊆ Zy.construct := by -- --- PROOF ---
   rintro _ ⟨a, ha, rfl⟩
   refine ⟨fun k => ∑ j, Γ k j * a j - β k, fun k => ?_, ?_⟩

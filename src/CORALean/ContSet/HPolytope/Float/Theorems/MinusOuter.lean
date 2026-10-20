@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.minus_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) (v : Vec 𝕋 n) :
+theorem HPolytope.minus_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) (v : Vec 𝕋 n) : -- --- CONCL ---
     (· - toRealVec v) '' P.construct ⊆ (P.minus v).construct := by -- --- PROOF ---
   have h := HPolytope.translate_outer (-v) P
   have hneg : toRealVec (-v) = -toRealVec v := toRealVec_neg _

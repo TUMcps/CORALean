@@ -54,7 +54,7 @@ open MeasureTheory ProbabilityTheory MeasurableSpace
 
 theorem indep_mid_of_indep {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω}
     [IsProbabilityMeasure μ] {mA mB mC : MeasurableSpace Ω} (hA : mA ≤ mΩ) (hB : mB ≤ mΩ)
-    (hC : mC ≤ mΩ) (h1 : Indep mA (mB ⊔ mC) μ) (h2 : Indep (mA ⊔ mB) mC μ) :
+    (hC : mC ≤ mΩ) (h1 : Indep mA (mB ⊔ mC) μ) (h2 : Indep (mA ⊔ mB) mC μ) : -- --- CONCL ---
     Indep mB (mA ⊔ mC) μ := by -- --- PROOF ---
   -- the intersections `a ∩ c` generate `A ⊔ C`
   let p : Set (Set Ω) := {s | ∃ a c, MeasurableSet[mA] a ∧ MeasurableSet[mC] c ∧ s = a ∩ c}

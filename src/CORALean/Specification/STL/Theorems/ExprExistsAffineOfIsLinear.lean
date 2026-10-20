@@ -46,7 +46,8 @@ theorem STL.Expr.aux_isLinear_mul {e₁ e₂ : STL.Expr n} (h : (STL.Expr.mul e�
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Expr.exists_affine_of_isLinear (e : STL.Expr n) (h : e.isLinear = true) :
+theorem STL.Expr.exists_affine_of_isLinear (e : STL.Expr n)
+    (h : e.isLinear = true) : -- --- CONCL ---
     ∃ (a : Fin n → ℝ) (b : ℝ), ∀ x, e.eval x = ∑ i, a i * x i + b := by -- --- PROOF ---
   induction e with
   -- the base cases

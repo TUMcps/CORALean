@@ -67,7 +67,8 @@ theorem LinearSys.verifySpecFloat_of_verifyStepFloat
     (h : LinearSys.VerifySoundFloat Reach reachFn innerApprox distG distF)
     (G : Fin (r + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (F : Fin (w + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (εmax : 𝕋)
     (hG : toReal (LinearSys.verifyStepFloat reachFn innerApprox distG distF G F εmax).1.νGout ≤ 0)
-    (hF : 0 < toReal (LinearSys.verifyStepFloat reachFn innerApprox distG distF G F εmax).1.νFout) :
+    (hF : 0 < toReal (LinearSys.verifyStepFloat reachFn innerApprox distG distF G F εmax).1.νFout)
+    : -- --- CONCL ---
     LinearSys.VerifySpecFloat G F Reach := by -- --- PROOF ---
   -- the outer approximation, read as a constrained zonotope, still contains `Reach`
   have hR : Reach ⊆ (reachFn εmax).conZonotope.construct :=

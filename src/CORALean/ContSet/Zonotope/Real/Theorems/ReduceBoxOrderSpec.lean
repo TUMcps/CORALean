@@ -48,7 +48,7 @@ variable {n : ℕ}
 /-- The order chosen for `B` is admissible for `B`, given `0 < n` and `0 ∈ B`:
 `Z.h` is always an admissible witness, so the infimum meets `B` too. -/
 theorem Zonotope.reduceBoxOrder_spec (Z : Zonotope (Vec ℝ n)) (hn : 0 < n)
-    {B : Set (Vec ℝ n)} (hB : (0 : Vec ℝ n) ∈ B) :
+    {B : Set (Vec ℝ n)} (hB : (0 : Vec ℝ n) ∈ B) : -- --- CONCL ---
     Z.ReduceBoxAdmissible B (Z.reduceBoxOrder B) := by -- --- PROOF ---
   have hthr : Z.h ≤ Z.h * n := by
     calc Z.h = Z.h * 1 := (mul_one Z.h).symm

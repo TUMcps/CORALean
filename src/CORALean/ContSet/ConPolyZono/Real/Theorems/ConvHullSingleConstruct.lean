@@ -50,7 +50,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `convHullSingle a` denotes the weighted sums of `a` points of the set. -/
-theorem ConPolyZono.convHullSingle_construct (a : ℕ) (cPZ : ConPolyZono α) (hq : cPZ.qI = 0) :
+theorem ConPolyZono.convHullSingle_construct (a : ℕ) (cPZ : ConPolyZono α)
+    (hq : cPZ.qI = 0) : -- --- CONCL ---
     (cPZ.convHullSingle a).construct
       = {x | ∃ y : Fin a → α, ∃ lam : Fin a → ℝ, (∀ j, y j ∈ cPZ.construct)
         ∧ (∀ j, 0 ≤ lam j) ∧ ∑ j, lam j = 1 ∧ x = ∑ j, lam j • y j} := by -- --- PROOF ---

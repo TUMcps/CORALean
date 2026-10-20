@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.origin_exact (n : ℕ) :
+theorem PolyZonotope.origin_exact (n : ℕ) : -- --- CONCL ---
     (PolyZonotope.origin n : PolyZonotope (Vec 𝕋 n)).construct = {0} := by -- --- PROOF ---
   have h : InflatedContSet.nominal (PolyZonotope.origin n : PolyZonotope (Vec 𝕋 n))
       = Real.PolyZonotope.ofPoint (0 : Vec ℝ n) := by

@@ -55,7 +55,7 @@ theorem aux_abs_le_maximum_absolute {x : ℝ} {lo hi : 𝕋} (h1 : toReal lo ≤
 
 /-- An entry of `(E - I_n)G_l` is under the float entry in magnitude. -/
 theorem MatExp.abs_genMinus_le {eA : Interval (Mat 𝕋 n n)} {E : Mat ℝ n n}
-    (hE : E ∈ eA.construct) (H : Zonotope (Vec 𝕋 n)) (l : Fin H.h) (j : Fin n) :
+    (hE : E ∈ eA.construct) (H : Zonotope (Vec 𝕋 n)) (l : Fin H.h) (j : Fin n) : -- --- CONCL ---
     |((E - 1) *ᵥ fun i => toReal (H.G l i)) j|
       ≤ toReal (MatExp.genMinus eA H l j) := by -- --- PROOF ---
   -- the member's entries are between the float box's

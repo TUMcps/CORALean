@@ -50,7 +50,7 @@ variable {X : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.CNF.sat_toFormula (c : ℝ≥0) (cnf : STL.CNF X) (ξ : ℝ≥0 → X) :
+theorem STL.CNF.sat_toFormula (c : ℝ≥0) (cnf : STL.CNF X) (ξ : ℝ≥0 → X) : -- --- CONCL ---
     (cnf.toFormula c).Sat ξ ↔ ∀ clause ∈ cnf, ∃ b ∈ clause, b.Holds c ξ := by -- --- PROOF ---
   unfold STL.CNF.toFormula
   simp only [STL.Formula.sat_bigAnd, STL.Formula.sat_bigOr, STL.Formula.sat_next,

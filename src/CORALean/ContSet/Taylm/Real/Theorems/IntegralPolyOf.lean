@@ -49,7 +49,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A monomial at `t` with `tᵢ := s` splits off the power of `s`. -/
-theorem Taylm.aux_monomial_update (e : Fin n → ℕ) (t : Vec ℝ n) (i : Fin n) (s : ℝ) :
+theorem Taylm.aux_monomial_update (e : Fin n → ℕ) (t : Vec ℝ n) (i : Fin n)
+    (s : ℝ) : -- --- CONCL ---
     Taylm.monomial e (Function.update t i s) =
       (∏ k ∈ Finset.univ.erase i, t k ^ e k) * s ^ e i := by -- --- PROOF ---
   rw [Taylm.monomial, ← Finset.prod_erase_mul _ _ (Finset.mem_univ i)]
@@ -61,7 +62,8 @@ theorem Taylm.aux_monomial_update (e : Fin n → ℕ) (t : Vec ℝ n) (i : Fin n
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.integral_polyOf (i : Fin n) (L : List (ℝ × (Fin n → ℕ))) (t : Vec ℝ n) :
+theorem Taylm.integral_polyOf (i : Fin n) (L : List (ℝ × (Fin n → ℕ)))
+    (t : Vec ℝ n) : -- --- CONCL ---
     ∫ s in (0 : ℝ)..t i, Taylm.polyOf L (Function.update t i s)
       = Taylm.polyOf (Taylm.integrateTerms i L) t := by -- --- PROOF ---
   have hc : ∀ L' : List (ℝ × (Fin n → ℕ)),

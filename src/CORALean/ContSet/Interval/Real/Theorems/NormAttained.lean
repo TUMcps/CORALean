@@ -40,7 +40,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.norm_attained {I : Interval (Vec ℝ n)} (h : I.IsNonempty) :
+theorem Interval.norm_attained {I : Interval (Vec ℝ n)} (h : I.IsNonempty) : -- --- CONCL ---
     ∃ x ∈ construct I, ‖x‖₂ = I.norm := by -- --- PROOF ---
   refine ⟨fun i => if |I.inf i| ≤ |I.sup i| then I.sup i else I.inf i, fun i => ?_, ?_⟩
   · have hi : I.inf i ≤ I.sup i := h i

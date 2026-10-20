@@ -53,7 +53,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Ellipsoid.aux_det_one_sub (c : Vec ℝ n) (κ : ℝ) (hc : c ⬝ᵥ c = 1) :
+theorem Ellipsoid.aux_det_one_sub (c : Vec ℝ n) (κ : ℝ) (hc : c ⬝ᵥ c = 1) : -- --- CONCL ---
     (1 - κ • vecMulVec c c : Mat ℝ n n).det = 1 - κ := by -- --- PROOF ---
   have : (κ • vecMulVec c c : Mat ℝ n n)
       = replicateCol (Fin 1) (κ • c) * replicateRow (Fin 1) c := by

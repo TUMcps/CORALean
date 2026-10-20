@@ -36,7 +36,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.construct_emptySet : (VPolytope.emptySet α).construct = ∅ := by -- --- PROOF ---
+theorem VPolytope.construct_emptySet : -- --- CONCL ---
+    (VPolytope.emptySet α).construct = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
   rintro ⟨β, -, hsum, -⟩

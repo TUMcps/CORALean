@@ -53,7 +53,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 /-- The exact image, regrouped so the center and each generator appear once. -/
 theorem Zonotope.aux_mulVec_nominal (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) (β : Vec ℝ Z.h)
-    {x : Vec ℝ n} (hx : ∀ k, x k = toReal (Z.c k) + ∑ j, toReal (Z.G j k) * β j) (i : Fin m) :
+    {x : Vec ℝ n} (hx : ∀ k, x k = toReal (Z.c k) + ∑ j, toReal (Z.G j k) * β j)
+    (i : Fin m) : -- --- CONCL ---
     (toRealMat M *ᵥ x) i = (∑ k, toReal (M i k) * toReal (Z.c k))
       + ∑ j, (∑ k, toReal (M i k) * toReal (Z.G j k)) * β j := by -- --- PROOF ---
   show ∑ k, toReal (M i k) * x k = _
@@ -71,7 +72,7 @@ theorem Zonotope.aux_mulVec_nominal (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n
         exact congrArg _ (Finset.sum_congr rfl fun j _ => (Finset.sum_mul _ _ _).symm)
 
 -- the image's nominal part, with the generator rounding charged to a box
-theorem Zonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) :
+theorem Zonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     (toRealMat M *ᵥ ·) '' nominalSet Z ⊆
       nominalSet (Zonotope.mtimes M Z)
         + (Zonotope.mtimesResidual M Z).construct := by -- --- PROOF ---

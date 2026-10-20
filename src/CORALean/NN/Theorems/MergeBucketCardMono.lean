@@ -48,7 +48,7 @@ namespace CORALean
 
 /-- Widening the tolerance can only grow the bucket's index count, never shrink it. -/
 theorem mergeBucket_card_mono {n : ℕ} (Y : Real.Interval (Vec ℝ n)) (y : ℝ) {δ δ' : ℝ}
-    (hδ : δ ≤ δ') :
+    (hδ : δ ≤ δ') : -- --- CONCL ---
     Fintype.card {i : Fin n // mergeBucket Y y δ i}
       ≤ Fintype.card {i : Fin n // mergeBucket Y y δ' i} := by -- --- PROOF ---
   apply Fintype.card_le_of_injective (fun x => ⟨x.val, mergeBucket_mono Y y hδ x.property⟩)

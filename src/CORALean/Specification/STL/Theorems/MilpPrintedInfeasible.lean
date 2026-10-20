@@ -47,7 +47,8 @@ variable {s p : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.not_milpPrinted_of_two_le (C : Matrix (Fin s) (Fin p) ℝ) (d : Fin s → ℝ)
-    (α : Fin p → ℝ) (hs : 2 ≤ s) : ¬ STL.milpPrinted C d α := by -- --- PROOF ---
+    (α : Fin p → ℝ) (hs : 2 ≤ s) : -- --- CONCL ---
+    ¬ STL.milpPrinted C d α := by -- --- PROOF ---
   rintro ⟨a, lam, hbin, hstrict, hbox, -, hsum, -⟩
   -- some `λ_jk` is `0`: all `1` would sum to `s ≥ 2`
   have hex : ∃ k, lam k = 0 := by

@@ -38,7 +38,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.center_mem_convexHull (P : Polygon) (h0 : Polygon.volume P ≠ 0) :
+theorem Polygon.center_mem_convexHull (P : Polygon) (h0 : Polygon.volume P ≠ 0) : -- --- CONCL ---
     Polygon.center P ∈ convexHull ℝ {v | v ∈ P.vertices} := by -- --- PROOF ---
   have hfin : {v | v ∈ P.vertices}.Finite := P.vertices.finite_toSet
   refine Polygon.regionCenter_mem (Polygon.isCompact_construct P) (convex_convexHull ℝ _)

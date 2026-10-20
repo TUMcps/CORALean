@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Taylm.inv_outer {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
     (hm : 0 < toReal (maximum (minimum T.constCoef T.bounds.inf)
-      (neg (maximum T.constCoef T.bounds.sup)))) :
+      (neg (maximum T.constCoef T.bounds.sup)))) : -- --- CONCL ---
     T.inv.Encloses fun t => (f t)⁻¹ := by -- --- PROOF ---
   rw [toReal_maximum, toReal_minimum, toReal_neg, toReal_maximum] at hm
   -- every point of the hull is at least `m` away from zero

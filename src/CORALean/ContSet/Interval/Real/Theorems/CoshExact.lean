@@ -57,7 +57,7 @@ theorem Interval.aux_cosh_anti {x y : ℝ} (h : y ≤ x) (h0 : x ≤ 0) :
   rw [Real.cosh_le_cosh, abs_of_nonpos h0, abs_of_nonpos (h.trans h0)]; linarith
 
 /-- One coordinate: the image of `[a, b]` is `[coshLo a b, coshHi a b]`. -/
-theorem Interval.aux_cosh_Icc {a b : ℝ} (hab : a ≤ b) :
+theorem Interval.aux_cosh_Icc {a b : ℝ} (hab : a ≤ b) : -- --- CONCL ---
     Set.Icc (Interval.coshLo a b) (Interval.coshHi a b) =
       Real.cosh '' Set.Icc a b := by -- --- PROOF ---
   have hc : ∀ c d : ℝ, ContinuousOn Real.cosh (Set.Icc c d) := fun _ _ =>
@@ -100,7 +100,8 @@ theorem Interval.aux_cosh_Icc {a b : ℝ} (hab : a ≤ b) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.cosh_exact (I : Interval (Vec ℝ n)) (hI : ∀ i, I.inf i ≤ I.sup i) :
+theorem Interval.cosh_exact (I : Interval (Vec ℝ n))
+    (hI : ∀ i, I.inf i ≤ I.sup i) : -- --- CONCL ---
     I.cosh.construct = (fun x i => Real.cosh (x i)) '' I.construct := by -- --- PROOF ---
   ext y
   constructor

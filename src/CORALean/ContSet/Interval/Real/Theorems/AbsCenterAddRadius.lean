@@ -41,7 +41,7 @@ variable {m n : ℕ}
 
 /-- Entrywise, `|center| + rad = absMax` on a nonempty box. -/
 theorem Interval.abs_center_add_radius (A : Interval (Mat ℝ m n))
-    (hA : ∀ p q, A.inf p q ≤ A.sup p q) (i : Fin m) (j : Fin n) :
+    (hA : ∀ p q, A.inf p q ≤ A.sup p q) (i : Fin m) (j : Fin n) : -- --- CONCL ---
     |A.center i j| + A.radius i j = A.absMax i j := by -- --- PROOF ---
   have hc : A.center i j = (A.inf i j + A.sup i j) / 2 := by
     simp only [Interval.center, Matrix.smul_apply, Matrix.add_apply, smul_eq_mul]; ring

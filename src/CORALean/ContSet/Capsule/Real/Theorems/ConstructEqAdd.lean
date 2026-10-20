@@ -40,7 +40,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.construct_eq_add {C : Capsule n} (hr : 0 ≤ C.r) :
+theorem Capsule.construct_eq_add {C : Capsule n} (hr : 0 ≤ C.r) : -- --- CONCL ---
     C.construct = (fun t : ℝ => C.c + t • C.g) '' Set.Icc (-1 : ℝ) 1 +
       {y : Vec ℝ n | ∑ i, y i ^ 2 ≤ C.r ^ 2} := by -- --- PROOF ---
   ext x

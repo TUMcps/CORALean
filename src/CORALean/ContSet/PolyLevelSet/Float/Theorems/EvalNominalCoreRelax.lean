@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The relaxed rows, read back, take the values of the read-back rows relaxed by the read-back
 slack. -/
 theorem PolyLevelSet.eval_nominalCore_relax (P : PolyLevelSet 𝕋 n) (D : Interval (Vec 𝕋 P.m))
-    (x : Vec ℝ (n + P.m)) :
+    (x : Vec ℝ (n + P.m)) : -- --- CONCL ---
     (P.relax D).nominalCore.eval x
       = (P.nominalCore.relax (toRealVec P.b_error) D.nominal).eval x := by -- --- PROOF ---
   have hA : toRealMat (P.relax D).A

@@ -51,7 +51,8 @@ variable {m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Every tuple's normal is `0`, or one of CORA's combination normals up to a sign. -/
-private theorem aux_tuple_normal (Z : Zonotope (Vec ℝ (m + 1))) (S : Fin m → Fin Z.h) :
+private theorem aux_tuple_normal (Z : Zonotope (Vec ℝ (m + 1)))
+    (S : Fin m → Fin Z.h) : -- --- CONCL ---
     Z.facetNormal S = 0 ∨
       ∃ v ∈ Z.facetNormals, ∀ y, |y ⬝ᵥ Z.facetNormal S| = |y ⬝ᵥ v| := by -- --- PROOF ---
   by_cases hS : Function.Injective S
@@ -94,7 +95,7 @@ private theorem aux_scale_iff {a : ℝ} (ha : 0 < a) (v x : Vec ℝ (m + 1)) {h 
 
 /-- CORA's `polytope(Z)` rows describe the zonotope exactly when its generators span. -/
 theorem Zonotope.hPolytopeFacets_exact (Z : Zonotope (Vec ℝ (m + 1)))
-    (hspan : Submodule.span ℝ (Set.range Z.G) = ⊤) :
+    (hspan : Submodule.span ℝ (Set.range Z.G) = ⊤) : -- --- CONCL ---
     Z.hPolytopeFacets.construct = Z.construct := by -- --- PROOF ---
   -- spanning generators are not all zero
   have hG : ¬∀ j, Z.G j = 0 := by

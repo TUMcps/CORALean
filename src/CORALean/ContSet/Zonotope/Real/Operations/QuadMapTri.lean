@@ -55,7 +55,7 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The pairs `j < k` of `Fin p`, as `p(p - 1)/2 = C(p, 2)` of them. -/
-theorem Zonotope.aux_card_ltPair (p : ℕ) :
+theorem Zonotope.aux_card_ltPair (p : ℕ) : -- --- CONCL ---
     Fintype.card {jk : Fin p × Fin p // jk.1 < jk.2} = p.choose 2 := by -- --- PROOF ---
   -- a pair is its larger index `k` and some `j : Fin k`
   let e : {jk : Fin p × Fin p // jk.1 < jk.2} ≃ Σ k : Fin p, Fin k :=

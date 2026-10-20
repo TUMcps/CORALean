@@ -55,7 +55,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.maxPool_encloses (tap : Fin m → Fin (k + 1) → Fin n)
-    (pivot : Interval (Vec 𝕋 n) → Fin m → Fin (k + 1)) :
+    (pivot : Interval (Vec 𝕋 n) → Fin m → Fin (k + 1)) : -- --- CONCL ---
     (Layer.maxPool (S := S) tap pivot).Encloses
       (fun x j => Real.windowMax fun l => x (tap j l)) := by -- --- PROOF ---
   refine ⟨fun s x hx => ?_⟩

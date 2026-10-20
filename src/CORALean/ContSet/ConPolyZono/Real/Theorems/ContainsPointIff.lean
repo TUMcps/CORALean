@@ -48,7 +48,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.containsPoint_iff (cPZ : ConPolyZono (Vec ℝ n)) (p : Vec ℝ n) :
+theorem ConPolyZono.containsPoint_iff (cPZ : ConPolyZono (Vec ℝ n)) (p : Vec ℝ n) : -- --- CONCL ---
     cPZ.containsPoint p ↔ p ∈ cPZ.construct := by -- --- PROOF ---
   unfold ConPolyZono.containsPoint
   rw [ConPolyZono.mem_extPolyZonotope_iff]

@@ -64,7 +64,7 @@ open CORALean
 /-- With `P = polygon(E)` for the unit disk `E` and any finite boundary sample `V`, CORA's test
 accepts `E` while `E ⊄ P`. -/
 theorem Polygon.containsEllipsoid_cora_counterexample (V : Set (Vec ℝ 2)) (hV : V.Finite)
-    (hc : ∀ p ∈ V, p 0 ^ 2 + p 1 ^ 2 = 1) (tol : ℝ) (htol : 0 ≤ tol) :
+    (hc : ∀ p ∈ V, p 0 ^ 2 + p 1 ^ 2 = 1) (tol : ℝ) (htol : 0 ≤ tol) : -- --- CONCL ---
     Polygon.containsRegionCora tol (Polygon.sampledHullCora V) (Polygon.sampledHullCora V) ∧
       ¬ (⟨1, 0, .one⟩ : Ellipsoid 2).construct ⊆ Polygon.sampledHullCora V := by -- --- PROOF ---
   refine ⟨by simpa [Polygon.containsRegionCora] using htol, fun hsub => ?_⟩

@@ -62,7 +62,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A box is the convex hull of its vertices, in `Vec ℝ n × ℝ` with the maximum norm. -/
-theorem aux_lift_closedBall_subset_convexHull (c : Vec ℝ n × ℝ) {ρ : ℝ} (hρ : 0 < ρ) :
+theorem aux_lift_closedBall_subset_convexHull (c : Vec ℝ n × ℝ) {ρ : ℝ}
+    (hρ : 0 < ρ) : -- --- CONCL ---
     closedBall c ρ ⊆ convexHull ℝ
       {q : Vec ℝ n × ℝ | (∀ i, |q.1 i - c.1 i| = ρ) ∧ |q.2 - c.2| = ρ} := by -- --- PROOF ---
   -- the horizontal part: the cube as the zonotope of the scaled unit vectors
@@ -119,7 +120,7 @@ theorem aux_lift_isClosed (w : Fin n ⊕ Fin n → Vec ℝ n × ℝ) :
   exact continuous_finsetSum _ fun k _ => (continuous_apply k).smul continuous_const
 
 /-- `Z*` is convex. -/
-theorem aux_lift_convex (w : Fin n ⊕ Fin n → Vec ℝ n × ℝ) :
+theorem aux_lift_convex (w : Fin n ⊕ Fin n → Vec ℝ n × ℝ) : -- --- CONCL ---
     Convex ℝ {p | ∃ μ : Fin n ⊕ Fin n → ℝ, (∀ k, 0 ≤ μ k ∧ μ k ≤ 1) ∧
       p = ∑ k, μ k • w k} := by -- --- PROOF ---
   rw [aux_lift_eq_image]
@@ -133,7 +134,7 @@ theorem aux_lift_convex (w : Fin n ⊕ Fin n → Vec ℝ n × ℝ) :
 the `x ∈ Π` with `zᵢᵀx = sign aᵢ`, and `sᵀx ≤ n‖s‖‖x‖ ≤ n(n - 1)αR∞(Π)`. -/
 theorem aux_lift_exists_coeff (hn : 1 ≤ n) (z : Fin n → Vec ℝ n) (hz : LinearIndependent ℝ z)
     {R : ℝ} (hR : IsGreatest ((fun x => ‖x‖) '' {x : Vec ℝ n | ∀ i, |z i ⬝ᵥ x| ≤ 1}) R)
-    (hRpos : 0 < R) {s : Vec ℝ n} (hs : ‖s‖ ≤ (n - 1) * (1 / (2 * n ^ 2 * R))) :
+    (hRpos : 0 < R) {s : Vec ℝ n} (hs : ‖s‖ ≤ (n - 1) * (1 / (2 * n ^ 2 * R))) : -- --- CONCL ---
     ∃ a : Fin n → ℝ, ∑ i, a i • z i = s ∧ ∑ i, |a i| ≤ 1 / 2 := by -- --- PROOF ---
   -- the coefficients `a = sᵀM⁻¹` of `s` in the basis `zᵢ`, `M` the matrix of rows `zᵢ`
   let M : Mat ℝ n n := Matrix.of fun i j => z i j

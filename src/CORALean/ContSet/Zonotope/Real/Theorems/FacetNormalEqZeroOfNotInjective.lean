@@ -44,7 +44,8 @@ namespace CORALean.Real
 
 /-- A selection with a repeated generator has cross product `0`. -/
 theorem Zonotope.facetNormal_eq_zero_of_not_injective {n : ℕ} (Z : Zonotope (Vec ℝ (n + 1)))
-    (S : Fin n → Fin Z.h) (hS : ¬Function.Injective S) : Z.facetNormal S = 0 := by -- --- PROOF ---
+    (S : Fin n → Fin Z.h) (hS : ¬Function.Injective S) : -- --- CONCL ---
+    Z.facetNormal S = 0 := by -- --- PROOF ---
   obtain ⟨a, b, hab, hne⟩ := Function.not_injective_iff.mp hS
   refine dotProduct_eq_zero _ fun y => ?_
   unfold Zonotope.facetNormal

@@ -54,7 +54,7 @@ variable {n : ℕ}
 
 /-- Every entry of the exponential sits between the truncation and the tail bound. -/
 theorem MatExp.exp_mem_expEnclosure (x : Mat ℝ n n) (η : ℕ)
-    (hε : ‖x‖ / ((η : ℝ) + 2) < 1) :
+    (hε : ‖x‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
     exp x ∈ (MatExp.expEnclosure x η).construct := by -- --- PROOF ---
   refine Interval.mem_mat_iff.mpr fun i j => ?_
   have h : |exp x i j - MatExp.expTaylor x η i j|

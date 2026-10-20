@@ -42,7 +42,7 @@ variable {m n : ℕ}
 
 /-- A nonempty box is the convex hull of its vertices. -/
 theorem Interval.convexHull_vertices (A : Interval (Mat ℝ m n))
-    (hA : ∀ p q, A.inf p q ≤ A.sup p q) :
+    (hA : ∀ p q, A.inf p q ≤ A.sup p q) : -- --- CONCL ---
     convexHull ℝ (A.vertices : Set (Mat ℝ m n)) = A.construct := by -- --- PROOF ---
   -- the vertices are the matrices with every entry at an end
   have hv : (A.vertices : Set (Mat ℝ m n))

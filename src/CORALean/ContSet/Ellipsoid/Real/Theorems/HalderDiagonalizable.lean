@@ -55,7 +55,7 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- [1, Lemma 1]: `M₁ M₂ = S diag(d) T`, `S T = 1`, with `d > 0` when `M₂` is positive definite. -/
 theorem Ellipsoid.halder_diagonalizable {M₁ M₂ : Matrix n n ℝ} (h₁ : M₁.PosDef)
-    (h₂ : M₂.IsHermitian) :
+    (h₂ : M₂.IsHermitian) : -- --- CONCL ---
     ∃ (S T : Matrix n n ℝ) (d : n → ℝ), S * T = 1 ∧ T * S = 1 ∧
       M₁ * M₂ = S * diagonal d * T ∧ (M₂.PosDef → ∀ i, 0 < d i) := by -- --- PROOF ---
   -- the positive root `N` of `M₁` turns `M₁ M₂` into the symmetric `N M₂ N`

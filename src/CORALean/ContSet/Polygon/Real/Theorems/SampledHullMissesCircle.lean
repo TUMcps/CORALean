@@ -36,7 +36,7 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Polygon.aux_circle_infinite :
+theorem Polygon.aux_circle_infinite : -- --- CONCL ---
     {x : Vec ℝ 2 | x 0 ^ 2 + x 1 ^ 2 = 1}.Infinite := by -- --- PROOF ---
   refine Set.infinite_of_injective_forall_mem
     (f := fun n : ℕ => (fun i : Fin 2 =>
@@ -64,7 +64,7 @@ theorem Polygon.aux_circle_infinite :
 
 /-- Some point of the unit circle is outside the hull of any finite set of circle points. -/
 theorem Polygon.exists_circle_notMem_sampledHull (V : Set (Vec ℝ 2)) (hV : V.Finite)
-    (hc : ∀ p ∈ V, p 0 ^ 2 + p 1 ^ 2 = 1) :
+    (hc : ∀ p ∈ V, p 0 ^ 2 + p 1 ^ 2 = 1) : -- --- CONCL ---
     ∃ z : Vec ℝ 2, z 0 ^ 2 + z 1 ^ 2 = 1 ∧ z ∉ convexHull ℝ V := by -- --- PROOF ---
   obtain ⟨z, hz, hzV⟩ := Polygon.aux_circle_infinite.exists_notMem_finset hV.toFinset
   have hz' : z 0 ^ 2 + z 1 ^ 2 = 1 := hz

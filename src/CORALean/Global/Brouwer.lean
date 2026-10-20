@@ -50,7 +50,7 @@ open Metric
 /-- A nonempty complete convex set is a continuous retract of an inner product space. -/
 theorem aux_exists_retraction_convex {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {K : Set E}
-    (hne : K.Nonempty) (hc : IsComplete K) (hconv : Convex ℝ K) :
+    (hne : K.Nonempty) (hc : IsComplete K) (hconv : Convex ℝ K) : -- --- CONCL ---
     ∃ P : E → E, Continuous P ∧ (∀ x, P x ∈ K) ∧ ∀ x ∈ K, P x = x := by -- --- PROOF ---
   have hex : ∀ x, ∃ v ∈ K, ∀ w ∈ K, inner ℝ (x - v) (w - v) ≤ 0 := fun x => by
     obtain ⟨v, hv, hmin⟩ := exists_norm_eq_iInf_of_complete_convex hne hc hconv x
@@ -86,7 +86,8 @@ theorem aux_exists_retraction_convex {E : Type} [NormedAddCommGroup E] [InnerPro
 /-- The theorem in an inner product space. -/
 theorem aux_exists_fixedPoint_inner {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [FiniteDimensional ℝ E] {K : Set E} (hK : IsCompact K) (hconv : Convex ℝ K)
-    (hne : K.Nonempty) {f : E → E} (hf : ContinuousOn f K) (hfK : Set.MapsTo f K K) :
+    (hne : K.Nonempty) {f : E → E} (hf : ContinuousOn f K)
+    (hfK : Set.MapsTo f K K) : -- --- CONCL ---
     ∃ x ∈ K, f x = x := by -- --- PROOF ---
   obtain ⟨P, hPc, hPK, hPid⟩ := aux_exists_retraction_convex hne hK.isComplete hconv
   -- `K` sits in a ball of radius `R`; rescale it to the unit ball
@@ -121,7 +122,8 @@ normed space has a fixed point. -/
 theorem exists_fixedPoint_of_isCompact_convex {F : Type} [NormedAddCommGroup F]
     [NormedSpace ℝ F] [FiniteDimensional ℝ F] {K : Set F} (hK : IsCompact K)
     (hconv : Convex ℝ K) (hne : K.Nonempty) {f : F → F} (hf : ContinuousOn f K)
-    (hfK : Set.MapsTo f K K) : ∃ x ∈ K, f x = x := by -- --- PROOF ---
+    (hfK : Set.MapsTo f K K) : -- --- CONCL ---
+    ∃ x ∈ K, f x = x := by -- --- PROOF ---
   set e := toEuclidean (E := F)
   have hK' : IsCompact (e '' K) := hK.image e.continuous
   have hconv' : Convex ℝ (e '' K) := hconv.linear_image e.toLinearEquiv.toLinearMap

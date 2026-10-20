@@ -49,7 +49,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `det S ≤ (tr S / n)ⁿ` for positive semidefinite `S`, `n ≥ 1`. -/
-theorem det_le_trace_div_pow {S : Mat ℝ n n} (hS : S.PosSemidef) (hn : 0 < n) :
+theorem det_le_trace_div_pow {S : Mat ℝ n n} (hS : S.PosSemidef) (hn : 0 < n) : -- --- CONCL ---
     S.det ≤ (S.trace / n) ^ n := by -- --- PROOF ---
   have hH := hS.1
   rw [hH.det_eq_prod_eigenvalues, hH.trace_eq_sum_eigenvalues]

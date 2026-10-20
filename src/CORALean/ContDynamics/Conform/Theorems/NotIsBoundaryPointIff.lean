@@ -52,7 +52,7 @@ variable {ι : Type}
 
 /-- [1, Prop. 8], (24): not a boundary point iff some `β ∈ C` fits strictly in every `αⱼ > 0`. -/
 theorem Conform.not_isBoundaryPoint_iff [Fintype ι] [DecidableEq ι] {C : Set (ι → ℝ)}
-    (hC : Convex ℝ C) {α : ι → ℝ} (hfit : Conform.FitsUnder C α) :
+    (hC : Convex ℝ C) {α : ι → ℝ} (hfit : Conform.FitsUnder C α) : -- --- CONCL ---
     ¬ Conform.IsBoundaryPoint C α ↔
       ∃ β ∈ C, (∀ j, |β j| ≤ α j) ∧ ∀ j, 0 < α j → |β j| < α j := by -- --- PROOF ---
   constructor

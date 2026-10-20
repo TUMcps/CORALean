@@ -44,7 +44,7 @@ variable {k b m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.lmi_blockDiag_diagonal (X₀ : Mat ℝ k k) (X : Fin m → Mat ℝ k k)
-    (d₀ : Vec ℝ b) (d : Fin m → Vec ℝ b) (v : Fin m → ℝ) :
+    (d₀ : Vec ℝ b) (d : Fin m → Vec ℝ b) (v : Fin m → ℝ) : -- --- CONCL ---
     blockDiag 0 X₀ (diagonal d₀) + ∑ l, v l • blockDiag 0 (X l) (diagonal (d l))
       = blockDiag 0 (X₀ + ∑ l, v l • X l) (diagonal (d₀ + ∑ l, v l • d l)) := by -- --- PROOF ---
   simp only [← blockDiag_smul, ← blockDiag_sum, ← blockDiag_add]

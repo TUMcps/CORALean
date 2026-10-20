@@ -39,7 +39,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m₁ m₂ n 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.vertcat_exact (I : Interval (Mat 𝕋 m₁ n)) (J : Interval (Mat 𝕋 m₂ n)) :
+theorem Interval.vertcat_exact (I : Interval (Mat 𝕋 m₁ n))
+    (J : Interval (Mat 𝕋 m₂ n)) : -- --- CONCL ---
     (I.vertcat J).construct = (fun p : Mat ℝ m₁ n × Mat ℝ m₂ n => Fin.append p.1 p.2) ''
       (I.construct ×ˢ J.construct) := by -- --- PROOF ---
   have h : (I.vertcat J).nominal = Real.Interval.vertcat I.nominal J.nominal := by

@@ -55,7 +55,7 @@ open scoped MatrixOrder
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.isBigger_cora_counterexample :
+theorem Ellipsoid.isBigger_cora_counterexample : -- --- CONCL ---
     ∃ E₁ E₂ : Ellipsoid 1, E₁.isBiggerCora E₂ ∧
       ¬ ((fun x => x - E₂.q) '' E₂.construct ⊆
         (fun x => x - E₁.q) '' E₁.construct) := by -- --- PROOF ---

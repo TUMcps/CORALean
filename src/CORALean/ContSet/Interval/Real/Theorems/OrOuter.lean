@@ -39,7 +39,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.or_outer (I₁ I₂ : Interval α) :
+theorem Interval.or_outer (I₁ I₂ : Interval α) : -- --- CONCL ---
     I₁.construct ∪ I₂.construct ⊆ (I₁.or I₂).construct := by -- --- PROOF ---
   rintro x (hx | hx) i
   · simp only [Interval.or, Entrywise.entry_ofEntry]

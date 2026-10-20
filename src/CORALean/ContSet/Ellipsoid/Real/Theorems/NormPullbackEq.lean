@@ -40,7 +40,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `‖Gᵀ d‖₂ = √(dᵀ Q d)` for the direction `d` of `c`. -/
-theorem Ellipsoid.norm₂_pullback (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ) :
+theorem Ellipsoid.norm₂_pullback (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ) : -- --- CONCL ---
     ‖E.pullback c‖₂ = Real.sqrt (dualVec c ⬝ᵥ E.Q *ᵥ dualVec c) := by -- --- PROOF ---
   set d := dualVec c
   have hsq : E.pullback c ⬝ᵥ E.pullback c = d ⬝ᵥ E.Q *ᵥ d := by

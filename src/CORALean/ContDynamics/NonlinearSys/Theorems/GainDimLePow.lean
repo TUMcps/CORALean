@@ -68,7 +68,8 @@ variable {n m : ℕ}
 `gainOrderDim` takes. -/
 theorem aux_le_of_gainOrderDim {q : ℕ → Fin n → ℕ∞} {a : ℕ → Fin n → Vec ℝ m} {i : Fin n}
     {e : ℕ → ℕ} {qi : ℕ} (hqi : gainOrderDim q a i = (qi : ℕ∞))
-    (he : ∀ p, a p i ≠ 0 → ((e p : ℕ∞) = (p : ℕ∞) + q p i)) {p : ℕ} (hp : a p i ≠ 0) :
+    (he : ∀ p, a p i ≠ 0 → ((e p : ℕ∞) = (p : ℕ∞) + q p i)) {p : ℕ}
+    (hp : a p i ≠ 0) : -- --- CONCL ---
     qi ≤ e p := by -- --- PROOF ---
   have hmem : ((e p : ℕ) : ℕ∞) ∈ {j : ℕ∞ | ∃ p : ℕ, (p : ℕ∞) + q p i = j ∧ a p i ≠ 0} :=
     ⟨p, (he p hp).symm, hp⟩

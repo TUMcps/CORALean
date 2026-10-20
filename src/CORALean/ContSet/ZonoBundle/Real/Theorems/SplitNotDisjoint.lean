@@ -47,7 +47,8 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Printed disjointness is false: some enclosed split has halves that meet. -/
-theorem ZonoBundle.split_not_disjoint : ∃ (B : Interval (Vec ℝ 1)) (zB : ZonoBundle (Vec ℝ 1)),
+theorem ZonoBundle.split_not_disjoint : -- --- CONCL ---
+    ∃ (B : Interval (Vec ℝ 1)) (zB : ZonoBundle (Vec ℝ 1)),
     (fun x => (1 : Mat ℝ 1 1)⁻¹ *ᵥ x) '' zB.construct ⊆ B.construct ∧
       ((zB.split 1 B 0).1.construct ∩ (zB.split 1 B 0).2.construct).Nonempty := by -- --- PROOF ---
   -- the box `[-1, 1]` and the bundle holding one zonotope, the same segment

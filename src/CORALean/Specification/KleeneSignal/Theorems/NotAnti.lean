@@ -44,7 +44,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem KleeneSignal.not_anti (s s' : KleeneSignal ℝ) (hs : s.IsValid) (hs' : s'.IsValid)
-    (h : ∀ t : ℝ, 0 ≤ t → s.at t ≤ s'.at t) :
+    (h : ∀ t : ℝ, 0 ≤ t → s.at t ≤ s'.at t) : -- --- CONCL ---
     ∀ t : ℝ, 0 ≤ t → s'.not.at t ≤ s.not.at t := by -- --- PROOF ---
   intro t ht
   rw [KleeneSignal.at_not s hs, KleeneSignal.at_not s' hs']

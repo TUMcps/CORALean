@@ -47,7 +47,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.invRemS_eq {c : ℝ} (hc : c ≠ 0) (x : ℝ) (q : ℕ) :
+theorem Taylm.invRemS_eq {c : ℝ} (hc : c ≠ 0) (x : ℝ) (q : ℕ) : -- --- CONCL ---
     ((q : ℝ) + 1) * (-1) ^ (q + 1) * Taylm.invRemS c q x
       = x⁻¹ - ∑ k ∈ Finset.range (q + 1),
         (-1) ^ k * (x - c) ^ k / c ^ (k + 1) := by -- --- PROOF ---

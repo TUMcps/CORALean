@@ -50,7 +50,7 @@ include inst
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.enlarge_exact {I : Interval α} (hI : I.IsNonempty (ι := ι)) {f : ℝ}
-    (hf : 0 ≤ f) :
+    (hf : 0 ≤ f) : -- --- CONCL ---
     (I.enlarge f).construct =
       (fun x => I.center + f • (x - I.center)) '' I.construct := by -- --- PROOF ---
   -- a point of the box is a point of `ofCenterRadius center radius`, which is the box itself

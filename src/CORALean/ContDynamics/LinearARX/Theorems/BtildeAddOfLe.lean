@@ -45,7 +45,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearARX.Btilde_add_of_le (sys : LinearARX 𝕋 dy du p) (k Δk : ℕ) :
+theorem LinearARX.Btilde_add_of_le (sys : LinearARX 𝕋 dy du p) (k Δk : ℕ) : -- --- CONCL ---
     sys.Aext ^ (k + Δk) = sys.Aext ^ Δk * sys.Aext ^ k ∧
     ∀ i : ℤ, (p : ℤ) + Δk ≤ i →
       sys.Btilde (k + Δk) i = sys.Aext ^ Δk * sys.Btilde k (i - Δk) := by -- --- PROOF ---

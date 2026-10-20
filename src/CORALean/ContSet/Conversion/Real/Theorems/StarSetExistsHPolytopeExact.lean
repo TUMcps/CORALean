@@ -42,7 +42,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem StarSet.exists_hPolytope_exact (s : StarSet ℋ𝒫 n) :
+theorem StarSet.exists_hPolytope_exact (s : StarSet ℋ𝒫 n) : -- --- CONCL ---
     ∃ P : HPolytope (Vec ℝ n), P.construct = s.construct := by -- --- PROOF ---
   by_cases hlu : ∀ k, s.dom.inf k ≤ s.dom.sup k
   · -- an uncrossed box: the star set is a constrained zonotope, which is a halfspace description

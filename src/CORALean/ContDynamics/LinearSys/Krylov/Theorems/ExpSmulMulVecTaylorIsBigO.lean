@@ -56,7 +56,8 @@ variable {k : ℕ}
 
 /-- [1, Eq. 2.10]'s step: `e^{tN}x - Σ_{j<p} tʲ/j! Nʲx = O(tᵖ)` as `t → 0`, for a complex
 matrix `N`. -/
-theorem Krylov.exp_smul_mulVec_taylor_isBigO (N : Mat ℂ k k) (x : Fin k → ℂ) (p : ℕ) :
+theorem Krylov.exp_smul_mulVec_taylor_isBigO (N : Mat ℂ k k) (x : Fin k → ℂ)
+    (p : ℕ) : -- --- CONCL ---
     (fun t : ℝ => exp (t • N) *ᵥ x -
         ∑ j ∈ Finset.range p, ((Nat.factorial j : ℂ)⁻¹ * (t : ℂ) ^ j) • (N ^ j *ᵥ x))
       =O[𝓝 0] fun t => t ^ p := by -- --- PROOF ---

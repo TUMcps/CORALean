@@ -58,7 +58,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [2, Eq. 2]: the volume of `E(Q, q)` is `V_n √det Q`, for positive-definite `Q`. -/
-theorem Ellipsoid.volume_setOf_quad_le {Q : Mat ℝ n n} (hQ : Q.PosDef) (q : Vec ℝ n) :
+theorem Ellipsoid.volume_setOf_quad_le {Q : Mat ℝ n n} (hQ : Q.PosDef)
+    (q : Vec ℝ n) : -- --- CONCL ---
     MeasureTheory.volume {x : Vec ℝ n | (x - q) ⬝ᵥ Q⁻¹ *ᵥ (x - q) ≤ 1}
       = ENNReal.ofReal (Real.pi ^ ((n : ℝ) / 2) / Real.Gamma ((n : ℝ) / 2 + 1)
           * Real.sqrt Q.det) := by -- --- PROOF ---

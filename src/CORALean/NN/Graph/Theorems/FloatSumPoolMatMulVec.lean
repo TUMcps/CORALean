@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {N F : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem GNN.sumPoolMat_mulVec (H : Mat ℝ N F) :
+theorem GNN.sumPoolMat_mulVec (H : Mat ℝ N F) : -- --- CONCL ---
     toRealMat (GNN.sumPoolMat (𝕋 := 𝕋) N F) *ᵥ GNN.flatten H
       = Real.GNN.sumPoolLin N F H := by -- --- PROOF ---
   funext j

@@ -64,7 +64,8 @@ gain of that dimension tends to `δ^{qᵢ+1}`. -/
 theorem gainDim_tendsto_pow (A : ℝ → Mat ℝ n n) (Ψ : ℝ → Set (Vec ℝ n)) (i : Fin n)
     {qi : ℕ} {g : ℝ → ℝ} {δ : ℝ} (hδ : 0 ≤ δ)
     (hg : ContinuousWithinAt g (Set.Ici 0) 0) (hg0 : g 0 ≠ 0)
-    (hexp : ∀ᶠ t in 𝓝[≥] (0:ℝ), boxDiameter (abstrSolInf A Ψ t) i = t ^ (qi + 1) * g t) :
+    (hexp : ∀ᶠ t in 𝓝[≥] (0:ℝ), boxDiameter (abstrSolInf A Ψ t) i = t ^ (qi + 1) * g t)
+    : -- --- CONCL ---
     Tendsto (fun h => gainDim A Ψ h δ i) (𝓝[>] (0:ℝ)) (𝓝 (δ ^ (qi + 1))) := by -- --- PROOF ---
   -- the two spans the ratio compares, both reaching `0` from the right
   have hid : Tendsto (fun h : ℝ => h) (𝓝[>] (0:ℝ)) (𝓝[≥] (0:ℝ)) :=

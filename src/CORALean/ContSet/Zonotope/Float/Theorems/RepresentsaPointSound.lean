@@ -40,7 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.representsa_point_sound {Z : Zonotope (Vec 𝕋 n)}
-    (h : Z.representsa_point = true) : ∃ v, Z.construct = {v} := by -- --- PROOF ---
+    (h : Z.representsa_point = true) : -- --- CONCL ---
+    ∃ v, Z.construct = {v} := by -- --- PROOF ---
   simp only [Zonotope.representsa_point, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨hG, hE⟩ := h

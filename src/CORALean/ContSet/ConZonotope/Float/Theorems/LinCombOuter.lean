@@ -69,7 +69,8 @@ noncomputable def ConZonotope.aux_linCombGReal (cZ₁ cZ₂ : ConZonotope 𝕋 (
 /-- Every weighted coefficient is admissible, the fresh one because `2λ - 1` is
 in `[-1, 1]`. -/
 theorem ConZonotope.aux_abs_linCombCoeff {h₁ h₂ : ℕ} {β₁ : Vec ℝ h₁} {β₂ : Vec ℝ h₂} {lam : ℝ}
-    (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1) :
+    (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hl0 : 0 ≤ lam)
+    (hl1 : lam ≤ 1) : -- --- CONCL ---
     ∀ j, |ConZonotope.aux_linCombCoeff β₁ β₂ lam j| ≤ 1 := by -- --- PROOF ---
   have hm0 : (0:ℝ) ≤ 1 - lam := by linarith
   have hm1 : (1:ℝ) - lam ≤ 1 := by linarith
@@ -108,7 +109,7 @@ theorem ConZonotope.aux_mem_linComb_P (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 
 /-- What the stored generators are wrong by, entrywise: nothing on the copied
 blocks, and on the center generator the gap `linCombGDiff` records. -/
 theorem ConZonotope.aux_linCombG_error (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) (i : Fin n)
-    (j : Fin (cZ₁.h + cZ₂.h + 1)) :
+    (j : Fin (cZ₁.h + cZ₂.h + 1)) : -- --- CONCL ---
     |ConZonotope.aux_linCombGReal cZ₁ cZ₂ i j - toReal ((cZ₁.linComb cZ₂).G j i)|
       ≤ toReal (ConZonotope.linCombGDiff cZ₁ cZ₂ i j) := by -- --- PROOF ---
   simp only [ConZonotope.aux_linCombGReal, ConZonotope.linCombGDiff, ConZonotope.linComb]
@@ -189,7 +190,7 @@ theorem ConZonotope.aux_linComb_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec �
 
 /-- The box absorbs the two incoming boxes, the center rounding and the center
 generator's. -/
-theorem ConZonotope.aux_linComb_error (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
+theorem ConZonotope.aux_linComb_error (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     Set.linComb cZ₁.I_error.construct cZ₂.I_error.construct
         + ((Zonotope.midpointResidual cZ₁.c cZ₂.c).construct
             + (Zonotope.generatorError (ConZonotope.linCombGDiff cZ₁ cZ₂)).construct)

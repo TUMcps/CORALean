@@ -1086,10 +1086,10 @@ inner block would mark nothing at all.
 
 ### The conclusion marker
 
-The PROOF flag marks where the claim stops; its twin marks where the claim starts. A theorem or
-lemma whose signature is **five lines or more** (the PROOF flag's threshold, counted the same way)
-ends the line of the colon that closes its binders with `-- --- CONCL ---`, so that what is given
-stands above the flag and what should hold below it:
+The PROOF flag marks where the claim stops; its twin marks where the claim starts. Every theorem
+or lemma that carries `-- --- PROOF ---` ends the line of the colon that closes its binders with
+`-- --- CONCL ---`, so that what is given stands above the flag and what should hold below it, and
+no declaration carries one without the other:
 
 ```lean
 theorem NonlinDASys.exists_lagrange_remainder {C : Set (Vec ℝ d)} (hC : Convex ℝ C)
@@ -1101,16 +1101,14 @@ theorem NonlinDASys.exists_lagrange_remainder {C : Set (Vec ℝ d)} (hC : Convex
       F z = F zs + Ff zs (z - zs) + (1 / 2) * Hf ξ (z - zs) (z - zs) := by -- --- PROOF ---
 ```
 
-It is required on a signature of five lines or more and refused on a shorter one, as the PROOF flag
-is, and it rides on the colon line only: the conclusion starts on the line below, so a statement
-whose conclusion shared the colon line is broken after the colon, and a colon line with no room for
-the flag has its last binders moved down to it. A proof written as a term has no `:= by`, and the
-signature then ends at its first `:=` outside any bracket (a binder default is inside one): the
-flag is required there as well, since a theorem the check could not see was exactly the one that
-carried none (#247). `check-conventions.sh` checks both. The theorems
-the tree-wide pass could not place, because even the wrapped colon line leaves no room, are listed
-in `scripts/concl-marker-allowlist.txt` as `path::name`; the list only shrinks. The flag carries no
-meaning for Lean and none for `Last update:`.
+The two flags go together: `-- --- CONCL ---` is required wherever `-- --- PROOF ---` is and
+refused everywhere else, so there is no threshold of its own and no list of exceptions. It rides on
+the colon line only: the conclusion starts on the line below, so a statement whose conclusion
+shared the colon line is broken after the colon, and a colon line with no room for the flag has its
+last binders moved down to it (or the colon on a line of its own). A proof written as a term has no
+`:= by`, hence no PROOF flag and no CONCL flag. `check-conventions.sh` checks both. The flag
+carries no meaning for Lean and none for `Last update:`; adding or moving it is layout and leaves
+`Reviewed:` alone.
 
 ### `API.lean`
 

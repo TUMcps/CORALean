@@ -53,7 +53,7 @@ def NonlinearSysDT.reachSpecCora (R : ℕ → Set ℝ) (F : Set ℝ) (steps : �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `res = true`, although the initial state `0` is in the unsafe set. -/
-theorem NonlinearSysDT.reachSpecCora_initial_counterexample :
+theorem NonlinearSysDT.reachSpecCora_initial_counterexample : -- --- CONCL ---
     NonlinearSysDT.reachSpecCora (fun i => (fun x : ℝ => x + 1)^[i] '' {0})
         (Set.Icc (-1 / 2) (1 / 2)) 1 ∧
       (0 : ℝ) ∈ ({0} : Set ℝ) ∩ Set.Icc (-1 / 2) (1 / 2) := by -- --- PROOF ---

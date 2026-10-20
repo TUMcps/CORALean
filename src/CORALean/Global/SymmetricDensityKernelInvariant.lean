@@ -54,7 +54,8 @@ variable {S : Type} [MeasurableSpace S]
 theorem symmetricDensity_invariant (μ : Measure S) [SFinite μ] (κ : Kernel S S)
     [IsMarkovKernel κ] (f : S → S → ℝ≥0∞) (hf : Measurable (Function.uncurry f))
     (hκ : ∀ x A, MeasurableSet A → κ x A = ∫⁻ y in A, f x y ∂μ)
-    (hsymm : ∀ x y, f x y = f y x) : κ.Invariant μ := by -- --- PROOF ---
+    (hsymm : ∀ x y, f x y = f y x) : -- --- CONCL ---
+    κ.Invariant μ := by -- --- PROOF ---
   -- invariance is detailed balance, by Mathlib
   refine Kernel.IsReversible.invariant fun A B hA hB => ?_
   -- unfold both flows through the density

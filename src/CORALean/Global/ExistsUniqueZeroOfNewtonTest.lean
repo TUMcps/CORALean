@@ -56,7 +56,7 @@ variable {k : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A coordinate of `M v` is at most the row's absolute sum times the sup norm of `v`. -/
-theorem aux_abs_mulVec_le (M : Mat ℝ k k) (v : Vec ℝ k) (i : Fin k) :
+theorem aux_abs_mulVec_le (M : Mat ℝ k k) (v : Vec ℝ k) (i : Fin k) : -- --- CONCL ---
     |(M *ᵥ v) i| ≤ (∑ j, |M i j|) * ‖v‖ := by -- --- PROOF ---
   calc |(M *ᵥ v) i| = |∑ j, M i j * v j| := rfl
     _ ≤ ∑ j, |M i j * v j| := Finset.abs_sum_le_sum_abs _ _

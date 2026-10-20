@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem abs_sub_le_bracketError {c0 lo hi : 𝕋} {y : ℝ}
-    (h1 : toReal lo ≤ y) (h2 : y ≤ toReal hi) :
+    (h1 : toReal lo ≤ y) (h2 : y ≤ toReal hi) : -- --- CONCL ---
     |y - (toReal (addUp c0 (bracketShift lo hi)) - toReal c0)|
       ≤ toReal (bracketError c0 lo hi) := by -- --- PROOF ---
   have hlo := subDown_le_sub (addUp c0 (bracketShift lo hi)) c0

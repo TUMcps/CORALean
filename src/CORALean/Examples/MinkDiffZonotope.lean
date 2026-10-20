@@ -39,7 +39,8 @@ def MDiff.Z2 : Zonotope (Vec ℝ 1) := ⟨1, ![(0:ℝ)], fun _ => ![(0.2:ℝ)]�
 candidate `minkDiffRep` checks — here it passes both halves of that check. -/
 def MDiff.M : Fin MDiff.Z1.h → Fin MDiff.Z2.h → ℝ := fun _ _ => 0.2
 
-theorem MDiff.certified : (MDiff.Z1.minkDiffRep MDiff.Z2 MDiff.M).isSome := by -- --- PROOF ---
+theorem MDiff.certified : -- --- CONCL ---
+    (MDiff.Z1.minkDiffRep MDiff.Z2 MDiff.M).isSome := by -- --- PROOF ---
   rw [Zonotope.minkDiffRep, if_pos]
   · rfl
   -- the representation first, the row budget `0.2 ≤ 1` second

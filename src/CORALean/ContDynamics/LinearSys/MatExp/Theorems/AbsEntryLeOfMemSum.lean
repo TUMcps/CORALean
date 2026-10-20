@@ -49,7 +49,8 @@ variable {n : ℕ}
 
 /-- A member of `⊕ₖ [a_k, 0] B_k` is entrywise within `Σₖ |a_k| |(B_k)_{ij}|` of `0`. -/
 theorem MatExp.abs_entry_le_of_mem_sum (s : Finset ℕ) (a : ℕ → ℝ) (B : ℕ → Mat ℝ n n)
-    {M : Mat ℝ n n} (hM : M ∈ ∑ k ∈ s, (fun r : ℝ => r • B k) '' Set.Icc (a k) 0) (i j : Fin n) :
+    {M : Mat ℝ n n} (hM : M ∈ ∑ k ∈ s, (fun r : ℝ => r • B k) '' Set.Icc (a k) 0)
+    (i j : Fin n) : -- --- CONCL ---
     |M i j| ≤ ∑ k ∈ s, |a k| * |B k i j| := by -- --- PROOF ---
   obtain ⟨g, hg, rfl⟩ := (Set.mem_finsetSum s _ M).mp hM
   rw [Matrix.sum_apply]

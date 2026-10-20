@@ -68,7 +68,7 @@ lets the first iteration of `Alg. 2` report, from the state lines 1-2 build. -/
 theorem LinearSys.exists_autoStep_autoInit (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
     (hle : ∀ a b : ℝ, a ≤ b → le a b = true) (X₀ U : Zonotope (Vec ℝ n))
     {tend εmax ζ : ℝ} {ηmax : ℕ} (hn : 0 < n) (htpos : 0 < tend) (hεmax : 0 < εmax)
-    (hζ0 : 0 ≤ ζ) (hζ1 : ζ < 1) (hηmax : 1 ≤ ηmax) : -- --- CONCL ---
+    (hζ0 : 0 ≤ ζ) (hζ1 : ζ < 1) (hηmax : 1 ≤ ηmax) :
     ∃ (fuel : ℕ) (r : LinearSys.AutoState n × Zonotope (Vec ℝ n)),
       sys.autoStep le X₀ U tend εmax ζ ηmax fuel (LinearSys.autoInit X₀ tend)
         = some r :=

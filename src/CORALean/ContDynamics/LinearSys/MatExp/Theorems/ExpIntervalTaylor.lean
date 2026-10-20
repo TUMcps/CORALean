@@ -43,7 +43,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.expTaylor_mem_expIntervalTaylor (A : Interval (Mat ℝ n n))
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) (η : ℕ) :
+    {M : Mat ℝ n n} (hM : M ∈ A.construct) (η : ℕ) : -- --- CONCL ---
     MatExp.expTaylor M η ∈ (MatExp.expIntervalTaylor A η).construct := by -- --- PROOF ---
   induction η with
   | zero =>

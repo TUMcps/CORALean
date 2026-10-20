@@ -47,7 +47,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.exists_not_zonotope :
+theorem HPolytope.exists_not_zonotope : -- --- CONCL ---
     ∃ P : HPolytope (Vec ℝ 2),
       ¬ ∃ Z : Zonotope (Vec ℝ 2), Z.construct = P.construct := by -- --- PROOF ---
   -- the triangle `x₀ ≥ 0`, `x₁ ≥ 0`, `x₀ + x₁ ≤ 1`

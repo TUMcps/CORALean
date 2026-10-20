@@ -63,7 +63,8 @@ theorem NonlinDASys.reachNextCompositional_spec
     (sub : ∀ {k : ℕ}, Zonotope (Vec ℝ k) → Zonotope (Vec ℝ k) → Bool)
     (hsub : ∀ {k : ℕ} (A B : Zonotope (Vec ℝ k)), sub A B = true → A.construct ⊆ B.construct)
     (fuel : ℕ) (s : NonlinDASys.CompositionalState m e d)
-    (hs : ∀ i, s.inputEnclosure i = true → (s.Rnext i, s.Rloc i) = subReach i (s.Uhat i)) :
+    (hs : ∀ i, s.inputEnclosure i = true → (s.Rnext i, s.Rloc i) = subReach i (s.Uhat i))
+    : -- --- CONCL ---
     ∀ Rn R Uh, (Rn, R, Uh) ∈ NonlinDASys.reachNextCompositional subReach Φ Υ Λ lamU sub fuel s →
       (∀ i, sub (Zonotope.mtimes (Υ i) R) (Zonotope.mtimes (Λ i) (Uh i)) = true) ∧
       (∀ i, (Υ i *ᵥ ·) '' R.construct ⊆ (Λ i *ᵥ ·) '' (Uh i).construct) ∧

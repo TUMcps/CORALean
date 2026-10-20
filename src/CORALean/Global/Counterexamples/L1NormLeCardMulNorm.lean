@@ -46,7 +46,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem l1_norm_le_card_mul_norm_counterexample :
+theorem l1_norm_le_card_mul_norm_counterexample : -- --- CONCL ---
     ∃ V : Fin 4 → Vec ℝ 2, (∀ i, ∑ j, |V i j| = 1) ∧
       ∃ x : Vec ℝ 2, (∀ i, ∑ j, V i j * x j ≤ 1) ∧ ∑ j, |x j| = 2 := by -- --- PROOF ---
   refine ⟨![![1, 0], ![0, 1], ![-1, 0], ![0, -1]], fun i => ?_, ![1, 1], fun i => ?_, ?_⟩

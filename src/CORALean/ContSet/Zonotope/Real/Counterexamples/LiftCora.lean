@@ -59,7 +59,7 @@ namespace CORALean.Real
 
 /-- For the point `(1,2,3)` and the permutation `proj = [2 3 1]`, `lift_` returns `(2,3,1)`, not
 the lift `(3,1,2)`, in which state `i` of the set is state `proj i` of the result. -/
-theorem Zonotope.lift_cora_counterexample :
+theorem Zonotope.lift_cora_counterexample : -- --- CONCL ---
     ∃ (Z : Zonotope (Vec ℝ 3)) (proj : Fin 3 → Fin 3), Function.Bijective proj ∧
       (Z.liftCora proj).construct ≠
         {x : Vec ℝ 3 | ∃ y ∈ Z.construct, ∀ i, x (proj i) = y i} := by -- --- PROOF ---

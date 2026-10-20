@@ -98,7 +98,7 @@ theorem SetBasedNet.aux_nonlinear_le (cNeuron cBack : Cost) {n h N Q : ℕ} (hN 
 
 /-- The loss gradient at the output, at most `2 N² Q cGrad`. -/
 theorem SetBasedNet.aux_output_le (cGrad : Cost) {n h N Q : ℕ} (hN : 1 ≤ N) (hh : 1 ≤ h)
-    (hnN : n ≤ N) (hhQ : h ≤ Q) :
+    (hnN : n ≤ N) (hhQ : h ≤ Q) : -- --- CONCL ---
     ((n * (h + 1)) • cGrad).ops ≤ 2 * (N * N * Q) * cGrad.ops := by -- --- PROOF ---
   have hp : n * 1 * h ≤ N * N * Q := SetBasedNet.mul_mul_le_of_le hnN hN hhQ
   have hnh : n ≤ n * h := Nat.le_mul_of_pos_right _ hh

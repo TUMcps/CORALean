@@ -41,7 +41,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Tree.exists_constraints_of_isLinearPredicate (φ : STL.Tree n)
-    (h : φ.isLinearPredicate = true) : ∃ L : List (STL.Cmp × (Fin n → ℝ) × ℝ),
+    (h : φ.isLinearPredicate = true) : -- --- CONCL ---
+    ∃ L : List (STL.Cmp × (Fin n → ℝ) × ℝ),
       ∀ ξ : ℝ≥0 → Fin n → ℝ,
         φ.Sat ξ ↔ ∀ c ∈ L, c.1.rel (∑ i, c.2.1 i * ξ 0 i) c.2.2 := by -- --- PROOF ---
   induction φ with

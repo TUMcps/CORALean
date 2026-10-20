@@ -35,7 +35,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ZonoBundle.empty_exact (n : ℕ) (hn : 0 < n) :
+theorem ZonoBundle.empty_exact (n : ℕ) (hn : 0 < n) : -- --- CONCL ---
     (ZonoBundle.empty n hn).construct = ∅ := by -- --- PROOF ---
   ext x
   simp only [ZonoBundle.construct_eq_iInter, Set.mem_iInter, Set.mem_empty_iff_false, iff_false]

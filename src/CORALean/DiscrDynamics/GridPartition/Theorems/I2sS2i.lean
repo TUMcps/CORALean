@@ -37,7 +37,7 @@ variable {n : ℕ}
 
 /-- `i2s (s2i sub) = sub` for subscripts in range: `sub2ind` followed by `ind2sub`. -/
 theorem GridPartition.i2s_s2i (siz : Fin n → ℕ) {sub : Fin n → ℕ}
-    (h : ∀ i, 0 < sub i ∧ sub i ≤ siz i) :
+    (h : ∀ i, 0 < sub i ∧ sub i ≤ siz i) : -- --- CONCL ---
     GridPartition.i2s siz (GridPartition.s2i siz sub) = sub := by -- --- PROOF ---
   funext i
   unfold GridPartition.s2i

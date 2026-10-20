@@ -44,7 +44,7 @@ variable {n k : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearReset.synchronize_apply (W : Fin k → Mat ℝ n n) (w : Fin k → Vec ℝ n)
-    (idStates : Finset (Fin n)) (x : Vec ℝ n) (i : Fin n) :
+    (idStates : Finset (Fin n)) (x : Vec ℝ n) (i : Fin n) : -- --- CONCL ---
     ((LinearReset.synchronize W w idStates).1 *ᵥ x + (LinearReset.synchronize W w idStates).2) i =
       (if i ∈ idStates then x i else 0) + ∑ j, (W j *ᵥ x + w j) i := by -- --- PROOF ---
   -- the sum of matrices acts as the sum of their actions

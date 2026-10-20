@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 admissible order. -/
 theorem LinearSys.zero_mem_inputSolutionFloat_error (sys : LinearSys 𝕋 n) {r : 𝕋}
     (hr : 0 ≤ toReal r) {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) {U : Zonotope (Vec 𝕋 n)}
-    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) :
+    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) : -- --- CONCL ---
     (0 : Vec ℝ n) ∈ (sys.inputSolutionFloat r η U).I_error.construct := by -- --- PROOF ---
   show (0 : Vec ℝ n) ∈ ((Zonotope.plus _ _).materialise).I_error.construct
   rw [Zonotope.materialise_eq]

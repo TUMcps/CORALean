@@ -62,7 +62,7 @@ def NonlinearSys.validateOptionsCora : List String → Option Unit
 
 /-- Whatever else is set, `timeStepInner` among the fields makes the validation fail. -/
 theorem NonlinearSys.validateOptionsCora_timeStepInner_crash (fields : List String)
-    (h : "timeStepInner" ∈ fields) :
+    (h : "timeStepInner" ∈ fields) : -- --- CONCL ---
     NonlinearSys.validateOptionsCora fields = none := by -- --- PROOF ---
   induction fields with
   | nil => simp at h

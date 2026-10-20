@@ -42,7 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- membership splits with the rows, each half read on the nominal part it came from
-theorem HPolytope.mem_stackRows_nominal_iff {P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)} {x : Vec ℝ n} :
+theorem HPolytope.mem_stackRows_nominal_iff {P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)}
+    {x : Vec ℝ n} : -- --- CONCL ---
     x ∈ (P₁.stackRows P₂).nominal.construct
       ↔ x ∈ P₁.nominal.construct ∧ x ∈ P₂.nominal.construct := by -- --- PROOF ---
   rw [HPolytope.mem_nominal_iff, HPolytope.mem_nominal_iff, HPolytope.mem_nominal_iff]

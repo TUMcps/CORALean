@@ -61,7 +61,7 @@ variable {T : Type} [LinearOrder T] [Zero T]
 
 /-- Setting a single time to `value` changes the value there and nowhere else. -/
 theorem PointSegmentSignal.setPoint_spec (s : PointSegmentSignal T) (hs : s.IsValid) (p : T)
-    (hp : 0 ≤ p) (value : Bool) :
+    (hp : 0 ≤ p) (value : Bool) : -- --- CONCL ---
     (s.setPoint p value).IsValid ∧ ∀ t : T, 0 ≤ t → (s.setPoint p value).at t = if t = p then value
       else s.at t := by -- --- PROOF ---
   have hcur : (s.atIdx (p : WithTop T)).1 = s.at p := PointSegmentSignal.atIdx_fst s hs p hp

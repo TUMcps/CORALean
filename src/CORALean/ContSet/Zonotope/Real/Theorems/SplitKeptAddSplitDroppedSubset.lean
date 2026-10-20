@@ -49,7 +49,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The Minkowski sum of the two parts of a split is inside `Z`. -/
 theorem Zonotope.splitKept_add_splitDropped_subset (Z : Zonotope α) {q r : ℕ}
-    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) :
+    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) : -- --- CONCL ---
     (Z.splitKept part).construct + (Z.splitDropped part).construct
       ⊆ Z.construct := by -- --- PROOF ---
   -- the coefficients of the two parts, read back onto `Z`'s own indices

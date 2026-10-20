@@ -37,7 +37,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.representsaFullspace_iff (P : HPolytope α) :
+theorem HPolytope.representsaFullspace_iff (P : HPolytope α) : -- --- CONCL ---
     P.representsaFullspace ↔ P.construct = Set.univ := by -- --- PROOF ---
   constructor
   · rintro ⟨h1, h2⟩

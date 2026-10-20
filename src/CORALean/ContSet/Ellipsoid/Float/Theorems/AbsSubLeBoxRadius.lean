@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A point of the nominal part is within `boxRadius` of the center in coordinate `i`. -/
 theorem Ellipsoid.abs_sub_le_boxRadius {E : Ellipsoid 𝕋 n} {x : Vec ℝ n}
-    (hx : x ∈ nominalSet E) (p : ℕ) (i : Fin n) :
+    (hx : x ∈ nominalSet E) (p : ℕ) (i : Fin n) : -- --- CONCL ---
     |x i - toReal (E.q i)| ≤ toReal (Ellipsoid.boxRadius p E i) := by -- --- PROOF ---
   -- the rounded-up root of the floored diagonal entry
   have hroot : Real.sqrt (max 0 (toReal (E.Q i i))) ≤ toReal (Ellipsoid.boxRadius p E i) := by

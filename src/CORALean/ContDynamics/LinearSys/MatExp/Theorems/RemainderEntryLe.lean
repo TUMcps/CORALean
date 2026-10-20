@@ -58,7 +58,7 @@ variable {n : ℕ}
 /-- Every entry of the remainder is within the step's bound, uniformly over the
 step. -/
 theorem MatExp.remainder_entry_le (A : Mat ℝ n n) {r τ : ℝ} (η : ℕ) (hr : 0 < r)
-    (hτ0 : 0 ≤ τ) (hτr : τ ≤ r) (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) (j k : Fin n) :
+    (hτ0 : 0 ≤ τ) (hτr : τ ≤ r) (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) (j k : Fin n) : -- --- CONCL ---
     |(exp (τ • A) - MatExp.expTaylor (τ • A) η) j k|
       ≤ MatExp.expRemainderBound (r • A) η := by -- --- PROOF ---
   have hnorm : ‖τ • A‖ ≤ ‖r • A‖ := by

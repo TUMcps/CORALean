@@ -46,7 +46,7 @@ open scoped _root_.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem gZonotopeLaw_printedGaussPdf_counterexample :
+theorem gZonotopeLaw_printedGaussPdf_counterexample : -- --- CONCL ---
     let G : Mat ℝ 1 2 := !![1, 0]
     gZonotopeLaw 0 G ≠ volume.withDensity
       (fun x => ENNReal.ofReal (printedGaussPdf 2 0 (G * Gᵀ) x)) := by -- --- PROOF ---

@@ -35,7 +35,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.isequal_construct {Z S : PolyZonotope α} (h : Z.isequal S) :
+theorem PolyZonotope.isequal_construct {Z S : PolyZonotope α} (h : Z.isequal S) : -- --- CONCL ---
     Z.construct = S.construct := by -- --- PROOF ---
   obtain ⟨ep, eh, eq, hc, hG, hE, hGI⟩ := h
   obtain ⟨p₁, h₁, q₁, c₁, G₁, E₁, GI₁⟩ := Z

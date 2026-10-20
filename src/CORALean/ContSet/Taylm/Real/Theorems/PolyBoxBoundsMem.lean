@@ -51,7 +51,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.polyBoxBounds_mem (L : List (ℝ × (Fin n → ℕ))) {B : Fin n → Interval ℝ} {t : Vec ℝ n}
-    (ht : Taylm.InBox B t) :
+    (ht : Taylm.InBox B t) : -- --- CONCL ---
     (Taylm.polyBoxBounds L B).inf ≤ Taylm.polyOf L t ∧
       Taylm.polyOf L t ≤ (Taylm.polyBoxBounds L B).sup := by -- --- PROOF ---
   -- one term

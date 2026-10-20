@@ -40,7 +40,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearARX.outputEq_C_mulVec (sys : LinearARX 𝕋 dy du p) (hp : 0 < p)
-    (w : Vec ℝ (p * dy)) (r : Fin dy) :
+    (w : Vec ℝ (p * dy)) (r : Fin dy) : -- --- CONCL ---
     (toRealMat sys.outputEq.C *ᵥ w) r = w (finProdFinEquiv (⟨0, hp⟩, r)) := by -- --- PROOF ---
   simp only [Matrix.mulVec, dotProduct, toRealMat_apply, LinearARX.outputEq, Matrix.of_apply]
   -- only the column `(0, r)` carries a `1`

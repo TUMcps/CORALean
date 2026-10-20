@@ -49,7 +49,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The binomial theorem over a range padded past the degree: the surplus terms
 carry `Nat.choose e j = 0` and so contribute nothing. -/
-theorem PolyZonotope.aux_getSubset_binom (x y : ℝ) {e d : ℕ} (hed : e ≤ d) :
+theorem PolyZonotope.aux_getSubset_binom (x y : ℝ) {e d : ℕ} (hed : e ≤ d) : -- --- CONCL ---
     ∑ j : Fin (d + 1), ((e.choose j : ℝ) * x ^ (e - (j : ℕ)) * y ^ (j : ℕ))
       = (x + y) ^ e := by -- --- PROOF ---
   rw [Fin.sum_univ_eq_sum_range (fun j => ((e.choose j : ℝ) * x ^ (e - j) * y ^ j)) (d + 1),
@@ -94,7 +94,8 @@ theorem PolyZonotope.aux_getSubset_col (pZ : PolyZonotope α) (k : Fin pZ.p) (ce
 /-- `getSubset`'s point at `b` is the original's at the factor vector `b` with
 its `k`-th entry sent through `βₖ ↦ cen + rad·βₖ`. -/
 theorem PolyZonotope.getSubset_point (pZ : PolyZonotope α) (k : Fin pZ.p) (cen rad : ℝ)
-    (b : Fin pZ.p → ℝ) : (pZ.getSubset k cen rad).point b
+    (b : Fin pZ.p → ℝ) : -- --- CONCL ---
+    (pZ.getSubset k cen rad).point b
       = pZ.point (Function.update b k (cen + rad * b k)) := by -- --- PROOF ---
   have hle : ∀ i : Fin pZ.h, pZ.E k i ≤ pZ.maxExp k := fun i => Finset.le_sup (Finset.mem_univ i)
   -- the pairs and the flat generator index are the same sum, reindexed

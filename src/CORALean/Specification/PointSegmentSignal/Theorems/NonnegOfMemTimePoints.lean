@@ -37,7 +37,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PointSegmentSignal.nonneg_of_mem_timePoints {T : Type} [LinearOrder T] [Zero T]
-    (s : PointSegmentSignal T) (hs : s.IsValid) (x : T) (hx : x ∈ s.timePoints) :
+    (s : PointSegmentSignal T) (hs : s.IsValid) (x : T) (hx : x ∈ s.timePoints) : -- --- CONCL ---
     0 ≤ x := by -- --- PROOF ---
   obtain ⟨-, -, hhead, hsort, -⟩ := hs
   obtain ⟨a, l, hl⟩ : ∃ a l, s.timePoints = a :: l := by

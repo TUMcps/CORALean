@@ -48,7 +48,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.expIntegral_sub_sum_mem_adaptiveRemainder (A : Mat ℝ n n) {Δt : ℝ}
-    (hΔt : 0 ≤ Δt) (η : ℕ) :
+    (hΔt : 0 ≤ Δt) (η : ℕ) : -- --- CONCL ---
     (MatExp.expIntegral A Δt - ∑ i ∈ Finset.range (η + 1), MatExp.particularCoeff A Δt i)
       ∈ (MatExp.adaptiveRemainder A Δt η).construct := by -- --- PROOF ---
   refine Interval.mem_mat_iff.mpr fun j k => ?_

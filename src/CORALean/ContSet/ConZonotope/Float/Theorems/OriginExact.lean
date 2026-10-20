@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.origin_exact (n : ℕ) :
+theorem ConZonotope.origin_exact (n : ℕ) : -- --- CONCL ---
     (ConZonotope.origin n : ConZonotope 𝕋 (Vec 𝕋 n)).construct = {0} := by -- --- PROOF ---
   -- the stored zeros read as ℝ's, so the nominal part is the exact layer's point
   have hc : toRealVec (fun _ : Fin n => (zero : 𝕋)) = 0 := funext fun _ => toReal_zero

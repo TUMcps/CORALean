@@ -61,7 +61,8 @@ variable {m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One order's scalar factor: `|tᵏ - (t/δ)δᵏ| ≤ δᵏ` on `[0, δ]`. -/
-theorem Krylov.aux_abs_coeff_le {δ t : ℝ} (hδ : 0 < δ) (ht0 : 0 ≤ t) (htδ : t ≤ δ) (k : ℕ) :
+theorem Krylov.aux_abs_coeff_le {δ t : ℝ} (hδ : 0 < δ) (ht0 : 0 ≤ t) (htδ : t ≤ δ)
+    (k : ℕ) : -- --- CONCL ---
     |t ^ k - (t / δ) * δ ^ k| ≤ δ ^ k := by -- --- PROOF ---
   have h1 : 0 ≤ t ^ k := pow_nonneg ht0 k
   have h2 : t ^ k ≤ δ ^ k := pow_le_pow_left₀ ht0 htδ k
@@ -82,7 +83,7 @@ theorem Krylov.aux_sum_Icc_two {M : Type} [AddCommMonoid M] (η : ℕ) (hη : 1 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Krylov.expDiff_mem_correctionSet (H : Mat ℝ m m) {δ : ℝ} (hδ : 0 < δ) {η : ℕ}
-    (hη : 1 ≤ η) {t : ℝ} (ht0 : 0 ≤ t) (htδ : t ≤ δ) :
+    (hη : 1 ≤ η) {t : ℝ} (ht0 : 0 ≤ t) (htδ : t ≤ δ) : -- --- CONCL ---
     exp (t • H) - 1 - (t / δ) • (exp (δ • H) - 1)
       ∈ Krylov.correctionSet H δ η := by -- --- PROOF ---
   set f : ℕ → Mat ℝ m m := fun i => (((Nat.factorial (i + 2) : ℝ))⁻¹

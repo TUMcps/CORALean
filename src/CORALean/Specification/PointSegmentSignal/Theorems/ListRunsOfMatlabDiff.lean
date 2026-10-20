@@ -68,7 +68,7 @@ theorem aux_diff_getElem' (l : List Bool) (i : ℕ) (h : i < (List.matlabDiff l)
   exact Option.some.inj h2
 
 /-- The falling edges are the positions where `true` is followed by `false`. -/
-theorem aux_mem_fall (tk : List Bool) (f : ℕ) :
+theorem aux_mem_fall (tk : List Bool) (f : ℕ) : -- --- CONCL ---
     f ∈ List.matlabFind (· == (-1 : ℤ)) (List.matlabDiff tk) ↔
       1 ≤ f ∧ f < tk.length ∧ tk.getD (f - 1) false = true ∧
         tk.getD f true = false := by -- --- PROOF ---
@@ -102,7 +102,7 @@ theorem aux_mem_fall (tk : List Bool) (f : ℕ) :
 
 
 /-- The rising edges are the positions where `false` is followed by `true`. -/
-theorem aux_mem_rise (tk : List Bool) (r : ℕ) :
+theorem aux_mem_rise (tk : List Bool) (r : ℕ) : -- --- CONCL ---
     r ∈ (List.matlabFind (· == (1 : ℤ)) (List.matlabDiff tk)).map (· + 1) ↔
       2 ≤ r ∧ r ≤ tk.length ∧ tk.getD (r - 2) true = false ∧
         tk.getD (r - 1) false = true := by -- --- PROOF ---
@@ -143,7 +143,7 @@ theorem aux_mem_rise (tk : List Bool) (r : ℕ) :
     cases a <;> cases b <;> simp_all
 
 /-- Counting the entries `≤ m + 1` adds those equal to `m + 1`. -/
-theorem aux_countP_succ (L : List ℕ) (m : ℕ) :
+theorem aux_countP_succ (L : List ℕ) (m : ℕ) : -- --- CONCL ---
     L.countP (fun x => decide (x ≤ m + 1)) = L.countP (fun x => decide (x ≤ m)) +
       L.countP (fun x => decide (x = m + 1)) := by -- --- PROOF ---
   induction L with
@@ -159,7 +159,7 @@ theorem aux_countP_succ (L : List ℕ) (m : ℕ) :
         simp [h1, h2, this]
 
 /-- In an increasing list an entry is counted at most once. -/
-theorem aux_countP_eq (L : List ℕ) (hL : L.Pairwise (· < ·)) (x : ℕ) :
+theorem aux_countP_eq (L : List ℕ) (hL : L.Pairwise (· < ·)) (x : ℕ) : -- --- CONCL ---
     L.countP (fun y => decide (y = x)) = if x ∈ L then 1 else 0 := by -- --- PROOF ---
   induction L with
   | nil => simp
@@ -174,7 +174,8 @@ theorem aux_countP_eq (L : List ℕ) (hL : L.Pairwise (· < ·)) (x : ℕ) :
       simp [h, h']
 
 /-- In an increasing list the first entries are those `≤ m`. -/
-theorem aux_getElem_le_iff (L : List ℕ) (hL : L.Pairwise (· < ·)) (m i : ℕ) (hi : i < L.length) :
+theorem aux_getElem_le_iff (L : List ℕ) (hL : L.Pairwise (· < ·)) (m i : ℕ)
+    (hi : i < L.length) : -- --- CONCL ---
     L[i] ≤ m ↔ i < L.countP (fun x => decide (x ≤ m)) := by -- --- PROOF ---
   induction L generalizing i with
   | nil => simp at hi
@@ -202,7 +203,8 @@ theorem aux_getElem_le_iff (L : List ℕ) (hL : L.Pairwise (· < ·)) (m i : ℕ
         omega
 
 /-- In an increasing list the first entries are those `< m`. -/
-theorem aux_getElem_lt_iff (L : List ℕ) (hL : L.Pairwise (· < ·)) (m i : ℕ) (hi : i < L.length) :
+theorem aux_getElem_lt_iff (L : List ℕ) (hL : L.Pairwise (· < ·)) (m i : ℕ)
+    (hi : i < L.length) : -- --- CONCL ---
     L[i] < m ↔ i < L.countP (fun x => decide (x < m)) := by -- --- PROOF ---
   have := aux_getElem_le_iff L hL (m - 1) i hi
   cases m with
@@ -213,7 +215,7 @@ theorem aux_getElem_lt_iff (L : List ℕ) (hL : L.Pairwise (· < ·)) (m i : ℕ
 
 
 /-- Counting the entries `< m + 1` adds those equal to `m`. -/
-theorem aux_countP_succ' (L : List ℕ) (m : ℕ) (hm : 1 ≤ m) :
+theorem aux_countP_succ' (L : List ℕ) (m : ℕ) (hm : 1 ≤ m) : -- --- CONCL ---
     L.countP (fun x => decide (x < m + 1)) = L.countP (fun x => decide (x < m)) +
       L.countP (fun x => decide (x = m)) := by -- --- PROOF ---
   have h := aux_countP_succ L (m - 1)
@@ -235,7 +237,8 @@ theorem aux_D (tk : List Bool) (F R : List ℕ) (hF : F.Pairwise (· < ·))
       tk.getD f true = false)
     (hR : R.Pairwise (· < ·))
     (hRm : ∀ r, r ∈ R ↔ 1 ≤ r ∧ r ≤ tk.length ∧ tk.getD (r - 1) false = true ∧
-      (r = 1 ∨ tk.getD (r - 2) true = false)) (m : ℕ) (h1 : 1 ≤ m) (h2 : m ≤ tk.length) :
+      (r = 1 ∨ tk.getD (r - 2) true = false)) (m : ℕ) (h1 : 1 ≤ m) (h2 : m ≤ tk.length)
+    : -- --- CONCL ---
     R.countP (fun x => decide (x ≤ m)) =
       F.countP (fun x => decide (x < m)) +
         (if tk.getD (m - 1) false = true then 1 else 0) := by -- --- PROOF ---

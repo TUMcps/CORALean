@@ -62,7 +62,8 @@ theorem Zonotope.aux_nominal_cartProd (Z₁ : Zonotope (Vec 𝕋 n₁))
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.cartProd_exact (Z₁ : Zonotope (Vec 𝕋 n₁)) (Z₂ : Zonotope (Vec 𝕋 n₂)) :
+theorem Zonotope.cartProd_exact (Z₁ : Zonotope (Vec 𝕋 n₁))
+    (Z₂ : Zonotope (Vec 𝕋 n₂)) : -- --- CONCL ---
     (Z₁.cartProd Z₂).construct = (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
       (Z₁.construct ×ˢ Z₂.construct) := by -- --- PROOF ---
   -- the nominal part: the exact product's set, mapped through the append

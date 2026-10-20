@@ -50,7 +50,8 @@ variable {n : ℕ}
 
 /-- Every ordered pair is below the diagonal, on it or above it: the double sum is the diagonal plus
 each unordered pair once, in both orders. -/
-theorem MatExp.aux_double_sum {α : Type} [AddCommMonoid α] {h : ℕ} (f : Fin h → Fin h → α) :
+theorem MatExp.aux_double_sum {α : Type} [AddCommMonoid α] {h : ℕ}
+    (f : Fin h → Fin h → α) : -- --- CONCL ---
     ∑ i, ∑ j, f i j = ∑ i, f i i +
       ∑ p ∈ Finset.univ.filter (fun p : Fin h × Fin h => p.1 < p.2),
         (f p.1 p.2 + f p.2 p.1) := by -- --- PROOF ---
@@ -90,7 +91,7 @@ theorem MatExp.aux_double_sum {α : Type} [AddCommMonoid α] {h : ℕ} (f : Fin 
 
 /-- The square and `I + M r + ½ M² r²` of every member lie in `zSq` and `zH`. -/
 theorem MatExp.dependentTermsMatZono_outer (Z : Zonotope (Mat ℝ n n)) (r : ℝ) {M : Mat ℝ n n}
-    (hM : M ∈ Z.construct) :
+    (hM : M ∈ Z.construct) : -- --- CONCL ---
     r ^ 2 • (M * M) ∈ (MatExp.dependentTermsMatZono Z r).zSq.construct ∧
       1 + MatExp.expW M r ∈ (MatExp.dependentTermsMatZono Z r).zH.construct := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hM

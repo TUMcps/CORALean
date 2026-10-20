@@ -42,7 +42,8 @@ variable {k : ℕ}
 
 
 /-- `(⟨A⟩ u)ᵢ = migᵢᵢ uᵢ - ∑_{j ≠ i} magᵢⱼ uⱼ`. -/
-theorem compMat_mulVec_apply (mig mag : Matrix (Fin k) (Fin k) ℝ) (u : Fin k → ℝ) (i : Fin k) :
+theorem compMat_mulVec_apply (mig mag : Matrix (Fin k) (Fin k) ℝ) (u : Fin k → ℝ)
+    (i : Fin k) : -- --- CONCL ---
     (Matrix.of (fun i j => if i = j then mig i i else -mag i j) *ᵥ u) i
       = mig i i * u i - ∑ j ∈ univ.erase i, mag i j * u j := by -- --- PROOF ---
   simp only [mulVec, dotProduct, Matrix.of_apply]

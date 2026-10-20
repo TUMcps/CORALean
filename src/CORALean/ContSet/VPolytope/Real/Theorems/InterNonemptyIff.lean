@@ -43,7 +43,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.inter_nonempty_iff (P₁ P₂ : VPolytope α) :
+theorem VPolytope.inter_nonempty_iff (P₁ P₂ : VPolytope α) : -- --- CONCL ---
     (P₁.construct ∩ P₂.construct).Nonempty ↔
       ∃ (β₁ : Fin P₁.k → ℝ) (β₂ : Fin P₂.k → ℝ), ∑ j, β₁ j • P₁.V j = ∑ l, β₂ l • P₂.V l ∧
         ∑ j, β₁ j = 1 ∧ (∀ j, 0 ≤ β₁ j) ∧ ∑ l, β₂ l = 1 ∧ ∀ l, 0 ≤ β₂ l := by -- --- PROOF ---

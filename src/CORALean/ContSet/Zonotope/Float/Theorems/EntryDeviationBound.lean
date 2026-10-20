@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.entryDeviation_bound (x e lo hi : Vec 𝕋 n) {y : ℝ} (i : Fin n)
-    (hlo : toReal (lo i) ≤ y) (hhi : y ≤ toReal (hi i)) :
+    (hlo : toReal (lo i) ≤ y) (hhi : y ≤ toReal (hi i)) : -- --- CONCL ---
     |toReal (x i) - toReal (e i) - y|
       ≤ toReal (Zonotope.entryDeviation x e lo hi i) := by -- --- PROOF ---
   have a1 := sub_le_subUp (x i) (e i)

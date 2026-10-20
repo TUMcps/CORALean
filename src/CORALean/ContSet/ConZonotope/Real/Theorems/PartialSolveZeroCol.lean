@@ -50,7 +50,7 @@ open Matrix
 
 /-- [1, Sec. 4.2]: after eq. 29, column `j` of `G̃` and of `Ã` is zero. -/
 theorem ConZonotope.partialSolve_zero_col {n q h : ℕ} (G : Fin h → Vec ℝ n)
-    (A : Mat ℝ q h) (r : Fin q) (j : Fin h) (hAj : A r j ≠ 0) :
+    (A : Mat ℝ q h) (r : Fin q) (j : Fin h) (hAj : A r j ≠ 0) : -- --- CONCL ---
     (G j - ConZonotope.partialSolveΛG G A r j *ᵥ fun k => A k j) = 0 ∧
       ∀ i, (A - ConZonotope.partialSolveΛA A r j * A) i j = 0 := by -- --- PROOF ---
   refine ⟨?_, fun i => ?_⟩

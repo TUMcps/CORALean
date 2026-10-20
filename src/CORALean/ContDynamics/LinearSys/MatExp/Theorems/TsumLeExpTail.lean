@@ -52,7 +52,8 @@ namespace CORALean.Real
 closed form `expRemainderBound` names. -/
 theorem tsum_le_expTail {c s : ℝ} (hc : 0 ≤ c) (hs : 0 ≤ s) (η : ℕ)
     (hε : c / ((η : ℝ) + 2) < 1) {a : ℕ → ℝ} (ha0 : ∀ i, 0 ≤ a i)
-    (ha : ∀ i, a i ≤ s * ((Nat.factorial (i + (η + 1)) : ℝ)⁻¹ * c ^ (i + (η + 1)))) :
+    (ha : ∀ i, a i ≤ s * ((Nat.factorial (i + (η + 1)) : ℝ)⁻¹ * c ^ (i + (η + 1))))
+    : -- --- CONCL ---
     ∑' i : ℕ, a i ≤ s * ((c ^ (η + 1) / Nat.factorial (η + 1))
       * (1 - c / ((η : ℝ) + 2))⁻¹) := by -- --- PROOF ---
   have hε0 : (0:ℝ) ≤ c / ((η : ℝ) + 2) := div_nonneg hc (by positivity)

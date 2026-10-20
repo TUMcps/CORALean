@@ -59,7 +59,7 @@ def aux_sgn (s : Fin m → Bool) (j : Fin m) : ℝ := if s j then 1 else -1
 /-- Flipping coordinate `j` negates `σⱼ` and keeps the rest, so `∑ σⱼ f = 0` when `f` ignores
 `sⱼ`. -/
 theorem aux_sum_flip (j : Fin m) (f : (Fin m → Bool) → ℝ)
-    (hf : ∀ s, f (Function.update s j (!s j)) = f s) :
+    (hf : ∀ s, f (Function.update s j (!s j)) = f s) : -- --- CONCL ---
     ∑ s : Fin m → Bool, aux_sgn s j * f s = 0 := by -- --- PROOF ---
   let e : (Fin m → Bool) ≃ (Fin m → Bool) :=
     Function.Involutive.toPerm (fun s => Function.update s j (!s j)) fun s => by

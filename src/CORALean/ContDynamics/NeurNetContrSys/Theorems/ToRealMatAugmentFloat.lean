@@ -40,7 +40,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeurNetContrSys.toRealMat_augmentFloat (sys : NeurNetContrSys (LinearSys 𝕋 n) S n) :
+theorem NeurNetContrSys.toRealMat_augmentFloat
+    (sys : NeurNetContrSys (LinearSys 𝕋 n) S n) : -- --- CONCL ---
     Scalar.toRealMat sys.augmentFloat.A = sys.augment.A ∧
       Scalar.toRealVec sys.augmentFloat.c = sys.augment.c ∧
       Scalar.toRealMat sys.augmentFloat.B = sys.augment.B := by -- --- PROOF ---

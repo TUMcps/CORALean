@@ -37,7 +37,8 @@ variable {m n₁ n₂ : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.horzcat_exact (I : Interval (Mat ℝ m n₁)) (J : Interval (Mat ℝ m n₂)) :
+theorem Interval.horzcat_exact (I : Interval (Mat ℝ m n₁))
+    (J : Interval (Mat ℝ m n₂)) : -- --- CONCL ---
     (I.horzcat J).construct =
       (fun p : Mat ℝ m n₁ × Mat ℝ m n₂ => fun i => Fin.append (p.1 i) (p.2 i)) ''
         (I.construct ×ˢ J.construct) := by -- --- PROOF ---

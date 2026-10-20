@@ -39,7 +39,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.sat_combineNext (φ : STL.Tree n) (ξ : ℝ≥0 → Fin n → ℝ) :
+theorem STL.Tree.sat_combineNext (φ : STL.Tree n) (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
     φ.combineNext.Sat ξ ↔ φ.Sat ξ := by -- --- PROOF ---
   induction φ using STL.Tree.combineNext.induct generalizing ξ with
   | case1 a φ ψ h ihφ ihψ =>

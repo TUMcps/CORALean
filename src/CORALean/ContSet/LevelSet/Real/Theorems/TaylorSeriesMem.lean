@@ -62,7 +62,7 @@ theorem aux_center_mem {I : Interval (Vec ℝ n)} {x : Vec ℝ n} (hx : x ∈ I.
   constructor <;> linarith [h.1, h.2]
 
 /-- The first-order term, read through the gradient's coordinates. -/
-theorem aux_fderiv_eq_sum (f : Vec ℝ n → ℝ) (c v : Vec ℝ n) :
+theorem aux_fderiv_eq_sum (f : Vec ℝ n → ℝ) (c v : Vec ℝ n) : -- --- CONCL ---
     fderiv ℝ f c v = ∑ i, taylorGrad f c i * v i := by -- --- PROOF ---
   have hv : v = ∑ i, v i • (Pi.single i (1 : ℝ) : Vec ℝ n) := by
     ext j; simp [Finset.sum_apply, Pi.single_apply]

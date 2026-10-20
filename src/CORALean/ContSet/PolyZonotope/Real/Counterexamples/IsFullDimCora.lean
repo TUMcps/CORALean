@@ -38,7 +38,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The rank test holds for the arc `(a, a²)` of `ℝ²`, whose set has empty interior. -/
-theorem PolyZonotope.isFullDim_cora_counterexample :
+theorem PolyZonotope.isFullDim_cora_counterexample : -- --- CONCL ---
     ∃ pZ : PolyZonotope (Vec ℝ 2), pZ.isFullDimCora ∧
       ¬ (interior pZ.construct).Nonempty := by -- --- PROOF ---
   refine ⟨⟨1, 2, 0, 0, fun j => Pi.single j (1 : ℝ), fun _ j => (j : ℕ) + 1, Fin.elim0⟩, ?_, ?_⟩

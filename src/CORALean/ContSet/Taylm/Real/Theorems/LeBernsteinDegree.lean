@@ -43,7 +43,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.le_bernsteinDegree (T : Taylm n) {a : ℝ × (Fin n → ℕ)} (ha : a ∈ T.terms)
-    (k : Fin n) : a.2 k ≤ T.bernsteinDegree := by -- --- PROOF ---
+    (k : Fin n) : -- --- CONCL ---
+    a.2 k ≤ T.bernsteinDegree := by -- --- PROOF ---
   unfold Taylm.bernsteinDegree
   have key : ∀ (l : List ℕ) (x : ℕ), x ∈ l → x ≤ l.foldr max 0 := by
     intro l

@@ -80,7 +80,8 @@ theorem Zonotope.faultObserve_pRadius_le (A : Mat ℝ n n) (B : Mat ℝ n nu) (C
         ((Dy * Hv) *ᵥ s₂) ⬝ᵥ ((Dy * Hv) *ᵥ s₂))
     (hγ : 0 ≤ γ) (hℓ : ∀ z ∈ X.construct, (z - X.c) ⬝ᵥ (P *ᵥ (z - X.c)) ≤ ℓ)
     (hψw : ∀ s : Vec ℝ rw, (∀ i, |s i| ≤ 1) → ((Dx * Hw) *ᵥ s) ⬝ᵥ ((Dx * Hw) *ᵥ s) ≤ ψw)
-    (hψv : ∀ s : Vec ℝ rv, (∀ i, |s i| ≤ 1) → ((Dy * Hv) *ᵥ s) ⬝ᵥ ((Dy * Hv) *ᵥ s) ≤ ψv) :
+    (hψv : ∀ s : Vec ℝ rv, (∀ i, |s i| ≤ 1) → ((Dy * Hv) *ᵥ s) ⬝ᵥ ((Dy * Hv) *ᵥ s) ≤ ψv)
+    : -- --- CONCL ---
     (X.faultObserve A B C L Dx Hw Dy Hv u y).pRadius P ≤ γ * ℓ + ψw + ψv := by -- --- PROOF ---
   set Z := X.faultObserve A B C L Dx Hw Dy Hv u y
   refine csSup_le ⟨_, Z.c, ⟨0, by simp, by simp⟩, rfl⟩ ?_

@@ -53,7 +53,7 @@ through the projection because that is the form the goal has and simp will not
 rewrite a binder's type. -/
 theorem PolyZonotope.aux_sum_univ_reduceBy_q {pZ : PolyZonotope (Vec 𝕋 n)}
     {partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r)}
-    {partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) : -- --- CONCL ---
+    {partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) :
     ∑ j : Fin (pZ.reduceBy partD partI).q, f j
       = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd dI j) :=
   Fin.sum_univ_add f
@@ -71,7 +71,7 @@ theorem PolyZonotope.aux_sum_univ_reduceBy_h {pZ : PolyZonotope (Vec 𝕋 n)}
 -- the dropped columns become one diagonal block, at the coefficient that reaches them
 theorem PolyZonotope.aux_reduceBy_nominal (pZ : PolyZonotope (Vec 𝕋 n))
     (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r))
-    (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) :
+    (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) : -- --- CONCL ---
     nominalSet pZ ⊆ nominalSet (pZ.reduceBy partD partI) := by -- --- PROOF ---
   intro x hx'
   obtain ⟨a, β, ha, hβ, hx⟩ := PolyZonotope.mem_nominalSet_iff.mp hx'

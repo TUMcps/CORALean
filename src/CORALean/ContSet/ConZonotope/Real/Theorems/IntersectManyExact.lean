@@ -52,7 +52,7 @@ variable {n d : ℕ}
 
 /-- A fold of `intersection` is every polytope at once. -/
 theorem ConZonotope.aux_mem_foldl_intersection {α : Type} [AddCommGroup α] [Module ℝ α] {m : ℕ}
-    (g : Fin m → HPolytope α) (init : HPolytope α) (x : α) :
+    (g : Fin m → HPolytope α) (init : HPolytope α) (x : α) : -- --- CONCL ---
     x ∈ (Fin.foldl m (fun P i => P.intersection (g i)) init).construct ↔
       x ∈ init.construct ∧ ∀ i, x ∈ (g i).construct := by -- --- PROOF ---
   induction m generalizing init with
@@ -142,7 +142,8 @@ theorem ConZonotope.aux_value_intersectMany (cs : Fin (d + 1) → ConZonotope (V
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.intersectMany_exact (cs : Fin (d + 1) → ConZonotope (Vec ℝ n)) :
+theorem ConZonotope.intersectMany_exact
+    (cs : Fin (d + 1) → ConZonotope (Vec ℝ n)) : -- --- CONCL ---
     (ConZonotope.intersectMany cs).construct = ⋂ i, (cs i).construct := by -- --- PROOF ---
   ext x
   rw [Set.mem_iInter]

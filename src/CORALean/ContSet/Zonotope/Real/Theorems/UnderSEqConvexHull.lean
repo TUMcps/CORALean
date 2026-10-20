@@ -50,7 +50,7 @@ variable {n ℓ : ℕ}
 
 /-- [1, Sec. 5.1]: for `ℓ > 0`, `{u + Σᵢ αᵢgᵢ : Σᵢ |αᵢ| ≤ 1} = ConvexHull({u ± gᵢ})`. -/
 theorem Zonotope.underS_eq_convexHull (Z : Zonotope (Vec ℝ n)) (s : Fin ℓ → Vec ℝ n)
-    (hℓ : 0 < ℓ) :
+    (hℓ : 0 < ℓ) : -- --- CONCL ---
     Z.underS s = convexHull ℝ {x | ∃ i, x = Z.c + Z.extremalGen (s i) ∨
       x = Z.c - Z.extremalGen (s i)} := by -- --- PROOF ---
   set g := fun i => Z.extremalGen (s i) with hg

@@ -43,7 +43,8 @@ variable {n : ℕ}
 
 /-- A point of the ellipsoid is within `√Qᵢᵢ` of the center in coordinate `i`. -/
 theorem Ellipsoid.abs_sub_le_sqrt_diag (E : Ellipsoid n) {x : Vec ℝ n} (hx : x ∈ E.construct)
-    (i : Fin n) : |x i - E.q i| ≤ Real.sqrt (E.Q i i) := by -- --- PROOF ---
+    (i : Fin n) : -- --- CONCL ---
+    |x i - E.q i| ≤ Real.sqrt (E.Q i i) := by -- --- PROOF ---
   -- the ellipsoid as `q + G u`, `‖u‖₂ ≤ 1`
   simp only [Ellipsoid.construct_eq_sqrt] at *
   obtain ⟨u, hu, rfl⟩ := hx

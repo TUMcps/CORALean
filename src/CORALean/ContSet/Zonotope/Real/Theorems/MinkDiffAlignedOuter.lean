@@ -57,7 +57,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 omit [Module ℝ α] in
 /-- Both translates at once: shifting `x` either way along `v` lands in `A`. -/
-theorem aux_mem_translate_pair (A : Set α) (v x : α) :
+theorem aux_mem_translate_pair (A : Set α) (v x : α) : -- --- CONCL ---
     x ∈ (A + ({v} : Set α)) ∩ (A - ({v} : Set α)) ↔ x - v ∈ A ∧ x + v ∈ A := by -- --- PROOF ---
   constructor
   · rintro ⟨⟨a, ha, b, hb, hx⟩, a', ha', b', hb', hx'⟩
@@ -71,7 +71,7 @@ theorem aux_mem_translate_pair (A : Set α) (v x : α) :
 
 /-- The segment one generator spans is convex: an average of coefficients is
 again a coefficient. -/
-theorem aux_convex_seg (g : α) :
+theorem aux_convex_seg (g : α) : -- --- CONCL ---
     Convex ℝ {y : α | ∃ t : ℝ, |t| ≤ 1 ∧ y = t • g} := by -- --- PROOF ---
   rintro _ ⟨t₁, h₁, rfl⟩ _ ⟨t₂, h₂, rfl⟩ a b ha hb hab
   refine ⟨a * t₁ + b * t₂, ?_, by module⟩
@@ -83,7 +83,7 @@ theorem aux_convex_seg (g : α) :
 
 /-- A coefficient of size at most `c` against `g` is one of size at most `1`
 against `c • g` — at `c = 0` because both sides are then `0`. -/
-theorem aux_seg_mem (c : ℝ) (hc : 0 ≤ c) (g : α) (s : ℝ) (hs : |s| ≤ c) :
+theorem aux_seg_mem (c : ℝ) (hc : 0 ≤ c) (g : α) (s : ℝ) (hs : |s| ≤ c) : -- --- CONCL ---
     ∃ t : ℝ, |t| ≤ 1 ∧ s • g = t • (c • g) := by -- --- PROOF ---
   rcases hc.eq_or_lt with rfl | hpos
   · have hs0 : s = 0 := abs_eq_zero.mp (le_antisymm hs (abs_nonneg s))
@@ -148,7 +148,7 @@ theorem aux_align_step (W : Set α) (hW : Convex ℝ W) (g : α) (μ : ℝ) (h0 
 
 /-- The zero-centered zonotope on `n + 1` generators splits its head off: the
 segment generator `0` spans, plus the zonotope on the remaining generators. -/
-theorem aux_construct_cons (n : ℕ) (g : Fin (n + 1) → α) :
+theorem aux_construct_cons (n : ℕ) (g : Fin (n + 1) → α) : -- --- CONCL ---
     (⟨n + 1, (0 : α), g⟩ : Zonotope α).construct
       = {y : α | ∃ t : ℝ, |t| ≤ 1 ∧ y = t • g 0}
           + (⟨n, (0 : α), fun i => g i.succ⟩ : Zonotope α).construct := by -- --- PROOF ---
@@ -214,7 +214,7 @@ theorem aux_fold_aligned (n : ℕ) : -- --- CONCL ---
 
 /-- A zonotope shifted by `-v` is the zero-centered one on its generators, moved
 to `c - v`. -/
-theorem aux_sub_singleton (Z : Zonotope α) (v : α) :
+theorem aux_sub_singleton (Z : Zonotope α) (v : α) : -- --- CONCL ---
     Z.construct - ({v} : Set α)
       = {Z.c - v} + (⟨Z.h, (0 : α), Z.G⟩ : Zonotope α).construct := by -- --- PROOF ---
   ext x
@@ -231,7 +231,7 @@ theorem aux_sub_singleton (Z : Zonotope α) (v : α) :
     abel
 
 /-- And back: moving a zero-centered zonotope to `v` is its center. -/
-theorem aux_singleton_add (v : α) (n : ℕ) (g : Fin n → α) :
+theorem aux_singleton_add (v : α) (n : ℕ) (g : Fin n → α) : -- --- CONCL ---
     ({v} : Set α) + (⟨n, (0 : α), g⟩ : Zonotope α).construct
       = (⟨n, v, g⟩ : Zonotope α).construct := by -- --- PROOF ---
   ext x

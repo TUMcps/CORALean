@@ -37,7 +37,7 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.isBounded_construct (Z : Zonotope α) :
+theorem Zonotope.isBounded_construct (Z : Zonotope α) : -- --- CONCL ---
     Bornology.IsBounded Z.construct := by -- --- PROOF ---
   refine isBounded_iff_forall_norm_le.mpr ⟨‖Z.c‖ + ∑ j, ‖Z.G j‖, ?_⟩
   rintro x ⟨β, hβ, rfl⟩

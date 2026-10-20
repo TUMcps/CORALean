@@ -47,7 +47,8 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The box of a bounded STL interval is the closure of its times. -/
-theorem STLInterval.set_interval (l u : EReal) (lc rc : Bool) (a b c z) (hl : l ≠ ⊥) (hu : u ≠ ⊤) :
+theorem STLInterval.set_interval (l u : EReal) (lc rc : Bool) (a b c z) (hl : l ≠ ⊥)
+    (hu : u ≠ ⊤) : -- --- CONCL ---
     (fun x : Vec ℝ 1 => x 0) ''
       (STLInterval.nonempty l u lc rc a b c z).interval.construct =
         closure (STLInterval.nonempty l u lc rc a b c z).set := by -- --- PROOF ---

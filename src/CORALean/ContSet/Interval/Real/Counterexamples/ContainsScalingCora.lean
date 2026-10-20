@@ -56,7 +56,7 @@ noncomputable def Interval.containsScalingCora (I : Interval (Vec ℝ 1)) (S : V
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every entry of CORA's `res` holds for `S = 0` and `I = [1, 3]`, yet `0 ∉ I`. -/
-theorem Interval.containsScalingCora_counterexample :
+theorem Interval.containsScalingCora_counterexample : -- --- CONCL ---
     ∃ (I : Interval (Vec ℝ 1)) (S : Vec ℝ 1),
       (∀ j, I.containsScalingCora S 0 j) ∧ S ∉ I.construct := by -- --- PROOF ---
   refine ⟨⟨fun _ => 1, fun _ => 3⟩, fun _ => 0, fun j => ?_, fun h => ?_⟩

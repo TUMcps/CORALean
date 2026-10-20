@@ -35,7 +35,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 open Classical in
-theorem Interval.card_prefixFace {j : ℕ} (hj : j ≤ n) (p : Fin n → Bool) :
+theorem Interval.card_prefixFace {j : ℕ} (hj : j ≤ n) (p : Fin n → Bool) : -- --- CONCL ---
     Fintype.card {l : Fin n → Bool // l ∈ Interval.prefixFace j p} =
       2 ^ (n - j) := by -- --- PROOF ---
   -- a vertex of the face is its labels at the undefined positions

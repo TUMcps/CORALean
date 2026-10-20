@@ -41,7 +41,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.convex_construct (E : Ellipsoid n) : Convex ℝ E.construct := by -- --- PROOF ---
+theorem Ellipsoid.convex_construct (E : Ellipsoid n) : -- --- CONCL ---
+    Convex ℝ E.construct := by -- --- PROOF ---
   have himg : (fun u : Vec ℝ n => E.q + E.G *ᵥ u) '' unitBall₂ n
       = (fun z : Vec ℝ n => E.q + z) '' (Matrix.mulVecLin E.G '' unitBall₂ n) := by
     simp only [Set.image_image, Matrix.mulVecLin_apply]

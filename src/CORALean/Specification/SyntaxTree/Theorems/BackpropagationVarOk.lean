@@ -43,7 +43,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 
 /-- The upper bound a leaf returns at its coordinate. -/
 theorem SyntaxTree.backpropagation_var_ok {i : Fin n} {w v : Dom}
-    {B r : Real.Interval (Vec ℝ n)} (h : backpropagation (.var i w) v B = .ok r) :
+    {B r : Real.Interval (Vec ℝ n)} (h : backpropagation (.var i w) v B = .ok r) : -- --- CONCL ---
     r.sup i = min (v.sup 0) (B.sup i) := by -- --- PROOF ---
   simp only [backpropagation] at h
   split_ifs at h with hc

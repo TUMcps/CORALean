@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The clamp `e` of `u` to `[a, b]` is in the range, and `|u - e|` is at most the larger of
 `0`, `a - u` and `u - b`. -/
-theorem Capsule.aux_clamp {a b u : ℝ} (hab : a ≤ b) :
+theorem Capsule.aux_clamp {a b u : ℝ} (hab : a ≤ b) : -- --- CONCL ---
     (a ≤ max a (min b u) ∧ max a (min b u) ≤ b) ∧
       |u - max a (min b u)| ≤ max 0 (max (a - u) (u - b)) := by -- --- PROOF ---
   refine ⟨⟨le_max_left _ _, max_le hab (min_le_left _ _)⟩, ?_⟩
@@ -62,7 +62,8 @@ theorem Capsule.aux_clamp {a b u : ℝ} (hab : a ≤ b) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.containsPoint_sound {C : Capsule 𝕋 n} {p : Vec 𝕋 n}
-    (h : C.containsPoint p = true) : toRealVec p ∈ C.construct := by -- --- PROOF ---
+    (h : C.containsPoint p = true) : -- --- CONCL ---
+    toRealVec p ∈ C.construct := by -- --- PROOF ---
   unfold Capsule.containsPoint at h
   simp only [Bool.and_eq_true, List.all_eq_true, List.mem_finRange, forall_const] at h
   obtain ⟨⟨hI, hr⟩, hsq⟩ := h

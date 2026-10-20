@@ -48,7 +48,7 @@ variable {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.mtimesIntervalMat_subset_closedBall_infSup (IM : Interval (Mat ℝ m n))
-    (Z : Zonotope (Vec ℝ n)) :
+    (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (Zonotope.mtimesIntervalMat IM Z).construct ⊆ Metric.closedBall (0 : Vec ℝ m)
       (2 * (∑ i, ∑ j, (|IM.inf i j| + |IM.sup i j|)) * ∑ j, Z.absBound j) := by -- --- PROOF ---
   set s : ℝ := ∑ i, ∑ j, (|IM.inf i j| + |IM.sup i j|) with hs

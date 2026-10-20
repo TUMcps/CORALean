@@ -57,7 +57,7 @@ theorem Zonotope.aux_sum_univ_reduceBy_box {Z : Zonotope (Vec 𝕋 n)}
 
 /-- `reduceBy` reaches no further than `Z.construct` widened by `reduceByBox`. -/
 theorem Zonotope.reduceBy_subset_add_box (Z : Zonotope (Vec 𝕋 n))
-    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) :
+    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) : -- --- CONCL ---
     (Z.reduceBy part).construct ⊆
       Z.construct + (Zonotope.reduceByBox Z part).construct := by -- --- PROOF ---
   rintro _ ⟨y₁, hy₁, y₂, hy₂, rfl⟩

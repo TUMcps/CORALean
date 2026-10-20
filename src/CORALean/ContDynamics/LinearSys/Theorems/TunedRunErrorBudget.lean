@@ -71,7 +71,7 @@ is left of the budget, proportional to the step, stays under the fraction of
 the budget the elapsed time has spent. -/
 theorem aux_tunedStep_le {ε a a' tf ti Δt : ℝ} (htf : 0 < tf)
     (hΔt : 0 < Δt) (hsum : ti + Δt ≤ tf) (ha : a ≤ ε * (ti / tf))
-    (ha' : a' ≤ a + (ε - a) / (tf - ti) * Δt) :
+    (ha' : a' ≤ a + (ε - a) / (tf - ti) * Δt) : -- --- CONCL ---
     a' ≤ ε * ((ti + Δt) / tf) := by -- --- PROOF ---
   have hd : 0 < tf - ti := by linarith
   have ham : a * tf ≤ ε * ti := by

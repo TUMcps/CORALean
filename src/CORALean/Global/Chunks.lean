@@ -48,7 +48,7 @@ termination_by l => l.length
 decreasing_by simp only [List.length_drop, List.length_cons]; omega
 
 /-- Every element of `l` is the first element or in the rest of some piece. -/
-theorem exists_mem_chunks (μ : ℕ) (l : List α) {y : α} (hy : y ∈ l) :
+theorem exists_mem_chunks (μ : ℕ) (l : List α) {y : α} (hy : y ∈ l) : -- --- CONCL ---
     ∃ c ∈ chunks μ l, y = c.1 ∨ y ∈ c.2 := by -- --- PROOF ---
   induction l using chunks.induct μ with
   | case1 => simp at hy

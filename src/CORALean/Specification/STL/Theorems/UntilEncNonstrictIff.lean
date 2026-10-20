@@ -43,7 +43,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.untilEnc_nonstrict_iff {N : ℕ} {P Q : ℕ → Prop} :
+theorem STL.untilEnc_nonstrict_iff {N : ℕ} {P Q : ℕ → Prop} : -- --- CONCL ---
     ∀ i, i ≤ N → (STL.untilEnc N true P Q i ↔
       ∃ t₁ ∈ Finset.Icc i N, Q t₁ ∧ ∀ s ∈ Finset.Icc i t₁, P s) := by -- --- PROOF ---
   intro i

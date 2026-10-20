@@ -44,7 +44,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FourValuedSignal.not_isRefinedBy (s : FourValuedSignal ℝ) (k : KleeneSignal ℝ)
-    (hs : s.IsValid) (hk : k.IsValid) (h : s.IsRefinedBy k) :
+    (hs : s.IsValid) (hk : k.IsValid) (h : s.IsRefinedBy k) : -- --- CONCL ---
     s.not.IsRefinedBy k.not := by -- --- PROOF ---
   intro t ht
   rw [FourValuedSignal.at_not s hs, KleeneSignal.at_not k hk]

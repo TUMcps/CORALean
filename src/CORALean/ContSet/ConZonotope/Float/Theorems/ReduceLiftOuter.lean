@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.reduceLift_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (o : ℕ) :
+theorem ConZonotope.reduceLift_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (o : ℕ) : -- --- CONCL ---
     cZ.construct ⊆ (cZ.reduceLift o).construct := by -- --- PROOF ---
   unfold ConZonotope.reduceLift
   simp only []

@@ -39,7 +39,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every bundle lies in the members' facet polytopes, intersected. -/
-theorem ZonoBundle.hPolytopeAll_contains (zB : ZonoBundle (Vec ℝ (n + 1))) :
+theorem ZonoBundle.hPolytopeAll_contains (zB : ZonoBundle (Vec ℝ (n + 1))) : -- --- CONCL ---
     zB.construct ⊆ zB.hPolytopeAll.construct := by -- --- PROOF ---
   intro x hx
   rw [ZonoBundle.construct_eq_iInter, Set.mem_iInter] at hx

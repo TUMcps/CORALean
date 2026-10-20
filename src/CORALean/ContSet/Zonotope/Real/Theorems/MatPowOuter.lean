@@ -41,7 +41,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.matPow_outer (M : Zonotope (Mat ℝ n n)) {A : Mat ℝ n n}
-    (hA : A ∈ M.construct) (k : ℕ) :
+    (hA : A ∈ M.construct) (k : ℕ) : -- --- CONCL ---
     A ^ k ∈ (M.matPow k).construct := by -- --- PROOF ---
   induction k with
   | zero =>

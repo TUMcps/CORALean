@@ -74,7 +74,7 @@ private theorem sqrt_pos_arg {x : ℝ} : 0 < x + Real.sqrt (1 + x ^ 2) := by
   rw [← neg_lt_iff_pos_add']
   exact Real.lt_sqrt_of_sq_lt (by simp)
 
-theorem le_asinhUp (p k : ℕ) (x : 𝕋) :
+theorem le_asinhUp (p k : ℕ) (x : 𝕋) : -- --- CONCL ---
     Real.arsinh (toReal x) ≤ toReal (asinhUp p k x) := by -- --- PROOF ---
   have hs := le_sqrtUp k (addUp one (mulUp x x))
   have hr : 1 + toReal x ^ 2 ≤ toReal (addUp one (mulUp x x)) := by
@@ -92,7 +92,7 @@ theorem le_asinhUp (p k : ℕ) (x : 𝕋) :
   exact le_logUp p k _ (lt_of_lt_of_le hT hC)
 
 theorem asinhDown_le (p k : ℕ) (x : 𝕋)
-    (hx : 0 ≤ toReal x → 2 * toReal x + 1 ≤ 2 ^ p / 2) :
+    (hx : 0 ≤ toReal x → 2 * toReal x + 1 ≤ 2 ^ p / 2) : -- --- CONCL ---
     toReal (asinhDown p k x) ≤ Real.arsinh (toReal x) := by -- --- PROOF ---
   unfold asinhDown
   split_ifs with h
@@ -129,7 +129,7 @@ theorem asinhDown_le (p k : ℕ) (x : 𝕋)
     rw [Real.arsinh_neg] at this
     linarith [this]
 
-theorem le_acoshUp (p k : ℕ) (x : 𝕋) (hx : 1 ≤ toReal x) :
+theorem le_acoshUp (p k : ℕ) (x : 𝕋) (hx : 1 ≤ toReal x) : -- --- CONCL ---
     Real.arcosh (toReal x) ≤ toReal (acoshUp p k x) := by -- --- PROOF ---
   have hs := le_sqrtUp k (subUp (mulUp x x) one)
   have hr : toReal x ^ 2 - 1 ≤ toReal (subUp (mulUp x x) one) := by
@@ -146,7 +146,8 @@ theorem le_acoshUp (p k : ℕ) (x : 𝕋) (hx : 1 ≤ toReal x) :
   refine le_trans (Real.log_le_log hT hC) ?_
   exact le_logUp p k _ (lt_of_lt_of_le hT hC)
 
-theorem acoshDown_le (p k : ℕ) (x : 𝕋) (h1 : 1 ≤ toReal x) (hx : 2 * toReal x ≤ 2 ^ p / 2) :
+theorem acoshDown_le (p k : ℕ) (x : 𝕋) (h1 : 1 ≤ toReal x)
+    (hx : 2 * toReal x ≤ 2 ^ p / 2) : -- --- CONCL ---
     toReal (acoshDown p k x) ≤ Real.arcosh (toReal x) := by -- --- PROOF ---
   have hr : toReal (subDown (mulDown x x) one) ≤ toReal x ^ 2 - 1 := by
     have h1 := subDown_le_sub (mulDown x x) (one : 𝕋)

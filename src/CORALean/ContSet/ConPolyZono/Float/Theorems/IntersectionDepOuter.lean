@@ -76,7 +76,7 @@ theorem ConPolyZono.aux_agree_mem (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.intersectionDep_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) (hq₁ : cPZ₁.qI = 0)
-    (hq₂ : cPZ₂.qI = 0) :
+    (hq₂ : cPZ₂.qI = 0) : -- --- CONCL ---
     cPZ₁.construct ∩ cPZ₂.construct ⊆ (cPZ₁.intersectionDep cPZ₂).construct := by -- --- PROOF ---
   rintro x ⟨⟨y₁, hy₁, e₁, he₁, hx₁⟩, y₂, hy₂, e₂, he₂, hx₂⟩
   have hx₁' : y₁ + e₁ = x := hx₁

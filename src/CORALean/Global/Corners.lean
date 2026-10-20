@@ -53,7 +53,7 @@ theorem sum_prod_bool (f g : Fin n → ℝ) :
         Finset.prod_congr rfl fun j _ => by simp,
       Finset.prod_univ_sum, Fintype.piFinset_univ]
 
-theorem sum_prod_bool_prod (t u v : Fin n → ℝ) :
+theorem sum_prod_bool_prod (t u v : Fin n → ℝ) : -- --- CONCL ---
     ∑ σ : Fin n → Bool,
         (∏ j, (if σ j then t j else 1 - t j)) * ∏ j, (if σ j then u j else v j)
       = ∏ j, (t j * u j + (1 - t j) * v j) := by -- --- PROOF ---
@@ -69,7 +69,7 @@ theorem sum_prod_bool_prod (t u v : Fin n → ℝ) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem sum_prod_bool_mul (t u v : Fin n → ℝ) (i : Fin n) :
+theorem sum_prod_bool_mul (t u v : Fin n → ℝ) (i : Fin n) : -- --- CONCL ---
     ∑ σ : Fin n → Bool,
         (∏ j, (if σ j then t j else 1 - t j)) * (if σ i then u i else v i)
       = t i * u i + (1 - t i) * v i := by -- --- PROOF ---

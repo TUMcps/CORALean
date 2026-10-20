@@ -50,7 +50,8 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- The exponential moved outside the integral: `closedForm` as `e^{ρA}` applied
 to the substituted primitive, the shape whose continuity does not need `u`'s. -/
 theorem LinearSys.closedForm_eq (sys : LinearSys 𝕋 n) (x0 : Vec ℝ n) (u : ℝ → Vec ℝ n) {ρ : ℝ}
-    (hint : IntervalIntegrable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s) volume 0 ρ) :
+    (hint : IntervalIntegrable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s) volume 0 ρ)
+    : -- --- CONCL ---
     sys.closedForm x0 u ρ
       = exp (ρ • toRealMat sys.A) *ᵥ
           (x0 + ∫ s in (0:ℝ)..ρ, exp ((-s) • toRealMat sys.A) *ᵥ u s) := by -- --- PROOF ---

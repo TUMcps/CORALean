@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 no longer than the stored radius, is in the error box. -/
 theorem Capsule.mem_construct_of_split (C : Capsule 𝕋 n) {x w : Vec ℝ n} {t : ℝ}
     (ht : t ∈ Set.Icc (-1 : ℝ) 1) (hw : ‖w‖₂ ≤ toReal C.r)
-    (he : x - (toRealVec C.c + t • toRealVec C.g + w) ∈ C.I_error.construct) :
+    (he : x - (toRealVec C.c + t • toRealVec C.g + w) ∈ C.I_error.construct) : -- --- CONCL ---
     x ∈ C.construct := by -- --- PROOF ---
   refine ⟨toRealVec C.c + t • toRealVec C.g + w, ?_, _, he, add_sub_cancel _ _⟩
   refine (Real.Capsule.mem_construct_iff_norm₂ C.nominal _).mpr ⟨t, ht, ?_⟩

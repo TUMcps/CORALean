@@ -56,7 +56,8 @@ variable {n m : ℕ}
 /-- A sufficient explanation stays sufficient at any superset of its features,
 over a nonnegative radius. -/
 theorem IsSuffExplanation.mono {f : Vec ℝ n → Vec ℝ m} {x : Vec ℝ n} {ε : ℝ} (hε : 0 ≤ ε)
-    {E E' : Finset (Fin n)} (hE : E ⊆ E') {l : Fin m} (h : IsSuffExplanation f x ε E l) :
+    {E E' : Finset (Fin n)} (hE : E ⊆ E') {l : Fin m}
+    (h : IsSuffExplanation f x ε E l) : -- --- CONCL ---
     IsSuffExplanation f x ε E' l := by -- --- PROOF ---
   refine fun x' hx' j hj => h x' (fun i => ?_) j hj
   have hi' : (explainBox x ε E').inf i ≤ x' i ∧ x' i ≤ (explainBox x ε E').sup i := hx' i

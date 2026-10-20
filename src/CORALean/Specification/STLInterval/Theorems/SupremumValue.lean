@@ -35,7 +35,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The bound `supremum` returns is the supremum of the set of times. -/
-theorem STLInterval.supremum_value (I : STLInterval) (hI : I ≠ .empty) :
+theorem STLInterval.supremum_value (I : STLInterval) (hI : I ≠ .empty) : -- --- CONCL ---
     I.supremum.value = some (⨆ t ∈ I.set, (t : EReal)) := by -- --- PROOF ---
   cases I with
   | empty => exact absurd rfl hI

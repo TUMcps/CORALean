@@ -46,7 +46,8 @@ namespace CORALean
 still `≥ 0`: the bound is finite, since an infinite one is open and so below the upper one. -/
 theorem STLInterval.zero_le_add_coe {l u : EReal} {lc rc : Bool} (hu : u = ⊤ → rc = false)
     (hlt : l < u ∨ (l = u ∧ lc = true ∧ rc = true)) (hz : 0 ≤ l) (δ : ℝ)
-    (h : 0 ≤ l.toReal + δ) : 0 ≤ l + (δ : EReal) := by -- --- PROOF ---
+    (h : 0 ≤ l.toReal + δ) : -- --- CONCL ---
+    0 ≤ l + (δ : EReal) := by -- --- PROOF ---
   have hl : l ≠ ⊤ := by
     rintro rfl
     rcases hlt with h' | ⟨h', -, h''⟩

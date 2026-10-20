@@ -52,7 +52,7 @@ variable {n : ℕ}
 
 theorem Taylm.exists_le_cosyGo {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
     {X : Fin n → Interval ℝ} (hX : Taylm.GoodBox X) (hX' : ∀ k, (X k).inf ≤ (X k).sup) (ε : ℝ)
-    (ldbFuel fuel : ℕ) :
+    (ldbFuel fuel : ℕ) : -- --- CONCL ---
     ∃ p, Taylm.InBox X p ∧ f p ≤ (T.cosyGo X ε ldbFuel fuel).sup := by -- --- PROOF ---
   refine Taylm.exists_le_globalMin (fun p hp => ?_) hX' fuel
   have hpbox : p ∈ Taylm.box n := fun k => abs_le.2

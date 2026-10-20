@@ -50,7 +50,7 @@ variable {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.hull_image_of_nonneg (A : Mat ℝ m n) (hA : ∀ i j, 0 ≤ A i j) (a b : Vec ℝ n)
-    (hab : ∀ j, a j ≤ b j) :
+    (hab : ∀ j, a j ≤ b j) : -- --- CONCL ---
     Interval.hull ((A *ᵥ ·) '' (⟨a, b⟩ : Interval (Vec ℝ n)).construct) =
       ⟨A *ᵥ a, A *ᵥ b⟩ := by -- --- PROOF ---
   have ha : a ∈ (⟨a, b⟩ : Interval (Vec ℝ n)).construct := fun j => ⟨le_rfl, hab j⟩

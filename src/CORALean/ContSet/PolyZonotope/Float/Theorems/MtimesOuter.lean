@@ -51,7 +51,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem PolyZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (pZ : PolyZonotope (Vec 𝕋 n)) :
+theorem PolyZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n)
+    (pZ : PolyZonotope (Vec 𝕋 n)) : -- --- CONCL ---
     (toRealMat M *ᵥ ·) '' nominalSet pZ ⊆
       nominalSet (PolyZonotope.mtimes M pZ)
         + (PolyZonotope.mtimesResidual M pZ).construct := by -- --- PROOF ---

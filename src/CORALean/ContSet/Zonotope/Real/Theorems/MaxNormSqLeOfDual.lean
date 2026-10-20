@@ -48,7 +48,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.maxNormSq_le_of_dual (Z : Zonotope (Vec ℝ n)) (lam : Fin Z.h → ℝ)
-    (hpsd : (Matrix.diagonal lam - Matrix.of fun j k => Z.G j ⬝ᵥ Z.G k).PosSemidef) :
+    (hpsd : (Matrix.diagonal lam - Matrix.of fun j k => Z.G j ⬝ᵥ Z.G k).PosSemidef)
+    : -- --- CONCL ---
     Z.maxNormSq ≤ ∑ j, lam j := by -- --- PROOF ---
   have hq := hpsd.dotProduct_mulVec_nonneg
   -- each `λⱼ` is at least `‖gⱼ‖₂² ≥ 0`, the diagonal of the semidefinite matrix

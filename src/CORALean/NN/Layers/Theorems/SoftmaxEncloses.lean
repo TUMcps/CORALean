@@ -53,7 +53,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Layer.softmax_encloses (k : ℕ) :
+theorem Layer.softmax_encloses (k : ℕ) : -- --- CONCL ---
     (Layer.softmax (S := S) (n := n) k).Encloses Real.softmax := by -- --- PROOF ---
   refine ⟨fun s x hx => ?_⟩
   have hbox : ∀ i, toReal ((interval s).inf i) ≤ x i ∧ x i ≤ toReal ((interval s).sup i) :=

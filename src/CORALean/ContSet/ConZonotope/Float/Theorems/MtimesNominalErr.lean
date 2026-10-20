@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.mtimesNominal_err (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {p : Vec ℝ m}
-    (hp : p ∈ nominalSet (cZ.mtimesNominal M)) :
+    (hp : p ∈ nominalSet (cZ.mtimesNominal M)) : -- --- CONCL ---
     ∃ z ∈ nominalSet cZ, ∀ i, |p i - (toRealMat M *ᵥ z) i|
       ≤ toReal (cZ.mtimesNominalErr M i) := by -- --- PROOF ---
   obtain ⟨β, hβ, hP, hval⟩ := ConZonotope.mem_nominalSet_iff.mp hp

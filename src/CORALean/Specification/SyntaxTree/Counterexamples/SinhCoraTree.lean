@@ -72,7 +72,8 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 
 /-- The upper bound `aux_sinhCora_` returns is at most `asinh 1` for a target starting at most at
 `1`. -/
-private theorem SyntaxTree.funHanSinhCora_sup_le {int prev : Dom} (h : int.inf 0 ≤ 1) :
+private theorem SyntaxTree.funHanSinhCora_sup_le {int prev : Dom}
+    (h : int.inf 0 ≤ 1) : -- --- CONCL ---
     ∃ val, funHanSinhCora int prev = .ok val ∧ val.sup 0 ≤ Real.arsinh 1 := by -- --- PROOF ---
   refine ⟨_, rfl, ?_⟩
   simp only [Real.Interval.intersection, interval]

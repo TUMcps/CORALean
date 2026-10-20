@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.polygon_inner (E : Ellipsoid 𝕋 2) (W : List (Vec 𝕋 2)) :
+theorem Ellipsoid.polygon_inner (E : Ellipsoid 𝕋 2) (W : List (Vec 𝕋 2)) : -- --- CONCL ---
     ContSet.construct (E.polygon W) ⊆ E.construct := by -- --- PROOF ---
   rw [Ellipsoid.polygon, Polygon.construct_ofPieces]
   simp only [List.mem_singleton, Set.iUnion_iUnion_eq_left]

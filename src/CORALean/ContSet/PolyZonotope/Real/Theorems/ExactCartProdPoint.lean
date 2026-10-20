@@ -51,7 +51,7 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.exactCartProd_point (pZ₁ : PolyZonotope α) (pZ₂ : PolyZonotope β)
-    (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ) :
+    (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ) : -- --- CONCL ---
     (pZ₁.exactCartProd pZ₂ hp).point a
       = (pZ₁.point a, pZ₂.point fun k => a (Fin.cast hp.symm k)) := by -- --- PROOF ---
   show ((pZ₁.map (LinearMap.inl ℝ α β)).exactPlus

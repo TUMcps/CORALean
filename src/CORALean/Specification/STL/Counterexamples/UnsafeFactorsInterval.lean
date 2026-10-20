@@ -79,7 +79,7 @@ theorem STL.aux_interval_c :
     Zonotope.linComb, Zonotope.mtimesIntervalMat, STL.expIntegral_zero_one]
   exact STL.depBloating_c _ _ _ _ rfl
 
-theorem STL.aux_interval_h :
+theorem STL.aux_interval_h : -- --- CONCL ---
     1 < (STL.depReach (0 : Mat ℝ 1 1) (1 : Mat ℝ 1 1) (⟨0, 0, Fin.elim0⟩ : Zonotope (Vec ℝ 1))
       (⟨1, 0, fun _ => fun _ => 1⟩ : Zonotope (Vec ℝ 1)) 1 1 0).2.h := by -- --- PROOF ---
   -- the indicator of `1` sums to `1 ≠ 0`, so there is a generator `1`

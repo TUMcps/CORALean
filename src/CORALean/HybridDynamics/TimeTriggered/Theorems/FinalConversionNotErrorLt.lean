@@ -55,7 +55,7 @@ open Set
 /-- Every execution of the counterexample ends in `[-100, 0]`, in `m₂` at `0` after `10` or more. -/
 theorem aux_exec_char {d x : ℝ} {m : Fin 2}
     (h : (DiffInclAutomaton.spaceTriggered ({-100, -10} : Set ℝ) (fun _ => (1 : ℝ))
-      (fun _ => (0 : ℝ)) (1 : ℝ) 0).IsExec d m x) :
+      (fun _ => (0 : ℝ)) (1 : ℝ) 0).IsExec d m x) : -- --- CONCL ---
     (m = 0 → -100 ≤ x ∧ x ≤ 0 ∧ d ≤ 100) ∧ (m = 1 → x = 0 ∧ 10 ≤ d) := by -- --- PROOF ---
   obtain ⟨hd0, h0, h1⟩ := DiffInclAutomaton.spaceTriggered_isExec_orbit
     (LipschitzWith.const (1 : ℝ)) (LipschitzWith.const (0 : ℝ)) h
@@ -83,7 +83,7 @@ theorem aux_exec_char {d x : ℝ} {m : Fin 2}
     rcases hx₀' with rfl | rfl <;> linarith
 
 /-- The run from `-10` reaches `50` in `m_either` within the extended time bound. -/
-theorem aux_reaches_fifty {ts : ℝ} (hts : 0 ≤ ts) :
+theorem aux_reaches_fifty {ts : ℝ} (hts : 0 ≤ ts) : -- --- CONCL ---
     (50 : ℝ) ∈ Prod.fst '' (DiffInclAutomaton.finalConversion ({-100, -10} : Set ℝ)
       (fun _ => (1 : ℝ)) (fun _ => (0 : ℝ)) (fun _ => Icc (0 : ℝ) 1) (1 : ℝ) 0 10 100 ts).reachLE
         (100 + ts) := by -- --- PROOF ---

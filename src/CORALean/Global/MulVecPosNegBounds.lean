@@ -54,7 +54,7 @@ variable {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem mulVec_posNeg_bounds (A : Mat ℝ m n) (x xl xu : Vec ℝ n)
-    (h : ∀ j, xl j ≤ x j ∧ x j ≤ xu j) (i : Fin m) :
+    (h : ∀ j, xl j ≤ x j ∧ x j ≤ xu j) (i : Fin m) : -- --- CONCL ---
     (A.map (max 0) *ᵥ xl - (A.map (max 0) - A) *ᵥ xu) i ≤ (A *ᵥ x) i ∧
       (A *ᵥ x) i ≤ (A.map (max 0) *ᵥ xu - (A.map (max 0) - A) *ᵥ xl) i := by -- --- PROOF ---
   simp only [Pi.sub_apply, mulVec, dotProduct, map_apply, Matrix.sub_apply,

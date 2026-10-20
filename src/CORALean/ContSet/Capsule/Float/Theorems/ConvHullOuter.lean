@@ -60,7 +60,7 @@ theorem Capsule.aux_half_gap_le {x : ℝ} {u d : 𝕋} (hd : toReal d ≤ x) (hu
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.convHull_outer (k : ℕ) (C S : Capsule 𝕋 n) :
+theorem Capsule.convHull_outer (k : ℕ) (C S : Capsule 𝕋 n) : -- --- CONCL ---
     Set.linComb C.construct S.construct ⊆ (C.convHull k S).construct := by -- --- PROOF ---
   rintro _ ⟨x, hx, y, hy, l, ⟨hl0, hl1⟩, rfl⟩
   have h₁ := Capsule.radius_le k C hx

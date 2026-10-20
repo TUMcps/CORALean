@@ -42,7 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.representsa_point_sound {pZ : PolyZonotope (Vec 𝕋 n)}
-    (h : pZ.representsa_point = true) : ∃ v, pZ.construct = {v} := by -- --- PROOF ---
+    (h : pZ.representsa_point = true) : -- --- CONCL ---
+    ∃ v, pZ.construct = {v} := by -- --- PROOF ---
   simp only [PolyZonotope.representsa_point, Bool.and_eq_true, List.all_eq_true,
     List.mem_finRange, forall_const] at h
   obtain ⟨⟨hG, hGI⟩, hE⟩ := h

@@ -46,7 +46,8 @@ open scoped NNReal
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem FourValuedSTL.hat_spec {X : Type} {a : X → Prop} {S : Set X} {x : X} (hx : x ∈ S) :
+theorem FourValuedSTL.hat_spec {X : Type} {a : X → Prop} {S : Set X} {x : X}
+    (hx : x ∈ S) : -- --- CONCL ---
     (FourValuedSTL.hat a S = Kleene.tt → a x) ∧
       (FourValuedSTL.hat a S = Kleene.ff → ¬ a x) := by -- --- PROOF ---
   classical

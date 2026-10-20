@@ -42,7 +42,8 @@ variable {n : ℕ}
 
 /-- Every power `M ^ k` of a member lies in the `k`-th matrix-polytope power. -/
 theorem VPolytope.mpower_outer (P : VPolytope (Mat ℝ n n)) {M : Mat ℝ n n} (hM : M ∈ P.construct)
-    (k : ℕ) : M ^ k ∈ (VPolytope.mpower P k).construct := by -- --- PROOF ---
+    (k : ℕ) : -- --- CONCL ---
+    M ^ k ∈ (VPolytope.mpower P k).construct := by -- --- PROOF ---
   rcases k with _ | k
   · rw [pow_zero]
     show 1 ∈ (VPolytope.point (1 : Mat ℝ n n)).construct

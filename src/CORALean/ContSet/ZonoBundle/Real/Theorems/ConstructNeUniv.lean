@@ -38,7 +38,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.construct_ne_univ (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k)
-    (hn : 0 < n) : zB.construct ≠ Set.univ := by -- --- PROOF ---
+    (hn : 0 < n) : -- --- CONCL ---
+    zB.construct ≠ Set.univ := by -- --- PROOF ---
   intro h
   have hb := ZonoBundle.isBounded_construct (zB := zB) hk
   rw [h] at hb

@@ -55,7 +55,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 /-- [1, Prop. 4]: `ε_P` in eq. (22) satisfies `Assumption 1`. -/
 theorem LinearSys.errorConvergesToZero_timePointStepRemainderError (sys : LinearSys 𝕋 n)
-    (η : ℕ) (U : Zonotope (Vec ℝ n)) :
+    (η : ℕ) (U : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     ErrorConvergesToZero (fun r => sys.timePointStepRemainderError r η U) := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
   set B := ∑ j, U.absBound j with hB

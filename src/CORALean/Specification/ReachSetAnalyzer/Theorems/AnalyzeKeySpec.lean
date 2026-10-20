@@ -59,7 +59,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 
 /-- The builder after `if c, setPossiblyTrue(int)`. -/
 theorem aux_stepTrue (b : FiniteKleeneSignalBuilder) (d : ℝ) (PT PF : ℝ → Prop) (lo hi : ℝ)
-    (hlh : lo < hi) (hb : b.Represents d PT PF) (c : Bool) :
+    (hlh : lo < hi) (hb : b.Represents d PT PF) (c : Bool) : -- --- CONCL ---
     ∃ b1, (if c = true then b.setPossiblyTrue? lo hi else some b) = some b1 ∧
       b1.Represents d (fun t => PT t ∨ (c = true ∧ Covers d t lo hi)) PF := by -- --- PROOF ---
   by_cases hc : c = true
@@ -73,7 +73,7 @@ theorem aux_stepTrue (b : FiniteKleeneSignalBuilder) (d : ℝ) (PT PF : ℝ → 
 
 /-- The builder after `if c, setPossiblyFalse(int)`. -/
 theorem aux_stepFalse (b : FiniteKleeneSignalBuilder) (d : ℝ) (PT PF : ℝ → Prop) (lo hi : ℝ)
-    (hlh : lo < hi) (hb : b.Represents d PT PF) (c : Bool) :
+    (hlh : lo < hi) (hb : b.Represents d PT PF) (c : Bool) : -- --- CONCL ---
     ∃ b1, (if c = true then b.setPossiblyFalse? lo hi else some b) = some b1 ∧
       b1.Represents d PT (fun t => PF t ∨ (c = true ∧ Covers d t lo hi)) := by -- --- PROOF ---
   by_cases hc : c = true

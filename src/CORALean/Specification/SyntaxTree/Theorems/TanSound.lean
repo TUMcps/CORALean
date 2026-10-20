@@ -44,7 +44,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 
 /-- `aux_tan_` is sound for `tan` on an operand inside `(-pi/2, pi/2)`. -/
 theorem SyntaxTree.tan_sound (prev : Dom) (hd₁ : -(Real.pi / 2) < prev.inf 0)
-    (hd₂ : prev.sup 0 < Real.pi / 2) :
+    (hd₂ : prev.sup 0 < Real.pi / 2) : -- --- CONCL ---
     UnarySound Unary.tan.fn prev (Real.Interval.tan prev) funHanTan := by -- --- PROOF ---
   intro int _ s hs hi
   have h : int.inf 0 ≤ Real.tan s ∧ Real.tan s ≤ int.sup 0 := hi

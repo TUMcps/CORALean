@@ -37,7 +37,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.mtimes_construct_outer {k m : ℕ} (M : Mat ℝ k m) (T : Fin m → Taylm n) :
+theorem Taylm.mtimes_construct_outer {k m : ℕ} (M : Mat ℝ k m)
+    (T : Fin m → Taylm n) : -- --- CONCL ---
     M.mulVec '' Taylm.construct T ⊆ Taylm.construct (Taylm.mtimes M T) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   obtain ⟨f, hf, t, ht, hxf⟩ := (Taylm.mem_construct_iff T x).1 hx

@@ -38,7 +38,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.replaceId_exact (pZ : PolyZonotope α) {p' : ℕ} (f : Fin pZ.p → Fin p')
-    (hf : Function.Injective f) : (pZ.replaceId f).construct = pZ.construct := by -- --- PROOF ---
+    (hf : Function.Injective f) : -- --- CONCL ---
+    (pZ.replaceId f).construct = pZ.construct := by -- --- PROOF ---
   refine Set.Subset.antisymm (PolyZonotope.replaceId_subset pZ f) ?_
   rintro _ ⟨a, β, ha, hβ, rfl⟩
   -- extend `a` by `0` off the range of `f`, so that the composite is `a`

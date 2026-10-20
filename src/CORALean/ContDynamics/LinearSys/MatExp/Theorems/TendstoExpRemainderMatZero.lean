@@ -57,7 +57,7 @@ variable {n : ℕ}
 
 /-- [1, Lemma 1], the limit half: the entrywise exponential remainder vanishes
 as the step shrinks to `0`, at any fixed order. -/
-theorem MatExp.tendsto_expRemainderMat_zero (A : Mat ℝ n n) (η : ℕ) :
+theorem MatExp.tendsto_expRemainderMat_zero (A : Mat ℝ n n) (η : ℕ) : -- --- CONCL ---
     Tendsto (fun Δt : ℝ => MatExp.expRemainderMat A Δt η)
       (𝓝[>] (0 : ℝ)) (𝓝 0) := by -- --- PROOF ---
   refine tendsto_zero_iff_norm_tendsto_zero.mpr ?_

@@ -49,7 +49,7 @@ variable {lam : ι → ℝ}
 
 /-- The step [1, Eq. 26] is continuous at every `β > 0`. -/
 theorem Ellipsoid.halderStep_continuousAt [Nonempty ι] (hlam : ∀ i, 0 < lam i) {L : ℝ}
-    (hL : 0 < L) :
+    (hL : 0 < L) : -- --- CONCL ---
     ContinuousAt (Ellipsoid.halderStep lam) L := by -- --- PROOF ---
   have hA : ContinuousOn (Ellipsoid.halderInvSum lam) (Set.Ici 0) := by
     unfold Ellipsoid.halderInvSum

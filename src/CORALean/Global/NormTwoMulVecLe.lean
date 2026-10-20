@@ -45,7 +45,7 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem norm_two_mulVec_le (M : Mat ℝ n m) (hM : M * Mᵀ = 1) (β : Fin m → ℝ) :
+theorem norm_two_mulVec_le (M : Mat ℝ n m) (hM : M * Mᵀ = 1) (β : Fin m → ℝ) : -- --- CONCL ---
     ‖toLp 2 (M *ᵥ β)‖ ≤ ‖toLp 2 β‖ := by -- --- PROOF ---
   have hadj : ∀ (u : Fin m → ℝ) (v : Fin n → ℝ), (M *ᵥ u) ⬝ᵥ v = u ⬝ᵥ (Mᵀ *ᵥ v) := fun u v => by
     rw [dotProduct_comm, dotProduct_mulVec, dotProduct_comm, mulVec_transpose]

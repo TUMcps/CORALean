@@ -54,7 +54,7 @@ variable {n : ℕ}
 `Δt ≤ 1` caps `Δtⁱ⁺¹` (`i ≥ 1`) at `Δt²`, and `Lemma 1`'s rate caps the remainder at a constant
 times `Δt`, so every term of `particularSolutionErrorBound` is a constant times `Δt²`. -/
 theorem MatExp.exists_particularSolutionError_le_const_mul_sq (A : Mat ℝ n n) (tk : ℝ)
-    {U0 : Set (Vec ℝ n)} (hU0 : Bornology.IsBounded U0) (η : ℕ) :
+    {U0 : Set (Vec ℝ n)} (hU0 : Bornology.IsBounded U0) (η : ℕ) : -- --- CONCL ---
     ∃ K : ℝ, ∀ᶠ Δt : ℝ in 𝓝[>] (0:ℝ),
       MatExp.particularSolutionError A tk U0 Δt η ≤ K * Δt ^ 2 := by -- --- PROOF ---
   set CExp := ∑ i, ‖(fun j => (exp (tk • A)) i j)‖₂ with hCExp

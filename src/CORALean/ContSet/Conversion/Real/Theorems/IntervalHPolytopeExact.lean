@@ -42,7 +42,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- so the two descriptions denote the same set, with nothing given away
-theorem Interval.hPolytope_exact (I : Interval (Vec ℝ n)) :
+theorem Interval.hPolytope_exact (I : Interval (Vec ℝ n)) : -- --- CONCL ---
     (Interval.hPolytope I).construct = I.construct := by -- --- PROOF ---
   ext x
   constructor

@@ -51,7 +51,7 @@ namespace CORALean
 
 /-- A row's share of a budget scaled by the sum of every row's weight, plus one,
 never exceeds the budget itself. -/
-theorem aux_scaled_le {S w ε : ℝ} (hS : 0 ≤ S) (hw : w ≤ S) (hε : 0 < ε) :
+theorem aux_scaled_le {S w ε : ℝ} (hS : 0 ≤ S) (hw : w ≤ S) (hε : 0 < ε) : -- --- CONCL ---
     w * (2 * (ε / (2 * (1 + S)))) ≤ ε := by -- --- PROOF ---
   have hD : (0:ℝ) < 1 + S := by linarith
   have hDne : (1 + S) ≠ 0 := hD.ne'

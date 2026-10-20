@@ -41,7 +41,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [OfScalarPoint 𝕋 S] [ScalarCenter �
 
 /-- Every point `c + f ⊙ (x - c)`, `x` in `S`, `c` the center and `f` read as reals, is in
 `enlargeScalar S f`: `minusScalar_outer`, `times_outer` and `plus_outer` in turn. -/
-theorem ContSet.enlargeScalar_outer (s : S n) (f : Vec 𝕋 n) :
+theorem ContSet.enlargeScalar_outer (s : S n) (f : Vec 𝕋 n) : -- --- CONCL ---
     (fun x : Vec ℝ n => toRealVec (ScalarCenter.centerVec (𝕋 := 𝕋) s) +
         fun i => toReal (f i) * (x i - toRealVec (ScalarCenter.centerVec (𝕋 := 𝕋) s) i)) ''
       construct s ⊆ construct (ContSet.enlargeScalar s f) := by -- --- PROOF ---

@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.matPlus_outer (Z₁ Z₂ : Zonotope (Mat 𝕋 m n)) :
+theorem Zonotope.matPlus_outer (Z₁ Z₂ : Zonotope (Mat 𝕋 m n)) : -- --- CONCL ---
     Z₁.construct + Z₂.construct ⊆ (Zonotope.matPlus Z₁ Z₂).construct := by -- --- PROOF ---
   rintro _ ⟨_, ⟨a, ha, e, he, rfl⟩, _, ⟨b, hb, f, hf, rfl⟩, rfl⟩
   have hab : a + b ∈ (CORALean.Real.Zonotope.plus Z₁.nominal Z₂.nominal).construct := by

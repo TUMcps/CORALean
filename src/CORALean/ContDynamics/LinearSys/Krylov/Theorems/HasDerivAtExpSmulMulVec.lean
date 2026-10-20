@@ -53,7 +53,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Eq. 2.8]'s step: `d/ds e^{sM}x = Me^{sM}x` for a complex matrix `M` and real `s`. -/
-theorem Krylov.hasDerivAt_exp_smul_mulVec (M : Mat ℂ n n) (x : Fin n → ℂ) (s : ℝ) :
+theorem Krylov.hasDerivAt_exp_smul_mulVec (M : Mat ℂ n n) (x : Fin n → ℂ) (s : ℝ) : -- --- CONCL ---
     HasDerivAt (fun r : ℝ => exp (r • M) *ᵥ x) (M *ᵥ (exp (s • M) *ᵥ x)) s := by -- --- PROOF ---
   -- `B ↦ Bx` as a continuous ℝ-linear map
   let L : Mat ℂ n n →ₗ[ℝ] (Fin n → ℂ) :=

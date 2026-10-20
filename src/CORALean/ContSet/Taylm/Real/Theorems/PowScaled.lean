@@ -49,7 +49,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.pow_scaled {T : Taylm n} {h B : ℝ} (h0 : 0 < h) (h1 : h ≤ 1)
-    (hT : T.Scaled h B) (k : ℕ) : (T.pow k).Scaled h ((4 * B) ^ k) := by -- --- PROOF ---
+    (hT : T.Scaled h B) (k : ℕ) : -- --- CONCL ---
+    (T.pow k).Scaled h ((4 * B) ^ k) := by -- --- PROOF ---
   induction k with
   | zero =>
     refine ⟨by simp [Taylm.pow, Taylm.const, Taylm.weight, Taylm.degree], ?_, ?_⟩ <;>

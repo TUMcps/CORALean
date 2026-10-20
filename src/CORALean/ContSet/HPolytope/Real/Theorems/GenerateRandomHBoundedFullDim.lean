@@ -77,7 +77,8 @@ theorem aux_row_dir (ℓ : Fin m → Vec ℝ n) (j : Fin m) :
 
 /-- Every row has Euclidean length at most one. -/
 theorem aux_rows_le (ℓ : Fin m → Vec ℝ n) (hn : 0 < n) (hℓ : ∀ j, ‖ℓ j‖₂ ≤ 1)
-    (r : Fin (n + 1 + m)) : ‖HPolytope.simplexRows ℓ r‖₂ ≤ 1 := by -- --- PROOF ---
+    (r : Fin (n + 1 + m)) : -- --- CONCL ---
+    ‖HPolytope.simplexRows ℓ r‖₂ ≤ 1 := by -- --- PROOF ---
   refine Fin.addCases (fun r₀ => ?_) (fun j => ?_) r
   · refine Fin.addCases (fun i => ?_) (fun k => ?_) r₀
     · rw [aux_row_coord]
@@ -95,7 +96,7 @@ theorem aux_rows_le (ℓ : Fin m → Vec ℝ n) (hn : 0 < n) (hℓ : ∀ j, ‖�
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.generateRandomH_isBounded_interior (ℓ : Fin m → Vec ℝ n) (M : Mat ℝ n n)
-    (z : Vec ℝ n) (hn : 0 < n) (hM : IsUnit M.det) (hℓ : ∀ j, ‖ℓ j‖₂ ≤ 1) :
+    (z : Vec ℝ n) (hn : 0 < n) (hM : IsUnit M.det) (hℓ : ∀ j, ‖ℓ j‖₂ ≤ 1) : -- --- CONCL ---
     Bornology.IsBounded (HPolytope.generateRandomH ℓ M z).construct ∧
       (interior (HPolytope.generateRandomH ℓ M z).construct).Nonempty := by -- --- PROOF ---
   set Q := (HPolytope.ineqs (HPolytope.simplexRows ℓ) 1).construct with hQ

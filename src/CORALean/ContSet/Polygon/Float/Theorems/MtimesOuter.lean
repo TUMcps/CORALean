@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 open Matrix in
-theorem Polygon.mtimes_outer (M : Mat 𝕋 2 2) (P : Polygon 𝕋) :
+theorem Polygon.mtimes_outer (M : Mat 𝕋 2 2) (P : Polygon 𝕋) : -- --- CONCL ---
     (toRealMat M *ᵥ ·) '' ContSet.construct P ⊆
       ContSet.construct (Polygon.mtimes M P) := by -- --- PROOF ---
   rintro _ ⟨y, hy, rfl⟩

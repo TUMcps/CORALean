@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The stacked rows on the boxes' intersection denote the intersection of the two sets. -/
-theorem PolyLevelSet.and_exact (P₁ P₂ : PolyLevelSet 𝕋 n) :
+theorem PolyLevelSet.and_exact (P₁ P₂ : PolyLevelSet 𝕋 n) : -- --- CONCL ---
     (P₁.and_ P₂).construct = P₁.construct ∩ P₂.construct := by -- --- PROOF ---
   ext x
   show (x ∈ (P₁.dom.intersection P₂.dom).construct ∧ ∀ i : Fin (P₁.m + P₂.m),

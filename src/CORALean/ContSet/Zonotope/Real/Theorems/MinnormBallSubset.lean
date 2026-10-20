@@ -51,7 +51,8 @@ variable {n : ℕ}
 
 theorem Zonotope.minnorm_ball_subset (Z : Zonotope (Vec ℝ (n + 1)))
     (hspan : Submodule.span ℝ (Set.range Z.G) = ⊤) (y : Vec ℝ (n + 1))
-    (hy : y ⬝ᵥ y ≤ Z.minnorm ^ 2) : Z.c + y ∈ Z.construct := by -- --- PROOF ---
+    (hy : y ⬝ᵥ y ≤ Z.minnorm ^ 2) : -- --- CONCL ---
+    Z.c + y ∈ Z.construct := by -- --- PROOF ---
   have hnn : 0 ≤ Z.minnorm := Real.sInf_nonneg (by
     rintro _ ⟨S, -, rfl⟩
     exact Zonotope.minnormOffset_nonneg Z S)

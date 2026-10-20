@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Taylm.abs_le_magUp (T : Taylm 𝕋 n) {ξ : ℝ}
     (hξ : ξ ∈ Set.Icc (min (toReal T.constCoef) (toReal T.bounds.inf))
-      (max (toReal T.constCoef) (toReal T.bounds.sup))) :
+      (max (toReal T.constCoef) (toReal T.bounds.sup))) : -- --- CONCL ---
     |ξ| ≤ toReal T.magUp := by -- --- PROOF ---
   have hm : toReal T.magUp = max |toReal T.constCoef|
       (max |toReal T.bounds.inf| |toReal T.bounds.sup|) := by

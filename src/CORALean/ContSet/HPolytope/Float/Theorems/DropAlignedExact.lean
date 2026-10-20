@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.dropAligned_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) :
+theorem HPolytope.dropAligned_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     Q.dropAligned.construct = Q.construct := by -- --- PROOF ---
   -- every row is implied by a kept row with its normal and a right-hand side at most its own
   have key : ∀ i, ∃ k, (!(List.finRange Q.m).any fun j =>

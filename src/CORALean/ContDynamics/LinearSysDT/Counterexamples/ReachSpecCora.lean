@@ -56,7 +56,7 @@ def LinearSysDT.reachSpecCora (A c : ℝ) (R₀ F : Set ℝ) (steps : ℕ) : Pro
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `res = true`, although the state reached at `tFinal` is in the unsafe set. -/
-theorem LinearSysDT.reachSpecCora_final_counterexample :
+theorem LinearSysDT.reachSpecCora_final_counterexample : -- --- CONCL ---
     LinearSysDT.reachSpecCora 1 1 {0} (Set.Icc (1 / 2) (3 / 2)) 1 ∧
       ∃ x₀ ∈ ({0} : Set ℝ), 1 * x₀ + 1 ∈ Set.Icc (1 / 2 : ℝ) (3 / 2) := by -- --- PROOF ---
   refine ⟨?_, 0, rfl, by constructor <;> norm_num⟩

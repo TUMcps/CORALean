@@ -40,7 +40,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι] [Dec
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.splitAt_cover (I : Interval α) (j : ι) :
+theorem Interval.splitAt_cover (I : Interval α) (j : ι) : -- --- CONCL ---
     I.construct ⊆ (I.splitAt j).1.construct ∪ (I.splitAt j).2.construct := by -- --- PROOF ---
   intro x hx
   unfold Interval.splitAt

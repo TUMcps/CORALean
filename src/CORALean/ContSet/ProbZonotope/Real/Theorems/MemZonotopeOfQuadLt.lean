@@ -49,7 +49,7 @@ variable {n : ℕ}
 
 theorem ProbZonotope.mem_zonotope_of_quad_lt (P : ProbZonotope n) (hP : P.cov.PosDef)
     {μ : Vec ℝ n} (hμ : μ ∈ P.Z.construct) {m : ℝ} (hm : 0 ≤ m) {y : Vec ℝ n}
-    (hy : (y - μ) ⬝ᵥ P.cov⁻¹ *ᵥ (y - μ) < m ^ 2) :
+    (hy : (y - μ) ⬝ᵥ P.cov⁻¹ *ᵥ (y - μ) < m ^ 2) : -- --- CONCL ---
     y ∈ (P.zonotope m).construct := by -- --- PROOF ---
   -- the symmetric square root `B` of the covariance, invertible
   set B := CFC.sqrt P.cov with hBdef

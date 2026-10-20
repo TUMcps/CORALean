@@ -102,7 +102,7 @@ theorem NonlinearSys.reachSetExact_subset_relinTimeInterval_of_subset (sys : Non
       (NonlinearSys.linearize (steps i).A).inputSolution Δt (q + 2)
         (steps i).linInput)), Metric.closedBall y ρ ⊆ (steps i).R)
     (i : ℕ) (hi : i < N) {t : ℝ}
-    (ht : t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt)) : -- --- CONCL ---
+    (ht : t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt)) :
     sys.reachSetExact T R₀ U t ⊆ construct (sys.relinTimeInterval o ho Δt (q + 2) steps
       (fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt (q + 2)
         (steps i).linInput) R₀ i) :=

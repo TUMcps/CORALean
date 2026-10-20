@@ -42,7 +42,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.minkDiffOf_inner (P : HPolytope α) (T : Set α)
-    (u : ∀ i, SupportBound T (P.A i)) (hker : ∀ i, ∀ y ∈ T, P.Ae i y = 0) :
+    (u : ∀ i, SupportBound T (P.A i)) (hker : ∀ i, ∀ y ∈ T, P.Ae i y = 0) : -- --- CONCL ---
     (P.minkDiffOf T u).construct ⊆ minkowskiDiff P.construct T := by -- --- PROOF ---
   intro x hx y hy
   refine ⟨fun i => ?_, fun i => ?_⟩

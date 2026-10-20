@@ -65,7 +65,7 @@ def aux_Inv (S : Submodule ℝ (Vec ℝ n)) (r : ℕ) (B : Fin r → Vec ℝ n) 
 
 /-- Pairwise orthogonal nonzero vectors are linearly independent. -/
 theorem aux_linearIndependent {r : ℕ} {B : Fin r → Vec ℝ n}
-    (horth : ∀ i j, i ≠ j → B i ⬝ᵥ B j = 0) (hne : ∀ i, B i ≠ 0) :
+    (horth : ∀ i j, i ≠ j → B i ⬝ᵥ B j = 0) (hne : ∀ i, B i ≠ 0) : -- --- CONCL ---
     LinearIndependent ℝ B := by -- --- PROOF ---
   rw [linearIndependent_iff']
   intro s g hg i hi
@@ -77,7 +77,7 @@ theorem aux_linearIndependent {r : ℕ} {B : Fin r → Vec ℝ n}
 
 /-- The part of `u` along orthogonal nonzero columns, and what is left is perpendicular. -/
 theorem aux_proj {r : ℕ} {B : Fin r → Vec ℝ n} (horth : ∀ i j, i ≠ j → B i ⬝ᵥ B j = 0)
-    (hne : ∀ i, B i ≠ 0) (u : Vec ℝ n) :
+    (hne : ∀ i, B i ≠ 0) (u : Vec ℝ n) : -- --- CONCL ---
     (∑ i, (u ⬝ᵥ B i / B i ⬝ᵥ B i) • B i) ∈ Submodule.span ℝ (Set.range B) ∧
       ∀ j, B j ⬝ᵥ (u - ∑ i, (u ⬝ᵥ B i / B i ⬝ᵥ B i) • B i) = 0 := by -- --- PROOF ---
   refine ⟨Submodule.sum_mem _ fun i _ => Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, rfl⟩),

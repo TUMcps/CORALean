@@ -56,7 +56,7 @@ variable {n : ℕ}
 /-- Along a line, the `i`-th derivative is the `i`-th Fréchet derivative in the line's
 direction. -/
 theorem aux_iteratedDeriv_line {f : Vec ℝ n → ℝ} {N : ℕ} (hf : ContDiff ℝ N f)
-    (c v : Vec ℝ n) {i : ℕ} (hi : i ≤ N) (t : ℝ) :
+    (c v : Vec ℝ n) {i : ℕ} (hi : i ≤ N) (t : ℝ) : -- --- CONCL ---
     iteratedDeriv i (fun t : ℝ => f (c + t • v)) t
       = iteratedFDeriv ℝ i f (c + t • v) (fun _ => v) := by -- --- PROOF ---
   let L : ℝ →L[ℝ] Vec ℝ n := ContinuousLinearMap.smulRight (ContinuousLinearMap.id ℝ ℝ) v

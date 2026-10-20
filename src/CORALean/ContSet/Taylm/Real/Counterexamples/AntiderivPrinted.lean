@@ -45,7 +45,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.antiderivPrinted_counterexample :
+theorem Taylm.antiderivPrinted_counterexample : -- --- CONCL ---
     ∃ (T : Taylm 1) (f : Vec ℝ 1 → ℝ), Continuous f ∧ T.Encloses f ∧
       ¬ (T.antiderivPrinted 0).Encloses fun t =>
         ∫ s in (0 : ℝ)..t 0, f (Function.update t 0 s) := by -- --- PROOF ---

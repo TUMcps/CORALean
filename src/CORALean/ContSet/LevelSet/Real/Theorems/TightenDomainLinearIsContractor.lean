@@ -63,7 +63,7 @@ theorem LevelSet.aux_mem_vecBox (I : Interval (Vec ℝ n)) (x : Vec ℝ n) :
 
 /-- A coordinate step only narrows the box. -/
 theorem LevelSet.aux_linearCoord_subset (fm : ℝ) (m : Vec ℝ n) (k : Interval (Vec ℝ n))
-    (j : Fin n) (int : Interval (Vec ℝ n)) :
+    (j : Fin n) (int : Interval (Vec ℝ n)) : -- --- CONCL ---
     (LevelSet.aux_linearCoord fm m k j int).construct ⊆ int.construct := by -- --- PROOF ---
   unfold LevelSet.aux_linearCoord
   split_ifs
@@ -82,7 +82,8 @@ theorem LevelSet.aux_linearCoord_subset (fm : ℝ) (m : Vec ℝ n) (k : Interval
 /-- A coordinate step keeps every solution whose mean value form holds with a gradient in `k`. -/
 theorem LevelSet.aux_linearCoord_mem {fm : ℝ} {m : Vec ℝ n} {k : Interval (Vec ℝ n)} {j : Fin n}
     {int : Interval (Vec ℝ n)} {x : Vec ℝ n} (hx : x ∈ int.construct) (κ : Vec ℝ n)
-    (hκ : ∀ i, k.inf i ≤ κ i ∧ κ i ≤ k.sup i) (heq : fm + ∑ i, κ i * (x i - m i) = 0) :
+    (hκ : ∀ i, k.inf i ≤ κ i ∧ κ i ≤ k.sup i)
+    (heq : fm + ∑ i, κ i * (x i - m i) = 0) : -- --- CONCL ---
     x ∈ (LevelSet.aux_linearCoord fm m k j int).construct := by -- --- PROOF ---
   unfold LevelSet.aux_linearCoord
   split_ifs with hc
@@ -156,7 +157,8 @@ theorem LevelSet.aux_linearFold (fm : ℝ) (m : Vec ℝ n) (k : Interval (Vec �
       fun x hx κ hκ heq => h₂ x (LevelSet.aux_linearCoord_mem hx κ hκ heq) κ hκ heq⟩
 
 /-- The mean value form of `f` along the segment from `m` to `x`. -/
-theorem LevelSet.aux_meanValue {f : Vec ℝ n → ℝ} (hf : Differentiable ℝ f) (m x : Vec ℝ n) :
+theorem LevelSet.aux_meanValue {f : Vec ℝ n → ℝ} (hf : Differentiable ℝ f)
+    (m x : Vec ℝ n) : -- --- CONCL ---
     ∃ t ∈ Set.Ioo (0 : ℝ) 1,
       f x - f m = ∑ i, taylorGrad f (m + t • (x - m)) i * (x i - m i) := by -- --- PROOF ---
   have hd : ∀ t : ℝ, HasDerivAt (fun t : ℝ => f (m + t • (x - m)))

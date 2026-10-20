@@ -108,7 +108,8 @@ private theorem aux_point_continuous (pZ : PolyZonotope V) : Continuous pZ.point
 open part miss every piece passed. -/
 private theorem aux_foldl (pZ : PolyZonotope V) (hp : 0 < pZ.p)
     (contract : ∀ m : ℕ, ((Fin m → ℝ) → V) → (Fin m → ℝ) × (Fin m → ℝ) →
-      (Fin m → ℝ) × (Fin m → ℝ)) (hcon : ∀ m c, IsBoundsContractor c (contract m c)) :
+      (Fin m → ℝ) × (Fin m → ℝ)) (hcon : ∀ m c, IsBoundsContractor c (contract m c))
+    : -- --- CONCL ---
     ∀ (L : List (PolyZonotope V)) (b : (Fin pZ.p → ℝ) × (Fin pZ.p → ℝ)), b.1 ≤ b.2 →
       let step := fun (bounds : (Fin pZ.p → ℝ) × (Fin pZ.p → ℝ)) (PZk : PolyZonotope V) =>
         let c := fun x : Fin (pZ.p + PZk.p) → ℝ =>

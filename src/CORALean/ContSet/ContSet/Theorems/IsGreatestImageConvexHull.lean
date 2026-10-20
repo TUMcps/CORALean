@@ -40,7 +40,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem isGreatest_image_convexHull {V : Type} [AddCommGroup V] [Module ℝ V] {S : Set V}
-    (f : V →ₗ[ℝ] ℝ) {m : ℝ} (hmem : ∃ s ∈ S, f s = m) (hle : ∀ s ∈ S, f s ≤ m) :
+    (f : V →ₗ[ℝ] ℝ) {m : ℝ} (hmem : ∃ s ∈ S, f s = m) (hle : ∀ s ∈ S, f s ≤ m) : -- --- CONCL ---
     IsGreatest (f '' convexHull ℝ S) m := by -- --- PROOF ---
   refine ⟨?_, ?_⟩
   · obtain ⟨s, hs, rfl⟩ := hmem

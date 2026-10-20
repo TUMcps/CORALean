@@ -56,7 +56,7 @@ variable {n N : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `[a b; b 1] ⪰ 0` iff `b² ≤ a`: the Schur complement of the corner `1`. -/
-theorem aux_posSemidef_two_iff (a b : ℝ) :
+theorem aux_posSemidef_two_iff (a b : ℝ) : -- --- CONCL ---
     (!![a, b; b, 1] : Matrix (Fin 2) (Fin 2) ℝ).PosSemidef ↔ b ^ 2 ≤ a := by -- --- PROOF ---
   rw [posSemidef_iff_dotProduct_mulVec]
   have hH : (!![a, b; b, 1] : Matrix (Fin 2) (Fin 2) ℝ).IsHermitian := by

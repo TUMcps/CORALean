@@ -37,7 +37,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.polyBounds_mem (L : List (ℝ × (Fin n → ℕ))) {t : Vec ℝ n}
-    (ht : t ∈ Taylm.box n) :
+    (ht : t ∈ Taylm.box n) : -- --- CONCL ---
     (Taylm.polyBounds L).inf ≤ Taylm.polyOf L t ∧
       Taylm.polyOf L t ≤ (Taylm.polyBounds L).sup := by -- --- PROOF ---
   induction L with

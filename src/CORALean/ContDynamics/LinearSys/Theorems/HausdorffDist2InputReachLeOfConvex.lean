@@ -78,7 +78,7 @@ theorem aux_hd_isBounded_of_norm₂_le {T : Set (Vec ℝ n)} {r : ℝ} (h : ∀ 
 
 /-- Eq. (20)'s order-`0` block split off: `P̂^U(Δt) = ΔtU₀ ⊕ P̂^U_∞(Δt)`. -/
 theorem aux_hd_mem_outer_zero {A : Mat ℝ n n} {U0 : Set (Vec ℝ n)} {Δt : ℝ} {η : ℕ}
-    {y : Vec ℝ n} (hy : y ∈ MatExp.particularSolutionOuter A U0 0 Δt η) :
+    {y : Vec ℝ n} (hy : y ∈ MatExp.particularSolutionOuter A U0 0 Δt η) : -- --- CONCL ---
     ∃ x₀ ∈ U0, ∃ r ∈ MatExp.particularSolutionOuter A U0 1 Δt η,
       y = Δt • x₀ + r := by -- --- PROOF ---
   rw [MatExp.particularSolutionOuter, Finset.sum_eq_sum_Ico_succ_bot (Nat.succ_pos η),
@@ -93,7 +93,7 @@ theorem aux_hd_mem_outer_zero {A : Mat ℝ n n} {U0 : Set (Vec ℝ n)} {Δt : �
 /-- The gap between the constant input's point at `x₀` and `Δtx₀` is in eq. (25)'s correlated
 set. -/
 theorem aux_hd_mem_correlated (A : Mat ℝ n n) {U0 : Set (Vec ℝ n)} {Δt : ℝ} (hΔt : 0 < Δt)
-    (η : ℕ) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ U0) :
+    (η : ℕ) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ U0) : -- --- CONCL ---
     (MatExp.expIntegral A Δt - MatExp.particularCoeff A Δt 0).mulVec x₀
       ∈ MatExp.particularSolutionOuterCorrelated A U0 1 Δt η := by -- --- PROOF ---
   set T := MatExp.expIntegral A Δt - ∑ i ∈ Finset.range (η + 1), MatExp.particularCoeff A Δt i

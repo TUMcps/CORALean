@@ -56,7 +56,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.eph_mtimes_exp (P : ProbZonotope n) (hP : 0 < P.cov.det) (A : Mat ℝ n n)
-    (t : ℝ) (x : EuclideanSpace ℝ (Fin n)) :
+    (t : ℝ) (x : EuclideanSpace ℝ (Fin n)) : -- --- CONCL ---
     (P.mtimes (exp (t • A))).eph (toLp 2 (exp (t • A) *ᵥ ofLp x))
       = Real.exp (-(t * A.trace)) * P.eph x := by -- --- PROOF ---
   unfold ProbZonotope.eph

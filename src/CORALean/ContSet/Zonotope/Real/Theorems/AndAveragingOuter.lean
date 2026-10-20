@@ -49,7 +49,7 @@ variable {n N : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.andAveraging_outer (Z : Fin N → Zonotope (Vec ℝ n)) (w : Fin N → ℝ)
-    (hw : ∑ j, w j ≠ 0) :
+    (hw : ∑ j, w j ≠ 0) : -- --- CONCL ---
     (⋂ j, (Z j).construct) ⊆ (Zonotope.andAveraging Z w).construct := by -- --- PROOF ---
   intro x hx
   rw [Set.mem_iInter] at hx

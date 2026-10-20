@@ -75,7 +75,8 @@ theorem aux_mulHi_minmax (a b c d : ℝ) :
 
 /-- The power of a non-negatively scaled box is the power of the box, its
 endpoints scaled by `s ^ k`. -/
-theorem Interval.matPow_smul (A : Interval (Mat ℝ n n)) {s : ℝ} (hs : 0 ≤ s) (k : ℕ) :
+theorem Interval.matPow_smul (A : Interval (Mat ℝ n n)) {s : ℝ} (hs : 0 ≤ s)
+    (k : ℕ) : -- --- CONCL ---
     (Interval.matPow (Interval.smul s A) k).inf = s ^ k • (Interval.matPow A k).inf ∧
     (Interval.matPow (Interval.smul s A) k).sup
       = s ^ k • (Interval.matPow A k).sup := by -- --- PROOF ---

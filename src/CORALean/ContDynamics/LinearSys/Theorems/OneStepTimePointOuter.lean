@@ -104,7 +104,8 @@ theorem LinearSys.IsCanonicalTrajectory.oneStep_timePoint_outer {sys : LinearSys
     (pRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) Δt (m + 2)) (OfPoint.ofPoint (S := S n) u))))
     (pRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) Δt (m + 2)) (OfPoint.ofPoint (S := S n) u)))) :
+      (MatExp.inputRemainder (toRealMat sys.A) Δt (m + 2)) (OfPoint.ofPoint (S := S n) u))))
+    : -- --- CONCL ---
     x Δt ∈ construct (sys.oneStep X U u Δt (m + 2)).Rtp := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
   have hU := hbdd

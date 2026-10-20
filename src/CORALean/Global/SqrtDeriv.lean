@@ -36,7 +36,7 @@ def sqrtDeriv : ℕ → ℤ
   | 0 => 1
   | k + 1 => sqrtDeriv k * (1 - 2 * (k : ℤ))
 
-theorem eval_descPochhammer_half (k : ℕ) :
+theorem eval_descPochhammer_half (k : ℕ) : -- --- CONCL ---
     (descPochhammer ℝ k).eval (1 / 2) = (sqrtDeriv k : ℝ) / 2 ^ k := by -- --- PROOF ---
   induction k with
   | zero => simp [sqrtDeriv]

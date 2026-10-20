@@ -66,7 +66,7 @@ theorem NeuralNetwork.holds_of_reducesAt_subset {n m : ℕ} {s : S n} {s' : Set 
     (h : NeuralNetwork.ReducesAt s nn nn' f) (hsub : s' ⊆ construct s)
     {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
     (spec : Specification ContSet)
-    (hspec : spec.Holds (construct (nn'.enclose s))) : -- --- CONCL ---
+    (hspec : spec.Holds (construct (nn'.enclose s))) :
     spec.Holds (f '' s') :=
   spec.holds_of_outer ((Set.image_mono hsub).trans (NeuralNetwork.reducesAt_outer h)) hspec
 

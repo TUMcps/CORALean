@@ -36,7 +36,8 @@ variable {p : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem mantissa_pos {b : Dyadic p} (hb : 0 < toReal b) : 0 < b.mantissa := by -- --- PROOF ---
+theorem mantissa_pos {b : Dyadic p} (hb : 0 < toReal b) : -- --- CONCL ---
+    0 < b.mantissa := by -- --- PROOF ---
   rw [toReal_def] at hb
   by_contra h
   have hc : ((b.mantissa : ℝ)) ≤ 0 := Int.cast_nonpos.mpr (not_lt.mp h)

@@ -54,7 +54,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- Every point the input can drive the system to over a window forms a convex
 set, whenever the input set is convex and bounded. -/
 theorem LinearSys.inputReach_convex (sys : LinearSys 𝕋 n) {U : S n} {τ : ℝ} (hτ : 0 ≤ τ)
-    (hconv : Convex ℝ (construct U)) (hbdd : Bornology.IsBounded (construct U)) :
+    (hconv : Convex ℝ (construct U)) (hbdd : Bornology.IsBounded (construct U)) : -- --- CONCL ---
     Convex ℝ (sys.inputReach U τ) := by -- --- PROOF ---
   rintro _ ⟨u₁, hu₁, hm₁, rfl⟩ _ ⟨u₂, hu₂, hm₂, rfl⟩ a b ha hb hab
   set A := toRealMat sys.A with hA

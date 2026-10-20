@@ -33,7 +33,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.prod_outer : ∀ {m : ℕ} {T : Fin (m + 1) → Taylm n} {f : Fin (m + 1) → Vec ℝ n → ℝ},
+theorem Taylm.prod_outer : -- --- CONCL ---
+    ∀ {m : ℕ} {T : Fin (m + 1) → Taylm n} {f : Fin (m + 1) → Vec ℝ n → ℝ},
     (∀ i, (T i).Encloses (f i)) →
     (Taylm.prod T).Encloses fun t => ∏ i, f i t := by -- --- PROOF ---
   intro m

@@ -42,7 +42,8 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem joinInput_inj {M m : ℕ} (hm : m ≤ M) {a a' : Vec ℝ m} {e e' : Vec ℝ (M - m)}
-    (h : joinInput hm a e = joinInput hm a' e') : a = a' ∧ e = e' := by -- --- PROOF ---
+    (h : joinInput hm a e = joinInput hm a' e') : -- --- CONCL ---
+    a = a' ∧ e = e' := by -- --- PROOF ---
   constructor
   · funext j
     have := congrFun h ⟨j.val, by omega⟩

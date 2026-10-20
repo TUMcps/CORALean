@@ -46,7 +46,7 @@ variable {n : ℕ}
 
 /-- [1, Sec. III-C]: the reduced zonotope is inside `Z`. -/
 theorem Zonotope.reduceUnderApproxKochdumper_inner [NeZero n] (Z : Zonotope (Vec ℝ n)) (r : ℕ)
-    (hr : r ≤ Z.h) :
+    (hr : r ≤ Z.h) : -- --- CONCL ---
     (Z.reduceUnderApproxKochdumper r hr).construct ⊆ Z.construct := by -- --- PROOF ---
   rw [← Zonotope.sortByLength_construct Z]
   -- the result is `G_s T` for `T` with a `1` per kept generator and a sign per summed one

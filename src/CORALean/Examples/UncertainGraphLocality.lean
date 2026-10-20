@@ -59,7 +59,8 @@ def Example.uglX : Mat ℝ 5 1 := !![(1 : ℝ); 2; 3; 4; 5]
 def Example.uglKappa : Fin 4 → Fin 5 := Fin.castLE (by omega)
 
 /-- `A`'s entries are `0` or `1`, a sum of `edgeMat`'s own nonnegativity. -/
-theorem Example.uglA_nonneg (i j : Fin 5) : 0 ≤ Example.uglA i j := by -- --- PROOF ---
+theorem Example.uglA_nonneg (i j : Fin 5) : -- --- CONCL ---
+    0 ≤ Example.uglA i j := by -- --- PROOF ---
   simp only [Example.uglA, Matrix.add_apply]
   have h1 := GNN.edgeMat_nonneg ((0 : Fin 5), (1 : Fin 5)) i j
   have h2 := GNN.edgeMat_nonneg ((1 : Fin 5), (2 : Fin 5)) i j
@@ -81,7 +82,7 @@ theorem Example.uglKappa_inj : Function.Injective Example.uglKappa :=
 
 /-- Node `4` is isolated in `adjMax`: `A` never reaches it and neither does the
 one uncertain edge `1 -- 3`, so `κ`'s omission of it can never matter. -/
-theorem Example.uglKappa_covers :
+theorem Example.uglKappa_covers : -- --- CONCL ---
     GNN.ball (GNN.adjMax Example.uglA Example.uglU) 0 3
       ⊆ Finset.univ.image Example.uglKappa := by -- --- PROOF ---
   have hiso : ∀ i, GNN.adjMax Example.uglA Example.uglU i 4 = 0 := by

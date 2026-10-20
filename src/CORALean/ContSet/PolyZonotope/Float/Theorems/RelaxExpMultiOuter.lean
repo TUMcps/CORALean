@@ -101,7 +101,7 @@ theorem PolyZonotope.aux_relaxGenMulti_gap (pZ : PolyZonotope (Vec 𝕋 n))
 
 -- the two stored columns and their two gaps, the drift carried by the second
 theorem PolyZonotope.aux_relaxExpMulti_nominal (pZ : PolyZonotope (Vec 𝕋 n))
-    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) :
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) : -- --- CONCL ---
     nominalSet pZ ⊆ nominalSet (pZ.relaxExpMulti part)
       + (PolyZonotope.generatorError (pZ.aux_relaxGapMulti part)).construct := by -- --- PROOF ---
   intro x hx
@@ -185,7 +185,7 @@ theorem PolyZonotope.aux_relaxExpMulti_nominal (pZ : PolyZonotope (Vec 𝕋 n))
 /-- Merging any two dependent generators over-approximates at the stored
 columns, the summed width paying for every exponent that moves. -/
 theorem PolyZonotope.relaxExpMulti_outer (pZ : PolyZonotope (Vec 𝕋 n))
-    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) :
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) : -- --- CONCL ---
     pZ.construct ⊆ (pZ.relaxExpMulti part).construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨z', hz', g, hg, hsum⟩ := PolyZonotope.aux_relaxExpMulti_nominal pZ part hz

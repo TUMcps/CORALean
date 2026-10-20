@@ -40,7 +40,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `aux_sqrt_` is sound for `sqrt` on a nonnegative operand. -/
-theorem SyntaxTree.sqrt_sound (prev : Dom) (hd : 0 ≤ prev.inf 0) :
+theorem SyntaxTree.sqrt_sound (prev : Dom) (hd : 0 ≤ prev.inf 0) : -- --- CONCL ---
     UnarySound Unary.sqrt.fn prev (Real.Interval.sqrt prev) funHanSqrt := by -- --- PROOF ---
   intro int _ s hs hi
   have hs0 : 0 ≤ s := hd.trans hs.1

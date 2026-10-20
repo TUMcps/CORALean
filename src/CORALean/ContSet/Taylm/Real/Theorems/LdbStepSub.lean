@@ -41,7 +41,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.ldbStep_sub (T : Taylm n) (k : Fin n) :
+theorem Taylm.ldbStep_sub (T : Taylm n) (k : Fin n) : -- --- CONCL ---
     -1 ≤ (T.ldbStep.2 k).inf ∧ (T.ldbStep.2 k).sup ≤ 1 := by -- --- PROOF ---
   simp only [Taylm.ldbStep]
   split_ifs with h1 h2

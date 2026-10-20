@@ -36,7 +36,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem tanh_eq_sigmoid (t : ℝ) : Real.tanh t = 2 * sigmoid (2 * t) - 1 := by -- --- PROOF ---
+theorem tanh_eq_sigmoid (t : ℝ) : -- --- CONCL ---
+    Real.tanh t = 2 * sigmoid (2 * t) - 1 := by -- --- PROOF ---
   have hpos : (0:ℝ) < Real.exp t := Real.exp_pos t
   have hE : Real.exp t ≠ 0 := ne_of_gt hpos
   have h₁ : Real.exp (-t) = (Real.exp t)⁻¹ := Real.exp_neg t

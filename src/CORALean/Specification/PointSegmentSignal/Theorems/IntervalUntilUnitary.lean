@@ -56,7 +56,8 @@ namespace CORALean
 
 /-- A point `t < x` of the left closure has a time of `J` below `x`. -/
 theorem PointSegmentSignal.aux_exists_lt (J : STLInterval) (t x : ℝ) (ht : t ∈ J.leftClosure.set)
-    (htx : t < x) : ∃ s ∈ J.set, s < x := by -- --- PROOF ---
+    (htx : t < x) : -- --- CONCL ---
+    ∃ s ∈ J.set, s < x := by -- --- PROOF ---
   rw [STLInterval.set_leftClosure] at ht
   rcases ht with ht | ht
   · exact ⟨t, ht, htx⟩
@@ -76,7 +77,8 @@ theorem PointSegmentSignal.aux_exists_lt (J : STLInterval) (t x : ℝ) (ht : t �
 
 /-- A point `t > x` of the right closure has a time of `J` above `x`. -/
 theorem PointSegmentSignal.aux_exists_gt (J : STLInterval) (t x : ℝ) (ht : t ∈ J.rightClosure.set)
-    (hxt : x < t) : ∃ s ∈ J.set, x < s := by -- --- PROOF ---
+    (hxt : x < t) : -- --- CONCL ---
+    ∃ s ∈ J.set, x < s := by -- --- PROOF ---
   rw [STLInterval.set_rightClosure] at ht
   rcases ht with ht | ht
   · exact ⟨t, ht, hxt⟩
@@ -96,7 +98,8 @@ theorem PointSegmentSignal.aux_exists_gt (J : STLInterval) (t x : ℝ) (ht : t �
 
 /-- If `J` contains everything strictly between `t < t'`, `t` is in its left closure. -/
 theorem PointSegmentSignal.aux_mem_leftClosure (J : STLInterval) (t t' : ℝ) (htt : t < t')
-    (h : ∀ x, t < x → x < t' → x ∈ J.set) : t ∈ J.leftClosure.set := by -- --- PROOF ---
+    (h : ∀ x, t < x → x < t' → x ∈ J.set) : -- --- CONCL ---
+    t ∈ J.leftClosure.set := by -- --- PROOF ---
   rw [STLInterval.set_leftClosure]
   by_cases htJ : t ∈ J.set
   · exact Or.inl htJ
@@ -133,7 +136,8 @@ theorem PointSegmentSignal.aux_mem_leftClosure (J : STLInterval) (t t' : ℝ) (h
 
 /-- If `J` contains everything strictly between `t < t'`, `t'` is in its right closure. -/
 theorem PointSegmentSignal.aux_mem_rightClosure (J : STLInterval) (t t' : ℝ) (htt : t < t')
-    (h : ∀ x, t < x → x < t' → x ∈ J.set) : t' ∈ J.rightClosure.set := by -- --- PROOF ---
+    (h : ∀ x, t < x → x < t' → x ∈ J.set) : -- --- CONCL ---
+    t' ∈ J.rightClosure.set := by -- --- PROOF ---
   rw [STLInterval.set_rightClosure]
   by_cases htJ : t' ∈ J.set
   · exact Or.inl htJ

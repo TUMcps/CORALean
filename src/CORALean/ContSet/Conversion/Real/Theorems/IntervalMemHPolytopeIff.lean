@@ -64,7 +64,7 @@ theorem Interval.aux_hPolytope_b_natAdd (I : Interval (Vec ℝ n)) (j : Fin n) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- membership is those two halves read back as the box's two bounds
-theorem Interval.mem_hPolytope_iff {I : Interval (Vec ℝ n)} {x : Vec ℝ n} :
+theorem Interval.mem_hPolytope_iff {I : Interval (Vec ℝ n)} {x : Vec ℝ n} : -- --- CONCL ---
     x ∈ (Interval.hPolytope I).construct ↔ ∀ j, I.inf j ≤ x j ∧ x j ≤ I.sup j := by -- --- PROOF ---
   constructor
   · rintro ⟨hle, -⟩ j

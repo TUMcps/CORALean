@@ -55,7 +55,7 @@ variable {n m : ℕ}
 /-- A point of `S` mapped by `M1 + M2` and by `M1` lands within `d_H(0, M2 '' S)` of itself
 mapped either way, the whole gap being `M2`'s image of that same point. -/
 theorem aux_dist_mulVecLin_add_le {S : Set (Vec ℝ n)} (M1 M2 : Mat ℝ m n)
-    (hC : IsCompact (mulVecLin M2 '' S)) {s : Vec ℝ n} (hs : s ∈ S) :
+    (hC : IsCompact (mulVecLin M2 '' S)) {s : Vec ℝ n} (hs : s ∈ S) : -- --- CONCL ---
     dist (mulVecLin (M1 + M2) s) (mulVecLin M1 s)
       ≤ Metric.hausdorffDist ({0} : Set (Vec ℝ m)) (mulVecLin M2 '' S) := by -- --- PROOF ---
   have hmem : mulVecLin M2 s ∈ mulVecLin M2 '' S := Set.mem_image_of_mem _ hs
@@ -78,7 +78,7 @@ theorem aux_dist_mulVecLin_add_le {S : Set (Vec ℝ n)} (M1 M2 : Mat ℝ m n)
 /-- [1, Prop. 10]: perturbing a linear image of a compact set by another matrix moves it no
 further than that matrix's own image reaches from the origin. -/
 theorem hausdorffDist_mulVecLin_add_le {S : Set (Vec ℝ n)} (M1 M2 : Mat ℝ m n)
-    (hS : IsCompact S) :
+    (hS : IsCompact S) : -- --- CONCL ---
     Metric.hausdorffDist (mulVecLin (M1 + M2) '' S) (mulVecLin M1 '' S)
       ≤ Metric.hausdorffDist ({0} : Set (Vec ℝ m)) (mulVecLin M2 '' S) := by -- --- PROOF ---
   have hC : IsCompact (mulVecLin M2 '' S) :=

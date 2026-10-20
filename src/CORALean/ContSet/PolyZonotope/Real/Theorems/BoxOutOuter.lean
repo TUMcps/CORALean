@@ -51,7 +51,7 @@ variable {n : ℕ}
 /-- `Fin.sum_univ_add` at `boxOut`'s independent generator count, through the projection. -/
 theorem PolyZonotope.aux_sum_univ_boxOut_q {pZ : PolyZonotope (Vec ℝ n)} {removed : Fin pZ.h → Prop}
     {taken : Fin pZ.q → Prop} [DecidablePred removed] [DecidablePred taken]
-    (f : Fin (pZ.q + n) → ℝ) : -- --- CONCL ---
+    (f : Fin (pZ.q + n) → ℝ) :
     ∑ j : Fin (pZ.boxOut removed taken).q, f j
       = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd pZ.q j) :=
   Fin.sum_univ_add f
@@ -65,7 +65,8 @@ theorem PolyZonotope.aux_sum_univ_boxOut_h {pZ : PolyZonotope (Vec ℝ n)} {remo
 
 /-- What the removed dependent generators reach in a coordinate is at most their absolute sum. -/
 theorem PolyZonotope.aux_abs_removed_le (pZ : PolyZonotope (Vec ℝ n)) {r : ℕ}
-    (right : Fin r → Fin pZ.h) {a : Fin pZ.p → ℝ} (ha : ∀ k, |a k| ≤ 1) (i : Fin n) :
+    (right : Fin r → Fin pZ.h) {a : Fin pZ.p → ℝ} (ha : ∀ k, |a k| ≤ 1)
+    (i : Fin n) : -- --- CONCL ---
     |∑ l, pZ.G (right l) i * PolyZonotope.monomial pZ.E a (right l)|
       ≤ ∑ l, |pZ.G (right l) i| := by -- --- PROOF ---
   -- the absolute value of a sum, then each monomial is at most one
@@ -79,7 +80,7 @@ theorem PolyZonotope.aux_abs_removed_le (pZ : PolyZonotope (Vec ℝ n)) {r : ℕ
 
 /-- Boxing out any dependent generators, and widening the box by any independent ones, encloses. -/
 theorem PolyZonotope.boxOut_outer (pZ : PolyZonotope (Vec ℝ n)) (removed : Fin pZ.h → Prop)
-    (taken : Fin pZ.q → Prop) [DecidablePred removed] [DecidablePred taken] :
+    (taken : Fin pZ.q → Prop) [DecidablePred removed] [DecidablePred taken] : -- --- CONCL ---
     pZ.construct ⊆ (pZ.boxOut removed taken).construct := by -- --- PROOF ---
   intro x hxmem
   obtain ⟨a, β, ha, hβ, hx⟩ := PolyZonotope.mem_construct_iff.mp hxmem

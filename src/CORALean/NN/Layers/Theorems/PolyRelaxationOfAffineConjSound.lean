@@ -54,7 +54,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m : ℕ} {ra
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem aux_pow_iterate_up_le {B : ScaleRounding 𝕋} (hB : B.Sound rb) (hb : 0 < rb) (x : 𝕋)
-    (k : ℕ) : rb ^ k * toReal x ≤ toReal (B.up^[k] x) := by -- --- PROOF ---
+    (k : ℕ) : -- --- CONCL ---
+    rb ^ k * toReal x ≤ toReal (B.up^[k] x) := by -- --- PROOF ---
   induction k with
   | zero => simp
   | succ k ih =>
@@ -64,7 +65,8 @@ theorem aux_pow_iterate_up_le {B : ScaleRounding 𝕋} (hB : B.Sound rb) (hb : 0
     nlinarith
 
 theorem aux_iterate_down_le_pow {B : ScaleRounding 𝕋} (hB : B.Sound rb) (hb : 0 < rb) (x : 𝕋)
-    (k : ℕ) : toReal (B.down^[k] x) ≤ rb ^ k * toReal x := by -- --- PROOF ---
+    (k : ℕ) : -- --- CONCL ---
+    toReal (B.down^[k] x) ≤ rb ^ k * toReal x := by -- --- PROOF ---
   induction k with
   | zero => simp
   | succ k ih =>
@@ -73,7 +75,8 @@ theorem aux_iterate_down_le_pow {B : ScaleRounding 𝕋} (hB : B.Sound rb) (hb :
     have h2 := mul_le_mul_of_nonneg_left ih hb.le
     nlinarith
 
-theorem aux_abs_le_tBound {l u : 𝕋} {t : ℝ} (hl : toReal l ≤ t) (hu : t ≤ toReal u) :
+theorem aux_abs_le_tBound {l u : 𝕋} {t : ℝ} (hl : toReal l ≤ t)
+    (hu : t ≤ toReal u) : -- --- CONCL ---
     |t| ≤ toReal (Relaxation.conjTBound l u) := by -- --- PROOF ---
   rw [Relaxation.conjTBound, toReal_maximum, toReal_absolute, toReal_absolute, abs_le]
   have hnl : -toReal l ≤ |toReal l| := by rw [← abs_neg]; exact le_abs_self _
@@ -141,7 +144,7 @@ theorem aux_evalPoly_conjCoeffs_le {A B : ScaleRounding 𝕋} (hA : A.Sound ra) 
 /-- `g t = ra f (rb t) + c` inherits `f`'s polynomial soundness. -/
 theorem PolyRelaxation.ofAffineConj_sound {P : PolyRelaxation 𝕋 m} {A B : ScaleRounding 𝕋}
     {c : 𝕋} {f g : ℝ → ℝ} (hP : P.Sound f) (hA : A.Sound ra) (hB : B.Sound rb) (ha : 0 < ra)
-    (hb : 0 < rb) (hg : ∀ t, g t = ra * f (rb * t) + toReal c) :
+    (hb : 0 < rb) (hg : ∀ t, g t = ra * f (rb * t) + toReal c) : -- --- CONCL ---
     (PolyRelaxation.ofAffineConj P A B c).Sound g := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
   -- the box maps to the box `rb` sends it to, where `P` is sound

@@ -41,7 +41,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `aux_cosh_` is sound for `cosh`. -/
-theorem SyntaxTree.cosh_sound (prev : Dom) :
+theorem SyntaxTree.cosh_sound (prev : Dom) : -- --- CONCL ---
     UnarySound Unary.cosh.fn prev (Real.Interval.cosh prev) funHanCosh := by -- --- PROOF ---
   intro int _ s hs hi
   have h : int.inf 0 ≤ Real.cosh s ∧ Real.cosh s ≤ int.sup 0 := hi

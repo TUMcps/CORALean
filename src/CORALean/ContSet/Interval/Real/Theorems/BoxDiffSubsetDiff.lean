@@ -48,7 +48,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Prop. 3]: `boxDiff l₁ u₁ l₂ u₂ ⊆ [l₁, u₁] \ [l₂, u₂]`. -/
-theorem boxDiff_subset_diff (l₁ u₁ l₂ u₂ : Fin n → ℝ) :
+theorem boxDiff_subset_diff (l₁ u₁ l₂ u₂ : Fin n → ℝ) : -- --- CONCL ---
     boxDiff l₁ u₁ l₂ u₂ ⊆ Icc l₁ u₁ \ Icc l₂ u₂ := by -- --- PROOF ---
   rintro x ⟨hx, i, -, h⟩
   refine ⟨hx, fun hx2 => ?_⟩

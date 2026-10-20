@@ -39,7 +39,7 @@ variable {k : ℕ} {n : Fin k → ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.stackProd_exact (zs : ∀ i, ConZonotope (Vec ℝ (n i))) :
+theorem ConZonotope.stackProd_exact (zs : ∀ i, ConZonotope (Vec ℝ (n i))) : -- --- CONCL ---
     (ConZonotope.stackProd zs).construct =
       {z | ∀ i, unstack z i ∈ (zs i).construct} := by -- --- PROOF ---
   classical

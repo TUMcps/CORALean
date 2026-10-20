@@ -38,7 +38,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.representsa_origin_iff (I : Interval α) :
+theorem Interval.representsa_origin_iff (I : Interval α) : -- --- CONCL ---
     I.representsa_origin ↔ I.construct = {0} := by -- --- PROOF ---
   constructor
   · rintro ⟨h₁, h₂⟩

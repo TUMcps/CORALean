@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.isConvex_sound {P : Polygon 𝕋} (h : Polygon.isConvex P = true) :
+theorem Polygon.isConvex_sound {P : Polygon 𝕋} (h : Polygon.isConvex P = true) : -- --- CONCL ---
     Convex ℝ (ContSet.construct P) := by -- --- PROOF ---
   simp only [Polygon.isConvex, Bool.or_eq_true, List.isEmpty_iff, List.any_eq_true,
     List.all_eq_true] at h

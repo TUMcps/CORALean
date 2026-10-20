@@ -42,7 +42,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.exists_mul_eq {a b c d z : ℝ} (hab : a ≤ b) (hcd : c ≤ d)
-    (hz₁ : Interval.mulLo a b c d ≤ z) (hz₂ : z ≤ Interval.mulHi a b c d) :
+    (hz₁ : Interval.mulLo a b c d ≤ z) (hz₂ : z ≤ Interval.mulHi a b c d) : -- --- CONCL ---
     ∃ y x, (a ≤ y ∧ y ≤ b) ∧ (c ≤ x ∧ x ≤ d) ∧ y * x = z := by -- --- PROOF ---
   set S : Set ℝ := (fun p : ℝ × ℝ => p.1 * p.2) '' (Set.Icc a b ×ˢ Set.Icc c d) with hSdef
   have hS : IsPreconnected S :=

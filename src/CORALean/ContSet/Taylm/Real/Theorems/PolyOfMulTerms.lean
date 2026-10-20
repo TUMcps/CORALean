@@ -38,7 +38,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.polyOf_mulTerms (L₁ L₂ : List (ℝ × (Fin n → ℕ))) (t : Vec ℝ n) :
+theorem Taylm.polyOf_mulTerms (L₁ L₂ : List (ℝ × (Fin n → ℕ))) (t : Vec ℝ n) : -- --- CONCL ---
     Taylm.polyOf (Taylm.mulTerms L₁ L₂) t
       = Taylm.polyOf L₁ t * Taylm.polyOf L₂ t := by -- --- PROOF ---
   induction L₁ with

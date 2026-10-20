@@ -42,7 +42,7 @@ variable {T : Type} [LinearOrder T]
 
 /-- An entry of the first `m + 1` is at most the entry at `m`. -/
 theorem List.le_of_mem_take_succ (l : List T) (hl : l.Pairwise (· < ·)) (m : ℕ) (a : T)
-    (ha : l[m]? = some a) (x : T) (hx : x ∈ l.take (m + 1)) :
+    (ha : l[m]? = some a) (x : T) (hx : x ∈ l.take (m + 1)) : -- --- CONCL ---
     x ≤ a := by -- --- PROOF ---
   obtain ⟨k, hk, rfl⟩ := List.getElem_of_mem hx
   simp only [List.length_take] at hk

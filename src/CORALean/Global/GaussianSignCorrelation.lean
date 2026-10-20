@@ -52,7 +52,7 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDim
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_gsc_measurable_sign :
+theorem aux_gsc_measurable_sign : -- --- CONCL ---
     Measurable fun x : ℝ => (SignType.sign x : ℝ) := by -- --- PROOF ---
   have : (fun x : ℝ => (SignType.sign x : ℝ)) =
       fun x => if 0 < x then 1 else if x < 0 then -1 else 0 := by
@@ -64,7 +64,7 @@ theorem aux_gsc_measurable_sign :
     (Measurable.ite measurableSet_Iio measurable_const measurable_const)
 
 /-- `⟨y, g⟩ sign⟨c, g⟩` is integrable: it is at most `|⟨y, g⟩|`. -/
-theorem aux_gsc_integrable (y c : E) :
+theorem aux_gsc_integrable (y c : E) : -- --- CONCL ---
     Integrable (fun g => ⟪y, g⟫ * (SignType.sign ⟪c, g⟫ : ℝ)) (stdGaussian E) := by -- --- PROOF ---
   refine (IsGaussian.integrable_dual (stdGaussian E) (innerSL ℝ y)).norm.mono' ?_
     (ae_of_all _ fun g => ?_)
@@ -78,7 +78,7 @@ theorem aux_gsc_integrable (y c : E) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem integral_inner_mul_sign_inner_stdGaussian (y c : E) :
+theorem integral_inner_mul_sign_inner_stdGaussian (y c : E) : -- --- CONCL ---
     Integrable (fun g => ⟪y, g⟫ * (SignType.sign ⟪c, g⟫ : ℝ)) (stdGaussian E) ∧
       ∫ g, ⟪y, g⟫ * (SignType.sign ⟪c, g⟫ : ℝ) ∂(stdGaussian E) =
         gaussMomentRoot 1 * ⟪y, c⟫ / ‖c‖ := by -- --- PROOF ---

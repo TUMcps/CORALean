@@ -58,7 +58,8 @@ theorem Ellipsoid.aux_quad_nonneg (E : Ellipsoid n) (v : Vec ℝ n) :
   positivity
 
 /-- At full rank it is positive off zero. -/
-theorem Ellipsoid.aux_quad_pos (E : Ellipsoid n) (hr : E.rank = n) {v : Vec ℝ n} (hv : v ≠ 0) :
+theorem Ellipsoid.aux_quad_pos (E : Ellipsoid n) (hr : E.rank = n) {v : Vec ℝ n}
+    (hv : v ≠ 0) : -- --- CONCL ---
     0 < v ⬝ᵥ (E.Q *ᵥ v) := by -- --- PROOF ---
   refine (Ellipsoid.aux_quad_nonneg E v).lt_of_ne fun h => hv ?_
   -- a zero form gives `Gᵀ v = 0`, so `Q v = 0`, and `Q` is injective

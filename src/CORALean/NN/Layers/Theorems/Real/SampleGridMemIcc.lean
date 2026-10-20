@@ -36,7 +36,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem sampleGrid_mem_Icc {l u : ℝ} {N : ℕ} (hN : 0 < N) (hlu : l ≤ u) (i : Fin (N + 1)) :
+theorem sampleGrid_mem_Icc {l u : ℝ} {N : ℕ} (hN : 0 < N) (hlu : l ≤ u)
+    (i : Fin (N + 1)) : -- --- CONCL ---
     l ≤ sampleGrid l u N i ∧ sampleGrid l u N i ≤ u := by -- --- PROOF ---
   have hNpos : (0 : ℝ) < N := Nat.cast_pos.mpr hN
   have hdx : 0 ≤ (u - l) / N := div_nonneg (by linarith) hNpos.le

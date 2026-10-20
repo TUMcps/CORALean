@@ -41,7 +41,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.sat_compare (op : STL.Cmp) (e₁ e₂ : STL.Expr n) (ξ : ℝ≥0 → Fin n → ℝ) :
+theorem STL.Tree.sat_compare (op : STL.Cmp) (e₁ e₂ : STL.Expr n)
+    (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
     (STL.Tree.compare op e₁ e₂).Sat ξ ↔
       op.rel (e₁.eval (ξ 0)) (e₂.eval (ξ 0)) := by -- --- PROOF ---
   unfold STL.Tree.compare

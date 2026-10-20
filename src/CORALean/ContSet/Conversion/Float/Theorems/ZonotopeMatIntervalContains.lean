@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.matInterval_contains {m : ℕ} (Z : Zonotope (Mat 𝕋 m n)) :
+theorem Zonotope.matInterval_contains {m : ℕ} (Z : Zonotope (Mat 𝕋 m n)) : -- --- CONCL ---
     Z.construct ⊆ Z.matInterval.construct := by -- --- PROOF ---
   rintro _ ⟨a, ⟨β, hβ, ha⟩, e, he, rfl⟩
   show a + e ∈ _

@@ -40,7 +40,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.project_exact (C : Capsule n) {dims : Fin m → Fin n}
-    (hd : Function.Injective dims) :
+    (hd : Function.Injective dims) : -- --- CONCL ---
     (C.project dims).construct =
       (fun x : Vec ℝ n => fun i => x (dims i)) '' C.construct := by -- --- PROOF ---
   ext y

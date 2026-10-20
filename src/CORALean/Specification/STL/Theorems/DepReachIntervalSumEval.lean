@@ -54,7 +54,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem STL.aux_remZero {n : ℕ} (Δt : ℝ) (κ : ℕ) :
+theorem STL.aux_remZero {n : ℕ} (Δt : ℝ) (κ : ℕ) : -- --- CONCL ---
     MatExp.expRemainderMat (0 : Mat ℝ n n) Δt κ = 0 := by -- --- PROOF ---
   -- `|0| = 0`, so `E = e^0 - Σ 0^j/j! = 1 - 1`
   have h : MatExp.absMat (0 : Mat ℝ n n) = 0 := by
@@ -65,7 +65,7 @@ theorem STL.aux_remZero {n : ℕ} (Δt : ℝ) (κ : ℕ) :
 
 /-- The sum of two sets without generators has none. -/
 theorem STL.aux_plus_zero {n : ℕ} (Z₁ Z₂ : Zonotope (Vec ℝ n)) (h₁ : ∀ k, Z₁.G k = 0)
-    (h₂ : ∀ k, Z₂.G k = 0) :
+    (h₂ : ∀ k, Z₂.G k = 0) : -- --- CONCL ---
     ∀ k, (Z₁.plus Z₂).G k = 0 := by -- --- PROOF ---
   intro k
   -- the layout is `Fin.append`: an index is in the first block or in the second
@@ -95,7 +95,8 @@ theorem STL.aux_partZero {n : ℕ} (Δt : ℝ) (j : ℕ) :
   simp [MatExp.particularCoeff, zero_pow]
 
 theorem STL.aux_foldl_zero {n : ℕ} (A : Mat ℝ n n) (Δt : ℝ) (hA : A = 0)
-    (U₀ : Zonotope (Vec ℝ n)) (l : List ℕ) (Z : Zonotope (Vec ℝ n)) (hZ : ∀ k, Z.G k = 0) :
+    (U₀ : Zonotope (Vec ℝ n)) (l : List ℕ) (Z : Zonotope (Vec ℝ n))
+    (hZ : ∀ k, Z.G k = 0) : -- --- CONCL ---
     ∀ k, (l.foldl (fun Z j => Z.plus
       (Zonotope.mtimes (MatExp.particularCoeff A Δt (j + 1)) U₀)) Z).G k = 0 := by -- --- PROOF ---
   induction l generalizing Z with
@@ -104,7 +105,7 @@ theorem STL.aux_foldl_zero {n : ℕ} (A : Mat ℝ n n) (Δt : ℝ) (hA : A = 0)
     exact ih _ (STL.aux_plus_zero _ _ hZ
       (STL.aux_mtimes_zero _ _ (by subst hA; exact STL.aux_partZero Δt j)))
 
-theorem STL.aux_bloat_zero {n : ℕ} (Δt : ℝ) (κ : ℕ) (U₀ : Zonotope (Vec ℝ n)) :
+theorem STL.aux_bloat_zero {n : ℕ} (Δt : ℝ) (κ : ℕ) (U₀ : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     ∀ k, (STL.depBloating (0 : Mat ℝ n n) U₀ Δt κ).G k = 0 := by -- --- PROOF ---
   unfold STL.depBloating
   simp only []
@@ -124,7 +125,7 @@ theorem STL.aux_mtimes_zero_gens {n m : ℕ} (M : Mat ℝ m n) (Z : Zonotope (Ve
   intro k; simp [Zonotope.mtimes, h]
 
 theorem STL.aux_mtimesIntervalMat_zero_gens {m n : ℕ} (IM : Interval (Mat ℝ m n))
-    (Z : Zonotope (Vec ℝ n)) (hg : ∀ k, Z.G k = 0) (hc : Z.c = 0) :
+    (Z : Zonotope (Vec ℝ n)) (hg : ∀ k, Z.G k = 0) (hc : Z.c = 0) : -- --- CONCL ---
     ∀ k, (Zonotope.mtimesIntervalMat IM Z).G k = 0 := by -- --- PROOF ---
   intro k
   refine Fin.addCases (fun a => ?_) (fun b => ?_) k
@@ -134,7 +135,8 @@ theorem STL.aux_mtimesIntervalMat_zero_gens {m n : ℕ} (IM : Interval (Mat ℝ 
     rfl
 
 theorem STL.aux_linComb_zero {n : ℕ} (Z₁ Z₂ : Zonotope (Vec ℝ n)) (h₁ : ∀ k, Z₁.G k = 0)
-    (h₂ : ∀ k, Z₂.G k = 0) (hc : Z₁.c = Z₂.c) : ∀ k, (Z₁.linComb Z₂).G k = 0 := by -- --- PROOF ---
+    (h₂ : ∀ k, Z₂.G k = 0) (hc : Z₁.c = Z₂.c) : -- --- CONCL ---
+    ∀ k, (Z₁.linComb Z₂).G k = 0 := by -- --- PROOF ---
   intro k
   unfold Zonotope.linComb
   refine Fin.addCases (fun a => ?_) (fun b => ?_) k
@@ -145,7 +147,7 @@ theorem STL.aux_linComb_zero {n : ℕ} (Z₁ Z₂ : Zonotope (Vec ℝ n)) (h₁ 
   · simp [Fin.append_right, hc]
 
 theorem STL.aux_S_general {n : ℕ} (hull Pc D C : Zonotope (Vec ℝ n)) (hh : ∀ k, hull.G k = 0)
-    (hD : ∀ k, D.G k = 0) (hC : ∀ k, C.G k = 0) (f : ℕ → ℝ) :
+    (hD : ∀ k, D.G k = 0) (hC : ∀ k, C.G k = 0) (f : ℕ → ℝ) : -- --- CONCL ---
     ∑ k : Fin ((hull.plus (Pc.plus D)).plus C).h, f k • ((hull.plus (Pc.plus D)).plus C).G k
       = ∑ k : Fin Pc.h, f (hull.h + k) • Pc.G k := by -- --- PROOF ---
   rw [STL.sumGen_plus (hull.plus (Pc.plus D)) C f, STL.sumGen_plus hull (Pc.plus D) f,

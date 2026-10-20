@@ -61,7 +61,7 @@ variable {n p M : ℕ}
 zonotope aligned with `Z` at `(c, α)`. -/
 theorem Zonotope.image_subset_aligned_of_minOut (Z : Zonotope (Vec ℝ n)) (E : Mat ℝ n p)
     (V : Fin M → Vec ℝ p) (θ : Fin Z.h → Fin M → ℝ) (a : Fin Z.h → ℝ) (c : Vec ℝ n)
-    (hθ : ∀ i j, |θ i j| ≤ a i) (heq : ∀ j, c + ∑ i, θ i j • Z.G i = E *ᵥ V j) :
+    (hθ : ∀ i j, |θ i j| ≤ a i) (heq : ∀ j, c + ∑ i, θ i j • Z.G i = E *ᵥ V j) : -- --- CONCL ---
     (E *ᵥ ·) '' convexHull ℝ (Set.range V) ⊆ (Z.aligned c a).construct := by -- --- PROOF ---
   show (Matrix.mulVecLin E) '' convexHull ℝ (Set.range V) ⊆ _
   rw [LinearMap.image_convexHull]

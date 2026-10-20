@@ -89,7 +89,8 @@ theorem Taylm.aux_abs_polyBounds_sub_le (L : List (ℝ × (Fin n → ℕ))) {h :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.reach_le {T : Taylm n} {h C : ℝ} (h0 : 0 < h) (h1 : h ≤ 1) (hT : T.Scaled h C) :
+theorem Taylm.reach_le {T : Taylm n} {h C : ℝ} (h0 : 0 < h) (h1 : h ≤ 1)
+    (hT : T.Scaled h C) : -- --- CONCL ---
     T.reach T.constCoef ≤ 2 * C * h := by -- --- PROOF ---
   obtain ⟨w, i, s⟩ := hT
   have hb := Taylm.aux_abs_polyBounds_sub_le T.terms h0 h1

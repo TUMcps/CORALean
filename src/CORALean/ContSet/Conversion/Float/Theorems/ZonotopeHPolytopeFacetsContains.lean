@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The float zonotope lies in CORA's `polytope(Z)` rows computed in floats. -/
-theorem Zonotope.hPolytopeFacets_contains (p : ℕ) (Z : Zonotope (Vec 𝕋 (m + 1))) :
+theorem Zonotope.hPolytopeFacets_contains (p : ℕ) (Z : Zonotope (Vec 𝕋 (m + 1))) : -- --- CONCL ---
     Z.construct ⊆ (Z.hPolytopeFacets p).construct := by -- --- PROOF ---
   unfold Zonotope.hPolytopeFacets
   dsimp only

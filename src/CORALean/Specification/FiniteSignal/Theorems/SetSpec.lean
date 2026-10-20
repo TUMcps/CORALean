@@ -50,7 +50,7 @@ namespace CORALean
 
 /-- A breakpoint of the prefix beyond `t` decides the value, as in the whole list. -/
 theorem aux_valueAt_append_lt {V : Type} (P X : List (ℝ × V)) (t : ℝ) (hX : X ≠ [])
-    (h : ∃ p ∈ P, t < p.1) :
+    (h : ∃ p ∈ P, t < p.1) : -- --- CONCL ---
     FiniteSignal.valueAt (P ++ X) t = FiniteSignal.valueAt P t := by -- --- PROOF ---
   induction P with
   | nil => simp at h
@@ -73,7 +73,7 @@ theorem aux_valueAt_append_lt {V : Type} (P X : List (ℝ × V)) (t : ℝ) (hX :
 
 /-- If no breakpoint of the prefix is beyond `t`, only the rest decides the value. -/
 theorem aux_valueAt_append_ge {V : Type} (P X : List (ℝ × V)) (t : ℝ) (hX : X ≠ [])
-    (h : ∀ p ∈ P, p.1 ≤ t) :
+    (h : ∀ p ∈ P, p.1 ≤ t) : -- --- CONCL ---
     FiniteSignal.valueAt (P ++ X) t = FiniteSignal.valueAt X t := by -- --- PROOF ---
   induction P with
   | nil => rfl

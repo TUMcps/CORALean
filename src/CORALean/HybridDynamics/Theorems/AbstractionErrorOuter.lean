@@ -107,7 +107,8 @@ theorem GuardMap.abstractionError_outer (A : Mat ℝ n n) (U R₀ : Zonotope (Ve
     {tmax t : ℝ} {η : ℕ} (hη : 1 ≤ η) (ht : t ∈ Set.Icc 0 tmax) {x₀ : Vec ℝ n}
     (hx₀ : x₀ ∈ R₀.construct) {u : ℝ → Vec ℝ n}
     (hu : ∀ τ ∈ Set.Ioc (0:ℝ) t, u (t - τ) ∈ U.construct)
-    (hmeas : AEStronglyMeasurable (fun τ => u (t - τ)) (volume.restrict (Set.Ioc 0 t))) :
+    (hmeas : AEStronglyMeasurable (fun τ => u (t - τ)) (volume.restrict (Set.Ioc 0 t)))
+    : -- --- CONCL ---
     exp (t • A) *ᵥ x₀ + (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s)
         - GuardMap.sdcFlow A (GuardMap.sdcInput A U.c th η R₀.c) x₀ t
       ∈ (GuardMap.abstractionError A U R₀ th tmax η).construct := by -- --- PROOF ---

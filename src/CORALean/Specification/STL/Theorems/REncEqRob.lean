@@ -49,7 +49,7 @@ variable {X : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.DFormula.rEnc_eq_rob {N : ℕ} (x : ℕ → X) :
+theorem STL.DFormula.rEnc_eq_rob {N : ℕ} (x : ℕ → X) : -- --- CONCL ---
     ∀ (φ : STL.DFormula X) (t : ℕ), t + φ.bound ≤ N →
       φ.rEnc N true x t = φ.rob x t := by -- --- PROOF ---
   intro φ

@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `t δ` lies in the symmetric box of `m` when `|t| ≤ 1` and `|δ| ≤ m` entrywise. -/
 theorem Capsule.smul_mem_symmetric {m : Vec 𝕋 n} {δ : Vec ℝ n} {t : ℝ}
-    (ht : t ∈ Set.Icc (-1 : ℝ) 1) (hδ : ∀ i, |δ i| ≤ toReal (m i)) :
+    (ht : t ∈ Set.Icc (-1 : ℝ) 1) (hδ : ∀ i, |δ i| ≤ toReal (m i)) : -- --- CONCL ---
     t • δ ∈ (Interval.symmetric m).construct := by -- --- PROOF ---
   rw [Interval.mem_vec_iff]
   intro i

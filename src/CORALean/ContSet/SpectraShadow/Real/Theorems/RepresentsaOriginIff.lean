@@ -38,7 +38,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.representsa_origin_iff (S : SpectraShadow (Vec ℝ n)) (hn : 0 < n) :
+theorem SpectraShadow.representsa_origin_iff (S : SpectraShadow (Vec ℝ n))
+    (hn : 0 < n) : -- --- CONCL ---
     S.representsa_origin ↔ S.construct = {0} := by -- --- PROOF ---
   unfold SpectraShadow.representsa_origin
   constructor

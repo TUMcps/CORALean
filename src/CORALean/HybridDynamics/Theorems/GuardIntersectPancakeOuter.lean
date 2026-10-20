@@ -100,7 +100,7 @@ theorem NonlinearSys.WithSteps.guardIntersectPancake_outer (sys : NonlinearSys.W
     (hf : ContinuousOn (fun s => sys.sys.f (x s) (u s)) (Icc 0 T)) {tf : ℝ} (htf : 0 ≤ tf)
     (hδ : 0 ≤ δ) (htfT : tf + δ ≤ T) (hpos : ∀ s ∈ Icc 0 tf, 0 < nv ⬝ᵥ x s - d)
     (hclock : ∫ r in (0 : ℝ)..tf, ((nv ⬝ᵥ x r - d) / p 0)⁻¹ = tScaled) {t : ℝ}
-    (ht : t ∈ Icc tf (tf + δ)) (hhit : nv ⬝ᵥ x t = d) :
+    (ht : t ∈ Icc tf (tf + δ)) (hhit : nv ⬝ᵥ x t = d) : -- --- CONCL ---
     ∀ Z ∈ sys.guardIntersectPancake scaled nv d R₀ tScaled δ optionsScaled optionsJump,
       x t ∈ construct Z := by -- --- PROOF ---
   intro Z (hZ : sys.guardIntersectPancake scaled nv d R₀ tScaled δ optionsScaled optionsJump = some

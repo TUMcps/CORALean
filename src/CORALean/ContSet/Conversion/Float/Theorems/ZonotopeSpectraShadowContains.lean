@@ -46,7 +46,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.spectraShadow_contains (Z : Zonotope (Vec 𝕋 n)) :
+theorem Zonotope.spectraShadow_contains (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     Z.construct ⊆ Z.spectraShadow.construct := by -- --- PROOF ---
   -- the box is carried over, so only the nominal parts are compared
   refine mono_subset (fun x hx => ?_) subset_rfl

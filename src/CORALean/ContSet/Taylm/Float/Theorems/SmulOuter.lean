@@ -90,7 +90,7 @@ theorem Taylm.aux_mul_sum_between {alo ahi r₁ r₂ e₁ e₂ : 𝕋} {y x : �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.smul_outer {alo ahi : 𝕋} {a : ℝ} (ha : toReal alo ≤ a ∧ a ≤ toReal ahi)
-    {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) :
+    {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) : -- --- CONCL ---
     (T.smul alo ahi).Encloses fun t => a * f t := by -- --- PROOF ---
   intro t ht
   have hr := h t ht

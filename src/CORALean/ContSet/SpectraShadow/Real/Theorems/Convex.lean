@@ -45,7 +45,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.convex_construct (S : SpectraShadow α) :
+theorem SpectraShadow.convex_construct (S : SpectraShadow α) : -- --- CONCL ---
     Convex ℝ S.construct := by -- --- PROOF ---
   rintro _ ⟨β₁, h₁, rfl⟩ _ ⟨β₂, h₂, rfl⟩ a b ha hb hab
   -- the variables are the same combination of the two points'

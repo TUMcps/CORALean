@@ -55,7 +55,7 @@ variable {n p m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.intersectStripFamily_outer (H : Fin m → Mat ℝ p n) (r : Fin m → ℝ)
-    (y : Fin m → Vec ℝ p) (lam : Fin m → Mat ℝ n p) (Z : Zonotope (Vec ℝ n)) :
+    (y : Fin m → Vec ℝ p) (lam : Fin m → Mat ℝ n p) (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     Z.construct ∩ {x | ∀ j k, |(H j *ᵥ x - y j) k| ≤ r j} ⊆
       (Z.intersectStripFamily H r y lam).construct := by -- --- PROOF ---
   rintro x ⟨⟨β, hβ, rfl⟩, hs⟩

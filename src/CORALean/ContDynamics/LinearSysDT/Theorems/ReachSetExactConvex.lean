@@ -50,7 +50,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- The exact set reached in `k` steps is convex whenever the initial and input
 sets are. -/
 theorem LinearSysDT.reachSetExact_convex (sys : LinearSysDT 𝕋 n) {R₀ U : S n}
-    (hR₀ : Convex ℝ (construct R₀)) (hU : Convex ℝ (construct U)) (k : ℕ) :
+    (hR₀ : Convex ℝ (construct R₀)) (hU : Convex ℝ (construct U)) (k : ℕ) : -- --- CONCL ---
     Convex ℝ (sys.reachSetExact R₀ U k) := by -- --- PROOF ---
   induction k with
   | zero => exact hR₀

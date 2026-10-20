@@ -41,7 +41,7 @@ variable {n : ℕ}
 open scoped Classical in
 /-- The step chosen for `ε` at order `η` is admissible for it: positive, under
 the bound, and sound. -/
-theorem MatExp.expRemainderStep_spec (A : Mat ℝ n n) (η : ℕ) {ε : ℝ} (hε : 0 < ε) :
+theorem MatExp.expRemainderStep_spec (A : Mat ℝ n n) (η : ℕ) {ε : ℝ} (hε : 0 < ε) : -- --- CONCL ---
     MatExp.StepAdmissible A η ε (MatExp.expRemainderStep A η ε) := by -- --- PROOF ---
   obtain ⟨r, hr0, hrb, hrs⟩ := MatExp.exists_mul_expRemainderBound_lt A η hε
   have h : ∃ r : ℝ, MatExp.StepAdmissible A η ε r := ⟨r, hr0, hrb, hrs⟩

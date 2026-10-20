@@ -54,7 +54,7 @@ variable {n : ℕ}
 /-- [1, Prop. 1], as an equality: the guard `⟨a, b, C H, d - C k⟩_H` is exactly the states of the
 surface `aᵀx = b` that the reset `H x + k` maps into `Y = ⟨C, d⟩_P`. -/
 theorem IdentHA.conHyperplane_identGuard (a : Vec ℝ n) (b : ℝ) (H : Mat ℝ n n) (k : Vec ℝ n)
-    (cs : List (Vec ℝ n × ℝ)) :
+    (cs : List (Vec ℝ n × ℝ)) : -- --- CONCL ---
     IdentHA.conHyperplane a b (IdentHA.identGuard H k cs)
       = {x | a ⬝ᵥ x = b ∧ H *ᵥ x + k ∈ (IdentHA.polytope cs).construct} := by -- --- PROOF ---
   ext x

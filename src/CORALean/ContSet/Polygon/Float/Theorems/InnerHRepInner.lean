@@ -75,7 +75,7 @@ theorem Polygon.aux_barycentric {a b c x : Vec ℝ 2} (hD : 0 < Polygon.aux_orie
       field_simp <;> ring
 
 /-- A sequence that starts nonnegative and ends nonpositive crosses over between neighbours. -/
-theorem Polygon.aux_crossing (f : ℕ → ℝ) (N : ℕ) :
+theorem Polygon.aux_crossing (f : ℕ → ℝ) (N : ℕ) : -- --- CONCL ---
     ∀ d j, j + d + 1 = N → 0 ≤ f j → f N ≤ 0 →
       ∃ i, j ≤ i ∧ i + 1 ≤ N ∧ 0 ≤ f i ∧ f (i + 1) ≤ 0 := by -- --- PROOF ---
   intro d
@@ -137,7 +137,7 @@ theorem Polygon.aux_fan {k : ℕ} (u : Fin k → Vec ℝ 2) (x : Vec ℝ 2) (hk 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.innerHRep_inner {p : VPolytope (Vec 𝕋 2)} :
+theorem Polygon.innerHRep_inner {p : VPolytope (Vec 𝕋 2)} : -- --- CONCL ---
     ∀ H ∈ Polygon.innerHRep p,
       H.construct ⊆ p.construct := by -- --- PROOF ---
   intro H (h : Polygon.innerHRep p = some H)

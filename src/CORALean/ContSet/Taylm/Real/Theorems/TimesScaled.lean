@@ -58,7 +58,8 @@ variable {n : ℕ}
 
 /-- Filtering a list only drops weight. -/
 theorem Taylm.aux_weight_filter_le (L : List (ℝ × (Fin n → ℕ))) (p : ℝ × (Fin n → ℕ) → Bool)
-    {h : ℝ} (h0 : 0 < h) : Taylm.weight (L.filter p) h ≤ Taylm.weight L h := by -- --- PROOF ---
+    {h : ℝ} (h0 : 0 < h) : -- --- CONCL ---
+    Taylm.weight (L.filter p) h ≤ Taylm.weight L h := by -- --- PROOF ---
   induction L with
   | nil => simp
   | cons a L ih =>
@@ -68,7 +69,7 @@ theorem Taylm.aux_weight_filter_le (L : List (ℝ × (Fin n → ℕ))) (p : ℝ 
 
 /-- Terms of degree at least `d` have magnitudes at most `hᵈ` times their weight. -/
 theorem Taylm.aux_sum_abs_le_pow_mul_weight (L : List (ℝ × (Fin n → ℕ))) {h : ℝ} {d : ℕ}
-    (h0 : 0 < h) (h1 : h ≤ 1) (hd : ∀ a ∈ L, d ≤ Taylm.degree a.2) :
+    (h0 : 0 < h) (h1 : h ≤ 1) (hd : ∀ a ∈ L, d ≤ Taylm.degree a.2) : -- --- CONCL ---
     (L.map fun a => |a.1|).sum ≤ h ^ d * Taylm.weight L h := by -- --- PROOF ---
   induction L with
   | nil => simp [Taylm.weight]
@@ -81,7 +82,7 @@ theorem Taylm.aux_sum_abs_le_pow_mul_weight (L : List (ℝ × (Fin n → ℕ))) 
     exact mul_le_mul_of_nonneg_right hp (abs_nonneg _)
 
 /-- The weight of the product's terms is the product of the weights. -/
-theorem Taylm.aux_weight_mulTerms (L₁ L₂ : List (ℝ × (Fin n → ℕ))) (h : ℝ) :
+theorem Taylm.aux_weight_mulTerms (L₁ L₂ : List (ℝ × (Fin n → ℕ))) (h : ℝ) : -- --- CONCL ---
     Taylm.weight (Taylm.mulTerms L₁ L₂) h =
       Taylm.weight L₁ h * Taylm.weight L₂ h := by -- --- PROOF ---
   induction L₁ with
@@ -101,7 +102,7 @@ theorem Taylm.aux_weight_mulTerms (L₁ L₂ : List (ℝ × (Fin n → ℕ))) (h
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.times_scaled {T₁ T₂ : Taylm n} {h C₁ C₂ : ℝ} (h0 : 0 < h) (h1 : h ≤ 1)
-    (hN : T₁.maxOrder = T₂.maxOrder) (h₁ : T₁.Scaled h C₁) (h₂ : T₂.Scaled h C₂) :
+    (hN : T₁.maxOrder = T₂.maxOrder) (h₁ : T₁.Scaled h C₁) (h₂ : T₂.Scaled h C₂) : -- --- CONCL ---
     (T₁.times T₂).Scaled h (4 * (C₁ * C₂)) := by -- --- PROOF ---
   obtain ⟨w₁, i₁, s₁⟩ := h₁
   obtain ⟨w₂, i₂, s₂⟩ := h₂

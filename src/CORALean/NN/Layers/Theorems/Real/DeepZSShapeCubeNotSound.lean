@@ -48,7 +48,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem deepZSShape_cube_not_sound :
+theorem deepZSShape_cube_not_sound : -- --- CONCL ---
     SShapedPrinted (fun x : ℝ => x ^ 3) ∧ Monotone (fun x : ℝ => x ^ 3)
       ∧ ¬ (deepZSShape (fun x : ℝ => x ^ 3) (deriv fun x : ℝ => x ^ 3)).Sound
         (fun x : ℝ => x ^ 3) := by -- --- PROOF ---

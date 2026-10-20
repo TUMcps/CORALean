@@ -53,7 +53,7 @@ variable {n : ℕ}
 
 theorem ConZonotope.mem_hyperplane_inter_iff (cZ : ConZonotope (Vec ℝ n)) (h : Vec ℝ n →ₗ[ℝ] ℝ)
     (f fmin fmax : ℝ) (hmin : IsLeast (h '' cZ.construct) fmin)
-    (hmax : IsGreatest (h '' cZ.construct) fmax) :
+    (hmax : IsGreatest (h '' cZ.construct) fmax) : -- --- CONCL ---
     (∃ x ∈ cZ.construct, h x = f) ↔ fmin ≤ f ∧ f ≤ fmax := by -- --- PROOF ---
   constructor
   · rintro ⟨x, hx, rfl⟩

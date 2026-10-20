@@ -48,7 +48,7 @@ variable {n : ℕ}
 
 theorem Taylm.exists_le_globalMin {f : Vec ℝ n → ℝ} {lb : (Fin n → Interval ℝ) → ℝ}
     {ub : Vec ℝ n → ℝ} {X : Fin n → Interval ℝ} (hub : ∀ p, Taylm.InBox X p → f p ≤ ub p)
-    (hX : ∀ k, (X k).inf ≤ (X k).sup) (fuel : ℕ) :
+    (hX : ∀ k, (X k).inf ≤ (X k).sup) (fuel : ℕ) : -- --- CONCL ---
     ∃ p, Taylm.InBox X p ∧ f p ≤ (Taylm.globalMin lb ub X fuel).sup := by -- --- PROOF ---
   -- the center of a proper box lies in it
   have hmid : ∀ B : Fin n → Interval ℝ, (∀ k, (B k).inf ≤ (B k).sup) →

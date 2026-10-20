@@ -47,7 +47,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.sumGen_plus (Z₁ Z₂ : Zonotope α) (f : ℕ → ℝ) :
+theorem STL.sumGen_plus (Z₁ Z₂ : Zonotope α) (f : ℕ → ℝ) : -- --- CONCL ---
     ∑ k : Fin (Z₁.plus Z₂).h, f k • (Z₁.plus Z₂).G k
       = ∑ k : Fin Z₁.h, f k • Z₁.G k + ∑ k : Fin Z₂.h, f (Z₁.h + k) • Z₂.G k := by -- --- PROOF ---
   refine (Fin.sum_univ_add (fun k : Fin (Z₁.h + Z₂.h) => f k • (Z₁.plus Z₂).G k)).trans ?_

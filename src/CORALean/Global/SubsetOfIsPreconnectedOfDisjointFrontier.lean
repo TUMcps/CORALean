@@ -53,7 +53,7 @@ variable {X : Type*} [TopologicalSpace X]
 
 /-- [1, Thm. 1]: `∂R ⊆ B`, `C` preconnected, `C ∩ B = ∅` and `C ∩ R ≠ ∅` give `C ⊆ R`. -/
 theorem subset_of_isPreconnected_of_disjoint_frontier {C B R : Set X} (hB : frontier R ⊆ B)
-    (hC : IsPreconnected C) (hCB : C ∩ B = ∅) (hCR : (C ∩ R).Nonempty) :
+    (hC : IsPreconnected C) (hCB : C ∩ B = ∅) (hCR : (C ∩ R).Nonempty) : -- --- CONCL ---
     C ⊆ R := by -- --- PROOF ---
   -- a point of `C` in the closure of `R` is not on the frontier, so it is interior
   have hint : ∀ x ∈ C, x ∈ closure R → x ∈ interior R := fun x hx hcl => by

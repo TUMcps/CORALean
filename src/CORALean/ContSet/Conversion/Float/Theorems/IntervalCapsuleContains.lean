@@ -67,7 +67,7 @@ private theorem foldl_widest_some (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.capsule_contains (k : ℕ) (I : Interval (Vec 𝕋 n)) :
+theorem Interval.capsule_contains (k : ℕ) (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
     I.construct ⊆ (I.capsule k).construct := by -- --- PROOF ---
   unfold Interval.capsule
   cases h : I.widestAxis with

@@ -38,7 +38,7 @@ variable {fmt : IEEEFormat}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem overflows_iff (x : IEEE fmt) :
+theorem overflows_iff (x : IEEE fmt) : -- --- CONCL ---
     overflows x = true ↔ ((fmt.maxFinite : ℚ) : ℝ) < |x.toReal| := by -- --- PROOF ---
   have hx : Dyadic.toReal (⟨x.mantissa.natAbs, x.exponent⟩ : Dyadic fmt.p) = |x.toReal| := by
     have h2 : (0 : ℝ) < 2 ^ x.exponent := zpow_pos two_pos _

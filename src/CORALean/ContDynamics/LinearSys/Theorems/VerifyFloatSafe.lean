@@ -61,7 +61,7 @@ theorem LinearSys.verifyFloat_safe
     (G : Fin (r + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (F : Fin (w + 1) → HPolytope 𝕋 (Vec 𝕋 n))
     (εmax₀ : 𝕋) (fuel : ℕ)
     (hv : LinearSys.verifyFloat reachFn innerApprox distG distF G F εmax₀ fuel = some true)
-    : -- --- CONCL ---
+    :
     LinearSys.VerifySpecFloat G F Reach :=
   LinearSys.verifySpecFloat_of_verifyRunFloat h G F εmax₀ fuel hv
 

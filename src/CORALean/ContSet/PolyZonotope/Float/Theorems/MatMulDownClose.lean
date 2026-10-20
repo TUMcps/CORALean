@@ -41,7 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.matMulDown_close (A : Mat 𝕋 n k) (B : Mat 𝕋 k m) (i : Fin n) (j : Fin m) :
+theorem PolyZonotope.matMulDown_close (A : Mat 𝕋 n k) (B : Mat 𝕋 k m) (i : Fin n)
+    (j : Fin m) : -- --- CONCL ---
     |(toRealMat A * toRealMat B) i j - toReal (matMulDown A B i j)|
       ≤ toReal (matMulDiff A B i j) := by -- --- PROOF ---
   -- the exact entry is bracketed by the two roundings, and their gap rounds up

@@ -46,7 +46,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.reachSetExact_outer (sys : LinearSysDT 𝕋 n) (R₀ U : S n)
-    {x u : ℕ → Vec ℝ n} (traj : sys.IsCanonicalTrajectory R₀ U x u) (k : ℕ) :
+    {x u : ℕ → Vec ℝ n} (traj : sys.IsCanonicalTrajectory R₀ U x u) (k : ℕ) : -- --- CONCL ---
     x k ∈ sys.reachSetExact R₀ U k := by -- --- PROOF ---
   induction k with
   | zero => exact traj.init

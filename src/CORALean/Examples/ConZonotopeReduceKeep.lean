@@ -52,7 +52,8 @@ abbrev reduceKeepExampleSplit : Split (Fin reduceKeepExample.h) into (Fin 1) ⊕
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- With the constraint kept, the reduced set stays below `2`. -/
-theorem reduceKeepExample_le : (reduceKeepExample.reduceKeepBy reduceKeepExampleSplit).construct
+theorem reduceKeepExample_le : -- --- CONCL ---
+    (reduceKeepExample.reduceKeepBy reduceKeepExampleSplit).construct
     ⊆ {x | x 0 ≤ 2} := by -- --- PROOF ---
   rintro x ⟨γ, hγ, hP, rfl⟩
   have h0 : (reduceKeepExample.P.A 0) (ConZonotope.keepEmbed reduceKeepExampleSplit
@@ -93,7 +94,7 @@ theorem reduceKeepExample_le : (reduceKeepExample.reduceKeepBy reduceKeepExample
   exact hx
 
 /-- Through the enclosing zonotope, the constraint is gone and `4` is reached. -/
-theorem reduceKeepExample_old_not_le :
+theorem reduceKeepExample_old_not_le : -- --- CONCL ---
     ¬ (reduceKeepExample.zonotope.reduceBy reduceKeepExampleSplit).conZonotope.construct
       ⊆ {x | x 0 ≤ 2} := by -- --- PROOF ---
   intro hsub

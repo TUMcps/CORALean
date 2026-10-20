@@ -52,7 +52,7 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- [1, Eq. 16]: `Q(β)⁻¹ = β/(1+β) · (I + βR)⁻¹ Q₁⁻¹`, for positive-definite `Q₁`, `Q₂`. -/
 theorem Ellipsoid.halder_inv_shape {Q₁ Q₂ : Matrix n n ℝ} (h₁ : Q₁.PosDef)
-    (h₂ : Q₂.PosDef) {β : ℝ} (hβ : 0 < β) :
+    (h₂ : Q₂.PosDef) {β : ℝ} (hβ : 0 < β) : -- --- CONCL ---
     ((1 + 1 / β) • Q₁ + (1 + β) • Q₂)⁻¹
       = (β / (1 + β)) • ((1 + β • (Q₁⁻¹ * Q₂))⁻¹ * Q₁⁻¹) := by -- --- PROOF ---
   have hu₁ : IsUnit Q₁.det := (isUnit_iff_isUnit_det Q₁).1 h₁.isUnit

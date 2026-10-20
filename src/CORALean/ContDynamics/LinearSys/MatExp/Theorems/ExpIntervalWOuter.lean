@@ -54,7 +54,7 @@ variable {n : ℕ}
 
 /-- Every member's second-order term sits in the interval matrix [1] computes. -/
 theorem MatExp.expW_mem_expIntervalW (A : Interval (Mat ℝ n n)) (t : ℝ)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) :
+    {M : Mat ℝ n n} (hM : M ∈ A.construct) : -- --- CONCL ---
     MatExp.expW M t ∈ (MatExp.expIntervalW A t).construct := by -- --- PROOF ---
   refine Interval.mem_mat_iff.mpr fun i j => ?_
   have hm := Interval.mem_mat_iff.mp hM

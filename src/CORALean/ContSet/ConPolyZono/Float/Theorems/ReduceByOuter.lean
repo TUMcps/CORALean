@@ -56,7 +56,7 @@ through the projection because that is the form the goal has and simp will not
 rewrite a binder's type. -/
 theorem ConPolyZono.aux_sum_univ_reduceBy_qI {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)}
     {partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r)}
-    {partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) : -- --- CONCL ---
+    {partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) :
     ∑ j : Fin (cPZ.reduceBy partD partI).qI, f j
       = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd dI j) :=
   Fin.sum_univ_add f
@@ -76,7 +76,7 @@ cover. The coefficients are monomials, and `abs_sum_le_radius` asks only that
 they lie in `[-1, 1]`. -/
 theorem ConPolyZono.aux_abs_droppedDep_le (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r)) {a : Fin cPZ.p → ℝ}
-    (ha : ∀ k, |a k| ≤ 1) (i : Fin n) : -- --- CONCL ---
+    (ha : ∀ k, |a k| ≤ 1) (i : Fin n) :
     |∑ l, toReal (cPZ.G (partD.right l) i)
         * Real.PolyZonotope.monomial cPZ.E a (partD.right l)|
       ≤ toReal (radius (fun i l => cPZ.G (partD.right l) i) i) :=
@@ -87,7 +87,7 @@ theorem ConPolyZono.aux_abs_droppedDep_le (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
 free to begin with. -/
 theorem ConPolyZono.aux_abs_droppedInd_le (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)) {β : Fin cPZ.qI → ℝ}
-    (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) : -- --- CONCL ---
+    (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
     |∑ j, toReal (cPZ.GI (partI.right j) i) * β (partI.right j)|
       ≤ toReal (radius (fun i j => cPZ.GI (partI.right j) i) i) :=
   abs_sum_le_radius (d := fun i j => cPZ.GI (partI.right j) i) (fun _ _ => le_refl _)
@@ -113,7 +113,7 @@ theorem ConPolyZono.aux_abs_dropped_le (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
 -- the dropped columns become one diagonal block, at the coefficient that reaches them
 theorem ConPolyZono.aux_reduceBy_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r))
-    (partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)) :
+    (partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)) : -- --- CONCL ---
     nominalSet cPZ ⊆ nominalSet (cPZ.reduceBy partD partI) := by -- --- PROOF ---
   intro x hx'
   obtain ⟨a, β, ha, hβ, hsat, hx⟩ := ConPolyZono.mem_nominalSet_iff.mp hx'

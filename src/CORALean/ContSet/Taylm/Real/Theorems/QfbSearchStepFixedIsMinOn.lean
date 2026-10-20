@@ -58,7 +58,7 @@ variable {n : ℕ}
 /-- [1, Sec. 3 (search for x₀)]: a fixed point of the search step minimizes `P₂` over the box. -/
 theorem Taylm.qfbSearchStep_fixed_isMinOn {H : Mat ℝ n n} (hH : H.IsSymm) (hP : H.PosSemidef)
     (c : ℝ) (g : Vec ℝ n) {α : ℝ} (hα : 0 < α) {x : Vec ℝ n}
-    (hx : Taylm.qfbSearchStep H g α x = x) :
+    (hx : Taylm.qfbSearchStep H g α x = x) : -- --- CONCL ---
     IsMinOn (fun x => c + g ⬝ᵥ x + x ⬝ᵥ (H *ᵥ x) / 2) (Taylm.box n) x := by -- --- PROOF ---
   intro z hz
   simp only [Set.mem_setOf_eq]

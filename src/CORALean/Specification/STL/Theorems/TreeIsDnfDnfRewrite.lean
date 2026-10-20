@@ -42,7 +42,7 @@ theorem STL.Tree.aux_isCube_of_isDnf (t : STL.Tree n) (h : t.IsDnf)
     (h' : ∀ l₁ l₂ : STL.Tree n, ¬ t = STL.Tree.or l₁ l₂) : t.IsCube := by
   cases t <;> simp_all [STL.Tree.IsDnf, STL.Tree.IsCube]
 
-theorem STL.Tree.aux_dnfRewrite_zero (φ : STL.Tree n) :
+theorem STL.Tree.aux_dnfRewrite_zero (φ : STL.Tree n) : -- --- CONCL ---
     (φ.dnfRewrite).2 = 0 → (φ.dnfRewrite).1 = φ ∧ φ.IsDnf := by -- --- PROOF ---
   induction φ with
   | and φ ψ ihφ ihψ =>

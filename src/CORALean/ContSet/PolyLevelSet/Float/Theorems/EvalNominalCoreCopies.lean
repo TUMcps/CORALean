@@ -41,7 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The copies' rows, read back, take the values of the read-back rows' copies. -/
-theorem PolyLevelSet.eval_nominalCore_copies (P : PolyLevelSet 𝕋 n) (a : ℕ) (x : Vec ℝ (a * n)) :
+theorem PolyLevelSet.eval_nominalCore_copies (P : PolyLevelSet 𝕋 n) (a : ℕ)
+    (x : Vec ℝ (a * n)) : -- --- CONCL ---
     (P.copies a).nominalCore.eval x = (P.nominalCore.copies a).eval x := by -- --- PROOF ---
   have hA : toRealMat (P.copies a).A = (P.nominalCore.copies a).A := by
     funext x y

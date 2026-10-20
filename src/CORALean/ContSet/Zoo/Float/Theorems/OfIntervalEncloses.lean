@@ -53,7 +53,7 @@ theorem Zoo.aux_ofInterval_poly (Z : Zonotope (Vec 𝕋 n)) (N : ℕ) (i : Fin n
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zoo.ofInterval_encloses (I : Interval (Vec 𝕋 n)) (N : ℕ) (i : Fin n) :
+theorem Zoo.ofInterval_encloses (I : Interval (Vec 𝕋 n)) (N : ℕ) (i : Fin n) : -- --- CONCL ---
     (Zoo.ofInterval I N i).Encloses
       fun t => toReal (I.center i) + toReal (I.radiusFrom i) * t i := by -- --- PROOF ---
   rw [Zoo.encloses_iff]

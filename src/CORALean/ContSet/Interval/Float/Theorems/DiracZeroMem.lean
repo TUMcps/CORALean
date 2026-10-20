@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.dirac_zero_mem (n : ℕ) (I : Interval (Vec 𝕋 m)) (i : Fin m) :
+theorem Interval.dirac_zero_mem (n : ℕ) (I : Interval (Vec 𝕋 m)) (i : Fin m) : -- --- CONCL ---
     (∀ l, (Interval.dirac n I).lo i = some l → toReal l ≤ 0) ∧
       ∀ u, (Interval.dirac n I).hi i = some u → 0 ≤ toReal u := by -- --- PROOF ---
   unfold Interval.dirac

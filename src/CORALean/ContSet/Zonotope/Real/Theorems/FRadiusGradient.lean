@@ -52,7 +52,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.fRadius_gradient (Y : Zonotope (Vec ℝ n)) (hY : 0 < Y.fRadius) :
+theorem Zonotope.fRadius_gradient (Y : Zonotope (Vec ℝ n)) (hY : 0 < Y.fRadius) : -- --- CONCL ---
     Y.gradient Zonotope.fRadius =
       { h := Y.h, c := 0,
         G := fun j i => Y.G j i / ((n : ℝ) ^ 2 * Y.fRadius) } := by -- --- PROOF ---

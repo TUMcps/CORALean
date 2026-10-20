@@ -41,7 +41,7 @@ variable {n : ℕ}
 
 /-- The same read down a column, which is the form a diagonal block takes when
 generators carry the first index. -/
-theorem Zonotope.sum_diagonal_mul' (v g : Vec ℝ n) (i : Fin n) :
+theorem Zonotope.sum_diagonal_mul' (v g : Vec ℝ n) (i : Fin n) : -- --- CONCL ---
     ∑ l, Matrix.diagonal v l i * g l = v i * g i := by -- --- PROOF ---
   rw [Finset.sum_eq_single i, Matrix.diagonal_apply_eq]
   · intro b _ hb

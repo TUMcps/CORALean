@@ -92,7 +92,7 @@ noncomputable def aux_AV : Fin 6 → Vec ℝ 3 :=
   ![![2, 0, 0], ![-1, -2, -2], ![1, -2, -2], ![-1, 2, -2], ![1, 2, -2], ![0, -4, 0]]
 
 /-- `ndimCross` at each pair. -/
-theorem aux_facetNormal_eq (i : Fin 6) :
+theorem aux_facetNormal_eq (i : Fin 6) : -- --- CONCL ---
     aux_Am.facetNormal (aux_AS i) = aux_AV i := by -- --- PROOF ---
   have h21 : Fin.succAbove (2 : Fin 3) 1 = 1 := rfl
   ext k
@@ -154,7 +154,7 @@ theorem aux_alpha_eq :
     norm_num
 
 /-- CORA's `α`: `pinv(|C G|) Δd = (25/29, 25/29, 28/29, 28/29)`. -/
-theorem aux_minkDiffApprox :
+theorem aux_minkDiffApprox : -- --- CONCL ---
     aux_Am.minkDiffApprox aux_As aux_AC
       = aux_Am.minkDiffStretch aux_As ![25/29, 25/29, 28/29, 28/29] := by -- --- PROOF ---
   -- the matrix and the right-hand side, at `Fin 4` rather than `Fin aux_Am.h`

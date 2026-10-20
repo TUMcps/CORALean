@@ -38,7 +38,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {N : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem GNN.support_of_ne_zero (A : Mat 𝕋 N N) (i j : Fin N) (h : toReal (A i j) ≠ 0) :
+theorem GNN.support_of_ne_zero (A : Mat 𝕋 N N) (i j : Fin N)
+    (h : toReal (A i j) ≠ 0) : -- --- CONCL ---
     GNN.support A i j = true := by -- --- PROOF ---
   by_contra hf
   have hb : (le (A i j) zero && le zero (A i j)) = true := by

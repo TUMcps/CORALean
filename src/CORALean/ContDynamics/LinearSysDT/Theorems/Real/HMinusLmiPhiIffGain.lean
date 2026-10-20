@@ -55,7 +55,7 @@ variable {n ny nf : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.hMinusLmiPhi_iff_gain (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat ℝ ny nf)
-    (L : Mat ℝ n ny) (Q : Mat ℝ n n) (M : Mat ℝ ny ny) (β : ℝ) (hQ : Q.PosDef) :
+    (L : Mat ℝ n ny) (Q : Mat ℝ n n) (M : Mat ℝ ny ny) (β : ℝ) (hQ : Q.PosDef) : -- --- CONCL ---
     LinearSysDT.HMinusLmiPhi A C E L Q M β ↔
       LinearSysDT.HMinusLmiGain A C E L Q M β := by -- --- PROOF ---
   haveI : Invertible Q := hQ.isUnit.invertible

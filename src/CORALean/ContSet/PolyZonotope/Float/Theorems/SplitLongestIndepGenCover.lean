@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.splitLongestIndepGen_cover (pZ : PolyZonotope (Vec 𝕋 n)) :
+theorem PolyZonotope.splitLongestIndepGen_cover (pZ : PolyZonotope (Vec 𝕋 n)) : -- --- CONCL ---
     pZ.construct ⊆ pZ.splitLongestIndepGen.1.construct
       ∪ pZ.splitLongestIndepGen.2.construct := by -- --- PROOF ---
   unfold PolyZonotope.splitLongestIndepGen

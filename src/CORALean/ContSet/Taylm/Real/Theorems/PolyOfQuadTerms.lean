@@ -46,7 +46,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.polyOf_quadTerms (H : Mat ℝ n n) (x0 t : Vec ℝ n) :
+theorem Taylm.polyOf_quadTerms (H : Mat ℝ n n) (x0 t : Vec ℝ n) : -- --- CONCL ---
     Taylm.polyOf (Taylm.quadTerms H x0) t = (t - x0) ⬝ᵥ (H *ᵥ (t - x0)) / 2 := by -- --- PROOF ---
   have hflat : ∀ LL : List (List (ℝ × (Fin n → ℕ))),
       Taylm.polyOf LL.flatten t = (LL.map fun L => Taylm.polyOf L t).sum := by

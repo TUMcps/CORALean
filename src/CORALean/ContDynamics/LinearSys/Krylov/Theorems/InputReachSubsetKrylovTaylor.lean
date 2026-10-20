@@ -88,7 +88,7 @@ attribute [local instance] Krylov.aux_setPlus Krylov.aux_setMtimes Krylov.aux_se
 
 /-- The images of a bounded set under the matrices of an interval matrix are bounded. -/
 theorem Krylov.aux_isBounded_iUnion_image (I : Interval (Mat ℝ n n)) {U : Set (Vec ℝ n)}
-    (hU : Bornology.IsBounded U) :
+    (hU : Bornology.IsBounded U) : -- --- CONCL ---
     Bornology.IsBounded (⋃ M ∈ I.construct, (M *ᵥ ·) '' U) := by -- --- PROOF ---
   obtain ⟨C, hC⟩ := hU.exists_norm_le
   set c := ∑ i, ∑ j, (|I.inf i j| + |I.sup i j|) with hc

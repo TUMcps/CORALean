@@ -43,7 +43,7 @@ theorem Polygon.aux_foldl_max_le {α : Type} (d : α → ℝ) :
 
 /-- The distance from an outside point to a compact set is the distance to its frontier. -/
 theorem Polygon.aux_infDist_frontier {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
-    {R : Set E} (hc : IsCompact R) (hne : R.Nonempty) {x : E} (hx : x ∉ R) :
+    {R : Set E} (hc : IsCompact R) (hne : R.Nonempty) {x : E} (hx : x ∉ R) : -- --- CONCL ---
     Metric.infDist x (frontier R) = Metric.infDist x R := by -- --- PROOF ---
   obtain ⟨y, hyR, hy⟩ := hc.exists_infDist_eq_dist hne x
   have hxy : 0 < dist x y := dist_pos.mpr fun h => hx (h ▸ hyR)
@@ -79,7 +79,7 @@ theorem Polygon.aux_infDist_frontier {E : Type} [NormedAddCommGroup E] [NormedSp
 
 open Classical in
 theorem Polygon.hausdorffDist_le_iff (P : Polygon) (hne : (ContSet.construct P).Nonempty)
-    (S : List (Vec ℝ 2)) {r : ℝ} (hr : 0 ≤ r) :
+    (S : List (Vec ℝ 2)) {r : ℝ} (hr : 0 ≤ r) : -- --- CONCL ---
     P.hausdorffDist S ≤ r ↔ ∀ s ∈ S, ∃ y ∈ ContSet.construct P, ‖s - y‖₂ ≤ r := by -- --- PROOF ---
   set R : Set (Vec ℝ 2) := ContSet.construct P with hR
   have hcR : IsCompact (toEuclidean '' R) :=

@@ -41,7 +41,7 @@ namespace CORALean.Float.Dyadic
 variable {p : ℕ}
 
 /-- The upward direction is the downward one at a negated dividend. -/
-private theorem le_quotUp (a b : Dyadic p) (hb : 0 < toReal b) :
+private theorem le_quotUp (a b : Dyadic p) (hb : 0 < toReal b) : -- --- CONCL ---
     toReal a / toReal b ≤ toReal (quotUp a b) := by -- --- PROOF ---
   have hm : 0 < b.mantissa := mantissa_pos hb
   have hmR : (0 : ℝ) < (b.mantissa : ℝ) := Int.cast_pos.mpr hm

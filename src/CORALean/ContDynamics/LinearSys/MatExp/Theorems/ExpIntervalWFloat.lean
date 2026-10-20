@@ -113,7 +113,7 @@ theorem aux_rowColSum_mem (A : Interval (Mat 𝕋 n n)) {M : Mat ℝ n n} (hM : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.expW_mem_expIntervalW (A : Interval (Mat 𝕋 n n)) (t : 𝕋)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) :
+    {M : Mat ℝ n n} (hM : M ∈ A.construct) : -- --- CONCL ---
     Real.MatExp.expW M (toReal t) ∈ (MatExp.expIntervalW A t).construct := by -- --- PROOF ---
   refine Interval.mem_mat_iff.mpr fun i j => ?_
   have hm := Interval.mem_mat_iff.mp hM

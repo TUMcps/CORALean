@@ -45,7 +45,7 @@ variable {X : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Formula.sat_release (a b : ℝ≥0) (φ ψ : STL.Formula X) (ξ : ℝ≥0 → X) :
+theorem STL.Formula.sat_release (a b : ℝ≥0) (φ ψ : STL.Formula X) (ξ : ℝ≥0 → X) : -- --- CONCL ---
     (STL.Formula.release a b φ ψ).Sat ξ ↔ ∀ t, a ≤ t → t ≤ b →
       ψ.Sat (Time.shift ξ t) ∨ ∃ i < t, φ.Sat (Time.shift ξ i) := by -- --- PROOF ---
   simp only [STL.Formula.release, STL.Formula.Sat, not_exists, not_and, not_not, not_forall]

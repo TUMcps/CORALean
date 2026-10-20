@@ -49,7 +49,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Eq. 7]: the frontier of `[l, u] ⊂ ℝⁿ` is the union of its `2n` faces. -/
-theorem frontier_Icc_eq_iUnion_faces (l u : Fin n → ℝ) :
+theorem frontier_Icc_eq_iUnion_faces (l u : Fin n → ℝ) : -- --- CONCL ---
     frontier (Icc l u) =
       ⋃ i, ({x | x ∈ Icc l u ∧ x i = u i} ∪ {x | x ∈ Icc l u ∧ x i = l i}) := by -- --- PROOF ---
   have hbox : Icc l u = pi univ fun i => Icc (l i) (u i) := (pi_univ_Icc l u).symm

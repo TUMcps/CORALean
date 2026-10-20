@@ -50,7 +50,7 @@ variable {m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem det_colsSnoc_one_sub_vecMulVec (c l : Vec ℝ (m + 1)) (σ : ℝ)
-    (B : Fin m → Vec ℝ (m + 1)) :
+    (B : Fin m → Vec ℝ (m + 1)) : -- --- CONCL ---
     (colsSnoc (fun k => (1 - Matrix.vecMulVec l c) *ᵥ B k) (σ • l)).det =
       (colsSnoc B (σ • l)).det := by -- --- PROOF ---
   by_cases hσ : σ = 0

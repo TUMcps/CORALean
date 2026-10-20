@@ -46,7 +46,7 @@ variable {T : Type} [LinearOrder T]
 
 /-- Appending points above `t` leaves the value at `t`. -/
 theorem PointSegmentSignal.at_append_lt (A R : List T) (VA VR : List Bool)
-    (hlen : VA.length = 2 * A.length) (hne : A ≠ []) (t : T) (h : ∀ r ∈ R, t < r) :
+    (hlen : VA.length = 2 * A.length) (hne : A ≠ []) (t : T) (h : ∀ r ∈ R, t < r) : -- --- CONCL ---
     (PointSegmentSignal.mk (A ++ R) (VA ++ VR)).at t = (PointSegmentSignal.mk A VA).at t
       := by -- --- PROOF ---
   have hpos : 0 < A.length := List.length_pos_iff.mpr hne

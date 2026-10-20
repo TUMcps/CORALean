@@ -143,7 +143,7 @@ private def Holds (θ : ℝ) (B : SinCosBox 𝕋) : Prop :=
   toReal B.sl ≤ Real.sin θ ∧ Real.sin θ ≤ toReal B.su ∧
     toReal B.cl ≤ Real.cos θ ∧ Real.cos θ ≤ toReal B.cu
 
-private theorem toReal_halfIter (n : ℕ) (a : 𝕋) :
+private theorem toReal_halfIter (n : ℕ) (a : 𝕋) : -- --- CONCL ---
     toReal (halfIter n a) = toReal a / 2 ^ n := by -- --- PROOF ---
   induction n with
   | zero => rw [halfIter, pow_zero, div_one]
@@ -152,7 +152,7 @@ private theorem toReal_halfIter (n : ℕ) (a : 𝕋) :
     ring
 
 /-- `k x` lies between its values at the ends of `[c, d]`. -/
-private theorem mul_between {k c d x : ℝ} (h1 : c ≤ x) (h2 : x ≤ d) :
+private theorem mul_between {k c d x : ℝ} (h1 : c ≤ x) (h2 : x ≤ d) : -- --- CONCL ---
     min (k * c) (k * d) ≤ k * x ∧ k * x ≤ max (k * c) (k * d) := by -- --- PROOF ---
   rcases le_total 0 k with hk | hk
   · exact ⟨min_le_of_left_le (mul_le_mul_of_nonneg_left h1 hk),
@@ -162,7 +162,7 @@ private theorem mul_between {k c d x : ℝ} (h1 : c ≤ x) (h2 : x ≤ d) :
 
 /-- A product of two bounded factors stays between the four corners. -/
 private theorem corner_bounds {a b c d : 𝕋} {y x : ℝ} (hy1 : toReal a ≤ y) (hy2 : y ≤ toReal b)
-    (hx1 : toReal c ≤ x) (hx2 : x ≤ toReal d) :
+    (hx1 : toReal c ≤ x) (hx2 : x ≤ toReal d) : -- --- CONCL ---
     toReal (cornerLo a b c d) ≤ y * x ∧ y * x ≤ toReal (cornerHi a b c d) := by -- --- PROOF ---
   have hy := mul_between (k := x) hy1 hy2
   have ha := mul_between (k := toReal a) hx1 hx2
@@ -211,7 +211,7 @@ private theorem unitBox_holds (θ : ℝ) : Holds θ (unitBox : SinCosBox 𝕋) :
   exact ⟨Real.neg_one_le_sin θ, Real.sin_le_one θ, Real.neg_one_le_cos θ, Real.cos_le_one θ⟩
 
 /-- The sine seed: `Real.sin_bound`, each of its roundings paid. -/
-private theorem sinSeedNonneg_mem {t : 𝕋} (h0 : 0 ≤ toReal t) (h1 : toReal t ≤ 1) :
+private theorem sinSeedNonneg_mem {t : 𝕋} (h0 : 0 ≤ toReal t) (h1 : toReal t ≤ 1) : -- --- CONCL ---
     toReal (sinSeedNonneg t).inf ≤ Real.sin (toReal t) ∧
       Real.sin (toReal t) ≤ toReal (sinSeedNonneg t).sup := by -- --- PROOF ---
   set x := toReal t
@@ -254,7 +254,7 @@ private theorem sinSeedNonneg_mem {t : 𝕋} (h0 : 0 ≤ toReal t) (h1 : toReal 
     linarith [hd.1]
 
 /-- The cosine seed: `one_sub_sq_div_two_le_cos` below, `Real.cos_bound` above. -/
-private theorem cosSeed_mem {t : 𝕋} (h0 : 0 ≤ toReal t) (h1 : toReal t ≤ 1) :
+private theorem cosSeed_mem {t : 𝕋} (h0 : 0 ≤ toReal t) (h1 : toReal t ≤ 1) : -- --- CONCL ---
     toReal (cosSeed t).inf ≤ Real.cos (toReal t) ∧
       Real.cos (toReal t) ≤ toReal (cosSeed t).sup := by -- --- PROOF ---
   set x := toReal t
@@ -281,7 +281,8 @@ private theorem cosSeed_mem {t : 𝕋} (h0 : 0 ≤ toReal t) (h1 : toReal t ≤ 
     rw [toReal_one, toReal_half] at this
     linarith
 
-private theorem seed_holds (y : 𝕋) : Holds (toReal y) (seed y) := by -- --- PROOF ---
+private theorem seed_holds (y : 𝕋) : -- --- CONCL ---
+    Holds (toReal y) (seed y) := by -- --- PROOF ---
   by_cases ht : le (absolute y) one = true
   · have hy := toReal_le_of_le ht
     rw [toReal_absolute, toReal_one] at hy
@@ -314,7 +315,7 @@ private theorem seed_holds (y : 𝕋) : Holds (toReal y) (seed y) := by -- --- P
     exact unitBox_holds _
 
 /-- One doubling keeps the claim, at twice the angle. -/
-private theorem double_holds {θ : ℝ} {B : SinCosBox 𝕋} (h : Holds θ B) :
+private theorem double_holds {θ : ℝ} {B : SinCosBox 𝕋} (h : Holds θ B) : -- --- CONCL ---
     Holds (2 * θ) (double B) := by -- --- PROOF ---
   obtain ⟨h1, h2, h3, h4⟩ := h
   have hp := corner_bounds h1 h2 h3 h4
@@ -359,7 +360,8 @@ private theorem double_holds {θ : ℝ} {B : SinCosBox 𝕋} (h : Holds θ B) :
     · have := add_le_addUp (cornerHi B.cl B.cu B.cl B.cu) (cornerHi B.cl B.cu B.cl B.cu)
       rw [toReal_one]; linarith [hr.2]
 
-private theorem doubleIter_holds (n : ℕ) {θ : ℝ} {B : SinCosBox 𝕋} (h : Holds θ B) :
+private theorem doubleIter_holds (n : ℕ) {θ : ℝ} {B : SinCosBox 𝕋}
+    (h : Holds θ B) : -- --- CONCL ---
     Holds (2 ^ n * θ) (doubleIter n B) := by -- --- PROOF ---
   induction n generalizing θ B with
   | zero => rw [doubleIter, pow_zero, one_mul]; exact h

@@ -47,7 +47,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `sup_{x∈Z} ‖x‖ = max(0, maxⱼ absBound j)`, as a least upper bound. -/
-theorem Zonotope.isLUB_norm_image_fold_max_absBound (Z : Zonotope (Vec ℝ n)) :
+theorem Zonotope.isLUB_norm_image_fold_max_absBound (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     IsLUB ((fun x => ‖x‖) '' Z.construct)
       (Finset.univ.fold max 0 Z.absBound) := by -- --- PROOF ---
   have h0 : 0 ≤ Finset.univ.fold max 0 Z.absBound := (Finset.le_fold_max _).mpr (Or.inl le_rfl)

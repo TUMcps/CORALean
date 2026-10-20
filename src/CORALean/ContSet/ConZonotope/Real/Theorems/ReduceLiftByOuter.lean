@@ -51,7 +51,7 @@ variable {n q r : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.reduceLiftBy_outer (cZ : ConZonotope (Vec ℝ n))
-    (part : Split (Fin cZ.h) into (Fin q) ⊕ (Fin r)) :
+    (part : Split (Fin cZ.h) into (Fin q) ⊕ (Fin r)) : -- --- CONCL ---
     cZ.construct ⊆ (cZ.reduceLiftBy part).construct := by -- --- PROOF ---
   intro x hx
   have hlift := ConZonotope.mem_liftEq_of_mem cZ hx

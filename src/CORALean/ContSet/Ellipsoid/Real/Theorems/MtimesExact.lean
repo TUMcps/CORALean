@@ -50,7 +50,7 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.mtimes_exact (M : Mat ℝ m n) (E : Ellipsoid n) :
+theorem Ellipsoid.mtimes_exact (M : Mat ℝ m n) (E : Ellipsoid n) : -- --- CONCL ---
     (M *ᵥ ·) '' E.construct = (Ellipsoid.mtimes M E).construct := by -- --- PROOF ---
   rw [E.construct_eq_sqrt]
   rw [(Ellipsoid.mtimes M E).construct_eq_of_factor _ (E.mul_G_mul_transpose M)]

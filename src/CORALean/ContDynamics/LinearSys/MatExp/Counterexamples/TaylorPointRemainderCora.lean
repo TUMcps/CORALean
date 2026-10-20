@@ -55,7 +55,7 @@ noncomputable def MatExp.taylorPointRemainderCora (a : ℝ) (m : ℕ) : Option (
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- For `a = -1` and order `2` CORA's result is the point `13/18`, which is above `exp(-1)`. -/
-theorem MatExp.taylorPointRemainder_cora_counterexample :
+theorem MatExp.taylorPointRemainder_cora_counterexample : -- --- CONCL ---
     MatExp.taylorPointRemainderCora (-1) 2 = some ⟨13 / 18, 13 / 18⟩ ∧
       Real.exp (-1) < 13 / 18 := by -- --- PROOF ---
   refine ⟨?_, ?_⟩

@@ -53,7 +53,7 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.inclusion_outer (p : Vec ℝ n) (IM : Interval (Mat ℝ n m)) :
+theorem Zonotope.inclusion_outer (p : Vec ℝ n) (IM : Interval (Mat ℝ n m)) : -- --- CONCL ---
     (⋃ M ∈ IM.construct, {x | ∃ b : Vec ℝ m, (∀ j, |b j| ≤ 1) ∧ x = p + M *ᵥ b})
       ⊆ (Zonotope.inclusion p IM).construct := by -- --- PROOF ---
   rintro x hx

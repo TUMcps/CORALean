@@ -72,7 +72,8 @@ theorem aux_encloseAt_cons (L : RefinableLayer S n m) (rest : RefinableNetwork S
 error the tail adds are both paid out of the same ball. -/
 theorem aux_subset_inflate_trans {E C B : Set (Vec ℝ m)} {δ₁ δ₂ ε : ℝ}
     (hC : C ⊆ E + Metric.closedBall 0 δ₁) (hB : B ⊆ C + Metric.closedBall 0 δ₂)
-    (hδ : δ₁ + δ₂ ≤ ε) : B ⊆ E + Metric.closedBall 0 ε := by -- --- PROOF ---
+    (hδ : δ₁ + δ₂ ≤ ε) : -- --- CONCL ---
+    B ⊆ E + Metric.closedBall 0 ε := by -- --- PROOF ---
   intro y hy
   obtain ⟨c, hc, d₂, hd₂, rfl⟩ := hB hy
   obtain ⟨e, he, d₁, hd₁, rfl⟩ := hC hc
@@ -87,7 +88,7 @@ theorem aux_subset_inflate_trans {E C B : Set (Vec ℝ m)} {δ₁ δ₂ ε : ℝ
 /-- A Lipschitz map carries an inflation to an inflation, the radius scaled:
 this is how a residual left early reaches the output. -/
 theorem aux_image_inflate_subset {k : ℕ} {f : Vec ℝ m → Vec ℝ k} {K : NNReal}
-    (hK : LipschitzWith K f) (A : Set (Vec ℝ m)) (δ : ℝ) :
+    (hK : LipschitzWith K f) (A : Set (Vec ℝ m)) (δ : ℝ) : -- --- CONCL ---
     f '' (A + Metric.closedBall 0 δ)
       ⊆ f '' A + Metric.closedBall 0 ((K : ℝ) * δ) := by -- --- PROOF ---
   rintro _ ⟨_, ⟨a, ha, d, hd, rfl⟩, rfl⟩

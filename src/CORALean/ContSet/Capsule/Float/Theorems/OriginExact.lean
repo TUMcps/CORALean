@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.origin_exact (n : ℕ) :
+theorem Capsule.origin_exact (n : ℕ) : -- --- CONCL ---
     (Capsule.origin n : Capsule 𝕋 n).construct = {0} := by -- --- PROOF ---
   have h : (Capsule.origin n : Capsule 𝕋 n).nominal = Real.Capsule.ofPoint (0 : Vec ℝ n) := by
     unfold Capsule.nominal Capsule.origin Real.Capsule.ofPoint

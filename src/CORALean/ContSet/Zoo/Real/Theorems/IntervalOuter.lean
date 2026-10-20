@@ -45,7 +45,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zoo.interval_outer {Z : Zoo n} {f : Vec ℝ n → ℝ} (h : Z.Encloses f) {t : Vec ℝ n}
-    (ht : t ∈ Taylm.box n) :
+    (ht : t ∈ Taylm.box n) : -- --- CONCL ---
     ∀ I ∈ Z.interval,
       (fun _ => f t : Vec ℝ 1) ∈ I.construct := by -- --- PROOF ---
   intro I (hI : Z.interval = some I)

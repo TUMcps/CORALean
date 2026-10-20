@@ -63,7 +63,7 @@ theorem NonlinearSysDT.not_holds_of_simulate (sys : NonlinearSysDT n m) {U : S m
     (ho : 0 < o) (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n) (spec : Specification ContSet)
     {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) {u : ℕ → Vec ℝ m} (hu : ∀ k, u k ∈ construct U)
     (hR : ∀ k, sys.simulate x₀ u k ∈ (steps k).R) (k : ℕ)
-    (hbad : ¬ spec.Holds {sys.simulate x₀ u k}) : -- --- CONCL ---
+    (hbad : ¬ spec.Holds {sys.simulate x₀ u k}) :
     ¬ spec.Holds (construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps)) :=
   fun h => hbad (sys.holds_of_reach ho steps R₀ spec (sys.simulate_isTrajectory hx₀ hu) hR k h)
 

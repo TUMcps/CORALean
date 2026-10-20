@@ -89,7 +89,7 @@ theorem ConPolyZono.aux_convHullSingle_mem (a : ℕ) (cPZ : ConPolyZono 𝕋 (Ve
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.convHullSingle_outer (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (hq : cPZ.qI = 0)
-    (ha : n + 1 ≤ a) :
+    (ha : n + 1 ≤ a) : -- --- CONCL ---
     convexHull ℝ cPZ.construct ⊆ (cPZ.convHullSingle a).construct := by -- --- PROOF ---
   intro x hx
   -- the hull of the nominal set plus the box is the nominal hull plus the box

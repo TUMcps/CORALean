@@ -38,7 +38,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.representsa_point_iff (I : Interval α) :
+theorem Interval.representsa_point_iff (I : Interval α) : -- --- CONCL ---
     I.representsa_point ↔ ∃ v, I.construct = {v} := by -- --- PROOF ---
   constructor
   · intro h

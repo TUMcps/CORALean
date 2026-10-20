@@ -38,7 +38,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.sat_cnfRewrite (φ : STL.Tree n) (ξ : ℝ≥0 → Fin n → ℝ) :
+theorem STL.Tree.sat_cnfRewrite (φ : STL.Tree n) (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
     (φ.cnfRewrite).1.Sat ξ ↔ φ.Sat ξ := by -- --- PROOF ---
   induction φ generalizing ξ with
   | or φ ψ ihφ ihψ =>

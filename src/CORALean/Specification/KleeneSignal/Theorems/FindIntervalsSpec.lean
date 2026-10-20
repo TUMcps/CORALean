@@ -41,7 +41,8 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The intervals of `findIntervals` are the maximal intervals where the signal is `match`. -/
-theorem KleeneSignal.findIntervals_spec (s : KleeneSignal ℝ) (hs : s.IsValid) (match_ : Kleene) :
+theorem KleeneSignal.findIntervals_spec (s : KleeneSignal ℝ) (hs : s.IsValid)
+    (match_ : Kleene) : -- --- CONCL ---
     STLInterval.MaximalRuns (s.findIntervals match_)
       (fun t => s.at t = match_) := by -- --- PROOF ---
   cases match_ with

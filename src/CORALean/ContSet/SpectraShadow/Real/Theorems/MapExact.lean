@@ -39,7 +39,7 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.map_exact (f : α →ₗ[ℝ] β) (S : SpectraShadow α) :
+theorem SpectraShadow.map_exact (f : α →ₗ[ℝ] β) (S : SpectraShadow α) : -- --- CONCL ---
     f '' S.construct = (S.map f).construct := by -- --- PROOF ---
   have hf : ∀ b : Fin S.m → ℝ, f (S.c + ∑ j, b j • S.G j)
       = (S.map f).c + ∑ j, b j • (S.map f).G j := by

@@ -52,7 +52,7 @@ def Interval.aux_ratioInv (f : Fin n → Option (Interval 𝕋)) (idx : List (Fi
 
 /-- One step keeps the invariant for the coordinates up to `i`. -/
 theorem Interval.aux_ratio_step (f : Fin n → Option (Interval 𝕋)) (idx : List (Fin n)) (i : Fin n)
-    (acc : Option (Interval 𝕋)) (h : Interval.aux_ratioInv f idx acc) :
+    (acc : Option (Interval 𝕋)) (h : Interval.aux_ratioInv f idx acc) : -- --- CONCL ---
     Interval.aux_ratioInv f (idx ++ [i])
       (Interval.aux_boundaryRatioStep acc (f i)) := by -- --- PROOF ---
   obtain ⟨h1, h2⟩ := h

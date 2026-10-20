@@ -56,7 +56,7 @@ variable {m n : ℕ}
 
 /-- Setting the entry `(i, j)` of `W` to `t` moves `W v` along the `i`-th basis vector. -/
 theorem Zonotope.aux_update_mulVec (W : Mat ℝ m n) (i : Fin m) (j : Fin n) (t : ℝ)
-    (v : Vec ℝ n) :
+    (v : Vec ℝ n) : -- --- CONCL ---
     Function.update W i (Function.update (W i) j t) *ᵥ v =
       W *ᵥ v + (t - W i j) • (Pi.single i (v j) : Vec ℝ m) := by -- --- PROOF ---
   funext k

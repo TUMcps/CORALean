@@ -81,7 +81,7 @@ theorem SpectraShadow.aux_lmi_esum (S : SpectraShadow (Vec ℝ n)) (x : Vec ℝ 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.generateESumRep_exact (S : SpectraShadow (Vec ℝ n)) :
+theorem SpectraShadow.generateESumRep_exact (S : SpectraShadow (Vec ℝ n)) : -- --- CONCL ---
     S.generateESumRep.construct = S.construct := by -- --- PROOF ---
   ext x
   constructor

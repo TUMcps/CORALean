@@ -37,7 +37,7 @@ variable {n : ℕ} {S : Set (Vec ℝ n)}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.subset_ofBounds (up : ∀ j, SupportBound S (LinearMap.proj j))
-    (lo : ∀ j, SupportBound S (-LinearMap.proj j)) :
+    (lo : ∀ j, SupportBound S (-LinearMap.proj j)) : -- --- CONCL ---
     S ⊆ (Interval.ofBounds up lo).construct := by -- --- PROOF ---
   intro x hx j
   constructor

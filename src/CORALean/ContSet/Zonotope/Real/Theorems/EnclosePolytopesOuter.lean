@@ -56,7 +56,7 @@ variable {n : ℕ} {ι κ : Type} [Fintype ι] [Fintype κ] [Nonempty ι] [Nonem
 /-- [1, Prop. 12]: at a full-rank `Λ`, every polytope `conv(V l)` lies in
 `Λ box(Λ⁻¹P₁, ..., Λ⁻¹P_μ)`. -/
 theorem Zonotope.enclosePolytopes_outer {Λ : Mat ℝ n n} (hΛ : IsUnit Λ.det)
-    (V : ι → κ → Vec ℝ n) (l : ι) :
+    (V : ι → κ → Vec ℝ n) (l : ι) : -- --- CONCL ---
     convexHull ℝ (Set.range (V l))
       ⊆ (Zonotope.enclosePolytopes Λ V).construct := by -- --- PROOF ---
   intro x hx

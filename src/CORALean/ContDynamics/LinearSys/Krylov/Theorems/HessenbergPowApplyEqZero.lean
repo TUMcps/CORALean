@@ -49,7 +49,7 @@ variable {R : Type*} [Semiring R] {m : ℕ}
 /-- [1, Eq. 2.3]: `(Tʲ)_{i,l} = 0` for an upper Hessenberg `T` when `i > l + j`; at row `m`,
 column `1` this is `e_mᵀ T_mʲ e₁ = 0` for `j ≤ m - 2`. -/
 theorem Krylov.hessenberg_pow_apply_eq_zero (T : Mat R m m)
-    (hT : ∀ i k : Fin m, (k : ℕ) + 1 < i → T i k = 0) :
+    (hT : ∀ i k : Fin m, (k : ℕ) + 1 < i → T i k = 0) : -- --- CONCL ---
     ∀ (j : ℕ) (i l : Fin m), (l : ℕ) + j < i → (T ^ j) i l = 0 := by -- --- PROOF ---
   intro j
   induction j with

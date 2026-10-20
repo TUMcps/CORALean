@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.le_powUp {a : 𝕋} (ha : 0 ≤ toReal a) (k : ℕ) :
+theorem MatExp.le_powUp {a : 𝕋} (ha : 0 ≤ toReal a) (k : ℕ) : -- --- CONCL ---
     toReal a ^ k ≤ toReal (MatExp.powUp k a) := by -- --- PROOF ---
   induction k with
   | zero =>

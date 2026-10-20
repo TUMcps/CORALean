@@ -50,7 +50,7 @@ variable {n m : ℕ}
 /-- `[1, Def. 6]`: the gain order is `∞` exactly when every coefficient of the
 expansion vanishes. -/
 theorem gainOrder_eq_top_iff {q : ℕ → Fin n → ℕ∞} {a : ℕ → Fin n → Vec ℝ m}
-    (hconv : ∀ p i, q p i = ⊤ → a p i = 0) :
+    (hconv : ∀ p i, q p i = ⊤ → a p i = 0) : -- --- CONCL ---
     gainOrder q a = ⊤ ↔ ∀ p i, a p i = 0 := by -- --- PROOF ---
   rw [gainOrder, iInf_eq_top]
   constructor

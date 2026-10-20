@@ -105,7 +105,7 @@ theorem aux_analyzeSingle_loop (obj : ReachSetAnalyzer S n) (d : ℝ) (loc : ℕ
 theorem ReachSetAnalyzer.analyzeSingle_spec (obj : ReachSetAnalyzer S n) (d : ℝ)
     (PT PF : String → ℝ → Prop) (hobj : obj.Represents d PT PF)
     (R : ReachSetAnalyzer.Entry S n)
-    (hR : ∀ s ∈ R.timeInterval, s.time.inf < s.time.sup) : -- --- CONCL ---
+    (hR : ∀ s ∈ R.timeInterval, s.time.inf < s.time.sup) :
     ∃ obj', obj.analyzeSingle (𝕋 := 𝕋) R = some obj' ∧ obj'.aps = obj.aps ∧
       obj'.masks = obj.masks ∧ obj'.Represents d
         (fun k t => PT k t ∨ ∃ s ∈ R.timeInterval,

@@ -51,7 +51,8 @@ variable {n : ℕ}
 
 /-- [1, Sec. 3 (center)]: `y ∈ Z(s; g)` iff `2c − y ∈ Z(s; g)` for the center `c = s + ½ ∑ gᵢ`. -/
 theorem Zonotope.generatorHull_symm (s : Vec ℝ n) (m : ℕ) (g : Fin m → Vec ℝ n)
-    (y : Vec ℝ n) : y ∈ Zonotope.generatorHull s m g ↔
+    (y : Vec ℝ n) : -- --- CONCL ---
+    y ∈ Zonotope.generatorHull s m g ↔
       (2 : ℝ) • (s + (1 / 2 : ℝ) • ∑ i, g i) - y
         ∈ Zonotope.generatorHull s m g := by -- --- PROOF ---
   rw [Zonotope.generatorHull_eq_construct]

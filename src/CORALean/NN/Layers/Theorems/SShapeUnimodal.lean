@@ -43,7 +43,7 @@ variable {α : Type} [AddCommGroup α] [LinearOrder α] [IsOrderedAddMonoid α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem IsSShape.unimodal {df : α → α} (h : IsSShape df) :
+theorem IsSShape.unimodal {df : α → α} (h : IsSShape df) : -- --- CONCL ---
     MonotoneOn df (Set.Iic 0) ∧ AntitoneOn df (Set.Ici 0) := by -- --- PROOF ---
   refine ⟨fun s hs t ht hst => ?_, fun s hs t ht hst => h.anti hs hst⟩
   -- the mirror image of `0 ≤ -t ≤ -s`

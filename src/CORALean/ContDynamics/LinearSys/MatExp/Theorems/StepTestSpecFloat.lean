@@ -57,7 +57,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A candidate passing `stepTest` is admissible. -/
 theorem MatExp.stepTest_spec {A : Mat ℝ n n} {nrm ε r : 𝕋} {η : ℕ}
-    (hA : ‖A‖ ≤ toReal nrm) (h : MatExp.stepTest nrm ε η r = true) :
+    (hA : ‖A‖ ≤ toReal nrm) (h : MatExp.stepTest nrm ε η r = true) : -- --- CONCL ---
     Real.MatExp.StepAdmissible A η (toReal ε) (toReal r) := by -- --- PROOF ---
   rw [MatExp.stepTest, Bool.and_eq_true, Bool.and_eq_true] at h
   obtain ⟨⟨h0, h1⟩, h2⟩ := h

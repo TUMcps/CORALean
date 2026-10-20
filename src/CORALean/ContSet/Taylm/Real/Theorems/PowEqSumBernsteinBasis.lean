@@ -49,7 +49,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.pow_eq_sum_bernsteinBasis (N i : ℕ) (hi : i ≤ N) (u : ℝ) :
+theorem Taylm.pow_eq_sum_bernsteinBasis (N i : ℕ) (hi : i ≤ N) (u : ℝ) : -- --- CONCL ---
     u ^ i = ∑ j ∈ Finset.range (N + 1),
       ((j.choose i : ℝ) / (N.choose i : ℝ)) * Taylm.bernsteinBasis N j u := by -- --- PROOF ---
   have hpos : (0 : ℝ) < N.choose i := Nat.cast_pos.mpr (Nat.choose_pos hi)

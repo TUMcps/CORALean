@@ -67,7 +67,7 @@ theorem dmdcEx1_data : dmdcEx1X' = dmdcEx1A * dmdcEx1X + dmdcEx1B * dmdcEx1U := 
     norm_num
 
 /-- `X` has full row rank, so a matrix is determined by its product with `X`. -/
-theorem dmdcEx1_unique (A₁ A₂ : Mat ℝ 2 2) (h : A₁ * dmdcEx1X = A₂ * dmdcEx1X) :
+theorem dmdcEx1_unique (A₁ A₂ : Mat ℝ 2 2) (h : A₁ * dmdcEx1X = A₂ * dmdcEx1X) : -- --- CONCL ---
     A₁ = A₂ := by -- --- PROOF ---
   have hM : dmdcEx1X * dmdcEx1Xᵀ = !![21.25, 29.4735; 29.4735, 49.494949] := by
     ext i j
@@ -91,7 +91,7 @@ theorem dmdcEx1_recovers (A' : Mat ℝ 2 2) (h : dmdcEx1X' - dmdcEx1B * dmdcEx1U
   exact dmdcEx1_unique _ _ (h.symm.trans h2)
 
 /-- Without the input, the only fit of `X' = A' X` is the closed loop, not `A`. -/
-theorem dmdcEx1_dmd_wrong (A' : Mat ℝ 2 2) (h : dmdcEx1X' = A' * dmdcEx1X) :
+theorem dmdcEx1_dmd_wrong (A' : Mat ℝ 2 2) (h : dmdcEx1X' = A' * dmdcEx1X) : -- --- CONCL ---
     A' = !![0.5, 0; 0, 0.1] ∧ A' ≠ dmdcEx1A := by -- --- PROOF ---
   have hcl : dmdcEx1X' = (!![0.5, 0; 0, 0.1] : Mat ℝ 2 2) * dmdcEx1X := by
     ext i j

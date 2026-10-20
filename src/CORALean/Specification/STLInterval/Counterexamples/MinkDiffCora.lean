@@ -59,7 +59,7 @@ noncomputable def STLInterval.minkDiffCora : STLInterval → STLInterval → Opt
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STLInterval.minkDiffCora_counterexample :
+theorem STLInterval.minkDiffCora_counterexample : -- --- CONCL ---
     ∃ (I J : STLInterval) (t : ℝ), (0 ≤ t ∧ ∀ y ∈ J.set, t + y ∈ I.set) ∧
       ¬ STLInterval.fieldsContainsPoint (STLInterval.minkDiffCora I J) t := by -- --- PROOF ---
   -- the operands are `[0, ∞)`, `stlInterval(0,inf)`

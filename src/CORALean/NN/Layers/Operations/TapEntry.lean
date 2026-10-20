@@ -52,7 +52,8 @@ def tapEntry {n : ℕ} : {k : ℕ} → (Fin k → Fin n) → (Fin k → 𝕋) �
 def aux_tapEntryImpl {n k : ℕ} (t : Fin k → Fin n) (v : Fin k → 𝕋) (i : Fin n) : 𝕋 :=
   Fin.foldr k (fun l acc => if t l = i then v l else acc) zero
 
-@[csimp] theorem aux_tapEntry_eq_impl : @tapEntry = @aux_tapEntryImpl := by -- --- PROOF ---
+@[csimp] theorem aux_tapEntry_eq_impl : -- --- CONCL ---
+    @tapEntry = @aux_tapEntryImpl := by -- --- PROOF ---
   funext 𝕋 _ n k
   induction k with
   | zero => funext t v i; rw [aux_tapEntryImpl, Fin.foldr_zero]; rfl

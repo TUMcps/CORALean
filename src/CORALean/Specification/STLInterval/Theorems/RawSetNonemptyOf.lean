@@ -40,7 +40,7 @@ namespace CORALean
 
 /-- The conditions of `STLInterval.nonempty` leave a time in the interval. -/
 theorem STLInterval.rawSet_nonempty_of (l u : EReal) (lc rc : Bool) (h1 : l = ⊥ → lc = false)
-    (h2 : u = ⊤ → rc = false) (h3 : l < u ∨ (l = u ∧ lc = true ∧ rc = true)) :
+    (h2 : u = ⊤ → rc = false) (h3 : l < u ∨ (l = u ∧ lc = true ∧ rc = true)) : -- --- CONCL ---
     (rawSet l u lc rc).Nonempty := by -- --- PROOF ---
   rcases h3 with h | ⟨e, hc, hr⟩
   · obtain ⟨y, hy1, hy2⟩ := EReal.exists_between_coe_real h

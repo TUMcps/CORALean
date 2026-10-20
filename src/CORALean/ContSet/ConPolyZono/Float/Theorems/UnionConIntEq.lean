@@ -41,7 +41,7 @@ namespace CORALean.Float
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.unionConInt_eq (p₁ p₂ : ℕ)
-    (l : Fin (2 + (p₁ + p₁ + (p₂ + p₂ + (p₁ * p₂ + p₁ * p₂))))) :
+    (l : Fin (2 + (p₁ + p₁ + (p₂ + p₂ + (p₁ * p₂ + p₁ * p₂))))) : -- --- CONCL ---
     (4 * ((max 1 p₁ : ℕ) : ℝ) * ((max 1 p₂ : ℕ) : ℝ)) * Real.ConPolyZono.unionConCoef p₁ p₂ l
       = (ConPolyZono.unionConInt p₁ p₂ l : ℝ) := by -- --- PROOF ---
   -- the cases `max` resolves to the count itself, which a column's existence forces

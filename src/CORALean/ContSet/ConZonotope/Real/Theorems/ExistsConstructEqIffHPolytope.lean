@@ -60,7 +60,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A constrained zonotope is a halfspace description: the shadow of the lifted polytope. -/
-theorem ConZonotope.aux_exists_hPolytope (cZ : ConZonotope (Vec ℝ n)) :
+theorem ConZonotope.aux_exists_hPolytope (cZ : ConZonotope (Vec ℝ n)) : -- --- CONCL ---
     ∃ P : HPolytope (Vec ℝ n), P.construct = cZ.construct := by -- --- PROOF ---
   -- `x = c + Gξ`, one equality per coordinate
   let graph : HPolytope (Vec ℝ n × Vec ℝ cZ.h) :=
@@ -109,7 +109,7 @@ theorem ConZonotope.aux_exists_hPolytope (cZ : ConZonotope (Vec ℝ n)) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Thm. 1]: a set is a constrained zonotope iff it is a bounded halfspace description. -/
-theorem ConZonotope.exists_construct_eq_iff_hPolytope {S : Set (Vec ℝ n)} :
+theorem ConZonotope.exists_construct_eq_iff_hPolytope {S : Set (Vec ℝ n)} : -- --- CONCL ---
     (∃ cZ : ConZonotope (Vec ℝ n), cZ.construct = S) ↔
       ∃ P : HPolytope (Vec ℝ n),
         P.construct = S ∧ Bornology.IsBounded S := by -- --- PROOF ---

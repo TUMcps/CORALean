@@ -44,7 +44,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.reach_le (Z : Zonotope (Vec ℝ 2)) (σ : ℝ) {z : Vec ℝ 2}
-    (hz : z ∈ Z.construct) :
+    (hz : z ∈ Z.construct) : -- --- CONCL ---
     σ * (z 0 - Z.corner (fun _ => false) 0) ≤ ∑ j, 2 * max (σ * Z.G j 0) 0 := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hz
   rw [Zonotope.comb_apply, Zonotope.corner_apply]

@@ -46,7 +46,7 @@ variable {n : ℕ}
 
 /-- `0 ≤ B ≤ C` entrywise gives `0 ≤ Bᵏ ≤ Cᵏ` entrywise. -/
 theorem MatExp.pow_entry_le_pow_entry {B C : Mat ℝ n n} (hB : ∀ i j, 0 ≤ B i j)
-    (h : ∀ i j, B i j ≤ C i j) (k : ℕ) (i j : Fin n) :
+    (h : ∀ i j, B i j ≤ C i j) (k : ℕ) (i j : Fin n) : -- --- CONCL ---
     0 ≤ (B ^ k) i j ∧ (B ^ k) i j ≤ (C ^ k) i j := by -- --- PROOF ---
   induction k generalizing i j with
   | zero => simp only [pow_zero, Matrix.one_apply]; split <;> simp

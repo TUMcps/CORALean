@@ -69,7 +69,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- On the step `(k Δt, (k + 1) Δt]` the held input is `v k`. -/
 theorem aux_heldInput_eq {Δt : ℝ} (hΔt : 0 < Δt) (v : ℕ → Vec ℝ n) (k : ℕ) {s : ℝ}
-    (hs : s ∈ Set.Ioc ((k : ℝ) * Δt) ((k : ℝ) * Δt + Δt)) :
+    (hs : s ∈ Set.Ioc ((k : ℝ) * Δt) ((k : ℝ) * Δt + Δt)) : -- --- CONCL ---
     LinearSys.heldInput Δt v s = v k := by -- --- PROOF ---
   have h1 : (k : ℝ) < s / Δt := by rw [lt_div_iff₀ hΔt]; exact hs.1
   have h2 : s / Δt ≤ ((k + 1 : ℕ) : ℝ) := by

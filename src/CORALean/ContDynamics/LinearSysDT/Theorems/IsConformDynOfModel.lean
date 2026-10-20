@@ -88,7 +88,7 @@ theorem aux_conform_delta (sys : LinearSysDT ℝ n) (x0 : Vec ℝ n) (u : ℕ �
 
 /-- The disturbances' part of the deviation set holds the sum, one member of `W` per term. -/
 theorem aux_conform_add (sys : LinearSysDT ℝ n) (W : S sys.r)
-    (ω : ℕ → Vec ℝ sys.r) (hω : ∀ j, ω j ∈ construct W) (k : ℕ) :
+    (ω : ℕ → Vec ℝ sys.r) (hω : ∀ j, ω j ∈ construct W) (k : ℕ) : -- --- CONCL ---
     ∑ j ∈ Finset.range k, (sys.C * sys.A ^ j) *ᵥ (sys.E *ᵥ ω j)
       ∈ construct (sys.conformAdd W k) := by -- --- PROOF ---
   induction k with

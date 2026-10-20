@@ -57,7 +57,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A vector whose squares sum to at most `r²` is in the ball of radius `r ≥ 0`, the ellipsoid of
 factor `r I` about the origin. -/
-theorem Ellipsoid.aux_mem_ball {r : ℝ} (hr : 0 ≤ r) {e : Vec ℝ n} (he : ∑ i, e i ^ 2 ≤ r ^ 2) :
+theorem Ellipsoid.aux_mem_ball {r : ℝ} (hr : 0 ≤ r) {e : Vec ℝ n}
+    (he : ∑ i, e i ^ 2 ≤ r ^ 2) : -- --- CONCL ---
     e ∈ (Real.Ellipsoid.ofFactor (r • (1 : Mat ℝ n n)) 0).construct := by -- --- PROOF ---
   rw [Real.Ellipsoid.construct_ofFactor]
   rcases eq_or_lt_of_le hr with h0 | hpos
@@ -84,7 +85,8 @@ theorem Ellipsoid.aux_mem_ball {r : ℝ} (hr : 0 ≤ r) {e : Vec ℝ n} (he : �
 /-- The weights `a ≥ 1 + 1/β` and `c ≥ 1 + β` at any `β > 0` have reciprocals summing to at most
 one, which is what `plus_outer` asks of the squared scalings. -/
 theorem Ellipsoid.aux_weights_admissible {β a c : ℝ} (hβ : 0 < β) (ha : 1 + 1 / β ≤ a)
-    (hc : 1 + β ≤ c) : 1 / a + 1 / c ≤ 1 := by -- --- PROOF ---
+    (hc : 1 + β ≤ c) : -- --- CONCL ---
+    1 / a + 1 / c ≤ 1 := by -- --- PROOF ---
   have e₁ : 1 / a ≤ 1 / (1 + 1 / β) := one_div_le_one_div_of_le (by positivity) ha
   have e₂ : 1 / c ≤ 1 / (1 + β) := one_div_le_one_div_of_le (by positivity) hc
   have e₃ : 1 / (1 + 1 / β) + 1 / (1 + β) = 1 := by
@@ -96,7 +98,7 @@ theorem Ellipsoid.aux_weights_admissible {β a c : ℝ} (hβ : 0 < β) (ha : 1 +
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `absorbRounding` contains the set. -/
-theorem Ellipsoid.absorbRounding_outer (k : ℕ) (E : Ellipsoid 𝕋 n) :
+theorem Ellipsoid.absorbRounding_outer (k : ℕ) (E : Ellipsoid 𝕋 n) : -- --- CONCL ---
     E.construct ⊆ (E.absorbRounding k).construct := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩
   -- the box's point squared-sums to at most `ρ²`

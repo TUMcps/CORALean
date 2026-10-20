@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem evalPoly_shiftConst (c : Fin (m + 1) → 𝕋) (s : 𝕋) (t : ℝ) :
+theorem evalPoly_shiftConst (c : Fin (m + 1) → 𝕋) (s : 𝕋) (t : ℝ) : -- --- CONCL ---
     Real.evalPoly (fun k => toReal (shiftConst c s k)) t
       = Real.evalPoly (fun k => toReal (c k)) t
         + (toReal (addUp (c 0) s) - toReal (c 0)) := by -- --- PROOF ---

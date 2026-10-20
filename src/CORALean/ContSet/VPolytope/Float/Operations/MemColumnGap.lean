@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- Storing the lower rounding of column `l` leaves a residual the gap admits. -/
 theorem VPolytope.mem_columnGap [SoundFloatArithmetic 𝕋] {k : ℕ} {lo hi : Fin k → Vec 𝕋 n}
     {p : Vec ℝ n} {l : Fin k}
-    (h : ∀ i, toReal (lo l i) ≤ p i ∧ p i ≤ toReal (hi l i)) :
+    (h : ∀ i, toReal (lo l i) ≤ p i ∧ p i ≤ toReal (hi l i)) : -- --- CONCL ---
     (fun i => p i - toReal (lo l i)) ∈ (VPolytope.columnGap lo hi).construct := by -- --- PROOF ---
   refine fun i => ⟨?_, ?_⟩
   · show toReal (zero : 𝕋) ≤ p i - toReal (lo l i)

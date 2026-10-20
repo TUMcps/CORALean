@@ -47,7 +47,8 @@ variable {n₁ n₂ : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.cartProd_exact (P₁ : VPolytope (Vec ℝ n₁)) (P₂ : VPolytope (Vec ℝ n₂)) :
+theorem VPolytope.cartProd_exact (P₁ : VPolytope (Vec ℝ n₁))
+    (P₂ : VPolytope (Vec ℝ n₂)) : -- --- CONCL ---
     (P₁.cartProd P₂).construct =
       (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
         (P₁.construct ×ˢ P₂.construct) := by -- --- PROOF ---

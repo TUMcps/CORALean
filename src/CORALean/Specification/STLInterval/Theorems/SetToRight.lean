@@ -36,7 +36,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `toRight` denotes the times outside `I` and no earlier than all of `I`. -/
-theorem STLInterval.set_toRight (I : STLInterval) (hI : I ≠ .empty) :
+theorem STLInterval.set_toRight (I : STLInterval) (hI : I ≠ .empty) : -- --- CONCL ---
     ∃ J, I.toRight = some J ∧ J.set = {t | t ∉ I.set ∧ ∀ s ∈ I.set, s ≤ t} := by -- --- PROOF ---
   cases I with
   | empty => exact absurd rfl hI

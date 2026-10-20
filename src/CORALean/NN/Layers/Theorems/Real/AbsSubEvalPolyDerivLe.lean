@@ -44,7 +44,8 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem abs_sub_evalPolyDeriv_le {n : ℕ} {c : Fin (n + 1) → ℝ} {σ' : ℝ → ℝ}
-    {lo hi l u x : ℝ} (hlo : lo ≤ σ' x) (hhi : σ' x ≤ hi) (hl : l ≤ x) (hu : x ≤ u) :
+    {lo hi l u x : ℝ} (hlo : lo ≤ σ' x) (hhi : σ' x ≤ hi) (hl : l ≤ x)
+    (hu : x ≤ u) : -- --- CONCL ---
     |σ' x - evalPolyDeriv c x|
       ≤ polyDerivDiff lo hi (polyDerivCenter c) (polyDerivRadius c l u) := by -- --- PROOF ---
   set ctr := polyDerivCenter c

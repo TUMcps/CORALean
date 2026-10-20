@@ -42,7 +42,7 @@ theorem STL.Tree.aux_isClause_of_isCnf (t : STL.Tree n) (h : t.IsCnf)
     (h' : ∀ l₁ l₂ : STL.Tree n, ¬ t = STL.Tree.and l₁ l₂) : t.IsClause := by
   cases t <;> simp_all [STL.Tree.IsCnf, STL.Tree.IsClause]
 
-theorem STL.Tree.aux_cnfRewrite_zero (φ : STL.Tree n) :
+theorem STL.Tree.aux_cnfRewrite_zero (φ : STL.Tree n) : -- --- CONCL ---
     (φ.cnfRewrite).2 = 0 → (φ.cnfRewrite).1 = φ ∧ φ.IsCnf := by -- --- PROOF ---
   induction φ with
   | or φ ψ ihφ ihψ =>

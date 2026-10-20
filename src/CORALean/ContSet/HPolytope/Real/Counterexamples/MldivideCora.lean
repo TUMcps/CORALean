@@ -72,7 +72,7 @@ def HPolytope.aux_interval1 (lo hi : ℝ) : HPolytope (Vec ℝ 1) where
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- CORA's result is not `P1 \ P2` for `P1 = [0, 2]`, `P2 = [1, 3]`. -/
-theorem HPolytope.mldivide_cora_counterexample :
+theorem HPolytope.mldivide_cora_counterexample : -- --- CONCL ---
     ∃ P₁ P₂ : HPolytope (Vec ℝ 1),
       P₁.mldivideCora P₂ ≠ P₁.construct \ P₂.construct := by -- --- PROOF ---
   have mem : ∀ (lo hi : ℝ) (x : Vec ℝ 1),

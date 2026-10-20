@@ -51,7 +51,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeurNetContrSys.cartProd_outer (X : S n) (Y : S m) {x : Vec ℝ n} {u : Vec ℝ m}
-    (hx : x ∈ construct X) (hu : u ∈ construct Y) :
+    (hx : x ∈ construct X) (hu : u ∈ construct Y) : -- --- CONCL ---
     (Fin.append x u : Vec ℝ (n + m)) ∈
       construct (NeurNetContrSys.cartProd X Y) := by -- --- PROOF ---
   -- the two embeddings, summed, are the stacked vector

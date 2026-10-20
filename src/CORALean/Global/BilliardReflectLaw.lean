@@ -44,7 +44,7 @@ variable {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem billiardReflect_law (s d : E) (hs : ‖s‖ = 1) :
+theorem billiardReflect_law (s d : E) (hs : ‖s‖ = 1) : -- --- CONCL ---
     inner ℝ (billiardReflect s d) s = -inner ℝ d s ∧
       billiardReflect s d - inner ℝ (billiardReflect s d) s • s = d - inner ℝ d s • s ∧
       ‖billiardReflect s d‖ = ‖d‖ := by -- --- PROOF ---

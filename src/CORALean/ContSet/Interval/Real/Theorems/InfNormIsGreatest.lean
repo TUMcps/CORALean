@@ -38,7 +38,7 @@ variable {m n : ℕ}
 
 /-- The maximum of the infinity norm over a nonempty box is `infNorm`, and is attained. -/
 theorem Interval.infNorm_isGreatest (A : Interval (Mat ℝ m n))
-    (hA : ∀ r s, A.inf r s ≤ A.sup r s) :
+    (hA : ∀ r s, A.inf r s ≤ A.sup r s) : -- --- CONCL ---
     IsGreatest ((fun M : Mat ℝ m n => Interval.NormType.inf.eval M) '' A.construct)
       A.infNorm := by -- --- PROOF ---
   have h : A.matNorm .inf = A.infNorm := by

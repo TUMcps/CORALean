@@ -47,7 +47,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.construct_inter_supportStrip_inter (Z : Zonotope (Vec ℝ n)) (c : Vec ℝ n)
-    (F : Set (Vec ℝ n)) :
+    (F : Set (Vec ℝ n)) : -- --- CONCL ---
     Z.construct ∩ (Z.supportStrip c ∩ F) = Z.construct ∩ F := by -- --- PROOF ---
   ext x
   constructor

@@ -33,7 +33,7 @@ namespace CORALean.Float
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem roundAwayInt_cast (q : ℚ) :
+theorem roundAwayInt_cast (q : ℚ) : -- --- CONCL ---
     ((roundAwayInt q : ℤ) : ℝ) = CORALean.Real.roundAway (q : ℝ) := by -- --- PROOF ---
   unfold roundAwayInt CORALean.Real.roundAway
   by_cases h : 0 ≤ q

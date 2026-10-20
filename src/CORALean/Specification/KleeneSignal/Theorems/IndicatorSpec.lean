@@ -38,7 +38,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem KleeneSignal.indicator_spec (I : STLInterval) (val default : Kleene) :
+theorem KleeneSignal.indicator_spec (I : STLInterval) (val default : Kleene) : -- --- CONCL ---
     (KleeneSignal.indicator I val default).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (t ∈ I.set → (KleeneSignal.indicator I val default).at t = val) ∧
       (t ∉ I.set → (KleeneSignal.indicator I val default).at t = default) := by -- --- PROOF ---

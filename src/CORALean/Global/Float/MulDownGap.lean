@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {h : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A product rounded down is off by at most the rounded gap to the one rounded up. -/
-theorem mulDown_gap (a r : 𝕋) :
+theorem mulDown_gap (a r : 𝕋) : -- --- CONCL ---
     |toReal a * toReal r - toReal (mulDown a r)|
       ≤ toReal (subUp (mulUp a r) (mulDown a r)) := by -- --- PROOF ---
   have h1 := mulDown_le_mul a r
@@ -53,7 +53,8 @@ theorem mulDown_gap (a r : 𝕋) :
   constructor <;> linarith
 
 /-- A row `a diag(r)` rounded down, against `|δ| ≤ 1`, is off by at most its summed gaps. -/
-theorem abs_sum_mulDown_gap_le (a r : Vec 𝕋 h) (δ : Vec ℝ h) (hδ : ∀ j, |δ j| ≤ 1) :
+theorem abs_sum_mulDown_gap_le (a r : Vec 𝕋 h) (δ : Vec ℝ h)
+    (hδ : ∀ j, |δ j| ≤ 1) : -- --- CONCL ---
     |∑ j, (toReal (a j) * toReal (r j) - toReal (mulDown (a j) (r j))) * δ j| ≤
       toReal (sumUp fun j => subUp (mulUp (a j) (r j)) (mulDown (a j) (r j))) := by -- --- PROOF ---
   refine le_trans (Finset.abs_sum_le_sum_abs _ _) (le_trans (Finset.sum_le_sum fun j _ => ?_)

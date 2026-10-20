@@ -45,7 +45,7 @@ variable {lam : ι → ℝ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Eq. 22]: `p_{d+1}(β) / ∏ λⱼ = ∑ᵢ (β² − 1/λᵢ) ∏_{j≠i} (β + 1/λⱼ)`. -/
-theorem Ellipsoid.halder_poly_div_prod (hlam : ∀ i, 0 < lam i) (β : ℝ) :
+theorem Ellipsoid.halder_poly_div_prod (hlam : ∀ i, 0 < lam i) (β : ℝ) : -- --- CONCL ---
     ∑ i, (β ^ 2 - 1 / lam i) * ∏ j ∈ Finset.univ.erase i, (β + 1 / lam j)
       = (∑ i, (β ^ 2 * lam i - 1) * ∏ j ∈ Finset.univ.erase i, (β * lam j + 1))
         / ∏ j, lam j := by -- --- PROOF ---

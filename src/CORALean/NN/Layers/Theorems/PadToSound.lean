@@ -40,7 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {σ : ℝ →
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyRelaxation.padTo_sound {P : PolyRelaxation 𝕋 k} (h : k ≤ M)
-    (hP : P.Sound σ) : (P.padTo M).Sound σ := by -- --- PROOF ---
+    (hP : P.Sound σ) : -- --- CONCL ---
+    (P.padTo M).Sound σ := by -- --- PROOF ---
   refine ⟨fun {l u _t} hl hu => ?_⟩
   have hco : (fun j => toReal ((P.padTo M).coeffs l u j))
       = Real.padCoeffs (fun i => toReal (P.coeffs l u i)) M := by

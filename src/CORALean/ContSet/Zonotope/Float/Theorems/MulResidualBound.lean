@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.mulResidual_bound {m h : ℕ} (A : Mat 𝕋 n m) (G : Mat 𝕋 n h) (Γ : Mat 𝕋 h m)
-    (i : Fin n) (j : Fin m) :
+    (i : Fin n) (j : Fin m) : -- --- CONCL ---
     |(toRealMat A - toRealMat G * toRealMat Γ) i j|
       ≤ toReal (Zonotope.mulResidual A G Γ i j) := by -- --- PROOF ---
   have hd := dotDown_le (fun l => G i l) fun l => Γ l j

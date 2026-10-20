@@ -50,7 +50,7 @@ variable {n : ℕ}
 
 /-- Any admissible error is reachable by raising the truncation order: the
 guarantee adaptive order selection rests on. -/
-theorem MatExp.tendsto_expRemainderBound_atTop (x : Mat ℝ n n) :
+theorem MatExp.tendsto_expRemainderBound_atTop (x : Mat ℝ n n) : -- --- CONCL ---
     Tendsto (fun η : ℕ => MatExp.expRemainderBound x η) atTop (𝓝 0) := by -- --- PROOF ---
   have h1 : Tendsto (fun η : ℕ => ‖x‖ ^ (η + 1) / (Nat.factorial (η + 1) : ℝ)) atTop (𝓝 0) :=
     (Real.summable_pow_div_factorial ‖x‖).tendsto_atTop_zero.comp (tendsto_add_atTop_nat 1)

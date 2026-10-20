@@ -56,7 +56,7 @@ theorem Interval.aux_ellipsoidG_ge (I : Interval (Vec 𝕋 n)) (σ : 𝕋) (i : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.subset_nominal_ellipsoid (I : Interval (Vec 𝕋 n)) (σ : 𝕋) (hσ : 0 < toReal σ)
-    (hn : (n : ℝ) ≤ toReal (mulDown σ σ)) :
+    (hn : (n : ℝ) ≤ toReal (mulDown σ σ)) : -- --- CONCL ---
     I.construct ⊆ nominalSet (I.ellipsoid σ) := by -- --- PROOF ---
   intro x hx
   have hreach : ∀ i, toReal (I.center i) - toReal (I.radiusFrom i) ≤ x i

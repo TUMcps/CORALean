@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- `x ∈ [lo, hi]` is within the rounded-up reach of the hull from `c`. -/
 theorem abs_sub_le_maximum_subUp {x : ℝ} {lo hi : 𝕋} (c : 𝕋) (hlo : toReal lo ≤ x)
-    (hhi : x ≤ toReal hi) :
+    (hhi : x ≤ toReal hi) : -- --- CONCL ---
     |x - toReal c|
       ≤ toReal (maximum zero (maximum (subUp hi c) (subUp c lo))) := by -- --- PROOF ---
   have h1 := sub_le_subUp hi c

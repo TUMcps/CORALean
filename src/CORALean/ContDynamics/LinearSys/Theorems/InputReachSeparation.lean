@@ -64,7 +64,7 @@ variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 /-- Translating by `c` carries `Icc a b` onto `Icc (a+c) (b+c)` and preserves
 Lebesgue measure. -/
 theorem aux_aestronglyMeasurable_comp_sub_right {f : ℝ → Vec ℝ n} {a b c : ℝ}
-    (hf : AEStronglyMeasurable f (volume.restrict (Set.Icc a b))) :
+    (hf : AEStronglyMeasurable f (volume.restrict (Set.Icc a b))) : -- --- CONCL ---
     AEStronglyMeasurable (fun σ => f (σ - c))
       (volume.restrict (Set.Icc (a + c) (b + c))) := by -- --- PROOF ---
   have hpre : (fun σ : ℝ => σ - c) ⁻¹' Set.Icc a b = Set.Icc (a + c) (b + c) := by
@@ -92,7 +92,7 @@ omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 a run over `[0,a]` can contribute, propagated across the remaining `b`, plus
 everything a run over `[0,b]` can. -/
 theorem LinearSys.inputReach_separation (sys : LinearSys 𝕋 n) {U : S n} {a b : ℝ}
-    (ha : 0 ≤ a) (hb : 0 ≤ b) (hbdd : Bornology.IsBounded (construct U)) :
+    (ha : 0 ≤ a) (hb : 0 ≤ b) (hbdd : Bornology.IsBounded (construct U)) : -- --- CONCL ---
     (fun y => exp (b • toRealMat sys.A) *ᵥ y) '' sys.inputReach U a + sys.inputReach U b
       ⊆ sys.inputReach U (a + b) := by -- --- PROOF ---
   set A := toRealMat sys.A with hA

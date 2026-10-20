@@ -42,7 +42,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PointSegmentSignal.not_anti (l l' : PointSegmentSignal ℝ) (hl : l.IsValid)
-    (hl' : l'.IsValid) (h : ∀ t : ℝ, 0 ≤ t → l.at t ≤ l'.at t) :
+    (hl' : l'.IsValid) (h : ∀ t : ℝ, 0 ≤ t → l.at t ≤ l'.at t) : -- --- CONCL ---
     ∀ t : ℝ, 0 ≤ t → l'.not.at t ≤ l.not.at t := by -- --- PROOF ---
   intro t ht
   rw [PointSegmentSignal.not_at l hl, PointSegmentSignal.not_at l' hl']

@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the two row blocks are exactly the two ends of the box, so nothing rounds
-theorem Interval.hPolytope_exact (I : Interval (Vec 𝕋 n)) :
+theorem Interval.hPolytope_exact (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
     (Interval.hPolytope I).construct = I.construct := by -- --- PROOF ---
   ext x
   simp only [Interval.hPolytope]

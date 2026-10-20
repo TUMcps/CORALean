@@ -62,7 +62,7 @@ theorem aux_corner_mem {lo hi v : ℝ} (h : v = lo ∨ v = hi) (hle : lo ≤ hi)
   · exact ⟨hle, le_rfl⟩
 
 /-- `mulLo` is one of the four corner products, and says which corners. -/
-theorem aux_mulLo_corner (a b c d : ℝ) :
+theorem aux_mulLo_corner (a b c d : ℝ) : -- --- CONCL ---
     ∃ y x, (y = a ∨ y = b) ∧ (x = c ∨ x = d) ∧ y * x = Interval.mulLo a b c d := by -- --- PROOF ---
   rcases min_cases (min (a * c) (a * d)) (min (b * c) (b * d)) with ⟨h1, -⟩ | ⟨h1, -⟩
   · rcases min_cases (a * c) (a * d) with ⟨h2, -⟩ | ⟨h2, -⟩
@@ -73,7 +73,7 @@ theorem aux_mulLo_corner (a b c d : ℝ) :
     · exact ⟨b, d, Or.inr rfl, Or.inr rfl, by rw [Interval.mulLo, h1, h2]⟩
 
 /-- The same for `mulHi`. -/
-theorem aux_mulHi_corner (a b c d : ℝ) :
+theorem aux_mulHi_corner (a b c d : ℝ) : -- --- CONCL ---
     ∃ y x, (y = a ∨ y = b) ∧ (x = c ∨ x = d) ∧ y * x = Interval.mulHi a b c d := by -- --- PROOF ---
   rcases max_cases (max (a * c) (a * d)) (max (b * c) (b * d)) with ⟨h1, -⟩ | ⟨h1, -⟩
   · rcases max_cases (a * c) (a * d) with ⟨h2, -⟩ | ⟨h2, -⟩

@@ -49,7 +49,7 @@ variable {n : ℕ}
 
 /-- Orders `3 … κ` of any member's Taylor sum lie in the interval tail. -/
 theorem MatExp.taylorTail_mem_expIntervalTaylorTail (B : Interval (Mat ℝ n n))
-    {N : Mat ℝ n n} (hN : N ∈ B.construct) (κ : ℕ) :
+    {N : Mat ℝ n n} (hN : N ∈ B.construct) (κ : ℕ) : -- --- CONCL ---
     (∑ i ∈ Finset.Ico 3 (κ + 1), ((Nat.factorial i : ℝ)⁻¹) • N ^ i)
       ∈ (MatExp.expIntervalTaylorTail B κ).construct := by -- --- PROOF ---
   induction κ with

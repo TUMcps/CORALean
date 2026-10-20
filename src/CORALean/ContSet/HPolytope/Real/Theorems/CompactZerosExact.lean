@@ -40,7 +40,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.compactZeros_exact (P : HPolytope (Vec ℝ n)) :
+theorem HPolytope.compactZeros_exact (P : HPolytope (Vec ℝ n)) : -- --- CONCL ---
     P.compactZeros.construct = P.construct := by -- --- PROOF ---
   rw [← P.normalizeRows_exact]
   unfold HPolytope.compactZeros

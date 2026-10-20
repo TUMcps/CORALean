@@ -49,7 +49,8 @@ variable {n r N : ℕ}
 
 theorem ZonoBundle.encloseTightPoints_mem [NeZero N] (V : Fin N → Vec ℝ n)
     (W : Fin r → Mat ℝ n n) (hW : ∀ i, IsUnit (W i).det) {U : Mat ℝ n n} (hU : U * Uᵀ = 1)
-    (j : Fin N) : V j ∈ (ZonoBundle.encloseTightPoints V W U).construct := by -- --- PROOF ---
+    (j : Fin N) : -- --- CONCL ---
+    V j ∈ (ZonoBundle.encloseTightPoints V W U).construct := by -- --- PROOF ---
   rw [ZonoBundle.construct_eq_iInter]
   refine Set.mem_iInter.mpr fun i => ?_
   induction i using Fin.lastCases with

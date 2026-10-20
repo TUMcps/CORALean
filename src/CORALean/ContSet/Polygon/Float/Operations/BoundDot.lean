@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Polygon.aux_le_foldr_maximum (l : List 𝕋) (s : 𝕋) {a : 𝕋} (h : a ∈ l) :
+theorem Polygon.aux_le_foldr_maximum (l : List 𝕋) (s : 𝕋) {a : 𝕋} (h : a ∈ l) : -- --- CONCL ---
     toReal a ≤ toReal (l.foldr maximum s) := by -- --- PROOF ---
   induction l with
   | nil => exact absurd h List.not_mem_nil

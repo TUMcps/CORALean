@@ -77,7 +77,7 @@ private theorem tanh_eq_one_sub (x : ℝ) :
   field_simp
   ring
 
-theorem sinhUp_ge (p : ℕ) (x : 𝕋) (hx : toReal x ≤ 2 ^ p / 2) :
+theorem sinhUp_ge (p : ℕ) (x : 𝕋) (hx : toReal x ≤ 2 ^ p / 2) : -- --- CONCL ---
     Real.sinh (toReal x) ≤ toReal (sinhUp p x) := by -- --- PROOF ---
   have h1 := le_expUp p x hx
   have h2 := expDown_le p (neg x)
@@ -86,7 +86,7 @@ theorem sinhUp_ge (p : ℕ) (x : 𝕋) (hx : toReal x ≤ 2 ^ p / 2) :
   rw [sinhUp, toReal_half, Real.sinh_eq]
   linarith
 
-theorem sinhDown_le (p : ℕ) (x : 𝕋) (hx : -toReal x ≤ 2 ^ p / 2) :
+theorem sinhDown_le (p : ℕ) (x : 𝕋) (hx : -toReal x ≤ 2 ^ p / 2) : -- --- CONCL ---
     toReal (sinhDown p x) ≤ Real.sinh (toReal x) := by -- --- PROOF ---
   have h1 := expDown_le p x
   have h2 := le_expUp p (neg x) (by rwa [toReal_neg])
@@ -95,7 +95,8 @@ theorem sinhDown_le (p : ℕ) (x : 𝕋) (hx : -toReal x ≤ 2 ^ p / 2) :
   rw [sinhDown, toReal_half, Real.sinh_eq]
   linarith
 
-theorem coshUp_ge (p : ℕ) (x : 𝕋) (hx : toReal x ≤ 2 ^ p / 2) (hnx : -toReal x ≤ 2 ^ p / 2) :
+theorem coshUp_ge (p : ℕ) (x : 𝕋) (hx : toReal x ≤ 2 ^ p / 2)
+    (hnx : -toReal x ≤ 2 ^ p / 2) : -- --- CONCL ---
     Real.cosh (toReal x) ≤ toReal (coshUp p x) := by -- --- PROOF ---
   have h1 := le_expUp p x hx
   have h2 := le_expUp p (neg x) (by rwa [toReal_neg])
@@ -104,7 +105,7 @@ theorem coshUp_ge (p : ℕ) (x : 𝕋) (hx : toReal x ≤ 2 ^ p / 2) (hnx : -toR
   rw [coshUp, toReal_half, Real.cosh_eq]
   linarith
 
-theorem coshDown_le (p : ℕ) (x : 𝕋) :
+theorem coshDown_le (p : ℕ) (x : 𝕋) : -- --- CONCL ---
     toReal (coshDown p x) ≤ Real.cosh (toReal x) := by -- --- PROOF ---
   have h1 := expDown_le p x
   have h2 := expDown_le p (neg x)
@@ -113,7 +114,7 @@ theorem coshDown_le (p : ℕ) (x : 𝕋) :
   rw [coshDown, toReal_half, Real.cosh_eq]
   linarith
 
-theorem tanhUp_ge (p : ℕ) (x : 𝕋) (hx : toReal x ≤ 2 ^ p / 2) :
+theorem tanhUp_ge (p : ℕ) (x : 𝕋) (hx : toReal x ≤ 2 ^ p / 2) : -- --- CONCL ---
     Real.tanh (toReal x) ≤ toReal (tanhUp p x) := by -- --- PROOF ---
   have hu := Real.exp_pos (toReal x)
   have h1 := le_expUp p x hx
@@ -139,7 +140,7 @@ theorem tanhUp_ge (p : ℕ) (x : 𝕋) (hx : toReal x ≤ 2 ^ p / 2) :
   rw [tanhUp, tanh_eq_one_sub]
   linarith
 
-theorem tanhDown_le (p : ℕ) (x : 𝕋) :
+theorem tanhDown_le (p : ℕ) (x : 𝕋) : -- --- CONCL ---
     toReal (tanhDown p x) ≤ Real.tanh (toReal x) := by -- --- PROOF ---
   have hu := Real.exp_pos (toReal x)
   have h0 := expDown_nonneg p x

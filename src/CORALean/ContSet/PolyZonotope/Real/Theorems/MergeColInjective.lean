@@ -40,7 +40,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [Module ℝ α] in
-theorem PolyZonotope.merge_col_injective (pZ : PolyZonotope α) :
+theorem PolyZonotope.merge_col_injective (pZ : PolyZonotope α) : -- --- CONCL ---
     Function.Injective (PolyZonotope.col pZ.merge.E) := by -- --- PROOF ---
   intro j₁ j₂ hj
   -- every kept column is its own representative, by the filter `mergeKeep` is

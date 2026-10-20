@@ -87,7 +87,8 @@ theorem Krylov.timeInterval_subset (A : Mat ℝ n n) (c : Vec ℝ n) (g : Fin p 
     (h3c : ∀ t ∈ Set.Icc 0 δ,
       ‖exp (t • A) *ᵥ c - βc • (Vc *ᵥ (exp (t • Hc) *ᵥ e1c))‖₂ ≤ ec * t)
     (h3g : ∀ i, ∀ t ∈ Set.Icc 0 δ,
-      ‖exp (t • A) *ᵥ g i - βg i • (Vg i *ᵥ (exp (t • Hg i) *ᵥ e1g i))‖₂ ≤ eg i * t) :
+      ‖exp (t • A) *ᵥ g i - βg i • (Vg i *ᵥ (exp (t • Hg i) *ᵥ e1g i))‖₂ ≤ eg i * t)
+    : -- --- CONCL ---
     let X₀ : Set (Vec ℝ n) := {x | ∃ β : Fin p → ℝ, (∀ i, |β i| ≤ 1) ∧ x = c + ∑ i, β i • g i}
     let Rδ : Set (Vec ℝ n) := {y | ∃ β : Fin p → ℝ, (∀ i, |β i| ≤ 1) ∧ ∃ r : Vec ℝ n,
       (∀ j, |r j| ≤ (ec + ∑ i, eg i) * δ) ∧

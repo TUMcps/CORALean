@@ -53,7 +53,7 @@ variable {n : ℕ}
 
 /-- [1, Sec. 4.2]: `|det (g_{j₁}, …, g_{jₙ})| ≤ vol(Z)` for distinct generators `j₁, …, jₙ`. -/
 theorem Zonotope.abs_det_le_volume (Z : Zonotope (Vec ℝ n)) (J : Fin n → Fin Z.h)
-    (hJ : Function.Injective J) :
+    (hJ : Function.Injective J) : -- --- CONCL ---
     ENNReal.ofReal |(Matrix.of fun i k => Z.G (J k) i : Mat ℝ n n).det|
       ≤ MeasureTheory.volume Z.construct := by -- --- PROOF ---
   set Z' : Zonotope (Vec ℝ n) := ⟨n, Z.c, fun k => Z.G (J k)⟩ with hZ'

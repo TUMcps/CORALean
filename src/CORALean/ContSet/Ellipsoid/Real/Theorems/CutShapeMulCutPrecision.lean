@@ -54,7 +54,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Ellipsoid.aux_P_mul (c : Vec ℝ n) (hc : c ⬝ᵥ c = 1) :
+theorem Ellipsoid.aux_P_mul (c : Vec ℝ n) (hc : c ⬝ᵥ c = 1) : -- --- CONCL ---
     (vecMulVec c c : Mat ℝ n n) * vecMulVec c c = vecMulVec c c := by -- --- PROOF ---
   ext i j
   simp only [Matrix.mul_apply, vecMulVec_apply]
@@ -68,7 +68,7 @@ theorem Ellipsoid.aux_P_mul (c : Vec ℝ n) (hc : c ⬝ᵥ c = 1) :
 
 /-- [1, Eq. 16]'s shape matrix times `cutPrecision` is the identity. -/
 theorem Ellipsoid.cutShape_mul_cutPrecision {c : Vec ℝ n} (hc : c ⬝ᵥ c = 1) {γ : ℝ}
-    (hn : 2 ≤ n) (hγ : 0 < γ) (hγn : (n : ℝ) * γ ^ 2 < 1) :
+    (hn : 2 ≤ n) (hγ : 0 < γ) (hγn : (n : ℝ) * γ ^ 2 < 1) : -- --- CONCL ---
     Ellipsoid.cutShape n c γ * Ellipsoid.cutPrecision n c γ = 1 := by -- --- PROOF ---
   have hn' : (2 : ℝ) ≤ n := by exact_mod_cast hn
   have h1 : 0 < 1 - γ ^ 2 := by nlinarith [sq_nonneg γ]

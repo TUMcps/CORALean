@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.piStep_mem (p k : ℕ) :
+theorem Capsule.piStep_mem (p k : ℕ) : -- --- CONCL ---
     toReal (Capsule.piStep (𝕋 := 𝕋) p k).inf ≤ Real.pi / 499 ∧
       Real.pi / 499 ≤ toReal (Capsule.piStep (𝕋 := 𝕋) p k).sup := by -- --- PROOF ---
   have hm : toReal (acosDown p k (zero : 𝕋)) ≤ Real.pi / 2 := by

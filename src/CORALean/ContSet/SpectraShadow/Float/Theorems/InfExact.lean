@@ -42,7 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The nominal inequality of `Inf`, whatever the coefficients. -/
-theorem SpectraShadow.aux_inf_lmi (n : ℕ) (β : Fin (SpectraShadow.Inf (𝕋 := 𝕋) n).m → ℝ) :
+theorem SpectraShadow.aux_inf_lmi (n : ℕ)
+    (β : Fin (SpectraShadow.Inf (𝕋 := 𝕋) n).m → ℝ) : -- --- CONCL ---
     (toRealMat (SpectraShadow.Inf (𝕋 := 𝕋) n).A₀
       + ∑ i, β i • toRealMat ((SpectraShadow.Inf (𝕋 := 𝕋) n).A i)) = 1 := by -- --- PROOF ---
   -- every `Aᵢ` is the zero matrix, so the combination is `A₀`
@@ -57,7 +58,7 @@ theorem SpectraShadow.aux_inf_lmi (n : ℕ) (β : Fin (SpectraShadow.Inf (𝕋 :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.Inf_exact (n : ℕ) :
+theorem SpectraShadow.Inf_exact (n : ℕ) : -- --- CONCL ---
     (SpectraShadow.Inf n : SpectraShadow 𝕋 (Vec 𝕋 n)).construct = Set.univ := by -- --- PROOF ---
   -- the nominal part is everything: the coefficients are the point itself
   have hN : InflatedContSet.nominalSet (SpectraShadow.Inf n : SpectraShadow 𝕋 (Vec 𝕋 n)) =

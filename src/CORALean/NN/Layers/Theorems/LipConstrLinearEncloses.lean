@@ -43,7 +43,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Layer.lipConstrLinear_encloses (W : Mat ℝ m n) (b : Vec ℝ m) (lam : ℝ) :
+theorem Layer.lipConstrLinear_encloses (W : Mat ℝ m n) (b : Vec ℝ m) (lam : ℝ) : -- --- CONCL ---
     (Layer.lipConstrLinear (S := S) W b lam).Encloses
       fun x i => Layer.lipConstrScale W lam i * (W *ᵥ x + b) i := by -- --- PROOF ---
   refine (Layer.linear_encloses _ _).congr fun x => funext fun i => ?_

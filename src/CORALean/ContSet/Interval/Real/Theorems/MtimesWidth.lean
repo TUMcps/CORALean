@@ -38,7 +38,8 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.mtimes_width (M : Mat ℝ m n) (I : Interval (Vec ℝ n)) (i : Fin m) :
+theorem Interval.mtimes_width (M : Mat ℝ m n) (I : Interval (Vec ℝ n))
+    (i : Fin m) : -- --- CONCL ---
     (Interval.mtimes M I).sup i - (Interval.mtimes M I).inf i
       = ∑ k, |M i k| * |I.sup k - I.inf k| := by -- --- PROOF ---
   show (∑ k, max (M i k * I.inf k) (M i k * I.sup k))

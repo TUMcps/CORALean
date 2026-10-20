@@ -38,7 +38,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.evalPolyReal_ofFn (t : ℝ) : ∀ {k : ℕ} (c : Fin k → ℝ),
+theorem PolyZonotope.evalPolyReal_ofFn (t : ℝ) : -- --- CONCL ---
+    ∀ {k : ℕ} (c : Fin k → ℝ),
     PolyZonotope.evalPolyReal (List.ofFn c) t = ∑ j, c j * t ^ (j : ℕ) := by -- --- PROOF ---
   intro k
   induction k with

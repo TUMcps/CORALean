@@ -82,7 +82,7 @@ theorem NonlinDASys.IsTrajectory.field_mem_linInclusion {sys : NonlinDASys n p m
     (hL : ∀ x' y' u', (x', y', u') ∈ Rz → sys.g x' y' u' = 0 →
       (sys.f x' y' u' - (sys.f xs ys us + A *ᵥ (x' - xs) + B *ᵥ (u' - us) + C *ᵥ (y' - ys)))
         - (C * F_inv) *ᵥ (sys.g x' y' u' - (sys.g xs ys us + D *ᵥ (x' - xs) + E *ᵥ (u' - us)
-          + F *ᵥ (y' - ys))) ∈ L) : -- --- CONCL ---
+          + F *ᵥ (y' - ys))) ∈ L) :
     ∀ t ∈ τ, sys.f (x t) (y t) (u t) ∈ NonlinDASys.linInclusion (sys.f xs ys us) (sys.g xs ys us)
       A B C D E F_inv us U L (x t - xs) := fun t ht =>
   -- the field at the run's own point, which [1, Eq. 16] holds

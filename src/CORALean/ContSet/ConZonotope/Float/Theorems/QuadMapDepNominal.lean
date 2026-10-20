@@ -50,7 +50,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.quadMapDep_nominal (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
+theorem ConZonotope.quadMapDep_nominal (Q : Fin m → Mat 𝕋 n n)
+    (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     (fun x : Vec ℝ n => fun i => x ⬝ᵥ (toRealMat (Q i) *ᵥ x)) '' nominalSet cZ
       ⊆ nominalSet (ConZonotope.quadMapDep Q cZ)
         + (I_error (ConZonotope.quadMapDep Q cZ)).construct := by -- --- PROOF ---

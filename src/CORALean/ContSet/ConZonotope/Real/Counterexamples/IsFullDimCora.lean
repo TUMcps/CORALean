@@ -65,7 +65,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The rank test holds for `c = 0`, `G = [1 0]`, `A = [1 1]`, `b = 2`: the set is `{1}`. -/
-theorem ConZonotope.isFullDim_cora_counterexample :
+theorem ConZonotope.isFullDim_cora_counterexample : -- --- CONCL ---
     ∃ cZ : ConZonotope (Vec ℝ 1), cZ.isFullDimCora ∧
       ¬ (interior cZ.construct).Nonempty := by -- --- PROOF ---
   -- the data

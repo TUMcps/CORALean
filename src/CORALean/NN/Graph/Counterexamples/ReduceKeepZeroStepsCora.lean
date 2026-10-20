@@ -37,7 +37,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- With no step, CORA's kept set at the end of a one-edge graph is not `{v}`. -/
-theorem GNN.reduceKeep_zero_steps_ne_singleton :
+theorem GNN.reduceKeep_zero_steps_ne_singleton : -- --- CONCL ---
     GNN.reduceKeep (!![0, 1; 1, 0] : Mat ℝ 2 2) 0 0 0 ≠ {0} := by -- --- PROOF ---
   intro h
   have h1 : (1 : Fin 2) ∈ GNN.reduceKeep (!![0, 1; 1, 0] : Mat ℝ 2 2) 0 0 0 := by

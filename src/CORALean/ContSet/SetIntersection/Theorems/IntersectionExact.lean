@@ -39,7 +39,7 @@ variable {S α : Type} [ContSet S α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Appending two lists of members denotes exactly the intersection of the two intersections. -/
-theorem SetIntersection.intersection_exact (I J : SetIntersection S) :
+theorem SetIntersection.intersection_exact (I J : SetIntersection S) : -- --- CONCL ---
     ContSet.construct (SetIntersection.intersection I J)
       = ContSet.construct I ∩ ContSet.construct J := by -- --- PROOF ---
   ext x

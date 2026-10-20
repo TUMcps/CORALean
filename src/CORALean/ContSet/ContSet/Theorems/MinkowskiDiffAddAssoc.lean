@@ -48,7 +48,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Subtracting `B + C` is subtracting `B` and then `C`. -/
-theorem minkowskiDiff_add_assoc (A B C : Set α) :
+theorem minkowskiDiff_add_assoc (A B C : Set α) : -- --- CONCL ---
     minkowskiDiff A (B + C) = minkowskiDiff (minkowskiDiff A B) C := by -- --- PROOF ---
   ext x
   constructor

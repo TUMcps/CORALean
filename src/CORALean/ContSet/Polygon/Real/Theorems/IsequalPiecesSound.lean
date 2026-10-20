@@ -35,7 +35,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.isequalPieces_sound {P Q : Polygon} (h : Polygon.isequalPieces P Q) :
+theorem Polygon.isequalPieces_sound {P Q : Polygon}
+    (h : Polygon.isequalPieces P Q) : -- --- CONCL ---
     ContSet.construct P = ContSet.construct Q := by -- --- PROOF ---
   refine Set.Subset.antisymm ?_ ?_
   · intro x hx

@@ -48,7 +48,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem PolyZonotope.aux_exactPlus_nominal (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (hp : pZ₁.p = pZ₂.p) :
+theorem PolyZonotope.aux_exactPlus_nominal (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n))
+    (hp : pZ₁.p = pZ₂.p) : -- --- CONCL ---
     (Real.PolyZonotope.exactPlus (nominal pZ₁) (nominal pZ₂) hp).construct
       ⊆ nominalSet (pZ₁.exactPlus pZ₂ hp)
         + (PolyZonotope.centerResidual pZ₁.c pZ₂.c).construct := by -- --- PROOF ---
@@ -93,7 +94,8 @@ theorem PolyZonotope.aux_exactPlus_nominal (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.exactPlus_outer (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (hp : pZ₁.p = pZ₂.p) :
+theorem PolyZonotope.exactPlus_outer (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n))
+    (hp : pZ₁.p = pZ₂.p) : -- --- CONCL ---
     (Real.PolyZonotope.exactPlus (nominal pZ₁) (nominal pZ₂) hp).construct
         + (pZ₁.I_error.construct + pZ₂.I_error.construct)
       ⊆ (pZ₁.exactPlus pZ₂ hp).construct := by -- --- PROOF ---

@@ -35,7 +35,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.and_region (P Q : Polygon) :
+theorem Polygon.and_region (P Q : Polygon) : -- --- CONCL ---
     ContSet.construct P ∩ ContSet.construct Q =
       ⋃ p ∈ P.sets, ⋃ q ∈ Q.sets,
         (VPolytope.construct p ∩ VPolytope.construct q) := by -- --- PROOF ---

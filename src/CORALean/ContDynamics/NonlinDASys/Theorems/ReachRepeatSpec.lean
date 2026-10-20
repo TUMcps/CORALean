@@ -61,7 +61,7 @@ theorem NonlinDASys.reachRepeat_spec (sys : NonlinDASys n p m) (taylor : NonlinD
       Zonotope (Vec ℝ m) → Zonotope (Vec ℝ n) × Zonotope (Vec ℝ p))
     (sub : ∀ {k : ℕ}, Zonotope (Vec ℝ k) → Zonotope (Vec ℝ k) → Bool) (Lmax : Zonotope (Vec ℝ n))
     (lam r : ℝ) (η : ℕ) (Rk : Zonotope (Vec ℝ n)) (U : Zonotope (Vec ℝ m)) (fuel : ℕ)
-    (L : Zonotope (Vec ℝ n) × Zonotope (Vec ℝ p)) :
+    (L : Zonotope (Vec ℝ n) × Zonotope (Vec ℝ p)) : -- --- CONCL ---
     ∀ rr ∈ NonlinDASys.reachRepeat sys taylor corollary1 sub Lmax lam r η Rk U fuel L,
       rr.Rti = (NonlinDASys.linReach (sys.f taylor.xs taylor.ys taylor.us)
           (sys.g taylor.xs taylor.ys taylor.us) taylor.A taylor.B taylor.C taylor.D taylor.E

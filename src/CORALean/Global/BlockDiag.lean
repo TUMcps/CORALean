@@ -95,7 +95,7 @@ theorem blockDiag_smul (t : ℝ) (M : Mat ℝ a a) (N : Mat ℝ b b) :
   blockDiag_ext (by simp) (by simp) (by simp) (by simp)
 
 theorem blockDiag_sum {ι : Type} (s : Finset ι) (M : ι → Mat ℝ a a)
-    (N : ι → Mat ℝ b b) :
+    (N : ι → Mat ℝ b b) : -- --- CONCL ---
     blockDiag 0 (∑ i ∈ s, M i) (∑ i ∈ s, N i)
       = ∑ i ∈ s, blockDiag 0 (M i) (N i) := by -- --- PROOF ---
   classical
@@ -112,7 +112,7 @@ theorem blockDiag_eq_submatrix (M : Mat ℝ a a) (N : Mat ℝ b b) :
 
 /-- The two blocks of a positive semidefinite block-diagonal matrix are, and
 conversely, as the quadratic form splits along the diagonal. -/
-theorem posSemidef_fromBlocks_zero_iff (M : Mat ℝ a a) (N : Mat ℝ b b) :
+theorem posSemidef_fromBlocks_zero_iff (M : Mat ℝ a a) (N : Mat ℝ b b) : -- --- CONCL ---
     (fromBlocks M 0 0 N).PosSemidef ↔ M.PosSemidef ∧ N.PosSemidef := by -- --- PROOF ---
   constructor
   -- a principal submatrix of a positive semidefinite matrix is one

@@ -102,7 +102,8 @@ theorem center_mem (Z : Zonotope (Vec D 2)) (h : Z.I_error = box0) : toRealVec Z
   Zonotope.center_mem_construct Z fun i => by simp only [h, box0, toReal_d]; norm_num
 
 /-- The origin is in the square and the diamond, hence in `I`. -/
-theorem origin_mem_I : toRealVec square.c ∈ ContSet.construct I := by -- --- PROOF ---
+theorem origin_mem_I : -- --- CONCL ---
+    toRealVec square.c ∈ ContSet.construct I := by -- --- PROOF ---
   refine SetIntersection.mem_construct.mpr fun s hs => ?_
   simp only [I, List.mem_cons, List.not_mem_nil, or_false] at hs
   rcases hs with rfl | rfl
@@ -111,7 +112,7 @@ theorem origin_mem_I : toRealVec square.c ∈ ContSet.construct I := by -- --- P
     rw [this]; exact center_mem _ rfl
 
 /-- The origin is in `I` and in `J`, so `0 + 0` is in `I + J`, and by `sum_outer` in `sum`. -/
-theorem origin_add_origin_mem_sum :
+theorem origin_add_origin_mem_sum : -- --- CONCL ---
     toRealVec square.c + toRealVec square.c ∈ ContSet.construct sum := by -- --- PROOF ---
   refine sum_outer (Set.add_mem_add origin_mem_I ?_)
   refine SetIntersection.mem_construct.mpr fun s hs => ?_

@@ -33,7 +33,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.isConvex_iff (P : Polygon) :
+theorem Polygon.isConvex_iff (P : Polygon) : -- --- CONCL ---
     Polygon.isConvex P ↔ Convex ℝ (ContSet.construct P) := by -- --- PROOF ---
   unfold Polygon.isConvex
   rw [Polygon.convHull_exact]

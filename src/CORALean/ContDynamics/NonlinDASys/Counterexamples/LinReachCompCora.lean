@@ -142,7 +142,8 @@ theorem NonlinDASys.aux_linReachCompCora_mem_mtimes {m : ℕ} {M : Mat ℝ m n}
 /-- At `A = 0` the remainder of an input solution, `E(r)·r U`, is `{0}`. -/
 theorem NonlinDASys.aux_linReachCompCora_remainder_eq_zero {A : Mat ℝ n n} (hA : A = 0) (r : ℝ)
     (η : ℕ) (Z : Zonotope (Vec ℝ n)) {v : Vec ℝ n}
-    (hv : v ∈ (Zonotope.mtimesIntervalMat (MatExp.inputRemainder A r η) Z).construct) :
+    (hv : v ∈ (Zonotope.mtimesIntervalMat (MatExp.inputRemainder A r η) Z).construct)
+    : -- --- CONCL ---
     v = 0 := by -- --- PROOF ---
   subst hA
   have hE : MatExp.expRemainderBound (0 : Mat ℝ n n) η = 0 := by
@@ -165,7 +166,7 @@ theorem NonlinDASys.aux_linReachCompCora_remainder_eq_zero {A : Mat ℝ n n} (hA
 /-- At `A = 0` an input solution is the step times the input set. -/
 theorem NonlinDASys.aux_linReachCompCora_inputSolution {sys : LinearSys ℝ n} (hA : sys.A = 0)
     (r : ℝ) (η : ℕ) (Z : Zonotope (Vec ℝ n)) {v : Vec ℝ n}
-    (hv : v ∈ (sys.inputSolution (S := 𝒵) r η Z).construct) :
+    (hv : v ∈ (sys.inputSolution (S := 𝒵) r η Z).construct) : -- --- CONCL ---
     ∃ w ∈ Z.construct, v = r • w := by -- --- PROOF ---
   -- the Taylor orders past `0` vanish
   have hsum : ∀ (i : ℕ) (a : Vec ℝ n), a ∈ (sys.inputTaylorSum (S := 𝒵) r Z i).construct →
@@ -196,7 +197,7 @@ theorem NonlinDASys.aux_linReachCompCora_mem_coord {Z : Zonotope (Vec ℝ n)} {i
 
 /-- Girard's `reduce` keeps a coordinate at which center and generators vanish. -/
 theorem NonlinDASys.aux_linReachCompCora_reduce_coord {Z : Zonotope (Vec ℝ n)} (o : ℕ)
-    {i : Fin n} (hc : Z.c i = 0) (hG : ∀ j, Z.G j i = 0) :
+    {i : Fin n} (hc : Z.c i = 0) (hG : ∀ j, Z.G j i = 0) : -- --- CONCL ---
     (Z.reduce o).c i = 0 ∧ ∀ j, (Z.reduce o).G j i = 0 := by -- --- PROOF ---
   unfold Zonotope.reduce Zonotope.reduceGirard
   by_cases hlt : o * n < Z.h
@@ -215,7 +216,7 @@ theorem NonlinDASys.aux_linReachCompCora_reduce_coord {Z : Zonotope (Vec ℝ n)}
 
 /-- `Z₁ ⊕ Z₂` keeps a coordinate at which both vanish. -/
 theorem NonlinDASys.aux_linReachCompCora_plus_coord {Z₁ Z₂ : Zonotope (Vec ℝ n)} {i : Fin n}
-    (h₁ : Z₁.c i = 0 ∧ ∀ j, Z₁.G j i = 0) (h₂ : Z₂.c i = 0 ∧ ∀ j, Z₂.G j i = 0) :
+    (h₁ : Z₁.c i = 0 ∧ ∀ j, Z₁.G j i = 0) (h₂ : Z₂.c i = 0 ∧ ∀ j, Z₂.G j i = 0) : -- --- CONCL ---
     (Z₁.plus Z₂).c i = 0 ∧ ∀ j, (Z₁.plus Z₂).G j i = 0 := by -- --- PROOF ---
   refine ⟨by simp [Zonotope.plus, h₁.1, h₂.1], fun j => ?_⟩
   simp only [Zonotope.plus]

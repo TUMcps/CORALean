@@ -46,7 +46,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] [DecidableEq α]
 
 theorem Zonotope.containsST_sound
     (lp : (Zy Zx : Zonotope α) → Option (Mat ℝ Zy.h Zx.h × Vec ℝ Zy.h)) (Zy Zx : Zonotope α)
-    (h : Zonotope.containsST lp Zy Zx = true) :
+    (h : Zonotope.containsST lp Zy Zx = true) : -- --- CONCL ---
     Zx.construct ⊆ Zy.construct := by -- --- PROOF ---
   unfold Zonotope.containsST at h
   split at h

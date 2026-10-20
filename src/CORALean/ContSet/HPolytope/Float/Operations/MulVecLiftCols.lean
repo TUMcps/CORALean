@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n N m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.mulVec_liftCols {dims : Fin n → Fin N} (hdims : Function.Injective dims)
-    (M : Mat 𝕋 m n) (x : Vec ℝ N) :
+    (M : Mat 𝕋 m n) (x : Vec ℝ N) : -- --- CONCL ---
     toRealMat (HPolytope.liftCols dims M) *ᵥ x =
       toRealMat M *ᵥ fun k => x (dims k) := by -- --- PROOF ---
   funext i

@@ -49,7 +49,7 @@ noncomputable def PolyZonotope.aux_patValue {p : ℕ} (V : Finset (Fin p)) (a : 
 
 /-- A pattern's new factor stays in `[-1, 1]`. -/
 theorem PolyZonotope.aux_abs_patValue_le {p : ℕ} (V : Finset (Fin p)) {a : Fin p → ℝ}
-    (ha : ∀ k, |a k| ≤ 1) (π : Fin p → ℕ) :
+    (ha : ∀ k, |a k| ≤ 1) (π : Fin p → ℕ) : -- --- CONCL ---
     |PolyZonotope.aux_patValue V a π| ≤ 1 := by -- --- PROOF ---
   -- the monomial of the pattern is at most one in absolute value
   have h1 : |∏ k ∈ V, a k ^ π k| ≤ 1 := by
@@ -86,7 +86,8 @@ theorem PolyZonotope.aux_prod_univ_partZonotope_p {pZ : PolyZonotope α} {V : Fi
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `partZonotope` encloses the original. -/
-theorem PolyZonotope.partZonotope_outer (pZ : PolyZonotope α) (V : Finset (Fin pZ.p)) :
+theorem PolyZonotope.partZonotope_outer (pZ : PolyZonotope α)
+    (V : Finset (Fin pZ.p)) : -- --- CONCL ---
     pZ.construct ⊆ (pZ.partZonotope V).construct := by -- --- PROOF ---
   rintro _ ⟨a, β, ha, hβ, rfl⟩
   have hmem : ∀ i, pZ.partPattern V i ∈ pZ.partPatterns V := fun i =>

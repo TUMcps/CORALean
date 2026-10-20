@@ -51,7 +51,7 @@ theorem NeuralNetwork.holds_robustness {nn : NeuralNetwork S n m} {f : Vec ℝ n
     (hf : nn.Encloses f) (X : S n) (l : Fin m)
     (u : ∀ j, SupportBound (construct (nn.enclose X))
       (marginDir m j l))
-    (h : ∀ j, j ≠ l → (u j).val < 0) : -- --- CONCL ---
+    (h : ∀ j, j ≠ l → (u j).val < 0) :
     (Specification.unsafeSet (misclassified m l)).Holds (f '' construct X) :=
   hf.holds_of_enclose X _ (disjoint_misclassified_of_bounds l u h)
 

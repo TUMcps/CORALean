@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.or_exact (P Q : Polygon 𝕋) :
+theorem Polygon.or_exact (P Q : Polygon 𝕋) : -- --- CONCL ---
     ContSet.construct P ∪ ContSet.construct Q =
       ContSet.construct (Polygon.or P Q) := by -- --- PROOF ---
   ext x

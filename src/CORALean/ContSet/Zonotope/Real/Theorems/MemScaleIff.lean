@@ -59,7 +59,7 @@ open Matrix
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Scaling column `j` by `d j` scales the cross product by `∏ d`. -/
-theorem aux_nCross_scale {n : ℕ} (H : Mat ℝ (n + 1) n) (d : Fin n → ℝ) :
+theorem aux_nCross_scale {n : ℕ} (H : Mat ℝ (n + 1) n) (d : Fin n → ℝ) : -- --- CONCL ---
     nCross (Matrix.of fun i j => d j * H i j) = (∏ j, d j) • nCross H := by -- --- PROOF ---
   funext i
   have hsub : (Matrix.of fun i j => d j * H i j).submatrix i.succAbove id

@@ -37,7 +37,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `minkDiff` denotes the times `t ≥ 0` with `t + J ⊆ I`. -/
-theorem STLInterval.set_minkDiff (I J : STLInterval) :
+theorem STLInterval.set_minkDiff (I J : STLInterval) : -- --- CONCL ---
     (I.minkDiff J).set = {t | 0 ≤ t ∧ ∀ y ∈ J.set, t + y ∈ I.set} := by -- --- PROOF ---
   cases J with
   | empty =>

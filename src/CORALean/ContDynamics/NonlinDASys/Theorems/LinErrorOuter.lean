@@ -68,7 +68,7 @@ variable {n p q : ℕ}
 
 /-- An entrywise bound `S` on `E` bounds the quadratic form at anything `a` covers. -/
 theorem NonlinDASys.aux_linError_abs_quad_le {E S : Mat ℝ q q} {x a : Vec ℝ q}
-    (hE : ∀ j k, |E j k| ≤ S j k) (hx : ∀ j, |x j| ≤ a j) :
+    (hE : ∀ j k, |E j k| ≤ S j k) (hx : ∀ j, |x j| ≤ a j) : -- --- CONCL ---
     |x ⬝ᵥ (E *ᵥ x)| ≤ a ⬝ᵥ (S *ᵥ a) := by -- --- PROOF ---
   have ha : ∀ j, 0 ≤ a j := fun j => (abs_nonneg _).trans (hx j)
   simp only [dotProduct, mulVec, Finset.mul_sum]
@@ -88,7 +88,7 @@ theorem NonlinDASys.aux_linError_form_sub (A : Mat ℝ q q) (B : Fin p → Mat �
 
 /-- The center of `quad(Hᵈ_c - CF⁻¹Hᵃ_c, R)` is `d - CF⁻¹e`. -/
 theorem NonlinDASys.aux_linError_quadMap_sub_c (Hd : Fin n → Mat ℝ q q)
-    (Ha : Fin p → Mat ℝ q q) (M : Mat ℝ n p) (R : Zonotope (Vec ℝ q)) :
+    (Ha : Fin p → Mat ℝ q q) (M : Mat ℝ n p) (R : Zonotope (Vec ℝ q)) : -- --- CONCL ---
     (R.quadMap (fun i => Hd i - ∑ j, M i j • Ha j)).c
       = (R.quadMap Hd).c - M *ᵥ (R.quadMap Ha).c := by -- --- PROOF ---
   have hmv : ∀ (v : Vec ℝ p) i, (M *ᵥ v) i = ∑ j, M i j * v j := fun v i => rfl

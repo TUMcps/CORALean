@@ -53,7 +53,7 @@ variable {n : ℕ}
 /-- One order of the integrated series, under the step times the exponential's
 own order. -/
 theorem MatExp.norm_expIntegralTerm_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 ≤ r) {j : ℕ}
-    (hj : 1 ≤ j) :
+    (hj : 1 ≤ j) : -- --- CONCL ---
     ‖((Nat.factorial (j + 1) : ℝ)⁻¹ * r ^ (j + 1)) • A ^ j‖
       ≤ r * ((Nat.factorial j : ℝ)⁻¹ * ‖r • A‖ ^ j) := by -- --- PROOF ---
   have hfac : (0:ℝ) < (Nat.factorial j : ℝ) := by exact_mod_cast Nat.factorial_pos j

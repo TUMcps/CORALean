@@ -45,7 +45,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The printed converse is false: the members meet `S` one by one, the bundle does not. -/
-theorem ZonoBundle.not_intersects_imp :
+theorem ZonoBundle.not_intersects_imp : -- --- CONCL ---
     ∃ (zB : ZonoBundle ℝ) (S : Set ℝ),
       (∀ i, ((zB.Z i).construct ∩ S).Nonempty) ∧
         ¬ (zB.construct ∩ S).Nonempty := by -- --- PROOF ---

@@ -40,7 +40,8 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem KleeneSignal.toBoolSignal_isRefinedBy (s : KleeneSignal ℝ) (hs : s.IsValid) (v : Bool) :
+theorem KleeneSignal.toBoolSignal_isRefinedBy (s : KleeneSignal ℝ) (hs : s.IsValid)
+    (v : Bool) : -- --- CONCL ---
     s.IsRefinedBy (s.toBoolSignal v) := by -- --- PROOF ---
   intro t ht
   obtain ⟨h1, h2⟩ := (KleeneSignal.toBoolSignal_spec s hs v).2 t ht

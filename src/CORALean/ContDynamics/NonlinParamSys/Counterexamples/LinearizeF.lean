@@ -38,7 +38,7 @@ open CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `ẋ = p²` at `p = 2`: the value `4` is outside the zonotope of the constant term. -/
-theorem NonlinParamSys.linearize_f_counterexample :
+theorem NonlinParamSys.linearize_f_counterexample : -- --- CONCL ---
     let sys : NonlinParamSys 1 1 1 := ⟨fun _ _ p => fun _ => p 0 ^ 2, 1, fun x _ _ => x⟩
     let I : Interval (Vec ℝ 1) := ⟨fun _ => 1, fun _ => 2⟩
     sys.f 0 0 (fun _ => 2) ∉ (sys.linearizeF 0 0 I).construct := by -- --- PROOF ---

@@ -41,7 +41,7 @@ namespace CORALean
 
 /-- The intervals of `findIntervals` are the maximal intervals at which `cond` holds. -/
 theorem PointSegmentSignal.findIntervals_spec (s : PointSegmentSignal ℝ) (hs : s.IsValid)
-    (cond : Bool → Bool) :
+    (cond : Bool → Bool) : -- --- CONCL ---
     STLInterval.MaximalRuns (s.findIntervals cond)
       (fun t => cond (s.at t) = true) := by -- --- PROOF ---
   unfold STLInterval.MaximalRuns

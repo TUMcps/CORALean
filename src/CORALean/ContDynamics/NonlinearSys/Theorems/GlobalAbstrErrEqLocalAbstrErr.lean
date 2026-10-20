@@ -58,7 +58,7 @@ variable {n : ℕ}
 /-- `[1, (28)]`: measured on `R̂ ⊕ R_abs` against `R̂`, the global error of one
 step is the local one. -/
 theorem globalAbstrErr_eq_localAbstrErr {Rhat Rabs : Set (Vec ℝ n)} (hne : Rhat.Nonempty)
-    (hb : Bornology.IsBounded Rhat) (hconv : Convex ℝ Rabs) (hcl : IsClosed Rabs) :
+    (hb : Bornology.IsBounded Rhat) (hconv : Convex ℝ Rabs) (hcl : IsClosed Rabs) : -- --- CONCL ---
     globalAbstrErr (Rhat + Rabs) Rhat = localAbstrErr Rabs := by -- --- PROOF ---
   have hset : minkowskiDiff (Rhat + Rabs) Rhat = Rabs := by
     refine subset_antisymm ?_ ?_

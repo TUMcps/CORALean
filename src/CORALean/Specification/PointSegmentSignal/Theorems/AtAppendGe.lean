@@ -47,7 +47,7 @@ variable {T : Type} [LinearOrder T]
 
 /-- Past the first appended point the signal is the appended block. -/
 theorem PointSegmentSignal.at_append_ge (A : List T) (r : T) (R : List T) (VA VR : List Bool)
-    (t : T) (hlen : VA.length = 2 * A.length) (hA : ∀ a ∈ A, a ≤ t) (hr : r ≤ t) :
+    (t : T) (hlen : VA.length = 2 * A.length) (hA : ∀ a ∈ A, a ≤ t) (hr : r ≤ t) : -- --- CONCL ---
     (PointSegmentSignal.mk (A ++ r :: R) (VA ++ VR)).at t = (PointSegmentSignal.mk (r :: R) VR).at t
       := by -- --- PROOF ---
   have h1 : (A ++ r :: R).takeWhile (· ≤ t) = A ++ (r :: R).takeWhile (· ≤ t) :=

@@ -41,7 +41,7 @@ open CORALean.Float SoundFloatArithmetic
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Reach.steps_spec_toReal {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
-    {tStart tFinal : ℚ} {timeStep : 𝕋} :
+    {tStart tFinal : ℚ} {timeStep : 𝕋} : -- --- CONCL ---
     ∀ N ∈ Reach.steps tStart tFinal (ToRat.toRat timeStep),
       0 < toReal timeStep ∧ (N : ℝ) * toReal timeStep = (tFinal : ℝ) - tStart := by -- --- PROOF ---
   intro N (h : Reach.steps tStart tFinal (ToRat.toRat timeStep) = some N)

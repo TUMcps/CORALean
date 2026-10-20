@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- The intersection of the members' boxes contains the support-function box. -/
 theorem ZonoBundle.intervalAll_contains_intervalSupportFunc (zB : ZonoBundle (Vec 𝕋 n))
-    (hk : 0 < zB.k) :
+    (hk : 0 < zB.k) : -- --- CONCL ---
     (zB.intervalSupportFunc hk).construct ⊆ (zB.intervalAll hk).construct := by -- --- PROOF ---
   intro x hx
   refine Interval.mem_vec_iff.mpr fun i => ?_

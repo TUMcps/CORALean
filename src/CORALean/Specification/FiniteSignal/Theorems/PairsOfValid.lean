@@ -37,7 +37,8 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FiniteSignal.pairs_of_valid {T V : Type} [LinearOrder T] [Zero T] (s : FiniteSignal T V)
-    (hs : s.IsValid) : ∃ b v rest, s.pairs = (b, v) :: rest ∧
+    (hs : s.IsValid) : -- --- CONCL ---
+    ∃ b v rest, s.pairs = (b, v) :: rest ∧
       s.pairs.map Prod.fst = s.time ∧ s.pairs.map Prod.snd = s.value ∧ 0 ≤ b := by -- --- PROOF ---
   obtain ⟨hne, hl, -, -, hnn⟩ := hs
   have hmap : s.pairs.map Prod.fst = s.time := by simp [FiniteSignal.pairs, List.map_fst_zip, hl]

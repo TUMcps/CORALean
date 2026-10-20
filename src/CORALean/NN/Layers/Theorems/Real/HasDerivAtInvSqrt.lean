@@ -37,7 +37,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem hasDerivAt_invSqrt {x : ℝ} (hx : 1 < x) :
+theorem hasDerivAt_invSqrt {x : ℝ} (hx : 1 < x) : -- --- CONCL ---
     HasDerivAt invSqrt (-(2 * x * Real.sqrt x)⁻¹) x := by -- --- PROOF ---
   have heq : invSqrt =ᶠ[nhds x] (fun y => (Real.sqrt y)⁻¹) := by
     filter_upwards [eventually_gt_nhds hx] with y hy

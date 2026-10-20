@@ -61,7 +61,8 @@ theorem aux_at_two (a : T) (p0 v0 p1 v1 : Bool) (t : T) (ht : 0 ≤ t) :
   · simp [PointSegmentSignal.at, List.takeWhile, ht, h1, not_le.mp h1, eq_comm]
 
 /-- The signal with time points `0`, `a` and `b`. -/
-theorem aux_at_three (a b : T) (hab : a < b) (p0 v0 p1 v1 p2 v2 : Bool) (t : T) (ht : 0 ≤ t) :
+theorem aux_at_three (a b : T) (hab : a < b) (p0 v0 p1 v1 p2 v2 : Bool) (t : T)
+    (ht : 0 ≤ t) : -- --- CONCL ---
     (PointSegmentSignal.mk [0, a, b] [p0, v0, p1, v1, p2, v2]).at t =
       if t < a then (if t = 0 then p0 else v0) else if t = a then p1
       else if t < b then v1 else if t = b then p2 else v2 := by -- --- PROOF ---
@@ -88,7 +89,7 @@ theorem aux_valid_two (a : T) (ha : 0 < a) (p0 v0 p1 v1 : Bool) (h : ¬ (p1 = v1
 
 /-- The three-point signal is valid when its inner points are not redundant. -/
 theorem aux_valid_three (a b : T) (ha : 0 < a) (hab : a < b) (p0 v0 p1 v1 p2 v2 : Bool)
-    (h1 : ¬ (p1 = v1 ∧ p1 = v0)) (h2 : ¬ (p2 = v2 ∧ p2 = v1)) :
+    (h1 : ¬ (p1 = v1 ∧ p1 = v0)) (h2 : ¬ (p2 = v2 ∧ p2 = v1)) : -- --- CONCL ---
     (PointSegmentSignal.mk [0, a, b] [p0, v0, p1, v1, p2, v2]).IsValid := by -- --- PROOF ---
   refine ⟨by simp, by simp, by simp, by simp [ha, hab, ha.trans hab], ?_⟩
   intro i hi hi'; simp at hi'
@@ -104,7 +105,7 @@ def aux_Spec (lb : T) (ub : WithTop T) (lc rc : Bool) (val default : Bool)
 
 /-- An empty interval or equal values: the constant signal. -/
 theorem aux_empty (lb : T) (ub : WithTop T) (lc rc : Bool) (val default : Bool)
-    (h : val = default ∨ STLInterval.emptyBounds lb ub lc rc = true) :
+    (h : val = default ∨ STLInterval.emptyBounds lb ub lc rc = true) : -- --- CONCL ---
     aux_Spec lb ub lc rc val default ⟨[0], [default, default]⟩ := by -- --- PROOF ---
   refine ⟨aux_valid_one _ _, fun t ht => ?_⟩
   rw [aux_at_one _ _ t ht]
@@ -116,7 +117,7 @@ theorem aux_empty (lb : T) (ub : WithTop T) (lc rc : Bool) (val default : Bool)
 
 /-- An interval starting after `0` and unbounded: two time points. -/
 theorem aux_top_pos (lo : T) (lc rc : Bool) (val default : Bool) (hne : val ≠ default)
-    (hlo : 0 < lo) :
+    (hlo : 0 < lo) : -- --- CONCL ---
     aux_Spec lo ⊤ lc rc val default
       ⟨[0, lo], [default, default, if lc = true then val else default, val]⟩ := by -- --- PROOF ---
   refine ⟨aux_valid_two lo hlo _ _ _ _ ?_, fun t ht => ?_⟩
@@ -135,7 +136,8 @@ theorem aux_top_zero (lc rc : Bool) (val default : Bool) (hne : val ≠ default)
     simp_all [STLInterval.memBounds, ne_of_gt]
 
 /-- A single time after `0`: two time points. -/
-theorem aux_eq_pos (lo : T) (val default : Bool) (hne : val ≠ default) (hlo : 0 < lo) :
+theorem aux_eq_pos (lo : T) (val default : Bool) (hne : val ≠ default)
+    (hlo : 0 < lo) : -- --- CONCL ---
     aux_Spec lo (lo : WithTop T) true true val default
       ⟨[0, lo], [default, default, val, default]⟩ := by -- --- PROOF ---
   refine ⟨aux_valid_two lo hlo _ _ _ _ ?_, fun t ht => ?_⟩

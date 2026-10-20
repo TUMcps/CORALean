@@ -47,7 +47,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.sum_bernsteinBasis (N : ℕ) (u : ℝ) :
+theorem Taylm.sum_bernsteinBasis (N : ℕ) (u : ℝ) : -- --- CONCL ---
     ∑ j ∈ Finset.range (N + 1), Taylm.bernsteinBasis N j u = 1 := by -- --- PROOF ---
   have h := add_pow u (1 - u) N
   simp only [add_sub_cancel, one_pow] at h

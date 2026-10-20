@@ -41,7 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem mulRangeDown_le {a lo hi : 𝕋} {x : ℝ} (h1 : toReal lo ≤ x) (h2 : x ≤ toReal hi) :
+theorem mulRangeDown_le {a lo hi : 𝕋} {x : ℝ} (h1 : toReal lo ≤ x)
+    (h2 : x ≤ toReal hi) : -- --- CONCL ---
     toReal (mulRangeDown a lo hi) ≤ toReal a * x := by -- --- PROOF ---
   rw [mulRangeDown, toReal_minimum]
   -- multiplication by `a` is monotone one way or the other, so one end bounds it

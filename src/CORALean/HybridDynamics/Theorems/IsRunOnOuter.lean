@@ -54,7 +54,7 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 theorem HybridAutomaton.IsRunOn.mem_of_invariantOn {HA : HybridAutomaton S G L 𝕋 n}
     {R : ℕ → L → S n} (hinv : HA.InvariantOn R) {m k : ℕ} {ℓ ℓ' : L} {x y : Vec ℝ n}
-    (run : HA.IsRunOn m ℓ x ℓ' y) :
+    (run : HA.IsRunOn m ℓ x ℓ' y) : -- --- CONCL ---
     x ∈ construct (R k ℓ) → y ∈ construct (R (k + m) ℓ') := by -- --- PROOF ---
   induction run generalizing k with
   | flow h => exact fun hx => hinv.flow h hx h.mem_Icc_right

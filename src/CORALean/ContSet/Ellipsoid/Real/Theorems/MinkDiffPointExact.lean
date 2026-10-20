@@ -38,7 +38,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.minkDiffPoint_exact (E : Ellipsoid n) (s : Vec ℝ n) :
+theorem Ellipsoid.minkDiffPoint_exact (E : Ellipsoid n) (s : Vec ℝ n) : -- --- CONCL ---
     (E.minkDiffPoint s).construct = minkowskiDiff E.construct {s} := by -- --- PROOF ---
   -- the ellipsoid as `q + G u`, `‖u‖₂ ≤ 1`
   simp only [Ellipsoid.construct_eq_sqrt] at *

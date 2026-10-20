@@ -52,7 +52,8 @@ variable {n : ℕ}
 /-- [1, Eq. 3]: `C y ⊆ range(C f, x)` gives `y ⊆ range(f, x)`, for `det C ≠ 0`. -/
 theorem subset_image_of_preconditioned_subset {f : (Fin n → ℝ) → (Fin n → ℝ)}
     {X Y : Set (Fin n → ℝ)} (C : Matrix (Fin n) (Fin n) ℝ) (hC : C.det ≠ 0)
-    (h : (fun y => C *ᵥ y) '' Y ⊆ (fun x => C *ᵥ f x) '' X) : Y ⊆ f '' X := by -- --- PROOF ---
+    (h : (fun y => C *ᵥ y) '' Y ⊆ (fun x => C *ᵥ f x) '' X) : -- --- CONCL ---
+    Y ⊆ f '' X := by -- --- PROOF ---
   intro y hy
   obtain ⟨x, hx, hxy⟩ := h ⟨y, hy, rfl⟩
   have hinj : Function.Injective (fun z => C *ᵥ z) :=

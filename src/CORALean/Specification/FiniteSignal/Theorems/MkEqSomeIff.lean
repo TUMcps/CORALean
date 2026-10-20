@@ -40,7 +40,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FiniteSignal.mk?_eq_some_iff {T V : Type} [LinearOrder T] [Zero T] [DecidableEq V]
-    (time : List T) (value : List V) (s : FiniteSignal T V) :
+    (time : List T) (value : List V) (s : FiniteSignal T V) : -- --- CONCL ---
     FiniteSignal.mk? time value = some s ↔
       s.time = time ∧ s.value = value ∧ s.IsValid := by -- --- PROOF ---
   obtain ⟨a, b⟩ := s

@@ -42,7 +42,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem mulVec_joinInput {n M m : ℕ} (hm : m ≤ M) (B : Mat ℝ n M) (a : Vec ℝ m)
-    (e : Vec ℝ (M - m)) :
+    (e : Vec ℝ (M - m)) : -- --- CONCL ---
     B *ᵥ joinInput hm a e = leftCols hm B *ᵥ a + rightCols hm B *ᵥ e := by -- --- PROOF ---
   obtain ⟨k, rfl⟩ := Nat.exists_eq_add_of_le hm
   have hk : m + k - m = k := by omega

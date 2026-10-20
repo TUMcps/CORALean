@@ -47,7 +47,8 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The kept set before step `k` contains the ball of the steps that remain. -/
-theorem GNN.ball_subset_reduceKeep {N : ℕ} (A : Mat ℝ N N) (v : Fin N) (L k : ℕ) (hk : k ≤ L) :
+theorem GNN.ball_subset_reduceKeep {N : ℕ} (A : Mat ℝ N N) (v : Fin N) (L k : ℕ)
+    (hk : k ≤ L) : -- --- CONCL ---
     GNN.ball A v (L - k) ⊆ GNN.reduceKeep A v L k := by -- --- PROOF ---
   unfold GNN.reduceKeep
   split_ifs with h

@@ -41,7 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `A` splits into its action through the center matrix and the leftover. -/
-theorem Zonotope.mulVec_split (IM : Interval (Mat 𝕋 m n)) (A : Mat ℝ m n) (x : Vec ℝ n) :
+theorem Zonotope.mulVec_split (IM : Interval (Mat 𝕋 m n)) (A : Mat ℝ m n)
+    (x : Vec ℝ n) : -- --- CONCL ---
     A *ᵥ x = toRealMat (Interval.centerMat IM) *ᵥ x
       + (fun i j => A i j - toReal (Interval.centerMat IM i j)) *ᵥ x := by -- --- PROOF ---
   rw [← Matrix.add_mulVec]

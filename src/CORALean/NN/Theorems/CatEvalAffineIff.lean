@@ -46,7 +46,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Cat.eval_affine_iff (W : Mat 𝕋 n m) (b : Vec 𝕋 n) (x : Vec ℝ m) (y : Vec ℝ n) :
+theorem Cat.eval_affine_iff (W : Mat 𝕋 n m) (b : Vec 𝕋 n) (x : Vec ℝ m)
+    (y : Vec ℝ n) : -- --- CONCL ---
     (Cat.affine W b).Eval x y ↔ y = toRealMat W *ᵥ x + toRealVec b := by -- --- PROOF ---
   constructor
   · rintro (_ | _ | _)

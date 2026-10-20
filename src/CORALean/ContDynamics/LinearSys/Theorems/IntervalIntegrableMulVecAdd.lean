@@ -55,7 +55,7 @@ variable {n : ℕ}
 the enclosing window and `v` is integrable over it. -/
 theorem intervalIntegrable_mulVec_add (A : Mat ℝ n n) {f v : ℝ → Vec ℝ n} {t τ : ℝ}
     (hf : ContinuousOn f (Set.Icc 0 t)) (hv : IntervalIntegrable v volume 0 t)
-    (ht : 0 ≤ t) (hτ : τ ∈ Set.Icc (0:ℝ) t) :
+    (ht : 0 ≤ t) (hτ : τ ∈ Set.Icc (0:ℝ) t) : -- --- CONCL ---
     IntervalIntegrable (fun ρ => A *ᵥ f ρ + v ρ) volume 0 τ := by -- --- PROOF ---
   have hAf : IntervalIntegrable (fun ρ => A *ᵥ f ρ) volume 0 τ := by
     have hc : ContinuousOn (fun ρ => A *ᵥ f ρ) (Set.Icc 0 τ) :=

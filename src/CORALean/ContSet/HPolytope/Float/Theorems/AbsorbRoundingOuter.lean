@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.absorbRounding_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) :
+theorem HPolytope.absorbRounding_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     P.construct ⊆ P.absorbRounding.construct := by -- --- PROOF ---
   intro x hx
   obtain ⟨hA, hE⟩ := HPolytope.rows_of_mem_construct hx

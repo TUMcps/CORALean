@@ -53,7 +53,7 @@ variable {n q : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem gZonotopeLaw_eq_withDensity_gaussPdf (c : Vec ℝ n) (G : Mat ℝ n q)
-    (hG : (G * Gᵀ).det ≠ 0) :
+    (hG : (G * Gᵀ).det ≠ 0) : -- --- CONCL ---
     gZonotopeLaw c G
       = volume.withDensity (fun x => ENNReal.ofReal (gaussPdf c (G * Gᵀ) x)) := by -- --- PROOF ---
   set S := G * Gᵀ with hSdef

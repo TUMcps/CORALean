@@ -42,7 +42,7 @@ variable {𝕋 : Type} [CORALean.Float.FloatOps 𝕋] [CORALean.Float.SoundFloat
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinearARX.outputSel_mulVec (sys : NonlinearARX dy du p) (hp : 0 < p)
-    (y : ℕ → Vec ℝ dy) (k : ℕ) :
+    (y : ℕ → Vec ℝ dy) (k : ℕ) : -- --- CONCL ---
     toRealMat (sys.outputSel (𝕋 := 𝕋)) *ᵥ NonlinearARX.stack p y k = y k := by -- --- PROOF ---
   -- the selection matrix reads as the real 0/1 selection
   have hsel : toRealMat (sys.outputSel (𝕋 := 𝕋)) =

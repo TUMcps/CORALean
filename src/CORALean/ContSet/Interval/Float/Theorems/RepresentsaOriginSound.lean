@@ -37,7 +37,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.representsa_origin_sound {I : Interval (Vec 𝕋 n)}
-    (h : I.representsa_origin = true) : I.construct = {0} := by -- --- PROOF ---
+    (h : I.representsa_origin = true) : -- --- CONCL ---
+    I.construct = {0} := by -- --- PROOF ---
   simp only [Interval.representsa_origin, List.all_eq_true, List.mem_finRange, Bool.and_eq_true,
     forall_const] at h
   have h1 : ∀ j, toReal (I.inf j) ≤ 0 := fun j => by

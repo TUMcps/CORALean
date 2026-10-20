@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 theorem Taylm.arcsinBound_ge (q : ℕ) (m : 𝕋)
     (hm : 0 < toReal (sqrtDown q (subDown one (mulUp m m)))) (N : ℕ) {x : ℝ}
-    (hx : |x| ≤ toReal m) :
+    (hx : |x| ≤ toReal m) : -- --- CONCL ---
     |iteratedDeriv (N + 1) Real.arcsin x| ≤ toReal (Taylm.arcsinBound q m N) := by -- --- PROOF ---
   -- the magnitude is below one, and `asinDom` as the integer list
   have hv := invSqrtOneSub_mem q m hm

@@ -49,7 +49,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.convHull_exact (S₁ S₂ : SpectraShadow (Vec ℝ n)) :
+theorem SpectraShadow.convHull_exact (S₁ S₂ : SpectraShadow (Vec ℝ n)) : -- --- CONCL ---
     (S₁.convHull_ S₂).construct = convexHull ℝ (S₁.construct ∪ S₂.construct) := by -- --- PROOF ---
   set app : Vec ℝ n → Vec ℝ (n + 1) := fun x => Fin.append x (fun _ : Fin 1 => (1 : ℝ)) with happ
   -- the cone of a shadow at height one

@@ -42,7 +42,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ipmBall_example (ϕ : ℝ) (hϕ : |ϕ| ≤ 1) :
+theorem ipmBall_example (ϕ : ℝ) (hϕ : |ϕ| ≤ 1) : -- --- CONCL ---
     ipmBall ![3 / 2] (1 / 2) 0 ![ϕ] = Set.Icc (3 / 2 * ϕ - 1 / 2 * |ϕ|) (3 / 2 * ϕ + 1 / 2 * |ϕ|) ∧
       ϕ * (1 + |ϕ|) ∈ ipmBall ![3 / 2] (1 / 2) 0 ![ϕ] := by -- --- PROOF ---
   have h : ipmBall ![3 / 2] (1 / 2) 0 ![ϕ] =

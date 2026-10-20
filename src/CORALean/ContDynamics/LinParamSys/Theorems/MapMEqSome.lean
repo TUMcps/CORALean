@@ -37,7 +37,7 @@ namespace CORALean
 
 /-- A `mapM` into `Option` that succeeds has one result per entry, each the
 function's value there. -/
-theorem LinParamSys.mapM_eq_some {α β : Type} {f : α → Option β} :
+theorem LinParamSys.mapM_eq_some {α β : Type} {f : α → Option β} : -- --- CONCL ---
     ∀ {l : List α} {l' : List β}, l.mapM f = some l' →
       ∃ hlen : l'.length = l.length, ∀ (i : ℕ) (hi : i < l'.length),
         f (l[i]'(hlen ▸ hi)) = some l'[i] := by -- --- PROOF ---

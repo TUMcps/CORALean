@@ -38,7 +38,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.maximumTimeFrom_eq_add (φ : STL.Tree n) (time : ℝ≥0) :
+theorem STL.Tree.maximumTimeFrom_eq_add (φ : STL.Tree n) (time : ℝ≥0) : -- --- CONCL ---
     φ.maximumTimeFrom time = time + φ.maximumTimeFrom 0 := by -- --- PROOF ---
   induction φ generalizing time with
   | tt | ff | cmp => simp [STL.Tree.maximumTimeFrom]

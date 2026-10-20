@@ -42,7 +42,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SupportFunction.exists_convex_not_supportFunction :
+theorem SupportFunction.exists_convex_not_supportFunction : -- --- CONCL ---
     ∃ S : Set (Vec ℝ 1),
       Convex ℝ S ∧ ¬ ∃ F : SupportFunction (Vec ℝ 1), F.construct = S := by -- --- PROOF ---
   refine ⟨(fun x : Vec ℝ 1 => x 0) ⁻¹' Set.Ioo 0 1, ?_, ?_⟩

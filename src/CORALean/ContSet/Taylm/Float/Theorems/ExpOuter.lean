@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.exp_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    (hp : toReal (maximum T.constCoef T.bounds.sup) ≤ 2 ^ p / 2) :
+    (hp : toReal (maximum T.constCoef T.bounds.sup) ≤ 2 ^ p / 2) : -- --- CONCL ---
     (T.exp p).Encloses fun t => Real.exp (f t) := by -- --- PROOF ---
   set c := T.constCoef
   set N := T.maxOrder

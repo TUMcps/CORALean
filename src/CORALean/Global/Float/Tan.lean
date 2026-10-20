@@ -57,7 +57,8 @@ open SoundFloatArithmetic
 variable [SoundFloatArithmetic 𝕋]
 
 /-- `s / c` between `s` over the two bounds on a positive `c`. -/
-private theorem div_between (s : ℝ) {c cl cu : ℝ} (hl : 0 < cl) (h1 : cl ≤ c) (h2 : c ≤ cu) :
+private theorem div_between (s : ℝ) {c cl cu : ℝ} (hl : 0 < cl) (h1 : cl ≤ c)
+    (h2 : c ≤ cu) : -- --- CONCL ---
     min (s / cl) (s / cu) ≤ s / c ∧ s / c ≤ max (s / cl) (s / cu) := by -- --- PROOF ---
   have hc : 0 < c := lt_of_lt_of_le hl h1
   have i1 : c⁻¹ ≤ cl⁻¹ := inv_anti₀ hl h1
@@ -72,7 +73,7 @@ private theorem div_between (s : ℝ) {c cl cu : ℝ} (hl : 0 < cl) (h1 : cl ≤
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem tanDown_le (n : ℕ) (x : 𝕋) (hc : 0 < toReal (cosDown n x)) :
+theorem tanDown_le (n : ℕ) (x : 𝕋) (hc : 0 < toReal (cosDown n x)) : -- --- CONCL ---
     toReal (tanDown n x) ≤ Real.tan (toReal x) := by -- --- PROOF ---
   have h1 := cosDown_le n x
   have h2 := le_cosUp n x
@@ -84,7 +85,7 @@ theorem tanDown_le (n : ℕ) (x : 𝕋) (hc : 0 < toReal (cosDown n x)) :
   simp only [tanDown, toReal_minimum]
   exact min_le_min (divDown_le_div _ _ hc) (divDown_le_div _ _ hcu)
 
-theorem le_tanUp (n : ℕ) (x : 𝕋) (hc : 0 < toReal (cosDown n x)) :
+theorem le_tanUp (n : ℕ) (x : 𝕋) (hc : 0 < toReal (cosDown n x)) : -- --- CONCL ---
     Real.tan (toReal x) ≤ toReal (tanUp n x) := by -- --- PROOF ---
   have h1 := cosDown_le n x
   have h2 := le_cosUp n x

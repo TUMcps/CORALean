@@ -38,7 +38,7 @@ namespace CORALean.Float.Binary64
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem addDown_le_add (a b : Float) :
+theorem addDown_le_add (a b : Float) : -- --- CONCL ---
     toReal (addDown a b) ≤ toReal a + toReal b := by -- --- PROOF ---
   rw [addDown, trustedHardware.toReal_neg]
   -- the same assumption at `-a` and `-b`, where the step up is a step down here

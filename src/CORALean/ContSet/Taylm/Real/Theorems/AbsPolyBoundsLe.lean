@@ -35,7 +35,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.abs_polyBounds_le (L : List (ℝ × (Fin n → ℕ))) :
+theorem Taylm.abs_polyBounds_le (L : List (ℝ × (Fin n → ℕ))) : -- --- CONCL ---
     |(Taylm.polyBounds L).inf| ≤ (L.map fun a => |a.1|).sum ∧
       |(Taylm.polyBounds L).sup| ≤ (L.map fun a => |a.1|).sum := by -- --- PROOF ---
   induction L with

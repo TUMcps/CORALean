@@ -54,7 +54,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every point of the set, box included, is a nominal point of `absorbRounding`. -/
-theorem ConPolyZono.absorbRounding_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
+theorem ConPolyZono.absorbRounding_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     cPZ.construct ⊆ nominalSet cPZ.absorbRounding := by -- --- PROOF ---
   -- a point is a nominal point plus an error within the box
   rintro _ ⟨z, hz', e, he, rfl⟩

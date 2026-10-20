@@ -52,7 +52,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.depReachAt_D_c (A : Mat ℝ n n) (Δt : ℝ) (cs : STL.DepReachConsts n)
-    (X₀ : Zonotope (Vec ℝ n)) (hD : cs.D.c = 0) (i : ℕ) :
+    (X₀ : Zonotope (Vec ℝ n)) (hD : cs.D.c = 0) (i : ℕ) : -- --- CONCL ---
     (STL.depReachAt A Δt cs X₀ i).D.c = 0 := by -- --- PROOF ---
   induction i with
   | zero => rfl

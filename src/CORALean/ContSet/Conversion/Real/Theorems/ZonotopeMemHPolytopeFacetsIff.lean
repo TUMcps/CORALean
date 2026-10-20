@@ -42,7 +42,7 @@ variable {m : ℕ}
 
 /-- A point is in the facet polytope iff it meets every row's absolute bound. -/
 theorem Zonotope.mem_hPolytopeFacets_iff (Z : Zonotope (Vec ℝ (m + 1)))
-    (hG : ¬∀ j, Z.G j = 0) (x : Vec ℝ (m + 1)) :
+    (hG : ¬∀ j, Z.G j = 0) (x : Vec ℝ (m + 1)) : -- --- CONCL ---
     x ∈ Z.hPolytopeFacets.construct
       ↔ ∀ v ∈ Z.facetRows, |v ⬝ᵥ (x - Z.c)| ≤ ∑ j, |v ⬝ᵥ Z.G j| := by -- --- PROOF ---
   unfold Zonotope.hPolytopeFacets

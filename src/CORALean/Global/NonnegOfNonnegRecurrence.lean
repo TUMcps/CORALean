@@ -57,7 +57,7 @@ variable {n : ℕ}
 
 theorem nonneg_of_nonneg_recurrence (A : Mat ℝ n n) (x w : ℕ → Vec ℝ n)
     (hA : ∀ i j, 0 ≤ A i j) (hw : ∀ k i, 0 ≤ w k i) (h0 : ∀ i, 0 ≤ x 0 i)
-    (hstep : ∀ k, x (k + 1) = A *ᵥ x k + w k) (k : ℕ) (i : Fin n) :
+    (hstep : ∀ k, x (k + 1) = A *ᵥ x k + w k) (k : ℕ) (i : Fin n) : -- --- CONCL ---
     0 ≤ x k i := by -- --- PROOF ---
   induction k generalizing i with
   | zero => exact h0 i

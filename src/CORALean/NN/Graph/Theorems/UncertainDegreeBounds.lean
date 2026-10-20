@@ -59,7 +59,7 @@ variable {N m : ℕ}
 /-- The degree of an uncertain graph is bracketed by the two ends, and the lower
 end is at least `1`. -/
 theorem GNN.degreeAt_bounds (A : Mat ℝ N N) (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ)
-    (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) (hA : ∀ a b, 0 ≤ A a b) (j : Fin N) :
+    (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) (hA : ∀ a b, 0 ≤ A a b) (j : Fin N) : -- --- CONCL ---
     1 ≤ GNN.degree A j ∧ GNN.degree A j ≤ GNN.degreeAt A U lam j
       ∧ GNN.degreeAt A U lam j ≤ GNN.degreeSup A U j := by -- --- PROOF ---
   rw [GNN.degreeAt_eq, GNN.degreeSup, GNN.edgeDegree]

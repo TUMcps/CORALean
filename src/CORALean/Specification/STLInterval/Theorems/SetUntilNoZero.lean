@@ -32,7 +32,8 @@ open Classical in
 /-- `untilIntNoZero` denotes the times of the until interval except `0`. -/
 theorem STLInterval.set_untilNoZero (U U' : STLInterval)
     (hU' : U' = if U.containsPoint 0 0 then
-      STLInterval.stlInterval 0 (U.supremum.value.getD 0) false U.supremum.closed le_rfl else U) :
+      STLInterval.stlInterval 0 (U.supremum.value.getD 0) false U.supremum.closed le_rfl else U)
+    : -- --- CONCL ---
     U'.set = U.set \ {0} := by -- --- PROOF ---
   by_cases h : U.containsPoint 0 0
   · -- `0` is in the interval, so the interval starts at `0`, closed

@@ -42,7 +42,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Conform.image_templateZono {m m' : ℕ} {ι : Type} [Fintype ι] (M : Mat ℝ m' m)
-    (c : Vec ℝ m) (G : ι → Vec ℝ m) (α : ι → ℝ) :
+    (c : Vec ℝ m) (G : ι → Vec ℝ m) (α : ι → ℝ) : -- --- CONCL ---
     (fun x => M *ᵥ x) '' Conform.templateZono c G α
       = Conform.templateZono (M *ᵥ c) (fun j => M *ᵥ G j) α := by -- --- PROOF ---
   ext y

@@ -40,7 +40,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.vPolytope_contains (Z : Zonotope α) :
+theorem Zonotope.vPolytope_contains (Z : Zonotope α) : -- --- CONCL ---
     Z.construct ⊆ Z.vPolytope.construct := by -- --- PROOF ---
   rintro _ ⟨β, hβ, rfl⟩
   -- how far from `-1` towards `1` each coefficient sits

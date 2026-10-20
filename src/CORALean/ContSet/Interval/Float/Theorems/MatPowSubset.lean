@@ -50,7 +50,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.matPow_subset {X : Real.Interval (Mat ℝ n n)} {X' : Interval (Mat 𝕋 n n)}
-    {M₀ : Mat ℝ n n} (hM₀ : M₀ ∈ X.construct) (hX : X.construct ⊆ X'.construct) (k : ℕ) :
+    {M₀ : Mat ℝ n n} (hM₀ : M₀ ∈ X.construct) (hX : X.construct ⊆ X'.construct)
+    (k : ℕ) : -- --- CONCL ---
     (Real.Interval.matPow X k).construct ⊆ (Interval.matPow X' k).construct := by -- --- PROOF ---
   induction k with
   | zero =>

@@ -49,7 +49,7 @@ open Matrix
 
 /-- [1, Sec. 4.2]: after eq. 29, row `r` of `[Ã | b̃]` is the trivial `0ᵀξ = 0`. -/
 theorem ConZonotope.partialSolve_zero_row {q h : ℕ} (A : Mat ℝ q h) (b : Vec ℝ q)
-    (r : Fin q) (j : Fin h) (hAj : A r j ≠ 0) :
+    (r : Fin q) (j : Fin h) (hAj : A r j ≠ 0) : -- --- CONCL ---
     (∀ l, (A - ConZonotope.partialSolveΛA A r j * A) r l = 0) ∧
       (b - ConZonotope.partialSolveΛA A r j *ᵥ b) r = 0 := by -- --- PROOF ---
   refine ⟨fun l => ?_, ?_⟩

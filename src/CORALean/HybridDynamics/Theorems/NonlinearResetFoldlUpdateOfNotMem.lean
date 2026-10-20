@@ -41,7 +41,8 @@ variable {n m N M : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinearReset.foldl_update_of_not_mem {n N : ℕ} (g : Fin n → Fin N) (v : Fin n → ℝ)
-    (i : Fin N) : ∀ (l : List (Fin n)) (base : Fin N → ℝ), (∀ j ∈ l, g j ≠ i) →
+    (i : Fin N) : -- --- CONCL ---
+    ∀ (l : List (Fin n)) (base : Fin N → ℝ), (∀ j ∈ l, g j ≠ i) →
       l.foldl (fun acc j => Function.update acc (g j) (v j)) base i = base i := by -- --- PROOF ---
   -- induction on the list: each update is at a coordinate other than `i`
   intro l

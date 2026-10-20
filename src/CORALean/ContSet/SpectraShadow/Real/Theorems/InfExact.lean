@@ -35,7 +35,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.Inf_exact (n : ℕ) :
+theorem SpectraShadow.Inf_exact (n : ℕ) : -- --- CONCL ---
     (SpectraShadow.Inf n).construct = Set.univ := by -- --- PROOF ---
   ext x
   simp only [SpectraShadow.construct, Set.mem_setOf_eq, Set.mem_univ, iff_true]

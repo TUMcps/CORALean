@@ -39,7 +39,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.splitAt_covers {X : Fin n → Interval ℝ} {l : List (Fin n → Interval ℝ)} (i : ℕ)
-    (h : Taylm.Covers X l) : Taylm.Covers X (Taylm.splitAt i l) := by -- --- PROOF ---
+    (h : Taylm.Covers X l) : -- --- CONCL ---
+    Taylm.Covers X (Taylm.splitAt i l) := by -- --- PROOF ---
   intro t ht
   obtain ⟨B', hB', htB'⟩ := h t ht
   unfold Taylm.splitAt

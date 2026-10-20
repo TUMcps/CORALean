@@ -55,7 +55,7 @@ variable {n : ℕ}
 /-- [1, Prop. 1]: every state `x` of the guard `G = ⟨a, b, C H, d - C k⟩_H` is mapped by the
 reset `r(x) = H x + k` into the polytope `Y = ⟨C, d⟩_P`. -/
 theorem IdentHA.identGuard_maps_into (a : Vec ℝ n) (b : ℝ) (H : Mat ℝ n n) (k : Vec ℝ n)
-    (cs : List (Vec ℝ n × ℝ)) :
+    (cs : List (Vec ℝ n × ℝ)) : -- --- CONCL ---
     ∀ x ∈ IdentHA.conHyperplane a b (IdentHA.identGuard H k cs),
       H *ᵥ x + k ∈ (IdentHA.polytope cs).construct := by -- --- PROOF ---
   rintro x ⟨-, hx⟩

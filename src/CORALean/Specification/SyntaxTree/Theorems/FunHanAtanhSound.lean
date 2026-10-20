@@ -39,7 +39,8 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `tanh` is monotone. -/
-private theorem SyntaxTree.tanh_mono : Monotone Real.tanh := by -- --- PROOF ---
+private theorem SyntaxTree.tanh_mono : -- --- CONCL ---
+    Monotone Real.tanh := by -- --- PROOF ---
   refine StrictMono.monotone fun a b hab => ?_
   rw [Real.tanh_eq_sinh_div_cosh, Real.tanh_eq_sinh_div_cosh,
     div_lt_div_iff₀ (Real.cosh_pos a) (Real.cosh_pos b)]
@@ -48,7 +49,8 @@ private theorem SyntaxTree.tanh_mono : Monotone Real.tanh := by -- --- PROOF ---
   linarith
 
 /-- `aaux_tanh_` is sound for `atanh` on an operand inside `(-1,1)`. -/
-theorem SyntaxTree.funHanAtanh_sound (prev : Dom) (hd₁ : -1 < prev.inf 0) (hd₂ : prev.sup 0 < 1) :
+theorem SyntaxTree.funHanAtanh_sound (prev : Dom) (hd₁ : -1 < prev.inf 0)
+    (hd₂ : prev.sup 0 < 1) : -- --- CONCL ---
     UnarySound Unary.atanh.fn prev (Real.Interval.atanh prev) funHanAtanh := by -- --- PROOF ---
   intro int _ s hs hi
   have h : int.inf 0 ≤ Real.artanh s ∧ Real.artanh s ≤ int.sup 0 := hi

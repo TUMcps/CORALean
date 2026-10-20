@@ -75,7 +75,7 @@ theorem aux_exp_mulVec_tsum (A : Mat ℝ n n) (v : Vec ℝ n) (σ : ℝ) :
 /-- Applying a vector only shrinks the terms, by `‖A^i v‖ ≤ ‖A^i‖ ‖v‖`, so
 summability of a matrix series carries to it. -/
 theorem aux_summable_smul_mulVec {c : ℕ → ℝ} (A : Mat ℝ n n) (v : Vec ℝ n)
-    (h : Summable (fun i : ℕ => ‖c i • A ^ i‖)) :
+    (h : Summable (fun i : ℕ => ‖c i • A ^ i‖)) : -- --- CONCL ---
     Summable (fun i : ℕ => c i • (A ^ i *ᵥ v)) := by -- --- PROOF ---
   refine Summable.of_norm_bounded (g := fun i : ℕ => ‖v‖ * ‖c i • A ^ i‖)
     (h.mul_left _) fun i => ?_
@@ -109,7 +109,8 @@ theorem aux_continuous_expPartial (A : Mat ℝ n n) (v : Vec ℝ n) (N : ℕ) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `expIntegral` is what its name says, once a vector is supplied. -/
-theorem Real.MatExp.expIntegral_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) {t : ℝ} (ht : 0 ≤ t) :
+theorem Real.MatExp.expIntegral_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) {t : ℝ}
+    (ht : 0 ≤ t) : -- --- CONCL ---
     Real.MatExp.expIntegral A t *ᵥ v = ∫ σ in (0:ℝ)..t, exp (σ • A) *ᵥ v := by -- --- PROOF ---
   have hseries : Real.MatExp.expIntegral A t *ᵥ v
       = ∑' i : ℕ, (((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1)) • (A ^ i *ᵥ v) := by

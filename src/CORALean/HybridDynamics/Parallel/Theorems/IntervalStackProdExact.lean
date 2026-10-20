@@ -37,7 +37,7 @@ variable {k : ℕ} {n : Fin k → ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.stackProd_exact (bs : ∀ i, Interval (Vec ℝ (n i))) :
+theorem Interval.stackProd_exact (bs : ∀ i, Interval (Vec ℝ (n i))) : -- --- CONCL ---
     (Interval.stackProd bs).construct =
       {z | ∀ i, unstack z i ∈ (bs i).construct} := by -- --- PROOF ---
   ext z

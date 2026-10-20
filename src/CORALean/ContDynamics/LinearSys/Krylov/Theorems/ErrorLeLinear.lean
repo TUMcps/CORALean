@@ -58,7 +58,8 @@ open Set
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `(e^{νt} - 1)/ν ≤ ϕ t`, and it is nonnegative, for `t ∈ [0, t_f]`. -/
-theorem Krylov.aux_psi_le (ν : ℝ) {tf t : ℝ} (htf : 0 < tf) (ht0 : 0 ≤ t) (httf : t ≤ tf) :
+theorem Krylov.aux_psi_le (ν : ℝ) {tf t : ℝ} (htf : 0 < tf) (ht0 : 0 ≤ t)
+    (httf : t ≤ tf) : -- --- CONCL ---
     0 ≤ (if ν = 0 then t else (Real.exp (ν * t) - 1) / ν) ∧
     (if ν = 0 then t else (Real.exp (ν * t) - 1) / ν)
       ≤ (if 0 < ν then (Real.exp (ν * tf) - 1) / (ν * tf) else 1) * t := by -- --- PROOF ---

@@ -37,7 +37,7 @@ variable {p : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem leShl_iff (m n : ℤ) (g : ℕ) :
+theorem leShl_iff (m n : ℤ) (g : ℕ) : -- --- CONCL ---
     leShl m n g = true ↔ m ≤ n * 2 ^ g := by -- --- PROOF ---
   unfold leShl
   by_cases hn : n = 0

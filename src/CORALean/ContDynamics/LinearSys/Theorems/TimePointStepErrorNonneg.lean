@@ -48,7 +48,8 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.timePointStepError_nonneg (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 ≤ r)
-    (η : ℕ) (U : Zonotope (Vec ℝ n)) (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) ≤ 1 / 2) :
+    (η : ℕ) (U : Zonotope (Vec ℝ n))
+    (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) ≤ 1 / 2) : -- --- CONCL ---
     0 ≤ sys.timePointStepError r η U := by -- --- PROOF ---
   have hS : 0 ≤ ∑ j, U.absBound j :=
     Finset.sum_nonneg fun j _ => add_nonneg (abs_nonneg _) (Finset.sum_nonneg fun _ _ =>

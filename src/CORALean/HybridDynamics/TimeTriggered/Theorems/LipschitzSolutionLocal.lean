@@ -49,7 +49,8 @@ variable {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A solution of `ẋ = f(x)` through `y` on `(-h, h)`, `h = 1 / (2K + 2)`, [1, Def. 2]. -/
-theorem lipschitzSolutionLocal {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f) (y : E) :
+theorem lipschitzSolutionLocal {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f)
+    (y : E) : -- --- CONCL ---
     ∃ α : ℝ → E, α 0 = y ∧ ∀ u ∈ Ioo (-(1 / (2 * (K : ℝ) + 2))) (1 / (2 * (K : ℝ) + 2)),
       HasDerivAt α (f (α u)) u := by -- --- PROOF ---
   -- the window `h`, the ball radius `R` and the bound `L` on the ball

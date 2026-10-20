@@ -35,7 +35,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.splitFirstGen_union (Z : Zonotope (Vec ℝ n)) :
+theorem Zonotope.splitFirstGen_union (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     Z.splitFirstGen.1.construct ∪ Z.splitFirstGen.2.construct = Z.construct := by -- --- PROOF ---
   unfold Zonotope.splitFirstGen
   dsimp only

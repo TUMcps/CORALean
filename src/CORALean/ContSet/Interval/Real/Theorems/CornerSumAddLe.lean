@@ -49,7 +49,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.corner_sum_add_le {b : Vec ℝ n} (hb0 : ∀ i, 0 ≤ b i) {l w : Fin n → Bool}
-    {m : Fin n} (hlw : ∀ i, l i = true → w i = true) (hlm : l m = false) (hwm : w m = true) :
+    {m : Fin n} (hlw : ∀ i, l i = true → w i = true) (hlm : l m = false)
+    (hwm : w m = true) : -- --- CONCL ---
     ∑ i, (⟨0, b⟩ : Interval (Vec ℝ n)).corner l i + b m ≤
       ∑ i, (⟨0, b⟩ : Interval (Vec ℝ n)).corner w i := by -- --- PROOF ---
   have hsum : ∑ i, (⟨0, b⟩ : Interval (Vec ℝ n)).corner l i + b m =

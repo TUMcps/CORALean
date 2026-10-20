@@ -51,7 +51,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `innerHRep` returns the plain inequalities its edges give, with no error box. -/
-private theorem Polygon.innerHRep_errFree {p : VPolytope (Vec 𝕋 2)} :
+private theorem Polygon.innerHRep_errFree {p : VPolytope (Vec 𝕋 2)} : -- --- CONCL ---
     ∀ H ∈ Polygon.innerHRep p,
       H.ErrFree := by -- --- PROOF ---
   intro H (h : Polygon.innerHRep p = some H)
@@ -61,7 +61,7 @@ private theorem Polygon.innerHRep_errFree {p : VPolytope (Vec 𝕋 2)} :
   exact HPolytope.errFree_of_origin rfl rfl rfl
 
 
-theorem Polygon.subtractPiece_outer (q r : VPolytope (Vec 𝕋 2)) :
+theorem Polygon.subtractPiece_outer (q r : VPolytope (Vec 𝕋 2)) : -- --- CONCL ---
     r.construct \ q.construct ⊆
       {x | ∃ s ∈ Polygon.subtractPiece q r, x ∈ s.construct} := by -- --- PROOF ---
   rintro x ⟨hr, hq⟩

@@ -55,7 +55,7 @@ variable [IntersectStrip 𝕋 S] {n p : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ContSet.intersectStripSeq_outer (C : Mat 𝕋 p n) (φ y : Vec 𝕋 p) (Λ : S n → Mat 𝕋 n p)
-    (Z : S n) :
+    (Z : S n) : -- --- CONCL ---
     construct Z ∩ {x | ∀ i, |(toRealMat C *ᵥ x - toRealVec y) i| ≤ toReal (φ i)} ⊆
       construct (ContSet.intersectStripSeq C φ y Λ Z) := by -- --- PROOF ---
   unfold ContSet.intersectStripSeq

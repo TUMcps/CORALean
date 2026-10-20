@@ -53,7 +53,7 @@ theorem Ellipsoid.aux_quad_eq_norm_sq (E : Ellipsoid n) (v : Vec ℝ n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.isBigger_iff_subset (E₁ E₂ : Ellipsoid n) (hr : E₁.rank = n) :
+theorem Ellipsoid.isBigger_iff_subset (E₁ E₂ : Ellipsoid n) (hr : E₁.rank = n) : -- --- CONCL ---
     E₁.isBigger E₂ ↔
       (fun x => x - E₂.q) '' E₂.construct ⊆
         (fun x => x - E₁.q) '' E₁.construct := by -- --- PROOF ---

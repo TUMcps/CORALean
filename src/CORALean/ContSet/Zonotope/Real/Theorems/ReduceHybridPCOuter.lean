@@ -53,7 +53,7 @@ variable {n : ℕ}
 
 /-- HybridPC over-approximates, whichever of the two it keeps. -/
 theorem Zonotope.reduceHybridPC_outer (Z : Zonotope (Vec ℝ n)) (o : ℕ) (ξ : ℝ)
-    (fuel runs : ℕ) :
+    (fuel runs : ℕ) : -- --- CONCL ---
     Z.construct ⊆ (Z.reduceHybridPC o ξ fuel runs).construct := by -- --- PROOF ---
   unfold Zonotope.reduceHybridPC
   dsimp only

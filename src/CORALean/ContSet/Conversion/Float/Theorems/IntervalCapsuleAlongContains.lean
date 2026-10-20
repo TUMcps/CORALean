@@ -57,7 +57,8 @@ variable [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.capsuleAlong_contains (k : ℕ) (I : Interval (Vec 𝕋 n)) (a : Fin n) :
+theorem Interval.capsuleAlong_contains (k : ℕ) (I : Interval (Vec 𝕋 n))
+    (a : Fin n) : -- --- CONCL ---
     I.construct ⊆ (I.capsuleAlong k a).construct := by -- --- PROOF ---
   intro x hx
   have hI : ∀ i, toReal (I.inf i) ≤ toReal (I.sup i) := fun i =>

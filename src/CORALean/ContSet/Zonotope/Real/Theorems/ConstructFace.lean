@@ -49,7 +49,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- Coefficients pinned off the annihilated generators split into the face's center and a point
 of the face's generators. -/
 theorem Zonotope.aux_sum_split_face (Z : Zonotope α) (u : α →ₗ[ℝ] ℝ) (β : Fin Z.h → ℝ)
-    (hpin : ∀ j, u (Z.G j) ≠ 0 → β j = Real.sign (u (Z.G j))) :
+    (hpin : ∀ j, u (Z.G j) ≠ 0 → β j = Real.sign (u (Z.G j))) : -- --- CONCL ---
     Z.c + ∑ j, β j • Z.G j = (Z.face u).c + ∑ j, β j • (Z.face u).G j := by -- --- PROOF ---
   have hterm : ∀ j, β j • Z.G j
       = Real.sign (u (Z.G j)) • Z.G j + β j • (Z.face u).G j := fun j => by
@@ -63,7 +63,7 @@ theorem Zonotope.aux_sum_split_face (Z : Zonotope α) (u : α →ₗ[ℝ] ℝ) (
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Sec. 3 (faces)]: the face of `Z` maximizing `u` is the zonotope `Z.face u`. -/
-theorem Zonotope.construct_face (Z : Zonotope α) (u : α →ₗ[ℝ] ℝ) :
+theorem Zonotope.construct_face (Z : Zonotope α) (u : α →ₗ[ℝ] ℝ) : -- --- CONCL ---
     (Z.face u).construct =
       {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, u y ≤ u x} := by -- --- PROOF ---
   ext x

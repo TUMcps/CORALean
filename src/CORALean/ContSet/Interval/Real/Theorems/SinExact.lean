@@ -39,7 +39,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One coordinate: the sine image of `[lb, ub]` is the cosine image of the shifted range. -/
-theorem aux_image_sin_Icc (lb ub : ℝ) :
+theorem aux_image_sin_Icc (lb ub : ℝ) : -- --- CONCL ---
     Real.sin '' Set.Icc lb ub =
       Real.cos '' Set.Icc (lb - Real.pi / 2) (ub - Real.pi / 2) := by -- --- PROOF ---
   ext v
@@ -53,7 +53,7 @@ theorem aux_image_sin_Icc (lb ub : ℝ) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.sin_exact (I : Interval (Vec ℝ n)) (hI : ∀ i, I.inf i ≤ I.sup i) :
+theorem Interval.sin_exact (I : Interval (Vec ℝ n)) (hI : ∀ i, I.inf i ≤ I.sup i) : -- --- CONCL ---
     I.sin.construct = (fun x i => Real.sin (x i)) '' I.construct := by -- --- PROOF ---
   have hJ : ∀ i, I.inf i - Real.pi / 2 ≤ I.sup i - Real.pi / 2 := fun i => by linarith [hI i]
   have hc : ∀ i, Real.sin '' Set.Icc (I.inf i) (I.sup i) = Set.Icc

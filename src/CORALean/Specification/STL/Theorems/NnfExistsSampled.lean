@@ -48,7 +48,8 @@ variable {X : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Nnf.hasSampledRewrite (n : STL.Nnf X) : n.HasSampledRewrite := by -- --- PROOF ---
+theorem STL.Nnf.hasSampledRewrite (n : STL.Nnf X) : -- --- CONCL ---
+    n.HasSampledRewrite := by -- --- PROOF ---
   induction hw : n.weight using Nat.strong_induction_on generalizing n with
   | _ w ih =>
     -- every operand weighs less than its parent, and `φ U[i',j'] ψ` less than `φ U[i,j] ψ`

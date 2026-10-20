@@ -42,7 +42,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem abs_evalPolyDeriv_sub_center_le {n : ℕ} (c : Fin (n + 1) → ℝ) {l u t : ℝ}
-    (hl : l ≤ t) (hu : t ≤ u) :
+    (hl : l ≤ t) (hu : t ≤ u) : -- --- CONCL ---
     |evalPolyDeriv c t - polyDerivCenter c| ≤ polyDerivRadius c l u := by -- --- PROOF ---
   have hlm : |l| ≤ max |l| |u| := le_max_left _ _
   have hum : |u| ≤ max |l| |u| := le_max_right _ _

@@ -40,7 +40,8 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Outer only: the monomial factors are free. -/
-theorem ConZonotope.cubMap_outer (T : Fin m → Fin n → Mat ℝ n n) (cZ : ConZonotope (Vec ℝ n)) :
+theorem ConZonotope.cubMap_outer (T : Fin m → Fin n → Mat ℝ n n)
+    (cZ : ConZonotope (Vec ℝ n)) : -- --- CONCL ---
     PolyZonotope.cubEval T '' cZ.construct ⊆ (cZ.cubMap T).construct := by -- --- PROOF ---
   rintro _ ⟨x, ⟨p, hp, hP, rfl⟩, rfl⟩
   obtain ⟨γ, hγ, hlin, hx⟩ := Zonotope.cubMap_coeff T (⟨cZ.h, cZ.c, cZ.G⟩ : Zonotope (Vec ℝ n)) p hp

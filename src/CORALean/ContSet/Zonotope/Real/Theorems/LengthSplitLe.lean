@@ -45,7 +45,7 @@ variable {n : ℕ}
 
 /-- The kept generators are at least as long as the dropped ones. -/
 theorem Zonotope.lengthSplit_le (Z : Zonotope (Vec ℝ n)) (q : ℕ) (hq : q ≤ Z.h)
-    (l : Fin q) (r : Fin (Z.h - q)) :
+    (l : Fin q) (r : Fin (Z.h - q)) : -- --- CONCL ---
     Z.generatorLength ((Z.lengthSplit q hq).right r)
       ≤ Z.generatorLength ((Z.lengthSplit q hq).left l) := by -- --- PROOF ---
   -- `Tuple.sort` makes the negated length monotone, and `left` precedes `right`

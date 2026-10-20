@@ -48,7 +48,7 @@ variable {T : Type} [LinearOrder T] [Zero T]
 
 /-- All stored values of a signal that is false everywhere are false. -/
 theorem aux_values_false_of_at [DenselyOrdered T] [NoMaxOrder T] (s : PointSegmentSignal T)
-    (hs : s.IsValid) (h : ∀ t : T, 0 ≤ t → s.at t = false) :
+    (hs : s.IsValid) (h : ∀ t : T, 0 ≤ t → s.at t = false) : -- --- CONCL ---
     ∀ x ∈ s.values, x = false := by -- --- PROOF ---
   have hs' := hs
   obtain ⟨h1, h2, h3, h4, h5⟩ := hs

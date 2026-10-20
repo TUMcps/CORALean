@@ -49,7 +49,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- A round keeps the cover. -/
 theorem PolyZonotope.aux_polygonRound_cover (pick : PolyZonotope (Vec 𝕋 2) → Bool)
-    (L : List (PolyZonotope (Vec 𝕋 2))) {x : Vec ℝ 2} (hx : ∃ q ∈ L, x ∈ q.construct) :
+    (L : List (PolyZonotope (Vec 𝕋 2))) {x : Vec ℝ 2}
+    (hx : ∃ q ∈ L, x ∈ q.construct) : -- --- CONCL ---
     ∃ q ∈ PolyZonotope.polygonRound pick L, x ∈ q.construct := by -- --- PROOF ---
   obtain ⟨q, hq, hxq⟩ := hx
   unfold PolyZonotope.polygonRound
@@ -61,7 +62,8 @@ theorem PolyZonotope.aux_polygonRound_cover (pick : PolyZonotope (Vec 𝕋 2) �
 
 /-- Every round, so the pieces cover. -/
 theorem PolyZonotope.aux_polygonPieces_cover (pZ : PolyZonotope (Vec 𝕋 2))
-    (pick : ℕ → PolyZonotope (Vec 𝕋 2) → Bool) (k : ℕ) {x : Vec ℝ 2} (hx : x ∈ pZ.construct) :
+    (pick : ℕ → PolyZonotope (Vec 𝕋 2) → Bool) (k : ℕ) {x : Vec ℝ 2}
+    (hx : x ∈ pZ.construct) : -- --- CONCL ---
     ∃ q ∈ pZ.polygonPieces k pick, x ∈ q.construct := by -- --- PROOF ---
   induction k with
   | zero => exact ⟨pZ, List.mem_singleton_self _, hx⟩
@@ -74,7 +76,7 @@ theorem PolyZonotope.aux_polygonPieces_cover (pZ : PolyZonotope (Vec 𝕋 2))
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.polygon_outer (pZ : PolyZonotope (Vec 𝕋 2)) (splits : ℕ)
-    (pick : ℕ → PolyZonotope (Vec 𝕋 2) → Bool) :
+    (pick : ℕ → PolyZonotope (Vec 𝕋 2) → Bool) : -- --- CONCL ---
     pZ.construct ⊆ ContSet.construct (pZ.polygon splits pick) := by -- --- PROOF ---
   intro x hx
   obtain ⟨q, hq, hxq⟩ := PolyZonotope.aux_polygonPieces_cover pZ pick splits hx

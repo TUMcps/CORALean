@@ -39,7 +39,7 @@ open scoped Pointwise
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `plus` denotes the sum of the two sets of times. -/
-theorem STLInterval.set_plus (I J : STLInterval) :
+theorem STLInterval.set_plus (I J : STLInterval) : -- --- CONCL ---
     (I.plus J).set = I.set + J.set := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.plus, STLInterval.set]

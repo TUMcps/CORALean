@@ -38,7 +38,8 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `toBoolSignal?` is `none` iff the signal is unknown at some time. -/
-theorem KleeneSignal.toBoolSignal?_eq_none_iff (s : KleeneSignal ℝ) (hs : s.IsValid) :
+theorem KleeneSignal.toBoolSignal?_eq_none_iff (s : KleeneSignal ℝ)
+    (hs : s.IsValid) : -- --- CONCL ---
     s.toBoolSignal? = none ↔ ∃ t : ℝ, 0 ≤ t ∧ s.at t = Kleene.uu := by -- --- PROOF ---
   -- the whole time axis is the interval `[0,inf)`
   have hne : STLInterval.emptyBounds (0 : ℝ) ⊤ true false = false := by

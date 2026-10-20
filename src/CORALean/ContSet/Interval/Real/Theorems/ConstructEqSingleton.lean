@@ -38,7 +38,8 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.inf_sup_of_construct_eq_singleton {I : Interval α} {v : α}
-    (h : I.construct = {v}) : I.inf = v ∧ I.sup = v := by -- --- PROOF ---
+    (h : I.construct = {v}) : -- --- CONCL ---
+    I.inf = v ∧ I.sup = v := by -- --- PROOF ---
   have hne : I.IsNonempty := (Interval.isNonempty_iff I).2 ⟨v, by rw [h]; rfl⟩
   have h₁ : I.inf ∈ I.construct := fun i => ⟨le_refl _, hne i⟩
   have h₂ : I.sup ∈ I.construct := fun i => ⟨hne i, le_refl _⟩

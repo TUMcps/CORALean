@@ -40,7 +40,8 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem TentativeKleeneSignal.toFourValued_spec (s : TentativeKleeneSignal ℝ) (hs : s.IsValid) :
+theorem TentativeKleeneSignal.toFourValued_spec (s : TentativeKleeneSignal ℝ)
+    (hs : s.IsValid) : -- --- CONCL ---
     s.toFourValued.IsValid ∧ ∀ t : ℝ, 0 ≤ t → s.toFourValued.at t = s.at t := by -- --- PROOF ---
   have hv : ∀ k : Fin 2, (![s.canBeTrue, s.canBeFalse] k).IsValid :=
     Fin.forall_fin_two.2 ⟨hs.1, hs.2⟩

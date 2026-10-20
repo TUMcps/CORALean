@@ -53,7 +53,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.atan2_outer (p k : ℕ) (I₁ I₂ : Interval (Vec 𝕋 n)) {y x : Vec ℝ n}
-    (hy : y ∈ I₁.construct) (hx : x ∈ I₂.construct) :
+    (hy : y ∈ I₁.construct) (hx : x ∈ I₂.construct) : -- --- CONCL ---
     (fun i => Complex.arg ⟨x i, y i⟩) ∈ (Interval.atan2 p k I₁ I₂).construct := by -- --- PROOF ---
   intro i
   show toReal ((Interval.atan2 p k I₁ I₂).inf i) ≤ Complex.arg ⟨x i, y i⟩ ∧

@@ -58,7 +58,7 @@ variable {n : ℕ}
 
 /-- Applying `M` scales a box diameter by at most `M`'s own operator norm. -/
 theorem boxDiameter_mulVec_image_le {M : Mat ℝ n n} {S : Set (Vec ℝ n)} (hne : S.Nonempty)
-    (hS : Bornology.IsBounded S) :
+    (hS : Bornology.IsBounded S) : -- --- CONCL ---
     ‖boxDiameter ((M *ᵥ ·) '' S)‖ ≤ ‖M‖ * ‖boxDiameter S‖ := by -- --- PROOF ---
   -- bound the widest column-`i` gap between two points of `S`, then sandwich `sSup`/`sInf`
   have hcoord : ∀ i : Fin n, boxDiameter ((M *ᵥ ·) '' S) i ≤ ‖M‖ * ‖boxDiameter S‖ := by

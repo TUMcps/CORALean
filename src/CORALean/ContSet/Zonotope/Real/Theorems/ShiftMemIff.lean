@@ -39,7 +39,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.mem_shift_iff (Z : Zonotope α) (w x : α) :
+theorem Zonotope.mem_shift_iff (Z : Zonotope α) (w x : α) : -- --- CONCL ---
     x ∈ (Z.shift w).construct ↔ x + w ∈ Z.construct := by -- --- PROOF ---
   constructor
   · rintro ⟨β, hβ, rfl⟩

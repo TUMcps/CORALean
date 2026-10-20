@@ -38,7 +38,7 @@ variable {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The Lebesgue volume of the box, as matrices read as functions, is `matVolume`. -/
-theorem Interval.matVolume_eq (A : Interval (Mat ℝ m n)) :
+theorem Interval.matVolume_eq (A : Interval (Mat ℝ m n)) : -- --- CONCL ---
     MeasureTheory.volume {f : Fin m → Fin n → ℝ | (Matrix.of f : Mat ℝ m n) ∈ A.construct}
       = A.matVolume := by -- --- PROOF ---
   have hc : {f : Fin m → Fin n → ℝ | (Matrix.of f : Mat ℝ m n) ∈ A.construct}

@@ -55,7 +55,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `∫₀ʳ e^{As} ds` is `r I` up to the exponential's second-order remainder, over `‖A‖`. -/
-theorem MatExp.norm_mul_norm_expIntegral_sub_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 ≤ r) :
+theorem MatExp.norm_mul_norm_expIntegral_sub_le (A : Mat ℝ n n) {r : ℝ}
+    (hr : 0 ≤ r) : -- --- CONCL ---
     ‖A‖ * ‖MatExp.expIntegral A r - r • (1 : Mat ℝ n n)‖
       ≤ Real.exp (r * ‖A‖) - 1 - r * ‖A‖ := by -- --- PROOF ---
   rcases (norm_nonneg A).eq_or_lt with hA | hA

@@ -72,7 +72,8 @@ variable {n : ℕ}
 
 /-- A set measured against itself carries no error at all. -/
 theorem aux_globalAbstrErr_self {X : Set (Vec ℝ n)} (hne : X.Nonempty)
-    (hb : Bornology.IsBounded X) : globalAbstrErr X X = 0 := by -- --- PROOF ---
+    (hb : Bornology.IsBounded X) : -- --- CONCL ---
+    globalAbstrErr X X = 0 := by -- --- PROOF ---
   have hXz : X + ({0} : Set (Vec ℝ n)) = X := by simp
   have h := globalAbstrErr_eq_localAbstrErr (Rhat := X) (Rabs := ({0} : Set (Vec ℝ n))) hne hb
     (convex_singleton 0) isClosed_singleton

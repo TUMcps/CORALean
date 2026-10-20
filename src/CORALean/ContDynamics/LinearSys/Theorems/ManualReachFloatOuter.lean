@@ -60,7 +60,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 omit [ToRat 𝕋] in
 /-- `aux_manualInitFloat` holds what a state owes at `t₀ = 0`. -/
-theorem LinearSys.aux_manualInvariantFloat_init (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec 𝕋 n)) :
+theorem LinearSys.aux_manualInvariantFloat_init (sys : LinearSys 𝕋 n)
+    (X₀ V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     sys.ManualInvariantFloat X₀ V (LinearSys.aux_manualInitFloat X₀) := by -- --- PROOF ---
   have hzero : (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.construct := by
     have h0 := Interval.zonotope_contains _ (Interval.mem_point fun _ : Fin n => (zero : 𝕋))

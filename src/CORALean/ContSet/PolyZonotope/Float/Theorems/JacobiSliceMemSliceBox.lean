@@ -49,7 +49,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p : ℕ}
 theorem PolyZonotope.jacobiSlice_mem_sliceBox (X₀ : Interval (Vec 𝕋 p)) {ind : Fin n → Fin p}
     (hind : Function.Injective ind) (U : Interval (Vec 𝕋 n)) {xc : Vec ℝ p} {v : Vec ℝ n}
     (hv : v ∈ U.construct)
-    (hxc : ∀ k, (∀ i, ind i ≠ k) → toReal (X₀.inf k) ≤ xc k ∧ xc k ≤ toReal (X₀.sup k)) :
+    (hxc : ∀ k, (∀ i, ind i ≠ k) → toReal (X₀.inf k) ≤ xc k ∧ xc k ≤ toReal (X₀.sup k))
+    : -- --- CONCL ---
     jacobiSlice xc ind v ∈ (PolyZonotope.sliceBox X₀ ind U).construct := by -- --- PROOF ---
   intro k
   show toReal ((PolyZonotope.sliceBox X₀ ind U).inf k) ≤ jacobiSlice xc ind v k ∧

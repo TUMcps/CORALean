@@ -48,7 +48,8 @@ theorem aux_one_add_exp_sum_pos (v : Vec ℝ n) (i : Fin n) (a : ℝ) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The denominator is smallest when every ratio is, which is the box's corner. -/
-theorem softmax_le_raw {lo hi x : Vec ℝ n} (hx : ∀ i, lo i ≤ x i ∧ x i ≤ hi i) (i : Fin n) :
+theorem softmax_le_raw {lo hi x : Vec ℝ n} (hx : ∀ i, lo i ≤ x i ∧ x i ≤ hi i)
+    (i : Fin n) : -- --- CONCL ---
     softmax x i ≤ (1 + ∑ j ∈ Finset.univ.erase i, Real.exp (lo j - hi i))⁻¹ := by -- --- PROOF ---
   have hmono : ∑ j ∈ Finset.univ.erase i, Real.exp (lo j - hi i)
       ≤ ∑ j ∈ Finset.univ.erase i, Real.exp (x j - x i) :=

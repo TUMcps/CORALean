@@ -57,7 +57,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.containsPointCora_counterexample :
+theorem ConPolyZono.containsPointCora_counterexample : -- --- CONCL ---
     ∃ (cPZ : ConPolyZono (Vec ℝ 1)) (p : Vec ℝ 1),
       cPZ.containsPointCora p ∧ p ∉ cPZ.construct := by -- --- PROOF ---
   -- one factor `α`, generator `α`, constraint `α = 0`

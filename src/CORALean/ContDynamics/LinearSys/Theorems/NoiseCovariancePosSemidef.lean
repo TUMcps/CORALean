@@ -52,7 +52,8 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem noiseCovariance_posSemidef (A : Mat ℝ n n) (C : Mat ℝ n m) {t : ℝ} (ht : 0 ≤ t) :
+theorem noiseCovariance_posSemidef (A : Mat ℝ n n) (C : Mat ℝ n m) {t : ℝ}
+    (ht : 0 ≤ t) : -- --- CONCL ---
     (noiseCovariance A C t).PosSemidef := by -- --- PROOF ---
   set g : ℝ → Mat ℝ n n := fun u => exp (u • A) * (C * C.transpose) * exp (u • A.transpose)
     with hg

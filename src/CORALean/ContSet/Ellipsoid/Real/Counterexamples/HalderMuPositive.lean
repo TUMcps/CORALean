@@ -49,7 +49,7 @@ theorem Ellipsoid.aux_e1 :
   simp
   norm_num
 
-theorem Ellipsoid.aux_e2 :
+theorem Ellipsoid.aux_e2 : -- --- CONCL ---
     Ellipsoid.halderElemSymm (fun i : Fin 3 => ((![1, 1, 10] : Fin 3 → ℝ) i)⁻¹) 2
       = 6 / 5 := by -- --- PROOF ---
   unfold Ellipsoid.halderElemSymm
@@ -63,7 +63,7 @@ theorem Ellipsoid.aux_e2 :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Cor. 1] is false: `µ₂ < 0` for `λ = (1, 1, 10)`. -/
-theorem Ellipsoid.not_halderMu_positive :
+theorem Ellipsoid.not_halderMu_positive : -- --- CONCL ---
     ¬ ∀ (d : ℕ) (lam : Fin d → ℝ), (∀ i, 0 < lam i) → ∀ r : ℕ, 1 ≤ r → r + 1 ≤ d →
       0 < Ellipsoid.halderMu lam r := by -- --- PROOF ---
   intro h

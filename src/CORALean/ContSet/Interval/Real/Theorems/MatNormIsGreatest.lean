@@ -43,7 +43,7 @@ variable {m n : ℕ}
 
 /-- The maximum of the norm of `type` over a nonempty box is `matNorm`, and is attained. -/
 theorem Interval.matNorm_isGreatest (p : Interval.NormType) (A : Interval (Mat ℝ m n))
-    (hA : ∀ r s, A.inf r s ≤ A.sup r s) :
+    (hA : ∀ r s, A.inf r s ≤ A.sup r s) : -- --- CONCL ---
     IsGreatest ((fun M : Mat ℝ m n => p.eval M) '' A.construct) (A.matNorm p) := by -- --- PROOF ---
   have hmax : A.matNorm p = p.eval A.absMax := by
     unfold Interval.matNorm

@@ -40,7 +40,8 @@ open scoped Pointwise
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `minusInterval` denotes the differences with `[inf, sup]`, at least `0`. -/
-theorem STLInterval.set_minusInterval (I : STLInterval) (J : Real.Interval (Vec ℝ 1)) :
+theorem STLInterval.set_minusInterval (I : STLInterval)
+    (J : Real.Interval (Vec ℝ 1)) : -- --- CONCL ---
     (I.minusInterval J).set =
       (I.set - Set.Icc (J.inf 0) (J.sup 0)) ∩ Set.Ici 0 := by -- --- PROOF ---
   cases I with

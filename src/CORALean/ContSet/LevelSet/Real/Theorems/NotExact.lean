@@ -34,7 +34,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LevelSet.not_exact {L : LevelSet n} :
+theorem LevelSet.not_exact {L : LevelSet n} : -- --- CONCL ---
     ∀ L' ∈ L.not,
       L'.construct = L.construct ᶜ := by -- --- PROOF ---
   intro L' (h : L.not = some L')

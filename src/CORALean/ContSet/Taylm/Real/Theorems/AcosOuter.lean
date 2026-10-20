@@ -47,7 +47,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.acos_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    (hdom : T.mag < 1) :
+    (hdom : T.mag < 1) : -- --- CONCL ---
     T.acos.Encloses fun t => Real.arccos (f t) := by -- --- PROOF ---
   refine Taylm.taylor_outer h _ _ _ (fun ξ hξ => ?_) fun ξ hξ => ?_
   · have hm := lt_of_le_of_lt (T.abs_le_mag hξ) hdom

@@ -38,7 +38,8 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A sound tree encloses its function over the box. -/
-theorem SyntaxTree.encloses_of_sound (h : Sound B t) : Encloses B t := by -- --- PROOF ---
+theorem SyntaxTree.encloses_of_sound (h : Sound B t) : -- --- CONCL ---
+    Encloses B t := by -- --- PROOF ---
   cases t with
   | var i v => exact fun x hx => h x hx
   | unary op v f t => exact h.2.1

@@ -37,7 +37,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.representsa_point_iff (hn : 0 < n) (C : Capsule n) :
+theorem Capsule.representsa_point_iff (hn : 0 < n) (C : Capsule n) : -- --- CONCL ---
     C.construct = {C.c} ↔ C.representsa_point := by -- --- PROOF ---
   constructor
   · intro h

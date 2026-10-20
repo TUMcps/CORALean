@@ -63,7 +63,7 @@ variable {V : Type} [AddCommGroup V] [Module ℝ V]
 noncomputable def aux_S (g : ℕ → V) (σ : List Bool) : V :=
   ∑ i ∈ Finset.range σ.length, (if σ.getD i false then (1 : ℝ) else -1) • g i
 
-theorem aux_S_append (g : ℕ → V) (σ ρ : List Bool) :
+theorem aux_S_append (g : ℕ → V) (σ ρ : List Bool) : -- --- CONCL ---
     aux_S g (σ ++ ρ) = aux_S g σ + ∑ i ∈ Finset.Ico σ.length (σ.length + ρ.length),
       (if (σ ++ ρ).getD i false then (1 : ℝ) else -1) • g i := by -- --- PROOF ---
   unfold aux_S
@@ -88,7 +88,7 @@ def aux_Good (σ : List Bool) : Prop :=
 
 include hadd hsmul in
 /-- `[1, Eq. 9]`: an extension's value is below the prune bound. -/
-theorem aux_prune {σ τ : List Bool} (hpre : σ <+: τ) (hτ : τ.length ≤ m) :
+theorem aux_prune {σ τ : List Bool} (hpre : σ <+: τ) (hτ : τ.length ≤ m) : -- --- CONCL ---
     nrm (b + aux_S g τ) ≤
       nrm (b + aux_S g σ) + ∑ i ∈ Finset.Ico σ.length m, nrm (g i) := by -- --- PROOF ---
   obtain ⟨ρ, rfl⟩ := hpre
@@ -110,7 +110,8 @@ theorem aux_prune {σ τ : List Bool} (hpre : σ <+: τ) (hτ : τ.length ≤ m)
 
 include hadd hsmul in
 /-- A node's value is at most the value of some full-length extension. -/
-theorem aux_exists_leaf (k : ℕ) : ∀ σ : List Bool, σ.length + k = m →
+theorem aux_exists_leaf (k : ℕ) : -- --- CONCL ---
+    ∀ σ : List Bool, σ.length + k = m →
     ∃ τ, σ <+: τ ∧ τ.length = m ∧
       nrm (b + aux_S g σ) ≤ nrm (b + aux_S g τ) := by -- --- PROOF ---
   induction k with
@@ -140,7 +141,7 @@ theorem aux_exists_leaf (k : ℕ) : ∀ σ : List Bool, σ.length + k = m →
         (hle.trans (max_le hc le_rfl)).trans hτv⟩
 
 /-- A node is good iff both its children are. -/
-theorem aux_good_iff {σ : List Bool} (hσ : σ.length < m) :
+theorem aux_good_iff {σ : List Bool} (hσ : σ.length < m) : -- --- CONCL ---
     aux_Good nrm b g m σ ↔
       aux_Good nrm b g m (σ ++ [true]) ∧ aux_Good nrm b g m (σ ++ [false]) := by -- --- PROOF ---
   constructor
@@ -245,7 +246,7 @@ end Search
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.containsDFS_iff [FiniteDimensional ℝ E] (Z : Zonotope (Vec ℝ n))
-    (H : E →ₗ[ℝ] Vec ℝ n) (hH : Function.Surjective H) (d : Vec ℝ n) :
+    (H : E →ₗ[ℝ] Vec ℝ n) (hH : Function.Surjective H) (d : Vec ℝ n) : -- --- CONCL ---
     Z.containsDFS H d = true ↔
       Z.construct ⊆ {x | ∃ β : E, ‖β‖ ≤ 1 ∧ x = d + H β} := by -- --- PROOF ---
   classical

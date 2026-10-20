@@ -54,7 +54,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The parabola's value on a box never leaves `[quadTermLo, quadTermHi]`. -/
-theorem MatExp.quadTerm_between {t a b x : ℝ} (h₁ : a ≤ x) (h₂ : x ≤ b) :
+theorem MatExp.quadTerm_between {t a b x : ℝ} (h₁ : a ≤ x) (h₂ : x ≤ b) : -- --- CONCL ---
     MatExp.quadTermLo t a b ≤ MatExp.quadTerm t x ∧
       MatExp.quadTerm t x ≤ MatExp.quadTermHi t a b := by -- --- PROOF ---
   have hab : a ≤ b := h₁.trans h₂

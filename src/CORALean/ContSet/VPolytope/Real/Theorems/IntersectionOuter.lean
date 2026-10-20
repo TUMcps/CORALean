@@ -52,7 +52,7 @@ variable {n q₁ q₂ : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.intersection_outer (P₁ P₂ : VPolytope (Vec ℝ n))
-    (Aq₁ : Fin q₁ → (Vec ℝ n →ₗ[ℝ] ℝ)) (Aq₂ : Fin q₂ → (Vec ℝ n →ₗ[ℝ] ℝ)) :
+    (Aq₁ : Fin q₁ → (Vec ℝ n →ₗ[ℝ] ℝ)) (Aq₂ : Fin q₂ → (Vec ℝ n →ₗ[ℝ] ℝ)) : -- --- CONCL ---
     P₁.construct ∩ P₂.construct ⊆ (P₁.intersection P₂ Aq₁ Aq₂).construct := by -- --- PROOF ---
   have hsub : P₁.construct ∩ P₂.construct ⊆ (VPolytope.intersectionH P₁ P₂ Aq₁ Aq₂).construct := by
     rintro x ⟨hx₁, hx₂⟩

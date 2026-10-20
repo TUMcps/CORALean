@@ -38,7 +38,7 @@ variable {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `contains(intMat, M, 'exact', 0)` holds exactly for the members of the box. -/
-theorem Interval.matContains_zero_iff (A : Interval (Mat ℝ m n)) (M : Mat ℝ m n) :
+theorem Interval.matContains_zero_iff (A : Interval (Mat ℝ m n)) (M : Mat ℝ m n) : -- --- CONCL ---
     A.matContains M 0 ↔ M ∈ A.construct := by -- --- PROOF ---
   rw [Interval.mem_mat_iff]
   constructor

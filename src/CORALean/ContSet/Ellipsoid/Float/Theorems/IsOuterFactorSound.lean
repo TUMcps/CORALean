@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A passed `isOuterFactor` makes `G Gᵀ - Q`, read as reals, positive semi-definite. -/
 theorem Ellipsoid.posSemidef_of_isOuterFactor {Q G : Mat 𝕋 n n}
-    (h : Ellipsoid.isOuterFactor Q G = true) :
+    (h : Ellipsoid.isOuterFactor Q G = true) : -- --- CONCL ---
     (toRealMat G * (toRealMat G)ᵀ - toRealMat Q).PosSemidef := by -- --- PROOF ---
   simp only [Ellipsoid.isOuterFactor, Bool.and_eq_true] at h
   obtain ⟨hs, hc⟩ := h

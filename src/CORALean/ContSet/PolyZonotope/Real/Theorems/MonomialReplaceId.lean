@@ -42,7 +42,7 @@ namespace CORALean.Real
 
 /-- Adding the exponent rows of the factors a map identifies composes the factor vector. -/
 theorem PolyZonotope.monomial_replaceId {p p' h : ℕ} (E : Fin p → Fin h → ℕ)
-    (f : Fin p → Fin p') (a' : Fin p' → ℝ) (i : Fin h) :
+    (f : Fin p → Fin p') (a' : Fin p' → ℝ) (i : Fin h) : -- --- CONCL ---
     PolyZonotope.monomial (fun k' i => ∑ k ∈ Finset.univ.filter (fun k => f k = k'), E k i) a' i
       = PolyZonotope.monomial E (fun k => a' (f k)) i := by -- --- PROOF ---
   unfold PolyZonotope.monomial

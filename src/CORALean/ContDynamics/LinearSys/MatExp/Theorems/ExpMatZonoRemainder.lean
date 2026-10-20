@@ -46,7 +46,8 @@ noncomputable def MatExp.aux_remCoeff (b : ℝ) (D : Mat ℝ m m) (k : Fin (m * 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.mem_expMatZonoRemainder {b : ℝ} {D : Mat ℝ m m} (hD : ∀ i j, |D i j| ≤ b) :
+theorem MatExp.mem_expMatZonoRemainder {b : ℝ} {D : Mat ℝ m m}
+    (hD : ∀ i j, |D i j| ≤ b) : -- --- CONCL ---
     D ∈ (MatExp.expMatZonoRemainder m b).construct := by -- --- PROOF ---
   refine ⟨MatExp.aux_remCoeff b D, fun k => ?_, ?_⟩
   -- an entry never exceeds the bound, so its share of the generator stays in `[-1, 1]`

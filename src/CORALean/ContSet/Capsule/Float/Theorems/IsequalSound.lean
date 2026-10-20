@@ -40,7 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.isequal_sound {C S : Capsule 𝕋 n} (h : Capsule.isequal C S = true) :
+theorem Capsule.isequal_sound {C S : Capsule 𝕋 n}
+    (h : Capsule.isequal C S = true) : -- --- CONCL ---
     C.construct = S.construct := by -- --- PROOF ---
   simp only [Capsule.isequal, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h

@@ -42,7 +42,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.isBox_of_forall (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k)
-    (h : ∀ i, (zB.Z i).IsBox) :
+    (h : ∀ i, (zB.Z i).IsBox) : -- --- CONCL ---
     ∃ I : Interval (Vec ℝ n), zB.construct = I.construct := by -- --- PROOF ---
   -- the box of the largest lower and smallest upper bounds
   choose Is hIs using h

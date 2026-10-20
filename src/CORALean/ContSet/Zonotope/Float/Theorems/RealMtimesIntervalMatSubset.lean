@@ -68,7 +68,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 /-- A zonotope whose error box is the point `0` is its nominal part. -/
 theorem aux_construct_nominal_point {V : Zonotope (Vec 𝕋 n)}
     (hE : V.I_error = Interval.point fun _ => FloatOps.zero)
-    {y : Vec ℝ n} (hy : y ∈ V.construct) : y ∈ nominalSet V := by -- --- PROOF ---
+    {y : Vec ℝ n} (hy : y ∈ V.construct) : -- --- CONCL ---
+    y ∈ nominalSet V := by -- --- PROOF ---
   obtain ⟨z, hz, e, he, rfl⟩ := hy
   have he0 : e = 0 := funext fun i => by
     have h : toReal (V.I_error.inf i) ≤ e i ∧ e i ≤ toReal (V.I_error.sup i) := he i
@@ -83,7 +84,7 @@ theorem aux_construct_nominal_point {V : Zonotope (Vec 𝕋 n)}
 
 /-- A point of the nominal part reaches no further than `|c| + Σ|G|`, rounded up. -/
 theorem aux_abs_nominal_le (V : Zonotope (Vec 𝕋 n)) {z : Vec ℝ n}
-    (hz : z ∈ nominalSet V) (j : Fin n) :
+    (hz : z ∈ nominalSet V) (j : Fin n) : -- --- CONCL ---
     |z j| ≤ toReal (addUp (absolute (V.c j)) (radius (fun i j => V.G j i) j)) := by -- --- PROOF ---
   obtain ⟨β, hβ, hval⟩ := Zonotope.mem_nominalSet_iff.mp hz
   have hgen := abs_sum_le_radius (d := fun i j => V.G j i) (Δ := fun i j => toReal (V.G j i))

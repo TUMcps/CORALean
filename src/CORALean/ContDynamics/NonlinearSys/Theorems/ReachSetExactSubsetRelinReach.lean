@@ -83,7 +83,8 @@ theorem NonlinearSys.reachSetExact_subset_relinReach [Mtimes ℐ S] (sys : Nonli
     (hRclosed : ∀ i < N, IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput)))
     (hRbdd : ∀ i < N, Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput))) {o : ℕ} (ho : 0 < o) :
+      (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput))) {o : ℕ} (ho : 0 < o)
+    : -- --- CONCL ---
     ∀ i ≤ N, sys.reachSetExact T R₀ U ((i : ℝ) * Δt)
       ⊆ construct (sys.relinReach ⟨R₀, 0, i⟩ ⟨Δt, o, ho⟩
       steps (fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt η

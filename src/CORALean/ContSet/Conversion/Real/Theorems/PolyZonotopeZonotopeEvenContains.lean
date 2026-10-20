@@ -100,7 +100,7 @@ theorem PolyZonotope.aux_evenWeight_smul {p h : ℕ} (E : Fin p → Fin h → �
 /-- Every coefficient a free generator is given is admissible, an all-even
 column because its monomial lies in `[0,1]`. -/
 theorem PolyZonotope.aux_abs_evenCoeff_le_one {p h : ℕ} (E : Fin p → Fin h → ℕ)
-    {a : Fin p → ℝ} (ha : ∀ k, |a k| ≤ 1) (i : Fin h) :
+    {a : Fin p → ℝ} (ha : ∀ k, |a k| ≤ 1) (i : Fin h) : -- --- CONCL ---
     |PolyZonotope.aux_evenCoeff E a i| ≤ 1 := by -- --- PROOF ---
   rw [PolyZonotope.aux_evenCoeff]
   split_ifs with hz he
@@ -124,7 +124,7 @@ theorem PolyZonotope.aux_sum_univ_zonotopeEven {pZ : PolyZonotope α}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.zonotopeEven_contains (pZ : PolyZonotope α) :
+theorem PolyZonotope.zonotopeEven_contains (pZ : PolyZonotope α) : -- --- CONCL ---
     pZ.construct ⊆ pZ.zonotopeEven.construct := by -- --- PROOF ---
   rintro _ ⟨a, b, ha, hb, rfl⟩
   refine ⟨Fin.append (fun i => PolyZonotope.aux_evenCoeff pZ.E a i) b, ?_, ?_⟩

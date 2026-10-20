@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.dropZeros_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) :
+theorem HPolytope.dropZeros_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     Q.dropZeros.construct = Q.construct := by -- --- PROOF ---
   unfold HPolytope.dropZeros
   -- a certified zero row has the value `0` at every point

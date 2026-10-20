@@ -36,7 +36,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem invSqrtDeriv_mono {l u : ℝ} (hl : 0 < l) (hlu : l ≤ u) :
+theorem invSqrtDeriv_mono {l u : ℝ} (hl : 0 < l) (hlu : l ≤ u) : -- --- CONCL ---
     invSqrtDerivLo l ≤ invSqrtDerivHi u := by -- --- PROOF ---
   unfold invSqrtDerivLo invSqrtDerivHi
   have hupos : (0 : ℝ) < u := hl.trans_le hlu

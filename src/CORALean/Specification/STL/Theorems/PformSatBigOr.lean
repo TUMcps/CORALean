@@ -40,7 +40,7 @@ variable {X : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Pform.sat_bigOr (K : List (Pform X)) (r : X) :
+theorem Pform.sat_bigOr (K : List (Pform X)) (r : X) : -- --- CONCL ---
     (Pform.bigOr K).Sat r ↔ ∃ ϱ ∈ K, ϱ.Sat r := by -- --- PROOF ---
   induction K with
   | nil => simp [Pform.bigOr, Pform.Sat]

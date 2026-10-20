@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.matPlus_outer (I₁ I₂ : Interval (Mat 𝕋 m n)) {M N : Mat ℝ m n}
-    (hM : M ∈ I₁.construct) (hN : N ∈ I₂.construct) :
+    (hM : M ∈ I₁.construct) (hN : N ∈ I₂.construct) : -- --- CONCL ---
     M + N ∈ (Interval.matPlus I₁ I₂).construct := by -- --- PROOF ---
   intro q
   obtain ⟨i, j⟩ := q

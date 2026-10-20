@@ -51,7 +51,7 @@ open scoped NNReal
 
 theorem Time.forall_lt_add_one_of_blocks (P : ℝ≥0 → Prop) {s t : ℝ≥0} (hs₀ : 0 < s)
     (hs₁ : s < 1) (hG : ∀ u, 0 < u → u < 1 → P u) (h₁ : P 1)
-    (hG' : ∀ u, 0 < u → u < 1 → P (u + 1)) (ht : ∀ u < t, P (u + (s + 1))) :
+    (hG' : ∀ u, 0 < u → u < 1 → P (u + 1)) (ht : ∀ u < t, P (u + (s + 1))) : -- --- CONCL ---
     ∀ t' < t + 1, P (t' + s) := by -- --- PROOF ---
   intro t' ht'
   rcases le_or_gt 1 t' with h1 | h1

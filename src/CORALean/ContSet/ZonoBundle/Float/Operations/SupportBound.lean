@@ -58,7 +58,7 @@ Swapped in below, so `boundDot` is compiled against this one. -/
 def ZonoBundle.aux_minimumFromImpl {k : ℕ} (b : 𝕋) (u : Fin k → 𝕋) : 𝕋 :=
   Fin.foldr k (fun i acc => minimum (u i) acc) b
 
-@[csimp] theorem ZonoBundle.aux_minimumFrom_eq_impl :
+@[csimp] theorem ZonoBundle.aux_minimumFrom_eq_impl : -- --- CONCL ---
     @ZonoBundle.aux_minimumFrom = @ZonoBundle.aux_minimumFromImpl := by -- --- PROOF ---
   funext 𝕋 _ k
   induction k with
@@ -71,7 +71,8 @@ def ZonoBundle.aux_minimumFromImpl {k : ℕ} (b : 𝕋) (u : Fin k → 𝕋) : �
 
 /-- Anything under `b` and under every entry is under the fold, `minimum` being
 exact. This is the whole of what the bound below owes. -/
-theorem ZonoBundle.aux_le_minimumFrom : ∀ {k : ℕ} {b : 𝕋} {u : Fin k → 𝕋} {x : ℝ},
+theorem ZonoBundle.aux_le_minimumFrom : -- --- CONCL ---
+    ∀ {k : ℕ} {b : 𝕋} {u : Fin k → 𝕋} {x : ℝ},
     x ≤ toReal b → (∀ j, x ≤ toReal (u j)) →
     x ≤ toReal (ZonoBundle.aux_minimumFrom b u) := by -- --- PROOF ---
   intro k

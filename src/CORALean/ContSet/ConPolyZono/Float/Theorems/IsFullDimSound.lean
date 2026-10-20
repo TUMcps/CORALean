@@ -49,7 +49,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The stored indicator is the real monomial at the factors `0`. -/
-theorem ConPolyZono.aux_zeroMonomials (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : Fin cPZ.cons.q) :
+theorem ConPolyZono.aux_zeroMonomials (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
+    (k : Fin cPZ.cons.q) : -- --- CONCL ---
     toReal (cPZ.zeroMonomials k)
       = Real.PolyZonotope.monomial cPZ.cons.R (fun _ => (0 : ℝ)) k := by -- --- PROOF ---
   unfold ConPolyZono.zeroMonomials Real.PolyZonotope.monomial
@@ -109,7 +110,8 @@ theorem ConPolyZono.aux_box_subset {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)} {H : Ma
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.isFullDim_sound {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)} {H : Mat 𝕋 cPZ.qI n}
-    (h : cPZ.isFullDimWith H = true) : (interior cPZ.construct).Nonempty := by -- --- PROOF ---
+    (h : cPZ.isFullDimWith H = true) : -- --- CONCL ---
+    (interior cPZ.construct).Nonempty := by -- --- PROOF ---
   simp only [ConPolyZono.isFullDimWith, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨⟨hc, hrows⟩, hE⟩ := h

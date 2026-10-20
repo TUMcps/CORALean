@@ -45,7 +45,8 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 /-- If `J` is the image of `I` under `f`, it holds `f t` where `I` holds `t`. -/
 theorem SyntaxTree.contains_of_image {I J : Dom} {f : ℝ → ℝ}
     (h : J.construct = (fun x i => f (x i)) '' I.construct) {t : ℝ}
-    (ht : Dom.contains I t) : Dom.contains J (f t) := by -- --- PROOF ---
+    (ht : Dom.contains I t) : -- --- CONCL ---
+    Dom.contains J (f t) := by -- --- PROOF ---
   have hx : (fun _ => t : Vec ℝ 1) ∈ I.construct := by
     intro i
     obtain rfl : i = 0 := Subsingleton.elim i 0

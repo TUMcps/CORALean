@@ -49,7 +49,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.times_exact {I J : Interval (Vec ℝ n)} (hI : I.IsNonempty) (hJ : J.IsNonempty) :
+theorem Interval.times_exact {I J : Interval (Vec ℝ n)} (hI : I.IsNonempty)
+    (hJ : J.IsNonempty) : -- --- CONCL ---
     (I.times J).construct =
       Set.image2 (fun x y i => x i * y i) I.construct J.construct := by -- --- PROOF ---
   refine Set.Subset.antisymm (fun z hz => ?_) (Interval.times_outer I J)

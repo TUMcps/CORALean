@@ -53,7 +53,7 @@ variable {n : ℕ}
 `Δt ≤ 1` and `Δt‖A‖ ≤ 1`, every `Δt`-dependent factor of `affineDynamicsErrorBound` is under
 `Δt` times a `Δt`-free constant. -/
 theorem MatExp.exists_affineDynamicsError_le_const_mul (A : Mat ℝ n n) (H : Zonotope (Vec ℝ n))
-    (ũ : Vec ℝ n) (η : ℕ) :
+    (ũ : Vec ℝ n) (η : ℕ) : -- --- CONCL ---
     ∃ K : ℝ, ∀ᶠ Δt : ℝ in 𝓝[>] (0:ℝ),
       MatExp.affineDynamicsError A H ũ Δt η ≤ K * Δt := by -- --- PROOF ---
   -- the three `Δt`-free constants the bound's three `Δt`-dependent factors are traded for

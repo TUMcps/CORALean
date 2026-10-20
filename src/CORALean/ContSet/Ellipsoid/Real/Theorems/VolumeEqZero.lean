@@ -44,7 +44,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Ellipsoid.aux_det_shape_eq_zero (E : Ellipsoid n) (hr : E.rank < n) :
+theorem Ellipsoid.aux_det_shape_eq_zero (E : Ellipsoid n) (hr : E.rank < n) : -- --- CONCL ---
     E.Q.det = 0 := by -- --- PROOF ---
   by_contra hdet
   have hu : IsUnit E.Q := (Matrix.isUnit_iff_isUnit_det _).mpr (isUnit_iff_ne_zero.mpr hdet)
@@ -56,7 +56,7 @@ theorem Ellipsoid.aux_det_shape_eq_zero (E : Ellipsoid n) (hr : E.rank < n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.volume_eq_of_rank_lt (E : Ellipsoid n) (hr : E.rank < n) :
+theorem Ellipsoid.volume_eq_of_rank_lt (E : Ellipsoid n) (hr : E.rank < n) : -- --- CONCL ---
     MeasureTheory.volume E.construct = E.volume := by -- --- PROOF ---
   -- the ellipsoid as `q + G u`, `‖u‖₂ ≤ 1`
   simp only [Ellipsoid.construct_eq_sqrt] at *

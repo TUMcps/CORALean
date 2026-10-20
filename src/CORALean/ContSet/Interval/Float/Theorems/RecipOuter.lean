@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.recip_outer (J : Interval (Vec 𝕋 n))
-    (hJ : ∀ i, ltStrict zero (J.inf i) = true ∨ ltStrict (J.sup i) zero = true) :
+    (hJ : ∀ i, ltStrict zero (J.inf i) = true ∨ ltStrict (J.sup i) zero = true) : -- --- CONCL ---
     (fun y i => (y i)⁻¹) '' J.construct ⊆ J.recip.construct := by -- --- PROOF ---
   rintro _ ⟨y, hy, rfl⟩ i
   have h₁ : toReal (J.inf i) ≤ y i := (hy i).1

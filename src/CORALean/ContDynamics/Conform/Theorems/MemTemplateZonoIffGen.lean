@@ -51,7 +51,7 @@ namespace CORALean
 /-- [1, Lemma 4], [2, Lemma 5]: membership in `⟨c, G diag(α)⟩`, `α ≥ 0`, with `βⱼ = αⱼ λⱼ`
 in place of `λⱼ`. -/
 theorem Conform.mem_templateZono_iff_gen {m : ℕ} {ι : Type} [Fintype ι] (c : Vec ℝ m)
-    (G : ι → Vec ℝ m) (α : ι → ℝ) (hα : ∀ j, 0 ≤ α j) (y : Vec ℝ m) :
+    (G : ι → Vec ℝ m) (α : ι → ℝ) (hα : ∀ j, 0 ≤ α j) (y : Vec ℝ m) : -- --- CONCL ---
     y ∈ Conform.templateZono c G α ↔
       ∃ β : ι → ℝ, (∀ j, |β j| ≤ α j) ∧ y = c + ∑ j, β j • G j := by -- --- PROOF ---
   constructor

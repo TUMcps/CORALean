@@ -61,7 +61,7 @@ theorem LinearSys.holds_of_check [Contains ContSet (SetUnion (S n))]
     {options : LinearSys.ReachStepOptions ℝ} (htFinal : 0 < params.tFinal - params.tStart)
     (hΔt : 0 < options.Δt) (hη : 2 ≤ options.η)
     (hε : ‖options.Δt • toRealMat sys.A‖ / ((options.η : ℝ) + 2) < 1)
-    (spec : Specification ContSet) : -- --- CONCL ---
+    (spec : Specification ContSet) :
     spec.check (sys.reach params options) →
     (spec.Holds (sys.reachExact (params.tFinal - params.tStart) (construct params.X₀))) :=
   fun h => spec.holds_of_outer (sys.reach_outer htFinal hΔt hη hε) (spec.check_sound _ h)

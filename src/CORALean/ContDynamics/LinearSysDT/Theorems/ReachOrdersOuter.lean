@@ -54,7 +54,8 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 /-- `reachOrders` contains every trajectory, at every step: `reach_outer` at a
 per-step order sequence in place of one fixed order. -/
 theorem LinearSysDT.reachOrders_outer (sys : LinearSysDT 𝕋 n) {o : ℕ → ℕ} (ho : ∀ k, 0 < o k)
-    (R₀ U : S n) {x u : ℕ → Vec ℝ n} (traj : sys.IsCanonicalTrajectory R₀ U x u) (k : ℕ) :
+    (R₀ U : S n) {x u : ℕ → Vec ℝ n} (traj : sys.IsCanonicalTrajectory R₀ U x u)
+    (k : ℕ) : -- --- CONCL ---
     x k ∈ construct (sys.reachOrders ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
   induction k with
   | zero => exact traj.init

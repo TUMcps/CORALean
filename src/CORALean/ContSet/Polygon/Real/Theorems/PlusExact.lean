@@ -25,7 +25,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 open Pointwise in
-theorem Polygon.plus_exact (P Q : Polygon) :
+theorem Polygon.plus_exact (P Q : Polygon) : -- --- CONCL ---
     ContSet.construct P + ContSet.construct Q =
       ContSet.construct (Polygon.plus P Q) := by -- --- PROOF ---
   refine Set.Subset.antisymm (SetUnion.plus_outer P Q) ?_

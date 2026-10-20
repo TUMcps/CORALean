@@ -37,7 +37,8 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- One case per branch of `reluSlope`, the secant's being the only one to argue. -/
-theorem reluSlope_nonneg (l u : ℝ) : 0 ≤ reluSlope l u := by -- --- PROOF ---
+theorem reluSlope_nonneg (l u : ℝ) : -- --- CONCL ---
+    0 ≤ reluSlope l u := by -- --- PROOF ---
   show 0 ≤ (if decide (u ≤ 0) = true then (0 : ℝ)
     else if decide (0 ≤ l) = true then 1 else u / (u + -l))
   split

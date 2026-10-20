@@ -91,7 +91,8 @@ theorem sindy_fixed_normalEq (lam : ℝ) (solve : Fin n → Finset (Fin p) → F
 /-- Exact data of a sparse `Ξ*`: `Code 1` returns `Ξ*` after every number of passes. -/
 theorem sindy_recovers (lam : ℝ) (solve : Fin n → Finset (Fin p) → Fin p → ℝ)
     (Ξs : Mat ℝ p n) (hbig : ∀ j c, Ξs j c ≠ 0 → lam ≤ |Ξs j c|)
-    (hsolve : ∀ c S, (∀ j, Ξs j c ≠ 0 → j ∈ S) → ∀ j ∈ S, solve c S j = Ξs j c) (K : ℕ) :
+    (hsolve : ∀ c S, (∀ j, Ξs j c ≠ 0 → j ∈ S) → ∀ j ∈ S, solve c S j = Ξs j c)
+    (K : ℕ) : -- --- CONCL ---
     sindy lam solve K = Ξs := by -- --- PROOF ---
   have h0 : (Matrix.of fun j c => solve c Finset.univ j : Mat ℝ p n) = Ξs := by
     ext j c

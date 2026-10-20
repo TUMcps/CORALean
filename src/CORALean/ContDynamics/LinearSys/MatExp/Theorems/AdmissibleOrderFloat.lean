@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.admissibleOrder_spec {nrm : 𝕋} {η₀ fuel : ℕ} :
+theorem MatExp.admissibleOrder_spec {nrm : 𝕋} {η₀ fuel : ℕ} : -- --- CONCL ---
     ∀ η ∈ MatExp.admissibleOrder nrm η₀ fuel,
       toReal nrm / ((η : ℝ) + 2) ≤ 1 / 2 ∧ η₀ ≤ η := by -- --- PROOF ---
   intro η (h : MatExp.admissibleOrder nrm η₀ fuel = some η)

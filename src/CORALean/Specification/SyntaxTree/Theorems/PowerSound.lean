@@ -52,7 +52,7 @@ private theorem SyntaxTree.nthroot_pow_nonneg {k : ℕ} (hk : k ≠ 0) {x : ℝ}
   exact Real.pow_rpow_inv_natCast hx hk
 
 /-- The root of an odd power. -/
-private theorem SyntaxTree.nthroot_pow_odd {k : ℕ} (hk : k % 2 = 1) (x : ℝ) :
+private theorem SyntaxTree.nthroot_pow_odd {k : ℕ} (hk : k % 2 = 1) (x : ℝ) : -- --- CONCL ---
     nthroot (x ^ k) k = x := by -- --- PROOF ---
   have hodd : Odd k := Nat.odd_iff.2 hk
   have hk0 : k ≠ 0 := fun h => by simp [h] at hk
@@ -73,7 +73,7 @@ private theorem SyntaxTree.nthroot_mono_nonneg (k : ℕ) {a b : ℝ} (ha : 0 ≤
   exact Real.rpow_le_rpow ha hab hz
 
 /-- The root is monotone. -/
-private theorem SyntaxTree.nthroot_mono (k : ℕ) {a b : ℝ} (hab : a ≤ b) :
+private theorem SyntaxTree.nthroot_mono (k : ℕ) {a b : ℝ} (hab : a ≤ b) : -- --- CONCL ---
     nthroot a k ≤ nthroot b k := by -- --- PROOF ---
   have hz : (0 : ℝ) ≤ 1 / k := by positivity
   by_cases ha : 0 ≤ a
@@ -93,7 +93,7 @@ private theorem SyntaxTree.nthroot_pow_even {k : ℕ} (hk : k % 2 = 0) (hk0 : k 
   exact nthroot_pow_nonneg hk0 (abs_nonneg x)
 
 /-- `aux_power_` is sound for `x^k`. -/
-theorem SyntaxTree.power_sound (k : ℕ) (prev : Dom) :
+theorem SyntaxTree.power_sound (k : ℕ) (prev : Dom) : -- --- CONCL ---
     UnarySound (Unary.power k).fn prev (Real.Interval.power prev k) (funHanPower
       k) := by -- --- PROOF ---
   intro int _ s hs hi

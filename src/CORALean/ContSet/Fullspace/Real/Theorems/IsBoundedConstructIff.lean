@@ -36,7 +36,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Fullspace.isBounded_construct_iff (F : Fullspace n) :
+theorem Fullspace.isBounded_construct_iff (F : Fullspace n) : -- --- CONCL ---
     Bornology.IsBounded F.construct ↔ n = 0 := by -- --- PROOF ---
   rw [Fullspace.construct]
   constructor

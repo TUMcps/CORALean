@@ -46,7 +46,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `{-1, 1}` is a level set and no star set with a polytope predicate. -/
-theorem LevelSet.exists_not_starSet_hPolytope :
+theorem LevelSet.exists_not_starSet_hPolytope : -- --- CONCL ---
     ∃ L : LevelSet 1, ¬ ∃ s : StarSet ℋ𝒫 1, s.construct = L.construct
     := by -- --- PROOF ---
   refine ⟨⟨1, fun x _ => x 0 ^ 2 - 1, fun _ => .eq⟩, ?_⟩

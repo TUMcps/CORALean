@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.bounds_mem {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) {t : Vec ℝ n}
-    (ht : t ∈ Real.Taylm.box n) :
+    (ht : t ∈ Real.Taylm.box n) : -- --- CONCL ---
     toReal T.bounds.inf ≤ f t ∧ f t ≤ toReal T.bounds.sup := by -- --- PROOF ---
   have h₁ := h t ht
   have h₂ := Taylm.polyBounds_mem T.terms ht

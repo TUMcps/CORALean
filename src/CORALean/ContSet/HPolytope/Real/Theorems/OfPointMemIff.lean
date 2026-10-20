@@ -36,7 +36,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.mem_ofPoint_iff (v x : Vec ℝ n) :
+theorem HPolytope.mem_ofPoint_iff (v x : Vec ℝ n) : -- --- CONCL ---
     x ∈ (HPolytope.ofPoint v).construct ↔ x = v := by -- --- PROOF ---
   constructor
   · rintro ⟨-, h⟩

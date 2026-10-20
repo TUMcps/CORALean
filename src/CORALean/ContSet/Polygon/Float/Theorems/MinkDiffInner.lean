@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.minkDiff_inner (P Q : Polygon 𝕋) :
+theorem Polygon.minkDiff_inner (P Q : Polygon 𝕋) : -- --- CONCL ---
     ContSet.construct (Polygon.minkDiff P Q)
       ⊆ minkowskiDiff (ContSet.construct P) (ContSet.construct Q) := by -- --- PROOF ---
   intro x hx y hy

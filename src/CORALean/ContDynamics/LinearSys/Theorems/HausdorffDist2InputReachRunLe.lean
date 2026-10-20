@@ -67,7 +67,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- A finite Minkowski sum of compact nonempty sets is compact and nonempty, which is what
 `hausdorffDist₂_add_le` asks of the accumulated summand at every step. -/
 theorem aux_isCompact_sum_range (f : ℕ → Set (Vec ℝ n)) (hf : ∀ j, IsCompact (f j))
-    (hne : ∀ j, (f j).Nonempty) (k : ℕ) :
+    (hne : ∀ j, (f j).Nonempty) (k : ℕ) : -- --- CONCL ---
     IsCompact (∑ j ∈ Finset.range k, f j) ∧
       (∑ j ∈ Finset.range k, f j).Nonempty := by -- --- PROOF ---
   induction k with
@@ -80,7 +80,8 @@ theorem aux_isCompact_sum_range (f : ℕ → Set (Vec ℝ n)) (hf : ∀ j, IsCom
 
 /-- Nothing has flowed in yet at `t = 0`: the exact particular solution is the origin, the
 integral over an empty window. -/
-theorem aux_inputReach_zero (sys : LinearSys 𝕋 n) {U : S n} (hne : (construct U).Nonempty) :
+theorem aux_inputReach_zero (sys : LinearSys 𝕋 n) {U : S n}
+    (hne : (construct U).Nonempty) : -- --- CONCL ---
     sys.inputReach U 0 = {0} := by -- --- PROOF ---
   obtain ⟨c, hc⟩ := hne
   refine Set.eq_singleton_iff_unique_mem.mpr ⟨⟨fun _ => c, fun _ _ => hc,

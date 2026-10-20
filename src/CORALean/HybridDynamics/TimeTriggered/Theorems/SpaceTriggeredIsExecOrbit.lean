@@ -64,7 +64,8 @@ variable {X : Type} [NormedAddCommGroup X] [InnerProductSpace ℝ X]
 
 /-- A bound that holds on `(0, t)` holds on `[0, t]` for a continuous function. -/
 theorem aux_le_of_Ioo {h : ℝ → ℝ} {t b : ℝ} (ht : 0 < t) (hc : ContinuousOn h (Icc 0 t))
-    (hb : ∀ u ∈ Ioo 0 t, h u ≤ b) : ∀ u ∈ Icc 0 t, h u ≤ b := by -- --- PROOF ---
+    (hb : ∀ u ∈ Ioo 0 t, h u ≤ b) : -- --- CONCL ---
+    ∀ u ∈ Icc 0 t, h u ≤ b := by -- --- PROOF ---
   have hcl : IsClosed (Icc 0 t ∩ h ⁻¹' Iic b) :=
     hc.preimage_isClosed_of_isClosed isClosed_Icc isClosed_Iic
   have hsub : Ioo 0 t ⊆ Icc 0 t ∩ h ⁻¹' Iic b := fun u hu => ⟨Ioo_subset_Icc_self hu, hb u hu⟩

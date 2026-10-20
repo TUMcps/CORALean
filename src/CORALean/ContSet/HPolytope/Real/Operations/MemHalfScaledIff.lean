@@ -39,7 +39,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.mem_halfScaled_iff {t : α →ₗ[ℝ] ℝ} {P : HPolytope α} {x : α} :
+theorem HPolytope.mem_halfScaled_iff {t : α →ₗ[ℝ] ℝ} {P : HPolytope α} {x : α} : -- --- CONCL ---
     x ∈ (P.halfScaled t).construct ↔
       (∀ i, P.A i x ≤ (t x + 1) / 2 * P.b i) ∧ ∀ i,
         P.Ae i x = (t x + 1) / 2 * P.be i := by -- --- PROOF ---

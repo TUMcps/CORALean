@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.round_outer (I : Interval (Vec 𝕋 n)) :
+theorem Interval.round_outer (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
     I.nominal.round.construct ⊆ I.round.construct := by -- --- PROOF ---
   intro x hx i
   have h := hx i

@@ -46,7 +46,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.exp_exact (I : Interval (Vec ℝ n)) :
+theorem Interval.exp_exact (I : Interval (Vec ℝ n)) : -- --- CONCL ---
     I.exp.construct = (fun x i => Real.exp (x i)) '' I.construct := by -- --- PROOF ---
   ext y
   constructor

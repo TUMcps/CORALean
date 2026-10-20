@@ -40,7 +40,7 @@ variable {m N : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.projectHighDim_exact (I : Interval (Vec ℝ m)) (proj : Fin m → Fin N)
-    (hproj : Function.Injective proj) :
+    (hproj : Function.Injective proj) : -- --- CONCL ---
     (I.projectHighDim_ N proj).construct =
       (fun x => Function.extend proj x 0) '' I.construct := by -- --- PROOF ---
   by_cases hI : I.IsNonempty

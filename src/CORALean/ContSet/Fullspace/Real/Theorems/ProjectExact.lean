@@ -38,7 +38,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Fullspace.project_exact (F : Fullspace n) (dims : Fin m → Fin n)
-    (hdims : Function.Injective dims) :
+    (hdims : Function.Injective dims) : -- --- CONCL ---
     (F.project dims).construct =
       (fun (x : Vec ℝ n) (j : Fin m) => x (dims j)) '' F.construct := by -- --- PROOF ---
   ext y

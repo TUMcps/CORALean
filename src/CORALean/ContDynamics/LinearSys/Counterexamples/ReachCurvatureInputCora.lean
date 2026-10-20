@@ -74,7 +74,7 @@ noncomputable def LinearSys.chainC : Set (Fin 3 → ℝ) :=
   {b | -(Real.sqrt 3 / 27) ≤ b 0 ∧ b 0 ≤ 0 ∧ -(1 / 8) ≤ b 1 ∧ b 1 ≤ 0 ∧ b 2 = 0}
 
 /-- `x(t) = (t³/6, t²/2, t)` solves `ẋ = A x + c` for the chain, `x(0) = 0`. -/
-theorem LinearSys.chain_hasDerivAt (t : ℝ) :
+theorem LinearSys.chain_hasDerivAt (t : ℝ) : -- --- CONCL ---
     HasDerivAt (fun s : ℝ => (![s ^ 3 / 6, s ^ 2 / 2, s] : Fin 3 → ℝ))
       ![t ^ 2 / 2, t, 1] t := by -- --- PROOF ---
   rw [hasDerivAt_pi]
@@ -106,7 +106,7 @@ theorem LinearSys.standardRtiCora_counterexample : -- --- CONCL ---
 
 /-- Without the box, the set of the second step in `fromStart` and `decomp` (`PU = Pu`) is
 `standardHtiCora ... 1`, which misses `x(3/2)` too. -/
-theorem LinearSys.decompRtiCora_counterexample :
+theorem LinearSys.decompRtiCora_counterexample : -- --- CONCL ---
     (![9 / 16, 9 / 8, 3 / 2] : Fin 3 → ℝ) ∉
       LinearSys.standardHtiCora LinearSys.chainE LinearSys.chainPu 1 := by -- --- PROOF ---
   intro hy

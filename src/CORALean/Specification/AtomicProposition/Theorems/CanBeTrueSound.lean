@@ -47,7 +47,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem AtomicProposition.canBeTrue_sound (ap : AtomicProposition S n) (s : S n) (loc : ℕ)
-    {x : Vec ℝ n} (hx : x ∈ construct s) (h : ap.Holds x loc) :
+    {x : Vec ℝ n} (hx : x ∈ construct s) (h : ap.Holds x loc) : -- --- CONCL ---
     ap.canBeTrue (𝕋 := 𝕋) s loc = true := by -- --- PROOF ---
   unfold AtomicProposition.canBeTrue
   rw [if_neg (by simp [h.1])]

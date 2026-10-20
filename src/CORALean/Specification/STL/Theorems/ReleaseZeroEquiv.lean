@@ -45,7 +45,7 @@ variable {X : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.release_zero_equiv (φ₁ φ₂ : STL.Formula X) (ξ : ℝ≥0 → X) :
+theorem STL.release_zero_equiv (φ₁ φ₂ : STL.Formula X) (ξ : ℝ≥0 → X) : -- --- CONCL ---
     (STL.Formula.release 0 0 φ₁ φ₂).Sat ξ ↔ φ₂.Sat ξ := by -- --- PROOF ---
   rw [STL.Formula.sat_release]
   constructor

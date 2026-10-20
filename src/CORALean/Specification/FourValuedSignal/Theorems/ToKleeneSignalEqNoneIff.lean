@@ -38,7 +38,8 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `toKleeneSignal?` is `none` iff the signal is inconclusive at some time. -/
-theorem FourValuedSignal.toKleeneSignal?_eq_none_iff (s : FourValuedSignal ℝ) (hs : s.IsValid) :
+theorem FourValuedSignal.toKleeneSignal?_eq_none_iff (s : FourValuedSignal ℝ)
+    (hs : s.IsValid) : -- --- CONCL ---
     s.toKleeneSignal? = none ↔ ∃ t : ℝ, 0 ≤ t ∧ s.at t = FourValued.ii := by -- --- PROOF ---
   -- the whole time axis is the interval `[0,inf)`
   have hne : STLInterval.emptyBounds (0 : ℝ) ⊤ true false = false := by

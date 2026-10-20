@@ -44,7 +44,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem stdGaussian_cube (m : ℝ) :
+theorem stdGaussian_cube (m : ℝ) : -- --- CONCL ---
     stdGaussian (EuclideanSpace ℝ (Fin n)) {β | ∀ i, ofLp β i ∈ Set.Icc (-m) m}
       = (gaussianReal 0 1 (Set.Icc (-m) m)) ^ n := by -- --- PROOF ---
   have hmeas : MeasurableSet {β : EuclideanSpace ℝ (Fin n) | ∀ i, ofLp β i ∈ Set.Icc (-m) m} := by

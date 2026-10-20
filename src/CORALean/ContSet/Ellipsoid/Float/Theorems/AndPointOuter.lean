@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.andPoint_outer (E : Ellipsoid 𝕋 n) (p w : Vec 𝕋 n)
-    (a : Vec 𝕋 n) (s : 𝕋) :
+    (a : Vec 𝕋 n) (s : 𝕋) : -- --- CONCL ---
     E.construct ∩ {toRealVec p} ⊆ ContSet.construct (E.andPoint p w a s) := by -- --- PROOF ---
   -- the point ellipsoid holds every point of `E ∩ {p}`
   have hpt : E.construct ∩ {toRealVec p}

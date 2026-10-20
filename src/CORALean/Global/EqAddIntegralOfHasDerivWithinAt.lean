@@ -49,7 +49,7 @@ variable {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
 /-- A derivative within a convex `T ∋ 0`, integrated from `0`, recovers the function. -/
 theorem eq_add_integral_of_hasDerivWithinAt {T : Set ℝ} {x g : ℝ → E} (hTconv : Convex ℝ T)
     (h0T : (0:ℝ) ∈ T) (hd : ∀ t ∈ T, HasDerivWithinAt x (g t) T t) {t : ℝ} (ht : t ∈ T)
-    (hint : IntervalIntegrable g volume 0 t) :
+    (hint : IntervalIntegrable g volume 0 t) : -- --- CONCL ---
     x t = x 0 + ∫ s in (0:ℝ)..t, g s := by -- --- PROOF ---
   have hUIcc : Set.uIcc 0 t ⊆ T := hTconv.ordConnected.uIcc_subset h0T ht
   have hcont : ContinuousOn x (Set.uIcc 0 t) :=

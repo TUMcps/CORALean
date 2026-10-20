@@ -44,7 +44,8 @@ namespace CORALean
 /-- The cut signal is `true` where the signal is `true` and has not fallen by then. -/
 theorem PointSegmentSignal.cutAtFirstFallingEdge_at {T : Type} [LinearOrder T] [Zero T]
     [DenselyOrdered T] [NoMaxOrder T] (s : PointSegmentSignal T) (hs : s.IsValid) (t : T)
-    (ht : 0 ≤ t) : s.cutAtFirstFallingEdge.at t = true ↔ s.at t = true ∧
+    (ht : 0 ≤ t) : -- --- CONCL ---
+    s.cutAtFirstFallingEdge.at t = true ↔ s.at t = true ∧
       ∀ t₁ t₂, 0 ≤ t₁ → t₁ ≤ t₂ → t₂ ≤ t → s.at t₁ = true → s.at t₂ = true := by -- --- PROOF ---
   rw [(s.cutAtFirstFallingEdge_spec hs).2 t ht]
   refine and_congr_right fun _ => ⟨fun h t₁ t₂ h1 h12 h2 hv => ?_, fun h c₁ c₂ h12 h2 hv => ?_⟩

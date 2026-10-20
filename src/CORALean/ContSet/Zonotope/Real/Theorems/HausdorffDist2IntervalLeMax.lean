@@ -60,7 +60,7 @@ noncomputable def aux_ghat (v : Vec ℝ n) : Vec ℝ n :=
 
 /-- A coordinatewise bound against twice a vector is a `‖·‖₂` bound against
 twice its norm. -/
-theorem aux_norm₂_le_two_mul {r z : Vec ℝ n} (h : ∀ i, |r i| ≤ 2 * z i) :
+theorem aux_norm₂_le_two_mul {r z : Vec ℝ n} (h : ∀ i, |r i| ≤ 2 * z i) : -- --- CONCL ---
     ‖r‖₂ ≤ 2 * ‖z‖₂ := by -- --- PROOF ---
   have key : ∑ i, r i ^ 2 ≤ ∑ i, (2 * z i) ^ 2 := Finset.sum_le_sum fun i _ => by
     have hi := mul_self_le_mul_self (abs_nonneg (r i)) (h i)
@@ -77,7 +77,7 @@ theorem aux_norm₂_le_two_mul {r z : Vec ℝ n} (h : ∀ i, |r i| ≤ 2 * z i) 
 
 /-- One generator at the coefficient that cancels the displacement in the entry
 `aux_ghat` zeroes: what is left is at most twice `ĝ` in every entry. -/
-theorem aux_exists_coeff (g lam : Vec ℝ n) (hlam : ∀ i, |lam i| ≤ 1) :
+theorem aux_exists_coeff (g lam : Vec ℝ n) (hlam : ∀ i, |lam i| ≤ 1) : -- --- CONCL ---
     ∃ a : ℝ, |a| ≤ 1 ∧ ∀ i, |lam i * |g i| - a * g i| ≤ 2 * aux_ghat g i := by -- --- PROOF ---
   by_cases hex : ∃ i₀ : Fin n, (∀ j, |g j| ≤ |g i₀|) ∧ ∀ j < i₀, |g j| < |g i₀|
   · obtain ⟨i₀, hmax, hfirst⟩ := hex
@@ -128,7 +128,7 @@ theorem aux_exists_coeff (g lam : Vec ℝ n) (hlam : ∀ i, |lam i| ≤ 1) :
 /-- [1, Thm. 1] and [2, Thm. 3.2], the `ω_max` bound: the box is never further
 from the zonotope than twice the generators' trimmed magnitudes reach, at
 `‖·‖₂`. -/
-theorem Zonotope.hausdorffDist₂_interval_le_max (Z : Zonotope (Vec ℝ n)) :
+theorem Zonotope.hausdorffDist₂_interval_le_max (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     hausdorffDist₂ Z.construct Z.interval.construct
       ≤ 2 * ‖∑ p, aux_ghat (Z.G p)‖₂ := by -- --- PROOF ---
   have hr : (0 : ℝ) ≤ 2 * ‖∑ p, aux_ghat (Z.G p)‖₂ := by

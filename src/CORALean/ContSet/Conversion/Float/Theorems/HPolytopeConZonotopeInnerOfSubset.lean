@@ -49,7 +49,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A point of the tightened conversion is a point of `P`: its coefficients meet the exact rows
 because the tightening covers the carrying error. -/
-theorem HPolytope.conZonotopeInnerOf_subset (P : HPolytope 𝕋 (Vec 𝕋 n)) (Z : Zonotope (Vec 𝕋 n)) :
+theorem HPolytope.conZonotopeInnerOf_subset (P : HPolytope 𝕋 (Vec 𝕋 n))
+    (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     (P.conZonotopeInnerOf Z).construct ⊆ P.construct := by -- --- PROOF ---
   rintro _ ⟨x, hx, e, he, rfl⟩
   -- a polytope with an equality is carried as the empty set

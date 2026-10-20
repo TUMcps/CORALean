@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.toReal_maximumFold {k : ℕ} (f : Fin (k + 1) → 𝕋) :
+theorem LinearSys.toReal_maximumFold {k : ℕ} (f : Fin (k + 1) → 𝕋) : -- --- CONCL ---
     toReal (LinearSys.maximumFold f) =
       Finset.univ.sup' Finset.univ_nonempty fun j => toReal (f j) := by -- --- PROOF ---
   -- the fold is above every entry and equal to one

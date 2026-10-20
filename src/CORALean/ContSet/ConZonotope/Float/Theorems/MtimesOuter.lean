@@ -70,7 +70,8 @@ theorem ConZonotope.aux_mulVec_nominal (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋
         rw [Finset.sum_comm]
         exact congrArg _ (Finset.sum_congr rfl fun j _ => (Finset.sum_mul _ _ _).symm)
 
-theorem ConZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
+theorem ConZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n)
+    (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     (toRealMat M *ᵥ ·) '' nominalSet cZ ⊆
       nominalSet (ConZonotope.mtimes M cZ)
         + (Zonotope.mtimesResidual M cZ.zonotope).construct := by -- --- PROOF ---

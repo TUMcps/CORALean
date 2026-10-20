@@ -47,7 +47,7 @@ variable {m k : Type} [Fintype m] [Fintype k] [DecidableEq k]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem posDef_schur_of_fromBlocks (A : Matrix m m ℝ) (B : Matrix m k ℝ) {D : Matrix k k ℝ}
-    (hD : D.PosDef) (h : (fromBlocks A B Bᵀ D).PosDef) :
+    (hD : D.PosDef) (h : (fromBlocks A B Bᵀ D).PosDef) : -- --- CONCL ---
     (A - B * D⁻¹ * Bᵀ).PosDef := by -- --- PROOF ---
   haveI : Invertible D := hD.isUnit.invertible
   have hB : Bᴴ = Bᵀ := conjTranspose_eq_transpose_of_trivial B

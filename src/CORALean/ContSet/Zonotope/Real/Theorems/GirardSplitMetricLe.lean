@@ -45,7 +45,7 @@ variable {n : ℕ}
 
 /-- [1, Eq. (5)]: the kept generators rank above the dropped ones by `‖g‖₁ - ‖g‖∞`. -/
 theorem Zonotope.girardSplit_metric_le (Z : Zonotope (Vec ℝ n)) (o : ℕ) (hlt : o * n < Z.h)
-    (l : Fin ((o - 1) * n)) (r : Fin (Z.h - (o - 1) * n)) :
+    (l : Fin ((o - 1) * n)) (r : Fin (Z.h - (o - 1) * n)) : -- --- CONCL ---
     let m := fun j => (∑ i, |Z.G j i|) - Finset.univ.fold max 0 fun i => |Z.G j i|
     m ((Z.girardSplit o hlt).right r) ≤ m ((Z.girardSplit o hlt).left l) := by -- --- PROOF ---
   intro m

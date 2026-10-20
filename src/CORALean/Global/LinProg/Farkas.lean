@@ -50,7 +50,7 @@ variable {E : Type} [AddCommGroup E] [Module ℝ E]
 
 /-- Homogeneous Farkas: a functional nonnegative wherever the rows are is a
 nonnegative combination of the rows. -/
-theorem exists_nonneg_comb_of_forall_nonneg :
+theorem exists_nonneg_comb_of_forall_nonneg : -- --- CONCL ---
     ∀ (m : ℕ) (a : Fin m → (E →ₗ[ℝ] ℝ)) (c : E →ₗ[ℝ] ℝ),
       (∀ x, (∀ i, 0 ≤ a i x) → 0 ≤ c x) →
         ∃ y : Fin m → ℝ, (∀ i, 0 ≤ y i) ∧ c = ∑ i, y i • a i := by -- --- PROOF ---

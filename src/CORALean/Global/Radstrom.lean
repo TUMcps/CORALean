@@ -63,7 +63,7 @@ omit [NormedSpace ℝ α] in
 `E` at every step, chosen once and iterated, so the recursion is `Function.iterate`
 on the `E` component alone. -/
 theorem aux_radstrom_seq {a e₀ : α} {Y E : Set α} (he₀ : e₀ ∈ E)
-    (hstep : ∀ u ∈ E, ∃ v ∈ Y, ∃ w ∈ E, a + u = v + w) :
+    (hstep : ∀ u ∈ E, ∃ v ∈ Y, ∃ w ∈ E, a + u = v + w) : -- --- CONCL ---
     ∃ y e : ℕ → α, e 0 = e₀ ∧ (∀ k, e k ∈ E) ∧ (∀ k, y k ∈ Y) ∧
       ∀ k, a + e k = y k + e (k + 1) := by -- --- PROOF ---
   -- the step, as a function on the subtypes, so that choice runs once
@@ -85,7 +85,7 @@ theorem aux_radstrom_seq {a e₀ : α} {Y E : Set α} (he₀ : e₀ ∈ E)
 /-- Summing `a + eₖ = yₖ + eₖ₊₁` over `k < n`: every `eₖ` in between cancels and
 `n • a + e₀ = ∑ yₖ + eₙ` is left. -/
 theorem aux_radstrom_telescope {a : α} {y e : ℕ → α}
-    (hrec : ∀ k, a + e k = y k + e (k + 1)) (n : ℕ) :
+    (hrec : ∀ k, a + e k = y k + e (k + 1)) (n : ℕ) : -- --- CONCL ---
     (n : ℝ) • a + e 0 = (∑ k ∈ Finset.range n, y k) + e n := by -- --- PROOF ---
   induction n with
   | zero => simp
@@ -105,7 +105,8 @@ theorem aux_radstrom_telescope {a : α} {y e : ℕ → α}
 /-- Rådström's cancellation law [1, Lemma 1]: a bounded nonempty summand cancels
 against a convex closed set. Neither convexity of `X` nor closedness of `E` is used. -/
 theorem radstrom_cancel {X Y E : Set α} (hE : E.Nonempty) (hEb : Bornology.IsBounded E)
-    (hYconv : Convex ℝ Y) (hYcl : IsClosed Y) (h : X + E ⊆ Y + E) : X ⊆ Y := by -- --- PROOF ---
+    (hYconv : Convex ℝ Y) (hYcl : IsClosed Y) (h : X + E ⊆ Y + E) : -- --- CONCL ---
+    X ⊆ Y := by -- --- PROOF ---
   intro a ha
   obtain ⟨e₀, he₀⟩ := hE
   obtain ⟨M, hM⟩ := isBounded_iff_forall_norm_le.mp hEb

@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {i : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The exact bound: `corrCoeff i ≥ -(1 - 1/i)²`. -/
-theorem aux_neg_sq_le_corrCoeff (hi : 2 ≤ i) :
+theorem aux_neg_sq_le_corrCoeff (hi : 2 ≤ i) : -- --- CONCL ---
     -((1 - 1 / (i : ℝ)) * (1 - 1 / (i : ℝ))) ≤ Real.MatExp.corrCoeff i := by -- --- PROOF ---
   have hi1 : (1:ℝ) < (i : ℝ) := by exact_mod_cast hi.trans_lt' one_lt_two
   have hipos : (0:ℝ) < (i : ℝ) := by linarith
@@ -80,7 +80,7 @@ theorem aux_neg_sq_le_corrCoeff (hi : 2 ≤ i) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.corrCoeffLow_le (hi : 2 ≤ i) :
+theorem MatExp.corrCoeffLow_le (hi : 2 ≤ i) : -- --- CONCL ---
     toReal (MatExp.corrCoeffLow (𝕋 := 𝕋) i) ≤ Real.MatExp.corrCoeff i := by -- --- PROOF ---
   have hi1 : (1:ℝ) < (i : ℝ) := by exact_mod_cast hi.trans_lt' one_lt_two
   have hipos : (0:ℝ) < (i : ℝ) := by linarith

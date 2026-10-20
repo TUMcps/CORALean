@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.factorialDown_mem (k : ℕ) :
+theorem MatExp.factorialDown_mem (k : ℕ) : -- --- CONCL ---
     1 ≤ toReal (MatExp.factorialDown (𝕋 := 𝕋) k)
       ∧ toReal (MatExp.factorialDown (𝕋 := 𝕋) k) ≤ (Nat.factorial k : ℝ) := by -- --- PROOF ---
   induction k with

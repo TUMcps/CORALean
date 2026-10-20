@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.halfspaceRange_mem (nv : Vec 𝕋 n) (d : 𝕋) {Z : Zonotope (Vec 𝕋 n)} {x : Vec ℝ n}
-    (hx : x ∈ Z.construct) :
+    (hx : x ∈ Z.construct) : -- --- CONCL ---
     toReal (Z.halfspaceRange nv d).inf ≤ toRealVec nv ⬝ᵥ x - toReal d ∧
       toRealVec nv ⬝ᵥ x - toReal d ≤ toReal (Z.halfspaceRange nv d).sup := by -- --- PROOF ---
   obtain ⟨a, ha, e, he, rfl⟩ := hx

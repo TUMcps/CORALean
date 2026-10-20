@@ -44,7 +44,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Def. 1.3]: the direction of the affine hull of `Z` is the span of its generators. -/
-theorem Zonotope.vectorSpan_construct (Z : Zonotope α) :
+theorem Zonotope.vectorSpan_construct (Z : Zonotope α) : -- --- CONCL ---
     vectorSpan ℝ Z.construct = Submodule.span ℝ (Set.range Z.G) := by -- --- PROOF ---
   classical
   apply le_antisymm

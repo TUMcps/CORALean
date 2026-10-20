@@ -48,7 +48,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.diffusionUpdate_outer [NeZero m] (o : ℕ) (Zb : Fin m → Zonotope (Vec ℝ n))
-    (hα : ∀ j, 0 < ∑ i, ∑ k, (Zb j).G k i ^ 2) :
+    (hα : ∀ j, 0 < ∑ i, ∑ k, (Zb j).G k i ^ 2) : -- --- CONCL ---
     (⋂ j, (Zb j).construct) ⊆ (Zonotope.diffusionUpdate o Zb).construct := by -- --- PROOF ---
   intro x hx
   have hw := (Zonotope.averagingWeights_optimal Zb hα).1

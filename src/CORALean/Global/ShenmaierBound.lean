@@ -81,7 +81,8 @@ variable (nrm : E → ℝ) (hadd : ∀ x y, nrm (x + y) ≤ nrm x + nrm y)
   (hsmul : ∀ (a : ℝ) x, nrm (a • x) = |a| * nrm x)
 
 include hadd hsmul in
-theorem aux_nrm_nonneg (x : E) : 0 ≤ nrm x := by -- --- PROOF ---
+theorem aux_nrm_nonneg (x : E) : -- --- CONCL ---
+    0 ≤ nrm x := by -- --- PROOF ---
   have h0 : nrm 0 = 0 := by simpa using hsmul 0 x
   have h1 := hadd x (-x)
   have h2 := hsmul (-1) x
@@ -91,7 +92,8 @@ theorem aux_nrm_nonneg (x : E) : 0 ≤ nrm x := by -- --- PROOF ---
 include hadd hsmul in
 /-- A functional in the dual ball is below the norm everywhere. -/
 theorem aux_le_nrm (hdef : ∀ x, nrm x = 0 → x = 0) (z : E →L[ℝ] ℝ)
-    (hz : ∀ x, nrm x ≤ 1 → z x ≤ 1) (x : E) : z x ≤ nrm x := by -- --- PROOF ---
+    (hz : ∀ x, nrm x ≤ 1 → z x ≤ 1) (x : E) : -- --- CONCL ---
+    z x ≤ nrm x := by -- --- PROOF ---
   rcases (aux_nrm_nonneg nrm hadd hsmul x).lt_or_eq with hpos | hzero
   · have := hz ((nrm x)⁻¹ • x) (by rw [hsmul, abs_inv, abs_of_pos hpos, inv_mul_cancel₀ hpos.ne'])
     rw [map_smul, smul_eq_mul, inv_mul_le_iff₀ hpos, mul_one] at this
@@ -101,7 +103,7 @@ theorem aux_le_nrm (hdef : ∀ x, nrm x = 0 → x = 0) (z : E →L[ℝ] ℝ)
 
 include hsmul in
 /-- The ball of radius `r > 0` is `r` times the unit ball. -/
-theorem aux_ball_eq_smul {r : ℝ} (hr : 0 < r) :
+theorem aux_ball_eq_smul {r : ℝ} (hr : 0 < r) : -- --- CONCL ---
     {x | nrm x ≤ r} = r • {x : E | nrm x ≤ 1} := by -- --- PROOF ---
   ext x
   rw [Set.mem_smul_set]
@@ -120,7 +122,8 @@ include hadd hsmul in
 /-- A sample near `χ` puts its maximizer within `ε` of `1` at `χ`: the paper's Appendix A. -/
 theorem aux_dir_ge (z : E →L[ℝ] ℝ) (hle : ∀ x, z x ≤ nrm x) {χ y : E} (hχn : nrm χ = 1)
     {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) (hyS : nrm ((1 + ε / 2) • y - χ) ≤ ε / 2)
-    (hyB : nrm y ≤ 1) (hzv' : z y = nrm y) : 1 - ε ≤ z χ := by -- --- PROOF ---
+    (hyB : nrm y ≤ 1) (hzv' : z y = nrm y) : -- --- CONCL ---
+    1 - ε ≤ z χ := by -- --- PROOF ---
   have hlowr : 1 - ε / 2 ≤ (1 + ε / 2) * nrm y := by
     have h1 := hadd ((1 + ε / 2) • y) (χ - (1 + ε / 2) • y)
     rw [add_sub_cancel, hχn, hsmul, abs_of_pos (by linarith)] at h1

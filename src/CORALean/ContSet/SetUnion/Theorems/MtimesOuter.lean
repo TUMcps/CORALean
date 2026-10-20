@@ -44,7 +44,7 @@ variable {𝕄 : ℕ → ℕ → Type} {S : ℕ → Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SetUnion.mtimes_outer {m n : ℕ} (M : 𝕄 m n) (u : SetUnion (S n)) :
+theorem SetUnion.mtimes_outer {m n : ℕ} (M : 𝕄 m n) (u : SetUnion (S n)) : -- --- CONCL ---
     (⋃ A ∈ ContSet.construct M, (A *ᵥ ·) '' ContSet.construct u) ⊆
       ContSet.construct (SetUnion.mtimes M u) := by -- --- PROOF ---
   intro x hx

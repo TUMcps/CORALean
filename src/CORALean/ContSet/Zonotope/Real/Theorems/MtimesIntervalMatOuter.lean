@@ -68,7 +68,8 @@ theorem Zonotope.aux_sum_univ_mtimesIntervalMat {IM : Interval (Mat ℝ m n)} {Z
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the image sits in the center's zonotope widened by what the radius can reach
-theorem Zonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n)) (Z : Zonotope (Vec ℝ n)) :
+theorem Zonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
+    (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (⋃ A ∈ IM.construct, (A *ᵥ ·) '' Z.construct)
       ⊆ (Zonotope.mtimesIntervalMat IM Z).construct := by -- --- PROOF ---
   rintro y hy

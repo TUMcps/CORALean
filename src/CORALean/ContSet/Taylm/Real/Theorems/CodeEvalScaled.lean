@@ -60,7 +60,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A constant is scaled by its magnitude. -/
-theorem Taylm.aux_const_scaled (c : ℝ) (N : ℕ) {h : ℝ} (h0 : 0 < h) :
+theorem Taylm.aux_const_scaled (c : ℝ) (N : ℕ) {h : ℝ} (h0 : 0 < h) : -- --- CONCL ---
     (Taylm.const n c N).Scaled h |c| := by -- --- PROOF ---
   have hp : 0 ≤ |c| * h ^ (N + 1) := mul_nonneg (abs_nonneg _) (pow_pos h0 _).le
   refine ⟨?_, ?_, ?_⟩

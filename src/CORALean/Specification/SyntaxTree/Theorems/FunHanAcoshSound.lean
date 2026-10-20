@@ -48,7 +48,7 @@ private theorem SyntaxTree.cosh_mono_nonneg {a b : ℝ} (ha : 0 ≤ a) (hab : a 
   exact hab
 
 /-- `aaux_cosh_` is sound for `acosh` on an operand `≥ 1`. -/
-theorem SyntaxTree.funHanAcosh_sound (prev : Dom) (hd : 1 ≤ prev.inf 0) :
+theorem SyntaxTree.funHanAcosh_sound (prev : Dom) (hd : 1 ≤ prev.inf 0) : -- --- CONCL ---
     UnarySound Unary.acosh.fn prev (Real.Interval.acosh prev) funHanAcosh := by -- --- PROOF ---
   intro int _ s hs hi
   have h : int.inf 0 ≤ Real.arcosh s ∧ Real.arcosh s ≤ int.sup 0 := hi

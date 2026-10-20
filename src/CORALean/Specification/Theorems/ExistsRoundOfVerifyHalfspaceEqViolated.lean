@@ -48,7 +48,7 @@ variable {ι : Type}
 /-- `[1, Alg. 2]`: `verifyHalfspace` only ever returns `unsafe` because some round already finds
 a step and direction whose lower bound crosses the offset. -/
 theorem exists_round_of_verifyHalfspace_eq_violated
-    {bndUp bndLo : (r : ℕ) → Fin (2 ^ r) → ι → ℝ} {d : ι → ℝ} : -- --- CONCL ---
+    {bndUp bndLo : (r : ℕ) → Fin (2 ^ r) → ι → ℝ} {d : ι → ℝ} :
     ∀ {r fuel : ℕ}, verifyHalfspace bndUp bndLo d r fuel = .violated →
       ∃ r' ≥ r, ∃ (k : Fin (2 ^ r')) (i : ι), d i < bndLo r' k i
   | r, 0, h => by

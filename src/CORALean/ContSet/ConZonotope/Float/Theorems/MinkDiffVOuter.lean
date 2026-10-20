@@ -62,7 +62,8 @@ theorem ConZonotope.aux_mem_foldl_intersection {x : Vec ℝ n} :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.minkDiffV_outer {k : ℕ} (Z : Zonotope (Vec 𝕋 n)) (v : Fin (k + 1) → Vec 𝕋 n) :
+theorem ConZonotope.minkDiffV_outer {k : ℕ} (Z : Zonotope (Vec 𝕋 n))
+    (v : Fin (k + 1) → Vec 𝕋 n) : -- --- CONCL ---
     minkowskiDiff Z.construct
         (⟨k + 1, fun i => toRealVec (v i)⟩ : Real.VPolytope (Vec ℝ n)).construct
       ⊆ (ConZonotope.minkDiffV Z v).construct := by -- --- PROOF ---

@@ -53,7 +53,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The exponential of a `1 × 1` matrix is the exponential of its entry. -/
-theorem Krylov.aux_exp_one_by_one_entry (M : Mat ℝ 1 1) :
+theorem Krylov.aux_exp_one_by_one_entry (M : Mat ℝ 1 1) : -- --- CONCL ---
     exp M 0 0 = Real.exp (M 0 0) := by -- --- PROOF ---
   have hM : M = diagonal fun _ => M 0 0 := by
     ext i j
@@ -63,7 +63,7 @@ theorem Krylov.aux_exp_one_by_one_entry (M : Mat ℝ 1 1) :
   rfl
 
 /-- `e^{(c - s)A} v` at `A = -1` is `e^{-(c - s)} v`. -/
-theorem Krylov.aux_exp_neg_mulVec (c s : ℝ) (v : Vec ℝ 1) :
+theorem Krylov.aux_exp_neg_mulVec (c s : ℝ) (v : Vec ℝ 1) : -- --- CONCL ---
     (exp ((c - s) • !![(-1 : ℝ)]) *ᵥ v) 0 = Real.exp (-(c - s)) * v 0 := by -- --- PROOF ---
   have h := Krylov.aux_exp_one_by_one_entry ((c - s) • !![(-1 : ℝ)])
   simp only [Matrix.smul_apply, smul_eq_mul] at h
@@ -72,7 +72,7 @@ theorem Krylov.aux_exp_neg_mulVec (c s : ℝ) (v : Vec ℝ 1) :
   norm_num
 
 /-- `∫₀ᶜ e^{-(c - s)} ds = 1 - e^{-c}`. -/
-theorem Krylov.aux_integral_exp_neg_sub (c : ℝ) :
+theorem Krylov.aux_integral_exp_neg_sub (c : ℝ) : -- --- CONCL ---
     ∫ s in (0 : ℝ)..c, Real.exp (-(c - s)) = 1 - Real.exp (-c) := by -- --- PROOF ---
   have h : (fun s => Real.exp (-(c - s))) = fun s => Real.exp (s - c) := by
     funext s
@@ -82,7 +82,8 @@ theorem Krylov.aux_integral_exp_neg_sub (c : ℝ) :
 
 /-- The first coordinate of the input solution at `A = -1`, as a scalar integral. -/
 theorem Krylov.aux_coord_integral {c : ℝ} {u : ℝ → Vec ℝ 1}
-    (hint : IntervalIntegrable (fun s => exp ((c - s) • !![(-1 : ℝ)]) *ᵥ u s) volume 0 c) :
+    (hint : IntervalIntegrable (fun s => exp ((c - s) • !![(-1 : ℝ)]) *ᵥ u s) volume 0 c)
+    : -- --- CONCL ---
     (∫ s in (0 : ℝ)..c, exp ((c - s) • !![(-1 : ℝ)]) *ᵥ u s) 0
       = ∫ s in (0 : ℝ)..c, Real.exp (-(c - s)) * u s 0 := by -- --- PROOF ---
   have h := ContinuousLinearMap.intervalIntegral_comp_comm

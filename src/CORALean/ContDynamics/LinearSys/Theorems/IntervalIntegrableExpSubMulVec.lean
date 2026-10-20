@@ -56,7 +56,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- A continuous matrix applied to a measurable vector, entry by entry. -/
 theorem aux_aestronglyMeasurable_mulVec {M : ℝ → Mat ℝ n n} {v : ℝ → Vec ℝ n} {μ : Measure ℝ}
-    (hM : Continuous M) (hv : AEStronglyMeasurable v μ) :
+    (hM : Continuous M) (hv : AEStronglyMeasurable v μ) : -- --- CONCL ---
     AEStronglyMeasurable (fun s => M s *ᵥ v s) μ := by -- --- PROOF ---
   have hvk : ∀ k, AEStronglyMeasurable (fun s => v s k) μ := by
     intro k

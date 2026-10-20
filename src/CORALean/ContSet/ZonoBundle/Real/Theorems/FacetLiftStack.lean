@@ -47,7 +47,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {s : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.facetLift_stack_exact (P : Fin s → HPolytope α) (Zadd : Zonotope α) :
+theorem HPolytope.facetLift_stack_exact (P : Fin s → HPolytope α)
+    (Zadd : Zonotope α) : -- --- CONCL ---
     ((HPolytope.stack P).facetLift Zadd).construct =
       ⋂ i, ((P i).facetLift Zadd).construct := by -- --- PROOF ---
   ext x

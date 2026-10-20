@@ -38,7 +38,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.translate_exact (t : α) (P : HPolytope α) :
+theorem HPolytope.translate_exact (t : α) (P : HPolytope α) : -- --- CONCL ---
     (t + ·) '' P.construct = (HPolytope.translate t P).construct := by -- --- PROOF ---
   ext x
   constructor

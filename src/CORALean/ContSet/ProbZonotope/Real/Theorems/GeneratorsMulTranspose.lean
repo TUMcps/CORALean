@@ -36,7 +36,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ProbZonotope.generators_mul_transpose (P : ProbZonotope n) (h : P.cov.PosSemidef) :
+theorem ProbZonotope.generators_mul_transpose (P : ProbZonotope n)
+    (h : P.cov.PosSemidef) : -- --- CONCL ---
     P.generators * P.generatorsᵀ = P.cov := by -- --- PROOF ---
   have key : ∀ (A : Mat ℝ n n) (hA : A.IsHermitian), A.PosSemidef →
       ((hA.eigenvectorUnitary : Mat ℝ n n)

@@ -37,7 +37,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.mem_ofPoint_iff (v x : α) :
+theorem PolyZonotope.mem_ofPoint_iff (v x : α) : -- --- CONCL ---
     x ∈ (PolyZonotope.ofPoint v).construct ↔ x = v := by -- --- PROOF ---
   constructor
   · rintro ⟨a, β, _, _, h⟩

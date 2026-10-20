@@ -53,7 +53,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.mtimesIntervalMat_outer (IM : Interval (Mat 𝕋 m n)) (Z : Zonotope (Vec 𝕋 n)) :
+theorem Zonotope.mtimesIntervalMat_outer (IM : Interval (Mat 𝕋 m n))
+    (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     (⋃ A ∈ IM.construct, (A *ᵥ ·) '' Z.construct) ⊆
       (Zonotope.mtimesIntervalMat IM Z).construct := by -- --- PROOF ---
   rintro y hy

@@ -49,7 +49,7 @@ namespace CORALean.Real
 /-- A round keeps the cover. -/
 theorem PolyZonotope.aux_polygonRound_cover (pick : PolyZonotope (Vec ℝ 2) → Bool)
     (L : List (PolyZonotope (Vec ℝ 2))) {x : Vec ℝ 2}
-    (hx : ∃ q ∈ L, x ∈ q.construct) :
+    (hx : ∃ q ∈ L, x ∈ q.construct) : -- --- CONCL ---
     ∃ q ∈ PolyZonotope.polygonRound pick L, x ∈ q.construct := by -- --- PROOF ---
   obtain ⟨q, hq, hxq⟩ := hx
   unfold PolyZonotope.polygonRound
@@ -61,7 +61,8 @@ theorem PolyZonotope.aux_polygonRound_cover (pick : PolyZonotope (Vec ℝ 2) →
   · exact ⟨q, List.mem_flatMap.mpr ⟨q, hq, by simp [hp]⟩, hxq⟩
 
 theorem PolyZonotope.aux_polygonPieces_cover (pZ : PolyZonotope (Vec ℝ 2))
-    (pick : ℕ → PolyZonotope (Vec ℝ 2) → Bool) (k : ℕ) {x : Vec ℝ 2} (hx : x ∈ pZ.construct) :
+    (pick : ℕ → PolyZonotope (Vec ℝ 2) → Bool) (k : ℕ) {x : Vec ℝ 2}
+    (hx : x ∈ pZ.construct) : -- --- CONCL ---
     ∃ q ∈ pZ.polygonPieces k pick, x ∈ q.construct := by -- --- PROOF ---
   induction k with
   | zero => exact ⟨pZ, List.mem_singleton_self _, hx⟩
@@ -74,7 +75,7 @@ theorem PolyZonotope.aux_polygonPieces_cover (pZ : PolyZonotope (Vec ℝ 2))
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.polygon_outer (pZ : PolyZonotope (Vec ℝ 2)) (splits : ℕ)
-    (pick : ℕ → PolyZonotope (Vec ℝ 2) → Bool) :
+    (pick : ℕ → PolyZonotope (Vec ℝ 2) → Bool) : -- --- CONCL ---
     pZ.construct ⊆ ContSet.construct (pZ.polygon splits pick) := by -- --- PROOF ---
   intro x hx
   obtain ⟨q, hq, hxq⟩ := PolyZonotope.aux_polygonPieces_cover pZ pick splits hx

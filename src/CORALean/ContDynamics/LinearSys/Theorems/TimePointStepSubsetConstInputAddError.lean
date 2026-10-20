@@ -69,7 +69,8 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 /-- A point of a zonotope reaches no further than its `ℓ¹` reach. -/
 theorem aux_norm_le_absBound_sum {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
-    (hx : x ∈ Z.construct) : ‖x‖ ≤ ∑ j, Z.absBound j := by -- --- PROOF ---
+    (hx : x ∈ Z.construct) : -- --- CONCL ---
+    ‖x‖ ≤ ∑ j, Z.absBound j := by -- --- PROOF ---
   have habs : ∀ j, (0:ℝ) ≤ Z.absBound j := fun j => by
     rw [Zonotope.absBound]
     positivity

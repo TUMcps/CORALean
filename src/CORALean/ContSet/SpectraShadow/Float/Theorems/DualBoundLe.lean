@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 omit [ToRat 𝕋] in
 /-- A product with a factor between two corners is at most the larger corner product. -/
 theorem SpectraShadow.aux_mul_le_corner (a lo hi : 𝕋) {e : ℝ} (he₁ : toReal lo ≤ e)
-    (he₂ : e ≤ toReal hi) :
+    (he₂ : e ≤ toReal hi) : -- --- CONCL ---
     toReal a * e ≤ toReal (maximum (mulUp a lo) (mulUp a hi)) := by -- --- PROOF ---
   rw [toReal_maximum]
   rcases le_total 0 (toReal a) with ha | ha
@@ -61,7 +61,7 @@ theorem SpectraShadow.aux_mul_le_corner (a lo hi : 𝕋) {e : ℝ} (he₁ : toRe
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.dualBound_le {S : SpectraShadow 𝕋 (Vec 𝕋 n)} {a : Vec 𝕋 n} {Y : Mat 𝕋 S.k S.k}
-    (h : S.dualCertified a Y = true) :
+    (h : S.dualCertified a Y = true) : -- --- CONCL ---
     ∀ x ∈ S.construct, ∑ r, toReal (a r) * x r ≤ toReal (S.dualBound a Y) := by -- --- PROOF ---
   simp only [SpectraShadow.dualCertified, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const, decide_eq_true_eq] at h

@@ -68,7 +68,8 @@ variable {n : ℕ}
 theorem gainDim_deriv_tendsto (A : ℝ → Mat ℝ n n) (Ψ : ℝ → Set (Vec ℝ n)) (i : Fin n)
     {qi : ℕ} {g g' : ℝ → ℝ} {δ : ℝ} (hδ0 : 0 ≤ δ) (hδ1 : δ ≤ 1)
     (hg : ∀ᶠ t in 𝓝 (0:ℝ), HasDerivAt g (g' t) t) (hg' : ContinuousAt g' 0) (hg0 : g 0 ≠ 0)
-    (hexp : ∀ᶠ t in 𝓝[≥] (0:ℝ), boxDiameter (abstrSolInf A Ψ t) i = t ^ (qi + 1) * g t) :
+    (hexp : ∀ᶠ t in 𝓝[≥] (0:ℝ), boxDiameter (abstrSolInf A Ψ t) i = t ^ (qi + 1) * g t)
+    : -- --- CONCL ---
     Tendsto (fun h => deriv (fun s => gainDim A Ψ s δ i) h) (𝓝[>] (0:ℝ))
       (𝓝 (δ ^ (qi + 1) * (δ - 1) * g' 0 / g 0)) := by -- --- PROOF ---
   -- `g` is continuous at `0`, as it has a derivative there, so it stays off zero near `0`

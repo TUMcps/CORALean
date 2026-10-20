@@ -54,7 +54,7 @@ variable {n : ℕ}
 
 /-- `expmFrom` encloses the tail `e^M - Σ_{i < k} Mⁱ/i!` of the series, for `k ≤ η`. -/
 theorem MatExp.expmFrom_outer (A P : Interval (Mat ℝ n n)) {η k : ℕ} (hk : k ≤ η)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) (hP : M ^ k ∈ P.construct) :
+    {M : Mat ℝ n n} (hM : M ∈ A.construct) (hP : M ^ k ∈ P.construct) : -- --- CONCL ---
     exp M - ∑ i ∈ Finset.range k, ((Nat.factorial i : ℝ)⁻¹) • M ^ i
       ∈ (MatExp.expmFrom A η k P).construct := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ : ∃ m, η = k + m := ⟨η - k, by omega⟩

@@ -63,7 +63,7 @@ variable {n : ℕ}
 
 /-- The interpolation error of the integrated exponential, as one series from
 order `1` up. -/
-theorem aux_expIntegralDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0) :
+theorem aux_expIntegralDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0) : -- --- CONCL ---
     MatExp.expIntegral A t - (t / r) • MatExp.expIntegral A r
       = ∑' i : ℕ, (((Nat.factorial (i + 2) : ℝ))⁻¹
           * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 1) := by -- --- PROOF ---
@@ -94,7 +94,7 @@ theorem aux_expIntegralDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0)
   rw [← htsum, ← hshift, hfirst, zero_add]
 
 /-- The same series, shifted past `η`, is summable. -/
-theorem aux_summable_expIntegralDiff (A : Mat ℝ n n) (t r : ℝ) :
+theorem aux_summable_expIntegralDiff (A : Mat ℝ n n) (t r : ℝ) : -- --- CONCL ---
     Summable (fun i : ℕ => (((Nat.factorial (i + 2) : ℝ))⁻¹
       * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 1)) := by -- --- PROOF ---
   have hst := MatExp.summable_expIntegral A t

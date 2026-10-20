@@ -41,7 +41,8 @@ variable {n : ℕ}
 /-- If `I` has a point outside the state space, `0` is in `intersectingCells P I`. -/
 theorem GridPartition.zero_mem_intersectingCells (P : GridPartition n)
     (I : Real.Interval (Vec ℝ n)) {x : Vec ℝ n} (hxI : x ∈ I.construct)
-    (hx : x ∉ P.intervals.construct) : 0 ∈ P.intersectingCells I := by -- --- PROOF ---
+    (hx : x ∉ P.intervals.construct) : -- --- CONCL ---
+    0 ∈ P.intersectingCells I := by -- --- PROOF ---
   rw [GridPartition.mem_interval_iff] at hxI hx
   push Not at hx
   obtain ⟨j, hj⟩ := hx

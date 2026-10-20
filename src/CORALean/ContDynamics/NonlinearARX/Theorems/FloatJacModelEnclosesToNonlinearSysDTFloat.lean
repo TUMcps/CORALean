@@ -88,7 +88,7 @@ theorem aux_reindex_hasFDerivAt {a b : ℕ} (x : Vec ℝ (a * b)) : -- --- CONCL
 
 theorem NonlinearARX.FloatJacModel.Encloses.toNonlinearSysDTFloat
     {fm : NonlinearARX.FloatJacModel 𝕋 dy du p} {sys : NonlinearARX dy du p}
-    (h : fm.Encloses sys) :
+    (h : fm.Encloses sys) : -- --- CONCL ---
     fm.toNonlinearSysDTFloat.Encloses sys.toNonlinearSysDT.f := by -- --- PROOF ---
   -- a vector is in a float box when every coordinate is between the real bounds
   have mem_iff : ∀ {k : ℕ} (I : Interval (Vec 𝕋 k)) (v : Vec ℝ k),

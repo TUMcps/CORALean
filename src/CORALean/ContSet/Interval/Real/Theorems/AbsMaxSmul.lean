@@ -38,7 +38,7 @@ variable {m n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.absMax_smul (A : Interval (Mat ℝ m n)) {s : ℝ} (hs : 0 ≤ s) :
+theorem Interval.absMax_smul (A : Interval (Mat ℝ m n)) {s : ℝ} (hs : 0 ≤ s) : -- --- CONCL ---
     (Interval.smul s A).absMax = s • A.absMax := by -- --- PROOF ---
   funext i j
   simp only [Interval.absMax, Interval.smul, Entrywise.ofEntry, Entrywise.entry,

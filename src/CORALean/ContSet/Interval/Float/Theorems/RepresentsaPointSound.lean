@@ -37,7 +37,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.representsa_point_sound {I : Interval (Vec 𝕋 n)}
-    (h : I.representsa_point = true) : ∃ v, I.construct = {v} := by -- --- PROOF ---
+    (h : I.representsa_point = true) : -- --- CONCL ---
+    ∃ v, I.construct = {v} := by -- --- PROOF ---
   simp only [Interval.representsa_point, List.all_eq_true, List.mem_finRange, Bool.and_eq_true,
     forall_const] at h
   refine ⟨fun j => toReal (I.inf j), ?_⟩

@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.innerApprox_inner (pZ : PolyZonotope (Vec 𝕋 n)) (tol : 𝕋)
-    (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k) (iter depth : ℕ) :
+    (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k) (iter depth : ℕ) : -- --- CONCL ---
     ∀ Z ∈ PolyZonotope.innerApprox pZ tol inv iter depth,
       Z.construct ⊆ pZ.construct := by -- --- PROOF ---
   intro Z hZ z hz

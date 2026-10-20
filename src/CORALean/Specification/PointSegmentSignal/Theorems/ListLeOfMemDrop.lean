@@ -43,7 +43,7 @@ variable {T : Type} [LinearOrder T]
 
 /-- An entry from `m` on is at least the entry at `m`. -/
 theorem List.le_of_mem_drop (l : List T) (hl : l.Pairwise (· < ·)) (m : ℕ) (b : T)
-    (hb : l[m]? = some b) (x : T) (hx : x ∈ l.drop m) :
+    (hb : l[m]? = some b) (x : T) (hx : x ∈ l.drop m) : -- --- CONCL ---
     b ≤ x := by -- --- PROOF ---
   obtain ⟨k, hk, rfl⟩ := List.getElem_of_mem hx
   simp only [List.length_drop] at hk

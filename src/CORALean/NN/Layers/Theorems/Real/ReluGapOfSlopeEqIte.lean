@@ -47,7 +47,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem reluGapOfSlope_eq_ite {lam l u : ℝ} (hl : l < 0) (hu : 0 < u) :
+theorem reluGapOfSlope_eq_ite {lam l u : ℝ} (hl : l < 0) (hu : 0 < u) : -- --- CONCL ---
     reluGapOfSlope lam l u
       = if lam ≤ u / (u - l) then (1 - lam) * u else -(lam * l) := by -- --- PROOF ---
   have hw : 0 < u - l := by linarith

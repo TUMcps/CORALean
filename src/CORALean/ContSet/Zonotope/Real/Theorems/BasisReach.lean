@@ -52,7 +52,7 @@ variable {n : ℕ}
 
 /-- A matrix with small absolute row sums contracts the sup norm. -/
 theorem Zonotope.aux_contract {K : Mat ℝ n n} {q : ℝ} (hK : ∀ i, ∑ j, |K i j| ≤ q)
-    (x : Vec ℝ n) {M : ℝ} (hM : 0 ≤ M) (hx : ∀ j, |x j| ≤ M) (i : Fin n) :
+    (x : Vec ℝ n) {M : ℝ} (hM : 0 ≤ M) (hx : ∀ j, |x j| ≤ M) (i : Fin n) : -- --- CONCL ---
     |(K *ᵥ x) i| ≤ q * M := by -- --- PROOF ---
   calc |(K *ᵥ x) i| = |∑ j, K i j * x j| := rfl
     _ ≤ ∑ j, |K i j * x j| := Finset.abs_sum_le_sum_abs _ _
@@ -65,7 +65,7 @@ theorem Zonotope.aux_contract {K : Mat ℝ n n} {q : ℝ} (hK : ∀ i, ∑ j, |K
 /-- `P x = 0` leaves only `x = 0`, the largest coordinate of `x = K x` being at most half of
 itself. -/
 theorem Zonotope.aux_injective (Pm Hm : Mat ℝ n n) {q : ℝ} (hq : q ≤ 1 / 2)
-    (hK : ∀ i, ∑ j, |(1 - Hm * Pm) i j| ≤ q) (x : Vec ℝ n) (hx : Pm *ᵥ x = 0) :
+    (hK : ∀ i, ∑ j, |(1 - Hm * Pm) i j| ≤ q) (x : Vec ℝ n) (hx : Pm *ᵥ x = 0) : -- --- CONCL ---
     x = 0 := by -- --- PROOF ---
   rcases isEmpty_or_nonempty (Fin n) with hn | hn
   · exact funext fun i => (IsEmpty.false i).elim
@@ -82,7 +82,8 @@ theorem Zonotope.aux_injective (Pm Hm : Mat ℝ n n) {q : ℝ} (hq : q ≤ 1 / 2
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.basis_reach (Pm Hm : Mat ℝ n n) {q B : ℝ} (hq : q ≤ 1 / 2)
-    (hK : ∀ i, ∑ j, |(1 - Hm * Pm) i j| ≤ q) (d : Vec ℝ n) (hd : ∀ i, |(Hm *ᵥ d) i| ≤ B) :
+    (hK : ∀ i, ∑ j, |(1 - Hm * Pm) i j| ≤ q) (d : Vec ℝ n)
+    (hd : ∀ i, |(Hm *ᵥ d) i| ≤ B) : -- --- CONCL ---
     ∃ w : Vec ℝ n, Pm *ᵥ w = d ∧ ∀ k, |w k| ≤ 2 * B := by -- --- PROOF ---
   -- `P` is invertible: injective on vectors, and square
   have hinj : Function.Injective Pm.mulVec := fun x y hxy =>

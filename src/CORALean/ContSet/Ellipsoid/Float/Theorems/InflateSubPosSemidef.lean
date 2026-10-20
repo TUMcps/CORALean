@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- `inflate X - X'` is positive semi-definite for every symmetric `X'` in `X`. -/
 theorem Ellipsoid.inflate_sub_posSemidef {X : Interval (Mat 𝕋 n n)} {Xr : Mat ℝ n n}
     (hX : ∀ i j, toReal (X.inf i j) ≤ Xr i j ∧ Xr i j ≤ toReal (X.sup i j))
-    (hsym : ∀ i j, Xr i j = Xr j i) :
+    (hsym : ∀ i j, Xr i j = Xr j i) : -- --- CONCL ---
     (toRealMat (Ellipsoid.inflate X) - Xr).PosSemidef := by -- --- PROOF ---
   set D : Mat ℝ n n := toRealMat (Ellipsoid.inflate X) - Xr with hD
   -- the bracket of entry `(i, j)`, read at the ordered pair

@@ -37,7 +37,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Exact: the folded intersection denotes the bundle. -/
-theorem ZonoBundle.conZonotopeAll_exact (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k) :
+theorem ZonoBundle.conZonotopeAll_exact (zB : ZonoBundle (Vec ℝ n))
+    (hk : 0 < zB.k) : -- --- CONCL ---
     (zB.conZonotopeAll hk).construct = zB.construct := by -- --- PROOF ---
   unfold ZonoBundle.conZonotopeAll
   rw [ConZonotope.construct_foldl_intersection_eq]

@@ -46,7 +46,8 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Shifting the range by a multiple of the period does not move its image. -/
-theorem aux_image_cos_shift (lo hi : ℝ) (k : ℤ) : Real.cos '' Set.Icc lo hi =
+theorem aux_image_cos_shift (lo hi : ℝ) (k : ℤ) : -- --- CONCL ---
+    Real.cos '' Set.Icc lo hi =
     Real.cos '' Set.Icc (lo - 2 * Real.pi * k) (hi - 2 * Real.pi * k) := by -- --- PROOF ---
   ext v
   constructor
@@ -59,7 +60,7 @@ theorem aux_image_cos_shift (lo hi : ℝ) (k : ℤ) : Real.cos '' Set.Icc lo hi 
     ring_nf
 
 /-- Every value of the cosine is taken within one period of any point. -/
-theorem aux_cos_exists_period (lo t : ℝ) :
+theorem aux_cos_exists_period (lo t : ℝ) : -- --- CONCL ---
     ∃ c ∈ Set.Icc lo (lo + 2 * Real.pi), Real.cos c = Real.cos t := by -- --- PROOF ---
   have hpi := Real.pi_pos
   -- the first point `t + 2πk` at or above `lo`
@@ -76,7 +77,7 @@ theorem aux_cos_three_pi : Real.cos (3 * Real.pi) = -1 := by
 theorem aux_cos_antiOn_zero : AntitoneOn Real.cos (Set.Icc 0 Real.pi) :=
   Real.strictAntiOn_cos.antitoneOn
 
-theorem aux_cos_monoOn_zero :
+theorem aux_cos_monoOn_zero : -- --- CONCL ---
     MonotoneOn Real.cos (Set.Icc Real.pi (2 * Real.pi)) := by -- --- PROOF ---
   intro x hx y hy hxy
   -- `cos x = -cos (x - π)`, falling on `[0, π]`
@@ -99,7 +100,7 @@ theorem aux_cos_monoOn_one :
 
 /-- A range holding a point where the cosine is `1` and one where it is `-1`. -/
 theorem aux_cos_full {a b c d : ℝ} (hc : c ∈ Set.Icc a b) (hd : d ∈ Set.Icc a b)
-    (h1 : Real.cos c = 1) (h2 : Real.cos d = -1) :
+    (h1 : Real.cos c = 1) (h2 : Real.cos d = -1) : -- --- CONCL ---
     Real.cos '' Set.Icc a b = Set.Icc (-1) 1 := by -- --- PROOF ---
   refine Set.Subset.antisymm ?_ ?_
   · rintro _ ⟨x, _, rfl⟩
@@ -112,7 +113,8 @@ theorem aux_cosByRegions_full {lo hi yl yu : ℝ}
     (hshift : Real.cos '' Set.Icc lo hi = Real.cos '' Set.Icc yl (yl + (hi - lo)))
     (hb2 : yu < yl → yl + (hi - lo) = yu + 2 * Real.pi)
     (h : (yl ∈ Set.Ico 0 Real.pi ∧ yu ∈ Set.Ico 0 Real.pi ∧ yu < yl) ∨
-      (yl ∈ Set.Ico Real.pi (2 * Real.pi) ∧ yu ∈ Set.Ico Real.pi (2 * Real.pi) ∧ yu < yl)) :
+      (yl ∈ Set.Ico Real.pi (2 * Real.pi) ∧ yu ∈ Set.Ico Real.pi (2 * Real.pi) ∧ yu < yl))
+    : -- --- CONCL ---
     Real.cos '' Set.Icc lo hi = Set.Icc (-1) 1 := by -- --- PROOF ---
   have hpi := Real.pi_pos
   rw [hshift]
@@ -158,7 +160,7 @@ theorem aux_cosByRegions_last {yl yu : ℝ} (hyl : 0 ≤ yl ∧ yl < 2 * Real.pi
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Eq. 13]: every case is the cosine's exact range on `[lo, hi]`. -/
-theorem Interval.cosByRegions_exact {lo hi : ℝ} (hle : lo ≤ hi) :
+theorem Interval.cosByRegions_exact {lo hi : ℝ} (hle : lo ≤ hi) : -- --- CONCL ---
     Real.cos '' Set.Icc lo hi =
       Set.Icc (Interval.cosByRegions lo hi).inf
         (Interval.cosByRegions lo hi).sup := by -- --- PROOF ---

@@ -52,7 +52,7 @@ variable {n : ℕ}
 
 /-- [1, Sec. 4.2], corrected: `[m₁, M₁]_S ⊕ [m₂, M₂]_S ⊆ [m₁ + m₂, M₁ + M₂]_S`. -/
 theorem ContSet.hyperplanePolyhedron_add_subset (S : Finset (Vec ℝ n))
-    (m₁ M₁ m₂ M₂ : Vec ℝ n → ℝ) :
+    (m₁ M₁ m₂ M₂ : Vec ℝ n → ℝ) : -- --- CONCL ---
     ContSet.hyperplanePolyhedron S m₁ M₁ + ContSet.hyperplanePolyhedron S m₂ M₂
       ⊆ ContSet.hyperplanePolyhedron S (m₁ + m₂) (M₁ + M₂) := by -- --- PROOF ---
   -- the value of a sum along `s` is the sum of the values

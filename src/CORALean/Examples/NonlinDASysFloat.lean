@@ -76,7 +76,8 @@ def model : NonlinearSys.FloatModel D 1 1 where
   jacU _ _ := ⟨!![one], !![one]⟩
 
 /-- The model encloses the reduced system, over every box. -/
-theorem model_encloses : model.Encloses daeRed.toNonlinearSys := by -- --- PROOF ---
+theorem model_encloses : -- --- CONCL ---
+    model.Encloses daeRed.toNonlinearSys := by -- --- PROOF ---
   -- the field's value, then the slopes
   refine ⟨fun X U x hx u hu => ?_, fun X U x hx x' hx' u hu u' hu' => ?_⟩
   · have hx0 : toReal (X.inf 0) ≤ x 0 ∧ x 0 ≤ toReal (X.sup 0) := hx 0
@@ -132,7 +133,7 @@ theorem run_eq : NonlinDASys.reachFloat daeRed model { X₀ := X₀, U := U₀, 
 /-- The guarantee of the list the run returns (the `#eval` above shows it does): every trajectory
 of the algebraic system from `X₀` under `U₀` is, at every time of every window, in the window's
 zonotope. -/
-theorem run_outer {Rs : List (Zonotope (Vec D 1))} (h : run = some Rs) : -- --- CONCL ---
+theorem run_outer {Rs : List (Zonotope (Vec D 1))} (h : run = some Rs) :
     ∃ N : ℕ, (N : ℝ) * toReal (d 1 (-3) : D) = ((1 : ℚ) : ℝ) - ((0 : ℚ) : ℝ) ∧ Rs.length = N ∧
       ∀ {x : ℝ → Vec ℝ 1} {y : ℝ → Vec ℝ 1} {u : ℝ → Vec ℝ 1} {z : ℝ → Vec ℝ daeSys.q},
         daeSys.IsTrajectory (S := 𝒮) (Set.Icc 0 (((1 : ℚ) : ℝ) - ((0 : ℚ) : ℝ)))

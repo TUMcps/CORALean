@@ -38,7 +38,7 @@ variable {S : ℕ → Type} {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ReachSetAnalyzer.children_mem (R : List (ReachSetAnalyzer.Entry S n)) (i j : ℕ)
-    (h : j ∈ ReachSetAnalyzer.children R i) :
+    (h : j ∈ ReachSetAnalyzer.children R i) : -- --- CONCL ---
     1 ≤ j ∧ ∃ e, R[j - 1]? = some e ∧ e.parent = i := by -- --- PROOF ---
   unfold ReachSetAnalyzer.children at h
   obtain ⟨idx, -, hidx⟩ := List.mem_filterMap.mp h

@@ -52,7 +52,8 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The integrand over `u = t - τ`, a continuous matrix function. -/
-theorem aux_noiseIntegrand_continuous (A : Mat ℝ n n) (C : Mat ℝ n m) (i j : Fin n) :
+theorem aux_noiseIntegrand_continuous (A : Mat ℝ n n) (C : Mat ℝ n m)
+    (i j : Fin n) : -- --- CONCL ---
     Continuous fun u : ℝ =>
       (exp (u • A) * (C * C.transpose) * exp (u • A.transpose)) i j := by -- --- PROOF ---
   -- each factor is continuous in `u`, and an entry of a product is a finite sum of products
@@ -65,7 +66,7 @@ theorem aux_noiseIntegrand_continuous (A : Mat ℝ n n) (C : Mat ℝ n m) (i j :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem noiseCovariance_add (A : Mat ℝ n n) (C : Mat ℝ n m) (s t : ℝ) :
+theorem noiseCovariance_add (A : Mat ℝ n n) (C : Mat ℝ n m) (s t : ℝ) : -- --- CONCL ---
     noiseCovariance A C (s + t)
       = exp (s • A) * noiseCovariance A C t * exp (s • A.transpose)
         + noiseCovariance A C s := by -- --- PROOF ---

@@ -52,7 +52,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.radiusLmi_infeasible (P : Mat ℝ n n) (γ : ℝ) (i : Fin n) :
+theorem LinearSysDT.radiusLmi_infeasible (P : Mat ℝ n n) (γ : ℝ) (i : Fin n) : -- --- CONCL ---
     ¬ (-(fromBlocks (1 : Mat ℝ n n) (γ • P)ᵀ (γ • P) P)).PosSemidef := by -- --- PROOF ---
   intro h
   -- the form at `(e_i, 0)` is `-1`

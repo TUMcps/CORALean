@@ -44,7 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.mem_nominalSet_iff {S : SpectraShadow 𝕋 (Vec 𝕋 n)} {x : Vec ℝ n} :
+theorem SpectraShadow.mem_nominalSet_iff {S : SpectraShadow 𝕋 (Vec 𝕋 n)}
+    {x : Vec ℝ n} : -- --- CONCL ---
     x ∈ InflatedContSet.nominalSet S ↔ ∃ β : Vec ℝ S.m,
       (toRealMat S.A₀ + ∑ i, β i • toRealMat (S.A i)).PosSemidef ∧
         ∀ i, x i = toReal (S.c i) + ∑ j, toReal (S.G j i) * β j := by -- --- PROOF ---

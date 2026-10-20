@@ -34,7 +34,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.abs_le_mag (T : Taylm n) {ξ : ℝ}
-    (hξ : ξ ∈ Set.Icc (min T.constCoef T.bounds.inf) (max T.constCoef T.bounds.sup)) :
+    (hξ : ξ ∈ Set.Icc (min T.constCoef T.bounds.inf) (max T.constCoef T.bounds.sup))
+    : -- --- CONCL ---
     |ξ| ≤ T.mag := by -- --- PROOF ---
   unfold Taylm.mag
   have h1 := le_max_left |T.constCoef| (max |T.bounds.inf| |T.bounds.sup|)

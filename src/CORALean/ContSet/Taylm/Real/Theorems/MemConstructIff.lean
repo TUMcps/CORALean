@@ -37,7 +37,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.mem_construct_iff {m : ℕ} (T : Fin m → Taylm n) (x : Vec ℝ m) :
+theorem Taylm.mem_construct_iff {m : ℕ} (T : Fin m → Taylm n) (x : Vec ℝ m) : -- --- CONCL ---
     x ∈ Taylm.construct T ↔
       ∃ f : Fin m → Vec ℝ n → ℝ, (∀ i, (T i).Encloses (f i)) ∧
         ∃ t ∈ Taylm.box n, ∀ i, x i = f i t := by -- --- PROOF ---

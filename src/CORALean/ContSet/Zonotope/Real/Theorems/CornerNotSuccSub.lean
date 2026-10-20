@@ -44,7 +44,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.corner_not_succ_sub (Z : Zonotope (Vec ℝ 2)) (k : Fin Z.h) :
+theorem Zonotope.corner_not_succ_sub (Z : Zonotope (Vec ℝ 2)) (k : Fin Z.h) : -- --- CONCL ---
     Z.corner (fun j => !decide (j.val < k.val + 1))
       = Z.corner (fun j => !decide (j.val < k.val)) + -((2 : ℝ) • Z.G k) := by -- --- PROOF ---
   have hc := Zonotope.sum_flip_compl Z (fun j => decide (j.val < k.val))

@@ -38,7 +38,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.mem_ofPoint_iff (v x : Vec ℝ n) :
+theorem Ellipsoid.mem_ofPoint_iff (v x : Vec ℝ n) : -- --- CONCL ---
     x ∈ (Ellipsoid.ofPoint v).construct ↔ x = v := by -- --- PROOF ---
   constructor
   · rw [Ellipsoid.construct_eq_sqrt]

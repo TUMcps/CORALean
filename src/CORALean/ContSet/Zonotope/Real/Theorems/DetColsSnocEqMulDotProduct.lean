@@ -49,7 +49,7 @@ variable {m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem det_colsSnoc_eq_mul_dotProduct (v x : Vec ℝ (m + 1)) (B : Fin m → Vec ℝ (m + 1))
-    (hv : v ⬝ᵥ v = 1) (hB : ∀ k, v ⬝ᵥ B k = 0) :
+    (hv : v ⬝ᵥ v = 1) (hB : ∀ k, v ⬝ᵥ B k = 0) : -- --- CONCL ---
     (colsSnoc B x).det = (colsSnoc B v).det * (v ⬝ᵥ x) := by -- --- PROOF ---
   -- the matrix with last column `y` is the one with last column `v`, updated
   have hupd : ∀ y, colsSnoc B y = (colsSnoc B v).updateCol (Fin.last m) y := by

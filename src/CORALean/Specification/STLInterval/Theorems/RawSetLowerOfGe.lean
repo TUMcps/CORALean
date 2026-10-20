@@ -38,7 +38,8 @@ namespace CORALean
 
 /-- A time at or above one that is past the lower end is past it. -/
 theorem STLInterval.rawSet_lower_of_ge {l : EReal} {lc : Bool} {t x : ℝ} (h : x ≤ t)
-    (hx : l < x ∨ (lc = true ∧ l = x)) : l < t ∨ (lc = true ∧ l = t) := by -- --- PROOF ---
+    (hx : l < x ∨ (lc = true ∧ l = x)) : -- --- CONCL ---
+    l < t ∨ (lc = true ∧ l = t) := by -- --- PROOF ---
   rcases h.lt_or_eq with h | rfl
   · rcases hx with hx | ⟨hc, hx⟩
     · exact Or.inl (hx.trans (EReal.coe_lt_coe_iff.2 h))

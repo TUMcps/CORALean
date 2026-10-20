@@ -33,7 +33,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem sigmoid_mono : Monotone sigmoid := by -- --- PROOF ---
+theorem sigmoid_mono : -- --- CONCL ---
+    Monotone sigmoid := by -- --- PROOF ---
   intro a b hab
   have hpb : (0:ℝ) < 1 + Real.exp (-b) := by positivity
   have hexp : Real.exp (-b) ≤ Real.exp (-a) := Real.exp_le_exp.mpr (by linarith)

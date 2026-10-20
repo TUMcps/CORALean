@@ -63,7 +63,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 through `*ᵥ` at any fixed vector, `mulVecL` turning the product rule's other
 term into `0`. -/
 theorem aux_hasDerivAt_mulVec_const {M : ℝ → Mat ℝ n n} {M' : Mat ℝ n n} {ρ : ℝ}
-    (hM : HasDerivAt M M' ρ) (v : Vec ℝ n) :
+    (hM : HasDerivAt M M' ρ) (v : Vec ℝ n) : -- --- CONCL ---
     HasDerivAt (fun r => M r *ᵥ v) (M' *ᵥ v) ρ := by -- --- PROOF ---
   have hC : HasDerivAt (fun r => mulVecL (M r)) (mulVecL M') ρ :=
     (ContinuousLinearMap.hasFDerivAt mulVecL).comp_hasDerivAt ρ hM
@@ -74,7 +74,8 @@ theorem aux_hasDerivAt_mulVec_const {M : ℝ → Mat ℝ n n} {M' : Mat ℝ n n}
 /-- `d/dρ [exp((ρ-σ)A) v] = A e^{(ρ-σ)A} v`, at a fixed vector `v` — the shift
 absorbed by `exp((r-σ)A) = exp(rA)e^{-σA}` before ever differentiating, every
 rewrite through `*ᵥ` rather than raw matrix multiplication. -/
-theorem aux_hasDerivAt_expSub_mulVec (A : Mat ℝ n n) (σ : ℝ) (v : Vec ℝ n) (ρ : ℝ) :
+theorem aux_hasDerivAt_expSub_mulVec (A : Mat ℝ n n) (σ : ℝ) (v : Vec ℝ n)
+    (ρ : ℝ) : -- --- CONCL ---
     HasDerivAt (fun r : ℝ => exp ((r - σ) • A) *ᵥ v)
       (A *ᵥ (exp ((ρ - σ) • A) *ᵥ v)) ρ := by -- --- PROOF ---
   have hmul : ∀ c d : ℝ, exp (c • A) * exp (d • A) = exp ((c + d) • A) := fun c d => by
@@ -95,7 +96,7 @@ one, entry by entry — the domain generalised from `ℝ` to any measurable spac
 for the product-measure rectangle the Duhamel swap runs over. -/
 theorem aux_aestronglyMeasurable_mulVec2 {γ : Type} [MeasurableSpace γ] [TopologicalSpace γ]
     [OpensMeasurableSpace γ] {M : γ → Mat ℝ n n} {v : γ → Vec ℝ n} {μ : Measure γ}
-    (hM : Continuous M) (hv : AEStronglyMeasurable v μ) :
+    (hM : Continuous M) (hv : AEStronglyMeasurable v μ) : -- --- CONCL ---
     AEStronglyMeasurable (fun s => M s *ᵥ v s) μ := by -- --- PROOF ---
   have hvk : ∀ k, AEStronglyMeasurable (fun s => v s k) μ := by
     intro k

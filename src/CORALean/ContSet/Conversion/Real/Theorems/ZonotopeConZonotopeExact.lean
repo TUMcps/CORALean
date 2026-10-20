@@ -38,7 +38,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.conZonotope_exact (Z : Zonotope α) :
+theorem Zonotope.conZonotope_exact (Z : Zonotope α) : -- --- CONCL ---
     Z.construct = Z.conZonotope.construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨β, hβ, rfl⟩

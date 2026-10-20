@@ -55,7 +55,7 @@ theorem aux_mem_supportConstraints (F : Finset (Fin N)) (l : Fin N) :
   simp [supportConstraints]
 
 -- the tree under `F`, root first: one subtree for each support constraint of the root
-theorem aux_discardTree_succ (F : Finset (Fin N)) (j : ℕ) :
+theorem aux_discardTree_succ (F : Finset (Fin N)) (j : ℕ) : -- --- CONCL ---
     discardTree w F (j + 1) =
       (supportConstraints w F).flatMap fun l => discardTree w (F.erase l) j := by -- --- PROOF ---
   induction j generalizing F with
@@ -74,7 +74,7 @@ theorem aux_mem_discardTree_erase {F G : Finset (Fin N)} {l : Fin N} {d : ℕ}
   exact List.mem_flatMap.mpr ⟨l, hl, hG⟩
 
 -- every problem at level `j` has `j` constraints fewer
-theorem aux_discardTree_sub (F : Finset (Fin N)) (j : ℕ) :
+theorem aux_discardTree_sub (F : Finset (Fin N)) (j : ℕ) : -- --- CONCL ---
     ∀ G ∈ discardTree w F j, G ⊆ F ∧ G.card + j = F.card := by -- --- PROOF ---
   induction j generalizing F with
   | zero => intro G hG; simp [discardTree] at hG; simp [hG]
@@ -89,7 +89,7 @@ theorem aux_discardTree_sub (F : Finset (Fin N)) (j : ℕ) :
     omega
 
 -- a tree whose problems all have a support constraint reaches level `j`
-theorem aux_discardTree_ne_nil (j : ℕ) :
+theorem aux_discardTree_ne_nil (j : ℕ) : -- --- CONCL ---
     ∀ F : Finset (Fin N), (∀ d < j, ∀ G ∈ discardTree w F d, supportConstraints w G ≠ []) →
       discardTree w F j ≠ [] := by -- --- PROOF ---
   induction j with

@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the same for the negated identity, which is what turns a lower bound into a row
-theorem negIdentityMat_mulVec (x : Vec ℝ n) (i : Fin n) :
+theorem negIdentityMat_mulVec (x : Vec ℝ n) (i : Fin n) : -- --- CONCL ---
     (toRealMat (negIdentityMat 𝕋 n) *ᵥ x) i = -(x i) := by -- --- PROOF ---
   show ∑ j, toReal (if i = j then neg (one : 𝕋) else zero) * x j = -(x i)
   rw [Finset.sum_eq_single i]

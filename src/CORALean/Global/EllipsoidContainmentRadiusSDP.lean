@@ -59,7 +59,7 @@ variable {n m l : ℕ}
 
 /-- For `H` onto, `H⁺x` solves `Hβ = x` with the least `βᵀβ`. -/
 theorem aux_pinv_least (H : Mat ℝ n l) (hH : Function.Surjective H.mulVec) (Hp : Mat ℝ l n)
-    (hHp : IsPinv H Hp) (x : Fin n → ℝ) :
+    (hHp : IsPinv H Hp) (x : Fin n → ℝ) : -- --- CONCL ---
     H *ᵥ (Hp *ᵥ x) = x ∧
       ∀ β, H *ᵥ β = x → (Hp *ᵥ x) ⬝ᵥ (Hp *ᵥ x) ≤ β ⬝ᵥ β := by -- --- PROOF ---
   obtain ⟨h1, h2, -, h4⟩ := hHp
@@ -84,7 +84,8 @@ theorem aux_pinv_least (H : Mat ℝ n l) (hH : Function.Surjective H.mulVec) (Hp
   linarith
 
 /-- The unit ball `αᵀα ≤ 1` is compact. -/
-theorem aux_isCompact_ball : IsCompact {α : Fin m → ℝ | α ⬝ᵥ α ≤ 1} := by -- --- PROOF ---
+theorem aux_isCompact_ball : -- --- CONCL ---
+    IsCompact {α : Fin m → ℝ | α ⬝ᵥ α ≤ 1} := by -- --- PROOF ---
   refine Metric.isCompact_of_isClosed_isBounded
     (isClosed_le (continuous_id.dotProduct continuous_id) continuous_const)
     (Metric.isBounded_closedBall (x := (0 : Fin m → ℝ)) (r := 1) |>.subset fun α hα => ?_)

@@ -53,7 +53,7 @@ open scoped Pointwise
 /-- Below the new lower bound the sum set reaches down. -/
 private theorem STLInterval.rawSet_add_lowerReach {l₁ u₁ l₂ u₂ : EReal} {lc₁ rc₁ lc₂ rc₂ : Bool}
     (h₁ : (rawSet l₁ u₁ lc₁ rc₁).Nonempty) (h₂ : (rawSet l₂ u₂ lc₂ rc₂).Nonempty) (t : ℝ)
-    (h : l₁ + l₂ < t ∨ ((lc₁ && lc₂) = true ∧ l₁ + l₂ = t)) :
+    (h : l₁ + l₂ < t ∨ ((lc₁ && lc₂) = true ∧ l₁ + l₂ = t)) : -- --- CONCL ---
     ∃ x ∈ rawSet l₁ u₁ lc₁ rc₁, ∃ y ∈ rawSet l₂ u₂ lc₂ rc₂, x + y ≤ t := by -- --- PROOF ---
   have n₁ := (rawSet_bounds_ne h₁).1
   have n₂ := (rawSet_bounds_ne h₂).1
@@ -90,7 +90,7 @@ private theorem STLInterval.rawSet_add_lowerReach {l₁ u₁ l₂ u₂ : EReal} 
 /-- Before the new upper bound the sum set reaches up. -/
 private theorem STLInterval.rawSet_add_upperReach {l₁ u₁ l₂ u₂ : EReal} {lc₁ rc₁ lc₂ rc₂ : Bool}
     (h₁ : (rawSet l₁ u₁ lc₁ rc₁).Nonempty) (h₂ : (rawSet l₂ u₂ lc₂ rc₂).Nonempty) (t : ℝ)
-    (h : (t : EReal) < u₁ + u₂ ∨ ((rc₁ && rc₂) = true ∧ (t : EReal) = u₁ + u₂)) :
+    (h : (t : EReal) < u₁ + u₂ ∨ ((rc₁ && rc₂) = true ∧ (t : EReal) = u₁ + u₂)) : -- --- CONCL ---
     ∃ x ∈ rawSet l₁ u₁ lc₁ rc₁, ∃ y ∈ rawSet l₂ u₂ lc₂ rc₂, t ≤ x + y := by -- --- PROOF ---
   have n₁ := (rawSet_bounds_ne h₁).2
   have n₂ := (rawSet_bounds_ne h₂).2
@@ -126,7 +126,7 @@ private theorem STLInterval.rawSet_add_upperReach {l₁ u₁ l₂ u₂ : EReal} 
 
 /-- `rawSet (l₁+l₂) (u₁+u₂) (lc₁&&lc₂) (rc₁&&rc₂)` is the sum of two nonempty `rawSet`s. -/
 theorem STLInterval.rawSet_add {l₁ u₁ l₂ u₂ : EReal} {lc₁ rc₁ lc₂ rc₂ : Bool}
-    (h₁ : (rawSet l₁ u₁ lc₁ rc₁).Nonempty) (h₂ : (rawSet l₂ u₂ lc₂ rc₂).Nonempty) :
+    (h₁ : (rawSet l₁ u₁ lc₁ rc₁).Nonempty) (h₂ : (rawSet l₂ u₂ lc₂ rc₂).Nonempty) : -- --- CONCL ---
     rawSet (l₁ + l₂) (u₁ + u₂) (lc₁ && lc₂) (rc₁ && rc₂) =
       rawSet l₁ u₁ lc₁ rc₁ + rawSet l₂ u₂ lc₂ rc₂ := by -- --- PROOF ---
   -- the sum set is convex, so order connected

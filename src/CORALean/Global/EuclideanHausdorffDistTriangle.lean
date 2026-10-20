@@ -47,7 +47,7 @@ variable {n : ℕ}
 
 /-- `d_H(S,U) ≤ d_H(S,T) + d_H(T,U)`, read at `‖·‖₂`, for bounded nonempty sets. -/
 theorem hausdorffDist₂_triangle {S T U : Set (Vec ℝ n)} (hS : Bornology.IsBounded S)
-    (hSne : S.Nonempty) (hT : Bornology.IsBounded T) (hTne : T.Nonempty) :
+    (hSne : S.Nonempty) (hT : Bornology.IsBounded T) (hTne : T.Nonempty) : -- --- CONCL ---
     hausdorffDist₂ S U ≤ hausdorffDist₂ S T + hausdorffDist₂ T U := by -- --- PROOF ---
   have himg : ∀ X : Set (Vec ℝ n), Bornology.IsBounded X →
       Bornology.IsBounded (toEuclidean '' X) := by

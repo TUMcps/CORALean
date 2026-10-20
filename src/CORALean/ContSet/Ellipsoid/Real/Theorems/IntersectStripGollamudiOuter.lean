@@ -70,7 +70,7 @@ theorem Ellipsoid.aux_dot_symm {A : Mat ℝ n n} (hA : Aᵀ = A) (u v : Vec ℝ 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.intersectStripGollamudi_outer {Q : Mat ℝ n n} (hQ : Q.PosDef) (c : Vec ℝ n)
-    (C : Mat ℝ m n) (φ : ℝ) (y : Vec ℝ m) {lam : ℝ} (h0 : 0 ≤ lam) (h1 : lam < 1) :
+    (C : Mat ℝ m n) (φ : ℝ) (y : Vec ℝ m) {lam : ℝ} (h0 : 0 ≤ lam) (h1 : lam < 1) : -- --- CONCL ---
     (Ellipsoid.ofShape Q c).construct ∩ {x | ‖C *ᵥ x - y‖₂ ≤ φ}
       ⊆ (Ellipsoid.intersectStripGollamudi Q c C φ y lam).construct := by -- --- PROOF ---
   rintro x ⟨hxE, hxS⟩

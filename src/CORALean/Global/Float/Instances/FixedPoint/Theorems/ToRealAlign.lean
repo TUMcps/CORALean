@@ -40,7 +40,7 @@ variable {f : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem toReal_align (x : FixedPoint f) {e : ℕ} (h : x.d ≤ e) :
+theorem toReal_align (x : FixedPoint f) {e : ℕ} (h : x.d ≤ e) : -- --- CONCL ---
     toReal x = ((x.m * 10 ^ (e - x.d) : ℤ) : ℝ) / 10 ^ e := by -- --- PROOF ---
   rw [toReal_def]
   have hpow : (10 : ℝ) ^ e = 10 ^ (e - x.d) * 10 ^ x.d := by

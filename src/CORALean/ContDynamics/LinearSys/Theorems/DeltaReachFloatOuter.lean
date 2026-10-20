@@ -62,7 +62,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The stored negated identity is the point interval at `-1`. -/
-theorem aux_negOne_mem_point :
+theorem aux_negOne_mem_point : -- --- CONCL ---
     (-1 : Mat ℝ n n) ∈ (Interval.point (negIdentityMat 𝕋 n)).construct := by -- --- PROOF ---
   have h := Interval.mem_point (α := Mat 𝕋 n n) (negIdentityMat 𝕋 n)
   have he : (RealImage.realImage (α := Mat 𝕋 n n) (negIdentityMat 𝕋 n) : Mat ℝ n n) = -1 := by

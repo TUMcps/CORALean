@@ -56,7 +56,7 @@ theorem aux_inner_affine (c : Vec ℝ n) (G : Mat ℝ n q) (β : EuclideanSpace 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem gZonotopeLaw_eq (c : Vec ℝ n) (G : Mat ℝ n q) :
+theorem gZonotopeLaw_eq (c : Vec ℝ n) (G : Mat ℝ n q) : -- --- CONCL ---
     gZonotopeLaw c G = multivariateGaussian (toLp 2 c) (G * Gᵀ) := by -- --- PROOF ---
   have hmeas : Measurable (fun β : EuclideanSpace ℝ (Fin q) => toLp 2 (c + G *ᵥ ofLp β)) := by
     fun_prop

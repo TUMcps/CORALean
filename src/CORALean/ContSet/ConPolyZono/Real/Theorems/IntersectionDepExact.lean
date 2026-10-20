@@ -97,7 +97,7 @@ theorem ConPolyZono.aux_mem_cons_intersectionDep_iff (cPZ₁ cPZ₂ : ConPolyZon
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.intersectionDep_exact (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n))
-    (hq₁ : cPZ₁.qI = 0) (hq₂ : cPZ₂.qI = 0) :
+    (hq₁ : cPZ₁.qI = 0) (hq₂ : cPZ₂.qI = 0) : -- --- CONCL ---
     cPZ₁.construct ∩ cPZ₂.construct = (cPZ₁.intersectionDep cPZ₂).construct := by -- --- PROOF ---
   have hz₁ : ∀ b : Fin cPZ₁.qI → ℝ, ∑ j, b j • cPZ₁.GI j = 0 :=
     fun b => Finset.sum_eq_zero fun j _ => absurd j.isLt (by omega)

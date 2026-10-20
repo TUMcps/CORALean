@@ -54,7 +54,7 @@ theorem StarSet.aux_row_rescale (s : StarSet ℋ𝒫 n) (a β : Fin s.m → ℝ)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem StarSet.conZonotope_exact (s : StarSet ℋ𝒫 n)
-    (hlu : ∀ k, s.dom.inf k ≤ s.dom.sup k) :
+    (hlu : ∀ k, s.dom.inf k ≤ s.dom.sup k) : -- --- CONCL ---
     s.conZonotope.construct = s.construct := by -- --- PROOF ---
   -- the middle and the radius of the box, and the rescaled factors
   set mid : Fin s.m → ℝ := fun k => (s.dom.inf k + s.dom.sup k) / 2 with hmid

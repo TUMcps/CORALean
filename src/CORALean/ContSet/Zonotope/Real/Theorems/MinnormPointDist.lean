@@ -47,7 +47,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.minnormPoint_dist (Z : Zonotope (Vec ℝ (n + 1))) (S : Fin n → Fin Z.h)
-    (hC : Z.facetNormal S ≠ 0) (hoff : Z.minnormOffset S = Z.minnorm) :
+    (hC : Z.facetNormal S ≠ 0) (hoff : Z.minnormOffset S = Z.minnorm) : -- --- CONCL ---
     (Z.minnormPoint S - Z.c) ⬝ᵥ (Z.minnormPoint S - Z.c) = Z.minnorm ^ 2 := by -- --- PROOF ---
   have hCC : 0 < Z.facetNormal S ⬝ᵥ Z.facetNormal S := by
     obtain ⟨k, hk⟩ : ∃ k, Z.facetNormal S k ≠ 0 := by

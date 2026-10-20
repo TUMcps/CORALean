@@ -52,7 +52,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.mem_extremePoints_inter_hyperplane_iff {I : Interval (Vec ℝ n)} {a : Vec ℝ n}
-    (ha : ∀ i, a i ≠ 0) {α : ℝ} {x : Vec ℝ n} :
+    (ha : ∀ i, a i ≠ 0) {α : ℝ} {x : Vec ℝ n} : -- --- CONCL ---
     x ∈ Set.extremePoints ℝ (I.construct ∩ Interval.hyperplane a α) ↔
       x ∈ I.construct ∩ Interval.hyperplane a α ∧ I.OnEdge x := by -- --- PROOF ---
   constructor

@@ -48,7 +48,7 @@ variable {n : ℕ}
 
 /-- A relaxed row's value: the original row's, plus the slack its own variable carries. -/
 theorem PolyLevelSet.aux_eval_relax (P : PolyLevelSet n) (s : Vec ℝ P.m)
-    (D : Interval (Vec ℝ P.m)) (x : Vec ℝ (n + P.m)) (i : Fin P.m) :
+    (D : Interval (Vec ℝ P.m)) (x : Vec ℝ (n + P.m)) (i : Fin P.m) : -- --- CONCL ---
     (P.relax s D).eval x i
       = P.eval (fun k => x (Fin.castAdd P.m k)) i + s i * x (Fin.natAdd n i) := by -- --- PROOF ---
   have hrow : ((P.relax s D).A *ᵥ PolyZonotope.monomial (P.relax s D).R x) i

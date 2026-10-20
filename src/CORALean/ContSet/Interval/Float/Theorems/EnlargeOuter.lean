@@ -43,7 +43,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.enlarge_outer (I : Interval (Vec 𝕋 n)) (f : 𝕋) (hf : 0 ≤ toReal f) :
+theorem Interval.enlarge_outer (I : Interval (Vec 𝕋 n)) (f : 𝕋)
+    (hf : 0 ≤ toReal f) : -- --- CONCL ---
     (I.nominal.enlarge (toReal f)).construct ⊆ (I.enlarge f).construct := by -- --- PROOF ---
   intro x hx i
   have h := hx i

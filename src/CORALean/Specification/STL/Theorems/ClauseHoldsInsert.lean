@@ -47,7 +47,8 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Clause.holds_insert (c : ℝ≥0) (b : STL.Branch X) (cl : STL.Clause X)
-    (ξ : ℝ≥0 → X) : (∃ b' ∈ STL.Clause.insert b cl, b'.Holds c ξ) ↔
+    (ξ : ℝ≥0 → X) : -- --- CONCL ---
+    (∃ b' ∈ STL.Clause.insert b cl, b'.Holds c ξ) ↔
       b.Holds c ξ ∨ ∃ b' ∈ cl, b'.Holds c ξ := by -- --- PROOF ---
   induction cl with
   | nil => simp [STL.Clause.insert]

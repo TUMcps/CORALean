@@ -26,7 +26,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 open Matrix in
-theorem Polygon.mtimes_exact (M : Mat ℝ 2 2) (P : Polygon) :
+theorem Polygon.mtimes_exact (M : Mat ℝ 2 2) (P : Polygon) : -- --- CONCL ---
     (M *ᵥ ·) '' ContSet.construct P = ContSet.construct (Polygon.mtimes M P) := by -- --- PROOF ---
   ext x
   simp only [Set.mem_image, SetUnion.mem_construct, Polygon.mtimes, List.mem_map]

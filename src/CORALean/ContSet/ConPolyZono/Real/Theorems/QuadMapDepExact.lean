@@ -46,7 +46,7 @@ variable {n k : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.quadMapDep_exact (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec ℝ n))
-    (hq : cPZ.qI = 0) :
+    (hq : cPZ.qI = 0) : -- --- CONCL ---
     quadEval Q '' cPZ.construct = (cPZ.quadMapDep Q).construct := by -- --- PROOF ---
   have hz : ∀ b : Fin cPZ.qI → ℝ, ∑ j, b j • cPZ.GI j = 0 :=
     fun b => Finset.sum_eq_zero fun j _ => absurd j.isLt (by omega)

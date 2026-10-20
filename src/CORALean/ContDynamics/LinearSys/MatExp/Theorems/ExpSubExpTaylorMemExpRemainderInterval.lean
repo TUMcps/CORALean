@@ -58,7 +58,7 @@ variable {n : ℕ}
 
 /-- [1, Eq. 6]: `e^{At} - Σᵢ₌₀^η (At)ⁱ/i! ∈ [-W(t), W(t)]` at `t ≥ 0`. -/
 theorem MatExp.exp_sub_expTaylor_mem_expRemainderInterval (A : Mat ℝ n n) {t : ℝ} (ht : 0 ≤ t)
-    (η : ℕ) :
+    (η : ℕ) : -- --- CONCL ---
     exp (t • A) - MatExp.expTaylor (t • A) η
       ∈ MatExp.expRemainderInterval A t η := by -- --- PROOF ---
   intro j k

@@ -48,7 +48,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The `y` at which a segment meets the vertical line form a compact set. -/
-theorem Zonotope.aux_hits_compact (γ : ℝ) (P Q : Vec ℝ 2) :
+theorem Zonotope.aux_hits_compact (γ : ℝ) (P Q : Vec ℝ 2) : -- --- CONCL ---
     IsCompact {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ segment ℝ P Q} := by -- --- PROOF ---
   -- the parameters on the line, and `y` as a continuous function of them
   have hT : IsCompact {t : ℝ | t ∈ Set.Icc (0 : ℝ) 1 ∧ P 0 + t * (Q 0 - P 0) = γ} :=

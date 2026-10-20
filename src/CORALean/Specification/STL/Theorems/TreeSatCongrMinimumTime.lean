@@ -43,7 +43,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Tree.sat_congr_minimumTime (φ : STL.Tree n) (ξ ξ' : ℝ≥0 → Fin n → ℝ)
-    (h : ∀ s, φ.minimumTime ≤ s → ξ s = ξ' s) : φ.Sat ξ ↔ φ.Sat ξ' := by -- --- PROOF ---
+    (h : ∀ s, φ.minimumTime ≤ s → ξ s = ξ' s) : -- --- CONCL ---
+    φ.Sat ξ ↔ φ.Sat ξ' := by -- --- PROOF ---
   induction φ generalizing ξ ξ' with
   | tt | ff => rfl
   | cmp op e₁ e₂ => simp only [STL.Tree.Sat, h 0 le_rfl]

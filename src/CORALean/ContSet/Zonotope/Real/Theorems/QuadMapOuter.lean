@@ -124,7 +124,8 @@ theorem Zonotope.aux_quadMap_pairblock {h : ℕ} (f : Fin h → Fin h → ℝ) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Lemma 1]: `{λ | λᵢ = xᵀQ⁽ⁱ⁾x, x ∈ Z} ⊆ Z.quadMap Q`. -/
-theorem Zonotope.quadMap_outer {n m : ℕ} (Q : Fin m → Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) :
+theorem Zonotope.quadMap_outer {n m : ℕ} (Q : Fin m → Mat ℝ n n)
+    (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (fun x : Vec ℝ n => fun i => x ⬝ᵥ (Q i *ᵥ x)) '' Z.construct
       ⊆ (Z.quadMap Q).construct := by -- --- PROOF ---
   rintro _ ⟨x, ⟨p, hp, rfl⟩, rfl⟩

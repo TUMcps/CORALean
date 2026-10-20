@@ -91,7 +91,8 @@ theorem ConPolyZono.aux_satisfies_compactFactors (cPZ : ConPolyZono α) {a : Fin
 -- and the same the other way, a dropped factor coming back as zero, inside the unit box
 omit [AddCommGroup α] [Module ℝ α] in
 theorem ConPolyZono.aux_satisfies_compactFactors_extend (cPZ : ConPolyZono α)
-    {a : Fin cPZ.compactFactors.p → ℝ} (ha : a ∈ cPZ.compactFactors.cons.construct) :
+    {a : Fin cPZ.compactFactors.p → ℝ}
+    (ha : a ∈ cPZ.compactFactors.cons.construct) : -- --- CONCL ---
     (ConPolyZono.factorExtend cPZ.E cPZ.cons.R a) ∈ cPZ.cons.construct := by -- --- PROOF ---
   have hbox : ∀ k, |a k| ≤ 1 := ((PolyLevelSet.mem_construct_iff_of_eq_unit
     cPZ.compactFactors.cons_eq cPZ.compactFactors.cons_dom).mp ha).1
@@ -105,7 +106,7 @@ theorem ConPolyZono.aux_satisfies_compactFactors_extend (cPZ : ConPolyZono α)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.compactFactors_exact (cPZ : ConPolyZono α) :
+theorem ConPolyZono.compactFactors_exact (cPZ : ConPolyZono α) : -- --- CONCL ---
     cPZ.construct = cPZ.compactFactors.construct := by -- --- PROOF ---
   have key : ∀ (a : Fin cPZ.p → ℝ) (β : Fin cPZ.qI → ℝ),
       cPZ.c + (∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i) + ∑ j, β j • cPZ.GI j

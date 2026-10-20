@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.interval_contains {S : SpectraShadow 𝕋 (Vec 𝕋 n)}
-    {Yup Ylo : Fin n → Mat 𝕋 S.k S.k} :
+    {Yup Ylo : Fin n → Mat 𝕋 S.k S.k} : -- --- CONCL ---
     ∀ I ∈ S.interval Yup Ylo,
       S.construct ⊆ I.construct := by -- --- PROOF ---
   intro I (h : S.interval Yup Ylo = some I)

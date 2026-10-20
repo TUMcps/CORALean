@@ -39,7 +39,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PointSegmentSignal.not_at {T : Type} [LinearOrder T] [Zero T]
-    (s : PointSegmentSignal T) (hs : s.IsValid) (t : T) :
+    (s : PointSegmentSignal T) (hs : s.IsValid) (t : T) : -- --- CONCL ---
     s.not.at t = !(s.at t) := by -- --- PROOF ---
   obtain ⟨h1, h2, -⟩ := hs
   simp only [PointSegmentSignal.at, PointSegmentSignal.not]

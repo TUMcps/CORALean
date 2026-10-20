@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.minus_outer (P : Polygon 𝕋) (p : Vec 𝕋 2) :
+theorem Polygon.minus_outer (P : Polygon 𝕋) (p : Vec 𝕋 2) : -- --- CONCL ---
     (fun x => x - toRealVec p) '' ContSet.construct P ⊆
       ContSet.construct (Polygon.minus P p) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩

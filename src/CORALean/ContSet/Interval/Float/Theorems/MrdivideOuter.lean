@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.mrdivide_outer (I : Interval (Vec 𝕋 n)) (d : 𝕋)
-    (hd : ltStrict zero d = true ∨ ltStrict d zero = true) :
+    (hd : ltStrict zero d = true ∨ ltStrict d zero = true) : -- --- CONCL ---
     (fun x i => x i / toReal d) '' I.construct ⊆ (I.mrdivide d).construct := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩ i
   have h₁ : toReal (I.inf i) ≤ x i := (hx i).1

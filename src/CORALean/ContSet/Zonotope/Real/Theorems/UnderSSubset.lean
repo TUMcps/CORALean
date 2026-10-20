@@ -46,7 +46,7 @@ variable {n ℓ : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Sec. 5.1]: `Z̲ ⊆ Z`. -/
-theorem Zonotope.underS_subset (Z : Zonotope (Vec ℝ n)) (s : Fin ℓ → Vec ℝ n) :
+theorem Zonotope.underS_subset (Z : Zonotope (Vec ℝ n)) (s : Fin ℓ → Vec ℝ n) : -- --- CONCL ---
     Z.underS s ⊆ Z.construct := by -- --- PROOF ---
   -- a sign is at most one in absolute value
   have hsg : ∀ r : ℝ, |Real.sign r| ≤ 1 := fun r => by

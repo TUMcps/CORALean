@@ -37,7 +37,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Membership in `find`: a one-based index of an entry satisfying the predicate. -/
-theorem List.mem_matlabFind {α : Type} (p : α → Bool) (l : List α) (j : ℕ) :
+theorem List.mem_matlabFind {α : Type} (p : α → Bool) (l : List α) (j : ℕ) : -- --- CONCL ---
     j ∈ List.matlabFind p l ↔
       1 ≤ j ∧ ∃ h : j - 1 < l.length, p l[j - 1] = true := by -- --- PROOF ---
   simp only [List.matlabFind, List.mem_filter, List.mem_range'_1]

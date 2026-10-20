@@ -53,7 +53,8 @@ variable {n : ℕ} {β : Type}
 
 /-- Every point of a segment `seg s ⊆ poly s` is in a kept segment or in a past polytope. -/
 theorem NonlinearSys.cancelRedundant_covers (seg poly : β → Set (Vec ℝ n))
-    (hpoly : ∀ s, seg s ⊆ poly s) (δ ζ k : ℕ) (hist : List (List β)) (segs : List β) :
+    (hpoly : ∀ s, seg s ⊆ poly s) (δ ζ k : ℕ) (hist : List (List β))
+    (segs : List β) : -- --- CONCL ---
     ⋃ s ∈ segs, seg s ⊆ (⋃ s ∈ NonlinearSys.cancelRedundant poly δ ζ k hist segs, seg s)
       ∪ ⋃ t ∈ hist.take ζ, ⋃ s' ∈ t, poly s' := by -- --- PROOF ---
   intro x hx

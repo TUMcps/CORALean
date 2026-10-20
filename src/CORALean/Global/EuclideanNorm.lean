@@ -82,7 +82,7 @@ theorem norm₂_smul (r : ℝ) (x : Vec ℝ n) : ‖r • x‖₂ = |r| * ‖x�
 
 /-- Cauchy–Schwarz in magnitude. The two-sided form is what a box conversion
 needs, a coordinate reaching as far in one direction as in the other. -/
-theorem abs_dotProduct_le_norm₂_mul_norm₂ (x y : Vec ℝ n) :
+theorem abs_dotProduct_le_norm₂_mul_norm₂ (x y : Vec ℝ n) : -- --- CONCL ---
     |x ⬝ᵥ y| ≤ ‖x‖₂ * ‖y‖₂ := by -- --- PROOF ---
   have hcs : (∑ i, x i * y i) ^ 2 ≤ (∑ i, x i ^ 2) * ∑ i, y i ^ 2 :=
     Finset.sum_mul_sq_le_sq_mul_sq Finset.univ x y
@@ -114,7 +114,8 @@ theorem abs_le_norm₂ (x : Vec ℝ n) (i : Fin n) : |x i| ≤ ‖x‖₂ := by
 
 /-- And the whole never exceeds `√n` coordinates, which is what converts a bound
 at the ambient supremum norm into one at `‖·‖₂`. -/
-theorem norm₂_le_sqrt_mul_norm (x : Vec ℝ n) : ‖x‖₂ ≤ Real.sqrt n * ‖x‖ := by -- --- PROOF ---
+theorem norm₂_le_sqrt_mul_norm (x : Vec ℝ n) : -- --- CONCL ---
+    ‖x‖₂ ≤ Real.sqrt n * ‖x‖ := by -- --- PROOF ---
   have hle : ∀ i : Fin n, x i ^ 2 ≤ ‖x‖ ^ 2 := fun i =>
     calc x i ^ 2 = |x i| ^ 2 := (sq_abs _).symm
       _ ≤ ‖x‖ ^ 2 := pow_le_pow_left₀ (abs_nonneg _)
@@ -163,7 +164,8 @@ theorem isCompact_unitBall₂ : IsCompact (unitBall₂ n) := by
 
 /-- The Euclidean norm never exceeds the sum of magnitudes: the square of the latter has every
 cross term the former drops, all of them nonnegative. -/
-theorem norm₂_le_sum_abs (x : Vec ℝ n) : ‖x‖₂ ≤ ∑ i, |x i| := by -- --- PROOF ---
+theorem norm₂_le_sum_abs (x : Vec ℝ n) : -- --- CONCL ---
+    ‖x‖₂ ≤ ∑ i, |x i| := by -- --- PROOF ---
   have hsq : ∑ i, x i ^ 2 ≤ (∑ i, |x i|) ^ 2 := by
     have hi : ∀ i, x i ^ 2 ≤ |x i| * ∑ j, |x j| := fun i => by
       rw [← sq_abs (x i), sq]
@@ -176,7 +178,7 @@ theorem norm₂_le_sum_abs (x : Vec ℝ n) : ‖x‖₂ ≤ ∑ i, |x i| := by -
 
 /-- Applying a matrix scales the Euclidean norm by at most the sum of its rows' own: each row's
 dot product with `x` is Cauchy–Schwarz-bounded, and the Euclidean norm is under the row sum. -/
-theorem norm₂_mulVec_le (M : Mat ℝ n n) (x : Vec ℝ n) :
+theorem norm₂_mulVec_le (M : Mat ℝ n n) (x : Vec ℝ n) : -- --- CONCL ---
     ‖M.mulVec x‖₂ ≤ (∑ i, ‖(fun j => M i j)‖₂) * ‖x‖₂ := by -- --- PROOF ---
   have hrow : ∀ i, |M.mulVec x i| ≤ ‖(fun j => M i j)‖₂ * ‖x‖₂ :=
     fun i => abs_dotProduct_le_norm₂_mul_norm₂ (fun j => M i j) x

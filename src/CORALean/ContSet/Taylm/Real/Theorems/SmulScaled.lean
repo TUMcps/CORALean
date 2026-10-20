@@ -48,7 +48,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.smul_scaled {T : Taylm n} {h C : ℝ} (a : ℝ) (hT : T.Scaled h C) :
+theorem Taylm.smul_scaled {T : Taylm n} {h C : ℝ} (a : ℝ) (hT : T.Scaled h C) : -- --- CONCL ---
     (T.smul a).Scaled h (|a| * C) := by -- --- PROOF ---
   obtain ⟨w, i, s⟩ := hT
   have m := Interval.abs_mulLo_mulHi_le (le_refl |a|) (le_refl |a|) i s

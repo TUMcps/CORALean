@@ -50,7 +50,7 @@ theorem STL.Tree.aux_two_le_cnfWeight (φ : STL.Tree n) : 2 ≤ φ.aux_cnfWeight
   | _ => simp [STL.Tree.aux_cnfWeight]
 
 -- a pass never raises the weight, and lowers it when it distributes
-theorem STL.Tree.aux_cnfRewrite_weight (φ : STL.Tree n) :
+theorem STL.Tree.aux_cnfRewrite_weight (φ : STL.Tree n) : -- --- CONCL ---
     (φ.cnfRewrite).1.aux_cnfWeight ≤ φ.aux_cnfWeight ∧
       ((φ.cnfRewrite).2 ≠ 0 →
         (φ.cnfRewrite).1.aux_cnfWeight < φ.aux_cnfWeight) := by -- --- PROOF ---

@@ -42,7 +42,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.abs_mulLo_mulHi_le {a b c d M R : ℝ} (ha : |a| ≤ M) (hb : |b| ≤ M)
-    (hc : |c| ≤ R) (hd : |d| ≤ R) :
+    (hc : |c| ≤ R) (hd : |d| ≤ R) : -- --- CONCL ---
     |Interval.mulLo a b c d| ≤ M * R ∧ |Interval.mulHi a b c d| ≤ M * R := by -- --- PROOF ---
   have k : ∀ x y, |x| ≤ M → |y| ≤ R → |x * y| ≤ M * R := fun x y hx hy => by
     rw [abs_mul]; exact mul_le_mul hx hy (abs_nonneg _) (le_trans (abs_nonneg _) hx)

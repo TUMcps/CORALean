@@ -47,7 +47,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {k : ℕ}
 /-- The squared length of a vector known only in magnitude, rounded up. -/
 def sqSumUp (m : Vec 𝕋 k) : 𝕋 := sumUp fun j => mulUp (m j) (m j)
 
-theorem sq_sum_le_sqSumUp {v : Vec ℝ k} {m : Vec 𝕋 k} (hm : ∀ j, |v j| ≤ toReal (m j)) :
+theorem sq_sum_le_sqSumUp {v : Vec ℝ k} {m : Vec 𝕋 k}
+    (hm : ∀ j, |v j| ≤ toReal (m j)) : -- --- CONCL ---
     ∑ j, v j ^ 2 ≤ toReal (sqSumUp m) := by -- --- PROOF ---
   refine le_trans (Finset.sum_le_sum fun j _ => ?_) (sum_le_sumUp _)
   have h0 : (0:ℝ) ≤ toReal (m j) := le_trans (abs_nonneg _) (hm j)
@@ -63,7 +64,7 @@ square, rounded *down*, still covers the squared length rounded up — one
 multiplication in each direction, and no root anywhere. -/
 theorem norm₂_le_of_sq_le {v : Vec ℝ k} {m : Vec 𝕋 k} {s : 𝕋}
     (hm : ∀ j, |v j| ≤ toReal (m j))
-    (hs : toReal (sqSumUp m) ≤ toReal (mulDown s s)) :
+    (hs : toReal (sqSumUp m) ≤ toReal (mulDown s s)) : -- --- CONCL ---
     ‖v‖₂ ≤ toReal (absolute s) := by -- --- PROOF ---
   have hsq : ∑ j, v j ^ 2 ≤ toReal s ^ 2 := by
     have h₁ := sq_sum_le_sqSumUp hm

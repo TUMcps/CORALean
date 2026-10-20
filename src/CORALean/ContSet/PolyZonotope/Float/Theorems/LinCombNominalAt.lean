@@ -63,7 +63,7 @@ omit [SoundFloatArithmetic 𝕋] in
 the projection because that is the form the goal has and simp will not rewrite a
 binder's type. Only the outermost split needs it. -/
 theorem PolyZonotope.aux_sum_univ_linComb_h {pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)}
-    (f : Fin (pZ₁.h + pZ₂.h + (pZ₁.h + pZ₂.h + 1)) → ℝ) : -- --- CONCL ---
+    (f : Fin (pZ₁.h + pZ₂.h + (pZ₁.h + pZ₂.h + 1)) → ℝ) :
     ∑ l : Fin (pZ₁.linComb pZ₂).h, f l
       = ∑ l, f (Fin.castAdd (pZ₁.h + pZ₂.h + 1) l)
         + ∑ l, f (Fin.natAdd (pZ₁.h + pZ₂.h) l) :=

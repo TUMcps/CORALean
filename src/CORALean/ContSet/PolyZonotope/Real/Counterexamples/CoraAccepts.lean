@@ -59,7 +59,7 @@ namespace CORALean.Real
 set_option simprocs false in
 /-- Exponents: the first test of `isPolytope` does not fire. The vertex test: from each of the four
 hull vertices the other three lie in the cone (`isPolytopeCex_coraAccepts`). -/
-theorem PolyZonotope.isPolytopeCex_coraAccepts :
+theorem PolyZonotope.isPolytopeCex_coraAccepts : -- --- CONCL ---
     PolyZonotope.isPolytopeCex.coraAccepts PolyZonotope.isPolytopeCexCorners := by -- --- PROOF ---
   refine ⟨fun i k => by fin_cases i <;> fin_cases k <;> decide, ?_⟩
   -- the difference of a corner image with itself is in the cone too (`0`), so `≠` is not used

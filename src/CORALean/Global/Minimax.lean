@@ -55,7 +55,7 @@ variable {α : Type*} [TopologicalSpace α] {C1 C2 : Set α} {f : α → α → 
 from joint continuity of `f` on `C1 ×ˢ C2` and compactness of `C2` alone —
 `C1` needs neither compactness nor nonemptiness here. -/
 theorem aux_continuousOn_sInf_image (hC2 : IsCompact C2)
-    (hf : ContinuousOn (Function.uncurry f) (C1 ×ˢ C2)) :
+    (hf : ContinuousOn (Function.uncurry f) (C1 ×ˢ C2)) : -- --- CONCL ---
     ContinuousOn (fun x => sInf (f x '' C2)) C1 := by -- --- PROOF ---
   rw [continuousOn_iff_continuous_restrict]
   -- both variables restricted to subtypes, where the joint function is continuous everywhere
@@ -81,7 +81,7 @@ of `min_{y∈C2} f(x,y)` by `g(x)` on `C1` lifts to a bound of the same shape
 between the two quantities' maxima on `C1`. -/
 theorem minimax_le (hC1 : IsCompact C1) (hC1ne : C1.Nonempty) (hC2 : IsCompact C2)
     (hf : ContinuousOn (Function.uncurry f) (C1 ×ˢ C2)) (hg : ContinuousOn g C1)
-    (hle : ∀ x ∈ C1, sInf (f x '' C2) ≤ g x) :
+    (hle : ∀ x ∈ C1, sInf (f x '' C2) ≤ g x) : -- --- CONCL ---
     sSup ((fun x => sInf (f x '' C2)) '' C1) ≤ sSup (g '' C1) := by -- --- PROOF ---
   -- the point of `C1` where `min_{y∈C2} f(x,y)` attains its own maximum
   obtain ⟨x, hx, hxeq⟩ :=

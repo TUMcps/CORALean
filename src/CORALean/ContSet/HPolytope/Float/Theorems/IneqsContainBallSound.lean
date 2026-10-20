@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A row applied to a short vector moves by at most its absolute sum times the bound. -/
 theorem HPolytope.aux_row_move {m : ℕ} (M : Mat 𝕋 m n) (v : Vec ℝ n) {δ : ℝ} (hδ : 0 ≤ δ)
-    (hv : ∀ j, |v j| ≤ δ) (i : Fin m) :
+    (hv : ∀ j, |v j| ≤ δ) (i : Fin m) : -- --- CONCL ---
     |(toRealMat M *ᵥ v) i| ≤ δ * toReal (radius M i) := by -- --- PROOF ---
   calc |(toRealMat M *ᵥ v) i| = |∑ j, toReal (M i j) * v j| := rfl
     _ ≤ ∑ j, |toReal (M i j) * v j| := Finset.abs_sum_le_sum_abs _ _
@@ -63,7 +63,7 @@ theorem HPolytope.aux_row_move {m : ℕ} (M : Mat 𝕋 m n) (v : Vec ℝ n) {δ 
 /-- A passed test keeps every point within `δ` of `β₀` inside every inequality row. -/
 theorem HPolytope.ineqsContainBall_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {β₀ : Vec 𝕋 n} {δ : 𝕋}
     (h : P.ineqsContainBall β₀ δ = true) (hδ : 0 ≤ toReal δ) {β : Vec ℝ n}
-    (hβ : ∀ j, |β j - toReal (β₀ j)| ≤ toReal δ) (i : Fin P.m) :
+    (hβ : ∀ j, |β j - toReal (β₀ j)| ≤ toReal δ) (i : Fin P.m) : -- --- CONCL ---
     (toRealMat P.A *ᵥ β) i ≤ toReal (P.b i) + |toReal (P.b_error i)| := by -- --- PROOF ---
   simp only [HPolytope.ineqsContainBall, List.all_eq_true, List.mem_finRange, true_implies] at h
   -- the row at `β` is the row at `β₀` plus the row at the move

@@ -48,7 +48,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `x ↦ c + Bx` maps Lebesgue measure to `|det B|⁻¹` times itself. -/
-theorem aux_map_affine (c : Vec ℝ n) (B : Mat ℝ n n) (hB : B.det ≠ 0) :
+theorem aux_map_affine (c : Vec ℝ n) (B : Mat ℝ n n) (hB : B.det ≠ 0) : -- --- CONCL ---
     Measure.map (fun β : EuclideanSpace ℝ (Fin n) => toLp 2 (c + B *ᵥ ofLp β)) volume
       = ENNReal.ofReal |B.det⁻¹| • volume := by -- --- PROOF ---
   have h1 : (fun β : EuclideanSpace ℝ (Fin n) => toLp 2 (c + B *ᵥ ofLp β))
@@ -63,7 +63,8 @@ theorem aux_map_affine (c : Vec ℝ n) (B : Mat ℝ n n) (hB : B.det ≠ 0) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem gZonotopeLaw_eq_withDensity (c : Vec ℝ n) (B : Mat ℝ n n) (hB : B.det ≠ 0) :
+theorem gZonotopeLaw_eq_withDensity (c : Vec ℝ n) (B : Mat ℝ n n)
+    (hB : B.det ≠ 0) : -- --- CONCL ---
     gZonotopeLaw c B = volume.withDensity (fun x => ENNReal.ofReal
       (stdGaussPdf n (toLp 2 (B⁻¹ *ᵥ (ofLp x - c))) / |B.det|)) := by -- --- PROOF ---
   set T : EuclideanSpace ℝ (Fin n) → EuclideanSpace ℝ (Fin n) :=

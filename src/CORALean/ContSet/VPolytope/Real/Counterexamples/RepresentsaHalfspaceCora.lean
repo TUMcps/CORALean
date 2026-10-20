@@ -60,7 +60,7 @@ def VPolytope.representsaHalfspaceCora (_P : VPolytope (Vec ℝ 1)) : Option Boo
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- CORA's test errors on `polytope(0)`, which is no halfspace. -/
-theorem VPolytope.representsa_halfspace_cora_crash :
+theorem VPolytope.representsa_halfspace_cora_crash : -- --- CONCL ---
     ∃ P : VPolytope (Vec ℝ 1), P.representsaHalfspaceCora = none ∧
       ¬ ∃ (a : Vec ℝ 1) (b : ℝ), a 0 ≠ 0 ∧ P.construct = {x | a 0 * x 0 ≤ b} := by -- --- PROOF ---
   refine ⟨⟨1, fun _ => fun _ => 0⟩, rfl, ?_⟩

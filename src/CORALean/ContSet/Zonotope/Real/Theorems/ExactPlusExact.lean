@@ -88,7 +88,7 @@ theorem Zonotope.aux_sum_exactPlus (Z₁ Z₂ : Zonotope α) (k : ℕ)
 
 
 theorem Zonotope.aux_abs_append3 {a b c : ℕ} {A : Fin a → ℝ} {B : Fin b → ℝ} {C : Fin c → ℝ}
-    (hA : ∀ i, |A i| ≤ 1) (hB : ∀ i, |B i| ≤ 1) (hC : ∀ i, |C i| ≤ 1) :
+    (hA : ∀ i, |A i| ≤ 1) (hB : ∀ i, |B i| ≤ 1) (hC : ∀ i, |C i| ≤ 1) : -- --- CONCL ---
     ∀ j, |Fin.append (Fin.append A B) C j| ≤ 1 := by -- --- PROOF ---
   intro j
   refine Fin.addCases (fun j => ?_) (fun j => ?_) j

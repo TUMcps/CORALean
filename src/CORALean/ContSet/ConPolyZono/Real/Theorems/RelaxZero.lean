@@ -39,7 +39,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Relaxed by the slack `0`, a set denotes itself. -/
-theorem ConPolyZono.relax_zero_construct (cPZ : ConPolyZono α) :
+theorem ConPolyZono.relax_zero_construct (cPZ : ConPolyZono α) : -- --- CONCL ---
     (cPZ.relax 0).construct = cPZ.construct := by -- --- PROOF ---
   ext x
   rw [ConPolyZono.mem_relax_iff]

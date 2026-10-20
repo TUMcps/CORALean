@@ -43,7 +43,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.summable_expDiff (A : Mat ℝ n n) (t r : ℝ) :
+theorem MatExp.summable_expDiff (A : Mat ℝ n n) (t r : ℝ) : -- --- CONCL ---
     Summable (fun i : ℕ => (((Nat.factorial (i + 2) : ℝ))⁻¹
       * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 2)) := by -- --- PROOF ---
   have hst := summable_exp_smul A t

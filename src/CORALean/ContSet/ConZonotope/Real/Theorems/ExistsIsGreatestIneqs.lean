@@ -64,7 +64,7 @@ theorem aux_continuous_mulVec_sub (C : Mat ℝ q n) (d : Vec ℝ q) (i : Fin q) 
 
 /-- [1, Prop. 7]: each `νᵢ` of eq. (45) exists, as soon as the program is feasible. -/
 theorem ConZonotope.exists_isGreatest_ineqs (cZ : ConZonotope (Vec ℝ n))
-    (hne : cZ.construct.Nonempty) (C : Mat ℝ q n) (d : Vec ℝ q) :
+    (hne : cZ.construct.Nonempty) (C : Mat ℝ q n) (d : Vec ℝ q) : -- --- CONCL ---
     ∃ ν : Fin q → ℝ,
       ∀ i, IsGreatest ((fun x => (C *ᵥ x) i - d i) '' cZ.construct) (ν i) := by -- --- PROOF ---
   -- one compactness argument per halfspace, then the choices collected

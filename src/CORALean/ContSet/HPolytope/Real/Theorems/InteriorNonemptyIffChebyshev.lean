@@ -51,7 +51,7 @@ variable {q n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A Euclidean ball lies in a halfspace exactly when its center does with `r ‖a‖₂` to spare. -/
-theorem aux_ball_subset_iff (a c : Vec ℝ n) {r : ℝ} (hr : 0 ≤ r) (β : ℝ) :
+theorem aux_ball_subset_iff (a c : Vec ℝ n) {r : ℝ} (hr : 0 ≤ r) (β : ℝ) : -- --- CONCL ---
     (∀ x : Vec ℝ n, ‖x‖₂ ≤ r → a ⬝ᵥ (c + x) ≤ β) ↔ a ⬝ᵥ c + r * ‖a‖₂ ≤ β := by -- --- PROOF ---
   constructor
   · intro h
@@ -79,7 +79,7 @@ theorem aux_ball_subset_iff (a c : Vec ℝ n) {r : ℝ} (hr : 0 ≤ r) (β : ℝ
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.ineqs_interior_nonempty_iff (A : Mat ℝ q n) (b : Vec ℝ q) :
+theorem HPolytope.ineqs_interior_nonempty_iff (A : Mat ℝ q n) (b : Vec ℝ q) : -- --- CONCL ---
     (interior (HPolytope.ineqs A b).construct).Nonempty ↔
       ∃ (c : Vec ℝ n) (r : ℝ), 0 < r ∧ ∀ j, (A *ᵥ c) j + r * ‖A j‖₂ ≤ b j := by -- --- PROOF ---
   have hdeg := interior_eq_empty_iff_forall_ball (HPolytope.ineqs A b).construct

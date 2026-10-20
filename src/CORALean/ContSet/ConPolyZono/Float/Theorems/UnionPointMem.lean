@@ -100,7 +100,7 @@ theorem ConPolyZono.aux_midpoint_mem (a b : Vec 𝕋 n) :
 
 /-- The sliding generator rounds down, so its shortfall is non-negative and at most the gap
 between the two directed halvings; the selector spreads it over `[-1,1]`. -/
-theorem ConPolyZono.aux_halfDiff_mem (a b : Vec 𝕋 n) {t : ℝ} (ht : |t| ≤ 1) :
+theorem ConPolyZono.aux_halfDiff_mem (a b : Vec 𝕋 n) {t : ℝ} (ht : |t| ≤ 1) : -- --- CONCL ---
     (fun i => ((toReal (a i) - toReal (b i)) / 2 - toReal (PolyZonotope.halfDiff a b i)) * t)
       ∈ (PolyZonotope.halfDiffError a b).construct := by -- --- PROOF ---
   intro i

@@ -36,7 +36,7 @@ open scoped NNReal
 
 open Classical in
 theorem FourValuedSTL.exists_extension {X : Type} (T : Set ℝ≥0) (Rp : ℝ≥0 → Set X)
-    (E : Set (ℝ≥0 → X)) (hover : ∀ ξ ∈ E, ∀ t ∈ T, ξ t ∈ Rp t) :
+    (E : Set (ℝ≥0 → X)) (hover : ∀ ξ ∈ E, ∀ t ∈ T, ξ t ∈ Rp t) : -- --- CONCL ---
     ∃ R, FourValuedSTL.Extends R Rp T ∧ ∀ ξ ∈ E, FourValuedSTL.Covers R ξ := by -- --- PROOF ---
   refine ⟨fun t => if t ∈ T then Rp t else FourValuedSTL.reachSet E t, fun t ht => by simp [ht],
     fun ξ hξ t => ?_⟩

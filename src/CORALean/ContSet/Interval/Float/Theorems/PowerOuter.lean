@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.power_outer (I : Interval (Vec 𝕋 n)) (k : ℕ) :
+theorem Interval.power_outer (I : Interval (Vec 𝕋 n)) (k : ℕ) : -- --- CONCL ---
     (fun x i => x i ^ k) '' I.construct ⊆ (I.power k).construct := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩ i
   have h₁ : toReal (I.inf i) ≤ x i := (hx i).1

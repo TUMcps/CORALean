@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.absorbRounding_nominal (S : SpectraShadow 𝕋 (Vec 𝕋 n)) :
+theorem SpectraShadow.absorbRounding_nominal (S : SpectraShadow 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     S.construct ⊆ nominalSet S.absorbRounding := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩
   obtain ⟨β, hP, hyβ⟩ := SpectraShadow.mem_nominalSet_iff.mp hy

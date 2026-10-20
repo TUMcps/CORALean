@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.evalPolyCoeffs_mem {lo hi : 𝕋} {x : ℝ} (h₁ : toReal lo ≤ x) (h₂ : x ≤ toReal hi)
-    (l : List ℤ) :
+    (l : List ℤ) : -- --- CONCL ---
     toReal (Interval.evalPolyCoeffs lo hi l).inf ≤ evalL l x ∧
       evalL l x ≤ toReal (Interval.evalPolyCoeffs lo hi l).sup := by -- --- PROOF ---
   induction l with

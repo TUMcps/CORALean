@@ -39,7 +39,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.and_outer (Z S : Zonotope (Vec ℝ n)) :
+theorem Zonotope.and_outer (Z S : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     Z.construct ∩ S.construct ⊆ (Z.and_ S).construct := by -- --- PROOF ---
   intro x hx
   have h1 : x ∈ Z.conZonotope.construct ∩ S.conZonotope.construct := by

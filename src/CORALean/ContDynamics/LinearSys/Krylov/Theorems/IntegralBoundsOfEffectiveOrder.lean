@@ -58,7 +58,7 @@ namespace CORALean
 
 /-- `d/ds [f(s)s^{-c}] = s^{-c-1}(f'(s)s - cf(s))` at `s > 0`. -/
 theorem Krylov.aux_hasDerivAt_mul_rpow_neg {f : ℝ → ℝ} {d c s : ℝ} (hs : 0 < s)
-    (hd : HasDerivAt f d s) :
+    (hd : HasDerivAt f d s) : -- --- CONCL ---
     HasDerivAt (fun x => f x * x ^ (-c)) (s ^ (-c - 1) * (d * s - c * f s)) s := by -- --- PROOF ---
   have h := hd.mul (Real.hasDerivAt_rpow_const (p := -c) (Or.inl hs.ne'))
   refine h.congr_deriv ?_

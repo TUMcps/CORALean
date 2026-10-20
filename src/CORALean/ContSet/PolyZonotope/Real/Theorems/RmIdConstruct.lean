@@ -40,7 +40,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 omit [AddCommGroup α] [Module ℝ α] in
 /-- A monomial at a vector that is `1` on `S` only sees the rows that stay. -/
 theorem PolyZonotope.aux_monomial_rmId (pZ : PolyZonotope α) (S : Finset (Fin pZ.p))
-    (a : Fin pZ.p → ℝ) (ha : ∀ k ∈ S, a k = 1) (i : Fin pZ.h) :
+    (a : Fin pZ.p → ℝ) (ha : ∀ k ∈ S, a k = 1) (i : Fin pZ.h) : -- --- CONCL ---
     PolyZonotope.monomial (pZ.rmId S).E (fun k => a (Sᶜ.orderIsoOfFin rfl k).1) i
       = PolyZonotope.monomial pZ.E a i := by -- --- PROOF ---
   unfold PolyZonotope.monomial
@@ -52,7 +52,7 @@ theorem PolyZonotope.aux_monomial_rmId (pZ : PolyZonotope α) (S : Finset (Fin p
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.rmId_construct (pZ : PolyZonotope α) (S : Finset (Fin pZ.p)) :
+theorem PolyZonotope.rmId_construct (pZ : PolyZonotope α) (S : Finset (Fin pZ.p)) : -- --- CONCL ---
     (pZ.rmId S).construct
       = {x | ∃ (a : Fin pZ.p → ℝ) (β : Fin pZ.q → ℝ), (∀ k, |a k| ≤ 1) ∧ (∀ k ∈ S, a k = 1)
           ∧ (∀ j, |β j| ≤ 1) ∧ x = pZ.point a + ∑ j, β j • pZ.GI j} := by -- --- PROOF ---

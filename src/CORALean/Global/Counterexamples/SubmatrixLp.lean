@@ -60,7 +60,7 @@ variable {n m : ℕ}
 /-- [1, Eq. 13] has no binary solution with at most one pick per row once `m ≥ 2`. -/
 theorem subLp13_infeasible (hn : 0 < n) (hm : 2 ≤ m) {mig mag : Matrix (Fin n) (Fin m) ℝ}
     (hmag : ∀ i j, 0 ≤ mag i j) (x : Matrix (Fin n) (Fin m) ℝ) (hbin : ∀ i j, x i j = 0 ∨ x i j = 1)
-    (hrow : ∀ i, ∑ j, x i j ≤ 1) :
+    (hrow : ∀ i, ∑ j, x i j ≤ 1) : -- --- CONCL ---
     ¬ ∀ k l, x k l * mig k l > ∑ i, ∑ j, x i j * (1 - x i l) * mag i l := by -- --- PROOF ---
   intro h13
   let i₀ : Fin n := ⟨0, hn⟩

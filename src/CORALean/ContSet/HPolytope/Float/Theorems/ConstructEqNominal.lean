@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.construct_eq_nominal {P : HPolytope 𝕋 (Vec 𝕋 n)}
-    (h : ∀ j, toReal (P.I_error.inf j) = 0 ∧ toReal (P.I_error.sup j) = 0) :
+    (h : ∀ j, toReal (P.I_error.inf j) = 0 ∧ toReal (P.I_error.sup j) = 0) : -- --- CONCL ---
     P.construct = P.nominal.construct := by -- --- PROOF ---
   -- the box is the origin
   have hbox : P.I_error.construct = {0} := by

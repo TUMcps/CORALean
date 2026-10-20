@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m N : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.projectHighDim_outer (I : Interval (Vec 𝕋 m)) (proj : Fin m → Fin N)
-    (hproj : Function.Injective proj) :
+    (hproj : Function.Injective proj) : -- --- CONCL ---
     (fun x => Function.extend proj x 0) '' I.construct ⊆
       (I.projectHighDim_ N proj).construct := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩ j

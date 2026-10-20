@@ -40,7 +40,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.atanShift_counterexample :
+theorem Taylm.atanShift_counterexample : -- --- CONCL ---
     ∃ a c : ℝ, Real.arctan a ≠
       Real.arctan c + Real.arctan (Taylm.atanShift c a) := by -- --- PROOF ---
   refine ⟨-Real.sqrt 3, Real.sqrt 3, fun h => ?_⟩

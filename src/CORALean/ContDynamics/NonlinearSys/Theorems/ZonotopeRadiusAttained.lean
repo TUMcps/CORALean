@@ -59,7 +59,8 @@ theorem aux_attained_coord_eq (Z : Zonotope (Vec ℝ d)) (β : Fin Z.h → ℝ) 
 
 /-- `γ` is `max |z - z✱|` over the set: some point of it attains the radius `|c - z✱| + Σ|G|`
 in each coordinate. -/
-theorem Real.Zonotope.radius_attained (Z₁ : Zonotope (Vec ℝ d)) (zs : Vec ℝ d) (j : Fin d) :
+theorem Real.Zonotope.radius_attained (Z₁ : Zonotope (Vec ℝ d)) (zs : Vec ℝ d)
+    (j : Fin d) : -- --- CONCL ---
     ∃ z ∈ Z₁.construct, |Z₁.c j - zs j| + ∑ k, |Z₁.G k j| ≤ |z j - zs j| := by -- --- PROOF ---
   -- the sign that turns coordinate `j` of the center offset into its absolute value
   set s : ℝ := if 0 ≤ Z₁.c j - zs j then 1 else -1 with hsdef

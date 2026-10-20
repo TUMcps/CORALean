@@ -51,7 +51,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 `Zonotope.aux_mulVec_nominal` in `MtimesOuter`, restated here for this file's
 own use. -/
 theorem Zonotope.aux_mulVec_nominal_box (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) (β : Vec ℝ Z.h)
-    {x : Vec ℝ n} (hx : ∀ k, x k = toReal (Z.c k) + ∑ j, toReal (Z.G j k) * β j) (i : Fin m) :
+    {x : Vec ℝ n} (hx : ∀ k, x k = toReal (Z.c k) + ∑ j, toReal (Z.G j k) * β j)
+    (i : Fin m) : -- --- CONCL ---
     (toRealMat M *ᵥ x) i = (∑ k, toReal (M i k) * toReal (Z.c k))
       + ∑ j, (∑ k, toReal (M i k) * toReal (Z.G j k)) * β j := by -- --- PROOF ---
   show ∑ k, toReal (M i k) * x k = _
@@ -71,7 +72,7 @@ theorem Zonotope.aux_mulVec_nominal_box (M : Mat 𝕋 m n) (Z : Zonotope (Vec �
 /-- Each stored generator entry is wrong by at most `matMulDiff`, `mtimes_outer`'s
 own bound at the opposite sign. -/
 theorem Zonotope.aux_matMulDown_sub_le (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) (i : Fin m)
-    (j : Fin Z.h) :
+    (j : Fin Z.h) : -- --- CONCL ---
     |toReal (matMulDown M (fun i j => Z.G j i) i j) - ∑ k, toReal (M i k) * toReal (Z.G j k)|
       ≤ toReal (matMulDiff M (fun i j => Z.G j i) i j) := by -- --- PROOF ---
   have hlo : toReal (matMulDown M (fun i j => Z.G j i) i j)

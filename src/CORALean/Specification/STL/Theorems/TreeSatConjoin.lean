@@ -38,7 +38,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.sat_conjoin (L : List (STL.Tree n)) (ξ : ℝ≥0 → Fin n → ℝ) :
+theorem STL.Tree.sat_conjoin (L : List (STL.Tree n)) (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
     (STL.Tree.conjoin L).Sat ξ ↔ ∀ c ∈ L, c.Sat ξ := by -- --- PROOF ---
   suffices ∀ acc : Option (STL.Tree n), ((L.foldl (fun res c => some (res.elim c fun r => .and r c))
       acc).getD .tt).Sat ξ ↔ (∀ r ∈ acc, r.Sat ξ) ∧ ∀ c ∈ L, c.Sat ξ by

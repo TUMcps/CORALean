@@ -90,7 +90,8 @@ theorem Icc_subset_image_of_preconditioned_innerTest
       (C * Matrix.of fun i l => g' x (0, Pi.single l 1) i) i l ∈ Icc (J₂lo i l) (J₂hi i l))
     (hdiag : ∀ i, (0 : ℝ) ∉ Icc (J₁lo i i) (J₁hi i i)) (hũ : ũ ∈ Icc lo₁ hi₁ ×ˢ Icc lo₂ hi₂)
     (hz : ∀ y ∈ Icc ylo yhi, C *ᵥ y ∈ Icc zlo zhi) (hii : g ũ ∈ Icc ylo yhi)
-    (h10 : innerTest (fun x => C *ᵥ g x) ũ lo₁ hi₁ lo₂ hi₂ J₁lo J₁hi J₂lo J₂hi zlo zhi) :
+    (h10 : innerTest (fun x => C *ᵥ g x) ũ lo₁ hi₁ lo₂ hi₂ J₁lo J₁hi J₂lo J₂hi zlo zhi)
+    : -- --- CONCL ---
     Icc ylo yhi ⊆ g '' (Icc lo₁ hi₁ ×ˢ Icc lo₂ hi₂) := by -- --- PROOF ---
   let L : (Fin r → ℝ) →L[ℝ] (Fin r → ℝ) := LinearMap.toContinuousLinearMap (Matrix.mulVecLin C)
   -- the entries of `C g'(x)` are those of `C J(x)`

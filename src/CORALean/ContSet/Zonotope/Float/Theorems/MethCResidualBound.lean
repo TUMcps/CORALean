@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.methCResidual_bound (H P : Mat 𝕋 n n) (i j : Fin n) :
+theorem Zonotope.methCResidual_bound (H P : Mat 𝕋 n n) (i j : Fin n) : -- --- CONCL ---
     |(1 - toRealMat H * toRealMat P) i j|
       ≤ toReal (Zonotope.methCResidual H P i j) := by -- --- PROOF ---
   -- the entry of the product, between its two directed dot products

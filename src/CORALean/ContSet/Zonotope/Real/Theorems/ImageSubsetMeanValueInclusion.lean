@@ -63,7 +63,8 @@ theorem Zonotope.image_subset_meanValueInclusion {n nw : ℕ}
     (hdiff : ∀ w ∈ W, Differentiable ℝ fun x => f x w)
     (hI : ∀ w ∈ W, f X.c w ∈ I.construct)
     (hM : ∀ x ∈ X.construct, ∀ w ∈ W,
-      (Matrix.of fun i j => fderiv ℝ (fun x => f x w) x (X.G j) i : Mat ℝ n X.h) ∈ IM.construct) :
+      (Matrix.of fun i j => fderiv ℝ (fun x => f x w) x (X.G j) i : Mat ℝ n X.h) ∈ IM.construct)
+    : -- --- CONCL ---
     ∀ x ∈ X.construct, ∀ w ∈ W, f x w ∈
       (Zonotope.meanValueInclusion I IM).construct := by -- --- PROOF ---
   intro x hx w hw

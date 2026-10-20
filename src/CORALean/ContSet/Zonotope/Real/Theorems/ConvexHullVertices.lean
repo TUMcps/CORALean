@@ -39,7 +39,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The hull of the vertices is the zonotope: nothing is added and nothing lost. -/
-theorem Zonotope.convexHull_vertices (Z : Zonotope α) :
+theorem Zonotope.convexHull_vertices (Z : Zonotope α) : -- --- CONCL ---
     convexHull ℝ (Z.vertices : Set α) = Z.construct := by -- --- PROOF ---
   rw [← Zonotope.vPolytope_exact, VPolytope.construct_eq_convexHull]
   congr 1

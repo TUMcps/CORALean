@@ -38,7 +38,7 @@ namespace CORALean
 
 /-- A time at or below one that is before the upper end is before it. -/
 theorem STLInterval.rawSet_upper_of_le {u : EReal} {rc : Bool} {t x : ℝ} (h : t ≤ x)
-    (hx : (x : EReal) < u ∨ (rc = true ∧ (x : EReal) = u)) :
+    (hx : (x : EReal) < u ∨ (rc = true ∧ (x : EReal) = u)) : -- --- CONCL ---
     (t : EReal) < u ∨ (rc = true ∧ (t : EReal) = u) := by -- --- PROOF ---
   rcases h.lt_or_eq with h | rfl
   · rcases hx with hx | ⟨hc, hx⟩

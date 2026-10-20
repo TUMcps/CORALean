@@ -41,7 +41,7 @@ theorem aux_cos_sub_two_pi_mul (x : ℝ) (k : ℤ) :
   rw [← Real.cos_sub_int_mul_two_pi x k]; ring_nf
 
 /-- `maxCos lb ub` is the greatest cosine on `[lb, ub]`. -/
-theorem aux_maxCos_isGreatest {lb ub : ℝ} (hab : lb ≤ ub) :
+theorem aux_maxCos_isGreatest {lb ub : ℝ} (hab : lb ≤ ub) : -- --- CONCL ---
     IsGreatest (Real.cos '' Set.Icc lb ub) (Interval.maxCos lb ub) := by -- --- PROOF ---
   have hpi := Real.pi_pos
   set k := ⌈lb / (2 * Real.pi)⌉ with hk
@@ -99,7 +99,7 @@ theorem aux_maxCos_isGreatest {lb ub : ℝ} (hab : lb ≤ ub) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.image_cos_Icc {lb ub : ℝ} (hab : lb ≤ ub) :
+theorem Interval.image_cos_Icc {lb ub : ℝ} (hab : lb ≤ ub) : -- --- CONCL ---
     Real.cos '' Set.Icc lb ub = Set.Icc (-Interval.maxCos (lb - Real.pi) (ub - Real.pi))
       (Interval.maxCos lb ub) := by -- --- PROOF ---
   have hmax := aux_maxCos_isGreatest hab

@@ -45,7 +45,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem deepZRelu_eq_reluRelaxation {l u : ℝ} (hlu : l ≤ u) :
+theorem deepZRelu_eq_reluRelaxation {l u : ℝ} (hlu : l ≤ u) : -- --- CONCL ---
     deepZRelu.slope l u = (reluRelaxation reluSlope).slope l u
       ∧ deepZRelu.offset l u = (reluRelaxation reluSlope).offset l u
       ∧ deepZRelu.error l u = (reluRelaxation reluSlope).error l u := by -- --- PROOF ---

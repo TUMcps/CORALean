@@ -47,7 +47,7 @@ variable {n : ℕ}
 
 /-- [1, Sec. 4.1]: the zonotope lies in the ellipsoid of its bounding box,
 `Z ⊆ [c − β, c + β] ⊆ E(n diag(β²), c)`. -/
-theorem Zonotope.ellipsoidBox_contains (Z : Zonotope (Vec ℝ n)) :
+theorem Zonotope.ellipsoidBox_contains (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     Z.construct ⊆ Z.ellipsoidBox.construct := by -- --- PROOF ---
   rw [Zonotope.ellipsoidBox, Ellipsoid.construct_ofFactor]
   rintro _ ⟨β, hβ, rfl⟩

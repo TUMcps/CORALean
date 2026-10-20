@@ -50,7 +50,7 @@ def nCross (H : Mat ℝ (n + 1) n) : Vec ℝ (n + 1) :=
 
 /-- Pairing with `nX(H)` is the determinant of `H` with that vector prepended as
 a column — Laplace expansion along column zero, read backwards. -/
-theorem dotProduct_nCross (H : Mat ℝ (n + 1) n) (v : Vec ℝ (n + 1)) :
+theorem dotProduct_nCross (H : Mat ℝ (n + 1) n) (v : Vec ℝ (n + 1)) : -- --- CONCL ---
     v ⬝ᵥ nCross H = (Matrix.of fun i => Fin.cons (v i) (H i)).det := by -- --- PROOF ---
   rw [Matrix.det_succ_column_zero]
   refine Finset.sum_congr rfl fun i _ => ?_

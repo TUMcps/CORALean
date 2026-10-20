@@ -63,7 +63,7 @@ theorem LinearSysDT.reachSetExact_inner_of_outer (sys : LinearSysDT 𝕋 n) {R�
     (hR₀conv : Convex ℝ (construct R₀)) (hR₀comp : IsCompact (construct R₀))
     (hUconv : Convex ℝ (construct U)) (hUcomp : IsCompact (construct U)) (k : ℕ)
     {Ŷ E : Set (Vec ℝ n)} (hE : E.Nonempty) (hEb : Bornology.IsBounded E)
-    (hOuter : Ŷ ⊆ sys.reachSetExact R₀ U k + E) : -- --- CONCL ---
+    (hOuter : Ŷ ⊆ sys.reachSetExact R₀ U k + E) :
     minkowskiDiff Ŷ E ⊆ sys.reachSetExact R₀ U k :=
   minkowskiDiff_inner_of_outer hE hEb (sys.reachSetExact_convex hR₀conv hUconv k)
     (sys.reachSetExact_isCompact hR₀comp hUcomp k).isClosed hOuter

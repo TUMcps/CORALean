@@ -45,7 +45,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.setLinComb_convHull_counterexample :
+theorem VPolytope.setLinComb_convHull_counterexample : -- --- CONCL ---
     ∃ P₁ P₂ : VPolytope (Vec ℝ n),
       Set.linComb P₁.construct P₂.construct ≠ (P₁.convHull P₂).construct ∧
         ¬ P₁.construct ∪ P₂.construct ⊆ Set.linComb P₁.construct P₂.construct := by -- --- PROOF ---

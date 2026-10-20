@@ -44,7 +44,7 @@ variable {n₁ n₂ : ℕ}
 
 /-- Both operands' constraint values, each at its own variables, stacked. -/
 theorem PolyLevelSet.eval_cartProd (P₁ : PolyLevelSet n₁) (P₂ : PolyLevelSet n₂)
-    (x : Vec ℝ (n₁ + n₂)) :
+    (x : Vec ℝ (n₁ + n₂)) : -- --- CONCL ---
     (P₁.cartProd P₂).eval x = Fin.append (P₁.eval fun k => x (Fin.castAdd n₂ k))
       (P₂.eval fun k => x (Fin.natAdd n₁ k)) := by -- --- PROOF ---
   refine funext (Fin.addCases (fun i => ?_) fun i => ?_)

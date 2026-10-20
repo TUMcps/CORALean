@@ -59,7 +59,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The quick check holds for two bundles that denote different sets. -/
-theorem ZonoBundle.isequal_cora_counterexample :
+theorem ZonoBundle.isequal_cora_counterexample : -- --- CONCL ---
     ∃ zB S : ZonoBundle (Vec ℝ 1), zB.isequalCora S ∧
       zB.construct ≠ S.construct := by -- --- PROOF ---
   -- the interval `[-1, 1]` and the point `2`

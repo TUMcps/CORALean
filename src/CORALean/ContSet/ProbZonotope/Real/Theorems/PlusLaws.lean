@@ -52,7 +52,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.plus_laws (P₁ P₂ : ProbZonotope n) (h₁ : P₁.cov.PosSemidef)
-    (h₂ : P₂.cov.PosSemidef) :
+    (h₂ : P₂.cov.PosSemidef) : -- --- CONCL ---
     Set.image2 (· ∗ ·) P₁.laws P₂.laws = (P₁.plus P₂).laws := by -- --- PROOF ---
   ext m
   constructor

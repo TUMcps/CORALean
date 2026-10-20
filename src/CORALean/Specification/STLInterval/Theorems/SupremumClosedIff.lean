@@ -36,7 +36,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `isMax` holds iff the supremum is attained by a time of the interval. -/
-theorem STLInterval.supremum_closed_iff (I : STLInterval) (hI : I ≠ .empty) :
+theorem STLInterval.supremum_closed_iff (I : STLInterval) (hI : I ≠ .empty) : -- --- CONCL ---
     I.supremum.closed = true ↔
       ∃ t ∈ I.set, I.supremum.value = some (t : EReal) := by -- --- PROOF ---
   cases I with

@@ -56,7 +56,7 @@ variable {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDime
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- a row is its length times the inner product with its unit normal
-theorem HPolytope.aux_row_eq_mul_inner (P : HPolytope E) (i : Fin P.m) :
+theorem HPolytope.aux_row_eq_mul_inner (P : HPolytope E) (i : Fin P.m) : -- --- CONCL ---
     ∃ c : ℝ, 0 ≤ c ∧ (∀ z, P.A i z = c * inner ℝ z (P.facetNormal i)) ∧
       (c ≠ 0 → ‖P.facetNormal i‖ = 1) := by -- --- PROOF ---
   set a : E := (InnerProductSpace.toDual ℝ E).symm (LinearMap.toContinuousLinearMap (P.A i))
@@ -77,7 +77,7 @@ theorem HPolytope.aux_row_eq_mul_inner (P : HPolytope E) (i : Fin P.m) :
 omit [FiniteDimensional ℝ E] [CompleteSpace E] in
 theorem HPolytope.aux_segment (P : HPolytope E) (x d : E)
     (hI : ∀ i, P.A i x ≤ P.b i ∧ (P.A i x = P.b i → P.A i d < 0)) (t : ℝ) (ht : 0 ≤ t)
-    (hmin : ∀ j, 0 < P.hitTime x d j → t ≤ P.hitTime x d j) :
+    (hmin : ∀ j, 0 < P.hitTime x d j → t ≤ P.hitTime x d j) : -- --- CONCL ---
     ∀ j, P.A j (x + t • d) ≤ P.b j := by -- --- PROOF ---
   intro j
   have hlin : P.A j (x + t • d) = P.A j x + t * P.A j d := by simp
@@ -97,7 +97,7 @@ theorem HPolytope.aux_segment (P : HPolytope E) (x d : E)
     linarith
 
 -- the walk, from a state whose only tight rows point inward
-theorem HPolytope.aux_billiardEnd_mem (P : HPolytope E) (R : ℕ) :
+theorem HPolytope.aux_billiardEnd_mem (P : HPolytope E) (R : ℕ) : -- --- CONCL ---
     ∀ (x d : E) (ℓ : ℝ), (∀ i, P.A i x ≤ P.b i ∧ (P.A i x = P.b i → P.A i d < 0)) → 0 ≤ ℓ →
       ∀ y, P.billiardEnd R x d ℓ = some y → ∀ i, P.A i y ≤ P.b i := by -- --- PROOF ---
   induction R using Nat.strong_induction_on with

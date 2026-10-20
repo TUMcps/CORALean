@@ -50,7 +50,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The Taylor truncation at order two is the identity plus `W(t)`. -/
-theorem MatExp.expTaylor_two (M : Mat ℝ n n) (t : ℝ) :
+theorem MatExp.expTaylor_two (M : Mat ℝ n n) (t : ℝ) : -- --- CONCL ---
     MatExp.expTaylor (t • M) 2 = 1 + MatExp.expW M t := by -- --- PROOF ---
   have hx2 : (t • M) ^ 2 = (t ^ 2) • (M * M) := by
     rw [pow_two, smul_mul_assoc, mul_smul_comm, smul_smul, sq]

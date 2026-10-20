@@ -52,7 +52,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.reachStepkWrappingFreeFloat_outer (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η k : ℕ}
-    (h2 : 2 ≤ η) {Rτ₀ : Zonotope (Vec 𝕋 n)} {y : Vec ℝ n} (hy : y ∈ Rτ₀.construct) :
+    (h2 : 2 ≤ η) {Rτ₀ : Zonotope (Vec 𝕋 n)} {y : Vec ℝ n}
+    (hy : y ∈ Rτ₀.construct) : -- --- CONCL ---
     ∀ R ∈ sys.reachStepkWrappingFreeFloat Δt η Rτ₀ k,
       exp (((k : ℝ) * toReal Δt) • Scalar.toRealMat sys.A) *ᵥ y ∈ R.construct := by -- --- PROOF ---
   intro R (h : sys.reachStepkWrappingFreeFloat Δt η Rτ₀ k = some R)

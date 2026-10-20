@@ -43,7 +43,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem STL.Tree.aux_sum_filter (a x : Fin n → ℝ) :
+theorem STL.Tree.aux_sum_filter (a x : Fin n → ℝ) : -- --- CONCL ---
     (((List.finRange n).filter (fun i => a i ≠ 0)).map (fun i => a i * x i)).sum
       = ∑ j, a j * x j := by -- --- PROOF ---
   rw [← List.sum_toFinset _ ((List.nodup_finRange n).filter _)]
@@ -82,7 +82,7 @@ theorem STL.Tree.aux_eval_foldl (a x : Fin n → ℝ) (rest : List (Fin n))
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Tree.sat_halfspace2set (op : STL.Cmp) (a : Fin n → ℝ) (b : ℝ)
-    (ξ : ℝ≥0 → Fin n → ℝ) :
+    (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
     (STL.Tree.halfspace2set op a b).Sat ξ ↔ op.rel (∑ j, a j * ξ 0 j) b := by -- --- PROOF ---
   unfold STL.Tree.halfspace2set
   split

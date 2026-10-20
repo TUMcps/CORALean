@@ -70,7 +70,7 @@ theorem Zonotope.aux_toRealMat_one {h : ℕ} :
 /-- The stored inequality at a point of the cube is positive semidefinite: the exact layer's, read
 through the stored entries. -/
 theorem Zonotope.posSemidef_spectraShadow (Z : Zonotope (Vec 𝕋 n)) (β : Fin Z.h → ℝ)
-    (hβ : ∀ j, |β j| ≤ 1) :
+    (hβ : ∀ j, |β j| ≤ 1) : -- --- CONCL ---
     (toRealMat Z.spectraShadow.A₀
         + ∑ j : Fin Z.h, β j • toRealMat (Z.spectraShadow.A j)).PosSemidef := by -- --- PROOF ---
   have hP := (Real.Zonotope.posSemidef_spectraShadow_iff (nominal Z) β).mpr hβ

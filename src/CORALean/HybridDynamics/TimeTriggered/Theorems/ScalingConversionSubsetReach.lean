@@ -68,7 +68,8 @@ omit [CompleteSpace X] in
 /-- The `X`-component of a continuous successor of the scaled automaton. -/
 theorem aux_scaling_flows_proj {I : Set X} {f : X → X} {g : X → ℝ} {tb ts : ℝ} {k : Fin 3}
     {x x' : X} {τ τ' t : ℝ}
-    (h : (DiffInclAutomaton.scalingConversion I f g tb ts).Flows k (x, τ) t (x', τ')) :
+    (h : (DiffInclAutomaton.scalingConversion I f g tb ts).Flows k (x, τ) t (x', τ'))
+    : -- --- CONCL ---
     0 < t ∧ ∃ y : ℝ → X, DifferentiableOn ℝ y (Icc 0 t) ∧ y 0 = x ∧ y t = x' ∧
       ∀ u ∈ Ioo 0 t,
         deriv y u = if k = 1 then g (y u) • f (y u) else f (y u) := by -- --- PROOF ---
@@ -87,7 +88,7 @@ omit [CompleteSpace X] in
 /-- A solution from the end of an execution of the original automaton extends it. -/
 theorem aux_single_append {I : Set X} {f : X → X} {s σ : ℝ} {x : X} {γ : ℝ → X}
     (h : (DiffInclAutomaton.singleMode I f).IsExec s () x) (hσ : 0 ≤ σ) (h0 : γ 0 = x)
-    (hγ : ∀ u ∈ Icc 0 σ, HasDerivAt γ (f (γ u)) u) :
+    (hγ : ∀ u ∈ Icc 0 σ, HasDerivAt γ (f (γ u)) u) : -- --- CONCL ---
     (DiffInclAutomaton.singleMode I f).IsExec (s + σ) () (γ σ) := by -- --- PROOF ---
   rcases hσ.eq_or_lt with rfl | hpos
   · simpa [h0] using h

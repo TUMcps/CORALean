@@ -55,7 +55,8 @@ variable {n : ℕ}
 /-- A vector annihilated by a family is annihilated by everything it spans. -/
 theorem span_dotProduct_eq_zero {ι : Type} (c : ι → Vec ℝ (n + 1)) (q : Vec ℝ (n + 1))
     (hc : ∀ i, c i ⬝ᵥ q = 0) {x : Vec ℝ (n + 1)}
-    (hx : x ∈ Submodule.span ℝ (Set.range c)) : x ⬝ᵥ q = 0 := by -- --- PROOF ---
+    (hx : x ∈ Submodule.span ℝ (Set.range c)) : -- --- CONCL ---
+    x ⬝ᵥ q = 0 := by -- --- PROOF ---
   induction hx using Submodule.span_induction with
   | mem y hy => obtain ⟨i, rfl⟩ := hy; exact hc i
   | zero => simp
@@ -69,7 +70,7 @@ theorem span_dotProduct_eq_zero {ι : Type} (c : ι → Vec ℝ (n + 1)) (q : Ve
 of their cross product. -/
 theorem eq_smul_nCross (H : Mat ℝ (n + 1) n) (z : Vec ℝ (n + 1)) (hz : z ≠ 0)
     (hcol : ∀ j, (fun i => H i j) ⬝ᵥ z = 0)
-    (hind : LinearIndependent ℝ fun j => (fun i => H i j : Vec ℝ (n + 1))) :
+    (hind : LinearIndependent ℝ fun j => (fun i => H i j : Vec ℝ (n + 1))) : -- --- CONCL ---
     ∃ lam : ℝ, lam ≠ 0 ∧ z = lam • nCross H := by -- --- PROOF ---
   have hzz : z ⬝ᵥ z ≠ 0 := fun h => hz (dotProduct_self_eq_zero.mp h)
   -- `z` and the columns are `n + 1` independent vectors, so a basis

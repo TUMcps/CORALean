@@ -43,7 +43,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem aux_max_exists {a₁ b₁ a₂ b₂ z : ℝ} (h₁ : a₁ ≤ b₁) (h₂ : a₂ ≤ b₂)
-    (hl : Max.max a₁ a₂ ≤ z) (hu : z ≤ Max.max b₁ b₂) :
+    (hl : Max.max a₁ a₂ ≤ z) (hu : z ≤ Max.max b₁ b₂) : -- --- CONCL ---
     ∃ x y : ℝ, (a₁ ≤ x ∧ x ≤ b₁) ∧ (a₂ ≤ y ∧ y ≤ b₂) ∧ Max.max x y = z := by -- --- PROOF ---
   have ha₁ : a₁ ≤ z := le_trans (le_max_left _ _) hl
   have ha₂ : a₂ ≤ z := le_trans (le_max_right _ _) hl
@@ -58,7 +58,8 @@ theorem aux_max_exists {a₁ b₁ a₂ b₂ z : ℝ} (h₁ : a₁ ≤ b₁) (h�
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.max_exact {I₁ I₂ : Interval α} (h₁ : I₁.IsNonempty) (h₂ : I₂.IsNonempty) :
+theorem Interval.max_exact {I₁ I₂ : Interval α} (h₁ : I₁.IsNonempty)
+    (h₂ : I₂.IsNonempty) : -- --- CONCL ---
     (I₁.max I₂).construct = Set.image2
       (fun x y : α => (ofEntry fun i => Max.max (entry x i) (entry y i) : α))
       I₁.construct I₂.construct := by -- --- PROOF ---
