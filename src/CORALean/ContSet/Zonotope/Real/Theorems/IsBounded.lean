@@ -25,7 +25,7 @@ only as a bound and never stored.
 -- Authors:       Claude Opus 5
 -- Written:       19-August-2026
 -- Last update:   01-September-2026
--- Reviewed:      ---
+-- Reviewed:      20-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

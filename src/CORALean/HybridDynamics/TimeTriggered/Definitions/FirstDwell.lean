@@ -29,7 +29,7 @@ and [1, Thm. 1] take it as a hypothesis.
 -- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      20-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

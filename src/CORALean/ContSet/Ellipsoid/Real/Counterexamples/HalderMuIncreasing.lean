@@ -32,7 +32,7 @@ writes `µ₂ − µ₁ = (d − 2)(e₂ + e₁)`, but by [1, Eq. 23] it is `(d 
 -- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      20-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

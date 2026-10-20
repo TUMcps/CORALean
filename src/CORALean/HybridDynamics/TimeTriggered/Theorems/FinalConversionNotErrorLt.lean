@@ -40,7 +40,7 @@ in `m_either`, reaching `50` within `T' = 100 + t_scaling` for every `t_scaling 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      20-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -11,11 +11,12 @@
 # deletes or renames a file, changes one of those lines, or touches `scripts/`,
 # `lakefile.toml` or the CI file, runs the whole tree, about fifteen seconds on
 # Linux and several times that in Git Bash on Windows; the reference check runs
-# when a commit touches anything outside `src/` or what it reads of a Lean file
-# (declaration names, the bibliography, the cites), and takes about seven.
-# When the working tree differs from the index, the whole-tree runs take place on
-# a checkout of the index in a temporary directory, so unstaged edits can neither
-# hide a violation nor invent one.
+# when a commit touches `references/`, `scripts/`, `experiments/paper/` or what it
+# reads of a Lean file (declaration names, the bibliography, the cites), and takes
+# about seven. A commit of only other files, such as the root README, runs neither.
+# When the working tree differs from the index, a whole-tree failure is rerun on
+# a checkout of the index in a temporary directory, so a violation in unstaged
+# edits alone does not block the commit.
 #
 # Required, not optional: `git config core.hooksPath .githooks` is part of
 # setting the repository up, and CI runs the same scripts over the whole tree,
@@ -36,36 +37,47 @@ scope=$($PYTHON scripts/precommit-scope.py "$list") || exit 1
 conventions=$(printf '%s\n' "$scope" | sed -n 's/^conventions=//p')
 references=$(printf '%s\n' "$scope" | sed -n 's/^references=//p')
 
-# The tree the whole-tree checks read: this one when it is the index, else a
-# checkout of the index. Untracked files count as a difference only under the
-# directories the checks read.
 checkout() {
-  if [ -n "$tree" ]; then return; fi
-  if git diff --quiet && [ -z "$(git ls-files --others --exclude-standard -- src references scripts)" ]; then
-    tree=
-    treedir=$root
-  else
-    tree=$(mktemp -d) || exit 1
-    git checkout-index -a --prefix="$tree/" || exit 1
-    treedir=$tree
-  fi
+  tree=$(mktemp -d) || exit 1
+  git checkout-index -a --prefix="$tree/" || exit 1
 }
-treedir=$root
+
+# The whole-tree checks on the tree in `$1`.
+whole_tree() {
+  s=0
+  if [ "$conventions" = full ]; then
+    sh "$1/scripts/check-conventions.sh" || s=1
+  fi
+  if [ "$references" = yes ]; then
+    $PYTHON "$1/scripts/check-references.py" || s=1
+  fi
+  return $s
+}
 
 status=0
 case "$conventions" in
-  full)
-    checkout
-    sh "$treedir/scripts/check-conventions.sh" || status=1 ;;
+  full|none) ;;
   staged)
     sh "$root/scripts/check-conventions.sh" --staged "$list" || status=1 ;;
-  none) ;;
   *) echo "pre-commit: unexpected scope '$scope'" >&2; exit 1 ;;
 esac
 
-if [ "$references" = yes ]; then
-  checkout
-  $PYTHON "$treedir/scripts/check-references.py" || status=1
+# The whole-tree checks run on the working tree first. A failure there may come
+# from unstaged edits alone, so it is rerun on a checkout of the index, which
+# decides. A staged file with unstaged edits on top would be checked in the wrong
+# version, so then the checkout is used from the start. Untracked files count as
+# unstaged edits only under the directories the checks read.
+if [ "$conventions" = full ] || [ "$references" = yes ]; then
+  if git diff --quiet && [ -z "$(git ls-files --others --exclude-standard -- src references scripts)" ]; then
+    whole_tree "$root" || status=1
+  elif git diff --name-only | grep -qFx "$(git diff --cached --name-only)"; then
+    checkout
+    whole_tree "$tree" || status=1
+  elif ! whole_tree "$root"; then
+    echo "pre-commit: rechecking what is staged, without the unstaged edits" >&2
+    checkout
+    whole_tree "$tree" || status=1
+  fi
 fi
 
 exit "$status"

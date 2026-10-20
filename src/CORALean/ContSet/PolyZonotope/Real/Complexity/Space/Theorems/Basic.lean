@@ -70,7 +70,7 @@ variable {α : Type} [AddCommGroup α]
 -- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      20-October-2026 (Tobias Ladner)
 
 /-- The kept factors likewise, over the columns the merge left. -/
 theorem PolyZonotope.compact_p_le (pZ : PolyZonotope α) : pZ.compact.p ≤ pZ.p := by

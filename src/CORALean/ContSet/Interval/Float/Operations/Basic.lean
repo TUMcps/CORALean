@@ -113,7 +113,7 @@ def Interval.diag (I : Interval (Vec 𝕋 n)) : Interval (Mat 𝕋 n n) where
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      20-October-2026 (Tobias Ladner)
 
 /-- A box with possibly infinite ends, for the results (`Inf`, `lift_`, `dirac`) a floating-point
 scalar cannot store: a bound is a float, or `none` for `-∞` (lower) or `∞` (upper). -/

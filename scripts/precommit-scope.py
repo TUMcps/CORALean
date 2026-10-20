@@ -23,7 +23,8 @@ comment keeps it; editing anything else in the repository that a check reads (`s
 
 The reference check reads more of a file than that: declaration names and kinds, the
 bibliography, the cites, and whether it proves anything or mentions a scalar. `references_view`
-is what it reads, compared the same way. Anything outside `src/` sends it down the full path.
+is what it reads, compared the same way. Outside `src/`, a change to what it reads
+(`REFERENCE_INPUTS`) sends it down the full path.
 """
 import importlib.util
 import re
@@ -52,6 +53,9 @@ PROJECTION = re.compile(
 # Outside `src/`, what the convention checks read.
 CONVENTION_INPUTS = ("scripts/", ".githooks/", "lakefile.toml", ".gitlab-ci.yml",
                      "experiments/paper/latex/appendix-cora-bugs.tex")
+
+# Outside `src/`, what the reference check reads: a root README edit needs neither check.
+REFERENCE_INPUTS = ("references/", "scripts/", ".githooks/", "experiments/paper/")
 
 
 def git(*args):
@@ -132,7 +136,8 @@ def main():
             if path.endswith(".lean") or status != "M":
                 conv_full = refs = True      # a file appears, goes or changes type
         else:
-            refs = True                      # references/, scripts/, ...
+            if path.startswith(REFERENCE_INPUTS):
+                refs = True
             if path.startswith(CONVENTION_INPUTS):
                 conv_full = True
     if edited:

@@ -28,7 +28,7 @@ any array of stored values is a fit, and a grid that fails its check costs preci
 -- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
--- Reviewed:      ---
+-- Reviewed:      20-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

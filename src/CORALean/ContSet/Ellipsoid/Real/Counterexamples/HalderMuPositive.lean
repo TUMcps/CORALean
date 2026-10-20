@@ -31,7 +31,7 @@ so that the polynomial (24) has a single sign change. For `d = 3` and `λ = (1, 
 -- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      20-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -24,7 +24,7 @@ the two agree; an operand that only becomes an `&` is left for the next pass). E
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      20-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

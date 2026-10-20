@@ -29,7 +29,7 @@ predicate the set is a bounded polytope, exactly a `ConZonotope` (`Conversion/`)
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
 -- Last update:   19-October-2026
--- Reviewed:      ---
+-- Reviewed:      20-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

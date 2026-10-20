@@ -29,7 +29,7 @@ the per-row slack `cons.b_error`, `|(A μ_R(α))ᵢ - bᵢ| ≤ |b_errorᵢ|`. T
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   19-October-2026
--- Reviewed:      ---
+-- Reviewed:      20-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
