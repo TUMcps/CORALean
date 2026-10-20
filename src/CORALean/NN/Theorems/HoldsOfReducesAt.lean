@@ -12,6 +12,23 @@ Three lines, because `reducesAt_outer` already did the work: a specification che
 reduced network's enclosure holds on the original network's exact image, by
 `Specification.holds_of_outer` at the containment `reducesAt_outer` proves.
 
+## Inputs
+* `n` – input width
+* `m` – output width
+* `s` – input set
+* `nn` – original network
+* `nn'` – reduced network
+* `f` – map the networks compute
+* `ContSet` – set representation of the specification
+* `spec` – specification
+
+## Hypotheses
+* `h` – the second network reduces the first on the set
+* `hspec` – the specification holds on the reduced enclosure
+
+## Conclusion
+* the specification holds on the original network's image
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

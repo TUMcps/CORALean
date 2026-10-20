@@ -12,6 +12,15 @@ becomes the existential, and `dim` is `rfl`. Two layers built this way at one `R
 whatever `σ` each proof was for, which is what lets a reduced network's activation be the
 original's. `macro_inline`, so `σ`, which the layer never stores, is not compiled either:
 a caller at `Real.sigmoid` still runs.
+
+## Inputs
+* `R` – relaxation of the activation
+
+## Hypotheses
+* `hR` – relaxation is sound for the activation
+
+## Output
+* activation layer carrying the soundness proof
 -/
 
 -- Authors:       Claude Opus 5.5

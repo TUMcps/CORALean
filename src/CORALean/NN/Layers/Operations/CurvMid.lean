@@ -10,6 +10,17 @@ public import CORALean.NN.Layers.Operations.CurvLo
 
 Any value between the two ends would do as the offset, the error being measured from the one
 stored; the midpoint makes the error smallest, and its own rounding costs nothing.
+
+## Inputs
+* `E` – enclosure of the activation
+* `lo` – lower derivative bracket for each box
+* `hi` – upper derivative bracket for each box
+* `lam` – slope for each box
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* midpoint of the two ends, the offset the derivative relaxation stores
 -/
 
 -- Authors:       Claude Opus 5.5

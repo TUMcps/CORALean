@@ -11,6 +11,18 @@ public import CORALean.NN.Layers.Theorems.GroupSortFloatPerm
 claimed only under the hypothesis that `le` is also complete: `toReal a ≤ toReal b` gives
 `le a b = true`. A format whose comparison is exact (`Dyadic`) satisfies it; nothing says a rounding
 format does, and no exactness of the entries is claimed.
+
+## Inputs
+* `g` – group size
+* `x` – float input vector
+* `k` – group index
+
+## Hypotheses
+* `hg` – group size is positive
+* `hle` – the comparison is complete on real values
+
+## Conclusion
+* each group of the result is ascending at the real values
 -/
 
 -- Authors:       Claude Opus 5.5

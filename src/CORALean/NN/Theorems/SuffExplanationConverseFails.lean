@@ -30,6 +30,15 @@ original network has, which is exactly why refinement exists. The witness keeps
 and bias, an error box centered at `0` so the two agree exactly — and makes the
 box wide enough that the enclosed output ties, though the exact one never does.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* some sound abstraction of a sufficient network is not abstractly sufficient
+
 ## References
 
 * [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining

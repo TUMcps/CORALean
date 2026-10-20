@@ -15,6 +15,17 @@ test is `GNN.support A` of the stored float adjacency matrix, the kept sets are
 `GNN.reducedStepsFloat` from `X` restricted to the first set. `P` is the stored message-passing
 matrix, which CORA's `updateMessagePassing` restricts and does not recompute [1, §4.3].
 
+## Inputs
+* `A` – float adjacency matrix
+* `v` – node of interest
+* `L` – number of message-passing steps
+* `P` – interval message-passing matrix
+* `W` – interval weights of the steps
+* `X` – interval node-feature matrix
+
+## Output
+* interval features of the kept nodes after the reduced network
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

@@ -9,6 +9,17 @@ public import CORALean.NN.Layers.Operations.GroupSort
 
 The `k`-th chunk of `groupSort g x` is the `k`-th chunk of `x` sorted: the sorted list read back
 entry by entry, at positions `k·g + r` with `r < g`.
+
+## Inputs
+* `g` – group size
+* `x` – input vector
+* `k` – group index
+
+## Hypotheses
+* `hg` – group size is positive
+
+## Conclusion
+* a group of the group-sorted vector is the sorted group
 -/
 
 -- Authors:       Claude Opus 5.5

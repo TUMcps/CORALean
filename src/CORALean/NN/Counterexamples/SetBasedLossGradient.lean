@@ -13,6 +13,15 @@ F-radius is `1/2`, the printed entry at `G(0,0)` is `1 / (2 · 1/2) = 1`, while 
 `𝓛 = ‖Y‖_F` along it is `1/2`: [1, Prop. 8]'s factor `n` again. The corrected form is
 `setBasedLoss_gradient`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed gradient differs from the true one on some zonotope
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

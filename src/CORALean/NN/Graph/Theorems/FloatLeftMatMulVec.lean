@@ -10,6 +10,16 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 
 At the reals the stored entries denote, the matrix times the stacked node features is the stack of
 `P H`: the entries are those of `P` and the exact zero, so nothing is lost.
+
+## Inputs
+* `P` – message-passing matrix
+* `H` – node-feature matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the matrix applied to the stacked features is the stacked product
 -/
 
 -- Authors:       Claude Opus 5.5

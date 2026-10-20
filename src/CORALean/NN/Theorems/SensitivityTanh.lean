@@ -14,6 +14,15 @@ public import CORALean.NN.Theorems.SensitivityActivation
 `Layer.activation_sensitivity` at `hasDerivAt_tanh`, so the diagonal is the
 sigmoid's own, at twice the argument and four times the size — the affine
 conjugation that carries the relaxation carries the heuristic with it.
+
+## Inputs
+* `x` – input point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the tanh layer's sensitivity is the diagonal of tanh's derivatives
 -/
 
 -- Authors:       Claude Opus 5

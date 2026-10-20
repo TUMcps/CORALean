@@ -11,6 +11,16 @@ public import CORALean.NN.Layers.Theorems.PowRangeBounds
 # A polynomial is below its upper evaluation
 
 The mirror of `evalPolyDown_le`.
+
+## Inputs
+* `c` – stored coefficients
+* `t` – evaluation point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polynomial's value is at most the upper evaluation
 -/
 
 -- Authors:       Claude Opus 5.5

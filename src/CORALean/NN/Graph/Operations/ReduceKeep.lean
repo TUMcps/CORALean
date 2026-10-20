@@ -13,6 +13,15 @@ neighbourhood. CORA's code returns early for no step only in a comment, so at `L
 nodes within distance `1` are kept (see `references/coverage/nn/neuralNetwork.md`, row
 `reduceGNNForNode`).
 
+## Inputs
+* `A` – adjacency matrix
+* `v` – node of interest
+* `L` – number of message-passing steps
+* `k` – step index
+
+## Output
+* nodes kept before step k
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

@@ -9,6 +9,19 @@ public import CORALean.NN.Definitions.MergeBucket
 
 ℝ-only, the bucket being read off exact bounds: both `y ± δ` lie between a bucketed neuron's
 bounds, so they are within `2δ` of each other.
+
+## Inputs
+* `n` – layer width
+* `Y` – bounds of the layer's neurons
+* `y` – merge value
+* `δ` – merge tolerance
+* `i` – neuron index
+
+## Hypotheses
+* `hi` – neuron lies in the bucket
+
+## Conclusion
+* the neuron's bounds are at most twice the tolerance apart
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -17,21 +17,22 @@ public import CORALean.NN.Theorems.Basic
 /-!
 # Refinement converges to the exact image
 
-The result is [1, Thm. 4.14].
+The result is [1, Thm. 4.14]. The other half of `EncloseAtOuter`: the image is always inside the
+enclosed set, and some schedule brings the enclosed set inside the image widened by any `ε`.
+Together they say refinement drives the enclosure onto the image, and neither statement needs a
+distance between sets. The induction is the network's own, and the residual is what travels: the
+head layer is refined until its residual is `ε / (2 (K + 1))`, the tail carries that to at most `ε /
+2`, and the tail's own schedule is asked for the other half. `K` is where a Lipschitz hypothesis is
+unavoidable: a later layer amplifies an earlier layer's residual.
 
-The other half of `EncloseAtOuter`: the image is always inside the enclosed
-set, and some schedule brings the enclosed set inside the image widened by any
-`ε`. Together they say refinement drives the enclosure onto the image, and
-neither statement needs a distance between sets.
+## Inputs
+* none
 
-The induction is the network's own, and the residual is what travels: the head
-layer is refined until its residual is `ε / (2 (K + 1))`, the tail carries that
-to at most `ε / 2`, and the tail's own schedule is asked for the other half. `K`
-is where a Lipschitz hypothesis is unavoidable — a later layer amplifies an
-earlier layer's residual, so a per-layer limit alone says nothing at the output.
+## Hypotheses
+* none
 
-`ε / (2 (K + 1))` rather than `ε / (2 K)`: `K` may be zero, and a division by it
-would be the one case the statement is easiest in.
+## Conclusion
+* some schedule encloses a set inside the image widened by any positive radius
 
 ## References
 

@@ -12,6 +12,14 @@ shift per channel, `c i` the channel coordinate `i` belongs to. The layer takes 
 they were folded from the statistics is the caller's arithmetic, done once when a network is read
 — `Real.batchNormScale`/`Real.batchNormShift` over ℝ. The diagonal only places the stored
 scales, so nothing rounds but what `mtimes` and `plus` pay.
+
+## Inputs
+* `chan` – channel of every neuron
+* `scale` – scale of every channel
+* `shift` – shift of every channel
+
+## Output
+* layer scaling and shifting every neuron by its channel
 -/
 
 -- Authors:       Claude Opus 5.5

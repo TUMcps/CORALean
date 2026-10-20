@@ -9,6 +9,13 @@ public import CORALean.NN.Layers.Definitions.SoundLayer
 
 A layer of any `Enclose` kind, of any universe, as a `SoundLayer`: the three fields read off
 the instance, so nothing is lost but the kind.
+
+## Inputs
+* `L` – family of layer types
+* `l` – layer
+
+## Output
+* sound layer wrapping the layer
 -/
 
 -- Authors:       Claude Opus 5.5

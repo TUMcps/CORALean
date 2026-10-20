@@ -16,6 +16,29 @@ the neurons an activation of the graph layers adds at most, the count is at most
 (h_x + ν) + E)` with `C = K^κ' (κ' + 2) + 1`, `E` the most the layers after the pooling add. The
 `h_x` of the statement is `X.h + X.q`.
 
+## Inputs
+* `R` – relaxation of the activations
+* `A` – adjacency matrix
+* `U` – uncertain edges for each edge count
+* `L` – number of graph layers
+* `T` – number of layers after the pooling
+* `c` – layer widths
+* `cmax` – widest hidden layer
+* `W` – graph layer weights
+* `acts` – activation layers
+* `f` – enclosure maps of the later layers
+* `e` – generators each later layer adds at most
+* `X` – input zonotopes, one for each generator count
+
+## Hypotheses
+* `hc` – hidden widths are at most cmax
+* `hadd` – each graph activation adds at most N · c neurons
+* `hf` – later layer t adds at most e t generators
+* `hX` – the k-th input has k generators
+
+## Conclusion
+* generator count of the output is big-O of the stated bound in edges and input generators
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

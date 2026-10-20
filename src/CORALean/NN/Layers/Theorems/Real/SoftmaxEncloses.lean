@@ -20,6 +20,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 ℝ-only, the exact box needing both raw bounds and so an upper bound on an exponential: the raw
 bounds hold at every point of the box, and the normalization tightens each coordinate by what
 the others leave over.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the layer encloses the exact softmax
 -/
 
 -- Authors:       Claude Opus 5.5

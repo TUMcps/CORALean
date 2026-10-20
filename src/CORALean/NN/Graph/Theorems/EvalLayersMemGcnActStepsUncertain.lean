@@ -18,6 +18,29 @@ that graph runs. `messagePassing_mem_enclosure` puts the graph's own `P` in `�
 on the one padded factor set, as in `evalSteps_mem_gcnSteps`, now with an activation after
 each step.
 
+## Inputs
+* `R` – relaxation of the inverse square root
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `lam` – weights of the uncertain edges
+* `L` – number of steps
+* `c` – layer widths
+* `σ` – activation functions
+* `W` – graph layer weights
+* `acts` – activation layers
+* `H` – node features as a polynomial zonotope
+* `aH` – factor vector of the features
+
+## Hypotheses
+* `hR` – relaxation is sound for the inverse square root
+* `hA` – adjacency entries are nonnegative
+* `hlam` – edge weights lie in the unit interval
+* `hσ` – each activation layer is sound for its function
+* `haH` – factors lie in the unit interval
+
+## Conclusion
+* the graph's exact layered iteration lies in the polynomial zonotope of the steps
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

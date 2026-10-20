@@ -12,6 +12,23 @@ public import Mathlib.Tactic.Linarith
 At least nothing, and at most any `g` bounding what the other taps reach above the pivot's
 lower bound. `g` is arbitrary, which is what lets a layer round its gap up in any precision and
 reuse this unchanged.
+
+## Inputs
+* `k` – window size minus one
+* `t` – input index of every window position
+* `p` – pivot position
+* `lo` – lower bounds of the inputs
+* `hi` – upper bounds of the inputs
+* `x` – input point
+* `g` – bound on the other taps' reach
+
+## Hypotheses
+* `hx` – the point lies in the bounds
+* `hg0` – the reach bound is nonnegative
+* `hg` – every other tap reaches at most the bound above the pivot
+
+## Conclusion
+* the window's maximum exceeds the pivot by between zero and the bound
 -/
 
 -- Authors:       Claude Opus 5.5

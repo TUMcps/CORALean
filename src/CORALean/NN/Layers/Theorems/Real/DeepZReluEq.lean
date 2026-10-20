@@ -16,6 +16,16 @@ and recentering halves it into DeepZ's `μ`. At `l = 0 < u` the two take differe
 the same values. So the soundness of the tree's relaxation, stated once for every scalar, is
 DeepZ's at ℝ and its float counterpart elsewhere.
 
+## Inputs
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Hypotheses
+* `hlu` – box is ordered
+
+## Conclusion
+* DeepZ's slope, offset and error equal the ReLU relaxation's
+
 ## References
 
 * [1] G. Singh, T. Gehr, M. Mirman, M. Püschel and M. Vechev. "Fast and Effective Robustness

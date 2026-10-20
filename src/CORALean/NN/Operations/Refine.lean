@@ -10,6 +10,14 @@ public import CORALean.NN.Operations.Raise
 [1, Def. 4.4]: neuron `j` of layer `l` moves up an order, and nothing else
 moves. One `raise` at a single coordinate.
 
+## Inputs
+* `sch` – schedule of order patterns
+* `l` – layer index
+* `j` – neuron index
+
+## Output
+* schedule with the neuron's order raised by one
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

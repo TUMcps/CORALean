@@ -12,6 +12,12 @@ stored `D̃^(-1/2) Ã D̃^(-1/2)` as an interval matrix and every product `Inter
 outward. The kept node sets are enumerated by `κ k : Fin (c k) → Fin N`, the rows of the features
 before step `k`, so the matrices are the ordinary `Mat 𝕋`. The features start on `κ 0` [1, §4.3].
 
+## Inputs
+* `P` – interval message-passing matrix
+
+## Output
+* interval features on the last kept node set after the steps
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

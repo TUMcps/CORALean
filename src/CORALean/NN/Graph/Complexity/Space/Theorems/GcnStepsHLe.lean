@@ -18,16 +18,23 @@ public import CORALean.NN.Graph.Complexity.Space.Theorems.MessagePassingEnclosur
 /-!
 # `GNN.gcnSteps`'s count over a chain of steps
 
-The recursion [1, Thm. 1] unrolls, as a bound: `L` steps leave at most
-`(P.h + 2)^L (H.h + 1)` generators. A bound and not a count, since the exact
-closed form carries the geometric sum the `+1` per step contributes; stated on
-`h + 1` because that is what the recursion is linear in.
+The recursion [1, Thm. 1] unrolls, as a bound: `L` steps leave at most `(P.h + 2)^L (H.h + 1)`
+generators. A bound and not a count, since the exact closed form carries the geometric sum the `+1`
+per step contributes; stated on `h + 1` because that is what the recursion is linear in.
 
-`gcnSteps_h_isBigO` is [1, Thm. 1]'s `h_e^(3κ')` term for the graph half of the
-pipeline: `L` steps at an uncertain graph leave `O(m^(3L))` generators in the
-number `m` of uncertain edges, the enclosure being cubic in `m`. The other two
-terms, `|N| c_max` and `(κ - 2κ') n_max`, are [1, Prop. 1]'s one generator per
-activation output neuron, tracked against its own source and not composed here.
+`gcnSteps_h_isBigO` is [1, Thm. 1]'s `h_e^(3κ')` term for the graph half of the pipeline:
+`O(m^(3L))` generators in the number `m` of uncertain edges. The other two terms, `|N| c_max` and
+`(κ - 2κ') n_max`, are [1, Prop. 1]'s one generator per activation output neuron.
+
+## Inputs
+* `P` – polynomial zonotope of the graph
+* `L` – number of steps
+
+## Hypotheses
+* none
+
+## Conclusion
+* after L steps the generator count is at most a power of P.h + 2 times the input's
 
 ## References
 

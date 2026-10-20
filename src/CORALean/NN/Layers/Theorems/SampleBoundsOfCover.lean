@@ -15,6 +15,31 @@ public import Mathlib.Topology.Algebra.Module.ModuleTopology
 The mean value theorem between a point of the box and the sample nearest it: with `|g'| ≤ M`,
 `g` moves by at most `M` times the distance, so the sampled range padded by the slack brackets
 `g` on the whole box — at any samples inside it leaving no point further off than `dx`.
+
+## Inputs
+* `g` – function
+* `g'` – its derivative
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `M` – bound on the derivative
+* `dx` – maximal gap between samples
+* `p` – sample points
+* `gLo` – lower bounds at the sample points
+* `gUp` – upper bounds at the sample points
+* `t` – point in the box
+
+## Hypotheses
+* `hd` – the function has the given derivative
+* `hM` – derivative is bounded on the box
+* `hp` – samples lie in the box
+* `hcov` – every point of the box is near a sample
+* `hlo` – lower bounds hold at the samples
+* `hup` – upper bounds hold at the samples
+* `hl` – point is above the lower end
+* `hu` – point is below the upper end
+
+## Conclusion
+* the function at the point lies within the sampled range widened by the slack
 -/
 
 -- Authors:       Claude Opus 5.5

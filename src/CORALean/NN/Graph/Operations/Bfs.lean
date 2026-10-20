@@ -13,6 +13,13 @@ the nodes reached within `r` hops and the frontier, those first reached at hop `
 the frontier alone, along the edges `A i j ≠ 0`, and keeps what has not been reached before.
 `GNN.ball` filters every node at every radius instead; `bfs_visited` says the two are one set.
 
+## Inputs
+* `A` – adjacency matrix
+* `v` – start node
+
+## Output
+* visited nodes and frontier after r hops, for each r
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

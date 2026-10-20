@@ -10,6 +10,19 @@ public import CORALean.NN.Layers.Theorems.RegionPolyOfRelaxationFits
 Each order the loop adopts is a sound relaxation's region whose error is strictly under the
 tolerance, and the one it stops at is the previous fit: the result fits whenever the start
 does.
+
+## Inputs
+* `σ` – activation function
+* `F` – polynomial relaxations by order
+* `tol` – error tolerance
+* `l` – lower end of the region
+* `u` – upper end of the region
+
+## Hypotheses
+* `hF` – every relaxation is sound for the activation
+
+## Conclusion
+* lowering the order keeps the region fitting
 -/
 
 -- Authors:       Claude Sonnet 5.5

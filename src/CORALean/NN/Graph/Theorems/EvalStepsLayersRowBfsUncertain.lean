@@ -15,6 +15,30 @@ enumerating it carries row `v` of the layered network, at every admissible weigh
 uncertain edges, to the same row of the network run on the subgraph with its own message passing:
 `evalStepsLayers_row_ball_of_adjacency_uncertain` with the ball read off `bfs_visited`.
 
+## Inputs
+* `N` – number of nodes
+* `F` – feature width
+* `m` – number of uncertain edges
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `lam` – weights of the uncertain edges
+* `v` – node of interest
+* `L` – number of steps
+* `K` – number of kept nodes
+* `κ` – indices of the kept nodes
+* `g` – per-node layers
+* `X` – node-feature matrix
+
+## Hypotheses
+* `hA` – adjacency entries are nonnegative
+* `hSymm` – adjacency matrix is symmetric
+* `hlam` – edge weights lie in the unit interval
+* `hinj` – kept indices are distinct
+* `hκ` – kept nodes contain the search's visited set
+
+## Conclusion
+* the node's row is computable on the subgraph the search finds
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

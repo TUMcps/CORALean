@@ -11,6 +11,14 @@ public import CORALean.ContSet.Interval.Float.Interval
 Neuron `i`'s coefficient of `t ^ k`, from its own fit on its own range: one vector per degree,
 which is how a polynomial zonotope's `evalPoly` reads a coefficient, so one call carries `n`
 different polynomials.
+
+## Inputs
+* `P` – relaxation of every neuron
+* `I` – box of the layer's input
+* `k` – monomial degree
+
+## Output
+* every neuron's coefficient of that degree
 -/
 
 -- Authors:       Claude Opus 5.5

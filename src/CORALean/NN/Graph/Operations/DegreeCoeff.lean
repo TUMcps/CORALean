@@ -10,6 +10,14 @@ public import CORALean.NN.Graph.Operations.EdgeMat
 `degreeCoeff U e j` is edge `e`'s own column sum at `j`: the coefficient the
 inverse-square-root relaxation's slope multiplies to read one edge's factor
 into `s_j`.
+
+## Inputs
+* `U` – uncertain edges
+* `e` – uncertain edge index
+* `j` – node
+
+## Output
+* amount the edge adds to the node's degree at full weight
 -/
 
 -- Authors:       Claude Sonnet 5

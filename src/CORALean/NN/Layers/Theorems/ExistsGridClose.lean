@@ -11,6 +11,21 @@ public import CORALean.NN.Layers.Theorems.AllOverApply
 
 Within one spacing, which is what lets the sampled range speak for the whole box: walk right
 from the left end until the next sample overshoots the point.
+
+## Inputs
+* `p` – proposed sample points
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `dx` – maximal gap between samples
+* `t` – point in the box
+
+## Hypotheses
+* `h` – the grid is checked
+* `hl` – point is above the lower end
+* `hu` – point is below the upper end
+
+## Conclusion
+* some sample lies within the gap of the point
 -/
 
 -- Authors:       Claude Opus 5.5

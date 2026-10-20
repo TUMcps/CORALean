@@ -15,6 +15,12 @@ is the paper's composition; the composition of no `ReLUᵢ` is the identity map,
 does not need to write, its chains being nonempty. Every weight is `zero` or `one`, which every
 scalar stores exactly.
 
+## Inputs
+* none
+
+## Output
+* CAT function applying ReLU to the listed coordinates
+
 ## References
 
 * [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:

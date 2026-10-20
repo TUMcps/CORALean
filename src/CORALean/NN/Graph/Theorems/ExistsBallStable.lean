@@ -9,17 +9,24 @@ public import Mathlib.Order.Interval.Set.Monotone
 /-!
 # The ball always stabilises, in at most `N` rounds
 
-Every ball is a `Finset (Fin N)`, so the growing chain `ball A v 0 ⊆ ball A v 1 ⊆ …`
-cannot strictly grow past `N` steps before it repeats — the bound letting a caller
-stop a breadth-first search after `N` rounds, not merely know it terminates
-eventually. This computes nothing: `ball` still filters `Finset.univ` at every
-radius, and finding the stable ball is left to a search, not stated here.
+Every ball is a `Finset (Fin N)`, so the growing chain `ball A v 0 ⊆ ball A v 1 ⊆ …` cannot strictly
+grow past `N` steps before it repeats — the bound letting a caller stop a breadth-first search after
+`N` rounds. This computes nothing: `ball` still filters `Finset.univ` at every radius.
 
-Were no `r ≤ N` stable, the cardinalities would be strictly increasing on
-`[0, N + 1]`, forcing `N + 1 ≤ (ball A v (N + 1)).card ≤ N` by `Finset.card_le_univ` —
-absurd. The strictly-increasing-implies-`id`-bounded step is Mathlib's monotone
-chain machinery, `strictMonoOn_Iic_of_lt_succ`/`StrictMonoOn.Iic_id_le`, not
-hand-rolled.
+Were no `r ≤ N` stable, the cardinalities would be strictly increasing on `[0, N + 1]`, forcing `N +
+1 ≤ (ball A v (N + 1)).card ≤ N` by `Finset.card_le_univ`, which is absurd. The step is Mathlib's
+`strictMonoOn_Iic_of_lt_succ`/`StrictMonoOn.Iic_id_le`.
+
+## Inputs
+* `N` – number of nodes
+* `A` – adjacency matrix
+* `v` – center node
+
+## Hypotheses
+* none
+
+## Conclusion
+* the ball stops growing at some radius at most N
 -/
 
 -- Authors:       Claude Opus 5

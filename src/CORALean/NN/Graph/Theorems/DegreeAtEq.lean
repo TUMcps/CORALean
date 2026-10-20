@@ -7,15 +7,25 @@ public import CORALean.NN.Graph.Operations.DegreeAt
 /-!
 # The uncertain degree, written affinely in the edge weights
 
-Split out of `UncertainDegreeBounds.lean` (issue #62): the two bounds are read
-off this form, and so is the slope the inverse-square-root relaxation is
-composed with, so it has users outside the file it grew up in.
+Split out of `UncertainDegreeBounds.lean` (issue #62): the two bounds are read off this form, and so
+is the slope the inverse-square-root relaxation is composed with.
 
-The content is one reordering. A degree sums a column of `A(λ) + I`, each entry
-of which is a fixed part plus what the weighted edges add; the two separate, and
-everything depending on `λ` lands in the second summand, linearly. That
-linearity is the whole reason an affine relaxation of `x ↦ x^(-1/2)` composes
-with a degree at all.
+The content is one reordering. A degree sums a column of `A(λ) + I`, each entry of which is a fixed
+part plus what the weighted edges add; everything depending on `λ` lands in the second summand,
+linearly. That linearity is why an affine relaxation of `x ↦ x^(-1/2)` composes with a degree at
+all.
+
+## Inputs
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `lam` – weights of the uncertain edges
+* `j` – node
+
+## Hypotheses
+* none
+
+## Conclusion
+* the degree is the fixed degree plus the weighted edge contributions
 -/
 
 -- Authors:       Claude Opus 5

@@ -17,6 +17,13 @@ The rounded interval coefficients are left out, as for `deepZRelu`.
 Which `f` this is sound for is the question: `SShapedPrinted` is the class the paper's
 footnote defines, and it is the wrong one.
 
+## Inputs
+* `f` – S-shaped activation function
+* `df` – its derivative
+
+## Output
+* relaxation with DeepZ's slope, offset and error for the activation
+
 ## References
 
 * [1] G. Singh, T. Gehr, M. Mirman, M. Püschel and M. Vechev. "Fast and Effective Robustness

@@ -9,19 +9,28 @@ public import Mathlib.Tactic.Linarith
 /-!
 # The maximal adjacency's support dominates every admissible one
 
-Both `A i j` and every edge's weighted contribution are nonnegative at an
-admissible `lam`, so `adjAt A U lam i j` sits between `0` and `adjMax A U i j`
-— the same term-by-term sum, once at `lam` and once at every weight pinned to
-`1`. A nonzero entry is then a positive one, forced below a positive
-`adjMax A U i j` — the fact `[1, §4.3]`'s uncertain-graph half of subgraph
+Both `A i j` and every edge's weighted contribution are nonnegative at an admissible `lam`, so
+`adjAt A U lam i j` sits between `0` and `adjMax A U i j`. A nonzero entry is then a positive one,
+forced below a positive `adjMax A U i j` — the fact `[1, §4.3]`'s uncertain-graph half of subgraph
 reduction rests on.
 
-**The nonnegativity hypotheses are load-bearing, not tidiness.** Without them a
-negative entry of `A` or of an edge weight could cancel against another term,
-vanishing at one `lam` and not at `lam := fun _ => 1` — in *either* direction —
-and no containment of supports would hold at all. `hA` is the hypothesis
-`messagePassing_mem_enclosure` already carries, so nothing new is asked of a
-caller who already has a graph in scope.
+**The nonnegativity hypotheses are load-bearing.** Without them a negative entry could cancel
+against another term, vanishing at one `lam` and not at `fun _ => 1`, and no containment of supports
+would hold.
+
+## Inputs
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `lam` – weights of the uncertain edges
+* `i` – row node
+* `j` – column node
+
+## Hypotheses
+* `hA` – adjacency entries are nonnegative
+* `hlam` – edge weights lie in the unit interval
+
+## Conclusion
+* a nonzero entry of the weighted adjacency is nonzero in the maximal one
 
 ## References
 

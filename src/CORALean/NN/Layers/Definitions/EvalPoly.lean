@@ -16,6 +16,14 @@ into the monomials one power at a time and `a` multiplying every coefficient onc
 padding to a higher degree with zeros (how the neurons of one layer meet at a common degree).
 A machine scalar stores coefficients and performs the same reshapings rounded; these are what
 it is proved against.
+
+## Inputs
+* `n` – polynomial degree
+* `c` – coefficients in the monomial basis
+* `t` – evaluation point
+
+## Output
+* value of the polynomial at the point
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,14 @@ public import CORALean.NN.Layers.Operations.EvalPolyUp
 Over ℝ the sampled value is `σ x - p x`; here neither term is a stored operation, so each is
 bracketed and the two subtracted the *crossed* way — the activation's low end against the fit's
 high one — which keeps the sampled bracket outward.
+
+## Inputs
+* `E` – enclosure of the activation
+* `c` – fit coefficients
+* `x` – sample point
+
+## Output
+* lower bound of the activation minus the fit at the sample
 -/
 
 -- Authors:       Claude Opus 5.5

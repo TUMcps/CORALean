@@ -9,6 +9,17 @@ public import CORALean.NN.Graph.Operations.GcnLin
 
 The linear map's associativity read back into the matrix product it packages,
 which is what `Theorems/ConvExact` composes with `PolyZonotope.map_exact`.
+
+## Inputs
+* `P` – message-passing matrix
+* `W` – weight matrix
+* `H` – node-feature matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the linear map applies the matrix product P H W
 -/
 
 -- Authors:       Claude Sonnet 5

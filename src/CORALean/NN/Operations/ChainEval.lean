@@ -10,6 +10,12 @@ public import CORALean.NN.Definitions.Chain
 The function a network is sound at: every layer's map, applied left to right as the layers are.
 Structural recursion over the chain, so it is data and not a proposition, but nothing runs it:
 every map it composes is a real function.
+
+## Inputs
+* none
+
+## Output
+* the composite of the chain applied to the input
 -/
 
 -- Authors:       Claude Opus 5.5

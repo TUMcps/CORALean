@@ -8,6 +8,12 @@ public import CORALean.NN.Definitions.RefinableNetwork
 # The layers of a refinable network
 
 The layers in order, each with its dimensions: CORA's `obj.layers`.
+
+## Inputs
+* none
+
+## Output
+* the layers in order with their widths
 -/
 
 -- Authors:       Claude Opus 5.5

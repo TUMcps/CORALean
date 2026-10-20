@@ -13,6 +13,18 @@ public import CORALean.NN.Layers.Theorems.TapMatMulVec
 
 The convolution the stored kernel denotes, output `j` the weighted sum over its taps plus its
 bias: the linear layer's soundness at the stencil, which `tapMat_mulVec` reads row by row.
+
+## Inputs
+* `chan` – channel of every neuron
+* `tap` – input index of every kernel position
+* `K` – kernel of every channel
+* `b` – bias of every output neuron
+
+## Hypotheses
+* `htap` – the taps of a neuron are distinct
+
+## Conclusion
+* the layer encloses the convolution
 -/
 
 -- Authors:       Claude Opus 5.5

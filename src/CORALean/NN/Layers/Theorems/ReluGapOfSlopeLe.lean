@@ -12,6 +12,17 @@ public import CORALean.NN.Layers.Operations.ReluGapUp
 `reluGapUp` rounds each of its two terms up — the difference by `subUp`, the negated product by
 negating a rounded-down one — and `maximum` is exact, so it is at least `reluGapOfSlope` at the
 values the stored arguments denote.
+
+## Inputs
+* `lam` – slope
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact gap is at most the rounded gap
 -/
 
 -- Authors:       Claude Opus 5.5

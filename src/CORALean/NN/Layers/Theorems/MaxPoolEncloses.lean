@@ -20,6 +20,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 Each window's maximum over ℝ, `Real.windowMax`: the pivot's value is carried by the selection
 matrix, and what it misses lies in `[0, gap]` by `maxPool_bounds` at the rounded-up gap.
+
+## Inputs
+* `tap` – input index of every window position
+* `pivot` – position of the largest entry for each window
+
+## Hypotheses
+* none
+
+## Conclusion
+* the layer encloses the maximum over every window
 -/
 
 -- Authors:       Claude Opus 5.5

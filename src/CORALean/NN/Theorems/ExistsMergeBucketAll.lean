@@ -8,20 +8,24 @@ public import Mathlib.Tactic.Positivity
 /-!
 # A large enough tolerance takes every neuron
 
-[1]'s Alg. 1 search's other endpoint: together with `mergeBucket_card_mono`,
-this is what makes a binary search on `δ` well posed — the quantity it moves is
-monotone, and its range reaches the top, so any rate between "merge nothing"
-and "merge everything" is bracketed. Which `δ` the search settles on still
-owes no proof; the merge is sound at every bucket regardless, the same
-separation `ConPolyZono.reduceBy_outer` keeps at every partition.
+[1]'s Alg. 1 search's other endpoint: together with `mergeBucket_card_mono`, this is what makes a
+binary search on `δ` well posed — the quantity it moves is monotone, and its range reaches the top.
+Which `δ` the search settles on owes no proof; the merge is sound at every bucket regardless, the
+same separation `ConPolyZono.reduceBy_outer` keeps. Not claimed: that every rate `ρ` is hit
+*exactly*, since a bucket's index count jumps as `δ` grows. The witness sums nonnegative terms
+rather than reaching for `Finset.sup'`, which needs `Fin n` nonempty, so the statement holds,
+vacuously, at `n = 0` too.
 
-Not claimed: that every rate `ρ` is hit *exactly*. A bucket's index count is
-an integer that jumps as `δ` grows, so a rate strictly between two adjacent
-counts is unreachable by any `δ`.
+## Inputs
+* `n` – layer width
+* `Y` – bounds of the layer's neurons
+* `y` – merge value
 
-The witness sums nonnegative terms rather than reaching for `Finset.sup'`,
-which needs `Fin n` nonempty — this statement holds, vacuously but usefully,
-at `n = 0` too. Same trick as `exists_mergeTolerance`'s `1 + ∑ …` denominator.
+## Hypotheses
+* none
+
+## Conclusion
+* some tolerance puts every neuron in the bucket
 
 ## References
 

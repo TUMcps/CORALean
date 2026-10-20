@@ -15,16 +15,21 @@ public import CORALean.NN.Layers.Operations.StarSetFloatChordRow
 /-!
 # One ReLU neuron on a float star set
 
-`Real.StarSet.reluNeuron` after the bounds `b = (l, u)` of the neuron are known. Nothing to do if
-`0 ≤ l`; the row cleared if `u ≤ 0`; otherwise the neuron's value is replaced by a new factor
-`β` in `[0, max(u, 0)]` under `-β ≤ 0`, `c_j + G_j α - β ≤ 0` and, when `StarSet.chordGuard`
-certifies it, the chord row `StarSet.chordRow`. The comparisons are the scalar's `le`,
-which certifies `≤` only, so a bound that is not known to be on one side takes the last branch,
-whose rows hold wherever the bounds do. The bounds are those of the nominal part, as
-`StarSet.rowBounds` gives them; the error box is made symmetric at `j` by `StarSet.aux_reluError`
-in every branch, the ReLU being `1`-Lipschitz. The new factor's box is appended to the coefficient
-box, and the predicate is built by `HPolytope`'s own operations (#174), `lift_` for the factor and
-`stackRows` of `ineqs` for the rows, as in the exact layer; nothing rounds there.
+`Real.StarSet.reluNeuron` after the bounds `b = (l, u)` of the neuron are known. Nothing to do if `0
+≤ l`; the row cleared if `u ≤ 0`; otherwise the neuron's value is replaced by a new factor `β` in
+`[0, max(u, 0)]` under `-β ≤ 0`, `c_j + G_j α - β ≤ 0` and, when `StarSet.chordGuard` certifies it,
+the chord row `StarSet.chordRow`. The comparisons are the scalar's `le`, which certifies `≤` only,
+so a bound not known to be on one side takes the last branch, whose rows hold wherever the bounds
+do. The error box is made symmetric at `j` by `StarSet.aux_reluError` in every branch; the predicate
+is built by `HPolytope`'s own operations (#174), as in the exact layer.
+
+## Inputs
+* `s` – float star set
+* `j` – neuron index
+* `b` – bounds of the neuron
+
+## Output
+* star set after the ReLU step on the neuron
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

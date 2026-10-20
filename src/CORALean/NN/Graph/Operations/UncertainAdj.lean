@@ -8,15 +8,20 @@ public import CORALean.NN.Graph.Operations.EdgeMat
 /-!
 # The adjacency of a graph whose edges are uncertain
 
-[1]'s uncertain graph structure, as one matrix polynomial zonotope: one
-dependent factor and one dependent generator per uncertain edge, and no
-independent block — a factor `α` in the unit interval around zero *is* the
-weight `λ = (1 + α)/2` (`smul_edge_half`), which is the whole construction.
-Keeping the factor dependent stops one edge counting as fresh uncertainty at
-each step of a chain.
+[1]'s uncertain graph structure, as one matrix polynomial zonotope: one dependent factor and one
+dependent generator per uncertain edge, and no independent block — a factor `α` in the unit interval
+around zero *is* the weight `λ = (1 + α)/2` (`smul_edge_half`), which is the whole construction.
+Keeping the factor dependent stops one edge counting as fresh uncertainty at each step of a chain.
 
-Real only: `Float.PolyZonotope` is indexed by ℕ over `Vec`, so a float matrix
-polynomial zonotope is a representation to build before this gets a float half.
+Real only: `Float.PolyZonotope` is indexed by ℕ over `Vec`, so a float matrix polynomial zonotope is
+a representation to build before this gets a float half.
+
+## Inputs
+* `A` – adjacency matrix
+* `U` – uncertain edges
+
+## Output
+* matrix polynomial zonotope with one factor per uncertain edge
 
 ## References
 

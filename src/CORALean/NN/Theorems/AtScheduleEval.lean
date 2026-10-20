@@ -21,6 +21,15 @@ the schedule and no refinement could be said to converge to anything.
 
 It is also why `encloseAt_outer` needs no induction of its own: this soundness
 is what `NeuralNetwork.Encloses.enclose_outer` then answers from.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the network at any schedule encloses the refinable network's map
 -/
 
 -- Authors:       Claude Opus 5

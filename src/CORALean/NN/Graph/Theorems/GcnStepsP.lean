@@ -9,6 +9,18 @@ public import CORALean.NN.Graph.Operations.GcnSteps
 
 Every set in the chain carries `P`'s factors: the base case through the
 sharing hypothesis, and every step through `gcnShared_p`.
+
+## Inputs
+* `N` – number of nodes
+* `F` – feature width
+* `P` – polynomial zonotope of the graph
+* `L` – number of steps
+
+## Hypotheses
+* none
+
+## Conclusion
+* every set in the chain keeps the graph's factor count
 -/
 
 -- Authors:       Claude Sonnet 5

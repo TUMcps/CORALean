@@ -15,6 +15,22 @@ direction, by one with a larger, then the approximation errors [1, Def. 6] are t
 maximum of `ϕ - p` over `P ∩ [l,u]`: the `min_{x ∈ P ∩ [l,u]}` and `max_{x ∈ P ∩ [l,u]}` of the
 proposition. No continuity is needed: the domination says where the extrema are.
 
+## Inputs
+* `ϕ` – activation function
+* `p` – approximating line
+* `P` – finite set of candidate points
+* `l` – lower end of the interval
+* `u` – upper end of the interval
+
+## Hypotheses
+* `hfin` – candidates in the interval are finite
+* `hne` – candidates in the interval exist
+* `hlo` – some candidate attains the least difference
+* `hup` – some candidate attains the greatest difference
+
+## Conclusion
+* the two errors are the least and greatest differences over the candidates
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

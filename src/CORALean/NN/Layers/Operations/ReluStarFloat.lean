@@ -11,6 +11,13 @@ public import CORALean.ContSet.StarSet.Float.Operations.RowBounds
 
 `Layer.reluStar` on a star set stored in `𝕋`: per neuron, the bounds from the set the earlier
 neurons left, then the step. The bounds are the certified `Float.StarSet.rowBounds`.
+
+## Inputs
+* `𝕋` – float scalar type
+* `n` – layer width
+
+## Output
+* ReLU layer on float star sets
 -/
 
 -- Authors:       Claude Opus 5.5

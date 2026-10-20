@@ -13,6 +13,15 @@ public import Mathlib.Data.Real.Basic
 `mergeRowWeight` sums a row of `W`, in absolute value, over *every* neuron rather than over a
 bucket, since [1]'s tolerance search must pick `δ` before any bucket exists to sum over.
 
+## Inputs
+* `n` – input width
+* `n₂` – output width
+* `W` – weight matrix
+* `i` – output index
+
+## Output
+* absolute row sum of the weights
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

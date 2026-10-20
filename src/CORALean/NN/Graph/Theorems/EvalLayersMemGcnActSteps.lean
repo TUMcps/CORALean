@@ -20,6 +20,15 @@ coefficients `β` for its new independent generators (`ActLayer.Sound`), and `de
 the factors after the old ones (`dependent_point`) while `P` is padded by as many, so it
 still reads `a`. Induction on the number of steps, the widths and weights generalized.
 
+## Inputs
+* `L` – number of steps
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact layered iteration from a point lies in the polynomial zonotope of the steps
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

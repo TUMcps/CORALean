@@ -11,6 +11,21 @@ public import CORALean.NN.Layers.Theorems.Real.SamplingErrorBracket
 converges to the half-range of `g`, so samples are never spent against an artificial floor —
 one that is an artefact of `minMaxDiffOrder` [1] rather than of the fit.
 
+## Inputs
+* `g` – function
+* `g'` – its derivative
+* `M` – bound on the derivative
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Hypotheses
+* `hd` – the function has the given derivative
+* `hM` – derivative is bounded on the box
+* `hlu` – box is ordered
+
+## Conclusion
+* the sampling error converges to the half-range as the sample count grows
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

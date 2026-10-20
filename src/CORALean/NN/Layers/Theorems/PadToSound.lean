@@ -10,6 +10,16 @@ public import CORALean.NN.Layers.Theorems.ToRealPadCoeffs
 # A padded relaxation is sound
 
 Where the degree bound is spent: the padded polynomial is the original one.
+
+## Inputs
+* `P` – polynomial relaxation
+
+## Hypotheses
+* `h` – the degree is at most the higher degree
+* `hP` – relaxation is sound for the activation
+
+## Conclusion
+* the padded relaxation is sound for the activation
 -/
 
 -- Authors:       Claude Opus 5.5

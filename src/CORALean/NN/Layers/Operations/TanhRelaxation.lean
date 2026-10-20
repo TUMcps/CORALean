@@ -11,6 +11,12 @@ public import CORALean.NN.Layers.Operations.SigmoidRelaxation
 
 `sigmoidRelaxation` read through `tanh t = 2 σ(2t) - 1`: `Relaxation.ofAffineConj` at
 `ra = rb = 2`, both doublings by self-addition, and `c = -1`, which `neg one` stores exactly.
+
+## Inputs
+* `k` – reduction depth of the exponential
+
+## Output
+* tanh relaxation through the sigmoid relaxation
 -/
 
 -- Authors:       Claude Opus 5.5

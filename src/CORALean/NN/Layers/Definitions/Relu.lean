@@ -11,6 +11,12 @@ CORA's `nnReLULayer` applies `max(t, 0)`. `reluGapOfSlope` is how far `relu` ris
 line of slope `λ` through the origin over `[l, u]`: a function of the slope rather than of any
 particular choice of it, so a layer that chooses its slope in finite precision measures its own
 error against it. Both are what the layer means, over ℝ, and neither is run.
+
+## Inputs
+* `t` – real number to transform
+
+## Output
+* larger of the argument and zero
 -/
 
 -- Authors:       Claude Opus 5.5

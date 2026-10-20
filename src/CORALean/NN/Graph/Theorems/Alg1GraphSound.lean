@@ -17,6 +17,33 @@ enclosure. The pooling is exact (`sumPool_exact`) and the standard layers are en
 layer (`tailEval_mem_tailEnclose`), each enclosure `f t` containing the image of `g t`
 ([1, Prop. 1] for an activation, exactness for a linear layer).
 
+## Inputs
+* `R` – relaxation of the inverse square root
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `lam` – weights of the uncertain edges
+* `L` – number of graph layers
+* `T` – number of layers after the pooling
+* `c` – layer widths
+* `σ` – activation functions
+* `W` – graph layer weights
+* `acts` – activation layers
+* `g` – exact later layers
+* `f` – enclosure maps of the later layers
+* `X` – input polynomial zonotope
+* `x` – input point
+
+## Hypotheses
+* `hR` – relaxation is sound for the inverse square root
+* `hA` – adjacency entries are nonnegative
+* `hlam` – edge weights lie in the unit interval
+* `hσ` – each activation layer is sound for its function
+* `hf` – each enclosure map contains its exact layer
+* `hx` – input point lies in the input set
+
+## Conclusion
+* the exact graph-level output lies in the enclosure
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

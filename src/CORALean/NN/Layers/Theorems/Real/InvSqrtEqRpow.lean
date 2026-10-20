@@ -10,6 +10,15 @@ public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 
 Ties the name to [1]'s notation, once `1 ≤ x` licenses reading the clamp away.
 
+## Inputs
+* `x` – real number above the clamp
+
+## Hypotheses
+* `hx` – number is at least one
+
+## Conclusion
+* the clamped inverse square root is the power minus one half
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

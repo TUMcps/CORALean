@@ -12,19 +12,21 @@ public import CORALean.NN.Layers.Operations.Activation
 
 `Relaxation` lets `slope` depend on the box however it likes — deliberately, since
 `Relaxation.tighter` [1] picks per box and `Relaxation.ofDeriv`'s `lam` is free inside its bracket.
-That freedom also lets a relaxation be sloppy on a narrow box and exact on a wide one, so a small
-set's loose enclosure can escape a large set's tight one: `enclose` is not monotone in its input
-set. The witness relaxes the zero function, slope `1` below width `2` and `0` at or above it;
-enclosing `[0, 1]` reaches `1`, enclosing the containing `[0, 3]` only `0`.
+So a relaxation may be sloppy on a narrow box and exact on a wide one, and a small set's loose
+enclosure can escape a large set's tight one. The witness relaxes the zero function, slope `1` below
+width `2` and `0` at or above it; enclosing `[0, 1]` reaches `1`, enclosing `[0, 3]` only `0`. This
+costs a proof strategy: a network reduced at several layers cannot be reached by composing
+single-layer containments, so Alg. 2/Thm. 1 (#69) and Prop. 2 (#68) need their own induction.
+`enclose_outer` is unaffected: soundness at each point is not monotonicity in the set.
 
-This is not a defect to fix, but it costs a proof strategy: a network reduced at several layers
-cannot be reached by composing single-layer containments through `enclose`, the way
-`NeuronMergingNetworkOuter.lean` does for one layer. Each of #69's Alg. 2/Thm. 1 and #68's Prop. 2
-needs its own induction over the network instead.
+## Inputs
+* none
 
-`enclose_outer` is unaffected: every layer's `enclose` still contains the exact image of every
-point in its input set. That is soundness at each point, which is a different property from
-monotonicity in the set, and only the latter fails.
+## Hypotheses
+* none
+
+## Conclusion
+* some sound relaxation encloses a subset beyond its superset's enclosure
 
 ## References
 

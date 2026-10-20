@@ -7,22 +7,13 @@ public import CORALean.NN.Layers.Layer
 /-!
 # A layer at every level of precision
 
-What abstraction refinement operates on [1]: one function, and an enclosure of
-it for every order pattern. `Layer`'s obligation is asked at each pattern, so
-every one is sound and a pattern is spent on precision alone — a polynomial
-order, a sample count, a partition — never on correctness.
-
-`eval` sits outside `enclose` rather than inside a family of `Layer`s, and
-that placement is the invariant: a refinement may not change what the layer
-computes, or the exact set the enclosures are enclosures *of* would move with
-the schedule and nothing could be said about the limit. It is a specification
-and never a computation, which is why this structure stores what `Layer` may
-not: reading a pattern off it hands back a `Layer` and a soundness proof.
-
-A pattern carries a level per input neuron [1, Eq. 23], so a rule may spend an
-order on one neuron and leave its neighbours alone. What a layer reads out of it
-is the layer's business: `ActivationPolyRefinable` takes an entry as an order
-together with a range, and `Layer.refinable` reads nothing at all.
+What abstraction refinement operates on [1]: one function, and an enclosure of it for every order
+pattern. `Layer`'s obligation is asked at each pattern, so a pattern is spent on precision alone,
+never on correctness. `eval` sits outside `enclose`: a refinement may not change what the layer
+computes, or the exact set the enclosures are enclosures *of* would move with the schedule. It is a
+specification and never a computation. A pattern carries a level per input neuron [1, Eq. 23]; what
+a layer reads out of it is the layer's business: `ActivationPolyRefinable` takes an entry as an
+order with a range, `Layer.refinable` reads nothing.
 
 ## References
 

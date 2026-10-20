@@ -17,6 +17,29 @@ the first factors (`dependent_exact`); the rest is `evalLayers_mem_gcnActSteps_u
 activation enclosures are hypotheses (`ActLayer.Sound`), the content of [1, Prop. 1], which
 [1] does not prove.
 
+## Inputs
+* `R` – relaxation of the inverse square root
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `lam` – weights of the uncertain edges
+* `L` – number of graph layers
+* `c` – layer widths
+* `σ` – activation functions
+* `W` – graph layer weights
+* `acts` – activation layers
+* `X` – input polynomial zonotope
+* `x` – input point
+
+## Hypotheses
+* `hR` – relaxation is sound for the inverse square root
+* `hA` – adjacency entries are nonnegative
+* `hlam` – edge weights lie in the unit interval
+* `hσ` – each activation layer is sound for its function
+* `hx` – input point lies in the input set
+
+## Conclusion
+* the exact node-level output lies in the enclosure
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

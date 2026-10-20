@@ -10,6 +10,18 @@ public import CORALean.NN.Definitions.Cat
 `W x + b`, and nothing else: [1, Fig. 3]'s first form is a function. The inversion of
 `Cat.Eval` at `.affine`, which every computation of a CAT function's value starts from.
 
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+* `x` – input point
+* `y` – output point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the affine function maps the point to the output iff it is the affine image
+
 ## References
 
 * [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:

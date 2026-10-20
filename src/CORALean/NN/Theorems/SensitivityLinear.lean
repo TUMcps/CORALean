@@ -16,6 +16,17 @@ it multiplies by `W` and never looks at the stored input.
 
 Everything that *is* a linear layer here — convolution, average pooling, batch
 normalization — reads its sensitivity off this one, at its own matrix.
+
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+* `x` – input point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the linear layer's sensitivity is its weight matrix
 -/
 
 -- Authors:       Claude Opus 5

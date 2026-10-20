@@ -21,21 +21,24 @@ public import CORALean.NN.Layers.Operations.RelaxationBox
 /-!
 # The message-passing enclosure `𝒫 ⊇ D̃^(-1/2) Ã D̃^(-1/2)`
 
-[1, Prop. 4]'s message passing at an uncertain structure, as one matrix polynomial
-zonotope: `P_ij = Ã_ij ⬝ s_i ⬝ s_j` is two entrywise products, so it is
-`PolyZonotope.bilin` at `Entrywise.hadamardLin`, twice.
+[1, Prop. 4]'s message passing at an uncertain structure, as one matrix polynomial zonotope: `P_ij =
+Ã_ij ⬝ s_i ⬝ s_j` is two entrywise products, so it is `PolyZonotope.bilin` at
+`Entrywise.hadamardLin`, twice (`Mat ℝ N N` needs `hadamardLin`, its own `*` being the matrix
+product).
 
-`Mat ℝ N N` needs `hadamardLin` and not `*`, its own multiplication being the
-matrix product; that is what `Global/Hadamard` exists for.
+All three sets are written over the same `m + N` factors — `m` edges, `N` residuals — so the sharing
+hypotheses are `rfl`. Sharing is the point: an edge appears in `Ã` and in both degrees. An enclosure
+and not an equality: the inverse square root is not affine.
 
-All three sets are written over the same `m + N` factors — `m` edges, `N`
-residuals — so both sharing hypotheses are `rfl`, and `bilin` keeps `S₁.p`, so
-the second one is `rfl` too. Sharing is the point: an edge appears in `Ã` and
-in both degrees, and a product over unshared factors would count it three
-times.
+## Inputs
+* `N` – number of nodes
+* `m` – number of uncertain edges
+* `R` – relaxation of the inverse square root
+* `A` – adjacency matrix
+* `U` – uncertain edges
 
-An enclosure and not an equality: the inverse square root is not affine, so the
-residual factors buy soundness rather than exactness.
+## Output
+* polynomial zonotope enclosing the message-passing matrix
 
 ## References
 

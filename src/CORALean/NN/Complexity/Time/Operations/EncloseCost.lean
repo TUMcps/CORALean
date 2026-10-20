@@ -9,16 +9,19 @@ public import CORALean.Global.Cost
 /-!
 # `NeuralNetwork.encloseCost`
 
-Asserted, not proved: `Operations/Enclose.lean` hands the set to the first
-layer and the result to the rest, one call to `Layer.enclose` per layer and
-nothing of its own — `output` returns the set it was handed and writes nothing, `layer` costs
-that layer, its writes included, plus the rest, the recursion `enclose`'s own.
+Asserted, not proved: `Operations/Enclose.lean` hands the set to the first layer and the result to
+the rest, one call to `Layer.enclose` per layer and nothing of its own — `output` writes nothing,
+`layer` costs that layer plus the rest, the recursion `enclose`'s own.
 
-What one layer costs is a parameter, `LC`, the way `PolyZonotope.mapCost` and
-`ConZonotope.mapCost` take what one application of an arbitrary map costs: a
-`Layer` stores `enclose` and nothing else, so no representation-agnostic file
-can price a `Layer.linear` and a `Layer.activation` by the same number. It is
-read at `Enclose.toLayer` of each layer, whatever its kind.
+What one layer costs is a parameter, `LC`, as `PolyZonotope.mapCost` takes what one application of
+a map costs: a `Layer` stores `enclose` and nothing else, so no representation-agnostic file can
+price a `Layer.linear` and a `Layer.activation` by the same number.
+
+## Inputs
+* `LC` – cost bound of enclosing one layer
+
+## Output
+* cost of enclosing the whole network
 -/
 
 -- Authors:       Claude Opus 5.5

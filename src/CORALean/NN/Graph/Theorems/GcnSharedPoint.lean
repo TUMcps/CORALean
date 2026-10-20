@@ -10,15 +10,24 @@ public import CORALean.NN.Graph.Theorems.Basic
 /-!
 # A shared-factor convolution, at one factor vector
 
-`gcnShared` is `bilin` and then `map`, so its point is `bilin_point` and then
-`map_point`: at the factor vector `a` the step is the plain matrix product
-`P.point a * H.point a * W`.
+`gcnShared` is `bilin` and then `map`, so its point is `bilin_point` and then `map_point`: at the
+factor vector `a` the step is the plain matrix product `P.point a * H.point a * W`.
 
-Read over `point` rather than over `construct` because a *chain* of steps is:
-the recursion carries one factor vector from step to step, and it is that one
-vector reaching every step which keeps a recurring edge identified. `Fin.cast`
-is the whole bookkeeping — the two sets share a factor set, so the cast is the
-identity, and only the proof it carries differs from use to use.
+Read over `point` rather than over `construct` because a *chain* of steps is: the recursion carries
+one factor vector from step to step, and that keeps a recurring edge identified. `Fin.cast` is the
+whole bookkeeping — the two sets share a factor set, so the cast is the identity.
+
+## Inputs
+* `W` – weight matrix
+* `P` – polynomial zonotope of the graph
+* `H` – polynomial zonotope of the node features
+* `a` – factor vector
+
+## Hypotheses
+* `hp` – both sets share their factors
+
+## Conclusion
+* the step's point is the product of the two points and the weights
 -/
 
 -- Authors:       Claude Opus 5

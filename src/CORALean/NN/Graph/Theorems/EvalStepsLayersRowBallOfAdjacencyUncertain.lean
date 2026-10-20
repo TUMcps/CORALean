@@ -14,6 +14,30 @@ computable from `adjMax A U`'s own `(L + 1)`-ball alone — the subgraph a bread
 `v` over every uncertain edge finds, message passing computed on that subgraph's own adjacency.
 `evalSteps_row_ball_of_adjacency_uncertain` with a layer after each step.
 
+## Inputs
+* `N` – number of nodes
+* `F` – feature width
+* `m` – number of uncertain edges
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `lam` – weights of the uncertain edges
+* `v` – node of interest
+* `L` – number of steps
+* `K` – number of kept nodes
+* `κ` – indices of the kept nodes
+* `g` – per-node layers
+* `X` – node-feature matrix
+
+## Hypotheses
+* `hA` – adjacency entries are nonnegative
+* `hSymm` – adjacency matrix is symmetric
+* `hlam` – edge weights lie in the unit interval
+* `hinj` – kept indices are distinct
+* `hκ` – kept nodes contain the maximal ball one hop larger
+
+## Conclusion
+* the node's row is computable on a subgraph of the kept nodes
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

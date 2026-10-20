@@ -10,6 +10,16 @@ public import CORALean.NN.Graph.Operations.SqrtSlope
 
 Half that edge's column sum, through the relaxation's slope: the coefficient
 `sqrt_affine` reads `s_j`'s dependence on edge `e`'s factor off.
+
+## Inputs
+* `R` – relaxation of the inverse square root
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `j` – node
+* `e` – uncertain edge index
+
+## Output
+* generator the node's relaxed square root puts on the edge's factor
 -/
 
 -- Authors:       Claude Sonnet 5

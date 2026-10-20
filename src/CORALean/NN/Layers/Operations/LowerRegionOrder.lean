@@ -10,6 +10,15 @@ The loop `for o = order-1:-1:0` of CORA's `findRegionPolys`: refit the region at
 `o`, keep the fit while its error is strictly under the tolerance, and stop at the first order
 that is not. `k` orders remain, from `k - 1` down; the fit is the supplied relaxation's, standing
 for `computeApproxPoly` with its error.
+
+## Inputs
+* `F` – polynomial relaxations by order
+* `tol` – error tolerance
+* `l` – lower end of the region
+* `u` – upper end of the region
+
+## Output
+* lowest-order fit of the region the loop reaches
 -/
 
 -- Authors:       Claude Sonnet 5.5

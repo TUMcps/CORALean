@@ -12,6 +12,20 @@ For an S-shaped `df`, every `t ∈ [l, u]` has `df t` between the two bounds. Th
 the end farther from `0` (by evenness, compared through `-l ≥ u`) and the upper one at `0` or at
 the end nearer to it. Outer, a bound, not the exact range: the bounds are attained only at the
 ends, and for `l ≤ 0 ≤ u` the lower one is `df` at one end.
+
+## Inputs
+* `df` – derivative of the activation
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `t` – point in the box
+
+## Hypotheses
+* `h` – the derivative is S-shaped
+* `hl` – point is above the lower end
+* `hu` – point is below the upper end
+
+## Conclusion
+* the derivative at the point lies in the bounds
 -/
 
 -- Authors:       Claude Opus 5.5

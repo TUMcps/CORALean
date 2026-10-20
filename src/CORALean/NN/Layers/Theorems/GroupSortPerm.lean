@@ -10,6 +10,17 @@ public import CORALean.NN.Layers.Theorems.GroupSortChunkGroupSort
 CORA's `nnGroupSortLayer` sorts each chunk of `groupSize` entries ascending: the chunk of the
 result is a permutation of the chunk of the input (nothing is lost, nothing is invented), and it
 is sorted.
+
+## Inputs
+* `g` – group size
+* `x` – input vector
+* `k` – group index
+
+## Hypotheses
+* `hg` – group size is positive
+
+## Conclusion
+* each group of the result is a permutation of the input group
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,6 +16,14 @@ leaves. `Operations.RefineWorst` sums it into a layer's rank and
 `Operations.RefineWorstNeurons` reads it unaggregated — the same quantity ranks
 both rules, only the aggregate differs.
 
+## Inputs
+* `J` – sensitivity matrix
+* `d` – approximation errors of the neurons
+* `j` – neuron index
+
+## Output
+* sensitivity column norm times the neuron's error
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

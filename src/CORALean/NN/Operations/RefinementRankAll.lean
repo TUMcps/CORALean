@@ -7,15 +7,18 @@ public import Mathlib.Data.Real.Basic
 /-!
 # Every neuron equally worth refining
 
-The paper's simplest heuristic [1, Def. 4.7]: every neuron's rank is `1`. A
-bare constant, not a function of a layer or a neuron index — there is
-nothing for either to change. `refineWorst`/`refineWorstNeurons` fed
-`fun _ => refinementRankAll` (or `fun _ _ => refinementRankAll`) then tie
-everywhere and fall to their own earliest-index tie-break.
+The paper's simplest heuristic [1, Def. 4.7]: every neuron's rank is `1`. A bare constant, not a
+function of a layer or a neuron index. `refineWorst`/`refineWorstNeurons` fed `fun _ =>
+refinementRankAll` (or `fun _ _ => refinementRankAll`) then tie everywhere and fall to their own
+earliest-index tie-break. Nothing here is proved and nothing here can be wrong: `encloseAt_outer`
+holds at every schedule, so a constant rank is as sound a choice as `refinementRank`, only blind to
+where the error actually is.
 
-Nothing here is proved and nothing here can be wrong: `encloseAt_outer`
-holds at every schedule, so a constant rank is as sound a choice as
-`refinementRank`, only blind to where the error actually is.
+## Inputs
+* none
+
+## Output
+* the constant rank one
 
 ## References
 

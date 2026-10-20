@@ -9,6 +9,19 @@ public import CORALean.NN.Graph.Theorems.BallSubsetSucc
 
 Induction on `r ≤ r'`, read as `Nat.le`'s own constructors: `refl` is
 reflexivity, and `step` chains one more hop through `ball_subset_succ`.
+
+## Inputs
+* `N` – number of nodes
+* `A` – adjacency matrix
+* `v` – center node
+* `r` – smaller radius
+* `r'` – larger radius
+
+## Hypotheses
+* `h` – radii are ordered
+
+## Conclusion
+* the smaller ball is contained in the larger one
 -/
 
 -- Authors:       Claude Opus 5

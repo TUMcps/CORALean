@@ -10,6 +10,12 @@ public import CORALean.Global.Float.Sqrt
 
 `sqrtDown` below, `sqrtUp` above, computed by `p` Newton steps
 (`Global/Float/Sqrt`), sound for any `p`.
+
+## Inputs
+* `p` – number of Newton steps
+
+## Output
+* lower and upper bound of the square root
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -8,6 +8,20 @@ public import CORALean.NN.Definitions.Basic
 # A scalar enclosure, applied entrywise, encloses the entrywise image
 The box whose entry `i` is the enclosure of the scalar box `[l i, u i]` contains `f` applied
 entrywise to every vector of the box.
+
+## Inputs
+* `n` – vector width
+* `E` – scalar enclosure
+* `f` – scalar function
+* `I` – box of the input
+* `x` – input point
+
+## Hypotheses
+* `hf` – the enclosure encloses the function
+* `hx` – point lies in the box
+
+## Conclusion
+* the entrywise image lies in the entrywise enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

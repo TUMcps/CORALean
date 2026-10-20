@@ -10,6 +10,14 @@ public import CORALean.Global.Scalar
 `reshape(input_, [groupSize numGroups_ bSz])` puts the entries `k·g, …, k·g + g - 1` of the input
 in one column; the last column is padded with `Inf` up to `g` entries and the padding is cut again
 after the sort. Here the chunk is taken without padding: its entries as a list, at most `g`.
+
+## Inputs
+* `g` – group size
+* `x` – input vector
+* `k` – group index
+
+## Output
+* the group's entries
 -/
 
 -- Authors:       Claude Opus 5.5

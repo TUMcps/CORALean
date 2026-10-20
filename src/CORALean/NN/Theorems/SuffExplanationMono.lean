@@ -7,16 +7,29 @@ public import CORALean.NN.Definitions.SuffExplanation
 /-!
 # Sufficiency only becomes easier to keep as more features are pinned
 
-Fixing a superset of a sufficient `E` is sufficient too: pinning more
-coordinates only shrinks `explainBox`, so the same argument that worked over
-the wider box works over the narrower one. This needs `0 ≤ ε`, [1]'s own
-typing of a perturbation *radius* — for `ε < 0` a coordinate left free is an
-empty range, so a proper subset can be vacuously "sufficient" without the
-target actually leading there, and monotonicity fails.
+Fixing a superset of a sufficient `E` is sufficient too: pinning more coordinates only shrinks
+`explainBox`, so the same argument that worked over the wider box works over the narrower one. This
+needs `0 ≤ ε`, [1]'s own typing of a perturbation *radius* — for `ε < 0` a coordinate left free is
+an empty range, so a proper subset can be vacuously "sufficient", and monotonicity fails.
+`[1, Alg. 1]`'s minimality argument is the one place this is used: a feature kept because dropping
+it broke sufficiency at some larger, earlier candidate set still cannot be dropped from any smaller
+set the loop later settles on.
 
-`[1, Alg. 1]`'s minimality argument is the one place this is used: a feature kept
-because dropping it broke sufficiency at some larger, earlier candidate set
-still cannot be dropped from any smaller set the loop later settles on.
+## Inputs
+* `f` – network function
+* `x` – input point
+* `ε` – perturbation radius
+* `E` – explanation, a feature set
+* `E'` – larger feature set
+* `l` – target label
+
+## Hypotheses
+* `hε` – radius is nonnegative
+* `hE` – the larger set contains the explanation
+* `h` – the explanation is sufficient
+
+## Conclusion
+* the larger feature set is sufficient
 
 ## References
 

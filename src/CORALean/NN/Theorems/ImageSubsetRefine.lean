@@ -14,6 +14,19 @@ declarations there, none used outside the file, so split one file each.
 Refining any neuron keeps the enclosure [1, Def. 4.4], which is what leaves
 the ranking a ranking: a wrong choice costs precision and never correctness.
 
+## Inputs
+* `rn` – refinable network
+* `sch` – schedule of order patterns
+* `l` – layer index
+* `j` – neuron index
+* `X` – input set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact image lies in the enclosure after refining the neuron
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

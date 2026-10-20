@@ -10,16 +10,28 @@ public import CORALean.NN.Graph.Theorems.MemBallEnumIff
 /-!
 # `[1, §4.3]`'s locality, with no `κ` left to build
 
-`evalSteps_row_ball` is correct but unusable as stated: every caller would have
-to construct its own injective `κ` and prove it enumerates the ball. `ballEnum`
-is exactly that `κ`, built once, so this instantiates `evalSteps_row_ball` at
-`ballEnum_injective`, `mem_ballEnum_iff` and `ballEnum_ballEnumIdx` and leaves
-no hypothesis for the caller to discharge.
+`evalSteps_row_ball` is correct but unusable as stated: every caller would have to construct its own
+injective `κ` and prove it enumerates the ball. `ballEnum` is exactly that `κ`, built once, so this
+instantiates `evalSteps_row_ball` at `ballEnum_injective`, `mem_ballEnum_iff` and
+`ballEnum_ballEnumIdx` and leaves no hypothesis for the caller to discharge.
 
-`ballEnum` enumerates the right set — it is not the paper's breadth-first
-search, which grows outward from `v` one hop at a time. `ball`'s own recursion
-filters `Finset.univ` at every radius instead, the same set by a worse
-algorithm; soundness here does not depend on which one a caller runs.
+`ballEnum` is not the paper's breadth-first search, which grows outward from `v` one hop at a time;
+`ball`'s own recursion filters `Finset.univ` at every radius, the same set by a worse algorithm.
+
+## Inputs
+* `N` – number of nodes
+* `F` – feature width
+* `A` – adjacency matrix
+* `v` – node of interest
+* `L` – number of steps
+* `W` – weights of the steps
+* `X` – node-feature matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the node's row of the full chain equals its row on the enumerated ball
 
 ## References
 

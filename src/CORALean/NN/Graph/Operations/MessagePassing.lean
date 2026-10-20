@@ -11,6 +11,12 @@ public import Mathlib.Analysis.Real.Sqrt
 [1, Eq. 2]'s message passing at a known graph, `D̃` being diagonal: entry `(i, j)`
 of `Ã = A + I` scaled by both endpoints' inverse square-root degrees.
 
+## Inputs
+* `A` – adjacency matrix
+
+## Output
+* symmetrically normalised adjacency with self loops
+
 ## References
 
 * [1] T. N. Kipf and M. Welling. "Semi-Supervised Classification with Graph

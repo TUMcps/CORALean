@@ -18,6 +18,12 @@ public import CORALean.NN.Operations.Basic
 give a `NeuralNetwork`, each layer at its own pattern. Everything the loop has
 to prove reduces to a property of *that* network, so `encloseAt`'s soundness
 is a corollary of `NeuralNetwork.Encloses.enclose_outer` rather than a new induction.
+
+## Inputs
+* none
+
+## Output
+* network with every layer at the pattern the schedule names
 -/
 
 -- Authors:       Claude Opus 5

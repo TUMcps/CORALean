@@ -11,6 +11,16 @@ public import CORALean.NN.Layers.Theorems.MulRangeDownLe
 # A power is inside its bracket
 
 By induction on the exponent, each step one product bracket.
+
+## Inputs
+* `t` – base
+* `k` – exponent
+
+## Hypotheses
+* none
+
+## Conclusion
+* the power lies inside its bracket
 -/
 
 -- Authors:       Claude Opus 5.5

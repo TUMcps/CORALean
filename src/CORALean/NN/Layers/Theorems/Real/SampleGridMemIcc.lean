@@ -8,6 +8,19 @@ public import CORALean.NN.Layers.Definitions.PolySampling
 # The exact sample grid lies in the box
 
 ℝ-only, the grid being exact: the last index is `N`, so no sample steps past the right end.
+
+## Inputs
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `N` – number of sample intervals
+* `i` – sample index
+
+## Hypotheses
+* `hN` – number of intervals is positive
+* `hlu` – box is ordered
+
+## Conclusion
+* the sample lies inside the box
 -/
 
 -- Authors:       Claude Opus 5.5

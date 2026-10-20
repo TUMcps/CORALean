@@ -11,6 +11,14 @@ public import CORALean.NN.Layers.Operations.SumOffUp
 
 `(1 + ∑_{j≠i} exp(hi j - lo i))⁻¹` with the denominator overestimated and the reciprocal rounded
 down, where `aux_softmaxExpInRange` licenses `expUp`; zero elsewhere.
+
+## Inputs
+* `k` – reduction depth of the exponential
+* `I` – box of the layer's input
+* `i` – output coordinate
+
+## Output
+* raw lower bound of the coordinate's softmax
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -10,6 +10,16 @@ public import CORALean.NN.Graph.Operations.Select
 `H' = M H` is plain row selection, `Matrix.submatrix`, so `[1, Cor. 1]`'s projection
 costs nothing to state.
 
+## Inputs
+* `κ` – indices of the selected nodes
+* `H` – node-feature matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the selection matrix picks the selected rows
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

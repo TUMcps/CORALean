@@ -11,6 +11,19 @@ public import CORALean.NN.Graph.Theorems.BallMono
 steps still to run, for every `k ≤ L` [1, §4.3]: the margin hop is slack, and the last set `{v}`
 is the ball of radius `0`.
 
+## Inputs
+* `N` – number of nodes
+* `A` – adjacency matrix
+* `v` – node of interest
+* `L` – number of message-passing steps
+* `k` – step index
+
+## Hypotheses
+* `hk` – step index within the number of steps
+
+## Conclusion
+* the kept set before step k contains the ball of the remaining steps
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

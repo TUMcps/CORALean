@@ -11,6 +11,17 @@ public import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
 # The exact polynomial tanh relaxation is sound
 
 ℝ-only, as the conjugation is: the sigmoid's, transported along the identity.
+
+## Inputs
+* `n` – polynomial degree
+* `c` – fit coefficients for each interval
+* `N` – sample count for each interval
+
+## Hypotheses
+* `hN` – sample counts are positive
+
+## Conclusion
+* the polynomial relaxation is sound for tanh
 -/
 
 -- Authors:       Claude Opus 5.5

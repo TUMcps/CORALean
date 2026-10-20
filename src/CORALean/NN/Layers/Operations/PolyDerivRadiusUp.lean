@@ -10,6 +10,14 @@ public import CORALean.NN.Layers.Operations.PowRange
 How far the remaining monomials move the center over the box, everything rounded up: the
 degree count `i` reaches the scalar as `nsmulUp i one`, an upper bound rather than a cast,
 `FloatOps` having no integer literal above one.
+
+## Inputs
+* `c` – fit coefficients
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* reach of the higher monomials' derivative over the box, rounded up
 -/
 
 -- Authors:       Claude Opus 5.5

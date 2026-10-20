@@ -11,6 +11,13 @@ Exact on a stable neuron — `0` below zero, `1` above — and the secant `u / (
 one, rounded whichever way `divUp` rounds. It reads `le`, which `SoundFloatArithmetic` constrains
 in no way, and does not have to: `clampUnit` makes any value a legal slope. A caller with a
 better candidate passes it to `Layer.relu` instead.
+
+## Inputs
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* exact slope if the neuron is stable, the secant otherwise
 -/
 
 -- Authors:       Claude Opus 5.5

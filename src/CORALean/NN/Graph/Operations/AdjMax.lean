@@ -13,6 +13,13 @@ this is worth naming — its ball dominates the ball of every admissible `adjAt`
 so `adjMax` is the one graph `[1, §4.3]`'s subgraph reduction needs to be sized
 against, uniformly in `lam`.
 
+## Inputs
+* `A` – adjacency matrix
+* `U` – uncertain edges
+
+## Output
+* adjacency matrix with every uncertain edge at weight one
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

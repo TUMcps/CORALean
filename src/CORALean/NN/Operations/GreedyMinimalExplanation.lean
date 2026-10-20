@@ -14,6 +14,13 @@ formalized as a computation here. `greedyMinimalExplanation` instead takes
 that decision as an oracle `suff : Finset (Fin n) → Bool`, sound at any oracle
 shown correct at `IsSuffExplanation`, not only at one CORALean itself could certify.
 
+## Inputs
+* `n` – number of features
+* `suff` – sufficiency oracle
+
+## Output
+* feature set with every droppable feature removed
+
 ## References
 
 * [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining

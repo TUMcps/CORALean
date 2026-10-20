@@ -9,41 +9,23 @@ public import Mathlib.Tactic.NormNum
 /-!
 # `Layer.rootDfCora`: the derivative of `nnRootLayer` as CORA's code defines it
 
-`nn/layers/nonlinear/nnRootLayer.m` (l. 41-47):
+`nnRootLayer.m` (l. 41-47): `getDf(i) = @(x) 1/2 .* getDf(i-1)(x)`, so `getDf(1) = 1/2 * sqrt(x)`,
+where the derivative of `sqrt` is `1 / (2 * sqrt(x))` (`nnInvSqrtRootLayer` has it right). The
+constructor stores it as `obj.df`, which `computeApproxPoly` with `'singh'` and order 1 uses for the
+DeepZ band: `lambda = min(df(l), df(u))`, the line `lambda x + mu1` and the radius `mu2`. Read from
+the source, not run.
 
-```
-function df_i = getDf(obj, i)
-    if i == 0
-        df_i = obj.f;
-    else
-        df_i1 = obj.getDf(i-1);
-        df_i = @(x) 1 / 2 .* df_i1(x);
-```
+At `x = 4` the derivative of `sqrt` is `1/4` and CORA's `df` returns `1`. On `[1/4, 9]` the band
+`x/4 + 19/32` with radius `5/32` does not enclose `sqrt`: at `x = 4` the gap is `13/32 > 5/32`.
 
-so `getDf(1) = 1/2 * sqrt(x)`, where the derivative of `sqrt` is `1 / (2 * sqrt(x))`
-(`nnInvSqrtRootLayer.getDf` has it right). The `nnActivationLayer` constructor stores it as
-`obj.df`; `evaluateSensitivity`, `backpropNumeric`, `getDerBounds`, `taylor` coefficients and
-the tangent of `computeApproxPoly` use it. `computeApproxPoly` with `poly_method = 'singh'` and
-order 1 (`nnSShapeLayer` sets `monotonicity = 1`, the order defaults to 1) builds the DeepZ band
-from it (l. 75-82):
+## Inputs
+* none
 
-```
-lambda = min(obj.df(l), obj.df(u));
-mu1 = 0.5 * (obj.f(u) + obj.f(l) - lambda * (u + l));
-mu2 = 0.5 * (obj.f(u) - obj.f(l) - lambda * (u - l));
-coeffs = [lambda, mu1];  d = mu2;
-```
+## Hypotheses
+* none
 
-`coeffs` is the line `lambda x + mu1` and `d` the radius around it. Read from the source, not
-run.
-
-# CORA's `nnRootLayer` derivative is `sqrt(x) / 2`, and the `'singh'` band misses `sqrt`
-
-At `x = 4` the derivative of `sqrt` is `1/4` and CORA's `df` returns `1`. On `[1/4, 9]` the slope
-`lambda` is `min(1/4, 3/2) = 1/4`, but `sqrt` is concave with minimal slope `1/6` at `9`, so the
-line `x/4 + 19/32` with radius `mu2 = 5/32` does not enclose `sqrt`: at `x = 4` the gap is
-`2 - (1 + 19/32) = 13/32 > 5/32`. With the right `df` the slope is `1/6` and the band is sound.
-Read from the source, not run.
+## Conclusion
+* CORA's derivative is wrong at four and its band misses the square root
 -/
 
 -- Authors:       Claude Sonnet 5.5

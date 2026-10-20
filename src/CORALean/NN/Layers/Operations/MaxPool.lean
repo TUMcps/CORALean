@@ -22,6 +22,13 @@ carries over is the shape: an affine part through `mtimes` and a box for the res
 part is one input per window, the pivot, and the box is `[0, gap]`, a maximum never being below
 its arguments; `gap` is zero exactly when the pivot dominates the window, so a stable window is
 exact. `pivot` is precision and never soundness, as ReLU's slope is, so it may read `le`.
+
+## Inputs
+* `tap` – input index of every window position
+* `pivot` – position of the largest entry for each window
+
+## Output
+* layer taking the maximum of every window
 -/
 
 -- Authors:       Claude Opus 5.5

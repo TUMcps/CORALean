@@ -11,6 +11,16 @@ public import CORALean.NN.Graph.Operations.SumPoolLin
 `sumPoolLin_apply` is what ties the column sum back to [1]'s `1 H`, stated in
 that form so it can be read against the paper.
 
+## Inputs
+* `H` – node-feature matrix
+* `j` – feature index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the pooled feature is the product with the row of ones
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

@@ -9,6 +9,17 @@ public import CORALean.NN.Layers.Theorems.GroupSortChunkGroupSort
 
 Each chunk of `groupSort g x` is ascending, the comparison being the real order, which is
 transitive and total. Companion of `groupSort_perm`.
+
+## Inputs
+* `g` – group size
+* `x` – input vector
+* `k` – group index
+
+## Hypotheses
+* `hg` – group size is positive
+
+## Conclusion
+* each group of the result is ascending
 -/
 
 -- Authors:       Claude Opus 5.5

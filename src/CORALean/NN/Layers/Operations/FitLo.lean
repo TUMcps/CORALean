@@ -10,6 +10,18 @@ public import CORALean.NN.Layers.Operations.GridChecked
 
 The sampled bracket of `σ` minus the fit over one box, at the checked grid where it certifies
 and the fallback where it does not: a grid that fails its checks costs precision, not soundness.
+
+## Inputs
+* `E` – enclosure of the activation
+* `c` – fit coefficients for each box
+* `M` – derivative bound for each box
+* `dx` – grid spacing for each box
+* `p` – proposed sample grid for each box
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* lower end of the fit's error bracket
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -17,6 +17,14 @@ maximum: guard `x_{a+p} ≥ x_{a+q}` for every `q`, then the selection matrix `W
 `x_{a+p}`. The guard compares `x_{a+p}` with itself too, which the paper's Appendix A leaves out and
 which always holds; it is what a conjunction of `k + 1` atoms needs to be nonempty at `k = 0`.
 
+## Inputs
+* `a` – coordinates before the window
+* `k` – window size minus one
+* `b` – coordinates after the window
+
+## Output
+* CAT function replacing the window by its maximum
+
 ## References
 
 * [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:

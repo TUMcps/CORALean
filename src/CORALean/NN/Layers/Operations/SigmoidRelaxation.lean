@@ -13,6 +13,12 @@ public import CORALean.NN.Layers.Operations.SigmoidEnclosure
 The curvature relaxation where its bracket pays for itself, and the monotone one — slope zero,
 the output range — where it does not, both over `sigmoidEnclosure k`. `tanhRelaxation`
 transports this whole.
+
+## Inputs
+* `k` – reduction depth of the exponential
+
+## Output
+* curvature relaxation where it pays, the monotone one elsewhere
 -/
 
 -- Authors:       Claude Opus 5.5

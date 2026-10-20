@@ -13,6 +13,15 @@ by the do-while of l. 4-19 instead of by a query on `f`, so
 `greedyAbstractExplanation` is `greedyMinimalExplanation` at that composite
 oracle and inherits its correctness once the oracle is shown exact.
 
+## Inputs
+* `n` – number of features
+* `absSuff` – abstract sufficiency check at each level
+* `genuine` – genuine counterexample check at each level
+* `N` – number of refinements to spend
+
+## Output
+* explanation found by the abstraction-refinement search
+
 ## References
 
 * [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining

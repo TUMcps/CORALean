@@ -12,6 +12,14 @@ The one step every refinement rule here is an instance of: `refine`,
 `refineLayer` and `Schedule.refineWorstNeurons` each call this with a different
 `b`, so the rule that decides *which* orders move never has to touch a schedule
 directly.
+
+## Inputs
+* `sch` – schedule of order patterns
+* `l` – layer index
+* `b` – raise for each neuron
+
+## Output
+* schedule with the layer's orders raised neuron by neuron
 -/
 
 -- Authors:       Claude Opus 5

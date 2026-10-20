@@ -10,6 +10,15 @@ public import CORALean.NN.Operations.SmoothNetworkEval
 CORA's conversion adds `offset` and drops `scale`, though the layer's own `evaluateNumeric` is
 `scale .* input + offset`: for `scale = 2`, `offset = 0` it answers `x` where the layer computes
 `2 x`, so `func(x,0) = evaluate(net,x)`, which CORA states, fails.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the layer computes a different function than CORA's conversion
 -/
 
 -- Authors:       Claude Sonnet 5.5

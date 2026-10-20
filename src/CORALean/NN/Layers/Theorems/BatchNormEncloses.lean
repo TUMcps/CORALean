@@ -12,6 +12,17 @@ public import CORALean.NN.Layers.Theorems.LinearEncloses
 
 The affine map the stored scale and shift denote, coordinate by coordinate: the diagonal the
 layer places reads back as `Matrix.diagonal` of the scales, `toReal_diagonalBlock`.
+
+## Inputs
+* `chan` – channel of every neuron
+* `scale` – scale of every channel
+* `shift` – shift of every channel
+
+## Hypotheses
+* none
+
+## Conclusion
+* the layer encloses the scaling and shifting map
 -/
 
 -- Authors:       Claude Opus 5.5

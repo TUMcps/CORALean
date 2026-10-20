@@ -8,6 +8,15 @@ public import CORALean.NN.Layers.Operations.AllOver
 # A passed conjunction passes at every index
 
 By induction on the length, the head and then the tail.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a passed conjunction passes at every index
 -/
 
 -- Authors:       Claude Opus 5.5

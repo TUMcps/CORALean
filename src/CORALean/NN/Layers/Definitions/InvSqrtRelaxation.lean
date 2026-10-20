@@ -12,13 +12,16 @@ public import CORALean.NN.Layers.Operations.RelaxationTighter
 [1, Lemma 2] fits one affine `p` and computes `max |f - p|` exactly at its critical points; a
 relaxation asks only for a *sound* error at any slope, so that fit is one a caller may supply, and
 this is the instance provided. Two relaxations, neither dominating: the range,
-`Relaxation.ofAntitone` at `invSqrt` itself, and the derivative bracket from `1 ≤ l` up — not merely
-from `1 < l`, since at `l = 1` the kink sits at the box's left end, where the bracket asks only for
-continuity, and a node whose only fixed edge is its self-loop has degree exactly `1`. On `[1,5]` the
-bracket errs by 0.91 against the range's 0.28; on a narrow box it wins, and `tighter` takes the
-smaller.
-A specification: a graph network's layers are ℝ-only, the polynomial zonotope they run on
+`Relaxation.ofAntitone` at `invSqrt` itself, and the derivative bracket from `1 ≤ l` up. On `[1,5]`
+the bracket errs by 0.91 against the range's 0.28; on a narrow box it wins, and `tighter` takes the
+smaller. A specification: a graph network's layers are ℝ-only, the polynomial zonotope they run on
 being the exact one.
+
+## Inputs
+* none
+
+## Output
+* relaxation of the inverse square root on antitonicity alone
 
 ## References
 

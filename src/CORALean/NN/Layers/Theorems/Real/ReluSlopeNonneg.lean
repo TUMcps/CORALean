@@ -11,6 +11,16 @@ public import CORALean.NN.Layers.Operations.ReluSlope
 ℝ-only: the secant branch is reached only when `u ≤ 0` has been ruled out, which at ℝ the
 exact order decides, and a machine `le` answering `false` rules out nothing. Elsewhere
 `clampUnit` makes a slope legal instead, so no layer depends on this.
+
+## Inputs
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the default ReLU slope is nonnegative
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,19 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 The shape every slope-zero relaxation takes: the value lies between two stored ends, the
 offset is whatever was stored, and the error is the larger distance to either end, each rounded
 up. The offset is never rounded in a particular direction, since the error is measured from it.
+
+## Inputs
+* `lo` – lower end of the bracket
+* `hi` – upper end of the bracket
+* `c` – chosen offset
+* `y` – real number in the bracket
+
+## Hypotheses
+* `h1` – number is above the lower end
+* `h2` – number is below the upper end
+
+## Conclusion
+* the number is within the larger rounded-up distance to the ends of the offset
 -/
 
 -- Authors:       Claude Opus 5.5

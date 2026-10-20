@@ -10,20 +10,28 @@ public import CORALean.NN.Graph.Theorems.GcnSharedPoint
 /-!
 # The chain is exactly what it computes
 
-Induction on the number of steps, `gcnShared_exact` at the last one: the set the
-chain returns is exactly the image of the admissible factor box under the
-iteration `evalSteps`, so `L` steps at one uncertain graph cost nothing beyond
-the enclosure of the graph itself.
+Induction on the number of steps, `gcnShared_exact` at the last one: the set the chain returns is
+exactly the image of the admissible factor box under the iteration `evalSteps`, so `L` steps at one
+uncertain graph cost nothing beyond the enclosure of the graph itself.
 
-Stated at `L + 1` steps rather than at `L`, because at `L = 0` the chain is `H`
-unchanged and the claim is false there whenever `H` has an independent block:
-the image is then `H.point '' box`, which is `H.construct` less that block.
-`H.q = 0` would repair it and is still not the hypothesis to take — it rules out
-exactly the feature sets the layer is written for, while every set the chain
-itself produces has `q = 0` anyway, `bilin` leaving nothing independent.
+Stated at `L + 1` steps, because at `L = 0` the chain is `H` unchanged and the claim is false there
+whenever `H` has an independent block. `H.q = 0` would repair it but rules out the feature sets the
+layer is written for, while every set the chain produces has `q = 0`. That `bilin` drops `H`'s
+independent block is also why the statement reads over `H.point`.
 
-That `bilin` drops `H`'s independent block is also why the statement reads over
-`H.point` rather than over `H.construct`, as `gcnUncertain_exact` does.
+## Inputs
+* `N` – number of nodes
+* `F` – feature width
+* `P` – polynomial zonotope of the graph
+* `L` – number of steps minus one
+* `W` – weights of the steps
+* `H` – polynomial zonotope of the node features
+
+## Hypotheses
+* `hp` – both sets share their factors
+
+## Conclusion
+* the chain is exactly the image of the admissible factor box under the iteration
 -/
 
 -- Authors:       Claude Opus 5

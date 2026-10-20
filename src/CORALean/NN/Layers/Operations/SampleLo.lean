@@ -9,6 +9,14 @@ public import CORALean.Global.Float.FloatOps
 
 CORA's `nnHelper/minMaxDiffOrder` with every step rounded outward: the least sampled value,
 dropped by the Lipschitz slack `M · dx` rounded *up*, the one place the bound rounds.
+
+## Inputs
+* `gLo` – lower bounds at the sample points
+* `M` – derivative bound
+* `dx` – grid spacing
+
+## Output
+* smallest sampled bound lowered by the slack
 -/
 
 -- Authors:       Claude Opus 5.5

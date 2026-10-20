@@ -12,6 +12,20 @@ A `true` from `verifySplit` at any depth gives the specification on the network'
 image: `Sound.verifySplit_sound` at `sound_eval`. The checker is the specification's own,
 so the splitter's `hcov` is the one proof left to the caller, and `false` says only that
 this budget did not verify.
+
+## Inputs
+* `nn` – network
+* `spec` – specification
+* `splitter` – splits an input set into two halves
+* `d` – depth budget
+* `X` – input set
+
+## Hypotheses
+* `hcov` – the halves cover the set
+* `hverify` – the splitting verifies the specification
+
+## Conclusion
+* the specification holds on the network's image of the input set
 -/
 
 -- Authors:       Claude Opus 5

@@ -14,6 +14,15 @@ public import CORALean.NN.Layers.Theorems.TighterSound
 
 ℝ-only, the relaxation being built at `σ` itself: the generic constructors' soundness at the
 exact enclosure and the exact bracket, the clamped secant landing in the bracket by `max`/`min`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the relaxation is sound for the sigmoid
 -/
 
 -- Authors:       Claude Opus 5.5

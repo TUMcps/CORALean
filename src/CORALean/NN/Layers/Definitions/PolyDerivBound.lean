@@ -13,6 +13,13 @@ derivative's constant term, which no box widens — by a radius, every other mon
 of the box furthest from zero and every sign taken against itself; `polyDerivDiff` is that
 bracket against one for `σ'`, at the worse end. A center and a radius keep order 1 exact: the
 radius is zero there, and the bracket is the one `Relaxation.ofDeriv` works with.
+
+## Inputs
+* `n` – polynomial degree
+* `c` – coefficients of the fit
+
+## Output
+* the fit's linear coefficient
 -/
 
 -- Authors:       Claude Opus 5.5

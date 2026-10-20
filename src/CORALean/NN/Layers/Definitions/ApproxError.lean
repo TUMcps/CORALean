@@ -13,6 +13,15 @@ p(x)` and `e_up = max_{x ∈ [l,u]} ϕ(x) - p(x)`, so that `ϕ([l,u]) ⊆ p(x) �
 as the infimum and the supremum, which are the minimum and maximum for a continuous `ϕ` and `p`
 and `l ≤ u`; `p` is any function here.
 
+## Inputs
+* `ϕ` – activation function
+* `p` – approximating line
+* `l` – lower end of the interval
+* `u` – upper end of the interval
+
+## Output
+* smallest difference between the function and the line on the interval
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

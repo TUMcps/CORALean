@@ -10,6 +10,15 @@ public import CORALean.NN.Layers.Operations.TapEntry
 The recursion runs off the end of the kernel without matching, and returns the stored `zero`.
 This is what makes the first tap's weight vanish from the rest of a row when the taps are
 injective.
+
+## Inputs
+* `n` – number of inputs
+
+## Hypotheses
+* none
+
+## Conclusion
+* an input no tap reads gets weight zero
 -/
 
 -- Authors:       Claude Opus 5.5

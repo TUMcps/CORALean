@@ -11,6 +11,15 @@ public import CORALean.NN.Graph.Operations.SumPoolLin
 [1, Def. 5]'s condition at Eq. (1)'s aggregation, the sum across the nodes: a permutation of
 the rows reindexes each feature's sum and leaves it unchanged.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* summation pooling is a permutation-invariant aggregation
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

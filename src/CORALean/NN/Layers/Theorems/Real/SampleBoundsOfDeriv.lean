@@ -13,6 +13,25 @@ public import Mathlib.Topology.Algebra.Module.ModuleTopology
 
 ℝ-only, the grid and the range being exact: the mean value theorem between a point and the
 sample nearest it. Sound at every `N`, and tighter as `N` grows.
+
+## Inputs
+* `g` – function
+* `g'` – its derivative
+* `M` – bound on the derivative
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `t` – point in the box
+* `N` – number of sample intervals
+
+## Hypotheses
+* `hd` – the function has the given derivative
+* `hM` – derivative is bounded on the box
+* `hN` – number of intervals is positive
+* `hl` – point is above the lower end
+* `hu` – point is below the upper end
+
+## Conclusion
+* the function at the point lies within the sampled range widened by the slack
 -/
 
 -- Authors:       Claude Opus 5.5

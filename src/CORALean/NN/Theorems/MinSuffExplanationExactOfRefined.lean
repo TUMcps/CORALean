@@ -9,15 +9,28 @@ public import CORALean.NN.Theorems.SuffExplanationExactOfRefined
 /-!
 # Minimality transfers from a refinement to the coarser network
 
-[1, Prop. 4] beside `MinSuffExplanationAbstractOfRefined.lean`, stated against
-the containment [1, Prop. 2] actually asks for: a droppable feature at `nnAbs`
-would be droppable at `nnRef` too.
+[1, Prop. 4] beside `MinSuffExplanationAbstractOfRefined.lean`, stated against the containment [1,
+Prop. 2] actually asks for: a droppable feature at `nnAbs` would be droppable at `nnRef` too.
+Transfer runs from the abstract predicate into the exact one, so the refinement's minimality has to
+negate the exact predicate: `hmin` is `IsMinSuffExplanationExact` and not
+`IsMinSuffExplanationAbstract`, which would leave `hmin.2` and the transferred sufficiency in
+different predicates with the implication between them pointing the wrong way.
 
-Transfer runs from the abstract predicate into the exact one, so the
-refinement's minimality has to negate the exact predicate — `hmin` is
-`IsMinSuffExplanationExact` and not `IsMinSuffExplanationAbstract`, which would
-leave `hmin.2` and the transferred sufficiency in different predicates with the
-implication between them pointing the wrong way.
+## Inputs
+* `nnAbs` – coarser abstract network
+* `f` – network function
+* `x` – input point
+* `ε` – perturbation radius
+* `E` – explanation, a feature set
+* `l` – target label
+
+## Hypotheses
+* `hrefine` – the exact image lies in the coarser enclosure
+* `hsuffAbs` – the explanation is abstractly sufficient for the coarser network
+* `hmin` – the explanation is exactly minimal
+
+## Conclusion
+* the explanation is minimal for the coarser network
 
 ## References
 

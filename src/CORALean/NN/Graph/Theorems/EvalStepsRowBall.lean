@@ -15,6 +15,26 @@ the image feeds a masked entry, and the masked and unmasked matrices agree on
 does the rest — no second induction, since restricting is now a corollary of
 masking rather than a fact proved from scratch.
 
+## Inputs
+* `N` – number of nodes
+* `K` – number of kept nodes
+* `F` – feature width
+* `A` – adjacency matrix
+* `v` – node of interest
+* `L` – number of steps
+* `κ` – indices of the kept nodes
+* `W` – weights of the steps
+* `X` – node-feature matrix
+* `k₀` – index of the node of interest among the kept ones
+
+## Hypotheses
+* `hinj` – kept indices are distinct
+* `hκ` – kept nodes are exactly the ball
+* `hk₀` – index names the node of interest
+
+## Conclusion
+* the node's row of the full chain equals its row on the subgraph
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

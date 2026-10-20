@@ -8,32 +8,24 @@ public import Mathlib.Analysis.SpecialFunctions.Exp
 /-!
 # `Layer.expMinMaxDiffOrderCora`: the error bound of `nnExpLayer` as CORA's code runs
 
-`nnHelper.minMaxDiffOrder` (the error bound of every activation layer without a `monotonicity`)
-asks the layer for the bounds of its derivative with two outputs,
+`nnHelper.minMaxDiffOrder` asks the layer for the bounds of its derivative with two outputs,
+`[der1l,der1u] = layer.getDerBounds(l, u)`, while `nnExpLayer.getDerBounds` is declared with one
+output, `der1 = interval(exp(l), exp(u))`, so MATLAB stops with `Too many output arguments`.
+`nnExpLayer` sets no `monotonicity`, so the other branch is not taken. Reached by
+`nnExpLayer().evaluate(zonotope(0,1))`; `none` is the MATLAB error. Read from the source, not run.
 
-```
-[der1l,der1u] = layer.getDerBounds(l, u);
-```
+For `l < u` the derivative is enclosed by `[exp l, exp u]`, but the caller expects two return values
+and gets one: the exponential layer's error bound is never computed.
 
-(the abstract method of `nnActivationLayer` is `[df_l,df_u] = getDerBounds(obj, l, u)`), while
-`nnExpLayer.getDerBounds` is declared with one output,
+## Inputs
+* `l` – lower end of the interval
+* `u` – upper end of the interval
 
-```
-function der1 = getDerBounds(obj, l, u)
-    der1 = interval(exp(l), exp(u));
-```
+## Hypotheses
+* none
 
-so MATLAB stops with `Too many output arguments`. `nnExpLayer` sets no `monotonicity`, and the
-other branch of `minMaxDiffOrder` is not taken. Reached by `nnExpLayer().evaluate(zonotope(0,1))`
-(`computeApproxPoly` with `'regression'`, the default, or `'bounds'`, the training default;
-`'singh'` computes `d` itself and does not get there). `none` is the MATLAB error. Read from the
-source, not run.
-
-# CORA's `nnExpLayer` stops on every interval of positive width
-
-For `l < u` the derivative `exp` of `exp` is enclosed by `[exp l, exp u]`, which is what
-`getDerBounds` computes, but the caller expects two return values and gets one: the error
-bound of the exponential layer is never computed. Read from the source, not run.
+## Conclusion
+* the error bound is an error while the derivative bounds enclose the derivative
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -9,6 +9,15 @@ public import CORALean.NN.Layers.Theorems.Real.PolyRelaxationFamilySound
 # The sigmoid family is sound
 
 ℝ-only, as the family is: every level a sampled relaxation of the sigmoid.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the family is sound for the sigmoid
 -/
 
 -- Authors:       Claude Opus 5.5

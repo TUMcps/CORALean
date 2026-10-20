@@ -14,6 +14,15 @@ public import CORALean.NN.Layers.Operations.SigmoidEnclosure
 `ofSampling` at the sigmoid: `sigmoidEnclosure` is `σ` at a stored value, the derivative bracket
 turns into the `M` the sampling bound asks for, and the fit `c` and grid `p`, `dx` stay free —
 any array of stored values is a fit, and a grid that fails its check costs precision only.
+
+## Inputs
+* `k` – reduction depth of the exponential
+* `c` – fit coefficients for each box
+* `dx` – grid spacing for each box
+* `p` – proposed sample grid for each box
+
+## Output
+* polynomial relaxation of the sigmoid from the fit and its checked grid
 -/
 
 -- Authors:       Claude Opus 5.5

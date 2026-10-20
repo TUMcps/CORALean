@@ -17,6 +17,15 @@ public import CORALean.NN.Layers.Operations.RelaxationBox
 
 The relaxation's slope read over node `j`'s own degree interval
 `[degree, degreeSup]`, the box its uncertain degree is known to sit in.
+
+## Inputs
+* `R` – relaxation of the inverse square root
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `j` – node
+
+## Output
+* slope of the relaxation over the node's degree interval
 -/
 
 -- Authors:       Claude Sonnet 5

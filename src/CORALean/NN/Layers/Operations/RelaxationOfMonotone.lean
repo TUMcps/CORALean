@@ -12,6 +12,12 @@ Nothing but monotonicity: the function's range over the box, carrying no slope. 
 slope zero, the range of `σ t - λ t` only widening as `λ` moves away from zero. It needs the
 endpoint values handed to it, `FloatOps` having no transcendental function; the offset is the
 enclosure's midpoint and the error the larger distance to either end, rounded up.
+
+## Inputs
+* `E` – enclosure of the monotone function
+
+## Output
+* relaxation by the function's range at slope zero
 -/
 
 -- Authors:       Claude Opus 5.5

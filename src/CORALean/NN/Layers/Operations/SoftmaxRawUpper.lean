@@ -9,6 +9,14 @@ public import CORALean.NN.Layers.Operations.SoftmaxDenomDown
 
 An underestimated denominator, so the quotient is an overestimate — the one direction
 available without a hypothesis on the exponential's argument.
+
+## Inputs
+* `k` – reduction depth of the exponential
+* `I` – box of the layer's input
+* `i` – output coordinate
+
+## Output
+* raw upper bound of the coordinate's softmax
 -/
 
 -- Authors:       Claude Opus 5.5

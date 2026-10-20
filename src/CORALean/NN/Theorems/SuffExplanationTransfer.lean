@@ -10,17 +10,27 @@ public import CORALean.Specification.Theorems.HoldsOfOuter
 /-!
 # Transfer: sufficient for the abstract network is sufficient for the original
 
-[1, Prop. 1]: a sufficient explanation of `nnAbs` is one of `nn`, given that
-`nnAbs`'s enclosed enclosure of `explainBox` contains `nn`'s exact image there.
-The hypothesis `hcontain` is what an abstraction owes.
+[1, Prop. 1]: a sufficient explanation of `nnAbs` is one of `nn`, given that `nnAbs`'s enclosure of
+`explainBox` contains `nn`'s exact image there. The hypothesis `hcontain` is what an abstraction
+owes. `SuffExplanationOfNeuronMerging.lean` and `SuffExplanationOfEnclose.lean` are the two
+corollaries the refinement loop [1, Alg. 2] actually visits, each public and neither the other's
+helper. `hcontain` and `hsuffAbs` compose to `IsSuffExplanationExact`, which is all `holds_of_outer`
+gives; `suffExplanation_of_exact` reads that back as the pointwise definition.
 
-`SuffExplanationOfNeuronMerging.lean` and `SuffExplanationOfEnclose.lean` are
-the two corollaries the refinement loop [1, Alg. 2] actually visits, each
-genuinely public and neither the other's helper, so each earns its own file.
+## Inputs
+* `f` – network function
+* `nnAbs` – abstract network
+* `x` – input point
+* `ε` – perturbation radius
+* `E` – explanation, a feature set
+* `l` – target label
 
-`hcontain` and `hsuffAbs` compose to `IsSuffExplanationExact`, which is all
-`holds_of_outer` gives; `suffExplanation_of_exact` is the second half, reading
-that back as the pointwise definition.
+## Hypotheses
+* `hcontain` – the abstract enclosure contains the exact image
+* `hsuffAbs` – the explanation is abstractly sufficient
+
+## Conclusion
+* the explanation is sufficient for the network function
 
 ## References
 

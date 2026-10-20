@@ -12,6 +12,14 @@ polynomial from `u`, moving `l` and `u` inward. The loop ends when `u ≤ l` is 
 `le`; CORA's `l == u` break after the left polynomial is the same test. `fuel` bounds the outer
 loop and each inner halving, `none` being `CORA:notConverged` or running out of it. The
 regions come back in the order found, not sorted by `l` as CORA's last line does.
+
+## Inputs
+* `F` – polynomial relaxations by order
+* `order` – polynomial order
+* `tol` – error tolerance
+
+## Output
+* regions found between the two ends, added to the accumulator
 -/
 
 -- Authors:       Claude Sonnet 5.5

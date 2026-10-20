@@ -8,6 +8,17 @@ public import CORALean.NN.Graph.Operations.SupportFloat
 # A nonzero entry is on the float support
 If the stored entry reads as a nonzero real, `GNN.support` holds there: `le` answers `true` only
 when sure, so both directions cannot be certified.
+
+## Inputs
+* `A` – float adjacency matrix
+* `i` – row node
+* `j` – column node
+
+## Hypotheses
+* `h` – the entry reads as a nonzero real
+
+## Conclusion
+* the entry lies on the float support
 -/
 
 -- Authors:       Claude Opus 5.5

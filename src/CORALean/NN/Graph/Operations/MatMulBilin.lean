@@ -10,6 +10,14 @@ public import CORALean.ContSet.ContSet.ContSet
 `[1, Lemma 1]`'s bilinearity of `X, Y ↦ X * Y`, packaged as a `LinearMap.mk₂` so
 `PolyZonotope.bilin` can be applied at it.
 
+## Inputs
+* `N` – number of rows of the left factor
+* `F₁` – shared inner dimension
+* `F₂` – number of columns of the right factor
+
+## Output
+* matrix multiplication as a bilinear map
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

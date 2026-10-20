@@ -14,6 +14,26 @@ sigmoid's shape: `f'` then stays above its smaller end value on the box, so `f -
 fall there, and its values at the two ends bound it. The paper's footnote prints the opposite
 curvature; `deepZSShape_cube_not_sound` is what that gives.
 
+## Inputs
+* `f` – activation function
+* `df` – its derivative
+* `x'` – turning point of the derivative
+* `lam` – slope of the band
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `t` – point in the box
+
+## Hypotheses
+* `hd` – the activation has the given derivative
+* `hmono` – derivative rises up to the turning point
+* `hanti` – derivative falls after the turning point
+* `hlam` – slope is at most the smaller end derivative
+* `hl` – point is above the lower end
+* `hu` – point is below the upper end
+
+## Conclusion
+* the activation at the point lies between the band's two lines
+
 ## References
 
 * [1] G. Singh, T. Gehr, M. Mirman, M. Püschel and M. Vechev. "Fast and Effective Robustness

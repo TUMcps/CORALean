@@ -13,6 +13,12 @@ above, so `x ↦ x^(-1/2)` is only ever evaluated there — which makes `invSqrt
 at `1`, and the clamp costs nothing exactly because `1` is the bound already guaranteed. What a
 graph network's normalisation means, over ℝ; `InvSqrtRelaxation` encloses it.
 
+## Inputs
+* `x` – real number to transform
+
+## Output
+* inverse square root of the argument, clamped below at one
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

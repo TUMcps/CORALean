@@ -8,15 +8,30 @@ public import CORALean.NN.Graph.Theorems.SubmatrixMulOfClosed
 /-!
 # A closed subgraph computes the same chain, not an enclosure of it
 
-`[1, §4.3]`'s payoff over `submatrix_mul_of_closed`: running `L` message-passing steps on
-the whole graph and then restricting to the subgraph gives *the same matrix* as restricting
-first and running the steps on the subgraph alone. Not an outer approximation of it — an
-equality — because at every step `hclosed` says the rest of the graph contributes nothing
-that restricting would have to bound.
+`[1, §4.3]`'s payoff over `submatrix_mul_of_closed`: running `L` message-passing steps on the whole
+graph and then restricting to the subgraph gives *the same matrix* as restricting first. An
+equality, not an outer approximation, because at every step `hclosed` says the rest of the graph
+contributes nothing.
 
-`aux_submatrix_mul_right` is the other half a step needs beside `submatrix_mul_of_closed`:
-multiplying by a weight `W` on the right never mixes rows, so restricting rows commutes with
-it for free, unlike restricting through `P` on the left.
+`aux_submatrix_mul_right` is the other half a step needs: multiplying by a weight `W` on the right
+never mixes rows, so restricting rows commutes with it for free.
+
+## Inputs
+* `N` – number of nodes
+* `K` – number of kept nodes
+* `F` – feature width
+* `Pm` – message-passing matrix
+* `κ` – indices of the kept nodes
+* `L` – number of steps
+* `W` – weights of the steps
+* `X` – node-feature matrix
+
+## Hypotheses
+* `hinj` – kept indices are distinct
+* `hclosed` – the kept nodes receive nothing from outside
+
+## Conclusion
+* the chain on the whole graph restricted to the subgraph equals the chain on the subgraph
 
 ## References
 

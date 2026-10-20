@@ -15,6 +15,21 @@ buckets can be merged "in parallel" — the combined error either bucket
 computation gives is the same one, so nothing about processing them together
 versus one at a time has to be reconciled.
 
+## Inputs
+* `m` – output width
+* `r` – number of merged neurons
+* `r₁` – size of the first sub-bucket
+* `r₂` – size of the second sub-bucket
+* `part` – split of the bucket into two sub-buckets
+* `M` – weight matrix
+* `Y` – bounds of the merged neurons
+
+## Hypotheses
+* none
+
+## Conclusion
+* the bucket's error box is the sum of the sub-buckets' error boxes
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

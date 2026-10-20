@@ -15,6 +15,12 @@ coefficients `[λl, λu]`, `[μl, μu]` the paper rounds to are left out, the tr
 into the error instead (the departures table of `references/coverage/README.md`); at ℝ they are the
 point values.
 
+## Inputs
+* none
+
+## Output
+* relaxation of ReLU with DeepZ's slope, offset and error
+
 ## References
 
 * [1] G. Singh, T. Gehr, M. Mirman, M. Püschel and M. Vechev. "Fast and Effective Robustness

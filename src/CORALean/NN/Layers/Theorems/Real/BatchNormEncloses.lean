@@ -14,6 +14,20 @@ floats verifies the network its folded numbers describe, which `Layer.batchNorm_
 
 At the scale and shift `Real.batchNormScale`/`Real.batchNormShift` fold from the statistics, the
 layer encloses CORA's inference-time formula `γ (x - μ) / √(σ² + ε) + β` per channel.
+
+## Inputs
+* `chan` – channel of every neuron
+* `gamma` – learned scale
+* `beta` – learned shift
+* `mean` – running mean
+* `var` – running variance
+* `eps` – numerical stabiliser
+
+## Hypotheses
+* none
+
+## Conclusion
+* the layer encloses batch normalization with the folded statistics
 -/
 
 -- Authors:       Claude Opus 5.5

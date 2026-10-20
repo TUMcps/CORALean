@@ -8,6 +8,12 @@ public import CORALean.NN.Definitions.WeightAcc
 # The layer an accumulator is flushed as
 
 CORA's `aux_getLinearLayer`: the identity layer when nothing was fused, the linear layer otherwise.
+
+## Inputs
+* none
+
+## Output
+* the layer emitted for the accumulated map
 -/
 
 -- Authors:       Claude Opus 5.5

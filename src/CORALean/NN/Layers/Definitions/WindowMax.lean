@@ -11,6 +11,13 @@ public import Mathlib.Data.Real.Basic
 What max pooling computes, over ℝ: a supremum, which is what the layer encloses and never
 what it runs. `k + 1` in the type is what says a pooling window is nonempty, which is what makes
 a maximum exist at all.
+
+## Inputs
+* `k` – window size minus one
+* `f` – coordinates of the window
+
+## Output
+* largest coordinate of the window
 -/
 
 -- Authors:       Claude Opus 5.5

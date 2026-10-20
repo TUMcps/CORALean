@@ -16,6 +16,20 @@ The reduction behind [1, Prop. 10] for a differentiable activation `ϕ` with der
 where `ϕ'(x) = m`, the derivative of the difference vanishing at an interior extremum (Fermat).
 For `tanh` and the logistic function, `ϕ' = m` is then solved for the points of `P_ϕ`.
 
+## Inputs
+* `ϕ` – activation function
+* `ϕ'` – its derivative
+* `m` – slope of the line
+* `l` – lower end of the interval
+* `u` – upper end of the interval
+
+## Hypotheses
+* `hd` – the function has the given derivative
+* `hlu` – interval is ordered
+
+## Conclusion
+* both extremes of the function minus the line sit at an end or where the slope is m
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

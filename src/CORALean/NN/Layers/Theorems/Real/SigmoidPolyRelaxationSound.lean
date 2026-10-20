@@ -14,6 +14,17 @@ public import CORALean.NN.Layers.Theorems.Real.SigmoidDerivLoLe
 
 ℝ-only, the sampling and the bracket being exact: the sigmoid's bracket bounds `σ'`, so the two
 brackets subtracted bound what `ofSampling` asks about.
+
+## Inputs
+* `n` – polynomial degree
+* `c` – fit coefficients for each interval
+* `N` – sample count for each interval
+
+## Hypotheses
+* `hN` – sample counts are positive
+
+## Conclusion
+* the polynomial relaxation is sound for the sigmoid
 -/
 
 -- Authors:       Claude Opus 5.5

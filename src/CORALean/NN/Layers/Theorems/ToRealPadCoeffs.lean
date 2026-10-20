@@ -10,6 +10,17 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 # Padded coefficients read back as the exact padding
 
 The padded slot is the only one that moves, and `zero` reads as `0`.
+
+## Inputs
+* `c` – stored coefficients
+* `M` – higher degree
+* `j` – coefficient index
+
+## Hypotheses
+* none
+
+## Conclusion
+* padded coefficients read back as the real padding
 -/
 
 -- Authors:       Claude Opus 5.5

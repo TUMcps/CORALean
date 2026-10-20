@@ -13,6 +13,21 @@ public import CORALean.NN.Graph.Theorems.MemBallEnumIff
 `evalStepsLayers_row_ball` at `ballEnum`, the `κ` built once: its injectivity, its image the
 ball, and `ballEnumIdx` the place of `v` in it leave no hypothesis to discharge.
 
+## Inputs
+* `N` – number of nodes
+* `F` – feature width
+* `A` – adjacency matrix
+* `v` – node of interest
+* `L` – number of steps
+* `g` – per-node layers
+* `X` – node-feature matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the node's row of the full chain equals its row on the enumerated ball
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

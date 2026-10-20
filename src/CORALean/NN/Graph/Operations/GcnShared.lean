@@ -15,6 +15,17 @@ public import CORALean.NN.Graph.Operations.MatMulBilin
 `W`. That is the primitive, because a later step must reuse the edge factors
 it was handed rather than fresh ones.
 
+## Inputs
+* `W` – weight matrix
+* `P` – polynomial zonotope of the graph
+* `H` – polynomial zonotope of the node features
+
+## Hypotheses
+* `hp` – both sets share their factors
+
+## Output
+* polynomial zonotope of the convolution without padding
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

@@ -9,6 +9,15 @@ public import CORALean.NN.Layers.Theorems.Real.EvalPolyOne
 # An order-1 polynomial relaxation is sound as an affine one
 
 The same inequality, read back through `evalPoly_one`.
+
+## Inputs
+* `P` – order-one polynomial relaxation
+
+## Hypotheses
+* `hP` – relaxation is sound for the activation
+
+## Conclusion
+* the affine reading of the relaxation is sound for the activation
 -/
 
 -- Authors:       Claude Opus 5.5

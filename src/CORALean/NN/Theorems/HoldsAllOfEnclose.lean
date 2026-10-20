@@ -10,6 +10,17 @@ public import CORALean.NN.Theorems.EnclosesHoldsAllOfEnclose
 
 `holds_of_enclose` for `Specification.HoldsAll`: every specification of the list verified on
 the enclosed set holds of the network's own image, with no hypothesis.
+
+## Inputs
+* `nn` – network
+* `X` – input set
+* `specs` – list of specifications
+
+## Hypotheses
+* `h` – all specifications hold on the enclosed set
+
+## Conclusion
+* all specifications hold on the image of the input set
 -/
 
 -- Authors:       Claude Opus 5

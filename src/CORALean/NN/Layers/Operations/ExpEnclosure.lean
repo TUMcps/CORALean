@@ -11,6 +11,12 @@ public import CORALean.Global.Float.Exp
 `Float.expDown` below, `Float.expUp` above, at reduction depth `k`. `expUp` bounds `exp a` only
 for `a ≤ 2ⁿ/2`, so unlike the sigmoid, which gets both ends from `expDown`, the enclosure is not
 total: `expRelaxation_sound` asks of a box that its right end is under that bound.
+
+## Inputs
+* `k` – reduction depth
+
+## Output
+* enclosure of the exponential from the rounded bounds
 -/
 
 -- Authors:       Claude Opus 5.5

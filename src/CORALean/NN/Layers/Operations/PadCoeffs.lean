@@ -10,6 +10,13 @@ public import CORALean.Global.Float.FloatOps
 `zero` for every coefficient the original does not have: exact, so a neuron below the layer's
 maximum order pays nothing for the neurons above it. A `dite` on the index rather than a
 `Fin.castLE`, which maps the smaller index type and so runs the wrong way.
+
+## Inputs
+* `c` – stored coefficients
+* `M` – higher degree
+
+## Output
+* coefficients extended by zeros to the higher degree
 -/
 
 -- Authors:       Claude Opus 5.5

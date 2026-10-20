@@ -11,6 +11,17 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 
 Read as reals it is the exact recentering, at whatever the rounded sum actually moved the
 constant coefficient by.
+
+## Inputs
+* `c` – stored coefficients
+* `s` – shift
+* `t` – evaluation point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the shifted polynomial differs by the shift as stored
 -/
 
 -- Authors:       Claude Opus 5.5

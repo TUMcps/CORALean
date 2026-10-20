@@ -15,6 +15,18 @@ does too.
 
 Some schedule is inside any inflation of the exact image, which with
 `encloseAt_outer` squeezes the enclosure onto it.
+
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+* `X` – input polynomial zonotope
+* `ε` – inflation radius
+
+## Hypotheses
+* `hε` – radius is positive
+
+## Conclusion
+* some schedule encloses the output inside the exact image inflated by the radius
 -/
 
 -- Authors:       Claude Opus 5

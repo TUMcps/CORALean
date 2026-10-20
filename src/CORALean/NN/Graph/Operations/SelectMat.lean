@@ -11,6 +11,13 @@ public import CORALean.Global.ExactScalar
 which every float format holds exactly, so it reads back as the real selection matrix
 (`selectMat_toReal`).
 
+## Inputs
+* `𝕋` – scalar type
+* `κ` – indices of the selected nodes
+
+## Output
+* rows of the identity matrix for the selected nodes
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

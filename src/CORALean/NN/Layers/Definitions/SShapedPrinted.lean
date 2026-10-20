@@ -12,6 +12,12 @@ with `f''(x) ≤ 0 ⇔ x ≤ x'`. That makes `f` concave left of `x'` and convex
 reverse of the sigmoid, which is convex left of `0`; `x ↦ x³` is S-shaped by this definition.
 Stated with `deriv`, the functions being smooth.
 
+## Inputs
+* `f` – activation function
+
+## Output
+* the function has the S-shape the printed footnote asks for
+
 ## References
 
 * [1] G. Singh, T. Gehr, M. Mirman, M. Püschel and M. Vechev. "Fast and Effective Robustness

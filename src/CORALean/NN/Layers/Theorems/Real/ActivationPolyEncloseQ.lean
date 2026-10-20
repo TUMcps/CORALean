@@ -26,6 +26,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.Basic
 ℝ-only, as the layer is: `dependent` empties the input's own independent generators before the
 fit runs, and the residual box lands in `Interval.polyZonotope`, which is all dependent too, so
 the generator count below is the *whole* count.
+
+## Inputs
+* `P` – relaxation of every neuron
+* `s` – input polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the output has no independent generators
 -/
 
 -- Authors:       Claude Opus 5.5

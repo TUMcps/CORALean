@@ -10,6 +10,16 @@ public import CORALean.NN.Layers.Operations.SampleLo
 
 The bracket a box falls back to when its grid fails its checks: one sample at the left end, the
 whole width as the spacing, and no certificate needed.
+
+## Inputs
+* `E` – enclosure of the activation
+* `c` – fit coefficients
+* `M` – derivative bound
+* `l` – lower end of the interval
+* `u` – upper end of the interval
+
+## Output
+* lower end of the coarse bracket on the fit's error
 -/
 
 -- Authors:       Claude Opus 5.5

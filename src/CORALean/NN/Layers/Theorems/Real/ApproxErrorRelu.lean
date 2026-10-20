@@ -16,6 +16,17 @@ m x` is linear on `[l, 0]` and on `[0, u]`, so its extremes are at the bounds an
 `0 ∈ [l, u]`. It holds for every slope `m` and every `l ≤ u`: that `p` is the secant of [1, Def. 7]
 is not used.
 
+## Inputs
+* `m` – slope of the line
+* `l` – lower end of the interval
+* `u` – upper end of the interval
+
+## Hypotheses
+* `hlu` – interval is ordered
+
+## Conclusion
+* ReLU's errors are attained at zero or the interval's ends
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

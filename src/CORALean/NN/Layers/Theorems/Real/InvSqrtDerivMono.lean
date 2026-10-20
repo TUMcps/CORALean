@@ -10,6 +10,17 @@ public import Mathlib.Tactic.Positivity
 
 `y ↦ -(2 y √y)⁻¹` rises toward `0`, since `y √y` itself rises: the bracket `[lo l, hi u]` is
 nonempty exactly because `l ≤ u`.
+
+## Inputs
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Hypotheses
+* `hl` – lower end is positive
+* `hlu` – box is ordered
+
+## Conclusion
+* the lower end of the derivative bracket is at most the upper end
 -/
 
 -- Authors:       Claude Opus 5.5

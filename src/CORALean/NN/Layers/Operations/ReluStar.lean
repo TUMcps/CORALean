@@ -14,6 +14,12 @@ CORA's `nnActivationLayer/evaluateConZonotope`, which for the ReLU layer loops
 neuron, the bounds from the current set, then the step. The bounds are read off the set the
 earlier neurons have left, which is what CORA's loop does: its `c, G, l_, u_` are overwritten in
 place.
+
+## Inputs
+* `n` – layer width
+
+## Output
+* ReLU layer on star sets
 -/
 
 -- Authors:       Claude Opus 5.5

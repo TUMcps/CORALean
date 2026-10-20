@@ -13,6 +13,15 @@ the tree's `reluRelaxation reluSlope` (`deepZRelu_eq_reluRelaxation`), whose sou
 stated once for every scalar; a box is nonempty whenever it holds a point, which is all the
 equality needs.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* DeepZ's ReLU transformer is sound for ReLU
+
 ## References
 
 * [1] G. Singh, T. Gehr, M. Mirman, M. Püschel and M. Vechev. "Fast and Effective Robustness

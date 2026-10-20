@@ -17,6 +17,17 @@ with `X` on the first set: the interval `GNN.reducedStepsFloat` contains a real 
 every row naming `v` is row `v` of the `L` steps on the whole graph [1, §4.3]. The rows of the
 reduced chain are the exact ones (`GNN.reducedSteps_row`); the rounding is the products'.
 
+## Inputs
+* `A` – adjacency matrix
+* `P` – interval message-passing matrix
+* `v` – node of interest
+
+## Hypotheses
+* `hP` – interval contains the exact message-passing matrix
+
+## Conclusion
+* the float reduced chain encloses the node's row of the whole-graph chain
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

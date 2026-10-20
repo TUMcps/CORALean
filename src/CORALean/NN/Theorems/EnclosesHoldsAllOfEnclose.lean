@@ -12,6 +12,19 @@ public import CORALean.Specification.Theorems.Basic
 Split out of `Verified.lean` (issue #62), renamed to match: the same transfer
 as `HoldsOfEnclose.lean`, `holds_of_outer` traded for `Specification.
 HoldsAll`'s own `holdsAll_of_outer`.
+
+## Inputs
+* `nn` – network
+* `f` – map the network encloses
+* `X` – input set
+* `specs` – list of specifications
+
+## Hypotheses
+* `hf` – the network encloses the map
+* `h` – all specifications hold on the enclosed set
+
+## Conclusion
+* all specifications hold on the image of the input set
 -/
 
 -- Authors:       Claude Opus 5.5

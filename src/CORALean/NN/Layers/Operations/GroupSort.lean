@@ -11,6 +11,13 @@ public import CORALean.NN.Layers.Operations.GroupSortChunk
 of `groupSize`, each chunk sorted ascending, and the padding cut off. The padding sorts last, so
 the result in a short last chunk is that chunk's entries sorted. The layer has no enclosure in
 CORA (`evaluateZonotopeBatch` throws), so this is the layer's numeric function.
+
+## Inputs
+* `g` – group size
+* `x` – input vector
+
+## Output
+* vector sorted ascending within every group
 -/
 
 -- Authors:       Claude Opus 5.5

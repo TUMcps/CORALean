@@ -19,6 +19,17 @@ proof: the extremes of `tanh(x) - m x` over `[l, u]` are at the bounds or where 
 `l ≤ u`: that `p` is the secant of [1, Def. 7] is not used. Where `m > 1` there is no such point,
 `√(1 - m)` is zero in Lean and the point `0` it adds is harmless.
 
+## Inputs
+* `m` – slope of the line
+* `l` – lower end of the interval
+* `u` – upper end of the interval
+
+## Hypotheses
+* `hlu` – interval is ordered
+
+## Conclusion
+* tanh's errors are attained at the critical points or the interval's ends
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

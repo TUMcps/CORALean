@@ -11,6 +11,15 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 
 The pooling matrix times the stacked node features is the exact layer's `sumPoolLin`: the entries
 are the exact `1` and `0`.
+
+## Inputs
+* `H` – node-feature matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the matrix applied to the stacked features is the pooled sum
 -/
 
 -- Authors:       Claude Opus 5.5

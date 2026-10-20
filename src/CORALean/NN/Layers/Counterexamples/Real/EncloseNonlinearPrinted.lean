@@ -13,6 +13,15 @@ public import Mathlib.Algebra.BigOperators.Pi
 the secant slope is `1` and `e = ē = 1`, so the output is `⟨2, [1, 0]⟩ = [1, 3]`, which misses
 `ϕ(-1) = 0`. The enclosure with the midpoint added once is `approxErrorRelaxation`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed algorithm's set misses the image of some point
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

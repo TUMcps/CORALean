@@ -12,6 +12,15 @@ public import Mathlib.Tactic.Positivity
 `tanh t = 2 σ(2t) - 1`: clearing `e⁻ᵗ` from both sides of `tanh` leaves
 `(1 - e⁻²ᵗ)/(1 + e⁻²ᵗ)`. It is what makes tanh's relaxation the sigmoid's, transported, rather
 than a second derivative bracket built for tanh directly.
+
+## Inputs
+* `t` – real number
+
+## Hypotheses
+* none
+
+## Conclusion
+* tanh is twice the sigmoid of twice the number minus one
 -/
 
 -- Authors:       Claude Opus 5.5

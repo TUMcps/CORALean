@@ -7,15 +7,21 @@ public import CORALean.NN.Graph.Operations.GcnShared
 /-!
 # A chain of message-passing steps at one uncertain graph
 
-`gcnSteps` iterates `gcnShared` at *one* `P`, so every step pairs over the
-factor set the previous one preserved and the edge weighing a message at the
-first step is the same factor at the last. Composing `gcnUncertain` instead
-would pad a fresh copy of the edge factors onto each result and let one edge
-take unrelated values at two steps — the dependency this representation is
-here to keep.
+`gcnSteps` iterates `gcnShared` at *one* `P`, so every step pairs over the factor set the previous
+one preserved and the edge weighing a message at the first step is the same factor at the last.
+Composing `gcnUncertain` instead would pad a fresh copy of the edge factors onto each result and let
+one edge take unrelated values at two steps — the dependency this representation keeps.
 
-The feature width `F` is fixed across steps, deliberately, so the chain is an
-ordinary recursion rather than a dependent one.
+The feature width `F` is fixed across steps, so the chain is an ordinary recursion rather than a
+dependent one.
+
+## Inputs
+* `N` – number of nodes
+* `F` – feature width
+* `P` – polynomial zonotope of the graph
+
+## Output
+* polynomial zonotope after the chain of steps
 -/
 
 -- Authors:       Claude Sonnet 5

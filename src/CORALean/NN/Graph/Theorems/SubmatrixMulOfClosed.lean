@@ -7,22 +7,27 @@ public import CORALean.ContSet.ContSet.ContSet
 /-!
 # The matrix statement behind `[1, §4.3]`'s locality argument
 
-[1]'s subgraph verification argues in prose that once a subgraph is closed under the
-message-passing edges reaching it, restricting after one step of message passing is the
-same as restricting first and passing messages on the restriction alone. `hclosed` is
-that closure, read off `P`: no node outside the subgraph's image sends anything into it.
+[1]'s subgraph verification argues in prose that once a subgraph is closed under the message-passing
+edges reaching it, restricting after one step is the same as restricting first. `hclosed` is that
+closure, read off `P`: no node outside the subgraph's image sends anything into it. In practice it
+is discharged by a breadth-first search over the `(κ' + 1)`-hop neighbourhood, one hop further than
+the steps, because an entry of `P` depends on the degree of *both* its endpoints. It is a
+**hypothesis** here, not computed: the selection owes no proof, only the enclosure does.
 
-In practice `hclosed` is discharged by a breadth-first search over the `(κ' + 1)`-hop
-neighbourhood of the subgraph, `κ'` the number of message-passing steps still to run —
-one hop further than the steps themselves, because an entry of `P` depends on the degree
-of *both* its endpoints, so bounding `P` on a ball needs the ring just past it.
+## Inputs
+* `N` – number of nodes
+* `K` – number of kept nodes
+* `F` – feature width
+* `P` – message-passing matrix
+* `X` – node-feature matrix
+* `κ` – indices of the kept nodes
 
-Left a **hypothesis** here rather than computed, which matches the rest of the library:
-`neuronMerging_sandwich_outer` is sound at every bucket, `ConPolyZono.reduceBy_outer` at
-every partition, `Relaxation.ofDeriv` at every slope inside its bracket — the selection
-owes no proof, only the enclosure does. The *radius-indexed* form of this fact — a ball
-of radius `κ' + 1` suffices for `κ'` steps — needs a notion of graph distance this file
-does not have, and stays out of scope for that reason, not as an oversight.
+## Hypotheses
+* `hinj` – kept indices are distinct
+* `hclosed` – the kept nodes receive nothing from outside
+
+## Conclusion
+* restricting the product equals the product of the restrictions
 
 ## References
 

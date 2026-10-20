@@ -11,6 +11,21 @@ public import CORALean.NN.Theorems.EncloseOuter
 is the same fact read one input at a time, which is how a safety requirement on
 a network is normally stated — directly off `enclose_outer`, with no
 `Specification` in sight.
+
+## Inputs
+* `nn` – network
+* `f` – map the network encloses
+* `X` – input set
+* `safe` – safe set
+* `x` – input point
+
+## Hypotheses
+* `hf` – the network encloses the map
+* `h` – the enclosed set lies in the safe set
+* `hx` – point lies in the input set
+
+## Conclusion
+* the map of the point lies in the safe set
 -/
 
 -- Authors:       Claude Opus 5

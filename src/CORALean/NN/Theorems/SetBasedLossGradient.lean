@@ -16,6 +16,20 @@ generator matrix `(τ/ε) (1 / (n_κ ‖Y‖_F)) G_κ` Eq. 9 of [1, Prop. 9], in
 `Zonotope.fRadius_gradient`. The counterexample to the printed form is
 `setBasedLoss_gradient_counterexample`.
 
+## Inputs
+* `L` – loss of target and output
+* `τ` – tradeoff between accuracy and robustness
+* `ε` – perturbation radius
+* `t` – target output
+* `Y` – output zonotope
+
+## Hypotheses
+* `hY` – the zonotope has a positive F-radius
+* `hL` – the loss is differentiable in the center
+
+## Conclusion
+* the gradient with respect to the zonotope has the stated center and generators
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

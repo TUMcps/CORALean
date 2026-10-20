@@ -9,6 +9,12 @@ public import CORALean.ContSet.ContSet.ContSet
 
 `aux_affineMap` reshapes the `n·k` node features to an `n × k` matrix `H` and multiplies by
 `Wᵀ`: `H ↦ H Wᵀ`, the weight `W` having one row per output feature.
+
+## Inputs
+* `W` – weight matrix
+
+## Output
+* linear map applying the weights to every node row
 -/
 
 -- Authors:       Claude Opus 5.5

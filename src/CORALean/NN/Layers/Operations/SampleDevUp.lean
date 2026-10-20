@@ -9,6 +9,14 @@ public import CORALean.NN.Layers.Operations.EvalPolyDown
 # The deviation of σ from a fit at a sample, from above
 
 The other crossing: the activation's high end against the fit's low one.
+
+## Inputs
+* `E` – enclosure of the activation
+* `c` – fit coefficients
+* `x` – sample point
+
+## Output
+* upper bound of the activation minus the fit at the sample
 -/
 
 -- Authors:       Claude Opus 5.5

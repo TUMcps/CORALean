@@ -9,6 +9,12 @@ public import CORALean.NN.Layers.Definitions.ScaleRounding
 
 Multiplication by `2` as self-addition, `addUp x x` and `addDown x x`: exact in any binary
 format, and needing no stored value that denotes `2`, which `FloatOps` does not promise.
+
+## Inputs
+* none
+
+## Output
+* scaling by two as rounding in both directions
 -/
 
 -- Authors:       Claude Opus 5.5

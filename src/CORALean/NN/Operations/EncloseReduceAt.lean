@@ -12,6 +12,12 @@ public import CORALean.NN.Operations.Basic
 [1, Prop. 2.13]) and then enclosed at the layer's own order pattern (line 6, [1, Prop. 2.14]),
 the last `H_κ` being `Y⁽ⁱ⁾`. `encloseAt` is the same without the reduction.
 
+## Inputs
+* `ρ` – order after reduction
+
+## Output
+* output set with every layer's input reduced first
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

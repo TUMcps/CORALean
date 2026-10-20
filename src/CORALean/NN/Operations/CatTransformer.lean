@@ -16,6 +16,12 @@ The meet with the `i`-th guard does not exclude the earlier guards, as `Cat.Eval
 element met with fewer constraints is only larger, so nothing is lost but precision, exactly as
 in the paper.
 
+## Inputs
+* `D` – abstract domain operations
+
+## Output
+* abstract transformer of the CAT function
+
 ## References
 
 * [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:

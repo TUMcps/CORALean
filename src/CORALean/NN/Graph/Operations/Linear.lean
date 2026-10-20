@@ -11,6 +11,14 @@ public import CORALean.NN.Graph.Operations.LinearLin
 `evaluateNumeric`: `r = aux_affineMap(obj, input, true)`, which is `H Wᵀ` plus the bias row
 at every node. The node features are taken as the matrix `H` itself: CORA's reshape of the
 stacked vector is the same data.
+
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+* `H` – node-feature matrix
+
+## Output
+* node features after the linear layer
 -/
 
 -- Authors:       Claude Opus 5.5

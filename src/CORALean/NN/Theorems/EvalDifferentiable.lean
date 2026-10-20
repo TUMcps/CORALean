@@ -16,6 +16,15 @@ while the ReLU under it is differentiable at no zero coordinate.
 
 What `SensitivityFDeriv` needs before it can apply `fderiv_comp`, which asks for
 the tail's differentiability at the head's output.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the chain's composite is differentiable at a point where the chain is differentiable
 -/
 
 -- Authors:       Claude Opus 5

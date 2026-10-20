@@ -12,6 +12,23 @@ public import CORALean.NN.Theorems.CatTransformerOuter
 whose concretization contains `X`; local robustness is the case `C = C_L`, and nothing here
 depends on what `C` is.
 
+## Inputs
+* `D` – abstract domain operations
+* `m` – input width
+* `n` – output width
+* `N` – CAT function
+* `X` – input set
+* `C` – target set
+* `a` – abstract input
+
+## Hypotheses
+* `hD` – the domain operations are sound
+* `hα` – the abstract input contains the input set
+* `hC` – the abstract output lies in the target set
+
+## Conclusion
+* every output of the function on the input set lies in the target set
+
 ## References
 
 * [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:

@@ -7,17 +7,13 @@ public import CORALean.NN.Layers.Interfaces
 /-!
 # What a layer is
 
-CORA's `nnLayer`, split in two: `Layer` is what a layer *computes* on a set, and
-`Layer.Encloses` (in `Definitions/Basic.lean`) is the obligation tying that to an exact function,
-[1, Prop. 2.14], stated against a function of a point, so a set-valued layer is sound at the
-function it refines.
-No field of `Layer` mentions `ℝ`: a structure with a noncomputable field is noncomputable
-to construct, so every mention of `ℝ` lives in a `Prop` and a float layer is a plain `def`.
-A layer is a structure, not a class: a network holds many, told apart by their weights.
-
-The class is one level up, per *kind*, `Enclose` in `Interfaces.lean`. `Enclose.toLayer`
-(in `Operations/Basic.lean`) forgets the kind, which is how a chain mixes kinds and is read off
-a file at run time.
+CORA's `nnLayer`, split in two: `Layer` is what a layer *computes* on a set, and `Layer.Encloses`
+(in `Definitions/Basic.lean`) the obligation tying it to an exact function, [1, Prop. 2.14]. No
+field of `Layer` mentions `ℝ`: a structure with a noncomputable field is noncomputable to construct,
+so every mention of `ℝ` lives in a `Prop` and a float layer is a plain `def`. A layer is a
+structure, not a class: a network holds many, told apart by their weights. The class is one level
+up, per *kind*, `Enclose` in `Interfaces.lean`; `Enclose.toLayer` (in `Operations/Basic.lean`)
+forgets the kind.
 
 ## References
 

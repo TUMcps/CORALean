@@ -15,6 +15,18 @@ scalar it runs, the look-ahead boxes and [1, Prop. 4]'s error boxes rounding out
 `reduceOnTheFly_outer` is its soundness at every instance of the network, and
 `Real.reduceOnTheFly_reducesAt` puts what it returns at `𝕋 := ℝ` in `ReducesAt`.
 
+## Inputs
+* `le` – comparison of two scalars
+* `tol` – tolerance on the remaining fraction
+* `fuel` – bound on the loop iterations
+* `n` – input width
+* `m` – output width
+* `X` – input set
+* `ρ` – reduction rate
+
+## Output
+* reduced network and the output set computed on the way, or none if the fuel runs out
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

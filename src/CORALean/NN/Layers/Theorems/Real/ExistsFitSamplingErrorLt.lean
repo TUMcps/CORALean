@@ -18,6 +18,23 @@ not close as one limit: `M`, a bound on `|σ' - p'|`, may blow up with the degre
 `ε` the statement gives an order *and* a sample count, `N` free to depend on the degree — which
 is what refinement [1] does anyway.
 
+## Inputs
+* `σ` – activation function
+* `σ'` – its derivative
+* `l` – lower end of the interval
+* `u` – upper end of the interval
+* `Mσ` – bound on the derivative
+* `ε` – accuracy
+
+## Hypotheses
+* `hd` – the activation has the given derivative
+* `hσ` – the derivative is bounded on the interval
+* `hlu` – interval is ordered
+* `hε` – accuracy is positive
+
+## Conclusion
+* some fit and sample count give a sampling error below the accuracy
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

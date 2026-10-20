@@ -12,6 +12,16 @@ single fit serves every input set, and a level has to say where it is accurate a
 accurately. Built by choice, `exists_polyRelaxation_error_lt` being an existence statement:
 CORA's `poly_method` is one witness of many, and soundness answers for every one of them. A
 specification over ℝ, as the sampling it rests on is.
+
+## Inputs
+* none
+
+## Hypotheses
+* `hd` – the activation has the given derivative
+* `hσ` – the derivative is bounded
+
+## Output
+* family of polynomial relaxations whose error shrinks with the level
 -/
 
 -- Authors:       Claude Opus 5.5

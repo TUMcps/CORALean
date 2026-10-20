@@ -7,21 +7,19 @@ public import CORALean.NN.NeuralNetwork
 /-!
 # Propagating a set through the graph
 
-The whole verification pipeline, one line per constructor: hand the input set
-to the first layer and the result to the rest. No layer sees anything but a
-set of the representation, so nothing here knows which representation that is
-or which layers these are.
+The whole verification pipeline, one line per constructor: hand the input set to the first layer and
+the result to the rest. No layer sees anything but a set of the representation, so nothing here
+knows which representation that is or which layers these are. Precision is entirely the layers'
+business. [1, Def. 7]'s abstract network is this recursion: `H'_0` is `output`'s case, the input
+handed back untouched, and `H'_k := L'_k(H'_{k-1})` is `layer`'s. The paper's own `L'_k` is one
+instance among the layers `NN/Layers/` builds; [2, Alg. 1]'s own per-layer loop is another, at the
+layer `ActivationPoly.lean` builds.
 
-Precision is entirely the layers' business: a representation that loses
-nothing at a linear layer and plenty at an activation encloses exactly that.
+## Inputs
+* none
 
-[1, Def. 7]'s abstract network is this recursion, read at whichever
-representation and layers a caller supplies: `H'_0` is `output`'s case, the
-input handed back untouched, and `H'_k := L'_k(H'_{k-1})` is `layer`'s. The
-paper's own `L'_k` — an affine map, Minkowski-summed with an error box, then
-an elementwise `σ` — is one instance among the layers `NN/Layers/` builds,
-not what this definition is tied to. [2, Alg. 1]'s own per-layer loop is
-another, at whichever layer `ActivationPoly.lean` builds.
+## Output
+* output set after every layer
 
 ## References
 

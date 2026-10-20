@@ -11,6 +11,15 @@ public import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
 `tanh' t = 4 σ'(2t)`: the conjugation identity differentiated, which is why the bracket the
 sigmoid relaxation transports to tanh is tanh's own and not merely a sound one. Mathlib's own
 `tanh` derivative is not what this reads.
+
+## Inputs
+* `t` – real number
+
+## Hypotheses
+* none
+
+## Conclusion
+* tanh has the derivative expressed through the sigmoid's
 -/
 
 -- Authors:       Claude Opus 5.5

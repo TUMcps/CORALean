@@ -7,18 +7,21 @@ public import CORALean.ContSet.ContSet.ContSet
 /-!
 # The `r`-hop ball around a node, `[1, §4.3]`'s locality neighbourhood
 
-`ball A v r` grows outward one message-passing hop at a time: a node joins at
-radius `r + 1` exactly when some node already at radius `r` reaches it, either
-by being it (`i = j`) or by an edge (`A i j ≠ 0`). The `i = j` disjunct is not
-padding — message passing runs on `Ã = A + I`, so every node is its own
-neighbour, and it is what makes `ball` monotone in `r` for free, with no
-separate union needed.
+`ball A v r` grows outward one message-passing hop at a time: a node joins at radius `r + 1` exactly
+when some node already at radius `r` reaches it, by being it (`i = j`) or by an edge (`A i j ≠ 0`).
+The `i = j` disjunct is not padding: message passing runs on `Ã = A + I`, and it makes `ball`
+monotone in `r` for free.
 
-Radius `L`, not `L + 1`: `evalSteps` is stated at an arbitrary `Pm`, so an
-`L`-step chain's row `v` depends only on `ball A v L` (`EvalStepsRowMask`). The
-extra hop `[1, §4.3]` needs is for *computing* `P = D̃^(-1/2) Ã D̃^(-1/2)` from
-`A`, whose entries read the degrees of both endpoints — a fact about
-`messagePassing` itself, stated at `[1, §4.3]`'s caller, not here.
+Radius `L`, not `L + 1`: an `L`-step chain's row `v` depends only on `ball A v L`
+(`EvalStepsRowMask`). The extra hop `[1, §4.3]` needs is for *computing* `P = D̃^(-1/2) Ã
+D̃^(-1/2)`.
+
+## Inputs
+* `A` – adjacency matrix
+* `v` – center node
+
+## Output
+* nodes within r hops of the center, for each radius r
 
 ## References
 

@@ -18,6 +18,17 @@ at `0`, where the bucket holds nothing, `n̂_k/n_k = 1 > ρ`, and line 6 loops a
 is enough, with `le` the exact order. So [1, Thm. 1]'s "for any reduction rate ρ" holds only
 where [1, Alg. 1] returns, which is why `bucketTolerance` is an `Option`.
 
+## Inputs
+* `tol` – tolerance on the remaining fraction
+* `ρ` – reduction rate
+* `fuel` – bound on the loop iterations
+
+## Hypotheses
+* `hρ` – rate is below one
+
+## Conclusion
+* the algorithm returns nothing at any fuel on a single fixed neuron
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

@@ -7,15 +7,26 @@ public import CORALean.NN.Definitions.MinSuffExplanation
 /-!
 # Minimality is a counterexample per feature
 
-What [1, Alg. 2] accumulates while it runs: for each feature it refuses to free,
-a concrete input in the box one feature wider on which some rival catches the
-target. That collection *is* minimality — the equivalence below — so the loop
-returns a certificate rather than an appeal to how it searched, which is the
-same trade `Global.SupportFunction` makes for a bound.
+What [1, Alg. 2] accumulates while it runs: for each feature it refuses to free, a concrete input
+in the box one feature wider on which some rival catches the target. That collection *is*
+minimality — the equivalence below — so the loop returns a certificate rather than an appeal to how
+it searched, the same trade `Global.SupportFunction` makes for a bound.
 
-The counterexample is checked on `nn` itself, never on an abstraction: one found
-against a enclosed set may be spurious, and [1, Alg. 2, l. 9] is exactly that
-check.
+The counterexample is checked on `nn` itself, never on an abstraction: one found against an
+enclosed set may be spurious, and [1, Alg. 2, l. 9] is exactly that check.
+
+## Inputs
+* `f` – network function
+* `x` – input point
+* `ε` – perturbation radius
+* `E` – candidate explanation, a feature set
+* `l` – target label
+
+## Hypotheses
+* none
+
+## Conclusion
+* minimal explanation iff sufficient and every feature has a counterexample
 
 ## References
 

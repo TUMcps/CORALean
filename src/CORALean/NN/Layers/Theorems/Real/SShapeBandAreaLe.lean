@@ -16,6 +16,23 @@ left derivative at `u`. Its area [1, Eq. 6], `(f(u) - f(l) - λ (u - l)) (u - l)
 grows, so `λ_opt = min(f'(l), f'(u))` has the least area, and `sShape_band_sound` is that it is
 sound when `f'` rises and then falls.
 
+## Inputs
+* `f` – activation function
+* `dfl` – derivative at the lower end
+* `dfu` – derivative at the upper end
+* `lam` – slope of the band
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Hypotheses
+* `hlu` – box is ordered
+* `hdl` – the function has the derivative at the lower end
+* `hdu` – the function has the derivative at the upper end
+* `hband` – the band encloses the function on the box
+
+## Conclusion
+* DeepZ's band has at most the area of any band of the family
+
 ## References
 
 * [1] G. Singh, T. Gehr, M. Mirman, M. Püschel and M. Vechev. "Fast and Effective Robustness

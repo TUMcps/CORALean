@@ -8,6 +8,18 @@ public import CORALean.NN.Layers.Definitions.EvalPoly
 # Moving the constant coefficient moves the polynomial
 
 ℝ-only, the shift being exact: only the constant term is touched, and there `t ^ 0` is one.
+
+## Inputs
+* `n` – polynomial degree
+* `c` – coefficients
+* `s` – shift
+* `t` – evaluation point
+
+## Hypotheses
+* none
+
+## Conclusion
+* moving the constant coefficient shifts the polynomial by the same amount
 -/
 
 -- Authors:       Claude Opus 5.5

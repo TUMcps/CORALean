@@ -10,6 +10,18 @@ public import CORALean.NN.Graph.Operations.Ball
 Induction on the radius: at `0` the ball is `{v}` outright, and at a successor
 the `i = j` disjunct lets the base case step through unchanged, `v` reaching
 itself by staying put.
+
+## Inputs
+* `N` – number of nodes
+* `A` – adjacency matrix
+* `v` – node
+* `r` – radius in hops
+
+## Hypotheses
+* none
+
+## Conclusion
+* the node lies in its own ball
 -/
 
 -- Authors:       Claude Opus 5

@@ -10,6 +10,19 @@ public import CORALean.NN.Graph.Operations.BallEnum
 `∃ k, ballEnum A v L k = i` is `i ∈ Set.range (ballEnum A v L)` unfolded, and
 `Finset.range_orderEmbOfFin` says that range is the ball itself, coerced to a
 `Set`. `Finset.mem_coe` drops the coercion back to plain membership.
+
+## Inputs
+* `N` – number of nodes
+* `A` – adjacency matrix
+* `v` – center node
+* `L` – radius in hops
+* `i` – node
+
+## Hypotheses
+* none
+
+## Conclusion
+* the node is enumerated iff it lies in the ball
 -/
 
 -- Authors:       Claude Opus 5

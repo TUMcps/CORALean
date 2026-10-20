@@ -18,6 +18,17 @@ the tree, instantiated.
 uncertain graph. The corollary at `P = messagePassing A`, [1, Prop. 2] itself,
 is `ConvExactOfAdjacency.lean`.
 
+## Inputs
+* `P` – message-passing matrix
+* `W` – weight matrix
+* `pZ` – node features as a polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the layer's polynomial zonotope is exactly the image of the input set
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

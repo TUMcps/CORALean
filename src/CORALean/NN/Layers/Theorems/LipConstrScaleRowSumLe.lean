@@ -14,6 +14,17 @@ public import Mathlib.Tactic.Positivity
 
 For `0 < λ`: a row whose absolute sum `s` exceeds `λ` is divided by `s / λ`, giving `λ`, and any
 other row is untouched. So the layer is `λ`-Lipschitz in the supremum norm.
+
+## Inputs
+* `W` – weight matrix
+* `lam` – Lipschitz bound
+* `i` – row index
+
+## Hypotheses
+* `hl` – Lipschitz bound is positive
+
+## Conclusion
+* the absolute row sum of the rescaled weights is at most the bound
 -/
 
 -- Authors:       Claude Sonnet 5.5

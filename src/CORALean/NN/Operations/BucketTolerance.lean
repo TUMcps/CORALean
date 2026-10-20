@@ -11,15 +11,24 @@ public import CORALean.NN.Operations.Ratio
 /-!
 # [1, Alg. 1]: the bucket tolerance a reduction rate asks for
 
-[1, Alg. 1] turns a reduction rate `ρ` into merge buckets: grow `δmax` tenfold until at most
-`ρ n_k` neurons would remain, then bisect `[δmin, δmax]` until the fraction remaining is `≈ ρ`,
-and return the buckets at that `δ`, one mask, `true` on a merged neuron.
+[1, Alg. 1] turns a reduction rate `ρ` into merge buckets: grow `δmax` tenfold until at most `ρ n_k`
+neurons would remain, then bisect `[δmin, δmax]` until the fraction remaining is `≈ ρ`, and return
+the buckets at that `δ`, one mask, `true` on a merged neuron. Written once over the scalar, every
+decision through the caller's `le` (`FloatOps.le` at a machine scalar). Neither loop is bounded in
+[1], so both take `fuel` and the result is an `Option`. Nothing here is a soundness hypothesis —
+[1]'s Prop. 4 holds at every bucket — so rounding decides which buckets come out, never whether the
+reduction is sound; `bucketTolerance_approx` is line 16's exit condition.
 
-Written once over the scalar, every decision through the caller's `le` — `FloatOps.le` at a
-machine scalar, where it runs. Neither loop is bounded in [1], and the first need not end, so
-both take `fuel` and the result is an `Option`. Nothing here is a soundness hypothesis — [1]'s
-Prop. 4 holds at every bucket — so which way anything rounds decides which buckets come out,
-never whether the reduction is sound; `bucketTolerance_approx` is line 16's exit condition.
+## Inputs
+* `le` – comparison of two scalars
+* `tol` – tolerance on the remaining fraction
+* `fuel` – bound on the loop iterations
+* `B` – merge bucket initialisation
+* `I_k` – bounds of the layer
+* `ρ` – reduction rate
+
+## Output
+* mask of the merged neurons, or none if the fuel runs out
 
 ## References
 

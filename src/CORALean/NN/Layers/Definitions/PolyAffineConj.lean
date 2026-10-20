@@ -15,6 +15,16 @@ reweights the coefficients — `b` folds into the monomials one power at a time,
 every coefficient once, `d` is the constant's shift — and the error scales by `a`. Nothing about
 the fit or the error bound is redone, which is what makes tanh cost a line. Over ℝ, where the
 reweighting is exact; no machine scalar stores a polynomial tanh relaxation.
+
+## Inputs
+* `n` – polynomial degree
+* `P` – polynomial relaxation of the activation
+* `a` – output scale
+* `b` – input scale
+* `d` – output shift
+
+## Output
+* polynomial relaxation of the conjugated activation
 -/
 
 -- Authors:       Claude Opus 5.5

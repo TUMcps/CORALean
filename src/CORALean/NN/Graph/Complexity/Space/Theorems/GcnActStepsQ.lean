@@ -11,6 +11,15 @@ public import CORALean.NN.Graph.Operations.GcnActSteps
 adds are dependent ones by the time the next convolution, the pooling or the output sees the set;
 a chain of no step returns its input.
 
+## Inputs
+* `L` – number of steps
+
+## Hypotheses
+* none
+
+## Conclusion
+* the chain's set has no independent generators if its input has none
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

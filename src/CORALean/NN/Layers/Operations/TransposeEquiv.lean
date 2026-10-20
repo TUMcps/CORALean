@@ -10,6 +10,13 @@ public import Mathlib.Logic.Equiv.Fin.Basic
 The reshape a layout change is: a `p × q` array read as `q × p`. Flattening is not a layer
 at all — `Vec ℝ (p * q)` is what a layer sees either way — so this relabelling is the only
 content a reshape has. It carries no scalar.
+
+## Inputs
+* `p` – number of rows
+* `q` – number of columns
+
+## Output
+* bijection between the two orderings of the array
 -/
 
 -- Authors:       Claude Opus 5.5

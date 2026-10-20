@@ -10,6 +10,13 @@ public import CORALean.Global.Float.FloatOps
 `max(|l|, |u|)`, with `l` and `u` not assumed of one sign: what an affine conjugate charges
 the gap between its two slope roundings against, the argument being bounded by nothing
 smaller than the box.
+
+## Inputs
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* bound on the absolute input over the box
 -/
 
 -- Authors:       Claude Opus 5.5

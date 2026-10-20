@@ -12,6 +12,16 @@ public import CORALean.NN.Graph.Theorems.FloatSumPoolMatMulVec
 is in the error box, so what holds is an enclosure: every node-feature matrix `H` whose stack lies
 in the input set is pooled by the exact layer into the output set.
 
+## Inputs
+* `pZ` – stacked node features
+* `H` – exact node-feature matrix
+
+## Hypotheses
+* `hH` – the features lie in the set
+
+## Conclusion
+* the exact pooling of the features lies in the float pooled set
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

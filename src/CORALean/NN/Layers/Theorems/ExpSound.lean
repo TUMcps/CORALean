@@ -17,6 +17,18 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 `Real.exp` coordinatewise, for every point of a set whose box has its right ends under `2ᵏ/2`.
 The hypothesis is the cost of a machine upper bound on `exp`, which no format has everywhere.
+
+## Inputs
+* `k` – reduction depth
+* `s` – input set
+* `x` – point of the input set
+
+## Hypotheses
+* `hx` – point lies in the input set
+* `hs` – upper ends of the input box are in range
+
+## Conclusion
+* the exponential of the point lies in the layer's output set
 -/
 
 -- Authors:       Claude Opus 5.5

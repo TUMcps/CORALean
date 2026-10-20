@@ -13,6 +13,15 @@ public import CORALean.NN.Theorems.Basic
 
 Starting from an accumulator, the loop's network computes what the remaining network does after
 the accumulated map, exactly: the induction on the layers, one case per layer type.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the loop's network is the remaining network after the accumulated map
 -/
 
 -- Authors:       Claude Opus 5.5

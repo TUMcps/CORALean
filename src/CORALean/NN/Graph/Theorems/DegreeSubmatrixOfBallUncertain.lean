@@ -16,6 +16,31 @@ inclusion-only) `hκ` from `adjMax A U`'s ball down to `adjAt A U lam`'s — the
 composition `EvalStepsRowMaskUncertain` uses for its `hS`. One `κ`, sized against
 `adjMax A U` alone, therefore serves every admissible `lam` at once.
 
+## Inputs
+* `N` – number of nodes
+* `m` – number of uncertain edges
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `lam` – weights of the uncertain edges
+* `v` – center node
+* `r` – radius in hops
+* `K` – number of kept nodes
+* `κ` – indices of the kept nodes
+* `j` – node whose degree is read
+* `k` – index of that node among the kept ones
+
+## Hypotheses
+* `hA` – adjacency entries are nonnegative
+* `hSymm` – adjacency matrix is symmetric
+* `hlam` – edge weights lie in the unit interval
+* `hinj` – kept indices are distinct
+* `hκ` – kept nodes contain the maximal ball one hop larger
+* `hj` – node lies in the ball of radius r
+* `hk` – index names the node
+
+## Conclusion
+* the degree on the subgraph equals the degree in the whole uncertain graph
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

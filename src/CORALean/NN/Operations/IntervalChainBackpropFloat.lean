@@ -16,6 +16,12 @@ layer received `p = (l, u)`, and the gradients `(gl, gu)` at its output. The lin
 `gu ← σ'(u) ⊙ gu` is `Interval.times` of the stored derivative enclosure `σ'E`, entrywise,
 against the gradient box. The forward boxes `p` are those of `IntervalChain.fwd`. As in the real
 row there is no weight update.
+
+## Inputs
+* none
+
+## Output
+* float box of input gradients from the box of output gradients
 -/
 
 -- Authors:       Claude Opus 5.5

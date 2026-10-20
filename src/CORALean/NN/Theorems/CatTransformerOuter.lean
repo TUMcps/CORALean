@@ -13,6 +13,19 @@ public import CORALean.NN.Operations.CatTransformer
 with its guard, then the case's transformer, then every join it is folded into; a composition is
 the two inclusions chained. `⊥` is never reached, a point being in some case.
 
+## Inputs
+* `D` – abstract domain operations
+* `m` – input width
+* `n` – output width
+* `f` – CAT function
+* `a` – abstract input
+
+## Hypotheses
+* `hD` – the domain operations are sound
+
+## Conclusion
+* the image of the abstract input lies in the transformer's output
+
 ## References
 
 * [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:

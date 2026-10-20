@@ -11,6 +11,15 @@ public import CORALean.NN.Graph.Operations.TailEnclose
 the number of generators alone and the enclosure of an activation adds at most its neurons ([1,
 Prop. 1]). If layer `t` adds at most `e t`, the tail adds at most `∑ e t`.
 
+## Inputs
+* `T` – number of tail layers
+
+## Hypotheses
+* none
+
+## Conclusion
+* the tail adds at most the sum of what its layers add
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

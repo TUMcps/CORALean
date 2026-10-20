@@ -11,16 +11,26 @@ public import CORALean.ContSet.Interval.Float.Theorems.MtimesMem
 /-!
 # The float interval backpropagation encloses the real one
 
-For a float chain `c` that stands for the real chain `r` (`IntervalChain.Sound`), an input
-pair `p` and an output gradient pair `g` of real vectors inside the boxes `P` and `G`, the pair
+For a float chain `c` that stands for the real chain `r` (`IntervalChain.Sound`), an input pair `p`
+and an output gradient pair `g` of real vectors inside the boxes `P` and `G`, the pair
 `Real.IntervalChain.backprop` returns lies, bound by bound, in the boxes `IntervalChain.backprop`
-returns. The forward values `p` the real recursion needs are the ones `IntervalChain.fwd`
-encloses, so each layer's rule is enclosed at its own box: the linear layer's `dmu = Wᵀ (gu +
-gl)/2`, `dr = |W|ᵀ (gu - gl)/2` by `Interval.mtimes` of the transposed float matrices, the
-activation's `σ'(l) ⊙ gl` by `Interval.times` of the stored derivative enclosure. What the real
-row proves of the returned value (`Real.IntervalChain.backprop_adjoint`, the adjoint of the tangent
-propagation, hence the transposed derivative of the forward pass) thus holds of a value the
+returns. The forward values the real recursion needs are the ones `IntervalChain.fwd` encloses, so
+each layer's rule is enclosed at its own box: the linear layer's `dmu = Wᵀ (gu + gl)/2`, `dr = |W|ᵀ
+(gu - gl)/2` by `Interval.mtimes`, the activation's `σ'(l) ⊙ gl` by `Interval.times`. What the real
+row proves of the returned value (the adjoint of the tangent propagation) thus holds of a value the
 float result encloses.
+
+## Inputs
+* `n` – input width
+* `k` – output width
+* `c` – float interval chain
+* `r` – real interval chain
+
+## Hypotheses
+* `hc` – the float chain stands for the real chain
+
+## Conclusion
+* the real backpropagation lies bound by bound in the float result
 -/
 
 -- Authors:       Claude Opus 5.5

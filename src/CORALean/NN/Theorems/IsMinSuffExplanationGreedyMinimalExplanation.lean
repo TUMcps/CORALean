@@ -9,15 +9,27 @@ public import CORALean.NN.Theorems.SuffExplanationMono
 /-!
 # [1, Alg. 1] returns a minimal sufficient explanation
 
-`hl` supplies what line 2's comment records as already true: fixing every
-feature makes `explainBox` a single point, so sufficiency there is just the
-base classification `f x` already predicting `l` — `Alg. 1` leaves this
-implicit in `l := argmax_j f(x)(j)`.
+`hl` supplies what line 2's comment records as already true: fixing every feature makes `explainBox`
+a single point, so sufficiency there is just the base classification `f x` already predicting `l` —
+`Alg. 1` leaves this implicit in `l := argmax_j f(x)(j)`. Minimality is the loop's name: a feature
+kept because dropping it broke sufficiency at some larger, earlier set must still resist dropping
+from whatever smaller set the loop ends at — `IsSuffExplanation.mono`, read as its contrapositive,
+carries the witness down.
 
-Minimality is the loop's name: a feature kept because dropping it broke
-sufficiency at some larger, earlier set must still resist dropping from
-whatever smaller set the loop ends at — `IsSuffExplanation.mono`, read as its
-contrapositive, carries the witness down.
+## Inputs
+* `f` – network function
+* `x` – input point
+* `ε` – perturbation radius
+* `l` – target label
+* `suff` – sufficiency oracle
+
+## Hypotheses
+* `hε` – radius is nonnegative
+* `hsuff` – the oracle decides sufficiency
+* `hl` – all features together are sufficient
+
+## Conclusion
+* the greedy search returns a minimal sufficient explanation
 
 ## References
 

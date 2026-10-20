@@ -14,6 +14,41 @@ corollaries the refinement loop [1, Alg. 2] actually visits, alongside
 layer, `hcontain` is `neuronMerging_network_outer` [2] and nothing further is
 assumed. The network's weights are in any scalar, the explanation's box real.
 
+## Inputs
+* `n₀` – input width
+* `n₁` – width after the prefix
+* `nk` – width of the merged layer
+* `n₂` – width after the second linear layer
+* `n₃` – output width
+* `d` – number of surviving neurons
+* `r` – number of merged neurons
+* `pre` – network before the sandwich
+* `post` – network after the sandwich
+* `part` – split into survivors and merged neurons
+* `W0` – first weight matrix
+* `b0` – first bias vector
+* `σ` – activation function
+* `R` – relaxation of the activation
+* `W1` – second weight matrix
+* `b1` – second bias vector
+* `Y` – bounds of the merged layer
+* `x` – input point
+* `ε` – perturbation radius
+* `E` – explanation, a feature set
+* `l` – target label
+* `fpre` – map of the prefix
+* `fpost` – map of the suffix
+
+## Hypotheses
+* `hR` – relaxation is sound for the activation
+* `hpre` – the prefix encloses its map
+* `hpost` – the suffix encloses its map
+* `hY` – the bounds contain the activations over the prefix's enclosure
+* `hsuffAbs` – the explanation is abstractly sufficient for the merged network
+
+## Conclusion
+* the explanation is sufficient for the original composite map
+
 ## References
 
 * [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining

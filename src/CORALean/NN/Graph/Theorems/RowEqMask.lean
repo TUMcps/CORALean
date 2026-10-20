@@ -13,6 +13,25 @@ public import CORALean.NN.Graph.Theorems.MemBallSuccOfMessagePassing
 `[1, §4.3]`: at a node `u` already in the smaller ball, every message reaching it from outside
 lands in the next ball out by `mem_ball_succ_of_messagePassing`, so masking there costs nothing.
 
+## Inputs
+* `N` – number of nodes
+* `F` – feature width
+* `A` – adjacency matrix
+* `v` – center node
+* `S` – set of nodes kept by the mask
+* `L` – radius in hops
+* `X` – first node-feature matrix
+* `Y` – second node-feature matrix
+* `u` – node
+
+## Hypotheses
+* `hS` – mask set contains the ball one hop larger
+* `hXY` – the two inputs agree on the larger ball
+* `hu` – node lies in the smaller ball
+
+## Conclusion
+* the node's message row is the same with and without the mask
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

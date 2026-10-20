@@ -13,6 +13,12 @@ its input, at the interval `[l, u]` it received. The linear layer's rule is `dmu
 `dr = |W|ᵀ (gu - gl)/2`, `gl ← dmu - dr`, `gu ← dmu + dr`; the activation's, `gl ← σ'(l) ⊙ gl`,
 `gu ← σ'(u) ⊙ gu`. The `updateWeights` branch stores the gradient of `W` and `b` in the layer
 and returns nothing, so it is not here.
+
+## Inputs
+* none
+
+## Output
+* box of input gradients from the box of output gradients
 -/
 
 -- Authors:       Claude Opus 5.5

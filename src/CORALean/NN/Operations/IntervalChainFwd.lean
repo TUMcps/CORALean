@@ -11,6 +11,12 @@ public import Mathlib.Data.Matrix.Basic
 CORA's `evaluateInterval`, layer by layer: the linear layer's `mu = W μ + b`, `r = |W| r` read
 back as `[mu - r, mu + r]`, the activation's `[σ l, σ u]`. The empty-set approximation-error
 interval `d` the linear layer may carry is not modelled.
+
+## Inputs
+* none
+
+## Output
+* box of the chain's outputs from the box of inputs
 -/
 
 -- Authors:       Claude Opus 5.5

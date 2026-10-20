@@ -12,6 +12,13 @@ public import CORALean.Global.Float.FloatOps
 denominator up, so the quotient is never above the exact one; nothing depends on that
 direction — the fraction only decides which buckets come out, never whether they are sound.
 
+## Inputs
+* `a` – numerator count
+* `b` – denominator count
+
+## Output
+* quotient of the two counts as a scalar
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

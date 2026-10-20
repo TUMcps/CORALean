@@ -18,19 +18,26 @@ public import CORALean.NN.Layers.Theorems.Real.Basic
 /-!
 # The message-passing enclosure contains the true message passing
 
-[1, Prop. 4]'s guarantee for `𝒫 ⊇ D̃^(-1/2) Ã D̃^(-1/2)`: whatever the uncertain edges
-weigh, the message-passing matrix that graph produces is a point of `𝒫`.
+[1, Prop. 4]'s guarantee for `𝒫 ⊇ D̃^(-1/2) Ã D̃^(-1/2)`: whatever the uncertain edges weigh, the
+message-passing matrix that graph produces is a point of `𝒫`. One factor vector does it. The edge
+weight `λₑ` is the factor `2λₑ - 1`, as `uncertainAdj_exact` reads it; node `j`'s residual factor is
+what the relaxation left over at that node's actual degree, divided by the bound it came with (total
+by cases: a zero error bounds the residual by zero). At those factors all three sets are exact, so
+the only approximation is that the residuals do not range independently of the edges.
 
-One factor vector does it. The edge weight `λₑ` is the factor `2λₑ - 1`, exactly
-as `uncertainAdj_exact` reads it; node `j`'s residual factor is what the
-relaxation left over at that node's actual degree, divided by the bound it came
-with. That division is total by cases and not by a positivity argument: a zero
-error bounds the residual by zero, so the factor may be anything and the
-generator it scales is zero either way.
+## Inputs
+* `R` – relaxation of the inverse square root
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `lam` – weights of the uncertain edges
 
-At those factors all three sets are exact — `Ã`, `s_i` and `s_j` — so the only
-approximation in the whole construction is that a factor vector ranges over the
-box while the residuals do not range independently of the edges.
+## Hypotheses
+* `hR` – relaxation is sound for the inverse square root
+* `hA` – adjacency entries are nonnegative
+* `hlam` – edge weights lie in the unit interval
+
+## Conclusion
+* the graph's own message-passing matrix lies in the enclosure
 
 ## References
 

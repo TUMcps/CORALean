@@ -9,15 +9,24 @@ public import CORALean.NN.Graph.Operations.GcnShared
 /-!
 # A shared-factor convolution loses nothing
 
-An equality, as `gcnUncertain_exact` is, and for the same reason: `bilin` is
-exact at a shared factor set and `map` is exact at a linear one, so the step
-itself gives nothing away. What is new is only that the two sets are *not*
-padded apart — the pairing runs over factors they already had in common, which
-is what a second step at the same graph needs.
+An equality, as `gcnUncertain_exact` is, and for the same reason: `bilin` is exact at a shared
+factor set and `map` is exact at a linear one. What is new is only that the two sets are *not*
+padded apart — the pairing runs over factors they already had in common, which a second step at the
+same graph needs.
 
-Stated over `point`, so `H`'s independent block takes no part: `bilin` drops it
-by construction, and a caller who needs it accounted for runs
-`PolyZonotope.dependent` first, exactly as the message-passing enclosure does.
+Stated over `point`, so `H`'s independent block takes no part: `bilin` drops it, and a caller who
+needs it runs `PolyZonotope.dependent` first, as the message-passing enclosure does.
+
+## Inputs
+* `W` – weight matrix
+* `P` – polynomial zonotope of the graph
+* `H` – polynomial zonotope of the node features
+
+## Hypotheses
+* `hp` – both sets share their factors
+
+## Conclusion
+* the convolution is exactly the set of products at common factor vectors
 -/
 
 -- Authors:       Claude Opus 5

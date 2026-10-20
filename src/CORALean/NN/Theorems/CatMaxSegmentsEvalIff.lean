@@ -17,6 +17,15 @@ point to nothing else. By induction on `r`: the first window is `Cat.maxSegment`
 window `j - a` of the rest sits `k` coordinates further left, the first window's `k + 1`
 having become one; the identity maps framing a step only rename.
 
+## Inputs
+* `k` – window size minus one
+
+## Hypotheses
+* none
+
+## Conclusion
+* the row of steps maps a point to the output iff the output holds the window maxima
+
 ## References
 
 * [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:

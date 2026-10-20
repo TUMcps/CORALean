@@ -9,16 +9,19 @@ public import CORALean.NN.Layers.Layer
 /-!
 # The linear layer
 
-CORA's `nnLinearLayer`: `x ↦ W x + b`, with `W` and `b` stored in the scalar. The only layer
-whose propagation is a set operation and nothing else — `mtimes` for the weights, `plus` with
-the bias — so the only standard one that loses nothing at a representation closed under both.
+CORA's `nnLinearLayer`: `x ↦ W x + b`, with `W` and `b` stored in the scalar. The only layer whose
+propagation is a set operation and nothing else — `mtimes` for the weights, `plus` with the bias —
+so the only standard one that loses nothing at a representation closed under both. The bias enters
+as a box of zero width, which is why `OfInterval` is asked for and not a translation. Nothing rounds
+here: both operations already pay their own rounding, and what the layer encloses is the exact
+affine map the stored weights denote; reading a network off a file is exact.
 
-The bias enters as a box of zero width rather than through an operation of its own, which is
-why `OfInterval` is asked for here and not a translation: a representation that can absorb a
-box can absorb a point. Nothing rounds here either: both operations already pay their own
-rounding into the representation, and a layer that added one of its own would pay twice. What
-the layer encloses is the exact affine map the stored weights denote — reading a network off a
-file is exact; everything after it rounds.
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+
+## Output
+* layer applying the affine map
 -/
 
 -- Authors:       Claude Opus 5.5

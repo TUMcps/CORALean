@@ -10,6 +10,15 @@ public import CORALean.NN.Layers.Operations.Reshape
 
 The relabelling itself, `reindexLin e`: `reindex_exact` puts the image of every point inside,
 and more — `reshape_exact` is the equality.
+
+## Inputs
+* `e` – bijection from output to input coordinates
+
+## Hypotheses
+* none
+
+## Conclusion
+* the layer encloses the coordinate permutation
 -/
 
 -- Authors:       Claude Opus 5.5

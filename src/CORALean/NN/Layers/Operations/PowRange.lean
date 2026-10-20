@@ -11,6 +11,12 @@ public import CORALean.ContSet.Interval.Float.Interval
 
 `t ^ k` bracketed, as a `Float.Interval`, both ends carried together since each end of
 `t ^ (k + 1)` reads both ends of `t ^ k`. `one` is exact, so the empty product pays no rounding.
+
+## Inputs
+* `t` – base
+
+## Output
+* bracket of the power for each exponent
 -/
 
 -- Authors:       Claude Opus 5.5

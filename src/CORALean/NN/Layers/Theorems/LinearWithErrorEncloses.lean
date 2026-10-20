@@ -14,6 +14,17 @@ public import CORALean.NN.Layers.Operations.LinearWithError
 The affine map at `E`'s own center: the layer commits to the center of the box `E` denotes as
 its nominal value, a real number with no reason to be rounded, and pays the rest of `E` into its
 enclosure. That center is inside `E` only when `E` is nonempty, which is the one hypothesis.
+
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+* `E` – added error box
+
+## Hypotheses
+* `hE` – the error box is nonempty
+
+## Conclusion
+* the layer encloses the affine map shifted to the box's center
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,19 @@ public import CORALean.NN.Layers.Theorems.LowerRegionOrderFits
 Whatever `findRegionLeft` returns is a region `[l, u']` enclosing `σ` with error at most the
 tolerance, `u'` being the right end it returns. The test that accepts a fit is `le`, whose
 `true` certifies `error ≤ tol`.
+
+## Inputs
+* `σ` – activation function
+* `F` – polynomial relaxations by order
+* `order` – polynomial order
+* `tol` – error tolerance
+* `l` – left end of the uncovered domain
+
+## Hypotheses
+* `hF` – every relaxation is sound for the activation
+
+## Conclusion
+* a returned left region encloses the activation within the tolerance
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -9,6 +9,18 @@ public import CORALean.NN.Layers.Theorems.Real.SoftmaxEqInv
 
 The denominator is largest at the box's opposite corner, which bounds softmax below. Over ℝ
 alone: it asks for an upper bound on an exponential, which no machine scalar supplies totally.
+
+## Inputs
+* `lo` – lower bounds of the inputs
+* `hi` – upper bounds of the inputs
+* `x` – input vector
+* `i` – output coordinate
+
+## Hypotheses
+* `hx` – the input lies in the bounds
+
+## Conclusion
+* the softmax is at least the raw lower bound
 -/
 
 -- Authors:       Claude Opus 5.5

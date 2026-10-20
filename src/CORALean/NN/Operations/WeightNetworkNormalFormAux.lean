@@ -12,6 +12,12 @@ public import CORALean.NN.Definitions.WeightNetwork
 The layers are walked once, linear and elementwise affine layers fused into the accumulator and
 identities skipped. At an activation the accumulator is flushed as a layer, and the activation
 follows; at the end a non-empty accumulator is flushed and an untouched one dropped.
+
+## Inputs
+* none
+
+## Output
+* fused network over the remaining layers, started from the accumulator
 -/
 
 -- Authors:       Claude Opus 5.5

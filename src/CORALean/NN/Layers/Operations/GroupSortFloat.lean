@@ -11,6 +11,13 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 the scalar's own comparison `FloatOps.le`, and the result entry `i` is the `i mod g`-th entry of
 the sorted chunk `⌊i / g⌋`. Sorting only moves entries, so no rounding is involved; what a float
 can get wrong is the comparison, which is why the sortedness theorem takes `le` to be exact.
+
+## Inputs
+* `g` – group size
+* `x` – float input vector
+
+## Output
+* vector sorted ascending within every group
 -/
 
 -- Authors:       Claude Opus 5.5

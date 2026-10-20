@@ -12,6 +12,14 @@ the secant, `m = (ϕ(u) - ϕ(l)) / (u - l)`; the offset `d` does not affect the 
 is taken zero. It is the slope of DeepPoly's triangle relaxation. At `l = u` the division is by
 zero, which is zero in Lean.
 
+## Inputs
+* `ϕ` – activation function
+* `l` – lower end of the interval
+* `u` – upper end of the interval
+
+## Output
+* slope of the secant through the interval's end points
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

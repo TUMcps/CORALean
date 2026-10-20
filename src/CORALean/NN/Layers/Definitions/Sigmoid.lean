@@ -12,6 +12,12 @@ and stated as `(1 + e⁻ᵗ)⁻¹` so that monotonicity is the denominator's. Th
 written `σ t · σ (-t)` rather than `σ t (1 - σ t)`: each factor is then monotone in `t` on its
 own, so the ends of a box bracket the product with no case on where zero lies. What the
 sigmoid layer encloses, over ℝ, and never what it runs.
+
+## Inputs
+* `t` – real number to transform
+
+## Output
+* logistic function of the number
 -/
 
 -- Authors:       Claude Opus 5.5

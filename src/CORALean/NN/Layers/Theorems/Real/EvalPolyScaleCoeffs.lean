@@ -11,6 +11,19 @@ public import Mathlib.Tactic.Ring
 
 ℝ-only, the rescaling being exact: `(b t) ^ i = b ^ i · t ^ i`, so the conjugation only
 reweights the coefficients.
+
+## Inputs
+* `n` – polynomial degree
+* `c` – coefficients
+* `a` – output scale
+* `b` – input scale
+* `t` – evaluation point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the rescaled polynomial is the conjugated one
 -/
 
 -- Authors:       Claude Opus 5.5

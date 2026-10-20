@@ -13,6 +13,12 @@ public import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
 has both, `σ'` being a product of two sigmoids each inside `(0,1)`. CORA's `nn.refine` at the
 sigmoid [1], with the choice of fit left open. Over ℝ, as the family is.
 
+## Inputs
+* none
+
+## Output
+* family of polynomial relaxations of the sigmoid
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

@@ -10,6 +10,15 @@ public import Mathlib.Analysis.Normed.Order.Lattice
 
 Everywhere, the clamp included: `max x 1` never reaches zero, so the square root it feeds
 never does either.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the clamped inverse square root is continuous
 -/
 
 -- Authors:       Claude Opus 5.5

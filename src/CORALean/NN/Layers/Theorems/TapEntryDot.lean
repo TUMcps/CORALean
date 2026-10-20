@@ -10,6 +10,15 @@ public import CORALean.NN.Layers.Theorems.TapEntryEqZero
 
 Which makes `tapMat` the matrix of a stencil. Injectivity is what a window reading one input
 twice would break: the matrix holds one weight per entry, the sum two.
+
+## Inputs
+* `n` – number of inputs
+
+## Hypotheses
+* none
+
+## Conclusion
+* a stencil row against a vector is the weighted sum over its taps
 -/
 
 -- Authors:       Claude Opus 5.5

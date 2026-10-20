@@ -13,6 +13,13 @@ evaluates one coefficient list, so the fits meet at a common degree; nothing rou
 is untouched. `k ≤ M` is a hypothesis of `padTo_sound` and not an argument here: padding is data,
 and truncating would be data too, merely unsound.
 
+## Inputs
+* `P` – polynomial relaxation
+* `M` – higher degree
+
+## Output
+* the relaxation read at the higher degree
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

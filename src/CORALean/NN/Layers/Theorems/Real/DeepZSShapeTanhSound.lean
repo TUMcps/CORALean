@@ -15,6 +15,15 @@ public import CORALean.NN.Layers.Theorems.SShapeUnimodal
 derivative `hasDerivAt_tanh` gives, `4 σ'(2t)`, is that by `tanh t = 2 σ(2t) - 1`; it is even
 and falls away from `0`, so `deepZSShape_sound` applies at `x' = 0`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* DeepZ's transformer is sound for tanh
+
 ## References
 
 * [1] G. Singh, T. Gehr, M. Mirman, M. Püschel and M. Vechev. "Fast and Effective Robustness

@@ -12,6 +12,14 @@ public import CORALean.Specification.Operations.Check
 specification's own set about each enclosed output through the representation pair's
 `Contains` or `IsDisjoint`. So the caller supplies the specification and the splitter and
 no soundness proof for the checker; `Theorems.VerifySplitSound` needs only the splitter's.
+
+## Inputs
+* `nn` – network
+* `spec` – specification to verify
+* `splitter` – splits an input set into two halves
+
+## Output
+* whether the recursive splitting verifies the specification
 -/
 
 -- Authors:       Claude Opus 5

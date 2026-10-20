@@ -13,22 +13,23 @@ public import CORALean.NN.Layers.Operations.StarSetReluNeuron
 /-!
 # The bounds of one neuron as CORA's code computes them
 
-`c_ = c(j) + 0.5 * G(j,:) * (u_ - l_)`, `G_ = 0.5 * G(j,:) * diag(u_-l_)`, `l = c_ - sum(abs(G_))`
-and `u = c_ + sum(abs(G_))` in `nnReLULayer/evaluateConZonotopeNeuron`, with `bound_approx`
-true. The center of the factor box is `(l_ + u_)/2`, not `(u_ - l_)/2`: with `l_ = -1`, `u_ = 1`,
-which is what `conversionConZonoStarSet` returns for a constrained zonotope without equality
-constraints, the code's center is `c(j) + sum(G(j,:))`, and the interval it returns is the true
-one shifted by `sum(G(j,:))`. It is the true interval only where `l_ = 0`, which the factors
-a step appends have. Read from the source, not run.
+`nnReLULayer/evaluateConZonotopeNeuron` computes `c_ = c(j) + 0.5 * G(j,:) * (u_ - l_)`, `G_ = 0.5 *
+G(j,:) * diag(u_-l_)`, `l = c_ - sum(abs(G_))`, `u = c_ + sum(abs(G_))`. The center of the factor
+box is `(l_ + u_)/2`, not `(u_ - l_)/2`: with `l_ = -1`, `u_ = 1`, as `conversionConZonoStarSet`
+returns, the interval is the true one shifted by `sum(G(j,:))`. Read from the source, not run.
 
-# CORA's neuron bounds make the ReLU step unsound
+For the star set `(x₀, x₁) = (α, -α)`, `α ∈ [-1, 1]`, neuron `0` gets the bounds `[0, 2]` instead of
+`[-1, 1]`, so `0 ≤ l` and the step leaves the set as it is, although the point `α = -1` is not on
+the line after the ReLU at neuron `0`.
 
-With the bounds `evaluateConZonotopeNeuron` computes, in `StarSet.coraRowBounds`, one neuron's step
-fails to enclose the ReLU. The star set `(x₀, x₁) = (α, -α)`, `α ∈ [-1, 1]`, which is what
-`conversionConZonoStarSet` returns for the zonotope with `G = [1; -1]`: neuron `0` is given the
-bounds `[0, 2]` instead of `[-1, 1]`, so `0 ≤ l` and the step leaves the set as it is, although
-the point `α = -1`, `(0, 1)` after the ReLU at neuron `0`, is not on the line `x₁ = -x₀`.
-Read from the source, not run.
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* some point's ReLU image at the first neuron lies outside the star set after CORA's step
 -/
 
 -- Authors:       Claude Opus 5.5

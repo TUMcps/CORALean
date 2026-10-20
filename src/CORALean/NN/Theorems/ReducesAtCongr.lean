@@ -10,6 +10,22 @@ public import CORALean.NN.Definitions.Reduction
 Every constructor of `ReducesAt` names its map only through an equation `∀ x, f x = …`, so
 replacing `f` by a map that agrees with it everywhere is one rewrite in that equation. It is
 what lets a caller state the map in its own terms, as `NeuralNetwork.Encloses.congr` does.
+
+## Inputs
+* `n` – input width
+* `m` – output width
+* `s` – input set
+* `nn` – original network
+* `nn'` – reduced network
+* `f` – map the networks compute
+* `f'` – map agreeing with it
+
+## Hypotheses
+* `h` – the second network reduces the first at the first map
+* `hff` – the two maps agree everywhere
+
+## Conclusion
+* the second network reduces the first at the second map
 -/
 
 -- Authors:       Claude Opus 5.5

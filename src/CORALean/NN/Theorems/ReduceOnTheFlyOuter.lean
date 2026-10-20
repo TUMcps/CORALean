@@ -28,6 +28,19 @@ the rest of the loop is invoked at the bias the merged values freeze layer `k+1`
 box `mergeCols` gives it holds — `Interval.mtimes` and `Interval.plus` round outward. It holds
 at every `le`, `tol`, `fuel` and `ρ`: which buckets come out never matters to soundness.
 
+## Inputs
+* `n` – input width
+* `m` – output width
+* `X` – input set
+* `Φ` – reducible network
+* `f` – map the network is an instance of
+
+## Hypotheses
+* `hΦ` – the network is an instance of the map
+
+## Conclusion
+* the output set holds the map's image and is the reduced network's enclosure
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

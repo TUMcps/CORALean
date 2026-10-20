@@ -9,6 +9,18 @@ public import CORALean.NN.Layers.Theorems.Real.SoftmaxEqInv
 
 Each ratio `x j - x i` lies in `[lo j - hi i, hi j - lo i]`, and the denominator is monotone in
 every one of them: smallest at the box's corner, which bounds softmax above.
+
+## Inputs
+* `lo` – lower bounds of the inputs
+* `hi` – upper bounds of the inputs
+* `x` – input vector
+* `i` – output coordinate
+
+## Hypotheses
+* `hx` – the input lies in the bounds
+
+## Conclusion
+* the softmax is at most the raw upper bound
 -/
 
 -- Authors:       Claude Opus 5.5

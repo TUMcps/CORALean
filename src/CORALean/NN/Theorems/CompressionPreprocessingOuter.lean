@@ -23,6 +23,32 @@ at the merged ones is an instance computing `Φ_org` at `x`, which `reduceOnTheF
 carries into `Y`. The ReLU relaxation is the caller's, sound for `Real.relu`; the
 nonnegativity is [1, Cor. 1]'s `X ⊂ ℝ₊`, without which the ReLU is not the identity.
 
+## Inputs
+* `le` – comparison of two scalars
+* `tol` – tolerance on the remaining fraction
+* `fuel` – bound on the loop iterations
+* `R_relu` – relaxation of ReLU
+* `n` – input width
+* `n₁` – first hidden width
+* `m` – output width
+* `I_X` – input box
+* `L_1` – first reduced linear layer
+* `L_2` – second layer's relaxation
+* `B_2` – merge buckets of the second layer
+* `rest` – remaining reducible network
+* `f` – map the network is an instance of
+* `ρ` – reduction rate
+
+## Hypotheses
+* `hR` – ReLU relaxation is sound for ReLU
+* `hσ_relu` – ReLU relaxation is sound for some function
+* `hX` – the input box is nonnegative
+* `hσ_2` – second relaxation is sound for some function
+* `hΦ` – the original network is an instance of the map
+
+## Conclusion
+* the output set holds the original network's output at every point of the box
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

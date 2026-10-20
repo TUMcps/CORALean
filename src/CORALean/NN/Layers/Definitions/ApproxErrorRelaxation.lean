@@ -19,6 +19,12 @@ the slope matrix applied to the input set, the box of errors added by one Minkow
 The printed line 6 adds `(e_low + e_up)/2` to the center of `Diag(m) H` and line 7 then forms
 `⊕ [e_low, e_up]`, which by [1, Prop. 3] adds the midpoint again; the relaxation adds it once.
 
+## Inputs
+* `ϕ` – activation function
+
+## Output
+* relaxation with the slope, offset and error of its linear approximation
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

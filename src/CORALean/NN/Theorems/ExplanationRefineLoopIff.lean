@@ -8,16 +8,29 @@ public import CORALean.NN.Definitions.MinSuffExplanation
 /-!
 # The refinement loop decides the exact query
 
-The loop's two exits are two of the hypotheses: `habs` is [1, Prop. 3],
-separation on an enclosure being sufficiency for `f` as
-`suffExplanation_of_abstract` proves, and `hgen` is l. 9-11, a counterexample
-that still misclassifies at `f`.
+The loop's two exits are two of the hypotheses: `habs` is [1, Prop. 3], separation on an enclosure
+being sufficiency for `f`, and `hgen` is l. 9-11, a counterexample that still misclassifies at `f`.
+`hlast` is what the printed proposition leaves out: l. 19 is `while true`, so the loop leaves only
+by l. 7 or l. 13, and neither guarantee survives a schedule that stops short of the level whose
+abstraction *is* `f`, where l. 5 answers exactly. [1, Prop. 2] gives a strictly finer refinement,
+never that one. The equivalence holds at every level a warm start could enter at.
 
-`hlast` is what the printed proposition leaves out: l. 19 is `while true`, so
-the loop leaves only by l. 7 or l. 13, and neither guarantee survives a
-schedule that stops short of the level whose abstraction *is* `f`, where l. 5
-answers exactly. [1, Prop. 2] gives a strictly finer refinement, never that
-one. The equivalence holds at every level a warm start could enter at.
+## Inputs
+* `f` – network function
+* `x` – input point
+* `ε` – perturbation radius
+* `l` – target label
+* `absSuff` – abstract sufficiency check at each level
+* `genuine` – genuine counterexample check at each level
+* `N` – number of refinements to spend
+
+## Hypotheses
+* `habs` – an abstract pass implies sufficiency
+* `hgen` – a genuine counterexample implies insufficiency
+* `hlast` – at the last level every sufficient set passes
+
+## Conclusion
+* the loop accepts a candidate iff it is a sufficient explanation
 
 ## References
 

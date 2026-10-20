@@ -9,6 +9,15 @@ public import CORALean.NN.Graph.Operations.Select
 # `selectMat` reads back as `select`
 
 The matrix at a scalar `𝕋` denotes the real selection matrix.
+
+## Inputs
+* `κ` – indices of the selected nodes
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float selection matrix reads back as the real one
 -/
 
 -- Authors:       Claude Opus 5.5

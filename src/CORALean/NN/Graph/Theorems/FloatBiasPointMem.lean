@@ -11,6 +11,15 @@ public import CORALean.NN.Graph.Operations.Basic
 
 The bias row stacked at every node, read at the reals the stored floats denote, lies in
 `biasPoint`: it has no generators, so its center is a member.
+
+## Inputs
+* `b` – bias vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the bias point contains the stacked bias
 -/
 
 -- Authors:       Claude Opus 5.5

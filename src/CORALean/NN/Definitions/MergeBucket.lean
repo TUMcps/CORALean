@@ -8,17 +8,23 @@ public import CORALean.Global.Partition
 /-!
 # Merge buckets
 
-[1, Def. 3]'s `B_{k,y,δ}`: the neurons of a nonlinear layer `k` whose bounds `Y`
-fit inside `[y-δ, y+δ]`, so replacing all of them by the single value `y` costs
-each at most `δ`. `mergeSplit` is the `Partition.ofPred` bridge into the split
-`neuronMerging_sandwich_outer` consumes, survivors on the left.
+[1, Def. 3]'s `B_{k,y,δ}`: the neurons of a nonlinear layer `k` whose bounds `Y` fit inside `[y-δ,
+y+δ]`, so replacing all of them by the single value `y` costs each at most `δ`. `mergeSplit` is the
+`Partition.ofPred` bridge into the split `neuronMerging_sandwich_outer` consumes.
 
-No hypothesis `0 ≤ δ` appears anywhere below: at a negative `δ` the bucket is
-merely empty, `mergeBucket_width` holding of it vacuously, so imposing one would
-narrow every statement here for nothing.
+No hypothesis `0 ≤ δ` appears below: at a negative `δ` the bucket is merely empty,
+`mergeBucket_width` holding of it vacuously. `MergeBuckets` names which of [1]'s two (Sec. 3.2)
+initialisations a layer's buckets come from; [1, Alg. 1] builds them.
 
-`MergeBuckets` names which of [1]'s two (Sec. 3.2) initialisations a layer's buckets come from;
-[1, Alg. 1] builds them.
+## Inputs
+* `n` – layer width
+* `Y` – bounds of the layer's neurons
+* `y` – merge value
+* `δ` – merge tolerance
+* `i` – neuron index
+
+## Output
+* the neuron's bounds fit inside the interval around the merge value
 
 ## References
 

@@ -9,20 +9,20 @@ public import Mathlib.Data.Matrix.Mul
 /-!
 # Conditional affine transformations
 
-[1, Fig. 3]'s CAT functions, the form AI2 writes a network in before it abstracts it: an affine
-map `W x + b`, a list of guarded cases, or a composition, and `cases` returns the function of the
-first condition the point satisfies. A condition is a level set (`CatCond`): [1]'s atoms
-`xᵢ ≥ xⱼ`, `xᵢ ≥ 0` and `xᵢ < 0` are its affine rows (`CatCond.ge`, `nonneg`, `neg`), a conjunction
-is two stacked (`LevelSet.and_`), and a point satisfies it when it lies in its `construct`; every
-guard of [1] is one, and the level-set operations apply to all of them. A guard is unbounded, so it
-is the `LevelSet` and not a `PolyLevelSet`, whose domain is a library `Interval` with finite ends.
+[1, Fig. 3]'s CAT functions, the form AI2 writes a network in before it abstracts it: an affine map
+`W x + b`, a list of guarded cases, or a composition; `cases` returns the function of the first
+condition the point satisfies. A condition is a level set (`CatCond`): [1]'s atoms are its affine
+rows (`CatCond.ge`, `nonneg`, `neg`), a conjunction is two stacked (`LevelSet.and_`). A guard is
+unbounded, so a `LevelSet`, not a `PolyLevelSet`.
 
-The weights are stored in the scalar `𝕋` and read through `toReal`, so one CAT function is both
-the network a machine runs and the exact function it denotes; the conditions are real data, their
-coefficients `±1`. `Eval` is a relation rather than a function: a point no case accepts has no
-value, as in the paper, where `case` is defined by its first satisfied condition and by nothing
-else.
-`image` is the concrete transformer `T_f` of [1, Sec. III (transformers)].
+`Eval` is a relation: a point no case accepts has no value, as in the paper. `image` is the concrete
+transformer `T_f` of [1, Sec. III (transformers)].
+
+## Inputs
+* `n` – input dimension
+
+## Output
+* guard, a level set in the input space
 
 ## References
 

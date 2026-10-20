@@ -12,6 +12,17 @@ public import CORALean.NN.Layers.Theorems.LinearEncloses
 
 The map `x ↦ N (W x + b)` that CORA's `evaluateNumeric` computes; the scaling's own property
 is `Layer.lipConstrScale_rowSum_le`.
+
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+* `lam` – Lipschitz bound
+
+## Hypotheses
+* none
+
+## Conclusion
+* the layer encloses the rescaled affine map
 -/
 
 -- Authors:       Claude Sonnet 5.5

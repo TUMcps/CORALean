@@ -9,6 +9,15 @@ public import CORALean.NN.Definitions.Basic
 # `reluDerEnclosure` encloses the derivative of ReLU
 Case split on the two certificates: a certified positive lower bound makes every point of the
 box positive, a certified nonpositive upper bound makes every one nonpositive.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the enclosure contains the derivative of ReLU
 -/
 
 -- Authors:       Claude Opus 5.5

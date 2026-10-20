@@ -11,6 +11,15 @@ The box [1, Def. 1] quantifies over: `E`'s coordinates pinned to `x`, the rest
 free within the `ℓ∞` ball of radius `ε`. An `ℓp` ball for `p ≠ ∞` is not a box
 and is not covered.
 
+## Inputs
+* `n` – number of features
+* `x` – input point
+* `ε` – perturbation radius
+* `E` – explanation, a feature set
+
+## Output
+* box pinning the explanation's features and perturbing the rest
+
 ## References
 
 * [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining

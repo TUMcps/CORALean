@@ -22,6 +22,20 @@ for the points it contains and no others, so the claim is at a point of the inpu
 too — what [1, Prop. 4.2]'s loop has, the enclosure sound for the exact set even where it says
 nothing about the set this iteration computed.
 
+## Inputs
+* `P` – relaxation of every neuron
+* `J` – box handed to the fits
+* `s` – input polynomial zonotope
+* `x` – point of the input set
+
+## Hypotheses
+* `hP` – every neuron's relaxation is sound for the activation
+* `hx` – point lies in the input set
+* `hJ` – point lies in the handed box
+
+## Conclusion
+* the activation of the point lies in the layer's output set
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

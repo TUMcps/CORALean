@@ -12,6 +12,13 @@ public import CORALean.ContSet.ContSet.ContSet
 once `S` contains a ball large enough, masking outside it does not change the
 ball's own row of an `evalSteps` chain.
 
+## Inputs
+* `S` – set of nodes to keep
+* `P` – message-passing matrix
+
+## Output
+* matrix with every entry outside the kept nodes zeroed
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

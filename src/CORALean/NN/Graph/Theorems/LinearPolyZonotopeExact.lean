@@ -11,6 +11,17 @@ public import CORALean.NN.Graph.Operations.LinearPolyZonotope
 
 An equality: the layer is an affine map of the node features, `map` is exact at its linear part
 and `shift` at its bias, so nothing is given away.
+
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+* `pZ` – node features as a polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polynomial zonotope is exactly the image of the input set
 -/
 
 -- Authors:       Claude Opus 5.5

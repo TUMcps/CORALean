@@ -9,19 +9,22 @@ public import Mathlib.Topology.Algebra.Module.ModuleTopology
 /-!
 # The sensitivity is the derivative, wherever there is one
 
-What makes `Chain.sensitivity` a heuristic worth trusting rather than an
-arbitrary weighting: on a chain differentiable layer by layer it is exactly
-`fderiv ℝ c.eval x` read as a matrix. The proof is `fderiv_comp` once per
-layer, so the theorem is the chain rule and the definition is its computation.
+What makes `Chain.sensitivity` a heuristic worth trusting rather than an arbitrary weighting: on a
+chain differentiable layer by layer it is exactly `fderiv ℝ c.eval x` read as a matrix. The proof is
+`fderiv_comp` once per layer, so the theorem is the chain rule and the definition is its
+computation. `DifferentiableChain` and not `DifferentiableAt ℝ c.eval x`, since it is each factor's
+derivative that has to exist. Nothing downstream depends on this: an enclosure is sound whatever the
+sensitivity says, and a ReLU network, where the hypothesis fails at every zero coordinate, is
+refined by the same numbers.
 
-`DifferentiableChain` and not `DifferentiableAt ℝ c.eval x`, which would not
-do: it is each factor's derivative that has to exist, since it is their product
-being identified.
+## Inputs
+* none
 
-Nothing downstream depends on this. An enclosure is sound whatever the
-sensitivity says, and a ReLU network — where the hypothesis fails at every zero
-coordinate — is refined by the same numbers, which is the reason to leave the
-definition unconditional and prove the agreement separately.
+## Hypotheses
+* none
+
+## Conclusion
+* on a differentiable chain the sensitivity is the derivative's matrix
 -/
 
 -- Authors:       Claude Opus 5

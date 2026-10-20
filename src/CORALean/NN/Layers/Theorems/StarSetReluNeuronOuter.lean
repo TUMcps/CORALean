@@ -17,6 +17,18 @@ Given bounds the neuron's value respects on the set, the ReLU at that neuron map
 the star set the step builds. Where `0 ≤ l` the neuron is the identity, where `u ≤ 0` it is `0`,
 and between, `β = relu (x_j)` is the new factor: it is above `0` and above `x_j`, and under the
 chord from `(l, 0)` to `(u, u)`, since `max` is convex.
+
+## Inputs
+* `n` – layer width
+* `s` – star set
+* `j` – neuron index
+* `b` – bounds of the neuron
+
+## Hypotheses
+* `hb` – the neuron stays within its bounds on the star set
+
+## Conclusion
+* the ReLU image of the star set lies in the set after the step
 -/
 
 -- Authors:       Claude Opus 5.5

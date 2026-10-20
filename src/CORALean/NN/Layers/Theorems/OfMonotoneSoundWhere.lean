@@ -10,6 +10,18 @@ public import CORALean.NN.Layers.Theorems.AbsSubLeSpread
 
 `Relaxation.ofMonotone_sound` for an enclosure that brackets `σ` only on some boxes, as `expUp`
 does only under `2ⁿ/2`.
+
+## Inputs
+* `E` – enclosure of the monotone function
+* `P` – condition on the box
+
+## Hypotheses
+* `hσ` – the function is monotone on boxes satisfying the condition
+* `hlo` – lower end brackets the function at the left end
+* `hhi` – upper end brackets the function at the right end
+
+## Conclusion
+* the slope-zero relaxation is sound where the condition holds
 -/
 
 -- Authors:       Claude Opus 5.5

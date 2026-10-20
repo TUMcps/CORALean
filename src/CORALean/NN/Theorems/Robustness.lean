@@ -14,6 +14,20 @@ The requirement a classifier is normally verified against: over a whole input
 set — an image and everything within a perturbation of it — the same label wins.
 Written as an unsafe set, since what must not happen is that some other label
 catches up, and then it is checked by the same theorem everything else is.
+
+## Inputs
+* `nn` – network
+* `f` – map the network encloses
+* `X` – input set
+* `l` – target label
+
+## Hypotheses
+* `hf` – the network encloses the map
+* `u` – support bound of the enclosed set for each rival
+* `h` – every rival's bound is negative
+
+## Conclusion
+* the outputs on the input set avoid the misclassified set
 -/
 
 -- Authors:       Claude Opus 5

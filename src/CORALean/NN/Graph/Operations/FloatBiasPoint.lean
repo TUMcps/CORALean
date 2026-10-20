@@ -10,6 +10,13 @@ public import CORALean.NN.Graph.Operations.Flatten
 
 The bias row repeated at every node, stacked (`GNN.flatten`), as a polynomial zonotope with no
 generators: the origin with its center replaced by it.
+
+## Inputs
+* `N` – number of nodes
+* `b` – bias vector
+
+## Output
+* the bias repeated at every node, as a point
 -/
 
 -- Authors:       Claude Opus 5.5

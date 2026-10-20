@@ -27,6 +27,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.Basic
 layer's shared degree `m` — `Alg. 1` line 9's padding — with nothing of the fits beyond `m`
 reaching it, and `n` more from the residual box.
 
+## Inputs
+* `P` – relaxation of every neuron
+* `s` – input polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the output has the stated number of dependent generators
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

@@ -10,6 +10,19 @@ public import CORALean.NN.Layers.Theorems.AllOverApply
 # A checked grid samples inside the box
 
 What the mean value theorem between a sample and a point of the box needs.
+
+## Inputs
+* `p` – proposed sample points
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `dx` – maximal gap between samples
+* `i` – sample index
+
+## Hypotheses
+* `h` – the grid is checked
+
+## Conclusion
+* the sample lies inside the box
 -/
 
 -- Authors:       Claude Opus 5.5

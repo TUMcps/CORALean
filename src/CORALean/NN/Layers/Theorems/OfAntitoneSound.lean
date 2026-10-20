@@ -11,6 +11,16 @@ public import CORALean.NN.Layers.Theorems.AbsSubLeSpread
 Between its values at the box's right and left ends an antitone `σ` stays, and those are
 bracketed by the enclosure, so `abs_sub_le_spread` bounds `σ t`'s distance from the stored
 midpoint by the stored error.
+
+## Inputs
+* `E` – enclosure of the antitone function
+
+## Hypotheses
+* `hσ` – the function is antitone
+* `hE` – enclosure is sound for the function
+
+## Conclusion
+* the slope-zero relaxation is sound for the function
 -/
 
 -- Authors:       Claude Opus 5.5

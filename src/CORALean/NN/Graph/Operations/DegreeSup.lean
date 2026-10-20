@@ -10,6 +10,14 @@ public import CORALean.NN.Graph.Operations.EdgeDegree
 
 The upper end of `degreeAt`'s range, read as a pair with `degree` by
 `Theorems/UncertainDegreeBounds.lean`.
+
+## Inputs
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `j` – node
+
+## Output
+* degree of the node with every uncertain edge switched on
 -/
 
 -- Authors:       Claude Sonnet 5

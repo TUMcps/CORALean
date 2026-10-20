@@ -8,20 +8,27 @@ public import CORALean.NN.Theorems.Real.Basic
 /-!
 # A tolerance meeting any error budget
 
-Not [1]'s Alg. 1, which bisects for a `δ` hitting a *reduction rate* `ρ` — a
-target neuron count, not an error budget — and whose answer owes no proof, as
-`neuronMerging_sandwich_outer` is sound at every bucket and
-`ConPolyZono.reduceBy_outer` at every partition. This is the budget read the
-other way: for every `ε` some `δ` meets it at every bucket and every output,
-since `mergeError_width_le_row`'s bound is linear in `δ` and `δ` is free.
+Not [1]'s Alg. 1, which bisects for a `δ` hitting a *reduction rate* `ρ` — a target neuron count,
+not an error budget — and whose answer owes no proof, as `neuronMerging_sandwich_outer` is sound at
+every bucket. This is the budget read the other way: for every `ε` some `δ` meets it at every bucket
+and every output, since `mergeError_width_le_row`'s bound is linear in `δ`. The witness `δ := ε / (2
+* (1 + ∑ mergeRowWeight))` carries a `+ 1` in its denominator so it stays positive even at `W = 0`,
+with no case split and no `Finset.sup'`. Same shape as `exists_polyRelaxation_error_lt` in
+`NN/Layers/PolyRangeConvergence.lean`.
 
-The witness `δ := ε / (2 * (1 + ∑ mergeRowWeight))` carries a `+ 1` in its
-denominator so it stays positive even at `W = 0`, with no case split and no
-`Finset.sup'`, which would need `Fin n₂` nonempty. `aux_scaled_le` is the plain
-arithmetic that turns "this row's weight is at most the sum of all of them"
-into "this row's share of the budget is at most the whole budget".
+## Inputs
+* `n` – layer width
+* `n₂` – output width
+* `Y` – bounds of the layer's neurons
+* `W` – weight matrix
+* `ε` – error budget
 
-Same shape as `exists_polyRelaxation_error_lt` in `NN/Layers/PolyRangeConvergence.lean`.
+## Hypotheses
+* `hY` – the bounds are nonempty
+* `hε` – the budget is positive
+
+## Conclusion
+* some positive tolerance keeps every bucket's cost within the budget
 
 ## References
 

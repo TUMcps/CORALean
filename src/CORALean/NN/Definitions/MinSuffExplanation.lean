@@ -10,6 +10,16 @@ public import CORALean.NN.Definitions.SuffExplanation
 [1, Def. 2]: a sufficient explanation minimal under `⊆` — dropping any one of
 its features breaks sufficiency.
 
+## Inputs
+* `f` – network function
+* `x` – input point
+* `ε` – perturbation radius
+* `E` – candidate explanation, a feature set
+* `l` – target label
+
+## Output
+* explanation is sufficient and no single feature can be dropped
+
 ## References
 
 * [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining

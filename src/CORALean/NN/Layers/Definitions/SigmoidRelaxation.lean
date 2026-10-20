@@ -12,15 +12,19 @@ public import CORALean.NN.Layers.Operations.RelaxationTighter
 /-!
 # The sigmoid relaxation over ℝ
 
-What the sigmoid layer's relaxation is with `σ` itself at the box's ends: the exact bracket
-`σ l σ(-u) ≤ σ' ≤ σ u σ(-l)`, the secant clamped into it as the slope, and
-`Relaxation.ofDeriv` against it, kept only where it beats `Relaxation.ofMonotone`. The same
-constructors a machine scalar runs, at `𝕋 := ℝ` and the exact enclosure; what a machine
-scalar builds instead, from a truncated exponential, is looser, so this is a specification the
-runnable layer does not reproduce, and is not what runs.
+What the sigmoid layer's relaxation is with `σ` itself at the box's ends: the exact bracket `σ l
+σ(-u) ≤ σ' ≤ σ u σ(-l)`, the secant clamped into it as the slope, and `Relaxation.ofDeriv` against
+it, kept only where it beats `Relaxation.ofMonotone`. The same constructors a machine scalar runs,
+at `𝕋 := ℝ`; what a machine scalar builds from a truncated exponential is looser, so this is a
+specification the runnable layer does not reproduce. On a narrow box the bracket is tight and the
+error quadratic in the width; on a wide one it is loose, and `tighter` falls back on slope zero.
 
-On a narrow box the bracket is tight and the error quadratic in the width; on a wide one,
-above all across zero, it is loose, and `tighter` falls back on slope zero.
+## Inputs
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* lower end of the sigmoid's derivative bracket
 -/
 
 -- Authors:       Claude Opus 5.5

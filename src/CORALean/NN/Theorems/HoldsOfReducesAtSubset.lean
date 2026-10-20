@@ -15,6 +15,25 @@ too, with nothing recomputed: `Layer.enclose_not_monotone` is exactly why recomp
 `nn'.enclose` at `s'` instead would not be sound, and reusing the original bound
 sidesteps that rather than needing it.
 
+## Inputs
+* `n` – input width
+* `m` – output width
+* `s` – input set
+* `s'` – subset of the input set
+* `nn` – original network
+* `nn'` – reduced network
+* `f` – map the networks compute
+* `ContSet` – set representation of the specification
+* `spec` – specification
+
+## Hypotheses
+* `h` – the second network reduces the first on the set
+* `hsub` – the subset lies in the input set
+* `hspec` – the specification holds on the reduced enclosure
+
+## Conclusion
+* the specification holds on the original network's image of the subset
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

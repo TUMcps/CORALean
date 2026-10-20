@@ -8,6 +8,15 @@ public import CORALean.NN.Layers.Definitions.InvSqrt
 # The clamped inverse square root is at most one
 
 The clamp puts the square root at `1` or above.
+
+## Inputs
+* `x` – real number
+
+## Hypotheses
+* none
+
+## Conclusion
+* the clamped inverse square root is at most one
 -/
 
 -- Authors:       Claude Opus 5.5

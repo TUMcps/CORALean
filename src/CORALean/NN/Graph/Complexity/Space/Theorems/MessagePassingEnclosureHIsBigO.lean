@@ -14,6 +14,17 @@ public import CORALean.NN.Graph.Complexity.Space.Theorems.MessagePassingEnclosur
 The enclosure of [1, Prop. 4] grows cubically in the number of uncertain
 edges, at a fixed graph size.
 
+## Inputs
+* `R` – relaxation of the square root
+* `A` – adjacency matrix
+* `U` – uncertain edges for each edge count
+
+## Hypotheses
+* none
+
+## Conclusion
+* the enclosure's generator count is big-O of the cube of the edge count
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

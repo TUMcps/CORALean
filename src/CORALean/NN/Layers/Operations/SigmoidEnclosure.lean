@@ -14,6 +14,12 @@ brackets the derivative too. The enclosure is total, which is a choice of *which
 compute each side from: `expUp` needs its argument bounded and `expDown` does not, so both use
 `expDown` — `σ t ≤ 1 / D` for any `0 < D ≤ 1 + e⁻ᵗ` above, and `σ t = 1 - 1 / (1 + eᵗ)`
 below. `k` is the exponential's reduction depth: every `k` is sound, a larger one tighter.
+
+## Inputs
+* `k` – reduction depth of the exponential
+
+## Output
+* lower and upper bound of the logistic function
 -/
 
 -- Authors:       Claude Opus 5.5

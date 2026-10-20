@@ -13,6 +13,20 @@ public import CORALean.NN.Layers.Operations.StarSetFloatChordGuard
 At a point of the star set, the neuron lying within its bounds, the value `β = relu(y)` of
 its ReLU satisfies the chord row, whenever `StarSet.chordGuard` accepts the bounds. The
 rounding of `k` and of its products with the generators is paid by the right-hand side.
+
+## Inputs
+* `s` – float star set
+* `j` – neuron index
+* `b` – bounds of the neuron
+* `α` – factor vector
+
+## Hypotheses
+* `hg` – the chord guard holds
+* `hα` – factors lie in the star set's box
+* `hy` – the neuron's value lies in its bounds
+
+## Conclusion
+* the chord row holds at the ReLU of the bounded neuron
 -/
 
 -- Authors:       Claude Opus 5.5

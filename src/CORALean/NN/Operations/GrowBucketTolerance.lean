@@ -13,6 +13,15 @@ the loop by nothing, and it need not end — `δmax` may start at `0` — so it 
 returns `none` past it. The tenfold growth rounds up, a larger `δmax` only widening the
 bisection that follows.
 
+## Inputs
+* `le` – comparison of two scalars
+* `B` – merge bucket initialisation
+* `I_k` – bounds of the layer
+* `ρ` – reduction rate
+
+## Output
+* grown tolerance leaving at most the wanted neurons, or none past the fuel
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

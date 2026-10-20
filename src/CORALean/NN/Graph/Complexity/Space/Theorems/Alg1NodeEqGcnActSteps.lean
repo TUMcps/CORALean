@@ -19,6 +19,22 @@ are its dependent and independent ones. So `κ'` steps leave at most
 `K^κ' m^(3κ') (h_x + 1 + κ' ν)` generators, `K` collecting the graph size and `ν = |N| c_max`
 the neurons an activation adds.
 
+## Inputs
+* `R` – relaxation of the activations
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `L` – number of graph layers
+* `c` – layer widths
+* `W` – graph layer weights
+* `acts` – activation layers
+* `X` – input polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the node-level enclosure equals the chain of activation steps on the padded message passing
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

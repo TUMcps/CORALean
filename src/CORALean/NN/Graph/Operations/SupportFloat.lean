@@ -12,6 +12,14 @@ when it is sure, so both `A i j ≤ 0` and `0 ≤ A i j` certify zero, and a non
 dropped. It is the edge test the float node sets of `reduceGNNForNode` [1, §4.3] run on, the
 computable stand-in for `A i j ≠ 0`.
 
+## Inputs
+* `A` – float adjacency matrix
+* `i` – row node
+* `j` – column node
+
+## Output
+* true unless the entry is certified zero
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

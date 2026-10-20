@@ -10,17 +10,28 @@ public import CORALean.Specification.Theorems.HoldsOfOuter
 /-!
 # Refinement keeps a sufficient explanation sufficient, as [1, Prop. 3] states it
 
-The paper compares the refined network's *exact* output with the abstract
-network's enclosure: `nnRef` merges fewer neurons than `nnAbs`, and every
-merge it does make `nnAbs` makes too, so `nnRef`'s image of `explainBox` lies
-inside what `nnAbs` encloses. `hrefine` is that containment, and
-`suffExplanationExact_of_reducesAt` discharges it from the merging machinery.
+The paper compares the refined network's *exact* output with the abstract network's enclosure:
+`nnRef` merges fewer neurons than `nnAbs`, and every merge it does make `nnAbs` makes too, so
+`nnRef`'s image of `explainBox` lies inside what `nnAbs` encloses. `hrefine` is that containment,
+and `suffExplanationExact_of_reducesAt` discharges it from the merging machinery.
+`suffExplanationAbstract_of_refined` is the enclosure-to-enclosure reading instead. Neither implies
+the other: `Layer.enclose_not_monotone` blocks passing from a containment of input sets to one of
+enclosures, and `image_subset` composes in one direction only.
 
-`suffExplanationAbstract_of_refined` is the enclosure-to-enclosure reading
-instead. Neither implies the other: `Layer.enclose_not_monotone` blocks
-passing from a containment of input sets to one of enclosures, and an exact
-image is not an enclosure, so `image_subset` composes in one direction only
-— it weakens the enclosure hypothesis to this one, never the reverse.
+## Inputs
+* `nnAbs` – coarser abstract network
+* `f` – map of the refined network
+* `x` – input point
+* `ε` – perturbation radius
+* `E` – explanation, a feature set
+* `l` – target label
+
+## Hypotheses
+* `hrefine` – the exact image lies in the coarser enclosure
+* `hsuffAbs` – the explanation is abstractly sufficient for the coarser network
+
+## Conclusion
+* the explanation is exactly sufficient
 
 ## References
 

@@ -13,6 +13,20 @@ that difference. That is all [1, Alg. 1] promises. It says nothing of which neur
 needs not: Prop. 4 is sound at every bucket. `le` need only be sound on a `true`; at `𝕋 := ℝ`
 every rounding is exact and this is `|n̂_k/n_k - ρ| ≤ tol` itself.
 
+## Inputs
+* `le` – comparison of two scalars
+* `tol` – tolerance on the remaining fraction
+* `fuel` – bound on the loop iterations
+* `B` – merge bucket initialisation
+* `I_k` – bounds of the layer
+* `ρ` – reduction rate
+
+## Hypotheses
+* `hle` – the comparison is sound for the real order
+
+## Conclusion
+* the returned buckets leave a fraction within the tolerance of the rate
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

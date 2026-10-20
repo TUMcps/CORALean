@@ -8,6 +8,18 @@ public import CORALean.NN.Definitions.Encloses
 # Soundness is stable under agreeing functions
 
 What lets a caller name the composite in its own terms.
+
+## Inputs
+* `nn` – network
+* `f` – map the network encloses
+* `f'` – map agreeing with it
+
+## Hypotheses
+* `h` – the network encloses the first map
+* `hff` – the two maps agree everywhere
+
+## Conclusion
+* the network encloses the second map
 -/
 
 -- Authors:       Claude Opus 5

@@ -10,20 +10,22 @@ public import CORALean.NN.Graph.Theorems.SmulEdgeHalf
 /-!
 # The uncertain adjacency is exactly the adjacencies the edges allow
 
-[1]'s uncertain graph structure as an equality and not an enclosure: every
-adjacency obtained by weighting the uncertain edges anywhere between `0` and `1`
-is a point of `uncertainAdj`, and every point of `uncertainAdj` is one such
-adjacency. Nothing is lost, because nothing is over-approximated — the edges are
-put in as factors, one each.
+[1]'s uncertain graph structure as an equality and not an enclosure: every adjacency obtained by
+weighting the uncertain edges anywhere between `0` and `1` is a point of `uncertainAdj`, and every
+point of `uncertainAdj` is one such adjacency, because the edges are put in as factors, one each.
+Both inclusions are the same affine change of variable, `λ = (1 + α)/2` coming back and `α = 2λ - 1`
+going out. `monomial_identE` collapses each monomial to its own factor, so no exponent ever enters;
+the independent block is empty and takes no part.
 
-Both inclusions are the same affine change of variable read in the two
-directions: `λ = (1 + α)/2` coming back and `α = 2λ - 1` going out, with
-`|α| ≤ 1` and `0 ≤ λ ≤ 1` two ways of writing one pair of bounds.
-`monomial_identE` collapses each monomial to its own factor, so the generator
-sum is linear in the factors and no exponent ever enters.
+## Inputs
+* `A` – adjacency matrix
+* `U` – uncertain edges
 
-The independent block is empty and takes no part on either side, discharged the
-way `PolyZonotope.mul_exact` discharges its own.
+## Hypotheses
+* none
+
+## Conclusion
+* the set is exactly the adjacencies at all admissible edge weights
 
 ## References
 

@@ -9,19 +9,29 @@ public import CORALean.Specification.Theorems.HoldsIUnion
 /-!
 # Verification by splitting the input set
 
-`hcov` is a cover, not a partition: the parts may overlap and may stick out
-beyond `X`, all that matters is that nothing in `X` is missed — which is what
-a splitter that rounds outward, as any representation's bounded arithmetic
-does, still gives. Read `nn.eval '' construct X ⊆ nn.eval '' ⋃ i, construct
-(parts i) = ⋃ i, nn.eval '' construct (parts i)`, each part's image inside its
-own enclosed set, then `holds_iUnion` with `holds_of_outer`.
+`hcov` is a cover, not a partition: the parts may overlap and may stick out beyond `X`, all that
+matters is that nothing in `X` is missed — which is what a splitter that rounds outward still gives.
+Read `nn.eval '' construct X ⊆ ⋃ i, nn.eval '' construct (parts i)`, each part's image inside its
+own enclosed set, then `holds_iUnion` with `holds_of_outer`. Which parts to split into owes no
+proof: the theorem holds at every cover, so the splitting heuristic is free. At `Interval`, `ι :=
+Bool` and `parts := fun b => if b then (I.splitAt j).1 else (I.splitAt j).2` with `hcov` supplied by
+`Interval.splitAt_cover` is one instance; nothing here searches for which coordinate `j` to bisect.
 
-Which parts to split into owes no proof: the theorem holds at every cover, so
-the splitting heuristic is free, exactly as `ConPolyZono.reduceBy_outer` is
-sound at every partition and `Relaxation` at every slope. At `Interval`,
-`ι := Bool` and `parts := fun b => if b then (I.splitAt j).1 else
-(I.splitAt j).2` with `hcov` supplied by `Interval.splitAt_cover` is one
-instance; nothing here searches for which coordinate `j` to bisect.
+## Inputs
+* `ι` – index type of the parts
+* `nn` – network
+* `f` – map the network encloses
+* `X` – input set
+* `parts` – covering parts of the input set
+* `spec` – specification
+
+## Hypotheses
+* `hf` – the network encloses the map
+* `hcov` – the parts cover the input set
+* `h` – the specification holds on every part's enclosure
+
+## Conclusion
+* the specification holds on the image of the input set
 -/
 
 -- Authors:       Claude Opus 5

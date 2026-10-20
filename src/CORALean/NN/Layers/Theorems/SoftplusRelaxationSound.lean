@@ -13,6 +13,18 @@ public import CORALean.NN.Layers.Theorems.Real.SoftplusMono
 For a positive stored sharpness, on the boxes where the two arguments the enclosure hands to
 `logDown` and `expUp` stay in their ranges. `softplus` is monotone, so the lower end at the left
 end and the upper one at the right end bound it between them.
+
+## Inputs
+* `β` – sharpness
+* `k` – reduction depth of the exponential
+* `nl` – range exponent of the logarithm
+* `kl` – reduction depth of the logarithm
+
+## Hypotheses
+* none
+
+## Conclusion
+* the relaxation is sound for softplus on boxes in range
 -/
 
 -- Authors:       Claude Opus 5.5

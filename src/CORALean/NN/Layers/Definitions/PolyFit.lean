@@ -18,6 +18,15 @@ nothing a machine scalar is asked for; the runnable relaxation takes its coeffic
 The normal equations rather than a decomposition, `Matrix.inv` being total: at a singular Gram
 matrix it returns junk, the fit is a bad one, and the error bound absorbs it.
 
+## Inputs
+* `l` – lower end of the interval
+* `u` – upper end of the interval
+* `m` – number of sample intervals
+* `n` – polynomial degree
+
+## Output
+* matrix of monomials at the sample points
+
 ## References
 
 * [1] N. Kochdumper et al. "Open- and Closed-Loop Neural Network Verification

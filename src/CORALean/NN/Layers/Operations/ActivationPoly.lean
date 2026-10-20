@@ -31,6 +31,12 @@ being closed under `evalPoly`; `absorbRounding` runs first, so the input's indep
 become dependent ones and the cross terms [2, Prop. 2] spends a factor on are kept. The box is
 centered at zero, so the layer rounds nowhere of its own.
 
+## Inputs
+* `P` – polynomial relaxation of the activation
+
+## Output
+* layer applying the fits neuron by neuron and boxing the residual
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

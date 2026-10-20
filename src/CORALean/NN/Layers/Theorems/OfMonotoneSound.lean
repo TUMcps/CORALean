@@ -11,6 +11,16 @@ public import CORALean.NN.Layers.Theorems.AbsSubLeSpread
 Between its values at the box's ends a monotone `σ` stays, and those are bracketed by the
 enclosure, so `σ t` lies between two stored values and `abs_sub_le_spread` bounds its distance
 from the midpoint by the stored error.
+
+## Inputs
+* `E` – enclosure of the monotone function
+
+## Hypotheses
+* `hσ` – the function is monotone
+* `hE` – enclosure is sound for the function
+
+## Conclusion
+* the slope-zero relaxation is sound for the function
 -/
 
 -- Authors:       Claude Opus 5.5

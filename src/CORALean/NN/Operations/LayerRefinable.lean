@@ -10,6 +10,16 @@ public import CORALean.NN.Layers.Definitions.Basic
 
 Every pattern is the layer itself, which is how a linear layer sits in a refinable network; its
 soundness is the refinable layer's stored obligation.
+
+## Inputs
+* `L` – layer
+* `f` – map the layer encloses
+
+## Hypotheses
+* `hf` – the layer encloses the map
+
+## Output
+* refinable layer whose every pattern is the layer itself
 -/
 
 -- Authors:       Claude Opus 5.5

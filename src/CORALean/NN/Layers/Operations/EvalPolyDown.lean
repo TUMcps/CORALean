@@ -11,6 +11,13 @@ What a sample point needs of a fit: an enclosure of `Real.evalPoly` at the store
 coefficients, which is the whole of the fit's rounding. Interval arithmetic rather than
 Horner, and sign is why: composing `mulUp x (mulUp …)` needs `0 ≤ x`, and no comparison of
 stored values establishes a sign.
+
+## Inputs
+* `c` – stored coefficients
+* `t` – evaluation point
+
+## Output
+* lower bound of the polynomial's value
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,6 +16,15 @@ from `Mat ℝ N F` to `Vec ℝ F`. `rfl` against the structure instance in
 That the shape changes and the counts do not is what lets the layers after the
 pooling be the ordinary vector-shaped ones with nothing paid in between.
 
+## Inputs
+* `pZ` – input polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* summing across nodes leaves the number of factors unchanged
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

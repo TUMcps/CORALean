@@ -14,6 +14,12 @@ slice of `u` added to each linear layer's bias, so that `f(x, 0)` is `evaluate(n
 CORA's elementwise-affine layer contributes `(f) + offset` and drops its scale, though its own
 `evaluateNumeric` is `scale .* input + offset`; here the scale is kept, so that the stated
 `f(x, 0) = evaluate(net, x)` holds. See `SmoothNetwork.elementwiseAffine_cora_counterexample`.
+
+## Inputs
+* none
+
+## Output
+* output with every linear layer's bias perturbed by its input block
 -/
 
 -- Authors:       Claude Sonnet 5.5

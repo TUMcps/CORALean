@@ -8,6 +8,18 @@ public import CORALean.NN.Operations.Basic
 # Fusing a linear layer composes the maps
 
 `W₂ (W x + b) + b₂ = (W₂ W) x + (W₂ b + b₂)`, exactly.
+
+## Inputs
+* `acc` – accumulated map
+* `W₂` – weight matrix
+* `b₂` – bias vector
+* `x` – input vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the pushed accumulator is the accumulated map followed by the linear map
 -/
 
 -- Authors:       Claude Opus 5.5

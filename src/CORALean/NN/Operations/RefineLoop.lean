@@ -13,6 +13,13 @@ The loop is [1, Alg. 3].
 reached so far. Nothing constrains `pick`, and `Theorems.EncloseAtOuter` is
 why nothing has to: soundness holds at every schedule `refine` can reach.
 
+## Inputs
+* `pick` – layer and neuron to refine next
+* `sch` – initial schedule
+
+## Output
+* schedule after the given number of refinement steps
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

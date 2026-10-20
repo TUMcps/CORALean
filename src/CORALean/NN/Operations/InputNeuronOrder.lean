@@ -10,16 +10,23 @@ public import CORALean.NN.Operations.Sensitivity
 # `getInputNeuronOrder`
 
 CORA's ranking of the input neurons, as a list of 0-based neuron indices (CORA's are 1-based):
-
 * `inOrder`: the neurons in their own order;
 * `snake`: the inward spiral over the `h × w` image, laid out column by column as MATLAB's
-  `reshape` does (`snakeOrder`); CORA requires `inputSize` here, and without it the order is empty;
+`reshape` does (`snakeOrder`); CORA requires `inputSize` here, and without it the order is empty;
 * `sensitivity`: the least sensitive neuron first, the sensitivity being the mean over the outputs
-  of the absolute entries of `calcSensitivity` (`Chain.sensitivity`) and, given an
-  `inputSize = (h, w, c)`, further the mean over the `c` channels, so only `h * w` neurons are
-  ranked. The sort is stable, as MATLAB's.
+of the absolute entries of `calcSensitivity` and, given `inputSize = (h, w, c)`, the mean over the
+`c` channels, so only `h * w` neurons are ranked. The sort is stable, as MATLAB's.
 
-Without `inputSize` the neurons are the `n` entries of the point `x`; with it, the first `h * w`.
+## Inputs
+* `n` – input width
+* `m` – output width
+* `c` – network chain
+* `method` – ranking method
+* `x` – input point
+* `inputSize` – image size, if given
+
+## Output
+* input neuron indices in ranked order
 -/
 
 -- Authors:       Claude Opus 5.5

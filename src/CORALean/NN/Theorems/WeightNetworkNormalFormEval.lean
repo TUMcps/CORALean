@@ -11,6 +11,16 @@ public import CORALean.NN.Theorems.WeightNetworkNormalFormAuxEval
 `getNormalForm` fuses layers without changing what the network computes, exactly, for linear,
 elementwise affine and identity layers between any activations. Over any semiring, so at ℝ the
 fused weights are the exact products.
+
+## Inputs
+* `N` – weight network
+* `x` – input vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the normal form and the network compute the same function
 -/
 
 -- Authors:       Claude Opus 5.5

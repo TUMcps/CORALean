@@ -11,6 +11,12 @@ public import Mathlib.Analysis.SpecialFunctions.Sqrt
 The square root is monotone, so `Relaxation.ofMonotone` at its own values gives CORA's `nnRootLayer`
 relaxation: the range over the box at slope zero. A specification, as the exact sigmoid and tanh
 relaxations are.
+
+## Inputs
+* none
+
+## Output
+* relaxation of the square root by its range at slope zero
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -12,6 +12,23 @@ public import CORALean.NN.Layers.Theorems.AbsSubLeSpread
 map is `ra` times `f`'s, and what storing one slope and one offset costs on top is bounded by the
 two gaps — the slope's charged against `|t|`, which only the box bounds. The two scales arrive
 here, as hypotheses on the roundings, and nowhere in what is stored.
+
+## Inputs
+* `R` – relaxation of the activation
+* `A` – rounding of the output scale
+* `B` – rounding of the input scale
+* `c` – output shift
+
+## Hypotheses
+* `hR` – relaxation is sound for the activation
+* `hA` – output rounding is sound for its scale
+* `hB` – input rounding is sound for its scale
+* `ha` – output scale is positive
+* `hb` – input scale is positive
+* `hg` – the conjugate is the scaled activation plus the shift
+
+## Conclusion
+* the conjugated relaxation is sound for the conjugate
 -/
 
 -- Authors:       Claude Opus 5.5

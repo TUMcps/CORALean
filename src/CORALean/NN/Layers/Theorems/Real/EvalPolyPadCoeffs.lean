@@ -12,6 +12,18 @@ public import Mathlib.Data.Nat.SuccPred
 ℝ-only, the padding being exact: every added term is `0 · t ^ j`. That exactness is why a common
 degree is no restriction, and what makes a layer's relaxations `Fin n → PolyRelaxation 𝕋 M`
 rather than a ragged family.
+
+## Inputs
+* `k` – polynomial degree
+* `M` – higher degree
+* `c` – coefficients
+* `t` – evaluation point
+
+## Hypotheses
+* `h` – the degree is at most the higher degree
+
+## Conclusion
+* padding the coefficients leaves the polynomial's value unchanged
 -/
 
 -- Authors:       Claude Opus 5.5

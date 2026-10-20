@@ -8,6 +8,12 @@ public import CORALean.NN.Definitions.SmoothNetwork
 # The dimension of the input CORA's conversion adds
 
 CORA's `dim_u`: one block per linear layer, the size of its bias.
+
+## Inputs
+* none
+
+## Output
+* total size of the linear layers' biases
 -/
 
 -- Authors:       Claude Sonnet 5.5

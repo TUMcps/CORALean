@@ -13,6 +13,14 @@ How far label `j` closes the gap on label `l`: the direction a bound is asked
 for, one per rival, to certify a classification. Used directly at the outputs
 of concrete networks in `Examples`, and via `DisjointMisclassifiedOfBounds` and
 `Classifies` at any network's image.
+
+## Inputs
+* `m` – number of labels
+* `j` – rival label
+* `l` – target label
+
+## Output
+* linear functional measuring how far the rival closes the gap
 -/
 
 -- Authors:       Claude Opus 5

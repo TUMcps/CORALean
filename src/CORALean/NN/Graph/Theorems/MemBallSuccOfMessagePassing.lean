@@ -11,6 +11,21 @@ public import CORALean.NN.Graph.Theorems.MessagePassingNeZero
 Composes the ball's successor case with `messagePassing_ne_zero`: a nonzero
 message out of a node already in the ball places its target one radius
 further out. Everything downstream about masking reads only through this.
+
+## Inputs
+* `N` – number of nodes
+* `A` – adjacency matrix
+* `v` – center node
+* `r` – radius in hops
+* `i` – sending node
+* `j` – receiving node
+
+## Hypotheses
+* `hi` – sender lies in the ball of radius r
+* `hj` – message from i to j is nonzero
+
+## Conclusion
+* the receiver lies in the ball of radius r + 1
 -/
 
 -- Authors:       Claude Opus 5

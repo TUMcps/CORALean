@@ -10,6 +10,16 @@ public import CORALean.NN.Layers.Definitions.Enclosure
 `σ l - λ l + (lo - λ)(u - l)`, the lower end `sub_mul_bounds_of_deriv` gives `σ t - λ t` over
 the box, rounded down. `(lo - λ)(u - l)` is a non-positive factor times a non-negative one, so
 the *widest* second factor makes it smallest, which is why the width rounds up.
+
+## Inputs
+* `E` – enclosure of the activation
+* `lo` – lower derivative bracket for each box
+* `lam` – slope for each box
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* lower end of the activation minus the slope times the input, rounded down
 -/
 
 -- Authors:       Claude Opus 5.5

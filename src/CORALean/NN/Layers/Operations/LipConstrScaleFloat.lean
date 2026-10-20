@@ -9,6 +9,13 @@ public import CORALean.ContSet.Interval.Float.Interval
 
 `Layer.lipConstrScale` bracketed: the row sum is rounded down and up, so the divisor
 `max(1, λ⁻¹ Σⱼ |Wᵢⱼ|)` is bracketed, and so is its reciprocal. Needs `0 < λ` to be sound.
+
+## Inputs
+* `W` – weight matrix
+* `lam` – Lipschitz bound
+
+## Output
+* box around the diagonal scaling, rounded outward
 -/
 
 -- Authors:       Claude Opus 5.5

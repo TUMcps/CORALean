@@ -10,6 +10,15 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 # A stored center reads back exactly
 
 One index carries the linear term and every other contributes nothing.
+
+## Inputs
+* `c` – stored fit coefficients
+
+## Hypotheses
+* none
+
+## Conclusion
+* the stored center reads back as the real center
 -/
 
 -- Authors:       Claude Opus 5.5

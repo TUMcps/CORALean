@@ -11,6 +11,20 @@ public import CORALean.NN.Graph.Operations.ReduceKeepFloat
 For an edge test covering the support of `A`, the set kept before step `k` of `L` by
 `GNN.reduceKeepFloat` contains the real ball `GNN.ball A v (L - k)` [1, §4.3].
 
+## Inputs
+* `A` – adjacency matrix
+* `E` – Boolean edge test
+* `v` – node of interest
+* `L` – number of message-passing steps
+* `k` – step index
+
+## Hypotheses
+* `hE` – the test holds wherever A is nonzero
+* `hk` – step index within the number of steps
+
+## Conclusion
+* the float kept set before step k contains the real ball of the remaining steps
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

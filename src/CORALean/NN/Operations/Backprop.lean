@@ -13,6 +13,12 @@ gradient it receives at its output to one at its input by its transposed Jacobia
 backpropagated gradient at this layer's output, then this layer's own step.
 
 The interval and zonotope batch variants of CORA's `backprop` are not this.
+
+## Inputs
+* none
+
+## Output
+* gradient pulled back through the chain to the input
 -/
 
 -- Authors:       Claude Opus 5.5

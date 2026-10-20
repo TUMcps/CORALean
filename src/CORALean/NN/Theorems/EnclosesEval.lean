@@ -13,6 +13,15 @@ public import CORALean.NN.Operations.Eval
 Each layer is sound at its own `eval` by `Enclose.toLayer_encloses`, and `eval` composes them
 exactly as `Sound` does, so the relation holds at `eval` with no hypothesis. Every
 hypothesis-free statement about a network is the relational one read here.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* every network encloses the map it computes
 -/
 
 -- Authors:       Claude Opus 5.5

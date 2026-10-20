@@ -9,6 +9,16 @@ public import CORALean.NN.Layers.Operations.ConjSlope
 
 The distance from the stored midpoint to the further of the two roundings, rounded up: the
 slope's share of what storing one value rather than the exact product costs.
+
+## Inputs
+* `R` – relaxation of the activation
+* `A` – rounding of the output scale
+* `B` – rounding of the input scale
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* distance from the stored slope to the further rounding
 -/
 
 -- Authors:       Claude Opus 5.5

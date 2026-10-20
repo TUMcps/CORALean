@@ -20,6 +20,15 @@ into a Lipschitz bound on all of ℝ, the domain being convex.
 The constant is `1` and not `1/4`, which is the true supremum of `σ'`. Nothing
 downstream reads the number, and `1` is what the existing global bound gives
 without a second argument about where `σ'` is maximal.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sigmoid is Lipschitz with constant one
 -/
 
 -- Authors:       Claude Opus 5

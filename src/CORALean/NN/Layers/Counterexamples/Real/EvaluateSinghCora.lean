@@ -8,43 +8,22 @@ public import CORALean.NN.Layers.Theorems.Real.DeepZSShapeCubeNotSound
 /-!
 # `evaluatePolyZonotopeNeuron` with `poly_method = 'singh'`, order 1, as printed
 
-CORA's `@nnActivationLayer/evaluatePolyZonotopeNeuron.m` bounds the neuron's input
-(`aux_computeBounds`, `l`, `u`), calls `computeApproxPoly(obj, l, u, order, 'singh')` and evaluates
-the returned polynomial on the polynomial zonotope. For a layer with `monotonicity` set and
-`order == 1` the `'singh'` branch of `computeApproxPoly.m` is [1, Thm. 3.2] for every activation,
-with `df` the layer's derivative:
+CORA's `evaluatePolyZonotopeNeuron.m` bounds the neuron's input `[l, u]` and evaluates the line of
+`computeApproxPoly(obj, l, u, order, 'singh')`, for `order == 1` [1, Thm. 3.2]: slope
+`lambda = min(df(l), df(u))`, error `d = mu2` as a fresh generator.
 
-```
-lambda = min(obj.df(l), obj.df(u));
-mu1 = 0.5 * (obj.f(u) + obj.f(l) - lambda * (u + l));
-mu2 = 0.5 * (obj.f(u) - obj.f(l) - lambda * (u - l));
-coeffs = [lambda, mu1];
-d = mu2;
-```
+On `x ↦ (x, 3 - x) ↦ (x³, (3 - x)³) ↦ x³ + (3 - x)³` over `[-1, 2]` the neurons get the lines
+`3 x + 2` (`d = 0`) and `34 - 3 x` (`d = 27`), the generators cancel, and the output is `[9, 63]`,
+but the true output at `x = 3/2` is `6.75`.
 
-The input is a zonotope `c + g ε`, so `[l, u] = [c - |g|, c + |g|]`; the output is
-`(lambda c + mu1, lambda g, d)`, `d` the error `aux_addApproxError` adds as a generator.
+## Inputs
+* none
 
-# A two-neuron network through CORA's `'singh'` neuron step
+## Hypotheses
+* none
 
-`neuralNetwork.evaluate` with `options.nn.poly_method = 'singh'` on a zonotope: the linear layer
-`x ↦ (a₁ x + b₁, a₂ x + b₂)`, the activation layer `nnActLayerFromHandle(f, [], 1)` whose
-neurons each run `NN.evaluateSinghNeuronCora`, and the linear layer `(z₁, z₂) ↦ z₁ + z₂`. The
-two neurons share the input generator, which the second linear layer adds up, and each carries
-its error as a fresh generator. The result is the interval `center ± (|generator| + |d₁| + |d₂|)`
-of the output zonotope.
-
-A single neuron cannot show a miss: for a monotone `f` the band is exact at both ends of the
-interval. The shared generator is what makes the error of one neuron visible.
-
-# CORA's `'singh'` evaluation misses a true output of a network with activation `x³`
-
-`nnActLayerFromHandle(@(x) x.^3, [], 1)` sets `monotonicity` for any handle, and
-`options.nn.poly_method = 'singh'` is a documented option of `neuralNetwork/evaluate`. On the
-network `x ↦ (x, 3 - x) ↦ (x³, (3 - x)³) ↦ x³ + (3 - x)³` and the input `[-1, 2]` the first neuron
-gets the line `3 x + 2` with `d = 0` (`deepZSShape_cube_not_sound`), the second, on `[1, 4]`, the
-line `34 - 3 x` with `d = 27`. The generators cancel, and the output is `[9, 63]`; the true output
-at `x = 3/2` is `6.75`.
+## Conclusion
+* the cube is monotone yet some true output lies outside CORA's result
 
 ## References
 

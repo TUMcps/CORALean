@@ -9,6 +9,16 @@ public import CORALean.NN.Layers.Operations.Basic
 # The fallback bracket's upper end
 
 The same fallback from above.
+
+## Inputs
+* `E` – enclosure of the activation
+* `c` – fit coefficients
+* `M` – derivative bound
+* `l` – lower end of the interval
+* `u` – upper end of the interval
+
+## Output
+* upper end of the coarse bracket on the fit's error
 -/
 
 -- Authors:       Claude Opus 5.5

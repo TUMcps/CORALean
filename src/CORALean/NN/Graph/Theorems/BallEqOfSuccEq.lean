@@ -12,6 +12,18 @@ public import CORALean.NN.Graph.Operations.Ball
 every later successor radius does too. `aux_ball_succ_congr` reads that
 determinism off `ball`'s own recursive equation; the induction on `s` chains
 it against the one hypothesised stable step.
+
+## Inputs
+* `A` – adjacency matrix
+* `v` – center node
+* `r` – radius where the ball stops growing
+* `s` – further hops
+
+## Hypotheses
+* `h` – the ball at r + 1 hops equals the ball at r hops
+
+## Conclusion
+* the ball at r + s hops equals the ball at r hops
 -/
 
 -- Authors:       Claude Opus 5

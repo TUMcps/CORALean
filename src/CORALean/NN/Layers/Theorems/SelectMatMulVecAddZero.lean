@@ -10,6 +10,17 @@ public import CORALean.NN.Layers.Theorems.SelectMatMulVec
 `W x + 0` at a selection matrix `W` is the selection: the form an affine map takes when all
 it does is pick coordinates, which is how a CAT function renames or reorders them. The zero is
 stored as `zero`, which every scalar reads back exactly.
+
+## Inputs
+* `sel` – input read by each output
+* `x` – input vector
+* `j` – output coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* the selection with a zero offset returns the selected input coordinate
 -/
 
 -- Authors:       Claude Opus 5.5

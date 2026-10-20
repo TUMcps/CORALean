@@ -14,6 +14,21 @@ corollaries the refinement loop [1, Alg. 2] actually visits, alongside
 rate `1`, the abstraction is `nn` itself, and separation on `nn`'s own
 enclosed set is sufficiency for `nn` outright.
 
+## Inputs
+* `nn` – network
+* `f` – map the network encloses
+* `x` – input point
+* `ε` – perturbation radius
+* `E` – explanation, a feature set
+* `l` – target label
+
+## Hypotheses
+* `hf` – the network encloses the map
+* `hsuffAbs` – the explanation is abstractly sufficient
+
+## Conclusion
+* the explanation is sufficient for the map
+
 ## References
 
 * [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining

@@ -10,6 +10,13 @@ public import CORALean.NN.Layers.Definitions.SoundLayer
 
 Reading one pattern off a refinable layer gives a `SoundLayer`: the layer's `eval`, its
 `enclose` at that pattern and the guarantee it already carries, which is what a network holds.
+
+## Inputs
+* `L` – refinable layer
+* `t` – order pattern
+
+## Output
+* sound layer the pattern names
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,21 +10,24 @@ public import CORALean.NN.Graph.Theorems.GcnSharedExact
 /-!
 # The uncertain-graph convolution loses nothing
 
-[1, Prop. 5] as an *equality*, not an enclosure, and that is the point. The two
-factor sets are disjoint, so every pair of admissible factor vectors is jointly
-admissible and the image of the joint box is exactly the set of products
-`𝒫 H W` — the layer itself gives nothing away.
+[1, Prop. 5] as an *equality*, not an enclosure. The two factor sets are disjoint, so every pair of
+admissible factor vectors is jointly admissible and the image of the joint box is exactly the set of
+products `𝒫 H W`. The over-approximation an uncertain graph costs was already paid by
+`messagePassing_mem_enclosure`; paying it again here would be double counting.
 
-The over-approximation an uncertain graph costs was already paid, once, by
-`messagePassing_mem_enclosure`, where a non-affine inverse square root bought
-residual factors. Paying it again here would be double counting, and stating
-this step as an equality is what makes that visible.
+`gcnShared_exact` is the whole proof: `gcnUncertain` *is* the shared step at the padded pair, read
+back through `padBack_point` and `padFront_point`.
 
-`gcnShared_exact` is the whole proof: `gcnUncertain` *is* the shared step at the
-padded pair, so its guarantee is that one read back through `padBack_point` and
-`padFront_point`, which split the joint factor vector into the half each set was
-written against. Read over `point` rather than over the two sets, as
-`bilin_exact` is, since the claim is about the joint factor vector.
+## Inputs
+* `W` – weight matrix
+* `P` – polynomial zonotope of the graph
+* `H` – polynomial zonotope of the node features
+
+## Hypotheses
+* none
+
+## Conclusion
+* the convolution's polynomial zonotope is exactly the set of products at joint factor vectors
 
 ## References
 

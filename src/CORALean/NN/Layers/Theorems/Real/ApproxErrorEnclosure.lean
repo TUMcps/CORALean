@@ -14,6 +14,20 @@ lies in `[e_low, e_up]`, the least and greatest it takes there. Needs `ϕ - p` c
 `[l, u]`, which makes the image compact and so bounded, the infimum and supremum then being its
 bounds.
 
+## Inputs
+* `ϕ` – activation function
+* `p` – approximating line
+* `l` – lower end of the interval
+* `u` – upper end of the interval
+* `x` – point in the interval
+
+## Hypotheses
+* `hc` – activation minus the line is continuous on the interval
+* `hx` – point lies in the interval
+
+## Conclusion
+* the activation minus the line at the point lies between the two errors
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

@@ -13,6 +13,18 @@ disjunct, so a larger support can only add more `j` at each successor radius.
 
 This is what makes a single subgraph usable across every graph in a family that
 shares a support bound — `A` need not be fixed, only its zero pattern.
+
+## Inputs
+* `A` – adjacency matrix
+* `A'` – adjacency matrix with the larger support
+* `v` – center node
+* `r` – radius in hops
+
+## Hypotheses
+* `h` – support of A is contained in that of A'
+
+## Conclusion
+* the ball of A is contained in the ball of A'
 -/
 
 -- Authors:       Claude Opus 5

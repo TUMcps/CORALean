@@ -12,6 +12,12 @@ public import CORALean.NN.Definitions.ReducibleNetwork
 which leaves every pixel where it is. In [1, Eq. 2]'s form it is the identity matrix, a zero
 bias and a zero error box, all placed rather than computed, so stored exactly.
 
+## Inputs
+* `n` – layer width
+
+## Output
+* identity as a linear layer with no error
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

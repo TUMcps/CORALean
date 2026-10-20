@@ -10,6 +10,15 @@ public import CORALean.NN.Layers.Operations.Basic
 
 CORA's `nnSoftPlusLayer`: `Layer.activation` at `softplusRelaxation β k nl kl`, the sharpness `β`
 stored in the scalar.
+
+## Inputs
+* `β` – sharpness
+* `k` – reduction depth of the exponential
+* `nl` – range exponent of the logarithm
+* `kl` – reduction depth of the logarithm
+
+## Output
+* layer applying the softplus relaxation to every neuron
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,12 @@ CORA's `nnGNNGlobalPoolingLayer` at the sum, [1, Prop. 3]: linear, so its
 propagation is `PolyZonotope.map` at `sumPoolLin` and its guarantee
 `map_exact`.
 
+## Inputs
+* `pZ` – node features as a polynomial zonotope
+
+## Output
+* polynomial zonotope of the features summed over the nodes
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

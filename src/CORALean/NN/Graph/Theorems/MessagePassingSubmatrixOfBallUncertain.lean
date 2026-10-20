@@ -16,6 +16,35 @@ public import CORALean.NN.Graph.Theorems.MessagePassingSubmatrixOfBall
 alone, serves every admissible `lam` at once — the piece `!179`'s `messagePassing`
 locality was missing to reach the uncertain graph.
 
+## Inputs
+* `N` – number of nodes
+* `m` – number of uncertain edges
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `lam` – weights of the uncertain edges
+* `v` – center node
+* `r` – radius in hops
+* `K` – number of kept nodes
+* `κ` – indices of the kept nodes
+* `i` – first node
+* `j` – second node
+* `ki` – index of the first node among the kept ones
+* `kj` – index of the second node among the kept ones
+
+## Hypotheses
+* `hA` – adjacency entries are nonnegative
+* `hSymm` – adjacency matrix is symmetric
+* `hlam` – edge weights lie in the unit interval
+* `hinj` – kept indices are distinct
+* `hκ` – kept nodes contain the maximal ball one hop larger
+* `hi` – first node lies in the ball of radius r
+* `hj` – second node lies in the ball of radius r
+* `hki` – index names the first node
+* `hkj` – index names the second node
+
+## Conclusion
+* the message on the subgraph equals the message in the whole uncertain graph
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

@@ -12,6 +12,24 @@ public import CORALean.NN.Layers.Theorems.ToRealPolyDerivCenter
 # The stored derivative bound a bracket for σ' buys
 
 The difference splits at the center: the bracket's spread, then the radius, each rounded up.
+
+## Inputs
+* `c` – fit coefficients
+* `σ'` – derivative of the activation
+* `loD` – lower end of the derivative bracket
+* `hiD` – upper end of the derivative bracket
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `x` – point in the box
+
+## Hypotheses
+* `hlo` – bracket's lower end is below the derivative
+* `hhi` – bracket's upper end is above the derivative
+* `hl` – point is above the lower end
+* `hu` – point is below the upper end
+
+## Conclusion
+* the derivative differs from the fit's by at most the stored bound
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,12 @@ CORA's `snake` order of `getInputNeuronOrder`: take the first row of `A`, then t
 `A(2:end,:)` a quarter turn, `A ← fliplr(A(2:end,:))'`, and repeat until nothing is left. The
 matrix is a function on `Fin h × Fin w`, so the turn is index arithmetic: row `i` of the new
 matrix, of which there are `w`, is column `w-1-i` of the old rest, read top to bottom.
+
+## Inputs
+* none
+
+## Output
+* entries listed along the inward spiral
 -/
 
 -- Authors:       Claude Opus 5.5

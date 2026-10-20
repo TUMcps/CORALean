@@ -7,16 +7,18 @@ public import CORALean.Global.Float.FloatOps
 /-!
 # One entry of a stencil matrix
 
-An entry of a stencil matrix is one kernel weight or zero. Written as
-`∑ l, if tap j l = i then w j l else 0` that is `k` additions, which a machine scalar rounds, and
-the matrix read back into ℝ would then be the convolution only approximately; written as a
-recursion that stops at the first tap reading `i`, it is a *placement*: no arithmetic is
-consulted at all, and `toReal_tapEntry` is an equality with no hypothesis.
+An entry of a stencil matrix is one kernel weight or zero. Written as `∑ l, if tap j l = i then w j
+l else 0` that is `k` additions, which a machine scalar rounds, so the matrix read back into ℝ would
+be the convolution only approximately; written as a recursion that stops at the first tap reading
+`i`, it is a *placement*: no arithmetic is consulted, and `toReal_tapEntry` is an equality with no
+hypothesis. `aux_tapEntryImpl` is the same scan as a loop, swapped in by `@[csimp]` for what runs;
+`Fin.foldr` nests to the right, so the *first* tap reading `i` still wins.
 
-The recursion is what proofs see; `aux_tapEntryImpl` is the same scan as a loop, swapped in by
-`@[csimp]` for what runs. `Fin.foldr` nests to the right, so the *first* tap reading `i` still
-wins; it costs the whole kernel where the recursion stopped at that tap, and saves the closure
-per tap that made a miss quadratic.
+## Inputs
+* `n` – number of inputs
+
+## Output
+* weight of the first tap reading the input, or zero
 -/
 
 -- Authors:       Claude Opus 5.5

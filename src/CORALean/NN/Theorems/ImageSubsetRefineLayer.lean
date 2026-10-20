@@ -14,6 +14,18 @@ declarations there, none used outside the file, so split one file each.
 Refining a whole layer [1, Def. 4.6], the rule that spends more orders for the
 same generator count, keeps the enclosure too.
 
+## Inputs
+* `rn` – refinable network
+* `sch` – schedule of order patterns
+* `l` – layer index
+* `X` – input set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact image lies in the enclosure after refining the layer
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

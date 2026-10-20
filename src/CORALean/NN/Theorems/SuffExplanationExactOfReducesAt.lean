@@ -8,16 +8,28 @@ public import CORALean.NN.Theorems.SuffExplanationExactOfRefined
 /-!
 # The refinement hypothesis, discharged by neuron merging
 
-What makes [1, Prop. 3] usable: `nnAbs` merges everything `nnRef` merges and
-more, which is exactly `ReducesAt` [2] with `nnRef` in the role of the original
-network, and then `reducesAt_outer` is the containment
-`suffExplanationExact_of_refined` asks for. So a caller who reached `nnAbs` by
-merging neurons supplies a derivation, not a set containment.
+What makes [1, Prop. 3] usable: `nnAbs` merges everything `nnRef` merges and more, which is exactly
+`ReducesAt` [2] with `nnRef` in the role of the original network, and then `reducesAt_outer` is the
+containment `suffExplanationExact_of_refined` asks for. So a caller who reached `nnAbs` by merging
+neurons supplies a derivation, not a set containment. `ReducesAt` is indexed by the input set each
+layer is reduced over, here `ofInterval (explainBox x ε E)` itself, so the two line up with no side
+condition.
 
-`ReducesAt` is indexed by the input set each layer is reduced over, and here
-that index is `ofInterval (explainBox x ε E)` itself, so the two line up with
-no side condition: the `hY` look-ahead inside the derivation is already stated
-over the enclosed `explainBox`.
+## Inputs
+* `nnRef` – refined network
+* `nnAbs` – coarser network
+* `f` – map the refined network encloses
+* `x` – input point
+* `ε` – perturbation radius
+* `E` – explanation, a feature set
+* `l` – target label
+
+## Hypotheses
+* `hred` – the coarser network reduces the refined one
+* `hsuffAbs` – the explanation is abstractly sufficient for the coarser network
+
+## Conclusion
+* the explanation is exactly sufficient
 
 ## References
 

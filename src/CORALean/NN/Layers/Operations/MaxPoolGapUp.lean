@@ -10,6 +10,15 @@ public import CORALean.ContSet.Interval.Float.Interval
 Zero at the pivot, so the maximum is floored there and a stable window gets a gap of exactly
 zero; every other tap's reach above the pivot's lower bound rounds up, `subUp`, and the exact
 `maximumOver` above them. The one number max pooling rounds.
+
+## Inputs
+* `tap` – input index of every window position
+* `p` – pivot position of every window
+* `I` – box of the layer's input
+* `j` – window index
+
+## Output
+* how far the window can rise above its pivot, rounded up
 -/
 
 -- Authors:       Claude Opus 5.5

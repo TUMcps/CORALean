@@ -12,6 +12,13 @@ public import CORALean.NN.Layers.Operations.Basic
 `[α, 1]` and below it raised by the larger of its two end values: the relaxation of CORA's
 `nnLeakyReLULayer` for a stored `α` and a chosen slope `lam`, clamped into `[α, 1]` as ReLU's is
 into `[0, 1]`. Recentered, so the error is half the gap.
+
+## Inputs
+* `α` – slope below zero
+* `lam` – slope choice for each box
+
+## Output
+* relaxation of the leaky ReLU recentered so the error is half the gap
 -/
 
 -- Authors:       Claude Opus 5.5

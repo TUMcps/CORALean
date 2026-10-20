@@ -12,6 +12,21 @@ public import CORALean.NN.Layers.Operations.LinearWithError
 What the layer encloses at *every* value of the error, not only its center: `W x + c` for any
 real `c` within what `E` denotes of `b` — CORA's `W h + b ⊕ E` read pointwise, and what the
 reduction algorithms freeze a bias at.
+
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+* `c` – bias within the error box
+* `E` – added error box
+* `s` – input set
+* `x` – point of the input set
+
+## Hypotheses
+* `hc` – the bias differs from the stored one by a point of the box
+* `hx` – point lies in the input set
+
+## Conclusion
+* the affine image with that bias lies in the layer's output set
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,24 @@ public import CORALean.NN.Layers.Definitions.IsSShape
 For an S-shaped real derivative `df` that `dfLo` and `dfHi` bound at every stored point, `df t`
 lies in `sShapeDerBoundsFloat dfLo dfHi l u` for every real `t` between the real values of `l`
 and `u`. An outer statement: it holds in the cases the comparison does not decide too.
+
+## Inputs
+* `df` – derivative of the activation
+* `dfLo` – lower float bound of the derivative at a point
+* `dfHi` – upper float bound of the derivative at a point
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `t` – point in the box
+
+## Hypotheses
+* `h` – the derivative is S-shaped
+* `hlo` – the lower bound holds at every point
+* `hhi` – the upper bound holds at every point
+* `hl` – point is above the lower end
+* `hu` – point is below the upper end
+
+## Conclusion
+* the derivative at the point lies in the float bounds
 -/
 
 -- Authors:       Claude Opus 5.5

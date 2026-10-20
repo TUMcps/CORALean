@@ -14,6 +14,19 @@ edgeMat (U e)` is then a sum of symmetric matrices whenever `A` itself is.
 This is what lets `[1, §4.3]`'s extra-hop theorems (`DegreeSubmatrixOfBall`,
 `MessagePassingSubmatrixOfBall`) apply to `adjAt A U lam` at all.
 
+## Inputs
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `lam` – weights of the uncertain edges
+* `i` – row node
+* `j` – column node
+
+## Hypotheses
+* `hSymm` – adjacency matrix is symmetric
+
+## Conclusion
+* the weighted adjacency has equal entries at the two orientations
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

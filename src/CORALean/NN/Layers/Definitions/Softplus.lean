@@ -9,6 +9,13 @@ public import Mathlib.Analysis.SpecialFunctions.Log.Basic
 
 CORA's `nnSoftPlusLayer` applies `log(1 + exp(β t)) / β` for a sharpness `β`, which is
 `1` by default. A specification over ℝ, never run.
+
+## Inputs
+* `β` – sharpness
+* `t` – real number to transform
+
+## Output
+* smooth maximum of the number and zero
 -/
 
 -- Authors:       Claude Opus 5.5

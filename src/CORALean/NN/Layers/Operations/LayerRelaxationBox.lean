@@ -10,6 +10,13 @@ public import CORALean.ContSet.Interval.Float.Interval
 
 Each neuron's deviation from its own polynomial is confined to `[-error, error]`: centered at
 zero, where `neg` is exact, so this box rounds nowhere.
+
+## Inputs
+* `P` – relaxation of every neuron
+* `I` – box of the layer's input
+
+## Output
+* box confining each neuron's deviation from its polynomial
 -/
 
 -- Authors:       Claude Opus 5.5

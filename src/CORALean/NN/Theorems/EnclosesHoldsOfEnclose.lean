@@ -8,15 +8,24 @@ public import CORALean.Specification.Theorems.HoldsOfOuter
 /-!
 # Verification: the check on the enclosed set answers for the network
 
-`enclose` returns a superset of the image, and `Specification.
-holds_of_outer` says a check passed on a superset is passed by everything
-inside it — so a specification verified on what was computed is satisfied by
-every output the network actually produces, on every input in the input set.
+`enclose` returns a superset of the image, and `Specification.holds_of_outer` says a check passed on
+a superset is passed by everything inside it — so a specification verified on what was computed is
+satisfied by every output the network actually produces, on every input in the input set. That is
+the entire method, and its one-sidedness is the entire cost: a specification that fails on the
+enclosed set is not a counterexample, and finding out which it is means tightening the enclosure.
 
-That is the entire method, and its one-sidedness is the entire cost: a
-specification that fails on the enclosed set is not a counterexample, and
-finding out which it is means tightening the enclosure rather than reasoning
-about the network.
+## Inputs
+* `nn` – network
+* `f` – map the network encloses
+* `X` – input set
+* `spec` – specification
+
+## Hypotheses
+* `hf` – the network encloses the map
+* `h` – the specification holds on the enclosed set
+
+## Conclusion
+* the specification holds on the image of the input set
 -/
 
 -- Authors:       Claude Opus 5.5

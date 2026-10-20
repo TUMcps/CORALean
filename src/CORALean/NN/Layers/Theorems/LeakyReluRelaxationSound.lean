@@ -11,6 +11,16 @@ public import CORALean.NN.Layers.Theorems.Real.LeakyReluBoundsOfSlope
 At whatever slope the caller chose, for a stored `α ≤ 1`: the clamped slope lies in `[α, 1]`, so
 `leakyRelu α t - m t` is between zero and its larger end value, which the stored gap bounds from
 above; halving is exact, so the recentered line is within half the gap everywhere on the box.
+
+## Inputs
+* `α` – slope below zero
+* `lam` – slope choice for each box
+
+## Hypotheses
+* `hα` – slope is at most one
+
+## Conclusion
+* the relaxation is sound for the leaky ReLU
 -/
 
 -- Authors:       Claude Opus 5.5

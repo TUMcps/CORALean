@@ -9,31 +9,22 @@ public import Mathlib.Tactic.Linarith
 /-!
 # `Layer.conv2DSanitiseCora`: the repair of inverted center bounds in `nnConv2DLayer`
 
-`nn/layers/linear/nnConv2DLayer.m`, `evaluateZonotopeBatch`, l. 182-185 (with
-`options.nn.interval_center`, the interval center of `c(:,1,:)` and `c(:,2,:)`):
+`nnConv2DLayer.m`, `evaluateZonotopeBatch`, l. 182-185: if any `cl > cu`, the batch is repaired with
+`t = cl; cl = min(t, cu); cu = max(t, t)`. For an inverted entry this swaps the bounds; for every
+other entry `cu` becomes `max(t,t) = t`, the old `cl`, so `[cl, cu]` collapses to the point `cl`
+(`max(t, cu)` was meant). Read from the source, not run.
 
-```
-if any(cl > cu, 'all')
-    t = cl;
-    cl = min(t, cu);
-    cu = max(t, t);
-end
-```
+With `cl = (0, 2)`, `cu = (1, 1)` the second entry is inverted, so the repair runs, and the first
+`[0, 1]` becomes `[0, 0]`: the value `1`, which that element can take, is lost.
 
-The comment says it sanitizes bounds "to prevent interval constructor crash". For an entry with
-`cl > cu` this swaps them. For every other entry `cu` becomes `max(t,t) = t`, the old `cl`: the
-interval `[cl, cu]` collapses to the point `cl`. `max(t, cu)` is what was meant. The batch is
-repaired as a whole as soon as one entry is inverted (`any`). `neuralNetwork/evaluateZonotopeBatch`
-is public, and `verify` sets `interval_center` (l. 97, 578, 589) and propagates through
-`evaluateZonotopeBatch_`. One entry per neuron and batch element, given as functions of the entry
-index. Read from the source, not run.
+## Inputs
+* none
 
-# CORA's center repair collapses the entries that were fine
+## Hypotheses
+* none
 
-Two batch elements with `cl = (0, 2)`, `cu = (1, 1)`: the second is inverted, so the repair runs,
-turns it into `[1, 2]` and the first `[0, 1]` into `[0, 0]`: the layer is then applied to the
-point `0`, and the value `1`, which the first element can take, is lost. Read from the source,
-not run.
+## Conclusion
+* the repaired first entry no longer contains an attainable value
 -/
 
 -- Authors:       Claude Sonnet 5.5

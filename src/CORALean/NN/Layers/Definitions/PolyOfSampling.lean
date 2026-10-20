@@ -16,6 +16,16 @@ at a checked grid it cannot compute, and rounds; this is the one the convergence
 `c` is arbitrary — no soundness rests on it, only precision — and `N` is how much effort a box
 gets.
 
+## Inputs
+* `n` – polynomial degree
+* `σ` – activation function
+* `c` – fit coefficients for each interval
+* `M` – derivative bound for each interval
+* `N` – sample count for each interval
+
+## Output
+* polynomial relaxation from the fit and its sampled error
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

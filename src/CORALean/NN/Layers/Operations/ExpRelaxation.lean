@@ -10,6 +10,12 @@ public import CORALean.NN.Layers.Operations.RelaxationOfMonotone
 
 `Relaxation.ofMonotone` at `expEnclosure`, CORA's `nnExpLayer` read as the monotone relaxation,
 slope zero.
+
+## Inputs
+* `k` – reduction depth
+
+## Output
+* slope-zero relaxation of the exponential
 -/
 
 -- Authors:       Claude Opus 5.5

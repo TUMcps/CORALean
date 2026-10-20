@@ -12,6 +12,17 @@ Split out of `ConvExact.lean` (issue #62): `gcn_exact` is the general fact,
 true of any `P`; this is the corollary at `P = messagePassing A`, which is the
 proposition as `[1]` actually states it.
 
+## Inputs
+* `A` – adjacency matrix
+* `W` – weight matrix
+* `pZ` – node features as a polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the layer at the graph's message passing is exactly the image of the input set
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

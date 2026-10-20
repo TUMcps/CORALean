@@ -12,6 +12,15 @@ public import CORALean.NN.Graph.Operations.TailEval
 of the layer `g t` it encloses, the chain of enclosures contains the chain of layers, from a point
 of the set it starts at: an enclosure composes with an enclosure.
 
+## Inputs
+* `T` – number of tail layers
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact tail's value lies in the enclosed tail's set
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

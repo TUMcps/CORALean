@@ -10,6 +10,19 @@ public import CORALean.NN.Layers.Theorems.Real.Basic
 The outputs sum to one, so each is what the others leave over. Stated for arbitrary raw bounds
 because a machine scalar passes `0` below, where the normalization is not a tightening but the
 only lower bound available.
+
+## Inputs
+* `x` – input vector
+* `rl` – raw lower bounds of the softmax
+* `ru` – raw upper bounds of the softmax
+* `i` – output coordinate
+
+## Hypotheses
+* `hl` – the raw lower bounds hold
+* `hu` – the raw upper bounds hold
+
+## Conclusion
+* the softmax lies within the bounds tightened by the normalization
 -/
 
 -- Authors:       Claude Opus 5.5

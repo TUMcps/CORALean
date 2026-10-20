@@ -9,6 +9,15 @@ public import CORALean.NN.Operations.Backprop
 
 `Chain.backprop c x g = (c.sensitivity x)ᵀ *ᵥ g`: pulling `g` back layer by layer is the
 transpose of the product of the layer Jacobians, `(AB)ᵀ = BᵀAᵀ`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* backpropagation is the transposed sensitivity applied to the gradient
 -/
 
 -- Authors:       Claude Opus 5.5

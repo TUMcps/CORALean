@@ -8,6 +8,17 @@ public import CORALean.NN.Layers.Operations.RelaxationTighter
 # The tighter of two sound relaxations is sound
 
 Whichever branch `le` picks on a box, that relaxation is sound there.
+
+## Inputs
+* `R₁` – first relaxation
+* `R₂` – second relaxation
+
+## Hypotheses
+* `h₁` – first relaxation is sound for the activation
+* `h₂` – second relaxation is sound for the activation
+
+## Conclusion
+* the tighter relaxation is sound for the activation
 -/
 
 -- Authors:       Claude Opus 5.5

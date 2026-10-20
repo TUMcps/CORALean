@@ -10,6 +10,13 @@ public import CORALean.NN.Layers.Operations.TapEntry
 Output `j` reads inputs `tap j l` with weight `w j l`, one row at a time through `tapEntry`, so
 every entry is a stored weight or zero and nothing rounds. Convolution, average pooling and the
 selection matrix max pooling encloses through are all this matrix at their own taps and weights.
+
+## Inputs
+* `tap` – input index of every kernel position
+* `w` – weight of every kernel position
+
+## Output
+* matrix placing every weight at its input
 -/
 
 -- Authors:       Claude Opus 5.5

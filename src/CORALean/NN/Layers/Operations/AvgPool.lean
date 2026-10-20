@@ -13,6 +13,13 @@ size, which is `Layer.conv` at a constant kernel; the window is the taps. `1 / k
 machine number, so the weight is a parameter: at ℝ it is `(k : ℝ)⁻¹`, and a machine scalar
 encloses the map its stored weight denotes — exactly averaging for a window of `2 ^ d` taps, the
 weight then `half` iterated from `one`, and every pooling window CORA builds is of that shape.
+
+## Inputs
+* `winv` – inverse of the window size
+* `tap` – input index of every window position
+
+## Output
+* layer averaging every pooling window
 -/
 
 -- Authors:       Claude Opus 5.5

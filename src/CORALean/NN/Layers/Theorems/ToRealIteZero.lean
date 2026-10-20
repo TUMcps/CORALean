@@ -8,6 +8,17 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 # A zeroed term reads as zero
 
 `if` commutes with `toReal`, and the stored `zero` reads as `0`.
+
+## Inputs
+* `v` – stored summands
+* `i` – omitted index
+* `j` – summand index
+
+## Hypotheses
+* none
+
+## Conclusion
+* a zeroed stored term reads back as zero
 -/
 
 -- Authors:       Claude Opus 5.5

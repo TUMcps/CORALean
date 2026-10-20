@@ -15,6 +15,21 @@ standard layers after it, a linear layer exactly and an activation by [1, Prop. 
 `c (L + t)` of the standard layers continue those of the graph layers, `c L` being the pooled
 vector's.
 
+## Inputs
+* `R` – relaxation of the activations
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `L` – number of graph layers
+* `T` – number of layers after the pooling
+* `c` – layer widths
+* `W` – graph layer weights
+* `acts` – activation layers
+* `f` – enclosure maps of the later layers
+* `X` – input polynomial zonotope
+
+## Output
+* polynomial zonotope enclosing the graph-level output
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

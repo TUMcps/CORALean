@@ -10,6 +10,14 @@ public import CORALean.NN.Layers.Operations.Basic
 How far the stored constant actually moved, bracketed by a `subDown` and a `subUp`, each end
 widening the end it can hurt: the shift is applied after the bracket was taken, so it moves the
 polynomial out from under it, and this is the payment.
+
+## Inputs
+* `c0` – stored constant
+* `lo` – lower end of the bracket
+* `hi` – upper end of the bracket
+
+## Output
+* radius the recentered bracket leaves
 -/
 
 -- Authors:       Claude Opus 5.5

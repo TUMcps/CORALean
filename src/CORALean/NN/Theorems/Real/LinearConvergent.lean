@@ -11,16 +11,21 @@ public import CORALean.NN.Theorems.Real.LinearExact
 # The linear layer converges, at every level
 
 ℝ-only, resting on `Real.Layer.linear_exact`: at a machine scalar the enclosure pays rounding.
+`Layer.refinable` puts a layer with nothing to spend into a refinable network, and `Convergent` then
+has to be met by its single enclosure. It is, because that enclosure is exact: any order pattern
+already lands the enclosed set on the image. So the linear layer contributes no residual to
+`EncloseAtInflate`'s budget, and everything the schedule buys is bought at the activations. That is
+where [1, Prop. 4.13]'s proof starts — "the linear layer is computed exactly".
 
-`Layer.refinable` is what puts a layer with nothing to spend into a refinable
-network, and `Convergent` then has to be met by its single enclosure. It is,
-because that enclosure is exact: any order pattern already lands the enclosed
-set on the image, and the inflation is spent on nothing.
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
 
-So the linear layer contributes no residual at all to `EncloseAtInflate`'s
-budget, and everything the schedule buys is bought at the activations. That is
-where [1, Prop. 4.13]'s proof starts — "the linear layer is computed exactly" —
-and it is the division of labour the whole refinement loop assumes.
+## Hypotheses
+* none
+
+## Conclusion
+* the linear layer as a refinable layer is convergent
 
 ## References
 

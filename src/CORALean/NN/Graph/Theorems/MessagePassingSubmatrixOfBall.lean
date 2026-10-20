@@ -17,6 +17,31 @@ diagonal survives reindexing only because `κ` is injective — the same fact
 Radius `r`, not `r + 1`, at `i` and `j` themselves: it is only *computing* each degree that
 needs the extra ring, exactly as `degree_submatrix_of_ball`'s docstring explains.
 
+## Inputs
+* `N` – number of nodes
+* `A` – adjacency matrix
+* `v` – center node
+* `r` – radius in hops
+* `K` – number of kept nodes
+* `κ` – indices of the kept nodes
+* `i` – first node
+* `j` – second node
+* `ki` – index of the first node among the kept ones
+* `kj` – index of the second node among the kept ones
+
+## Hypotheses
+* `hA` – adjacency entries are nonnegative
+* `hSymm` – adjacency matrix is symmetric
+* `hinj` – kept indices are distinct
+* `hκ` – kept nodes contain the ball one hop larger
+* `hi` – first node lies in the ball of radius r
+* `hj` – second node lies in the ball of radius r
+* `hki` – index names the first node
+* `hkj` – index names the second node
+
+## Conclusion
+* the message on the subgraph equals the message in the whole graph
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

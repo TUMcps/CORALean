@@ -10,6 +10,19 @@ public import CORALean.NN.Theorems.SensitivityFDeriv
 
 `Chain.backprop_eq_transpose_mulVec` with `Chain.sensitivity_eq_fderiv`: `(D c.eval x)ᵀ g`,
 the gradient of `g ⬝ c.eval`.
+
+## Inputs
+* `n` – input width
+* `m` – output width
+* `c` – network chain
+* `x` – input point
+* `g` – output gradient
+
+## Hypotheses
+* `h` – the chain is differentiable along the forward pass
+
+## Conclusion
+* backpropagation equals the transposed derivative applied to the gradient
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -24,15 +24,22 @@ public import CORALean.NN.Theorems.SigmoidLipschitz
 /-!
 # The two-layer network is convergent
 
-[1, Prop. 4.13]'s hypothesis, discharged: the linear layer meets `Convergent` at
-every level because its propagation is exact, and the activation meets it by
-raising the order of its fit, so every level the schedule buys is spent where the
-approximation error is.
+[1, Prop. 4.13]'s hypothesis, discharged: the linear layer meets `Convergent` at every level because
+its propagation is exact, and the activation meets it by raising the order of its fit. The tail
+bound the network statement asks for is free on both sides here: behind the linear layer the tail is
+one sigmoid, whose constant is `1`; behind the activation the tail is empty. So no residual is
+amplified anywhere, which is why this case needs none of the care `MultiLayerRefinementConverges`
+does.
 
-The tail bound the network statement asks for is free on both sides here. Behind
-the linear layer the tail is one sigmoid, whose constant is `1`; behind the
-activation the tail is empty. So no residual is amplified anywhere, which is why
-this case needs none of the care `MultiLayerRefinementConverges` does.
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the linear then sigmoid network is convergent
 
 ## References
 

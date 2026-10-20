@@ -13,6 +13,15 @@ public import Mathlib.Topology.Algebra.Module.ModuleTopology
 
 Above the clamp the function is `(Real.sqrt ·)⁻¹`, whose derivative `Real.hasDerivAt_sqrt` and
 `HasDerivAt.inv` give; the agreement moves it across on a neighbourhood of `x`, all above `1`.
+
+## Inputs
+* `x` – real number above the clamp
+
+## Hypotheses
+* `hx` – number exceeds one
+
+## Conclusion
+* the clamped inverse square root has its closed-form derivative
 -/
 
 -- Authors:       Claude Opus 5.5

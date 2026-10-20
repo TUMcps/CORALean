@@ -11,6 +11,15 @@ public import CORALean.NN.Layers.Theorems.Real.Basic
 
 The clamp `max a 1` is exact and the root at least `1`, so the divisors are positive:
 `sqrtUp` in the divisor of the lower end, `sqrtDown` floored at `1` in the divisor of the upper end.
+
+## Inputs
+* `p` – number of Newton steps
+
+## Hypotheses
+* none
+
+## Conclusion
+* the machine relaxation is sound for the inverse square root
 -/
 
 -- Authors:       Claude Sonnet 5.5

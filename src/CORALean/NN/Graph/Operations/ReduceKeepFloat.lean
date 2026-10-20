@@ -9,6 +9,15 @@ public import CORALean.NN.Graph.Operations.BallFloat
 `GNN.reduceKeep` with `GNN.ballFloat`: before message-passing step `k` of `L`, the nodes within
 distance `L - k + 1` of `v`, and `{v}` alone after the last step (for `L ≥ 1`) [1, §4.3].
 
+## Inputs
+* `E` – Boolean edge test
+* `v` – node of interest
+* `L` – number of message-passing steps
+* `k` – step index
+
+## Output
+* nodes kept before step k
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

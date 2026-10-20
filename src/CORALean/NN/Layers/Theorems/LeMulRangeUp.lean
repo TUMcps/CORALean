@@ -9,6 +9,19 @@ public import CORALean.NN.Layers.Operations.Basic
 # The upper product bound
 
 The same case split on `a`'s sign, each end now reached from above.
+
+## Inputs
+* `a` – factor
+* `lo` – lower end of the bracket
+* `hi` – upper end of the bracket
+* `x` – real number in the bracket
+
+## Hypotheses
+* `h1` – number is above the lower end
+* `h2` – number is below the upper end
+
+## Conclusion
+* the product is at most the upper product bound
 -/
 
 -- Authors:       Claude Opus 5.5

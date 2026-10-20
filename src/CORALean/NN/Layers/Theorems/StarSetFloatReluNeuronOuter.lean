@@ -23,6 +23,17 @@ error box is carried by the step: the ReLU being `1`-Lipschitz, the error at neu
 image of the point by at most its own size, which `StarSet.aux_reluError` makes room for. The
 branches are taken on `le`, which certifies `≤` only, so the last branch is sound without knowing
 the bounds straddle `0`.
+
+## Inputs
+* `s` – float star set
+* `j` – neuron index
+* `b` – bounds of the neuron
+
+## Hypotheses
+* `hb` – the neuron stays within its bounds on the nominal set
+
+## Conclusion
+* the ReLU image of the star set lies in the set after the step
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

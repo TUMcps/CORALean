@@ -16,6 +16,15 @@ chain. The empty network is the identity, so its constant is `1` rather than
 The constant is existential and not computed. A product of layer bounds is the
 worst case and every use here only needs *some* bound, so naming it would
 commit the statement to a number no caller reads.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a network of Lipschitz layers has a Lipschitz map
 -/
 
 -- Authors:       Claude Opus 5

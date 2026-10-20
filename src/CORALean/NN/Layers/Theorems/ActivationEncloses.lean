@@ -10,6 +10,15 @@ public import CORALean.NN.Layers.Theorems.ActivationOuterWhere
 
 `σ` coordinatewise, wherever the relaxation is sound for `σ`: `Layer.activation_outer_where` at
 the trivial box condition.
+
+## Inputs
+* `R` – relaxation of the activation
+
+## Hypotheses
+* `hR` – relaxation is sound for the activation
+
+## Conclusion
+* the layer encloses the activation applied coordinatewise
 -/
 
 -- Authors:       Claude Opus 5.5

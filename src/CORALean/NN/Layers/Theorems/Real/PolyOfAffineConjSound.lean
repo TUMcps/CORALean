@@ -12,6 +12,24 @@ public import CORALean.NN.Layers.Theorems.Real.EvalPolyShiftConst
 ℝ-only, the reweighting being exact: the conjugation's own scaling is all that separates the two
 deviations, so precision carries over exactly — the transported error is `a` times `f`'s, and `a`
 is precisely the factor by which the conjugation stretches the deviation.
+
+## Inputs
+* `f` – activation function
+* `g` – conjugated function
+* `n` – polynomial degree
+* `P` – polynomial relaxation of the activation
+* `a` – output scale
+* `b` – input scale
+* `d` – output shift
+
+## Hypotheses
+* `hP` – relaxation is sound for the activation
+* `ha` – output scale is positive
+* `hb` – input scale is positive
+* `hg` – the conjugate is the scaled activation plus the shift
+
+## Conclusion
+* the conjugated polynomial relaxation is sound for the conjugate
 -/
 
 -- Authors:       Claude Opus 5.5

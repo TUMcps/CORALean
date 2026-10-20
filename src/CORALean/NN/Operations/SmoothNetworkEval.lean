@@ -13,6 +13,12 @@ public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
 CORA's `evaluate` on a point: the layers' maps composed, first layer first. The same maps as the
 `eval` of the `Enclose` instances of the corresponding kinds (`LinearLayer`, `TanhLayer`,
 `ReluLayer`, `SigmoidLayer`).
+
+## Inputs
+* none
+
+## Output
+* function the smooth network computes
 -/
 
 -- Authors:       Claude Sonnet 5.5

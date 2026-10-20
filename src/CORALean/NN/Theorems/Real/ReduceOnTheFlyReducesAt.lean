@@ -19,16 +19,27 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # What [1, Alg. 2] returns is a reduction, and computes its own output set
 
-ℝ-only, as `ReducesAt` is: it relates networks of layers, and an instance's bias, which
-`freeze` folds a real bucket value into, is stored only at `𝕋 := ℝ`. `reduceOnTheFly_outer`
-is the inclusion at every scalar; this is the stronger statement [1, Thm. 1]'s proof makes.
+ℝ-only, as `ReducesAt` is: it relates networks of layers, and an instance's bias, which `freeze`
+folds a real bucket value into, is stored only at `𝕋 := ℝ`. `reduceOnTheFly_outer` is the inclusion
+at every scalar; this is the stronger statement [1, Thm. 1]'s proof makes. The derivation follows
+the loop step for step: at `k < κ` a `freeze`, the look-ahead box `I_k` bounding every point of
+`H_{k-2}` pushed through `L̂_{k-1}` and `L_k`, and at `k = κ` a `widen` and a `keep`. The invariant
+is over the pending layer `L̂_{k-1}`: whatever bias `c` within its box the original is frozen at.
+Line 13's `Y` is `Φ̂_ρ`'s own enclosure of `X`.
 
-The derivation follows the loop step for step: at `k < κ` a `freeze` — the look-ahead box `I_k`
-bounds every point of `H_{k-2}` pushed through `L̂_{k-1}` and `L_k`, which is its hypothesis,
-and the rest of the loop, run once, serves every value `w` of the bucket because the reduced
-layer `k+1` carries all of them in its box — and at `k = κ` a `widen` and a `keep`. The
-invariant is over the pending layer `L̂_{k-1}`: whatever bias `c` within its box the original is
-frozen at. Line 13's `Y` is `Φ̂_ρ`'s own enclosure of `X`, as `reduceOnTheFly_outer` shows.
+## Inputs
+* `n` – input width
+* `m` – output width
+* `X` – input set
+* `Φ` – reducible network
+* `nn` – network the instance computes
+* `f` – map the network is an instance of
+
+## Hypotheses
+* `hΦ` – the network is an instance network of the map
+
+## Conclusion
+* the returned network reduces the original and the output set is its enclosure
 
 ## References
 

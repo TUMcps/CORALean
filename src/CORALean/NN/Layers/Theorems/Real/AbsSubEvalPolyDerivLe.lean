@@ -9,6 +9,25 @@ public import CORALean.NN.Layers.Theorems.Real.AbsEvalPolyDerivSubCenterLe
 
 ℝ-only, as the bracket is: the fit's own derivative is bracketed by construction, so a bracket
 for `σ'` bounds what `ofSampling` asks about.
+
+## Inputs
+* `n` – polynomial degree
+* `c` – fit coefficients
+* `σ'` – derivative of the activation
+* `lo` – lower end of the derivative bracket
+* `hi` – upper end of the derivative bracket
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `x` – point in the box
+
+## Hypotheses
+* `hlo` – bracket's lower end is below the derivative
+* `hhi` – bracket's upper end is above the derivative
+* `hl` – point is above the lower end
+* `hu` – point is below the upper end
+
+## Conclusion
+* the derivative differs from the fit's by at most the bracket's bound
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -14,6 +14,14 @@ CORA wraps the output function as
 `f` (`SmoothNetwork.outputFn`) is the output. The update is the identity on `n` states with
 `SmoothNetwork.nu` inputs, and the output equation `g` of `NonlinearSysDT` is `outputFn`, with
 `k` outputs.
+
+## Inputs
+* `n` – input width
+* `k` – output width
+* `N` – smooth network
+
+## Output
+* discrete-time system whose inputs perturb the biases
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

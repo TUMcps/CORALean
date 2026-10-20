@@ -12,6 +12,16 @@ The self-loop is what keeps a degree away from zero, so `messagePassing`
 divides by nothing that can vanish on a nonnegative adjacency — the same fact
 an uncertain degree's inverse square root needs in order to stay away from
 zero.
+
+## Inputs
+* `A` – adjacency matrix
+* `j` – node
+
+## Hypotheses
+* `hA` – adjacency entries are nonnegative
+
+## Conclusion
+* the degree is at least one
 -/
 
 -- Authors:       Claude Sonnet 5

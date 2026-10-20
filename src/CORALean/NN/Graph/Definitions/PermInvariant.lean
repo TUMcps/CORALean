@@ -15,6 +15,12 @@ relabelling the nodes, permuting the rows of `H`, leaves `ψ(H)` unchanged. `Per
 is that condition; the layer is `ψ` itself. Eq. (1)'s sum is one such `ψ`, `GNN.sumPoolLin`
 (`sumPoolLin_permInvariant`), and the one the tree propagates sets through.
 
+## Inputs
+* `ψ` – aggregation of node features into a vector
+
+## Output
+* the aggregation does not depend on the order of the nodes
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

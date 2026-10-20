@@ -8,6 +8,18 @@ public import CORALean.NN.Layers.Definitions.PolyFamily
 # The family is sound at every level
 
 ℝ-only, as the family is: each level is a sampled relaxation, sound at every box.
+
+## Inputs
+* `σ` – activation function
+* `σ'` – its derivative
+* `Mσ` – bound on the derivative
+
+## Hypotheses
+* `hd` – the activation has the given derivative
+* `hσ` – the derivative is bounded
+
+## Conclusion
+* the family is sound at every level
 -/
 
 -- Authors:       Claude Opus 5.5

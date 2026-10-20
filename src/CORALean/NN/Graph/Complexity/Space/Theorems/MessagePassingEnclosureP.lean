@@ -10,16 +10,24 @@ public import Mathlib.Tactic.Positivity
 /-!
 # `GNN.messagePassingEnclosure`'s counts
 
-[1, Prop. 4]'s `O(h³)` as the count itself: two `bilin`s over the `m + N` shared
-factors leave `𝒫` with `((m+N+1)² + 1)(m+N+1)` dependent generators and no
-independent ones, `rfl` against the structure instances. Cubic in `m + N` where
-[1] is cubic in the edge count alone: `aux_sqrtBroadcast` spends a residual factor on
-*every* node. `messagePassingEnclosure_h_le` is the form [1, Thm. 1] composes, the
-node count in the constant.
+[1, Prop. 4]'s `O(h³)` as the count itself: two `bilin`s over the `m + N` shared factors leave `𝒫`
+with `((m+N+1)² + 1)(m+N+1)` dependent generators and no independent ones, `rfl` against the
+structure instances. Cubic in `m + N` where [1] is cubic in the edge count alone:
+`aux_sqrtBroadcast` spends a residual factor on *every* node.
 
-`messagePassingEnclosure_h_isBigO` is [1, Prop. 4] in `O` notation: `O(m³)` in
-the uncertain edges, along a family of edge sets growing with `m`, the node count
-and the relaxation held fixed. `messagePassingEnclosure_h_le` is its constant.
+`messagePassingEnclosure_h_le` is the form [1, Thm. 1] composes; `messagePassingEnclosure_h_isBigO`
+is [1, Prop. 4] in `O` notation, along a family of edge sets growing with `m`.
+
+## Inputs
+* `R` – relaxation of the square root
+* `A` – adjacency matrix
+* `U` – uncertain edges
+
+## Hypotheses
+* none
+
+## Conclusion
+* the enclosure has m + N factors
 
 ## References
 

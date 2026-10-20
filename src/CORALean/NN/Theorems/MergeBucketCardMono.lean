@@ -14,6 +14,19 @@ quantity [1]'s Alg. 1 binary search on `δ` is searching, and `mergeBucket_mono`
 is why it only ever grows: the inclusion it gives, restricted to the
 underlying `Fin n`, is an injection from the smaller bucket into the larger one.
 
+## Inputs
+* `n` – layer width
+* `Y` – bounds of the layer's neurons
+* `y` – merge value
+* `δ` – smaller tolerance
+* `δ'` – larger tolerance
+
+## Hypotheses
+* `hδ` – tolerances are ordered
+
+## Conclusion
+* the bucket's neuron count does not shrink with the tolerance
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

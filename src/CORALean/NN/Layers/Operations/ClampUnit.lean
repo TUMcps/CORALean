@@ -11,6 +11,12 @@ ReLU's slope is a precision knob and never a correctness condition: any value in
 sound, the error being measured against the value stored. So an unverified candidate — a secant
 rounded whichever way, or a caller's own guess — is brought into range with `minimum` and
 `maximum`, both exact, which needs no rounding axiom and no decidable order on ℝ.
+
+## Inputs
+* `c` – candidate slope
+
+## Output
+* the candidate clamped into the unit interval
 -/
 
 -- Authors:       Claude Opus 5.5

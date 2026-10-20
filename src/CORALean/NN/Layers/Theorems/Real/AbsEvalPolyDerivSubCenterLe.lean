@@ -12,6 +12,20 @@ public import Mathlib.Tactic.Ring
 
 ℝ-only, the bracket being exact: the linear coefficient exactly, every other monomial at the
 end of the box furthest from zero.
+
+## Inputs
+* `n` – polynomial degree
+* `c` – fit coefficients
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `t` – point in the box
+
+## Hypotheses
+* `hl` – point is above the lower end
+* `hu` – point is below the upper end
+
+## Conclusion
+* the fit's derivative strays from its center by at most the radius
 -/
 
 -- Authors:       Claude Opus 5.5

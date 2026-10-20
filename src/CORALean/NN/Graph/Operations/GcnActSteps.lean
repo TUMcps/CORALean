@@ -16,6 +16,12 @@ public import CORALean.NN.Graph.Operations.GcnShared
 which `bilin` needs to see them, and `P` is padded by the factors that adds, so an edge is the same
 factor at every step. `P` is [1, Prop. 4]'s enclosure padded against the input set.
 
+## Inputs
+* none
+
+## Output
+* polynomial zonotope after the convolution and activation steps
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

@@ -12,6 +12,22 @@ public import CORALean.NN.Graph.Theorems.ReducedStepsRow
 graph: an equality, not an enclosure, since a dropped node is one the receptive field of `v`
 never reads [1, §4.3].
 
+## Inputs
+* `N` – number of nodes
+* `F` – feature width
+* `A` – adjacency matrix
+* `v` – node of interest
+* `L` – number of steps
+* `W` – weights of the steps
+* `X` – node-feature matrix
+* `a` – kept node
+
+## Hypotheses
+* `ha` – the kept node is the node of interest
+
+## Conclusion
+* the reduced network's row equals the full chain's row for the node
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

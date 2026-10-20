@@ -13,6 +13,14 @@ coming out. A graph convolution with its activation is `g x = σ (x W)` (`σ` el
 node-level output may carry further layers of the same kind. `GNN.evalSteps` is the case
 `g x = x W`, which has no activation.
 
+## Inputs
+* `N` – number of nodes
+* `F` – feature width
+* `Pm` – message-passing matrix
+
+## Output
+* node features after the steps with a layer after each
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

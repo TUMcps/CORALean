@@ -10,19 +10,21 @@ public import CORALean.NN.Operations.WorstIndex
 /-!
 # Which neuron to refine next
 
-The paper's neuron-wise rule [1, Def. 4.4], CORA's `'neuron'` granularity: the
-best-ranked `(layer, neuron)` pair names a layer, and every neuron of that layer
-whose rank clears `ω` times the best rank moves up an order. At `ω = 1` that is
-the single best neuron, at `ω = 0` the whole layer, which is [1, Def. 4.6].
+The paper's neuron-wise rule [1, Def. 4.4], CORA's `'neuron'` granularity: the best-ranked `(layer,
+neuron)` pair names a layer, and every neuron of that layer whose rank clears `ω` times the best
+rank moves up an order. At `ω = 1` that is the single best neuron, at `ω = 0` the whole layer, which
+is [1, Def. 4.6]. `refinementRank` is read per neuron here, where `layerRank` folds it into
+`‖σ_k‖₂`; by [1, Lemma 4.3] a layer costs no more generators than its largest order anyway. Nothing
+here is proved and nothing here can be wrong: `encloseAt_outer` holds at every schedule, so `ω`, the
+tie-break and the ranking are free.
 
-`refinementRank` is read per neuron here, where `layerRank` folds it into `‖σ_k‖₂`. The
-norm orders layers and cannot say which neuron inside one deserves the order; by
-[1, Lemma 4.3] a layer costs no more generators than its largest order anyway,
-so the two rules differ in the time spent and not in the size of the set.
+## Inputs
+* `sch` – schedule of order patterns
+* `r` – rank of every neuron
+* `ω` – fraction of the best rank a neuron must reach
 
-Nothing here is proved and nothing here can be wrong: `encloseAt_outer` holds
-at every schedule, so `ω`, the tie-break and the ranking are free. The layers
-are ranked at one width, a `Schedule` being indexed by plain ℕ.
+## Output
+* schedule with the selected neurons of the best layer raised by one
 
 ## References
 

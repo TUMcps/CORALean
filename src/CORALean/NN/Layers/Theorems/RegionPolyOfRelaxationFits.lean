@@ -9,6 +9,21 @@ public import CORALean.NN.Layers.Operations.RegionPolyOfRelaxation
 `PolyRelaxation.Sound` is the enclosure on every box the stored values describe, so on the
 box `[l, u]` the region of the relaxation encloses `σ`, and fits once its error is under the
 tolerance.
+
+## Inputs
+* `σ` – activation function
+* `m` – polynomial degree
+* `R` – polynomial relaxation
+* `tol` – error tolerance
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Hypotheses
+* `hR` – relaxation is sound for the activation
+* `h` – the relaxation's error is within the tolerance
+
+## Conclusion
+* the relaxation's region on the box fits the activation
 -/
 
 -- Authors:       Claude Sonnet 5.5
