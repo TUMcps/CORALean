@@ -12,6 +12,13 @@ CORA's `@zonotope/cubMap`: an enclosure of `{ (xᵀ T x) * x | x ∈ Z }`, `zᵢ
 by a zonotope. The box is made into generators first (`absorbRounding`), then `cubMapDep`. The
 factors of a zonotope are free in `[-1, 1]`, so the products `β_k β_j β_c` are enclosed rather than
 tracked, which is why the result is an outer enclosure.
+
+## Inputs
+* `T` – cubic tensor
+* `Z` – zonotope
+
+## Output
+* zonotope enclosing the cubic image
 -/
 
 -- Authors:       Claude Opus 5.5

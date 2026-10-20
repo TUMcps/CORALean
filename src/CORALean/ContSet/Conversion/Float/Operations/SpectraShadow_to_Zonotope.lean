@@ -18,6 +18,14 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 /-!
 # A spectrahedral shadow as a zonotope, over a floating-point scalar
+
+## Inputs
+* `S` – spectrahedral shadow
+* `Yup` – upper certificate matrices per generator
+* `Ylo` – lower certificate matrices per generator
+
+## Output
+* zonotope enclosing the shadow, if the certificates hold
 -/
 
 -- Authors:       Claude Opus 5.5

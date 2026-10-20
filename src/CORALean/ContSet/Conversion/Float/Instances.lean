@@ -24,21 +24,12 @@ public import CORALean.ContSet.Conversion.Float.Definitions.OfInterval
 # The box classes over a floating-point scalar, at each representation
 
 The instances of `IntervalOuter` and `OfInterval` over `𝕋`, here and not with the classes in
-`Definitions/` because each field is the guarantee of a conversion.
-
-The instance list is the exact layer's, minus `HPolytope`: a box from halfspaces
-is `2n` linear programs, so `interval` there takes certificates and is no function
-of the representation alone. A vertex list needs none (`boundProj`/`boundNegProj`).
-
-An exact representation is one at `𝕋 := ℝ`, through its own class: that is what lets an
-algorithm written once over the scalar run on `Real.Zonotope` as well as on a float one.
-
-Nothing here rounds. The box arrives already in `𝕋`, and each conversion pays
-whatever its own centering costs — `Interval.zonotope` measures its radius from
-the center it actually stored, so the box is covered by the generators alone.
-
-An exact representation is one at `𝕋 := ℝ`, through its own class, as in
-the exact layer.
+`Definitions/` because each field is the guarantee of a conversion. The instance list is the exact
+layer's, minus `HPolytope`: a box from halfspaces is `2n` linear programs, so `interval` there takes
+certificates and is no function of the representation alone. A vertex list needs none
+(`boundProj`/`boundNegProj`). An exact representation is one at `𝕋 := ℝ`, through its own class, so
+an algorithm written once over the scalar runs on `Real.Zonotope` as well. Nothing here rounds: each
+conversion pays what its own centering costs.
 -/
 
 -- Authors:       Claude Opus 5

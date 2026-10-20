@@ -12,19 +12,14 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 /-!
 # Star sets over a floating-point scalar: the representation
 
-`Real.StarSet` at CORA's predicate, its numbers stored in the scalar `𝕋`: the tuple
-`(c, G, C, d, l, u)` of CORA's `conversionConZonoStarSet`, the coefficient box `dom` the `[l, u]`
-and the predicate `pred` a float `HPolytope` holding `C α ≤ d`, and the error box that makes it an
-`InflatedContSet`. Only that predicate has a float form: it is what a network layer computes, and a
-predicate of another family (a `LevelSet`, a `SupportFunction`) stores functions, not numbers.
-
-The rounding of an operation is paid into `I_error`, a box in the ambient space, or into the
-predicate's row slacks. What the stored numbers describe is `nominal`, the same tuple
-read as reals, the predicate by its nominal part, as `ConZonotope.P` is: only that part is read,
-slacks included, and the operations leave the predicate's own box at the origin. What the set
-denotes is the points of the nominal star set, each moved by a point of `I_error`.
-
-The star set is the generalized star set of [1, Def. 1] at that predicate; see `Real.StarSet`.
+`Real.StarSet` at CORA's predicate, its numbers stored in `𝕋`: the tuple `(c, G, C, d, l, u)` of
+CORA's `conversionConZonoStarSet`, the coefficient box `dom` the `[l, u]`, the predicate `pred` a
+float `HPolytope` holding `C α ≤ d`, and the error box that makes it an `InflatedContSet`. Only that
+predicate has a float form: a predicate of another family (a `LevelSet`, a `SupportFunction`) stores
+functions, not numbers. The rounding of an operation is paid into `I_error` or into the predicate's
+row slacks. What the stored numbers describe is `nominal`, the same tuple read as reals, the
+predicate by its nominal part, slacks included, as `ConZonotope.P` is. The generalized star set of
+[1, Def. 1] at that predicate; see `Real.StarSet`.
 
 ## References
 

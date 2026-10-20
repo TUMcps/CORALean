@@ -11,6 +11,15 @@ public import CORALean.ContSet.Conversion.Float.Theorems.ZonoBundleConZonotopeAl
 
 `conPolyZono(conZonotope(zB))`: the intersected constrained zonotope holds the bundle
 (`ZonoBundle.conZonotopeAll_contains`), and its constrained polynomial zonotope holds that.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hk` – bundle is nonempty
+
+## Conclusion
+* bundle is contained in its constrained polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

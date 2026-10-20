@@ -9,22 +9,14 @@ public import CORALean.ContSet.Polygon.Float.Polygon
 /-!
 # `Polygon.innerHRep`
 
-A halfspace description of a float piece that lies inside it: one inequality per edge, so the
-vertices are taken in the stored order, each edge `vᵢ → vᵢ₊₁` (the last closing to `v₀`) giving
-the halfspace on its left, `aᵀx ≤ aᵀvᵢ` with `a = (dᵢ₁, -dᵢ₀)` and `dᵢ = vᵢ₊₁ - vᵢ`.
-
-Two roundings could make it larger than the piece, so neither is allowed to. The edge
-direction is a difference of stored coordinates; a rounded normal turns its line about some
-point, which no shift of the bound can repair, so the difference must be exact: it is
-computed rounded down and certified equal to its upward rounding by `le` (Sterbenz's lemma
-makes this common for nearby vertices, and small integers or dyadic coordinates always pass).
-The bound `aᵀvᵢ` is a dot product and is rounded down, which only shrinks the halfspace.
-
-What makes the edge halfspaces inner without assuming the vertices are in convex position is
-the fan from `v₀`: every triangle `v₀ vᵢ vᵢ₊₁` is certified counterclockwise by `ltStrict`.
-A point left of every edge then lies in one of these triangles (`innerHRep_inner`). The
-piece's error box must hold `0`, certified by `le`, so the hull of the stored vertices lies in
-the piece. Anything uncertified, or fewer than three vertices, gives `none`.
+A halfspace description of a float piece that lies inside it: one inequality per edge `vᵢ → vᵢ₊₁`
+(the last closing to `v₀`), the halfspace on its left, `aᵀx ≤ aᵀvᵢ` with `a = (dᵢ₁, -dᵢ₀)`,
+`dᵢ = vᵢ₊₁ - vᵢ`. Neither rounding may enlarge it. The edge direction must be exact, since a rounded
+normal turns its line about a point: it is computed rounded down and certified equal to its upward
+rounding by `le`. The bound `aᵀvᵢ` is rounded down, which only shrinks the halfspace. The fan from
+`v₀` makes the halfspaces inner without convex position: every triangle `v₀ vᵢ vᵢ₊₁` is certified
+counterclockwise by `ltStrict` (`innerHRep_inner`). The error box must hold `0`, certified by `le`.
+Anything uncertified, or fewer than three vertices, gives `none`.
 
 ## Inputs
 * `p` – V-polytope

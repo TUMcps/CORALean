@@ -10,16 +10,23 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
 /-!
 # `Zonotope.reduceBy` encloses the exact reduction
 
-At one and the same partition the two layers differ in the diagonal block alone:
-the kept generators are copied either way, and `radius` rounds the block *up*,
-so it covers the exact row sum. `coefficient` rescales by the ratio of the two,
-which the unit ball allows because the exact radius is the smaller.
+At one and the same partition the two layers differ in the diagonal block alone: the kept generators
+are copied either way, and `radius` rounds the block *up*, so it covers the exact row sum.
+`coefficient` rescales by the ratio of the two, which the unit ball allows because the exact radius
+is the smaller. As far as the refinement goes. At the *order* level there is none: `reduce` picks
+its partition by a metric computed in `𝕋`, so the layers can keep different generators, and two
+reductions of one zonotope are in general incomparable, boxing a generator losing a correlation
+between coordinates that keeping it preserves.
 
-As far as the refinement goes. At the *order* level there is none: `reduce`
-picks its partition by a metric computed in `𝕋`, so the layers can keep
-different generators, and two reductions of one zonotope are in general
-incomparable — boxing a generator loses a correlation between coordinates that
-keeping it preserves.
+## Inputs
+* `Z` – zonotope
+* `part` – split into kept and reduced generators
+
+## Hypotheses
+* none
+
+## Conclusion
+* exact reduction is contained in the nominal part of the float one
 -/
 
 -- Authors:       Claude Opus 5

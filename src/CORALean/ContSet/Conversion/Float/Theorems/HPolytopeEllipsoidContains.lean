@@ -17,6 +17,19 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 # A halfspace description as an ellipsoid, over a floating-point scalar
 
 Through its zonotope, which is its box, from the same certificates.
+
+## Inputs
+* `P` – halfspace polytope
+* `σ` – scaling factor
+
+## Hypotheses
+* `up` – float upper bound per coordinate
+* `lo` – float lower bound per coordinate
+* `hσ` – scaling factor positive
+* `hh` – squared scaling factor at least generator count
+
+## Conclusion
+* polytope is contained in its ellipsoid
 -/
 
 -- Authors:       Claude Opus 5.5

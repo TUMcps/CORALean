@@ -17,6 +17,13 @@ as generators, so for `(a + e)(b + f) = ab + af + e(b + f)` the two error terms 
 as interval products: `a` in the box around the first nominal part, `b + f` in the second
 factor's `interval`.
 
+## Inputs
+* `M` – left matrix zonotope
+* `N` – right matrix zonotope
+
+## Output
+* matrix zonotope of the product with its error terms
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

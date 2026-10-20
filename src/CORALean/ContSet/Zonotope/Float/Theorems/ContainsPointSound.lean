@@ -11,6 +11,17 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.DeviationBound
 
 The point minus the error box's lower corner is within `B` of the center, so in the nominal set
 (`Zonotope.box_subset`); adding the corner, a member of the nonempty box, gives the point.
+
+## Inputs
+* `Z` – zonotope
+* `H` – candidate right inverse
+* `p` – point
+
+## Hypotheses
+* `h` – test returns true
+
+## Conclusion
+* point lies in the zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

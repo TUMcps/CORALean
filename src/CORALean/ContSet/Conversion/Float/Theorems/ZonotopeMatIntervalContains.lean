@@ -12,6 +12,16 @@ public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 # A zonotope as a box, over a floating-point scalar
 
 `Zonotope.matInterval_contains`: its `matInterval` contains it.
+
+## Inputs
+* `m` – number of rows
+* `Z` – matrix zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is contained in its interval matrix
 -/
 
 -- Authors:       Claude Opus 5

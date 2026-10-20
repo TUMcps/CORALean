@@ -12,6 +12,12 @@ same generators, the center zeroed, and the error box widened to hold the
 origin, which the stored box need not. `minimum` and `maximum` are exact, so
 nothing rounds and the set is the input's moved by exactly its stored center,
 widened by the box's hull with `0`.
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* zonotope moved to the origin, box widened to hold zero
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -18,6 +18,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 CORA's `capsule(zonotope)` with the SVD basis taken as the identity: the capsule of
 `interval(Z)` (`Zonotope.interval`, then `Interval.capsule`, `k` Newton steps for the roots). An
 outer enclosure, as over ℝ; it is not CORA's rotated capsule.
+
+## Inputs
+* `k` – Newton steps for the norm
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is contained in its capsule
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -14,6 +14,15 @@ a polynomial zonotope is compact, and the half-line `{x | 0 ≤ x₀}` is a leve
 This is the arrow from polynomial zonotopes to level sets of
 [1, Fig. 1 (Polynomial Zonotopes → Level Sets)].
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* some level set on the line is no polynomial zonotope
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

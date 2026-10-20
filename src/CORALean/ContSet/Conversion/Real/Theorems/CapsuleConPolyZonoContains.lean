@@ -9,6 +9,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleConPolyZonoExact
 # A capsule lies in its constrained polynomial zonotope
 
 Exact for `0 ≤ r` (`Capsule.conPolyZono_exact`); a negative radius is the empty capsule.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* capsule is contained in its constrained polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

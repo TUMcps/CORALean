@@ -8,6 +8,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeConPolyZonoExac
 # A halfspace description as a constrained polynomial zonotope
 
 CORA's `conPolyZono(conZonotope(P))` is exact (`HPolytope.conPolyZono_exact`), so it holds `P`.
+
+## Inputs
+* none
+
+## Hypotheses
+* `up` – certified upper bound per coordinate
+* `lo` – certified lower bound per coordinate
+
+## Conclusion
+* polytope is contained in its constrained polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

@@ -12,6 +12,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_ConZonot
 intersected in order (`ZonoBundle.conZonotopeAll`, CORA's `and_(.., 'exact')`), then read as a
 constrained polynomial zonotope. A bundle with no members is CORA's empty object, which a Lean
 bundle (the whole space) is not, so at least one member is asked for.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hk` – bundle is nonempty
+
+## Output
+* constrained polynomial zonotope of the bundle
 -/
 
 -- Authors:       Claude Opus 5.5

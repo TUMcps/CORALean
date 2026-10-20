@@ -11,6 +11,17 @@ public import CORALean.ContSet.Conversion.Real.Operations.Taylm_to_PolyZonotope
 
 /-!
 # An array of Taylor models as a polynomial zonotope: `dep_apply`
+
+## Inputs
+* `T` – Taylor models, one per coordinate
+* `a` – evaluation point
+* `i` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* dependent part evaluates to the model polynomial
 -/
 
 -- Authors:       Claude Opus 5.5

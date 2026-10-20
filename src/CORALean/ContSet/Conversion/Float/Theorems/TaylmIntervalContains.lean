@@ -13,6 +13,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # An array of float Taylor models as a float box
 
 Each coordinate's float `bounds`, outward-rounded; outer, as the exact layer's.
+
+## Inputs
+* `m` – number of coordinates
+* `T` – Taylor models, one per coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* Taylor models are contained in their interval
 -/
 
 -- Authors:       Claude Opus 5.5

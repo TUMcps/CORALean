@@ -15,6 +15,16 @@ coordinatewise membership with the stored floats put through `toReal`.
 Proofs use it rather than going through `nominal` because through it every
 count is `Z.h`, where the instance gives the equal-but-distinct `(nominal Z).h`
 that `rw` reads apart.
+
+## Inputs
+* `Z` – zonotope
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership means coefficients in the unit box reach the point
 -/
 
 -- Authors:       Claude Opus 5

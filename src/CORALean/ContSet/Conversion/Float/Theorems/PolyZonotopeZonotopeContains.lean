@@ -17,6 +17,15 @@ of a zonotope, the dependent generators and then the independent ones; the error
 box is carried across. Nothing rounds, and the exponents are dropped, which is
 what makes this an enclosure rather than the set. A constrained polynomial
 zonotope goes through its polynomial zonotope, as over ℝ.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

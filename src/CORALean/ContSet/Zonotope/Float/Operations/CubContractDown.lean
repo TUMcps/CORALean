@@ -15,6 +15,16 @@ below `Σₖ uₖ · (vᵀ T{i,k} w)`. The middle vector `T{i,k} *ᵥ w` comes b
 (a directed rounding does not compose through a product of unknown sign, so each step picks its
 term by `minimum`). `Zonotope.cubMap`, `ConZonotope.cubMap`, `PolyZonotope.cubMap` and
 `tensorMultiplication` all read their coefficients through it.
+
+## Inputs
+* `T` – cubic tensor
+* `u` – weight vector
+* `v` – left vector
+* `w` – right vector
+* `i` – output coordinate
+
+## Output
+* float below the weighted bilinear sum
 -/
 
 -- Authors:       Claude Opus 5.5

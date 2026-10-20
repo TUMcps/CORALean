@@ -9,15 +9,20 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
 /-!
 # How far `mtimesIntervalMat` reaches beyond one matrix of the box
 
-`mtimesIntervalMat_outer` puts every `A *ᵥ Z` inside `[M] Z`; this box bounds
-the other side, `[M] Z ⊆ A Z ⊕ box` for every `A` in `[M]`. It is what an inner
-approximation through an interval matrix holding the true `e^{AΔt}` pays.
+`mtimesIntervalMat_outer` puts every `A *ᵥ Z` inside `[M] Z`; this box bounds the other side,
+`[M] Z ⊆ A Z ⊕ box` for every `A` in `[M]`, what an inner approximation through an interval matrix
+holding the true `e^{AΔt}` pays. Three parts. `mid(M) Z`'s own rounding is `mtimesBox`. The
+perturbation `(mid(M) - A) x`, for `x` anywhere in `Z`, is at most `|M - mid(M)| (|c| + Σ|G| + |E|)`
+per coordinate, and the diagonal generators `[M] Z` added for the residual on the nominal part reach
+`|M - mid(M)| (|c| + Σ|G|)`; both go into one symmetric box. The result's own error box is kept
+whole.
 
-Three parts. `mid(M) Z`'s own rounding is `mtimesBox`. The perturbation
-`(mid(M) - A) x`, for `x` anywhere in `Z`, is at most `|M - mid(M)| (|c| + Σ|G|
-+ |E|)` per coordinate, and the diagonal generators `[M] Z` added for the
-residual on the nominal part reach `|M - mid(M)| (|c| + Σ|G|)`; both go into one
-symmetric box. The result's own error box is kept whole.
+## Inputs
+* `IM` – interval matrix
+* `Z` – zonotope
+
+## Output
+* box for everything beyond the midpoint product
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

@@ -20,6 +20,13 @@ at most `ρ = 2 methCReach` in magnitude, one bound for all of them. If the chec
 is no room to reduce, the set is returned unchanged. The product `ρ P` is stored from below and
 its gap paid into the box.
 
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Output
+* parallelotope enclosing the zonotope along a generator basis
+
 ## References
 
 * [1] `contSet/@zonotope/private/priv_reduceMethC.m`, CORA (Sep. 2025). No

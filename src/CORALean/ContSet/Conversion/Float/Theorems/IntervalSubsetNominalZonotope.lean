@@ -10,6 +10,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 /-!
 # A box as a zonotope, over a floating-point scalar: `subset_nominal_zonotope`
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* interval is contained in the nominal zonotope
 -/
 
 -- Authors:       Claude Opus 5

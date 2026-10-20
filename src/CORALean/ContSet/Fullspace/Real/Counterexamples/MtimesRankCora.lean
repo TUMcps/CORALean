@@ -9,29 +9,16 @@ public import Mathlib.Tactic.NormNum
 @[expose] public section
 
 /-!
-# `Fullspace.mtimesRankCora`: `M * fullspace(n)` as CORA's code computes it
+# CORA's `M * fullspace(n)` is the plane for `[1 1; 1 1]`, the image is a line
 
-`contSet/mtimes.m` documents `mtimes` as "the set `{ M s | s ∈ S }`", and
-`@fullspace/mtimes.m` (l. 53-63) is its linear map of the full space. For a numeric matrix `M`:
-
-```
-zerorows = ~any(M,2);
-if any(zerorows)   res = interval(-Inf..Inf) with the zero rows set to 0
-elseif size(M,1) ~= fs.dimension   res = fullspace(size(M,1));   % "still fullspace"
-else                               res = fs;                     % "square"
-```
-
-Only the rows that are entirely zero are recognised, so any `M` without a zero row gives the
-whole space, though the image `{M x}` is the whole space only for `M` of full row rank. A set of
-points of `R^m` stands for the result: `Set.univ` for the whole space. Read from the source, not
+`@fullspace/mtimes.m` (l. 53-63) documents `mtimes` as "the set `{ M s | s ∈ S }`", but for a
+numeric `M` it recognises only entirely zero rows (`zerorows = ~any(M,2)`, the box
+`interval(-Inf..Inf)` with those rows set to 0); otherwise it returns `fullspace(size(M,1))` or `fs`
+itself. So any `M` without a zero row gives the whole space, though `{M x}` is the whole space only
+for full row rank. `M = [1 1; 1 1]` is square with no zero row, so CORA returns `R^2`; the image is
+the line `{(t, t)}` and `(1, 0)` is not on it; likewise `[1; 1] * fullspace(1)`. `isFullDim`,
+`representsa(.., 'fullspace')` and `volume` then answer for the plane. Read from the source, not
 run.
-
-# CORA's `[1 1; 1 1] * fullspace(2)` is the plane, the true image is a line
-
-`M = [1 1; 1 1]` has no zero row and is square, so CORA returns `fs = R^2`; the image is the line
-`{(t, t)}`, and `(1, 0)` is not on it. The same holds for `[1; 1] * fullspace(1)` and
-`[1 0; 1 0] * fullspace(2)`. `isFullDim`, `representsa(.., 'fullspace')` and `volume` of the result
-then answer for the plane.
 
 ## Inputs
 * none

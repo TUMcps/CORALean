@@ -9,16 +9,22 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Capsule
 /-!
 # A box as a capsule
 
-CORA's `capsule(interval)`: the center, the segment along the widest edge of
-the box, and the thickness the ball must have to cover the rest of the box,
-which is the Euclidean norm of the other half-widths. An enclosure, not an
-equality: a box is a capsule only in the degenerate cases (at most one
-non-degenerate edge, which is the whole box when `n ≤ 1`), and in general the
-ball round the remaining edges is a ball, not a box.
+CORA's `capsule(interval)`: the center, the segment along the widest edge of the box, and the
+thickness the ball must have to cover the rest, the Euclidean norm of the other half-widths. An
+enclosure, not an equality: a box is a capsule only in the degenerate cases (at most one
+non-degenerate edge). `Interval.capsuleAlong I k` fixes the axis `k` of the segment, and the
+enclosure holds for every `k`; `Interval.capsule` picks a widest axis as CORA does, by a computable
+`argmax`. For `n = 0` there is no axis, the capsule is the point.
 
-`Interval.capsuleAlong I k` fixes the axis `k` of the segment, and the enclosure
-holds for every `k`; `Interval.capsule` picks a widest axis as CORA does, by a computable `argmax`.
-For `n = 0` there is no axis, the capsule is the point.
+## Inputs
+* `I` – interval
+* `k` – axis of the segment
+
+## Hypotheses
+* none
+
+## Conclusion
+* interval is contained in its capsule along `k`
 -/
 
 -- Authors:       Claude Opus 5.5

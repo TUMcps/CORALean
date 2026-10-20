@@ -12,6 +12,16 @@ Nothing is argued twice: the exact layer already showed that boxing what a
 partition drops over-approximates, and `reduceBy_outer_refines` that rounding the
 block up only enlarges the result. Composing them gives the nominal inclusion,
 and the box is untouched, hence `mono_subset`.
+
+## Inputs
+* `Z` – zonotope
+* `part` – split into kept and reduced generators
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is contained in its reduction
 -/
 
 -- Authors:       Claude Opus 5

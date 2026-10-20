@@ -12,16 +12,13 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.ReindexExact
 /-!
 # What `ConPolyZono` instantiates
 
-`Plus`, `LinComb`, `Mtimes`, `Reduce` and `Intersection`, as over ℝ. `ContSet` is not among them —
-`InflatedContSet` supplies it, which is what makes this the same class the exact
-layer instantiates.
+`Plus`, `LinComb`, `Mtimes`, `Reduce` and `Intersection`, as over ℝ. `ContSet` is not among them:
+`InflatedContSet` supplies it, as for the exact layer.
 
-`Reduce` is *computable* here where the exact layer's instance is not:
-`Tuple.sort` needs a `LinearOrder`, which no float type has lawfully, while
-`sortPerm` asks its comparator for nothing. Soundness never depended on the
-ranking — `reduceBy_outer` holds at every partition — so the free comparator
-costs precision and nothing else. No `CompactSet`, as at no other float
-representation: compactness is a statement about the exact specification.
+`Reduce` is *computable* here: `Tuple.sort` needs a `LinearOrder`, which no float type has, while
+`sortPerm` asks its comparator for nothing. Soundness never depended on the ranking
+(`reduceBy_outer` holds at every partition), so the free comparator costs precision only. No
+`CompactSet`, as at every float representation: compactness is about the exact specification.
 -/
 
 -- Authors:       Claude Opus 5

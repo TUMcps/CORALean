@@ -10,6 +10,12 @@ public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPol
 
 /-!
 # A polynomial zonotope as a constrained one, over a floating-point scalar
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* constrained polynomial zonotope without constraints
 -/
 
 -- Authors:       Claude Opus 5.5

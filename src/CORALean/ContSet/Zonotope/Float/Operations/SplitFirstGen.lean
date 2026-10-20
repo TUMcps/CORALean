@@ -13,6 +13,12 @@ over the generator indices that keeps the running best unless a later score is n
 `≤` it, so a tie keeps the first. `le` has no order laws, so this is a ranking; `split_outer`
 holds at every index, so a misranking costs precision alone. A zonotope with no generator is its
 own two halves.
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* two halves along the generator of maximal weight
 -/
 
 -- Authors:       Claude Opus 5.5

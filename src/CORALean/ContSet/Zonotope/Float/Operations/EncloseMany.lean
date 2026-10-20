@@ -14,17 +14,22 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # `Zonotope.encloseMany`, over a floating-point scalar
 
-CORA's `@zonotope/encloseMany(Z, direction)` [1]: one oriented box around a list of zonotopes.
-Each cell is reduced to a parallelotope (`reduceGirard 1`, standing in for the `'parallelpiped'`
-method CORA names and does not have), taken to the frame `R` whose first axis is
-`direction / ‖direction‖₂`, boxed there by the componentwise hull of the cells' interval
-enclosures, and rotated back.
+CORA's `@zonotope/encloseMany(Z, direction)` [1]: one oriented box around a list of zonotopes. Each
+cell is reduced to a parallelotope (`reduceGirard 1`, standing in for the `'parallelpiped'` method
+CORA names and does not have), taken to the frame `R` whose first axis is the normalized
+`direction`, boxed there by the componentwise hull of the cells' interval enclosures, and rotated
+back. `R⁻¹` is not formed: `encloseManyBasisInv` holds it in a box, and the cells are mapped by
+`mtimesIntervalMat`, which encloses the image under every matrix of the box. The rounded unit vector
+is harmless: any vector with a nonzero entry at the dropped axis gives an invertible `R`. `none`
+where `ltStrict` cannot show that entry nonzero (a zero direction, where CORA errors too).
 
-`R⁻¹` is not formed: `encloseManyBasisInv` holds it in a box, and the cells are mapped by
-`mtimesIntervalMat`, which encloses the image under every matrix of the box. The unit vector is
-rounded, which is harmless: any vector with a nonzero entry at the dropped axis gives an invertible
-`R`, and the enclosure holds for that `R`. `none` where `ltStrict` cannot show that entry nonzero
-(a zero direction, where CORA errors as well). At least one cell is required, as in CORA.
+## Inputs
+* `p` – Newton steps for the norm
+* `Zs` – cells to enclose
+* `direction` – direction of the first axis
+
+## Output
+* oriented box zonotope around the cell reductions, if any
 
 ## References
 

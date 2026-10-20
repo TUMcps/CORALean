@@ -9,14 +9,13 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.BoxOut
 # `PolyZonotope.outerApprox`
 
 CORA's `@polyZonotope/outerApprox(pZ, tol, id)`: the small generators that depend on a factor
-outside `id` are boxed into the independent block. The candidates are the dependent generators
-with a positive exponent in a factor outside `id` (`ii`), an even exponent column making the
-monomial lie in `[0, 1]` and the candidate ranked by half its length, together with all
-independent generators. They are sorted by their `1`-norm and taken in ascending order while their
-sum stays below `Th = max |GGI| * tol` in every coordinate (the first one that does not fit stops
-the scan). `boxOut` removes the taken dependent generators and appends the box. The taken
-independent generators stay in `GI`, so their radius is counted twice: sound, not tight.
-Identifiers are positional, `id` a `Finset (Fin pZ.p)`, the candidates tagged `Fin h ⊕ Fin q`.
+outside `id` are boxed into the independent block. The candidates are the dependent generators with
+a positive exponent in a factor outside `id` (`ii`), an even exponent column making the monomial lie
+in `[0, 1]` and the candidate ranked by half its length, together with all independent generators.
+They are sorted by their `1`-norm and taken in ascending order while their sum stays below
+`Th = max |GGI| * tol` in every coordinate. `boxOut` removes the taken dependent generators and
+appends the box. The taken independent generators stay in `GI`, so their radius is counted twice:
+sound, not tight. Identifiers are positional, `id` a `Finset (Fin pZ.p)`.
 -/
 
 -- Authors:       Claude Opus 5.5

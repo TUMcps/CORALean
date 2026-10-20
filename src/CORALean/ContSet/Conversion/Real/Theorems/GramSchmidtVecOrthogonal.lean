@@ -15,6 +15,15 @@ independent: the pivot coordinate of a combination reads the coefficient of `g` 
 `Qᵀ Q = 1`. A square matrix with a left inverse has it as a right inverse too, so `Q Qᵀ = 1`
 follows (`Matrix.mul_eq_one_comm`), and with it that every vector is the sum of its components
 along the columns.
+
+## Inputs
+* `g` – vector
+
+## Hypotheses
+* `hg` – vector nonzero
+
+## Conclusion
+* transpose times matrix is the identity
 -/
 
 -- Authors:       Claude Opus 5.5

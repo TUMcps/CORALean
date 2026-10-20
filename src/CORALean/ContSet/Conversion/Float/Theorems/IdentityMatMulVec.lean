@@ -10,6 +10,16 @@ public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_HPolytope
 
 /-!
 # A box as halfspaces, over a floating-point scalar: `identityMat_mulVec`
+
+## Inputs
+* `x` – vector
+* `i` – row index
+
+## Hypotheses
+* none
+
+## Conclusion
+* identity matrix leaves entry `i` unchanged
 -/
 
 -- Authors:       Claude Opus 5

@@ -10,6 +10,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.Basic
 
 Exact: the coefficient box `[-1, 1]` is the unit box of the constrained zonotope, and the predicate
 is its constraint polytope, so the same factors give the same points.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* star set equals the set
 -/
 
 -- Authors:       Claude Sonnet 5.5

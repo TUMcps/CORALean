@@ -15,6 +15,13 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 CORA's `ellipsoid(Z)` at full generator count, `fac*(G*G')` with `fac` the generator count `h`:
 here the shape `σ² G Gᵀ`, `σ ≥ √h` a proposed scaling, computed as an interval matrix and stored
 rounded upward (`inflate`), about the zonotope's center, its error box carried over.
+
+## Inputs
+* `Z` – zonotope
+* `σ` – scaling factor
+
+## Output
+* interval matrix scaled by `σ` squared times generators times their transpose
 -/
 
 -- Authors:       Claude Opus 5.5

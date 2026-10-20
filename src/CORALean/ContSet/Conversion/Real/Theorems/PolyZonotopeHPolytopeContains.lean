@@ -16,6 +16,16 @@ than a conversion, and a direct construction would be tighter.
 
 Loses whatever the zonotope step lost and nothing further; the rows are the
 caller's, exactly as in `Zonotope.hPolytope_contains`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `Aq` – direction functionals
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its halfspace polytope
 -/
 
 -- Authors:       Claude Opus 5

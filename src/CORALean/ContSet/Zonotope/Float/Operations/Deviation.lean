@@ -11,6 +11,15 @@ An upper bound on the largest entry of `|x - e - y|` for a point `x`, a box corn
 `y` known only to lie between `lo` and `hi`: each entry's two signed differences rounded upward,
 the larger taken, then the largest over the entries. What a certified box around `y` is asked to
 contain: `x - e` within `B` of `y`.
+
+## Inputs
+* `x` – point
+* `e` – box corner
+* `lo` – lower bound of the vector
+* `hi` – upper bound of the vector
+
+## Output
+* upper bound on the largest entry deviation
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -21,18 +21,14 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 /-!
 # What `ZonoBundle` instantiates
 
-A bundle is `SetIntersection` at its members, so every guarantee here is a general theorem of
-that class read at the members' own: `ConvexSet` is `SetIntersection.convex_construct`;
-`Plus` and `LinComb`, over every pair of members, are `pairwise_outer` at `Zonotope.plus_exact`
-and `Zonotope.linComb_outer`; `Mtimes`, at a point matrix and at a matrix zonotope, and
-`Reduce`, which drops members and so needs no error box, are `memberwise_outer`; `Reindex` is
-`memberwise_image_exact` at `reindexLin e`, bijective as `e`'s inverse supplies. `Intersection`
-is `intersection_exact`, appending the two families; `OfPoint` bundles one point-zonotope.
-
-`CompactSet` is not an instance: at `k = 0` the set is `univ`, not compact, so the class's
-unconditional obligation cannot be discharged; `SetIntersection.isCompact_construct` states the
-conditional fact. No `MinkDiff` either — that needs `Zonotope.minkDiff`, an open design
-decision on #85.
+A bundle is `SetIntersection` at its members, so every guarantee here is a general theorem of that
+class at the members' own: `ConvexSet` is `SetIntersection.convex_construct`; `Plus` and `LinComb`
+are `pairwise_outer` at `Zonotope.plus_exact` and `Zonotope.linComb_outer`; `Mtimes`, at a point
+matrix and at a matrix zonotope, and `Reduce`, which drops members and needs no error box, are
+`memberwise_outer`; `Reindex` is `memberwise_image_exact` at `reindexLin e`. `Intersection` is
+`intersection_exact`, appending the two families; `OfPoint` bundles one point-zonotope. `CompactSet`
+is not an instance: at `k = 0` the set is `univ`, so the unconditional obligation fails;
+`SetIntersection.isCompact_construct` states the conditional fact. No `MinkDiff` either (#85).
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

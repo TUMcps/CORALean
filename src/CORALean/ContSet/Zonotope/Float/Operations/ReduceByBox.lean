@@ -15,6 +15,13 @@ dropped generators contribute `0` to `Z` when their coefficients are set to
 carrying a degenerate `0` error box of its own, `reduceBy` touching none.
 
 Not a `Reduce` operation and no class instantiates it, as at `Real`.
+
+## Inputs
+* `Z` – zonotope
+* `part` – split into kept and reduced generators
+
+## Output
+* box absorbing the dropped generators, as a zonotope
 -/
 
 -- Authors:       Claude Opus 5

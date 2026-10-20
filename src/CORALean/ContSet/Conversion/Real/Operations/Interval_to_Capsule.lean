@@ -7,6 +7,13 @@ public import CORALean.ContSet.Interval.Real.Interval
 
 /-!
 # A box as a capsule
+
+## Inputs
+* `I` – interval
+* `k` – axis of the segment
+
+## Output
+* capsule with the segment along axis `k`
 -/
 
 -- Authors:       Claude Opus 5.5

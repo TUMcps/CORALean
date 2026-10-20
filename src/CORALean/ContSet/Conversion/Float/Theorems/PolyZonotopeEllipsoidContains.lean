@@ -23,6 +23,17 @@ public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeZonotopeCont
 Through the zonotope enclosure, then that zonotope's `√h` ball, whose `σ` is proposed by
 the caller and checked as in `Zonotope.ellipsoid`; here `h` counts the dependent and the
 independent generators together.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `σ` – scaling factor
+
+## Hypotheses
+* `hσ` – scaling factor positive
+* `hh` – squared scaling factor at least factor count
+
+## Conclusion
+* set is contained in its ellipsoid
 -/
 
 -- Authors:       Claude Opus 5.5

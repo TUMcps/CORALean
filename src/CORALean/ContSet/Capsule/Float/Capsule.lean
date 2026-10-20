@@ -10,15 +10,11 @@ public import CORALean.ContSet.InflatedContSet.InflatedContSet
 # Capsules over a floating-point scalar: the representation
 
 The exact layer's center, generator and radius held in `𝕋`, plus the error box that makes it an
-`InflatedContSet`: the capsule denotes its nominal part, the exact layer's `construct` of the
-stored floats read as reals, plus the box. An operation computes its center and generator in
-whatever rounding it likes and pays the difference from the exact ones into the box; a radius,
-which is itself a bound, is rounded upward (as `Ellipsoid` rounds its shape matrix upward). A
-capsule is not closed under the sum with a box (a segment thickened by a ball and then by a box is
-neither a capsule nor a box), so the box stays separate until `Capsule.absorbRounding` moves it
-into the radius, at the cost of a bound on its Euclidean norm (#185).
-
-A negative stored radius denotes `∅`, as over ℝ.
+`InflatedContSet`: the capsule denotes its nominal part, the exact `construct` of the stored floats
+read as reals, plus the box. An operation pays the difference from the exact values into the box; a
+radius, itself a bound, is rounded upward. A capsule is not closed under the sum with a box, so the
+box stays separate until `Capsule.absorbRounding` moves it into the radius (#185). A negative stored
+radius denotes `∅`, as over ℝ.
 -/
 
 -- Authors:       Claude Opus 5.5

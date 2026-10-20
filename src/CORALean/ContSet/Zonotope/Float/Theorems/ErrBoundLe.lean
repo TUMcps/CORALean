@@ -9,6 +9,17 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 # `errBound` bounds every member of a float box
 
 A value between `inf` and `sup` is at most the larger absolute end in magnitude.
+
+## Inputs
+* `E` – error box
+* `e` – point
+* `i` – entry
+
+## Hypotheses
+* `he` – point lies in the box
+
+## Conclusion
+* entry magnitude is bounded by the larger absolute end
 -/
 
 -- Authors:       Claude Opus 5.5

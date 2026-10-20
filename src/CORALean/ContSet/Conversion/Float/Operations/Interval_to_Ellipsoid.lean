@@ -10,6 +10,13 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
 
 CORA's `ellipsoid(I)` of a box: the shape `diag(σ r)²`, `r` the box's radius and `σ ≥ √n` a
 proposed scaling, each entry rounded up, about the box's center.
+
+## Inputs
+* `I` – interval
+* `σ` – proposed scaling factor
+
+## Output
+* diagonal generator from the box radius, rounded up
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

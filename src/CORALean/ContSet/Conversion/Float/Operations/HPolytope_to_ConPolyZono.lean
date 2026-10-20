@@ -10,6 +10,16 @@ public import CORALean.ContSet.Conversion.Float.Operations.HPolytope_to_ConZonot
 
 CORA's `conPolyZono(conZonotope(P))`, as over ℝ: the float `HPolytope.conZonotope` on the box of
 the support bounds, then its float constrained polynomial zonotope.
+
+## Inputs
+* none
+
+## Hypotheses
+* `up` – float upper bound per coordinate
+* `lo` – float lower bound per coordinate
+
+## Output
+* constrained polynomial zonotope of the polytope
 -/
 
 -- Authors:       Claude Opus 5.5

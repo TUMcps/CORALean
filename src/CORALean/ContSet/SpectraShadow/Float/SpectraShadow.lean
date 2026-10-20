@@ -8,20 +8,14 @@ public import CORALean.ContSet.SpectraShadow.Real.Instances
 /-!
 # Spectrahedral shadows over a floating-point scalar: the representation
 
-The exact layer's linear matrix inequality, center and generators held in `𝕋`,
-plus the error box that makes it an `InflatedContSet`. The nominal part is the
-shadow those stored floats describe, the matrices read entrywise as reals.
-`SpectraShadow 𝕋 α` is generic over its ambient type, generators a family, as the
-exact layer's `SpectraShadow α` is; `𝕋` stays, the inequality's matrices being
-scalar at every ambient type. The vector case is
-`SpectraShadow 𝕋 (Vec 𝕋 n)`.
-
-Nothing about the inequality rounds: its matrices are stored, never computed, and the
-only arithmetic is on the center, whose rounding the box absorbs. A rounded *generator*
-would not be absorbable, the variables `β` being unbounded, so `mtimes` never multiplies
-two stored matrices: it ties the point to new free variables by equalities in the
-inequality and multiplies only the error box. A solver's own rounding is the caller's
-to certify.
+The exact layer's linear matrix inequality, center and generators held in `𝕋`, plus the error box
+that makes it an `InflatedContSet`. The nominal part is the shadow those stored floats describe.
+`SpectraShadow 𝕋 α` is generic over its ambient type, as the exact layer's is; `𝕋` stays, the
+inequality's matrices being scalar at every ambient type. Nothing about the inequality rounds: its
+matrices are stored, never computed, and the only arithmetic is on the center, whose rounding the
+box absorbs. A rounded *generator* would not be absorbable, the variables `β` being unbounded, so
+`mtimes` never multiplies two stored matrices: it ties the point to new free variables by equalities
+in the inequality and multiplies only the error box.
 -/
 
 -- Authors:       Claude Opus 5.5

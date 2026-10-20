@@ -16,6 +16,19 @@ most `Σⱼ |u·gⱼ|`, the exact offset's numerator. Each rounding goes the way
 
 Source: [1].
 
+## Inputs
+* `p` – Newton steps for the root
+* `Z` – zonotope
+* `S` – generator selection
+* `r` – ball radius
+
+## Hypotheses
+* `hr` – radius nonnegative
+* `hball` – ball around the center lies in the zonotope
+
+## Conclusion
+* radius is at most every returned offset
+
 ## References
 
 * [1] `contSet/@zonotope/minnorm.m` and `contSet/@zonotope/polytope.m`, CORA (Sep. 2025).

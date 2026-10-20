@@ -13,6 +13,14 @@ rows, in place of CORA's linear program), and the result is the box swept by the
 `[0, t_max]`: `startPoint` plus the corner products of `[0, t_max]` and `dir`, rounded outward.
 The step is at least `0` (the lower end is clamped, `maximum zero`). `none` when no facet row has a
 certified positive denominator.
+
+## Inputs
+* `Z` – zonotope
+* `dir` – direction
+* `start` – starting point
+
+## Output
+* box around the segment to the boundary, if one exists
 -/
 
 -- Authors:       Claude Sonnet 5.5

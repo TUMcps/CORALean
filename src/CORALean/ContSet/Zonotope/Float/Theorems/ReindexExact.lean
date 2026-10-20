@@ -17,6 +17,16 @@ What the float layer adds is the error box, and it costs nothing here either. A
 reindexing is linear, so it distributes over the Minkowski sum that
 `InflatedContSet.construct` is — the relabelled set is the relabelled nominal
 part plus the relabelled box, with no widening between them.
+
+## Inputs
+* `e` – coordinate equivalence
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* reindexed zonotope equals the relabelled set
 -/
 
 -- Authors:       Claude Opus 5

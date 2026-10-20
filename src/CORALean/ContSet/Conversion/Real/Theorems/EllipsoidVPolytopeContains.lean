@@ -17,6 +17,15 @@ CORA leaves that choice to the caller too.
 
 Loses whatever the zonotope step lost and nothing further, the corner step
 being exact.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* ellipsoid is contained in its vertex polytope
 -/
 
 -- Authors:       Claude Opus 5

@@ -14,6 +14,17 @@ Whichever component `i` names already throws away every other one the bundle
 intersects against — the whole point of a bundle being that the intersection is
 tighter than any one member. The halfspace step is exact only on the directions
 the caller names, as `Zonotope.hPolytope_contains` already is.
+
+## Inputs
+* `zB` – zonotope bundle
+* `i` – member index
+* `Aq` – direction functionals
+
+## Hypotheses
+* none
+
+## Conclusion
+* bundle is contained in its halfspace polytope
 -/
 
 -- Authors:       Claude Opus 5

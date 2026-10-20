@@ -16,6 +16,15 @@ coarser than CORA's conversion. CORA's `ellipsoid(capsule)` is exact for a ball,
 outer-approximates the union of the two end balls by a semidefinite program. Here the capsule
 is first replaced by its axis-aligned box, which loses the rounded ends and the slant of the
 segment.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* capsule is contained in its ellipsoid
 -/
 
 -- Authors:       Claude Opus 5.5

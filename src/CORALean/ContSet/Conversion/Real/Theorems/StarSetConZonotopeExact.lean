@@ -15,7 +15,17 @@ public import Mathlib.Tactic.FieldSimp
 Exact when the coefficient box is not crossed, `l ≤ u`. The rescaling `α = mid + rad β` takes `|β| ≤
 1` onto `[l, u]` and back, with `β = 0` where the box is a point, and the predicate read at `α` is
 the translated and pulled-back polytope read at `β`. A crossed box (`u < l`) denotes `∅`, which the
-rescaled factors, ranging over `[mid - |rad|, mid + |rad|]`, would not.-/
+rescaled factors, ranging over `[mid - |rad|, mid + |rad|]`, would not.
+
+## Inputs
+* `s` – halfspace-predicate star set
+
+## Hypotheses
+* `hlu` – box ordered per coordinate
+
+## Conclusion
+* constrained zonotope equals the star set
+-/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026

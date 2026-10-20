@@ -10,6 +10,12 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotop
 
 /-!
 # A bundle's constrained zonotope, at one component, over a floating-point scalar
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Output
+* `cZ` intersected with each family member in turn
 -/
 
 -- Authors:       Claude Opus 5.5

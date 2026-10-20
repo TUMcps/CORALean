@@ -15,6 +15,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_VPolytope
 
 /-!
 # Halfspaces to vertices
+
+## Inputs
+* `W` – vertex polytope
+
+## Hypotheses
+* `hc` – polytope compact
+* `hW` – every pinned point is a listed vertex
+
+## Conclusion
+* polytope is contained in `W`
 -/
 
 -- Authors:       Claude Opus 5

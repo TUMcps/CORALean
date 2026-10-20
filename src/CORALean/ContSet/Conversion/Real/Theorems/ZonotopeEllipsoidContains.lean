@@ -14,21 +14,23 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
 /-!
 # A zonotope as an ellipsoid
 
-The coefficient domains differ only in the norm they bound: a zonotope's cube is
-`‖β‖∞ ≤ 1`, an ellipsoid's ball is `‖u‖₂ ≤ 1`, and the cube sits inside `√h`
-times the ball. So the same generators scaled by `√h` enclose, as the ellipsoid of shape
-`h G Gᵀ`, CORA's `fac*(G*G')` (`construct_ofFactor`).
+A zonotope's cube is `‖β‖∞ ≤ 1`, an ellipsoid's ball `‖u‖₂ ≤ 1`, and the cube sits inside `√h` times
+the ball, so the same generators scaled by `√h` enclose, as the ellipsoid of shape `h G Gᵀ`, CORA's
+`fac*(G*G')` (`construct_ofFactor`): loose by `√h` in the worst direction, exact in none. Tighter
+enclosures (minimum volume, minimum trace) are optimisation problems. This one is the initial
+ellipse `E₀ = (m/2) G Gᵀ` of [2, Sec. 4.1]. CORA's `'outer:norm'` and `'inner:norm'` are [1, Thm. 1]
+and [1, Thm. 3]: shape `r E₀` for a factor `F` of `E₀ = F Fᵀ` and a bound `r` on the maximum, or
+below the minimum, norm of `F⁻¹ Z` ([1, Def. 3], [1, Def. 4]); `ellipsoidNorm` and
+`ellipsoidInnerNorm` take `F` and `r`, for every invertible `F`.
 
-Loose by a factor of `√h` in the worst direction and exact in none, since a
-zonotope is not an ellipsoid. Tighter enclosures exist — CORA's are the
-minimum-volume and minimum-trace ones — and both are optimisation problems
-rather than conversions. This one is the initial ellipse `E₀ = (m/2) G Gᵀ` of [2, Sec. 4.1].
+## Inputs
+* `Z` – zonotope
 
-CORA's `'outer:norm'` and `'inner:norm'` are [1, Thm. 1] and [1, Thm. 3]: shape `r E₀` for a
-factor `F` of the initial guess `E₀ = F Fᵀ` (`m G Gᵀ` and `G Gᵀ`) and a bound `r` on the maximum,
-or below the minimum, norm of `F⁻¹ Z` ([1, Def. 3], [1, Def. 4]). `ellipsoidNorm` and
-`ellipsoidInnerNorm` take `F` and `r`; the guarantees hold for every invertible `F`, the paper's
-`E₀^{-1/2}` among them, and every bound — exact or `[1, Lemma 3]`'s.
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is contained in its ellipsoid
 
 ## References
 

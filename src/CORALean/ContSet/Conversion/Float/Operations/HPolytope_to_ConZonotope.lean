@@ -25,6 +25,13 @@ A polytope whose error box is certified empty carries its equalities onto the co
 between the two bounds the rounding of the carried product allows, kept as equalities where
 `ConZonotope.anchorSlab` certifies them; one with an error box is carried with the box folded
 into its rows (`absorbRounding`), each equality as the two inequalities it stands for.
+
+## Inputs
+* `P` – halfspace polytope
+* `Z` – zonotope
+
+## Output
+* inequality rows on the coefficients, widened by rounding
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5, Claude Opus 5.5

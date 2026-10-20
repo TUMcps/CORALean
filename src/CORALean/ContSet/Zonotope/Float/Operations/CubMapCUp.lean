@@ -10,6 +10,13 @@ public import CORALean.ContSet.Zonotope.Float.Operations.CubFoldUp
 The center of `Zonotope.cubMap` on the stored floats, rounded up: the coefficient of the constant
 monomial `(0, 0, 0)`, plus half the sum of the pure squares `β_y²` of `listQuad{1}` (`β² = 0.5 +
 0.5 (2β² - 1)`). Halving rounds nothing.
+
+## Inputs
+* `T` – cubic tensor
+* `Z` – zonotope
+
+## Output
+* center of the cubic image, rounded up
 -/
 
 -- Authors:       Claude Opus 5.5

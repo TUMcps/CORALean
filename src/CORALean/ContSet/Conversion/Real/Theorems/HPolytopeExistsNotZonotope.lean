@@ -17,6 +17,15 @@ and the reflections of the two vertices `(1, 0)` and `(0, 1)` already put `c` be
 
 This is the arrow from zonotopes to polytopes of [1, Fig. 1 (Zonotopes → Polytopes)].
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* some planar polytope is no zonotope
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

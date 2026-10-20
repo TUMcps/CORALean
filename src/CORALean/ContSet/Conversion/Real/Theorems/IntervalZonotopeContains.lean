@@ -20,6 +20,15 @@ denotes nothing, while the zonotope built from it denotes the box with the two
 swapped, so equality, `zonotope_exact`, needs `inf ≤ sup`: that a box, an `ℓ∞` ball
 in particular, is exactly one zonotope [1, Sec. VI-A (ℓ∞)].
 
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* interval is contained in its zonotope
+
 ## References
 
 * [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:

@@ -16,6 +16,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 Forget what the coefficients had to satisfy and keep the generators. Nothing
 rounds — the fields are copied, error box included — so the enclosure is the
 exact layer's, carried across by `mono_subset`.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its zonotope
 -/
 
 -- Authors:       Claude Opus 5

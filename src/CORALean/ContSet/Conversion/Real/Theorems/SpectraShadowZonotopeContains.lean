@@ -20,6 +20,15 @@ nothing more is claimed: the shadow is generally not a zonotope, so this is an o
 approximation (`SpectraShadow.zonotope_contains`), for a bounded base. CORA's
 `zonotope.empty` for an empty set is not needed for the statement: an empty shadow is in any
 zonotope.
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Hypotheses
+* `hb` – base spectrahedron bounded
+
+## Conclusion
+* shadow is contained in its zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

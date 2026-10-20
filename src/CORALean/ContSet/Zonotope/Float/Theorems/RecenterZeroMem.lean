@@ -10,6 +10,15 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 
 The nominal part at the zero coefficients is the zeroed center, and the widened
 box holds `0` by construction.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* origin lies in the recentered zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

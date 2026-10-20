@@ -16,6 +16,17 @@ most the computed bound (`boundaryRatio_ge`), so the point is on the segment fro
 `startPoint + t_max dir`, which the box encloses coordinate by coordinate. It is a box around that
 segment, not the boundary point: the exit step is bounded above only, and the box does not shrink
 to the exit as the rounding does.
+
+## Inputs
+* `Z` – zonotope
+* `dir` – direction
+* `start` – starting point
+
+## Hypotheses
+* none
+
+## Conclusion
+* exact boundary point lies in every returned box
 -/
 
 -- Authors:       Claude Sonnet 5.5

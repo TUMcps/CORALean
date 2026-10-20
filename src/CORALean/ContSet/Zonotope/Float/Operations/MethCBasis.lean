@@ -15,6 +15,12 @@ exhaustive search; here the `n` longest are taken, ranked by `generatorLength`, 
 cheap and which `reduceMethC_outer` does not depend on: a poor basis costs precision alone. A
 zonotope with fewer than `n` generators has no basis, and the column is then `zero`.
 
+## Inputs
+* `Z` – zonotope
+
+## Output
+* longest generators side by side
+
 ## References
 
 * [1] `contSet/@zonotope/private/priv_reduceMethC.m`, CORA (Sep. 2025). No

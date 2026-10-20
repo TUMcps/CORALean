@@ -10,6 +10,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleConZonotopeAll
 # CORA's `conPolyZono(zB)` is the bundle
 
 Both steps are exact: `ZonoBundle.conZonotopeAll_exact` and `ConZonotope.conPolyZono_exact`.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hk` – bundle is nonempty
+
+## Conclusion
+* constrained polynomial zonotope equals the bundle
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 Through the box, certificate `s` carried as for `Ellipsoid.interval`, then the
 box's exact polynomial zonotope.
+
+## Inputs
+* `E` – ellipsoid
+* `s` – per-coordinate scale
+
+## Hypotheses
+* `hs` – squared scale bounds each diagonal entry
+
+## Conclusion
+* ellipsoid is contained in its polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

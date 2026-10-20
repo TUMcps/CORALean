@@ -7,17 +7,11 @@ public import CORALean.ContSet.ContSet.ContSet
 /-!
 # Polytopes: the vertex representation
 
-The definition is [1, Def. 1]; [2, Def. 3] restates it beside the halfspace form.
-
-CORA's `polytope` with `isVRep` set: the convex hull of finitely many points,
-written here as the convex combinations of them.
-
-Over any real module, as a zonotope is, and for the same reason — nothing about
-a convex combination mentions coordinates. Only the coefficient constraint
-differs: `∑ βⱼ = 1` with `βⱼ ≥ 0` here, `|βⱼ| ≤ 1` there.
-
-Zero vertices denote `∅`, no coefficient family over an empty index summing
-to one.
+The definition is [1, Def. 1]; [2, Def. 3] restates it beside the halfspace form. CORA's `polytope`
+with `isVRep` set: the convex hull of finitely many points, written here as the convex combinations
+of them. Over any real module, as a zonotope is, nothing about a convex combination mentioning
+coordinates. Only the coefficient constraint differs: `∑ βⱼ = 1` with `βⱼ ≥ 0` here, `|βⱼ| ≤ 1`
+there. Zero vertices denote `∅`, no coefficient family over an empty index summing to one.
 
 ## References
 

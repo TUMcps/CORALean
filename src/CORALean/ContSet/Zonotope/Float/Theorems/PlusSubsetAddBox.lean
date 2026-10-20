@@ -9,15 +9,23 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 /-!
 # `plus` reaches no further than its operands plus `plusBox`
 
-The reverse of `plus_outer`, and what a float step's own accumulated error
-needs: `plus`'s generators concatenate exactly, so its nominal part misses
-`nominalSet Z₁ + nominalSet Z₂` by exactly the center's rounding, a single
-point bounded in `𝕋` the same two ways `addDown`/`addUp` already bound it;
-`Interval.plus_outer` reads that bound and `plus`'s own error box into
-`plusBox`. Both operands' own error boxes are absorbed at `0`, which is where
-`h₁`, `h₂` are spent — not because the sum needs them small, but because
-`plusBox` was built to add `plus`'s own error box as-is rather than to reprove
-what rounded it.
+The reverse of `plus_outer`, and what a float step's own accumulated error needs: `plus`'s
+generators concatenate exactly, so its nominal part misses `nominalSet Z₁ + nominalSet Z₂` by
+exactly the center's rounding, a single point bounded in `𝕋` the same two ways `addDown`/`addUp`
+already bound it; `Interval.plus_outer` reads that bound and `plus`'s own error box into `plusBox`.
+Both operands' own error boxes are absorbed at `0`, which is where `h₁`, `h₂` are spent: `plusBox`
+adds `plus`'s own error box as-is rather than reproving what rounded it.
+
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+
+## Hypotheses
+* `h₁` – first error box contains zero
+* `h₂` – second error box contains zero
+
+## Conclusion
+* sum is contained in the exact sum plus the rounding box
 -/
 
 -- Authors:       Claude Opus 5

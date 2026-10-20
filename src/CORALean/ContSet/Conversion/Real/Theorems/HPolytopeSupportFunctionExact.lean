@@ -16,6 +16,15 @@ function denotes.
 This is the arrow from polytopes to support functions of
 [1, Fig. 1 (Polytopes → Support Functions)].
 
+## Inputs
+* `P` – halfspace polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* support function equals the polytope
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

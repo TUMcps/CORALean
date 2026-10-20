@@ -10,6 +10,16 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByOuter
 
 Same two cases as Girard's rule, at Combastel's partition instead — the metric
 never appears, which is `reduceBy_outer`'s whole point.
+
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is contained in its Combastel reduction
 -/
 
 -- Authors:       Claude Opus 5

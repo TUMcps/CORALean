@@ -12,6 +12,17 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemPointMat
 
 Induction on the order, `matMul_outer` at each step, as `Real.Zonotope.matPow_outer`;
 the base case is the stored identity, which reads back as `1`.
+
+## Inputs
+* `M` – matrix zonotope
+* `A` – member matrix
+* `k` – power
+
+## Hypotheses
+* `hA` – matrix lies in the zonotope
+
+## Conclusion
+* power of the member lies in the computed power
 -/
 
 -- Authors:       Claude Opus 5.5

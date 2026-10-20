@@ -11,6 +11,12 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 is `0`. The error box `I_error` scales by `s ∈ [-1, 1]` too, so it becomes its symmetric hull
 `[-m, m]`, `mᵢ = max(|E̲ᵢ|, |Ēᵢ|)`; `neg`, `absolute` and `maximum` are exact, so nothing rounds.
 
+## Inputs
+* `Z` – zonotope
+
+## Output
+* zonotope with the box's symmetric hull as generators
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

@@ -11,6 +11,15 @@ public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 
 The nominal part is the exact layer's point zonotope at the stored point read
 into ℝ, and the error box is the origin box, so the sum is `{x} + {0}`.
+
+## Inputs
+* `c` – stored point
+
+## Hypotheses
+* none
+
+## Conclusion
+* point zonotope equals the singleton of the point
 -/
 
 -- Authors:       Claude Opus 5.5

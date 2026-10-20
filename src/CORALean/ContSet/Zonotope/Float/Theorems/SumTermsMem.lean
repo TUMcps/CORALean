@@ -12,6 +12,17 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
 
 If `v m ∈ f m` for every `m < N`, then `∑_{m<N} v m ∈ sumTerms f N`: the start is the point `0`,
 read exactly, and each `plus` holds the sum of a member of each summand (`Zonotope.plus_outer`).
+
+## Inputs
+* `f` – zonotope per index
+* `v` – member per index
+* `N` – number of terms
+
+## Hypotheses
+* `h` – each member lies in its zonotope
+
+## Conclusion
+* sum of the members lies in the Minkowski sum
 -/
 
 -- Authors:       Claude Opus 5.5

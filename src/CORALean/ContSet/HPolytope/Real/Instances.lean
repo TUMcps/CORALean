@@ -17,21 +17,14 @@ public import CORALean.Global.SupportFunction.Composition
 /-!
 # What `HPolytope` instantiates
 
-`ContSet`, `ConvexSet`, and `Reduce` as the identity: CORA's `compact` drops redundant
-halfspaces and keeps the set exactly, so doing nothing is the sound stand-in
-until that algorithm is written.
-
-`Plus` and `LinComb` at `Vec ℝ n`, where `supportBound` answers a direction by
-simplex. A description with no rows is still unbounded and still has no bound,
-so the answer is an `Option` and an unanswered direction contributes the vacuous
-row `0 x ≤ 0`: total without a type that excludes unbounded sets. The directions
-are the operands' own rows, among which a sum's facet normals lie.
-
-Not `Mtimes`: no direction on the target is named by the operands, so the choice
-would be a precision one and instance search may not make one. `Intersection` and
-`OfPoint` land too — the latter only at `Vec ℝ n`, `LinearMap.proj` needing
-coordinates — `mapEquiv` backs `Reindex` below, and `comap`, `translate` stay
-named. `OfInterval` would land as it stands, but its class lives in `Conversion`.
+`ContSet`, `ConvexSet`, and `Reduce` as the identity: CORA's `compact` drops redundant halfspaces
+and keeps the set exactly, so doing nothing is the sound stand-in until that algorithm is written.
+`Plus` and `LinComb` at `Vec ℝ n`, where `supportBound` answers a direction by simplex; a
+description with no rows is unbounded, so the answer is an `Option` and an unanswered direction
+contributes the vacuous row `0 x ≤ 0`, the directions being the operands' own rows. Not `Mtimes`: no
+direction on the target is named by the operands, so the choice would be a precision one.
+`Intersection` and `OfPoint` land (the latter only at `Vec ℝ n`); `mapEquiv` backs `Reindex`;
+`comap`, `translate` stay named. `OfInterval` would land, but its class lives in `Conversion`.
 -/
 
 -- Authors:       Claude Opus 5

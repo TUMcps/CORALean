@@ -18,6 +18,14 @@ of `{ Mᵢⱼₖₗ xⱼ xₖ xₗ | x ∈ Z }` by a zonotope `(0, H)`, when the
 charged to the box. CORA's `options.list.perm`, `.comb` and `.map` are arguments, as in the exact
 layer (`Real.Zonotope.TensorLists`), and the second-order branch, which errors for every input, is
 not modelled.
+
+## Inputs
+* `Z` – zonotope
+* `M` – third-order tensor
+* `L` – permutation lists
+
+## Output
+* zonotope enclosing the cubic tensor image
 -/
 
 -- Authors:       Claude Opus 5.5

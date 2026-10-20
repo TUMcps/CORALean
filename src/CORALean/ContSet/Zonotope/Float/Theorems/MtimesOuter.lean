@@ -22,6 +22,16 @@ The nominal obligation is where the float layer pays for arithmetic rather than
 bookkeeping. Center and generators are wrong in different ways: the center by a
 fixed vector, which `residual` holds, the generators by an entrywise amount the
 coefficients then scale, which `generatorError` sums.
+
+## Inputs
+* `M` – matrix
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* image under the matrix is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

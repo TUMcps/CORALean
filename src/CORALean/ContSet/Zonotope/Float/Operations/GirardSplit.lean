@@ -8,20 +8,24 @@ public import CORALean.Global.Sort
 /-!
 # `Zonotope.girardSplit`
 
-Girard's metric, `‖g‖₁ - ‖g‖∞`, measures what boxing a generator costs
-directly, zero on an axis-aligned one; `Tuple.sort` wants a `LinearOrder`,
-which no float type has — distinct representations of one value compare equal
-each way, so antisymmetry fails — hence `sortPerm`, which asks its comparator
-for nothing. It can afford to, since `reduceBy_outer` holds at every
-partition: a misranking costs precision alone.
+Girard's metric, `‖g‖₁ - ‖g‖∞`, measures what boxing a generator costs directly, zero on an
+axis-aligned one. `Tuple.sort` wants a `LinearOrder`, which no float type has (distinct
+representations of one value compare equal each way), hence `sortPerm`, which asks its comparator
+for nothing: `reduceBy_outer` holds at every partition, so a misranking costs precision alone. The
+metric of every generator is computed once, into a stored vector, before the sort, so a comparison
+is two lookups: `O(h * (n + log h))`. A definition of its own, as at `Real`: one partition says both
+what the reduction keeps and what its error box absorbs, so `reduceGirard` and `reduceGirardBox`
+read the same one.
 
-The metric of every generator is computed once, into a stored vector, before the sort, so a
-comparison is two lookups and not two `O(n)` sums: `O(h * (n + log h))`, not `O(n * h * log h)`.
+## Inputs
+* `Z` – zonotope
+* `o` – target order
 
-A definition of its own rather than a helper inside `reduceGirard`, as at
-`Real`: one partition says both what the reduction keeps and what its error
-box absorbs, so `reduceGirard` and `reduceGirardBox` read the same one from
-here.
+## Hypotheses
+* `hlt` – more generators than the order allows
+
+## Output
+* split of the generators into kept and reduced ones
 -/
 
 -- Authors:       Claude Opus 5

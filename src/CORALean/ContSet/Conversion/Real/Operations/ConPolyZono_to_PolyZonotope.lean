@@ -6,6 +6,12 @@ public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 
 /-!
 # A constrained polynomial zonotope as a polynomial zonotope
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* polynomial zonotope with the same data, constraints dropped
 -/
 
 -- Authors:       Claude Opus 5

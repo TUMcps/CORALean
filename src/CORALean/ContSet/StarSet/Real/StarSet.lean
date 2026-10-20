@@ -12,21 +12,13 @@ public import Mathlib.Data.Real.Basic
 # Star sets: the representation
 
 The generalized star set of [1, Def. 1]: a center `c`, a basis `G` of `m` vectors and a predicate
-`P` on the coefficients, denoting `{c + G α | α ∈ P}`, here with the coefficient box `[l, u]` of
-CORA's star sets always beside it: the set is `{c + G α | α ∈ dom, α ∈ pred}`, `dom` a library
-`Interval`, so a star set is bounded. The predicate is one of CORALean's own representations in
-coefficient space, any family `P m` with a `ContSet` instance at `Vec ℝ m`: a `LevelSet` for an
-arbitrary predicate, a `PolyLevelSet` for a polynomial one (a constrained polynomial zonotope's,
-`ConPolyZono.starSet`), a `SupportFunction`, an `HPolytope`. Which family is a parameter of the
-type, so a star set is as general as its predicate, and the figure's arrows into and out of star
-sets (`Conversion/`) are about this class.
-
-CORA's star set is the instance `StarSet ℋ𝒫`: its `neuralNetwork` converts a `conZonotope` to
-`(c, G, C, d, l, u)` (`nnHelper.conversionConZonoStarSet`) and propagates it, the predicate the
-polytope `C α ≤ d` and the box `[l, u]`, which bounds a neuron (`rowBounds`). A layer that adds a
-factor appends a variable and rows through `HPolytope`'s own operations (`lift_`, `intersection`).
-At that predicate the set is a bounded polytope, exactly a `ConZonotope` (`Conversion/`). `G i k`
-is the `i`-th coordinate of the `k`-th generator, as the layers read them.
+`P` on the coefficients, denoting `{c + G α | α ∈ P}`, with the coefficient box `[l, u]` of CORA's
+star sets beside it: `{c + G α | α ∈ dom, α ∈ pred}`, `dom` a library `Interval`, so a star set is
+bounded. The predicate is any family `P m` with a `ContSet` instance at `Vec ℝ m`: a `LevelSet`, a
+`PolyLevelSet` (`ConPolyZono.starSet`), a `SupportFunction`, an `HPolytope`; a parameter of the
+type, as the figure's arrows (`Conversion/`) are about. CORA's star set is `StarSet ℋ𝒫`:
+`neuralNetwork` converts a `conZonotope` to `(c, G, C, d, l, u)` and propagates it. At that
+predicate the set is a bounded polytope, exactly a `ConZonotope` (`Conversion/`).
 
 ## References
 

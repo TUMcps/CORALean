@@ -12,6 +12,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotop
 Exact, and the reason a constrained zonotope needs no separate treatment of the
 unconstrained case: `fullspace` is the unit of the coefficient domain's `intersection`,
 so the empty constraint list denotes the whole coefficient space.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope equals its constrained zonotope
 -/
 
 -- Authors:       Claude Opus 5

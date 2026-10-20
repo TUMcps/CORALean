@@ -15,6 +15,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonoto
 # A polynomial zonotope as a zonotope
 
 `PolyZonotope.zonotope_contains`: its `zonotope` contains it.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its zonotope
 -/
 
 -- Authors:       Claude Opus 5

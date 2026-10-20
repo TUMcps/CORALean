@@ -9,6 +9,12 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_SpectraSha
 
 /-!
 # A constrained zonotope as a spectrahedral shadow
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Output
+* spectrahedral shadow of the generator and constraint blocks
 -/
 
 -- Authors:       Claude Opus 5.5

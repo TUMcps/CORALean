@@ -14,6 +14,15 @@ whose entries are at most `B` in magnitude is `G β` with every `|βⱼ| ≤ δ`
 (`Zonotope.ballCert_reach`), which is what places a point in, or an open set inside, a zonotope
 without an exact solve. `true` is a proof, `false` says only that this `H` and `B` were not good
 enough.
+
+## Inputs
+* `G` – generator matrix
+* `H` – candidate right inverse
+* `B` – box radius
+* `δ` – coefficient bound
+
+## Output
+* certifies that the box of radius `B` is reached by coefficients within `δ`
 -/
 
 -- Authors:       Claude Opus 5.5

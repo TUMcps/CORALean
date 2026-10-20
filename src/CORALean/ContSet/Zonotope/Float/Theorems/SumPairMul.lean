@@ -8,6 +8,19 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SumPair
 # `sum_pair` with the coefficient following the generator
 
 The order a stored row is read in.
+
+## Inputs
+* `g₁` – first generator block
+* `g₂` – second generator block
+* `β₁` – first coefficient block
+* `β₂` – second coefficient block
+* `lam` – mixing weight
+
+## Hypotheses
+* none
+
+## Conclusion
+* paired sums and differences recombine to the weighted combination
 -/
 
 -- Authors:       Claude Opus 5

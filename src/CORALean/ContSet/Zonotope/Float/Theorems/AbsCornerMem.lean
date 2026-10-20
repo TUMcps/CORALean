@@ -12,6 +12,15 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.AbsCornerMemNominalSet
 
 Inner: the corner `|c| + Σ |gⱼ|` of the stored floats is a point of `abs Z` once its error box
 holds `0`. Like the real one this is not an enclosure of the input.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* `h0` – error box contains zero
+
+## Conclusion
+* absolute-value corner lies in the absolute zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

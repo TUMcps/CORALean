@@ -13,6 +13,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 /-!
 # A box as an array of Taylor models
+
+## Inputs
+* `I` – interval
+* `N` – Taylor order
+
+## Hypotheses
+* none
+
+## Conclusion
+* interval is contained in its Taylor model
 -/
 
 -- Authors:       Claude Opus 5.5

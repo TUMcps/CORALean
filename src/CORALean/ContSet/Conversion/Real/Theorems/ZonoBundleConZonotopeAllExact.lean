@@ -10,6 +10,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_ConZonot
 
 /-!
 # A bundle's constrained zonotope, at one component
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hk` – bundle is nonempty
+
+## Conclusion
+* folded intersection equals the bundle
 -/
 
 -- Authors:       Claude Opus 5

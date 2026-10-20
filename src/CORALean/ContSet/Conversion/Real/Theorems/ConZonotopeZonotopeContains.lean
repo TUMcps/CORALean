@@ -15,6 +15,15 @@ exact, and by exactly the constraints thrown away.
 Every other route out of a constrained zonotope goes through a linear program on
 its coefficient domain; this one is free, and is what `reduce` and `linComb`
 fall back on.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its zonotope
 -/
 
 -- Authors:       Claude Opus 5

@@ -12,19 +12,22 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 /-!
 # A box as its corners
 
-`2ⁿ` vertices, exponential and inherently so: a box in `n` dimensions has that
-many corners and a vertex description has to name them all.
+`2ⁿ` vertices, exponential and inherently so. The witness is explicit: each coordinate sits some
+fraction `t j` of the way up its own range, and a corner's weight is the product over coordinates of
+`t j` or `1 - t j` according to which end that corner took. Both obligations are then the same
+combinatorial identity: the weights sum to one because each coordinate's pair does, and they
+reproduce `x` because for one coordinate at a time every other pair sums away. A flat coordinate
+divides by the range's width, so `t j` is set to zero there, which is correct since a flat range
+leaves `x j` no choice.
 
-The witness is explicit. Each coordinate sits some fraction `t j` of the way up
-its own range, and a corner's weight is the product over coordinates of `t j` or
-`1 - t j` according to which end that corner took. Both obligations are then the
-same combinatorial identity — the weights sum to one because each coordinate's
-pair does, and they reproduce `x` because for one coordinate at a time every
-other coordinate's pair sums away.
+## Inputs
+* `I` – interval
 
-A flat coordinate is the case to watch: `t j` divides by the range's width, so it
-is set to zero there, which is correct because a flat range leaves `x j` no
-choice.
+## Hypotheses
+* none
+
+## Conclusion
+* interval is contained in its vertex polytope
 -/
 
 -- Authors:       Claude Opus 5

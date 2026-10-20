@@ -12,6 +12,13 @@ public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_ConZonot
 
 /-!
 # A bundle's corners, at one component
+
+## Inputs
+* `zB` – zonotope bundle
+* `i` – member index
+
+## Output
+* vertex polytope of the bundle, from member `i`
 -/
 
 -- Authors:       Claude Opus 5

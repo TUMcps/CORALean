@@ -13,6 +13,15 @@ CORA's `interval(capsule)`: the center give or take the generator's reach and
 the ball's radius in each coordinate. One coordinate of a point never exceeds
 the whole Euclidean distance it is a part of, `aux_abs_le_sqrt_sumSq`, and `t`
 ranging over `[-1, 1]` bounds `t * g i` by `|g i|`.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* capsule is contained in its interval
 -/
 
 -- Authors:       Claude Opus 5

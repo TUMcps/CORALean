@@ -18,6 +18,16 @@ CORA's `taylm(zonotope)`: one variable per generator, `c + G t` over `t ∈ [-1,
 stored floats are the model's coefficients unchanged, so nothing rounds, and the
 zonotope's error box becomes each coordinate's error box, the remainder `[0, 0]`. Exact, as over
 ℝ.
+
+## Inputs
+* `Z` – zonotope
+* `N` – Taylor order
+
+## Hypotheses
+* none
+
+## Conclusion
+* Taylor model equals the zonotope
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -12,6 +12,13 @@ A float that no point of the zonotope's support falls below: the *lower* counter
 `c ⊕ G[-1,1]ʰ ⊕ E` in direction `a` is `aᵀc + Σⱼ |aᵀGⱼ| + Σᵢ max(aᵢ E.infᵢ, aᵢ E.supᵢ)`; each
 term is rounded down, a generator's `|aᵀGⱼ|` through the enclosure `[dotDown, dotUp]` of
 `aᵀGⱼ`, as `max(0, lo, -hi)`, and the error box's term at its smaller end.
+
+## Inputs
+* `Z` – zonotope
+* `a` – direction
+
+## Output
+* lower bound of the direction's dot product over the zonotope
 -/
 
 -- Authors:       Claude Sonnet 5.5

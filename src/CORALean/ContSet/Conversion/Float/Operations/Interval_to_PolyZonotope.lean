@@ -6,6 +6,12 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 
 /-!
 # A box as a polynomial zonotope, over a floating-point scalar
+
+## Inputs
+* `I` – interval
+
+## Output
+* polynomial zonotope of the box
 -/
 
 -- Authors:       Claude Opus 5

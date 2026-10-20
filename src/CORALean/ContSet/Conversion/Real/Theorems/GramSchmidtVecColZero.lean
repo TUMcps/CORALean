@@ -9,6 +9,15 @@ public import CORALean.ContSet.Conversion.Real.Definitions.GramSchmidt
 
 Gram–Schmidt leaves its first vector alone but for the length (`gramSchmidt_bot`), and the
 completion puts `g` first. At `g = 0` both sides are `0`.
+
+## Inputs
+* `g` – vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* first column is the normalized vector
 -/
 
 -- Authors:       Claude Opus 5.5

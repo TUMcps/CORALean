@@ -15,6 +15,18 @@ The interval-matrix counterpart of `ZeroMemMtimesError`. The result's box is
 `mid(M) E ⊕ (M - mid(M)) E`: the first brackets `0` by `zero_mem_mtimes_error`,
 and the second because it holds `R 0 = 0` for any `R` in the residual box, which
 is nonempty as soon as `IM` holds one matrix `A` (`A - mid(M)` is then in it).
+
+## Inputs
+* `IM` – interval matrix
+* `Z` – zonotope
+* `A` – matrix in the interval matrix
+
+## Hypotheses
+* `hA` – matrix lies in the interval matrix
+* `h` – error box contains zero
+
+## Conclusion
+* product error box contains zero
 -/
 
 -- Authors:       Claude Opus 5.5

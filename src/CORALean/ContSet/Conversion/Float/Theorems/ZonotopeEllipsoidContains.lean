@@ -15,15 +15,23 @@ public import CORALean.ContSet.Interval.Float.Theorems.Basic
 /-!
 # A zonotope as an ellipsoid, over a floating-point scalar
 
-The exact layer scales the generators by `√h` and the cube `‖β‖∞ ≤ 1` then sits inside the unit
-ball. Here the caller proposes `σ` and the check `h ≤ σ·σ` is all that is used of it: a point
-`c + G β` is `c + (σ G)(β/σ)`, a point of the ellipsoid of shape `σ² G Gᵀ`
-(`construct_ofFactor`), which the stored rounded shape dominates (`inflate_sub_posSemidef`,
-`σ² G Gᵀ` lying in the interval matrix), so the rounding costs the error box nothing.
+The exact layer scales the generators by `√h`. Here the caller proposes `σ` and the check `h ≤ σ·σ`
+is all that is used of it: a point `c + G β` is `c + (σ G)(β/σ)`, a point of the ellipsoid of shape
+`σ² G Gᵀ` (`construct_ofFactor`), which the stored rounded shape dominates
+(`inflate_sub_posSemidef`), so the rounding costs the error box nothing. CORA's
+`ellipsoid(zonotope)` for more generators than dimensions is the minimum-volume or minimum-trace
+enclosure, an optimisation, and is not what this is: this is the `√h` ball, as over ℝ.
 
-CORA's `ellipsoid(zonotope)` for more generators than dimensions is the minimum-volume or
-minimum-trace enclosure, an optimisation, and is not what this is: this is the `√h` ball, as over
-ℝ.
+## Inputs
+* `Z` – zonotope
+* `σ` – scaling factor
+
+## Hypotheses
+* `hσ` – scaling factor positive
+* `hh` – squared scaling factor at least generator count
+
+## Conclusion
+* zonotope is contained in its ellipsoid
 -/
 
 -- Authors:       Claude Opus 5.5

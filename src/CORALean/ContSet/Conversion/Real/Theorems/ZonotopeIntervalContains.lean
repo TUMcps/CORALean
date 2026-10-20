@@ -10,20 +10,21 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # A zonotope as a box
 
-CORA's `interval(zonotope)`: the center give or take the generators' total reach
-in each coordinate. Not exact — a zonotope is generally not a box — but tight,
-since each coordinate's extreme is attained by taking every generator at its own
-sign.
+CORA's `interval(zonotope)`: the center give or take the generators' total reach in each coordinate.
+Not exact, a zonotope being generally not a box, but tight: each coordinate's extreme is attained by
+taking every generator at its own sign. Over any ambient type with coordinates: at `Mat ℝ m n` this
+is CORA's `intervalMatrix(matZonotope)`, how a matrix zonotope reaches a remainder bound. No linear
+program is needed. `interval_contains` is [1, Prop. 1], which cites Althoff 2010, Prop. 2.2, not
+formalized separately since nothing here draws on the thesis beyond this formula.
 
-Over any ambient type with coordinates, not just `Vec ℝ n`: at `Mat ℝ m n` this
-is CORA's `intervalMatrix(matZonotope)`, which is how a matrix zonotope reaches
-a remainder bound, and the definition is the same one read through `Entrywise`.
+## Inputs
+* `Z` – zonotope
 
-No linear program: a zonotope answers a direction by summing absolute values,
-which is the reason it is the representation reachability runs on.
+## Hypotheses
+* none
 
-`interval_contains` is [1, Prop. 1], which in turn cites Althoff 2010, Prop. 2.2 — not
-formalized separately, since nothing here draws on the thesis beyond this same formula.
+## Conclusion
+* zonotope is contained in its interval
 
 ## References
 

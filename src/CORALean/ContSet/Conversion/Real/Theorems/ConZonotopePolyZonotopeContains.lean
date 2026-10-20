@@ -15,6 +15,15 @@ zonotope with one factor per generator. Loses exactly the constraints thrown
 away; a direct polynomial zonotope that used the constraints instead is a
 separate piece of mathematics, and its dependent structure would go unused
 here regardless.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5

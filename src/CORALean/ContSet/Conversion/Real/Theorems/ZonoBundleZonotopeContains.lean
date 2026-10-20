@@ -13,6 +13,16 @@ CORA's cheapest route out of a `zonoBundle`: any single component already
 encloses the whole intersection. The choice of `i` owes no proof, since the
 guarantee below is sound at every one — `ConPolyZono.reduceBy_outer` is the
 same shape, sound at every partition.
+
+## Inputs
+* `zB` – zonotope bundle
+* `i` – member index
+
+## Hypotheses
+* none
+
+## Conclusion
+* bundle is contained in its zonotope
 -/
 
 -- Authors:       Claude Opus 5

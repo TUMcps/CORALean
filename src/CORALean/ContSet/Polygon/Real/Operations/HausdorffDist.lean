@@ -11,12 +11,11 @@ public import CORALean.ContSet.VPolytope.Real.Instances
 
 CORA's `polygon/hausdorffDist(pgon, S)` for a numeric `S`, the columns of a matrix of points: for
 each point `0` if the polygon contains it, else its Euclidean distance to the boundary segments
-(`aux_distPolygonPoint`), and the largest of these, starting from `val = 0`. The region's boundary
-is `frontier`, which the segments of a single boundary loop cover; the loop's `NaN` separators
-(several regions, holes) are not modelled. The distance is taken in the Euclidean norm, through
-`toEuclidean`, as `Vec` carries the supremum norm. The polygon–polygon branch reads vertices of
-boundary loops (R-PG) and is not defined here. The value is the largest distance from a point
-to the polygon, one direction of the Hausdorff distance, not both
+(`aux_distPolygonPoint`), and the largest of these. The region's boundary is `frontier`, which the
+segments of a single boundary loop cover; the `NaN` separators (several regions, holes) are not
+modelled. The distance is Euclidean, through `toEuclidean`, as `Vec` carries the supremum norm. The
+polygon–polygon branch reads boundary loops (R-PG) and is not defined here. The value is the largest
+distance from a point to the polygon, one direction of the Hausdorff distance, not both
 (`references/coverage/contSet/polygon.md`, row `hausdorffDist`).
 -/
 

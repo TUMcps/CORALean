@@ -11,6 +11,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 
 /-!
 # A box as its corners
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* `hI` – lower end below upper end per coordinate
+
+## Conclusion
+* corner polytope is contained in the interval
 -/
 
 -- Authors:       Claude Opus 5

@@ -11,6 +11,15 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 Whatever the rows: a point `c + Σ βⱼ Gⱼ` with `|βⱼ| ≤ 1` has `|v ⬝ (x - c)| ≤ Σ |v ⬝ Gⱼ|` for every
 `v`, so the facet rows hold, generators spanning or not. Without generators the point is `c`,
 which the box rows `[I; -I] x ≤ [c; -c]` pin.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is contained in its facet polytope
 -/
 
 -- Authors:       Claude Opus 5.5

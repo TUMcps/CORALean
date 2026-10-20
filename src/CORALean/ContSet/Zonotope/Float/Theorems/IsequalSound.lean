@@ -11,6 +11,16 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 A `true` answer says the stored centers, generators and error boxes agree as real numbers, so
 the nominal zonotopes are the same and the error boxes are the same, and the denoted sets are
 equal. `false` refutes nothing.
+
+## Inputs
+* `Z` – first zonotope
+* `S` – second zonotope
+
+## Hypotheses
+* `h` – test returns true
+
+## Conclusion
+* the two zonotopes denote the same set
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -14,6 +14,13 @@ alternating minors of the matrix holding them, one row dropped each time, as the
 for the normal and not the normal: nothing downstream relies on it being one. `minnorm` bounds the
 offset at *any* vector, which is why a rounded normal costs tightness and not soundness.
 
+## Inputs
+* `Z` – zonotope
+* `S` – generator selection
+
+## Output
+* cross product of the selected generators
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

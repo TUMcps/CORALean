@@ -8,20 +8,14 @@ public import CORALean.ContSet.Interval.Float.Interval
 /-!
 # Representations that carry a rounding error
 
-A nominal representation inflated by an axis-aligned box holding what rounding
-has cost so far. An operation never rounds its nominal part into shape: it
-computes that part however it likes and pays the difference into the box.
-
-Indexed by the stored ambient type `α` and the real one `β` it reads as
-(`RealImage`), as `Interval` is: `Vec 𝕋 n` over `Vec ℝ n`, or `Mat 𝕋 m n` over
-`Mat ℝ m n`, where the box is an interval matrix.
-
-For a zonotope that is the point — rounding paid into new generators would grow
-the generator count on every operation, which is what reachability costs.
-
-`Interval` deliberately has no instance: it *is* the box. Boxes are built by
+A nominal representation inflated by an axis-aligned box holding what rounding has cost so far. An
+operation never rounds its nominal part into shape: it computes that part however it likes and pays
+the difference into the box. Indexed by the stored ambient type `α` and the real one `β` it reads as
+(`RealImage`), as `Interval` is: `Vec 𝕋 n` over `Vec ℝ n`, or `Mat 𝕋 m n` over `Mat ℝ m n`. For a
+zonotope that is the point: rounding paid into new generators would grow the generator count on
+every operation. `Interval` deliberately has no instance: it *is* the box. Boxes are built by
 whoever knows what was rounded (`Interval.residual`, `Interval.symmetric`,
-`Zonotope.generatorError`), and none of those mentions this class.
+`Zonotope.generatorError`).
 -/
 
 -- Authors:       Claude Opus 5

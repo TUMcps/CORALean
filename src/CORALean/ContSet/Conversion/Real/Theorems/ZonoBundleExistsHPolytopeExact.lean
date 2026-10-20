@@ -16,6 +16,15 @@ space, which is no polytope, hence the hypothesis.
 This is the equivalence of polytopes and zonotope bundles of
 [1, Fig. 1 (Polytopes ↔ Zonotope Bundles)].
 
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hk` – bundle is nonempty
+
+## Conclusion
+* some halfspace polytope equals the bundle
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

@@ -9,6 +9,19 @@ public import CORALean.ContSet.Zonotope.Real.Operations.RotMat
 # The rotation lies in the interval `rotMat`
 
 Entry by entry: the sine and cosine entries are within their enclosures, the others exact.
+
+## Inputs
+* `p` – Newton steps for the trigonometry
+* `n` – dimension
+* `i` – first rotation axis
+* `j` – second rotation axis
+* `angle` – rotation angle
+
+## Hypotheses
+* none
+
+## Conclusion
+* rotation lies in the interval matrix
 -/
 
 -- Authors:       Claude Opus 5.5

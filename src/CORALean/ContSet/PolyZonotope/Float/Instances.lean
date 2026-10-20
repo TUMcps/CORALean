@@ -13,22 +13,13 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReindexExact
 /-!
 # What `PolyZonotope` instantiates
 
-`ContSet` is not among them — `InflatedContSet` supplies it, which is what makes
-this the same class the exact layer instantiates.
-
-`Reduce` is here and is *computable*, where the exact layer's instance is not:
-`Tuple.sort` needs a `LinearOrder`, which no float type has lawfully, while
-`sortPerm` asks its comparator for nothing. Soundness never depended on the
-ranking — `reduceBy_outer` holds at every partition — so the free comparator
-costs precision and nothing else. `LinComb` is computable here for the same
-reason: over ℝ it is noncomputable only because `Reduce` in the same file is.
-
-`compact` runs first, as over ℝ, so the count bounded is of distinct monomials.
-It is the one operation weaker in kind than its exact counterpart: merging two
-columns adds their entries, so it encloses where the exact one is an equality.
-
-`quadMap` has no class to instantiate, as over ℝ, so a caller names
-`PolyZonotope.quadMap`.
+`ContSet` is supplied by `InflatedContSet`, as for the exact layer. `Reduce` is *computable* here,
+where the exact layer's instance is not: `Tuple.sort` needs a `LinearOrder`, which no float type
+has, while `sortPerm` asks its comparator for nothing. Soundness never depended on the ranking
+(`reduceBy_outer` holds at every partition), so the free comparator costs precision only; `LinComb`
+is computable for the same reason. `compact` runs first, as over ℝ; it is the one operation weaker
+in kind than its exact counterpart: merging two columns adds their entries, so it encloses where the
+exact one is an equality. `quadMap` has no class, so a caller names `PolyZonotope.quadMap`.
 -/
 
 -- Authors:       Claude Opus 5

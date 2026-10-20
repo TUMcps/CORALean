@@ -11,6 +11,12 @@ public import CORALean.ContSet.SupportFunction.Real.Operations.OfSet
 The support function of the set it denotes, `sup {ℓ x | x ∈ P}`: the value of a linear program in
 the one case and a maximum over the vertices in the other, computed by neither here. A polytope is
 closed and convex, so its support function denotes it (`SupportFunction.ofSet_exact`).
+
+## Inputs
+* `P` – halfspace polytope
+
+## Output
+* support function of the polytope
 -/
 
 -- Authors:       Claude Sonnet 5.5

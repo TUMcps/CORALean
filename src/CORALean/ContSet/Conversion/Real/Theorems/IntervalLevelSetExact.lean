@@ -12,6 +12,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Basic
 CORA has no `levelSet(interval)`; a box is `inf - x ≤ 0` and `x - sup ≤ 0` componentwise, two
 constraints per coordinate. Exact, including the empty box (`sup i < inf i`), which the two
 inequalities then contradict.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* level set equals the interval
 -/
 
 -- Authors:       Claude Opus 5.5

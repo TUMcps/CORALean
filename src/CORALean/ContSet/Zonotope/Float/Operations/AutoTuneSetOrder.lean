@@ -17,6 +17,13 @@ is owed.
 A NaN `errUp` reads through `ToRat` as `1.5 · 2 ^ 1024`, fails `≤ εrτ` and keeps the sweep
 going. Tightness only.
 
+## Inputs
+* `Z` – zonotope to reduce
+* `εrτ` – admissible error share
+
+## Output
+* coarsest admissible order, if the sweep finds one
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

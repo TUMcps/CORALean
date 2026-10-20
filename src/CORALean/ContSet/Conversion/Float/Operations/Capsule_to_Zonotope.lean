@@ -15,6 +15,12 @@ enclosed by its bounding box `[-r, r]ⁿ`, which is what `Ellipsoid.zonotope` ta
 layer; the float layer has no ellipsoid conversion, and the box of that ellipsoid is read off its
 radius. `r` is zero where `le` says it is, both ways, so a `true` is exact and a `false` costs a
 zero-width ball and nothing else.
+
+## Inputs
+* `C` – capsule
+
+## Output
+* zonotope of the segment, plus the radius box unless it is zero
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,18 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonoto
 
 /-!
 # A box as a polynomial zonotope: `polyZonotope_mono`
+
+## Inputs
+* `I₁` – inner interval
+* `I₂` – outer interval
+
+## Hypotheses
+* `hord` – inner interval ordered
+* `hlo` – outer lower end below inner
+* `hhi` – inner upper end below outer
+
+## Conclusion
+* polynomial zonotope of the inner box is contained in the outer's
 -/
 
 -- Authors:       Claude Opus 5

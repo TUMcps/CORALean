@@ -14,6 +14,16 @@ Selecting coordinates is linear and rounds nothing, so `InflatedContSet.image_su
 this into the nominal zonotope and the box. The nominal zonotope of the projection is
 definitionally the exact layer's `project` of the nominal zonotope, so `project_exact` gives
 the nominal obligation as an equality; the box is `Interval.project_outer`.
+
+## Inputs
+* `Z` – zonotope
+* `dims` – chosen coordinates
+
+## Hypotheses
+* none
+
+## Conclusion
+* projection is contained in the computed zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

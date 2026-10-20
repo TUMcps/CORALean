@@ -16,6 +16,17 @@ public import CORALean.ContSet.Conversion.Real.Operations.Basic
 
 CORA's `taylm(zonotope)`: one variable per generator, `c + G t` over `t ∈ [-1, 1]ʰ`, no
 remainder. Exact: the box of factors is the zonotope's box of coefficients.
+
+## Inputs
+* `m` – dimension
+* `Z` – zonotope
+* `N` – Taylor order
+
+## Hypotheses
+* none
+
+## Conclusion
+* Taylor model equals the zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

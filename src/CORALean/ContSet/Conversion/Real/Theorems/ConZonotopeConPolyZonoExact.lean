@@ -9,21 +9,22 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeConRowsIff
 /-!
 # A constrained zonotope as a constrained polynomial zonotope
 
-Exact. Our `ConZonotope` carries an `HPolytope` over its coefficients, so it admits
-inequalities, and a row of a constrained polynomial zonotope is an equation: each row is held
-to the interval it may take over the unit cube, the midpoint relaxed by the radius
-(`ConPolyZono.relax`, one slack factor per row).
+Exact. Our `ConZonotope` carries an `HPolytope` over its coefficients, so it admits inequalities,
+and a row of a constrained polynomial zonotope is an equation: each row is held to the interval it
+may take over the unit cube, the midpoint relaxed by the radius (`ConPolyZono.relax`, one slack
+factor per row). An inequality's interval is open at one end, so a lower bound is supplied, and one
+is free: a row cannot fall below minus the sum of its absolute coefficients, and capped by `b` that
+cuts nothing. The coefficients are factors themselves, to the first power. `coeffs` is the converse
+of `HPolytope.rowLin`: a functional is its values on the unit vectors.
 
-An inequality's interval is open at one end, which a radius cannot be, so a lower bound is
-supplied, and one is free: every factor lies in `[-1,1]`, so a row cannot fall below minus the
-sum of its absolute coefficients. Capped by `b`, that bound cuts nothing, which is why the
-conversion is exact rather than enclosing.
+## Inputs
+* `cZ` – constrained zonotope
 
-The coefficients are factors themselves, one each and to the first power, so generators and
-constraint columns read them off the same identity exponent matrix.
+## Hypotheses
+* none
 
-`coeffs` is the converse of `HPolytope.rowLin`: a constraint there is a
-functional, here a matrix row, and a functional is its values on the unit vectors.
+## Conclusion
+* set equals its constrained polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

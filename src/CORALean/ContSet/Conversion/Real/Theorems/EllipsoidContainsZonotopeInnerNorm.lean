@@ -12,6 +12,19 @@ public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_Zonotope
 /-!
 # An ellipsoid as a zonotope
 
+## Inputs
+* `E` – ellipsoid
+* `m` – number of generators
+* `S` – generators
+* `r` – scaling bound
+
+## Hypotheses
+* `hr` – bound positive
+* `hS` – squared maximal norm of the zonotope at most the bound
+
+## Conclusion
+* scaled inner zonotope is contained in the ellipsoid
+
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean

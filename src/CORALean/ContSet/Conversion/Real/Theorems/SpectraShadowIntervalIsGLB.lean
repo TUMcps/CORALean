@@ -13,6 +13,17 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 /-!
 # A spectrahedral shadow's interval hull: `interval_isGLB`
+
+## Inputs
+* `S` – spectrahedral shadow
+* `i` – coordinate
+
+## Hypotheses
+* `hb` – shadow bounded
+* `hne` – shadow nonempty
+
+## Conclusion
+* lower end is the greatest lower bound of the coordinate
 -/
 
 -- Authors:       Claude Opus 5.5

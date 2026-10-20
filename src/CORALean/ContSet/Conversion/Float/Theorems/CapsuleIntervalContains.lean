@@ -16,6 +16,15 @@ CORA's `interval(capsule)`: the center give or take the generator's reach and th
 coordinate, `|gᵢ| + r`. The reach is rounded up, so each end is rounded away from the capsule:
 the lower bound down, the upper bound up, and the error box's ends are added to them, rounded the
 same way. An empty capsule (`r < 0`) is boxed all the same, by whatever the bounds say, as over ℝ.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* capsule is contained in its interval
 -/
 
 -- Authors:       Claude Opus 5.5

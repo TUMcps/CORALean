@@ -8,18 +8,11 @@ public import Mathlib.Analysis.Normed.Module.Basic
 /-!
 # Representations that denote a compact set
 
-One field rather than two: an algorithm enclosing an integral needs the set
-closed *and* bounded, and over a normed space compactness is exactly both, so
-`isClosed_construct` and `isBounded_construct` are theorems here instead of
-obligations a representation has to discharge twice.
-
-Compactness rather than the pair also picks the right instances: a merely closed
-and bounded representation is one whose affine images need not be closed, and
+One field rather than two: an algorithm enclosing an integral needs the set closed *and* bounded,
+and over a normed space compactness is exactly both, so `isClosed_construct` and
+`isBounded_construct` are theorems here instead of obligations. Compactness also picks the right
+instances: a merely closed and bounded representation has affine images that need not be closed, and
 those are the sets `inputSolution` is built from.
-
-Over a normed space, which is where `IsCompact.isClosed` and
-`IsCompact.isBounded` both apply and where every representation instantiating
-this already states its lemmas.
 -/
 
 -- Authors:       Claude Sonnet 5

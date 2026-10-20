@@ -16,6 +16,15 @@ two ends of the segment contains the corner `(1, -1)`, which the segment does no
 
 This is the arrow from intervals to zonotopes of [1, Fig. 1 (Intervals → Zonotopes)].
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* some planar zonotope is no interval
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

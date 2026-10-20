@@ -10,19 +10,22 @@ public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeMemSimplexIff
 /-!
 # A hull as a constrained zonotope
 
-Exact, and cheap: the vertices become the generators, the center is the origin,
-and the constraint polytope is the standard simplex — coefficients nonnegative
-and summing to one.
-
-The unit box a constrained zonotope also imposes costs nothing here. A
-nonnegative coefficient in a family summing to one is already at most one, so
-`|βⱼ| ≤ 1` is implied rather than imposed, and no vertex is lost.
-
-This is the direction that makes a constrained zonotope the general representation: every bounded
-polytope is one, with no enclosure anywhere.
-
-This is the equivalence of polytopes and constrained zonotopes of
+Exact, and cheap: the vertices become the generators, the center is the origin, and the constraint
+polytope is the standard simplex, coefficients nonnegative and summing to one. The unit box a
+constrained zonotope also imposes costs nothing: a nonnegative coefficient in a family summing to
+one is at most one, so `|βⱼ| ≤ 1` is implied and no vertex is lost. This is the direction that makes
+a constrained zonotope the general representation: every bounded polytope is one, with no enclosure
+anywhere. It is the equivalence of polytopes and constrained zonotopes of
 [1, Fig. 1 (Polytopes ↔ Constrained Zonotopes)].
+
+## Inputs
+* `P` – vertex polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* polytope equals its constrained zonotope
 
 ## References
 

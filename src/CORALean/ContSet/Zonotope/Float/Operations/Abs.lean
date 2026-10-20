@@ -11,6 +11,12 @@ CORA's `@zonotope/abs.m`: the center and the generators are replaced by their en
 values (`FloatOps.absolute`, a comparison and a sign flip, so exact). The error box is copied.
 As at the real layer this is a different set, not an enclosure of the input; the nominal part is
 the real `abs` of the input's nominal part (`Zonotope.abs_nominal`).
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* zonotope with center and generators in absolute value
 -/
 
 -- Authors:       Claude Opus 5.5

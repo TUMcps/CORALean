@@ -12,6 +12,16 @@ The two directed midpoints bracket the exact one, halving being exact, so the
 gap between the stored value and the exact one is what `midpointResidual`
 records. Every operation whose center is a midpoint owes this, which is why it
 is stated once rather than inside one of them.
+
+## Inputs
+* `a` – first center
+* `b` – second center
+
+## Hypotheses
+* none
+
+## Conclusion
+* rounding gap of the midpoint lies in the residual box
 -/
 
 -- Authors:       Claude Opus 5

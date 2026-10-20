@@ -18,14 +18,24 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 Outer, not exact: each cell is first reduced to a parallelotope containing it
 (`reduceGirard_outer`), mapped to the rotated frame by a member of the box that holds `R⁻¹`
-(`mtimesIntervalMat_outer`, `encloseManyBasisInv_mem`), boxed (`interval_contains`), and the box,
-a zonotope (`Interval.zonotope_contains`), is mapped back by `R` (`mtimes_outer`). The member of
-the box inverts `R`, so a point returns to itself. The result is a statement about the float sets
-(`construct`, error boxes included) of the cells and of the result, as for every float outer
-theorem; the rotation is the one the stored floats read as, so it is invertible without any
-hypothesis on `direction` beyond the test `encloseMany` makes.
-
+(`mtimesIntervalMat_outer`, `encloseManyBasisInv_mem`), boxed (`interval_contains`), and the box, a
+zonotope (`Interval.zonotope_contains`), is mapped back by `R` (`mtimes_outer`). The member of the
+box inverts `R`, so a point returns to itself. The statement is about the float sets (`construct`,
+error boxes included) of the cells and of the result; the rotation is the one the stored floats read
+as, so it is invertible without any hypothesis on `direction` beyond the test `encloseMany` makes.
 Source: [1].
+
+## Inputs
+* `p` – Newton steps for the norm
+* `Zs` – cells to enclose
+* `direction` – direction of the first axis
+* `i` – cell index
+
+## Hypotheses
+* none
+
+## Conclusion
+* cell is contained in every returned enclosure
 
 ## References
 

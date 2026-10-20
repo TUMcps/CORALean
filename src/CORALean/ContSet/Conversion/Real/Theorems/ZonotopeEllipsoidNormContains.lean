@@ -14,6 +14,18 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
 /-!
 # A zonotope as an ellipsoid
 
+## Inputs
+* `Z` – zonotope
+* `F` – transformation matrix
+* `r` – bound on the squared norm
+
+## Hypotheses
+* `hF` – transformation invertible
+* `hr` – bound covers the squared maximal norm
+
+## Conclusion
+* zonotope is contained in its ellipsoid
+
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean

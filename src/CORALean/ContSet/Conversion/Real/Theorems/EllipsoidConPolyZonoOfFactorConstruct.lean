@@ -25,6 +25,16 @@ ball's `‖u‖₂ ≤ 1` into a single polynomial equality
 `-0.5 α_{k+1} + α_1² + ⋯ + α_k² = 0.5`, since `α_{k+1} ∈ [-1,1]` ranges exactly
 over the slack the inequality leaves. Exact, both directions.
 
+## Inputs
+* `G` – factor matrix
+* `q` – center
+
+## Hypotheses
+* none
+
+## Conclusion
+* constrained polynomial zonotope of the factor is the image of the unit ball
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

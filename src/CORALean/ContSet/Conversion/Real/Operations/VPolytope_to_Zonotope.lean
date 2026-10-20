@@ -16,6 +16,13 @@ by `zonotope.enclosePoints` (its default `'maiga'`), the zero generators dropped
 'zeros')`), and the center and generators reshaped back into matrices. The principal-direction
 oracle `dir` of the `'maiga'` algorithm (`svd(X)(:, 1)` in CORA) has no algorithm here and is an
 argument; the result is CORA's for that oracle. At least one vertex.
+
+## Inputs
+* `P` – matrix vertex polytope
+* `dir` – direction chosen from the vertices
+
+## Output
+* matrix zonotope enclosing the vertices
 -/
 
 -- Authors:       Claude Sonnet 5.5

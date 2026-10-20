@@ -21,6 +21,12 @@ is two systems stacked by `PolyLevelSet.and_`: the constraint `A μ_R(α) = b`, 
 predicate's domain box, and `z` lies in it too, a monomial of the cube being in `[-1, 1]`. The
 star set's own box is the same unit box: redundant here, it is what every star set carries, and the
 predicate's is what every polynomial level set carries.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* factor constraint padded with both ranges, each in the unit box
 -/
 
 -- Authors:       Claude Opus 5.5

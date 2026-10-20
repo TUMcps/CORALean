@@ -10,6 +10,13 @@ public import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirard
 The exact layer's `reduce`, rounded: `reduceBy` keeps the generators a partition
 names and boxes the rest, a metric ranks them, and a split turns the ranking
 into the partition. Girard's rule is the one used here.
+
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Output
+* zonotope of order at most `o` enclosing the input
 -/
 
 -- Authors:       Claude Opus 5

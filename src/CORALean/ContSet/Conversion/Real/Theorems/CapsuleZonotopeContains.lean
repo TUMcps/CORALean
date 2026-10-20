@@ -15,6 +15,15 @@ CORA's conversion: the segment, exactly, plus the zonotope of the ball (`Ellipso
 `ellipsoid(r² I)`), or the segment alone at `r = 0`. A point of the capsule is a point `c + t g` of
 the segment plus a vector of length at most `r`, which `r · (y / r)` writes as the image of the
 unit ball under `r I`, the ellipsoid's own set (`Ellipsoid.construct_ofFactor`).
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* capsule is contained in its zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

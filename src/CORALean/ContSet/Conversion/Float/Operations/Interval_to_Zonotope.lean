@@ -8,6 +8,12 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 /-!
 # A box as a zonotope, over a floating-point scalar
+
+## Inputs
+* `I` – interval
+
+## Output
+* radius reaching both ends from the stored center
 -/
 
 -- Authors:       Claude Opus 5

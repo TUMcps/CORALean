@@ -14,6 +14,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 Through `ConZonotope.zonotope`, which drops the constraints, then
 `Zonotope.zonoBundle`, the single-member bundle, exact. All the loss is the
 first leg's.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its zonotope bundle
 -/
 
 -- Authors:       Claude Opus 5.5

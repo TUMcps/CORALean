@@ -15,6 +15,16 @@ nominal zonotope and the box. For injective `proj` the exact layer's padding map
 `Function.extend proj · 0`, and the nominal zonotope of the result is the exact layer's
 `projectHighDim_` of the nominal one, so `Zonotope.map_exact` gives the nominal obligation as an
 equality; the box is `Interval.projectHighDim_outer`.
+
+## Inputs
+* `Z` – zonotope
+* `proj` – coordinate map into the target
+
+## Hypotheses
+* `hproj` – coordinate map injective
+
+## Conclusion
+* zero-padded set is contained in the computed zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

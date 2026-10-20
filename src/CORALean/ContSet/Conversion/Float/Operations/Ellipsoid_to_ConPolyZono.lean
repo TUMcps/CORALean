@@ -18,6 +18,12 @@ CORA's construction with its factor `G = V √D` of `Q` replaced by `outerFactor
 above that `isOuterFactor` certifies (`G Gᵀ ⪰ Q`): the constraint entries `one`, `neg (half one)`
 and the point `half one` are stored exactly, and the center is copied. Where the factor is not
 certified, the generators are zero and the ellipsoid's box `q ± sqrt(diag(Q))` joins the error box.
+
+## Inputs
+* `E` – ellipsoid
+
+## Output
+* constrained polynomial zonotope enclosing the ellipsoid
 -/
 
 -- Authors:       Claude Opus 5.5

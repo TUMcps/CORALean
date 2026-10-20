@@ -7,6 +7,12 @@ public import CORALean.ContSet.Interval.Real.Interval
 
 /-!
 # A box as halfspaces
+
+## Inputs
+* `I` – interval
+
+## Output
+* halfspace polytope of the box
 -/
 
 -- Authors:       Claude Opus 5

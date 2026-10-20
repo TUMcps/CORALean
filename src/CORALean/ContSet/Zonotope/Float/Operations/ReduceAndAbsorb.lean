@@ -13,6 +13,13 @@ Each alone ends in a diagonal block, and two merge into one with summed radii,
 since per coordinate they are independent. Doing both therefore costs the `q + n`
 generators `reduceBy` alone would; run separately they cost `q + n + n`. What
 remains in the box is only what the rounded center shift owes.
+
+## Inputs
+* `Z` – zonotope
+* `part` – split into kept and reduced generators
+
+## Output
+* reduced zonotope with the box absorbed in one pass
 -/
 
 -- Authors:       Claude Opus 5

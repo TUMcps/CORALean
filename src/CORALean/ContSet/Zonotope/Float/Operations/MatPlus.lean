@@ -9,6 +9,13 @@ public import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBoundsMat
 
 The exact layer's `Zonotope.plus` at `Mat`: generators concatenate exactly, so only the
 center rounds, and the two boxes add. The count is `h₁ + h₂`, as over ℝ.
+
+## Inputs
+* `Z₁` – first matrix zonotope
+* `Z₂` – second matrix zonotope
+
+## Output
+* matrix zonotope with concatenated generators
 -/
 
 -- Authors:       Claude Opus 5.5

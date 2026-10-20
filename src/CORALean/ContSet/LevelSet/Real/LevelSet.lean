@@ -8,21 +8,14 @@ public import Mathlib.Data.Real.Basic
 /-!
 # Level sets: the representation
 
-CORA's `levelSet`: the points at which a vector-valued function `f` meets a comparison with
-zero in every component, `{x | ∀ i, f x i ⋈ᵢ 0}` with `⋈ᵢ ∈ {≤, <, =}`. CORA stores a
-symbolic equation `eq`, its variables `vars` and the operator list `compOp`, and compiles the
-equation to the handle `funHan`; the denotation only needs the handle, so `f` is a plain function
-`Vec ℝ n → Vec ℝ m` and `op` the operator list (CORA's single operator for all components is the
-constant list). The symbolic parts (`vars`, `solved`, `der`, `solvable`) have no counterpart:
-they serve CORA's derivative-based methods, not the set. `m` is a field, as the generator count
-of a zonotope is, so stacking constraints stays inside one type.
-
-No convexity, boundedness or interval extension is assumed: a level set is whatever `f`
-makes it, and `f` is arbitrary. Real layer only, since a real function has no machine form.
-
-This is how [1, Eq. 1] and [1, Eq. 2] model a hybrid automaton's guards and invariants: a guard
-`{x | g(x) = 0}` is one `=` constraint, an invariant `{x | s(x) ≤ 0_w}` is `w` constraints with
-`≤`. [1] asks `g` and `s` to be Lipschitz; the set needs nothing of them.
+CORA's `levelSet`: the points at which a vector-valued function `f` meets a comparison with zero in
+every component, `{x | ∀ i, f x i ⋈ᵢ 0}` with `⋈ᵢ ∈ {≤, <, =}`. CORA stores a symbolic equation
+`eq`, its variables `vars` and the operator list `compOp`, compiled to the handle `funHan`; the
+denotation needs only the handle, so `f` is a plain function `Vec ℝ n → Vec ℝ m` and `op` the
+operator list. The symbolic parts (`vars`, `solved`, `der`, `solvable`) have no counterpart: they
+serve CORA's derivative-based methods. No convexity or boundedness is assumed. This is how
+[1, Eq. 1] and [1, Eq. 2] model guards and invariants: `{x | g(x) = 0}` is one `=` constraint,
+`{x | s(x) ≤ 0_w}` is `w` constraints with `≤`.
 
 ## References
 

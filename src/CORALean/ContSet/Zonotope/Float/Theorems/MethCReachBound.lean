@@ -11,6 +11,18 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 A point `G β` of the zonotope, `|β| ≤ 1`, is carried by `H` to a vector whose every coordinate is a
 sum over the generators of an entry of `H G` times a coefficient: at most the sum of the entries'
 magnitudes, each of which lies between its two directed dot products.
+
+## Inputs
+* `H` – candidate right inverse
+* `G` – generator matrix
+* `β` – factor vector
+* `i` – coordinate
+
+## Hypotheses
+* `hβ` – factors in the unit box
+
+## Conclusion
+* coordinate of the transformed point is bounded by the reach
 -/
 
 -- Authors:       Claude Opus 5.5

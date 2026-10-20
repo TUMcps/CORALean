@@ -10,17 +10,22 @@ public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_Interval
 /-!
 # An ellipsoid as a box
 
-CORA's `interval(ellipsoid)`, and the conversion the support function was
-written for: `Interval.ofBounds` wants `2n` certificates, an ellipsoid produces
-each of them in closed form, and the enclosure proof is `subset_ofBounds` and
-nothing else. No linear program, unlike a halfspace description, and no
-directions for the caller to choose, unlike everything that goes out through
-`ofBounds` the other way.
+CORA's `interval(ellipsoid)`, the conversion the support function was written for:
+`Interval.ofBounds` wants `2n` certificates, and an ellipsoid produces each of them in closed form,
+so the enclosure proof is `subset_ofBounds` and nothing else. No linear program, unlike a halfspace
+description, and no directions for the caller to choose. The box is *tight*, not merely sound: the
+support value is attained, so every one of its `2n` faces touches the ellipsoid
+(`interval_attained`), the one place where `SupportBound` and the support function itself differ.
 
-The box is *tight*, not merely sound: the support value is attained, so every
-one of its `2n` faces touches the ellipsoid. `interval_attained` says so, and it
-is the one place the difference between `SupportBound` and the support function
-itself is visible.
+## Inputs
+* `E` – ellipsoid
+* `j` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* some ellipsoid point attains the interval's upper end
 -/
 
 -- Authors:       Claude Opus 5

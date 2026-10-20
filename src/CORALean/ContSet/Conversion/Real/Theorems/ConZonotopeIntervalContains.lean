@@ -13,6 +13,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 Constraints dropped, then the zonotope's own box. Cheap and loose: the tight box
 is `2n` linear programs on the coefficient domain, which `HPolytope.interval`
 does once a caller has the certificates for it.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its interval
 -/
 
 -- Authors:       Claude Opus 5

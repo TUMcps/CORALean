@@ -10,13 +10,11 @@ public import CORALean.ContSet.ContSet.Definitions.SupportFunc
 A set held as its support function `h(ℓ) = sup {ℓ x | x ∈ S}` over the linear functionals `ℓ`, the
 set being what every functional allows: `{x | ∀ ℓ, ℓ x ≤ h ℓ}`. `h` takes values in the extended
 reals, `+∞` for a functional the set is unbounded in and `-∞` everywhere for the empty set, so every
-closed convex set has one, and the sets a support function denotes are exactly the closed convex
-ones (`SupportFunction.ofSet_exact`). Over any real module, the functionals being those of
-`HPolytope`'s rows, and `supportFunc` of a set is the function itself.
-
-A function on all functionals is nothing finite to store, which is why this representation has no
-`Float/` layer: what an algorithm computes of a support function is its value in a given direction,
-`SupportBound`, and every conversion that needs one asks for it as a certificate.
+closed convex set has one, and the sets denoted are exactly the closed convex ones
+(`SupportFunction.ofSet_exact`). Over any real module. A function on all functionals is nothing
+finite to store, so there is no `Float/` layer: what an algorithm computes of a support function is
+its value in a direction, `SupportBound`, and every conversion needing one asks for it as a
+certificate.
 -/
 
 -- Authors:       Claude Sonnet 5.5

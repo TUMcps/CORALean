@@ -10,6 +10,12 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Split
 
 CORA's `splitLongestGen`: `split` at the generator `longestGen` picks. A zonotope with no
 generator is its own two halves.
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* two halves along the longest generator
 -/
 
 -- Authors:       Claude Opus 5.5

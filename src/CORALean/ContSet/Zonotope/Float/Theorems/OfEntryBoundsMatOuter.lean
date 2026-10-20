@@ -15,6 +15,21 @@ The exact zonotope's coefficients are the witness, unchanged: the stored generat
 reach the nominal part, and what they miss — the center's gap and each generator's gap
 times its coefficient — lands in the box, the second within the summed widths because
 every gap is nonnegative and below its width.
+
+## Inputs
+* `Z` – exact matrix zonotope
+* `cLo` – lower center bounds
+* `cHi` – upper center bounds
+* `GLo` – lower generator bounds
+* `GHi` – upper generator bounds
+* `E` – error box
+
+## Hypotheses
+* `hc` – center within its bounds
+* `hG` – generators within their bounds
+
+## Conclusion
+* exact zonotope plus box is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

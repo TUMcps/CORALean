@@ -9,6 +9,13 @@ public import CORALean.Global.Float.FloatOps
 
 An upper bound on the largest absolute row sum of `1 - G H`, rounded up: the certificate that a
 candidate right inverse `H` is good enough (`Zonotope.rightInv_reach`) when it is at most one half.
+
+## Inputs
+* `G` – generator matrix
+* `H` – candidate right inverse
+
+## Output
+* upper bound on the largest row sum of the residual
 -/
 
 -- Authors:       Claude Opus 5.5

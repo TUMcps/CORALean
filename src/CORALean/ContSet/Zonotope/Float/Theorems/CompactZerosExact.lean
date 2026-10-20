@@ -11,6 +11,15 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.FilterGenConstruct
 The nominal zonotope of the result is the exact layer's `filterGen` of the nominal zonotope with
 the same predicate, and every column that predicate drops is certified zero, so it is the zero
 vector as reals. The error box is copied. Exact, `=`.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope without zero generators equals the original
 -/
 
 -- Authors:       Claude Opus 5.5

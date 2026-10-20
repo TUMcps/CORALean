@@ -13,6 +13,23 @@ A zonotope centered at the origin and with a symmetric box is closed under scali
 coefficients and the shortfalls of `tensorMultiplication_coeff` scale together, so
 `γ • { Mᵢⱼₖₗ xⱼ xₖ xₗ | x ∈ Z } ⊆ Z.tensorMultiplication M L` for `|γ| ≤ 1`. It is what the sum over
 the generators of a matrix zonotope of tensors (`tensorMultiplication_zono`) needs.
+
+## Inputs
+* `Z` – zonotope
+* `M` – third-order tensor
+* `L` – permutation lists
+* `x` – point
+* `t` – scalar
+
+## Hypotheses
+* `hc` – center is zero
+* `hperm` – permutations run over each triple once
+* `hmap` – same column means reordered triple
+* `hx` – point lies in the zonotope
+* `ht` – scalar in the unit interval
+
+## Conclusion
+* scaled tensor image lies in the computed zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

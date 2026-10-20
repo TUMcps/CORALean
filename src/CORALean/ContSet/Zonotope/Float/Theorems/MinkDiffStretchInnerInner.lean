@@ -16,6 +16,18 @@ membership in the Minkowski difference — the float counterpart of
 `Real.Zonotope.minkDiffStretch_inner`, with the check in place of [1, Thm. 4]'s constraint on
 `μ`.
 
+## Inputs
+* `Z₁` – minuend zonotope
+* `Z₂` – subtrahend zonotope
+* `μ` – stretch per generator
+* `H` – candidate right inverse
+
+## Hypotheses
+* none
+
+## Conclusion
+* every returned zonotope is inside the Minkowski difference
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

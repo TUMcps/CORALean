@@ -13,6 +13,13 @@ Combastel's metric is `sqSumUp`, `Global.Float.EuclideanNorm`'s squared length:
 no square root to call, and squaring changes no ranking, since it is monotone
 on the nonnegatives a length is. The metrics are computed once, into a stored vector, before the
 sort, so a comparison is two lookups and not two `O(n)` sums.
+
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Output
+* zonotope keeping the largest generators and boxing the rest
 -/
 
 -- Authors:       Claude Opus 5

@@ -19,15 +19,12 @@ public import Mathlib.Analysis.InnerProductSpace.Basic
 # What `Capsule` instantiates
 
 `ContSet`, `ConvexSet`, `CompactSet`, `OfPoint` at `g = 0`, `r = 0`, `Reduce` as the identity, as
-CORA's empty `reduce` body is, `Reindex`, CORA's `lift_` at a permutation, and the two outer
-operations `Plus` and `Mtimes`.
+CORA's empty `reduce` body is, `Reindex`, CORA's `lift_`, and the outer operations `Plus` and
+`Mtimes`.
 
-A capsule is closed under almost nothing, so `Plus` and `Mtimes` are enclosures, not exact. The
-Minkowski sum of two capsules is not a capsule (a segment thickened by two balls is not a ball),
-and an affine image of one is a segment thickened by an *ellipsoid*, since a linear map need not
-preserve the Euclidean ball; CORA absorbs the shorter generator and the ellipsoid into a larger
-radius. `LinComb` is CORA's `convHull_`, also an enclosure: the hull of two capsules is no
-capsule.
+A capsule is closed under almost nothing, so `Plus` and `Mtimes` are enclosures, not exact: a sum of
+capsules is no capsule, and an affine image is a segment thickened by an *ellipsoid*, which CORA
+absorbs into a larger radius. `LinComb` is CORA's `convHull_`, also an enclosure.
 -/
 
 -- Authors:       Claude Opus 5

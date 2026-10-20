@@ -10,22 +10,24 @@ public import CORALean.ContSet.Conversion.Float.Theorems.IntervalSubsetNominalEl
 /-!
 # A box as an ellipsoid, over a floating-point scalar
 
-The smallest ellipsoid containing a box is `√n` times the inscribed one, so this
-is the second place the layer meets a square root — and it is answered the same
-way: the caller proposes `σ` and `n ≤ σ·σ` is checked. Nothing else about `σ`
-is used, so the classical `√n` is the tightest admissible value rather than a
-required one.
+The smallest ellipsoid containing a box is `√n` times the inscribed one, so this is a place the
+layer meets a square root, answered as elsewhere: the caller proposes `σ` and `n ≤ σ·σ` is checked,
+so the classical `√n` is the tightest admissible value rather than a required one. Directly rather
+than through the zonotope: a box's generators are already `diag(radiusFrom)`. The generators round
+*up*, which lets the error box stay empty: a coordinate's coefficient is `(xᵢ - cᵢ)/gᵢ`, which an
+upward-rounded `gᵢ` only makes smaller, so the enclosure is exact in the arithmetic, not merely paid
+for. Rounding down would have cost a box.
 
-Directly rather than through the zonotope, which is the route over ℝ. The
-zonotope step would contribute nothing here: a box's generators are already
-`diag(radiusFrom)`, and going through them would only re-derive the coefficients
-this proof reads off the box.
+## Inputs
+* `I` – interval
+* `σ` – scaling factor
 
-The generators round *up*, and that is what lets the error box stay empty. A
-coordinate's coefficient is `(xᵢ - cᵢ)/gᵢ`, which an upward-rounded `gᵢ` only
-makes smaller — so the ball point stays inside the ball and the enclosure is
-exact in the arithmetic, not merely paid for. Rounding down would have cost a
-box.
+## Hypotheses
+* `hσ` – scaling factor positive
+* `hn` – squared scaling factor at least dimension
+
+## Conclusion
+* interval is contained in its ellipsoid
 -/
 
 -- Authors:       Claude Opus 5

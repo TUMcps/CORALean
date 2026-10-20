@@ -9,21 +9,14 @@ public import Mathlib.LinearAlgebra.Matrix.PosDef
 /-!
 # Spectrahedral shadows: the representation
 
-CORA's `spectraShadow` [1]: the projection of a spectrahedron, the set of every
-`c + G β` for which the linear matrix inequality `A₀ + Σᵢ βᵢ Aᵢ ⪰ 0` holds. `⪰`
-is Mathlib's `Matrix.PosSemidef`, so the matrices are real and a point only
-satisfies the inequality if the combination is symmetric.
-
-CORA stacks the matrices as `[A0 A1 ... Am]`. Here `A₀` and the family `A` are
-separate fields, so `plus` can append two families without renumbering a leading
-matrix. No symmetry is demanded of the fields: `PosSemidef` already includes it.
-
-Every convex set a conic program can describe is of this form, which is why it is
-the representation a sum or an image can always land in. Membership, emptiness and
-the support function are semidefinite programs, so none is computed here:
-`construct` is the specification they would be stated against. Over any real
-module, as a zonotope is: the generators land in `α` and the inequality never
-mentions it.
+CORA's `spectraShadow` [1]: the projection of a spectrahedron, the set of every `c + G β` for which
+the linear matrix inequality `A₀ + Σᵢ βᵢ Aᵢ ⪰ 0` holds. `⪰` is Mathlib's `Matrix.PosSemidef`, so the
+matrices are real and a point satisfies the inequality only if the combination is symmetric. CORA
+stacks the matrices as `[A0 A1 ... Am]`; here `A₀` and the family `A` are separate fields, so `plus`
+can append two families without renumbering. Every convex set a conic program can describe is of
+this form, the representation a sum or an image can always land in. Membership, emptiness and the
+support function are semidefinite programs, so none is computed: `construct` is the specification.
+Over any real module, as a zonotope is.
 
 ## References
 

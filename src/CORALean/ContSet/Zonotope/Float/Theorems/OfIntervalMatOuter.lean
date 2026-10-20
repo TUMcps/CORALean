@@ -15,6 +15,15 @@ public import Mathlib.Data.Matrix.Basic
 A member's distance from the center is within the entry's radius (`sub_mem_matResidual`),
 so the entry's own generator reaches it with coefficient `Zonotope.coefficient`, and no
 other generator touches that entry.
+
+## Inputs
+* `I` – interval matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* interval matrix is contained in its matrix zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

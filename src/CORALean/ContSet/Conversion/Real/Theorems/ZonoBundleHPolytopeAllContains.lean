@@ -12,6 +12,15 @@ public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
 
 Each member lies in its facet polytope (`Zonotope.hPolytopeFacets_contains`), so a point of every
 member lies in every one of them, and so in the fold of their intersections; no spanning needed.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* none
+
+## Conclusion
+* bundle is contained in its intersected facet polytopes
 -/
 
 -- Authors:       Claude Opus 5.5

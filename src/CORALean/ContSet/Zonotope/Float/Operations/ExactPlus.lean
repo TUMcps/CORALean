@@ -15,6 +15,14 @@ centers add. Only the added entries round: the center as in `plus` (its residual
 box), and each pairwise column sum, stored rounded down, whose gap to the sum rounded up
 (`aux_exactPlusGap`) is a generator error, paid into the box by `generatorError` since the
 coefficients range over `[-1, 1]`. A copied column costs nothing.
+
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+* `k` – number of paired generators
+
+## Output
+* sum with the first generators added pairwise
 -/
 
 -- Authors:       Claude Sonnet 5.5

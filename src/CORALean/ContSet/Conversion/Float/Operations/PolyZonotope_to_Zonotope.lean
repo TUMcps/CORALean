@@ -18,6 +18,12 @@ center, a constant column moves whole (the exact layer's `evenWeight`), the othe
 generators are exact (`half` is), and so is every term of the center's shift; only their sum
 rounds, so the center is kept and the shift goes into the error box as the interval of its sums
 rounded down and up.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* zonotope with dependent and independent generators side by side
 -/
 
 -- Authors:       Claude Opus 5.5

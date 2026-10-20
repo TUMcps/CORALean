@@ -9,6 +9,16 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MatPlusInterval
 # `Zonotope.matPlusInterval` over-approximates the sum
 
 Reassociation and `matPlus_outer`: the interval's point joins the box's.
+
+## Inputs
+* `Z` – matrix zonotope
+* `I` – interval matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* Minkowski sum is contained in the computed matrix zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

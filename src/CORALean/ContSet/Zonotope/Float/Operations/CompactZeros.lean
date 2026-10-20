@@ -13,6 +13,12 @@ CORA's `compact_(Z, 'zeros')` at tolerance `0`: the generator columns that are c
 dropped; a zero column the test cannot certify is kept, which is sound.
 The center and the error box are copied. Nothing rounds, so the denoted set is the same
 (`compactZeros_exact`).
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* zonotope without certifiably zero generators
 -/
 
 -- Authors:       Claude Opus 5.5

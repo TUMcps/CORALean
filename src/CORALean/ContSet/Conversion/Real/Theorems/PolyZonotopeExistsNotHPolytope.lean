@@ -14,6 +14,15 @@ strict: `PolyZonotope.isPolytopeCex` is not convex, and a halfspace description 
 This is the arrow from polytopes to polynomial zonotopes of
 [1, Fig. 1 (Polytopes → Polynomial Zonotopes)].
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* some planar polynomial zonotope is no halfspace polytope
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

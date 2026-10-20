@@ -20,15 +20,13 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceOuter
 /-!
 # What `ConZonotope` instantiates
 
-Noncomputable, as `reduce` is: it ranks generators, and ordering reals cannot be
-computed.
+Noncomputable, as `reduce` is: it ranks generators, and ordering reals cannot be computed.
 
 `Intersection` from `intersection_exact` read in the `⊆` direction: two constrained zonotopes
-intersect to one exactly, which is the whole reason the representation exists.
+intersect to one exactly, which is the reason the representation exists.
 
-`OfPoint` at no generators and no constraints, `HPolytope.fullspace` standing
-in for the empty polytope — the singleton the jump reset asks any
-representation to build, one `OfInterval` cheaper.
+`OfPoint` at no generators and no constraints, `HPolytope.fullspace` standing in for the empty
+polytope: the singleton the jump reset asks any representation to build.
 -/
 
 -- Authors:       Claude Opus 5

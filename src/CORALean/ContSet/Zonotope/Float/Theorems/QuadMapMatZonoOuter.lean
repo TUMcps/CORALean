@@ -25,6 +25,17 @@ generator shared by all `i` [1, Thm. 1], `(xᵀ(Dᵣ⁽ⁱ⁾ + ∑ⱼ βⱼK⁽
 sum of the `[-1, 1] ⊗ Z_K(j)` (`Zonotope.unitIntervalMul_outer`), plus `xᵀ(Dᵣ⁽ⁱ⁾ − D̲⁽ⁱ⁾)x`,
 whose modulus is at most `∑ₗₖ |xₗ| (Dᵣ − D̲)ₗₖ |xₖ| ≤ eᵢ`.
 
+## Inputs
+* `D` – interval matrix per output coordinate
+* `K` – matrix per generator and coordinate
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* quadratic image set is contained in the computed zonotope
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

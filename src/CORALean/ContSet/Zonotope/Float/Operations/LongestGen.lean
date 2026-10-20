@@ -13,6 +13,12 @@ generator indices that keeps the running best unless a later length is not known
 so a tie keeps the first. `le` has no order laws, so this is a ranking, not a `List.argmax`;
 every index is a sound place to split, so a misranking costs precision alone. `none` when there
 is no generator, where CORA splits nothing either.
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* first generator of maximal squared length, if any
 -/
 
 -- Authors:       Claude Opus 5.5

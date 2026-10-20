@@ -13,6 +13,13 @@ this directly, outside this file.
 The gap between the two directed roundings of the same generator matrix, which
 a coefficient in `[-1,1]` then spreads either way — what `generatorError`
 below turns into a box.
+
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+
+## Output
+* gap between the two directed roundings of each generator
 -/
 
 -- Authors:       Claude Opus 5

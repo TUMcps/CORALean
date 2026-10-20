@@ -18,6 +18,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeContainsOfPinne
 # Halfspaces to vertices
 
 `HPolytope.vPolytope_contains`: its `vPolytope` contains it.
+
+## Inputs
+* `P` – halfspace polytope
+
+## Hypotheses
+* `hc` – polytope compact
+* `hne` – polytope nonempty
+
+## Conclusion
+* polytope is contained in its vertex polytope
 -/
 
 -- Authors:       Claude Opus 5

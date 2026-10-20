@@ -17,6 +17,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_VPolytope
 # Halfspaces to vertices
 
 `HPolytope.contains_vPolytope`: it contains its `vPolytope`.
+
+## Inputs
+* `P` – halfspace polytope
+
+## Hypotheses
+* `hne` – polytope nonempty
+
+## Conclusion
+* vertex polytope is contained in the polytope
 -/
 
 -- Authors:       Claude Opus 5

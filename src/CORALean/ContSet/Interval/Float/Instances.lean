@@ -25,22 +25,13 @@ public import Mathlib.Analysis.InnerProductSpace.Basic
 /-!
 # What `Interval` instantiates
 
-The same obligations the exact layer discharges, since a float interval denotes a
-set of real points just as an exact one does; only the scalar the operations run
-in differs. `ConvexSet` and `CompactSet` cost no float proof: `construct` is
-`nominal.construct` by definition, so the exact layer's theorems apply to
-`I.nominal` unchanged. `Intersection` is exact here too, nothing rounding.
-
-`reduce` gives up no order, as over ℝ: an interval has none to give up. No
-`OfPoint`: it would round a real point into `𝕋`, an operation this layer lacks; `OfScalarPoint`
-takes the point already in `𝕋`, which `Interval.point` holds exactly.
-
-Every field returns a `materialise`d interval. The bounds are function types, so
-the one an operation returns is a closure over the one it was given, and a loop
-that iterates operations would rebuild its whole history on every read.
-`materialise_eq` is the identity, so each proof below is the operation's own
-guarantee after one rewrite. It is here rather than in `Operations/` because this
-is where a set is handed back to a caller that may loop.
+The same obligations the exact layer discharges, a float interval denoting a set of real points just
+as an exact one does. `ConvexSet` and `CompactSet` cost no float proof: `construct` is
+`nominal.construct` by definition. `Intersection` is exact here too. `reduce` gives up no order, as
+over ℝ. No `OfPoint`: it would round a real point into `𝕋`; `OfScalarPoint` takes the point already
+in `𝕋`. Every field returns a `materialise`d interval: the bounds are function types, so a loop
+iterating operations would rebuild its whole history on every read. `materialise_eq` is the
+identity, so each proof is the operation's own guarantee after one rewrite.
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

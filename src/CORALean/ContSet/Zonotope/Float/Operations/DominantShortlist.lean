@@ -18,6 +18,14 @@ subsets whose volumes are close; the subsets are `List.sublistsLen`'s, not the l
 
 Source: [1].
 
+## Inputs
+* `Z` – zonotope
+* `L₁` – number of longest generators considered
+* `L₂` – number of subsets kept
+
+## Output
+* subsets of generators spanning the largest volume
+
 ## References
 
 * [1] `contSet/@zonotope/dominantDirections.m` and its private helpers, CORA (Sep. 2025), by

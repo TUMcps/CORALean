@@ -16,6 +16,21 @@ gap (`tensorH_bracket`), so the stored columns with that shortfall, per coeffici
 image of the point exactly. The hypotheses are the exact layer's: the center is the origin, and
 `perm` lists every ordered triple of generator indices once, two permutations mapped to one column
 being reorderings of each other.
+
+## Inputs
+* `Z` – zonotope
+* `M` – third-order tensor
+* `L` – permutation lists
+* `x` – point
+
+## Hypotheses
+* `hc` – center is zero
+* `hperm` – permutations run over each triple once
+* `hmap` – same column means reordered triple
+* `hx` – point lies in the zonotope
+
+## Conclusion
+* tensor image has coefficients in the unit box matching the stored columns
 -/
 
 -- Authors:       Claude Opus 5.5

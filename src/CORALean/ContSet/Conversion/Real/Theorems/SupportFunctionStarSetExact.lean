@@ -14,6 +14,16 @@ the support function's set denotes that set, exactly, through `StarSet.ofPred_ex
 compact convex set, which a support function denotes (`SupportFunction.ofSet_exact`), is a star
 set; a star set's box is finite, so an unbounded one is none.
 
+## Inputs
+* `S` – support function
+* `D` – box around the set
+
+## Hypotheses
+* `hD` – set lies in the box
+
+## Conclusion
+* star set on `D` equals the set
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

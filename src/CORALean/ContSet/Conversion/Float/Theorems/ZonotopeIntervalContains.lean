@@ -18,6 +18,15 @@ the zonotope.
 `Zonotope.matInterval` is the same entry by entry at `Mat`, CORA's
 `intervalMatrix(matZonotope)`: what the matrix-zonotope product needs of a factor's
 error terms, and what bounds a norm.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is contained in its interval
 -/
 
 -- Authors:       Claude Opus 5

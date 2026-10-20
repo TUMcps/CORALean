@@ -16,6 +16,16 @@ argument, unchanged: Girard's rule is the whole of the choice, so
 is dropped, and the degenerate `0` zonotope `reduceGirardBox` reduces to closes
 the case nothing is — `0` lying in both its nominal set, at every coefficient
 `0`, and its `0` error box.
+
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* reduction is contained in the zonotope plus the Girard box
 -/
 
 -- Authors:       Claude Opus 5

@@ -10,22 +10,14 @@ public import CORALean.ContSet.Polygon.Real.Polygon
 /-!
 # `removeCollinearPoints` changes the polygon: the angular sort is not the boundary order
 
-CORA's `@polygon/removeCollinearPoints.m` hands the vertices to `removeCollinearVertices2D`,
-which sorts them by `atan2` about their mean and then drops every vertex whose two adjacent edge
-vectors are dependent (`rank(vectors(:, i:i+1), tol) < 2`, with `tol = 0`). The angular order is
-the boundary only for a polygon star-shaped about the mean.
-
-For the U shape `(0,0), (3,0), (3,3), (2,3), (2,1), (1,1), (1,3), (0,3)` (mean `(3/2, 7/4)`,
-outside the polygon) the sorted order is `(0,0), (1,1), (2,1), (3,0), (3,3), (2,3), (1,3), (0,3)`,
-the two collinear top vertices `(2,3), (1,3)` go, and the polygon
-`(0,0), (1,1), (2,1), (3,0), (3,3), (0,3)` has the notch at the bottom where the U had it at the
-top. Both have area `7`, and `(3/2, 2)` is in the result and not in the U.
-
-Two stand-ins, exact over `ℚ`. The `atan2` sort is the comparison it performs: `atan2` increases
-across the sectors `y < 0`, `y = 0 ∧ x ≥ 0`, `y > 0`, `y = 0 ∧ x < 0` about the mean, and within a
-sector (a span of at most `π`) `a` precedes `b` iff `cross a b ≥ 0`; `Complex.arg` is not
-evaluated. The region of a vertex list is its even-odd (crossing number) region, as for MATLAB's
-`polyshape` of a simple polygon; a `Polygon` of convex pieces has no boundary reading (R-PG).
+CORA's `@polygon/removeCollinearPoints.m` hands the vertices to `removeCollinearVertices2D`, which
+sorts them by `atan2` about their mean and drops every vertex whose two adjacent edge vectors are
+dependent (`rank(vectors(:, i:i+1), tol) < 2`, `tol = 0`). The angular order is the boundary only
+for a polygon star-shaped about the mean. For the U shape
+`(0,0), (3,0), (3,3), (2,3), (2,1), (1,1), (1,3), (0,3)` (mean `(3/2, 7/4)`, outside it) the result
+has the notch at the bottom where the U had it at the top: both have area `7`, and `(3/2, 2)` is in
+the result and not in the U. The `atan2` sort is replaced by the comparison it performs, exact over
+`ℚ`; the region of a vertex list is its even-odd region, as for `polyshape` (R-PG).
 
 ## Inputs
 * none

@@ -17,21 +17,13 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceOuter
 /-!
 # What `PolyZonotope` instantiates
 
-Each obligation is a theorem from `Theorems`, the exact ones read in the `⊆`
-direction.
-
-`Plus`, `LinComb` and `OfPoint` sit at every ambient type rather than at `Vec`: none needs
-coordinates. `Reduce` pins down `Vec`, as `Zonotope`'s does, since a generator ranking and a box are
-both entrywise. `Mtimes` moves between dimensions at a plain matrix and, as `Zonotope` also carries,
-at an interval one. `quadMap` has no class, so a caller names `PolyZonotope.quadMap`.
-
-`Reduce`'s one number bounds both generator blocks together, as the class
-field's `o` does everywhere else; the class carries only the enclosure.
-`reduceDependent` is the tighter rule and deliberately not the instance: it
-bounds no count, so an algorithm reaching it through `Reduce` would grow.
-
-Noncomputable, twice over: `compact` decides whether a generator of a real
-module is zero, and the ranking orders reals.
+Each obligation is a theorem from `Theorems`, the exact ones read in the `⊆` direction. `Plus`,
+`LinComb` and `OfPoint` sit at every ambient type: none needs coordinates. `Reduce` pins down `Vec`,
+as `Zonotope`'s does. `Mtimes` moves between dimensions at a plain matrix and, as `Zonotope` also
+carries, at an interval one. `quadMap` has no class, so a caller names `PolyZonotope.quadMap`.
+`Reduce`'s one number bounds both generator blocks together. `reduceDependent` is the tighter rule
+and deliberately not the instance: it bounds no count. Noncomputable, twice over: `compact` decides
+whether a generator is zero, and the ranking orders reals.
 -/
 
 -- Authors:       Claude Opus 5

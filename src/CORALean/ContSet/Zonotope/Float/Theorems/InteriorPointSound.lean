@@ -12,6 +12,17 @@ public import Mathlib.Topology.Algebra.Group.Pointwise
 
 The point minus the error box's lower corner is strictly within `B` of the center, so interior to
 the nominal set (`Zonotope.mem_interior`); adding the corner keeps it interior.
+
+## Inputs
+* `Z` – zonotope
+* `H` – candidate right inverse
+* `p` – point
+
+## Hypotheses
+* `h` – test returns true
+
+## Conclusion
+* point lies in the interior of the zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

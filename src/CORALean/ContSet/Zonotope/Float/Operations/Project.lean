@@ -11,6 +11,13 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 The center and every generator row at the chosen coordinates, and the error box projected with
 `Interval.project`. Selecting coordinates moves stored floats without arithmetic, so nothing
 rounds and the generator count is unchanged. `dims` may repeat or reorder coordinates.
+
+## Inputs
+* `Z` – zonotope
+* `dims` – chosen coordinates
+
+## Output
+* zonotope restricted to the chosen coordinates
 -/
 
 -- Authors:       Claude Opus 5.5

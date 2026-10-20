@@ -9,6 +9,12 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-!
 # A box as a zonotope
+
+## Inputs
+* `I` – interval
+
+## Output
+* zonotope of the box
 -/
 
 -- Authors:       Claude Opus 5

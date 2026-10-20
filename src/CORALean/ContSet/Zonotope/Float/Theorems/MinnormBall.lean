@@ -16,6 +16,18 @@ balls, whichever rows the rounded cross products gave.
 
 Source: [1].
 
+## Inputs
+* `p` – Newton steps for the root
+* `Z` – zonotope
+* `r` – ball radius
+
+## Hypotheses
+* `hr` – radius nonnegative
+* `hball` – ball around the center lies in the zonotope
+
+## Conclusion
+* radius is at most every returned bound
+
 ## References
 
 * [1] `contSet/@zonotope/minnorm.m`, CORA (Sep. 2025).

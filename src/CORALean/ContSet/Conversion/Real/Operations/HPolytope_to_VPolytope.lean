@@ -14,6 +14,15 @@ public import Mathlib.Analysis.Convex.KreinMilman
 
 /-!
 # Halfspaces to vertices
+
+## Inputs
+* `P` – halfspace polytope
+
+## Hypotheses
+* `hne` – polytope is nonempty
+
+## Output
+* vertex polytope listing one candidate per row subset
 -/
 
 -- Authors:       Claude Opus 5

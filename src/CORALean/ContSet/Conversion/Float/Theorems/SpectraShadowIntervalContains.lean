@@ -14,6 +14,17 @@ programs. Their solutions are the caller's: one dual certificate per bound (`Yup
 `Ylo i` along `-eᵢ`), each checked by `SpectraShadow.dualCertified`, and the box is the bounds
 they prove (`SpectraShadow.dualBound`, rounded outward). `none` when a certificate fails. An
 enclosure only: the bounds are the solver's, not the support values themselves.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `Yup` – upper certificate matrices per coordinate
+* `Ylo` – lower certificate matrices per coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* shadow is contained in every returned interval
 -/
 
 -- Authors:       Claude Opus 5.5

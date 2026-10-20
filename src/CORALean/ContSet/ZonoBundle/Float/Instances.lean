@@ -28,22 +28,14 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 /-!
 # What the float `ZonoBundle` instantiates
 
-`ContSet` directly, not through `InflatedContSet`: the members carry the boxes,
-and `ZonoBundle.lean` says why no bundle-wide one stands in for them. Then, as over ℝ, each a
-general theorem of `SetIntersection` at the float members' own guarantees: `ConvexSet`
-(`convex_construct`), `Plus` and `LinComb` (`pairwise_outer`), `Reduce` and `Mtimes` at a point
-and at an interval matrix (`memberwise_outer`), `Reindex` (`memberwise_image_exact`), and
-`Intersection` (`intersection_exact`).
-
-Not `OfPoint`: it asks for an arbitrary *real* point, which no float
-representation in this tree can store, and none instantiates it. Not `Mtimes` at
-a matrix zonotope, `Zonotope` having no float `mtimesMatZonotope` to apply
-componentwise. No `MinkDiff`, for the exact layer's reason — it needs a zonotope
-difference, an open design decision on #85. No `CompactSet`, `k = 0` denoting
-`univ`: compactness is the general `SetIntersection.isCompact_construct`, given a member.
-
-A bundle and each member in it are closures over what an operation was given, so
-every field below materialises, exactly as `Zonotope`'s do.
+`ContSet` directly, not through `InflatedContSet`: the members carry the boxes (`ZonoBundle.lean`
+says why no bundle-wide one stands in for them). Then, as over ℝ, each a general theorem of
+`SetIntersection` at the float members' own guarantees: `ConvexSet` (`convex_construct`), `Plus` and
+`LinComb` (`pairwise_outer`), `Reduce` and `Mtimes` at a point and at an interval matrix
+(`memberwise_outer`), `Reindex` (`memberwise_image_exact`), and `Intersection`
+(`intersection_exact`). Not `OfPoint`: it asks for an arbitrary *real* point. Not `Mtimes` at a
+matrix zonotope, `Zonotope` having no float `mtimesMatZonotope`. No `MinkDiff`, for the exact
+layer's reason (#85). No `CompactSet`, `k = 0` denoting `univ`.
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

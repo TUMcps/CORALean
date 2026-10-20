@@ -10,6 +10,16 @@ public import CORALean.Global.AppendLinear
 
 The stored center of the product, read as reals, is the pair of the operands' nominal centers
 appended.
+
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* nominal center of the product is the appended pair
 -/
 
 -- Authors:       Claude Sonnet 5.5

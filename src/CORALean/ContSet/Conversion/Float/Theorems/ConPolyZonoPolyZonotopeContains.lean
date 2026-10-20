@@ -13,6 +13,15 @@ floating-point scalar
 
 The constraints are dropped, which can only enlarge the set; every other field is
 carried across, so nothing rounds.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,21 +10,22 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonoto
 /-!
 # A zonotope as a polynomial zonotope
 
-The construction is [1, Prop. 3].
+The construction is [1, Prop. 3]. Exact: give each generator a factor of its own, appearing in that
+generator alone and to the first power, and every monomial collapses to the coefficient it stands
+for. The exponent matrix is the identity, and `GI` is empty. Read the other way, a polynomial
+zonotope is a zonotope exactly when its exponent matrix can be brought to this shape. Both
+directions are stated through `show`, as the counts of the result are projections of a definition.
+Composed with `PolyZonotope.quadMap_exact`, this is half of [2, Thm. 1]: a zonotope's quadratic-map
+image is exactly a polynomial zonotope.
 
-Exact, and the cleanest check on the definition: give each generator a factor of
-its own, appearing in that generator alone and to the first power, and every
-monomial collapses to the coefficient it stands for. The exponent matrix is the
-identity, and `GI` is empty — a zonotope's coefficients are all dependent, since
-with one factor each there is nothing for them to depend on.
+## Inputs
+* `Z` – zonotope
 
-Read the other way, a polynomial zonotope is a zonotope exactly when its
-exponent matrix can be brought to this shape.
+## Hypotheses
+* none
 
-Both directions are stated through `show`: the counts of the result are
-projections of a definition, and only in their reduced spelling do the sum
-lemmas match. Composed with `PolyZonotope.quadMap_exact`, this is half of
-[2, Thm. 1]: a zonotope's quadratic-map image is exactly a polynomial zonotope.
+## Conclusion
+* zonotope equals its polynomial zonotope
 
 ## References
 

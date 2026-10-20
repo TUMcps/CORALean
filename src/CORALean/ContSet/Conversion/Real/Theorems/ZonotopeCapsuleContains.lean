@@ -15,6 +15,15 @@ CORA's `capsule(zonotope)` takes the SVD basis `B` of `[-G, G]`, encloses `B'Z` 
 capsule of that box and maps it back by `B`. Here the basis is the identity: the capsule of
 `interval(Z)`. This is the sound instance, an outer enclosure, not CORA's capsule (the rotated
 capsule is generally a different, often tighter, set), and nothing here claims equality.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is contained in its capsule
 -/
 
 -- Authors:       Claude Opus 5.5

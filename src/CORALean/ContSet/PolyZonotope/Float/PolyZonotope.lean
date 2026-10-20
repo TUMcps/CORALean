@@ -9,21 +9,13 @@ public import CORALean.ContSet.PolyZonotope.Real.Instances
 # Sparse polynomial zonotopes over a floating-point scalar: the representation
 
 CORA's `polyZonotope` [1, Def. 1] with its center, dependent generators, exponent matrix and
-independent generators, plus the error box that makes it an `InflatedContSet`.
-The nominal part is the polynomial zonotope those stored floats describe; the
-box holds what rounding has cost.
-
-Only `c`, `G` and `GI` move to `𝕋`. The exponent matrix stays over ℕ, where
-every operation on it — block-diagonal append, column addition, column
-deletion — is exact, so the monomials of the nominal set are the exact layer's
-monomials and not roundings of them. That is what makes the float layer's error
-identical in kind to a zonotope's; `Theorems/MemGeneratorError` says what it
-costs.
-
-The error box is `I_error`, the paper's `𝓘_error`.
-
-`PolyZonotope α` is generic over its ambient type, generators a family, as the exact
-layer's `PolyZonotope α` is; its vector case is `PolyZonotope (Vec 𝕋 n)`.
+independent generators, plus the error box `I_error` (the paper's `𝓘_error`) that makes it an
+`InflatedContSet`. The nominal part is the polynomial zonotope those stored floats describe; the box
+holds what rounding has cost. Only `c`, `G` and `GI` move to `𝕋`. The exponent matrix stays over ℕ,
+where every operation on it (block-diagonal append, column addition, column deletion) is exact, so
+the monomials are the exact layer's, and the float error is identical in kind to a zonotope's
+(`Theorems/MemGeneratorError`). `PolyZonotope α` is generic over its ambient type, as the exact
+layer's is; its vector case is `PolyZonotope (Vec 𝕋 n)`.
 
 ## References
 

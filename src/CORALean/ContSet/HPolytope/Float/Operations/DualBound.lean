@@ -8,21 +8,13 @@ public import CORALean.Global.Float.FloatBound
 /-!
 # Where a float halfspace description's own bounds come from
 
-Weak duality again, at this layer's row structure. An equality row is read as the two
-inequalities `Ae x ≤ beU` and `-Ae x ≤ beLN` (the right-hand side `be` with the error box folded
-in), so a dual solution is three nonnegative vectors rather than a nonnegative one and a free one.
-The error box therefore needs no special case: it is already in the right-hand sides `bU`, `beU`
-and `beLN`.
-
-The value is `dotUp`, rounded away from the set, so it is a float and still a
-bound.
-
-Dual feasibility is stated over ℝ and is the caller's to discharge, which is
-deliberate: a float dual solution does not reproduce `c` exactly, and forcing it
-to here would make the certificate unusable. The gap is paid by `addDir`
-instead — bound `c - yᵀA` over any enclosure already in hand and add the two.
-That keeps the rounding where it can be measured rather than hidden in a
-definition.
+Weak duality again, at this layer's row structure. An equality row is read as the two inequalities
+`Ae x ≤ beU` and `-Ae x ≤ beLN` (the right-hand side `be` with the error box folded in), so a dual
+solution is three nonnegative vectors, and the error box is already in `bU`, `beU` and `beLN`. The
+value is `dotUp`, rounded away from the set. Dual feasibility is stated over ℝ and is the caller's
+to discharge: a float dual solution does not reproduce `c` exactly, and forcing it would make the
+certificate unusable. The gap is paid by `addDir` instead: bound `c - yᵀA` over any enclosure in
+hand and add the two, keeping the rounding where it can be measured.
 
 ## Inputs
 * `P` – H-polytope

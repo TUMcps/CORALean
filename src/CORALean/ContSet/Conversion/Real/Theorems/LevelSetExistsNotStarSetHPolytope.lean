@@ -16,6 +16,15 @@ equivalence of star sets and level sets of [1, Fig. 1 (Star Sets ↔ Level Sets)
 beyond the linear one: with a level-set predicate it holds for bounded level sets
 (`LevelSet.starSet_exact`, `StarSet.exists_levelSet_exact`).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* some level set on the line is no star set with polytope predicate
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

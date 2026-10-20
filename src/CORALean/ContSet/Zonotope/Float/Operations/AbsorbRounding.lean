@@ -12,6 +12,12 @@ The error box made into generators: one fresh generator per coordinate, as long 
 endpoint (`errorBound`, which rounds nothing). A cubic map is not additive, so a nominal part and a
 box cannot travel through it separately; emptying the box first is what `cubMap` needs, as for
 `ConZonotope.absorbRounding` and `PolyZonotope.absorbRounding`.
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* zonotope with the error box made into generators
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -20,6 +20,16 @@ The nominal obligation is the exact `plus` argument — `Fin.append β₁ β₂`
 witness — with the center displaced; the error obligation is two applications of
 `Interval.plus_outer`. The count is therefore still `h + k`, the rounding having
 gone into the box.
+
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* Minkowski sum is contained in the computed sum
 -/
 
 -- Authors:       Claude Opus 5

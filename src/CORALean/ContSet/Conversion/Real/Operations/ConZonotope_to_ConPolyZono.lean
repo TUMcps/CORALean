@@ -18,6 +18,13 @@ it reaches capped by `b` so that a row no point meets stays empty. A row of a co
 polynomial zonotope is an equation, so each interval is `ConPolyZono.relax` at its midpoint and
 radius: a slack factor per row. Held to these intervals the rows say of the coefficients what the
 polytope says (`ConZonotope.conRows_iff`).
+
+## Inputs
+* `h` – coordinate dimension
+* `f` – linear functional
+
+## Output
+* coefficient vector of the functional
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

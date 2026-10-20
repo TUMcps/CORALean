@@ -8,6 +8,12 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 /-!
 # A spectrahedral shadow as a zonotope
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Output
+* base spectrahedron in the space of the variables
 -/
 
 -- Authors:       Claude Opus 5.5

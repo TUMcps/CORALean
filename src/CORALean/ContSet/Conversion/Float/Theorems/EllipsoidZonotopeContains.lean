@@ -20,6 +20,15 @@ A certified factor `F` has `F Fᵀ ⪰ Q`, so the nominal ellipsoid lies in `{q 
 coefficient vector of the parallelotope. The error box is carried over. Without a certificate the
 offset from the center lies in the box `q ± sqrt(diag(Q))` (`abs_sub_le_boxRadius`), which joins
 the error box.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* ellipsoid is contained in its zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

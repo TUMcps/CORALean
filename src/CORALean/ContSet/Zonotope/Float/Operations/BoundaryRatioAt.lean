@@ -8,14 +8,22 @@ public import CORALean.ContSet.Zonotope.Float.Operations.FacetNormal
 # `Zonotope.boundaryRatioAt`, over a floating-point scalar
 
 One facet's bound on the exit step of `boundaryPoint`. CORA solves a linear program for the largest
-`t` with `startPoint + t * dir` in the zonotope; the zonotope is the intersection of the slabs `C x
-<= C c + sum_u |C G_u|` of its facet normals `C` [1, Thm. 2], so `t` is at most `(C c + sum_u |C
-G_u| - C startPoint) / (C dir)` at every `C` with `C dir > 0`, and the least of them is the exit
-step. Here the quotient is rounded up: the numerator by `dotUp`, `sumUp` and `subUp` (the magnitude
-of a dot product is at most the larger of the upper end and the negated lower end), the start
-point's product from below, the denominator from below, with `none` where `ltStrict` cannot prove it
-positive. The vector `C` is `facetNormal`'s rounded candidate; the bound holds at any vector, so a
-rounded normal costs tightness and not soundness.
+`t` with `startPoint + t * dir` in the zonotope; the zonotope is the intersection of the slabs
+`C x <= C c + sum_u |C G_u|` of its facet normals `C` [1, Thm. 2], so `t` is at most
+`(C c + sum_u |C G_u| - C startPoint) / (C dir)` at every `C` with `C dir > 0`, and the least is the
+exit step. Here the quotient is rounded up: the numerator by `dotUp`, `sumUp` and `subUp`, the start
+point's product from below, the denominator from below, `none` where `ltStrict` cannot prove it
+positive. `C` is `facetNormal`'s rounded candidate; the bound holds at any vector, so a rounded
+normal costs tightness and not soundness.
+
+## Inputs
+* `Z` – zonotope
+* `dir` – direction
+* `start` – starting point
+* `S` – generator selection
+
+## Output
+* exit step the facet row allows, rounded up
 
 ## References
 

@@ -11,6 +11,20 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
 
 The rotation at the float angle lies in the interval `rotMat` (`rotMat_mem`), and
 `mtimesIntervalMat` encloses the image under every matrix of that interval.
+
+## Inputs
+* `p` – Newton steps for the trigonometry
+* `n` – dimension
+* `Z` – zonotope
+* `i` – first rotation axis
+* `j` – second rotation axis
+* `angle` – rotation angle
+
+## Hypotheses
+* none
+
+## Conclusion
+* rotated set is contained in the computed zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

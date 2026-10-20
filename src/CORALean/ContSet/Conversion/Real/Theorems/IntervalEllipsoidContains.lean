@@ -18,6 +18,15 @@ inscribed one, and the classical bound is met rather than approached.
 Only the enclosing direction, for the same reason `Interval_to_Zonotope` gives
 only that one: a box whose `sup` falls below its `inf` denotes nothing while the
 ellipsoid built from it denotes the box with the two swapped.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* interval is contained in its ellipsoid
 -/
 
 -- Authors:       Claude Opus 5

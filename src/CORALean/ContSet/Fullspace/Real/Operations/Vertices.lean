@@ -10,14 +10,12 @@ public import Mathlib.Data.EReal.Basic
 # `Fullspace.vertices`
 
 CORA's `@fullspace/vertices_` [1]: `vertices_(interval(fs))`, the `2^n` corners of the box
-`[-Inf, Inf]^n` as a matrix of `±Inf` (an error at `n = 0`). A point at infinity is not a vector
-of `ℝ^n`, so a column here is a vector of `EReal` with every entry `⊥` or `⊤`, in the order of
-`Interval.vPolytope`'s corners (`signEquiv`): a corner takes `⊤` where its sign says "upper".
-The dimension is `n + 1`, since CORA throws at `n = 0`.
-
-The full space has no extreme points, so these columns are not vertices of the set; what they are
-is the limit of the vertices of the truncated boxes `[-t, t]^n` (`Fullspace.truncatedVertices`),
-whose hulls exhaust the space (`Fullspace.construct_eq_iUnion_truncatedVertices`).
+`[-Inf, Inf]^n` as a matrix of `±Inf` (an error at `n = 0`, so the dimension is `n + 1`). A point at
+infinity is not a vector of `ℝ^n`, so a column here is a vector of `EReal` with every entry `⊥` or
+`⊤`, in the order of `Interval.vPolytope`'s corners (`signEquiv`). The full space has no extreme
+points, so these columns are not vertices of the set; they are the limit of the vertices of the
+truncated boxes `[-t, t]^n` (`Fullspace.truncatedVertices`), whose hulls exhaust the space
+(`Fullspace.construct_eq_iUnion_truncatedVertices`).
 
 ## Inputs
 * `_` – full space

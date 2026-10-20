@@ -14,6 +14,20 @@ For `R` in `matResidual` of an interval matrix and `z` in the nominal part of a 
 generator: `|R_ij|` is below the larger magnitude of its two bounds and `|z_j|` below
 `|c_j| + Σ|G_j|`. Holds for a constrained zonotope as well, whose nominal part sits inside the
 unconstrained one.
+
+## Inputs
+* `IM` – interval matrix
+* `Z` – zonotope
+* `R` – matrix in the residual interval
+* `z` – nominal point
+* `i` – row index
+
+## Hypotheses
+* `hR` – matrix lies in the residual interval
+* `hz` – point lies in the nominal set
+
+## Conclusion
+* residual image stays within the generator radius
 -/
 
 -- Authors:       Claude Sonnet 5.5

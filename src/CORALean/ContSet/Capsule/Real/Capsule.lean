@@ -8,19 +8,12 @@ public import Mathlib.Analysis.Real.Sqrt
 /-!
 # Capsules: the representation
 
-CORA's `capsule`: a segment thickened by a Euclidean ball, `{c + t g | t ∈
-[-1, 1]} ⊕ ball(0, r)`.
+CORA's `capsule`: a segment thickened by a Euclidean ball, `{c + t g | t ∈ [-1, 1]} ⊕ ball(0, r)`.
 
-At `Vec ℝ n`, not over a general module: the ball is Euclidean and needs
-coordinates. The distance is written out as `Real.sqrt (∑ …)` rather than
-reached for as a norm, because `Vec ℝ n` is `Fin n → ℝ`, whose ambient norm
-instance is the *supremum* norm, and `EuclideanSpace ℝ (Fin n)` is a type
-synonym that would fight the `ContSet` instance already at `Vec ℝ n`. Spelling
-the distance out costs two lemmas in the theorems below and avoids all of that.
-
-A negative `r` denotes `∅`, since `Real.sqrt` is never negative — the same
-convention `Interval` uses for a crossed box, and the reason the structure
-below carries no `0 ≤ r` field.
+At `Vec ℝ n`, not a general module: the ball is Euclidean. The distance is written out as
+`Real.sqrt (∑ …)`, because the ambient norm of `Fin n → ℝ` is the supremum norm and `EuclideanSpace`
+would fight the `ContSet` instance at `Vec ℝ n`. A negative `r` denotes `∅`, as `Interval` does for
+a crossed box, which is why the structure has no `0 ≤ r` field.
 -/
 
 -- Authors:       Claude Opus 5

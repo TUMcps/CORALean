@@ -10,6 +10,13 @@ public import CORALean.Global.Float.FloatOps
 A candidate radius for the box a certified right inverse `H` reaches: a quarter of `δ` over the
 largest absolute row sum of `H`, rounded down. Nothing is trusted about it: `Zonotope.ballCert`
 checks the radius it is given, so a bad candidate (a zero row sum, say) only costs the `true`.
+
+## Inputs
+* `H` – candidate right inverse
+* `δ` – coefficient bound
+
+## Output
+* candidate radius, a quarter of the bound over the largest row sum
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -14,6 +14,20 @@ public import CORALean.ContSet.Zonotope.Real.Operations.CubFold
 The exact coefficient of the sorted triple, on the nominal zonotope the stored floats describe,
 lies between the two roundings: `Zonotope.listQuad_bracket` for each `listQuad{j}(a, b)`, and a
 directed sum of up to three bracketed terms is bracketed.
+
+## Inputs
+* `T` – cubic tensor
+* `Z` – zonotope
+* `i` – output coordinate
+* `x` – first column index
+* `y` – second column index
+* `z` – third column index
+
+## Hypotheses
+* none
+
+## Conclusion
+* exact coefficient lies between the two roundings
 -/
 
 -- Authors:       Claude Opus 5.5

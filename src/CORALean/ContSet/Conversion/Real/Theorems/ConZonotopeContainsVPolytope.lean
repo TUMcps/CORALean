@@ -16,6 +16,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 # A constrained zonotope as its vertices
 
 `ConZonotope.contains_vPolytope`: it contains its `vPolytope`.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* `hne` – domain is nonempty
+
+## Conclusion
+* vertex polytope is contained in the set
 -/
 
 -- Authors:       Claude Opus 5

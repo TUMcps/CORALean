@@ -11,16 +11,19 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MidpointResidual
 /-!
 # `Zonotope.linComb`
 
-The exact operation's shape, rounded: the center is `midpoint`, one generator
-spans the half-difference of the centers, and the generators are `linCombG`
-at the down-rounding. The count stays `h₁ + h₂ + 1` as over ℝ, every rounding
-going into the box.
+The exact operation's shape, rounded: the center is `midpoint`, one generator spans the
+half-difference of the centers, and the generators are `linCombG` at the down-rounding. The count
+stays `h₁ + h₂ + 1` as over ℝ, every rounding going into the box. Two charges come out of that. The
+center is stored in place of a known bracket, which is `midpointResidual`; every generator's
+coefficient ranges over `[-1,1]`, so its shortfall pulls both ways and is charged by
+`generatorError` at `linCombGDiff`, one box for the whole matrix, the center generator included.
 
-Two charges come out of that. The center is stored in place of a known
-bracket, which is `midpointResidual`; every generator's coefficient ranges
-over `[-1,1]`, so its shortfall pulls both ways and is charged by
-`generatorError` at `linCombGDiff` — one box for the whole matrix, the center
-generator included.
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+
+## Output
+* zonotope with midpoint center and half-difference generator
 -/
 
 -- Authors:       Claude Opus 5

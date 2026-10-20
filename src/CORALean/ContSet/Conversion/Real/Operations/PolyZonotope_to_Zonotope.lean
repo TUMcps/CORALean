@@ -12,6 +12,12 @@ public import Mathlib.Logic.Function.CompTypeclasses
 
 /-!
 # A polynomial zonotope as a zonotope
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* zonotope of the polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5

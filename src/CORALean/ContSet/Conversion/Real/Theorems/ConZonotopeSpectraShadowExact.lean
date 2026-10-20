@@ -18,6 +18,15 @@ block per constraint row `b - Aβ ≥ 0`, `Aβ - b ≥ 0` along one block-diagon
 constraints are the polytope `P` on the coefficient space, so the second half is the diagonal
 LMI of `HPolytope.spectraShadow` at `P`, and the box half is the zonotope's own. A
 block-diagonal matrix is positive semidefinite exactly when both blocks are.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set equals its spectrahedral shadow
 -/
 
 -- Authors:       Claude Opus 5.5

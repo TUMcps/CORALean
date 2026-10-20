@@ -19,6 +19,16 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 
 /-!
 # A halfspace description as a bundle of one
+
+## Inputs
+* none
+
+## Hypotheses
+* `up` – certified upper bound per coordinate
+* `lo` – certified lower bound per coordinate
+
+## Output
+* zonotope bundle of the polytope
 -/
 
 -- Authors:       Claude Opus 5

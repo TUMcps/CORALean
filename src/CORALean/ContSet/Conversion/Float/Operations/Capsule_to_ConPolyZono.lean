@@ -16,6 +16,12 @@ error box, plus the ball `ellipsoid(r² I)` converted, its shape `r²` rounded u
 (`Ellipsoid.ball`, which holds the real ball by `Ellipsoid.ball_contains`). The ellipsoid's
 conversion takes a certified factor of the shape from above (`Ellipsoid.conPolyZono`), and the
 sum pays its rounding into the box.
+
+## Inputs
+* `C` – capsule
+
+## Output
+* constrained polynomial zonotope of the segment plus the ball
 -/
 
 -- Authors:       Claude Opus 5.5

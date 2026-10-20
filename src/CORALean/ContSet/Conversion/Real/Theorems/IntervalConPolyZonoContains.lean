@@ -18,6 +18,15 @@ underlying sets in fact have, so only a subset survives the composition.
 
 This is how a reachability run can start from a box directly in the
 representation a constrained operation will need.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* interval is contained in its constrained polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5

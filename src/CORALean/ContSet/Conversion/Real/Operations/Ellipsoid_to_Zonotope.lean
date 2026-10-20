@@ -16,6 +16,12 @@ restricts to the range by an SVD and takes the generators `U(:,1:r) sqrt(Σ_r)`;
 of `Q^{1/2}` stay, a parallelotope enclosing the same ellipsoid, not CORA's for `rank Q < n`. The
 other modes are `zonotopeNorm` and `zonotopeInnerNorm` below (`'outer:norm'`, `'inner:norm'`).
 
+## Inputs
+* `E` – ellipsoid
+
+## Output
+* zonotope of the ellipsoid
+
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean

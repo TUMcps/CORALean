@@ -27,6 +27,17 @@ zonotope. The hull is the certified one (`SpectraShadow.interval` of `SpectraSha
 `2m` dual certificates the caller's), the image by `G` the float `Zonotope.mtimes`, and the
 center with the error box a box added by `Zonotope.plus`. `none` when a certificate fails. An
 enclosure, as over ℝ.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `Yup` – upper certificate matrices per generator
+* `Ylo` – lower certificate matrices per generator
+
+## Hypotheses
+* none
+
+## Conclusion
+* shadow is contained in every returned zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -19,6 +19,17 @@ Outer: with the stored basis orthogonal over the reals, `U Uᵀ = 1`, every inpu
 float result. The centered point lies in the interval of its two directed differences, so its
 rotation lies in the interval `mtimes`, hence in the box of minima and maxima; the box rotates back
 to the point, which `plus` moves to the mean. The mean's rounding is irrelevant.
+
+## Inputs
+* `pts` – points to enclose
+* `U` – basis matrix
+* `j` – point index
+
+## Hypotheses
+* `hU` – basis orthogonal over the reals
+
+## Conclusion
+* point lies in the enclosing zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

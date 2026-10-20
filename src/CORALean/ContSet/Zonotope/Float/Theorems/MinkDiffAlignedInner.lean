@@ -16,6 +16,18 @@ membership in the Minkowski difference. No alignment is assumed: the check, not 
 carries the guarantee, so this is the inner half of `Real.Zonotope.minkDiffAligned_exact` and
 no claim that the float result is the whole difference.
 
+## Inputs
+* `Z₁` – minuend zonotope
+* `Z₂` – subtrahend zonotope
+* `ρ` – generator shrink factor
+* `H` – candidate right inverse
+
+## Hypotheses
+* `hh` – equal generator counts
+
+## Conclusion
+* every returned zonotope is inside the Minkowski difference
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

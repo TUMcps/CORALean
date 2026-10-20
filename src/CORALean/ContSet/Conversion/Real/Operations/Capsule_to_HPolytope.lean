@@ -18,18 +18,19 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Translate
 # A capsule as halfspaces, as CORA's `polytope(C)` dispatches
 
 `@capsule/polytope.m`: an empty capsule gives the empty polytope; at `n = 1` the interval
-`[c - |g| - r, c + |g| + r]` (`aux_1D`); a point (`g = 0`, `r = 0`) its own polytope; a segment
-(`r = 0`) the two rows `±B(:,1)ᵀ x ≤ ‖g‖₂` and the equalities `B(:,2:end)ᵀ x = 0`, shifted to `c`
-(`aux_exactLineConversion`); and otherwise, at `'outer'`, the rows `[B'; -B']`, each at the
-capsule's support value in its direction (`aux_supportFunction`). `B` is `gramSchmidt(g)`, the
-orthonormal basis whose first vector is `g / ‖g‖₂`.
+`[c - |g| - r, c + |g| + r]` (`aux_1D`); a point its own polytope; a segment (`r = 0`) the rows
+`±B(:,1)ᵀ x ≤ ‖g‖₂` and `B(:,2:end)ᵀ x = 0` shifted to `c` (`aux_exactLineConversion`); otherwise,
+at `'outer'`, the rows `[B'; -B']` at the capsule's support value (`aux_supportFunction`), with
+`B = gramSchmidt(g)`. Departures: a negative radius is CORALean's empty capsule; the support value
+is `⟨a, c⟩ + |⟨a, g⟩| + r ‖a‖₂` (`Capsule.supportBound`); a ball takes the identity for `B`, where
+CORA's `gramSchmidt` divides by zero. CORA's default `'exact'` throws (`CORA:noExactAlg`) and
+`'inner'` always throws, so this is `'outer'`.
 
-Departures. A negative radius is CORALean's empty capsule (CORA's constructor refuses one). The
-support value is `⟨a, c⟩ + |⟨a, g⟩| + r ‖a‖₂` (`Capsule.supportBound`), CORA's
-`supportFunc_(zonotope(0, g), a) + r` shifted by `c`, the two equal at a unit row. A ball
-(`g = 0`, `r > 0`) takes the identity for `B`, the box `c ± r`: CORA's `gramSchmidt` divides by
-`‖g‖₂ = 0` there and every row is `NaN`. CORA's default method `'exact'` throws
-(`CORA:noExactAlg`) where step 5 is reached and `'inner'` always throws, so this is `'outer'`.
+## Inputs
+* none
+
+## Output
+* halfspace polytope of the capsule, branch by branch
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,20 +10,14 @@ public import Mathlib.Data.Matrix.Mul
 /-!
 # Constrained polynomial zonotopes: the representation
 
-CORA's `conPolyZono`, and [1, Def. 5]: a `PolyZonotope` whose factors additionally satisfy
-polynomial constraints `A μ_R(α) = b`, the constraint monomials read off the exponent matrix `R`
-over the *same* factors as the generators — a constraint and a generator are two readings of one
-`PolyZonotope.monomial`. The symbols are [1]'s: `p` factors, `h` generators, `m` constraints and
-`q` constraint generators (`cons.m`, `cons.q`); [1] has no independent generators, their count is
-`qI`, `PolyZonotope`'s `q` [2, Def. 1] being the letter [1] gives the constraint generators.
-
-The constraint is the field `cons`, a `PolyLevelSet` on the factors, as a constrained zonotope's
-is an `HPolytope`: an operation on it is one of `PolyLevelSet`'s (`and_`, `cartProd`, `padVars`,
-`relax`, `compact`). Every row is an equation, as in CORA, and `cons_eq` says so: a `≤` row would
-make a different set from [1]'s, and `union` rewrites each row with its selector factor
-([1, Thm. 1]), which is sound for an equation only. The factors' box `[-1, 1]ᵖ` is the
-constraint's own domain, which `cons_dom` fixes, so `cons` is [1, Def. 7]'s `constrDom` and
-`construct` adds no box of its own. An operation keeps both invariants from its operands'.
+CORA's `conPolyZono`, and [1, Def. 5]: a `PolyZonotope` whose factors also satisfy polynomial
+constraints `A μ_R(α) = b`, read off the exponent matrix `R` over the *same* factors as the
+generators. The symbols are [1]'s: `p` factors, `h` generators, `m` constraints, `q` constraint
+generators (`cons.m`, `cons.q`); the independent generators are counted by `qI`, `PolyZonotope`'s
+`q` [2, Def. 1]. The constraint `cons` is a `PolyLevelSet` on the factors; every row is an equation
+(`cons_eq`), since `union` rewrites each row with a selector factor ([1, Thm. 1]), sound for an
+equation only. The factors' box `[-1, 1]ᵖ` is the constraint's domain (`cons_dom`), [1, Def. 7]'s
+`constrDom`. An operation keeps both invariants from its operands'.
 
 ## References
 

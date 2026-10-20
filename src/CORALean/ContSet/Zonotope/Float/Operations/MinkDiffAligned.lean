@@ -10,15 +10,26 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 /-!
 # `Zonotope.minkDiffAligned`, over a floating-point scalar
 
-CORA's `'exact'` case of `@zonotope/minkDiff` for aligned generators, [1, Prop. 5], as a
-*checked* result: the float counterpart of `Real.Zonotope.minkDiffAligned`. At the real layer the
-closed form is the difference exactly (`Real.Zonotope.minkDiffAligned_exact`), but only at a
-scaling in `[0, 1]` (`Real.Zonotope.minkDiffAligned_not_inner`), and CORA's alignment test is a
-tolerance on floats. So the float result is not trusted on the strength of either: the candidate
-(`aux_minkDiffAlignedCandidate`) is returned only once `Zonotope.containsZonotope`, with a right
-inverse `H` of the minuend's generators the caller proposes, certifies that the candidate plus the
-subtrahend lies in the minuend, as `Zonotope.minkDiffRep` does. Unaligned operands, a scaling
-outside `[0, 1]`, a wrong `ρ` or `H` give `none`, costing precision and never soundness.
+CORA's `'exact'` case of `@zonotope/minkDiff` for aligned generators, [1, Prop. 5], as a *checked*
+result: the float counterpart of `Real.Zonotope.minkDiffAligned`. At the real layer the closed form
+is the difference exactly (`Real.Zonotope.minkDiffAligned_exact`), but only at a scaling in `[0, 1]`
+(`Real.Zonotope.minkDiffAligned_not_inner`), and CORA's alignment test is a tolerance on floats. So
+the candidate (`aux_minkDiffAlignedCandidate`) is returned only once `Zonotope.containsZonotope`,
+with a right inverse `H` of the minuend's generators the caller proposes, certifies that the
+candidate plus the subtrahend lies in the minuend, as `Zonotope.minkDiffRep` does. Unaligned
+operands or a wrong `ρ` or `H` give `none`, costing precision and never soundness.
+
+## Inputs
+* `Z₁` – minuend zonotope
+* `Z₂` – subtrahend zonotope
+* `ρ` – generator shrink factor
+* `H` – candidate right inverse
+
+## Hypotheses
+* `hh` – equal generator counts
+
+## Output
+* shrunk difference zonotope, if the check passes
 
 ## References
 

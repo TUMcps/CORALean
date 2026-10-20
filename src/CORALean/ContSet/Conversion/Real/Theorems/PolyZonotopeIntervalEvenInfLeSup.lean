@@ -11,6 +11,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeIntervalEven
 
 /-!
 # A polynomial zonotope as a box: `intervalEven_inf_le_sup`
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `i` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* lower end of the tighter interval is below its upper end
 -/
 
 -- Authors:       Claude Opus 5

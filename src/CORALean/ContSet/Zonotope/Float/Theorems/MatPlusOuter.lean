@@ -12,6 +12,16 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 The nominal parts add inside the exact `Zonotope.plus` (`plus_exact`), which
 `ofEntryBoundsMat_outer` rounds: its generators are stored exactly, its center between the
 two directed sums. The boxes add by `matPlus_outer`.
+
+## Inputs
+* `Z₁` – first matrix zonotope
+* `Z₂` – second matrix zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* Minkowski sum is contained in the computed matrix zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

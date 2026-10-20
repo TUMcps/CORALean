@@ -13,6 +13,13 @@ box `D` (`StarSet.ofPred`): the arrow of [1, Fig. 1 (Support Functions → Star 
 predicate being any representation in coefficient space. A star set carries a finite box, so it is
 the support function's set exactly where that set is bounded, `D` any box around it.
 
+## Inputs
+* `S` – support function
+* `D` – box of coefficients
+
+## Output
+* star set on `D` with the set as predicate
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

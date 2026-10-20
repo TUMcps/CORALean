@@ -8,6 +8,13 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructFoldlIntersect
 
 /-!
 # A bundle's constrained zonotope, at one component
+
+## Inputs
+* `zB` – zonotope bundle
+* `i` – member index
+
+## Output
+* constrained zonotope of the bundle, from member `i`
 -/
 
 -- Authors:       Claude Opus 5

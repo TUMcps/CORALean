@@ -14,6 +14,17 @@ public import CORALean.ContSet.Conversion.Real.Operations.Basic
 # A box as an array of Taylor models
 
 `Interval.taylm_outer`: its `taylm` encloses it.
+
+## Inputs
+* `I` – interval
+* `N` – Taylor order
+* `i` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* Taylor model encloses the midpoint-radius parametrisation
 -/
 
 -- Authors:       Claude Opus 5.5

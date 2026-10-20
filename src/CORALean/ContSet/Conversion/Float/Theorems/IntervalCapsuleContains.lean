@@ -16,6 +16,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Capsule
 # A box as a capsule, over a floating-point scalar
 
 `Interval.capsule_contains`: its `capsule` contains it.
+
+## Inputs
+* `k` – Newton steps for the norm
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* interval is contained in its capsule
 -/
 
 -- Authors:       Claude Sonnet 5.5

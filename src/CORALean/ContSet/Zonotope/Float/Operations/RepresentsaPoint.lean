@@ -11,6 +11,12 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 CORA's `@zonotope/representsa_` at type `point` with tolerance `0`: every generator is `0`, and the
 error box is a single point. `le` answers only `true` reliably, so a `true` here is sound and a
 `false` decides nothing.
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* true when no generator is nonzero and the box is a point
 -/
 
 -- Authors:       Claude Sonnet 5.5

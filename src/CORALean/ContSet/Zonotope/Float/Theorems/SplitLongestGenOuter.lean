@@ -10,6 +10,15 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.SplitOuter
 
 `split_outer` holds at every generator index, so whichever one the float ranking picks is sound;
 with no generator the two halves are the zonotope itself.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is covered by the two halves
 -/
 
 -- Authors:       Claude Opus 5.5

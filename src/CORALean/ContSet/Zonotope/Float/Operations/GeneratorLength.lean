@@ -12,6 +12,14 @@ CORA's `@zonotope/generatorLength.m`: `vecnorm(Z.G)`, the Euclidean length of ea
 The length of generator `j` is rounded up (`normUp`, `k` Newton steps, `Global/Float/Sqrt`), so
 the stored number is at least the length of the generator the stored floats describe. The error
 box is not part of the generators, as in CORA, where `Z.G` has no error term.
+
+## Inputs
+* `k` – Newton steps for the norm
+* `Z` – zonotope
+* `j` – generator index
+
+## Output
+* length of generator `j`, rounded up
 -/
 
 -- Authors:       Claude Opus 5.5

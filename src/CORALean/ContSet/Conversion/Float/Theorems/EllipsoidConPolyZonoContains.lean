@@ -24,6 +24,15 @@ The nominal part of the conversion is the exact layer's conversion of the stored
 that set contains the nominal ellipsoid (`construct_subset_of_le`) and the error box is carried
 over; an uncertified one is zero, and the nominal ellipsoid's offset from its center lies in the
 box `q ± sqrt(diag(Q))` added to the error box (`abs_sub_le_boxRadius`). Outer either way.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* ellipsoid is contained in its constrained polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

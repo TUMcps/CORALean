@@ -11,6 +11,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 /-!
 # A halfspace description as a constrained zonotope
+
+## Inputs
+* none
+
+## Hypotheses
+* `up` – certified upper bound per coordinate
+* `lo` – certified lower bound per coordinate
+
+## Output
+* constrained zonotope of the polytope
 -/
 
 -- Authors:       Claude Opus 5

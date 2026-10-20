@@ -11,6 +11,13 @@ The structural test at tolerance `0`, as over ℝ: the same number of generators
 the generators and the two ends of the error box equal entry by entry, each entry by the
 certified `le` in both directions. Certified in one direction only: `true` is a proof, `false`
 refutes nothing. Not CORA's test, which merges parallel generators and ignores their order.
+
+## Inputs
+* `Z` – first zonotope
+* `S` – second zonotope
+
+## Output
+* true when all entries are certified equal
 -/
 
 -- Authors:       Claude Opus 5.5

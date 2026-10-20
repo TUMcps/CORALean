@@ -19,6 +19,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeZonotopeCont
 A zonotope's points are the polynomial zonotope's (`polyZonotope_contains`), the polynomial
 zonotope's quadratic map is enclosed by `PolyZonotope.quadMap_outer`, and its points are the
 zonotope's (`zonotope_contains`).
+
+## Inputs
+* `Q` – quadratic form per output coordinate
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* quadratic image is contained in the computed zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -15,6 +15,15 @@ public import CORALean.ContSet.SpectraShadow.Float.Theorems.PlusOuter
 The capsule lies in its segment plus its ball (`Capsule.construct_subset_segment_add_ball`); the
 ball's shadow is exact, its rounded-up shape being positive semi-definite
 (`Ellipsoid.ball_posSemidef`), the segment's encloses it, and the sum encloses theirs.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* capsule is contained in its spectrahedral shadow
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,16 @@ public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_HPolytope
 
 /-!
 # A box as halfspaces, over a floating-point scalar: `negIdentityMat_mulVec`
+
+## Inputs
+* `x` – vector
+* `i` – row index
+
+## Hypotheses
+* none
+
+## Conclusion
+* negated identity flips the sign of entry `i`
 -/
 
 -- Authors:       Claude Opus 5

@@ -10,6 +10,18 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsPointSound
 
 A returned point passed `Zonotope.containsPoint`, so it is a member (`containsPoint_sound`). Inner
 only: no claim that it is the vertex `c ± Σⱼ sign(sᵀ gⱼ) gⱼ` of the real definition.
+
+## Inputs
+* `Z` – zonotope
+* `H` – candidate right inverse
+* `s` – direction
+* `b` – plus or minus vertex
+
+## Hypotheses
+* none
+
+## Conclusion
+* every returned point lies in the zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

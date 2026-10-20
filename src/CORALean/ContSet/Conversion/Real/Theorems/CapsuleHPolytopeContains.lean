@@ -11,6 +11,15 @@ Every branch of CORA's `@capsule/polytope.m`: the branches that return before `'
 exact (`Capsule.hPolytope_exact`), and `'outer'` bounds each row by the capsule's support value
 in that row's direction (`Capsule.supportBound`), which holds for whatever basis the rows come
 from.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* capsule is contained in its halfspace polytope
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,12 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_SpectraSha
 
 /-!
 # A polytope as a spectrahedral shadow, over a floating-point scalar
+
+## Inputs
+* `P` – halfspace polytope
+
+## Output
+* spectrahedral shadow of the polytope
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

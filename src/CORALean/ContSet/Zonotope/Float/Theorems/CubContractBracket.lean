@@ -11,6 +11,19 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.LeQuadUp
 
 Two applications of `quadDown_le` and `le_quadUp`: the middle vector is bracketed by `dotDown_le`
 and `le_dotUp`, the quadratic form by the first application, the sum over `k` by the second.
+
+## Inputs
+* `T` – cubic tensor
+* `u` – weight vector
+* `v` – left vector
+* `w` – right vector
+* `i` – output coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* exact contraction lies between the two roundings
 -/
 
 -- Authors:       Claude Opus 5.5

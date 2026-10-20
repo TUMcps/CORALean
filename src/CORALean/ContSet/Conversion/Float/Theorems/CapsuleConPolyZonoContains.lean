@@ -13,6 +13,15 @@ public import CORALean.ContSet.Conversion.Float.Theorems.EllipsoidConPolyZonoCon
 
 The capsule lies in its segment plus its ball (`Capsule.construct_subset_segment_add_ball`), each
 conversion encloses its part, and the sum encloses theirs.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* capsule is contained in its constrained polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,12 @@ public import CORALean.ContSet.StarSet.Real.StarSet
 
 CORA's `conversionConZonoStarSet`: the center and the generators as they are, the coefficient box
 `[-1, 1]`, and the constraint polytope on the factors as the predicate, as it is.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Output
+* halfspace-predicate star set of the constrained zonotope
 -/
 
 -- Authors:       Claude Sonnet 5.5

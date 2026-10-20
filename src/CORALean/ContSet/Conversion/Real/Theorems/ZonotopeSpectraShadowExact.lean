@@ -12,6 +12,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopePosSemidefSpectr
 # A zonotope as a spectrahedral shadow
 
 `Zonotope.spectraShadow_exact`: its `spectraShadow` is exactly it.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope equals its spectrahedral shadow
 -/
 
 -- Authors:       Claude Opus 5.5

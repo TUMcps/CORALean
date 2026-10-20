@@ -10,6 +10,17 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 
 Each end is a rounded evaluation of the same expression: `addDown_le_add` with `dotDown_le`, and
 `add_le_addUp` with `le_dotUp`.
+
+## Inputs
+* `Z` – zonotope
+* `β` – factor vector
+* `i` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* exact point lies between the two rounded evaluations
 -/
 
 -- Authors:       Claude Opus 5.5

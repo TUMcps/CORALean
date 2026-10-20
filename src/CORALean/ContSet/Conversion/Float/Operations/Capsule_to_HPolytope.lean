@@ -11,17 +11,18 @@ public import CORALean.Global.Float.Sqrt
 /-!
 # A capsule as halfspaces, over a floating-point scalar, as CORA's `polytope(C)` dispatches
 
-`@capsule/polytope.m` at `n = 1` is the box (`aux_1D`), here rounded outward. Otherwise the rows
-are `[B'; -B']`, `B = gramSchmidt(g)`, each at the capsule's support value along it
+`@capsule/polytope.m` at `n = 1` is the box (`aux_1D`), here rounded outward. Otherwise the rows are
+`[B'; -B']`, `B = gramSchmidt(g)`, each at the capsule's support value along it
 (`aux_supportFunction`, `Capsule.boundDotUp`, every term rounded up and the error box added). The
-basis is CORA's computed in floats: the same completion and the same loop, each operation rounded
-one way, the length `normUp p`; the rows are sound whatever basis came out. At `g = 0` it is the
-identity, CORA's `gramSchmidt` dividing by zero there.
+basis is CORA's computed in floats, the length `normUp p`; the rows are sound whatever basis came
+out. At `g = 0` it is the identity. CORA's point and segment branches are these rows at `g = 0` or
+`r = 0`; over floats an equality is a slab anyway, so there is no branch of its own for them.
 
-CORA's point and segment branches are these rows at `g = 0` or `r = 0`: along an orthonormal basis
-the rows of a segment are `±b₁ᵀ x ≤ ‖g‖₂` and, for every other `bⱼ`, the pair `±bⱼᵀ(x - c) ≤ 0`,
-the equality CORA writes, and a point's are `±(x - c)ᵢ ≤ 0`. Over floats an equality is a slab
-anyway, so the float layer takes them that way and keeps no branch of its own for them.
+## Inputs
+* `p` – Newton steps per row length
+
+## Output
+* halfspace polytope enclosing the capsule
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,15 @@ outside this file.
 
 Takes the directed subtraction as an argument rather than fixing one, since
 `linCombGDiff` needs the same column rounded both ways.
+
+## Inputs
+* `sub` – subtraction rounding
+* `G₁` – first generator block
+* `G₂` – second generator block
+* `j` – pairing index
+
+## Output
+* half the difference of the paired generators
 -/
 
 -- Authors:       Claude Opus 5

@@ -15,6 +15,15 @@ public import CORALean.ContSet.Conversion.Float.Theorems.ConPolyZonoPolyZonotope
 # A polynomial zonotope as a zonotope, and a constrained one as a constrained
 
 `ConPolyZono.conZonotope_contains`: its `conZonotope` contains it.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its constrained zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

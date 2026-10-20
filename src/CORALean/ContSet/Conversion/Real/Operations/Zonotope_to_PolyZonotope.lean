@@ -8,6 +8,12 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 
 /-!
 # A zonotope as a polynomial zonotope
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* polynomial zonotope of the zonotope
 -/
 
 -- Authors:       Claude Opus 5

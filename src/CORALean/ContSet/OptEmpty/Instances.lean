@@ -9,18 +9,12 @@ public import CORALean.ContSet.OptEmpty.OptEmpty
 /-!
 # What `OptEmpty` instantiates
 
-Everything `S` gives, lifted: `empty` absorbs a binary operation and passes a
-unary one through, which the class obligations survive because `∅` is a subset
-of everything and sums, combines and intersects to `∅` again.
-
-The operations stay inside the instances rather than earning files of their
-own: each is `S`'s operation on `of`, and `empty` everywhere else, so there is
-nothing to say about one that is not said by the class it discharges.
-
-No `Recenter`: it asks `0 ∈ construct (recenter s)` unconditionally, which
-`empty` cannot meet — the same reason `Interval` refuses it for a crossed box.
-`MinkDiff` transfers, but a representation that has no `MinkDiff` of its own
-gets one here at the wrapper instead, as `Zonotope` does.
+Everything `S` gives, lifted: `empty` absorbs a binary operation and passes a unary one through,
+which the class obligations survive because `∅` is a subset of everything. The operations stay
+inside the instances rather than earning files of their own: each is `S`'s operation on `of`, and
+`empty` everywhere else. No `Recenter`: it asks `0 ∈ construct (recenter s)` unconditionally, which
+`empty` cannot meet, as for `Interval` and a crossed box. `MinkDiff` transfers, and a representation
+with no `MinkDiff` of its own gets one here at the wrapper instead, as `Zonotope` does.
 -/
 
 -- Authors:       Claude Opus 5

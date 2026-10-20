@@ -11,6 +11,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeContainsVPolyto
 
 /-!
 # A box as its corners, over a floating-point scalar
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* `hI` – lower end below upper end per coordinate
+
+## Conclusion
+* corner polytope is contained in the interval
 -/
 
 -- Authors:       Claude Opus 5

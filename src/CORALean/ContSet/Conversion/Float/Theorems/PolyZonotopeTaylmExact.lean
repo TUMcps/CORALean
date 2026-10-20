@@ -19,6 +19,16 @@ CORA's `taylm(polyZonotope)`: one variable per dependent factor and one per inde
 generator, coordinate `i` the polynomial `cᵢ + Σⱼ Gᵢⱼ αᴱʲ + Σₗ GIᵢₗ βₗ`. The stored floats
 are the coefficients unchanged, so nothing rounds, and the error box becomes each coordinate's
 error box, the remainder `[0, 0]`. Exact, as over ℝ.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `N` – Taylor order
+
+## Hypotheses
+* none
+
+## Conclusion
+* Taylor model equals the polynomial zonotope
 -/
 
 -- Authors:       Claude Sonnet 5.5

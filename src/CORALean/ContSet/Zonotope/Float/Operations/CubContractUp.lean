@@ -8,6 +8,16 @@ public import CORALean.ContSet.Zonotope.Float.Operations.CubContractDown
 # `Zonotope.cubContractUp`, the cubic contraction of three vectors rounded up
 
 `Zonotope.cubContractDown` rounded the other way: a float above `Σₖ uₖ · (vᵀ T{i,k} w)`.
+
+## Inputs
+* `T` – cubic tensor
+* `u` – weight vector
+* `v` – left vector
+* `w` – right vector
+* `i` – output coordinate
+
+## Output
+* float above the weighted bilinear sum
 -/
 
 -- Authors:       Claude Opus 5.5

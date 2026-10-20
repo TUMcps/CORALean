@@ -16,6 +16,23 @@ lies in the result, under the conditions of `tensorMultiplication_outer`: the pr
 the tensor, the center's term is in `tensorMultiplication M.c`, each generator's term scaled by
 `γᵢ` in that of `M.G i` (`tensorMultiplication_smul_outer`), and the fold of Minkowski sums holds
 the sum of one point from each summand (`Zonotope.plus_outer`).
+
+## Inputs
+* `Z` – zonotope
+* `M` – tensor zonotope
+* `L` – permutation lists
+* `β` – tensor factor vector
+* `x` – point
+
+## Hypotheses
+* `hc` – center is zero
+* `hperm` – permutations run over each triple once
+* `hmap` – same column means reordered triple
+* `hβ` – tensor factors in the unit box
+* `hx` – point lies in the zonotope
+
+## Conclusion
+* tensor image of the point lies in the computed zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

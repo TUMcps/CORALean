@@ -9,19 +9,13 @@ public import CORALean.ContSet.SpectraShadow.Float.Theorems.MtimesOuter
 /-!
 # What `SpectraShadow` instantiates
 
-`ContSet` is not among them — `InflatedContSet` supplies it, which is what makes
-this the same class the exact layer instantiates. Then `ConvexSet` and `Plus`, as
-over ℝ, and `Intersection`, which the float layer's tied form makes rounding-free.
-`Mtimes` too, by the same tie: `mtimes` never multiplies a stored generator, which would round
-a coefficient of a variable the inequality does not bound (`SpectraShadow.lean` says why), but ties
-the point to new free variables and multiplies only the error box. And `LinComb`, the convex hull
-`convHull_` of the two.
-
-Not `CompactSet`, for the exact layer's reason.
-
-A shadow's fields are function types, so the one an operation returns is a closure
-over the one it was given; `plus` therefore materialises, exactly as `Zonotope`'s
-does.
+`ContSet` is supplied by `InflatedContSet`. Then `ConvexSet` and `Plus`, as over ℝ, and
+`Intersection`, which the float layer's tied form makes rounding-free. `Mtimes` too, by the same
+tie: `mtimes` never multiplies a stored generator, which would round a coefficient of a variable the
+inequality does not bound (`SpectraShadow.lean` says why), but ties the point to new free variables
+and multiplies only the error box. And `LinComb`, the convex hull `convHull_` of the two. Not
+`CompactSet`, for the exact layer's reason. A shadow's fields are function types, so `plus`
+materialises, as `Zonotope`'s does.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -18,6 +18,12 @@ CORA's default `'outer:box'`, `zonotope(q, sqrtm(Q))`, with the factor `sqrtm(Q)
 CORA's parallelotope (a Cholesky factor, not the symmetric root), which no float routine here
 computes. Where the factor is not certified, the zonotope is the center alone and the box
 `q ± sqrt(diag(Q))` joins the error box.
+
+## Inputs
+* `E` – ellipsoid
+
+## Output
+* zonotope enclosing the ellipsoid
 -/
 
 -- Authors:       Claude Opus 5.5

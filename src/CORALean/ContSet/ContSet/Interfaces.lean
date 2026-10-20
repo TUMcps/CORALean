@@ -9,21 +9,13 @@ public import Mathlib.LinearAlgebra.Matrix.ToLin
 # The set interfaces
 
 Every class a representation instantiates in its `Instances.lean`. CORA's `contSet`: one field,
-`construct`, sending a representation to the set it denotes. The set is always over ℝ, whichever
-arithmetic the representation computes in, so over-approximation and refinement are the one relation
-`X ⊆ construct s` and compose by transitivity.
-
-The operation classes stay separate from `ContSet`, since `construct` is meaningful at strictly more
-types than the operations are: a zonotope denotes a set over any real module, but `reduce` needs
-coordinates, and a plain matrix denotes the singleton it is without being closed under anything.
-
-`Mtimes` and `Reindex` keep a family indexed by ℕ, being the operations that move between ambient
-types; `Contains` and `IsDisjoint` take two representations of one.
-
-`IntersectStrip` is CORA's `intersectStrip` [2, Prop. 6], outer for every gain. A precision
-parameter stays out of the classes: an operand-independent one is closed over by a `def` returning
-the class, as `Ellipsoid.plusInstance` does; an operand-dependent one needs an oracle a total
-`plus : S → S → S` cannot have.
+`construct`, sending a representation to the set it denotes, always over ℝ whichever arithmetic the
+representation computes in, so over-approximation and refinement are the one relation
+`X ⊆ construct s`. The operation classes stay separate from `ContSet`, since `construct` is
+meaningful at more types than the operations are. `Mtimes` and `Reindex` keep a family indexed by ℕ;
+`Contains` and `IsDisjoint` take two representations of one. `IntersectStrip` is CORA's
+`intersectStrip` [2, Prop. 6], outer for every gain. A precision parameter stays out of the classes:
+an operand-independent one is closed over by a `def` returning the class.
 
 ## References
 

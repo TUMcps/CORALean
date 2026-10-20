@@ -9,18 +9,13 @@ public import Mathlib.Analysis.Matrix.Order
 # Ellipsoids: the representation
 
 The definition is [1, Def. 4], CORA's `ellipsoid(Q, q)`: a shape matrix `Q` and a center `q`,
-stored as CORA stores them, denoting `{x | (x - q)ᵀ Q⁺ (x - q) ≤ 1, x - q ∈ range Q}`. The paper
-and CORA's class comment print `Q⁻¹`; the pseudo-inverse `Q⁺` is what a semi-definite `Q` needs and
-what CORA computes (`ellipsoidNorm` inverts the nonzero singular values of a degenerate `Q`), and is
-`Q⁻¹` when `Q` is invertible (`Theorems/IsPinvQpinv`). That `Q` is positive semi-definite is a
-field, as CORA's constructor refuses any other.
-
-The set is stated over `Q`, as the paper and CORA state it, so that the definition is the one a
-reader checks against them. The square root `G = Q^(1/2)` (`CFC.sqrt`, CORA's `sqrtm`, which some
-of its operations call; `Operations/Basic.lean`) is a derived helper: the set is
-`{q + G u | ‖u‖₂ ≤ 1}` (`Theorems/ConstructEqSqrt`), the form proofs go through, and any `F` with
-`F Fᵀ = Q` gives the same set (`Theorems/ConstructEqOfFactor`). `‖·‖₂` is `CORALean.norm₂`;
-`Vec ℝ n` carries the sup norm.
+denoting `{x | (x - q)ᵀ Q⁺ (x - q) ≤ 1, x - q ∈ range Q}`. The paper prints `Q⁻¹`; the
+pseudo-inverse `Q⁺` is what a semi-definite `Q` needs and what CORA computes, and is `Q⁻¹` when `Q`
+is invertible (`Theorems/IsPinvQpinv`). That `Q` is positive semi-definite is a field, as CORA's
+constructor refuses any other. The square root `G = Q^(1/2)` (`CFC.sqrt`, CORA's `sqrtm`;
+`Operations/Basic.lean`) is a derived helper: the set is `{q + G u | ‖u‖₂ ≤ 1}`
+(`Theorems/ConstructEqSqrt`), and any `F` with `F Fᵀ = Q` gives the same set
+(`Theorems/ConstructEqOfFactor`). `‖·‖₂` is `CORALean.norm₂`; `Vec ℝ n` carries the sup norm.
 
 ## References
 

@@ -12,21 +12,23 @@ public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonoto
 /-!
 # A polynomial zonotope as its corners
 
-Two enclosures, the cheaper first. `vPolytope` goes through the zonotope
-enclosure and then that zonotope's `2ʰ` sign corners, losing whatever the
-zonotope step lost and nothing further.
+Two enclosures, the cheaper first. `vPolytope` goes through the zonotope enclosure and then that
+zonotope's `2ʰ` sign corners, losing whatever the zonotope step lost. `vPolytopeSplit` is
+[1, Prop. 6], splitting the exponent matrix instead: a column whose exponents are all at most one is
+multilinear in the factors, and a multilinear map on a box is a convex combination of its values at
+the corners, so such a column is read at every sign vector exactly. Only a column with an exponent
+above one is given up, to `zonotopeEven`. Neither is exact, a polynomial zonotope being generally
+non-convex. The paper deletes the columns it gives up; here they stay at a zero generator, which
+costs vertices and not precision.
 
-`vPolytopeSplit` is [1, Prop. 6], which splits the exponent matrix instead. A
-column whose exponents are all at most one is multilinear in the factors, and a
-multilinear map on a box is a convex combination of its values at the box's
-corners — so such a column is read at every sign vector of the factors exactly.
-Only a column with an exponent above one is given up, to `zonotopeEven`. That is
-all the vertex enumeration the paper defers to a companion algorithm comes to
-here: its closing convex hull only drops points that are not vertices.
+## Inputs
+* `pZ` – polynomial zonotope
 
-Neither is exact, a polynomial zonotope being generally non-convex. The paper
-deletes the columns it gives up; here they stay at a zero generator, which costs
-vertices and not precision.
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its split vertex polytope
 
 ## References
 

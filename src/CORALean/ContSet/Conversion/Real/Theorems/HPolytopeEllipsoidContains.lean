@@ -17,6 +17,16 @@ halfspace description and this composition is not it.
 
 Loses whatever the zonotope route loses on top of the box's own `2n` linear
 programs.
+
+## Inputs
+* none
+
+## Hypotheses
+* `up` – certified upper bound per coordinate
+* `lo` – certified lower bound per coordinate
+
+## Conclusion
+* polytope is contained in its ellipsoid
 -/
 
 -- Authors:       Claude Opus 5

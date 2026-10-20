@@ -15,6 +15,12 @@ public import CORALean.Global.EuclideanNorm
 
 /-!
 # An ellipsoid as a constrained polynomial zonotope
+
+## Inputs
+* `k` – number of factors
+
+## Output
+* diagonal constraint exponent matrix with a slack row
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

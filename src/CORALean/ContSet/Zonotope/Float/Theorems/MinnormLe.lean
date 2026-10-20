@@ -15,6 +15,16 @@ exact value. The value is the nominal zonotope's, as CORA's `minnorm` reads `Z.c
 
 Source: [1].
 
+## Inputs
+* `p` – Newton steps for the root
+* `Z` – zonotope
+
+## Hypotheses
+* `hspan` – generators span the space
+
+## Conclusion
+* exact minimal norm is at most every returned bound
+
 ## References
 
 * [1] `contSet/@zonotope/minnorm.m`, CORA (Sep. 2025).

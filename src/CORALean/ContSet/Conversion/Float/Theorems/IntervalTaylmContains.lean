@@ -14,6 +14,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 CORA's constructor `taylm(int, max_order)`: through the box's zonotope, whose generators
 are the variables, so one variable per coordinate. The range set contains the box.
+
+## Inputs
+* `I` – interval
+* `N` – Taylor order
+
+## Hypotheses
+* none
+
+## Conclusion
+* interval is contained in its Taylor model
 -/
 
 -- Authors:       Claude Sonnet 5.5

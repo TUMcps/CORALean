@@ -10,6 +10,13 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MethCResidual
 The certificate for a candidate inverse: the largest absolute row sum of
 `methCResidual`, rounded up. If it is at most one half, `H` is close enough to the inverse of
 `P` that `P` is invertible and its coordinates are bounded (`Zonotope.basis_reach`).
+
+## Inputs
+* `H` – candidate right inverse
+* `P` – basis matrix
+
+## Output
+* upper bound on the largest row sum of the residual
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,16 +10,20 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotop
 /-!
 # A constrained polynomial zonotope as a constrained zonotope
 
-Through `ConPolyZono.polyZonotope`, then that polynomial zonotope's own
-constrained zonotope — a constrained zonotope with nothing to satisfy, that
-second leg being exact. A two-hop composition, and precision is still lost
-twice: the constraints go first, freeing every factor the equalities were
-confining, and then the sharing goes, at `PolyZonotope.zonotope`. For a
-representation whose whole point is the constraints, that is a lot to give up,
-and neither loss is recovered by the other.
+Through `ConPolyZono.polyZonotope`, then that polynomial zonotope's own constrained zonotope, the
+second leg exact. Precision is lost twice: the constraints go first, freeing every factor the
+equalities were confining, and then the sharing goes, at `PolyZonotope.zonotope`. Neither loss is
+recovered by the other. A direct constrained zonotope carrying the original constraints is a
+separate piece of mathematics, and no tighter enclosure is attempted here.
 
-A direct constrained zonotope carrying the original constraints is a separate
-piece of mathematics and no tighter enclosure is attempted here.
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its constrained zonotope
 -/
 
 -- Authors:       Claude Opus 5

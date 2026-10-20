@@ -24,6 +24,15 @@ the constraint at `α`; and `z = μ_E(α)`, which lies in the cube with `α`. Wi
 the star set's linear point `c + Σ GIⱼ βⱼ + Σ Gₗ zₗ` is the constrained polynomial zonotope's at
 `(α, β)`, so the two denote one set. The converse, a star set with a polynomial level set as its
 predicate as a constrained polynomial zonotope, is no construction here: its rows may be `≤`.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* star set equals the constrained polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,6 +16,16 @@ is not this composition. This is what closes the pair for now.
 
 Loses whatever the zonotope step lost and nothing further; exact only on the
 directions the caller names, as `Zonotope.hPolytope_contains` already is.
+
+## Inputs
+* `E` – ellipsoid
+* `Aq` – direction functionals
+
+## Hypotheses
+* none
+
+## Conclusion
+* ellipsoid is contained in its halfspace polytope
 -/
 
 -- Authors:       Claude Opus 5

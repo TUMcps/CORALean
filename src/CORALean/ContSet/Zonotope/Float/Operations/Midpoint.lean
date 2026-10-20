@@ -12,6 +12,13 @@ and by `MidpointMemResidual.lean`, both outside this file.
 
 Rounds the lower of the two directed midpoints; `midpointResidual` is what that
 leaves to pay.
+
+## Inputs
+* `a` – first center
+* `b` – second center
+
+## Output
+* stored midpoint of the two centers
 -/
 
 -- Authors:       Claude Opus 5

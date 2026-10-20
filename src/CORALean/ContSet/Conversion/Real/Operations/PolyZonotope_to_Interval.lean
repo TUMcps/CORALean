@@ -9,6 +9,12 @@ public import Mathlib.Order.BourbakiWitt
 
 /-!
 # A polynomial zonotope as a box
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Output
+* interval of the polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5

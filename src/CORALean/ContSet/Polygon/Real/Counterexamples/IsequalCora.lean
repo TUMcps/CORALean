@@ -7,37 +7,16 @@ public import Mathlib.Tactic.Linarith
 @[expose] public section
 
 /-!
-# `Polygon.isequalCora`: `polygon/isequal` as CORA's code computes it
-
-CORA's `@polygon/isequal.m` (l. 1-76) compares the boundary vertex lists of two polygons
-(after `removeCollinearPoints`, taken here as given): equal numbers of vertices, then every
-position `idx` in `V2` that holds `V1(1,:)` is tried as the start of a cyclic re-ordering of `V2`,
-and the lists are compared in order. The loop (l. 64-71) reads
-
-```
-for i = 1:length(idx)
-    V2_ = [V2(idx:end, :); V2(1:idx-1, :)];
-```
-
-with `idx`, not `idx(i)`. MATLAB's colon operator takes the first element of a vector operand,
-so every pass re-orders `V2` from `idx(1)`. A boundary that visits one point twice has several
-such positions, and only the first is ever tried. The lists are `List`s of vertices (rows of
-`V1`, `V2`); `withinTol(a,b,tol)` is its absolute branch `|a - b| <= tol` (the relative branch is
-only wider); `compareMatrices(..., tol, 'equal', true)` with equal sizes is `all(withinTol(…))`.
-Read from the source, not run.
-
 # CORA's `polygon/isequal` reports a polygon unequal to its own re-start
 
-Take the boundary that runs through the origin `O` twice, once round each of two triangles
-touching at `O`: `V1 = (O, A, B, O, C, D)` with `A = (1,1)`, `B = (1,-1)`, `C = (-1,-1)`,
-`D = (-1,1)`, and `V2 = (O, C, D, O, A, B)`, the same closed boundary started at its fourth
-vertex (`isequal.m` is written for this: "vertices have to be in order, but start of list can
-vary"). `V1(1,:)` occurs in `V2` at the positions `idx = [1 4]`. The loop `for i = 1:length(idx)`
-re-orders `V2` from `idx` read as `idx(1) = 1` in both passes, which is `V2` itself, and `V2` is
-not `V1` (second vertex `C ≠ A`). So `isequal` answers `false` for equal polygons, for every
-tolerance below `2`. The right start `idx(2) = 4` would give `V1`. A wrong answer, not unsound.
-Read from the source, not run; whether MATLAB's `polyshape` keeps such a pinched boundary as
-one loop in the order given is not checked.
+CORA's `@polygon/isequal.m` (l. 1-76) compares the boundary vertex lists (after
+`removeCollinearPoints`, taken as given): every position `idx` in `V2` holding `V1(1,:)` is tried as
+the start of a cyclic re-ordering. The loop (l. 64-71), `for i = 1:length(idx)`, re-orders from
+`idx`, not `idx(i)`; MATLAB's colon takes the first element, so only the first position is tried.
+For the boundary through the origin `O` twice, `V1 = (O, A, B, O, C, D)`, `V2 = (O, C, D, O, A, B)`
+(`A = (1,1)`, `B = (1,-1)`, `C = (-1,-1)`, `D = (-1,1)`), the same boundary started at its fourth
+vertex, `idx = [1 4]` and both passes re-order from `1`: `isequal` answers `false` for equal
+polygons, for every tolerance below `2`. A wrong answer, not unsound. Read from the source, not run.
 
 ## Inputs
 * `tol` – tolerance

@@ -8,6 +8,11 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 /-!
 # `Zonotope.materialiseMat`
 
+## Inputs
+* `Z` – matrix zonotope
+
+## Output
+* matrix zonotope with center, generators and box stored
 -/
 
 -- Authors:       Claude Opus 5

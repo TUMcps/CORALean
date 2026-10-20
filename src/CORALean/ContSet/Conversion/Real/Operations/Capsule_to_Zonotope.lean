@@ -15,6 +15,12 @@ ball, `ellipsoid(r² I)` converted by the ellipsoid's own conversion, `Ellipsoid
 `r` is zero, where the conversion is exact. CORA converts the ball with `'outer:norm'` and
 `order * n - 1` generators; here the ellipsoid's conversion is the existing one, the ellipsoid's
 bounding box, so the ball's part is coarser than CORA's.
+
+## Inputs
+* `C` – capsule
+
+## Output
+* zonotope of the segment plus the ball
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,19 +10,22 @@ public import CORALean.ContSet.Interval.Real.Theorems.Basic
 /-!
 # A polynomial zonotope as a constrained one
 
-Exact, and the cleanest check on the definition: keep every field and add no
-constraints. With `m = 0` the constraint quantifies over an empty index, so
-every factor vector satisfies it and the two sets are the same one, generator
-for generator.
+Exact, and the cleanest check on the definition: keep every field and add no constraints. With
+`m = 0` the constraint quantifies over an empty index, so every factor vector satisfies it and the
+two sets are the same one, generator for generator. Read the other way, a constrained polynomial
+zonotope is a polynomial zonotope exactly when its constraint system says nothing, which makes
+`ConPolyZono` a conservative extension rather than a different representation. The empty system is
+`A = 0` at `Fin 0 × Fin 0`, with nothing for columns to be, and the exponent matrix is `Fin.elim0`
+per factor.
 
-Read the other way, a constrained polynomial zonotope is a polynomial zonotope
-exactly when its constraint system says nothing — which is what makes
-`ConPolyZono` a conservative extension rather than a different representation.
+## Inputs
+* `pZ` – polynomial zonotope
 
-The empty system is `A = 0` at `Fin 0 × Fin 0` rather than an empty list of
-rows over the original constraint generators: with no rows there is nothing for
-columns to be, and the exponent matrix is `Fin.elim0` per factor for the same
-reason.
+## Hypotheses
+* none
+
+## Conclusion
+* set equals its constrained polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5

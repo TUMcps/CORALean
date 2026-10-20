@@ -14,6 +14,13 @@ The star set whose predicate is the level set itself, center `0`, the identity b
 being any representation in coefficient space. A star set carries a finite box, so it is the level
 set exactly where the level set is bounded, `D` any box around it.
 
+## Inputs
+* `L` – level set
+* `D` – box of coefficients
+
+## Output
+* star set on `D` with the constraints as predicate
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

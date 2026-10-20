@@ -12,6 +12,17 @@ public import CORALean.ContSet.Zonotope.Real.Operations.CubMap
 The exact center `cubFold (0, 0, 0) + ½ Σⱼ cubFold (0, j, j)` on the read-back operand is bracketed
 term by term (`cubFold_bracket`), the sum by `sumDown_le_sum` and `sum_le_sumUp`, and halving is
 exact. The stored center is the lower end, and the gap to the upper is what the box is charged.
+
+## Inputs
+* `T` – cubic tensor
+* `Z` – zonotope
+* `i` – output coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* exact center lies between the two roundings
 -/
 
 -- Authors:       Claude Opus 5.5

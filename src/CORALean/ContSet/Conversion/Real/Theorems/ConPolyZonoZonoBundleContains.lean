@@ -14,6 +14,15 @@ Through `ConPolyZono.zonotope`, which drops the constraints and then the
 sharing, then `Zonotope.zonoBundle` — the single-member bundle, exact by
 `Set.iInter_const`. All the loss is the first leg's, so this is no worse than
 `ConPolyZono → Zonotope` already is.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its zonotope bundle
 -/
 
 -- Authors:       Claude Opus 5

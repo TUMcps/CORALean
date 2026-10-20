@@ -15,6 +15,15 @@ CORA's `levelSet(ellipsoid)`: `(x - q)ᵀ Q⁻¹ (x - q) - 1 ≤ 0`, with `Q` th
 through `Q = G Gᵀ`, `G = Q^(1/2)`. CORA's `inv(E.Q)` presumes `Q` invertible, and so does the
 equality below; a degenerate ellipsoid is not
 a sublevel set of this quadratic form, and the conversion is not claimed for it.
+
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* `hQ` – shape matrix invertible
+
+## Conclusion
+* level set equals the ellipsoid
 -/
 
 -- Authors:       Claude Opus 5.5

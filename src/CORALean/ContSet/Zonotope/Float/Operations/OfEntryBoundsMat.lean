@@ -14,6 +14,17 @@ exact center and of each exact generator, and this stores the lower ones. The ce
 is `matResidual`; a generator's gap, scaled by a coefficient in `[-1, 1]`, is at most its
 width, so the widths summed upward bound the rest, as a symmetric box. Both join the box
 `E` the operation already owes, and the generator count is the exact one's.
+
+## Inputs
+* `h` – number of generators
+* `cLo` – lower center bounds
+* `cHi` – upper center bounds
+* `GLo` – lower generator bounds
+* `GHi` – upper generator bounds
+* `E` – error box
+
+## Output
+* matrix zonotope storing lower bounds, gaps paid into the box
 -/
 
 -- Authors:       Claude Opus 5.5

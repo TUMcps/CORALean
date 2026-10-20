@@ -16,6 +16,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_SpectraSha
 # A zonotope as a spectrahedral shadow, over a floating-point scalar
 
 `Zonotope.spectraShadow_contains`: its `spectraShadow` contains it.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is contained in its spectrahedral shadow
 -/
 
 -- Authors:       Claude Opus 5.5

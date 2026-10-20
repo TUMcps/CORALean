@@ -15,6 +15,21 @@ lists `L`: `perm` runs over every ordered triple of generator indices exactly on
 permutations sent to one column by `map` are reorderings of one another. The stored columns at the
 coefficients of `tensorMultiplication_coeff` are the nominal point, and the shortfalls per
 coefficient are in the box. The enclosure is not exact.
+
+## Inputs
+* `Z` – zonotope
+* `M` – third-order tensor
+* `L` – permutation lists
+* `x` – point
+
+## Hypotheses
+* `hc` – center is zero
+* `hperm` – permutations run over each triple once
+* `hmap` – same column means reordered triple
+* `hx` – point lies in the zonotope
+
+## Conclusion
+* tensor image of the point lies in the computed zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

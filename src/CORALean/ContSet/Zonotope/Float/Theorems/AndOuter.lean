@@ -14,6 +14,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 Zonotope into constrained zonotope (`conZonotope_contains`), the outer float intersection
 (`ConZonotope.intersection_outer`), and the constraints forgotten (`zonotope_contains`).
+
+## Inputs
+* `Z` – first zonotope
+* `S` – second zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* intersection is contained in the computed zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

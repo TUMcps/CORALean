@@ -7,16 +7,20 @@ public import CORALean.ContSet.Zonotope.Float.Operations.RightInvQ
 /-!
 # `Zonotope.rightInvGain`
 
-The certificate that a candidate right inverse `H` (`n × q`) of a matrix `G` (`q × n`) solves
-every system `G β = d` up to a known factor: with `κ = rightInvQ G H` bounding the absolute row
-sums of `1 - G H`, it checks `1 - κ > 0` with outward rounding and returns
-`γ ≥ maxⱼ ∑ₖ |Hⱼₖ| / (1 - κ)`, rounded up. Then every `d` with `|dᵢ| ≤ ε` is `G β` with every
-`|βⱼ| ≤ γ ε` (`Zonotope.rightInvGain_solve`), the Neumann bound on a true right inverse. `none`
-says only that this `H` was not good enough: a rank-deficient or ill-conditioned `G`, or a bad
-candidate.
+The certificate that a candidate right inverse `H` (`n × q`) of a matrix `G` (`q × n`) solves every
+system `G β = d` up to a known factor: with `κ = rightInvQ G H` bounding the absolute row sums of
+`1 - G H`, it checks `1 - κ > 0` with outward rounding and returns `γ ≥ maxⱼ ∑ₖ |Hⱼₖ| / (1 - κ)`,
+rounded up. Then every `d` with `|dᵢ| ≤ ε` is `G β` with every `|βⱼ| ≤ γ ε`
+(`Zonotope.rightInvGain_solve`), the Neumann bound on a true right inverse. `none` says only that
+this `H` was not good enough. It serves wherever a rounded equality is made exact again: moving a
+point onto the stored hyperplanes costs at most `γ` times the residual (`HPolytope.anchorEqsInBox`).
 
-It serves wherever a rounded equality is made exact again: moving a point onto the stored
-hyperplanes costs at most `γ` times the residual (`HPolytope.anchorEqsInBox`).
+## Inputs
+* `G` – matrix
+* `H` – candidate right inverse
+
+## Output
+* certified coefficient gain of the right inverse, if any
 -/
 
 -- Authors:       Claude Opus 5.5

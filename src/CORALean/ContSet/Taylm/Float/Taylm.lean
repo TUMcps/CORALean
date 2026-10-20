@@ -9,17 +9,14 @@ public import CORALean.ContSet.Interval.Float.Interval
 /-!
 # Taylor models over a floating-point scalar: the representation
 
-CORA's `taylm` with its coefficients and remainder bounds in `𝕋`, and an error box `I_error`
-beside the remainder, as every float set carries one (#185). The exponents stay in ℕ, so the
-monomials are the exact layer's. The remainder `rem` holds what the exact layer's would: the
-truncated and Lagrange terms, rounded outward. Rounding is paid where a coefficient is computed,
-by storing one end of its enclosure, and the width, every monomial being in `[-1, 1]` on the box,
-goes into the error box. `Taylm.absorbRounding` adds the box to the remainder, which is what a
-product, whose cross terms multiply the remainders, does first.
-
-`nominal` reads the stored floats as an exact model, its remainder `rem` alone; `inflated` is the
-same model with the box added to the remainder, exactly, and a float model encloses what its
-inflated model encloses, as a float set denotes its nominal part plus the box.
+CORA's `taylm` with its coefficients and remainder bounds in `𝕋`, and an error box `I_error` beside
+the remainder (#185). The exponents stay in ℕ, so the monomials are the exact layer's. The remainder
+`rem` holds what the exact layer's would, rounded outward. Rounding is paid where a coefficient is
+computed, by storing one end of its enclosure, and the width, every monomial being in `[-1, 1]` on
+the box, goes into the error box. `Taylm.absorbRounding` adds the box to the remainder, which a
+product, whose cross terms multiply the remainders, does first. `nominal` reads the stored floats as
+an exact model, its remainder `rem` alone; `inflated` is the same model with the box added to the
+remainder.
 -/
 
 -- Authors:       Claude Opus 5.5

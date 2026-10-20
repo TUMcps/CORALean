@@ -22,6 +22,16 @@ least their sum, so one coefficient places both at once.
 Neither `mono_subset` nor `map_subset` applies: they send nominal to nominal and
 box to box, whereas this moves content *out* of the box into the nominal part.
 What is left in the box is the rounded center shift, as in `absorbError`.
+
+## Inputs
+* `Z` – zonotope
+* `part` – split into kept and reduced generators
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is contained in the reduced absorbed form
 -/
 
 -- Authors:       Claude Opus 5

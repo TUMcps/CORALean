@@ -10,16 +10,31 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffStretchOuter
 /-!
 # The float `minkDiffStretch` over-approximates the Minkowski difference
 
-[1, Thm. 5], CORA's `'outer'` and `'outer:coarse'`, at a float result. Two steps: the float
-stretch, every entry bracketed and the gaps paid into the box, encloses the real stretch of the
-operands' nominal zonotopes at `μ` read as reals (`aux_minkDiffStretch_encloses`, by
-`ofEntryBounds_outer`); and at a `μ` meeting [1, Thm. 5]'s constraint that real stretch covers
-the difference (`Real.Zonotope.minkDiffStretch_outer`, whose hypotheses this theorem asks for
-verbatim at the nominal operands).
+[1, Thm. 5], CORA's `'outer'` and `'outer:coarse'`, at a float result. Two steps: the float stretch,
+every entry bracketed and the gaps paid into the box, encloses the real stretch of the operands'
+nominal zonotopes at `μ` read as reals (`aux_minkDiffStretch_encloses`, by `ofEntryBounds_outer`);
+and at a `μ` meeting [1, Thm. 5]'s constraint that real stretch covers the difference
+(`Real.Zonotope.minkDiffStretch_outer`, whose hypotheses this theorem asks for verbatim at the
+nominal operands). The difference is the one of the nominal zonotopes: a box on the subtrahend only
+shrinks the true difference, but a box on the minuend can grow it beyond what the stretched nominal
+minuend reaches, and [1, Thm. 5] says nothing about that set.
 
-The difference is the one of the nominal zonotopes. A box on the subtrahend only shrinks the true
-difference, so it is still covered; a box on the minuend can grow it beyond what the stretched
-nominal minuend reaches, and [1, Thm. 5] says nothing about that set.
+## Inputs
+* `ι` – constraint index type
+* `Z₁` – minuend zonotope
+* `Z₂` – subtrahend zonotope
+* `μ` – stretch per generator
+* `C` – constraint functionals
+* `b` – constraint bounds
+
+## Hypotheses
+* `hμ0` – stretch nonnegative
+* `hb` – bounds hold on the difference
+* `hμ` – bounds met by the stretched generators
+* `hCd` – constraint set lies in the stretched zonotope
+
+## Conclusion
+* Minkowski difference is contained in the stretched zonotope
 
 ## References
 

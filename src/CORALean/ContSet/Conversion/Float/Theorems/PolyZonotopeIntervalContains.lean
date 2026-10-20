@@ -19,6 +19,15 @@ zonotope first. There is no float `PolyZonotope.zonotope` to go through, and
 nothing would be gained by one — freeing a generator is what costs the exact
 route its precision, and both routes are equally loose about a monomial that
 never reaches `-1`.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its interval
 -/
 
 -- Authors:       Claude Opus 5

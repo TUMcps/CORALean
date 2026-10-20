@@ -11,6 +11,15 @@ public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaOriginSound
 
 A `true` answer makes every generator and the center `0`, so the nominal part is `{0}`, and the
 error box is `{0}`: the zonotope is `{0}`.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* `h` – test returns true
+
+## Conclusion
+* zonotope is the origin alone
 -/
 
 -- Authors:       Claude Sonnet 5.5

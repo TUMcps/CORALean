@@ -8,6 +8,12 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 
 /-!
 # A constrained polynomial zonotope as a polynomial zonotope, over a
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* polynomial zonotope with the same data, constraints dropped
 -/
 
 -- Authors:       Claude Opus 5.5

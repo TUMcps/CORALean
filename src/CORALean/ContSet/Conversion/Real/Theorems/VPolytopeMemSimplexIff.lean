@@ -8,6 +8,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.VPolytope_to_ConZonoto
 
 /-!
 # A hull as a constrained zonotope: `mem_simplex_iff`
+
+## Inputs
+* `k` – number of vertices
+* `β` – coefficient vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership in simplex means nonnegative and sum one
 -/
 
 -- Authors:       Claude Opus 5

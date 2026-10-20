@@ -17,6 +17,15 @@ direct construction would be tighter.
 
 Loses whatever both steps lose: the zonotope's own enclosure, then the
 cube-to-ball inflation.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its ellipsoid
 -/
 
 -- Authors:       Claude Opus 5

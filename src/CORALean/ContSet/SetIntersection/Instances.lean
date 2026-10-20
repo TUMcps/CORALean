@@ -10,22 +10,14 @@ public import CORALean.ContSet.SetIntersection.Theorems.IntersectionExact
 /-!
 # What `SetIntersection` instantiates
 
-`ContSet` is already at `SetIntersection.lean`, since the type's own docstring
-needs what it denotes. `Mtimes`, `Plus`, `Reduce` and `ConvexSet` follow whenever the
-member type `S` has them, each the branch-wise operation from `Operations/`
-paired with the guarantee `Theorems/` proves for it; `Intersection` holds at every `S`,
-appending the lists.
-
-`Contains`/`IsDisjoint` lift both ways. As the *computed* set, `S :=
-SetIntersection S'`: conservative both ways, one member already answering
-being enough. As the *container*, `T := SetIntersection T'`: `contains`
-exact, needing every member; `isDisjoint` conservative. Both instantiate
-`Contains (SetIntersection T') (SetIntersection S')` at once, so the
-container pair carries `(priority := low)`, exactly as `SetUnion`'s own two
-pairs do: the computed-set reading is tried first, uniformly across both files.
-
-Computable throughout, for the same reason as `SetUnion`: every field is
-`List.map`/`List.all`/`List.any` over whatever `S`'s own instance computes.
+`ContSet` is already at `SetIntersection.lean`. `Mtimes`, `Plus`, `Reduce` and `ConvexSet` follow
+whenever the member type `S` has them, each the branch-wise operation from `Operations/` with the
+guarantee `Theorems/` proves; `Intersection` holds at every `S`, appending the lists.
+`Contains`/`IsDisjoint` lift both ways. As the *computed* set, `S := SetIntersection S'`:
+conservative both ways, one member answering being enough. As the *container*,
+`T := SetIntersection T'`: `contains` exact, `isDisjoint` conservative. Both instantiate
+`Contains (SetIntersection T') (SetIntersection S')` at once, so the container pair carries
+`(priority := low)`, as `SetUnion`'s do.
 -/
 
 -- Authors:       Claude Sonnet 5

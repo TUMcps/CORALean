@@ -13,6 +13,17 @@ What the float `or` and `convHull_` of a zonotope are: `linComb` is the enclosur
 `enclose` makes, and a zonotope is convex, so the segments between two nonempty ones are the
 convex hull of their union (`convexHull_union_eq_setLinComb`) and `linComb_outer` puts that in the
 result. Outer only: the zonotope `linComb` is coarser than the hull.
+
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+
+## Hypotheses
+* `h₁` – first zonotope nonempty
+* `h₂` – second zonotope nonempty
+
+## Conclusion
+* convex hull of the union is contained in the combination
 -/
 
 -- Authors:       Claude Opus 5.5

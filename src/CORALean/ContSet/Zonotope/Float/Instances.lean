@@ -26,22 +26,14 @@ public import CORALean.Global.Float.NoNaN
 /-!
 # What `Zonotope` instantiates
 
-`ContSet` is not among them — `InflatedContSet` supplies it, which is what makes
-this the same class the exact layer instantiates. So an algorithm written against
-the three operation classes run here with no float counterpart to write.
-
-A zonotope's four fields are function types, so the one an operation returns is a
-closure over the one it was given and nothing stores the numbers in between: a
-loop that iterates operations rebuilds its whole history on every entry read, and
-costs geometrically in the number of iterations rather than linearly.
-`Zonotope.materialise` stores them, and `materialise_eq` says it is the identity,
-so each proof below is the operation's own guarantee after one rewrite.
-
-It goes here rather than in `Operations/`: an algorithm reaches a representation
-through the operation fields below and through nothing else, so this is the place
-that knows a set is about to be handed back to a loop. In the operations it
-would have to guess which of them a loop calls — `NeuralNetwork.enclose` calls
-neither `reduce` nor `linComb`.
+`ContSet` is supplied by `InflatedContSet`, so an algorithm written against the three operation
+classes runs here with no float counterpart to write. A zonotope's four fields are function types,
+so the one an operation returns is a closure over the one it was given: a loop that iterates
+operations rebuilds its whole history on every entry read. `Zonotope.materialise` stores them, and
+`materialise_eq` says it is the identity, so each proof below is the operation's own guarantee after
+one rewrite. It goes here rather than in `Operations/`: an algorithm reaches a representation
+through the operation fields below and nothing else, so this knows a set is about to be handed back
+to a loop.
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

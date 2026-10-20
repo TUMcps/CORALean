@@ -14,6 +14,15 @@ compact as a continuous image of the coefficient cube, and the error box,
 compact by Heine–Borel. Compactness is what has to be carried rather than
 closedness: a sum of two merely closed sets need not be closed, so `IsClosed`
 is read off this and not the other way round.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope is compact
 -/
 
 -- Authors:       Claude Opus 5

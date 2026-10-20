@@ -11,6 +11,13 @@ public import CORALean.ContSet.Zonotope.Float.Operations.CenterResidual
 Generators concatenate exactly, so only the center rounds and its `residual`
 goes into the box, leaving the count at `h₁ + h₂` as over ℝ. Paying into new
 generators instead would cost `n` more on every addition.
+
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+
+## Output
+* zonotope with concatenated generators, center rounding in the box
 -/
 
 -- Authors:       Claude Opus 5

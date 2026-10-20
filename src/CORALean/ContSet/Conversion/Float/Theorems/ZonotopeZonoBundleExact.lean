@@ -12,6 +12,15 @@ public import CORALean.ContSet.Conversion.Float.Operations.Basic
 Exact: the float bundle denotes the intersection of its members' own inflated
 sets, so a one-member family denotes that member and nothing else
 (`Set.iInter_const` at `Fin 1`). The member keeps its own error box.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* zonotope equals its zonotope bundle
 -/
 
 -- Authors:       Claude Opus 5.5

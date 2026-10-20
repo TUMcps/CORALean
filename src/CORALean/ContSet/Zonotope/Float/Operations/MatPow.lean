@@ -13,6 +13,12 @@ The exact layer's `Zonotope.matPow` rounded: the identity at order `0`, then
 `M · M^k`, recursing on the right as the exact one does so `matPow_outer` unfolds the
 same way. The identity is `diagonalBlock fun _ => one`, `𝕋` having no `One` (see
 `Interval.matPow`). Each power is materialised, or the next product would rebuild it.
+
+## Inputs
+* `M` – matrix zonotope
+
+## Output
+* matrix zonotope raised to a given power
 -/
 
 -- Authors:       Claude Opus 5.5

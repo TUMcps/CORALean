@@ -9,22 +9,13 @@ public import CORALean.ContSet.SetIntersection.SetIntersection
 /-!
 # Zoos: the representation
 
-CORA's `zoo` (`contSet/@zoo/zoo.m`): several range enclosures of one function, each
-evaluated by its own arithmetic, whose interval enclosures `interval` intersects. CORA keeps one
-object per method (`taylm(·)` four ways, `affine(·)`, `interval`); the `taylm(·)` members differ
-only in the range bound, and CORA's `affine` is a Taylor model of order one, which a single
-Taylor model slot cannot hold beside `taylm(int)`. A zoo here has two members: an optional Taylor
-model (`taylm(int)`) and an optional interval, each over the normalized box `[-1, 1]ⁿ`.
-
-A member encloses the function on the box: the Taylor model as `Taylm.Encloses`, the interval
-as holding the function's value at every box point.
-
-CORA's zoo is the intersection of several enclosures of one function, and so is this one: each
-member denotes the set of functions it encloses (`Zoo.Member`), and the zoo denotes the
+CORA's `zoo` (`contSet/@zoo/zoo.m`): several range enclosures of one function, each by its own
+arithmetic, whose interval enclosures `interval` intersects. CORA keeps one object per method
+(`taylm(·)` four ways, `affine(·)`, `interval`); the `taylm(·)` members differ only in the range
+bound, and CORA's `affine` is a Taylor model of order one. A zoo here has two members, an optional
+Taylor model (`taylm(int)`) and an optional interval, over the box `[-1, 1]ⁿ` (`Taylm.Encloses`).
+Each member denotes the set of functions it encloses (`Zoo.Member`), and the zoo the
 `SetIntersection` of its members' sets (`Zoo.members`), an absent member read as all functions.
-`Zoo` stays a structure with named slots, not a bare `SetIntersection`, because its operations
-combine the Taylor models with each other and the intervals with each other, which a list of
-members does not say.
 -/
 
 -- Authors:       Claude Opus 5.5

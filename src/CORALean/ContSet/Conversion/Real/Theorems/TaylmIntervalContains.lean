@@ -16,6 +16,16 @@ CORA's `interval(taylm)` with its default `'int'` method: each coordinate's `bou
 term ranges summed with the remainder. Outer, as interval arithmetic is: the box contains
 the range set and in general more, the dependence between terms being dropped. The
 branch-and-bound methods (`optBnb`, `optLinQuad`, `optBernstein`) are tighter and not here.
+
+## Inputs
+* `m` – number of coordinates
+* `T` – Taylor models, one per coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* Taylor models are contained in their interval
 -/
 
 -- Authors:       Claude Opus 5.5

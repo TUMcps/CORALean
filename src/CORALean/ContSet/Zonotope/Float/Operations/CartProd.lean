@@ -12,6 +12,13 @@ public import CORALean.Global.Float.GenBlockDiag
 CORA's `@zonotope/cartProd_`: the centers stack, the generators are block diagonal, and the error
 boxes stack (`Interval.append`). Nothing is added or multiplied, so nothing rounds: `G` is
 `genBlockDiag` of the two stored matrices, each padded with zeros on the side of the other operand.
+
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+
+## Output
+* Cartesian product zonotope
 -/
 
 -- Authors:       Claude Sonnet 5.5

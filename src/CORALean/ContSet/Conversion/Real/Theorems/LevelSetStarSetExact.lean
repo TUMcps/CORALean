@@ -14,6 +14,16 @@ public import CORALean.ContSet.LevelSet.Real.Instances
 through `StarSet.ofPred_exact`. A star set's box is finite, so an unbounded level set is none.
 The other direction is `StarSet.exists_levelSet_exact`.
 
+## Inputs
+* `L` – level set
+* `D` – box around the level set
+
+## Hypotheses
+* `hD` – level set lies in the box
+
+## Conclusion
+* star set on `D` equals the level set
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

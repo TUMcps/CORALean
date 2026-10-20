@@ -11,6 +11,18 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 The nominal part `c + ∑ βⱼ gⱼ` scales to the factors `s, sβ₁, …` of the generators `c, g₁, …`,
 all in `[-1, 1]`, about the center `0`; a point `e` of the box scales to `se`, `|seᵢ| ≤ |eᵢ|`,
 inside the symmetric hull.
+
+## Inputs
+* `Z` – zonotope
+* `s` – scalar
+* `z` – point
+
+## Hypotheses
+* `hs` – scalar in the unit interval
+* `hz` – point lies in the zonotope
+
+## Conclusion
+* scaled point lies in the computed zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

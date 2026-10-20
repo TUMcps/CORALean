@@ -15,6 +15,16 @@ all the others, and without the interior hypothesis: the certificate covers the 
 
 Source: [1].
 
+## Inputs
+* `Zs` – cells
+* `ind` – cell index
+
+## Hypotheses
+* `hout` – cell is deleted
+
+## Conclusion
+* deleted cell lies in another cell
+
 ## References
 
 * [1] `contSet/@zonotope/filterOut.m`, CORA (Sep. 2025), by M. Althoff (2008). No paper behind the

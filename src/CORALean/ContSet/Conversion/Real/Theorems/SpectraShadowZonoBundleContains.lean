@@ -15,6 +15,15 @@ CORA's `zonoBundle(SpS)` is `zonoBundle(zonotope(SpS))`. The zonotope encloses a
 bounded base spectrahedron (`SpectraShadow.zonotope_contains`), and the conversion of a
 zonotope loses nothing (`Zonotope.zonoBundle_exact`), so this is an outer
 approximation too, not an equality.
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Hypotheses
+* `hb` – base spectrahedron bounded
+
+## Conclusion
+* shadow is contained in its zonotope bundle
 -/
 
 -- Authors:       Claude Opus 5.5

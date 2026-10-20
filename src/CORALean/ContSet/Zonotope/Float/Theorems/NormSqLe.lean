@@ -15,6 +15,18 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 The box contains the zonotope (`Zonotope.interval_contains`) and a certificate `σ` with
 `normSq ≤ σ·σ` makes `|σ|` an upper bound of `Interval.norm`. An upper bound only, and not
 tight in general: a box is larger than its zonotope.
+
+## Inputs
+* `Z` – zonotope
+* `σ` – certificate
+* `x` – point
+
+## Hypotheses
+* `hσ` – squared length bounded by the squared certificate
+* `hx` – point lies in the zonotope
+
+## Conclusion
+* norm of the point is at most the certificate's magnitude
 -/
 
 -- Authors:       Claude Sonnet 5.5

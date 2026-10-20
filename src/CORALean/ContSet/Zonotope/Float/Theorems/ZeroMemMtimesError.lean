@@ -13,6 +13,16 @@ and by `reachErrorFloat`'s own recursion. `Interval.mtimes` keeps `0` because
 is charged against a product that is itself at most/at least `0`, whichever
 sign the matrix entry has; `mtimesResidual` keeps it for the same structural
 reason `centerResidual` does, `generatorError` being symmetric outright.
+
+## Inputs
+* `M` – matrix
+* `Z` – zonotope
+
+## Hypotheses
+* `h` – error box contains zero
+
+## Conclusion
+* product error box contains zero
 -/
 
 -- Authors:       Claude Opus 5

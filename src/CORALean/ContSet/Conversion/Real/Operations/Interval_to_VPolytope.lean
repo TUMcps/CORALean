@@ -14,6 +14,13 @@ public import CORALean.ContSet.Interval.Real.Operations.Vertices
 
 The vectors' corners (`vPolytope`), and for an interval matrix CORA's `matPolytope`, which builds
 the vertex list of `Interval.vertices`.
+
+## Inputs
+* `I` – interval
+* `σ` – upper end per coordinate
+
+## Output
+* corner taking the upper end where `σ` says so
 -/
 
 -- Authors:       Claude Opus 5

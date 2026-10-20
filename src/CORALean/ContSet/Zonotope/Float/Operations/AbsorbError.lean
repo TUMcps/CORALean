@@ -15,6 +15,12 @@ holding what that rounding still owes rather than becoming `[0, 0]`.
 
 `shiftDown`, `shiftUp` and `errorRadius` are shared with `reduceAndAbsorbBy`,
 which does this and a reduction in one pass.
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* zonotope with the box traded for generators about its midpoint
 -/
 
 -- Authors:       Claude Opus 5

@@ -16,13 +16,19 @@ public import CORALean.Global.OrthogonalFirstColumn
 CORA's bundle of one zonotope per row (`HPolytope.zonoBundleRows`) is exact given an orthogonal
 basis for each row, whose first axis is the row's normal, and a vertex list of the polytope. Both
 exist: the vertices by the constrained zonotope a bounded polytope is
-(`ConZonotope.exists_construct_eq_iff_hPolytope`) and its vertex form, and the basis by the
-Householder reflection that carries the first axis to the normal (`exists_orthogonal_firstCol`). An
-empty polytope is the bundle of two distinct points. The dimension is positive, a bundle in
-dimension `0` being a point or nothing at all.
+(`ConZonotope.exists_construct_eq_iff_hPolytope`), and the basis by the Householder reflection
+carrying the first axis to the normal (`exists_orthogonal_firstCol`). An empty polytope is the
+bundle of two distinct points; the dimension is positive. This is the equivalence of polytopes and
+zonotope bundles of [1, Fig. 1 (Polytopes ↔ Zonotope Bundles)].
 
-This is the equivalence of polytopes and zonotope bundles of
-[1, Fig. 1 (Polytopes ↔ Zonotope Bundles)].
+## Inputs
+* `P` – halfspace polytope
+
+## Hypotheses
+* `hbd` – polytope bounded
+
+## Conclusion
+* some zonotope bundle equals the polytope
 
 ## References
 

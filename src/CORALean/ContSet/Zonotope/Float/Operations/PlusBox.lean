@@ -7,18 +7,20 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Plus
 /-!
 # `Zonotope.plusBox`
 
-A box that holds everything `plus` may contain beyond the Minkowski sum of its operands.
+A box that holds everything `plus` may contain beyond the Minkowski sum of its operands. Only the
+center is rounded: `plus` joins the generators of both operands without changing them. So the box
+adds up two parts: a bound on the rounding error of the new center, computed in `𝕋` with directed
+rounding (using that `addDown` never exceeds the exact sum, and that `subDown` against `addUp` never
+exceeds the gap below it), and the error box of the result. It is not a reduction: no class asks a
+representation how far a binary operation may stray from its inputs, and only the definition of
+`plus` can say.
 
-Only the center is rounded: `plus` joins the generators of both operands without changing them.
-So the box adds up two parts.
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
 
-* A bound on the rounding error of the new center, computed in `𝕋` with directed rounding. It
-  uses that `addDown` never exceeds the exact sum, and that `subDown` against `addUp` never
-  exceeds the gap below it.
-* The error box of the result.
-
-It is not a reduction: no class asks a representation how far a binary operation may stray from
-its inputs, and only the definition of `plus` can say.
+## Output
+* box holding the rounding errors of the sum
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

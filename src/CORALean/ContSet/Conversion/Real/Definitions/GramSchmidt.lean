@@ -9,18 +9,19 @@ public import Mathlib.Data.List.MinMax
 /-!
 # Gram–Schmidt, as CORA's `gramSchmidt`
 
-CORA's `gramSchmidt(B)` (`global/functions/matlab/init/gramSchmidt.m`) runs the classical loop
-`v = B(:,j) - Σ_{i<j} (Q(:,i)ᵀ B(:,j)) Q(:,i)`, `Q(:,j) = v / ‖v‖₂` over the columns of `B`. That
-loop is Mathlib's `gramSchmidtNormed` (`gramSchmidt_def''` is its formula), so `gramSchmidt` reads
-the columns into `EuclideanSpace` through `toEuclidean` and the result back. Where a column
-depends on the earlier ones MATLAB divides by zero and returns `NaN`; here the column is `0`.
+CORA's `gramSchmidt(B)` (`global/functions/matlab/init/gramSchmidt.m`) runs the classical loop over
+the columns of `B`, which is Mathlib's `gramSchmidtNormed` (`gramSchmidt_def''`), read into
+`EuclideanSpace` through `toEuclidean`. Where a column depends on the earlier ones MATLAB divides by
+zero and returns `NaN`; here the column is `0`. A single column `g` is first completed: the unit
+columns follow it, less the one `max(abs(g))` picks (`List.argmax`). For `g ≠ 0` the result is an
+orthonormal basis whose first vector is `g / ‖g‖₂` (`gramSchmidtVec_transpose_mul_self`,
+`gramSchmidtVec_col_zero`). Over ℝ only: a conversion needing the basis in floats computes its own.
 
-A single column `g` is first completed (`if size(B,2) == 1`): the unit columns follow it, less
-the one `max(abs(g))` picks, the first largest `|gᵢ|` (`List.argmax`). The columns are then
-independent whenever `g ≠ 0`, and the result is an orthonormal basis whose first vector is
-`g / ‖g‖₂` (`gramSchmidtVec_transpose_mul_self`, `gramSchmidtVec_col_zero`). Over ℝ only,
-being a square root and a division: a conversion that needs the basis in floats computes its own
-and is sound for whichever basis it computed.
+## Inputs
+* `g` – vector to complete
+
+## Output
+* matrix with `g` first, then the unit columns but the pivot's
 -/
 
 -- Authors:       Claude Opus 5.5

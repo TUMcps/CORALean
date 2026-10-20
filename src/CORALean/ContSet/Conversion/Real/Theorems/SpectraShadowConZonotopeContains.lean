@@ -16,6 +16,15 @@ CORA's `conZonotope(SpS)` is `conZonotope(zonotope(SpS))`. The zonotope encloses
 bounded base spectrahedron (`SpectraShadow.zonotope_contains`), and the conversion of a
 zonotope loses nothing (`Zonotope.conZonotope_exact`), so this is an outer
 approximation too, not an equality.
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Hypotheses
+* `hb` – base spectrahedron bounded
+
+## Conclusion
+* shadow is contained in its constrained zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

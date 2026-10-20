@@ -15,6 +15,16 @@ turns that into a bound on `err` by the Euclidean norm of the magnitudes, and `n
 bounds that norm from above: a Euclidean bound, which `Zonotope.errOp`, in the sup norm,
 could not give.
 
+## Inputs
+* `Z` – zonotope
+* `S` – subset of the zonotope
+
+## Hypotheses
+* `hS` – set lies in the zonotope
+
+## Conclusion
+* error of the set is at most the upper bound
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

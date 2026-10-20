@@ -13,16 +13,26 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
 /-!
 # `mtimesIntervalMat` reaches no further than one matrix of the box, plus a box
 
-The upper side of `mtimesIntervalMat_outer`: for every `A` in `IM`, the float
-`[M] Z` lies in `A Z ⊕ mtimesIntervalMatBox IM Z`. A point of `[M] Z` is `t + d
-+ e'`, `t` in `mid(M) Z`'s nominal part, `d` on the diagonal generators and `e'`
-in the error box. `mtimes_subset_add_box` writes `t` as `mid(M) x + g` for some
-`x ∈ Z`, and `mid(M) x = A x - (A - mid(M)) x`: the perturbation of the true
-matrix is what the symmetric part of the box covers, `|A - mid(M)| |x|`.
+The upper side of `mtimesIntervalMat_outer`: for every `A` in `IM`, the float `[M] Z` lies in
+`A Z ⊕ mtimesIntervalMatBox IM Z`. A point of `[M] Z` is `t + d + e'`, `t` in `mid(M) Z`'s nominal
+part, `d` on the diagonal generators and `e'` in the error box. `mtimes_subset_add_box` writes `t`
+as `mid(M) x + g` for some `x ∈ Z`, and `mid(M) x = A x - (A - mid(M)) x`: the perturbation of the
+true matrix is what the symmetric part of the box covers, `|A - mid(M)| |x|`. This is the per-step
+bound an inner approximation through `[e^{AΔt}]` needs: with `A` the true exponential, the float
+step minus this box, cancelled by Rådström's law (`minkowskiDiff_inner_of_outer`), lies in the exact
+image.
 
-This is the per-step bound an inner approximation through `[e^{AΔt}]` needs:
-with `A` the true exponential, the float step minus this box, cancelled by
-Rådström's law (`minkowskiDiff_inner_of_outer`), lies in the exact image.
+## Inputs
+* `IM` – interval matrix
+* `Z` – zonotope
+* `A` – matrix in the interval matrix
+
+## Hypotheses
+* `h` – error box contains zero
+* `hA` – matrix lies in the interval matrix
+
+## Conclusion
+* result is contained in the image under `A` plus the box
 -/
 
 -- Authors:       Claude Opus 5.5

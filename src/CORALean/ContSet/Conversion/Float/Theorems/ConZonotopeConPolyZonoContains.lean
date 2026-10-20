@@ -22,6 +22,15 @@ which makes it a bound rather than a cut, and the enclosures' widths, rounded up
 Not routed through the exact layer's conversion, which adds a slack factor per row; here each
 row's slack is recorded beside it instead, so the two constructions do not agree factor for
 factor. Membership is the shorter argument.
+
+## Inputs
+* `cZ` – constrained zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its constrained polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

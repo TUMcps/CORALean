@@ -15,6 +15,13 @@ keep, bringing the count to `o * n`. At that order or below nothing happens.
 The `dite` is what `reduceGirardBox` mirrors: the error the rule pays is the
 box in one branch and the origin in the other, and only a definition splitting
 the same way can name it.
+
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Output
+* zonotope of order at most `o` by Girard's rule
 -/
 
 -- Authors:       Claude Opus 5

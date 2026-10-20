@@ -18,6 +18,15 @@ generators, certifies that it plus the subtrahend lies in the minuend, as `Zonot
 does. An infeasible `μ`, or one feasible with no slack left for rounding, or a wrong `H` gives
 `none`, costing precision and never soundness.
 
+## Inputs
+* `Z₁` – minuend zonotope
+* `Z₂` – subtrahend zonotope
+* `μ` – stretch per generator
+* `H` – candidate right inverse
+
+## Output
+* stretched minuend, if the check passes
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

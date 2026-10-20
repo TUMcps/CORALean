@@ -16,6 +16,15 @@ A bounded halfspace description is a constrained zonotope
 (`ConZonotope.exists_construct_eq_iff_hPolytope`), and a nonempty constrained zonotope is a polytope
 by vertices (`ConZonotope.vPolytope_exact`), which the unit disc is not
 (`Ellipsoid.exists_not_vPolytope`).
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* some planar ellipsoid is no halfspace polytope
 -/
 
 -- Authors:       Claude Sonnet 5.5

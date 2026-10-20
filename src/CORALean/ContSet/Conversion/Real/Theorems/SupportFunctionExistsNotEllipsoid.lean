@@ -14,6 +14,15 @@ a support function may be `+∞` and denote the whole space, which no ellipsoid 
 This is the arrow from ellipsoids to support functions of
 [1, Fig. 1 (Ellipsoids → Support Functions)].
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* some support function on the line is no ellipsoid
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

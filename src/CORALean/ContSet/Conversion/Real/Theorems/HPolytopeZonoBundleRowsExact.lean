@@ -27,6 +27,19 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 This is the equivalence of polytopes and zonotope bundles of
 [1, Fig. 1 (Polytopes ↔ Zonotope Bundles)].
 
+## Inputs
+* `P` – halfspace polytope
+* `V` – vertex polytope of the same set
+* `B` – orthogonal basis per row
+
+## Hypotheses
+* `hV` – vertex polytope equals the polytope
+* `hB` – each basis is orthogonal
+* `hrow` – each row is its norm times a basis coordinate
+
+## Conclusion
+* bundle of row zonotopes equals the polytope
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

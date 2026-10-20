@@ -13,6 +13,12 @@ product and the sum rounded down. It is a candidate and nothing more: the rankin
 (`dominantShortlist`, `dominantScore`) and the facet normals `minnorm` forms are heuristics or are
 bounded afterwards, so no theorem about the number it returns is needed. The sign `(-1)^j` is the
 exact `one` or `neg one`.
+
+## Inputs
+* none
+
+## Output
+* determinant by expansion along row zero, rounded down
 -/
 
 -- Authors:       Claude Sonnet 5.5

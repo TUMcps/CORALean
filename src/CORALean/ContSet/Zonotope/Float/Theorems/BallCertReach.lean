@@ -12,6 +12,18 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.RightInvReach
 Read as reals, the checked rows are the hypotheses of `Zonotope.rightInv_reach`: the row sums of
 `|1 - G H|` are below `rightInvQ ≤ 1/2`, and `2 B ∑ₖ |Hⱼₖ|` is below
 `mulUp (B + B) (radius H j) ≤ δ`.
+
+## Inputs
+* `G` – generator matrix
+* `H` – candidate right inverse
+* `B` – box radius
+* `δ` – coefficient bound
+
+## Hypotheses
+* `hc` – certificate returns true
+
+## Conclusion
+* radius positive and every vector in the box is reached within the bound
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -17,6 +17,15 @@ sphere, ideally spread evenly ([1, Lemma 4]), scaled by the inverse of a bound o
 or below the minimum, norm of `Z(S, 0)` and mapped by the ellipsoid's generator.
 `zonotopeInnerNorm` and `zonotopeNorm` take `S` and the bound; the guarantees hold for any `S`.
 
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* ellipsoid is contained in its zonotope
+
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean

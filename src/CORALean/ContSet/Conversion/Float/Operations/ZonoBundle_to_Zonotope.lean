@@ -12,6 +12,15 @@ public import CORALean.Global.Float.FloatOps
 one where several tie. Here the volume is the product of the rows' `radius`, every operation
 rounded up; the comparison only chooses a member, and every member encloses the bundle, so the
 rounding cannot cost soundness.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* `hk` – bundle is nonempty
+
+## Output
+* first member of least box volume
 -/
 
 -- Authors:       Claude Opus 5.5

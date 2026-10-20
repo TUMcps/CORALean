@@ -13,6 +13,16 @@ Constraints dropped, then the zonotope answers each direction by summing
 absolute values. Loose by exactly the constraints thrown away; tight would mean
 a linear program per direction over the coefficient domain, which is
 `HPolytope.ofBounds` with certificates the caller supplies.
+
+## Inputs
+* `cZ` – constrained zonotope
+* `Aq` – direction functionals
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its halfspace polytope
 -/
 
 -- Authors:       Claude Opus 5

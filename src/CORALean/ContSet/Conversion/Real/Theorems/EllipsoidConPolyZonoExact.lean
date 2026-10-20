@@ -12,6 +12,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidConPolyZonoOfFa
 [1]'s `V √Λ`: the factor form's conversion (`conPolyZonoOfFactor_construct`) read at `E.G`. Exact,
 both directions, with no eigendecomposition paid for it.
 
+## Inputs
+* `E` – ellipsoid
+
+## Hypotheses
+* none
+
+## Conclusion
+* ellipsoid equals its constrained polynomial zonotope
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

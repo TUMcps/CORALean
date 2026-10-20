@@ -14,6 +14,14 @@ center's `nᵀc − d` is bracketed by `dotDown`/`dotUp` and the directed differ
 generators' `∑ⱼ |nᵀgⱼ|` is rounded up from `max(⌈nᵀgⱼ⌉, −⌊nᵀgⱼ⌋)`, and the error box adds
 `∑ᵢ nᵢeᵢ`, each `nᵢeᵢ` between the corner products of `nᵢ` and `[E̲ᵢ, Ēᵢ]`.
 
+## Inputs
+* `nv` – halfspace normal
+* `d` – halfspace offset
+* `Z` – zonotope
+
+## Output
+* range of the halfspace function over the zonotope, rounded outward
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

@@ -8,17 +8,14 @@ public import CORALean.ContSet.Zonotope.Real.Instances
 /-!
 # Zonotopes over a floating-point scalar: the representation
 
-CORA's `zonotope` [2, Def. 1] with its center and generators, plus the error box that makes
-it an `InflatedContSet`. The nominal part is the zonotope those stored floats
-describe; the box holds what rounding has cost.
-
-`Zonotope α` is indexed by the ambient type it stores, as the exact layer's
-`Zonotope α` and the float `Interval α` are, with generators a family rather than
-a matrix: `Zonotope (Mat 𝕋 m n)` is CORA's `matZonotope` [1, Eq. (8)], with no separate
-representation. `Zonotope (Vec 𝕋 n)` is the vector case, and an algorithm generic
-over the dimension takes the family `fun k => Zonotope (Vec 𝕋 k)`. A matrix
-operation whose vector namesake means something else carries a `mat` prefix, as
-`Zonotope.matInterval` does.
+CORA's `zonotope` [2, Def. 1] with its center and generators, plus the error box that makes it an
+`InflatedContSet`. The nominal part is the zonotope those stored floats describe; the box holds what
+rounding has cost. `Zonotope α` is indexed by the ambient type it stores, as the exact layer's
+`Zonotope α` and the float `Interval α` are, with generators a family rather than a matrix:
+`Zonotope (Mat 𝕋 m n)` is CORA's `matZonotope` [1, Eq. (8)], with no separate representation.
+`Zonotope (Vec 𝕋 n)` is the vector case, and an algorithm generic over the dimension takes the
+family `fun k => Zonotope (Vec 𝕋 k)`. A matrix operation whose vector namesake means something else
+carries a `mat` prefix, as `Zonotope.matInterval` does.
 
 ## References
 

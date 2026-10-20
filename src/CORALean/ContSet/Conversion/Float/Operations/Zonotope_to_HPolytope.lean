@@ -21,6 +21,17 @@ zero, otherwise the cross product of every combination of `n - 1` generators (`f
 minor a determinant candidate), the zero ones dropped, each divided by its length `normUp p`
 rounded up; their bounds are `boundDot`'s, so the rows are sound whatever the rounding made of
 them, and only their tightness depends on it.
+
+## Inputs
+* `Z` – zonotope
+* `c` – linear functional
+* `a` – coefficient vector
+
+## Hypotheses
+* `hc` – functional equals the dot product with `a`
+
+## Output
+* float upper bound on `c` over the nominal set
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

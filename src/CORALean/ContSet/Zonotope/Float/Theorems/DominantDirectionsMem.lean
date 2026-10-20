@@ -14,6 +14,17 @@ generators of the zonotope, whatever the rounded rankings decided. This is the f
 
 Source: [1].
 
+## Inputs
+* `Z` – zonotope
+* `a` – length of the long-generator filter
+* `b` – length of the shortlist
+
+## Hypotheses
+* none
+
+## Conclusion
+* every answer is the matrix of a shortlist subset
+
 ## References
 
 * [1] `contSet/@zonotope/dominantDirections.m` and its private helpers, CORA (Sep. 2025), by

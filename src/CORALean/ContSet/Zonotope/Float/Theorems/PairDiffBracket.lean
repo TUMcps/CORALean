@@ -6,6 +6,17 @@ public import CORALean.ContSet.Zonotope.Float.Operations.LinComb
 
 /-!
 # A paired-difference column brackets its exact value between the two directed roundings
+
+## Inputs
+* `g₁` – first generator block
+* `g₂` – second generator block
+* `k` – pairing index
+
+## Hypotheses
+* none
+
+## Conclusion
+* exact paired difference lies between the two roundings
 -/
 
 -- Authors:       Claude Opus 5

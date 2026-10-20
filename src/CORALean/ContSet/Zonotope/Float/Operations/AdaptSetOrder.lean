@@ -7,16 +7,24 @@ public import CORALean.ContSet.Zonotope.Float.Operations.AdaptSetOrderLoop
 /-!
 # `Alg. 3` in floats: the order to reduce the particular solution to
 
-`Real.Zonotope.adaptSetOrder` computed in `𝕋`: the share `ε_S,max,i` of
-eq. (13) for a step of length `Δt`, the loop from `param(PR)` (`Z.h`, which
-drops no generator), and the error `ε_S` accumulates, eq. (12). The times and
-errors are ℚ, exact; the step is read back through `ToRat`. Which order comes
-out affects how tight the result is, never whether it is sound: every order is
-a `reduce`.
+`Real.Zonotope.adaptSetOrder` computed in `𝕋`: the share `ε_S,max,i` of eq. (13) for a step of
+length `Δt`, the loop from `param(PR)` (`Z.h`, which drops no generator), and the error `ε_S`
+accumulates, eq. (12). The times and errors are ℚ, exact; the step is read back through `ToRat`.
+Which order comes out affects how tight the result is, never whether it is sound: every order is a
+`reduce`. A NaN `Δt` or `errOp` reads through `ToRat` as `1.5 · 2 ^ 1024`, which exhausts the budget
+`ε_S` and keeps higher orders. The order and `ε_S` do not enter `adaptiveStepFloat_outer`, so a NaN
+here costs tightness only.
 
-A NaN `Δt` or `errOp` reads through `ToRat` as `1.5 · 2 ^ 1024`, which exhausts the budget
-`ε_S` and keeps higher orders. The order and `ε_S` do not enter `adaptiveStepFloat_outer`, so
-a NaN here costs tightness only.
+## Inputs
+* `Z` – zonotope to reduce
+* `εSmax` – total error budget
+* `εSacc` – error accumulated so far
+* `tf` – final time
+* `ti` – current time
+* `Δt` – step length
+
+## Output
+* order to reduce to and the error that reduction accumulates
 
 ## References
 

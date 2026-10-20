@@ -26,6 +26,15 @@ Every dependent factor's monomial lies in `[-1,1]`, so it is read as a free fact
 of a zonotope, the dependent generators and then the independent ones; the error
 box is carried across. Nothing rounds, and the exponents are dropped, which is
 what makes this an enclosure rather than the set.
+
+## Inputs
+* `pZ` – polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* set is contained in its constrained zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

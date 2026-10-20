@@ -14,6 +14,16 @@ The checked rows put every vector within `B` of the center in the nominal zonoto
 (`Zonotope.mem_interior`), so the open box of radius `B` around the center lies inside it and
 the center is an interior point. Adding the error box's lower corner, a member of the nonempty
 box, keeps an interior point (`subset_interior_add_left`).
+
+## Inputs
+* `Z` – zonotope
+* `H` – candidate right inverse
+
+## Hypotheses
+* `h` – test returns true
+
+## Conclusion
+* zonotope has an interior point
 -/
 
 -- Authors:       Claude Opus 5.5

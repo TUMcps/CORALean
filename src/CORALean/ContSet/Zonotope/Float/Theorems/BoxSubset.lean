@@ -11,6 +11,19 @@ public import CORALean.ContSet.Zonotope.Float.Operations.BallCert
 
 The checked rows reach every vector within `B` of the center with coefficients of size at most
 `δ = 1` (`Zonotope.ballCert_reach`), which is the unit cube of the nominal zonotope.
+
+## Inputs
+* `Z` – zonotope
+* `H` – candidate right inverse
+* `B` – box radius
+* `y` – point
+
+## Hypotheses
+* `hc` – certificate returns true
+* `hy` – point within the radius of the center
+
+## Conclusion
+* point lies in the nominal set
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,17 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 A point is `c + ∑ⱼ βⱼ Gⱼ + e` with `|βⱼ| ≤ 1` and `e` in the error box. Against the generator
 lengths it is the triangle inequality, `‖∑ βⱼ Gⱼ‖₂ ≤ ∑ⱼ ‖Gⱼ‖₂`, and `‖e‖₂ ≤ ‖err‖₂`. Against the
 box it is coordinatewise, `|∑ⱼ βⱼ Gᵢⱼ| ≤ ∑ⱼ |Gᵢⱼ|` and `|eᵢ| ≤ errᵢ`, then the norm.
+
+## Inputs
+* `k` – Newton steps for the norm
+* `Z` – zonotope
+* `x` – point
+
+## Hypotheses
+* `hx` – point lies in the zonotope
+
+## Conclusion
+* distance to the center is at most the radius
 -/
 
 -- Authors:       Claude Sonnet 5.5

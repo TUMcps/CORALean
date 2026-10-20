@@ -10,6 +10,13 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MtimesResidual
 
 The generator count is untouched, the rounding being paid into the box; the old
 box travels through the map as a box, by `Interval.mtimes`.
+
+## Inputs
+* `M` – matrix
+* `Z` – zonotope
+
+## Output
+* zonotope of the product, rounding paid into the box
 -/
 
 -- Authors:       Claude Opus 5

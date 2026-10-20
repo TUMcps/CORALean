@@ -16,6 +16,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 # An array of Taylor models as a polynomial zonotope
 
 `Taylm.polyZonotope_contains`: its `polyZonotope` contains it.
+
+## Inputs
+* `T` – Taylor models, one per coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* Taylor models are contained in their polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5.5
