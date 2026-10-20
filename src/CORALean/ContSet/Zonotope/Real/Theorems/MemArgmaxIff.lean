@@ -14,6 +14,17 @@ the most a term can be. The exposed face in direction `u` is therefore read off 
 [1, Sec. 3 (faces)], `u gⱼ = 0` leaving `gⱼ` free and the others pinned to a sign
 (`construct_face`).
 
+## Inputs
+* `Z` – zonotope
+* `u` – linear functional
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` maximizes `u` iff its coefficients follow the signs
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

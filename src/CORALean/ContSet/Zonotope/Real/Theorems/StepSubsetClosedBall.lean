@@ -9,16 +9,31 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceSubsetAddBox
 /-!
 # One step of `mtimes`, `plus`, `reduce` bounds the sup-norm ball it lands in
 
-`LinearSysDT.reach`'s step is exactly this composition: a matrix product, a
-Minkowski sum with the input set, and a reduction. `mtimes_subset_closedBall`
-and `plus_subset_closedBall` carry a ball through the first two; the third adds
-at most `reduceBox`'s own ball, `reduce_subset_add_box` supplying the set
-inclusion and the triangle inequality the radius. The box's radius is a
-hypothesis here rather than a number this file names, since what it can be
-made is the whole content of the two ways this bound gets used: a fixed order
+`LinearSysDT.reach`'s step is this composition: a matrix product, a Minkowski sum with the input
+set, and a reduction. `mtimes_subset_closedBall` and `plus_subset_closedBall` carry a ball through
+the first two; the third adds at most `reduceBox`'s own ball, `reduce_subset_add_box` supplying the
+set inclusion and the triangle inequality the radius. The box's radius is a hypothesis here, since
+what it can be made is the whole content of the two ways this bound gets used: a fixed order
 against the source zonotope's own reach (crude, but self-contained — see
-`LinearSysDT.reach_subset_closedBall`), or an order `reduceBoxOrder` chooses
-against a caller's own tolerance (`step_subset_closedBall_of_reduceBoxOrder`).
+`LinearSysDT.reach_subset_closedBall`), or an order `reduceBoxOrder` chooses against a caller's
+tolerance (`step_subset_closedBall_of_reduceBoxOrder`).
+
+## Inputs
+* `A` – state matrix
+* `Z` – zonotope
+* `U` – input zonotope
+* `o` – target order
+* `r` – radius of `Z`
+* `rU` – radius of `U`
+* `rbox` – radius of the reduction box
+
+## Hypotheses
+* `hZ` – `Z` lies in its ball
+* `hU` – `U` lies in its ball
+* `hbox` – the box lies in its ball
+
+## Conclusion
+* one step lies in the ball of the summed radii
 -/
 
 -- Authors:       Claude Opus 5

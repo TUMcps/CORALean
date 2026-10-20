@@ -13,6 +13,15 @@ so `coeffNorm`'s triangle inequality, homogeneity and definiteness hold everywhe
 constraints on the minimizer are linear and `‖·‖∞` is a norm, as the printed proof says.
 Over any real module.
 
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* `hG` – generator map surjective
+
+## Conclusion
+* the zonotope norm satisfies the norm axioms
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

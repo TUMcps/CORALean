@@ -18,6 +18,23 @@ As printed the right inclusion inherits [1, Prop. 2]'s use of `W`'s halfspaces a
 fails with them (`aligned_subset_of_maxIn_counterexample`); with an inner zonotope
 of `EW` it holds.
 
+## Inputs
+* `Z` – zonotope
+* `S` – set subtracted
+* `co` – outer center
+* `ci` – inner center
+* `ao` – outer scalings
+* `ai` – inner scalings
+
+## Hypotheses
+* `hao` – outer scalings in the unit interval
+* `hai` – inner scalings in the unit interval
+* `hout` – `S` lies in the outer aligned zonotope
+* `hin` – inner aligned zonotope lies in `S`
+
+## Conclusion
+* inner and outer approximations of the Minkowski difference
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

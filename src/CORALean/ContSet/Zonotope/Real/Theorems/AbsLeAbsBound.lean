@@ -11,6 +11,19 @@ public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 Center plus the generator column sums, coordinatewise, the coefficients being at
 most one. What both the real and the constrained interval-matrix products bound
 their leftover against.
+
+## Inputs
+* `Z` – zonotope
+* `x` – point
+* `β` – generator coefficients
+* `j` – coordinate
+
+## Hypotheses
+* `hβ` – coefficients within the unit box
+* `hx` – `x` is the center plus the generator sum
+
+## Conclusion
+* coordinate `j` of `x` is within the absolute bound
 -/
 
 -- Authors:       Claude Opus 5

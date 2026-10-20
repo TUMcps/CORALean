@@ -13,6 +13,15 @@ cross product (otherwise every halfspace is trivial and `hRep_eq` [1, Thm. 2] ma
 the whole space, which is bounded), and the offsets over the finitely many selections attain
 their minimum.
 
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* `hspan` – generators span the space
+
+## Conclusion
+* some facet attains the smallest norm
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

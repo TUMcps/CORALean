@@ -10,6 +10,17 @@ public import CORALean.ContSet.Zonotope.Real.Definitions.Coefficient
 Half of what makes `coefficient` a witness: whatever it returns is admissible as
 a zonotope coefficient. `MulCoefficient` is the other half, that it hits the
 target.
+
+## Inputs
+* `R` – generator radius
+* `D` – target offset
+
+## Hypotheses
+* `hR` – radius nonnegative
+* `hDR` – offset at most the radius
+
+## Conclusion
+* the coefficient has absolute value at most one
 -/
 
 -- Authors:       Claude Opus 5

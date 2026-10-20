@@ -18,6 +18,13 @@ and the parallelotope's generators are `P`'s columns scaled by `ρₖ`, so its v
 
 Source: [1].
 
+## Inputs
+* `Z` – zonotope
+* `P` – candidate basis
+
+## Output
+* parallelotope volume, infinite if singular
+
 ## References
 
 * [1] `contSet/@zonotope/dominantDirections.m` and its private helpers, CORA (Sep. 2025), by

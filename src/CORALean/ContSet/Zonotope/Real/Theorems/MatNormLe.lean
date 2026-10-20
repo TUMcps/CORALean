@@ -14,6 +14,17 @@ zonotope: the largest norm over the box, which `matNorm_isGreatest` attains. The
 zonotope (`interval_contains`), so the number bounds the norm of every member from above. CORA's
 help text calls it an approximate maximum norm, and it is no more: a box is larger than its
 zonotope.
+
+## Inputs
+* `p` – norm type
+* `Z` – matrix zonotope
+* `M` – matrix
+
+## Hypotheses
+* `hM` – `M` lies in `Z`
+
+## Conclusion
+* the norm of `M` is bounded by that of the interval matrix
 -/
 
 -- Authors:       Claude Sonnet 5.5

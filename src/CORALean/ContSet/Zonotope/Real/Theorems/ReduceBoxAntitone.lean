@@ -15,18 +15,24 @@ public import Mathlib.Order.BourbakiWitt
 /-!
 # `reduceBox` shrinks as the order rises
 
-`girardSplit`'s ranking permutation does not depend on `o`, only the split
-point does, so what `o' ≥ o` drops is a subset of what `o` drops: raising the
-order only spares generators, never re-boxes one already kept. A smaller
-diagonal entry is a smaller box — `[1]` tunes the zonotope order the same way,
-against a stated error rather than a guessed one.
+`girardSplit`'s ranking permutation does not depend on `o`, only the split point does, so what
+`o' ≥ o` drops is a subset of what `o` drops: raising the order only spares generators, never
+re-boxes one already kept. A smaller diagonal entry is a smaller box — `[1]` tunes the zonotope
+order the same way, against a stated error rather than a guessed one. `aux_girardSplit_right_eq`
+reads the same generator off at two orders by matching sorted rank. Below the threshold on both
+sides this is the ranking argument; at or past it on either side the box is `ofPoint 0`, a subset
+of everything a zonotope's own center already reaches.
 
-`aux_girardSplit_right_eq` reads the same generator off at two orders by
-matching sorted rank; `congr` cancels the shared permutation without this file
-ever naming it, since `aux_girardMetric` belongs to `GirardSplit.lean` alone.
-Below the threshold on both sides this is the ranking argument; at or past it
-on either side the box is `ofPoint 0`, a subset of everything a zonotope's own
-center already reaches.
+## Inputs
+* `Z` – zonotope
+* `o` – smaller order
+* `o'` – larger order
+
+## Hypotheses
+* `ho` – orders ordered
+
+## Conclusion
+* a higher order gives a smaller box
 
 ## References
 

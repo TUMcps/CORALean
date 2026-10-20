@@ -15,6 +15,29 @@ after Steps 1-2. Step 1 keeps it (`diffusionPropLuenberger_outer`, [1, Thm. 2]) 
 what every neighbour keeps (`diffusionUpdate_outer`, [1, Thm. 1]). The measurement is paired with
 the state `x` the update starts from, as in Eq. 27 of [1, Thm. 2], not with the state it ends at.
 The weights of Step 2 need `tr(Ḡʲ Ḡʲᵀ) > 0` for every shared zonotope, [1, Prop. 1].
+
+## Inputs
+* `F` – dynamics matrix
+* `Q` – process-noise generators
+* `Γ` – stacked measurement matrices
+* `r` – noise radii
+* `yb` – outputs
+* `nb` – neighbour indices of each node
+* `o` – reduction order
+* `Zh` – previous zonotope of each node
+* `x` – state
+* `β` – process-noise coefficients
+* `i` – node
+
+## Hypotheses
+* `hβ` – coefficients within the unit box
+* `hx` – state lies in every node's zonotope
+* `hy` – outputs consistent with the state
+* `hα` – every neighbour trace positive
+
+## Conclusion
+* the next state lies in the node's updated zonotope
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

@@ -12,13 +12,22 @@ public import Mathlib.LinearAlgebra.Matrix.DotProduct
 
 [1, Lemma 5]: if `ν eᵢ` lies in the zonotope for every `i`, measured from the center, then the
 ball of radius `√(ν²/n)` around the center does, so `⌊Z⌋² ≥ ν²/n`. The coefficients of the `n`
-test points combine: `x = ∑ (xᵢ/ν) ν eᵢ`, and `∑ |xᵢ|/ν ≤ √n ‖x‖₂ / ν ≤ 1` keeps the combined
-coefficients in the box. The printed test checks `ν eᵢ ∈ Z` itself, which is the statement only
-for a zonotope centered at the origin (`ball_subset_of_axis_test_counterexample`). The printed
-proof calls the hull of `±ν eᵢ` a rotated hypercube; for `n ≥ 3` it is a cross-polytope, whose
-inscribed ball has the same radius `ν/√n`. The test is Goffin's, [2, Eq. 17], and the ball it gives
-[2, Eq. 18]: `conv{±γ eᵢ} ⊇ E(γ²/n, 0)`, at the center `0` the paper assumes and the radius
-`γ = 1/√(n(1+ε))` of [2, Sec. 4.4].
+test points combine: `x = ∑ (xᵢ/ν) ν eᵢ`, and `∑ |xᵢ|/ν ≤ √n ‖x‖₂ / ν ≤ 1` keeps them in the box.
+The printed test checks `ν eᵢ ∈ Z` itself, which is the statement only for a zonotope centered at
+the origin (`ball_subset_of_axis_test_counterexample`). The printed proof calls the hull of
+`±ν eᵢ` a rotated hypercube; for `n ≥ 3` it is a cross-polytope, whose inscribed ball has the same
+radius `ν/√n`. The test is Goffin's, [2, Eq. 17], the ball [2, Eq. 18], [2, Sec. 4.4].
+
+## Inputs
+* `Z` – zonotope
+* `ν` – axis offset
+
+## Hypotheses
+* `hν` – offset nonnegative
+* `htest` – axis points lie in `Z`
+
+## Conclusion
+* the ball around the center lies in `Z`
 
 ## References
 

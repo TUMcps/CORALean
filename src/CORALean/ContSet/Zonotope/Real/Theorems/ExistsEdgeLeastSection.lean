@@ -26,6 +26,24 @@ reaches it is an edge `[P_a; P_a + 2 g_a]`, the zonogon is on one side of its li
 (`Zonotope.cross_support`), and the point of the edge on `x = γ` is the lowest point of the
 section. It needs `γ` on the walk's side of the lowest corner, `0 ≤ σ (γ - P₀)`.
 
+## Inputs
+* `Z` – planar zonotope
+* `σ` – orientation sign
+* `r` – generator ranking
+* `γ` – abscissa of the vertical line
+
+## Hypotheses
+* `hh` – at least one generator
+* `hH` – generators point upward
+* `hσ` – `σ` is plus or minus one
+* `hr` – ranking injective
+* `hord` – ranking sorts generators by angle
+* `hγ` – line right of the bottom corner
+* `hne` – line meets `Z`
+
+## Conclusion
+* the least point on the line lies on an edge of the walk
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

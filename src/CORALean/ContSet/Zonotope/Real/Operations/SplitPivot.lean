@@ -12,12 +12,10 @@ public import Mathlib.Analysis.SpecialFunctions.Complex.Arg
 Line 16 of [1, Alg. 4]: the generators of `G` "smaller" and "bigger", "according to the
 trigonometric order", than the pivot vector `s`. Smaller means a smaller angle `Complex.arg` when
 the search goes right (`right`), and a larger one when it goes left, the order in which the walk
-from the lowest vertex meets the generators on that side. The paper does not say so for the left
-side, where the printed order would take the walk's far end first and so find the other boundary.
-
-The pivot `s` is the sum of the generators of `G`, so its angle is strictly between the extremes
-unless all of `G` is parallel, where nothing is smaller than the pivot and the split must still
-divide `G`: it then takes off the generator of least index.
+from the lowest vertex meets the generators on that side; the paper does not say so for the left
+side, where the printed order would find the other boundary. The pivot `s` is the sum of the
+generators of `G`, so its angle is strictly between the extremes unless all of `G` is parallel,
+where nothing is smaller than the pivot and the split takes off the generator of least index.
 
 ## References
 

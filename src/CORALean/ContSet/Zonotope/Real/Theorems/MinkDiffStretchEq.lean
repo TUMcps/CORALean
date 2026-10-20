@@ -9,17 +9,30 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MinkowskiDiffApplyLe
 /-!
 # [1, Prop. 6]: the stretched minuend is the difference where (22) holds exactly
 
-[1, Prop. 6] reads its closed form off (22), `|Ĉ⁺Ĝ⁽ᵐ⁾| µ = Δd̂ - Δd̂_trans`. That
-equation is the two inequalities [1, Thm. 4] and [1, Thm. 5] meet at: `≤` is
-`minkDiffStretch_inner`'s constraint, `≥` is `minkDiffStretch_outer`'s at the
-`b̃` of `minkowskiDiff_apply_le`, and together they pin the difference exactly.
+[1, Prop. 6] reads its closed form off (22), `|Ĉ⁺Ĝ⁽ᵐ⁾| µ = Δd̂ - Δd̂_trans`. That equation is where
+[1, Thm. 4] and [1, Thm. 5] meet: `≤` is `minkDiffStretch_inner`'s constraint, `≥` is
+`minkDiffStretch_outer`'s at the `b̃` of `minkowskiDiff_apply_le`, and together they pin the
+difference exactly. Two side conditions the printed proposition does not carry. `µ ≥ 0` is
+needed: at `Z₁` the unit square and `Z₂` twice it the difference is empty, while (22) solves to
+`µ = (-1, -1)` and the closed form returns the unit square. And (22) must be solvable at all —
+[1, (23)] asserts a unique solution for `n = 2`, where each generator owns one normal; nothing
+here proves that, so the solved `µ` is an argument.
 
-Two side conditions the printed proposition does not carry. `µ ≥ 0` is needed:
-at `Z₁` the unit square and `Z₂` twice it the difference is empty, while (22)
-solves to `µ = (-1, -1)` and the closed form returns the unit square back. And
-(22) must be solvable at all — "(22) has a unique solution" is what [1, (23)]
-asserts for `n = 2`, where each generator owns one normal; nothing here proves
-that, so the solved `µ` is an argument.
+## Inputs
+* `ι` – direction index type
+* `Z₁` – minuend
+* `Z₂` – subtrahend
+* `C` – linear directions
+* `μ` – stretch factors
+
+## Hypotheses
+* `hμ0` – factors nonnegative
+* `hCm` – directions describe the minuend
+* `hCd` – directions describe the stretched minuend
+* `hμ` – factors solve the offset equations
+
+## Conclusion
+* the stretched minuend equals the Minkowski difference
 
 ## References
 

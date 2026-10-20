@@ -16,19 +16,22 @@ public import Mathlib.Algebra.BigOperators.Fin
 /-!
 # Multiplying by an interval matrix over-approximates every matrix in it
 
-The result is [1, Thm. 3.3].
+The result is [1, Thm. 3.3]. Outer and never exact: the boxed generators are one per coordinate,
+so what the radius does to different coordinates is allowed to vary independently, which the
+matrices denoted do not. The center part is `mtimes` exactly; the whole content is that the
+leftover `(A - center) x` fits inside the diagonal block, because a coordinate of a zonotope never
+exceeds `absBound`. Nonnegativity of the radius is read off the witness rather than assumed: an
+`IntervalMat` with crossed bounds denotes nothing, and then there is nothing to prove.
 
-Outer and never exact: the boxed generators are one per coordinate, so what the
-radius does to different coordinates is allowed to vary independently, which the
-matrices denoted do not.
+## Inputs
+* `IM` – interval matrix
+* `Z` – zonotope
 
-The center part is `mtimes` exactly; the whole content is that the leftover
-`(A - center) x` fits inside the diagonal block, which it does because a
-coordinate of a zonotope never exceeds `absBound`.
+## Hypotheses
+* none
 
-Nonnegativity of the radius is read off the witness rather than assumed: an
-`IntervalMat` with crossed bounds denotes nothing, and then there is nothing to
-prove.
+## Conclusion
+* all products lie in the result
 
 ## References
 

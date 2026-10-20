@@ -12,20 +12,47 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 /-!
 # The W-radius criterion of the offline correction matrix
 
-[1, Thm. 3]: if `W ≻ 0`, `Y` and diagonal `Γ, Υ, Ω ≻ 0` Eq. 19 of [1, Thm. 3] satisfy the matrix
-inequality Eq. 18 of [1, Thm. 3], `[γW 0 0 0 ⋆; 0 Γ 0 0 ⋆; 0 0 Υ 0 ⋆; 0 0 0 Ω ⋆; (W - YC)TA  (W -
-YC)TD  (W - YC)NF  YF  W] ≻ 0`, with `tr Γ + tr Υ + tr Ω < ε` Eq. 20 of [1, Thm. 3], then at `Λ =
-W⁻¹ Y` the W-radius of the intersection zonotope Eq. 7 of [1, Thm. 1] satisfies `ℓ_{W+} ≤ γ ℓ_W + ε`
-Eq. 17 of [1, Thm. 3], `ℓ_W` that of `⟨p̂, H̄⟩`; any bound `ℓ` of it does, and `γ ≥ 0` suffices. The
-W-radius is `Zonotope.pRadius` at `W` [1, Def. 5].
+[1, Thm. 3]: if `W ≻ 0`, `Y` and diagonal `Γ, Υ, Ω ≻ 0` (Eq. 19) satisfy the matrix inequality
+Eq. 18, `[γW 0 0 0 ⋆; 0 Γ 0 0 ⋆; 0 0 Υ 0 ⋆; 0 0 0 Ω ⋆; (W - YC)TA  (W - YC)TD  (W - YC)NF  YF  W]
+≻ 0`, with `tr Γ + tr Υ + tr Ω < ε` (Eq. 20), then at `Λ = W⁻¹ Y` the W-radius of the
+intersection zonotope satisfies `ℓ_{W+} ≤ γ ℓ_W + ε` (Eq. 17); any bound `ℓ` of `⟨p̂, H̄⟩`'s does,
+and `γ ≥ 0` suffices. As in the paper's proof, a point's offset is `W⁻¹ R̃ (H̄z̄, b₁, b₂, b₃)`
+(`Y = WΛ`, Eq. 22), and the Schur complement of the block `W` (`posDef_schur_of_fromBlocks`)
+bounds its W-norm by `γ ‖H̄z̄‖²_W + b₁ᵀΓb₁ + b₂ᵀΥb₂ + b₃ᵀΩb₃`. The blocks are sized by what they
+multiply (`Γ` is `n_w × n_w`, `Υ, Ω` `n_v × n_v`; box of [1, Eq. 16]), not `n_x`, `n_y` as printed.
 
-As in the paper's proof. A point of the zonotope is its center plus `Ĥ₊ ẑ = W⁻¹ R̃ (H̄z̄, b₁, b₂,
-b₃)` (`Y = WΛ`, Eq. 22 of [1, Thm. 3]), so `‖Ĥ₊ ẑ‖²_W = vᵀ R̃ᵀ W⁻¹ R̃ v`, and the Schur complement
-of the block `W` (`posDef_schur_of_fromBlocks`) bounds that by `γ ‖H̄z̄‖²_W + b₁ᵀΓb₁ + b₂ᵀΥb₂ +
-b₃ᵀΩb₃ ≤ γ ℓ_W + tr Γ + tr Υ + tr Ω < γ ℓ_W + ε`, Eq. 24 of [1, Thm. 3]. The blocks are sized by
-what they multiply: `Γ` is `n_w × n_w` and `Υ, Ω` are `n_v × n_v`, and the box of [1, Eq. 16] is
-`B^{q + n_w + 2n_v}`; the paper prints `n_x` and `n_y`, which agree only when `n_w = n_x` and `n_v =
-n_y`, as in its example.
+## Inputs
+* `T` – decoupling matrix
+* `N` – measurement decoupling matrix
+* `A` – state matrix
+* `B` – input matrix
+* `D` – disturbance matrix
+* `C` – output matrix
+* `F` – noise matrix
+* `u` – control input
+* `y` – measurement
+* `X` – state zonotope
+* `W` – weight matrix
+* `Y` – gain factor
+* `Γ` – disturbance weights
+* `Υ` – noise weights
+* `Ω` – second noise weights
+* `γ` – contraction rate
+* `ε` – additive bound
+* `ℓ` – bound on the radius of `X`
+
+## Hypotheses
+* `hW` – `W` positive definite
+* `hLMI` – linear matrix inequality holds
+* `hΓ` – disturbance weights positive
+* `hΥ` – noise weights positive
+* `hΩ` – second noise weights positive
+* `hε` – weights sum below `ε`
+* `hγ` – rate nonnegative
+* `hℓ` – `X` has W-radius at most `ℓ`
+
+## Conclusion
+* the new W-radius is at most `γ ℓ + ε`
 
 ## References
 

@@ -12,6 +12,13 @@ The `i`-th dimension of a zonotope as a zonotope of its own, `H(i) = ⟨c(i), G(
 differentiates the slope and the approximation errors of an image enclosure with respect to it,
 `∇_{H_{k-1}(i)} m_k(i)`, these depending on the input set through the `i`-th row alone.
 
+## Inputs
+* `H` – zonotope
+* `i` – row index
+
+## Output
+* one-dimensional zonotope of the `i`-th row
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

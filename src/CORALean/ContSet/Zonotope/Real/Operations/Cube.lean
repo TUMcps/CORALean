@@ -12,6 +12,13 @@ hypercube and consequently ... a zonotope", with one axis-aligned generator of l
 per coordinate. CORA writes it `zonotope(interval(-ρ·1, ρ·1))`; `Interval.zonotope` builds
 the same set from a box, and this skips the box.
 
+## Inputs
+* `n` – dimension
+* `ρ` – edge scaling
+
+## Output
+* axis-aligned cube zonotope centered at zero
+
 ## References
 
 * [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid

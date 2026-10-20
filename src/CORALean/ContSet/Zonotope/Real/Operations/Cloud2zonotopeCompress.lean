@@ -15,6 +15,13 @@ subtract it, so the cloud shrinks along `g` by at most the segment `[-1, 1] g` (
 At `g = 0` step 2 reads `0 / 0`, which the paper leaves undefined and Lean's `x / 0 = 0` makes
 `u = 0`: every point is returned unchanged.
 
+## Inputs
+* `X` – point cloud
+* `g` – direction to compress along
+
+## Output
+* compressed point cloud
+
 ## References
 
 * [1] M. Maïga, N. Ramdani, L. Travé-Massuyès and C. Combastel. "A Comprehensive Method for

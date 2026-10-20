@@ -19,6 +19,16 @@ for any `dir` and `ratio` (`cloud2zonotope_mem`).
 
 The paper's listing ends at step 13 while its text speaks of "step 14"; the zonotope is returned.
 
+## Inputs
+* `dir` – direction selector
+* `ratio` – selection ratio
+* `s₁` – iteration count
+* `s₂` – tolerance
+* `X` – point cloud
+
+## Output
+* zonotope enclosing the cloud
+
 ## References
 
 * [1] M. Maïga, N. Ramdani, L. Travé-Massuyès and C. Combastel. "A Comprehensive Method for

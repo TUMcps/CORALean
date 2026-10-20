@@ -14,6 +14,17 @@ The step behind the single-entry derivatives of [1, Def. 3]: `x` with its `j`-th
 is `x + (t - x(j)) e_j`, a point on a line through `x`, so that a derivative along the entry is a
 derivative along a line.
 
+## Inputs
+* `x` – vector
+* `j` – coordinate
+* `t` – new value
+
+## Hypotheses
+* none
+
+## Conclusion
+* updating a coordinate adds a multiple of the unit vector
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

@@ -14,6 +14,16 @@ public import Mathlib.Tactic.Ring
 negating `y` commutes with the sum. So the section of the mirror image at `x = γ` is the
 negative of the original's, which [1, Alg. 4] uses to get `M` from a search for `m`.
 
+## Inputs
+* `Z` – planar zonotope
+* `p` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* a point lies in the mirror iff its reflection lies in `Z`
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

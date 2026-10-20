@@ -43,6 +43,8 @@ file on the allowlist and say why in the issue.
 The number types `ℝ≥0∞`, `ℝ≥0`, `ℚ≥0` are read as plain number types: their `≥` is not a relation
 symbol. (Without this, `(f : α → ℝ≥0∞)` was sorted into the hypotheses.) A dependent family
 `(hy : (i : Fin N) → Vec ℝ (qy i))` is judged by its codomain, so it is data, not a hypothesis.
+A function type whose codomain is a data type (`(sel : (Z : Zonotope α) → Z.h = m + 2 → Fin m × Bool)`) is data, whatever its domain says. A function into a family, `(r : ℕ → ∀ i, Vec ℝ (p i))`, is judged by the family. A family binder `(A : ∀ a, Mat ℝ n (m a))` or `(X : ∀ a, Zonotope (Vec ℝ (m a)))` — a `∀` whose
+body ends in a data type (`Mat`, `Vec`, `Zonotope`, `Interval`, …, or a type variable `ι`; not `Option`) with no relation symbol — is data.
 A function binder `(contract : ∀ m : ℕ, A → B → (Fin m → ℝ) × (Fin m → ℝ))` — a `∀` whose body
 has no relation symbol and ends in a parenthesised codomain — is data (a contractor), not a statement.
 
@@ -149,6 +151,7 @@ def binders(sig):
     return out
 
 
+TYPE_VARS = set("αβγδεζηθικλμνξπρστυφχψω")  # `ι`, `κ`, … : a universe variable names a data type
 DATA_HEADS = {"ℕ", "ℤ", "ℝ", "ℚ", "ℂ", "Bool", "Fin", "Type", "Type*", "Sort", "Prop", "String",
               "List", "Finset", "Set", "Vec", "Mat", "Option", "𝕋"}
 
@@ -161,6 +164,14 @@ def is_prop(name, typ):
         if not m:
             break
         t = t[m.end():]
+    # `ℕ → ∀ i, Vec ℝ (p i)`: a function into a family is judged by the family (below)
+    while True:
+        flat_t = top_level(t)
+        k = flat_t.find("→")
+        if k >= 0 and t[k + 1:].lstrip().startswith("∀") and not any(c in flat_t[:k] for c in PROP_SYMBOLS):
+            t = t[k + 1:].lstrip()
+        else:
+            break
     head0 = re.match(r"[^\s(]+", t)
     # a name `h…` is a hypothesis, unless its type is headed by a data type with no relation
     # symbol at depth 0 (`(hi : Fin k → Vec 𝕋 n)`, `(h : ℕ)`)
@@ -185,6 +196,25 @@ def is_prop(name, typ):
         flat_body = re.sub(r"[ℝℚ]≥0∞?", "ℝ", top_level(body))
         k = flat_body.rfind("→")
         if k >= 0 and not any(c in flat_body for c in PROP_SYMBOLS) and body[k + 1:].strip().startswith("("):
+            return False
+        # a family `∀ a, Mat ℝ n (m a)` / `∀ a, Zonotope (Vec ℝ (m a))` (body headed by a data type,
+        # no relation symbol) is data too
+        cod = body[k + 1:].strip() if k >= 0 else body
+        hd = re.match(r"[^\s(]+", cod)
+        if hd and (hd.group(0) in (DATA_HEADS - {"Option"}) | {"Zonotope", "Interval"}
+                   or hd.group(0) in TYPE_VARS) and not any(
+                c in flat_body for c in PROP_SYMBOLS):
+            return False
+    # a function type whose codomain is a data type (`(Z : Zonotope α) → {m : ℕ} → Z.h = m + 2 →
+    # Fin (m + 2) × Bool`, a selector) is data, whatever relation its domain mentions
+    flat_f = top_level(t)
+    kf = flat_f.rfind("→")
+    if kf >= 0:
+        cod_f = t[kf + 1:].strip()
+        hf = re.match(r"[^\s(]+", cod_f)
+        if (hf and (hf.group(0) in DATA_HEADS - {"Prop", "Sort", "Type", "Type*"}
+                    or hf.group(0) in TYPE_VARS)
+                and not any(c in re.sub(r"[ℝℚ]≥0∞?", "ℝ", top_level(cod_f)) for c in PROP_SYMBOLS)):
             return False
     # `ℝ≥0∞` / `ℝ≥0` / `ℚ≥0` are number types, not the relation `≥`
     flat = re.sub(r"[ℝℚ]≥0∞?", "ℝ", top_level(t))

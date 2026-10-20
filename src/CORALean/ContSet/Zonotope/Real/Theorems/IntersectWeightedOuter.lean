@@ -13,6 +13,16 @@ public import Mathlib.Algebra.Module.BigOperators
 which is the center plus the weighted generators at the stacked coefficients `(β₁, …, β_d)`,
 each still in `[-1, 1]`. Any weights with a nonzero sum, positive or not; outer only.
 
+## Inputs
+* `w` – weights
+* `Zs` – zonotopes
+
+## Hypotheses
+* `hw` – weights sum to nonzero
+
+## Conclusion
+* the intersection lies in the weighted zonotope
+
 ## References
 
 * [1] A. Alanwar, V. Gaßmann, X. He, H. Said, H. Sandberg, K. H. Johansson and M. Althoff.

@@ -16,6 +16,17 @@ the F-radius `(1/n) √(Σ G²)` [1, Prop. 5] has the derivative `G(i,j) / (n² 
 `‖Y‖_F > 0`: the sum under the root is `S - G(i,j)² + t²` at `t`, so the derivative is `(1/n) ·
 G(i,j) / √S` with `√S = n ‖Y‖_F`. The gradient of [1, Prop. 8] is this at every entry.
 
+## Inputs
+* `Y` – zonotope
+* `j` – generator index
+* `i` – coordinate
+
+## Hypotheses
+* `hY` – F-radius positive
+
+## Conclusion
+* the F-radius is differentiable in that entry with the stated derivative
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

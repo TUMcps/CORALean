@@ -15,6 +15,16 @@ The zonotope that [1, Lemma 1] gives for a family of `m` strips `|H_j x - y_j| �
 by `r_j`. It is `intersectStrip` at the stacked strip (`intersectStripFamily_eq`), written the way
 the paper writes it. The gains `λ_j` are arguments, as in [1] they are a degree of freedom.
 
+## Inputs
+* `H` – strip matrices
+* `r` – strip radii
+* `y` – measurements
+* `lam` – weight matrices
+* `Z` – zonotope
+
+## Output
+* zonotope enclosing the intersection with all strips
+
 ## References
 
 * [1] A. Alanwar, V. Gaßmann, X. He, H. Said, H. Sandberg, K. H. Johansson and M. Althoff.

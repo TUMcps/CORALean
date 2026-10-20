@@ -19,6 +19,20 @@ any real module: `X = Y Γ` says each `Xⱼ = ∑ₖ Γₖⱼ Yₖ`.
 Not necessary (`[1, Example 2]`), and that is what `Contains` asks of it: CORA's
 `'approx:st'` is this condition, a linear program in `(Γ, β)`.
 
+## Inputs
+* `Zx` – inner zonotope
+* `Zy` – outer zonotope
+* `Γ` – generator coefficient matrix
+* `β` – center coefficients
+
+## Hypotheses
+* `hX` – generators of `Zx` expressed through `Zy`
+* `hβ` – center difference expressed through `Zy`
+* `hn` – row sums at most one
+
+## Conclusion
+* `Zx` lies in `Zy`
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

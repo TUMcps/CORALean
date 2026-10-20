@@ -9,6 +9,12 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 
 CORA's `@zonotope/representsa_` at type `point` with tolerance `0`: no generator reaches anywhere,
 `Gⱼ = 0` for every `j` (CORA: `nrGens == 0` after compacting zero generators).
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* `Prop` that every generator is zero
 -/
 
 -- Authors:       Claude Opus 5.5

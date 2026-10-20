@@ -10,20 +10,23 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBySubsetAddBox
 /-!
 # Reduction reaches no further than the original plus its own box, at `reduce`
 
-`reduceBy_subset_add_box` lifted to the operation the `Reduce` instance runs,
-which is what a step of `LinearSysDT.reach` actually calls. `reduceBox` splits
-on the same condition `reduceGirard` does, so the two branches come apart
-together and neither is left to guess at.
+`reduceBy_subset_add_box` lifted to the operation the `Reduce` instance runs, which is what a step
+of `LinearSysDT.reach` calls. `reduceBox` splits on the same condition `reduceGirard` does, so the
+two branches come apart together. Above the order the partition is the same on both sides and
+`reduceBy_subset_add_box` closes it. At or below it nothing is dropped, the box is the origin, and
+the inclusion is `x = x + 0` — the branch a statement at `reduceBy` alone never answers for.
+`_subset_` rather than `_outer`: this is not the guarantee `Reduce` asks for, which runs the other
+way, but a bound on how far the reduction moved, and no class states that.
 
-Above the order the partition is the same on both sides and
-`reduceBy_subset_add_box` closes it. At or below it nothing is dropped, the box
-is the origin, and the inclusion is `x = x + 0` — the branch a statement at
-`reduceBy` alone never has to answer for, and the reason this one is worth
-stating twice.
+## Inputs
+* `Z` – zonotope
+* `o` – target order
 
-`_subset_` rather than `_outer`: this is not the guarantee `Reduce` asks for,
-which runs the other way, but a bound on how far the reduction moved, and no
-class states that.
+## Hypotheses
+* none
+
+## Conclusion
+* the reduction lies in `Z` plus the box
 -/
 
 -- Authors:       Claude Opus 5

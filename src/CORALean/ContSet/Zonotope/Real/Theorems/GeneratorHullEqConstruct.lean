@@ -18,6 +18,17 @@ the symmetric box of the halved generators, `{c + ∑ βᵢ (gᵢ/2) | β ∈ [�
 `αᵢ ∈ [0, 1]` of `gᵢ` is `(1 + βᵢ)/2`. So the evolution is a zonotope in the sense of
 `Zonotope.construct`, with center `c` and generators `gᵢ/2`.
 
+## Inputs
+* `s` – starting point
+* `m` – generator count
+* `g` – generators
+
+## Hypotheses
+* none
+
+## Conclusion
+* the hull is a zonotope with shifted center and halved generators
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

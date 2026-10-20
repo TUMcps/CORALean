@@ -9,6 +9,16 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Basic
 
 The triangle inequality over `x - c = Σ βⱼ Gⱼ` with `|βⱼ| ≤ 1`: the bound `Zonotope.radius₂`
 takes the smaller of this and a box bound.
+
+## Inputs
+* `Z` – zonotope
+* `x` – point
+
+## Hypotheses
+* `hx` – `x` lies in `Z`
+
+## Conclusion
+* the distance to the center is at most the sum of generator lengths
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,15 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.BilinCos
 
 Asserted, not proved: `Operations/MtimesMatZonotope.lean` is `Zonotope.bilin` at
 matrix-vector application, one `Cost.matVec m n` per application.
+
+## Inputs
+* `m` – matrix row count
+* `n` – matrix column count
+* `hM` – matrix zonotope generator count
+* `h` – vector zonotope generator count
+
+## Output
+* cost of multiplying a matrix zonotope with a zonotope
 -/
 
 -- Authors:       Claude Sonnet 5.5

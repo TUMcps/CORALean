@@ -8,20 +8,29 @@ public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffStretch
 /-!
 # `Zonotope.minkDiffStretch` under-approximates the Minkowski difference
 
-[1, Thm. 4]. `hμ` is the printed linear program's *constraint* `Âμ ≤ b̂` — its
-objective `ζᵀµ` chooses among the feasible `µ` and is not what the guarantee
-rests on, so any feasible `µ` is admitted, `µ*` included.
+[1, Thm. 4]. `hμ` is the printed linear program's *constraint* `Âμ ≤ b̂`; its objective `ζᵀµ`
+chooses among the feasible `µ` and is not what the guarantee rests on, so any feasible `µ` is
+admitted, `µ*` included. `hCm` is the theorem's own standing premise, made explicit: its proof
+reads (12) off [1, Thm. 2], which needs the directions `C` to *describe* the minuend and not
+merely enclose it. The enclosing half is proved inline; `hRep_lin_subset` discharges `hCm` at the
+cross-product normals themselves. It stays a hypothesis so that any other exact description
+serves, and `C` is indexed by a type so that the normals' own index can be handed over. The
+direction is inner, as `MinkDiff` obliges: `minkDiffStretch_outer` is the other one.
 
-`hCm` is the theorem's own standing premise, made explicit: its proof reads
-(12) off [1, Thm. 2], which needs the directions `C` to *describe* the minuend
-and not merely enclose it. The enclosing half is free and is proved inline;
-the describing half is what [1, Thm. 2] supplies, and `hRep_lin_subset`
-discharges `hCm` at the cross-product normals themselves. It stays a hypothesis
-so that any other exact description serves, and `C` is indexed by a type rather
-than a `Fin q` so that the normals' own index can be handed over unchanged.
+## Inputs
+* `ι` – direction index type
+* `Z₁` – minuend
+* `Z₂` – subtrahend
+* `C` – linear directions
+* `μ` – stretch factors
 
-The direction is inner, as `MinkDiff` obliges: `minkDiffStretch_outer` is the
-other one and is a different theorem about a different `µ`.
+## Hypotheses
+* `hμ0` – factors nonnegative
+* `hCm` – directions describe the minuend
+* `hμ` – factors satisfy the offset inequalities
+
+## Conclusion
+* the stretched minuend lies in the Minkowski difference
 
 ## References
 

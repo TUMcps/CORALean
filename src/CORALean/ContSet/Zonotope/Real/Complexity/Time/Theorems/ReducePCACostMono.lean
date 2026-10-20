@@ -11,6 +11,19 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.ReducePC
 # `Zonotope.reducePCACost_mono`
 
 Monotone in the generator count.
+
+## Inputs
+* `h` – smaller generator count
+* `h'` – larger generator count
+* `n` – dimension
+* `eig` – cost of the eigendecomposition
+* `inv` – cost of the basis inverse
+
+## Hypotheses
+* `hle` – generator counts ordered
+
+## Conclusion
+* cost is monotone in the generator count
 -/
 
 -- Authors:       Claude Sonnet 5.5

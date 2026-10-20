@@ -10,14 +10,25 @@ public import Mathlib.Tactic.Module
 # Moving a point along one generator raises its degree
 
 [1, Lemma 3.4]: for `x ∈ Z` with `deg(x) < n - 1` there are `γ` and a generator `g` such that
-`x* := x + γg` and `x` lie in a common facet and `deg(x) < deg(x*) ≤ n - 1`. For a
-full-dimensional `Z` (generators spanning `ℝⁿ`), which a facet needs; `γ` signed, as the paper's
-normalized generator set (Eq. 11) holds `±g`. The proof is the paper's: the least face `F = F(x)`
-through `x` lies in a facet `F′` (`exists_facet_superset`), and `F′` has a generator `gⱼ` that the
-direction `l` of `F` does not annihilate. `x`'s coefficient there is `±1`; `x* = x - βⱼgⱼ` sets it
-to `0`, so `x* ± gⱼ ∈ Z`. A face `G ∋ x*` then contains `x* ± gⱼ`, hence `x`; the face of `l + m`
-(`G` the face of `m`) is in `F` and through `x`, so has `F`'s affine hull, and `G`'s affine hull
+`x* := x + γg` and `x` lie in a common facet and `deg(x) < deg(x*) ≤ n - 1`. For a full-dimensional
+`Z`, which a facet needs; `γ` signed, as the paper's normalized generator set (Eq. 11) holds `±g`.
+The proof is the paper's: the least face `F = F(x)` through `x` lies in a facet `F′`
+(`exists_facet_superset`), and `F′` has a generator `gⱼ` that the direction `l` of `F` does not
+annihilate. `x`'s coefficient there is `±1`; `x* = x - βⱼgⱼ` sets it to `0`, so `x* ± gⱼ ∈ Z`. A
+face `G ∋ x*` then contains `x* ± gⱼ`, hence `x`, so has `F`'s affine hull, and `G`'s affine hull
 contains it and `gⱼ ∉` it. "Found in polynomial time" is a running time, not stated here.
+
+## Inputs
+* `Z` – zonotope
+* `x` – point of the zonotope
+
+## Hypotheses
+* `hfull` – generators span the space
+* `hx` – `x` lies in `Z`
+* `hdeg` – degree of `x` below `n - 1`
+
+## Conclusion
+* a step along a generator raises the degree
 
 ## References
 

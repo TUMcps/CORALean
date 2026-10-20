@@ -16,6 +16,20 @@ on each summand of the triangle inequality.
 `Fin.castOrderIso hh` reindexes the subtrahend's sum onto the minuend's own
 generator count — `hh` says the counts agree, so the reindexing is a bijection,
 not merely a function.
+
+## Inputs
+* `Z₁` – minuend
+* `Z₂` – subtrahend
+* `μ` – generator scalings
+
+## Hypotheses
+* `hh` – equal generator counts
+* `hμ0` – scalings nonnegative
+* `hμ1` – scalings at most one
+* `hG` – generators of `Z₂` scale those of `Z₁`
+
+## Conclusion
+* the closed form lies in the Minkowski difference
 -/
 
 -- Authors:       Claude Opus 5

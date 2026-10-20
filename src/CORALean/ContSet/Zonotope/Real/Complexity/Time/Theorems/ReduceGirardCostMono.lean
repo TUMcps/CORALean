@@ -11,6 +11,17 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.ReduceGi
 
 Monotone in the generator count, so a bound on the operand's size gives a
 bound on the cost.
+
+## Inputs
+* `h` – smaller generator count
+* `h'` – larger generator count
+* `n` – dimension
+
+## Hypotheses
+* `hle` – generator counts ordered
+
+## Conclusion
+* cost is monotone in the generator count
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

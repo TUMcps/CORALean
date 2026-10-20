@@ -16,6 +16,16 @@ CORA's `zonotope + interval`: embed the box as `Interval.zonotope`, Prop. 2's ow
 what falls short is `Interval.zonotope_contains`: a box whose `sup` is below its `inf`
 denotes less than the zonotope built from it does.
 
+## Inputs
+* `Z` – zonotope
+* `I` – box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sum with the box lies in the concatenated zonotope
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

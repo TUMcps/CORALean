@@ -10,6 +10,17 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotopeCompress
 [1, Eq. 43]: `X ⊂ X' ⊕ g [-1, 1]`, point by point: every point of the cloud is its compressed
 image plus a multiple `t g` with `|t| ≤ 1`. Any `g`, including `0`.
 
+## Inputs
+* `X` – point cloud
+* `g` – direction
+* `j` – point index
+
+## Hypotheses
+* none
+
+## Conclusion
+* each original point is a compressed one plus a multiple of `g`
+
 ## References
 
 * [1] M. Maïga, N. Ramdani, L. Travé-Massuyès and C. Combastel. "A Comprehensive Method for

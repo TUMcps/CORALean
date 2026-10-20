@@ -14,6 +14,16 @@ inside a non-degenerate `Z` against `d`, the largest `‖p - c‖_Z` over the un
 `r d ≤ 1`. The maximum `d` is attained (`ν` is continuous, the cube compact) and positive
 for `n > 0`. The printed cube `[-1, -1]ⁿ` is `[-1, 1]ⁿ`, the supremum-norm unit ball.
 
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* `hG` – generator map surjective
+* `hn` – dimension positive
+
+## Conclusion
+* the inradius is the inverse of the containment radius
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

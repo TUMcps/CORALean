@@ -13,6 +13,14 @@ remaining columns of each operand follow. That is *not* `plus`, which concatenat
 and so lets every coefficient move independently: here a coefficient that moves `Z₁`'s `j`-th
 generator moves `Z₂`'s too, and the dependency survives. The result is a subset of `plus`'s, and a
 smaller one whenever `m > 0`. CORA's optional third argument is `k`; leaving it out is `k = ∞`.
+
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+* `k` – number of generators added pairwise
+
+## Output
+* sum with the first `k` generators added pairwise
 -/
 
 -- Authors:       Claude Opus 5.5

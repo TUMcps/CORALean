@@ -12,6 +12,19 @@ instant `k` the nodes run Steps 1-3 (`diffusionStripStep`) with the noise `Q_k`,
 the outputs `ȳ_k` of that instant. The value at `k` is the predicted set the instant-`k`
 measurement update starts from, `Ẑ_{s,k-1}` in the notation of [1]; at `0` it is `Z₀`.
 
+## Inputs
+* `F` – dynamics matrix
+* `Q` – process-noise generators per instant
+* `Γ` – stacked measurement matrices
+* `r` – noise radii per instant
+* `yb` – outputs per instant
+* `nb` – neighbour indices of each node
+* `o` – reduction order
+* `Z₀` – initial zonotope
+
+## Output
+* predicted zonotope of each node at each instant
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

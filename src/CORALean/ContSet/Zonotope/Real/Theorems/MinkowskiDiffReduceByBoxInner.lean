@@ -13,20 +13,23 @@ public import Mathlib.Analysis.InnerProductSpace.Basic
 /-!
 # Reduction's own box turns the reduced zonotope back into an inner approximation
 
-The first consumer of `minkowskiDiff_inner_of_outer`: subtracting the box
-`reduceBy` introduced from the zonotope it produced lands back inside the
-original. `reduceBy_outer` is the other direction, so the two bracket `Z`
-between two computed zonotopes.
+The first consumer of `minkowskiDiff_inner_of_outer`: subtracting the box `reduceBy` introduced
+from the zonotope it produced lands back inside the original. `reduceBy_outer` is the other
+direction, so the two bracket `Z` between two computed zonotopes. Every hypothesis the bridge asks
+for is already proved of a zonotope: the box is nonempty by `center_mem_construct`, bounded and
+closed because a zonotope is compact, and `Z` is convex. Stated at `reduceBy` rather than at
+`reduceGirard` or `reduce`: the ranking is a heuristic and the argument holds at every partition.
+At `reduceGirard` the box would have to be `0` where nothing is dropped, which says less.
 
-Every hypothesis the bridge asks for is already proved of a zonotope: the box is
-nonempty by `center_mem_construct`, bounded and closed because a
-zonotope is compact, and `Z` is convex.
+## Inputs
+* `Z` – zonotope
+* `part` – split of the generator indices
 
-Stated at `reduceBy` rather than at `reduceGirard` or `reduce`, which is where
-`reduceBy_outer` is stated too: the ranking is a heuristic and the argument
-holds at every partition. At `reduceGirard` the box would have to be `0` in the
-branch where the order is already met and nothing is dropped, which says
-strictly less than this does.
+## Hypotheses
+* none
+
+## Conclusion
+* the reduced zonotope minus its box lies in `Z`
 -/
 
 -- Authors:       Claude Opus 5

@@ -8,17 +8,27 @@ public import CORALean.ContSet.Zonotope.Real.Operations.EnclGenSel
 /-!
 # [1, Alg. 1] never leaves the minuend
 
-`Z_{m,encl}` is built from the minuend's own generators at the minuend's own
-center, so whatever the sort, the threshold and the containment oracle do, the
-result stays inside `Z_m` — the coefficients of the generators left out are
-zero. That is what makes [1, Prop. 4]'s split a split: `Z_{m,encl}` is a part
-of `Z_m` and not merely some zonotope near it.
+`Z_{m,encl}` is built from the minuend's own generators at the minuend's own center, so whatever
+the sort, the threshold and the containment oracle do, the result stays inside `Z_m` — the
+coefficients of the generators left out are zero. That makes [1, Prop. 4]'s split a split. The
+other half of [1, Alg. 1]'s intent, `Z_{m,encl} ⊇ Z_s`, is *not* proved here and cannot be:
+line 11's test is the caller's `encloses`, the loop may also leave by exhausting `ξ < n_m`, and the
+paper itself says the difference is empty when no `ξ` works. A caller that needs the enclosure has
+to read it off its own oracle.
 
-The other half of [1, Alg. 1]'s intent, `Z_{m,encl} ⊇ Z_s`, is *not* proved
-here and cannot be: line 11's test is the caller's `encloses`, the loop may
-also leave by exhausting `ξ < n_m`, and the paper itself says the difference
-is empty when no `ξ` works. A caller that needs the enclosure has to read it
-off its own oracle.
+## Inputs
+* `le` – decidable non-strict comparison
+* `lt` – decidable strict comparison
+* `encloses` – enclosure test
+* `Zm` – zonotope to select from
+* `Zs` – zonotope to enclose
+* `μbar` – ratio threshold
+
+## Hypotheses
+* none
+
+## Conclusion
+* the selected part lies in `Zm`
 
 ## References
 

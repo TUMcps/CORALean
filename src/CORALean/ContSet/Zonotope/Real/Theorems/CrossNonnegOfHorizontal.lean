@@ -12,6 +12,21 @@ In the upper half-plane, `σ u₀ > 0` and `σ w₀ ≤ 0` give `σ cross(u, w) 
 side condition for the generators not in the search set `G` of [1, Alg. 4], which lie after every
 generator of `G` in the walk.
 
+## Inputs
+* `σ` – direction sign
+* `u` – first planar vector
+* `w` – second planar vector
+
+## Hypotheses
+* `hσ` – `σ` is plus or minus one
+* `hu` – `u` points upward
+* `hw` – `w` points upward
+* `hux` – `u` points along `σ`
+* `hwx` – `w` does not point along `σ`
+
+## Conclusion
+* the signed cross product is nonnegative
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

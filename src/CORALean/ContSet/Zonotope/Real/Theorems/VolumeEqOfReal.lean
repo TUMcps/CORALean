@@ -11,6 +11,16 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Volume
 set, so `volume(⟨c, Ĝ_b⟩) = 2ⁿ |det Ĝ_b|`. `Zonotope.volume` is (7); `volume_eq_of_h_eq` is that
 it is the Lebesgue measure.
 
+## Inputs
+* `c` – center
+* `Gb` – generators
+
+## Hypotheses
+* none
+
+## Conclusion
+* the volume of the square zonotope is `2ⁿ |det|`
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

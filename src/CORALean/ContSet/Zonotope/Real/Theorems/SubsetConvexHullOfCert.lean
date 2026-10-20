@@ -18,6 +18,23 @@ public import Mathlib.Tactic.FieldSimp
 Zonotopes are nonempty and bounded, so `[1, Cor. 3]`'s gap does not arise. In generators,
 over any real module.
 
+## Inputs
+* `Zx` – inner zonotope
+* `Zy` – family of outer zonotopes
+* `Γ` – generator coefficient matrices
+* `β` – center coefficients
+* `lam` – convex weights
+
+## Hypotheses
+* `hn` – row sums bounded by the weight
+* `hlam` – weights nonnegative
+* `hsum` – weights sum to one
+* `hc` – centers agree
+* `hX` – generators agree
+
+## Conclusion
+* `Zx` lies in the convex hull of the union
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

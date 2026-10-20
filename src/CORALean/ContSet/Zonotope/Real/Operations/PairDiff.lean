@@ -13,6 +13,14 @@ this one back through `toReal` in `PairDiffBracket.lean`.
 
 Half the difference, the other half of a pairing; past the shorter block it is
 the second set's surplus generator, whole.
+
+## Inputs
+* `G₁` – first generators
+* `G₂` – second generators
+* `j` – pair index
+
+## Output
+* half the difference of the paired generators
 -/
 
 -- Authors:       Claude Opus 5

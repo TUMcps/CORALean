@@ -9,6 +9,19 @@ public import Mathlib.Data.Matrix.Mul
 # `rotMat` on the second coordinate
 
 On the coordinates `i ≠ j` the matrix is CORA's `R`: the second row is `(sin, cos)`.
+
+## Inputs
+* `n` – dimension
+* `i` – first coordinate of the plane
+* `j` – second coordinate of the plane
+* `angle` – rotation angle
+* `x` – vector
+
+## Hypotheses
+* `hij` – coordinates differ
+
+## Conclusion
+* coordinate `j` becomes sine times `x_i` plus cosine times `x_j`
 -/
 
 -- Authors:       Claude Opus 5.5

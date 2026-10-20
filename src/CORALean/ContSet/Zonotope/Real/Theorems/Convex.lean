@@ -14,6 +14,15 @@ being convex.
 
 What an integral valued in the set needs, and a property only some
 representations have — unlike `linComb`, stated so a non-convex one can make it.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Z` is convex
 -/
 
 -- Authors:       Claude Opus 5

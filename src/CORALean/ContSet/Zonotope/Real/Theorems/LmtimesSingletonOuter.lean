@@ -12,6 +12,16 @@ public import Mathlib.Order.BourbakiWitt
 What `LinMtimes` asks of `mapOf`: the union over a singleton is the one map's
 image, and that image is exact, so the enclosure holds with nothing to spare.
 Stated as an inclusion because that is the shape the interface field has.
+
+## Inputs
+* `f` – linear map
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image under `f` lies in the mapped zonotope
 -/
 
 -- Authors:       Claude Opus 5

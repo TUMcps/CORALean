@@ -13,6 +13,17 @@ the center: it is the offset `b` times a unit row.
 
 Source: [1].
 
+## Inputs
+* `Z` – zonotope
+* `S` – selected generator indices
+
+## Hypotheses
+* `hC` – facet normal nonzero
+* `hoff` – offset equals the minimal norm
+
+## Conclusion
+* the nearest facet point is at the minimal distance
+
 ## References
 
 * [1] `contSet/@zonotope/minnorm.m`, CORA (Sep. 2025).

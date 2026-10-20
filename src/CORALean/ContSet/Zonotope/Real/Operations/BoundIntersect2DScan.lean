@@ -13,12 +13,17 @@ public import Mathlib.Data.Fin.Tuple.Sort
 The zonogon `⟨c; g₁, …, g_r⟩` and the line `L_γ = {(x, y) | x = γ}`: turn the generators upward
 (lines 3-6), drive `P` to the lowest vertex (lines 7-8), sort the generators by angle (line 9),
 and scan the edges `[P; P + 2g]` up one chain (lines 10-17) and down the other (lines 18-25),
-keeping the least and the greatest `y` at which an edge meets `L_γ`. `m = ∞` and `M = -∞` are
-the starting values and the answer when nothing meets (line 2), so the pair is in `EReal`.
+keeping the least and the greatest `y` at which an edge meets `L_γ`. `m = ∞` and `M = -∞` are the
+starting values and the answer when nothing meets (line 2), so the pair is in `EReal`. The
+"trigonometric order" is `Complex.arg (x + i y)`, `0` for the zero generator, sorted by
+`Tuple.sort`; a loop `for j from 1 to r` is `Fin.foldl` over `Fin r`.
 
-The "trigonometric order" is the angle `Complex.arg (x + i y)`, which is `0` for the zero
-generator, and the sort is `Tuple.sort`; a loop `for j from 1 to r` is `Fin.foldl` over
-`Fin r`.
+## Inputs
+* `Z` – planar zonotope
+* `γ` – abscissa of the vertical line
+
+## Output
+* interval of ordinates of the intersection
 
 ## References
 

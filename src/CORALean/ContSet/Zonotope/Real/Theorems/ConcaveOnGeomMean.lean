@@ -14,6 +14,15 @@ the box program is a second-order cone program. Proved by homogeneity and the su
 `f(u) + f(v) ≤ f(u + v)` (Mahler), which is the arithmetic-geometric mean inequality applied to
 `uᵢ / (uᵢ + vᵢ)`.
 
+## Inputs
+* `n` – dimension
+
+## Hypotheses
+* `hn` – dimension positive
+
+## Conclusion
+* the geometric mean is concave on the nonnegative orthant
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

@@ -15,6 +15,15 @@ interval extension of `f` at the center, plus the zonotope inclusion `⋄M Bᵐ`
 interval matrix, and the enclosure `f(X, W) ⊆ Ψ(X, W)` holds for any that satisfy the hypotheses of
 `image_subset_meanValueInclusion`. `2n + m` generators, as the paper states.
 
+## Inputs
+* `n` – dimension
+* `m` – column count
+* `I` – box
+* `IM` – interval matrix
+
+## Output
+* mean-value inclusion zonotope
+
 ## References
 
 * [1] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".

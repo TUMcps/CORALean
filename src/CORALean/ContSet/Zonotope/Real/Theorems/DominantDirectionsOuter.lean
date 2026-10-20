@@ -15,6 +15,19 @@ filters never test that the answer has full rank (`priv_volumeFilter` gives a si
 the score `inf` and still returns the first one when all are), see
 `dominantDirections_det_eq_zero_of_orthogonal`.
 
+## Inputs
+* `Z` – zonotope
+* `a` – length-filter size
+* `b` – volume-filter size
+* `P` – returned basis
+
+## Hypotheses
+* `_` – `P` is the returned basis
+* `hP` – `P` invertible
+
+## Conclusion
+* `Z` lies in the parallelotope of `P`
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid

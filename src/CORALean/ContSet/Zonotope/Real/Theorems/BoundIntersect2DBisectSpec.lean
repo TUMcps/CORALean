@@ -15,6 +15,16 @@ of the section (`bisectLow_isLeast`), and `M` is the lowest point of the section
 in the x-axis, negated, which is the highest of `Z`'s; the section is an interval, so it is the
 segment between them. Unlike `Alg. 3` the search needs `Z ∩ L_γ ≠ ∅`.
 
+## Inputs
+* `Z` – planar zonotope
+* `γ` – abscissa of the vertical line
+
+## Hypotheses
+* `hne` – line meets `Z`
+
+## Conclusion
+* the intersection ordinates are exactly the returned interval
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

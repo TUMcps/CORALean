@@ -10,6 +10,13 @@ public import Mathlib.Data.Matrix.Mul
 
 CORA's `@zonotope/mtimes`: `map` at `A *ᵥ ·`, spelt with `*ᵥ` because that is
 the form every caller states its matrix in.
+
+## Inputs
+* `M` – matrix
+* `Z` – zonotope
+
+## Output
+* image of `Z` under `M`
 -/
 
 -- Authors:       Claude Opus 5

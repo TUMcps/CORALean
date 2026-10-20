@@ -13,6 +13,15 @@ and its generator matrix, `n₁ + n₂` rows by `h₁ + h₂` columns, each oper
 with zeros in the other component. Nothing is computed, but every entry is a fresh scalar of the
 result, and under `Global/Cost.lean`'s model a scalar of the result costs one write, a zero
 included.
+
+## Inputs
+* `n₁` – first dimension
+* `n₂` – second dimension
+* `h₁` – first generator count
+* `h₂` – second generator count
+
+## Output
+* one write per entry of the new matrices
 -/
 
 -- Authors:       Claude Sonnet 5.5

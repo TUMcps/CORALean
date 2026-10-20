@@ -12,6 +12,18 @@ least `Zonotope.dominantScore` (the volume of the parallelotope the subset enclo
 
 Source: [1].
 
+## Inputs
+* `Z` – zonotope
+* `a` – length-filter size
+* `b` – volume-filter size
+* `T` – shortlisted subset
+
+## Hypotheses
+* `hT` – `T` is on the shortlist
+
+## Conclusion
+* the returned basis scores at most that of `T`
+
 ## References
 
 * [1] `contSet/@zonotope/dominantDirections.m` and its private helpers, CORA (Sep. 2025), by

@@ -12,6 +12,18 @@ public import CORALean.ContSet.Zonotope.Real.Operations.StripGain
 multiplied by `F` on the left, for the same zonotope, measurement matrix and measurement noise.
 "It can be easily shown": the two formulas differ in the leading `F` only.
 
+## Inputs
+* `F` – dynamics matrix
+* `Γ` – stacked measurement matrix
+* `R` – measurement-noise generators
+* `X` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Luenberger gain is `F` times the strip gain
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

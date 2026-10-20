@@ -14,6 +14,15 @@ largest magnitude, hence nonzero; the other coordinates are then the remaining `
 
 Source: [1].
 
+## Inputs
+* `direction` – main direction
+
+## Hypotheses
+* `hd` – direction nonzero
+
+## Conclusion
+* the basis determinant is a unit
+
 ## References
 
 * [1] `contSet/@zonotope/encloseMany.m`, CORA (Sep. 2025).

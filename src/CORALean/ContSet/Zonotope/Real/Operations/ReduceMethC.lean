@@ -10,22 +10,21 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBasis
 /-!
 # `Zonotope.reduceMethC`
 
-CORA's `reduce(Z, 'methC', o)` [1], descended from [2, Sec. 5.4.2]'s method C,
-`Zonotope.methodC`. Its partition is Girard's — CORA reaches it
-through `pickedGenerators`, which ranks by `‖g‖₁ - ‖g‖∞` exactly as
-`girardSplit` does. What differs is the enclosure: the dropped block is boxed
-along `n` of the dropped generators themselves, prefiltered by length and then
-chosen by an exhaustive search over spanned volume, instead of along the axes.
+CORA's `reduce(Z, 'methC', o)` [1], descended from [2, Sec. 5.4.2]'s method C, `Zonotope.methodC`.
+Its partition is Girard's (`pickedGenerators` ranks by `‖g‖₁ - ‖g‖∞` as `girardSplit` does). What
+differs is the enclosure: the dropped block is boxed along `n` of the dropped generators
+themselves, prefiltered by length and then chosen by an exhaustive search over spanned volume.
+Two scalings CORA carries are absent because they cancel: `P·box(P⁻¹·)` is unchanged by a positive
+diagonal on `P`'s columns, and the row scaling `W` multiplies out against the `W⁻¹` inside. The
+determinant test is what a `pinv` hides in CORA: at a singular basis every candidate scores `inf`
+and the result encloses nothing; here it boxes along the axes.
 
-Two scalings CORA carries are absent because they cancel: `P·box(P⁻¹·)` is
-unchanged by a positive diagonal on `P`'s columns, which is CORA's
-normalization of `P`, and its row scaling `W` multiplies out against the `W⁻¹`
-inside. `W` changes an outcome only through `methCFilter`'s ranking, and the
-`|det|` ranking is invariant under it, so it survives there and nowhere else.
+## Inputs
+* `Z` – zonotope
+* `o` – target order
 
-The determinant test is what a `pinv` hides in CORA: at a singular basis
-`priv_volumeFilter` scores every candidate `inf` and still returns one, and the
-result encloses nothing. Here that case boxes along the axes instead.
+## Output
+* zonotope with the dropped block boxed along method C
 
 ## References
 

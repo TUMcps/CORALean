@@ -11,16 +11,27 @@ public import Mathlib.Topology.Order.Compact
 /-!
 # The online W-radius bound
 
-[1, Thm. 4], corrected: if `W ≻ 0` and a diagonal `M = diag(m)` satisfy `[M ⋆; W Ĥ W] ≻ 0` Eq. 27 of
-[1, Thm. 4], `Ĥ` the generator matrix of the zonotope, then its W-radius is below `max_{z ∈ B} zᵀ M
-z = Σᵢ mᵢ = tr M`, the quantity [1, Eq. 29] minimizes. The paper prints the bound Eq. 28 of [1, Thm.
-4] as `max_z ‖M z‖²₂ = Σᵢ mᵢ²`, which is false (`pRadius_lt_of_lmi_counterexample`); its own proof
-establishes `zᵀ Ĥᵀ W Ĥ z < zᵀ M z`, which is this. `M`'s size is the generator count, not `n_x ×
-n_x` as printed. At least one generator is needed for the strict inequality.
+[1, Thm. 4], corrected: if `W ≻ 0` and a diagonal `M = diag(m)` satisfy `[M ⋆; W Ĥ W] ≻ 0`
+(Eq. 27), `Ĥ` the generator matrix, then the W-radius is below `max_{z ∈ B} zᵀ M z = Σᵢ mᵢ`, the
+quantity [1, Eq. 29] minimizes. The paper prints the bound Eq. 28 as `max_z ‖M z‖²₂ = Σᵢ mᵢ²`,
+which is false (`pRadius_lt_of_lmi_counterexample`); its own proof establishes
+`zᵀ Ĥᵀ W Ĥ z < zᵀ M z`, which is this. `M`'s size is the generator count, not `n_x × n_x` as
+printed. At least one generator is needed for the strict inequality. The Schur complement of `W`
+gives `M - Ĥᵀ W Ĥ ≻ 0`, so every point has `‖Ĥ b‖²_W < Σ mᵢ bᵢ² ≤ Σ mᵢ`; the box is compact, so
+the supremum is a point's value and the bound stays strict.
 
-The Schur complement of the block `W` gives `M - Ĥᵀ W Ĥ ≻ 0`, so every point `c + Ĥ b`, `b ≠ 0`,
-has `‖Ĥ b‖²_W < Σ mᵢ bᵢ² ≤ Σ mᵢ`, each `mᵢ` positive; the box is compact, so the supremum is a
-point's value and the bound stays strict.
+## Inputs
+* `W` – weight matrix
+* `Z` – zonotope
+* `m` – bound vector
+
+## Hypotheses
+* `hW` – `W` positive definite
+* `hLMI` – linear matrix inequality holds
+* `hh` – the matrix bound is positive
+
+## Conclusion
+* the W-radius is below the bound given by `m`
 
 ## References
 

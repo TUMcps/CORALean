@@ -15,6 +15,12 @@ that `construct` is the center plus this map's image of the unit box.
 Named because a constraint on points becomes a constraint on coefficients by
 composing with it, which is how a halfspace description turns into a constrained
 zonotope.
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* linear map from coefficients to the generator sum
 -/
 
 -- Authors:       Claude Opus 5

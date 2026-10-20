@@ -16,6 +16,16 @@ to be the sign of `c (Z.G j)` makes every term reach its own `|c (Z.G j)|`, so
 Unlike an ellipsoid, no degenerate case to split on: `Real.sign 0 = 0`
 contributes nothing to the witness, and `|c (Z.G j)| = 0` there too, so the
 same coefficient works whether or not `c` vanishes on a generator.
+
+## Inputs
+* `Z` – zonotope
+* `c` – linear functional
+
+## Hypotheses
+* none
+
+## Conclusion
+* the support bound is attained in `Z`
 -/
 
 -- Authors:       Claude Opus 5

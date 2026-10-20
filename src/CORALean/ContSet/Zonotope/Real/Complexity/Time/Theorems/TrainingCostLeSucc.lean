@@ -14,6 +14,22 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.Training
 # `SetBasedNet.trainingCost_le_succ`
 
 Every iteration, `κ + 1` terms each at most `C N² Q`.
+
+## Inputs
+* `cNeuron` – cost of one neuron
+* `cGrad` – cost of one gradient step
+* `cBack` – cost of one backpropagation step
+* `N` – width bound
+* `Q` – generator bound
+* `n` – input dimension
+* `k` – output dimension
+* `net` – set-based network
+
+## Hypotheses
+* `hN` – width bound positive
+
+## Conclusion
+* each iteration costs `κ + 1` terms of at most `C N² Q`
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

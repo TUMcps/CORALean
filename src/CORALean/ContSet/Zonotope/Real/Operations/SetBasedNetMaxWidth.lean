@@ -11,6 +11,12 @@ public import CORALean.ContSet.Zonotope.Real.Definitions.SetBasedNet
 [1, Prop. 16] takes `n_max` over `k ∈ [κ]` alone, but its proof bounds the first layer's
 `n₀ n₁ q` by `n_max² q`, which needs `n₀ ≤ n_max`.
 
+## Inputs
+* none
+
+## Output
+* widest layer of the network
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

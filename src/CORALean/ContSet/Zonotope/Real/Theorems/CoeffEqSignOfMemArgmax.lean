@@ -19,6 +19,22 @@ statement about the coefficients behind [1, Sec. 3 (faces)]: it is what makes th
 gⱼ)gⱼ` plus the zonotope of the generators `u` annihilates (`construct_face`), and what makes a
 point's coefficients usable on every face through it at once (`exists_raise_degree`).
 
+## Inputs
+* `Z` – zonotope
+* `u` – linear functional
+* `x` – maximizing point
+* `β` – generator coefficients
+* `j` – generator index
+
+## Hypotheses
+* `hx` – `x` maximizes `u` over `Z`
+* `hβ` – coefficients within the unit box
+* `hxβ` – `x` is the center plus the generator sum
+* `hj` – `u` does not vanish on generator `j`
+
+## Conclusion
+* coefficient `j` equals the sign of `u` on generator `j`
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

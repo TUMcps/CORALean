@@ -11,6 +11,13 @@ public import Mathlib.Algebra.Module.Prod
 CORA's `@zonotope/cartProd_`: the centers pair, `c = [c1; c2]`, and the generator matrix is
 `blkdiag(G1, G2)`. Here every generator embeds into the product ambient type at zero in the
 other coordinate, as `ConPolyZono.cartProd` does; at `Vec` the product is `blkdiag`.
+
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+
+## Output
+* Cartesian product zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

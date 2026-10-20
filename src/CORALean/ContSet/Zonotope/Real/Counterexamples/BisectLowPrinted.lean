@@ -15,6 +15,15 @@ For `c = 0`, `g₁ = (-2, 1)`, `g₂ = (-1, 2)` and `γ = -1` the zonogon has th
 the chord `[(3, -3); (1, 1)]`, which misses the line, and ends on the edge `[(1, 1); (-3, 3)]`
 at `(-1, 2)`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed bisection gives 2 where the least value is -1
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

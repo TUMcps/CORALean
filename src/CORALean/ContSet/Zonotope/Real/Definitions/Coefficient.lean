@@ -15,6 +15,13 @@ A proof device rather than an operation, hence in `Theorems/` and not in
 `Operations/`: it only ever witnesses an existential and is never run.
 `AbsCoefficientLeOne` and `MulCoefficient` are the two facts about it, and
 `reduce` and the float `absorbError` are what need them.
+
+## Inputs
+* `R` – generator radius
+* `D` – target offset
+
+## Output
+* coefficient reaching `D`, zero when `R` is zero
 -/
 
 -- Authors:       Claude Opus 5

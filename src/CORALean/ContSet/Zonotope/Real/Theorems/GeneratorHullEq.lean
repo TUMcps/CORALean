@@ -18,6 +18,15 @@ public import Mathlib.Tactic.Ring
 so far is convex, being the image of a cube, so [1, Eq. 12] applies at each step; and a
 coefficient vector in `[0, 1]^{m+1}` is one in `[0, 1]^m` and a last coefficient in `[0, 1]`.
 
+## Inputs
+* `s` – starting point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the hull is the set of `s` plus coefficient-weighted generators
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

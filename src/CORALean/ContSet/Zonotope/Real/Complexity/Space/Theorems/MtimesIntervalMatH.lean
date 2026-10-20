@@ -11,6 +11,16 @@ Multiplying by an interval matrix keeps the operand's generators and boxes the
 radius into one fresh generator per output coordinate: `m` more, where `m` is
 the row count of the matrix, not a function of the operand's own size. `rfl`,
 since `Operations/MtimesIntervalMat.lean` states `h` directly.
+
+## Inputs
+* `IM` – interval matrix
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* result has `m` more generators than `Z`
 -/
 
 -- Authors:       Claude Opus 5

@@ -16,6 +16,21 @@ close enough to be used as one, and that is all a float layer can check.
 
 The invertibility is the contraction at work: `P x = 0` gives `x = K x`, and the coordinate of
 largest magnitude then shrinks by `q`. The bound is the same step on `w = H d + K w`.
+
+## Inputs
+* `Pm` – basis matrix
+* `Hm` – approximate inverse
+* `q` – contraction bound
+* `B` – bound on the image
+* `d` – target vector
+
+## Hypotheses
+* `hq` – bound at most one half
+* `hK` – row sums of `1 - Hm Pm` at most `q`
+* `hd` – image of `d` bounded by `B`
+
+## Conclusion
+* a preimage of `d` exists with entries bounded by `2B`
 -/
 
 -- Authors:       Claude Opus 5.5

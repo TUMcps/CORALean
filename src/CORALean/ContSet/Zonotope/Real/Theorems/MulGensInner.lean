@@ -12,6 +12,17 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetOfCert
 row of `T` has absolute sum at most `1` (`‖T‖∞ ≤ 1`), then `⟨c, Ĝ⟩ ⊆ ⟨c, G⟩`. It is [2, Thm. 3]
 at `β = 0` (`construct_subset_of_cert`).
 
+## Inputs
+* `Z` – zonotope
+* `r` – new generator count
+* `T` – recombination matrix
+
+## Hypotheses
+* `hT` – row sums at most one
+
+## Conclusion
+* the recombined zonotope lies in `Z`
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

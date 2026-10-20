@@ -10,6 +10,15 @@ public import CORALean.ContSet.Zonotope.Real.Operations.PointUp
 [1, Alg. 3]: "replacing a generator `g` by its opposite `-g` does not modify the shape of a
 zonogon". Each generator of `pointUp` is `±g`, so the coefficient `β` of a point becomes `±β`.
 
+## Inputs
+* `Z` – planar zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* turning generators upward leaves the set unchanged
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

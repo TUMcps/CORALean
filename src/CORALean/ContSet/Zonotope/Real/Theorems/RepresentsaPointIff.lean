@@ -12,6 +12,15 @@ public import Mathlib.Algebra.Module.BigOperators
 If `c + Gⱼ` (the coefficient `βⱼ = 1`, the others `0`) lies in `{c}` then `Gⱼ = 0`; conversely
 with no generator the combination is `0`. The origin is the point whose center is `0`. The empty
 set is never represented: `Zonotope.center_mem_construct` puts the center in every zonotope.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Z` is its center iff `representsa_point` holds
 -/
 
 -- Authors:       Claude Opus 5.5

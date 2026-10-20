@@ -18,6 +18,17 @@ public import Mathlib.Tactic.Ring
 with `|βᵢ| ≤ 1`, which stays within the sum of the `|gᵢ·n|` of `c·n`; and every offset
 `t = γ − c·n` of that size is reached by `βᵢ = (t/s) sign(gᵢ·n)`, `s = ∑ |gᵢ·n|`.
 
+## Inputs
+* `Z` – zonotope
+* `nv` – hyperplane normal
+* `γ` – hyperplane offset
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Z` meets the hyperplane iff the offset is within the support range
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

@@ -8,20 +8,20 @@ public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRep
 /-!
 # `Zonotope.minkDiffOrEmpty`
 
-`minkDiffRep` at whichever generator representation certifies one, wrapped so
-that the result may be empty. No zonotope denotes `∅` — `β = 0` gives the
-center — while `{0} ⊖ [-1, 1]` is `∅`, so a total `Zonotope → Zonotope →
-Zonotope` cannot meet `MinkDiff`'s obligation and this one can.
+`minkDiffRep` at whichever generator representation certifies one, wrapped so that the result
+may be empty. No zonotope denotes `∅`, while `{0} ⊖ [-1, 1]` is `∅`, so a total
+`Zonotope → Zonotope → Zonotope` cannot meet `MinkDiff`'s obligation and this one can. Two
+readings of "nothing", kept apart by two types: `minkDiffRep`'s `none` says the caller's `M`
+failed its check, `OptEmpty.empty` says the returned *set* is `∅`. As `MinkDiff` is inner, `∅` is
+sound whatever the true difference is. Classical, and noncomputable with it: the class field takes
+no candidate, so which `M` is used is a choice made here; a caller holding one calls `minkDiffRep`.
 
-Two readings of "nothing", kept apart by two types. `minkDiffRep`'s `none`
-says the caller's `M` failed its check, about the input; `OptEmpty.empty`
-says the returned *set* is `∅`. As `MinkDiff` is inner, `∅` is sound whatever
-the true difference is, and this returns it exactly when no `M` certifies —
-which claims the difference is empty no more than the class ever does.
+## Inputs
+* `Z₁` – minuend
+* `Z₂` – subtrahend
 
-Classical, and noncomputable with it: the class field takes no candidate, so
-which `M` is used is a choice made here rather than by the caller. A caller
-holding one calls `minkDiffRep` and keeps the precision that goes with it.
+## Output
+* difference zonotope, or the explicit empty set
 -/
 
 -- Authors:       Claude Opus 5

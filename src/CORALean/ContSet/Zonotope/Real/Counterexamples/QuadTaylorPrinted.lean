@@ -20,6 +20,15 @@ quadratic coefficient is twice what the expansion of `A²` needs, so they enclos
 starts at `2.7`, while `A = 0.9` gives `I + A + ½A² = 2.305`. The pair block is padded
 with zeros to `κ²` generators exactly as `Zonotope.quadTaylor` does, which changes no set.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed zonotope misses the second-order Taylor sum
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

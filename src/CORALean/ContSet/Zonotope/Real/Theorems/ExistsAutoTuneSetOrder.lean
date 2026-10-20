@@ -8,15 +8,25 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxErrorEqZero
 /-!
 # `Alg. 2` lines 19-22 always land
 
-The third sentence of [1, Thm. 1]'s proof, as a theorem about the sweep this tree
-computes: "the reduction error `Δε^r_k(ρ_k)` can be set to `0` by simply omitting the
-reduction, which trivially satisfies any bound `ε^{r,τ}_k`". Omitting the reduction is
-the sweep's *last* candidate, `ρ = Z.h + 1`, where `reduce` drops no generator and
-`Δε^r_k` reads `0`; so a non-negative admissible share is the whole hypothesis.
+The third sentence of [1, Thm. 1]'s proof, as a theorem about the sweep this tree computes: "the
+reduction error `Δε^r_k(ρ_k)` can be set to `0` by simply omitting the reduction, which trivially
+satisfies any bound `ε^{r,τ}_k`". Omitting the reduction is the sweep's *last* candidate,
+`ρ = Z.h + 1`, where `reduce` drops no generator and `Δε^r_k` reads `0`; so a non-negative
+admissible share is the whole hypothesis. The check must be complete here, `a ≤ b → le a b = true`,
+the converse of what a soundness statement about the same sweep asks.
 
-The check must be complete here, `a ≤ b → le a b = true`, which is the converse of what
-a soundness statement about the same sweep would ask: a check that gives up early is
-sound but need never report anything.
+## Inputs
+* `le` – decidable comparison on reals
+* `Z` – zonotope
+* `εrτ` – admissible error share
+
+## Hypotheses
+* `hle` – comparison agrees with the real order
+* `hn` – dimension positive
+* `hεrτ` – share nonnegative
+
+## Conclusion
+* the sweep reports an order
 
 ## References
 

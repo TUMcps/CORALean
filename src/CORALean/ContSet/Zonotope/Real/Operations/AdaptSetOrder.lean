@@ -16,6 +16,18 @@ indexed by `ρ = γ/n` [1, Def. 2], so one `decr` steps `n` generators.
 One departure, deliberate. The loop keeps the last order that *passed*; [1]'s
 line 7 as printed returns the first that failed.
 
+## Inputs
+* `le` – decidable comparison on reals
+* `Z` – zonotope
+* `εSmax` – total set-error budget
+* `εSacc` – error already accumulated
+* `tf` – final time
+* `ti` – current time
+* `Δt` – time step
+
+## Output
+* reduction order and the error it accumulates
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

@@ -13,6 +13,17 @@ Whatever the partition into clusters, the reduced generators are `G T` with `T(i
 if `gᵢ` is in cluster `k` and `0` otherwise: one `±1` per row, so `‖T‖∞ ≤ 1` and
 [1, Eq. (1)] puts the result in `Z`. Which partition `k`-means++ finds does not matter.
 
+## Inputs
+* `Z` – zonotope
+* `r` – cluster count
+* `cl` – cluster assignment of the generators
+
+## Hypotheses
+* none
+
+## Conclusion
+* the clustered zonotope lies in `Z`
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

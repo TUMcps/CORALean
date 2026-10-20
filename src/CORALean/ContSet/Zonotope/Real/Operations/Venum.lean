@@ -14,6 +14,13 @@ corners, a superset of the vertices with the same convex hull, which changes not
 algorithm decides. Exponential in `m₁`, as the paper says; `[1, Thm. 2]` is why nothing
 much better is expected.
 
+## Inputs
+* `Z₁` – zonotope tested
+* `Z₂` – containing zonotope
+
+## Output
+* `true` iff every corner is inside `Z₂`
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

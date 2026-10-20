@@ -8,17 +8,25 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # How far the exact difference of two zonotopes reaches in one direction
 
-The step [1, Thm. 5]'s proof needs before its linear program can be read: in
-any direction `c`, the exact Minkowski difference reaches no further from
-`c⁽ᵐ⁾ - c⁽ˢ⁾` than `Δd - Δd_trans` — the minuend's own reach in that direction
-less the subtrahend's.
+The step [1, Thm. 5]'s proof needs before its linear program can be read: in any direction `c`,
+the exact Minkowski difference reaches no further from `c⁽ᵐ⁾ - c⁽ˢ⁾` than `Δd - Δd_trans` — the
+minuend's own reach in that direction less the subtrahend's. No halfspace description is assumed:
+the subtrahend's farthest point in the direction `c` is written down explicitly, and the minuend's
+reach is read off its generators. This is the *enclosing* half of [1, Thm. 3], the half that holds
+for an arbitrary family of directions rather than only for the minuend's own facet normals; the
+other half is what `minkDiffStretch_outer` therefore asks for.
 
-No halfspace description is assumed, and none is needed: the subtrahend's
-farthest point in the direction `c` is written down explicitly, and the
-minuend's reach is read off its generators. This is the *enclosing* half of
-[1, Thm. 3], the half that holds for an arbitrary family of directions rather
-than only for the minuend's own facet normals — the other half is what that
-row defers, and what `minkDiffStretch_outer` therefore asks for.
+## Inputs
+* `Z₁` – minuend
+* `Z₂` – subtrahend
+* `c` – linear functional
+* `x` – point of the difference
+
+## Hypotheses
+* `hx` – `x` lies in the Minkowski difference
+
+## Conclusion
+* the functional is bounded by the support difference
 
 ## References
 

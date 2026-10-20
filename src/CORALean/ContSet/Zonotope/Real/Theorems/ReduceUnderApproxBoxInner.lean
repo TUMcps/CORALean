@@ -14,6 +14,20 @@ For orthogonal `U`: if the box lies in the rotated part, `B ⊆ Z_br = Uᵀ Z_b`
 `U B ⊆ U Uᵀ Z_b = Z_b` (Step 4), and `Ẑ = Z_a ⊕ U B ⊆ Z_a ⊕ Z_b = Z`. The hypothesis is what the
 program in Step 3 enforces through (1); `U` need not come from the singular value decomposition.
 
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+* `U` – orthogonal basis
+* `γ` – box radii
+
+## Hypotheses
+* `hlt` – reduction needed
+* `hU` – `U` orthogonal
+* `hB` – box lies in the rotated dropped part
+
+## Conclusion
+* the under-approximation lies in `Z`
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

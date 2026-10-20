@@ -19,6 +19,16 @@ public import Mathlib.Tactic.Ring
 `Z` and has volume `2ⁿ |det G|` (`Zonotope.volume_eq_of_h_eq`), the one `n`-subset being all
 of them; it holds for any injective choice of `n` columns.
 
+## Inputs
+* `Z` – zonotope
+* `J` – choice of `n` generator indices
+
+## Hypotheses
+* `hJ` – indices distinct
+
+## Conclusion
+* generator determinant is at most the volume of `Z`
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

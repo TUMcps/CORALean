@@ -16,6 +16,17 @@ public import Mathlib.Tactic.Ring
 lines 18, 11 and 19 of [1, Alg. 3] and [1, Alg. 4] ("`[P; P + s₁]` intersects `L_γ`") read as an
 inequality on the abscissae, which is how the bisection of `Alg. 4` is followed.
 
+## Inputs
+* `P` – segment start
+* `Q` – segment end
+* `γ` – abscissa of the vertical line
+
+## Hypotheses
+* none
+
+## Conclusion
+* the segment meets the line iff `γ` lies between the endpoint abscissae
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

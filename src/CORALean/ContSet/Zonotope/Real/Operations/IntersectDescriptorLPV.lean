@@ -17,6 +17,24 @@ by `ρ_i(θ_{k-1})` [1, Eq. 2]: from `X = ⟨p̂, H̄⟩` (already reduced),
 `[Σᵢ Σⱼ ρᵢρⱼ (I - ΛᵢC)TAⱼ H̄  Σᵢ Σⱼ ρᵢρⱼ (I - ΛᵢC)TDⱼ H_d  Σᵢ ρᵢ (I - ΛᵢC)NF H_d  Σᵢ ρᵢ ΛᵢF H_d]`.
 Real only, as `intersectDescriptor` is.
 
+## Inputs
+* `T` – decoupling matrix
+* `N` – measurement decoupling matrix
+* `ρ` – vertex weights
+* `Λ` – correction matrices
+* `A` – vertex state matrices
+* `B` – vertex input matrices
+* `D` – vertex disturbance matrices
+* `C` – output matrix
+* `F` – noise matrix
+* `Hd` – disturbance generator matrix
+* `u` – control input
+* `y` – measurement
+* `X` – reduced state zonotope
+
+## Output
+* enclosing intersection zonotope
+
 ## References
 
 * [1] Y. Wang, Z. Wang, V. Puig and G. Cembrano. "Zonotopic set-membership state estimation for

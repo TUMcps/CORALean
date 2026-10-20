@@ -12,20 +12,20 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.PlusCost
 # `SetBasedNet.trainingCost`
 
 Asserted, not proved, as [1, Prop. 17]'s proof counts one iteration of set-based training,
-[1, Alg. 2], which has no Lean definition of its own: per layer the forward step of
-`SetBasedNet.forwardCost`; at a linear `m × n` layer the backward map `W_kᵀ 𝒢_k` (line 11,
-Prop. 4), the weight gradient `𝒢_k ⊙ H_{k-1}ᵀ = c'cᵀ + G'Gᵀ` with its update (line 12, Prop. 14),
-`2mn(h + 1) + 2mn`, and the bias update (line 13), `2m`; at a nonlinear layer `backpropEnclose`
-(line 15, Prop. 12), per dimension the sum `c'c + G'Gᵀ` at `2h + 2`, and per entry the gradients
-of the slope and the errors at a constant `cBack` and their combination at `10`; and at the
-output the loss gradient (line 8, Prop. 9), `n_κ(h + 1)` entries at `cGrad` each. The proved
-part is [1, Prop. 17]'s `O(n_max² q κ)`, at most `2 C N² Q κ` for `κ ≥ 1`, with `N` covering
-every width, the input's included, as for [1, Prop. 16].
+[1, Alg. 2], which has no Lean definition: per layer the forward step of `forwardCost`; at a
+linear `m × n` layer the backward map (line 11), the weight gradient with its update (line 12),
+`2mn(h + 1) + 2mn`, and the bias update, `2m`; at a nonlinear layer `backpropEnclose` (line 15),
+`2h + 2` per dimension and `cBack` plus `10` per entry; at the output the loss gradient (line 8),
+`n_κ(h + 1)` entries at `cGrad`. Each count also writes what it computes. The proved part is
+`O(n_max² q κ)`, at most `2 C N² Q κ` for `κ ≥ 1`, with `N` covering every width as for `forward`.
 
-Each count above also writes the result it computes, one unit per scalar: the new weights
-`m n` and the new bias `m` at a linear layer, the `n` sums and the `n (h + 1)` combined
-gradients at a nonlinear one (the combination at `11`: its `10` operations and the write).
-`cGrad`, `cBack` and `cNeuron` count what one application does, the write of its value included.
+## Inputs
+* `cNeuron` – cost of one neuron
+* `cGrad` – cost of one gradient step
+* `cBack` – cost of one backpropagation step
+
+## Output
+* cost of one training iteration from a given generator count
 
 ## References
 

@@ -9,18 +9,24 @@ public import Mathlib.LinearAlgebra.Matrix.Diagonal
 /-!
 # `Zonotope.reduceScottStep`
 
-[1, Sec. 4.3 (new reduction)]: one step of the generator reduction "after Chisci et al. (1996)" that
-lift-then-reduce (Sec. 4.3) uses. The state is `(T, R)`, the zonotope `{[T TR], c}`
-(`Zonotope.ofEchelon`). A column `r = T⁻¹v` of `R` is chosen. The order-`(n+1)/n` part
+[1, Sec. 4.3 (new reduction)]: one step of the generator reduction "after Chisci et al. (1996)"
+that lift-then-reduce uses. The state is `(T, R)`, the zonotope `{[T TR], c}`
+(`Zonotope.ofEchelon`). A column `r = T⁻¹v` of `R` is chosen; the order-`(n+1)/n` part
 `X = {[T v], c}` is replaced by the parallelotope `X̃ = {[T(I + diag|r|)], c}`, Chisci et al.'s
-smallest enclosing one for `‖r‖∞ ≤ 1`. The state is then updated by (A.10):
-`T := T(I + diag|r|)`, `R := (I + diag|r|)⁻¹R₋`, `R₋` being `R` without `r`. One generator
-goes.
+smallest enclosing one for `‖r‖∞ ≤ 1`, and the state is updated by (A.10):
+`T := T(I + diag|r|)`, `R := (I + diag|r|)⁻¹R₋`, `R₋` being `R` without `r`. One generator goes.
+Which column is chosen is the caller's: [1] picks the `r` of least volume error `v(X̃) − v(X)`,
+and every choice gives an enclosure (`ofEchelon_reduceScottStep_outer`).
 
-Which column is chosen is the caller's: [1] picks the `r` with the least volume error
-`v(X̃) − v(X)`, and every choice gives an enclosure (`ofEchelon_reduceScottStep_outer`).
-`I + diag|r|` is the diagonal matrix with entries `1 + |r_i|`, and its inverse the one with
-entries `(1 + |r_i|)⁻¹`.
+## Inputs
+* `n` – dimension
+* `k` – column count minus one
+* `T` – basis matrix
+* `R` – echelon columns
+* `ind` – removed column index
+
+## Output
+* updated basis and the remaining columns
 
 ## References
 

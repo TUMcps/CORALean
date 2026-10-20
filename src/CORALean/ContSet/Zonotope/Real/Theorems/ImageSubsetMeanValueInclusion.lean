@@ -19,6 +19,23 @@ mean value theorem on each coordinate along the segment from `p` to `x`, which l
 points `ξᵢ` differ by row, and an interval matrix is entrywise, so the rows assemble into one `M ∈
 [M]`. `f` is differentiable in `x`, as the mean value theorem needs ([1, Thm. 3]).
 
+## Inputs
+* `n` – state dimension
+* `nw` – disturbance dimension
+* `f` – dynamics function
+* `W` – disturbance set
+* `X` – state zonotope
+* `I` – box at the center
+* `IM` – interval Jacobian
+
+## Hypotheses
+* `hdiff` – `f` differentiable in the state
+* `hI` – center image lies in the box
+* `hM` – Jacobians lie in the interval matrix
+
+## Conclusion
+* all images lie in the mean-value inclusion
+
 ## References
 
 * [1] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".

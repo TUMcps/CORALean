@@ -9,21 +9,21 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # Zonotopes: the linear combination of two
 
-CORA's `@zonotope/enclose`, which is where a zonotope's `linComb` comes from.
-The center is the midpoint, one fresh generator spans the half-difference of the
-centers — which is what lets the combination slide from one set to the other —
-and the two generator blocks are paired column by column, by `pairSum` and
-`pairDiff`, the longer block keeping its surplus at full width.
+CORA's `@zonotope/enclose`, which is where a zonotope's `linComb` comes from. The center is the
+midpoint, one fresh generator spans the half-difference of the centers — which lets the
+combination slide from one set to the other — and the two generator blocks are paired column by
+column, by `pairSum` and `pairDiff`, the longer block keeping its surplus at full width. Pairing
+makes this tighter than concatenating the blocks, at the same count `h₁ + h₂ + 1`: over a paired
+column the result reaches the hull of `±G₁ⱼ` and `±G₂ⱼ`, rather than the whole box, since the
+coefficients `λ β₁ⱼ ± (1-λ) β₂ⱼ` record that the two sides share one `λ`. The columns come out as
+`sum ++ difference ++ center`, not CORA's order; a zonotope does not depend on it.
 
-Pairing is what makes this tighter than concatenating the blocks, at the same
-count `h₁ + h₂ + 1`. Over a paired column the result reaches
-`{u G₁ⱼ + v G₂ⱼ | |u| + |v| ≤ 1}`, the hull of `±G₁ⱼ` and `±G₂ⱼ`, rather than
-the whole box: the coefficients come out as `λ β₁ⱼ ± (1-λ) β₂ⱼ`, which records
-that the two sides share one `λ`.
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
 
-The columns come out as `sum ++ difference ++ center` rather than CORA's
-`sum ++ center ++ difference ++ surplus`; a zonotope does not depend on the
-order of its generators.
+## Output
+* linear combination zonotope
 -/
 
 -- Authors:       Claude Opus 5

@@ -14,6 +14,15 @@ Each of the two radii bounds the distance `‖x - c‖₂` of a member. For the 
 `x - c = ∑ βⱼ Gⱼ` with `|βⱼ| ≤ 1`, by the triangle inequality. For the box, the box of a zonotope
 is centered at `c` (the half-sum of its bounds), so `Interval.norm₂_sub_center_le` applies. An
 upper bound, not the smallest ball: that is a different quantity, as `radius₂`'s docstring says.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Z` lies in the ball of its radius around the center
 -/
 
 -- Authors:       Claude Opus 5.5

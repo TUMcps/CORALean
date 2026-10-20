@@ -15,6 +15,27 @@ public import Mathlib.Data.Matrix.Basic
 observer's zonotope (`Zonotope.faultResidual` of `Zonotope.faultObserve`) is that zonotope,
 generator for generator.
 
+## Inputs
+* `A` – state matrix
+* `B` – input matrix
+* `C` – output matrix
+* `L` – observer gain
+* `M` – weighting matrix
+* `Dx` – disturbance matrix
+* `Hw` – disturbance generator matrix
+* `Dy` – noise matrix
+* `Hv` – noise generator matrix
+* `u` – control input
+* `y` – current output
+* `y_plus` – next output
+* `X` – state zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the residual of the next estimate is an explicit zonotope
+
 ## References
 
 * [1] Y. Wang, M. Zhou, V. Puig, G. Cembrano and Z. Wang. "Zonotopic Fault Detection Observer

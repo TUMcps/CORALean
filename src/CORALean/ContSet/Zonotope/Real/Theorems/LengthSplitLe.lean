@@ -10,6 +10,18 @@ public import CORALean.ContSet.Zonotope.Real.Operations.LengthSplit
 Every generator `lengthSplit` keeps is at least as long, in the 2-norm, as every generator it drops:
 the split of [1, Sec. IV-D, Step 1)] has `G_a` the generators of largest 2-norm.
 
+## Inputs
+* `Z` – zonotope
+* `q` – kept count
+* `l` – kept index
+* `r` – dropped index
+
+## Hypotheses
+* `hq` – at most all generators
+
+## Conclusion
+* each kept generator is at least as long as each dropped one
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

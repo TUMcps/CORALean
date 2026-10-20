@@ -12,6 +12,17 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
 Induction on the exponent, `matMul_outer` at each step and `mem_ofPoint` at the
 identity. `pow_succ'` is what matches `A ^ (k + 1) = A * A ^ k` to `matPow`'s
 own recursion, which multiplies the base in on the left.
+
+## Inputs
+* `M` – matrix zonotope
+* `A` – matrix
+* `k` – exponent
+
+## Hypotheses
+* `hA` – `A` lies in `M`
+
+## Conclusion
+* `A` to the `k` lies in the power enclosure
 -/
 
 -- Authors:       Claude Opus 5

@@ -13,6 +13,23 @@ public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 with `δᵢ = 0` have `Γᵢ = 0` and `βᵢ = 0`, so the one with `δᵢ = 1` is `[1, Thm. 3]`'s
 certificate, `βᵢ` with its sign flipped.
 
+## Inputs
+* `Zx` – inner zonotope
+* `Zy` – family of candidate outer zonotopes
+* `Γ` – generator coefficient matrices
+* `β` – center coefficients
+* `δ` – selection indicators
+
+## Hypotheses
+* `hδ` – indicators zero or one
+* `hsum` – exactly one selected
+* `hn` – row sums bounded by the indicator
+* `hc` – centers agree
+* `hX` – generators agree
+
+## Conclusion
+* `Zx` lies in one of the candidates
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

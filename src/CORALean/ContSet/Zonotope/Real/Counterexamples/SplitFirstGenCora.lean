@@ -19,6 +19,15 @@ of the bounding box (see `Zonotope.splitCora`). For the generators `(1,0), (0,1)
 
 The scores `‖g_jᵀ G‖₁` are `2, 2, 4`, so `index = 3` (l. 39-42 of `@zonotope/splitFirstGen.m`), and
 `split(Z, 3)` reads `G(:,3)` of a bounding box with two generators. Read from the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* splitting the first generator errors
 -/
 
 -- Authors:       Claude Sonnet 5.5

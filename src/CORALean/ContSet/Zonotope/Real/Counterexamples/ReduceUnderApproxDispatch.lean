@@ -9,18 +9,20 @@ public import Mathlib.Logic.Basic
 
 In `@zonotope/reduceUnderApprox.m` (l. 76-113) the `end` at l. 101 closes the chain
 `if strcmp(method,'sadraddini') ... elseif strcmp(method,'cluster') ... end` early, so the
-`elseif` branches of the LEGACY methods `'boxLP'`/`'linProg'`, `'boxWetzlinger'`/`'wetzlinger'`
-and `'boxNLP'` (l. 103-109) attach to the outer test `if n*order < nrOfGens` (reduction needed):
+`elseif` branches of the LEGACY methods (`'boxLP'`, `'boxWetzlinger'`, `'boxNLP'`, l. 103-109)
+attach to the outer test `if n*order < nrOfGens` (reduction needed). Needed: only the inner chain
+runs, no case matches a legacy name, and the set is returned unreduced. Not needed: a legacy
+method runs on a zonotope within the order (it shrinks it needlessly or fails). Only the control
+flow is modelled (read from the source, not run).
 
-* reduction needed: the outer test is true, so only the inner chain runs; no case of it matches
-  a legacy name and the (compacted) set is returned unreduced;
-* reduction not needed: the outer test is false, so the legacy `elseif`s are tried: a legacy
-  method runs its `aux_reduceUnderApprox...` on a zonotope within the order (it shrinks it
-  needlessly or fails when asked for `floor(order*n-n)` generators of fewer), the others hit
-  `else return`.
+## Inputs
+* `m` – legacy method
 
-This file models the control flow only (read from the source, not run): which routine the code
-reaches for a given `needed` and method, against what the nesting was meant to do.
+## Hypotheses
+* `hm` – method is legacy
+
+## Conclusion
+* CORA's dispatch is the reverse of the intended nesting
 -/
 
 -- Authors:       Claude Opus 5.5

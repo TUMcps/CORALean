@@ -14,6 +14,20 @@ For `a ≤ b`, `s ∈ [a, b]` and `z ∈ Z`: `s z = c z + σ (g z)` with `σ = (
 (`σ = 0` at `g = 0`), the second summand in `[-1, 1] ⊗ (g Z)` [1, Eq. 11]. Outer only: the
 products `σ βⱼ` of the coefficients are taken as free ones.
 
+## Inputs
+* `a` – lower scalar bound
+* `b` – upper scalar bound
+* `Z` – zonotope
+* `s` – scalar
+* `z` – point of the zonotope
+
+## Hypotheses
+* `hs` – `s` between `a` and `b`
+* `hz` – `z` lies in `Z`
+
+## Conclusion
+* the scaled point lies in the result
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

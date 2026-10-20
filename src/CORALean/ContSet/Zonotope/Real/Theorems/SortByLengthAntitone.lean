@@ -9,6 +9,15 @@ public import CORALean.ContSet.Zonotope.Real.Operations.SortByLength
 
 `‖g_{s,i}‖₂ ≥ ‖g_{s,i+1}‖₂` for the sorted generators, as [1, Sec. III-B, Step 1)] requires.
 
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* sorted generator lengths are nonincreasing
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

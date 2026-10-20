@@ -16,6 +16,16 @@ a candidate rejected leaves PCA's parallelotope, `reduceByBasis_outer` at the or
 `U₀`. The solver is arbitrary: soundness does not rest on it converging, nor on it respecting
 the constraint. Nothing is claimed about the volume, which is the solver's to minimize.
 
+## Inputs
+* `Z` – zonotope
+* `opt` – solver
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Z` lies in the reduced zonotope
+
 ## References
 
 * [1] A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of

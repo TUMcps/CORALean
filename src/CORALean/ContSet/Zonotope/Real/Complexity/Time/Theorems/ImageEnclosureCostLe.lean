@@ -12,6 +12,18 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.ImageEnc
 
 [1, Prop. 15]: `O(n² q)`, at most `(cNeuron + 17) n² q` for `n, q ≥ 1`.
 
+## Inputs
+* `n` – dimension
+* `q` – generator count
+* `cNeuron` – cost of one neuron
+
+## Hypotheses
+* `hn` – dimension positive
+* `hq` – generator count positive
+
+## Conclusion
+* image enclosure cost is at most `(cNeuron + 17) n² q`
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

@@ -9,20 +9,24 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 /-!
 # A split loses nothing
 
-`split`'s two halves cover exactly the zonotope they came from
-[1, Prop. 3]. Read on the coefficient cube: the `j`-th coefficient of a half
-is an affine image of `[-1, 1]`, onto `[-1, 0]` for the first half and onto
-`[0, 1]` for the second, and every other coefficient is carried across
-unchanged. So it is one substitution each way, `β_j ↦ (β_j ∓ 1)/2` forwards and
-`γ_j ↦ 2γ_j ± 1` back, the sign chosen by the sign of `γ_j`.
+`split`'s two halves cover exactly the zonotope they came from [1, Prop. 3]. Read on the
+coefficient cube: the `j`-th coefficient of a half is an affine image of `[-1, 1]`, onto `[-1, 0]`
+for the first half and `[0, 1]` for the second, and every other coefficient is carried across
+unchanged — one substitution each way, `β_j ↦ (β_j ∓ 1)/2` forwards and `γ_j ↦ 2γ_j ± 1` back,
+the sign chosen by the sign of `γ_j`. Nothing is over-approximated and nothing assumed: the
+equality holds at every zonotope and generator index, a zero generator included, where both halves
+are the original. `(Z.split j).1.h` is `Z.h` only up to unfolding, so the halves are restated by
+`rfl` first; after that every sum here is `sum_smul_update` at different arguments.
 
-Nothing is over-approximated and nothing is assumed: the equality holds at every
-zonotope and every generator index, including a zero generator, where both
-halves are the original.
+## Inputs
+* `Z` – zonotope
+* `j` – generator index
 
-`(Z.split j).1.h` is `Z.h` only up to unfolding, and a `Finset.univ` carries its
-`Fintype` instance along, so the two halves are restated by `rfl` first; after
-that every sum here is `sum_smul_update` at different arguments.
+## Hypotheses
+* none
+
+## Conclusion
+* the two halves cover `Z`
 
 ## References
 

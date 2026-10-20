@@ -15,6 +15,19 @@ any invertible matrix: `reduceByBasis_outer` is the whole argument, and
 matter of tightness and never of soundness, so nothing about distances, eigenvectors
 or volumes enters.
 
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+* `ξ` – convergence threshold
+* `fuel` – iteration budget
+* `runs` – number of restarts
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Z` lies in the reduced zonotope
+
 ## References
 
 * [1] A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of

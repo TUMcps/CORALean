@@ -16,6 +16,19 @@ For `F` differentiable at `p`, the derivative of `t ↦ F (p + (t - a) • v)` a
 derivatives of [1, Def. 3], a function with one entry set to `t`, become the derivative `DF` at a
 direction.
 
+## Inputs
+* `E` – normed space
+* `F` – real function
+* `p` – point
+* `v` – direction
+* `a` – parameter shift
+
+## Hypotheses
+* `hF` – `F` differentiable at `p`
+
+## Conclusion
+* the derivative along the line is the directional derivative
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

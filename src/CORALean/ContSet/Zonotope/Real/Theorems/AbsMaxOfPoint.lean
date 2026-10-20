@@ -10,16 +10,21 @@ public import Mathlib.Analysis.Matrix.Normed
 /-!
 # A point matrix zonotope is dominated by the matrix itself
 
-`ofPoint A` has no generators, so the box it encloses is `[A, A]` and its
-`absMax` is `|A|` entrywise. The `l∞` operator norm is a supremum of row sums
-of absolute values, which absolute values leave alone, so the two norms agree.
+`ofPoint A` has no generators, so the box it encloses is `[A, A]` and its `absMax` is `|A|`
+entrywise. The `l∞` operator norm is a supremum of row sums of absolute values, which absolute
+values leave alone, so the two norms agree. What it is for: `expMatZonoEnclosure` states its tail
+condition at `M.interval.absMax`; where the zonotope is a point the condition is about that point,
+so a discretization of a `LinearSys` states the same `‖Δt • A‖ / (η + 2) < 1` the interval-matrix
+enclosure already asks of its callers.
 
-What it is for: `expMatZonoEnclosure` states its tail condition at
-`M.interval.absMax`, since that is the only matrix a whole zonotope answers
-for. Where the zonotope is a point the condition is about that point, and this
-is what says so — so a discretization of a `LinearSys`, whose matrix is a
-single matrix, states the same `‖Δt • A‖ / (η + 2) < 1` the interval-matrix
-enclosure already asks its callers for.
+## Inputs
+* `A` – matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* dominating matrix of a point has the norm of `A`
 -/
 
 -- Authors:       Claude Opus 5

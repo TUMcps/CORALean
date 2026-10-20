@@ -12,6 +12,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 `[corner (¬ j < k); corner (¬ j < k + 1)]`: the walk's two blocks read off `Fin.append`, the
 edges `[P; P + 2g]` that [1, Alg. 3] scans in its two loops.
 
+## Inputs
+* `Z` – zonotope
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` is on the walk edges iff it lies on one of the segments
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

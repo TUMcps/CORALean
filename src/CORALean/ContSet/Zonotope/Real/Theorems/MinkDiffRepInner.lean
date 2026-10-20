@@ -8,16 +8,24 @@ public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRep
 /-!
 # `Zonotope.minkDiffRep` is an inner approximation of the Minkowski difference
 
-Both halves of the sum are spent in the minuend's own coefficients: `βᵢ` on the
-scaled generator `i`, and `∑ⱼ γⱼ Mᵢⱼ` on what the subtrahend's point costs
-there. The triangle inequality bounds the second by `∑ⱼ |Mᵢⱼ|` whatever `γ`
-is, which is exactly why the check subtracts that much and no less — the
-scaling is forced by the proof, not chosen ahead of it.
+Both halves of the sum are spent in the minuend's own coefficients: `βᵢ` on the scaled generator
+`i`, and `∑ⱼ γⱼ Mᵢⱼ` on what the subtrahend's point costs there. The triangle inequality bounds the
+second by `∑ⱼ |Mᵢⱼ|` whatever `γ` is, which is why the check subtracts that much and no less — the
+scaling is forced by the proof. So soundness asks nothing of the shape of either zonotope, only
+that `M` represents: the same argument at `Mᵢⱼ = μᵢ` on the diagonal and `0` off it is
+`minkDiffAligned_inner`. Each of the check's two facts is used once, `hrow` for the bound and
+`hM` for the equation.
 
-So soundness asks nothing of the shape of either zonotope, only that `M`
-represents: the same argument at `Mᵢⱼ = μᵢ` on the diagonal and `0` off it is
-`minkDiffAligned_inner`. Each of the check's two facts is used exactly once,
-`hrow` for the bound and `hM` for the equation.
+## Inputs
+* `Z₁` – minuend
+* `Z₂` – subtrahend
+* `M` – generator representation matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* any returned zonotope lies in the Minkowski difference
 -/
 
 -- Authors:       Claude Opus 5

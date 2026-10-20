@@ -13,18 +13,34 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 /-!
 # The Kalman correction matrix minimizes the F_W-radius
 
-[1, Thm. 2]: among all correction matrices `Λ`, the intersection zonotope `⟨p̂₊(Λ), Ĥ₊(Λ)⟩` of Eq. 7
-of [1, Thm. 1] has the least F_W-radius at `Λ* = L S⁻¹` Eq. 12 of [1, Thm. 2], `L = R̄ Cᵀ` Eq. 13 of
-[1, Thm. 2], `S = C R̄ Cᵀ + Q_v` Eq. 14 of [1, Thm. 2], `R̄ = T(A P̄ Aᵀ + Q_w)Tᵀ + N Q_v Nᵀ` Eq. 15
-of [1, Thm. 2], with `P̄ = H̄ H̄ᵀ`, `Q_w = D Dᵀ`, `Q_v = F Fᵀ`. Every weight `W` with `vᵀ W v ≥ 0`
-gives the same minimizer, which is the paper's remark that `Λ*` does not depend on `W`. `S` is
-inverted, so it must be invertible.
+[1, Thm. 2]: among all correction matrices `Λ`, the intersection zonotope `⟨p̂₊(Λ), Ĥ₊(Λ)⟩` of
+Eq. 7 of [1, Thm. 1] has the least F_W-radius at `Λ* = L S⁻¹` (Eq. 12), `L = R̄ Cᵀ`,
+`S = C R̄ Cᵀ + Q_v`, `R̄ = T(A P̄ Aᵀ + Q_w)Tᵀ + N Q_v Nᵀ` (Eq. 13-15), with `P̄ = H̄ H̄ᵀ`,
+`Q_w = D Dᵀ`, `Q_v = F Fᵀ`. Every weight `W` with `vᵀ W v ≥ 0` gives the same minimizer, the
+paper's remark that `Λ*` does not depend on `W`. `S` is inverted, so it must be invertible. The
+proof completes the square: the Gram matrix of the generators is
+`P₊(Λ) = R̄ + Λ S Λᵀ - Λ Lᵀ - L Λᵀ`, its trace against `W` is the squared radius
+(`fwRadius_sq_eq_trace`), and `trace_gain_le` minimizes that at `Λ* S = L`.
 
-The proof completes the square rather than setting a derivative to zero: the Gram matrix of the
-generators is `P₊(Λ) = (I - ΛC) R̄ (I - ΛC)ᵀ + Λ Q_v Λᵀ = R̄ + Λ S Λᵀ - Λ Lᵀ - L Λᵀ`, its trace
-against `W` is the squared radius ([1, Eq. 11], `fwRadius_sq_eq_trace`), and `trace_gain_le`
-minimizes that at `Λ* S = L`, `S` being the Gram matrix of the vectors `C r` (`r` the columns
-behind `R̄`) and the columns of `F`.
+## Inputs
+* `T` – decoupling matrix
+* `N` – measurement decoupling matrix
+* `A` – state matrix
+* `B` – input matrix
+* `D` – disturbance matrix
+* `C` – output matrix
+* `F` – noise matrix
+* `u` – control input
+* `y` – measurement
+* `X` – state zonotope
+* `W` – weight matrix
+* `Λ` – correction matrix
+
+## Hypotheses
+* `hW` – `W` positive semidefinite
+
+## Conclusion
+* the optimal gain minimizes the weighted Frobenius radius
 
 ## References
 

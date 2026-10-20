@@ -9,20 +9,23 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 /-!
 # `Zonotope.minkDiffAligned` needs its scaling in `[0, 1]`
 
-[1, Prop. 5] reads the closed form off an alignment `γᵢ g⁽ᵐ'ⁱ⁾ = g⁽ˢ'ⁱ⁾`, and
-[1, Def. 3] lets `γᵢ` be any real. At every `γ` outside `[0, 1]` that printed
-statement is false: it is not the difference, and not even an inner
-approximation of it, so no reading of "exactly" rescues it.
+[1, Prop. 5] reads the closed form off an alignment `γᵢ g⁽ᵐ'ⁱ⁾ = g⁽ˢ'ⁱ⁾`, and [1, Def. 3] lets
+`γᵢ` be any real. At every `γ` outside `[0, 1]` that printed statement is false: the closed form
+is not the difference, not even an inner approximation of it. One generator in `ℝ` is enough:
+`Z₁ = (0, 1)` is `[-1, 1]`, `Z₂ = (0, γ)` is `[-|γ|, |γ|]`, and the closed form `(0, 1 - γ)` holds
+the point `1 - γ`. Taking `-γ ∈ Z₂` out of it leaves `1 - 2γ`, outside `[-1, 1]` exactly when `γ`
+is outside `[0, 1]`. At `γ > 1` the difference is empty while the closed form is not; at `γ < 0`
+the closed form grows the generator instead of shortening it. `minkDiffAligned_inner` and
+`minkDiffAligned_exact` therefore carry `0 ≤ μᵢ` and `μᵢ ≤ 1`, one bound for each failure.
 
-One generator in `ℝ` is enough. `Z₁ = (0, 1)` is `[-1, 1]`, `Z₂ = (0, γ)` is
-`[-|γ|, |γ|]`, and the closed form `(0, 1 - γ)` holds the point `1 - γ`. Taking
-`-γ ∈ Z₂` out of it leaves `1 - 2γ`, which is outside `[-1, 1]` exactly when `γ`
-is outside `[0, 1]`. At `γ > 1` the difference is empty while the closed form is
-not; at `γ < 0` the subtrahend is the same set as at `-γ` but the closed form
-grows the generator instead of shortening it.
+## Inputs
+* `γ` – scaling outside the unit interval
 
-`minkDiffAligned_inner` and `minkDiffAligned_exact` therefore carry `0 ≤ μᵢ` and
-`μᵢ ≤ 1`, one bound for each failure above.
+## Hypotheses
+* `hγ` – `γ` negative or above one
+
+## Conclusion
+* the closed form need not lie in the Minkowski difference
 
 ## References
 

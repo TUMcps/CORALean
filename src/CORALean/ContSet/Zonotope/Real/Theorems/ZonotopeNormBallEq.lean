@@ -16,6 +16,15 @@ attained. The second needs `ν` continuous (it is Lipschitz, `exists_lipschitzWi
 then `{ν < 1}` is open, so interior, and a point with `ν = 1` is a limit of the points
 `c + t (p - c)`, `t > 1`, outside `Z`.
 
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* `hG` – generator map surjective
+
+## Conclusion
+* the unit ball and sphere of the norm are `Z` and its frontier
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

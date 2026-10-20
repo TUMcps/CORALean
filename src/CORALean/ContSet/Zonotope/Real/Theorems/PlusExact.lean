@@ -18,6 +18,16 @@ converse, so concatenation loses nothing.
 No `plus_outer` here: the float `plus` displaces the center, so it reproves this
 against the displaced center rather than composing with it.
 
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Minkowski sum is exactly the zonotope of `plus`
+
 ## References
 
 * [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid

@@ -17,6 +17,18 @@ where the enclosure is lost: they are tied to each other, and a zonotope frees t
 One coordinate at a time, `xᵀQ⁽ⁱ⁾x` being the bilinear form `Matrix.toBilin' (Q i)` at
 `(x, x)`; the coefficients are the same for every coordinate.
 
+## Inputs
+* `n` – dimension
+* `m` – output dimension
+* `Q` – family of quadratic matrices
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the quadratic images lie in the result
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

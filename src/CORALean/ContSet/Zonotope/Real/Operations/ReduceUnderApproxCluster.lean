@@ -12,6 +12,14 @@ The clustering method of [1, Sec. IV-A], Steps 2) and 3): the generators of each
 generators. The partition into clusters (Step 1, `k`-means++ on the distance `1 - dcos`, a
 randomized algorithm) is the argument `cl : i ↦ k` with `gᵢ ∈ C_k`.
 
+## Inputs
+* `Z` – zonotope
+* `r` – cluster count
+* `cl` – cluster assignment of the generators
+
+## Output
+* zonotope of the signed cluster sums
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

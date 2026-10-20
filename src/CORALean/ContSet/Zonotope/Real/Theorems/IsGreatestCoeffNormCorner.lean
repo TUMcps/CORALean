@@ -17,6 +17,17 @@ maximum of (6) is attained at one of the vertices", `α ∈ {-1, +1}^m`. The cir
 on a convex hull is beaten by one of the points it is the hull of. Any norm on the
 circumbody's coefficients; `H` onto.
 
+## Inputs
+* `Z` – zonotope
+* `H` – surjective linear map
+* `d` – offset
+
+## Hypotheses
+* `hH` – `H` surjective
+
+## Conclusion
+* the largest coefficient norm is attained at a corner
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

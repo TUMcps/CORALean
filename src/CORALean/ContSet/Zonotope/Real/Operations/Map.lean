@@ -15,6 +15,13 @@ Every multiplication a zonotope carries is this at a particular map — `mtimes`
 at `A *ᵥ ·`, matrix multiplication at `A * ·` or `· * A` — so none of them needs
 an exactness proof of its own.
 
+## Inputs
+* `f` – linear map
+* `Z` – zonotope
+
+## Output
+* zonotope of the images under `f`
+
 ## References
 
 * [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid

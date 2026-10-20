@@ -13,6 +13,16 @@ in the direction `s` are `u - g` and `u + g`, `g = Σⱼ sign(s·vⱼ)vⱼ`. Bot
 (coefficients `∓sign(s·vⱼ)`), and `(u ± g)·s = u·s ± Σⱼ |vⱼ·s|`, the bounds every point of
 `Z` keeps along `s` (`Zonotope.inter_hyperplane_iff`).
 
+## Inputs
+* `Z` – zonotope
+* `s` – direction
+
+## Hypotheses
+* none
+
+## Conclusion
+* the extremal points attain the maximum and minimum along `s`
+
 ## References
 
 * [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of

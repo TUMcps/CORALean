@@ -13,6 +13,15 @@ in the supremum norm on `Fin h → ℝ`. Stated on its own because two proofs ne
 the rewriting in opposite directions: `isCompact_construct` turns the cube into
 a ball to apply `isCompact_closedBall`, and `ConZonotope.isCompact_domain` turns
 the ball back into the cube to bound its domain by it.
+
+## Inputs
+* `h` – generator count
+
+## Hypotheses
+* none
+
+## Conclusion
+* the unit ball equals the coefficient cube
 -/
 
 -- Authors:       Claude Opus 5

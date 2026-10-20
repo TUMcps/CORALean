@@ -15,6 +15,13 @@ Asserted, not proved: `Operations/MinkDiffStretch.lean` subtracts the centers
 Under `Global/Cost.lean`'s model every scalar of the result is also a write, one unit each, and the
 result's `n * (h + 1)` entries are
 written once each.
+
+## Inputs
+* `n` – dimension
+* `h` – generator count
+
+## Output
+* cost of the operations and writes, `2n(h+1)`
 -/
 
 -- Authors:       Claude Sonnet 5.5

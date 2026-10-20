@@ -11,6 +11,15 @@ public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 `Interval_to_Zonotope` run backwards, which holds exactly when the bounds do not cross: only
 generator `i` reaches coordinate `i`, so `|β i| ≤ 1` puts the coordinate within its own radius of
 its own center.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* `hI` – interval nonempty
+
+## Conclusion
+* the zonotope of the interval lies in the interval
 -/
 
 -- Authors:       Claude Opus 5.5

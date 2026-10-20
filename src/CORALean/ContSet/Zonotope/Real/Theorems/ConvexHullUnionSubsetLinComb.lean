@@ -19,6 +19,16 @@ of which the paper's pair is one.
 `linComb` holds both sets, `Z₁` at the end `λ = 1` of its segments and `Z₂` at `λ = 0`, and
 is convex, so it holds their hull.
 
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the hull of the union lies in the combination
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic

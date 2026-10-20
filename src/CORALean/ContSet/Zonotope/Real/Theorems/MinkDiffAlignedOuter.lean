@@ -9,19 +9,28 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffGenRecExact
 /-!
 # `Zonotope.minkDiffAligned` also encloses the Minkowski difference
 
-The direction `minkDiffAligned_inner` leaves open, and what [1, Prop. 5]'s word
-*exactly* asks for: nothing outside the closed form can absorb `Z₂`.
+The direction `minkDiffAligned_inner` leaves open, and what [1, Prop. 5]'s word *exactly* asks
+for: nothing outside the closed form can absorb `Z₂`. Read off [1, Thm. 1]'s recursion rather
+than from halfspaces. At aligned generators the fold `A ↦ (A + {g}) ∩ (A - {g})` collapses, one
+generator at a time, to the zonotope that shortens `g⁽ᵐ'ⁱ⁾` to `(1 - μᵢ) g⁽ᵐ'ⁱ⁾`, so
+`minkDiffGenRec_exact` carries the rest. `aux_align_step` is that one step and the only place a
+hypothesis is spent: `μᵢ ≤ 1` keeps the shortened generator from turning around, and convexity of
+the running set averages a point of one translate with a point of the other. Both bounds on `μ`
+are hypotheses [1, Prop. 5] does not print; outside them it is false (`MinkDiffAlignedNotInner`).
 
-Read off [1, Thm. 1]'s recursion rather than from halfspaces. At aligned
-generators the fold `A ↦ (A + {g}) ∩ (A - {g})` collapses, one generator at a
-time, to the zonotope that shortens `g⁽ᵐ'ⁱ⁾` to `(1 - μᵢ) g⁽ᵐ'ⁱ⁾`, so
-`minkDiffGenRec_exact` carries the rest. `aux_align_step` is that one step and
-the only place a hypothesis is spent: `μᵢ ≤ 1` keeps the shortened generator
-from turning around, and convexity of the running set is what averages a point
-of one translate with a point of the other into the one the closed form offers.
+## Inputs
+* `Z₁` – minuend
+* `Z₂` – subtrahend
+* `μ` – generator scalings
 
-Both bounds on `μ` are hypotheses [1, Prop. 5] does not print, and outside them
-it is false rather than merely unproved — see `MinkDiffAlignedNotInner`.
+## Hypotheses
+* `hh` – equal generator counts
+* `hμ0` – scalings nonnegative
+* `hμ1` – scalings at most one
+* `hG` – generators of `Z₂` scale those of `Z₁`
+
+## Conclusion
+* the Minkowski difference lies in the closed form
 
 ## References
 

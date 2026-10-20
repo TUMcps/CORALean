@@ -17,6 +17,17 @@ the two zonotopes' bounds. That the band of the summed bounds is the Minkowski s
 two bands is false (`ContSet.exists_hyperplanePolyhedron_add_ne`); it contains it
 (`ContSet.hyperplanePolyhedron_add_subset`).
 
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+* `S` – finite set of directions
+
+## Hypotheses
+* none
+
+## Conclusion
+* the box of a sum is the sum of the bounds
+
 ## References
 
 * [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of

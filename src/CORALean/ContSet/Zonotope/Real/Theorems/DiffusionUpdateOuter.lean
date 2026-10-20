@@ -15,6 +15,16 @@ the diffused zonotope. The weights of [1, Prop. 1] have sum one when every `tr(�
 (`averagingWeights_optimal`), so [1, Thm. 1] applies (`andAveraging_outer`), and the reduction
 `↓_q` only enlarges (`reduce_outer`).
 
+## Inputs
+* `o` – reduction order
+* `Zb` – neighbour zonotopes
+
+## Hypotheses
+* `hα` – every trace positive
+
+## Conclusion
+* the intersection lies in the diffused zonotope
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

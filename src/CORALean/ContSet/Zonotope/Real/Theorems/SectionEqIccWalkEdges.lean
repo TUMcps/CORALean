@@ -20,6 +20,19 @@ the walk in increasing angle) or `σ = -1` (to its left, the walk back in decrea
 second block); the upper end is the lower end of the section at `2 c_x - γ`, reflected through the
 center. It is the output specification of [1, Alg. 3] and [1, Alg. 4], with the ends on edges.
 
+## Inputs
+* `Z` – planar zonotope
+* `γ` – abscissa of the vertical line
+
+## Hypotheses
+* `hh` – at least one generator
+* `h1` – generators point upward
+* `h2` – generators sorted by angle
+* `hne` – line meets `Z`
+
+## Conclusion
+* the section is an interval with endpoints on the walk edges
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

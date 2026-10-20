@@ -10,6 +10,12 @@ public import CORALean.ContSet.Interval.Real.Interval
 
 What `representsa_(Z, 'interval', tol)` decides at tolerance `0`: the zonotope is an axis-aligned
 box, the set of an `Interval`.
+
+## Inputs
+* `Z` – zonotope
+
+## Output
+* `Prop` that `Z` is an axis-aligned box
 -/
 
 -- Authors:       Claude Opus 5.5

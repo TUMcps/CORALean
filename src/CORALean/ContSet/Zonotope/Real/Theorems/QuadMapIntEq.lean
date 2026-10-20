@@ -12,15 +12,24 @@ public import Mathlib.LinearAlgebra.Matrix.BilinearForm
 # `quadint` is `quad` at the midpoints plus a box
 
 [1, Thm. 1]: with `H = Hc ⊕ [-HΔ, HΔ]`, `quadint(H, Z) = quad(Hc, Z) ⊕ [-η, η]`,
-`ηᵢ = |Z|ᵀ HΔ⁽ⁱ⁾ |Z|`, `|Z| = |c| + Σⱼ |g⁽ʲ⁾|` ([1, Eq. 7], `Zonotope.absBound`). The two are
-equal as zonotopes, the box `[-η, η]` being `Interval.zonotope`, center `0` and axis
-generators `η`.
+`ηᵢ = |Z|ᵀ HΔ⁽ⁱ⁾ |Z|`, `|Z| = |c| + Σⱼ |g⁽ʲ⁾|` ([1, Eq. 7], `Zonotope.absBound`). The two are equal
+as zonotopes, the box `[-η, η]` being `Interval.zonotope`. The content is the identity
+`d_Δ + Σᵢ h_Δ⁽ⁱ⁾ = η`: the radii of the interval center and generators add up to
+`Σⱼ Σₖ |λ⁽ʲ⁾|ᵀ HΔ |λ⁽ᵏ⁾|` over all center and generator pairs, which is `|Z|ᵀ HΔ |Z|`. The
+center's `½ Σ |g|ᵀHΔ|g|` and the square generators' `½ |g|ᵀHΔ|g|` make the diagonal whole, the
+linear generators carry the center-generator pairs both ways, and the pair generators the
+generator pairs both ways.
 
-The content is the identity `d_Δ + Σᵢ h_Δ⁽ⁱ⁾ = η`: the radii of the interval center and
-generators add up to `Σⱼ Σₖ |λ⁽ʲ⁾|ᵀ HΔ |λ⁽ᵏ⁾|` over all center and generator pairs, the
-printed proof's last display, which is `|Z|ᵀ HΔ |Z|`. The center's `½ Σ |g|ᵀHΔ|g|` and the
-square generators' `½ |g|ᵀHΔ|g|` make the diagonal whole, the linear generators carry the
-center-generator pairs both ways, and the pair generators the generator pairs both ways.
+## Inputs
+* `Hc` – center quadratic matrices
+* `HΔ` – radius quadratic matrices
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the interval quadratic map is the center map plus a symmetric box
 
 ## References
 

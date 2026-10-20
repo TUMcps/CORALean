@@ -18,6 +18,17 @@ polytope `P_l = conv(V l)` into the hull of the mapped vertices, the box over al
 is convex and holds every mapped vertex, so it holds every `Λ⁻¹P_l`; and `Λ` maps it back,
 `Λ Λ⁻¹ = I` being where full rank is spent.
 
+## Inputs
+* `Λ` – basis matrix
+* `V` – vertices of each polytope
+* `l` – polytope index
+
+## Hypotheses
+* `hΛ` – `Λ` invertible
+
+## Conclusion
+* each polytope lies in the enclosing zonotope
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid

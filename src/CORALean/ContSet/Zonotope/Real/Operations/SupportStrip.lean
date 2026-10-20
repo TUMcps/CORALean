@@ -12,6 +12,13 @@ H Bᵐ` with normal `c`, `r = max_{x ∈ Z} cᵀx = cᵀp + ‖Hᵀc‖₁` and 
 ‖Hᵀc‖₁` ([1, Def. 7]; the values are `support_dotProduct`'s). It is the smallest strip of this
 direction that contains `Z`.
 
+## Inputs
+* `Z` – zonotope
+* `c` – direction
+
+## Output
+* strip around the center along `c`
+
 ## References
 
 * [1] J. M. Bravo, T. Alamo and E. F. Camacho. "Bounded error identification of systems with

@@ -18,6 +18,16 @@ from an order it already knows admissible, and TAC'23's `Alg. 2` (lines 19-22) s
 *upward* and needs somewhere for the sweep to land — which is why this is a file of its
 own rather than a helper beside either.
 
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Hypotheses
+* `h` – order drops no generator
+
+## Conclusion
+* the error is zero
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

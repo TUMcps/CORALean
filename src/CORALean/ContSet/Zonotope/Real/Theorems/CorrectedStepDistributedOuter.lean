@@ -18,6 +18,29 @@ as in Eq. 7. As in the paper's proof: each neighbour has its own coefficient vec
 with coefficients `(η_i, -σ_i)`. The disturbance `D_{w_i}` has `n_i` rows, `w_i` entering the state;
 the paper prints it `m_{w_i} × m_{w_i}`, which fits only when it is square.
 
+## Inputs
+* `Λ` – correction matrix
+* `A` – neighbour state matrices
+* `B` – input matrix
+* `Dw` – disturbance generator matrix
+* `C` – output matrix
+* `Dv` – noise generator matrix
+* `u` – control input
+* `y` – measurement
+* `X` – neighbour state zonotopes
+* `x` – neighbour states
+* `ϖ` – disturbance coefficients
+* `σ` – noise coefficients
+
+## Hypotheses
+* `hx` – each state lies in its zonotope
+* `hϖ` – disturbance coefficients within the unit box
+* `hσ` – noise coefficients within the unit box
+* `hy` – measurement is consistent with the states
+
+## Conclusion
+* the next state lies in the corrected zonotope
+
 ## References
 
 * [1] Y. Wang, T. Alamo, V. Puig and G. Cembrano. "A distributed set-membership approach based on

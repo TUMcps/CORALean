@@ -16,6 +16,18 @@ The zonotope's projections are compact, hence of finite measure, and must have p
 
 Source: [1].
 
+## Inputs
+* `Z` – zonotope
+* `P` – polytope
+
+## Hypotheses
+* `hd` – window size positive
+* `hZP` – `Z` lies in `P`
+* `hpos` – every window of `Z` has positive volume
+
+## Conclusion
+* the volume ratio is at least one
+
 ## References
 
 * [1] `contSet/@zonotope/volumeRatio.m`, CORA (Sep. 2025).

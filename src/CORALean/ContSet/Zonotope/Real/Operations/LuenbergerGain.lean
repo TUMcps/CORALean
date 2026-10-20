@@ -15,6 +15,15 @@ The set-propagation observer's gain of [1, Prop. 2], the minimizer of the Froben
 measurement-noise generators `R`. `Ĝ` is the matrix of the generator columns; the inverse is
 Mathlib's, `0` where `Γ Ĝ Ĝᵀ Γᵀ + R Rᵀ` is singular.
 
+## Inputs
+* `F` – dynamics matrix
+* `Γ` – stacked measurement matrix
+* `R` – measurement-noise generators
+* `X` – zonotope
+
+## Output
+* gain minimizing the generator Frobenius norm
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

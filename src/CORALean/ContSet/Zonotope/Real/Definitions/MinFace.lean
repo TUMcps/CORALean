@@ -12,6 +12,14 @@ exposed face of `Z` containing `x` whose dimension is `deg(x)` (`Zonotope.degree
 property of being such a face; that it is unique for a polytope (the faces through `x` are closed
 under intersection) [1] takes for granted, and nothing here uses it.
 
+## Inputs
+* `Z` – zonotope as a set
+* `x` – point of the zonotope
+* `F` – candidate face
+
+## Output
+* `Prop` that `F` is the minimal face through `x`
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

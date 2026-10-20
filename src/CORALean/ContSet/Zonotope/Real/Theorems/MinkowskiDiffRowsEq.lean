@@ -20,6 +20,17 @@ The two indexings agree because a selection is either non-injective, where its n
 its row holds trivially, or a reordering of the increasing selection of its image, where the normal
 changes by a sign; and the `±` pair of each subset is the two rows `true` and `false`.
 
+## Inputs
+* `n` – dimension minus two
+* `Zm` – minuend
+* `Zs` – subtrahend
+
+## Hypotheses
+* `hspan` – generators of the minuend span the space
+
+## Conclusion
+* the difference is cut out by the signed generator subsets
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

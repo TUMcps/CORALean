@@ -11,6 +11,16 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
 One line, because `reduce` is Girard's rule under another name. Which rule that
 is, is the only content here: `reduceBy_outer` holds at every partition, so any
 other choice would discharge this too.
+
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Z` lies in the reduced zonotope
 -/
 
 -- Authors:       Claude Opus 5

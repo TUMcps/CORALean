@@ -18,6 +18,15 @@ Read from the source, not run.
 # CORA's `replaceId(matZonotope, ...)` throws for every call
 
 `replaceId(matZonotope(C,G), [1;2])` stops with an unrecognized property `id`.
+
+## Inputs
+* `k` – argument count
+
+## Hypotheses
+* none
+
+## Conclusion
+* every call ends in an error
 -/
 
 -- Authors:       Claude Sonnet 5.5

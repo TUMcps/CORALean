@@ -12,6 +12,16 @@ public import Mathlib.Order.BourbakiWitt
 The same two cases as Girard's, at a different ranking. That the two proofs are
 word for word the same is the evidence for `reduceBy_outer` being stated at an
 arbitrary partition rather than at either metric.
+
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Z` lies in the reduced zonotope
 -/
 
 -- Authors:       Claude Opus 5

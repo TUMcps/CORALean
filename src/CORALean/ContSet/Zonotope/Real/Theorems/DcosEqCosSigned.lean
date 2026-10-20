@@ -11,6 +11,17 @@ The corrected statement: for generators whose first elements are both nonzero,
 `sign(gᵢ(1) gⱼ(1)) = sign(gᵢ(1)) sign(gⱼ(1))`, and (4) is the cosine of the angle between
 `sign(gᵢ(1))gᵢ` and `sign(gⱼ(1))gⱼ`. `exists_dcos_ne_cosSigned` is the case it misses.
 
+## Inputs
+* `gi` – first generator
+* `gj` – second generator
+
+## Hypotheses
+* `hi` – first entry of `gi` nonzero
+* `hj` – first entry of `gj` nonzero
+
+## Conclusion
+* the sign-corrected cosine equals the cosine of the sign-aligned generators
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

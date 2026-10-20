@@ -13,6 +13,13 @@ at the unit row `Ĉ = C / ‖C‖₂` and offset `b`.
 
 Source: [1].
 
+## Inputs
+* `Z` – zonotope
+* `S` – selected generator indices
+
+## Output
+* facet-plane point nearest the center
+
 ## References
 
 * [1] `contSet/@zonotope/minnorm.m`, CORA (Sep. 2025).

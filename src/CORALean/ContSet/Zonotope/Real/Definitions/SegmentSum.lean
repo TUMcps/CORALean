@@ -17,6 +17,13 @@ public import Mathlib.Tactic.Ring
 special case of the Minkowski sum: `A` swept along the segment from `0` to `x`. It is what
 `Zonotope.generatorHull` iterates, one generator at a time (the paper's "evolution").
 
+## Inputs
+* `A` – set
+* `x` – generator vector
+
+## Output
+* convex hull of `A` and `A + x`
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

@@ -15,6 +15,20 @@ system `x₊ = A x + B u + w`, `y = C x + v` with `w ∈ ⟨0, D_w⟩`, `v ∈ �
 `T = I`, `N = 0` of `Zonotope.intersectDescriptor`, without that case's block of `n_v` zero
 generators `(I - ΛC) N F`. `Λ` is any matrix; the enclosure holds for each.
 
+## Inputs
+* `Λ` – correction matrix
+* `A` – state matrix
+* `B` – input matrix
+* `Dw` – disturbance generator matrix
+* `C` – output matrix
+* `Dv` – noise generator matrix
+* `u` – control input
+* `y` – measurement
+* `X` – state zonotope
+
+## Output
+* corrected state-bounding zonotope
+
 ## References
 
 * [1] Y. Wang, T. Alamo, V. Puig and G. Cembrano. "A distributed set-membership approach based on

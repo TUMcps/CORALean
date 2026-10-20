@@ -10,15 +10,19 @@ public import Mathlib.Logic.Equiv.Fin.Basic
 # `Zonotope.quadMap`
 
 [1, Lemma 1]: the quadratic map `Z_Q = {λ | λᵢ = xᵀQ⁽ⁱ⁾x, x ∈ Z}` of a zonotope
-`Z = (c, g⁽¹⁾, ..., g⁽ᵖ⁾)`, enclosed by the zonotope `(d, h⁽¹⁾, ..., h⁽σ⁾)` with
+`Z = (c, g⁽¹⁾, ..., g⁽ᵖ⁾)`, enclosed by `(d, h⁽¹⁾, ..., h⁽σ⁾)` with
 `dᵢ = cᵀQ⁽ⁱ⁾c + 0.5 Σₛ g⁽ˢ⁾ᵀQ⁽ⁱ⁾g⁽ˢ⁾`, the linear generators `h⁽ʲ⁾ᵢ = cᵀQ⁽ⁱ⁾g⁽ʲ⁾ + g⁽ʲ⁾ᵀQ⁽ⁱ⁾c`,
-the squares `h⁽ᵖ⁺ʲ⁾ᵢ = 0.5 g⁽ʲ⁾ᵀQ⁽ⁱ⁾g⁽ʲ⁾` and one generator per pair `j < k`,
-`g⁽ʲ⁾ᵀQ⁽ⁱ⁾g⁽ᵏ⁾ + g⁽ᵏ⁾ᵀQ⁽ⁱ⁾g⁽ʲ⁾` — CORA's `@zonotope/quadMap` for a single zonotope.
+the squares `h⁽ᵖ⁺ʲ⁾ᵢ = 0.5 g⁽ʲ⁾ᵀQ⁽ⁱ⁾g⁽ʲ⁾` and one generator per pair `j < k` — CORA's
+`@zonotope/quadMap`. The pair block is indexed by all of `Fin p × Fin p`, zero off `j < k`, as in
+`Zonotope.quadTaylor`: `p + p + p²` generators where the lemma counts `σ = C(p + 2, 2) - 1`, the
+extra ones zero and so the same set. `m` outputs rather than the lemma's `n`.
 
-The pair block is indexed by all of `Fin p × Fin p`, zero off `j < k`, as in
-`Zonotope.quadTaylor`: `p + p + p²` generators where the lemma counts
-`σ = C(p + 2, 2) - 1`, the extra ones zero and so the same set. `m` outputs rather than
-the lemma's `n`, nothing depending on the two agreeing.
+## Inputs
+* `Q` – family of quadratic matrices
+* `Z` – zonotope
+
+## Output
+* zonotope enclosing the quadratic images
 
 ## References
 

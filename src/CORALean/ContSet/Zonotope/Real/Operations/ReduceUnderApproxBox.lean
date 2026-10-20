@@ -16,6 +16,18 @@ rotation of `Z_b` by a box `B = ⟨0, diag(γ)⟩`, and rotate it back: `Ẑ = Z
 (Step 2, the left singular vectors of `[G_b -G_b][G_b -G_b]ᵀ`) and the box `γ` (Step 3, a
 second-order cone program) are arguments; `o = ô`.
 
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+* `U` – basis matrix
+* `γ` – box radii
+
+## Hypotheses
+* `hlt` – reduction needed
+
+## Output
+* under-approximating zonotope with an added box
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

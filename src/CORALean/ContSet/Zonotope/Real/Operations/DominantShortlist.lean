@@ -17,6 +17,14 @@ one of `combinator`.
 
 Source: [1].
 
+## Inputs
+* `Z` – zonotope
+* `L₁` – length-filter size
+* `L₂` – shortlist size
+
+## Output
+* subsets spanning the largest volume
+
 ## References
 
 * [1] `contSet/@zonotope/dominantDirections.m` and its private helpers, CORA (Sep. 2025), by

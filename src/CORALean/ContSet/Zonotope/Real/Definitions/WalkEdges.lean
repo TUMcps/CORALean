@@ -14,6 +14,12 @@ are the segments `[P; P + 2g]` of [1, Sec. 3.2 (zonogons)] that [1, Alg. 3] scan
 loops; for generators in the upper half-plane sorted by angle they make up the boundary of the
 zonogon.
 
+## Inputs
+* `Z` – zonotope
+
+## Output
+* edges between consecutive corners of the walk
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

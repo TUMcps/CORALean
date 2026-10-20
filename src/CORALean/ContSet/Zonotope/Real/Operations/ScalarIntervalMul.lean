@@ -14,6 +14,14 @@ zonotope [1]. Its center is `c z`, and the generators are `c G`, `g z` and every
 each with a coefficient in `[-1, 1]`: `[a, b] ⊗ Z = c Z ⊕ [-1, 1] ⊗ (g Z)`, `[-1, 1] ⊗ ·` being
 `unitIntervalMul`, [2, Eq. 11].
 
+## Inputs
+* `a` – center scalar
+* `b` – generator scalar
+* `Z` – zonotope
+
+## Output
+* zonotope enclosing the scalar-interval product
+
 ## References
 
 * [1] `matrixSet/@matZonotope/mtimes.m`

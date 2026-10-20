@@ -10,20 +10,25 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 /-!
 # Boxing what a partition drops in a basis over-approximates
 
-`reduceBy_outer` again, with the axes replaced by the columns of an invertible
-`P`, and holding at every such `P` just as that one holds at every partition —
-so a rule choosing `P` contributes tightness and never soundness.
+`reduceBy_outer` again, with the axes replaced by the columns of an invertible `P`, holding at
+every such `P` as that one holds at every partition — so a rule choosing `P` contributes tightness
+and never soundness. Each dropped generator is read in `P`'s coordinates as `P⁻¹ g`, whose rows
+the new block bounds; `coefficient` rescales as before, and `P * P⁻¹ = 1` is the only place
+invertibility is used — it turns the recovered coordinates back into the reach they came from.
+At a singular `P` the statement is unavailable: Mathlib's `P⁻¹` is then zero, the new block
+collapses, and nothing encloses; CORA reaches the same place by a pseudoinverse and does not test
+for it. This is [1, Prop. 9].
 
-Each dropped generator is read in `P`'s coordinates as `P⁻¹ g`, whose rows the
-new block bounds; `coefficient` rescales as before, and `P * P⁻¹ = 1` is the
-only place invertibility is used — it is what turns the recovered coordinates
-back into the reach they came from.
+## Inputs
+* `Z` – zonotope
+* `part` – split of the generator indices
+* `P` – basis matrix
 
-At a singular `P` the statement is simply unavailable: Mathlib's `P⁻¹` is then
-zero, the new block collapses, and nothing encloses. CORA reaches the same
-place by a pseudoinverse and does not test for it.
+## Hypotheses
+* `hP` – `P` invertible
 
-This is [1, Prop. 9].
+## Conclusion
+* `Z` lies in the reduced zonotope
 
 ## References
 

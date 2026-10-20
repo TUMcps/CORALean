@@ -13,6 +13,15 @@ closed: an affine image of a merely closed set need not be closed, so
 compactness does the work. The coefficient cube is the closed unit ball in the
 supremum norm, compact because the coefficient space is finite-dimensional, and
 the map onto the zonotope is continuous.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Z` is compact
 -/
 
 -- Authors:       Claude Opus 5

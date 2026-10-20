@@ -7,17 +7,19 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
 /-!
 # `Zonotope.reduceByBox`
 
-The error `reduceBy` pays, as a set of its own: the diagonal block it puts in
-place of the dropped generators, centered at the origin. `reduceBy` is the kept
-generators plus this box, so this is exactly the `E` in `Ẑ ⊆ Z + E`.
+The error `reduceBy` pays, as a set of its own: the diagonal block it puts in place of the
+dropped generators, centered at the origin. `reduceBy` is the kept generators plus this box, so
+this is the `E` in `Ẑ ⊆ Z + E`. Centered at `0` and not at `Z.c`, which is why the reverse
+inclusion holds: the dropped generators contribute `0` to `Z` at coefficient `0`, so the reduced
+set never reaches further than `Z` plus this box. Not a `Reduce` operation and no class
+instantiates it — a caller wanting an inner approximation asks for the box beside the reduction.
 
-Centered at `0` and not at `Z.c`, which is the whole reason the reverse inclusion
-holds: the dropped generators contribute `0` to `Z` when their coefficients are
-set to `0`, so the reduced set never reaches further than `Z` plus this box.
+## Inputs
+* `Z` – zonotope
+* `part` – split of the generator indices
 
-Not a `Reduce` operation and no class instantiates it — a caller wanting an
-inner approximation asks for the box beside the reduction, since only the two
-together say anything.
+## Output
+* box absorbing the dropped generators
 -/
 
 -- Authors:       Claude Opus 5

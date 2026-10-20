@@ -9,17 +9,24 @@ public import Mathlib.Analysis.Matrix.Spectrum
 /-!
 # `Zonotope.lineClBasis`
 
-The transformation matrix of line clustering [1, Alg. 3], on the generators a partition
-drops, as CORA reduces them [2]. One named step per printed line. Where the listing is
-open:
+The transformation matrix of line clustering [1, Alg. 3] on the generators a partition drops, as
+CORA reduces them [2], one named step per printed line. Where the listing is open:
 
-* Line 2 is random; run `t` instead starts at the `n` dropped generators from index `t`,
-  cyclically. Eq. 5 is squared (same ranking); a generator joins the first nearest line.
-* Eq. 6's dominant left singular vector is the eigenvector of `G_k G_kᵀ` of largest
-  eigenvalue, found by sorting. The loop stops at `‖L − L_old‖_F ≤ ξ` or after `fuel` steps.
-* Line 12 is not carried out: `P · IH(P⁻¹ Z)` ignores positive column scalings.
-* `L⁻¹` needs an invertible `L`: singular candidates are skipped (`lineClKeep`), and with
-  no invertible run the answer is `1`, which boxes along the axes.
+* Line 2 is random; run `t` starts at the `n` dropped generators from index `t`, cyclically.
+  Eq. 5 is squared (same ranking); a generator joins the first nearest line.
+* Eq. 6's dominant singular vector is the top eigenvector of `G_k G_kᵀ`; the loop stops at
+  `‖L − L_old‖_F ≤ ξ` or after `fuel` steps. Line 12 is not carried out. Singular candidates are
+  skipped (`lineClKeep`); with no invertible run the answer is `1`, boxing along the axes.
+
+## Inputs
+* `Z` – zonotope
+* `part` – split of the generators
+* `ξ` – search parameter
+* `fuel` – iteration budget
+* `runs` – number of runs
+
+## Output
+* basis of least volume found
 
 ## References
 

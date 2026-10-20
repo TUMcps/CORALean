@@ -10,6 +10,21 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.ReduceBy
 # `Zonotope.reduceByBasisCost_mono`
 
 Monotone in the absorbed count.
+
+## Inputs
+* `q` – smaller kept count
+* `q'` – larger kept count
+* `r` – smaller absorbed count
+* `r'` – larger absorbed count
+* `n` – dimension
+* `inv` – cost of the basis inverse
+
+## Hypotheses
+* `hq` – kept counts ordered
+* `hr` – absorbed counts ordered
+
+## Conclusion
+* cost is monotone in the kept and absorbed counts
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -14,6 +14,16 @@ share what they keep; they differ in the basis the dropped block is boxed along,
 and the volume that decides is the one of eq. 7 at that block (`lineClVolume`).
 Ties go to PCA, the robust one of the two. Noncomputable, as `pcaBasis` is.
 
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+* `ξ` – convergence threshold
+* `fuel` – iteration budget
+* `runs` – number of restarts
+
+## Output
+* the smaller-volume of the two reductions
+
 ## References
 
 * [1] A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of

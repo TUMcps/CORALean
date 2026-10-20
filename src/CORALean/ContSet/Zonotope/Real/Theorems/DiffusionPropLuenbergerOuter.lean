@@ -12,6 +12,26 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.LuenbergerUpdateOuter
 strips `|Γⁱ x - ȳⁱ| ≤ rⁱ` goes on to `F x + Q β`, `|β| ≤ 1`, in the zonotope of the update. The
 measurement noise `v̄ = Rγ` is read off the strips, `γⱼ = (ȳ - Γx)ⱼ / rⱼ`, so the innovation `ȳ -
 Γx - v̄` vanishes and the term `Λ (⋯)` of Eq. 27 of [1, Thm. 2] drops out.
+
+## Inputs
+* `F` – dynamics matrix
+* `Q` – process-noise generators
+* `Γ` – stacked measurement matrices
+* `r` – noise radii
+* `yb` – outputs
+* `Zh` – previous zonotope of each node
+* `x` – state
+* `β` – process-noise coefficients
+* `i` – node
+
+## Hypotheses
+* `hβ` – coefficients within the unit box
+* `hx` – state lies in the node's zonotope
+* `hy` – outputs consistent with the state
+
+## Conclusion
+* the next state lies in the node's updated zonotope
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

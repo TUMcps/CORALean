@@ -16,6 +16,15 @@ public import Mathlib.Data.Finset.Fold
 (`subset_closedBall_of_absBound_le`). The fold from `0` is what `Vec ℝ 0`, whose only point
 has norm `0`, needs. This is how [1, Alg. 1] computes the `sup_{x∈I} ‖x‖` in `α_r`.
 
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the largest norm is the maximum absolute bound
+
 ## References
 
 * [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid

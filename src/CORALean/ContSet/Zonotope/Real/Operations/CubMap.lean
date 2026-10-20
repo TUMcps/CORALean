@@ -10,14 +10,19 @@ public import CORALean.ContSet.Zonotope.Real.Operations.CubIdx
 
 CORA's `@zonotope/cubMap`: an enclosure of `{ z = (xᵀ T x) * x | x ∈ Z }` by a zonotope,
 `zᵢ = Σₖ xₖ · (xᵀ T{i,k} x)`, from the coefficients `Zonotope.cubFold` of the sorted triples of
-extended factors. The pure squares `β_k²` of the constant monomial (`listQuad{1}`) are halved
-(`β² = 0.5 + 0.5 (2β² - 1)`), half of their sum going into the center.
+extended factors. The pure squares `β_k²` of the constant monomial are halved
+(`β² = 0.5 + 0.5 (2β² - 1)`), half of their sum going into the center. The generators are indexed
+by all ordered triples `(k, j, c)` through `Zonotope.cubIdx`, zero off `k ≤ j ≤ c` and at
+`(0, 0, 0)`, the center: `N³` generators where CORA counts `N (N + 1) (N + 2) / 6 - 1`, the extra
+ones zero and so the same set. `ind` (the non-zero tensor columns) is not modelled: it defaults to
+all columns.
 
-The generators are indexed by all ordered triples `(k, j, c)` through `Zonotope.cubIdx`, zero
-off `k ≤ j ≤ c` and at `(0, 0, 0)`, which is the center: `N³` generators where CORA counts
-`N (N + 1) (N + 2) / 6 - 1`, the extra ones zero and so the same set, as in `Zonotope.quadMap`.
-`ind` (the list of non-zero tensor columns) is not modelled: it defaults to all columns, and a
-column left out is the zero matrix.
+## Inputs
+* `T` – cubic tensor
+* `Z` – zonotope
+
+## Output
+* zonotope enclosing the cubic image of `Z`
 -/
 
 -- Authors:       Claude Opus 5.5

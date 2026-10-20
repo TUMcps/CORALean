@@ -16,6 +16,20 @@ and `|δ_i| ≤ 1` because `|β_i| ≤ 1` and `|γ_ind| ≤ 1`. That is Chisci e
 `X̃ ⊇ X`. Every other term is unchanged, `T' r'_l = T(I + diag|r|)(I + diag|r|)⁻¹ r_l = T r_l`.
 [1] reads `T` invertible and `‖r‖∞ ≤ 1` off the Gauss-Jordan step; the enclosure needs neither.
 
+## Inputs
+* `n` – dimension
+* `k` – column count minus one
+* `c` – center
+* `T` – basis matrix
+* `R` – echelon columns
+* `ind` – removed column index
+
+## Hypotheses
+* none
+
+## Conclusion
+* one reduction step encloses the original
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

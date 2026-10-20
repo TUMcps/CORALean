@@ -16,6 +16,13 @@ generator `j` is `Z`'s generator `j` and the face is the zonotope of the subset
 `{gⱼ | u gⱼ = 0}`, as [1, Sec. 3 (faces)] states. `noncomputable` as the real layer is: it decides
 `u gⱼ = 0` over ℝ.
 
+## Inputs
+* `Z` – zonotope
+* `u` – linear functional
+
+## Output
+* face of `Z` maximizing `u`
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

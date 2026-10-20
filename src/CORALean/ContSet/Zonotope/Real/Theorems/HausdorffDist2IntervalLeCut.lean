@@ -11,18 +11,22 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # The `ω_cut` bound on how far a zonotope's box can be from the zonotope
 
 [1, Thm. 1]'s `ω_cut`, at the `‖·‖₂` the paper states it in, beside
-`Zonotope.hausdorffDist₂_interval_le` and `_le_max`, the same theorem's other two.
+`Zonotope.hausdorffDist₂_interval_le` and `_le_max`. Each generator is taken at the coefficient
+that projects the displacement onto it, so what is left of that generator's share is what the
+projection cuts off. The paper reaches the bound through the Bauer maximum principle;
+`aux_sq_bound` replaces that by an identity — `‖g‖₂² Σᵢ νᵢ²gᵢ² - (Σᵢ νᵢgᵢ²)²` is half the double
+sum `Σᵢⱼ gᵢ²gⱼ²(νᵢ-νⱼ)²` — so `(νᵢ-νⱼ)² ≤ 4` off the diagonal gives the bound over the whole
+coefficient box and no convexity argument is needed. A generator of length zero divides by zero in
+the printed formula, which in Lean is `0`: the bound reads `0 ≤ 0` there, needing no guard.
 
-Each generator is taken at the coefficient that projects the displacement onto
-it, so what is left of that generator's share is what the projection cuts off.
-The paper reaches the bound through the Bauer maximum principle; `aux_sq_bound`
-replaces that by an identity — `‖g‖₂² Σᵢ νᵢ²gᵢ² - (Σᵢ νᵢgᵢ²)²` is half the
-double sum `Σᵢⱼ gᵢ²gⱼ²(νᵢ-νⱼ)²`, whose diagonal vanishes — so the estimate
-`(νᵢ-νⱼ)² ≤ 4` off the diagonal gives the bound over the whole coefficient box
-rather than over its vertices, and no convexity argument is needed.
+## Inputs
+* `Z` – zonotope
 
-A generator of length zero divides by zero in the printed formula, which in Lean
-is `0`, and the bound reads `0 ≤ 0` there: the case is real but needs no guard.
+## Hypotheses
+* none
+
+## Conclusion
+* the Hausdorff distance to the box is at most the cut bound
 
 ## References
 

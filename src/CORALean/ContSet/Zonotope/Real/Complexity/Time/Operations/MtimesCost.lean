@@ -14,6 +14,14 @@ Asserted, not proved: `Operations/Mtimes.lean` sends the center and each of the
 
 `mtimesCost_mono` is what lets a caller use a *bound* on `h` rather than `h`
 itself, which is how the reachability bound in `ContDynamics/` is assembled.
+
+## Inputs
+* `m` – matrix row count
+* `n` – matrix column count
+* `h` – generator count
+
+## Output
+* one matrix-vector product per generator and the center
 -/
 
 -- Authors:       Claude Opus 5

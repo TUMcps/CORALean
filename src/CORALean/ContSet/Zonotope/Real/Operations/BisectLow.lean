@@ -13,11 +13,8 @@ right of it if `x_P < γ` and to the left otherwise (lines 9-13): `G` is the gen
 that way, `s` the sum `∑ 2g` of them, and `[P; P + s]` meets `L_γ`. Halve `G` by angle until one
 generator remains (lines 14-26) and read `y` from the edge `[P; P + s]` (lines 27-28). Line 2,
 `m ← ∞`, is overwritten at line 28 and not modelled. `while |G| > 1` is `bisectStep` iterated `r`
-times, enough since each pass shrinks `G` and `|G| ≤ r`.
-
-The set `G = {g₁, …, g_r} ∩ (ℝ₊ × ℝ)` is read with a strict sign, so vertical generators are in
-neither side's `G`. The edge `[P; P + s]` meets `L_γ` in a point unless it is vertical or `G` is
-empty, where `y` is the least point on it.
+times. `G` is read with a strict sign, so vertical generators are in neither side's `G`; the edge
+meets `L_γ` unless it is vertical or `G` is empty, where `y` is the least point on it.
 
 ## References
 

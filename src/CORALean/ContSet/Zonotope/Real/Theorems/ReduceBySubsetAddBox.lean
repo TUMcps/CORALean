@@ -10,18 +10,24 @@ public import Mathlib.Algebra.Group.Pointwise.Set.Basic
 /-!
 # Reduction reaches no further than the original plus its own box
 
-The converse direction to `reduceBy_outer`, and the one an inner approximation
-needs: `Ẑ ⊆ Z + E` with `E` the box `reduceByBox` names, so `E` is the error
-bound the reduction pays rather than an estimate of it.
-
-The witness is the point of the proof: a point of `Ẑ` keeps the coefficients of
-the generators the partition kept and sets the dropped ones to `0`, which is a
-point of `Z` because a zonotope's coefficients range over all of `[-1, 1]`. What
-is left is the diagonal block, which is the box exactly.
-
-`α` is that coefficient vector, read back onto `Z`'s own generator indices
-through the partition's equivalence; `hleft` and `hright` are the two halves of
+The converse direction to `reduceBy_outer`, and the one an inner approximation needs: `Ẑ ⊆ Z + E`
+with `E` the box `reduceByBox` names, so `E` is the error bound the reduction pays rather than an
+estimate of it. The witness is the point of the proof: a point of `Ẑ` keeps the coefficients of
+the generators the partition kept and sets the dropped ones to `0`, which is a point of `Z`
+because a zonotope's coefficients range over all of `[-1, 1]`. What is left is the diagonal
+block, which is the box exactly. `α` is that coefficient vector, read back onto `Z`'s own
+generator indices through the partition's equivalence; `hleft` and `hright` are the two halves of
 its definition and are what `sum_split₂` then needs.
+
+## Inputs
+* `Z` – zonotope
+* `part` – split of the generator indices
+
+## Hypotheses
+* none
+
+## Conclusion
+* the reduction lies in `Z` plus the box
 -/
 
 -- Authors:       Claude Opus 5

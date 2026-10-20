@@ -15,6 +15,34 @@ parallelotope or any other: `red_i Z ⊇ Z`. Then `x_i(k) ∈ X_i(k)` at every s
 reduction only enlarges. The offline step, the correction matrices from [1, Eq. 23], is any
 choice: every matrix is covered.
 
+## Inputs
+* `nb` – neighbour indices of each agent
+* `A` – neighbour state matrices
+* `B` – input matrices
+* `Dw` – disturbance generator matrices
+* `C` – output matrices
+* `Dv` – noise generator matrices
+* `Λ` – correction matrices
+* `red` – order reductions
+* `X` – state zonotope of each agent per step
+* `u` – inputs per step
+* `y` – measurements per step
+* `x` – state trajectories
+* `ϖ` – disturbance coefficients per step
+* `σ` – noise coefficients per step
+
+## Hypotheses
+* `hred` – each reduction encloses its input
+* `hX` – zonotopes follow the corrected step
+* `hϖ` – disturbance coefficients within the unit box
+* `hσ` – noise coefficients within the unit box
+* `hx` – states follow the dynamics
+* `hy` – measurements consistent with the states
+* `h0` – initial states lie in the initial zonotopes
+
+## Conclusion
+* each agent's state lies in its zonotope at every step
+
 ## References
 
 * [1] Y. Wang, T. Alamo, V. Puig and G. Cembrano. "A distributed set-membership approach based on

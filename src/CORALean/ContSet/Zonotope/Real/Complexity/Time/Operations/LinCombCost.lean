@@ -8,15 +8,19 @@ public import CORALean.Global.Cost
 /-!
 # `Zonotope.linCombCost`
 
-Asserted, not proved, by reading `Operations/LinComb.lean`: the center
-`(1/2) • (c₁ + c₂)` is `n` additions and `n` scalings, the fresh generator
-`(1/2) • (c₁ - c₂)` the same again, and each `pairSum` or `pairDiff` column is
-`n` additions and `n` scalings where the blocks pair and free where the longer
-one runs on alone — bounded above by pairing every column of both.
+Asserted, not proved, by reading `Operations/LinComb.lean`: the center `(1/2) • (c₁ + c₂)` is `n`
+additions and `n` scalings, the fresh generator `(1/2) • (c₁ - c₂)` the same again, and each
+`pairSum` or `pairDiff` column `n` additions and `n` scalings where the blocks pair and free where
+the longer one runs on alone — bounded by pairing every column. Every scalar of the result is also
+a write, `n * (h₁ + h₂ + 2)` of them.
 
-Under `Global/Cost.lean`'s model every scalar of the result is also a write, one unit each, and the
-result has `n * (h₁ + h₂ + 2)` of them: the center and the `h₁ + h₂ + 1`
-generators.
+## Inputs
+* `n` – dimension
+* `h₁` – first generator count
+* `h₂` – second generator count
+
+## Output
+* cost of the center, paired columns and writes
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

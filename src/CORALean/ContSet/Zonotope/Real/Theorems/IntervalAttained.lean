@@ -16,6 +16,16 @@ negatives the lower one. With `interval_contains` this makes the box the zonotop
 hull, [1, Property 4], and it is how a box sum built from zonotopes is compared with another
 enclosure in [1, Thm. 6], [1, Thm. 7] and [1, Thm. 8].
 
+## Inputs
+* `Z` – zonotope
+* `i` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* the bounding box bounds are attained in `Z`
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

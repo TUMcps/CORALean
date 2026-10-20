@@ -17,14 +17,20 @@ public import Mathlib.Tactic.NormNum.RealSqrt
 CORA's default `'approx'` [1] solves `|C G| α = Δd` by `pinv`. Where the system is inconsistent
 the least-squares `α` trades one halfspace against another, and the scaled minuend can cross a
 shifted halfspace. In `ℝ³` the minuend `Z_m = (0, [g₁ g₂ g₃ g₄])`, `g₁ = (0, 1, -1)`,
-`g₂ = (0, 1, 1)`, `g₃ = (2, 0, -1)`, `g₄ = (2, 0, 1)`, has six facet directions, one per pair
-(`polytope.m`'s normalised cross products: `(1, 0, 0)`, the four `(±1, ±2, -2)/3` and
-`(0, -1, 0)`), and the subtrahend is the segment `Z_s = (0, (0, 0, ½))`. Then
-`Δd = (4, 7/3, 7/3, 7/3, 7/3, 2)` and `α = (25/29, 25/29, 28/29, 28/29)`, all positive.
+`g₂ = (0, 1, 1)`, `g₃ = (2, 0, -1)`, `g₄ = (2, 0, 1)`, has six facet directions, and the
+subtrahend is the segment `Z_s = (0, (0, 0, ½))`. Then `Δd = (4, 7/3, 7/3, 7/3, 7/3, 2)` and
+`α = (25/29, 25/29, 28/29, 28/29)`, all positive. The point `p = (25/29) g₂ + (28/29) g₄` of the
+result, plus `(0, 0, ½) ∈ Z_s`, has `x₁ + 2x₂ + 2x₃ = 241/29`, while `Z_m` has
+`x₁ + 2x₂ + 2x₃ ≤ 8 = 232/29`. The difference itself is nonempty: it holds `0`.
 
-The point `p = (25/29) g₂ + (28/29) g₄` of the result, plus `(0, 0, ½) ∈ Z_s`, has
-`x₁ + 2x₂ + 2x₃ = 241/29`, while `Z_m` has `x₁ + 2x₂ + 2x₃ = 4β₂ + 4β₄ ≤ 8 = 232/29`. The
-difference itself is nonempty: it holds `0`.
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the approximation can leave a nonempty Minkowski difference
 
 ## References
 

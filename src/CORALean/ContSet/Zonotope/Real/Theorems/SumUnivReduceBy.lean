@@ -11,6 +11,17 @@ The kept generators and the one box column per coordinate, counted apart. Stated
 through the projection because that is the form the goal has and simp will not
 rewrite a binder's type, which is also why the float refinement proof reaches
 for it rather than for `Fin.sum_univ_add` directly.
+
+## Inputs
+* `Z` – zonotope
+* `part` – split of the generator indices
+* `f` – function on the reduced generator indices
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sum splits into kept and box parts
 -/
 
 -- Authors:       Claude Opus 5

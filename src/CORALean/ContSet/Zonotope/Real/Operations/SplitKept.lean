@@ -11,6 +11,15 @@ public import CORALean.Global.Partition
 The part `Z_a = ⟨c, G_a⟩` of [1, Sec. IV-B, Step 1)]: the generators
 a partition keeps (`part.left`), with the center of `Z`.
 
+## Inputs
+* `Z` – zonotope
+* `q` – kept count
+* `r` – dropped count
+* `part` – split of the generator indices
+
+## Output
+* zonotope of the kept generators
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

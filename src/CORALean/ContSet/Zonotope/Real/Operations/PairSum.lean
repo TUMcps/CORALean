@@ -13,6 +13,14 @@ this one back through `toReal` in `PairSumBracket.lean`.
 
 Half the sum of a generator and the column it pairs with; past the shorter
 block there is no partner and the generator is kept whole.
+
+## Inputs
+* `G₁` – first generators
+* `G₂` – second generators
+* `j` – pair index
+
+## Output
+* half the sum of the paired generators
 -/
 
 -- Authors:       Claude Opus 5

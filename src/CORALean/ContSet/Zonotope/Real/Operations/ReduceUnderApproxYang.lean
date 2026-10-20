@@ -15,6 +15,14 @@ to the rest — and is `sel`'s choice here; containment holds for every choice, 
 heuristic is a parameter rather than part of the guarantee. CORA's `N` is
 `order · dim(Z)`.
 
+## Inputs
+* `sel` – pair selector
+* `N` – target generator count
+* `Z` – zonotope
+
+## Output
+* zonotope after repeated pair combination
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

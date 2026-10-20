@@ -12,25 +12,30 @@ public import Mathlib.Tactic.Linarith
 
 `priv_reduceValero.m` builds, for each of `ng = 2` candidate first generators `i`, a basis `Tr`
 (Gram-Schmidt: the next column is the one with the largest residual) and keeps the basis `Trn` of
-the largest `|det(Tr)|` (l. 45-74). The leftover generators `T` of the run are what remains after
-the picks, and `T` is overwritten in every run. After the loop `Tr = Trn` is the best run's basis
-(l. 75) but `T` is still the leftover of the LAST run (`i = 2`), sorted by length and merged by
-`alpha = 1 + sum |Tr \ T(:,1:end-g+n)|` (l. 76-82). When the best run is the first, the generators
-that run 1 took into the basis and run 2 left over are scaled into the basis, but those that run 2
-took into its basis and run 1 left over are in neither `Tr`, `alpha` nor `T`: they are lost. The
-result then does not contain `Z`. `valero` is a case of the public `reduce` (l. 160) and is not in
-the list `getMembers('reductionTechnique')` of `reach`. Modelled for `n = 2`, center `0`, generators
-in `ℤ²` (the residual norm of the second column is `|det(first, g)| / |first|`, the same factor for
-every candidate, so the comparison uses `|det|`; the sorts are stable, as MATLAB's `sort`), the
-result in `ℚ²`. Read from the source, not run; a python transcription gives the same result.
+the largest `|det(Tr)|` (l. 45-74). The leftover generators `T` of the run are overwritten in every
+run. After the loop `Tr = Trn` is the best run's basis (l. 75) but `T` is still the leftover of the
+LAST run (`i = 2`), sorted by length and merged by `alpha = 1 + sum |Tr \ T(:,1:end-g+n)|`. When
+the best run is the first, the generators that run 2 took into its basis and run 1 left over are
+in neither `Tr`, `alpha` nor `T`: they are lost, and the result does not contain `Z`. `valero` is a
+case of the public `reduce` (l. 160), not in the list of `reach`. Modelled for `n = 2`, center `0`,
+generators in `ℤ²`, the result in `ℚ²`. Read from the source, not run.
 
 # CORA's `reduce(Z,'valero',order)` loses a generator
 
 `G = [0 -1 3 1; -1 1 -2 0]`, `order = 1.5` (`g = 3`): sorted by length `g3 = (3,-2), g2 = (-1,1),
 g1 = (0,-1), g4 = (1,0)`. Run 1 picks `Tr = [g3, g1]` (`|det| = 3`, leftover `[g4, g2]`), run 2
-picks `Tr = [g2, g3]` (`|det| = 1`, leftover `[g1, g4]`). `Trn` is run 1's, `T = [g1, g4]`, and
-`k = 2 - 3 + 2 = 1` merges `g1` (`alpha = (1, 2)`): `Zred = [(3,-2), (0,-2), (1,0)]`. `g2 = (-1,1)`
-is gone: in the direction `(-1,1)` the support is `9` for `Z` and `8` for `Zred`.
+`Tr = [g2, g3]` (`|det| = 1`, leftover `[g1, g4]`). `Trn` is run 1's, `T = [g1, g4]`, and `k = 1`
+merges `g1`: `Zred = [(3,-2), (0,-2), (1,0)]`. `g2 = (-1,1)` is gone: in the direction `(-1,1)` the
+support is `9` for `Z` and `8` for `Zred`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a point of `Z` is missing from CORA's reduced result
 -/
 
 -- Authors:       Claude Sonnet 5.5

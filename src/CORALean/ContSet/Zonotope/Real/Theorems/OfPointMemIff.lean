@@ -11,6 +11,16 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
 The converse to `mem_ofPoint`: no generator leaves no coefficient to spend, so
 `ofPoint v` denotes `v` and nothing besides — read off `construct` directly, the
 same unfolding `mem_ofPoint` needs a `show` for.
+
+## Inputs
+* `v` – point
+* `x` – candidate point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the point zonotope iff it equals `v`
 -/
 
 -- Authors:       Claude Opus 5

@@ -13,6 +13,19 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.LineClKeepIsUnitDet
 never keeps a singular candidate, so the best of the runs is invertible, and
 where no run is the answer is `1`.
 
+## Inputs
+* `Z` – zonotope
+* `part` – split of the generators
+* `ξ` – convergence threshold
+* `fuel` – iteration budget
+* `runs` – number of restarts
+
+## Hypotheses
+* none
+
+## Conclusion
+* the returned basis is invertible
+
 ## References
 
 * [1] A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of

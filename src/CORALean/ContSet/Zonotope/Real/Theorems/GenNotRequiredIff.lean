@@ -8,22 +8,32 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.GenRemovableIff
 /-!
 # [1, Prop. 2]: when a generator is no longer required
 
-The printed biconditional, over `gen_removable_iff`'s counting half. "The `i`-th generator is no
-longer required for the difference" is read as [1]'s own proof reads it: the difference is still cut
-out by the rows of `C` that `g⁽ᵐ'ⁱ⁾` does not span.
+The printed biconditional, over `gen_removable_iff`'s counting half. "No longer required" is read
+as [1]'s own proof reads it: the difference is still cut out by the rows of `C` that `g⁽ᵐ'ⁱ⁾`
+does not span. `hrows` is [1, Thm. 3] at the rows `C`/`d`, kept as a hypothesis so that `C` and
+`d` stay free; at `minkDiffRowNormal`/`minkDiffRowOffset` it is `minkowskiDiff_rows_eq`, and
+`gen_not_required_iff_of_span` is this with it discharged. `hmin` and `hirr` are the *minimum*
+H-representation: dropping every row of `Red` still describes the difference, and no row outside
+`Red` is redundant. `hmin` carries the step [1] makes in one sentence: jointly redundant is not
+individually redundant; the fact that rules that out is `rows_eq_drop_redundant`.
 
-`hrows` is [1, Thm. 3] at the rows `C`/`d`, kept as a hypothesis here so that `C` and `d` stay
-free. At `Zonotope.minkDiffRowNormal`/`Zonotope.minkDiffRowOffset` it is the theorem
-`Zonotope.minkowskiDiff_rows_eq`, and `Zonotope.gen_not_required_iff_of_span` is this statement with
-it discharged. `hmin` and `hirr` are the *minimum* H-representation: dropping every row
-of `Red` still describes the difference, and no row outside `Red` is redundant, so `Red` is exactly
-the redundant set. The paper obtains it by linear programming; nothing here computes it.
+## Inputs
+* `n` – dimension minus two
+* `Zm` – minuend
+* `Zs` – subtrahend
+* `C` – row normals
+* `d` – row offsets
+* `Red` – redundant rows
+* `i` – generator index
 
-`hmin` is what carries the step [1] makes in one sentence. Each row of `Red` being redundant on its
-own would not give it — two rows cutting the same halfspace are each redundant and jointly are not —
-and the classical fact that rules that out for a full-dimensional polytope, that its irredundant
-halfspaces already describe it, is `rows_eq_drop_redundant`, applied at [1, Thm. 3]'s rows by
-`gen_not_required_iff_of_fullDim`.
+## Hypotheses
+* `hRed` – redundant rows have `n + 1` generators
+* `hrows` – rows describe the Minkowski difference
+* `hmin` – non-redundant rows suffice
+* `hirr` – non-redundant rows irredundant
+
+## Conclusion
+* the count is reached iff the rows without generator `i` suffice
 
 ## References
 

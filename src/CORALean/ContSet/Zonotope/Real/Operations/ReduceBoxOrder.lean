@@ -8,16 +8,19 @@ public import Mathlib.Order.Lattice.Nat
 /-!
 # Choosing the reduction order from an admissible error
 
-[1] tunes a reachability run's parameters to an error the caller states rather
-than to numbers the caller guesses. This is that choice for the third knob:
-given a bound `B`, `reduceBoxOrder` names an order whose reduction box fits
-inside it, and the least such order — the same shape `MatExp.expRemainderOrder`
-gives the truncation order, but against a *set* rather than a scalar `ε`, since
-that is what a reduction actually throws away.
+[1] tunes a reachability run's parameters to an error the caller states rather than to numbers
+the caller guesses. This is that choice for the third knob: given a bound `B`, `reduceBoxOrder`
+names the least order whose reduction box fits inside it — the shape `MatExp.expRemainderOrder`
+gives the truncation order, but against a *set* rather than a scalar `ε`, since that is what a
+reduction throws away. `sInf` over ℕ is `Nat.find` under classical decidability, which is what
+makes this noncomputable: no `Decidable` instance for set inclusion exists here either.
 
-`sInf` over ℕ is `Nat.find` under classical decidability, which is what makes
-this noncomputable: no `Decidable` instance for set inclusion exists here
-either.
+## Inputs
+* `Z` – zonotope
+* `B` – admissible bound
+
+## Output
+* least order whose box meets the bound
 
 ## References
 

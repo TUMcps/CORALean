@@ -12,19 +12,24 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SumUnivReduceBy
 /-!
 # Boxing what a partition drops over-approximates
 
-The whole argument behind every reduction rule, and it holds at *every*
-partition, which is what lets the ranking be a heuristic — Girard's metric
-appears nowhere below.
+The whole argument behind every reduction rule, and it holds at *every* partition, which is what
+lets the ranking be a heuristic — Girard's metric appears nowhere below. Kept generators keep
+their coefficients; the dropped ones contribute `D` in row `i`, which the diagonal block
+reproduces with coefficient `D / R` for `R` that row's box radius. `hbound` bounds `|D|` by `R`,
+so the coefficient is admissible, and `coefficient` handles the rescaling, degenerate `R = 0`
+included. With `R = Σ |G|` over the dropped columns this is the corrected form of [1, Remark 2],
+whose row sums need the absolute values. `Partition.sum_split₂` is where the partition pays: the
+sum over all generators splits into kept and dropped with no side condition.
 
-Kept generators keep their coefficients; the dropped ones contribute `D` in row
-`i`, which the diagonal block reproduces with coefficient `D / R` for `R` that
-row's box radius. `hbound` bounds `|D|` by `R`, so the coefficient is
-admissible, and `coefficient` handles the rescaling, degenerate `R = 0`
-included. With `R = Σ |G|` over the dropped columns this is the corrected form of
-[1, Remark 2], whose row sums need the absolute values.
+## Inputs
+* `Z` – zonotope
+* `part` – split of the generator indices
 
-`Partition.sum_split₂` is where the partition pays: the sum over all generators
-splits into kept and dropped with no side condition.
+## Hypotheses
+* none
+
+## Conclusion
+* `Z` lies in the reduced zonotope
 
 ## References
 

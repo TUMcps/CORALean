@@ -14,6 +14,16 @@ some has `s·x = M_s`. Both halves are the two directions of
 `Zonotope.inter_hyperplane_iff`: a value is reached along `s` exactly when it lies
 between `m_s` and `M_s`. The paper's witnesses are `u ∓ Σⱼ sign(s·vⱼ)vⱼ`.
 
+## Inputs
+* `Z` – zonotope
+* `S` – finite set of directions
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Z` lies in the box and both bounds are attained
+
 ## References
 
 * [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of

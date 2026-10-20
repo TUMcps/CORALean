@@ -12,6 +12,16 @@ public import Mathlib.Algebra.Module.BigOperators
 `gᵢ = Σₖ sign(sᵢ·vₖ)vₖ`, is `u + Σₖ βₖvₖ` with `βₖ = Σᵢ αᵢ sign(sᵢ·vₖ)`, and
 `|βₖ| ≤ Σᵢ |αᵢ| ≤ 1`.
 
+## Inputs
+* `Z` – zonotope
+* `s` – directions
+
+## Hypotheses
+* none
+
+## Conclusion
+* the under-approximation lies in `Z`
+
 ## References
 
 * [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of

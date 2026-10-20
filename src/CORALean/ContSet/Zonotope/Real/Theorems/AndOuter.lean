@@ -12,6 +12,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConZonotopeExact
 
 Through the exact constrained-zonotope intersection (`ConZonotope.intersection_exact`) and the
 conversions: an outer statement only, the enclosing zonotope forgets the constraints.
+
+## Inputs
+* `Z` – first zonotope
+* `S` – second zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the intersection lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

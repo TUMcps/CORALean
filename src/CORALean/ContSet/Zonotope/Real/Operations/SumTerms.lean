@@ -11,6 +11,12 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Plus
 `E_err = 0; for i = ...; E_err = E_err + term_i; end` of CORA's loops: the Minkowski sum of
 `f 0, …, f (m - 1)`, from the point `0`, one `plus` at a time, as [1]'s loops do.
 
+## Inputs
+* `f` – indexed family of zonotopes
+
+## Output
+* Minkowski sum of the first terms
+
 ## References
 
 * [1] `contDynamics/@linearSys/trajectoryError.m`

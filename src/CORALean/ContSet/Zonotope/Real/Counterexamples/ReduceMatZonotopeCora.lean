@@ -22,6 +22,16 @@ not run.
 
 `reduce(matZ,'girard',2)` of the `2 × 2` matrix zonotope `matZ` stops; with a fourth argument it
 returns a `4 × 1` matrix zonotope.
+
+## Inputs
+* `n` – row count
+* `m` – column count
+
+## Hypotheses
+* none
+
+## Conclusion
+* the documented three-argument call stops with an error
 -/
 
 -- Authors:       Claude Sonnet 5.5

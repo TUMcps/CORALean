@@ -10,6 +10,19 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 
 `rotate` denotes the image of the zonotope under the rotation: an equality, a matrix times a
 zonotope being exact.
+
+## Inputs
+* `n` – dimension
+* `Z` – zonotope
+* `i` – first coordinate of the plane
+* `j` – second coordinate of the plane
+* `angle` – rotation angle
+
+## Hypotheses
+* none
+
+## Conclusion
+* the rotated set is exactly the zonotope of `rotate`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,15 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructCompPerm
 `sortByLength` permutes the generators ([1, Sec. III-B, Step 1)]), which changes no point of the
 zonotope.
 
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* sorting leaves the set unchanged
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

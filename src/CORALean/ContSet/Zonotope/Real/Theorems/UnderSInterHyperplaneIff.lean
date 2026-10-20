@@ -16,6 +16,18 @@ the normal `n_e` of the guard `G_e = {x | n_e·x = f_e}` is in `S` then
 `u + t g_j`, `t ∈ [-1, 1]`, inside `Z̲`, runs from `m_j` to `M_j` along `s_j`, since
 `g_j·s_j = Σₖ |vₖ·s_j|`.
 
+## Inputs
+* `Z` – zonotope
+* `s` – directions
+* `j` – direction index
+* `fₑ` – hyperplane offset
+
+## Hypotheses
+* none
+
+## Conclusion
+* the hyperplane meets the under-approximation iff it meets the box iff it meets `Z`
+
 ## References
 
 * [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of

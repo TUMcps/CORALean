@@ -13,6 +13,15 @@ An edge joins two sign corners, which are in the zonotope, and the zonotope is c
 for any order of the generators; the edges [1, Alg. 3] scans make up the boundary only once they
 are sorted (`Zonotope.construct_eq_convexHull_walk`).
 
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the walk edges lie in `Z`
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

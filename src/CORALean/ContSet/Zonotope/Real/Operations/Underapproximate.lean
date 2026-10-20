@@ -13,6 +13,15 @@ CORA's `@zonotope/underapproximate(Z, S)`: for every direction `S_i` (a column o
 vertices `c ± Σ_j sign(S_iᵀ g_j) g_j`, returned as the `2k` columns of a matrix. Here the pair for
 direction `i` is `underapproximate Z S i true` and `underapproximate Z S i false` (CORA's columns
 `2i-1` and `2i`).
+
+## Inputs
+* `n` – dimension
+* `k` – direction count
+* `Z` – zonotope
+* `S` – directions
+
+## Output
+* extremal point per direction and sign
 -/
 
 -- Authors:       Claude Opus 5.5

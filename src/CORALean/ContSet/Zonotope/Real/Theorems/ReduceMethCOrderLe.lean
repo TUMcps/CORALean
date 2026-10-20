@@ -14,6 +14,16 @@ nothing: both sides land at `(o-1)*n + n`.
 
 At `o = 0` there is nothing to state, as for Girard's rule and Combastel's:
 CORA floors the reduced budget at nothing, so order zero lands at order one.
+
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* the result has at most `o n` generators
 -/
 
 -- Authors:       Claude Opus 5

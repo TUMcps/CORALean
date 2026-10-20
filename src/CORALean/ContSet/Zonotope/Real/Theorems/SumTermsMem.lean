@@ -11,6 +11,17 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 If `v m ∈ f m` for every `m < N`, then `∑_{m<N} v m ∈ sumTerms f N`: `plus` is exact [1], so
 each step adds one member.
 
+## Inputs
+* `f` – indexed family of zonotopes
+* `v` – indexed points
+* `N` – number of terms
+
+## Hypotheses
+* `h` – each point lies in its zonotope
+
+## Conclusion
+* the sum of the points lies in the sum zonotope
+
 ## References
 
 * [1] `contDynamics/@linearSys/trajectoryError.m`

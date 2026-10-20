@@ -12,6 +12,16 @@ generators by 2-norm (`sortByLength`), keep the first `ν̂ - 1` and replace the
 sum, each signed by the sign of its first element (`sign x = -1` if `x < 0`, else `1`).
 `r = ν̂ ≤ ν`; indices count from `0`, so "the first `ν̂ - 1`" is `i + 1 < r`.
 
+## Inputs
+* `Z` – zonotope
+* `r` – kept generator count
+
+## Hypotheses
+* `hr` – at most all generators
+
+## Output
+* under-approximating zonotope with `r` generators
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

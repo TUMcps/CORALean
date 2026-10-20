@@ -13,6 +13,14 @@ the one-dimensional zonotope `(nᵀ ⊗ Z) ⊕ (-d) = ω_c ⊕ ([-1, 1] ⊗ ω�
 as the interval `[ω̲, ω̄] = [ω_c - Σᵢ |ω⁽ⁱ⁾|, ω_c + Σᵢ |ω⁽ⁱ⁾|]`, one `let` per printed quantity.
 The paper uses it to bound the times a reachable set meets the guard.
 
+## Inputs
+* `nv` – halfspace normal
+* `d` – halfspace offset
+* `Z` – zonotope
+
+## Output
+* interval of values over `Z`
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

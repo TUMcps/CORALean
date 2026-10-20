@@ -11,6 +11,17 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetOfCert
 Whatever the solver returns: `true` means the checked candidate meets `[1, Thm. 3]`,
 and that theorem gives the containment.
 
+## Inputs
+* `lp` – linear-program solver
+* `Zy` – outer zonotope
+* `Zx` – inner zonotope
+
+## Hypotheses
+* `h` – the test returns true
+
+## Conclusion
+* the inner zonotope lies in the outer one
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

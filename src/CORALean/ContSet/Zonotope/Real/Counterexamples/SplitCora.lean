@@ -27,6 +27,13 @@ the coordinates of zero width, so `N`, a coordinate of `Z`, is a generator index
 `G(:,N)` is out of bounds once `N` exceeds the number of non-zero radii.
 `split(zonotope([0;0],[1;0]))` loops `N = 1, 2` and stops at `N = 2`. Read from the source, not
 run. `none` is the MATLAB error.
+
+## Inputs
+* `Z` – zonotope
+* `N` – generator index counted from one
+
+## Output
+* the two halves, or none on an out-of-bounds error
 -/
 
 -- Authors:       Claude Sonnet 5.5

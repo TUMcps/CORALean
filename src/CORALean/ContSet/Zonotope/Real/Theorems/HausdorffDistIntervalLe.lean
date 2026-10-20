@@ -11,21 +11,23 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # How far a zonotope's box can be from the zonotope
 
-[1, Thm. 1]'s `ω_rad` bound, and only that one: the box over-approximation sits
-within the generators' total length of the zonotope, because every point of the
-box is that far from the center and the zonotope contains its center. The
-paper's two sharper bounds, `ω_max` and `ω_cut`, are not proved here.
+[1, Thm. 1]'s `ω_rad` bound, and only that one: the box over-approximation sits within the
+generators' total length of the zonotope, because every point of the box is that far from the
+center and the zonotope contains its center. The sharper `ω_max` and `ω_cut` are not proved here.
+The distance is Mathlib's, read in the metric `Vec ℝ n` carries — the *supremum* norm. The paper
+writes `‖·‖₂`, which is `norm₂` here and not this type's metric, so this is that bound at this
+type's own norm (`norm_le_pi_norm`, `pi_norm_le_iff_of_nonneg`). No finiteness hypothesis is
+needed: `hausdorffDist_le_of_mem_dist` bounds the distance from above, and the junk value a `⊤`
+edistance would give is `0`, which any such bound already admits.
 
-The distance is Mathlib's, so it is read in the metric `Vec ℝ n` carries — the
-*supremum* norm, `Vec ℝ n` being `Fin n → ℝ`. The paper writes `‖·‖₂`
-throughout, which is `norm₂` here and is not this type's metric, so this is
-that bound at this type's own norm rather than at the Euclidean one. The
-steps naming a norm are `norm_le_pi_norm` and `pi_norm_le_iff_of_nonneg`.
+## Inputs
+* `Z` – zonotope
 
-No finiteness hypothesis is needed: `hausdorffDist_le_of_mem_dist` bounds the
-distance from above, and the junk value a `⊤` edistance would give is `0`,
-which any such bound already admits. Both sets are compact and nonempty here
-regardless, so what is bounded is the distance and not the junk.
+## Hypotheses
+* none
+
+## Conclusion
+* the Hausdorff distance to the box is at most the sum of generator norms
 
 ## References
 

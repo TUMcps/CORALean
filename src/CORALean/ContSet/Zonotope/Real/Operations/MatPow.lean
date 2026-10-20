@@ -16,6 +16,12 @@ Which side the recursion multiplies on is free at a point matrix and not free
 here — `matMul` only over-approximates, so the two associations are different
 enclosures of the same set. Mirroring `Interval.matPow` is what lets the two be
 compared term by term.
+
+## Inputs
+* `M` – matrix zonotope
+
+## Output
+* enclosure of the powers of `M`
 -/
 
 -- Authors:       Claude Opus 5

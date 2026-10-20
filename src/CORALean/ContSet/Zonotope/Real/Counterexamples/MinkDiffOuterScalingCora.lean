@@ -25,6 +25,15 @@ For the unit cube `Z = zonotope(zeros(3,1), eye(3))` and `I = interval(zeros(3,1
 the point `(-1, -1, -1)` of the difference is missing. `n = 3`, as at `n = 2` CORA forces
 `'exact'`; `Z` is full-dimensional and `I` has generators, so no earlier branch returns.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's result does not contain the true Minkowski difference
+
 ## References
 
 * [1] `contSet/@zonotope/minkDiff.m`, CORA, ll. 99-104, 117-120, 148-150, 311-326.

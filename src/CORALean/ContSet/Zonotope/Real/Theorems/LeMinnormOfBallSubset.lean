@@ -14,6 +14,18 @@ A Euclidean ball around the center inside the zonotope has radius at most `minno
 reaches the facet that attains the minimum, along its unit row, and the facet's inequality
 (the enclosing half of `hRep_eq` [1, Thm. 2]) bounds the radius by that facet's offset.
 
+## Inputs
+* `Z` – zonotope
+* `r` – ball radius
+
+## Hypotheses
+* `hspan` – generators span the space
+* `hr` – radius nonnegative
+* `hball` – ball around the center lies in `Z`
+
+## Conclusion
+* the radius is at most the minimal facet norm
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

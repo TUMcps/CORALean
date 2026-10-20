@@ -21,6 +21,17 @@ two programs: (min-out), an aligned zonotope around `EW`, gives the inner `Z̲_k
 (max-in), one inside `EW`, the outer `Z̄_k`. `E` and `W` enter only through `σ`.
 Real layer only, like `combineGens`: the inner half cannot absorb outward rounding.
 
+## Inputs
+* `A` – state matrix
+* `B` – input matrix
+* `K` – constant offset vector
+* `U` – input zonotope
+* `Z₀` – initial zonotope
+* `σ` – alignment-scaling selector
+
+## Output
+* backward reachable zonotope at each step
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

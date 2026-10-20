@@ -13,6 +13,14 @@ and builds the diagonal block from one row sum per output coordinate — `n * r`
 and `n * (r - 1)` additions over the `r` absorbed generators. The result is the center, the `q`
 kept generators and the `n` by `n` diagonal block, `n * (1 + q + n)` scalars, each a write, the
 block's zeros included.
+
+## Inputs
+* `n` – dimension
+* `q` – kept generator count
+* `r` – absorbed generator count
+
+## Output
+* row sums `2nr` plus `n(1+q+n)` writes
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

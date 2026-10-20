@@ -18,6 +18,23 @@ conditions of `tensorMultiplication_outer` on the lists. The tensor product is l
 tensor, so it splits into the center and the generators, each scaled by `γᵢ ∈ [-1, 1]`, which a
 zonotope centered at the origin absorbs. Not exact: `x` is taken independently for the center and
 for each generator.
+
+## Inputs
+* `Z` – zonotope
+* `M` – tensor zonotope
+* `L` – term lists
+* `M'` – tensor in `M`
+* `x` – point
+
+## Hypotheses
+* `hc` – center at the origin
+* `hperm` – term lists enumerate all triples
+* `hmap` – equal map entries have equal multisets
+* `hM` – `M'` lies in `M`
+* `hx` – `x` lies in `Z`
+
+## Conclusion
+* the tensor evaluation lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

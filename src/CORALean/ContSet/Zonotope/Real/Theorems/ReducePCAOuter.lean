@@ -9,15 +9,22 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceByBasisOuter
 /-!
 # `pca` over-approximates
 
-Two cases [1, Alg. 2], as Girard's rule and Combastel's have and `methC` does not: above
-the order the basis is the principal axes, at or below it nothing happens. The
-third case `methC` carries is a singular basis, and `pcaBasis_isUnit_det` is
-what rules it out here.
+Two cases [1, Alg. 2], as Girard's rule and Combastel's have and `methC` does not: above the
+order the basis is the principal axes, at or below it nothing happens. The third case `methC`
+carries is a singular basis, and `pcaBasis_isUnit_det` is what rules it out here. No eigenvalue,
+covariance or ordering of the axes appears — the point `reduceBy_outer` makes about a metric,
+made once more about a spectral decomposition. `reduceByBasis_outer` holds at every invertible
+basis, so what the principal axes contribute is tightness and never soundness.
 
-No eigenvalue, no covariance and no ordering of the axes appears — the same
-point `reduceBy_outer` makes about a metric, made once more about a spectral
-decomposition. `reduceByBasis_outer` holds at every invertible basis, so what
-the principal axes contribute is tightness and never soundness.
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Z` lies in the reduced zonotope
 
 ## References
 

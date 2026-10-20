@@ -12,6 +12,18 @@ public import Mathlib.Tactic.Ring
 are sorted by angle exactly when the originals are, so the walk of the sheared zonogon is the
 sheared walk of [1, Alg. 3].
 
+## Inputs
+* `Z` – planar zonotope
+* `κ` – shear factor
+* `i` – first generator index
+* `j` – second generator index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the cross product of two generators is unchanged by the shear
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

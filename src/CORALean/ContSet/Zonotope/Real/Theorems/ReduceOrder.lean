@@ -11,6 +11,16 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOrderLe
 One line, because `reduce` is Girard's rule under another name, as
 `ReduceOuter.lean` already reads it. A reachability bound built on top of this
 needs nothing about which rule `reduce` runs, only that some bound holds.
+
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* the result has at most `o n` generators
 -/
 
 -- Authors:       Claude Opus 5

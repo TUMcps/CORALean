@@ -15,6 +15,18 @@ boundary, [1, Alg. 3]. `frontier_subset_walkEdges` needs neither nonzero generat
 more than the order; a zero generator only adds a degenerate edge, a point, to the right-hand side,
 which is on the boundary too but is not covered by a line.
 
+## Inputs
+* `Z` – planar zonotope
+
+## Hypotheses
+* `hh` – at least one generator
+* `h1` – generators point upward
+* `h2` – generators sorted by angle
+* `hne` – generators nonzero
+
+## Conclusion
+* the frontier equals the walk edges
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

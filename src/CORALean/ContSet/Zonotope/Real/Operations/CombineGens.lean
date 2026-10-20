@@ -16,6 +16,19 @@ distinct by construction; `hm` only lines the count up. The center is kept.
 Real layer only: a rounded `gᵢ ± gⱼ` is no combination of `gᵢ` and `gⱼ`, and the float
 zonotope pays rounding outward, which an inner approximation cannot use.
 
+## Inputs
+* `Z` – zonotope
+* `m` – generator count minus two
+* `i` – first generator index
+* `j` – second generator index among the rest
+* `add` – sum if true, difference otherwise
+
+## Hypotheses
+* `hm` – generator count is `m + 2`
+
+## Output
+* zonotope with the two generators combined
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

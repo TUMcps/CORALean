@@ -10,22 +10,23 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # How far a zonotope's box can be from the zonotope, at the Euclidean norm
 
-[1, Thm. 1]'s `ω_rad` bound as the paper states it, at `‖·‖₂`. `ω_max` and
-`ω_cut` are `HausdorffDist2IntervalLeMax` and `HausdorffDist2IntervalLeCut`.
+[1, Thm. 1]'s `ω_rad` bound as the paper states it, at `‖·‖₂`; `ω_max` and `ω_cut` are
+`HausdorffDist2IntervalLeMax` and `HausdorffDist2IntervalLeCut`. `hausdorffDist₂` is Mathlib's
+distance taken through `toEuclidean`, so this is not `Zonotope.hausdorffDist_interval_le`, the
+same argument at the supremum norm `Vec ℝ n` carries: `∑ₚ ‖g⁽ᵖ⁾‖_∞` is not `∑ₚ ‖g⁽ᵖ⁾‖₂` and
+neither bound implies the other. A point of the box is within the columnwise sum of generator
+magnitudes of the center, which `norm₂_sum_le` prices. No finiteness hypothesis is needed:
+`hausdorffDist₂_le_of_mem_dist` bounds the distance from above, and the junk value a `⊤` edistance
+would give is `0`, which any such bound already admits.
 
-`hausdorffDist₂` is Mathlib's distance taken through `toEuclidean`, so this is
-not `Zonotope.hausdorffDist_interval_le`, the same argument at the supremum
-norm `Vec ℝ n` itself carries: `∑ₚ ‖g⁽ᵖ⁾‖_∞` is not `∑ₚ ‖g⁽ᵖ⁾‖₂` and neither
-bound implies the other.
+## Inputs
+* `Z` – zonotope
 
-Where the sup-norm twin reads off one coordinate at a time, the whole
-displacement is bounded at once: a point of the box is within the columnwise
-sum of generator magnitudes of the center, which `norm₂_sum_le` prices.
+## Hypotheses
+* none
 
-No finiteness hypothesis is needed: `hausdorffDist₂_le_of_mem_dist` bounds the
-distance from above, and the junk value a `⊤` edistance would give is `0`,
-which any such bound already admits. Both sets are compact and nonempty here
-regardless, so what is bounded is the distance and not the junk.
+## Conclusion
+* the Hausdorff distance to the box is at most the sum of generator norms
 
 ## References
 

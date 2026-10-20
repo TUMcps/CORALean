@@ -19,6 +19,17 @@ public import Mathlib.Tactic.Ring
 center `s + ½ ∑ gᵢ`, `Z(s; g)` is `Z(s + ½ ∑ gᵢ; ½g, −½g)`. Both are the zonotope of that
 center and generators `gᵢ/2` ([1, Lemma 3.1] and `generatorHull_eq_construct`).
 
+## Inputs
+* `s` – starting point
+* `M` – generator count
+* `g` – generators
+
+## Hypotheses
+* none
+
+## Conclusion
+* the hull equals the symmetric normalized form
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

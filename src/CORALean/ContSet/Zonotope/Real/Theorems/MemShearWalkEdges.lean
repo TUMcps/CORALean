@@ -17,6 +17,17 @@ inverse map a segment to the segment of the images. So `x` is on a walk edge of 
 when the unsheared point `(x₀ + κ x₁, x₁)` is on one of `Z`. With `mem_shear_construct` it carries a
 vertical section theorem to every line `x - κ y = γ` ([1, Alg. 3]).
 
+## Inputs
+* `Z` – planar zonotope
+* `κ` – shear factor
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* a point is on the sheared walk edges iff its unshear is on the original ones
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

@@ -17,6 +17,23 @@ of the zonogon on that line: the zonogon is on one side of the edge's line, and 
 that side is the side of larger `y`. It is the last step of [1, Alg. 4] (lines 27-28), where the
 edge is `[P; P + s]` for the one generator left in `G`.
 
+## Inputs
+* `Z` – planar zonotope
+* `σ` – orientation sign
+* `s` – corner signs
+* `a` – generator index
+* `z` – point
+
+## Hypotheses
+* `ha` – sign of `a` is false
+* `hB` – positive-sign generators lie on the correct side
+* `hC` – other negative-sign generators lie on the correct side
+* `haX` – generator `a` points along `σ`
+* `hz` – `z` lies on the edge
+
+## Conclusion
+* the edge point is in `Z` and has the least ordinate
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

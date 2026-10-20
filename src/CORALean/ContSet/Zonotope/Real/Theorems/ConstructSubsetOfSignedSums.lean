@@ -12,6 +12,17 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorne
 contains every zonotope `cₗ ⊕ Z(Rₗ)`, hence their union. The paper states it for the MSPBs `Z⋆'ₗ`
 (zonotopes with `2n` generators); it holds for any family of zonotopes.
 
+## Inputs
+* `Z` – family of zonotopes
+* `M` – convex set
+
+## Hypotheses
+* `hM` – `M` convex
+* `hP` – signed-sum points lie in `M`
+
+## Conclusion
+* the union of the zonotopes lies in `M`
+
 ## References
 
 * [1] M. Maïga, N. Ramdani, L. Travé-Massuyès and C. Combastel. "A Comprehensive Method for

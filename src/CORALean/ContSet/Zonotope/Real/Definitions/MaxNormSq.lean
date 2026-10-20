@@ -12,6 +12,12 @@ public import CORALean.Global.EuclideanNorm
 center to a point of the zonotope. A supremum over the coefficient box, which is attained, the box
 being compact (`Zonotope.isGreatest_maxNormSq_sign`).
 
+## Inputs
+* `Z` – zonotope
+
+## Output
+* largest squared norm over the coefficient box
+
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean

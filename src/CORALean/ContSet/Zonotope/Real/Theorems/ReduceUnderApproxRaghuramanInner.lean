@@ -14,6 +14,16 @@ Each row of the printed `T` has at most one nonzero entry, of modulus at most `1
 large generator keeps itself, a small one goes to the one it is strictly most aligned
 with. So `‖T‖∞ ≤ 1` and [1, Eq. (1)] puts the reduced zonotope inside `Z`.
 
+## Inputs
+* `Z` – zonotope
+* `r` – kept generator count
+
+## Hypotheses
+* `hr` – at most all generators
+
+## Conclusion
+* the reduced zonotope lies in `Z`
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

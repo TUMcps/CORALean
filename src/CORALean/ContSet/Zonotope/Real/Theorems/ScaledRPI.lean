@@ -12,20 +12,35 @@ public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 /-!
 # A diagonally-scaled zonotope, robust positively invariant
 
-`[1, Thm. 6]`: for the system `x⁺ = A x ⊕ w`, `w ∈ W = {Gw, cw}`, a sufficient condition for the
-zonotope `Z = {GΦ, c}`, `Φ = diag(φ)`, `φᵢ > 0`, to be a robust positively invariant (RPI) set —
-`A '' Z ⊕ W ⊆ Z`, `[1, Def. 3]`, restated directly here since the definition itself is not carried
-elsewhere in this tree — is the existence of `Γ1`, `Γ2`, `β` with
+`[1, Thm. 6]`: for `x⁺ = A x ⊕ w`, `w ∈ W = {Gw, cw}`, a sufficient condition for the zonotope
+`Z = {GΦ, c}`, `Φ = diag(φ)`, `φᵢ > 0`, to be a robust positively invariant (RPI) set —
+`A '' Z ⊕ W ⊆ Z` — is the existence of `Γ1`, `Γ2`, `β` with `φⱼ • A Gⱼ = ∑ᵢ Γ1ᵢⱼ • Gᵢ`
+(`eq. (28a)`), `Gwₖ = ∑ᵢ Γ2ᵢₖ • Gᵢ` (`(28b)`), `c - A c - cw = ∑ᵢ βᵢ • Gᵢ` (`(28c)`) and
+`∑ⱼ |Γ1ᵢⱼ| + ∑ₖ |Γ2ᵢₖ| + |βᵢ| ≤ φᵢ` for every row `i` (`(28d)`). The paper's proof reduces this to
+the Sadraddini–Tedrake containment condition (`Lemma 3`, not drawn on here); this file gives the
+direct argument, after the change of variables the paper makes: since `φᵢ > 0`, a coefficient `βᵢ`
+for `Z` need only satisfy `|βᵢ φᵢ| ≤ φᵢ`, i.e. `|βᵢ| ≤ 1`.
 
-* `φⱼ • A Gⱼ = ∑ᵢ Γ1ᵢⱼ • Gᵢ`     (`eq. (28a)`, `AGΦ = GΓ1` read one column at a time)
-* `Gwₖ = ∑ᵢ Γ2ᵢₖ • Gᵢ`           (`eq. (28b)`, `Gw = GΓ2`)
-* `c - A c - cw = ∑ᵢ βᵢ • Gᵢ`     (`eq. (28c)`, `(I - A) c - cw = Gβ`)
-* `∑ⱼ |Γ1ᵢⱼ| + ∑ₖ |Γ2ᵢₖ| + |βᵢ| ≤ φᵢ`, every row `i`  (`eq. (28d)`)
+## Inputs
+* `ng` – generator count
+* `G` – generators
+* `c` – center
+* `φ` – generator scalings
+* `A` – linear dynamics
+* `W` – disturbance zonotope
+* `Γ1` – dynamics coefficients
+* `Γ2` – disturbance coefficients
+* `β` – center coefficients
 
-The paper's own proof reduces this to the Sadraddini–Tedrake containment condition (`Lemma 3`,
-not drawn on here — see the page); this file gives the direct argument that condition would give
-at `Γ := [Γ1 Γ2]`, `β := β`, after the change of variables the paper's proof makes: since `φᵢ > 0`,
-a coefficient `βᵢ` for `Z` need only satisfy `|βᵢ φᵢ| ≤ φᵢ`, i.e. `|βᵢ| ≤ 1`.
+## Hypotheses
+* `hφ` – scalings positive
+* `hA` – scaled images expressed through the generators
+* `hW` – disturbance generators expressed through the generators
+* `hc` – center defect expressed through the generators
+* `hbound` – row sums bounded by the scalings
+
+## Conclusion
+* the scaled zonotope is robustly positively invariant
 
 ## References
 

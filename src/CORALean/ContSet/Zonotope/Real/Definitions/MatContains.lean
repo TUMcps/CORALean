@@ -11,6 +11,13 @@ CORA's `@matZonotope/contains`: `contains(zonotope(matZ), reshape(S, n*m, p))`, 
 `S` stacked into points of the vector zonotope. Written as membership of every matrix. CORA's
 tolerance (default `1e-12`, which widens a non-full-dimensional zonotope by a box) and its
 `'approx'` type are not modelled.
+
+## Inputs
+* `Z` – matrix zonotope
+* `S` – family of matrices
+
+## Output
+* `Prop` that every matrix of `S` lies in `Z`
 -/
 
 -- Authors:       Claude Sonnet 5.5

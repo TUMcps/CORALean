@@ -12,6 +12,19 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 invertible, and keeps `R = T⁻¹V`. The state `(T, R)` then denotes the zonotope it started from,
 generator for generator, since `T(T⁻¹v) = v`.
 
+## Inputs
+* `n` – dimension
+* `k` – column count
+* `c` – center
+* `T` – basis matrix
+* `V` – generator columns
+
+## Hypotheses
+* `hT` – `T` invertible
+
+## Conclusion
+* the generators are `T` followed by `V`
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

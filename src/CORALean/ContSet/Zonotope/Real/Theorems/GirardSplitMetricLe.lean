@@ -10,6 +10,18 @@ public import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
 The partition `girardSplit` cuts satisfies [1, Eq. (5)]: every kept generator `g_a` and every
 dropped one `g_b` have `‖g_a‖₁ - ‖g_a‖∞ ≥ ‖g_b‖₁ - ‖g_b‖∞`.
 
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+* `l` – kept index
+* `r` – dropped index
+
+## Hypotheses
+* `hlt` – reduction needed
+
+## Conclusion
+* each kept generator outranks each dropped one by the Girard metric
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

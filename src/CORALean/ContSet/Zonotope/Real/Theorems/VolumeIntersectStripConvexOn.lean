@@ -15,6 +15,18 @@ function linear in `λ` (the determinant is linear in its last column), so each 
 is convex. The claim that minimising it is a convex *problem* is this convexity on all of `ℝⁿ`; no
 optimiser is built.
 
+## Inputs
+* `Z` – zonotope
+* `c` – strip direction
+* `σ` – strip radius
+* `d` – strip offset
+
+## Hypotheses
+* none
+
+## Conclusion
+* the volume is convex in the gain vector
+
 ## References
 
 * [1] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".

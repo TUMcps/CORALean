@@ -17,6 +17,15 @@ is then `0 / 0`. CORA's `aux_cloud2zonotope` (`enclosePoints(points, 'maiga')`) 
 and divides `0 / 0` in MATLAB, so the points become `NaN`; Lean's `x / 0 = 0` makes
 `cloud2zonotopeCompress` the identity there. Only the vanishing of `g` is stated.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's cloud enclosure can produce a zero generator for a nonzero projection
+
 ## References
 
 * [1] M. Maïga, N. Ramdani, L. Travé-Massuyès and C. Combastel. "A Comprehensive Method for

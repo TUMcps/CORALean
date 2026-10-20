@@ -11,6 +11,15 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.IsFullDimIff
 `rank = dim` is how CORA's `isFullDim` tests it (`dim(Z) == rank(Z.G)`). The generators span the
 ambient space exactly when the span has the ambient dimension, so this is
 `Zonotope.isFullDim_iff` read through `finrank`. At `Vec ℝ n` the dimension is `n`.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the rank is the full dimension iff `Z` has interior
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -8,15 +8,22 @@ public import CORALean.ContSet.Zonotope.Real.Definitions.FWRadius
 /-!
 # CORA's `'wang-FRad'` gain is not the F-radius minimizer
 
-CORA's `@zonotope/intersectStrip` with `'wang-FRad'` (`aux_methodWangFRad`, used by the observer
-`FRad-B`) cites [1, Thm. 2] and computes `R̄ = A P Aᵀ + Q_w`, `P = G Gᵀ`, `λ = R̄ Cᵀ (C R̄ Cᵀ +
-Q_v)⁻¹` from the generators `G` of the zonotope it intersects. But `observe_stripBased` calls it on
-the *predicted* set `A X̂ ⊕ W`, whose Gram matrix already is the paper's `R̄` (at `T = I`, `N = 0`);
-CORA applies `A` and adds `Q_w` a second time. In one dimension, the predicted zonotope `⟨0, [1]⟩`,
-`C = 1`, `φ = 1` (`Q_v = 1`), `A = 2` and no disturbance give CORA's gain `λ = 4·1/(4 + 1) = 4/5`,
-while [1, Thm. 2] gives `1/(1 + 1) = 1/2`. The F-radius of the result, `√((1 - λ)² + λ²)`, is
-`√(17/25)` at CORA's gain and `√(1/2)` at the paper's, so CORA's is strictly worse. The enclosure is
-unaffected: every gain is sound (`intersectStrip_outer`).
+CORA's `@zonotope/intersectStrip` with `'wang-FRad'` (`aux_methodWangFRad`, used by `FRad-B`) cites
+[1, Thm. 2] and computes `R̄ = A P Aᵀ + Q_w`, `P = G Gᵀ`, `λ = R̄ Cᵀ (C R̄ Cᵀ + Q_v)⁻¹` from the
+generators `G` of the zonotope it intersects. But `observe_stripBased` calls it on the *predicted*
+set `A X̂ ⊕ W`, whose Gram matrix already is the paper's `R̄`; CORA applies `A` and adds `Q_w` a
+second time. In one dimension, `⟨0, [1]⟩`, `C = 1`, `φ = 1`, `A = 2` give CORA's gain `4/5`, while
+[1, Thm. 2] gives `1/2`; the F-radius `√((1 - λ)² + λ²)` is `√(17/25)` at CORA's gain and `√(1/2)`
+at the paper's. The enclosure is unaffected: every gain is sound (`intersectStrip_outer`).
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the paper's gain has a strictly smaller F-radius than CORA's
 
 ## References
 

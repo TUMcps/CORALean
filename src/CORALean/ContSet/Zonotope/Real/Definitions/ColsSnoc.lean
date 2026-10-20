@@ -11,6 +11,13 @@ The square matrix whose first `m` columns are `B 0, …, B (m - 1)` and whose la
 determinants `det [B_i σλ]` and `det [B_i v_i]` of the volume formula [1, Sec. 6.1] are of this
 form, `B_i` being the `n - 1` generators a subset picks out.
 
+## Inputs
+* `B` – list of column vectors
+* `x` – appended last column
+
+## Output
+* square matrix with those columns
+
 ## References
 
 * [1] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".

@@ -13,6 +13,16 @@ The measurement update, Step 1 of [1, Alg. 1], at every node `i` from its predic
 Lemma 1], Eq. 12-13, `c̄ = ĉ + Λ(ȳ - Γĉ)`, `Ḡ = [(I - ΛΓ)Ĝ, ΛR]` (`intersectStrip`, which runs the
 two lines at `Λ`). `Γⁱ` and `ȳⁱ` are the stacked measurement matrix and output of the `m_i`
 neighbours, `Rⁱ = diag rⁱ` the stacked noise radii [1].
+
+## Inputs
+* `Γ` – stacked measurement matrices
+* `r` – noise radii
+* `yb` – outputs
+* `Zh` – predicted zonotope of each node
+
+## Output
+* measurement-updated zonotope of each node
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

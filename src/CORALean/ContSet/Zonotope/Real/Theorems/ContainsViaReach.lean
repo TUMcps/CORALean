@@ -12,6 +12,28 @@ the rounding a float layer cannot avoid: `Γ` and `β₀` only approximate the s
 residuals `G₁ - G₂ Γ`, `c₁ - e₂ - c₂ - G₂ β₀` and the first set's error `e₁` only have to fit in
 the box of vectors a checked right inverse of `G₂` reaches (`Zonotope.rightInv_reach`), with
 coefficients of size at most `δ` that the coefficient budget `|β₀ₖ| + ∑ⱼ |Γₖⱼ| + δ ≤ 1` pays for.
+
+## Inputs
+* `G₁` – first generator matrix
+* `G₂` – second generator matrix
+* `Γ` – coefficient matrix
+* `β₀` – center coefficients
+* `c₁` – first center
+* `c₂` – second center
+* `e₁` – first error offset
+* `e₂` – second error offset
+* `B` – reach bound
+* `δ` – coefficient slack
+* `β` – first coefficients
+
+## Hypotheses
+* `hreach` – `G₂` reaches every small vector
+* `hres` – residual within the reach bound
+* `hcoef` – coefficients fit the unit box
+* `hβ` – coefficients within the unit box
+
+## Conclusion
+* the point has coefficients in the unit box for the second zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

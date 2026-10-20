@@ -15,16 +15,18 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.PlusCost
 # `SetBasedNet.forwardCost`
 
 Asserted, not proved, as [1, Prop. 16]'s proof counts `SetBasedNet.forward`: a linear layer
-`W H + b` at `Zonotope.mtimesCost m n h` and `Zonotope.plusCost m`, a nonlinear one at
-`Zonotope.imageEnclosureCost`, whose `n` new generators the next layer then carries. The proved
-part is [1, Prop. 16]'s `O(n_max² q κ)`: at most `(cNeuron + 17) N² Q κ` for `N` at least every
-width and `Q` at least the generator count `h + Σₖ nₖ`. `N` has to cover the input width `n₀`
-too: the first layer costs `n₀ n₁ q`, and with `n_max` over `k ∈ [κ]` alone, as printed, a wide
-input and a narrow network (`n₀ = N`, one linear layer to `n₁ = 1`, `q = N`) cost `2N(N + 1) + 1`
+`W H + b` at `Zonotope.mtimesCost m n h` and `Zonotope.plusCost m h 0`, a nonlinear one at
+`Zonotope.imageEnclosureCost`, whose `n` new generators the next layer carries. The proved part is
+`O(n_max² q κ)`: at most `(cNeuron + 17) N² Q κ` for `N` at least every width and `Q` at least
+`h + Σₖ nₖ`. `N` has to cover the input width `n₀` too: with `n_max` over `k ∈ [κ]` alone, as
+printed, a wide input (`n₀ = N`, one linear layer to `n₁ = 1`, `q = N`) costs `2N(N + 1) + 1`
 against `n_max² q κ = N`, so no constant independent of `n₀` bounds it.
 
-The sum `W H + b` is a zonotope of `h` generators and a point, so `plusCost m h 0`: the writes of
-its `m * (h + 1)` entries are counted there.
+## Inputs
+* `cNeuron` – cost of one neuron
+
+## Output
+* cost of a forward pass from a given generator count
 
 ## References
 

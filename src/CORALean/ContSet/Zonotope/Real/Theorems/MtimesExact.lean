@@ -12,6 +12,18 @@ public import Mathlib.LinearAlgebra.Matrix.ToLin
 `map_exact` at `A *ᵥ ·`, which is the case reachability runs. No `mtimes_outer`:
 the float `mtimes` pays its rounding into the error box, so it reproves this
 against the rounded generators rather than composing with it.
+
+## Inputs
+* `n` – dimension
+* `m` – output dimension
+* `M` – matrix
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image of `Z` equals the zonotope of `mtimes`
 -/
 
 -- Authors:       Claude Opus 5

@@ -18,6 +18,15 @@ with [1]'s weights `dᵢ = ‖gᵢ‖` is `α = 1`, `c = 0`: the aligned zonotop
 and `EW = [-½, ½]` does not contain it. With `EW`'s own description `(2H, h)` the
 same problem gives `α = ½`, which `aligned_subset_of_maxIn` covers.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a maximizer exists whose aligned zonotope is not inside `EW`
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

@@ -13,6 +13,15 @@ public import Mathlib.Algebra.BigOperators.GroupWithZero.Action
 [1, Eq. 11]: `s(c + Σⱼ βⱼg⁽ʲ⁾) = 0 + s·c + Σⱼ (sβⱼ)g⁽ʲ⁾`, and `|s| ≤ 1`, `|βⱼ| ≤ 1` put
 every coefficient back in `[-1, 1]`.
 
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* all products with the unit interval lie in the result
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

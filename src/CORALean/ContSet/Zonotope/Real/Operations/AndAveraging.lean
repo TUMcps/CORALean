@@ -16,6 +16,13 @@ one coefficient each, as `cat` is a concatenation. The weights are any reals of 
 a negative one included; CORA's `'normGen'` weights `wʲ = 1 / (tr(ḠʲḠʲᵀ) Σᵣ 1 / tr(ḠʳḠʳᵀ))`
 are `[1, Prop. 1]`. It is the diffusion update, Step 2 of [1, Alg. 1] and of [1, Alg. 2].
 
+## Inputs
+* `Z` – family of zonotopes
+* `w` – weights
+
+## Output
+* zonotope enclosing the intersection by averaging
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

@@ -14,6 +14,15 @@ The mixed form of CORA's `@zonotope/cubMap` (`aux_cubMapMixed`): an enclosure of
 three arguments range independently, so every product `β₃ⱼ β₂ᵦ β₁ₐ` of extended factors gets
 its own generator `Σₖ ([c₁,G₁]ᵀ T{i,k} [c₂,G₂])(a, b) · [c₃,G₃](k, j)`, the one at `((0, 0), 0)`
 being the center (`Zcub(i, 1)`, the first column of `zonotope(Zcub)`).
+
+## Inputs
+* `T` – cubic tensor
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+* `Z₃` – third zonotope
+
+## Output
+* zonotope enclosing the mixed cubic image
 -/
 
 -- Authors:       Claude Opus 5.5

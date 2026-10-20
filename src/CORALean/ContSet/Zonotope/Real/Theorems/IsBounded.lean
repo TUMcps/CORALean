@@ -11,6 +11,15 @@ public import Mathlib.Analysis.Normed.Module.Basic
 Coefficients run over `[-1,1]`, so a point reaches at most the center plus the
 sum of the generator norms — the quantity `radius` computes at `Vec ℝ n`, here
 only as a bound and never stored.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Z` is bounded
 -/
 
 -- Authors:       Claude Opus 5

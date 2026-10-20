@@ -10,16 +10,24 @@ public import Mathlib.Tactic.Module
 /-!
 # Every face of a zonotope is centrally symmetric
 
-The half of [1, Prop. 1] that is about zonotopes rather than about the
-counterexample: what [1] appeals to when it reads off Fig. 6 that "not all
-faces are centrally symmetric as it has to be for zonotopes".
+The half of [1, Prop. 1] that is about zonotopes rather than the counterexample: what [1] appeals
+to when it reads off Fig. 6 that "not all faces are centrally symmetric as it has to be for
+zonotopes". A direction `u` bounded by `t` on the zonotope cuts out the face `u y = t`. Every
+coefficient of a point on it is already extreme wherever `u` does not annihilate its generator, so
+only the annihilated generators are free — the face is the zonotope on those, symmetric about its
+own center `c + ∑ sgn(u g⁽ᵘ⁾) g⁽ᵘ⁾`. No hypothesis says `t` is attained: above the maximum the
+face is empty and the statement is vacuous.
 
-A direction `u` bounded by `t` on the zonotope cuts out the face `u y = t`.
-Every coefficient of a point on it is already extreme wherever `u` does not
-annihilate its generator, so only the annihilated generators are still free —
-the face is the zonotope on those, and is symmetric about its own center
-`c + ∑ sgn(u g⁽ᵘ⁾) g⁽ᵘ⁾`. No hypothesis says `t` is attained: above the
-maximum the face is empty and the statement is vacuous.
+## Inputs
+* `Z` – zonotope
+* `u` – linear functional
+* `t` – upper bound of `u`
+
+## Hypotheses
+* `ht` – `u` at most `t` on `Z`
+
+## Conclusion
+* the face at level `t` is centrally symmetric
 
 ## References
 

@@ -14,6 +14,13 @@ weighted mean `(Σ wᵢ)⁻¹ Σ wᵢ cᵢ` of the centers and the weighted gene
 generators are indexed by the sigma type of the `d` families, `finSigmaFinEquiv` order. The weights
 are arguments; the lemma only asks that they do not sum to zero.
 
+## Inputs
+* `w` – weights
+* `Zs` – zonotopes
+
+## Output
+* zonotope enclosing the weighted intersection
+
 ## References
 
 * [1] A. Alanwar, V. Gaßmann, X. He, H. Said, H. Sandberg, K. H. Johansson and M. Althoff.

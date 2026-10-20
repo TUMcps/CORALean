@@ -12,6 +12,13 @@ Asserted, not proved: `Operations/Project.lean` is `Zonotope.map` of `LinearMap.
 reads coordinates `dims` out of a vector and computes nothing. Each of the `h + 1` columns is a
 vector of `m` entries written, so one application costs `m` writes and the count is `mapCost` at
 `m`.
+
+## Inputs
+* `m` – number of projected coordinates
+* `h` – generator count
+
+## Output
+* `m` writes per column
 -/
 
 -- Authors:       Claude Sonnet 5.5

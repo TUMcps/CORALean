@@ -19,6 +19,16 @@ sorted order and in the second with the order reversed (`σ = -1`). With the con
 [1, Alg. 3] scans. A zero generator gives a degenerate edge, a point, which is on the boundary
 too but is not covered by a line.
 
+## Inputs
+* `Z` – planar zonotope
+
+## Hypotheses
+* `h2` – generators sorted by angle
+* `hne` – generators nonzero
+
+## Conclusion
+* the walk edges lie on the frontier
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

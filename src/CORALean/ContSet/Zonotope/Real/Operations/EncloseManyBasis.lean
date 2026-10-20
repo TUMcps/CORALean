@@ -7,18 +7,19 @@ public import CORALean.ContSet.Zonotope.Real.Operations.EncloseManyDropped
 /-!
 # `Zonotope.encloseManyBasis`
 
-The rotation `rotMatrix` of CORA's `@zonotope/encloseMany`: the unit vector
-`newGen = direction / ‖direction‖₂` as first column, followed by the axes, with
-the axis most aligned with `newGen` left out (`encloseManyDropped`). Dropping that axis is what
-keeps the matrix invertible: `newGen` has a nonzero entry there, and nowhere else is needed.
+The rotation `rotMatrix` of CORA's `@zonotope/encloseMany` [1]: the unit vector
+`newGen = direction / ‖direction‖₂` as first column, followed by the axes, with the axis most
+aligned with `newGen` left out (`encloseManyDropped`). Dropping that axis keeps the matrix
+invertible: `newGen` has a nonzero entry there. CORA sorts the alignments and keeps the remaining
+axes in increasing order of alignment; here they keep their own order. The enclosure
+`R · box(R⁻¹ ·)` is unchanged by a permutation of `R`'s columns, so only the choice of the dropped
+axis matters, and among equally aligned axes any maximiser does.
 
-CORA sorts the alignments and keeps the remaining axes in increasing order of
-alignment; here they keep their own order. The enclosure `R · box(R⁻¹ ·)` is
-unchanged by a permutation of `R`'s columns, so only the choice of the dropped
-axis matters, and among several equally aligned axes any maximiser does (CORA
-drops the last in its sort order).
+## Inputs
+* `direction` – main direction
 
-Source: [1].
+## Output
+* basis with the direction as first column
 
 ## References
 

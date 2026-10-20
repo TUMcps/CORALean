@@ -10,6 +10,15 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
 
 `splitLongestGen`'s halves cover the zonotope exactly: `split_union` at the chosen index, or, with
 no generator, the zonotope itself twice.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the two halves cover `Z`
 -/
 
 -- Authors:       Claude Opus 5.5

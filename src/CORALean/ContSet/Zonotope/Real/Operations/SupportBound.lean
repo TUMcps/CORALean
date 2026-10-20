@@ -13,6 +13,13 @@ Each generator contributes independently: coefficient `βⱼ ∈ [-1,1]` reaches
 most `|c (Gⱼ)|` in direction `c`, so the sum peaks at `c (Z.c) + Σⱼ |c (Gⱼ)|`.
 No solver and no dual certificate — and the value is attained, which
 `Theorems.SupportBoundAttained` states.
+
+## Inputs
+* `Z` – zonotope
+* `c` – linear functional
+
+## Output
+* upper bound of `c` over `Z`
 -/
 
 -- Authors:       Claude Opus 5

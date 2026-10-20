@@ -14,6 +14,17 @@ Writing `w = Uᵀ (p - mean)` for the rotated point, `U w = p - mean` as `U Uᵀ
 coordinate `wᵢ` lies in `[m2ᵢ, m1ᵢ]`, so `wᵢ` is the box center plus a coefficient `βᵢ` in
 `[-1, 1]` times the half-width, the generator's factor. Outer only: the box is an enclosure, and
 the result does not depend on `U` being the SVD's.
+
+## Inputs
+* `pts` – points
+* `U` – orthogonal basis
+* `j` – point index
+
+## Hypotheses
+* `hU` – `U` orthogonal
+
+## Conclusion
+* each point lies in the enclosing zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

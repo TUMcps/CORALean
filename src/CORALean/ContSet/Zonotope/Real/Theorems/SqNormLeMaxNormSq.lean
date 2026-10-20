@@ -11,6 +11,16 @@ public import Mathlib.Order.ConditionallyCompleteLattice.Basic
 A point `c + ∑ βⱼ gⱼ` of the zonotope has `‖∑ βⱼ gⱼ‖₂² ≤ ⌈Z⌉²` [1, Def. 3]: the set the
 supremum runs over is bounded by `(∑ ‖gⱼ‖₂)²`, by the triangle inequality.
 
+## Inputs
+* `Z` – zonotope
+* `β` – generator coefficients
+
+## Hypotheses
+* `hβ` – coefficients within the unit box
+
+## Conclusion
+* the squared norm is at most the maximum squared norm
+
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean

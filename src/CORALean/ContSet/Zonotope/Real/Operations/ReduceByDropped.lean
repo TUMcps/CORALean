@@ -8,17 +8,19 @@ public import CORALean.Global.Partition
 /-!
 # `Zonotope.reduceByDropped`
 
-The generators a partition drops, kept as a zonotope of their own and centered
-at the origin: `⟨0, G_red⟩_Z` in [1, Prop. 4], whose `err` is the price one
-reduction step pays.
+The generators a partition drops, kept as a zonotope of their own and centered at the origin:
+`⟨0, G_red⟩_Z` in [1, Prop. 4], whose `err` is the price one reduction step pays. `reduceByBox` is
+this set's box — the shape `reduceBy` actually substitutes — and `err` reads a box off whatever it
+is given, so the two have the same `err`. This one is what the paper writes, and it is the
+tighter set of the two, so a bound stated against it is the stronger statement. Not a `Reduce`
+operation and no class instantiates it: it names the error, not a reduced set.
 
-`reduceByBox` is this set's box — the shape `reduceBy` actually substitutes —
-and `err` reads a box off whatever it is given, so the two have the same `err`.
-This one is what the paper writes, and it is the tighter set of the two, so a
-bound stated against it is the stronger statement.
+## Inputs
+* `Z` – zonotope
+* `part` – split of the generator indices
 
-Not a `Reduce` operation and no class instantiates it: it names the error, not
-a reduced set.
+## Output
+* dropped generators centered at the origin
 
 ## References
 

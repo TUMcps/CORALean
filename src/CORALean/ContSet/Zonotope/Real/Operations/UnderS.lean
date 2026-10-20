@@ -13,6 +13,13 @@ hull of its extremal points `u ± gᵢ` (`Zonotope.extremalGen`). The paper writ
 as that hull and in this form; the form is the one taken here. The order of `S` matters,
 as [1] remarks, so the directions are a family `s : Fin ℓ → Vec ℝ n`.
 
+## Inputs
+* `Z` – zonotope
+* `s` – directions
+
+## Output
+* set of points under-approximating `Z`
+
 ## References
 
 * [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of

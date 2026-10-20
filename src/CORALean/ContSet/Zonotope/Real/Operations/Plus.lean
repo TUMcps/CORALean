@@ -9,6 +9,13 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 
 CORA's `@zonotope/plus`: centers add, generators concatenate [1, Sec. 2].
 
+## Inputs
+* `Z₁` – first zonotope
+* `Z₂` – second zonotope
+
+## Output
+* Minkowski sum zonotope
+
 ## References
 
 * [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid

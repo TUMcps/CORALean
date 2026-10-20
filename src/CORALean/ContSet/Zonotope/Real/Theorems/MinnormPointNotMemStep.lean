@@ -16,6 +16,19 @@ inequality (the enclosing half of `hRep_eq` [1, Thm. 2]) is tight at the point. 
 `minnormPoint_mem` this makes it a boundary point, and by `minnormPoint_dist` one at the
 distance `minnorm Z`.
 
+## Inputs
+* `Z` – zonotope
+* `S` – selected generator indices
+* `t` – step length
+
+## Hypotheses
+* `hspan` – generators span the space
+* `hC` – facet normal nonzero
+* `ht` – step positive
+
+## Conclusion
+* stepping out along the normal leaves `Z`
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

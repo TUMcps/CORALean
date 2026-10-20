@@ -7,20 +7,21 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # Aligned zonotopes
 
-[1, Def. 3]. `AlignedWith` is the printed relation: every generator of the
-second zonotope points along one of the first's. `MutuallyAligned` is it in
-both directions.
+[1, Def. 3]. `AlignedWith` is the printed relation: every generator of the second zonotope points
+along one of the first's. `MutuallyAligned` is it in both directions. `NoAlignedGens` is the
+standing assumption the definition opens with, on each operand separately — pairwise non-parallel
+generators. It is not a hypothesis of `AlignedWith`: parallel generators can be merged into one
+first, so it normalizes the operands rather than constraining the relation, and `minkDiffAligned`
+never asks for it either. The scaling is unconstrained, exactly as printed — which is what the
+finding on `Prop. 5` is about: the closed form needs `0 ≤ γ ≤ 1`, and `minkDiffAligned_not_inner`
+is the counterexample outside it.
 
-`NoAlignedGens` is the standing assumption the definition opens with, on each
-operand separately — a zonotope whose own generators are pairwise
-non-parallel. It is not a hypothesis of `AlignedWith`: the paper's reason for
-it is that two parallel generators can be merged into one first, so it
-normalizes the operands rather than constraining the relation, and
-`minkDiffAligned` never asks for it either.
+## Inputs
+* `Z₁` – candidate base zonotope
+* `Z₂` – zonotope whose generators are scalings
 
-The scaling is unconstrained here, exactly as printed — which is what the
-finding on `Prop. 5` is about: the closed form `minkDiffAligned` computes needs
-`0 ≤ γ ≤ 1`, and `minkDiffAligned_not_inner` is the counterexample outside it.
+## Output
+* `Prop` that every generator of `Z₂` scales one of `Z₁`
 
 ## References
 

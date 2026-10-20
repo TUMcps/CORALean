@@ -12,6 +12,20 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceScottStep
 `rfl`: the state goes from `n + (k + 1)` generators to `n + k`, so `k` steps reduce `n_g` to
 `n_g − k`.
 
+## Inputs
+* `n` – dimension
+* `k` – generator count minus one
+* `c` – center
+* `T` – basis matrix
+* `R` – echelon generator columns
+* `ind` – removed column index
+
+## Hypotheses
+* none
+
+## Conclusion
+* one step removes exactly one generator
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

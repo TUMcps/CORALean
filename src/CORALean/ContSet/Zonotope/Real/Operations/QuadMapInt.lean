@@ -7,20 +7,22 @@ public import CORALean.ContSet.Zonotope.Real.Operations.QuadMap
 /-!
 # `Zonotope.quadMapInt`
 
-[1, Prop. 3]'s `quadint(H, Z)`: the quadratic map `{φ | φᵢ = xᵀH⁽ⁱ⁾x, x ∈ Z}` of a zonotope
-at interval matrices `H⁽ⁱ⁾ = Hc⁽ⁱ⁾ ⊕ [-HΔ⁽ⁱ⁾, HΔ⁽ⁱ⁾]`. The center and generators of
-`Zonotope.quadMap` ([1, Lemma 1]) are evaluated in interval arithmetic, which gives an
-interval center `d_c ⊕ [-d_Δ, d_Δ]` and interval generators `h_c⁽ⁱ⁾ ⊕ [-h_Δ⁽ⁱ⁾, h_Δ⁽ⁱ⁾]`;
-the result keeps the midpoints as center and generators and puts the radii into the axis
-generators `l⁽ᵏ⁾`, `l⁽ᵏ⁾ₖ = d_Δ,ₖ + Σᵢ h_Δ,ₖ⁽ⁱ⁾`.
+[1, Prop. 3]'s `quadint(H, Z)`: the quadratic map of a zonotope at interval matrices
+`H⁽ⁱ⁾ = Hc⁽ⁱ⁾ ⊕ [-HΔ⁽ⁱ⁾, HΔ⁽ⁱ⁾]`. The center and generators of `Zonotope.quadMap` ([1, Lemma 1])
+are evaluated in interval arithmetic; the result keeps the midpoints as center and generators and
+puts the radii into the axis generators `l⁽ᵏ⁾`, `l⁽ᵏ⁾ₖ = d_Δ,ₖ + Σᵢ h_Δ,ₖ⁽ⁱ⁾`. Every entry of
+`quadMap` is a sum of terms `λ⁽ⁱ⁾ᵀH⁽ʲ⁾λ⁽ᵏ⁾` holding the interval matrix once, which interval
+arithmetic evaluates exactly ([1, Lemma 2]): midpoint `λ⁽ⁱ⁾ᵀHc⁽ʲ⁾λ⁽ᵏ⁾`, radius
+`|λ⁽ⁱ⁾|ᵀHΔ⁽ʲ⁾|λ⁽ᵏ⁾|`. So the midpoints are `quadMap` at `Hc` and the radii `quadMap` at `HΔ` of
+the zonotope of absolute values; no interval type is involved. `HΔ` is meant nonnegative.
 
-Every entry of `quadMap` is a sum of terms `λ⁽ⁱ⁾ᵀH⁽ʲ⁾λ⁽ᵏ⁾`, `λ` the center or a generator,
-each holding the interval matrix once. Interval arithmetic evaluates such a term exactly
-([1, Lemma 2]): its midpoint is `λ⁽ⁱ⁾ᵀHc⁽ʲ⁾λ⁽ᵏ⁾` and its radius `|λ⁽ⁱ⁾|ᵀHΔ⁽ʲ⁾|λ⁽ᵏ⁾|`, so the
-midpoints are `quadMap` at `Hc` and the radii are `quadMap` at `HΔ` of the zonotope whose
-center and generators are the absolute values `|c|`, `|g⁽ʲ⁾|`. That is how they are
-computed here: no interval type is involved. `HΔ` is meant entrywise nonnegative, a radius;
-the definition does not need it.
+## Inputs
+* `Hc` – center quadratic matrices
+* `HΔ` – radius quadratic matrices
+* `Z` – zonotope
+
+## Output
+* zonotope enclosing the interval quadratic images
 
 ## References
 

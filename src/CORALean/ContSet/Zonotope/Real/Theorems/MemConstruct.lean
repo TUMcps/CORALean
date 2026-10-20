@@ -14,6 +14,17 @@ generator entry transposed and the scalar on its right.
 
 The float layer inherits it — its `mem_nominalSet_iff` is this theorem at the
 nominal zonotope.
+
+## Inputs
+* `n` – dimension
+* `Z` – zonotope
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in `Z` iff some bounded coefficients reproduce it
 -/
 
 -- Authors:       Claude Opus 5

@@ -16,6 +16,16 @@ Eq. 16 of [1, Thm. 1]; multiplying by `wʲ` and summing gives `x̄ = ć + Ǵ z` 
 sum, negative entries included, as the coefficient `zʲ` rides on the generator `(wʲ / s) Ḡʲ`.
 Outer only: the averaged zonotope holds more than the intersection.
 
+## Inputs
+* `Z` – family of zonotopes
+* `w` – weights
+
+## Hypotheses
+* `hw` – weights sum to nonzero
+
+## Conclusion
+* the intersection lies in the averaged zonotope
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

@@ -12,6 +12,13 @@ for every matrix `M` of the interval matrix `[M]`, lies in `p ⊕ [mid[M] rs(rad
 center matrix's columns and then one axis-aligned generator per row, of length that row's radius
 sum (`rs`, the row-sum diagonal matrix of [1, Sec. 2]). The enclosure is `inclusion_outer`.
 
+## Inputs
+* `p` – center point
+* `IM` – interval matrix
+
+## Output
+* zonotope enclosing the matrix images
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state

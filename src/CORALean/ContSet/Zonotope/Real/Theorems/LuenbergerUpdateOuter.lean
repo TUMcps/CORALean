@@ -16,6 +16,26 @@ public import Mathlib.Tactic.Abel
 coefficients `α`, and the noises are `Q β` and `R γ`, so `xₖ` is `c̄` plus `(F - Λ Γ) Ĝ α`,
 `-Λ R γ` and `Q β`: the coefficients `(α, γ, β)` stay in `[-1, 1]`.
 
+## Inputs
+* `F` – dynamics matrix
+* `Γ` – stacked measurement matrix
+* `Λ` – gain matrix
+* `Q` – process-noise generators
+* `R` – measurement-noise generators
+* `y` – stacked output
+* `X` – zonotope
+* `x` – state
+* `β` – process-noise coefficients
+* `γ` – measurement-noise coefficients
+
+## Hypotheses
+* `hx` – state lies in `X`
+* `hβ` – process coefficients within the unit box
+* `hγ` – measurement coefficients within the unit box
+
+## Conclusion
+* the next state lies in the updated zonotope
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

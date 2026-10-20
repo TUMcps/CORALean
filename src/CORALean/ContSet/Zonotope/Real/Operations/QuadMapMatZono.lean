@@ -8,18 +8,22 @@ public import CORALean.ContSet.Zonotope.Real.Operations.UnitIntervalMul
 /-!
 # `Zonotope.quadMapMatZono`
 
-[1, Thm. 1]: the quadratic map `{λ | λᵢ = xᵀQ⁽ⁱ⁾x, x ∈ Z}` with each `Q⁽ⁱ⁾` ranging over a
-matrix zonotope `(D⁽ⁱ⁾, K⁽ⁱ'¹⁾, ..., K⁽ⁱ'ᵛ⁾)`, enclosed by
+[1, Thm. 1]: the quadratic map `{λ | λᵢ = xᵀQ⁽ⁱ⁾x, x ∈ Z}` with each `Q⁽ⁱ⁾` ranging over a matrix
+zonotope `(D⁽ⁱ⁾, K⁽ⁱ'¹⁾, ..., K⁽ⁱ'ᵛ⁾)`, enclosed by
 `Z_D ⊕ ([-1, 1] ⊗ Z_K(1)) ⊕ ... ⊕ ([-1, 1] ⊗ Z_K(ν))`, each partial zonotope [1, Lemma 1]'s at
-the centers `D⁽ⁱ⁾` or at the `j`-th generators `K⁽ⁱ'ʲ⁾`, the interval product [1, Eq. 11]'s,
-and the sum [1, Eq. 10]'s: centers added, generators concatenated. `K j i` is `K⁽ⁱ'ʲ⁾`.
+the centers `D⁽ⁱ⁾` or at the `j`-th generators `K⁽ⁱ'ʲ⁾` (`K j i`), the interval product
+[1, Eq. 11]'s and the sum [1, Eq. 10]'s. The `ν` interval products have the origin as center, so
+the sum's center is `Z_D`'s. The enclosure needs one factor `βⱼ` per generator `j`, shared by all
+`i`, as the printed proof has it (`quadMapMatZono_outer`); for factors chosen per `i`, as the
+printed set has it, `quadMapMatZono_not_outer` is a counterexample.
 
-The `ν` interval products have the origin as center, so the sum's center is `Z_D`'s, and
-their generators are read off `Fin ν × Fin (p + p + p² + 1)` through `finProdFinEquiv`.
+## Inputs
+* `D` – center quadratic matrices
+* `K` – generator quadratic matrices
+* `Z` – zonotope
 
-What the enclosure needs, `quadMapMatZono_outer` says: one factor `βⱼ` per generator `j`,
-shared by all `i`, as the printed proof has it; for factors chosen per `i`, as the printed
-set has it, `quadMapMatZono_not_outer` is a counterexample.
+## Output
+* zonotope enclosing the matrix-zonotope images
 
 ## References
 

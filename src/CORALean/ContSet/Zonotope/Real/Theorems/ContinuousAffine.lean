@@ -12,6 +12,15 @@ Coefficients enter linearly, so `β ↦ c + ∑ βⱼ • Gⱼ` is continuous. I
 carries compactness from the coefficient cube onto the set, both here and for
 the constrained zonotope, whose `construct` is the image of its own domain under
 this same map.
+
+## Inputs
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the coefficient map is continuous
 -/
 
 -- Authors:       Claude Opus 5

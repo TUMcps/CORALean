@@ -14,6 +14,15 @@ generators, `n_k` at each nonlinear layer (`Zonotope.imageEnclosure`) and none a
 `n₀ + Σ_{k ∈ [κ]} n_k`.
 Every intermediate set is the output of the first layers, whose sum is a part of this one.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* generators grow by at most the number of neurons
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

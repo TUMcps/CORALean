@@ -18,6 +18,17 @@ error. Read from the source, not run.
 
 `@zonotope/split.m` l. 176 calls the non-existent `get(IH,'intervals')`; the split of a zonotope
 in a direction exists. Read from the source, not run.
+
+## Inputs
+* `n` – dimension
+* `Z` – zonotope
+* `dir` – split direction
+
+## Hypotheses
+* none
+
+## Conclusion
+* the bundle split always errors
 -/
 
 -- Authors:       Claude Sonnet 5.5

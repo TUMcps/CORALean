@@ -17,6 +17,16 @@ Neither the length filter nor the volume search appears — the same point
 `reduceByOuter` makes about a metric, made once more about a combinatorial
 search. That is what lets an exhaustive search be formalized here at all: it
 has to return a basis, not a good one.
+
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Z` lies in the reduced zonotope
 -/
 
 -- Authors:       Claude Opus 5

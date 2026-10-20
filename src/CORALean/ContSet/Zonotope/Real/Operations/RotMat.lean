@@ -10,6 +10,15 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 
 The matrix of CORA's `@zonotope/rotate(Z, dims, angle)`: the 2x2 rotation `R = [cos -sin; sin cos]`
 on the two coordinates `dims = (i, j)`, as an `n x n` matrix that is the identity elsewhere.
+
+## Inputs
+* `n` – dimension
+* `i` – first coordinate of the plane
+* `j` – second coordinate of the plane
+* `angle` – rotation angle
+
+## Output
+* rotation matrix in that plane
 -/
 
 -- Authors:       Claude Opus 5.5

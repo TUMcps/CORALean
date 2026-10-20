@@ -17,22 +17,41 @@ public import Mathlib.Tactic.Linarith
 /-!
 # The P-radius contraction of the corrected zonotope
 
-[1, Thm. 1]: if `P ≻ 0`, `Y`, diagonal `Γ, Υ ≽ 0` and `γ`, `ε` satisfy `tr Γ + tr Υ < ε` Eq. 14a
-of [1, Thm. 1] and the matrix inequality Eq. 14b of [1, Thm. 1],
-`[γP ⋆ ⋆ ⋆; (P - YC)A  P ⋆ ⋆; 0  D_wᵀ(P - YC)ᵀ  Γ ⋆; 0  D_vᵀYᵀ  0  Υ] ≻ 0`, then at `Λ = P⁻¹Y` the
-P-radius of the zonotope of [1, Prop. 2] satisfies `V(X(k)) ≤ γ V(X(k-1)) + ε` Eq. 15 of
-[1, Thm. 1], `V` the P-radius [1, Def. 2], `Zonotope.pRadius`. The paper's `γ ∈ (0, 1)` is not
-used: `γ ≥ 0` suffices.
+[1, Thm. 1]: if `P ≻ 0`, `Y`, diagonal `Γ, Υ ≽ 0` and `γ`, `ε` satisfy `tr Γ + tr Υ < ε` (Eq. 14a)
+and the matrix inequality Eq. 14b, `[γP ⋆ ⋆ ⋆; (P - YC)A  P ⋆ ⋆; 0  D_wᵀ(P - YC)ᵀ  Γ ⋆;
+0  D_vᵀYᵀ  0  Υ] ≻ 0`, then at `Λ = P⁻¹Y` the P-radius of the zonotope of [1, Prop. 2] satisfies
+`V(X(k)) ≤ γ V(X(k-1)) + ε` (Eq. 15), `V = Zonotope.pRadius`. The paper's `γ ∈ (0, 1)` is not
+used: `γ ≥ 0` suffices. As in the paper's proof, a point of the new zonotope is its center plus
+`d = P⁻¹ R v`, `R = [(P - YC)A  (P - YC)D_w  Y D_v]`, `v = (θ, ϖ, σ)`, so `‖d‖²_P = vᵀ Rᵀ P⁻¹ R v`;
+the Schur complement of Eq. 14b at `(θ, -d, ϖ, σ)` and the box bounds give Eq. 15. `D_w` has `n`
+rows; the paper prints it `m_w × m_w`. The `k → ∞` clause is `LinearSysDT.radius_ultimate_bound`.
 
-As in the paper's proof. A point of the new zonotope is its center plus `d = P⁻¹ R v`, with
-`R = [(P - YC)A  (P - YC)D_w  Y D_v]` Eq. 18 of [1, Thm. 1] and `v = (θ, ϖ, σ)`, `θ` the offset
-in `X(k-1)`, so `‖d‖²_P = vᵀ Rᵀ P⁻¹ R v`. The matrix inequality at the vector `(θ, -d, ϖ, σ)`,
-the Schur complement of the block `P` evaluated there, bounds that by `γ θᵀPθ + ϖᵀΓϖ + σᵀΥσ`,
-Eq. 19 of [1, Thm. 1]; `θᵀPθ ≤ V(X(k-1))` and the box bounds `ϖᵀΓϖ ≤ tr Γ`, `σᵀΥσ ≤ tr Υ`,
-Eq. 20 of [1, Thm. 1], give Eq. 15. Eq. 14b is stated in the paper's block order, `⋆` the
-transposes: its upper-right block has the rows `0` and `[(P - YC)D_w  Y D_v]`. The disturbance
-`D_w` has `n` rows, `w` entering the state; the paper prints it `m_w × m_w`. The `k → ∞` clause,
-`V(X(∞)) ≤ ε / (1 - γ)`, is `LinearSysDT.radius_ultimate_bound`.
+## Inputs
+* `A` – state matrix
+* `B` – input matrix
+* `Dw` – disturbance generator matrix
+* `C` – output matrix
+* `Dv` – noise generator matrix
+* `u` – control input
+* `y` – measurement
+* `X` – state zonotope
+* `P` – weight matrix
+* `Y` – gain factor
+* `Γ` – disturbance weights
+* `Υ` – noise weights
+* `γ` – contraction rate
+* `ε` – additive bound
+
+## Hypotheses
+* `hP` – `P` positive definite
+* `hLMI` – linear matrix inequality holds
+* `hΓ` – disturbance weights nonnegative
+* `hΥ` – noise weights nonnegative
+* `hε` – weights sum below `ε`
+* `hγ` – rate nonnegative
+
+## Conclusion
+* the corrected P-radius is at most `γ` times the old one plus `ε`
 
 ## References
 

@@ -17,6 +17,17 @@ the shear is linear. A line `x - κ y = γ` through `Z` is therefore a vertical 
 sheared zonogon, and a vertical section theorem for zonogons in the upper half-plane ([1, Alg. 3])
 is one for every direction but the horizontal.
 
+## Inputs
+* `Z` – planar zonotope
+* `κ` – shear factor
+* `p` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* a point lies in the sheared set iff its unshear lies in `Z`
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

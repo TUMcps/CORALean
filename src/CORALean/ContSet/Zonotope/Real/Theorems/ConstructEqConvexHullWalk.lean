@@ -14,6 +14,16 @@ corners of `Zonotope.walk` have the zonogon as their convex hull: `construct_sub
 inclusion of the zonogon in the hull, and the walk's corners are sign corners, hence in the
 zonogon, which is convex. The walk is the vertex list [1, Alg. 3] scans (Sec. 3.2).
 
+## Inputs
+* `Z` – planar zonotope
+
+## Hypotheses
+* `h1` – generators point upward
+* `h2` – generators sorted by angle
+
+## Conclusion
+* `Z` is the convex hull of the walk
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

@@ -11,6 +11,20 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MatMulOuter
 Induction on `k` against `matMul_outer`, with `M₀ * M ^ (k + 1) = (M₀ * M ^ k) * M`. The default
 call of CORA (`P = Z`) is `M₀ := M`, giving `M ^ (k + 1)`; `expmMixed` starts at the dependent
 square (`initialOrder = 2`), whose members are the squares `M * M`.
+
+## Inputs
+* `Z` – base matrix zonotope
+* `P` – starting matrix zonotope
+* `M` – matrix of the base
+* `M₀` – matrix of the start
+* `k` – exponent
+
+## Hypotheses
+* `hM` – `M` lies in `Z`
+* `hM₀` – `M₀` lies in `P`
+
+## Conclusion
+* `M₀` times `M` to the `k` lies in the `k`-th power zonotope
 -/
 
 -- Authors:       Claude Sonnet 5.5

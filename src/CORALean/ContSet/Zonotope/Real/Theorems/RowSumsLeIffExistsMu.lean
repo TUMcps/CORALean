@@ -17,6 +17,18 @@ is `Σⱼ (μ⁺ᵢ(j) - μ⁻ᵢ(j)) eⱼ` with `μ⁺ᵢ, μ⁻ᵢ ≥ 0` and 
 a coordinate to put the slack `α - ‖tᵢ‖₁` on, so `ν̂ ≥ 1`: for `ν̂ = 0` and `α > 0` the encoding is
 unsatisfiable (`0 = α`) while `‖T‖∞ = 0 ≤ α`.
 
+## Inputs
+* `m` – row count
+* `r` – column count
+* `T` – matrix
+* `α` – row-sum bound
+
+## Hypotheses
+* `hr` – column count positive
+
+## Conclusion
+* row sums are bounded iff each row splits into positive and negative parts
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

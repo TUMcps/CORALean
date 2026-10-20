@@ -20,6 +20,16 @@ source, not run.
 
 For `matZonotope(zeros(1,4), ones(1,4))` the two vertices come back as `2 × 2` matrices; for
 `matZonotope(zeros(2,3), ones(2,3))` the call stops.
+
+## Inputs
+* `n` – row count
+* `m` – column count
+
+## Hypotheses
+* `hnm` – dimensions differ
+
+## Conclusion
+* the vertices come back with the wrong shape
 -/
 
 -- Authors:       Claude Sonnet 5.5

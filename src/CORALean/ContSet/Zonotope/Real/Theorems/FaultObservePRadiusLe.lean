@@ -11,17 +11,41 @@ public import Mathlib.Data.Matrix.Basic
 # The P-radius of the fault-detection observer's zonotope
 
 [1, Eq. 14] asks `ℓ_{k+1} ≤ γ ℓ_k + ε` of the P-radius `ℓ_k = max_b ‖H_k b‖²_P` [1, Eq. 13], with
-`ε = max_{s₁} ‖D_xH_w s₁‖²₂ + max_{s₂} ‖D_yH_v s₂‖²₂` [1, Eq. 15]. If the step inequality
-`‖(A - LC)θ + D_xH_w s₁ - L D_yH_v s₂‖²_P ≤ γ‖θ‖²_P + ‖D_xH_w s₁‖²₂ + ‖D_yH_v s₂‖²₂` holds for all
-`θ, s₁, s₂` (which [1, Eq. 16] derives and [1, Eq. 17] gives,
-`LinearSysDT.quadForm_le_of_faultRadiusLmi`), then the zonotope of [1, Eq. 10]
-(`Zonotope.faultObserve`) has P-radius at most `γ ℓ + ε` for every bound `ℓ` of the P-radius
-of `X`, the zonotope **after** the reduction `↓_q`: a point of the new zonotope is its center
-plus `(A - LC)θ + D_xH_w s₁ - L D_yH_v s₂` with `p + θ` a point of `X`.
-`θ` ranges over `↓_q(H_k)`'s span, not `H_k`'s, and the reduction can enlarge the P-radius,
-so `ℓ_k` of [1, Eq. 14] has to be read as `↓_q(H_k)`'s; as printed, with `H_k`'s, it fails
-(`Zonotope.faultObserve_pRadius_counterexample`). `ψw`, `ψv` are any bounds of the two maxima
-of [1, Eq. 15], and `γ ≥ 0`.
+`ε = max_{s₁} ‖D_xH_w s₁‖²₂ + max_{s₂} ‖D_yH_v s₂‖²₂` [1, Eq. 15]. If the step inequality holds
+for all `θ, s₁, s₂` ([1, Eq. 16, 17], `LinearSysDT.quadForm_le_of_faultRadiusLmi`), then the
+zonotope of [1, Eq. 10] (`Zonotope.faultObserve`) has P-radius at most `γ ℓ + ε` for every bound
+`ℓ` of the P-radius of `X`, the zonotope **after** the reduction `↓_q`: a point of the new
+zonotope is its center plus `(A - LC)θ + D_xH_w s₁ - L D_yH_v s₂`, `p + θ` a point of `X`. `θ`
+ranges over `↓_q(H_k)`'s span and the reduction can enlarge the P-radius, so `ℓ_k` has to be read
+as `↓_q(H_k)`'s; as printed it fails (`Zonotope.faultObserve_pRadius_counterexample`).
+
+## Inputs
+* `A` – state matrix
+* `B` – input matrix
+* `C` – output matrix
+* `L` – observer gain
+* `Dx` – disturbance matrix
+* `Hw` – disturbance generator matrix
+* `Dy` – noise matrix
+* `Hv` – noise generator matrix
+* `u` – control input
+* `y` – measured output
+* `X` – state zonotope
+* `P` – weight matrix
+* `γ` – contraction rate
+* `ℓ` – bound on the P-radius of `X`
+* `ψw` – bound on the disturbance term
+* `ψv` – bound on the noise term
+
+## Hypotheses
+* `hJ` – contraction inequality holds
+* `hγ` – rate nonnegative
+* `hℓ` – `X` has P-radius at most `ℓ`
+* `hψw` – disturbance term bounded by `ψw`
+* `hψv` – noise term bounded by `ψv`
+
+## Conclusion
+* the next P-radius is at most `γ ℓ + ψw + ψv`
 
 ## References
 

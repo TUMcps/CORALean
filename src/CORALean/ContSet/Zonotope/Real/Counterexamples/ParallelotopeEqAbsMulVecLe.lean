@@ -15,6 +15,15 @@ public import Mathlib.Tactic.NormNum
 In `ℝ¹`, `z₁ = 2`: `∑ [-1, 1] z₁ = [-2, 2]`, while `{x | V x ≤ 1}` with `V = (2, -2)ᵀ` is
 `[-1/2, 1/2]`; the point `2` is in the first and not the second.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the parallelotope is not the claimed halfspace set
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

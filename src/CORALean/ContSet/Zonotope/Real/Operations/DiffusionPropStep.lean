@@ -13,6 +13,19 @@ Step 1, the Luenberger update at every node (`diffusionPropLuenberger`), and Ste
 diffusion update of each node over its neighbourhood `N_i` (`diffusionUpdate`, as in
 [1, Alg. 1]), the zonotopes shared by the `m_i` neighbours `nb i a`, node `i` among them.
 
+## Inputs
+* `F` – dynamics matrix
+* `Q` – process-noise generators
+* `Γ` – stacked measurement matrices
+* `r` – noise radii
+* `yb` – outputs
+* `nb` – neighbour indices of each node
+* `o` – reduction order
+* `Zh` – previous zonotope of each node
+
+## Output
+* zonotope of each node after one instant
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

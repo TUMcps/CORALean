@@ -12,6 +12,17 @@ A row of `T` that is nonzero in at most one place, and there at most `1` in modu
 absolute sum at most `1`: the row condition `‖T‖∞ ≤ 1` of [1, Eq. (1)] for the heuristic
 methods, whose `T` has one `±1` or `0` per row.
 
+## Inputs
+* `r` – length
+* `f` – vector
+
+## Hypotheses
+* `hu` – at most one nonzero entry
+* `hb` – entries at most one in absolute value
+
+## Conclusion
+* the absolute sum is at most one
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

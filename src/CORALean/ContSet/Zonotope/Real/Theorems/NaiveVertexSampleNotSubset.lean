@@ -13,6 +13,19 @@ The first half of `[1, Cor. 4.7]`: `Ẑ ⊄ Ê` if `r_vs > 1`. A sampled corner 
 second half, `Ẑ ⊆ Ê` "with probability at least `P_S(1 - r_vs)`", fails
 (`Zonotope.naive_vertex_sample_printed_counterexample`).
 
+## Inputs
+* `Z` – zonotope
+* `H` – linear map
+* `d` – offset
+* `a` – sampled corner signs
+
+## Hypotheses
+* `hN` – at least one sample
+* `h` – sampled norm exceeds one
+
+## Conclusion
+* `Z` is not inside the image of the unit ball
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

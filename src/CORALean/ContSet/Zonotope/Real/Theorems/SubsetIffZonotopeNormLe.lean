@@ -10,6 +10,16 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormBallEq
 `[1, Eq. 18]`, the problem `ZC`: for a non-degenerate circumbody,
 `Z₁ ⊆ Z₂` iff every `p ∈ Z₁` has `‖p - c₂‖_{Z₂} ≤ 1`. `[1, Cor. 1]` pointwise.
 
+## Inputs
+* `Z₁` – zonotope tested
+* `Z₂` – containing zonotope
+
+## Hypotheses
+* `hG` – generator map of `Z₂` surjective
+
+## Conclusion
+* containment holds iff every zonotope norm is at most one
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

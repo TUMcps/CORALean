@@ -13,6 +13,16 @@ public import Mathlib.Data.Matrix.Basic
 `vᵀ W v ≥ 0`, which [1, Def. 4] has. Eq. 11 names the square `ℓ_{F,W+}` where Def. 4 names
 the norm; it is the square that is a trace.
 
+## Inputs
+* `W` – weight matrix
+* `Z` – zonotope
+
+## Hypotheses
+* `hW` – `W` positive semidefinite
+
+## Conclusion
+* the squared weighted radius equals a trace
+
 ## References
 
 * [1] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on

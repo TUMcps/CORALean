@@ -12,6 +12,18 @@ public import Mathlib.Tactic.Ring
 generators, `p` linear ones, `p` squares and `C(p, 2)` pairs. `p + p + C(p, 2) = C(p + 2, 2) - 1` is
 Pascal's rule twice, `C(p + 2, 2) = C(p + 1, 2) + p + 1 = C(p, 2) + p + p + 1`.
 
+## Inputs
+* `n` – dimension
+* `m` – output dimension
+* `Q` – family of quadratic matrices
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* result has `C(p + 2, 2) - 1` generators
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

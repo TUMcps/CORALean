@@ -13,6 +13,16 @@ public import Mathlib.LinearAlgebra.Matrix.PosDef
 `d*` of the semidefinite program (18) does: on the box, `uᵀ GᵀG u ≤ uᵀ diag(λ) u ≤ 1ᵀ λ`. `λ ≥ 0`
 is not needed, the diagonal of a positive semidefinite matrix being nonnegative.
 
+## Inputs
+* `Z` – zonotope
+* `lam` – dual multipliers
+
+## Hypotheses
+* `hpsd` – dual matrix positive semidefinite
+
+## Conclusion
+* the maximum squared norm is at most the dual sum
+
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean

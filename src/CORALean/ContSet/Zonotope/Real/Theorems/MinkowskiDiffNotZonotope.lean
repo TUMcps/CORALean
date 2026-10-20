@@ -9,16 +9,12 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.FaceCentrallySymmetric
 # [1, Prop. 1]: zonotopes are not closed under Minkowski difference
 
 [1]'s own counterexample, `Z_m = (0, G⁽ᵐ⁾)` and `Z_s = (0, G⁽ˢ⁾)` with
-
-    G⁽ᵐ⁾ = [[1,1,0,0],[1,0,1,0],[1,0,0,1]],  G⁽ˢ⁾ = G⁽ᵐ⁾/3 with the first
-                                              column's first entry negated.
-
-[1] proves it by plotting the difference in Fig. 6 and observing that a face of
-it is not centrally symmetric. That face is named here: the difference is
-bounded by `x₂ ≤ 4/3`, `x₂ - x₁ ≤ 2/3`, `x₁ - x₃ ≤ 2/3` and `x₃ ≤ 4/3`, and
-`(2/3, 4/3, 0)`, `(2/3, 4/3, 4/3)` and `(4/3, 4/3, 4/3)` all lie on `x₂ = 4/3`.
-Reflecting those three in any center drives one of them out, so the face is not
-symmetric — and `face_centrally_symmetric` says a zonotope has no such face.
+`G⁽ᵐ⁾ = [[1,1,0,0],[1,0,1,0],[1,0,0,1]]` and `G⁽ˢ⁾ = G⁽ᵐ⁾/3` with the first column's first entry
+negated. [1] proves it by plotting the difference in Fig. 6 and observing that a face of it is not
+centrally symmetric. That face is named here: the difference is bounded by `x₂ ≤ 4/3`,
+`x₂ - x₁ ≤ 2/3`, `x₁ - x₃ ≤ 2/3` and `x₃ ≤ 4/3`, and `(2/3, 4/3, 0)`, `(2/3, 4/3, 4/3)` and
+`(4/3, 4/3, 4/3)` all lie on `x₂ = 4/3`. Reflecting those three in any center drives one of them
+out, so the face is not symmetric — and `face_centrally_symmetric` says a zonotope has no such face.
 
 ## References
 

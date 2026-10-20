@@ -12,6 +12,15 @@ It does not when exactly one first element is `0` and the other negative: `sign(
 is then `sign 0 = 1`, while `sign(gᵢ(1)) sign(gⱼ(1)) = -1`. For `gᵢ = (-1, 1)`, `gⱼ = (0, 1)` the
 cosine of `(1, -1)` and `(0, 1)` is `-1/√2` and (4) gives `1/√2`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* some generators have `dcos` different from the sign-aligned cosine
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

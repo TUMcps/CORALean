@@ -11,21 +11,21 @@ public import Mathlib.Data.Real.Basic
 /-!
 # `Zonotope.exhaustiveSearchCost`
 
-Asserted, not proved, as [1, Prop. 10]'s proof counts it: an exhaustive search for the
-best `n` of `p` generators builds the `C(p, n)` parallelotopes of [1, Prop. 8], each
-at `O(p)` with respect to the generators — one `Γ⁻¹ g` per generator, `n` fixed, computed and
-written, so `2 * p` — and then sorts their `C(p, n)` indices `Θ`. The per-parallelotope `p` is the
-paper's reading, with its constant in `n` dropped as the paper drops it.
-
-No search here is priced against a Lean definition: `Zonotope.methodC` searches a
-filtered shortlist instead, and its cost is [1, Prop. 11]'s, this one at `p = n + κ`.
+Asserted, not proved, as [1, Prop. 10]'s proof counts it: an exhaustive search for the best `n` of
+`p` generators builds the `C(p, n)` parallelotopes of [1, Prop. 8], each at `2 * p` (one `Γ⁻¹ g`
+per generator, computed and written), then sorts their `C(p, n)` indices. `Zonotope.methodC`
+searches a shortlist instead, at [1, Prop. 11]'s cost.
 
 ## [1, Prop. 10]: the exhaustive search is `O(C(p, n) · p)`
 
-The proof's arithmetic, `O(C(p, n) · p) + O(C(p, n) log C(p, n)) = O(C(p, n) · p)`, read
-off `exhaustiveSearchCost`: the sort's `log₂ C(p, n)` is at most `p`, since
-`C(p, n) ≤ 2ᵖ`, so the sort costs at most `C(p, n)(p + 1)`, and everything at most
-`4 C(p, n) p` once `p ≥ 1`. For fixed `n`, as the proposition has it.
+The sort's `log₂ C(p, n)` is at most `p`, so everything is at most `4 C(p, n) p` once `p ≥ 1`.
+
+## Inputs
+* `n` – dimension
+* `p` – generator count
+
+## Output
+* cost of enumerating, transforming and sorting all parallelotopes
 
 ## References
 

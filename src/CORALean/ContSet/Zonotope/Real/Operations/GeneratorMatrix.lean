@@ -15,6 +15,13 @@ not have `n` elements gives the zero matrix.
 
 Source: [1].
 
+## Inputs
+* `Z` – zonotope
+* `T` – generator indices
+
+## Output
+* square matrix with those generators as columns
+
 ## References
 
 * [1] `contSet/@zonotope/dominantDirections.m` and its private helpers, CORA (Sep. 2025), by

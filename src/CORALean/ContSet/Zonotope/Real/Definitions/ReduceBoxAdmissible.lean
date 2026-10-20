@@ -13,6 +13,14 @@ bound, and needs no soundness side condition to go with it: `reduceBox` is
 total, and `reduceBox_eq_ofPoint` already gives an order meeting any `B`
 containing `0`. `reduceBoxOrder` names the least order meeting it.
 
+## Inputs
+* `Z` – zonotope
+* `B` – admissible bound
+* `o` – order
+
+## Output
+* `Prop` that box reduction at `o` stays inside `B`
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

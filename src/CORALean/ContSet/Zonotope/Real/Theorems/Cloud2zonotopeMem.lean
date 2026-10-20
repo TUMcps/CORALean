@@ -20,6 +20,20 @@ and compressing moves it by `t g` with `|t| ≤ 1` (`cloud2zonotopeCompress_mem`
 Outer only, and for every `dir`, `ratio`, `s₁` and `s₂`: the choice of principal direction and
 of ratio decides how tight the zonotope is, never whether it encloses.
 
+## Inputs
+* `dir` – direction selector
+* `ratio` – selection ratio
+* `s₁` – iteration count
+* `s₂` – tolerance
+* `X` – point cloud
+* `j` – point index
+
+## Hypotheses
+* none
+
+## Conclusion
+* every cloud point lies in the enclosing zonotope
+
 ## References
 
 * [1] M. Maïga, N. Ramdani, L. Travé-Massuyès and C. Combastel. "A Comprehensive Method for

@@ -15,6 +15,17 @@ So `{x | |zᵢᵀ x| ≤ 1}` is the parallelotope spanned by the columns of `Z�
 with rows `zᵢ`, which is the reading the rest of the reduction needs: its polar is
 `conv(±zᵢ)`. Centered anywhere.
 
+## Inputs
+* `Zm` – inverse matrix
+* `W` – generator matrix
+* `c` – center
+
+## Hypotheses
+* `hZW` – `Zm` is the inverse of `W`
+
+## Conclusion
+* the parallelotope is the set with bounded transformed coordinates
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

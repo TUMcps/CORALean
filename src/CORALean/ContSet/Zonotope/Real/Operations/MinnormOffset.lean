@@ -16,6 +16,13 @@ generators) is a row CORA removes as `NaN`; the definition there is `0 / 0` and 
 
 Source: [1].
 
+## Inputs
+* `Z` – zonotope
+* `S` – selected generator indices
+
+## Output
+* offset of the unit-normal facet row
+
 ## References
 
 * [1] `contSet/@zonotope/minnorm.m` and `contSet/@zonotope/polytope.m`, CORA (Sep. 2025).

@@ -17,6 +17,18 @@ through `H_k`, so the chain rule reads `Σᵢ c'_k(i) ∂c_k(i) + Σᵢ Σⱼ G'
 `∂c_k(i)/∂c_{k-1}(j) = W_k(i,j)`; the loss is differentiable at the layer's output in the center
 and generator entries together, which the paper takes for granted.
 
+## Inputs
+* `ℒ` – loss on zonotopes
+* `W` – weight matrix
+* `b` – bias vector
+* `H` – input zonotope
+
+## Hypotheses
+* `hF` – loss differentiable at the output
+
+## Conclusion
+* the gradient through the affine map is the pulled-back gradient
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

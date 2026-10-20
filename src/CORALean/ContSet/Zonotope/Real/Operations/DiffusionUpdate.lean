@@ -15,6 +15,13 @@ average of the `m_i` shared zonotopes `Z̄ʲ` of its neighbourhood (`andAveragin
 generators of [1, Thm. 1]), and the order reduction `↓_q`, here CORA's `reduce` to order `o`, as
 [1] leaves the rule open.
 
+## Inputs
+* `o` – reduction order
+* `Zb` – neighbour zonotopes
+
+## Output
+* averaged zonotope reduced to order `o`
+
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based

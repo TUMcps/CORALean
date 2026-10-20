@@ -8,17 +8,27 @@ public import Mathlib.Analysis.Normed.Module.Basic
 # The irredundant rows of a full-dimensional polyhedron describe it
 
 For `P = {x | Cⱼx ≤ dⱼ for every row j}` with nonempty interior, in which two rows cut the same
-halfspace only if it is the whole space, dropping every redundant row at once leaves `P`. A row
-is redundant when the others already imply it. Each redundant row on its own being droppable does
-not give it — two rows cutting the same halfspace are each redundant and jointly are not — which
-is the gap [1, Prop. 2] leaves, and which `gen_not_required_iff` carried as its hypothesis `hmin`.
+halfspace only if it is the whole space, dropping every redundant row (one the others imply) at
+once leaves `P`. Each row being droppable on its own does not give it — two rows cutting the same
+halfspace are each redundant and jointly are not — the gap [1, Prop. 2] leaves. For redundant
+`j ≠ k`, if some `y` met every row but `j` and `k` and broke `k`, it breaks `j` too. From a `z`
+interior to `P`, row `i` is crossed on `[z, y]` at `tᵢ = pᵢ/(pᵢ + qᵢ)`; `t_j = t_k` is affine in
+`z`, holding on the open interior only for proportional rows, so for some `z` one crossing comes
+first, and between the two lies a point breaking that row alone.
 
-Rows are dropped one at a time. Two redundant rows `j ≠ k`: if some `y` met every row but `j` and
-`k` and broke `k`, it breaks `j` too. From a `z` interior to `P`, row `i` is crossed on `[z, y]` at
-`tᵢ = pᵢ/(pᵢ + qᵢ)` (`pᵢ` its slack at `z`, `qᵢ` its excess at `y`); `t_j = t_k` is the affine
-equation `p_j q_k = p_k q_j` in `z`, which holds on the open interior only if the rows are
-proportional, the same halfspace. So for some `z` one crossing comes first, and between the two
-crossings lies a point breaking that row alone, which is then not redundant.
+## Inputs
+* `C` – row functionals
+* `d` – row offsets
+* `Red` – redundant rows
+* `p` – active-row predicate
+
+## Hypotheses
+* `hint` – active rows have nonempty interior
+* `hdist` – repeated active rows are trivial
+* `hRed` – redundant rows are implied by the others
+
+## Conclusion
+* dropping all redundant rows leaves the set unchanged
 
 ## References
 

@@ -10,6 +10,13 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
 CORA's `@zonotope/reduce`: bring the generator count down to a maximum order.
 Girard's rule is the one used here; which rule that is goes no further — a
 caller names an order and gets an over-approximation.
+
+## Inputs
+* `Z` – zonotope
+* `o` – maximum order
+
+## Output
+* over-approximating zonotope of order at most `o`
 -/
 
 -- Authors:       Claude Opus 5

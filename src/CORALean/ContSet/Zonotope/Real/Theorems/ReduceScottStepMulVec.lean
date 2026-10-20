@@ -11,6 +11,20 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceScottStep
 be recovered after the update as `Z̃ = {[T TR], c}`". That needs `T'R'` to be the kept generators
 `V₋`, and it is: `T(I + diag|r|)(I + diag|r|)⁻¹ r_l = T r_l` for every kept column `r_l`.
 
+## Inputs
+* `n` – dimension
+* `k` – column count minus one
+* `T` – basis matrix
+* `R` – echelon columns
+* `ind` – removed column index
+* `l` – kept column index
+
+## Hypotheses
+* none
+
+## Conclusion
+* kept generators are unchanged by the update
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:

@@ -16,6 +16,12 @@ its sort order.
 
 Source: [1].
 
+## Inputs
+* `direction` – main direction
+
+## Output
+* index of its largest entry
+
 ## References
 
 * [1] `contSet/@zonotope/encloseMany.m`, CORA (Sep. 2025). No paper behind the

@@ -14,6 +14,16 @@ public import Mathlib.Data.Fin.Tuple.Basic
 generators `diag(rad)`, the potential vertices of an MSPB `A [r] + [v]` are the images of the
 boxes' vertices (`A [r]± ⊕ [v]±`), which is how `Zonotope.mspb` enumerates them.
 
+## Inputs
+* `R₁` – first family of vectors
+* `R₂` – second family of vectors
+
+## Hypotheses
+* none
+
+## Conclusion
+* signed sums of the concatenation are the sum of the two sets
+
 ## References
 
 * [1] M. Maïga, N. Ramdani, L. Travé-Massuyès and C. Combastel. "A Comprehensive Method for

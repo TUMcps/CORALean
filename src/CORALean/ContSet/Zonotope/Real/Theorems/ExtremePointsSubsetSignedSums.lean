@@ -12,6 +12,15 @@ public import Mathlib.Analysis.Convex.Extreme
 set. The converse fails (a point of `Z±(R)` need not be a vertex), which is why [1] speaks of
 "potential vertices".
 
+## Inputs
+* `R` – family of vectors
+
+## Hypotheses
+* none
+
+## Conclusion
+* extreme points lie among the signed sums
+
 ## References
 
 * [1] M. Maïga, N. Ramdani, L. Travé-Massuyès and C. Combastel. "A Comprehensive Method for

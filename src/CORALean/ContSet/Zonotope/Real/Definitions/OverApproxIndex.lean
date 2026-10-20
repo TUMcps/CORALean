@@ -9,16 +9,19 @@ public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 /-!
 # `Zonotope.overApproxIndex`, the over-approximation index `Θ`
 
-[1, Sec. 5.3.1]: how much an enclosure `S_red` of `S_orig` gives away, as the `n`-th root
-of the volume ratio, `Θ = (V(S_red) / V(S_orig))^{1/n}`, the edge-length ratio of two cubes
-of those volumes, so that indices in different dimensions compare. One `let` per volume.
+[1, Sec. 5.3.1]: how much an enclosure `S_red` of `S_orig` gives away, as the `n`-th root of the
+volume ratio, `Θ = (V(S_red) / V(S_orig))^{1/n}`, the edge-length ratio of two cubes of those
+volumes, so that indices in different dimensions compare. One `let` per volume. The paper weights
+both sets by `W = diag(w)` first and then assumes they are already normalized, `W = I`; so does
+this. Volumes are Lebesgue measure read as reals; the index is meaningful only where
+`V(S_orig) > 0`, which nothing here asks. Real only: a specification, with nothing to round.
 
-The paper weights both sets by `W = diag(w)` first and then assumes, "from now on", that
-they are already in that normalized space, `W = I`; so does this, a caller weighting the
-sets by mapping them. Volumes are Lebesgue measure read as reals, finite for a zonotope;
-the index is meaningful only where `V(S_orig) > 0`, which nothing here asks.
+## Inputs
+* `Sred` – reduced zonotope
+* `Sorig` – original zonotope
 
-Real only: a specification, measure-theoretic, with nothing to round.
+## Output
+* volume ratio to the power `1/n`
 
 ## References
 

@@ -25,6 +25,15 @@ otherwise, so every minimiser of CORA's binary program gives `x = (4, -19)` or `
 `‖x‖ = √377` or `√441`. The point `(2, -21) = c + G (1, -1)` of `Z` has norm `√445`, the true
 maximum: whatever solver and `λ` CORA uses, `Zonotope.normExactCora` is strictly below it.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's exact norm is below a norm attained in `Z`
+
 ## References
 
 * [1] `contSet/@zonotope/private/priv_norm_exact.m`, CORA, ll. 43-54, 123-140.

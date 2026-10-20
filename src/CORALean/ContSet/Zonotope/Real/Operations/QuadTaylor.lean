@@ -9,19 +9,21 @@ public import Mathlib.Logic.Equiv.Fin.Basic
 /-!
 # `Zonotope.quadTaylor`
 
-[1, Prop. 3]'s `W_Z(t)`, at `η = 2`: the second-order Taylor sum `I + At + ½(At)²` of the
-matrix exponential, evaluated over a whole matrix zonotope `A_Z` rather than one matrix, by
-the same closed-form generator construction the proposition itself derives, corrected by a
-factor of two the source's own printed coefficients drop — see the page's `## Findings`.
+[1, Prop. 3]'s `W_Z(t)`, at `η = 2`: the second-order Taylor sum `I + At + ½(At)²` of the matrix
+exponential over a whole matrix zonotope `A_Z`, by the closed-form generator construction the
+proposition derives, corrected by a factor of two its printed coefficients drop — see the page's
+`## Findings`. Three blocks, `κ + κ + κ²` generators wide: the linear-cross block at `p i`, [1]'s
+`L^(j)`; the diagonal block at `q i := 2(p i)² - 1`, [1]'s `L^(κ+j)`; and a *sparse* `κ × κ`
+block, zero except at `i < j`, carrying `p i * p j` on the symmetrized generator
+`(G^(i)G^(j) + G^(j)G^(i))` — [1]'s `L^(2κ+l)`. The padding at `i ≥ j` is a generator that is
+always `0`, so `κ + κ + κ²` generators denote what [1]'s `κ + κ + κ(κ-1)/2` do.
 
-Three blocks, `κ + κ + κ²` generators wide: the linear-cross block at `p i`, exactly [1]'s
-`L^(j)`; the diagonal block at `q i := 2(p i)² - 1`, exactly [1]'s `L^(κ+j)`; and a *sparse*
-`κ × κ` block, zero except at `i < j`, where it carries `p i * p j` on the single symmetrized
-generator `(G^(i)G^(j) + G^(j)G^(i))` — [1]'s own `L^(2κ+l)`, one generator per *unordered*
-pair rather than one independent generator per ordered pair. The padding at `i ≥ j` changes
-nothing about the set the zonotope denotes — a generator that is always `0` carries no
-coefficient anywhere — so `κ + κ + κ²` generators denote exactly what [1]'s own
-`κ + κ + κ(κ-1)/2` do; only the index type differs, not the reach.
+## Inputs
+* `A_Z` – matrix zonotope
+* `t` – time
+
+## Output
+* second-order Taylor enclosure
 
 ## References
 

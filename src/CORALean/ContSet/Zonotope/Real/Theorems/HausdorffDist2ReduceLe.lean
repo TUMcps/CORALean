@@ -24,6 +24,16 @@ The proof is the one eq. (29) asks for with the attainment step already spent: `
 gives one direction for nothing, `reduce_subset_add_box` turns the other into a point of the
 substituted box, and `absBound` is exactly what `reduceBoxError` takes the `‖·‖₂` of.
 
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* reduction moves the zonotope by at most the box error
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

@@ -18,6 +18,17 @@ coefficient `β^{j+1}` when `j + 1` is odd and `2β^{j+1} - 1` when it is even, 
 and `βᵏ v_k = (2βᵏ - 1)(½ v_k) + ½ v_k` puts the rest of an even power in the center. This is the
 step of the proof of [1, Thm. 1] that turns the Taylor polynomial into a matrix zonotope.
 
+## Inputs
+* `v` – polynomial coefficients
+* `N` – polynomial degree
+* `β` – polynomial variable
+
+## Hypotheses
+* `hβ` – variable in the unit interval
+
+## Conclusion
+* the polynomial value lies in the enclosing zonotope
+
 ## References
 
 * [1] M. Althoff and J. M. Dolan. "Reachability Computation of Low-Order Models for the Safety

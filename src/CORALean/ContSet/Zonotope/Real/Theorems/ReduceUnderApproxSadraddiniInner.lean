@@ -13,6 +13,16 @@ Whatever the solver proposes: a kept proposal meets `[1, Thm. 3]` against `Z` at
 (the center is shared), which is the containment half of `[1, Cor. 6]`; otherwise the
 result is the center, a point of `Z`.
 
+## Inputs
+* `opt` – optimization solver
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the reduced zonotope lies in `Z`
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

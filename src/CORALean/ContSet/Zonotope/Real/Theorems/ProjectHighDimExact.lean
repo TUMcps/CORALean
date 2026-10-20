@@ -10,6 +10,16 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
 
 For an injective `proj`, the result is the set of vectors that read `y` at the coordinates
 `proj` for some member `y`, and are `0` everywhere else. Equality, since padding is linear.
+
+## Inputs
+* `Z` – zonotope
+* `proj` – coordinate embedding
+
+## Hypotheses
+* `hproj` – embedding injective
+
+## Conclusion
+* the embedded zonotope is the zero-padded set
 -/
 
 -- Authors:       Claude Opus 5.5

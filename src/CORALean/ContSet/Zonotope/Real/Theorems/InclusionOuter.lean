@@ -18,6 +18,16 @@ public import Mathlib.Algebra.BigOperators.Fin
 mid[M]) b`, and coordinate `i` of the last term is at most `Σⱼ rad[M]ᵢⱼ` in size, which the `i`-th
 axis generator reaches. Outer only, as the paper states it.
 
+## Inputs
+* `p` – center point
+* `IM` – interval matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* all matrix images lie in the inclusion zonotope
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state

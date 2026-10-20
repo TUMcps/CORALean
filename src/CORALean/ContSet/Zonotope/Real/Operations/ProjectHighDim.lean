@@ -13,6 +13,13 @@ coordinates `proj` of a zero vector of length `N`. `embed proj` is the zero-padd
 selection matrix transposed; it is linear, so this is `map` at it. CORA's assignment
 `cnew(proj,:) = Z.c` overwrites on a repeated index, which `embed` sums instead, so the
 statement of `projectHighDim__exact` assumes `proj` injective, as CORA's callers do.
+
+## Inputs
+* `Z` – zonotope
+* `proj` – coordinate embedding
+
+## Output
+* zonotope embedded in the higher dimension
 -/
 
 -- Authors:       Claude Opus 5.5

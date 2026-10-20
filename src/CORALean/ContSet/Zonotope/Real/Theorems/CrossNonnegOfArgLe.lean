@@ -12,6 +12,17 @@ For two vectors in the upper half-plane, `cross(u, w) = ‖u‖ ‖w‖ sin(θ_w
 the trigonometric sort of [1, Alg. 3] and the pivot split of [1, Alg. 4] into the sign
 conditions the walk of a zonogon is proved from.
 
+## Inputs
+* `u` – first planar vector
+* `w` – second planar vector
+
+## Hypotheses
+* `hu` – `u` has nonnegative height
+* `h` – angle of `u` at most that of `w`
+
+## Conclusion
+* the cross product is nonnegative
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

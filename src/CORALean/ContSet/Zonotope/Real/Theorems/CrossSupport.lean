@@ -15,6 +15,22 @@ and those after it `σ·cross(g_a, g_c) ≥ 0`, and the zonogon is then on one s
 `σ·cross(g_a, z - corner s) ≥ 0`. `σ = 1` is the counter-clockwise walk of increasing angle,
 `σ = -1` the clockwise one; no ordering of the indices is assumed.
 
+## Inputs
+* `Z` – planar zonotope
+* `σ` – orientation sign
+* `s` – corner signs
+* `a` – generator index
+* `z` – point
+
+## Hypotheses
+* `ha` – sign of `a` is false
+* `hB` – positive-sign generators lie on the correct side
+* `hC` – other negative-sign generators lie on the correct side
+* `hz` – `z` lies in `Z`
+
+## Conclusion
+* `z` lies on the supported side of generator `a`
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

@@ -15,6 +15,15 @@ claims for the maximizer of (max-in) built from `W`'s own halfspaces and which f
 (`aligned_subset_of_maxIn_counterexample`). In one dimension with `W = Z = [-1, 1]` and
 `E = ½` the maximizer is `Z̲ = [-1, 1]`: `Z ⊖ Z̲ = {0}`, while `Z ⊖ EW = [-½, ½]`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Z ⊖ EW` is not inside `Z ⊖ Z̲` as printed
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

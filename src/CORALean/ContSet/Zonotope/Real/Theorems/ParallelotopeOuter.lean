@@ -14,6 +14,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 holds, `Zonotope.interval_contains`; `Γ` maps the box back, and `Γ Γ⁻¹ = I` returns every
 point of `Z` to itself. The rank of `Γ` is spent there and nowhere else.
 
+## Inputs
+* `Γ` – basis matrix
+* `Z` – zonotope
+
+## Hypotheses
+* `hΓ` – `Γ` invertible
+
+## Conclusion
+* `Z` lies in its parallelotope
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid

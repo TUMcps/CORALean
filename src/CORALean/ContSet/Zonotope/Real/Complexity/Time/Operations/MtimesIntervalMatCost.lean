@@ -8,18 +8,19 @@ public import CORALean.Global.Cost
 /-!
 # `Zonotope.mtimesIntervalMatCost`
 
-Asserted, not proved, by reading `Operations/MtimesIntervalMat.lean`:
+Asserted, not proved, by reading `Operations/MtimesIntervalMat.lean`: `Interval.center` and
+`Interval.radius`, `2 * m * n` each; `absBound` for each of the `n` coordinates, at most
+`2 * h + 1`; `radiusReach` per output row, `2 * n` each, so `2 * m * n`; the center and the `h`
+generators through `center *ᵥ ·`, `h + 1` products of `Cost.matVec m n` (which write their own
+results); and the diagonal generator block, `m * m` writes, its zeros included.
 
-* `Interval.center`, `(inf + sup) / 2` entrywise: `2 * m * n`;
-* `Interval.radius`, `(sup - inf) / 2` entrywise: `2 * m * n`;
-* `absBound`, `|c j| + ∑ l, |G l j|` for each of the `n` coordinates: `h + 1`
-  absolute values and `h` additions, at most `2 * h + 1` each;
-* `radiusReach`, `∑ j, radius i j * absBound j` per output row: `2 * n` each,
-  so `2 * m * n`;
-* the center and the `h` generators through `center *ᵥ ·`: `h + 1` products of
-  `Cost.matVec m n`;
-* the diagonal generator block is `m * m` writes, its zeros included. The products write their
-  own results, inside `Cost.matVec`.
+## Inputs
+* `m` – matrix row count
+* `n` – matrix column count
+* `h` – generator count
+
+## Output
+* cost of the radius, the products and the diagonal block writes
 -/
 
 -- Authors:       Claude Sonnet 5.5

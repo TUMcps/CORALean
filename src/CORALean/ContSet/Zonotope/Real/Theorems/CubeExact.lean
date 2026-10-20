@@ -14,6 +14,16 @@ zonotope: coordinate `i` of a point of `Zonotope.cube n ρ` is `ρ βᵢ` with `
 every point of the ball is reached with `βᵢ = xᵢ / ρ`. `0 ≤ ρ` is needed for the ball to
 be what the generators span: at a negative radius the ball is empty and the zonotope is not.
 
+## Inputs
+* `n` – dimension
+* `ρ` – radius
+
+## Hypotheses
+* `hρ` – radius nonnegative
+
+## Conclusion
+* the cube zonotope is the closed ball of radius `ρ`
+
 ## References
 
 * [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid

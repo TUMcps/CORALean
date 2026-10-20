@@ -12,6 +12,14 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 CORA's `@zonotope/constrSat`: do all points of the zonotope satisfy `C x < d`? CORA boxes the
 image, `I = interval(C*Z) + (-d)`, and answers `all(supremum(I) < 0)`: every upper bound of the
 box lies below `d`. Sufficient, not necessary, as the box over-approximates the image.
+
+## Inputs
+* `Z` – zonotope
+* `C` – constraint matrix
+* `d` – constraint offset
+
+## Output
+* `Prop` that some point of `Z` satisfies the constraints
 -/
 
 -- Authors:       Claude Opus 5.5

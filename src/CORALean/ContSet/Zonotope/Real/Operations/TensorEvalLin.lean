@@ -14,6 +14,12 @@ public import Mathlib.Tactic.Ring
 The tensor product at a fixed point `x` is linear in the tensor, which is what lets
 `tensorMultiplication_zono` treat the center and the generators of a matrix zonotope of tensors one
 by one.
+
+## Inputs
+* `x` – vector
+
+## Output
+* linear map evaluating a tensor at `x`
 -/
 
 -- Authors:       Claude Opus 5.5

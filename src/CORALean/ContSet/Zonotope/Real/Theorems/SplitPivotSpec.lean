@@ -17,6 +17,23 @@ generators with the pivot sum to `cross(s/2, s) = 0`, so they are not all of one
 why neither part is empty; and if the first part would be empty they all vanish, the generators are
 parallel, and the fallback split off the least index is order-free.
 
+## Inputs
+* `Z` – planar zonotope
+* `right` – direction flag
+* `σ` – search direction
+* `G` – generator set
+* `s` – sum of the doubled generators
+
+## Hypotheses
+* `hH` – generators point upward
+* `hσ` – direction matches the flag
+* `hG` – generators point along `σ`
+* `hcard` – more than one generator
+* `hs` – `s` is the doubled sum
+
+## Conclusion
+* the pivot splits the generators into two ordered nonempty parts
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

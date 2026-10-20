@@ -15,18 +15,34 @@ public import Mathlib.Data.Matrix.Mul
 
 [1, Eq. 4], at a single output and a known `A`: the estimate `X̂_k` is the prediction
 `A X̂_{k-1} ⊕ F Bⁿʷ` met with the strip `|c₁ᵀ x - y| ≤ φ₁` at the gain `λ₁` [1, Eq. 3]. If the
-quadratic form of [1, Eq. 8] is nonpositive,
-`‖κ₁ A θ + κ₁ F γ + φ₁ λ₁ η‖²_P ≤ β ‖θ‖²_P + ‖F γ‖²₂ + φ₁² η²` for all `θ, γ, η`
-(`κ₁ = I - λ₁ c₁ᵀ`), then the P-radius condition of [1, Eq. 4] holds,
-`L_k ≤ β L_{k-1} + ψ + φ₁²`, in the form [1, Eq. 5] gives it: maximised over the coefficients.
+quadratic form of [1, Eq. 8] is nonpositive, `‖κ₁ A θ + κ₁ F γ + φ₁ λ₁ η‖²_P ≤ β ‖θ‖²_P +
+‖F γ‖²₂ + φ₁² η²` for all `θ, γ, η` (`κ₁ = I - λ₁ c₁ᵀ`), then `L_k ≤ β L_{k-1} + ψ + φ₁²`
+([1, Eq. 5], [1, Eq. 6]). A point of `X̂_k` is `p̂_k + κ₁ A θ + κ₁ F γ + φ₁ λ₁ η` with
+`p̂_{k-1} + θ ∈ X̂_{k-1}`, `γ ∈ Bⁿʷ`, `η ∈ [-1, 1]`; Eq. 8 bounds its squared P-distance, and
+`η² ≤ 1` is [1, Eq. 7]'s added term. `L_{k-1}` and `ψ` are any bounds of the P-radius and of
+`max_γ ‖F γ‖²`, `β ≥ 0`. The display of `Ĥ_k(λ₁) ẑ` writes `F γ` for `κ₁ F γ`; Eq. 3 has `κ₁ F`.
 
-The chain of [1, Eq. 5], [1, Eq. 6] and [1, Eq. 7] is the proof. A point of `X̂_k` is
-`p̂_k + κ₁ A θ + κ₁ F γ + φ₁ λ₁ η` with `p̂_{k-1} + θ ∈ X̂_{k-1}`, `γ ∈ Bⁿʷ`, `η ∈ [-1, 1]`;
-Eq. 8 bounds its squared P-distance by `β ‖θ‖²_P + ‖F γ‖² + φ₁² η²`, and that by
-`β L_{k-1} + ψ + φ₁²` (`η² ≤ 1` is Eq. 7's added term `φ₁²(1 - η²) ≥ 0`). `L_{k-1}` and `ψ` are
-any bounds of the P-radius and of `max_γ ‖F γ‖²`, the paper's being the least ones, and
-`β ≥ 0`. The paper's display of `Ĥ_k(λ₁) ẑ` writes `F γ` for `κ₁ F γ`; its `A₁₂` and `A₂₂`, and
-Eq. 3, have `κ₁ F`, which is what is used here.
+## Inputs
+* `A` – state matrix
+* `P` – weight matrix
+* `F` – noise matrix
+* `c` – strip direction
+* `l` – gain vector
+* `φ` – strip radius
+* `y` – measurement
+* `β` – contraction rate
+* `L` – previous bound
+* `ψ` – noise bound
+* `X` – state zonotope
+
+## Hypotheses
+* `hJ` – contraction inequality holds
+* `hβ` – rate nonnegative
+* `hL` – `X` has P-radius at most `L`
+* `hψ` – noise term bounded by `ψ`
+
+## Conclusion
+* the predicted P-radius after the strip is bounded
 
 ## References
 

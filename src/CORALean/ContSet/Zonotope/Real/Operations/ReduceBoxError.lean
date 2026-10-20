@@ -14,6 +14,13 @@ over-approximation, [1, Prop. 1] — at the very box `reduceBox` absorbs the
 dropped generators into. `adaptSetOrder` and `autoTuneSetOrder` both read it
 off the same box, so it is named once here rather than folded into either.
 
+## Inputs
+* `Z` – zonotope
+* `o` – target order
+
+## Output
+* error of the absorbing box
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

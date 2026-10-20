@@ -15,6 +15,13 @@ same search on the zonogon mirrored in the x-axis, whose lowest vertex is the up
 with the sign of `y` restored. Unlike `Alg. 3` the answer is a pair of reals: the search needs the
 intersection to be nonempty, where `Alg. 3` returns `[∞; -∞]`.
 
+## Inputs
+* `Z` – planar zonotope
+* `γ` – abscissa of the vertical line
+
+## Output
+* interval of ordinates of the intersection
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

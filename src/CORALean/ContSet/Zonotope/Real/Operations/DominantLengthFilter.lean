@@ -15,6 +15,13 @@ order.
 
 Source: [1].
 
+## Inputs
+* `Z` – zonotope
+* `k` – filter size
+
+## Output
+* indices of the `k` longest generators
+
 ## References
 
 * [1] `contSet/@zonotope/dominantDirections.m` and its private helpers, CORA (Sep. 2025), by

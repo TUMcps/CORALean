@@ -17,6 +17,22 @@ The zonotopic observer of [1, Eq. 10], for `x_{k+1} = A x_k + B u_k + D_x w_k`,
 reduction `↓_q`, which encloses `⟨p_k, H_k⟩` and keeps its center; which reduction it was does
 not enter. `L` is any matrix.
 
+## Inputs
+* `A` – state matrix
+* `B` – input matrix
+* `C` – output matrix
+* `L` – observer gain
+* `Dx` – disturbance matrix
+* `Hw` – disturbance generator matrix
+* `Dy` – noise matrix
+* `Hv` – noise generator matrix
+* `u` – control input
+* `y` – measured output
+* `X` – reduced state zonotope
+
+## Output
+* next state-estimate zonotope
+
 ## References
 
 * [1] Y. Wang, M. Zhou, V. Puig, G. Cembrano and Z. Wang. "Zonotopic Fault Detection Observer

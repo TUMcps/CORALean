@@ -17,6 +17,17 @@ input set `H = ⟨c, G⟩` with `p` generators and the output's gradient set `�
 (`Zonotope.row`). The printed first term is `m(i) 𝒢(i)`, whose `p + n` generators the gradient
 set of `H` does not have; the first `p` are meant, which is how the proof's Eq. 25 reads.
 
+## Inputs
+* `m` – neuron slope function
+* `eLo` – lower error function
+* `eUp` – upper error function
+* `H` – input zonotope
+* `c'` – center of the output gradient set
+* `G'` – generators of the output gradient set
+
+## Output
+* gradient set of the input zonotope
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

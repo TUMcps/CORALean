@@ -10,6 +10,17 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 The one arithmetic step behind both paired-coefficient bounds: since the two
 weights of a convex combination sum to one, bounding each half by its own weight
 is what makes their sum land back in `[-1,1]`.
+
+## Inputs
+* `b` – coefficient
+* `w` – weight
+
+## Hypotheses
+* `hw` – weight nonnegative
+* `hb` – coefficient within the unit interval
+
+## Conclusion
+* the weighted coefficient is at most the weight
 -/
 
 -- Authors:       Claude Opus 5

@@ -9,19 +9,26 @@ public import Mathlib.Data.Fintype.Card
 /-!
 # [1, Prop. 2]: the generator-removal count
 
-The `i`-th generator of the minuend spans one halfspace of [1, Thm. 2] for each
-choice of the other `n - 2` of the `p_m - 1` remaining generators, and each of
-those carries both signs: `2·C(p_m - 1, n - 2)` halfspaces in all. So the
-printed sum `∑ⱼ ind⁽ʲ⁾ᵢ` over the *redundant* halfspaces reaches that number
-exactly when every halfspace the generator spans is redundant, which is the
-identification [1]'s own proof makes.
+The `i`-th generator of the minuend spans one halfspace of [1, Thm. 2] for each choice of the
+other `n - 2` of the `p_m - 1` remaining generators, each carrying both signs:
+`2·C(p_m - 1, n - 2)` halfspaces in all. So the printed sum `∑ⱼ ind⁽ʲ⁾ᵢ` over the *redundant*
+halfspaces reaches that number exactly when every halfspace the generator spans is redundant,
+the identification [1]'s own proof makes. Which are redundant is the parameter `Red` (the paper
+uses linear programming; nothing here computes it). The step from "every halfspace `i` spans is
+redundant" to "`i` is no longer required" is [1]'s geometric assertion and is not proved here.
+Ambient dimension `n + 2`, so a facet's `n + 1` generators need no truncated subtraction.
 
-Which halfspaces are redundant is the parameter `Red`: the paper obtains it
-by linear programming, and nothing here computes it. The step from "every
-halfspace `i` spans is redundant" to "`i` is no longer required" is [1]'s
-geometric assertion and is not proved here — it needs the minimum
-H-representation to describe the difference. Ambient dimension `n + 2`, so a
-facet's `n + 1` generators need no truncated subtraction.
+## Inputs
+* `n` – dimension minus two
+* `Z` – zonotope
+* `Red` – redundant rows
+* `i` – generator index
+
+## Hypotheses
+* `hRed` – redundant rows have `n + 1` generators
+
+## Conclusion
+* the count is reached iff every halfspace spanned by `i` is redundant
 
 ## References
 

@@ -13,6 +13,15 @@ shorter block the surplus column again carries its own weight alone.
 
 A proof device rather than an operation, hence in `Theorems/`: it only ever
 witnesses an existential and is never run.
+
+## Inputs
+* `β₁` – first coefficients
+* `β₂` – second coefficients
+* `lam` – pairing weight
+* `j` – pair index
+
+## Output
+* coefficient of the paired-difference generator
 -/
 
 -- Authors:       Claude Opus 5

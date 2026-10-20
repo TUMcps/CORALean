@@ -14,6 +14,16 @@ The result is [1, Eq. 10] with a vector zonotope as the second factor.
 (`Matrix.mulVecBilin_apply`) — so the two unions of images are the same set,
 matched pointwise rather than rewritten.
 
+## Inputs
+* `M` – matrix zonotope
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* all products lie in the result
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

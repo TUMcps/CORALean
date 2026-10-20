@@ -10,19 +10,21 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 The measure that picks which generator to split [1, Sec. VI-A]'s `ρ_j`: `l1 j`, `l2 j` are
 [1, Prop. 1]'s bounds for `Z.split j`'s two halves, `l̄` is [1, Eq. 7]'s admissible bound, and
 `splitRank` folds each ratio to its worst dimension and multiplies the two — the lowest names the
-generator to split.
+generator to split. `l1`, `l2`, `l̄` are parameters (`abstrErrLin`, `AdmissibleLinError`), so this
+reads like `NN.Operations.RefinementRank`. Nothing here can be wrong: `split_union` and
+`split_intersection` hold at every `j`, so this only ranks generators. Printed as a product (two
+extractions of the thesis agree); the next sentence needs a sum, since a product under `1` bounds
+neither factor (`0.1 · 5 < 1`). Formalized as printed regardless.
 
-`l1`, `l2`, `l̄` are parameters: the bounds of [1, Prop. 1] and [1, Eq. 7] are
-`abstrErrLin` and `AdmissibleLinError`, so this reads like
-`NN.Operations.RefinementRank` — a paper's ranking over what the caller has.
+## Inputs
+* `Z` – zonotope
+* `l1` – lower-half measures
+* `l2` – upper-half measures
+* `lBar` – reference measures
+* `j` – generator index
 
-Nothing here is proved and nothing here can be wrong: `split_union` and
-`split_intersection` hold at every `j` unconditionally, so this only ranks
-generators, never whether the split stays sound.
-
-Printed as a product (two extractions of the thesis agree); the sentence
-right after needs a sum instead, since a product under `1` bounds neither
-factor (`0.1 · 5 < 1`). Formalized as printed regardless.
+## Output
+* performance measure of splitting generator `j`
 
 ## References
 

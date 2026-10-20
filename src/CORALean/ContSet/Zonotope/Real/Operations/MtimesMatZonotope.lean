@@ -14,6 +14,13 @@ by `bilin` at Mathlib's `Matrix.mulVecBilin`. `Zonotope (Mat ℝ m n)` is CORA's
 of its own — only the operation. The construction is [1, Eq. (10)]: CORA cites
 a book here and no paper behind it could be confirmed.
 
+## Inputs
+* `M` – matrix zonotope
+* `Z` – zonotope
+
+## Output
+* zonotope enclosing the products
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

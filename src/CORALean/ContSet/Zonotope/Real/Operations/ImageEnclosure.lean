@@ -18,6 +18,15 @@ printed line 6 adds it before line 7 adds the interval, center and all; see the 
 The slope and errors are parameters, so the enclosure is that of whichever activation and
 linear approximation supply them.
 
+## Inputs
+* `m` – slope function
+* `eLo` – lower error function
+* `eUp` – upper error function
+* `H` – input zonotope
+
+## Output
+* zonotope enclosing the neuron image
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

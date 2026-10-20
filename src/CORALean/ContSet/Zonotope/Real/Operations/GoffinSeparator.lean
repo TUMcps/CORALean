@@ -17,6 +17,14 @@ the facet) are the caller's: `β*` and `H` are arguments, and `GoffinSeparatorSp
 they must satisfy. The offset `b = aᵀx*` is the one [1] leaves implicit, the value of `aᵀx` on
 the facet's affine hull.
 
+## Inputs
+* `βstar` – optimal scaling
+* `x₀` – point to separate
+* `H` – face basis
+
+## Output
+* normal and offset of the separating halfspace
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

@@ -22,6 +22,36 @@ least `P_S(ε)`, in dimension `m` of the coefficients. The samples `vᵢ` are `�
 `2⁻ᵐ - ϑ`, `l1Ball_orthant_volume`), and `2⁻ᵐ ≥ (ε/(2+ε))ᵐ`. The printed `P_Svs` as a
 probability that `Ê ⊆ E` is false (`shenmaierVertex_counterexample`); other `p` are open.
 
+## Inputs
+* `G` – generator map
+* `c` – center
+* `d` – offset
+* `H` – linear map
+* `r` – greatest coefficient norm
+* `vol` – Haar measure on the coefficients
+* `Ω` – sample space
+* `P` – probability measure
+* `v` – random samples
+* `ϑ` – uniformity parameter
+* `z` – sign vectors
+* `ε` – tolerance
+
+## Hypotheses
+* `hH` – `H` surjective
+* `hr` – `r` is the greatest norm over the unit ball
+* `hN` – at least one sample
+* `hvm` – samples measurable
+* `hind` – samples independent
+* `hϑ` – parameter nonnegative
+* `hunif` – samples nearly uniform on the cross-polytope
+* `hz` – sign vectors bounded by one
+* `hzv` – sign vectors align with the samples
+* `hε` – tolerance positive
+* `hε1` – tolerance at most one
+
+## Conclusion
+* the vertex value reaches `(1 - ε) r` with at least the stated probability
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

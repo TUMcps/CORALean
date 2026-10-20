@@ -37,6 +37,15 @@ square, but `x + 2 [-1, 1]² ⊆ [-1, 1]²` has no solution: the subtrahend is t
 So the `'exact'` result is not contained in the difference. The paper-side statement is
 `Zonotope.minkDiffAligned_not_inner`; this is CORA's guard accepting every positive scaling.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's result is not inside the true Minkowski difference
+
 ## References
 
 * [1] `contSet/@zonotope/minkDiff.m`, CORA, ll. 522-549.

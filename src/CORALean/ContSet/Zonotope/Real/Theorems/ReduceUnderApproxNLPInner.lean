@@ -14,6 +14,21 @@ If the program (6) returns `Ĝ_b = G_b T` with `‖T‖∞ ≤ 1` ([1, Eq. (1)])
 and so `⟨c, G_a⟩ ⊕ ⟨0, Ĝ_b⟩ ⊆ ⟨c, G_a⟩ ⊕ ⟨0, G_b⟩ = Z`. Nothing is said of volume: the theorem does
 not say that `Ĝ_b` is optimal.
 
+## Inputs
+* `Z` – zonotope
+* `r` – kept generator count
+* `Gb'` – replacement generators
+* `T` – recombination matrix
+
+## Hypotheses
+* `hn` – at least `n` kept
+* `hr` – fewer than all generators
+* `hG` – replacements recombine the dropped generators
+* `hT` – row sums at most one
+
+## Conclusion
+* the reduced zonotope lies in `Z`
+
 ## References
 
 * [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the

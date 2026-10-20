@@ -17,6 +17,14 @@ for one, and a pseudoinverse would score it a volume of zero and let it win the
 comparison; `reduceByBasis_outer` needs the determinant to be a unit anyway, so
 this is the step that hands it that hypothesis.
 
+## Inputs
+* `V` – volume function
+* `best` – best basis so far
+* `L` – candidate basis
+
+## Output
+* the better of the two bases
+
 ## References
 
 * [1] A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of

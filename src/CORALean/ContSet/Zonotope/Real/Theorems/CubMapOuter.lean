@@ -10,6 +10,16 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.CubMapCoeff
 CORA's `@zonotope/cubMap`: `{ (xᵀ T x) * x | x ∈ Z } ⊆ Z.cubMap T`. Outer only: the monomials
 `β_k β_j β_c` of the factors are tied to each other, and a zonotope frees them. The coefficients
 are `Zonotope.cubMap_coeff`.
+
+## Inputs
+* `T` – cubic tensor
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the cubic images lie in the result
 -/
 
 -- Authors:       Claude Opus 5.5

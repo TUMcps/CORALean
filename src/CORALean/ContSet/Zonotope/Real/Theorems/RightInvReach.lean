@@ -13,6 +13,23 @@ at most `q ≤ 1/2`, then every vector `d` with `|dᵢ| ≤ B` is `G β` for a c
 small is what makes it good enough, as for `Zonotope.basis_reach`, which is applied to the square
 matrix `G H` with the identity as its approximate inverse; `β = H w` for the coordinates `w` of `d`
 in that basis.
+
+## Inputs
+* `G` – generator matrix
+* `H` – approximate right inverse
+* `q` – contraction bound
+* `B` – bound on the target
+* `δ` – coefficient bound
+* `d` – target vector
+
+## Hypotheses
+* `hq` – bound at most one half
+* `hK` – row sums of `1 - G H` at most `q`
+* `hδ` – row sums of `H` give the coefficient bound
+* `hd` – target entries at most `B`
+
+## Conclusion
+* a preimage of `d` exists with bounded coefficients
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,16 +11,18 @@ public import Mathlib.Analysis.Normed.Module.Basic
 
 CORA's `@zonotope/filterOut(Z)` [1]: from a list of parallelotopes, delete those "covered by
 other parallelotopes". For each cell `Z{ind}` it forms `Pint = P_ind \ P_j` for every other `j`
-(set differences of `polytope(Z{i})`) and keeps the cell if `chebyball(Pint)` has radius
-`≠ -inf`, that is, if the remainder `P_ind \ ⋃_{j ≠ ind} P_j` is nonempty (CORA's `mldivide`
-returns only full-dimensional pieces, so a lower-dimensional remainder is dropped as well).
+and keeps the cell if `chebyball(Pint)` has radius `≠ -inf`, that is, if the remainder
+`P_ind \ ⋃_{j ≠ ind} P_j` is nonempty (lower-dimensional remainders are dropped as well).
+Formalized is that criterion: the indices of the cells whose remainder has nonempty interior.
+The method does not run in CORA (`chebyball` is no function of the toolbox) and its criterion does
+not preserve the union (`references/coverage/contSet/zonotope.md`, row `filterOut`); see
+`filterOut_covered`, `filterOut_pair`.
 
-What is formalized is that criterion: the indices of the cells whose remainder after the union of
-all the others has nonempty interior. CORA's sort by volume only orders the output list and is
-not modelled. The method does not run in CORA (`chebyball` is not a function of the toolbox) and
-its criterion does not preserve the union (`references/coverage/contSet/zonotope.md`, row
-`filterOut`); `filterOut_covered` is what a deletion does guarantee, `filterOut_pair` what it does
-not.
+## Inputs
+* `Zs` – cells
+
+## Output
+* indices of the cells that survive
 
 ## References
 

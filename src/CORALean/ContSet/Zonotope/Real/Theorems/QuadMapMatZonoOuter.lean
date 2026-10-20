@@ -16,6 +16,17 @@ the first a point of `Z_D` and each `βⱼ xᵀK⁽ⁱ'ʲ⁾x` a point of `[-1, 
 The factor `βⱼ` is one per `j`, the same for every coordinate `i` — what eq. (12) writes,
 and what the application in Sec. 5.4 has, its matrices all depending on one `x₀`.
 
+## Inputs
+* `D` – center quadratic matrices
+* `K` – generator quadratic matrices
+* `Z` – zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the quadratic images lie in the result
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

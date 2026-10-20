@@ -17,6 +17,18 @@ generators `R = [A dr([r]) | dr([v])]`, `dr(·) = diag(rad(·))`. The zonotope i
 `(A □[r]) ⊕ □[v]` built from `Interval.zonotope`, whose center and generators are `mid` and
 `diag(rad)`; exact for boxes with `inf ≤ sup`.
 
+## Inputs
+* `A` – matrix
+* `R` – first interval
+* `V` – second interval
+
+## Hypotheses
+* `hR` – first interval ordered
+* `hV` – second interval ordered
+
+## Conclusion
+* the parallelotope set equals the zonotope
+
 ## References
 
 * [1] M. Maïga, N. Ramdani, L. Travé-Massuyès and C. Combastel. "A Comprehensive Method for
