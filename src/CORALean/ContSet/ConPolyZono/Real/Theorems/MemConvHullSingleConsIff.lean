@@ -17,6 +17,17 @@ Every copy's equations, each at its own block of factors, and the weights summin
 the copies from the weight row, `mem_copies_iff` the copies from one another, and
 `mem_linear_iff` reads the weight row.
 
+## Inputs
+* `a` – number of weights
+* `cPZ` – constrained polynomial zonotope
+* `v` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the hull constraint holds exactly when each copy and the weights are valid
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

@@ -16,6 +16,20 @@ public import CORALean.ContSet.Taylm.Real.Theorems.ReexpBoxBoundsMem
 however soon it stops: each sub-box bound is sound (eq. (12), or the re-expansion), and the
 loop's boxes always cover `[x]`.
 
+## Inputs
+* `P` – terms of the polynomial
+* `X` – domain box
+* `ε` – tolerance
+* `adv` – advanced bounding flag
+* `fuel` – step budget
+* `t` – point
+
+## Hypotheses
+* `ht` – point lies in the domain box
+
+## Conclusion
+* the enclosure contains the polynomial's value at the point
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

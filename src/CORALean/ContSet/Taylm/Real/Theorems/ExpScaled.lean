@@ -14,6 +14,19 @@ asks for a bound on the coefficients and one on the derivative bound; for `exp` 
 the scaling itself: the center is at most `C`, so each `exp(c)/k!` is at most `exp C`, and the
 top of the range is within `2C·h ≤ 2C` of the center, so `D ≤ exp (3C)`.
 
+## Inputs
+* `T` – Taylor model
+* `h` – domain radius
+* `C` – scaling constant
+
+## Hypotheses
+* `h0` – radius is positive
+* `h1` – radius is at most one
+* `hT` – the model is scaled by the constant
+
+## Conclusion
+* the exponential model is scaled by a constant built from it
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

@@ -16,6 +16,17 @@ public import Mathlib.Analysis.SpecialFunctions.Sqrt
 (`Real.iter_deriv_rpow_const`, `eval_descPochhammer_half`), each factor between its enclosure
 (`intDown_le_intUp`, `toReal_halfPow`, `sqrtDown_le`/`le_sqrtUp`, `powDown_le`/`le_powUp`,
 `divFact_mem`), the four through `mul_between_corners`.
+
+## Inputs
+* `q` – precision of the square root
+* `c` – center
+* `k` – coefficient index
+
+## Hypotheses
+* `hc` – the center is positive
+
+## Conclusion
+* the true square root coefficient lies in the enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

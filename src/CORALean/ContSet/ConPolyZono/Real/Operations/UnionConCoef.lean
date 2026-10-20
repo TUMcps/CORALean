@@ -16,6 +16,13 @@ reads, which is what keeps the row's value inside a range the proof can use.
 Where an operand has no factors the corresponding group is empty, so the
 division by a zero count is never evaluated at a column that exists.
 
+## Inputs
+* `p₁` – factor count of first operand
+* `p₂` – factor count of second operand
+
+## Output
+* coefficients of the selector constraint row
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

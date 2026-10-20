@@ -13,6 +13,16 @@ public import CORALean.Global.Float.ListSum
 # A term list stays in its float `polyBounds` on the box
 
 The exact range, its two sums rounded outward.
+
+## Inputs
+* `L` – terms of the polynomial
+* `t` – point
+
+## Hypotheses
+* `ht` – point lies in the unit box
+
+## Conclusion
+* the polynomial's value lies in its float bounds
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -7,6 +7,15 @@ public import CORALean.ContSet.Taylm.Float.Theorems.TimesOuter
 
 /-!
 # `Taylm.prod` encloses the product
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the product model encloses the product of the functions
 -/
 
 -- Authors:       Claude Opus 5.5

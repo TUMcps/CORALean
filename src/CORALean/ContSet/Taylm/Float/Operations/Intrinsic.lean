@@ -20,6 +20,14 @@ floats. `exp`, `sinh` and `cosh` need their argument's hull at most `2ᵖ/2`, re
 `p` times and comparing with `1/2`, which is exact; `log` a positive center and range bottom.
 The other intrinsics have no float counterpart here and give `none`, as does a failed check.
 
+## Inputs
+* `p` – precision of the exponential
+* `q` – precision of the logarithm
+* `s` – precision of the trigonometric functions
+
+## Output
+* Taylor model of the intrinsic, if its condition holds
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

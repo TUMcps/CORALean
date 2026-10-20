@@ -14,6 +14,15 @@ Independent coefficients enter linearly and dependent factors through a
 monomial, so `continuous_monomial` is the only step a zonotope's version does
 not have. It is what carries compactness from the coefficient domain onto the
 set.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the affine map is continuous
 -/
 
 -- Authors:       Claude Opus 5

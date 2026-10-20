@@ -15,6 +15,21 @@ between the center and the model's range, with `|g⁽ᴺ⁺¹⁾| ≤ D` there, 
 `g ∘ f`. `taylor_remainder_abs_le` bounds the remainder by `D |f t - c|ᴺ⁺¹ / (N+1)!` and
 `reach` bounds `|f t - c|`. This is the one lemma every elementary function reduces to: what
 is left for each is its derivatives.
+
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `g` – outer function
+* `c` – center
+* `D` – derivative bound
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hg` – outer function is smooth on the hull
+* `hD` – derivative is bounded on the hull
+
+## Conclusion
+* the expansion model encloses the composition
 -/
 
 -- Authors:       Claude Opus 5.5

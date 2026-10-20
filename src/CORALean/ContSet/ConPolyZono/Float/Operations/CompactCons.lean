@@ -11,6 +11,12 @@ public import CORALean.ContSet.PolyLevelSet.Float.Operations.Compact
 Equal constraint exponent columns added together: the constraint's own `PolyLevelSet.compact`,
 the stored value the lower rounding and the widening paid into the slack `b_error`. The
 generators stand, so the ambient box is untouched.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* same set with equal constraint columns merged
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

@@ -15,6 +15,17 @@ CORA's `@taylm/supportFunc_` at `upper`: the float upper end of the range of `di
 `dirᵀ T` is `Taylm.mtimes` at a one-row float matrix and its range is `Taylm.bounds`. The
 direction is a float vector `a` and `hc` says the functional `c` reads it, as for
 `Interval.boundDot`. An upper bound only.
+
+## Inputs
+* `c` – direction as a linear functional
+* `a` – float direction
+* `T` – family of Taylor models
+
+## Hypotheses
+* `hc` – float direction represents the functional
+
+## Output
+* float upper bound of the functional over the models
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -15,6 +15,19 @@ public import Mathlib.Tactic.Ring
 its first two Taylor terms about any `x`: `P₂(x + v) = P₂(x) + ∇P₂(x) ⬝ v + ½ v ⬝ Hv`, with
 `∇P₂(x) = g + Hx`. The search for `x₀` reads both its descent and its optimality off this.
 
+## Inputs
+* `H` – Hessian matrix
+* `c` – constant
+* `g` – gradient
+* `x` – point
+* `v` – step
+
+## Hypotheses
+* `hH` – the Hessian is symmetric
+
+## Conclusion
+* the quadratic part expands about the point into gradient and Hessian terms
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

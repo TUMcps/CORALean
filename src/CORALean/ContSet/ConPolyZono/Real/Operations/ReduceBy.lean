@@ -10,6 +10,14 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.DropRadius
 Partitions both generator blocks: what `partD.left` and `partI.left` name is
 kept, with the former's exponent columns, and the rest is absorbed into a
 diagonal block of `n` independent generators. The constraints stand.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `partD` – split of the dependent generators
+* `partI` – split of the independent generators
+
+## Output
+* enclosure keeping the chosen generators
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

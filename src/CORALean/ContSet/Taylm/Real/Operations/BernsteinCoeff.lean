@@ -15,6 +15,14 @@ acts on one variable's axis at a time. (A port of the printed algorithm, with it
 transpositions, agrees with this sum on random polynomials in up to four variables and degree
 three.)
 
+## Inputs
+* `L` – terms of the polynomial
+* `N` – degree
+* `β` – multi-index
+
+## Output
+* Bernstein coefficient at the multi-index
+
 ## References
 
 * [1] `global/functions/helper/sets/contSet/polyZonotope/poly2bernstein.m`, CORA (Sep. 2025).

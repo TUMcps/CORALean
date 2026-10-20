@@ -15,6 +15,25 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 # `Taylm.compose` encloses `g ∘ f`
 
 As at the exact layer, for any real coefficients `a k` inside the stored enclosures.
+
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `g` – outer function
+* `c` – center
+* `lo` – lower coefficient bounds
+* `hi` – upper coefficient bounds
+* `N` – expansion order
+* `ρ` – remainder radius
+* `a` – true coefficients
+
+## Hypotheses
+* `h` – the model encloses the function
+* `ha` – true coefficients lie between the bounds
+* `hg` – outer function is within the radius of its expansion
+
+## Conclusion
+* the composed model encloses the composition
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,6 +16,13 @@ float layer at all.
 
 The dimension variables are `k` and `n` rather than the usual `m` and `n`: the
 structure already has a field named `m`.
+
+## Inputs
+* `M` – linear map
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* image under the linear map
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

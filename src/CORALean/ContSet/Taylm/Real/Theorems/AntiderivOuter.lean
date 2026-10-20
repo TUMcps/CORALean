@@ -18,6 +18,18 @@ coordinate lines, `antideriv i` encloses `t ↦ ∫₀^{tᵢ} f(t with tᵢ := s
 `max |J|·|tᵢ| ≤ max |J|` in magnitude, and `J·[-1, 1]` is `[-max |J|, max |J|]`; the integral of
 `P_{n-1}` is `integrateTerms` exactly (`integral_polyOf`).
 
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `i` – variable index
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hf` – the function is continuous in that variable
+
+## Conclusion
+* the result encloses the antiderivative
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

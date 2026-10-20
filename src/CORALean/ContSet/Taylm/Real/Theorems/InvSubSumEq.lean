@@ -13,6 +13,18 @@ public import Mathlib.Tactic.Ring
 `1/x - Σₖ₌₀ᴺ (-1)ᵏ (x - c)ᵏ / cᵏ⁺¹ = (-1)ᴺ⁺¹ (x - c)ᴺ⁺¹ / (x cᴺ⁺¹)`: the geometric series' tail,
 exactly. The exact remainder of [1, Eq. 34], which [1, Eq. 38] bounds in closed form.
 
+## Inputs
+* `c` – center
+* `x` – point
+* `N` – expansion order
+
+## Hypotheses
+* `hc` – the center is nonzero
+* `hx` – the point is nonzero
+
+## Conclusion
+* the remainder of the reciprocal's Taylor polynomial has a closed form
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

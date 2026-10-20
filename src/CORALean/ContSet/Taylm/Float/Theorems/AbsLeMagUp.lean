@@ -9,6 +9,16 @@ public import CORALean.ContSet.Taylm.Float.Operations.Basic
 
 Every point of the hull of the center and the range has absolute value at most
 `Taylm.magUp`, and so has the center itself.
+
+## Inputs
+* `T` – Taylor model
+* `ξ` – point
+
+## Hypotheses
+* `hξ` – point lies in the model's hull
+
+## Conclusion
+* the magnitude bound dominates the point
 -/
 
 -- Authors:       Claude Opus 5.5

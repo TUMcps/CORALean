@@ -12,6 +12,13 @@ positive exponent `res = base; for i = 2:exponent, res = res * base`, for `0` th
 matrix `eye`, a numeric matrix, here the constant models `0`/`1` (their order is irrelevant to
 their enclosure). A scalar base is CORA's `power` (`Taylm.pow`); a non-square base or a
 negative exponent is an error there, outside this definition.
+
+## Inputs
+* `k` – matrix size
+* `A` – matrix of models
+
+## Output
+* function giving the matrix power for each exponent
 -/
 
 -- Authors:       Claude Opus 5.5

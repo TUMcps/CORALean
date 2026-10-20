@@ -8,6 +8,16 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 
 /-!
 # Negating every coefficient negates the polynomial
+
+## Inputs
+* `L` – terms of the polynomial
+* `t` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* negating every coefficient negates the value
 -/
 
 -- Authors:       Claude Opus 5.5

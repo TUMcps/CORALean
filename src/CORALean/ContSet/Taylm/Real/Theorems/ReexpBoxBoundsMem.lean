@@ -16,6 +16,17 @@ public import Mathlib.Tactic.Linarith
 
 A point `t` of the box is `mid + rad ⊙ s` for `s` in the normalized box (`s = 0` along a
 coordinate of radius zero), so `P t` is the re-expanded polynomial at `s` and lies in its bounds.
+
+## Inputs
+* `P` – terms of the polynomial
+* `B` – box
+* `t` – point
+
+## Hypotheses
+* `ht` – point lies in the box
+
+## Conclusion
+* the polynomial's value lies in the re-expanded bounds
 -/
 
 -- Authors:       Claude Opus 5.5

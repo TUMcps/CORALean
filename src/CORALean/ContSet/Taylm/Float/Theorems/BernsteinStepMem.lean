@@ -12,6 +12,18 @@ public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
 
 For `j ≤ N`, the term `C(j, i) / C(N, i) · (C(e, i) 2ⁱ (-1)^(e - i))` of `bernsteinEntry` lies
 between the two floats `bernsteinStep` returns.
+
+## Inputs
+* `N` – degree
+* `e` – exponent
+* `j` – row index
+* `i` – term index
+
+## Hypotheses
+* `hj` – row index is at most the degree
+
+## Conclusion
+* the Bernstein step term lies in its enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -8,6 +8,16 @@ public import Mathlib.Tactic.Linarith
 
 /-!
 # The halves of a proper box are proper boxes inside it
+
+## Inputs
+* `B` – box
+* `β` – coordinate
+
+## Hypotheses
+* `hB` – the box ends are ordered
+
+## Conclusion
+* both halves are ordered boxes inside the box
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,13 @@ CORA's `@conPolyZono/splitDepFactor`: `getSubset` [1, Prop. 14] at factor `r` ov
 over `[0, 1]`, the center and radius of those intervals being `∓1/2` and `1/2`. A pair, as CORA
 returns both halves at once. Factor `r` is a position, CORA's `factor` being an identifier.
 
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `r` – factor index
+
+## Output
+* the halves with that factor negative and positive
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

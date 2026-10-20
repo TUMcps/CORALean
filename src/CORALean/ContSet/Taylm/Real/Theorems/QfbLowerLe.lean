@@ -16,6 +16,21 @@ public import Mathlib.LinearAlgebra.Matrix.PosDef
 [1, Sec. 3]: for a positive semidefinite `H` and any `x₀`, `Q_{x₀} ≥ 0`, so a lower bound of
 `f - Q_{x₀}`, which `T - Q_{x₀}` encloses, is one of `f`.
 
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `H` – Hessian matrix
+* `x0` – expansion point
+* `t` – point
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hH` – the Hessian is positive semidefinite
+* `ht` – point lies in the unit box
+
+## Conclusion
+* the quadratic fast bound is at most the function's value
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

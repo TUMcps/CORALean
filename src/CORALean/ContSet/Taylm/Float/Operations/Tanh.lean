@@ -20,6 +20,13 @@ on that enclosure, and the quotient by `k!` through the corner products with `[d
 The Lagrange bound is `odePoly (1 + X²) (N+1)` at one (`odeL [1, 0, 1] (N+1)` on `[1, 1]`) times
 `Bᴺ⁺¹ / (N+1)!`, each factor rounded up. `p` is the precision of the exponentials
 (`Global/Float/Exp`).
+
+## Inputs
+* `p` – precision of the exponential
+* `T` – Taylor model
+
+## Output
+* Taylor model of hyperbolic tangent of the argument
 -/
 
 -- Authors:       Claude Opus 5.5

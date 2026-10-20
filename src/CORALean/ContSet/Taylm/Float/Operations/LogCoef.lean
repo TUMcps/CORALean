@@ -14,6 +14,14 @@ public import CORALean.ContSet.Interval.Float.Interval
 `log c` from `logUp` above and, through `log c = -log (1/c)`, from `logUp` of `1/c` rounded
 up below, which needs no `1 ≤ c` as `logDown` would. The rest are `(-1)ᵏ⁺¹ / (k cᵏ)`: a
 power of `1/c` each way, divided by `k` each way, the ends swapped where the sign is negative.
+
+## Inputs
+* `q` – precision of the exponential
+* `s` – number of steps
+* `c` – center
+
+## Output
+* enclosure of the logarithm's Taylor coefficient at that index
 -/
 
 -- Authors:       Claude Opus 5.5

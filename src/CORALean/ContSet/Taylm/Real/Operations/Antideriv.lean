@@ -15,6 +15,13 @@ The integral of something in `J` over a segment of signed length `ℓ` is in `�
 width alone misses whenever `J` is not symmetric and `ℓ` can be negative
 (`AntiderivPrinted`).
 
+## Inputs
+* `i` – variable index
+* `T` – Taylor model
+
+## Output
+* Taylor model of the antiderivative in that variable
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

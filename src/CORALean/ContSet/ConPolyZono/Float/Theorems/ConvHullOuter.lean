@@ -14,6 +14,19 @@ to pair each with, which is what non-emptiness is for), and the combination's hu
 `convHullSingle` at `n + 1` copies (`convHullSingle_outer`). As over ℝ, both operands must be
 non-empty and carry no independent generators; no condition on the exponent matrices enters.
 Outer, never the exact hull.
+
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Hypotheses
+* `hq₁` – first has no independent generators
+* `hq₂` – second has no independent generators
+* `hne₁` – first set is nonempty
+* `hne₂` – second set is nonempty
+
+## Conclusion
+* the convex hull of the union is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

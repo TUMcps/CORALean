@@ -12,6 +12,12 @@ CORA's `sin`: the expansion at the constant part, every derivative of `sin` boun
 
 The sine of [1, Def. 3 (sin)], whose remainder term `J` is a derivative of `sin`, at most one.
 
+## Inputs
+* `T` – Taylor model
+
+## Output
+* Taylor model of sine of the argument
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

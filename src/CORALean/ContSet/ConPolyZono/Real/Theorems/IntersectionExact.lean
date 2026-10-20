@@ -16,6 +16,16 @@ here can make without giving something away.
 `intersectionDep_exact` does the work; `dependent_exact` empties
 the independent blocks it asks for, and empties them costlessly.
 
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Hypotheses
+* none
+
+## Conclusion
+* the intersection is the result's set
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

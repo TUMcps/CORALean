@@ -10,6 +10,17 @@ public import CORALean.ContSet.Taylm.Real.Definitions.Box
 
 A point of the box lies in the first half if its `β`-coordinate is at most the midpoint, and in the
 second otherwise; the other coordinates are untouched.
+
+## Inputs
+* `B` – box
+* `β` – coordinate
+* `t` – point
+
+## Hypotheses
+* `ht` – point lies in the box
+
+## Conclusion
+* the point lies in one of the two halves
 -/
 
 -- Authors:       Claude Opus 5.5

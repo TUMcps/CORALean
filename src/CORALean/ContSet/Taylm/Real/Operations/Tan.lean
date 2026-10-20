@@ -13,6 +13,12 @@ public import CORALean.Global.ElementaryDerivBounds
 CORA's `tan`: the expansion at the constant part. `tan' = 1 + tan²`, so `tan⁽ᴺ⁺¹⁾` is a
 polynomial in `tan`, bounded by `odePoly (1 + X²) (N+1)` at `tan` of the magnitude, which is
 finite below `π/2`, the domain `TanOuter` assumes.
+
+## Inputs
+* `T` – Taylor model
+
+## Output
+* Taylor model of tangent of the argument
 -/
 
 -- Authors:       Claude Opus 5.5

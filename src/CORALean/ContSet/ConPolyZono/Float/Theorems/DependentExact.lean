@@ -9,6 +9,15 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalSetDependent
 
 The float operation rounds nothing, so its whole content is `nominalSet_dependent`
 and the error box is the same box.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is unchanged
 -/
 
 -- Authors:       Claude Opus 5

@@ -11,6 +11,16 @@ public import CORALean.ContSet.Taylm.Real.Operations.Minus
 `Σₖ a k (T - c)ᵏ` for `k ≤ N`, plus `[-ρ, ρ]`: the shape every elementary function of CORA
 takes (`exp`, `log`, `sqrt`, …), with the coefficients and the remainder bound left to the
 caller. `ComposeOuter` says what `ρ` has to bound.
+
+## Inputs
+* `T` – Taylor model
+* `c` – center
+* `a` – coefficients
+* `N` – expansion order
+* `ρ` – remainder radius
+
+## Output
+* Taylor model of the composed polynomial
 -/
 
 -- Authors:       Claude Opus 5.5

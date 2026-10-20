@@ -13,6 +13,13 @@ public import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
 `[-1, 1]`, whose width is `2`. Kept to state the counterexample against; `Taylm.antideriv` is the
 corrected rule.
 
+## Inputs
+* `i` – variable index
+* `T` – Taylor model
+
+## Output
+* antiderivative model as the paper prints it
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

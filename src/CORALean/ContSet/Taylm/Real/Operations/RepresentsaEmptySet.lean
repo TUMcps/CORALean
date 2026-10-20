@@ -14,6 +14,12 @@ the same variables, as in `Taylm.polyZonotope`. The other types, and the second 
 `t_conv`, are not covered.
 
 At `emptySet` the polynomial zonotope answers `false`: it is never empty.
+
+## Inputs
+* `T` – family of Taylor models
+
+## Output
+* whether some remainder is empty
 -/
 
 -- Authors:       Claude Opus 5.5

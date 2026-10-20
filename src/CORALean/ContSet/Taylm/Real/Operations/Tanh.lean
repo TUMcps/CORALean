@@ -11,6 +11,12 @@ public import CORALean.Global.ElementaryDerivBounds
 
 CORA's `tanh`: the expansion at the constant part. `tanh' = 1 - tanh²`, so `tanh⁽ᴺ⁺¹⁾` is
 a polynomial in `tanh`, of absolute-coefficient bound `odePoly (1 + X²) (N+1)` at `|tanh| ≤ 1`.
+
+## Inputs
+* `T` – Taylor model
+
+## Output
+* Taylor model of hyperbolic tangent of the argument
 -/
 
 -- Authors:       Claude Opus 5.5

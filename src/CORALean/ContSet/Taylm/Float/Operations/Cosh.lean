@@ -8,6 +8,13 @@ public import CORALean.ContSet.Taylm.Float.Operations.Hyperbolic
 # `Taylm.cosh`
 
 The Taylor model of `cosh`: `Taylm.hyperbolic` with the even coefficients `cosh`'s.
+
+## Inputs
+* `p` – precision of the halvings
+* `T` – Taylor model
+
+## Output
+* Taylor model of hyperbolic cosine of the argument
 -/
 
 -- Authors:       Claude Sonnet 5.5

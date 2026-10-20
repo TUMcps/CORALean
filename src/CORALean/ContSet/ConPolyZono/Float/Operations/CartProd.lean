@@ -19,6 +19,13 @@ independent generators are each `genBlockDiag` of the two, and the constraint is
 `PolyLevelSet.cartProd` of the two, rows and slacks stacked, the nominal part being the
 product of the two (`Real.ConPolyZono.relax_cartProd`). The error boxes stack (`Interval.append`).
 Nothing is added or multiplied, so nothing rounds.
+
+## Inputs
+* `cPZ₁` – first factor
+* `cPZ₂` – second factor
+
+## Output
+* Cartesian product, stacked
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

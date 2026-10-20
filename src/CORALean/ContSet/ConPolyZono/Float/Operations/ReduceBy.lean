@@ -10,6 +10,14 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.DropRadius
 Split out of `Reduce.lean` (issue #62): read again by `reduceGirard` in this
 directory and by `Theorems/ReduceByOuter.lean` and
 `Theorems/ReduceGirardOrderLe.lean`, all outside this file.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `partD` – split of the dependent generators
+* `partI` – split of the independent generators
+
+## Output
+* enclosure keeping the chosen generators
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

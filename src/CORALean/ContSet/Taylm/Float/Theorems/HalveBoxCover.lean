@@ -10,6 +10,17 @@ public import CORALean.ContSet.Taylm.Float.Operations.Basic
 
 A point of a box lies in one of the two halves: it is on one side of the cut, wherever the cut
 lies.
+
+## Inputs
+* `B` – box
+* `β` – coordinate
+* `t` – point
+
+## Hypotheses
+* `ht` – point lies in the box
+
+## Conclusion
+* the point lies in one of the two halves
 -/
 
 -- Authors:       Claude Opus 5.5

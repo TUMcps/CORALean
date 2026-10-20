@@ -10,6 +10,15 @@ public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 
 A product of factors each in its interval lies in the stored range, the corner products bracketing
 each step.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the product of values in their brackets lies in the product bracket
 -/
 
 -- Authors:       Claude Opus 5.5

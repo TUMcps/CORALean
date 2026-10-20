@@ -17,6 +17,14 @@ public import CORALean.Global.Float.DivFact
 `Interval.evalPolyCoeffs` on `[c, c]`, `v²ʲ⁺¹` between `powDown` and `powUp` of the roundings of `v`
 (`Global/Float/InvSqrtOneSub`), and `1 / (j+1)!` by `divFact`, the three through the corner
 products. `q` is the precision of the square root.
+
+## Inputs
+* `q` – precision of the square root
+* `c` – center
+* `j` – coefficient index
+
+## Output
+* enclosure of that Taylor coefficient of arcsin
 -/
 
 -- Authors:       Claude Opus 5.5

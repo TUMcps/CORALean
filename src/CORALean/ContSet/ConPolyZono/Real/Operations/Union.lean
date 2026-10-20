@@ -14,17 +14,21 @@ public import CORALean.ContSet.PolyLevelSet.Real.Operations.Basic
 /-!
 # `ConPolyZono.union`
 
-CORA's `@conPolyZono/or`, and [1, Thm. 1]: the closed form for the union of two
-constrained polynomial zonotopes. Two fresh factors and two constraint rows cut
-the factor cube down to two disjoint branches — one pinning the second operand's
-factors to `0`, one pinning the first's — and on each branch what is left is the
-operand the branch selects.
+CORA's `@conPolyZono/or`, and [1, Thm. 1]: the closed form for the union. Two fresh factors and
+two constraint rows cut the factor cube down to two disjoint branches, one pinning the second
+operand's factors to `0`, one pinning the first's, and on each branch what is left is the operand
+the branch selects.
 
-No independent generators: [1, Def. 5] has none, and there is nothing for them to
-mean here, a coefficient answering to no constraint being free on both branches.
+No independent generators: [1, Def. 5] has none. The result is not regular, and CORA follows with
+`compact_`; `compactGens` and `compactCons` are that, not applied here.
 
-The result is not regular, and CORA follows the closed form with `compact_`;
-`compactGens` and `compactCons` are that, and are not applied here.
+## Inputs
+* `α` – ambient type
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Output
+* union as one constrained polynomial zonotope
 
 ## References
 

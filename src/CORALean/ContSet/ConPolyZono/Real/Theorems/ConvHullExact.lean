@@ -10,19 +10,28 @@ public import Mathlib.Analysis.RCLike.Lemmas
 /-!
 # The convex hull, exactly — under the hypothesis [1, Prop. 9] leaves out
 
-`Prop. 9` as printed is false when exactly one operand is empty. Its step (28)
-replaces the union by the linear combination inside the hull, and the left
-inclusion there needs a point of the *other* operand to pair with; nothing says
-one exists. The closed form carries the combination's constraint system `n + 1`
-times, so it is empty whenever either operand is, while the hull it claims to be
-is not: in one dimension, the hull of `{0}` and `∅` is `{0}` and the formula
-gives `∅`. CORA does not inherit this — `@conPolyZono/convHull_` tests
-`representsa_(cPZ,'emptySet',...)` first and returns the other set.
+`Prop. 9` as printed is false when exactly one operand is empty: its step (28) replaces the union
+by the linear combination inside the hull, and the left inclusion needs a point of the *other*
+operand to pair with. The closed form carries the combination's constraint system `n + 1` times,
+so it is empty whenever either operand is, while the hull is not: in one dimension, the hull of
+`{0}` and `∅` is `{0}` and the formula gives `∅`.
 
-Both operands non-empty is therefore carried, and is what step (28) actually
-needs. `qI = 0` is [1, Def. 5]'s representation, as for `linComb`, which this
-routes through; no condition on the exponent matrices enters, the fresh weight
-factor on every replicated column making a degree-`0` one behave like any other.
+Both operands non-empty is therefore carried. `qI = 0` is [1, Def. 5]'s representation, as for
+`linComb`.
+
+## Inputs
+* `n` – ambient dimension
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Hypotheses
+* `hq₁` – first has no independent generators
+* `hq₂` – second has no independent generators
+* `hne₁` – first set is nonempty
+* `hne₂` – second set is nonempty
+
+## Conclusion
+* the convex hull of the union is the result's set
 
 ## References
 

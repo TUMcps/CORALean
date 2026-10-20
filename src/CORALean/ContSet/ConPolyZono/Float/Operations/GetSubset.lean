@@ -15,6 +15,15 @@ block and the constraint's own `PolyLevelSet.getSubset`. The two channels of the
 are meant to: the rounding of the generators goes into the ambient error box, the rounding of the
 constraint matrix into the slack `b_error`, widened by the row radius of what the stored entries
 lost.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `k` – factor index
+* `cen` – center of the subinterval
+* `rad` – radius of the subinterval
+
+## Output
+* the part of the set on that subinterval
 -/
 
 -- Authors:       Claude Opus 5.5

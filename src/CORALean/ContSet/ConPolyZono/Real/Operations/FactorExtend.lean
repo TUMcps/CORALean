@@ -11,6 +11,18 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtend
 A factor vector over the kept factors, read back over all of them by giving a
 dropped factor the value zero — admissible, and read by no monomial of either
 block.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of dependent generators
+* `q` – number of constraint generators
+* `E` – exponent matrix
+* `R` – constraint exponent matrix
+* `a` – values of the used factors
+* `k` – factor index
+
+## Output
+* value of that factor, zero if dropped
 -/
 
 -- Authors:       Claude Opus 5

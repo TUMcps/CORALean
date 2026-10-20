@@ -22,6 +22,18 @@ lies in the box added to `err`. The constraint matrix
 is rounded the same way, and the same bound, scaled by the same monomials, moves the exact
 constraint value into the widened slack: what `A μ` loses to the rounding of `A` is at most the
 row radius the slack was widened by, so the stored system holds wherever the exact one does.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `k` – factor index
+* `cen` – center of the subinterval
+* `rad` – radius of the subinterval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact re-parametrization is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

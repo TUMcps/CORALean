@@ -16,6 +16,12 @@ domain.
 A Taylor model of `arccos ∘ f`, [1, Def. 3 (arccos)], expanded directly rather than as
 `π/2 - arcsin`.
 
+## Inputs
+* `T` – Taylor model
+
+## Output
+* Taylor model of arccos of the argument
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

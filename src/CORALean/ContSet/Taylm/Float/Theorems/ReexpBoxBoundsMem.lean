@@ -16,6 +16,17 @@ On a box `B` the polynomial of a term list lies in the stored range. Where the r
 certified, the point is written in the normalized coordinates `s` of the midpoint and radius,
 which lie in `[-1, 1]ⁿ`, and the float `reexpand_outer` and `bounds_mem` bracket the value;
 otherwise the range is `polyBoxBounds`'s.
+
+## Inputs
+* `P` – terms of the polynomial
+* `B` – box
+* `t` – point
+
+## Hypotheses
+* `ht` – point lies in the box
+
+## Conclusion
+* the polynomial's value lies in the re-expanded bounds
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,15 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.RepresentsaPoint
 With no generator column the points are `c` or nothing: the constraints can only remove it. CORA
 answers `true` and returns `S = c` without looking at them, so for an infeasible constraint
 system it names a point for the empty set.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* `h` – the test returns true
+
+## Conclusion
+* the set lies in the singleton of its center
 -/
 
 -- Authors:       Claude Opus 5.5

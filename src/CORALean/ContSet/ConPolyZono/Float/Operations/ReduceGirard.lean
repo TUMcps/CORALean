@@ -11,6 +11,13 @@ public import CORALean.Global.Sort
 Split out of `Reduce.lean` (issue #62): read again by `Theorems/
 ReduceGirardOrderLe.lean` and `Theorems/ReduceGirardOuter.lean`, both outside
 this file.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `o` – target order
+
+## Output
+* Girard-reduced enclosure of the set
 -/
 
 -- Authors:       Claude Opus 5

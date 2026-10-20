@@ -12,6 +12,14 @@ CORA's `optBnb`: the bounds of a model's polynomial over the normalized box by b
 interval arithmetic, with the stopping test relative to the previous width; this one is the
 source's listing, stopped by `fuel` when it does not settle.
 
+## Inputs
+* `T` – Taylor model
+* `ε` – tolerance
+* `fuel` – step budget
+
+## Output
+* enclosure of its range by branch and bound
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

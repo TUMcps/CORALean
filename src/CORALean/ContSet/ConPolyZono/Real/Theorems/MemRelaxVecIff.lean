@@ -11,6 +11,17 @@ public import CORALean.Global.Entrywise
 `mem_relax_iff` at `Vec ℝ n`, the defining equation read one coordinate at a time with both
 generator blocks transposed, as `mem_construct_iff` reads `construct`: the form a float layer's
 enclosure proofs read the nominal half of a point in.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `s` – slack per constraint row
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership is witnessed coordinatewise with each row met within its slack
 -/
 
 -- Authors:       Claude Opus 5.5

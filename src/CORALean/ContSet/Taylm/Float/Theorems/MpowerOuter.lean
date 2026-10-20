@@ -12,6 +12,20 @@ public import CORALean.ContSet.Taylm.Float.Theorems.Basic
 
 Entry `(i, j)` of the power encloses the `(i, j)` entry of the power of the matrix of the enclosed
 functions, pointwise: `M ^ 0 = 1`, `M ^ (e + 1) = M ^ e * M`.
+
+## Inputs
+* `k` – matrix size
+* `A` – matrix of models
+* `F` – matrix of functions
+* `e` – exponent
+* `i` – row index
+* `j` – column index
+
+## Hypotheses
+* `hA` – each entry encloses its function
+
+## Conclusion
+* the power entry encloses the matrix power of the functions
 -/
 
 -- Authors:       Claude Opus 5.5

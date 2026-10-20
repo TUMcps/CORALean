@@ -13,6 +13,12 @@ public import CORALean.ContSet.Taylm.Real.Operations.Minus
 the model `Taylm.asin` gives of `arcsin f`. `Taylm.acos` is CORA's `acos`, which expands
 `arccos` at the center directly; this is the source's own reduction to `arcsin`.
 
+## Inputs
+* `T` – Taylor model
+
+## Output
+* Taylor model of arccos as the paper prints it
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

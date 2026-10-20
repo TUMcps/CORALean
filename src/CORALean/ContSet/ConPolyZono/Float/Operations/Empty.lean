@@ -10,6 +10,12 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 No generators and one constraint row that cannot hold: the empty constraint matrix, whose product
 is `0`, held to `one` with no slack. The center is `zero` and the error box the point `0`.
+
+## Inputs
+* `n` – ambient dimension
+
+## Output
+* the empty set
 -/
 
 -- Authors:       Claude Opus 5.5

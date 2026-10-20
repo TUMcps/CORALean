@@ -19,6 +19,13 @@ zonotope. A pair, as CORA returns both halves at once.
 
 CORA's call without a dimension is this at every `d`, returned as a cell of pairs; that is the
 map `d ↦ split cPZ d` and is not a separate definition.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `d` – coordinate to split along
+
+## Output
+* the lower and the upper half
 -/
 
 -- Authors:       Claude Opus 5.5

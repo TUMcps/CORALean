@@ -11,6 +11,13 @@ The `g(x) = f(x)·√(1 - c_f²) - c_f·√(1 - f(x)²)` of [1, Def. 3 (arcsin)]
 `f` and its center `c`: the argument the source's addition formula hands to `arcsin`, so that
 the expansion is taken about `0` rather than about `c_f`.
 
+## Inputs
+* `c` – center
+* `a` – point to shift
+
+## Output
+* shifted argument of the arcsine addition formula
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

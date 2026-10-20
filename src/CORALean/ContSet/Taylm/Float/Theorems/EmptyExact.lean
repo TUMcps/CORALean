@@ -7,6 +7,15 @@ public import CORALean.ContSet.Taylm.Real.Theorems.EmptyExact
 
 /-!
 # `Taylm.empty` denotes `∅`, over a floating-point scalar
+
+## Inputs
+* none
+
+## Hypotheses
+* `hn` – the dimension is positive
+
+## Conclusion
+* the empty model family denotes the empty set
 -/
 
 -- Authors:       Claude Sonnet 5.5

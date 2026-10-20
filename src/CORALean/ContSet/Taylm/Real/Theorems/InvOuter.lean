@@ -13,6 +13,17 @@ public import Mathlib.Analysis.Calculus.Deriv.ZPow
 the center and the range bound lying strictly on one side of zero. `|ξ| ≥ m` on that hull, so
 `(N+1)! / |ξ|ᴺ⁺²` is at most `(N+1)! / mᴺ⁺²`.
 
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hside` – the range stays on one side of zero
+
+## Conclusion
+* the result encloses the reciprocal of the function
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

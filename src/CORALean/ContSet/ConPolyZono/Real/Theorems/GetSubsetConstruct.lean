@@ -11,15 +11,25 @@ public import Mathlib.Tactic.FieldSimp
 /-!
 # `getSubset` represents the subset a factor sub-box reaches
 
-[1, Prop. 14] (`subset`): substituting factor `r` for `cen + rad·α̂ᵣ` restricts
-its domain to `cen ± rad` and represents the result exactly — an equality, not
-an enclosure, at every degree the factor carries in either block. The identity
-is `PolyZonotope.getSubset_point`'s, read once at the generators
-(`toPolyZonotope`) and once at the constraint rows (`PolyLevelSet.mem_getSubset_iff`).
+[1, Prop. 14] (`subset`): substituting factor `r` for `cen + rad·α̂ᵣ` restricts its domain to `cen
+± rad` and represents the result exactly, an equality and not an enclosure, at every degree the
+factor carries in either block. The identity is `PolyZonotope.getSubset_point`'s, read once at the
+generators and once at the constraint rows (`PolyLevelSet.mem_getSubset_iff`).
 
-`hrad` is what makes `cen ± rad` an interval rather than an empty set, the same
-hypothesis `PolyZonotope.getSubset_construct` needs and for the same reason;
-the `rad = 0` branch is [1]'s degenerate case, a factor pinned to a point.
+`hrad` makes `cen ± rad` an interval rather than an empty set; `rad = 0` is [1]'s degenerate case,
+a factor pinned to a point.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `r` – factor index
+* `cen` – center of the subinterval
+* `rad` – radius of the subinterval
+
+## Hypotheses
+* `hrad` – radius is nonnegative
+
+## Conclusion
+* the result is the part of the set on that subinterval
 
 ## References
 

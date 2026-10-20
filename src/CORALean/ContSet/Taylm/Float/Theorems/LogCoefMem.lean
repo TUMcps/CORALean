@@ -12,6 +12,18 @@ public import Mathlib.Analysis.SpecialFunctions.Log.Deriv
 
 At a positive center. `aux_log_coef` reads `log⁽ᵏ⁺¹⁾(c)/(k+1)!` as `(-1)ᵏ (1/c)ᵏ⁺¹/(k+1)`
 off `iter_deriv_inv`.
+
+## Inputs
+* `q` – precision of the exponential
+* `s` – number of steps
+* `c` – center
+* `k` – coefficient index
+
+## Hypotheses
+* `hc` – the center is positive
+
+## Conclusion
+* the true logarithm coefficient lies in the enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

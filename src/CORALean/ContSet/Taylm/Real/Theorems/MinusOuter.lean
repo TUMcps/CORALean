@@ -11,6 +11,19 @@ public import CORALean.ContSet.Taylm.Real.Theorems.UminusOuter
 
 [1, Eq. 7]: the difference encloses `f - g`.
 
+## Inputs
+* `T₁` – first model
+* `T₂` – second model
+* `f` – first function
+* `g` – second function
+
+## Hypotheses
+* `h₁` – the first model encloses its function
+* `h₂` – the second model encloses its function
+
+## Conclusion
+* the difference model encloses the difference of the functions
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

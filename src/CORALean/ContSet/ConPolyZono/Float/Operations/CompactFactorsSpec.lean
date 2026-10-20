@@ -15,6 +15,12 @@ moves. The constraint is its own `PolyLevelSet.reindexVars` at the used factors.
 The definition `compactFactors` is proved equal to, which computes the same thing
 from a table built once (issue #61); this one is the statement the exactness
 proof reads.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* same set with unused factors dropped, as specified
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,17 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 
 /-!
 # The product list evaluates to the product
+
+## Inputs
+* `L₁` – first terms
+* `L₂` – second terms
+* `t` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the product list evaluates to the product of the two values
 -/
 
 -- Authors:       Claude Opus 5.5

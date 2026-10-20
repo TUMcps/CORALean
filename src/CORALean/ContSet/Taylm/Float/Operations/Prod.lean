@@ -8,6 +8,12 @@ public import CORALean.ContSet.Taylm.Float.Operations.Times
 # `Taylm.prod`, over a floating-point scalar
 
 The product folded from the left, `res = obj(1); res = res .* obj(i)`; at least one factor.
+
+## Inputs
+* none
+
+## Output
+* Taylor model of the product of the listed models
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -15,6 +15,18 @@ what the analysis of the search uses: the result lies in the box, and `(y - x⁺
 every `z` in the box. Coordinate by coordinate, either `y_k` is inside and the factor is `0`, or it
 was cut at `±1` and `z_k` lies on the other side of the cut.
 
+## Inputs
+* `H` – Hessian matrix
+* `g` – gradient
+* `α` – step length
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the step stays in the unit box and is the projection of the gradient step
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

@@ -11,6 +11,12 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
 The factors neither block reads, dropped. Only `p` and the two exponent
 matrices change; every generator, every constraint column and `b` stand. The constraint is its
 own `PolyLevelSet.reindexVars` at the used factors.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* same set with unused factors dropped
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

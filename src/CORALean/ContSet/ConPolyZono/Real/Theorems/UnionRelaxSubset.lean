@@ -26,6 +26,23 @@ are off by what the operand's were; on the other branch the other operand's fact
 its rows read `0.5 b` against `0.5 b`. This is what a float union's nominal set is checked
 against, its rows recording their rounding as slack. The hypotheses are those of
 `union_exact_of_noZeroCol` that this half reads.
+
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+* `s₁` – slack of first
+* `s₂` – slack of second
+
+## Hypotheses
+* `hq₁` – first has no independent generators
+* `hq₂` – second has no independent generators
+* `hE₁` – first exponent matrix has no zero column
+* `hR₁` – first constraint exponents have no zero column
+* `hE₂` – second exponent matrix has no zero column
+* `hR₂` – second constraint exponents have no zero column
+
+## Conclusion
+* the union of the relaxed operands is contained in the relaxed union
 -/
 
 -- Authors:       Claude Opus 5.5

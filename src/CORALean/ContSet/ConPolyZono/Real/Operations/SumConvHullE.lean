@@ -19,6 +19,21 @@ The three auxiliary lemmas are the three kinds of column — a weight on its own
 a copy's monomial, and that monomial weighted — and the sum is those three
 blocks recombined, `a` copies of the center absorbed into the result's own.
 
+## Inputs
+* `a` – number of weights
+* `p` – number of factors
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+* `E` – exponent matrix
+* `v` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the hull's generator sum is the sum over the weighted copies
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

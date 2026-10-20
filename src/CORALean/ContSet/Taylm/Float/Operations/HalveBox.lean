@@ -10,6 +10,13 @@ public import CORALean.ContSet.Interval.Float.Interval
 
 The two halves of a box at coordinate `β`, cut at the midpoint `(l + u) / 2` with the sum rounded
 up: the halves cover the box wherever the cut lies.
+
+## Inputs
+* `B` – box
+* `β` – coordinate
+
+## Output
+* the two halves of the box along that coordinate
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -21,6 +21,18 @@ public import CORALean.Global.TaylorRemainder
 lists evaluate as the real ones (`eval_odePoly_odeL`), and `Interval.evalPolyCoeffs_mem` encloses
 them.
 `hp` is `tanhUp`'s range hypothesis at the center.
+
+## Inputs
+* `p` – precision of the exponential
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hp` – the center is small enough for the precision
+
+## Conclusion
+* the result encloses hyperbolic tangent of the function
 -/
 
 -- Authors:       Claude Opus 5.5

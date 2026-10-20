@@ -10,6 +10,17 @@ public import CORALean.ContSet.Taylm.Real.Operations.BernsteinDegree
 `n = max(max(E))` [1] is at least every exponent of every variable in every term: what the
 one-variable expansion `pow_eq_sum_bernsteinEntry` asks of its degree.
 
+## Inputs
+* `T` – Taylor model
+* `a` – term
+* `k` – variable index
+
+## Hypotheses
+* `ha` – the term belongs to the model
+
+## Conclusion
+* the term's exponent is at most the Bernstein degree
+
 ## References
 
 * [1] `global/functions/helper/sets/contSet/polyZonotope/poly2bernstein.m`, CORA (Sep. 2025).

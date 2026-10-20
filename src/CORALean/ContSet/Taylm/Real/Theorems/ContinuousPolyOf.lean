@@ -12,6 +12,15 @@ public import Mathlib.Topology.Instances.Real.Lemmas
 # A term list evaluates to a continuous function
 
 A sum of coefficients times products of coordinate powers.
+
+## Inputs
+* `L` – terms of the polynomial
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polynomial is continuous
 -/
 
 -- Authors:       Claude Opus 5.5

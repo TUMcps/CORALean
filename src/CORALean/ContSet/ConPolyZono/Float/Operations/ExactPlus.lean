@@ -12,6 +12,16 @@ CORA's `@conPolyZono/exactPlus` [1] on the stored floats: the float `PolyZonotop
 the two generator parts (the centers added downward, the rounding in the error box, the two
 error boxes summed), and the first operand's constraints kept once, as over ℝ.
 
+## Inputs
+* `cPZ₁` – first summand
+* `cPZ₂` – second summand
+
+## Hypotheses
+* `hp` – both have the same number of factors
+
+## Output
+* Minkowski sum with shared factors
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta Informatica,

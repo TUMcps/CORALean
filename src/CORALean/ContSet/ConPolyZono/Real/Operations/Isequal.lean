@@ -12,6 +12,13 @@ CORA's `@conPolyZono/isequal.m` for two constrained polynomial zonotopes: both a
 the order of the columns, `R` and `[b A]` agree row by row up to sign, and the independent parts
 are compared as zonotopes. Here the tolerance is `0` and the data are compared as they are, in
 order, with no compaction, alignment or row sign flips, so the test is sound, not exact.
+
+## Inputs
+* `Z` – first set
+* `S` – second set
+
+## Output
+* proposition that the two sets are equal
 -/
 
 -- Authors:       Claude Opus 5.5

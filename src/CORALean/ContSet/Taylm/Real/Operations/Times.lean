@@ -7,15 +7,21 @@ public import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
 /-!
 # `Taylm.times`
 
-CORA's `times` of two models (`aux_s_times_tt`): the product polynomial,
-truncated at the larger order, the dropped terms bounded into the remainder
-(`priv_compress`), and the three cross terms `B(p₁)·I₂ + B(p₂)·I₁ + I₁·I₂` added as
-interval products, `B` being `polyBounds`. CORA's tolerance, moving coefficients under
-`1e-8` into the remainder, is a precision choice and not done.
+CORA's `times` of two models (`aux_s_times_tt`): the product polynomial, truncated at the larger
+order, the dropped terms bounded into the remainder (`priv_compress`), and the three cross terms
+`B(p₁)·I₂ + B(p₂)·I₁ + I₁·I₂` added as interval products, `B` being `polyBounds`. CORA's
+tolerance, moving coefficients under `1e-8` into the remainder, is a precision choice and not
+done.
 
-This is the multiplication of [1, Def. 2]: `P₁·₂` the product truncated at the order, and
-`I₁·₂ = B(Pₑ) + B(P₁)·I₂ + B(P₂)·I₁ + I₁·I₂` with `B` = `polyBounds`, as sharp as interval
-evaluation, which is what the source demands.
+This is the multiplication of [1, Def. 2], with `I₁·₂ = B(Pₑ) + B(P₁)·I₂ + B(P₂)·I₁ + I₁·I₂`, as
+sharp as interval evaluation, which the source demands.
+
+## Inputs
+* `T₁` – first factor
+* `T₂` – second factor
+
+## Output
+* Taylor model of the product
 
 ## References
 

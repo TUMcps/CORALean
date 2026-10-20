@@ -19,6 +19,14 @@ public import CORALean.Global.Float.DivFact
 and `intUp` and `k` exact halvings, `√c` between `sqrtDown` and `sqrtUp`, `(1/c)ᵏ` between `powDown`
 and `powUp` of the roundings of `1/c`, and `1 / k!` by `divFact`, the four through the corner
 products. `q` is the precision of the square root.
+
+## Inputs
+* `q` – precision of the square root
+* `c` – center
+* `k` – coefficient index
+
+## Output
+* enclosure of that Taylor coefficient of the square root
 -/
 
 -- Authors:       Claude Opus 5.5

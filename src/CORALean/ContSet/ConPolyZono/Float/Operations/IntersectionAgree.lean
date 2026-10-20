@@ -10,6 +10,13 @@ public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 The agreement rows' right-hand interval, and the only thing `intersection` computes:
 the difference of the two centers, widened by how far the two error boxes let
 the nominal points stand apart, each end rounded outward.
+
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Output
+* interval the center difference must lie in
 -/
 
 -- Authors:       Claude Opus 5

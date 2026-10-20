@@ -10,6 +10,12 @@ public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 CORA's `@conPolyZono/representsa_` at type `point` [1]: `isempty(cPZ.G) && isempty(cPZ.GI)`, no
 dependent and no independent generator column. The constraints are not read.
 
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* whether the set has no generator column
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta Informatica,

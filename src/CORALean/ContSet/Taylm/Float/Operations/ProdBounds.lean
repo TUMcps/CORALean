@@ -11,6 +11,12 @@ public import CORALean.ContSet.Interval.Float.Operations.MulHi
 
 The range of a product of factors each known to lie in an interval: the corner products of the
 running interval with the next factor's, rounded outward (`Interval.mulLo`, `Interval.mulHi`).
+
+## Inputs
+* none
+
+## Output
+* product of the listed intervals
 -/
 
 -- Authors:       Claude Opus 5.5

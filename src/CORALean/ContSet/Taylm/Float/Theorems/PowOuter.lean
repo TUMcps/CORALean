@@ -8,6 +8,16 @@ public import CORALean.ContSet.Taylm.Float.Theorems.Basic
 
 /-!
 # `Taylm.pow` encloses the power
+
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+
+## Conclusion
+* each power of the model encloses the power of the function
 -/
 
 -- Authors:       Claude Opus 5.5

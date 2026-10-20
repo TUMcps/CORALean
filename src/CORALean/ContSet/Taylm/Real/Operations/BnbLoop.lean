@@ -14,6 +14,13 @@ and the stopping test of line 31, that neither end moved by more than `2ε·rad(
 loop has no bound on its iterations; here `fuel` bounds them, and the union is returned when it
 runs out.
 
+## Inputs
+* `bnd` – bounding function on a box
+* `ε` – tolerance
+
+## Output
+* enclosure of the range from the search loop
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

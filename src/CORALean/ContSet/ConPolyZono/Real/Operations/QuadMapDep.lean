@@ -14,6 +14,13 @@ The map on a set whose coefficients are all dependent. Sound only there, so
 nothing calls it directly. Touches the center, generators and exponent matrix
 of the enclosing polynomial zonotope; the constraint system reads none of
 those, so `A`, `b` and `R` pass through untouched.
+
+## Inputs
+* `Q` – family of quadratic forms
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* image under the quadratic map for dependent coefficients
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

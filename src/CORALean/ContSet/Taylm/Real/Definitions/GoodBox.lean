@@ -11,6 +11,12 @@ public import CORALean.ContSet.Interval.Real.Interval
 Boxes whose four ends lie in `[-1, 1]`, the boxes [1, Sec. 4]'s optimizer works on for a model
 over the normalized box; halving keeps them so.
 
+## Inputs
+* `B` – box
+
+## Output
+* proposition that all ends lie in the unit interval
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

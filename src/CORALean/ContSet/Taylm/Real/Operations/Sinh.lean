@@ -13,6 +13,12 @@ CORA's `sinh`: the expansion at the constant part; every derivative of `sinh` is
 
 The hyperbolic sine of [1, Def. 3 (sinh)].
 
+## Inputs
+* `T` – Taylor model
+
+## Output
+* Taylor model of hyperbolic sine of the argument
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

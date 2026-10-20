@@ -6,6 +6,16 @@ public import CORALean.ContSet.Taylm.Real.Operations.Mag
 
 /-!
 # The hull of a Taylor model lies within its magnitude
+
+## Inputs
+* `T` – Taylor model
+* `ξ` – point
+
+## Hypotheses
+* `hξ` – point lies in the hull of constant part and range
+
+## Conclusion
+* the point's magnitude is at most the model's magnitude
 -/
 
 -- Authors:       Claude Opus 5.5

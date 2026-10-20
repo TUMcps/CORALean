@@ -20,6 +20,16 @@ point of the exact one is the two nominal points at one common factor value meet
 set's constraints within their slack; the float one reads the same blocks and the
 same constraints at the same factors and coefficients, and differs only by the rounding of the
 center sum, which its error box holds. Outer only: never the exact `exactPlus` at float.
+
+## Inputs
+* `cPZ₁` – first summand
+* `cPZ₂` – second summand
+
+## Hypotheses
+* `hp` – both have the same number of factors
+
+## Conclusion
+* the exact sum of the nominal parts is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

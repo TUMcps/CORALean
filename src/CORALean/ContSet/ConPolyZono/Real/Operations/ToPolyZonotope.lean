@@ -15,6 +15,12 @@ It is not a set-level operation and no theorem here reads it as one. What it is
 for is arithmetic: an operation applies a `PolyZonotope` one to the generators,
 then states the constraints it assembles itself over the same factors — the
 sharing the representation is built on, used in the one direction that keeps it.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* polynomial zonotope of the generator part
 -/
 
 -- Authors:       Claude Opus 5

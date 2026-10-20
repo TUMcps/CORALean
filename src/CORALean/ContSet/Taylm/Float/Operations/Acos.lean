@@ -15,6 +15,14 @@ The exact layer's `acos` with every number enclosed: the zeroth coefficient `arc
 `acosDown` and `acosUp`, the others the negated `Taylm.arcsinCoef` (`arccos' = -arcsin'`), the
 Lagrange bound `Taylm.arcsinBound` at the magnitude `Taylm.magUp`, the same as `arcsin`'s. `p` and
 `q` are the precisions of `acosDown`/`acosUp` and `Global/Float/Sqrt`.
+
+## Inputs
+* `p` – precision of the arccosine
+* `q` – precision of the square root
+* `T` – Taylor model
+
+## Output
+* Taylor model of arccos of the argument
 -/
 
 -- Authors:       Claude Opus 5.5

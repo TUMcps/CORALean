@@ -11,6 +11,17 @@ public import CORALean.Global.ElementaryDerivBounds
 # `Taylm.tan` encloses `tan ∘ f`
 
 Where the magnitude is below `π/2`, so that the hull stays in `tan`'s first branch.
+
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hdom` – the model's magnitude is below half of pi
+
+## Conclusion
+* the result encloses tangent of the function
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,18 @@ public import CORALean.ContSet.Taylm.Float.Theorems.HyperbolicOuter
 
 `Taylm.hyperbolic_outer` at the parity that starts with `cosh`. `hp` is `expUp`'s range
 hypothesis at the magnitude of the model, as `Taylm.exp_outer` keeps it.
+
+## Inputs
+* `p` – precision of the halvings
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hp` – the hull is small enough for the precision
+
+## Conclusion
+* the result encloses hyperbolic cosine of the function
 -/
 
 -- Authors:       Claude Sonnet 5.5

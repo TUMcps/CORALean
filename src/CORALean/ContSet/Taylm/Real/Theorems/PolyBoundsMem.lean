@@ -9,6 +9,16 @@ public import CORALean.ContSet.Taylm.Real.Theorems.TermBoundsMem
 
 /-!
 # A term list stays in `polyBounds` on the box
+
+## Inputs
+* `L` – terms of the polynomial
+* `t` – point
+
+## Hypotheses
+* `ht` – point lies in the unit box
+
+## Conclusion
+* the polynomial's value lies in its bounds
 -/
 
 -- Authors:       Claude Opus 5.5

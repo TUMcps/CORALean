@@ -13,6 +13,17 @@ public import CORALean.ContSet.Taylm.Real.Theorems.CosOuter
 Encloses `tan ∘ f` whenever the denominator's model passes the inverse's condition; CORA's
 `tan` is this quotient of its own `sin` and `cos`.
 
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hside` – the cosine model stays on one side of zero
+
+## Conclusion
+* sine divided by cosine encloses tangent of the function
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

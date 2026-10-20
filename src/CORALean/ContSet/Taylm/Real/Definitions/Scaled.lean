@@ -13,6 +13,14 @@ times the one of the unnormalized polynomial. `weight` divides that back out and
 magnitudes; `Scaled T h C` bounds it by `C` and the remainder by `C·hᴺ⁺¹`, which is the theorem's
 `I = O(hⁿ⁺¹)` together with the bound on the polynomial the source leaves unstated.
 
+## Inputs
+* `T` – Taylor model
+* `h` – domain radius
+* `C` – constant
+
+## Output
+* proposition that polynomial weight and remainder are scaled by the constant
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

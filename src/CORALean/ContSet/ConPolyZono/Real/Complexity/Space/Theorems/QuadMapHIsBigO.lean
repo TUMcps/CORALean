@@ -12,6 +12,16 @@ public import CORALean.ContSet.ConPolyZono.Real.Complexity.Space.Theorems.Basic
 # `ConPolyZono.quadMap_h_isBigO`
 
 The `h` count of `quadMap`'s result in `O`-notation.
+
+## Inputs
+* `Q` – family of quadratic forms
+* `cPZ` – family of operands
+
+## Hypotheses
+* `hC` – generator count of the operand of size m is m
+
+## Conclusion
+* the dependent generator count grows at most quadratically
 -/
 
 -- Authors:       Claude Opus 5

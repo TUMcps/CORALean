@@ -12,6 +12,14 @@ bound, [1, Alg. 1] in its advanced setting, plus the remainder. CORA's loop re-e
 at each sub-box's center first, and stops on an absolute change of `2ε`; this one is the
 source's listing, stopped by `fuel` when it does not settle.
 
+## Inputs
+* `T` – Taylor model
+* `ε` – tolerance
+* `fuel` – step budget
+
+## Output
+* enclosure of its range by advanced branch and bound
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

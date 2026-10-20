@@ -9,20 +9,24 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 /-!
 # The float `rescale` encloses the constrained polynomial zonotope
 
-The exact layer's `rescale_exact` follows a factor vector through the fold of `getSubset`
-steps: after `t` steps the set at `a` is the original at `a` with its first `t` factors sent to
-`cen + rad·a`. The same invariant holds here, one factor vector at a time, by
-`getSubset_point_outer`: the float set after `t` steps meets its constraint at `a`, and its
-generator sum at `a` plus a point of its error box is the original's at the substituted vector
-plus the original error. The rounding of a step is paid against the monomials of the vector
-it is read at, so the invariant asks that vector, and the substituted one, to lie in
-`[-1,1]ᵖ`; along the fold they do, being the original's factors in the last coordinates and
-the rescaled ones in the first.
+The exact layer's `rescale_exact` follows a factor vector through the fold of `getSubset` steps.
+The same invariant holds here, one factor vector at a time, by `getSubset_point_outer`: the float
+set after `t` steps meets its constraint at `a`, and its generator sum at `a` plus a point of its
+error box is the original's at the substituted vector plus the original error.
 
-A factor vector of the original that satisfies the constraints lies in the contracted box,
-which the float `cen ± rad` covers, so it is `cen + rad·δ` for a `δ` in `[-1,1]ᵖ`; at `δ` the
-float result reaches the original's point. Outer: the exact layer's `rescale_exact` is an
-equality, this is not, and it needs of the contractor only that it keep every solution.
+A factor vector of the original that satisfies the constraints lies in the contracted box, so it
+is `cen + rad·δ` for a `δ` in `[-1,1]ᵖ`. Outer: the exact `rescale_exact` is an equality; this
+needs of the contractor only that it keep every solution.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `contract` – contractor on the factor box
+
+## Hypotheses
+* `hkeep` – contractor keeps every factor vector satisfying the constraint
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

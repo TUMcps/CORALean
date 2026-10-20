@@ -14,6 +14,18 @@ CORA's `supportFunc_` (type `upper`) for a constrained polynomial zonotope: the 
 bound, whose dependent range bound `u` under the constraints is an argument as over ℝ, and the
 error box's own bound, added upward. An upper bound only: the `le` field of the returned
 `FloatBound` is the outer theorem.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `c` – direction as a linear functional
+* `a` – float direction
+* `u` – float bound on the nominal point set
+
+## Hypotheses
+* `hc` – float direction represents the functional
+
+## Output
+* float bound on the set in that direction
 -/
 
 -- Authors:       Claude Opus 5.5

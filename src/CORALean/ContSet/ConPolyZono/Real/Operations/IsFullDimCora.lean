@@ -12,6 +12,12 @@ public import Mathlib.LinearAlgebra.Dimension.Finrank
 the same test as for a polynomial zonotope, and with the same flaw: the rank of the generators
 says nothing about the constraints or the exponents (`isFullDim_cora_counterexample`). The rank
 of a matrix is the dimension of the span of its columns. Read from the source, not run.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* proposition that CORA's full-dimension test holds
 -/
 
 -- Authors:       Claude Opus 5.5

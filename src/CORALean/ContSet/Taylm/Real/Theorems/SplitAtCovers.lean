@@ -10,6 +10,17 @@ public import CORALean.ContSet.Taylm.Real.Theorems.HalveBoxCover
 
 The box that is split is covered by its two halves, and every other box keeps its index; so
 whatever the boxes covered before the split, they cover after it.
+
+## Inputs
+* `X` – domain box
+* `l` – list of boxes
+* `i` – box index
+
+## Hypotheses
+* `h` – the boxes cover the domain
+
+## Conclusion
+* splitting keeps the cover of the domain
 -/
 
 -- Authors:       Claude Opus 5.5

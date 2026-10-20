@@ -8,6 +8,17 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 
 /-!
 # Splitting a term list by a predicate splits its value
+
+## Inputs
+* `L` – terms of the polynomial
+* `p` – predicate on terms
+* `t` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* splitting the terms by the predicate splits the value
 -/
 
 -- Authors:       Claude Opus 5.5

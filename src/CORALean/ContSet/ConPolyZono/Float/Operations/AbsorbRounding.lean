@@ -20,6 +20,12 @@ rounds nothing), added to the independent block. Each row's slack becomes a fres
 that the row alone reads, with the coefficient `b_error`, as `Real.ConPolyZono.relax` lays it out,
 and no generator reads; the slack left is `zero`. Nothing rounds, and the box left over is the
 origin. Unlike `dependent`, the independent generators stay independent.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* same set with the rounding error as independent generators
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

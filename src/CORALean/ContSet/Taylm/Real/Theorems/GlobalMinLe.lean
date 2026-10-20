@@ -13,6 +13,24 @@ public import CORALean.ContSet.Taylm.Real.Theorems.ListMinLe
 with a lower bound above the cutoff of the time, which only decreases. For any bounder sound on the
 boxes of a class that halving keeps.
 
+## Inputs
+* `f` – enclosed function
+* `lb` – lower bounding function
+* `ub` – upper bounding function
+* `Good` – good-box predicate
+* `X` – domain box
+* `fuel` – step budget
+* `t` – point
+
+## Hypotheses
+* `hgood` – halving keeps boxes good
+* `hlb` – the lower bound holds on good boxes
+* `hX` – the domain box is good
+* `ht` – point lies in the domain box
+
+## Conclusion
+* the lower end of the optimizer's enclosure is at most the function's value
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

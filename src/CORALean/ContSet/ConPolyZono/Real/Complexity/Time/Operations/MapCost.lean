@@ -8,16 +8,22 @@ public import CORALean.Global.Cost
 /-!
 # `ConPolyZono.mapCost`
 
-Asserted, not proved: `Operations/Map.lean` sends the center and each of the
-`h` dependent and `qI` independent generators through `f`, and touches nothing
-else — the exponent matrix and the whole constraint system, `A`, `b`, `R`,
-carry over untouched.
+Asserted, not proved: `Operations/Map.lean` sends the center and each of the `h` dependent and
+`qI` independent generators through `f`, and touches nothing else. What one `f` costs is a
+parameter, as in `PolyZonotope.mapCost`, since `f` is any linear map. The exponent matrix and the
+constraint block are the operand's but parts of the result, and their entries are written like the
+rest.
 
-What one `f` costs is a parameter, exactly as in `PolyZonotope.mapCost` and for
-the same reason: `f` is any linear map.
+## Inputs
+* `cf` – cost of one application
+* `p` – number of factors
+* `h` – dependent generators
+* `qI` – independent generators
+* `m` – number of constraints
+* `q` – constraint generators
 
-The exponent matrix and the constraint block are the operand's, but they are parts of the result,
-and their entries are written like the rest.
+## Output
+* cost of mapping the set
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

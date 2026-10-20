@@ -11,6 +11,13 @@ public import CORALean.Global.Float.IntRound
 The stored coefficients of the selector row: each integer of `unionConInt` rounded
 down. Exact wherever the scalar holds the integer, and an enclosure otherwise,
 which `unionConErr` charges to the row's bound.
+
+## Inputs
+* `p₁` – factor count of first operand
+* `p₂` – factor count of second operand
+
+## Output
+* selector row coefficients as floats
 -/
 
 -- Authors:       Claude Opus 5.5

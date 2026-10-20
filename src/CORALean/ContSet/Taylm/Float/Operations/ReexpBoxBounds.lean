@@ -11,6 +11,13 @@ public import CORALean.ContSet.Taylm.Float.Operations.Reexpand
 The range of a term list over a box after re-expanding it at the box's midpoint, so that the box
 becomes `[-1, 1]ⁿ`: the float `Taylm.reexpand`'s bounds. The re-expansion needs `|m| + |r| ≤ 1` in
 every coordinate, which `le` certifies; where it does not, the range is `polyBoxBounds`'s.
+
+## Inputs
+* `P` – terms of the polynomial
+* `B` – sub-box
+
+## Output
+* range of the terms over the sub-box after re-expansion
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -9,6 +9,19 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 
 A real `x` between `lo` and `hi` is within `max 0 (max (hi ⊖ c) (c ⊖ lo))`, rounded up, of
 the center `c`: the radius every Taylor remainder bound of `Taylm` starts from.
+
+## Inputs
+* `x` – real point
+* `lo` – lower end
+* `hi` – upper end
+* `c` – center
+
+## Hypotheses
+* `hlo` – value is at least the lower end
+* `hhi` – value is at most the upper end
+
+## Conclusion
+* distance to the center is within the rounded-up reach
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,6 +16,17 @@ public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
 `minus_outer` the difference, and Mathlib's `Real.arccos_eq_pi_div_two_sub_arcsin` is the
 identity.
 
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hdom` – the model's magnitude is below one
+
+## Conclusion
+* the printed model encloses arccos of the function
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

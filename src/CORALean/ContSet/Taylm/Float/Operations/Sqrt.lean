@@ -12,6 +12,13 @@ public import CORALean.ContSet.Taylm.Float.Operations.SqrtBound
 The exact layer's `sqrt` with every number enclosed: the coefficients `Taylm.sqrtCoef` at the
 center, the Lagrange bound `Taylm.sqrtBound` at the smaller of the center and the bottom of the
 range, where `√⁽ᴺ⁺¹⁾` is largest. `q` is the precision of the square root.
+
+## Inputs
+* `q` – precision of the square root
+* `T` – Taylor model
+
+## Output
+* Taylor model of the square root of the argument
 -/
 
 -- Authors:       Claude Opus 5.5

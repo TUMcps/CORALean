@@ -10,6 +10,17 @@ public import CORALean.ContSet.Taylm.Float.Theorems.HalveBoxCover
 # `Taylm.splitAt` keeps the cover
 
 Halving one box of a covering list leaves the list covering.
+
+## Inputs
+* `X` – domain box
+* `l` – list of boxes
+* `i` – box index
+
+## Hypotheses
+* `h` – the boxes cover the domain
+
+## Conclusion
+* splitting keeps the cover of the domain
 -/
 
 -- Authors:       Claude Opus 5.5

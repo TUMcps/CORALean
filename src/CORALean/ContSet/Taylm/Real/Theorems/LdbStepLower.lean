@@ -14,6 +14,18 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 `M = c - Σ|Lₖ| + l(P_{≥2}) + l(I)` is below the enclosed function on the normalized box,
 [1, Sec. 2]: the linear part is at least `-Σ|Lₖ|` there.
 
+## Inputs
+* `T` – Taylor model
+* `g` – enclosed function
+* `s` – point
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hs` – point lies in the unit box
+
+## Conclusion
+* the lower end of the step's bound is at most the function's value
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

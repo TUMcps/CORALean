@@ -18,6 +18,15 @@ public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEqUn
 Costs nothing at all: it changes `p` and both exponent matrices, all over ℕ, and every monomial
 it keeps reads the same kept factors (`monomial_factorIdx_left`, `monomial_factorIdx_right`), a
 dropped factor coming back as `0` (`factorExtend`), as in the exact layer's `compactFactors_exact`.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the nominal part is unchanged
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

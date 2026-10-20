@@ -6,6 +6,16 @@ public import CORALean.ContSet.Taylm.Real.Operations.ListMin
 
 /-!
 # The least value is at most every value
+
+## Inputs
+* `α` – type of the items
+* `f` – value function
+
+## Hypotheses
+* none
+
+## Conclusion
+* the list minimum is at most every listed item's value
 -/
 
 -- Authors:       Claude Opus 5.5

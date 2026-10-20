@@ -14,6 +14,17 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCoef
 `unionConInt` is `4 max(1,p₁) max(1,p₂)` times the exact layer's selector coefficients,
 column by column. A column of a group exists only when its operand has a factor, which is
 where the quotient the scale cancels is non-zero.
+
+## Inputs
+* `p₁` – factor count of first operand
+* `p₂` – factor count of second operand
+* `l` – coefficient index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the integer coefficient is the scaled exact coefficient
 -/
 
 -- Authors:       Claude Opus 5.5

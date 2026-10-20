@@ -12,6 +12,13 @@ public import CORALean.ContSet.PolyLevelSet.Real.PolyLevelSet
 The first selector row of [1, Thm. 1], `α₁α₂ = 1`, which pins the union's two fresh factors to a
 common sign: one equation over the single monomial `α₁α₂`.
 
+## Inputs
+* `p₁` – factor count of first operand
+* `p₂` – factor count of second operand
+
+## Output
+* selector equation on the union's factors
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

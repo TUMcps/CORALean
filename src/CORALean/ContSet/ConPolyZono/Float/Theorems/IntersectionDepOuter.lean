@@ -20,6 +20,17 @@ appended factors the constraint, the product of the two sets' stacked on the agr
 its slack, and the agreement rows `y₁ - c₁ - (y₂ - c₂)`, which is `c₂ - c₁ + e₂ - e₁`
 and lies in the stored interval `intersectionAgree` (`aux_agree_mem`), so within its recorded
 slack of the lower end. The rounding of the centers never has to be pushed anywhere.
+
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Hypotheses
+* `hq₁` – first has no independent generators
+* `hq₂` – second has no independent generators
+
+## Conclusion
+* the intersection is contained in the result
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

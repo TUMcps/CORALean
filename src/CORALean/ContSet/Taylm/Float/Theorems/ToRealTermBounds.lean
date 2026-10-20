@@ -9,6 +9,15 @@ public import CORALean.ContSet.Taylm.Real.Operations.TermBounds
 # The float term range reads as the exact one
 
 Every operation in `termBounds` is exact, so this is an equality.
+
+## Inputs
+* `a` – term
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float term range equals the exact one
 -/
 
 -- Authors:       Claude Opus 5.5

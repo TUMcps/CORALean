@@ -7,6 +7,15 @@ public import CORALean.ContSet.Taylm.Real.Taylm
 /-!
 # `Taylm.abs_monomial_le_one`
 
+## Inputs
+* `t` – point
+* `e` – exponents
+
+## Hypotheses
+* `ht` – point lies in the unit box
+
+## Conclusion
+* the monomial has magnitude at most one
 -/
 
 -- Authors:       Claude Opus 5.5

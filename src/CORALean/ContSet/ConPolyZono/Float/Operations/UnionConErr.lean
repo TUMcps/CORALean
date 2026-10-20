@@ -12,6 +12,13 @@ What storing the selector row's integers from below costs: the gap between each
 integer's two directed roundings, summed upward. A factor in `[-1,1]` makes a
 monomial at most `1` in absolute value, so this bounds how far the stored row can
 stray from the scaled one.
+
+## Inputs
+* `p₁` – factor count of first operand
+* `p₂` – factor count of second operand
+
+## Output
+* summed rounding gap of the selector row
 -/
 
 -- Authors:       Claude Opus 5.5

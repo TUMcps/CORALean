@@ -11,6 +11,15 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.AbsorbRoundingNominal
 
 Read back through `ContSet`: the set lies in the nominal set of `absorbRounding`, and that box is
 the origin, so it lies in the whole.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Sonnet 5.5

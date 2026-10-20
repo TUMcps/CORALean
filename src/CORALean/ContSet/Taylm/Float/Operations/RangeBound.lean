@@ -13,6 +13,18 @@ public import CORALean.ContSet.Conversion.Float.Operations.Basic
 box `D`, the code list evaluated in floating-point Taylor model arithmetic, and the range bound
 `B(P_f) + I_f` rounded outward. `none` when the evaluation stops at an intrinsic.
 
+## Inputs
+* `m` – number of variables
+* `p` – precision of the exponential
+* `q` – precision of the logarithm
+* `s` – precision of the trigonometric functions
+* `e` – code list
+* `D` – domain box
+* `N` – expansion order
+
+## Output
+* enclosure of the range of the code list, if all intrinsics are defined
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

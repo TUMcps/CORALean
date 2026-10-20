@@ -20,6 +20,13 @@ on that enclosure, and the quotient by `k!` through the corner products with `[d
 The Lagrange bound is the same polynomial of order `N+1` at `tan m`, `m` the magnitude of the
 model, enclosed the same way, times `Bᴺ⁺¹ / (N+1)!`, each factor rounded up. `p` is the
 precision of the sine and cosine (`Global/Float/SinCos`).
+
+## Inputs
+* `p` – precision of the halvings
+* `T` – Taylor model
+
+## Output
+* Taylor model of tangent of the argument
 -/
 
 -- Authors:       Claude Opus 5.5

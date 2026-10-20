@@ -8,6 +8,16 @@ public import CORALean.ContSet.Taylm.Real.Taylm
 # `Taylm.monomial_single`
 
 The monomial of the exponent vector with a single `1` at `j` is the variable `t j`.
+
+## Inputs
+* `j` – coordinate
+* `t` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the monomial of a unit exponent is that coordinate
 -/
 
 -- Authors:       Claude Opus 5.5

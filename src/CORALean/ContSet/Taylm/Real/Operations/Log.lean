@@ -13,6 +13,12 @@ CORA's `CORA:outOfDomain` check does.
 
 The logarithm of [1, Def. 3 (log)], eq. (2.5), under its condition that the range is positive.
 
+## Inputs
+* `T` – Taylor model
+
+## Output
+* Taylor model of the logarithm of the argument
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

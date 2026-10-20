@@ -11,6 +11,13 @@ public import CORALean.ContSet.Interval.Real.Interval
 Lines 13-14 of [1, Alg. 1]: the first half of `[x]` along coordinate `β` keeps the lower end and
 ends at the midpoint, `x̄_β - rad`; the rest is the second half, from the midpoint up.
 
+## Inputs
+* `B` – box
+* `β` – coordinate
+
+## Output
+* the two halves of the box along that coordinate
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

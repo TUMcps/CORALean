@@ -9,6 +9,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
 # The product of intervals contains every product
 
 Entry by entry, each factor in its interval: `mul_between_corners` at each step of the fold.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the product of intervals contains every product of members
 -/
 
 -- Authors:       Claude Opus 5.5

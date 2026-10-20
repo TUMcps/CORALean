@@ -15,6 +15,16 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEqUni
 `p ∈ cPZ`, which is [1, Lemma 1]. This is what `@conPolyZono/contains_` means to decide for a
 numeric operand.
 
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `p` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point lies in the extended set exactly when it lies in the set
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

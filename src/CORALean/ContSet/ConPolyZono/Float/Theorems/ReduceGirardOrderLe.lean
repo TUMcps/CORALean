@@ -7,18 +7,22 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.Reduce
 /-!
 # Girard's reduction bounds the generator count
 
-The exact layer's bound, and the same proof: both budgets are clamped, to their
-block and to `K = (o-1)·n` between them, so `n·o` follows by arithmetic from the
-shape of `reduceBy` alone. Nothing about the scalar enters — the counts are the
-`ℕ` fields, which round-off cannot move — and nothing about the ranking does,
-which is what leaves `sortPerm`'s unconstrained comparator free.
+The exact layer's bound, and the same proof: both budgets are clamped, to their block and to `K =
+(o-1)·n` between them, so `n·o` follows by arithmetic from the shape of `reduceBy` alone. Neither
+the scalar nor the ranking enters.
 
-This is the guarantee the float layer needs most and the exact layer least: over
-ℝ an unbounded generator count is a specification that grows, here it is memory
-and time per step.
+At `o = 0` there is nothing to state: CORA's `K = max(0, N·order - N)` floors the budget at
+nothing and the box of `n` is added regardless.
 
-At `o = 0` there is nothing to state: CORA's `K = max(0, N·order - N)` floors
-the budget at nothing and the box of `n` is added regardless.
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `o` – target order
+
+## Hypotheses
+* `ho` – target order is positive
+
+## Conclusion
+* the generator count is at most the order times the dimension
 -/
 
 -- Authors:       Claude Opus 5

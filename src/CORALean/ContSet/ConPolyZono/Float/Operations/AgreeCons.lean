@@ -13,6 +13,13 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
 `Real.ConPolyZono.agreeCons` at the stored floats: the rows of `intersectionDep` pinning the two
 points together, each held to its interval `intersectionAgree`, the lower end as the right-hand
 side and the width above it, rounded up, as the slack.
+
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Output
+* constraint pinning the two points together
 -/
 
 -- Authors:       Claude Opus 5.5

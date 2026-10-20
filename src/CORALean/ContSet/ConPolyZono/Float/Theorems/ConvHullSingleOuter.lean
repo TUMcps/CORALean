@@ -20,14 +20,23 @@ public import Mathlib.Analysis.Convex.Combination
 # `ConPolyZono.convHullSingle` contains the convex hull
 
 The exact layer's closed form is the convex hull of the operand's nominal set
-(`convHullSingle_exact`, with Carathéodory at `a = n + 1` or more), and the hull of the nominal
-set plus a box is the hull of the nominal set plus the box, a box being convex. A point of the
-exact form lies in the stored one at the same factors with each copy's slack factors dropped
-(`monomial_convHullE_padE`), a copy's row then being within its slack
-(`PolyLevelSet.exists_relax_iff`), up to the
-center `a c`, which is stored from below: its shortfall is the residual the stored box holds.
+(`convHullSingle_exact`, with Carathéodory at `a = n + 1` or more). A point of the exact form lies
+in the stored one at the same factors with each copy's slack factors dropped
+(`monomial_convHullE_padE`), up to the center `a c`, which is stored from below: its shortfall is
+the residual the stored box holds.
 
 No independent generators, as over ℝ, and at least `n + 1` copies.
+
+## Inputs
+* `a` – number of weights
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* `hq` – no independent generators
+* `ha` – enough weights for the dimension
+
+## Conclusion
+* the convex hull is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

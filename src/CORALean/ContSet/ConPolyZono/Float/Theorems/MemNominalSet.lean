@@ -18,6 +18,16 @@ of `Real.ConPolyZono.relax` are read away into each row's `|b_error|` (`mem_rela
 Proofs use it rather than going through `nominal` because through it every count
 is `cPZ.h`, where the instance gives the equal-but-distinct `(nominal cPZ).h` that
 `rw` reads apart.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership in the nominal set is witnessed by factors and constraint
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

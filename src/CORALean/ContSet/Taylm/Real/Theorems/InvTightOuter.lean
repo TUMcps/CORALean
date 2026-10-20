@@ -15,6 +15,17 @@ public import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
 `(-1)ᴺ⁺¹ (f - c)ᴺ⁺¹ / (f cᴺ⁺¹)` exactly (`inv_sub_sum_eq`), at most `rᴺ⁺¹/(m |c|ᴺ⁺¹)`, the exact
 bound, which is at most the Lagrange one since `|c| ≥ m`.
 
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hside` – the range stays on one side of zero
+
+## Conclusion
+* the result encloses the reciprocal of the function
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

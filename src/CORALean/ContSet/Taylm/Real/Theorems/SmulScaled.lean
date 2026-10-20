@@ -15,6 +15,18 @@ A scalar multiple of a model scaled by `C` is scaled by `|a|·C`: every coeffici
 remainder ends are multiplied by `a`. A step of [1, Thm. 1]'s intrinsics, which are linear
 combinations of powers.
 
+## Inputs
+* `T` – Taylor model
+* `h` – domain radius
+* `C` – scaling constant
+* `a` – scalar
+
+## Hypotheses
+* `hT` – the model is scaled by the constant
+
+## Conclusion
+* the scaled model is scaled by the constant times the scalar's magnitude
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

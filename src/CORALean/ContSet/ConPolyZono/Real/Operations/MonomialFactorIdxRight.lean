@@ -8,6 +8,21 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorIdx
 
 /-!
 # The same at the constraint block, `appendE`'s right half
+
+## Inputs
+* `p` – number of factors
+* `h` – number of dependent generators
+* `q` – number of constraint generators
+* `E` – exponent matrix
+* `R` – constraint exponent matrix
+* `a` – factor values
+* `l` – constraint column index
+
+## Hypotheses
+* none
+
+## Conclusion
+* restricting to the kept factors leaves the constraint monomial unchanged
 -/
 
 -- Authors:       Claude Opus 5

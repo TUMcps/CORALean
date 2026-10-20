@@ -10,6 +10,13 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.ExtPolyZonotope
 What `@conPolyZono/contains_` means to decide for a numeric operand `p`: the extended point `[p; 0]`
 lies in the extended polynomial zonotope (`extPolyZonotope`), whose last coordinates are the
 constraint residual `-b + A μ(α)`.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `p` – point
+
+## Output
+* proposition that the point lies in the extended set
 -/
 
 -- Authors:       Claude Opus 5.5

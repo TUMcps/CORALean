@@ -18,6 +18,16 @@ The stored operands' sets, paired and read through `Fin.append`, are the product
 rounds: the stored product read back is the exact layer's `cartProd` mapped through the append,
 field by field, its slacks the two side by side, so its nominal part is the product of the two
 relaxed operands (`relax_cartProd`); the error box is the stack of the two.
+
+## Inputs
+* `cPZ₁` – first factor
+* `cPZ₂` – second factor
+
+## Hypotheses
+* none
+
+## Conclusion
+* product set is the stacked product of the two sets
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

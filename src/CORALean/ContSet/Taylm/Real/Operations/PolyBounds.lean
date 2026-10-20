@@ -8,6 +8,12 @@ public import CORALean.ContSet.Taylm.Real.Operations.TermBounds
 # The range of a term list over the box
 
 The term ranges summed: CORA's `interval` with `opt_method = 'int'`, outer and no tighter.
+
+## Inputs
+* `L` – terms of the polynomial
+
+## Output
+* range of the terms over the unit box
 -/
 
 -- Authors:       Claude Opus 5.5

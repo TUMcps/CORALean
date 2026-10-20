@@ -13,6 +13,15 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 A `true` answer makes every coordinate's polynomial the constant `poly 0` on the whole box, with
 the remainder plus the error box within `[0, 0]` (the absorbed ends bracket their sum), so the range
 set is within the point `(poly 0)ᵢ`.
+
+## Inputs
+* `T` – family of Taylor models
+
+## Hypotheses
+* `h` – the test returns true
+
+## Conclusion
+* the range set lies in the point of the constant terms
 -/
 
 -- Authors:       Claude Opus 5.5

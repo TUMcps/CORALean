@@ -16,6 +16,16 @@ CORA requires to be identical, are kept once. The identifiers are the indices of
 identity. CORA's check that the two constraint systems agree is not modelled: the constraints are
 the first operand's.
 
+## Inputs
+* `cPZ₁` – first summand
+* `cPZ₂` – second summand
+
+## Hypotheses
+* `hp` – both have the same number of factors
+
+## Output
+* Minkowski sum with shared factors
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta Informatica,

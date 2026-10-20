@@ -12,6 +12,15 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEqUni
 `relax` at the slack `0` denotes the set itself: a row met within `|0|` is a row met, and the
 slack factors, read by no generator, are then `0` too. What a float set whose rows record no
 rounding reads as.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* relaxing by zero slack leaves the set unchanged
 -/
 
 -- Authors:       Claude Opus 5.5

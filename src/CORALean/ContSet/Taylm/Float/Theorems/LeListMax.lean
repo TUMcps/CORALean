@@ -8,6 +8,16 @@ public import CORALean.ContSet.Taylm.Float.Operations.Basic
 # `Taylm.listMax` is an upper bound
 
 The greatest of `f` over a list is at least `f a` for each member `a`.
+
+## Inputs
+* `α` – type of the items
+* `f` – value function
+
+## Hypotheses
+* none
+
+## Conclusion
+* every listed item's value is at most the list maximum
 -/
 
 -- Authors:       Claude Opus 5.5

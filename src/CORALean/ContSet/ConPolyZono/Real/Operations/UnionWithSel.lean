@@ -12,6 +12,14 @@ One exponent column multiplied by the branch selector. Half of the columns of
 [1, Thm. 1]'s selector constraint are another column times `α₁`, which is how the
 constraint reads differently on the two branches at all.
 
+## Inputs
+* `p₁` – factor count of first operand
+* `p₂` – factor count of second operand
+* `c` – exponent column
+
+## Output
+* the column with the selector exponent raised by one
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

@@ -8,6 +8,17 @@ public import CORALean.ContSet.Taylm.Real.Taylm
 # `Taylm.polyOf_cons`
 
 The polynomial of a term list unfolds one term at a time.
+
+## Inputs
+* `a` – first term
+* `L` – remaining terms
+* `t` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polynomial of a prepended term adds that term's value
 -/
 
 -- Authors:       Claude Opus 5.5

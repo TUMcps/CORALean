@@ -11,6 +11,16 @@ Compacting first only lowers the count `reduceGirard_order_le` then bounds, so
 the bound reads off unchanged. It bounds the two generator blocks and nothing
 else: the ranking copies `m` and `q`, so the constraint counts are `compact`'s
 to lower and no order argument reaches them.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `o` – target order
+
+## Hypotheses
+* `ho` – target order is positive
+
+## Conclusion
+* the generator count is at most the order times the dimension
 -/
 
 -- Authors:       Claude Opus 5

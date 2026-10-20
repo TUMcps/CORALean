@@ -10,18 +10,26 @@ public import Mathlib.Tactic.FieldSimp
 /-!
 # `rescale` does not change the set
 
-Re-parametrizing the factors onto a box that holds every solution of the constraints
-loses no point and adds none: the denoted set is the same, [1, Prop. 14] applied factor
-by factor. The one assumption is the contractor's: the box it returns lies in the box
-it was given, keeps every factor vector that satisfies the constraints, and is not empty
-(CORA throws `CORA:emptySet` otherwise).
+Re-parametrizing the factors onto a box that holds every solution of the constraints loses no
+point and adds none: the denoted set is the same, [1, Prop. 14] applied factor by factor. The one
+assumption is the contractor's: the box it returns lies in the box it was given, keeps every
+factor vector that satisfies the constraints, and is not empty (CORA throws `CORA:emptySet`
+otherwise).
 
-The proof follows the substitution through the first `n` factors. After them the set
-is described by the original constraints and generators read at the factor vector
-`αₖ ↦ cenₖ + radₖ·αₖ` on those factors, which is an invariant of `rescaleStep`
-and the content of `getSubset_construct`'s two halves. Factor vectors are
-`ℕ`-indexed there, so that sets with different but equal factor counts compare
-without casts.
+The proof follows the substitution through the first `n` factors, an invariant of `rescaleStep`
+and the content of `getSubset_construct`'s two halves.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `contract` – contractor on the factor box
+
+## Hypotheses
+* `hsub` – contraction stays in the unit box
+* `hkeep` – contraction keeps every feasible factor vector
+* `hne` – contraction is nonempty
+
+## Conclusion
+* the set is unchanged
 
 ## References
 

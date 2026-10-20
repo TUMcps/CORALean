@@ -16,15 +16,23 @@ public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemCartProdIff
 /-!
 # `ConPolyZono.linComb` contains every segment between the two sets
 
-`InflatedContSet.linComb_subset` again, and the nominal obligation is the
-polynomial zonotope's at named factors (`PolyZonotope.linComb_nominal_at`): the
-segment point lands on the nominal point at `[a₁; a₂; 2λ-1]`, up to the
-rounding the box holds. What a constrained set adds is that those factors satisfy
-the carried constraints, and they do: `PolyLevelSet.mem_padVars_iff` and
-`PolyLevelSet.mem_cartProd_iff` read each system
-on the factors its operand came with, which are `a₁` and `a₂` themselves.
+`InflatedContSet.linComb_subset` again, and the nominal obligation is the polynomial zonotope's at
+named factors (`PolyZonotope.linComb_nominal_at`), up to the rounding the box holds. What a
+constrained set adds is that those factors satisfy the carried constraints:
+`PolyLevelSet.mem_padVars_iff` and `PolyLevelSet.mem_cartProd_iff` read each system on the factors
+its operand came with.
 
-Outer only, as over ℝ: the independent coefficients cannot be tied to `λ`.
+Outer only, as over ℝ.
+
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Hypotheses
+* none
+
+## Conclusion
+* every segment between the two sets is contained in the result
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

@@ -16,6 +16,15 @@ A copy's generator columns therefore come in pairs, `μ` and `λ μ`, which is w
 lets the sum be read back as `∑ (1 + λ) (c + ∑ μ G)`: a weighted sum of points
 of the combination, with the weights free but for the row that fixes their sum.
 
+## Inputs
+* `a` – number of weights
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+
+## Output
+* exponent matrix of the weighted copies
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

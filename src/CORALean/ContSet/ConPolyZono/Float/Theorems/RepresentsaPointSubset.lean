@@ -11,6 +11,15 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.RepresentsaPoint
 The exact layer's `construct_subset_of_representsa_point` puts the nominal set in `{c}`; the
 error box is added to every point, so the float set lies in `c` plus the error box. Not a
 point unless that box is: the float statement is outer, never that the set is `{c}`.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* `h` – the test returns true
+
+## Conclusion
+* the set lies in the center plus the error box
 -/
 
 -- Authors:       Claude Opus 5.5

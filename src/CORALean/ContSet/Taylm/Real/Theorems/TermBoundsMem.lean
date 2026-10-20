@@ -11,6 +11,16 @@ public import CORALean.ContSet.Taylm.Real.Theorems.Basic
 
 The three cases of CORA's `aux_intPower`: a zero exponent is the constant itself, an
 all-even one a monomial in `[0, 1]`, any other one in `[-1, 1]`.
+
+## Inputs
+* `a` – term
+* `t` – point
+
+## Hypotheses
+* `ht` – point lies in the unit box
+
+## Conclusion
+* the term's value lies in its bounds
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -7,16 +7,21 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceGirard
 /-!
 # Girard's reduction bounds the generator count
 
-`reduceGirard o` returns at most `o·n` generators, dependent and independent
-together. Counting the two blocks together is what makes that true.
+`reduceGirard o` returns at most `o·n` generators, dependent and independent together. The proof
+is arithmetic: both budgets are clamped, to their block and to `K = (o-1)·n` between them, so the
+bound never appeals to the ranking. At `o = 0` there is nothing to state: CORA floors the budget
+at nothing and adds the box of `n` regardless. The constraint counts `m` and `q` are outside this:
+only `compact` moves them.
 
-The proof is arithmetic. Both budgets are clamped — to their block, and to
-`K = (o-1)·n` between them — so the bound never appeals to the ranking, which
-keeps a selection rule free to be a heuristic. At `o = 0` there is nothing to
-state: CORA floors the budget at nothing and adds the box of `n` regardless.
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `o` – target order
 
-The constraint counts `m` and `q` are outside this: the ranking copies them, so
-`compact` is the only stage that moves them and the only bound they have.
+## Hypotheses
+* `ho` – target order is positive
+
+## Conclusion
+* the generator count is at most the order times the dimension
 -/
 
 -- Authors:       Claude Opus 5

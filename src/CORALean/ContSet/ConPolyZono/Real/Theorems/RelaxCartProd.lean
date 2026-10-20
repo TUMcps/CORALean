@@ -16,6 +16,18 @@ relaxed operands: the product's rows are each operand's at its own factors
 (`PolyLevelSet.eval_cartProd`), so each block meets its rows within its own slack, and the point
 splits as
 in `cartProd_exact`. What a float product's nominal set is read through.
+
+## Inputs
+* `cPZ₁` – first factor
+* `cPZ₂` – second factor
+* `s₁` – slack of first
+* `s₂` – slack of second
+
+## Hypotheses
+* none
+
+## Conclusion
+* relaxing the product gives the product of the relaxed sets
 -/
 
 -- Authors:       Claude Opus 5.5

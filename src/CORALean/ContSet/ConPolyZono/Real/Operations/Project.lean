@@ -12,6 +12,13 @@ CORA's `@conPolyZono/project`: the center and both generator matrices at the cho
 with exponents, factors and constraint untouched. `dims` may repeat or reorder coordinates.
 Reading coordinates is linear, so this is `map` at the selection map, and `project_exact` is
 `map_exact`.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `dims` – kept coordinates
+
+## Output
+* projection onto the kept coordinates
 -/
 
 -- Authors:       Claude Opus 5.5

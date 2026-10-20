@@ -14,6 +14,15 @@ public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
 As in the exact layer: induction on the size, the first-row expansion
 (`Matrix.det_succ_row_zero`), `smul_outer` with the sign read back as `(-1)^j`, `times_outer`
 and `sum_outer`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the determinant model encloses the determinant of the enclosed functions
 -/
 
 -- Authors:       Claude Opus 5.5

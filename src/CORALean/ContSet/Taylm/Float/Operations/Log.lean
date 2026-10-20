@@ -12,6 +12,14 @@ public import CORALean.ContSet.Taylm.Float.Operations.LogCoef
 The exact layer's `log` with every number enclosed: the coefficients by `logCoef`, and the
 Lagrange bound `N!/Lᴺ⁺¹ · Bᴺ⁺¹/(N+1)!`, which is `(B/L)ᴺ⁺¹/(N+1)`, rounded up, `L` the
 bottom of the hull and `B` the reach. `q` and `s` are `logUp`'s precision and steps.
+
+## Inputs
+* `q` – precision of the exponential
+* `s` – number of steps
+* `T` – Taylor model
+
+## Output
+* Taylor model of the logarithm of the argument
 -/
 
 -- Authors:       Claude Opus 5.5

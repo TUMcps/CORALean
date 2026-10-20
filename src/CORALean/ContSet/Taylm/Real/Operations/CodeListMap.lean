@@ -10,6 +10,15 @@ public import CORALean.ContSet.Taylm.Real.Definitions.CodeList
 What lets the float layer's code lists, whose constants are floats, be read as real ones for
 [1, Thm. 3]: the same list, each constant through `φ`.
 
+## Inputs
+* `α` – source constant type
+* `β` – target constant type
+* `m` – number of variables
+* `φ` – constant conversion
+
+## Output
+* code list with its constants converted
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

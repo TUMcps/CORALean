@@ -15,6 +15,13 @@ is what makes the second branch of the constraint solvable only at `0`.
 At `p = 0` the sum is empty and `(0 : ℝ)⁻¹` is `0`, so this is `0` — the value the
 degenerate block should have, and the reason no positivity hypothesis is needed.
 
+## Inputs
+* `p` – number of factors
+* `a` – factor values
+
+## Output
+* normalized square sum of the factors
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

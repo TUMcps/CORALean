@@ -15,6 +15,20 @@ public import CORALean.ContSet.Taylm.Float.Theorems.ArcsinBoundGe
 others `Taylm.arcsinCoef_mem`, the derivative bound `Taylm.arcsinBound_ge`. The hypotheses are the
 rounded root `√(1 - c²)` positive at the center and `√(1 - m²)` at the magnitude `Taylm.magUp`,
 which put the range inside `(-1, 1)`.
+
+## Inputs
+* `p` – precision of the arcsine
+* `q` – precision of the square root
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hc` – the root at the center is positive
+* `hm` – the root at the magnitude is positive
+
+## Conclusion
+* the result encloses arcsin of the function
 -/
 
 -- Authors:       Claude Opus 5.5

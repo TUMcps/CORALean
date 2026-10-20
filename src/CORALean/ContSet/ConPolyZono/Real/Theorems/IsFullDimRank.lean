@@ -13,6 +13,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZon
 Dropping the constraints only enlarges the set, so an interior point of the constrained set is
 one of the polynomial zonotope on the same generators, and `PolyZonotope.isFullDimCora_of_interior`
 applies. The test is necessary and not sufficient.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* `h` – the set has an interior point
+
+## Conclusion
+* CORA's rank test holds
 -/
 
 -- Authors:       Claude Opus 5.5

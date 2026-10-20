@@ -11,6 +11,16 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.Mtimes
 only, so all five counts carry over exactly — the constraint system in
 particular is untouched, since `M` never reaches `A`, `b` or `R`. `rfl`
 against the structure instance in `Operations/Mtimes.lean`.
+
+## Inputs
+* `M` – linear map
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the factor count is unchanged
 -/
 
 -- Authors:       Claude Opus 5

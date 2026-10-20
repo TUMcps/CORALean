@@ -16,6 +16,16 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 `P(s) = c + Σₖ Lₖ sₖ + P_{≥2}(s)`: every term has degree zero (a constant), one (a coordinate,
 `degree_eq_one`) or more. The split [1, Sec. 2] bounds the linear and the nonlinear part by.
 
+## Inputs
+* `L` – terms of the polynomial
+* `s` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polynomial is its constant, linear and higher parts
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

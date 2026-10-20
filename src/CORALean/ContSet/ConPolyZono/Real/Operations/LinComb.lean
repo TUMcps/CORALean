@@ -13,20 +13,21 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
 /-!
 # `ConPolyZono.linComb`
 
-CORA's `@conPolyZono/linComb`: `PolyZonotope.linComb` on the generators — which
-is where the fresh factor for the segment parameter comes from — with the two
-constraint systems carried along side by side, `PolyLevelSet.cartProd` as `plus`
-lays them out, and `PolyLevelSet.padVars` giving the fresh factor a row of zeros.
+CORA's `@conPolyZono/linComb`: `PolyZonotope.linComb` on the generators, which is where the fresh
+factor for the segment parameter comes from, with the two constraint systems carried along side by
+side (`PolyLevelSet.cartProd`, and `PolyLevelSet.padVars` giving the fresh factor a row of zeros).
 
-Both systems are imposed unconditionally, and that is not an approximation: a
-point of `linComb` is `λ x₁ + (1-λ) x₂`, so *both* operands contribute to
-*every* point of it and there is no conditionality to express. After the
-`linComb` the two factor groups are disjoint, so the two systems constrain
-disjoint variables and are satisfiable independently.
+Both systems are imposed unconditionally, and that is not an approximation: a point of `linComb`
+is `λ x₁ + (1-λ) x₂`, so both operands contribute to every point of it. At `λ = 0` the first
+operand's constraints stay; that changes nothing unless it is empty, and then the combination is
+empty too.
 
-At `λ = 0` the first operand's point drops out while its constraints stay. That
-changes nothing unless it is empty — and then the combination is empty too,
-which is the answer wanted.
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Output
+* linear combination of the two sets
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

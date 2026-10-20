@@ -9,6 +9,16 @@ public import CORALean.ContSet.Taylm.Float.Operations.Times
 
 Float analogue of the real `Taylm.mmul`: CORA's `mtimes` of two arrays of models, entry `(i, j)`
 is `Σₖ A i k .* B k j`.
+
+## Inputs
+* `a` – rows of the first matrix
+* `b` – shared dimension
+* `c` – columns of the second matrix
+* `A` – first matrix
+* `B` – second matrix
+
+## Output
+* product matrix of Taylor models
 -/
 
 -- Authors:       Claude Opus 5.5

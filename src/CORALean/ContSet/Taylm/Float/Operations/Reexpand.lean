@@ -12,6 +12,14 @@ box and rescaled by its radius `r`, so that the new variables again range over `
 remainder is kept, and widened by what storing each new coefficient costs. The center and radius are
 the floats the caller supplies (a sub-box's `(lo + hi)/2` and `(hi - lo)/2` are not exact in the
 scalar); the expansion substitutes one variable after another, in order.
+
+## Inputs
+* `m` – center of the sub-box
+* `r` – radius of the sub-box
+* `T` – Taylor model
+
+## Output
+* Taylor model re-expanded onto the sub-box
 -/
 
 -- Authors:       Claude Opus 5.5

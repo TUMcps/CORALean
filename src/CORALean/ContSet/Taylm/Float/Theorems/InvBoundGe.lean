@@ -11,6 +11,18 @@ public import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
 
 Wherever `|ξ|` is at least the positive `m`, `|(1/x)⁽ᴺ⁺¹⁾ ξ| = (N+1)! / |ξ|ᴺ⁺²` is at most
 `(N+1)! · (1/m)ᴺ⁺²`, which `invBound` rounds up factor by factor.
+
+## Inputs
+* `m` – lower end of the magnitude
+* `N` – expansion order
+* `ξ` – point
+
+## Hypotheses
+* `hm` – lower end is positive
+* `hξ` – point's magnitude is at least the lower end
+
+## Conclusion
+* the bound dominates the next derivative of the reciprocal at the point
 -/
 
 -- Authors:       Claude Opus 5.5

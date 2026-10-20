@@ -17,6 +17,19 @@ function that scales at least linearly with `h`". Here that function is `f - c_f
 terms cancel against `constCoef`, every other term has degree at least one and so is at most `h`
 times its weight, and the remainder is at most `C·hᴺ⁺¹ ≤ C·h`.
 
+## Inputs
+* `T` – Taylor model
+* `h` – domain radius
+* `C` – scaling constant
+
+## Hypotheses
+* `h0` – radius is positive
+* `h1` – radius is at most one
+* `hT` – the model is scaled by the constant
+
+## Conclusion
+* the range lies within a multiple of the radius of the center
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

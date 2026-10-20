@@ -10,6 +10,13 @@ public import Mathlib.Data.Real.Basic
 The lower end of the union of [1, Alg. 1]'s intervals (line 30); `0` for the empty list, which the
 algorithm never has.
 
+## Inputs
+* `α` – type of the items
+* `f` – value function
+
+## Output
+* least value over the list
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

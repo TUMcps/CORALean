@@ -13,6 +13,21 @@ public import Mathlib.Tactic.Linarith
 Both ends by [1, Sec. 4]'s optimizer: on `T` for the lower one, on `-T`, which encloses `-f`, for
 the upper one.
 
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `ε` – tolerance
+* `ldbFuel` – fuel of the linear bounder
+* `fuel` – step budget
+* `t` – point
+
+## Hypotheses
+* `h` – the model encloses the function
+* `ht` – point lies in the unit box
+
+## Conclusion
+* the optimizer's enclosure contains the function's value
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

@@ -8,6 +8,18 @@ public import Mathlib.Data.Matrix.Mul
 
 /-!
 # `Taylm.mtimes` contains the image of the range set
+
+## Inputs
+* `k` – rows of the matrix
+* `m` – number of models
+* `M` – matrix
+* `T` – family of Taylor models
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image of the range set is contained in the product's range set
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,14 @@ public import CORALean.ContSet.Taylm.Float.Operations.BranchAndBound
 
 CORA's `optBnb`: branch and bound over the normalized box `[-1, 1]ⁿ` plus the remainder with the
 error box absorbed (`absorbRounding`), the ends rounded outward.
+
+## Inputs
+* `T` – Taylor model
+* `ε` – tolerance
+* `fuel` – step budget
+
+## Output
+* enclosure of its range by branch and bound
 -/
 
 -- Authors:       Claude Opus 5.5

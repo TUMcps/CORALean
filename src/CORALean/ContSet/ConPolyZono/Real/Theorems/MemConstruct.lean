@@ -15,6 +15,17 @@ ambient type.
 
 The float layer inherits it — its `mem_nominalSet_iff` is this theorem at the
 nominal set.
+
+## Inputs
+* `n` – ambient dimension
+* `cPZ` – constrained polynomial zonotope
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership is witnessed by factors and constraint
 -/
 
 -- Authors:       Claude Opus 5

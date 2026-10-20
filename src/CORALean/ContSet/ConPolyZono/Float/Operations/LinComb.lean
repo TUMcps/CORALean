@@ -13,16 +13,20 @@ public import CORALean.ContSet.LevelSet.Real.Theorems.Basic
 /-!
 # `ConPolyZono.linComb`
 
-CORA's `@conPolyZono/linComb`, as the exact layer lays it out: the float
-`PolyZonotope.linComb` on the generators, which is where the fresh factor for the
-segment parameter comes from and where every rounding is paid, with the two
-constraint systems carried along side by side.
+CORA's `@conPolyZono/linComb`: the float `PolyZonotope.linComb` on the generators, which is where
+the fresh factor for the segment parameter comes from and where every rounding is paid, with the
+two constraint systems carried along side by side.
 
-The constraint side computes nothing: it is the float `PolyLevelSet.cartProd` of the two, which
-places the matrices block-diagonally with `zero` off the blocks and stacks `b` and `b_error`,
-padded with the fresh factor (`PolyLevelSet.padVars`), so the constraints of the result are
-exactly the two operands' — read on the factors they came with, the fresh one at exponent zero. The
-error box is therefore the generator part's, unchanged.
+The constraint side computes nothing: it is the float `PolyLevelSet.cartProd` of the two, padded
+with the fresh factor (`PolyLevelSet.padVars`), so the error box is the generator part's,
+unchanged.
+
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+
+## Output
+* linear combination of the two sets
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

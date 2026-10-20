@@ -12,6 +12,16 @@ The expansion of an elementary function at the constant part, every number enclo
 coefficients are given as enclosures `lo k`, `hi k` of `g⁽ᵏ⁾(c) / k!`, and the Lagrange remainder
 is a rounded-up bound `D` of `|g⁽ᴺ⁺¹⁾|` times `Bᴺ⁺¹ / (N+1)!`, `B` the reach of the model from
 `c`, each factor rounded up. What is left for each function is its derivatives.
+
+## Inputs
+* `T` – Taylor model
+* `c` – center
+* `lo` – lower coefficient bounds
+* `hi` – upper coefficient bounds
+* `D` – remainder derivative bound
+
+## Output
+* Taylor model of the expansion at the center
 -/
 
 -- Authors:       Claude Opus 5.5

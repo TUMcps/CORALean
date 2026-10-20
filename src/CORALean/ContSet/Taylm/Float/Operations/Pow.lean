@@ -6,6 +6,12 @@ public import CORALean.ContSet.Taylm.Float.Operations.Times
 
 /-!
 # `Taylm.pow`
+
+## Inputs
+* `T` – Taylor model
+
+## Output
+* function giving the model's power for each exponent
 -/
 
 -- Authors:       Claude Opus 5.5

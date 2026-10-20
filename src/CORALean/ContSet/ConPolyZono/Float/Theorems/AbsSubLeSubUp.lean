@@ -10,6 +10,18 @@ public import Mathlib.Tactic.Linarith
 
 A value in `[lo, hi]` is within the stored width `hi - lo`, rounded up, of `lo`: how an interval a
 float operation encloses a row by is recorded as the row's `b` and `b_error`.
+
+## Inputs
+* `lo` – lower endpoint
+* `hi` – upper endpoint
+* `v` – real value
+
+## Hypotheses
+* `h₁` – value is at least the lower endpoint
+* `h₂` – value is at most the upper endpoint
+
+## Conclusion
+* distance to the lower endpoint is within the rounded-up width
 -/
 
 -- Authors:       Claude Opus 5.5

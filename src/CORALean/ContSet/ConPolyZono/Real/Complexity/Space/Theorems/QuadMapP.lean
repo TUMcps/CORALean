@@ -10,22 +10,22 @@ public import Mathlib.Tactic.Positivity
 /-!
 # `ConPolyZono.quadMap`'s counts
 
-`quadMap` is `quadMapDep` run on `dependent`: the factor and dependent-generator
-counts are `dependent`'s own, `quadMapDep`'s square then landing on that count
-rather than the operand's, and the independent block empties — the constraint
-count `m` and the constraint-generator count `q` both carry straight through,
-since the constraint system reads none of the enclosing polynomial zonotope.
-`rfl` by unfolding `quadMapDep` and `dependent` rather than restating either.
+`quadMap` is `quadMapDep` run on `dependent`: the factor and dependent-generator counts are
+`dependent`'s own, and the constraint counts `m` and `q` carry straight through, since the
+constraint system reads none of the enclosing polynomial zonotope; `rfl` by unfolding. The
+dependent-generator count is `O(m ^ 2)` for a family of sets whose combined generator count grows
+as `m`: `quadMap_h` reduces the left side to `(m+1)*(m+1)`, which `4 * m ^ 2` dominates for `m ≥
+1`.
 
-## `ConPolyZono.quadMap`'s dependent-generator count is `O(m ^ 2)`
+## Inputs
+* `Q` – family of quadratic forms
+* `cPZ` – constrained polynomial zonotope
 
-Not a bare arithmetic fact about `(m+1)*(m+1)`, but one tied to `quadMap`
-through a family of sets whose combined dependent-and-independent count grows
-as `m`. `quadMap_h` reduces the left side to that product, which `4 * m ^ 2`
-dominates for every `m ≥ 1`.
+## Hypotheses
+* none
 
-`Asymptotics.IsBigO.of_bound` closes it: it asks for domination by a fixed
-constant `∀ᶠ x in l`, which the whole range `m ≥ 1` clears with room to spare.
+## Conclusion
+* the factor count is the operand's factors plus independent generators
 -/
 
 -- Authors:       Claude Opus 5

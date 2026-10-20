@@ -14,6 +14,15 @@ public import CORALean.ContSet.Taylm.Real.Operations.WidestCoord
 return the least of the cutoff and the live boxes' lower bounds, and the cutoff: the minimum of the
 function over `X` lies between them.
 
+## Inputs
+* `lb` – lower bounding function on a box
+* `ub` – upper bounding function
+* `X` – domain box
+* `fuel` – step budget
+
+## Output
+* interval containing the function's minimum
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

@@ -13,6 +13,14 @@ The Bernstein basis polynomial of degree `N` and index `j` on `[0, 1]`:
 Nonnegative on `[0, 1]` and summing to one there, which is why the extreme coefficients bound the
 polynomial. Over CORA's normalized box `[-1, 1]` the argument is `u = (x + 1) / 2`.
 
+## Inputs
+* `N` – degree
+* `j` – index
+* `u` – point of the unit interval
+
+## Output
+* Bernstein basis polynomial value at the argument
+
 ## References
 
 * [1] `global/functions/helper/sets/contSet/polyZonotope/poly2bernstein.m`, CORA (Sep. 2025).

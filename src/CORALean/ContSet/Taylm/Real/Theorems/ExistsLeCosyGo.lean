@@ -13,6 +13,22 @@ public import Mathlib.Tactic.Linarith
 [1, Sec. 4]: some point of `X` has a value at most the upper end, so `cosyGo` encloses the
 minimum.
 
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `X` – domain box
+* `ε` – tolerance
+* `ldbFuel` – fuel of the linear bounder
+* `fuel` – step budget
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hX` – the box lies in the unit box
+* `hX'` – the box ends are ordered
+
+## Conclusion
+* some point of the box has a value below the upper end
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

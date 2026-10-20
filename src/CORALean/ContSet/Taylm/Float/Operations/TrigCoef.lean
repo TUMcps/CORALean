@@ -13,6 +13,13 @@ Enclosures of the `k`-th Taylor coefficients of `sin` and of `cos` at `c`,
 `sin⁽ᵏ⁾(c) / k!` and `cos⁽ᵏ⁾(c) / k!`, together: at `k = 0` the sine and cosine enclosures of
 `Global/Float/SinCos`, and from `k` to `k + 1` the rule `sin' = cos`, `cos' = -sin`, divided by
 `k + 1` between its two roundings. `p` is the number of halvings of the sine and cosine.
+
+## Inputs
+* `p` – precision of the halvings
+* `c` – center
+
+## Output
+* enclosures of the sine and cosine Taylor coefficients
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -15,6 +15,18 @@ public import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 `taylor_remainder_abs_le` at `exp`, then every factor of the bound below its rounding.
 `hp` is `expUp`'s range hypothesis at the top of the hull, as `Interval.exp_outer` keeps
 it; it covers the center too.
+
+## Inputs
+* `p` – precision of the exponential
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hp` – the upper hull end is small enough for the precision
+
+## Conclusion
+* the result encloses the exponential of the function
 -/
 
 -- Authors:       Claude Opus 5.5

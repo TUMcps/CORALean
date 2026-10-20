@@ -9,6 +9,13 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.GetSubset
 
 The halves `αₖ ∈ [-1, 0]` and `αₖ ∈ [0, 1]` of `cPZ`, each over the full factor domain: `getSubset`
 at the centers `∓1/2` and radius `1/2`, all exact in the scalar (`half` is exact).
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `k` – factor index
+
+## Output
+* two halves split at that factor
 -/
 
 -- Authors:       Claude Opus 5.5

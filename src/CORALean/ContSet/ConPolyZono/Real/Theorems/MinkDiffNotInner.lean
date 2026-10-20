@@ -14,6 +14,15 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
 the zonotope `Z = [-1, 1]`. The test at the corners `x ± 1 ∈ P` passes for `x = 0`, so the result
 contains `0`; but `0 + ½ ∉ P`, so `0 + Z ⊄ P` and `0 ∉ P ⊖ Z`. CORA labels this
 computation `'exact'` and cites a theorem that assumes convexity. Read from the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the result need not lie in the Minkowski difference
 -/
 
 -- Authors:       Claude Opus 5.5

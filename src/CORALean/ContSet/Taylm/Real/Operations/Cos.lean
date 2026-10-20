@@ -12,6 +12,12 @@ CORA's `cos`: the expansion at the constant part, every derivative of `cos` boun
 
 The cosine of [1, Def. 3 (cos)], whose remainder term `J` is a derivative of `cos`, at most one.
 
+## Inputs
+* `T` – Taylor model
+
+## Output
+* Taylor model of cosine of the argument
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

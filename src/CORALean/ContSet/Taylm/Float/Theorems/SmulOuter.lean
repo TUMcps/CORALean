@@ -17,6 +17,20 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfSmul
 For every factor in `[alo, ahi]`: the remainder and the error box by their corner products, each
 corner of the sum `a (r + e)` being at least the sum of the least corners (`aux_mul_sum_between`),
 and the stored coefficients by `abs_polyOf_round_le`, whose cost goes into the box.
+
+## Inputs
+* `alo` – lower end of the scalar
+* `ahi` – upper end of the scalar
+* `a` – the scalar
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `ha` – the scalar lies between the ends
+* `h` – the model encloses the function
+
+## Conclusion
+* the scaled model encloses the scaled function
 -/
 
 -- Authors:       Claude Opus 5.5

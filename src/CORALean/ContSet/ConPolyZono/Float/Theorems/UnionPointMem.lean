@@ -18,6 +18,19 @@ factors are the exact union's own, so the stored constraints hold there
 (`union_satisfies_of_real`). What differs is the center and the sliding
 generator, which are stored rounded down: their shortfalls are the midpoint residual and, over
 the selector `t` in `[-1,1]`, the symmetric half-difference box, both of which the stored box holds.
+
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+* `y` – exact union point
+* `e` – error vector
+
+## Hypotheses
+* `hy` – the point lies in the exact union
+* `he` – the error lies in the joined error box
+
+## Conclusion
+* the sum of point and error lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

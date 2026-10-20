@@ -12,6 +12,13 @@ The center and the rows of both generator blocks at the chosen coordinates; the 
 matrices and the constraint system constrain the factors, not the coordinates, and are copied.
 The error box is projected with `Interval.project`. Selecting coordinates does no arithmetic,
 so nothing rounds.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `dims` – kept coordinates
+
+## Output
+* projection onto the kept coordinates
 -/
 
 -- Authors:       Claude Opus 5.5

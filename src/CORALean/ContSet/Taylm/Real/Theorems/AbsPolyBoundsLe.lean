@@ -9,6 +9,15 @@ public import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
 
 Each term's bound lies in `[-|a|, |a|]`, every monomial being in `[-1, 1]` on the box, so the
 ends of `polyBounds` are at most the sum of the magnitudes.
+
+## Inputs
+* `L` – terms of the polynomial
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polynomial's bound ends are at most the summed coefficient magnitudes
 -/
 
 -- Authors:       Claude Opus 5.5

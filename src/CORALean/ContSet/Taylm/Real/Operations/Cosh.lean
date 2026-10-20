@@ -13,6 +13,12 @@ CORA's `cosh`: the expansion at the constant part; every derivative of `cosh` is
 
 The hyperbolic cosine of [1, Def. 3 (cosh)].
 
+## Inputs
+* `T` – Taylor model
+
+## Output
+* Taylor model of hyperbolic cosine of the argument
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

@@ -14,6 +14,15 @@ Three stages and three equalities of sets, none of them needing a hypothesis:
 `compact` is bookkeeping, and an order bound is only worth stating once the
 bookkeeping is done. The order matters — dropping factors is only sound once
 both blocks have been merged onto the columns they keep.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is unchanged
 -/
 
 -- Authors:       Claude Opus 5

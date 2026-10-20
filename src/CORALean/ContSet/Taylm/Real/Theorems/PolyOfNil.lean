@@ -8,6 +8,15 @@ public import CORALean.ContSet.Taylm.Real.Taylm
 # `Taylm.polyOf_nil`
 
 What every operation's proof reads its polynomial through.
+
+## Inputs
+* `t` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the empty term list evaluates to zero
 -/
 
 -- Authors:       Claude Opus 5.5

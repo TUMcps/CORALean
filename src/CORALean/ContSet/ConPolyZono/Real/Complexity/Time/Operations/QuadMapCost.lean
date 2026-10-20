@@ -16,6 +16,18 @@ the enclosing polynomial zonotope, read off the dependent set by a conversion th
 entries are part of the result and are written. So the count is `dependentCost`,
 `PolyZonotope.quadMapDepCost` at the sizes `dependent` leaves, `p + qI` factors and `h + qI`
 dependent generators, both proved in `Complexity/Space/Theorems/QuadMap*.lean`, and those writes.
+
+## Inputs
+* `m` – number of matrices
+* `n` – ambient dimension
+* `p` – number of factors
+* `h` – dependent generators
+* `qI` – independent generators
+* `mC` – number of constraints
+* `q` – constraint generators
+
+## Output
+* cost of the quadratic map
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

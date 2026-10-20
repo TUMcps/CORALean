@@ -11,6 +11,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
 The factors either block still reads. `appendE` puts both exponent matrices
 over the shared factors, so this is `PolyZonotope.usedFactors` of one matrix
 and denotes the union of the two used sets.
+
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `q` – number of constraint generators
+* `E` – exponent matrix
+* `R` – constraint exponent matrix
+
+## Output
+* set of factors either block still reads
 -/
 
 -- Authors:       Claude Opus 5

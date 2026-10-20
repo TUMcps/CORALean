@@ -11,6 +11,12 @@ public import CORALean.ContSet.Interval.Real.Interval
 Line 11 of [1, Alg. 1]: the coordinate along which a box is widest, the first of several; `none`
 when the box has no coordinates.
 
+## Inputs
+* `B` – box
+
+## Output
+* index of the widest coordinate, if any
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

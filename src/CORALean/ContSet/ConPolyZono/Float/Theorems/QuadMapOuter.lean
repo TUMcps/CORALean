@@ -32,6 +32,16 @@ dependent form's nominal point at `a' = [a; β; e / bound]`, whose first block i
 meets the padded constraints. The quadratic image of that point is the exact layer's
 `quadMapDep` at `a'` (`quadMapDep_point`), which is the stored image at `a'` plus each
 generator's rounding against a monomial, inside the error box. Outer only.
+
+## Inputs
+* `Q` – family of quadratic forms
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image under the quadratic map is contained in the result
 -/
 
 -- Authors:       Claude Opus 5.5

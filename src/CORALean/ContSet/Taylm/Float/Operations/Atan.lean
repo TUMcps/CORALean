@@ -20,6 +20,14 @@ between `powDown` and `powUp` of the roundings of `w` (above by `1`, `w ≤ 1`),
 bound is `atanDom N` (`recL [1, 0, 1] (j ↦ 2(j+1)) N`) at the magnitude `Taylm.magUp`, enclosed by
 `Interval.evalPolyCoeffs` (`w ≤ 1` drops the power). `p` and `q` are the precisions of
 `Global/Float/InverseTrig`.
+
+## Inputs
+* `p` – precision of the arctangent
+* `q` – precision of the square root
+* `T` – Taylor model
+
+## Output
+* Taylor model of arctan of the argument
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,20 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 # `Taylm.branchAndBound` brackets the polynomial
 
 On every point of the box `X` the polynomial of the term list lies in the result.
+
+## Inputs
+* `P` – terms of the polynomial
+* `X` – domain box
+* `ε` – tolerance
+* `adv` – advanced bounding flag
+* `fuel` – step budget
+* `t` – point
+
+## Hypotheses
+* `ht` – point lies in the domain box
+
+## Conclusion
+* the enclosure contains the polynomial's value at the point
 -/
 
 -- Authors:       Claude Opus 5.5

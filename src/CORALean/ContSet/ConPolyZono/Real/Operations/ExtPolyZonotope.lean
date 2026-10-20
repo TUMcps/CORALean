@@ -18,6 +18,12 @@ constraint rows appended below the generators, so that the constraint becomes a 
 whose last `m` coordinates `-b + A μ(α)` vanish exactly when the factors satisfy `A μ(α) = b`:
 the lifted polynomial zonotope of [1, Lemma 1], with the independent block carried as `[GI; 0]`.
 
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* polynomial zonotope extended by the constraint
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

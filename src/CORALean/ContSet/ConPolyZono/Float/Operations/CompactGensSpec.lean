@@ -15,6 +15,12 @@ and the gap paid into the ambient box. The constraint block stands.
 The definition `compactGens` is proved equal to, which computes the same thing
 from tables built once (issue #61). This one is the statement the soundness proof
 reads: every entry a named, separately provable lookup.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* same set with equal generator columns merged, as specified
 -/
 
 -- Authors:       Claude Opus 5.5

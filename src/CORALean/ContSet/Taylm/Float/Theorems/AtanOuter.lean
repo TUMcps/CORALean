@@ -18,6 +18,18 @@ No domain condition: `atan` is smooth on `ℝ`. `Taylm.taylor_outer` at `arctan`
 the center are `atanPoly j c · wʲ⁺¹` (`iteratedDeriv_atan`), the polynomial the integer list
 `recL` evaluates (`eval_recL`), `Interval.evalPolyCoeffs_mem` enclosing it, and whose `(N+1)`-th is
 bounded by `atanDom N` at the magnitude (`abs_iteratedDeriv_atan_le`).
+
+## Inputs
+* `p` – precision of the arctangent
+* `q` – precision of the square root
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+
+## Conclusion
+* the result encloses arctan of the function
 -/
 
 -- Authors:       Claude Opus 5.5

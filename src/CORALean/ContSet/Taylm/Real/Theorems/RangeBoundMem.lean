@@ -19,6 +19,19 @@ point of the box is `mid + rad·t` for some `t` in the normalized box (`taylm_co
 identity models enclose that map, [1, Thm. 2] carries the enclosure through the code list, and
 `bounds` contains every value of an enclosed function.
 
+## Inputs
+* `m` – number of variables
+* `e` – code list
+* `D` – domain box
+* `N` – expansion order
+* `x` – point
+
+## Hypotheses
+* `hx` – point lies in the domain box
+
+## Conclusion
+* the range enclosure contains the code list's value at the point
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

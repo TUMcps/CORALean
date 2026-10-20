@@ -19,6 +19,13 @@ row of one set still reads exponent zero on every factor of the other.
 The centers pair rather than add, and every generator embeds into the product
 ambient type at zero in the other coordinate: the two operands no longer share
 an ambient type, which is the one place this departs from `plus`.
+
+## Inputs
+* `cPZ₁` – first factor
+* `cPZ₂` – second factor
+
+## Output
+* Cartesian product of the two sets
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

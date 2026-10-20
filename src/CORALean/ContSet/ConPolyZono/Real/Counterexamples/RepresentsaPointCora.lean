@@ -13,13 +13,19 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
 The branch `'point'` (l. 64-69, marked `% Todo: check constraints`) is
 `res = isempty(cPZ.G) && isempty(cPZ.GI)`, with `S = cPZ.c` when it holds. Two wrong answers:
 
-* no generator but an infeasible constraint: `c = 0`, one factor, `G` and `GI` empty and the
-  constraint `α₁ = 2` (no `α₁ ∈ [-1, 1]` satisfies it) is the empty set, yet CORA answers `true`
-  and returns the point `c`;
-* a generator that the constraint pins down: `c = 0`, one factor, `G = (1)` with exponent `1` and
-  the constraint `α₁ = 0` is the point `{0}`, yet CORA answers `false`.
+* no generator but an infeasible constraint (`α₁ = 2`): the empty set, yet CORA answers `true`;
+* a generator pinned by the constraint (`α₁ = 0`): the point `{0}`, yet CORA answers `false`.
 
 Wrong answers, not unsound. Read from the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's point test is wrong in both directions
 -/
 
 -- Authors:       Claude Sonnet 5.5

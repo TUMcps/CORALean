@@ -10,6 +10,12 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 Interval multiplication folded from the right, starting at `[1, 1]`: how [1, Eq. 12] bounds a
 monomial from its factors' powers.
 
+## Inputs
+* none
+
+## Output
+* product of the listed intervals
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

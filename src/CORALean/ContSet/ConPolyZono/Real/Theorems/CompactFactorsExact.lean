@@ -17,15 +17,20 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEqUni
 /-!
 # Dropping the factors neither block reads loses nothing
 
-`compactFactors` changes `p`, so its two directions differ: one restricts a
-factor vector to the kept factors, the other extends one by zero — a value the
-dropped factors are free to take, since no monomial of either block reads them.
-The constraint monomials restrict alongside the generator ones, and nothing else
-moves.
+`compactFactors` changes `p`, so its two directions differ: one restricts a factor vector to the
+kept factors, the other extends one by zero, a value the dropped factors are free to take since no
+monomial of either block reads them. The constraint monomials restrict alongside the generator
+ones. The two `key`s are stated with the *original* center and independent block on both sides, so
+each equation has the one sum that actually changes.
 
-The two `key`s are stated with the *original* center and independent block on
-both sides. They are the compacted ones up to unfolding, and writing them so
-keeps each equation to the one sum that actually changes.
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is unchanged
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

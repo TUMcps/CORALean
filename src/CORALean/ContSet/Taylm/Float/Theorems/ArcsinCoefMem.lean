@@ -16,6 +16,17 @@ public import CORALean.Global.ElementaryDerivBounds
 integer list evaluating as `asinPoly` (`eval_recL`), `Interval.evalPolyCoeffs_mem` enclosing it, and
 the powers and the factorial between their roundings. `h` is the rounded root positive, which puts
 `c` inside `(-1, 1)`.
+
+## Inputs
+* `q` – precision of the square root
+* `c` – center
+* `j` – coefficient index
+
+## Hypotheses
+* `h` – the root at the center is positive
+
+## Conclusion
+* the true arcsin coefficient lies in the enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,12 @@ hull of the center and the range comes closest to zero. The source's condition, 
 range, is the hull lying on one side of zero; `m` is then its distance from zero. CORA's
 `priv_inverse` (behind `rdivide` and `mrdivide`) is the same expansion.
 
+## Inputs
+* `T` – Taylor model
+
+## Output
+* Taylor model of the reciprocal
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

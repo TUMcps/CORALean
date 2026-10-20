@@ -8,6 +8,16 @@ public import CORALean.ContSet.Taylm.Real.Definitions.Scaled
 # The constant part is at most the weight
 
 `constCoef` sums the coefficients of degree zero, whose weight is their magnitude.
+
+## Inputs
+* `T` – Taylor model
+* `h` – domain radius
+
+## Hypotheses
+* `h0` – radius is positive
+
+## Conclusion
+* the constant part is at most the weight
 -/
 
 -- Authors:       Claude Opus 5.5

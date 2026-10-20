@@ -12,6 +12,13 @@ the multiplicative inverse of [1, Def. 3 (inverse)] followed by the product of [
 
 [2, Eq. 9] writes the same quotient, `T₁·(1/T₂)`.
 
+## Inputs
+* `T₁` – numerator
+* `T₂` – denominator
+
+## Output
+* Taylor model of the quotient
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

@@ -10,6 +10,12 @@ public import CORALean.ContSet.Taylm.Real.Operations.Times
 CORA's `prod` of an array of models along one dimension: `res = obj(1); for i = 2:m, res = res .*
 obj(i)`, the product folded from the left. At least one factor: CORA's loop starts from the first
 element and an empty array is an error, so the index type is `Fin (m + 1)`.
+
+## Inputs
+* none
+
+## Output
+* Taylor model of the product of the listed models
 -/
 
 -- Authors:       Claude Opus 5.5

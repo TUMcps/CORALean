@@ -19,6 +19,16 @@ factor vector witnesses the image, and the stored `A`, `b` and `R` are the same
 floats. The copied constraint transfers by `id`, and every lemma the polynomial
 zonotope's proof used — `mulVec_split`, `matMul_close`, `mem_generatorError` —
 is reused rather than restated.
+
+## Inputs
+* `M` – linear map
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image under the map is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

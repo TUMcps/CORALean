@@ -15,6 +15,17 @@ the coefficients `bernsteinCoeff` [1]: `Σ_β b_β ∏ₖ B_{βₖ,N}((tₖ + 1)
 on the list), a monomial is the product over variables of its one-variable expansion
 (`pow_eq_sum_bernsteinEntry`), and a product of sums is the sum over multi-indices.
 
+## Inputs
+* `L` – terms of the polynomial
+* `N` – degree
+* `t` – point
+
+## Hypotheses
+* `hL` – every exponent is at most the degree
+
+## Conclusion
+* the polynomial equals its Bernstein expansion
+
 ## References
 
 * [1] `global/functions/helper/sets/contSet/polyZonotope/poly2bernstein.m`, CORA (Sep. 2025).

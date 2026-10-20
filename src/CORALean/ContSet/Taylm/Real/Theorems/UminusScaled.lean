@@ -10,6 +10,17 @@ public import CORALean.ContSet.Taylm.Real.Definitions.Scaled
 Negation changes no magnitude: the coefficients' and the remainder ends' (swapped) are the same.
 A step of [1, Thm. 1] for subtraction, which is a sum with a negation.
 
+## Inputs
+* `T` – Taylor model
+* `h` – domain radius
+* `C` – scaling constant
+
+## Hypotheses
+* `hT` – the model is scaled by the constant
+
+## Conclusion
+* the negated model is scaled by the same constant
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

@@ -11,6 +11,18 @@ public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZon
 No point of the set exceeds `supportBound` in the direction `a`: the dependent part's argument
 bound, the independent block's rounded extent and the error box's, each rounded upward. An
 upper bound only, as over ℝ; equality with CORA's value is not claimed.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `c` – direction as a linear functional
+* `a` – float direction
+* `u` – float bound on the nominal point set
+
+## Hypotheses
+* `hc` – float direction represents the functional
+
+## Conclusion
+* the bound is an upper bound on the set in that direction
 -/
 
 -- Authors:       Claude Opus 5.5

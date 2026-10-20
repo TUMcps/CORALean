@@ -13,6 +13,16 @@ As the exact layer's halves cover it (`splitDepFactor_union`): a point at factor
 the left half's at `2αₖ + 1`, one at `αₖ ≥ 0` the right half's at `2αₖ - 1`, and
 `getSubset_point_outer` carries it, with the error box, into that float half; `∓1/2` and `1/2`
 read back as themselves. Outer, not exact.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `k` – factor index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is covered by the two halves
 -/
 
 -- Authors:       Claude Opus 5.5

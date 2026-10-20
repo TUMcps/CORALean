@@ -16,6 +16,17 @@ public import Mathlib.Tactic.Ring
 
 Exactly: the double sum is `t ⬝ H t / 2`, the linear terms `-(t ⬝ H x₀ + x₀ ⬝ H t)/2`, and the
 constant `x₀ ⬝ H x₀ / 2`.
+
+## Inputs
+* `H` – Hessian matrix
+* `x0` – expansion point
+* `t` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the quadratic form's terms evaluate to the quadratic form
 -/
 
 -- Authors:       Claude Opus 5.5

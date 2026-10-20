@@ -9,6 +9,16 @@ public import CORALean.ContSet.Taylm.Float.Operations.Basic
 
 `half` is exact, so `p` halvings divide by `2ᵖ`, and the comparison with `1/2` is one-sided
 sound: a `true` check means `x ≤ 2ᵖ/2`.
+
+## Inputs
+* `p` – precision
+* `x` – float
+
+## Hypotheses
+* `h` – the below-power test returns true
+
+## Conclusion
+* the float is at most half of two to the precision
 -/
 
 -- Authors:       Claude Opus 5.5

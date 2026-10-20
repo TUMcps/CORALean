@@ -14,6 +14,20 @@ instead, and that is exactly the gap in [1, Thm. 1] this formalization closes by
 hypothesis: the union's branch that pins one operand's factors to `0` expects
 that operand's whole block to drop out.
 
+## Inputs
+* `p` – number of factors
+* `h` – number of generators
+* `E` – exponent matrix
+* `a` – factor values
+* `i` – column index
+
+## Hypotheses
+* `hE` – no column is the constant monomial
+* `ha` – factor values are zero
+
+## Conclusion
+* the monomial vanishes
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

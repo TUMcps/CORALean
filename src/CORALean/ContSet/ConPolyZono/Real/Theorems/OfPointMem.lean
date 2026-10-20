@@ -10,6 +10,15 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.OfPoint
 `ofPoint v` states its own `p`, `h`, `qI` and `m`, that count only up to
 unfolding, so both sums and the empty constraint system each need unfolding
 to be seen as vacuous.
+
+## Inputs
+* `v` – the point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point lies in its own set
 -/
 
 -- Authors:       Claude Opus 5

@@ -13,6 +13,17 @@ public import CORALean.ContSet.Taylm.Float.Theorems.UnitRemainderLe
 `compose_outer` with the Taylor coefficients at the constant part, which `trigCoef_mem`
 encloses, and the remainder `unitRemainder_le`, every derivative of `cos` being at most one in
 magnitude. No domain condition and no range hypothesis.
+
+## Inputs
+* `p` – precision of the halvings
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+
+## Conclusion
+* the result encloses cosine of the function
 -/
 
 -- Authors:       Claude Opus 5.5

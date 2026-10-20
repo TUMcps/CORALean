@@ -15,6 +15,20 @@ keeps the cover, `splitAt_covers`), so a point lies in some box, whose interval 
 and the union holds that interval. The soundness of [1, Alg. 1] for any sound way `bnd` of bounding
 a box.
 
+## Inputs
+* `bnd` – bounding function on a box
+* `g` – bounded function
+* `ε` – tolerance
+* `X` – domain box
+* `t` – point
+
+## Hypotheses
+* `hb` – bounds hold on every box containing the point
+* `ht` – point lies in the domain box
+
+## Conclusion
+* the loop's enclosure contains the function's value at the point
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

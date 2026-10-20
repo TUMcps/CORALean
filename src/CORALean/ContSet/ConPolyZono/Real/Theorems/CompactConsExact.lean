@@ -14,6 +14,15 @@ The result is [1, Prop. 2], the constraint-side counterpart.
 `PolyLevelSet.compact`, which denotes the same set (`PolyLevelSet.compact_exact`), so the point
 equation is the same term on both sides.
 
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is unchanged
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

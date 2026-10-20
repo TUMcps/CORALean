@@ -10,6 +10,20 @@ public import Mathlib.Algebra.BigOperators.Fin
 
 The new factors sit at exponent zero, which is the only reason the block may
 be carried through unchanged.
+
+## Inputs
+* `p` – number of factors
+* `q` – number of columns
+* `R` – exponent matrix
+* `r` – number of added factors
+* `a` – factor values
+* `l` – column index
+
+## Hypotheses
+* none
+
+## Conclusion
+* padding the exponent matrix changes no monomial
 -/
 
 -- Authors:       Claude Opus 5

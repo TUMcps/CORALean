@@ -29,6 +29,12 @@ zero, `arcsin` and `arccos` a magnitude below one, `tan` below `π/2`. A model f
 condition gives `none`, where CORA throws `outOfDomain`: the condition is on the computed model,
 not on the function it encloses.
 
+## Inputs
+* none
+
+## Output
+* Taylor model of the intrinsic, if its condition holds
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

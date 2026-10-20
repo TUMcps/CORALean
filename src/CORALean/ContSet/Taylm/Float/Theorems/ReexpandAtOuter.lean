@@ -17,6 +17,20 @@ The new polynomial at `s` is the original at `s` with `sₖ` replaced by `m + r 
 (`polyOf_reexpPairs`), up to the width of the stored coefficients' brackets
 (`abs_polyOf_round_le`), which the error box takes in; and for `|m| + |r| ≤ 1` that point is again
 in the normalized box, where the original remainder and box hold.
+
+## Inputs
+* `T` – Taylor model
+* `g` – enclosed function
+* `k` – variable index
+* `m` – center
+* `r` – radius
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hmr` – center plus radius stays within the unit interval
+
+## Conclusion
+* the result encloses the function with that variable substituted
 -/
 
 -- Authors:       Claude Opus 5.5

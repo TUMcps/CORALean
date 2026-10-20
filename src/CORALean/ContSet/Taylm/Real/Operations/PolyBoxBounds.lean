@@ -11,6 +11,13 @@ public import CORALean.ContSet.Taylm.Real.Operations.TermBoxBounds
 taken in interval arithmetic, scaled by the coefficient, and summed. Over the normalized box this
 is `polyBounds`; here the box is any, which is what branch and bound needs for its sub-boxes.
 
+## Inputs
+* `L` – terms of the polynomial
+* `B` – box
+
+## Output
+* range of the terms over the box by interval arithmetic
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

@@ -12,6 +12,20 @@ public import Mathlib.Tactic.Linarith
 On the normalized box the polynomial lies in the branch and bound interval, [1, Alg. 1], and the
 function differs from it by the remainder.
 
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `ε` – tolerance
+* `fuel` – step budget
+* `t` – point
+
+## Hypotheses
+* `h` – the model encloses the function
+* `ht` – point lies in the unit box
+
+## Conclusion
+* the advanced branch and bound enclosure contains the function's value
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

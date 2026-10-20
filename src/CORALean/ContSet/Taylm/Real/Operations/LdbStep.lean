@@ -15,6 +15,12 @@ the box's center (step (1)): the bound `[M, Min]` of the linear part plus the no
 `Lᵢ ≠ 0` the part within `d/|Lᵢ|` of the left end kept, `d = Min - M`. The source flips the
 coordinates with negative `Lᵢ` (step (2)); here their left end is `+1` instead.
 
+## Inputs
+* `T` – Taylor model
+
+## Output
+* bound of the model and the part of the box kept
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

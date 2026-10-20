@@ -11,6 +11,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
 # A product of brackets lies in its bracket
 
 If `x` lies in `I` and each `e k` in `E k`, then `x · ∏ e k` lies in `boundsProd E l I`.
+
+## Inputs
+* `E` – interval of each factor
+* `e` – value of each factor
+
+## Hypotheses
+* none
+
+## Conclusion
+* a product of values in their brackets lies in the product bracket
 -/
 
 -- Authors:       Claude Opus 5.5

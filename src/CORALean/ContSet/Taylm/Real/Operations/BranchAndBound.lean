@@ -14,6 +14,16 @@ interval arithmetic, eq. (12), and the loop splits until the union settles. `adv
 source's two settings: `standard` bounds each sub-box by interval arithmetic directly, `advanced`
 re-expands `P` at the sub-box's center first (lines 15, 22, 28).
 
+## Inputs
+* `P` – terms of the polynomial
+* `X` – domain box
+* `ε` – tolerance
+* `adv` – advanced bounding flag
+* `fuel` – step budget
+
+## Output
+* enclosure of the polynomial's range
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

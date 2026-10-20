@@ -11,6 +11,12 @@ public import CORALean.ContSet.Interval.Float.Operations.MulHi
 
 The product of an interval by a list of intervals, factor by factor through the corner products
 rounded outward.
+
+## Inputs
+* `E` – interval of each factor
+
+## Output
+* product of a start interval by the listed factors
 -/
 
 -- Authors:       Claude Opus 5.5

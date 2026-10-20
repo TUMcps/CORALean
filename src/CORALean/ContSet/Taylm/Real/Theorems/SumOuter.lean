@@ -7,6 +7,15 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PlusOuter
 
 /-!
 # `Taylm.sum` encloses the sum
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sum model encloses the sum of the functions
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -8,15 +8,23 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleConstruct
 /-!
 # `convHullSingle` is the convex hull of one set
 
-`convHullSingle_construct` says the closed form denotes the weighted sums of `a`
-of the set's points; Carathéodory says those are the convex hull once `a` passes
-the dimension. [1] builds that bound into its definition of the hull, taking
-`a = n + 1` points of a set in `ℝⁿ` — which is where the count of copies in
-[1, Prop. 9] comes from, and the only thing the bound is used for.
+`convHullSingle_construct` says the closed form denotes the weighted sums of `a` of the set's
+points; Carathéodory says those are the convex hull once `a` passes the dimension. [1] builds that
+bound into its definition of the hull, taking `a = n + 1` points of a set in `ℝⁿ`, which is where
+the count of copies in [1, Prop. 9] comes from.
 
-Nothing here needs the set to be non-empty: the empty set has no weighted sums
-of its points and an empty convex hull alike. `qI = 0` is the representation's,
-carried from `convHullSingle_construct`.
+Nothing here needs the set to be non-empty. `qI = 0` is carried from `convHullSingle_construct`.
+
+## Inputs
+* `a` – number of weights
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* `hq` – no independent generators
+* `ha` – enough weights for the dimension
+
+## Conclusion
+* the set is the convex hull of the original
 
 ## References
 

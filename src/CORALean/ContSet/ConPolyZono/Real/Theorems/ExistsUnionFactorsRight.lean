@@ -10,6 +10,19 @@ public import Mathlib.Tactic.FinCases
 
 What a point of the second operand is read at in the union: its own factors, the first
 operand's at `0`, and both fresh factors at the selector value `t`.
+
+## Inputs
+* `p₁` – factor count of first operand
+* `p₂` – factor count of second operand
+* `t` – selector value
+* `a₂` – factors of second operand
+
+## Hypotheses
+* `ht` – selector value is within the unit interval
+* `ha₂` – factors are within the unit interval
+
+## Conclusion
+* a factor vector for the second branch exists
 -/
 
 -- Authors:       Claude Opus 5

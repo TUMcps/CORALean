@@ -10,6 +10,16 @@ public import CORALean.ContSet.Taylm.Float.Theorems.AbsorbRoundingNominal
 Read back through `Encloses`: `absorbRounding_nominal` puts everything in the remainder, and the
 result's box is exactly `[0, 0]`, which adds nothing, so nothing of the absorption step's rounding
 is left outside the remainder.
+
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+
+## Conclusion
+* the absorbed model encloses the function
 -/
 
 -- Authors:       Claude Opus 5.5

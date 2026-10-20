@@ -14,6 +14,16 @@ No domain condition: `atan` is smooth on `ℝ`.
 
 [1, Def. 3 (arctan)]: a Taylor model of `arctan ∘ f`, with no condition on the range.
 
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+
+## Conclusion
+* the result encloses arctan of the function
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

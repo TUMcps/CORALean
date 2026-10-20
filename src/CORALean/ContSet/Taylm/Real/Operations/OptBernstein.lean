@@ -13,6 +13,12 @@ CORA's `optBernstein` [2]: the range of the polynomial part over `[-1, 1]ⁿ` as
 greatest of its Bernstein coefficients (`poly2bernstein` [1], at the degree `n = max(max(E))`),
 plus the remainder interval. Written as a pair (lower, upper), as `Taylm.bounds`.
 
+## Inputs
+* `T` – Taylor model
+
+## Output
+* enclosure of its range by Bernstein coefficients
+
 ## References
 
 * [1] `global/functions/helper/sets/contSet/polyZonotope/poly2bernstein.m`, CORA (Sep. 2025).

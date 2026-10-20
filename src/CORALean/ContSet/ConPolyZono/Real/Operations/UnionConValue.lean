@@ -20,6 +20,17 @@ means. That form is the whole point of the row: on `α₁ = 1` it collapses to
 The cross group is summed by transporting `Fin (p₁ p₂)` along `finProdFinEquiv`
 and separating the two square sums, which is where the product `f₁f₂` comes from.
 
+## Inputs
+* `p₁` – factor count of first operand
+* `p₂` – factor count of second operand
+* `a` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* value of the selector row in closed form
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

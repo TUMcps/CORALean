@@ -15,6 +15,13 @@ public import CORALean.ContSet.PolyLevelSet.Float.PolyLevelSet
 `= 0`, its coefficients rounded (`unionConCoef`), the summed gap between their two roundings its
 slack (`unionConErr`).
 
+## Inputs
+* `p₁` – factor count of first operand
+* `p₂` – factor count of second operand
+
+## Output
+* selector polynomial constraint on the unit box
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

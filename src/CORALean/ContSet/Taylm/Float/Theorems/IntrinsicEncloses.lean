@@ -18,6 +18,20 @@ Whenever the float `Taylm.intrinsic` returns a model, its check passed, so the o
 theorem applies: the source's intrinsics in admissible floating-point arithmetic, one intrinsic
 at a time, as the induction of [1, Thm. 3] uses it.
 
+## Inputs
+* `p` – precision of the exponential
+* `q` – precision of the logarithm
+* `s` – precision of the trigonometric functions
+* `T` – Taylor model
+* `f` – enclosed function
+* `k` – intrinsic
+
+## Hypotheses
+* `h` – the model encloses the function
+
+## Conclusion
+* any returned model encloses the intrinsic of the function
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

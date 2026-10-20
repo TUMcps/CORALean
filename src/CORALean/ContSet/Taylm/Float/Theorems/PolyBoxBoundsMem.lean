@@ -13,6 +13,17 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 
 On a box `B` the polynomial of a term list lies in the stored range: each term by `prodBounds_mem`
 and the corner products of the coefficient, the sum by the rounded list sums.
+
+## Inputs
+* `L` – terms of the polynomial
+* `B` – box
+* `t` – point
+
+## Hypotheses
+* `ht` – point lies in the box
+
+## Conclusion
+* the polynomial's value lies in its float bounds on the box
 -/
 
 -- Authors:       Claude Opus 5.5

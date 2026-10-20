@@ -11,6 +11,16 @@ public import CORALean.ContSet.Taylm.Real.Operations.GoLowerBound
 [1, Sec. 4]'s verified global optimizer on a model over a sub-box `X` of the normalized box:
 COSY-GO's box steps with its bound of a box, and the mid-point estimate `P(p) + sup I`.
 
+## Inputs
+* `T` – Taylor model
+* `X` – sub-box
+* `ε` – tolerance
+* `ldbFuel` – fuel of the linear bounder
+* `fuel` – step budget
+
+## Output
+* verified enclosure of the model's minimum
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

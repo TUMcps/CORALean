@@ -17,6 +17,22 @@ public import Mathlib.LinearAlgebra.Matrix.Symmetric
 over a convex `D`, it also minimizes the remainder `P₂ - Q_{x₀}`, which is affine with slope
 `∇P₂(x₀)`: the first-order condition at a minimizer, here from the quadratic along each segment.
 
+## Inputs
+* `H` – Hessian matrix
+* `c` – constant
+* `g` – gradient
+* `D` – domain
+* `x0` – expansion point
+
+## Hypotheses
+* `hH` – the Hessian is symmetric
+* `hD` – the domain is convex
+* `hx0` – the expansion point lies in the domain
+* `hmin` – the expansion point minimizes the quadratic part
+
+## Conclusion
+* the expansion point also minimizes the quadratic part minus its centered form
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

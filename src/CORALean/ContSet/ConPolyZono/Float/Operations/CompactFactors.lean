@@ -16,6 +16,12 @@ moves. The constraint is its own `PolyLevelSet.reindexVars` at the used factors.
 The used factors are listed once, and every exponent read goes through that list:
 the specification re-derives the sorted finset at each of the `p · (h + q)` reads
 (issue #61). `compactFactors_eq_spec` says they are one.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* same set with unused factors dropped
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

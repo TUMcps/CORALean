@@ -13,6 +13,20 @@ Outer: a function the float model encloses lies in the result at every point of 
 box. The branch and bound's range of the polynomial plus the remainder with the error box absorbed
 (`absorbRounding_nominal`), the ends rounded outward;
 sound for every `ε` and `fuel`.
+
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `ε` – tolerance
+* `fuel` – step budget
+* `t` – point
+
+## Hypotheses
+* `h` – the model encloses the function
+* `ht` – point lies in the unit box
+
+## Conclusion
+* the branch and bound enclosure contains the function's value
 -/
 
 -- Authors:       Claude Opus 5.5

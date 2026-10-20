@@ -13,6 +13,16 @@ The corner points `x + c + Σ ±gⱼ` all lie in `P`, and `x + c + Σ βⱼ gⱼ
 convex combination (the cube is the convex hull of its corners, and `β ↦ x + c + Σ βⱼ gⱼ` is
 affine), so `x + Z ⊆ P` when `P` is convex. With `minkDiff_outer` the result is `P ⊖ Z`. Without
 convexity this is false: `minkDiff_not_inner`.
+
+## Inputs
+* `cPZ₁` – minuend
+* `Z` – zonotope subtrahend
+
+## Hypotheses
+* `hP` – minuend is convex
+
+## Conclusion
+* the result is contained in the Minkowski difference
 -/
 
 -- Authors:       Claude Opus 5.5

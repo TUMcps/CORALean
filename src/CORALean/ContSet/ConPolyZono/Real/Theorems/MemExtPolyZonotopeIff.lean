@@ -14,6 +14,17 @@ public import Mathlib.Algebra.BigOperators.Pi
 `[p; t] ∈ extPolyZonotope` iff some factors in the unit box and independent factors give `p` by the
 generators and `A μ(α) = b + t` by the constraint rows. The generators' sum splits into the two
 blocks of `extPolyZonotope`, the monomials of `appendE` being those of either half.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `p` – point
+* `t` – constraint residual
+
+## Hypotheses
+* none
+
+## Conclusion
+* the extended point is in the set exactly when the constraint reads offset plus residual
 -/
 
 -- Authors:       Claude Opus 5.5

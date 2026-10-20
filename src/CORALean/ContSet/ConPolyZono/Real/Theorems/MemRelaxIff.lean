@@ -13,6 +13,17 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
 The points of `cPZ` with each constraint row met to within `|sᵢ|`. The constraint is
 `PolyLevelSet.relax`, whose slack factors in `[-1, 1]` are exactly that
 (`PolyLevelSet.exists_relax_iff`), and the generators do not read them.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `s` – slack per constraint row
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership is witnessed with each row met within its slack
 -/
 
 -- Authors:       Claude Opus 5.5

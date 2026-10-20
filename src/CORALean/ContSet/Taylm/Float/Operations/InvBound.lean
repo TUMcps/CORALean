@@ -11,6 +11,13 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 
 `|(1/x)⁽ᴺ⁺¹⁾| = (N+1)! / |x|ᴺ⁺²`, at most `(N+1)! · (1/m)ᴺ⁺²` where `m` is the distance from zero
 of the hull of the center and the range, every factor rounded up.
+
+## Inputs
+* `m` – lower end of the box
+* `N` – expansion order
+
+## Output
+* upper bound on the next derivative of the reciprocal
 -/
 
 -- Authors:       Claude Opus 5.5

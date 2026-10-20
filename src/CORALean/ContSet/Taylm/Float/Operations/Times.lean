@@ -12,6 +12,13 @@ remainders first (`Taylm.absorbRounding`), since the cross terms multiply the re
 coefficient product is enclosed by `mulDown` and `mulUp` and the upper end stored; the width of a
 kept term goes to the error box, the width of a dropped one to the remainder, with the dropped
 terms bounded at their stored values and the cross terms of the remainders.
+
+## Inputs
+* `T₁` – first factor
+* `T₂` – second factor
+
+## Output
+* Taylor model of the product
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -6,6 +6,16 @@ public import CORALean.ContSet.Taylm.Real.Operations.ListMax
 
 /-!
 # The greatest value is at least every value
+
+## Inputs
+* `α` – type of the items
+* `f` – value function
+
+## Hypotheses
+* none
+
+## Conclusion
+* every listed item's value is at most the list maximum
 -/
 
 -- Authors:       Claude Opus 5.5

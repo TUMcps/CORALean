@@ -15,6 +15,19 @@ public import CORALean.Global.TaylorRemainder
 Where the center and the bottom of the range are positive, as at the exact layer, here read
 off the stored floats: `taylor_remainder_abs_le` at `log`, then every piece of the bound below
 its rounding.
+
+## Inputs
+* `q` – precision of the exponential
+* `s` – number of steps
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hpos` – the range stays positive
+
+## Conclusion
+* the result encloses the logarithm of the function
 -/
 
 -- Authors:       Claude Opus 5.5

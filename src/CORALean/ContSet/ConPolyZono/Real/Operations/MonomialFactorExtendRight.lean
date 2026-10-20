@@ -8,6 +8,21 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtendFactorId
 
 /-!
 # The same at the constraint block
+
+## Inputs
+* `p` – number of factors
+* `h` – number of dependent generators
+* `q` – number of constraint generators
+* `E` – exponent matrix
+* `R` – constraint exponent matrix
+* `a` – values of the used factors
+* `l` – constraint column index
+
+## Hypotheses
+* none
+
+## Conclusion
+* extended and restricted factor vectors give the same constraint monomial
 -/
 
 -- Authors:       Claude Opus 5

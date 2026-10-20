@@ -28,6 +28,15 @@ The branch `'hyperplane'` (l. 82-85) is `res = n == 1`. The constrained polynomi
 interval `[-1, 1]` and one-dimensional, so CORA answers `true`, though in one dimension a
 hyperplane `{x | a x = b}`, `a ≠ 0`, is a single point and `[-1, 1]` holds `0` and `1`. A wrong
 answer, not unsound. Read from the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA answers hyperplane for a segment
 -/
 
 -- Authors:       Claude Sonnet 5.5

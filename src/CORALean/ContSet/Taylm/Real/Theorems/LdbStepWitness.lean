@@ -13,6 +13,16 @@ The left end and the mid-point both bound `Min` from below, one of them attainin
 other estimate is above the function everywhere; the point is kept, since a cut point is above
 `Min` (`ldbStep_reduce`). Why cutting loses nothing in [1, Sec. 2].
 
+## Inputs
+* `T` – Taylor model
+* `g` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+
+## Conclusion
+* a kept point has a value within the step's upper bound
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

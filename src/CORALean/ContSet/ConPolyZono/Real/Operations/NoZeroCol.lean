@@ -16,6 +16,14 @@ says nothing about what a monomial evaluates to, and no result here asks for it;
 Stated over a bare exponent matrix rather than over a set, since a constrained
 polynomial zonotope carries two of them and `union` needs the property of both.
 
+## Inputs
+* `p` – number of factors
+* `h` – number of columns
+* `E` – exponent matrix
+
+## Output
+* proposition that no column is the constant monomial
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

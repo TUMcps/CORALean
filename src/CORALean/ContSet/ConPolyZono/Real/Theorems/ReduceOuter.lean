@@ -16,6 +16,16 @@ Girard's rule. Neither choice shows in the proof: any ranking would discharge
 the second step, and the first contributes nothing but a rewrite. What
 compaction buys is the order bound, which is stated in `ReduceOrder`.
 
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

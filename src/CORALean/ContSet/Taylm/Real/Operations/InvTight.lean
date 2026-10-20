@@ -17,6 +17,12 @@ Both in magnitude: `L_q` as `Taylm.inv` bounds it, `rᴺ⁺¹/mᴺ⁺²`, and `R
 `|x - c|ᴺ⁺¹/(|x| |c|ᴺ⁺¹) ≤ rᴺ⁺¹/(m |c|ᴺ⁺¹)`, where the source evaluates the recursion of eqs.
 (36)-(37) in interval arithmetic.
 
+## Inputs
+* `T` – Taylor model
+
+## Output
+* Taylor model of the reciprocal with the tighter remainder
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

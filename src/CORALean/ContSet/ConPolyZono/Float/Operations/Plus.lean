@@ -18,6 +18,13 @@ and the reason it refines is that the carrying is pure bookkeeping: the float
 `PolyLevelSet.cartProd` places the two matrices block-diagonally with `zero` in the off-blocks
 and `b` and `b_error` concatenate, so not one entry of the constraint system is computed. Only the
 center rounds, exactly as for an unconstrained polynomial zonotope.
+
+## Inputs
+* `cPZ₁` – first summand
+* `cPZ₂` – second summand
+
+## Output
+* Minkowski sum enclosure
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

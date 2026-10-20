@@ -10,6 +10,15 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitDepFactorUnion
 
 Whichever factor the heuristic picks, `splitDepFactor_union` applies; with no factor the two
 halves are the set itself.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the two halves together are exactly the set
 -/
 
 -- Authors:       Claude Opus 5.5

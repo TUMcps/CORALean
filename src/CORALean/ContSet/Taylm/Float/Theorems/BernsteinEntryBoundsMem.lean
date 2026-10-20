@@ -11,6 +11,17 @@ public import CORALean.ContSet.Taylm.Real.Operations.BernsteinEntry
 
 For `j ≤ N`, `bernsteinEntry N e j` lies between the two floats `bernsteinEntryBounds` returns: its
 terms lie in their brackets (`bernsteinStep_mem`), and the two sums round outward.
+
+## Inputs
+* `N` – degree
+* `e` – exponent
+* `j` – row index
+
+## Hypotheses
+* `hj` – row index is at most the degree
+
+## Conclusion
+* the Bernstein entry lies in its enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

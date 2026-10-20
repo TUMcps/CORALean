@@ -10,6 +10,12 @@ public import CORALean.ContSet.Interval.Float.Interval
 
 The coordinate of largest width `u - l` (rounded up), the last of equals; `none` for no
 coordinates.
+
+## Inputs
+* `B` – box
+
+## Output
+* index of the widest coordinate, if any
 -/
 
 -- Authors:       Claude Opus 5.5

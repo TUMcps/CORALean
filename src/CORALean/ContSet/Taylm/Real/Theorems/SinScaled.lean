@@ -12,6 +12,19 @@ public import CORALean.Global.ElementaryDerivBounds
 [1, Thm. 1], eq. (2.9), at [1, Def. 3 (sin)]: every derivative of `sin` is at most one, so both the
 coefficients `sin⁽ᵏ⁾(c)/k!` and the derivative bound are, whatever `h`.
 
+## Inputs
+* `T` – Taylor model
+* `h` – domain radius
+* `C` – scaling constant
+
+## Hypotheses
+* `h0` – radius is positive
+* `h1` – radius is at most one
+* `hT` – the model is scaled by the constant
+
+## Conclusion
+* the sine model is scaled by a constant built from it
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

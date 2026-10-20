@@ -8,6 +8,17 @@ public import CORALean.ContSet.Taylm.Float.Operations.BoundDot
 # `Taylm.boundDot` bounds the support function
 
 No point of the range set reads more than the float value, an upper bound and nothing tighter.
+
+## Inputs
+* `c` – direction as a linear functional
+* `a` – float direction
+* `T` – family of Taylor models
+
+## Hypotheses
+* `hc` – float direction represents the functional
+
+## Conclusion
+* the bound is an upper bound of the functional on the set
 -/
 
 -- Authors:       Claude Sonnet 5.5

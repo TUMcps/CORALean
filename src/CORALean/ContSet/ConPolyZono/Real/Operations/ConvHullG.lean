@@ -15,6 +15,16 @@ the weighted half of each copy.
 The center of the result is `a` times the combination's, so a copy contributes
 `c + λ c` where the weight `1 + λ` asks for `(1 + λ) c`.
 
+## Inputs
+* `α` – ambient type
+* `a` – number of weights
+* `h` – number of generators
+* `c` – center
+* `G` – generators
+
+## Output
+* generators of the weighted copies
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

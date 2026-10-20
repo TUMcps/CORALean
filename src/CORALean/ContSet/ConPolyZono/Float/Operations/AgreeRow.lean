@@ -9,6 +9,14 @@ public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 
 The row pinning the two points together in one coordinate. Entries are
 copied and `neg` is exact, so nothing here rounds.
+
+## Inputs
+* `cPZ₁` – first operand
+* `cPZ₂` – second operand
+* `i` – coordinate
+
+## Output
+* constraint row for that coordinate
 -/
 
 -- Authors:       Claude Opus 5

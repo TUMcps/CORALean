@@ -17,6 +17,18 @@ returns: each float coefficient bracket contains the exact coefficient of the mo
 read as, so the least lower end is at most the exact least coefficient, the greatest upper end at
 least the exact greatest, and the exact `Taylm.optBernstein_mem` does the rest. Not exact, as the
 exact bound is not.
+
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `t` – point
+
+## Hypotheses
+* `h` – the model encloses the function
+* `ht` – point lies in the unit box
+
+## Conclusion
+* the Bernstein enclosure contains the function's value
 -/
 
 -- Authors:       Claude Opus 5.5

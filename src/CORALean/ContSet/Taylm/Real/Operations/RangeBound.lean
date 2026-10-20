@@ -14,6 +14,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Basic
 `B(P_f) + I_f`. In normalized coordinates the identity is `mid + rad·t`, remainder `[0, 0]`
 (`Interval.taylm`). `none` when the evaluation stops at an intrinsic's condition.
 
+## Inputs
+* `m` – number of variables
+* `e` – code list
+* `D` – domain box
+* `N` – expansion order
+
+## Output
+* enclosure of the range of the code list, if all intrinsics are defined
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

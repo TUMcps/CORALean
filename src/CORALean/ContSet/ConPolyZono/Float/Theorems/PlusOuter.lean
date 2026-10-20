@@ -16,6 +16,16 @@ public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemCartProdIff
 layer by `PolyLevelSet.mem_cartProd_iff`. Only the center rounds, so the box holds the two
 incoming boxes and one `centerResidual`, and all five counts are the exact
 layer's.
+
+## Inputs
+* `cPZ₁` – first summand
+* `cPZ₂` – second summand
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Minkowski sum is contained in the result
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

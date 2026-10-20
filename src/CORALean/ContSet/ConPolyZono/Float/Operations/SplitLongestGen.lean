@@ -10,6 +10,12 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.LongestFactor
 
 The two halves of `cPZ` along the factor of its longest generators, or the set twice where it has
 no factor to split.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Output
+* two halves split along the longest generator
 -/
 
 -- Authors:       Claude Opus 5.5

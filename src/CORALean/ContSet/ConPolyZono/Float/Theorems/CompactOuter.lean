@@ -13,6 +13,15 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactGensOuter
 `compactGens` merges generator columns and rounds, `compactCons` merges
 constraint rows and widens `b`, and `compactFactors` then drops unused factors
 for free.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

@@ -14,6 +14,20 @@ result encloses `f / g`.
 
 [1, Eq. 9]: `T₁/T₂ = T₁·(1/T₂)` encloses `f/g`.
 
+## Inputs
+* `T₁` – numerator model
+* `T₂` – denominator model
+* `f` – numerator function
+* `g` – denominator function
+
+## Hypotheses
+* `h₁` – the numerator encloses its function
+* `h₂` – the denominator encloses its function
+* `hside` – the denominator's range stays on one side of zero
+
+## Conclusion
+* the quotient model encloses the quotient of the functions
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

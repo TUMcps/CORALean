@@ -12,6 +12,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.TaylmPolyZonotopeExact
 With every remainder a nonempty interval the range set of the models is the polynomial
 zonotope's (`Taylm.polyZonotope_exact`), so `representsa_emptySet` is `true` iff the range set is
 `∅`, which never happens: the answer is `false`.
+
+## Inputs
+* `T` – family of Taylor models
+
+## Hypotheses
+* `hT` – each remainder is an ordered interval
+
+## Conclusion
+* the test returns true exactly when the range set is empty
 -/
 
 -- Authors:       Claude Opus 5.5

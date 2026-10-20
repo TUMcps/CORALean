@@ -13,6 +13,17 @@ public import CORALean.ContSet.Taylm.Real.Theorems.CoshOuter
 Encloses `tanh ∘ f` whenever the denominator's model passes the inverse's condition; CORA's
 `tanh` is this quotient of its own `sinh` and `cosh`.
 
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hside` – the cosh model stays on one side of zero
+
+## Conclusion
+* sinh divided by cosh encloses hyperbolic tangent of the function
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

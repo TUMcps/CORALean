@@ -18,6 +18,12 @@ A Taylor model of `arcsin ∘ f` as [1, Def. 3 (arcsin)] asks, but expanded at `
 rather than through the source's addition formula, which fails on wide ranges
 (`ArcsinShift`).
 
+## Inputs
+* `T` – Taylor model
+
+## Output
+* Taylor model of arcsin of the argument
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

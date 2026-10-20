@@ -14,6 +14,14 @@ constraint in [1, Thm. 1] is assembled from, by adding such columns.
 `PolyZonotope.identE` is the same shape at `e = 1`, but as a whole square matrix
 rather than as a column, which is what an assembly needs.
 
+## Inputs
+* `p` – number of factors
+* `i` – factor index
+* `e` – exponent
+
+## Output
+* exponent column with that exponent at the factor
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

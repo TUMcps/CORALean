@@ -8,6 +8,16 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.Isequal
 # Constrained polynomial zonotopes passing `isequal` denote the same set
 
 Sound, not exact: `isequal` compares the representation, and different data can denote one set.
+
+## Inputs
+* `Z` – first set
+* `S` – second set
+
+## Hypotheses
+* `h` – the two sets pass the equality test
+
+## Conclusion
+* the two sets are equal
 -/
 
 -- Authors:       Claude Opus 5.5

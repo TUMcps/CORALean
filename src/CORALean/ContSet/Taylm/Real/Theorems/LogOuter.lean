@@ -14,6 +14,17 @@ the whole hull, and `log⁽ᴺ⁺¹⁾ = (x⁻¹)⁽ᴺ⁾` is `iter_deriv_inv`.
 
 [1, Def. 3 (log)]: the result is a Taylor model of `log ∘ f`.
 
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hpos` – the range stays positive
+
+## Conclusion
+* the result encloses the logarithm of the function
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

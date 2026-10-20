@@ -11,6 +11,15 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.TabAtKeepTab
 
 The tabulated merge and the one that rescans return the same set: the tables hold
 the very values the specification recomputes, so the two differ in cost alone.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the computed result equals its specification
 -/
 
 -- Authors:       Claude Opus 5.5

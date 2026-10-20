@@ -14,6 +14,17 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalSwitch
 A row of the first operand's block is its own row at its own factors with the right-hand side
 taken at `(1 + α₁) / 2`, and one of the second's at `(1 - α₁) / 2`: `PolyLevelSet.eval_switch`
 over `eval_padVars` and `eval_cartProd`, the selector monomial being `α₁` itself.
+
+## Inputs
+* `P₁` – constraint of first operand
+* `P₂` – constraint of second operand
+* `a` – factor values
+
+## Hypotheses
+* none
+
+## Conclusion
+* the lower rows are each operand's rows weighted by the selector
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

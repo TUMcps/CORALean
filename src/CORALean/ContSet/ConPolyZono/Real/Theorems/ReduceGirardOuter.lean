@@ -12,6 +12,16 @@ public import Mathlib.Order.BourbakiWitt
 Two cases: below the order there is nothing to do, and above it the rule is a
 pair of partitions like any other, so `reduceBy_outer` closes it. The metric
 never appears, which is what leaves the ranking free to be a heuristic.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

@@ -11,6 +11,20 @@ public import CORALean.ContSet.Taylm.Real.Theorems.LdbLoopLe
 [1, Sec. 2]'s LDB is sound: whatever `ε` and however many repetitions, its result is below the
 enclosed function on the normalized box.
 
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `ε` – tolerance
+* `fuel` – step budget
+* `t` – point
+
+## Hypotheses
+* `h` – the model encloses the function
+* `ht` – point lies in the unit box
+
+## Conclusion
+* the bound is at most the function's value
+
 ## References
 
 * [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range

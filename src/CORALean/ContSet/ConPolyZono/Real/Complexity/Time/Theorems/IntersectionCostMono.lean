@@ -15,6 +15,26 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
 
 Monotone in the second operand's dependent-generator count, so a bound on
 its size gives a bound on the cost.
+
+## Inputs
+* `h₂` – smaller dependent generator count
+* `h₂'` – larger dependent generator count
+* `n` – ambient dimension
+* `p₁` – factors of first operand
+* `h₁` – dependent generators of first
+* `qI₁` – independent generators of first
+* `m₁` – constraints of first
+* `q₁` – constraint generators of first
+* `p₂` – factors of second operand
+* `qI₂` – independent generators of second
+* `m₂` – constraints of second
+* `q₂` – constraint generators of second
+
+## Hypotheses
+* `hh` – the counts are ordered
+
+## Conclusion
+* the cost is monotone in the second operand's dependent generators
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

@@ -16,6 +16,17 @@ public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 is the other coordinates' product times `s^{eᵢ}`, whose integral is `tᵢ^{eᵢ+1}/(eᵢ+1)`. The
 polynomial half of [1, Def. 3 (antiderivation)].
 
+## Inputs
+* `i` – variable index
+* `L` – terms of the polynomial
+* `t` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* integrating the polynomial in that variable equals evaluating the integrated terms
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

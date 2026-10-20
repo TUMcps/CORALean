@@ -9,6 +9,16 @@ public import CORALean.ContSet.Taylm.Real.Operations.Pow
 
 `pow 0` is the constant one at the model's order and every further factor is a `times` at the
 same order, whose result takes the larger of the two.
+
+## Inputs
+* `T` – Taylor model
+* `k` – exponent
+
+## Hypotheses
+* none
+
+## Conclusion
+* the power keeps the model's order
 -/
 
 -- Authors:       Claude Opus 5.5

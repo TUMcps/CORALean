@@ -11,16 +11,21 @@ public import Mathlib.Analysis.Calculus.ContDiff.Operations
 /-!
 # [1, Thm. 1] does not hold for models whose expansion point moves with `h`
 
-[1, Thm. 1] asks `f, g ∈ Cⁿ⁺¹(D)` and remainders `O(hⁿ⁺¹)` of models around `x_h` on
-`x_h + [-h, h]`, and concludes the same for `f·g` by [1, Def. 2], eq. (2.8). It states nothing
-about the size of the polynomial parts, and the product remainder is
-`B(Pₑ) + B(P_f)·I_g + B(P_g)·I_f + I_f·I_g`. With `D = ℝ`, `n = 1`, `f(x) = x²`, `g(x) = x`
-and `x_h = 1/h`, over the normalized variable `x = x_h + h·t` the models are
-`1/h² + 2t` with remainder `[0, h²]` and `1/h + h·t` with remainder `0`: both remainders are
-`O(h²)`. The product's remainder has upper end at least `B(P_g)·I_f = (1/h + h)·h² ≥ h`,
-which is not `O(h²)`. The models are Taylor models (`Encloses` is all the hypothesis asks of a
-model here), and the theorem holds when `x_h` is fixed, since the polynomial's coefficients
-are then bounded.
+[1, Thm. 1] asks `f, g ∈ Cⁿ⁺¹(D)` and remainders `O(hⁿ⁺¹)` of models around `x_h` on `x_h + [-h,
+h]`, and concludes the same for `f·g` by [1, Def. 2], eq. (2.8); it says nothing about the size of
+the polynomial parts. With `D = ℝ`, `n = 1`, `f(x) = x²`, `g(x) = x` and `x_h = 1/h`, the models
+are `1/h² + 2t` with remainder `[0, h²]` and `1/h + h·t` with remainder `0`, both `O(h²)`, but the
+product's remainder has upper end at least `B(P_g)·I_f = (1/h + h)·h² ≥ h`. The theorem holds when
+`x_h` is fixed, the polynomial's coefficients then being bounded.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* factor remainders of order h squared need not give a product remainder of that order
 
 ## References
 

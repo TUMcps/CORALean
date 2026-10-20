@@ -11,6 +11,15 @@ public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 
 `zero` reads as `0`, and with no generators and no constraint rows the nominal part is that one
 point; the error box is the origin box.
+
+## Inputs
+* `n` – ambient dimension
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is exactly the origin
 -/
 
 -- Authors:       Claude Opus 5.5

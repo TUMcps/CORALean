@@ -15,6 +15,13 @@ as over ℝ, here on float boxes. The midpoint of each contracted interval is ro
 radius rounded up from it to both ends, so `cen ± rad` covers the interval whatever the
 rounding did; each `getSubset` step pays its own rounding into the error box and `b`. The
 result is outer, never the exact rescaling.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `contract` – contractor on the factor box
+
+## Output
+* set rescaled to the contracted factor box
 -/
 
 -- Authors:       Claude Opus 5.5

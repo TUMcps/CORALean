@@ -9,6 +9,16 @@ public import CORALean.ContSet.Taylm.Real.Operations.Times
 
 CORA's `mtimes` of two arrays of models, `@taylm/mtimes.m` with both factors Taylor models: entry
 `(i, j)` is `Σₖ A i k .* B k j`, the loop CORA runs with `times` and `plus`.
+
+## Inputs
+* `a` – rows of the first matrix
+* `b` – shared dimension
+* `c` – columns of the second matrix
+* `A` – first matrix of models
+* `B` – second matrix of models
+
+## Output
+* product matrix of Taylor models
 -/
 
 -- Authors:       Claude Opus 5.5

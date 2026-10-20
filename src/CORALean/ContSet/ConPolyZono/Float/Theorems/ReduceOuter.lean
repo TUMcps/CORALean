@@ -12,6 +12,16 @@ Compaction, which encloses here where the exact layer's is an equality, followed
 by Girard's rule, which is where every rounding of this operation already is.
 Girard's is the rule `reduce` runs and this line is the whole of that choice:
 any other ranking would discharge it too.
+
+## Inputs
+* `cPZ` – constrained polynomial zonotope
+* `o` – target order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is contained in the result
 -/
 
 -- Authors:       Claude Opus 5

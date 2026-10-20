@@ -17,6 +17,17 @@ public import CORALean.ContSet.Taylm.Real.Theorems.ProdBoundsMem
 [1, Eq. 12]: `B(P) ⊆ Σ c [x]ⁱ [y]ʲ`. A point of the box makes every coordinate power lie in
 its interval power, the product in the interval product, and the term and the sum follow.
 
+## Inputs
+* `L` – terms of the polynomial
+* `B` – box
+* `t` – point
+
+## Hypotheses
+* `ht` – point lies in the box
+
+## Conclusion
+* the polynomial's value lies in its bounds on the box
+
 ## References
 
 * [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA

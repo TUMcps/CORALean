@@ -15,6 +15,26 @@ The Lagrange remainder lemma at a float Taylor model: `g` smooth to order `N + 1
 center and the model's range, `|g⁽ᴺ⁺¹⁾| ≤ D` there for a real `D` below the rounded `Dup`, and
 the coefficient enclosures around `g⁽ᵏ⁾(c) / k!`. `taylor_remainder_abs_le` bounds the remainder
 by `D |f t - c|ᴺ⁺¹ / (N+1)!`, and each factor is below its rounded counterpart.
+
+## Inputs
+* `T` – Taylor model
+* `f` – enclosed function
+* `g` – outer function
+* `c` – center
+* `lo` – lower coefficient bounds
+* `hi` – upper coefficient bounds
+* `Dup` – float derivative bound
+* `D` – real derivative bound
+
+## Hypotheses
+* `h` – the model encloses the function
+* `hc` – coefficient bounds enclose the Taylor coefficients
+* `hg` – outer function is smooth on the hull
+* `hD` – derivative is bounded on the hull
+* `hDup` – float bound dominates the derivative bound
+
+## Conclusion
+* the expansion model encloses the composition
 -/
 
 -- Authors:       Claude Opus 5.5
