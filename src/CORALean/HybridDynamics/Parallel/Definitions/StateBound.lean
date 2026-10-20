@@ -12,6 +12,12 @@ Where `mergeFlows` is `mergeFlowsLinearSys`: at every location tuple, every comp
 its `D` and `k` as zero. An input `j` then drives state `j` and an output `s` is state `s`, the
 reading CORA's `mergeFlows` gives `C = 1` with no `D`, `k`, `F`. A location in CORA's canonical
 form, `LinearSys.canonical`, is one.
+
+## Inputs
+* `P` – parallel automaton
+
+## Output
+* every component's inputs and outputs are its states
 -/
 
 -- Authors:       Claude Opus 5.5

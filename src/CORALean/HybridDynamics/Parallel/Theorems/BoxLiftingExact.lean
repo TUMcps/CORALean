@@ -15,6 +15,15 @@ The box of the global inputs bounds `a` by the box of the one input bound to it,
 input feeds one input; a point of each component's box, its globally bound coordinates replaced by
 the global inputs', is then in that box. So `boxLifting` meets `Lifting.Exact`, the components'
 boxes being nonempty.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the box lifting is exact
 -/
 
 -- Authors:       Claude Sonnet 5.5

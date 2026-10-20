@@ -8,6 +8,16 @@ public import CORALean.DiscrDynamics.MarkovChain.Operations.Basic
 # `convertTransitionMatrix` keeps the columns stochastic
 
 The block-diagonal matrix of column-stochastic matrices is column-stochastic.
+
+## Inputs
+* `N` – cell count
+* `Phi` – transition matrix per input
+
+## Hypotheses
+* `h` – each matrix is column-stochastic
+
+## Conclusion
+* the combined matrix is column-stochastic
 -/
 
 -- Authors:       Claude Sonnet 5.5

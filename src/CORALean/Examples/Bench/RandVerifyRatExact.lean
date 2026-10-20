@@ -5,6 +5,12 @@ import CORALean.Examples.Bench.Rational
 
 `parseExact` of `num/den`: a rational whose reduced denominator is not a power of two is refused,
 for a system entry never rounded.
+
+## Inputs
+* `q` – rational number
+
+## Output
+* exact dyadic or an error message
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -15,6 +15,15 @@ components' sets. The input set is the image of the product of the components' i
 `selectGlobal`: a point of it is the image of a stacked point, whose blocks are points of the
 components' sets, and where each global input feeds one input those blocks agree with it
 (`selectGlobal_mulVec_of_distinct`). So `conZonoLifting` meets `Lifting.Exact`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the constrained zonotope lifting is exact
 -/
 
 -- Authors:       Claude Sonnet 5.5

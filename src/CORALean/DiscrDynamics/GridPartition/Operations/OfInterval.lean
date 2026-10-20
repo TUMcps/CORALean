@@ -10,6 +10,13 @@ public import CORALean.DiscrDynamics.GridPartition.Operations.Basic
 CORA's `partition(interval, nrOfSegments)`: the box cut evenly, `linspace(inf, sup, m + 1)` in
 each dimension. `linspace` ends exactly on `sup`; with no segment it returns `sup` alone, so a
 partition with a dimension of `0` segments is not a box and the constructor is for `m ≥ 1`.
+
+## Inputs
+* `I` – box
+* `segs` – segments per dimension
+
+## Output
+* partition of the box into equal cells
 -/
 
 -- Authors:       Claude Sonnet 5.5

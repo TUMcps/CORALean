@@ -11,6 +11,16 @@ public import CORALean.HybridDynamics.Definitions.Invariant
 `InvariantOn` generalises `Invariant` rather than replacing it: read at every
 index by the same set, its two obligations are exactly `Invariant`'s. Both
 fields are supplied unchanged, since neither one's proof ever looks at `k`.
+
+## Inputs
+* `HA` – hybrid automaton
+* `R` – reach set
+
+## Hypotheses
+* `hinv` – the sets are an invariant
+
+## Conclusion
+* the constant family is an indexed invariant
 -/
 
 -- Authors:       Claude Opus 5

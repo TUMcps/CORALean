@@ -14,6 +14,19 @@ every run at every time: forgetting the time an urgent run lasts leaves an urgen
 urgent run is a run. So every enclosure proved of `reachSetExact` encloses `R^e_{vᵢ}(r)` at each
 `r`.
 
+## Inputs
+* `HA` – hybrid automaton
+* `X₀` – initial set
+* `v₀` – initial location
+* `vᵢ` – end location
+* `r` – time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the urgent reach set at the time lies in the reachable set
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

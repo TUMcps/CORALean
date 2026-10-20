@@ -20,6 +20,26 @@ trajectories, so a stay of length `τ ≤ tFinal` is held at each of its times
 `t` by the window `k` with `t ∈ [k Δt, (k + 1) Δt]`. The location's combined inputs
 `B u + c + E w` lie in `ℓ.inputSetFloat` (`inputSetFloat_outer`), and so in the identity's image
 of it.
+
+## Inputs
+* `ℓ` – location
+* `τ` – stay duration
+* `x` – trajectory of the stay
+* `u` – input trajectory
+* `w` – disturbance trajectory
+* `tFinal` – final time
+* `options` – reach options
+* `X₀` – initial zonotope
+* `t` – time within the stay
+
+## Hypotheses
+* `traj` – the curves are a stay of the location
+* `h₀` – initial state lies in the initial set
+* `hτ` – stay duration within the final time
+* `ht` – time within the stay
+
+## Conclusion
+* some reach set holds the state at the time
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -8,6 +8,17 @@ public import CORALean.DiscrDynamics.GridPartition.Operations.IntersectingCells
 # `intersectingCells` stays within the partition
 
 Every number it returns is a cell or `0`: at most `nrOfCells`.
+
+## Inputs
+* `P` – grid partition
+* `I` – box
+* `c` – cell number
+
+## Hypotheses
+* `hc` – cell is returned
+
+## Conclusion
+* the cell number is within the cell count
 -/
 
 -- Authors:       Claude Sonnet 5.5

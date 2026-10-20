@@ -13,6 +13,15 @@ import CORALean.Examples.ParallelTwoComponents
 `()`, the same label: neither may be taken alone. `mergeTransitionSets` lifts the two
 transitions one by one and so has two product transitions, which is what a labeled automaton
 must not have; `mergeTransitionSetsSync` has exactly one, the synchronized transition of both.
+
+## Inputs
+* `ℓ` – current locations
+
+## Hypotheses
+* none
+
+## Conclusion
+* the unsynchronized merge has two transitions
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

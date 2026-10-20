@@ -9,16 +9,20 @@ import CORALean.Specification.Instances
 /-!
 # Certificates for a constrained zonotope, run
 
-At `Dyadic 53`. The unit square's generators under a constraint on the coefficients `β`.
-The set is full-dimensional with a strictly feasible coefficient point and a right inverse
-(here the default candidate): `β₁ + β₂ ≤ 1` and the slab `β₁ + β₂ ∈ [-1/2, 1/2]` leave a
-margin at `β = 0`, while `-β₁ ≤ -3` is unsatisfiable within the unit box and is refuted by a
-Farkas certificate. A box point is certified in the set with no exact solve, the rounding
-absorbed by the box a right inverse reaches: `(1/2, 1/4)` is, `(3, 1/4)` is not.
+At `Dyadic 53`. The unit square's generators under a constraint on the coefficients `β`. The set is
+full-dimensional with a strictly feasible coefficient point and a right inverse: `β₁ + β₂ ≤ 1` and
+the slab `β₁ + β₂ ∈ [-1/2, 1/2]` leave a margin at `β = 0`, while `-β₁ ≤ -3` is unsatisfiable
+within the unit box and is refuted by a Farkas certificate. A box point is certified in the set
+with no exact solve, the rounding absorbed by the box a right inverse reaches: `(1/2, 1/4)` is,
+`(3, 1/4)` is not. Each `true` is a guarantee (`ConZonotope.isFullDim_sound`,
+`ConZonotope.containsPoint_sound`, `ConZonotope.representsa_emptySet_sound`,
+`HPolytope.isFullDim_sound`); a `false` decides nothing.
 
-Each `true` is a guarantee (`ConZonotope.isFullDim_sound`, `ConZonotope.containsPoint_sound`,
-`ConZonotope.representsa_emptySet_sound`, `HPolytope.isFullDim_sound`); a `false` decides
-nothing.
+## Inputs
+* `P` – constraint polytope on the coefficients
+
+## Output
+* default right inverse of the square's generators
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

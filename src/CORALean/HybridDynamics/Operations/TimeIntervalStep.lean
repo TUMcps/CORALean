@@ -14,6 +14,15 @@ no new computation, only a name that carries the representation.
 That is the whole point of it: `ℓ.dynamics : LinearSys 𝕋 n` drops `S`, so a use
 site stating the enclosure has to write `(S := 𝒵)` even though `ℓ` already
 pinned the family. Read off `ℓ` instead, the family comes with the location.
+
+## Inputs
+* `ℓ` – location
+* `r` – time step
+* `η` – Taylor order
+* `X₀` – initial set
+
+## Output
+* time-interval set of the stay
 -/
 
 -- Authors:       Claude Opus 5

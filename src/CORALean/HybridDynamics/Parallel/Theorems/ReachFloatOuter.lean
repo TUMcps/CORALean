@@ -16,6 +16,27 @@ A run of the parallel automaton from initial states in `X₀` (stacked) is a run
 self-binding), so it has a duration and a jump count there (`isRun_iff_exists_isRunUntil`), and when
 those fit the horizon `tFinal` and the bound `K`, its stacked end state lies in a set
 `ParallelHybridAutomaton.reachFloat` computed for its final location tuple. An outer statement.
+
+## Inputs
+* `P` – parallel automaton
+* `lift` – lifting
+* `tFinal` – final time
+* `options` – reach options
+* `K` – jump depth
+* `ℓ₀` – start locations
+* `ℓ` – end locations
+* `X₀` – initial zonotope
+* `x` – start states
+* `y` – end states
+
+## Hypotheses
+* `hst` – components are state-bound
+* `hself` – self-bound inputs meet zero entries
+* `hx` – start state lies in the initial zonotope
+* `run` – parallel run from `x` to `y`
+
+## Conclusion
+* the float reach sets contain the end state
 -/
 
 -- Authors:       Claude Opus 5.5

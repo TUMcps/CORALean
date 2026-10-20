@@ -13,6 +13,21 @@ public import CORALean.HybridDynamics.Theorems.ReachSetExactEqIUnionIsRunUntil
 duration bound `T ≤ tFinal` and at most `K` jumps lies in the computed sets of
 the location `ℓ`. Runs longer than the horizon, or with more jumps, are not
 claimed, as CORA's `reach` claims none past `tFinal`.
+
+## Inputs
+* `HA` – hybrid automaton
+* `tFinal` – final time
+* `options` – reach options
+* `K` – jump depth
+* `ℓ₀` – initial location
+* `X₀` – initial zonotope
+* `ℓ` – end location
+
+## Hypotheses
+* none
+
+## Conclusion
+* the bounded reachable set lies in the float reach sets
 -/
 
 -- Authors:       Claude Opus 5.5

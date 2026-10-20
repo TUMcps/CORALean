@@ -12,19 +12,27 @@ public import Mathlib.Algebra.Group.Pointwise.Set.Scalar
 /-!
 # The enclosure `R_g` of the guard intersection
 
-[1, Sec. 5.4]: `R_g = y_h(ξ) ⊕ L ⊗ (R(0) ⊕ (−ξ)) ⊕ ½[φ̲, φ̄] ⊗ R_quad ⊕ R_{h,E}(R(0))`, one
-`let` per printed piece:
+[1, Sec. 5.4]: `R_g = y_h(ξ) ⊕ L ⊗ (R(0) ⊕ (−ξ)) ⊕ ½[φ̲, φ̄] ⊗ R_quad ⊕ R_{h,E}(R(0))`, one `let`
+per printed piece: `L` from [1, Prop. 2], `R_quad` by [1, Thm. 1] (`Zonotope.quadMapMatZono`) from
+the matrix zonotopes of [1, Prop. 3] (`GuardMap.hitHessianMatZono`), `[φ̲, φ̄] ⊗ R_quad` by (10) and
+(11), and `R_{h,E}(R(0))` with `I` of (16). A set, not a zonotope: `R_{h,E}(R(0))` is a product of
+sets the paper does not reduce.
 
-* `L = L(ξ)` from [1, Prop. 2];
-* `R_quad` by [1, Thm. 1] (`Zonotope.quadMapMatZono`) over `R(0) ⊕ (−ξ)`, from the matrix
-  zonotopes `Q⁽ⁱ⁾` of [1, Prop. 3] (`GuardMap.hitHessianMatZono`, given `ψ_c`, `ψ_g`);
-* `[φ̲, φ̄] ⊗ R_quad` as the paper computes it,
-  `0.5(φ̲ + φ̄)R_quad ⊕ 0.5(φ̄ − φ̲) ⊗ [−1, 1] ⊗ R_quad` by (10) and (11);
-* `R_{h,E}(R(0)) = (AR(0) ⊕ b)(−nᵀE)(1/I) ⊕ E` with `I` of (16), its factors ranging
-  independently, as the products of sets do.
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `nv` – guard normal
+* `d` – guard offset
+* `E` – flow error set
+* `R₀` – initial zonotope
+* `ξ` – expansion point
+* `ψc` – center of the coefficient enclosure
+* `ψg` – generator of the coefficient enclosure
+* `φlo` – lower end of the remainder factor
+* `φhi` – upper end of the remainder factor
 
-A set, not a zonotope: `R_{h,E}(R(0))` is a product of sets the paper does not reduce, and any
-enclosure of it computed in its place only makes `R_g` larger.
+## Output
+* set enclosing the guard intersection
 
 ## References
 

@@ -10,6 +10,13 @@ public import CORALean.ContSet.Conversion.Real.Definitions.IntervalOuter
 
 `intersectingCells` of a set that is not a box: CORA converts a zonotope or a polytope with
 `interval(contSet)` and intersects that, over-approximating the set by its hull.
+
+## Inputs
+* `P` – grid partition
+* `X` – set
+
+## Output
+* cell numbers that may meet the set
 -/
 
 -- Authors:       Claude Sonnet 5.5

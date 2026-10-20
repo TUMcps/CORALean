@@ -12,6 +12,12 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 `boxLifting` and `SyncLifting.guardAll` as `HPolytope.stackProd` of the participants' guards, a
 component with no guard contributing the whole space. The stack of a tuple of points is in it
 exactly when every present guard holds at its block.
+
+## Inputs
+* none
+
+## Output
+* box lifting with conjoined guards
 -/
 
 -- Authors:       Claude Sonnet 5.5

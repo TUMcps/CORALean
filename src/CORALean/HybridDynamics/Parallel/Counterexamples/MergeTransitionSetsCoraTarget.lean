@@ -22,6 +22,20 @@ and `3`. A synchronized jump (`IsSyncRun.sync`, the target of `liftSyncTransitio
 builds for the label (`mergeTransitionSets.m:140`, through `synchronize`) targets `(3, 3)`.
 Read from the MATLAB code, not run (#40, `references/coverage/hybridDynamics/transition.md`, row
 `synchronize`).
+
+## Inputs
+* `P` – parallel automaton
+* `slift` – lifting with synchronization
+* `lab` – synchronization labels
+* `ℓ` – current locations
+* `a` – label
+
+## Hypotheses
+* `hp₀` – label occurs in component zero
+* `hp₁` – label occurs in component one
+
+## Conclusion
+* CORA's merged target differs from the synchronized jump's target
 -/
 
 -- Authors:       Claude Opus 5.5

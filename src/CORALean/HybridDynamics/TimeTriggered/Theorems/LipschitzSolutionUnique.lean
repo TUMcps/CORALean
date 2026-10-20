@@ -11,6 +11,22 @@ Mathlib's uniqueness theorem, in the form the execution arguments use: two curve
 two-sided derivative `f(z)` on `[0, M]` that start together coincide there, for `f` Lipschitz,
 [1, Def. 2].
 
+## Inputs
+* `f` – vector field
+* `K` – Lipschitz constant
+* `z` – first curve
+* `w` – second curve
+* `M` – horizon
+
+## Hypotheses
+* `hf` – field is Lipschitz
+* `hz` – first curve solves the field
+* `hw` – second curve solves the field
+* `h0` – the curves start together
+
+## Conclusion
+* the curves agree up to the horizon
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

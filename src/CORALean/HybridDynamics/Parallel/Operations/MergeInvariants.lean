@@ -10,6 +10,14 @@ public import CORALean.HybridDynamics.Parallel.Definitions.Lifting
 CORA's `mergeInvariants`: the product's invariant is the conjunction of the components', each
 lifted, which is `Lifting.inv` of the tuple. CORA also cuts a component's invariant by the
 complement of its guards, for the labels it merges; no label is merged here (#40).
+
+## Inputs
+* `P` – parallel automaton
+* `lift` – lifting
+* `ℓ` – current locations
+
+## Output
+* invariant of the product
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,16 +11,26 @@ public import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplane
 # `NonlinearSys.WithSteps.guardIntersectPancake`, the time-scaling guard intersection
 
 CORA's `guardIntersect_pancake` [1], one `let` per step: the scaled system `F = g f`
-(`NonlinearSys.pancakeScaled`, `aux_scaledSystem`), its reach set (`aux_reachTimeScaled`), a
-single jump of the original system across the guard (`aux_jump`) and the projection onto the
-hyperplane. Departures: the guard `nᵀx = d` is oriented by the caller (`nᵀx > d` where the reach
-set's center is; CORA flips the halfspace when it holds the center); the scaled reach is the union
-of its time-point sets over `[0, tScaled]` and the jump runs from every member (CORA takes
-the last time-point set, `timePoint.set{end}`, and stops at the specification), so the result is
-a union, outer where CORA's is one set; the jump's step `δ` (the loop of `aux_jump` that bisects
-or grows it until the end set lies across) and the scaled system's certificates are the caller's;
-`none` where a reach fails. `maxDist = sup(nᵀR₀ − d)` enters through the parameter set
-`scaled.P` (CORA's `paramInt`), which soundness needs only to hold a positive value.
+(`NonlinearSys.pancakeScaled`), its reach set, a single jump of the original system across the
+guard (`aux_jump`) and the projection onto the hyperplane. Departures: the guard `nᵀx = d` is
+oriented by the caller; the scaled reach is a union of time-point sets and the jump runs from
+every member (CORA takes the last), so the result is a union, outer where CORA's is one set; the
+jump's step `δ` and the scaled system's certificates are the caller's; `none` where a reach fails.
+`maxDist` enters through the parameter set `scaled.P` (CORA's `paramInt`).
+
+## Inputs
+* `sys` – nonlinear system
+* `scaled` – time-scaled system
+* `nv` – guard normal
+* `d` – guard offset
+* `R₀` – initial set
+* `tScaled` – scaled final time
+* `δ` – jump step
+* `optionsScaled` – options of the scaled reach
+* `optionsJump` – options of the jump reach
+
+## Output
+* union of sets on the guard, none if a reach fails
 
 ## References
 

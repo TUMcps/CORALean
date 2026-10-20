@@ -10,6 +10,21 @@ public import CORALean.HybridDynamics.Definitions.IsRunUntil
 Forgetting the time budget: every `IsRunUntil` is the `IsRunOn` with the same
 stays and jumps, so a guarantee stated over `IsRunUntil` speaks of runs of the
 automaton and nothing weaker.
+
+## Inputs
+* `HA` – hybrid automaton
+* `T` – time budget
+* `k` – number of jumps
+* `ℓ` – location
+* `ℓ'` – end location
+* `x` – trajectory of the stay
+* `y` – end state
+
+## Hypotheses
+* `run` – run within the budget
+
+## Conclusion
+* the run has the same number of jumps
 -/
 
 -- Authors:       Claude Opus 5.5

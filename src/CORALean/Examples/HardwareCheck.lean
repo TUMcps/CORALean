@@ -10,19 +10,19 @@ import CORALean.Global.Float.Instances.IEEE.Operations.MulUp
 # `lake exe hardwarecheck`: does the machine do what `TrustedHardware` says?
 
 `Float` is opaque in Lean's logic, so the ten conjuncts of `TrustedHardware` are trusted claims
-about the machine and about the C the compiler emitted for `Binary64`'s operations; nothing proves
-them. This executable SAMPLES them, and is only as strong as its sampling: every native result is
-compared, exactly, with the axiom-free soft-float `IEEE .binary64`, on uniform random bit patterns
-and on structured inputs (`Rng.lean`), and the operations must return NaN exactly outside the normal
-range (`Binary64/Operations/InRange.lean`). `Exact.lean` and `Checks.lean` define the comparison.
+about the machine and the C the compiler emitted for `Binary64`'s operations; nothing proves them.
+This executable SAMPLES them: every native result is compared, exactly, with the axiom-free
+soft-float `IEEE .binary64`, on uniform random bit patterns and structured inputs (`Rng.lean`), and
+the operations must return NaN exactly outside the normal range
+(`Binary64/Operations/InRange.lean`). `Exact.lean` and `Checks.lean` define the comparison. Build
+it linked (`lake build hardwarecheck`) so that it tests the C lake emits; run
+`lake exe hardwarecheck [--seed N] [--n N]`. It exits `1` on any violation, `0` otherwise.
 
-Build it linked -- `lake build hardwarecheck` -- so that it tests the C lake emits, not the
-toolchain's precompiled primitives, which `lake env lean --run` would test instead.
+## Inputs
+* `args` – command line arguments
 
-    lake exe hardwarecheck [--seed N] [--n N]
-
-Prints the seed, the samples per operation and the first failing input of each; exits `1` on any
-violation, `0` otherwise.
+## Output
+* exit code zero when no sample violates the claims
 -/
 
 -- Authors:       Claude Opus 5.5

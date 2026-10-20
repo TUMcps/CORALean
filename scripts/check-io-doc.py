@@ -25,7 +25,7 @@ Which binder is a `Prop` is decided by a text proxy, since no elaboration happen
 is a hypothesis when
   * its name is `h` alone or `h` followed by at least one more character (`hZ`, `hlt`, `h₁`,
     `hΔt`) and its type does not begin with a data head (`ℕ ℤ ℝ ℚ ℂ EReal Bool Fin Type Set Vec Mat
-    List Finset Option String`, or the float scalar `𝕋`: `{lo hi : 𝕋}`; a function type `α → 𝕋` counts by its codomain) free of a depth-0 relation symbol (so `(hi : Fin k → Vec 𝕋 n)`
+    List Finset Option String Unit`, or the float scalar `𝕋`: `{lo hi : 𝕋}`; a function type `α → 𝕋` counts by its codomain) free of a depth-0 relation symbol (so `(hi : Fin k → Vec 𝕋 n)`
     is an input, `(hS : Set.Nonempty S)` and `(hS : Set α ⊆ T)` are hypotheses), or
   * its type, outer parentheses removed, contains at depth 0 one of
     `= ≠ ≤ ≥ < > ∈ ∉ ⊆ ⊂ ⊇ ⊃ ∣ ∀ ∃ ¬ ∧ ∨ ↔ ⊥` (`→` is not in the list: it is a function type
@@ -47,7 +47,7 @@ symbol. (Without this, `(f : α → ℝ≥0∞)` was sorted into the hypotheses.
 `(hy : (i : Fin N) → Vec ℝ (qy i))` is judged by its codomain, so it is data, not a hypothesis.
 A function type whose codomain is a data type (`(sel : (Z : Zonotope α) → Z.h = m + 2 → Fin m × Bool)`) is data, whatever its domain says. A function into a family, `(r : ℕ → ∀ i, Vec ℝ (p i))`, is judged by the family. A family binder `(A : ∀ a, Mat ℝ n (m a))` or `(X : ∀ a, Zonotope (Vec ℝ (m a)))` — a `∀` whose
 body ends in a data type (`Mat`, `Vec`, `Zonotope`, `Interval`, …, or a type variable `ι`; not `Option`) with no relation symbol — is data.
-A family into `SupportBound` or `SupportWitness` (structures, `(wO : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness O d)`), into `PolyZonotope` or `GNN.ActLayer` (`(acts : ∀ s, GNN.ActLayer N (c s))`, `(f : ∀ t,
+A type headed by a parenthesised receiver, `(P.product lift).IsRun ..`, is judged by the field (`IsRun`). A one-letter type family (`(locID : ∀ c, L c)`; with a camelCase `h…` name, `(halfspaceConv : S n → G n)`) is data like a universe variable. A family into `LinearSys`, `HPolytope`, `ConZonotope`, `Location`, `HybridAutomaton`, `Transition` or `ResolveSource` (data, `(inputBinds : ∀ i, Fin (m i) → ResolveSource k p g)`), `SupportBound` or `SupportWitness` (structures, `(wO : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness O d)`), into `PolyZonotope` or `GNN.ActLayer` (`(acts : ∀ s, GNN.ActLayer N (c s))`, `(f : ∀ t,
 PolyZonotope (Vec ℝ (d t)) → PolyZonotope (Vec ℝ (d (t + 1))))`), or into `Cost` (`(LC : ∀ {a b : ℕ},
 Layer S a b → Cost)`), is data as well. A function binder `(contract : ∀ m : ℕ, A → B → (Fin m → ℝ) × (Fin m → ℝ))` — a `∀` whose body
 has no relation symbol and ends in a parenthesised codomain — is data (a contractor), not a statement.
@@ -155,10 +155,19 @@ def binders(sig):
     return out
 
 
-NN_DATA_HEADS = {"PolyZonotope", "ActLayer", "SupportBound", "SupportWitness"}  # families `∀ t, PolyZonotope ..`, `∀ s, GNN.ActLayer ..`
+NN_DATA_HEADS = {"PolyZonotope", "ActLayer", "SupportBound", "SupportWitness", "ResolveSource", "Transition",
+                 "ConZonotope", "HPolytope", "LinearSys", "Location", "HybridAutomaton"}  # families `∀ t, PolyZonotope ..`, `∀ s, GNN.ActLayer ..`
 TYPE_VARS = set("αβγδεζηθικλμνξπρστυφχψω")  # `ι`, `κ`, … : a universe variable names a data type
+def tyvar(x, whole=None):
+    """A universe variable (`α`, `ι`) or a one-letter type family (`L c`, `S n → G n`): a data type.
+    A lone `P` (`(hP : P)`) stays a hypothesis."""
+    if x in TYPE_VARS:
+        return True
+    return len(x) == 1 and x.isascii() and x.isupper() and (whole is None or len(whole.strip()) > 1)
+
+
 DATA_HEADS = {"ℕ", "ℤ", "ℝ", "ℚ", "ℂ", "Bool", "Fin", "Type", "Type*", "Sort", "Prop", "String",
-              "List", "Finset", "Set", "Vec", "Mat", "Option", "𝕋", "EReal"}
+              "List", "Finset", "Set", "Vec", "Mat", "Option", "𝕋", "EReal", "Unit"}
 
 
 def is_prop(name, typ):
@@ -188,7 +197,8 @@ def is_prop(name, typ):
             k = flat0.rfind("→")
             if k >= 0:
                 cod = re.match(r"[^\s(]+", t[k + 1:].strip())
-                data = bool(cod and cod.group(0) in DATA_HEADS)
+                data = bool(cod and (cod.group(0) in DATA_HEADS or cod.group(0) in TYPE_VARS
+                                     or (re.match(r"h[a-z]+[A-Z]", name) and tyvar(cod.group(0)))))
         if not (data and not any(c in re.sub(r"[ℝℚ]≥0∞?", "ℝ", top_level(t)) for c in PROP_SYMBOLS)):
             return True
     while t.startswith("(") and matching(t, 0) == len(t) - 1:
@@ -208,7 +218,7 @@ def is_prop(name, typ):
         hd = re.match(r"[^\s(]+", cod)
         last_hd = hd.group(0).split(".")[-1] if hd else ""
         if hd and (hd.group(0) in (DATA_HEADS - {"Option"}) | {"Zonotope", "Interval", "Cost"}
-                   or hd.group(0) in TYPE_VARS
+                   or tyvar(hd.group(0))
                    or last_hd in NN_DATA_HEADS) and not any(
                 c in flat_body for c in PROP_SYMBOLS):
             return False
@@ -220,7 +230,7 @@ def is_prop(name, typ):
         cod_f = t[kf + 1:].strip()
         hf = re.match(r"[^\s(]+", cod_f)
         if (hf and (hf.group(0) in DATA_HEADS - {"Prop", "Sort", "Type", "Type*"}
-                    or hf.group(0) in TYPE_VARS)
+                    or tyvar(hf.group(0)))
                 and not any(c in re.sub(r"[ℝℚ]≥0∞?", "ℝ", top_level(cod_f)) for c in PROP_SYMBOLS)):
             return False
     # `ℝ≥0∞` / `ℝ≥0` / `ℚ≥0` are number types, not the relation `≥`
@@ -229,6 +239,12 @@ def is_prop(name, typ):
     if any(c in flat for c in PROP_SYMBOLS):
         return True
     head = re.match(r"[^\s(]+", t)
+    if t.startswith("("):
+        # `(P.product lift).IsRun ..`: the head is the field after the parenthesised receiver
+        j = matching(t, 0)
+        head = re.match(r"\.[A-Za-z_][\w.]*", t[j + 1:]) if j > 0 else None
+        if head:
+            head = re.match(r"[^\s(]+", head.group(0)[1:])
     if head:
         h = head.group(0)
         last = h.split(".")[-1]

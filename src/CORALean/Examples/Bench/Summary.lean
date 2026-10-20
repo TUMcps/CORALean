@@ -4,15 +4,21 @@ import CORALean.ContSet.Zonotope.Float.Instances
 /-!
 # Per-run summary statistics, so a run's JSON answers without post-processing
 
-Four numbers per dimension, over a run's `Array (Zonotope (Vec 𝕋 2))`: the error
-box's final and worst-over-steps radius `(E.sup - E.inf) / 2`, the final
-nominal hull's half-width `Σ_j |G_ij|` doubled into a width, and the final
-total width once `E` is added back on both sides. Beside them, for the
-time-point sets a precision ablation cares about: the first step whose
-(max-over-dim) error radius exceeds the nominal half-width at that step -- the
-set is then mostly error -- and the first step whose error radius exceeds `1`,
-a blow-up marker. Both are `none` if the run never crosses either line. At a
-type with a range, the first step storing a value past it, `firstOverflowStep`.
+Four numbers per dimension, over a run's `Array (Zonotope (Vec 𝕋 2))`: the error box's final and
+worst-over-steps radius `(E.sup - E.inf) / 2`, the final nominal hull's half-width `Σ_j |G_ij|`
+doubled into a width, and the final total width once `E` is added back. Beside them, for the
+time-point sets a precision ablation cares about: the first step whose error radius exceeds the
+nominal half-width, and the first step whose error radius exceeds `1`, a blow-up marker; both
+`none` if the run never crosses either line. At a type with a range, the first step storing a value
+past it, `firstOverflowStep`.
+
+## Inputs
+* `toD` – conversion to a double
+* `steps` – reach sets per step
+* `overflows` – optional overflow test
+
+## Output
+* JSON summary of the run
 -/
 
 -- Authors:       Claude Opus 5.5

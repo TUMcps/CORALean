@@ -14,6 +14,16 @@ enclosed with directed rounding: `Ax₀ + b` and `d − nᵀx₀` by `dotDown`/`
 corner products, `1/Λ` by `Interval.recip`, and the products by their corners. `none` when the
 interval of `Λ` is not certified to exclude `0`, where `y_h` is not defined.
 
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `nv` – guard normal
+* `d` – guard offset
+* `x₀` – initial state
+
+## Output
+* box holding the hit point, none if undefined
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

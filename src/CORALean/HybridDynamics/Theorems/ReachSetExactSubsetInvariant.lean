@@ -15,6 +15,20 @@ says of every run into `ℓ`, this says of the set of them at once.
 `Invariant` is a hypothesis here, not something computed — there is no `reach`
 algorithm for a hybrid automaton — so unlike `reachSetExact_subset_reach` this asks
 for the enclosure outright rather than deriving one.
+
+## Inputs
+* `HA` – hybrid automaton
+* `R₀` – initial set
+* `ℓ₀` – initial location
+* `R` – invariant sets
+* `ℓ` – end location
+
+## Hypotheses
+* `hinv` – the sets are an invariant
+* `hR₀` – initial set lies in its invariant set
+
+## Conclusion
+* the reachable set lies in the invariant set
 -/
 
 -- Authors:       Claude Opus 5

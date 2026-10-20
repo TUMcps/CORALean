@@ -4,17 +4,20 @@ import CORALean.Global.Float.Instances.IEEE.Operations.Overflows
 /-!
 # `opcompare`: hex bit patterns, and the exact `Float ↔ IEEE .binary64` conversion
 
-`inputs.json`/`matlab_results.json` (`experiments/matlab-ops/make_inputs.py`) hold every
-number as 16 lowercase hex digits, most significant first -- `struct.pack('>d', x).hex()`,
-with no `0x` prefix -- and this bench's own `coralean_results.json` matches that convention
-exactly, so `compare.py` reads every field, from either side, the same way.
+`inputs.json` and `matlab_results.json` (`experiments/matlab-ops/make_inputs.py`) hold every number
+as 16 lowercase hex digits, most significant first, and this bench's `coralean_results.json`
+matches that convention, so `compare.py` reads every field the same way from either side.
+`ieee64ToBits` is the interesting half: `floatToIEEE64` carries a `Float` into `IEEE .binary64`
+losslessly, but the rounded operations leave the pair in whatever un-normalised form the grid
+arithmetic produced, and turning that back into a bit pattern means finding the standard binary64
+form, normal or subnormal, that denotes the same value. `checkRoundTrip` is the regression: every
+input hex token survives `hex → Float → IEEE → hex` unchanged.
 
-`ieee64ToBits` is the interesting half: `floatToIEEE64` carries a `Float` into `IEEE
-.binary64` losslessly (`Binary64.toDyadic`'s own `(mantissa, exponent)`), but the rounded
-operations (`addDown`, `mulUp`, ...) leave the pair in whatever un-normalised form the grid
-arithmetic produced, and turning that back into a bit pattern means finding the *standard*
-binary64 form -- normal or subnormal -- that denotes the same value. `checkRoundTrip` is the
-regression: every input hex token survives `hex → Float → IEEE → hex` unchanged.
+## Inputs
+* `s` – hex string
+
+## Output
+* bit pattern or an error message
 -/
 
 -- Authors:       Claude Opus 5.5

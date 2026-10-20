@@ -11,6 +11,22 @@ public import CORALean.DiscrDynamics.GridPartition.Theorems.Basic
 CORA's claim for `intersectingCells`: it over-approximates, every cell meeting the set is
 returned. A cell `c` in `1 … N` containing a point of the box `I` is in the list, whatever the
 dividers; for `n = 0` CORA returns `0` and the statement is for a state space with a dimension.
+
+## Inputs
+* `P` – grid partition
+* `I` – box
+* `c` – cell number
+* `x` – point
+
+## Hypotheses
+* `hn` – dimension nonzero
+* `h1` – cell number at least one
+* `h2` – cell number within the cell count
+* `hxI` – point lies in the box
+* `hxc` – point lies in the cell
+
+## Conclusion
+* the cell is returned
 -/
 
 -- Authors:       Claude Sonnet 5.5

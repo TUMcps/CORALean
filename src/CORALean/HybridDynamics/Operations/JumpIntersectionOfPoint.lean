@@ -14,6 +14,13 @@ reachable set by a guard exactly — the payoff `OfPoint` exists for.
 
 As at `jumpIntersection`, `Intersection.intersection` is homogeneous, so the
 guard is asked to be in the state's own family here and nowhere else (#39).
+
+## Inputs
+* `e` – transition
+* `R` – reach set
+
+## Output
+* image of the guard intersection under the reset
 -/
 
 -- Authors:       Claude Opus 5

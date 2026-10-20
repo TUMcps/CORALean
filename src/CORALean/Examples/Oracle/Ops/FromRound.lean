@@ -4,22 +4,21 @@ import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # `"from"` and `"roundTo"`
 
-`"from"` is a checked read-back: every entry must already be exactly
-representable, `parseMatDyn`'s own rule, and the answer is that matrix,
-normalised. `"roundTo"` is the one op whose input need not be -- `x` (a matrix)
-or `Z` (a zonotope), told apart by which field is present.
+`"from"` is a checked read-back: every entry must already be exactly representable, and the answer
+is that matrix, normalised. `"roundTo"` is the one op whose input need not be: `x` (a matrix) or
+`Z` (a zonotope), told apart by which field is present. The zonotope form rounds `c` and `G`
+entrywise by `mode`, then grows `E` outward regardless of `mode`. `c`'s rounding error is a fixed
+offset, but `G`'s is multiplied by a coefficient `β ∈ [-1,1]`, so it must enter `E` symmetrically:
+row `i`'s bound is one sum of magnitudes, `r_i := sumUp_l (maximum (neg lo_il) hi_il)`, subtracted
+from `E.inf` and added to `E.sup`, not a separate `sumDown` and `sumUp`, which would miss the `β`
+that hits every generator's worst sign together. `construct Z ⊆ construct Z'` is an informal claim.
 
-The zonotope form rounds `c` and `G` entrywise by `mode`, then grows `E`
-outward regardless of `mode`, `Z`'s own (still off-grid) box rounded down at
-`inf` and up at `sup`. `c`'s rounding error is a fixed offset and adds
-asymmetrically as before, but `G`'s is multiplied by a generator coefficient
-`β ∈ [-1,1]`, so it must enter `E` *symmetrically*: a single `β` hits every
-generator's own worst-case sign at once, so row `i`'s bound is one sum of
-magnitudes, `r_i := sumUp_l (maximum (neg lo_il) hi_il)`, subtracted from
-`E.inf` and added to `E.sup` -- not a separate `sumDown` into `E.inf` and
-`sumUp` into `E.sup`, which only ever grows one side and misses exactly the
-`β` that hits every generator's worst sign together. `construct Z ⊆ construct
-Z'` is an informal claim, not a theorem restated here.
+## Inputs
+* `dops` – dtype operations
+* `req` – request
+
+## Output
+* response fields or an error message
 -/
 
 -- Authors:       Claude Opus 5.5

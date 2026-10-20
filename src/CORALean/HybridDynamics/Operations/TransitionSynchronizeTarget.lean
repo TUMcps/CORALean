@@ -11,6 +11,14 @@ The target tuple of CORA's `transition/synchronize`: `locID` with component `com
 the target of transition `i`. The targets are typed by the component (`L (compIdx i)`), so the
 component is `compIdx i`, which CORA's loop does not use (`Transition.synchronizeTargetCORA`,
 `references/coverage/hybridDynamics/transition.md`, row `synchronize`).
+
+## Inputs
+* `locID` – current locations
+* `compIdx` – component indices
+* `target` – target locations
+
+## Output
+* locations with the targets substituted
 -/
 
 -- Authors:       Claude Opus 5.5

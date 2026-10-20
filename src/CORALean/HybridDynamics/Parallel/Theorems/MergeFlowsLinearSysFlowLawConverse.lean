@@ -21,6 +21,19 @@ input `g` of the product in `mergeInputSets` and a disturbance in `mergeDistSets
 global inputs are `g` and their disturbances the blocks (`Lifting.Exact`); an input bound to an
 output is that output, computed with the feeding component's output-bound inputs at `0`, which
 `FeedthroughFree` makes no difference; `mergeFlowsLinearSys_flow` is the coordinate identity.
+
+## Inputs
+* `P` – parallel automaton
+* `lift` – lifting
+
+## Hypotheses
+* `hfeed` – no feedthrough between bound outputs
+* `hdist` – no global input feeds two inputs
+* `hne` – every input set is nonempty
+* `hex` – lifting is exact
+
+## Conclusion
+* the merged flow has the converse flow law
 -/
 
 -- Authors:       Claude Opus 5.5

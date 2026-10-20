@@ -9,6 +9,19 @@ public import CORALean.DiscrDynamics.MarkovChain.Operations.Stretch
 
 `T^factor` of a column-stochastic matrix is one, and so is the average of the products
 `OT T^k` that `OT` becomes.
+
+## Inputs
+* `ι` – state type
+* `Obj` – chain with one transition matrix
+* `factor` – stretch factor
+
+## Hypotheses
+* `hf` – factor at least one
+* `hT` – transition matrix column-stochastic
+* `hOT` – averaged matrix column-stochastic
+
+## Conclusion
+* the stretched matrices are column-stochastic
 -/
 
 -- Authors:       Claude Sonnet 5.5

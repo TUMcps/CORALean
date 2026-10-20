@@ -20,14 +20,12 @@ public import CORALean.HybridDynamics.TimeTriggered.Theorems.SpaceTriggeredIsExe
 # The combined transformation overapproximates
 
 [1, Cor. 1]: for every `t_scaling ≥ 0`, `H_final` with time bound `T + t_scaling` overapproximates
-`H` with time bound `T`. The paper reads it off `Lemma 1` and `Lemma 2`; the execution of `H_final`
-is built from the end state of one of `H` here, whose f₁-orbit `z` (and, in `m₂`, the f₂-orbit from
-the guard point `z(τ)`) `spaceTriggered_isExec_orbit` gives. `H_final` follows `z` to `t₁`, then the
-scaled solution `y` from `z(t₁)` for `t_scaling`, which is `z(t₁ + σ)` for the clock `σ`, and `σ`
-stops at the guard point `z(τ)` (`scaledSolution_clock_le`, the step the paper does not mention:
-the scaled run does not cross `G`). What is left of the orbit, `z` from `t₁ + σ` to `τ` and the
-f₂-orbit, is run in `m_either` (and `m₂`), within `t₂` as `τ < t₁ + t₂`. The duration is
-`d + t_scaling - σ ≤ T + t_scaling`. Flows are Lipschitz by [1, Def. 2], the scaled one too.
+`H` with time bound `T`. The paper reads it off `Lemma 1` and `Lemma 2`; here the execution of
+`H_final` is built from the end state of one of `H`, whose orbits of `f₁` and `f₂`
+`spaceTriggered_isExec_orbit` gives: `H_final` follows `z` to `t₁`, then the scaled solution `y`
+for `t_scaling`, whose clock stops at the guard point (`scaledSolution_clock_le`, the step the
+paper does not mention); the rest of the orbit is run in `m_either` (and `m₂`), within `t₂`. Flows
+are Lipschitz by [1, Def. 2], the scaled one too.
 
 ## References
 

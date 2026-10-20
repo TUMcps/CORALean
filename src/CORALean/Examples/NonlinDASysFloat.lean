@@ -10,16 +10,19 @@ import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # A differential-algebraic system, run in floats
 
 The system `ẋ = -x + y`, `0 = y - x/2 - u`, one state, one algebraic variable and one input. The
-constraint is solved by `y = x/2 + u` (`ReducedModel`, with its uniqueness), which leaves the
-ordinary system `ẋ = -x/2 + u`. `NonlinDASys.reachFloat` runs that system at `Dyadic 24` from the
-box `x ∈ [3/4, 5/4]` under `u ∈ [-1/16, 1/16]` for one time unit in steps of `1/8`, from an
-interval model of the reduced field and its slopes (proved to enclose it, below), and prints the
-range of each window.
+constraint is solved by `y = x/2 + u` (`ReducedModel`, with its uniqueness), which leaves
+`ẋ = -x/2 + u`. `NonlinDASys.reachFloat` runs that system at `Dyadic 24` from the box
+`x ∈ [3/4, 5/4]` under `u ∈ [-1/16, 1/16]` for one time unit in steps of `1/8`, from an interval
+model of the reduced field and its slopes, and prints the range of each window.
+`NonlinDASys.reachFloat_outer` is the guarantee: whenever the run returns `some Rs`, the
+differential variable of every trajectory from the box lies at every time of window `k` in `Rs[k]`;
+the `#eval` shows the run returns `some` (eight windows).
 
-`NonlinDASys.reachFloat_outer` is the guarantee, applied here to this system: whenever the run
-returns `some Rs`, the differential variable of every trajectory of the algebraic system from the
-box, under inputs in the interval, lies at every time of window `k` in `Rs[k]`. The `#eval`
-shows the run returns `some` (eight windows).
+## Inputs
+* none
+
+## Output
+* differential-algebraic example system
 -/
 
 -- Authors:       Claude Sonnet 5.5

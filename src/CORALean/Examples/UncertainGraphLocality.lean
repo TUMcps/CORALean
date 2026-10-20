@@ -4,15 +4,19 @@ import CORALean.NN.Graph.Theorems.NotMemBallOfIsolated
 /-!
 # One subgraph serves every admissible `lam` at once
 
-`[1, §4.3]`'s `evalSteps_row_ball_of_adjacency_uncertain` at a path graph `0 -- 1 -- 2 -- 3`
-plus an isolated node `4`, with one uncertain edge `1 -- 3` at `lam := 0.5`.
-`κ` is sized against `adjMax`'s `3`-ball, `{0, 1, 2, 3}` — node `4` carries no
-edge at all, certain or uncertain, so no radius ever reaches it, and `κ` omits
-it. The uncertain edge itself sits inside `adjAt`'s own `2`-ball: at `lam = 0`
-node `3` needs all three path hops to reach `0`, and at `lam = 0.5` the direct
-edge halves that, so the *inner* enumeration genuinely moves with `lam` while
-the *outer* one, built from `adjMax`, does not — one `κ` licenses the whole
-family at once.
+[1, §4.3]'s `evalSteps_row_ball_of_adjacency_uncertain` at a path graph `0 -- 1 -- 2 -- 3` plus an
+isolated node `4`, with one uncertain edge `1 -- 3` at `lam := 0.5`. `κ` is sized against
+`adjMax`'s `3`-ball, `{0, 1, 2, 3}`: node `4` carries no edge at all, so no radius ever reaches it.
+The uncertain edge sits inside `adjAt`'s own `2`-ball: at `lam = 0` node `3` needs all three path
+hops to reach `0`, at `lam = 0.5` the direct edge halves that, so the inner enumeration moves with
+`lam` while the outer one, built from `adjMax`, does not: one `κ` licenses the whole family at
+once.
+
+## Inputs
+* none
+
+## Output
+* adjacency matrix of the path with an isolated node
 
 ## References
 

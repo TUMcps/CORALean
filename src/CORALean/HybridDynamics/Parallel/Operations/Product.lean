@@ -12,6 +12,13 @@ The product automaton: one location per tuple of component locations, `locationP
 its flow `mergeFlowsLinearSys`. A `HybridAutomaton`, so everything proved of one —
 `IsRun.mem_of_invariant`, `reachSetExact` — applies; `Theorems.IsRunToProduct` says a parallel run
 is a run of it. It is `productWith` at `mergeFlowsLinearSys`, `mergeInputSets` and `mergeDistSets`.
+
+## Inputs
+* `P` – parallel automaton
+* `lift` – lifting
+
+## Output
+* product automaton of the components
 -/
 
 -- Authors:       Claude Opus 5.5

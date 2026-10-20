@@ -26,6 +26,15 @@ A polytope guard whose label is not merged (an unlabeled transition's included):
 invariant by its complement, the documented condition does not. Read from
 `@parallelHybridAutomaton/mergeInvariants.m`, not run (#40,
 `references/coverage/hybridDynamics/parallelHybridAutomaton.md`, row `mergeInvariants`).
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA cuts the invariant, the documented condition does not
 -/
 
 -- Authors:       Claude Sonnet 5.5

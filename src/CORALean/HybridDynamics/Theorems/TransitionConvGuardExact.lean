@@ -13,6 +13,17 @@ every polytope built by a constructor, the new guard denotes the intersection of
 the invariant, with equality: the rows are only stacked (`HPolytope.intersection_exact`). The
 reset and the target are untouched. For polytopes with an error box,
 `Transition.convGuard_guard_outer` still holds.
+
+## Inputs
+* `e` – transition
+* `inv` – invariant polytope
+
+## Hypotheses
+* `hg` – guard has no error box
+* `hi` – invariant has no error box
+
+## Conclusion
+* the new guard is the guard intersected with the invariant
 -/
 
 -- Authors:       Claude Opus 5.5

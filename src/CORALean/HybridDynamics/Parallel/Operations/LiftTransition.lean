@@ -12,6 +12,15 @@ A transition of component `c` as a transition of the product: the guard lifted, 
 identity off component `c`'s block and `e`'s on it, and the target the location tuple with
 component `c` moved. CORA's `lift` and `synchronize` for a transition without a sync label;
 labels are not in `Transition` (#40).
+
+## Inputs
+* `lift` – lifting
+* `ℓ` – current locations
+* `c` – component
+* `e` – transition of the component
+
+## Output
+* product transition of the component's transition
 -/
 
 -- Authors:       Claude Opus 5.5

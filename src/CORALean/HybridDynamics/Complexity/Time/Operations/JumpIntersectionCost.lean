@@ -16,6 +16,15 @@ Asserted, not proved: `Operations/JumpIntersection.lean` is `jump` after
 `JumpIntersectionOfPoint.lean` is `jumpOfPoint` after the same cut — one count
 prices either, `cIntersection` bounding whichever `intersection` the caller
 runs.
+
+## Inputs
+* `cIntersection` – cost of the intersection
+* `cMtimes` – cost of the matrix product
+* `cPlus` – cost of the Minkowski sum
+* `cEmbed` – cost of the embedding
+
+## Output
+* cost of a jump through an intersection guard
 -/
 
 -- Authors:       Claude Opus 5.5

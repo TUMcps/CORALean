@@ -9,6 +9,16 @@ public import CORALean.DiscrDynamics.GridPartition.Operations.ExactIntersectingC
 
 CORA's `exactIntersectingCells` of a set whose volume is not positive: `iS = 0` and `iProp = 1`,
 all of it counted as outside the partition, whether or not it lies inside.
+
+## Inputs
+* `P` – grid partition
+* `X` – set
+
+## Hypotheses
+* `h` – set has no positive volume
+
+## Conclusion
+* the set is counted entirely outside
 -/
 
 -- Authors:       Claude Sonnet 5.5

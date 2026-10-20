@@ -9,6 +9,14 @@ public import CORALean.HybridDynamics.Definitions.NonlinearReset
 
 CORA's `nonlinearReset/evaluate` at numeric arguments: `x_ = nonlinReset.f(x, u)`. At a set it is a
 Taylor enclosure with a Lagrange remainder, which is not here.
+
+## Inputs
+* `r` – reset
+* `x` – pre-jump state
+* `u` – input vector
+
+## Output
+* post-jump state of the reset
 -/
 
 -- Authors:       Claude Sonnet 5.5

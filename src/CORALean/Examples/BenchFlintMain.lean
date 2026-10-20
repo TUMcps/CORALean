@@ -10,6 +10,12 @@ landing in the same environment. `bench-flint <experiment> [--type flint]
 [--format ...] [--config FILE] [--reps N] [--out DIR] [--exact]` runs like
 `bench`; `bench-flint selftest` runs the differential test instead (README,
 "FLINT backend (optional)").
+
+## Inputs
+* `argv` – command line arguments
+
+## Output
+* the experiment runs and writes its results
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -5,15 +5,20 @@ import CORALean.Global.Float.Instances.Dyadic.Instances
 /-!
 # A support value of a constrained zonotope, from the float LP driver
 
-At `Dyadic 53`, values printed exactly through `ToRat`. Constrained zonotopes on the unit
-square's generators: `ConZonotope.boundDot` reaches the support value where the
-constraint-blind zonotope bound does not. Under `β₁ + β₂ = 0` the set is the segment
-`{(t, -t)}`, whose support in the diagonal direction is `0`, where the zonotope bound is `2`;
-under `β₁ + β₂ ≤ 0` it is a triangle. Under `3β₁ + β₂ ≤ 1` the support value in direction
-`(1, 0)` is `2/3`, not a dyadic, and the float bound lands a few units in the last place above
-it, never below.
+At `Dyadic 53`, values printed exactly through `ToRat`. Constrained zonotopes on the unit square's
+generators: `ConZonotope.boundDot` reaches the support value where the constraint-blind zonotope
+bound does not. Under `β₁ + β₂ = 0` the set is the segment `{(t, -t)}`, whose support in the
+diagonal direction is `0`, where the zonotope bound is `2`; under `β₁ + β₂ ≤ 0` it is a triangle.
+Under `3β₁ + β₂ ≤ 1` the support value in direction `(1, 0)` is `2/3`, not a dyadic, and the float
+bound lands a few units in the last place above it, never below. `ConZonotope.boundDot_le` makes
+each value a guarantee rather than a number.
 
-`ConZonotope.boundDot_le` makes each value a guarantee rather than a number.
+## Inputs
+* `cZ` – constrained zonotope
+* `a` – direction
+
+## Output
+* support value as an exact rational
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

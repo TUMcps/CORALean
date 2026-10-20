@@ -15,6 +15,20 @@ which vanishes with `Aᵑ`; with no inputs (`U = {0}`) `err2` and `err3` are `{0
 `W = 0` (the Taylor remainder of `e^{|A|tmax}` zero, as for a nilpotent `|A|`) so are `Ê R₀`
 and `Ê tmax U`. Stated on the representation, center and every generator zero, which is what the
 counterexamples compute with (`GuardMap.abstractionErrorCora_counterexample`).
+
+## Inputs
+* `A` – flow matrix
+* `x₀` – initial state
+* `th` – expansion time
+* `tmax` – final time
+* `η` – Taylor order
+
+## Hypotheses
+* `hA` – `A` is nilpotent of index `η`
+* `hW` – exponential remainder vanishes
+
+## Conclusion
+* CORA's error set is the single point zero
 -/
 
 -- Authors:       Claude Opus 5.5

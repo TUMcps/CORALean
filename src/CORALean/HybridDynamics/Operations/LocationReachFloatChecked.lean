@@ -12,6 +12,15 @@ public import CORALean.Global.Float.NoNaN
 a NaN. A `some` is the unchecked `some` (`reachFloatChecked_eq_some`), so whatever is proved
 of `reachFloat` holds of it, and the NaN test that the trust base asks of the caller has
 been made.
+
+## Inputs
+* `ℓ` – location
+* `tFinal` – final time
+* `options` – reach options
+* `X₀` – initial zonotope
+
+## Output
+* time-interval sets, none on failure or NaN
 -/
 
 -- Authors:       Claude Opus 5.5

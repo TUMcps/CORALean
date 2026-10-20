@@ -14,6 +14,15 @@ inputBinds)`, which `mergeTransitionSets.m` calls with the `pHA.bindsInputs` the
 so global inputs may be bound out of order. Two components with one state, input and output each,
 the resets `x'_i = u_i` lifted to the product, the inputs bound to the global inputs `2` and `1`:
 the composed reset of CORA gives the first component its first argument, the product its second.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the corrected resolve gives one, CORA's gives zero
 -/
 
 -- Authors:       Claude Opus 5.5

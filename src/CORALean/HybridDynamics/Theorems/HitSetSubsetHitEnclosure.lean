@@ -15,21 +15,37 @@ public import CORALean.HybridDynamics.Theorems.HitFactorMemIcc
 # `R_g` encloses every `R_h(x₀)`, with `Θ/Λ` enclosed as a vector
 
 [1, Sec. 5.4]: `R_g = y_h(ξ) ⊕ L ⊗ (R(0) ⊕ (−ξ)) ⊕ ½[φ̲, φ̄] ⊗ R_quad ⊕ R_{h,E}(R(0))` holds the
-set `R_h(x₀)` of eq. (15) for every `x₀ ∈ R(0)`, given `Λ ≠ 0` on `R(0)`, `ξ ∈ R(0)`,
-`[φ̲, φ̄] ⊇ {1/Λ(x₀)² | x₀ ∈ R(0)}`, and `ψ_c`, `ψ_g` with `Θ(x₀)/Λ(x₀) ∈ ψ_c ⊕ [-1, 1]ψ_g` as
-vectors, one factor for all coordinates (the reading of (19) under which [1, Prop. 3] holds).
+set `R_h(x₀)` of eq. (15) for every `x₀ ∈ R(0)`, given `Λ ≠ 0` on `R(0)`, `ξ ∈ R(0)`, `[φ̲, φ̄]`
+holding `1/Λ(x₀)²`, and `ψ_c`, `ψ_g` enclosing `Θ(x₀)/Λ(x₀)` as vectors (one factor for all
+coordinates). The paper's route, `Prop. 3` per coordinate, puts each remainder at its own Lagrange
+point, which `R_quad` and the single `[φ̲, φ̄]` do not hold together. The proof goes another way:
+with `ν = x₀ − ξ` the remainder is exact and shared (`hitPoint_add_eq`), `Q⁽ⁱ⁾(ξ)` is one point of
+all the matrix zonotopes (`hitHessianNum_eq_hitHessianMatZono`), and `φ` is the geometric mean of
+`1/Λ(ξ)²` and `1/Λ(x₀)²`.
 
-The paper's route, `Prop. 3` coordinate by coordinate, puts each `y_{h,i}`'s remainder at its
-own Lagrange point with its own `φ`, which `R_quad` (one factor per generator for all
-coordinates) and the single `[φ̲, φ̄]` do not hold together. The proof goes another way: with
-`ν = x₀ − ξ` the remainder is exact and shared,
-`y_h(x₀) = y_h(ξ) + L(ξ)ν + ½ φ (νᵀQ⁽ⁱ⁾(ξ)ν)ᵢ`, `φ = 1/(Λ(ξ)Λ(x₀))`,
-since `y_h` is a ratio whose denominator `Λ` is affine: `νᵀQ⁽ⁱ⁾(ξ)ν = 2(Θ(ξ)ᵀν)((Aν)ᵢ −
-(Υν)(Aξ + b)ᵢ/Λ(ξ))`, `Ω` dropping out of the form. `Q⁽ⁱ⁾(ξ)` is one point of all the matrix
-zonotopes with the same factors (`GuardMap.hitHessianNum_eq_hitHessianMatZono`), so the vector
-lies in `R_quad` by [1, Thm. 1] with shared factors (`Zonotope.quadMapMatZono_outer`); `φ` is
-the geometric mean of `1/Λ(ξ)²` and `1/Λ(x₀)²`, `Λ` keeping its sign on the convex `R(0)`; and
-`R_{h,E}(x₀) ⊆ R_{h,E}(R(0))` at `a = Λ(x₀) ∈ I`.
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `nv` – guard normal
+* `d` – guard offset
+* `E` – flow error set
+* `R₀` – initial zonotope
+* `ξ` – expansion point
+* `ψc` – center of the coefficient enclosure
+* `ψg` – generator of the coefficient enclosure
+* `φlo` – lower bound of the factor
+* `φhi` – upper bound of the factor
+* `x₀` – state
+
+## Hypotheses
+* `hΛ` – flow does not run parallel to the guard on the set
+* `hφ` – the bounds hold on the set
+* `hψ` – the coefficient enclosure holds on the set
+* `hξ` – expansion point lies in the set
+* `hx₀` – state lies in the set
+
+## Conclusion
+* the hit set lies in the hit enclosure
 
 ## References
 

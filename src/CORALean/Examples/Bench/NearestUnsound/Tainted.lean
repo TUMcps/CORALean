@@ -11,6 +11,15 @@ instance's rounding laws are projections of `nearestUnsound`, the false axiom of
 that each of them *does* depend on `nearestUnsound` — the positive control that
 shows the check can see a taint at all — while the library's own
 `reachFloat_outer`, stated for an arbitrary scalar, does not.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the soundness statement instantiated at round-to-nearest
 -/
 
 -- Authors:       Claude Opus 5.5

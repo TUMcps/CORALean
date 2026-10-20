@@ -8,6 +8,18 @@ public import CORALean.HybridDynamics.Operations.TransitionSynchronizeTarget
 # `Transition.synchronizeTarget` moves each component
 
 With `compIdx` injective, the target tuple has the target of transition `i` at `compIdx i`.
+
+## Inputs
+* `locID` – current locations
+* `compIdx` – component indices
+* `target` – target locations
+* `i` – transition
+
+## Hypotheses
+* `hinj` – component indices injective
+
+## Conclusion
+* the target tuple holds the target at its component
 -/
 
 -- Authors:       Claude Opus 5.5

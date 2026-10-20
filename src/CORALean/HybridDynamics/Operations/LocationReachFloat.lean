@@ -10,15 +10,21 @@ public import CORALean.HybridDynamics.Operations.InputSetFloat
 /-!
 # `Location.reachFloat`
 
-CORA's `location/reach`, its continuous part: the time-interval sets of a stay
-of length up to `tFinal` from `X₀`, by `LinearSys.reachFloatInput` at the canonical form of the
-location's dynamics, as CORA's `linearSys/reach` runs on `canonicalForm`: `ẋ = A x + u'`, the
-combined input `u' = B u + c + E w` in `inputSetFloat`, entering through the identity. A stay
-may end at any of those times, so every set is returned and none is cut to the
-invariant; `Location.guardIntersectFloat` cuts them where a guard is tested.
+CORA's `location/reach`, its continuous part: the time-interval sets of a stay of length up to
+`tFinal` from `X₀`, by `LinearSys.reachFloatInput` at the canonical form of the location's
+dynamics, `ẋ = A x + u'` with the combined input `u' = B u + c + E w` in `inputSetFloat`. A stay
+may end at any of those times, so every set is returned and none is cut to the invariant;
+`Location.guardIntersectFloat` cuts them where a guard is tested. `none` when `tFinal` is not
+positive, as well as where `reachFloatInput` fails.
 
-`none` when `tFinal` is not positive, as well as where `reachFloatInput` fails:
-a horizon of zero steps has no window to hold the stay's one state.
+## Inputs
+* `ℓ` – location
+* `tFinal` – final time
+* `options` – reach options
+* `X₀` – initial zonotope
+
+## Output
+* time-interval sets of the stay, none on failure
 -/
 
 -- Authors:       Claude Opus 5.5

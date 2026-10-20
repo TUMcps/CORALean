@@ -5,16 +5,19 @@ import CORALean.ContSet.Zonotope.Real.Instances
 /-!
 # Two zonotopes whose intersection is not one, bundled exactly
 
-A box and a diamond centered off it: their intersection has no center of
-symmetry, so no `Zonotope` denotes it, where `ZonoBundle.intersection_exact` denotes it
-outright — `intersection`, not merely `intersection_outer`. `Plus` and `Mtimes` still run at a
-bundle exactly as at any other `ContSet`, which is the second point: a bundle
-pays for its exact intersection with nothing else.
+A box and a diamond centered off it: their intersection has no center of symmetry, so no `Zonotope`
+denotes it, where `ZonoBundle.intersection_exact` denotes it outright, `intersection` and not
+merely `intersection_outer`. `Plus` and `Mtimes` still run at a bundle exactly as at any other
+`ContSet`: a bundle pays for its exact intersection with nothing else. `CompactSet` is a theorem
+here, the general `SetIntersection.isCompact_construct`, and not an instance:
+`ZonoBundle.construct` at `k = 0` is `⋂` over the empty family, which is `univ`, not compact, so
+the class's unconditional obligation has no proof; a member is what the theorem asks for instead.
 
-`CompactSet` is a theorem here, the general `SetIntersection.isCompact_construct`, and not an
-instance: `ZonoBundle.construct` at `k = 0` is `⋂` over the empty family, which is `univ`,
-not compact, so the class's unconditional obligation has no proof to give it. A
-member is what the theorem asks for instead.
+## Inputs
+* none
+
+## Output
+* bundle of the box and the off-center diamond
 -/
 
 -- Authors:       Claude Opus 5

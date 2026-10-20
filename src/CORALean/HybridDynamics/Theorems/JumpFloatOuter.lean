@@ -14,6 +14,20 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 the state at the jump, `Rg` its intersection with the guard, and the reset
 image lands in `jumpFloat Rg`. `Location.guardIntersectFloat` is what computes
 such an `Rg`.
+
+## Inputs
+* `e` – transition
+* `R` – float zonotope holding the state at the jump
+* `Rg` – float enclosure of the guard intersection
+* `z` – state at the jump
+
+## Hypotheses
+* `hinter` – enclosure contains the guard intersection
+* `hz` – state lies in the reach set
+* `hguard` – state lies in the guard
+
+## Conclusion
+* reset image lies in the float jump image
 -/
 
 -- Authors:       Claude Opus 5.5

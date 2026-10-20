@@ -11,6 +11,16 @@ The transition component `c` contributes to the synchronized transition for labe
 location tuple `ℓ`: the first `λ`-labeled transition of its current location, if `c` is one of
 `λ`'s participants, and none otherwise. CORA's constructor allows one transition per label in a
 location, so `find?` takes that one; `none` for a participant is what makes `λ` unavailable.
+
+## Inputs
+* `lab` – synchronization labels
+* `P` – parallel automaton
+* `ℓ` – current locations
+* `a` – label
+* `c` – component
+
+## Output
+* transition the component contributes, if any
 -/
 
 -- Authors:       Claude Sonnet 5.5

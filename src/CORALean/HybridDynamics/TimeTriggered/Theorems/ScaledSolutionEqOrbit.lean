@@ -12,6 +12,29 @@ public import CORALean.HybridDynamics.TimeTriggered.Theorems.ScaledSolutionUnsca
 starts is, while its clock `∫₀ᵗ g(y)` has not passed the horizon `M` of `z`, at `z` of the clock:
 the reparametrization of `scaledSolution_unscale` and uniqueness of solutions of `ẋ = f(x)`.
 
+## Inputs
+* `f` – vector field
+* `K` – Lipschitz constant
+* `g` – scaling function
+* `y` – scaled solution
+* `z` – orbit solution
+* `t` – duration
+* `M` – horizon of the orbit
+
+## Hypotheses
+* `hf` – field is Lipschitz
+* `hg` – scaling function continuous
+* `ht` – duration nonnegative
+* `hy0` – scaling function nonnegative along the curve
+* `hyc` – scaled solution continuous
+* `hyd` – scaled solution solves the scaled field
+* `hz` – orbit solves the field
+* `hz0` – the curves start together
+* `hσ` – clock stays within the orbit horizon
+
+## Conclusion
+* the scaled solution lies on the orbit at the clock
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

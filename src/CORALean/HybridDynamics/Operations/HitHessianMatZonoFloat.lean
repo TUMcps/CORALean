@@ -12,21 +12,27 @@ public import Mathlib.Data.Fin.VecNotation
 /-!
 # The matrix zonotope of `y_h`'s second derivatives, over a floating-point scalar
 
-`GuardMap.hitHessianMatZono`, [1, Prop. 3]'s `(C̃⁽ⁱ⁾, G̃^(i,1), …, G̃^(i,1+2p))` from
-`R(0) = ⟨c_x, g_x^(1), …, g_x^(p)⟩` and the one-factor enclosure `ψ_c ⊕ [-1, 1]ψ_g` of `Θ/Λ`,
-taken here as `ψ_c = −n − τ_c Υᵀ`, `ψ_g = −τ_g Υᵀ` from the center `τ_c` and radius `τ_g` of an
-interval of `τ = (d − nᵀx)/Λ(x)`, the reading of [1, Prop. 3] under which it holds
+`GuardMap.hitHessianMatZono`, [1, Prop. 3]'s `(C̃⁽ⁱ⁾, G̃^(i,1), …, G̃^(i,1+2p))` from `R(0)` and
+the one-factor enclosure `ψ_c ⊕ [-1, 1]ψ_g` of `Θ/Λ`, taken as `ψ_c = −n − τ_c Υᵀ`,
+`ψ_g = −τ_g Υᵀ` from the center `τ_c` and radius `τ_g` of an interval of `τ = (d − nᵀx)/Λ(x)`
 (`Location.guardIntersectHyperplaneMap`). Every printed formula is one `let`, an interval matrix
-built from point matrices by the float `matMul`, `matPlus` and `smul`: vectors are columns
-`n × 1` or rows `1 × n` as the formula indexes them, so `A_il Θ_m` is `A_{i·} Θ_c` and
-`A_im Θ_l` is `Θ_cᵀ A_{i·}ᵀ`.
+from the float `matMul`, `matPlus` and `smul`. The center is `C̃⁽ⁱ⁾`'s lower end and the error box
+holds the rest of the intervals; the enclosure is `GuardMap.hitHessianMatZonoFloat_mem`, at the
+factors `(κ, 0, 0)` of `c_x`. The generators `G̃^(i,1+α)`, `G̃^(i,1+p+α)` are kept at the lower
+ends of their intervals; nothing is claimed of them.
 
-The center is `C̃⁽ⁱ⁾`'s lower end and `G̃^(i,1)` its first generator, and the error box holds
-what the rest of their intervals adds at a factor in `[-1, 1]`: `[0, C̄ − C̲] + [-1, 1](Ḡ − G̲)`.
-That is the enclosure `GuardMap.hitHessianMatZonoFloat_mem` states, at the factors `(κ, 0, 0)`
-of the center `c_x`, the only point the guard mapping evaluates `Q⁽ⁱ⁾` at. The generators
-`G̃^(i,1+α)` and `G̃^(i,1+p+α)` are kept, as CORA keeps them, at the lower ends of their
-intervals; nothing is claimed of them.
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `nv` – guard normal
+* `d` – guard offset
+* `R₀` – initial zonotope
+* `τc` – center of the hitting time interval
+* `τg` – radius of the hitting time interval
+* `i` – output coordinate
+
+## Output
+* float matrix zonotope enclosing the numerators
 
 ## References
 

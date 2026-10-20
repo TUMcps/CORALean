@@ -9,17 +9,27 @@ public import CORALean.HybridDynamics.Operations.GuardIntersectLevelSet
 # `Location.guardTransitionLevelSet`, the transition through a nonlinear guard
 
 [1, Sec. 3.2], the procedure its Fig. 1 draws, one `let` per step, for one guard `{g = 0}` and its
-reset `r`. Step 1's reachable sets `R(τⱼ)` are the input, computed by a continuous algorithm
-until they leave the invariant; Step 1 keeps those that potentially meet the guard,
-`[l, u] = bound(g, R(τⱼ))` with `l ≤ 0 ∧ u ≥ 0` ([1, Sec. 4.1]). Step 2 encloses each by a box
-and contracts it (`Location.guardIntersectLevelSet`), Step 3 unites consecutive runs of at most
-`μ` of them (`chunks`), Step 4 encloses the guard in each united box (`intersect`, e.g.
-[1, Prop. 1] or [1, Prop. 2]), Step 5 applies the reset (`reset`, e.g. [1, Eq. 14]) and Step 6
-unifies the parallel sets (`unify`, e.g. the convex hull). Every operator is an argument, as the
-procedure leaves each to a later section; `Theorems.GuardTransitionLevelSetOuter` states what each
-must guarantee.
+reset `r`. Step 1's reach sets are the input; Step 1 keeps those that potentially meet the guard.
+Step 2 boxes and contracts each (`Location.guardIntersectLevelSet`), Step 3 unites runs of at
+most `μ` (`chunks`), Step 4 encloses the guard in each (`intersect`, e.g. [1, Prop. 1, 2]), Step 5
+applies the reset (`reset`, e.g. [1, Eq. 14]) and Step 6 unifies the parallel sets (`unify`).
+Every operator is an argument; `Theorems.GuardTransitionLevelSetOuter` states what each must
+guarantee. Real layer only: Step 1 compares real bounds.
 
-Real layer only: Step 1 compares real bounds, which no float scalar is supplied for here.
+## Inputs
+* `R` – reach set type
+* `T` – enclosure type
+* `bound` – bound of the guard function
+* `box` – box enclosure
+* `contract` – box contractor
+* `μ` – chunk size
+* `intersect` – guard intersection of a box
+* `reset` – reset map
+* `unify` – union of parallel sets
+* `Rs` – reach sets
+
+## Output
+* unified sets after the reset
 
 ## References
 

@@ -8,6 +8,15 @@ import Lean.Data.Json
 pattern array under its own key: `v1e4`/`w1e4` (n = 10^4), `cancel` (n = 2000), and the four
 row-major matrices `A100`/`B100`/`A500`/`B500`. `InputHex` keeps every token as read, for
 `OpCompareCodec.checkRoundTrip`; `decodeInputs` is the one place a token becomes a `Float`.
+
+## Inputs
+* none
+
+## Hypotheses
+* `h` – input bundle
+
+## Output
+* all hex strings of the input
 -/
 
 -- Authors:       Claude Opus 5.5

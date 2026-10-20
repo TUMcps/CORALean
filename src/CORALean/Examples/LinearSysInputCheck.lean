@@ -13,16 +13,14 @@ import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # A linear system under an input, checked against a box
 
-`LinearSysCheck`'s system, `ẋ = A x + u` with `A = [-1 1; 0 -2]`, from the box
-`[0, 2]²`, now driven by an input set. In the first example the input box is
-`[-1/10, 1/10]²` as `LinearSys.WithInput`, its `0 ∈ U` the zonotope's center, and
-the answer holds for every run under it. The input is small against the safe box
-`[-1/2, 5/2]²`, whose margin of `1/2` is what the contraction leaves it.
-
-In the second the input box moves off the origin, to `[1/10, 3/10] × [-1/10, 1/10]`, as
-`LinearSys.WithInputSplit`, which asks for no `0 ∈ U` at all: it is split at its center
-into a constant and a zero-centered part. As there, `reach` names `exp` and cannot be
-evaluated here; what is shown is that `Reach.holds_of_check` applies at both.
+`LinearSysCheck`'s system, `ẋ = A x + u` with `A = [-1 1; 0 -2]`, from the box `[0, 2]²`, now
+driven by an input set. In the first example the input box is `[-1/10, 1/10]²` as
+`LinearSys.WithInput`, its `0 ∈ U` the zonotope's center, and the answer holds for every run under
+it; the input is small against the safe box `[-1/2, 5/2]²`, whose margin of `1/2` is what the
+contraction leaves it. In the second the input box moves off the origin, to
+`[1/10, 3/10] × [-1/10, 1/10]`, as `LinearSys.WithInputSplit`, which asks for no `0 ∈ U` at all: it
+is split at its center into a constant and a zero-centered part. As there, `reach` names `exp` and
+cannot be evaluated here; what is shown is that `Reach.holds_of_check` applies at both.
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

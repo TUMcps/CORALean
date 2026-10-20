@@ -5,20 +5,22 @@ import CORALean.ContSet.Interval.Real.Instances
 /-!
 # Reachability of a discrete nonlinear system
 
-`NonlinearSysDT` at `f(x, u) = x² + u`, one state and one input, so the
-linearization at any point `p` has no truncation error at all: `f`'s own
-second-order term is exact, so subtracting the affine part at `p` leaves
-exactly `(x - p)²`, a computed quantity rather than a bounded one. Bounding it
-over `|x - p| ≤ r` is then `sq_le_sq'`, not an estimate.
+`NonlinearSysDT` at `f(x, u) = x² + u`, one state and one input, so the linearization at any point
+`p` has no truncation error: subtracting the affine part at `p` leaves exactly `(x - p)²`, a
+computed quantity rather than a bounded one, and bounding it over `|x - p| ≤ r` is `sq_le_sq'`, not
+an estimate. `Interval` is the representation: `NonlinearSysDT.reach` asks for `Plus`, `Reduce`,
+`Mtimes (Mat ℝ)` and `OfInterval`, and a box has the first three verbatim and the fourth as the
+identity. Nothing evaluates to a number: `NonlinearSysDT` carries no scalar parameter, its
+certificate's `A` being real, so, as in `NeurNetControl.lean`, every operation stays over ℝ.
 
-`Interval` is the representation: `NonlinearSysDT.reach` asks for `Plus`,
-`Reduce`, `Mtimes (Mat ℝ)` and `OfInterval`, and a box has the first three
-verbatim and the fourth as the identity.
+## Inputs
+* `p` – linearization point
+* `q` – input point
+* `r` – radius of the state box
+* `U` – input box
 
-Nothing here evaluates to a number: `NonlinearSysDT` carries no scalar
-parameter the way `LinearSysDT` does — its certificate's `A` is real, per the
-issue that landed it — so, as in `NeurNetControl.lean`, every operation stays
-over ℝ and `def` would still be `noncomputable`.
+## Output
+* linearization step at the point
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

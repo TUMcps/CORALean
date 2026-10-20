@@ -6,6 +6,12 @@ import CORALean.Examples.Oracle.Dispatch
 `run dtypes` is `lake exe oracle`'s whole `main`, apart from which dtypes it serves: one JSON
 line in, one line out (`Dispatch.respond`), until stdin ends. `Oracle.lean` serves `sounds`;
 another executable serves its own `DtypeSet`, for example the unsound one under `Bench/`.
+
+## Inputs
+* `dtypes` – dtypes served
+
+## Output
+* the requests are served until end of input
 -/
 
 -- Authors:       Claude Sonnet 5.5

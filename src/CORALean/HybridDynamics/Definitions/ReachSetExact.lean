@@ -7,18 +7,21 @@ public import CORALean.HybridDynamics.HybridAutomaton
 /-!
 # The states and locations a hybrid run actually reaches
 
-The definition is [1, Def. 2], `LinearSys.reachSetExact`'s shape at a `IsRun`
-instead of a `IsTrajectory`: `reachSetExact` is every state some run from `ℓ₀` with an
-initial state in `R₀` reaches at `ℓ`, the continuous part; `reachLocationsExact` is
-every `ℓ` it reaches at all, the discrete part — read off `reachSetExact` rather
-than built separately, since a location is reached exactly when something is.
-
-Not indexed by [1, Def. 2]'s real `r`: no `IsRun` here carries elapsed global
-time at all, so both sets are read across every run, unbounded, the way
-`Invariant` is rather than the way `InvariantOn` indexes by jump count.
-
+The definition is [1, Def. 2], `LinearSys.reachSetExact`'s shape at an `IsRun` instead of an
+`IsTrajectory`: `reachSetExact` is every state some run from `ℓ₀` with an initial state in `R₀`
+reaches at `ℓ`; `reachLocationsExact` is every `ℓ` it reaches at all. Not indexed by [1, Def. 2]'s
+real `r`: no `IsRun` here carries elapsed global time, so both sets are read across every run.
 `Theorems.ReachSetExactOuter`/`ReachLocationsExactOuter` put every run into these;
 `ReachSetExactSubsetInvariant` puts `reachSetExact` inside what an `Invariant` supplies.
+
+## Inputs
+* `HA` – hybrid automaton
+* `R₀` – initial set
+* `ℓ₀` – initial location
+* `ℓ` – location reached
+
+## Output
+* states some run reaches at the location
 
 ## References
 

@@ -8,6 +8,14 @@ import CORALean.Examples.Bench.RandVerifyRatUnit
 vector `ℓ = ratUnit t`, exactly over ℚ: how far the box `S` lies beyond every window along `ℓ`.
 Positive means `ℓ` separates `S` from every window, by at least `h(ℓ)`. Translating `S` by `δ ℓ`
 adds exactly `δ` to it, since `‖ℓ‖₂ = 1`. `none` if there is no window.
+
+## Inputs
+* `Ys` – output windows
+* `S` – unsafe box
+* `t` – rational direction parameter
+
+## Output
+* support gap of the box beyond the windows
 -/
 
 -- Authors:       Claude Opus 5.5

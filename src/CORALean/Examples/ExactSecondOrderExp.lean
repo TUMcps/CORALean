@@ -12,6 +12,12 @@ What that buys is the last `example` here: the sharper enclosure of
 from two up, and no size of box or step can turn that round. Soundness alone
 would not give it; only the bounds being attained does.
 
+## Inputs
+* none
+
+## Output
+* example interval matrix
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

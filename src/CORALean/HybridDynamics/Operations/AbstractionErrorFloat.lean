@@ -18,17 +18,23 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # The abstraction error of the state-dependent constant flow, over a floating-point scalar
 
-`GuardMap.abstractionError`, CORA's `aux_abstractionError` [1], at float zonotopes, one `let`
-per line of the code: `τ(err₁ ⊕ err₂ ⊕ err₃) ⊕ Ê R₀ ⊕ Ê tmax U`, `τ = [0, tmax]`. Every
-coefficient that rounds is an interval: `Aⁱ` is `matPow` at the point interval matrix of `A`,
-`1/i!` is `invFactorialBounds`, the powers of `th` and `tmax` are `powDown`/`powUp` (both are
-nonnegative where the enclosure is claimed), and `−thⁱ ξ` is a box. The products are the float
-`mtimesIntervalMat`. `err1` accumulates its summands, as in the exact layer.
+`GuardMap.abstractionError`, CORA's `aux_abstractionError` [1], at float zonotopes, one `let` per
+line: `τ(err₁ ⊕ err₂ ⊕ err₃) ⊕ Ê R₀ ⊕ Ê tmax U`, `τ = [0, tmax]`. Every coefficient that rounds is
+an interval (`matPow`, `invFactorialBounds`, `powDown`/`powUp`), the products are the float
+`mtimesIntervalMat`, and `err1` accumulates its summands as in the exact layer. `W` departs from
+CORA's rounded `expm`: every entry is `MatExp.expRemainderBound` at a float bound of `‖tmax A‖`,
+sound whenever that bound is at most `(η + 2)/2`, which the enclosure theorem takes as a float test.
 
-`W` departs from CORA, which computes `|e^{|A|tmax} − ∑ᵢ₌₀^η (|A|tmax)ⁱ/i!|` with a rounded
-`expm`: here every entry of `W` is `MatExp.expRemainderBound` at a float bound of `‖tmax A‖`,
-a sound bound on each entry of `e^{Aτ} − ∑ᵢ₌₀^η (Aτ)ⁱ/i!` for `τ ∈ [0, tmax]` whenever that
-norm bound is at most `(η + 2)/2`, which the enclosure theorem takes as a float test.
+## Inputs
+* `A` – flow matrix
+* `U` – input zonotope
+* `R₀` – initial zonotope
+* `th` – expansion time
+* `tmax` – final time
+* `η` – Taylor order
+
+## Output
+* float zonotope holding the abstraction error
 
 ## References
 

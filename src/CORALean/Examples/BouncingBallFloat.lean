@@ -8,18 +8,19 @@ import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # A bouncing ball, reached in floats
 
-`BouncingBall`'s automaton at `Dyadic 24`, with CORA's parameters as near as a
-dyadic gets: gravity `9.8125`, the velocity damped by `0.75` at each bounce,
-the ball released from `1 ± 1/16` at rest `± 1/16`. The invariant is the
-halfspace `p ≥ 0` and the guard `p = 0 ∧ v ≤ 0`, both float halfspace
-descriptions; the state is a float zonotope.
+`BouncingBall`'s automaton at `Dyadic 24`, with CORA's parameters as near as a dyadic gets: gravity
+`9.8125`, the velocity damped by `0.75` at each bounce, the ball released from `1 ± 1/16` at rest
+`± 1/16`. The invariant is the halfspace `p ≥ 0` and the guard `p = 0 ∧ v ≤ 0`, both float
+halfspace descriptions; the state is a float zonotope. `HybridAutomaton.reachFloat` runs to two
+bounces with stays of up to one second, in steps of `1/32`; `reachFloat_outer` says every run of at
+most one second and two bounces ends in a computed set. The `#eval`s show how many sets, the box
+they lie in, and the velocity the first stay meets the floor with, about `-4.4`.
 
-`HybridAutomaton.reachFloat` runs to two bounces with stays of up to one
-second, in steps of `1/32`. `reachFloat_outer` at this automaton says every run
-of at most one second and two bounces ends in a computed set; the `#eval`s
-below show what was computed: how many sets, the box they all lie in, and the
-velocity the first stay meets the floor with, `-√(2 g p₀)` for `p₀` near `1`,
-about `-4.4`.
+## Inputs
+* none
+
+## Output
+* reach sets of the ball up to two bounces
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

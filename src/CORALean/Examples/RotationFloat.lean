@@ -9,18 +9,20 @@ import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # A continuous-time rotation, reached in floats both ways
 
-`ẋ = [[0, 1], [-1, 0]] x`, the undamped clockwise rotation, from a box of
-radius `1/16` around `(1, 0)`, over steps `Δt = 2⁻⁶`, at `Dyadic 64` and at
-native `Float`: `LinearSys.reachWrappingFreeFloat` (wrapping-free) and
-`LinearSys.reachFloat` (one step at a time), each with the guarantee
-it carries against the exact flow. Every constant is a dyadic of a few bits, so
-both scalars start from the same numbers.
+`ẋ = [[0, 1], [-1, 0]] x`, the undamped clockwise rotation, from a box of radius `1/16` around
+`(1, 0)`, over steps `Δt = 2⁻⁶`, at `Dyadic 64` and at native `Float`:
+`LinearSys.reachWrappingFreeFloat` and `LinearSys.reachFloat` (one step at a time), each with the
+guarantee it carries against the exact flow. Every constant is a dyadic of a few bits, so both
+scalars start from the same numbers. The `#eval`s print, per window, the generator count, the
+half-width of the interval hull in each coordinate, and the width of the error box: the quantity
+the two schemes differ in, since the recursion multiplies the box by the interval matrix every step
+and the wrapping-free run never does.
 
-The `#eval`s print, per window, the generator count, the half-width of the
-interval hull in each coordinate, and the width of the error box: the quantity
-the two schemes differ in, since the recursion multiplies the box by the
-interval matrix every step and the wrapping-free run never does. Precision is
-not checked here — the demo is where that happens.
+## Inputs
+* none
+
+## Output
+* wrapping-free float reach sets at native Float
 -/
 
 -- Authors:       Claude Opus 5.5

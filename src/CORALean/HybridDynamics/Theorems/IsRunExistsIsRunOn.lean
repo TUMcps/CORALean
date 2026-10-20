@@ -10,6 +10,19 @@ public import CORALean.HybridDynamics.HybridAutomaton
 The converse of `IsRunOn.toIsRun`: an unbounded run is `IsRunOn k` for the `k` it
 happens to have taken, exhibited by the same induction that forgets it. Kept
 apart from `toIsRun` since the direction back needs the count, `toIsRun` does not.
+
+## Inputs
+* `HA` – hybrid automaton
+* `ℓ` – location
+* `ℓ'` – end location
+* `x` – trajectory of the stay
+* `y` – end state
+
+## Hypotheses
+* `run` – run of the automaton from `x` to `y`
+
+## Conclusion
+* the run took some number of jumps
 -/
 
 -- Authors:       Claude Opus 5

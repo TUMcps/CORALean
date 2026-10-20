@@ -10,6 +10,16 @@ public import CORALean.HybridDynamics.Definitions.IdentHA
 A point is in the H-polytope `IdentHA.polytope cs` of the rows `cs` exactly when it satisfies
 every inequality `cᵢᵀx ≤ dᵢ` ([1, Def. 2]).
 
+## Inputs
+* `cs` – polytope rows
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point lies in the polytope iff it satisfies every row
+
 ## References
 
 * [1] N. Kochdumper, M. A. Foughali, P. Habermehl and E. Asarin. "Robust Identification of

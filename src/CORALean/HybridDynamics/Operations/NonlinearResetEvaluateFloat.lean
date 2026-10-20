@@ -10,6 +10,14 @@ public import CORALean.HybridDynamics.Definitions.NonlinearResetFloatModel
 CORA's `nonlinearReset/evaluate` at a box of pre-jump states and a box of inputs: the float
 model's interval extension of the reset, in directed rounding. Soundness is
 `evaluate_mem_evaluateFloat`.
+
+## Inputs
+* `fm` – float reset model
+* `X` – box of states
+* `U` – box of inputs
+
+## Output
+* box holding the reset images
 -/
 
 -- Authors:       Claude Opus 5.5

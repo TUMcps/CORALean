@@ -14,16 +14,17 @@ public import CORALean.ContSet.ConZonotope.Real.Instances
 /-!
 # `conZonoLifting`: a `Lifting` at constrained-zonotope inputs and halfspace descriptions
 
-`boxLifting` with the input and disturbance sets in `ConZonotope` instead of `Interval`.
-
-* `inv` and `guard` are `boxLifting`'s: `HPolytope.stackProd` and the block-projection preimage;
-* `input b` is the image of `ConZonotope.stackProd`, the product of the components' input sets,
-  under `selectGlobal b`, which reads each global input off the first input bound to it;
-* `dist` is `ConZonotope.stackProd`, exact (`Theorems.ConZonotopeStackProdExact`).
-
+`boxLifting` with the input and disturbance sets in `ConZonotope` instead of `Interval`. `inv` and
+`guard` are `boxLifting`'s; `input b` is the image of `ConZonotope.stackProd` under
+`selectGlobal b`; `dist` is `ConZonotope.stackProd`, exact (`Theorems.ConZonotopeStackProdExact`).
 The invariant and the guard stay halfspace descriptions: a guard lifted to the product space is a
-cylinder, unbounded in the other blocks, which no ConZonotope is. So this is the lifting for a
-constrained zonotope input or disturbance set, with `HPolytope` where a set must be unbounded.
+cylinder, unbounded in the other blocks, which no ConZonotope is.
+
+## Inputs
+* none
+
+## Output
+* lifting at constrained zonotope inputs
 -/
 
 -- Authors:       Claude Sonnet 5.5

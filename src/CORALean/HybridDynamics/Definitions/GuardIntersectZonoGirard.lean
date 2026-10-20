@@ -8,21 +8,23 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # `Location.guardIntersectZonoGirard`: the Girard and Le Guernic guard enclosure
 
-CORA's `guardIntersect_zonoGirard`: in each basis `B`, the reach sets `R_j` meeting the guard
-`G = {x | x·n = γ}` are enclosed by a box `I` in the coordinates of `B`, and the boxes of all
-bases form a zonotope bundle. For each column `ℓ` of `B`, the zonogon `Π_{n,ℓ}(R_j)` is cut with
-the line `x = γ` ([1, Alg. 2]) and the `y`-range is `[m_ℓ, M_ℓ]`; the boxes of the `R_j` are joined.
+CORA's `guardIntersect_zonoGirard`: in each basis `B`, the reach sets meeting the guard
+`G = {x | x·n = γ}` are enclosed by a box in the coordinates of `B`, and the boxes of all bases
+form a zonotope bundle. The `y`-range `[m_ℓ, M_ℓ]` of [1, Alg. 3, 4] is found there by scanning the
+sorted generators; here the upper end is the Lagrangian dual of the same linear program, the least
+over the slopes `μ = (gⱼ·ℓ)/(gⱼ·n)` and `μ = 0`. Only the inequality is proved
+(`guardIntersectZonoGirard_outer`). Left out: `aux_tightenSet` and `aux_robustProjection`, which
+pins a coordinate to `γ n_ind` (see `references/coverage/hybridDynamics/location.md`, row
+`guardIntersect_zonoGirard`).
 
-[1, Alg. 3] and [1, Alg. 4] find `[m_ℓ, M_ℓ]` by scanning and bisecting the sorted generators.
-Here the upper end is the Lagrangian dual of the same linear program: for every `μ`, a state `x`
-of `Z = ⟨c; g₁, …⟩` with `x·n = γ` has `x·ℓ = x·(ℓ - μ n) + μγ`, at most
-`(ℓ - μ n)·c + Σ |(ℓ - μ n)·gⱼ| + μγ`; the least over the slopes `μ = (gⱼ·ℓ)/(gⱼ·n)` and `μ = 0`
-is returned. Linear-programming duality makes it the scan's number, but only the inequality
-is proved (`guardIntersectZonoGirard_outer`).
+## Inputs
+* `Z` – zonotope
+* `nv` – guard normal
+* `γ` – guard offset
+* `ℓ` – direction of the basis column
 
-Left out: `aux_tightenSet` (the guard's inequality constraints) and `aux_robustProjection`, which
-pins a coordinate to `γ n_ind`, the hyperplane value only for `‖n‖ = 1` (see
-`references/coverage/hybridDynamics/location.md`, row `guardIntersect_zonoGirard`).
+## Output
+* upper end of the range along the direction
 
 ## References
 

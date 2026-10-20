@@ -15,6 +15,16 @@ public import Mathlib.Algebra.BigOperators.Intervals
 `y₀ + (Ay₀ + b)t` of eq. (3) meet the linear system `ẋ = Ax + u_c` at `t̃_h`, up to the
 truncation at `η`. One `let` per printed matrix; `t` is the paper's `t̃_h`.
 
+## Inputs
+* `A` – flow matrix
+* `uc` – input center
+* `t` – time
+* `η` – Taylor order
+* `x₀` – initial state
+
+## Output
+* constant flow vector of the state-dependent flow
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

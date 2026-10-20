@@ -11,6 +11,21 @@ public import Mathlib.Data.List.FinRange
 
 For an injective `stateBind`, the lifted reset at coordinate `stateBind j` is the old reset at `j`
 of the bound state and input: the exactness statement for CORA's `lift`.
+
+## Inputs
+* `r` – reset
+* `stateBind` – state index map
+* `inputBind` – input index map
+* `id` – identity outside the bound states
+* `x` – state of the larger space
+* `u` – input of the larger space
+* `j` – bound coordinate
+
+## Hypotheses
+* `hinj` – index map injective
+
+## Conclusion
+* lifted reset at a bound coordinate is the old reset
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -20,6 +20,17 @@ its last summand `(A^η/η!)(τ^{η−1}R₀ − th^{η−1}ξ)` and drops `(A�
 as the loop does. `err2`, `err3` and the rest are `GuardMap.abstractionError`'s, line for line.
 It misses the error (`GuardMap.abstractionErrorCora_counterexample`).
 
+## Inputs
+* `A` – flow matrix
+* `U` – input zonotope
+* `R₀` – initial zonotope
+* `th` – expansion time
+* `tmax` – final time
+* `η` – Taylor order
+
+## Output
+* CORA's abstraction error set
+
 ## References
 
 * [1] `hybridDynamics/@location/guardIntersect_hyperplaneMap.m`, `aux_abstractionError`

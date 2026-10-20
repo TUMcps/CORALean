@@ -22,18 +22,34 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SumTermsMem
 /-!
 # The abstraction error encloses the difference of a run and the constant flow
 
-[1, Eq. 13] as CORA computes it (`GuardMap.abstractionError`): for `t ∈ [0, tmax]`, `η ≥ 1`,
-`x₀ ∈ R₀` and a measurable input `u` with values in `U`, the run
-`e^{At}x₀ + ∫₀ᵗ e^{A(t−s)}u(s) ds` of `ẋ = Ax + u` differs from the state-dependent constant
-flow `x₀ + (Ax₀ + b)t` of [1, Eq. 3], `b = Θ(th)ξ + Γ*(th)u_c` of [1, Prop. 1] at the centers
-`ξ` of `R₀` and `u_c` of `U`, by a point of the set.
+[1, Eq. 13] as CORA computes it (`GuardMap.abstractionError`): for `t ∈ [0, tmax]`, `η ≥ 1`, `x₀ ∈
+R₀` and a measurable input `u` in `U`, the run of `ẋ = Ax + u` differs from the state-dependent
+constant flow `x₀ + (Ax₀ + b)t` of [1, Eq. 3], `b` of [1, Prop. 1] at the centers of `R₀` and `U`,
+by a point of the set. Both Taylor series are cut at `η`; `abstractionError_decomp` splits the
+difference into `t(v₁ + v₂ + v₃) + R(t)x₀ + ρ`, the remainders lie entrywise in `[−W, W]`, so
+`R(t)x₀ ∈ Ê R₀` and the integral in `Ê tmax U`. `η ≥ 1` because the flow's own `Ax₀t` is the first
+order; any `th` only moves `b`.
 
-Both Taylor series are cut at `η`. `GuardMap.abstractionError_decomp` splits the difference
-into `t(v₁ + v₂ + v₃) + R(t)x₀ + ρ`, the input's orders averages `wᵢ ∈ U`, and `wᵢ − u_c ∈ U ⊖ u_c`;
-the remainders `R(τ) = e^{Aτ} − ∑ᵢ₌₀^η (Aτ)ⁱ/i!` lie entrywise in `[−W, W]` for `τ ≤ tmax`, so
-`R(t)x₀ ∈ Ê R₀` and the integral of `R(τ)u(t − τ)` in `Ê tmax U`, a convex set holding `0`.
-`η ≥ 1` because the flow's own `Ax₀t` is the Taylor series' first order. Any `th`: it only
-moves `b`, and the error set with it.
+## Inputs
+* `A` – flow matrix
+* `U` – input zonotope
+* `R₀` – initial set
+* `th` – expansion time
+* `tmax` – final time
+* `t` – time
+* `η` – Taylor order
+* `x₀` – initial state
+* `u` – input trajectory
+
+## Hypotheses
+* `hη` – at least one Taylor term
+* `ht` – time within the horizon
+* `hx₀` – initial state lies in the initial zonotope
+* `hu` – input stays in its set
+* `hmeas` – input measurable
+
+## Conclusion
+* run minus constant flow lies in the abstraction error
 
 ## References
 

@@ -49,6 +49,15 @@ hyperplane at `t = 2`, at `(2, 2, 1)`. CORA's error set is `{0}`
 `k = x₀ + (Ax₀ + b)(d − nᵀx₀)/Λ = (1, 2, 1)` of the constant flow `b = (½, 0, 0)`.
 `Location.guardIntersectHyperplaneMap_outer`, with every `err1` summand, holds the hit.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* some run reaches the guard outside CORA's enclosure
+
 ## References
 
 * [1] `hybridDynamics/@location/guardIntersect_hyperplaneMap.m`

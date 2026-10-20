@@ -6,17 +6,19 @@ import CORALean.ContSet.Zonotope.Real.Instances
 /-!
 # The same `reach`, two different matrix uncertainties
 
-`LinParamSysDT.reach` asks for `Mtimes 𝕄 S` and nothing about what `𝕄` is: its
-guarantee was written `⋃ A ∈ construct M, …` from the start, so a *set* of
-matrices needs no interface of its own, only an `Mtimes` instance. This file
-runs the one algorithm at two: an interval matrix `𝕄 := ℐ` and a matrix
-zonotope `𝕄 := 𝕄𝒵`, both bounding the same nominal system matrix — the
-contraction `0.9 · I` — at `S := 𝒵`.
+`LinParamSysDT.reach` asks for `Mtimes 𝕄 S` and nothing about what `𝕄` is: its guarantee was
+written `⋃ A ∈ construct M, …` from the start, so a set of matrices needs no interface of its own,
+only an `Mtimes` instance. This file runs the one algorithm at two: an interval matrix `𝕄 := ℐ` and
+a matrix zonotope `𝕄 := 𝕄𝒵`, both bounding the same nominal system matrix, the contraction
+`0.9 · I`, at `S := 𝒵`. A concrete trajectory, the system matrix pinned to the nominal `0.9 · I` at
+every step and the input held at zero, lands in `reach`'s output through `reach_outer` at each
+representation, with no line of `reach` itself touched.
 
-A concrete trajectory, the system matrix pinned to the nominal `0.9 · I` at every
-step and the input held at zero, so that the state shrinks by `0.9` each step, lands
-in `reach`'s output through `reach_outer` at each representation, with no line of
-`reach` itself touched.
+## Inputs
+* none
+
+## Output
+* the start state of the contraction
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

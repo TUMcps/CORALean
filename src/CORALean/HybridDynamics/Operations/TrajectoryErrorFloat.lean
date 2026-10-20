@@ -23,19 +23,26 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 # The error between a linear solution and a constant-derivative one, over a floating-point scalar
 
 `LinearSys.trajectoryError`, CORA's `linearSys/trajectoryError` [1] (`E_err` only), at float
-zonotopes, one `let` per line of the code:
-`T(⊕ᵢ₌₂^η (Aⁱ/i!)(Tⁱ⁻¹ Y ⊕ (Tⁱ⁻¹ − tcⁱ⁻¹) ξ) ⊕ ⊕ᵢ₌₁^η (Aⁱ/(i+1)!)(Tⁱ − tcⁱ) u) ⊕ Ê R₀ ⊕ Ê tmax u
-⊕ T (f₁ − f₂)`, `T = [tmin, tmax]`. Every coefficient that rounds is an interval: `Aⁱ` is
-`matPow` at the point interval matrix of `A`, `1/i!` is `invFactorialBounds`, the powers of
-`tmin` and `tmax` are `powDown`/`powUp` (nonnegative where the enclosure is claimed), those of
-`tc`, of either sign, `Interval.powLo`/`Interval.powHi`, and `f₁ − f₂` is a box. A product of an
-interval scalar `[a, b]` with a zonotope is the float `mtimesIntervalMat` at `[a, b] I`.
+zonotopes, one `let` per line, `T = [tmin, tmax]`. Every coefficient that rounds is an interval
+(`matPow`, `invFactorialBounds`, `powDown`/`powUp`, `Interval.powLo`/`powHi` for the powers of
+`tc`, of either sign), `f₁ − f₂` is a box, and a product of an interval scalar with a zonotope is
+the float `mtimesIntervalMat`. `W` departs from CORA's rounded `expm`: as in
+`GuardMap.abstractionErrorFloat`, every entry is `MatExp.expRemainderBound` at a float bound
+`nrm` of `‖tmax A‖`, sound whenever `nrm ≤ (η + 2)/2`; where that test fails the result is `none`.
 
-`W` departs from CORA, which computes `|e^{|A|tmax} − ∑ᵢ₌₀^η (|A|tmax)ⁱ/i!|` with a rounded
-`expm`: as in `GuardMap.abstractionErrorFloat`, every entry of `W` is `MatExp.expRemainderBound`
-at a float bound `nrm` of `‖tmax A‖`, a sound bound on each entry of `e^{Aτ} − ∑ᵢ₌₀^η (Aτ)ⁱ/i!`
-for `τ ∈ [0, tmax]` whenever `nrm ≤ (η + 2)/2`; where that float test fails the result is
-`none`.
+## Inputs
+* `sys` – float linear system
+* `f₁` – first constant flow
+* `f₂` – second constant flow
+* `u` – constant input
+* `R₀` – initial zonotope
+* `tmin` – start of the time interval
+* `tmax` – end of the time interval
+* `tc` – expansion time
+* `η` – Taylor order
+
+## Output
+* float zonotope holding the error, none on failure
 
 ## References
 

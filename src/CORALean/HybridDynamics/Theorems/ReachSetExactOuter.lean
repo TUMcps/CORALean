@@ -9,6 +9,21 @@ public import CORALean.HybridDynamics.Definitions.ReachSetExact
 
 The cheap half, as `LinearSys.IsCanonicalTrajectory.reachSetExact_outer` is: a run is in the
 set of what runs reach by construction, so the proof is the pair itself.
+
+## Inputs
+* `HA` – hybrid automaton
+* `R₀` – initial set
+* `ℓ₀` – initial location
+* `ℓ` – end location
+* `x` – start state
+* `y` – end state
+
+## Hypotheses
+* `run` – run of the automaton from `x` to `y`
+* `hx` – start state lies in the initial set
+
+## Conclusion
+* the end state lies in the reachable set
 -/
 
 -- Authors:       Claude Opus 5

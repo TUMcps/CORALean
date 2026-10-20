@@ -17,6 +17,26 @@ The chain of continuous successors of an execution is replaced by the solutions,
 is a shifted one. The invariant `a·x ≤ b` is read on `(0, t)` by [1, Def. 4], and holds on `[0, t]`
 by continuity. [1, Cor. 1] builds its execution of `H_final` from it.
 
+## Inputs
+* `I` – initial states
+* `f₁` – flow in the first mode
+* `f₂` – flow in the second mode
+* `a` – guard normal
+* `b` – guard offset
+* `K₁` – Lipschitz constant of the first flow
+* `K₂` – Lipschitz constant of the second flow
+* `d` – duration
+* `m` – mode
+* `x` – end state
+
+## Hypotheses
+* `hf₁` – first flow is Lipschitz
+* `hf₂` – second flow is Lipschitz
+* `h` – execution of the space-triggered automaton
+
+## Conclusion
+* the execution follows solutions of the two flows
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

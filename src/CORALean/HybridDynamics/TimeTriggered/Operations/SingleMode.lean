@@ -10,6 +10,13 @@ public import CORALean.HybridDynamics.TimeTriggered.DiffInclAutomaton
 [1, Sec. 3.2]'s `H_single`: one mode with the deterministic dynamics `ẋ = f(x)`, the initial
 states `I`, no transitions and no invariant; the `H_single` of [1, Lemma 2].
 
+## Inputs
+* `I` – initial states
+* `f` – flow
+
+## Output
+* single-mode automaton with the given flow
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

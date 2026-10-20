@@ -12,6 +12,18 @@ public import Mathlib.Analysis.Calculus.Deriv.Mul
 [1, Eq. 3]: the derivative of an affine function of `t` is its slope, and at `t = 0` it
 is `y₀`.
 
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `y₀` – initial state
+* `t` – time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the flow starts at the state and has the constant slope
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

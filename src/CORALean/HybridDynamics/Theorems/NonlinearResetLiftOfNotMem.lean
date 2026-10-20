@@ -11,6 +11,21 @@ public import CORALean.HybridDynamics.Theorems.NonlinearResetFoldlUpdateOfNotMem
 
 A coordinate of the larger space that no `stateBind` entry hits keeps its value when `id` holds
 and is `0` otherwise.
+
+## Inputs
+* `r` – reset
+* `stateBind` – state index map
+* `inputBind` – input index map
+* `id` – identity outside the bound states
+* `x` – state of the larger space
+* `u` – input of the larger space
+* `i` – coordinate
+
+## Hypotheses
+* `hi` – coordinate is not bound
+
+## Conclusion
+* lifted reset keeps the coordinate or zeroes it
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,6 +11,14 @@ The product's disturbance set, CORA's `aux_mergeDistNoiseSet` in `parallelHybrid
 the Cartesian product of the components' disturbance sets `W` at the locations `ℓ`, by
 `Lifting.dist`, in the stacked disturbance space of `mergeFlowsLinearSys`'s `E`. CORA also forms
 the noise sets' product, which no flow reads.
+
+## Inputs
+* `P` – parallel automaton
+* `lift` – lifting
+* `ℓ` – current locations
+
+## Output
+* disturbance set of the product
 -/
 
 -- Authors:       Claude Opus 5.5

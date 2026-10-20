@@ -9,6 +9,12 @@ import CORALean.Global.Float.Instances.Dyadic.Instances
 `EmptySet.and_` and `Fullspace.and_`: `∅ ∩ s = ∅` and `univ ∩ s = s` for a set `s` of any
 representation (here a float zonotope, the unit square), exactly (`EmptySet.and_exact`,
 `Fullspace.and_exact`).
+
+## Inputs
+* none
+
+## Output
+* unit square as a float zonotope
 -/
 
 -- Authors:       Claude Sonnet 5.5

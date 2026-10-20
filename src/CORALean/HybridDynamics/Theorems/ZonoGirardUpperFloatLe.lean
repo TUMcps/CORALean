@@ -11,6 +11,20 @@ public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_HPolytope
 The plane image of a state on the hyperplane is `(γ, x·ℓ)`, a point of the plane zonotope, which
 the rounded support function bounds in the direction `(-μ, 1)`; `x·ℓ = (x·ℓ - μγ) + μγ` and
 `μγ` is below `mulUp μ γ`, so every dual value bounds `x·ℓ`, and so does the least of them.
+
+## Inputs
+* `Z` – float zonotope
+* `nv` – guard normal
+* `γ` – guard offset
+* `ℓ` – direction
+* `x` – state
+
+## Hypotheses
+* `hx` – state lies in the zonotope
+* `hg` – state lies on the guard
+
+## Conclusion
+* the state's direction value is at most the float bound
 -/
 
 -- Authors:       Claude Sonnet 5.5

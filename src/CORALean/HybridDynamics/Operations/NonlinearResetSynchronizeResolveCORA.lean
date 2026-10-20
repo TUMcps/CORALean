@@ -13,6 +13,16 @@ are combined by `synchronize(resets, idStates)` and the result goes through CORA
 `reset = resolve(reset_sync, flowList, stateBinds, inputBinds)`, with `inputBinds` the binds of
 the parallel automaton (`mergeTransitionSets.m` passes `pHA.bindsInputs`). Only this reset step
 is modelled, not the guard, the target or the conversion of linear resets.
+
+## Inputs
+* `rs` – component resets
+* `idStates` – states kept by identity
+* `out` – component output maps
+* `stateBinds` – state index maps
+* `inputBinds` – input bindings
+
+## Output
+* reset as CORA's synchronize resolves it
 -/
 
 -- Authors:       Claude Opus 5.5

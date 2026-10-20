@@ -11,6 +11,21 @@ If `F` vanishes at `y(a)`, the constant curve and `y` both solve `ẋ = F(x)` fr
 uniqueness `y` is constant from `a` on. This is what keeps the scaled solution of [1, Sec. 3.2]
 from crossing the guard: `g(x) = (b - a·x) / ‖a‖` vanishes on it, and `g · f` with it.
 
+## Inputs
+* `F` – vector field
+* `K` – Lipschitz constant
+* `y` – curve
+* `a` – start time
+* `t` – end time
+
+## Hypotheses
+* `hF` – field is Lipschitz
+* `hy` – curve solves the field
+* `hFa` – field vanishes at the start point
+
+## Conclusion
+* the curve is constant on the interval
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

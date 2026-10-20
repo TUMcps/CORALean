@@ -8,6 +8,19 @@ public import CORALean.DiscrDynamics.MarkovChain.Operations.Basic
 # A weighted sum of zeros is zero
 
 A `zipWith` of terms that vanish for every first argument sums to zero.
+
+## Inputs
+* `α` – first list element type
+* `β` – second list element type
+* `g` – term function
+* `R` – first list
+* `F` – second list
+
+## Hypotheses
+* `h` – every term vanishes
+
+## Conclusion
+* the weighted sum is zero
 -/
 
 -- Authors:       Claude Sonnet 5.5

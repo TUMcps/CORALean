@@ -14,6 +14,19 @@ invariant `Y = ⟨C, d⟩_P`, `G = ⟨a, b, C H, d - C k⟩_H` is `{x ∈ H | r(
 chain of equalities: no state of `H` that `r` maps into `Y` is left out of `G`. That every state
 of `G` is mapped into `Y` is `identGuard_maps_into`, the statement of the proposition.
 
+## Inputs
+* `a` – hyperplane normal
+* `b` – hyperplane offset
+* `H` – reset matrix
+* `k` – reset offset
+* `cs` – invariant rows
+
+## Hypotheses
+* none
+
+## Conclusion
+* the guard is the states the reset maps into the invariant
+
 ## References
 
 * [1] N. Kochdumper, M. A. Foughali, P. Habermehl and E. Asarin. "Robust Identification of

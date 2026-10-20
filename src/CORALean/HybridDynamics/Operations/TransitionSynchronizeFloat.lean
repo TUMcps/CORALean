@@ -17,6 +17,15 @@ reset sum is not, so the synchronized reset is the interval reset `LinearReset.s
 returns, stored entry by entry: `Transition` asks nothing of its scalar, and at `Interval 𝕋` its
 `W` and `w` are an interval matrix and an interval vector. Soundness is
 `Transition.synchronizeFloat_encloses`.
+
+## Inputs
+* `compIdx` – component indices
+* `t` – transitions of the components
+* `idStates` – states kept by identity
+* `locID` – current locations
+
+## Output
+* synchronized transition with interval reset
 -/
 
 -- Authors:       Claude Opus 5.5

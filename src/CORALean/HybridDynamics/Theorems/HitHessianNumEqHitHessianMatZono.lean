@@ -18,6 +18,24 @@ enclosure holding with one factor per generator for all coordinates, when [1, Se
 the matrix zonotopes of all `i` at one point. `GuardMap.hitHessianNum_mem_hitHessianMatZono`
 is the membership this gives.
 
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `nv` – guard normal
+* `d` – guard offset
+* `R₀` – initial zonotope
+* `ψc` – center of the coefficient enclosure
+* `ψg` – generator of the coefficient enclosure
+* `i` – output coordinate
+* `β` – generator coefficients
+* `κ` – shared factor
+
+## Hypotheses
+* `hψ` – coefficient vector equals its enclosure at the factor
+
+## Conclusion
+* the numerator is the matrix zonotope point at those factors
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

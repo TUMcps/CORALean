@@ -16,6 +16,15 @@ or all those carrying one synchronization label): the guard is the intersection 
 location tuple `locID` with the participating components moved (`synchronizeTarget`). Not
 modelled: CORA's `resolve`, which substitutes the output equations into the input binds of the
 reset's input matrix `B`; `Transition` has no `B` (#40), nor mixed linear and nonlinear resets.
+
+## Inputs
+* `compIdx` – component indices
+* `t` – transitions of the components
+* `idStates` – states kept by identity
+* `locID` – current locations
+
+## Output
+* synchronized transition of the product
 -/
 
 -- Authors:       Claude Opus 5.5

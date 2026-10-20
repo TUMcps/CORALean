@@ -16,6 +16,17 @@ linear system's state within `E` of it, eq. (14), the hyperplane `nᵀx = d` is 
 own hit and `R_{h,E}(x₀) = (Ax₀ + b)(-nᵀE)/(nᵀ(Ax₀ + b)) ⊕ E` what `E` adds, as the paper
 splits it. Eq. (1) with `b` replaced by `Ax₀ + b`, the paper's own reading.
 
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `nv` – guard normal
+* `d` – guard offset
+* `E` – flow error set
+* `x₀` – initial state
+
+## Output
+* set the guard hit lies in
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

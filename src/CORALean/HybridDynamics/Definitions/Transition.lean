@@ -7,21 +7,13 @@ public import CORALean.ContSet.ContSet.ContSet
 /-!
 # Hybrid automata: a transition
 
-CORA's `transition`: the guard a run must meet to take it, the reset applied on
-the way through, and the location it lands in.
-
-`G` is the guard's own representation, not the reachable set's: a guard is a
-halfspace description where the set it cuts is a zonotope. Nothing here reads a
-guard, so `Transition` asks no class of `G` at all (#39).
-
-The reset is affine, `x ↦ W x + w`, stored as coefficients rather than as a
-function: `Mtimes` and `Plus` are what an arbitrary representation propagates,
-so an enclosure of the reset image is two existing operations — `Layer`'s
-bargain. `W` and `w` are read through `Scalar 𝕋`, as `LinearSysDT.A` is.
-
-`target` is an index into the automaton's locations, not a `Location`: a
-location holds its outgoing transitions, and holding the target outright would
-make the two types mutually recursive for no gain.
+CORA's `transition`: the guard a run must meet to take it, the reset applied on the way through,
+and the location it lands in. `G` is the guard's own representation, not the reachable set's;
+nothing here reads a guard, so `Transition` asks no class of `G` at all (#39). The reset is affine,
+`x ↦ W x + w`, stored as coefficients rather than as a function, so an enclosure of the reset image
+is two existing operations, `Mtimes` and `Plus`; `W` and `w` are read through `Scalar 𝕋`. `target`
+is an index into the automaton's locations, not a `Location`: a location holds its outgoing
+transitions, and holding the target outright would make the types mutually recursive.
 -/
 
 -- Authors:       Claude Sonnet 5

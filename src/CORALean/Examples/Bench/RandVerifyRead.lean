@@ -13,6 +13,15 @@ reader: a value the format does not hold is an error naming it, never a rounding
 its center and radius, exactly where the format holds both; where it does not (the midpoint of two
 `p`-bit bounds can need `p + 1` bits), the center is rounded and the radius rounded up to cover the
 whole interval, checked over ℚ: a larger initial set, which is sound, flagged `x0Enclosed`.
+
+## Inputs
+* `inst` – checked reader of exact numbers
+* `exactIn` – exact number held off the grid
+* `I` – instance
+* `dt` – step size
+
+## Output
+* system in the number type or an error message
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -10,6 +10,20 @@ public import CORALean.HybridDynamics.HybridAutomaton
 `IsRunOn k` is `IsRun` with its jump count kept alongside; dropping the count is
 the identity on the run's own shape, by induction with one case per
 constructor, each replayed unchanged under the other family's matching one.
+
+## Inputs
+* `HA` – hybrid automaton
+* `k` – number of jumps
+* `ℓ` – location
+* `ℓ'` – end location
+* `x` – trajectory of the stay
+* `y` – end state
+
+## Hypotheses
+* `run` – run of `k` jumps from `x` to `y`
+
+## Conclusion
+* the run is a run
 -/
 
 -- Authors:       Claude Opus 5

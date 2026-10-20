@@ -9,19 +9,12 @@ import CORALean.Global.Float.Instances.IEEE.Instances
 # A dtype, as a bundle of checked-exact operations
 
 `DtypeOps 𝕋` is what an op handler needs of the dtype string beyond
-`[FloatOps 𝕋] [SoundFloatArithmetic 𝕋]`: `readExact` for "every input is exactly
-representable", `roundToScalar` for `roundTo`'s one exception, `showExact` for a
-normalised `"m*2^e"` out. `fixedpoint:<k>`'s values are decimal and generally
-not dyadic once rounded (`0.01 + 0.01 = 1/50`), so `showExact` there is instead
-`"m*10^e"` (`m` not a multiple of `10`, `"0*10^0"` at zero) -- a documented
-grammar extension so every value the oracle prints for `fixedpoint` also
-parses back: `Codec.lean`'s `ExactScalar.decNeg` is what `"m*10^e"` at `e < 0`
-parses onto; `ieee`/`dyadic` refuse it, not being generally exact in binary.
-
-`roundToScalar`'s `nearest` ties to even: the operand whose own grid mantissa is
-even, generalised to the least-significant decimal digit for `fixedpoint`. Both
-directed roundings are sound for *any* off-grid input, not only a rounded
-operation's own output, so the returned error is exact before it is itself
+`[FloatOps 𝕋] [SoundFloatArithmetic 𝕋]`: `readExact` for "every input is exactly representable",
+`roundToScalar` for `roundTo`'s one exception, `showExact` for a normalised `"m*2^e"` out.
+`fixedpoint:<k>`'s values are decimal and generally not dyadic once rounded, so `showExact` there
+is `"m*10^e"`, a documented grammar extension so every value the oracle prints also parses back
+(`Codec.lean`'s `ExactScalar.decNeg`). `roundToScalar`'s `nearest` ties to even. Both directed
+roundings are sound for any off-grid input, so the returned error is exact before it is itself
 rounded outward: an informal soundness claim, not a theorem restated here.
 -/
 

@@ -14,6 +14,22 @@ Near `x₀` the inner derivative is `L_im` (`hasDerivAt_hitPoint`, wherever `Λ 
 on a neighbourhood since `Λ` is affine), and its derivative along `l` is `Q̃⁽ⁱ⁾_lm`
 (`hasDerivAt_hitJacobian`).
 
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `nv` – guard normal
+* `x₀` – initial state
+* `d` – guard offset
+* `i` – output coordinate
+* `l` – first axis
+* `m` – second axis
+
+## Hypotheses
+* `hΛ` – flow does not run parallel to the guard
+
+## Conclusion
+* the Hessian entry is the mixed derivative of the hit point
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

@@ -38,21 +38,41 @@ public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeZonotopeCont
 /-!
 # The float hyperplane map holds every guard hit of a run from `R₀`
 
-`Location.guardIntersectHyperplaneMapFloat_outer`: a run of the location from `x(0) ∈ R₀` that
-is on the hyperplane `nᵀx = d` at a time `t ≤ tmax` is, at `t`, in the set the float guard
-mapping returns, whenever it returns one, for `η ≥ 1` Taylor terms; the exact layer's
-`Location.guardIntersectHyperplaneMap_outer`, at floats, with the floats read as reals.
+`Location.guardIntersectHyperplaneMapFloat_outer`: a run of the location from `x(0) ∈ R₀` that is
+on the hyperplane `nᵀx = d` at a time `t ≤ tmax` is, at `t`, in the set the float guard mapping
+returns, for `η ≥ 1` Taylor terms; the exact layer's `guardIntersectHyperplaneMap_outer`, with the
+floats read as reals. The chain is the exact layer's, each real quantity in the float set that
+encloses it (`GuardMap.abstractionErrorFloat_outer`, `GuardMap.sdcInput_mem_sdcInputFloat`,
+`GuardMap.hitPoint_mem_hitPointFloat`, `GuardMap.hitJacobian_mem_hitJacobianFloat`,
+`GuardMap.hitHessianMatZonoFloat_mem`, `ContSet.projectOnHyperplaneIntervalFloat_outer`); the hit
+is `y_h(x₀) + (−nᵀe/Λ(x₀))(Ax₀ + b) + e`, projected onto the hyperplane.
 
-The chain is the exact layer's, each real quantity in the float set or interval that encloses
-it: `x(t) = x₀ + (Ax₀ + b)t + e` with `b` the float lower end of the box of the exact `b` and
-`e` in the float abstraction error plus `t(b_exact − b)` (`GuardMap.abstractionErrorFloat_outer`,
-`GuardMap.sdcInput_mem_sdcInputFloat`); the hit is `y_h(x₀) + (−nᵀe/Λ(x₀))(Ax₀ + b) + e`;
-`y_h(x₀)` is in `res1` by the exact expansion around the stored center `ξ` of the reduced `R₀`,
-`k`, `L` and the matrix zonotopes at `ξ` enclosed (`GuardMap.hitPoint_mem_hitPointFloat`,
-`GuardMap.hitJacobian_mem_hitJacobianFloat`, `GuardMap.hitHessianMatZonoFloat_mem`) and the
-remainder a point of the float `quadMapMatZono`; the rest is in `res2`; and a point of the
-hyperplane is fixed by the projection onto the hyperplane `(n/‖n‖)ᵀx = d/‖n‖`, one of those the
-boxes of the normalized normal allow (`ContSet.projectOnHyperplaneIntervalFloat_outer`).
+## Inputs
+* `ℓ` – location
+* `nv` – guard normal
+* `d` – guard offset
+* `R₀` – initial set
+* `tmax` – final time
+* `η` – Taylor order
+* `guardOrder` – order of the guard mapping
+* `zonotopeOrder` – order of the result
+* `p` – precision of the square roots
+* `τ` – stay duration
+* `x` – trajectory of the stay
+* `u` – input trajectory
+* `w` – disturbance trajectory
+* `t` – time within the stay
+
+## Hypotheses
+* `hη` – at least one Taylor term
+* `traj` – the curves are a stay of the location
+* `h₀` – initial state lies in the initial set
+* `ht` – time within the stay
+* `htmax` – time within the horizon
+* `hhit` – state is on the guard hyperplane
+
+## Conclusion
+* every float result set contains the guard hit
 
 ## References
 

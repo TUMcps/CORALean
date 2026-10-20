@@ -14,6 +14,22 @@ zero earlier, by the intermediate value theorem, and `y` would stay at a zero of
 on (`lipschitzSolution_const_of_zero`), a contradiction. [1, Cor. 1] needs it for
 `g(x) = (b - a·x) / ‖a‖`.
 
+## Inputs
+* `f` – vector field
+* `g` – scaling function
+* `K'` – Lipschitz constant of the scaled field
+* `y` – scaled solution
+* `t` – duration
+
+## Hypotheses
+* `hg` – scaling function continuous
+* `hF` – scaled field is Lipschitz
+* `hy` – curve solves the scaled field
+* `h0` – scaling function nonnegative at the start
+
+## Conclusion
+* scaling function stays nonnegative along the curve
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

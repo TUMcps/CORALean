@@ -7,22 +7,14 @@ public import CORALean.HybridDynamics.Definitions.Location
 /-!
 # Hybrid automata: the automaton and its runs
 
-CORA's `hybridAutomaton`, and [1, Def. 1], and [2, Def. 1] without
-invariants: the locations, indexed by a type. Finiteness is never used and so is not
-required; `Fin k` is the intended index.
-
-A run alternates: flow inside a location over `[0, τ]` staying in its invariant,
-then a jump through a transition whose guard the endpoint meets, landing at the
-reset image in the target location — the guard read as `construct e.guard` and
-never otherwise, so the guard representation `G` enters with `ContSet` (#39). The flow is
-[1, Def. 1]'s `ẋ = A x + u`, `u ∈ U`, read as a Carathéodory run (`Location.IsTrajectory`), so
-a jumping input is admissible; a classical stay is one
-(`Location.IsTrajectory.of_hasDerivWithinAt`).
-
-`IsRun` is an inductive family, as `NeuralNetwork` is, so its recursion principle
-*is* the chaining argument: `Theorems.IsRunOuter` is an `induction` with one case
-per constructor. `flow` is the base case rather than a `nil`, since a jump has
-no meaning without the stay that brought the state to the guard.
+CORA's `hybridAutomaton`, [1, Def. 1] and [2, Def. 1] without invariants: the locations, indexed by
+a type (`Fin k` is the intended index). A run alternates: flow inside a location over `[0, τ]`
+staying in its invariant, then a jump through a transition whose guard the endpoint meets, landing
+at the reset image in the target location; the guard is read as `construct e.guard` and never
+otherwise (#39). The flow is [1, Def. 1]'s `ẋ = A x + u`, `u ∈ U`, read as a Carathéodory run
+(`Location.IsTrajectory`). `IsRun` is an inductive family, so its recursion principle is the
+chaining argument: `Theorems.IsRunOuter` is an `induction` with one case per constructor, and
+`flow` is the base case since a jump has no meaning without the stay that brought the state to it.
 
 ## References
 

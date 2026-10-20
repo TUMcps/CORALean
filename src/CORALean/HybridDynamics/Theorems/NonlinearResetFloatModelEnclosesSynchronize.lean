@@ -13,6 +13,17 @@ public import Mathlib.Algebra.BigOperators.Pi
 If every `fms j` encloses `rs j`, then `synchronize fms idStates` encloses `synchronize rs
 idStates`: the pre-jump value at `idStates` plus the sum of the component values, in directed
 rounding. An outer statement.
+
+## Inputs
+* `fms` – component float reset models
+* `rs` – component resets
+* `idStates` – states kept by identity
+
+## Hypotheses
+* `h` – each model encloses its reset
+
+## Conclusion
+* the synchronized model encloses the synchronized reset
 -/
 
 -- Authors:       Claude Opus 5.5

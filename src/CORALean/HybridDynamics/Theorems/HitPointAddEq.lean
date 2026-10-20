@@ -19,6 +19,21 @@ coordinate, rather than one at a Lagrange point per coordinate. `νᵀQ⁽ⁱ⁾
 2(Θᵀν)(Υν)(Aξ + b)ᵢ/Λ`, `Ω` being skew. What `GuardMap.hitSet_subset_hitEnclosure` and
 `Location.guardIntersectHyperplaneMap_outer` rest on.
 
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `nv` – guard normal
+* `d` – guard offset
+* `ξ` – expansion point
+* `ν` – displacement
+
+## Hypotheses
+* `hξ` – flow does not run parallel to the guard at the point
+* `hx` – flow does not run parallel to the guard at the shifted point
+
+## Conclusion
+* the second-order expansion of the hit point is exact
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

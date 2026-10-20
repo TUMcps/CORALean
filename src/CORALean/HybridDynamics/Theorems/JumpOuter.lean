@@ -9,22 +9,27 @@ public import CORALean.HybridDynamics.Operations.Jump
 /-!
 # `Transition.jump` contains the states that leave through the transition
 
-The one step a hybrid analysis takes at a jump: from an enclosure of the states
-present when the guard is met, an enclosure of the states just after the reset.
-Guard intersection first, reset second.
+The one step a hybrid analysis takes at a jump: from an enclosure of the states present when the
+guard is met, an enclosure of the states just after the reset; guard intersection first, reset
+second. The intersection arrives as the hypothesis `hinter` rather than as a call: not every
+representation instantiates `Intersection`. `JumpIntersectionOuter` is the case where an instance
+discharges it. That bargain lets the guard keep its own representation `G`: `hinter` is an
+inclusion of sets, so `ContSet` is all this theorem asks of `G` (#39). Only soundness is at stake:
+`hinter` may be satisfied by the incoming set itself, losing everything the guard would remove.
 
-The intersection arrives as the hypothesis `hinter` rather than as a call, and
-that is the deliberate half of this file: the `Intersection` class exists, but
-not every representation instantiates it, so this stays generic over `hinter`
-rather than calling it. `JumpIntersectionOuter` is the case where an instance
-discharges it; `JumpOuterConZonotope`, where a representation with neither
-gives up nothing. That bargain is also what lets the guard keep its own
-representation `G`: `hinter` is an inclusion of *sets*, so `ContSet` is all
-this theorem asks of `G` (#39).
+## Inputs
+* `e` – transition
+* `R` – set holding the state at the jump
+* `Rg` – enclosure of the guard intersection
+* `z` – state at the jump
 
-Only *soundness* is at stake: `hinter` may be satisfied by the incoming set
-itself, ignoring the guard entirely, and the step stays correct while losing
-everything the guard would have removed — hence an exact `intersection` pays.
+## Hypotheses
+* `hinter` – enclosure contains the guard intersection
+* `hz` – state lies in the reach set
+* `hguard` – state lies in the guard
+
+## Conclusion
+* reset image lies in the jump image
 -/
 
 -- Authors:       Claude Opus 5

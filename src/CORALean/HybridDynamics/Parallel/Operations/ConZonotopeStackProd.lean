@@ -14,6 +14,12 @@ generators and centers as `Zonotope.stackProd`, and the constraint on the coeffi
 `HPolytope.stackProd` of the components' constraints, each answering only to its own block of
 coefficients. CORA's `cartProd_` of two constrained zonotopes is the same, with block-diagonal
 generators and constraints; `Theorems.ConZonotopeStackProdExact` says it is exactly the product.
+
+## Inputs
+* `zs` – constrained zonotopes of the components
+
+## Output
+* stacked product of the constrained zonotopes
 -/
 
 -- Authors:       Claude Sonnet 5.5

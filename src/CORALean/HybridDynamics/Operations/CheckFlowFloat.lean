@@ -12,17 +12,21 @@ public import CORALean.HybridDynamics.Operations.InputSetFloat
 # `Location.checkFlowFloat`
 
 CORA's `checkFlow` for a linear flow `ẋ = A x + B u + c₀ + E w` at float zonotopes, its combined
-input in `inputSetFloat = B U ⊕ c₀ ⊕ E W`, written `V` below. Each reach set is projected onto the
-guard hyperplane `{x | c·x = d}` (`projectOnHyperplaneFloat`, `c` the unit normal pointing out of
-the invariant); it is kept if the flow at the projection's center points out (`c·(A m + v_c) > 0`,
-`v_c` the center of `V`, evaluated in plain float arithmetic, which can only keep a set), or else if
-the rounded-up support function of the flow set `A·proj ⊞ V` along `c` is not certified `≤ 0`. Only
-a set that is certified to have no outward flow is dropped.
+input `inputSetFloat = B U ⊕ c₀ ⊕ E W` written `V`. Each reach set is projected onto the guard
+hyperplane `{x | c·x = d}` (`projectOnHyperplaneFloat`, `c` the outward unit normal) and kept if
+the flow at the projection's center points out, or else if the rounded-up support function of
+`A·proj ⊞ V` along `c` is not certified `≤ 0`: only a set certified to have no outward flow is
+dropped. CORA bounds the flow over a `'pca'` box of the projection, so it keeps at least what this
+keeps. The normal's orientation by the invariant (`aux_adaptGuard`) is the caller's.
 
-CORA bounds the flow over the projection reduced by `'pca'` to a box (and rotated by
-`gramSchmidt`); the box encloses the projection, so CORA's supremum is no smaller and it keeps at
-least what this keeps. The orientation of the normal by the invariant (`aux_adaptGuard`) is the
-caller's.
+## Inputs
+* `ℓ` – location
+* `c` – unit normal of the guard
+* `d` – guard offset
+* `Rs` – reach sets
+
+## Output
+* reach sets that may flow out through the guard
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

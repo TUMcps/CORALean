@@ -6,19 +6,19 @@ import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 /-!
 # One backward step in the `∃` reading, at a box
 
-`x(k+1) = 2 x(k) + u(k)` on the line, target `[-1, 1]`, inputs `[-0.2, 0.2]` —
-`BackwardReach`'s system, read the other way. Some input reaches the target from
-`x` exactly when `2x` is within `0.2` of it, so the set is `[-0.6, 0.6]`, and
-that is what the run returns.
+`x(k+1) = 2 x(k) + u(k)` on the line, target `[-1, 1]`, inputs `[-0.2, 0.2]`, `BackwardReach`'s
+system read the other way. Some input reaches the target from `x` exactly when `2x` is within `0.2`
+of it, so the set is `[-0.6, 0.6]`, which the run returns. At `Interval`, which the `∀` reading
+cannot use: both steps are the outer half, `plus_outer` and `mtimes_outer`, so the representation
+needs nothing else. What an outer backward set buys is the negative: `0.7` is outside it, so no
+admissible input drives `0.7` into the target (the second example); the third turns a point of it
+into a run.
 
-At `Interval`, which the `∀` reading cannot use: there the step is a Minkowski
-difference and the preimage wants an exact `mtimes`, and `Interval` carries no
-exactness theorem for one. Here both steps are the outer half — `plus_outer`
-and `mtimes_outer` — so the representation needs nothing else.
+## Inputs
+* none
 
-What an outer backward set buys is the negative: `0.7` is outside it, so *no*
-admissible input drives `0.7` into the target, which is the second example. The
-third spends the set the other way, turning a point of it into a run.
+## Output
+* one-dimensional discrete system
 -/
 
 -- Authors:       Claude Opus 5

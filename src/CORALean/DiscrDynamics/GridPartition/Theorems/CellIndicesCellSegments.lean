@@ -8,6 +8,16 @@ public import CORALean.DiscrDynamics.GridPartition.Theorems.S2iI2s
 # `cellIndices` undoes `cellSegments`
 
 The cell numbers are recovered from their subscripts, for numbers in range.
+
+## Inputs
+* `P` – grid partition
+* `cs` – cell numbers
+
+## Hypotheses
+* `h` – cell numbers in range
+
+## Conclusion
+* the subscripts map back to the cell numbers
 -/
 
 -- Authors:       Claude Sonnet 5.5

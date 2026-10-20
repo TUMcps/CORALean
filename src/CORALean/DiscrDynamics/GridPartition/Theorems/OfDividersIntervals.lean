@@ -8,6 +8,16 @@ public import CORALean.DiscrDynamics.GridPartition.Operations.Basic
 # `partition(dividers)` covers the first to the last divider
 
 The state space of a partition built from dividers runs from the head to the last of each list.
+
+## Inputs
+* `v` – dividers per dimension
+* `j` – dimension
+
+## Hypotheses
+* `h` – every divider list nonempty
+
+## Conclusion
+* the state space runs from the first to the last divider
 -/
 
 -- Authors:       Claude Sonnet 5.5

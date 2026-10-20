@@ -28,22 +28,25 @@ import CORALean.NN.Operations.MarginDir
 /-!
 # A convolutional network, and the six layers it puts in one chain
 
-`Examples.FeedForward` at the rest of `Layers/`: reshape, convolution, ReLU, max
-pooling, batch normalization and softmax, chained at `Zonotope` with nothing
-supplied but the instances that representation already had. Compiled, so a layer
-whose instances stop resolving fails the build here.
+`Examples.FeedForward` at the rest of `Layers/`: reshape, convolution, ReLU, max pooling, batch
+normalization and softmax, chained at `Zonotope` with nothing supplied but the instances that
+representation already had. Compiled, so a layer whose instances stop resolving fails the build.
+The layers' interfaces compose unevenly: the reshape asks for `Reindex` alone, the softmax for the
+two box conversions alone, the four between for `Mtimes` and `Plus` as well. The two soundness
+checks are the other half: a convolution defined as `Layer.linear` at a stencil is a convolution
+only because `conv_sound` names the map the stencil computes; `reshape_exact` is the only equality
+in `NN`.
 
-What the chain shows is that the layers' *interfaces* compose, and unevenly: the
-reshape asks for `Reindex` alone, the softmax for the two box conversions alone,
-and the four in between for `Mtimes` and `Plus` as well.
+## Inputs
+* `K` – convolution kernel
+* `b` – bias
+* `gamma` – batch normalization scale
+* `beta` – batch normalization shift
+* `mean` – batch normalization mean
+* `var` – batch normalization variance
 
-The two soundness checks below are the other half. A `Layer` says nothing
-about *which* function it encloses, so a convolution defined as `Layer.linear`
-at a stencil is only a convolution because `conv_sound` names the map the
-stencil computes. `reshape_exact` is the opposite case, the only equality in
-`NN`. The taps are written out rather than generated, since what is checked is
-that the index function is *all* a convolution needs to say about padding, stride
-and layout.
+## Output
+* convolutional network of six layers
 -/
 
 -- Authors:       Claude Opus 5

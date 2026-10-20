@@ -17,6 +17,15 @@ output depends on a locally bound one), and a globally bound input is the global
 to: input `a` of the product is `v a`. CORA numbers the global inputs differently, see
 `NonlinearReset.resolveCORA` and `references/coverage/hybridDynamics/nonlinearReset.md`, row
 `resolve`.
+
+## Inputs
+* `r` – stacked reset
+* `out` – component output maps
+* `stateBinds` – state index maps
+* `inputBinds` – input bindings
+
+## Output
+* reset with the global input only
 -/
 
 -- Authors:       Claude Opus 5.5

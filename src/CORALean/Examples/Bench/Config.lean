@@ -9,6 +9,12 @@ system, read here with `Lean.Json` and by the MATLAB/CORA scripts with
 number stays a `String` at this stage; `Bench/Rollout.lean` is where a field is
 turned into `CORALean.Bench.ExactDyadic` and then into the scalar a run was
 asked for.
+
+## Inputs
+* `j` – config JSON
+
+## Output
+* headline config or an error message
 -/
 
 -- Authors:       Claude Opus 5.5

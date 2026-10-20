@@ -13,14 +13,16 @@ import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 A `SetIntersection` keeps a list of members and denotes their intersection. Here the members are
 the float zonotopes at `Dyadic 53` of a square `[-1, 1]²` and a diamond `|x| + |y| ≤ 3/2`, so the
 set is the octagon they share, with no single zonotope denoting it. `plus`, `mtimes` and `reduce`
-run on it as on any `ContSet`, each mapping the member's own float operation over the branches
-(a Minkowski sum pairs every branch of one operand with every branch of the other), and the
-hull of each branch is printed.
+run on it as on any `ContSet`, each mapping the member's own float operation over the branches (a
+Minkowski sum pairs every branch of one operand with every branch of the other). Every one is
+outer: `SetIntersection.plus_outer`, `mtimes_outer` and `reduce_outer` are applied to these
+operands, never equalities. The point `0`, a member of both branches, is carried through `plus`.
 
-Every one is outer: `SetIntersection.plus_outer`, `SetIntersection.mtimes_outer` and
-`SetIntersection.reduce_outer` are applied here to these operands, never equalities (an
-intersection only shrinks under a branch-wise bound). The point `0`, a member of both branches,
-is carried through `plus` to show the guarantee used.
+## Inputs
+* none
+
+## Output
+* unit square as a float zonotope
 -/
 
 -- Authors:       Claude Sonnet 5.5

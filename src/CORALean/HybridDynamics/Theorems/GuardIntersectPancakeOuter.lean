@@ -15,20 +15,50 @@ public import CORALean.HybridDynamics.Operations.GuardIntersectPancake
 /-!
 # A run's guard hit is in the pancake guard intersection
 
-The guarantee of CORA's `guardIntersect_pancake` [1] for a run with a continuous field, a
-classical one. Time scaling cannot reach the guard (`g → 0` there, so the scaled clock
-`τ(t) = ∫₀ᵗ p/(nᵀx − d)` diverges at the hit), and the proof is where that is paid. With
-`τ(t_f) = tScaled` and the run strictly on the invariant side up to `t_f`, the run before `t_f`
-is, by `NonlinearSys.reparametrize`, a constant-parameter run of the scaled system at any
-positive `p` of the parameter set, so `x(t_f)` is in the scaled reach set. The jump is the
-original system run from the member holding it, and holds `x(t_f + s)` for `s ≤ δ` (the run
-shifted by `t_f`); a guard point of the run in that window is in the jump, and a point of the
-hyperplane is fixed by the projection (`ContSet.projectOnHyperplane_outer`).
+The guarantee of CORA's `guardIntersect_pancake` [1] for a run with a continuous field. Time
+scaling cannot reach the guard (`g → 0` there, so the scaled clock diverges at the hit), and the
+proof is where that is paid. With `τ(t_f) = tScaled` and the run strictly on the invariant side up
+to `t_f`, the run before `t_f` is a constant-parameter run of the scaled system
+(`NonlinearSys.reparametrize`), so `x(t_f)` is in the scaled reach set; the jump holds `x(t_f + s)`
+for `s ≤ δ`, and the projection fixes a point of the hyperplane. Disclosed: the scaled horizon must
+reach `t_f` (`hclock`) and the hit must fall in the jump window (`ht`); these are CORA's run-time
+checks, and where they fail CORA throws `Pancake approach failed!` or misses the hit.
 
-Disclosed: two conditions are CORA's run-time checks, not consequences. The scaled horizon must
-reach `t_f` (`hclock`), and the guard hit must fall in the jump window `[t_f, t_f + δ]` (`ht`);
-where they fail CORA throws `Pancake approach failed!` or misses the hit. Given a hit time `t*`
-and `δ > 0`, `t_f = max 0 (t* − δ)` and `tScaled = τ(t_f)` satisfy both.
+## Inputs
+* `sys` – nonlinear system
+* `scaled` – time-scaled system
+* `nv` – guard normal
+* `d` – guard offset
+* `R₀` – initial set
+* `tScaled` – scaled final time
+* `δ` – jump step
+* `optionsScaled` – options of the scaled reach
+* `optionsJump` – options of the jump reach
+* `p` – parameter value
+* `T` – horizon
+* `x` – trajectory
+* `u` – input trajectory
+* `y` – output trajectory
+* `tf` – time before the hit
+* `t` – hit time
+
+## Hypotheses
+* `hsc` – scaled system is the pancake scaling
+* `hU` – input sets agree
+* `hp` – parameter lies in the parameter set
+* `hp0` – parameter positive
+* `traj` – the curves are a trajectory from the initial set
+* `hf` – right-hand side continuous along the trajectory
+* `htf` – time nonnegative
+* `hδ` – jump step nonnegative
+* `htfT` – jump window within the horizon
+* `hpos` – trajectory strictly on the invariant side
+* `hclock` – scaled clock reaches the scaled horizon
+* `ht` – hit time within the jump window
+* `hhit` – state is on the guard hyperplane
+
+## Conclusion
+* every result set contains the guard hit
 
 ## References
 

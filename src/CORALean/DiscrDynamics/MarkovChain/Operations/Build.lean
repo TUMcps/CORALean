@@ -11,6 +11,15 @@ CORA's `build(Obj, finalStateMat, iInput, stateField)`: the transition probabili
 `stateField` under input `iInput`, from the cells the final states of simulated runs land in.
 The runs themselves, random draws, are the caller's and enter as `finalStateMat`. The second
 output `tp` is `transitionProbability` of the two point sets.
+
+## Inputs
+* `M` – Markov chain
+* `finalStateMat` – final states of simulated runs
+* `iInput` – input index
+* `iState` – cell index
+
+## Output
+* chain with the transition column from the final states
 -/
 
 -- Authors:       Claude Sonnet 5.5

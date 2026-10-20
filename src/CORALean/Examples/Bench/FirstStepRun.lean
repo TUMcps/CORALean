@@ -14,6 +14,14 @@ names, one `FirstStepRecord.firstStepRecord` each, and the lot written to
 `<out>/firststep/<tag>.json` (`--out` defaults to `experiments/results`), `meta` beside
 `results`. `recordFor` is the per-type half, `none` for a run this executable cannot make --
 a `flint` run, which only `bench-flint` links -- so one driver serves both executables.
+
+## Inputs
+* `args` – parsed command line
+* `tag` – output file tag
+* `recordFor` – record builder per configuration and run
+
+## Output
+* the first-step records are written to the output directory
 -/
 
 -- Authors:       Claude Sonnet 5.5

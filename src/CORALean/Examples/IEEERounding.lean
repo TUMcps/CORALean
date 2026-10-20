@@ -13,6 +13,12 @@ extremes are `2 ^ -24` and `65504`, overflow detected past the latter.
 
 The last check asks Lean for the axioms the instance rests on: its own three, and no
 `trustedHardware`.
+
+## Inputs
+* none
+
+## Output
+* whether directed roundings agree with native binary64
 -/
 
 -- Authors:       Claude Opus 5.5

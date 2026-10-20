@@ -13,6 +13,12 @@ component's row precomposed with the projection onto its block, all rows kept. A
 components' row counts, indexed through `finSigmaFinEquiv` as `stack` is. A component's
 constraint says nothing about the other blocks, which is why `Interval` could not do this for a
 guard: an unbounded set is no box.
+
+## Inputs
+* `gs` – halfspace descriptions of the components
+
+## Output
+* stacked product of the halfspace descriptions
 -/
 
 -- Authors:       Claude Opus 5.5

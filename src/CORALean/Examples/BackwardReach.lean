@@ -6,19 +6,19 @@ import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 /-!
 # One backward step, computed and then believed
 
-`x(k+1) = 2 x(k) + u(k)` on the line, target `[-1, 1]`, inputs `[-0.2, 0.2]`.
-Every input costs `0.2` of the target whatever it is, so the states that
-*every* input keeps inside are `[-0.4, 0.4]` — and that is what the run
-returns here, exactly rather than as an under-approximation, the two
-generators being aligned.
+`x(k+1) = 2 x(k) + u(k)` on the line, target `[-1, 1]`, inputs `[-0.2, 0.2]`. Every input costs
+`0.2` of the target, so the states that every input keeps inside are `[-0.4, 0.4]`, which the run
+returns exactly, the two generators being aligned. The file is for the hypotheses, not the number:
+`hA` is a right inverse, `M` is the generator representation `minkDiffRep` checks, and
+`backReachForall_inner_zonotope` supplies the rest; a caller has all three, which a theorem
+quantifying over them cannot show. The second example is the guarantee spent: one run, one
+arbitrary input signal, and a state in `T` afterwards.
 
-What the file is for is the hypotheses, not the number: `hA` is a right
-inverse, `M` is the generator representation `minkDiffRep` checks, and
-`backReachForall_inner_zonotope` supplies the rest. All three are things a
-caller has, which a theorem quantifying over them cannot show on its own.
+## Inputs
+* none
 
-The second example is the guarantee spent: one run, one arbitrary input
-signal, and a state in `T` afterwards.
+## Output
+* one-dimensional discrete system
 -/
 
 -- Authors:       Claude Opus 5

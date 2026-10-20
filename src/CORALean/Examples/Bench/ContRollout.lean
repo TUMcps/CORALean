@@ -11,6 +11,13 @@ into `𝕋`, exactly, through the checked `inst` (config values are exact at 2
 bits, so this never rejects a config that also fits `X0`). `LinearSys.reachWrappingFreeFloat`,
 `.reachFloat` and `.reachTimePointWrappingFreeFloat` take `A` this way, unlike
 `LinearSysDT.reach`, which needs the discretized matrix `buildSystem` builds.
+
+## Inputs
+* `cfg` – headline config
+* `inst` – checked reader of exact numbers
+
+## Output
+* continuous-time spiral system and initial zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

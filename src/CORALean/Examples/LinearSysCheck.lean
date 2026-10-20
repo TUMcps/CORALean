@@ -13,22 +13,14 @@ import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # A continuous-time linear system, checked against a box end to end
 
-`ẋ = A x` with `A = [-1 1; 0 -2]`, from the box `[0, 2]²` as a zonotope, over
-`[0, 1]` in windows of `Δt = 1/10` at Taylor order `4`. The flow contracts towards
-the origin, so the reachable set never leaves the box it starts in, and the safe set is
-that box with a margin of `1/2`, `[-1/2, 5/2]²`: tight enough that a check which
-widened the enclosure past it would fail, checked on every window by `Contains`
-through the zonotope's interval hull — the float box at `𝕋 := ℝ`, which is where the
-checks live.
-
-`reach` and `reachWrappingFree` both name `exp`, which is `pending #1`, so neither check
-can be evaluated here; what is shown is that `holds_of_check_wrappingFree` applies as
-stated at the system's own `reachWrappingFree`, kept but no longer the `Reach` instance,
-and that the generic `Reach.holds_of_check` applies through that instance, now the
-recursive `reach`, so a `true` from a float refinement would need nothing further to
-answer for every trajectory. Inputs are `LinearSysInputCheck`'s business. The last example is a
-failed run, at `Δt = 0`: `reach` returns `none`, so there is no set to enclose and
-`check` is `false`.
+`ẋ = A x` with `A = [-1 1; 0 -2]`, from the box `[0, 2]²` as a zonotope, over `[0, 1]` in windows
+of `Δt = 1/10` at Taylor order `4`. The flow contracts towards the origin, so the reachable set
+never leaves the box it starts in, and the safe set is that box with a margin of `1/2`,
+`[-1/2, 5/2]²`, checked on every window by `Contains` through the zonotope's interval hull. `reach`
+and `reachWrappingFree` both name `exp`, which is `pending #1`, so neither check can be evaluated
+here; what is shown is that `holds_of_check_wrappingFree` and the generic `Reach.holds_of_check`
+apply as stated, so a `true` from a float refinement would answer for every trajectory. Inputs are
+`LinearSysInputCheck`'s business. The last example is a failed run at `Δt = 0`: `check` is `false`.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -18,6 +18,22 @@ over the coordinates it is written to, so the product of two scattered entries i
 products of stored entries, and each product and each sum is rounded in its own direction.
 Every reset `x ↦ A x + B u + c` with `A`, `B`, `c` in the bounds is a candidate, the real one
 among them; `resolve_apply` says what the real one computes.
+
+## Inputs
+* `A` – state matrix
+* `B` – stacked input matrix
+* `c` – offset
+* `C` – output matrices
+* `D` – feedthrough matrices
+* `q` – output offsets
+* `stateBinds` – state index maps
+* `inputBinds` – input bindings
+
+## Hypotheses
+* none
+
+## Conclusion
+* resolved real reset lies in the interval result
 -/
 
 -- Authors:       Claude Opus 5.5

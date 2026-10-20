@@ -12,6 +12,13 @@ branches; a zonotope or polytope goes through its interval hull, `intersectingCe
 default output `'indices'`: the numbers of the cells that possibly meet `I`, ascending, and a
 trailing `0` if `I` leaves the state space. `0` alone if some dimension meets no segment. The second
 output `error` and the `'subscripts'` option are not modelled.
+
+## Inputs
+* `P` – grid partition
+* `I` – box
+
+## Output
+* cell numbers that may meet the box
 -/
 
 -- Authors:       Claude Sonnet 5.5

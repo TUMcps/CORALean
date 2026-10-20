@@ -12,6 +12,12 @@ What this does not do: `GNN.ball` still filters `Finset.univ` at every radius
 rather than growing outward from `v`, so the set found here is the right one by
 the wrong algorithm — `[1, §4.3]`'s breadth-first search is still unformalized.
 
+## Inputs
+* none
+
+## Output
+* adjacency matrix of the four-node path
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

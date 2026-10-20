@@ -18,6 +18,15 @@ generators. For every multiplier `μ`, a point `(γ, y)` of the plane image has
 generators (the breakpoints of the dual) and `μ = 0` is returned. Any `μ` is sound, so the
 rounding of a slope costs tightness only.
 
+## Inputs
+* `Z` – zonotope
+* `nv` – guard normal
+* `γ` – guard offset
+* `ℓ` – direction
+
+## Output
+* upper end of the cut along the direction
+
 ## References
 
 * [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems

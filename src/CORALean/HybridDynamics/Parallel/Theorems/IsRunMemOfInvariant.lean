@@ -12,6 +12,24 @@ public import CORALean.HybridDynamics.Theorems.IsRunOuter
 `Invariant` the single automaton is given, discharged by the single automaton's own theorems
 (`FlowOuter`, `JumpOuter`), encloses every run of the parallel one, stacked. The outer
 reachable set of a parallel automaton is the single automaton's, with no new analysis.
+
+## Inputs
+* `P` – parallel automaton
+* `lift` – lifting
+* `R` – invariant sets of the product
+* `ℓ` – start locations
+* `ℓ'` – end locations
+* `x` – start states
+* `y` – end states
+
+## Hypotheses
+* `hfeed` – no feedthrough between bound outputs
+* `hinv` – the sets are an invariant of the product
+* `run` – parallel run from `x` to `y`
+* `hx` – start state lies in its set
+
+## Conclusion
+* end state lies in its set
 -/
 
 -- Authors:       Claude Opus 5.5

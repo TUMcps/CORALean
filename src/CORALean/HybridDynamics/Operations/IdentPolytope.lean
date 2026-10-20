@@ -11,6 +11,12 @@ public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
 [1, Def. 2]: a polytope `⟨C, d⟩_P = {x | C x ≤ d}` of the paper's identification, given as the
 list of its rows `(cᵢ, dᵢ)`, as the repository's H-polytope with those inequalities.
 
+## Inputs
+* `cs` – polytope rows
+
+## Output
+* half-space polytope of the rows
+
 ## References
 
 * [1] N. Kochdumper, M. A. Foughali, P. Habermehl and E. Asarin. "Robust Identification of

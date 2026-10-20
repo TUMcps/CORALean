@@ -11,6 +11,15 @@ public import CORALean.DiscrDynamics.GridPartition.Theorems.CellSubsetIntervals
 
 The boxes `cellIntervals` lists cover exactly the box the partition covers: CORA's cells are a
 partition of the state space (adjacent cells share their faces).
+
+## Inputs
+* `P` – grid partition
+
+## Hypotheses
+* `hP` – partition well formed
+
+## Conclusion
+* the cell boxes cover exactly the state space
 -/
 
 -- Authors:       Claude Sonnet 5.5

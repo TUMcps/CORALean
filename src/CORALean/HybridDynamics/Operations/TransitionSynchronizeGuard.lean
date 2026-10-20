@@ -13,6 +13,12 @@ The guard of the synchronized transition in CORA's `transition/synchronize`: `fu
 intersected with each guard in turn, as `and_(guard, transList(i).guard, 'exact')` does, here at
 polytope guards (`HPolytope.intersection`, the stacked rows after each error box has been folded
 into them).
+
+## Inputs
+* `g` – guards of the components
+
+## Output
+* intersection of the guards
 -/
 
 -- Authors:       Claude Opus 5.5

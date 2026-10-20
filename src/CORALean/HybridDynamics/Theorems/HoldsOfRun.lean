@@ -16,6 +16,24 @@ only produce a superset of something not computable.
 Checked per location, since that is what the invariant is indexed by. A
 requirement on the whole automaton is `holdsAll_of_invariant`, over a list of
 specifications rather than one.
+
+## Inputs
+* `HA` – hybrid automaton
+* `R` – invariant sets
+* `spec` – specification
+* `ℓ` – start location
+* `ℓ'` – end location
+* `x` – start state
+* `y` – end state
+
+## Hypotheses
+* `hinv` – the sets are an invariant
+* `run` – run of the automaton from `x` to `y`
+* `hx` – start state lies in its set
+* `h` – the specification holds on the end invariant
+
+## Conclusion
+* the specification holds at the end state
 -/
 
 -- Authors:       Claude Opus 5

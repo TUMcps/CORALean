@@ -10,6 +10,15 @@ public import CORALean.HybridDynamics.Operations.TransitionSynchronizeTargetCORA
 CORA's loop on two synchronized transitions (components `0` and `1`, targets `5` and `7`, from
 locations `1`, `1`): both components land in location `7`; the components' own targets are `(5,
 7)`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's loop gives the last target for both
 -/
 
 -- Authors:       Claude Opus 5.5

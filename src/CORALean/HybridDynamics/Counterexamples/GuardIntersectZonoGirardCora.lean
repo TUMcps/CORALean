@@ -20,6 +20,16 @@ With the guard `2 x₁ = 4` (normal `(2, 0)`, `γ = 4`) and the standard basis, 
 coordinate of CORA's box at `8`, so the enclosure holds no state of the hyperplane `x₁ = 2`,
 whatever the reach sets: a reach state with `x₁ = 2` is cut away. Neither `guardIntersect` nor
 the `polytope` constructor normalises the guard.
+
+## Inputs
+* `R₀` – initial zonotope
+* `Rs` – reach sets
+
+## Hypotheses
+* none
+
+## Conclusion
+* no point of the guard lies in the pinned enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

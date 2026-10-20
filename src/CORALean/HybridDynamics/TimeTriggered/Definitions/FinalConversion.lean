@@ -16,6 +16,20 @@ and left at `t = t_scaling`. Step 3 goes from `m_scaling` straight to `m_either`
 deleted. The invariants are `t ≤ t₁`, `t ≤ t_scaling`, `t ≤ t₂` and, for `m₂`, the whole space.
 It is the `H_final` of [1, Cor. 1] and [1, Thm. 1].
 
+## Inputs
+* `I` – initial states
+* `f₁` – flow in the first mode
+* `f₂` – flow in the second mode
+* `fe` – flow in the either mode
+* `a` – guard normal
+* `b` – guard offset
+* `t₁` – first dwell time
+* `t₂` – second dwell time
+* `tScaling` – scaling time
+
+## Output
+* combined scaled time-triggered automaton
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

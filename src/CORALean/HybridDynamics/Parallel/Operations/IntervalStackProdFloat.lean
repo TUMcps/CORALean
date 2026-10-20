@@ -11,6 +11,12 @@ public import CORALean.ContSet.Interval.Float.Interval
 CORA's `cartProd_` of boxes at float: the lower bounds stacked and the upper bounds stacked, as
 over ℝ. Stacking moves floats without computing on them, so nothing is rounded, and
 `Theorems.IntervalStackProdFloatExact` says it is exactly the product of the readings.
+
+## Inputs
+* `bs` – boxes of the components
+
+## Output
+* stacked product of the float boxes
 -/
 
 -- Authors:       Claude Opus 5.5

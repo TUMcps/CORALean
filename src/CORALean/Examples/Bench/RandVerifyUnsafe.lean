@@ -9,6 +9,13 @@ Each lower bound is rounded down and each upper bound up, by the format's own `a
 is disjoint from the original. A bound that is not binary (a decimal) is first bracketed by the
 dyadic at `2^-60` on the outward side, then rounded. Per dimension the result is the two bounds
 and whether rounding moved each (`ToRat.toRat` against the file's exact value).
+
+## Inputs
+* `exactIn` – exact number held off the grid
+* `S` – unsafe box
+
+## Output
+* box rounded outward into the number type
 -/
 
 -- Authors:       Claude Sonnet 5.5

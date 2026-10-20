@@ -11,6 +11,16 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.IntersectionOuter
 The new guard contains the intersection of the old one and the invariant: stacking the rows
 loses nothing, and folding each error box into its rows (`HPolytope.intersection`) only enlarges.
 The reset and the target are untouched.
+
+## Inputs
+* `e` – transition
+* `inv` – invariant polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the new guard contains the guard intersected with the invariant
 -/
 
 -- Authors:       Claude Opus 5.5

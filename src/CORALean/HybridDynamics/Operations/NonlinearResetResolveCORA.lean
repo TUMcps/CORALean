@@ -15,6 +15,15 @@ public import CORALean.HybridDynamics.Operations.NonlinearResetGlobalRank
 u_sym(1:numGlobalInputs))` numbers the globally bound inputs `1, 2, ...` in the order they occur
 and ignores the global index they are bound to
 (`references/coverage/hybridDynamics/nonlinearReset.md`, row `resolve`).
+
+## Inputs
+* `r` – stacked reset
+* `out` – component output maps
+* `stateBinds` – state index maps
+* `inputBinds` – input bindings
+
+## Output
+* reset as CORA's code resolves it
 -/
 
 -- Authors:       Claude Opus 5.5

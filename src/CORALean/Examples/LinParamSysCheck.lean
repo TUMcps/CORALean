@@ -14,15 +14,12 @@ import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 
 `ẋ = A x` with `A` anywhere in the interval matrix
 `[-11/10, -9/10] [9/10, 11/10]; [0, 0] [-21/10, -19/10]`, fixed over each run
-(`IsConstTrajectory`), from the box `[0, 2]²` as a zonotope, over `[0, 1]` in
-windows of `Δt = 1/10` at Taylor order `4` — `LinearSysCheck`'s system, its
-matrix widened by a tenth. Every member still contracts, so the safe box is
-`LinearSysCheck`'s, `[-1/2, 5/2]²`, checked on every window.
-
-As there, `reach` names `exp` and cannot be evaluated here: what is shown is
-that `Reach.holds_of_check` applies at `LinParamSys ℐ`, so a `true` would
-answer for every member of the matrix set. The input set is the origin, in the
-system's two input coordinates; other inputs are `LinParamSysInputCheck`'s business.
+(`IsConstTrajectory`), from the box `[0, 2]²` as a zonotope, over `[0, 1]` in windows of
+`Δt = 1/10` at Taylor order `4`: `LinearSysCheck`'s system with its matrix widened by a tenth.
+Every member still contracts, so the safe box is `LinearSysCheck`'s, `[-1/2, 5/2]²`, checked on
+every window. As there, `reach` names `exp` and cannot be evaluated here; what is shown is that
+`Reach.holds_of_check` applies at `LinParamSys ℐ`, so a `true` would answer for every member of the
+matrix set. The input set is the origin; other inputs are `LinParamSysInputCheck`'s business.
 -/
 
 -- Authors:       Claude Opus 5.5

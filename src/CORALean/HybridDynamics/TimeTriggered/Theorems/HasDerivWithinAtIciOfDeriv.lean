@@ -7,10 +7,24 @@ public import Mathlib.Analysis.Calculus.FDeriv.Extend
 /-!
 # A solution of `ẋ = V(x)` on `(0, t)` has the right derivative at `0`
 
-[1, Def. 4] prints the flow condition on the open interval `(0, t)` only, while the
-uniqueness theorems of ODEs read the derivative at the left endpoint. For `V` continuous and
-`h` differentiable on `[0, t]` with `ḣ = V(h)` inside, `h` has right derivative `V(h u)` at every
+[1, Def. 4] prints the flow condition on the open interval `(0, t)` only, while the uniqueness
+theorems of ODEs read the derivative at the left endpoint. For `V` continuous and `h`
+differentiable on `[0, t]` with `ḣ = V(h)` inside, `h` has right derivative `V(h u)` at every
 `u ∈ [0, t)`: at `0` the derivative converges to `V(h 0)` and Mathlib's extension lemma applies.
+
+## Inputs
+* `V` – vector field
+* `h` – curve
+* `t` – duration
+
+## Hypotheses
+* `hV` – field continuous
+* `ht` – duration positive
+* `hd` – curve differentiable on the closed interval
+* `hder` – curve solves the field on the open interval
+
+## Conclusion
+* curve has the right derivative of the field on the half-open interval
 
 ## References
 

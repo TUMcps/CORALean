@@ -10,6 +10,13 @@ public import CORALean.DiscrDynamics.MarkovChain.Operations.Basic
 CORA's `convertTransitionMatrix(obj, gamma)`: the transition matrices of all inputs as one,
 together with the projection from (cell, input) to cell and the input-mixing matrix
 `GammaFull`. Pairs are ordered (cell, input), as CORA's `input + nrOfInputs (cell - 1)`.
+
+## Inputs
+* `M` – Markov chain
+* `γ` – input mixing parameter
+
+## Output
+* chain with all inputs combined into one matrix
 -/
 
 -- Authors:       Claude Sonnet 5.5

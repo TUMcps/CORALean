@@ -11,22 +11,23 @@ import CORALean.Examples.Bench.Rational
 /-!
 # `lake exe bench nn-mnist --net small|medium|large --type dyadic|float [...]`
 
-The rounding-error ablation: how much sound enclosure radius CORALean's
-`NeuralNetwork.enclose` accumulates through a real MNIST classifier, at
-several precisions, propagating float boxes (`Float.Interval (Vec 𝕋 n)`) --
-`MnistNetwork.lean`'s own docstring on `runLayers` says why a box and not a
-zonotope. This file runs `--images` images (default `100`) through `--net`'s
-network, `--reps` times each (default `1`), and writes
-`<out>/nn-mnist/<net>/<type>[-<format>].json` and `<...>-layers.dat`.
+The rounding-error ablation: how much sound enclosure radius `NeuralNetwork.enclose` accumulates
+through a real MNIST classifier, at several precisions, propagating float boxes
+(`MnistNetwork.lean` says why a box and not a zonotope). This file runs `--images` images (default
+`100`) through `--net`'s network, `--reps` times each, and writes
+`<out>/nn-mnist/<net>/<type>[-<format>].json` and `<...>-layers.dat`. Per image: `predicted` is the
+argmax of the box's midpoint; `certified` is `ltStrict` between the box's bounds, sound and
+one-ulp-margined; `error_radius` and `total_radius` are the same width. At a type with a range, an
+image any layer of which stores a value past it is `overflow` and not certified.
 
-Per image: `predicted` is the argmax of the propagated box's own midpoint;
-`certified` is `ltStrict` between the box's bounds, sound and one-ulp
--margined, not a comparison of the printed doubles. A box has no generators
-to separate from rounding error, so `error_radius` and `total_radius` are the
-same width, both reported for the same JSON shape a zonotope run would have
-used; `accuracy` (`predicted = label`) is for context only. At a type with a
-range, an image any layer of which stores a value past it is `overflow` and not
-certified, and `summary.overflowed_images` counts them.
+## Inputs
+* `outDir` – output directory
+* `net` – network name
+* `ty` – number type name
+* `format` – format label
+
+## Output
+* path of the result file
 -/
 
 -- Authors:       Claude Opus 5.5

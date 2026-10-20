@@ -11,6 +11,20 @@ public import CORALean.DiscrDynamics.MarkovChain.Operations.Build
 
 The column `build` sets, for a cell `iState ≠ 0` (the outside stays absorbing), consists of
 nonnegative frequencies adding up to one, both after the time step and over it.
+
+## Inputs
+* `M` – Markov chain
+* `f` – final states of simulated runs
+* `iInput` – input index
+* `iState` – cell index
+
+## Hypotheses
+* `hs` – cell is not the outside
+* `hT` – final states after the step nonempty
+* `hOT` – final states over the step nonempty
+
+## Conclusion
+* the written column is a distribution in both matrices
 -/
 
 -- Authors:       Claude Sonnet 5.5

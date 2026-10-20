@@ -11,6 +11,19 @@ public import CORALean.DiscrDynamics.MarkovChain.Operations.BuildReach
 
 The column `buildReach` sets for a cell `iState ≠ 0` is `reachProbability`, whose entries add up
 to the sum of the weights.
+
+## Inputs
+* `M` – Markov chain
+* `R` – reach sets
+* `iInput` – input index
+* `iState` – cell index
+* `tranFrac` – weights of the reach sets
+
+## Hypotheses
+* `hs` – cell is not the outside
+
+## Conclusion
+* the column sums to the sum of the weights
 -/
 
 -- Authors:       Claude Sonnet 5.5

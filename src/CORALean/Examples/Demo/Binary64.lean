@@ -13,20 +13,20 @@ import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # The same run at native binary64
 
-`LinearSysDT.reach` a third time, on the system `Reach` defines, at Lean's
-`Float` rather than at `Dyadic`. Every constant is a four-bit dyadic and is
-therefore exact in binary64 too, so the two runs start from the same numbers
-and any difference between the tables is the arithmetic.
+`LinearSysDT.reach` a third time, on the system `Reach` defines, at Lean's `Float` rather than at
+`Dyadic`. Every constant is a four-bit dyadic and exact in binary64 too, so any difference between
+the tables is the arithmetic. There is one: `Binary64.addUp` is the machine's round-to-nearest sum
+stepped one unit in the last place up, so every operation widens whether or not it had to.
+`Dyadic 24` carries the whole run exactly and reports a zero error box; here the box is nonzero
+from the first step, around `2 ^ -50`, printed as dyadics. What this does not show is the
+difference that matters: at `Dyadic` the bounds are theorems, here they rest on the one axiom
+`Axioms` states.
 
-There is one, and it is the price of directed rounding without a hardware
-rounding mode: `Binary64.addUp` is the machine's round-to-nearest sum stepped
-one unit in the last place up, so every operation widens whether or not it had
-to. `Dyadic 24` carries the whole run exactly and reports a zero error box;
-here the box is nonzero from the first step. It is around `2 ^ -50`, which nine
-decimal places cannot show, so the widths are printed as the dyadics they are.
+## Inputs
+* none
 
-What this does not show is the difference that matters: at `Dyadic` the bounds
-are theorems, and here they rest on the one axiom `Axioms` states.
+## Output
+* report of the run at native binary64
 -/
 
 -- Authors:       Claude Opus 5

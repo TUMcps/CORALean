@@ -12,6 +12,12 @@ reads the stored bounds `[1, 2]` of the row and the operator, and refutes the ro
 
 `LevelSet.representsa_emptySet_sound` is applied to these very bounds; a `false` decides
 nothing.
+
+## Inputs
+* none
+
+## Output
+* level set with the single row
 -/
 
 -- Authors:       Claude Sonnet 5.5

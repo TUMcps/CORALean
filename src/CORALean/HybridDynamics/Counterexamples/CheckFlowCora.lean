@@ -15,37 +15,29 @@ public import CORALean.HybridDynamics.Theorems.CheckFlowDropped
 # `Location.checkFlowCora`: CORA's `checkFlow` as printed, with the vector offset
 
 CORA's `@location/checkFlow.m` at a hyperplane guard `{x | c·x = d}` and a `linearSys`
-`ẋ = A x + B u + sys.c`, `u ∈ [uLo, uHi]`, the linear branch of `aux_flowInDirection`, one `let`
-per MATLAB line. `A`, `B` and `sys.c` are the location's; `[uLo, uHi]` is `interval(params.U)`,
-passed beside it. The last summand of `flow = cA*cen + (cA*G)*I +
-(c*sys.B)*interval(params.U) + sys.c` is the `n×1` vector `sys.c`, so `res` is a vector and `if
-res` holds only if every entry `… + sys.c(i)` of the supremum is positive. That is kept.
+`ẋ = A x + B u + sys.c`, the linear branch of `aux_flowInDirection`, one `let` per MATLAB line.
+The last summand of `flow` is the `n×1` vector `sys.c`, so `res` is a vector and `if res` holds
+only if every entry of the supremum is positive; that is kept. `guardIntersect` skips a group of
+sets for which `res` is false, so the sets dropped are never intersected with the guard.
+Left out: `aux_adaptGuard`, `E*params.w` and the `'pca'` reduction. Counterexample: the bouncing
+ball `ẋ₁ = x₂`, `ẋ₂ = -g` (`g ≥ 1`), invariant `x₁ ≥ 0`, guard `x₁ = 0`, box `R = [0, 1] × [-1, 1]`
+is dropped, yet a run reaches the guard in it; `Location.checkFlow` keeps `R`.
 
-`@location/guardIntersect.m` runs `[res,P{i}] = checkFlow(loc,guard,P{i},params)` on each group
-of time-interval sets meeting a hyperplane or level-set guard and skips the group if `res` is
-false: the sets dropped here are never intersected with the guard.
+## Inputs
+* `ℓ` – location
+* `g` – gravity constant
 
-Left out: `c = guard.Ae ./ norm(guard.Ae)` and `aux_adaptGuard` (`c` is the outward unit normal,
-as for `Location.checkFlow`); `E*params.w` (the disturbance at `W`'s center, `0` below); and
-`R = B * reduce(B'*Rproj,'pca',1)`,
-which leaves `Rproj` unchanged when it has at most `n` generators and encloses it otherwise.
+## Hypotheses
+* `hg` – gravity at least one
+* `hA` – flow matrix of the ball
+* `hB` – input matrix is zero
+* `hc` – offset is the gravity vector
+* `hU` – zero is an input
+* `hW` – zero is a disturbance
+* `hinv` – invariant contains the upper half-plane
 
-# CORA's `checkFlow` drops a set the bouncing ball leaves through the guard
-
-The bouncing ball `ẋ₁ = x₂`, `ẋ₂ = -g` (CORA: `A = [0 1; 0 0]`, `sys.c = [0; -g]`, `B` zero),
-invariant `x₁ ≥ 0`, guard `x₁ = 0` with outward normal `c = (-1, 0)`, and the box
-`R = [0, 1] × [-1, 1]` as the time-interval set meeting the guard, for any `g ≥ 1`.
-
-CORA's fast test sees the flow `c·(A·(0, 0) + sys.c) = 0` at the center of the projection and
-fails; the second test bounds `c·A x = -x₂` over the projection by `1` and adds `sys.c`
-entrywise, `(1 + 0, 1 - g)`, whose second entry is not positive, so `checkFlowCora` drops `R`.
-The projection has two generators in two dimensions, so CORA's `'pca'` reduction left out of
-`checkFlowCora` changes nothing here. `guardIntersect` then skips `R`: the jump from it is
-missed, and with it every state after.
-
-Yet the run from `(1/(2g), 0)`, `x(t) = (1/(2g) - g t²/2, -g t)`, stays in `R` and in the
-invariant and reaches the guard at `t = 1/g`, in `(0, -1)`. The tree's `Location.checkFlow` keeps
-`R` (by `Location.checkFlow_dropped`, the flow at `(0, -1)` points out).
+## Conclusion
+* CORA drops the box, `checkFlow` keeps it, and a run hits the guard in it
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -5,22 +5,30 @@ import CORALean.ContSet.Ellipsoid.Real.Theorems.PlusScalingsAdmissible
 /-!
 # A precision parameter, named by the caller
 
-`Ellipsoid.plus` carries a free parameter, so there is no `Plus` for instance
-search to find. What there is instead is `plusInstance`, a `def` the caller
-applies to its own choice, and this file is the evidence that that is enough: an
-algorithm written against `Plus` runs at an ellipsoid with no line of it
-changed, and the operation it ends up calling is the parameterized one at the
-value the caller passed.
+`Ellipsoid.plus` carries a free parameter, so there is no `Plus` for instance search to find. What
+there is instead is `plusInstance`, a `def` the caller applies to its own choice, and this file is
+the evidence that that is enough: an algorithm written against `Plus` runs at an ellipsoid with no
+line of it changed. `LinearSys.inputTaylorSum` is the algorithm because `Plus` and `Mtimes (Mat ℝ)`
+are exactly what it asks for; the reachability loops still do not run at an ellipsoid, because
+`Reduce`, `LinComb`, `OfInterval` and `Mtimes ℐ` are missing operations. Both layers take the same
+parameter: the two scalings with the inequality they owe. No generic algorithm runs at the float
+layer yet; there the instance is shown lawful and `⊞` reads at a float ellipsoid.
 
-`LinearSys.inputTaylorSum` is the algorithm here because `Plus` and
-`Mtimes (Mat ℝ)` are exactly what it asks for and what an ellipsoid has. The
-reachability loops still do not run at one, and not for this reason: `Reduce`,
-`LinComb`, `OfInterval` and `Mtimes ℐ` are missing *operations*.
+## Inputs
+* `n` – dimension
+* `s₁` – first scaling
+* `s₂` – second scaling
+* `sys` – linear system
+* `r` – time step
+* `U` – input ellipsoid
 
-Both layers take the same parameter: the two scalings with the inequality they
-owe, of which `l`'s pair is one point. No generic algorithm runs at the float
-layer yet — its `Mtimes` is over `Mat 𝕋`, not `Mat ℝ` — so what is recorded
-there is that the instance is lawful and that `⊞` reads at a float ellipsoid.
+## Hypotheses
+* `hne₁` – first scaling nonzero
+* `hne₂` – second scaling nonzero
+* `hs` – the scalings satisfy the plus inequality
+
+## Output
+* Taylor sums of the input ellipsoid by step count
 -/
 
 -- Authors:       Claude Opus 5

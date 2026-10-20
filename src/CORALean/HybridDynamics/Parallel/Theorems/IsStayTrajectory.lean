@@ -11,6 +11,23 @@ public import CORALean.HybridDynamics.Parallel.Operations.LocationProduct
 
 `IsStay.trajectoryWith` at `mergeFlowsLinearSys`, whose flow law holds at `ℝ` under
 `FeedthroughFree` (`mergeFlowsLinearSys_flowLaw`).
+
+## Inputs
+* `P` – parallel automaton
+* `lift` – lifting
+* `ℓ` – current locations
+* `τ` – stay duration
+* `x` – component trajectories
+* `u` – component inputs
+* `w` – component disturbances
+* `g` – global input
+
+## Hypotheses
+* `hfeed` – no feedthrough between bound outputs
+* `h` – shared stay of the components
+
+## Conclusion
+* the stacked stay is a trajectory of the product
 -/
 
 -- Authors:       Claude Opus 5.5

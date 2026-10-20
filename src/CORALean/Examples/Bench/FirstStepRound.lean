@@ -5,16 +5,19 @@ import CORALean.Examples.Bench.Rational
 /-!
 # `firststep`: `X0` rounded outward into a number type
 
-`firststep` takes `X0 = c + Σ_j β_j g_j` from the config exactly, which a format may not hold
-(`1/8` at `FixedPoint 1`, `FixedPoint 2`, or at `E2M1`). `roundX0In` stores `c' = ⌊c⌋`, `g'_j =
-⌊g_j⌋` and puts what the rounding lost into the error box `E`: `c - c' ∈ [0, ⌈c⌉ - ⌊c⌋]` and
-`(g_j - g'_j) β_j ∈ ±(⌈g_j⌉ - ⌊g_j⌋)`, summed over `j` and rounded up, so that
-`E = [-W, W + w_c]` with `W = Σ_j w_{g_j}`. The set so stored contains the exact `X0`. Where the
-config's numbers are on the grid every width is zero and `E` is the point `0`, so the set is the
-one the checked read of `Rollout.buildX0` gives.
+`firststep` takes `X0 = c + Σ_j β_j g_j` from the config exactly, which a format may not hold.
+`roundX0In` stores `c' = ⌊c⌋`, `g'_j = ⌊g_j⌋` and puts what the rounding lost into the error box
+`E`: `E = [-W, W + w_c]` with `W = Σ_j w_{g_j}`, summed over `j` and rounded up. The set so stored
+contains the exact `X0`. Where the config's numbers are on the grid every width is zero and `E` is
+the point `0`, the set `Rollout.buildX0` gives. `⌊x⌋`/`⌈x⌉` are `addDown x 0`/`addUp x 0` applied
+to `exactIn x`, so the format's own rounded operation does the rounding.
 
-`⌊x⌋`/`⌈x⌉` are `addDown x 0`/`addUp x 0` applied to `exactIn x`, the exact value of `x` held
-off the grid: the format's own rounded operation does the rounding.
+## Inputs
+* `cfg` – headline config
+* `exactIn` – exact number held off the grid
+
+## Output
+* initial zonotope rounded outward or an error
 -/
 
 -- Authors:       Claude Sonnet 5.5

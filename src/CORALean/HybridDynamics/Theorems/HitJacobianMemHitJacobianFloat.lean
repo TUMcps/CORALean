@@ -15,6 +15,19 @@ public import CORALean.ContSet.Interval.Float.Theorems.RecipOuter
 nonzero, and then `L(x₀)` of the floats read as reals is in it, entry by entry: each rounded
 quantity brackets its real value (`dotDown_le`, `le_dotUp`, `mul_between_corners`,
 `Interval.recip_outer`), and `L_il = I_il + A_il(num · Λ⁻¹) + (yᵢΘ_l)(Λ⁻¹Λ⁻¹)`.
+
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `nv` – guard normal
+* `d` – guard offset
+* `x₀` – initial state
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Jacobian lies in every returned interval matrix
 -/
 
 -- Authors:       Claude Opus 5.5

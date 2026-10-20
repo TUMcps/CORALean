@@ -30,18 +30,33 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 /-!
 # The float `E_err` encloses the error between the linear solution and the constant-derivative one
 
-`LinearSys.trajectoryError_outer` at floats: for `t ∈ [tmin, tmax]`, `0 ≤ tmin`, `x₀ ∈ R₀` and
-`η ≥ 1`, the solution `e^{At}x₀ + Γ(t)u` of `ẋ = Ax + u` minus the state-dependent constant flow
-`x₀ + (Ax₀ + b)t`, `b` the exact `GuardMap.sdcInput` at `tc` and the stored center of `R₀`, is
-a point of the float `E_err` whenever `LinearSys.trajectoryErrorFloat` returns one, that is
-whenever the float bound of `‖tmax A‖` passes `(η + 2)/2`. At `f₁ = f₂`, as the exact theorem.
+`LinearSys.trajectoryError_outer` at floats: for `t ∈ [tmin, tmax]`, `0 ≤ tmin`, `x₀ ∈ R₀` and `η ≥
+1`, the solution `e^{At}x₀ + Γ(t)u` of `ẋ = Ax + u` minus the constant flow `x₀ + (Ax₀ + b)t`, `b`
+the exact `GuardMap.sdcInput` at `tc` and the stored center of `R₀`, is a point of the float
+`E_err` whenever `trajectoryErrorFloat` returns one, that is whenever the float bound of `‖tmax A‖`
+passes `(η + 2)/2`; at `f₁ = f₂`, as the exact theorem. The constant input is a measurable input in
+the point zonotope of `u`, so `abstractionError_decomp` (with `th = tc`) gives the point; each part
+is a point of its float set.
 
-The constant input is a measurable input with values in the point zonotope of `u`, so
-`GuardMap.abstractionError_decomp` (with `th = tc`) gives the point as `t(v₁ + v₂) + R x₀ + ρ`,
-its third part vanishing; `Γ(t)u` is the integral by `expIntegral_mulVec`. Each part is a point
-of its float set: `tᵐ⁺¹x₀ − tcᵐ⁺¹ξ = tᵐ⁺¹(x₀ − ξ) + (tᵐ⁺¹ − tcᵐ⁺¹)ξ`, the coefficients in their
-intervals (`matPow_outer`, `invFactorialBounds_mem`, directed powers and differences), `R` and
-the remainder `ρ` within `Ê` by `norm_exp_sub_expTaylor_le` and the float bound.
+## Inputs
+* `sys` – float linear system
+* `f` – constant flow
+* `u` – constant input
+* `R₀` – initial zonotope
+* `tmin` – start of the time interval
+* `tmax` – end of the time interval
+* `tc` – expansion time
+* `η` – Taylor order
+* `t` – time
+* `x₀` – initial state
+
+## Hypotheses
+* `hmin` – start time nonnegative
+* `ht` – time within the interval
+* `hx₀` – initial state lies in the initial zonotope
+
+## Conclusion
+* solution minus constant flow lies in every float error set
 
 ## References
 

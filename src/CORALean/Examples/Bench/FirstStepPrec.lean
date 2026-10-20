@@ -6,6 +6,12 @@ import CORALean.Examples.Bench.Format
 
 `prec` if the run gives one, else `format` through `formatToPrec`, else `53` -- `binary64`,
 as `Registry.resolvedPrec` for `--prec`/`--format`.
+
+## Inputs
+* `run` – first-step run description
+
+## Output
+* significand width of the run
 -/
 
 -- Authors:       Claude Sonnet 5.5

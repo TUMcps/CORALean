@@ -11,6 +11,24 @@ A state `x` of one of the reach sets on the hyperplane has `x·ℓ` between the 
 cut of that set along every column `ℓ` of a basis, so between the hull's ends. With `B Bᵀ = 1`
 the basis carries `x` through its coordinates `Bᵀ x` and back. Outer only: the dual bound is
 proved to bound the cut, not to equal it.
+
+## Inputs
+* `Bs` – bases
+* `R₀` – initial set
+* `Rs` – reach sets
+* `nv` – guard normal
+* `γ` – guard offset
+* `R` – reach set
+* `x` – trajectory of the stay
+
+## Hypotheses
+* `horth` – bases orthogonal
+* `hR` – the reach set is among the given ones
+* `hx` – state lies in the reach set
+* `hg` – state lies on the guard
+
+## Conclusion
+* state lies in the bundle
 -/
 
 -- Authors:       Claude Sonnet 5.5

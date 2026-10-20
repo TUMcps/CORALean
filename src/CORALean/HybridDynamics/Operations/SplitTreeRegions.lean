@@ -13,6 +13,12 @@ per leaf, left before right.
 Over ℝ, with no float layer: it states what the automaton is, for [1, Thm. 1]; CORA's
 `priv_identify_decisionTree2automaton` also bloats the invariants by `1e-3`, not modelled.
 
+## Inputs
+* none
+
+## Output
+* invariant rows of each leaf
+
 ## References
 
 * [1] N. Kochdumper, M. A. Foughali, P. Habermehl and E. Asarin. "Robust Identification of

@@ -5,21 +5,23 @@ import CORALean.Specification.Theorems.Separation
 /-!
 # A capsule earns its keep with `supportBound` alone
 
-`Capsule` is convex and compact but closed under none of `Plus`, `Mtimes` or
-`LinComb` — CORA uses it to describe an obstacle, never to carry a set
-forward. Nothing here computes *with* the capsule: the whole check reads it
-through `Capsule.supportBound`, the certificate every representation answers
-a direction with regardless of what it can compute.
+`Capsule` is convex and compact but closed under none of `Plus`, `Mtimes` or `LinComb`: CORA uses
+it to describe an obstacle, never to carry a set forward. Nothing here computes with the capsule;
+the check reads it through `Capsule.supportBound`, the certificate every representation answers a
+direction with. A square tilted by 45°, the zonotope with generators `(2, 2)` and `(2, -2)`, stands
+in for a reachable set; a short capsule at the corner `(4, 4)` of its bounding box for an obstacle.
+The box meets the obstacle, so no per-coordinate test separates the two, only the diagonal
+`x₀ + x₁` does (`Specification.holds_unsafeSet_of_separating`). One direction certifies separation
+and nothing more.
 
-A square tilted by 45°, the zonotope with generators `(2, 2)` and `(2, -2)`, stands in for
-a reachable set; a short capsule at the corner `(4, 4)` of its bounding box for an
-obstacle. The box meets the obstacle, so no per-coordinate test separates the two — only
-the diagonal `x₀ + x₁` does, and `Specification.holds_unsafeSet_of_separating` turns that
-one direction's two bounds into disjointness.
+## Inputs
+* none
 
-This is one direction, so it certifies separation and nothing more: a bound
-that fails to separate proves no intersection, only that this direction did
-not find one.
+## Hypotheses
+* none
+
+## Conclusion
+* the zonotope keeps clear of the obstacle
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

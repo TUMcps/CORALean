@@ -10,6 +10,23 @@ public import CORALean.HybridDynamics.Definitions.IsRunUntil
 A run that fits a budget `T` fits every larger one: the first stay is still no
 longer than the budget, and the rest of the run is handed the larger
 remainder. So `IsRunUntil T` reads as "lasting at most `T`", not "exactly `T`".
+
+## Inputs
+* `HA` – hybrid automaton
+* `T` – time budget
+* `T'` – larger time budget
+* `k` – number of jumps
+* `ℓ` – location
+* `ℓ'` – end location
+* `x` – trajectory of the stay
+* `y` – end state
+
+## Hypotheses
+* `run` – run within the budget
+* `hT` – budget at most the larger budget
+
+## Conclusion
+* the run fits the larger budget
 -/
 
 -- Authors:       Claude Opus 5.5

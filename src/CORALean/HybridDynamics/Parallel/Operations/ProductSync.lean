@@ -12,6 +12,17 @@ The product automaton with synchronization labels: `productWith`, with the trans
 `mergeTransitionSetsSync` in place of `mergeTransitionSets`. Its flow `F`, input sets `U` and
 disturbance sets `W` are given, as for `productWith`; `mergeFlowsLinearSys` with `mergeInputSets`
 and `mergeDistSets` is CORA's.
+
+## Inputs
+* `P` – parallel automaton
+* `slift` – lifting with synchronization
+* `lab` – synchronization labels
+* `F` – product flow at each location tuple
+* `U` – product input sets
+* `W` – product disturbance sets
+
+## Output
+* product automaton with labeled transitions
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

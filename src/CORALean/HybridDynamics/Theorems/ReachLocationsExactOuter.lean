@@ -10,6 +10,21 @@ public import CORALean.HybridDynamics.Theorems.ReachSetExactOuter
 `reachSetExact_outer`'s discrete counterpart: the location a run reaches has a
 state in `reachSetExact` by construction, namely the one the run ends at, and that
 is exactly what `reachLocationsExact` asks for.
+
+## Inputs
+* `HA` – hybrid automaton
+* `R₀` – initial set
+* `ℓ₀` – initial location
+* `ℓ` – end location
+* `x` – start state
+* `y` – end state
+
+## Hypotheses
+* `run` – run of the automaton from `x` to `y`
+* `hx` – start state lies in the initial set
+
+## Conclusion
+* the end location is among the reached locations
 -/
 
 -- Authors:       Claude Opus 5

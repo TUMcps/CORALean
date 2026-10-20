@@ -9,15 +9,20 @@ public import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSets
 # `mergeTransitionSetsSync`
 
 CORA's `mergeTransitionSets` with synchronization labels: every unlabeled transition of every
-component's current location, lifted alone as before, followed by one synchronized transition
-for each label `λ` whose participants all have a `λ`-labeled transition here
-(`priv_gatherTransitions` returns empty otherwise). A labeled transition is not lifted alone:
-this is what `mergeTransitionSets` cannot say.
+component's current location, lifted alone, followed by one synchronized transition for each label
+`λ` whose participants all have a `λ`-labeled transition here. A labeled transition is not lifted
+alone. CORA also cuts a component's invariant by the complement of the guards of the merged labels
+(`mergeInvariants`); that cut is not made here, so the product's invariant is the larger one (see
+`references/coverage/hybridDynamics/parallelHybridAutomaton.md`, row `mergeInvariants`).
 
-CORA also cuts a component's invariant by the complement of the guards of the merged labels
-(`mergeInvariants`); that cut is not made here, so the product's invariant is the larger,
-uncut one. See `references/coverage/hybridDynamics/parallelHybridAutomaton.md`, row
-`mergeInvariants` for what the cut does in CORA's code.
+## Inputs
+* `P` – parallel automaton
+* `slift` – lifting with synchronization
+* `lab` – synchronization labels
+* `ℓ` – current locations
+
+## Output
+* lifted and synchronized transitions
 -/
 
 -- Authors:       Claude Sonnet 5.5

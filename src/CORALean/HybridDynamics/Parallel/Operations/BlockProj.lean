@@ -9,6 +9,12 @@ public import CORALean.HybridDynamics.Parallel.Operations.Basic
 
 Block `c` of the product space as a linear map, `unstack` at `c`. It is the coordinate projection
 a representation closed under preimages lifts a component's guard through (`HPolytope.comap`).
+
+## Inputs
+* `c` – component
+
+## Output
+* linear projection onto block `c`
 -/
 
 -- Authors:       Claude Opus 5.5

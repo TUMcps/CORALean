@@ -18,6 +18,15 @@ One state-bound component, `ẋ = x + u`, `y = x`, its input bound to its own ou
 `mergeFlowsLinearSys` has `A + B C`, the one entry `2`: the flow is `ẋ = 2 x`. `mergeFlows` builds
 the entry `1` (the `1` of `B C` replaces `A_ij`), so its flow law fails here: the hypothesis is
 needed, not an artefact of the proof (#40).
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the merge without arithmetic differs from the full merge
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

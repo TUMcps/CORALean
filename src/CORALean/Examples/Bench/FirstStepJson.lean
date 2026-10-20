@@ -12,6 +12,13 @@ want: each scalar is `{"num": "...", "den": "..."}`, both decimal strings, `den 
 that `nonFinite` flags (a value past an `IEEE` format's range, a `NaN`) is `null`, there being
 no rational to give. The shape is the one `Output.stepJson` gives `sets_ti`: `c`, `G` as `n`
 rows of `h`, and `E` with `inf` and `sup`.
+
+## Inputs
+* `nonFinite` – test for a stored non-finite scalar
+* `Z` – zonotope
+
+## Output
+* JSON of the zonotope as exact rationals
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -8,6 +8,12 @@ precision and `formatToPrec`/`precToFormat` are the one place the mapping is
 written down. `binary64` is `Dyadic 53`, chosen to agree with native `Float`'s
 53-bit significand; `--prec` still takes a raw count directly, for a precision
 none of these five name.
+
+## Inputs
+* `p` – significand width
+
+## Output
+* IEEE-style label of the width
 -/
 
 -- Authors:       Claude Opus 5.5

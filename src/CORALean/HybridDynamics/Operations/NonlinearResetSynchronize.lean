@@ -13,6 +13,13 @@ CORA's `nonlinearReset/synchronize`: the resets of several parallel components t
 same spaces, combined by summing their results; the coordinates `idStates` additionally keep the
 pre-jump value (`f_sym(idStates) = x(idStates)`, then each `f_i` is added). Real, since the
 sum of floats is not exact.
+
+## Inputs
+* `rs` – component resets
+* `idStates` – states kept by identity
+
+## Output
+* reset summing the components
 -/
 
 -- Authors:       Claude Opus 5.5

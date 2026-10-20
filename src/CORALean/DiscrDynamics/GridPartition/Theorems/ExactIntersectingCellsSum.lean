@@ -9,6 +9,16 @@ public import CORALean.DiscrDynamics.GridPartition.Theorems.ExactIntersectingCel
 
 The outside share is `1 - Σ` of the others, so the whole `iProp`, padded with zeros where CORA
 returns the single entry `1`, sums to `1`. The sum over cells being at most `1` is not shown.
+
+## Inputs
+* `P` – grid partition
+* `X` – set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the shares add up to one
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -19,6 +19,13 @@ stored floats already, so the box of zero width at it is a float box, and
 
 As at `jump`, the argument is the set already cut to the guard, so the guard's
 representation `G` is not read here.
+
+## Inputs
+* `e` – transition
+* `Rg` – float zonotope cut by the guard
+
+## Output
+* float zonotope image under the reset
 -/
 
 -- Authors:       Claude Opus 5.5

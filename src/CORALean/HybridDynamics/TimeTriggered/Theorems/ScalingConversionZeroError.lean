@@ -15,6 +15,27 @@ reaches, within any time bound, `H_single` reaches, so the error against `Reach(
 zero. Against `Reach≤T(H_single)`, as [1, Def. 9] and the statement have it, it is not
 (`scalingConversion_not_zeroError`).
 
+## Inputs
+* `I` – initial states
+* `f` – flow
+* `K` – Lipschitz constant
+* `K'` – Lipschitz constant of the scaled flow
+* `g` – scaling function
+* `tb` – time scaling begins
+* `ts` – scaling duration
+* `T` – time bound
+
+## Hypotheses
+* `hf` – flow is Lipschitz
+* `hg` – scaling function continuous
+* `hg0` – scaling function nonnegative
+* `hF` – scaled flow is Lipschitz
+* `htb` – start time positive
+* `hts` – scaling duration positive
+
+## Conclusion
+* overapproximation holds and no unreachable state is added
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

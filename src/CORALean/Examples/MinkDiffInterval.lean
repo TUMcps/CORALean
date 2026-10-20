@@ -8,6 +8,12 @@ difference, never more. `Interval.minkDiff` meets it with nothing to spare — i
 (`minkDiff_exact`). A box of half-width `0.2` taken from a box of half-width `1` is the box of
 half-width `0.8`: `0.5` sits inside it, and `0.9` outside, cheaply, since the representation
 itself already excludes it.
+
+## Inputs
+* none
+
+## Output
+* first example box
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

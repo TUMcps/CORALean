@@ -8,14 +8,18 @@ import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeConPolyZonoExact
 # The guard cut and the jump, chained
 
 `ConPolyZonoGuard.lean` stops at the exact cut: `cPZ.intersection G.conPolyZono` really is
-`cPZ.construct ∩ G.construct`, whether or not `cPZ` is convex. `jumpIntersectionOfPoint`
-takes that cut set the rest of the way, the reset propagated over it, asking
-only `OfPoint` — which `ConPolyZono` now has — where `jump`/`jumpIntersection` would
-have asked for the `OfInterval` instance it still lacks (#38).
+`cPZ.construct ∩ G.construct`, whether or not `cPZ` is convex. `jumpIntersectionOfPoint` takes that
+cut set the rest of the way, the reset propagated over it, asking only `OfPoint`, which
+`ConPolyZono` now has, where `jump`/`jumpIntersection` would ask for the `OfInterval` instance it
+still lacks (#38). A concrete transition shifts the state by `(2, 2)`; a point sitting in both
+`cPZ` and `G` is carried, by `jumpIntersectionOfPoint_outer`, to the concrete point `(3, 3)` in the
+jumped set.
 
-A concrete transition shifts the state by `(2, 2)`; a point sitting in both `cPZ`
-and `G` is carried, by `jumpIntersectionOfPoint_outer`, to the concrete point `(3, 3)`
-in the jumped set.
+## Inputs
+* `guard` – constrained polynomial zonotope guard
+
+## Output
+* transition that shifts the state by two in each coordinate
 -/
 
 -- Authors:       Claude Opus 5

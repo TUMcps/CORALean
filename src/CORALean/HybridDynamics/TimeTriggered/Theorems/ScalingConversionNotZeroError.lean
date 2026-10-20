@@ -19,6 +19,15 @@ automaton is the original one with a pause-free relabelling, and it reaches `x =
 `T' = 2` while `Reach≤1(H_single) = [0, 1]`. The printed proof shows `d_{Reach(H)}(x') = 0`
 for the *unbounded* `Reach(H)` instead.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the scaled automaton has no zero error within the extended bound
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

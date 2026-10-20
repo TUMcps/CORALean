@@ -9,6 +9,15 @@ public import CORALean.DiscrDynamics.MarkovChain.Operations.Basic
 
 The three lines `build` and `build_reach` share: column `iState + 1` of both `T{iInput}` is set
 to the probabilities `tp` and entry `(1, 1)` to `1`.
+
+## Inputs
+* `M` – Markov chain
+* `tp` – transition probabilities
+* `iInput` – input index
+* `iState` – cell index
+
+## Output
+* chain with the column set to the probabilities
 -/
 
 -- Authors:       Claude Sonnet 5.5

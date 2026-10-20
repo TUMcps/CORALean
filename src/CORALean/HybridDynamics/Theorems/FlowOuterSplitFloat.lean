@@ -25,6 +25,29 @@ second is an admissible input of `[0, ũ]` held over `[0, t]`, and the third an
 admissible input of `Ũ`; both segments hold the origin, so `inputReach_mono`
 lifts each from `t` to `r`, where `inputReach_subset_inputSolutionFloat` places
 it in its float input solution.
+
+## Inputs
+* `ℓ` – location
+* `τ` – stay duration
+* `x` – trajectory of the stay
+* `u` – input trajectory
+* `w` – disturbance trajectory
+* `R₀` – initial set
+* `r` – time step
+* `η` – Taylor order
+* `t` – time within the stay
+
+## Hypotheses
+* `traj` – the curves are a stay of the location
+* `h₀` – initial state lies in the initial set
+* `hr` – time step positive
+* `hη` – Taylor order admissible at the step
+* `ht0` – time nonnegative
+* `htτ` – time within the stay duration
+* `htr` – time within the time step
+
+## Conclusion
+* state at the time lies in the split float step
 -/
 
 -- Authors:       Claude Opus 5.5

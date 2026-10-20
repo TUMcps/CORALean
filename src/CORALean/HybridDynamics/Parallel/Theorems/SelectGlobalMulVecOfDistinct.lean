@@ -10,6 +10,22 @@ public import CORALean.HybridDynamics.Parallel.Theorems.SelectGlobalMulVec
 When no global input is bound to two inputs, the one input `⟨i, j⟩` bound to `a` is the first, so
 `selectGlobal b` applied to `z` is `z ⟨i, j⟩` at `a`. This is the direction the exactness of a
 lifted input set needs (`Lifting.Exact.input_inv`).
+
+## Inputs
+* `d` – input counts of the components
+* `q` – output counts of the components
+* `b` – input bindings
+* `z` – stacked inputs
+* `i` – component
+* `j` – input of the component
+* `a` – global input
+
+## Hypotheses
+* `hb` – no global input feeds two inputs
+* `h` – the input is bound to `a`
+
+## Conclusion
+* the global input is the entry of that input
 -/
 
 -- Authors:       Claude Opus 5.5

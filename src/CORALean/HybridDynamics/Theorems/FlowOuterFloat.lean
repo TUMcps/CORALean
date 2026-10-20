@@ -17,6 +17,31 @@ variation of constants splits `x t` into the free motion, which
 `timeIntervalStepFloat_outer` places in the float step at an order admissible
 for `[r, r]`, and the input's contribution, which the caller's `Ud` holds. The
 stay need not last `r`: any `t ≤ r` it reaches is covered.
+
+## Inputs
+* `ℓ` – location
+* `τ` – stay duration
+* `x` – trajectory of the stay
+* `u` – input trajectory
+* `w` – disturbance trajectory
+* `R₀` – initial set
+* `Ud` – input contribution set
+* `r` – time step
+* `η` – Taylor order
+* `t` – time within the stay
+
+## Hypotheses
+* `traj` – the curves are a stay of the location
+* `h₀` – initial state lies in the initial set
+* `hr` – time step positive
+* `hη` – Taylor order admissible at the step
+* `ht0` – time nonnegative
+* `htτ` – time within the stay duration
+* `htr` – time within the time step
+* `hUd` – input contribution holds the particular integral
+
+## Conclusion
+* state at the time lies in the float step plus the input contribution
 -/
 
 -- Authors:       Claude Opus 5.5

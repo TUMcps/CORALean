@@ -12,6 +12,15 @@ input, with repetitions, while a `parallelHybridAutomaton` has `length(unique(..
 (`linearReset/resolve` sums the columns of one index). With both components' inputs bound to the
 global input `1` the resolved reset has two inputs where the product has one (read from the
 source, not run).
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA counts more global columns than the shared example has
 -/
 
 -- Authors:       Claude Opus 5.5

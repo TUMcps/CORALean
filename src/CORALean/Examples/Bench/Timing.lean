@@ -3,19 +3,23 @@ import CORALean.Examples.Bench.Rollout
 /-!
 # Timing a rollout, forced and repeated
 
-`IO.monoNanosNow` around the call, `reps` times, the array's median reported
-alongside every raw sample. `checksum` is folded over the result *inside* that
-window and its outcome is what decides a branch before the clock stops --
-without that, the interpreter defers the actual arithmetic past `t1`, and the
-measured sample is a handful of nanoseconds while the real cost turns up later
-inside `writeRun`, once serialising the output is what finally demands every
-generator. Confirmed by wrapping the whole call in an outer, coarser timer and
-watching it disagree with the sum of the "measured" per-rep samples by orders
-of magnitude until the checksum's result was genuinely forced.
+`IO.monoNanosNow` around the call, `reps` times, the array's median reported alongside every raw
+sample. `checksum` is folded over the result inside that window and its outcome decides a branch
+before the clock stops; without that, the interpreter defers the arithmetic past `t1`, and the
+measured sample is a handful of nanoseconds while the real cost turns up later inside `writeRun`.
+The forcing has to differ by branch: `if cs == cs then pure () else pure ()` looks like it demands
+`cs` and does not, since both branches reduce to `pure ()`; `cs.isNaN` in a branch that only
+sometimes prints is what has to be decided.
 
-The forcing itself has to differ by branch: `if cs == cs then pure () else
-pure ()` looks like it demands `cs` and does not, since both branches reduce
-to the same `pure ()` and the compiler drops the condition. `cs.isNaN`
+## Inputs
+* `toD` – conversion to a double
+* `S` – system
+* `o` – zonotope order
+* `N` – number of steps
+* `reps` – number of repetitions
+
+## Output
+* timing samples, median, checksum and reach sets
 in a branch that only sometimes prints is what actually has to be decided. -/
 
 -- Authors:       Claude Opus 5.5

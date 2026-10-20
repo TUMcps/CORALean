@@ -5,6 +5,14 @@ import Mathlib.Data.Rat.Defs
 
 `q` rounded down (`up = false`) or up to the grid `2^-e`, written `"m*2^-e'"` with `m` odd (or
 `"0"`), the exact form the instance files use, together with the rounded value.
+
+## Inputs
+* `q` – rational number
+* `e` – exponent of the grid
+* `up` – round up
+
+## Output
+* dyadic string and the rounded rational
 -/
 
 -- Authors:       Claude Opus 5.5

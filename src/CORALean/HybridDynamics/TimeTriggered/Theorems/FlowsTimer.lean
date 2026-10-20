@@ -14,6 +14,26 @@ one automaton is one of another whose state is `(x, t)`, the time variable count
 when the other's flow contains `ẋ ∈ f(x)` with `ṫ = 1` and its invariant holds while the
 timer is at most `c`.
 
+## Inputs
+* `H` – automaton
+* `H'` – automaton with a clock
+* `m` – mode of the automaton
+* `k` – mode of the clocked automaton
+* `x` – start state
+* `x'` – end state
+* `t` – duration
+* `τ` – clock at the start
+* `c` – clock bound
+
+## Hypotheses
+* `h` – continuous successor of the automaton
+* `hflow` – clocked flow extends the flow with rate one
+* `hinv` – clocked invariant holds up to the bound
+* `hc` – clock stays below the bound
+
+## Conclusion
+* the clocked automaton flows with the clock advanced
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

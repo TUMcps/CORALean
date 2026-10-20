@@ -8,19 +8,23 @@ import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # Discretizing into a matrix zonotope, and running the same `reach`
 
-`DiscretizeWithEnclosedExp` at `𝕄𝒵` in place of `ℐ`. The chain below is the
-one that file already runs, declaration for declaration, and not one line of
-`LinParamSysDT.reach`, `reach_outer` or `holds_of_reach` changes to accept it:
-the recursion multiplies by `sys.A` through `Mtimes`, which never asked what
-represents the matrix set.
+`DiscretizeWithEnclosedExp` at `𝕄𝒵` in place of `ℐ`. The chain is the one that file already runs,
+declaration for declaration, and not one line of `LinParamSysDT.reach`, `reach_outer` or
+`holds_of_reach` changes to accept it: the recursion multiplies by `sys.A` through `Mtimes`, which
+never asked what represents the matrix set. The system is the decay `ẋ = -x`, so the run checked
+against `reach` is `x(k) = (e^{-Δt})ᵏ x₀`. What is gained is downstream: an interval matrix bounds
+each entry of `e^{AΔt}` on its own, so a step forgets that the entries move together; a matrix
+zonotope carries them on shared generators, and the step is tighter for it.
 
-The system is the decay `ẋ = -x`, so the state genuinely moves: the run checked against
-`reach` is `x(k) = (e^{-Δt})ᵏ x₀`, not a fixed point.
+## Inputs
+* `o` – zonotope order
+* `k` – step count
 
-What is gained is downstream of this file rather than visible in it. An
-interval matrix bounds each entry of `e^{AΔt}` on its own, so a step forgets
-that the entries move together; a matrix zonotope carries them on shared
-generators, and the step is tighter for it.
+## Hypotheses
+* `ho` – zonotope order positive
+
+## Conclusion
+* the exact state lies in the reach set
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

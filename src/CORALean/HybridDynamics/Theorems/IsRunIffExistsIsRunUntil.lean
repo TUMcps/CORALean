@@ -14,6 +14,19 @@ of jumps, and is then a `IsRunUntil T k`; conversely `IsRunUntil.toIsRunOn` forg
 both. So `IsRunUntil T k` is exactly a `IsRun` together with a duration of at most
 `T` and `k` jumps, and a guarantee stated over it, `reachFloat_outer`, speaks of
 the runs the automaton defines.
+
+## Inputs
+* `HA` – hybrid automaton
+* `ℓ` – location
+* `ℓ'` – end location
+* `x` – trajectory of the stay
+* `y` – end state
+
+## Hypotheses
+* none
+
+## Conclusion
+* a run is a run of some bounded duration and jump count
 -/
 
 -- Authors:       Claude Opus 5.5

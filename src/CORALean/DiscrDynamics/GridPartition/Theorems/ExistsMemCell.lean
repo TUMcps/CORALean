@@ -12,6 +12,17 @@ public import CORALean.DiscrDynamics.GridPartition.Theorems.Basic
 
 A point of the box a well-formed partition covers lies in some cell: in each dimension take
 the last divider not above it.
+
+## Inputs
+* `P` – grid partition
+* `x` – point
+
+## Hypotheses
+* `hP` – partition well formed
+* `hx` – point lies in the state space
+
+## Conclusion
+* the point lies in some cell
 -/
 
 -- Authors:       Claude Sonnet 5.5

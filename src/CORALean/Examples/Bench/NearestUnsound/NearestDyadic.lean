@@ -4,20 +4,13 @@ import CORALean.Global.Float.Instances.Dyadic.Operations.Basic
 /-!
 # Round-to-nearest at `p` bits, WITHOUT guarantees
 
-`NearestFloat` at a precision the machine does not offer: binary32 is `p = 24`,
-and the smaller formats below it. The representation is `Dyadic p`'s, and so are
-the exact sum and product; what differs is the rounding back to `p` bits, which
-here is to nearest with ties to even, as IEEE 754 rounds by default, in both
-directions alike. The exponent stays unbounded, so there are no subnormals and
-nothing overflows: this models a format's precision, not its range.
-
-The quotient is not dyadic, so it is rounded while the integers are still there,
-as `Dyadic.quotDown` does: `p + 1` bits at least, one more for the halfway bit,
-and a sticky bit for whether anything was left over. That is enough to round
-correctly, and it is what `NearestFloat` at `p = 53` is checked against.
-
-Nothing here is sound: the six false laws are fields of `NearestUnsound`,
-assumed in `Axioms`, and at `Dyadic` they are refutable, not merely unprovable.
+`NearestFloat` at a precision the machine does not offer: binary32 is `p = 24`, and the smaller
+formats below it. The representation and the exact sum and product are `Dyadic p`'s; the rounding
+back to `p` bits is to nearest with ties to even, in both directions alike. The exponent stays
+unbounded: this models a format's precision, not its range. The quotient is rounded while the
+integers are still there, as `Dyadic.quotDown` does, with a halfway bit and a sticky bit; that is
+what `NearestFloat` at `p = 53` is checked against. Nothing here is sound: the six false laws are
+fields of `NearestUnsound`, assumed in `Axioms`, and at `Dyadic` they are refutable.
 -/
 
 -- Authors:       Claude Opus 5.5

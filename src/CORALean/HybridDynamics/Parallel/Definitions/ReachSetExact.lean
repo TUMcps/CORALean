@@ -10,6 +10,15 @@ public import CORALean.HybridDynamics.Parallel.ParallelHybridAutomaton
 `HybridAutomaton.reachSetExact` at a `ParallelHybridAutomaton.IsRun`: every tuple of component
 states some run from `ℓ₀`, with each component's initial state in that component's `R₀ i`, reaches
 at `ℓ`. The exact set, not an enclosure; `Theorems.ReachSetExactSubsetInvariant` bounds it.
+
+## Inputs
+* `P` – parallel automaton
+* `R₀` – initial sets of the components
+* `ℓ₀` – initial locations
+* `ℓ` – locations reached
+
+## Output
+* states some parallel run reaches at the locations
 -/
 
 -- Authors:       Claude Opus 5.5

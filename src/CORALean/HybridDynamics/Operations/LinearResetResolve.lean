@@ -13,16 +13,25 @@ public import Mathlib.Algebra.BigOperators.Fin
 # `LinearReset.resolve`
 
 CORA's `linearReset/resolve`: the reset `x ↦ A x + B u + c` of a parallel automaton, whose input
-`u` stacks the inputs of all `k` components (component `i` has `m i`, in `idxCompInput`), is turned
-into one whose input is the global input only. For every input `j` of component `i` bound to the
-`l`-th output `y = C_c x_c + D_c u_c + q_c` of component `c`, the column `B_part` of `B` at the
-states of `i` feeds `y` back: `A(stateBinds{i}, stateBinds{c}) += B_part C(l,:)`,
-`B(stateBinds{i}, idxCompInput{c}) += B_part D(l,:)`, `c(stateBinds{i}) += B_part q(l)`. The columns
-of `B` of the globally bound inputs are then summed per global index. Returns `(A, B, c)`.
+`u` stacks the inputs of all `k` components, becomes one whose input is the global input only.
+For every input `j` of component `i` bound to the `l`-th output `y = C_c x_c + D_c u_c + q_c` of
+component `c`, the column `B_part` of `B` feeds `y` back into `A`, `B` and `c`; the columns of
+globally bound inputs are then summed per global index. Returns `(A, B, c)`. CORA's loop updates
+`B` in place, but the columns it writes are global and the ones it reads are not, so the loop
+equals the sum of the independent updates written here.
 
-CORA's loop updates `B` in place; the columns it writes (the inputs `D(l,:)` points at) are
-global ones, which `resolve` throws for if they are not, and the columns it reads (`B_part`) are
-non-global ones, so the loop equals the sum of the independent updates written here.
+## Inputs
+* `A` – state matrix
+* `B` – stacked input matrix
+* `c` – offset
+* `C` – output matrices
+* `D` – feedthrough matrices
+* `q` – output offsets
+* `stateBinds` – state index maps
+* `inputBinds` – input bindings
+
+## Output
+* resolved matrices and offset
 -/
 
 -- Authors:       Claude Opus 5.5

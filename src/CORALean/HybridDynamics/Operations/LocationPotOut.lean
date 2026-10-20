@@ -14,6 +14,15 @@ time-interval and on the time-point sets alike, so here it takes one list of set
 Indices are CORA's 1-based ones, with `minInd` clipped to `1`. The test is `IsDisjoint`, the
 conservative negation of CORA's `isIntersecting_`, so an uncertain last set is kept. Not
 modelled: the matching `time` and `error` lists CORA truncates, and the polytope conversion.
+
+## Inputs
+* `ℓ` – location
+* `Rs` – reach sets
+* `minInd` – first indices of the reach set ranges
+* `maxInd` – last indices of the reach set ranges
+
+## Output
+* reach sets cut to the invariant
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,20 @@ public import CORALean.HybridDynamics.Theorems.LinearResetSynchronizeApply
 
 The synchronized reset at a point is the sum of the component resets plus the pre-jump value at
 `idStates`: exact.
+
+## Inputs
+* `compIdx` – component indices
+* `t` – transitions of the components
+* `idStates` – states kept by identity
+* `locID` – current locations
+* `x` – state
+* `i` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* synchronized reset is the sum of the component resets
 -/
 
 -- Authors:       Claude Opus 5.5

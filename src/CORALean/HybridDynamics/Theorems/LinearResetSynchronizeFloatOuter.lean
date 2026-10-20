@@ -12,6 +12,19 @@ public import Mathlib.Algebra.BigOperators.Pi
 The real `A` that `LinearReset.synchronize` returns for the real values of the stored matrices
 lies, entry by entry, between the bounds `synchronizeFloat` returns. An outer statement; the
 bounds are not the sum.
+
+## Inputs
+* `W` – float reset matrices
+* `w` – float reset offsets
+* `idStates` – states kept by identity
+* `i` – row
+* `l` – column
+
+## Hypotheses
+* none
+
+## Conclusion
+* the real matrix entry lies between the float bounds
 -/
 
 -- Authors:       Claude Opus 5.5

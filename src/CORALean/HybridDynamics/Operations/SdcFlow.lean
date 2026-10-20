@@ -13,6 +13,15 @@ public import Mathlib.Data.Real.Basic
 flow for each initial state, but one that depends on it, which is what lets [1] write the
 guard hit as a function of `y₀`. `hasDerivAt_sdcFlow` is that it solves (2).
 
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `y₀` – initial state
+* `t` – time
+
+## Output
+* state of the constant flow at time `t`
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

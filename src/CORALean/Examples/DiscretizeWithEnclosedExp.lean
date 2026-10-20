@@ -7,18 +7,19 @@ import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # Discretizing with an exponential that can only be enclosed
 
-`discretizeEnclosure` lands in `LinParamSysDT ℐ`, not because the system's
-matrix is uncertain — `sys.A` is one fixed real matrix throughout — but because
-`exp (Δt • A)` is transcendental and `expEnclosure` is all a computation can give
-it. `LinParamSysDT` is simply where a matrix that can only be enclosed has to
-live; the interval it carries is numerical error, not modelling uncertainty.
+`discretizeEnclosure` lands in `LinParamSysDT ℐ`, not because the system's matrix is uncertain,
+`sys.A` being one fixed real matrix, but because `exp (Δt • A)` is transcendental and
+`expEnclosure` is all a computation can give it. `LinParamSysDT` is where a matrix that can only be
+enclosed has to live; the interval it carries is numerical error, not modelling uncertainty. The
+system is the decay `ẋ = -x`, so the state moves: the run checked against `reach` is
+`x(k) = (e^{-Δt})ᵏ x₀`. From there the chain is the one every `LinParamSysDT` runs: `reach`, and
+`holds_of_reach` for whatever specification a caller checks the reachable set against.
 
-The system is the decay `ẋ = -x`, so the state genuinely moves: the run checked against
-`reach` is `x(k) = (e^{-Δt})ᵏ x₀`, not a fixed point.
+## Inputs
+* none
 
-From there the chain is the one every `LinParamSysDT` runs: `reach`, and
-`holds_of_reach` for whatever specification a caller checks the reachable set
-against.
+## Output
+* decay system with an enclosed discretization
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

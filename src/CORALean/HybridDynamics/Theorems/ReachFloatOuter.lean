@@ -24,6 +24,28 @@ whole budget; a jump leaves the stay in one of its time-interval sets, in the
 invariant and in the guard, so `Location.guardIntersectFloat_outer` and
 `Transition.jumpFloat_outer` put the reset state in the set the recursive call
 starts from, with one jump and less time left.
+
+## Inputs
+* `HA` – hybrid automaton
+* `tFinal` – final time
+* `options` – reach options
+* `T` – duration
+* `k` – number of jumps
+* `ℓ` – location
+* `ℓ'` – end location
+* `x` – trajectory of the stay
+* `y` – end state
+* `K` – jump depth
+* `X₀` – initial zonotope
+
+## Hypotheses
+* `run` – run within the duration with `k` jumps
+* `hT` – duration within the final time
+* `hk` – jumps within the jump depth
+* `hx` – start state lies in the initial zonotope
+
+## Conclusion
+* the end state lies in a reach set of the end location
 -/
 
 -- Authors:       Claude Opus 5.5

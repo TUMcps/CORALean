@@ -15,21 +15,22 @@ import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
 # A bouncing ball, as a hybrid automaton
 
 The textbook automaton: one location, one transition back into it. The state is
-`(position, velocity)`, the dynamics are CORA's `linearSys(A, B, c)` with `A = [0 1; 0 0]`,
-`B = 0` and `c = [0; -g]`: `ṗ = v`, `v̇ = -g`, gravity the offset. The reset flips the velocity
-and damps it by `d`. Two representations at once (#39): the reachable set is a `Zonotope`, the
-guard and the invariant are `HPolytope`s — the guard the *unbounded* halfspace
-description `p = 0 ∧ v ≤ 0`, the floor met from above, which no zonotope states.
+`(position, velocity)`, the dynamics CORA's `linearSys(A, B, c)` with `A = [0 1; 0 0]`, `B = 0`,
+`c = [0; -g]`, gravity the offset; the reset flips the velocity and damps it by `d`. Two
+representations at once (#39): the reachable set is a `Zonotope`, the guard and the invariant are
+`HPolytope`s, the guard the unbounded halfspace description `p = 0 ∧ v ≤ 0`. `ballZono` is the
+invariant said again as a zonotope, `bounceCut` the guard intersection `jump_outer` asks for. The
+result is `bouncingBall_invariant`: the box `[0, p] × [-v, v]` is kept at every dwell time and
+across every bounce, exactly when the damping is at most one.
 
-`ballZono` is the invariant said again as a zonotope, which is what `R` has to be, and
-`bounceCut` the guard intersection `jump_outer` asks for — both proved against their
-halfspace counterparts here (`Zonotope` has no `Intersection` instance, so the cut is a
-set inclusion).
+## Inputs
+* `g` – gravity
+* `d` – damping factor
+* `p` – maximal position
+* `v` – maximal velocity
 
-The result is the invariant theorem `bouncingBall_invariant`: the box `[0, p] × [-v, v]`
-is kept at every dwell time and across every bounce, exactly when the damping is at
-most one. The generic hybrid-automaton lemmas used at this automaton's types are
-`BouncingBallUseSites`'.
+## Output
+* bouncing ball automaton
 -/
 
 -- Authors:       Claude Opus 5

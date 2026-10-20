@@ -8,17 +8,13 @@ public import CORALean.HybridDynamics.Parallel.ParallelHybridAutomaton
 /-!
 # Putting a component's set into the product's space
 
-The product's invariant and guards are sets in the *product* state space, its input set one in the
+The product's invariant and guards are sets in the product state space, its input set one in the
 space of the global inputs and its disturbance set one in the stacked disturbance space, all built
-from the components'. No representation here has a lift or a product (`ContSet` has neither), so
-the caller supplies them, and this structure is what they owe: each is an outer bargain,
-containing everything the components' sets put together say. A representation with a Cartesian
-product, a linear map and a preimage under a coordinate projection discharges it.
-
-`input b` is CORA's `aux_mergeInputSet`, for any binding `b`: it holds every vector of global
-inputs whose coordinates fed to each component `i` are those of a point of `us i`, and which is
-zero at the global inputs nothing reads. `dist` is CORA's `aux_mergeDistNoiseSet`, the product of
-the components' disturbance sets.
+from the components'. No representation here has a lift or a product, so the caller supplies them,
+and this structure is what they owe: each is an outer bargain. `input b` is CORA's
+`aux_mergeInputSet`: every vector of global inputs whose coordinates fed to each component `i` are
+those of a point of `us i`, zero at the global inputs nothing reads. `dist` is CORA's
+`aux_mergeDistNoiseSet`, the product of the components' disturbance sets.
 -/
 
 -- Authors:       Claude Opus 5.5

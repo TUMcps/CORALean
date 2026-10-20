@@ -7,6 +7,12 @@ import Lean.Data.Json
 shape of `experiments/config/*.json`), the step sizes `dts` (rational strings), and `runs`: one
 number type each, as `--type`/`--format`/`--prec`/`--digits` name it on the command line. Every
 run is taken at every `dt`.
+
+## Inputs
+* `path` – input file path
+
+## Output
+* base config JSON and the first-step input
 -/
 
 -- Authors:       Claude Sonnet 5.5

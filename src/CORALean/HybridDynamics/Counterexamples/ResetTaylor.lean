@@ -18,6 +18,15 @@ center `c = 0`), expanded to order `γ = 0`: `p(x) = r(0) = 0`, and [1]'s
 second), and then the second needs `s = 4/3`, outside `[-1, 1]`. Each coordinate has its own
 mean-value point (`½` and `1/∛3`), which is `ResetTaylorMem`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed remainder set misses a reset value
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

@@ -6,22 +6,21 @@ import CORALean.Examples.Oracle.Dtype
 /-!
 # The zonotope-to-zonotope ops: `mtimes`, `mtimesInterval`, `plus`, `plusBox`, `linComb`, `reduce`
 
-Every result's `E` comes from the library's own sound float operation, reached
-through the classes `Mtimes.mtimes`, `Plus.plus` and `LinComb.linComb`
-(`ContSet/Zonotope/Float/Instances.lean`) -- nothing here re-rounds anything.
+Every result's `E` comes from the library's own sound float operation, reached through the classes
+`Mtimes.mtimes`, `Plus.plus` and `LinComb.linComb`; nothing here re-rounds anything. `plusBox`
+(alias `plusInterval`) is the one exception with no class of its own: `Z ⊞ I` is
+`{Z with E := Z.E ⊞ I}`, `⊞` `Interval`'s own sound `Plus` instance; since
+`construct Z = nominal Z + Z.E` and `Z.E ⊞ I ⊇ Z.E + I` (`Interval.plus_outer`),
+`construct Z + I ⊆ construct {Z with E := Z.E ⊞ I}`, an informal claim. `reduce` goes around the
+`Reduce` class, fixed to Girard's rule: a `method` choice calls
+`Zonotope.reduceGirard`/`.reduceCombastel` directly, each with its own `_outer` theorem.
 
-`plusBox` (alias `plusInterval`) is the one exception with no class of its own:
-`Instances.lean` gives `Plus` only at two zonotopes, never at a zonotope and a
-box. `Z ⊞ I` is instead `{Z with E := Z.E ⊞ I}`, `⊞` now `Interval`'s own sound
-`Plus (Interval (Vec 𝕋 n)) (Vec ℝ n)` instance: since `construct Z = nominal Z +
-Z.E` and `Z.E ⊞ I ⊇ Z.E + I` (`Interval.plus_outer`), `construct Z + I ⊆
-construct {Z with E := Z.E ⊞ I}` -- an informal claim, not a theorem restated
-here.
+## Inputs
+* `dops` – dtype operations
+* `req` – request
 
-`reduce` goes around the `Reduce` class rather than through it: that instance is
-fixed to Girard's rule (`Instances.lean`'s own `reduce Z o := Z.reduceGirard
-o`), so a `method` choice calls `Zonotope.reduceGirard`/`.reduceCombastel`
-directly, each with its own `_outer` theorem.
+## Output
+* response fields or an error message
 -/
 
 -- Authors:       Claude Opus 5.5

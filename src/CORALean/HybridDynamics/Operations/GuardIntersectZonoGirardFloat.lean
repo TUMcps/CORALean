@@ -12,16 +12,21 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 # `Location.guardIntersectZonoGirardFloat`
 
 CORA's `guardIntersect_zonoGirard`, at float zonotopes. In each basis `B`, the cut of a reach set
-`R_j` by the guard hyperplane `{x | x·n = γ}` along the column `ℓ` of `B` is the interval
-`[-U(-ℓ), U(ℓ)]`, `U` the dual bound `Location.zonoGirardUpperFloat` that stands for
-[1, Alg. 3] and [1, Alg. 4]; the intervals of the reach sets are joined, and the box
-`B zonotope(I)` is member `i` of the zonoBundle.
+by the guard `{x | x·n = γ}` along the column `ℓ` of `B` is `[-U(-ℓ), U(ℓ)]`, `U` the dual bound
+`Location.zonoGirardUpperFloat` standing for [1, Alg. 3] and [1, Alg. 4]; the intervals of the
+reach sets are joined and `B zonotope(I)` is member `i` of the zonoBundle. Left out:
+`aux_tightenSet`, `aux_robustProjection` and the `interval.empty` test of a basis: an empty cut is
+an interval with `inf > sup`. A bundle of one member is kept a bundle. The sets are `R₀ :: Rs`.
 
-Left out: `aux_tightenSet` (the cut back by the guard's inequality constraints),
-`aux_robustProjection` (a pinned coordinate, right only for a unit normal), and the
-`interval.empty` test of a basis, which makes CORA return `[]`: an empty cut is here an interval
-with `inf > sup`, and the bundle is returned all the same. A bundle of one member is kept a
-bundle; CORA returns the zonotope itself. The sets are `R₀ :: Rs`, never empty.
+## Inputs
+* `Bs` – bases
+* `R₀` – initial zonotope
+* `Rs` – reach sets
+* `nv` – guard normal
+* `γ` – guard offset
+
+## Output
+* bundle of boxes enclosing the guard intersection
 
 ## References
 

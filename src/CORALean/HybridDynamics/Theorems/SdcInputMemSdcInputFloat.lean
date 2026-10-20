@@ -22,6 +22,19 @@ each coefficient `tᵖ/q!` lies between its corner products (`powDown_le`, `le_p
 sums in `sumTermsMat` (`Θ`'s indices `i = k + 2`), and the products and their sum in
 `mtimesIntervalMat` and `plus`.
 
+## Inputs
+* `A` – float flow matrix
+* `uc` – float input center
+* `t` – float time
+* `η` – Taylor order
+* `x₀` – float initial state
+
+## Hypotheses
+* `ht` – time nonnegative
+
+## Conclusion
+* the constant flow vector lies in the float box
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

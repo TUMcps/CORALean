@@ -15,6 +15,18 @@ The three updates `(A, B, c) += (BC_j, BD_j, Bq_j)` of the loop body of CORA's
 `linearReset/resolve`: input `j` of component `i`, bound to the `l`-th output of component `c`,
 feeds `y = C_c x_c + D_c u_c + q_c` back through the column `B_part` of `B` at the states of `i`.
 Zero for a globally bound input.
+
+## Inputs
+* `B` – stacked input matrix
+* `C` – output matrices
+* `D` – feedthrough matrices
+* `q` – output offsets
+* `stateBinds` – state index maps
+* `inputBinds` – input bindings
+* `ij` – component input
+
+## Output
+* update of the matrices and offset
 -/
 
 -- Authors:       Claude Opus 5.5

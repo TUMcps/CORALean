@@ -17,18 +17,23 @@ import CORALean.Examples.Bench.RandVerifyWindowOf
 
 The system of `J.inst` is read exactly (`readRandSystem`; a format that cannot hold it is `"none"`)
 and reached ONCE; every instance of `insts`, all stating that system, is checked against the same
-windows, one record each, in order.
+windows, one record each, in order. Each window is mapped to output space exactly, `Y = C · R` over
+ℚ (`outputZonoExact`), and each unsafe box, rounded outward into the format, tested against it by
+`separation`: `verified` iff every box misses every window. `distances` gives per box the signed
+distance, `unverifiable_from_rounding[j]` says box `j` is separated there and not here. The former
+hull test is kept as `verified_hull`. `status` is `"ok"`, `"none"` with a `reason`, or
+`"overflow-NaN"`.
 
-Each window is mapped to output space exactly, `Y = C · R` over ℚ (`outputZonoExact`), and each
-unsafe box, rounded outward into the format, tested against it by `separation`, the exact
-separating-axis test: `verified` iff every box misses every window. `distances` gives per box the
-signed distance (`sign`, `value`, the closest `window`), `distances_unrounded` the same for the
-file's own boxes, and `unverifiable_from_rounding[j]` says box `j` is separated there and not here.
-The former test, the interval hull of `Y` (`signedDistance`), is kept as `verified_hull`,
-`distances_hull` and `distances_hull_unrounded`. `status` is `"ok"`, `"none"` with a `reason`, or
-`"overflow-NaN"` (a bound, window or hull past the format's range, `verified: false`).
-`time_reach_ms` is the wall clock of the reach and the exact windows, shared by the `reach_shared`
-instances; `time_check_ms` this instance's tests; `time_ms` their sum.
+## Inputs
+* `head` – leading JSON fields
+* `nt` – number type description
+* `inst` – checked reader of exact numbers
+* `exactIn` – exact number held off the grid
+* `J` – job
+* `insts` – instances sharing the system
+
+## Output
+* one JSON record per instance
 -/
 
 -- Authors:       Claude Sonnet 5.5

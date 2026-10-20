@@ -13,6 +13,24 @@ public import CORALean.HybridDynamics.Parallel.Operations.Product
 `reachSetExact_productWith_eq` at `mergeFlowsLinearSys`, whose flow laws hold at `ℝ` under the
 conditions of `IsRun.ofProduct`. An *equality of reachable sets*; the outer theorems
 (`reachSetExact_subset_invariant`) enclose either side and are inclusions only.
+
+## Inputs
+* `P` – parallel automaton
+* `lift` – lifting
+* `R₀` – initial sets of the components
+* `R₀'` – initial set of the product
+* `ℓ₀` – initial locations
+* `ℓ` – locations reached
+
+## Hypotheses
+* `hfeed` – no feedthrough between bound outputs
+* `hdist` – no global input feeds two inputs
+* `hne` – every input set is nonempty
+* `hex` – lifting is exact
+* `hR₀` – product set stacks the component sets
+
+## Conclusion
+* the product reaches exactly the stacks of the parallel reach set
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

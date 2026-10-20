@@ -16,6 +16,21 @@ continuous successors, each with a differentiable `g` that is a solution on its 
 statement is proved in the universal form, every solution from that initial state, which is what
 the chain needs: the next piece is the shifted solution, by uniqueness.
 
+## Inputs
+* `I` – initial states
+* `f` – flow
+* `K` – Lipschitz constant
+* `s` – duration
+* `m` – mode
+* `x` – end state
+
+## Hypotheses
+* `hf` – flow is Lipschitz
+* `h` – execution of the single mode
+
+## Conclusion
+* a solution from an initial state reaches the end state
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

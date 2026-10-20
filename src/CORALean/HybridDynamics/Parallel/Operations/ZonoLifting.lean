@@ -14,16 +14,17 @@ public import CORALean.ContSet.Zonotope.Real.Instances
 /-!
 # `zonoLifting`: a `Lifting` at zonotope inputs and halfspace descriptions
 
-`boxLifting` with the input and disturbance sets in `Zonotope` instead of `Interval`.
+`boxLifting` with the input and disturbance sets in `Zonotope` instead of `Interval`. `inv` and
+`guard` are `boxLifting`'s; `input b` is the image of `Zonotope.stackProd` under `selectGlobal b`;
+`dist` is `Zonotope.stackProd`, exact (`Theorems.ZonotopeStackProdExact`). The invariant and the
+guard stay halfspace descriptions: a guard lifted to the product space is a cylinder, unbounded in
+the other blocks, which no Zonotope is.
 
-* `inv` and `guard` are `boxLifting`'s: `HPolytope.stackProd` and the block-projection preimage;
-* `input b` is the image of `Zonotope.stackProd`, the product of the components' input sets, under
-  `selectGlobal b`, which reads each global input off the first input bound to it;
-* `dist` is `Zonotope.stackProd`, exact (`Theorems.ZonotopeStackProdExact`).
+## Inputs
+* none
 
-The invariant and the guard stay halfspace descriptions: a guard lifted to the product space is a
-cylinder, unbounded in the other blocks, which no Zonotope is. So this is the lifting for a zonotope
-input or disturbance set, with `HPolytope` where a set must be unbounded.
+## Output
+* lifting at zonotope inputs
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -10,6 +10,15 @@ public import CORALean.HybridDynamics.Parallel.Theorems.IntervalStackProdExact
 
 The stored box denotes the exact layer's stack of the readings of the component boxes, so a point
 of the stacked space is in it exactly when each of its blocks is in its component's box.
+
+## Inputs
+* `bs` – float boxes of the components
+
+## Hypotheses
+* none
+
+## Conclusion
+* a point lies in the product iff each block lies in its component
 -/
 
 -- Authors:       Claude Opus 5.5

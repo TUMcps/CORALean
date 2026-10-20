@@ -17,6 +17,23 @@ equation, `A x + B g + c + E w` at the stacked state, is at every coordinate `�
 of the components' runs a run of `mergeFlowsLinearSys`. Assumed as CORA checks it: an output
 that feeds another component has no feedthrough from inputs that are themselves bound to
 outputs.
+
+## Inputs
+* `sys` – linear system of each component
+* `binds` – input bindings
+* `x` – component states
+* `g` – global input
+* `w` – component disturbances
+* `u` – component inputs
+* `i` – component
+* `a` – state coordinate
+
+## Hypotheses
+* `hD` – no feedthrough between bound outputs
+* `hu` – inputs obey the bindings
+
+## Conclusion
+* merged flow entry equals the component's own flow entry
 -/
 
 -- Authors:       Claude Opus 5.5

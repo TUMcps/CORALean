@@ -8,6 +8,16 @@ public import CORALean.DiscrDynamics.GridPartition.Operations.Basic
 # `i2s` undoes `s2i`
 
 Subscripts in range are recovered from the cell number.
+
+## Inputs
+* `siz` – segments per dimension
+* `sub` – subscripts
+
+## Hypotheses
+* `h` – subscripts in range
+
+## Conclusion
+* the subscripts are recovered from the cell number
 -/
 
 -- Authors:       Claude Sonnet 5.5

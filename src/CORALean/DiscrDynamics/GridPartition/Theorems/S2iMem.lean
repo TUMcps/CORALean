@@ -8,6 +8,16 @@ public import CORALean.DiscrDynamics.GridPartition.Operations.Basic
 # `s2i` lands in `1 … N`
 
 Subscripts in range give a cell number in range.
+
+## Inputs
+* `siz` – segments per dimension
+* `sub` – subscripts
+
+## Hypotheses
+* `h` – subscripts in range
+
+## Conclusion
+* the cell number is within the cell count
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -12,6 +12,15 @@ public import CORALean.HybridDynamics.Definitions.Location
 zonotopes encloses a stay of length up to `r` by its dynamics'
 `timeIntervalStepFloat`. The input's contribution is named by the caller, as
 for the exact step; `timeIntervalStepSplitFloat` computes it.
+
+## Inputs
+* `ℓ` – float location
+* `r` – time step
+* `η` – Taylor order
+* `X₀` – initial zonotope
+
+## Output
+* float time-interval zonotope of the stay
 -/
 
 -- Authors:       Claude Opus 5.5

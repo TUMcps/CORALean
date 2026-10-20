@@ -15,6 +15,23 @@ on the way there answers to whichever index the run has reached each time.
 Induction on the run generalising `k`, since the recursive call reads the
 invariant at `k + 1`. The `jump` case then owes an index rearrangement,
 `k + (k' + 1) = (k + 1) + k'`, which `omega` settles once it is named.
+
+## Inputs
+* `HA` – hybrid automaton
+* `R` – reach set
+* `m` – number of jumps
+* `k` – start index
+* `ℓ` – location
+* `ℓ'` – end location
+* `x` – trajectory of the stay
+* `y` – end state
+
+## Hypotheses
+* `hinv` – the sets are an indexed invariant
+* `run` – run of `m` jumps from `x` to `y`
+
+## Conclusion
+* membership at the start index implies membership at the end index
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

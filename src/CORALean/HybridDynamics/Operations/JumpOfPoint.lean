@@ -9,16 +9,19 @@ public import CORALean.HybridDynamics.Definitions.Transition
 /-!
 # `Transition.jump`, asking only for a singleton
 
-`Transition.jump` reaches for `OfInterval` only to build `Interval.point w`, a
-box of zero width. `OfPoint` says the same thing directly: the reset adds a
-fixed vector, and nothing about that needs a general interval to be
-convertible. This is additive — `jump` stays as it is, so a representation
-with `OfInterval` keeps its existing route, and one with only `OfPoint`, such
-as `ConPolyZono`, gains this one instead.
+`Transition.jump` reaches for `OfInterval` only to build the box of zero width `Interval.point w`;
+`OfPoint` says the same directly, since the reset adds a fixed vector. Additive: `jump` stays, a
+representation with `OfInterval` keeps its route, and one with only `OfPoint`, such as
+`ConPolyZono`, gains this one. With `ConPolyZono.ofPoint` and its `Intersection` instance,
+`Transition.jumpIntersectionOfPoint` cuts a non-convex reachable set by a guard exactly. The
+guard's representation `G` is not read here either.
 
-With `ConPolyZono.ofPoint` and its `Intersection` instance, `Transition.jumpIntersectionOfPoint`
-now cuts a non-convex reachable set by a guard exactly. The guard's own
-representation `G` is not read here either, so this asks nothing of it.
+## Inputs
+* `e` – transition
+* `Rg` – set cut by the guard
+
+## Output
+* image of the set under the reset
 -/
 
 -- Authors:       Claude Opus 5

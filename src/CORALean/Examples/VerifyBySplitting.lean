@@ -13,19 +13,19 @@ import CORALean.Specification.Instances
 # Splitting the input verifies what the whole box cannot
 
 The network is `y = relu(x) + relu(-x)`, which is `|x|`, on the input box `[-1, 1]`, and the
-specification is `y ≤ 1`. It holds, since `|x| ≤ 1` there, but the box enclosure does not find it:
-the affine layer `x ↦ (x, -x)` is enclosed by `[-1, 1] × [-1, 1]`, which forgets that the two
-coordinates are tied to each other, the ReLUs map that to `[0, 1] × [0, 1]`, and their sum is
-`[0, 2]`, past the bound. So `verifySplit` at depth `0` answers `false`.
+specification is `y ≤ 1`. It holds, but the box enclosure does not find it: `x ↦ (x, -x)` is
+enclosed by `[-1, 1] × [-1, 1]`, which forgets that the coordinates are tied, the ReLUs map that to
+`[0, 1] × [0, 1]`, and their sum `[0, 2]` is past the bound, so `verifySplit` at depth `0` answers
+`false`. Splitting `x` at `0` removes the dependency: each half's enclosure is `[0, 1]`, and at
+depth `1` the answer is `true`. Both verdicts are computed at `Dyadic 24` by `rfl`.
+`verifySplit_sound` turns the `true` into the specification on the network's exact image; a `false`
+carries nothing.
 
-Splitting `x` at `0` removes the dependency: on `[-1, 0]` the first neuron is the constant `0`
-and on `[0, 1]` the second, so each half's enclosure is `[0, 1]` and `y ≤ 1` is
-found. At depth `1` the answer is `true`. Both verdicts are computed, at `Dyadic 24`, by
-`rfl`; the box and its two halves are exact in that format, so no rounding enters.
+## Inputs
+* `I` – input box
 
-`verifySplit_sound` turns the `true` into the specification on the network's exact image of the
-whole box. A `false` carries nothing: it says only that this depth did not find a proof, which is
-all depth `0` says here, since the specification holds.
+## Output
+* the two halves of the box split at zero
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

@@ -13,6 +13,17 @@ formed: "the error is below `δ`" is `∃ e < δ, OverapproxErrorLE … e`, and 
 `OverapproxErrorLE … 0`. The distance is an extended one, so an empty `Reach≤T(H)` is at
 infinite distance. [1, Lemma 2] and [1, Thm. 1] are statements about it.
 
+## Inputs
+* `H` – original automaton
+* `T` – time bound
+* `H'` – converted automaton
+* `π` – projection to the original state
+* `T'` – converted time bound
+* `e` – error bound
+
+## Output
+* every projected state is within the error of the original reach set
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

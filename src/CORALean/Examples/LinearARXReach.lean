@@ -12,6 +12,12 @@ one input, so the converted system has two states. Under the constant input
 `u ≡ 1` the model has the steady state `y ≡ 2` (`2 = 2 - 2 + 1 + 1`), a trajectory for any
 initial box containing `(2, 2)` and input box containing `1`, and `reach_outer`
 places its window in the reachable set of the conversion at every step.
+
+## Inputs
+* none
+
+## Output
+* order-two ARX model
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

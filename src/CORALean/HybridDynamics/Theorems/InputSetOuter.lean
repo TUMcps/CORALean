@@ -11,6 +11,18 @@ For every input `u ∈ U` and disturbance `w ∈ W` of a location, the combined 
 of its canonical form lies in `inputSet`: `B u` in the product `B U`, `c` in the point, `E w` in
 `E W`, each by its operation's guarantee. So `IsTrajectory.linearSys` can name `inputSet` for every
 stay.
+
+## Inputs
+* `ℓ` – location
+* `u` – input value
+* `w` – disturbance value
+
+## Hypotheses
+* `hu` – input lies in the input set
+* `hw` – disturbance lies in the disturbance set
+
+## Conclusion
+* combined input lies in the input set
 -/
 
 -- Authors:       Claude Opus 5.5

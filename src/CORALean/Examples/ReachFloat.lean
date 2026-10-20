@@ -9,21 +9,27 @@ import CORALean.Specification.Instances
 /-!
 # Reachability at a floating-point representation
 
-Every declaration below is `:=` and nothing else, and that is the claim: the
-discrete-time algorithms need no float counterpart, naming no scalar operation of
-their own. `LinearSysDT.reach` is written against `Scalar 𝕋` and the operation
-classes, so a float representation supplies it the same way an exact one does, and
-the exact layer's soundness theorems read at a float zonotope or box unchanged.
-`ReachClosedLoopFloat` and `ReachHybridFloat` do the same for a controller in the
-loop and for a hybrid automaton.
+Every declaration below is `:=` and nothing else, and that is the claim: the discrete-time
+algorithms need no float counterpart, naming no scalar operation of their own. `LinearSysDT.reach`
+is written against `Scalar 𝕋` and the operation classes, so a float representation supplies it as
+an exact one does. `ReachClosedLoopFloat` and `ReachHybridFloat` do the same for a controller in
+the loop and for a hybrid automaton. An algorithm needs a float counterpart precisely where it
+computes a real number that is no set operation, as `LinearSys.discretize` is `exp (Δt • A)` and
+asks for `Mtimes (Mat ℝ) S`, which no float representation can have; those have their own
+`reachFloat`.
 
-An algorithm needs a float counterpart precisely where it computes a *real number
-that is no set operation*, only a set operation having an error box to pay its
-rounding into. In `ContDynamics` that is `MatExp/Enclosures.lean` and what
-depends on it: `LinearSys.discretize` is `exp (Δt • A)` and asks for
-`Mtimes (Mat ℝ) S`, which no float representation can have, and the four step
-operations ask for `Mtimes ℐ S` at the *exact* interval-matrix family. Those
-have their own `reachFloat` (`LinearSys`, `NonlinearSys`, ...), not read off here.
+## Inputs
+* `sys` – discrete-time system
+* `o` – zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – step count
+
+## Hypotheses
+* `ho` – zonotope order positive
+
+## Output
+* float reach set after the steps
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

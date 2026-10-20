@@ -19,6 +19,18 @@ where the components are state-bound), with `mergeInputSets` and `mergeDistSets`
 `HybridAutomaton.reachFloat`, from the float zonotope of the stacked initial states, at the float
 zonotope and halfspace families; the `Lifting` that stacks the components' invariants, guards,
 inputs and disturbances is supplied. Soundness is `ParallelHybridAutomaton.reachFloat_outer`.
+
+## Inputs
+* `P` – parallel automaton
+* `lift` – lifting
+* `tFinal` – final time
+* `options` – reach options
+* `K` – jump depth
+* `ℓ` – initial locations
+* `X₀` – initial zonotope
+
+## Output
+* location-tagged reach sets of the product, none on failure
 -/
 
 -- Authors:       Claude Opus 5.5

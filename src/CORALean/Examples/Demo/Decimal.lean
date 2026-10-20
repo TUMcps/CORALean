@@ -4,15 +4,21 @@ import CORALean.Global.Float.Instances.Dyadic.Instances
 /-!
 # Dyadics on the page
 
-A dyadic is `m · 2 ^ e`, so it has an exact decimal expansion — of `|e|` places
-when `e` is negative, which after a few rounded operations is more places than
-anyone reads. So a fixed number of them, rounded *outward*: a lower bound is
-floored and an upper bound ceiled, and the box printed therefore contains the
-box in memory rather than merely resembling it.
+A dyadic is `m · 2 ^ e`, so it has an exact decimal expansion of `|e|` places when `e` is negative,
+which after a few rounded operations is more places than anyone reads. So a fixed number of them,
+rounded outward: a lower bound is floored and an upper bound ceiled, and the box printed contains
+the box in memory rather than merely resembling it. None of this is proved and none of it needs to
+be: it is the last step, after every guarantee has been discharged, and it errs in the direction
+the guarantees already err in.
 
-None of this is proved and none of it needs to be. It is the last step, after
-every guarantee has been discharged, and it errs in the direction the guarantees
-already err in.
+## Inputs
+* `p` – significand width
+* `n` – dimension
+* `I` – box
+* `i` – coordinate
+
+## Output
+* decimal width of the box in the coordinate
 -/
 
 -- Authors:       Claude Opus 5

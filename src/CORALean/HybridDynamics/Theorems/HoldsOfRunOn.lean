@@ -11,6 +11,26 @@ public import CORALean.Specification.Theorems.HoldsOfOuter
 The exact analogue of `HoldsOfRun`, read at the index the run reaches: `k` at
 the start, `k + m` after its `m` jumps. `RunOnOuter` supplies the membership,
 `Specification.holds_of_outer` turns it into an answer, as before.
+
+## Inputs
+* `HA` – hybrid automaton
+* `R` – indexed invariant sets
+* `spec` – specification
+* `m` – number of jumps
+* `k` – start index
+* `ℓ` – start location
+* `ℓ'` – end location
+* `x` – start state
+* `y` – end state
+
+## Hypotheses
+* `hinv` – the sets are an indexed invariant
+* `run` – run of `m` jumps from `x` to `y`
+* `hx` – start state lies in its set
+* `h` – the specification holds on the end invariant
+
+## Conclusion
+* the specification holds at the end state
 -/
 
 -- Authors:       Claude Opus 5

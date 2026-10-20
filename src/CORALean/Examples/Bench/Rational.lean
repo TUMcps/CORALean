@@ -4,22 +4,20 @@ import CORALean.Global.Float.Instances.FixedPoint.FixedPoint
 /-!
 # Exact dyadic rationals, read from a config file
 
-The config JSON stores every real number as a rational string `"m/d"` (or a
-bare integer `"m"`), and every one of them must denote a number exactly
-representable in binary -- `d`, once the fraction is in lowest terms, must be a
-power of two. `ExactDyadic` is that reduced form, with no precision attached
-yet: `fitsPrecision` and the checked `to...` functions below are where a
-config value is checked against the `p` bits (or the 53 of `Float`) the
-caller asked for, and rejected rather than silently rounded if it does not
-fit.
+The config JSON stores every real number as a rational string `"m/d"` (or a bare integer `"m"`),
+and every one of them must denote a number exactly representable in binary: `d`, in lowest terms,
+must be a power of two. `ExactDyadic` is that reduced form, with no precision attached yet:
+`fitsPrecision` and the checked `to...` functions are where a config value is checked against the
+`p` bits (or the 53 of `Float`) asked for, and rejected rather than silently rounded. That
+rejection is right for a config leaf but not for a value `Rollout.buildSystem` computes; the
+`...Unchecked` counterparts read those in regardless. `toFixedPoint` is exact iff
+`digits + exponent ≥ 0`.
 
-That rejection is right for a config leaf, read once and meant to be exact --
-but not for a value `Rollout.buildSystem` *computes*, which nothing requires
-to already sit on the target grid; the `...Unchecked` counterparts read those
-in regardless, trusting the first operation to round the result as always.
-`toFixedPoint` is the same check at decimal digits: exact iff `digits +
-exponent ≥ 0` (`1/64` needs `digits ≥ 6`), past which the binary exponent has
-no finite decimal expansion at all.
+## Inputs
+* `s` – rational string
+
+## Output
+* exact dyadic or an error message
 -/
 
 -- Authors:       Claude Opus 5.5

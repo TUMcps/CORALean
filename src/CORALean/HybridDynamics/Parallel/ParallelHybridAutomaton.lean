@@ -9,18 +9,13 @@ public import CORALean.HybridDynamics.Definitions.ResolveSource
 # Parallel hybrid automata: the automaton and its runs
 
 CORA's `parallelHybridAutomaton`: `k` component automata, each a `HybridAutomaton` of its own
-dimension `n i` whose locations flow by their whole equation, and `binds`, CORA's `bindsInputs`:
-input `j` of component `i` is global input `a` or output `s` of component `c`. As in CORA, every
-location of component `i` has `p i` inputs and `q i` outputs (`inputs_eq`, `outputs_eq`);
-`bindsAt ℓ` is `binds` read at the dimensions of the locations `ℓ`, and `boundInput` the value it
-gives an input: the global input, or the feeding component's output `C x + D u + k`, noise-free.
-
-`IsRun` is the semantics, and the product never enters it. A `IsStay` is the shared time axis: one
-dwell time `τ`, every component a Carathéodory run of its own equation, as a location's stay is, in
-its location's invariant, its disturbances in its `W`, inputs as bound. The input set constrains
-only the global inputs, as in CORA: the global inputs fed to component `i` are the corresponding
-coordinates of a point of its `U`. A `jump` ends a stay with one component taking a transition;
-simultaneous jumps are consecutive, a zero-length stay between.
+dimension `n i`, and `binds`, CORA's `bindsInputs`: input `j` of component `i` is global input `a`
+or output `s` of component `c`. Every location of component `i` has `p i` inputs and `q i` outputs
+(`inputs_eq`, `outputs_eq`); `bindsAt ℓ` is `binds` read at the locations `ℓ`, and `boundInput`
+the value it gives an input. `IsRun` is the semantics, and the product never enters it. An `IsStay`
+is the shared time axis: one dwell time `τ`, every component a Carathéodory run of its own equation
+in its invariant, its disturbances in its `W`; the input set constrains only the global inputs. A
+`jump` ends a stay with one component taking a transition; simultaneous jumps are consecutive.
 -/
 
 -- Authors:       Claude Opus 5.5

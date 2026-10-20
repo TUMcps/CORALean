@@ -12,6 +12,14 @@ public import CORALean.HybridDynamics.Definitions.IdentHA
 Over ℝ, with no float layer: it states the guard for [1, Prop. 1], as CORA's
 `priv_identify_decisionTree2automaton` builds it before its emptiness check.
 
+## Inputs
+* `H` – reset matrix
+* `k` – reset offset
+* `cs` – invariant rows
+
+## Output
+* guard rows in the source coordinates
+
 ## References
 
 * [1] N. Kochdumper, M. A. Foughali, P. Habermehl and E. Asarin. "Robust Identification of

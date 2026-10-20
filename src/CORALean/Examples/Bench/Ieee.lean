@@ -13,6 +13,13 @@ than the largest finite value -- and is rejected rather than rounded otherwise, 
 
 `ieeeNumberType` is what `meta` records: the format's parameters, and `IEEE.overflows`, from
 which the writers find the first step that stores a value past the format's range.
+
+## Inputs
+* `label` – format label
+* `fmt` – IEEE format
+
+## Output
+* number type description of the format
 -/
 
 -- Authors:       Claude Opus 5.5

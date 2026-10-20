@@ -12,6 +12,22 @@ A differentiable `g : [0, t] → X` restricts to `[0, s]` and, shifted, to `[s, 
 pieces are continuous successors of [1, Def. 4] in the same mode. The mirror of a flow that
 crosses a time-triggered guard is built from this.
 
+## Inputs
+* `H` – automaton
+* `m` – mode
+* `x` – start state
+* `x'` – end state
+* `t` – duration
+* `s` – split time
+
+## Hypotheses
+* `h` – continuous successor over `t`
+* `hs` – split time positive
+* `hst` – split time below the duration
+
+## Conclusion
+* it splits into successors over the two parts
+
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for

@@ -12,6 +12,21 @@ If `fm` encloses the product reset `r` and each `fmOut c` encloses the component
 then `fm.resolve` encloses `r.resolve`: every entry of the stacked input is in its box, being a
 global input or a component output at states and globally bound inputs that are in their boxes.
 An outer statement.
+
+## Inputs
+* `fm` – stacked float reset model
+* `r` – stacked reset
+* `fmOut` – component output boxes
+* `out` – component output maps
+* `stateBinds` – state index maps
+* `inputBinds` – input bindings
+
+## Hypotheses
+* `h` – the model encloses the reset
+* `hout` – the boxes enclose the outputs
+
+## Conclusion
+* the resolved model encloses the resolved reset
 -/
 
 -- Authors:       Claude Opus 5.5

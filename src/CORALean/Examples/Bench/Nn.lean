@@ -27,22 +27,20 @@ import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # `lake exe bench nn-float32 [--reps N] [--out DIR]`
 
-Naive binary32 verification certifies `y ≤ 0` for `NnNetwork`'s network; the real
-network the weights denote violates it at `xStar`; CORALean's enclosure, sound at
-`IEEE binary32`, `IEEE binary64`, `Dyadic 24` and `Float`, does not certify it. Ten
-analyses, each timed over `--reps` runs (default `5`): naive IBP and naive zonotopes
-in round-to-nearest `Float32`, and `NeuralNetwork.enclose` over float intervals and
-float zonotopes at the four sound scalars. Two more run that same `enclose` at `NearestDyadic 24`,
-round-to-nearest binary32 as CORA would: the paper's baseline, with NO guarantee.
-`--type`/`--format`/`--prec`/`--config` are ignored.
+Naive binary32 verification certifies `y ≤ 0` for `NnNetwork`'s network; the real network violates
+it at `xStar`; CORALean's enclosure, sound at `IEEE binary32`, `IEEE binary64`, `Dyadic 24` and
+`Float`, does not certify it. Ten analyses, each timed over `--reps` runs (default `5`): naive IBP
+and naive zonotopes in round-to-nearest `Float32`, `NeuralNetwork.enclose` over float intervals and
+zonotopes at the four sound scalars, and the same `enclose` at `NearestDyadic 24` with NO
+guarantee. Writes `<out>/nn/nn-float32.json` and prints the same as a table; every number is
+reported exactly beside its nearest double. The analyses' inputs are read back through an `IO.Ref`
+inside the timed window, so the compiler cannot hoist a closed analysis out of the loop.
 
-Writes `<out>/nn/nn-float32.json` -- the network, `X`, the property, `xStar`, the
-exact and binary32 outputs there, each analysis's bounds, verdict and timings, and
-the git and machine info `GitInfo` collects -- and prints the same as a table.
-Every number is reported exactly, as `"m/2^k"`, beside its nearest double.
+## Inputs
+* `args` – parsed command line
 
-The analyses' inputs are read back through an `IO.Ref` inside the timed window, so
-the compiler cannot hoist a closed analysis out of the loop and time nothing.
+## Output
+* the analyses run and write their results
 -/
 
 -- Authors:       Claude Opus 5.5

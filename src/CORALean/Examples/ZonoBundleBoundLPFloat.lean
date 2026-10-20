@@ -12,6 +12,12 @@ where `x ≤ 3/8`. The least member bound, `ZonoBundle.boundDot`, says `2`;
 `ZonoBundle.boundDotLP`, a linear program over the intersection, says `3/8`.
 
 `ZonoBundle.boundDotLP_le` makes the value a guarantee rather than a number.
+
+## Inputs
+* none
+
+## Output
+* bundle of the flat box and the diagonal parallelogram
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

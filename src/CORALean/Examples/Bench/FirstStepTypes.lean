@@ -23,6 +23,14 @@ import CORALean.Global.Float.Instances.IEEE.Instances
 or `NearestDyadic p`, unsound) -- with the same `inst` as `Registry.dispatch`'s, and `none` for
 `flint`. `p` is `prec` if given, else `format` through `formatToPrec`, else `53`; `f` is
 `digits`, else `4`.
+
+## Inputs
+* `cfg` – headline config
+* `run` – first-step run description
+* `dt` – step size as a string
+
+## Output
+* first-step record at the run's number type
 -/
 
 -- Authors:       Claude Sonnet 5.5

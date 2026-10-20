@@ -14,6 +14,19 @@ public import CORALean.ContSet.Interval.Float.Theorems.RecipOuter
 `y_h(x₀)` of the floats read as reals is in it: each rounded quantity brackets its real value,
 `Ax₀ + b` and `d − nᵀx₀` by `dotDown_le`/`le_dotUp`, `Λ` and the products by
 `mul_between_corners`, `1/Λ` by `Interval.recip_outer`.
+
+## Inputs
+* `A` – flow matrix
+* `b` – flow offset
+* `nv` – guard normal
+* `d` – guard offset
+* `x₀` – initial state
+
+## Hypotheses
+* none
+
+## Conclusion
+* the hit point lies in every returned box
 -/
 
 -- Authors:       Claude Opus 5.5

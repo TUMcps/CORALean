@@ -11,6 +11,14 @@ The product's input set, CORA's `aux_mergeInputSet` in `parallelHybridAutomaton/
 global-input vectors, built by `Lifting.input` from the components' input sets `U` at the
 bindings of the locations `ℓ`. CORA assembles it from the caller's `params.Uloc`; here each
 location carries its own `U`.
+
+## Inputs
+* `P` – parallel automaton
+* `lift` – lifting
+* `ℓ` – current locations
+
+## Output
+* input set of the product
 -/
 
 -- Authors:       Claude Opus 5.5

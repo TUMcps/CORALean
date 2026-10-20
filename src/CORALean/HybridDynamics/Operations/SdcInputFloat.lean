@@ -21,6 +21,16 @@ of `[powDown, powUp]` and `invFactorialBounds`, the sums by `sumTermsMat` and th
 `x₀` and `u_c` by `mtimesIntervalMat`. A caller takes one point of the box as its `b` and charges
 the rest to its error.
 
+## Inputs
+* `A` – flow matrix
+* `uc` – input center
+* `t` – time
+* `η` – Taylor order
+* `x₀` – initial state
+
+## Output
+* box holding the constant flow vector
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

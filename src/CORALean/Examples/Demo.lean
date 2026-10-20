@@ -7,21 +7,20 @@ import CORALean.Examples.Demo.Reduce
 /-!
 # Something that runs
 
-Everything here is proved elsewhere; what is new is a *number*, which no `_outer`
-theorem supplies: a theorem is as true of a box the size of the state space as of
-a tight one, and the only way to tell the two apart is to compute one and look.
+Everything here is proved elsewhere; what is new is a number, which no `_outer` theorem supplies: a
+theorem is as true of a box the size of the state space as of a tight one. The output is committed
+as `scripts/demo-expected.txt` and `scripts/check-demo.sh` compares the two, so an enclosure that
+silently widens fails the build. `Dyadic` is exact integer arithmetic, so the numbers do not depend
+on the machine. `LinearSysDT.reach` runs at `Dyadic 24`, at the smaller
+`Dyadic CORALean.Demo.smallP`, and at native `Float` (`Demo/Binary64.lean`); a network's `enclose`
+and `reduceOnTheFly` run at `Dyadic 24`, and so does one `LinParamSys` step at an interval matrix
+(`Demo/LinParamStep.lean`).
 
-The output is committed as `scripts/demo-expected.txt` and `scripts/check-demo.sh`
-compares the two, so an enclosure that silently widens fails the build. `Dyadic` is
-exact integer arithmetic, so the numbers do not depend on the machine, the compiler
-or the order of anything.
+## Inputs
+* none
 
-`LinearSysDT.reach` runs three times: at `Dyadic 24` and at the smaller
-`Dyadic CORALean.Demo.smallP`, where 24 bits carries the whole run exactly and 8 does not,
-and then at native `Float`, where the numbers do depend on the machine — see
-`Demo/Binary64.lean` for what that run shows and what it assumes. A network's `enclose`,
-and its on-the-fly reduction `reduceOnTheFly`, then run once each at `Dyadic 24`, and
-so does one `LinParamSys` step at an interval matrix (`Demo/LinParamStep.lean`).
+## Output
+* the demo reports are printed
 -/
 
 -- Authors:       Claude Opus 5

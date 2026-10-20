@@ -15,6 +15,24 @@ construction, its guard met by `Lifting.mem_guard` and its reset the update by
 converted on the way.
 
 The converse is `IsRun.ofProductWith`, under `FlowLawConverse` and an exact `Lifting`.
+
+## Inputs
+* `P` – parallel automaton
+* `F` – product flow at each location tuple
+* `U` – product input sets
+* `W` – product disturbance sets
+* `lift` – lifting
+* `ℓ` – start locations
+* `ℓ'` – end locations
+* `x` – start states
+* `y` – end states
+
+## Hypotheses
+* `hF` – the flow has the flow law
+* `run` – parallel run from `x` to `y`
+
+## Conclusion
+* the stacked states are a run of the product
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

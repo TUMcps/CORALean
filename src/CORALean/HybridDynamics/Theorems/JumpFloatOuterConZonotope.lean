@@ -14,16 +14,24 @@ public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeConZonotopeCont
 /-!
 # The jump step at a float constrained zonotope, with nothing assumed
 
-`JumpOuterConZonotope` over a floating-point scalar: the state set and the guard
-are float constrained zonotopes, the guard cut is computed by the float
-`ConZonotope.intersection`, and the reset `x ↦ W x + w` is `mtimes` for the matrix
-and `plus` of the zero-width box at `w`, as `Transition.jumpFloat` does it for a
-zonotope. `w` is stored floats, so that box is a float box and
-`Interval.conZonotope` turns it into a constrained zonotope.
+`JumpOuterConZonotope` over a floating-point scalar: the state set and the guard are float
+constrained zonotopes, the guard cut is computed by the float `ConZonotope.intersection`, and the
+reset `x ↦ W x + w` is `mtimes` for the matrix and `plus` of the zero-width box at `w`, as
+`Transition.jumpFloat` does it for a zonotope. Where the exact theorem is lossless at the cut, this
+one is outer: the float intersection widens its agreement rows by the rounding of `c₂ - c₁` and by
+the two error boxes.
 
-Where the exact theorem is lossless at the cut, this one is outer: the float
-intersection widens its agreement rows by the rounding of `c₂ - c₁` and by the
-two error boxes.
+## Inputs
+* `e` – transition
+* `R` – float constrained zonotope holding the state at the jump
+* `z` – state at the jump
+
+## Hypotheses
+* `hz` – state lies in the reach set
+* `hguard` – state lies in the guard
+
+## Conclusion
+* reset image lies in the float jump image
 -/
 
 -- Authors:       Claude Sonnet 5.5

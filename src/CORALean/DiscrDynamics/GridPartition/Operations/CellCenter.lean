@@ -10,6 +10,13 @@ public import CORALean.DiscrDynamics.GridPartition.Operations.Basic
 CORA's `@partition/cellCenter(Obj, cellNrs)`: the midpoint of each cell given, or `[]` if one is
 out of range. The one-argument call reads the property `actualSegmentNr`, which the class no
 longer has, and fails; it is not modelled.
+
+## Inputs
+* `P` – grid partition
+* `cellNrs` – cell numbers
+
+## Output
+* midpoint of each cell
 -/
 
 -- Authors:       Claude Sonnet 5.5

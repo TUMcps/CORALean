@@ -9,6 +9,13 @@ Tolerant of the field names: `A`, `B`, `C`; `X0` (`x0`, `R0`); `U` (`u`); `tend`
 or `{lowerbound, upperbound}` (CORA's export) of vectors, or an array of `{lb, ub}` (scalars) or
 `[lo, hi]` per dimension; the unsafe sets are an array of such boxes in output space. A number is a
 JSON number or a string `parseRandString` reads.
+
+## Inputs
+* `name` – instance name
+* `j` – instance JSON
+
+## Output
+* parsed instance or an error message
 -/
 
 -- Authors:       Claude Sonnet 5.5

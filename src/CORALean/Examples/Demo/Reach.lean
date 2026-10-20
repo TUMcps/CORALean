@@ -13,22 +13,20 @@ import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # `LinearSysDT.reach` at `Dyadic`, run
 
-A damped rotation — `A`'s eigenvalues have modulus `≈ 0.9458` and the input box
-is small — so nothing in the *exact* reachable set grows and everything the
-tables show growing is the enclosure.
+A damped rotation, `A`'s eigenvalues of modulus `≈ 0.9458`, and a small input box, so nothing in
+the exact reachable set grows and everything the tables show growing is the enclosure.
+`Zonotope.interval` of the reachable set first, then the error box alone, which `reduce` never
+touches, then an `OutputEq`, `y = x₁ + u₂`: every row of the third is the first's `x1` column
+widened by exactly `0.015625` on each side. At `Dyadic 24` the error box reads zero throughout,
+every product and sum being exact, and all the widening is order reduction. `main` therefore runs
+the system again at `Dyadic smallP`, `smallP = 8`, where the mantissa first overflows on the third
+step.
 
-`Zonotope.interval` of the reachable set first, nominal part and error box
-together, then the error box alone, which `reduce` never touches, then an
-`OutputEq`, `y = x₁ + u₂`. Read the third against the first: every row is that
-table's `x1` column widened by exactly the `0.015625` the input contributes on
-each side, so a wider row is a widening in `outputSet` rather than in `reach`.
+## Inputs
+* none
 
-At `Dyadic 24` the error box reads zero throughout. A generator's mantissa gains
-the four bits of an `A` entry every step and nothing overflows 24 bits this soon,
-so every product and sum is exact and all the widening above is order reduction.
-`main` therefore runs the system a second time at `Dyadic smallP`, where `smallP`
-is `8`: `A`'s entries need 4 bits and `R₀`/`U`'s need 1, so the mantissa first
-overflows on the third step and half the rows carry a rounded box.
+## Output
+* report of the reach run
 -/
 
 -- Authors:       Claude Opus 5

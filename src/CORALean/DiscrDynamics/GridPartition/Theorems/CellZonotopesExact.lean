@@ -10,6 +10,16 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeExact
 # `cellZonotopes` are the cells
 
 Each cell zonotope denotes exactly its cell box, as a nonempty box is exactly its zonotope.
+
+## Inputs
+* `P` – grid partition
+* `cs` – cell numbers
+
+## Hypotheses
+* `hP` – partition well formed
+
+## Conclusion
+* each cell zonotope denotes its cell box
 -/
 
 -- Authors:       Claude Sonnet 5.5

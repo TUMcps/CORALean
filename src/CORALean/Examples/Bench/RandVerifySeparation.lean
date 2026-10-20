@@ -6,15 +6,18 @@ import CORALean.Examples.Bench.RandVerifyWindow
 
 A window `Y` and a box `S` are disjoint iff `0 ∉ Y ⊕ (-S)`, a convex polygon whose facet normals
 are among the window's candidate normals (`RandWindow`); so iff some candidate `n` has
-`ρ_Y(n) < min_{s ∈ S} n · s`, the separating-axis theorem in the plane. That comparison is made
-in integers, exactly; `Float`s only choose which candidate to try first. The window's signed
-distance is the largest `(min_S n·s - ρ_Y(n)) / ‖n‖₂` over the candidates: positive exactly when
-the two are separated, and then a lower bound on their Euclidean distance. The set's distance is
-the smallest over the windows, with the window attaining it.
+`ρ_Y(n) < min_{s ∈ S} n · s`, the separating-axis theorem. That comparison is made in integers,
+exactly; `Float`s only choose which candidate to try first. The window's signed distance is the
+largest `(min_S n·s - ρ_Y(n)) / ‖n‖₂` over the candidates, positive exactly when the two are
+separated. The result is `(separated, distance, window)`: the exact verdict, the distance as a
+`Float` (`quotFloat`, sign exact) and the index of the closest window.
 
-The result is `(separated, distance, window)`: `separated` is the exact verdict (every window
-separated), `distance` its value as a `Float` (`quotFloat`, sign exact) and `window` the index of
-the closest window; `none` if there is no window.
+## Inputs
+* `ws` – candidate-normal windows
+* `S` – unsafe box
+
+## Output
+* verdict, distance and closest window, none if no window
 -/
 
 -- Authors:       Claude Opus 5.5

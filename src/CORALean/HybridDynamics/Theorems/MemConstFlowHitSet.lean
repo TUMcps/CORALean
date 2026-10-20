@@ -16,6 +16,23 @@ public import Mathlib.Tactic.Ring
 The set is larger than the hits, each summand drawing its own `e`, which costs only
 tightness. `nᵀb ≠ 0` is what the division asks: a flow parallel to the guard never hits it.
 
+## Inputs
+* `x₀` – initial state
+* `b` – constant flow vector
+* `nv` – guard normal
+* `d` – guard offset
+* `t` – time
+* `E` – flow error set
+* `e` – flow error
+
+## Hypotheses
+* `hb` – flow does not run parallel to the guard
+* `he` – error lies in the error set
+* `hhit` – state is on the guard hyperplane
+
+## Conclusion
+* the guard hit lies in the constant flow hit set
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

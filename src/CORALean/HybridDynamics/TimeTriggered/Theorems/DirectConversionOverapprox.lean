@@ -14,15 +14,32 @@ public import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsTimer
 # The direct time-triggered conversion overapproximates
 
 [1, Lemma 1]: for every time bound `T`, `H_tt` reaches, within `T`, every continuous part `H`
-reaches within `T`. The proof of the paper builds the execution of `H_tt` from one of `H` by cases
-on the duration against `t₁` and `t₁ + t₂`; here that is an induction over the execution, each
-state of `H` carrying the `H_tt` execution of the same duration, in `m₁` before `t₁`, in
-`m_either` up to `t₁ + t₂` and in `m₂` from then on.
+reaches within `T`. The paper builds the execution of `H_tt` from one of `H` by cases on the
+duration against `t₁` and `t₁ + t₂`; here that is an induction over the execution. Two things the
+printed proof passes over: an execution of `H` still in `m₁` after `t₁` is not an execution of
+`H_tt`, whose `m₁` is left at `t₁`, so it is mirrored in `m_either`, whose flow must contain
+`f₁`; and the flow of `H` that crosses `t₁` or `t₁ + t₂` is split there.
 
-Two things the printed proof passes over. An execution of `H` still in `m₁` after `t₁` is not
-an execution of `H_tt`, whose `m₁` is left at `t₁`: it is mirrored in `m_either`, which is why
-the flow of `m_either` must contain `f₁`. And the flow of `H` that crosses `t₁` or `t₁ + t₂`
-is split there.
+## Inputs
+* `I` – initial states
+* `f₁` – flow in the first mode
+* `f₂` – flow in the second mode
+* `a` – guard normal
+* `b` – guard offset
+* `fe` – flow in the either mode
+* `t₁` – first dwell time
+* `t₂` – second dwell time
+* `T` – time bound
+
+## Hypotheses
+* `hfe₁` – either flow contains the first flow
+* `hfe₂` – either flow contains the second flow
+* `ht₁` – first dwell time nonnegative
+* `h₁` – first dwell time is valid
+* `h₂` – second dwell time is valid
+
+## Conclusion
+* the conversion overapproximates the original within the bound
 
 ## References
 

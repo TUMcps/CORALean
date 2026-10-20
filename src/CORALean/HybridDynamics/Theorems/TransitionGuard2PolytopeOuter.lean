@@ -9,6 +9,16 @@ public import CORALean.HybridDynamics.Operations.TransitionGuard2Polytope
 
 An outer conversion (`⊆`) gives a guard that contains the old one, so every jump of the old
 transition is a jump of the new one.
+
+## Inputs
+* `conv` – guard conversion
+* `e` – transition
+
+## Hypotheses
+* `h` – the conversion encloses the guard
+
+## Conclusion
+* the converted guard contains the old guard
 -/
 
 -- Authors:       Claude Opus 5.5

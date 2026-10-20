@@ -10,22 +10,23 @@ public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
 /-!
 # `Location.checkFlow`: dropping the reach sets the flow does not carry to the guard
 
-CORA's `checkFlow` filters the reach sets meeting a guard hyperplane `{x | c·x = d}` of unit
-normal `c` pointing out of the invariant: a set is kept if the flow points toward the guard. It
-is projected onto the hyperplane (`x ↦ x - (c·x - d) c`) and the component along `c` of the
-linear flow `ẋ = A x + B u + c₀ + E w` is bounded over the projection and the location's inputs
-and disturbances. `flowUp` is that supremum, exactly: the support functions of the set (through
-the projector `I - c cᵀ`) and of the combined input set `inputSet = B U ⊕ c₀ ⊕ E W`.
+CORA's `checkFlow` keeps a reach set when the flow points toward the guard hyperplane
+`{x | c·x = d}` (unit normal `c` out of the invariant). `flowUp` is the exact supremum, over the
+set projected onto the hyperplane, of the component along `c` of the linear flow
+`ẋ = A x + B u + c₀ + E w` (support functions of the set and of `inputSet = B U ⊕ c₀ ⊕ E W`).
+Left out: the fast test, the `'pca'` reduction, the normal's orientation, the level-set guard and
+the nonlinear flow. CORA adds the `n×1` vector `sys.c` to a scalar, so for `n > 1` its test is
+a vector comparison (`references/coverage/hybridDynamics/location.md`, row `checkFlow`); here the
+offset is part of `inputSet`.
 
-Left out: the fast test (flow at the projection's center, which `flowUp` already covers); the
-`'pca'` box reduction before the supremum (an enclosure, so CORA's test only keeps more); the
-orientation of the normal by the invariant (`aux_adaptGuard`), the caller's; the level-set guard
-and the nonlinear flow, which evaluate Taylor models.
+## Inputs
+* `ℓ` – location
+* `c` – unit normal of the guard
+* `d` – guard offset
+* `R` – reach set, a zonotope
 
-CORA's linear branch adds `sys.c`, an `n×1` vector, to the scalar flow component where `c*sys.c`
-is meant, so for `n > 1` its test is a vector comparison (see
-`references/coverage/hybridDynamics/location.md`, row `checkFlow`). Here the offset is part of
-`inputSet`, and the component along `c` is taken of everything.
+## Output
+* largest flow component along the normal over the projected set
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

@@ -7,15 +7,19 @@ import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # Adaptive reachability in floats, the steps it chose
 
-A damped rotation driven by an input on the second state,
-`ẋ = [[-2, 2], [-2, -2]] x + [0; 1] u`, `u(t) ∈ [3/8, 5/8]` arbitrary in time,
-from `RotationFloat`'s box over `[0, 1]` at `Dyadic 64`, with
+A damped rotation driven by an input on the second state, `ẋ = [[-2, 2], [-2, -2]] x + [0; 1] u`,
+`u(t) ∈ [3/8, 5/8]`, from `RotationFloat`'s box over `[0, 1]` at `Dyadic 64`, with
 `LinearSys.reachAdaptiveFloat`, [1, Alg. 1], choosing every step size, truncation order and
-reduction order against [1]'s budgets `ε_H,max = 1/100`, `ε_P,max = 1/1000`,
-`ε_S,max = 1/50`. The `#eval` prints, per step, the window, `Δt_i`, `Φ_prop,i`,
-`Φ_set,i`, `ε_H` and the accumulated `ε_P`, `ε_S`, and the window's hull
-half-widths. The damping shrinks `ε_H = err(e^{At_i} F X₀)` as `t_i` grows, so
-the step doubles once it can, and the last step lands on `t_f`.
+reduction order against [1]'s budgets `ε_H,max = 1/100`, `ε_P,max = 1/1000`, `ε_S,max = 1/50`. The
+`#eval` prints, per step, the window, `Δt_i`, `Φ_prop,i`, `Φ_set,i`, `ε_H` and the accumulated
+`ε_P`, `ε_S`. The damping shrinks `ε_H` as `t_i` grows, so the step doubles once it can, and the
+last step lands on `t_f`.
+
+## Inputs
+* `q` – rational number
+
+## Output
+* the nearest double to the rational
 
 ## References
 

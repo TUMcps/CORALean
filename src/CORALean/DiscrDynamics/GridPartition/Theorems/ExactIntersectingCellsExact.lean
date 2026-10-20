@@ -15,6 +15,17 @@ this is exact: `iS` is `0` and the cells where `vol(P ∩ cell)` is positive, in
 outside share `1 - Σ`, then `vol(P ∩ cell c) / V` for each cell `c`. Cells meeting `P` only in a
 null set, a face, are not listed, and the hull `intersectingCells` starts from loses none.
 Not proved: that the outside share is the part of `P` beyond the state space.
+
+## Inputs
+* `P` – grid partition
+* `X` – set
+
+## Hypotheses
+* `hn` – dimension nonzero
+* `hpos` – set has positive volume
+
+## Conclusion
+* the cells are those sharing volume, with their volume shares
 -/
 
 -- Authors:       Claude Sonnet 5.5

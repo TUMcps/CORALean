@@ -9,6 +9,16 @@ public import CORALean.DiscrDynamics.GridPartition.Operations.IntersectingCells
 
 Dropping the outside `0` from `intersectingCells` leaves the cells whose subscripts all meet
 the box, in cell order: what `cellPolytopes` keeps when `exactIntersectingCells` passes the list.
+
+## Inputs
+* `P` – grid partition
+* `I` – box
+
+## Hypotheses
+* `hn` – dimension nonzero
+
+## Conclusion
+* the real cells are those whose subscripts all meet the box
 -/
 
 -- Authors:       Claude Sonnet 5.5

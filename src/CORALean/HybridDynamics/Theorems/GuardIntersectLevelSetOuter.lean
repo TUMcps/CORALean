@@ -16,6 +16,21 @@ identity the `try` that fails). So `R ∩ guard ⊆ I ∩ guard`, and [1, Prop. 
 [1, Prop. 2] on `I` (`guardIntersectSolvable_subset`, `guardIntersectUnsolvable_subset`)
 encloses that. Outer.
 
+## Inputs
+* `g` – guard function
+* `contract` – box contractor
+* `R₀` – initial box
+* `Rs` – reach boxes
+* `x` – trajectory of the stay
+
+## Hypotheses
+* `hc` – the contractor is valid for the guard function
+* `hx` – state lies in one of the boxes
+* `hg` – guard function vanishes at the state
+
+## Conclusion
+* state lies in the returned box and on the guard
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

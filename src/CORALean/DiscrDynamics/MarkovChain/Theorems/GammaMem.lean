@@ -9,6 +9,16 @@ public import CORALean.DiscrDynamics.MarkovChain.Operations.Gamma
 
 With `γ > 0` the weights `1 / ((i - j)² + γ)` are positive, so the normalization divides by a
 positive sum and every column adds up to one.
+
+## Inputs
+* `m` – number of inputs
+* `γ` – input mixing parameter
+
+## Hypotheses
+* `hγ` – mixing parameter positive
+
+## Conclusion
+* the mixing matrix is column-stochastic
 -/
 
 -- Authors:       Claude Sonnet 5.5

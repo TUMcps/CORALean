@@ -6,6 +6,12 @@ each is a subprocess call that may not be available (no `git` on the artifact
 evaluator's image, a `/proc/cpuinfo` that is not Linux's), so every one of
 these falls back to `"unknown"` rather than failing the run over a field that
 exists only for the paper's appendix.
+
+## Inputs
+* none
+
+## Output
+* commit, Lean version and machine of the run
 -/
 
 -- Authors:       Claude Opus 5.5

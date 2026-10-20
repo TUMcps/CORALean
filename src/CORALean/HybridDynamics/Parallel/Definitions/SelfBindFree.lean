@@ -13,6 +13,12 @@ Those agree when the entry is `0`, and `SelfBindFree` is that: at every location
 input `j` of component `i` is bound to its own output `s`, the entry of `A` at row `j`, column `s`
 is zero (`StateBound` reads input `j` as state `j` and output `s` as state `s`). A binding to
 another component's output needs no hypothesis, the block being `0` there (#117).
+
+## Inputs
+* `P` – parallel automaton
+
+## Output
+* a self-bound input meets a zero state matrix entry
 -/
 
 -- Authors:       Claude Opus 5.5

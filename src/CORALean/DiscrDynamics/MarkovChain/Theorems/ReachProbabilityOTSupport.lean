@@ -11,6 +11,20 @@ public import CORALean.DiscrDynamics.GridPartition.Theorems.ExactIntersectingCel
 
 The same for `tp.OT`: a cell with nonzero probability over the step meets the hull of some
 time-interval set of some `R(k)`.
+
+## Inputs
+* `field` – grid partition
+* `R` – reach sets
+* `tranFrac` – weights of the reach sets
+* `s` – cell
+
+## Hypotheses
+* `hn` – dimension nonzero
+* `hs` – cell is not the outside
+* `h` – the cell has nonzero probability over the step
+
+## Conclusion
+* the cell meets the hull of a time-interval set
 -/
 
 -- Authors:       Claude Sonnet 5.5

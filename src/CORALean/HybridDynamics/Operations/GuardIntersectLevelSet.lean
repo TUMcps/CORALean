@@ -16,6 +16,14 @@ with `<=`; the identity is a contractor for every guard, so `contract` covers bo
 by [1, Prop. 1] (`guardIntersectSolvable`) or [1, Prop. 2] (`guardIntersectUnsolvable`) on this box.
 The reach sets come as their boxes.
 
+## Inputs
+* `contract` – box contractor of the guard
+* `R₀` – initial interval
+* `Rs` – reach sets
+
+## Output
+* box holding the contracted reach sets
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

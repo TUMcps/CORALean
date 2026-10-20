@@ -9,6 +9,15 @@ A search for the angle `θ` maximising the support gap `h(ℓ)` (`supportGap`) w
 search from the best, halving its step `iters` times. The result is the rational
 `t ≈ tan(θ/2)` at `2^-40` (or `1/t` at `2^-40` where `|t| > 1`) for which `ratUnit t` is that
 direction, exactly a unit vector; nothing exact depends on `ℓ` being optimal.
+
+## Inputs
+* `Ys` – output windows
+* `S` – unsafe box
+* `grid` – number of grid angles
+* `iters` – number of refinement steps
+
+## Output
+* angle direction with the largest support gap
 -/
 
 -- Authors:       Claude Opus 5.5

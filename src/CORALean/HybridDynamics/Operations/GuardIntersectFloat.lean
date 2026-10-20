@@ -11,16 +11,19 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # `Location.guardIntersectFloat`
 
-CORA's `guardIntersect` with its `'box'` method, at float zonotopes: every
-time-interval set of a stay is boxed, cut to the location's invariant and then
-to the guard by `HPolytope.contractBox`, and the cuts that may be non-empty are
-joined into their box hull, the one set the reset is applied to.
+CORA's `guardIntersect` with its `'box'` method, at float zonotopes: every time-interval set of a
+stay is boxed, cut to the location's invariant and then to the guard by `HPolytope.contractBox`,
+and the cuts that may be non-empty are joined into their box hull, the one set the reset is
+applied to. `none` when every cut is certified empty by `representsa_emptySet`; a cut that cannot
+be certified empty is kept, the sound direction. Cutting by the invariant first is CORA's too.
 
-`none` when every cut is certified empty by `representsa_emptySet`: the stay
-never meets the guard, and the transition is not taken. A cut that cannot be
-certified empty is kept, which is the sound direction. Cutting by the invariant
-first is CORA's too; a jump happens at a state the stay reaches, which lies in
-the invariant.
+## Inputs
+* `ℓ` – location
+* `guard` – guard polytope
+* `Rs` – reach sets of the stay
+
+## Output
+* box hull of the cuts, none if all are empty
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -5,22 +5,13 @@ import CORALean.ContSet.PolyZonotope.Real.Instances
 /-!
 # Linear reachability on a non-convex representation
 
-What this records is a fact about the library rather than about any system:
-`LinearSysDT.reach` asks for `Plus`, `Reduce` and `Mtimes` and for nothing else,
-and `PolyZonotope` now has all three. `Reduce` was the one it was missing, so
-the sampled reachability guarantee runs at a representation whose sets are
-generally *not* convex — no `ConvexSet`, no `CompactSet`, and none needed.
-
-That is why the plain `reach_outer` is the statement here and not
-`reach_outer_convexCompact`: the input contribution arrives as the hypothesis
-`hUd` rather than from `inputSolution`, which is the trade a non-convex
-representation makes. Discharging it needs `ConvexSet` and `CompactSet`, which a
-representation whose sets are generally not convex has no way to instantiate.
-
-The Lean detail is `FeedForward.lean`'s: `S : ℕ → Type` cannot be read off `S n`,
-so a use site has to name the family, and `PolyZonotope` ships `𝒫𝒵` for that. It
-names the family and not the binders — a notation is a lambda, and `𝒫𝒵 n` left
-standing will not unify against a metavariable applied to `n`.
+What this records is a fact about the library rather than about any system: `LinearSysDT.reach`
+asks for `Plus`, `Reduce` and `Mtimes` and for nothing else, and `PolyZonotope` now has all three,
+`Reduce` having been the one it was missing. The sampled reachability guarantee runs at a
+representation whose sets are generally not convex: no `ConvexSet`, no `CompactSet`, and none
+needed. That is why the plain `reach_outer` is the statement here and not
+`reach_outer_convexCompact`: the input contribution arrives as the hypothesis `hUd`. `S : ℕ → Type`
+cannot be read off `S n`, so a use site names the family, and `PolyZonotope` ships `𝒫𝒵` for that.
 -/
 
 -- Authors:       Claude Opus 5

@@ -15,6 +15,16 @@ verified reach is replaced, this file alone changes.
 
 The algorithms are `LinearSys.reachFloatInput` and `LinearSys.reachWrappingFreeFloatInput`, with `U`
 the box `S.U` as a zonotope in input space and `B` apart.
+
+## Inputs
+* `alg` – reach algorithm
+* `S` – system
+* `tFinal` – final time
+* `η` – Taylor order
+* `ρ` – zonotope order
+
+## Output
+* reach windows or an error message
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

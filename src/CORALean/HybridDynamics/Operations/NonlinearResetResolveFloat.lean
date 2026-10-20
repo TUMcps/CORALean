@@ -16,6 +16,15 @@ and of its globally bound inputs (a locally bound one is the origin, as in the r
 places existing bounds, so no rounding enters beyond the extensions'. CORA numbers the global
 inputs differently, see `NonlinearReset.resolveCORA` and
 `references/coverage/hybridDynamics/nonlinearReset.md`, row `resolve`.
+
+## Inputs
+* `fm` – stacked float reset model
+* `fmOut` – component output boxes
+* `stateBinds` – state index maps
+* `inputBinds` – input bindings
+
+## Output
+* float reset model with the global input only
 -/
 
 -- Authors:       Claude Opus 5.5

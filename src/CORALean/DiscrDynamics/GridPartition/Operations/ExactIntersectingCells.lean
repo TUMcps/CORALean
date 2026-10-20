@@ -13,6 +13,13 @@ with the set `P`, `iS`, led by `0`, and the share `iProp` of `P`'s volume in the
 each cell. The candidates are `intersectingCells`; each is intersected with `P` and measured, here
 as the Lebesgue measure of the denoted sets. A set of volume `0` (or `∞`, which CORA would divide
 by) gets `iS = 0` and `iProp = 1`, as in CORA. The `'probability error'` message is not.
+
+## Inputs
+* `P` – grid partition
+* `X` – set
+
+## Output
+* intersecting cells with the volume share of each
 -/
 
 -- Authors:       Claude Sonnet 5.5

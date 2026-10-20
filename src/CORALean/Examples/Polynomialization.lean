@@ -9,21 +9,14 @@ import CORALean.ContSet.PolyZonotope.Real.Instances
 /-!
 # The polynomialization variant runs the loop already proved
 
-What this records is that step three of CORA's `alg = 'poly'` — lines 4-18 of
-[1, Alg. 1] — is not a second induction. A `PolyAbstractionError` becomes a
-`LinStep` through `AbstractionError.of_poly`, and `relinReach_outer` then
-applies at `𝒫𝒵` with nothing added: the chain, the per-step confinement and the
-input enclosures are the ones already proved, because soundness was stated at an
-arbitrary certificate rather than at the one `alg = 'lin'` computes.
-
-The instances it takes are `Plus`, `Reduce`, `Mtimes (Mat ℝ)`, `OfInterval`
-and, for the differences, `LinComb` and `Mtimes ℐ`; all six `PolyZonotope` has,
-and this file fails to compile the moment one goes.
-
-`relinDeltaReach_outer` is CORA's `Rdiff`. The poly certificate confines the run
-to `subsetAt` rather than a box, the two agreeing at `pZ.q = 0`. `abstrErrPolySearch`
-is `linReach`'s while loop, and `linReachPoly` runs it on the candidates CORA's loop
-computes, from nothing but a system's derivatives and a start set.
+Step three of CORA's `alg = 'poly'`, lines 4-18 of [1, Alg. 1], is not a second induction. A
+`PolyAbstractionError` becomes a `LinStep` through `AbstractionError.of_poly`, and
+`relinReach_outer` applies at `𝒫𝒵` with nothing added: soundness was stated at an arbitrary
+certificate rather than at the one `alg = 'lin'` computes. The instances it takes are `Plus`,
+`Reduce`, `Mtimes (Mat ℝ)`, `OfInterval`, `LinComb` and `Mtimes ℐ`, all of which `PolyZonotope`
+has. `relinDeltaReach_outer` is CORA's `Rdiff`; the poly certificate confines the run to `subsetAt`
+rather than a box. `linReachPoly` runs `abstrErrPolySearch`, `linReach`'s while loop, from a
+system's derivatives and a start set.
 
 ## References
 

@@ -13,6 +13,16 @@ When every guard's error box is certified to be the origin, and the scalar certi
 (`HPolytope.intersection_exact`) and leaves an origin box behind, which the next step certifies
 again. So the synchronized guard denotes the intersection of the guards, with equality. For
 guards with an error box, `Transition.synchronizeGuard_outer` still holds.
+
+## Inputs
+* `g` – guards of the components
+
+## Hypotheses
+* `h0` – zero is certified equal to itself
+* `hg` – every guard has no error box
+
+## Conclusion
+* the synchronized guard is the intersection of the guards
 -/
 
 -- Authors:       Claude Opus 5.5

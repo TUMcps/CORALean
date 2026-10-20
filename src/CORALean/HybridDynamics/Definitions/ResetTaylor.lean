@@ -15,6 +15,15 @@ public import Mathlib.Analysis.Calculus.ContDiff.Defs
 [1] claims `∀ x ∈ F : r(x) ∈ p(x) ⊕ L`; `Theorems.ResetTaylorCounterexample` refutes it and
 `Theorems.ResetTaylorMem` proves it with a `ξ` per coordinate over a convex set.
 
+## Inputs
+* `r` – reset
+* `γ` – Taylor order
+* `c` – expansion point
+* `x` – state
+
+## Output
+* Taylor polynomial of the reset at the state
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

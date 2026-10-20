@@ -13,6 +13,15 @@ cuts the long generator in half, so the set is `[-4, 2]`. Boxing the two short
 generators into one, the Girard-style reduction goes through the enclosing zonotope
 and forgets `β₀ ≤ 0`, ending at `[-4, 4]`; `reduceKeepBy` projects the constraint onto
 the generator it keeps and ends at `[-4, 2]`. Both are outer, only one is tight here.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the reduced set stays below two in the first coordinate
 -/
 
 -- Authors:       Claude Opus 5.5

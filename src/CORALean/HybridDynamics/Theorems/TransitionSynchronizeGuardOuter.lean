@@ -10,6 +10,15 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.IntersectionOuter
 
 The synchronized guard contains the intersection of the guards: stacking the rows loses nothing,
 and folding each error box into its rows (`HPolytope.intersection`) only enlarges.
+
+## Inputs
+* `g` – guards of the components
+
+## Hypotheses
+* none
+
+## Conclusion
+* the synchronized guard contains the intersection of the guards
 -/
 
 -- Authors:       Claude Opus 5.5

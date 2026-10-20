@@ -5,6 +5,12 @@
 (`Dyadic p` rounded to nearest) -- both unsound -- and `flint<p>`. `randTypeKind` gives the kind
 (`dyadic`, `ieee`, `float`, `nearest`, `flint`) and the width `p` where the label has one, `none`
 for a label that is no type.
+
+## Inputs
+* `label` – number type label
+
+## Output
+* kind of the number type and its width, none if unknown
 -/
 
 -- Authors:       Claude Sonnet 5.5

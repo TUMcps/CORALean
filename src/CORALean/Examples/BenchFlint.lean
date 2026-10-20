@@ -9,22 +9,22 @@ import CORALean.Global.Float.Instances.Flint.API
 /-!
 # `bench-flint`'s logic: parsing, dispatch, self-test, positive control
 
-The bulk of `bench-flint` (README, "FLINT backend (optional)"); `main` lives in
-`Examples/BenchFlintMain.lean`, so `check-axioms.lean` can import this file's
-`reachFloat_outer_flint` beside `Examples/Bench.lean` without two `main`s.
+The bulk of `bench-flint`; `main` lives in `Examples/BenchFlintMain.lean`, so `check-axioms.lean`
+can import this file's `reachFloat_outer_flint` beside `Examples/Bench.lean` without two `main`s.
+`dispatchFlint` reuses `parseArgs` for every flag but `--type`, accepted only as `flint`, and
+`Registry.lean`'s `runAt` at `Flint (resolvedPrec args)`. `bench-flint firststep` makes
+`firststep`'s `flint` runs, `bench` the rest. `bench-flint selftest` differential-tests instead:
+for `p` in `{2, 11, 24, 53, 113}` and pseudo-random pairs it compares `Flint p`'s six rounded
+operations against `Dyadic p`'s by exact value. `reachFloat_outer_flint` is `check-axioms.sh`'s
+positive control for `trustedFlint`, the one axiom this file and the `Flint` instances may reach.
 
-`dispatchFlint` reuses `parseArgs` for every flag but `--type`, accepted only
-as `flint`, and `Registry.lean`'s `runAt` to run `args.experiment` at
-`Flint (resolvedPrec args)`, as `dispatch` runs it at `Dyadic p`.
+## Inputs
+* `cfg` – headline config
+* `run` – first-step run description
+* `dt` – step size as a string
 
-`bench-flint firststep` makes `firststep`'s `flint` runs, `bench` the rest.
-`bench-flint selftest` differential-tests instead: for `p` in `{2, 11, 24, 53,
-113}` and pseudo-random pairs (fixed seed, negative and past `2^64`, to reach
-the FFI's big-`Int` path), it compares `Flint p`'s six rounded operations
-against `Dyadic p`'s by exact value, not representation -- FLINT normalises
-the mantissa odd, `Dyadic` need not. `reachFloat_outer_flint` is
-`check-axioms.sh`'s positive control for `trustedFlint`, the one axiom this
-file and the `Flint` instances may reach.
+## Output
+* first-step record at the FLINT type, none if unsupported
 -/
 
 -- Authors:       Claude Opus 5.5
