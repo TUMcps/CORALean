@@ -13,6 +13,16 @@ adaptive order selection actually calls: for every admissible error there is
 an order whose bound beats it, and whose side condition `‖x‖/(η+2) < 1` also
 holds, so the `η` produced names a real bound rather than a divergent one.
 
+## Inputs
+* `x` – matrix
+* `ε` – admissible error
+
+## Hypotheses
+* `hε` – error positive
+
+## Conclusion
+* some order has a remainder bound under the error and meets the side condition
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

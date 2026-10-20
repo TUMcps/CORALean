@@ -13,6 +13,15 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
 `[1]`'s `A⁻¹`, so a singular `A` needs no separate case. `closedForm_heldInput` is the
 claim that this recursion is the continuous-time system sampled under `heldInput`.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `x₀` – initial state
+* `u` – input value per step
+
+## Output
+* state after a given number of steps
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

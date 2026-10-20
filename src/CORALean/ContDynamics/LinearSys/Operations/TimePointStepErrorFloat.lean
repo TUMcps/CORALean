@@ -13,6 +13,15 @@ public import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
 up in `𝕋`: `2 Σⱼ|U|ⱼ r ((e^x - 1) + E(rA, η))` at `x = r‖A‖`, every factor replaced by a
 float upper bound as in `timeIntervalStepCurvatureErrorFloat`; `r ≥ 0` is the float step.
 
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `U` – input float zonotope
+
+## Output
+* float upper bound of the radius the time-point step reaches past the run
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

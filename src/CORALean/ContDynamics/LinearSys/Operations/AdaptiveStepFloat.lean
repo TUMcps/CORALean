@@ -26,6 +26,18 @@ the float enclosures, both decided exactly in ℚ, and every set is a sound
 float step. `toRat` reads a NaN as the number `1.5 · 2 ^ 1024`, so the step and the norm
 bound `nrm` are also refused if `isNaN`.
 
+## Inputs
+* `sys` – linear system
+* `X₀` – initial float zonotope
+* `V` – input float zonotope
+* `t₀` – start time
+* `tf` – final time
+* `options` – adaptive options
+* `s` – loop state
+
+## Output
+* report of the step and the next state, if the step succeeds
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

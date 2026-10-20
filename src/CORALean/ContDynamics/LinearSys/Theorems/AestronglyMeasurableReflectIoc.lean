@@ -13,6 +13,16 @@ plain one `inputReach` carries. Reflection is negation followed by a
 translation, and both preserve Lebesgue measure; the negation-invariance
 instance itself sits behind Haar uniqueness, an import far heavier than the
 one fact needed here, so it is taken instead from the scaling law at `-1`.
+
+## Inputs
+* `u` – input signal
+* `τ` – step length
+
+## Hypotheses
+* `hmeas` – input measurable on the closed interval
+
+## Conclusion
+* the reflected input is measurable on the half-open interval
 -/
 
 -- Authors:       Claude Opus 5

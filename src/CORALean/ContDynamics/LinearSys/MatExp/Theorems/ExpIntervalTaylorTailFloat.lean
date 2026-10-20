@@ -16,6 +16,17 @@ public import Mathlib.Algebra.BigOperators.Intervals
 Induction on `κ`, as `Real.MatExp.taylorTail_mem_expIntervalTaylorTail` does: below order three
 the sum is empty and the tail is the zero point, and from three on the top order peels off,
 `smul_outer` at `invFactorialBounds`'s two facts and `matPow_outer` enclosing it.
+
+## Inputs
+* `B` – float interval matrix
+* `N` – member matrix
+* `κ` – Taylor order
+
+## Hypotheses
+* `hN` – member lies in the interval matrix
+
+## Conclusion
+* orders three and up of the member lie in the float interval tail
 -/
 
 -- Authors:       Claude Sonnet 5.5

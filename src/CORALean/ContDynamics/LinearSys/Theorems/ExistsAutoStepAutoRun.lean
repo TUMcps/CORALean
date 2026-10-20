@@ -8,17 +8,38 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExistsAutoStep
 /-!
 # `Thm. 1` along the whole run: every iteration of `Alg. 2` inside the horizon completes
 
-`exists_autoStep` carries two budget invariants — `ε^a_k` and `ε^r_k` inside eq. (36)'s and
-eq. (35)'s shares at `t_k` — and `exists_autoStep_autoInit` discharges them at `k = 0` only.
-`autoRun_budget` discharges them at every `k`, so nothing is carried here either: whatever
-state a run of [1, Alg. 2] has reached, the `while` of line 4 still holding, some fuel lets
-the next iteration report.
+`exists_autoStep` carries two budget invariants (`ε^a_k` and `ε^r_k` inside eq. (36)'s and eq.
+(35)'s shares at `t_k`) and `exists_autoStep_autoInit` discharges them at `k = 0` only.
+`autoRun_budget` discharges them at every `k`, so nothing is carried here either: whatever state a
+run of [1, Alg. 2] has reached, the `while` of line 4 still holding, some fuel lets the next
+iteration report. Two readings of the caller's `le` are wanted: the sweeps must be *complete* for a
+candidate to be found at all, and *sound* for the candidate found to have met its share. Termination
+is still not claimed; see the `Thm. 1` row and finding on the reference page.
 
-Two readings of the caller's `le` are wanted, and they are different statements: the sweeps
-must be *complete* for a candidate to be found at all, and *sound* for the candidate found
-to have met its share. `Thm. 1`'s own proof is the first; the budget is the second.
+## Inputs
+* `sys` – linear system
+* `le` – comparison oracle on reals
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `tend` – final time
+* `εmax` – admissible error
+* `ζ` – error budget share
+* `ηmax` – maximal Taylor order
+* `fuel` – number of shrinkings
+* `k` – iteration count
 
-Termination is still not claimed — see the `Thm. 1` row and finding on the reference page.
+## Hypotheses
+* `hle` – comparison oracle is complete
+* `hle'` – comparison oracle is sound
+* `hn` – dimension positive
+* `htpos` – final time positive
+* `hεmax` – admissible error positive
+* `hζ0` – error share nonnegative
+* `hζ1` – error share below one
+* `hηmax` – maximal order at least one
+
+## Conclusion
+* from any reached state before the horizon some fuel makes the next iteration report
 
 ## References
 

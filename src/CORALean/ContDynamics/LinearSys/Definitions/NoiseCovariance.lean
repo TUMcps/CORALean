@@ -15,6 +15,14 @@ at time `t` is Gaussian with mean `0` and covariance
 entry by entry, as an integral of real functions, since matrices carry no norm to integrate
 in by default. Only the deterministic integral is defined: the stochastic process is not.
 
+## Inputs
+* `A` – system matrix
+* `C` – noise matrix
+* `t` – time
+
+## Output
+* covariance matrix the white noise contributes at the time
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

@@ -14,6 +14,25 @@ Lines 3-25 of [1, Alg. 3]. If the outer approximation's worst distance to leavin
 0` and its distance to every unsafe set is `> 0`, the specification holds on every reached state:
 `reachFn ε` contains them and `distG`/`distF` say what the signs mean.
 
+## Inputs
+* `Reach` – reachable set
+* `reachFn` – reachable set as a function of the error
+* `innerApprox` – inner approximation at an error
+* `distG` – distance to a safe polytope
+* `distF` – distance to an unsafe polytope
+* `le` – comparison oracle on reals
+* `G` – safe polytopes
+* `F` – unsafe polytopes
+* `εmax` – maximal error
+
+## Hypotheses
+* `h` – the oracles are sound
+* `hG` – the safe-set test passes
+* `hF` – the unsafe-set test passes
+
+## Conclusion
+* the specification holds
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

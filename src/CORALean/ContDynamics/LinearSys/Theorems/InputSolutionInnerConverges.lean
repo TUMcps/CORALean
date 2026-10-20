@@ -13,16 +13,31 @@ public import CORALean.Global.EuclideanHausdorffDist
 /-!
 # The inner approximation converges to the exact particular solution
 
-The inner half of [1, Prop. 1], with a rate rather than only the limit: the
-Hausdorff distance over the horizon `t = ωΔt` is at most a constant times `Δt`.
-One step costs `O(Δt²)` by `inputReach_dist_inputSolutionInner`, the `ω = t/Δt`
-steps carry it at a factor `e^{‖A‖t}` each, and the propagation is exact on the
-exact particular solution, so the two sets being compared are nested and only
-one side of the distance has anything to prove.
+The inner half of [1, Prop. 1], with a rate rather than only the limit: the Hausdorff distance over
+the horizon `t = ωΔt` is at most a constant times `Δt`. One step costs `O(Δt²)` by
+`inputReach_dist_inputSolutionInner`, the `ω = t/Δt` steps carry it at a factor `e^{‖A‖t}` each, and
+the propagation is exact on the exact particular solution, so the two sets being compared are nested
+and only one side of the distance has anything to prove. `√n` converts the supremum norm `Vec ℝ n`
+carries into the `‖·‖₂` the paper measures its Hausdorff distance in; the `Δt` inside the
+exponential is what the one-step estimate contributes and vanishes with it.
 
-`√n` converts the supremum norm `Vec ℝ n` carries into the `‖·‖₂` the paper
-measures its Hausdorff distance in; the `Δt` inside the exponential is what the
-one-step estimate contributes and vanishes with it.
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `Δt` – step length
+* `ρ` – input norm bound
+* `ω` – number of steps
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `hne` – input set nonempty
+* `hρ` – input norms bounded
+
+## Conclusion
+* the propagated inner approximation is within a rate in the step of the exact solution
 
 ## References
 

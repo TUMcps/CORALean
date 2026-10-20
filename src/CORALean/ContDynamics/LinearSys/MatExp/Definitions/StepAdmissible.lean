@@ -11,6 +11,15 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoun
 error `ε` at order `η`, positive, its contribution under `ε`, and the side condition at the
 scaled matrix.
 
+## Inputs
+* `A` – system matrix
+* `η` – Taylor order
+* `ε` – admissible error
+* `r` – step length
+
+## Output
+* proposition that the step is admissible at the order and error
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

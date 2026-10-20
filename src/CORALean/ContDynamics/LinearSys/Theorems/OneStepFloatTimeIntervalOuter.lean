@@ -17,16 +17,39 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
 /-!
 # `oneStepFloat` holds the state at every time of the step
 
-`oneStep_timeInterval_outer` [1, Sec. 3.3] at the float sets: with `λ = t/Δt`, the state
-`x(t)` of a run from `X` whose input is the constant `u` plus a signal in `U ∋ 0` is
+`oneStep_timeInterval_outer` [1, Sec. 3.3] at the float sets: with `λ = t/Δt`, the state `x(t)` of a
+run from `X` whose input is the constant `u` plus a signal in `U ∋ 0` is
 `(1-λ) x₀ + λ (e^{AΔt} x₀ + Γ(Δt) u)`, a point of the `linComb` of `X` and `Htp`, plus the state's
 interpolation error, in `[F] X` (`expDiff_mem_intervalCorrectionMatrix`), the constant's, in
-`[G] {u}` (`expIntegralDiff_mem_intervalConstCorrectionMatrix`), and a `U`-input's contribution
-up to `t`, which `0 ∈ U` lifts to `Δt` (`inputReach_mono`) and `PU` holds
-(`inputReach_subset_inputSolutionFloat`).
+`[G] {u}` (`expIntegralDiff_mem_intervalConstCorrectionMatrix`), and a `U`-input's contribution up
+to `t`, which `0 ∈ U` lifts to `Δt` (`inputReach_mono`) and `PU` holds
+(`inputReach_subset_inputSolutionFloat`). The real theorem's convexity, closedness and boundedness
+hypotheses are gone, as in `oneStepFloat_timePoint_outer`; `0 ∈ U` stays.
 
-The real theorem's convexity, closedness and boundedness hypotheses are gone, as in
-`oneStepFloat_timePoint_outer`; `0 ∈ U` stays. Outer only.
+## Inputs
+* `sys` – linear system
+* `Δt` – float step length
+* `η` – Taylor order
+* `X` – float start zonotope
+* `U` – input float zonotope
+* `W` – set of trajectory inputs
+* `x` – state trajectory
+* `w` – input signal
+* `u` – float constant input
+* `t` – time
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hη` – order admissible
+* `traj` – signal is a canonical trajectory
+* `h0` – origin lies in the input zonotope
+* `ht0` – time nonnegative
+* `htΔ` – time within the step
+* `hWU` – shifted inputs lie in the input zonotope
+* `hW` – set of trajectory inputs bounded
+
+## Conclusion
+* the state at the time lies in the float time-interval set
 
 ## References
 

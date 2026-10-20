@@ -11,6 +11,18 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsParticularSo
 [1, Lemma 4]: `exists_particularSolutionTauError_le_const_mul`'s eventual linear bound is exactly
 an `IsBigO` witness once its constant is read at `|K|`.
 
+## Inputs
+* `A` – system matrix
+* `tk` – step start time
+* `U0` – input set
+* `η` – Taylor order
+
+## Hypotheses
+* `hU0` – input set bounded
+
+## Conclusion
+* the τ-form error is of the order of the step as the step shrinks to zero
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

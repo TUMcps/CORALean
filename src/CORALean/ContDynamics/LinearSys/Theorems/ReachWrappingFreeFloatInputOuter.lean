@@ -32,6 +32,17 @@ come apart the same way (`expIntegral_add_mulVec`). So the run is
 `e^{A t_k}` of a point of `Rτ₀ ⊕ P^R(Δt)`, which `reachStepkWrappingFreeFloat_outer`
 carries, plus a point of `P̃(t_k) ⊕ P^R(t_k)`, which the accumulation holds by
 induction on `k`, from `{0}` at `t_0 = 0`.
+
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters with initial and input sets
+* `options` – reach options
+
+## Hypotheses
+* none
+
+## Conclusion
+* every run is in the set of its window
 -/
 
 -- Authors:       Claude Opus 5.5

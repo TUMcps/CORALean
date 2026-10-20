@@ -10,6 +10,19 @@ public import CORALean.ContSet.Zonotope.Float.Instances
 
 For a matrix `E = e^{AΔt}` that `[e^{AΔt}]` holds, every entry of `(E - I_n) G_l` is under the
 float entry in magnitude.
+
+## Inputs
+* `eA` – float exponential enclosure
+* `E` – member matrix
+* `H` – float state zonotope
+* `l` – generator index
+* `j` – coordinate index
+
+## Hypotheses
+* `hE` – member lies in the exponential enclosure
+
+## Conclusion
+* the entry is under the float entry in magnitude
 -/
 
 -- Authors:       Claude Sonnet 5.5

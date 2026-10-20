@@ -14,6 +14,21 @@ Without a static set the float error solution is `inputSolutionFloat`, and an in
 `inputReach_subset_inputSolutionFloat` encloses. Outer only, held inputs only, as
 `expIntegral_mem_errorSolutionAdaptive` is over ℝ; the bound is [1, Lemma 1]'s.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – float step length
+* `η` – Taylor order
+* `Vdyn` – dynamic noise float zonotope
+* `v` – held input value
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hη` – order admissible
+* `hv` – value lies in the dynamic noise zonotope
+
+## Conclusion
+* what a held input contributes lies in the float error solution
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

@@ -12,6 +12,21 @@ Entry by entry, for `0 ≤ t ≤ t_max`: `E(t, η) ≤ E(t_max, η)`. Each is th
 at `|A|t` past `η`, whose terms are nonnegative and increase with the time [1, Eq. 13]: what
 lets `Ê(t_max)` stand for every `Ê(t)` of the interval.
 
+## Inputs
+* `A` – system matrix
+* `t` – time
+* `tmax` – larger time
+* `η` – Taylor order
+* `j` – row index
+* `k` – column index
+
+## Hypotheses
+* `ht` – time nonnegative
+* `htm` – time at most the larger time
+
+## Conclusion
+* the remainder entry grows with the time
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

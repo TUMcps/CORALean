@@ -9,17 +9,30 @@ public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 /-!
 # A polynomially weighted average stays in a convex closed set
 
-`∫₀ʳ τⁱ f(τ) dτ ∈ (r^{i+1}/(i+1)) · S` whenever `f` is valued in `S` and `S` is
-convex and closed — the total weight `∫₀ʳ τⁱ dτ` scaling the set, and nothing
-worse. Every term of the input solution of [1, Thm. 1] is one instance of it.
+`∫₀ʳ τⁱ f(τ) dτ ∈ (r^{i+1}/(i+1)) · S` whenever `f` is valued in `S` and `S` is convex and closed:
+the total weight `∫₀ʳ τⁱ dτ` scaling the set, and nothing worse. Every term of the input solution of
+[1, Thm. 1] is one instance of it. An integral is a limit of convex combinations of values of `f`,
+so convexity is what puts it in `S` and closedness is what turns the limit into membership.
+Boundedness only makes `f` integrable. Proved by putting the weight into the measure rather than the
+integrand, so `Convex.set_average_mem` applies to `f` itself: `⨍` against `τⁱ dτ` is the normalised
+integral wanted, normalised by the total weight.
 
-An integral is a limit of convex combinations of values of `f`, so convexity is
-what puts it in `S` and closedness is what turns the limit into membership.
-Boundedness only makes `f` integrable.
+## Inputs
+* `S` – convex closed set
+* `f` – integrand
+* `r` – upper limit
+* `i` – power
 
-Proved by putting the weight into the measure rather than the integrand, so
-`Convex.set_average_mem` applies to `f` itself: `⨍` against `τⁱ dτ` is the
-normalised integral wanted, normalised by the total weight.
+## Hypotheses
+* `hconv` – set convex
+* `hclosed` – set closed
+* `hbdd` – set bounded
+* `hr` – upper limit positive
+* `hmeas` – integrand measurable
+* `hmem` – integrand values lie in the set
+
+## Conclusion
+* the weighted integral lies in the scaled set
 
 ## References
 

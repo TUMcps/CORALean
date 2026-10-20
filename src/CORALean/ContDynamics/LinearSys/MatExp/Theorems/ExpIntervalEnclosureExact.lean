@@ -23,6 +23,20 @@ there: it must be checkable from the interval matrix alone, and
 `norm_le_absMax` is what turns it into the pointwise condition the tail bound
 needs.
 
+## Inputs
+* `A` – interval matrix
+* `t` – time
+* `M` – member matrix
+* `κ` – Taylor order
+
+## Hypotheses
+* `hM` – member lies in the interval matrix
+* `hκ` – order at least two
+* `hε` – dominating norm small enough for the Taylor order
+
+## Conclusion
+* the exponential of the scaled member lies in the sharper enclosure
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

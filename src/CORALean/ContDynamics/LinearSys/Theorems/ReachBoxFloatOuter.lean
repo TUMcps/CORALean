@@ -24,15 +24,33 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 /-!
 # `reachBoxFloat` encloses the reachable set on every time interval
 
-`reachBox_outer` in floats: `R_k ⊇ R(t)` for every `t ∈ [kr, (k+1)r]` and `k ≤ N`, from a
-zonotope `X⁰` and an input zonotope `U ∋ 0`. The three invariants of the exact proof,
-`e^{A(kr+τ)}X⁰ ⊆ H^R_k`, `e^{Akr} inputReach U τ ⊆ V_k` and `inputReach U (kr+τ) ⊆ P^R_k`,
-hold by the same induction, with `e^{Ar}` in the float interval matrix `[e^{Ar}]`
+`reachBox_outer` in floats: `R_k ⊇ R(t)` for every `t ∈ [kr, (k+1)r]` and `k ≤ N`, from a zonotope
+`X⁰` and an input zonotope `U ∋ 0`. The three invariants of the exact proof,
+`e^{A(kr+τ)}X⁰ ⊆ H^R_k`, `e^{Akr} inputReach U τ ⊆ V_k` and `inputReach U (kr+τ) ⊆ P^R_k`, hold by
+the same induction, with `e^{Ar}` in the float interval matrix `[e^{Ar}]`
 (`exp_mem_expIntervalFloat`, `Mtimes.mtimes_outer`) and each sum and box an enclosure
-(`Plus.plus_outer`, `Zonotope.interval_contains`, `Interval.zonotope_contains`). The base case
-is `timeIntervalStepFloat_outer` and `inputReach_subset_inputSolutionFloat`, once
-`inputReach U τ ⊆ inputReach U r`. The enclosure is of the exact `reachSetExact`, not an
-equality with `reachBox`'s sets.
+(`Plus.plus_outer`, `Zonotope.interval_contains`, `Interval.zonotope_contains`). The base case is
+`timeIntervalStepFloat_outer` and `inputReach_subset_inputSolutionFloat`, once
+`inputReach U τ ⊆ inputReach U r`. The enclosure is of the exact `reachSetExact`.
+
+## Inputs
+* `sys` – linear system
+* `X₀` – initial float zonotope
+* `U` – input float zonotope
+* `r` – float step length
+* `η` – Taylor order
+* `N` – number of steps
+* `k` – window index
+* `t` – time
+
+## Hypotheses
+* `hr` – step length positive
+* `h0` – origin lies in the input zonotope
+* `hk` – window index within the step count
+* `ht` – time within the window
+
+## Conclusion
+* the float window encloses the reachable set at the time
 
 ## References
 

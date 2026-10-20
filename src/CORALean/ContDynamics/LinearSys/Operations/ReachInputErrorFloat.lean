@@ -14,6 +14,16 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Point
 `[e^{AΔt}]` per step taken since. The accumulator is a float zonotope that *encloses* the exact
 one — the box paid at each step is rounded up, and the exponential is the interval matrix that
 holds `e^{AΔt}` — which is the direction an inner approximation needs of what it takes off.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – float sampling step
+* `η` – Taylor order
+* `U` – input float zonotope
+* `k` – number of steps
+
+## Output
+* float accumulated error boxes of the input enclosures
 -/
 
 -- Authors:       Claude Sonnet 5.5

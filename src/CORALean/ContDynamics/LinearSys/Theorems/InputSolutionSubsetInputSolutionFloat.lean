@@ -26,6 +26,22 @@ one by `Zonotope.real_mtimesIntervalMat_subset` since both ends of the exact int
 matrices of the float one. The float zonotope has error box `{0}`, so its points are its nominal
 part.
 
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `Wr` – exact input zonotope
+* `V` – input float zonotope
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hη` – order admissible
+* `hE` – float zonotope has a point error box
+* `hW` – exact zonotope lies in the float zonotope
+
+## Conclusion
+* the exact input solution lies in the float one
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

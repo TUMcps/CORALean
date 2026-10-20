@@ -15,35 +15,23 @@ public import Mathlib.Tactic.NormNum
 /-!
 # `LinearSys.standardRtiCora`: the input curvature `C_input` is not propagated
 
-`oneStep` returns `Hti = enclose(X, Htp) + C_state` without the curvature `C_input = G*u` of the
-constant input, which `Rti = Hti + PU + C_input` adds at the end (`oneStep.m` l. 84-88). The loop
-of `priv_reach_standard.m` (the branch without `uTransVec`) propagates only the hull part,
-`Hti = eAdt * Hti + Pu` (l. 102-103), and adds the step-1 box again, unrotated and unscaled, at
-every step: `Rti = Hti + PU + C_input` (l. 117). A time-interval solution of `ẋ = Ax + u` over the
-second step is `e^{AΔt}` applied to the first, curvature included, so the box has to be mapped by
-`e^{AΔt}`. `priv_reach_wrappingfree.m` (l. 115-116, 124) does the same. `priv_reach_fromStart.m`
-(l. 99) and `priv_reach_decomp.m` (l. 107) take `Rti = Hti + PU` and drop `C_input` for `k >= 2`
-(they read the sixth output `Pu_0` of `oneStep`, not the eighth). The `uTransVec` branch of
-`standard` calls `affineSolution` with a fresh `C_input = G*u(:,k)` per step and is not affected.
+`priv_reach_standard.m` (branch without `uTransVec`) propagates only the hull part,
+`Hti = eAdt * Hti + Pu` (l. 102-103), and adds the step-1 curvature box `C_input = G*u`
+unrotated at every step (l. 117); it has to be mapped by `e^{AΔt}`. `priv_reach_wrappingfree.m`
+does the same; `fromStart` and `decomp` drop `C_input` for `k >= 2`. Modelled in `ℝⁿ` for
+`R0 = {0}`, `U = {0}`: `e` is `e^{AΔt}`, `Pu` the first step's solution, `C` the box.
+Three integrators with `c = (0, 0, 1)`, `timeStep = 1`, `tFinal = 2`: the state
+`x(3/2) = (9/16, 9/8, 3/2)` is `3/16` below the set in `x₁`, the box reaches `-√3/27` only.
+Read from the source, not run; see `references/coverage/contDynamics/linearSys.md`, row `reach`.
 
-Modelled in `ℝⁿ` for `R0 = {0}`, `U = {0}`: `e` is `e^{AΔt}` (a map), `Pu` the constant-input
-solution of the first step, `C` the box `C_input`. The time-interval hull of step 1 is the segment
-`[0, Pu]` (`enclose({0}, {Pu})`, `C_state = F * {0} = {0}`). Read from the source, not run; the
-`x₁`-extent below is also reproduced numerically in `ℝ²` (see
-`references/coverage/contDynamics/linearSys.md`, row `reach`).
+## Inputs
+* none
 
-# CORA's `reach` with `linAlg = 'standard'` misses a state of the second step
+## Hypotheses
+* none
 
-A chain of three integrators, `A = [0 1 0; 0 0 1; 0 0 0]`, `c = (0, 0, 1)`, `R0 = {0}`, `U = {0}`,
-`timeStep = 1`, `taylorTerms = 2`, `tFinal = 2` (`A³ = 0`, so `E = 0`): `x(t) = (t³/6, t²/2, t)`,
-`e = I + A + A²/2`, `Pu = x(1) = (1/6, 1/2, 1)`, and with `G = -A/8 - (√3/27) A²` (the factors
-`(η^{-η/(η-1)} - η^{-1/(η-1)}) Δt^η / η!` for `η = 2, 3`) the box is `G u = ([-√3/27, 0],
-[-1/8, 0], {0})`, which is exactly the deviation of the first step's curve from its chord. The
-second step's set is the segment `e [0, Pu] + Pu` plus the same box, and at the height `x₃ = 3/2`
-the segment point is `(3/4, 5/4, 3/2)`. The state `x(3/2) = (9/16, 9/8, 3/2)` lies `3/16` below it
-in `x₁`, and the box reaches down to `-√3/27` only, with `√3/27 < 3/16`: the state is outside.
-Mapped by `e` the box would be `([-√3/27 - 1/8, 0], [-1/8, 0], {0})`, whose lower end `-0.189`
-covers it. Without `C_input` (`fromStart`, `decomp`) the same state is outside as well.
+## Conclusion
+* a state of the second step lies outside CORA's time-interval set
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,6 +11,14 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalW
 `expIntervalTaylorExact`: the truncation of [1, Thm. 3.2]: the identity and `W(t)` exactly,
 the rest by interval arithmetic.
 
+## Inputs
+* `A` – interval matrix
+* `t` – time
+* `κ` – Taylor order
+
+## Output
+* Taylor truncation with exact identity and second-order term
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

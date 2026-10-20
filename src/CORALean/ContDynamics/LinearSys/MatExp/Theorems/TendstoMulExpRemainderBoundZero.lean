@@ -12,6 +12,16 @@ tends to `0` as `r → 0⁺`, the guarantee adaptive step selection rests on, th
 other tuning knob besides the order. `‖r • A‖ = |r| * ‖A‖` reduces both factors
 of the bound to elementary limits at `0`.
 
+## Inputs
+* `A` – system matrix
+* `η` – Taylor order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the step times the remainder bound tends to zero as the step shrinks
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

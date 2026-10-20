@@ -13,6 +13,20 @@ is in `Rerror`, the exact orders in the Taylor sum and the rest in `E Δt Vdyn`.
 and for an input held at one point; the time-varying input is not stated here. The bound
 is [1, Lemma 1]'s.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `η` – Taylor order
+* `Vdyn` – dynamic noise set
+* `v` – held input value
+
+## Hypotheses
+* `hΔt` – step length nonnegative
+* `hv` – value lies in the dynamic noise set
+
+## Conclusion
+* what a held input contributes lies in the error solution
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

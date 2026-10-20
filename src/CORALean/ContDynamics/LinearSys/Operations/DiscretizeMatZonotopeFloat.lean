@@ -18,6 +18,14 @@ system's matrix is its float `expMatZonoEnclosure` [1, Sec. 3.3.2]. The result i
 `LinParamSysDT` over float matrix zonotopes, whose `reach` runs through the `Mtimes`
 instance `Zonotope.mtimesMatZonotope`.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – float sampling step
+* `η` – Taylor order
+
+## Output
+* sampled system whose matrix is the float matrix-zonotope enclosure
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

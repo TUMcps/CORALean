@@ -17,6 +17,16 @@ beyond `‖A^i‖ ≥ 0`.
 Bounding `‖A^i‖` by `‖A‖^i` would be the obvious route and fails at `i = 0`:
 that power is the identity, whose operator norm is `1` only when the dimension
 is positive.
+
+## Inputs
+* `A` – system matrix
+* `t` – time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the norms of the integrated series terms are summable
 -/
 
 -- Authors:       Claude Opus 5

@@ -10,17 +10,28 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 /-!
 # The sampled exact recursion, against held inputs
 
-`LinearSysDT.reachSetExact` of the sampled system under `inputSolution`, the input
-set a run adds at every step, stays inside the same recursion under the input
-set of one held input per step, widened by `reachInputError`.
-
-By induction on the step count, and linear on both sides: the state part and the
-error part each pass through `e^{AΔt}` separately, and the step's own input
-splits by `inputSolution_subset_constInput_add_errorBox` into a held-input point
-and a point of that step's error box.
-
-The recursion on the right is the zero-order-hold reachable set, which
+`LinearSysDT.reachSetExact` of the sampled system under `inputSolution`, the input set a run adds at
+every step, stays inside the same recursion under the input set of one held input per step, widened
+by `reachInputError`. By induction on the step count, and linear on both sides: the state part and
+the error part each pass through `e^{AΔt}` separately, and the step's own input splits by
+`inputSolution_subset_constInput_add_errorBox` into a held-input point and a point of that step's
+error box. The recursion on the right is the zero-order-hold reachable set, which
 `discretize_reachSetExact_subset_inputReach` places inside `inputReach`.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – sampling step
+* `η` – Taylor order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – number of steps
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the recursion under the input solution lies in the held-input recursion widened by the input error
 -/
 
 -- Authors:       Claude Opus 5.5

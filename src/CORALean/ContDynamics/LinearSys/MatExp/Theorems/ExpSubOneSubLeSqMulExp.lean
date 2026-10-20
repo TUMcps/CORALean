@@ -14,6 +14,15 @@ This is the step [1]'s proofs of Lemma 2 and Theorem 1 need when they bound
 `α_r = (e^{r‖A‖} - 1 - r‖A‖) sup ‖x‖` by a multiple of `r‖A‖ e^{r‖A‖}`: the factor it
 gives is `(r‖A‖)²`, not the `r²` the printed proof of [1, Lemma 2] uses.
 
+## Inputs
+* `x` – real variable
+
+## Hypotheses
+* `hx` – variable nonnegative
+
+## Conclusion
+* the second-order remainder is at most half the square times the exponential
+
 ## References
 
 * [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid

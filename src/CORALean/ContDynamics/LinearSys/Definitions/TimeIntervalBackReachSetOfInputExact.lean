@@ -7,17 +7,24 @@ public import CORALean.ContDynamics.LinearSys.Definitions.IsPerturbedTrajectory
 /-!
 # The backward reachable set under one fixed input trajectory
 
-`R^∃(-τ;u*(·))`, the set [1, Thm. 1]'s development displays: the states some
-admissible disturbance drives into `Xend` at some time of `τ` when the input
-is held at one chosen signal `u*(·)`. Dropping the `∀u` leaves a set of the
-time-inverted forward kind, which is what makes it computable by propagation.
+`R^∃(-τ;u*(·))`, the set [1, Thm. 1]'s development displays: the states some admissible
+disturbance drives into `Xend` at some time of `τ` when the input is held at one chosen signal
+`u*(·)`. Dropping the `∀u` leaves a set of the time-inverted forward kind, computable by
+propagation. `R^{∀∃}(-τ)` is the intersection of these sets over all admissible `u*(·)`, so
+intersecting over finitely many can only grow the set. Nothing here quantifies over
+`u*(·)`, so its measurability is a hypothesis of whoever supplies it.
 
-Its point is the identity the theorem opens with: `R^{∀∃}(-τ)` is the
-intersection of these sets over all admissible `u*(·)`, so intersecting over
-only finitely many of them can only grow the set — the first `⊆` of the proof.
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `U` – admissible input set
+* `W` – admissible disturbance set
+* `Xend` – target set
+* `τ` – target time interval
+* `u` – fixed input signal
 
-Nothing here quantifies over `u*(·)`, so its own measurability is a
-hypothesis of whoever supplies it.
+## Output
+* states some disturbance drives into the target in the interval under the fixed input
 
 ## References
 

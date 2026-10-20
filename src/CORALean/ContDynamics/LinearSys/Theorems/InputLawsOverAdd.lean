@@ -15,6 +15,20 @@ family over its times, the laws over `[kr, (k+1)r]` are exactly the laws of `e^{
 (`LinearSys.inputLaws_add`) at `a = s`, `b = kr`, for every `s ∈ [0, r]`. `r ≥ 0`, and the
 input set is bounded.
 
+## Inputs
+* `sys` – linear system
+* `C` – noise matrix
+* `U` – input set
+* `r` – step length
+* `k` – step index
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hbdd` – input set bounded
+
+## Conclusion
+* the laws over a later step are convolutions of the first step's laws and the earlier laws
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

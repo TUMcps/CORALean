@@ -8,18 +8,25 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
 /-!
 # The interpolation error of a matrix exponential, as one series
 
-`e^{At} - I - (t/r)(e^{Ar} - I)` is what the correction matrix has to cover:
-the gap between the true flow and the straight line from `I` to `e^{Ar}`.
+`e^{At} - I - (t/r)(e^{Ar} - I)` is what the correction matrix has to cover: the gap between the
+true flow and the straight line from `I` to `e^{Ar}`. Written here as a single series in `A^i`
+starting at `i = 2`. The constant terms cancel against `I` and `(t/r)I`, and the linear terms
+because `t - (t/r)r = 0`, which is why the correction is second order and why `r ≠ 0` is needed:
+at `r = 0` Lean's `t/r` is `0`. Keeping the two exponentials in one series makes the `E(r)` bound
+of [1, Prop. 3.1] provable: the tail terms share `A^i`, so `t^i - t·r^(i-1)` is bounded once
+rather than each remainder separately and the two added. `CorrectionMatrix` spells out why
+splitting them would cost a factor of two.
 
-Written here as a single series in `A^i` starting at `i = 2`. The constant terms
-cancel against `I` and `(t/r)I`, and the linear terms cancel because
-`t - (t/r)r = 0` — which is why the correction is second order and why `r ≠ 0`
-is needed, since at `r = 0` Lean's `t/r` is `0` and that cancellation fails.
+## Inputs
+* `A` – system matrix
+* `t` – time
+* `r` – step length
 
-Keeping the two exponentials in one series is what makes the `E(r)` bound of [1, Prop. 3.1]
-provable: the tail terms share `A^i`, so `t^i - t·r^(i-1)` is bounded once
-rather than each remainder separately and the two added. `CorrectionMatrix`
-spells out why splitting them would cost a factor of two.
+## Hypotheses
+* `hr` – step length nonzero
+
+## Conclusion
+* the interpolation error equals a series in powers starting at two
 
 ## References
 

@@ -20,6 +20,17 @@ single-use product and for every term of the `k ≠ i, j` sum, and
 Nothing here needs `t ≠ 0` or a non-empty box; both are hypotheses of the
 tightness theorem instead, which is the one that would fail without them.
 
+## Inputs
+* `A` – interval matrix
+* `t` – time
+* `M` – member matrix
+
+## Hypotheses
+* `hM` – member lies in the interval matrix
+
+## Conclusion
+* the member's second-order term lies in the interval matrix
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

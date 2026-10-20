@@ -11,17 +11,22 @@ public import CORALean.ContSet.SetUnion.SetUnion
 /-!
 # Reachability over `[tStart, tFinal]`, one window of width `Δt` at a time
 
-`X₀ = params.X₀`, `Δt = options.Δt`, `η = options.η`. The windows
-`τ_0, …, τ_{N-1}`, one `reachStepkWrappingFree` each, collected as a `SetUnion`:
-`N = ⌈(tFinal - tStart) / Δt⌉` of them, so the last may overshoot `tFinal`, which an outer
-enclosure may, and never fewer than one, so `tFinal = tStart` still keeps `X₀`. The times
-are real: the ceiling is part of what `reachWrappingFree_outer` says, a horizon that is no
-multiple of `Δt` covered, and `ℝ` has no `ToRat` for `Reach.steps`.
+`X₀ = params.X₀`, `Δt = options.Δt`, `η = options.η`. The windows `τ_0, …, τ_{N-1}`, one
+`reachStepkWrappingFree` each, collected as a `SetUnion`: `N = ⌈(tFinal - tStart) / Δt⌉` of them, so
+the last may overshoot `tFinal`, which an outer enclosure may, and never fewer than one, so
+`tFinal = tStart` still keeps `X₀`. The times are real: the ceiling is part of what
+`reachWrappingFree_outer` says, and `ℝ` has no `ToRat` for `Reach.steps`. `η` is the Taylor order
+asked for, raised to `reachOrder Δt + 2` where that is higher: `timeIntervalStep_outer` holds only
+at an order admissible for `Δt` and `sys.A`, so `reachWrappingFree_outer` asks for no side
+condition on `η` at all.
 
-`η` is the Taylor order asked for, raised to `reachOrder Δt + 2` where that is
-higher: `timeIntervalStep_outer` holds only at an order admissible for `Δt` and
-`sys.A`, and this is where the matrix is at hand to decide it, so `reachWrappingFree_outer`
-asks for no side condition on `η` at all.
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters
+* `options` – step options
+
+## Output
+* time-interval sets of the windows
 -/
 
 -- Authors:       Claude Opus 5.5

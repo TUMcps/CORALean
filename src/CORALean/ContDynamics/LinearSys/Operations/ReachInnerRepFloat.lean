@@ -8,18 +8,32 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffRep
 /-!
 # The inner approximation of a sampled run, over a floating-point scalar
 
-`reachInnerRep` computed in `𝕋`: the float sampled run, `discretizeEnclosureFloat`'s
-`reach` with `inputSolutionFloat` as its input set, minus its budget
-`reachErrorFloat`, by the float `Zonotope.minkDiffRep`. The real operation takes
-`reachError` off the exact sampled run; this one takes off what the *float* run
-owes against the exact held-input sampled set, which `reachErrorFloat` bounds
-(`discretizeEnclosureFloat_reach_subset_add_errorFloat`).
+`reachInnerRep` computed in `𝕋`: the float sampled run, `discretizeEnclosureFloat`'s `reach` with
+`inputSolutionFloat` as its input set, minus its budget `reachErrorFloat`, by the float
+`Zonotope.minkDiffRep`. The real operation takes `reachError` off the exact sampled run; this one
+takes off what the *float* run owes against the exact held-input sampled set. `minkDiffRep` is
+inward-rounded and certified by a float containment check, at a representation `M`, a margin
+factor `ρ` and a right inverse `H` the caller offers. Any of them wrong gives `none`, costing
+precision and never soundness; `reachInnerRepFloat_inner` is the guarantee on `some`. The result
+can also be a point, where the budget has nearly outgrown the run.
 
-`minkDiffRep` is inward-rounded and certified by a float containment check, at a
-representation `M`, a margin factor `ρ` and a right inverse `H` the caller
-offers. Any of them wrong gives `none`, costing precision and never soundness;
-`reachInnerRepFloat_inner` is the guarantee on `some`. The result can also be a
-point, where the budget has nearly outgrown the run.
+## Inputs
+* `sys` – linear system
+* `Δt` – float sampling step
+* `η` – Taylor order
+* `o` – zonotope order
+* `R₀` – initial float zonotope
+* `U` – input float zonotope
+* `k` – number of steps
+* `M` – generator representation
+* `ρ` – margin factor
+* `H` – right inverse
+
+## Hypotheses
+* `ho` – zonotope order positive
+
+## Output
+* float sampled run minus its budget, if the certificate goes through
 -/
 
 -- Authors:       Claude Opus 5.5

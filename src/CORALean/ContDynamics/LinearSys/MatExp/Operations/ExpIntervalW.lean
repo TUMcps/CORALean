@@ -10,15 +10,19 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 # Interval matrices: the second-order Taylor term, exactly
 
 `expIntervalW`: `W(t)` of [1, Prop. 4] as an interval matrix. `A` occurring twice in
-`W(t) = A t + ½ A² t²` means ordinary interval arithmetic over-approximates it. Entry by
-entry it rearranges into a *single-use expression* off the diagonal,
-`W i j = A i j (t + ½ t² (A i i + A j j)) + ½ t² ∑_{k ≠ i, j} A i k A k j`,
-where every variable occurs once and interval arithmetic is therefore exact.
+`W(t) = A t + ½ A² t²` means ordinary interval arithmetic over-approximates it. Entry by entry it
+rearranges into a *single-use expression* off the diagonal,
+`W i j = A i j (t + ½ t² (A i i + A j j)) + ½ t² ∑_{k ≠ i, j} A i k A k j`, where interval
+arithmetic is exact. On the diagonal `A i i` is left over in `γ(a) = a t + ½ a² t²`, so its
+range over a box is `quadTermLo`/`quadTermHi`. CORA computes the same term in
+`@intervalMatrix/dependentTerms.m`.
 
-On the diagonal the row-column sum is single-use too, but `A i i` is left over
-in `γ(a) = a t + ½ a² t²`, so its range over a box is `quadTermLo`/`quadTermHi`.
+## Inputs
+* `A` – interval matrix
+* `t` – time
 
-CORA computes the same term in `@intervalMatrix/dependentTerms.m`.
+## Output
+* interval matrix of the second-order Taylor term
 
 ## References
 

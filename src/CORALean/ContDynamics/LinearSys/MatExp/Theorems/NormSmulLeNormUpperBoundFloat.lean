@@ -13,6 +13,17 @@ public import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
 box's dominating matrix's (`norm_le_absMax`), and that below `normUpperBound`.
 The one bound every remainder of a step is taken at, so the order admissible for
 one is admissible for all.
+
+## Inputs
+* `A` – float interval matrix
+* `r` – float step length
+* `M` – member matrix
+
+## Hypotheses
+* `hM` – member lies in the interval matrix
+
+## Conclusion
+* the scaled member's norm is under the float bound of the box
 -/
 
 -- Authors:       Claude Opus 5.5

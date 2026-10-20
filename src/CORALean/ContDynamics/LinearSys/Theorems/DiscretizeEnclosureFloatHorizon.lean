@@ -18,6 +18,28 @@ run of `discretizeEnclosureFloat` for its first `K` steps, `e^{AΔt}` lying in t
 float box, and each step's input contribution lies in `inputSolutionFloat U`,
 being one admissible input's contribution (`stepInput_mem_inputReach`). Only the
 steps inside the horizon are spoken about.
+
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial float zonotope
+* `U` – input float zonotope
+* `x` – state trajectory
+* `u` – input signal
+* `Δt` – float sampling step
+* `η` – Taylor order
+* `K` – number of steps
+* `o` – zonotope order
+
+## Hypotheses
+* `traj` – signal is a canonical trajectory
+* `hΔt` – step length positive
+* `hT` – time domain contains the horizon
+* `hη` – order admissible
+* `ho` – zonotope order positive
+
+## Conclusion
+* every sample of the run lies in the float-sampled reach set
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

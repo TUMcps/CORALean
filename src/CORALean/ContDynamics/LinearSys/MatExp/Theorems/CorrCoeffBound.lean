@@ -10,15 +10,22 @@ public import Mathlib.Tactic.Positivity
 /-!
 # The correction coefficient bounds `s^i - s` from below
 
-[1, Prop. 3.1]: the correction matrix widens by the range of
-`t ↦ t^i - t·r^(i-1)` over a step, whose lower end this bounds after scaling
-`t = s·r` to `s^i - s` on `[0,1]` — `sub_le_zero` gives the upper end.
+[1, Prop. 3.1]: the correction matrix widens by the range of `t ↦ t^i - t·r^(i-1)` over a step,
+whose lower end this bounds after scaling `t = s·r` to `s^i - s` on `[0,1]` (`sub_le_zero` gives
+the upper end). Proved by the tangent line at the stationary point rather than by calculus:
+factoring `s^i - a^i = (Σ_k s^k a^(i-1-k))(s - a)` turns the claim into `Σ_k s^k a^(i-1-k) ≥ 1`
+when `s ≥ a`, which holds because `a^(i-1) = 1/i` makes the constant sum exactly `1`. No upper
+bound on `s` is needed: the stationary point is the minimum over all of `[0,∞)`.
 
-Proved by the tangent line at the stationary point rather than by calculus:
-factoring `s^i - a^i = (Σ_k s^k a^(i-1-k))(s - a)` turns the claim into
-`Σ_k s^k a^(i-1-k) ≥ 1` when `s ≥ a`, which holds because `a^(i-1) = 1/i` makes
-the constant sum exactly `1`. No upper bound on `s` is needed: the stationary
-point is the minimum over all of `[0,∞)`.
+## Inputs
+* `s` – evaluation point
+
+## Hypotheses
+* `hi` – order at least two
+* `hs0` – point nonnegative
+
+## Conclusion
+* the correction coefficient lies below the polynomial at the point
 
 ## References
 

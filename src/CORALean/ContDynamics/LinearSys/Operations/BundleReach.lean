@@ -13,17 +13,24 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 /-!
 # `bundleReach`: [1, Alg. 1]
 
-Reachable sets `R_k ⊇ R([t_k, t_{k+1}])`, `t_k = k r`, of `x' = Ax + u` on zonotope bundles, by
-the superposition principle: from `R^h_0 ⊇ R^h([0, t_1])` (the homogeneous solution, a bundle)
-and `R^i_0 ⊇ R^i([0, t_1])` (the input solution), `R^h_k = e^{Ar}R^h_{k-1}`,
-`R^i_k = e^{Ar}R^i_{k-1}`, `P_k = P_{k-1} ⊕ box(R^i_k)`, `R_k = R^h_k ⊕ P_k`, one `let` per line.
+Reachable sets `R_k ⊇ R([t_k, t_{k+1}])`, `t_k = k r`, of `x' = Ax + u` on zonotope bundles, by the
+superposition principle: from `R^h_0 ⊇ R^h([0, t_1])` (the homogeneous solution, a bundle) and
+`R^i_0 ⊇ R^i([0, t_1])` (the input solution), `R^h_k = e^{Ar}R^h_{k-1}`, `R^i_k = e^{Ar}R^i_{k-1}`,
+`P_k = P_{k-1} ⊕ box(R^i_k)`, `R_k = R^h_k ⊕ P_k`, one `let` per line. The input solution is a
+zonotope: Sec. IV of [1] restricts `U` to zonotopes, and every set the input part passes through
+is a linear image of `R^i_0` or a box. `box` is `Zonotope.interval` read back as a zonotope, and
+`R^h_k ⊕ P_k` is a bundle plus a one-member bundle, [1, Prop. 2]. The first two inputs are what a
+first step computes, held to enclosing `R^h([0, t_1])` and `R^i([0, t_1])` by the soundness theorem.
 
-The input solution is a zonotope: Sec. IV of [1] restricts `U` to zonotopes, and every set the
-input part passes through is a linear image of `R^i_0` or a box, so nothing makes it a bundle.
-`box` is `Zonotope.interval` read back as a zonotope, and `R^h_k ⊕ P_k` is the sum of a bundle
-and a one-member bundle, [1, Prop. 2]. The listing's first two inputs are what a first step
-computes; they are arguments here, held to enclosing `R^h([0, t_1])` and `R^i([0, t_1])` by the
-soundness theorem. No float refinement: the step is the exact `e^{Ar}`.
+## Inputs
+* `sys` – linear system
+* `Rh₀` – initial homogeneous bundle
+* `Ri₀` – initial input zonotope
+* `r` – step length
+* `N` – number of steps
+
+## Output
+* reachable bundles of the steps
 
 ## References
 

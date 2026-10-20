@@ -11,6 +11,17 @@ public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 `e^{(a+b)A} = e^{aA} e^{bA}`: both factors are powers of the same matrix, so they commute and
 Mathlib's `exp_add_of_commute` applies. The window-by-window reach proofs split `e^{A(r+kr)}`
 into a step and the earlier windows with it.
+
+## Inputs
+* `A` – matrix
+* `a` – first scalar
+* `b` – second scalar
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exponential of a sum of multiples is the product of the exponentials
 -/
 
 -- Authors:       Claude Opus 5.5

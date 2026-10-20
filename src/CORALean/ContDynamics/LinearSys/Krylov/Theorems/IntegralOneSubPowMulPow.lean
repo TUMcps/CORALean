@@ -12,6 +12,16 @@ public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 of `φ_{p+1}` is integrated term by term against (4.1b), and [1, Thm. 2] when it integrates
 `Thm. 1`'s bound. By induction on `p`: `(1 - θ)^{p+1}θᵏ = (1 - θ)ᵖθᵏ - (1 - θ)ᵖθ^{k+1}`.
 
+## Inputs
+* `p` – power of one minus theta
+* `k` – power of theta
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Beta integral equals a ratio of factorials
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

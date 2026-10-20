@@ -13,6 +13,22 @@ public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
 `exp_mem_expIntervalFloat` puts `e^{A t/2^s}` in the base enclosure; then by
 induction `e^{A t 2^j/2^s}` is in the `j`-th square, since
 `e^{2xA} = e^{xA} e^{xA}` and `Interval.matMul_outer` holds a product of members.
+
+## Inputs
+* `sys` – linear system
+* `tLo` – lower time bound
+* `tHi` – upper time bound
+* `η` – Taylor order
+* `s` – number of squarings
+* `t` – time
+
+## Hypotheses
+* `hη` – order admissible for the halved range
+* `htLo` – time at least the lower bound
+* `htHi` – time at most the upper bound
+
+## Conclusion
+* the exponential at the time lies in the squared float enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

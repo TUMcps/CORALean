@@ -12,6 +12,19 @@ is verified, `some false` where it is falsified, `none` where `fuel` repeat-unti
 not reach a verdict. Line 1's "estimated from simulations" is left a parameter, `ε_max₀`. Soundness
 is `verifyFloat_safe` and `verifyFloat_violated`.
 
+## Inputs
+* `reachFn` – float reachable set as a function of the error
+* `innerApprox` – float inner approximation at an error
+* `distG` – distance to a safe polytope
+* `distF` – distance to an unsafe polytope
+* `G` – float safe polytopes
+* `F` – float unsafe polytopes
+* `εmax₀` – float initial maximal error
+* `fuel` – number of iterations
+
+## Output
+* verdict: verified, falsified, or undecided
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

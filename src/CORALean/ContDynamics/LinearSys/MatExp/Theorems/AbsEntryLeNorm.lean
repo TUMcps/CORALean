@@ -11,6 +11,19 @@ public import Mathlib.Analysis.Matrix.Normed
 Sound because under the `l∞` operator norm an entry never exceeds its row sum,
 and a row sum never exceeds the norm — the two `Finset` bounds chained here.
 Every entrywise enclosure in this directory reaches its bound through this.
+
+## Inputs
+* `m` – number of rows
+* `k` – number of columns
+* `M` – matrix
+* `i` – row index
+* `j` – column index
+
+## Hypotheses
+* none
+
+## Conclusion
+* an entry is at most the operator norm in magnitude
 -/
 
 -- Authors:       Claude Opus 5

@@ -8,17 +8,40 @@ public import CORALean.Specification.Theorems.ExistsRoundOfVerifyHalfspaceEqViol
 /-!
 # `[1, Alg. 2]`'s `unsafe` comes with a run that leaves the safe set
 
-`verifyHalfspace` run on the lower bounds of [1, Alg. 1 (lower bounds)] — line 16's
-`ρ(Ř(τ_k), H_(i,·)ᵀ)` at the step `Δt = t_end / 2^r` of round `r` — answers
-`violated` only from a round, step and row whose lower bound crossed `f_(i)`
-(`exists_round_of_verifyHalfspace_eq_violated`). There the counterexample of
-[1]'s Sec. 5.1, `supportCounterexample` at `t_k` or `t_{k+1}`, is a `IsTrajectory` of
-the system on the whole horizon `[0, t_end]` (`isTrajectory_heldInput`) whose state
-at that time violates row `i` of the safe set (`supportCounterexample_violates`).
+`verifyHalfspace` run on the lower bounds of [1, Alg. 1 (lower bounds)] (line 16's
+`ρ(Ř(τ_k), H_(i,·)ᵀ)` at the step `Δt = t_end / 2^r` of round `r`) answers `violated` only from a
+round, step and row whose lower bound crossed `f_(i)`
+(`exists_round_of_verifyHalfspace_eq_violated`). There the counterexample of [1]'s Sec. 5.1,
+`supportCounterexample` at `t_k` or `t_{k+1}`, is a `IsTrajectory` of the system on the whole
+horizon `[0, t_end]` (`isTrajectory_heldInput`) whose state at that time violates row `i` of the
+safe set (`supportCounterexample_violates`), so the answer is constructive: the falsifying initial
+state and piecewise-constant input are named.
 
-So the answer is not only sound, as `not_holds_safeSet_of_verifyHalfspace_violated`
-says of any witnesses, but constructive: the falsifying initial state and
-piecewise-constant input are named.
+## Inputs
+* `sys` – linear system
+* `R₀` – initial set
+* `U` – input set
+* `tEnd` – final time
+* `ν₀` – support vector map of the initial set
+* `νU` – support vector map of the input set
+* `c` – point of the input set
+* `ι` – index type of the halfspaces
+* `H` – halfspace normals
+* `f` – halfspace bounds
+* `bndUp` – upper bounds per round
+* `r` – round
+* `fuel` – number of iterations
+
+## Hypotheses
+* `hU` – input set bounded
+* `htEnd` – final time positive
+* `hν₀` – initial support vectors lie in the initial set
+* `hνU` – input support vectors lie in the input set
+* `hc` – point lies below the input support vectors
+* `h` – verification answers violated
+
+## Conclusion
+* a run is a trajectory on the horizon whose state violates a halfspace
 
 ## References
 

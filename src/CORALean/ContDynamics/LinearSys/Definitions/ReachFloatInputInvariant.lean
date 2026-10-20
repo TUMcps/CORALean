@@ -14,6 +14,18 @@ constant's contribution at `t_{k+1}`, `H(τ_k)` the same at every time of window
 `k`, `P^R(t_{k+1})` everything an admissible `Ũ`-input contributes by
 `t_{k+1}`, and the propagated one-step set the one-step contributions carried
 across `t_k`. The four sets the loop's state names, and what each must enclose.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `X₀` – initial states
+* `ũ` – constant input
+* `Ũ` – recentered input zonotope
+* `k` – number of passes
+* `s` – loop state of four zonotopes
+
+## Output
+* proposition that the state holds the four enclosures owed after the passes
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -17,6 +17,16 @@ stored center as `reachFloatInput` splits it, so `0 ∈ V` is not asked: the
 constant `ũ` contributes `inputSolutionFloat` of the segment `[0, ũ]`, the rest
 `Ũ = V - ũ ∋ 0` its own `inputSolutionFloat`, each covering every time up to `Δt`.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – float step length
+* `η` – Taylor order
+* `R` – float start zonotope
+* `V` – input float zonotope
+
+## Output
+* float zonotope of every state difference a step can span
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative

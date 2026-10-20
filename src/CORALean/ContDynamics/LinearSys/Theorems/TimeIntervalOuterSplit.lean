@@ -14,15 +14,12 @@ public import CORALean.ContSet.ContSet.Theorems.SmulMemLinCombOfPoint
 /-!
 # The step enclosure at a set whose input set misses the origin
 
-`timeInterval_outer_convexCompact` needs `0 ∈ U`, which no representation has
-to satisfy. `Recenter` takes the input set apart into a center and a
-remainder holding the origin, and `OfPoint` gives the constant its own
-singleton; `linComb (ofPoint 0) (ofPoint c)` is then the segment the constant
-is enclosed against, so no representation-specific development is needed.
-
-So [1, Alg. 3] — the extension of [1, Alg. 2] to an input set not containing
-the origin, split into a constant part and a zero-containing remainder —
-assumes nothing at all about where the input set sits, at every representation
+`timeInterval_outer_convexCompact` needs `0 ∈ U`, which no representation has to satisfy. `Recenter`
+takes the input set apart into a center and a remainder holding the origin, and `OfPoint` gives the
+constant its own singleton; `linComb (ofPoint 0) (ofPoint c)` is then the segment the constant is
+enclosed against, so no representation-specific development is needed. So [1, Alg. 3], the extension
+of [1, Alg. 2] to an input set not containing the origin, split into a constant part and a
+zero-containing remainder, assumes nothing about where the input set sits, at every representation
 with a center.
 
 ## References

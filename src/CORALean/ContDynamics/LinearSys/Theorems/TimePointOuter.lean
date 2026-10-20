@@ -15,6 +15,18 @@ the inductive hypothesis's point at `kΔt` carries to `(k+1)Δt` by
 of [1, Alg. 4]'s own recursion, `reachStepk_outer` the window it encloses from
 each one.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `X₀` – initial set
+* `k` – step index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exponential image of the initial set lies in the time-point set
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

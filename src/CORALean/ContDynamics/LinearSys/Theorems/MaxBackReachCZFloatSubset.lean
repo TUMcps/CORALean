@@ -15,6 +15,23 @@ in the right directions: a float polytope inside the exact one, and an exact sub
 the float one, leave the float difference inside the exact.
 The lines are those of [1, Alg. 3].
 
+## Inputs
+* `Bx` – conversion box
+* `P` – float polytope
+* `ZW` – float disturbance zonotope
+* `Pr` – exact polytope
+* `ZWr` – exact disturbance zonotope
+
+## Hypotheses
+* `ρ` – support oracle for exact polytopes
+* `hP` – float polytope inside the exact one
+* `hZ` – exact zonotope inside the float one
+* `hker` – equality rows of the float polytope vanish on the zonotope
+* `hkerr` – exact polytope has no equality rows
+
+## Conclusion
+* the float conversion lies inside the exact layer's conversion
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

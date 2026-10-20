@@ -15,6 +15,14 @@ The scalar exponential the step's error estimates are stated in, at `nrm`, the f
 `MatExp.normUpperBound` on `‖r A‖` the step's enclosures are taken at. `expUp p` is sound for
 `nrm ≤ 2^p / 2`; at an order `η` the float enclosures admit, `nrm ≤ (η + 2)/2`, so
 `p = log₂(η + 2) + 5` is enough, and halves the argument to under `1/32` before squaring.
+
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+
+## Output
+* float upper bound of the exponential of the scaled norm
 -/
 
 -- Authors:       Claude Sonnet 5.5

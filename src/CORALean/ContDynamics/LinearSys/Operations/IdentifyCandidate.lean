@@ -14,6 +14,16 @@ the columns of `X1`, their `dx` those of `X2`, and the candidate is `X2 W_k S_k�
 for an economy SVD `X1 = V S Wᵀ`, which is an argument.
 The source is [1].
 
+## Inputs
+* `dx` – state derivative data
+* `V` – singular vectors over the state-input space
+* `s` – singular values
+* `W` – singular vectors over the data points
+* `k` – rank
+
+## Output
+* candidate system matrix of the given rank
+
 ## References
 
 * [1] `contDynamics/@linearSys/private/priv_identifyDMD.m`

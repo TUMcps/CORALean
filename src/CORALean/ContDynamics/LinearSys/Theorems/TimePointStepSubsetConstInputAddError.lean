@@ -17,22 +17,28 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 /-!
 # What the step's end encloses beyond the states one held input reaches
 
-`timePointStep_outer` run backwards, and sharper than
-`timePointStep_subset_reach_add_error`: the exact point the enclosure is
-measured against is reached by an input *held* at one member of `U`, so the set
-on the right is `e^{Ar} X₀ ⊕ (∫₀^r e^{As} ds) U` and not the whole
-`inputReach`. Every operand is a zonotope image, so that set is convex and
-compact outright — which is what the inner approximation of a step needs and
-what `inputReach` itself cannot supply.
+`timePointStep_outer` run backwards, and sharper than `timePointStep_subset_reach_add_error`: the
+exact point the enclosure is measured against is reached by an input *held* at one member of `U`, so
+the set on the right is `e^{Ar} X₀ ⊕ (∫₀^r e^{As} ds) U` and not the whole `inputReach`. Every
+operand is a zonotope image, so that set is convex and compact outright, which is what the inner
+approximation of a step needs and what `inputReach` itself cannot supply. Two terms, and only one is
+the remainder. What the enclosure adds past the held-input point is each Taylor order free to pick
+its own input, which no trajectory is (second order in the step, untouched by the truncation order),
+and the orders past `η`, twice. Only the second is what [1] reduces.
 
-At `Zonotope`, where `plus` and `mtimes` are exact — the class obligations are
-one-directional, so nothing in this direction can be read off them.
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `X₀` – initial zonotope
+* `U` – input zonotope
 
-Two terms, and only one is the remainder. What the enclosure adds past the
-held-input point is: each Taylor order free to pick its own input, which no
-trajectory is — second order in the step, untouched by the truncation order —
-and the orders past `η`, twice, once in the truncation and once in
-`inputRemainder`'s box. Only the second is what [1] reduces.
+## Hypotheses
+* `hr` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the computed step lies in the held-input states widened by the error
 
 ## References
 

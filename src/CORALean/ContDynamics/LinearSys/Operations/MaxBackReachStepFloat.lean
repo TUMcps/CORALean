@@ -24,17 +24,27 @@ public import CORALean.ContSet.Zonotope.Float.Operations.PlusBox
 
 `maxBackReachStep` computed in `𝕋`, inside the exact layer's set (`maxBackReachStepFloat_encloses`).
 What is subtracted rounds towards a larger set and what is kept towards a smaller one; the margin
-between them is paid once, in line 10. Lines 8-10 are outer float sets with their excess recorded
-(`UErr`). `aux_maxBackReachErosionFloat` is the distance the hull keeps from the exact eroded set
-for line 12's map at an interval matrix, rounded, and for `Z̲_U`'s excess; `Ẑ_W(τ_k)` is widened by
-it, so line 11's erosion keeps that distance. Line 11 is `maxBackReachCZFloat`, whose hull
-`linCombSameCenter` is exact since both sets share the conversion box's center. Line 12's first
-summand is the hull's stored numbers mapped by the lower matrix of `[e^{-A t_{k+1}}]`
-(`mtimesNominal`), the second `[e^{-A t_{k+1}}] Z̲_U(t_k)` outer; the state keeps them apart.
+is paid once, in line 10. Lines 8-10 are outer float sets with their excess recorded (`UErr`).
+`aux_maxBackReachErosionFloat` is the distance the hull keeps from the exact eroded set for line
+12's map, rounded, and for `Z̲_U`'s excess; `Ẑ_W(τ_k)` is widened by it, so line 11's erosion keeps
+that distance. Line 11 is `maxBackReachCZFloat`, whose hull `linCombSameCenter` is exact since
+both sets share the conversion box's center. `none` when an order search fails or the box's center
+is not in a converted set (`ConZonotope.zeroFeasible`); the box `Bx` is the caller's.
 
-`none` when an order search fails or the box's center is not in a converted set
-(`ConZonotope.zeroFeasible`, which the hull needs). The box `Bx` is the caller's and decides only
-how much of each set the conversion covers.
+## Inputs
+* `sys` – linear system
+* `Bx` – conversion box
+* `P₁` – first eroded float polytope
+* `P₂` – second eroded float polytope
+* `U` – input float zonotope
+* `W₀` – initial disturbance float zonotope
+* `Zw` – center trajectory contribution over a bracket
+* `Δt` – float step length
+* `η` – Taylor order
+* `s` – float loop state
+
+## Output
+* next float loop state from the inside, if the step succeeds
 
 ## References
 

@@ -14,6 +14,13 @@ bound every matrix a whole box could hold. The Taylor box is widened by the rema
 taken at `A.absMax`, so the tail bound is checkable from the interval matrix alone rather than
 at whichever member of it a step turns out to hold.
 
+## Inputs
+* `A` – interval matrix
+* `η` – Taylor order
+
+## Output
+* interval matrix enclosing the exponential of every member
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

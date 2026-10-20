@@ -8,17 +8,29 @@ public import CORALean.ContDynamics.LinearSys.Operations.DeltaReach
 /-!
 # `deltaReach` contains every difference the step can span
 
-`timeIntervalStep_outer_at`'s statement about the *difference* rather than the
-state: at every `t` of `[0, r]`, `e^{At}x₀ - x₀` is in the set, and at `t = 0`
-that is the origin, which is what makes the anchored segment right.
+`timeIntervalStep_outer_at`'s statement about the *difference* rather than the state: at every `t`
+of `[0, r]`, `e^{At}x₀ - x₀` is in the set, and at `t = 0` that is the origin, which is what makes
+the anchored segment right. The split is the same one and by the same lemma: `e^{At} - I` is the
+straight line from `0` to `e^{Ar} - I` at weight `t/r`, plus `e^{At} - I - (t/r)(e^{Ar} - I)`, the
+very matrix `correctionMatrix` encloses, so the second-order term is paid for once and serves both
+statements. Homogeneous only: with a non-zero input the difference also picks up the input integral,
+which is `TrajectoryDeltaReachOuter`.
 
-The split is the same one and by the same lemma. `e^{At} - I` is the straight
-line from `0` to `e^{Ar} - I` at weight `t/r`, plus
-`e^{At} - I - (t/r)(e^{Ar} - I)` — the very matrix `correctionMatrix` encloses,
-so the second-order term is paid for once and serves both statements.
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `m` – Taylor order offset
+* `X₀` – initial set
+* `t` – time
 
-Homogeneous only: with a non-zero input the difference also picks up the input
-integral, which is `TrajectoryDeltaReachOuter`.
+## Hypotheses
+* `hr` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+* `ht0` – time nonnegative
+* `htr` – time within the step
+
+## Conclusion
+* every difference the flow spans lies in the delta reach set
 -/
 
 -- Authors:       Claude Opus 5

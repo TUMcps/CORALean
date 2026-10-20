@@ -18,6 +18,15 @@ no matrix inverse and no subtraction appear — the arrangement
 `inputSolution_timeInterval_outer_split` proves inline, named here so a window
 other than the first can reuse it.
 
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `uc` – constant input
+
+## Output
+* set of what the constant input contributes at any time of the step
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

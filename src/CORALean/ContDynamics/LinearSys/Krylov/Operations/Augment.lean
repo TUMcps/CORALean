@@ -13,6 +13,13 @@ public import Mathlib.Data.Real.Basic
 below, so that `x̃ = [x_p; x̌]` with `x̃(0) = [0ₙ; 1]` solves `ẋ_p = A x_p + u`, `x̌̇ = 0`. The last
 index of `Fin (n + 1)` is the appended one.
 
+## Inputs
+* `A` – system matrix
+* `u` – constant input
+
+## Output
+* augmented matrix with the input as last column
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

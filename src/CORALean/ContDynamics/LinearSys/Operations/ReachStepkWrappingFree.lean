@@ -12,6 +12,16 @@ later one is that same set carried forward by the exact flow to `t_k = k Δt`.
 The map is taken at `t_k` itself rather than composed `k` times from `e^{AΔt}`,
 so a representation that `mtimes` only encloses pays for it once per window,
 not once per step before it — the wrapping effect a recursion would compound.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `η` – Taylor order
+* `X₀` – initial set
+* `k` – window index
+
+## Output
+* set over the window carried from the first window
 -/
 
 -- Authors:       Claude Opus 5.5

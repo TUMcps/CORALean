@@ -19,6 +19,22 @@ remainder factor, and the series' own tail, each of them `O(Δt²)`.
 `Δt‖A‖ ≤ 1` is what makes the geometric factor in `expRemainderBound` at most
 `2` and `‖Δt·A‖^{η+1}` at most `‖Δt·A‖`, uniformly in the truncation order.
 
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `Δt` – step length
+* `ρ` – input norm bound
+* `η` – Taylor order
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hAΔ` – step times matrix norm at most one
+* `hne` – input set nonempty
+* `hρ` – input norms bounded
+
+## Conclusion
+* every point of the outer approximation is near the inner one
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

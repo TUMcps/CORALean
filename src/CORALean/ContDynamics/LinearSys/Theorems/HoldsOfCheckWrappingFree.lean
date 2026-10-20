@@ -15,6 +15,18 @@ directly rather than through the (now recursive) `LinearSys` instance of `Reach`
 `holds_of_outer`. A `true` is the specification on every state the homogeneous flow
 reaches from `X₀` by `tFinal`, at any `η`; `holds_of_check` is the same at the recursive
 `reach`, which `LinearSys.reachInstance` runs.
+
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters
+* `options` – step options
+* `spec` – specification
+
+## Hypotheses
+* `hΔt` – step length positive
+
+## Conclusion
+* a passed check on the wrapping-free reach implies the specification holds on the exact reach
 -/
 
 -- Authors:       Claude Opus 5.5

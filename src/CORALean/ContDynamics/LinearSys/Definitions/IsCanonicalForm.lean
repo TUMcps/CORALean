@@ -14,6 +14,12 @@ denote. `C` is left free, as the docstring (`y = Cx + v`) and `canonicalForm`'s 
 it; CORA's code also tests `C == eye(nrOfOutputs)`, see
 `references/coverage/contDynamics/linearSys.md`, row `isCanonicalForm`.
 
+## Inputs
+* `sys` – linear system
+
+## Output
+* proposition that the system is in canonical form
+
 ## References
 
 * [1] `contDynamics/@linearSys/isCanonicalForm.m`

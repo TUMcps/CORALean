@@ -12,6 +12,18 @@ Needed because a step's enclosure is built once, at one norm, and then has to
 bound the same tail at every point of a whole step: as long as the norm
 elsewhere in the step does not exceed the one the bound was computed at, the
 bound taken there still covers it.
+
+## Inputs
+* `x` – first matrix
+* `y` – second matrix
+* `η` – Taylor order
+
+## Hypotheses
+* `hxy` – first norm at most the second
+* `hy` – second norm small enough for the Taylor order
+
+## Conclusion
+* the remainder bound is monotone in the norm
 -/
 
 -- Authors:       Claude Opus 5

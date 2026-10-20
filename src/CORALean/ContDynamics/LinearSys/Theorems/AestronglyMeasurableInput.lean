@@ -11,6 +11,23 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 all of `T`, and a window inside `T` carries a smaller measure. `InputSolutionTimeIntervalOuter`
 composes this with `inputReach_mono`, and `InputSolutionTimeIntervalOuterSplit`
 subtracts the piece before an intermediate time from it.
+
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `a` – interval start
+* `b` – interval end
+
+## Hypotheses
+* `traj` – signal is a canonical trajectory
+* `hT` – interval lies in the time domain
+
+## Conclusion
+* the input is almost everywhere strongly measurable on the interval
 -/
 
 -- Authors:       Claude Opus 5

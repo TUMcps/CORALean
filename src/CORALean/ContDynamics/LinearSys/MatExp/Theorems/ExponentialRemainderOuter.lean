@@ -16,6 +16,17 @@ A member `M` of the box is dominated by `N = abs(intMat)` entrywise, so `|M|ⁱ 
 power (`pow_entry_le_pow_entry`) and the series tail at `|M|` is under the tail at `N`, term by
 term.
 
+## Inputs
+* `A` – interval matrix
+* `η` – Taylor order
+* `M` – member matrix
+
+## Hypotheses
+* `hM` – member lies in the interval matrix
+
+## Conclusion
+* the member's Taylor remainder lies in the remainder enclosure
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

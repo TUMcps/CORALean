@@ -11,15 +11,11 @@ public import CORALean.ContDynamics.LinearSys.Theorems.StepInputEqShifted
 /-!
 # `inputSolution` contains what the input contributed over a step
 
-[1, Thm. 1] applied to a trajectory, which is what turns the sampled
-guarantees' input enclosure from a hypothesis into a theorem.
-
-Every step has the same length, so the enclosing set does not depend on `k`:
-shifting `u` by `kΔt` leaves an integral over `[0, Δt]` of the same shape, and
-`inputSolution Δt η U` covers every step at once.
-
-The cost is convexity and closedness of `U`, which `ContSet` does not offer; a
-representation that cannot supply them keeps the general form, where the
+[1, Thm. 1] applied to a trajectory, which is what turns the sampled guarantees' input enclosure
+from a hypothesis into a theorem. Every step has the same length, so the enclosing set does not
+depend on `k`: shifting `u` by `kΔt` leaves an integral over `[0, Δt]` of the same shape, and
+`inputSolution Δt η U` covers every step at once. The cost is convexity and closedness of `U`, which
+`ContSet` does not offer; a representation that cannot supply them keeps the general form, where the
 enclosure stays a hypothesis.
 
 ## References

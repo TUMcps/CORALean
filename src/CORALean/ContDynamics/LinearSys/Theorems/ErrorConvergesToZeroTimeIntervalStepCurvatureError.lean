@@ -18,6 +18,17 @@ curvature term from `exp`'s own continuity, the remainder term from
 already takes for the combined `timeIntervalStepError`, read here at the
 non-hull half alone.
 
+## Inputs
+* `sys` – linear system
+* `η` – Taylor order
+* `X₀` – initial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the widening error converges to zero with the step
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

@@ -12,6 +12,16 @@ public import CORALean.ContSet.Zonotope.Real.Operations.LinComb
 `affineTimeIntervalOuter`: [1]'s eq. (22) `Ĥ(τ_k) = comb(H(t_k),H(t_{k+1})) ⊕ C`, Line 9 of
 [1, Alg. 1], with `C` the curvature set `curvatureEnclosure` already spells.
 
+## Inputs
+* `A` – system matrix
+* `H` – state zonotope
+* `ũ` – constant input
+* `Δt` – step length
+* `η` – Taylor order
+
+## Output
+* zonotope enclosing the time-interval solution of the affine dynamics
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

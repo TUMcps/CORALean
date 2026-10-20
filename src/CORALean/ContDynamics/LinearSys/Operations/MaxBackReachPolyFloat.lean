@@ -15,17 +15,22 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotop
 # `Alg. 3` lines 4-5 in floats: the eroded polytope
 
 `aux_maxBackReachPoly` computed in `𝕋`: [1, Alg. 3] lines 4-5, `X ⊖ F box(X_end) ⊖ B_μ`, one of the
-two polytopes of the inner approximated homogeneous time-interval solution (21). A difference
-is a guarantee, so this is where the float layer rounds **inward**: each inequality's bound is
-lowered by the subtrahend's support in that row's direction, rounded *up*
-(`HPolytope.minkDiffOf` takes the certificates and subtracts them rounded down), so the
-result is inside the exact difference. The first subtrahend, `F box(X_end)`, is the float
-zonotope an outer enclosure hands in — larger than the exact one, which shrinks the result
-further; the second, `B_μ`, is the ball of radius `max(0, μ)`.
+two polytopes of the inner approximated homogeneous time-interval solution (21). A difference is a
+guarantee, so the float layer rounds **inward**: each inequality's bound is lowered by the
+subtrahend's support in that row's direction, rounded *up* (`HPolytope.minkDiffOf` subtracts the
+certificates rounded down), so the result is inside the exact difference. The first subtrahend,
+`F box(X_end)`, is the float zonotope an outer enclosure hands in; the second, `B_μ`, is the ball
+of radius `max(0, μ)`. The supports are computed: the zonotope's through `ConZonotope.boundDot`
+(a check in ℚ, hence `ToRat 𝕋`), the ball's through `Capsule.boundDotUp` with `p` Newton steps.
 
-The supports are computed, not supplied: the zonotope's through `ConZonotope.boundDot` (a
-check in ℚ, hence `ToRat 𝕋`), the ball's through `Capsule.boundDotUp` with `p` Newton steps
-for the root.
+## Inputs
+* `p` – Newton steps per root
+* `X` – float polytope
+* `FB` – float zonotope of the correction box
+* `μ` – curvature radius
+
+## Output
+* float polytope inside the exact eroded polytope
 
 ## References
 

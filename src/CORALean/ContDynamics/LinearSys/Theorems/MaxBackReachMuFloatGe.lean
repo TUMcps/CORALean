@@ -20,6 +20,19 @@ e^{AΔt} - I` known to lie in `[e^{AΔt}] - I`, and the spectral norm of a matri
 Frobenius norm — Cauchy-Schwarz row by row. Stated against the exact layer's `μ` of the zonotope
 the float one stores.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – float step length
+* `η` – Taylor order
+* `p` – Newton steps per root
+* `B` – float target box zonotope
+
+## Hypotheses
+* `hη` – order admissible
+
+## Conclusion
+* the float curvature radius is at least the exact one
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

@@ -34,6 +34,23 @@ from `H(t_k)`, the second in the segment's input solution, and `d`, `Ũ` holding
 also a share by `t_{k+1}` (`inputReach_mono`), which `P̂^U(t_{k+1})` holds. That last claim,
 and those on `H` and `P^u`, are the invariant one step on, split at `t_k`.
 
+## Inputs
+* `sys` – linear system
+* `X₀` – initial float zonotope
+* `V` – input float zonotope
+* `Δt` – float step length
+* `η` – Taylor order
+* `ρ` – zonotope order
+* `s` – float loop state
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hη` – order admissible
+* `hinv` – state holds the invariant
+
+## Conclusion
+* the iteration keeps the invariant and its window holds every run
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

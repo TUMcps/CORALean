@@ -12,15 +12,19 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Plus
 /-!
 # Matrix zonotopes: enclosing the exponential of a matrix zonotope
 
-`expMatZonoEnclosure`: CORA's `expmInd` at [1, Sec. 3.3.2], which is what `expm` defers to:
-the finite Taylor sum kept as a matrix zonotope, and the tail bounded through the interval
-matrix the zonotope
-encloses, where no matrix-zonotope machinery is needed at all. The remainder is a box of one
-uniform width — `expRemainderBound` bounds a norm, not an entry — and becomes a matrix
-zonotope with one generator per entry.
+`expMatZonoEnclosure`: CORA's `expmInd` at [1, Sec. 3.3.2], which is what `expm` defers to: the
+finite Taylor sum kept as a matrix zonotope, and the tail bounded through the interval matrix the
+zonotope encloses, where no matrix-zonotope machinery is needed. The remainder is a box of one
+uniform width (`expRemainderBound` bounds a norm, not an entry) and becomes a matrix zonotope
+with one generator per entry. The order `η` is a choice, sound at any value: `expRemainderBound`
+widens to cover whatever the sum left out.
 
-The order `η` is a choice, sound at any value: `expRemainderBound` widens to
-cover whatever the sum left out.
+## Inputs
+* `M` – matrix zonotope
+* `η` – Taylor order
+
+## Output
+* matrix zonotope enclosing the exponential
 
 ## References
 

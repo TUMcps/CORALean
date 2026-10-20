@@ -15,6 +15,17 @@ contribution is in `H(τ_k)`, and the rest is one `Ũ`-input's contribution by
 `t` (`IsTrajectory.sub_mem_inputReach_recenter`), which is in `P^R(t_{k+1})`
 since `0 ∈ Ũ` lets the later window end bound it (`inputReach_mono`). No
 `0 ∈ U` is asked: the split took the center out.
+
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters with initial and input sets
+* `options` – reach options
+
+## Hypotheses
+* none
+
+## Conclusion
+* every run is in the time-interval set of its window
 -/
 
 -- Authors:       Claude Opus 5.5

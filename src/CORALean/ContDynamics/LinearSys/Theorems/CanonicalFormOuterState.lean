@@ -11,6 +11,23 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 `Ax + B(uVec + u) + c + E w` with `u ∈ U`, `w ∈ W` is `Ax + u'` [1] with `u' - u_` in `U_`: the
 centered sets carry what moves, `u_` the rest. Outer only, as the set operations are.
 
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `uVec` – input offset
+* `W` – disturbance set
+* `V` – noise set
+* `vVec` – noise offset
+* `u` – input value
+* `w` – disturbance value
+
+## Hypotheses
+* `hu` – input lies in its set
+* `hw` – disturbance lies in its set
+
+## Conclusion
+* the canonical state set holds the state input of every input and disturbance
+
 ## References
 
 * [1] `contDynamics/@linearSys/canonicalForm.m`

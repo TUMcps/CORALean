@@ -14,6 +14,17 @@ public import Mathlib.Algebra.Order.Star.Real
 the integral of `‖(e^{uA} C)ᵀ x‖²`. It is what lets Gaussians with this covariance be added and
 mapped as laws, as `[1, Prop. 4]` does.
 
+## Inputs
+* `A` – system matrix
+* `C` – noise matrix
+* `t` – time
+
+## Hypotheses
+* `ht` – time nonnegative
+
+## Conclusion
+* the noise covariance is positive semidefinite
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

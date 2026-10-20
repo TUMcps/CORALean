@@ -18,6 +18,15 @@ reads `ρ(Ř(τ₀), ℓ) = 3/2` there (`supportLower` at `k = 1`), while the ex
 `t ∈ [0, 1]` is `tU` (`reachSetExact_eq` with `e^{0} = I`), whose support function along `ℓ` over
 `τ₀ = [0, 1]` is `1`: a "lower bound" above the support function.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the line-16 value exceeds the support function, so it is no lower bound
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

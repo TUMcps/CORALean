@@ -13,6 +13,23 @@ At a time `t ∈ [t_k, t_k + Δt]`, `e^{At} = e^{A t_k} e^{Aτ}` with
 and `mtimes_outer` carries it to `R(τ_k) = e^{A t_k} R(τ_0)`. The window-level
 fact both `LinearSys.reachWrappingFree_outer` and `LinearSys.WithInput.reach_outer` are
 assembled from.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `m` – Taylor order offset
+* `X₀` – initial set
+* `k` – window index
+* `t` – time
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+* `hkt` – time at least the window start
+* `htk` – time within the window
+
+## Conclusion
+* the exponential image of the initial set lies in the window's set
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -17,6 +17,17 @@ the `dx`; the interpolation to a uniform step (`uniformTimeStepSize`) and the fi
 differences of `getDataPoints` are not modelled. Returns the system CORA's constructor builds,
 `ofABc`, the remaining matrices at their defaults. `'opt'` is `fmincon`.
 
+## Inputs
+* `lt` – strict comparison oracle on reals
+* `err` – error measure of a candidate
+* `dx` – state derivative data
+* `V` – singular vectors over the state-input space
+* `s` – singular values
+* `W` – singular vectors over the data points
+
+## Output
+* identified system, if a candidate passes the error test
+
 ## References
 
 * [1] `contDynamics/@linearSys/private/priv_identifyDMD.m`

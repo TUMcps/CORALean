@@ -12,6 +12,17 @@ collecting each step's report. Line 4's `while` is no Lean recursion, so the
 caller bounds the iterations, and a run that has not reached `t_f` within
 them is `none` rather than a partial cover.
 
+## Inputs
+* `sys` – linear system
+* `X₀` – initial float zonotope
+* `V` – input float zonotope
+* `t₀` – start time
+* `tf` – final time
+* `options` – adaptive options
+
+## Output
+* reports of the steps up to the final time, if the run completes
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

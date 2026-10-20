@@ -11,6 +11,14 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermFloat
 upwards, so the greatest value on `[a, b]` is at an endpoint, and the larger of the two endpoint
 upper bounds is one.
 
+## Inputs
+* `t` – float time
+* `a` – float box lower end
+* `b` – float box upper end
+
+## Output
+* float upper bound of the diagonal factor on the box
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

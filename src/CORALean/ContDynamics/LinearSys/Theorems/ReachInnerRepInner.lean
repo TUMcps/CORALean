@@ -16,6 +16,26 @@ the Minkowski difference, and that difference *is* `reachInner`.
 `none`. The zonotope returned can also be a point, where the accumulated error
 has nearly outgrown the run — a statement about the enclosures and reductions,
 not about the system.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – sampling step
+* `η` – Taylor order
+* `o` – zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – number of steps
+* `M` – generator representation
+* `D` – returned zonotope
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+* `ho` – zonotope order positive
+* `hD` – the inner approximation returned the zonotope
+
+## Conclusion
+* the returned zonotope lies in the exact reachable set at the time
 -/
 
 -- Authors:       Claude Opus 5.5

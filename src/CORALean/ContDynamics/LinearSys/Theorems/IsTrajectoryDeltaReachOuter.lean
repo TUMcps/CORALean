@@ -8,17 +8,38 @@ public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 /-!
 # A run's state difference over a step lies in `deltaReach`
 
-CORA's `Rdelta = Rhom + RV`, and the guarantee that makes it usable: the
-difference `x(t) - x(0)` between a state of the step and the state the step
-started from, at every `t` of `[0, r]` and not only at its ends.
+CORA's `Rdelta = Rhom + RV`, and the guarantee that makes it usable: the difference `x(t) - x(0)`
+between a state of the step and the state the step started from, at every `t` of `[0, r]` and not
+only at its ends. The closed form splits the difference the same way it splits the state, into what
+the initial set carries and what the inputs contributed, and the *same* input enclosure serves both,
+the integral being unchanged by subtracting `x(0)`. So a caller already discharging `hUd` for
+`timeInterval_outer` pays nothing more. Integrability is not a hypothesis; `InputIntegrable` derives
+it from `U` being bounded.
 
-The closed form splits the difference the same way it splits the state — what
-the initial set carries and what the inputs contributed — and the *same* input
-enclosure serves both, the integral being unchanged by subtracting `x(0)`. So a
-caller already discharging `hUd` for `timeInterval_outer` pays nothing more.
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `Ud` – set holding the input integral
+* `x` – state trajectory
+* `u` – input signal
+* `r` – step length
+* `m` – Taylor order offset
+* `t` – time
 
-Integrability is not a hypothesis; `InputIntegrable` derives it from `U` being
-bounded.
+## Hypotheses
+* `traj` – signal is a canonical trajectory
+* `hr` – step length positive
+* `hT` – step lies in the time domain
+* `hε` – scaled norm small enough for the Taylor order
+* `ht0` – time nonnegative
+* `htr` – time within the step
+* `hU` – input set bounded
+* `hUd` – input integral lies in its set
+
+## Conclusion
+* the state difference lies in the delta reach set plus the input set
 -/
 
 -- Authors:       Claude Opus 5

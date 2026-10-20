@@ -15,6 +15,14 @@ the precision `inputSolution`'s set-valued form throws away, by admitting a
 different point of the input set at each step rather than the one a zero-order
 hold actually holds. `StepInputConstEq` is what makes the two agree when `u`
 is that constant.
+
+## Inputs
+* `sys` – linear system
+* `c` – constant input
+* `Δt` – step length
+
+## Output
+* contribution of the constant input over the step
 -/
 
 -- Authors:       Claude Opus 5

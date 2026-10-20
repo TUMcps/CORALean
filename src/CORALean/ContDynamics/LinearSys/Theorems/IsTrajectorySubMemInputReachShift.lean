@@ -19,6 +19,27 @@ run whose inputs satisfy `w(s) - u₀ ∈ U` has `x(t) = e^{At} x(0) + ∫₀ᵗ
 contribution, `inputReach U t`. This is how CORA's `oneStep` takes its input [1, Sec. 3.3]: a
 constant vector `u` and a set `U` beside it.
 
+## Inputs
+* `sys` – linear system
+* `T` – horizon
+* `R₀` – initial set
+* `W` – wider input set
+* `U` – shifted input set
+* `x` – state trajectory
+* `u` – input signal
+* `u₀` – constant input
+* `t` – time
+
+## Hypotheses
+* `traj` – signal is a canonical trajectory
+* `hWU` – shifted inputs lie in the shifted set
+* `hW` – wider input set bounded
+* `hU` – shifted input set bounded
+* `ht` – time within the horizon
+
+## Conclusion
+* the run minus free motion and constant contribution lies in the shifted input reach
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

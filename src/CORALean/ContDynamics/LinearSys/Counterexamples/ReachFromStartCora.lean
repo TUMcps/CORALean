@@ -25,6 +25,15 @@ Read from the source, not run.
 For `linearSys(0,0,1)` (`ẋ = 1`), `R0 = {0}`, `U = {0}`, `timeStep = 1`, `tFinal = 3`, `linAlg =
 'fromStart'`: `e = 1`, `Pu_0 = 1`, and the time-point sets of CORA are `{1}, {1}, {1}`, where the
 state is `1, 2, 3` at the three time points.
+
+## Inputs
+* `k` – step index
+
+## Hypotheses
+* none
+
+## Conclusion
+* from the second step on the state lies outside CORA's set
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -21,6 +21,23 @@ of `M` and every `t ∈ [0, r]`, `e^{tA} - 1 - (t/r)(e^{rA} - 1)` lies in
 term: `A^i` lies in the `i`-th matrix-zonotope power (`Zonotope.matPow_outer`),
 hence in its box, so each order's term at `A` is inside the boxed term; and the
 member lies in `M`'s box, so its tail bound is under the box's.
+
+## Inputs
+* `M` – matrix zonotope
+* `r` – step length
+* `m` – Taylor order offset
+* `A` – member matrix
+* `t` – time
+
+## Hypotheses
+* `hr` – step length positive
+* `hε` – dominating norm small enough for the Taylor order
+* `hA` – member lies in the matrix zonotope
+* `ht0` – time nonnegative
+* `htr` – time within the step
+
+## Conclusion
+* the member's interpolation error lies in the matrix-zonotope correction matrix
 -/
 
 -- Authors:       Claude Opus 5.5

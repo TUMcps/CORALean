@@ -10,6 +10,12 @@ public import CORALean.Global.Float.FloatOps
 
 `LinearSys.canonical` at a float scalar, whose `0` and `1` are `FloatOps`'s own rather than
 `Zero` and `One` instances: `(A, I, 0, I, 0, 0, 0, I)`, every entry exact.
+
+## Inputs
+* `A` – float system matrix
+
+## Output
+* linear system in canonical form with the given float matrix
 -/
 
 -- Authors:       Claude Opus 5.5

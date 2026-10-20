@@ -23,6 +23,14 @@ hence `ToRat 𝕋`), so it is inside the exact eroded polytope. The conversion [
 `HPolytope.conZonotopeInner`, inner where the paper's is exact, at the caller's box `Bx`, which
 decides only how much of the polytope the result covers, never whether it stays inside.
 
+## Inputs
+* `Bx` – conversion box
+* `P` – float polytope
+* `ZW` – float disturbance zonotope
+
+## Output
+* constrained zonotope inside the eroded polytope
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

@@ -14,6 +14,13 @@ arithmetic: CORA's `iPow{i}*(r/factorial(i+1))` in `priv_highOrderMappingMatrix`
 `@linParamSys`, where `iPow{i}` is the `i`-th power of the system matrix times the step.
 `expIntervalTaylorTail`'s recursion, with the input's coefficient; below order three there
 are none.
+
+## Inputs
+* `B` – interval matrix
+* `r` – step length
+
+## Output
+* interval matrix of the input series terms from order three
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,17 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 `nrm ≤ (η + 2)/2` in the float reading gives `nrm / (η + 2) ≤ 1/2` in ℝ: the side condition
 of the float remainder bound of [1]'s truncation order.
 
+## Inputs
+* `𝕋` – float type
+* `nrm` – float norm bound
+* `k` – order
+
+## Hypotheses
+* `h` – float comparison certifies the bound
+
+## Conclusion
+* the certified float condition implies the real side condition
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

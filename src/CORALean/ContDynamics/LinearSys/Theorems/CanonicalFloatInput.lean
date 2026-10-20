@@ -11,6 +11,15 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 At `LinearSys.canonicalFloat A`, `B = I` and `c = 0`, so the input term `B u + c` of the full
 equation is `u` itself, after rounding nothing: `toReal one = 1` and `toReal zero = 0`. What the
 float reaches read off the system (`inputSetFloat`) is then the input set unchanged.
+
+## Inputs
+* `A` – float system matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the canonical form's input term is the identity map
 -/
 
 -- Authors:       Claude Opus 5.5

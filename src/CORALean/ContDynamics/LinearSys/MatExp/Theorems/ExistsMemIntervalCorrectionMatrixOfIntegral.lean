@@ -8,16 +8,34 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSubPeanoBakerS
 /-!
 # A run inside a box, between the two ends of a step, is CORA's interpolation
 
-`expDiff_mem_intervalCorrectionMatrix` for a matrix that varies in time. A
-solution of `x(s) = x(0) + ∫₀ˢ A(σ) x(σ) dσ` on `[0, r]`, every `A(σ)` in `B`, is
-at every `t ∈ [0, r]` the straight line `(1 - λ) x(0) + λ Φ x(0)` from its start
-to a member `Φ` of the step's exponential enclosure, plus `F x(0)` for a member `F`
-of the correction matrix, `λ = t / r` — the very two interval matrices
-`'constParam'` uses, which is what CORA's `initReach` computes for `'varParam'`.
+`expDiff_mem_intervalCorrectionMatrix` for a matrix that varies in time. A solution of
+`x(s) = x(0) + ∫₀ˢ A(σ) x(σ) dσ` on `[0, r]`, every `A(σ)` in `B`, is at every `t ∈ [0, r]` the
+straight line `(1 - λ) x(0) + λ Φ x(0)` from its start to a member `Φ` of the step's exponential
+enclosure, plus `F x(0)` for a member `F` of the correction matrix, `λ = t / r`: the two interval
+matrices `'constParam'` uses, which is what CORA's `initReach` computes for `'varParam'`.
+`MatExp.norm_sub_peanoBakerSum_le` bounds what the first `η + 1` Peano–Baker terms miss at `t`,
+and `exists_mem_intervalCorrectionMatrix_of_remainder` is the rest.
 
-`MatExp.norm_sub_peanoBakerSum_le` bounds what the first `η + 1` Peano–Baker terms
-miss at `t`, and `MatExp.exists_mem_intervalCorrectionMatrix_of_remainder` is the
-rest: the terms are the interpolation, the miss is the correction's widening.
+## Inputs
+* `B` – interval matrix
+* `A` – time-varying matrix
+* `x` – run
+* `r` – step length
+* `m` – Taylor order offset
+* `t` – time
+
+## Hypotheses
+* `hA` – matrix entries integrable
+* `hAB` – matrix stays in the box
+* `hr` – step length positive
+* `hxc` – run continuous on the step
+* `hx` – run solves the integral equation
+* `hε` – scaled norm small enough for the Taylor order
+* `ht0` – time nonnegative
+* `htr` – time within the step
+
+## Conclusion
+* the run is the interpolation plus a correction member applied to its start
 -/
 
 -- Authors:       Claude Opus 5.5

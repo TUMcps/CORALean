@@ -17,6 +17,27 @@ is asymptotically correct. As in [1]: `p = 0` is `Prop. 1`, `Thm. 1` and `Prop. 
 `∫₀¹(1 - θ)^{p-1}θᵐdθ = m!(p-1)!/(m+p)!`. `φ_p` is the series (4.1a); the asymptotic statements
 hold for any `A`, the correctness of the bound as `t → 0⁺`.
 
+## Inputs
+* `A` – matrix
+* `V` – Krylov basis
+* `T` – Hessenberg matrix
+* `τ` – next subdiagonal entry
+* `σ` – unit scaling
+* `w` – next vector
+* `p` – φ-function index
+
+## Hypotheses
+* `hK` – Krylov identity holds
+* `hV` – basis has orthonormal columns
+* `hVw` – next vector orthogonal to the basis
+* `hτ` – subdiagonal entry nonnegative
+* `hw` – next vector has unit norm
+* `hH` – Hessenberg matrix is upper Hessenberg
+* `hσ` – scaling has modulus one
+
+## Conclusion
+* the φ-function error is at most the bound Err_a
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

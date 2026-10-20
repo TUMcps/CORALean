@@ -15,6 +15,17 @@ The square scaled by `r²` and `I + M r + ½ M² r²` of every `M` in the box li
 `intH`: the first is `exactSquare_outer`, the second `expW_mem_expIntervalW`, and rebuilding an
 interval from its center and radius, with the identity added to the center, changes neither.
 Tightness of both is `exactSquare_entry_exact` and `expIntervalW_attained`.
+
+## Inputs
+* `A` – interval matrix
+* `r` – step length
+* `M` – member matrix
+
+## Hypotheses
+* `hM` – member lies in the interval matrix
+
+## Conclusion
+* the exact terms of the member lie in the dependent terms
 -/
 
 -- Authors:       Claude Sonnet 5.5

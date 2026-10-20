@@ -17,6 +17,19 @@ term the product rule leaves behind is exactly what `A *ᵥ x(s)` cancels
 against. Shared between `VariationOfConstants`, where it gives the closed
 form outright, and `InputIntegrable`, where it says the integrand there is
 itself a derivative.
+
+## Inputs
+* `A` – matrix
+* `x` – state signal
+* `u` – input signal
+* `T` – time domain
+* `t` – time
+
+## Hypotheses
+* `hx` – state has the derivative within the time domain
+
+## Conclusion
+* the substituted trajectory has the derivative of the propagated input
 -/
 
 -- Authors:       Claude Opus 5

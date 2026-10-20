@@ -20,6 +20,22 @@ is `I + M + ½ M²` of the member, and the zonotope powers from the square (`pow
 one at a time. The second part holds the rest of the series, `e^M - Σ_{i ≤ k} Mⁱ/i!`
 (`expmFrom_outer` from order `k + 1`), started at the product of the box of the zonotope with the
 box of its last power, which contains `M * Mᵏ`. Their sum encloses `e^M`.
+
+## Inputs
+* `Z` – matrix zonotope
+* `r` – step length
+* `k` – intermediate order
+* `η` – Taylor order
+* `M` – member matrix
+
+## Hypotheses
+* `hr` – step length nonzero
+* `hk` – intermediate order at least two
+* `hη` – intermediate order below the Taylor order
+* `hM` – member lies in the matrix zonotope
+
+## Conclusion
+* the member's Taylor sum and series rest lie in the two parts
 -/
 
 -- Authors:       Claude Sonnet 5.5

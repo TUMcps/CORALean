@@ -13,6 +13,21 @@ public import Mathlib.Algebra.BigOperators.Group.Finset.Defs
 The loops of `expm` add one enclosure per Taylor order to the accumulated interval matrix. A
 point of the start and a point of every added enclosure sum to a point of the result: induction
 on the length, peeling the last index with `List.range'_concat`, against `plus_outer`.
+
+## Inputs
+* `f` – term enclosures
+* `x` – terms
+* `s` – start index
+* `m` – number of terms
+* `acc` – initial enclosure
+* `a` – initial member
+
+## Hypotheses
+* `hx` – each term lies in its enclosure
+* `ha` – initial member lies in the initial enclosure
+
+## Conclusion
+* the fold of enclosures encloses the sum
 -/
 
 -- Authors:       Claude Sonnet 5.5

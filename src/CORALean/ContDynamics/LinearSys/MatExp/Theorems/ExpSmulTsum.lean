@@ -14,6 +14,16 @@ public import Mathlib.Analysis.Matrix.Normed
 series in `A` alone, with the scalar folded into the coefficient. That is the
 shape a difference of two such series needs, since `A^i` then matches between
 them term by term.
+
+## Inputs
+* `A` – matrix
+* `t` – time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the scaled exponential is a series in the unscaled matrix
 -/
 
 -- Authors:       Claude Opus 5

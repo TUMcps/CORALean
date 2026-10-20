@@ -14,6 +14,17 @@ The identity behind [1, Lemma IV.1]: `C̃ = [A u; 0 0]` maps `[x; c]` to `[Ax + 
 `C̃^{k+1} [0ₙ; 1] = [Aᵏ u; 0]`. It reads the exponential of `C̃` on `[0ₙ; 1]` as the input
 solution, and the Krylov Taylor terms of [1, Thm. IV.2] as `A^{j-1} u`.
 
+## Inputs
+* `A` – system matrix
+* `u` – constant input
+* `k` – power
+
+## Hypotheses
+* none
+
+## Conclusion
+* the augmented power gives the exact Taylor term and a zero last entry
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

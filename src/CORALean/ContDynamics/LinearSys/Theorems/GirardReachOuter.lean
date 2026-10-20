@@ -18,6 +18,23 @@ one of the `N = ⌈T/r⌉` windows, so `T` need not be a multiple of `r`.
 
 `R_[0,T](I)` is the union of `Φ_t(I)` over `t ∈ [0, T]`, as Sec. 3 of [1] defines it.
 
+## Inputs
+* `sys` – linear system
+* `I` – initial zonotope
+* `U` – input zonotope
+* `μ` – input norm bound
+* `r` – step length
+* `T` – time horizon
+
+## Hypotheses
+* `hA` – matrix norm positive
+* `hr` – step length positive
+* `hμ` – input bound nonnegative
+* `hU` – input set is the ball of that radius
+
+## Conclusion
+* the reachable set lies in the union of the zonotopes
+
 ## References
 
 * [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid

@@ -12,6 +12,18 @@ public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
 `MatExp.admissibleOrder_spec` at the norm bound `reachOrderFloat` searches with,
 which is the one `OrderAdmissibleFloat` names; the search starts at `max η 2`,
 so the order is at least `2` and at least `η`.
+
+## Inputs
+* `sys` – linear system
+* `tLo` – lower time bound
+* `tHi` – upper time bound
+* `η` – starting Taylor order
+
+## Hypotheses
+* none
+
+## Conclusion
+* every returned order is admissible and at least the one asked
 -/
 
 -- Authors:       Claude Opus 5.5

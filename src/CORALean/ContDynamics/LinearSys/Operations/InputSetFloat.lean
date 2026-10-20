@@ -15,6 +15,13 @@ inputs read it: `B U ⊕ c`, with `B` and `c` the system's and `U` in input coor
 `W = {0}`, CORA's default `params.W`), so `B U ⊕ c` is the whole input. `c` enters as a point
 without generators, so the order of `B U` is kept. Soundness is `inputSetFloat_outer`.
 
+## Inputs
+* `sys` – linear system
+* `U` – input float zonotope
+
+## Output
+* float zonotope of the input in state coordinates
+
 ## References
 
 * [1] `contDynamics/@linearSys/canonicalForm.m`

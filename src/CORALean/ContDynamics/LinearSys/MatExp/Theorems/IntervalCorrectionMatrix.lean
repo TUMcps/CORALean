@@ -14,16 +14,30 @@ public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 /-!
 # The interpolation error of every member lies in the box's correction matrix
 
-`expDiff_mem_correctionMatrix` at a matrix drawn from an interval matrix rather
-than at the one the system stores. The point statement is not weakened: it is
-applied at the member `M` and then read off entrywise, `min` and `max` being
-monotone, so the finite orders widen from `corrTerm M` to what
-`intervalCorrTerm` spans and the tail from the bound at `r • M` to the one at
-the dominating matrix of `r • A`.
+`expDiff_mem_correctionMatrix` at a matrix drawn from an interval matrix rather than at the one
+the system stores. The point statement is not weakened: it is applied at the member `M` and read
+off entrywise, `min` and `max` being monotone, so the finite orders widen from `corrTerm M` to
+what `intervalCorrTerm` spans and the tail from the bound at `r • M` to the one at the dominating
+matrix of `r • A`. **`hε` is stated at the box, not at `M`**, as in `ExpIntervalEnclosure`: it
+has to be checkable from the interval matrix alone, and `norm_le_absMax` turns it into the
+condition the point theorem needs.
 
-**`hε` is stated at the box, not at `M`**, as in `ExpIntervalEnclosure`: it
-has to be checkable from the interval matrix alone, and `norm_le_absMax` is what
-turns it into the condition the point theorem needs.
+## Inputs
+* `A` – interval matrix
+* `r` – step length
+* `m` – Taylor order offset
+* `M` – member matrix
+* `t` – time
+
+## Hypotheses
+* `hr` – step length positive
+* `hε` – dominating norm small enough for the Taylor order
+* `hM` – member lies in the interval matrix
+* `ht0` – time nonnegative
+* `htr` – time within the step
+
+## Conclusion
+* the member's interpolation error lies in the box's correction matrix
 -/
 
 -- Authors:       Claude Opus 5

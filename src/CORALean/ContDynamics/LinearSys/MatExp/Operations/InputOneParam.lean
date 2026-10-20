@@ -16,6 +16,17 @@ by a zonotope". Done here as that proof does it: the coefficient `u_k` of `βᵏ
 `Σ_i Aⁱ(β) r^{i+1}/(i+1)!` from the `D_i`, `F_i^{(k)}`, then `w_k = u_k c_c + u_{k-1} g_c` of `βᵏ`
 once `c(β)` is applied (degree `η + 1`), then `Zonotope.ofOneParamPoly`, halving the even powers.
 
+## Inputs
+* `C` – center matrix
+* `G` – generator matrix
+* `c_c` – input center
+* `g_c` – input generator
+* `r` – step length
+* `η` – Taylor order
+
+## Output
+* zonotope enclosing the input solution of the one-parameter family
+
 ## References
 
 * [1] M. Althoff and J. M. Dolan. "Reachability Computation of Low-Order Models for the Safety

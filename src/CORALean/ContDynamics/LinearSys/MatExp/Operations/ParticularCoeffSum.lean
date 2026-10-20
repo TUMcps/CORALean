@@ -11,6 +11,15 @@ public import Mathlib.Order.Interval.Finset.Nat
 `particularCoeffSum`: `Σᵢ₌ᵢ₀^η Ãᵢ`: the single matrix [1]'s eq. (25)'s correlated summand
 applies to `U0` once.
 
+## Inputs
+* `A` – system matrix
+* `Δt` – step length
+* `i0` – start index
+* `η` – Taylor order
+
+## Output
+* sum of the coefficient matrices from the start index
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

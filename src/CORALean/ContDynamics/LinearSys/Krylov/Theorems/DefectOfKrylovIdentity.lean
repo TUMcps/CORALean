@@ -15,6 +15,21 @@ algebra and holds for every vector `y` in place of `e^{σsT_m}e₁`; over any co
 for the complex `A`, `T_m`, `σ` of [1]. The integral of its norm is the error bound (3.1b) that
 [1, Thm. 1] estimates.
 
+## Inputs
+* `A` – matrix
+* `V` – Krylov basis
+* `T` – Hessenberg matrix
+* `τ` – next subdiagonal entry
+* `σ` – time scale
+* `w` – next vector
+* `y` – coefficient vector
+
+## Hypotheses
+* `hK` – Krylov identity holds
+
+## Conclusion
+* the defect is a multiple of the next Krylov vector
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

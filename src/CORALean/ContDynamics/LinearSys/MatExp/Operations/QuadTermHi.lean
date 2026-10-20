@@ -10,6 +10,14 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTerm
 `quadTermHi`: the greatest value [1, Prop. 4]'s `quadTerm t` takes on `[a, b]`, always at
 an endpoint since the parabola opens upwards.
 
+## Inputs
+* `t` – time
+* `a` – box lower end
+* `b` – box upper end
+
+## Output
+* greatest value of the diagonal factor on the box
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

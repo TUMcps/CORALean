@@ -12,6 +12,14 @@ public import Mathlib.Analysis.Matrix.Normed
 
 `genMinus`: [1]'s eq. (23) `G^{(-)}_h = (e^{AΔt} - I_n)G_h`, one column per generator.
 
+## Inputs
+* `A` – system matrix
+* `H` – state zonotope
+* `Δt` – step length
+
+## Output
+* generator columns of the propagated minus the initial zonotope
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

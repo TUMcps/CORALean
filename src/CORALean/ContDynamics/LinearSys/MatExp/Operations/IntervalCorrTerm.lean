@@ -18,6 +18,14 @@ The finite orders are CORA's `priv_tie` of `@linParamSys`: the interval
 the dependency loss, as in `IntervalEnclosures`: it admits products of
 different members at each factor.
 
+## Inputs
+* `A` – interval matrix
+* `r` – step length
+* `i` – order index
+
+## Output
+* interval matrix of the order's correction term over the box
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

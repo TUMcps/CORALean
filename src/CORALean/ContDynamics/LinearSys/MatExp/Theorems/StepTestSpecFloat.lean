@@ -15,6 +15,20 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundF
 `r · expRemainderBound q η` is strictly under `ε`, which `expRemainderBound_le` at `q` and
 `mul_le_mulUp` bring down to the contribution of `StepAdmissible`, [1]'s step predicate.
 
+## Inputs
+* `A` – system matrix
+* `nrm` – float norm bound
+* `ε` – float admissible error
+* `r` – float candidate step
+* `η` – Taylor order
+
+## Hypotheses
+* `hA` – matrix norm under the float bound
+* `h` – the step test passes
+
+## Conclusion
+* the candidate step is admissible
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

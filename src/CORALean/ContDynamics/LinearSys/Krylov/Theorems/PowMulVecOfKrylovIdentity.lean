@@ -13,6 +13,22 @@ induction on `j`: `A V_m x = V_m T_m x + τ_{m+1,m} x_m v_{m+1}`, and `x = T_mʲ
 for `j ≤ m - 2` (`hessenberg_pow_apply_eq_zero`, (2.3)). Over any commutative ring, so for
 the complex `A` and `T_m` of [1]; no orthogonality of `V_m` is needed.
 
+## Inputs
+* `A` – matrix
+* `V` – Krylov basis
+* `T` – Hessenberg matrix
+* `τ` – next subdiagonal entry
+* `w` – next vector
+* `j` – power
+
+## Hypotheses
+* `hT` – Hessenberg matrix is upper Hessenberg
+* `hK` – Krylov identity holds
+* `hj` – power at most the Krylov order
+
+## Conclusion
+* the matrix power on the first basis vector is the Hessenberg power image
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

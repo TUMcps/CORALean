@@ -20,16 +20,28 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 /-!
 # `inputSolutionFloat` reaches no further than the exact input solution, plus a box
 
-The upper side of `inputSolutionFloat`'s outer guarantee, which is what an
-inner approximation run in floats needs: the float enclosure lies in the exact
-`inputSolution` at `U`'s nominal zonotope, widened by `inputSolutionBoxFloat`.
+The upper side of `inputSolutionFloat`'s outer guarantee, which is what an inner approximation run
+in floats needs: the float enclosure lies in the exact `inputSolution` at `U`'s nominal zonotope,
+widened by `inputSolutionBoxFloat`. Order by order, `mtimesIntervalMat_subset_add_box` at the exact
+`Tᵢ` (a member of `[Tᵢ]`) writes a point of `[Tᵢ] U` as `Tᵢ (a + e) + b`, `a` in the nominal
+zonotope, `e` in `U`'s error box; `Tᵢ e` lies in `[Tᵢ]` applied to that box. The float sums pay
+`plus_subset_add_box`. The remainder product is taken through the zero matrix, which lies in both
+remainder intervals, so the exact remainder term holds the `0` its float counterpart is measured
+against.
 
-Order by order, `mtimesIntervalMat_subset_add_box` at the exact `Tᵢ` (a member of
-`[Tᵢ]`) writes a point of `[Tᵢ] U` as `Tᵢ (a + e) + b`, `a` in the nominal
-zonotope, `e` in `U`'s error box; `Tᵢ e` lies in `[Tᵢ]` applied to that box. The
-float sums pay `plus_subset_add_box`. The remainder product is taken through the
-zero matrix, which lies in both remainder intervals, so the exact remainder term
-holds the `0` its float counterpart is measured against.
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `U` – input float zonotope
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hη` – order admissible
+* `hU` – error box contains zero
+
+## Conclusion
+* the float input solution lies in the exact one plus the excess box
 -/
 
 -- Authors:       Claude Opus 5.5

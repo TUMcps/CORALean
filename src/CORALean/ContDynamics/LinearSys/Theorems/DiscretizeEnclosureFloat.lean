@@ -15,6 +15,28 @@ public import CORALean.ContSet.Interval.Float.Instances
 real one: `step` witnesses the exact `e^{AΔt}`, which lies in `[e^{AΔt}]` by
 `exp_mem_expIntervalFloat` at an order admissible for `[Δt, Δt]`. The sampling
 is the exact one, at the real time `toReal Δt` the float denotes.
+
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `Ud` – sampled input set
+* `x` – state trajectory
+* `u` – input signal
+* `Δt` – float sampling step
+* `η` – Taylor order
+
+## Hypotheses
+* `traj` – signal is a canonical trajectory
+* `hΔt` – step length nonnegative
+* `hT` – time domain contains the nonnegative reals
+* `hU` – input set bounded
+* `hUd` – step inputs lie in the sampled input set
+* `hη` – order admissible
+
+## Conclusion
+* the sampled trajectory is a trajectory of the float-sampled system
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

@@ -17,6 +17,28 @@ outright, on the algorithm's own initial state and no assumption about it.
 Line 1's `Δt_{-1} ← t_end` is also what makes the halving sweep start from a positive
 step, so `0 < t_end` does the work of two hypotheses here.
 
+## Inputs
+* `sys` – linear system
+* `le` – comparison oracle on reals
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `tend` – final time
+* `εmax` – admissible error
+* `ζ` – error budget share
+* `ηmax` – maximal Taylor order
+
+## Hypotheses
+* `hle` – comparison oracle is complete
+* `hn` – dimension positive
+* `htpos` – final time positive
+* `hεmax` – admissible error positive
+* `hζ0` – error share nonnegative
+* `hζ1` – error share below one
+* `hηmax` – maximal order at least one
+
+## Conclusion
+* some fuel makes the first iteration report a step
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

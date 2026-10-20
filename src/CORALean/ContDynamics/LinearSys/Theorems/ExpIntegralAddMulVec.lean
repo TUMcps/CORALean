@@ -14,6 +14,19 @@ public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 `t = t_k + τ` is therefore what it contributes by `τ`, carried across `t_k`,
 plus what it contributed by `t_k` — the recursion a windowed reach set of a
 constant input runs on.
+
+## Inputs
+* `A` – system matrix
+* `v` – vector
+* `a` – first window length
+* `b` – second window length
+
+## Hypotheses
+* `ha` – first length nonnegative
+* `hb` – second length nonnegative
+
+## Conclusion
+* the joined-window integral is the first part carried across plus the second part
 -/
 
 -- Authors:       Claude Opus 5.5

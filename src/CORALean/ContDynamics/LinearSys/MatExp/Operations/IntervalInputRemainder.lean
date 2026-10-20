@@ -17,6 +17,14 @@ gives — checkable from the box alone, before a member is fixed — and at `r �
 so one condition serves this, the exponential enclosure, and (`r`-scaled) the
 constant correction's own tail all at once.
 
+## Inputs
+* `A` – interval matrix
+* `r` – step length
+* `η` – Taylor order
+
+## Output
+* interval matrix of the input remainder over the box
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

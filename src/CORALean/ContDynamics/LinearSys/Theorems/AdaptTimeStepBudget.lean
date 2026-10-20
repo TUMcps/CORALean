@@ -7,18 +7,34 @@ public import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStep
 /-!
 # What `Alg. 2` returns is inside the budgets it searched for
 
-The soundness of [1, Alg. 2] as written here: a step it *reports* meets both
-of line 12's bounds — `ε_H` under `ε_H,max`, and `ε_P` under eq. (10)'s share
-of what is left of the `ε_P` budget, read at the step actually returned — and
-the third component is eq. (9)'s accumulation.
+The soundness of [1, Alg. 2] as written here: a step it *reports* meets both of line 12's bounds
+(`ε_H` under `ε_H,max`, and `ε_P` under eq. (10)'s share of what is left of the `ε_P` budget, read
+at the step actually returned) and the third component is eq. (9)'s accumulation. One hypothesis, on
+the caller's check: `le a b = true` implies `a ≤ b`. Nothing asks the converse, so a check that
+gives up early loses steps and never reports a wrong one, which is why the search returns an
+`Option`. Both sweeps are proved by induction on their own fuel; nothing here needs the search to
+terminate.
 
-One hypothesis, on the caller's check: `le a b = true` implies `a ≤ b`. Nothing
-asks the converse, so a check that gives up early loses steps and never reports
-a wrong one — which is why the search returns an `Option` rather than a value
-with a junk branch.
+## Inputs
+* `sys` – linear system
+* `le` – comparison oracle on reals
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `εHmax` – maximal homogeneous error
+* `εPmax` – maximal particular error
+* `εPacc` – accumulated particular error
+* `tf` – final time
+* `ti` – step start time
+* `Δtprev` – previous step length
+* `μ` – shrink factor
+* `ηmax` – maximal Taylor order
+* `fuel` – number of shrinkings
 
-Both sweeps are proved by induction on their own fuel, the invariant being
-carried by the check alone; nothing here needs the search to terminate.
+## Hypotheses
+* `hle` – comparison oracle is sound
+
+## Conclusion
+* a reported step meets both error budgets and the accumulated error is as stated
 
 ## References
 

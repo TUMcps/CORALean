@@ -9,6 +9,16 @@ public import CORALean.ContDynamics.LinearSys.Operations.EntryIsFloat
 
 When `LinearSys.entryIsFloat a x` answers `true`, the real value of `x` is that of `a`: `le` is
 sound when it answers `true`, and both directions hold.
+
+## Inputs
+* `a` – constant
+* `x` – entry
+
+## Hypotheses
+* `h` – the entry test passes
+
+## Conclusion
+* the entry equals the constant
 -/
 
 -- Authors:       Claude Opus 5.5

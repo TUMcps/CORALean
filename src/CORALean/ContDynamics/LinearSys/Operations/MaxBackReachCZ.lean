@@ -13,6 +13,16 @@ public import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
 `CZ ← conv(CZ(P₁ ⊖ Ẑ_W(τ_k)), CZ(P₂ ⊖ Ẑ_W(τ_k)))`: the polytope eroded by (11) and converted
 by [1, Alg. 1]. The hull is taken in `LinearSys.maxBackReachStep`.
 
+## Inputs
+* `P` – polytope
+* `ZW` – disturbance zonotope
+
+## Hypotheses
+* `ρ` – support oracle for polytopes
+
+## Output
+* constrained zonotope of the eroded polytope
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

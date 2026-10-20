@@ -11,6 +11,21 @@ public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachSupportFloa
 `maximum`, not line 14's `min` — a union's support is the largest of its parts', as over `ℝ` — and
 exact, since choosing between two floats rounds nothing.
 
+## Inputs
+* `sys` – linear system
+* `CZ` – target constrained zonotope
+* `W₀` – initial disturbance float zonotope
+* `U₀` – initial input float zonotope
+* `Zw` – center trajectory contribution
+* `N` – direction matrix
+* `t₀` – float start time
+* `Δt` – float step length
+* `η` – Taylor order
+* `ν` – number of squarings
+
+## Output
+* accumulated support values of each direction up to a given step
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

@@ -10,22 +10,23 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 /-!
 # The state differences a step spans
 
-CORA's `aux_deltaReach`: the set of state *differences* `x(t) - x(0)` over a
-step, not of states. It is `timeIntervalStep` with the segment anchored at the
-origin and the far end shifted, `CH(0, (e^{Ar} - I)X₀) ⊕ F X₀`, the same
-correction matrix covering the interpolation error either way.
+CORA's `aux_deltaReach`: the set of state *differences* `x(t) - x(0)` over a step, not of states.
+It is `timeIntervalStep` with the segment anchored at the origin and the far end shifted,
+`CH(0, (e^{Ar} - I)X₀) ⊕ F X₀`, the same correction matrix covering the interpolation error. The
+origin end is written `0 · ((e^{Ar} - I)X₀)` and not a constructed zero set, which is CORA's own
+`zeros(n)*Rhom_tp_delta` "to retain dependencies": at a polynomial zonotope a zero *image* keeps
+the factors the segment is written over. The inputs are not in here: CORA's `Rdelta = Rhom + RV`
+adds the particular solution, an enclosure a caller supplies and `inputSolution` computes. `exp`
+needs a norm on `Mat`, a choice rather than an instance: the `l∞` operator one.
 
-The origin end is written `0 · ((e^{Ar} - I)X₀)` and not a constructed zero set,
-which is CORA's own `zeros(n)*Rhom_tp_delta` and its comment "to retain
-dependencies": at a polynomial zonotope a zero *image* keeps the factors the
-segment is written over, where a fresh origin would not. It also asks for no
-class the rest of the definition does not already need.
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `X₀` – initial set
 
-The inputs are not in here. CORA's `Rdelta = Rhom + RV` adds the particular
-solution, which at this level is an enclosure a caller supplies and
-`inputSolution` computes, exactly as `timeIntervalStep` leaves it.
-
-`exp` needs a norm on `Mat` — a choice, not an instance — the `l∞` operator one.
+## Output
+* state differences between the step's states and their starting states
 -/
 
 -- Authors:       Claude Opus 5

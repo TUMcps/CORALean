@@ -17,6 +17,16 @@ which the scaled interval matrix's float norm bound is at most the step's own,
 at the scaled range is then as tight as the step's, and sound. `s ≈ log₂ k` at
 `t_k = k Δt`. The first test is precision, the second soundness; both are
 certified by `le`. `none` if no `s < 128` passes.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – float step length
+* `tLo` – lower time bound
+* `tHi` – upper time bound
+* `η` – Taylor order
+
+## Output
+* number of squarings, if one is found
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -17,6 +17,20 @@ induction from `v^{[j]} - w^{[j]} = E(Δt_j)(v^{[j-1]} - w^{[j-1]}) + L^{[j]}_m(
 The steps are taken from `0` here, `P a N = E_{N-1} ∘ ⋯ ∘ E_a` (the identity for `a ≥ N`), for
 any additive maps `E_j` and any maps `S_j` on an additive group.
 
+## Inputs
+* `E` – exact step maps
+* `S` – approximate step maps
+* `v` – exact iterates
+* `w` – approximate iterates
+
+## Hypotheses
+* `hv` – exact iterates follow the exact steps
+* `hw` – approximate iterates follow the approximate steps
+* `h0` – both start at the same vector
+
+## Conclusion
+* the error is the sum of propagated local errors
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

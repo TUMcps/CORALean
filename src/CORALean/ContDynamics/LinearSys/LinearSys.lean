@@ -11,19 +11,12 @@ public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 
 CORA's `linearSys`, `ẋ = A x + B u + c + E w` with the output `y = C x + D u + k + F v`, every
 matrix stored. The dimensions beside `n` are fields, as CORA's `nrOfInputs`, `nrOfOutputs`,
-`nrOfDisturbances` and `nrOfNoises` are properties: `m` inputs, `q` outputs, `r` disturbances,
-`s` noises. `LinearSys 𝕋 n` is the type of every system with `n` states.
-
-`IsTrajectory` is a run of the whole equation, its output
-`y t = outputEq.eval (x t) (u t) + F v t`, the form every class with an output equation states it
-in. `IsCanonicalTrajectory` is a run of CORA's `canonicalForm` [1], `ẋ = A x + u'` with the
-combined input `u' = B u + c + E w` in state coordinates, the system [2, Sec. 2] states, and what
-the reachability algorithms are proved against; `IsTrajectory.canonical` turns every run into one.
-Both are Carathéodory runs, the integral equation rather than a derivative at every point (Sontag,
-*Math. Control Theory*, Def. C.2.1): [2, Sec. 2]'s piecewise-continuous inputs jump, and a
-zero-order-hold input has no derivative at a jump. `meas` is the input's regularity on `T`; `cont`
-is Def. C.2.1's continuity, without which `intervalIntegral`'s junk value would let `flow` admit an
-`x` nothing like a run.
+`nrOfDisturbances` and `nrOfNoises` are properties: `m`, `q`, `r`, `s`. `IsTrajectory` is a run of
+the whole equation; `IsCanonicalTrajectory` is a run of CORA's `canonicalForm` [1], `ẋ = A x + u'`
+with the combined input `u' = B u + c + E w`, the system [2, Sec. 2] states and what the
+reachability algorithms are proved against (`IsTrajectory.canonical`). Both are Carathéodory runs,
+the integral equation rather than a derivative at every point (Sontag, *Math. Control Theory*, Def.
+C.2.1), as piecewise-continuous inputs jump; `meas` and `cont` are the regularity they need.
 
 ## References
 

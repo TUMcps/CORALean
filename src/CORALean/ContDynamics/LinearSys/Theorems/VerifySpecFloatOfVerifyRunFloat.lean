@@ -12,6 +12,24 @@ public import CORALean.ContDynamics.LinearSys.Theorems.VerifySpecFloatOfVerifySt
 comparison `le` certifying `ν̂_G ≤ 0` and `ltStrict` certifying `ν̂_F > 0`; the loop's other
 iterations only shrink `ε_max`.
 
+## Inputs
+* `Reach` – reachable set
+* `reachFn` – float reachable set as a function of the error
+* `innerApprox` – float inner approximation at an error
+* `distG` – distance to a safe polytope
+* `distF` – distance to an unsafe polytope
+* `G` – float safe polytopes
+* `F` – float unsafe polytopes
+* `εmax` – float maximal error
+* `fuel` – number of iterations
+
+## Hypotheses
+* `h` – the oracles are sound
+* `hrun` – the run answers true
+
+## Conclusion
+* the specification holds
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

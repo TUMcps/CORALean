@@ -15,13 +15,20 @@ public import Mathlib.Algebra.Group.Pointwise.Set.Basic
 
 [1, Thm. III.2] as printed, `R_h([0, δ]) ⊆ conv(X₀, R_h(δ)) ⊕ N` with
 `N = ‖c‖V(c)F(c)e₁ ⊕ ⨁ᵢ ‖g⁽ⁱ⁾‖V(g⁽ⁱ⁾)F(g⁽ⁱ⁾)e₁`, fails for the shift `A e₁ = e₂`, `A e₂ = e₃`,
-`A e₃ = 0`, `X₀ = (e₃, e₁)`, `δ = 1`, `η = 2`. Alg. 1 is exact there: at `g = e₁` it returns
-`V = I`, `H = A` with `h₄,₃ = 0`, at `c = e₃` it breaks down at once (`h₂,₁ = 0`), so every
-`ε_norm = h_{ξ+1,ξ}ωϕ` is `0` and `R_h(1) = e^{A}X₀`. `F(e₁) e₁ = λ₂ e₃/2`, `λ₂ ∈ [-1/4, 0]`
-(`|A|³ = 0` makes `E = 0`), `F(e₃) = 0`. All of `X₀` and `R_h(1)` lie on the plane
-`x₃ - x₂/2 = 1`, `N` on its side `≤ 0`, while `e^{A/2}(e₃ - e₁) = (-1, -1/2, 7/8)` has
-`x₃ - x₂/2 = 9/8`: the curvature of the trajectory from `-e₁` points the way `N` cannot reach,
-since `[-1, 1]F(e₁) ≠ F(e₁)`.
+`A e₃ = 0`, `X₀ = (e₃, e₁)`, `δ = 1`, `η = 2`. Alg. 1 is exact there (`ε_norm = 0`), so
+`R_h(1) = e^{A}X₀`, `F(e₁) e₁ = λ₂ e₃/2` with `λ₂ ∈ [-1/4, 0]`, `F(e₃) = 0`. `X₀` and `R_h(1)`
+lie on the plane `x₃ - x₂/2 = 1` and `N` on its side `≤ 0`, while
+`e^{A/2}(e₃ - e₁) = (-1, -1/2, 7/8)` has `x₃ - x₂/2 = 9/8`: the curvature of the trajectory from
+`-e₁` points the way `N` cannot reach.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed enclosure misses a point of the time-interval reachable set
 
 ## References
 

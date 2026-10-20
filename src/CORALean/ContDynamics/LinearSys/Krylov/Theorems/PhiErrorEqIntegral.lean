@@ -14,6 +14,22 @@ error of the exponential (2.7). (4.1b) at the matrices `tσA` and `tσT_m`, carr
 continuous linear maps `B ↦ Bv` and `B ↦ V_mBe₁`, which commute with the integral. `φ_p` is the
 series (4.1a); `p ≥ 1` is written `p + 1`. No hypothesis on `A`, `V_m` or `T_m`.
 
+## Inputs
+* `A` – matrix
+* `V` – Krylov basis
+* `T` – Hessenberg matrix
+* `σ` – scaling
+* `v` – vector
+* `e` – first unit vector
+* `p` – φ-function index
+* `t` – time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the φ-function error is an average of exponential errors
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

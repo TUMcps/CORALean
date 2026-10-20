@@ -13,6 +13,15 @@ constant-input sets each advance by `[e^{AΔt}] H ⊕ P̃(Δt)`, reduced to orde
 `ρ`; the time-varying input's propagated one-step set advances by `[e^{AΔt}]`
 and is added to the accumulated `P^R`, which is reduced as CORA reduces it.
 Nothing here depends on the system but the two sets it is handed.
+
+## Inputs
+* `eAΔt` – float exponential enclosure of the step
+* `Pu` – float one-step set of the constant input
+* `ρ` – zonotope order
+* `s` – loop state of four zonotopes
+
+## Output
+* loop state one step on
 -/
 
 -- Authors:       Claude Opus 5.5

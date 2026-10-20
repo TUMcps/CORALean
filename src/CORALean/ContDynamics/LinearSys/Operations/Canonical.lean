@@ -12,6 +12,12 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 `c = E = 0` adding nothing to the input in state coordinates, so it is the system an operation
 handed only a state matrix builds: a linearization, a time inversion, the point matrix of a
 parametric system.
+
+## Inputs
+* `A` – system matrix
+
+## Output
+* linear system in canonical form with the given matrix
 -/
 
 -- Authors:       Claude Opus 5.5

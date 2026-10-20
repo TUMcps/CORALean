@@ -14,6 +14,18 @@ within `R` of zero: put `ρ / v_{j₀}` in the column `j₀` where `v` attains i
 norm. It is how a remainder bounded as a vector becomes the symmetric interval
 matrix an exponential enclosure is widened by — the radius per entry is the
 vector's bound, not `n` times it, because `Vec` carries the sup norm.
+
+## Inputs
+* `ρ` – short vector
+* `v` – given vector
+* `R` – entry bound
+
+## Hypotheses
+* `hR` – entry bound nonnegative
+* `h` – norm at most the given norm times the bound
+
+## Conclusion
+* the short vector is a matrix with small entries applied to the given vector
 -/
 
 -- Authors:       Claude Opus 5.5

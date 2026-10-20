@@ -7,15 +7,24 @@ public import CORALean.ContDynamics.LinearSys.Operations.StepInput
 /-!
 # One step of the input, read on a clock of its own
 
-`stepInput_eq_shifted` moves step `k` to start at zero: the propagator only ever
-sees the elapsed part of the step, so the shift leaves it alone and lands on the
-integral over `[0, Δt]` that `inputSolution_outer` speaks about. `StepInputOuter`
-is the one caller that needs this shifted form directly; `stepInput_shift`
-reuses it to read the same identity the other way.
+`stepInput_eq_shifted` moves step `k` to start at zero: the propagator only ever sees the elapsed
+part of the step, so the shift leaves it alone and lands on the integral over `[0, Δt]` that
+`inputSolution_outer` speaks about. `StepInputOuter` is the one caller that needs this shifted form
+directly; `stepInput_shift` reuses it to read the same identity the other way. `exp` needs a norm on
+`Mat`, a choice rather than an instance, so this file makes the same one as everything else
+reasoning about `stepInput`, the `l∞` operator norm, or the terms would not match.
 
-`exp` needs a norm on `Mat`, which is a choice rather than an instance, so this
-file makes the same one as everything else reasoning about `stepInput` — the
-`l∞` operator norm — or the terms would not match.
+## Inputs
+* `sys` – linear system
+* `u` – input signal
+* `Δt` – step length
+* `k` – step index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the step input equals the integral over the step shifted to start at zero
 -/
 
 -- Authors:       Claude Opus 5

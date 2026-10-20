@@ -8,21 +8,22 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 # The set a continuous run actually reaches
 
 The definition is [1, Def. 3.1], and [2, Def. 1] at `t = r`, `T = [0, r]`, for `ẋ = Ax + u`.
-
-Every state a trajectory of `sys` visits at time `t`, quantified over the runs
-themselves: no enclosure, nothing an implementation may widen, nothing a
-representation computes. So "the trajectory is in the reachable set" holds by
-construction, and a computed set is then measured against this one *set* rather
-than against every trajectory separately.
-
-`LinearSysDT.reachSetExact` is the discrete counterpart, a recursion — a flow has no
-step to recurse on. A trajectory being Carathéodory, a zero-order-hold run is one,
-and the variation-of-constants shape `e^{tA} R₀ ⊕ inputReach U t` *equals* this
-set (`reachSetExact_eq`) rather than merely enclosing it: a witness in `inputReach` is
-a reached state, so this set can refute as well as prove.
-
+Every state a trajectory of `sys` visits at time `t`, quantified over the runs themselves: no
+enclosure, nothing an implementation may widen. `LinearSysDT.reachSetExact` is the discrete
+counterpart, a recursion. A zero-order-hold run is Carathéodory, so `e^{tA} R₀ ⊕ inputReach U t`
+*equals* this set (`reachSetExact_eq`), and it can refute as well as prove.
 `Theorems.ReachSetExactOuter` puts every trajectory into it; `ReachSetExactSubsetReach`
 and `ReachSetExactSubsetTimeIntervalInputSolution` put it inside what is computed.
+
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `t` – time
+
+## Output
+* states some trajectory is in at the time, exactly
 
 ## References
 

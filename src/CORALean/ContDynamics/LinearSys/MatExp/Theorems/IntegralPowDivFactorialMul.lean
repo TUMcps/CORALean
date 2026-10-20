@@ -11,6 +11,17 @@ The one integral every Picard estimate of a linear system takes: a bound of
 order `k` at every earlier time integrates to the bound of order `k + 1`. What
 makes the `k`-th Peano–Baker term `(c s)^k / k!` and the `k`-th box `s^k/k!`
 times a power, rather than `(c s)^k`.
+
+## Inputs
+* `k` – power
+* `s` – upper limit
+* `c` – constant
+
+## Hypotheses
+* none
+
+## Conclusion
+* the integral evaluates to the next power over the next factorial times the constant
 -/
 
 -- Authors:       Claude Opus 5.5

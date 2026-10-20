@@ -19,6 +19,23 @@ public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_ConZonoto
 linear program of (9). `Zw` is (27), the constant center trajectory's contribution over one
 interval.
 
+## Inputs
+* `sys` – linear system
+* `P₁` – first eroded polytope
+* `P₂` – second eroded polytope
+* `U` – input zonotope
+* `W₀` – initial disturbance zonotope
+* `Zw` – center trajectory contribution
+* `Δt` – step length
+* `η` – Taylor order
+* `s` – loop state
+
+## Hypotheses
+* `ρ` – support oracle for polytopes
+
+## Output
+* next loop state with the step's backward reachable set
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

@@ -10,6 +10,15 @@ public import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovarianceDiagonal
 In `ℝ¹` with `λ = 1`, `C = 1` and `t = 1`, `Σ_s(1) = ∫₀¹ e^{2(1-τ)} dτ = (e² - 1)/2`, while the
 printed `(1 - e^{-2})/2` is smaller by the factor `e^{-2}`. They agree only at `t = 0`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed closed form differs from the noise covariance in the scalar example
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

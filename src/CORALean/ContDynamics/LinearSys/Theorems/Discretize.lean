@@ -16,6 +16,26 @@ every guarantee `LinearSysDT` already carries applies at the sample times.
 Every step at once, so the domain has to be all of forward time: the discrete
 trajectory produced is indexed by all of `ℕ`, and `LinearSysDT.IsCanonicalTrajectory` has
 no partial form. A bounded domain goes through `reach_outer_horizon` instead.
+
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `Ud` – sampled input set
+* `x` – state trajectory
+* `u` – input signal
+* `Δt` – sampling step
+
+## Hypotheses
+* `traj` – signal is a canonical trajectory
+* `hΔt` – step length nonnegative
+* `hT` – time domain contains the nonnegative reals
+* `hU` – input set bounded
+* `hUd` – step inputs lie in the sampled input set
+
+## Conclusion
+* the sampled trajectory is a trajectory of the sampled system
 -/
 
 -- Authors:       Claude Opus 5

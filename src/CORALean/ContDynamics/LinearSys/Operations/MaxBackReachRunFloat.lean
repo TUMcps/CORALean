@@ -13,6 +13,21 @@ to at `t₀` is not the
 one it raises it to at `Δt`: the exact run takes one order throughout.
 The lines are those of [1, Alg. 3].
 
+## Inputs
+* `sys` – linear system
+* `Bx` – conversion box
+* `P₁` – first eroded float polytope
+* `P₂` – second eroded float polytope
+* `U` – input float zonotope
+* `W₀` – initial disturbance float zonotope
+* `Zw` – center trajectory contribution over a bracket
+* `t₀` – float start time
+* `Δt` – float step length
+* `η` – Taylor order
+
+## Output
+* float loop state after a given number of iterations, if they succeed
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

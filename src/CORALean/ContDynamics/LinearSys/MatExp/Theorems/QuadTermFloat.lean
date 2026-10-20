@@ -11,6 +11,16 @@ public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 
 `a t` lies between its two directed products, and `γ = m + m²/2` with `m = a t`, so the corner
 hull of `m · m` and the two directed sums enclose it.
+
+## Inputs
+* `t` – float time
+* `a` – float diagonal entry
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float interval brackets the exact diagonal factor
 -/
 
 -- Authors:       Claude Sonnet 5.5

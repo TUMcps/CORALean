@@ -18,6 +18,39 @@ constant `u` plus a signal in `U`: the state is `e^{AΔt} x₀ + Γ(Δt) u + p` 
 The hypotheses on `U` and on `{u}` are the ones `inputReach_subset_inputSolution` takes of the
 set it is applied at. Outer only: neither `Pu` nor `PU` is exact.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `m` – Taylor order offset
+* `X` – start set
+* `U` – input set
+* `W` – set of trajectory inputs
+* `x` – state trajectory
+* `w` – input signal
+* `u` – constant input
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+* `traj` – signal is a canonical trajectory
+* `hWU` – shifted inputs lie in the input set
+* `hW` – set of trajectory inputs bounded
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `hRconv` – remainder image of the input set convex
+* `hRclosed` – remainder image of the input set closed
+* `hRbdd` – remainder image of the input set bounded
+* `pconv` – constant input point convex
+* `pclosed` – constant input point closed
+* `pbdd` – constant input point bounded
+* `pRconv` – remainder image of the constant input convex
+* `pRclosed` – remainder image of the constant input closed
+* `pRbdd` – remainder image of the constant input bounded
+
+## Conclusion
+* the state at the end of the step lies in the time-point set
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

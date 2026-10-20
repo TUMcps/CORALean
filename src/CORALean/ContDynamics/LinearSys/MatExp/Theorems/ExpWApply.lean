@@ -18,6 +18,18 @@ This is the only algebra in [1, Prop. 4]; enclosure and tightness are then
 the same statement about each of the three pieces, which is why both
 `expW_mem_expIntervalW` and `expIntervalW_attained` go through here.
 
+## Inputs
+* `M` – matrix
+* `t` – time
+* `i` – row index
+* `j` – column index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the entry splits into the diagonal factor or the off-diagonal single-use form
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

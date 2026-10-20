@@ -17,6 +17,22 @@ exponentials; the Taylor polynomials differ by the leading term of `Prop. 1` ((2
 (4.1b) writes the two tails as one integral, `A^{m+1}` commuting with `e^{σθtA}`. Any `A`, under
 (2.2), upper Hessenberg `T_m` and `v = V_me₁`.
 
+## Inputs
+* `A` – matrix
+* `V` – Krylov basis
+* `T` – Hessenberg matrix
+* `τ` – next subdiagonal entry
+* `σ` – time scale
+* `w` – next vector
+* `t` – time
+
+## Hypotheses
+* `hH` – Hessenberg matrix is upper Hessenberg
+* `hK` – Krylov identity holds
+
+## Conclusion
+* the remainder of the leading error term equals the stated integral
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

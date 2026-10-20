@@ -9,22 +9,41 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ExistsAutoTuneSetOrder
 /-!
 # `Thm. 1`: one iteration of `Alg. 2` always completes, for every `ε_max > 0`
 
-[1, Thm. 1]'s proof is three sentences and this is all three: `Lemma 2` against eq. (37)
-and `Lemma 3`/`Lemma 4` against eq. (38) give lines 5-15 a step size and a truncation
-order (`exists_autoTuneDeltaT`), and "the reduction error can be set to `0` by simply
-omitting the reduction" gives lines 19-22 an order (`exists_autoTuneSetOrder`). Lines
-16-18 and 23-30 compute, so `autoStep` reports.
+[1, Thm. 1]'s proof is three sentences and this is all three: `Lemma 2` against eq. (37) and
+`Lemma 3`/`Lemma 4` against eq. (38) give lines 5-15 a step size and a truncation order
+(`exists_autoTuneDeltaT`), and "the reduction error can be set to `0` by simply omitting the
+reduction" gives lines 19-22 an order (`exists_autoTuneSetOrder`). Lines 16-18 and 23-30 compute, so
+`autoStep` reports. Carried, not proved, are the two budget invariants [1] maintains across the loop
+rather than establishes: `ε^a_k` and `ε^r_k` are inside eq. (36)'s and eq. (35)'s shares at `t_k`.
+Not formalizable here is [1]'s word "terminates": the searches take `fuel` and return `Option`, so
+they terminate by construction, and nothing in [1]'s proof bounds the *number* of iterations.
 
-Carried, not proved, are the two budget invariants [1] maintains across the loop rather
-than establishes: `ε^a_k` and `ε^r_k` are inside eq. (36)'s and eq. (35)'s shares at
-`t_k`. They hold at `k = 0` (`autoInit` sets both to `0`) and are what eq. (33)/(28)'s
-accumulations would have to preserve — accumulations [1] states and does not prove, and
-which stay open here (see the `Prop. 2`/`Prop. 4` rows).
+## Inputs
+* `sys` – linear system
+* `le` – comparison oracle on reals
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `s` – loop state
+* `tend` – final time
+* `εmax` – admissible error
+* `ζ` – error budget share
+* `ηmax` – maximal Taylor order
 
-Not formalizable here is [1]'s word "terminates". Two reasons, one ours and one [1]'s.
-Ours: the searches take `fuel` and return `Option`, so they terminate by construction.
-[1]'s: even granting every iteration succeeds, nothing in [1]'s proof bounds the *number*
-of iterations — see the `Thm. 1` finding on the reference page.
+## Hypotheses
+* `hle` – comparison oracle is complete
+* `hn` – dimension positive
+* `htend` – state before the final time
+* `htpos` – final time positive
+* `hεmax` – admissible error positive
+* `hζ0` – error share nonnegative
+* `hζ1` – error share below one
+* `hεa` – accumulated approximation error within its share
+* `hεr` – accumulated reduction error within its share
+* `hΔt` – step length positive
+* `hηmax` – maximal order at least one
+
+## Conclusion
+* some fuel makes one iteration report a step
 
 ## References
 

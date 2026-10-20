@@ -14,6 +14,16 @@ at the float bound `nrm ≥ ‖rA‖` whose float remainder bound is under `ε`,
 `timeIntervalStepEps` names the least such order by `expRemainderOrder`'s infimum. The search
 gives up after `fuel` orders, so the result is an `Option`.
 
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `ε` – float admissible error
+* `fuel` – number of orders tried
+* `X₀` – initial float zonotope
+
+## Output
+* float time-interval step at the first order under the error, if found
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

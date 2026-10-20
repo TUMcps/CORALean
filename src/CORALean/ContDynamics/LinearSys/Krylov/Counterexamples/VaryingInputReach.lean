@@ -18,15 +18,21 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 [1, Thm. IV.2] encloses `R_p(δ)` by Krylov terms `P Ṽ(u) M e₁` and the box
 `[-1, 1]ⁿ{ε̃(u) | u ∈ U}δ`, `ε̃(u) = h_{ξ+1,ξ} ω ϕ` from [1, Prop. B.1]. Take the skew
-`A = [0 -40 -1 0; 40 0 0 -1; 1 0 0 -40; 0 1 40 0]`, two oscillators of frequency `40` coupled at
-frequency `1`: `e^{τA}e₁ = (cos τ cos 40τ, cos τ sin 40τ, sin τ cos 40τ, sin τ sin 40τ)`. With
-`U = [-1, 1](1/10, 0, 0, 0)`, `δ = π`, `ξ = 3`, Alg. 1 on `[A u; 0 0]`, `[0₄; 1]` spans
-`e₅, e₁, (0, 40, 1, 0, 0)`, so every Krylov term has fourth coordinate `0`. `h₄,₃ = 80/√1601` is
-small, `e₃ᵀe^{H̃t}e₁ = |u₁|(1 - cos(√1601 t))/√1601` oscillates below `2|u₁|/√1601`, and
-`ν ≤ |u₁|/2` as `A` is skew: `ε̃(u) ≤ 1/50`. The input `-sin s sin 40s · (1/10, 0, 0, 0)` makes
-the fourth coordinate of the integrand `(sin s sin 40s)²/10` and reaches `y₄ = π/40 > π/50`. A
-constant input averages the oscillation out, a varying one rectifies it; `ε̃` sees only the
-former. At `u = 0`, `h₄,₃ = 0`, so with `U = (0₄, w)` [1, Cor. IV.2] fails at the same point.
+`A = [0 -40 -1 0; 40 0 0 -1; 1 0 0 -40; 0 1 40 0]` (two oscillators of frequency `40` coupled at
+frequency `1`), `U = [-1, 1](1/10, 0, 0, 0)`, `δ = π`, `ξ = 3`: every Krylov term has fourth
+coordinate `0`, `h₄,₃ = 80/√1601` is small, and `ν ≤ |u₁|/2` as `A` is skew, so `ε̃(u) ≤ 1/50`. The
+input `-sin s sin 40s · (1/10, 0, 0, 0)` has fourth integrand coordinate `(sin s sin 40s)²/10` and
+reaches `y₄ = π/40 > π/50`. A constant input averages the oscillation out, a varying one rectifies
+it; `ε̃` sees only the former. At `u = 0`, `h₄,₃ = 0`, so [1, Cor. IV.2] fails at the same point.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a point of the reachable set escapes the printed enclosure
 
 ## References
 

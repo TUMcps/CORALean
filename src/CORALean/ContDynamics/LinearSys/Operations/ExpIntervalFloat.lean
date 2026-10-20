@@ -14,6 +14,15 @@ in the range. A range, not a time, because a time `k Δt` a float cannot hold is
 only known to lie between two it can: `reachStepkWrappingFreeFloat` encloses `e^{A t_k}`
 that way, sound at every float `Δt`. Stored once, since a step reads every entry
 `h` times and the enclosure would otherwise be recomputed on each read.
+
+## Inputs
+* `sys` – linear system
+* `tLo` – lower time bound
+* `tHi` – upper time bound
+* `η` – Taylor order
+
+## Output
+* float interval matrix enclosing the exponential over the time range
 -/
 
 -- Authors:       Claude Opus 5.5

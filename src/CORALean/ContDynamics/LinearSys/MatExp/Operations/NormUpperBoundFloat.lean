@@ -13,6 +13,12 @@ public import CORALean.ContSet.Interval.Float.Interval
 the largest row sum of absolute entries. Held above `zero` by an exact
 `maximum`, so `Theorems/NormUpperBoundFloat` needs no separate nonnegativity
 argument.
+
+## Inputs
+* `A` – float interval matrix
+
+## Output
+* float upper bound of a dominating norm
 -/
 
 -- Authors:       Claude Sonnet 5

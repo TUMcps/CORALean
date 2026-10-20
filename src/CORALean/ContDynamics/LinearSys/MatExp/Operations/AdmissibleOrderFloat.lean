@@ -12,6 +12,14 @@ it) are sound once `nrm / (η + 2) ≤ 1/2`, with `nrm` a float bound on the nor
 of the matrix they are taken at. This finds the first such `η` from `η₀` on,
 checked by the float comparison `le`, whose `true` is sound; the search is
 bounded by `fuel` and says `none` rather than returning an unchecked order.
+
+## Inputs
+* `nrm` – float norm
+* `η₀` – first order tried
+* `fuel` – number of orders tried
+
+## Output
+* first admissible order found, if any
 -/
 
 -- Authors:       Claude Opus 5.5

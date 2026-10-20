@@ -12,6 +12,18 @@ Every step of a nonnegative length sits in forward time, so a domain covering
 `discretize_inputSolution`, so it is stated once here rather than duplicated
 into each — the two ask for the same step, over a total run and one bounded by
 `inputSolution` respectively.
+
+## Inputs
+* `T` – time domain
+* `Δt` – step length
+* `k` – step index
+
+## Hypotheses
+* `hΔt` – step length nonnegative
+* `hT` – time domain contains the nonnegative reals
+
+## Conclusion
+* the step lies in the time domain
 -/
 
 -- Authors:       Claude Opus 5

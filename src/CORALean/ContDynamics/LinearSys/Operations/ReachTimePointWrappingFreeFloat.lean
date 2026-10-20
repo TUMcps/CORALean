@@ -13,14 +13,19 @@ public import CORALean.Global.Float.ToRat
 # The time-point sets of `reachWrappingFreeFloat`'s scheme: `R_k = [e^{A t_k}] X₀`
 
 `reachWrappingFreeFloat` returns only its time-interval windows; the time-point set at
-`t_k = k Δt` is the same enclosure `reachStepkWrappingFreeFloat` builds from `R(τ_0)`,
-here applied to `X₀` itself instead — `reachStepkWrappingFreeFloat` asks nothing of its
-base zonotope beyond membership, so no new window logic is needed, only the
-order search redone once as `reachWrappingFreeFloat` redoes it, `N` derived as it
-derives it. `N + 1` points, `k = 0, …,
-N`; `k = 0` gives (an enclosure of) `X₀` itself, `e^{A · 0} = I`. `params` and
-`options` are read as `reachWrappingFreeFloat` reads them; no set is reduced, so
-`ρ` goes unread.
+`t_k = k Δt` is the same enclosure `reachStepkWrappingFreeFloat` builds from `R(τ_0)`, here applied
+to `X₀` itself: it asks nothing of its base zonotope beyond membership, so no new window logic is
+needed, only the order search redone once as `reachWrappingFreeFloat` redoes it. `N + 1` points,
+`k = 0, …, N`; `k = 0` gives (an enclosure of) `X₀` itself. `params` and `options` are read as
+`reachWrappingFreeFloat` reads them; no set is reduced, so `ρ` goes unread.
+
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters
+* `options` – reach options
+
+## Output
+* float time-point sets of the run, if it completes
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,6 +16,17 @@ the comparisons go through the caller's `lt`, `fuel` bounds the loop CORA leaves
 and `none` is a loop out of fuel. The first coordinate of maximal edge is taken, as
 MATLAB's `max` does. The terms are those of [1, Prop. 11].
 
+## Inputs
+* `sys` – linear system
+* `lt` – strict comparison oracle on reals
+* `ζ` – gain threshold
+* `Δt` – step length
+* `V` – noise zonotope
+* `fuel` – number of orders tried
+
+## Output
+* order CORA stores for the step, if found
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

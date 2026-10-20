@@ -15,6 +15,22 @@ For `2 ≤ k < η` the first part holds the Taylor sum of order `k` (`expmTerms_
 the rest of the series, `e^M - Σ_{i ≤ k} Mⁱ/i!` (`expmFrom_outer` from order `k + 1`, started at
 `A * iPow{k} ∋ M * Mᵏ`, `powers_intSq_mem`). Their sum encloses `e^M`. CORA also runs `η ≤ k`,
 where the remainder overlaps the term of order `k + 1`.
+
+## Inputs
+* `A` – interval matrix
+* `r` – step length
+* `k` – intermediate order
+* `η` – Taylor order
+* `M` – member matrix
+
+## Hypotheses
+* `hr` – step length nonzero
+* `hk` – intermediate order at least two
+* `hη` – intermediate order below the Taylor order
+* `hM` – member lies in the interval matrix
+
+## Conclusion
+* the member's Taylor sum and series rest lie in the two parts
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -19,6 +19,27 @@ approximates `e^{|A|t}b_Δ`, each within its a-posteriori bound (3) — the hypo
 The step [1] takes from the Taylor series, `|e^{At}| ≤ e^{|A|t}` entrywise for `t ≥ 0`, is
 proved: `|Aⁱ| ≤ |A|ⁱ` term by term.
 
+## Inputs
+* `A` – system matrix
+* `t` – time
+* `bc` – box center
+* `bΔ` – box radius
+* `xhat` – approximation at the center
+* `xbar` – approximation at the radius
+* `ε` – center error rate
+* `εbar` – radius error rate
+* `x` – point in the box
+* `j` – coordinate index
+
+## Hypotheses
+* `ht` – time nonnegative
+* `hc` – center approximation error bounded
+* `hΔ` – radius approximation error bounded
+* `hx` – point lies in the box
+
+## Conclusion
+* the coordinate error is bounded by the box approximation and the errors
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

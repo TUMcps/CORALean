@@ -18,6 +18,22 @@ image, and only the curvature term still needs `Mtimes`, which has no
 set-level form to fall back to. `timeIntervalStep_outer` is this composed with
 those two lifts.
 
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `m` – Taylor order offset
+* `X₀` – initial set
+* `t` – time
+
+## Hypotheses
+* `hr` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+* `ht0` – time nonnegative
+* `htr` – time within the step
+
+## Conclusion
+* the exponential image lies in the exact hull plus the remainder sum
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

@@ -15,6 +15,23 @@ box. The box contains the error ball (`closedBall_subset_diagonal`), and a
 Minkowski difference is antitone in what it takes off, so that difference lies
 inside `timePointStepInner`, which `timePointStepInner_subset_reachSetExact`
 places in the exact reachable set.
+
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `M` – generator representation
+* `D` – returned zonotope
+
+## Hypotheses
+* `hr` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+* `hD` – the inner approximation returned the zonotope
+
+## Conclusion
+* the returned zonotope lies in the exact reach set at the step end
 -/
 
 -- Authors:       Claude Opus 5.5

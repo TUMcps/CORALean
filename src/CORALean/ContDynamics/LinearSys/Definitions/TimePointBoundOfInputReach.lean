@@ -13,6 +13,22 @@ public import CORALean.Global.SupportFunction.Composition
 carried across `reachSetExact_eq`, an equality rather than an enclosure, so no `mono`
 is needed. `timePointBound` is the same bound from one on `inputSolution`.
 
+## Inputs
+* `sys` – linear system
+* `R₀` – initial set
+* `U` – input set
+* `t` – time
+* `c` – direction
+
+## Hypotheses
+* `ht` – time nonnegative
+* `hU` – input set bounded
+* `b₀` – support bound on the initial set
+* `bP` – support bound on the input reach
+
+## Output
+* support bound on the time-point reachable set along the direction
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

@@ -16,6 +16,32 @@ which a representation answers for.
 
 That is what `reachSetExact` buys over the sampled statements: between `kΔt` and
 `(k+1)Δt` this still speaks, where `reachSetExact_subset_reach` does not.
+
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `r` – step length
+* `m` – Taylor order offset
+* `t` – time
+
+## Hypotheses
+* `hr` – step length positive
+* `hT` – step lies in the time domain
+* `hε` – scaled norm small enough for the Taylor order
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `hRconv` – remainder image convex
+* `hRclosed` – remainder image closed
+* `hRbdd` – remainder image bounded
+* `h0` – origin in the input set
+* `ht0` – time nonnegative
+* `htr` – time within the step
+
+## Conclusion
+* the reach set at the time lies in the time-interval step's enclosure
 -/
 
 -- Authors:       Claude Opus 5

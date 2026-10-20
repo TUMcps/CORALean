@@ -7,17 +7,33 @@ public import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachS
 /-!
 # [1, Prop. 2]'s eq. (21): the time-point error accumulated over the horizon
 
-Eq. (24)'s one step is `hausdorffDist₂_inputReach_step_le`; this is eq. (21)'s accumulation
-of it, `ε^U_k = ∑_{j<k} Δε^U_j(Δt,η)`, and so also eq. (33)'s `ε^a_k` for the same term.
-
-The computed side is eq. (20)'s one-step set propagated and summed,
-`P̂^U(t_k) = ⊕_{j<k} e^{At_j}P̂^U(Δt)` — the recursion `P̂^U(t_{k+1}) = P̂^U(t_k) ⊕
-e^{At_k}P̂^U(Δt)` of `Alg. 1` line 10 before its reduction, solved. The reduction's own
-share is eq. (28) and is accounted separately.
-
-Compactness of the exact solution at each `t_k` is what `Def. 5` asks of everything it
-measures, as for the single step. Eq. (20)'s soundness is not assumed: the step uses
+Eq. (24)'s one step is `hausdorffDist₂_inputReach_step_le`; this is eq. (21)'s accumulation of it,
+`ε^U_k = ∑_{j<k} Δε^U_j(Δt,η)`, and so also eq. (33)'s `ε^a_k` for the same term. The computed side
+is eq. (20)'s one-step set propagated and summed, `P̂^U(t_k) = ⊕_{j<k} e^{At_j}P̂^U(Δt)`: the
+recursion `P̂^U(t_{k+1}) = P̂^U(t_k) ⊕ e^{At_k}P̂^U(Δt)` of `Alg. 1` line 10 before its reduction,
+solved. The reduction's own share is eq. (28). Compactness of the exact solution at each `t_k` is
+what `Def. 5` asks of everything it measures. Eq. (20)'s soundness is not assumed: the step uses
 `Prop. 11`'s bound for `U₀` convex, closed and containing `0`.
+
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `Δt` – step length
+* `η` – Taylor order
+* `k` – number of steps
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hbdd` – input set bounded
+* `hne` – input set nonempty
+* `hcP` – input reach compact at every time
+* `hcQΔ` – outer one-step set compact
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `h0` – origin in the input set
+
+## Conclusion
+* the accumulated distance is at most the summed one-step errors
 
 ## References
 

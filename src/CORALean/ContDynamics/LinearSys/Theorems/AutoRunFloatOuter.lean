@@ -13,6 +13,22 @@ iteration from a state holding the invariant to one holding it later in time, wi
 covering that iteration's times, and the rest of the run covers the times after. Every time in
 `[t_k, t_end']` the run reached, if it advanced at all, is in some window it returned.
 
+## Inputs
+* `sys` – linear system
+* `X₀` – initial float zonotope
+* `V` – input float zonotope
+* `tend` – final float time
+* `εmax` – admissible error
+* `ζ` – error budget share
+* `ηmax` – maximal Taylor order
+* `fuel` – number of shrinkings
+
+## Hypotheses
+* none
+
+## Conclusion
+* the iterations keep the invariant and their windows hold every run
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

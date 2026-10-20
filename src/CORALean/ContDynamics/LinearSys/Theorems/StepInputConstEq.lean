@@ -9,18 +9,27 @@ public import CORALean.ContDynamics.LinearSys.Theorems.StepInputEqShifted
 /-!
 # A constant input steps exactly by `stepInputConst`
 
-`hu` is assumed only on `[k·Δt, (k+1)·Δt]`, the interval a zero-order hold
-actually pins `u` to; the whole-line hypothesis of #43's sketch would have
-been an unnecessary restriction on a caller.
+`hu` is assumed only on `[k·Δt, (k+1)·Δt]`, the interval a zero-order hold actually pins `u` to; the
+whole-line hypothesis of #43's sketch would have been an unnecessary restriction on a caller.
+`hΔt : 0 ≤ Δt` is needed beyond what that sketch names: `expIntegral_mulVec` only reads the series
+as the integral at a non-negative endpoint, and `stepInputConst` carries no sign restriction of its
+own. The route: `stepInput_eq_shifted` moves the step to `[0, Δt]`, `hu` collapses the shifted input
+to `c` there, and `expIntegral_mulVec` read against `intervalIntegral.integral_comp_sub_left` turns
+the propagated integral back into `expIntegral · Δt` applied to `c`.
 
-`hΔt : 0 ≤ Δt` is needed beyond what that sketch names: `expIntegral_mulVec`
-only reads the series as the integral at a non-negative endpoint, and
-`stepInputConst` carries no sign restriction of its own to fall back on.
+## Inputs
+* `sys` – linear system
+* `c` – constant vector
+* `Δt` – step length
+* `u` – input signal
+* `k` – step index
 
-The route: `stepInput_eq_shifted` moves the step to `[0, Δt]`, `hu` collapses
-the shifted input to `c` there, and `expIntegral_mulVec` read against
-`intervalIntegral.integral_comp_sub_left` turns the propagated integral back
-into `expIntegral · Δt` applied to `c`.
+## Hypotheses
+* `hΔt` – step length nonnegative
+* `hu` – input equals the constant on the step
+
+## Conclusion
+* the step input is the integrated exponential applied to the constant
 -/
 
 -- Authors:       Claude Opus 5

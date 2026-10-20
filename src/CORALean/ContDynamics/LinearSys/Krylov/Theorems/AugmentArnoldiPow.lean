@@ -14,6 +14,19 @@ Alg. 1 after `ξ = m + 1` passes at `C̃ = [A u; 0 0]`, `ṽ = [0ₙ; 1]` (`Lemm
 (`arnoldiBasis_mulVec_pow`, `‖ṽ‖ = 1`), and `C̃ʲ ṽ = [A^{j-1} u; 0]`. So below the Krylov
 order the set `P D⁽ʲ⁾ e₁` of [1]'s Appendix A is the linear image `A^{j-1} U / j!`.
 
+## Inputs
+* `A` – system matrix
+* `u` – constant input
+* `m` – Krylov order
+* `j` – power
+
+## Hypotheses
+* `hj1` – power at least one
+* `hj` – power at most the Krylov order
+
+## Conclusion
+* the Krylov Taylor term equals the exact Taylor term
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

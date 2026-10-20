@@ -25,6 +25,24 @@ closed). The tail is the integral of `(e^{Aτ} − Σ_{i≤η}(Aτ)ⁱ/i!)u`, a 
 that product's closed convex hull. Eq. (20)'s soundness asks for the product itself, which is not
 convex; this is what the integral does give.
 
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `Δt` – step length
+* `η` – Taylor order
+* `y` – point of the input reach
+
+## Hypotheses
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `hΔt` – step length positive
+* `hEbdd` – remainder set bounded
+* `hy` – point lies in the input reach
+
+## Conclusion
+* the point splits into a Taylor part and a point of the closed convex hull of the remainder
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

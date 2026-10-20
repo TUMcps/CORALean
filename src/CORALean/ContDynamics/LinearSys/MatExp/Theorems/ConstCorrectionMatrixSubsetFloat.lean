@@ -17,6 +17,20 @@ inside its float term (`constCorrTerm_mem_intervalConstCorrTerm`), `sumDown_le_s
 `sum_le_sumUp` carry the orders through the rounded sums, and `expRemainderBound_le` the
 remainder `r E(r M)`. `hε` asks `1/2`, as the float remainder bound does. At the point box
 `Interval.point A` this is the float `[G]` of `oneStep`.
+
+## Inputs
+* `A` – float interval matrix
+* `r` – float step length
+* `η` – Taylor order
+* `M` – member matrix
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hε` – float norm bound small enough for the Taylor order
+* `hM` – member lies in the interval matrix
+
+## Conclusion
+* the exact integrated correction of the member lies in the float one
 -/
 
 -- Authors:       Claude Opus 5.5

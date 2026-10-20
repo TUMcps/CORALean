@@ -8,15 +8,23 @@ public import CORALean.ContDynamics.LinearSys.Operations.TimePoint
 /-!
 # One window of `reach`, enclosed from its own time point: `HR(τ_k) = HR(t_k, t_{k+1})`
 
-CORA's `standard` scheme, its default, and [1, Alg. 4]'s recursion at a point
-matrix with no input and no order reduction: the recursion runs over the
-time-point sets `timePoint`, `R(t_{k+1}) = e^{AΔt} R(t_k)`, and the window
-`τ_k = [k Δt, (k + 1) Δt]` is `timeIntervalStep` run once, from `R(t_k)`
-directly, rather than carried step by step the way `timePoint` itself is.
-Where `mtimes` only encloses, this keeps a window's own overapproximation out
-of every later one, the wrapping effect `reachStepkWrappingFree` avoids the
-same way, by applying `e^{A t_k}` to the first window directly rather than
-`e^{AΔt}` to the window before.
+CORA's `standard` scheme, its default, and [1, Alg. 4]'s recursion at a point matrix with no input
+and no order reduction: the recursion runs over the time-point sets `timePoint`,
+`R(t_{k+1}) = e^{AΔt} R(t_k)`, and the window `τ_k = [k Δt, (k + 1) Δt]` is `timeIntervalStep` run
+once, from `R(t_k)` directly, rather than carried step by step the way `timePoint` itself is.
+Where `mtimes` only encloses, this keeps a window's own overapproximation out of every later one,
+the wrapping effect `reachStepkWrappingFree` avoids the same way, by applying `e^{A t_k}` to the
+first window directly rather than `e^{AΔt}` to the window before.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `η` – Taylor order
+* `X₀` – initial set
+* `k` – window index
+
+## Output
+* set over the window enclosed from its own time point
 
 ## References
 

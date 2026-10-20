@@ -13,6 +13,15 @@ Row by row: `sum_abs_le_radius` bounds a row sum of the stored entries, which
 read back as `A.nominal.absMax`'s own row exactly (`toReal_maximum`/
 `toReal_absolute`); `le_maximumOver` then takes the row to the matrix bound, and
 the outer `maximum zero` is where nonnegativity comes from, unconditionally.
+
+## Inputs
+* `A` – float interval matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the dominating matrix's norm is under the float bound
 -/
 
 -- Authors:       Claude Sonnet 5

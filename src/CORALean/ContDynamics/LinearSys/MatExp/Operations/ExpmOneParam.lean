@@ -16,6 +16,15 @@ The matrix zonotope `K(r)` of [1, Thm. 1], enclosing the Taylor polynomial
 `C_K = Σ_{l=0}^η D_l rˡ/l! + Σ_{l=1}^{⌊η/2⌋} G_K^{(2l)}`. CORA's `@matZonotope/expmOneParam`.
 Generator `j` of the structure is `G_K^{(j+1)}`.
 
+## Inputs
+* `C` – center matrix
+* `G` – generator matrix
+* `r` – step length
+* `η` – Taylor order
+
+## Output
+* matrix zonotope enclosing the exponential of the one-parameter family
+
 ## References
 
 * [1] M. Althoff and J. M. Dolan. "Reachability Computation of Low-Order Models for the Safety

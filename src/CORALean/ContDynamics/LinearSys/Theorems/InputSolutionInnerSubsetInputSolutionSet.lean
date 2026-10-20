@@ -11,15 +11,25 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 /-!
 # The inner approximation sits inside the outer one
 
-Holding the input at one point `s` of `U` puts `inputTerm Δt i *ᵥ s` in every
-summand of the outer approximation at once, and what the series has left past `η` is
-`expIntegral - ∑ᵢ inputTerm`, whose `l∞` operator norm
-`norm_expIntegral_sub_taylor_le` bounds by `Δt·E(Δt,η)` — which is exactly the
-half-width of `inputRemainder`, entry by entry.
+Holding the input at one point `s` of `U` puts `inputTerm Δt i *ᵥ s` in every summand of the outer
+approximation at once, and what the series has left past `η` is `expIntegral - ∑ᵢ inputTerm`, whose
+`l∞` operator norm `norm_expIntegral_sub_taylor_le` bounds by `Δt·E(Δt,η)`, exactly the half-width
+of `inputRemainder`, entry by entry. No convexity, closedness or boundedness of `U` is used: the two
+sets are compared through one point of `U` at a time, and the enclosure the exact particular
+solution needs (which does use them) is never invoked.
 
-No convexity, closedness or boundedness of `U` is used: the two sets are
-compared through one point of `U` at a time, and the enclosure the exact
-particular solution needs (which does use them) is never invoked.
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `Δt` – step length
+* `η` – Taylor order
+
+## Hypotheses
+* `hΔt` – step length nonnegative
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the inner approximation lies in the outer one
 
 ## References
 

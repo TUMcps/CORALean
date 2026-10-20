@@ -13,6 +13,26 @@ public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ExpDiffMemCorrecti
 `D = e^{Ht} - I - (t/δ)(e^{Hδ} - I)`, which lies in `F` by `expDiff_mem_correctionSet`. Any
 scalar `β` stands for `‖x₀‖`, and the first-column property is the hypothesis.
 
+## Inputs
+* `V` – Krylov basis
+* `H` – Hessenberg matrix
+* `e₁` – first unit vector
+* `β` – norm scale
+* `x₀` – start vector
+* `δ` – step length
+* `η` – Taylor order
+* `t` – time
+
+## Hypotheses
+* `hV` – basis maps the unit vector to the scaled start vector
+* `hδ` – step length positive
+* `hη` – order at least one
+* `ht0` – time nonnegative
+* `htδ` – time at most the step length
+
+## Conclusion
+* the Krylov approximation at the time is the interpolation plus a correction
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

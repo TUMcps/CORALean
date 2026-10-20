@@ -10,6 +10,17 @@ public import CORALean.ContDynamics.LinearSys.Operations.ExpNormUpFloat
 
 At an admissible order `nrm ≤ (η + 2)/2 < 2^{log₂(η+2)+1}/2`, which is inside `expUp`'s range
 at `p = log₂(η + 2) + 5`.
+
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+
+## Hypotheses
+* `hη` – order admissible
+
+## Conclusion
+* the exponential of the float norm bound is under the float upper bound
 -/
 
 -- Authors:       Claude Sonnet 5.5

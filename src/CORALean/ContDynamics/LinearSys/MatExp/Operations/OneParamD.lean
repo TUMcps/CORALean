@@ -11,6 +11,12 @@ public import Mathlib.Data.Matrix.Mul
 The auxiliary matrices `D_i` of [1, Thm. 1]: `D_0 = I`, `D_i = D_{i-1} C`, so `D_i = Cⁱ`, the
 part of `(C + βG)ⁱ` free of the parameter `β`.
 
+## Inputs
+* `C` – matrix
+
+## Output
+* power of the matrix by index
+
 ## References
 
 * [1] M. Althoff and J. M. Dolan. "Reachability Computation of Low-Order Models for the Safety

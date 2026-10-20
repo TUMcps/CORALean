@@ -24,6 +24,16 @@ direction a set that is subtracted wants. `η` is raised with `reachOrderFloat` 
 the float remainder bound at `t₀ · A` admits; `none` when that search fails.
 The lines are those of [1, Alg. 3].
 
+## Inputs
+* `sys` – linear system
+* `U` – input float zonotope
+* `W₀` – initial disturbance float zonotope
+* `t₀` – float start time
+* `η` – Taylor order
+
+## Output
+* float loop state before the first iteration, if the orders fit
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

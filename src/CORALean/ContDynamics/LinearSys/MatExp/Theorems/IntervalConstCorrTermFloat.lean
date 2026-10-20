@@ -17,6 +17,21 @@ public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
 The scalar is in `[κ · r^{i+2}/(i+2)!, 0]`, by the same two bounds `intervalCorrTerm` uses
 one order up: `κ ≤ corrCoeff (i+2) ≤ 0` and `r^{i+2}/(i+2)!` is nonnegative and below the
 stored upper end. `smul_outer` and `matPow_outer` finish.
+
+## Inputs
+* `A` – float interval matrix
+* `r` – float step length
+* `i` – order index
+* `M` – member matrix
+* `j` – row index
+* `k` – column index
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hM` – member lies in the interval matrix
+
+## Conclusion
+* the member's integrated correction entry lies within the float box entry
 -/
 
 -- Authors:       Claude Sonnet 5.5

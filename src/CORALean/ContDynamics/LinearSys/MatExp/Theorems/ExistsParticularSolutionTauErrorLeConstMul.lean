@@ -11,6 +11,18 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainde
 [1, Lemma 4]: eventually, as `Δt → 0⁺`, `particularSolutionTauError` is under one linear
 bound `K · Δt`.
 
+## Inputs
+* `A` – system matrix
+* `tk` – step start time
+* `U0` – input set
+* `η` – Taylor order
+
+## Hypotheses
+* `hU0` – input set bounded
+
+## Conclusion
+* the τ-form particular solution error is eventually under a constant times the step
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

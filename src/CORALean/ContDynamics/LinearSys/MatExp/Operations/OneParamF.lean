@@ -14,6 +14,13 @@ printed recursion: `F_0^{(1)} = 0`, and for `i ≥ 1`
 rules for `l = 1` and `l = i` both apply; the second would need `F_0^{(0)}`, which [1] leaves
 undefined, and the first is taken, giving `F_1^{(1)} = G`, which is the coefficient.
 
+## Inputs
+* `C` – first matrix
+* `G` – second matrix
+
+## Output
+* sum of products of the two matrices with a given number of second factors
+
 ## References
 
 * [1] M. Althoff and J. M. Dolan. "Reachability Computation of Low-Order Models for the Safety

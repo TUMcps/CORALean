@@ -15,6 +15,18 @@ The first step of the proof of [1, Thm. 1]: `(C + βG)ⁱ = D_i + Σ_{l=1}^i β�
 `F_i^{(l)}` are one family `P_i^{(l)}` (`D_i` at `l = 0`), which vanishes for `l > i`; then the
 three printed rules for `F_{i+1}^{(l)}` are the single rule `P_i^{(l-1)} G + P_i^{(l)} C`.
 
+## Inputs
+* `C` – center matrix
+* `G` – generator matrix
+* `β` – generator weight
+* `i` – power
+
+## Hypotheses
+* none
+
+## Conclusion
+* the power is a polynomial in the weight with the stated coefficients
+
 ## References
 
 * [1] M. Althoff and J. M. Dolan. "Reachability Computation of Low-Order Models for the Safety

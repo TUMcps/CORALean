@@ -20,6 +20,20 @@ representation as `ReachOuterConvexCompact` does.
 covered, which is what asks for the zero input elsewhere — [1, Prop. 3.3] is
 where that hypothesis belongs.
 
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `X₀` – initial set
+* `U` – input set
+
+## Hypotheses
+* `hr` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* every state the step can end at lies in the step set
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

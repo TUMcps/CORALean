@@ -11,18 +11,29 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 /-!
 # The constant input's interpolation error lies in `constCorrectionMatrix`
 
-The `F̃` of [1, Prop. 3.4], the integrated counterpart of the `F` of Prop. 3.1.
-What a constant input contributes over `[0,t]` is `∫₀ᵗ e^{Aσ}dσ` applied to it,
-and the straight line from `0` to its value at `r` misses that by this much.
+The `F̃` of [1, Prop. 3.4], the integrated counterpart of the `F` of Prop. 3.1. What a constant
+input contributes over `[0,t]` is `∫₀ᵗ e^{Aσ}dσ` applied to it, and the straight line from `0` to
+its value at `r` misses that by this much. The series is `∑ᵢ Aⁱ (t^{i+1} - (t/r)r^{i+1})/(i+1)!`,
+whose `i = 0` term cancels, one order lower than for `F`. Orders `1` through `η` are kept
+exactly, through the same `corrCoeff` bound read at one index higher, and everything past `η`
+goes into `E(r)·r`. The tail is bounded as one series, as `CorrectionMatrix` documents: each term
+carries `|t^{i+2} - t·r^{i+1}| ≤ r^{i+2}`, and pulling out one factor `r` leaves the
+exponential's own tail.
 
-The series is `∑ᵢ Aⁱ (t^{i+1} - (t/r)r^{i+1})/(i+1)!`, whose `i = 0` term
-cancels — one order lower than for `F`, where the constant *and* linear terms
-go. Orders `1` through `η` are kept exactly, through the same `corrCoeff` bound
-read at one index higher, and everything past `η` goes into `E(r)·r`.
+## Inputs
+* `A` – system matrix
+* `r` – step length
+* `η` – Taylor order
+* `t` – time
 
-The tail is bounded as one series, for the reason `CorrectionMatrix` documents:
-each term carries `|t^{i+2} - t·r^{i+1}| ≤ r^{i+2}`, and pulling one factor of
-`r` out leaves exactly the exponential's own tail.
+## Hypotheses
+* `hr` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+* `ht0` – time nonnegative
+* `htr` – time within the step
+
+## Conclusion
+* the constant input's interpolation error lies in the integrated correction matrix
 
 ## References
 

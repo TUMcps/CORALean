@@ -17,6 +17,28 @@ public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectoryHeldInput
 held-input `IsTrajectory`, and `reachSetExact_convex` takes the hull. Along its own
 direction each vertex attains line 15's bound (`heldSim_supportCounterexample`).
 
+## Inputs
+* `sys` – linear system
+* `R₀` – initial set
+* `U` – input set
+* `Δt` – step length
+* `ν₀` – support vector map of the initial set
+* `νU` – support vector map of the input set
+* `ι` – index type of the directions
+* `ℓ` – directions
+* `k` – step index
+
+## Hypotheses
+* `hR₀` – initial set convex
+* `hUconv` – input set convex
+* `hU` – input set bounded
+* `hΔt` – step length positive
+* `hν₀` – initial support vectors lie in the initial set
+* `hνU` – input support vectors lie in the input set
+
+## Conclusion
+* the hull of the simulated support vectors lies in the exact reachable set
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

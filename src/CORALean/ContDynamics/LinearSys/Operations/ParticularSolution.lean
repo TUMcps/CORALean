@@ -17,6 +17,15 @@ encloses pays for it once per window, not once per window before it. Indexed
 from `0`, so that `P^R(t_0) = {0}`, a set no representation is asked to hold,
 never appears.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – window width
+* `η` – Taylor order
+* `U` – input set
+
+## Output
+* particular solution accumulated up to a given window end
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

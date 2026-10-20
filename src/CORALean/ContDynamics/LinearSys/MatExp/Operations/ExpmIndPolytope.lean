@@ -19,6 +19,13 @@ by Minkowski sums of vertex products, and the vertices of the remainder box `exp
 of its interval matrix added to it. CORA's `matP^i` here is the running product `ePpow * matP`,
 started from the identity. The Minkowski sums are `VPolytope.plus`, which keeps all vertex sums
 where CORA keeps the hull vertices.
+
+## Inputs
+* `P` – matrix polytope
+* `η` – Taylor order
+
+## Output
+* matrix polytope enclosing the exponential of every member
 -/
 
 -- Authors:       Claude Sonnet 5.5

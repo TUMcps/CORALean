@@ -11,22 +11,41 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 /-!
 # `Thm. 1`: `Alg. 2` lines 5-15 always land, for every `ε_max > 0`
 
-[1, Thm. 1]'s own two-sentence argument, against the search this tree computes. The
-accumulating error `Δε^a_k` is `O(Δt²)` (`Lemma 2`) while its admissible share
-`ε^{a,τ}_k` (eq. 37) falls only *linearly* with `Δt` — provided what is already
-accumulated is inside eq. (36)'s share at `t_k`, which is the theorem's one carried
-hypothesis — so halving eventually clears it. The non-accumulating error `Δε^n_k`
-vanishes (`Lemma 3`, `Lemma 4`) while its share `ε^{n,τ}_k` (eq. 38) approaches a
-*positive* constant, `t_k < t_end` being what makes it positive.
+[1, Thm. 1]'s own two-sentence argument, against the search this tree computes. The accumulating
+error `Δε^a_k` is `O(Δt²)` (`Lemma 2`) while its admissible share `ε^{a,τ}_k` (eq. 37) falls only
+*linearly* with `Δt`, provided what is already accumulated is inside eq. (36)'s share at `t_k`, the
+one carried hypothesis, so halving eventually clears it. The non-accumulating error `Δε^n_k`
+vanishes (`Lemma 3`, `Lemma 4`) while its share `ε^{n,τ}_k` (eq. 38) approaches a *positive*
+constant, `t_k < t_end` making it positive. Not formalizable here is [1]'s word "terminates": its
+`Δt_k` loop searches without a bound, ours takes a `fuel` and returns `Option`, so it terminates by
+construction; what transfers is that the search is not vacuous. The check must be complete here.
 
-What is not formalizable here is [1]'s word "terminates": its `Δt_k` loop searches without
-a bound, ours takes a `fuel` and returns `Option` (the departures table of
-`references/coverage/README.md`), so `autoTuneDeltaT` terminates by construction and that would
-prove nothing. What transfers is that the search is not vacuous — some fuel suffices — and that is
-what is stated.
+## Inputs
+* `sys` – linear system
+* `le` – comparison oracle on reals
+* `H` – state zonotope
+* `ũ` – constant input
+* `U₀` – recentered input zonotope
+* `tk` – step start time
+* `tend` – final time
+* `εmax` – admissible error
+* `ζ` – error budget share
+* `εaAcc` – accumulated approximation error
+* `Δtprev` – previous step length
+* `ηmax` – maximal Taylor order
 
-The check must be complete here, `a ≤ b → le a b = true`: a check that gives up early is
-sound but need never report anything.
+## Hypotheses
+* `hle` – comparison oracle is complete
+* `htend` – step start before the final time
+* `htpos` – final time positive
+* `hεmax` – admissible error positive
+* `hζ1` – error share below one
+* `hacc` – accumulated error within its share
+* `hΔtprev` – previous step positive
+* `hηmax` – maximal order at least one
+
+## Conclusion
+* some fuel makes the step-size search report a positive step
 
 ## References
 

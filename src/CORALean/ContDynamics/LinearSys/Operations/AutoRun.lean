@@ -11,6 +11,20 @@ public import CORALean.ContDynamics.LinearSys.Operations.AutoStep
 `autoRun`: [1, Alg. 2] lines 4-31, iterate `autoStep` while `t_k < t_end`, `none` propagating
 once the tuning has given out at some step.
 
+## Inputs
+* `sys` – linear system
+* `le` – comparison oracle on reals
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `tend` – final time
+* `εmax` – admissible error
+* `ζ` – error budget share
+* `ηmax` – maximal Taylor order
+* `fuel` – number of shrinkings
+
+## Output
+* loop state after a given number of iterations, if the tuning holds out
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

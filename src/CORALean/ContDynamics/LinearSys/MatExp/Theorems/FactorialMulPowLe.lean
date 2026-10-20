@@ -12,6 +12,16 @@ Shared by `scalar_term_le` and `norm_exp_sub_expTaylor_le`, both of which turn
 a factorial-vs-power tail into a geometric one: `(a+k)!` outgrows `a!` by at
 least `(a+1)` every step past it, which is the one fact both bounds invert
 into their geometric ratio.
+
+## Inputs
+* `a` – base
+* `k` – number of steps
+
+## Hypotheses
+* none
+
+## Conclusion
+* a factorial times a power is at most the larger factorial
 -/
 
 -- Authors:       Claude Opus 5

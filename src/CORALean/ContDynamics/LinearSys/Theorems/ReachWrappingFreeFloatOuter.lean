@@ -19,6 +19,17 @@ window `k`. Nothing is asked of `η`: the order the run used is the one
 `reachOrderFloat_spec` certifies. `Δt > 0`, the one thing the correction matrix
 `F` needs, is what `Reach.steps` checked before the run took a step; `N` steps of
 it span `[tStart, tFinal]` exactly.
+
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters
+* `options` – reach options
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact flow from every initial point lies in the window sets
 -/
 
 -- Authors:       Claude Opus 5.5

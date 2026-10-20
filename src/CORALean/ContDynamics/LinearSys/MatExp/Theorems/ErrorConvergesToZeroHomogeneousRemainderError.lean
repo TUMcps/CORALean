@@ -12,19 +12,26 @@ public import CORALean.Global.ErrorConvergesToZero
 # `Prop. 3`: `ε_H` of eq. (21) converges to `0` with the step
 
 [1, Prop. 3]: the error `ε_H([t_i,t_{i+1}]) = err(e^{At_i} F_x(Δt_i,η_i) X_0 ⊕ e^{At_i}
-F_u(Δt_i,η_i) c_u)` of eq. (21) converges to `0` for `Δt_i → 0`, and so satisfies
-`Assumption 1` — at the `i`-th step, `t_i` arbitrary, and at `err` itself.
-
+F_u(Δt_i,η_i) c_u)` of eq. (21) converges to `0` for `Δt_i → 0`, and so satisfies `Assumption 1`.
 [1]'s proof: it suffices that `F_x` and `F_u` converge to `[0_n, 0_n]`, since each Taylor
-interval `[c_k Δt^k, 0]` has `k ≥ 2` and `E(Δt,η) → 0`. Here that is made quantitative: every
-entry of a member of `F_x(Δt,η)` is within `Σₖ |c_k Δt^k| |(A^k/k!)_{ij}| + ‖E(Δt,η)‖` of `0`
-(`abs_entry_le_of_mem_stateCorrectionSet`), and of `F_u(Δt,η)` within the same with
-`A^{k-1}` and `|Δt|‖E(Δt,η)‖`, so every point of the set is within
-`C·(b_x(Δt)·err(X_0) + b_u(Δt)·‖c_u‖₂)` of the origin, `C` the row norms of `e^{At_i}` and
-`b_x`, `b_u` those entry bounds summed; both vanish with `Δt`.
+interval `[c_k Δt^k, 0]` has `k ≥ 2` and `E(Δt,η) → 0`. Here that is quantitative: every entry of
+a member of `F_x(Δt,η)`, likewise of `F_u(Δt,η)`, is within
+`Σₖ |c_k Δt^k| |(A^k/k!)_{ij}| + ‖E(Δt,η)‖` of `0` (`abs_entry_le_of_mem_stateCorrectionSet`), so
+every point of the set is within `C·(b_x(Δt)·err(X_0) + b_u(Δt)·‖c_u‖₂)` of the origin, `C` the
+row norms of `e^{At_i}`. `X_0` bounded makes `err(X_0)` the enclosing radius.
 
-`X_0` bounded is the one hypothesis: it makes `err(X_0)` the initial set's enclosing radius
-rather than Lean's junk value, and [1]'s `X_0` is a zonotope.
+## Inputs
+* `A` – system matrix
+* `ti` – step start time
+* `X₀` – initial set
+* `cu` – input center
+* `η` – Taylor order
+
+## Hypotheses
+* `hX₀` – initial set bounded
+
+## Conclusion
+* the homogeneous remainder error converges to zero with the step
 
 ## References
 

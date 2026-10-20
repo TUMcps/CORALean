@@ -12,18 +12,27 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SumExpTail2Le
 /-!
 # How wide the correction matrix is, in `r` and `‖A‖` alone
 
-Both endpoints at once, since an error measure has to bound whatever the
-interval denotes and not only one side of it. Each order contributes at most
-`(r‖A‖)^i / i!` — the coefficient is in `[-1, 0]` and an entry of `A^i` never
-exceeds `‖A‖^i` — so the finite part is under `e^{r‖A‖} - 1 - r‖A‖`, and the
-tail is the same `expRemainderBound` the enclosure was built with.
+Both endpoints at once, since an error measure has to bound whatever the interval denotes. Each
+order contributes at most `(r‖A‖)^i / i!` (the coefficient is in `[-1, 0]` and an entry of `A^i`
+never exceeds `‖A‖^i`), so the finite part is under `e^{r‖A‖} - 1 - r‖A‖`, and the tail is the
+same `expRemainderBound` the enclosure was built with. Indexed from `2`, where the interpolation
+error starts, so the bound is `O(r²)`: second order in the step where the hull it corrects is
+only first order. The side condition is what makes `expRemainderBound` nonnegative; without it
+the two endpoints are crossed.
 
-Indexed from `2`, which is where the interpolation error starts, so the whole
-bound is `O(r²)`: the correction is second order in the step where the hull it
-corrects is only first order.
+## Inputs
+* `A` – system matrix
+* `r` – step length
+* `η` – Taylor order
+* `j` – row index
+* `k` – column index
 
-The side condition is what makes `expRemainderBound` nonnegative; without it the
-geometric factor is negative and the two endpoints are crossed.
+## Hypotheses
+* `hr` – step length nonnegative
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* both endpoints of the correction matrix are bounded in magnitude
 -/
 
 -- Authors:       Claude Opus 5

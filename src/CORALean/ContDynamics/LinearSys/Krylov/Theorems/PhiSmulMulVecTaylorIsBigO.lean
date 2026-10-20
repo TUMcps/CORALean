@@ -16,6 +16,18 @@ the expansion behind (5.6) of [1, Remark 4]. The series `Σ_k zᵏ/(k + j)!` has
 (ratio `1/(k + j + 1) → 0`), so its sum has it as power series at `0`, and
 `φ_j(y) - Σ_{i<q} yⁱ/(i + j)! = O(‖y‖^q)`; at `y = tN`, through `B ↦ Bx`, this is `O(t^q)`.
 
+## Inputs
+* `N` – complex matrix
+* `x` – vector
+* `j` – φ-function index
+* `q` – Taylor order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the φ-function Taylor remainder is of the order of the power near zero
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

@@ -10,6 +10,15 @@ public import Mathlib.Analysis.SpecialFunctions.Exponential
 `e^x - 1 - x = ∑ᵢ x^{i+2}/(i+2)!` for every real `x`, the whole tail rather than
 `sum_expTail2_le`'s partial sums: a series compared with it termwise is then bounded
 by the closed form directly, with no limit to take afterwards.
+
+## Inputs
+* `x` – real variable
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exponential minus one minus the variable is the sum of the series from order two
 -/
 
 -- Authors:       Claude Opus 5.5

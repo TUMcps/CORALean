@@ -12,6 +12,19 @@ public import CORALean.ContDynamics.LinearSys.Operations.AutoStepFloat
 ran, each with the times `t_k, t_{k+1}` it covers (exactly, in ℚ). `none` propagates once the
 tuning has given out at some step.
 
+## Inputs
+* `sys` – linear system
+* `X₀` – initial float zonotope
+* `V` – input float zonotope
+* `tend` – final float time
+* `εmax` – admissible error
+* `ζ` – error budget share
+* `ηmax` – maximal Taylor order
+* `fuel` – number of shrinkings
+
+## Output
+* final loop state and the windows of the iterations that ran, if the tuning holds out
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

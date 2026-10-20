@@ -10,16 +10,22 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # Matrix zonotopes: the correction matrix
 
-`intervalCorrectionMatrix`'s counterpart at a matrix zonotope, CORA's `priv_tie`
-of `@linParamSys` with `obj.A` a `matZonotope`: orders `2` through `η` from
-`matZonoCorrTerm`, each the box of a matrix-zonotope power, and everything past
-`η` in the tail bound at the box of `r • M`. The result is an interval matrix, as
-CORA's `obj.F` is: CORA boxes the powers before the correction, not after.
+`intervalCorrectionMatrix`'s counterpart at a matrix zonotope, CORA's `priv_tie` of `@linParamSys`
+with `obj.A` a `matZonotope`: orders `2` through `η` from `matZonoCorrTerm`, each the box of a
+matrix-zonotope power, and everything past `η` in the tail bound at the box of `r • M`. The
+result is an interval matrix, as CORA's `obj.F` is: CORA boxes the powers before the
+correction. It is the `F(r) = Σᵢ₌₂^η Aⁱ/i! [ϕ](i, r) + E[i](r)` of [1, Sec. 3.2], the set of
+matrices that pays for interpolating the homogeneous solution linearly over a time interval:
+`[ϕ](i, r)` is the interval of `tⁱ − t rⁱ⁻¹` over `t ∈ [0, r]` and `E[i](r)` the tail bound.
+CORA's `priv_tie` cites nothing.
 
-The matrix is the `F(r) = Σᵢ₌₂^η Aⁱ/i! [ϕ](i, r) + E[i](r)` of [1, Sec. 3.2], the set of matrices
-that pays for interpolating the homogeneous solution linearly over a time interval: here `Aⁱ` is
-the box of the `i`-th matrix-zonotope power, `[ϕ](i, r)` the interval of
-`tⁱ − t rⁱ⁻¹` over `t ∈ [0, r]`, and `E[i](r)` the tail bound. CORA's `priv_tie` cites nothing.
+## Inputs
+* `M` – matrix zonotope
+* `r` – step length
+* `η` – Taylor order
+
+## Output
+* interval matrix of the correction at the matrix zonotope
 
 ## References
 

@@ -9,6 +9,16 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 # The float minimum reads as the real one
 
 `minimum` is exact, so the real value of `minimumFold f` is the infimum of the real values.
+
+## Inputs
+* `k` – dimension
+* `f` – family of floats
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float minimum reads as the real minimum
 -/
 
 -- Authors:       Claude Opus 5.5

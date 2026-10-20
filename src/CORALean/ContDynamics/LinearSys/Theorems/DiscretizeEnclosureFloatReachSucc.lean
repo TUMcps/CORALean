@@ -13,6 +13,21 @@ public import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
 takes a step as `timePointStepInputFloat` from the previous set, then reduces:
 `reach`'s own recursion, read past the instances' `materialise`. What lets a
 proof about the run work with the step's named operations.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – float sampling step
+* `η` – Taylor order
+* `o` – zonotope order
+* `R₀` – initial float zonotope
+* `U` – input float zonotope
+* `k` – step index
+
+## Hypotheses
+* `ho` – zonotope order positive
+
+## Conclusion
+* the next run set is the reduced float step from the previous one
 -/
 
 -- Authors:       Claude Opus 5.5

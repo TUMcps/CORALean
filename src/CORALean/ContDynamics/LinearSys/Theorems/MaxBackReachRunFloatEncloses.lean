@@ -11,14 +11,51 @@ public import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachStepFloatEncl
 # The float state after `k` iterations stands for the exact one
 
 By induction on `k`: the initial state stands for `maxBackReachInit`
-(`maxBackReachInitFloat_encloses`) and one float iteration carries a state standing for an exact
-one to a state standing for the exact iteration (`maxBackReachStepFloat_encloses`). The exact run
-takes one Taylor order `η` for the initial state and every iteration, so the float run checks that
-the searches at `t₀` and at `Δt` land on one order `ηr`, and is `none` otherwise; the exact run
-the theorem names is at that `ηr`. The float input solution holds the exact one
-(`inputSolution_subset_inputSolutionFloat`), so the input `W₀` is only asked to hold `W₀r` with
-error box `{0}`.
-The lines are those of [1, Alg. 3].
+(`maxBackReachInitFloat_encloses`) and one float iteration carries a state standing for an exact one
+to a state standing for the exact iteration (`maxBackReachStepFloat_encloses`). The exact run takes
+one Taylor order `η` for the initial state and every iteration, so the float run checks that the
+searches at `t₀` and at `Δt` land on one order `ηr`, and is `none` otherwise. The float input
+solution holds the exact one (`inputSolution_subset_inputSolutionFloat`), so the input `W₀` is only
+asked to hold `W₀r` with error box `{0}`. The lines are those of [1, Alg. 3].
+
+## Inputs
+* `sys` – linear system
+* `Bx` – conversion box
+* `P₁` – first eroded float polytope
+* `P₂` – second eroded float polytope
+* `U` – input float zonotope
+* `W₀` – initial disturbance float zonotope
+* `Zw` – center trajectory contribution over a bracket
+* `t₀` – float start time
+* `Δt` – float step length
+* `η` – Taylor order
+* `P₁r` – first exact polytope
+* `P₂r` – second exact polytope
+* `Ur` – exact input zonotope
+* `W₀r` – exact initial disturbance zonotope
+* `Zwr` – exact center trajectory contribution
+* `k` – iteration count
+
+## Hypotheses
+* `ρ` – support oracle for exact polytopes
+* `ht₀` – start time nonnegative
+* `hΔt` – step length positive
+* `hU0` – input error box contains zero
+* `hU` – exact input zonotope inside the float one
+* `hWE` – disturbance error box is zero
+* `hW₀r` – exact disturbance zonotope inside the float one
+* `hZw` – float center contribution holds the exact one
+* `hP₁` – first float polytope inside the exact one
+* `hP₂` – second float polytope inside the exact one
+* `hP₁0` – first polytope error box contains zero
+* `hP₂0` – second polytope error box contains zero
+* `hker₁` – first float polytope has no equality rows
+* `hker₂` – second float polytope has no equality rows
+* `hkerr₁` – first exact polytope has no equality rows
+* `hkerr₂` – second exact polytope has no equality rows
+
+## Conclusion
+* the float state after the iterations stands for the exact one
 
 ## References
 

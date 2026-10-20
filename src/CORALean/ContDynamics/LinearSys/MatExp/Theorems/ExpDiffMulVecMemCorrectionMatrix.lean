@@ -12,6 +12,22 @@ the correction matrix `F` of `[2]`. With the `F` of `[2, Prop. 3.1]` (`MatExp.co
 what is proved is `Δx(t) = (t/r)(e^{Ar} - I) x(0) + F x(0)` for some `F` of the interval matrix:
 `F` is not scaled by `t/r`, which `MatExp.expDiff_mem_correctionMatrix` does not give.
 
+## Inputs
+* `A` – system matrix
+* `r` – step length
+* `m` – Taylor order offset
+* `t` – time
+* `x` – start vector
+
+## Hypotheses
+* `hr` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+* `ht0` – time nonnegative
+* `htr` – time within the step
+
+## Conclusion
+* the variation of the point is the interpolation plus a correction member applied to it
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

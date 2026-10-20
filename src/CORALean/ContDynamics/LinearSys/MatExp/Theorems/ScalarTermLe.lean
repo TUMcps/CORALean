@@ -12,6 +12,17 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 past order `η` into a geometric series of ratio `c / (η+2)`. Stated on its own,
 at a bare scalar `c`, because the correction matrix bounds a different series
 with exactly this shape and reuses it rather than re-deriving it.
+
+## Inputs
+* `c` – norm bound
+* `η` – Taylor order
+* `i` – term index
+
+## Hypotheses
+* `hc` – norm bound nonnegative
+
+## Conclusion
+* a series term is under the geometric majorant term
 -/
 
 -- Authors:       Claude Opus 5

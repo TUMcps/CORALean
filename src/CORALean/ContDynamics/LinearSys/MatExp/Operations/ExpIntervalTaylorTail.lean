@@ -12,6 +12,12 @@ public import CORALean.ContSet.Interval.Real.Operations.Smul
 matrix, by ordinary interval arithmetic. Below order three there are none — `point 0` rather
 than undefined, so `κ < 3` is the truncation `I + W(t)` and not a special case.
 
+## Inputs
+* `B` – interval matrix
+
+## Output
+* interval matrix of the Taylor terms from order three up to the given order
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

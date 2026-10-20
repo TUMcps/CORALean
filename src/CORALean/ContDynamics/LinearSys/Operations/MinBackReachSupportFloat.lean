@@ -16,6 +16,23 @@ The first term is rounded up (`ConZonotope.boundDot`, checked in ℚ against the
 the second down (`Zonotope.lowerDot`), so the difference, rounded up, is above the real one. The
 exact layer takes a support oracle; here it is computed, which is why `ToRat 𝕋` is asked.
 
+## Inputs
+* `sys` – linear system
+* `CZ` – target constrained zonotope
+* `W₀` – initial disturbance float zonotope
+* `U₀` – initial input float zonotope
+* `Zw` – center trajectory contribution
+* `N` – direction matrix
+* `t₀` – float start time
+* `Δt` – float step length
+* `η` – Taylor order
+* `ν` – number of squarings
+* `k` – step index
+* `j` – direction index
+
+## Output
+* float support value of the direction at the step, rounded up
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

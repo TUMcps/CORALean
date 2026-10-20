@@ -22,6 +22,16 @@ of the time-inverted dynamics `-A` accumulated up to `t₀`, by `inputSolutionFl
 `inputSolution`, and the origin as the start of `R̂^∃`. Negating a float is exact, so `-A` costs no
 rounding.
 
+## Inputs
+* `sys` – linear system
+* `W₀` – initial disturbance float zonotope
+* `U₀` – initial input float zonotope
+* `t₀` – float start time
+* `η` – Taylor order
+
+## Output
+* float loop state before the first iteration
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

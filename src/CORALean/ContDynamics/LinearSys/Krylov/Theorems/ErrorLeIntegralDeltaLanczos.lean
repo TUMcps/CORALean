@@ -15,6 +15,22 @@ unit factor `-i`), `ν(A) = 0`, so Thm. 3.1 (`Krylov.error_le_exp_min_integral_d
 inequality of (6.4); the second, `β_{k+1} ≤ ‖H‖`, is not formalized. Stated for Hermitian `H`, any
 complex `T_k`, `β_{k+1}` and `v_{k+1}` with (6.2); the tridiagonal form of `T_k` is not used.
 
+## Inputs
+* `H` – Hermitian matrix
+* `V` – Krylov basis
+* `T` – tridiagonal matrix
+* `β` – next off-diagonal entry
+* `w` – next vector
+* `t` – time
+
+## Hypotheses
+* `hH` – matrix is Hermitian
+* `hK` – Krylov identity holds
+* `ht` – time nonnegative
+
+## Conclusion
+* the Lanczos error is at most the integral of the defect bound
+
 ## References
 
 * [1] H. Wang, Q. Ye. "Error bounds for the Krylov subspace methods for computations of matrix

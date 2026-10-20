@@ -15,6 +15,13 @@ Hessenberg entries `h_{i,j}` at `(i - 1, j - 1)`. Line 1 normalizes `v`; each pa
 lines 9–11 stops the loop, which here is the caller stopping at `ξ = k`: only passes with
 `h_{k+1,k} ≠ 0` are read. Over ℝ, the norm the Euclidean one.
 
+## Inputs
+* `C` – matrix
+* `v` – start vector
+
+## Output
+* Arnoldi vectors and Hessenberg entries after a given number of steps
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

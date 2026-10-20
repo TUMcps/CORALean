@@ -14,6 +14,16 @@ of the same shape: the decorrelated one, `⊕ᵢ ÃᵢU0`, already `particularSo
 this one's correlated one, `(Σᵢ Ãᵢ)U0` — a single matrix, the sum of the `Ãᵢ` themselves,
 applied once.
 
+## Inputs
+* `A` – system matrix
+* `U0` – input set
+* `i0` – start index
+* `Δt` – step length
+* `η` – Taylor order
+
+## Output
+* correlated summand of the particular solution outer approximation
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

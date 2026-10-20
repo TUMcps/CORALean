@@ -16,6 +16,29 @@ Hessenberg, `τ_{m+1,m} ≥ 0`. As in [1]: (3.1b) bounds the error by `τ_{m+1,m
 gives (3.6). `|γ_m|` is `γ_m` for Arnoldi's positive subdiagonal (Remark 1). Without the
 nonexpansive hypothesis the bound fails (`Krylov.jawecki_bound_cora_counterexample`).
 
+## Inputs
+* `A` – matrix
+* `V` – Krylov basis
+* `T` – Hessenberg matrix
+* `τ` – next subdiagonal entry
+* `σ` – unit scaling
+* `w` – next vector
+* `t` – time
+
+## Hypotheses
+* `hK` – Krylov identity holds
+* `hV` – basis has orthonormal columns
+* `hVw` – next vector orthogonal to the basis
+* `hτ` – subdiagonal entry nonnegative
+* `hw` – next vector has unit norm
+* `hH` – Hessenberg matrix is upper Hessenberg
+* `hσ` – scaling has modulus one
+* `hA` – scaled matrix has field of values in the left half-plane
+* `ht` – time nonnegative
+
+## Conclusion
+* the Krylov error is at most the bound Err_a
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

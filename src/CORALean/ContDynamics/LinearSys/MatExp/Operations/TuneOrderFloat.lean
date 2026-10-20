@@ -14,6 +14,14 @@ search at a float representation: `η = 2, 3, …` for at most `fuel` orders, st
 first one that passes `orderTest`. A caller who runs out of fuel gets `none`, never an
 unchecked order.
 
+## Inputs
+* `nrm` – float norm bound
+* `ε` – float admissible error
+* `fuel` – number of orders tried
+
+## Output
+* first order passing the float test, if any
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

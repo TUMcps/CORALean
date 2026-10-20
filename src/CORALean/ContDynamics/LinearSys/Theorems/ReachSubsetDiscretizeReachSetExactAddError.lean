@@ -9,15 +9,30 @@ public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetReachSe
 /-!
 # A sampled run, against held inputs and its own error
 
-`LinearSysDT.reach_subset_reachSetExact_add_error` at the sampled system, composed
-with `discretize_reachSetExact_subset_add_reachInputError`: the first takes the
-reductions off the run, the second the input enclosures' excess off the exact
-recursion that is left, and `reachError` is the two errors summed.
+`LinearSysDT.reach_subset_reachSetExact_add_error` at the sampled system, composed with
+`discretize_reachSetExact_subset_add_reachInputError`: the first takes the reductions off the run,
+the second the input enclosures' excess off the exact recursion that is left, and `reachError` is
+the two errors summed. The set on the right is the zero-order-hold reachable set: `R₀` carried by
+`e^{AΔt}` and one held input's contribution `(∫₀^{Δt} e^{As} ds) U` added per step. It is a
+`LinearSysDT.reachSetExact` of zonotopes, hence convex and compact, which is what the inner
+approximation needs of it.
 
-The set on the right is the zero-order-hold reachable set: `R₀` carried by
-`e^{AΔt}` and one held input's contribution `(∫₀^{Δt} e^{As} ds) U` added per
-step. It is a `LinearSysDT.reachSetExact` of zonotopes, hence convex and compact,
-which is what the inner approximation needs of it.
+## Inputs
+* `sys` – linear system
+* `Δt` – sampling step
+* `η` – Taylor order
+* `o` – zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – number of steps
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+* `ho` – zonotope order positive
+
+## Conclusion
+* the sampled run lies in the held-input reach set widened by its error
 -/
 
 -- Authors:       Claude Opus 5.5

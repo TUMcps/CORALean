@@ -13,6 +13,20 @@ The Taylor sum does (`zero_mem_inputTaylorSumFloat_error`), the remainder
 product does because its interval holds the zero matrix
 (`zero_mem_intervalInputRemainder`), and so does their float sum. What the
 float step's upper bound asks of its input set.
+
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `U` – input float zonotope
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hη` – order admissible
+* `hU` – input error box contains zero
+
+## Conclusion
+* the float input solution's error box contains zero
 -/
 
 -- Authors:       Claude Opus 5.5

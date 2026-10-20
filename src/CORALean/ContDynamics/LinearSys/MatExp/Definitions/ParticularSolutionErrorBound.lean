@@ -13,6 +13,16 @@ public import Mathlib.Analysis.Matrix.Normed
 `particularSolutionError` — twice the one bound both its summands share, since both start
 their sum at `i0 = 1`. `err`'s own triangle inequality otherwise unused.
 
+## Inputs
+* `A` – system matrix
+* `tk` – step start time
+* `U0` – input set
+* `Δt` – step length
+* `η` – Taylor order
+
+## Output
+* polynomial in the step length bounding the particular solution error
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

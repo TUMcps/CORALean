@@ -18,19 +18,29 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 # A float step reaches no further than the exact held-input step, plus two boxes
 
 The upper side of the float step `timePointStepInputFloat`: a point of it is
-`e^{Ar} x + (∫₀^r e^{As} ds) u`, for `x` in the float `X` and `u` in `U`'s
-nominal zonotope, plus a point of `timePointStepExcessFloat` and one of
-`timePointStepErrorBoxFloat`. Three bounds compose:
+`e^{Ar} x + (∫₀^r e^{As} ds) u`, for `x` in the float `X` and `u` in `U`'s nominal zonotope, plus a
+point of `timePointStepExcessFloat` and one of `timePointStepErrorBoxFloat`. Three bounds compose:
+`mtimesIntervalMat_subset_add_box` at the true `e^{Ar}`, a member of `[e^{Ar}]` by
+`exp_mem_expIntervalFloat`; `plus_subset_add_box` and `inputSolutionFloat_subset_add_box`; and
+`inputSolution_subset_constInput_add_errorBox`, the exact input solution against the held input,
+whose error box `timePointStepErrorBox_subset_float` puts inside the float one. `e^{Ar} X` is the
+image of the float `X`'s whole `construct`; a caller splits it further.
 
-* `mtimesIntervalMat_subset_add_box`, at the true `e^{Ar}`, a member of
-  `[e^{Ar}]` by `exp_mem_expIntervalFloat`;
-* `plus_subset_add_box`, and `inputSolutionFloat_subset_add_box`;
-* `inputSolution_subset_constInput_add_errorBox`, the exact input solution
-  against the held input, whose error box `timePointStepErrorBox_subset_float`
-  puts inside the float one.
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `X` – float state zonotope
+* `U` – input float zonotope
 
-`e^{Ar} X` is the image of the float `X`'s whole `construct`; a caller splits it
-further (`X`'s nominal part, and its error box carried by `[e^{Ar}]`).
+## Hypotheses
+* `hr` – step length positive
+* `hη` – order admissible
+* `hX` – state error box contains zero
+* `hU` – input error box contains zero
+
+## Conclusion
+* the float step lies in the exact held-input step widened by the excess and error boxes
 -/
 
 -- Authors:       Claude Opus 5.5

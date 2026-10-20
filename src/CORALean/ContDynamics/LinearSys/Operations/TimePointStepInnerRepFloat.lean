@@ -8,17 +8,26 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffRep
 /-!
 # A step's inner approximation, over a floating-point scalar
 
-`timePointStepInnerRep` computed in `𝕋`: the float step
-`timePointStepInputFloat` minus its budget `timePointStepInnerErrorFloat`, by
-the float `Zonotope.minkDiffRep`. The real operation takes the exact step's
-error box off the exact step; this one takes off what the *float* step owes,
-which also covers the float step's excess over the exact one, measured against
-the held input rather than against the exact step.
-
-`minkDiffRep` is inward-rounded and certified by a float containment check, at a
-representation `M`, a margin factor `ρ` and a right inverse `H` the caller
-offers. Any of them wrong gives `none`, costing precision and never soundness;
+`timePointStepInnerRep` computed in `𝕋`: the float step `timePointStepInputFloat` minus its budget
+`timePointStepInnerErrorFloat`, by the float `Zonotope.minkDiffRep`. The real operation takes the
+exact step's error box off the exact step; this one takes off what the *float* step owes, which also
+covers the float step's excess over the exact one. `minkDiffRep` is inward-rounded and certified by
+a float containment check, at a representation `M`, a margin factor `ρ` and a right inverse `H` the
+caller offers. Any of them wrong gives `none`, costing precision and never soundness;
 `timePointStepInnerRepFloat_inner` is the guarantee on `some`.
+
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `X₀` – initial float zonotope
+* `U` – input float zonotope
+* `M` – generator representation
+* `ρ` – margin factor
+* `H` – right inverse
+
+## Output
+* float step minus its budget, if the certificate goes through
 -/
 
 -- Authors:       Claude Opus 5.5

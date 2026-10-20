@@ -18,14 +18,27 @@ public import CORALean.Global.EuclideanHausdorffDistTriangle
 # [1, Prop. 4]'s eq. (28): the reduction error accumulated over the horizon
 
 Line 10 of `Alg. 1` reduces what it has just accumulated and feeds the result back, so the
-reductions do compound: `ε^r_k = ∑_{j<k} Δε^r_j(ρ)`, each summand eq. (29)'s bound at the
-zonotope that step actually reduced. This is the distance between `manualRun`'s own
-`P̂^U(t_k)` and the same recursion with line 10's `reduce` omitted.
+reductions do compound: `ε^r_k = ∑_{j<k} Δε^r_j(ρ)`, each summand eq. (29)'s bound at the zonotope
+that step actually reduced. This is the distance between `manualRun`'s own `P̂^U(t_k)` and the same
+recursion with line 10's `reduce` omitted. Two facts on top of eq. (29) carry the induction, as the
+`Prop. 4` finding says they must: the Hausdorff triangle inequality, and the invariance of `d_H`
+under a common Minkowski summand, a corollary of `hausdorffDist₂_add_le` at `d_H(X,X) = 0`. Nothing
+here is about which generators `reduce` drops.
 
-Two facts on top of eq. (29) carry the induction, as the `Prop. 4` finding says they must:
-the Hausdorff triangle inequality, and the invariance of `d_H` under a common Minkowski
-summand — the latter a corollary of `hausdorffDist₂_add_le` at `d_H(X,X) = 0`, no separate
-argument needed. Nothing here is about which generators `reduce` drops.
+## Inputs
+* `sys` – linear system
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `Δt` – step length
+* `η` – Taylor order
+* `ρ` – zonotope order
+* `k` – number of steps
+
+## Hypotheses
+* none
+
+## Conclusion
+* the reduced accumulation is within the summed per-step reduction errors
 
 ## References
 

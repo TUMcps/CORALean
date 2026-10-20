@@ -14,6 +14,22 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PeanoBakerTermMemM
 So `P_k(t) = λ^k Q_k` with `Q_k` an order of the step's own Taylor box, `λ = t/r` —
 how a time-varying run between the two ends of a step is read as CORA's
 interpolation.
+
+## Inputs
+* `B` – interval matrix
+* `A` – time-varying matrix
+* `k` – term index
+* `t` – time
+* `r` – target length
+
+## Hypotheses
+* `hA` – matrix entries integrable
+* `hAB` – matrix stays in the box
+* `ht` – time positive
+* `hr` – target length nonnegative
+
+## Conclusion
+* the rescaled term times the factorial lies in the box power of the scaled box
 -/
 
 -- Authors:       Claude Opus 5.5

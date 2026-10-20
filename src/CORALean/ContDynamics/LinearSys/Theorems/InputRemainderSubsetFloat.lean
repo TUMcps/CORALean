@@ -18,6 +18,19 @@ in the float product, and the float product is convex and closed, so the hull st
 Both `inputReach_subset_inputSolutionFloat` and the split of eq. (27) take their remainder from
 here.
 
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `V` – input float zonotope
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hη` – order admissible
+
+## Conclusion
+* the exact remainder product lies in the float remainder product
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

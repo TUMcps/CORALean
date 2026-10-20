@@ -13,6 +13,20 @@ The float counterpart of `Real.MatExp.exp_mem_expIntervalEnclosureExact`, entry 
 `exp_mem_expIntervalEnclosure` does and with the same tail bound at `normUpperBound`: only the
 center differs. `hε` asks `1/2`, as there, since `expRemainderBound_le`'s geometric factor is
 the fixed constant `2`.
+
+## Inputs
+* `A` – float interval matrix
+* `t` – float time
+* `M` – member matrix
+* `κ` – Taylor order
+
+## Hypotheses
+* `hM` – member lies in the interval matrix
+* `hκ` – order at least two
+* `hε` – float norm bound small enough for the Taylor order
+
+## Conclusion
+* the exponential of the scaled member lies in the sharper float enclosure
 -/
 
 -- Authors:       Claude Sonnet 5.5

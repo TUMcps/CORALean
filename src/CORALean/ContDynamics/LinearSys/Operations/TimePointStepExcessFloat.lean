@@ -10,19 +10,23 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # How far a float step reaches beyond the exact one
 
-`timePointStepInputFloat` encloses the exact step from outside. This box bounds
-the other side: the float step lies in `e^{Ar} X` plus the held-input
-contribution `(∫₀^r e^{As} ds) U`, widened by this box and by the step's error
-box `timePointStepErrorBoxFloat`
-(`timePointStepInputFloat_subset_add_excess`). It holds what floats add:
+`timePointStepInputFloat` encloses the exact step from outside. This box bounds the other side: the
+float step lies in `e^{Ar} X` plus the held-input contribution `(∫₀^r e^{As} ds) U`, widened by this
+box and by the step's error box `timePointStepErrorBoxFloat`
+(`timePointStepInputFloat_subset_add_excess`). It holds what floats add: `mtimesIntervalMatBox`, the
+product `[e^{Ar}] X` beyond `e^{Ar} X` for the true exponential, a member of `[e^{Ar}]`; the
+`plusBox` of the float sum; and `inputSolutionBoxFloat`, the input solution beyond the exact one.
+The error box is kept apart because a run carries it separately, as `reachInputErrorFloat` does.
 
-* `mtimesIntervalMatBox`, the product `[e^{Ar}] X` beyond `e^{Ar} X` for the true
-  exponential, a member of `[e^{Ar}]`;
-* the `plusBox` of the float sum;
-* `inputSolutionBoxFloat`, the input solution beyond the exact one.
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `X` – float state zonotope
+* `U` – float input zonotope
 
-The error box is kept apart because a run carries it separately, as
-`reachInputErrorFloat` does.
+## Output
+* float zonotope of what the float step holds beyond the exact one, besides its error box
 -/
 
 -- Authors:       Claude Opus 5.5

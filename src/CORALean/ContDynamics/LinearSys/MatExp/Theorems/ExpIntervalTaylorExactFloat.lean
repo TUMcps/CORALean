@@ -17,6 +17,19 @@ public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
 The float counterpart of `Real.MatExp.expTaylor_mem_expIntervalTaylorExact`: the truncation
 splits at order three into `expTaylor (t • M) 2`, which `expTaylor_two` turns into `I + W(t)`,
 and the orders past it. `2 ≤ κ` is what makes the split legitimate.
+
+## Inputs
+* `A` – float interval matrix
+* `t` – float time
+* `M` – member matrix
+* `κ` – Taylor order
+
+## Hypotheses
+* `hM` – member lies in the interval matrix
+* `hκ` – order at least two
+
+## Conclusion
+* the member's Taylor truncation lies in the sharper float truncation
 -/
 
 -- Authors:       Claude Sonnet 5.5

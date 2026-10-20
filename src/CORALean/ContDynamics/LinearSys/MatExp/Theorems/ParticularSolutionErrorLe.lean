@@ -14,6 +14,19 @@ public import CORALean.Global.Err
 [1, Lemma 2]'s bound: both `err`-summands' underlying sets are within
 `particularSolutionErrorBound`'s own reach, half of it each.
 
+## Inputs
+* `A` – system matrix
+* `tk` – step start time
+* `U0` – input set
+* `Δt` – step length
+* `η` – Taylor order
+
+## Hypotheses
+* `hU0` – input set bounded
+
+## Conclusion
+* the error is under the root of the dimension times its explicit bound
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

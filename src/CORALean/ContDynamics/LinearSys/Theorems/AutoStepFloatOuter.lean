@@ -28,17 +28,31 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 /-!
 # One `Alg. 2` iteration keeps its invariant and its window holds every run
 
-From a state holding `AutoInvariantFloat`, `autoStepFloat` returns one holding it `Δt_k` later,
-and a window `R̂(τ_k)` holding every run over `[t_k, t_{k+1}]`. The step asks nothing of the
-tuning: `autoStepFloat` checks the pair `(Δt_k, η_k)` it returns, so a step that ran is one at
-an admissible pair, whichever way `autoTuneDeltaTFloat` and `autoTuneSetOrder` picked it.
+From a state holding `AutoInvariantFloat`, `autoStepFloat` returns one holding it `Δt_k` later, and
+a window `R̂(τ_k)` holding every run over `[t_k, t_{k+1}]`. The step asks nothing of the tuning:
+`autoStepFloat` checks the pair `(Δt_k, η_k)` it returns, so a step that ran is one at an admissible
+pair. The free motion and the constant input's share, from `H(t_k)`, are in the affine window
+(`affineWindowFloat_outer`, lines 27-28). The `Ũ`-input's share by `t_{k+1}` comes apart at `t_k`
+(`inputReach_separation_subset`), its newest step is in `bPU_0 ⊕ bPU_∞`
+(`inputReach_subset_split_float`), and `e^{At_k}` carries the halves to `P̂^U_0` and into the box of
+`P̂^U_∞` (lines 17-18). The window's `P̂^U(t_{k+1})` reduces `P̂^U_0` and keeps `P̂^U_∞` (line 23).
 
-The free motion and the constant input's share, from `H(t_k)`, are in the affine window
-(`affineWindowFloat_outer`, lines 27-28). The `Ũ`-input's share by `t_{k+1}` comes apart at
-`t_k` (`inputReach_separation_subset`), its newest step is in `bPU_0 ⊕ bPU_∞`
-(`inputReach_subset_split_float`), and `e^{At_k}` carries the halves to `P̂^U_0` and into the box
-of `P̂^U_∞` (lines 17-18). The window's `P̂^U(t_{k+1})` reduces `P̂^U_0` and keeps `P̂^U_∞`
-(line 23).
+## Inputs
+* `sys` – linear system
+* `X₀` – initial float zonotope
+* `V` – input float zonotope
+* `tend` – final float time
+* `εmax` – admissible error
+* `ζ` – error budget share
+* `ηmax` – maximal Taylor order
+* `fuel` – number of shrinkings
+* `s` – float loop state
+
+## Hypotheses
+* `hinv` – state holds the invariant
+
+## Conclusion
+* the iteration keeps the invariant and its window holds every run
 -/
 
 -- Authors:       Claude Sonnet 5.5

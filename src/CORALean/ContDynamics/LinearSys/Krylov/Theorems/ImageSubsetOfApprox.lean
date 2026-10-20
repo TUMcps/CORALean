@@ -15,6 +15,22 @@ By linearity, `M(c + Σ βᵢgᵢ) = ĉ + Σ βᵢĝᵢ` plus an error at most `
 coordinate. One error per vector, as Thm. IV.1 writes it: Thm. III.1's single `ε_norm` is
 the case of equal `εᵢ`, `eᵢ = ‖gᵢ‖ ε t`. [1, Alg. 2] calls it in lines 1, 7 and 8.
 
+## Inputs
+* `M` – linear map
+* `c` – zonotope center
+* `g` – zonotope generators
+* `chat` – approximate image of the center
+* `ghat` – approximate images of the generators
+* `ec` – center error
+* `eg` – generator errors
+
+## Hypotheses
+* `hc` – center image error bounded
+* `hg` – generator image errors bounded
+
+## Conclusion
+* the image lies in the approximating zonotope plus an error box
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

@@ -16,18 +16,28 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 /-!
 # [1, Prop. 1]: the affine dynamics error of eq. (22)'s time-interval enclosure
 
-`d_H(H(τ_k), Ĥ(τ_k)) ≤ Δε^h_k(Δt,η) = 2err(C) + √γ_h‖G^{(-)}_h‖₂`, eq. (23), for the exact
-tube `affineTimeIntervalSolution` and eq. (22)'s `affineTimeIntervalOuter`.
+`d_H(H(τ_k), Ĥ(τ_k)) ≤ Δε^h_k(Δt,η) = 2err(C) + √γ_h‖G^{(-)}_h‖₂`, eq. (23), for the exact tube
+`affineTimeIntervalSolution` and eq. (22)'s `affineTimeIntervalOuter`. Two inclusions are
+hypotheses, each one [1] states without proving. `houter` is eq. (22)'s soundness, which [1]
+cites. `hinner` is [1]'s own inner-approximation `comb(H(t_k),H(t_{k+1})) ⊖ B_µ ⊖ C ⊆ H(τ_k)`, in
+the Minkowski-*sum* form `comb(H(t_k),H(t_{k+1})) ⊆ H(τ_k) ⊕ C` its bound uses. The witness is
+one triangle inequality: `err(C)` for the added curvature, `Prop. 9`'s `µ` for `linComb`'s
+enclosure error, `err(C)` for `hinner`'s curvature, reaching eq. (23)'s constant without [1]'s
+erosion step, which does not compose additively.
 
-Two inclusions are hypotheses, and each is one [1] states without proving. `houter` is eq. (22)'s
-soundness, which [1] cites rather than proves. `hinner` is [1]'s own inner-approximation
-`comb(H(t_k),H(t_{k+1})) ⊖ B_µ ⊖ C ⊆ H(τ_k)`, stated in the Minkowski-*sum* form
-`comb(H(t_k),H(t_{k+1})) ⊆ H(τ_k) ⊕ C` its bound actually uses: every point of the straight
-combination is within the curvature set of the true tube.
+## Inputs
+* `A` – system matrix
+* `H` – state zonotope
+* `ũ` – constant input
+* `Δt` – step length
+* `η` – Taylor order
 
-The witness is then one triangle inequality — `err(C)` for the added curvature, `Prop. 9`'s `µ`
-for `linComb`'s own enclosure error, `err(C)` again for `hinner`'s curvature — reaching eq. (23)'s
-constant exactly, without [1]'s erosion step, which does not compose additively.
+## Hypotheses
+* `hinner` – straight combination lies within the tube plus the curvature
+* `houter` – exact tube lies inside the outer enclosure
+
+## Conclusion
+* the Hausdorff distance is at most the affine dynamics error
 
 ## References
 

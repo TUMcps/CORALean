@@ -16,6 +16,16 @@ matrices are already this tree's `correctionMatrix` and `constCorrectionMatrix`.
 `Zonotope.mtimesIntervalMat` is CORA's own `mtimes` at an interval matrix, so `C` is the set
 Line 8 computes rather than the exact product it encloses.
 
+## Inputs
+* `A` – system matrix
+* `H` – state zonotope
+* `ũ` – constant input
+* `Δt` – step length
+* `η` – Taylor order
+
+## Output
+* zonotope enclosing the curvature of the step
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

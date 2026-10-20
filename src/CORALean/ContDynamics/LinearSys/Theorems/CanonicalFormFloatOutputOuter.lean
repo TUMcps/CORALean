@@ -17,6 +17,23 @@ public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 `D (uVec + u) + k + F (vVec + v)` with `u ∈ U`, `v ∈ V` is in `V_ ⊕ v_` [1]. All quantities are
 the real values of stored floats; an outer statement.
 
+## Inputs
+* `sys` – linear system
+* `U` – input float zonotope
+* `uVec` – input offset
+* `W` – disturbance float zonotope
+* `V` – noise float zonotope
+* `vVec` – noise offset
+* `u` – input value
+* `v` – noise value
+
+## Hypotheses
+* `hu` – input lies in its zonotope
+* `hv` – noise lies in its zonotope
+
+## Conclusion
+* the float canonical output set holds the output of every input and noise
+
 ## References
 
 * [1] `contDynamics/@linearSys/canonicalForm.m`

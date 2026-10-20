@@ -14,6 +14,20 @@ in `𝕋`: `autoRunFloat` from `autoInitFloat` for at most `K` iterations, the w
 `t_end` in `K` iterations. `V` is the input set in the state space, `B U`, split at its stored
 center. The horizon `t_end` must be a positive float.
 
+## Inputs
+* `sys` – linear system
+* `X₀` – initial float zonotope
+* `V` – input float zonotope
+* `tend` – final float time
+* `εmax` – admissible error
+* `ζ` – error budget share
+* `ηmax` – maximal Taylor order
+* `fuel` – number of shrinkings
+* `K` – number of steps
+
+## Output
+* windows with their enclosures covering the horizon, if the run completes
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

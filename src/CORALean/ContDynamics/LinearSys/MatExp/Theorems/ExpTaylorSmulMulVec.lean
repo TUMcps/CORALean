@@ -11,6 +11,18 @@ public import Mathlib.Data.Matrix.Basic
 `expTaylor (τ • A) η *ᵥ v` order by order, each order's `τ^i` a scalar in front
 of `Aⁱ *ᵥ v` rather than inside the matrix. That is what lets an input solution
 take the matrix out of an integral over `τ` and leave a scalar weight behind.
+
+## Inputs
+* `A` – system matrix
+* `η` – Taylor order
+* `τ` – time
+* `v` – vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the truncated series applied to the vector has the time powers pulled out
 -/
 
 -- Authors:       Claude Opus 5

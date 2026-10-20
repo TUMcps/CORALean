@@ -8,16 +8,27 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepSubsetConstI
 /-!
 # What the step's end encloses beyond what it reaches
 
-`timePointStep_outer` run backwards, and the direction an error measure needs:
-the computed set is inside the exact one *widened by a ball*, so `ε` bounds the
-enclosure's own error and not only a series remainder.
+`timePointStep_outer` run backwards, and the direction an error measure needs: the computed set is
+inside the exact one *widened by a ball*, so `ε` bounds the enclosure's own error and not only a
+series remainder. `timePointStep_subset_constInput_add_error` is where the estimate is done, and it
+is sharper: it measures against the states a *held* input reaches. This weakens that set to the
+whole `inputReach`, which is the shape every outer statement about a step is stated in, at the cost
+of a right-hand side that is no longer known to be closed, so an inner approximation goes through
+the sharper form and never this one.
 
-`timePointStep_subset_constInput_add_error` is where the estimate is done, and
-it is sharper: it measures against the states a *held* input reaches. This
-weakens that set to the whole `inputReach`, which is the shape every outer
-statement about a step is stated in, at the cost of a right-hand side that is no
-longer known to be closed — so an inner approximation goes through the sharper
-form and never this one.
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `X₀` – initial zonotope
+* `U` – input zonotope
+
+## Hypotheses
+* `hr` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the computed step lies in the reached states widened by the error
 -/
 
 -- Authors:       Claude Opus 5

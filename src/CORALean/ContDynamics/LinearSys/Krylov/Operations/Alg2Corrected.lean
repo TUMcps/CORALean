@@ -18,6 +18,17 @@ propagates `R*_{b,1}` by `e^{Akδ}`, (24)'s `e^{At_k}` at `t_k = kδ`, not by th
 (`varying_input_reach_counterexample`), its corrected form does
 (`inputReach_subset_krylovZonotope`).
 
+## Inputs
+* `theoremIII1` – subroutine enclosing the matrix-exponential image
+* `corollaryIV2` – input solution enclosure
+* `theoremIII2` – subroutine for the homogeneous step solution
+* `X₀` – initial set
+* `δ` – step length
+* `tf` – final time
+
+## Output
+* union of the repaired step sets over the time horizon
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

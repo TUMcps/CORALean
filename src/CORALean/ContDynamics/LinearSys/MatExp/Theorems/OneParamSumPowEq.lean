@@ -14,6 +14,19 @@ At `a_i = rⁱ/i!` this is the step of the proof of [1, Thm. 1] defining `C̃_K`
 `a_i = r^{i+1}/(i+1)!` it is the partial input solution's `Σ Aⁱ(β) r^{i+1}/(i+1)!` that
 [1, Sec. IV-B] says "can be computed similarly".
 
+## Inputs
+* `C` – center matrix
+* `G` – generator matrix
+* `a` – series coefficients
+* `β` – generator weight
+* `η` – Taylor order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the matrix polynomial regroups by powers of the weight
+
 ## References
 
 * [1] M. Althoff and J. M. Dolan. "Reachability Computation of Low-Order Models for the Safety

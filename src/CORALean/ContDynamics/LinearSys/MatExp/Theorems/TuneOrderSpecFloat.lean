@@ -15,6 +15,18 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundF
 norm at most `nrm`, so `OrderAdmissible` of [1]'s truncation order holds at `toReal ε`. The
 search starts at `2`, so `2 ≤ η` is by construction. Minimality is not claimed.
 
+## Inputs
+* `x` – matrix
+* `nrm` – float norm bound
+* `ε` – float admissible error
+* `fuel` – number of orders tried
+
+## Hypotheses
+* `hx` – matrix norm under the float bound
+
+## Conclusion
+* every order the search returns is admissible
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

@@ -22,6 +22,17 @@ in a window `τ_k` `reach` keeps. The first term is in `H^R(τ_k)`
 so in `P^R(t_{k+1})` (`inputReach_subset_particularSolution`, where `0 ∈ U`
 is spent). `plus_outer` puts the sum in the window's set.
 
+## Inputs
+* `sys` – linear system with input
+* `params` – reach parameters
+* `options` – step options
+
+## Hypotheses
+* `hΔt` – step length positive
+
+## Conclusion
+* the exact reach lies in the window sets
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

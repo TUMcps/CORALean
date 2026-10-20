@@ -11,6 +11,12 @@ The `½ t²` of [1, Prop. 4], which a float cannot hold exactly: `mulDown`/`mulU
 itself bracket `t²`, and halving is exact, so the interval brackets `t²/2`. The one place
 `expW` and `expIntervalW` both take it from.
 
+## Inputs
+* `t` – float time
+
+## Output
+* interval of floats bracketing half the square
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

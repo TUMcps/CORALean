@@ -20,6 +20,22 @@ the Krylov identity (2.2), `V_m*V_m = I` and `V_m*v_{m+1} = 0`, `T_m = V_m*AV_m`
 eigenvalue as `x*σT_mx/x*x`. The field of values is written as the set of Rayleigh quotients
 `x*Mx/x*x`, `x ≠ 0`, the same set as `{x*Mx : ‖x‖₂ = 1}`.
 
+## Inputs
+* `A` – matrix
+* `V` – Krylov basis
+* `T` – Hessenberg matrix
+* `τ` – next subdiagonal entry
+* `σ` – scaling
+* `w` – next vector
+
+## Hypotheses
+* `hK` – Krylov identity holds
+* `hV` – basis has orthonormal columns
+* `hw` – next vector orthogonal to the basis
+
+## Conclusion
+* the spectrum lies in the field of values of the scaled matrix
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

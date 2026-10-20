@@ -10,6 +10,23 @@ public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalReachSetEx
 The cheap half, as `ReachSetExactOuter` is for `reachSetExact`: a trajectory at any time
 of `[0, r]` is in the set of what trajectories reach over `[0, r]` by
 construction.
+
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input signal
+* `r` – interval end
+* `t` – time
+
+## Hypotheses
+* `traj` – signal is a canonical trajectory
+* `ht` – time lies in the interval
+
+## Conclusion
+* the trajectory's state at the time lies in the interval reach set
 -/
 
 -- Authors:       Claude Opus 5

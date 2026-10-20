@@ -13,15 +13,50 @@ public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputRe
 /-!
 # `oneStep` holds the state at every time of the step
 
-`Rti` of `LinearSys.oneStep` [1, Sec. 3.3] encloses `x(t)` for every `t ∈ [0, Δt]` of every
-run from `X` whose input is the constant `u` plus a signal in `U ∋ 0`. The state is
-`e^{At} x₀ + Γ(t) u + p`, and with `λ = t/Δt` it comes apart into
-`(1-λ) x₀ + λ (e^{AΔt} x₀ + Γ(Δt) u)`, a point of the hull of `X` and `Htp`,
-`F x₀` with the state's interpolation error `[F]`, `G u` with the constant's `[G]`, and `p`,
-a `U`-input's contribution up to `t`, which `0 ∈ U` lifts to `Δt` (`inputReach_mono`) and
-`PU` holds.
+`Rti` of `LinearSys.oneStep` [1, Sec. 3.3] encloses `x(t)` for every `t ∈ [0, Δt]` of every run from
+`X` whose input is the constant `u` plus a signal in `U ∋ 0`. The state is `e^{At} x₀ + Γ(t) u + p`,
+and with `λ = t/Δt` it comes apart into `(1-λ) x₀ + λ (e^{AΔt} x₀ + Γ(Δt) u)`, a point of the hull
+of `X` and `Htp`, `F x₀` with the state's interpolation error `[F]`, `G u` with the constant's
+`[G]`, and `p`, a `U`-input's contribution up to `t`, which `0 ∈ U` lifts to `Δt`
+(`inputReach_mono`) and `PU` holds. Outer only: the hull is a `linComb`, and `Pu`, `PU`, `F`, `G`
+are bounds.
 
-Outer only: the hull is a `linComb`, and `Pu`, `PU`, `F`, `G` are bounds.
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `m` – Taylor order offset
+* `X` – start set
+* `U` – input set
+* `W` – set of trajectory inputs
+* `x` – state trajectory
+* `w` – input signal
+* `u` – constant input
+* `t` – time
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+* `traj` – signal is a canonical trajectory
+* `h0` – origin lies in the input set
+* `ht0` – time nonnegative
+* `htΔ` – time within the step
+* `hWU` – shifted inputs lie in the input set
+* `hW` – set of trajectory inputs bounded
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `hRconv` – remainder image of the input set convex
+* `hRclosed` – remainder image of the input set closed
+* `hRbdd` – remainder image of the input set bounded
+* `pconv` – constant input point convex
+* `pclosed` – constant input point closed
+* `pbdd` – constant input point bounded
+* `pRconv` – remainder image of the constant input convex
+* `pRclosed` – remainder image of the constant input closed
+* `pRbdd` – remainder image of the constant input bounded
+
+## Conclusion
+* the state at the time lies in the time-interval set
 
 ## References
 

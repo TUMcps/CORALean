@@ -9,16 +9,22 @@ public import CORALean.ContSet.Zonotope.Real.Instances
 /-!
 # What a sampled run's input enclosures owe
 
-A run of `(sys.discretize Δt).reach` adds `inputSolution Δt η U` at every step,
-and that enclosure reaches past what one held input contributes by at most
-`timePointStepErrorBox` (`inputSolution_subset_constInput_add_errorBox`). The
-excess is paid afresh at every step and then carried along by the dynamics, so
-a box paid at step `j` reaches step `k` multiplied by `e^{AΔt}` exactly
-`k - 1 - j` times.
+A run of `(sys.discretize Δt).reach` adds `inputSolution Δt η U` at every step, and that
+enclosure reaches past what one held input contributes by at most `timePointStepErrorBox`
+(`inputSolution_subset_constInput_add_errorBox`). The excess is paid afresh at every step and then
+carried along by the dynamics, so a box paid at step `j` reaches step `k` multiplied by `e^{AΔt}`
+exactly `k - 1 - j` times. The counterpart of `LinearSysDT.reachError`, which accumulates the
+reduction boxes by the same recursion; `reachError` in this directory adds the two. Nothing here
+is reduced, so the generator count grows by `n` per step.
 
-The counterpart of `LinearSysDT.reachError`, which accumulates the reduction
-boxes by the same recursion; `reachError` in this directory adds the two.
-Nothing here is reduced, so the generator count grows by `n` per step.
+## Inputs
+* `sys` – linear system
+* `Δt` – sampling step
+* `η` – Taylor order
+* `U` – input zonotope
+
+## Output
+* accumulated error boxes of the input enclosures after a given number of steps
 -/
 
 -- Authors:       Claude Sonnet 5

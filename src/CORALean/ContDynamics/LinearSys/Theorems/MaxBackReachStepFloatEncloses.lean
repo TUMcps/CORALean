@@ -52,6 +52,45 @@ distance to the exact image, the second summand's, and `Z̲_U`'s excess are carr
 `e^{A t_{k+1}}` and held inside the margin the disturbance set was widened by, so the moved
 point is in the exact hull (`Lemma 1`'s segments, `linComb_outer`).
 
+## Inputs
+* `sys` – linear system
+* `Bx` – conversion box
+* `P₁` – first eroded float polytope
+* `P₂` – second eroded float polytope
+* `U` – input float zonotope
+* `W₀` – initial disturbance float zonotope
+* `Zw` – center trajectory contribution over a bracket
+* `Δt` – float step length
+* `η` – Taylor order
+* `s` – float loop state
+* `P₁r` – first exact polytope
+* `P₂r` – second exact polytope
+* `Ur` – exact input zonotope
+* `W₀r` – exact initial disturbance zonotope
+* `Zwr` – exact center trajectory contribution
+* `sr` – exact loop state
+
+## Hypotheses
+* `ρ` – support oracle for exact polytopes
+* `hs` – float state stands for the exact state
+* `hΔt` – step length positive
+* `hU0` – input error box contains zero
+* `hU` – exact input zonotope inside the float one
+* `hWE` – disturbance error box is zero
+* `hW₀r` – exact disturbance zonotope inside the float one
+* `hZw` – float center contribution holds the exact one
+* `hP₁` – first float polytope inside the exact one
+* `hP₂` – second float polytope inside the exact one
+* `hP₁0` – first polytope error box contains zero
+* `hP₂0` – second polytope error box contains zero
+* `hker₁` – first float polytope has no equality rows
+* `hker₂` – second float polytope has no equality rows
+* `hkerr₁` – first exact polytope has no equality rows
+* `hkerr₂` – second exact polytope has no equality rows
+
+## Conclusion
+* the float iteration's state stands for the exact iteration's
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

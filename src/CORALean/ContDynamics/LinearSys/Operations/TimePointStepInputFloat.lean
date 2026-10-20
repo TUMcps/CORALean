@@ -15,6 +15,16 @@ also the step `discretizeEnclosureFloat`'s `reach` takes with the input
 enclosure `inputSolutionFloat` as its input set, before reducing.
 
 `timePointStepFloat` is the same step without an input.
+
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `X` – float state zonotope
+* `U` – float input zonotope
+
+## Output
+* float zonotope at the end of the step with the input
 -/
 
 -- Authors:       Claude Opus 5.5

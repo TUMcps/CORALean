@@ -14,6 +14,17 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MatSmulOuter
 
 `Real.MatExp.expTaylor_mem_expMatZonoTaylor` in floats: the same induction, each order
 `smul_outer` at `invFactorialBounds_mem` over `matPow_outer`, joined by `plus_outer`.
+
+## Inputs
+* `M` – float matrix zonotope
+* `A` – member matrix
+* `η` – Taylor order
+
+## Hypotheses
+* `hA` – member lies in the matrix zonotope
+
+## Conclusion
+* the member's Taylor truncation lies in the float zonotope's truncation
 -/
 
 -- Authors:       Claude Opus 5.5

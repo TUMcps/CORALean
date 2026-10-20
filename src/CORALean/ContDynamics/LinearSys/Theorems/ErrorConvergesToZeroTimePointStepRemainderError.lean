@@ -15,6 +15,17 @@ which is `Assumption 1`'s second half. `timePointStepRemainderError` is
 `2·(∑ⱼ absBound j)` times `inputRemainder`'s own radius, so this reads
 `tendsto_mul_expRemainderBound_zero` at a constant multiple.
 
+## Inputs
+* `sys` – linear system
+* `η` – Taylor order
+* `U` – input zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the remainder error converges to zero with the step
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

@@ -14,6 +14,14 @@ endpoint belongs to the step before, which is the half-open interval
 `intervalIntegral` integrates over, so a step's integral sees `v j` everywhere
 and no null set has to be argued away. `t = 0` reads `v 0`.
 
+## Inputs
+* `Δt` – step length
+* `v` – input value per step
+* `s` – time
+
+## Output
+* input value held at the given time
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

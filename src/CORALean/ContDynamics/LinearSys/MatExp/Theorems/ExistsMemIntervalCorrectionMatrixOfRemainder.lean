@@ -16,20 +16,35 @@ public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 /-!
 # The truncated Peano–Baker series plus a short remainder is CORA's interpolation
 
-The core of `exists_mem_intervalCorrectionMatrix_of_integral`, stated of the
-expansion rather than of a run, so that a run with an input can use it for its
-homogeneous half. With every `A(σ)` in `B`, the first `η + 1` Peano–Baker terms at
-`t ∈ [0, r]` applied to `x₀`, plus any `ρ` no longer than `‖x₀‖` times the
-remainder bound at `t • B`, are the straight line `(1 - λ) x₀ + λ Φ x₀` to a member
-`Φ` of the step's exponential enclosure plus `F x₀` for a member `F` of the
-correction matrix, `λ = t / r`.
+The core of `exists_mem_intervalCorrectionMatrix_of_integral`, stated of the expansion rather
+than of a run, so a run with an input can use it for its homogeneous half. With every `A(σ)` in
+`B`, the first `η + 1` Peano–Baker terms at `t ∈ [0, r]` applied to `x₀`, plus any `ρ` no longer
+than `‖x₀‖` times the remainder bound at `t • B`, are the straight line `(1 - λ) x₀ + λ Φ x₀` to
+a member `Φ` of the step's exponential enclosure plus `F x₀` for a member `F` of the correction
+matrix, `λ = t / r`. The `k`-th term is `λ^k` times `Q_k = (r/t)^k P_k(t)`, and `k! Q_k` lies in
+the `k`-th power of `r • B`; the correction keeps `(λ^k - λ) Q_k` from order `2` on, with
+`λ^k - λ ∈ [corrCoeff k, 0]` the interval of CORA's `priv_tie`. `ρ` is `F`'s widening.
 
-The `k`-th term at `t` is `λ^k` times `Q_k = (r/t)^k P_k(t)`, and `k! Q_k` lies in
-the `k`-th power of `r • B`, the box admitting a different member at every factor.
-So `Φ` is the sum of the `Q_k`, and the correction keeps `(λ^k - λ) Q_k` from order
-`2` on, `λ^k - λ ∈ [corrCoeff k, 0]` being exactly the interval of CORA's
-`priv_tie`; order `1` needs none, `λ^1 = λ`. `ρ` is `F`'s widening, the remainder
-bound at `t • B` being no larger than at `r • B`.
+## Inputs
+* `B` – interval matrix
+* `A` – time-varying matrix
+* `r` – step length
+* `m` – Taylor order offset
+* `t` – time
+* `x₀` – start vector
+* `ρ` – remainder vector
+
+## Hypotheses
+* `hA` – matrix entries integrable
+* `hAB` – matrix stays in the box
+* `hr` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+* `ht0` – time nonnegative
+* `htr` – time within the step
+* `hρ` – remainder short enough
+
+## Conclusion
+* the truncated series plus remainder is an interpolation plus a correction member
 -/
 
 -- Authors:       Claude Opus 5.5

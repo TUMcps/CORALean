@@ -18,14 +18,22 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 `reachBox` computed in `𝕋`, one `let` per printed line: `H^R_0 = CH(X⁰, e^{Ar}X⁰) + F X⁰`
 (`timeIntervalStepFloat`), `V₀ = ⊕ᵢ Aⁱrⁱ⁺¹/(i+1)! U ⊕ E(r)·r·U` (`inputSolutionFloat`),
 `P^R_0 = box(V₀)`, `R₀ = H^R_0 + P^R_0`, and then, `N` times, `H^R_k = [e^{Ar}]H^R_{k-1}`,
-`V_k = [e^{Ar}]V_{k-1}`, `P^R_k = P^R_{k-1} + box(V_k)` and `R_k = H^R_k + P^R_k`.
+`V_k = [e^{Ar}]V_{k-1}`, `P^R_k = P^R_{k-1} + box(V_k)` and `R_k = H^R_k + P^R_k`. The step
+`e^{Ar}` is the float interval matrix `expIntervalFloat r r η` and a product with it is
+`Zonotope.mtimesIntervalMat`, which encloses; the next product starts from that enclosure, so the
+rounding compounds with `k`. `box` is `Zonotope.interval` read back as a zonotope, rounded
+outward. `η` is raised with `reachOrderFloat` to the first order the float remainder admits.
 
-The step `e^{Ar}` is the float interval matrix `expIntervalFloat r r η` and a product with it
-is `Zonotope.mtimesIntervalMat`, which encloses; the next product starts from that enclosure,
-so the rounding compounds with `k`, as `reachBox`'s exact `e^{Ar}` does not. `box` is
-`Zonotope.interval` read back as a zonotope, rounded outward. `η` is raised with
-`reachOrderFloat` to the first order the float remainder bound at `r · A` admits; `none` when
-that search fails. The result is the list `R₀, …, R_N`.
+## Inputs
+* `sys` – linear system
+* `X₀` – initial float zonotope
+* `U` – input float zonotope
+* `r` – float step length
+* `η` – Taylor order
+* `N` – number of steps
+
+## Output
+* float reachable zonotopes of the steps, if the order search succeeds
 
 ## References
 

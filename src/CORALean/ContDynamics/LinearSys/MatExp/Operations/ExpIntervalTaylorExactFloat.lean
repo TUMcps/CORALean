@@ -12,6 +12,14 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalWFloa
 rounded: the identity and `W(t)` through `expIntervalW`, the rest by interval arithmetic at
 `[t] A`. The time is a float `t`, scaling by the degenerate bracket `[t, t]`.
 
+## Inputs
+* `A` – float interval matrix
+* `t` – float time
+* `κ` – Taylor order
+
+## Output
+* float Taylor truncation with exact identity and second-order term
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

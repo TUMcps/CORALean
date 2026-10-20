@@ -16,6 +16,13 @@ here: `½ t²` by `halfSqBounds`, the factor by directed sums, the sum by `sumDo
 the corner hulls, and each product by the hull of its brackets. Each rounds away from the
 interval, `inf` down and `sup` up.
 
+## Inputs
+* `A` – float interval matrix
+* `t` – float time
+
+## Output
+* float interval matrix of the second-order Taylor term
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

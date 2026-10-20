@@ -13,6 +13,14 @@ float of its result is a NaN. A `some` is the unchecked `some`
 (`reachTimePointWrappingFreeFloatChecked_eq_some`), so whatever is proved of
 `reachTimePointWrappingFreeFloat` holds of it, and the NaN test that the trust base asks of
 the caller has been made.
+
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters
+* `options` – reach options
+
+## Output
+* float time-point sets of the run, or none if a result float is NaN
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -12,6 +12,19 @@ holds, returning line 27's verdict; `none` where `fuel` iterations were not enou
 gives no bound on `Alg. 3`'s own repeat count (`Thm. 1` is about `Alg. 2`), so `verifyRun`
 needs `fuel`.
 
+## Inputs
+* `reachFn` – reachable set as a function of the error
+* `innerApprox` – inner approximation at an error
+* `distG` – distance to a safe polytope
+* `distF` – distance to an unsafe polytope
+* `G` – safe polytopes
+* `F` – unsafe polytopes
+* `le` – comparison oracle on reals
+* `εmax` – maximal error
+
+## Output
+* verdict after a given number of iterations
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

@@ -14,6 +14,21 @@ Taylor series of `e^{σtT_m}` with (2.3) and (2.5); hence `‖D_m(t)v‖ = O(t^{
 `δ_m(t) = (e^{σtT_m})_{m,1}` is expanded to order `m - 1`, and the order of `L_m(t)v` is read off
 `Prop. 1`. No hypothesis on `A`; `O(·)` in the sup norm of `Fin n → ℂ`, the same in any norm.
 
+## Inputs
+* `A` – matrix
+* `V` – Krylov basis
+* `T` – Hessenberg matrix
+* `τ` – next subdiagonal entry
+* `σ` – time scale
+* `w` – next vector
+
+## Hypotheses
+* `hH` – Hessenberg matrix is upper Hessenberg
+* `hK` – Krylov identity holds
+
+## Conclusion
+* defect and error have the stated orders as time tends to zero
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

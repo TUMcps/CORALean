@@ -24,6 +24,18 @@ uniformly at `normUpperBound` of the zonotope's `interval` and rounded to a floa
 
 `hε` asks `1/2`, not `< 1`, for `expIntervalEnclosure`'s reason: the float bound's
 geometric factor is the constant `2`. It is checkable from the zonotope alone.
+
+## Inputs
+* `M` – float matrix zonotope
+* `η` – Taylor order
+* `A` – member matrix
+
+## Hypotheses
+* `hA` – member lies in the matrix zonotope
+* `hε` – float norm bound small enough for the Taylor order
+
+## Conclusion
+* the exponential of the member lies in the float matrix-zonotope enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

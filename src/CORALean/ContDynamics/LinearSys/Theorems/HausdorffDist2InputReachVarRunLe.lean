@@ -14,6 +14,26 @@ is `ε^U_k = ∑_{j<k} Δε^U_j(Δt_j, η_j)`, eq. (25) at `t_j`. The induction 
 `Δt`, with eq. (24)'s one step (`hausdorffDist₂_inputReach_step_le`, which already takes its own
 `Δt` and `η`) as its step.
 
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `Δt` – step lengths
+* `η` – Taylor orders
+* `k` – number of steps
+
+## Hypotheses
+* `hΔt` – step lengths positive
+* `hbdd` – input set bounded
+* `hne` – input set nonempty
+* `hcP` – input reach compact at every time
+* `hcQΔ` – outer one-step sets compact
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `h0` – origin in the input set
+
+## Conclusion
+* the accumulated distance is at most the summed one-step errors
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

@@ -10,6 +10,19 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticu
 `isBounded_particularRemainderSet`: [1]'s `e^{At_i} E(Δt,η) Δt U` is bounded whenever `U` is,
 which is what `err` needs of it to be the enclosing radius rather than a junk value.
 
+## Inputs
+* `A` – system matrix
+* `ti` – step start time
+* `U` – input set
+* `Δt` – step length
+* `η` – Taylor order
+
+## Hypotheses
+* `hU` – input set bounded
+
+## Conclusion
+* the particular remainder set is bounded
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

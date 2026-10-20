@@ -15,6 +15,13 @@ CORA's `@matZonotope/dependentTerms`: the square of `C + Σ βᵢ Gᵢ` is `C² 
 factor in `[-1, 1]`; `zSq` carries the three generator blocks, `zH` the second-order terms `I + M r
 + ½ M² r²` built from them. The pairs `i < j` are listed once each, in an arbitrary order (CORA's
 `combinator(gens, 2, 'c')` is lexicographic); the set does not depend on it.
+
+## Inputs
+* `Z` – matrix zonotope
+* `r` – step length
+
+## Output
+* squared and linear dependent terms of the matrix zonotope
 -/
 
 -- Authors:       Claude Sonnet 5.5

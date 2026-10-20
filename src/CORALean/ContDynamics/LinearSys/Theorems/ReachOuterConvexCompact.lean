@@ -12,17 +12,35 @@ public import CORALean.ContSet.ContSet.Definitions.ConvexSet
 /-!
 # Reachability at any convex, compact representation
 
-`reach_outer_inputSolution` with its six topological hypotheses read off the
-representation instead of supplied per use. `ConvexSet` and `CompactSet` are
-quantified over every element of the family, which is what covers the remainder
-product as well as `U` — `mtimes` at an interval matrix lands back in `S n`, so
-the same two instances answer for both.
+`reach_outer_inputSolution` with its six topological hypotheses read off the representation instead
+of supplied per use. `ConvexSet` and `CompactSet` are quantified over every element of the family,
+which is what covers the remainder product as well as `U`: `mtimes` at an interval matrix lands back
+in `S n`, so the same two instances answer for both. Six hypotheses from two fields: over a normed
+space compactness is closedness and boundedness together, and `CompactSet` proves both once. No
+representation is named here. `Zonotope` and `ConZonotope` get their own statement by instantiating
+this, and any later one does the same.
 
-Six hypotheses from two fields: over a normed space compactness is closedness
-and boundedness together, and `CompactSet` proves both once.
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input signal
+* `Δt` – sampling step
+* `η` – Taylor order
+* `o` – zonotope order
+* `k` – step index
 
-No representation is named here. `Zonotope` and `ConZonotope` get their own
-statement by instantiating this, and any later one does the same.
+## Hypotheses
+* `traj` – signal is a canonical trajectory
+* `hΔt` – step length positive
+* `hT` – time domain contains the nonnegative reals
+* `hε` – scaled norm small enough for the Taylor order
+* `ho` – zonotope order positive
+
+## Conclusion
+* the trajectory's sample lies in the sampled reach set at every sample time
 -/
 
 -- Authors:       Claude Opus 5

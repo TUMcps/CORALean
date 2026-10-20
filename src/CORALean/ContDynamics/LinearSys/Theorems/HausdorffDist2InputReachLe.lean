@@ -8,16 +8,29 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
 /-!
 # [1, Prop. 11] at the exact particular solution itself
 
-`LinearSys.inputReach U Δt` *is* [1]'s `P^U(Δt) = {∫₀^{Δt}e^{A(Δt-θ)}u(θ)dθ | u(θ)∈U0}`, so this
-is `Prop. 11` with its own subject in place of a squeezed stand-in. The inner half of the squeeze
-is discharged here rather than assumed: `expIntegral_mem_inputReach` is [1]'s own
-`qP^U(Δt) ⊆ P^U(Δt)`, holding the input at one point of `U`.
+`LinearSys.inputReach U Δt` *is* [1]'s `P^U(Δt) = {∫₀^{Δt}e^{A(Δt-θ)}u(θ)dθ | u(θ)∈U0}`, so this is
+`Prop. 11` with its own subject in place of a squeezed stand-in. The inner half of the squeeze is
+discharged here rather than assumed: `expIntegral_mem_inputReach` is [1]'s own `qP^U(Δt) ⊆ P^U(Δt)`,
+holding the input at one point of `U`. What stays a hypothesis is the outer half, eq. (20)'s
+soundness `P^U(Δt) ⊆ bPU(Δt)`, which [1] cites to Althoff's thesis and does not prove either.
+`inputReach_subset_inputSolution` is that statement for `MatExp.inputRemainder`'s norm-based
+remainder block, not for the entrywise `E(Δt,η)` eq. (20) and `Lemma 2` are built from, and the two
+are incomparable (see `MatExp/Theorems/HausdorffDist2ParticularSolutionLe.lean`).
 
-What stays a hypothesis is the outer half, eq. (20)'s soundness `P^U(Δt) ⊆ bPU(Δt)`, which [1]
-cites to Althoff's thesis and does not prove either. `inputReach_subset_inputSolution` is that
-statement for `MatExp.inputRemainder`'s norm-based remainder block, not for the entrywise
-`E(Δt,η)` eq. (20) and `Lemma 2` are built from, and the two are incomparable; the module
-docstring of `MatExp/Theorems/HausdorffDist2ParticularSolutionLe.lean` says what the gap is.
+## Inputs
+* `sys` – linear system
+* `tk` – step start time
+* `U` – input set
+* `Δt` – step length
+* `η` – Taylor order
+
+## Hypotheses
+* `hU` – input set bounded
+* `hΔt` – step length positive
+* `houter` – outer approximation encloses the input reach
+
+## Conclusion
+* the propagated Hausdorff distance is at most the particular solution error
 
 ## References
 

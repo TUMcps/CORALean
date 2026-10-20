@@ -10,6 +10,21 @@ public import CORALean.ContDynamics.LinearSys.Operations.AutoRun
 `autoReach`: `R̂([0,t_end])`, the union of the first `K` steps' time-interval sets that ran to
 completion.
 
+## Inputs
+* `sys` – linear system
+* `le` – comparison oracle on reals
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `tend` – final time
+* `εmax` – admissible error
+* `ζ` – error budget share
+* `ηmax` – maximal Taylor order
+* `fuel` – number of shrinkings
+* `K` – number of steps
+
+## Output
+* union of the time-interval sets of the completed steps
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

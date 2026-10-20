@@ -14,6 +14,17 @@ public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 Induction on `η`: `Finset.sum_range_succ` peels the top term off the left,
 matching `expIntervalTaylor`'s recursion on the right term by term, and
 `plus_outer`/`smul_outer`/`matPow_outer` cover the two pieces.
+
+## Inputs
+* `A` – interval matrix
+* `M` – member matrix
+* `η` – Taylor order
+
+## Hypotheses
+* `hM` – member lies in the interval matrix
+
+## Conclusion
+* the member's Taylor truncation lies in the interval truncation
 -/
 
 -- Authors:       Claude Opus 5

@@ -14,6 +14,27 @@ A point `h` of `H(t_k)` under the constant input `ũ` is, after any `τ ∈ [0, 
 `(1 - τ/Δt) h + (τ/Δt) h'`, `h' = e^{ΔtA}h + ∫₀^Δt e^{Aσ}dσ ũ`, plus the curvature deviation:
 the first is in `comb(H, H(t_{k+1}))` whenever `h'` is in `H(t_{k+1})`, and the second in `C`
 (`curvatureEnclosure_outer`).
+
+## Inputs
+* `sys` – linear system
+* `H` – float state zonotope
+* `Hnext` – float next state zonotope
+* `ũ` – float constant input
+* `Δt` – float step length
+* `η` – Taylor order
+* `h` – state point
+* `τ` – time
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hη` – order admissible
+* `hh` – point lies in the zonotope
+* `hnext` – next zonotope holds the state after the step
+* `hτ0` – time nonnegative
+* `hτ` – time within the step
+
+## Conclusion
+* the affine flow state at the time lies in the float window
 -/
 
 -- Authors:       Claude Sonnet 5.5

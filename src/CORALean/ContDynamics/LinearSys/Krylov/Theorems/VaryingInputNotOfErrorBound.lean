@@ -15,16 +15,22 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 # The varying-input remainder does not follow from the error bound
 
 [1, Thm. IV.2] and [1, Cor. IV.2] enclose `R_p(δ)` by Krylov terms `P Ṽ(u) M e₁` and the box
-`[-1, 1]ⁿ{ε̃(u) | u ∈ U}δ`; Appendix A's proof uses of `ε̃(u)` only that it satisfies (3) for
-the constant input `u`. That is not enough. At `A = [0 1; 0 0]`, `U = [-1, 1]w`,
-`w = (1, -1/2)` (the zonotope `(0ₙ, w)`), `δ = 8`, and Alg. 1 at `ξ = 1` on `C̃(u) = [A u; 0 0]`,
-`ṽ = [0ₙ; 1]`: `Ṽ(u) = ṽ`, so `P Ṽ(u) = 0` and every Krylov term vanishes whatever `η`,
-`H̃ʲ(u)` and `Ẽ(δ, u)` are. The error of `e^{C̃t}ṽ` is `(β(t - t²/4), -βt/2, 0)` at `u = βw`,
-of Euclidean norm at most `(9/8)t` on `[0, 8]`, so `ε̃(u) = 9/8` satisfies (3) for every
-`u ∈ U`. The input `-w` on `[0, 6[` and `w` on `[6, 8]` reaches `y` with
-`y₁ = ∫₀⁸ |s/2 - 3| ds = 10 > (9/8)·8`. Prop. B.1's `ε̃` is far larger here
-(`ϕ = (e^{8ν} - 1)/(8ν)`), so this is no counterexample to the printed results with that
-`ε̃`; it shows that a proof of them has to use more of `ε̃` than (3).
+`[-1, 1]ⁿ{ε̃(u) | u ∈ U}δ`; Appendix A's proof uses of `ε̃(u)` only that it satisfies (3) for the
+constant input `u`. That is not enough. At `A = [0 1; 0 0]`, `U = [-1, 1]w`, `w = (1, -1/2)`,
+`δ = 8`, Alg. 1 at `ξ = 1` gives `Ṽ(u) = ṽ`, so every Krylov term vanishes. The error of
+`e^{C̃t}ṽ` has norm at most `(9/8)t` on `[0, 8]`, so `ε̃(u) = 9/8` satisfies (3) for every
+`u ∈ U`, yet the input `-w` on `[0, 6[` and `w` on `[6, 8]` reaches `y₁ = 10 > (9/8)·8`. Prop.
+B.1's `ε̃` is far larger here, so this is no counterexample to the printed results with that
+`ε̃`; a proof of them has to use more of `ε̃` than (3).
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the error bound does not imply the varying-input enclosure
 
 ## References
 

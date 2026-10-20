@@ -14,6 +14,19 @@ Every factor of `2 Σⱼ|X₀|ⱼ (e^x - 1 - x + E(rA, η))` under its float bou
 (`expNormTerms_le_float`, `sum_absBound_le_sumUp_absBoundError`), all of them nonnegative, so
 the products keep the order; the real side is read at the nominal zonotope, whose
 `absBound` the float coordinate reaches cover.
+
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `Z` – float zonotope
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hη` – order admissible
+
+## Conclusion
+* the float estimate is at least the real one at the nominal zonotope
 -/
 
 -- Authors:       Claude Sonnet 5.5

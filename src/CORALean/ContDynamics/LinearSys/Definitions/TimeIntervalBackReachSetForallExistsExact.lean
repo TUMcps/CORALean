@@ -16,6 +16,17 @@ interval, the same existential Prop. 2's proof relies on to put the union of
 time-point sets inside this one. `U` and `W` are admissible over the whole of
 `T`, since `u(·)` is chosen before `t` is.
 
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `U` – admissible input set
+* `W` – admissible disturbance set
+* `Xend` – target set
+* `τ` – target time interval
+
+## Output
+* states from which every input lets some disturbance hit the target in the interval
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

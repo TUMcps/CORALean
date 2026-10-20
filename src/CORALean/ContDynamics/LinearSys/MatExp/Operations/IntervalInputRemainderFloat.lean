@@ -14,6 +14,14 @@ width for every entry, the remainder bound being on a norm, and taken at
 `normUpperBound (r • A)`, the bound the exponential and the correction of the
 same step are taken at, so one order is admissible for all three.
 
+## Inputs
+* `A` – float interval matrix
+* `r` – float step length
+* `η` – Taylor order
+
+## Output
+* float interval matrix of the input remainder over the box
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

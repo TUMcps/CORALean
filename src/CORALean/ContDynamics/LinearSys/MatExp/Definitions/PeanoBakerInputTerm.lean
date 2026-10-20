@@ -16,6 +16,13 @@ over the ordered simplex of `k + 1` times. At a constant `A` they are
 
 Vector-valued, so the integrals are Mathlib's own; only the matrix-valued
 `peanoBakerTerm` has to be taken entry by entry.
+
+## Inputs
+* `A` – matrix-valued function of time
+* `u` – input signal
+
+## Output
+* Peano–Baker input term of the given order as a function of time
 -/
 
 -- Authors:       Claude Opus 5.5

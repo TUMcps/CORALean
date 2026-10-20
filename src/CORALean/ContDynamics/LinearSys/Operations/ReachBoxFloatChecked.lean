@@ -14,6 +14,17 @@ a float of its result is a NaN. A `some` is the unchecked `some`
 (`reachBoxFloatChecked_eq_some`), so whatever is proved of `reachBoxFloat` holds of it, and the
 NaN test that the trust base asks of the caller has been made.
 
+## Inputs
+* `sys` – linear system
+* `X₀` – initial float zonotope
+* `U` – input float zonotope
+* `r` – float step length
+* `η` – Taylor order
+* `N` – number of steps
+
+## Output
+* float reachable zonotopes of the steps, or none if a result float is NaN
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

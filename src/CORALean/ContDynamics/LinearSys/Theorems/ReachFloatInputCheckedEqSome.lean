@@ -10,6 +10,17 @@ public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInputChecked
 `reachFloatInputChecked` is `reachFloatInput` followed by `checkNoNaN`, so a `some` of it is the
 unchecked `some`, and none of its floats is a NaN. Whatever is proved of `reachFloatInput` is
 proved of the checked result, which has passed the NaN test as well.
+
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters with initial and input sets
+* `options` – reach options
+
+## Hypotheses
+* none
+
+## Conclusion
+* a checked result equals the unchecked result and has no NaN
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

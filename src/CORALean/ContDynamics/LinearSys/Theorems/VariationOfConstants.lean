@@ -13,19 +13,34 @@ public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 /-!
 # Every trajectory is its matrix exponential plus its inputs
 
-`x(t) = e^{At} x(0) + ∫₀ᵗ e^{A(t-s)} u(s) ds`, [1, Eq. 5] at a constant input, the closed
-form reachability is built on: the first term moves the initial set, the second is
-everything the inputs contributed.
+`x(t) = e^{At} x(0) + ∫₀ᵗ e^{A(t-s)} u(s) ds`, [1, Eq. 5] at a constant input, the closed form
+reachability is built on: the first term moves the initial set, the second is everything the inputs
+contributed. The run is `closedForm` on `[0, b]` (`eq_closedForm_of_flow`, uniqueness for the
+integral equation), so `e^{-As} x(s)` is `x(0)` plus the substituted primitive there, and the window
+`[a, b]` is the difference of two of them. That needs the domain to reach back to `0`, where the
+integral equation is anchored, and `U` bounded, which makes the input integrable. Mathlib's matrix
+exponential needs a norm on `Mat`, a choice rather than an instance; only completeness of the `l∞`
+operator norm is used here, so any other would serve.
 
-The run is `closedForm` on `[0, b]` (`eq_closedForm_of_flow`, uniqueness for the
-integral equation), so `e^{-As} x(s)` is `x(0)` plus the substituted primitive
-there, and the window `[a, b]` is the difference of two of them. That needs the
-domain to reach back to `0`, where the integral equation is anchored, and `U`
-bounded, which makes the input integrable.
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input signal
+* `a` – start time
+* `b` – end time
 
-Mathlib's matrix exponential needs a norm on `Mat`, which is a choice rather
-than an instance. Only completeness of the `l∞` operator norm is used here, so
-any other would serve.
+## Hypotheses
+* `traj` – signal is a canonical trajectory
+* `hT` – time domain contains the interval from zero to the end
+* `ha` – start time nonnegative
+* `hab` – start time at most the end time
+* `hU` – input set bounded
+
+## Conclusion
+* the end state is the propagated start state plus the input integral
 
 ## References
 

@@ -14,22 +14,24 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 /-!
 # `girardReach`: [1, Alg. 1]
 
-Approximating the reachable set of `x' = Ax + u`, `‖u‖ ≤ µ`, from a zonotope `I` over
-`[0, T]` at step `r`: the first time interval `Q₀ = P₀ + □(α_r + β_r)` by [1, Lemma 2], then
-`Qᵢ = e^{rA}Qᵢ₋₁ + □(β_r)` by [1, Lemma 1], the union `R` of all of them returned as the list
-of the `Qᵢ`. One `let` per printed line.
+Approximating the reachable set of `x' = Ax + u`, `‖u‖ ≤ µ`, from a zonotope `I` over `[0, T]` at
+step `r`: the first time interval `Q₀ = P₀ + □(α_r + β_r)` by [1, Lemma 2], then
+`Qᵢ = e^{rA}Qᵢ₋₁ + □(β_r)` by [1, Lemma 1], the union `R` returned as the list of the `Qᵢ`. One
+`let` per printed line. Read with care: the listing returns `R_N` but its loop stops at
+`R_{N-1}`, which [1, Thm. 1] is about, so this returns the `N` sets `Q₀, ..., Q_{N-1}` covering
+`[0, N r]`; `N = T/r` is assumed an integer, here `N = ⌈T/r⌉`; `sup_{x∈I} ‖x‖` is the largest
+`Zonotope.absBound`; `β_r` divides by `‖A‖`, which the theorems take positive. Taken at the
+exact `e^{rA}` and `e^{r‖A‖}`; it runs in floats as `girardReachFloat`.
 
-Where the listing is read with care:
+## Inputs
+* `sys` – linear system
+* `I` – initial zonotope
+* `μ` – input norm bound
+* `r` – step length
+* `T` – time horizon
 
-* it returns `R_N`, but its loop stops at `R_{N-1}` and [1, Thm. 1] is about `R_{N-1}`; this
-  returns `R_{N-1}`, the `N` sets `Q₀, ..., Q_{N-1}` covering `[0, N r]`;
-* `N = T/r` is assumed an integer; here `N = ⌈T/r⌉`, which covers `[0, T]` either way and is
-  `T/r` when that is an integer;
-* `sup_{x∈I} ‖x‖` is computed, as the largest `Zonotope.absBound`: a coordinate's reach
-  `|cⱼ| + Σᵢ|gᵢⱼ|` is attained, so their maximum is the supremum of the infinity norm;
-* `β_r` divides by `‖A‖`, which the theorems take positive.
-
-Taken at the exact `e^{rA}` and `e^{r‖A‖}`; it runs in floats as `girardReachFloat`.
+## Output
+* zonotopes covering the reachable set over the horizon
 
 ## References
 

@@ -8,16 +8,32 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSoluti
 /-!
 # Eq. (20) is sound when one point of `U₀` dominates the rest
 
-[1, Prop. 11], eq. (20)'s soundness `P^U(Δt) ⊆ P̂^U(Δt)`, for `U₀` convex, closed and bounded
-with a point `w*` whose coordinates bound every other point's in absolute value. Then
-`E(Δt,η)ΔtU₀` is the box `|y_j| ≤ Σ_k |E_jk| Δt |w*_k|`: no point of `ΔtU₀` reaches further in
-any coordinate than `Δt w*`, and a row of `M` scaled from `|E|` with the signs of `w*` reaches
-every point of the box from `Δt w*` alone. A box is closed and convex, so the closed convex
-hull `LinearSys.inputReach_mem_add_closure_convexHull` lands the tail in is the set itself.
+[1, Prop. 11], eq. (20)'s soundness `P^U(Δt) ⊆ P̂^U(Δt)`, for `U₀` convex, closed and bounded with a
+point `w*` whose coordinates bound every other point's in absolute value. Then `E(Δt,η)ΔtU₀` is the
+box `|y_j| ≤ Σ_k |E_jk| Δt |w*_k|`: no point of `ΔtU₀` reaches further in any coordinate than
+`Δt w*`, and a row of `M` scaled from `|E|` with the signs of `w*` reaches every point of the box
+from `Δt w*` alone. A box is closed and convex, so the closed convex hull
+`LinearSys.inputReach_mem_add_closure_convexHull` lands the tail in is the set itself. [1]'s
+`U₀ = ⟨0, BG_u⟩` has such a point when the input is scalar and when it is a box; in general it does
+not, and the general case is open (see `Prop. 11` on [1]'s page).
 
-[1]'s `U₀ = ⟨0, BG_u⟩` has such a point when the input is scalar (`U₀` a segment through `0`)
-and when it is a box; in general it does not, and the general case is open (see `Prop. 11` on
-[1]'s page).
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `w` – dominating point
+* `Δt` – step length
+* `η` – Taylor order
+
+## Hypotheses
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `hw` – dominating point lies in the input set
+* `hdom` – its coordinates bound every point's coordinates
+* `hΔt` – step length positive
+
+## Conclusion
+* the input reach lies in the outer approximation of the particular solution
 
 ## References
 

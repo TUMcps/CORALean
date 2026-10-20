@@ -20,6 +20,20 @@ public import CORALean.Global.EuclideanGenOpNorm
 
 [1, Lemma 3]'s asymptotics reduce to `affineDynamicsErrorBound`'s, a real-valued computation.
 
+## Inputs
+* `A` – system matrix
+* `H` – state zonotope
+* `ũ` – constant input
+* `Δt` – step length
+* `η` – Taylor order
+
+## Hypotheses
+* `hΔt` – step length nonnegative
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the affine dynamics error is under its explicit bound
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

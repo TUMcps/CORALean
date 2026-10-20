@@ -13,6 +13,12 @@ one; `k` multiplications, not the `k!` additions a count of copies would take.
 Each partial product is held above `one` by an exact `maximum` — the clamp
 `softmaxDenomDown` uses, so the reciprocal that follows never meets a divisor
 the rounding says nothing about: `k! ≥ 1` always, so it discards nothing.
+
+## Inputs
+* none
+
+## Output
+* float lower bounds of the factorials
 -/
 
 -- Authors:       Claude Sonnet 5

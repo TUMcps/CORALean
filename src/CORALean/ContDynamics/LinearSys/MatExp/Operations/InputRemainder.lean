@@ -11,6 +11,14 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoun
 solution over a step, the exponential's remainder bound scaled by the step and constant in
 the entry, the bound being on the norm.
 
+## Inputs
+* `A` – system matrix
+* `r` – step length
+* `η` – Taylor order
+
+## Output
+* interval matrix of the exponential remainder scaled by the step
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

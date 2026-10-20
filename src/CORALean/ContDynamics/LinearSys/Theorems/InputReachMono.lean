@@ -17,6 +17,21 @@ whatever the shorter window can do the longer one can too.
 content of the hypothesis. This is what identifies the enclosure over a time
 interval with the one at its end.
 
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `t` – first time
+* `r` – second time
+
+## Hypotheses
+* `hbdd` – input set bounded
+* `h0` – origin in the input set
+* `ht0` – first time nonnegative
+* `htr` – first time at most the second
+
+## Conclusion
+* the input reach grows with time
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

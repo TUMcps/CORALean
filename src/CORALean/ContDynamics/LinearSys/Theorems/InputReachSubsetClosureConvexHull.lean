@@ -18,6 +18,22 @@ closed convex hull. With `U₀` convex, closed, bounded and containing `0`, as [
 same over a set and over its closed convex hull, so this enclosure is enough for [1, Prop. 2],
 [1, Prop. 3] and [1, Prop. 11].
 
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `Δt` – step length
+* `η` – Taylor order
+
+## Hypotheses
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `h0` – origin in the input set
+* `hΔt` – step length positive
+
+## Conclusion
+* the input reach lies in the closed convex hull of the outer approximation
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

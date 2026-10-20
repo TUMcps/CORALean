@@ -14,16 +14,30 @@ public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 /-!
 # Every member's constant-input interpolation error lies in the box's `F̃`
 
-Althoff's `F̃` of [1, Prop. 3.4] at an interval matrix rather than at the one
-the system stores: `ConstCorrectionMatrix` one step over, following
-`IntervalCorrectionMatrix`'s own pattern — apply the point theorem at a member
-`M`, then read the finite orders off entrywise through `intervalConstCorrTerm`'s
-`min`/`max` monotonicity and the tail through `expRemainderBound_mono`, both
-scaled by `r` as `constCorrectionMatrix` itself is.
-
-**`hε` is stated at the box, not at `M`**, exactly as in
-`IntervalCorrectionMatrix`, so it is checkable before a member is fixed;
+Althoff's `F̃` of [1, Prop. 3.4] at an interval matrix rather than at the one the system stores:
+`ConstCorrectionMatrix` one step over, following `IntervalCorrectionMatrix`'s pattern. Apply the
+point theorem at a member `M`, then read the finite orders off entrywise through
+`intervalConstCorrTerm`'s `min`/`max` monotonicity and the tail through `expRemainderBound_mono`,
+both scaled by `r` as `constCorrectionMatrix` itself is. **`hε` is stated at the box, not at
+`M`**, exactly as in `IntervalCorrectionMatrix`, so it is checkable before a member is fixed;
 `norm_le_absMax` turns it into the condition the point theorem needs.
+
+## Inputs
+* `A` – interval matrix
+* `r` – step length
+* `η` – Taylor order
+* `M` – member matrix
+* `t` – time
+
+## Hypotheses
+* `hr` – step length positive
+* `hε` – dominating norm small enough for the Taylor order
+* `hM` – member lies in the interval matrix
+* `ht0` – time nonnegative
+* `htr` – time within the step
+
+## Conclusion
+* the member's constant-input interpolation error lies in the box's integrated correction
 
 ## References
 

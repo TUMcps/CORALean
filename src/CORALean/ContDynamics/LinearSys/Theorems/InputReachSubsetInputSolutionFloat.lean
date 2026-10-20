@@ -24,6 +24,19 @@ matrix is in `intervalInputTerm`'s box, the remainder's whole box in
 `intervalInputRemainder`'s, and a float product is convex and closed, so the
 hull the remainder took stays inside it.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – float step length
+* `η` – Taylor order
+* `V` – input float zonotope
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hη` – order admissible
+
+## Conclusion
+* the input reach of the zonotope over the step lies in the float input solution
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

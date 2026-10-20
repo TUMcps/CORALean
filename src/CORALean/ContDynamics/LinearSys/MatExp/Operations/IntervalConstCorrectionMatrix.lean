@@ -13,6 +13,14 @@ public import CORALean.ContSet.Interval.Real.Operations.AbsMax
 `η` from `intervalConstCorrTerm`, everything past `η` in the tail bound at `r • A` scaled by
 `r`, and indexed exactly as the point case is.
 
+## Inputs
+* `A` – interval matrix
+* `r` – step length
+* `η` – Taylor order
+
+## Output
+* interval matrix of the integrated correction over the box
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

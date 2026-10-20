@@ -15,6 +15,14 @@ and everything past `η` in the remainder bound at `r • A` scaled by `r`. This
 `G` (`Real.MatExp.constCorrectionMatrix`) that `curvatureEnclosure` needs, enclosed outward
 as an interval matrix: the float layer has no point matrix to hold it in.
 
+## Inputs
+* `A` – float interval matrix
+* `r` – float step length
+* `η` – Taylor order
+
+## Output
+* float interval matrix of the integrated correction over the box
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

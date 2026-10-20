@@ -21,6 +21,27 @@ rest, which `sub_mem_inputReach_recenter` places in `Ũ`'s input reach at `t`. E
 lies in its summand: `deltaReachFloat_outer`, and the two input reaches at `t`
 inside those at `Δt` (`inputReach_mono`, both sets holding `0`), which
 `inputSolutionFloat` encloses.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – float step length
+* `η` – Taylor order
+* `R` – float start zonotope
+* `V` – input float zonotope
+* `U` – input set
+* `x` – state trajectory
+* `u` – input signal
+* `t` – time
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hη` – order admissible
+* `traj` – signal is a canonical trajectory
+* `hUV` – input set lies in the float zonotope
+* `ht` – time within the step
+
+## Conclusion
+* the state difference lies in the float post-delta zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,24 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOute
 The order `MatExp.tuneOrder` returns passed `orderTest`, whose first half is the float
 side condition `nrm ≤ (η + 2)/2`, and it is at least `2`: so it is admissible for the float
 enclosures (`OrderAdmissibleFloat`), and `timeIntervalStepFloat_outer` applies at it.
+
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `ε` – float admissible error
+* `fuel` – number of orders tried
+* `X₀` – initial float zonotope
+* `x` – point of the zonotope
+* `s` – time
+
+## Hypotheses
+* `hr` – step length positive
+* `hx` – point lies in the zonotope
+* `hs0` – time nonnegative
+* `hs` – time within the step
+
+## Conclusion
+* the exponential image of the point lies in every returned float set
 -/
 
 -- Authors:       Claude Sonnet 5.5

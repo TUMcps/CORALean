@@ -16,6 +16,15 @@ written out, which is what the paper's own `⊕ᵢ AⁱΔt^{i+1}/(i+1)! S ⊕ E�
 
 The remainder factor is `MatExp.inputRemainder`, already `E` scaled by the step.
 
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `Δt` – step length
+* `η` – Taylor order
+
+## Output
+* outer approximation set of the particular solution over the step
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

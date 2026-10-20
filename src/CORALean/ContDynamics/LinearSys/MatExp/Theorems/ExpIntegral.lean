@@ -11,6 +11,16 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableNormExpInt
 `summable_norm_expIntegral` dominates it by `|t|` times the exponential's own
 series; completeness of the matrix algebra turns that absolute bound into
 summability outright, which is all the containment theorems downstream need.
+
+## Inputs
+* `A` – system matrix
+* `t` – time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the integrated exponential series is summable
 -/
 
 -- Authors:       Claude Opus 5

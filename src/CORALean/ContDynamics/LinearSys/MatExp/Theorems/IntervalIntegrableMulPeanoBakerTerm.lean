@@ -10,6 +10,20 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousPeanoBak
 Entry `(i, j)` of `A(σ) P_k(σ)` is a finite sum of an integrable entry of `A`
 against a continuous one of `P_k` (`MatExp.continuous_peanoBakerTerm`), so it is
 integrable over every bounded window — what each integral the series takes needs.
+
+## Inputs
+* `A` – matrix-valued function of time
+* `k` – term index
+* `i` – row index
+* `j` – column index
+* `a` – interval start
+* `b` – interval end
+
+## Hypotheses
+* `hA` – matrix entries integrable
+
+## Conclusion
+* the next Peano–Baker integrand entry is interval integrable
 -/
 
 -- Authors:       Claude Opus 5.5

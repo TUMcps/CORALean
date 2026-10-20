@@ -20,14 +20,31 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 # Lines 12 and 13 bound the support function of the reachable set
 
 [1, Alg. 1 (upper bounds)]: line 12's `ρ(R̂(t_k), ℓ)` is at least `ℓ` at every state of the exact
-reachable set `R(t_k)`, and line 13's `ρ(R̂(τ_k), ℓ)` at least `ℓ` at every state `R(t)` reaches
-at a time `t` of `τ_k`. A state splits as `e^{tA}x(0)`, the constant input `ũ`'s share `Γ(t)ũ`
-(`Pu`, line 9) and one admissible `U₀`-input's `inputReach U₀ t` (`Recenter`); the last is
-propagated `k` times from the one step `inputReach U₀ Δt`, which line 4's `P̂_U(Δt)` encloses
-(line 11). On `τ_k` the first two interpolate between `H(t_k)` and `H(t_{k+1})` up to
-`e^{At_k}(F X₀ ⊕ G ũ)` (`C`, line 5), and `0 ∈ U₀` carries `inputReach U₀ t` into
-`inputReach U₀ t_{k+1}`. `ρ` is hypothesised to bound the support function of every set it is
-asked for; `η ≥ 2` is `m + 2`, Eq. (14) starting its sum at `i = 2`.
+reachable set `R(t_k)`, and line 13's `ρ(R̂(τ_k), ℓ)` at least `ℓ` at every state `R(t)` reaches at
+a time `t` of `τ_k`. A state splits as `e^{tA}x(0)`, the constant input `ũ`'s share `Γ(t)ũ` (`Pu`,
+line 9) and one admissible `U₀`-input's `inputReach U₀ t` (`Recenter`); the last is propagated `k`
+times from the one step `inputReach U₀ Δt`, which line 4's `P̂_U(Δt)` encloses (line 11). On `τ_k`
+the first two interpolate between `H(t_k)` and `H(t_{k+1})` up to `e^{At_k}(F X₀ ⊕ G ũ)` (`C`, line
+5), and `0 ∈ U₀` carries `inputReach U₀ t` into `inputReach U₀ t_{k+1}`. `ρ` is hypothesised to
+bound the support function of every set it is asked for; `η ≥ 2` is `m + 2` (Eq. (14)).
+
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `m` – Taylor order offset
+* `X₀` – initial set
+* `U` – input set
+* `ρ` – support function oracle
+* `ℓ` – direction
+* `k` – step index
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+* `hρ` – oracle bounds the support function of every set
+
+## Conclusion
+* the upper bounds hold over the exact reach set at the sample and over the step
 
 ## References
 

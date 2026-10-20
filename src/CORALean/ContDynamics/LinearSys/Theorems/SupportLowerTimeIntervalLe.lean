@@ -8,18 +8,28 @@ public import CORALean.ContDynamics.LinearSys.Operations.SupportLower
 # Line 16's lower bound is no more than line 15's at one end of the step
 
 [1, Alg. 1 (lower bounds)], line 16:
-`ρ(Ř(τ_k), ℓ) = max{ρ(H(t_k), ℓ), ρ(H(t_{k+1}), ℓ)} + ρ(P̌_U(t_k), ℓ)`. When the
-maximum is `ρ(H(t_k), ℓ)` this is line 15's `ρ(Ř(t_k), ℓ)`. When it is
-`ρ(H(t_{k+1}), ℓ)` it is line 15's `ρ(Ř(t_{k+1}), ℓ)` less line 14's last summand
-`ρ(T U₀, d_k)`, which is not negative exactly when `0 ∈ U₀`, that is when line 2's
-`ũ` lies in `U`. So line 16 is a lower bound on the time-interval reachable set only
-because one of the two time-point lower bounds at the ends of `τ_k` is, and the
-point attaining it is a state at `t_k` or at `t_{k+1}`, not one inside the step.
+`ρ(Ř(τ_k), ℓ) = max{ρ(H(t_k), ℓ), ρ(H(t_{k+1}), ℓ)} + ρ(P̌_U(t_k), ℓ)`. When the maximum is
+`ρ(H(t_k), ℓ)` this is line 15's `ρ(Ř(t_k), ℓ)`. When it is `ρ(H(t_{k+1}), ℓ)` it is line 15's
+`ρ(Ř(t_{k+1}), ℓ)` less line 14's last summand `ρ(T U₀, d_k)`, which is not negative exactly when
+`0 ∈ U₀`, that is when line 2's `ũ` lies in `U`. So line 16 is a lower bound on the time-interval
+reachable set only because one of the two time-point lower bounds at the ends of `τ_k` is. The
+hypothesis `hc` is that `ũ` lies in `U` as `νU` sees it; the center of `U`'s bounding box, which
+[1]'s Sec. 3 offers, need not lie in `U`, and then line 16 can exceed both ends.
 
-The hypothesis `hc` is that `ũ` lies in `U` as `νU` sees it: no point `νU d` is
-below `ũ` along `d`. A support vector of a set containing `ũ` satisfies it; the
-center of `U`'s bounding box, which [1]'s Sec. 3 offers in place of the geometric
-center, need not lie in `U`, and then line 16 can exceed both ends.
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `ν₀` – support vector map of the initial set
+* `νU` – support vector map of the input set
+* `c` – point of the input set
+* `ℓ` – direction
+* `k` – step index
+
+## Hypotheses
+* `hc` – point lies below the input support vectors
+
+## Conclusion
+* line 16's bound is at most the larger of line 15's two end values
 
 ## References
 

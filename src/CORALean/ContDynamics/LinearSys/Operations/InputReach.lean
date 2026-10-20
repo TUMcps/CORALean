@@ -10,16 +10,20 @@ public import Mathlib.Analysis.Matrix.Normed
 /-!
 # Every point the input alone can reach
 
-CORA's `P^R(τ)`, and the one definition here that is a plain `Set` rather than a
-representation: it is what an enclosure is measured against, so it must not be
-computed by anything.
+CORA's `P^R(τ)`, and the one definition here that is a plain `Set` rather than a representation:
+it is what an enclosure is measured against, so it must not be computed by anything. Stated over
+`Icc`, which the reflection `s ↦ τ - s` maps to itself, so the substitution the input solution
+runs on costs no endpoint bookkeeping. `exp` needs a norm on `Mat`, which is a choice rather
+than an instance, so every file reasoning about this definition must make the same one, the
+`l∞` operator norm, or the terms will not match.
 
-Stated over `Icc`, which the reflection `s ↦ τ - s` maps to itself, so the
-substitution the input solution runs on costs no endpoint bookkeeping.
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `τ` – time
 
-`exp` needs a norm on `Mat`, which is a choice rather than an instance, so every
-file reasoning about this definition must make the same one — the `l∞` operator
-norm — or the terms will not match.
+## Output
+* points the input can drive the system to over the interval
 -/
 
 -- Authors:       Claude Opus 5

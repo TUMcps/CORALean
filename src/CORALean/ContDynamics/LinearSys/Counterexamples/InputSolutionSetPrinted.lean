@@ -22,6 +22,15 @@ zero matrix and every `Aⁱ` with `i ≥ 1` vanishes, so the printed set is `{0}
 proposition (`S` convex, closed, bounded, non-empty, and `Δt‖A‖ ≤ 1`), and `1 ∈ Z_S(1)`
 is the constant input `u ≡ 1`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed (24) fails to enclose the particular solution in general
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

@@ -9,6 +9,16 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 # The float maximum reads as the real one
 
 `maximum` is exact, so the real value of `maximumFold f` is the supremum of the real values.
+
+## Inputs
+* `k` – dimension
+* `f` – family of floats
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float maximum reads as the real maximum
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,13 @@ public import CORALean.ContSet.Interval.Float.Operations.MulLo
 `γ` lies in. `a t` is bracketed by the two directed products and squared by the corner hull,
 so the result rounds outward at every step.
 
+## Inputs
+* `t` – float time
+* `a` – float diagonal entry
+
+## Output
+* float interval holding the diagonal factor
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

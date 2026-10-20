@@ -15,6 +15,15 @@ mean `∫₀ᵗ e^{A(t-τ)} u(τ) dτ` and covariance `Σ_s(t)` (`[1, Eq. 2]`). 
 `R̄(t)`, the G-zonotope with uncertain mean `(R̄(t), Σ_s(t))` read as the set of its laws: the
 means are `LinearSys.inputReach`, the covariance `noiseCovariance`.
 
+## Inputs
+* `sys` – linear system
+* `C` – noise matrix
+* `U` – input set
+* `t` – time
+
+## Output
+* set of Gaussian laws of the input solution at the time
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

@@ -15,6 +15,14 @@ matched by the zero matrix, whose image `{0}` is what an empty sum denotes.
 Recursive rather than a fold over `Finset`, for the reason `inputTaylorSum`
 gives: `plus` is only an enclosure and never has to be reassociated.
 
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `U` – input set
+
+## Output
+* sum of the input orders from one up to the given index
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

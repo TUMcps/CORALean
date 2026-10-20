@@ -19,6 +19,21 @@ error is `Σ_{i≥2} (tⁱ - tδ^{i-1}) Hⁱ/i!`; orders `2…η` keep `tⁱ - t
 `|tⁱ - tδ^{i-1}| ≤ δⁱ` and `|Hⁱ| ≤ |H|ⁱ`, by `W(δ)`. As [1]'s proof does it: one series, not two
 remainders each bounded on their own (which would give `2W(δ)`).
 
+## Inputs
+* `H` – Hessenberg matrix
+* `δ` – step length
+* `η` – Taylor order
+* `t` – time
+
+## Hypotheses
+* `hδ` – step length positive
+* `hη` – order at least one
+* `ht0` – time nonnegative
+* `htδ` – time at most the step length
+
+## Conclusion
+* the interpolation error of the exponential lies in the correction set
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

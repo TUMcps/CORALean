@@ -17,6 +17,19 @@ splits into `e^{tA} (x 0)` and an `inputReach` witness by definition.
 `init` enters nowhere in that argument, which is why the theorem it is stated
 from takes no initial set: only here, to place `x 0` in `R₀`.
 `ReachSetExactSuperset` is the other half.
+
+## Inputs
+* `sys` – linear system
+* `R₀` – initial set
+* `U` – input set
+* `t` – time
+
+## Hypotheses
+* `ht` – time nonnegative
+* `hU` – input set bounded
+
+## Conclusion
+* the reach set lies in the propagated start set plus the input reach
 -/
 
 -- Authors:       Claude Opus 5.5

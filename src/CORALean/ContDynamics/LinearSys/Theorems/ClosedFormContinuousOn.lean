@@ -15,6 +15,22 @@ interval-integrable integrand, regardless of the integrand's own continuity —
 so `closedForm`, `exp(ρA)` applied to a substituted primitive, is continuous
 on `[0, t]` even for a merely bounded measurable input. `IsTrajectory`'s `cont`
 field needs exactly this when the closed form itself is the witness run.
+
+## Inputs
+* `sys` – linear system
+* `x0` – initial point
+* `U` – input set
+* `t` – time
+* `u` – input signal
+
+## Hypotheses
+* `ht` – time nonnegative
+* `hU` – input set bounded
+* `hu` – input values lie in the set on the interval
+* `hmeas` – input measurable on the interval
+
+## Conclusion
+* the closed form is continuous on the interval
 -/
 
 -- Authors:       Claude Opus 5

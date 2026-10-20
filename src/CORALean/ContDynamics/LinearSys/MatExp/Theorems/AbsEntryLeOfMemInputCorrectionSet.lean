@@ -12,6 +12,20 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeOfMemSum
 `abs_entry_le_of_mem_inputCorrectionSet`: [1]'s `F_u(Δt,η)`, entrywise within its Taylor
 terms' reach plus `|Δt|·‖E(Δt,η)‖`.
 
+## Inputs
+* `A` – system matrix
+* `Δt` – step length
+* `η` – Taylor order
+* `M` – member matrix
+* `i` – row index
+* `j` – column index
+
+## Hypotheses
+* `hM` – member of the input correction set
+
+## Conclusion
+* the entry is bounded by its Taylor terms and the scaled remainder norm
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

@@ -10,16 +10,25 @@ public import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 /-!
 # Any admissible error is reachable, over the whole step
 
-`ExistsTimePointStepErrorLt` at the time-interval step: for every `ε > 0` there
-is a step at which `timeIntervalStepError` is under `ε`, and whose side
-condition holds, so the `r` produced names a step
-`timeIntervalStep_subset_reach_add_error` applies at.
+`ExistsTimePointStepErrorLt` at the time-interval step: for every `ε > 0` there is a step at which
+`timeIntervalStepError` is under `ε`, and whose side condition holds, so the `r` produced names a
+step `timeIntervalStep_subset_reach_add_error` applies at. The order does even less here than at the
+step's end. Two of the three parts (the hull `‖e^{rA} - I‖` and the curvature `e^{r‖A‖} - 1 - r‖A‖`)
+do not mention it at all, and the hull is first order in the step where everything else is second.
+Shrinking the step is the only knob that answers for an arbitrary `ε`, which is what [1] tunes the
+step size and not only the order for.
 
-The order does even less here than at the step's end. Two of the three parts —
-the hull `‖e^{rA} - I‖` and the curvature `e^{r‖A‖} - 1 - r‖A‖` — do not mention
-it at all, and the hull is first order in the step where everything else is
-second. Shrinking the step is the only knob that answers for an arbitrary `ε`,
-which is what [1] tunes the step size and not only the order for.
+## Inputs
+* `sys` – linear system
+* `X₀` – initial zonotope
+* `η` – Taylor order
+* `ε` – admissible error
+
+## Hypotheses
+* `hε` – error positive
+
+## Conclusion
+* some step has enclosure error under the error and meets the side condition
 
 ## References
 

@@ -10,15 +10,11 @@ public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 /-!
 # A trajectory stays in the step enclosure, inputs and all
 
-The closed form splits a run into what the initial set carries and what the
-inputs contributed, and the two are enclosed separately: `timeIntervalStep` for
-the first, a set the caller supplies for the second.
-
-That input enclosure is a hypothesis; `TimeIntervalOuterInputSolution`
-discharges it with `timeInterval_outer_inputSolution`.
-
-Integrability is not a hypothesis — `InputIntegrable` derives it from `U` being
-bounded.
+The closed form splits a run into what the initial set carries and what the inputs contributed, and
+the two are enclosed separately: `timeIntervalStep` for the first, a set the caller supplies for the
+second, a hypothesis that `TimeIntervalOuterInputSolution` discharges with
+`timeInterval_outer_inputSolution`. Integrability is not a hypothesis: `InputIntegrable` derives it
+from `U` being bounded.
 -/
 
 -- Authors:       Claude Opus 5

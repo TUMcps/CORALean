@@ -16,6 +16,17 @@ the measurable admissible signals.
 interval. `u(·)` is chosen before both `w(·)` and `t`, so it is admissible over
 the whole of `T`.
 
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `U` – admissible input set
+* `W` – admissible disturbance set
+* `Xend` – target set
+* `τ` – target time interval
+
+## Output
+* states from which some input hits the target in the interval whatever the disturbance
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

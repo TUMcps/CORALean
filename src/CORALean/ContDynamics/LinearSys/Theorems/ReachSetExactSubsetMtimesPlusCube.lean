@@ -16,13 +16,27 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 
 [1, Lemma 1], first half: `Φ_r(Z) ⊆ e^{rA}Z + □(β_r)`, `β_r = (e^{r‖A‖} - 1)/‖A‖ · µ`, for
 `x' = Ax + u`, `‖u‖ ≤ µ`. `Φ_r(Z)` is the set every solution from `Z` is at after `r`,
-`reachSetExact` on `[0, r]`: a solution in Carathéodory's sense, the input merely
-measurable, which is the widest reading of [1]'s "solution of (1)"; the set is then
-exactly `e^{rA}Z ⊕ inputReach U r` (`reachSetExact_eq`), and every point of
-`inputReach U r` lies in `□(β_r)` (`norm_le_of_mem_inputReach`, eq. 3 of [1]).
+`reachSetExact` on `[0, r]`: a solution in Carathéodory's sense, the input merely measurable, the
+widest reading of [1]'s "solution of (1)"; the set is then exactly `e^{rA}Z ⊕ inputReach U r`
+(`reachSetExact_eq`), and every point of `inputReach U r` lies in `□(β_r)`
+(`norm_le_of_mem_inputReach`, eq. 3 of [1]). `‖u‖ ≤ µ` is `U` being the ball of radius `µ`, as a
+zonotope; `0 < ‖A‖` is [1]'s division by `‖A‖`, without which `β_r` reads `0 / 0` in Lean.
 
-`‖u‖ ≤ µ` is `U` being the ball of radius `µ`, as a zonotope; `0 < ‖A‖` is [1]'s division by
-`‖A‖`, without which `β_r` reads `0 / 0` in Lean.
+## Inputs
+* `sys` – linear system
+* `Z` – initial zonotope
+* `U` – input zonotope
+* `μ` – input bound
+* `r` – step length
+
+## Hypotheses
+* `hA` – matrix norm positive
+* `hr` – step length nonnegative
+* `hμ` – input bound nonnegative
+* `hU` – input set is the ball of that radius
+
+## Conclusion
+* the reach set lies in the propagated zonotope plus the box
 
 ## References
 

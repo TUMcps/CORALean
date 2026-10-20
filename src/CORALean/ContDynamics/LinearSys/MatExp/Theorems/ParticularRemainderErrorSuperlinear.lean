@@ -10,19 +10,27 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SuperlinearDecreas
 # `Thm. 2`: `ε_P` of eq. (22) decreases superlinearly
 
 [1, Thm. 2]: `∀φ∈(0,1): ε_P([t_i,t_i+φΔt_i]) ≤ φ ε_P([t_i,t_i+Δt_i])`, with
-`ε_P = err(e^{At_i} E(Δt_i,η_i) Δt_i U)` of eq. (22) — at the `i`-th step, and at `err` itself.
-
+`ε_P = err(e^{At_i} E(Δt_i,η_i) Δt_i U)` of eq. (22), at the `i`-th step and at `err` itself.
 [1]'s proof, followed: it suffices that `PR^+([t_i,t_i+φΔt_i]) ⊆ φ PR^+([t_i,t_i+Δt_i])`, and
 `Lemma 1` (`superlinearDecrease_expRemainderMat`) writes a member `M` of `E(φΔt,η)` as `φ M'`
-with `M'` in `E(Δt,η)`. Then `e^{At_i} M (φΔt u) = φ · e^{At_i} (φM') (Δt u)`, and `φM'` is
-still in `E(Δt,η)`, the interval matrix being symmetric about `0` and `φ ≤ 1` — the second
-factor `φ` [1] absorbs with its closing `φ ∈ (0,1)` step. `err` is monotone and scales with a
-non-negative factor (`err_mono`, `err_smul_of_nonneg`), which is [1]'s "it suffices to show
-that the enclosing radius decreases superlinearly".
+with `M'` in `E(Δt,η)`; then `e^{At_i} M (φΔt u) = φ · e^{At_i} (φM') (Δt u)`, and `φM'` is
+still in `E(Δt,η)`, the interval matrix being symmetric about `0` and `φ ≤ 1`. `err` is monotone
+and scales with a non-negative factor (`err_mono`, `err_smul_of_nonneg`). `U` bounded makes `err`
+the enclosing radius rather than a junk value.
 
-`0 ≤ Δt` is a step length's sign, and `U` bounded is what makes `err` the enclosing radius
-rather than a junk value; [1]'s `U` is a zonotope. [1] states `Thm. 2` as an instance of
-`Def. 1`, whose displayed inequality is the statement here.
+## Inputs
+* `A` – system matrix
+* `ti` – step start time
+* `U` – input set
+* `η` – Taylor order
+* `Δt` – step length
+
+## Hypotheses
+* `hU` – input set bounded
+* `hΔt` – step length nonnegative
+
+## Conclusion
+* scaling the step by a factor scales the error down by at least that factor
 
 ## References
 

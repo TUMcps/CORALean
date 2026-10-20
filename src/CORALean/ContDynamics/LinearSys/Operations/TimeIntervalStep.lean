@@ -10,16 +10,20 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 /-!
 # One step of the homogeneous flow, as a set
 
-CORA's `CH(X₀, e^{Ar}X₀) ⊕ F X₀`, over a whole step rather than at its ends: the
-segment from the set to its image, widened by what the curvature of the flow
-adds.
+CORA's `CH(X₀, e^{Ar}X₀) ⊕ F X₀`, over a whole step rather than at its ends: the segment from the
+set to its image, widened by what the curvature of the flow adds. `linComb` rather than a convex
+hull, so a non-convex representation keeps its shape. `exp` needs a norm on `Mat`, which is a
+choice rather than an instance, so every file reasoning about this definition must make the same
+one, the `l∞` operator norm, or the terms will not match.
 
-`linComb` rather than a convex hull, so a non-convex representation keeps its
-shape.
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `X₀` – initial set
 
-`exp` needs a norm on `Mat`, which is a choice rather than an instance, so every
-file reasoning about this definition must make the same one — the `l∞` operator
-norm — or the terms will not match.
+## Output
+* set over the whole step: hull of the set and its image widened by the curvature
 -/
 
 -- Authors:       Claude Opus 5

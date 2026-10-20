@@ -14,6 +14,14 @@ encloses each window `[k Δt, (k + 1) Δt]` from the pair of time points
 the scheme's `timeIntervalStep` recursion read `[1, Alg. 4]`'s own, rather than
 `reachStepkWrappingFree`'s carrying the wrapped window itself forward.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `X₀` – initial set
+
+## Output
+* time-point set after a given number of steps
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

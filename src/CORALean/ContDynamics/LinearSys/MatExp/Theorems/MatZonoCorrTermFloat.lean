@@ -19,6 +19,22 @@ public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeMatIntervalCont
 zonotope: a member's `i`-th power lies in the zonotope's `i`-th power
 (`matPow_outer`), hence in its box (`matInterval_contains`), and the scalar
 `corrCoeff i · r^i/i!` in `[κ·r^i/i!, 0]` scales the box over it.
+
+## Inputs
+* `M` – float matrix zonotope
+* `r` – float step length
+* `i` – order index
+* `A` – member matrix
+* `j` – row index
+* `k` – column index
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hi` – order at least two
+* `hA` – member lies in the matrix zonotope
+
+## Conclusion
+* the member's correction entry lies within the float term entry
 -/
 
 -- Authors:       Claude Opus 5.5

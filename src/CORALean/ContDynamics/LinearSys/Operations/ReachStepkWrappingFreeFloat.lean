@@ -10,15 +10,23 @@ public import CORALean.ContSet.Zonotope.Float.Instances
 /-!
 # One window of `reachWrappingFreeFloat`: `R(τ_k) = [e^{A t_k}] R(τ_0)`, in floats
 
-`reachStepkWrappingFree` computed in `𝕋`. The matrix is enclosed afresh at `t_k` itself,
-never as a power of `[e^{AΔt}]`, so no window pays for the ones before it. A
-float need not hold `t_k = k Δt`, so the window brackets it, `sampleTimeFloat`,
-and encloses `e^{At}` over that whole range: sound at every float `Δt`. The
-enclosure is scaling and squaring, `expSquaringFloat`, with `s ≈ log₂ k`
-squarings from `squaringsFloat`: the scaled range is as short as the step, so
-the step's order `η` serves every window, and the chain is `s` products of one
-fresh matrix — rounding compounds `O(s)` times per window, not `O(k)`. No window
-when no `s` is found.
+`reachStepkWrappingFree` computed in `𝕋`. The matrix is enclosed afresh at `t_k` itself, never as
+a power of `[e^{AΔt}]`, so no window pays for the ones before it. A float need not hold
+`t_k = k Δt`, so the window brackets it, `sampleTimeFloat`, and encloses `e^{At}` over that whole
+range: sound at every float `Δt`. The enclosure is scaling and squaring, `expSquaringFloat`, with
+`s ≈ log₂ k` squarings from `squaringsFloat`: the scaled range is as short as the step, so the
+step's order `η` serves every window, and rounding compounds `O(s)` times per window, not `O(k)`.
+No window when no `s` is found.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – float step length
+* `η` – Taylor order
+* `Rτ₀` – first float window
+* `k` – window index
+
+## Output
+* float set over the window carried from the first window, if the squaring fits
 -/
 
 -- Authors:       Claude Opus 5.5

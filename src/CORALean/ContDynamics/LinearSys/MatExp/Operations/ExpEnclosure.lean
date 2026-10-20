@@ -14,6 +14,13 @@ radius.
 `exp` needs a norm on `Mat`, which is a choice rather than an instance, so every
 file reasoning about these must make the same one — the `l∞` operator norm.
 
+## Inputs
+* `x` – matrix
+* `η` – Taylor order
+
+## Output
+* interval matrix enclosing the matrix exponential
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

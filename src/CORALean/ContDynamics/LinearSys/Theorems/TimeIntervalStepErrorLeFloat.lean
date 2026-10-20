@@ -15,6 +15,19 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.SumAbsBoundLeSumUpAbsBoun
 bound by `expNormTerms_le_float`; the curvature bracket as in
 `timeIntervalStepCurvatureError_le_float`. Every factor is nonnegative, so the products keep
 the order.
+
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `Z` – float zonotope
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hη` – order admissible
+
+## Conclusion
+* the float estimate is at least the real one at the nominal zonotope
 -/
 
 -- Authors:       Claude Sonnet 5.5

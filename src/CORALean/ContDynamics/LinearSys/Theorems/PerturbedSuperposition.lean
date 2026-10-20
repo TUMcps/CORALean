@@ -8,15 +8,31 @@ public import CORALean.ContDynamics.LinearSys.Theorems.EqClosedFormOfFlow
 /-!
 # Superposition: a perturbed run is its exponential plus each signal's integral
 
-`x(t) = e^{At} x(0) + ∫₀ᵗ e^{A(t-s)} u(s) ds + ∫₀ᵗ e^{A(t-s)} w(s) ds`, which is
-what makes [1, Prop. 3] and [1, Prop. 5] statements about the *particular
-solutions* `Z_U(t)` and `Z_W(t)` rather than about signals: the two integrals
-are exactly one point of `inputReach U t` and one of `inputReach W t`.
+`x(t) = e^{At} x(0) + ∫₀ᵗ e^{A(t-s)} u(s) ds + ∫₀ᵗ e^{A(t-s)} w(s) ds`, which is what makes [1,
+Prop. 3] and [1, Prop. 5] statements about the *particular solutions* `Z_U(t)` and `Z_W(t)` rather
+than about signals: the two integrals are exactly one point of `inputReach U t` and one of
+`inputReach W t`. Proved by subtracting the disturbance's own closed form: `x - closedForm 0 w`
+solves the one-signal integral equation at `u`, so `eq_closedForm_of_flow` applies to it with the
+input set `U` alone; no representation of `U ⊞ W` is needed, which is the point of splitting rather
+than folding the two signals.
 
-Proved by subtracting the disturbance's own closed form: `x - closedForm 0 w`
-solves the one-signal integral equation at `u`, so `eq_closedForm_of_flow`
-applies to it with the input set `U` alone — no representation of `U ⊞ W` is
-needed, which is the point of splitting rather than folding the two signals.
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `W` – disturbance set
+* `t` – time
+* `x` – state trajectory
+* `u` – input signal
+* `w` – disturbance signal
+
+## Hypotheses
+* `ht` – time nonnegative
+* `hU` – input set bounded
+* `hW` – disturbance set bounded
+* `traj` – signal is a perturbed trajectory
+
+## Conclusion
+* the endpoint is the propagated start plus the two signals' integrals
 
 ## References
 

@@ -7,16 +7,26 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetIni
 /-!
 # What the step encloses beyond what the flow visits
 
-`timeIntervalStep_outer` run backwards, and the direction an error measure
-needs: the computed set is inside the states the flow visits over the step,
-widened by a ball.
-
-`timeIntervalStep_subset_initial_add_error` is where the estimate is done, and
-it is sharper: the exact point it names is the state at `t = 0`, so it measures
-against `X₀` alone. This weakens that to the union over the step, which is the
-shape every outer statement about the step is stated in, at the cost of a
-right-hand side that is a union of images and so need not be convex — an inner
+`timeIntervalStep_outer` run backwards, and the direction an error measure needs: the computed set
+is inside the states the flow visits over the step, widened by a ball.
+`timeIntervalStep_subset_initial_add_error` is where the estimate is done, and it is sharper: the
+exact point it names is the state at `t = 0`, so it measures against `X₀` alone. This weakens that
+to the union over the step, which is the shape every outer statement about the step is stated in, at
+the cost of a right-hand side that is a union of images and so need not be convex; an inner
 approximation goes through the sharper form and never this one.
+
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `X₀` – initial zonotope
+
+## Hypotheses
+* `hr` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the computed step lies in the visited states widened by the error
 -/
 
 -- Authors:       Claude Opus 5

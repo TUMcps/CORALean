@@ -13,6 +13,14 @@ says `-1/t < a`, and `t + b t² < 0` says `b < -1/t`, each bounded outward. Fail
 global floor `-1/2` is returned: sound where the box does straddle the vertex, and merely not
 tight where the test was too close to call.
 
+## Inputs
+* `t` – float time
+* `a` – float box lower end
+* `b` – float box upper end
+
+## Output
+* float lower bound of the diagonal factor on the box
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

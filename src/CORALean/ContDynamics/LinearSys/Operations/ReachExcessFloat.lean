@@ -19,6 +19,20 @@ the reduction's box `reduceGirardBox`.
 
 The recursion recomputes the run at every step, so `k` steps cost `O(k²)` run
 steps: a budget for a short horizon, not a production loop.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – float sampling step
+* `η` – Taylor order
+* `o` – zonotope order
+* `R₀` – initial float zonotope
+* `U` – input float zonotope
+
+## Hypotheses
+* `ho` – zonotope order positive
+
+## Output
+* float zonotope of the run's excess over the exact held-input set after a given number of steps
 -/
 
 -- Authors:       Claude Opus 5.5

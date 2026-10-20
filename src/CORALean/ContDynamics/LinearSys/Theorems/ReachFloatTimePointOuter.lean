@@ -15,6 +15,17 @@ By induction on `k`: `R_0 = X₀` holds `e^{0} x₀ = x₀`, and
 puts in `[e^{AΔt}] R_k` — the run's step, its matrix computed once — and
 `Reduce.reduce_outer` keeps in `R_{k+1}`. The run's `N` is the one `Reach.steps`
 derived, so `N` time steps span `[tStart, tFinal]` exactly (`steps_spec_toReal`).
+
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters
+* `options` – reach options
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact flow from every initial point lies in the time-point sets
 -/
 
 -- Authors:       Claude Opus 5.5

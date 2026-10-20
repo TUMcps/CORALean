@@ -20,6 +20,27 @@ Summing two one-signal closed forms rather than forming `closedForm x₀ (u + w)
 keeps every hypothesis at `U` or at `W` separately: the folded input would need
 a representation denoting `U ⊕ W`, which `Plus` only ever encloses.
 
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `W` – disturbance set
+* `t` – time
+* `x₀` – initial point
+* `u` – input signal
+* `w` – disturbance signal
+
+## Hypotheses
+* `ht` – time nonnegative
+* `hU` – input set bounded
+* `hW` – disturbance set bounded
+* `hu` – input values lie in the set
+* `humeas` – input measurable
+* `hw` – disturbance values lie in the set
+* `hwmeas` – disturbance measurable
+
+## Conclusion
+* the sum of the two closed forms is a perturbed trajectory
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

@@ -17,6 +17,16 @@ The edges are `aux_errorEdgeFloat`'s, every comparison the float `le`, and `fuel
 CORA leaves open. A tuning selector: `errorSolutionAdaptiveFloat` is sound at any order. The
 terms are those of [1, Prop. 11].
 
+## Inputs
+* `sys` – linear system
+* `ζ` – float gain threshold
+* `Δt` – float step length
+* `V` – float noise zonotope
+* `fuel` – number of orders tried
+
+## Output
+* order CORA stores for the step, if found
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

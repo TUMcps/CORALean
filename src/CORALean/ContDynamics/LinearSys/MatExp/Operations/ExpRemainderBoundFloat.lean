@@ -8,15 +8,19 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.PowUpFloat
 /-!
 # `MatExp.expRemainderBound`, a float bound on the Taylor tail
 
-`Real.MatExp.expRemainderBound`'s numerator, `‖x‖ ^ (η+1) / (η+1)!`, rounded up
-by `powUp`/`divUp`/`factorialDown`'s *lower* bound of the factorial — dividing
-by a lower bound is what overestimates a quotient, the same reason
-`invFactorialBounds`'s high side reads `factorialDown` too — times the fixed
-constant `2`: sound whenever the caller's norm bound satisfies
-`nrm / (η+2) ≤ 1/2` (`Theorems/ExpRemainderBoundFloat`), since then
-`(1 - nrm/(η+2))⁻¹ ≤ 2`. A concrete constant, not a computed reciprocal of a
-rounded difference — the latter has no float lower bound the interface can
-certify positive.
+`Real.MatExp.expRemainderBound`'s numerator, `‖x‖ ^ (η+1) / (η+1)!`, rounded up by
+`powUp`/`divUp`/`factorialDown`'s *lower* bound of the factorial (dividing by a lower bound is
+what overestimates a quotient, as in `invFactorialBounds`'s high side), times the fixed
+constant `2`: sound whenever `nrm / (η+2) ≤ 1/2` (`Theorems/ExpRemainderBoundFloat`), since then
+`(1 - nrm/(η+2))⁻¹ ≤ 2`. A concrete constant, not a computed reciprocal of a rounded difference,
+which has no float lower bound the interface can certify positive.
+
+## Inputs
+* `nrm` – float matrix norm
+* `η` – Taylor order
+
+## Output
+* float bound on the Taylor tail
 -/
 
 -- Authors:       Claude Sonnet 5

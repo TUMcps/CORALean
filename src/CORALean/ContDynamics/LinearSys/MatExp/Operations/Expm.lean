@@ -14,6 +14,14 @@ evaluated dependently: `expmTerms` (the exact terms of order zero to two and the
 over `i!` up to `maxOrder`) plus `exponentialRemainder`. The calls `expm(intMat)` and
 `expm(intMat, maxOrder)` are `r = 1`, with `maxOrder = 10` by default. The five-argument call,
 which starts the powers elsewhere, is `MatExp.expmFrom`.
+
+## Inputs
+* `A` – interval matrix
+* `r` – step length
+* `η` – Taylor order
+
+## Output
+* interval matrix enclosing the exponential
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -12,6 +12,12 @@ CORA's `isCanonicalForm` [1] as a Boolean on float entries: `m = n`, `s = q`, `c
 zero and `B = I`, each entry tested by `LinearSys.entryIsFloat`. Soundness is
 `LinearSys.isCanonicalFormFloat_sound`, one-sided as the test is.
 
+## Inputs
+* `sys` – linear system with float coefficients
+
+## Output
+* whether the system is in canonical form
+
 ## References
 
 * [1] `contDynamics/@linearSys/isCanonicalForm.m`

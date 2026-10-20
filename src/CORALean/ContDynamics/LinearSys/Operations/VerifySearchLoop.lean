@@ -12,18 +12,33 @@ public import CORALean.Specification.Definitions.VerifyAnswer
 /-!
 # [1, Alg. 3 (search)]: the `repeat` loop
 
-Lines 3, 7-9 and 14-25 of `[1, Alg. 3 (search)]`, with the two exits of lines 4-6 and 12-13
-where the paper has them. `Alg. 1` of line 3 is `supportUpper` and `supportLower` at `Δt`,
-`k = t/Δt` steps. Everything `Alg. 3` asks of a set it asks through support functions and
-support vectors, which are arguments: `ρL` and `νL` for `L`, `νhat` for the outer approximation
-`R̂(t)` (`[1]` computes it "in the same way" as the inner one), `ν₀` and `νU` for the inner one,
-whose `ν(Ř(t), ℓ)` is the run of Eq. (18) from `supportCounterexample`. So are the tests and
-constructions of the polytopes: `inHull` for `0 ∈ P`, `closestFacet` for lines 19-20 (the
-quadratic program `min_{x ∈ P̌} ‖x‖²` and the vertices on the facet it finds) and `gramSchmidt`
-for line 23. The loop has no stated iteration count, so `fuel` is an argument and `undecided`
-its answer when it runs out. `ℓ₁ ← I_n(·,1)` of line 1 is an argument too, the restart of line 15
-returning to it with `i ← 1`; `falsifiable ← false` of lines 7-9 is the conjunction of the old
-flag with the failure of the test. The polytopes are the lists of their vertices.
+Lines 3, 7-9 and 14-25 of `[1, Alg. 3 (search)]`, with the two exits of lines 4-6 and 12-13 where
+the paper has them. `Alg. 1` of line 3 is `supportUpper` and `supportLower` at `Δt`, `k = t/Δt`
+steps. Everything `Alg. 3` asks of a set it asks through support functions and support vectors,
+which are arguments: `ρL` and `νL` for `L`, `νhat` for the outer approximation `R̂(t)`, `ν₀` and
+`νU` for the inner one, whose `ν(Ř(t), ℓ)` is the run of Eq. (18) from `supportCounterexample`. So
+are the tests and constructions of the polytopes: `inHull` for `0 ∈ P`, `closestFacet` for lines
+19-20 and `gramSchmidt` for line 23. The loop has no stated iteration count, so `fuel` is an
+argument and `undecided` its answer when it runs out; `ℓ₁ ← I_n(·,1)` of line 1 is an argument too.
+
+## Inputs
+* `sys` – linear system
+* `X₀` – initial set
+* `U` – input set
+* `η` – Taylor order
+* `ρ` – support function oracle
+* `ν₀` – support vector map of the initial set
+* `νU` – support vector map of the input set
+* `νL` – support vector map of the specification set
+* `νhat` – support vector map of the outer approximation
+* `ρL` – support function of the specification set
+* `inHull` – origin-in-hull test
+* `closestFacet` – closest facet finder
+* `gramSchmidt` – orthogonal direction finder
+* `ℓ₁` – first direction
+
+## Output
+* answer of the first exit reached from a loop state, or undecided
 
 ## References
 

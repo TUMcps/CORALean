@@ -16,6 +16,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 the whole matrix, and an entry of a bounded matrix is bounded by the same
 amount, so the truncation plus the remainder brackets every entry of `exp x`.
 
+## Inputs
+* `x` – matrix
+* `η` – Taylor order
+
+## Hypotheses
+* `hε` – norm small enough for the Taylor order
+
+## Conclusion
+* the matrix exponential lies in its enclosure
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

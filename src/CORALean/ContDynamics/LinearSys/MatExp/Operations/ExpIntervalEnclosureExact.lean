@@ -16,6 +16,14 @@ should. The identity costs nothing, `W(t)` is `expIntervalW` and therefore exact
 the orders from three on are left to ordinary interval arithmetic — which is what makes this
 sharper than `expIntervalEnclosure`, where every order is.
 
+## Inputs
+* `A` – interval matrix
+* `t` – time
+* `κ` – Taylor order
+
+## Output
+* interval matrix enclosing the exponential with an exact second order
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

@@ -15,6 +15,20 @@ of dimension `m + 1` with `τ = 1` and next vector `Av_{m+1}`; `T⁺_m` is upper
 subdiagonal product `γ_mτ_{m+1,m}`, and `V⁺_me₁ = V_me₁`. So the corrected approximation (5.4)
 is the standard one for this identity, and (2.4)-(2.12) apply to it.
 
+## Inputs
+* `A` – matrix
+* `V` – Krylov basis
+* `T` – Hessenberg matrix
+* `τ` – next subdiagonal entry
+* `w` – next vector
+
+## Hypotheses
+* `hH` – Hessenberg matrix is upper Hessenberg
+* `hK` – Krylov identity holds
+
+## Conclusion
+* the corrected approximation satisfies a Krylov identity of one dimension more
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

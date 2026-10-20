@@ -17,6 +17,19 @@ form itself is — `closedForm_flow` and `closedForm_continuousOn` supplying its
 `flow` and `cont` fields verbatim. A measurable, merely bounded input is
 admissible, so a point named this way is genuinely reached.
 `ReachSetExactSubset` is the other half.
+
+## Inputs
+* `sys` – linear system
+* `R₀` – initial set
+* `U` – input set
+* `t` – time
+
+## Hypotheses
+* `ht` – time nonnegative
+* `hU` – input set bounded
+
+## Conclusion
+* the propagated start set plus the input reach lies in the reach set
 -/
 
 -- Authors:       Claude Opus 5.5

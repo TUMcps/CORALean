@@ -14,6 +14,14 @@ is higher, the same raise `reachWrappingFree` runs: `reach_outer` needs an order
 for `Δt` and `sys.A`, and `ReachStepOptions` has no field for it, the matrix not
 being there to decide it. `LinearSys.reachInstance` runs this instead of `reach`
 itself, so it asks its caller for no side condition on `η` at all.
+
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters
+* `options` – step options
+
+## Output
+* time-interval sets of the windows at an order raised until admissible
 -/
 
 -- Authors:       Claude Opus 5.5

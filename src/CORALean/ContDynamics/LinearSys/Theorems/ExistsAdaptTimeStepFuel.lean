@@ -11,20 +11,40 @@ public import Mathlib.Tactic.Positivity
 /-!
 # `Alg. 2`'s step sweep does run out of budget-violating steps
 
-[1, Alg. 2] shrinks `Δt_i` by `μ` with no stated iteration count, so the
-definition carries a `fuel` and returns `none` where it runs out. This is the
-fact that makes that honest rather than evasive: some fuel suffices.
+[1, Alg. 2] shrinks `Δt_i` by `μ` with no stated iteration count, so the definition carries a `fuel`
+and returns `none` where it runs out. This is the fact that makes that honest: some fuel suffices.
+The two halves are [1]'s own argument at the coarsest order. `ε_H` converges to `0` (`Prop. 3`), so
+it eventually clears any positive `ε_H,max`; `ε_P` carries `Δt_i` as a factor whose cofactor
+converges to `0`, so it eventually clears eq. (10)'s share, which is *linear* in `Δt_i`. The
+geometric sequence `Δt_i μ^k` reaches into `𝓝[>] 0`, where both statements live. The check must be
+complete here, `a ≤ b → le a b = true`, where `adaptTimeStep_budget` asks only the converse: a check
+that gives up early is sound but need never report anything.
 
-The two halves are [1]'s own argument at the coarsest order. `ε_H` converges to
-`0` (`Prop. 3`), so it eventually clears any positive `ε_H,max`; `ε_P` carries
-`Δt_i` as a factor whose cofactor converges to `0`, so it eventually clears
-eq. (10)'s share, which is *linear* in `Δt_i` — the asymmetry `Prop. 2` turns
-on. The geometric sequence `Δt_i μ^k` reaches into `𝓝[>] 0`, which is where
-both statements live.
+## Inputs
+* `sys` – linear system
+* `le` – comparison oracle on reals
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `εHmax` – maximal homogeneous error
+* `εPmax` – maximal particular error
+* `εPacc` – accumulated particular error
+* `tf` – final time
+* `ti` – step start time
+* `Δtprev` – previous step length
+* `μ` – shrink factor
+* `ηmax` – maximal Taylor order
 
-The check must be complete here, `a ≤ b → le a b = true`, where
-`adaptTimeStep_budget` asks only the converse: a check that gives up early is
-sound but need never report anything.
+## Hypotheses
+* `hle` – comparison oracle is complete
+* `hεH` – homogeneous bound positive
+* `hshare` – particular share positive
+* `hΔtprev` – previous step positive
+* `hμ0` – shrink factor positive
+* `hμ1` – shrink factor below one
+* `hηmax` – maximal order at least two
+
+## Conclusion
+* some fuel makes the sweep report a step within both budgets
 
 ## References
 

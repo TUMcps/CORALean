@@ -16,6 +16,19 @@ The core of [1, Thm. 1]: for every `β ∈ [-1, 1]`, `Σ_{i=0}^η ((C + βG) r)�
 and `K(r)` is `Zonotope.ofOneParamPoly` of these coefficients, whose containment is the halving
 of the even powers.
 
+## Inputs
+* `C` – center matrix
+* `G` – generator matrix
+* `r` – step length
+* `η` – Taylor order
+* `β` – generator weight
+
+## Hypotheses
+* `hβ` – weight within one in magnitude
+
+## Conclusion
+* the Taylor polynomial of every member lies in the one-parameter Taylor set
+
 ## References
 
 * [1] M. Althoff and J. M. Dolan. "Reachability Computation of Low-Order Models for the Safety

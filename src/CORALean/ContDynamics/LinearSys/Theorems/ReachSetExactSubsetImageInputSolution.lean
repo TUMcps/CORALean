@@ -19,6 +19,28 @@ trajectory gives there instead: `variation_of_constants` splits `x r` into
 no hull, and `+` the genuine Minkowski sum, exactly what `LinearSys.timePointBound`
 needs.
 
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `r` – step length
+* `η` – Taylor order
+
+## Hypotheses
+* `hr` – step length positive
+* `hT` – step lies in the time domain
+* `hε` – scaled norm small enough for the Taylor order
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `hRconv` – remainder image convex
+* `hRclosed` – remainder image closed
+* `hRbdd` – remainder image bounded
+
+## Conclusion
+* the reach set lies in the propagated start set plus the input solution
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

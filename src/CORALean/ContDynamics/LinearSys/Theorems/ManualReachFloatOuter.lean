@@ -20,6 +20,17 @@ is `X₀` itself, and the constant and the `Ũ`-input have contributed `0`, whic
 `manualRunFloat_outer` does the rest, at the order `reachOrderFloat` admitted. Every input
 `u(t) ∈ B U + c` is in `V = B U ⊕ c`'s float enclosure.
 
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters with initial and input sets
+* `options` – reach options
+
+## Hypotheses
+* none
+
+## Conclusion
+* every run is in the window of its time
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

@@ -15,6 +15,23 @@ Stated for any real `ν` with `Re(x*Ax) ≥ ν x*x`, `ν(A)` included, and for t
 (3.1) alone; `h_{k+1,k} ≥ 0`, `‖v_{k+1}‖₂ = 1` and `V_k` orthonormal enter only through the
 factor `|h_{k+1,k}|‖v_{k+1}‖₂`.
 
+## Inputs
+* `A` – matrix
+* `V` – Krylov basis
+* `T` – Hessenberg matrix
+* `τ` – next subdiagonal entry
+* `w` – next vector
+* `ν` – lower bound on the field of values
+* `t` – time
+
+## Hypotheses
+* `hK` – Krylov identity holds
+* `hA` – real part of the Rayleigh quotient at least the lower bound
+* `ht` – time nonnegative
+
+## Conclusion
+* the Arnoldi error is at most the a posteriori integral estimate
+
 ## References
 
 * [1] H. Wang, Q. Ye. "Error bounds for the Krylov subspace methods for computations of matrix

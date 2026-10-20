@@ -19,6 +19,16 @@ both mapped by `[e^{At_k}]`, added upward. The correlated summand is `(Σᵢ Ã�
 radius of the float zonotope's box from above, as eq. (11) has it, and not the sup-norm `errOp`
 of CDC'20. A tuning quantity: the step is sound at any value this takes.
 
+## Inputs
+* `sys` – linear system
+* `eAtk` – float exponential enclosure at the step start
+* `U₀` – recentered input float zonotope
+* `Δt` – float step length
+* `η` – Taylor order
+
+## Output
+* float upper bound of the particular solution error
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

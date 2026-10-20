@@ -11,6 +11,23 @@ With `Vstat` too: a dynamic point `v` and a static point `s` held over the step 
 `∫₀^Δt e^{Aσ}dσ (v + s)`, and `Rerror` holds it: `eAtInt Vstat`, the exact orders plus
 `E Δt`, takes the static part whole. Outer only, held inputs only, by [1, Lemma 1].
 
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `η` – Taylor order
+* `Vdyn` – dynamic noise set
+* `Vstat` – static noise set
+* `v` – dynamic input value
+* `s` – static input value
+
+## Hypotheses
+* `hΔt` – step length nonnegative
+* `hv` – dynamic value lies in its set
+* `hs` – static value lies in its set
+
+## Conclusion
+* what the two held inputs contribute lies in the error solution with the static input
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

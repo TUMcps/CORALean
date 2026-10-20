@@ -12,16 +12,28 @@ public import CORALean.ContDynamics.LinearSys.Theorems.PerturbedSuperposition
 /-!
 # [1, Prop. 5]: the time-point EA backward reachable set, exactly
 
-`R^{∃∀}(-t) = e^{-At}((Xend ⊖ Z_W(t)) ⊕ -Z_U(t))`, at the exact particular
-solutions `inputReach U t` and `inputReach W t` — plain sets of points, so the
-identity is the one the paper states "independently of the set representations
-chosen".
+`R^{∃∀}(-t) = e^{-At}((Xend ⊖ Z_W(t)) ⊕ -Z_U(t))`, at the exact particular solutions
+`inputReach U t` and `inputReach W t`, plain sets of points, so the identity is the one the paper
+states "independently of the set representations chosen". The same superposition step as [1, Prop.
+3] carries it, with the quantifiers the other way round: the chosen input is the witness `-c` the
+outer `⊕ -Z_U(t)` supplies, and the erosion `Xend ⊖ Z_W(t)` is exactly "lands in `Xend` whatever the
+disturbance contributes". Nothing is cancelled off the Minkowski difference anywhere, which would
+make the argument unsound.
 
-The same superposition step as [1, Prop. 3] carries it, with the quantifiers the
-other way round: the chosen input is the witness `-c` the outer `⊕ -Z_U(t)`
-supplies, and the erosion `Xend ⊖ Z_W(t)` is exactly "lands in `Xend` whatever
-the disturbance contributes". Nothing is cancelled off the Minkowski difference
-anywhere, which is what would make the argument unsound.
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `W` – disturbance set
+* `Xend` – target set
+* `t` – target time
+
+## Hypotheses
+* `ht` – time nonnegative
+* `hU` – input set bounded
+* `hW` – disturbance set bounded
+
+## Conclusion
+* the set is the propagated eroded target plus the negated input solution
 
 ## References
 

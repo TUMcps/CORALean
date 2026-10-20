@@ -13,6 +13,13 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MatSmul
 `1/i!`, which no float holds exactly, so by `invFactorialBounds i` as an interval, the
 same handle `expIntervalTaylor` uses.
 
+## Inputs
+* `M` – float matrix zonotope
+* `i` – order
+
+## Output
+* float matrix zonotope of the order's Taylor term
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

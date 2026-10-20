@@ -21,6 +21,29 @@ about its shape, so no class can supply it. The first case of [1, Alg. 2], the o
 with a single enclosure for the whole step; the second case splits `U` instead
 and needs a representation that can recenter itself.
 
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input signal
+* `r` – step length
+* `m` – Taylor order offset
+* `t` – time
+
+## Hypotheses
+* `traj` – signal is a canonical trajectory
+* `hr` – step length positive
+* `hT` – step lies in the time domain
+* `hε` – scaled norm small enough for the Taylor order
+* `ht0` – time nonnegative
+* `htr` – time within the step
+* `h0` – origin in the input set
+
+## Conclusion
+* the trajectory's state at the time lies in the step enclosure
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

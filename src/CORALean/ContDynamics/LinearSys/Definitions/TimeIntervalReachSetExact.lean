@@ -7,16 +7,22 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 /-!
 # The set a continuous run visits over an interval
 
-The definition is [1, Def. 3.2]: the union of `LinearSys.reachSetExact` at every
-time in `[0, r]`. `timeIntervalReachSetExact_eq_iUnion` is that union, read back off
-this definition.
-
-Written the same way `reachSetExact` is — an existential over a trajectory — rather
-than as a literal `Set.iUnion`: both share their shape, and a caller already
-holding a trajectory and a time reaches either with the same pair.
-
-`[0, r]` only, as `timeIntervalStep` and the whole-step theorems it is the
+The definition is [1, Def. 3.2]: the union of `LinearSys.reachSetExact` at every time in
+`[0, r]`. `timeIntervalReachSetExact_eq_iUnion` is that union, read back off this definition.
+Written the same way `reachSetExact` is, an existential over a trajectory, rather than as a
+literal `Set.iUnion`: a caller already holding a trajectory and a time reaches either with
+the same pair. `[0, r]` only, as `timeIntervalStep` and the whole-step theorems it is the
 exact counterpart of, rather than an arbitrary sub-interval of `T`.
+
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `r` – interval end
+
+## Output
+* states some trajectory is in at some time of the interval, exactly
 
 ## References
 

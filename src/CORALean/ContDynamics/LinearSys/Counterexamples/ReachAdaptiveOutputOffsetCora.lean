@@ -24,6 +24,15 @@ source, not run.
 `linearSys(-1,1,0,1,1)` (`ẋ = -x + u`, `y = x + u`), `R0 = {0}`, `uTransVec = [0 1]`,
 `tu = [0 1]`, `tFinal = 2`: `vTransVec = [0 1 0]`. In `[0, 1)` the input is `0`, so `x = 0` and
 `y = 0`; the first output set is `x + vTransVec(:,2) = {1}` (all error generators are zero here).
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA adds the next piece's offset, missing the true output
 -/
 
 -- Authors:       Claude Sonnet 5.5

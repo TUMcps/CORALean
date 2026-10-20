@@ -12,6 +12,19 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.SumAbsBoundLeSumUpAbsBoun
 
 Every factor of `2 Σⱼ|U|ⱼ r ((e^x - 1) + E(rA, η))` under its float bound, `r` itself
 exact; all are nonnegative, so the products keep the order.
+
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `Z` – float zonotope
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hη` – order admissible
+
+## Conclusion
+* the float estimate is at least the real one at the nominal zonotope
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -17,6 +17,26 @@ asymptotically correct. Not through `Prop. 5` (restated from Sidje's Expokit): `
 (Av_{m+1})e_{m+1}*` is a Krylov identity, so (5.9a) is (4.4a) for it, and (3.1b) for it with
 `|e_{m+1}*e^{σsT⁺_m}e₁| ≤ τ_{m+1,m}γ_m s^m/m!` gives (5.9b) at `p = 0`, (4.1b) for `p ≥ 1`.
 
+## Inputs
+* `A` – matrix
+* `V` – Krylov basis
+* `T` – Hessenberg matrix
+* `τ` – next subdiagonal entry
+* `σ` – unit scaling
+* `w` – next vector
+* `p` – φ-function index
+
+## Hypotheses
+* `hK` – Krylov identity holds
+* `hV` – basis has orthonormal columns
+* `hVw` – next vector orthogonal to the basis
+* `hτ` – subdiagonal entry nonnegative
+* `hH` – Hessenberg matrix is upper Hessenberg
+* `hσ` – scaling has modulus one
+
+## Conclusion
+* the corrected φ-function error is at most the bound Err_a
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

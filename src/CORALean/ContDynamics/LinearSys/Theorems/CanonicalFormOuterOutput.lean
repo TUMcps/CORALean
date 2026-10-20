@@ -12,6 +12,23 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 `V_ = D U + F (V - centerV)`: the input's contribution to the output is a noise of its own,
 not tied to the state input. Outer only.
 
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `uVec` – input offset
+* `W` – disturbance set
+* `V` – noise set
+* `vVec` – noise offset
+* `u` – input value
+* `v` – noise value
+
+## Hypotheses
+* `hu` – input lies in its set
+* `hv` – noise lies in its set
+
+## Conclusion
+* the canonical output set holds the output of every input and noise
+
 ## References
 
 * [1] `contDynamics/@linearSys/canonicalForm.m`

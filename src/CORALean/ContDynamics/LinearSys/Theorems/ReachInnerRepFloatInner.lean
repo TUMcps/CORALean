@@ -20,22 +20,38 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 /-!
 # `reachInnerRepFloat` is an inner approximation
 
-`reachInnerRep_inner` at the float layer, by the chain `reachInner_inner` uses,
-each step in the direction an inner approximation needs:
+`reachInnerRep_inner` at the float layer, by the chain `reachInner_inner` uses, each step in the
+direction an inner approximation needs. (1) `minkDiffRep_inner`: what the float `minkDiffRep`
+returns lies inside the float run minus its budget (`D ⊆ R ⊖ B`). (2)
+`discretizeEnclosureFloat_reach_subset_add_errorFloat` puts the float run inside the exact
+held-input sampled set plus the budget (`R ⊆ Y + B`), so Rådström cancellation
+(`reachSetExact_inner_of_outer`, `Y` convex and compact) gives `R ⊖ B ⊆ Y`. (3) `Y` lies in the
+states the system reaches at `t = kΔt` (`discretize_reachSetExact_subset_inputReach`, then
+`mulVecLin_image_add_inputReach_subset_reachSetExact`).
 
-1. `minkDiffRep_inner`: what the float `minkDiffRep` returns lies inside the
-   float run minus its budget (`D ⊆ R ⊖ B`).
-2. `discretizeEnclosureFloat_reach_subset_add_errorFloat` puts the float run
-   inside the exact held-input sampled set plus the budget (`R ⊆ Y + B`), so
-   Rådström cancellation (`reachSetExact_inner_of_outer`, `Y` convex and compact)
-   gives `R ⊖ B ⊆ Y`.
-3. `Y` lies in the states the system reaches at `t = kΔt`
-   (`discretize_reachSetExact_subset_inputReach`, then
-   `mulVecLin_image_add_inputReach_subset_reachSetExact`).
+## Inputs
+* `sys` – linear system
+* `Δt` – float sampling step
+* `η` – Taylor order
+* `o` – zonotope order
+* `R₀` – initial float zonotope
+* `U` – input float zonotope
+* `k` – number of steps
+* `M` – generator representation
+* `ρ` – margin factor
+* `H` – right inverse
+* `D` – returned zonotope
 
-The exact reachable set is read from the nominal zonotopes of `R₀` and `U`; the
-float sets' error boxes are paid inside the budget. The budget is nonempty
-because the float run is (its error box brackets `0`).
+## Hypotheses
+* `hΔt` – step length positive
+* `hη` – order admissible
+* `ho` – zonotope order positive
+* `hR₀` – initial error box contains zero
+* `hU` – input error box contains zero
+* `hD` – the inner approximation returned the zonotope
+
+## Conclusion
+* the returned zonotope lies in the exact reachable set at the time
 -/
 
 -- Authors:       Claude Opus 5.5

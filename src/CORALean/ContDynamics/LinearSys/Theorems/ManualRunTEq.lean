@@ -11,6 +11,21 @@ The arithmetic half of what [1, Alg. 1]'s `Ensure` clause presupposes: that the 
 lines 4-11, run `K = t_end/Δt` times, reaches `t_end` exactly — needed to read `manualReach`'s
 `K` as the paper's own `t_end/Δt` rather than an unrelated bound.
 
+## Inputs
+* `sys` – linear system
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `Δt` – step length
+* `η` – Taylor order
+* `ρ` – zonotope order
+* `k` – step index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the run reaches the time given by the step index times the step length
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

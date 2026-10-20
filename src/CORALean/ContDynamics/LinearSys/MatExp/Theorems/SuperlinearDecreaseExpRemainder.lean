@@ -10,18 +10,24 @@ public import CORALean.Global.SuperlinearDecrease
 /-!
 # `Lemma 1`: the exponential remainder decreases superlinearly
 
-[1, Lemma 1]: `∀φ∈(0,1): E(φΔt,η) ⊆ φ·E(Δt,η)`, `E` being `MatExp.expRemainder`
-— an entrywise-uniform box, so a member of the smaller one scaled back up by
-`φ⁻¹` is a member of the larger, and `expRemainderBound_superlinear` is exactly
-what keeps it inside.
+[1, Lemma 1]: `∀φ∈(0,1): E(φΔt,η) ⊆ φ·E(Δt,η)`, `E` being `MatExp.expRemainder`, an
+entrywise-uniform box, so a member of the smaller one scaled back up by `φ⁻¹` is a member of the
+larger, and `expRemainderBound_superlinear` is what keeps it inside. Stated at `construct`, the
+interval matrix as a set, which is what `Def. 1` quantifies over; `SuperlinearDecrease` is
+satisfied literally, with `E`'s own `Δt` filling `Def. 1`'s length argument. `hΔt`, the side
+condition at `Δt` alone, is the hypothesis `Enclosures.lean` already carries: `φ < 1` sends it
+down to `φΔt` inside the proof, so nothing further is asked of the caller there.
 
-Stated at `construct`, the interval matrix as a set, which is what `Def. 1`
-quantifies over; `SuperlinearDecrease` is satisfied literally, with `E`'s own
-`Δt` filling `Def. 1`'s length argument.
+## Inputs
+* `A` – system matrix
+* `Δt` – step length
+* `η` – Taylor order
 
-`hΔt`, the side condition at `Δt` alone, is the hypothesis `Enclosures.lean`
-already carries — `φ < 1` is what sends it down to `φΔt` inside the proof, so
-nothing further is asked of the caller there.
+## Hypotheses
+* `hΔt` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the remainder box shrinks by at least the factor when the step does
 
 ## References
 

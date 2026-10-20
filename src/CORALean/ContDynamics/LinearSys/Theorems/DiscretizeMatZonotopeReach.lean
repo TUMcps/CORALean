@@ -8,15 +8,36 @@ public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
 /-!
 # `discretizeMatZonotope`'s trajectory lands in `reach`
 
-`DiscretizeEnclosureReach` again, and the point of it: the whole proof is
-`discretizeMatZonotope` handed to the same `LinParamSysDT.reach_outer`, which
-is not re-run at a matrix zonotope but simply run — `reach` quantifies over the
-matrix family, so the recursion never mentioned interval matrices to begin
-with.
+`DiscretizeEnclosureReach` again, and the point of it: the whole proof is `discretizeMatZonotope`
+handed to the same `LinParamSysDT.reach_outer`, which is not re-run at a matrix zonotope but simply
+run: `reach` quantifies over the matrix family, so the recursion never mentioned interval matrices.
+`Mtimes 𝕄𝒵 S`, not `Mtimes ℐ S`: what multiplies a reachable set is now a matrix zonotope, so the
+correlations between the entries of `e^{AΔt}` survive the step instead of being dropped at the box.
 
-`Mtimes 𝕄𝒵 S`, not `Mtimes ℐ S`: what multiplies a reachable set is now a
-matrix zonotope, so the correlations between the entries of `e^{AΔt}` survive
-the step instead of being dropped at the box.
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `Ud` – sampled input set
+* `x` – state trajectory
+* `u` – input signal
+* `Δt` – sampling step
+* `η` – Taylor order
+* `o` – zonotope order
+* `k` – step index
+
+## Hypotheses
+* `traj` – signal is a canonical trajectory
+* `hΔt` – step length nonnegative
+* `hT` – time domain contains the nonnegative reals
+* `hU` – input set bounded
+* `hUd` – step inputs lie in the sampled input set
+* `hε` – scaled norm small enough for the Taylor order
+* `ho` – zonotope order positive
+
+## Conclusion
+* the sample after the given steps lies in the matrix-zonotope reach set
 -/
 
 -- Authors:       Claude Opus 5

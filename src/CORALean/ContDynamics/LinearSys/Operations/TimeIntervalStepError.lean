@@ -15,6 +15,15 @@ dominated by `‖e^{rA} - I‖`, *first* order in the step: a `linComb` between 
 set and its image reaches outside every state the flow visits, and the
 correction matrix, second order, does not pay for it.
 
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `X₀` – initial zonotope
+
+## Output
+* how far the time-interval step reaches past the states the step visits
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

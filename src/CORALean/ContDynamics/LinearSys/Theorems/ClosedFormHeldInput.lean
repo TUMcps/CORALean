@@ -22,6 +22,22 @@ and the part after sees only `v k`, which substituting `σ = t_{k+1} - s` turns
 into `T v k`. The inputs only have to lie in some bounded set, which is what
 makes each piece integrable.
 
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `Δt` – step length
+* `x₀` – initial point
+* `v` – held input values
+* `k` – step index
+
+## Hypotheses
+* `hU` – input set bounded
+* `hΔt` – step length positive
+* `hv` – held values lie in the input set
+
+## Conclusion
+* the held-input run sampled at the step index is the discrete-time state
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

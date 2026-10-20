@@ -13,6 +13,15 @@ error, which rests on this: for a fixed `x`, `expRemainderBound x η → 0` as
 `xⁿ/n! → 0`; the geometric factor tends to `1` as its numerator's share of the
 denominator shrinks.
 
+## Inputs
+* `x` – matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the remainder bound tends to zero as the order grows
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

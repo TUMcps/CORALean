@@ -16,6 +16,12 @@ different factors, so the Taylor terms are bounded independently of each other
 and of any one `M` they might come from — ordinary interval-arithmetic
 dependency loss, and why [1, Sec. 3.3.2] moves on to matrix zonotopes instead.
 
+## Inputs
+* `A` – interval matrix
+
+## Output
+* interval matrix of the Taylor truncation up to the given order
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

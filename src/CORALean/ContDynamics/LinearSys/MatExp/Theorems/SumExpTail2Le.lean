@@ -7,17 +7,22 @@ public import Mathlib.Analysis.Complex.Exponential
 /-!
 # The exponential series without its first two orders
 
-Orders `2` through `η + 1` of `e^c`, bounded by `e^c - 1 - c`. It is
-`sum_expTail_le` one order further along, and the index is where the
-interpolation error starts: the constant and linear terms of a straight line
-between the ends of a step cancel, so `correctionMatrix` is indexed from `2`.
+Orders `2` through `η + 1` of `e^c`, bounded by `e^c - 1 - c`. It is `sum_expTail_le` one order
+further along, and the index is where the interpolation error starts: the constant and linear
+terms of a straight line between the ends of a step cancel, so `correctionMatrix` is indexed
+from `2`. Bounding the finite part this way makes the correction second order in the step
+(`e^c - 1 - c` is `O(c²)`) where the hull it corrects is only first order. Scalar, so a caller
+at matrices supplies `c = ‖r A‖` and the matrix norm instances stay out of the elaboration.
 
-Bounding the finite part this way is what makes the correction second order in
-the step — `e^c - 1 - c` is `O(c²)` — where the hull it corrects is only first
-order.
+## Inputs
+* `c` – norm bound
+* `m` – number of orders
 
-Scalar, so a caller at matrices supplies `c = ‖r A‖` and the matrix norm
-instances stay out of the elaboration.
+## Hypotheses
+* `hc` – norm bound nonnegative
+
+## Conclusion
+* the orders from two on sum to at most the exponential minus one minus the argument
 -/
 
 -- Authors:       Claude Opus 5

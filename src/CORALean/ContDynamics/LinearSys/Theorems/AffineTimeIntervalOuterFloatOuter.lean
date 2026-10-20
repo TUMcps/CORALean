@@ -12,6 +12,25 @@ public import CORALean.ContDynamics.LinearSys.Theorems.AffineWindowFloatOuter
 `affineWindowFloat_outer` at `H(t_{k+1}) = [e^{AΔt}] H ⊕ P^u(Δt)`, which holds the flow's
 value one step on (`affineTimePointNextFloat_outer`): a point of `H(t_k)` under the constant
 input `ũ` is, after any `τ ∈ [0, Δt]`, in `affineTimeIntervalOuterFloat`.
+
+## Inputs
+* `sys` – linear system
+* `H` – float state zonotope
+* `ũ` – float constant input
+* `Δt` – float step length
+* `η` – Taylor order
+* `h` – state point
+* `τ` – time
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hη` – order admissible
+* `hh` – point lies in the zonotope
+* `hτ0` – time nonnegative
+* `hτ` – time within the step
+
+## Conclusion
+* the affine flow state at the time lies in the float time-interval set
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -18,6 +18,24 @@ exact reachable set satisfies every safe and unsafe set. The outer approximation
 constrained zonotope, still contains `Reach`, every `distG` is below the maximum and every `distF`
 above the minimum.
 
+## Inputs
+* `Reach` – reachable set
+* `reachFn` – float reachable set as a function of the error
+* `innerApprox` – float inner approximation at an error
+* `distG` – distance to a safe polytope
+* `distF` – distance to an unsafe polytope
+* `G` – float safe polytopes
+* `F` – float unsafe polytopes
+* `εmax` – float maximal error
+
+## Hypotheses
+* `h` – the oracles are sound
+* `hG` – the safe-set test passes
+* `hF` – the unsafe-set test passes
+
+## Conclusion
+* the specification holds
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

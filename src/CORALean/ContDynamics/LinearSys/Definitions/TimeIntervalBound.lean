@@ -10,14 +10,38 @@ public import CORALean.Global.SupportFunction.Composition
 # A support bound over a whole step, not a time point
 
 [1, Alg. 1 (upper bounds)]'s line 13: `ρ(R̂(τ_k), ℓ) ← max{ρ(H(t_k), ℓ), ρ(H(t_{k+1}), ℓ)} +
-ρ(C, d_k) + ρ(P̂_U(t_{k+1}), ℓ)`, term for term — `SupportBound.setLinComb` for the
-`max`, `SupportBound.image` for the direction pulled back through `e^{Ar}`
-rather than the value moved, `SupportBound.add` for the two `+`s, and
-`SupportBound.mono` to cross `timeIntervalReachSetExact_subset_setLinComb_sum`.
+ρ(C, d_k) + ρ(P̂_U(t_{k+1}), ℓ)`, term for term: `SupportBound.setLinComb` for the `max`,
+`SupportBound.image` for the direction pulled back through `e^{Ar}`, `SupportBound.add` for
+the `+`s, `SupportBound.mono` to cross `timeIntervalReachSetExact_subset_setLinComb_sum`.
+The three bounds are hypotheses: any representation that answers `SupportBound` on `R₀`, on the
+correction term and on the particular solution may be handed in.
 
-The three bounds are hypotheses, exactly as `reachSetBound` takes its two: any
-representation that can answer `SupportBound` on `R₀`, on the correction term
-and on the particular solution may be handed in, and none is named here.
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `r` – step length
+* `m` – Taylor order offset
+* `c` – direction
+
+## Hypotheses
+* `hr` – step length positive
+* `hT` – step lies in the time domain
+* `hε` – scaled norm small enough for the Taylor order
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `hRconv` – remainder image convex
+* `hRclosed` – remainder image closed
+* `hRbdd` – remainder image bounded
+* `h0` – origin in the input set
+* `b₀` – support bound on the initial set
+* `bC` – support bound on the correction term
+* `bP` – support bound on the particular solution
+
+## Output
+* support bound on the time-interval reachable set along the direction
 
 ## References
 

@@ -14,6 +14,19 @@ public import CORALean.Global.Err
 in `Δt` of the origin, so `err`'s own asymptotics as `Δt → 0` reduce to a real-valued
 computation once `err_le_of_forall_norm₂_le` is applied.
 
+## Inputs
+* `A` – system matrix
+* `U0` – input set
+* `i0` – start index
+* `Δt` – step length
+* `η` – Taylor order
+
+## Hypotheses
+* `hU0` – input set bounded
+
+## Conclusion
+* every point is within an explicit polynomial of the origin
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

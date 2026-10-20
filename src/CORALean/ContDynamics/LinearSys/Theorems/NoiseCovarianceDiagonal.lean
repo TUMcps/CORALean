@@ -16,6 +16,19 @@ the sign convention `dx = -Ax dt + B dW` of the handbook [1] cites, not for [1]'
 `ẋ = Ax + …`. `NoiseCovarianceDiagonal` separates the two. Stated for real
 eigenvalues with `λᵢ + λⱼ ≠ 0`, which the division needs.
 
+## Inputs
+* `l` – diagonal entries
+* `C` – noise matrix
+* `t` – time
+* `i` – row index
+* `j` – column index
+
+## Hypotheses
+* `h` – sum of the two diagonal entries nonzero
+
+## Conclusion
+* the covariance entry has the closed form
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

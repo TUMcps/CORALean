@@ -14,6 +14,21 @@ public import CORALean.ContDynamics.LinearSys.Theorems.SquaringsFloatSpec
 `exp_mem_expSquaringFloat` puts `e^{A t_k}` in the window's matrix at the count
 of squarings `squaringsFloat_spec` certifies, and `Mtimes.mtimes_outer` carries
 every point of `R(τ_0)` through it. No sign is asked of `Δt`; `2 ≤ η` is.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – float step length
+* `η` – Taylor order
+* `k` – window index
+* `Rτ₀` – first float window
+* `y` – point of the first window
+
+## Hypotheses
+* `h2` – order at least two
+* `hy` – point lies in the first window
+
+## Conclusion
+* the point carried by the exponential lies in the window
 -/
 
 -- Authors:       Claude Opus 5.5

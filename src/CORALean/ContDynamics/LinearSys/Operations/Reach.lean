@@ -10,20 +10,22 @@ public import CORALean.ContSet.SetUnion.SetUnion
 /-!
 # Reachability over `[tStart, tFinal]`, recursively, one window of width `Δt` at a time
 
-`X₀ = params.X₀`, `Δt = options.Δt`, `η = options.η`: the windows
-`τ_0, …, τ_{N-1}`, one `reachStepk` each, collected as a `SetUnion`:
-`N = ⌈(tFinal - tStart) / Δt⌉` of them, so the last may overshoot `tFinal`, which an outer
-enclosure may. The times are real, unlike `Reach.steps`' rational ones: the ceiling is
-part of what `reach_outer` says — a horizon that is no multiple of `Δt` is covered, where
-`Reach.steps` would refuse it — and `ℝ` has no `ToRat`.
+`X₀ = params.X₀`, `Δt = options.Δt`, `η = options.η`: the windows `τ_0, …, τ_{N-1}`, one
+`reachStepk` each, collected as a `SetUnion`: `N = ⌈(tFinal - tStart) / Δt⌉` of them, so the last
+may overshoot `tFinal`, which an outer enclosure may. The times are real, unlike `Reach.steps`'
+rational ones: the ceiling is part of what `reach_outer` says, a horizon that is no multiple of
+`Δt` is covered, where `Reach.steps` would refuse it, and `ℝ` has no `ToRat`. CORA's `standard`
+scheme, its default: [1, Alg. 4] at a point matrix, with no input and no order reduction;
+`reachStepk`'s recursion runs on the time-point sets `timePoint`. Unlike `reachWrappingFree`,
+`η` is taken as given and `N` is not raised to one.
 
-CORA's `standard` scheme, its default: [1, Alg. 4] at a point matrix, with no input and
-no order reduction — `reachStepk`'s own recursion runs on the time-point sets `timePoint`,
-and encloses window `τ_k` from `timePoint Δt X₀ k` alone.
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters
+* `options` – step options
 
-Unlike `reachWrappingFree`, `η` is taken as given and `N` is not raised to one:
-`reach_outer` asks for what `timeIntervalStep_outer` needs of the order, and for
-`0 < tFinal`, instead.
+## Output
+* time-interval sets of the windows
 
 ## References
 

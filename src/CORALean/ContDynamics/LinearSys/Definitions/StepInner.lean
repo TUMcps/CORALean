@@ -11,18 +11,23 @@ public import CORALean.ContSet.Zonotope.Real.Instances
 /-!
 # Inner approximations of a continuous step
 
-`LinearSysDT.reachInner` at a continuous-time step: the computed enclosure minus
-the ball its own error is bounded by. `StepError` names those radii, and taking
-one back off is what turns an outer approximation into an inner one.
+`LinearSysDT.reachInner` at a continuous-time step: the computed enclosure minus the ball its
+own error is bounded by. `StepError` names those radii, and taking one back off turns an outer
+approximation into an inner one. Both are `Set`s: `minkowskiDiff` is a specification.
+Soundness needs the radius only as an upper bound: a larger error yields a smaller, possibly
+empty, inner approximation, never an unsound one, which is what lets [1] read an inner
+approximation off an outer one. `Theorems.TimePointStepInnerInner` and its time-interval
+counterpart prove it.
 
-Both are `Set`s: `minkowskiDiff` is a specification and computes nothing, and
-the subtrahend is a ball rather than a representation.
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `X₀` – initial zonotope
+* `U` – input zonotope
 
-Soundness never depends on the radius being tight, only on it being an upper
-bound: a larger error yields a smaller inner approximation, possibly empty, and
-never an unsound one — which is what lets [1] read an inner approximation off an
-outer one whose error is bounded. `Theorems.TimePointStepInnerInner` and its
-time-interval counterpart are where that is proved.
+## Output
+* step's end minus its error ball, an inner approximation of the states reached
 
 ## References
 

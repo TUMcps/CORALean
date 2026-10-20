@@ -23,6 +23,16 @@ bound on it is sound. `□(c)` is the box `[-c, c]ⁿ` as a zonotope. `N = ⌈T/
 in ℚ from the float step, read back through `ToRat`; `expUp`'s precision is chosen there too,
 as one past the bit length of `⌈r‖A‖⌉`, which keeps its argument in range.
 
+## Inputs
+* `sys` – linear system
+* `I` – initial float zonotope
+* `μ` – float input norm bound
+* `r` – float step length
+* `T` – time horizon
+
+## Output
+* float zonotopes covering the horizon, if some order admits the exponential
+
 ## References
 
 * [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid

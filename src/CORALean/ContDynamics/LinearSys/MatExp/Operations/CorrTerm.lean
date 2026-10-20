@@ -11,6 +11,16 @@ public import CORALean.Global.Tensor
 `corrTerm`: what order `i` contributes to [1]'s correction, at the far end of its range.
 The interval it spans is between this and zero, on whichever side its sign puts it.
 
+## Inputs
+* `A` – system matrix
+* `r` – step length
+* `i` – order index
+* `j` – row index
+* `k` – column index
+
+## Output
+* contribution of the order to the correction entry
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

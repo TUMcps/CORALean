@@ -18,6 +18,17 @@ Expand `(C + Σ βᵢ Gᵢ)²` and split the double sum of `βᵢ βⱼ Gᵢ G�
 the coefficients `βᵢ`, `2βᵢ² - 1` and `βᵢ βⱼ`, all in `[-1, 1]`, and `zSq` holds `r² M²`. Then `zH`
 is `I + r M + ½ r² M²` by the same coefficients: its generators are half those of `zSq` and `r Gᵢ`
 on the first block.
+
+## Inputs
+* `Z` – matrix zonotope
+* `r` – step length
+* `M` – member matrix
+
+## Hypotheses
+* `hM` – member lies in the matrix zonotope
+
+## Conclusion
+* the exact terms of the member lie in the dependent terms
 -/
 
 -- Authors:       Claude Sonnet 5.5

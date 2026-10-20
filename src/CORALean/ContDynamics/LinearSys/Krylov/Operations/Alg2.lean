@@ -12,12 +12,21 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 [1, Alg. 2] (Compute `R([0, t_f])`), line by line. The subroutines it calls, `theorem_III.1`,
 `corollary_IV.2` and `theorem_III.2`, are its parameters: whatever computes them, the listing
 combines their outputs as here. `theorem_III.1 X t` encloses `e^{At}X`, `corollary_IV.2` the input
-solution `R_p(δ)` (the input matrix `B` taken into `U`), `theorem_III.2 X Y` the homogeneous
-solution over a step from `X`, `Y` the set at its end. `box` is the axis-aligned hull,
-coordinate by coordinate. Over plain sets, `⊕` the pointwise sum. The loop runs for
-`k = 1, …, ⌈t_f/δ - 1⌉`, so line 13's union is over the `⌈t_f/δ⌉` sets `R_k`. Line 8 propagates
-by `e^{A(k+1)δ}`, one step too far, and line 10 pairs `R*_{h,k}` with an end set computed from
-`X₀`; `Alg2Corrected` is the listing with both repaired.
+solution `R_p(δ)`, `theorem_III.2 X Y` the homogeneous solution over a step from `X`, `Y` the set
+at its end. `box` is the axis-aligned hull. The loop runs for `k = 1, …, ⌈t_f/δ - 1⌉`, so line 13's
+union is over the `⌈t_f/δ⌉` sets `R_k`. Line 8 propagates by `e^{A(k+1)δ}`, one step too far, and
+line 10 pairs `R*_{h,k}` with an end set computed from `X₀`; `Alg2Corrected` repairs both.
+
+## Inputs
+* `theoremIII1` – subroutine enclosing the matrix-exponential image
+* `corollaryIV2` – input solution enclosure
+* `theoremIII2` – subroutine for the homogeneous step solution
+* `X₀` – initial set
+* `δ` – step length
+* `tf` – final time
+
+## Output
+* union of the step sets over the time horizon
 
 ## References
 

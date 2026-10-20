@@ -16,6 +16,15 @@ public import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
 `2 Σⱼ|U|ⱼ (r E(rA, η))`, the coordinate reaches by `absBoundError` and the remainder by the
 float `MatExp.expRemainderBound` at `nrm ≥ ‖rA‖`.
 
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `U` – input float zonotope
+
+## Output
+* float upper bound of the remainder widening term
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

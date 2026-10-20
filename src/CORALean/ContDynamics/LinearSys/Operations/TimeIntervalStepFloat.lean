@@ -17,6 +17,15 @@ interval matrix too, so rounding stays in the box and is never folded into a
 generator.
 
 `Δt` is a float and its own value is the step: nothing rounds the time here.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – float step length
+* `η` – Taylor order
+* `R` – float state zonotope
+
+## Output
+* float zonotope over the whole step
 -/
 
 -- Authors:       Claude Opus 5.5

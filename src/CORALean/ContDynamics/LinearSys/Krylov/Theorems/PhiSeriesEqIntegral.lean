@@ -17,6 +17,16 @@ written `p + 1`. The exponential series of `e^{θz}`, integrated term by term ag
 `(1 - θ)ᵖ/p!` (dominated by the norms of the exponential series), gives the Beta integrals
 `∫₀¹(1 - θ)ᵖθᵏdθ = k!p!/(k + p + 1)!`.
 
+## Inputs
+* `𝔸` – complete normed algebra
+* `z` – element
+
+## Hypotheses
+* none
+
+## Conclusion
+* the φ-series equal the exponential and the Beta-type integral
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

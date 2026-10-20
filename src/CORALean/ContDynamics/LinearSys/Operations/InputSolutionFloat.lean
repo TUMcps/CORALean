@@ -14,6 +14,15 @@ public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumFloat
 `normUpperBound (r • A)` the exponential and the correction of the same step are
 taken at — so the order `reachOrderFloat` admits for those admits this too.
 
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `V` – float input zonotope
+
+## Output
+* float zonotope of everything the input contributes over one step
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

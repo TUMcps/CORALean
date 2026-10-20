@@ -16,19 +16,27 @@ public import CORALean.ContSet.Zonotope.Real.Operations.AutoTuneSetOrder
 
 `autoStep`: [1, Alg. 2]. `autoTuneDeltaT` picks `Δt_k`, `η_k` (lines 5-15), `autoTuneSetOrder`
 picks `ρ_k` (lines 19-22), then one step combines both with the affine-dynamics update, lines
-16-18 and 23-30.
-
-`bPU_0(Δt_k)`/`bPU_∞(Δt_k)`, eq. (27)'s split of `bPU(Δt_k)`, read the underbrace as lines
+16-18 and 23-30. `bPU_0(Δt_k)`/`bPU_∞(Δt_k)`, eq. (27)'s split of `bPU(Δt_k)`, are read as lines
 17-18 use it: `e^{At_k}` multiplies each *afterward*, so `bPU_0 := Δt_k·U₀` and `bPU_∞ :=
-⊕_{i=1}^η ÃᵢU₀ ⊕ E(Δt_k,η_k)Δt_kU₀` carry no `e^{At_k}`. `box(·)` (line 17) is
-`Zonotope.interval` after `Interval.zonotope`; `⊕_{i=1}^η ÃᵢU₀` is `inputTaylorSumTail`, the
-Minkowski sum (27) prints and not the smaller `(Σ_i Ãᵢ)U₀` under the summed matrix.
+⊕_{i=1}^η ÃᵢU₀ ⊕ E(Δt_k,η_k)Δt_kU₀`; `box(·)` (line 17) is `Zonotope.interval` after
+`Interval.zonotope`, and `⊕_{i=1}^η ÃᵢU₀` is `inputTaylorSumTail`, the Minkowski sum (27)
+prints. One correction: line 27 hats an `H(t_k)` no other line produces; `autoStep` uses the
+unhatted `H`, matching Alg. 1's line 8.
 
-One correction: line 27 hats an `H(t_k)` no other line produces — `H` is exact throughout and
-line 28 reads it unhatted; `autoStep` uses the unhatted `H`, matching Alg. 1's line 8.
+## Inputs
+* `sys` – linear system
+* `le` – comparison oracle on reals
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `tend` – final time
+* `εmax` – admissible error
+* `ζ` – error budget share
+* `ηmax` – maximal Taylor order
+* `fuel` – number of shrinkings
+* `s` – loop state
 
-`Thm. 1` is a separate package; this file leaves `autoStep` `Option`-valued, `none` where a step
-cannot satisfy `ε_max`, `ε^a_k`/`ε^r_k` named fields to induct on.
+## Output
+* next loop state and time-interval set, if the tuning holds out
 
 ## References
 

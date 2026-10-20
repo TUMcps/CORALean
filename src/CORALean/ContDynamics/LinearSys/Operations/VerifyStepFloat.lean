@@ -19,6 +19,18 @@ distances by the exact folds `maximumFold` and `minimumFold`, and the shrunk `ε
 iteration. `ε_max` only steers precision, so its tenth and nine tenths are rounded, in no
 particular direction; no verdict depends on them.
 
+## Inputs
+* `reachFn` – float reachable set as a function of the error
+* `innerApprox` – float inner approximation at an error
+* `distG` – distance to a safe polytope
+* `distF` – distance to an unsafe polytope
+* `G` – float safe polytopes
+* `F` – float unsafe polytopes
+* `εmax` – float maximal error
+
+## Output
+* iteration outcome and the shrunk error for the next one
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

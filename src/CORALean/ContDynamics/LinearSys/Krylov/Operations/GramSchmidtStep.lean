@@ -14,6 +14,13 @@ each coefficient taken against the `w` the previous ones have already reduced �
 modified, stabilized process [1] names, not classical Gram–Schmidt. Real vectors, so `w*` is
 the transpose. Returns the reduced `w` and the coefficients, `v(j)` stored at index `j - 1`.
 
+## Inputs
+* `w` – vector to orthogonalize
+* `V` – orthonormal vectors
+
+## Output
+* residual vector and projection coefficients after the sweep
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

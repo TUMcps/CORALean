@@ -15,6 +15,12 @@ public import CORALean.ContSet.Interval.Float.Operations.Point
 Jacobian blocks `A` and the identity, each exact in the stored floats. That it encloses the real
 system is `nonlinearSysFloatModel_encloses`, so `NonlinearSys.FloatModel.reachFloat` runs the
 converted system.
+
+## Inputs
+* `sys` – linear system
+
+## Output
+* the system as a nonlinear float model
 -/
 
 -- Authors:       Claude Opus 5.5

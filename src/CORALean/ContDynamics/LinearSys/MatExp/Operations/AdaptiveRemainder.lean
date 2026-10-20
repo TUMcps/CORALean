@@ -12,6 +12,14 @@ CORA's `errorSolution_adaptive`: `W = |e^{|A|Δt} − ∑ᵢ₌₀^η |A|ⁱΔt�
 `E = [-W, W]`, and what the orders past `η` of `∫₀^Δt e^{Aσ}dσ` can add is `E Δt`. The
 entrywise `|A|` of [1, Lemma 1] replaces the norm series of `inputRemainder`.
 
+## Inputs
+* `A` – system matrix
+* `Δt` – step length
+* `η` – Taylor order
+
+## Output
+* interval matrix of the adaptive input remainder
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

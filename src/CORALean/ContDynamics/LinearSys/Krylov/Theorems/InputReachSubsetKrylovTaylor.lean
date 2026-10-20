@@ -14,13 +14,30 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 A correct form of [1, Thm. IV.2] for arbitrarily varying inputs in a convex, closed, bounded
 `U`: `R_p(δ) ⊆ ⊕_{j=1}^{η+1} {P Ṽ(u) H̃ʲ(u) e₁ | u ∈ U} δʲ/j! ⊕ R`, with Alg. 1 run `m + 1`
-passes on `C̃(u) = [A u; 0 0]`, `ṽ = [0ₙ; 1]`, and `η + 1 ≤ m`. The Taylor terms are [1]'s
-`P D⁽ʲ⁾ e₁ δʲ` at its `η + 1`; the remainder `R` is not [1]'s Krylov one,
-`P{Ẽ(δ, u)}e₁ ⊕ [-1, 1]ⁿ{ε̃(u)}δ`, but the closed convex hull of `E(δ)·δ·U`, the remainder of
-Althoff's thesis [2, Thm. 3.1] (`inputReach_subset_inputSolution`, taken at plain sets). Below
-the Krylov order each Krylov term is `A^{j-1} U δʲ/j!` (`augment_arnoldi_pow`), so the
-convexity the merge (29) needs holds there. [1]'s own remainder for varying inputs is open:
-its proof sums `Cor. IV.1`'s error boxes, whose radii do not add up to `ε̃δ`.
+passes on `C̃(u) = [A u; 0 0]`, `ṽ = [0ₙ; 1]`, and `η + 1 ≤ m`. The remainder `R` is not [1]'s
+Krylov one but the closed convex hull of `E(δ)·δ·U`, the remainder of Althoff's thesis
+[2, Thm. 3.1] (`inputReach_subset_inputSolution`). Below the Krylov order each Krylov term is
+`A^{j-1} U δʲ/j!` (`augment_arnoldi_pow`), so the convexity the merge (29) needs holds there.
+[1]'s own remainder for varying inputs is open: its proof sums `Cor. IV.1`'s error boxes,
+whose radii do not add up to `ε̃δ`.
+
+## Inputs
+* `A` – system matrix
+* `U` – input set
+* `δ` – step length
+* `η` – Taylor order
+* `m` – Krylov order
+
+## Hypotheses
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `hδ` – step length positive
+* `hηm` – Taylor order below the Krylov order
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the input solution lies in the Krylov Taylor terms plus the remainder
 
 ## References
 

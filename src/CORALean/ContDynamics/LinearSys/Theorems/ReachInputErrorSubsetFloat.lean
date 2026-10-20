@@ -20,6 +20,20 @@ that step, which `timePointStepErrorBox_subset_float` holds. The exact layer's o
 exact (`mtimes_exact`, `plus_exact`), so only the float side loses ground.
 
 An enclosure is the direction an inner approximation needs of what it takes off.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – float sampling step
+* `η` – Taylor order
+* `U` – input float zonotope
+* `k` – number of steps
+
+## Hypotheses
+* `hΔt` – step length nonnegative
+* `hη` – order admissible
+
+## Conclusion
+* the exact input error lies in the float input error
 -/
 
 -- Authors:       Claude Sonnet 5.5

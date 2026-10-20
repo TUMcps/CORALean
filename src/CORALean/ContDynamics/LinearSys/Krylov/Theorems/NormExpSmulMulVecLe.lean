@@ -17,6 +17,18 @@ public import Mathlib.Analysis.Calculus.Deriv.MeanValue
 Euclidean norm of `e^{sM}x` has derivative `2Re(y*My) ≤ 0` at `y = e^{sM}x`, so it does not
 increase. `‖·‖₂` is the norm of `EuclideanSpace ℂ (Fin n)`, reached by `WithLp.toLp 2`.
 
+## Inputs
+* `M` – matrix
+* `x` – vector
+* `s` – time
+
+## Hypotheses
+* `hM` – field of values in the left half-plane
+* `hs` – time nonnegative
+
+## Conclusion
+* the exponential does not increase the norm
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

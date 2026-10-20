@@ -14,6 +14,15 @@ public import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
 bound — `absBoundError` for the coordinate reaches, which covers the error box as well,
 `nrm ≥ ‖rA‖` for `x`, and `expNormUpFloat` for `e^x`. The factor `2` is `addUp S S`.
 
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `X₀` – initial float zonotope
+
+## Output
+* float upper bound of the correction matrix's widening term
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

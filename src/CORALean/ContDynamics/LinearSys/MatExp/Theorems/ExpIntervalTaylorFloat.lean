@@ -17,6 +17,17 @@ does: `Finset.sum_range_succ` peels the top term off the left, matching the
 recursion term by term, and `matPlus_outer`/`smul_outer`/`matPow_outer` cover
 the two pieces — `smul_outer` at `invFactorialBounds`'s two facts rather than
 one exact coefficient.
+
+## Inputs
+* `A` – float interval matrix
+* `M` – member matrix
+* `η` – Taylor order
+
+## Hypotheses
+* `hM` – member lies in the interval matrix
+
+## Conclusion
+* the member's Taylor truncation lies in the float interval truncation
 -/
 
 -- Authors:       Claude Sonnet 5

@@ -12,15 +12,34 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.AbsMaxOfPoint
 /-!
 # A sampled trajectory of the matrix-zonotope system
 
-`IsTrajectory.discretizeEnclosure` again, one witness changed: the same matrix
-`e^{AΔt}` `discretize_step` produces, shown to lie in a matrix zonotope by
-`exp_mem_expMatZonoEnclosure` rather than in an interval matrix.
+`IsTrajectory.discretizeEnclosure` again, one witness changed: the same matrix `e^{AΔt}`
+`discretize_step` produces, shown to lie in a matrix zonotope by `exp_mem_expMatZonoEnclosure`
+rather than in an interval matrix. `hε` sits beside the other side conditions of the sampling, where
+`discretizeEnclosure` states it, in the same form: `expMatZonoEnclosure` asks for it at
+`M.interval.absMax`, which for the generator-free `ofPoint` here is `‖Δt • A‖`
+(`norm_absMax_ofPoint`), so a caller supplies exactly what the interval version already asks.
 
-`hε` sits beside the other side conditions of the sampling, where
-`discretizeEnclosure` states it, and in the same form: `expMatZonoEnclosure`
-asks for it at `M.interval.absMax`, which for the generator-free `ofPoint`
-here is `‖Δt • A‖` — `norm_absMax_ofPoint` — so a caller supplies exactly what
-the interval version already asks of them.
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `Ud` – sampled input set
+* `x` – state trajectory
+* `u` – input signal
+* `Δt` – sampling step
+* `η` – Taylor order
+
+## Hypotheses
+* `traj` – signal is a canonical trajectory
+* `hΔt` – step length nonnegative
+* `hT` – time domain contains the nonnegative reals
+* `hU` – input set bounded
+* `hUd` – step inputs lie in the sampled input set
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the sampled trajectory is a trajectory of the matrix-zonotope sampled system
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

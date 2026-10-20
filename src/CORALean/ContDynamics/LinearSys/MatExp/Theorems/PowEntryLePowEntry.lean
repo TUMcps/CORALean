@@ -13,6 +13,20 @@ public import Mathlib.Algebra.Order.BigOperators.Ring.Finset
 If `0 ≤ B ≤ C` entrywise then `0 ≤ Bᵏ ≤ Cᵏ` entrywise, by induction on `k` with `Bᵏ⁺¹ = Bᵏ * B`:
 each summand is a product of two nonnegative entries, each no greater than the matching one of `C`.
 It carries the domination `|M| ≤ |A|` of the members of an interval matrix to their powers.
+
+## Inputs
+* `B` – smaller matrix
+* `C` – larger matrix
+* `k` – exponent
+* `i` – row index
+* `j` – column index
+
+## Hypotheses
+* `hB` – smaller matrix entrywise nonnegative
+* `h` – smaller matrix entrywise at most the larger
+
+## Conclusion
+* the power of the smaller matrix is nonnegative and at most the power of the larger
 -/
 
 -- Authors:       Claude Sonnet 5.5

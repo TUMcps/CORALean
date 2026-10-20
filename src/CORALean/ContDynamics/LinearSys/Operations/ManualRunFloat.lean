@@ -10,6 +10,17 @@ public import CORALean.ContDynamics.LinearSys.Operations.ManualStepFloat
 `manualRun`, [1, Alg. 1] lines 4-11, computed in `𝕋`: iterate `manualStepFloat` `k` times
 from a state, collecting each iteration's `R̂(τ_k)`. `none` as soon as one iteration is.
 
+## Inputs
+* `sys` – linear system
+* `X₀` – initial float zonotope
+* `V` – input float zonotope
+* `Δt` – float step length
+* `η` – Taylor order
+* `ρ` – zonotope order
+
+## Output
+* windows of the iterations from a given state, if all succeed
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

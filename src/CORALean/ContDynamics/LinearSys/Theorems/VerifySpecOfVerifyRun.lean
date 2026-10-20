@@ -12,6 +12,25 @@ Lines 2-27 of [1, Alg. 3]. `verifyRun` returning `some true` means its last iter
 verified test, which `verifySpec_of_verifyStep` turns into the specification; earlier iterations
 only shrink `ε_max`.
 
+## Inputs
+* `Reach` – reachable set
+* `reachFn` – reachable set as a function of the error
+* `innerApprox` – inner approximation at an error
+* `distG` – distance to a safe polytope
+* `distF` – distance to an unsafe polytope
+* `le` – comparison oracle on reals
+* `G` – safe polytopes
+* `F` – unsafe polytopes
+* `εmax` – maximal error
+* `fuel` – number of iterations
+
+## Hypotheses
+* `h` – the oracles are sound
+* `hrun` – the run answers true
+
+## Conclusion
+* the specification holds
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

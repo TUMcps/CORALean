@@ -15,6 +15,21 @@ If `P` encloses `Mᵏ`, the powers `P Mʲ` enclose `Mᵏ⁺ʲ` (`powers_outer`),
 added one at a time (`foldl_plus_mem`), and the remainder encloses what the series has past `η`,
 so the result holds `e^M - Σ_{i < k} Mⁱ/i!` for every member `M`. Proved for `k ≤ η`; CORA
 runs `η < k` as well, where the remainder already covers order `k`.
+
+## Inputs
+* `A` – interval matrix
+* `P` – enclosure of the start power
+* `η` – Taylor order
+* `k` – start order
+* `M` – member matrix
+
+## Hypotheses
+* `hk` – start order at most the Taylor order
+* `hM` – member lies in the interval matrix
+* `hP` – enclosure contains the member's start power
+
+## Conclusion
+* the series tail from the start order lies in the enclosure
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,15 +11,23 @@ public import Mathlib.Tactic.Positivity
 # `Lemma 1` at eq. (15)-(16)'s own remainder: `E(φΔt,η) ⊆ φ·E(Δt,η)`
 
 [1, Lemma 1]: `∀φ∈(0,1): E(φΔt,η) ⊆ φ E(Δt,η)`, with `E(Δt,η) = [−E_abs(Δt,η), E_abs(Δt,η)]`
-(eq. (15)) and `E_abs(Δt,η) = Σ_{k=η+1}^∞ (|A|Δt)^k/k!` (eq. (16)) — `MatExp.expRemainderMat`,
-the exponential at `|A|Δt` less its Taylor sum through `η`, and `E(Δt,η)` itself
-`MatExp.expRemainderInterval`, the matrices entrywise within `E_abs` of `0`.
+(eq. (15)) and `E_abs(Δt,η) = Σ_{k=η+1}^∞ (|A|Δt)^k/k!` (eq. (16)): `MatExp.expRemainderMat`, the
+exponential at `|A|Δt` less its Taylor sum through `η`; `E(Δt,η)` itself is
+`MatExp.expRemainderInterval`. [1]'s proof, as printed: each entry `Σ_k (|A|φΔt)^k/k!` is
+`Σ_k φ^k (|A|Δt)^k/k!`, and `φ^k ≤ φ` for `k ≥ η+1 ≥ 1`. The one hypothesis is `0 ≤ Δt`, which
+makes every term non-negative; unlike `superlinearDecrease_expRemainder` there is no convergence
+side condition, the series converging for every `Δt`.
 
-[1]'s proof, as printed: each entry `Σ_k (|A|φΔt)^k/k!` is `Σ_k φ^k (|A|Δt)^k/k!`, and
-`φ^k ≤ φ` for every `k ≥ η+1 ≥ 1` against a non-negative term. The one hypothesis is `0 ≤ Δt`,
-a step length's sign, which is what makes every term non-negative; unlike
-`superlinearDecrease_expRemainder`, the uniform box CORA's operator-norm bound gives, there is no
-convergence side condition, the series converging for every `Δt`.
+## Inputs
+* `A` – system matrix
+* `η` – Taylor order
+* `Δt` – step length
+
+## Hypotheses
+* `hΔt` – step length nonnegative
+
+## Conclusion
+* the remainder interval matrix shrinks by at least the factor when the step does
 
 ## References
 

@@ -15,6 +15,18 @@ public import Mathlib.Algebra.BigOperators.Intervals
 `taylorTail_mem_expIntervalTaylorTail`'s induction at the input's coefficient `r/(i+1)!`:
 `sum_Ico_succ_top` peels the top order off and `plus_outer`/`smul_outer`/`matPow_outer`
 cover it.
+
+## Inputs
+* `B` – interval matrix
+* `r` – step length
+* `N` – member matrix
+* `κ` – Taylor order
+
+## Hypotheses
+* `hN` – member lies in the interval matrix
+
+## Conclusion
+* orders three and up of the member's input series lie in the interval tail
 -/
 
 -- Authors:       Claude Opus 5.5

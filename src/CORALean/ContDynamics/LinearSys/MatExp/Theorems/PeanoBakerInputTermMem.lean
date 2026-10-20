@@ -12,16 +12,31 @@ public import Mathlib.Analysis.Convex.Topology
 /-!
 # The `k`-th Peano–Baker term of an input, inside the `k`-th box power of its set
 
-When every `A(σ)` lies in `B` and every `u(σ)` in `U`, `V_k(s)` lies in
-`s^{k+1}/(k+1)!` times the closed convex hull of `matPow B k` applied to `U`:
-the simplex of `k + 1` times has that volume, and the integrand is a product of
-`k` members and an input, which the box power applied to `U` holds.
-
-The hull is the point. `{N v}` for `N` in a box and `v ∈ U` is not convex, and an
-average of such products need not be one; its closed convex hull is, and a member
-of `B` maps the hull of order `k` into that of order `k + 1`, being linear and
-continuous. So the induction runs on the hull, and
+When every `A(σ)` lies in `B` and every `u(σ)` in `U`, `V_k(s)` lies in `s^{k+1}/(k+1)!` times the
+closed convex hull of `matPow B k` applied to `U`: the simplex of `k + 1` times has that volume,
+and the integrand is a product of `k` members and an input. The hull is the point: `{N v}` for
+`N` in a box and `v ∈ U` is not convex, and an average of such products need not be one; its
+closed convex hull is, and a member of `B` maps the hull of order `k` into that of order
+`k + 1`, being linear and continuous. So the induction runs on the hull, and
 `integral_mem_smul_of_mem_smul` carries it through each integral.
+
+## Inputs
+* `B` – interval matrix
+* `A` – time-varying matrix
+* `u` – input signal
+* `U` – input set
+* `t` – time
+* `k` – term index
+
+## Hypotheses
+* `hA` – matrix entries integrable
+* `hAB` – matrix stays in the box
+* `hu` – input integrable
+* `ht` – time nonnegative
+* `huU` – input values lie in the set
+
+## Conclusion
+* the input term lies in the scaled closed convex hull of the box power applied to the set
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -31,6 +31,15 @@ ends whatever they give.
 `aux_distanceIntersectionZono` returns when the outer approximation meets the unsafe set in a
 single point. For `ẋ = 0` from `X₀ = [-1, 1]` (the reachable set is `X₀`, so `Z = [-1, 1]`) and the
 unsafe set `x ≥ 1`, the reachable state `1` is unsafe, yet the verdict is `true`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the verdict is true although a reachable state lies in the unsafe set
 -/
 
 -- Authors:       Claude Opus 5.5

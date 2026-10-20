@@ -11,21 +11,26 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 /-!
 # `Alg. 1` lines 5-11: one iteration of the main loop
 
-`manualStep`: [1, Alg. 1], a fixed time step `Δt`, truncation order `η` and zonotope order
-`ρ`, no search anywhere.
+`manualStep`: [1, Alg. 1], a fixed time step `Δt`, truncation order `η` and zonotope order `ρ`, no
+search anywhere. `P^u`, the exact particular solution due to the constant part `ũ` of the input,
+is a `Vec ℝ n` rather than a set: [1]'s own `⊕` at lines 6 and 25 is plain vector addition there.
+`C`, line 8's curvature enclosure, and the `ũ, U₀` split of line 1 are `MatExp.curvatureEnclosure`
+and a derivation this file repeats every step, both pure functions of `U`, `Δt`, `η`. One
+correction to the printed algorithm: line 5 assigns `τ_{k+1} ← [t_k,t_{k+1}]`, but every later
+line (9, 11, 13) reads `τ_k`, which line 5 never sets (see the reference page's `Alg. 1` finding).
+`manualStep` computes the interval line 9 means, `[t_k,t_{k+1}]`, under the name the rest uses.
 
-`P^u`, the exact particular solution due to the constant part `ũ` of the input, is a
-`Vec ℝ n` rather than a set: [1]'s own `⊕` at lines 6 and 25 is plain vector addition there,
-`P^u` never being reduced or widened. `C`, line 8's curvature enclosure, and the `η,ρ`-free
-`ũ, U₀` split of line 1, are exactly `MatExp.curvatureEnclosure` and the derivation this file
-repeats every step rather than threading through the state, since both are pure functions of
-`U`, `Δt`, `η` alone.
+## Inputs
+* `sys` – linear system
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `Δt` – step length
+* `η` – Taylor order
+* `ρ` – zonotope order
+* `s` – loop state
 
-One correction to the printed algorithm. Line 5 assigns `τ_{k+1} ← [t_k,t_{k+1}]`, but every
-later line (9, 11, 13) reads `τ_k`, which line 5 never sets — an index one step out of the
-kind this project has found before (see the reference page's `Alg. 1` finding). `manualStep`
-computes the interval Line 9 obviously means, `[t_k,t_{k+1}]`, under the name the rest of the
-algorithm uses for it.
+## Output
+* next loop state and time-interval set
 
 ## References
 

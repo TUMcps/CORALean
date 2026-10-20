@@ -20,6 +20,20 @@ since `reach` raises nothing itself: the statement is `reachWrappingFree_outer`'
 with that side condition and `0 < tFinal` added. [1, Alg. 4]'s soundness, at a
 point matrix with no input.
 
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters
+* `options` – step options
+
+## Hypotheses
+* `htFinal` – horizon positive
+* `hΔt` – step length positive
+* `hη` – order at least two
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the exact reach lies in the window sets
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

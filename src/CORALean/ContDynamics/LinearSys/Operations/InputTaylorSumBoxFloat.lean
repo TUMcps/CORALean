@@ -14,6 +14,14 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 The float sum `⊕_{i ≤ η} [Tᵢ] U` against the exact `⊕_{i ≤ η} Tᵢ U` at `U`'s
 nominal zonotope: every order pays `inputTermBoxFloat`, and every float `⊞`
 its `plusBox`. A summand of `inputSolutionBoxFloat`.
+
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `U` – float input zonotope
+
+## Output
+* float zonotope of how far the float Taylor sum reaches beyond the exact one
 -/
 
 -- Authors:       Claude Opus 5.5

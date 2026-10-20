@@ -14,6 +14,17 @@ error allows.
 Needs no hypothesis on `ε`: an admissible `η` in hand is itself the witness
 that the set is inhabited, so the empty-set branch of `sInf` cannot be the one
 taken.
+
+## Inputs
+* `x` – matrix
+* `ε` – admissible error
+* `η` – Taylor order
+
+## Hypotheses
+* `h` – order is admissible
+
+## Conclusion
+* the chosen order is at most any admissible order
 -/
 
 -- Authors:       Claude Opus 5

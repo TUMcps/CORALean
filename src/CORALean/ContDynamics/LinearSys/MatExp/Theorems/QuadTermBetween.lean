@@ -11,18 +11,27 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 /-!
 # The diagonal parabola stays between its two bounds
 
-[1, Prop. 4], the half that says `quadTermLo`/`quadTermHi` enclose. `γ` opens
-upwards, so the maximum is at an endpoint and the minimum at the vertex `-1/t`
-only when the box straddles it.
-
+[1, Prop. 4], the half that says `quadTermLo`/`quadTermHi` enclose. `γ` opens upwards, so the
+maximum is at an endpoint and the minimum at the vertex `-1/t` only when the box straddles it.
 Both halves come out of the two factorisations `γ x - γ a = (x - a) u` and
-`γ b - γ x = (b - x) v` with `u = t + (x + a) t²/2 ≤ v = t + (x + b) t²/2`: the
-sign of `v` alone decides which endpoint dominates, and `-1/t < a` is exactly
-`0 ≤ t + a t²`, which is what makes `u` non-negative.
+`γ b - γ x = (b - x) v` with `u = t + (x + a) t²/2 ≤ v = t + (x + b) t²/2`: the sign of `v`
+alone decides which endpoint dominates, and `-1/t < a` is exactly `0 ≤ t + a t²`, which makes
+`u` non-negative. No hypothesis on `t`: at `t = 0` the `if` reads `-1/t` as `0`, which leaves the
+bound sound (`γ` is then constantly `0`) and merely not tight, so the tightness theorem is where
+`t ≠ 0` is paid.
 
-No hypothesis on `t`: at `t = 0` the `if` reads `-1/t` as `0`, which leaves the
-bound sound — `γ` is then constantly `0` — and merely not tight, so the
-tightness theorem is where `t ≠ 0` is paid.
+## Inputs
+* `t` – time
+* `a` – box lower end
+* `b` – box upper end
+* `x` – point in the box
+
+## Hypotheses
+* `h₁` – point at least the lower end
+* `h₂` – point at most the upper end
+
+## Conclusion
+* the parabola's value stays between the two bounds
 
 ## References
 

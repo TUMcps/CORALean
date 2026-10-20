@@ -19,6 +19,15 @@ and line 2 at its tightest, `R*_{b,1} = R_p(1) ⊆ [0, 1 - e⁻¹]`: the two box
 reaches at `t = 2`. So `R_1 ∪ R_2` (`X₀ = {0}`) misses a reachable state of `[0, 2]`.
 Any line 2 enclosing `R_p(1)` gives `R*_{b,1} ⊇ R_p(1)`; the miss is the propagation's.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the boxes of lines 3 and 8 miss a point of the input solution
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

@@ -25,6 +25,20 @@ zonotope `{rC + βrG}`'s interval hull, as for `MatExp.expMatZonoEnclosure`. `h�
 convergence condition,
 checkable from `C`, `G`, `r` and `η` alone. "Tightly" is not formalized; the enclosure is.
 
+## Inputs
+* `C` – center matrix
+* `G` – generator matrix
+* `r` – step length
+* `η` – Taylor order
+* `β` – generator weight
+
+## Hypotheses
+* `hβ` – weight within one in magnitude
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the exponential lies in the Taylor set plus the remainder zonotope
+
 ## References
 
 * [1] M. Althoff and J. M. Dolan. "Reachability Computation of Low-Order Models for the Safety

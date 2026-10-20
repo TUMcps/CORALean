@@ -7,17 +7,22 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoun
 /-!
 # Shortening the step drives the remainder bound to zero
 
-The counterpart of `tendsto_expRemainderBound_atTop`, which raises the order at
-a fixed argument: here the order is fixed and the argument shrinks, which is
-what a step selection varies.
+The counterpart of `tendsto_expRemainderBound_atTop`, which raises the order at a fixed
+argument: here the order is fixed and the argument shrinks, which is what a step selection
+varies. The bound is a product, and the two factors go different ways: the numerator
+`‖rA‖^{η+1}/(η+1)!` vanishes with the step, while the geometric factor tends to `1`; it is
+merely bounded, and the side condition keeps it so. `tendsto_mul_expRemainderBound_zero` is this
+with the step in front, the shape `inputRemainder`'s radius has.
 
-The bound is a product, and the two factors go different ways: the numerator
-`‖rA‖^{η+1}/(η+1)!` vanishes with the step, while the geometric factor tends to
-`1` — it is not small, it is merely bounded, and the side condition is what
-keeps it so.
+## Inputs
+* `A` – system matrix
+* `η` – Taylor order
 
-`tendsto_mul_expRemainderBound_zero` is this with the step in front, which is
-the shape `inputRemainder`'s radius has.
+## Hypotheses
+* none
+
+## Conclusion
+* the remainder bound tends to zero as the step shrinks
 -/
 
 -- Authors:       Claude Opus 5

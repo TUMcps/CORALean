@@ -23,6 +23,18 @@ checkable from the interval matrix alone, before any particular `M` is fixed,
 and `norm_le_absMax` is exactly what lets it imply the pointwise condition
 `norm_exp_sub_expTaylor_le` needs.
 
+## Inputs
+* `A` – interval matrix
+* `η` – Taylor order
+* `M` – member matrix
+
+## Hypotheses
+* `hM` – member lies in the interval matrix
+* `hε` – dominating norm small enough for the Taylor order
+
+## Conclusion
+* the exponential of the member lies in the interval enclosure
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

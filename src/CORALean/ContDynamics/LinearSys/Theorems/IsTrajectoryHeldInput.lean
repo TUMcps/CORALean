@@ -16,6 +16,24 @@ input held piecewise at values of `U`, `closedForm` is a Carathéodory
 `heldInput_measurable`, and `closedForm_flow` and `closedForm_continuousOn` do the
 rest, so no derivative is taken at the steps where the input jumps.
 
+## Inputs
+* `sys` – linear system
+* `R₀` – initial set
+* `U` – input set
+* `t` – time
+* `Δt` – step length
+* `x₀` – initial state
+* `v` – held input values
+
+## Hypotheses
+* `hU` – input set bounded
+* `ht` – time nonnegative
+* `hx₀` – initial state lies in the initial set
+* `hv` – held values lie in the input set
+
+## Conclusion
+* the held-input run is a canonical trajectory
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

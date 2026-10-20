@@ -10,6 +10,18 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AffineDynamicsErro
 Eventually, as `Δt → 0⁺`, `affineDynamicsError` is under one linear bound `K · Δt` — [1,
 Lemma 3]'s asymptotic claim, [1, Alg. 2]'s tuning search relies on.
 
+## Inputs
+* `A` – system matrix
+* `H` – state zonotope
+* `ũ` – constant input
+* `η` – Taylor order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the affine dynamics error is eventually under a constant times the step
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

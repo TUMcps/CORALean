@@ -13,6 +13,15 @@ At the stationary point `a = i^(-1/(i-1))`, `a^(i-1) = 1/i`, so
 `corrCoeff i = a·(a^(i-1) - 1) = -(1 - 1/i)·a`. Bernoulli's inequality gives
 `(1 - 1/i)^(i-1) ≥ 1/i = a^(i-1)`, hence `a ≤ 1 - 1/i` and the coefficient is at
 least `-(1 - 1/i)²`, which the float value rounds below.
+
+## Inputs
+* none
+
+## Hypotheses
+* `hi` – order at least two
+
+## Conclusion
+* the float coefficient is a lower bound of the correction coefficient
 -/
 
 -- Authors:       Claude Opus 5.5

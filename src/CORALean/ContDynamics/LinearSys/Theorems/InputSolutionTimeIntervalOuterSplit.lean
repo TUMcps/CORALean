@@ -14,22 +14,14 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 /-!
 # A time-interval input enclosure when the input set misses the origin
 
-Althoff's second case. `inputSolution_timeInterval_outer` needs `0 ∈ U`, and
-when that fails the thesis splits the input set into a constant `ũ` and a set
-`Ũ` containing the origin, encloses each contribution, and adds them.
-
-`Ũ` goes through Prop. 3.3 unchanged. The constant does not need it: what it
-contributes is `∫₀ᵗ e^{Aσ}dσ` applied to it, so the enclosure is the straight
-line to its value at `r` widened by the interpolation error — Althoff's
-`(t/r)x̃_p(r) ⊕ F̃ũ`, with `F̃` the `constCorrectionMatrix` and no matrix inverse
-anywhere.
-
-The two pieces want different sets: `F̃` multiplies a set holding the constant
-alone, the propagated part one holding the segment from the origin to it, since
-`M` applied to that segment is the range of `(t/r)·M ũ`.
-
-The split itself is a hypothesis — `ContSet` cannot name a center — so which `c`
-and which sets is the representation's business.
+Althoff's second case. `inputSolution_timeInterval_outer` needs `0 ∈ U`, and when that fails the
+thesis splits the input set into a constant `ũ` and a set `Ũ` containing the origin, encloses each
+contribution, and adds them. `Ũ` goes through Prop. 3.3 unchanged. The constant does not need it:
+what it contributes is `∫₀ᵗ e^{Aσ}dσ` applied to it, so the enclosure is the straight line to its
+value at `r` widened by the interpolation error, Althoff's `(t/r)x̃_p(r) ⊕ F̃ũ`, with `F̃` the
+`constCorrectionMatrix`. The two pieces want different sets: `F̃` multiplies a set holding the
+constant alone, the propagated part one holding the segment from the origin to it. The split itself
+is a hypothesis, `ContSet` being unable to name a center.
 -/
 
 -- Authors:       Claude Opus 5

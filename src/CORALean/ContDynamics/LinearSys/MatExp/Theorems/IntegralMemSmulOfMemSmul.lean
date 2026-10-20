@@ -8,15 +8,31 @@ public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 /-!
 # A weighted integral of points of a closed convex set
 
-If `f(σ) ∈ w(σ) • K` at every time of `[0, s]`, with `w ≥ 0` and `K` closed and
-convex, then `∫₀ˢ f ∈ (∫₀ˢ w) • K`: the integral is the total weight times a
-weighted average of points of `K`, and an average of points of a closed convex
-set stays in it.
+If `f(σ) ∈ w(σ) • K` at every time of `[0, s]`, with `w ≥ 0` and `K` closed and convex, then
+`∫₀ˢ f ∈ (∫₀ˢ w) • K`: the integral is the total weight times a weighted average of points of
+`K`, and an average of points of a closed convex set stays in it. By separation rather than by
+a probability measure: a point outside `K` is cut off by a functional `ℓ` with `ℓ < a` on `K`,
+and `ℓ(f(σ)) ≤ w(σ) a` integrates to `ℓ(∫ f) ≤ (∫ w) a`, which the average would violate. `K` may
+be unbounded, and nothing is asked of `f` beyond integrability.
 
-By separation rather than by a probability measure: a point outside `K` is cut
-off by a functional `ℓ` with `ℓ < a` on `K`, and `ℓ(f(σ)) ≤ w(σ) a` integrates to
-`ℓ(∫ f) ≤ (∫ w) a`, which the average would violate. `K` may be unbounded, and
-nothing is asked of `f` beyond integrability.
+## Inputs
+* `K` – closed convex set
+* `f` – integrand
+* `w` – weight function
+* `s` – upper limit
+
+## Hypotheses
+* `hK` – set convex
+* `hKc` – set closed
+* `hs` – upper limit nonnegative
+* `hf` – integrand integrable
+* `hw` – weight integrable
+* `hw0` – weight nonnegative
+* `hfK` – integrand lies in the weight times the set
+* `hW` – total weight positive
+
+## Conclusion
+* the integral lies in the total weight times the set
 -/
 
 -- Authors:       Claude Opus 5.5

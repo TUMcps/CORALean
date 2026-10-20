@@ -15,6 +15,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 `[e^{AΔt}]` and the constant's share `∫₀^Δt e^{Aσ}dσ ũ` the float input solution of the point
 `{ũ}`, which holds it at an admissible order.
 
+## Inputs
+* `sys` – linear system
+* `H` – float state zonotope
+* `ũ` – float constant input
+* `Δt` – float step length
+* `η` – Taylor order
+
+## Output
+* float zonotope of the affine dynamics at the next time point
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

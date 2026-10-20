@@ -9,18 +9,25 @@ public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepError
 /-!
 # Any admissible error is reachable, in the step's own error
 
-The statement that makes "tune the parameters against an admissible error" true
-of the enclosure rather than of a series remainder: for every `ε > 0` there is a
-step at which `timePointStepError` is under `ε`, and whose side condition holds,
-so the `r` produced names a step `timePointStep_subset_reach_add_error` applies
-at.
+The statement that makes "tune the parameters against an admissible error" true of the enclosure
+rather than of a series remainder: for every `ε > 0` there is a step at which `timePointStepError`
+is under `ε`, and whose side condition holds, so the `r` produced names a step
+`timePointStep_subset_reach_add_error` applies at. The order is given rather than chosen. Both parts
+of the error vanish with the step and only one of them with the order, so shrinking the step is what
+answers for an arbitrary `ε`; a larger `η` buys a smaller remainder at a fixed step and never
+touches the dependency term. That asymmetry is why [1] tunes the step size and not the order alone.
 
-The order is given rather than chosen. Both parts of the error vanish with the
-step and only one of them with the order, so shrinking the step is what answers
-for an arbitrary `ε`; a larger `η` buys a smaller remainder at a fixed step and
-never touches the dependency term. That asymmetry is why [1] tunes the step size
-and not the order alone, and it is the content of the theorem rather than an
-artefact of the proof.
+## Inputs
+* `sys` – linear system
+* `U` – input zonotope
+* `η` – Taylor order
+* `ε` – admissible error
+
+## Hypotheses
+* `hε` – error positive
+
+## Conclusion
+* some step has enclosure error under the error and meets the side condition
 
 ## References
 

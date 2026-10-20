@@ -21,6 +21,17 @@ box.
 
 `Δt` is a float and its own value is the step: nothing rounds the time here.
 
+## Inputs
+* `sys` – linear system
+* `X` – start float zonotope
+* `U` – input float zonotope
+* `u` – float constant input
+* `Δt` – float step length
+* `η` – Taylor order
+
+## Output
+* float time-point and time-interval sets of the step
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

@@ -18,6 +18,21 @@ public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PhiSmulMulVecTaylo
 printed order), from (4.4a), (5.9a) and (5.6), not from the restated series (5.5a), (5.5b).
 Any `A`, under (2.2), upper Hessenberg `T_m`, `v = V_me₁`; `φ_p` the series (4.1a).
 
+## Inputs
+* `A` – matrix
+* `V` – Krylov basis
+* `T` – Hessenberg matrix
+* `τ` – next subdiagonal entry
+* `σ` – scaling
+* `w` – next vector
+
+## Hypotheses
+* `hH` – Hessenberg matrix is upper Hessenberg
+* `hK` – Krylov identity holds
+
+## Conclusion
+* the leading error terms hold with the stated remainders
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

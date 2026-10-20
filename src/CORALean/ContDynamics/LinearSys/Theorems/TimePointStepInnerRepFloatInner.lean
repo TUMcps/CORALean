@@ -21,21 +21,33 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 /-!
 # `timePointStepInnerRepFloat` is an inner approximation
 
-`timePointStepInnerRep_inner` at the float layer, by three steps, each in the
-direction an inner approximation needs:
+`timePointStepInnerRep_inner` at the float layer, by three steps, each in the direction an inner
+approximation needs. (1) `minkDiffRep_inner`: what the float `minkDiffRep` returns lies inside the
+float step minus its budget (`D ⊆ S ⊖ B`). (2) `timePointStepInputFloat_subset_add_innerErrorFloat`
+puts the float step inside the exact held-input step plus the budget (`S ⊆ Y + B`), so Rådström
+cancellation (`reachSetExact_inner_of_outer`, `Y` convex and compact) gives `S ⊖ B ⊆ Y`. (3) `Y`,
+the held-input step from the nominal zonotopes, lies in the states the system reaches at `t = r`
+(`discretize_reachSetExact_subset_inputReach`, then
+`mulVecLin_image_add_inputReach_subset_reachSetExact`).
 
-1. `minkDiffRep_inner`: what the float `minkDiffRep` returns lies inside the
-   float step minus its budget (`D ⊆ S ⊖ B`).
-2. `timePointStepInputFloat_subset_add_innerErrorFloat` puts the float step
-   inside the exact held-input step plus the budget (`S ⊆ Y + B`), so Rådström
-   cancellation (`reachSetExact_inner_of_outer`, `Y` convex and compact) gives
-   `S ⊖ B ⊆ Y`.
-3. `Y`, the held-input step from the nominal zonotopes, lies in the states the
-   system reaches at `t = r` (`discretize_reachSetExact_subset_inputReach`, then
-   `mulVecLin_image_add_inputReach_subset_reachSetExact`).
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `X₀` – initial float zonotope
+* `U` – input float zonotope
+* `M` – generator representation
+* `ρ` – margin factor
+* `H` – right inverse
 
-Only inclusions towards the exact set are chained. The budget is nonempty
-because the float step is (its error box brackets `0`).
+## Hypotheses
+* `hr` – step length positive
+* `hη` – order admissible
+* `hX₀` – initial error box contains zero
+* `hU` – input error box contains zero
+
+## Conclusion
+* every returned zonotope lies in the exact reach set at the step end
 -/
 
 -- Authors:       Claude Opus 5.5

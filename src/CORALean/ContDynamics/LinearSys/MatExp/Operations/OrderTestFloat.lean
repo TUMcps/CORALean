@@ -12,6 +12,14 @@ condition `nrm ≤ (η + 2)/2` the float remainder bound needs (`le`, whose `tru
 the remainder bound `MatExp.expRemainderBound nrm η` strictly under `ε` (`ltStrict`, whose
 `true` is sound). `nrm` is a float upper bound of the matrix's norm.
 
+## Inputs
+* `nrm` – float norm bound
+* `ε` – float admissible error
+* `η` – Taylor order
+
+## Output
+* whether the order passes the float side condition and remainder test
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

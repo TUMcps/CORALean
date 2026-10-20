@@ -12,6 +12,25 @@ By induction on the step count: the float step keeps it
 (`zero_mem_timePointStepInputFloat_error`), and `reduce` keeps the error box it
 is given. What every step's upper bounds ask of their operand, and what makes
 the run nonempty.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – float sampling step
+* `η` – Taylor order
+* `o` – zonotope order
+* `R₀` – initial float zonotope
+* `U` – input float zonotope
+* `k` – number of steps
+
+## Hypotheses
+* `hΔt` – step length nonnegative
+* `hη` – order admissible
+* `ho` – zonotope order positive
+* `hR₀` – initial error box contains zero
+* `hU` – input error box contains zero
+
+## Conclusion
+* the float sampled run's error box contains zero
 -/
 
 -- Authors:       Claude Opus 5.5

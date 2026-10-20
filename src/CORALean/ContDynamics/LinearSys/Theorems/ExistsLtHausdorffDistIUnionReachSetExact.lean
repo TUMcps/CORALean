@@ -8,15 +8,23 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # [1, Lemma 2]'s convergence bound, as printed, is false
 
-[1, Lemma 2] states `d_H(R_[0,r](Z), P + □(α_r + β_r)) ≤ r‖A‖e^{r‖A‖}(µ/‖A‖ +
-(1/2 + r) sup_{x∈Z} ‖x‖)`. At `x' = 100x + u`, `‖u‖ ≤ µ = 0`, `Z = [0, 2]`, `r = 1/100`
-(`girardExample_spec`) the right side is `1.02e ≈ 2.77` and the distance is at least
-`3e - 5 ≈ 3.15`. Every hypothesis of the lemma holds: `r > 0`, `µ ≥ 0`, `Z` a zonotope; [1]
-assumes nothing about `r‖A‖`, `Z` or the origin. The sets compared are the lemma's own:
-the union of `Φ_t(Z)` over `[0, r]` and `P + □(α_r + β_r)` with `P` of eq. 5 of [1].
-
-`hausdorffDist_iUnion_reachSetExact_linComb_plus_cube_le` is the corrected bound, with
+[1, Lemma 2] states
+`d_H(R_[0,r](Z), P + □(α_r + β_r)) ≤ r‖A‖e^{r‖A‖}(µ/‖A‖ + (1/2 + r) sup_{x∈Z} ‖x‖)`. At
+`x' = 100x + u`, `‖u‖ ≤ µ = 0`, `Z = [0, 2]`, `r = 1/100` (`girardExample_spec`) the right side is
+`1.02e ≈ 2.77` and the distance is at least `3e - 5 ≈ 3.15`. Every hypothesis of the lemma holds:
+`r > 0`, `µ ≥ 0`, `Z` a zonotope; [1] assumes nothing about `r‖A‖`, `Z` or the origin. The sets
+compared are the lemma's own: the union of `Φ_t(Z)` over `[0, r]` and `P + □(α_r + β_r)` with `P` of
+eq. 5 of [1]. `hausdorffDist_iUnion_reachSetExact_linComb_plus_cube_le` is the corrected bound, with
 `(1/2 + r‖A‖)`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed convergence bound is exceeded by an example meeting every hypothesis
 
 ## References
 

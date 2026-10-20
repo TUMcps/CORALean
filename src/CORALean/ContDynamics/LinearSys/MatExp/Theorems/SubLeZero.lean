@@ -10,6 +10,17 @@ public import CORALean.ContSet.Interval.Real.Interval
 The half of the correction term's range that needs no stationary-point
 argument: `s ^ i ≤ s ^ 1` already gives it directly, which is also why this
 direction needs `s ≤ 1` where `corrCoeff_le_sub`'s lower bound does not.
+
+## Inputs
+* `s` – evaluation point
+
+## Hypotheses
+* `hi` – order at least one
+* `hs0` – point nonnegative
+* `hs1` – point at most one
+
+## Conclusion
+* the interpolation polynomial is nonpositive on the unit interval
 -/
 
 -- Authors:       Claude Opus 5

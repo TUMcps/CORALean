@@ -21,6 +21,24 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 first term is on the segment from the origin to `([e^{AΔt}] - I) R`, once
 `e^{AΔt} - I` is in `[e^{AΔt}] - I`; the second is in `[F] R` by
 `MatExp.expDiff_mem_intervalCorrectionMatrix`, as in `timeIntervalStepFloat_outer`.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – float step length
+* `η` – Taylor order
+* `R` – float state zonotope
+* `x` – state point
+* `s` – time
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hη` – order admissible
+* `hx` – point lies in the zonotope
+* `hs0` – time nonnegative
+* `hs` – time within the step
+
+## Conclusion
+* every difference the flow spans lies in the float set
 -/
 
 -- Authors:       Claude Opus 5.5

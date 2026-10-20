@@ -22,15 +22,37 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 /-!
 # [1, Alg. 1] in floats encloses the reachable set on every time interval
 
-`bundleReach_outer`'s argument with `[e^{Ar}]` for `e^{Ar}`: the float list has the same
-shape, so the same three invariants go through by induction on `k`, at every `τ ∈ [0, r]`,
-each product `e^{Ar} v` landing in the product of the enclosure with the set `v` is in, and
-each sum in the float sum. Same direction as over `ℝ`: the claim is `⊇`, an outer
-approximation, and nothing is claimed of the tightness.
+`bundleReach_outer`'s argument with `[e^{Ar}]` for `e^{Ar}`: the float list has the same shape, so
+the same three invariants go through by induction on `k`, at every `τ ∈ [0, r]`, each product
+`e^{Ar} v` landing in the product of the enclosure with the set `v` is in, and each sum in the float
+sum. The claim is `⊇`, an outer approximation, and nothing is claimed of the tightness. `r` is a
+float, the order `η` must be admissible for it (`OrderAdmissibleFloat r r η`, the condition
+`expIntervalFloat` is sound under), and `Rh₀`, `Ri₀` are float sets held to enclose the listing's
+first two inputs.
 
-`r` is a float, the order `η` must be admissible for it (`OrderAdmissibleFloat r r η`, the
-condition `expIntervalFloat` is sound under), and `Rh₀`, `Ri₀` are float sets held to enclose
-the listing's first two inputs.
+## Inputs
+* `sys` – linear system
+* `X₀` – initial set
+* `U` – input set
+* `Rh₀` – initial float homogeneous bundle
+* `Ri₀` – initial float input zonotope
+* `r` – float step length
+* `η` – Taylor order
+* `N` – number of steps
+* `k` – window index
+* `t` – time
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hη` – order admissible
+* `hU` – input set bounded
+* `hh` – bundle holds the homogeneous flow
+* `hi` – zonotope holds the input reach
+* `hk` – window index within the step count
+* `ht` – time within the window
+
+## Conclusion
+* the float window encloses the reachable set at the time
 
 ## References
 

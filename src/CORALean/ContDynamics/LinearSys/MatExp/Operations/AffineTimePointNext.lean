@@ -14,6 +14,15 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 [1, Alg. 1], with `A^{-1}(e^{AΔt}-I_n)ũ` taken as `MatExp.expIntegral`, the power series [1]
 itself falls back on when `A` is singular.
 
+## Inputs
+* `A` – system matrix
+* `H` – state zonotope
+* `ũ` – constant input
+* `Δt` – step length
+
+## Output
+* zonotope of the affine dynamics at the next time point
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

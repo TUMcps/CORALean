@@ -9,18 +9,31 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSubOneSubLeSqMu
 /-!
 # Every point of `□(β_r)` is nearly reached by a constant input
 
-The heart of [1, Lemma 1]'s convergence half: a point `w` with `‖w‖ ≤ β_r =
-(e^{r‖A‖} - 1)/‖A‖ · µ` is within `µ‖A‖e^{r‖A‖}r²` of what the constant input
-`u = ‖A‖/(e^{r‖A‖} - 1) · w` reaches over `[0, r]`. That input is admissible, `‖u‖ ≤ µ`,
-and it reaches `(∫₀ʳ e^{As} ds) u`.
+The heart of [1, Lemma 1]'s convergence half: a point `w` with `‖w‖ ≤ β_r = (e^{r‖A‖} - 1)/‖A‖ · µ`
+is within `µ‖A‖e^{r‖A‖}r²` of what the constant input `u = ‖A‖/(e^{r‖A‖} - 1) · w` reaches over
+`[0, r]`. That input is admissible, `‖u‖ ≤ µ`, and it reaches `(∫₀ʳ e^{As} ds) u`. The printed proof
+splits `x_u - x` into `∫ (e^{(r-s)A} - I) u` and `(r‖A‖/(e^{r‖A‖} - 1) - 1)(x - e^{rA}z)`; here the
+same two pieces are bounded by `(e^{r‖A‖} - 1 - r‖A‖)/‖A‖ · µ` each, through the series of
+`∫₀ʳ e^{As} ds` rather than an integral, and `e^x - 1 - x ≤ x²e^x/2` closes it. `closedBall 0 µ ⊆ U`
+is what makes the constant input admissible, the paper's `‖u(t)‖ ≤ µ` read as "every such input is
+allowed"; `0 < ‖A‖` is its division by `‖A‖`.
 
-The printed proof splits `x_u - x` into `∫ (e^{(r-s)A} - I) u` and
-`(r‖A‖/(e^{r‖A‖} - 1) - 1)(x - e^{rA}z)`; here the same two pieces are bounded by
-`(e^{r‖A‖} - 1 - r‖A‖)/‖A‖ · µ` each, through the series of `∫₀ʳ e^{As} ds` rather than
-an integral, and `e^x - 1 - x ≤ x²e^x/2` closes it.
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `μ` – input bound
+* `r` – step length
+* `w` – point of the box
 
-`closedBall 0 µ ⊆ U` is what makes the constant input admissible, the paper's
-`‖u(t)‖ ≤ µ` read as "every such input is allowed"; `0 < ‖A‖` is its division by `‖A‖`.
+## Hypotheses
+* `hA` – matrix norm positive
+* `hr` – step length nonnegative
+* `hμ` – input bound nonnegative
+* `hU` – ball of that radius lies in the input set
+* `hw` – point norm within the box radius
+
+## Conclusion
+* the point is within the stated distance of a point the input reaches
 
 ## References
 

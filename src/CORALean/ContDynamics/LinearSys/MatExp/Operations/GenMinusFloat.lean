@@ -15,6 +15,13 @@ generators' Euclidean length. So each entry is `Σ_k max(|inf|,|sup|) · |G_{kl}
 interval `[e^{AΔt}]_{jk} - δ_{jk}`, rounded up (`abs_genMinus_le`). The error box of `H` is
 not read: `Real.genMinus` has no error box either, and its rounding is not a generator.
 
+## Inputs
+* `eA` – float exponential enclosure
+* `H` – float state zonotope
+
+## Output
+* magnitudes of the generator columns of the propagated difference
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

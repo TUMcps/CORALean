@@ -15,6 +15,27 @@ further along `ℓ` at `t_k`. With `supportCounterexample`'s inputs, which maxim
 `heldSim_eq`; with the printed Eq. (20) it does not
 (`printedSupportInput_counterexample`).
 
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `X₀` – initial set
+* `U` – input set
+* `ν₀` – support vector map of the initial set
+* `νU` – support vector map of the input set
+* `ℓ` – direction
+* `k` – step index
+* `x₀` – initial state
+* `u` – held input values
+
+## Hypotheses
+* `hν₀` – initial support vectors maximize every direction
+* `hνU` – input support vectors maximize every direction
+* `hx₀` – initial state lies in the initial set
+* `hu` – held values lie in the input set
+
+## Conclusion
+* every held-input state is at most the counterexample's along the direction
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

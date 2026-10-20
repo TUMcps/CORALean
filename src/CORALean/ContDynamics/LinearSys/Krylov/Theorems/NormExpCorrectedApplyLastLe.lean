@@ -15,6 +15,21 @@ public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpApplyLastLe
 as `∫₀ˢe^{σ(s-r)T⁺_m}στ_{m+1,m}δ_m(r)e_{m+1}dr`, and `T⁺_me_{m+1} = 0`. `Prop. 2`'s estimate
 under `W(σT_m) ⊆ ℂ⁻` bounds `|δ_m|`. `T_m` has size `m + 1` here.
 
+## Inputs
+* `T` – Hessenberg matrix
+* `τ` – next subdiagonal entry
+* `σ` – unit scaling
+* `s` – time
+
+## Hypotheses
+* `hH` – Hessenberg matrix is upper Hessenberg
+* `hT` – scaled matrix has field of values in the left half-plane
+* `hσ` – scaling has modulus one
+* `hs` – time nonnegative
+
+## Conclusion
+* the corrected exponential's last entry is bounded in the same way
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

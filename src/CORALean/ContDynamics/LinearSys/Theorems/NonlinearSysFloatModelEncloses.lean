@@ -12,6 +12,15 @@ public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 
 `nonlinearSysFloatModel` encloses `sys.nonlinearSys`: the field's value lies in `A X ⊕ U`, and the
 slope between two points is `A` and the identity, which the Jacobian boxes hold.
+
+## Inputs
+* `sys` – linear system
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float model encloses the linear system as a nonlinear one
 -/
 
 -- Authors:       Claude Opus 5.5

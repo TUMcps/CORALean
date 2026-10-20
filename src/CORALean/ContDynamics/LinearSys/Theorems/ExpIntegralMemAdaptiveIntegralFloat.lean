@@ -13,6 +13,18 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralSubSumM
 `∫₀^Δt e^{Aσ}dσ` is in the exact `adaptiveIntegral` (`expIntegral_sub_sum_mem_adaptiveRemainder`),
 which the float one refines (`adaptiveIntegral_outer_refines`) at an order the float remainder
 bound admits.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – float step length
+* `η` – Taylor order
+
+## Hypotheses
+* `hΔt` – step length nonnegative
+* `hη` – order admissible
+
+## Conclusion
+* the integral of the exponential lies in the float interval matrix
 -/
 
 -- Authors:       Claude Opus 5.5

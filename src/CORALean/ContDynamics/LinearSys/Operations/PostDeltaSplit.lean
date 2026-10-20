@@ -10,17 +10,26 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
 /-!
 # `postΔ` at an input set that misses the origin
 
-[1, Sec. 4.1], line 6 of Alg. 1: `R∆(τs) = post∆(R(ts), Ψ(τs), A)`, "a slight modification of
-the standard techniques for linear system reachability presented in [Althoff's thesis, Chap.
-3.2]", returning the set of state differences instead of the set of states. `Ψ(τs)` is `w ⊕ B ⊗
-U ⊕ ½ sq(D, R(τs) × U) ⊕ L(τs)` (line 9), which holds the constant `w` and so need not hold the
-origin; the standard technique then splits it into a constant `ũ` and a set `Ũ` that does, and
-encloses each share.
+[1, Sec. 4.1], line 6 of Alg. 1: `R∆(τs) = post∆(R(ts), Ψ(τs), A)`, a slight modification of the
+standard techniques [Althoff's thesis, Chap. 3.2], returning the set of state differences instead
+of the set of states. `Ψ(τs)` is `w ⊕ B ⊗ U ⊕ ½ sq(D, R(τs) × U) ⊕ L(τs)` (line 9), which holds the
+constant `w` and so need not hold the origin; the standard technique splits it into a constant `ũ`
+and a set `Ũ` that does, and encloses each share. `postDeltaSplit` is that: `deltaReach`'s
+homogeneous differences, the constant's share (`∫₀ʳ e^{Aσ}dσ` applied to the segment `Sg` from the
+origin to `ũ`, widened by the correction matrix `F̃` applied to `P ∋ ũ`) and `inputSolution` at `Ũ`.
+At `0 ∈ Ψ` the split is `ũ = 0`, `Ũ = Ψ`, and `postDelta` is the shorter form.
 
-`postDeltaSplit` is that: `deltaReach`'s homogeneous differences, the constant's share —
-`∫₀ʳ e^{Aσ}dσ` applied to the segment `Sg` from the origin to `ũ`, widened by the correction
-matrix `F̃` applied to `P ∋ ũ` — and `inputSolution` at `Ũ`. At `0 ∈ Ψ` the split is `ũ = 0`,
-`Ũ = Ψ`, and `postDelta` is the shorter form.
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `R₀` – initial set
+* `Sg` – segment from the origin to the constant input
+* `P` – set holding the constant input
+* `U₀` – recentered input set
+
+## Output
+* every state difference a step can span under the split input
 
 ## References
 

@@ -20,6 +20,17 @@ correction matrix; `Htp = e^{AΔt} X ⊕ Pu`; `C_state = F X`; `Hti = CH(X, Htp)
 `linComb` is taken where CORA says `enclose` (convex hull), as in `timeIntervalStep`. CORA's
 block decomposition (`blocks`, default one block) is not carried.
 
+## Inputs
+* `sys` – linear system
+* `X` – start set
+* `U` – input set
+* `u` – constant input
+* `Δt` – step length
+* `η` – Taylor order
+
+## Output
+* time-point and time-interval sets of the step
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

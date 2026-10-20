@@ -12,16 +12,23 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # The scalar system that breaks [1, Lemma 2]'s printed bound
 
-`x' = 100x + u` with `u ≡ 0` (`µ = 0`), `Z = (1, ⟨1⟩) = [0, 2]`, `r = 1/100`, so
-`r‖A‖ = 1`. In one dimension every `p`-norm is the absolute value, so the infinity norm [1]
-fixes and the induced matrix norm are `|·|` and `‖A‖ = 100`. Then `sup_{x∈Z} |x| = 2`,
-`α_r = (e - 2)·2`, `β_r = 0`, and `P = [1 - e, 2e]`, so `P + □(α_r + β_r)` reaches down to
-`5 - 3e < 0`, while every reachable state `e^{100t}z`, `z ∈ [0, 2]`, is at least `0`: the
-Hausdorff distance is at least `3e - 5 ≈ 3.15`. The printed bound
-`r‖A‖e^{r‖A‖}(µ/‖A‖ + (1/2 + r) sup |x|)` is `e·(1/2 + 1/100)·2 = 1.02e ≈ 2.77`.
+`x' = 100x + u` with `u ≡ 0` (`µ = 0`), `Z = (1, ⟨1⟩) = [0, 2]`, `r = 1/100`, so `r‖A‖ = 1`. In one
+dimension every `p`-norm is the absolute value, so the infinity norm [1] fixes and the induced
+matrix norm are `|·|` and `‖A‖ = 100`. Then `sup_{x∈Z} |x| = 2`, `α_r = (e - 2)·2`, `β_r = 0`, and
+`P = [1 - e, 2e]`, so `P + □(α_r + β_r)` reaches down to `5 - 3e < 0`, while every reachable state
+`e^{100t}z`, `z ∈ [0, 2]`, is at least `0`: the Hausdorff distance is at least `3e - 5 ≈ 3.15`. The
+printed bound `r‖A‖e^{r‖A‖}(µ/‖A‖ + (1/2 + r) sup |x|)` is `e·(1/2 + 1/100)·2 = 1.02e ≈ 2.77`.
+`exists_lt_hausdorffDist_iUnion_reachSetExact` and `exists_lt_hausdorffDist_girardReach` read [1,
+Lemma 2] and [1, Thm. 1] off these three facts.
 
-What is computed here is the three facts; `exists_lt_hausdorffDist_iUnion_reachSetExact`
-and `exists_lt_hausdorffDist_girardReach` read [1, Lemma 2] and [1, Thm. 1] off them.
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the example's norm, supremum and Hausdorff distance have the stated values
 
 ## References
 

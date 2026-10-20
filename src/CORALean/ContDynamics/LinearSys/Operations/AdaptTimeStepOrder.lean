@@ -13,6 +13,18 @@ Sweep the order upward from `η` while it clears both `ε_H ≤ ε_H,max` and
 goes through the caller's `le`, so the float layer transcribes this with
 `FloatOps.le` and it runs. The sweep's bound is [1]'s own `Φ_prop,max`.
 
+## Inputs
+* `sys` – linear system
+* `le` – comparison oracle on reals
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `εHmax` – maximal homogeneous error
+* `εPi` – admissible particular share
+* `Δt` – step length
+
+## Output
+* coarsest order clearing both bounds, if any
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

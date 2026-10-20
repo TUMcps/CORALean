@@ -16,6 +16,16 @@ all: nothing is truncated, so no geometric tail has to converge.
 The zeroth term is the one that is not `norm_pow_le'`: `‖A⁰‖` is the identity's
 own `l∞` operator norm, which is at most `1` — exactly `1` except in dimension
 `0`, where the supremum defining it is over an empty index set.
+
+## Inputs
+* `A` – system matrix
+* `t` – time
+
+## Hypotheses
+* `ht` – time nonnegative
+
+## Conclusion
+* the propagator norm is at most the real exponential of the time times the matrix norm
 -/
 
 -- Authors:       Claude Opus 5

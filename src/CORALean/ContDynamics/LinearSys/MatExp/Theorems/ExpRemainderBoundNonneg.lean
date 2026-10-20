@@ -9,6 +9,16 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoun
 
 `expRemainderBound x η` is a non-negative power over a factorial, times the inverse of
 `1 - ‖x‖ / (η + 2)`, which is positive as soon as `‖x‖ / (η + 2)` is under `1/2`.
+
+## Inputs
+* `x` – matrix
+* `η` – Taylor order
+
+## Hypotheses
+* `hε` – norm small enough for the Taylor order
+
+## Conclusion
+* the remainder bound is nonnegative
 -/
 
 -- Authors:       Claude Sonnet 5.5

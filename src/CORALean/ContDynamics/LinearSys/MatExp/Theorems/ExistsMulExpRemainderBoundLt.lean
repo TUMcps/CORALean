@@ -12,6 +12,17 @@ adaptive step selection actually calls: for every admissible error there is a
 positive step whose contribution beats it, and whose side condition
 `‖r • A‖/(η+2) < 1` also holds, so the `r` produced names a real bound.
 
+## Inputs
+* `A` – system matrix
+* `η` – Taylor order
+* `ε` – admissible error
+
+## Hypotheses
+* `hε` – error positive
+
+## Conclusion
+* some positive step has a scaled remainder bound under the error and meets the side condition
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

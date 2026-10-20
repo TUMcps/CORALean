@@ -10,6 +10,12 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 `a ^ k` for a nonnegative `a`, rounded up at every multiplication: what
 `expRemainderBound`'s numerator needs of the dominating norm, computed rather
 than assumed exact the way `Real.MatExp.expRemainderBound` reads `‖x‖ ^ (η+1)`.
+
+## Inputs
+* none
+
+## Output
+* float upper bounds of the nonnegative powers
 -/
 
 -- Authors:       Claude Sonnet 5

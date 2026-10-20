@@ -10,19 +10,13 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExistsMemInputReachDistLe
 # [1, Alg. 1] converges
 
 [1, Thm. 1], convergence, corrected: for `T = N r`, `N ≥ 1`,
-`d_H(R_[0,T](I), R_{N-1}) ≤ r‖A‖e^{‖A‖T}(2µ/‖A‖ + (1/2 + r‖A‖) sup_{x∈I} ‖x‖)`.
-
-The printed proof's recursion: a point of `Qᵢ₊₁ = e^{rA}Qᵢ + □(β_r)` is `e^{rA}q + w`; `q` is
-within `δᵢ` of some `y ∈ Φ_t(I)` (induction), `w` within `µ‖A‖e^{r‖A‖}r²` of what a constant
-input reaches (`exists_mem_inputReach_dist_le`, [1, Lemma 1]), and `e^{rA}y` plus that is in
-`Φ_{t+r}(I)` (`reachSetExact_add_eq`), so `δᵢ₊₁ ≤ e^{r‖A‖}δᵢ + µ‖A‖e^{r‖A‖}r²`. The
-invariant kept is `δᵢ ≤ e^{ir‖A‖}δ₀ + µ r e^{r‖A‖}(e^{ir‖A‖} - 1)`, the printed sum closed
-with `e^x - 1 ≥ x`. `δ₀` is [1, Lemma 2]'s, which is where the correction comes in: [1]
-prints `(1/2 + r)` and writes `sup_{x∈Z}`, `Z` undefined in the theorem and read here as `I`;
-the printed factor is false, `exists_lt_hausdorffDist_girardReach`.
-
-`sup_{x∈I} ‖x‖` is any bound `s` on `I`'s norms: the algorithm uses the exact supremum
-(`isLUB_norm_image_fold_max_absBound`), which is at most `s`.
+`d_H(R_[0,T](I), R_{N-1}) ≤ r‖A‖e^{‖A‖T}(2µ/‖A‖ + (1/2 + r‖A‖) sup_{x∈I} ‖x‖)`. The printed proof's
+recursion: a point of `Qᵢ₊₁ = e^{rA}Qᵢ + □(β_r)` is `e^{rA}q + w`; `q` is within `δᵢ` of some
+`y ∈ Φ_t(I)` (induction), `w` within `µ‖A‖e^{r‖A‖}r²` of what a constant input reaches
+(`exists_mem_inputReach_dist_le`, [1, Lemma 1]), and `e^{rA}y` plus that is in `Φ_{t+r}(I)`
+(`reachSetExact_add_eq`). `δ₀` is [1, Lemma 2]'s, where the correction comes in: [1] prints
+`(1/2 + r)`, which is false (`exists_lt_hausdorffDist_girardReach`). `sup_{x∈I} ‖x‖` is any bound
+`s` on `I`'s norms: the algorithm uses the exact supremum (`isLUB_norm_image_fold_max_absBound`).
 
 ## References
 

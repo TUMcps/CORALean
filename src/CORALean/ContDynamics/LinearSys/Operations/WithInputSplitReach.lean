@@ -11,15 +11,21 @@ public import CORALean.ContSet.SetUnion.SetUnion
 /-!
 # Reachability with an input set anywhere, over `[tStart, tFinal]`
 
-[1, Alg. 3]: the windows `τ_0, …, τ_{N-1}`, one `WithInputSplit.reachStepk`
-each, collected as a `SetUnion`, `N = ⌈(tFinal - tStart) / Δt⌉` of them and never fewer
-than one, exactly `LinearSys.WithInput.reach`'s count. No `box()` on the
-accumulated input set, as there.
+[1, Alg. 3]: the windows `τ_0, …, τ_{N-1}`, one `WithInputSplit.reachStepk` each, collected as a
+`SetUnion`, `N = ⌈(tFinal - tStart) / Δt⌉` of them and never fewer than one, exactly
+`LinearSys.WithInput.reach`'s count. No `box()` on the accumulated input set, as there.
+`X₀ = params.X₀`, `Δt = options.Δt`, `η = options.η`, the Taylor order asked for, raised to
+`reachOrder Δt + 2` where that is higher: `timeIntervalStep`, `inputSolution` and
+`constInputSolution` all hold only at an order admissible for `Δt` and `sys.A`. The times are
+real, as in `LinearSys.reachWrappingFree`.
 
-`X₀ = params.X₀`, `Δt = options.Δt`, `η = options.η`, the Taylor order
-asked for, raised to `reachOrder Δt + 2` where that is higher: `timeIntervalStep`,
-`inputSolution` and `constInputSolution` all hold only at an order admissible for `Δt` and
-`sys.A`. The times are real, as in `LinearSys.reachWrappingFree`.
+## Inputs
+* `sys` – linear system with split input
+* `params` – reach parameters
+* `options` – step options
+
+## Output
+* time-interval sets of the windows
 
 ## References
 

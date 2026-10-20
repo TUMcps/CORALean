@@ -10,6 +10,15 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
 For the zero matrix only the zeroth term of the series `∑ᵢ Aⁱ r^{i+1}/(i+1)!` survives, so
 `MatExp.expIntegral 0 r = r I`: with `A = 0` the system holds its state and a constant input `u`
 moves it by `r u`.
+
+## Inputs
+* `r` – time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the integral of the zero matrix's exponential is the time times the identity
 -/
 
 -- Authors:       Claude Opus 5.5

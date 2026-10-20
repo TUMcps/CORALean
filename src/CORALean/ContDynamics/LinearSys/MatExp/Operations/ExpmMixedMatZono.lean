@@ -20,6 +20,15 @@ the powers of the matrix zonotope from its square; `eI` is the five-argument `ex
 from order `intermediateOrder + 1` at the interval matrix of the zonotope, started at its product
 with the last power, with the remainder after `maxOrder`. CORA refuses an intermediate order below
 `2` (`CORA:wrongValue`); here it is a hypothesis of the theorem.
+
+## Inputs
+* `Z` – matrix zonotope
+* `r` – step length
+* `k` – intermediate order
+* `η` – Taylor order
+
+## Output
+* terms and remainder of the mixed matrix-zonotope enclosure
 -/
 
 -- Authors:       Claude Sonnet 5.5

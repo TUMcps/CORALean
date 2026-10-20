@@ -14,6 +14,14 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFl
 the tail bound taken at `normUpperBound` of `[t] A` as `expIntervalEnclosure` takes it. Widened
 outward, `inf` down and `sup` up.
 
+## Inputs
+* `A` – float interval matrix
+* `t` – float time
+* `κ` – Taylor order
+
+## Output
+* float interval matrix enclosing the exponential with an exact second order
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

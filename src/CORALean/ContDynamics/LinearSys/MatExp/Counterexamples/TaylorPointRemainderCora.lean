@@ -10,31 +10,21 @@ public import Mathlib.Data.Nat.Factorial.Basic
 # `MatExp.taylorPointRemainderCora`: the Taylor series of a point matrix as CORA computes it
 
 `@intervalMatrix/private/priv_intervalMatrixRemainder.m` (l. 41-45, 70) starts the remainder `E`
-of `priv_taylorSeries`, `priv_hornerTaylorSeries` and `priv_scalingSquaringHornerTaylorSeries`
-from the matrix box `[-1, 1]` times `factor`, except for a point matrix:
+of `priv_taylorSeries` and its Horner variants from `[-1, 1]` times `factor`, except for a point
+matrix, where `E = intervalMatrix(ones(n), 0)` is the point `ones(n)`: the series is again a
+point. In one dimension it is the partial sum `∑_{i ≤ m} a^i / i!` plus
+`factor = (|a|^(m+1) / (m+1)!) / (1 - |a| / (m+2))`, `none` for `m + 2 ≤ |a|` (CORA returns `[]`).
+`expmDifferentAlgorithms(intervalMatrix(-1), 2, 0)` gives the point `13/18`, above `exp(-1)`.
+Read from the source, not run.
 
-```
-if isequal(intMat.int.sup, intMat.int.inf)
-    E = intervalMatrix(ones(n), 0);        % center ones, delta 0: the point ones(n)
-else
-    E = intervalMatrix(zeros(n), ones(n)); % [-1, 1]
-end
-...
-E = E*factor;
-```
+## Inputs
+* none
 
-`intervalMatrix(C, D)` is `[C - |D|, C + |D|]`, so the point branch adds the constant
-`factor * ones(n)` and the result of the series is again a point matrix. One dimension (a
-`1 x 1` matrix is a scalar `a`, its
-inf-norm `|a|`): the partial sum `∑_{i ≤ m} a^i / i!` plus
-`factor = (|a|^(m+1) / (m+1)!) / (1 - |a| / (m+2))`, the result `none` for `m + 2 ≤ |a|` (CORA
-returns `[]`). Read from the source, not run.
+## Hypotheses
+* none
 
-# CORA's `expmDifferentAlgorithms` of a point matrix is a point that misses `exp(A)`
-
-`expmDifferentAlgorithms(intervalMatrix(-1), 2, 0)` (the Taylor series; style `1`, Horner, has the
-same value) gives the partial sum `1 - 1 + 1/2 = 1/2` plus `factor = (1/6) / (3/4) = 2/9`, the
-point `13/18`, while `exp(-1) < 1/2`. `expmTaylorHornerScaling` dispatches to the same functions.
+## Conclusion
+* CORA's point result lies above the exponential
 -/
 
 -- Authors:       Claude Sonnet 5.5

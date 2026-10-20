@@ -19,6 +19,22 @@ the float `H(t_k)`: `e^{AΔt}` is in `[e^{AΔt}]` (`exp_mem_expIntervalFloat`), 
 constant's share is what the input held at `ũ` contributes, which the float input solution of
 `{ũ}` holds (`inputReach_subset_inputSolutionFloat`). [1, Alg. 1] lines 6-7.
 
+## Inputs
+* `sys` – linear system
+* `H` – float state zonotope
+* `ũ` – float constant input
+* `Δt` – float step length
+* `η` – Taylor order
+* `h` – state point
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hη` – order admissible
+* `hh` – point lies in the zonotope
+
+## Conclusion
+* the affine state after the step lies in the float next time-point set
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

@@ -10,15 +10,18 @@ public import CORALean.ContSet.Interval.Float.Operations.Smul
 /-!
 # `MatExp.expIntervalTaylor`, over a floating-point scalar
 
-`Real.MatExp.expIntervalTaylor` rounded: `i = 0 … η` matching that recursion
-term by term, each term `Interval.smul` at `invFactorialBounds i` — the float
-layer's only handle on `1/i!`, which no float exactly holds.
+`Real.MatExp.expIntervalTaylor` rounded: `i = 0 … η` matching that recursion term by term, each
+term `Interval.smul` at `invFactorialBounds i`, the float layer's only handle on `1/i!`. Each
+partial sum is `materialiseMat`d before the next term is added to it, for the reason
+`Interval.matPow`'s own recursion is: left as a closure, `η` nested `matPlus`es would rebuild
+the whole sum on every entry read. What runs carries the power along instead of rebuilding `Aⁱ`
+at every order, by `@[csimp]`: the same products in the same order, so the same values.
 
-Each partial sum is `materialiseMat`d before the next term is added to it, for
-the reason `Interval.matPow`'s own recursion is: left as a closure, `η` nested
-`matPlus`es would rebuild the whole sum on every entry read. What runs carries
-the power along instead of rebuilding `Aⁱ` at every order, by `@[csimp]`: the
-same products in the same order, so the same values.
+## Inputs
+* `A` – float interval matrix
+
+## Output
+* float interval matrix of the Taylor truncation up to the given order
 -/
 
 -- Authors:       Claude Sonnet 5

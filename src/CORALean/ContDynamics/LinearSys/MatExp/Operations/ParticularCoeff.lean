@@ -10,6 +10,14 @@ public import Mathlib.Data.Matrix.Mul
 
 `particularCoeff`: [1]'s eq. (19)-(20): `Ãᵢ` is `Aⁱ Δtⁱ⁺¹/(i+1)!`.
 
+## Inputs
+* `A` – system matrix
+* `Δt` – step length
+* `i` – order index
+
+## Output
+* coefficient matrix of the order in the particular solution
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

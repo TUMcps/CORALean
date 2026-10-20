@@ -18,6 +18,13 @@ on it `∑_{k ≠ i} A i k A k i` plus the range `[g, κ]` of `a r + ½ a² r²`
 when `-1/r` is in `A i i` and the smaller end value otherwise: this is `expIntervalW`
 (Lemma 3.1 of the thesis), term for term. Both results are rebuilt as center and radius, as CORA
 does.
+
+## Inputs
+* `A` – interval matrix
+* `r` – step length
+
+## Output
+* squared and linear dependent terms of the interval matrix
 -/
 
 -- Authors:       Claude Sonnet 5.5

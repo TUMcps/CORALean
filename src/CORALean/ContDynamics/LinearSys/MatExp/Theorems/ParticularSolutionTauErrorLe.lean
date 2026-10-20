@@ -14,6 +14,19 @@ public import CORALean.Global.Err
 bound through the fixed matrix `e^{Atk}`, and `Finset.Ico 0 (η+1) = Finset.range (η+1)`
 matches `bPU` to it.
 
+## Inputs
+* `A` – system matrix
+* `tk` – step start time
+* `U0` – input set
+* `Δt` – step length
+* `η` – Taylor order
+
+## Hypotheses
+* `hU0` – input set bounded
+
+## Conclusion
+* the τ-form error is under the root of the dimension times its explicit bound
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

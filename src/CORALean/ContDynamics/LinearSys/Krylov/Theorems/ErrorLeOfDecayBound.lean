@@ -15,6 +15,27 @@ weighted bound of the proof of Thm. 3.1 (`Krylov.error_le_integral_delta_exp_wei
 `e^{(s-τ)ν}Ce^{-sz} ≤ Ce^{-τz}` on `[0, τ]` as `z ≤ ν`, which gives the printed form.
 Stated for any real `ν` with `Re(x*Ax) ≥ ν x*x` and the Krylov identity (3.1) alone.
 
+## Inputs
+* `A` – matrix
+* `V` – Krylov basis
+* `T` – Hessenberg matrix
+* `τ` – next subdiagonal entry
+* `w` – next vector
+* `ν` – lower bound on the field of values
+* `t` – time
+* `C` – decay constant
+* `z` – decay rate
+
+## Hypotheses
+* `hK` – Krylov identity holds
+* `hA` – real part of the Rayleigh quotient at least the lower bound
+* `ht` – time nonnegative
+* `hz` – decay rate at most the lower bound
+* `hdec` – last entry decays exponentially on the interval
+
+## Conclusion
+* the Arnoldi error is at most the decay bound times the time
+
 ## References
 
 * [1] H. Wang, Q. Ye. "Error bounds for the Krylov subspace methods for computations of matrix

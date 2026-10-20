@@ -11,6 +11,18 @@ public import CORALean.ContSet.Interval.Real.Interval
 zero and then scale it by a sign-varying factor; this is the one fact that
 survives either sign, so both correction matrices reduce their containment
 proof to it rather than casing on the sign twice.
+
+## Inputs
+* `L` – lower end
+* `u` – scaled quantity
+* `w` – scale
+
+## Hypotheses
+* `hLu` – lower end at most the quantity
+* `hu0` – quantity at most zero
+
+## Conclusion
+* the scaled quantity lies between the minimum and maximum of the scaled end and zero
 -/
 
 -- Authors:       Claude Opus 5

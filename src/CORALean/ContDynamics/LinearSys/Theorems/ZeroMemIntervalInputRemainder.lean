@@ -17,6 +17,18 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 the float one holds the exact one (`inputRemainder_subset_intervalInputRemainder`).
 What lets `[E(r)·r] U` be bounded from above through the zero matrix, and its
 error box bracket `0`.
+
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hη` – order admissible
+
+## Conclusion
+* the zero matrix lies in the float remainder interval
 -/
 
 -- Authors:       Claude Opus 5.5

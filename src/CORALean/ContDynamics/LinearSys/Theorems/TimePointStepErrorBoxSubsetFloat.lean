@@ -17,6 +17,19 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallSubsetDiagonal
 least the exact radius `timePointStepError` (`timePointStepError_le_float`), itself non-negative,
 so the exact box lies inside it. That is the direction an inner approximation needs: what is
 taken off a step may only grow.
+
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `U` – input float zonotope
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hη` – order admissible
+
+## Conclusion
+* the exact error box lies in the float one
 -/
 
 -- Authors:       Claude Sonnet 5.5

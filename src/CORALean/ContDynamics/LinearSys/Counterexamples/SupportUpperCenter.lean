@@ -12,17 +12,21 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # [1, Alg. 1 (upper bounds)]'s line 13 is no upper bound for a center outside `U`
 
-For `A = 0`, `X₀ = {0}`, the simplex `U = conv{c₀, c₀ + e₁, c₀ + e₂, c₀ + e₃}` with
-`c₀ = (-3, -3, -3)`, `ℓ = (1, 1, 1)`, `Δt = 1` and `k = 1`, the center of the enclosing box
-`[-3, -2]³` is `ũ = (-5/2, -5/2, -5/2)`, which is outside `U`. Lines 8-11 of the upper bounds
-are lines 8-10 and 14 of the lower bounds with the same `U₀ = U - ũ`, so the quantities line 13
-reads, `ρ(H(t_k), ℓ)` and `ρ(P̂_U(t_{k+1}), ℓ)`, are those of `supportLower`; the curvature
-enclosure `C = F X₀ ⊕ G ũ` of line 5 is `{0}` for `A = 0`, and so `ρ(C, d_1) = 0`. Line 13 reads
-`max{-15/2, -15} + 0 + 2 · (-1/2) = -17/2`, while the exact reachable set at `t = 1 ∈ τ₁ = [1, 2]`
-is `U` and holds the state `c₀ + e₁` with `ℓ = -8`: a "bound" below the support function.
+For `A = 0`, `X₀ = {0}`, the simplex `U = conv{c₀, c₀ + e₁, c₀ + e₂, c₀ + e₃}`,
+`c₀ = (-3, -3, -3)`, `ℓ = (1, 1, 1)`, `Δt = 1`, `k = 1`, the box center `ũ = (-5/2, -5/2, -5/2)`
+is outside `U`. Lines 8-11 reuse the quantities of `supportLower`, the curvature `C` of line 5
+is `{0}`, so line 13 reads `max{-15/2, -15} + 0 + 2 · (-1/2) = -17/2`, while the exact set at
+`t = 1 ∈ [1, 2]` is `U` and holds `c₀ + e₁` with `ℓ = -8`. The tree's `supportUpper` cannot
+express this: its `Recenter.recenter U` always holds the origin, which is the repair.
 
-The tree's `supportUpper` cannot express this: its `Recenter.recenter U` always holds the
-origin, which is the repair, so it enlarges `U - ũ` and stays above the support function.
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the line-13 value lies below a reachable state's value, so it is no upper bound
 
 ## References
 

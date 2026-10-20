@@ -10,6 +10,20 @@ public import CORALean.ContDynamics.LinearSys.Operations.ReachBoxFloatChecked
 `reachBoxFloatChecked` is `reachBoxFloat` followed by `checkNoNaN`, so a `some` of it is the
 unchecked `some`, and none of its floats is a NaN. Whatever is proved of `reachBoxFloat` is
 proved of the checked result, which has passed the NaN test as well.
+
+## Inputs
+* `sys` – linear system
+* `X₀` – initial float zonotope
+* `U` – input float zonotope
+* `r` – float step length
+* `η` – Taylor order
+* `N` – number of steps
+
+## Hypotheses
+* none
+
+## Conclusion
+* a checked result equals the unchecked result and has no NaN
 -/
 
 -- Authors:       Claude Opus 5.5

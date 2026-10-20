@@ -12,6 +12,14 @@ its default [1]: the output is the state (`C = I`, `D = 0`, `k = 0`), and one di
 one noise enter through the zero columns `E = 0`, `F = 0`. It is what CORA's `identify`
 returns (`priv_identifyDMD`).
 
+## Inputs
+* `A` – system matrix
+* `B` – input matrix
+* `c` – constant offset
+
+## Output
+* linear system with one disturbance and one noise
+
 ## References
 
 * [1] `contDynamics/@linearSys/linearSys.m`, `aux_computeProperties`

@@ -14,6 +14,14 @@ public import CORALean.ContSet.Zonotope.Float.Instances
 float box holding `Aⁱ r^{i+1}/(i+1)!` at the stored `A`, applied to the input
 set by `Zonotope.mtimesIntervalMat`, and the orders summed by `plus` one at a
 time, exactly as the real sum is.
+
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `V` – float input zonotope
+
+## Output
+* float sum of the exact input orders up to the given index
 -/
 
 -- Authors:       Claude Opus 5.5

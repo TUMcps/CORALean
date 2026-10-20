@@ -17,6 +17,25 @@ real `m̃`. `ρ ≥ c` makes `f(s)s^{-c}` nondecreasing and `ρ ≤ c` nonincrea
 `f(t)(s/t)^{m-1} ≤ f(s) ≤ f(t)(s/t)^{m̃}` for `0 < s ≤ t`, which integrate to the bounds; [1]
 argues through a mean value `ρ(t*)` instead.
 
+## Inputs
+* `f` – positive function
+* `f'` – its derivative
+* `T` – upper limit
+* `m'` – lower effective order
+* `m` – upper effective order
+* `t` – time
+
+## Hypotheses
+* `hf` – function continuous on the interval
+* `hd` – derivative is the function's derivative
+* `hpos` – function positive
+* `hm'` – lower effective order at least one
+* `hρ` – effective order between the bounds
+* `ht` – time within the interval
+
+## Conclusion
+* the integral lies between the stated multiples of the end value
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

@@ -10,6 +10,16 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.PowUpFloat
 Induction on `k`: `mul_le_mulUp` at each step, carrying the nonnegativity
 hypothesis along so the induction step may multiply an inequality by `toReal a`
 without flipping it.
+
+## Inputs
+* `a` – float base
+* `k` – exponent
+
+## Hypotheses
+* `ha` – base nonnegative
+
+## Conclusion
+* the real power is at most the float upper power
 -/
 
 -- Authors:       Claude Sonnet 5

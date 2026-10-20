@@ -7,17 +7,23 @@ public import Mathlib.Analysis.Complex.Exponential
 /-!
 # The exponential series without its constant order
 
-Orders `1` through `η` of `e^c`, bounded by `e^c - 1` — the whole series minus
-the order the partial sums always carry. It is the finite counterpart of
-`tsum_le_expTail`: that one bounds what truncation leaves out, this one bounds
-what it keeps beyond the constant term.
+Orders `1` through `η` of `e^c`, bounded by `e^c - 1`: the whole series minus the order the
+partial sums always carry. It is the finite counterpart of `tsum_le_expTail`: that one bounds
+what truncation leaves out, this one what it keeps beyond the constant term. A Minkowski sum
+over the orders of an input solution asks for it: each order is free to pick its own input where
+a trajectory holds one, and orders `1` upwards are exactly the ones that difference does not
+cancel at. Scalar, so a caller at matrices supplies `c = ‖r A‖` and the matrix norm instances
+stay out of the elaboration.
 
-A Minkowski sum over the orders of an input solution is what asks for it. Each
-order is free to pick its own input where a trajectory holds one, and orders `1`
-upwards are exactly the ones that difference does not cancel at.
+## Inputs
+* `c` – norm bound
+* `η` – number of orders
 
-Scalar, so a caller at matrices supplies `c = ‖r A‖` and the matrix norm
-instances stay out of the elaboration.
+## Hypotheses
+* `hc` – norm bound nonnegative
+
+## Conclusion
+* the orders from one on sum to at most the exponential minus one
 -/
 
 -- Authors:       Claude Opus 5

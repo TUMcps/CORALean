@@ -18,6 +18,16 @@ public import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 product rule keeps only the identity permutation at `e^{0} = I`), it is multiplicative, so
 `g' = tr(A) g` everywhere, and `g(t) e^{-t tr(A)}` has derivative `0`.
 
+## Inputs
+* `A` – matrix
+* `t` – time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the determinant of the exponential is the exponential of time times the trace
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

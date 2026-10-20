@@ -21,6 +21,28 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 `Real.MatExp.curvatureEnclosure` encloses. `intervalCorrectionMatrix` holds the first factor
 and `intervalConstCorrectionMatrix` the second, each at the members of `A`, and `mtimes_outer`
 and `plus_outer` carry them through the products.
+
+## Inputs
+* `A` – float interval matrix
+* `H` – float state zonotope
+* `ũ` – float constant input
+* `Δt` – float step length
+* `η` – Taylor order
+* `M` – member matrix
+* `x` – state point
+* `τ` – time
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hη` – order at least two
+* `hε` – float norm bound small enough for the Taylor order
+* `hM` – member lies in the interval matrix
+* `hx` – point lies in the zonotope
+* `hτ0` – time nonnegative
+* `hτ` – time within the step
+
+## Conclusion
+* the true deviation from the straight line lies in the float curvature enclosure
 -/
 
 -- Authors:       Claude Sonnet 5.5

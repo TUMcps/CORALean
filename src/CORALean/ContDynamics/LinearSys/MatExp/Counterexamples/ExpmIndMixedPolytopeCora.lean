@@ -8,30 +8,22 @@ public import Mathlib.Data.List.Range
 # `MatExp.expmIndMixedPolytopeCora`: `expmIndMixed` of a matrix polytope as CORA's code runs it
 
 `@matPolytope/simplePlus.m` (l. 31-33) reads the size of its first summand from a variable that
-does not exist:
-
-```
-matV1 = summand1.V;
-[n1,m1,h1] = size(Z1);
-```
-
-(`matV1` was meant). `@matPolytope/expmIndMixed.m` (l. 38-43), the only caller, runs
-
-```
-for i=1:intermediateOrder
-    ePpow = ePpow*matP;
-    eP = simplePlus(eP, ePpow*(1/factorial(i)));
-end
-```
-
-so its first iteration stops with `Unrecognized function or variable 'Z1'`. `none` is the error.
-Read from the source, not run.
+does not exist (`size(Z1)` after `matV1 = summand1.V`). Its only caller,
+`@matPolytope/expmIndMixed.m` (l. 38-43), calls it for `i=1:intermediateOrder`, so the first
+iteration stops with `Unrecognized function or variable 'Z1'`. Read from the source, not run.
 
 # CORA's `expmIndMixed(matPolytope, k, maxOrder)` crashes for every `k >= 1`
 
-`expmIndMixed(matPolytope(V), 1, 3)` for any vertex array `V` throws in `simplePlus`; only
-`intermediateOrder = 0`, which skips the loop, reaches the interval part. `matPolytope.m` declares
-`simplePlus` with the comment `% ?`.
+`expmIndMixed(matPolytope(V), 1, 3)` throws in `simplePlus`; `intermediateOrder = 0` skips it.
+
+## Inputs
+* `k` – intermediate order
+
+## Hypotheses
+* `hk` – order at least one
+
+## Conclusion
+* CORA's expmIndMixed on a matrix polytope ends in an error
 -/
 
 -- Authors:       Claude Sonnet 5.5

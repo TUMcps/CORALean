@@ -12,6 +12,13 @@ public import CORALean.ContSet.Interval.Float.Interval
 carries an interval-matrix box, and the remainder joins it there (`plusInterval`),
 adding no generators to what later products multiply.
 
+## Inputs
+* `m` – matrix dimension
+* `b` – float entry bound
+
+## Output
+* float interval matrix with every entry within the bound
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

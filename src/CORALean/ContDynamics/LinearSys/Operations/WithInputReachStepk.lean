@@ -15,6 +15,16 @@ by the window's right end. One set serves every time of the window because
 `0 ∈ U` makes that contribution grow with time [1, Prop. 3.3], so the right end
 bounds every earlier instant.
 
+## Inputs
+* `sys` – linear system with input
+* `Δt` – step length
+* `η` – Taylor order
+* `X₀` – initial set
+* `k` – window index
+
+## Output
+* set over the window with the input
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

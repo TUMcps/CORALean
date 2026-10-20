@@ -13,6 +13,14 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeff
 contains: one coefficient per order, in its interval, plus a matrix within `W(δ)` entrywise.
 The interval's lower end is `corrCoeff i · δⁱ`, `corrCoeff i = i^{-i/(i-1)} - i^{-1/(i-1)}`.
 
+## Inputs
+* `H` – Hessenberg matrix
+* `δ` – step length
+* `η` – Taylor order
+
+## Output
+* set of correction matrices in the Krylov subspace
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

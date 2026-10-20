@@ -16,6 +16,17 @@ with infinite radius, so `exp(y) - Σ_{j<p} yʲ/j! = O(‖y‖ᵖ)`; at `y = tN`
 continuous linear map `B ↦ Bx`, this is `O(tᵖ)`. The vector space `Fin k → ℂ` carries its sup
 norm; `O(·)` does not depend on the norm in finite dimension.
 
+## Inputs
+* `N` – complex matrix
+* `x` – vector
+* `p` – Taylor order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Taylor remainder is of the order of the power near zero
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

@@ -30,6 +30,15 @@ blocks))`: `recompose` takes one argument (`@contSet/recompose.m`, `global/.../r
 block and `U ≠ {0}` (a cell for several blocks, numeric for `U = {0}`): that case stops with a
 MATLAB error at the second step, and with several blocks `PU` is never reduced. Read from the
 source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's output set is off the true output because the offset is counted twice
 -/
 
 -- Authors:       Claude Sonnet 5.5
