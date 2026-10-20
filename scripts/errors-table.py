@@ -6,8 +6,9 @@ Not run on its own: `scripts/formalization-stats.py` loads it, writes
 (with or without `--check`) on any problem `table()` reports.
 
 One row per `## Results` row of `references/<year>/*.md` classed `false` or `fixed`
-(references/README.md, "The `Class` column"), sorted by year, then page, then the order of the
-rows in the page's table. Four columns:
+(references/README.md, "The `Class` column"). The `false` rows come first, then a rule, then the
+`fixed` ones; each group is sorted by year, then page, then the order of the rows in the page's
+table. Four columns:
 
 * the reference, `\\errorcite[<result>]{<key>}`, with the page's key from
   `experiments/paper/ledger-bibkeys.json`; a `false` row is marked with a dagger. The table
@@ -156,7 +157,7 @@ def table(cr):
     page_keys = keys.get("pages", {})
     rows = ledger_rows(cr)
     seen = set()
-    body = []
+    body = {"false": [], "fixed": []}
     counts = {"false": 0, "fixed": 0, "cex": 0, "no_cex": [], "fix": 0, "no_fix": []}
     for row in rows:
         page, label = row["page"], row["label"]
@@ -194,8 +195,8 @@ def table(cr):
                 counts["no_fix"].append(where)
         mark = "\\textsuperscript{\\dag}" if row["class"] == "false" else ""
         ref = f"\\errorcite[{cite_label(label)}]{{{key or 'MISSING'}}}{mark}"
-        body.append(f"{ref} & {latex(entry.get('description', ''))} & "
-                    f"{link(cr, cex, 'CEX')} & {link(cr, fix, 'FIX')} \\\\")
+        body[row["class"]].append(f"{ref} & {latex(entry.get('description', ''))} & "
+                                  f"{link(cr, cex, 'CEX')} & {link(cr, fix, 'FIX')} \\\\")
     for page, entries in descs.items():
         if page.startswith("_"):
             continue
@@ -242,7 +243,8 @@ Reference & Description & \\begin{{tabular}}[b]{{@{{}}c@{{}}}}Lean\\\\counterexa
 \\endfoot
 \\bottomrule
 \\endlastfoot
-""" + "\n".join(body) + """
+""" + "\n".join(body["false"] + (["\\midrule"] if body["false"] and body["fixed"] else [])
+                + body["fixed"]) + """
 \\end{longtable}
 \\endgroup
 """
